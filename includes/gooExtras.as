@@ -265,8 +265,8 @@ public function galoMaxTFProc():void
 			if(pc.totalVaginas() == 1) output("your");
 			else output("an");
 			output(" oozing snatch before you’re consciously aware of it. ");
-			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output("They don’t care that you’re in public, out where anyone could see you. If peacekeepers show up, they’ll have to pry them out with a crowbar.");
-			else output("They don’t care a whit about your location. If you were out in public, they’d still be knuckle-deep inside you. The peacekeepers would have to pry them out of you with a crowbar");
+			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output("They don’t care that you’re in public, out where anyone could see you. If Peacekeepers show up, they’ll have to pry them out with a crowbar.");
+			else output("They don’t care a whit about your location. If you were out in public, they’d still be knuckle-deep inside you. The Peacekeepers would have to pry them out of you with a crowbar");
 			output(". Your other hand settles on [pc.oneCock] and begins to stroke, and pre-cum spills out in eager response. Everything feels so hot and wet, and the faster you masturbate, the slipperier you get.");
 			output("\n\nYour boundless sex juices fill your palms to overflowing, and you instinctively smear it all over your genitals, your own slippery, gooey lubricant. It provides the perfect mix of slickness and friction, just enough to ease the passage of your hands’ back and forth motions. You squelch and stroke and whine, dribbling down your [pc.legOrLegs] - so wet... so very, very wet. Your cock");
 			if(pc.cockTotal() > 1) output("s are fountains");
@@ -299,8 +299,8 @@ public function galoMaxTFProc():void
 			output(". Biting your lip, you struggle to keep your hands away, but it’s a futile effort.");
 
 			output("\n\nYour fingers know where they belong, know where they can touch to bring relief, where they can stroke to make your nerves dance pirouettes of bliss. They make the journey to [pc.oneCock] before you’re consciously aware of it. ");
-			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output("They don’t care that you’re in public, out where anyone could see you. If peacekeepers show up, they’ll have to pry them off with a crowbar.");
-			else output("They don’t care a whit about your location. If you were out in public, they’d still be wrapped around your length. The peacekeepers would have to pry them off of you with a crowbar");
+			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output("They don’t care that you’re in public, out where anyone could see you. If Peacekeepers show up, they’ll have to pry them off with a crowbar.");
+			else output("They don’t care a whit about your location. If you were out in public, they’d still be wrapped around your length. The Peacekeepers would have to pry them off of you with a crowbar");
 			output(". Pre-cum spills out in eager response. Everything feels so hot and wet, and the faster you masturbate, the slipperier you get.");
 			output("\n\nYour boundless sex juices fill your palms to overflowing, and you instinctively smear it all over your genitals, your own slippery, gooey lubricant. It provides the perfect mix of slickness and friction, just enough to ease the passage of your hands’ back and forth motions. You squelch and stroke and whine, dribbling down your [pc.legOrLegs] - so wet... so very, very wet. Your cock");
 			if(pc.cockTotal() > 1) output("s are fountains.");
@@ -319,8 +319,8 @@ public function galoMaxTFProc():void
 			if(pc.totalVaginas() == 1) output("your");
 			else output("an");
 			output(" oozing snatch before you’re consciously aware of it. ");
-			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output("They don’t care that you’re in public, out where anyone could see you. If peacekeepers show up, they’ll have to pry them out with a crowbar.");
-			else output("They don’t care a whit about your location. If you were out in public, they’d still be knuckle-deep inside you. The peacekeepers would have to pry them out of you with a crowbar.");
+			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output("They don’t care that you’re in public, out where anyone could see you. If Peacekeepers show up, they’ll have to pry them out with a crowbar.");
+			else output("They don’t care a whit about your location. If you were out in public, they’d still be knuckle-deep inside you. The Peacekeepers would have to pry them out of you with a crowbar.");
 			output(" Everything feels so hot and wet, and the faster you masturbate, the slipperier you get.");
 			output("\n\nYour boundless sex juices fill your palms to overflowing, and you instinctively smear it all over your genitals, your own slippery, gooey lubricant. It provides the perfect mix of slickness and friction, just enough to ease the passage of your fingers. You squelch and stroke and whine, dribbling down your [pc.legOrLegs] - so wet... so very, very wet. Your puss");
 			if(pc.totalVaginas() > 1) output("ies");

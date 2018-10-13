@@ -7,6 +7,7 @@ package classes.Engine.Combat
 	import classes.Engine.Utility.rand;
 	import classes.Characters.PlayerCharacter;
 	import classes.Items.Piercings.GeddaniumRingPiercing;
+	import classes.Items.Piercings.UrtaniumRingPiercing;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.kGAMECLASS;
 	
@@ -68,7 +69,11 @@ package classes.Engine.Combat
 		if (target.hasStatusEffect("Sex On a Meteor")) damMulti += 0.5;
 		if (target.hasStatusEffect("\"Rutting\"")) damMulti += 0.5;
 		if (target.hasStatusEffect("Tallavarian Tingler")) damMulti += 0.5;
-		if (lustDamage.tease.damageValue > 0 && target.hasPiercingOfClass(GeddaniumRingPiercing) && attacker.hasScales()) lustDamage.tease.damageValue *= 1.3;
+		if (lustDamage.tease.damageValue > 0)
+		{
+			if(target.hasPiercingOfClass(GeddaniumRingPiercing) && attacker != null && attacker.hasScales()) lustDamage.tease.damageValue *= 1.3;
+			if(target.hasPiercingOfClass(UrtaniumRingPiercing) && attacker != null && attacker.hasFur()) lustDamage.tease.damageValue *= 1.3;
+		}
 
 		//New status: "Red Myr Venom" replaces this.
 		//if (target.hasStatusEffect("Myr Venom")) damMulti += 0.25;

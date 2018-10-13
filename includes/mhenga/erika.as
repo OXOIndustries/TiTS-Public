@@ -46,8 +46,9 @@ public function erikaApproach():void
 	{
 		output("You decide to see why the kaithrit girl is sitting alone in a bar at this time of the day. You find a seat next to her. ");
 		if (pc.isNice()) output("\n\n<i>“I noticed that you seem to be interested in me, or am I wrong?”</i> She mutters in the affirmative. Placing a hand on her thigh, you continue, <i>“I would still like to know your name.”</i>");
-		else if(pc.isMischievous()) output("\n\n<i>“So are you going to tell me your name, or are you going to try to take </i>subtle<i> looks at me all night?”</i>");
-		else output("\n\n<i>“You have a staring problem, or do you have a good reason why you can’t get your eyes off me?”</i> Before she can say anything, you cut her off. <i>“If you’re going to stare at me all night you could at least tell me your name...”</i>");
+		//night -> day bc erika is here at daytime not nightime
+		else if(pc.isMischievous()) output("\n\n<i>“So are you going to tell me your name, or are you going to try to take </i>subtle<i> looks at me all day?”</i>");
+		else output("\n\n<i>“You have a staring problem, or do you have a good reason why you can’t get your eyes off me?”</i> Before she can say anything, you cut her off. <i>“If you’re going to stare at me all day you could at least tell me your name...”</i>");
 		output("\n\n<i>“Umm... E-Erika,”</i> she stammers, tails wrapped in her lap and ears folded against her head.");
 		output("\n\n<i>“[pc.name],”</i> you tell her. <i>“[pc.name] Steele. ");
 		if (pc.isNice()) output("Now, were you trying to get my attention, or were you just staring at me when you thought that I wasn’t looking?”</i>");
@@ -145,8 +146,8 @@ public function erikaTalkMenu(doOut:Boolean = true):void
 	if (flags["ERIKA_TALKED_ABOUT_HER"] != undefined && flags["ERIKA_TALKED_ABOUT_MOTHER"] == undefined) addButton(3,"Mother",erikaTalkMother);
 	else if (flags["ERIKA_TALKED_ABOUT_HER"] != undefined && flags["ERIKA_TALKED_ABOUT_MOTHER"] != undefined) addDisabledButton(3,"Mother", "Mother", "Erika doesn’t want to talk about this again..");
 	else addDisabledButton(3,"Locked","Locked","You don’t know enough about her for this.");
-	// [Sister] (requires talking about [Body] and [Her] and talked to Lerris)
-	if (flags["ERIKA_TALKED_ABOUT_HER"] != undefined && flags["ERIKA_TALKED_ABOUT_BODY"] != undefined && flags["MET_LERRIS"] != undefined) addButton(4,"Sister",erikaTalkSister);
+	// [Sister] (requires talking about [Body] and [Her] and talked to Lerris [and talked about mother, since she doesn't even mention a sister when talking about herself])
+	if (flags["ERIKA_TALKED_ABOUT_HER"] != undefined && flags["ERIKA_TALKED_ABOUT_MOTHER"] != undefined && flags["ERIKA_TALKED_ABOUT_BODY"] != undefined && flags["MET_LERRIS"] != undefined) addButton(4,"Sister",erikaTalkSister);
 	else addDisabledButton(4,"Locked","Locked","You don’t know enough about her for this.");
 	addButton(14,"Back",erikaMainMenu);
 }
@@ -1037,7 +1038,7 @@ public function erikaSexMenu(Repeat:Boolean = true):void
 	output("\n\nOr you could just ");
 	if (pc.hasCock() && pc.hasVagina()) output("stick your dick into her [erika.asshole], or stick her dick into your pussy, or ");
 	else if (pc.hasCock()) output("stick your dick in her [erika.asshole], or ");
-	else output("get her dick into your pussy, or ");
+	else if (pc.hasVagina()) output("get her dick into your pussy, or ");
 	output("stick her dick into your ass.");
 
 	clearMenu();
@@ -1202,7 +1203,7 @@ public function erikaSexRideHerPussy():void
 	IncrementFlag("ERIKA_SEXED");
 
 	processTime(60+rand(15));
-	pc.loadInCunt(erika, 0);
+	pc.loadInMouth(erika);
 	pc.orgasm();
 	erika.orgasm();
 
@@ -1223,7 +1224,7 @@ public function erikaSexRideHerButt():void
 	if (silly) output(" You can already tell it’s going to be a goddamn hassle to clean this up.");
 	output("\n\nYou pull your face back from hers and stare into her eyes. <i>“Close your eyes and hold out your tongue. I have a surprise for you.”</i> She does as you say, shutting her eyes and sticking her tongue out. You bring the bottle of sensitizing lube above her tongue and squeeze out a drop of it. She flinches a bit at the sudden feeling of cold liquid on her tongue, and crosses her eyes to look at what you’ve put on her it. Before she can get a peek, you push her tongue back into her mouth. She furrows her brow and begins to move her tongue around in her mouth. Her eyes slowly widen as she realizes what you’ve made her do. You squeeze out a dollop of the pink stuff on your [pc.tongue], retract it back into your mouth and move it around, spreading the lube all in your mouth. It tastes very similar to lingonberry, sour and somewhat sweet. You begin to feel the effects of the lube almost immediately, your mouth and tongue becoming almost achingly sensitive. You resist the urge to sit there and play with your tongue and look down at Erika. She’s breathing much heavier now, her oral organ pushing against the inside of her cheeks as she attempts to derive pleasure from her sensitive mouth. You stroke her cheek and lean down to make out with her again.");
 	output("\n\nYour tongues don’t even fight for dominance, they just squirm and wriggle around in each other’s mouth, trying to give as much thrill to the other as they’re getting. ");
-	if (pc.tongueFlags == [GLOBAL.FLAG_LONG]) output("You stretch your [pc.tongue] to the entrance of her throat and begin to rub around that area, spreading the lube. She groans into your mouth as you begin to push your tongue down her throat, almost fucking it.");
+	if (pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("You stretch your [pc.tongue] to the entrance of her throat and begin to rub around that area, spreading the lube. She groans into your mouth as you begin to push your tongue down her throat, almost fucking it.");
 	else output("You lick all around the inside of her mouth, wanting to taste her more, and she does the same to you. The room fills with lewd smacking noises as the two of you make out.");
 	output("\n\nYou begin to feel heat building in your loins. You look down and see that Erika’s puppy dick is twitching feverishly, leaking precum like a broken faucet. You’re both on the brink of orgasm, ready to cum from your oral affections.");
 	output("\n\nJust before you both cum from tongue-fucking each other, you pull away from your intense kissing and pant, a string of lube-infused saliva connecting your mouths. You both take a moment to calm down and let the burning lust in your crotches fade away, though not completely. You ");
@@ -1265,8 +1266,8 @@ public function erikaSexRideHerButt2():void
 	if (silly) output("11");
 	else output("5");
 	output(". You flip her onto her hands and knees and drag your fingers across her skin, sending shivers up and down her spine. You grab her sack and caress it, rolling her balls in your hand. They seem to have grown quite larger from your continuous teasing, swollen with thick cum. You grab her petite cock and stroke it, rubbing and squeezing her sensitive knot. Finally, you lean down and press your [pc.lips] against her twitching pucker. You lick all around it with your [pc.tongue], coating it in your spit-lube. ");
-	if (pc.tongueFlags == [GLOBAL.FLAG_LONG]) output("You slowly penetrate her with your [pc.tongue], searching for her prostate. When you find it, you feel it with the tip of your tongue, and begin rubbing it, making your tongue squirm in her ass. ");
-	else output("ou use your saliva to slowly insert a finger into her, searching around for her prostate. When you find it, you massage it thoroughly. You insert a second finger into her accommodating [erika.asshole], opening your fingers in a scissor motion. ");
+	if (pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("You slowly penetrate her with your [pc.tongue], searching for her prostate. When you find it, you feel it with the tip of your tongue, and begin rubbing it, making your tongue squirm in her ass. ");
+	else output("You use your saliva to slowly insert a finger into her, searching around for her prostate. When you find it, you massage it thoroughly. You insert a second finger into her accommodating [erika.asshole], opening your fingers in a scissor motion. ");
 	output("Erika’s eyes are watering by now, her cock throbbing angrily in your grip. She has almost completely stopped begging you to let her cum, resorting to just moaning and pushing her ass into your [pc.face].");
 	output("\n\nAfter teasing her a bit longer, you finally decide to let the kitty cum. You lean down to her ear and begin to nibble on it. <i>“You really want to cum, don’t you?”</i> She furiously shakes her head, turning and looking at you with wet eyes. <i>“You want to blow your load all over my bed, staining it with the scent of your seed. That’s what you want, huh?”</i> Her eyes roll partway into their sockets at the thought of making your sheets smell like her cum and she nods lazily, her tongue flopping out of her panting mouth, her berry-scented breath coming out quickly. You run your finger up her vibrating dick until you come to the cockring. You take your sweet time taking it off, but when you do she begins humping the empty air. You wrap your hand around her cock, giving her something to thrust into. You lick and suck her neck, whispering again into her ear. <i>“Cum for me. Shoot your cum. Blow your load. Cum just for me!”</i>");
 	output("\n\nHer eyes roll completely into her head and a crazed grin creeps onto her face. She gives one last powerful thrust into your hand, hilting herself, her knot swelling and making your hand open a little. You quickly move your head near her vibrating sack. You bring her balls into your mouth, fondling them with your [pc.tongue], enjoying the hairless, soft texture of her skin and the feeling of the bullet vibes buzzing away in your mouth. You suck on her sack hard, trying to coax out their creamy treasure. You unwrap your hand from her cock and bring both of them down under her cock, forming a basket with them. She lets out a shrill scream and her balls tense in your mouth. The first jet of cum shoots from her dog dick in one thick stream like water from a hose. It splashes in your hands, spraying you, her, and your sheets. The second jet comes out equally as powerful, and she raises her hips and thrusts them back down, another stream of cum erupting from her cock. She cums countless times after, filling your hands with spunk and adequately drenching your sheets, most likely actually staining them with the scent of her cum. Her balls shrink in your mouth as she ejaculates, draining her swollen cum-factories.");
@@ -1275,7 +1276,6 @@ public function erikaSexRideHerButt2():void
 	IncrementFlag("ERIKA_SEXED");
 
 	processTime(120+rand(30));
-	pc.loadInAss(erika);
 	pc.orgasm();
 	erika.orgasm();
 
@@ -1303,7 +1303,7 @@ public function erikaSexDegradeHer():void
 	author("Doots");
 
 	output("You’re feeling rather cruel today, and who better to take it out on than your feline chew toy? You shove her onto the bed before picking a few choice items from the box.");
-	output("\n\nClimbing on top of her, you tie her wrists together. <i>“I’m going to give your pathetic little bitch clit some attention. You should be thankful.”</i> You cover her nipples with some tape. <i>“Of course, if you don’t want me to you could say otherwise.”</i> You continue, finally putting the ball gag into her mouth <i>“So, do you want me to stop? Now is your last chance to tell me,”</i> you ask before tying the gag behind her head.");
+	output("\n\nClimbing on top of her, you tie her wrists together. <i>“I’m going to give your pathetic little bitch clit some attention. You should be thankful.”</i> You cover her nipples with some tape. <i>“Of course, if you don’t want me to, you could say otherwise,”</i> you continue, finally putting the ball gag into her mouth. <i>“So, do you want me to stop?”</i> you ask before tying the gag behind her head. <i>“Now is your last chance to tell me.”</i>");
 	output("\n\nShe shakes her head, meek and unsure, but nonetheless shaking her head. <i>“Thought so. Can’t afford to say no when someone is finally willing to touch that thing you call a dick,”</i> you say, trailing your middle finger up the underside of her doggy dick. Without a warning, you clamp the cock ring around her base. <i>“There we go, can’t trust a worthless bitch like you to last.”</i> Her cock gives a throb and her hips make a tiny thrust upwards.");
 	output("\n\nStraddling her hips, you align her dick with your [pc.pussy], then slam your own [pc.hips] down, roughly impaling yourself on its tapered length.");
 	if (pc.looseness() > 3) output("\n\n<i>“Oh my, it’s worse than I thought. I can barely feel a thing.”</i> You sigh in mock disappointment. <i>“I’ve had more fun with just my fingers, but I might be able to make this work.”</i> ");

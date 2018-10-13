@@ -407,11 +407,11 @@ public function tuuvaShopMenu(choice:String = ""):void
 			tuuvaShopOption(3, new FrostbanePlate());
 			tuuvaShopOption(4, new FrostbaneMail());
 			tuuvaShopOption(5, new FrostbaneBikini());
-			if(tuuvaCredits() <= 42000)
+			if(tuuvaCredits() < 42000)
 			{
 				setButtonDisabled(3);
 				setButtonDisabled(4);
-				if(tuuvaCredits() <= 40000) setButtonDisabled(5);
+				if(tuuvaCredits() < 40000) setButtonDisabled(5);
 			}
 		}
 

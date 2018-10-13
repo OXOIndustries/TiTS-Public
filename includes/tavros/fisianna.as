@@ -1081,7 +1081,6 @@ public function oralFisi(fromMenu:Boolean = false):void
 		}
 		else {
 			output("\n\n<i>“Alright then, I think they would feel pretty nice on other pla-”</i> you start to say, but are cut off when you feel a soft paw already sliding towards your [pc.clit]. The rest of your words are replaced with a gasp of pleasure when she starts to strum your [pc.vaginaColor] pearl. You look down and see Fisianna smiling coyly, matching your gaze to hers. She kneels snuggly ");
-			output("\n\n<i>“Did you mean here, by chance?”</i> She smirks, breathing steadily heavier the closer she brings your phallus to her face. You would say something about her overt cheekiness, but you are too blissed out to care at the moment.");
 			if (pc.legType == GLOBAL.TYPE_SNAKE || (pc.legType == GLOBAL.TYPE_GOOEY && pc.hasLegFlag(GLOBAL.FLAG_PREHENSILE))) output("against");
 			else output("between");
 			output(" your [pc.legs], breathing heavily against your moist pussy.");
@@ -1469,9 +1468,9 @@ public function fuckFisiSillyII(x:int = -1):void
 		output("\n\nThe relaxing feeling doesn’t last for very long however.");
 		if (x >= 0) output(" During your playful petting, you realize that you are still hilted inside of Fisianna.");
 		output(" Her bodily purring inadvertently stimulates your phallus, causing ");
-		if (pc.hasHardLightEquipped()) output("an uncomfortable arousal to build in your loins")
+		if (pc.hasHardLightEquipped()) output("an uncomfortable arousal to build in your loins");
 		else ("you to become hard again");
-		output(". You begin to squirm, trying your best not give into your growing desire to thrust while your teasing backfires, even more so when her eyes flutter open in response to your fidgeting.")
+		output(". You begin to squirm, trying your best not give into your growing desire to thrust while your teasing backfires, even more so when her eyes flutter open in response to your fidgeting.");
 		output("\n\n<i>“Mmm... hey, [pc.name]. I’m happy to see you too!”</i> Fisianna sleepily giggles while she shifts gingerly under you. <i>“I’m surprised you’re still in the mood given how hard we both... uh... got off, but unfortunately, I still need some rest. Y-you did quite a number on me...”</i> she groans, smiling sheepishly at you. <i>“Still... I could use some more of what you were doing before, to help me fall back asleep. Can you, please?”</i> she asks with pleading, expectant eyes. After shaking off your clear embarrassment, you oblige, figuring it’s the least you owe her from waking her from her nap. You pull out of her and lay to her side so you don’t repeat the same mistake again, after which you resume petting Fisianna.");
 		output("\n\nYou keep this up for a few minutes until her eyes finally flutter closed again. When you are sure that she has fallen back asleep, you slide out of the bed to stretch. After you’re done, you ");
 		if (!pc.isNude()) output("reequip your [pc.gear] and ");
@@ -1704,7 +1703,7 @@ public function getPeggedByFisiI(fromMenu:Boolean = false):void
 	output("\n\nAfter bringing her paws from her breasts to her hips again, Fisianna unbuckles her jeans and shimmies out of them. Once she is in nothing but her panties, she slowly stalks towards you, flipping on her hardlight dildo along the way. As if on instinct, you turn yourself around on the bed and hike your [pc.butt] in the air, presenting your ");
 	if (pc.hasVagina()) output("[pc.vagina] and ");
 	output("pucker to the seductive kitty.");
-	if (pc.hasTails()) {
+	if (pc.hasTail()) {
 		output(" Your [pc.tails] wag");
 		if (pc.tailCount == 1) output("s");
 		output("excitedly back and forth in anticipation.");

@@ -984,6 +984,15 @@ public function initUvetoRooms():void
 	rooms["UVIP T44"].addFlag(GLOBAL.HAZARD);
 	rooms["UVIP T44"].runOnEnter = myrnaEncounterBonus;
 
+	rooms["UVIP T46"] = new RoomClass(this);
+	rooms["UVIP T46"].roomName = "";
+	rooms["UVIP T46"].description = "";
+	rooms["UVIP T46"].planet = "PLANET: UVETO VII";
+	rooms["UVIP T46"].system = "SYSTEM: SIRETTA";
+	rooms["UVIP T46"].northExit = "UVIP T44";
+	rooms["UVIP T46"].addFlag(GLOBAL.CAVE);
+	rooms["UVIP T46"].runOnEnter = varkMenu;
+	
 	rooms["UVIP T42"] = new RoomClass(this);
 	rooms["UVIP T42"].roomName = "WINDING\nPATHS";
 	rooms["UVIP T42"].description = "The path here is a slow, steady incline to the north, heading back up towards the lakeshore. The sides of the snowy path are a little more narrow here, barely wide enough for you to squeeze through in some places. In others, you have to move fast to avoid tumbling flurries of snow blown off the tops and into the path.";
@@ -4019,4 +4028,21 @@ public function initUvetoRoomsII():void
 	rooms["FROSTWYRM LAIR"].inText = "Up";
 	rooms["FROSTWYRM LAIR"].addFlag(GLOBAL.INDOOR);
 	rooms["FROSTWYRM LAIR"].addFlag(GLOBAL.PRIVATE);
+
+	rooms["WILLOWS ROOM"] = new RoomClass(this);
+	rooms["WILLOWS ROOM"].roomName = "WILLOW’S\nAPARTMENT";
+	rooms["WILLOWS ROOM"].description = "";
+	rooms["WILLOWS ROOM"].planet = "PLANET: UVETO VII";
+	rooms["WILLOWS ROOM"].system = "SYSTEM: SIRETTA";
+	rooms["WILLOWS ROOM"].moveMinutes = 1;
+	rooms["WILLOWS ROOM"].northExit = "";
+	rooms["WILLOWS ROOM"].eastExit = "UVI N32";
+	rooms["WILLOWS ROOM"].southExit = "";
+	rooms["WILLOWS ROOM"].westExit = "";
+	rooms["WILLOWS ROOM"].outExit = "";
+	rooms["WILLOWS ROOM"].outText = "Down";
+	rooms["WILLOWS ROOM"].inExit = "";
+	rooms["WILLOWS ROOM"].inText = "Up";
+	rooms["WILLOWS ROOM"].addFlag(GLOBAL.INDOOR);
+	rooms["WILLOWS ROOM"].addFlag(GLOBAL.PRIVATE);
 }

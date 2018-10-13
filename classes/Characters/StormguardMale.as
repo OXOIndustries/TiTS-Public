@@ -261,6 +261,7 @@
 			if(hasStatusEffect("Stormguard Determination")) addStatusValue("Stormguard Determination",1,-1);
 			if(hasStatusEffect("Flying")) addStatusValue("Flying",1,1);
 			if(hasStatusEffect("Shield CD")) addStatusValue("Shield CD",1,-1);
+			if(statusEffectv1("Shield CD") <= 0) removeStatusEffect("Shield CD");
 			
 			//Conan MAD - all he does once shot down
 			if(hasStatusEffect("Shot Down")) 
@@ -396,10 +397,10 @@
 				applyDamage(damage, this, target, "minimal");
 
 				//if trip:
-				if (!target.hasStatusEffect("Tripped") && this.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
+				if (!target.hasStatusEffect("Tripped") && !target.isPlanted() && this.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
 				{
 					CombatAttacks.applyTrip(target);
-					output("\n\nYou're <b>tripped!</b>");
+					output("\n\nYou’re <b>tripped!</b>");
 				}
 				output("\n\n<i>“An attack worthy of finishing any battle!”</i> crows your opponent triumphantly.");
 			}

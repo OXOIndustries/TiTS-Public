@@ -504,7 +504,7 @@ public function victoryOverPhoenixPirates():void
 	author("Savin");
 
 	output("The last pirate drops under your combined assault, and the din of gunfire dies down. You blink hard, your ears ringing from so much fire in such tight quarters. Checking to make sure the pirates are down for the count, you lower your");
-	if (!pc.rangedWeapon is Rock || !pc.meleeWeapon is Rock) output(" weapon");
+	if (pc.hasEquippedWeapon()) output(" weapon");
 	else output(" fists")
 	output(" and make your way over to the captain, who’s slumped down to the floor, clutching at her side.");
 

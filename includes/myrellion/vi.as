@@ -424,11 +424,33 @@ public function getExamanitedByVi():void
 	output(". <i>“Analyzing...”</i>");
 
 	processTime(14);
-	var parasites:int = 0;
-	if(pc.hasCuntTail()) parasites++;
-	if(pc.hasCockTail()) parasites++;
-	if (attachedMimbranes() > 0) parasites++;
+	
 	var sstds:Number = pc.sstdTotal();
+	var parasites:int = 0;
+	if(pc.hasStatusEffect("Butt Bug (Female)")) parasites++;
+	if(pc.hasCuntTail() && pc.hasParasiteTail()) parasites++;
+	if(pc.hasCockTail() && pc.hasParasiteTail()) parasites++;
+	if(attachedMimbranes() > 0) parasites++;
+	//if Detected No Parasites:
+	if(sstds <= 0 && parasites <= 0)
+	{
+		output("\n\nVi pulls back and puts a hand on her synthetic chest, letting out a relieved sigh. <i>“Good. You appear to be in perfect health, " + pc.mf("sir","ma’am") + ". Apart from a highly advanced group of microsurgeons, there are no foreign contaminants in your system. Nothing to worry about!”</i>");
+		output("\n\n<i>“");
+		if(pc.isNice()) output("So, the cost...?");
+		else if(pc.isMischievous()) output("What’s the damage, doc?");
+		else output("That was pretty quick, you better not charge me much. Cost?");
+		output("”</i> You ask, bringing up your credit balance on your codex.");
+
+		output("\n\nVi chuckles and picks up a chart with her tail, dumping it in her hands. <i>“No cost, " + pc.mf("sir","ma’am") + " – examinations are always free. Treatments are a little different. I still have to charge a small fee, but it’s well below galactic norms. Thankfully I can provide my services to you at a dime.”</i>");
+
+		output("\n\n<i>“Is there anything else I can help you with today, " + pc.mf("sir","ma’am") + "?”</i>");
+		// Return to menu
+		viMenu();
+		return;
+	}
+	
+	var buttons:Array = [];
+	
 	//if detected more than one lot of parasites:
 	if(sstds > 0)
 	{
@@ -443,7 +465,6 @@ public function getExamanitedByVi():void
 			output(". Unfortunately, I can only ");
 			if(parasites > 1) output("treat one of your parasitic infections at a time. Alternatively, I can cure your diseases for a modest 500 credits.");
 			else output("treat a parasite or your diseases at a time. The latter costs 500 credits.");
-			
 		}
 		else
 		{
@@ -453,83 +474,99 @@ public function getExamanitedByVi():void
 			output(" can be produced for only 500 credits and a few minutes of processing time. Would you like a treatment?");
 		}
 		output(" Please indicate your choice, " + pc.mf("sir","ma’am") + ".”</i>");
-		clearMenu();
-		if(attachedMimbranes() > 0) addButton(0,"Treat Mimb",removeAParasiteWithVi,"Mimbrane","Mimbrane Treatment","Get any mimbranes removed.");
-		else addDisabledButton(0,"Treat Mimb","Mimbrane Treatment","You don’t have any mimbranes to remove.");
-		if(pc.hasParasiteTail() && pc.hasCuntTail()) addButton(1,"Treat C.Snake",removeAParasiteWithVi,"Cuntsnake","Cuntsnake Treatment","Get any parasitic tails removed.");
-		else addDisabledButton(1,"Treat C.Snake","Cuntsnake Treatment","You have no parasitic snakes to remove.");
-		if(pc.hasParasiteTail() && pc.hasCockTail()) addButton(2,"Treat C.Vine",removeAParasiteWithVi,"Cockvine","Cockvine Treatment","Get any parasitic tails removed.");
-		else addDisabledButton(2,"Treat C.Vine","Cockvine Treatment","You have no cockvines to remove.");
-
-		if(sstds > 0 && pc.credits >= 500) addButton(3,"TreatDisease",removeDiseasesVI,undefined,"Treat Disease","Get any diseases you’re carrying removed for 500 credits.");
-		else if(pc.credits < 500 && sstds > 0) addDisabledButton(3,"TreatDisease","Treat Disease","You cannot afford this treatment.");
-		else addDisabledButton(3,"TreatDisease","Treat Disease","You don’t have any diseases.");
-		addButton(4,"None",declineParasiteTreatmentFromVi,undefined,"No","Decline to get any parasites removed.");
+		
+		if(pc.credits < 500)
+		{
+			buttons.push(["TreatDisease", null, undefined, "Treat Disease", "You cannot afford this treatment.\n\nCosts 500 credits"]);
+		}
+		else
+		{
+			buttons.push(["TreatDisease", removeDiseasesVI, undefined, "Treat Disease", "Get any diseases you’re carrying removed for 500 credits."]);
+		}
 	}
-	else if(parasites > 1)
+	if(parasites > 0)
 	{
-		output("\n\n<i>“I should also inform you, it appears you have more than one type of parasitic affliction. Unfortunately, I can only treat one lot of parasites in a single procedure. Please indicate which infestation you would like me to treat first, " + pc.mf("sir","ma’am") + ".”</i>");
-		// Show list of parasites + no removal button.
-		// Treating a parasite goes to the ‘Remove Parasite’ Scene further down. No Removal goes to the ‘Turn Down’’ scene, also further down.
-		clearMenu();
-		if(attachedMimbranes() > 0) addButton(0,"Treat Mimb",removeAParasiteWithVi,"Mimbrane","Mimbrane Treatment","Get any mimbranes removed.");
-		else addDisabledButton(0,"Treat Mimb","Mimbrane Treatment","You don’t have any mimbranes to remove.");
-		if(pc.hasParasiteTail() && pc.hasCuntTail()) addButton(1,"Treat C.Snake",removeAParasiteWithVi,"Cuntsnake","Cuntsnake Treatment","Get any parasitic tails removed.");
-		else addDisabledButton(1,"Treat C.Snake","Cuntsnake Treatment","You have no parasitic snakes to remove.");
-		if(pc.hasParasiteTail() && pc.hasCockTail()) addButton(2,"Treat C.Vine",removeAParasiteWithVi,"Cockvine","Cockvine Treatment","Get any parasitic tails removed.");
-		else addDisabledButton(2,"Treat C.Vine","Cockvine Treatment","You have no cockvines to remove.");
-		addButton(4,"None",declineParasiteTreatmentFromVi,undefined,"No","Decline to get any parasites removed.");
+		if(sstds <= 0)
+		{
+			if(parasites > 1)
+			{
+				output("\n\n<i>“I should also inform you, it appears you have more than one type of parasitic affliction. Unfortunately, I can only treat one lot of parasites in a single procedure. Please indicate which infestation you would like me to treat first, " + pc.mf("sir","ma’am") + ".”</i>");
+				// Show list of parasites + no removal button.
+				// Treating a parasite goes to the ‘Remove Parasite’ Scene further down. No Removal goes to the ‘Turn Down’ scene, also further down.
+			}
+		}
+		// if PC has butt bug:
+		if(pc.hasStatusEffect("Butt Bug (Female)"))
+		{
+			if(parasites == 1)
+			{
+				output("\n\nHer fingers reach up to clasp your shoulder, and she turns you slightly around to gaze at your ass – the second time in a row! This time, however, she’s staring with a concerned look in her eyes.");
+				output("\n\n<i>“It is as I thought. I’m sorry to inform you of this, " + pc.mf("sir","ma’am") + ", but you’ve been infected by a hilinara parasite. In order to treat it, I will have to administer anesthesia. Will you consent to treatment?");
+			}
+			buttons.push(["Treat B.Bug", removeAParasiteWithVi, "buttbug", "Treat Butt Bug", "Remove the butt bug parasite."]);
+		}
+		// if cock snake:
+		if(pc.hasCockTail() && pc.hasParasiteTail())
+		{
+			if(parasites == 1)
+			{
+				output("\n\nHer fingers reach up to clasp your shoulder, and she turns you slightly around to gaze at your ass – the second time in a row! This time, however, she’s staring with a concerned look in her eyes.");
+				output("\n\n<i>“It’s as I thought. I’m sorry to inform you of this, " + pc.mf("sir","ma’am") + ", but you’ve been infected by a hydrus constuprula parasitic vine. In order to treat it, I will have to administer anesthesia. Will you consent to treatment?");
+				//[Treat Cock.S] [NoRemoval]
+				// Treating goes to ‘Remove Parasite’ Scene further down. No Removal goes to the ‘Turn Down’ scene, also further down.
+			}
+			buttons.push(["Treat C.Vne", removeAParasiteWithVi, "cockvine", "Cockvine Treatment", "Get any parasitic tails removed."]);
+		}
+		// If Cunt Snake:
+		if(pc.hasCuntTail() && pc.hasParasiteTail())
+		{
+			if(parasites == 1)
+			{
+				output("\n\nHer fingers reach up to clasp your shoulder, and she turns you slightly around to gaze at your ass – the second time in a row! This time, however, she’s staring with a concerned look in her eyes.");
+				output("\n\n<i>“It is as I thought. I’m sorry to inform you of this, " + pc.mf("sir","ma’am") + ", but you’ve been infected by a class ‘C’ parasitic snake. In order to treat it, I will have to administer anesthesia. Will you consent to treatment?");
+				//[Treat Cnt.S] [NoRemoval]
+				// Treating goes to ‘Remove Parasite’ Scene further down. No Removal goes to the ‘Turn Down’ scene, also further down.
+			}
+			buttons.push(["Treat C.Snk", removeAParasiteWithVi, "cuntsnake", "Cunt Snake Treatment", "Get any parasitic tails removed."]);
+		}
+		// if PC has mimbranes attached:
+		if (attachedMimbranes() > 0)
+		{
+			if(parasites == 1)
+			{
+				output("\n\nPulling back, there’s a concerned look in Vi’s eyes. She reaches up with a hand and toys with the tip of her side plait. <i>“I’m sorry to inform you of this, " + pc.mf("sir","ma’am") + ", but you appear infected with " + (attachedMimbranes() == 1 ? "a class ‘M’ epidel parasite" : "class ‘M’ epidel parasites") + ". In order to treat it, I will have to administer anesthesia. Will you consent to treatment?”</i>");
+				//[Treat Mimb] [NoRemoval]
+				// Treating goes to ‘Remove Parasite’ Scene further down. No Removal goes to the ‘Turn Down’ scene, also further down.
+			}
+			buttons.push(["Treat Mimbs", removeAParasiteWithVi, "mimbrane", "Mimbrane Treatment", "Get any mimbranes removed."]);
+		}
 	}
-	//If Cunt Snake:
-	else if(pc.hasCuntTail() && pc.hasParasiteTail())
+	
+	if(sstds > 0 || parasites > 0)
 	{
-		output("\n\nHer fingers reach up to clasp your shoulder, and she turns you slightly around to gaze at your ass – the second time in a row! This time, however, she’s staring with a concerned look in her eyes.");
-		output("\n\n<i>“It is as I thought. I’m sorry to inform you of this, " + pc.mf("sir","ma’am") + ", but you’ve been infected by a class ‘C’ parasitic snake. In order to treat it, I will have to administer anesthesia. Will you consent to treatment?");
-		//[Treat Cnt.S] [NoRemoval]
-		// Treating goes to ‘Remove Parasite’ Scene further down. No Removal goes to the ‘Turn Down’ scene, also further down.
 		clearMenu();
-		addButton(0,"Treat C.Snake",removeAParasiteWithVi,"Cuntsnake","Cuntsnake Treatment","Get any parasitic tails removed.");
-		addButton(1,"No",declineParasiteTreatmentFromVi,undefined,"No","Decline to get any parasites removed.");
-	}
-	//else if cock snake:
-	else if(pc.hasCockTail() && pc.hasParasiteTail())
-	{
-		output("\n\nHer fingers reach up to clasp your shoulder, and she turns you slightly around to gaze at your ass – the second time in a row! This time, however, she’s staring with a concerned look in her eyes.");
-		output("\n\n<i>“It’s as I thought. I’m sorry to inform you of this, " + pc.mf("sir","ma’am") + ", but you’ve been infected by a hydrus constuprula parasitic vine. In order to treat it, I will have to administer anesthesia. Will you consent to treatment?");
-		//[Treat Cock.S] [NoRemoval]
-		// Treating goes to ‘Remove Parasite’ Scene further down. No Removal goes to the ‘Turn Down’ scene, also further down.
-		clearMenu();
-		addButton(0,"Treat C.Vine",removeAParasiteWithVi,"Cockvine","Cockvine Treatment","Get any parasitic tails removed.");
-		addButton(1,"No",declineParasiteTreatmentFromVi,undefined,"No","Decline to get any parasites removed.");
-	}
-	//else if PC has mimbranes attached:
-	else if (attachedMimbranes() > 0)
-	{
-		output("\n\nPulling back, there’s a concerned look in Vi’s eyes. She reaches up with a hand and toys with the tip of her side plait. <i>“I’m sorry to inform you of this, " + pc.mf("sir","ma’am") + ", but you appear infected with ");
-		if(attachedMimbranes() == 1) output("a class ‘M’ epidel parasite");
-		else output("class ‘M’ epidel parasites");
-		output(". In order to treat it, I will have to administer anesthesia. Will you consent to treatment?”</i>");
-		//[Treat Mimb] [NoRemoval]
-		// Treating goes to ‘Remove Parasite’ Scene further down. No Removal goes to the ‘Turn Down’ scene, also further down.
-		clearMenu();
-		addButton(0,"Treat Mimb",removeAParasiteWithVi,"Mimbrane","Mimbrane Treatment","Get any mimbranes removed.");
-		addButton(1,"No",declineParasiteTreatmentFromVi,undefined,"No","Decline to get any parasites removed.");
-	}
-	//if Detected No Parasites:
-	else
-	{
-		output("\n\nVi pulls back and puts a hand on her synthetic chest, letting out a relieved sigh. <i>“Good. You appear to be in perfect health, " + pc.mf("sir","ma’am") + ". Apart from a highly advanced group of microsurgeons, there are no foreign contaminants in your system. Nothing to worry about!”</i>");
-		output("\n\n<i>“");
-		if(pc.isNice()) output("So, the cost...?");
-		else if(pc.isMischievous()) output("What’s the damage, doc?");
-		else output("That was pretty quick, you better not charge me much. Cost?");
-		output("”</i> You ask, bringing up your credit balance on your codex.");
-
-		output("\n\nVi chuckles and picks up a chart with her tail, dumping it in her hands. <i>“No cost, " + pc.mf("sir","ma’am") + " – examinations are always free. Treatments are a little different. I still have to charge a small fee, but it’s well below galactic norms. Thankfully I can provide my services to you at a dime.”</i>");
-
-		output("\n\n<i>“Is there anything else I can help you with today, " + pc.mf("sir","ma’am") + "?”</i>");
-		// Return to menu
-		viMenu();
+		
+		var btn:int = 0;
+		var i:int = 0;
+		for(i = 0; i < buttons.length; i++)
+		{
+			if(btn >= 14 && (btn + 1) % 15 == 0)
+			{
+				addButton(btn, "None", declineParasiteTreatmentFromVi, undefined, "No", "Decline to get any parasites removed.");
+				btn++;
+			}
+			
+			if(buttons[i][1] == null) addDisabledButton(btn, buttons[i][0], buttons[i][3], buttons[i][4]);
+			else addButton(btn, buttons[i][0], buttons[i][1], buttons[i][2], buttons[i][3], buttons[i][4]);
+			btn++;
+		
+			if(buttons.length > 14 && (i + 1) == buttons.length)
+			{
+				while((btn + 1) % 15 != 0) { btn++; }
+				addButton(btn, "None", declineParasiteTreatmentFromVi, undefined, "No", "Decline to get any parasites removed.");
+			}
+		}
+		addButton(14, "None", declineParasiteTreatmentFromVi, undefined, "No", "Decline to get any parasites removed.");
 	}
 }
 
@@ -545,7 +582,6 @@ public function removeDiseasesVI():void
 	pc.credits -= 500;
 	IncrementFlag("TREATED_BY_VI");
 	viMenu();
-
 }
 
 //Remove Parasite
@@ -573,30 +609,17 @@ public function postParasiteRemoval(arg:String):void
 	output("\n\nShe’s right. There’s a slightly unpleasant metallic flavor on your tongue. You feel something being pressed into your hands. Feels like a cup. The straw is brought to your lips, and you suck on it. Mmm, it’s some sort of flavorful juice. Just the thing to flush the bad taste out.");
 	output("\n\n<i>“How did the treatment go?”</i> You ask, your vision slowly clearing. Vi seems to be clutching a chart to her bountiful bust, looking very pleased. Her synthetic tail is even flicking!");
 	output("\n\n<i>“It was a complete success, " + pc.mf("sir","ma’am") + "! All ");
-	if(arg == "Cuntsnake") output("‘C’ type snakes");
-	else if(arg == "Cockvine") output("‘H’ class parasitic vines");
-	else output("‘M’ class epidel parasites");
+	if(arg == "cuntsnake") output("‘C’ type snakes");
+	else if(arg == "cockvine") output("‘H’ class parasitic vines");
+	else if(arg == "mimbrane") output("‘M’ class epidel parasites");
+	else if(arg == "buttbug") output("‘B’ class parasitic worm");
 	output(" were removed from your body. There should be no lasting effects, but if you do find yourself exhibiting strange symptoms, please come find me.”</i>");
 
 	output("\n\nYou ask Vi if she’s going to charge you for the treatment, and she shakes her head. There’s suddenly a lively look in her eyes. <i>“Oh no, the operation was free! Due to the inherent dangers of first contact and the introduction of parasites, JoyCo can invoice the UGC directly for any containment costs.”</i>");
-	output("\n\nWell, that’s handy for you. You thank her for her services, since she apparently performed the surgery. Not so coincidentally. there’s a quarantine container not too far away from your bed, marked for immediate medical incineration.");
+	output("\n\nWell, that’s handy for you. You thank her for her services, since she apparently performed the surgery. Not so coincidentally. There’s a quarantine container not too far away from your bed, marked for immediate medical incineration.");
 	// Do the removal shit
-	if (arg == "Cuntsnake" || arg == "Cockvine")
-	{
-		pc.tailType = GLOBAL.TYPE_HUMAN;
-		pc.tailCount = 0;
-		pc.tailFlags = [];
-		pc.tailGenital = 0;
-		pc.tailGenitalArg = 0;
-		pc.tailGenitalColor = "";
-		
-		flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
-		flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
-	}
-	else if (arg == "Mimbrane")
-	{
-		removeMimbranes();
-	}
+	purgeParasites(arg);
+	
 	IncrementFlag("TREATED_BY_VI");
 	// Return to menu.
 	processTime(120+rand(20));
@@ -2129,12 +2152,16 @@ public function inflateViBoobs():void
 	output("\n\nWith a little difficulty, Vi clips the maternity-like flaps back over her nipples. Only a few moments later, the material looks a little stained.");
 	output("\n\n<i>“How strange. Constant lactation isn’t within my normal operational parameters,”</i> Vi remarks, touching her ponytail. You’re not surprised, considering you just pumped her full of an unauthorized product. A few side effects are to be expected.");
 	output("\n\n<b>Vi now has Q-cups!</b>");
-	processTime(15);
+	
 	flags["VI_BIGBOOBS"] = 1;
-	IncrementFlag("INFLATED_VI");
-	pc.destroyItemByClass(Silicone,2);
 	showVi(true);
-	viMenu();
+	
+	processTime(15);
+	IncrementFlag("INFLATED_VI");
+	
+	pc.destroyItemByClass(Silicone,2);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 //ShrinkBreasts
@@ -2170,14 +2197,13 @@ public function shrinkViBreasts():void
 	output("\n\nWhen the process is finally finished, you pull your shining finger out of her quim. The violet-haired nurse’s breasts are drastically reduced in size, though they’re really just back to how they were before.");
 	output("\n\n<i>“That input was very stimulating for my processors,”</i> Vi exclaims, her snowy-white cheeks flushed. <i>“If you need to do any more modifications, please feel free to do it at any time, " + pc.mf("sir","ma’am") +".”</i>");
 	output("\n\n<b>Vi now has D-cups again!</b>\n\n");
+	
 	flags["VI_BIGBOOBS"] = 0;
+	showVi(true);
+	
 	processTime(25);
 	
 	var silicone:ItemSlotClass = new Silicone();
 	silicone.quantity = 2;
-	itemScreen = viMenu;
-	lootScreen = viMenu;
-	useItemFunction = viMenu;
-	showVi(true);
 	quickLoot(silicone);
 }

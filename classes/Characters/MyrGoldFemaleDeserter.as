@@ -293,7 +293,7 @@
 				applyDamage(rangedDamage(), this, target, "ranged");
 
 				//Physique check. DC 25 vs trip!
-				if(target.physique + rand(20) + 1 < 25 && target.shields() <= 0)
+				if((target.physique + rand(20) + 1 < 25 && target.shields() <= 0) && !target.isPlanted())
 				{
 					output("\nA hot, burning sensation sprays out from your chest. You’re knocked back and off your [pc.feet].");
 					//Effect: Decent physical damage with small crit chance. If the PC’s shields are down, there is a 25% knockback chance. 100% knockback chance on crit.

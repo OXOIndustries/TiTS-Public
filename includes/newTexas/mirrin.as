@@ -660,7 +660,7 @@ public function repeatableMirrinTraining():void
 		else if(pc.isMischievous())
 		{
 			output("\n\n<i>“I swear, if this starts ripping my clothes off, I’m strapping you in this damn thing forever,”</i> you call back, half joking, half serious.");
-			output("\n\nShe just laughs. <i>“You’ll be fiiiiine, you’re a Steele. You’re hard as rocks,”</i> she reassures you. Ooo, it wouldn’t be good if she started confusing rocks for metals now...");
+			output("\n\nShe just laughs. <i>“You’ll be fiiiiine, you’re a Steele. You’re hard as rocks,”</i> she reassures you. Ooo, it wouldn’t be good if she started confusing rocks with metals now...");
 		}
 		//PC is hard:
 		else
@@ -950,7 +950,7 @@ public function foodWithMirrin():void
 		//PC is kind:
 		if(pc.isNice())
 		{
-			output("\n\n<i>“Are... you alright? Is </i>he<i> alright?”</i> You enquire, a little anxious.");
+			output("\n\n<i>“Are... you alright? Is </i>he<i> alright?”</i> You inquire, a little anxious.");
 			output("\n\nShe looks at you with somewhat tired eyes. <i>“Mmm, don’t worry about me. Or him, actually. It’s fine, [pc.name],”</i> she says with a weak grin.");
 		}
 		//PC is misch:
@@ -1210,7 +1210,8 @@ public function talkToMirrinAbootYuuuu():void
 	clearMenu();
 	var momsSpaghetti:String = "";
 	if(silly) momsSpaghetti = ".. mom’s spaghetti.";
-	addButton(0,"Train",repeatableMirrinTraining,undefined,"Train","Time to make ya palms get sweaty, knees weak." + momsSpaghetti);
+	if(pc.energy() < 50 || pc.isWornOut()) addDisabledButton(0,"Train","Train","You’re too tired for a training session.");
+	else addButton(0,"Train",repeatableMirrinTraining,undefined,"Train","Time to make ya palms get sweaty, knees weak." + momsSpaghetti);
 	addButton(1,"Later",laterMomsSpaghetti,undefined,"Later","Mom’s spaghetti won’t wait forever.");
 }
 
@@ -1320,7 +1321,8 @@ public function talkAboutNewTexas():void
 	clearMenu();
 	var momsSpaghetti:String = "";
 	if(silly) momsSpaghetti = ".. mom’s spaghetti.";
-	addButton(0,"Train",repeatableMirrinTraining,undefined,"Train","Time to make ya palms get sweaty, knees weak." + momsSpaghetti);
+	if(pc.energy() < 50 || pc.isWornOut()) addDisabledButton(0,"Train","Train","You’re too tired for a training session.");
+	else addButton(0,"Train",repeatableMirrinTraining,undefined,"Train","Time to make ya palms get sweaty, knees weak." + momsSpaghetti);
 	addButton(1,"Later",laterMomsSpaghetti,undefined,"Later","Mom’s spaghetti won’t wait forever.");
 }
 
@@ -1798,7 +1800,7 @@ public function mirrinSexMenu():void
 	addButton(0,"BodWorship",mirrinBodyWorship,undefined,"Body Worship","Oil her down with that orange stuff; watch her blow!");
 	if(pc.hasVagina()) addButton(1,"Deep DP",deepMirrinDP,undefined,"Deep DP","Embrace the dragon’s power. Requires a vagina.");
 	else addDisabledButton(1,"Deep DP","Deep DP","You need a vagina for this.");
-	//Sparr Fight into Oral for the winner: PC has cock at 18’’< and/or vagina. High PC stats = wins.
+	//Sparr Fight into Oral for the winner: PC has cock at 18"< and/or vagina. High PC stats = wins.
 	if(mirrinSelectADick() >= 0 || pc.hasVagina()) addButton(2,"Train..?",trainFightyFlighty,undefined,"Train..?","Spar to see who cums out on top!");
 	else addDisabledButton(2,"Train..?","Train..?","You need a penis of 18\" or less or a vagina for this.");
 	addButton(3,"Humiliation",humiliationAnalWithMirrin,undefined,"Humiliation","Try something a bit different and a bit rougher.");
@@ -1807,7 +1809,7 @@ public function mirrinSexMenu():void
 //BodWorship
 //tooltip: Oil her down with that orange stuff, watch her blow!
 //PC lust doesn’t change.
-///In game time jumps forward 2 hours.
+// In game time jumps forward 2 hours.
 public function mirrinBodyWorship():void
 {
 	clearOutput();
@@ -1842,7 +1844,7 @@ public function mirrinBodyWorship():void
 //Deep DP
 //tooltip: Embrace the dragon’s power. Requires a vagina.
 //PC lust set to 0, orgasm event.
-///In game time jumps forward 2 hours.
+// In game time jumps forward 2 hours.
 public function deepMirrinDP():void
 {
 	clearOutput();

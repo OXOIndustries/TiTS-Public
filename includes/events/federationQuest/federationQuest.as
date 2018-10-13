@@ -1264,7 +1264,7 @@ public function fedQuestOfficerFight():void
 	if(pc.isDependant(Creature.DEPENDANT_MYRVENOM)) output(" I can see it in your eyes: you’re hooked on their poison, aren’t you? Is that why you’re here -- so you can get your next fix? Disgusting.");
 	if(flags["KQ2_QUEST_FINISHED"] == 1) output(" And you’re to blame for ruining our operation out in the wastelands, too!");
 	output("”</i>");
-	output("\n\nShe thumbs the hammer on her pistol, and her amber lips curl into a wicked grin. <i>“Mother will be so pleased when learns I’ve captured the star-walker. Now be a good [pc.boyGirl] and surrender, and I’ll go easy on the interrogation...”</i>");
+	output("\n\nShe thumbs the hammer on her pistol, and her amber lips curl into a wicked grin. <i>“Mother will be so pleased when she learns I’ve captured the star-walker. Now be a good [pc.boyGirl] and surrender, and I’ll go easy on the interrogation...”</i>");
 	output("\n\nYeah, right.");
 	processTime(5+rand(3));
 	
@@ -1463,7 +1463,7 @@ public function fedQuestRadioFolder():void
 	clearMenu();
 	author("Savin");
 	
-	output("You pull the folder off the shelf and toss it onto the console. A quick look through the few dozen pages inside reveals nothing but gibberish. Page after page after page of absolute, unintelligible gibberish. At first you think that your translators are fucked, but a quick glance at the some of the other documents lying around shows that they’re still legible... so what gives?");
+	output("You pull the folder off the shelf and toss it onto the console. A quick look through the few dozen pages inside reveals nothing but gibberish. Page after page after page of absolute, unintelligible gibberish. At first you think that your translators are fucked, but a quick glance at some of the other documents lying around shows that they’re still legible... so what gives?");
 	if(pc.isBimbo() || pc.isBro() || pc.intelligence()/pc.intelligenceMax() < .33) output("\n\nHow weird!");
 	else output("\n\nOnly when you get to the last page in the folder does everything make sense: several lines of the gibberish are paired with identical-length phrases in the gold myr’s language... it’s a cipher! No doubt that the Federation would kill to have this.");
 	
@@ -1505,14 +1505,14 @@ public function fedQuestRadioSet():void
 	clearMenu();
 	author("Savin");
 	
-	output("You step over to the primitive communications terminal and " + (pc.characterClass == GLOBAL.CLASS_ENGINEER ? "push a few buttons, quickly figuring out how to active it" : "tell it to turn on. Nothing happens. You command it to activate. To broadcast. Nothing. Uh... how does this thing work? You grumble and start searching for an analog <i>“on”</i> button, but damn there’s a lot of buttons and dials and knobs on this thing, none of which have any obvious purpose. Half of them aren’t even labelled! Ugh. It takes you several minutes to finally make it do anything, and then there’s quite a bit more knob-fiddling before it seems to be working right again") + ".");
+	output("You step over to the primitive communications terminal and " + (pc.characterClass == GLOBAL.CLASS_ENGINEER ? "push a few buttons, quickly figuring out how to active it" : "tell it to turn on. Nothing happens. You command it to activate. To broadcast. Nothing. Uh... how does this thing work? You grumble and start searching for an analog “on” button, but damn there’s a lot of buttons and dials and knobs on this thing, none of which have any obvious purpose. Half of them aren’t even labelled! Ugh. It takes you several minutes to finally make it do anything, and then there’s quite a bit more knob-fiddling before it seems to be working right again") + ".");
 	output("\n\nSure that you have things settled the way they should be, you bring the headset up to your [pc.ear] and listen in.");
 	output("\n\nA woman is speaking over the radio, urgency in her voice:");
 	output("\n\n<i>“Ellira, come in! Ellira? Daughter, answer me!”</i>");
 	output("\n\nDaughter? That means... the queen! You’ve got her on radio!");
 	if(pc.isAss())
 	{
-		output("\n\nA victorious smirk on your lips, you hold down the <i>“TALK”</i> button and say, <i>“Sorry, queenie. Your daughter’s indisposed at the moment.”</i>");
+		output("\n\nA victorious smirk on your lips, you hold down the “TALK” button and say, <i>“Sorry, queenie. Your daughter’s indisposed at the moment.”</i>");
 		output("\n\n<i>“Who-?”</i> the voice comes back, scowl almost audible. <i>“You "+pc.mf("bastard","bitch")+"! I won’t let you red dogs get away with this!”</i>");
 		output("\n\n<i>“Then come and stop me,”</i> you taunt, and smash the radio. Hopefully, that’ll lure your quarry right to you...");
 		output("\n\nTurning to the window, you watch a big, bulky armored truck pull up outside. Must be the queen.");
@@ -1924,7 +1924,7 @@ public function fedQuestQueenFight():void
 	showBust("ESTALLIA");
 	author("Savin");
 	
-	output("Without another word, the towering War Queen lunges forward. You think she’s coming for you and duck down, taking covering behind the workbenches nearby. Her actual target is the tank in the middle of the assembly line, though: she lands atop it with a thunderous crunch of metal beneath her boots, shaking the mostly-finished armored behemoth. Several of her daughters scurry into the hatches after her, and a second later ");
+	output("Without another word, the towering War Queen lunges forward. You think she’s coming for you and duck down, taking cover behind the workbenches nearby. Her actual target is the tank in the middle of the assembly line, though: she lands atop it with a thunderous crunch of metal beneath her boots, shaking the mostly-finished armored behemoth. Several of her daughters scurry into the hatches after her, and a second later ");
 	if(flags["FEDERATION_QUEST_TANK"] == 1)
 	{
 		output("the tank engine sputters... and then a cloud of black, greasy gas starts fuming from under the armored turret. The crew screams and starts bailing out, followed by flames licking at their chitin. ");

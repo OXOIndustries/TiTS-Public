@@ -113,7 +113,7 @@
 			//If double headed, the tip is approximately two half-diameter hemispheres plus a cylinder of full diameter and half height.
 			if(hasFlag(GLOBAL.FLAG_DOUBLE_HEADED))
 			{
-				tip = (2 * 2/3 * Math.PI * (thickness()/4 * thickness()/4 * thickness()/4)) + (2 * Math.PI * thickness()/2 * thickness()/2 * thickness()/4);
+				tip = 2 * (2/3 * Math.PI * thickness()/4 * thickness()/4 * thickness()/4) + (Math.PI * thickness()/2 * thickness()/2 * thickness()/4);
 			}
 			return Math.round((tip + cylinder) * 100) / 100;
 			//EXAMPLES
@@ -123,6 +123,11 @@
 		}
 		public function thickness():Number {
 			return cLength() / 6 * cThicknessRatio();
+		}
+		public function fitsSmallCocksock():Boolean
+		{
+			//These values are meant to be placeholders
+			return cLength() < 6 && volume() < 150;
 		}
 		//EFFECTIVE PENETRATION VOLUME - Not true size, counts other bits.
 		public function effectiveVolume():Number {
@@ -203,6 +208,12 @@
 				}
 			}
 			return amountGrown;
+		}
+		public function isCocksockValid(isNoSockValid:Boolean = true):Boolean
+		{
+			if (cocksock is EmptySlot) return isNoSockValid;
+			if (cocksock.hasFlag(GLOBAL.ITEM_FLAG_SMALL_DICK_ONLY) && !fitsSmallCocksock()) return false;
+			return true;
 		}
 	}
 }

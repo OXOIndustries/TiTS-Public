@@ -128,9 +128,11 @@ public function uvetoShipDock():Boolean
 	
 	if (tryProcKaedeUvetoEncounter()) return true;
 	
+	var btnSlot:int = 0;
+	
 	if(chaurmineOnUveto() && (flags["MET_CHAURMINE"] >= 2 || flags["CHAURMINE_WINS"] != undefined))
 	{
-		chaurmineUvetoStationBonus();
+		chaurmineUvetoStationBonus(btnSlot++);
 	}
 
 	return false;
@@ -320,7 +322,7 @@ public function rideSpaceElevatorDown():void
 
 public function uvetoUnlocked():Boolean
 {
-	return flags["UVETO_UNLOCKED"] != undefined || reclaimedProbeMyrellion() || (flags["KQ2_MYRELLION_STATE"] == 1 && MailManager.isEntryUnlocked("danemyrellioncoords"));
+	return (flags["UVETO_UNLOCKED"] != undefined || reclaimedProbeMyrellion() || (flags["KQ2_MYRELLION_STATE"] == 1 && MailManager.isEntryUnlocked("danemyrellioncoords")));
 }
 
 public function flyToUveto():void
@@ -822,6 +824,9 @@ public function uvetoBarBonus():Boolean
 	if(isChristmas()) candyRahnBonus(5);
 	else roamingBarEncounter(5);
 	
+	//Devil Waitress
+	//DISABLED FOR NOW. willowBonus(6);
+	
 	// More random Freezer encounters
 	NPCs.length = 0;
 	//Chrissy
@@ -839,7 +844,15 @@ public function uvetoBarBonus():Boolean
 
 public function uvetoBarFirePitBonus():Boolean
 {
-	if (syriAtFreeezer()) syriAtFreezerFirePitBonus(0);
+	if (syriAtFreeezer())
+	{
+		if(pc.hasStatusEffect("Fuck Fever") && syriIsAFuckbuddy()) 
+		{
+			syriButtreamHeatButtPCButtsInTheButtWithAButtDIDISAYBUTTYET();
+			return true;
+		}
+		syriAtFreezerFirePitBonus(0);
+	}
 
 	setNavDisabled(NAV_SOUTH_DISABLE);
 	return false;

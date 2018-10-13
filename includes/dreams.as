@@ -1387,7 +1387,7 @@ public function capraphormPrimorditattsGain():void
 public function frostwyrmWetDream():void
 {
 	clearOutput();
-	showBust("");
+	showBust("FROSTWYRM");
 	showName("\nDRAGONS");
 	author("B");
 	
@@ -1422,7 +1422,7 @@ public function frostwyrmAwakening():void
 {
 	clearOutput();
 	showBust("");
-	showName("\nWaking");
+	showName("\nWAKING...");
 	author("B");
 	
 	output("Your eyes flutter open. You’re back in your bed.");

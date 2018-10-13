@@ -99,7 +99,7 @@ public function approachCustomsFirstTime():void
 	if(pc.hasEquippedWeapon()) addButton(0,"Disarm",disarmMeHoss,undefined,"Disarm","Allow Ogram to disarm you.");
 	else addDisabledButton(0,"Disarm","Disarm","You don’t have any weapons to disarm!");
 	addButton(1,"No Way!",noWayTexasJose,undefined,"No Way!","Refuse to be disarmed.");
-	if(pc.meleeWeapon is Rock && pc.rangedWeapon is Rock) addButton(2,"No Weapons!",noWeaponsInTexasHoss,undefined,"No Weapons!","Inform Ogram that you aren’t carrying any real weapons. All you need are your fists or a rock to chuck, and you can find rocks anywhere.");
+	if(!pc.hasEquippedWeapon()) addButton(2,"No Weapons!",noWeaponsInTexasHoss,undefined,"No Weapons!","Inform Ogram that you aren’t carrying any real weapons. All you need are your fists or a rock to chuck, and you can find rocks anywhere.");
 	else addDisabledButton(2,"No Weapons","No Weapons","You can’t get by for having no weapons while actually carrying weapons. It just doesn’t work. Come on, man.");
 
 }
@@ -239,18 +239,15 @@ public function repeatOgramApproach():void
 
 	//[Talk] [Sex] [Rearm] [Disarm]
 	clearMenu();
-	addButton(0,"Talk",talkToOggy,true);
-	if(pc.lust() >= 33) addButton(1,"Sex",askOggyForSex,undefined,"Sex","See if the big bull is up for sex.");
-	else addDisabledButton(1,"Sex","Sex","You aren’t quite aroused enough for sex.");
-	if(pc.hasStatusEffect("Disarmed")) {
-		addButton(3,"Rearm",rearmAtOgram,undefined,"Rearm","Get your weapons back.");
-		addDisabledButton(4,"Disarm","Disarm","You’ve already been disarmed.");
-	}
-	else 
-	{
-		addDisabledButton(3,"Rearm","Rearm","You can’t pick up any weapons here - they don’t have yours.");
-		addButton(4,"Disarm",getDisarmedRepeat,undefined,"Get disarmed so that you can explore the planet.");
-	}
+	
+	if(pc.hasStatusEffect("Disarmed")) addButton(0,"Rearm",rearmAtOgram,undefined,"Rearm","Get your weapons back.");
+	else addButton(0,"Disarm",getDisarmedRepeat,undefined,"Get disarmed so that you can explore the planet.");
+	
+	addButton(1,"Talk",talkToOggy,true);
+	
+	if(pc.lust() >= 33) addButton(2,"Sex",askOggyForSex,undefined,"Sex","See if the big bull is up for sex.");
+	else addDisabledButton(2,"Sex","Sex","You aren’t quite aroused enough for sex.");
+	
 	addButton(14,"Leave",mainGameMenu);
 
 }
@@ -264,8 +261,11 @@ public function rearmAtOgram():void
 	showBust("OGRAM");
 	output("<i>“Alright, let’s see what we’ve got here,”</i> Ogram says, popping open the container behind his desk and pulling out your gear. He compares the bundle to the tag attached to it, checks something on his holo-terminal, and hands it over to you. <i>“Just sign here, and you’re all set.”</i>");
 	output("\n\nYou do so, and are promptly handed a bundle with your weapons in it. <i>“Cool. Take care out there, " + pc.mf("buddy","beautiful") + ".”</i>");
+	
+	returnAllItems(true);
 	pc.removeStatusEffect("Disarmed");
 	flags["CHECKED_GEAR_AT_OGGY"] = undefined;
+	
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -290,6 +290,9 @@ public function getDisarmedRepeat():void
 		output("You casually inform him that you don’t have any weapons, watching as Og’s eyebrow climbs steadily higher.\n\n<i>“I’ll have to give you a quick check-over,”</i> he says while waving a portable scanner over your body. <i>“All right, you’re clear. Have a good one.”</i>");
 		flags["CHECKED_GEAR_AT_OGGY"] = 0;
 	}
+	
+	pc.takeMeleeWeapon();
+	pc.takeRangedWeapon();
 	pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You’ve checked all forms of weaponry at New Texas’ customs.",false,0,0xFF0000);
 	
 	processTime(1);
@@ -1203,7 +1206,7 @@ public function getFoodAtBigTs():void
 	if(pc.credits >= 20) addButton(4,"BBQ To-Go",bbqToGo,undefined,"BBQ To-Go","Get some delicious BBQ for the road. Then you can grab a snack whenever you feel like it.\n\n20 Credits.")
 	else addDisabledButton(4,"BBQ To-Go","BBQ To-Go","You need 20 credits to afford BBQ To-Go.");
 	//If PC has Female Treatment/ is Bimbo/ has Fluid Addiction: 
-	if((pc.isTreated() && pc.isBimbo()) || pc.isBimbo() || pc.isDependant(Creature.DEPENDANT_CUM)) addButton(5,"“SpecialOrder”",specialOrdersForTreatedGals,undefined,"“Special Order”","Get a meal with some of the Chef’s special sauce. It’s practically free food!");
+	if((pc.isTreated() && pc.isBimbo()) || pc.isBimbo() || pc.isCumSlut()) addButton(5,"“SpecialOrder”",specialOrdersForTreatedGals,undefined,"“Special Order”","Get a meal with some of the Chef’s special sauce. It’s practically free food!");
 	//["Special Order"]...
 	addButton(14,"Back",mainGameMenu);
 
@@ -1862,11 +1865,8 @@ public function carrieBlowjobsGo():void
 	var y:int = pc.biggestCockIndex2();
 	var cumQ:Number = pc.cumQ();
 	var doubleDickEnough:Boolean = false;
-	if(pc.cockTotal() > 1)
-	{
-		if(pc.cocks[y].cLength() >= 12) doubleDickEnough = true;
-	}
-	if(pc.cockTotal() <= 1) y = -1;
+	if(pc.cockTotal() > 1 && y >= 0 && pc.cocks[y].cLength() >= 12) doubleDickEnough = true;
+	
 	//First
 	if(flags["CARRIE_BLOWJOBBED"] == undefined)
 	{

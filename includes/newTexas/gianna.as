@@ -267,7 +267,7 @@ public function approachGianna(special:String = ""):void
 			}
 			if(pc.hasVagina()) output(" [pc.EachVagina] distinctly moistens in response to the wanton robot.");
 			if(!pc.hasVagina() && !pc.hasCock()) output(" You feel your [pc.skin] flush a little at her wanton declaration.");
-			applyDamage(new TypeCollection( { tease: 25 } ), null, pc, "minimal");
+			applyDamage(new TypeCollection( { tease: 25 } ), chars["GIANNA"], pc, "minimal");
 			output("\n\nShe smiles knowingly, doubtless aware of the effects her lewd actions would have. <i>“I’d be happy to give you almost any kind of relief, even if it’s just talking, all right?”</i> She looks down at her toes abruptly. <i>“This is the first real conversation I’ve had in weeks.”</i> Her gleaming onyx lip pouts ever so slightly, and a worried look crosses her face. <i>“We can fuck now if you need, but please... don’t ignore me. Okay?”</i>");
 			processTime(7);
 			//Normal menu! See bottom.
@@ -4552,7 +4552,7 @@ public function giannaXAnnoThreesomeGo3(x:int):void
 		output("\n\nYou feel your [pc.cock " + x + "] flex in rhythmic ejaculation, even some slight trickles along your ");
 		if(pc.balls > 0) output("[pc.sack]");
 		else output("taint");
-		output(" as a little leaks out of Gianna’s slippery slit.. The android shakes and squirms beneath you, her kisses suddenly artless. She’s cumming to the feeling of your orgasm, her pleasure matched in perfect 1 to 1 ratio. When the feeling finally passes, you sag down together, you [pc.cock " + x + "] slipping free with one last shock of heavenly satisfaction.");
+		output(" as a little leaks out of Gianna’s slippery slit.. The android shakes and squirms beneath you, her kisses suddenly artless. She’s cumming to the feeling of your orgasm, her pleasure matched in perfect 1 to 1 ratio. When the feeling finally passes, you sag down together, your [pc.cock " + x + "] slipping free with one last shock of heavenly satisfaction.");
 		output("\n\nYou flop onto the table alongside the two fucked-out girls, cuddling into soft breasts and post-coital hugs.");
 	}
 	//Biggo Jizzo

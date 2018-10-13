@@ -930,13 +930,13 @@ public function lossScenesForStormguard():void
 		//If masculine male
 		else if(pc.mf("m","") == "m")
 		{
-			output("\n\n<i>“No need for airs and back-and-forth, is there?”</i> he says, smirking as he relaxes back onto the melting snow, his hefty erection rising up as he opens his tree-trunk thighs. <i>“We’re both honorable men, we know how it works - how we like it.");
-			if(stormguardHonor() == 0) output(" Or you should, at least. Elements know how many times we’ve ended up right here!”</i> He roars with joshing laughter. <i>“");
+			output("\n\n<i>“No need for airs and back-and-forth, is there?”</i> he says, smirking as he relaxes back onto the melting snow, his hefty erection rising up as he opens his tree-trunk thighs. <i>“We’re both honorable men, we know how it works - how we like it. ");
+			if(stormguardHonor() == 0) output("Or you should, at least. Elements know how many times we’ve ended up right here!”</i> He roars with joshing laughter. <i>“");
 			output("One warrior giving his dues to a better, that’s all this is. Hop to it, there’s a lad.”</i>");
 		}
 		else if(pc.isShemale())
 		{
-			if(stormguardHonor() == 1) output("\n\nI suppose it was too much to hope someone who looks, sounds and fights like a woman would actually </i>be<i> one,”</i> he sighs, eyeing [pc.eachCock]. <i>“Decadent core-worlders, honestly.");
+			if(stormguardHonor() == 1) output("\n\n<i>“I suppose it was too much to hope someone who looks, sounds and fights like a woman would actually </i>be<i> one,”</i> he sighs, eyeing [pc.eachCock]. <i>“Decadent core-worlders, honestly.”</i>");
 		}
 		//If femboy
 		else

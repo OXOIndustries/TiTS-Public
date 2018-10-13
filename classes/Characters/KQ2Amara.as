@@ -342,7 +342,7 @@ package classes.Characters
 				
 				applyDamage(damageRand(new TypeCollection( { kinetic: 15 } ), 15), this, target, "minimal");
 				
-				if(!target.hasStatusEffect("Tripped") && target.reflexes() + rand(20) + 1 < 25)
+				if(!target.hasStatusEffect("Tripped") && !target.isPlanted() && target.reflexes() + rand(20) + 1 < 25)
 				{
 					CombatAttacks.applyTrip(target);
 					output(" <b>" + (target is PlayerCharacter ? "You smash" : "Kara smashes") + " back-first into the floor, HARD.</b>");

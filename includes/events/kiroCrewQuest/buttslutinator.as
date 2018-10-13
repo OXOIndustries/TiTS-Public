@@ -273,7 +273,7 @@ public function secondButtsluttening():void
 	output("\n\nCould you complete your journey bottomless? Surely such an enticing booty would be irresistible to this galaxy’s biggest, strongest dicks. Why, you wouldn’t even need to walk anymore! You could just find yourself a hulking brute to fuck your ass for the rest of your journey, carrying you around on his pole like an ornament.");
 	output("\n\nYou glance back at the machine, feeling suddenly hollow, deeply so. If you climbed back in, you wouldn’t have to find someone to fuck. Is a little mental reprogramming too steep a price to pay for endless anal pleasure?");
 	output("\n\nWhatever the case, <b>you’re definitely a buttslut now.</b> Your doubt you’ll ever be able to have a small ass again, let alone go unfucked for more than a few days.");
-	output("\n\n(<b>Perk Gained: Buttslut</b> - Ensures your ass stays large and in charge, and allows you to heal from anal cumshots.)");
+	if(!pc.hasPerk("Buttslut")) output("\n\n(<b>Perk Gained: Buttslut</b> - Ensures your ass stays large and in charge, and allows you to heal from anal cumshots.)");
 	slutPCButt();
 	IncrementFlag("BUTTSLUTINATOR");
 	processTime(75);

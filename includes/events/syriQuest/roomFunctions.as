@@ -308,7 +308,7 @@ public function syriQuestAkkadiBaseArchivesStealData():void
 	output("You step up to one of the access computers and quickly run a cable from your Codex to a universal port on its side. You make quick work of disabling the firewalls; from the inside, the server defenses aren’t much of an obstacle. It only takes a few moments to bypass them and then start digging around for something tasty to sell. There’s so much data here, way more than you can parse or download on the fly here, so you just go for the project with the highest budget earmarked for it.");
 	output("\n\nA bit of searching turns up a new ultra-heavy dreadnought being designed for the Joint Ausar Federation navy. It’s not being built here, but there are some parts being tested in the hangar down below, so they have the full specs for the ship. Somebody’ll pay a pretty penny for this, and it <i>probably</i> won’t actually hurt the navy.");
 	output("\n\nYou jack the documents, throw ‘em up on an dark.net forum you’ve visited a few times, and within a minute you’ve got a bid that’s hard to turn down. 12,500 credits are wired to your account, and the files vanish. Nice and easy.");
-	pc.credits += 12,500;
+	pc.credits += 12500;
 	flags["SYRIQUEST_DATA_STOLEN"] = 1;
 	processTime(10);
 	clearMenu();
@@ -361,7 +361,7 @@ public function syriQuestAkkadiBaseCheckPoint():Boolean
 		flags["MET_TORRA"] = 1;
 		addButton(0, "Fight", syriQuestTorraFight, undefined, "Fight", "You’ve got a bad feeling about submitting to this needy kitty.");
 		if (pc.hasCock() && pc.cockThatFits(chars["TORRA"].vaginalCapacity()) >= 0) addButton(1,"Fuck",penisRouter,[syriQuestTorraFuck,chars["TORRA"].vaginalCapacity(),false,0],"Fuck","Why bother fighting? You both wan’t the same thing anyway!");
-		else addButton(1,"Fuck",syriQuestTorraFuck,-1,"Fuck","Why bother fighting? You both wan’t the same thing anyway!");
+		else addButton(1,"Fuck",syriQuestTorraFuck,-1,"Fuck","Why bother fighting? You both want the same thing anyway!");
 		return true;
 	}
 	else {

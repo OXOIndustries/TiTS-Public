@@ -614,7 +614,7 @@ public function fuckTheSystem():void
 	
 	outputCodex("\n\nAnd then it was done. She fell back into the seat. Her head was cocked back, jaw slack, mind sparking and fizzling. Warm wetness trickled along her thighs. Her vision swam, then slowly resolved into shapes again. Opal’s head lolled back to life. She took deep, shivering breaths.");
 	
-	outputCodex("\n\nYori reached out and tipped up her chin so that Opal was looking up at her. <i>“So, if I asked you to <i>“eat my pussy”</i>, would you?”</i> she asked.");
+	outputCodex("\n\nYori reached out and tipped up her chin so that Opal was looking up at her. <i>“So, if I asked you to ‘eat my pussy’, would you?”</i> she asked.");
 	
 	outputCodex("\n\nOpal’s jaw slid shut and she bared her fangs weakly. She didn’t want to dignify that with a response.");
 	
@@ -2103,7 +2103,7 @@ public function dragonsHordeCodexStory():void
 	outputCodex("\n\nThe woman was stunning. Ivory skin growing from crimson limbs, perfectly smooth and soft, with just a faint trace of firm muscle beneath. A simple brown cloth hung to her hips, garbing her down to the knees, but like Lusina the woman went bare-chested, proudly displaying a pair of breasts every bit as big, soft, and succulent as Lusina’s own. The moth-girl felt a sudden rush of arousal boil through her loins, hammering in her heart in the same beat her fear and apprehension did.");
 	outputCodex("\n\n<i>“What,”</i> Lusina gulped, taking a defensive step back. <i>“What are...”</i>");
 	outputCodex("\n\nThe woman smiled, revealing a quartet of long incisors. Her thick tail swayed behind her, dragging along after her. <i>“I...”</i> she said, resting a scaled digit on the tip of Lusina’s claymore, <i>“am the dragon you just called out.”</i>");
-	outputCodex("\n\nLusina gasped and staggered back, out of the creature’s reach. The <i>“dragon”</i> tsked her tongue and followed her, backing the moth-girl up against the cavern wall. Lusina gasped as her back pressed against jagged, rough stone, leaving her nowhere to go. Opposite the dragon, the kobolds chittered and cheered, dancing around their spears as their mistress cornered their would-be attacker.");
+	outputCodex("\n\nLusina gasped and staggered back, out of the creature’s reach. The “dragon” tsked her tongue and followed her, backing the moth-girl up against the cavern wall. Lusina gasped as her back pressed against jagged, rough stone, leaving her nowhere to go. Opposite the dragon, the kobolds chittered and cheered, dancing around their spears as their mistress cornered their would-be attacker.");
 	outputCodex("\n\nSeeing the moth’s back against the wall, the dragon-girl took another confident stride forward, placing herself easily inside Lusina’s reach, seemingly without a care in the world. <i>“You may call me Eryxienne,”</i> she purred, punctuating the thought with a breath that burst into a ball of flame in her hand, roiling and lapping at the air inches from Lusina’s nose. <i>“Now, was there something you wanted, little moth?”</i>");
 	outputCodex("\n\nLusina stood transfixed, silent, eyes locked on the roiling flame held like a living thing in the dragon’s claws. It was a ball of rolling flame that seemed to dance between her fingers, drawing Lusina’s eyes back and forth, side to side. The dragon cooed after what might have been a moment or an eternity, tilting her horned head to the side.");
 	outputCodex("\n\n<i>“I guess what they say about moths is true,”</i> the dragon said with a smirk, curling her fingers around the flame until it was almost out of sight.");
@@ -2174,7 +2174,7 @@ public function bullsStrength():void
 	outputCodex("\n\nShe should have hated it. Should have rebelled against what her body was becoming against her will.");
 	outputCodex("\n\nInstead, her erections were becoming more frequent. Uncontrollable. She had a hair trigger, and no amount of self chastisement could sway her from the fact that she was falling in love with the pleasure. And lately, her nightly fantasies were less about squealing little gnoll-boys spreading their cheeks for her new manhood, and more about the mind-shattering pleasure of feeling a minotaur’s hands around her puffy black teats, milking her until she creamed herself again and again around his pistoning bull-cock.");
 	outputCodex("\n\nFifty gems and an evening’s wait in the whorish lap of luxury was more than a fair price to make that fantasy come true, she thought. When the brothel mistress had finally called her – politely standing between Hyra and the rich jane being carried out in a stupor by a pair of girls, drooling minotaur cum from all three fuck-holes, the erstwhile gnoll could not hide her excitement. Her breeches bulged obscenely, and her cow-like nipples tented even her leather vest. She could feel prying eyes wandering across her body from all around the foyer, even from the mistress herself.");
-	outputCodex("\n\nFuck ’em, let ’em look, she told herself, raising her tail high as the mistress lead her upstairs, to the pleasure room of her newest temporary employee. One night only: the most addictive cock in all of the bazaar, only fifty gems for as many orgasms as you can take. Hell of a deal at twice the price; one that Hyra intended to make full use of.");
+	outputCodex("\n\nFuck ‘em, let ‘em look, she told herself, raising her tail high as the mistress lead her upstairs, to the pleasure room of her newest temporary employee. One night only: the most addictive cock in all of the bazaar, only fifty gems for as many orgasms as you can take. Hell of a deal at twice the price; one that Hyra intended to make full use of.");
 	outputCodex("\n\nKell just about jumped out of his fur when he saw Hyra enter, towering and muscular and grinning from ear to canid ear. Her tail wagged a mile a minute as she thanked the mistress, handed off her gems, and locked the door behind her. Not for the first time, she looked at the nude minitaur with eyes aglow with lust. Sure, he’d helped her out with her milking problem at first – who better qualified to tend to a growing cow-girl than a bull boy? – but tonight, behind locked doors, she owned him. His body was hers to command. She could have asked for anything she wanted, and Kell knew it.");
 	outputCodex("\n\nHe’d been waiting for this moment, she was sure. The moment the big, strong gnoll bitch decided to bend him over and break him. That’s what minitaurs were for back home: living cock-cozies for the strongest dick-wielders that could wrestle them down. She could only imagine the things his poor little pucker could do to a throbbing doggy-cock like hers. The thought alone made her shiver with delight.");
 	outputCodex("\n\n<i>“W-what are you...”</i> the little minitaur started, but Hyra cut him off with a raised finger, pressing it to his lips. She just smiled to him and turned to face the door, leaving her back to the call-bull.");
@@ -2329,7 +2329,7 @@ public function DivertingTarkusJokesAndJests():void
 
 	outputCodex("\n\n-----------------------------------------------------------");
 
-	outputCodex("\n\nWhy can’t gabilani float in pools deeper than 4’5”</i>?");
+	outputCodex("\n\nWhy can’t gabilani float in pools deeper than 4\' 5\"?");
 	outputCodex("\n.");
 	outputCodex("\n.");
 	outputCodex("\n.");
@@ -2655,7 +2655,7 @@ public function tentacleTroubleForTurnedOnTanukis():void
 	outputCodex("\n\n<i>“I try to avoid her, but it’s like Niro or Miro or...”</i>");
 	outputCodex("\n\n<i>“Kiro?”</i> Amaya said, trying to contain her excitement. <i>“Yeah, that’s it! You know her?”</i>\n\nAmaya jumped for joy internally. This was her chance! <i>“N-no, I’ve just read some articles on the Extranet. I hear she’s some kind of famous pirate or something.”</i>\n\nSyri raised an eyebrow at Amaya.\n\n<i>“Um, you know, maybe I could talk with her, get her to calm down and stuff. We’re both kui-tan so uh... um... yeah.”</i> Amaya tried to excuse herself, but Syri put her hand on her shoulder, keeping her from going anywhere.\n\n<i>“Look, you’re an adult, I’m not your mom, I can’t tell you what to do. What I can tell you is that getting mixed up with people like that never ends well.”</i>");
 	outputCodex("\n\nAmaya froze up. This might be her only chance to meet the person who inspired her. But on the other hand, would Syri forgive her? Could she bring herself to even look her in the eyes again if she did this? <i>“Sorry.”</i> Amaya whimpered out as she pried herself out of Syri’s grip. She only heard a sigh as she rushed out of the room.");
-	outputCodex("\n\nAmaya’s heart fluttered as she entered the front of the bar. Her eyes darted across the room, looking for the woman she’d only seen in mugshots and amateur porn. It didn’t take long to find her target; she’d practically made herself into a centerpiece. It looked like the local UGC peacekeeper had gotten wind of Kiro’s presence and came to deal with her. Whatever her intentions, the fiery fennec found herself at Kiro’s mercy. The two were sitting across from each other at one of the central tables, the officer panting and groaning while Kiro looked on with glee.");
+	outputCodex("\n\nAmaya’s heart fluttered as she entered the front of the bar. Her eyes darted across the room, looking for the woman she’d only seen in mugshots and amateur porn. It didn’t take long to find her target; she’d practically made herself into a centerpiece. It looked like the local UGC Peacekeeper had gotten wind of Kiro’s presence and came to deal with her. Whatever her intentions, the fiery fennec found herself at Kiro’s mercy. The two were sitting across from each other at one of the central tables, the officer panting and groaning while Kiro looked on with glee.");
 	outputCodex("\n\nIt took Amaya a few moments to read the situation, but once she figured it out, her eyes shot open. The officer was packing way more heat than just a firearm: a massive distention in her pants, going down passed her knee, was being mercilessly teased by Kiro’s feet. The bottom of her pant leg was already soaked in pre, and there was definitely more coming.");
 	outputCodex("\n\nThe cop was either unaware or didn’t care that the show they were putting on was in plain view of the whole bar. People whipped out recording devices, started groping each other, or were discretely masturbating to the show. Amaya couldn’t deny how turned on the scene was making her, especially with the ripping noises coming from her own too-tight pants. Damnit, she just mended those!");
 	outputCodex("\n\nThe fox looked like she was about to blow when Kiro stopped. The officer’s vulpine visage took on a look of absolute panic. She started to speak when her comm rang. After hesitantly answering it, she jumped to attention as the person on the other end shouted loud enough to be audible, even to Amaya. The fennec bolted out of the bar as fast as someone with an erection the size of a baguette snaking down her pants could.");
@@ -2731,7 +2731,7 @@ public function tentacleTroubleForTurnedOnTanukis():void
 	outputCodex("\n\nA crowd gathered at Esbeth’s spaceport. Syri had just gotten off work and noticed the commotion. She worked her way through the crowd to see what was happening and nearly fell over in shock when she saw what was on the other side. Amaya and Kiro were there, and so were their mountainous genitals. What wasn’t there was Kiro’s ship, mysteriously gone along with the Trimilion. The two were creating their own rivers from the amount of cum that rolled out of them constantly. Poor Penny was trying her hardest to get their attention, but all she got was face-full after face-full of cum. Although the bulge in her pants gave away that it might not have been so accidental.");
 	outputCodex("\n\nSyri rushed up to Amaya and yelled out to her. The two kui-tan were almost completely insensate, but Syri’s calls managed to rouse Amaya from her sex-induced coma. <i>“Hey Syri, you were, like, so wrong about Kiro. This turned out aweeeeeeeeeeesome!”</i> she said as her hands started to work over her gargantuan shaft, giving Penny a fresh facial. <i>“See, even Penny thinks so.”</i> She pointed toward the flustered fennec, gleefully licking the cum off her face. Her look of bliss faded to one of embarrassment as she was found out.\n\n<i>“I’m, uh, I’ll, uh, go get some help. Yeah, help...”</i> The bulge in her pants throbbed so hard on her way out, that Syri thought they were going to rip right off.");
 	outputCodex("\n\nHelp did eventually arrive, and the two were shrunk down to the point where they could at least walk. Of course, such procedures don’t come cheap, and they got into pretty heavy debt. Lucky for them, Nivas Oxonef herself was passing through, shooting for her <i>“Randy in Rush Space”</i> series. She took a liking to the two and signed them on. With their minds still scrambled and thoroughly bimbofied from their encounter, it was the perfect fit for them, and they stayed long after their debt was paid off.");
-	outputCodex("\n\nIt wasn’t how Amaya had wanted to become famous, but at this point it was more than a good enough outcome for her. She was even able to get Syri in on the action. As apprehensive as she was, her role as <i>“person in Amaya’s ass #32”</i> turned out to be very enjoyable for both of them, and she became a regular on Amaya’s shoots and streams.");
+	outputCodex("\n\nIt wasn’t how Amaya had wanted to become famous, but at this point it was more than a good enough outcome for her. She was even able to get Syri in on the action. As apprehensive as she was, her role as “person in Amaya’s ass #32” turned out to be very enjoyable for both of them, and she became a regular on Amaya’s shoots and streams.");
 	outputCodex("\n\nKiro had her GalLink friends on as regulars, including a famous corporate heir. Their 24 hour fuckathons became the stuff of extranet legend, the most popular ultraporn streams around. She sometimes pondered going back to the pirate’s life, but when she thought about all the struggle and life-threatening stuff she had to go through for sex that wasn’t nearly as good as what she was getting now, she stopped caring.");
 	outputCodex("\n\nThis was the good life.");
 
@@ -2813,11 +2813,689 @@ public function stolenGoodsStory():void
 	CodexManager.viewedEntry("Stolen Goods");
 }
 
-/* Cow Stuff - rights purchased for $50, 2/14/2018.
+public function towerOfTrialsStory():void
+{
+	clearOutputCodex();
+	author("Carol J.");
+	outputCodex(header("Tower of Trials"));
+	outputCodex("<b>By:</b> Carol J (<u><a href='https://mcstories.com/Authors/Carol-J.html'>https://mcstories.com/Authors/Carol-J.html</a></u>)\n\n");
+	//outputCodex("<b>By:</b> Carol J");
+	outputCodex("<b>Tags:</b> Fantasy, M/F, Femdom, Mind Control, Monstergirl (Various), Corruption, Demons, Non-Consensual\n\n");
 	
+	outputCodex("The struggle between man and demon was, in a word, eternal. From the very moment man had drawn his first breath, the intrinsic virtue within his breast found its distaff rival in the caricatured form of the demons set to prey upon him.");
+	outputCodex("\n\nNaturally, this meant that the two didn’t often get along.");
+	outputCodex("\n\nIt wasn’t that they didn’t try, mind you. Humans and demons had been the subject of some truly staggering epics, romantic, comedic, tragic, you name it. But their antipodal natures meant that the tragedies outweighed the comedies - certainly the romances.");
+	outputCodex("\n\nThat’s why you had groups like the Holy Church of the Indefatigable Spirit of Man and All His Creations. Virtue personified, the “priests” of the church were blessed, regardless of the myriad coats that they took on during their pilgrimages. Whether they skulked in the verdant underbrush of the forest, tromped about in the rust-red desert steppes, or tended to yet unexorcised dens of inequity that blighted the landscape, the warriors of the Holy Church of the Indefatigable Spirit of Man and All His Creations was dedicated to one thing and one thing only:");
+
+	outputCodex("\n\nFucking demons into submission.");
+
+	outputCodex("\n\nNow, this probably seems, in a word, anathema to the preconceived notions that come part and parcel to how a holy warrior deals with demons. Honestly, most people probably think so at first, too. But there’s a very good reason why the best way to do battle with a demon is to plunge a rock-hard prick into its (her?) dripping cunt.");
+
+	outputCodex("\n\nThe warriors of the Holy Church et cetera were, as previously mentioned, blessed. This meant that their fluids were quite literally anathema to the unholy and otherwise not very nice. Their blood sent vampires gagging. Their sweat may have felt gross to another human, but to a demon? It was honestly just revolting.");
+
+	outputCodex("\n\nAnd their seed? It was one of the only ways to permanently pacify a demon. But not just at a touch! No, one couldn’t simply blow their load on a pair of fat, eldritch tits and call it a day! To render such a change permanent, to indelibly render a demon safe, docile, and harmless, a warrior had to bottom out in their cunt, really hilt himself in her...and pump his consecrated load right into her womb. Only by flooding her sex with his seed could the taint of her demonic heritage be purged from its source, rendering her naught more than an exotic, sexually-insatiable “human.”");
+
+	outputCodex("\n\nThe horns didn’t really ever go away, but the wings and tail did. That’s not really what most of the priests were concerned with in their prospective brides, but when you ran an organization that hinged on men literally fucking women submissive, you tended to take what you could get. If that meant you had a mouth-breathing lout gawking at a succubus’ tits before they had a sex-duel to decide the fate of a village, so be it.");
+
+	outputCodex("\n\nSpeaking of which, that’s exactly the type of priest that headed the group upon which this story finds its focus. Battleaxe hefted over his shoulder, rendered terrifyingly dull by his hard-won experience in battle, Ustrik trudged through the murk and muck of the Swamp of Ill Omens.");
+
+	outputCodex("\n\n<i>“Look alive. No time to stand around, boys,”</i> he rumbled, eyes narrowed at the crumbling tower of onyx before them. His bare chest crossed with scars, Ustrik exemplified the seldom-seen school of barbarism that the Holy Church called upon in times of need. Clad in little more than a hastily skinned bear pelt over his loins, Ustrik seemed incongruously comfortable in the misery of the swamp. He cast a glance over his shoulder to the trio behind him and cocked his head towards their destination. <i>“Almost there. Ready?”</i>");
+
+	outputCodex("\n\n<i>“I should hope so,”</i> panted Forto. Unused to prolonged physical exertion, his training as a cleric in the city hadn’t really prepared him for the trek across the swamp. Once-white robes were stained indelibly grey by its residue, and, to be frank, Forto was sick of it. <i>“I’m ready to be out of this miserable sludge, at least. I’d bed a thousand succubi before I crossed it again.”</i>");
+
+	outputCodex("\n\n<i>“Don’t be so sure of that.”</i> Mikhail was, of course, quick to dispel notions of comfort at the end of the tunnel. His life as a ranger on the outskirts of civilization were, in this case, a double-edged sword. To him, it was a boon. His utilitarian armor, leather and oil-soaked cloth over it, was perfect for the slog to the Tower of Trials, but to the others? His grim outlook was seldom more than a reminder of the futilities of life. <i>“Way I see it, we’ve got three steps back before we’re in the city again. Into the tower, into bed, and back through the whole sordid mess.”</i>");
+
+	outputCodex("\n\nRitten, friend only to the shadows, was silent. He hadn’t stolen a thing in, what, weeks? Days? Hours? Wasn’t good. Wasn’t how a thief operated. Not at all.");
+
+	outputCodex("\n\nBut their desires, their squabbling, their private doubts. Such pettiness had to be dispelled as they passed under its obsidian arches. For this was the final proving ground, the application of the theories they’d learned during their time as hermits. For though they saw themselves as their respective classes - Ustrik, a barbarian, Forto, a cleric, Mikhail, a ranger, and Ritten, a thief - it was not until they faced their mirror-rival in combat that they would be accepted into the priesthood of the Holy Church.");
+
+	outputCodex("\n\nWhy, then, did they each hesitate before the gate? Was it the inky void that extended past its creaking doors? Was it the unfamiliar chill that poured from its depths, like ice in the midsummer’s heat?");
+
+	outputCodex("\n\nOr was it merely the fear that they would fail? That they wouldn’t be able to meet their demonic “better” half in combat, that they’d fall to the depths of depravity?");
+
+	outputCodex("\n\nUstrik shook his head with a growl. His singular focus was, in this case, a blessing, for such qualms took little more than a grunt to push to the side. <i>“See you on the other side, boys!”</i> He bellowed, lifting his axe from his shoulder and charging into the gate. If the unknown was to be feared, then Ustrik would make it known...!");
+
+	outputCodex("\n\nAnd as the world shifted around him, turning from tepid swampland to the foot-tamped clay of an arena, Ustrik couldn’t help but smile. The roar of an invisible crowd rang in his ears, and he was at home. A barbarian, as he’d learned, was no more comfortable than on the field of battle, and if that was to be his proving ground, he had already won.");
+
+	outputCodex("\n\nBlood pumping, eyes tinted sanguine red as his frenzy settled over his mind like a familiar shawl draped over frigid shoulders, Ustrik prepared to face his opponent.");
+
+	outputCodex("\n\nHe didn’t have to wait long.");
+
+	outputCodex("\n\nShe stepped out to the crowd’s vehement disgust, though why she was met with such disapproval confounded Ustrik. Buxom, wide-hipped, the pinnacle of the Amazon ideal, she drew his eyes like a magnet. Everything about her stoked his lusts hotter and hotter.");
+
+	outputCodex("\n\nShe was just barely shorter than him, and given that Ustrik towered over nearly all he met, man or woman, this was no mean feat. What’s more, her figure blended both feminine curves and raw, brute strength. Though her abs tensed as she adopted her stance, looking hard enough to rival stone, if not steel, her breasts wobbled with the same motion. Her thighs were thick enough - and well-muscled enough - to crack skulls between them if she chose, leading to hips that could only be described by Ustrik’s lust-addled hindbrain as “child-bearing.”");
+
+	outputCodex("\n\nEverything about her promised passion. Mad, furious passion, rutting, fucking, graceless, sweaty, animal. He was a man, she was a woman.");
+
+	outputCodex("\n\nWell, a minotaur.");
+
+	outputCodex("\n\nBut they would be joined in carnal matrimony, and he would find his place in the priesthood because of it. All he’d have to do is knock the gladius from her hand, strip her down from that scandalous attempt at an outfit - little more than two brass cups covering her nipples and a loincloth similarly obscuring her loins - and she would be as good as his! Like hell was he going to relieve the ache between his legs anywhere but between hers!");
+
+	outputCodex("\n\n<i>“Been a while since I had a proper man to test my mettle against,”</i> she sneered, the two of them beginning to circle each other. In a fight such as this, “sizing up your opponent” took on a very different meaning. <i>“Most of the deacons now are too weak to carry a proper weapon. But that strength will be your undoing, brute.”</i> She smiled, cold, cruel, thrusting out her chest for his greedy eyes. <i>“I know your type.”</i>");
+
+	outputCodex("\n\n<i>“You’re a beast. An animal. The second your cock’s s- Gah!!”</i>");
+
+	outputCodex("\n\nHe didn’t have time for monologues, especially not from fuck-meat like her. She was made to be bred, and he was going to breed her. Shield raised in a pathetic attempt to ward off his thunderous blows, the minotaur staggered at each mighty slash of his axe. Metal against metal, threatening to deafen the unseen spectators, and soon, soon...!");
+
+	outputCodex("\n\nSoon her shield fell away, the minotaur stunned by the sudden, brutal assault. She shrank back, wide-eyed and shocked, and it was in those decisive moments that she suffered her only wound: a rough fall back onto her cushiony rear.");
+
+	outputCodex("\n\nUstrik smirked down at her, victorious. The crowd fell silent for a moment.");
+
+	outputCodex("\n\nOnly to erupt into applause when he thrust his fists into the air! He had done it! He’d bested her, as a priest bested his demon-bride, and passed his trial! The trivially cowed minotaur rose on shaky legs, cheeks hot with shame, eyes cast downward.");
+
+	outputCodex("\n\n<i>“Well done, my lord,”</i> she mumbled, made somehow modest - despite her immodest attire. She tried to cover her body, failing just as miserably as she’d failed in battle moments ago. Not even two hands could cover the bottomless valley of her cleavage, especially when she panicked and dipped one between her thighs to try and hide her now-dripping sex. She squeaked when her armor vanished into sparkles, the trial itself having recognized her defeat. Licentious brass replaced by an intricate gold collar around her neck, complete with a humiliating bell that rested on her prodigious bosom, the minotaur was his.");
+
+	outputCodex("\n\nAll his.");
+
+	outputCodex("\n\nUstrik licked his lips and strode forth, his armor similarly vanishing in the wake of his victory. He was Adonis - No! - He was the Ares to her Aphrodite. The Heracles to her Hippolyta. And there was but one step before she was his to own forevermore.");
+
+	outputCodex("\n\nThe arena faded into the ether, replaced by what, he knew not. It was different for everyone, wasn’t it? He’d heard of a paladin claiming his bride between the four posts of a princess’ bed, but a barbarian...");
+
+	outputCodex("\n\n...a barbarian, apparently, took his woman upon a throne of bone, sinew, and skulls. He smirked. Fitting, by his estimation, and too much to bear by hers. Why else would the minotaur shiver and cast her gaze elsewhere?");
+
+	outputCodex("\n\nBut Ustrik had neither the time nor the inclination to wait for her to work up the nerve. A sharp tug on her leash - one of rough, iron chains, he noted with approval - and the two approached the throne.");
+
+	outputCodex("\n\n<i>“M-My Lord,”</i> she stammered, the red upon her cheeks having turned to excited pink, <i>“I never...I never thought you’d best me so easily.”</i> She gulped as he reclined in his throne. A snap of his fingers rang like thunder in the void of the trial’s space, and she flinched at the sound. <i>“I...I know what you ask of me.”</i>");
+
+	outputCodex("\n\nHe looked her over once more. Where once there had been a warrior, smug and domineering in her raw sexuality, now there was a caricature of the female form. She still had muscles, certainly. Her size hadn’t shrank, either. But now it was her fat, jiggling tits that drew his eyes. Her thighs, pressed together like a blushing virgin’s, even as her body begged to be taken as a wife on her wedding day.");
+
+	outputCodex("\n\n<i>“And I know the gravity of your task.”</i> She knelt before him, prostrate before her master. Her tone dipped to a breathy murmur. <i>“You, proud priest of the Holy Church, must pacify me and render me docile, lest I tempt thee to the sin of indolence.”</i> She looked into his eyes, her posture, her tone, her everything conveying her endless submission unto him...and the rigid rod of his cock, jutting up proudly between his legs.");
+
+	outputCodex("\n\nUstrik noted with a grin that she could only look into his eyes for a few seconds before her attention turned to the bloated crown of his cock. Spellbound, she continued her recitation. <i>“For as the priest tames with pleasure, so too does the demon. If a priest cannot relieve his lusts into a demon’s womb, surely he will be lost to pleasure. If he does not make the demon his wife...”</i>");
+
+	outputCodex("\n\nShe swooned forward, mashing her bust up against his crotch, and his iron-hard erection throbbed and twitched between her breasts. <i>“...She shall surely make him her slave. Oh, Master...”</i> She brought her hands up to her bust, pressed them against either side of her mammoth tits. <i>“I. I know you intend to take me as a bull takes a cow. But. But first, I need-”</i>");
+
+	outputCodex("\n\nShe shivered.");
+
+	outputCodex("\n\n<i>“I need to pay homage to the only man strong enough. Valiant enough. Virile enough to best me.”</i>");
+
+	outputCodex("\n\n<i>“Hh. Fine, woman.”</i> Ustrik snarled, planting a hand on her head, between her horns. A wisp of smoke coalesced around each pointed tip, gilding them with dull, beautiful gold. <i>“Submit to me as a woman before you submit to me as a wife. Besides.”</i> He flicked one of her nipples, and with a squeak of her surprise, cream dribbled from one stiffened peak. <i>“It’d be a shame to not use a cow as a cow’s meant to be used.”</i>");
+
+	outputCodex("\n\n<i>“Y-Yes, Master,”</i> she cooed. Her hands pressed to either side of her bust, ensuring that her bottomless cleavage didn’t part for so much as a second. She hefted her breasts up, up, up, dribbling sweet, warm cream all over his lap...before-");
+
+	outputCodex("\n\n<i>“Hh!”</i>");
+
+	outputCodex("\n\nWith a wet, messy schluck! she brought her tits down and sheathed his cock in her cleavage. Gods, but it was heaven! Warm, pillowy, pleasantly wet thanks to her messy, drooling teats! A dollop of pre from his bloated cockhead only made the vice of her cleavage slicker, and soon Ustrik was content to let the dairy cow bounce her breasts in his lap purely of her own accord.");
+
+	outputCodex("\n\nTo think, a demon, once seen as a fearsome beast able to steal the hearts of men, reduced to a mewling cock-sheath. Only natural, his pride told him. For what kind of woman would be able to stand up to the sheer monument to virility that was his thick, stiffened cock? It was clear from every breathless bounce of her tits in his lap that she was entranced. Shameful, that she once considered herself a warrior, given that each time the beet-red tip of his prick popped out from her cleavage, she drooled, leaned in, and planted a sloppy kiss to it.");
+
+	outputCodex("\n\nAnd all the while, his hand never left her head. <i>“Good girl,”</i> he rumbled, and she shivered with delight when he did.");
+
+	outputCodex("\n\nIt was after one passionate kiss to his cockhead that she finally found the will to pull away. Lust-drunk, she stared up at his eyes, her own hazy expression glazed with sweet adoration. <i>“I knew it from the moment I saw you, Master,”</i> she purred.");
+
+	outputCodex("\n\nShe’d since taken her titanic tits in two hands. Where one pressed down to his lap, the other slid up, up, up, his cock kneaded between her two pillowy breasts. <i>“You’re a beast. A true, honest-to-gods stud.”</i> She leaned in and wrapped her lips around his cockhead once more, sucking hard enough to coax a groan from him.");
+
+	outputCodex("\n\n<i>“I knew from the moment I set eyes upon your chiseled, perfect - mmf! - manly frame. Adonis! Adonis had come to put me into my place, to make me a woman! To rut me pregnant and turn my roiling heat into sweet, dutiful embers! I never knew that you’d do it so quickly. That you’d see through my tricks and silence me immediately.”</i>");
+
+	outputCodex("\n\nHis cock throbbed in her cleavage, his heartbeat frantic, cock twitching with every pump. <i>“I’ve bested paladins, warriors, brawlers. All sorts of ‘fighters’ that could hardly wait to fuck me. But none of them were men. Not like you.”</i> She pulled her breasts apart, brought them down to the base of his cock, and pressed them together, vice-tight once more. Ustrik didn’t do much more than snarl his approval.");
+
+	outputCodex("\n\n<i>“A barbarian. So viscerally masculine. How could I resist? Gods, I’d only heard stories before.”</i> She shivered again, moaning. <i>“Beast-men that rutted like animals. They seeded their bitches until they were as submissive as the she-wolf to her husband. Oh. Oh-!”</i>");
+
+	outputCodex("\n\nWith a high, keening squeal of delight, the minotaur’s teats gushed cream, drooling it in streams onto his chiseled abs, his tit-covered lap, his proud, stiff cock. It felt incredible, warm, hot, wet-");
+
+	outputCodex("\n\n<i>“M-Master, I must confess, I have. I have-”</i> She panted, breathless, though no less eager in her ministrations to his cock. <i>“I c-climaxed from the mere thought of your manhood. You-”</i>");
+
+	outputCodex("\n\nHer eyes rolled back, her tongue lolled out, her large, dark nipples oozing milk. <i>“You have tamed me!”</i>");
+
+	outputCodex("\n\nThat prompted the first movement he’d made in what felt like ages: a twitch upwards of his hips, just enough to push the tip of his cock from the pillowy prison of her cleavage...so he could splurt his seed onto her whorish face. She didn’t move at all as the thick, sperm-packed arc of his climax streaked over her gorgeous, feminine features, though her milking turned harder, faster as he came. <i>“Yes, yes, Master! Oh, Master, you’re so strong and big and- Ooh!”</i>");
+
+	outputCodex("\n\n<i>“And I c-can’t think straight,”</i> she keened, leaning down to lap up the stray droplets of his orgasm. But that cream, that cream kept his prick warm, stiff, ready. <i>“Your seed, it’s exquisite...”</i>");
+
+	outputCodex("\n\nHe grunted in something like pride. Of course it was exquisite. <i>“The pinnacle of man,”</i> she sighed dreamily. He snorted through his nose, hot breath signalling his approval. <i>“The apex predator! The alpha male!”</i> Her every word was honey to him, and soon his hands found themselves resting on the arms of his throne. His throne. He was a king, an emperor, a god, and she was his priestess.");
+
+	outputCodex("\n\n<i>“Please, Master, cum-!”</i> She moaned, milking his shaft with her fat, wobbling tits. <i>“I need it, I need to know I’ve pleased my Master! Gods, you’re as virile as a bull...!”</i> She kissed his cockhead once more. <i>“A mad, rutting beast! I cannot - could not! - resist!”</i> Another squeeze from her tits, another suck from her lips.");
+
+	outputCodex("\n\nHe came into her mouth this time, and she giggled with excitement as she slurped down every drop he had to give. Gods, but he could grow used to this. She was his, wasn’t she? She had to be. Look how eagerly she submitted to him.");
+
+	outputCodex("\n\n<i>“Oh, Master!”</i> There, she said it again. Ustrik smiled to himself as he sank back into the throne. She was his cock-addicted priestess. She worshiped him. <i>“I’m so pleased that you enjoy my tits this much.”</i>");
+
+	outputCodex("\n\nHis cock twitched, splurting a stray rope of seed into the air at that. She giggled once more, burying his cock in her cleavage, allowing not even the tiniest peek of his crown to poke out. <i>“Yes, good, you’ve earned it...”</i> She purred, kneading his hilted prick with her titflesh. <i>“Cum, Master. Have to empty those bloated balls before you take your crown.”</i>");
+
+	outputCodex("\n\nHe came. She cooed her approval. <i>“Good, good! Ooh, such a virile, insatiable stud! Lusty, rutting beast...”</i> She bounced her breasts on his lap, and he came again. His seed merely pooled in her cleavage before dribbling down the front of her tits. <i>“Tit-loving bull. No one can resist this cock. Look, you’re the gods’ gift to women! Every pair of breasts in the world needs a hot, thick wad of your cum splattered between them. To show just how easy it is for your bloated, bitch-conquering cock to own whatever woman you choose.”</i>");
+
+	outputCodex("\n\nHe liked the sound of that. A lot. Fat, jiggling tits, cleavage all tight, presented to him like the spoils of war...");
+
+	outputCodex("\n\nHe came again.");
+
+	outputCodex("\n\n<i>“You’re the bull-king, my bull-king. Irresistible, insatiable,”</i> she purred, bouncing her breasts in his lap. <i>“Every cow in the world needs to be shown to whom she belongs, and the only way to do it is to fuck her tits with this magnificent cock.”</i>");
+
+	outputCodex("\n\nSounded good to him. Sounded perfect to him. Yes, she rose to her feet, and his cock flopped back against his belly, freed from the prison of her cleavage.");
+
+	outputCodex("\n\nHe needed to find another bitch, some other pair of tits to fuck. Right now. Grunting, snarling, growling, he rose from his throne and staggered forward, cock jutting out from his lap.");
+
+	outputCodex("\n\n<i>“Good, good! I’m sure that whichever slut you fuck will be yours after just one load emptied into her cleavage, ‘Master,’”</i> she tittered to his back. <i>“After all, who needs a wife when you can fuck a pair of breasts instead?”</i>");
+
+	outputCodex("\n\nHip cocked to the side, the minotaur watched Ustrik stagger into the void and back into the real world, broken and addicted.");
+
+	outputCodex("\n\nOf course, the nature of the tower and its ability to obfuscate the passage of time meant that hours would pass between Ustrik entering the trialsite and his subsequent exit.");
+
+	outputCodex("\n\nIn that fateful span, the others found themselves at a loss.");
+
+	outputCodex("\n\n<i>“When’s he to return?”</i> Mikhail murmured, glancing to Forto.");
+
+	outputCodex("\n\n<i>“Couldn’t say,”</i> he replied with crossed arms and a sigh. <i>“Legends say that the tower tailors its trial to each individual acolyte, but...who knows?”</i>");
+
+	outputCodex("\n\nThe three of them idled at its entrance, shifting anxiously from foot to foot. Not much to do but wait, they figured. Ustrik had always been the one quickest to charge into battle, so his absence was almost paralytic to the remaining trio. It was almost shocking when the next to speak up had been Forto.");
+
+	outputCodex("\n\n<i>“There’s no point in waiting,”</i> he finally said. <i>“The Tower of Trials is possessed of a terrible magic, and it. It appears we’re to face our challenges alone. If not...”</i> He looked to his comrades. <i>“Well. Ustrik’s not returned. And proud though he may be, I doubt he’d wait too long to bark at me to enchant his axe if he was in a pinch.”</i>");
+
+	outputCodex("\n\nHe strode forward, determined. <i>“There’s no point in waiting. When I see you next, I’ll be either a priest or a pauper.”</i> And with that, Forto passed into the tower, and reality dissolved around him.");
+
+	outputCodex("\n\nEven before he saw it, he felt it. The stagnant air of the swamp gave way to balmy heat. It wasn’t so thick as to be unpleasant. Far from it, actually. The sultry spice to the air was a welcome change from the tepidity of the bog, and the sights that fizzled into reality soon after were similarly pleasing to the senses.");
+
+	outputCodex("\n\nForto found himself in something akin to a throne room. No, not quite, though the luxury it held rivaled the palaces of royalty. Pillows littered the ground, not quite stuffed enough to offer firm support if one were to recline upon one. More suited to lounging across two or three than anything else, it seemed. It was a bit hard to tell what the room was even suited for. Light sources were nonexistent, save perhaps the dull glow of coals in braziers hanging from the unseen ceiling, but somehow, Forto didn’t have to stumble around blindly. The room was just barely visible enough to navigate the pillow-dotted floor.");
+
+	outputCodex("\n\nAnd a spotlight focused on the crown jewel of the mysterious lounge.");
+
+	outputCodex("\n\nA small, circular platform found its place in the center of the room, bathed in soft, pink light. Normally, the glow wouldn’t be any more impressive than that of a torch; it certainly wasn’t any stronger than torchlight as far as Forto could tell. Even so, in the otherwise dim room, it dominated, not least of which due to the sight it illuminated.");
+
+	outputCodex("\n\nDancing in the center of the room was the most beautiful woman Forto had ever seen in his life. At least, he assumed so. All he could see was her silhouette, her body itself hidden behind a curtain separating the two. It was a testament to that silhouette that he found himself drawn helplessly forward.");
+
+	outputCodex("\n\nBreasts, hips, waist, legs. She tantalized without showing so much as a scrap of skin, but the shadow dancing upon the veil before him teased salacious nudity. Hands above her head, she swayed her hips from side to side, rolling them in figure-eights for his ravenous eyes. Was this to be his bride?");
+
+	outputCodex("\n\nShe spoke, and her voice was music.");
+
+	outputCodex("\n\n<i>“Finally, I have an audience.”</i> Low, smoky, purring, her voice carried a smile and sent shivers down Forto’s spine. <i>“Rest, my husband, and allow me to soothe your nerves before I take you to heaven.”</i> She reached out to him - as far as he could tell - and splayed her slender fingers out before crooking them at Forto, one by one.");
+
+	outputCodex("\n\n<i>“You’re an Apsara,”</i> he mumbled. Behind the veil, she giggled.");
+
+	outputCodex("\n\n<i>“And you, my husband, are well-read. I am, indeed, an Apsara.”</i> She raised her hands above her head once more, humming to herself as she swayed her hips. <i>“Does this cause you unrest, my husband?”</i>");
+
+	outputCodex("\n\n<i>“A little.”</i> Forto gulped. He couldn’t take his eyes off her. Didn’t really want to, either. But that was the danger, wasn’t it?");
+
+	outputCodex("\n\n<i>“A nymph, fallen from heaven, sent to deceive.”</i> She spoke his thoughts aloud, poisonous worry made somehow palatable by her sensuous purr. <i>“Sculpted by the gods to sate their lusts, the Apsaras were cast from paradise by their masters’ jealous wives...only to tempt the gods themselves into Hell.”</i> She moaned through pursed lips, a low, needy hum. <i>“It is rare that I find myself faced with an acolyte worthy of my attention.”</i>");
+
+	outputCodex("\n\nShe smiled, and her silhouette smiled in tandem. Glittering white appeared in a crescent upon its face. For the first time since he’d seen her, she looked...menacing. Even as she continued, her shadow’s grin didn’t so much as twitch.");
+
+	outputCodex("\n\n<i>“And yet, I am naught more than a demon to your Holy Church. Another monster to be made humble, another monster who seeks to tempt men into the pleasures of wasteful sex. To ensure that the race of men falls, as all who climb too high must fall.”</i> She leaned forward, and her shadow’s smile vanished. Hands on her knees, she turned just slightly to the side to offer her profile to Forto. Her breasts hung from her chest, heavy and full and assuredly bare. The swell of her rear promised similar softness.");
+
+	outputCodex("\n\nForto had seen succubi before, and she was unlike any he’d laid eyes upon. They were crass, aggressive and unsubtle in their sexuality. Tits bloated and wobbling, caricatured, hips wide enough to bruise a man’s lap with the ferocity of their lovemaking. But she was...perfect. Even through the veil, he could see that. Not so slender as to leave men wanting for more, not so large as to approach grotesquerie. Curvaceous, hourglass perfection. The feminine ideal, crafted by men to please them. So effective as to enslave them.");
+
+	outputCodex("\n\n<i>“Are you afraid, my husband?”</i> She murmured. Forto blinked, jogging his thoughts from the fugue they’d slipped into. Even as she spoke, she didn’t pause her slow, sensuous dance for a moment. <i>“I will admit, such fear would not be unfounded.”</i> Side to side, her hips swung like a pendulum. Her body writhed before him like a serpent, undulating in lazy waves. <i>“My sisters and I were the ones to bring about an end to the age of gods.”</i> She let her head fall back, reaching to cup her breasts. <i>“I have made deacons my slaves. They did not respect my power as you do, my husband, and they suffered accordingly. Though they would say,”</i> she said, a smile upon her voice once more, <i>“that they did not suffer for even a moment.”</i>");
+
+	outputCodex("\n\n<i>“The punishment I mete out, my husband, is exquisite.”</i>");
+
+	outputCodex("\n\n<i>“It is that which laid the gods low.”</i>");
+
+	outputCodex("\n\n<i>“That which even the pontiff of your Holy Church fears the promise of.”</i>");
+
+	outputCodex("\n\n<i>“That which would leave a man hungry, wanting, ravenous forevermore if he should taste but an instant thereof.”</i>");
+
+	outputCodex("\n\nHe was hard in his robes. Forto had been listening, spellbound, watching, ensorcelled. Couldn’t even shake his head to try and snap himself out of it now.");
+
+	outputCodex("\n\n<i>“But I am not unkind, even to those who fail to pay me the respect I deserve. After all, they fall to their knees in worship in the end.”</i> She paused, and the smile returned, shimmering upon the veil between them.");
+
+	outputCodex("\n\n<i>“My husband.”</i>");
+
+	outputCodex("\n\nShe stopped, finally, frozen mid-step. One leg brought up, crooked and forming a cross with the other. Her foot dangled, suspended just off the ground.");
+
+	outputCodex("\n\nForto realized after a moment that he had been holding his breath as soon as her dance paused. He’d sat down at some point, palming himself through his robes. He’d abandoned his staff somewhere in the haze on the outskirts of the room. Did it even have walls? It didn’t matter. Only she mattered. When she spoke, he listened.");
+
+	outputCodex("\n\nShe spoke.");
+
+	outputCodex("\n\n<i>“Do you fear me, as I am to be feared?”</i> She was still as a statue, but that grin widened on the veil.");
+
+	outputCodex("\n\n<i>“Will you submit unto me and gain a lover who has lavished gods with pleasure and left them drunk by her presence?”</i>");
+
+	outputCodex("\n\n<i>“Or will you try, as all before you have tried, and force me to submit?”</i> Something about her voice changed. She wasn’t purring anymore. It was kind of a low, sensuous hiss. She clicked her tongue, capped it with a soft moan.");
+
+	outputCodex("\n\n<i>“Are you truly beholden to your own carnal urges? Is your spirit so weak as to succumb to the curiosity of what I do to those whom I enslave?”</i> His cock seemed to stiffen at that. <i>“Do you think you could defeat me, make a slave out of me?”</i>");
+
+	outputCodex("\n\n<i>“All men do, you know.”</i> Gauzy fingertips brushed his cheek, but he didn’t look away from her frozen silhouette. Phantom lips pressed a kiss to his cheek. Another pair wrapped around the head of his cock, bobbing on his length. He saw nothing. He felt everything. <i>“It’s why you’re men. You think that you are gods. That you are untouchable. Your foolish, wonderful pride.”</i>");
+
+	outputCodex("\n\n<i>“Maybe you could do it.”</i> Her voice was right in his ear now, hissing, purring, tempting. His hands were at his sides. After all, the hands pawing at his body were exquisite, far more skilled than his could ever hope to be. He could get used to this. <i>“No one’s ever come this far, have they? Look, an empty room, empty save for you. And me. Maybe it’s destiny.”</i>");
+
+	outputCodex("\n\n<i>“The gods fell for me. But maybe you’re different. You must be.”</i> Lips pressed against his, and even if he couldn’t see anything but her shadow on that silk-thin veil, he felt the heat of her body, the tender caress, the greedy squeeze, pump, stroke of her hands. <i>“You’re different. This is destiny. Surely you could tame me. And besides.”</i>");
+
+	outputCodex("\n\nHe was surrounded by her. Breasts mashed up against his arms, his chest, but it wasn’t just that, it was her hands, fingers laced with his, squeezing them tight as she rode him. But she was sucking him off, tongue rolling around the head of his cock, mouth as practiced as a whore’s. She was riding him, she was fucking him senseless. She was kissing him, he was-");
+
+	outputCodex("\n\nHe was different. A little voice, whispering in the back of his mind, purring, gasping, moaning. He was different. He was special. He could tame her. Submit to a demon. Never, not even for a moment. He was a man, a priest of the Holy Church, and that meant that he was to be an avatar of the gods and subjugate the profane Female in all of Her iterations. He was different, and he would show her as such.");
+
+	outputCodex("\n\n<i>“I-”</i> He mumbled, blinking blearily at her shadow as sensations all but overwhelmed him. Hips, tits, lips, ass, grinding, sucking, mashing up against him. <i>“I-”</i>");
+
+	outputCodex("\n\n<i>“Yes, my husband. Say it. Say it, and fall, as all have fallen before me.”</i> She hissed, two pairs of arms unfurling from her sides, even as her foot hovered just above the ground. <i>“Foolish, proud man, thinking with his thick, throbbing cock. Stoked too hot and cracking at the slightest touch.”</i>");
+
+	outputCodex("\n\n<i>“Do you submit by your own will?”</i>");
+
+	outputCodex("\n\nHis eyelids fluttered, and he was about to cum, he could feel it. His balls clenched down, and his cock throbbed in his robes.");
+
+	outputCodex("\n\n<i>“I duh- I do not.”</i>");
+
+	outputCodex("\n\nThe phantoms vanished. Or they seemed to, at least. He had never seen them, so their disappearance could only manifest as a sudden, cold solitude.");
+
+	outputCodex("\n\n<i>“You do not submit by your own will,”</i> the Apsara repeated, and the veil finally fell.");
+
+	outputCodex("\n\nHer lips moved, plump, black, curling at their corners with a smile, but he didn’t hear her speak. He’d lost himself in her eyes, gorgeous, bottomless amber, ringed with kohl. Her skin, flawlessly smooth, soft, the color of caramel and honey and cocoa, blended and drizzled over curves that promised endless pleasure, perfection distilled, voluptuous. Her belly, smooth and lacking a navel, her thighs, her legs, her feet-");
+
+	outputCodex("\n\nHer foot finally touched to the ground again, and it was as if something inside him changed. Like his mind had shifted to the left. Like his thoughts would never be quite right. Ever again. Forto grunted, and he looked to her six arms.");
+
+	outputCodex("\n\nSix arms? No, it was. Oh.");
+
+	outputCodex("\n\nOh. It was more. More of her. Two more stepped out from behind her. Two more of her, and they approached, sinuous, predatory. They walked with the unmistakable gait of women who knew just how breathtakingly gorgeous they were, who knew that they were going to take the stupid, horny man in front of them and claim him. His heart. His mind. His everything.");
+
+	outputCodex("\n\nForto couldn’t speak. He couldn’t move. Not with divinity so close to him. No, he just kind of fumbled uselessly for words as the duo of Apsarae approached him, his cock uselessly, traitorously stiff in his robes. They laid themselves beside him, one on each side, and traced two slender fingertips over his body. Their touch dissolved his clothes, and soon Forto was naked before them. Before Her.");
+
+	outputCodex("\n\n<i>“You could have been my husband.”</i> She carried her glittering, pearl-white smile on her voice. He smiled with her, not truly hearing her words or the message behind them. <i>“You could have had everything.”</i>");
+
+	outputCodex("\n\nHer twins pressed up against him, cooing, murmuring sweet, wordless nothings against the shell of his ear. One kissed his jaw. The other kissed his collarbone. Both of them stroked his cock, sliding their palms up and down his length.");
+
+	outputCodex("\n\n<i>“Instead, you will have nothing.”</i> The veil raised once more, and her shadow began to dance. Her hips swayed. Her breasts jiggled. Her spine curved, and her body followed. Eyelids drooping, Forto giggled.");
+
+	outputCodex("\n\n<i>“You will be trapped in heaven, imprisoned for all time by perfection, and you, the idiot-god of male pride, will blindly, slavishly obey your cock’s every whim. And your cock,”</i> came her voice from everywhere at once, <i>“obeys me.”</i>");
+
+	outputCodex("\n\nBut Forto wasn’t really listening. Hard to listen when you were blissed-out and riding the wave of luxurious pleasure that he was, and the twin facsimiles didn’t seem to plan on letting up their pampering any time soon. When one hand drifted away from his pre-drooling prick, another slid up to take its place. If one pulled away from his side, it was only to better adjust her position pressed up against him. And all the while, they purred and cooed into his ears, driving thoughts from his mind with every touch, every sibilant hiss, every inch closer to sweet, blessed release.");
+
+	outputCodex("\n\nRelease that would never come, as it turned out. Forto didn’t care. Didn’t even think about how he was long past the limits of his endurance, because there was something so gradual about it all that meant he could bear it - no, that he craved it. Perfection was to be savored, and if he could savor perfection forever, wasn’t that something like heaven? Attended to by angels, worshiping a goddess ad infinitum, pleasure climbing higher and higher, straining towards an ideal he’d never...quite...reach.");
+
+	outputCodex("\n\nA trickle of drool crept down his chin. It wasn’t long before one Apsara smeared it into his skin with a kiss, giggling. Time lost meaning. Words lost meaning.");
+
+	outputCodex("\n\nForto lost himself in pleasure and, though he couldn’t say it himself, would have done it again.");
+
+	outputCodex("\n\nOutside the tower, Mikhail and Ritten had taken to a game of tiddlywinks a few minutes after Forto’s departure. To speak truthfully, neither of them had really liked Ustrik or Forto; the latter was too brusque to hold a conversation, and the former was too sanctimonious to hold a conversation worth having. If the brute and the brain wanted to charge on ahead, citing valor or duty, that was fine with them. After all, it wasn’t as if there was a strict time limit on the trial being passed or not, was there? No. So Mikhail and Ritten intended to take their sweet time about it.");
+
+	outputCodex("\n\nOf course, taking one’s sweet time carried a few caveats, one of which being that time tended to pass. As the sun crept below the horizon, Mikhail set about starting a campfire. The wood around was a bit sparse, but he’d managed to find a few good branches. The alternative was just sitting around in the dark. Even if there weren’t demons about, there were beasts to worry about. A fire was a necessity to ward them off.");
+
+	outputCodex("\n\nRitten did his part by watching.");
+
+	outputCodex("\n\n<i>“You ever have a meal in the bush?”</i> Mikhail looked over his shoulder at the thief, raising a knife and offering a smile.");
+
+	outputCodex("\n\nRitten had not.");
+
+	outputCodex("\n\n<i>“Ah, well, you’re in for a treat. Not saying it’s fit for a king, but.”</i> He turned his attention to the ground. He found a stick, picked it up, and discarded it. Too soggy to burn. <i>“Well. Hunger’s the best seasoning.”</i>");
+
+	outputCodex("\n\nRitten’s stomach grumbled.");
+
+	outputCodex("\n\n<i>“I don’t know how you want to do this, but what I was thinking,”</i> Mikhail continued, <i>“was to get some shut eye, maybe take a piss, and head in. Dunno how long a trial could take, so. Figure it’s best to be well-rested.”</i>");
+
+	outputCodex("\n\nRitten agreed.");
+
+	outputCodex("\n\nMikhail clicked his tongue, looking over his shoulder at Ritten as he walked. <i>“You don’t talk much, do you.”</i>");
+
+	outputCodex("\n\nRitten didn’t.");
+
+	outputCodex("\n\n<i>“Suits me just fine,”</i> Mikhail finally admitted, smiling at Ritten. Flat ground meant he didn’t really need to watch where he was going...");
+
+	outputCodex("\n\n...except when he stumbled headlong into the tower’s entrance. Ritten had reached out and mumbled something unintelligible, going so far as to start to stand up, but it hadn’t been quick enough for Mikhail to stop. With a yelp of shock, Mikhail fell into inky blackness.");
+
+	outputCodex("\n\nRitten sat down again.");
+
+	outputCodex("\n\nFor all its intricacies, the portal was apparently not so complex as to safeguard his dignity. Mikhail never found his balance in the flash between the swamp and...wherever he was. He landed flat on his face with a grunt, arms splayed out in front of him. Self-righting, it seemed, was not a priority of the portal’s creators.");
+
+	outputCodex("\n\nBut that wasn’t important. What was important was figuring out where he was. A ranger, first and foremost, knew his battlefield. Mikhail scrambled to his feet, knife pulled from its sheathe. Ground was soft, softer than stone or metal. No grass, but the roots - and, higher still, the tree trunks - made one thing very clear: he was in a forest.");
+
+	outputCodex("\n\nThat being said, it was unlike any forest he’d seen before. The trees climbed high enough to render their tops little more than swaying pinpricks in the distance. Still, their leaves - which came in shades of blue, green, and purple - flitted down from the heavens to cover the ground.");
+
+	outputCodex("\n\nWhat was strangest, though, wasn’t the flora. It was the fauna. More accurately, its apparent absence. Silence was the most dangerous thing one could possibly hear in the woods, Mikhail considered grimly. Animals weren’t stupid. They didn’t dawdle when deadlier beasts were afoot, and if the forest was silent, then-");
+
+	outputCodex("\n\n<i>“Gah!”</i>");
+
+	outputCodex("\n\nHis attentions turned elsewhere, Mikhail didn’t notice...whatever it was that had bitten him! His ankle burned with sudden, stinging pain. No blood - barely a trickle, at least - but the two pinpricks left behind by his apparent assailant worried him. A quick measurement with his knuckle confirmed his suspicion.");
+
+	outputCodex("\n\nThis was a snakebite. More than a snakebite, this was a venomous snakebite. That tingling numbness wasn’t going away, and he sure as Hell hadn’t felt it before. Mikhail looked around. A glimpse of the serpent would offer a clue as to how he would set about treating the bite, but...there was nothing.");
+
+	outputCodex("\n\nNothing except for the demon hovering in front of him.");
+
+	outputCodex("\n\nEyes wide in shock, hand clapped over her mouth, she was the picture of cultivated shock. And apparently wet dreams, given that her proportions seemed to be plucked from the idle fantasies of lonely teenage boys.");
+
+	outputCodex("\n\nBreasts straining against her top and hips similarly testing the fabric trying to contain them, she was openly, obviously, unabashedly a succubus. Normally he heard of succubi attempting to conceal their demonic nature, but she wasn’t lifting so much as a finger to hide her horns. Or her wings. Or her purple skin.");
+
+	outputCodex("\n\n<i>“Ohmigosh!”</i> She chirped in a voice sweeter than a songbird’s. <i>“You’re hurt! You’ve gotta! A!”</i> She clicked her tongue, crossing her arms under her bust and rolling her eyes. <i>“A watchamacallit. Ah!”</i> Her expression lit with the realization. <i>“A bite! On your thingy! Your ankle!”</i>");
+
+	outputCodex("\n\nHe’d barely opened his mouth to respond before she had swooped down behind him to the backs of his feet, bent over and wiggling her ass in the air. <i>“Awh, heck! Lookit that!”</i> She clicked her tongue and shook her head. <i>“Snakebite, huh? Well!”</i>");
+
+	outputCodex("\n\n<i>“Well, what?”</i> Mikhail scowled down at her, jerking his foot away and turning to face her. <i>“Beg your fucking pardon, but I’m not fool enough to let a succubus lay her lips on me!”</i> Knife raised menacingly, he spat on the ground. <i>“Think I don’t know about your venom? For all I know, you’re the one who did this to me!”</i>");
+
+	outputCodex("\n\nThe succubus floated up to eye level once more, though hers held no glimmer of amusement. Half-lidded with the scowl to match, she just kind of stared at him for a moment. Before scoffing. <i>“Wow. Lookit you. Did your homework and everything. Well, unfortunately for both of us...”</i> Bringing her hands up to pull the corners of her mouth apart, she stretched her jaw wide - though it was within the realm of normality, he had to admit - and showed off her teeth.");
+
+	outputCodex("\n\nNot a fang in sight, hollow or otherwise.");
+
+	outputCodex("\n\n<i>“Not exactly,”</i> she continued with a snap of her teeth, <i>“a standard succubus. So, you know, thanks for that. I thought I had heard the last of that kind of crap from the other succubi, but apparently!”</i> She threw her hands in the air suddenly enough to startle him. <i>“Humans know enough about the ‘normal’ ones to make fun of me, too!”</i>");
+
+	outputCodex("\n\nMikhail blinked at her. Could this be. A test? Each lesson his mentor had imparted to him had been true thus far, and he distinctly remembered that a succubus was possessed of three cardinal traits: her glamour, her venom, and her mesmer.");
+
+	outputCodex("\n\nHe had to be looking at her glamour. Demons were almost never that curvaceous naturally. Her mesmer, he was on guard for. She hadn’t revealed it yet, but there wasn’t a chance in Hell that she wasn’t going to use it on him at some point. And her venom...was apparently. Nonexistent.");
+
+	outputCodex("\n\nHe watched her carefully. There had to be a catch. Some trap she was yet to spring upon him. Who’s to say that her glamour wasn’t disguising her fangs? Or perhaps she’d ensorcelled him with her mesmer the instant she’d set her eyes on him! She wasn’t so unique as to lack one of the three sinister weapons of the succubus! She-");
+
+	outputCodex("\n\nAnd his leg went limp under him.");
+
+	outputCodex("\n\nCursing, Mikhail crumpled to the ground, knife knocked from his grip by the fall and dignity similarly lost once more.");
+
+	outputCodex("\n\n<i>“Ooh, I toldja!”</i> The succubus lowered to his level, shaking her head. <i>“Didn’t I? I said- Well, I didn’t say, but I was about to say. You need someone to suck the poison out!”</i>");
+
+	outputCodex("\n\nMikhail didn’t know where to begin, so he opted to first sputter with indignation. <i>“Suck the-”</i> He repeated, hobbling to one leg. <i>“Suck the poison out of it! That isn’t- You can’t suck venom out of a wound! That’s not how it works!”</i>");
+
+	outputCodex("\n\n<i>“Listen,”</i> she continued, rolling her eyes. <i>“One of us has a snake bite buzzing away in their foot. No judgements! But I don’t think that negative thinking is going to get you to where you need to be.”</i> She pressed her palms together and pointed her hands at Mikhail. <i>“We have an idea. Right now isn’t the time to say ‘no.’”</i>");
+
+	outputCodex("\n\n<i>“But that isn’t-”</i> Mikhail hissed through gritted teeth. Numbness had given way to a sort of pinprick-stinging in his ankle, and he would be lying if he said it wasn’t worrying him. If only he’d caught a glimpse of what it was that had bitten him! Without that crucial key, there was no telling if his serums would help...or guide him to an early grave.");
+
+	outputCodex("\n\nThe succubus snapped her fingers in Mikhail’s face, and it jolted him out of his panic. <i>“Listen! Just give it a chance! Either way, you’re fucked, right? So at least let’s see if it works!”</i>");
+
+	outputCodex("\n\n<i>“It’s not-!”</i> Gods below, but he couldn’t think with her crowing at him! <i>“Fine, fine!”</i> He waved a hand in her face. <i>“Go ahead!”</i> At least he’d have some time to think if she was occupied with whatever nonsense she was talking about. Sucking the poison out! Peh!");
+
+	outputCodex("\n\nThat being said, she lit up at the permission. Hearts practically bloomed in her pupils as she kicked a foot back. <i>“Ooh, you won’t regret it! Here, lemme give it a try.”</i>");
+
+	outputCodex("\n\nCuriously, though, she didn’t seem to move. She stared into his eyes, that innocent smile upon her lips. Was she going to-");
+
+	outputCodex("\n\nAnd then there was a little kiss upon his ankle, just this hint of pressure. Like a pair of plump, pillowy lips nipping at his heel. They seemed to probe the now-exposed skin for the wound, and then...they sucked.");
+
+	outputCodex("\n\nThe pain seemed to vanish almost instantly. The numbness, too. Relief had never been this fast, even with his mentor’s antivenoms. But it shouldn’t have worked at all, should it?! Sucking the venom from a wound, that was impossible! And yet here she had- Wait, how was she doing this, anyway?");
+
+	outputCodex("\n\nA glance away from her face - smile turned irritatingly smug - showed that the supposed panacea was...the spaded tip of her tail.");
+
+	outputCodex("\n\nAt least, it had been spaded before. Now it had split down the middle to reveal a slippery, drooling maw. Toothless, it flexed and sucked, slurping out the venom and leaving Mikhail more or less cured. But the hydra of his wound had split in two at the revelation behind the supposed “cure,” and, stumbling back, he pointed his knife at her.");
+
+	outputCodex("\n\n<i>“Devil! She-beast!”</i> He snarled. The sudden jerk back wrenched his foot from the tail-mouth, though he was left staggering from its separation. <i>“What kind of devilry is this?! Answer me!”</i> Such a fool, trusting a succubus brazen enough to approach him without a glamour. No, this whole thing was a trap of her sinister device, one designed to leave him ensorcelled!");
+
+	outputCodex("\n\n<i>“Yeah, this is kind of what I figured.”</i> She spoke simply, vaguely disappointed. <i>“Turncoat viper. Here.”</i> She snapped her fingers and plucked a handmirror from the air, showing Mikhail his reflection. For the most part, it was the one he’d seen a thousand times before. His eyes, though, were bloodshot. More than bloodshot, the whites of his eyes were nearly pure crimson.");
+
+	outputCodex("\n\nHe gawked at the sight, fury turning to shock before another snap sent the mirror vanishing into smoke. <i>“Didn’t quite get to it in time. See, the pain’s more to distract you from the real point of it. When a turncoat’s gotcha?”</i> She shook her head with a sigh. <i>“Everyone’s out to get you. At least, that’s how it seems to you.”</i> She clicked her tongue and planted her hands on her hips, looking angrily to the side. <i>“Shoulda known when you started acting all grumpy!”</i>");
+
+	outputCodex("\n\n<i>“Whuh-”</i> He mumbled. Turncoat viper? He’d never heard of that before. But then, this was a forest unlike any he’d seen in his life, and- No, she was lying! She had to be! He pressed a palm to his forehead, suddenly dizzy. His ankle didn’t hurt, but now his head ached. No, more than ached, it throbbed with a war-drum’s maddening pound. Every heartbeat brought a spike of pain. It was impossible to think, much less-");
+
+	outputCodex("\n\nShe hugged him, and the pain seemed to fade. <i>“Wow, you’re looking to be in dire straits there, buddy.”</i> Her voice wasn’t as shrill as before. Had it been shrill before? It was difficult to think between the flashes of skull-rattling pain. <i>“Uhm. OK.”</i> She sounded concerned, actually. A nervous sort of tremor in her voice.");
+
+	outputCodex("\n\n<i>“There’s not a lot I can actually do for you right now. Like, normally I’d just - slurp! - suck out the poison before it can get bad, but you were...Well.”</i> She sighed, drumming her fingers idly on his shoulderblade. Chin rested on his shoulder, the succubus paused in thought. <i>“Not really your fault. Turncoat viper and all.”</i>");
+
+	outputCodex("\n\nIt was getting to be too much. Eyes screwed shut,");
+
+	outputCodex("\n\nSTAB");
+
+	outputCodex("\n\nMikhail grit his teeth. Sweat beaded on");
+
+	outputCodex("\n\nSTAB");
+
+	outputCodex("\n\nhis brow, and his skin flushed painful red.");
+
+	outputCodex("\n\nSTAB");
+
+	outputCodex("\n\n<i>“Stop...Stop...!”</i> Why wouldn’t it stop?!");
+
+	outputCodex("\n\n<i>“Here.”</i> Her tone had a certain nervous urgency to it now, and though he didn’t see it, he felt her pull away. Hands on his shoulders, the succubus sucked in a breath as Mikhail shook with pain. <i>“I can help you, but. I need your permission first. OK?”</i>");
+
+	outputCodex("\n\n<i>“Fine!”</i> He blurted it out without thinking, without even realizing what he could’ve just agreed to. It was just that miserable ache, right behind his eyes, and-");
+
+	outputCodex("\n\nAnd it was gone. Just like that.");
+
+	outputCodex("\n\nHe blinked. Stared at her. For the most part, she looked more worried than anything else. Though as soon as his shoulder slumped - since when had he been tensing them? - hers did, too.");
+
+	outputCodex("\n\nThe succubus gave a sigh of relief and an airy sort of laugh to go with it. <i>“Ho! Gosh, I was worried for a second there! I don’t really see a lot of guys come back from a turncoat’s venom without going absolutely bonkers, so. Good thing I got to you before you started foaming at the mouth, huh?”</i> She smiled at him, wide and pure, and canted her head to the side. <i>“Feel better?”</i>");
+
+	outputCodex("\n\nMikhail looked down. He did feel better. Almost entirely better. Even the little aches and pains in his back were gone, replaced by blooming warmth. He stretched experimentally, and the pleasure it brought his muscles coaxed a happy hum from his lips. His eyes shut once more, and she giggled in response.");
+
+	outputCodex("\n\n<i>“Thought so. Had to do some quick thinking, but I guess it got the job done, huh?”</i> She hugged him once more, and his body exulted in her presence. He’d been a little too occupied to really notice how her body felt against his when she’d hugged him before, but now...Ooh, now he could feel just how soft she was.");
+
+	outputCodex("\n\n<i>“What’d you do?”</i> He asked, voice sounding relaxed to the point that his speech nearly slurred. <i>“I feel incredible.”</i> His muscles seemed to go slack of their own accord. If she weren’t there to catch him, Mikhail likely would’ve slumped to the ground.");
+
+	outputCodex("\n\n<i>“Oop! Hey, easy there, tough guy!”</i> She giggled, and the most incredible thing happened to him. Before, there had been agonizing pain, invasive, stabbing his thoughts away. Now.");
+
+	outputCodex("\n\nNow there was the opposite. A pleasant, disorienting throb of pleasure every few seconds. It did just as much to hinder his thoughts as");
+
+	outputCodex("\n\nthrob");
+
+	outputCodex("\n\nthe pain did, but there was an undeniable");
+
+	outputCodex("\n\nthrob");
+
+	outputCodex("\n\nan undeniable sort of pleasure to it, and soon Mikhail w");
+
+	outputCodex("\n\nthrob");
+
+	outputCodex("\n\nwas having trouble remembering what");
+
+	outputCodex("\n\nthrob");
+
+	outputCodex("\n\nhe felt good");
+
+	outputCodex("\n\nthrob");
+
+	outputCodex("\n\nreal good");
+
+	outputCodex("\n\nShe smiled at him, and if Mikhail had been able to piece it together, he’d detect a note of...smugness to her grin. <i>“See, I can’t do much,”</i> she began, her voice all but lost to the pleasure-drunk ranger, <i>“but I have a real particular glamour and a real particular mesmer. See my tail?”</i>");
+
+	outputCodex("\n\nThe maw of her tail raised up once more, lips smacking and drool dribbling from its ravenous mouth. It swayed from side to side, just in front of Mikhail’s vacant eyes, and puckered for a kiss. A glob of spit flecked his cheek, but given that the wetness turned to rapturous golden heat a moment later, he hardly minded. She leaned her head on Mikhail’s shoulder, watching the tip of her tail with an amused smirk.");
+
+	outputCodex("\n\n<i>“Looks pretty, doesn’t it? Well.”</i> She clicked her tongue - the one in her head - and narrowed her eyes at it. <i>“Maybe not pretty, but I bet you wouldn’t mind having that wrapped around your cock, mm? Except...”</i>");
+
+	outputCodex("\n\nThe wet smack of its lips turned to a sinister, sibilant hiss, and in the blink of an eye, the mouth of her tail turned to the snapping jaw of a serpent. Mikhail tried to pull back, but his body refused to obey, too drowned in lethargic pleasure to budge. Scarcely a hand’s length from his face, the serpent bared its dripping fangs. Right in his ear, though, the succubus tittered.");
+
+	outputCodex("\n\n<i>“Not so pretty anymore, huh. That’s the thing! I can’t change how I look. But!”</i> The snake-head gave a little wiggle in front of him. <i>“I can change how this li’l guy looks! I dunno what happened, but somehow all the bog-standard stuff that a succubus usually gets ended up with this guy instead. Glamour...”</i> The snake turned once more to a simple mouth, glossy, black lips puckering at nothing. <i>“Venom...”</i> Another glob of spit landed on Mikhail, this time on his neck. His head lolled back almost instantly, muscles gone limp.");
+
+	outputCodex("\n\n<i>“And. Mesmer.”</i> A pair of lips pressed to the nape of his neck - hers or her tail’s, he couldn’t tell - and his eyes rolled back.");
+
+	outputCodex("\n\nIt was exquisite, like pure liquid pleasure pumped into his body. Tongue lolling out, Mikhail felt his dick stiffen in his pants almost immediately, and it only twitched harder with each moment that passed. Oh, he didn’t know what she was doing, but whatever it was, he was prepared to beg, grovel, and plead to make sure she didn’t stop. He couldn’t manage words, true, but the way he bucked his hips up hopefully got the point across.");
+
+	outputCodex("\n\nApparently so, given how the succubus giggled in his ear. <i>“See, right now, you’re, uh.”</i> She traced a single fingernail in circles on his chest. <i>“You’re in a whole heap of pain. But thanks to a little kiss my buddy here gave you, you think this is one-hundred-per-cent pleasure. Its venom actually just kind of causes horrible pain. But!”</i> She nuzzled against his side as Mikhail humped the air. <i>“Turn that around, and you’re in heaven. Ain’t that right, babe?”</i>");
+
+	outputCodex("\n\nHe nodded.");
+
+	outputCodex("\n\n<i>“Exactly. So. I see you’re having a little bit of a, uh.”</i> She gave his crotch a pat as her tail pumped him full of its venom. <i>“A little bit of a situation down here.”</i>");
+
+	outputCodex("\n\nHer tone dropped to a sultry purr, right in the shell of his ear.");
+
+	outputCodex("\n\n<i>“Want me to help you with that, darling?”</i>");
+
+	outputCodex("\n\nInsensate or not, Mikhail managed a nod at that. He was almost disappointed when the mouth popped off of his neck, but the smacking of wet, sloppy lips trailed lower, lower, lower. Snaked under the belt of his trousers, and then-");
+
+	outputCodex("\n\noh");
+
+	outputCodex("\n\noh");
+
+	outputCodex("\n\noh, that felt. good.");
+
+	outputCodex("\n\nAs far as he could tell - and his perception was more or less compromised by the aching stiff-dick pleasure flooding his mind - there wasn’t any venom involved in the wet, slippery suction around his cock. Hardly mattered, though, given he was practically pickled in it already. He was swimming in pleasure, and the mouth suckling at the tip of his cock only gave a focus to that maddening ecstasy.");
+
+	outputCodex("\n\n<i>“See? Isn’t that amazing?”</i> She hissed in his ear, breasts mashed up against his arm. <i>“C’mon, baby, just cum nice and hard. You know you want to. Who needs to make babies when you can fuck this whenever you want? Here.”</i> She reached down, grabbed him by the balls with one silk-smooth hand kneaded them gently.");
+
+	outputCodex("\n\n<i>“Ooh, you’re nice and heavy for me, aren’tcha, babe?”</i> She giggled to him once more, and the slurping heat on his cock only sucked that much harder. <i>“Saving up for the big wedding day? That’s sweet. But you’re way too pent up!”</i>");
+
+	outputCodex("\n\nEyes rolling back, Mikhail barely heard her. Her tone turned more than a little teasing at his slack-jawed delight, and soon the succubus was churning his swollen ballsack. <i>“I can practically feel how long you’ve waited for this. How’s it go lately? One month without ejaculation before you’re sent into the tower?”</i>");
+
+	outputCodex("\n\nShe gave him a peck on the forehead - with her “real” lips - and clicked her tongue. <i>“Poor baby. One whole month without getting to stroke that big, thick stiffy at all! You must be aching to empty those big, bloated balls into me!”</i> She hugged his side and nuzzled her face into the crook of his neck. Mikhail was all but limp now, the only movement he was capable of being the desperate thrust of his hips upwards.");
+
+	outputCodex("\n\n<i>“You wanna cum, babe? You wanna cum real hard for me?”</i>");
+
+	outputCodex("\n\nThe tail had taken him to his root, and even if there wasn’t the steady bob of it up and down on his length, now there was an exquisite pressure rolling up in waves, milking his entire length. His chin twitched downwards in something approaching a nod. His cock felt like it was about to burst. How he hadn’t finished already was beyond him, but there was something about that insistent, ravenous suction that kept him creeping higher and higher.");
+
+	outputCodex("\n\n<i>“You’re cute,”</i> she purred, giving his balls a little clench. <i>“And I feel bad that you’ve been saving up for so long, so. Tell you what.”</i> She suddenly shifted positions, straddling his belly and staring down at him. Devilish smirk tugging at her lips, the succubus fixed her gaze on his. Blearily, Mikhail did the same.");
+
+	outputCodex("\n\n<i>“Give up. Just stay here and let me milk this big, fat cock of yours whenever I want.”</i> She leaned in, and the suction around his cock made his eyes cross. Wet, lewd smacking sounds rang in his ears, and the milking suction worked each aching inch of his cock. He’d touched himself before, of course, but his hand couldn’t possibly compare to the insatiable maw sucking at his cock. What kind of idiot would turn away the chance to fuck a hole like this whenever they wanted?");
+
+	outputCodex("\n\nDumbly, Mikhail grinned to himself. He’d get to cum whenever he wanted! He’d get to fuck her tail every chance he got! Who needed a wife when he could have her tail? His tongue was heavy in his mouth, but apparently the succubus understood his intent when he mumbled some non-answer.");
+
+	outputCodex("\n\nShe winked down at him with a purr. <i>“I was hoping for a ‘yes, mistress,’ but I think that was close enough. Cum!”</i> She pinned his shoulders down with her hands, but all Mikhail could focus on was her relentless tail. Too much. It was all too much, and the overwhelming pleasure finally crested. He bucked his hips up, more involuntary than not, and spurted the first shot of his pent-up seed into her tail.");
+
+	outputCodex("\n\nApparently the insistent suction hadn’t been reward enough. The instant he pumped his first shot of semen up into her tail, the slurping maw savoring his cock lavished it with affection. Before, it had almost been mechanical, designed to extract an orgasm from him as quickly as possible. Rigorously efficient, enough to drive him to the brink in minutes. But now...");
+
+	outputCodex("\n\nNow it was sweet, soft, almost gentle - but not a bit less enthusiastic. It pulled back, suckling at the very tip of his cock, focusing its attention on the sensitive crown. Each splurt almost seemed to carry a second layer of pleasure to it, because whenever Mikhail shot another wad of his seed up into her tail, it bobbed down a few inches, ensconcing just a little bit more of his cock in sticky, heavenly wetness.");
+
+	outputCodex("\n\n<i>“Aw, you have more than that for me, don’t you?”</i> The succubus teased, having taken to lounging beside him once more. She hardly needed to coax him, though, given that her tail was training his cock already. Mikhail had never cum this hard in his life. He was broken in one mind-shattering climax, and the last thought to pop into his nearly-empty head...");
+
+	outputCodex("\n\n...was that he’d never go a day without this ever again.");
+
+	outputCodex("\n\nRitten, for the most part, didn’t have much to do once the other three had stepped or stumbled into the tower themselves.");
+
+	outputCodex("\n\nHe considered waiting a bit longer before heading in, but what good would that do? He felt fine. He certainly didn’t feel ill. Maybe some stretches to get a little bit more limber before beginning the trial?");
+
+	outputCodex("\n\nHonestly, the only things he could think of doing to prepare were little more than killing time before he took the plunge.");
+
+	outputCodex("\n\nRitten organized his pack, double-checked his knives, and, having prepared as best he could, stepped into the tower.");
+
+	outputCodex("\n\nThough he didn’t know it, his was the only trial that took the form of what the setting implied. Though it was perhaps a bit sinister thanks to the dark granite used in its construction, the foyer of the tower was nothing if not regal. Banners hung from the ceiling, depicting the crest of the demon queen and her six fell vassals. Torches burned between them, casting their eerie, wavering light upon the polished floor, but...");
+
+	outputCodex("\n\n...there was really no avoiding the woman in the center of the room. Honestly, no matter where he looked, Ritten couldn’t help but glance to her after more than a few seconds. It wasn’t for some unnatural lust. She was attractive, sure, but more than anything else, she was. Incongruous.");
+
+	outputCodex("\n\nClad in gleaming golden armor - and wielding a similarly gilded spear and shield - loomed the tallest fallen angel Ritten had ever seen in his life. Her eyes shone like beacons, and though the air in the room was still, her honey-blonde hair swept about wildly, as if she were in the midst of a maelstrom. Scowling, her stoic attentions were focused squarely on him.");
+
+	outputCodex("\n\nShe didn’t seem to be doing much, though.");
+
+	outputCodex("\n\nAt least, not much besides turning to face him as he circled her. Ritten wasn’t much for direct confrontation. A thief never was, as his training had revealed, but even a cursory examination revealed that she was on perpetual guard. Sort of hard not to be when the room seemed all but empty besides the two of them.");
+
+	outputCodex("\n\nShe didn’t seem altogether hostile, though. A bit prickly, certainly, but. Maybe she could be communicated with? There was no rule saying that they couldn’t talk. He’d just be careful to try and avoid the wiles she may or may not have.");
+
+	outputCodex("\n\nRitten called out, perhaps a bit hesitantly, and asked if she was to be his opponent.");
+
+	outputCodex("\n\nShe answered with a haughty scoff. <i>“Of course,”</i> she bellowed, her voice like thunder. <i>“This is to be your trial, the means by which your worth is assessed by the powers above and below!”</i> Her posture - already impressively formal - straightened further, and she raised her shield and spear to the heavens. <i>“Though my dignity’s tarnished and my virtue stained indelibly black, I’ll not betray the station I’ve been thusly assigned! A fallen angel I may be, but I’m an angel nonetheless!”</i>");
+
+	outputCodex("\n\n<i>“And you,”</i> she continued, leveling her spear-point at Ritten with a sneer, <i>“are a thief.”</i> The fires of her eyes narrowed to seething slits, and Ritten took a cautious step backwards. <i>“The kind of vile rat who’s better suited to skulking amidst shadows than meeting the honest blade of one such as myself.”</i>");
+
+	outputCodex("\n\nBut she had a spear, not a sword.");
+
+	outputCodex("\n\n<i>“I know that!”</i> She boomed, shaking the room with her fervor. <i>“To constrain one’s self to the literal is folly, and it shall serve you, foul thief, poorest of all! For you shall only unlock the secrets of the priesthood of the church by passing my sacred trial!”</i>");
+
+	outputCodex("\n\nFor the first time since he’d laid eyes upon her, the fallen angel smiled at Ritten. It was one utterly devoid of warmth, one that dripped with smug self-satisfaction. She raised her spear and shield into the air, whereupon they vanished in sparkles.");
+
+	outputCodex("\n\n<i>“You, poor, sorry thief, must steal something from me if you’re to become a priest,”</i> she snickered. Arms crossed beneath what promised to be an impressive bust, the fallen angel regarded him coolly. <i>“Something precious, indeed.”</i>");
+
+	outputCodex("\n\nWell. Ritten couldn’t possibly guess what it was. He was, after all, a thief, not a scholar. Not one very good at riddles, either.");
+
+	outputCodex("\n\nArms suddenly spread, the fallen angel stepped forward. Teeth bared as a wolf’s fangs in a predatory smile, she continued. <i>“You must steal...my heart!”</i>");
+
+	outputCodex("\n\nHer heart?");
+
+	outputCodex("\n\n<i>“My heart! For it is not enough that a thief’s fingers be nimble! If he is to succeed as a priest, he must exhibit the cunning guile necessary to bed a demon...for his might’s scant enough to do so!”</i> She cocked her head to the side and jutted her chin outwards, prideful to a fault. The smile, of course, never left her lips. <i>“To that end, Thief Ritten, self-proclaimed ‘champion’ of the downtrodden, raper of pursestrings!”</i>");
+
+	outputCodex("\n\nHer nostrils flared, and Ritten was not five steps from pissing himself as she shouted at him.");
+
+	outputCodex("\n\n<i>“Seduce me!”</i>");
+
+	outputCodex("\n\nThis was where he died. Struck dead by a fallen angel for his fumbling tongue. The closest he’d come to wooing a girl was stealing a pair of undergarments when he was on the cusp of manhood. That hadn’t really done much for his relationship with her, nascent or otherwise.");
+
+	outputCodex("\n\nWell. He took a deep breath. Where to begin? He’d heard a few snippets of some old sonnets, ones with which poets pledged their love eternal unto maidens fair. Maybe that’d tickle her heartstrings. If not, he had about a half-body’s distance on her before she ran him through with whatever weapon she decided to pluck from the aether.");
+
+	outputCodex("\n\nHer eyes. Her eyes were as twin suns, casting their nourishing light upon his frail, chilly form. Yet ignorant to that to which men swear service true and loyal, his eyes were in turn opened to the balmy world of love.");
+
+	outputCodex("\n\nHe went to one knee, one hand outstretched. Her body, he opined, crafted by the gods, yet brought low not out of petty spite, but such that he could be edified by its sight! She was a monument, a testament to the will of the gods, their wisdom, their unerring craft and care in the distillation of virtue! For as loyalty begets loyalty, so too does beauty beget beauty! To that end, how could he do anything but love her? And such love far outgrew the crass confines of physicality, for even if she were to spur his advances - how could she do anything but, being so peerless in both beauty and adherence to her duty that all others proved themselves unworthy - he would be forever changed. Indelibly, even, altered by merely witnessing a bastion of purity unmatched.");
+
+	outputCodex("\n\nEyes shut, Ritten didn’t really have a metric to gauge her response. He hoped that her silence was pleasantly stunned, but he honestly wouldn’t have put it past her to just be retching with disgust. Or some other appropriately pious reaction, to be fair.");
+
+	outputCodex("\n\nWhen he cracked an eye open, though, the sight that met him was...surprising.");
+
+	outputCodex("\n\nHer eyes had dimmed to white with golden centers. Her cheeks glowed with sunset-crimson heat, and her lips finally lost that sanctimonious smile in favor of slack-jawed shock. Hand brought up to her mouth in girlish shyness, the fallen angel looked nothing short of smitten.");
+
+	outputCodex("\n\nWhen she spoke - after an apparently embarrassing pause - it was only after a flustered first attempt. She recovered after a tongue-tied mumble and voiced her response. <i>“I, ah. I. I didn’t know that the heart of a poet-”</i> She looked to the side, then to the other, and giggled. <i>“Th-The heart of a poet beat within thy breast, noble thief Ritten.”</i>");
+
+	outputCodex("\n\nShe giggled once more, looked to the side, and clapped a hand to her cheek. <i>“I-I didn’t- I wasn’t-”</i> She brought her other hand up to her face and shut her eyes tight. <i>“R-Ritten...”</i>");
+
+	outputCodex("\n\nSuddenly, her hands went to her breastplate, and in one desperate motion, they came apart once more, scattering her gilded armor! Her body bared before Ritten’s shocked eyes, the fallen angel squealed with something between delight and burning need. <i>“Take me! Oh, take me; I’m yours!”</i>");
+
+	outputCodex("\n\nHer size went at once from intimidating to...intimidating but of a different stripe. Her arms wrapped around his body and pulled his now-flushed face between her heaving breasts. <i>“Ooh, that I knew before how sweet your honeyed barbs stung! I would’ve given myself unto you in an instant just to spare myself this swooning intoxication! I do, I do, I do! A threefold acceptance of your proposal of love! Let us pledge a love eternal and be wed in the name of the Holy Church!”</i>");
+
+	outputCodex("\n\nShe was warm. Soft, too. And big. He’d been too concerned with the threat of death to consider it before, but damn, was she gorgeous. Statuesque, more accurately. And hugging his face between her generous bust.");
+
+	outputCodex("\n\nRitten wriggled in her grip and poked his face out of her cleavage, squeaking that he’d like that, yes. He didn’t have- Pardon, he needed a moment to bring his hands up. You know, to take the lead and grab her by the hips as a man ought to do. He was the one in charge here, wasn’t he?");
+
+	outputCodex("\n\nNo, he was not, and as she sent the air sputtering from his lungs with a back-popping hug, the fallen angel proved her control over the situation. Thank gods below that she was smitten. <i>“Oh, Silver-Tongue Ritten, I’d never think to usurp your dominion over me, your blushing bride! Darling mine, let’s consummate this joyous union as soon as possible! Only.”</i>");
+
+	outputCodex("\n\nOnly...?");
+
+	outputCodex("\n\n<i>“Only,”</i> she continued, her flush turning shyly hopeful, <i>“I would ask a favor of you. Fallen angel though I may be, I am an angel nonetheless, and.”</i> She released Ritten, sending him slumping to the ground. She turned away, kicking a foot up behind her girlishly. Swooning, she wiggled her impressive hips and spoke. <i>“I would have our marriage be a proper one with a proper ceremony! Ah-”</i>");
+
+	outputCodex("\n\nShe turned back to Ritten, otherwise occupied catching his breath and trying to manage the erection he’d gotten hugged far too tightly to her sumptuous body. <i>“You don’t know what a proper marriage ceremony is for my people, do you!”</i>");
+
+	outputCodex("\n\nNo. No, he did not. Coughing, he told her as such, and the fallen angel knelt down beside him. Gods below, she even dwarfed him kneeling!");
+
+	outputCodex("\n\n<i>“A thousand pardons, I’ve not even told you my name. Your bride,”</i> she said with a beatific smile, <i>“is named Aurelia. And!”</i> Aurelia hopped to her feet. Hooking her hands under his armpits, she brought Ritten up with her. <i>“The ceremony can be conducted with alacrity, so never fear! You’ll be.”</i> She blushed deeper still, giggling and utterly failing to meet his eyes. <i>“R-Root deep in your bride before you know it!”</i>");
+
+	outputCodex("\n\n<i>“But first!”</i> She tossed him over her shoulder, carrying him not unlike a bag of flour, and tromped off to gods-knew-where. He couldn’t exactly see draped over her bare shoulder - nor was he inclined to look around, given that the sway of her rear captured his attention quite soundly. Apparently, though, there was a door or a portal or something, because soon the two of them were in what looked to be a bedroom.");
+
+	outputCodex("\n\n<i>“How fortunate, my love, that you’ve found an ordained priestess of the threefold goddess and her six ardent disciples!”</i> She chirped happily, tossing Ritten down on the bed. Splayed out before her - nude, apparently, as his clothes dissolved at a snap of her fingers - he couldn’t do much but gawk at her body. He’d seen it before, certainly, but with her looming over him, hip cocked to the side and chest pushed out...");
+
+	outputCodex("\n\nHis face was red. Hers was redder. Wavering and frail, the expression on her face didn’t match her body’s confident posture in the least. <i>“I-I’ve heard, betrothed, that men fancy a woman confident in her allure. A-A-And!”</i> She tossed her hair over one shoulder. <i>“You’ll naught find a maiden as sure of her beauty as I! Therefore!”</i>");
+
+	outputCodex("\n\nShe raised one lissome leg up, pinning her foot beside him on the bed with a degree of - in his mind - menacing inevitability. <i>“It’s come time to consummate our marriage.”</i>");
+
+	outputCodex("\n\nRitten gulped. He was at once terrified and exhilarated. When she brought the other one up and stood on the bed proper, excitement gave way to wide-eyed confusion. That in turn gave way to Ritten’s eyes bulging out of their sockets when she planted her derriere square on his belly.");
+
+	outputCodex("\n\n<i>“First, my love.”</i> Aurelia gulped, grinding her hips down against him. She was gentle enough that he didn’t have to struggle for breath, but that was the least of his concerns. No, far more pressing was the wet heat smearing against his skin. <i>“I must anoint you with my, ah... ‘Essence.’”</i>");
+
+	outputCodex("\n\nOh, thank goodness she was keen on being his wife, because there was no way he’d be able to turn her away if she were this willing already. His cock twitched, and the tip of it bumped against the swell of her rear. She jolted at that, though the look of shock turned quickly to a grin.");
+
+	outputCodex("\n\n<i>“Easy, dear,”</i> she purred, hands planted on his wrists, pinning them to the bed. <i>“There’s no dearth of time for us to spend together. And really, I do want this to be a traditional ceremony, so I must insist that you allow me to perform the rites.”</i> She rolled her hips forward, coating his stomach with her sex’s slickness. <i>“Don’t worry! It won’t be long now. And-”</i>");
+
+	outputCodex("\n\nShe gulped again. Ritten brought his hands up to settle on her hips. <i>“I’m certain that a partial christening will suffice, given the expedience with which we must consummate our vows! And, you know, really it’s just the christening with my essence and the vows! We’re halfway there, my darling!”</i>");
+
+	outputCodex("\n\nGiddy, Aurelia squealed with wordless delight. When she focused her eyes on Ritten’s, her enthusiasm dovetailed with his hazy delight. The kiss she pressed to his lips not a moment later coaxed a languid murmur from his, and soon.");
+
+	outputCodex("\n\nSoon Aurelia abandoned her attempt to smear her arousal against Ritten’s body in favor of grinding her rear back against his cock. <i>“N-Now, my darling Ritten,”</i> she hummed, <i>“come the vows! And please, answer honestly! Bound inextricably before the threefold goddess, blessed be her name, unfit for my thrice-sullied tongue, and her six ardent disciples!”</i>");
+
+	outputCodex("\n\nAurelia raised her hips up once more and carefully, carefully brought them down again, this time pinning Ritten’s length to his now-slick belly and teasing it with the folds of her sex. The gates to heaven were hot, wet, and slippery, and even grinding down against his length, he was content to enjoy it. After all, all he had to do was swear to uphold the vows of their marriage.");
+
+	outputCodex("\n\n<i>“Do you, thief Ritten of the Holy Church, swear to be loyal unto me, Fallen Angel Aurelia of the Threefold Goddess? To follow me no matter where I roam, to be my aegis from misfortune and misery?”</i>");
+
+	outputCodex("\n\nHe did, Ritten affirmed between panting.");
+
+	outputCodex("\n\nAurelia smiled, pressed a kiss to his lips, and touched her forehead to his. <i>“And I shall do the same. Do you, thief Ritten of the Holy Church, swear to warm my bed, to take me into your arms and guide me to gasping, shuddering ecstasy whenever I so desire?”</i>");
+
+	outputCodex("\n\nShe ground her hips down with each word, and though he had yet to so much as enter her, Ritten was already near delirious at the aching desire bubbling up inside of him. He did, he affirmed once more, rutting his hips up to meet hers. He tried somehow to push inside of her, but with Aurelia’s cunt-lips so snug against his shaft, his tip, his root, rolling up and down with every lazy wiggle of her rear.");
+
+	outputCodex("\n\n<i>“And I shall do the same.”</i> She purred in his ear. He was so close. So close to heaven, so close to having a bride of his own, one to fuck and rut and empty himself into whenever he needed to. Wanted to. Whenever he-");
+
+	outputCodex("\n\n<i>“Do you,”</i> she sighed, her voice’s languor betraying the way she moved faster and faster, <i>“thief Ritten of the Holy Church, swear to love, honor, and - above all else - obey my every whimsy, my every desire, my every lust, longing, and order?”</i> Her hands went to his, sliding his ravenous grip to the swell of her rear, encouraging him to grope as much of her supple derriere as he could. Fuck, but her body was luscious. Every inch of it Amazonian perfection. He was so close, he just had to get through the vows, just had to-");
+
+	outputCodex("\n\n<i>“Oh, darling, don’t keep me waiting!”</i> Aurelia moaned, halfway to her own climax, and that, ooh, that sent a shiver down Ritten’s spine.");
+
+	outputCodex("\n\nHe did! He did, he swore to love, honor, and obey! Everything, everything she asked of him, he’d do with a smile on his intoxicated lips!");
+
+	outputCodex("\n\nShe rumbled with pleasure, eyes shut, lips barely parted in a satisfied, lovestruck smile. <i>“And I-”</i>");
+
+	outputCodex("\n\nHe came.");
+
+	outputCodex("\n\nShe blinked.");
+
+	outputCodex("\n\nHe spurted his seed onto his belly, painting a white flag of surrender to her exquisite ministrations all over his cunt-polished abdomen. Aurelia raised off of him, surprise turning to shock turning to panic.");
+
+	outputCodex("\n\n<i>“Ritten!”</i> She squeaked, kneeling beside him on the bed as he absent-mindedly took his cock in his hand to stroke himself to emptiness. <i>“Gah! Ritten, no, stop that at once!”</i> She reached down to swat at his hand, but no sooner had the words left her lips than he pulled away.");
+
+	outputCodex("\n\nHer eyes went wide.");
+
+	outputCodex("\n\n<i>“Oh, no! No, no, no!”</i> She whimpered, hands clapped to her cheeks. <i>“Ritten, oh, darling Ritten! You lovely ninny! You went and consummated our marriage on your own, and I didn’t even manage to finish the vows!”</i> She hugged him close, eyes shut, lip quivering.");
+
+	outputCodex("\n\nBut Ritten was to be her aegis against misfortune and misery. So he craned his neck up to kiss the nape of her neck. With a confused murmur, Aurelia’s eyes fluttered open. <i>“Ah-! I, ah.”</i> Cheeks flushed once more, Aurelia’s grip loosened, if only just so.");
+
+	outputCodex("\n\n<i>“This is a bit of a quandry,”</i> she sighed, rocking with him in her arms. <i>“For the vows taken before the threefold goddess are irrevocable!”</i> Aurelia nodded to herself, and Ritten nodded with her. <i>“Unbreakable! Impervious to the whims of mere mortals!”</i>");
+
+	outputCodex("\n\nShe clicked her tongue and looked to the ceiling. <i>“Only ours are a bit lop-sided, aren’t they.”</i> She reached down to palm his cock, kneading his balls with the butt of her palm as her fingertips trailed over his shaft. <i>“You swore to obey me. And.”</i> She clicked her tongue again, this time with a laborious sigh. <i>“I didn’t.”</i>");
+
+	outputCodex("\n\nShe sighed again.");
+
+	outputCodex("\n\n<i>“And you came outside of my sex.”</i> She sounded more resigned than anything else now, pumping his cock. <i>“It’s likely, then, that you’re uninterested in having me bear your children now, mm?”</i> She glanced down to his slack, satisfied face, and rolled his eyes when Ritten nodded.");
+
+	outputCodex("\n\n<i>“As I surmised.”</i>");
+
+	outputCodex("\n\nRitten swooned upwards, pressing another kiss to her lips. Her lips, so like rose-petals in their beauty, begging at once to be kissed and to be admired by the eye. Folly, he claimed, to think that it would take anything less than a lifetime to appreciate her body as it deserved. The barest dusting of red upon her cheeks called to mind the flush of a lover’s skin after a night spent together in ecstasy, and-");
+
+	outputCodex("\n\nAurelia gave his chest a smack, giggling. <i>“Ritten, you boob! You can’t compare something to what it actually is!”</i> She sighed once more, though this time it was more colored with longing. She hugged his cheek to her breasts once more, and he trilled with happiness. <i>“Oh, that I married a man with a tongue lacking your penchant for poetry. Then I could just set him to work as my love-slave and have that be that.”</i>");
+
+	outputCodex("\n\nShe worked his cock harder still, hand like a piston pumping at his shaft. Shivering with glee, Ritten groaned against her body. His eyes rolled back, but Aurelia was too busy staring longingly at nothing in particular to notice.");
+
+	outputCodex("\n\n<i>“But the one who stole my heart did so with such surety, such cunning guile that I cannot help but love him as a wife loves a husband. And to that end, I- Ritten, did you finish again?!”</i>");
+
+	outputCodex("\n\nHe couldn’t so much as nod, so deliriously happy at her silk-soft touch. Mumbling his answer into her cleavage, Ritten bucked his hips up and fucked her hand.");
+
+	outputCodex("\n\nAurelia shook her head with a grin.");
+
+	outputCodex("\n\n<i>“My husband’s more than a poet, it seems.”</i> She paused for a moment...before grinning wickedly. With a single push, Ritten was sent once more onto his back. This time, though, he wasn’t so inclined to worry or feel or even think, really. So when Aurelia walked on her knees up over his face. When she bared her cunt to him, glistening, dripping, mesmerizing.");
+
+	outputCodex("\n\nHe did what any good husband would do.");
+
+	outputCodex("\n\nHe opened his mouth wide, let his tongue loll out, and dragged it across her slit.");
+
+	outputCodex("\n\nAurelia shuddered, clamped her thighs against his cheeks, and ground her sex down against his face. <i>“Ooh, let’s see what else that tongue can do, husband.”</i>");
+
+	outputCodex("\n\nAnd thus it is with four shuddering orgasms that the fate of four deacons of the Holy Church met their respective demises. Lust, Pride, Folly, and Love, each felling one of the once-noble acolytes until their minds glazed pink with pleasure and lost all other desires. The world moved on. The Holy Church sent more to the tower in the blighted swamp. Some passed. Most failed.");
+
+	outputCodex("\n\nAnd all lived happily ever after.\n\n");
+	CodexManager.viewedEntry("Tower of Trials");
+}
+
+//Cow Stuff - rights purchased for $50, 2/14/2018.
+public function cowStuffStory():void
+{
+	clearOutputCodex();
 	author("Abe E Seedy");
-	outputCodex(header("9999"));
-	outputCodex("<b>By:</b> Abe E Seedy\n");
+	outputCodex(header("Cow Stuff"));
+	outputCodex("<b>By:</b> Abe E Seedy (<u><a href='http://www.furaffinity.net/user/abeeseedy'>http://www.furaffinity.net/user/abeeseedy</a></u>)\n\n");;
 	outputCodex("<b>Tags:</b> Transformation, Cowgirl, Bullgirl, Milk, Lactation, Lustification, Corruption, Cum for the Cum-god\n\n");
 	
 	outputCodex("﻿Carrie scowled at the lock, fumbling with her keys angrily as she searched for the right one. Coming into the lab on Saturday morning was some serious bullshit. Sure, as the undergrad assistant she’d sometimes had to come in early to do the grunt work, she accepted that, but normally she got more notice about it than a poorly-worded text message. Just what the hell could be so “imported” that both Dr. Madison and Dr. Singh had needed her to come in urgently? Well, whatever, she thought as the last door to the lab slid open, she was here now, and hopefully it wouldn’t be long before she was free t--");
@@ -2829,11 +3507,11 @@ public function stolenGoodsStory():void
 	outputCodex("\n\nVery quickly, Carrie revised what she considered to be Emily’s most notable feature.");
 	outputCodex("\n\nBefore she could think much more than that, Emily let out a desperate, animal cry, her body twitching and convulsing as she came voluminously onto Lucy’s back. Lucy sighed with contentment, giving a pleasant little wiggle as she shuddered with satisfaction. For her part, Emily seemed to be putting her all into her orgasm, having to lean forward and support herself with her own hoof-like hands as she grunted and panted incoherently while thick ropes of cum spattered against Lucy’s fur.");
 	outputCodex("\n\nIt took several seconds for Emily to appear to be completely finished, and even after that it was some time before either of them seemed to want to do anything other than catch their breath. Eventually though, Lucy broke the silence.");
-	outputCodex("\n\n<i>“Mmm, good mmmorning Mmiss Denning”</i>, she said slowly. Had her muzzle given her some sort of speech impediment, something that made her drag out her ‘m’s? <i>“Thank you for commming in on your Saturday on such short notice.”</i>");
+	outputCodex("\n\n<i>“Mmm, good mmmorning Mmiss Denning,”</i> she said slowly. Had her muzzle given her some sort of speech impediment, something that made her drag out her ‘m’s? <i>“Thank you for commming in on your Saturday on such short notice.”</i>");
 	outputCodex("\n\nAfter considerable effort, Carrie managed to respond. <i>“What... what is all of this? What happened?”</i>");
 	outputCodex("\n\nLucy closed her eyes briefly, taking a moment to play with her big full breasts. <i>“We had a... breakthrough,”</i> she said eventually.");
 	outputCodex("\n\nCarrie was incredulous. <i>“A breakthrough? We were researching fabric softener! What kind of breakthrough could go from that to this?!”</i>");
-	outputCodex("\n\n<i>“A really good one”</i>, Lucy answered with a grin.");
+	outputCodex("\n\n<i>“A really good one,”</i> Lucy answered with a grin.");
 	outputCodex("\n\nCarrie couldn’t even begin to respond, but before she could try Emily recovered herself enough to give out a short snorted laugh. <i>“Oh come now,”</i> she admonished, giving Lucy a playful slap on the rump, <i>“don’t tease the poor girl.”</i> Looking up, she added to Carrie directly, <i>“we had a visitor after you left last night. They said they had something that would help the research, but they neglected to mention that it wasn’t our research they were helping.”</i>");
 	outputCodex("\n\nCarrie blinked. <i>“That’s it? Someone else did this to you? And you’re not mad?”</i>");
 	outputCodex("\n\nLucy and Emily shared a quick look, then both laughed out loud. <i>“Uh, no,”</i> Emily answered eventually. <i>“We had more important things to do than get mad.”</i>");
@@ -2889,4 +3567,5 @@ public function stolenGoodsStory():void
 	outputCodex("\n\n<i>“MMmooooo!”</i> Carrie the cowslut bellowed, finally feeling her climax wash over just her as her cow tail grew out in one sudden spurt from above her rear. And then with that, collapsing heavily to the ground and quietly enjoying the slight ‘slosh’ sound that made, she felt finished.");
 	outputCodex("\n\n<i>“Welcome to the herd,”</i> Lucy said happily, leaning down to scratch her softly behind one ear. <i>“Rest up for now, because we’ve got a lot of work to do, and you always were such a good assistant...”</i>");
 	outputCodex("\n\n");
-*/
+	CodexManager.viewedEntry("Cow Stuff");
+}

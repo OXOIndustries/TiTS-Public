@@ -7,6 +7,7 @@ package classes.Characters
 	import classes.Items.Accessories.LeithaCharm;
 	import classes.Items.Transformatives.OmegaOil;
 	import classes.Items.Transformatives.SheepTF;
+	import classes.Items.Melee.Rock;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.RoomClass;
 	import classes.StorageClass;
@@ -16,7 +17,7 @@ package classes.Characters
 	import classes.Engine.Utility.num2Text;
 	import classes.Util.InCollection;
 	import classes.Util.RandomInCollection;
-	import classes.Engine.Interfaces.*
+	import classes.Engine.Interfaces.*;
 	
 	/**
 	 * Yeah this is kinda bullshit, but it also means we can version the PC data structure like NPCs.
@@ -104,6 +105,9 @@ package classes.Characters
 		override public function loadInAss(cumFrom:Creature = null):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("ass");
+			// Butt bug load
+			kGAMECLASS.loadInButtBug(this, cumFrom);
+			
 			//Goo TFed? GATHER BIOMASS
 			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
@@ -420,6 +424,251 @@ package classes.Characters
 				}
 				if(amount > 0) output("<b>ERROR - Ship inventory item quantity needed: " + amount + "!</b>");
 			}
+		}
+		
+		// Hidden storage
+		public var hiddenMeleeWeapon:ItemSlotClass = new EmptySlot();
+		public var hiddenRangedWeapon:ItemSlotClass = new EmptySlot();
+		public var hiddenArmor:ItemSlotClass = new EmptySlot();
+		public var hiddenUpperUndergarment:ItemSlotClass = new EmptySlot();
+		public var hiddenLowerUndergarment:ItemSlotClass = new EmptySlot();
+		public var hiddenAccessory:ItemSlotClass = new EmptySlot();
+		public var hiddenShield:ItemSlotClass = new EmptySlot();
+		public var hiddenInventory:Array = [];
+		
+		// Take item, Put in storage
+		public function takeMeleeWeapon():void
+		{
+			if((meleeWeapon is EmptySlot) || (meleeWeapon is Rock)) return;
+			
+			var item:ItemSlotClass = meleeWeapon;
+			
+			if(!(hiddenMeleeWeapon is EmptySlot))
+			{ var prev:ItemSlotClass = hiddenMeleeWeapon; hiddenInventory.push(prev); }
+			
+			hiddenMeleeWeapon = item;
+			meleeWeapon.onRemove(this);
+			meleeWeapon = new Rock();
+		}
+		public function takeRangedWeapon():void
+		{
+			if((rangedWeapon is EmptySlot) || (rangedWeapon is Rock)) return;
+			
+			var item:ItemSlotClass = rangedWeapon;
+			
+			if(!(hiddenRangedWeapon is EmptySlot))
+			{ var prev:ItemSlotClass = hiddenRangedWeapon; hiddenInventory.push(prev); }
+			
+			hiddenRangedWeapon = item;
+			rangedWeapon.onRemove(this);
+			rangedWeapon = new Rock();
+		}
+		public function takeArmor():void
+		{
+			if(armor is EmptySlot) return;
+			
+			var item:ItemSlotClass = armor;
+			
+			if(!(hiddenArmor is EmptySlot))
+			{ var prev:ItemSlotClass = hiddenArmor; hiddenInventory.push(prev); }
+			
+			hiddenArmor = item;
+			armor.onRemove(this);
+			armor = new EmptySlot();
+		}
+		public function takeUpperUndergarment():void
+		{
+			if(upperUndergarment is EmptySlot) return;
+			
+			var item:ItemSlotClass = upperUndergarment;
+			
+			if(!(hiddenUpperUndergarment is EmptySlot))
+			{ var prev:ItemSlotClass = hiddenUpperUndergarment; hiddenInventory.push(prev); }
+			
+			hiddenUpperUndergarment = item;
+			upperUndergarment.onRemove(this);
+			upperUndergarment = new EmptySlot();
+		}
+		public function takeLowerUndergarment():void
+		{
+			if(lowerUndergarment is EmptySlot) return;
+			
+			var item:ItemSlotClass = lowerUndergarment;
+			
+			if(!(hiddenLowerUndergarment is EmptySlot))
+			{ var prev:ItemSlotClass = hiddenLowerUndergarment; hiddenInventory.push(prev); }
+			
+			hiddenLowerUndergarment = item;
+			lowerUndergarment.onRemove(this);
+			lowerUndergarment = new EmptySlot();
+		}
+		public function takeAccessory():void
+		{
+			if(accessory is EmptySlot) return;
+			
+			var item:ItemSlotClass = accessory;
+			
+			if(!(hiddenAccessory is EmptySlot))
+			{ var prev:ItemSlotClass = hiddenAccessory; hiddenInventory.push(prev); }
+			
+			hiddenAccessory = item;
+			accessory.onRemove(this);
+			accessory = new EmptySlot();
+		}
+		public function takeShield():void
+		{
+			if(shield is EmptySlot) return;
+			
+			var item:ItemSlotClass = shield;
+			
+			if(!(hiddenShield is EmptySlot))
+			{ var prev:ItemSlotClass = hiddenShield; hiddenInventory.push(prev); }
+			
+			hiddenShield = item;
+			shield.onRemove(this);
+			shield = new EmptySlot();
+		}
+		// Take all inventory items
+		public function takeInventory():void
+		{
+			for(var i:int = 0; i < inventory.length; i++)
+			{
+				var item:ItemSlotClass = inventory[i];
+				hiddenInventory.push(item);
+			}
+			inventory.length = 0;
+		}
+		
+		// Return item, Reset storage
+		// If slot already filled, place in hidden inventory for collecting.
+		public function giveMeleeWeapon():void
+		{
+			if(hiddenMeleeWeapon is EmptySlot) return;
+			
+			var item:ItemSlotClass = hiddenMeleeWeapon;
+			
+			if(!(meleeWeapon is EmptySlot) && !(meleeWeapon is Rock))
+			{ hiddenInventory.push(item); return; }
+			
+			meleeWeapon = item;
+			meleeWeapon.onEquip(this);
+			hiddenMeleeWeapon = new EmptySlot();
+		}
+		public function giveRangedWeapon():void
+		{
+			if(hiddenRangedWeapon is EmptySlot) return;
+			
+			var item:ItemSlotClass = hiddenRangedWeapon;
+			
+			if(!(rangedWeapon is EmptySlot) && !(rangedWeapon is Rock))
+			{ hiddenInventory.push(item); return; }
+			
+			rangedWeapon = item;
+			rangedWeapon.onEquip(this);
+			hiddenRangedWeapon = new EmptySlot();
+		}
+		public function giveArmor():void
+		{
+			if(hiddenArmor is EmptySlot) return;
+			
+			var item:ItemSlotClass = hiddenArmor;
+			
+			if(!(armor is EmptySlot))
+			{ hiddenInventory.push(item); return; }
+			
+			armor = item;
+			armor.onEquip(this);
+			hiddenArmor = new EmptySlot();
+		}
+		public function giveUpperUndergarment():void
+		{
+			if(hiddenUpperUndergarment is EmptySlot) return;
+			
+			var item:ItemSlotClass = hiddenUpperUndergarment;
+			
+			if(!(upperUndergarment is EmptySlot))
+			{ hiddenInventory.push(item); return; }
+			
+			upperUndergarment = item;
+			upperUndergarment.onEquip(this);
+			hiddenUpperUndergarment = new EmptySlot();
+		}
+		public function giveLowerUndergarment():void
+		{
+			if(hiddenLowerUndergarment is EmptySlot) return;
+			
+			var item:ItemSlotClass = hiddenLowerUndergarment;
+			
+			if(!(lowerUndergarment is EmptySlot))
+			{ hiddenInventory.push(item); return; }
+			
+			lowerUndergarment = item;
+			lowerUndergarment.onEquip(this);
+			hiddenLowerUndergarment = new EmptySlot();
+		}
+		public function giveAccessory():void
+		{
+			if(hiddenAccessory is EmptySlot) return;
+			
+			var item:ItemSlotClass = hiddenAccessory;
+			
+			if(!(accessory is EmptySlot))
+			{ hiddenInventory.push(item); return; }
+			
+			accessory = item;
+			accessory.onEquip(this);
+			hiddenAccessory = new EmptySlot();
+		}
+		public function giveShield():void
+		{
+			if(hiddenShield is EmptySlot) return;
+			
+			var item:ItemSlotClass = hiddenShield;
+			
+			if(!(shield is EmptySlot))
+			{ hiddenInventory.push(item); return; }
+			
+			shield = item;
+			shield.onEquip(this);
+			hiddenShield = new EmptySlot();
+		}
+		// Return all inventory items
+		public function giveInventory():void
+		{
+			for(var i:int = 0; i < hiddenInventory.length; i++)
+			{
+				var item:ItemSlotClass = hiddenInventory[i];
+				inventory.push(item);
+			}
+			hiddenInventory.length = 0;
+		}
+		
+		// Dump all hidden slots to inventory, if any
+		public function moveSlotsToInventory():void
+		{
+			var item:ItemSlotClass
+			if(!(hiddenMeleeWeapon is EmptySlot)) { item = hiddenMeleeWeapon; hiddenInventory.push(item); hiddenMeleeWeapon = new EmptySlot(); }
+			if(!(hiddenRangedWeapon is EmptySlot)) { item = hiddenRangedWeapon; hiddenInventory.push(item); hiddenRangedWeapon = new EmptySlot(); }
+			if(!(hiddenArmor is EmptySlot)) { item = hiddenArmor; hiddenInventory.push(item); hiddenArmor = new EmptySlot(); }
+			if(!(hiddenUpperUndergarment is EmptySlot)) { item = hiddenUpperUndergarment; hiddenInventory.push(item); hiddenUpperUndergarment = new EmptySlot(); }
+			if(!(hiddenLowerUndergarment is EmptySlot)) { item = hiddenLowerUndergarment; hiddenInventory.push(item); hiddenLowerUndergarment = new EmptySlot(); }
+			if(!(hiddenAccessory is EmptySlot)) { item = hiddenAccessory; hiddenInventory.push(item); hiddenAccessory = new EmptySlot(); }
+			if(!(hiddenShield is EmptySlot)) { item = hiddenShield; hiddenInventory.push(item); hiddenShield = new EmptySlot(); }
+		}
+		// Returns array of all stored inventory items, if any.
+		// Resets storage.
+		public function returnInventoryItems():Array
+		{
+			var itemList:Array = [];
+			
+			for(var i:int = 0; i < hiddenInventory.length; i++)
+			{
+				var item:ItemSlotClass = hiddenInventory[i];
+				itemList.push(item);
+			}
+			hiddenInventory.length = 0;
+			
+			return itemList;
 		}
 		
 		override public function HPMax():Number
@@ -965,6 +1214,13 @@ package classes.Characters
 			}
 		}
 		
+		public function createHeatPerk(dayCycle:int = 7):void
+		{
+			return; // 9999 Pending writing before enabling.
+			createPerk("Heat Cycle", 0, 0, 0, 0, "");
+			setPerkValue("Heat Cycle", 2, dayCycle);
+			setPerkTooltip("Heat Cycle", "Your body will periodically cycle through the stages of heat every" + (dayCycle == 1 ? "day" : (" " + dayCycle + " days")) + ".");
+		}
 		private function updateHeatPerk(totalDays:uint):void
 		{
 			// Ignore if already pregnant or infertile
@@ -1026,6 +1282,14 @@ package classes.Characters
 			}
 			
 			if(msg.length > 0) AddLogEvent(msg, "passive", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
+		}
+		
+		public function createRutPerk(dayCycle:int = 7):void
+		{
+			return; // 9999 Pending writing before enabling.
+			createPerk("Rut Cycle", 0, 0, 0, 0, "");
+			setPerkValue("Rut Cycle", 2, dayCycle);
+			setPerkTooltip("Rut Cycle", "Your body will periodically cycle through the stages of rut every" + (dayCycle == 1 ? "day" : (" " + dayCycle + " days")) + ".");
 		}
 		private function updateRutPerk(totalDays:uint):void
 		{
@@ -1122,6 +1386,11 @@ package classes.Characters
 					AddLogEvent("A strange sensation hits your nethers that forces you to wobble a little... Checking your status on your codex, it seems that removing your ballsack has also made the signature testicle-expanding tanuki mod vanish as well!\n\n(<b>Perk Lost: ‘Nuki Nuts</b> - You have no nuts to expand!)", "passive", deltaT);
 					removePerk("'Nuki Nuts");
 				}
+			}
+			if(hasPerk("Cum Cascade") && !hasPerk("'Nuki Nuts"))
+			{
+				AddLogEvent("(<b>Perk Lost: Cum Cascade</b> - You have lost the extra semen producing side effect of ‘Nuki Nuts.)");
+				removePerk("Cum Cascade");
 			}
 			if(hasPerk("Fecund Figure"))
 			{
@@ -1327,7 +1596,7 @@ package classes.Characters
 		// Mimbrane jazz.
 		public function mimbranePartDescript(mimType: String = ""): String
 		{
-			var mimbrane:StorageClass = getPerkEffect(mimType);
+			var mimbrane:StorageClass = getStatusEffect(mimType);
 			
 			if(mimbrane == null) return ("<b>ERROR: mimbranePartDescript() called for unknown mimbrane “" + mimType + "”</b>");
 			
@@ -1370,6 +1639,36 @@ package classes.Characters
 			else desc += RandomInCollection(["parasite", "epidel", "graft", "second skin", "cum leech"]);
 			
 			return desc;
+		}
+		public function mimbranePuffiness(mimType: String = ""):Number
+		{
+			var mimbrane:StorageClass = getStatusEffect(mimType);
+			
+			if(mimbrane == null) return 0;
+			
+			var toggle:String = "";
+			switch(mimType)
+			{
+				case "Mimbrane Cock": toggle = "COCK"; break;
+				case "Mimbrane Pussy": toggle = "CUNT"; break;
+				case "Mimbrane Ass": toggle = "BUTT"; break;
+				case "Mimbrane Balls": toggle = "SACK"; break;
+				case "Mimbrane Boobs": toggle = "TITS"; break;
+				case "Mimbrane Hand Left":
+				case "Mimbrane Hand Right": toggle = "HAND"; break;
+				case "Mimbrane Foot Left":
+				case "Mimbrane Foot Right": toggle = "FOOT"; break;
+				case "Mimbrane Face": toggle = "FACE"; break;
+			}
+			if(toggle != "" && flags["MIMBRANE_NOSWELL_" + toggle]) return 0;
+			
+			var puffScore:Number = 0;
+			
+			if(mimbrane.value3 >= 3) puffScore += 1;
+			if(mimbrane.value3 >= 8) puffScore += 1;
+			if(mimbrane.value3 >= 13) puffScore += 1;
+			
+			return puffScore;
 		}
 	}
 }

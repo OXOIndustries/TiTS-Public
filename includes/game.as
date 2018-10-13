@@ -9,6 +9,7 @@ import classes.GameData.Pregnancy.PregnancyManager;
 import classes.GUI;
 import classes.Items.Accessories.LeithaCharm;
 import classes.Items.Armor.Unique.Omnisuit;
+import classes.Items.Armor.AugmentWeaveArmor;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.HorsePill;
 import classes.Items.Transformatives.Cerespirin;
@@ -125,7 +126,7 @@ public function disableExploreEvents():Boolean
 	// Kashima Duration
 	if (flags["KASHIMA_STATE"] > 0 && flags["KASHIMA_STATE"] < 2) return true;
 	// Federation Quest
-	if (flags["FEDERATION_QUEST"] > 0 && flags["FEDERATION_QUEST"] < 3) return true;
+	if (flags["FEDERATION_QUEST"] > 0 && flags["FEDERATION_QUEST_AMBUSH"] != undefined && flags["FEDERATION_QUEST"] < 3) return true;
 	// Syri Quest
 	if (flags["SYRIQUEST_STATE"] >= 4 && flags["SYRIQUEST_STATE"] < 20) return true;
 
@@ -199,10 +200,13 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 			if (rand(pc.statusEffectv1("Leitha Charm")) > 60)
 			{
 				pc.setStatusValue("Leitha Charm", 1, -720 - rand(360));
-				if ((pc.accessory as LeithaCharm).attemptTF(pc)) return;
+				if ((pc.accessory is LeithaCharm) && (pc.accessory as LeithaCharm).attemptTF(pc)) return;
 			}
 		}
 	}
+    
+	// Check cocksocks
+	if (invalidCocksocksWorn(true)) return;
 	
 	// Update the state of the players mails -- we don't want to do this all the time (ie in process time), and we're only going to care about it at the menu root soooooo...
 	updateMailStatus();
@@ -425,7 +429,7 @@ public function shipHangarShips(dock:String = ""):Array
 	}
 	if(InCollection(dock, publicHangars))
 	{
-		if(majinHere()) ships.push(["Great Majin", shizzyGreatMajinBonus]);
+		if(flags["SHIZZY_MET"] != undefined && majinHere()) ships.push(["Great Majin", shizzyGreatMajinBonus]);
 	}
 	
 	return ships;
@@ -481,9 +485,9 @@ public function generateLocation(location:String):void
 	generateLocationName(location);
 }
 
-public function backToPrimaryOutput():void
+public function backToPrimaryOutput(clearB:Boolean = false):void
 {
-	clearBust();
+	if(clearB) clearBust();
 	userInterface.backToPrimaryOutput();
 }
 public function clearBust(forceNone:Boolean = false):void
@@ -514,17 +518,58 @@ public function showCodex():void
 	
 	// TESTO BUTTONO
 	addGhostButton(0, "Stats", statisticsScreen, flags["TOGGLE_MENU_STATS"]);
-	
-	//addGhostButton(1, "Messages", function():void { } );
-	//addGhostButton(2, "Log", function():void { } );
-	//addGhostButton(3, "CHEEVOS", function():void { } );
 	addGhostButton(1, "Log", displayQuestLog, flags["TOGGLE_MENU_LOG"]);
+	addGhostButton(2, "Extra", showCodexExtra, undefined, "Extra Functions", "Use your codex add-on functions.");
+	addGhostButton(3, "Options", displayCodexOptions, undefined, "Codex Options", "Adjust the settings to your codex display.");
+	addGhostButton(4, "Back", backToPrimaryOutput);
+}
+public function showCodexExtra():void
+{
+	clearOutput2();
+	clearGhostMenu();
+	
+	output2(header("<u>Codex Functions</u>", false));
+	
+	output2("\nUse your codex add-on functions.");
+	output2("\n");
+	
+	output2("\n<b><u>Add-Ons</u></b>");
+	
+	var btnSlot:int = 0;
+	var addOns:Array = [];
+	var i:int = 0;
+	
+	// Add-ons
 	if(flags["EMMY_QUEST"] >= 6)
 	{
-		if(flags["KQ2_MYRELLION_STATE"] == 1) addDisabledGhostButton(3,"EmmyRemote","EmmyRemote","Who knows if Emmy is even alive with what happened to Myrellion. Maybe after you finish with this probe nonsense, you can use your Dad’s resources to track down her whereabouts - assuming she made it out in one piece.");
-		else addGhostButton(3,"EmmyRemote",pushEmmysButtonsMenu);
+		output2("\n<b>* Remote Cumtrol:</b> Control interface for Emmy’s herm harness sex toy.");
+		if(!canSaveAtCurrentLocation) addOns.push(["EmmyRemote", null, undefined, "Remote Cumtrol", "You cannot use this at this time."]);
+		else if(flags["KQ2_MYRELLION_STATE"] == 1) addOns.push(["EmmyRemote", null, undefined, "Remote Cumtrol", "Who knows if Emmy is even alive with what happened to Myrellion. Maybe after you finish with this probe nonsense, you can use your Dad’s resources to track down her whereabouts - assuming she made it out in one piece."]);
+		else addOns.push(["EmmyRemote", pushEmmysButtonsMenu, undefined, "Remote Cumtrol", "Control Emmy’s sex toy."]);
 	}
-	addGhostButton(4, "Back", backToPrimaryOutput);
+	
+	if(addOns.length <= 0) output2("\n* <i>There are no controllable add-ons installed at the moment.</i>");
+	output2("\n\n");
+	
+	for(i = 0; i < addOns.length; i++)
+	{
+		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+		{
+			addGhostButton(btnSlot, "Back", showCodex);
+			btnSlot++;
+		}
+		
+		if(addOns[i][1] == null) addDisabledGhostButton(btnSlot, addOns[i][0], addOns[i][3], addOns[i][4]);
+		else addGhostButton(btnSlot, addOns[i][0], addOns[i][1], addOns[i][2], addOns[i][3], addOns[i][4]);
+		btnSlot++;
+		
+		if(addOns.length > 14 && (i + 1) == addOns.length)
+		{
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			addGhostButton(btnSlot, "Back", showCodex);
+		}
+	}
+	addGhostButton(14, "Back", showCodex);
 }
 
 // Temp display stuff for perks
@@ -710,6 +755,7 @@ public const CREW_PAIGE:int = 13;
 public const CREW_KASE:int = 14;
 public const CREW_SHEKKA:int = 15;
 public const CREW_SYRI:int = 16;
+public const CREW_RAMIS:int = 17;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -730,6 +776,7 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	if (paigeIsCrew()) crewMembers.push(CREW_PAIGE);
 	if (kaseIsCrew()) crewMembers.push(CREW_KASE);
 	if (shekkaIsCrew()) crewMembers.push(CREW_SHEKKA);
+	if (ramisRecruited()) crewMembers.push(CREW_RAMIS);
 
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -802,6 +849,24 @@ public function multiCrewInteractions():Array
 			crewMessages += "\n\nPippa is giving Reaha a massage, paying special attenion to her back.";
 		}
 	}
+	if (InCollection(CREW_RAMIS, crewMembers))
+	{
+		ramisValidateActivity(crewMembers);
+		if (flags["RAMIS_ACTIVITY"] == "KASE")
+		{
+			crewMembers.splice(crewMembers.indexOf(CREW_RAMIS), 1);
+			crewMembers.splice(crewMembers.indexOf(CREW_KASE), 1);
+		
+			crewMessages += "\n\nOn the monitors, you can see Ramis and Kase are talking in the corridors. Or rather, Ramis has blocked Kase’s path with her arm and is leering down at him, whilst a blushing Kase is nervously playing with the tip of one of his tails. Impossible to imagine what’s going on there.";
+		}
+		else if (flags["RAMIS_ACTIVITY"] == "SHEKKA")
+		{
+			crewMembers.splice(crewMembers.indexOf(CREW_RAMIS), 1);
+			crewMembers.splice(crewMembers.indexOf(CREW_SHEKKA), 1);
+		
+			crewMessages += "\n\nOn the monitors, you can see Ramis and Shekka are in the canteen, chatting frenetically. From the way they’re gesturing, and occasionally positioning glasses and cutlery on the table to make a point, you’d guess they’re talking about tech. Shekka has positioned a box on top of a chair so that she can talk to the kaithrit without straining her neck - and also to get at the bottle of whiskey Ramis has plonked onto the table. Gails of tipsy feminine laughter emanate from that part of the ship.";
+		}
+	}
 	
 	crewMembers.push(crewMessages);
 	return crewMembers;
@@ -840,6 +905,7 @@ public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean =
 	if (gooArmorIsCrew()) crewMembers.push(customName ? chars["GOO"].short : "Goo Armor");
 	if (paigeIsCrew()) crewMembers.push("Paige");
 	if (pippaOnShip()) crewMembers.push("Pippa");
+	if (ramisIsCrew()) crewMembers.push("Ramis");
 	if (reahaIsCrew()) crewMembers.push("Reaha");
 	if (seraIsCrew()) crewMembers.push("Sera");
 	if (shekkaIsCrew()) crewMembers.push("Shekka");
@@ -884,6 +950,7 @@ public function getFollowerBustDisplay(followerName:String = ""):String
 		case "Goo Armor": return novaBustDisplay(); break;
 		case "Paige": return getPaigeBustString(); break;
 		case "Pippa": return pippaBustDisplay(); break;
+		case "Ramis": return ramisBustDisplay(); break;
 		case "Reaha": return reahaBustDisplay(); break;
 		case "Sera": return seraBustDisplay(); break;
 		case "Shekka": return shekkaBustDisplay(); break;
@@ -927,6 +994,7 @@ public function getSleepingPartnerBustDisplay():String
 		case "KIRO": return kiroBustDisplay(); break;
 		case "PAIGE": return getPaigeBustString(); break;
 		case "PIPPA": return pippaBustDisplay(); break;
+		case "RAMIS": return ramisBustDisplay(); break;
 		case "REAHA": return reahaBustDisplay(); break;
 		case "SERA": return seraBustDisplay(); break;
 		case "SHEKKA": return shekkaBustDisplay(); break;
@@ -971,6 +1039,18 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 	var btnSlot:int = 0;
 	
 	// Followers
+	//amber (dryad)
+	if (amberIsCrew())
+	{
+		count++;
+		if (!counter)
+		{
+			crewMessages += "\n\n" + amberShipBonusText();
+			if (amberCurrentlyDumbfucked()) addDisabledButton(btnSlot,"Amber","Amber","You’ve decided to leave Amber alone while the effects of the Dumbfuck she took wear off.");
+			else addButton(btnSlot, "Amber", amberInTheHold);
+			btnSlot = crewButtonAdjustments(btnSlot);
+		}
+	}
 	if (annoIsCrew())
 	{
 		count++;
@@ -1048,7 +1128,8 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		count++;
 		if(!counter) 
 		{
-			crewMessages += kaseCrewBlurbs(btnSlot);
+			if (InCollection(CREW_KASE, crewMembers)) crewMessages += kaseCrewBlurbs(btnSlot);
+			else addButton(btnSlot, "Kase", kaseApproachCrew, 1); //9999 ramis stuff
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
@@ -1082,6 +1163,20 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			if (flags["PIPPA_SETTLED_IN"] != 1) addButton(btnSlot, "Pippa", pippaShipIntro);
 			else if (flags["PIPPA_YAMMI_KITCHEN"] == 1) addButton(btnSlot, "Pippa", pippaYammiThreesomeIntro);
 			else addButton(btnSlot, "Pippa", pippaMainMenu);
+			btnSlot = crewButtonAdjustments(btnSlot);
+		}
+	}
+	if (ramisIsCrew())
+	{
+		count++;
+		if(!counter)
+		{
+			if (!pc.hasStatusEffect("Partying Ramis"))
+			{
+				if (InCollection(CREW_RAMIS, crewMembers)) crewMessages += "\n\n" + ramisCrewBlurb();
+				addButton(btnSlot, "Ramis", ramisCrewApproach);
+			}
+			else addDisabledButton(btnSlot, "Ramis", "Ramis", "The female kaithrit is out in Tavros, pulverizing the station’s drinking holes no doubt.\n\nShe’ll be back tomorrow.");
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
@@ -1141,6 +1236,10 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		count++;
 		if(!counter)
 		{
+			if (!InCollection(CREW_SHEKKA, crewMembers)) //9999 ramis stuff
+			{
+				addButton(btnSlot,"Shekka",approachCrewShekka);
+			}
 			if(pc.hasStatusEffect("Shekka_Cum_Playing"))
 			{
 				crewMessages += "\n\nShekka is lounging about after a little bit of play with her toy. Once she’s recovered and cleaned up, she’ll be up to hang out again. Give her an hour at the most.";
@@ -1175,7 +1274,7 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
-	
+
 	// Pets
 	if (hasGooArmor() || gooArmorIsCrew())
 	{
@@ -1416,16 +1515,22 @@ public function rest(deltaT:int = -1):void {
 public function restHeal():void
 {
 	var bonusMult:Number = 1 + pc.statusEffectv1("Home Cooking")/100;
+	var soreMult:Number = 1;
 	
+	if(pc.armor is AugmentWeaveArmor)
+	{
+		bonusMult += 0.5;
+		soreMult += 1;
+	}
 	if(pc.accessory is MaikesCollar)
 	{
 		bonusMult = 0;
 		AddLogEvent("The slave collar’s punishing shocks keep your rest from doing much.");
 	}
 	else if(pc.hasStatusEffect("Dzaan Withdrawal")) bonusMult = 0.5;
+	
 	if(bonusMult != 0)
 	{
-
 		if(pc.HPRaw < pc.HPMax()) {
 			if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) pc.HP(Math.round(pc.HPMax() * bonusMult));
 			else pc.HP(Math.round(pc.HPMax() * .33 * bonusMult));
@@ -1435,7 +1540,7 @@ public function restHeal():void
 		}
 	}
 	
-	if(pc.hasStatusEffect("Sore Counter")) soreChange(-1);
+	if(pc.hasStatusEffect("Sore Counter")) soreChange(-1 * soreMult);
 }
 
 public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
@@ -1579,6 +1684,12 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 						interrupt = true;
 					}
 					break;
+				case "RAMIS":
+					if (ramisIsCrew() && !ramisOutDrinking() && !looksFemaleToRamis() && !pc.isTaur())
+					{
+						ramisSleep();
+					}
+					break;
 				// No partner selected.
 				default:
 					// SERA IMPREGNATIONS
@@ -1636,6 +1747,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 		if (tryProcDommyReahaTime(minPass - rand(301))) wakeEvents.push(reahaDommyFuxTime);
 		if (flags["ANNO_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [annoMorningRouter];
 		if (flags["KASE_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [kaseCrewWake];
+		if (flags["RAMIS_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [ramisSleepWake];
 		if (flags["PAIGE_WAKEY_FLAGS"] != undefined) wakeEvents = [paigeWakeyWakey];
 		
 		if (wakeEvents.length > 0)
@@ -1658,6 +1770,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 public function sleepHeal():void
 {
 	var bonusMult:Number = 1;
+	var soreMult:Number = 1;
 	
 	if(pc.accessory is MaikesCollar)
 	{
@@ -1666,6 +1779,12 @@ public function sleepHeal():void
 	}
 	else if(pc.hasStatusEffect("Dzaan Withdrawal")) bonusMult = 0.5;
 	
+	if(pc.armor is AugmentWeaveArmor)
+	{
+		bonusMult += 0.5;
+		soreMult += 1;
+	}
+
 	if(bonusMult != 0)
 	{
 		if(pc.HPRaw < pc.HPMax()) pc.HPRaw = Math.round(pc.HPMax() * bonusMult);
@@ -1696,7 +1815,7 @@ public function sleepHeal():void
 		if(pc.perkv2("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 2, 0);
 		if(pc.perkv3("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 3, 0);
 	}
-	if(pc.hasStatusEffect("Sore Counter")) soreChange(-3);
+	if(pc.hasStatusEffect("Sore Counter")) soreChange(-3 * soreMult);
 	pc.removeStatusEffect("Jaded");
 	pc.removeStatusEffect("Roshan Blue");
 }
@@ -1869,6 +1988,12 @@ public function insideShipEvents():Boolean
 		shizzyAnnoShipTalk();
 		return true;
 	}
+	if (ramisMolestingAvailable() && rand(10) == 0)
+	{
+		ramisCorridorMolesting();
+		return true;
+	}
+
 	return false;
 }
 
@@ -1935,6 +2060,15 @@ public function flyMenu():void
 			addButton(14, "Back", mainGameMenu);
 			return;
 		}
+		if(ramisOutDrinking())
+		{
+			ramisAbandonBlurb();
+			clearMenu();
+			addButton(0, "Wait", ramisWaitForTheDrunkard);
+			addButton(14, "Back", mainGameMenu);
+			return;
+		}
+			
 		
 		if(flags["CHECKED_GEAR_AT_OGGY"] != undefined) flags["CHECKED_GEAR_AT_OGGY"] = undefined;
 		pc.removeStatusEffect("Disarmed");
@@ -2029,7 +2163,7 @@ public function flyMenu():void
 	if(MailManager.isEntryViewed("breedwell_unlock"))
 	{
 		// PC must not be a taur, infertile or e.g. on Sterilex to choose this option before they’ve been there at all.
-		if(shipLocation == "BREEDWELL_DOCK") addDisabledButton(10, "Breedwell", "Breedwell Centre", "You’re already here.");
+		if(shipLocation == "BREEDWELL_HANGAR") addDisabledButton(10, "Breedwell", "Breedwell Centre", "You’re already here.");
 		else if(!CodexManager.entryViewed("Rahn")) addDisabledButton(10, "Breedwell", "Breedwell Centre", "Maybe you should read up on the rahn before traveling to this location...");
 		else if(!pc.hasGenitals()) addDisabledButton(10, "Breedwell", "Breedwell Centre", "It might be a pointless journey if you have no genitals to make use of this location...");
 		else if((!pc.hasVagina() || pc.fertility() <= 0) && (!pc.hasCock() || pc.virility() <= 0)) addDisabledButton(10, "Breedwell", "Breedwell Centre", "Probably unwise to check this place out whilst you’re infertile. The ad gave you the distinct impression that the Breedwell Centre was counting on you being... fruitful.");
@@ -2054,7 +2188,7 @@ public function flyMenu():void
 public function flyTo(arg:String):void
 {
 	generateMapForLocation("SHIP INTERIOR");
-	
+    
 	if (flags["SUPRESS TRAVEL EVENTS"] == 1)
 	{
 		flags["SUPRESS TRAVEL EVENTS"] = 0;
@@ -2244,6 +2378,7 @@ public function leavePlanetOK():Boolean
 {
 	if(pc.hasStatusEffect("Disarmed") && shipLocation == "500") return false;
 	if(pc.hasKeyItem("RK Lay - Captured")) return false;
+	if(ramisOutDrinking()) return false;
 	return true;
 }
 
@@ -2499,6 +2634,11 @@ public function showerOptions(arg:Array):void
 		if (annoIsCrew() && pc.hasGenitals())
 		{
 			addButton(showerSex, "Anno", annoFollowerShowerSex);
+			showerSex++;
+		}
+		if (ramisIsCrew() && !looksFemaleToRamis() && flags["RAMIS_SEXED_SHIP"] != undefined)
+		{
+			addButton(showerSex, "Ramis", ramisBathingCats, "shower");
 			showerSex++;
 		}
 		if (showerSex > 0) output("Feeling a little turned on, you decide that maybe you should have some fun shower sex with one of your crew. Who do you approach?");
@@ -3055,7 +3195,7 @@ public function variableRoomUpdateCheck():void
 		else rooms["ESBETH'S NORTH PATH"].removeFlag(GLOBAL.NPC);
 	}
 	//Yakuza things
-	if (flags["SHUKUCHI_MHENGA_ENCOUNTER"] != undefined && flags["SHUKUCHI_UVETO7_ENCOUNTER"] == undefined) rooms["NORTHWEST ESBETH"].addFlag(GLOBAL.NPC);
+	if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] != undefined && flags["SHUKUCHI_MHENGA_ENCOUNTER"] == undefined) rooms["NORTHWEST ESBETH"].addFlag(GLOBAL.NPC);
 	else rooms["NORTHWEST ESBETH"].removeFlag(GLOBAL.NPC);
 	//Azra stuff
 	if(azraRecruited() && !azraIsCrew()) rooms["NORTHEAST ESBETH"].addFlag(GLOBAL.NPC);
@@ -3537,6 +3677,15 @@ public function variableRoomUpdateCheck():void
 	}
 	//Remove marker after xmas
 	else if(rooms["UVIP T44"].hasFlag(GLOBAL.OBJECTIVE)) rooms["UVIP T44"].removeFlag(GLOBAL.OBJECTIVE);
+	//Vark's cave and stuff
+	rooms[varkCaveRoom].removeFlag(GLOBAL.NPC);
+	rooms[varkCaveRoom].removeFlag(GLOBAL.OBJECTIVE);
+	rooms["UVIP T44"].southExit = varkCaveRoom;
+	if (pc.isTaur() || !pc.hasGenitals())
+		rooms["UVIP T44"].southExit = undefined;
+	if (flags["MET_VARK"] == undefined) rooms[varkCaveRoom].addFlag(GLOBAL.OBJECTIVE);
+	else if (flags["MET_VARK"] == 1) rooms[varkCaveRoom].addFlag(GLOBAL.NPC);
+	else rooms["UVIP T44"].southExit = undefined;
 	
 	/* VESPERIA / CANADIA STATION */
 	/*
@@ -4539,6 +4688,7 @@ public function badEnd(displayGG:String = "GAME OVER"):void
 	if (displayGG != "") output("\n\n<b>" + displayGG + "</b>");
 	output("\n\n(Access the main menu to start a new character or the data menu to load a saved game. The buttons are located in the lower left of the game screen.)");
 	clearMenu();
+	addButton(14, "Codex", showCodex);
 }
 
 // Checkin' da E-mails
@@ -4597,6 +4747,8 @@ public function emailRoulette(deltaT:uint):void
 		mailList.push("fuckinggooslootsII");
 	if(!MailManager.isEntryUnlocked("cuzfuckball") && flags["TIMES_MET_FEMZIL"] != undefined && flags["BEEN_ON_TARKUS"] != undefined && pc.level >= 2)
 		mailList.push("cuzfuckball");
+	if (!MailManager.isEntryUnlocked("extrameet_invite_email") && extrameetSmutAvail())
+		mailList.push("extrameet_invite_email", "extrameet_invite_email", "extrameet_invite_email");
 	
 	// SPAM: (9999: If does not have spamblocker upgrade toggled on for CODEX.)
 	if(SpamEmailKeys.length > 0 && flags["CODEX_SPAM_BLOCKER"] == undefined)

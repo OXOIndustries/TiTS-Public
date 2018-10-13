@@ -136,7 +136,7 @@ public function pennyRoomDesc():void {
 		}
 		//Repeat Pre-Problem Encounter
 		else {
-			output("\n\nPenny is sitting behind her desk like normal. Scratching at the fur under her overlarge ear in consternation, the busty fennec fox is grumbling at some notes. She looks to be having a problem with the locals.");
+			output("\n\nPenny is sitting behind her desk as usual. Scratching at the fur under her overlarge ear in consternation, the busty fennec fox is grumbling at some notes. She looks to be having a problem with the locals.");
 		}
 		this.addButton(0,"Need Help?",askPennyIfSheNeedsHelp);
 	}
@@ -221,7 +221,7 @@ public function getAnIntercom():void {
 	clearOutput();
 	showPenny();
 	output("You suggest she toss an intercom into the cell and save herself a lot of time and effort.");
-	output("\n\nPenny sighs. <i>“Don’t you think I thought of that? The primitives don’t even know what to do with them. The first ’com got smashed on the wall. When I tried giving them a baby monitor, they just kept trying to get me to come fuck them, and they promised they’d tell me everything I needed to know...”</i> She shakes her head. <i>“No, I need to solve this in a way that doesn’t end with me on my back.”</i> ");
+	output("\n\nPenny sighs. <i>“Don’t you think I thought of that? The primitives don’t even know what to do with them. The first ‘com got smashed on the wall. When I tried giving them a baby monitor, they just kept trying to get me to come fuck them, and they promised they’d tell me everything I needed to know...”</i> She shakes her head. <i>“No, I need to solve this in a way that doesn’t end with me on my back.”</i> ");
 	//Same menu
 	this.clearMenu();
 	this.addButton(0,"Fuck Zil",fuckTheZilForPennyBecauseYouAreADumbStupidSlut);
@@ -1189,8 +1189,8 @@ public function pennysYouth():void {
 	showPenny();
 	flags["TALK_WITH_PENNY_ABOUT_YOUTH"] = 1;
 	output("You ask Penny what she was like when she was younger. Did something motivate her to become a U.G.C. Peacekeeper?");
-	output("\n\n<i>“Oh, hell yes something motivated me to be a peacekeeper,”</i> Penny answers. <i>“I was always a smaller kid. I had small parents who didn’t really get behind the whole gene selection technologies a lot of richer couples take advantage of. I was a genetic roll of the dice, and I came up short. I didn’t have that much trouble for it myself, but I always saw nerdier or fatter kids getting beat up on. I lived in a bad neighborhood too, so witnessing crime was an almost everyday affair.”</i> Penny’s visage hardens. <i>“I was too little to do anything about either one.”</i>");
-	output("\n\nThe fennec-girl relaxes as she continues, <i>“I actually got mugged, or near enough to it, as a teenager. A peacekeeper was passing through the neighborhood and saved my bacon that day. He wasn’t big or particularly strong, just smart and skilled. He had the perp disarmed and stunned before I knew what happened.”</i> Penny smiles enthusiastically. <i>“At that moment, I realized what I wanted to do with my life.”</i>");
+	output("\n\n<i>“Oh, hell yes something motivated me to be a Peacekeeper,”</i> Penny answers. <i>“I was always a smaller kid. I had small parents who didn’t really get behind the whole gene selection technologies a lot of richer couples take advantage of. I was a genetic roll of the dice, and I came up short. I didn’t have that much trouble for it myself, but I always saw nerdier or fatter kids getting beat up on. I lived in a bad neighborhood too, so witnessing crime was an almost everyday affair.”</i> Penny’s visage hardens. <i>“I was too little to do anything about either one.”</i>");
+	output("\n\nThe fennec-girl relaxes as she continues, <i>“I actually got mugged, or near enough to it, as a teenager. A Peacekeeper was passing through the neighborhood and saved my bacon that day. He wasn’t big or particularly strong, just smart and skilled. He had the perp disarmed and stunned before I knew what happened.”</i> Penny smiles enthusiastically. <i>“At that moment, I realized what I wanted to do with my life.”</i>");
 	output("\n\nYou ask her if she ran off to join up after that.");
 	output("\n\n<i>“Don’t be crazy, Crazy. I finished school first before I enrolled. I wanted to protect people, even though I’m not the biggest or the strongest, and the U.G.C. gave me a chance to do that.”</i> Penny beams. <i>“The academy wasn’t easy, particularly not for a small Penny Inoue. I toughed it out all the same. You don’t get to serve law and order if you can’t take a few hits.”</i>");
 	processTime(20);
@@ -1557,7 +1557,7 @@ public function pennyFutanariTalk():void {
 		output("\n\nThe fox-girl snorts and sets some paperwork aside in a huff, swivelling her chair to more directly face you. She searches your eyes for something for a long moment before talking. <i>“Yeah, I guess... I was thinking about it....”</i> Penny’s ears gradually rise again. <i>“The girl I told you about at the academy... she had one, and all things considered, she was pretty happy with it. Once we got comfortable, she kept finding excuses to show it to me. She even let me watch her masturbate!”</i>");
 		output("\n\nCoughing nervously, the vixen adds, <i>“I thought a vagina was plenty enough to please, but watching her hands dance over two sets of genitals.... I think I might want one too, [pc.name]. It was dirty and decadent and wet in all the right ways. You should see the way she squirted - from both holes!”</i> Penny’s breathing has gotten heavier from recounting this sordid tale, though her nipples have yet to pop out to visibility. <i>“Could you imagine, mate? Could you see me with a big, throbbing dick just cumming all over you while you fuck me or stretching out your [pc.pussyOrAsshole]? Fuck, that’s hot!”</i>");
 		output("\n\nYou ready a response, but Penny plows on, obviously wanting to get a bit more out before she takes in your feedback.");
-		output("\n\n<i>“There’s one complication though. I can’t afford a high grade, custom tailored phallus like Jen did. That’s her name, by the way. Anyway, there’s another way I could grow a dick: a drug called Throbb,”</i> the fox-girl offers. <i>“It was originally developed as a hormone and body altering cocktail that could grow or enlarge penises on just about anyone for cheap. Of course, when the people taking it were found to be four times more likely of attempting rape, it started getting pulled off the market. Apparently it ratchets up the libido rather effectively. The drug’s situation didn’t get any better once holos of binge users showed up on the extranet. Some people grew dicks and balls so big they couldn’t move. Can you believe that?”</i>");
+		output("\n\n<i>“There’s one complication though. I can’t afford a high grade, custom tailored phallus like Kit did. That’s her name, by the way. Anyway, there’s another way I could grow a dick: a drug called Throbb,”</i> the fox-girl offers. <i>“It was originally developed as a hormone and body altering cocktail that could grow or enlarge penises on just about anyone for cheap. Of course, when the people taking it were found to be four times more likely of attempting rape, it started getting pulled off the market. Apparently it ratchets up the libido rather effectively. The drug’s situation didn’t get any better once holos of binge users showed up on the extranet. Some people grew dicks and balls so big they couldn’t move. Can you believe that?”</i>");
 		
 		output("\n\nActually, you can. Some of your old coworkers exposed you to some rather questionable things on the ‘net, and that doesn’t even count the weird shit you stumbled onto by yourself.");
 		
@@ -3515,7 +3515,7 @@ public function whineToPennyCauseYerABitch():void
 	clearOutput();
 	author("Savin");
 	showPenny();
-	output("Rather than talking about you and Penny, as you’re accustomed to, you tell the vulpine peacekeeper that you’ve got a crime to report - something you weren’t able to deal with on your own. Penny perks up at that, her playful demeanour giving way to seriousness. She taps something on her desk’s computer, bringing up some kind of form.");
+	output("Rather than talking about you and Penny, as you’re accustomed to, you tell the vulpine Peacekeeper that you’ve got a crime to report - something you weren’t able to deal with on your own. Penny perks up at that, her playful demeanour giving way to seriousness. She taps something on her desk’s computer, bringing up some kind of form.");
 	output("\n\n<i>“Okay, ");
 	if(flags["SEXED_PENNY"] != undefined) output("my mate");
 	else output("[pc.name]");

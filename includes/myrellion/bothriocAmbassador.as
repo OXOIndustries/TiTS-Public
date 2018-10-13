@@ -83,7 +83,7 @@ public function approachAraKei():void
 		bothriocQuestGreeting();
 		return;
 	}
-	if(bothriocQuestComplete())
+	if(bothriocQuestComplete() && flags["BOTHRIOC_QUEST_COMPLETE"] == undefined)
 	{
 		bothriocQuestApproachAraKei();
 		return;
@@ -94,6 +94,7 @@ public function approachAraKei():void
 
 	IncrementFlag("MET_ARAKEI");
 	var specialMenu:Boolean = false;
+	var addiction:Number = bothriocAddiction();
 
 	// This was gated behind having talked to her a bunch, but it makes dealing with the menu generation here 8000% more difficult
 	// up front.
@@ -103,13 +104,21 @@ public function approachAraKei():void
 		specialMenu = true;
 		return;
 	}
-	if (bothriocAddiction() <= 0 /*&& flags["ARAKEI_TALKED_OTHERBOTHRIOC"] != undefined*/)
+	if (addiction <= 0 /*&& flags["ARAKEI_TALKED_OTHERBOTHRIOC"] != undefined*/)
 	{
-		output("<i>“You’re looking healthy and brimming with that distinct do-as-you-please attitude of yours,”</i> Ara Kei says with a dry, not unfriendly curl of the lip. You find yourself exhaling when [ara.his] big, black eyes move away from you back to the bustle all around [ara.him]. There is something slightly disconcerting about being the sole focus of the bothrioc ambassador’s attention.");
-
-		output("\n\n<i>“Here to know more about my race?”</i> [ara.he] "+ ara.mfn("goes", "goes", "go") +" on. <i>“I have always felt we are better experienced than studied, you know.”</i>");
+		if(bothriocQuestComplete())
+		{
+			output("<i>“Steele!”</i>");
+			output("\n\nAra Kei instantly switches [ara.his] attention to you and clacks across, leaving [ara.his] four submissives looking softly confused, the moment [ara.he] notice" + ara.mfn("s", "s", "") + " you.");
+			output("\n\n<i>“And what do we owe this pleasure to?”</i> the quadomme asks, smiling.");
+		}
+		else
+		{
+			output("<i>“You’re looking healthy and brimming with that distinct do-as-you-please attitude of yours,”</i> Ara Kei says with a dry, not unfriendly curl of the lip. You find yourself exhaling when [ara.his] big, black eyes move away from you back to the bustle all around [ara.him]. There is something slightly disconcerting about being the sole focus of the bothrioc ambassador’s attention.");
+			output("\n\n<i>“Here to know more about my race?”</i> [ara.he] "+ ara.mfn("goes", "goes", "go") +" on. <i>“I have always felt we are better experienced than studied, you know.”</i>");
+		}
 	}
-	else if (bothriocAddiction() <= 10 && flags["ARAKEI_ADDICTION_10"] == undefined)
+	else if (addiction >= 10 && flags["ARAKEI_ADDICTION_10"] == undefined)
 	{
 		flags["ARAKEI_ADDICTION_10"] = 1;
 
@@ -125,7 +134,7 @@ public function approachAraKei():void
 		addButton(1, "Great", araKeiSpecialGreeting10Reaction, "great", "Great", "Freely let Ara Kei know how you feel about it.");
 		addButton(2, "Unpleasant", araKeiSpecialGreeting10Reaction, "bad", "Unpleasant", "Reject the experience.");
 	}
-	else if (bothriocAddiction() <= 20 && flags["ARAKEI_ADDICTION_20"] == undefined)
+	else if (addiction >= 20 && flags["ARAKEI_ADDICTION_20"] == undefined)
 	{
 		flags["ARAKEI_ADDICTION_20"] = 1;
 
@@ -135,7 +144,7 @@ public function approachAraKei():void
 
 		output("\n\nYou snap out of it, but you can’t help admire the artful usage of all four hands bothrioc are capable of, as Ara Kei swiftly handles papers and pens and gestures subtle commands all in a continuous flurry of activity. You shudder to imagine what those hands could do if they got ahold of you.");
 	}
-	else if (bothriocAddiction() <= 30 && flags["ARAKEI_ADDICTION_30"] == undefined)
+	else if (addiction >= 30 && flags["ARAKEI_ADDICTION_30"] == undefined)
 	{
 		flags["ARAKEI_ADDICTION_30"] = 1;
 
@@ -152,7 +161,7 @@ public function approachAraKei():void
 		
 		output("\n\n<i>“Do you see this harem, Steele? They are my pride and joy. I love them more than life itself. They perform admirably at whatever I ask and I in turn provide for them. Master and servants are two halves to a whole, any sane dominatrix you meet will agree. What I’m trying to say is that you’re not losing yourself. They all can live healthy lives under me, and I’m sure when you find yours they’ll cherish you as I would.”</i> After a moment, Ara Kei releases you. <i>“Now, Steele. Do you understand my point?”</i> You nod, slowly. <i>“Good. Are you still afraid?”</i> After some deliberation, you answer noncommittally. <i>“We shall see what the future holds, then. Is there anything you need?”</i>");
 	}
-	else if (bothriocAddiction() <= 40 && flags["ARAKEI_ADDICTION_40"] == undefined)
+	else if (addiction >= 40 && flags["ARAKEI_ADDICTION_40"] == undefined)
 	{
 		flags["ARAKEI_ADDICTION_40"] = 1;
 
@@ -162,7 +171,7 @@ public function approachAraKei():void
 		
 		output("\n\n<i>“Hmm...”</i> There’s a frivolous, musical quality to Ara’s normally-studied tones. <i>“It’s so precious to see an incubator coming along. What are you here for today, [pc.name]?”</i>");
 	}
-	else if (bothriocAddiction() <= 50 && flags["ARAKEI_ADDICTION_50"] == undefined)
+	else if (addiction >= 50 && flags["ARAKEI_ADDICTION_50"] == undefined)
 	{
 		flags["ARAKEI_ADDICTION_50"] = 1;
 
@@ -182,11 +191,11 @@ public function approachAraKei():void
 		
 		output("\n\n<i>“Good. Now then, little one - was there something specific you came in here for?”</i>");
 	}
-	else if (bothriocAddiction() <= 50)
+	else if (addiction < 70)
 	{
 		output("<i>“I see you have been enjoying the hospitality of my brethren!”</i> Ara Kei’s big, black eyes regard you intently. You feel oddly soft and relaxed when [ara.he] "+ ara.mfn("does", "does", "do") +" that. <i>“Do keep me appraised of your situation, I’m intensely curious. Regardless - is there something you want today?”</i>");
 	}
-	else if (bothriocAddiction() >= 60 && bothriocAddiction() <= 70 && flags["ARAKEI_ADDICTION_70"] == undefined)
+	else if (addiction >= 70 && flags["ARAKEI_ADDICTION_70"] == undefined)
 	{
 		flags["ARAKEI_ADDICTION_70"] = 1;
 
@@ -202,7 +211,7 @@ public function approachAraKei():void
 		
 		output("\n\n<i>“Good.”</i> [ara.his] tone softens and you relax slightly - although the imperative [ara.he] "+ ara.mfn("has", "has", "have") +" given you continues to burn brightly in your mind. <i>“What else can the embassy provide you with today?”</i>");
 	}
-	else if (bothriocAddiction() < 100)
+	else if (addiction < 100)
 	{
 		output("As you take up your familiar kneeling station before the ambassador, you receive a small sign of affection from Ara Kei. You find your");
 		if (pc.hairLength > 0) output(" hair being ruffled");
@@ -428,13 +437,15 @@ public function araKeiSpecialGreeting10Reaction(choice:String):void
 
 public function araKeiMenu(lastF:Function = null):void
 {
+	var addiction:Number = bothriocAddiction();
+	
 	clearMenu();
 	
 	addButton(0, "Talk", araKeiTalk);
 	
 	if (flags["ARAKEI_TALKED_BOTHRIOC"] == undefined) addDisabledButton(1, "Flirt", "Flirt", "You don’t know this being well enough to try.");
 	else if (flags["ARAKEI_FLIRTED"] != undefined && pc.isTaur()) addDisabledButton(1, "Flirt", "Flirt", "Being a centaur displeases the bothrioc, for some reason. You won’t get any further with [ara.him] whilst you are one.");
-	else if (bothriocAddiction() >= 100 && flags["ARAKEI_POLISHED_BOOTIES"] != undefined && pc.isPregnant(3))
+	else if (addiction >= 100 && flags["ARAKEI_POLISHED_BOOTIES"] != undefined && pc.isPregnant(3))
 	{
 		addDisabledButton(1, "Flirt", "Flirt", "You should probably deal with your current brood first. You get the overwhelming impression that being bred by Ara Kei is not for someone who is already stuffed with spawn.");
 	}
@@ -444,9 +455,9 @@ public function araKeiMenu(lastF:Function = null):void
 		f: araKeiFlirt,
 		arg: undefined, 
 		ttH: "Flirt",
-		ttB: bothriocAddiction() >= 100 
+		ttB: addiction >= 100 
 				? "Debase yourself in front of this perfect being. (You probably don’t want to be anywhere anytime soon if you’re choosing this.)"
-				: bothriocAddiction() >= 50
+				: addiction >= 50
 					? "Perhaps if you displayed your devotion enough..."
 					: "Hey, it’s worth a shot."
 	});
@@ -713,6 +724,8 @@ public function araKeiFlirt():void
 {
 	clearOutput();
 	showAraKei();
+	
+	var addiction:Number = bothriocAddiction();
 
 	if (flags["ARAKEI_FLIRTED"] == undefined)
 	{
@@ -752,7 +765,7 @@ public function araKeiFlirt():void
 		araKeiMenu();
 		return;
 	}
-	else if (bothriocAddiction() <= 24)
+	else if (addiction <= 24)
 	{
 		if(bothriocQuestComplete()) output("<i>“I’m still not interested, Steele,”</i> says Ara Kei with a wry smile, before you even open your mouth. <i>“I know, after all you’ve done for us, and all that you have learned! But your knowledge of us is all in your brain, not in your soul. Not sunken into your skin. There are other ways of learning than merely observing, and still you do not submit to them. Until you have - no. I am far too busy, anyway.”</i>");
 		else output("<i>“Don’t be tiresome, Steele,”</i> says Ara Kei sharply, antennae twitching, before you even open your mouth. <i>“I have zero interest in weekending farlanders looking for an exotic screw. When you have gained a little more insight into my people - then we’ll see.”</i>");
@@ -760,7 +773,7 @@ public function araKeiFlirt():void
 		processTime(1);
 		return;
 	}
-	else if (bothriocAddiction() <= 59 || flags["ARAKEI_FLIRTED_59_ADDICTION"] == undefined)
+	else if (addiction <= 59 || flags["ARAKEI_FLIRTED_59_ADDICTION"] == undefined)
 	{
 		IncrementFlag("ARAKEI_FLIRTED_59_ADDICTION");
 
@@ -779,7 +792,7 @@ public function araKeiFlirt():void
 		araKeiMenu(araKeiFlirt);
 		return;
 	}
-	else if (bothriocAddiction() <= 99 || flags["ARAKEI_FLIRTED_99_ADDICTION"] == undefined)
+	else if (addiction <= 99 || flags["ARAKEI_FLIRTED_99_ADDICTION"] == undefined)
 	{
 		IncrementFlag("ARAKEI_FLIRTED_99_ADDICTION");
 		output("<i>“Please, Ara Kei,”</i> you say breathlessly. You don’t have to say anything else; the quadomme’s merciless, gleaming chitin and [ara.his] long, plump abdomen dominates your vision, and your [pc.skinFurScales] cries out to have it pressed hard against you, making passionate use of your tender flesh.");
@@ -1320,17 +1333,19 @@ public function approachCharles():void
 	
 	clearOutput();
 	showCharles();
-
+	
+	var addiction:Number = bothriocAddiction();
+	
 	if (flags["MET_CHARLES"] == undefined)
 	{
 		flags["MET_CHARLES"] = 1;
 		output("<i>“Hey pal,”</i> says the human with a wry grin when you amble across to him. He’s a fairly young, buff-looking man who sounds like he comes from Ur Caledon. <i>“Hope Ara didn’t talk your ear off, ey?”</i>");
 
-		if (bothriocAddiction() <= 10)
+		if (addiction <= 10)
 		{
 			output("\n\n<i>“Guid. She’s a nice enough person y’know - head screwed on tighter ‘n the other bigwig earwigs you’ll run into doon here - but you shouldn’t listen TOO closely to what she’s sayin’, if you catch me drift. If you find yourself - lessay getting sudden urges tae kneel a lot - cum’n have a chat with me. I can fix that.”</i>");
 		}
-		else if (bothriocAddiction() <= 50)
+		else if (addiction <= 50)
 		{
 			output("\n\nYou don’t like his tone. You can’t place exactly why, but hearing the kind, generous bothrioc being talked of so cursorily irks you.");
 
@@ -1454,19 +1469,20 @@ public function talkCharlesFix():void
 
 	output("\n\nHe proffers it to you.");
 
-	if (bothriocAddiction() <= 10)
+	var addiction:Number = bothriocAddiction();
+	if (addiction <= 10)
 	{
 		output(" You reach across and accept it, frowning slightly. What on earth is he talking about? Will you not be able to swallow, or something? It seems a ridiculous warning.");
 
 		output("\n\n<i>“Just remember what I said,”</i> Charles insists with a wry twist of his lip, plucking the pill back out of your hand.");
 	}
-	else if (bothriocAddiction() <= 50)
+	else if (addiction <= 50)
 	{
 		output("\n\nYou feel a dragging reluctance to take it - the innate knowledge that what is in his hand is frosty bleakness to the calm warmth inside you. Still, you reach across and accept the pill.");
 
 		output("\n\n<i>“Just a wee bit difficult, isn’t it? Remember what I said,”</i> Charles says with a wry twist of his lip, plucking it back out of your hand.");
 	}
-	else if (bothriocAddiction() <= 99)
+	else if (addiction <= 99)
 	{
 		output("\n\nSomething about the pill revolts you. It looks bad, you’re sure it will taste bad, and you’re absolutely certain it will make you deeply unhappy. You don’t understand why this nasty man is pressuring you to take it. Can’t he see how at peace you are with the world? Why would you want to change that? A slight sweat breaks out on your forehead, and you can’t help but look at the Caledonian with the deepest resentment, but you do force yourself to reach across and accept the pill.");
 
@@ -1508,19 +1524,20 @@ public function charlesBuyFix():void
 	clearOutput();
 	showCharles();
 
-	if (bothriocAddiction() <= 10)
+	var addiction:Number = bothriocAddiction();
+	if (addiction <= 10)
 	{
 		output("You take the brown pill.");
 		
 		output("\n\n<i>“Stay frosty, Steele,”</i> Charles grins at you, returning to his work.");
 	}
-	else if (bothriocAddiction() <= 50)
+	else if (addiction <= 50)
 	{
 		output("You feel a strange reluctance to take the pill you’ve bought - but you push that aside and pluck it out of Charles’s outstretched hand.");
 
 		output("\n\n<i>“Stay frosty, Steele,”</i> Charles grins at you, before returning to his work.");
 	}
-	else if (bothriocAddiction() <= 99)
+	else if (addiction <= 99)
 	{
 		output("It takes a huge amount of willpower to take the pill out of Charles’s outstretched hand - sweat breaks out on your brow, your soul seems to cry against it - but take it you do, despite how unhappy it makes you feel.");
 		

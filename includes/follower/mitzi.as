@@ -105,7 +105,7 @@ public function untieMitzi():void
 public function mitziOutsideShip():Boolean
 {
 	//trace("MITZI RESCUED: " + flags["MITZI_RESCUED"] + "\nTimestamp: " + GetGameTimestamp() + "\nDISABLED? " + flags["MITZI_DISABLED"]);
-	return (flags["MITZI_RESCUED"] + 60*24*8 < GetGameTimestamp() && !mitziIsCrew() && flags["MITZI_DISABLED"] == undefined && flags["MITZI_RESCUED"] != undefined && shipLocation == "TAVROS HANGAR");
+	return ((flags["MITZI_RESCUED"] + 60*24*8 < GetGameTimestamp() && !mitziIsCrew() && flags["MITZI_DISABLED"] == undefined && flags["MITZI_RESCUED"] != undefined && shipLocation == "TAVROS HANGAR") || (mitziRecruited() && !mitziIsCrew() && flags["MITZI_DISABLED"] == undefined));
 }
 
 //Try to enter ship while she’s leaning.
@@ -362,7 +362,8 @@ public function kickMitziOffCrew():void
 {
 	clearOutput();
 	showMitzi();
-	output("You tell Mitzi to hit the road. You need the space for other crewmates.");
+	if(pc.isAss()) output("You tell Mitzi to hit the road. You need the space for other crewmates.");
+	else output("You ask Mitzi if she can stay somewhere else for a while. You’ve got to make some adjustments to your ship’s crew roster.")
 	output("\n\n<i>“Oh...”</i> Mitzi frowns momentarily, then perks back up. <i>“But it’s like, not forever, right? You’ll take Mitzi back and fuck her stupid slutty brains out over and over again?”</i>");
 	output("\n\nYou agree for now. The alternative would be listening to her bawling her eyes out, you’re sure.");
 	output("\n\n<i>“Yay!”</i>");
@@ -983,6 +984,7 @@ public function mitziCrewMenu():void
 		else addDisabledButton(6,"Give Gush","Give Gush","You need some Gush in order to do this.");
 	}
 	addButton(7,"Give Bubble",giveMitziACumBubble,undefined,"Give Cum Bubble","Maybe you could give Mitzi some stored-up cum?");
+	addButton(13,"Leave Crew",kickMitziOffCrew,undefined,"Leave Crew","Tell Mitzi that you need to free up some space on the ship.");
 	addButton(14,"Back",crew);
 }
 
@@ -1017,7 +1019,7 @@ public function mitziAppearance():void
 	//Can’t see, havent fucked it.
 	else if(flags["MITZI_FUCKED"] == undefined) output("\n\nWhile you can’t see between your fuck-slave’s thighs thanks to her current outfit, you can only assume that the feminine treasure between is every bit as libidinous and willing as the rest of her.");
 	//Can’t see it, have fucked it
-	else output("\n\nWhile you can’t see between your fuck-slave’s thighs thanks to her current outfit, you’ve spent too long up close and personal with it to forget about it. The vulva is eternally plump with lust, slicked by beads of clear arousal at any time of the day or night. Its lusty sheen begs the viewer to lean closer, and a hyper-developed clitoris stands proudly out of its hood in search of a finger or tongue willing to bless its super-charged nerves with the a touch.");
+	else output("\n\nWhile you can’t see between your fuck-slave’s thighs thanks to her current outfit, you’ve spent too long getting up close and personal with it to simply forget about it. The vulva is eternally plump with lust, slicked by beads of clear arousal at any time of the day or night. Its lusty sheen begs the viewer to lean closer, and a hyper-developed clitoris stands proudly out of its hood in search of a finger or tongue willing to bless its super-charged nerves with the a touch.");
 	//Merge
 	output("\n\nA spaded tail whips out to press against your chest");
 	if(!pc.isChestExposed())
@@ -2386,7 +2388,7 @@ public function mitziMakesYouABimbo():void
 	showMitzi(true);
 	author("Fenoxo");
 	output("<i>“...dumb cunt.”</i>");
-	output("\n\nDid you really just say that? Why would- how could... wow, Mitzi’s lips feel nice on your [pc.vaginaNounSimple]. They squeeze down harder in response to your declaration. Smashing her face into your mound, Mitzi snakes her tongue deep inside, smearing her freshly applied gloss into every fold. <i>“Wow.”</i> Your head lolls, and you [pc.vagina] clenches in trembling desire.");
+	output("\n\nDid you really just say that? Why would- how could... wow, Mitzi’s lips feel nice on your [pc.vaginaNounSimple]. They squeeze down harder in response to your declaration. Smashing her face into your mound, Mitzi snakes her tongue deep inside, smearing her freshly applied gloss into every fold. <i>“Wow.”</i> Your head lolls, and your [pc.vagina] clenches in trembling desire.");
 	output("\n\nWith a pussy-pleasing slurp, Mitzi pulls away, her heart-shaped pupils dilating wide as she fumbles with her lip gloss. <i>“Whoopsie! Mitzi got so excited she mighta got some on her tongue.”</i> She licks her lips and shudders. <i>“What a dumbcunt!”</i> Applying a fresh coat, the blushing goblin arcs her spaded tail around to fondle at her own sopping-wet folds. <i>“Guess we’re both gonna be stupid, horny sluts now, huh?”</i> Her lips shine invitingly as she tosses the drug applicator over shoulder. <i>“But Mitzi’s already a dumb, leaky bimbo!”</i>");
 	output("\n\nMitzi... yeah, she’s a brainless little cum-dump, that’s for sure.");
 	if(pc.hasCock()) output(" If you had a dick, she’d probably wrap herself around your crotch like boxers, just to be closer to it.");
@@ -2903,7 +2905,7 @@ public function mitziFirstTimeCuntnosisII():void
 	output("\n\nThere’s so much heat between your [pc.thighs], flush and hot. You feel weak and silly, unsure of why exactly you wanted her to wait before. Was it... something about her lip-gloss? Yes! That’s it! <i>“Your gloss!”</i> You point accusingly at the tube.");
 	output("\n\nMitzi pouts, <i>“You wanted to watch Mitzi put on some more?”</i> The emerald slut pouts. <i>“If you really want. Do you really want Mitzi to roll more on? Paint these pussy-pleasing lips thick with shine until you get all silly and cummy?”</i>");
 	output("\n\nThe distracting heat boiling below keeps interrupting your thoughts, twisting them around when you to focus. Mitzi’s face is there through it all, smiling and beautiful, the picture of wantonness. You can’t see any problems with her gleaming mouth, still moist from your [pc.vaginas], but that must have been it. <i>“Yeah... that sounds right.”</i>");
-	output("\n\n<i>“Okay! Mitzi will put this one on super-dooper thick just for you [pc.Master]!”</i> She uncaps the tube once more, twirling dial at the bottom to push more jellied makeup out. Pink, heart-shaped eyes stare seductively up at you as Mitzi languidly presses the gloss against her lower lip and slowly begins to roll it across the taut, reflective surface. She blinks, layering it on nice and heavy, just like you asked. The way she flips it around to bring it to bear on her upper lip is almost hypnotic, and the application of her enchanting mouth-polish leaves you shudderingly, gaspingly aroused. <i>“There!”</i>");
+	output("\n\n<i>“Okay! Mitzi will put this one on super-dooper thick just for your [pc.Master]!”</i> She uncaps the tube once more, twirling dial at the bottom to push more jellied makeup out. Pink, heart-shaped eyes stare seductively up at you as Mitzi languidly presses the gloss against her lower lip and slowly begins to roll it across the taut, reflective surface. She blinks, layering it on nice and heavy, just like you asked. The way she flips it around to bring it to bear on her upper lip is almost hypnotic, and the application of her enchanting mouth-polish leaves you shudderingly, gaspingly aroused. <i>“There!”</i>");
 	output("\n\n<i>“Please, my puss");
 	if(pc.totalVaginas() == 1) output("y");
 	else output("ies");

@@ -90,7 +90,10 @@ public function activateSiegwulfe(fromInv:Boolean = false):void
 	
 	// [Insert Namebox Here]
 	clearMenu();
-	addButton(0, "Next", nameSiegwulfe, fromInv);
+	addButton(0, "Name Her", nameSiegwulfe, fromInv);
+	if (!pc.hasKeyItem("Siegwulfe Datacore")) addDisabledButton(1,"Use Datacore","Use Datacore","You don’t have a Siegwulfe Datacore with you.");
+	else if ((chars["WULFE"].isBimbo() && flags["SYRIQUEST_VALDEN_BODY_CHOICE"] == 2) || (!chars["WULFE"].isBimbo() && flags["SYRIQUEST_VALDEN_BODY_CHOICE"] == 3) ) addButton(1, "Use Datacore", useDatacoreOnSiegwulfe, fromInv, "Use Datacore", "Put your old datacore into the new Siegwulfe.");
+	else addDisabledButton(1,"Use Datacore","Use Datacore","The V. I. on your datacore is not compatible with this body.");
 }
 public function renameSiegwulfe(fromInv:Boolean = false):void
 {
@@ -198,6 +201,30 @@ public function nameSiegwulfeResult(fromInv:Boolean = false):void
 	processTime(3);
 	
 	//to Siegwulfe’s menu
+	clearMenu();
+	addButton(0, "Next", approachSiegwulfe, [false, fromInv]);
+}
+
+public function useDatacoreOnSiegwulfe(fromInv:Boolean = false):void
+{
+	clearOutput();
+	author("Stygs");
+	showBust(wulfeBustDisplay());
+	showName("SWITCHING\nDATACORES");
+
+	output("<i>“No, that won’t be necessary.”</i> you say " + (pc.isAss() ? "coldly" : "calmy") + ". After all, you don’t want a new Siegwulfe, you just want your old one back. And as Valden is certainly not going to return her body to you, there is only one way for you to do this.");
+	output("\n\nThe Siegwulfe seems taken back at your refusal, just sitting there without movement or any other word. Looks like that was wasn’t the answer her programmers expected. It takes you a " + (pc.characterClass == GLOBAL.CLASS_ENGINEER ? "brief " : "") + "moment before you remember that this isn’t actually a reaction to your refusal but rather the normal procedure - her initialization routine has run its course and you haven’t given her any new commands.");
+	output("\n\nWell, better to get this over with now quickly before you grow attached to the new V. I.. With a " + (pc.isNice() ? "heavy " : "") + "sigh you tell her to deactivate herself.");
+	output("\n\n<i>“I live to serve.”</i> your canine droid says with an content smile as she shuts off. Switching the cores afterwards is a simple affair - you do have a bit of experience at that after all - and mere moments later [wulfe.name]’s CPU is locked firmly into her new chassis.");
+	output("\n\n[wulfe.name]’s eyes briefly flash as she boots up before tuning into the constant crimson red you are used to. Slowly looking around the room, the towering " + (chars["WULFE"].isBimbo() ? "bimbo" : "gynoid") + "-hound seems kinda lost for a moment before focusing her gaze on you, now a " + (chars["WULFE"].isBimbo() ? "lustful" : "playful") + " smirk on her face.");
+	output("\n\n<i>“Hello again, [pc.master].”</i> a familiar voice purrs. <i>“How may I" + (chars["WULFE"].isBimbo() ? ", like," : "") + " serve you today?”</i>");
+	output("\n\nWell, looks like that little brain transplant worked just fine. Then again, it couldn’t hurt to thoroughly test certain features of your mechanic companion just to be one the safe side....");
+	if (chars["WULFE"].isBimbo()) output(" An in-depth check, so to speak.");
+
+	processTime(3);
+	chars["WULFE"].short = flags["SYRIQUEST_SIEGWULFE_NAME"];
+	pc.removeKeyItem("Siegwulfe Datacore");
+
 	clearMenu();
 	addButton(0, "Next", approachSiegwulfe, [false, fromInv]);
 }
@@ -377,7 +404,7 @@ public function doSiegwulfeAction(arg:Array):void
 			{
 				// [Get Oral] [Fuck Her]
 				addButton(0, "Get Oral", doSiegwulfeSex, "get oral", "Get Oral", "Have the sensual siegwulfe drone use her mouth to get you off.");
-				addButton(1, "Fuck Her", doSiegwulfeSex, "fuck her", "Fuck Her", ("Get around behind the " + (chars["WULFE"].isBimbo() ? "fat-bottomed" : "robotic hound-girl") + " and see what’s sitting between her hind legs..."));
+				addButton(1, "Fuck Her", doSiegwulfeSex, "fuck her", "Fuck Her", ("Get around behind the " + (chars["WULFE"].isBimbo() ? "fat-bottomed" : "robotic") + " hound-girl and see what’s sitting between her hind legs..."));
 			}
 			else addButton(0, "Next", doSiegwulfeSex, "get oral");
 			break;

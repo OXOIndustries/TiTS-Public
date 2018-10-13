@@ -129,7 +129,7 @@ public function raskvelGangEncounter():void
 	IncrementFlag("MET_MALE_RASKVEL_GANG");
 	output("\n\nThere’s a lot of banging and cheerful shouting emanating from the big, rambling pile of junk directly in front of you. A red-scaled, massive-eared head pops out of the cockpit of a rusted hovercraft, swiftly followed by the rest of a squat form, hauling an over-sized screwdriver with it. He pauses when he sees you.");
 	output("\n\n<i>“Oh! Hello,”</i> it says. The echoing chatter quiets and two other similar figures clamber into view to have a good stare. You recognize them as male raskvel: the hyperactive, dwarfish natives of this planet that you met plenty of back at Novahome. These three are looking down at you from their pile of trash with a mixture of mischievousness and bonhomie, smirks playing on their ruddy lips like they are all about to burst into laughter. Whether it’s with you or at you is difficult to tell.");
-	if(CodexManager.entryUnlocked("Raskvel"))
+	if(!CodexManager.entryUnlocked("Raskvel"))
 	{
 		output("\n\nBeeping, your codex alerts you that this is a male of the raskvel race, just like the ones you met when you landed. It issues a quick summary: <i>The Raskvel are a race obsessed with fixing technology and breeding in equal measure. They are generally a very friendly race, but some are more than happy to turn to violence to secure a mate.</i>");
 		CodexManager.unlockEntry("Raskvel");
@@ -1196,10 +1196,10 @@ public function redRidingRaskvel():void
 	var args:Array = [x,y];
 	//[Hard light peg] [Feed milk] [Pussy tail] [Cock tail]}
 	clearMenu();
-	if(!pc.hasCockTail() && !pc.hasCuntTail() && !pc.lowerUndergarment.hardLightEquipped) addButton(0,"Next",feedRaskGangMalk,args);
+	if(!pc.hasCockTail() && !pc.hasCuntTail() && !pc.hasHardLightEquipped()) addButton(0,"Next",feedRaskGangMalk,args);
 	else
 	{
-		if(pc.lowerUndergarment.hardLightEquipped) addButton(0,"HardlightPeg",raskvelHardlightPegEdition,args,"Hardlight Peg","Peg one of them with the hardlight strap-on you’ve got.");
+		if(pc.hasHardLightEquipped()) addButton(0,"HardlightPeg",raskvelHardlightPegEdition,args,"Hardlight Peg","Peg one of them with the hardlight strap-on you’ve got.");
 		else addDisabledButton(0,"HardlightPeg","Hardlight Peg","You need a hardlight strap-on for this scene.");
 		addButton(1,"Tittysuckle",feedRaskGangMalk,args,"Tittysuckle","Invite him to suck on your [pc.nipple], whether or not you have any milk to give.");
 		if(pc.hasCuntTail()) addButton(2,"Tail Milk",cuntTailRaskPlay,args,"Tail Milk","Use your symbiotic tail to wring pleasure from the pint-sized alien.");

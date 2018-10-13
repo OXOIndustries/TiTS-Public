@@ -586,15 +586,30 @@ public function nurserySpecialistRooms():Boolean
 	if (pc.hasCock()) output(" bear you an heir");
 	output(", so the nursery comes equipped with a sub-deck of modular living chambers, able to easily be adapted to specific needs: from water tanks to zero-G to alternative atmospheres. Several specialist nurse-droids stand ready to tend to your more unique offspring.");
 
+	addButton(0, "Chambers", nurserySpecialistRoomMenu, undefined, "Modular Chambers", "Take a look at the special chambers.");
+
+	return false;
+}
+
+public function nurserySpecialistRoomMenu():void
+{
+	clearOutput();
+	showBust("");
+	showName("SPECIAL\nCHAMBERS");
+
 	var numSpecials:int = 0;
-	var numSpecialsButtons:int = 0;
+	var specials:Array = [];
+	var btnSlot:int = 0;
+	var i:int = 0;
+
+	output("Which chamber do you wish to observe?");
 
 	if(ChildManager.ofType(GLOBAL.TYPE_CUNTSNAKE) || hasCuntsnakesInHatchery())
 	{
 		var numSnake:int = ChildManager.numOfType(GLOBAL.TYPE_CUNTSNAKE);
 		
 		output("\n\nA modular chamber simulating tropical rainforest weather is filled with various flora from Mhen’ga. There, it houses a hatchery and living environment perfectly suited for any cunt snakes you may have.");
-		addButton(numSpecialsButtons++, "C.Snake", cuntsnakeHatchery, numSnake, "Cunt Snake Chamber", "Check on any cunt snakes or cunt snake eggs you may have.");
+		specials.push(["C.Snake", cuntsnakeHatchery, numSnake, "Cunt Snake Chamber", "Check on any cunt snakes or cunt snake eggs you may have."]);
 		numSpecials++;
 	}
 
@@ -604,19 +619,29 @@ public function nurserySpecialistRooms():Boolean
 		numSpecials++;
 	}
 
+	if (ChildManager.ofType(GLOBAL.TYPE_SANDWORM_PARASITE) || ChildManager.ofType(GLOBAL.TYPE_SANDWORM))
+	{
+		var numButtBugWorm:int = ChildManager.numOfTypeInRange(GLOBAL.TYPE_SANDWORM_PARASITE, 0, 9001);
+		var numButtBugHybrid:int = ChildManager.numOfTypeInRange(GLOBAL.TYPE_SANDWORM, 1, 9001);
+		var numButtBugTotal:int = (numButtBugWorm + numButtBugHybrid);
+		output("\n\nOne of the largest rooms have been converted to a simulation of Tarkus, evident by the smell and the sand being tracked in by the nurse droids as they leave it. The sand doesn’t stay there for long as it seems like it gets vacuumed back into the room after the doors close. Seems like either transporting sand here is expensive or they’re trying to minimize the need for new sand while keeping the place clean. A screen on top states that there " + (numButtBugTotal == 1 ? "is" : "are") + " currently " + num2Text(numButtBugTotal) + " of your Hilinara parasite children here, maybe you should visit " + (numButtBugTotal == 1 ? "it" : "them") + ".");
+		specials.push(["Hilinara", nurseryHilinaraRoom, [numButtBugWorm, numButtBugHybrid, numButtBugTotal], "Hilinara Room", "Go into the room simulating Tarkus."]);
+		numSpecials++;
+	}
+
 	if (ChildManager.ofType(GLOBAL.TYPE_COCKVINE))
 	{
 		var numVines:int = ChildManager.numOfType(GLOBAL.TYPE_COCKVINE);
 
 		output("\n\n" + (numSpecials == 0 ? "One" : "Another one") +" of the rooms is kept air-tight, its locked door plastered with warnings. The viewing window next to it reveals nothing but blackness - but you can use controls next to it to change the whole screen to stark night vision, allowing you to see within. The room itself is narrower than most but considerably taller, filled with the vertically arranged porous Myrellion rock that Hydrus Constuprula loves undulating its way through. The wall-attached micro-cameras can be moved up and down, enabling you to pick out your cockvine offspring wherever "+ (numVines == 1 ? "it" : "they") +" may roam.");
-		addButton(numSpecialsButtons++, "Cockvine", nurserySpecialistCockvine, numVines, "Cockvine Habitat", "Take a peek at your cockvines.");
+		specials.push(["Cockvine", nurserySpecialistCockvine, numVines, "Cockvine Habitat", "Take a peek at your cockvines."]);
 		numSpecials++;
 	}
 
 	if (ChildManager.ofType(GLOBAL.TYPE_WATERQUEEN))
 	{
 		output("\n\nConnected to the main entrance via a pressurized airlock is a water-filled chamber, simulating a deep saltwater lake with a sandy island in its center. Though the rooms inside are pitch black, a camera feed inside has been set to night vision, showing your Water Princesses scuttling about, half-submerged and completely hidden in the dark waters. Your head nurse has hired on a dusky female nyrea from their homeworld to help oversee their development - a brief word with her reveals the huntress is well acquainted with the Queen of the Deep, and that the princesses’ mother sends her regards.");
-		addButton(numSpecialsButtons++, "W.Princess", nurserySpecialistWaterPricesses, undefined, "Water Princesses", "Interact with your princesses.");
+		specials.push(["W.Princess", nurserySpecialistWaterPricesses, undefined, "Water Princesses", "Interact with your princesses."]);
 		numSpecials++;
 	}
 
@@ -632,18 +657,33 @@ public function nurserySpecialistRooms():Boolean
 	{
 		output("\n\nCurrently, the specialist deck is empty.");
 	}
-
-	return false;
+	output("\n\n");
+	
+	clearMenu();
+	for(i = 0; i < specials.length; i++)
+	{
+		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+		{
+			addButton(btnSlot, "Back", mainGameMenu);
+			btnSlot++;
+		}
+		
+		if(specials[i][1] == null) addDisabledButton(btnSlot, specials[i][0], specials[i][3], specials[i][4]);
+		else addButton(btnSlot, specials[i][0], specials[i][1], specials[i][2], specials[i][3], specials[i][4]);
+		btnSlot++;
+		
+		if(specials.length > 14 && (i + 1) == specials.length)
+		{
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			addButton(btnSlot, "Back", mainGameMenu);
+		}
+	}
+	addButton(14, "Back", mainGameMenu);
 }
-
-private const NURSERY_STAIRS_NAMES:Array = [
-	"first",
-	"second"
-];
 
 public function nurseryStairsShared(activeFloor:int):void
 {
-	output("A gunmetal-gray stairwell connects the children’s floor with the second, dedicated to the nursery’s staff and support facilities. You’re currently on the "+ NURSERY_STAIRS_NAMES[activeFloor - 1] +" floor.");
+	output("A gunmetal-gray stairwell connects the children’s floor with the second, dedicated to the nursery’s staff and support facilities. You’re currently on the "+ num2Ordinal(activeFloor) +" floor.");
 }
 
 public function nurseryStairs1F():Boolean
@@ -2207,7 +2247,7 @@ public function nurserySpecialistWaterPricesses():void
 			}
 		}
 
-		output("You step up to the door and take a peek at the night-sight monitor next to it. The screen is divided into a number of different viewpoints, each keeping track of one of your "+ totalNum +" young princesses. Most of your royal brood is quietly nesting, tucked away in the various half-submerged corners of the modified chamber and soaking underneath beds of fungus and leaves.");
+		output("You step up to the door and take a peek at the night-sight monitor next to it. The screen is divided into a number of different viewpoints, each keeping track of one of your "+ num2Text(totalNum) +" young princesses. Most of your royal brood is quietly nesting, tucked away in the various half-submerged corners of the modified chamber and soaking underneath beds of fungus and leaves.");
 
 		output("\n\nAs their caretaker suggested, you make sure that opening the door makes plenty of noise. The door itself is huge, befitting the size its occupants will grow to, and a long tunnel stretches out after it to help funnel out the nursery’s light so opening up doesn’t accidentally blind your subterranean spawn. You traverse the tunnel, stepping out onto a little sandy island at the water’s edge, not much more than three yards to a side.");
 		
@@ -2324,6 +2364,12 @@ public function pregAverageLoadSizes():void
 	
 	output("The average load sizes for each potential sire are as follows:\n<i>(Pregnancies that are set to alwaysImpregnate are omitted.)</i>");
 	
+	output("\n\n<b><u>ButtBugPregnancy</u></b>: " + (new ButtBugPregnancy()).definedAverageLoadSize + " mLs");
+	output("\n\n<b><u>ButtBugPregnancy0</u></b>: " + (new ButtBugPregnancy0()).definedAverageLoadSize + " mLs");
+	output("\n\n<b><u>ButtBugPregnancy1</u></b>: " + (new ButtBugPregnancy1()).definedAverageLoadSize + " mLs");
+	output("\n\n<b><u>ButtBugPregnancy2</u></b>: " + (new ButtBugPregnancy2()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Butt Bug Male:</b> " + getButtBugPregContainer(-1).cumQ() + " mLs");
+	
 	output("\n\n<b><u>CockvinePregnancy</u></b>: " + (new CockvinePregnancy()).definedAverageLoadSize + " mLs");
 	output("\n* <b>Cockvine:</b> " + (new Cockvine()).cumQ() + " mLs");
 	
@@ -2376,17 +2422,14 @@ public function pregAverageLoadSizes():void
 
 public function nurseryMilkingRoomFunc():Boolean
 {
-	if (zephAtNursery() && pc.isLactating() && pc.hasVagina() && !pc.isPregnant() && pc.hasItemByClass(MagicMilker))
-	{
-		addButton(0, "ZephMilking", milkedByZeph, undefined, "Zephyr Milking", "Take some time to milk yourself and perhaps a little more time with Zephyr too...");
-	}
-	else
+	if(flags["MET_ZEPHYR"] != undefined)
 	{
 		if (!zephAtNursery()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "Zephyr isn’t at the nursery to lend a hand.");
 		else if (!pc.isLactating()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "You need to be lactating to milk yourself!");
 		else if (!pc.hasVagina()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "You need a pussy for Zephyr to assist in your endeavours!");
 		else if (pc.isPregnant()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "Zephyr won’t want to be too rough on her pregnant lover...");
 		else if (!pc.hasItemByClass(MagicMilker)) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "You need a MagicMilker to hand.");
+		else addButton(0, "ZephMilking", milkedByZeph, undefined, "Zephyr Milking", "Take some time to milk yourself and perhaps a little more time with Zephyr too...");
 	}
 
 	return false;

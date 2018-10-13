@@ -247,7 +247,7 @@ public function samPrisonStuff(args:Array):void
 	else if(pc.hasHardLightEquipped())
 	{
 		output("\n\nUnfortunately for the bound beauty, you have no such plans for her. After your vigorous bout of pussy eating, you’re so horny it hurts, so you ");
-		if(!pc.isNude()) output("strip off everything but you [pc.lowerUndergarment] as quickly as possible and ");
+		if(!pc.isNude()) output("strip off everything but your [pc.lowerUndergarment] as quickly as possible and ");
 		output("flick on your hardlight projector and begin slathering some of the cunny honey from your face onto your artificial wang for lubrication. Not that you really need it with Sam’s faucet of a cunt. So close to her goal of being filled with dickmeat, her slippery pink tunnel clenches excitedly, still wracked with orgasmic aftershocks and drizzling femlube into Sam’s hiked-down pants. You slide your strapon up and down through the sopping wet channel of her vulva to tease her a bit, savoring the incredible wet heat her uterus is exuding and the sticky sound of her juices sliding across the hardlight.");
 		output("\n\nAs the head of your dildo drags through her gates, the blonde-furred girl lets out the most pitiful whine you’ve ever heard. She looks back at you with a lust-dazed expression before furrowing her brow in confusion. <i>“What is that? That’s not a cock! What are you doing?!? I need you to fuck me and cum in me! I don’t want some stupid dildo right now! I NEED CUM!!!”</i> Feeling ");
 		if(pc.isNice()) output("a bit guilty for getting her hopes up");

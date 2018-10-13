@@ -64,6 +64,8 @@
 	import classes.Items.Miscellaneous.*
 	import classes.Items.Accessories.*
 	import classes.Items.Transformatives.*;
+	//Change SilkyCockBell to * when it's time -lighterfluid
+	import classes.Items.Piercings.SilkyCockBell;
 
 	import classes.Parser.ParseEngine;
 
@@ -137,6 +139,7 @@
 		include "../includes/holidayEvents/succucow.as";
 
 		//Followers
+		include "../includes/follower/amber.as";
 		include "../includes/follower/anno.as";
 		include "../includes/follower/azra.as";
 		include "../includes/follower/azraExpeditions.as";
@@ -152,6 +155,7 @@
 		include "../includes/follower/paigeSex.as";
 		include "../includes/follower/paigeSpar.as";
 		include "../includes/follower/pippa.as";
+		include "../includes/follower/ramis.as";
 		include "../includes/follower/shekka.as";
 		include "../includes/follower/siegwulfe.as";
 		include "../includes/follower/yammi.as";
@@ -197,6 +201,8 @@
 		include "../includes/events/federationQuest/federationQuest.as";
 		include "../includes/events/federationQuest/rooms.as";
 		include "../includes/events/federationQuest/roomFunctions.as";
+		include "../includes/events/extrameet/extrameet.as";
+		include "../includes/events/extrameet/extrameetProfiles.as";
 		
 		// Travel Events
 		include "../includes/travelEvents.as";
@@ -275,6 +281,7 @@
 		include "../includes/mhenga/mimbranes.as";
 		include "../includes/mhenga/naleen.as";
 		include "../includes/mhenga/naleenMale.as";
+		include "../includes/mhenga/naleenFuta.as";
 		include "../includes/mhenga/penny.as";
 		include "../includes/mhenga/penny_bimbo.as";
 		include "../includes/mhenga/prai.as";
@@ -296,6 +303,7 @@
 		include "../includes/tarkus/anno.as";
 		include "../includes/tarkus/aurora.as";
 		include "../includes/tarkus/bess.as";
+		include "../includes/tarkus/buttBugs.as";
 		include "../includes/tarkus/chaurmine.as";
 		include "../includes/tarkus/cockBox.as";
 		include "../includes/tarkus/colenso.as";
@@ -303,6 +311,7 @@
 		include "../includes/tarkus/drLash.as";
 		include "../includes/tarkus/dumbfuckBonus.as";
 		include "../includes/tarkus/edan.as";
+		include "../includes/tarkus/gabilani_LGBT.as";
 		include "../includes/tarkus/goblinPool.as";
 		include "../includes/tarkus/grayGoo.as";
 		include "../includes/tarkus/grayGooArmor.as";
@@ -318,6 +327,7 @@
 		include "../includes/tarkus/stellarTether.as";
 		include "../includes/tarkus/sydianFemale.as";
 		include "../includes/tarkus/sydianMale.as";
+		include "../includes/tarkus/SydianQueenEnc.as";
 		include "../includes/tarkus/taxi.as";
 		include "../includes/tarkus/theMess.as";
 		include "../includes/tarkus/tessa.as";
@@ -403,14 +413,19 @@
 		//FIFTH PLANET: ZHENG SHI
 		include "../includes/zhengShiStation/agroshAndArdia.as";
 		include "../includes/zhengShiStation/boredJumper.as";
+		include "../includes/zhengShiStation/boredJumperExpanded.as";
+		include "../includes/zhengShiStation/boredJumperGangbangs.as";
 		include "../includes/zhengShiStation/forgehound.as";
 		include "../includes/zhengShiStation/maike.as";
+		include "../includes/zhengShiStation/olympia.as";
+		include "../includes/zhengShiStation/punkSecOp.as";
 		include "../includes/zhengShiStation/rooms.as";
 		include "../includes/zhengShiStation/roomFunctions.as";
 		include "../includes/zhengShiStation/rozPowerGoo.as";
-		//include "../includes/zhengShiStation/slyverenSlavebreaker.as";
+		include "../includes/zhengShiStation/slyverenSlavebreaker.as";
 		include "../includes/zhengShiStation/spacewalk.as";
 		include "../includes/zhengShiStation/tivf.as";
+		include "../includes/zhengShiStation/teyaalTheEngineer.as";
 		include "../includes/zhengShiStation/urbolg.as";
 		
 		// Breedwell
@@ -458,6 +473,7 @@
 		include "../includes/uveto/nayna.as";
 		include "../includes/uveto/nenne.as";
 		include "../includes/uveto/nerrasa.as";
+		include "../includes/uveto/nykke.as";
 		include "../includes/uveto/pippa.as"
 		include "../includes/uveto/reasner.as";
 		include "../includes/uveto/rhenworld.as";
@@ -470,8 +486,10 @@
 		include "../includes/uveto/tlako_and_xotchi.as";
 		include "../includes/uveto/tuuvaBlacksmith.as";
 		include "../includes/uveto/ula.as";
+		include "../includes/uveto/vark.as";
 		include "../includes/uveto/vavaGroom.as";
 		include "../includes/uveto/walt.as";
+		include "../includes/uveto/willow.as";
 		
 		include "../includes/chargendata.as";
 		include "../includes/SSTDs/furpies.as";
@@ -582,7 +600,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.200";
+			version = "0.7.218";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -934,7 +952,7 @@
 			
 			// Do GUI stuff with the compareItem string -- can probably mangle a call together a call to addButton() to do the needful
 			// if we have any null arguments at this point rather than throwing an error and shit.
-			userInterface.addItemButton(slot, item.shortName, item.quantity, func, arg, ttHeader, ttBody, comparisonString);
+			userInterface.addItemButton(slot, item.shortName, item.quantity, item.stackSize, func, arg, ttHeader, ttBody, comparisonString);
 		}
 		
 		public function addItemDisabledButton(slot:int, item:ItemSlotClass, ttHeader:String = null, ttBody:String = null, seller:Creature = null, buyer:Creature = null):void
@@ -994,7 +1012,7 @@
 			
 			// Do GUI stuff with the compareItem string -- can probably mangle a call together a call to addButton() to do the needful
 			// if we have any null arguments at this point rather than throwing an error and shit.
-			userInterface.addItemButton(slot, buttonName, 1, func, arg, itemHeader, itemBody, comparisonString);
+			userInterface.addItemButton(slot, buttonName, 1, item.stackSize, func, arg, itemHeader, itemBody, comparisonString);
 		}
 		
 		public function removeButton(slot:int):void
@@ -1632,6 +1650,38 @@
 		public function get ardia():Ardia
 		{
 			return chars["ARDIA"];
+		}
+		public function get emmrfox():EMMrFox
+		{
+			return chars["MRFOX"];
+		}
+		public function get emredd():EMRedd
+		{
+			return chars["REDD"];
+		}
+		public function get emponyluver():EMPonyLuver
+		{
+			return chars["PONYLUVER"];
+		}
+		public function get emsexyydaddyy():EMSexyyDaddyy
+		{
+			return chars["SEXYYDADDYY"];
+		}
+		public function get embountifulbotany():EMBountifulBotany
+		{
+			return chars["BOUNTIFULBOTANY"];
+		}
+		public function get emsneakysnek():EMSneakySnek
+		{
+			return chars["SNEAKYSNEK"];
+		}
+		public function get emripped4yourpleasure():EMRipped4YourPleasure
+		{
+			return chars["RIPPED4YOURPLEASURE"];
+		}
+		public function get emstormdragon():EMStormDragon
+		{
+			return chars["STORMDRAGON"];
 		}
 
 		public function testShipCombat():void

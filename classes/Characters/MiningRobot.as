@@ -183,6 +183,7 @@
 			this.ass.bonusCapacity = 0;
 			
 			this.createStatusEffect("Disarm Immune");
+			this.createStatusEffect("Force It Gender");
 			
 			isUniqueInFight = true;
 			btnTargetText = "M.Rbt";
@@ -250,7 +251,7 @@
 		public function hulkSmashAttack(target:Creature):void
 		{
 			output("The mining drone rears back and comes at you swinging with its non-drill hand, trying to deck you with all the subtle force of a ballistic missile.");
-			if(combatMiss(this, target)) output(" You manage to duck the swing. The robot's fist impacts the cave wall, sending debris showering everywhere!");
+			if(combatMiss(this, target) || target.isPlanted()) output(" You manage to duck the swing. The robot's fist impacts the cave wall, sending debris showering everywhere!");
 			else
 			{
 				var damage:TypeCollection = meleeDamage();

@@ -1056,7 +1056,7 @@ public function threeWayAnno():void
 	processTime(1);
 	annoTalkMenu();
 	removeButton(3);
-	addDisabledButton(3,"Lovers?");
+	addDisabledButton(3,"Lovers?","You just talked about that.");
 }
 
 //Into Girls?
@@ -1072,7 +1072,7 @@ public function intoGirlsAnno():void
 	processTime(1);
 	annoTalkMenu();
 	removeButton(3);
-	addDisabledButton(3,"Lovers?");
+	addDisabledButton(3,"Lovers?","You just talked about that.");
 }
 
 //Into Dickgirls?
@@ -1091,7 +1091,7 @@ public function intoDickgirlsAnno():void
 	processTime(2);
 	annoTalkMenu();
 	removeButton(3);
-	addDisabledButton(3,"Lovers?");
+	addDisabledButton(3,"Lovers?","You just talked about that.");
 }
 
 //How's Business
@@ -1603,8 +1603,9 @@ public function gimmeAGoozooka(buyGoovolverToo:Boolean = false):void
 	clearMenu();
 	
 	// I'm implying that Anno left the sample you gave her loaded into the thing
-	if(pc.hasItemByClass(GrayMicrobots)) addButton(0, "Try on Anno", goozookaRaepsForAnnoButts);
-	else addDisabledButton(0, "Try on Anno", "Try on Anno", "You don’t have an extra gray goo vial to try this weapon!");
+	//if(pc.hasItemByClass(GrayMicrobots)) addButton(0, "Try on Anno", goozookaRaepsForAnnoButts);
+	//else addDisabledButton(0, "Try on Anno", "Try on Anno", "You don’t have an extra gray goo vial to try this weapon!");
+	addButton(0, "Try on Anno", goozookaRaepsForAnnoButts);
 	addButton(14, "Leave", mainGameMenu);
 }
 
@@ -1616,7 +1617,7 @@ public function goozookaRaepsForAnnoButts():void
 
 	// +Mischevious, -1 Goo Sample
 	pc.addMischievous(1);
-	pc.destroyItemByClass(GrayMicrobots, 1);
+	//pc.destroyItemByClass(GrayMicrobots, 1);
 
 	output("When Anno turns to get back to her job, you quietly break open the back of your new goo-launcher and slot in the vial of goo. With a mischievous grin, you level the cannon at Anno’s hind end and flick the button on the computer beside the trigger.");
 
@@ -1694,7 +1695,7 @@ public function firstTimeBackAfterPlanetSplosionsButMetAnnoBefore():void
 	output("\n\nAnno shakes her head, looking out of the shop window to the debris-cluttered corridor. <i>“Sorry. I’m just... I’m glad you’re alright, [pc.name].”</i>");
 	output("\n\nYou fully enter the shop, and ");
 	//if notsex'd anno:
-	if(annoSexed() > 0) output("put a reassuring hand on the ausar girl’s shoulder");
+	if(annoSexed() == 0) output("put a reassuring hand on the ausar girl’s shoulder");
 	else output("sweep Anno up into a tight hug. She goes rigid in your arms a moment, surprised, before relaxing into your embrace");
 	output(". <i>“Thanks.”</i>");
 	output("\n\nShe sighs and sits back behind the counter. <i>“So. Something tells me the planet rush is just about over for Tarkus.”</i>");
@@ -1840,7 +1841,7 @@ public function joinCrewPlanetFineVersion():void
 	output("<i>“So, Anno,”</i> you say, leaning up against the counter. She looks");
 	if (pc.tallness > anno.tallness + 6) output(" up");
 	else if (pc.tallness < anno.tallness - 6) output(" down");
-	output(" at you, ears perking. <i>“What would you saying about leaving this rust bucket behind?”</i>");
+	output(" at you, ears perking. <i>“What would you be saying about leaving this rust bucket behind?”</i>");
 	
 	output("\n\n<i>“What do you mean?”</i> she asks, cocking her head to the side. <i>“Did Corporate finally approve my transfer request?”</i> ");
 	
@@ -1933,7 +1934,7 @@ public function annoTalkAboutDaMission():void
 	
 	output("\n\n<i>“Alright. So what? What’s that got to do with your work?”</i>");
 	
-	output("\n\nAnno fidgets. <i>“Well... I don’t know, honestly. I don’t even know WHY I’m here, except that your dad wanted me here. But I can guess: this ship is human, very, very old, and very, very advanced for what it is. My best guess is that the </i>Nova<i> was a generation ship: basically what we all did before the warp gates came around. Load a bunch of people up in a ship with lots of supplies and catapult them towards a habitable star system. But where’s the crew? The </i>Nova<i> was a ghost ship before it crashed, as far as I can tell: no bodies, nothing. And every computer and databank on the ship is either deadlocked or wiped.");
+	output("\n\nAnno fidgets. <i>“Well... I don’t know, honestly. I don’t even know WHY I’m here, except that your dad wanted me here. But I can guess: this ship is human, very, very old, and very, very advanced for what it is. My best guess is that the </i>Nova<i> was a generation ship: basically what we all did before the warp gates came around. Load a bunch of people up in a ship with lots of supplies and catapult them towards a habitable star system. But where’s the crew? The </i>Nova<i> was a ghost ship before it crashed, as far as I can tell: no bodies, nothing. And every computer and databank on the ship is either deadlocked or wiped.”</i>");
 	
 	output("\n\n<i>“Something </i>happened<i> to the crew, boss. Something bad.”</i>");
 	
@@ -2122,42 +2123,42 @@ public function deck13ArmoryFunc():Boolean
 	{
 		if (flags["ANNO_MISSION_OFFER"] == 2)
 		{
-		clearOutput();
-		author("Savin");
-		
-		output("<i>“An armory? I guess that makes sense on a big ship like this,”</i> Anno says as you approach the door. Unlike most doors on the ship - and across the galaxy - it doesn’t slide out of the way when you step up. You just about hit your face against it.");
-		
-		output("\n\n<i>“Must be bolted from the inside. Mechanical lock, not digital,”</i> she adds while poking at the console beside the door. It refuses to activate. <i>“Sorry, boss, forgot to bring my lockpicks with me. Hmm... hey, check it out,”</i> she says, pointing up.");
-		
-		output("\n\nYour eyes follow her up to the ceiling. And an air vent.");
+			clearOutput();
+			author("Savin");
+			
+			output("<i>“An armory? I guess that makes sense on a big ship like this,”</i> Anno says as you approach the door. Unlike most doors on the ship - and across the galaxy - it doesn’t slide out of the way when you step up. You just about hit your face against it.");
+			
+			output("\n\n<i>“Must be bolted from the inside. Mechanical lock, not digital,”</i> she adds while poking at the console beside the door. It refuses to activate. <i>“Sorry, boss, forgot to bring my lockpicks with me. Hmm... hey, check it out,”</i> she says, pointing up.");
+			
+			output("\n\nYour eyes follow her up to the ceiling. And an air vent.");
 
-		clearMenu();
-		if (pc.tallness < 5 * 12 && !pc.isTaur())
-		{
-			output(" <i>“Think you can get through there, boss? I’ll give you a boost.”</i>");
-			addButton(0, "Get Boost", deck13GetBoosted);
+			clearMenu();
+			if (pc.tallness < 5 * 12 && !pc.isTaur())
+			{
+				output(" <i>“Think you can get through there, boss? I’ll give you a boost.”</i>");
+				addButton(0, "Get Boost", deck13GetBoosted);
+			}
+			else
+			{
+				output(" <i>“Think you could give me a boost up there, boss? I’m small enough; might be able to crawl through and hop down inside.”</i>");
+				addButton(0, "Boost Anno", deck13BoostAnno)
+			}
+
+			if (pc.characterClass == GLOBAL.CLASS_SMUGGLER)
+			{
+				addButton(1, "Pick Locks", deck13ArmoryPickLocks);
+			}
+			else
+			{
+					addDisabledButton(1, "Pick Locks", "Pick Locks", "Smugglers probably carry the kind of tools around for this kinda job...");
+			}
+
+			addButton(14, "Leave", move, "DECK 13 SECURITY CHECKPOINT");
+
+			return true;
 		}
 		else
 		{
-			output(" <i>“Think you could give me a boost up there, boss? I’m small enough; might be able to crawl through and hop down inside.”</i>");
-			addButton(0, "Boost Anno", deck13BoostAnno)
-		}
-
-		if (pc.characterClass == GLOBAL.CLASS_SMUGGLER)
-		{
-			addButton(1, "Pick Locks", deck13ArmoryPickLocks);
-		}
-		else
-		{
-				addDisabledButton(1, "Pick Locks", "Pick Locks", "Smugglers probably carry the kind of tools around for this kinda job...");
-		}
-
-		addButton(14, "Leave", move, "DECK 13 SECURITY CHECKPOINT");
-
-		return true;
-	}
-	else
-	{
 			clearOutput();
 			output("You approach a door beneath a well-worn ‘DECK 13 - ARMORY’ sign. Unlike most of the other doors on the ship - and across the galaxy - it doesn’t slide out of the way when you step up. You just about hit your face against it.");
 			
@@ -2582,7 +2583,7 @@ public function victoryOverGrayPrime():void
 		author("Savin");
 		grayGooDisplay();
 
-		output("<i>“No,”</i> the goo groans, staggering back under your withering barrage of attacks the hail of bullets from Anno’s gun. <i>“No, I can’t... my work is too important. I’ve given everything for this... EVERYTHING. YOU WILL </i>NOT<i> STOP ME! YOU WILL </i>NOT<i>!”</i> the goo screams, suddenly finding her second wind. Goo wriggles forward from the floor and walls, adding itself to her mass, repairing the damage you’ve done to her. She looks as good as new in the blink of an eye.");
+		output("<i>“No,”</i> the goo groans, staggering back under your withering barrage of attacks and the hail of bullets from Anno’s gun. <i>“No, I can’t... my work is too important. I’ve given everything for this... EVERYTHING. YOU WILL </i>NOT<i> STOP ME! YOU WILL </i>NOT<i>!”</i> the goo screams, suddenly finding her second wind. Goo wriggles forward from the floor and walls, adding itself to her mass, repairing the damage you’ve done to her. She looks as good as new in the blink of an eye.");
 		
 		output("\n\n<i>“I will not fall here. Not to you!”</i> the goo says, drawing her sword again.");
 		
@@ -2648,7 +2649,7 @@ public function lossToGrayPrime():void
 	
 	output("\n\nBefore you have a chance to warn her, Anno lets out a high scream as the gray goo surges around her to wrap around her with thick tentacles. Her arms and legs are grabbed first, splaying her out and lifting her off the ground. Another, more slender tentacle breaks off from the rest of the bunch so that it can slither up like a snake towards Anno’s face. She struggles, of course, and writhes in the tentacles’ grasp without finding purchase to escape. Her every movement is easily countermanded by the tentacles’ grasp. ");
 	
-	if (!(pc.meleeWeapon is EmptySlot) && !(pc.meleeWeapon is Rock)) output("\n\nYou move to help, grabbing your [pc.meleeWeapon] and lunging at the tentacle mass growing from the deck");
+	if (pc.hasMeleeWeapon()) output("\n\nYou move to help, grabbing your [pc.meleeWeapon] and lunging at the tentacle mass growing from the deck");
 	else output("\n\nYou move to help and lunge at the tentacle mass growing from the deck");
 	output(" - only for another gray vine to snap at you and throw you back against the far bulkhead. Your world spins, stars exploding in your vision as you slump down to the ground, barely conscious after the massive blow. Through the haze, though, you’re able - if not forced - to watch the tentacles drag Anno through the air, tearing at her catsuit until it’s nothing but shreds hanging from her writhing body. The slender one at her face presses against her lips, not waiting for her to relent but simply pouring through at the microscopic level and slowly forcing her mouth open from the inside. ");
 	
@@ -2659,7 +2660,7 @@ public function lossToGrayPrime():void
 	output("\n\n<i>“It’s a pity you found us,”</i> she says, almost a bit sadly as her tentacles wrap around your wrists, pulling you to your feet - and further still, lifting you up off the deck. <i>“Hm. Some of us don’t want to kill you, it seems. Perhaps you can be still useful.”</i>");
 	
 	output("\n\nYou open your mouth to voice a question, but instead immediately are granted a taste of gray goo: one of the goo-girl’s tentacles rushes forward the moment your lips part, flooding into your mouth. You struggle against the probing tentacle of gray, but it’s relentless, squirming and shifting its shape to slide through no matter how tightly you squeeze your lips and throat. You can feel more tentacles rising, slithering up your [pc.legOrLegs], squirming through your [pc.gear], slowly stripping you down.");
-	if (!(pc.meleeWeapon is Rock) && !(pc.rangedWeapon is Rock)) output(" Your weapons are tossed aside with a flick of a tentacle, contemptuously batted aside into the sea of goo, leaving you defenseless.");
+	if (pc.hasEquippedWeapon()) output(" Your weapons are tossed aside with a flick of a tentacle, contemptuously batted aside into the sea of goo, leaving you defenseless.");
 	output(" You moan around the tentacle in your mouth as a");
 	if (pc.hasVagina() && pc.hasCock())
 	{
@@ -2813,7 +2814,7 @@ public function deck13FinalFormIntro():void
 
 	output("<i>“That’s close enough,”</i> the goo says, wincing");
 	if (flags["GRAY_PRIME_DEFEATED_VIA_HP"] == 2) output(" as if in pain");
-	else output(" at her enlarged, lust-addled bust’s heaving");
+	else output(" as her enlarged, lust-addled bust is heaving");
 	output(" and waving you back with her sword. ")
 
 	output("<i>“I’m sorry... I’m sorry I tried to kill you,”</i> she breathes, unsteadily rising to her feet, leaning heavily against the control panel. <i>“I didn’t... I... I panicked. But I can’t let you stop what I’m doing. I can’t let you.”</i>");

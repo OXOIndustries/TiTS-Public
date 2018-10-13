@@ -277,6 +277,7 @@ public function topicModsSeer():void
 	output("\n\nWhat?");
 	
 	processTime(3);
+	CodexManager.unlockEntry("Mothrine");
 	
 	talkSeerMenu();
 	addDisabledButton(2, "Odd Mods");
@@ -487,7 +488,7 @@ public function yesSexSeer():void
 	pc.maxOutLust();
 	
 	output("You say yes: Although your memory is hazy of the experience, something is compelling you to give in to your and her desires.");
-	output("\n\nHer eyes as wide and as alert as they could possibly be, the Seer pulls you buy the arm to the lounge with an enthusiastic urgency. Without a pause, she’s pushed you into the lounge, turned you towards the table, and told you to strip. Well, if she’s this eager! " + (pc.isNude() ? "You’re actually already prepped but you entertain her strange need for privacy." : "You strip yourself of you [pc.gear] and stash it all under the geometrically patterned table.") + "");
+	output("\n\nHer eyes as wide and as alert as they could possibly be, the Seer pulls you buy the arm to the lounge with an enthusiastic urgency. Without a pause, she’s pushed you into the lounge, turned you towards the table, and told you to strip. Well, if she’s this eager! " + (pc.isNude() ? "You’re actually already prepped but you entertain her strange need for privacy." : "You strip yourself of your [pc.gear] and stash it all under the geometrically patterned table.") + "");
 	output("\n\nThere’s a tap on your shoulder.");
 	output("\n\nAs you turn, you see that same sight that took the breath out of you before...");
 	output("\n\nThe nude, tattooed shopkeeper has her tentacles outstretched, their slick surfaces sliding and twisting together and apart in a frenzy. Her mouth hangs open and her ‘tongue’ undulates and writhes outwards like a semi-sentient entity" + (silly ? " HE SAID IT, HE SAID IT" : "") + ". You can see her E-cup chest heave and bounce as they too unleash their payload of nipple tentacles.");
@@ -542,6 +543,31 @@ public function tentaSeer():void
 	else if (pc.hasCock()) output("\n\nYour [pc.multiCocks] can’t even maintain hardness! Instead of shooting a rope of [pc.cum], it dribbles and leaks out with a painful heat like a slack hose. It forms a [pc.cumVisc] puddle in between your [pc.thighs].");
 	else output("\n\nInside your [pc.pussy], [pc.girlCum] oozes around and then out of your well-fucked hole. The tentacle that threatens to press into your womb makes it impossible to squirt out! The thought of being bred by monstrous limbs almost becomes too much to bear...");
 	output("\n\nThe Seer takes a wobbly step back, her foot leaving your chest and her squirming tendrils sliding ever so slowly out of the various holes in your body. As soon as her alien tentacles leave you, watery fluids leak and burble from your [pc.lips]" + (pc.hasVagina() ? ", [pc.pussy]" : "") + " and [pc.asshole]. You can’t even think to clear it away, so absolutely burned out is your body.");
+	
+	var ppEntite:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!ppEntite.hasCock()) ppEntite.createCock();
+	ppEntite.shiftCock(0, GLOBAL.TYPE_TENTACLE);
+	ppEntite.cocks[0].cockColor = "purple";
+	ppEntite.cocks[0].cLengthRaw = 18;
+	ppEntite.cumType = GLOBAL.FLUID_TYPE_CUM;
+	ppEntite.createPerk("Fixed CumQ", 1000, 0, 0, 0);
+	
+	if(pc.hasCock())
+	{
+		pc.cockChange();
+	}
+	if(pc.hasVagina())
+	{
+		for(var v:int = 0; v < pc.vaginas.length; v++)
+		{
+			pc.cuntChange(v, ppEntite.cockVolume(0));
+			pc.loadInCunt(ppEntite, v);
+		}
+	}
+	pc.buttChange(ppEntite.cockVolume(0));
+	pc.loadInAss(ppEntite);
+	pc.loadInMouth(ppEntite);
+	
 	output("\n\n<i>More</i>");
 	output("\n\nMm... more?");
 	

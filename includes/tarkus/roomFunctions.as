@@ -72,6 +72,15 @@ public function bonusFunction213():Boolean
 	return false;
 }
 
+public function novahomeGangplankBonus():Boolean
+{
+	if(flags["TARKUS_DESTROYED"] == undefined)
+	{
+		encounterSandWormOptions(0);
+	}
+	return false;
+}
+
 /*
 public function novaShipHangarElevator():Boolean
 {
@@ -214,30 +223,23 @@ public function rustPlainsEncounters():Boolean {
 	if(flags["RUST_STEP"] == undefined) flags["RUST_STEP"] = 1;
 	else flags["RUST_STEP"]++;
 	
-	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
 	if(flags["RUST_STEP"] >= 5 && rand(3) == 0) {
 		//Reset step counter
 		flags["RUST_STEP"] = 0;
 		
-		if(!pc.hasStatusEffect("Lapinara Prophylactic")) choices[choices.length] = encounterALapinara;
-		if(!pc.hasStatusEffect("Lapinara Prophylactic")) choices[choices.length] = encounterALapinara;
-		choices[choices.length] = encounterALapinara;
-		if(!pc.hasStatusEffect("Raskvel Prophylactic")) choices[choices.length] = encounterHostileRaskvelFemale;
-		if(!pc.hasStatusEffect("Raskvel Prophylactic")) choices[choices.length] = encounterHostileRaskvelFemale;
-		choices[choices.length] = encounterHostileRaskvelFemale;
-		if(!pc.hasStatusEffect("Raskvel Prophylactic")) choices[choices.length] = raskvelGangEncounter;
-		if(!pc.hasStatusEffect("Raskvel Prophylactic")) choices[choices.length] = raskvelGangEncounter;
-		choices[choices.length] = raskvelGangEncounter;
+		var e:Array = [];
+		
+		e.push( { v: encounterALapinara, w: pc.hasStatusEffect("Lapinara Prophylactic") ? 1 : 3 } );
+		e.push( { v: encounterHostileRaskvelFemale, w: pc.hasStatusEffect("Raskvel Prophylactic") ? 1 : 3 } );
+		e.push( { v: raskvelGangEncounter, w: pc.hasStatusEffect("Raskvel Prophylactic") ? 1 : 3 } );
 		//If not disabled.
-		if(chaurmineAtWastes())
-		{
-			choices.push(encounterChaurmine);
-			if(rand(2) == 0) choices.push(encounterChaurmine);
-		}
+		if(chaurmineAtWastes()) e.push( { v: encounterChaurmine, w: 1 + rand(2) } );
+		
+		if(encounterSandWormChance()) e.push( { v: encounterSandWorm, w: 1 } );
 
 		//Run the event
-		choices[rand(choices.length)]();
+		weightedRand(e)();
 		return true;
 	}
 	if(bonusTubeSteakRepeat()) return true;
@@ -250,7 +252,6 @@ public function rustCoastEncounters():Boolean {
 	if(flags["RUST_STEP"] == undefined) flags["RUST_STEP"] = 1;
 	else flags["RUST_STEP"]++;
 	
-	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
 	if(flags["RUST_STEP"] >= 5 && rand(3) == 0) {
 		//Reset step counter
@@ -260,15 +261,18 @@ public function rustCoastEncounters():Boolean {
 		
 		e.push( { v: encounterMaleSydian, w: pc.hasStatusEffect("Sydian Prophylactic") ? 1 : 3 } );
 		e.push( { v: encounterFemaleSydian, w: pc.hasStatusEffect("Sydian Prophylactic") ? 1 : 3 } );
-		
 		e.push( { v: encounterDasGooGray, w: 3 } );
 		
 		if (flags["ZODEE_GALOQUEST"] == undefined) e.push( { v: zodeeGivesFirstGalomax, w: 1 } );
 		if (flags["ZODEE_GALOQUEST"] == 1) e.push( { v: secondZodeeEncouonterForGaloMax, w: 1 } );
 
+		if(pc.level >= 5) e.push ( { v: encounterLGBT, w: 2 } );
+
 		//If not disabled.
 		if(chaurmineAtWastes()) e.push( { v: encounterChaurmine, w: 1 + rand(2) } );
-	
+		
+		if(encounterSandWormChance()) e.push( { v: encounterSandWorm, w: 1 } );
+		
 		//Run the event
 		weightedRand(e)();
 		return true;
@@ -281,9 +285,13 @@ public function rustCoastEncounters():Boolean {
 public function rustRidgesEncounters():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["RUST_STEP"] == undefined) flags["RUST_STEP"] = 1;
-	else flags["RUST_STEP"]++;
 	
-	var choices:Array = new Array();
+	if(flags["AZRA_TARKUSED"] == 1 && flags["SYDIAN_QUEEN_STAGE"] != 5 && InCollection(currentLocation,["241","242","243","244"]) && !pc.hasStatusEffect("Sydian Queen Cooldown") && rand(2) == 0)
+	{
+		eventQueue.push(sydianQueenIntroRedux);
+	}
+	else flags["RUST_STEP"]++;
+
 	//If walked far enough w/o an encounter
 	if(flags["RUST_STEP"] >= 5 && rand(3) == 0) {
 		//Reset step counter
@@ -304,7 +312,9 @@ public function rustRidgesEncounters():Boolean {
 		if (flags["ZODEE_GALOQUEST"] == 1) e.push( { v: secondZodeeEncouonterForGaloMax, w: 1 } );
 		//If not disabled.
 		if(chaurmineAtWastes()) e.push( { v: encounterChaurmine, w: 1 + rand(2) } );
-
+		
+		if(encounterSandWormChance()) e.push( { v: encounterSandWorm, w: 1 } );
+		
 		//Run the event
 		weightedRand(e)();
 		return true;
@@ -318,22 +328,21 @@ public function rustScytheGladeEncounters():Boolean {
 	if(flags["RUST_STEP"] == undefined) flags["RUST_STEP"] = 1;
 	else flags["RUST_STEP"]++;
 	
-	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
 	if(flags["RUST_STEP"] >= 5 && rand(3) == 0) {
 		//Reset step counter
 		flags["RUST_STEP"] = 0;
 		
-		if(flags["SEXBOT_FACTORY_DISABLED"] == undefined) choices[choices.length] = encounterASexBot;
-		if(flags["SEXBOT_FACTORY_DISABLED"] == undefined) choices[choices.length] = encounterASexBot;
-		if(flags["SEXBOT_FACTORY_DISABLED"] == undefined || rand(2) == 0) choices[choices.length] = encounterASexBot;
-		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
-		choices[choices.length] = encounterDasGooGray;
-		choices[choices.length] = encounterDasGooGray;
-		choices[choices.length] = encounterDasGooGray;
+		var e:Array = [];
+		
+		if(flags["SEXBOT_FACTORY_DISABLED"] == undefined)
+		{
+			e.push( { v: encounterASexBot, w: 2 + rand(2) } );
+		}
+		e.push( { v: encounterDasGooGray, w: 3 } );
 
 		//Run the event
-		choices[rand(choices.length)]();
+		weightedRand(e)();
 		return true;
 	}
 	return false;
