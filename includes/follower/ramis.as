@@ -945,7 +945,7 @@ public function ramisLetsShagRouter():void
 		{
 			output("With a flirty smile and a little shimmy of the hips, you ask if she fancies a bit of fun.");
 			output("\n\n<i>“Ooh, aren’t you a saucy one!”</i> Ramis replies, laughing. She eyes you with a fond smile. <i>“I’m flattered you want to get in my pants’n all captain, but you aren’t really my type.");
-			if (pc.femininity <= 50) output(" I’m not into girlees. Full girlees, anyway. Sissy boys - that’s different.");
+			if (pc.hasCock()) output(" I’m not into girlees. Full girlees, anyway. Sissy boys - that’s different.");
 			else output(" You’re fit’n all, but I kinda need a bit’ve meat with my supper, y’know? Hopen you get what I mean. You’d be right up my street with somethen between your thighs.");
 			output("”</i> She wiggles one claw next to her ear, one near her mouth. <i>“Call me if you ever eat somethen out on one of them uncharted planets that turns you into a cute boy, though. I could be persuaded then...”</i>");
 		}
