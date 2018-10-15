@@ -168,8 +168,8 @@ public function amberComeWithTalkFuckHer():void
 	pc.cockChange();
 	
 	output("\n\n<i>“Ohhoohhh </i>fuck<i>! Harder! Fuck me harderrr!”</i> she screams, throwing her head back and squeezing her own ripe breasts.");
-	output("\n\nYou’ve hardly started and she’s already squeezing down on you, ready to cum at the slightest provocation. Between that and your willingness to indulge her erotic desire to be fucked as hard as possible it doesn’t take long until she’s screaming herself hoarse in bliss, forelegs bowed and her cock noisily spewing cum across the ground of the M’hengan jungle. She’s always been an easy partner, cumming with the most minor of attentions, and now is anything but an exception.");
-	output("\n\nYou hammer her hard enough to tip her front half over, her strong hindlegs keeping her slick, spasming pussy in air for you to fuck while she claws at the dirt and shrieks in ecstasy. By the time you cum yourself, exploding into her depths while her undulating walls milk you for your seed, she’s almost run dry. A few last ropes shoot from the end of her shaking horsecock, joining the expansive pool of jizz pooling under her. When you withdraw from her well-satisfied cunt, your own spunk drips down her behind and spatters across her balls, a more manageable size by now.");
+	output("\n\nYou’ve hardly started and she’s already squeezing down on you, ready to cum at the slightest provocation. Between that and your willingness to indulge her erotic desire to be fucked as hard as possible it doesn’t take long until she’s screaming herself hoarse in bliss, forelegs bowed and her cock noisily spewing cum across the ground of the Mhen’gan jungle. She’s always been an easy partner, cumming with the most minor of attentions, and now is anything but an exception.");
+	output("\n\nYou hammer her hard enough to tip her front half over, her strong hindlegs keeping her slick, spasming pussy in the air for you to fuck while she claws at the dirt and shrieks in ecstasy. By the time you cum yourself, exploding into her depths while her undulating walls milk you for your seed, she’s almost run dry. A few last ropes shoot from the end of her shaking horsecock, joining the expansive pool of jizz pooling under her. When you withdraw from her well-satisfied cunt, your own spunk drips down her behind and spatters across her balls, a more manageable size by now.");
 	
 	processTime(10);
 	//fuck her cunt, she came, skip change
@@ -296,7 +296,7 @@ public function amberComeWithTalkHug():void
 	output("\n\n<i>“And my name is Amber,”</i> she continues, expression softening into a smile. <i>“Well, that’s just what I chose for myself, anyway. I thought it was nice.”</i>");
 	output("\n\n<i>“Amber, huh?”</i> you say, nodding. <i>“It’s a nice name. You know, there’s a Terran myth that claims amber is produced by the sun. Poetic, right?”</i>");
 	output("\n\n<i>“Yes!”</i>she says, pleased. <i>“It has a lot of ties to the sun, and, well, that was kinda who I wanted to be, y’know? The shining sun...”</i>");
-	output("\n\nShe trails off, looking at the sky of M’henga and for a moment you wonder if you should start talking about your space adventures again. When she looks back at you, though, she’s wearing an expression of contentment. <i>“Thank you. For everything. Maybe... maybe one day I can really be that person.”</i>");
+	output("\n\nShe trails off, looking at the sky of Mhen’ga and for a moment you wonder if you should start talking about your space adventures again. When she looks back at you, though, she’s wearing an expression of contentment. <i>“Thank you. For everything. Maybe... maybe one day I can really be that person.”</i>");
 	output("\n\n<i>“I think you’re doing great already,”</i> you tell her, leaning in to give her a kiss on the cheek. You can feel Amber’s eyes widen a little at the touch of your lips, but she doesn’t shy away. Instead, she smiles a little wider than before and squeezes your hand.");
 	output("\n\nBy the time she boards your ship she’s in high spirits, listening intently while you regale her with the tall tales of your interplanetary travel and laughing whenever you point out some quaint peculiarity of the inhabitants. You’ve successfully distracted Amber from her reasons to cry, for now. It’d be a good idea to keep her company every so often just to make sure she’s doing okay.");
 	//if have current crew members, true returns count while false is for description and button creation, in game.as
@@ -744,7 +744,7 @@ public function amberOnshipTalkPast():void
 		}
 		output(" Amber listens with rapt attentiveness as you detail the gritty details of space exploration, then finish up with what started your journey.");
 		
-		output("\n\n<i>“So you started from a planet called Tavros and made your way to M’henga?”</i> she asks.");
+		output("\n\n<i>“So you started from a planet called Tavros and made your way to Mhen’ga?”</i> she asks.");
 		output("\n\n<i>“Yeah. It was pretty much my first stop!”</i> you say.");
 		if(flags["MHENGA_PROBE_CASH_GOT"] != undefined || flags["DIDNT_ENGAGE_RIVAL_ON_MHENGA"] != undefined || flags["LOST_TO_DANE_ON_MHENGA"] != undefined) output(" <i>“One of his probes was there, after all. Had to wade through the jungle to get it.”</i>");
 		else output(" <i>“One of his probes is there, after all.”</i>");
@@ -945,7 +945,7 @@ public function amberOnshipTalkFamily():void
 		output("\n\nYou don’t think for a second she’s telling the truth about that, but there’s no sense in talking about it. Even your worst run-ins with " + chars["RIVAL"].mf("Jack","Jill") + " don’t compare to not having a family at all.");
 		output("\n\n<i>“So you banded together with your friends,”</i> you say.");
 		output("\n\n<i>“Right,”</i> Amber says, smiling. <i>“Tight-knit little bunch, we were. Running around causing trouble. We didn’t have much, but kids are inventive.”</i>");
-		output("\n\n<i>“So what happened?”</i> you ask. <i>“How did you end up on M’henga all alone?”</i>");
+		output("\n\n<i>“So what happened?”</i> you ask. <i>“How did you end up on Mhen’ga all alone?”</i>");
 		output("\n\n<i>“Ah,”</i> she replies, smirking. <i>“Thanks to bureaucracy.”</i>");
 		output("\n\n<i>“I mean, I’ve seen enough of it to believe that,”</i> you sigh.");
 		output("\n\n<i>“Ha!”</i> Amber says, snickering. <i>“Well, after a few years - maybe ten, or something - the UGC decided to respond to, in their words, an ongoing humanitarian crisis. They arrived in gigantic ships, taking everyone off planet. Everyone who wanted to go, anyway.”</i>");

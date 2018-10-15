@@ -304,7 +304,7 @@ public function stickItInZeCatgirlCoochWhileSheThinksYerKaska():void
 	output("She asked for it! You fumble with your [pc.gear], pulling it off piece by piece until you’re able to flop your [pc.cock " + x + "] down onto the arch of Tam’s back. She gasps happily as your prick drops down, and her tails quickly catch and wrap it, both wriggling, fuzzy lengths curling around your [pc.cock " + x + "] until it’s just a great big fuzzy package. She’s got remarkable control over those tails of hers, and with a wiggle of her booty she puts them to use massaging your prick, squeezing just enough to make you moan.");
 	output("\n\n<i>“Still your favorite, right chief?”</i> Tam giggles, rubbing her butt against the sheathed underside of your prick. <i>“Double kaithrit tail-job... maybe I’ll let you stick it in for a scratch between the ears?”</i>");
 	output("\n\nHer cat ears perk up expectantly, tails squeezing hard around your shaft as encouragement until you finally reach up and give the puss what she wants. Tam purrs throatily as your fingers work through her bright pink hair, getting at that wonderfully sensitive spot right between her perky cat-ears. Her hips press back against your crotch, grinding up against you as her twin tails slowly release your rod, letting you enjoy the warm, wet feeling of her sex rubbing against your [pc.cock " + x + "], so close to penetration that any errant movement would send you deep into the cat-girl’s eager box.");
-	output("\n\n<i>“You’re clear for landing, Kaska,”</i> Tam purrs, wiggling her flared hips up your shaft, until the crown of your cock is kissing the lips of her pussy. Tam bits her lip, back arching as she purrs and moans, readying herself for you. You’re more than happy to make up the difference: grabbing Tam’s hips, you thrust in, one long, smooth motion until you’re ");
+	output("\n\n<i>“You’re clear for landing, Kaska,”</i> Tam purrs, wiggling her flared hips up your shaft, until the crown of your cock is kissing the lips of her pussy. Tam bites her lip, back arching as she purrs and moans, readying herself for you. You’re more than happy to make up the difference: grabbing Tam’s hips, you thrust in, one long, smooth motion until you’re ");
 	// How the fuck did this used to work then??!?! Foes[0] was never set to anything specific prior to this point afaik!
 	if (pc.cockVolume(x) <= 24) output("buried to the hilt");
 	
@@ -2068,17 +2068,18 @@ public function victoryKaskaDicksex(jail:Boolean = false):void
 	output("\n\nYou thrust in, bottoming out. Your mind may not know what to do with the avalanche of sensory data, but your body responds on autopilot.");
 	if(pc.balls > 0) output(" Your [pc.balls] clench.");
 	output(" [pc.EachCock] grows as hard as an iron bar, visibly swelling with every beat of your hammering heart. The warm contractions of your release build in your mid-section, and in one glorious moment, you explode, spurting ");
-	if(pc.cumQ() < 8) output("a few meager drops from your [pc.cocks]");
-	else if(pc.cumQ() < 25) output("your release from your [pc.cocks]");
-	else if(pc.cumQ() < 100) output("long ropes of pleasure from your [pc.cocks]");
-	else if(pc.cumQ() < 1000) output("huge blobs of goo from your [pc.cocks]");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 8) output("a few meager drops from your [pc.cocks]");
+	else if(cumQ < 25) output("your release from your [pc.cocks]");
+	else if(cumQ < 100) output("long ropes of pleasure from your [pc.cocks]");
+	else if(cumQ < 1000) output("huge blobs of goo from your [pc.cocks]");
 	else
 	{
 		output("tremendous blasts of release from your [pc.cocks]");
 	}
 	output(" into Kaska’s spunk-holster");
-	if(pc.cumQ() >= 250 && pc.cumQ() < 3000) output(", packing it full");
-	else if(pc.cumQ() >= 3000) 
+	if(cumQ >= 250 && cumQ < 3000) output(", packing it full");
+	else if(cumQ >= 3000) 
 	{
 		if(!pc.hasKnot(x)) output(", flooding it with so much [pc.cum] that the excess pours down the backside of her balls in a waterfall");
 		else output(", flooding it with so much [pc.cum] that you can feel the pressure pushing back against the knot you’ve locked inside her");
@@ -2089,7 +2090,7 @@ public function victoryKaskaDicksex(jail:Boolean = false):void
 	if(pc.hasKnot(x)) output("with an audible pop ");
 	output("to examine your work. The once-mighty pirate is a blubbering wreck, still quivering in the aftershocks of her pleasure. She glistens with sweat and pants for breath, reduced to a quivering puddle of sex.");
 	if(!jail) output(" Slowly drifting up, her limp body floats in the zero-G atmosphere. The spunk she had been shooting, unnoticed until now, bubbles and swirls around her, though a residue of white lines the box she had been pressed against.");
-	else output(" And what a deep puddle it is! The stuff they’ve given her to enlarge her penis has increased her virility commensurately, ensuring that someone is going to have to come clean this place with a mop.")
+	else output(" And what a deep puddle it is! The stuff they’ve given her to enlarge her penis has increased her virility commensurately, ensuring that someone is going to have to come clean this place with a mop.");
 	if(!jail)
 	{
 		if(silly) output("\n\n It seems you both managed to cream two boxes today.");
@@ -2117,6 +2118,8 @@ public function victoryKaskaDicksex(jail:Boolean = false):void
 	{
 		IncrementFlag("KASKA_PRISONED");
 		output("\n\nAs you gather your stuff and prepare to leave, Kaska dazedly stuffs her still-leaking crown in her mouth and starts jacking herself toward a second orgasm. That answers where she got so good at cock-sucking.");
+		processTime(19);
+		pc.orgasm();
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
