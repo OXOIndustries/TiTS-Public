@@ -759,7 +759,7 @@ public function initZhengRooms():void
 	//O12 BENDING\nTRACK
 	rooms["ZSM O12"] = new RoomClass(this);
 	rooms["ZSM O12"].roomName = "BENDING\nTRACK";
-	rooms["ZSM O12"].description = "A portable climate control unit sits cockeyed against the wall, belching out a torrent of ice-cold air. The power cell’s indicator flashes red, almost spent. Discarded cups fan in a semi-circle around it, left behind by a long-ago hydration break. Every now and then and a cart loaded with minerals races by on the roof-mounted track, travelling northward. The tunnel also twists east toward the source of the carts.";
+	rooms["ZSM O12"].description = "A portable climate control unit sits cockeyed against the wall, belching out a torrent of ice-cold air. The power cell’s indicator flashes red, almost spent. Discarded cups fan in a semi-circle around it, left behind by a long-ago hydration break. Every now and then and a cart loaded with minerals races by on the roof-mounted track, traveling northward. The tunnel also twists east toward the source of the carts.";
 	rooms["ZSM O12"].planet = "ZHENG SHI STATION";
 	rooms["ZSM O12"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM O12"].northExit = "ZSM O10";
@@ -1465,7 +1465,7 @@ public function initZhengRooms():void
 	rooms["ZSF G14"].southExit = "ZSF G16";
 	rooms["ZSF G14"].westExit = "";
 	rooms["ZSF G14"].moveMinutes = 3;
-	rooms["ZSF G14"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
+	rooms["ZSF G14"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF G14"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF G14"].addFlag(GLOBAL.HAZARD);
 
@@ -1479,7 +1479,7 @@ public function initZhengRooms():void
 	rooms["ZSF G12"].southExit = "ZSF G14";
 	rooms["ZSF G12"].westExit = "ZSF E12";
 	rooms["ZSF G12"].moveMinutes = 3;
-	rooms["ZSF G12"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
+	rooms["ZSF G12"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF G12"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF G12"].addFlag(GLOBAL.HAZARD);
 
@@ -1493,7 +1493,7 @@ public function initZhengRooms():void
 	rooms["ZSF I12"].southExit = "";
 	rooms["ZSF I12"].westExit = "ZSF G12";
 	rooms["ZSF I12"].moveMinutes = 3;
-	rooms["ZSF I12"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
+	rooms["ZSF I12"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF I12"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF I12"].addFlag(GLOBAL.HAZARD);
 
@@ -1507,7 +1507,7 @@ public function initZhengRooms():void
 	rooms["ZSF K12"].southExit = "";
 	rooms["ZSF K12"].westExit = "ZSF I12";
 	rooms["ZSF K12"].moveMinutes = 3;
-	rooms["ZSF K12"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
+	rooms["ZSF K12"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF K12"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF K12"].addFlag(GLOBAL.HAZARD);
 
@@ -1521,7 +1521,7 @@ public function initZhengRooms():void
 	rooms["ZSF M12"].southExit = "";
 	rooms["ZSF M12"].westExit = "ZSF K12";
 	rooms["ZSF M12"].moveMinutes = 3;
-	rooms["ZSF M12"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
+	rooms["ZSF M12"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF M12"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF M12"].addFlag(GLOBAL.HAZARD);
 
@@ -1535,7 +1535,7 @@ public function initZhengRooms():void
 	rooms["ZSF M10"].southExit = "ZSF M12";
 	rooms["ZSF M10"].westExit = "";
 	rooms["ZSF M10"].moveMinutes = 3;
-	rooms["ZSF M10"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
+	rooms["ZSF M10"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF M10"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF M10"].addFlag(GLOBAL.HAZARD);
 
@@ -1549,7 +1549,7 @@ public function initZhengRooms():void
 	rooms["ZSF M8"].southExit = "ZSF M10";
 	rooms["ZSF M8"].westExit = "";
 	rooms["ZSF M8"].moveMinutes = 3;
-	rooms["ZSF M8"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
+	rooms["ZSF M8"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF M8"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF M8"].addFlag(GLOBAL.HAZARD);
 
@@ -1567,7 +1567,7 @@ public function initZhengRooms():void
 	rooms["ZSF M6"].outExit = "";
 	rooms["ZSF M6"].outText = "Down";
 	rooms["ZSF M6"].moveMinutes = 3;
-	rooms["ZSF M6"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
+	rooms["ZSF M6"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF M6"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF M6"].addFlag(GLOBAL.HAZARD);
 
@@ -1581,7 +1581,7 @@ public function initZhengRooms():void
 	rooms["ZSF K6"].southExit = "";
 	rooms["ZSF K6"].westExit = "ZSF I6";
 	rooms["ZSF K6"].moveMinutes = 3;
-	rooms["ZSF K6"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
+	rooms["ZSF K6"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF K6"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF K6"].addFlag(GLOBAL.HAZARD);
 
@@ -1595,7 +1595,7 @@ public function initZhengRooms():void
 	rooms["ZSF I6"].southExit = "ZSF I8";
 	rooms["ZSF I6"].westExit = "ZSF G6";
 	rooms["ZSF I6"].moveMinutes = 3;
-	rooms["ZSF I6"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
+	rooms["ZSF I6"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF I6"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF I6"].addFlag(GLOBAL.HAZARD);
 
@@ -1609,7 +1609,7 @@ public function initZhengRooms():void
 	rooms["ZSF G6"].southExit = "";
 	rooms["ZSF G6"].westExit = "ZSF E6";
 	rooms["ZSF G6"].moveMinutes = 3;
-	rooms["ZSF G6"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
+	rooms["ZSF G6"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF G6"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF G6"].addFlag(GLOBAL.HAZARD);
 
@@ -1627,7 +1627,7 @@ public function initZhengRooms():void
 	rooms["ZSF E6"].outExit = "";
 	rooms["ZSF E6"].outText = "Down";
 	rooms["ZSF E6"].moveMinutes = 3;
-	rooms["ZSF E6"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
+	rooms["ZSF E6"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF E6"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF E6"].addFlag(GLOBAL.HAZARD);
 
@@ -1641,7 +1641,7 @@ public function initZhengRooms():void
 	rooms["ZSF E8"].southExit = "ZSF E10";
 	rooms["ZSF E8"].westExit = "";
 	rooms["ZSF E8"].moveMinutes = 3;
-	rooms["ZSF E8"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
+	rooms["ZSF E8"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF E8"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF E8"].addFlag(GLOBAL.HAZARD);
 
@@ -1655,7 +1655,7 @@ public function initZhengRooms():void
 	rooms["ZSF E10"].southExit = "ZSF E12";
 	rooms["ZSF E10"].westExit = "";
 	rooms["ZSF E10"].moveMinutes = 3;
-	rooms["ZSF E10"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
+	rooms["ZSF E10"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF E10"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF E10"].addFlag(GLOBAL.HAZARD);
 
@@ -1669,7 +1669,7 @@ public function initZhengRooms():void
 	rooms["ZSF E12"].southExit = "";
 	rooms["ZSF E12"].westExit = "";
 	rooms["ZSF E12"].moveMinutes = 3;
-	rooms["ZSF E12"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
+	rooms["ZSF E12"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF E12"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF E12"].addFlag(GLOBAL.HAZARD);
 
@@ -1683,7 +1683,7 @@ public function initZhengRooms():void
 	rooms["ZSF I10"].southExit = "ZSF I12";
 	rooms["ZSF I10"].westExit = "";
 	rooms["ZSF I10"].moveMinutes = 3;
-	rooms["ZSF I10"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
+	rooms["ZSF I10"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF I10"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF I10"].addFlag(GLOBAL.HAZARD);
 
@@ -1697,7 +1697,7 @@ public function initZhengRooms():void
 	rooms["ZSF I8"].southExit = "ZSF I10";
 	rooms["ZSF I8"].westExit = "";
 	rooms["ZSF I8"].moveMinutes = 3;
-	rooms["ZSF I8"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
+	rooms["ZSF I8"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF I8"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF I8"].addFlag(GLOBAL.HAZARD);
 
@@ -1711,7 +1711,7 @@ public function initZhengRooms():void
 	rooms["ZSF E16"].southExit = "";
 	rooms["ZSF E16"].westExit = "ZSF C16";
 	rooms["ZSF E16"].moveMinutes = 3;
-	rooms["ZSF E16"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
+	rooms["ZSF E16"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF E16"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF E16"].addFlag(GLOBAL.HAZARD);
 
@@ -1725,7 +1725,7 @@ public function initZhengRooms():void
 	rooms["ZSF C16"].southExit = "";
 	rooms["ZSF C16"].westExit = "";
 	rooms["ZSF C16"].moveMinutes = 3;
-	rooms["ZSF C16"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
+	rooms["ZSF C16"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF C16"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF C16"].addFlag(GLOBAL.HAZARD);
 
