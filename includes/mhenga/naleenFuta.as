@@ -420,6 +420,6 @@ public function leaveDatSnakeHerm():void
 {
 	clearOutput();
 	showNaleenFuta((enemy.lust() >= enemy.lustMax()));
-	output("You put your [pc.weapon] away and walk away. You hear a hiss from behind you, but when you turn to look there’s nothing there anymore. Seems like she took the first opportunity to get away.\n\n");
+	output("You put your [pc.weapon] back and walk away. You hear a hiss from behind you, but when you turn to look there’s nothing there anymore. Seems like she took the first opportunity to get out of sight.\n\n");
 	CombatManager.genericVictory();
 }

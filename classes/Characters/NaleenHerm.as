@@ -300,7 +300,7 @@
 				target.reflexesMod -= 4;
 				target.aimMod -= 4;
 				//Doing this as an out of combat status effect so the over time removal procs and can add the stuff back in. Pretty sure post combat purge doesn't allow for adjusting stuff. Might be something I need to do...
-				target.createStatusEffect("Bottled Poison",4,0,0,0,false,"Icon_Poison","You've been struck by naleen poison, reducing physique, aim, and reflexes by 4!",false,4,0xFF0000);
+				target.createStatusEffect("Bottled Poison",4,0,0,0,false,"Icon_Poison","You’ve been struck by naleen poison, reducing physique, aim, and reflexes by 4!",false,4,0xFF0000);
 			}
 		}
 		//Melee counter
@@ -320,10 +320,11 @@
 		//powerful healing but gives lust and can be used once per combat. Used only at under 25% health
 		public function panicJOHealing(target:Creature):void
 		{
-			output("She pulls one of the vials from her bicep before knocking back the liquid. The liquid affects her immediately as energy floods her system, giving her the strength to carry on the fight, but energy is not the only thing that floods her system as her two dicks spring to life and start to drool clear pre. (+" + Math.round(this.HPMax()*0.5) + " HP)");
+			var heal:Number = Math.round(this.HPMax()*0.5);
+			output("She pulls one of the vials from her bicep before knocking back the liquid. The liquid affects her immediately as energy floods her system, giving her the strength to carry on the fight, but energy is not the only thing that floods her system as her two dicks spring to life and start to drool clear pre. (+" + heal + " HP)");
 			this.createStatusEffect("Healed");
 			this.lust(20);
-			this.HP(Math.round(this.HPMax()*0.5));
+			this.HP(heal);
 		}
 	}
 }
