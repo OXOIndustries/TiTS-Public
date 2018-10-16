@@ -4564,6 +4564,8 @@ public function giannaXAnnoThreesomeGo3(x:int):void
 	//Merge
 	processTime(15);
 	pc.orgasm();
+	pc.applyPussyDrenched();
+	sweatyDebuff(2);
 	clearMenu();
 	addButton(0,"Next",giannaXAnnoThreesomeGo4, x);
 }

@@ -83,6 +83,7 @@ public function annoFollowerHeader(nude:Boolean = false):void
 
 public function annoThreeWayed():Boolean
 {
+	if(flags["GIANNA_X_ANNO_3SUM"] != undefined) return true;
 	if(flags["UVETO_HUSKAR_FOURSOME"] == 1) return true;
 	if(flags["ANNO_X_KAEDE_THREESOMED"] != undefined) return true;
 	return false;

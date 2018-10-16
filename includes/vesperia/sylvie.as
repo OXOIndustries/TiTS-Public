@@ -2973,8 +2973,10 @@ public function sylvieTriesHerDongerOn3():void
 	output("\n\n<i>“That was </i>amazi-<i> ooh, jeez, that’s why they called me Six Gallon Sylvie! I guess it might be more like 55 Gallon Sylvie now, or something! Lemme clean you up.”</i>");
 	output("\n\nTo her credit, she does a very good job of cleaning off and massaging your mostly insensate body until you come back to your senses. Nattering away happily about how much fun this was while rubbing your shoulders, she fills your head with gleeful promises pertaining to what she’ll do with her cock next time. None of your holes escape mention, but she seems open to being on the receiving end too. She leaves you relaxing in the baths alone, citing a need to see the doctor and see exactly what’s going on.");
 	processTime(30);
+	var ppSylvie:PregnancyPlaceholder = sylviePP();
+	pc.loadInAss(ppSylvie);
+	pc.loadInMouth(ppSylvie);
 	pc.orgasm();
-	pc.loadInAss(sylviePP());
 	//next page
 	clearMenu();
 	addButton(0,"Next",sylvieTriesHerDongerOn4);
