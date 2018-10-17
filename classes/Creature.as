@@ -7516,6 +7516,7 @@
 						case GLOBAL.TYPE_GOAT: adjectives = ["goat", "goat", "caprine", "goat-like"]; break;
 						case GLOBAL.TYPE_SIMII: adjectives = ["simii", "simian", "simiiforme", "monkey-like"]; break;
 						case GLOBAL.TYPE_MOTHRINE: adjectives = ["slender", "svelte", "graceful", "insect-like", "carapace-covered"]; break;
+						case GLOBAL.TYPE_MOUSE: adjectives = ["mouse-like", "agile", "mousey", "limber"]; break;
 					}
 				}
 				//ADJECTIVE!

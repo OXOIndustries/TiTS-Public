@@ -55,7 +55,14 @@ package classes.Engine.Combat
 		if (attacker != null && (special == "ranged" || special == "melee"))
 		{
 			var crittyBonus:Number = 0;
-			if(attacker.hasPerk("Giant Slayer") && target.tallness >= (7*12)) crittyBonus += 5;
+			if(attacker.hasPerk("Giant Slayer"))
+			{
+				var tallnessLimit:Number = attacker.statusEffectv1("Giant Slayer");
+				if(tallnessLimit == 0) tallnessLimit = 7*12;
+				var crittyness:Number = attacker.statusEffectv2("Giant Slayer");
+				if(crittyness == 0) crittyness = 5;
+				if(target.tallness >= tallnessLimit) crittyBonus += crittyness;
+			}
 
 			if(target.hasStatusEffect("Deep Freeze") && baseDamage.hasFlag(DamageFlag.CRUSHING))
 			{

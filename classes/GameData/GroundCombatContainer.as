@@ -1507,7 +1507,14 @@ package classes.GameData
 			// sense
 			addButton(6, "Sense", selectSimpleAttack, { func: generateSenseMenu }, "Sense", "Attempts to get a feel for a foe’s likes and dislikes. Absolutely critical for someone who plans on seducing " + pc.mf("his", "her") + " way out of a fight.");
 			
-			if(_hostiles[0].hasPerk("Appearance Enabled")) addButton(7,"Closer Look",combatAppearance,undefined,"Closer Look","Take a closer look at your foe’s appearance.\n\nThis does not consume your action for this round.");
+			for each (var hostile:Creature in _hostiles)
+			{
+				if(hostile.hasPerk("Appearance Enabled"))
+				{
+					addButton(7,"Closer Look",combatAppearance,undefined,"Closer Look","Take a closer look at your foe’s appearance.\n\nThis does not consume your action for this round.");
+					break;
+				}
+			}
 
 			// fantasize
 			addButton(8, "Fantasize", fantasizeRound, undefined, "Fantasize", "Fantasize about your foe until you’re helpless and on your [pc.knees] before them.");
@@ -1548,10 +1555,32 @@ package classes.GameData
 		}
 		public function combatAppearance():void
 		{
-			clearOutput();
-			kGAMECLASS.appearance(_hostiles[0]);
 			clearMenu();
+			//Normal functionality
+			if (_hostiles.length == 1)
+			{
+				clearOutput();
+				kGAMECLASS.appearance(_hostiles[0]);
+			}
+			//Multiple
+			else
+			{
+				var bOff:int = -1;
+				for (var i:int = 0; i < _hostiles.length; ++i) if (_hostiles[i].hasPerk("Appearance Enabled")) addButton(++bOff, _hostiles[i].buttonText, multiCombatAppearance, [i, bOff], "Closer Look", "Take a closer look at " + _hostiles[i].nameDisplay() + ".");
+			}
+				
 			addButton(14, "Back", generateCombatMenu, true);
+		}
+		public function multiCombatAppearance(iboff:Array):void
+		{
+			var i:int = iboff[0];
+			var bOff:int = iboff[1];
+			
+			clearOutput();
+			kGAMECLASS.appearance(_hostiles[i]);
+		
+			combatAppearance();
+			addDisabledButton(bOff, _hostiles[i].buttonText);
 		}
 		private function waitRound():void
 		{
@@ -4171,7 +4200,7 @@ package classes.GameData
 				var currTarget:Creature = collection[i] as Creature;
 				
 				// Looking for creatures of the same type as the one we're adding
-				if (currTarget is tType && currTarget != target)
+				if (currTarget is tType && currTarget != target && target.short == currTarget.short)
 				{
 					// Fuck it, just force set these every time through :V
 					/*
@@ -4494,6 +4523,7 @@ package classes.GameData
 				if(pc.isGrappled()) output("You’re trapped in the enemy’s grip to do much");
 				else if(pc.hasStatusEffect("Stunned")) output("You’ve been stunned by the enemy and can’t do much");
 				else if(pc.hasStatusEffect("Paralyzed")) output("You’ve been paralyzed by the enemy and can’t do much");
+				else if(hasEnemyOfClass(RatsRaider)) output("You're fighting the " + (kGAMECLASS.silly ? "Ratlaws" : "Rat Thieves") + ", members of the gang 'Rat's Raiders'");
 				else
 				{
 					output("You perch behind cover wherever you can find it,");

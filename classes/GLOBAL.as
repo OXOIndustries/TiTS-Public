@@ -515,6 +515,7 @@
 			TYPE_LUPINE,
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
+			TYPE_MOUSE,
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [

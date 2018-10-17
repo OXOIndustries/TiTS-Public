@@ -204,7 +204,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 			}
 		}
 	}
-    
+	
 	// Check cocksocks
 	if (invalidCocksocksWorn(true)) return;
 	
@@ -2036,6 +2036,8 @@ public function shipMenu():Boolean
 		}
 	}
 	
+	addButton(0, "Rats", ratMenu, undefined, "Rats", "They're the rats!");
+	
 	return false;
 }
 
@@ -2188,7 +2190,7 @@ public function flyMenu():void
 public function flyTo(arg:String):void
 {
 	generateMapForLocation("SHIP INTERIOR");
-    
+	
 	if (flags["SUPRESS TRAVEL EVENTS"] == 1)
 	{
 		flags["SUPRESS TRAVEL EVENTS"] = 0;
