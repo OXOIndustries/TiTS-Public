@@ -14962,7 +14962,7 @@
 					if (currLooseness <= 2) desc += RandomInCollection(["tight","tight","tight","tight","narrow","narrow","pert little","pert","vice-like"]);
 					else if (currLooseness <= 3) desc += RandomInCollection(["loose","loose","well-practiced","lightly stretched","slightly stretched"]);
 					else if (currLooseness <= 4) desc += RandomInCollection(["well-loosened","slightly gaped","slightly gaped","well-used","widened"]);
-					else desc += RandomInCollection(["gaped","gaped","gaped","wide","exceedingly well-used","ruined","over-used","stretched","dilated","voluminous","spacious","gaped","fistable","vast"]);
+					else desc += RandomInCollection(["gaped","gaped","gaped","wide","exceedingly well-used","ruined","over-used","stretched","dilated","spacious","gaped","fistable","vast"]);
 					adjectiveCount++;
 					loosenessDisplayed = true;
 				}
@@ -15505,7 +15505,7 @@
 				if (loosie < 2) adjectives.push("tight","tight","tight","tight","narrow","narrow","pert little","pert","vice-like");
 				else if (loosie <= 3) adjectives.push("loose","loose","well-practiced","lightly stretched","slightly stretched");
 				else if (loosie <= 4) adjectives.push("well-loosened","slightly gaped","slightly gaped","well-used","widened");
-				else adjectives.push("gaped","gaped","gaped","wide","exceedingly well-used","ruined","over-used","stretched","dilated","voluminous","spacious","gaped","fistable","vast");
+				else adjectives.push("gaped","gaped","gaped","wide","exceedingly well-used","ruined","over-used","stretched","dilated","spacious","gaped","fistable","vast");
 			}
 			//Wetness! The most important one! Always just go with the wettest one for maximum soppage!
 			biggestSize = wettestVaginalWetness();
@@ -16388,7 +16388,7 @@
 				else if (cWidth <= 1.2) descript += RandomInCollection(["modest","substantial","fleshy"]);
 				else if (cWidth <= 1.6) descript += RandomInCollection(["ample","meaty","generously-proportioned"]);
 				else if (cWidth <= 2) descript += RandomInCollection(["broad","girthy","expansive","thick"]);
-				else if (cWidth <= 3.5) descript += RandomInCollection(["fat","wide","voluminous","distended"]);
+				else if (cWidth <= 3.5) descript += RandomInCollection(["fat","wide","distended"]);
 				else descript += RandomInCollection(["incredibly thick","bloated","mammoth","monstrously thick","swollen","tremendously wide"]);
 				girthDescribed = true;
 				adjectives++;
@@ -16838,7 +16838,7 @@
 				} else if (w <= 2) {
 					descript += RandomInCollection(["broad", "girthy", "expansive", "thick"]);
 				} else if (w <= 3.5) {
-					descript += RandomInCollection(["fat", "wide", "voluminous", "distended"]);
+					descript += RandomInCollection(["fat", "wide", "distended"]);
 				} else if (w > 3.5) {
 					descript += RandomInCollection(["inhumanly distended", "bloated", "mammoth", "monstrously thick"]);
 				}
@@ -16958,7 +16958,7 @@
 				} else if (w <= 2) {
 					descript += RandomInCollection(["broad", "girthy", "expansive", "thick"]);
 				} else if (w <= 3.5) {
-					descript += RandomInCollection(["fat", "wide", "voluminous", "distended"]);
+					descript += RandomInCollection(["fat", "wide", "distended"]);
 				} else if (w > 3.5) {
 					descript += RandomInCollection(["inhumanly distended", "bloated", "mammoth", "monstrously thick"]);
 				}
