@@ -18,7 +18,7 @@
 		//constructor
 		public function Gianna()
 		{
-			this._latestVersion = 4;
+			this._latestVersion = 5;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			

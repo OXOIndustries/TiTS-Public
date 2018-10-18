@@ -923,7 +923,7 @@ public function turnTheTablesOnBadgertwat():void
 		if(pennyIsCumSlut()) output(" Then, after a brief pause, she adds quietly, <i>“and, uh, </i>after<i> that, maybe we could find a way to make the whole cum-focused bimbo slut thing work on our terms. If, uh, if you want...”</i>");
 		output("\n\nThat seems to be it. For now you just need to sit tight and wait for Penny to get back to you. And maybe, while you’re waiting, like, actually get some sex. That would be <i>super</i> nice.");
 	}
-	output("\n\n<b>Penny has taken posession of the bimbo ray.</b>");
+	output("\n\n<b>Penny has taken possession of the bimbo ray.</b>");
 	pc.removeKeyItem("Doctor Badger's Bimbo Raygun - Programmed for use on Penny.");
 	flags["BADGER_QUEST"] = -1;
 	clearMenu();
