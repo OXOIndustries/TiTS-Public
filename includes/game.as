@@ -2046,6 +2046,7 @@ public function shipMenu():Boolean
 public function flyMenu():void
 {
 	clearOutput();
+	showName("CHOOSE\nDESTINATION");
 	
 	//Make sure you can leave the planet!
 	if(!leavePlanetOK())
@@ -2136,8 +2137,7 @@ public function flyMenu():void
 	//POE A
 	if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)
 	{
-		if(flags["POE_A_DISABLED"] == 1) addDisabledButton(6, "Poe A", "Poe A", "You probably shouldn’t go back there after your last trip to ‘The Masque.’")
-		else if(shipLocation != "POESPACE") addButton(6, "Poe A", flyToPoeAConfirm);
+		if(shipLocation != "POESPACE") addButton(6, "Poe A", flyToPoeAConfirm);
 		else addDisabledButton(6, "Poe A", "Poe A", "You’re already here.");
 	}
 	else addDisabledButton(6, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
