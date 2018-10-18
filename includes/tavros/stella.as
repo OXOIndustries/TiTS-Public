@@ -14,7 +14,7 @@ public function showStella(nude:Boolean = false):void
 
 public function showAlex(nude:Boolean = false):void
 {
-	showName("\n" + flags["MET_ALEX_SURF"] != undefined ? "ALEX" : "STORE GIRL");
+	showName("\n" + (flags["MET_ALEX_SURF"] != undefined ? "ALEX" : "STORE GIRL"));
 	showBust("STORE_ALEX" + (nude ? "_NUDE" : ""));
 }
 
