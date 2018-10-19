@@ -44,16 +44,16 @@ import classes.Characters.SlamwulfeDrone;
 public function showPunkSecOp(nude:Boolean = false):void
 {
 	if(enemy == null || enemy.hasCock()) showBust("PUNK_SECOP_MALE" + (nude ? "_NUDE":""));
-	else showBust("PUNK SECOP_FEMALE" + (nude ? "_NUDE":""));
+	else showBust("PUNK_SECOP_FEMALE" + (nude ? "_NUDE":""));
 	showName("PUNK\nSECOP");
 }
 
 //Encounter Texts:
 public function encounterPunkSecOp():Boolean
 {
-	showPunkSecOp();
 	var tEnemy:Creature = new CyberPunkSecOp();
 	setEnemy(tEnemy);
+	showPunkSecOp();
 	//First time male
 	if(tEnemy.hasCock())
 	{

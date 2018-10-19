@@ -637,6 +637,15 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/broodmother.png", mimeType = "image/png")]
 		public var Bust_PREGRASK:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/punk_secop_male.png", mimeType = "image/png")]
+		public var Bust_PUNK_SECOP_MALE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/punk_secop_male_nude.png", mimeType = "image/png")]
+		public var Bust_PUNK_SECOP_MALE_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/punk_secop_female.png", mimeType = "image/png")]
+		public var Bust_PUNK_SECOP_FEMALE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/punk_secop_female_nude.png", mimeType = "image/png")]
+		public var Bust_PUNK_SECOP_FEMALE_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/quaelle.png", mimeType = "image/png")]
 		public var Bust_QUAELLE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/quaelle_nude.png", mimeType = "image/png")]
@@ -1519,6 +1528,15 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/broodmother.png", mimeType = "image/png")]
 			public var Full_PREGRASK:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/punk_secop_male.png", mimeType = "image/png")]
+			public var Full_PUNK_SECOP_MALE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/punk_secop_male_nude.png", mimeType = "image/png")]
+			public var Full_PUNK_SECOP_MALE_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/punk_secop_female.png", mimeType = "image/png")]
+			public var Full_PUNK_SECOP_FEMALE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/punk_secop_female_nude.png", mimeType = "image/png")]
+			public var Full_PUNK_SECOP_FEMALE_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/pexiga.png", mimeType = "image/png")]
 			public var Full_PEXIGA:Class;
