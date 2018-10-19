@@ -186,6 +186,7 @@ public function pussyLickingLoseToFeruze2():void
 	flags["FERUZE_ZHENG_OUTCOME"] = -2;
 	IncrementFlag("FERUZE_CAME_INSIDE");
 	IncrementFlag("FERUZE_SEXED");
+	variableRoomUpdateCheck();
 	CombatManager.genericLoss();
 }
 
@@ -365,6 +366,7 @@ public function normalLossToFeruze3():void
 	output("\n\n");
 	CombatManager.genericLoss();
 	flags["FERUZE_ZHENG_OUTCOME"] = -1;
+	variableRoomUpdateCheck();
 	IncrementFlag("FERUZE_SEXED");
 }
 
@@ -391,6 +393,7 @@ public function defeatFeruze():void
 		output("\n\n<i>“Heyyy, [pc.name]?”</i> the suula murmuers, stroking at the " + (enemy.hasStatusEffect("Face Sat") ? "open crotch of her painted-on suit and the sodden treasure beneath":"crotch of her painted-on suit until the space-age material scissors open to expose the sodden treasure between her thighs") + ". <i>“You wanna fuck me, baby? I’m all yours. If you don’t fuck me now, I’m gonna be fucking you in my dreams tonight, and if you do... I might do that every night.”</i> She moans wantonly, scooching closer. <i>“Please. I’d do it for you...”</i>");
 	}
 	flags["FERUZE_ZHENG_OUTCOME"] = 1;
+	variableRoomUpdateCheck();
 	processTime(5);
 	//menu here
 	output("\n\n");

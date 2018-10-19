@@ -2028,7 +2028,7 @@ public function initZhengRooms():void
 	rooms["ZSF T26"].description = "";
 	rooms["ZSF T26"].planet = "ZHENG SHI STATION";
 	rooms["ZSF T26"].system = "SYSTEM: HERISIOD";
-	rooms["ZSF T26"].northExit = "";
+	rooms["ZSF T26"].northExit = "ZSF T24";
 	rooms["ZSF T26"].eastExit = "ZSF V26";
 	rooms["ZSF T26"].southExit = "";
 	rooms["ZSF T26"].westExit = "ZSF R26";
@@ -2190,6 +2190,49 @@ public function initZhengRooms():void
 	//rooms["ZSF T16"].runOnEnter = null;
 	rooms["ZSF T16"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF T16"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSF T24"] = new RoomClass(this);
+	rooms["ZSF T24"].roomName = "\n";
+	rooms["ZSF T24"].description = "";
+	rooms["ZSF T24"].planet = "ZHENG SHI STATION";
+	rooms["ZSF T24"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF T24"].northExit = "ZSF T22";
+	rooms["ZSF T24"].eastExit = "";
+	rooms["ZSF T24"].southExit = "ZSF T26";
+	rooms["ZSF T24"].westExit = "";
+	rooms["ZSF T24"].moveMinutes = 3;
+	//rooms["ZSF T24"].runOnEnter = null;
+	rooms["ZSF T24"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF T24"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSF T22"] = new RoomClass(this);
+	rooms["ZSF T22"].roomName = "\n";
+	rooms["ZSF T22"].description = "";
+	rooms["ZSF T22"].planet = "ZHENG SHI STATION";
+	rooms["ZSF T22"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF T22"].northExit = "";
+	rooms["ZSF T22"].eastExit = "ZSF V22";
+	rooms["ZSF T22"].southExit = "ZSF T24";
+	rooms["ZSF T22"].westExit = "";
+	rooms["ZSF T22"].moveMinutes = 3;
+	//rooms["ZSF T22"].runOnEnter = null;
+	rooms["ZSF T22"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF T22"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSF V22"] = new RoomClass(this);
+	rooms["ZSF V22"].roomName = "\n";
+	rooms["ZSF V22"].description = "";
+	rooms["ZSF V22"].planet = "ZHENG SHI STATION";
+	rooms["ZSF V22"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF V22"].northExit = "";
+	rooms["ZSF V22"].eastExit = "";
+	rooms["ZSF V22"].southExit = "";
+	rooms["ZSF V22"].westExit = "ZSF T22";
+	rooms["ZSF V22"].moveMinutes = 3;
+	rooms["ZSF V22"].runOnEnter = cousinEncounterBonus;
+	rooms["ZSF V22"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF V22"].addFlag(GLOBAL.HAZARD);
+	rooms["ZSF V22"].addFlag(GLOBAL.OBJECTIVE);
 
 	rooms["ZSF PLACEHOLDER"] = new RoomClass(this);
 	rooms["ZSF PLACEHOLDER"].roomName = "\n";

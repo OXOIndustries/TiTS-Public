@@ -3599,6 +3599,9 @@ public function variableRoomUpdateCheck():void
 
 	if(rooms["ZSM U2"].hasFlag(GLOBAL.NPC) && flags["MAIKE_SLAVES_RELEASED"] != undefined) rooms["ZSM U2"].removeFlag(GLOBAL.NPC);
 	else if(!rooms["ZSM U2"].hasFlag(GLOBAL.NPC) && flags["MAIKE_SLAVES_RELEASED"] == undefined) rooms["ZSM U2"].addFlag(GLOBAL.NPC);
+
+	if(rooms["ZSF V22"].hasFlag(GLOBAL.OBJECTIVE) && flags["FERUZE_ZHENG_OUTCOME"] != undefined) rooms["ZSF V22"].removeFlag(GLOBAL.OBJECTIVE);
+	else if(!rooms["ZSF V22"].hasFlag(GLOBAL.OBJECTIVE) && flags["FERUZE_ZHENG_OUTCOME"] == undefined) rooms["ZSF V22"].addFlag(GLOBAL.OBJECTIVE);
 	 
 	/* UVETO */
 	
