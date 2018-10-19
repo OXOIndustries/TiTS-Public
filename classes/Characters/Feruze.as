@@ -7,7 +7,7 @@
 	import classes.Items.Melee.ShockBlade;
 	import classes.Items.Guns.SalamanderPistol;
 	import classes.Items.Protection.ReaperArmamentsMarkIIShield;
-	import classes.Items.Accessories.FlashGoggles;
+	import classes.Items.Accessories.ShieldAugBracers;
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
@@ -52,6 +52,10 @@
 			this.shield = new ReaperArmamentsMarkIIShield();
 			this.shield.shields = 300;
 			this.shield.hasRandomProperties = true;
+
+			this.accessory = new ShieldAugBracers();
+
+			this.inventory = [new ShieldAugBracers()];
 			
 			this.level = 10;
 			this.physiqueRaw = 40;
@@ -295,7 +299,7 @@
 		public function tailWhipPikachu(target:Creature):void
 		{
 			output("Feruze sweeps around, ");
-			if(combatMiss(this,target)) output("but you dodge her tail, electode-studded metal macehead and all.");
+			if(combatMiss(this,target)) output("but you dodge her tail, electrode-studded metal macehead and all.");
 			else 
 			{
 				output("the sparking, electro-studded ball at its tip smashing square into you!");
