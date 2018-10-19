@@ -4632,7 +4632,11 @@
 
 			currPhys += statusEffectv1("Dispassion Fruit");
 			if (hasStatusEffect("Tripped")) currPhys -= 4;
-			if (hasStatusEffect("Crunched")) currPhys -= 8;
+			if (hasStatusEffect("Crunched"))
+			{
+				var se:StorageClass = getStatusEffect("Crunched");
+				currPhys -= (8 * se.value1);
+			}
 			if (hasStatusEffect("Psychic Leech")) currPhys *= 0.85;
 			if (hasStatusEffect("Full Stomach")) currPhys *= 0.9;
 			if (hasStatusEffect("Pumped!")) currPhys *= 1.15;

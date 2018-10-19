@@ -137,6 +137,8 @@
 		include "../includes/holidayEvents/puppyslutmas.as";
 		include "../includes/holidayEvents/randyClaws.as";
 		include "../includes/holidayEvents/succucow.as";
+		include "../includes/holidayEvents/EventWhorizon/rooms.as";
+		include "../includes/holidayEvents/EventWhorizon/eventWhorizon.as";
 
 		//Followers
 		include "../includes/follower/amber.as";
