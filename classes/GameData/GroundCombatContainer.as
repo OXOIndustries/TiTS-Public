@@ -744,9 +744,17 @@ package classes.GameData
 			{
 				if(target.hasPerk("Leap Up"))
 				{
-					if (target is PlayerCharacter) output("\n\n<b>You roll up onto your [pc.feet] immediately thanks to your quick reflexes.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " jumps back onto " + target.getCombatPronoun("hisher") + " " + target.feet() + " almost immediately!</b>");
-					target.removeStatusEffect("Tripped");
+					if(target.hasStatusEffect("Don't Get Up"))
+					{
+						if(target is PlayerCharacter) output("\n\n<b>Since you chose not to do anything, you don't see the point in hopping up.</b>");
+						target.removeStatusEffect("Don't Get Up");
+					}
+					else
+					{
+						if (target is PlayerCharacter) output("\n\n<b>You roll up onto your [pc.feet] immediately thanks to your quick reflexes.</b>");
+						else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " jumps back onto " + target.getCombatPronoun("hisher") + " " + target.feet() + " almost immediately!</b>");
+						target.removeStatusEffect("Tripped");
+					}
 				}
 			}
 	
@@ -1556,6 +1564,10 @@ package classes.GameData
 		private function waitRound():void
 		{
 			clearOutput();
+			if (pc.hasStatusEffect("Tripped") && pc.hasPerk("Leap Up"))
+			{
+				if(!pc.hasStatusEffect("Don't Get Up")) pc.createStatusEffect("Don't Get Up",0,0,0,0,true,"","",true,0);
+			}
 			if (pc.hasStatusEffect("Grappled"))
 			{
 				if (hasEnemyOfClass(Kaska)) kGAMECLASS.doNothingWhileTittyGrappled();
