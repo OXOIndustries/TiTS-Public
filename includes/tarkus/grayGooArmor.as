@@ -1896,6 +1896,7 @@ public function gooArmorDetails(showArmorLevel:Boolean = false):String
 		case 3: msg += ", with a simulated surface of folded cloth"; break;
 		case 4: msg += ", with an appearance of smooth, tight latex"; break;
 		case 5: msg += ", shaped into your favorite-style swimwear"; break;
+		case 6: msg += ", taking the form of an armored exoskeleton"; break;
 	}
 	if(gooDesign.tooltip != "" && gooDesign.tooltip != "none")
 	{
@@ -2718,6 +2719,8 @@ public function gooArmorChangeDesign(arg:Array):void
 				else gooArmorAddButton(fromCrew, btn++, "Swimwear", gooArmorChangeStyle, [5, fromCrew], "Swimwear", "Change the suit’s appearance to look like something you can swim in.");
 			}
 			else gooArmorAddDisabledButton(fromCrew, btn++, "Swimwear");
+			if(pc.statusEffectv1("Goo Armor Design") != 6) gooArmorAddButton(fromCrew, btn++, "ExoSuit", gooArmorChangeStyle, [6, fromCrew], "Exo Suit", "Change the suit’s appearance to look like an armored exoskeleton.");
+			else gooArmorAddDisabledButton(fromCrew, btn++, "ExoSuit");
 			break;
 		case "pattern":
 			txt += "<i>“" + (pc.statusEffectv2("Goo Armor Design") == 0 ? "Ooh, I love patterns!" : "Wanna make your suit look pretty?") + "”</i>";
@@ -2995,6 +2998,28 @@ public function gooArmorChangeStyle(arg:Array):void
 			else txt += " by keeping your arms and " + (pc.legCount == 1 ? "[pc.legNoun]" : "[pc.legsNoun]") + " uncovered,";
 			txt += " your armor looks more suitable for swimming in.";
 			txt += "\n\n<i>“Beach day or pool party?”</i> your tummy eagerly asks.";
+			break;
+		case 6:
+			author("Zavos");
+			txt += " Countless segments of plating emerge from the silver mass, covering your body in a form-fitting lattice of armoring. As you twist to inspect your new appearance, you see the sections shift seamlessly with your movements";
+			if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
+			{
+				if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST)) partList.push(pc.hasBreasts() ? "breasts" : "chest");
+				if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN)) partList.push("crotch");
+				if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS)) partList.push("ass");
+				txt += ", with";
+				if(partList.length == 1) txt += " a tasteful opening that keeps";
+				else txt += " tasteful openings that keep";
+				txt += " your";
+				if(partList.length > 0) txt += " " + CompressToList(partList);
+				else txt += " assets";
+				txt += " on display";
+			}
+			txt += "."; 
+			txt += "\n\n<i>“Bet you look awesome, like some";
+			if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS)) txt += " slutty";
+			else txt += " sexy";
+			txt += " secret agent!”</i> your midriff comments.";
 			break;
 		default:
 			txt += " Ripples of change shoot across it and the suit shifts and morphs gradually, getting closer and closer to the design you have chosen. Of course it isn’t a perfectly matching duplicate, given that [goo.name] has added her own touches, but it’s pretty darn close enough.";
