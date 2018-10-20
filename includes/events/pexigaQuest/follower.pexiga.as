@@ -11,14 +11,15 @@ public function pexigaRecruited():Boolean
 
 public function showYammiAndPexiga(nude:Boolean = false):void
 {
-	var nudePrefix:String = "";
-	if(nude) nudePrefix = "_NUDE";
 	showName("YAMMI &\n" + pexigaName().toUpperCase());
+	showBust(yammiBustDisplay(nude), pexigaBustDisplay(nude));
+}
+public function pexigaBustDisplay(nude:Boolean = false):String
+{
+	var sBust:String = "PEXIGA";
+	if(pexiga.hasPerk("Ditz Speech")) sBust += "_BIMBO";
 	
-	var pexigaString:String = "PEXIGA";
-	if(pexiga.hasPerk("Ditz Speech")) pexigaString += "_BIMBO";
-
-	showBust("YAMMI" + nudePrefix, pexigaString);
+	return sBust;
 }
 
 //[Pexiga]

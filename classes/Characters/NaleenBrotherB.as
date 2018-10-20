@@ -281,7 +281,7 @@
 				if(target is PlayerCharacter) output(" You hop over it!");
 				else output(" Azra dodges the attack!");
 			}
-			else if(this.physique()/2 + rand(20) + 5 < target.physique()/2 + 10)
+			else if((this.physique()/2 + rand(20) + 5 < target.physique()/2 + 10) || target.isPlanted())
 			{
 				if(target is PlayerCharacter) output(" It smacks off your [pc.leg]. It hurts, but you’re not going down that easy.");
 				else output(" It strikes Azra’s leg, but to little effect.");

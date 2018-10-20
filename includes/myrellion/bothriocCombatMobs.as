@@ -14,7 +14,7 @@ public function encounterPidemmeBothrioc():void
 	{
 		output("\n\nYou try to remain alert in your gloomy surroundings, scanning every object that looms into view carefully, keeping your ears pinned back for any faint sound. You still almost start out of your skin when a four-armed, black-chitined warrior bursts seemingly out of nowhere, whirling some sort of rope weapon over their head. They draw a rapier from the mass of belts wrapped around the swell of their hips with one set of arms, fling the spinning ropes at your [pc.legs] with the other and launch themselves at you, all in one vicious, fluid movement.");
 
-		if (pc.reflexes() + (rand(60) - 39) > 30)
+		if ((pc.reflexes() + (rand(60) - 39) > 30) || pc.isPlanted())
 		{
 			output("\n\nActing solely on instinct, you sidestep the bolo, grab your [pc.meleeWeapon] and stab it upwards, managing to parry the rapier strike with a judder. You stagger backwards, taking in your assailant as they circle you.");
 
@@ -79,7 +79,7 @@ public function encounterPidemmeBothrioc():void
 		{
 			output("\n\nYou try and remain alert in your gloomy surroundings, scanning every object that looms into view carefully, keeping your ears pinned back for any faint sound. It doesn’t matter; the creatures down here have spent a lifetime stalking their prey from these shadows, and when the black carapaced biped bursts from their cover, whirling their bolos over their head, it’s from a direction you weren’t anticipating.");
 
-			if (pc.reflexes() + rand(30) + 1 > 30)
+			if ((pc.reflexes() + rand(30) + 1 > 30) || pc.isPlanted())
 			{
 				output("\n\nStill, you have enough wits about you to sidestep the bolos hurled at you, grab your [pc.meleeWeapon] and stab it upwards, parrying their rapier strike with a judder. You stagger backwards, taking in your assailant as they circle you.");
 				output("\n\n<i>“Clever prey,”</i> croons the bothrioc, sword tense in their burnished hand, plump abdomen swaying behind them. <i>“Or should I say - fast prey. Clever prey wouldn’t prance into my territory when I have so many eggs that need bearing!”</i>");

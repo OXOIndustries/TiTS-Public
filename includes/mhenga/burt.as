@@ -440,7 +440,7 @@ public function buyMeadFromBurt():void {
 	pc.imbibeAlcohol(10);
 	if(flags["BURT_DRINKS_BOUGHT"] == undefined) flags["BURT_DRINKS_BOUGHT"] = 1;
 	else flags["BURT_DRINKS_BOUGHT"]++;
-	pc.credits-= 10;
+	pc.credits -= 10;
 	processTime(10);
 	this.clearMenu();
 	this.addButton(0,"Next",burtDrinkMenu);
@@ -475,7 +475,7 @@ public function burtXilErAte():void {
 	if(flags["BURT_DRINKS_BOUGHT"] == undefined) flags["BURT_DRINKS_BOUGHT"] = 1;
 	else flags["BURT_DRINKS_BOUGHT"]++;
 	pc.imbibeAlcohol(15);
-	pc.credits-= 50;
+	pc.credits -= 50;
 	processTime(10);
 	this.clearMenu();
 	this.addButton(0,"Next",burtDrinkMenu);

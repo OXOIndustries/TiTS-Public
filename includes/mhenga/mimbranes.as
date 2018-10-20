@@ -4420,7 +4420,7 @@ public function mimbraneMenu():void
 	}
 	else
 	{
-		addDisabledGhostButton(5, "Toggle Sweat");
+		addDisabledGhostButton(5, "Toggle Sweat", "Toggle Sweat", "Your Mimbrane trust level is not high enough to use this.");
 	}
 
 	// Spit attacks
@@ -4444,7 +4444,19 @@ public function mimbraneMenu():void
 	}
 	else
 	{
-		addDisabledGhostButton(6, "Toggle Spit");
+		addDisabledGhostButton(6, "Toggle Spit", "Toggle Spit", "Your Mimbrane trust level is not high enough to use this.");
+	}
+
+	// Toggle Swelling
+	if (pc.hasPerk("Mimbrane Symbiosis"))
+	{
+		output2("\n\n<b>You’ve unlocked the ability to adjust the swelling appearance of specific Mimbrane-attached body parts.</b>");
+		
+		addGhostButton(7, "Swelling", toggleMimbraneSwellingMenu);
+	}
+	else
+	{
+		addDisabledGhostButton(7, "Swelling", "Swelling", "Your Mimbrane attachment is not strong enough to use this.");
 	}
 
 	// Face customisation
@@ -4509,7 +4521,7 @@ public function mimbraneMenu():void
 		}
 		else
 		{
-			addDisabledGhostButton(12, "Lip Pc.Ing");
+			addDisabledGhostButton(12, "Lip Pc.Ing", "Lip Piercing", "Your Mimbrane trust level is not high enough to use this.");
 		}
 	}
 	else
@@ -4698,6 +4710,116 @@ public function toggleMimbraneSpit():void
 	clearGhostMenu();
 	addGhostButton(0, "Next", mimbraneMenu);
 }
+
+public function toggleMimbraneSwellingMenu(newTxt:Boolean = true):void
+{
+	if(newTxt) clearOutput2();
+	clearGhostMenu();
+	
+	var numMims:int = attachedMimbranes();
+	var btnSlot:int = 0;
+	
+	if(newTxt)
+	{
+		output2("Your Mimbrane" + (numMims == 1 ? "" : "s") + " will swell based on " + (numMims == 1 ? "its" : "their") + " feeding level. You are able to tell " + (numMims == 1 ? "it" : "them") + " to look less bloated if you desire.");
+		output2("\n\n<i>Note that this only changes the swollen appearance of the body part, if applicable, and may not necessarily decrease the extra size added to the body part from the swelling. The Mimbrane" + (numMims == 1 ? "" : "s") + " can only do so much with " + (numMims == 1 ? "its" : "their") + " own mass after all.</i>");
+	}
+	
+	output2("\n\n<b><u>Current Mimbranes</u></b>");
+	if(pc.hasStatusEffect("Mimbrane Cock")) {
+		output2("\n<b>* Penis:</b> Swelling " + (flags["MIMBRANE_NOSWELL_COCK"] == undefined ? "enabled" : "disabled"));
+		addGhostButton(btnSlot++, ("Penis:" + (flags["MIMBRANE_NOSWELL_COCK"] == undefined ? "ON" : "OFF")), toggleMimbraneSwelling, "COCK");
+	}
+	if(pc.hasStatusEffect("Mimbrane Pussy")) {
+		output2("\n<b>* Vagina:</b> Swelling " + (flags["MIMBRANE_NOSWELL_CUNT"] == undefined ? "enabled" : "disabled"));
+		addGhostButton(btnSlot++, ("Vagina:" + (flags["MIMBRANE_NOSWELL_CUNT"] == undefined ? "ON" : "OFF")), toggleMimbraneSwelling, "CUNT");
+	}
+	if(pc.hasStatusEffect("Mimbrane Ass")) {
+		output2("\n<b>* Asshole:</b> Swelling " + (flags["MIMBRANE_NOSWELL_BUTT"] == undefined ? "enabled" : "disabled"));
+		addGhostButton(btnSlot++, ("Asshole:" + (flags["MIMBRANE_NOSWELL_BUTT"] == undefined ? "ON" : "OFF")), toggleMimbraneSwelling, "BUTT");
+	}
+	if(pc.hasStatusEffect("Mimbrane Balls")) {
+		output2("\n<b>* Testicle:</b> Swelling " + (flags["MIMBRANE_NOSWELL_SACK"] == undefined ? "enabled" : "disabled"));
+		addGhostButton(btnSlot++, ("Testicle:" + (flags["MIMBRANE_NOSWELL_SACK"] == undefined ? "ON" : "OFF")), toggleMimbraneSwelling, "SACK");
+	}
+	if(pc.hasStatusEffect("Mimbrane Boobs")) {
+		output2("\n<b>* Chest:</b> Swelling " + (flags["MIMBRANE_NOSWELL_TITS"] == undefined ? "enabled" : "disabled"));
+		addGhostButton(btnSlot++, ("Chest:" + (flags["MIMBRANE_NOSWELL_TITS"] == undefined ? "ON" : "OFF")), toggleMimbraneSwelling, "TITS");
+	}
+	if(pc.hasStatusEffect("Mimbrane Hand Left") || pc.hasStatusEffect("Mimbrane Hand Right")) {
+		output2("\n<b>* Hand:</b> Swelling " + (flags["MIMBRANE_NOSWELL_HAND"] == undefined ? "enabled" : "disabled"));
+		addGhostButton(btnSlot++, ("Hand:" + (flags["MIMBRANE_NOSWELL_HAND"] == undefined ? "ON" : "OFF")), toggleMimbraneSwelling, "HAND");
+	}
+	if(pc.hasStatusEffect("Mimbrane Foot Left") || pc.hasStatusEffect("Mimbrane Foot Right")) {
+		output2("\n<b>* Feet:</b> Swelling " + (flags["MIMBRANE_NOSWELL_FOOT"] == undefined ? "enabled" : "disabled"));
+		addGhostButton(btnSlot++, ("Feet:" + (flags["MIMBRANE_NOSWELL_FOOT"] == undefined ? "ON" : "OFF")), toggleMimbraneSwelling, "FOOT");
+	}
+	if(pc.hasStatusEffect("Mimbrane Face")) {
+		output2("\n<b>* Face:</b> Swelling " + (flags["MIMBRANE_NOSWELL_FACE"] == undefined ? "enabled" : "disabled"));
+		addGhostButton(btnSlot++, ("Face:" + (flags["MIMBRANE_NOSWELL_FACE"] == undefined ? "ON" : "OFF")), toggleMimbraneSwelling, "FACE");
+	}
+	output2("\n\n");
+	
+	addGhostButton(14, "Back", mimbraneMenu);
+}
+public function toggleMimbraneSwelling(mimType:String = ""):void
+{
+	clearOutput2();
+	
+	var swell:Number = 0;
+	var both:Boolean = false;
+	var part:String = "";
+	
+	switch(mimType)
+	{
+		case "COCK":
+			swell = pc.statusEffectv3("Mimbrane Cock");
+			part = "[pc.cock 0]";
+			break;
+		case "CUNT":
+			swell = pc.statusEffectv3("Mimbrane Pussy");
+			part = "[pc.vagina 0]";
+			break;
+		case "BUTT":
+			swell = pc.statusEffectv3("Mimbrane Ass");
+			part = "[pc.cheeks]";
+			break;
+		case "SACK":
+			swell = pc.statusEffectv3("Mimbrane Balls");
+			part = "[pc.ballsack]";
+			break;
+		case "TITS":
+			swell = pc.statusEffectv3("Mimbrane Boobs");
+			part = (!pc.hasBreasts() ? "[pc.chest]" : "[pc.breasts]");
+			break;
+		case "HAND":
+			swell = Math.max(pc.statusEffectv3("Mimbrane Hand Left"), pc.statusEffectv3("Mimbrane Hand Right"));
+			both = (pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right"));
+			part = (!both ? "[pc.hand]" : "[pc.hands]");
+			break;
+		case "FOOT":
+			swell = Math.max(pc.statusEffectv3("Mimbrane Foot Left"), pc.statusEffectv3("Mimbrane Foot Right"));
+			both = (pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right"));
+			part = (!both ? "[pc.foot]" : "[pc.feet]");
+			break;
+		case "FACE":
+			swell = pc.statusEffectv3("Mimbrane Face");
+			part = "[pc.face]";
+			break;
+		default:
+			output2("<b>ERROR:</b> Mimbrane for " + mimType + " does not exist!");
+			break;
+	}
+	
+	output2("The Mimbrane" + (!both ? "" : "s") + " residing on your " + part);
+	if(flags["MIMBRANE_NOSWELL_" + mimType] == undefined) output2(" constrict" + (!both ? "s" : "") + " " + (swell <= 0 ? "slightly" : ("and gradually flatten" + (!both ? "s itself" : " themselves") + " to the surface of your [pc.skin]")) + ", holding " + (!both ? "its" : "their") + " form so is to no longer look so obviously bloated.");
+	else output2(" relax" + (!both ? "es itself" : " themselves") + ", " + (swell <= 0 ? ("making you aware that " + (!both ? "it" : "they") + " can swell up when " + (!both ? "it is" : "they are") + " well-fed again") : ("gradually inflating " + (!both ? "its" : "their") + " form back to a more natural state of fullness")) + ".");
+	
+	flags["MIMBRANE_NOSWELL_" + mimType] = (flags["MIMBRANE_NOSWELL_" + mimType] != undefined ? undefined : 1);
+	
+	toggleMimbraneSwellingMenu(false);
+}
+
 
 //Unlock Head Customization
 //Unlocks immediately upon getting a Head Mimbrane, as it starts at level two. Toggle disappears if Head Mimbrane goes under level two trust. Occurs a few hours after getting the head Mimbrane. Occurs once.

@@ -264,10 +264,15 @@
 					if(ii < 2) applyDamage(meleeDamage().multiply(0.5), this, target,"minimal");
 					if(ii == 2) 
 					{
-						output(" The third strike comes in as a brutal haymaker, <b>leaving you staggering back</b>!");
+						output(" The third strike comes in as a brutal haymaker");
+						if(!target.isPlanted())
+						{
+							output(", <b>leaving you staggering back</b>");
+							CombatAttacks.applyStagger(target, 3);
+						}
+						output("!");
 						applyDamage(meleeDamage(), this, target,"minimal");
 					}
-					CombatAttacks.applyStagger(target, 3);
 				}
 			}
 		}
@@ -282,7 +287,7 @@
 				output(" He crashes into you like a freighter with a suped-up LightDrive, throwing you backwards and digging his tusks deep into you!");
 				applyDamage(meleeDamage(), this, target,"minimal");
 				//Prone: 
-				if(target.physique()/2 + rand(20) + 1 >= this.physique()/2 + 10 && !target.hasStatusEffect("Tripped")) 
+				if(target.physique()/2 + rand(20) + 1 >= this.physique()/2 + 10 && !target.hasStatusEffect("Tripped") && !target.isPlanted()) 
 				{
 					output("\n<b>You’re knocked down</b> by the impact!");
 					CombatAttacks.applyTrip(target);

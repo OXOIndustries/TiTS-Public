@@ -262,7 +262,7 @@
 				meleeWeapon.baseDamage.removeFlag(DamageFlag.CRUSHING);
 				applyDamage(meleeDamage(), this, target, "minimal");
 
-				if(!target.hasStatusEffect("Tripped")) 
+				if(!target.hasStatusEffect("Tripped") && !target.isPlanted()) 
 				{
 					CombatAttacks.applyTrip(target);
 					output(" <b>You’re prone (tripped)!</b>");

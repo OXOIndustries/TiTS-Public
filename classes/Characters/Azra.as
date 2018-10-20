@@ -348,7 +348,7 @@
 			{
 				output("She hits!");
 				//Trip chance:
-				if(physique()/2 + rand(20) + 1 >= target.reflexes()/2 + 10)
+				if((physique()/2 + rand(20) + 1 >= target.reflexes()/2 + 10) && !target.isPlanted())
 				{
 					output(" The impact sends " + target.getCombatPronoun("o") + " sprawling on the ground.");
 					CombatAttacks.applyTrip(target);
@@ -381,7 +381,7 @@
 				var damage:TypeCollection = meleeDamage();
 				applyDamage(damageRand(damage, 15), this, target);
 				//Chance of staggered.
-				if(physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
+				if((physique()/2 + rand(20) + 1 >= target.physique()/2 + 10) && !target.isPlanted())
 				{
 					output("\n<b>" + StringUtil.capitalize(target.getCombatPronoun("s")) + " " + (!target.isPlural ? "is" : "are") + " staggered.</b>");
 					CombatAttacks.applyStagger(target);

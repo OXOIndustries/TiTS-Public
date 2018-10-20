@@ -185,6 +185,7 @@
 			//this.createStatusEffect("Disarm Immune");
 			this.createStatusEffect("Counters Melee");
 			this.createStatusEffect("Counters Ranged");
+			this.createPerk("Appearance Enabled");
 			this.inventory.push(new NaleenNip());
 			if(rand(5) == 0) this.inventory.push(new NaleenSpear);
 			
@@ -197,7 +198,7 @@
 		
 		override public function get bustDisplay():String
 		{
-			return "NALEEN_HERM";
+			return "NALEEN_FUTA";
 		}
 		
 		override public function setDefaultSexualPreferences():void
@@ -277,7 +278,7 @@
 			{
 				output(" You don’t manage to get out of her way before she thrusts her spear at you.");
 				applyDamage(damageRand(meleeDamage().multiply(0.5), 15), this, target, "minimal");
-				if (!target.hasStatusEffect("Tripped") && target.aim()/2 + rand(20) + 1 < this.physique()/2 + 10)
+				if (!target.hasStatusEffect("Tripped") && !target.isPlanted() && target.aim()/2 + rand(20) + 1 < this.physique()/2 + 10)
 				{
 					CombatAttacks.applyTrip(target);
 					output(" <b>You are knocked down!</b>");

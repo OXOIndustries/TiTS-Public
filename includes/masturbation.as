@@ -33,7 +33,11 @@ public function nonLustFaps():Array
 	}
 	if(pc.hasStatusEffect("Boobswell Pads")) 
 	{
-		faps.push(["Remove B.Swell", removeBoobswellPads, "Remove Boobswell Pads", "Remove the attached boobswell pads."]);
+		faps.push(["Rem. B.Swell", removeBoobswellPads, "Remove Boobswell Pads", "Remove the attached Boobswell pads."]);
+	}
+	if(pc.hasStatusEffect("Ass Slap Patch")) 
+	{
+		faps.push(["Rem. A.Slap", removeAssSlapPatch, "Remove Ass Slap Patch", "Remove the attached Ass Slap patch."]);
 	}
 	if(hasSmutOptions())
 	{
@@ -291,10 +295,20 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 	if(pc.hasStatusEffect("Boobswell Pads")) 
 	{
 		fap = new FapCommandContainer();
-		fap.text = "Remove B.Swell";
+		fap.text = "Rem. B.Swell";
 		fap.ttHeader = "Remove Boobswell Pads";
-		fap.ttBody = "Remove the attached boobswell pads.";
+		fap.ttBody = "Remove the attached Boobswell pads.";
 		fap.func = removeBoobswellPads;
+		fap.ignoreRandomSelection = true;
+		faps.push(fap);
+	}
+	if(pc.hasStatusEffect("Ass Slap Patch")) 
+	{
+		fap = new FapCommandContainer();
+		fap.text = "Rem. A.Slap";
+		fap.ttHeader = "Remove Ass Slap Patch";
+		fap.ttBody = "Remove the attached Ass Slap patch.";
+		fap.func = removeAssSlapPatch;
 		fap.ignoreRandomSelection = true;
 		faps.push(fap);
 	}
@@ -531,6 +545,16 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 			fap.func = tailSucking;
 			faps.push(fap);
 		}
+	}
+	// Butt Bug Male
+	if(pc.hasKeyItem("Butt Bug (Male)"))
+	{
+		fap = new FapCommandContainer();
+		fap.text = "Use ButtBug";
+		fap.ttHeader = "Use Butt Bug";
+		fap.ttBody = "Use the bug you captured earlier.";
+		fap.func = masturbateButtBugMale;
+		faps.push(fap);
 	}
 	// Sera Collar Faps
 	if(wearingSeraCollar())
@@ -1770,8 +1794,18 @@ public function removeBoobswellPads():void
 {
 	clearOutput();
 	author("Fenoxo");
+	output("You peel the pads off your chest and breathe a sigh of relief now that the constant moisture and vibration is no longer rubbing at your [pc.nipples].\n\n<b>The Boobswell pads shut down, their use expended.</b>");
 	pc.removeStatusEffect("Boobswell Pads");
-	output("You peel the pads off your chest and breathe a sigh of relief now that the constant moisture and vibration is no longer rubbing at your [pc.nipples].\n\n<b>The boobswell pads shut down, their use expended.</b>");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function removeAssSlapPatch():void
+{
+	clearOutput();
+	author("Foxxling");
+	output("You take a deep breath, grab a hold of the corner of the Xenogen Ass Slap Patch and rip it off like a bandaid. It doesn’t hurt but the constant vibrations are now gone.\n\n<b>The Ass Slap Patch powers down, its use expended.</b>");
+	pc.removeStatusEffect("Ass Slap Patch");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3344,7 +3378,7 @@ public function tamaniBionaholeInstruction():void
 		else output("the");
 		output(" needy slit, strumming your own feminine folds and wishing you could somehow fuck them as well.");
 	}
-	output(" A rhythmic tightening ache wells up inside you, burning hot with the need for release. Tamani was right. You really do want to creampie her pussy. UGC peacekeepers could ");
+	output(" A rhythmic tightening ache wells up inside you, burning hot with the need for release. Tamani was right. You really do want to creampie her pussy. UGC Peacekeepers could ");
 	if(InShipInterior()) output("break down your cabin door");
 	else output("catch you in the act right now");
 	output(", and you wouldn’t care. They’d have to pry the lewdly slurping sex-toy out of your hands with a crowbar.");
@@ -3812,7 +3846,7 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 	//More than 40,000 mLs of cum
 	if(cum >= 40000) 
 	{
-		output("\n\nSadly, you’re too virile even for yourself. The [pc.cumNoun] is still shooting out like water from a firehose, and there isn’t room in your bloated gut for another drop. Catching enough to fill your mouth to the brim, you let the rest spray over your face, painting you [pc.cumColor] in the process. Streaks of it run down your neck, shoulders, and [pc.chest], but you have a hard time caring. If anyone notices, they’ll just get to see what a devoted cock-sucker you’ve become.");
+		output("\n\nSadly, you’re too virile even for yourself. The [pc.cumNoun] is still shooting out like water from a firehose, and there isn’t room in your bloated gut for another drop. Catching enough to fill your mouth to the brim, you let the rest spray over your face, painting your [pc.cumColor] in the process. Streaks of it run down your neck, shoulders, and [pc.chest], but you have a hard time caring. If anyone notices, they’ll just get to see what a devoted cock-sucker you’ve become.");
 		pc.applyCumSoaked();
 	}
 	//merge

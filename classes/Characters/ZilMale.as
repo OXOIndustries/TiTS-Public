@@ -66,13 +66,13 @@
 			this.scaleColor = "black";
 			this.furColor = "yellow";
 			this.hairLength = 3;
-			this.hairType = GLOBAL.TYPE_BEE;
+			this.hairType = GLOBAL.HAIR_TYPE_HAIR;
 			this.beardLength = 0;
 			this.beardStyle = 0;
 			this.skinType = GLOBAL.SKIN_TYPE_CHITIN;
 			this.skinTone = "black";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.TYPE_BEE;
+			this.faceType = GLOBAL.TYPE_HUMAN;
 			this.faceFlags = new Array();
 			this.tongueType = GLOBAL.TYPE_BEE;
 			this.lipMod = 0;
@@ -168,6 +168,7 @@
 			this.ass.bonusCapacity += 15;
 
 			this.createStatusEffect("Disarm Immune");
+			this.createPerk("Appearance Enabled");
 			
 			isUniqueInFight = true;
 			btnTargetText = "ZilMale";

@@ -259,15 +259,21 @@
 		
 		private function queensGuardThunderKick(target:Creature):void
 		{
-			output("Queensguard feints, drawing your defenses to her sword, only to kick you square in the gut. You stumble back, but she’s not done yet: the knight pirouettes and slams her shield into you, <b>leaving you staggered</b>.");
-			if (target.hasStatusEffect("Staggered"))
+			output("Queensguard feints, drawing your defenses to her sword, only to kick you square in the gut. You stumble back, but she’s not done yet: the knight pirouettes and slams her shield into you");
+			if(!target.isPlanted())
 			{
-				target.setStatusValue("Staggered", 1, 5);
+				output(", <b>leaving you staggered</b>");
+				if (target.hasStatusEffect("Staggered"))
+				{
+					target.setStatusValue("Staggered", 1, 5);
+				}
+				else
+				{
+					CombatAttacks.applyStagger(target, 5);
+				}
 			}
-			else
-			{
-				CombatAttacks.applyStagger(target, 5);
-			}
+			else output("--the impact almost staggering you, but you are too firmly planted to the ground for that to happen");
+			output(".");
 			applyDamage(meleeDamage(), this, target, "melee");
 		}
 		
@@ -349,7 +355,7 @@
 				output(".");
 
 				output(" The sheer weight of the impact");
-				if(target.physique() + rand(20) + 1 >= physique() + 10) output(" nearly staggers you");
+				if((target.physique() + rand(20) + 1 >= physique() + 10) || target.isPlanted()) output(" nearly staggers you");
 				else
 				{
 					if(target.statusEffectv1("Cage Distance") < 2) 

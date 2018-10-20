@@ -1,5 +1,21 @@
 ﻿/* Dynamic growth/weight systems for immobilzation! */
 
+public function applyEgregiouslyEndowed(deltaT:uint = 0):void
+{
+	pc.createStatusEffect("Egregiously Endowed", 0, 0, 0, 0, false, "Icon_Poison", "Movement between rooms takes twice as long, and fleeing from combat is more difficult.", false, 0);
+}
+public function applyLudicrouslyEndowed(deltaT:uint = 0):void
+{
+	pc.createStatusEffect("Ludicrously Endowed", 0, 0, 0, 0, false, "Icon_Poison", "The shifting masses of your over-sized endowments cause you to gain fifty percent more lust over time.", false, 0);
+}
+public function applyOverwhelminglyEndowed(deltaT:uint = 0):void
+{
+	pc.createStatusEffect("Overwhelmingly Endowed", 0, 0, 0, 0, false, "Icon_Poison", "The shifting masses of your over-sized endowments cause you to gain twice as much lust over time.", false, 0);
+}
+public function applyEndowmentImmobilized(deltaT:uint = 0):void
+{
+	pc.createStatusEffect("Endowment Immobilized", 0, 0, 0, 0, false, "Icon_Poison", "Your endowments prevent you from moving.", false, 0);
+}
 public function removeImmobilized(deltaT:uint = 0):void
 {
 	AddLogEvent("<b>You’re no longer immobilized by your out-sized equipment!</b>", "good", deltaT);
@@ -20,8 +36,8 @@ private var percentBalls:Array = [10, 25, 50, 100];
 private var percentPenis:Array = [25, 50, 75, 100];
 private var percentClits:Array = [25, 50, 75, 100];
 private var percentBoobs:Array = [25, 50, 75, 100];
-private var percentBelly:Array = [5, 5, 5, 5];
-private var percentButts:Array = [5, 5, 5, 5];
+private var percentBelly:Array = [5, 20, 55, 100];
+private var percentButts:Array = [25, 50, 75, 100];
 
 
 /* General framework stuff */
@@ -34,8 +50,8 @@ private function lvlBodyParts(lvl:int = 0):Array
 	if(pc.hasCock() && pc.weightQ("penis") >= percentPenis[lvl] && pc.heightRatio("penis") >= lvlRatioPenis[lvl]) bodyPart.push("cock");
 	if(pc.hasVagina() && pc.weightQ("clitoris") >= percentClits[lvl] && pc.heightRatio("clitoris") >= lvlRatioClits[lvl]) bodyPart.push("clit");
 	if(pc.hasBreasts() && pc.weightQ("breast") >= percentBoobs[lvl] && pc.heightRatio("breast") >= lvlRatioBoobs[lvl]) bodyPart.push("boobs");
-	//if(pc.weightQ("belly") >= percentBelly[lvl] && pc.heightRatio("belly") >= lvlRatioBelly[lvl]) bodyPart.push("belly");
-	//if(pc.weightQ("butt") >= percentButts[lvl] && pc.heightRatio("butt") >= lvlRatioButts[lvl]) bodyPart.push("butt");
+	if(pc.weightQ("belly") >= percentBelly[lvl] && pc.heightRatio("belly") >= lvlRatioBelly[lvl]) bodyPart.push("belly");
+	if(pc.weightQ("butt") >= percentButts[lvl] && pc.heightRatio("butt") >= lvlRatioButts[lvl]) bodyPart.push("butt");
 	
 	return bodyPart;
 }
@@ -61,6 +77,11 @@ public function immobilizedUpdate(count:Boolean = false, deltaT:uint = 0):Number
 		if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV))
 		{
 			if(InCollection("breast", bodyPart)) immobileParts--;
+		}
+		if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV))
+		{
+			if(InCollection("belly", bodyPart)) immobileParts--;
+			if(InCollection("butt", bodyPart)) immobileParts--;
 		}
 		
 		// Support exceptions!
@@ -186,7 +207,7 @@ private function bodyPartUpdates(partName:String = "none", deltaT:uint = 0):void
 				
 				AddLogEvent(msg, "passive", deltaT);
 				//Status - Egregiously Endowed - Movement between rooms takes twice as long, and fleeing from combat is more difficult.
-				pc.createStatusEffect("Egregiously Endowed", 0,0,0,0,false,"Icon_Poison", "Movement between rooms takes twice as long, and fleeing from combat is more difficult.", false, 0);
+				applyEgregiouslyEndowed(deltaT);
 				pc.lust(5);
 			}
 			//Hit beachball size >= 15
@@ -195,7 +216,7 @@ private function bodyPartUpdates(partName:String = "none", deltaT:uint = 0):void
 				msg = ParseText("Every movement is accompanied by a symphony of sensation from your swollen nutsack, so engorged with [pc.cumNoun] that it wobbles from its own internal weight. You have to stop from time to time just to keep from being overwhelmed by your own liquid arousal.");
 				
 				AddLogEvent(msg, "passive", deltaT);
-				pc.createStatusEffect("Ludicrously Endowed", 0,0,0,0,false,"Icon_Poison", "The shifting masses of your over-sized endowments cause you to gain fifty percent more lust over time.", false, 0);
+				applyLudicrouslyEndowed(deltaT);
 				pc.lust(5);
 			}
 			//Hit barrel size
@@ -214,7 +235,7 @@ private function bodyPartUpdates(partName:String = "none", deltaT:uint = 0):void
 				msg += ". Mud is an erotic massage. Even sand feels kind of good against your thickened sack, like a vigorous massage.";
 				
 				AddLogEvent(msg, "passive", deltaT);
-				pc.createStatusEffect("Overwhelmingly Endowed", 0,0,0,0,false,"Icon_Poison", "The shifting masses of your over-sized endowments cause you to gain twice as much lust over time.", false, 0);
+				applyOverwhelminglyEndowed(deltaT);
 				pc.lust(5);
 			}
 			//hit person size
@@ -234,7 +255,7 @@ private function bodyPartUpdates(partName:String = "none", deltaT:uint = 0):void
 					if(pc.hasPerk("'Nuki Nuts")) msg += " If a quick fap wasn’t illegal here, this would be far simpler. Too bad.";
 				}
 				AddLogEvent(msg, "passive", deltaT);
-				pc.createStatusEffect("Endowment Immobilized", 0,0,0,0,false,"Icon_Poison", "Your endowments prevent you from moving.", false, 0);
+				applyEndowmentImmobilized(deltaT);
 				pc.lust(5);
 			}
 		}
@@ -287,6 +308,18 @@ private function bodyPartUpdates(partName:String = "none", deltaT:uint = 0):void
 				if(msg != "") AddLogEvent(msg, "passive", deltaT);
 				pc.setStatusValue("Bulky Belly", 1, nNewBellyDebuff);
 				pc.setStatusTooltip("Bulky Belly", "The size of your belly weighs you down, dropping your reflexes and evasion chances by " + (Math.round((1.0 - nNewBellyDebuff) * 1000) / 10) + "%.");
+			}
+			
+			if(weightQ >= percentBelly[3] && heightQ >= lvlRatioBelly[3] && !pc.hasStatusEffect("Endowment Immobilized") && !pc.hasItemByClass(Hoverboard))
+			{
+				// Butt bug, variant 1
+				if(pc.statusEffectv1("Butt Bug (Female)") == 1 && pc.statusEffectv1("Butt Bug Egg Cycle") == 1)
+				{
+					if(pc.pregnancyData.length > 3 && pc.pregnancyData[3].pregnancyType == "ButtBugPregnancy1" && pc.pregnancyData[3].pregnancyQuantity >= 30)
+					{
+						applyEndowmentImmobilized(deltaT);
+					}
+				}
 			}
 		}
 		else if(partName == "butt")
@@ -366,10 +399,17 @@ private function bodyPartCleanup(partName:String = "none", deltaT:uint = 0):void
 		}
 	}
 	// Belly Size
-	if (partName == "belly" && (altCheck || heightQ < lvlRatio[0]) && pc.hasStatusEffect("Bulky Belly"))
+	if (partName == "belly")
 	{
-		AddLogEvent("Shifting your weight around seems a lot easier now. <b>Your [pc.belly] is no longer slowing you down!</b>", "good", deltaT);
-		pc.removeStatusEffect("Bulky Belly");
+		if((altCheck || heightQ < lvlRatio[0]) && pc.hasStatusEffect("Bulky Belly"))
+		{
+			AddLogEvent("Shifting your weight around seems a lot easier now. <b>Your [pc.belly] is no longer slowing you down!</b>", "good", deltaT);
+			pc.removeStatusEffect("Bulky Belly");
+		}
+		if ((altCheck || weightQ < perRatio[3] || heightQ < lvlRatio[3]) && pc.hasStatusEffect("Endowment Immobilized")) 
+		{
+			if(lvlBodyParts(3).length <= 0) removeImmobilized(deltaT);
+		}
 	}
 }
 
@@ -1042,13 +1082,13 @@ public function priapismBlurbs():void
 			msgList.push("Whispering voices follow you wherever you go: <i>“Look at that one, eh?”</i> <i>“Pervert...”</i> <i>“I bet it’s fake.”</i>");
 			msgList.push("A deertaur canters by you, then stops to look back over her shoulder. Her tail flutters playfully. After a second, she winks at you and trots off, haunches upraised to display a moistening slit. Tease.");
 			// New Canadia - lil dicks
-			if(cLength <= 12) msgList.push("A moose-taur in the bright red uniform of New Canadia’s peacekeeper force smirks casually as he checks out your [pc.cockBiggest]. <i>“Poor lil [pc.guyGirl].”</i>");
+			if(cLength <= 12) msgList.push("A moose-taur in the bright red uniform of New Canadia’s Peacekeeper force smirks casually as he checks out your [pc.cockBiggest]. <i>“Poor lil [pc.guyGirl].”</i>");
 			// New Canadia - in the middle
-			else if(cLength <= 24) msgList.push("A moose-taur in the bright red uniform of New Canadia’s peacekeeper force chuckles as he stomps by. <i>“Foreigners...”</i>");
+			else if(cLength <= 24) msgList.push("A moose-taur in the bright red uniform of New Canadia’s Peacekeeper force chuckles as he stomps by. <i>“Foreigners...”</i>");
 			// New Canadia - big dicks only
-			else if(cLength <= 48) msgList.push("A moose-taur in the bright red uniform of New Canadia’s peacekeepers nods approvingly as he gazes at your [pc.cockBiggest]. <i>“Not bad.”</i>");
+			else if(cLength <= 48) msgList.push("A moose-taur in the bright red uniform of New Canadia’s Peacekeepers nods approvingly as he gazes at your [pc.cockBiggest]. <i>“Not bad.”</i>");
 			//New Canadia - hyper
-			else msgList.push("A moose-taur in the bright red uniform of New Canadia’s peacekeeper force recoils at the sight of your [pc.cockBiggest]. <i>“Pretty sure you need a permit for artillery like that.”</i> The quiet slap of his own dick smacking into his belly chases him as he trots off. More than once, he looks back longing.");
+			else msgList.push("A moose-taur in the bright red uniform of New Canadia’s Peacekeeper force recoils at the sight of your [pc.cockBiggest]. <i>“Pretty sure you need a permit for artillery like that.”</i> The quiet slap of his own dick smacking into his belly chases him as he trots off. More than once, he looks back longing.");
 		}
 		// NT
 		if(pcLocation == "New Texas")

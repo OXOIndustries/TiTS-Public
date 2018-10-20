@@ -1494,6 +1494,10 @@ public function approachDoctorBimboBadger():void
 	output("\n\nYou’re pretty sure that her abilities as an inventor have changed substantially. Given that you suspect she earlier made all the illegal drugs and equipment she sold herself, you doubt you’ll be able to buy anything further from her. But hey, that’s not what a bimbo is for anyway, right?");
 
 	processTime(1);
+	doctorBimboBadgerMenu();
+}
+public function doctorBimboBadgerMenu():void
+{
 	//[replace all previous interaction buttons with the below]
 	//[Talk][Sex]
 	clearMenu();
@@ -1501,6 +1505,7 @@ public function approachDoctorBimboBadger():void
 	if(pc.lust() >= 33) addButton(1,"Sex",sexWithBimboBadger,undefined,"Sex","Have your way with your new bimbo.");
 	else addDisabledButton(1,"Sex","Sex","You aren’t turned on enough to have sex right now.");
 	if(pexigaQuestDocChatsAvailable()) addButton(2,"Pexiga Help",talkToBimboBadgerAboutPexiga,undefined,"Pexiga Help","Ask for help with the Pexiga’s situation.");
+	
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -1539,11 +1544,8 @@ public function talkToDoctorBadger():void
 		pc.lust(20);
 		processTime(1);
 	}
-	clearMenu();
+	doctorBimboBadgerMenu();
 	addDisabledButton(0,"Talk","Talk","You won’t be getting much discussion out of this bimbo.");
-	if(pc.lust() >= 33) addButton(1,"Sex",sexWithBimboBadger,undefined,"Sex","Have your way with your new bimbo.");
-	else addDisabledButton(1,"Sex","Sex","You aren’t turned on enough to have sex right now.");
-	addButton(14,"Leave",mainGameMenu);
 }
 
 //Sex

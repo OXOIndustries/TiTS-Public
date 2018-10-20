@@ -594,7 +594,7 @@ public function quadommeCounter(attacker:Creature, target:Creature):Boolean
 	
 	output(" You miss the target and your own momentum delivers a heavy, chitin-coated sock to the side of your head. You stagger backwards, dazed and tasting iron.");
 	applyDamage(new TypeCollection( { kinetic: 16 }, DamageFlag.BYPASS_SHIELD ), target, attacker, "minimal");
-	if(rand(2) == 0 && !attacker.hasStatusEffect("Staggered"))
+	if(rand(2) == 0 && !attacker.hasStatusEffect("Staggered") && !target.isPlanted())
 	{
 		CombatAttacks.applyStagger(attacker);
 		output("\n<b>You have been staggered!</b>");

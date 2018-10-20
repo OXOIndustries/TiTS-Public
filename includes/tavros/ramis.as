@@ -30,7 +30,7 @@ public function ramisBustDisplay(nude:Boolean = false):String
 
 public function ramisIsCrew():Boolean
 {
-	return false;
+	return flags["RAMIS_ONBOARD"] == 1;
 }
 
 // Intros
@@ -39,6 +39,7 @@ public function ramisIsCrew():Boolean
 public function ramisAtAnons():Boolean
 {
 	if(pc.hasStatusEffect("Ramis Away Time")) return false;
+	if(ramisIsCrew()) return false;
 	
 	if(flags["RAMIS_MET"] != undefined && pc.isFemboy() && looksFamiliarToRamis() && ramisFemboyHours()) return true;
 	// Regular hours
@@ -123,7 +124,8 @@ public function getRamisPregContainer():PregnancyPlaceholder
 	ppRamis.shiftVagina(0, GLOBAL.TYPE_FELINE);
 	//ppRamis.vaginas[0].wetnessRaw = 3;
 	ppRamis.vaginas[0].loosenessRaw = 1;
-	ppRamis.vaginas[0].bonusCapacity += 100;
+	ppRamis.vaginas[0].bonusCapacity += 125;
+	if (flags["RAMIS_STRETCHED"] != undefined) ppRamis.vaginas[0].bonusCapacity += flags["RAMIS_STRETCHED"];
 	return ppRamis;
 }
 
@@ -148,6 +150,7 @@ public function approachRamis(special:String = "none"):void
 	clearMenu();
 	
 	addButton(10, "Appearance", ramisAppearance, 10);
+	if(flags["RAMIS_MET"] != undefined) addButton(4, "Recruit", ramisRecruit, undefined, "Recruit", "She’s a mercenary, right? See what it would cost to get her on board your ship.");
 	
 	// Special femboy approach
 	if(special == "femboy")

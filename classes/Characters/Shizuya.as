@@ -316,7 +316,7 @@ package classes.Characters
 					else
 					{
 						output("As you continue to struggle against her, you gasp in sudden shock as she lifts you off the ground.");
-						if (combatMiss(this, target) || blindMiss(this, target, true)) output(" She rears back, attempting to throw you, but you shift your weight just in time to throw her off balance. She falls to the ground, and you manage to slip out of her grip and ready yourself as she gets up.");
+						if (combatMiss(this, target) || blindMiss(this, target, true) || target.isPlanted()) output(" She rears back, attempting to throw you, but you shift your weight just in time to throw her off balance. She falls to the ground, and you manage to slip out of her grip and ready yourself as she gets up.");
 						else
 						{
 							output(" She rears back, hoisting you over her, and slams you into the ground behind her! You’re not grappled anymore, but that hurt like hell and you’re still on the ground.");
@@ -348,13 +348,14 @@ package classes.Characters
 		
 		public function counterAttack(target:Creature, melee:Boolean = false):void
 		{
-			if (melee) output("You go in for an attack, only for her to knock your feet from under you, giving you a parting punch in the gut before you land on your ass, still reeling from her blow.");
-			else output("In the split-second it takes you to aim, she’s already on you. Delivering a swift punch to the gut before kicking your feet from under you. You get up, still winded from her attack.");
+			var canStagger:Boolean =  (!target.isPlanted());
+			if (melee) output("You go in for an attack, only for her to " + (canStagger ? "knock your feet from under you" : "swiftly dodge your attack") + ", giving you a parting punch in the gut before you " + (canStagger ? "land on your ass, still reeling" : "recover") + " from her blow.");
+			else output("In the split-second it takes you to aim, she’s already on you. Delivering a swift punch to the gut" + (canStagger ? " before kicking your feet from under you. You get up" : ". You attempt to recover") + ", still winded from her attack.");
 			output("\n\n<b>You are staggered!</b>");
 			applyDamage(damageRand(meleeDamage(), 20), this, target, "minimal");
 			if(melee) setStatusValue("Counters Melee", 1, 1);
 			else setStatusValue("Counters Ranged", 1, 1);
-			CombatAttacks.applyStagger(target);
+			if(canStagger) CombatAttacks.applyStagger(target);
 		}
 		
 		//Goddamn this function is complicated

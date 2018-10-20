@@ -30,7 +30,7 @@
 		//constructor
 		public function Anno()
 		{
-			this._latestVersion = 12;
+			this._latestVersion = 13;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -161,7 +161,7 @@
 			//No dicks here!
 			this.cocks = new Array();
 			//balls
-			this.balls = 2;
+			this.balls = 0;
 			this.cumMultiplierRaw = 3;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
@@ -278,6 +278,10 @@
 		public function UpgradeVersion11(dataObject:Object):void
 		{
 			dataObject.skinType = GLOBAL.SKIN_TYPE_SKIN;
+		}
+		public function UpgradeVersion12(dataObject:Object):void
+		{
+			dataObject.balls = 0;
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

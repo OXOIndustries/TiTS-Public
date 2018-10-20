@@ -210,7 +210,7 @@ package classes.Characters
 			if(!combatMiss(this, target))
 			{
 				output(" Its teeth sink into you, and the sheer weight of its impact against you");
-				if((target.hasStatusEffect("Tripped") || target.physique()/2 + rand(20) > 19) && !target.hasStatusEffect("Stunned")) output(" staggers you momentarily!");
+				if((target.hasStatusEffect("Tripped") || target.physique()/2 + rand(20) > 19 || target.isPlanted()) && !target.hasStatusEffect("Stunned")) output(" staggers you momentarily!");
 				else
 				{
 					output(" throws you right to the ground!");
@@ -220,7 +220,6 @@ package classes.Characters
 				var damage:TypeCollection = new TypeCollection( { kinetic: 12 }, DamageFlag.PENETRATING);
 				damageRand(damage, 15);
 				applyDamage(damage, this, target);
-				
 			}
 			else output(" You slip out of the way.");
 		}
