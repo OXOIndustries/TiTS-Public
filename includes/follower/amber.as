@@ -334,8 +334,7 @@ public function amberComeWithTalkShip():void
 		output("\n\n<i>“Oh, a shower,”</i> Amber exclaims, clasping her hands together in glee. <i>“I haven’t had one in so long…”</i>");
 		output("\n\n<i>“Alright, I’ll let you get to it!”</i> Anno chirps, smiling. <i>“You can come by my room any time if you wanna talk, Amber. It’s just down the corridor. See you!”</i>");
 		output("\n\n<i>“Bye, Anno!”</i> Amber says, waving as the friendly ausar heads to her room. She turns to you after Anno’s left. <i>“She’s very nice.”</i>");
-		output("\n\n<i>“Yeah, Anno’s great,”</i> you agree. <i>“C’mon, I’ll show you the hold.”</i>");	
-		output("\n\n");
+		output("\n\n<i>“Yeah, Anno’s great,”</i> you agree. <i>“C’mon, I’ll show you the hold.”</i>");		
 	}
 	
 	output("You show her around the rest of the ship, though admittedly it’s not a very long tour. She takes particular interest in all the mounting equipment set up in the hold, courtesy of Urbolg.");
