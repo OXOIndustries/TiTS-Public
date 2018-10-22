@@ -63,6 +63,7 @@ public function showAkane(nude:Boolean = false, showAuthor:Boolean = true):Boole
 {
 	author("SoAndSo");
 	showName("\nAKANE");
+	showBust("AKANE" + (nude ? "_NUDE":""));
 	return false;
 }
 
