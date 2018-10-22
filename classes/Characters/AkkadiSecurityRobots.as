@@ -98,7 +98,7 @@ package classes.Characters
 			this.gills = false;
 			this.wingType = GLOBAL.TYPE_HUMAN;
 			this.legType = GLOBAL.TYPE_HUMAN;
-			this.legCount = 3;
+			this.legCount = 4;
 			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
@@ -163,7 +163,7 @@ package classes.Characters
 		public static function encounterTextGen():String
 		{
 			var enctext:String = "You’re fighting Akkadi security bots!";
-			enctext += "\n\nEach bot is a mechanical biped, more lizard-like than canid, with a squat body covered in sleek armor plates. Rather than a head, they have angled blast shields that face you, parted around the barrel of a gun and a laser sight that ceaselessly tracks your movements. There’s still ";
+			enctext += "\n\nEach bot is a mechanical quadruped, more lizard-like than canid, with a squat body covered in sleek armor plates. Rather than a head, they have angled blast shields that face you, parted around the barrel of a gun and a laser sight that ceaselessly tracks your movements. There’s still ";
 			if (CombatManager.enemiesAlive() == 1) enctext += "one standing!";
 			else if (CombatManager.enemiesAlive() == 2) enctext += "two standing!";
 			else enctext += "several robots in the fray!";

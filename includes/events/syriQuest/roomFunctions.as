@@ -147,7 +147,7 @@ public function syriQuestBackupGenerators(doOutput:Boolean = true):void
 	addButton(13, "Plasma Coil C", syriQuestToggleSettings, 13);
 	userInterface.setButtonBlue(13);
 
-	addDisabledButton(14, "Rest");
+	addDisabledButton(14, "Reset");
 }
 
 public function syriQuestToggleSettings(slot:int):void
@@ -172,8 +172,8 @@ public function syriQuestToggleSettings(slot:int):void
 	output("The power reading is flashing ‘" + syriQuestBackupGeneratorsPower + "%’.");
 	output("\n\nYou need 40% power to stay in the sweet spot, and all three generators need to be online to work.");
 
-	if (syriQuestBackupGeneratorsPower != 0 ) addButton(14, "Rest", syriQuestBackupGeneratorsFailure);
-	else addDisabledButton(14, "Rest");
+	if (syriQuestBackupGeneratorsPower != 0 ) addButton(14, "Reset", syriQuestBackupGeneratorsFailure);
+	else addDisabledButton(14, "Reset");
 
 	if (syriQuestBackupGeneratorsPower == sweetSpot) {
 		if (syriQuestBackupGeneratorsActiveA() && syriQuestBackupGeneratorsActiveB() && syriQuestBackupGeneratorsActiveC()) syriQuestBackupGeneratorsSuccess();
