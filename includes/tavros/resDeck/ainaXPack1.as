@@ -209,7 +209,7 @@ public function ainaPregEmail2():String
 {
 	var eText:String = "";
 	eText+="Hey [pc.name]! Thought you'd want to know I've started showing. It's not much right now but it's just enough to be noticeable. Oh god, am I gonna have to stop eating junk food now? I didn't even think about that :(";	
-	eText+="\n\n(a picture is included, with Aina's midsection appearing slightly larger than the last time you saw her.)";
+	eText+="\n\n(A picture is included, with Aina’s midsection appearing slightly larger than the last time you saw her.)";
 	
 	return doParse(eText);
 }
@@ -217,7 +217,7 @@ public function ainaPregEmail3():String
 {
 	var eText:String = "";
 	eText+="Agh, at this point I think I should be able to tell between pregnancy and just extra weight, but I just feel like a tubby horse :( You should come visit some time, maybe we can watch a movie or something and take my mind off it ;)";	
-	eText+="\n\n(a picture is included, Aina's belly is noticeably larger than the last picture)";
+	eText+="\n\n(A picture is included, Aina’s belly is noticeably larger than the last picture)";
 	
 	return doParse(eText);
 }
@@ -295,7 +295,7 @@ public function ainaPregShower():void
 	else output(" while she enters a section that");
 	output(" cleans the tauric portions of the body.");	
 	
-	output("\n\nAina grins as she redresses, her hair back to its normal ponytail. You feel as refreshed as she looks, ready to face the universe again.");
+	output("\n\nAina grins as she re-dresses, her hair back to its normal ponytail. You feel as refreshed as she looks, ready to face the universe again.");
 	
 	processTime(15 + rand(15));	
 	pc.lust(25 + rand(10));
@@ -488,7 +488,7 @@ public function ainaPregComfort3():void
 	
 	
 	output("\n\nYou sleep for what feels like a day, finding Aina up and dressed by the time you wake. She leans onto the bed in front of you and smiles wistfully.");
-	output("\n\n<i>“You look extra " + pc.mf("handsome","beautiful") + " when you're sleeping, I'm jealous,”</i> she says. You chuckle, rolling into a kneeling position and stretching. She admires you from the bed for a moment longer before standing and gathering the gear you'd discarded the night before. Once you're dressed, you follow her into the living room, stopping just before the door.");
+	output("\n\n<i>“You look extra " + pc.mf("handsome","beautiful") + " when you're sleeping. I'm jealous,”</i> she says. You chuckle, rolling into a kneeling position and stretching. She admires you from the bed for a moment longer before standing and gathering the gear you'd discarded the night before. Once you're dressed, you follow her into the living room, stopping just before the door.");
 	
 	output("\n\n<i>“Stay safe out there");
 	if (silly) output(", space cowboy");	
