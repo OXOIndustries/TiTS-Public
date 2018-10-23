@@ -1,19 +1,7 @@
 public function eventWhorizonInitRooms():void
 {
-	var planetName:String = "EVENT";
-	var systemName:String = "WHORIZON";
-
-	/*
-	rooms[""] = new RoomClass(this);
-	rooms[""].roomName = "";
-	rooms[""].description = "";
-	rooms[""].runOnEnter = undefined;
-	rooms[""].planet = planetName;
-	rooms[""].system = systemName;
-	rooms[""].northExit = "";
-	rooms[""].addFlag(GLOBAL.INDOOR);
-	rooms[""].addFlag(GLOBAL.SHIPHANGAR);
-	*/
+	var planetName:String = "SPATIAL ANOMOLY";
+	var systemName:String = "UNKNOWN SPACE";
 
 	rooms["EW-M23"] = new RoomClass(this);
 	rooms["EW-M23"].roomName = "LANDING\nZONE";
@@ -23,6 +11,7 @@ public function eventWhorizonInitRooms():void
 	rooms["EW-M23"].system = systemName;
 	rooms["EW-M23"].northExit = "EW-M21";
 	rooms["EW-M23"].addFlag(GLOBAL.SHIPHANGAR);
+	rooms["EW-M23"].addFlag(GLOBAL.DESERT);
 
 	rooms["EW-M21"] = new RoomClass(this);
 	rooms["EW-M21"].roomName = "STRANGE\nCORRIDORS";
@@ -32,7 +21,7 @@ public function eventWhorizonInitRooms():void
 	rooms["EW-M21"].system = systemName;
 	rooms["EW-M21"].northExit = "EW-M19";
 	rooms["EW-M21"].southExit = "EW-M23";
-	rooms["EW-M21"].addFlag(GLOBAL.OUTDOOR);
+	rooms["EW-M21"].addFlag(GLOBAL.DESERT);
 
 	rooms["EW-M19"] = new RoomClass(this);
 	rooms["EW-M19"].roomName = "VINES &\nFLOWERS";
@@ -42,8 +31,7 @@ public function eventWhorizonInitRooms():void
 	rooms["EW-M19"].system = systemName;
 	rooms["EW-M19"].northExit = "EW-M17";
 	rooms["EW-M19"].southExit = "EW-M21";
-	rooms["EW-M19"].addFlag(GLOBAL.INDOOR);
-	rooms["EW-M19"].addFlag(GLOBAL.SHIPHANGAR);
+	rooms["EW-M19"].addFlag(GLOBAL.DESERT);
 
 	rooms["EW-M17"] = new RoomClass(this);
 	rooms["EW-M17"].roomName = "TENTACLE\nGARDEN";
@@ -54,8 +42,8 @@ public function eventWhorizonInitRooms():void
 	rooms["EW-M17"].northExit = "EW-M15";
 	rooms["EW-M17"].eastExit = "EW-O17"
 	rooms["EW-M17"].southExit = "EW-M19";
-	rooms["EW-M17"].addFlag(GLOBAL.INDOOR);
-	rooms["EW-M17"].addFlag(GLOBAL.SHIPHANGAR);
+	rooms["EW-M17"].addFlag(GLOBAL.DESERT);
+	rooms["EW-M17"].addFlag(GLOBAL.HAZARD);
 
 	rooms["EW-O17"] = new RoomClass(this);
 	rooms["EW-O17"].roomName = "TWISTED\nROCKS";
@@ -63,9 +51,9 @@ public function eventWhorizonInitRooms():void
 	rooms["EW-O17"].runOnEnter = undefined;
 	rooms["EW-O17"].planet = planetName;
 	rooms["EW-O17"].system = systemName;
-	rooms["EW-O17"].westExit = "EW-M17"
-	rooms["EW-O17"].addFlag(GLOBAL.INDOOR);
-	rooms["EW-O17"].addFlag(GLOBAL.SHIPHANGAR);
+	rooms["EW-O17"].westExit = "EW-M17";
+	rooms["EW-O17"].northExit = "EW-O15";
+	rooms["EW-O17"].addFlag(GLOBAL.DESERT);
 
 	rooms["EW-M15"] = new RoomClass(this);
 	rooms["EW-M15"].roomName = "COLLECTION\nPOOL";
@@ -75,19 +63,18 @@ public function eventWhorizonInitRooms():void
 	rooms["EW-M15"].system = systemName;
 	rooms["EW-M15"].westExit = "EW-K15"
 	rooms["EW-M15"].southExit = "EW-M17";
-	rooms["EW-M15"].addFlag(GLOBAL.INDOOR);
-	rooms["EW-M15"].addFlag(GLOBAL.SHIPHANGAR);
+	rooms["EW-M15"].addFlag(GLOBAL.DESERT);
 
 	rooms["EW-K15"] = new RoomClass(this);
 	rooms["EW-K15"].roomName = "THE FUCK\nPRISON";
 	rooms["EW-K15"].description = "";
-	rooms["EW-K15"].runOnEnter = undefined;
+	rooms["EW-K15"].runOnEnter = eventWhorizonTheFuckPrison;
 	rooms["EW-K15"].planet = planetName;
 	rooms["EW-K15"].system = systemName;
 	rooms["EW-K15"].eastExit = "EW-M15"
 	rooms["EW-K15"].northExit = "EW-K13";
-	rooms["EW-K15"].addFlag(GLOBAL.INDOOR);
-	rooms["EW-K15"].addFlag(GLOBAL.SHIPHANGAR);
+	rooms["EW-K15"].addFlag(GLOBAL.DESERT);
+	rooms["EW-K15"].addFlag(GLOBAL.HAZARD);
 
 	rooms["EW-K13"] = new RoomClass(this);
 	rooms["EW-K13"].roomName = "PALACE\nSTEPS";
@@ -97,27 +84,27 @@ public function eventWhorizonInitRooms():void
 	rooms["EW-K13"].system = systemName;
 	rooms["EW-K13"].northExit = "EW-K11";
 	rooms["EW-K13"].southExit = "EW-K15";
-	rooms["EW-K13"].addFlag(GLOBAL.INDOOR);
-	rooms["EW-K13"].addFlag(GLOBAL.SHIPHANGAR);
+	rooms["EW-K13"].addFlag(GLOBAL.DESERT);
 
 	rooms["EW-K11"] = new RoomClass(this);
 	rooms["EW-K11"].roomName = "THE BONDAGE\nPALACE";
 	rooms["EW-K11"].description = "";
-	rooms["EW-K11"].runOnEnter = undefined;
+	rooms["EW-K11"].runOnEnter = eventWhorizonTheBondagePalace;
 	rooms["EW-K11"].planet = planetName;
 	rooms["EW-K11"].system = systemName;
 	rooms["EW-K11"].southExit = "EW-K13";
-	rooms["EW-K11"].addFlag(GLOBAL.INDOOR);
-	rooms["EW-K11"].addFlag(GLOBAL.SHIPHANGAR);
+	rooms["EW-K11"].addFlag(GLOBAL.DESERT);
+	rooms["EW-K11"].addFlag(GLOBAL.HAZARD);
 
 	rooms["EW-O15"] = new RoomClass(this);
 	rooms["EW-O15"].roomName = "TORMENT\nCAGES";
 	rooms["EW-O15"].description = "";
 	rooms["EW-O15"].runOnEnter = eventWhorizonTormentCages;
+	rooms["EW-O15"].southExit = "EW-O17";
 	rooms["EW-O15"].planet = planetName;
 	rooms["EW-O15"].system = systemName;
-	rooms["EW-O15"].addFlag(GLOBAL.INDOOR);
-	rooms["EW-O15"].addFlag(GLOBAL.SHIPHANGAR);
+	rooms["EW-O15"].addFlag(GLOBAL.DESERT);
+	rooms["EW-O15"].addFlag(GLOBAL.HAZARD);
 }
 
 public function eventWhorizonTentacleGarden():Boolean

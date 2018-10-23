@@ -27,15 +27,15 @@
 			
 			// Originally a clone of the zilpack
 			// Needs a few things checked.
-			this.short = "tentacle gardener";
+			this.short = "Tentacle Gardener";
 			this.originalRace = "human";
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "She's a tall, statuesque woman... if the statuary you're looking at has grossly exaggerated sexual attributes: an impossibly thin waistline but mareish hips, huge breasts decorated with golden chains, and demonic claws and horns. Black-and-green hair swirls around her as she moves, dancing around the garden with a feline grace that seems outright impossible considering the sheer weight of ass, hips, and titties she's carrying -- yet she makes her assets look feather-light. And predatory smile is drawn across her jade lips, and coal-black eyes betray a deep, fathomless hunger as she circles you.";
 			this.customDodge = "The gardener deftly slides past your attack with graceful agility.";
 			this.customBlock = "The gardener meets your attack with one of her own, glancing it away.";
-			this.isPlural = true;
-			isLustImmune = true;
+			this.isPlural = false;
+			isLustImmune = false;
 			
 			this.meleeWeapon = new Fists();
 			meleeWeapon.baseDamage.kinetic.damageValue = 8;
@@ -46,9 +46,11 @@
 			this.meleeWeapon.attackNoun = "slap";
 			this.meleeWeapon.hasRandomProperties = true;
 			
-			this.baseHPResistances.corrosive.resistanceValue = -25.0;
-			this.baseHPResistances.burning.resistanceValue = -25.0;
-			this.baseHPResistances.kinetic.resistanceValue = -25.0;
+			this.baseHPResistances.tease.resistanceValue = -25.0;
+			this.baseHPResistances.burning.resistanceValue = 33.3;
+			this.baseHPResistances.freezing.resistanceValue = 33.3;
+			this.baseHPResistances.electric.resistanceValue = 33.3;
+			this.baseHPResistances.kinetic.resistanceValue = 10.0;
 			
 			// Hackjob an existing damage flag with new bonuses to provide a bonus for "slashing" damage.
 			this.baseHPResistances.addDamageFlag(
@@ -59,29 +61,29 @@
 			this.armor.defense = 5;
 			this.armor.hasRandomProperties = true;
 			
-			this.physiqueRaw = 27;
-			this.reflexesRaw = 15;
-			this.aimRaw = 2;
-			this.intelligenceRaw = 5;
-			this.willpowerRaw = 10;
+			this.physiqueRaw = 35;
+			this.reflexesRaw = 20;
+			this.aimRaw = 15;
+			this.intelligenceRaw = 20;
+			this.willpowerRaw = 35;
 			this.libidoRaw = 1;
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 0;
-			this.level = 6;
+			this.level = 7;
 			this.XPRaw = normalXP();
 			this.credits = 0;
-			this.HPMod = 100;
+			this.HPMod = 140;
 			this.HPRaw = this.HPMax();
 			
 			this.cocks = new Array();
 			
 			this.createStatusEffect("Disarm Immune");
-			this.createStatusEffect("Force It Gender");
+			this.createStatusEffect("Force Fem Gender");
 			this.createStatusEffect("Flee Disabled");
 			
 			isUniqueInFight = true;
-			btnTargetText = "TentacleGrdn";
+			btnTargetText = "TentGardener";
 			this._isLoading = false;
 		}
 		
@@ -92,6 +94,7 @@
 		
 		private var HasTakenPhysicalDamage:Boolean = false;
 		private var HasTentacleQueued:Boolean = false;
+		private var VineWhipCooldown:int = 0;
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
@@ -123,12 +126,20 @@
 				return;
 			}
 			
-			var attacks:Array = [];
+			VineWhipCooldown--;
 			
+			var attacks:Array = [];
 			
 			if (rand(4) == 0)
 			{
-				vineWhip(target);
+				if (VineWhipCooldown <= 0)
+				{
+					vineWhip(target);
+				}
+				else
+				{
+					tentacleSlap(target);
+				}
 			}
 			else
 			{
@@ -153,7 +164,7 @@
 				{
 					var se:StorageClass = target.getStatusEffect("Pollen Lust");
 					se.value1 = 3; // Reset the remaining round duration
-					se.value3 += 1; // Add a stack
+					se.value3 += 0.2; // Add some extra to the multiplier
 				}
 				else
 				{
@@ -191,7 +202,8 @@
 			else
 			{
 				output(" The tentacle slaps against your [pc.foot], winding around your body before you can react! In the blink of an eye, you're wrapped up in tentacles that squeeze and squirm all around you, making movement all but impossible!");
-				target.createStatusEffect("Grappled", 0, 45, 0, 0, false, "Constrict", "You’re wrapped up in the gardeners tentacles!", true, 0, 0xFF0000);
+				target.createStatusEffect("Grappled", 0, 20, 0, 0, false, "Constrict", "You’re wrapped up in the gardeners tentacles!", true, 0, 0xFF0000);
+				VineWhipCooldown = 4;
 			}
 		}
 		
@@ -212,7 +224,7 @@
 
 			output("\n\nWhen she breaks the forced kiss, you're coughing and sputtering, and purple plant-cum is leaking down your chin.");
 
-			applyDamage(damageRand(new TypeCollection({ tease: 10, drug: 4}), 15), this, target);
+			applyDamage(damageRand(new TypeCollection({ tease: 5, drug: 4}), 15), this, target);
 		}
 		
 		private function naughtyTentacle(target:Creature):void
@@ -223,8 +235,8 @@
 
 			output("\n\nThe whole affair only lasts a handful of seconds before the vine wriggles free, followed quickly by a purple streak that leaks down the gardener's lush thighs.");
 			
-			applyDamage(damageRand(new TypeCollection({ tease: 12 }), 15), this, target);
-			this.lust(-(this.lust * 0.2)); // Reduce current lust by 20%
+			applyDamage(damageRand(new TypeCollection({ tease: 7 }), 15), this, target);
+			this.lust(-(this.lust() * 0.2)); // Reduce current lust by 20%
 		}
 		
 		override public function OnTakeDamage(incomingDamage:TypeCollection):void
@@ -235,7 +247,7 @@
 			
 			super.OnTakeDamage(incomingDamage);
 			
-			if (incomingDamage.kinetic.damaveValue > 0)
+			if (incomingDamage.kinetic.damageValue > 0)
 			{
 				HasTakenPhysicalDamage = true;
 			}
@@ -266,7 +278,7 @@
 			if (!combatMiss(target, target, -1, missMod))
 			{
 				output(" Several of the thick green dick-vines slap you, knocking you around with sheer blunt impacts. Every time you're hit, the alien fuck - vines squirt out their musky - smelling spunk across your" + (target.isNude() ? " [pc.chest]" : " [pc.armor]") + ". You're left with purple smears all over, flooding your senses with fuck-pheromones.");
-				applyDamage(damageRand(new TypeCollection( { kinetic: 20, pheromone: 10 } ), 10), this, target);
+				applyDamage(damageRand(new TypeCollection( { kinetic: 14, pheromone: 5 } ), 10), this, target);
 			}
 			else
 			{

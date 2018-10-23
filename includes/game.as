@@ -2072,7 +2072,14 @@ public function flyMenu():void
 			addButton(14, "Back", mainGameMenu);
 			return;
 		}
-			
+		
+		if (isDoingEventWhorizon())
+		{
+			output("<b>Without a way to navigate back through the spatial anomoly, it's probably best you don't try and take off right now...</b>");
+			clearMenu();
+			addButton(14, "Back", mainGameMenu);
+			return;
+		}	
 		
 		if(flags["CHECKED_GEAR_AT_OGGY"] != undefined) flags["CHECKED_GEAR_AT_OGGY"] = undefined;
 		pc.removeStatusEffect("Disarmed");
@@ -2382,7 +2389,8 @@ public function leavePlanetOK():Boolean
 {
 	if(pc.hasStatusEffect("Disarmed") && shipLocation == "500") return false;
 	if(pc.hasKeyItem("RK Lay - Captured")) return false;
-	if(ramisOutDrinking()) return false;
+	if (ramisOutDrinking()) return false;
+	if (isDoingEventWhorizon()) return false;
 	return true;
 }
 

@@ -11,6 +11,7 @@
 	import classes.VaginaClass;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
+	import classes.Engine.Utility.weightedRand;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.GameData.CombatAttacks;
@@ -30,13 +31,13 @@
 			
 			// Originally a clone of the zilpack
 			// Needs a few things checked.
-			this.short = "demonsyri";
+			this.short = "Demon Queen Syri";
 			this.originalRace = "ausar";
-			this.a = "";
-			this.capitalA = "";
+			this.a = "the ";
+			this.capitalA = "The ";
 			this.long = "She's a towering mound of muscular ausar meat: more than eight feet tall, olive-skin glistening with sweat and fuck-juices, black fur on her arms and legs bristling. Her thick tail slaps heavily on the stone floor with every step, swaying with overt enjoyment of your battle. Her eyes are a fiery, almost glowing orange, burning with rage and lust. The horns that grow from her head stick out to the sides like a prize bull's, adorned with chains and rings. Syri's fangs are long and sharp, catching the waning light from outside as she circles you, and her claws ball into brawler's fists in preparation for her attacks.";
-			this.customDodge = "The gardener deftly slides past your attack with graceful agility.";
-			this.customBlock = "The gardener meets your attack with one of her own, glancing it away.";
+			this.customDodge = "The demon queen slides past your attack with graceful agility.";
+			this.customBlock = "The demon queen meets your attack with one of her own, glancing it away.";
 			this.isPlural = false;
 			isLustImmune = false;
 			
@@ -49,37 +50,38 @@
 			this.meleeWeapon.attackNoun = "punch";
 			this.meleeWeapon.hasRandomProperties = true;
 			
-			this.baseHPResistances.corrosive.resistanceValue = -25.0;
-			this.baseHPResistances.burning.resistanceValue = -25.0;
-			this.baseHPResistances.kinetic.resistanceValue = -25.0;
-			
-			// Hackjob an existing damage flag with new bonuses to provide a bonus for "slashing" damage.
-			this.baseHPResistances.addDamageFlag(
-				new DamageFlag(DamageFlag.PLATED, [[DamageFlag.PENETRATING, 1.5, DamageFlag.OP_MUL]])
-			);
+			this.baseHPResistances.tease.resistanceValue = -25.0;
+			this.baseHPResistances.burning.resistanceValue = 33.3;
+			this.baseHPResistances.freezing.resistanceValue = 33.3;
+			this.baseHPResistances.electric.resistanceValue = 33.3;
+			this.baseHPResistances.kinetic.resistanceValue = 25.0;
 			
 			this.armor.longName = "tough hide";
-			this.armor.defense = 5;
+			this.armor.defense = 14;
 			this.armor.hasRandomProperties = true;
 			
-			this.physiqueRaw = 27;
-			this.reflexesRaw = 15;
-			this.aimRaw = 2;
-			this.intelligenceRaw = 5;
-			this.willpowerRaw = 10;
+			this.physiqueRaw = 45;
+			this.reflexesRaw = 30;
+			this.aimRaw = 15;
+			this.intelligenceRaw = 20;
+			this.willpowerRaw = 30;
 			this.libidoRaw = 1;
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 0;
-			this.level = 6;
+			this.level = 7;
 			this.XPRaw = normalXP();
 			this.credits = 0;
-			this.HPMod = 100;
+			this.HPMod = 300;
 			this.HPRaw = this.HPMax();
 			
 			var c:CockClass = new CockClass();
 			c.cLengthRaw = 12;
 			c.cType = GLOBAL.TYPE_CANINE;
+			c.cockColor = "red";
+			c.cThicknessRatioRaw = 1.5;
+			c.knotMultiplier = 1.5;
+			c.addFlag(GLOBAL.FLAG_TAPERED);
 			c.addFlag(GLOBAL.FLAG_KNOTTED);
 			cocks = [c];
 			
@@ -120,17 +122,26 @@
 				return;
 			}
 			
-			attacks.push(slam);
-			if (target.hasArmor() && !target.hasStatusEffect("Sundered")) attacks.push(rendingClaws);
-			attacks.push(getTheHorns);
-			if (target.hasStatusEffect("Tripped")) attacks.push(demonElbow);
+			if (target.hasStatusEffect("Tripped"))
+			{
+				demonElbow(target);
+				return;
+			}
+			
+			var attacks:Array = [];
+			
+			attacks.push({ v: slam, w: 10 });
+			if (target.hasArmor() && !target.hasStatusEffect("Sundered") && (HP() <= HPMax() || lust() > 0)) attacks.push({ v: rendingClaws, w: 25 });
+			attacks.push({ v: getTheHorns, w: 5});
+			
+			weightedRand(attacks)(target);
 			
 		}
 		
 		private function slam(target:Creature):void
 		{
 			output("Syri lunges forward, charging like a raging bull and swinging her fists like sledgehammers!");
-			if (combatMiss(this, traget))
+			if (combatMiss(this, target))
 			{
 				output(" You dodge to the side, letting her momentum carry her right past you.");
 			}

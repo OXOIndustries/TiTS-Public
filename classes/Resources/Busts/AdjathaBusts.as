@@ -245,6 +245,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/del_boy.png", mimeType = "image/png")]
 		public var Bust_DELILAH_BOY:Class;
 		public function get Bust_DELILAH_BOY_NUDE():Class { return Bust_DELILAH_NUDE; }
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/syri_hell.png", mimeType = "image/png")]
+		public var Bust_DEMONSYRI:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/dollmaker.png", mimeType = "image/png")]
 		public var Bust_DOLLMAKER:Class;
@@ -1151,6 +1154,9 @@ package classes.Resources.Busts
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/darnock.png", mimeType = "image/png")]
 			public var Full_DARNOCK:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/syri_hell.png", mimeType = "image/png")]
+			public var Full_DEMONSYRI:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/dollmaker.png", mimeType = "image/png")]
 			public var Full_DOLLMAKER:Class;

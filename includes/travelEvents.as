@@ -36,7 +36,7 @@ public function tryProcTravelEvent(destination:String):Function
 			possibleMessages.push(sendKashimaMessage);
 		}
 		
-		if (flags["EVENT_WHORIZON_STATE"] == undefined && (pc.hasVagina() || pc.hasCock()))
+		if (flags["EVENT_WHORIZON_STATE"] == undefined && (pc.hasVagina() || pc.hasCock()) && pc.level >= 7)
 		{
 			possibleMessages.push(sendEventWhorizonMessage);
 		}

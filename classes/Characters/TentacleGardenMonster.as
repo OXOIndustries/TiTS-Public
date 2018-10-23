@@ -26,7 +26,7 @@
 			
 			// Originally a clone of the zilpack
 			// Needs a few things checked.
-			this.short = "tentacle garden";
+			this.short = "Tentacle Garden";
 			this.originalRace = "foliage";
 			this.a = "the ";
 			this.capitalA = "The ";
@@ -51,15 +51,15 @@
 			
 			// Hackjob an existing damage flag with new bonuses to provide a bonus for "slashing" damage.
 			this.baseHPResistances.addDamageFlag(
-				new DamageFlag(DamageFlag.PLATED, [[DamageFlag.PENETRATING, 1.5, DamageFlag.OP_MUL]])
+				new DamageFlag(DamageFlag.PLATED, [[DamageFlag.PENETRATING, 1.33, DamageFlag.OP_MUL]])
 			);
 			
 			this.armor.longName = "tough hide";
-			this.armor.defense = 5;
+			this.armor.defense = 2;
 			this.armor.hasRandomProperties = true;
 			
-			this.physiqueRaw = 27;
-			this.reflexesRaw = 15;
+			this.physiqueRaw = 15;
+			this.reflexesRaw = 40;
 			this.aimRaw = 2;
 			this.intelligenceRaw = 5;
 			this.willpowerRaw = 10;
@@ -70,7 +70,7 @@
 			this.level = 6;
 			this.XPRaw = normalXP();
 			this.credits = 0;
-			this.HPMod = 100;
+			this.HPMod = 200;
 			this.HPRaw = this.HPMax();
 			
 			this.cocks = new Array();
@@ -86,7 +86,7 @@
 		
 		override public function get bustDisplay():String
 		{
-			return "TENTACLEGARDEN";
+			return "ADULTCOCKVINE";
 		}
 		
 		private var hasTripped:Boolean = false;
@@ -140,8 +140,10 @@
 			var missMod:Number = 5;
 			if (!combatMiss(this, target, -1, missMod))
 			{
-				output(" Several of the thick green dick-vines slap you, knocking you around with sheer blunt impacts. Every time you're hit, the alien fuck - vines squirt out their musky - smelling spunk across your" + (target.isNude() ? " [pc.chest]" : " [pc.armor]") + ". You're left with purple smears all over, flooding your senses with fuck-pheromones.");
-				applyDamage(damageRand(new TypeCollection( { kinetic: 20, pheromone: 10 } ), 10), this, target);
+				output(" Several of the thick green dick-vines slap you, knocking you around with sheer blunt impacts. Every time you're hit, the alien fuck - vines squirt out their musky - smelling spunk across your" + (target.isNude() ? " [pc.chest]" : " [pc.armor]") + ". You're left with purple smears all over");
+				if (target.hasAirtightSuit()) output(", smearing your suit with slightly stringy, sticky splatters of goo.");
+				else output(", flooding your senses with fuck-pheromones.");
+				applyDamage(damageRand(new TypeCollection( { kinetic: 20, pheromone: (target.hasAirtightSuit() ? 0 : 5) } ), 10), this, target);
 			}
 			else
 			{
@@ -157,7 +159,7 @@
 
 			output("You're having a good enough time dodging a hundred fuck-hungry tentacles that for a moment, the pussy-flowers underfoot slip your mind");
 			
-			var reflexFail:Boolean = (pc.reflexes() / 2 + rand(20) + 1 < 24);
+			var reflexFail:Boolean = (target.reflexes() / 2 + rand(20) + 1 < 24);
 			
 			output(" -- so they");
 			if (!reflexFail || target.isPlanted()) output(" try to");

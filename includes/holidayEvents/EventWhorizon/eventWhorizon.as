@@ -2,7 +2,8 @@
 EVENT_WHORIZON_STATE:
 	undefined		Not started
 	-1				Abandoned/ignored
-	1				Inital mail sent
+	1				Started
+	2				Finished
 
 
 EVENT_WHORIZON_TENTACLE_GARDEN
@@ -19,7 +20,14 @@ EVENT_WHORIZON_TORMENT_CAGES
 	
 */
 	
-public function sendEventWhorizonMessage(destination:String):void
+public function isDoingEventWhorizon():Boolean
+{
+	if (flags["EVENT_WHORIZON_STATE"] == undefined) return false;
+	if (flags["EVENT_WHORIZON_STATE"] == 2) return false;
+	return true;
+}
+
+public function sendEventWhorizonMessage(destination:String = null):void
 {
 	clearOutput();
 	author("Savin");
@@ -37,6 +45,11 @@ public function sendEventWhorizonMessage(destination:String):void
 	output("\n\nIt may be possible to get closer and investigate...");
 
 	processTime(2);
+	
+	if (destination == null)
+	{
+		destination = "TAVROS HANGAR";
+	}
 
 	clearMenu();
 	addButton(0, "Do It", goToEventWhorizon, destination, "Do It", "Science is calling!");
@@ -85,6 +98,7 @@ public function ewEventOver():void
 {
 	flyToWrapper(flags["STORED_SHIP_DESTINATION"]);
 	flags["STORED_SHIP_DESTINATION"] = undefined;
+	mainGameMenu();
 }
 
 public function actuallyStartEventWhorizon():void
@@ -107,11 +121,13 @@ public function actuallyStartEventWhorizon():void
 		output("\n\n<i>“Okay... Uhh, that’s not what I wanted to hear. I guess I’ll start running tests. See if I can get the sensors to cooperate. Why don’t you go do your adventurer thing, huh? We’re not going anywhere right now.”</i>");
 	}
 
-	if (crew() >= 2)
+	var numCrew:Number = crew(true);
+
+	if (numCrew >= 2)
 	{
 		output("\n\nYou tell your crew you’re going out to investigate the strange new surroundings you’ve found yourselves in.");
 	}
-	else if (crew() == 1)
+	else if (numCrew == 1)
 	{
 		var names:Array = getCrewOnShipNames();
 		
@@ -132,6 +148,7 @@ public function actuallyStartEventWhorizon():void
 	processTime(15+rand(5));
 
 	shipLocation = "EW-M23";
+	flags["EVENT_WHORIZON_STATE"] = 1;
 
 	clearMenu();
 	addButton(0, "Next", exitShipOnEW);
@@ -149,7 +166,7 @@ public function EWTentacleGardenFight():void
 	clearOutput();
 	author("Savin");
 	showName("TENTACLE\nGARDEN");
-	showBust("TENTACLEGARDEN");
+	showBust("ADULTCOCKVINE");
 
 	output("As you’re walking through the twisting forest of sandstone columns, you can’t help but notice the meaty green vines hanging from the rock formations are getting thicker and thicker - both in size and in density. Some pillars are almost entirely covered by them, surrounded at their base by steaming pools of the purple juices that seem to constantly leak from the plants’ bulbous forends.");
 	
@@ -161,16 +178,17 @@ public function EWTentacleGardenFight():void
 	
 	output("\n\nYou look up, at the mats of vines coating the stone. They’re writhing and wriggling, peeling off the rock and lunging for you!");
 
-	var h = new TentacleGardenMonster();
+	var h:TentacleGardenMonster = new TentacleGardenMonster();
 
 	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyActors(pc);
 	CombatManager.setHostileActors(h);
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.victoryScene(ewTentacleGardenVictory);
 	CombatManager.lossScene(ewTentacleGardenLoss);
 	CombatManager.encounterTextGenerator(function():String {
-		var m:String = "You're fighting the Tentacle Garden!\n\n";
+		var m:String = "You're surrounded on all sides by wriggling green vines, mercilessly whipping and grabbing at you. A wall of pink pussy-flowers box you in, sucking at your [pc.legs] if you stray out of the center of the garden. The tentacles grab at your [pc.arms], trying to restrain you -- and the cockhead-shaped tips at their ends make it abundantly clear what will happen if they succeed!";
 		return m;
 	});
 	
@@ -181,7 +199,7 @@ public function EWTentacleGardenFight():void
 private function ewTentacleGardenVictory():void
 {
 	clearOutput();
-	showBust("TENTACLEGARDEN");
+	showBust("ADULTCOCKVINE");
 	showName("VICTORY:\nTENTACLE GARDEN");
 	author("Savin");
 
@@ -195,7 +213,7 @@ private function ewTentacleGardenVictory():void
 private function ewTentacleGardenLoss():void
 {
 	clearOutput();
-	showBust("TENTACLEGARDEN");
+	showBust("ADULTCOCKVINE");
 	showName("DEFEAT:\nTENTACLE GARDEN");
 	author("Savin");
 
@@ -244,7 +262,7 @@ private function ewTentacleGardenMerge(isVictory:Boolean):void
 
 	output("\n\nThe woman’s clawed hands rest on her brood-bearing hips, and she chews on viridian lip. While you’re still staring at the statuesque creature, she grasps one of the slick green vines dangling from the stone and slides down it, landing a few feet from you with enough jiggle to make a galotian blush.");
 
-	output("\n\n<i>“My darlings can be so... curious about newcomers. They’ll learn their place soon enough,”</i> the strange woman purrs, caressing a bushel of tentacle-vines as she strides towards you, hips a-swaying. <i>“As for you, why don’t you leave those silly weapons over there and come to momma. I’ve got a lovely tentacle cage just dying to be filled with you. And you with it.”</i>");
+	output("\n\n<i>“My darlings can be so... curious about newcomers. They’ll learn their place soon enough,”</i> the strange woman purrs, caressing a bushel of tentacle-vines as she strides towards you, hips a-swaying. <i>“As for you, why don’t you leave those silly weapons over there and come to momma. I’ve got a lovely tentacle cage just dying to be filled with you. And you with it.”</i>\n\n");
 
 	if (pc.HP() < 1) pc.HP(1);
 	if (pc.shields() < pc.shieldsMax()) pc.shields(pc.shieldsMax());
@@ -282,16 +300,17 @@ private function ewTentacleGardenMergeNo():void
 
 	output("\n\nI doesn’t look like she’s gonna take no for an answer.");
 
-	var h = new TentacleGardener();
+	var h:TentacleGardener = new TentacleGardener();
 
 	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyActors(pc);
 	CombatManager.setHostileActors(h);
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.victoryScene(ewTentacleGardenerVictory);
 	CombatManager.lossScene(ewTentacleCageBadEnd);
 	CombatManager.encounterTextGenerator(function():String {
-		var m:String = "You're fighting the Tentacle Gardener!\n\nShe's a tall, statuesque woman... if the statuary you're looking at has grossly exaggerated sexual attributes: an impossibly thin waistline but mareish hips, huge breasts decorated with golden chains, and demonic claws and horns. Black-and-green hair swirls around her as she moves, dancing around the garden with a feline grace that seems outright impossible considering the sheer weight of ass, hips, and titties she's carrying -- yet she makes her assets look feather-light. And predatory smile is drawn across her jade lips, and coal-black eyes betray a deep, fathomless hunger as she circles you.";
+		var m:String = "She's a tall, statuesque woman... if the statuary you're looking at has grossly exaggerated sexual attributes: an impossibly thin waistline but mareish hips, huge breasts decorated with golden chains, and demonic claws and horns. Black-and-green hair swirls around her as she moves, dancing around the garden with a feline grace that seems outright impossible considering the sheer weight of ass, hips, and titties she's carrying -- yet she makes her assets look feather-light. And predatory smile is drawn across her jade lips, and coal-black eyes betray a deep, fathomless hunger as she circles you.";
 		return m;
 	});
 	
@@ -424,7 +443,7 @@ private function EWTormentCagesLeave():void
 
 	if (flags["EVENT_WHORIZON_TORMENT_CAGES"] == undefined)
 	{
-		addHard(5);
+		pc.addHard(5);
 		flags["EVENT_WHORIZON_TORMENT_CAGES"] = -1;
 	}
 
@@ -443,7 +462,7 @@ private function EWTormentCagesHelp():void
 	showName("TORMENT\nCAGES");
 	showBust("TORMENTCAGES");
 
-	addNice(5); // No check to existing changes- leaving then helping will cancel out etc
+	pc.addNice(5); // No check to existing changes- leaving then helping will cancel out etc
 
 	output("You jump forward, [pc.weapon] in hand, and demand the demons release their captive. All three of the lust-wrought figures start, wiping the sexual juices off their hands and lips as they turn to look at you.");
 	
@@ -465,6 +484,7 @@ private function EWTormentCagesHelp():void
 	output("\n\nThey start to advance on you, making it clear there’s no saying <i>“No”</i> to their request.");
 
 	processTime(5+rand(3));
+	flags["EVENT_WHORIZON_TORMENT_CAGES"] = 1;
 
 	clearMenu();
 	addButton(0, "Fight!", EWDemonicCaptorsFight);
@@ -593,16 +613,17 @@ public function EWBondagePalace():void
 
 	processTime(5+rand(2));
 
-	var h = new DemonSyri();
+	var h:DemonSyri = new DemonSyri();
 
 	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyActors(pc);
 	CombatManager.setHostileActors(h);
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
 	CombatManager.victoryScene(ewDemonSyriVictory);
 	CombatManager.lossScene(ewDemonSyriLoss);
 	CombatManager.encounterTextGenerator(function():String {
-		var m:String = "You're fighting the Tentacle Garden!\n\n";
+		var m:String = "She's a towering mound of muscular ausar meat: more than eight feet tall, olive-skin glistening with sweat and fuck-juices, black fur on her arms and legs bristling. Her thick tail slaps heavily on the stone floor with every step, swaying with overt enjoyment of your battle. Her eyes are a fiery, almost glowing orange, burning with rage and lust. The horns that grow from her head stick out to the sides like a prize bull's, adorned with chains and rings. Syri's fangs are long and sharp, catching the waning light from outside as she circles you, and her claws ball into brawler's fists in preparation for her attacks.";
 		return m;
 	});
 	
@@ -633,14 +654,18 @@ private function ewDemonSyriVictory():void
 
 private function ewDemonSyriPostCombatMenu():void
 {
-	clearMenu();
 	// [Talk] [Fuck] [Look Around]
 	clearMenu();
 	if (flags["EVENT_WHORIZON_DEMONSYRI_TALK"] == undefined) addButton(0, "Talk", ewDemonSyriTalk, undefined, "Talk", "Who the hell is she, and what’s she doing here?");
-	else addButton(0, "Arrival", ewDemonSyriTalkArrival, undefined, "Arrival", "Ask Syri how she got to this strange dimension.");
+	else if (flags["EVENT_WHORIZON_DEMONSYRI_TALK"] == 1) addButton(0, "Arrival", ewDemonSyriTalkArrival, undefined, "Arrival", "Ask Syri how she got to this strange dimension.");
+	else addDisabledButton(0, "Arrival");
 
-	addButton(1, "Fuck", ewDemonSyriFuck, undefined, "Fuck", "Claim your reward from the oversexed demon queen’s body.");
-	addButton(2, "Look Around", ewDemonSyriLookAround, undefined, "Look Around", "See if there's any way you might be able to get out of here...");
+	if (flags["EVENT_WHORIZON_FUCKED_DEMONSYRI"] == undefined) addButton(1, "Fuck", ewDemonSyriFuck, undefined, "Fuck", "Claim your reward from the oversexed demon queen’s body.");
+	else addDisabledButton(1, "Fuck");
+	
+	if (flags["EVENT_WHORIZON_DEMONSYRI_LOOKAROUND"] == undefined) addButton(2, "Look Around", ewDemonSyriLookAround, undefined, "Look Around", "See if there's any way you might be able to get out of here...");
+	else addDisabledButton(2, "Look Around");
+	
 	if (flags["EVENT_WHORIZON_DEMONSYRI_LOOKAROUND"] != undefined) addButton(14, "Leave", ewDemonSyriLeave, undefined, "Leave", "Use the data from the computer crate to get the hell out of this pocket plane.");
 }
 
@@ -672,6 +697,108 @@ private function ewDemonSyriLeave():void
 	//[Okay] [Come With]
 	clearMenu();
 	addButton(0, "Okay", ewDemonSyriOkay, undefined, "Okay", "Sure thing, demon lady.");
+	addButton(1, "Come With", ewDemonSyriComeWith, undefined, "Come With", "Take the big demon-dog with you back to reality. She'll have to find her own way home, though... wherever that is.");
+}
+
+private function ewDemonSyriComeWith():void
+{
+	clearOutput();
+	author("Savin");
+	showName("VICTORY:\nDEMON SYRI");
+	showBust("DEMONSYRI");
+
+	output("<i>“I’ve got a better idea,”</i> you say, stepping back towards Syri and shoving the computer core into her arms. She grunts with the sudden weight, hefting it up onto her shoulder and giving you a questioning look. You grin and jerk a thumb towards the door. <i>“C’mon, we’re leaving.”</i>");
+	
+	output("\n\nIt takes a moment to register in the hellhound’s lust-clouded mind, but after a moment of confusion, she returns your grin. <i>“You better not be yankin’ my horns now. You’re really gonna help me get home?”</i>");
+	
+	output("\n\nSure, why not. You got a feeling her home isn’t quite the same place as yours, but you can get her out of here. So you lead Queen Syri out of the grand temple of hedonism, down the sweeping palatial steps and back into the twisting labyrinth of stone columns. This time it’s relatively easy to make your way back to the ship, retracing your steps right to the airlock. Along the way, Syri’s relatively quiet, but a glance over your shoulder shows that her tail’s wagging, faster and harder as you cycle through the airlock and back into your ship.");
+
+	if (annoIsCrew())
+	{
+		output("\n\nBoy do you have a surprise for Anno. You shout her name and guide Syri to the common area of the ship. The hellhound shrugs the computer core onto the deck and growls <i>“Who’re you yelling for?”</i>");
+
+		output("\n\nThe question answers itself as soon as the snowy pup saunters out of her quarters. Her");
+		if (!annoWearingCatsuit()) output(" shirt’s buttoned down low enough to show off a fair hint of cleavage, and her hair’s spilling down her shoulders in luxurious curls.");
+		else output(" catsuit’s zipped down past her tits, leaving the two succulent mounds barely constrained within it. White curls fall in luxurious waves around her shoulders, and her creamy skin seems to sparkle in the light");
+		output(". The reaction from the hellhound is immediate and visceral: her nipples harden into wine-red mountains, and a heady aroma of desire starts suffusing the air all around you.");
+
+		output("\n\n<i>“Well hello, gorgeous,”</i> Syri growls, pushing her mess of black hair out of the way and showing off a fearsome smile full of fangs.");
+		
+		output("\n\nAnno stops short in the corridor, blinking. <i>“Uh, greetings... large... naked ausar.”</i>");
+		
+		output("\n\nBefore they can get any further, you decide to introduce your new friend. <i>“This is the queen of this place. Syri Dorna.”</i>");
+		
+		output("\n\n<i>“Syri...”</i> Anno echoes, staring. Her tail swishes behind her, and you watch the confusion on her face spread, then morph into something else: delight. <i>“Syri! Aha, that confirms my hypothesis: we <b>are</b> linked to an alternate dimension. And my alternate-dimension self must have trapped you here. Spatial transporter accident, right?”</i>");
+		
+		output("\n\n<i>“You mean teleporter? Yeah,”</i> the hellhound says, her lust untampered. <i>“I dunno who you are or what those big words were, but I know I like this ship already.”</i>");
+		
+		output("\n\nAnno just brushes that off with a snicker. <i>“Gross. Well, I know a lot of scientists who are gonna <b>love</b> taking your readings. But we’ve gotta get out of here first, yeah?”</i>");
+		
+		output("\n\nSyri grunts and hefts up the core again. <i>“Sooner we’re out, the sooner I can get back to starin’ at your tits.”</i>");
+		
+		output("\n\n<i>“Still a little gross. Why don’t you two see about getting us out of this weird dimension, eh?”</i>");
+	}
+
+	output("\n\nYou lead Syri and her armful of datacore to the bridge and rip off a hull panel, exposing the guts of navigational computer. Taking the core from her, you begin the arduous process of installing in your ship. Lucky you, wherever this thing comes from uses the same I/O ports as your ship.");
+
+	currentLocation = "SHIP INTERIOR";
+	generateMapForLocation(currentLocation);
+
+	processTime(20+rand(5));
+
+	clearMenu();
+	addButton(0, "Next", ewDemonSyriComeWithII);
+}
+
+private function ewDemonSyriComeWithII():void
+{
+	clearOutput();
+	author("Savin");
+	showName("VICTORY:\nDEMON SYRI");
+	showBust("DEMONSYRI");
+
+	output("You wipe the sweat from your brow as you crawl out of the wirey guts of the nav-comp. When you reboot the system, it flashes an Akkadi logo and then begins uploading what promises to be an ungodly load of data. When it’s finished, your computer is, indeed, able to finally make heads and tails of where the hell you are - or at least, where you’ve been. It’s able to calculate a return trip through the featureless cum-colored sky, to the tear in reality hidden somewhere out there, invisible to the naked eye.");
+	
+	output("\n\nTime to leave.");
+	
+	output("\n\nYou strap in and take the helm, urging the ship’s engines to life. Syri stuffs herself into the co-pilot’s chair, buckling to safety belt between her tits and around her toned belly. Her tail flops into her lap, giving the lusty pup the closest thing to modesty she’s had in years. She gives you a nod and braces herself.");
+	
+	output("\n\nThe [pc.ship] lifts off and cruises into the sky, back towards your own reality. There’s no visual sign of the tear in space from this side of the portal, so you feel the transition before you see it. Your [pc.skin] tingles, and you feel your flesh heating up - as if you’re hornier than you’ve ever been, making you pant and gasp as a pressure builds in your chest.");
+	
+	output("\n\nThen the colors out of the forward viewscreen change, erupting into blackness dotted with stars. You’re out! The pressure recedes with a gasp of fresh, untainted air. Home again! You let go of the controls and lean back in the captain’s chair.");
+	
+	output("\n\nOnce you’ve caught your breath, you turn the sensors around and scan the space behind you. While you’d gotten strange readings from the anomaly before going through, now... now you don’t read anything at all. Even bringing the ship about for a visual scan reveals nothing at all. Whatever that portal was, and wherever it led to, is gone.");
+	
+	output("\n\n<i>“Holy shit,”</i> Syri laughs, staring out the forward viewscreen into the speckled darkness of space. <i>“I never thought I’d be so glad to see a whole lot of nothing again. I mean, I’m gonna kind of miss that place and all the awesome sex all day every day, but... I wanna see my big bro and parents more. At least for a day before I get my ass back to New Texas or something.”</i>");
+	
+	output("\n\nShe leans back in the chair and grins to herself, lost in thought. <i>“Yeah, just drop me off at the next spaceport you hit, and I’ll make my way home from there.”</i>");
+
+	if (annoIsCrew())
+	{
+		output("\n\n<i>“Oh no you don’t,”</i> Anno says, sauntering into the cockpit with a Codex couched under her arm. <i>“First off, you don’t <b>have</b> a brother in this reality, you have a sister - that’s me, by the way, hello - and secondly-”</i>");
+
+		output("\n\nSyri guffaws, slapping her knee with delight. <i>“No shit!? Man I thought my brother was fuckable, but you... hot damn I wish I had a dick right now.”</i>");
+
+		output("\n\nAnno’s cheeks flush red. <i>“Okaaaay, now you’re gross </i>and<i> creepy. Anyway, every mega-corp in the galaxy is gonna pay a fortune to study someone from an alternate reality. We only get like, three or four of you a year, tops.”</i>");
+
+		output("\n\n<i>“Sounds lame,”</i> Syri answers, unbuckling herself from the copilot’s seat. <i>“So... you and the Syri from this dimension not fuckin’ yet or what?”</i>");
+
+		output("\n\n<i>“N-no!”</i> Anno sputters. <i>“What are... you know on second thought, boss, let’s dump this big girl off wherever she wants. I don’t need this getting into the circle of academia.”</i>");
+
+		output("\n\nWell, guess it’s back to plan A then.");
+	}
+
+	output("\n\n<i>“Sure you don’t want to stick around?”</i> you ask, eyeing the hellhound’s powerful physique. <i>“Could use a woman like you around.”</i>");
+
+	output("\n\n<i>“Appreciate the offer,”</i> Syri answers with a toothy grin. <i>“But I’ve got a lot of catching up to do, looks like. Maybe I’ll see you around sometime. Maybe I’ll just get lost in some orgy pit somewhere. I dunno. But I definitely don’t want to be shackled down anywhere after all these years. And that includes getting tied down to any</i>body<i> either.”</i>");
+
+	output("\n\nGuess you can’t blame her for that. Alright, time to get on the move then. You dial back into your original destination and spool up the LightDrive...");
+
+	processTime(10+rand(5));
+
+	clearMenu();
+	addButton(0, "Next", ewEventOver);
+
 }
 
 private function ewDemonSyriOkay():void
@@ -709,7 +836,7 @@ private function ewDemonSyriOkay():void
 
 	processTime(20+rand(5));
 
-	currentLocation = "SHIP_INTERIOR";
+	currentLocation = "SHIP INTERIOR";
 	generateMapForLocation(currentLocation);
 
 	clearMenu();
@@ -741,8 +868,9 @@ private function ewDemonSyriOkayII():void
 	
 	output("\n\nUh-huh. <i>“Just try not to open up any portals onboard, okay?”</i>");
 	
-	
 	output("\n\n<i>“Will do, boss!”</i> Anno snickers, rolling her eyes. <i>“I’ll make sure and pop ‘em open outside! Who knows, maybe Queen Syri will want to say hi.”</i>");
+
+	processTime(10+rand(5));
 
 	clearMenu();
 	addButton(0, "Next", ewEventOver);
@@ -797,7 +925,7 @@ private function ewDemonSyriRideFace():void
 	output("\n\nSyri’s tits keep leaking, and her tongue keeps fucking deeper, exploring new and more sensitive depths of your [pc.vagOrAss]. Before long, you’re having to choke back moans and gasps, feeling her tongue flicking along your inner flesh. You murmur that she’s doing good - good girl, just like that! Your [pc.hips] grind over her face, rubbing her nose through the crack of your ass while her tongue’s forced ever deeper inside you. You’re not sure if Syri’s actually skilled at oral or just damn desperate to get you off, but her tongue’s moving like a bucking bronco, thrashing and thrusting against your most sensitive places.");
 	
 	output("\n\nYou dig your fingers into the hellhound’s tits and hold on as tight as you can as orgasm erupts through you. Your [pc.legs] and [pc.hips] feel like they’re blazing, aflame with sexual heat as your loins are assaulted by Syri’s tongue. The satanic slut goes stock rigid under you as your hands molest her udders, and milk squirts all over you in creamy geysers. You can some of the lactic discharge on your [pc.tongue], the rest on your");
-	if (pc.biggsetTitSize() > 1) output(" tits.");
+	if (pc.biggestTitSize() > 1) output(" tits.");
 	else output(" chest.");
 
 	output("\n\nBy the time Syri’s milky eruption has finally calmed down, your own orgasm has passed as well, leaving you panting for breath and feeling numb all over. The hellhound’s not faring much better, simmering in a pool of her own milk and fuckjuices leaking from her twat. Her thighs are a swamp of girlcum");
@@ -904,11 +1032,11 @@ private function ewDemonSyriLookAround():void
 	
 	output("\n\n<i>“It’s all gibberish to me,”</i> Syri grunts, waving a hand dismissively at the computer box. <i>“It came with me, only part of my kit to survive the jump. Tried to figure it out for a while. Then I got tentacles installed here and stopped giving a shit about... pretty much anything. You know anything about computers?”</i>");
 	
-	if (pc.IQ() >= 75 || pc.characterClass == GLOBAL.CLASS_CLASS_ENGINEER)
+	if (pc.IQ() >= 75 || pc.characterClass == GLOBAL.CLASS_ENGINEER)
 	{
 		output("\n\nFuck yes you do.");
 	}
-	else if (pc.isBimbo() || pc.isBrute())
+	else if (pc.isBimbo() || pc.isBro())
 	{
 		output("\n\nYou know how to look up porn!");
 	}
@@ -997,7 +1125,7 @@ private function ewDemonSyriLoss():void
 	output("\n\nSyri draws in a long, sharp breath. <i>“Yeah,”</i> she growls, reveling in your scent. <i>“Yeah, that’s good. Haven’t felt this alive in years!”</i>");
 
 	output("\n\nShe throws her head back and howls, a thunderous roar of infernal satisfaction that echoes through the chamber. When Syri’s attention returns to you, a feral grin is on her dark lips, and her fiery eyes look at you with one feeling, and one only: hunger. her claws move roughly across your body, ripping and tearing at your [pc.gear] until there’s almost nothing left. Her palms are surprisingly soft on your bare [pc.skinFurScales], silky black fur brushing across your [pc.nipples] and");
-	if (pc.biggsetTitSize() > 1) output(" groping your tits");
+	if (pc.biggestTitSize() > 1) output(" groping your tits");
 	else output(" rubbing along your [pc.chest]");
 	output("... and then your [pc.hips], gripping you tightly.");
 
@@ -1047,7 +1175,26 @@ private function ewDemonSyriLoss():void
 
 	output("\n\nYou have just enough time to catch your breath before it starts all over again.");
 	
-	output("\n\nDays pass of endless sexual slavery between the wolf-demon’s legs. You’re never given the chance to recover your strength; the vitality is sapped out of you with endless orgasms. {Has 1 Crew: You barely even notice when a group of demons come into the throne, bearing a cum-soaked [crewName] between them. //else 2+: You can only offer the weakest protests when you see your crew dragged in by the queen’s demonic servants, covered in cum and insensate.} You spend your days servicing Syri’s sex; your nights held firmly against her warm, strong body as she sleeps - when she isn’t molesting you in the night, awoken by her insatiable libido.");
+	output("\n\nDays pass of endless sexual slavery between the wolf-demon’s legs. You’re never given the chance to recover your strength; the vitality is sapped out of you with endless orgasms.");
+
+	var numCrew:Number = crew(true);
+
+	if (numCrew == 1)
+	{
+		var names:Array = getCrewOnShipNames();
+
+		if (names.length != 1)
+		{
+			output("\n\nERROR: Invalid number of available crewmembers.");
+		}
+
+		output(" You barely even notice when a group of demons come into the throne, bearing a cum-soaked "+ names[0] +" between them.");
+	}
+	else if (numCrew > 1)
+	{
+		output(" You can only offer the weakest protests when you see your crew dragged in by the queen’s demonic servants, covered in cum and insensate.");
+	}
+	output(" You spend your days servicing Syri’s sex; your nights held firmly against her warm, strong body as she sleeps - when she isn’t molesting you in the night, awoken by her insatiable libido.");
 	
 	output("\n\nIt’s several weeks before your hopes of escape are forever shattered, when Queen Syri starts to call you <i>“mate.”</i> She keeps you on her lap or between her firm thighs even when she’s holding <i>“court,”</i> directing the nefarious demons under her command to tear portals in even more worlds, capture more adventurers. The idea of resisting, of trying to save those people, never even crosses your mind. You’re too concerned with how best to please your queen as she guides your [pc.lips] back to her sex.");
 
