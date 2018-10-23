@@ -2654,12 +2654,20 @@ package classes.GameData
 			}
 			if(target is NaleenHerm)
 			{
-				target.addStatusValue("Counters Ranged",1,1);
-				target.setStatusValue("Counters Melee",1,0);
-				if(target.statusEffectv1("Counters Ranged") >= 3)
+				if(target.isBlind() || target.isImmobilized())
 				{
-					(target as NaleenHerm).rangedCounter(attacker);
-					return true;
+					target.setStatusValue("Counters Melee",1,0);
+					target.setStatusValue("Counters Ranged",1,0);
+				}
+				else
+				{
+					target.addStatusValue("Counters Ranged",1,1);
+					target.setStatusValue("Counters Melee",1,0);
+					if(target.statusEffectv1("Counters Ranged") >= 3)
+					{
+						(target as NaleenHerm).rangedCounter(attacker);
+						return true;
+					}
 				}
 			}
 			return false;
@@ -2673,12 +2681,20 @@ package classes.GameData
 			}
 			if(target is NaleenHerm)
 			{
-				target.addStatusValue("Counters Melee",1,1);
-				target.setStatusValue("Counters Ranged",1,0);
-				if(target.statusEffectv1("Counters Melee") >= 3)
+				if(target.isBlind() || target.isImmobilized())
 				{
-					(target as NaleenHerm).meleeCounter(attacker);
-					return true;
+					target.setStatusValue("Counters Melee",1,0);
+					target.setStatusValue("Counters Ranged",1,0);
+				}
+				else
+				{
+					target.addStatusValue("Counters Melee",1,1);
+					target.setStatusValue("Counters Ranged",1,0);
+					if(target.statusEffectv1("Counters Melee") >= 3)
+					{
+						(target as NaleenHerm).meleeCounter(attacker);
+						return true;
+					}
 				}
 			}
 			return false;
