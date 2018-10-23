@@ -3,6 +3,7 @@ package classes.Engine.Combat
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
 	import classes.Engine.Utility.rand;
+	import classes.Items.Accessories.AimEyepieceMkII;
 	import classes.GLOBAL;
 	
 	/**
@@ -14,6 +15,11 @@ package classes.Engine.Combat
 		if (overrideAttack == -1) overrideAttack = attacker.attack(true);
 		
 		var evasion:Number = target.evasion();
+		if(attacker.accessory is AimEyepieceMkII) 
+		{
+			evasion -= 5;
+			if(evasion < 0) evasion = 0;
+		}
 		//Negative evasion also helps you be hit by attacks.
 		var evasionPenalty:Number = Math.max(0, evasion * -3);
 		//Target Lock = no miss!

@@ -11,10 +11,10 @@ public function zhengElevatorF1Bonus():void
 {
 	variableRoomUpdateCheck();
 	//Power Out: 
-	if(flags["ZHENG_SPACEWALKED"] == undefined && flags["ZHENG_SHI_SLAVE_SNUCK"] == undefined) output("However, a big red sign has been hung up off a valve next to the elevator that reads <b>OUT OF ORDER</b>. The console that controls the elevator is powered down, and a couple of pokes doesn’t change that. Looks like the power’s been cut somewhere...");
+	if(flags["ZHENG_SPACEWALKED"] == undefined && flags["ZHENG_SHI_SLAVE_SNUCK"] == undefined) output(" However, a big red sign has been hung up off a valve next to the elevator that reads <b>OUT OF ORDER</b>. The console that controls the elevator is powered down, and a couple of pokes doesn’t change that. Looks like the power’s been cut somewhere...");
 	else 
 	{
-		output("The power has been restored to the elevator, and the console is flashing dimly with control instructions.");
+		output(" The power has been restored to the elevator, and the console is flashing dimly with control instructions.");
 		addButton(5,"Up",move,"ZSF I16");
 	}
 }
@@ -143,7 +143,36 @@ public function zhengFoundryF1EncounterBonus():Boolean
 		flags["ZS_FOUNDRY_STEP"] = 0;
 		IncrementFlag("ZS_FOUNDRY_ENCOUNTERS");
 
-		encounters.push(forgehoundEncounter);
+		//encounters.push(forgehoundEncounter);
+		encounters.push(encounterPunkSecOp);
+		encounters.push(encounterPunkSecOp);
+		encounters.push(encounterPunkSecOp);
+		encounters.push(encounterPunkSecOp);
+		encounters.push(encounterPunkSecOp);
+		encounters.push(encounterPunkSecOp);
+		encounters.push(encounterPunkSecOp);
+		encounters.push(encounterPunkSecOp);
+		/*encounters.push(boredJumperAttackProc);
+		encounters.push(boredJumperAttackProc);*/
+	}
+	if(encounters.length > 0) 
+	{
+		return encounters[rand(encounters.length)]();
+	}
+	return false;
+}
+
+public function zhengFoundryF2EncounterBonus():Boolean
+{
+	IncrementFlag("ZS_FOUNDRY_STEP");
+	var encounters:Array = [];
+	//First 3 times are gimmes, then increasing odds till step 15 or so.
+	if(flags["ZS_FOUNDRY_STEP"] - 8 > rand(16))
+	{
+		flags["ZS_FOUNDRY_STEP"] = 0;
+		IncrementFlag("ZS_FOUNDRY_ENCOUNTERS");
+
+		//encounters.push(forgehoundEncounter);
 		encounters.push(encounterPunkSecOp);
 		encounters.push(encounterPunkSecOp);
 		encounters.push(encounterPunkSecOp);
@@ -787,6 +816,48 @@ public function prefabDeadEndBonus():Boolean
 	else output(" This is probably where they put together all the different kit-bashed robots they have all over the station.");
 	output(" Leave it to pirates to eschew the tried and true off-the-shelf models!");
 	return zhengFoundryF1EncounterBonus();
+}
+
+public function zhengFoundryFloor2ElevatorBonus():Boolean
+{
+
+	if(flags["ZHENG_SHI_FOUNDRY_2F_OPEN"] == undefined) output("The cargo elevator’s door is closed. A piece of malformed of pipe jammed through the works will keep it that way, unless you bother to free it from its bondage and restore access to this hanging pathway.");
+	else output("The cargo elevator’s door is wide-open thanks to you. Without the bent-up pipe holding it shut, you’re free to travel back up here without having scamper up a four story ladder.");
+	output(" Boxes of parts and tools sit stacked nearly by the side in a pile, awaiting their chance to be loaded up and whisked away.");
+	if(flags["ZHENG_SHI_FOUNDRY_2F_OPEN"] == undefined) 
+	{
+		output(" You suppose the pirates forgot about them.");
+		flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
+		addButton(0,"Pull Pipe",freePipeElevator);
+	}
+	else output(" You suppose they'll be waiting here until Peacekeepers show up to drive everyone away.");
+	return false;
+}
+
+public function freePipeElevator():void
+{
+	clearOutput();
+	showName("\nYOINK!");
+	output("With a " + (pc.PQ() >= 50 ? "mighty yank":"exhausting, straining pull") + ", you disloge the pipe and allow the elevator's outer door to swing open. That'll save you some time!");
+	flags["ZHENG_SHI_FOUNDRY_2F_OPEN"] = 1;
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function zhengFoundryScaffoldElevatorBonus():void
+{
+	if(flags["ZHENG_SHI_FOUNDRY_2F_OPEN"] == undefined)
+	{
+		output(" The outer doors are stuck closed. You won't be able to get off on this floor until you find a way to open them. Maybe there's another way onto the scaffolding?");
+		flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
+	}
+}
+
+public function forgeySpaceDooter():Boolean
+{
+	if(flags["FORGEHOUND_WREKT"] != undefined) return false;
+	else return forgehoundEncounter();
 }
 
 //[Investigate]
