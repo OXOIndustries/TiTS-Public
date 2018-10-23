@@ -249,6 +249,7 @@
 
 		//Tavros Residential Deck
 		include "../includes/tavros/resDeck/aina.as";
+		include "../includes/tavros/resDeck/ainaXPack1.as";
 		include "../includes/tavros/resDeck/fyn.as";
 		include "../includes/tavros/resDeck/liamme.as";
 		include "../includes/tavros/resDeck/semith.as";
@@ -1682,6 +1683,11 @@
 		public function get emstormdragon():EMStormDragon
 		{
 			return chars["STORMDRAGON"];
+		}
+		
+		public function get aina():Aina
+		{
+			return chars["AINA"];
 		}
 
 		public function testShipCombat():void
