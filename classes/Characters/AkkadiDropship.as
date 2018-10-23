@@ -28,7 +28,7 @@ package classes.Characters
 			this.originalRace = "aircraft";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "rhue3z3 353egh334";
+			this.long = "";
 			this.isPlural = false;
 			isLustImmune = true;
 			
