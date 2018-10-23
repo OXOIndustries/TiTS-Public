@@ -1128,8 +1128,18 @@ package classes.GameData
 				
 				if (!pollenFailed)
 				{
-					var pollenDamage:TypeCollection = new TypeCollection( { tease: 6 + rand(3) } );
-					var pollenResult:DamageResult = applyDamage(pollenDamage, pc, target, "suppress");
+					var pollenLustSC:StorageClass = target.getStatusEffect("Pollen Lust");
+					
+					if (pollenLustSC.value2 == 0)
+					{
+						var pollenDamage:TypeCollection = new TypeCollection( { tease: 6 + rand(3) } );
+						var pollenResult:DamageResult = applyDamage(pollenDamage, pc, target, "suppress");
+					}
+					else
+					{
+						pollenDamage = new TypeCollection( { pheromone: (3 * pollenLustSC.value3) } );
+						pollenResult = applyDamage(pollenDamage, null, target, "suppress");
+					}
 				}
 				
 				target.addStatusValue("Pollen Lust",1,-1);
@@ -1419,6 +1429,10 @@ package classes.GameData
 				else if(hasEnemyOfClass(RKLah))
 				{
 					output("\n\n<b>You are forced to stare dizzily at the ground, the bay and throb of the crowd in your ears, Lah’s hard, wiry arms locked firmly around your neck. You’ve got to get him off you!</b>");
+				}
+				else if (hasEnemyOfClass(TentacleGardener))
+				{
+					output("\n\n<b>The tendrils surrounding you squeeze down, probing at your body in every way that you can possibly get fucked. Purple pre smears across your [pc.skinFurScales], bathing you in musky fuck-scent.</b>");
 				}
 				else
 				{
