@@ -4071,6 +4071,8 @@ public function lundSubmissionNumber4():void
 		pc.loadInAss();
 		pc.loadInAss();
 	}
+	pc.exhibitionism(2);
+	pc.exhibitionism(2);
 	for(var i:int = 0; i < 5; i++) { pc.orgasm(); }
 	clearMenu();
 	addButton(0,"Next",beLundsCookslutEpilogue);
