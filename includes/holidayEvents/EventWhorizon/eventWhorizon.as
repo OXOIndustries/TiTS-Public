@@ -22,6 +22,7 @@ EVENT_WHORIZON_TORMENT_CAGES
 	
 public function isDoingEventWhorizon():Boolean
 {
+	if (flags["EVENT_WHORIZON_STATE"] == -1) return false;
 	if (flags["EVENT_WHORIZON_STATE"] == undefined) return false;
 	if (flags["EVENT_WHORIZON_STATE"] == 2) return false;
 	return true;
@@ -48,7 +49,7 @@ public function sendEventWhorizonMessage(destination:String = null):void
 	
 	if (destination == null)
 	{
-		destination = "TAVROS HANGAR";
+		destination = "Tavros";
 	}
 
 	clearMenu();
@@ -96,8 +97,19 @@ public function goToEventWhorizon(destination:String):void
 
 public function ewEventOver():void
 {
-	flyToWrapper(flags["STORED_SHIP_DESTINATION"]);
-	flags["STORED_SHIP_DESTINATION"] = undefined;
+	// Oops...
+	if (flags["STORED_SHIP_DESTINATION"] != undefined)
+	{
+		flags["STORED SHIP DESTINATION"] = flags["STORED_SHIP_DESTINATION"];
+		flags["STORED_SHIP_DESTINATION"] = undefined;
+	}
+	
+	if (flags["STORED SHIP DESTINATION"] == "TAVROS HANGAR" || flags["STORED SHIP DESTINATION"] == undefined)
+	{
+		flags["STORED SHIP DESTINATION"] = "Tavros";
+	}
+	
+	flyToWrapper(flags["STORED SHIP DESTINATION"]);
 	mainGameMenu();
 }
 
@@ -692,6 +704,7 @@ private function ewDemonSyriLeave():void
 	if (flags["MET_ANNO"] != undefined) output("Annoch... Anno!? This chick really must be from another reality. You’re not sure you can track down someone from the wrong dimension. And if you take this computer, Syri’s going to be trapped here for all time.");
 	else output("You could always give it a shot... then again, maybe the hellhound would have a better chance doing it herself?");
 
+	output("\n\n");
 	CombatManager.genericVictory();
 
 	//[Okay] [Come With]
@@ -763,7 +776,8 @@ private function ewDemonSyriComeWithII():void
 	
 	output("\n\nYou strap in and take the helm, urging the ship’s engines to life. Syri stuffs herself into the co-pilot’s chair, buckling to safety belt between her tits and around her toned belly. Her tail flops into her lap, giving the lusty pup the closest thing to modesty she’s had in years. She gives you a nod and braces herself.");
 	
-	output("\n\nThe [pc.ship] lifts off and cruises into the sky, back towards your own reality. There’s no visual sign of the tear in space from this side of the portal, so you feel the transition before you see it. Your [pc.skin] tingles, and you feel your flesh heating up - as if you’re hornier than you’ve ever been, making you pant and gasp as a pressure builds in your chest.");
+	// [pc.ship]
+	output("\n\nYour ship lifts off and cruises into the sky, back towards your own reality. There’s no visual sign of the tear in space from this side of the portal, so you feel the transition before you see it. Your [pc.skin] tingles, and you feel your flesh heating up - as if you’re hornier than you’ve ever been, making you pant and gasp as a pressure builds in your chest.");
 	
 	output("\n\nThen the colors out of the forward viewscreen change, erupting into blackness dotted with stars. You’re out! The pressure recedes with a gasp of fresh, untainted air. Home again! You let go of the controls and lean back in the captain’s chair.");
 	
@@ -809,7 +823,7 @@ private function ewDemonSyriOkay():void
 
 	output("You tell her that you will, and turn to leave.");
 
-	output("\n\nNo more demons attempt to waylay you on your trek back to the [pc.ship]. You drag the computer core onto the bridge and seal the airlock behind you, making sure you don’t take any uninvited guests with you.");
+	output("\n\nNo more demons attempt to waylay you on your trek back to your ship. You drag the computer core onto the bridge and seal the airlock behind you, making sure you don’t take any uninvited guests with you.");
 
 	if (annoIsCrew())
 	{
@@ -828,7 +842,7 @@ private function ewDemonSyriOkay():void
 	
 	output("\n\nTime to leave.");
 	
-	output("\n\nYou strap in and take the helm, urging the ship’s engines to life. The [pc.ship] lifts off and cruises into the sky, back towards your own reality. There’s no visual sign of the tear in space from this side of the portal, so you feel the transition before you see it. Your [pc.skin] tingles, and you feel your flesh heating up - as if you’re hornier than you’ve ever been, making you pant and gasp as a pressure builds in your chest.");
+	output("\n\nYou strap in and take the helm, urging the ship’s engines to life. Your ship lifts off and cruises into the sky, back towards your own reality. There’s no visual sign of the tear in space from this side of the portal, so you feel the transition before you see it. Your [pc.skin] tingles, and you feel your flesh heating up - as if you’re hornier than you’ve ever been, making you pant and gasp as a pressure builds in your chest.");
 	
 	output("\n\nThen the colors out of the forward viewscreen change, erupting into blackness dotted with stars. You’re out! The pressure recedes with a gasp of fresh, untainted air. Home again! You let go of the controls and lean back in the captain’s chair.");
 	
