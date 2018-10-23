@@ -135,6 +135,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/jay_echo/subtuner.png", mimeType = "image/png")]
 		public var Bust_SUBTUNER:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/jay_echo/tentacle_gardener.png", mimeType = "image/png")]
+		public var Bust_TENTACLEGARDENER:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/jay_echo/tetra.png", mimeType = "image/png")]
 		public var Bust_TETRA:Class;
 		/*

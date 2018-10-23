@@ -1743,9 +1743,9 @@ public function initZhengRooms():void
 	rooms["ZSF C14"].addFlag(GLOBAL.INDOOR);
 	//rooms["ZSF C14"].addFlag(GLOBAL.HAZARD);
 
-	/*  ==========================
+	/*	==========================
 			FOUNDRY SCAFFOLD.
-		==========================  */
+		==========================	*/
 
 	rooms["ZSF R6"] = new RoomClass(this);
 	rooms["ZSF R6"].roomName = "SCAFFOLD\nLADDER";
@@ -1827,7 +1827,7 @@ public function initZhengRooms():void
 
 	rooms["ZSF Z8"] = new RoomClass(this);
 	rooms["ZSF Z8"].roomName = "SUSPENDED\nSCAFFOLD";
-	rooms["ZSF Z8"].description = "Following along the underside of a corvette, the scaffold allows you to admire its every swell and curve, the size and reflective sheen of its sensor dishes, the girth of its beam-belching barrels. Unfortunately the scaffold itself is not no glorious, but it tracks north and south, giving you ample opportunity to take a closer look at the custom-built vessel.";
+	rooms["ZSF Z8"].description = "Following along the underside of a corvette, the scaffold allows you to admire its every swell and curve, the size and reflective sheen of its sensor dishes, the girth of its steam-belching barrels. Unfortunately the scaffold itself is not so glorious, but it tracks north and south, giving you ample opportunity to take a closer look at the custom-built vessel.";
 	rooms["ZSF Z8"].planet = "ZHENG SHI STATION";
 	rooms["ZSF Z8"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF Z8"].northExit = "ZSF Z6";
@@ -2182,7 +2182,7 @@ public function initZhengRooms():void
 	//Not normal rooms
 	rooms["ZSF T16"] = new RoomClass(this);
 	rooms["ZSF T16"].roomName = "CARGO\nDOOR";
-	rooms["ZSF T16"].description = "Just east of here, a pillar of rusted steal beams and geddanium-braid cabling stretch up to the cavern's apex and vanish into the rock. ";
+	rooms["ZSF T16"].description = "Just east of here, a pillar of rusted steal beams and geddanium-braid cabling stretch up to the cavern’s apex and vanish into the rock. ";
 	rooms["ZSF T16"].planet = "ZHENG SHI STATION";
 	rooms["ZSF T16"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF T16"].northExit = "";

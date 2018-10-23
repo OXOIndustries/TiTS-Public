@@ -212,7 +212,7 @@
 
 			if(CombatManager.getRoundCount() == 1) deployDroner(target);
 			else if(CombatManager.getRoundCount() == 2 || (!target.hasStatusEffect("Tranquilized") && rand(4) == 0)) feruzeTranqShot(target);
-			else if(target.hasStatusEffect("Tripped")) feruzeFaceSitAttack(target);
+			else if(target.hasStatusEffect("Tripped") && !target.hasAirtightSuit()) feruzeFaceSitAttack(target);
 			else if(rand(3) == 0) tailWhipPikachu(target);
 			else if(!this.hasStatusEffect("Done Shooting") && !this.hasStatusEffect("Disarmed")) laserPewpew(target);
 			else feruzeDisarmedAttack(target);
@@ -292,7 +292,7 @@
 				if(target.armor.defense > 0) output("punching a needle-thin spear through your armor and ");
 				output("disgorging something into your blood - something that makes you feel weak and a little dizzy.");
 
-				target.createStatusEffect("Tranquilized", 0, 0, 0, 0, false, "Icon_DrugVial", "You've been tranquilized by whatever was in that dart, greatly weakening your muscles!\n\n(<b>-50% physique</b>)", true, 0);
+				target.createStatusEffect("Tranquilized", 0, 0, 0, 0, false, "Icon_DrugVial", "You’ve been tranquilized by whatever was in that dart, greatly weakening your muscles!\n\n(<b>-50% physique</b>)", true, 0);
 			}
 		}
 		//Tail whip
@@ -309,7 +309,7 @@
 				{
 					if(target.physique()/2 + rand(20) + 1 <= this.physique()/2 + 10 && !target.hasStatusEffect("Tripped") && !target.isPlanted()) 
 					{
-						output(" Between the impact and the shock, <b>you're tripped!</b>");
+						output(" Between the impact and the shock, <b>you’re tripped!</b>");
 						CombatAttacks.applyTrip(target);
 					}
 				}
@@ -325,7 +325,8 @@
 		{
 			//Drone attack. Still fires on first use turn.
 			output("\n\nThe mercenary’s drone zips upward for a better firing position and unleashes a burst of pink ");
-			if(rangedCombatMiss(this,target)) output("so bright that its path leaves a blackened afterimage in its wake. Good thing it missed!");
+			var missed:Boolean = rangedCombatMiss(this,target);
+			if(missed || target.hasAirtightSuit()) output("so bright that its path leaves a blackened afterimage in its wake. Good thing " + (missed ? "it missed" : "you came prepared with protective headgear") + "!");
 			else 
 			{
 				output("that glows brighter and brighter until everything is glowing with white-hot <i>pinkness</i>. Your blood rushes in your ears as your skin flushes with the effort of shunting your circulatory system’s entire attention into your rapidly heating loins.");

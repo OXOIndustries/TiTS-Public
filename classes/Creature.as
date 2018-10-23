@@ -4632,7 +4632,11 @@
 
 			currPhys += statusEffectv1("Dispassion Fruit");
 			if (hasStatusEffect("Tripped")) currPhys -= 4;
-			if (hasStatusEffect("Crunched")) currPhys -= 8;
+			if (hasStatusEffect("Crunched"))
+			{
+				var se:StorageClass = getStatusEffect("Crunched");
+				currPhys -= (8 * se.value1);
+			}
 			if (hasStatusEffect("Tranquilized")) currPhys *= 0.5;
 			if (hasStatusEffect("Psychic Leech")) currPhys *= 0.85;
 			if (hasStatusEffect("Full Stomach")) currPhys *= 0.9;
@@ -12461,18 +12465,18 @@
 		public function gabilaniScore():int
 		{
 			var counter:int = 0;
-			if (skinType == GLOBAL.SKIN_TYPE_SKIN && InCollection(skinTone, "green", "lime", "emerald", "aqua", "pale blue", "turquoise", "yellow", "amber", "topaz")) counter++;
-			if (tallness >= 24 && tallness <= 48) counter++;
 			if (earType == GLOBAL.TYPE_GABILANI) counter++;
-			if (counter > 0 && faceType == GLOBAL.TYPE_GABILANI && !hasMuzzle())
+			if (faceType == GLOBAL.TYPE_GABILANI && !hasMuzzle())
 			{
 				counter++;
 				if (eyeType == GLOBAL.TYPE_GABILANI) counter++;
 				if (counter > 2 && isCyborg()) counter += cyborgScore();
 			}
+			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_SKIN && InCollection(skinTone, "green", "lime", "emerald", "aqua", "pale blue", "turquoise", "yellow", "amber", "topaz")) counter++;
+			if (counter > 0 && tallness >= 24 && tallness <= 48) counter++;
 			if (counter > 3 && hasCock(GLOBAL.TYPE_GABILANI)) counter++;
 			if (counter > 3 && hasVaginaType(GLOBAL.TYPE_GABILANI)) counter++;
-			if (!isBiped() || !hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) counter--;
+			if (counter > 0 && (!isBiped() || !hasLegFlag(GLOBAL.FLAG_PLANTIGRADE))) counter--;
 			if (tallness >= 72) counter--;
 			if (tallness >= 84) counter--;
 			if (tallness >= 96) counter--;
@@ -12846,7 +12850,7 @@
 			if(hasHair()) score--;
 			if(antennae > 0) score--;
 			if(hasFur()) score-= 2;
-			if(hasKnot(0)) score--;
+			if(hasCock() && hasKnot(0)) score--;
 			return score;
 		}
 		public function sharkScore(): int
@@ -20315,10 +20319,10 @@
 		public function cumStatusUpdate():void
 		{
 			// Blueballs
-			if(balls <= 0) removeStatusEffect("Blue Balls");
+			if(hasStatusEffect("Blue Balls") && balls <= 0) removeStatusEffect("Blue Balls");
 			
 			// Cum Cascade
-			if(balls <= 0 || !hasPerk("'Nuki Nuts") || !hasStatusEffect("Orally-Filled") || !InCollection(statusEffectv3("Orally-Filled"), GLOBAL.VALID_CUM_TYPES)) removeStatusEffect("Cum Cascade");
+			if(hasStatusEffect("Cum Cascade") && (balls <= 0 || !hasPerk("'Nuki Nuts") || !hasStatusEffect("Orally-Filled") || !InCollection(statusEffectv3("Orally-Filled"), GLOBAL.VALID_CUM_TYPES))) removeStatusEffect("Cum Cascade");
 		}
 		public function applyBlueBalls(effectOnly:Boolean = false):void
 		{

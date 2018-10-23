@@ -2074,6 +2074,14 @@ public function flyMenu():void
 			return;
 		}
 		
+		if (isDoingEventWhorizon())
+		{
+			output("<b>Without a way to navigate back through the spatial anomoly, it's probably best you don't try and take off right now...</b>");
+			clearMenu();
+			addButton(14, "Back", mainGameMenu);
+			return;
+		}	
+		
 		if(flags["CHECKED_GEAR_AT_OGGY"] != undefined) flags["CHECKED_GEAR_AT_OGGY"] = undefined;
 		pc.removeStatusEffect("Disarmed");
 	}
@@ -2381,7 +2389,8 @@ public function leavePlanetOK():Boolean
 {
 	if(pc.hasStatusEffect("Disarmed") && shipLocation == "500") return false;
 	if(pc.hasKeyItem("RK Lay - Captured")) return false;
-	if(ramisOutDrinking()) return false;
+	if (ramisOutDrinking()) return false;
+	if (isDoingEventWhorizon()) return false;
 	return true;
 }
 
@@ -3987,14 +3996,13 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			goMailGet("akanequest_email", flags["AKANE_RIVALS_TIMESTAMP"] + (60*24*7));
 		}
 		//Sucuccow email
-		if(pc.hasCock() && flags["SUCCUCOW_EMAIL_THIS_YEAR"] == undefined && flags["CIARAN_MET"] != undefined && isHalloweenish())
+		if(pc.hasCock() && flags["CIARAN_MET"] != undefined && isHalloweenish() && (flags["SUCCUCOW_EMAIL_THIS_YEAR"] == undefined || flags["SUCCUCOW_EMAIL_THIS_YEAR"] != getRealtimeYear()))
 		{
 			resendMail("succucow_email");
-			flags["SUCCUCOW_EMAIL_THIS_YEAR"] = 1;
+			flags["SUCCUCOW_EMAIL_THIS_YEAR"] = getRealtimeYear();
 		}
-		else if (!isHalloweenish())
+		else if (!isHalloweenish() && flags["SUCCUCOW'D"] != undefined)
 		{
-			flags["SUCCUCOW_EMAIL_THIS_YEAR"] = undefined;
 			flags["SUCCUCOW'D"] = undefined;
 		}
 		//RandyClaws email
@@ -4858,6 +4866,12 @@ public function isOktoberfest():Boolean { return holidaySeasonCheck("OKTOBERFEST
 public function isHalloweenish():Boolean { return holidaySeasonCheck("HALLOWEEN"); }
 public function isThanksgiving():Boolean { return holidaySeasonCheck("THANKSGIVING"); }
 public function isChristmas():Boolean { return holidaySeasonCheck("CHRISTMAS"); }
+
+public function getRealtimeYear():Number
+{
+	var curDate:Date = new Date();
+	return (curDate.getFullYear());
+}
 
 // Bad Ends
 public function deathByNoHP():void

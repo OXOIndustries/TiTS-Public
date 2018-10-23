@@ -61,10 +61,7 @@ public function flyToPoeAConfirm():void
 			return;
 		}
 		
-		var curDate:Date = new Date();
-		var curYear:Number = (curDate.getFullYear());
-		
-		if(flags["POE_A_YEAR"] != undefined && flags["POE_A_YEAR"] == curYear)
+		if(flags["POE_A_YEAR"] != undefined && flags["POE_A_YEAR"] == getRealtimeYear())
 		{
 			showName("BEEN THERE,\nDONE THAT!");
 			output("\n\nBesides, you have already participated in the festivities for this year--it would be pointless to return again!");
@@ -130,9 +127,7 @@ public function holidayoweenPartDues():void
 	author("Adjatha");
 	
 	// Save current year to prevent repeat visits.
-	var curDate:Date = new Date();
-	var curYear:Number = (curDate.getFullYear());
-	flags["POE_A_YEAR"] = curYear;
+	flags["POE_A_YEAR"] = getRealtimeYear();
 	
 	if(flags["POE_A_DISABLED"] != undefined)
 	{
@@ -682,7 +677,7 @@ public function amazonTFShitApplied():void
 	pc.reflexes(-3);
 	pc.aim(-2);
 	if(pc.tallness+12 <= 84) pc.tallness = 84;
-	else pc.tallness += 12;
+	else if(pc.tallness+12 <= 132) pc.tallness += 12;
 	pc.cumQualityRaw += .2;
 	pc.fertilityRaw += .2;
 	if(pc.breastRows[0].breastRatingRaw < 17 && pc.breastRows[0].breastRatingRaw + 5 > 17) pc.breastRows[0].breastRatingRaw = 17;

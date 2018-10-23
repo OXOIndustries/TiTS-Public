@@ -5456,9 +5456,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				// Dryad
 				if(flags["DRYAD_MET"] != undefined)
 				{
-					var dname:String;
-					if(amberRecruited()) dname = "Amber";
-					else dname = "Dryad";
+					var dname:String = (amberRecruited() ? "Amber" : "Dryad");
 					output2("\n<b>* " + dname + ":</b> Met her");
 					if(amberRecruited())
 					{
@@ -5467,6 +5465,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 					if(flags["AMBER_CURED"] == 1) output2(", Cured");
 					if(amberInHeat()) output2(", In Heat");
+					if(pc.statusEffectv1("Dryad Encounters") > 0) output2("\n<b>* " + dname + ", Times Encountered Today:</b> " + pc.statusEffectv1("Dryad Encounters"));
 					if(flags["AMBER_DUMBFUCK"] != undefined) output2("\n<b>* " + dname + ", Dumbfuck Pills Given:</b> " + flags["AMBER_DUMBFUCK"]);
 					if(flags["AMBER_EQUILICUM"] != undefined) output2("\n<b>* " + dname + ", Has Taken Equilicum</b>");
 					if(flags["DRYAD_FUCKED"] != undefined) output2("\n<b>* " + dname + ", Times Sexed:</b> " + flags["DRYAD_FUCKED"]);

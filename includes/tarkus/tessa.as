@@ -409,7 +409,7 @@ public function askAboutDatSexyTessa():void
 	processTime(3);
 	
 	//+5 Trust each visit first time talked about
-	if (tessaTrust() < 70 && flags["TESSA_HERSELF"]!=1)
+	if (tessaTrust() < 70 && flags["TESSA_HERSELF"] != 1)
 	{
 		tessaTrust(10);
 		if (tessaTrust() > 70) flags["TESSA_TRUST"] = 70;
@@ -451,7 +451,7 @@ public function tessaSpecies():void
 	output("\n\nThe death glare Tessa shoots you ends the conversation quickly.");
 	
 	//+5 Trust each visit first time talked about
-	if (tessaTrust() < 70 && flags["TESSA_SPECIES"]!=1)
+	if (tessaTrust() < 70 && flags["TESSA_SPECIES"] != 1)
 	{
 		tessaTrust(10);
 		if (tessaTrust() > 70) flags["TESSA_TRUST"] = 70;
@@ -484,7 +484,7 @@ public function whySoLonelyTessa():void
 	processTime(5);
 	
 	//+5 Trust each visit first time talked about
-	if (tessaTrust() < 70 && flags["TESSA_ALONE"]!=1)
+	if (tessaTrust() < 70 && flags["TESSA_ALONE"] != 1)
 	{
 		tessaTrust(10);
 		if (tessaTrust() > 70) flags["TESSA_TRUST"] = 70;
@@ -637,7 +637,7 @@ public function whatSexyTessaDo():void
 		addButton(0,"Next",talkWifDatLizTessa);
 	}
 	
-	if (tessaTrust() <70 && flags["TESSA_JOB"]!= 1)
+	if (tessaTrust() < 70 && flags["TESSA_JOB"] != 1)
 	{
 		tessaTrust(10);
 		if (tessaTrust() > 70) flags["TESSA_TRUST"] = 70;
