@@ -474,7 +474,7 @@ public function amberComeWithSleep():void
 	output("\n\n<i>“Thank you again, [pc.name]. You know, for everything,”</i> Amber says. <i>“I have a home now.”</i>");
 	output("\n\n<i>“Yeah, you do,”</i> you say, giving her a grin. <i>“Welcome aboard and welcome home, Amber.”</i>");
 	output("\n\nShe gives you a radiant smile as you leave, heading upwards.");
-		
+	
 	processTime(5);
 	//set amber as recruited and on ship, also set initial scene time for later use
 	flags["AMBER_CREWMEMBER"] = 1;

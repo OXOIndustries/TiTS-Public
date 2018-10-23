@@ -575,8 +575,9 @@ public function shizzyIntroductionPartII(destination:String):void
 		output("\n\nYour nose is pressed right against her mons, only the thin, red fabric of her thong sitting between them. The curve of her huge, black ass dominates your vision as it jiggles like two fat bowls of jelly.");
 	}
 	
-	if (pc.hasGenitals()) addButton(0, "Inhale", shizzyMikaNomNomNom, destination, "Inhale", "​Take a deeeep whiff of that good shit.");
-	else addDisabledButton(0, "Inhale");
+	//if (pc.hasGenitals()) addButton(0, "Inhale", shizzyMikaNomNomNom, destination, "Inhale", "​Take a deeeep whiff of that good shit.");
+	if (pc.hasGenitals()) addButton(0, "Inhale", shizzyMikaNomNomNom, destination, "Inhale", "​Take a deeeep whiff before sampling the goodies.");
+	else addDisabledButton(0, "Inhale", "Inhale", "You require genitals in order to do this!");
 	if (!pc.isTreated() || !pc.hasGenitals()) addButton(1, "Push Off", shizzyNoMikas, destination, "Push Off", "Nope");
 }
 
