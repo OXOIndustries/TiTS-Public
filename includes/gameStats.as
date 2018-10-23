@@ -1136,6 +1136,18 @@ public function statisticsScreen(showID:String = "All"):void
 				// Father
 				if(StatTracking.getStat("pregnancy/total sired") > 0)
 					output2("\n<b>* Sired, Total:</b> " + StatTracking.getStat("pregnancy/total sired"));
+				if(StatTracking.getStat("pregnancy/aina sired") > 0)
+				{
+					output2("\n<b>* Sired, Aina’s Children:</b> ");
+					var ainaKids:Number = StatTracking.getStat("pregnancy/aina sired");
+					output2(" Nina");
+					if(ainaKids > 1) output2(" and other");
+					if(ainaKids > 2) output2("s");
+				}
+				if(StatTracking.getStat("pregnancy/aina sons") > 0)
+					output2("\n<b>* Sired, Aina’s Sons:</b> " + StatTracking.getStat("pregnancy/aina sons"));
+				if(StatTracking.getStat("pregnancy/aina daughters") > 0)
+					output2("\n<b>* Sired, Aina’s Daughters:</b> " + StatTracking.getStat("pregnancy/aina daughters"));
 				if(StatTracking.getStat("pregnancy/briha kids") > 0)
 				{
 					output2("\n<b>* Sired, Briha’s Children:</b> ");
@@ -4606,6 +4618,9 @@ public function displayEncounterLog(showID:String = "All"):void
 						}
 						if(flags["AINA_SEXED"] > 0) output2("\n<b>* Aina, Times Sexed:</b> " + flags["AINA_SEXED"]);
 						if(flags["AINA_SEXED_WITH_TOY"] > 0) output2("\n<b>* Aina, Times Fucked with Anal Wand:</b> " + flags["AINA_SEXED_WITH_TOY"]);
+						if(flags["AINA_PREGHEATFUCK"] != undefined && flags["AINA_PREGHEATFUCK"] > 0) output2("\n<b>* Aina, Times Fucked While She was Pregnant and in Heat:</b> " + flags["AINA_PREGHEATFUCK"]);
+						if(flags["AINA_PREG_TIMER"] != undefined) output2("\n<b>* Aina, Days Pregnant:</b> " + flags["AINA_PREG_TIMER"]);
+						if(flags["AINA_TOTAL_KIDS"] != undefined && flags["AINA_TOTAL_KIDS"] > 0) output2("\n<b>* Aina, Total Kids:</b> " + flags["AINA_TOTAL_KIDS"]);
 					}
 				}
 				//Fisianna

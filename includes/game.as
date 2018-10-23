@@ -3806,6 +3806,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processHardlightAGThongBlurbs(deltaT, doOut);
 	processGastigothPregEvents(deltaT, doOut, totalDays);
 	processFrostwyrmPregEvents(deltaT, doOut, totalDays);
+	processAinaPregEvents(deltaT, doOut, totalDays);
 	
 	
 	// Per-day events
