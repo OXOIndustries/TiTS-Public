@@ -577,9 +577,6 @@ public function wakeUpFromThroatfuckingCybercat():void
 	IncrementFlag("PUNK_SUCKOP_SUCKED_OFF");
 }
 
-
-
-
 //Victory
 public function defeatASecop():void
 {
