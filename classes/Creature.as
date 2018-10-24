@@ -1772,6 +1772,9 @@
 				case "clothes":
 					buffer = clothesDescript(); // isolates layer unlike gear -- armor if its there, otherwise both undergarments
 					break;
+				case "ship":
+					buffer = "Casstech Z14";
+					break;
 				case "short":
 				case "name":
 					buffer = nameDisplay();

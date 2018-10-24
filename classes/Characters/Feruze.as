@@ -212,7 +212,7 @@
 
 			if(CombatManager.getRoundCount() == 1) deployDroner(target);
 			else if(CombatManager.getRoundCount() == 2 || (!target.hasStatusEffect("Tranquilized") && rand(4) == 0)) feruzeTranqShot(target);
-			else if(target.hasStatusEffect("Tripped") && !target.hasAirtightSuit()) feruzeFaceSitAttack(target);
+			else if(target.hasStatusEffect("Tripped")) feruzeFaceSitAttack(target);
 			else if(rand(3) == 0) tailWhipPikachu(target);
 			else if(!this.hasStatusEffect("Done Shooting") && !this.hasStatusEffect("Disarmed")) laserPewpew(target);
 			else feruzeDisarmedAttack(target);
@@ -228,7 +228,9 @@
 		{
 			if(!this.hasStatusEffect("Face Sat"))
 			{
-				output("Feruze all but dances over, hips sashaying with a mixture of raw enthusiasm and self-aware sensuality. <i>“Usually I prefer to have " + target.mf("boys","girls") + " on their backs in my bedroom, but this’ll do.”</i> She squats down before you can react, planting her shrink-wrapped pussy square onto your face. Thick, clenching asscheeks massage your forehead while her thighs slide lower, dragging the crease of her pussy up the slope of your nose to the tip... and then down onto your lips.");
+				output("Feruze all but dances over, hips sashaying with a mixture of raw enthusiasm and self-aware sensuality. <i>“Usually I prefer to have " + target.mf("boys","girls") + " on their backs in my bedroom, but this’ll do.”</i> She squats down before you can react, ");
+				if(target.hasAirtightSuit()) output("fiddling with your [pc.armor] to bare your head and ");
+				output("planting her shrink-wrapped pussy square onto your face. Thick, clenching asscheeks massage your forehead while her thighs slide lower, dragging the crease of her pussy up the slope of your nose to the tip... and then down onto your lips.");
 				output("\n\nInstead of tasting latex, or rubber, or some kind of exotic nanomesh... you encounter the slightly tangy taste of pussy on your lips... along with a dose of tingling numbness that makes it impossible to be sure if you can trust what you’re feeling. Looking up, you can make out that Feruze’s suit has scissored open to expose her dripping cleft and a forest whirling tentacles, each drawing lines of prickly strangeness wherever it touches.");
 				output("\n\nShe rises, leaving you marked with a smear of cunt-juice on your face. Every breath is thick with her scent, and the numbness is fading into something else... a strange sort of heat that wakes your nerves with sensuous stimulation. Unconsciously, you lick your lips and nearly whine in sudden pleasure. It’s almost as good as sex, and you struggle mightily not to start exploring your mouth with your fingers.");
 				applyDamage(damageRand(new TypeCollection( { drug: 15 } ), 15), this, target, "minimal");
@@ -326,7 +328,7 @@
 			//Drone attack. Still fires on first use turn.
 			output("\n\nThe mercenary’s drone zips upward for a better firing position and unleashes a burst of pink ");
 			var missed:Boolean = rangedCombatMiss(this,target);
-			if(missed || target.hasAirtightSuit()) output("so bright that its path leaves a blackened afterimage in its wake. Good thing " + (missed ? "it missed" : "you came prepared with protective headgear") + "!");
+			if(missed) output("so bright that its path leaves a blackened afterimage in its wake. Good thing " + (missed ? "it missed" : "you came prepared with protective headgear") + "!");
 			else 
 			{
 				output("that glows brighter and brighter until everything is glowing with white-hot <i>pinkness</i>. Your blood rushes in your ears as your skin flushes with the effort of shunting your circulatory system’s entire attention into your rapidly heating loins.");
