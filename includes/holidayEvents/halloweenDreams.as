@@ -1,4 +1,162 @@
-﻿//Witch's Kitten
+﻿//Happy Halloween! If you've ever had sexy thoughts about the wall of hands in Labyrinth, then this is the encounter for you! I've also mixed in a common superstition ("hagging" or "choking ghosts") to make sure the haunting lingers a bit.
+
+//Hands
+public function handsDreamFromFrogapus():void
+{
+	clearOutput();
+	showName("\nDREAM...");
+	author("Frogapus");
+	output("You drift off into sleep, feeling the world falling away beneath you. As blissful unconsciousness takes you, you are dimly aware of a faint touch against your body as you drift off.");
+	output("\n\nYour eyes snap open.");
+	output("\n\nThere’s something heavy pressing down on your chest. You try to make it out in the darkness, but can’t see much more than the shape of something shadowy sitting atop your reclined body.");
+	output("\n\nYou try to sit up, but something holds you fast. Something’s pinning you down-you can feel hands gripping you shoulders, your wrists, ");
+	if(pc.isTaur()) output("and all four of your legs.");
+	else if(pc.isNaga()) output("and down the entire length of your body.");
+	else output("your knees and your ankles.");
+	if(pc.tailCout > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output(" Even your tail is caught in some iron grip.");
+	output(" You open your mouth to yell, but can’t seem to find the breath for it. You’re aware of cold thighs pressed against your sides, and squint at the shadow on your chest, realizing that it’s something straddling you.");
+	output("\n\nThere’s a dim, gray light coming from somewhere, and as you struggle against the figure pressing down on you. It looks vaguely female with long, black hair framing a featureless face. Your eyes adjust and you begin to make out a slim frame, white skin, and small, bare breasts. She’s leaning forward, her hands pinning down your shoulders.  Something about her arms seem <i>wrong</i>, though, as if she has too many elbows.");
+	output("\n\nPinned beneath her, you can only gape in mute horror as her blank face splits open, revealing a glowing-red eye. You shout and struggle against the invisible grip on you, trying to break free. Her wrong-way arms push you down and you feel yourself sinking, sinking into the ground.");
+	clearMenu();
+	addButton(0,"Next",handsDreamFromFrogapus2);
+}
+
+public function handsDreamFromFrogapus2():void
+{
+	clearOutput();
+	showName("\nHANDS");
+	author("Frogapus");
+	output("Helpless, you sink through the floor, pulled down, down down by the hands into darkness. As your eyes adjust, you become aware of movement all around you. In the wan, nowhere-light, you become aware of your surroundings. You’re in some sort of vertical shaft, stretching both up and down to an impossible distance. And the walls... your breath catches in your throat and you lurch backward.");
+	output("\n\nThe walls are covered in hands!");
+	output("\n\nReaching, grasping, flexing, thousands upon thousands of hands line the walls, running down to the endless darkness and up towards the distant light. The nearest ones seem to sense you, and reach towards you. You can feel their warm touch against your [PC.skin], grasping and holding you. You struggle, finding no purchase against the countless hands-they simply give way if you kick or shove, going slack if you pull." + (pc.canFly() ? " There’s not even enough room in here to fly away.":""));
+	output("\n\nAs panic begins to set in, you become aware that the hands aren’t just holding you in place. The majority of them are starting to roam over your body. You shiver at their touch-warm palms cupping your cheek, light fingertips tracing along your [PC.ears]. Thumbs brush down your [pc.lips] as a trio of hands " + (pc.hasHair() ? "run through your Pc.hair, toying gently with it.":"run gently over your head.") + " Touches dance across your shoulders, while soft caresses run down your sides, from your ribs down to your [PC.hips].");
+
+	output("\n\nYou moan involuntarily, as the countless hands explore your body. ");
+	if(pc.biggestTitSize() <= 3) output("No less than four hands are splayed across your [PC.breasts]. Two of them mirror each other, caresses the subtle curves of your chest, while the other two pluck lightly at your nipples.");
+	else if(pc.biggestTitSize() < 20) output("A half dozen hands cup and caress your breasts, warm palms pressed against them and massaging them gently, while others trace slow circles around your areola, fingernails delicately dragging over their stiffening tips.");
+	else output("No less than a dozen hands are deployed across your massive jugs, pressing into your soft pillowness, swirling incomprehensible patterns across your areola, tugging and teasing at your nipples.][More than one row of breasts: It’s difficult to count the hands arrayed across your breasts, as their light touches alternate and overlap. It could be two or two dozen, cupping, caressing, teasing, and tugging.");
+	output(" They slide their way down your thighs. You bite your lip as they grasp and squeeze the inner parts of your [Pc.thigh], sending shivers throughout your body. You can feel your resistance weakening, and it seems the hands can feel it as well.");
+
+	//Dick
+	if(pc.hasCock()) 
+	{
+		output("\n\nAt the first brush of a palm against your stiffening shaft [PC.cock] you flinch, feeling a globule of pre slowly ooze its way up your length. The moment it squeezes out against the questing hands, they redouble their efforts, smearing it down along your length, coaxing more oozing heat from your shaft.");
+		//Dick>12 inches
+		if(pc.cocks[0].cLength() > 12) output(" Another hand joins it,a subtle counter-rhythm that works your dick in time with the other, prompting a low moan from somewhere deep inside you.");
+		//Multidick
+		if(pc.cockTotal() > 1) output(" Soon, there are hands sliding up and down " + (pc.cockTotal() == 2 ? "both":"all") + " of your shafts at different speeds. You throw your head back, drowning in the pleasure flooding your brain.");
+	}
+	output("\n\nYou buck your hips, feeling two slim hands grasp your [Pc.butt] as you do, helping you push in time to the other hands. Even here, the hands massage and explore, pushing in deeply, squeezing your [PC.ass].");
+	//Vagoo
+	if(pc.hasVagina())
+	{
+		output("\n\nA solitary fingertip grazes up along your slit, and you shiver, a whimper of pleasure escaping your lips. More follow it, tracing, prodding, and exploring, your warming cunt. Your whole body convulses as fingers spread you wide, tracing up and down your sensitive inner folds. Shivers of pleasure radiate outwards, heating you up from head to toe. Your thighs shiver, as a finger, slick with your juices begins to probe inward.");
+	}
+	output("\n\nYou yelp in surprise as a finger presses against your butthole. You writhe briefly, unsure of where the hand is going, but the swarm of hands offers you no escape. All you can do is moan softly as a finger probes its way gently into your ass. A single digit, strangely slick, works its way in as other hands firmly grip your ass, keeping you from wriggling away. The same grip is mirrored by the hands holding your [PC.thighs] in place, countered by the delicate, feather-like touches against the inner portions of your thighs.");
+	output("\n\nThere’s far too much to keep track of, and you surrender to the host of gray-lit hands and the flood of sensation washing over you. A thumb runs delicately across your lips, leaving a tingle in its wake. ");
+	if(pc.hasCock())
+	{
+		if(pc.cocks[0].cLength() < 12) output("No less than three hands are working your dick now, two pumping in counter rhythm to each other, while another squeezes your balls in time to the other two. ");
+		else output("There’s at least a half dozen hands working your massive shaft, each one stroking, teasing, and tugging in unison. ");
+		if(pc.cockTotal() > 1) output(" A parade of hands is working your shafts, seemingly switching out between one another, stroking and working your dicks in a complex, sensual rhythm. ");
+	}
+	output(" Warm palms press against the small of your back, sending happy shivers up and down your spine.");
+	if(pc.hasVagina()) output(" So many fingertips are playing with your cunt, tracing down your lips, teasing their ways in and out, and one relentless digit pushes against your clit, rubbing it in quickening circles.");
+
+	output("\n\nBlindly exploring, hands run up and down your sides, while fingernails trace up and down your front, following the curves and lines of your body, lingering at just the right spots to make you squeak and pant. ");
+	if(pc.biggestTitSize() <= 3) output("Light squeezes and playful grips play across your chest, groping your [PC.breasts] in irregular tandems.");
+	else if(pc.biggestTitSize() <= 8) output("A host of hands descend on your breasts, each one of them stimulating you in a particular way. Warm palms cup beneath them, following the lush curve of your melons. Other trace the edges of your areola, fingernails teasingly close to your nipples. Soft grips alight here and here, attending to your jugs, leaving no square inch unattended for very long.");
+	else output("It doesn’t make sense for so many hands to be covering your breasts, teasing, tugging, and caressing. There’s no way they could fit into the space, but yet they persist, fingertips tracing warm, sensual circles, palms rubbing, massage-light against your lush curves, fingernails dragging lovely lines across your globes.");
+	output(" There are hands at your neck, controlling and firm. Some hands grabs your arms, holding them in place, while others run up and down your shoulders and forearms, matched in pace by the grips against your legs. There are two fingers probing your ass now, gently thrusting in and out, oblivious to the hungry whimpering spilling from your lips. A fingertip brushes back and forth along your taint. Firm grips lightly massage your [pc.footOrFeet]. A hand works two fingers into your drooling mouth, working in and out against your tongue as you groan in debauched abandon.");
+	output("\n\nThere’s too much going on. You feel like you should be blacking out from the bombardment of sensation. Your breath comes fast as you rock in the grip of the hands, no longer desperate for escape, but for release. The hands seem to respond in kind, redoubling their efforts over your body, stroking and teasing until you’re squirming and moaning in mindless pleasure.");
+	//Dicks
+	if(pc.hasCock())
+	{
+		output("\n\nYou’re so overwhelmed that you almost don’t realize you’ve started cumming. All the pleasure on your body contracts to a single point as your " + (pc.cockTotal() == 1 ? "cock jumps":"cocks jump") + " and your whole body lurches. You gasp in the darkness as you release a thick, hot jet against the ministrating hands. The mess is hard to see in the wan light, but you can hear the cum splatter against several of them, and the hollow dripping noise as it rains down on the ones below.");
+	}
+	//Vagoo
+	if(pc.hasVagina())
+	{
+		output("\n\nYour thighs feel like they’re dissolving under the onslaught of stimulation. When it finally builds to a peak, you’re almost thankful for the hands holding you in place to keep you from flailing your legs nervelessly. A rising tide of pleasure radiates out through you, making you toss your head back as your back arches. The fingers below you are drenched in a sudden gush of your pussy juices as you cum all over them. The mindless things don’t stop, though-they continue their work, coaxing another crashing climax from you. You howl in pleasure into the darkness as you cum again, and again, and again.");
+	}
+	output("\n\nBy the time three fingers work their way into your ass, you’re nearly insensate, half-broken by the continuous manipulation by the endless hands. It’s only the firm grip of the hands that keeps you from curling up into a ball as the fingers drive deep inside you, rubbing and probing at the slick walls of your ass, pushing you closer and closer to climax. With a soundless gasp, you buck against the hands, nearly dislodging yourself, but too lost in pleasure to care. The orgasm hits you hard, and the grip of the hands tighten, keeping you suspended in a dendritic sea as you thrash and groan in pleasure.");
+	output("\n\nThey don’t stop. The pleasure doesn’t stop. You lose all sense of time, surrounded by infinite hands. Mindless and almost mechanical, they coax climax after climax out of you. The last, broken part of your brain wonders if this how you’ll spend eternity, caught in the grips of endless orgasm until the end of time.");
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",handsDreamFromFrogapus3);
+}
+
+public function handsDreamFromFrogapus3():void
+{
+	clearOutput();
+	showName("\nA DREAM!");
+	author("Frogapus");
+	output("You lurch forward, gasping. The darkness is gone, and with it, the endless hands. You’re right where you fell asleep, blinking in the light. You whip around, half-expecting to see the bizarre cyclopean woman again, but finding nothing out of the ordinary.");
+	output("\n\nYou wipe a damp smear of drool from your cheek, rubbing your eyes to clear them. It had seemed so real-<i>felt</i> so real. Your body is still tingling from the nightmare.");
+	if(pc.hasGenitals()) output(" You glance down and note the still-warm puddle between your legs as sticky testament to the dream.");
+	output(" It had to be a dream, though.");
+
+	//First time:
+	if(flags["FROG_HANDS_DREAM"] == undefined)
+	{
+		output("\n\nAs you get up to put yourself in order, your Codex squawks. You glance down at it, expecting an email notification, instead getting an eyeful of nonsense.");
+		output("\n\nThe holographic display flickers, nonsense symbols and words scrawling across each other.");
+		output("\n\n<i>“mA.re+++sayaa44null((REM sleep latency-GAWI nulim@@@dip-non-rapid-iiiiii_ogun_oru**”</i>");
+		output("\n\nYou give your codex a shake, surprised at the sudden malfunction. The gibberish scrolls faster, and your codex squawks again, the display now dominated by a large, holographic eye. It flickers from side to side before snapping up to focus on you. Your breath catches in sudden recognition before the eye cuts out.");
+		output("\n\nYou tap your codex again, quickly running through screens, dreading the recurrence of the eye. Thankfully, you don’t see it again.");
+		output("\n\nYou take a deep breath and spend the next few minutes trying to shake off the clammy fear wrapping tight around you.");
+	}
+	//Second time:
+	else if(flags["FROG_HANDS_DREAM"] == 1)
+	{
+		output("\n\nYou feel a cold shiver of fear running up your spine. Not again!");
+		output("\n\nThe codex flashes static, displaying overlapping strings of nonsense.");
+		output("\n\n<i>“..div_id: seroto||nergic_HAGHAGHAGHAGHAGHAGEOG traces shows that eye movement++liliyyotNOSCRIPT&&neural populations::dream-space=”</i>");
+		output("\n\nYou know it’s coming, but still can’t stifle a shudder as the holographic eye appears again, focusing on you before winking out.");
+		output("\n\nYou check your codex again, once more finding nothing. You frown, still shaking from the haunting glitch, and initiate a self-diagnostic.");
+	}
+	//Third time
+	else
+	{
+		output("\n\nYou feel your skin crawl as your Codex lights up.");
+
+		output("\n\n<i>“Characteristic+{cambion{{ fragBAKHTAKmentation+ofMARAselective_sera0000tonin_<i>malleus</i>reuptake_<i>malificarum</i>inhibitors<i>?subirse el muerto@@</i>”</i>");
+		output("\n\nThe eye appears briefly, then flickers rapidly before dissolving into a shower of pixels.");
+		output("\n\nYour codex goes blank for a moment, then plays a pleasant tune. A friendly message informs you that the codex has just encountered an unexpected error and needed to reboot.");
+		output("\n\nYou eye the device warily as it goes silent once more. You’re not entirely sure what just happened.");
+		//output("\n\nYou nearly jump out of your skin when your codex beeps again, informing you of a new entry.");
+		output("\n\nYou nearly jump out of your skin when your codex beeps again.");
+	}
+}
+
+/* Fen note:  cut all this.  I'm not having an empty codex spot in the sidebar all year for some halloween stuff. Hot scene tho.
+Codex Entry: Kama-tanha
+
+Name (Singular & Plural): Kama-tanha
+
+Sexes: Female?
+
+Height: variable
+
+Weight: [error]
+
+Hair: All incidents report black hair.
+
+Eyes: Singular, red and illuminated. Victims report that this is the kama-tanha's only distinguishing facial feature. This singularprettyeye takes up the entirety of the face.
+
+Ears: none
+
+Features
+Reports indicate a humanoid structure, with often-uncomfortable variance. Some encounters report disproportionate limbs, tails, wings, or multiple legs. Some constant features are: pale-to-white skin (often reported as cold), visible breasts, black hair, and a singular eyeamwatching.
+
+Reproduction
+Unknown. All victims report a sexual nature to the encounter, but range++eattheirpleasure=. Some victims recount intercourse with the kama-tanha itself, reporting a variety of genitalia. Others indicate that the kama-tanha is incidental to a dreamed or hallucinated sexual encounter
+
+Encounters
+Kama-tanha encounters are of questionable veracity, as many describe the encounters as dreams, or "dream-like," leading many xenobiologists to suspect that that the creature is a hoax or some kind of universal myth. Many point to roughly-parallel folklore present on most planets regarding sleep paralysis and REM states, implying thatkama-tanhaisreal+hangupsidedownfromdreams+fall&dig&leftwhisperleftleftalwaysleft_intonighhtlickyyoutouchyouinsideheads_showyou[pc.name]&againagaini.find_u
+*/
+
+//Witch's Kitten
 //By: ThereWasAnAttempt
 //For Dickhaving PCs
 //7777 real winner contendah!
