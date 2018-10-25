@@ -12104,7 +12104,7 @@
 				return "lupine-morph";
 			}
 			if(huskarScore() >= 3) return "husky-morph";
-			if(isBimbo() || (femininity >= 75 && biggestTitSize() >= 7 && hasVagina())) return "bitch-morph";
+			if(isBimbo() || (femininity >= 75 && biggestTitSize() >= 7 && hasVagina() && pc.libido() >= 75)) return "bitch-morph";
 			if(kGAMECLASS.silly) return "doge-morph";
 			return "canine-morph";
 		}
