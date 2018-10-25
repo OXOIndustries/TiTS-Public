@@ -22,6 +22,12 @@ EVENT_WHORIZON_TORMENT_CAGES
 	
 public function isDoingEventWhorizon():Boolean
 {
+	// Fix my bumblefuckery
+	if (flags["EVENT_WHORIZON_STATE"] != 2 && InCollection(shipLocation, "TAVROS HANGAR", "SHIP HANGAR", "201", "600", "2I7", "LZ L50", "500", "POESPACE", "UVS F15", "CANADA1", "K16_DOCK", "BREEDWELL_HANGAR"))
+	{
+		flags["EVENT_WHORIZON_STATE"] = 2;
+	}
+	
 	if (flags["EVENT_WHORIZON_STATE"] == -1) return false;
 	if (flags["EVENT_WHORIZON_STATE"] == undefined) return false;
 	if (flags["EVENT_WHORIZON_STATE"] == 2) return false;
@@ -108,6 +114,8 @@ public function ewEventOver():void
 	{
 		flags["STORED SHIP DESTINATION"] = "Tavros";
 	}
+	
+	flags["EVENT_WHORIZON_STATE"] = 2;
 	
 	flyToWrapper(flags["STORED SHIP DESTINATION"]);
 	mainGameMenu();
@@ -706,6 +714,7 @@ private function ewDemonSyriLeave():void
 
 	output("\n\n");
 	CombatManager.genericVictory();
+	userInterface.leftBarDefaults();
 
 	//[Okay] [Come With]
 	clearMenu();
