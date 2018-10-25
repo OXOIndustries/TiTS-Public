@@ -55,12 +55,12 @@ package classes.Engine.Combat
 		//FEN NOTE: New hotness
 		var displayDamage:Boolean = true;
 		var displayBonusTexts:Boolean = true;
-		if (special == "suppress" || (attacker == null && special != "minimal"))
+		if (special == "suppress" || special == "explosion" || (attacker == null && special != "minimal"))
 		{
 			displayBonusTexts = false;
 			displayDamage = false;
 		}
-		else if (special == "minimal" || attacker == null)
+		else if (special == "minimal" || special == "cluster" || attacker == null)
 		{
 			displayBonusTexts = false;
 			displayDamage = true;

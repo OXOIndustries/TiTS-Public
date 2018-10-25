@@ -1521,6 +1521,7 @@ package classes.GameData
 			
 			var d:int = 10 + (attacker.level * 2.5) + (attacker.intelligence() / 1.5);
 			var damage:TypeCollection = new TypeCollection( { burning: d } );
+			var explosionDodged:int = 0;
 			
 			if (target is Cockvine)
 			{
@@ -1530,9 +1531,11 @@ package classes.GameData
 			
 			for (var x:int = 0; x < hGroup.length; x++)
 			{
+				if (hGroup[x].hasPerk("Get Down!") && !hGroup[x].isDefeated()) ++explosionDodged;
 				output("\n" + StringUtil.capitalize(hGroup[x].getCombatName(), false) + " " + (!hGroup[x].isPlural ? "is" : "are") + " caught in the explosion!");
-				applyDamage(damageRand(damage, 15), attacker, hGroup[x], "minimal");
+				applyDamage(damageRand(damage, 15), attacker, hGroup[x], "cluster");
 			}
+			kGAMECLASS.explosionDodgeBlurb(explosionDodged, attacker, target, "cluster");
 		}
 		
 		public static var DetonationCharge:SingleCombatAttack;
@@ -2166,6 +2169,7 @@ package classes.GameData
 				
 			var d:int = Math.round(7.5 + attacker.level * 2 + attacker.intelligence() / 2);
 			var totalDamage:DamageResult = new DamageResult();
+			var projectileDodged:int = 0;
 			
 			for (var i:int = 0; i < hGroup.length; i++)
 			{
@@ -2174,14 +2178,13 @@ package classes.GameData
 				
 				var damage:TypeCollection = damageRand(new TypeCollection( { kinetic: d, burning: d } ), 15);
 				
-				if (cTarget is Cockvine)
-				{
-					kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, false, false, false);
-				}
+				if (cTarget is Cockvine) kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, false, false, false);
+				if (cTarget.hasPerk("Get Down!")) ++projectileDodged;
 				
-				totalDamage.addResult(applyDamage(damage, attacker, cTarget, "suppress"));
+				totalDamage.addResult(applyDamage(damage, attacker, cTarget, "explosion"));
 			}
 			
+			kGAMECLASS.explosionDodgeBlurb(projectileDodged, attacker, cTarget, "explosion");
 			outputDamage(totalDamage);
 		}
 		
@@ -2202,6 +2205,7 @@ package classes.GameData
 			
 			var d:int = 14 + attacker.level * 2;
 			var totalDamage:DamageResult = new DamageResult();
+			var gasDodged:int = 0;
 			
 			for (var i:int = 0; i < hGroup.length; i++)
 			{
@@ -2211,14 +2215,13 @@ package classes.GameData
 				
 				var damage:TypeCollection = damageRand(new TypeCollection( { drug: d } ), 15);
 				
-				if (cTarget is Cockvine)
-				{
-					kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, false, false, true);
-				}
+				if (cTarget is Cockvine) kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, false, false, true);
+				if (cTarget.hasPerk("Get Down!")) ++gasDodged;
 				
 				totalDamage.addResult(applyDamage(damage, attacker, cTarget, "suppress"));
 			}
 			
+			kGAMECLASS.explosionDodgeBlurb(gasDodged, attacker, target, "gas");
 			outputDamage(totalDamage);
 		}
 		
