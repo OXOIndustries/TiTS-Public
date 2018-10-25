@@ -500,7 +500,7 @@ public function handsDreamFromFrogapus2():void
 	if(pc.biggestTitSize() <= 3) output("No less than four hands are splayed across your [pc.breasts]. Two of them mirror each other, caresses the subtle curves of your chest, while the other two pluck lightly at your nipples.");
 	else if(pc.biggestTitSize() < 20) output("A half dozen hands cup and caress your breasts, warm palms pressed against them and massaging them gently, while others trace slow circles around your areola, fingernails delicately dragging over their stiffening tips.");
 	else output("No less than a dozen hands are deployed across your massive jugs, pressing into your soft pillowness, swirling incomprehensible patterns across your areola, tugging and teasing at your nipples.][More than one row of breasts: It’s difficult to count the hands arrayed across your breasts, as their light touches alternate and overlap. It could be two or two dozen, cupping, caressing, teasing, and tugging.");
-	output(" They slide their way down your thighs. You bite your lip as they grasp and squeeze the inner parts of your [Pc.thigh], sending shivers throughout your body. You can feel your resistance weakening, and it seems the hands can feel it as well.");
+	output(" They slide their way down your thighs. You bite your lip as they grasp and squeeze the inner parts of your [pc.thigh], sending shivers throughout your body. You can feel your resistance weakening, and it seems the hands can feel it as well.");
 
 	//Dick
 	if(pc.hasCock()) 
@@ -511,13 +511,13 @@ public function handsDreamFromFrogapus2():void
 		//Multidick
 		if(pc.cockTotal() > 1) output(" Soon, there are hands sliding up and down " + (pc.cockTotal() == 2 ? "both":"all") + " of your shafts at different speeds. You throw your head back, drowning in the pleasure flooding your brain.");
 	}
-	output("\n\nYou buck your hips, feeling two slim hands grasp your [Pc.butt] as you do, helping you push in time to the other hands. Even here, the hands massage and explore, pushing in deeply, squeezing your [pc.ass].");
+	output("\n\nYou buck your hips, feeling two slim hands grasp your [pc.butt] as you do, helping you push in time to the other hands. Even here, the hands massage and explore, pushing in deeply, squeezing your [pc.ass].");
 	//Vagoo
 	if(pc.hasVagina())
 	{
 		output("\n\nA solitary fingertip grazes up along your slit, and you shiver, a whimper of pleasure escaping your lips. More follow it, tracing, prodding, and exploring, your warming cunt. Your whole body convulses as fingers spread you wide, tracing up and down your sensitive inner folds. Shivers of pleasure radiate outwards, heating you up from head to toe. Your thighs shiver, as a finger, slick with your juices begins to probe inward.");
 	}
-	output("\n\nYou yelp in surprise as a finger presses against your butthole. You writhe briefly, unsure of where the hand is going, but the swarm of hands offers you no escape. All you can do is moan softly as a finger probes its way gently into your ass. A single digit, strangely slick, works its way in as other hands firmly grip your ass, keeping you from wriggling away. The same grip is mirrored by the hands holding your [pcs.thighs] in place, countered by the delicate, feather-like touches against the inner portions of your thighs.");
+	output("\n\nYou yelp in surprise as a finger presses against your butthole. You writhe briefly, unsure of where the hand is going, but the swarm of hands offers you no escape. All you can do is moan softly as a finger probes its way gently into your ass. A single digit, strangely slick, works its way in as other hands firmly grip your ass, keeping you from wriggling away. The same grip is mirrored by the hands holding your [pc.thighs] in place, countered by the delicate, feather-like touches against the inner portions of your thighs.");
 	output("\n\nThere’s far too much to keep track of, and you surrender to the host of gray-lit hands and the flood of sensation washing over you. A thumb runs delicately across your lips, leaving a tingle in its wake. ");
 	if(pc.hasCock())
 	{
@@ -592,6 +592,9 @@ public function handsDreamFromFrogapus3():void
 		//output("\n\nYou nearly jump out of your skin when your codex beeps again, informing you of a new entry.");
 		output("\n\nYou nearly jump out of your skin when your codex beeps again.");
 	}
+	IncrementFlag("FROG_HANDS_DREAM");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 /* Fen note: cut all this. I’m not having an empty codex spot in the sidebar all year for some halloween stuff. Hot scene tho.
