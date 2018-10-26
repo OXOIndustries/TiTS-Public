@@ -116,7 +116,7 @@ package classes.Characters
 			this.cockVirgin = false;
 			this.vaginas[0].loosenessRaw = 2;
 			this.vaginas[0].wetnessRaw = 4;
-			this.vaginas[0].bonusCapacity = 25;
+			this.vaginas[0].bonusCapacity = 9000;
 			this.elasticity = 1;
 			this.fertilityRaw = 1.05;
 			this.pregnancyMultiplierRaw = 1;
