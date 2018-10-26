@@ -1694,6 +1694,11 @@
 		{
 			return chars["AINA"];
 		}
+		
+		public function get amber():Dryad
+		{
+			return chars["DRYAD"];
+		}
 
 		public function testShipCombat():void
 		{
