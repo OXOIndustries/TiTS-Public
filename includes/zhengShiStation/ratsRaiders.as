@@ -5,6 +5,252 @@
  * RAT_ANUSES_TAKEN: the bit for 2^n handles the anus of rat n (used only for the mouse boys for now)
  */
 
+//Check 
+public function showRats(ratCount:int = 1):void
+{
+	author("William");
+	showName("\nRAT'S RAIDERS");
+	showBust("KASE");
+	if (rat0 == null && ratCount > 0) return;
+	switch (ratCount)
+	{
+		default:
+		case 0: /* show group bust */ break;
+		case 1: showBust(rat0.bustDisplay); break;
+		case 2: showBust(rat0.bustDisplay, rat1.bustDisplay); break;
+		case 3: showBust(rat0.bustDisplay, rat1.bustDisplay, rat2.bustDisplay); break;
+		case -1: showBust("MABBS", "URBOLG"); showName("\nRobbery?"); break;
+	}
+}
+
+public var rat0:RatsRaider = null;
+public var rat1:RatsRaider = null;
+public var rat2:RatsRaider = null;
+
+public function ratMenu():void
+{
+	if (rat0 == null) ratSetupGroup();
+
+	clearMenu();
+	clearOutput();
+	showRats(3);
+	author("lighterfluid");
+	showName("VERMIN\nSTOCKROOM");
+
+	output("Currently working with Group Nº" + rat0.ratVariety/3);
+	
+	output("\n\n<b>Ratcounters:</b> " + (flags["RATCOUNTERS"] == undefined ? 0 : flags["RATCOUNTERS"]));
+	output("\n<b>Rat Reputation:</b> ");
+	switch (ratputation())
+	{
+		case RatsRaider.RAT_REP_NONE: output("Unknown"); break;
+		case RatsRaider.RAT_REP_LOW: output("Poor (" + flags["RATPUTATION"] + ")"); break;
+		case RatsRaider.RAT_REP_MID: output("Average (" + flags["RATPUTATION"] + ")"); break;
+		case RatsRaider.RAT_REP_HIGH: output("Good (" + flags["RATPUTATION"] + ")"); break;
+		case RatsRaider.RAT_REP_GOOD_CEO: output("Friend"); break;
+	}
+	output("\n<b>Rat Booty:</b>");
+	output("\n-Credits: " + (flags["RAT_CREDITS_STOLEN"] == undefined ? 0 : flags["RAT_CREDITS_STOLEN"]));
+	output("\n-Small Gems: " + (flags["RAT_SMOL_GEMS_STOLEN"] == undefined ? 0 : flags["RAT_SMOL_GEMS_STOLEN"]));
+	output("\n-Large Gems: " + (flags["RAT_BIG_GEMS_STOLEN"] == undefined ? 0 : flags["RAT_BIG_GEMS_STOLEN"]));
+	output("\n<b>Ratbutt Virginities:</b> " + (flags["RAT_ANUSES_TAKEN"] == undefined ? 0 : flags["RAT_ANUSES_TAKEN"]));
+	output("\n<b>rat0.legs:</b> [rat0.legs]");
+	
+	addButton(0, "Fight!", ratDebugFight);
+	addButton(2, "Random Encounter", ratInTheMineEncounter);
+	addButton(3, "Urbolg Introduction", ratAttemptUrbolgRobbery);
+	addButton(4, "GoodCEO", ratDebugSetRep, 101);
+	addButton(5, "Set Rep Low", ratDebugSetRep, 25);
+	addButton(6, "Set Rep Mid", ratDebugSetRep, 50);
+	addButton(7, "Set Rep Hi", ratDebugSetRep, 75);
+	addButton(8, "Buttfuck 1", ratDebugButtfuck, 1);
+	addButton(9, "Buttfuck 2", ratDebugButtfuck, 4);
+	addButton(10, "Ratputation +5", function(){ratputation(5);ratMenu();});
+	addButton(11, "Ratputation -5", function(){ratputation(-5);ratMenu();});
+	addButton(9, "Switch Rats", function(){ratSetupGroup((rat0.ratVariety == 0 ? 1 : 0)); ratMenu();});
+	
+	addButton(14, "Done", ratDebugDone);
+}
+
+public function ratDebugDone():void
+{
+	ratCleanup();
+	mainGameMenu();
+}
+
+public function ratDebugSetRep(newRep:int):void
+{
+	if (newRep == 101)
+	{
+		flags["RATPUTATION"] = 101;
+	}
+	else
+	{
+		flags["RATPUTATION"] = newRep;
+		if (flags["RATPUTATION"] > 100) flags["RATPUTATION"] = 100;
+		else if (flags["RATPUTATION"] < 0) flags["RATPUTATION"] = 0;
+	}
+	
+	ratMenu();
+}
+
+public function ratDebugFight():void
+{
+	if (rat0 == null) return addButton(0, "Error", mainGameMenu);
+	CombatManager.newGroundCombat();
+	CombatManager.setHostileActors(rat0, rat1, rat2);	
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.victoryScene(ratDebugFightWrapup);
+	CombatManager.lossScene(ratDebugFightWrapup);
+	CombatManager.displayLocation("RAT THIEVES");
+	CombatManager.encounterTextGenerator(ratcounterTextGenerator);
+	CombatManager.beginCombat();
+}
+
+public function ratDebugFightWrapup():void
+{
+	ratCleanup();
+	clearOutput();
+	
+	if (pc.isDefeated()) output("Player lost");
+	else output("Rats lost");
+	
+	output("\n" + int(CombatManager.getHostileActors().length) + " rats remaining.");
+	CombatManager.abortCombat();
+}
+
+public function ratDebugButtfuck(maus:int):void
+{
+	if (flags["RAT_ANUSES_TAKEN"] == undefined) 
+	flags["RAT_ANUSES_TAKEN"] |= 1<<maus;
+	ratMenu();
+}
+ 
+public function ratPCIsPoor():Boolean
+{
+	if (pc.credits >= 2000) return false;
+	for each (var item:ItemSlotClass in pc.inventory)
+		if (item.type == GLOBAL.GEM && !item.hasFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE))
+			return false;
+	return true;
+}
+ 
+public function ratputation(increase:int = 0, goodCEO:Boolean = false):int
+{
+	//improve rep
+	if (increase && flags["RATPUTATION"] != 101)
+	{
+		if (flags["RATPUTATION"] == undefined) flags["RATPUTATION"] = increase;
+		else flags["RATPUTATION"] += increase;
+		if (flags["RATPUTATION"] > 100) flags["RATPUTATION"] = 100;
+		else if (flags["RATPUTATION"] < 0) flags["RATPUTATION"] = 0;
+	}
+	if (goodCEO) flags["RATPUTATION"] = 101;
+	//return rep
+	if (flags["RATPUTATION"] == undefined) return RatsRaider.RAT_REP_NONE;
+	else if (flags["RATPUTATION"] < 30) return RatsRaider.RAT_REP_LOW;
+	else if (flags["RATPUTATION"] < 70) return RatsRaider.RAT_REP_MID;
+	else if (flags["RATPUTATION"] < 101) return RatsRaider.RAT_REP_HIGH;
+	else return RatsRaider.RAT_REP_GOOD_CEO;
+}
+
+public function ratTheftPercent(bounty:int, inFight:Boolean = false):Number
+{
+	//No idea where the numbers come from, they just work
+	var percent:int = 10 + 35*Math.exp(-bounty/300000);//Math.exp(3.5-pc.credits/300000);
+	if (ratputation() == RatsRaider.RAT_REP_GOOD_CEO) percent /= 3;
+	else if (!inFight) percent *= 2/3;
+	percent += 2.5 - rand(6);
+	return Math.min(100, Math.max(5, percent));
+	//Goodbye beautiful legacy code, William couldn't withstand your greatness. -lighterfluid
+	/*
+	//Based on 6d6-26
+	var odds:Array = [{v:10,w:1666}, {v:20,w:1161}, {v:30,w:756}, {v:40,w:456}, {v:50,w:252}, {v:60,w:126}, {v:70,w:56}, {v:80,w:21}, {v:90,w:6}, {v:100,w:1}];
+	return Math.min(Math.max(5, weightedRand(odds) + mod),100);
+	*/
+}
+
+public function ratTallyLoot(thief:RatsRaider, returned:Boolean = false):void
+{
+	var mult:int = (returned ? -1 : 1);
+	if (flags["RAT_BIG_GEMS_STOLEN"] == undefined) flags["RAT_BIG_GEMS_STOLEN"] = 0;
+	if (flags["RAT_SMOL_GEMS_STOLEN"] == undefined) flags["RAT_SMOL_GEMS_STOLEN"] = 0;
+	if (flags["RAT_CREDITS_STOLEN"] == undefined) flags["RAT_CREDITS_STOLEN"] = 0;
+	flags["RAT_SMOL_GEMS_STOLEN"] += thief.statusEffectv2("Plunder over Pillage!")*mult;
+	flags["RAT_BIG_GEMS_STOLEN"] += thief.statusEffectv3("Plunder over Pillage!")*mult;
+	flags["RAT_CREDITS_STOLEN"] += thief.credits*mult;
+}
+
+public function ratSetupGroup(ratGroup = -1):void
+{
+	ratCleanup();
+	if (ratGroup < 0) ratGroup = rand(2);
+	if (ratGroup == 0)
+	{
+		rat0 = new RatsRaider(RatsRaider.PINK_RODENIAN);
+		rat1 = new RatsRaider(RatsRaider.TAN_MOUSEBOY);
+		rat2 = new RatsRaider(RatsRaider.HALF_GIRL);
+	}
+	else
+	{
+		rat0 = new RatsRaider(RatsRaider.WHITE_RODENIAN);
+		rat1 = new RatsRaider(RatsRaider.FAIR_MOUSEBOY);
+		rat2 = new RatsRaider(RatsRaider.HALF_BOY);
+	}
+}
+
+// [RAT BEGIN]
+
+public function ratAttemptUrbolgRobbery():void
+{
+	clearMenu();
+	clearOutput();
+	showRats(-1);
+	
+	output("Inside the hangar on Zheng Shi you cast a wary eye over your ship, satisfied that it remains unmolested. Whatever the pirates hanging out here are doing, at least they're not big on trying to crack your airlock. Before you take your next step, a loud <b>bang</b> breaks your concentration. Goosebumps thrum across your [pc.skinFurScalesNoun]. Instinctively, you hunch down, looking in the direction of Urbolg's workshop, noting that the independent engineer isn't there.");
+	output("\n\nA hair-raising crash follows several booming gunshots. A metallic clamor precedes two small figures darting out from around a pile of scrap, short of breath and running past you on all fours - mostly, they stagger like frightened, drunken animals - as they flee from the nerve-fraying gunfire. They move much too fast for you to appraise aside from their all-black getup and mouse-like limbs.");
+	output("\n\n<i>\"Get out, you fekken' pests!\"</i> you hear Urbolg bellow, and another two rats scream as they dive out of the way of a turret's shredding salvo. <i>\"Ye thought you could steal from Urbolg?\"</i> he snarls, firing off another booming shot. Squealing like wounded animals the last two rush past you with the speed of surging lightning, stopping for nothing as the stocky korgonne shuffles out from behind the mounds of discarded metal like a swirling tornado of rage about to touch down on the land.");
+	output("\n\n<i>\"Oi, new [pc.guyGirl], move over,\"</i> he raises his oil-soaked hand and stomps past you insistently. He squeezes off another deafening shot into the dark, and before you mentally quip about his blind firing, you hear a shrill scream and the tell-tale concussive shock of a collapsing shield in the distance. That act of vengeance quells the anger in the fluffy mechanic. He holsters his handcannon before turning to you, frustration etched like a fresh scar on his livid features.");
+	output("\n\n<i>\"Bloody rats, rootin' around for what they haven't earned, can't keep their shitestained paws to 'emselves!\"</i> he curses, ears and tail flexing out the dissipating anger. You");
+	if (pc.isBimbo() || pc.isBro()) output(" breathily");
+	else if (pc.isAss()) output(" bluntly");
+	else output (" softly");
+	output(" inquire as to what all that was about.");
+	output("\n\nNow calmer and wearing a sly grin, he ushers you back to the workshop, walking and talking with an urging paw on your shoulder. <i>\"One of the big five gangs here on the station. You'll get to know 'em all eventually, but those ones?\"</i> he stops and grips a piece of metal, eyeing the workshop direly, <i>\"the fekken' worst! Paste-fingered loingrommets think I'm so old and stupid that I won't see 'em tryin' to steal!\"</i>");
+	output("\n\nHis sigh is more like a ragged growl, and you quickly put two and two together as he wipes his arm off with a dirty cloth. <i>\"Those rodents work in groups, so ye best be wary, new [pc.guyGirl]. You may have proved yourself to 'ol Urbolg, but they don't give up, and they're fekken everywhere. Watch yourself now, y'hear? Lest you <i>want</i> to lose everything you've got!\"</i>");
+	if (flags["SEXED_URBOLG"] == undefined) output("\n\nYou nod lightly, thanking him for the information as you move on.");
+	else output("\n\nNodding, you smile and thank Urbolg, watching his tail thump against the workbench behind him.");
+	output("\n\nLooks like you'll have to watch out for a bunch of thieving vermin now…");
+
+	flags["RATS_ENABLED"] = 1;
+	flags["RAT_ANUSES_TAKEN"] = 0;
+	flags["RAT_BIG_GEMS_STOLEN"] = 0;
+	flags["RAT_SMOL_GEMS_STOLEN"] = 0;
+	flags["RAT_CREDITS_STOLEN"] = 0;
+
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function ratInTheMineEncounter():Boolean
+{
+	if (rat0 == null) ratSetupGroup();
+	clearMenu();
+	clearOutput();
+	showRats(3);
+	output("hello we're rats");
+	addButton(0, "Next", ratDebugFight);
+	return true;
+}
+
+public function ratCleanup():void
+{
+	rat0 = null;
+	rat1 = null;
+	rat2 = null;
+}
+
+// [COMBAT STUFF]
+
 public function explosionDodgeBlurb(dodgers:int, attacker:Creature, target:Creature, special:String):void
 {
 	if (dodgers <= 0) return;
@@ -45,187 +291,6 @@ public function explosionDodgeBlurb(dodgers:int, attacker:Creature, target:Creat
 			else if (dodgers > 1) output(" enemies stand, idly groping themselves.");
 			else output(" enemy stands, idly groping around.");
 			break;
-	}
-}
-
-public var rat0:RatsRaider = null;
-public var rat1:RatsRaider = null;
-public var rat2:RatsRaider = null;
-
-public function ratMenu():void
-{
-	ratSetupGroup(rand(2) == 0);
-
-	clearMenu();
-	clearOutput();
-	showBust(rat0.bustDisplay, rat1.bustDisplay, rat2.bustDisplay);
-
-	output("<b>Ratcounters:</b> " + (flags["RATCOUNTERS"] == undefined ? 0 : flags["RATCOUNTERS"]));
-	
-	output("\n<b>Rat Reputation:</b> ");
-	switch (ratputation())
-	{
-		case RatsRaider.RAT_REP_NONE: output("Unknown"); break;
-		case RatsRaider.RAT_REP_LOW: output("Poor (" + flags["RATPUTATION"] + ")"); break;
-		case RatsRaider.RAT_REP_MID: output("Average (" + flags["RATPUTATION"] + ")"); break;
-		case RatsRaider.RAT_REP_HIGH: output("Good (" + flags["RATPUTATION"] + ")"); break;
-		case RatsRaider.RAT_REP_GOOD_CEO: output("Friend"); break;
-	}
-	output("\n<b>Rat Booty:</b>");
-	output("\n-Credits: " + (flags["RAT_CREDITS_STOLEN"] == undefined ? 0 : flags["RAT_CREDITS_STOLEN"]));
-	output("\n-Small Gems: " + (flags["RAT_BIG_GEMS_STOLEN"] == undefined ? 0 : flags["RAT_BIG_GEMS_STOLEN"]));
-	output("\n-Large Gems: " + (flags["RAT_SMOL_GEMS_STOLEN"] == undefined ? 0 : flags["RAT_SMOL_GEMS_STOLEN"]));
-	output("\n<b>Ratbutt Virginities:</b> " + (flags["RAT_ANUSES_TAKEN"] == undefined ? 0 : flags["RAT_ANUSES_TAKEN"]));
-	output("\n<b>rat0.legs:</b> [rat0.legs]");
-	
-	addButton(0, "Fight (F)", ratDebugFight, true);
-	addButton(1, "Fight (M)", ratDebugFight, false);
-	addDisabledButton(2, "Random Encounter");
-	addDisabledButton(3, "Urbolg Introduction");
-	addButton(4, "GoodCEO", ratDebugSetRep, 101);
-	addButton(5, "Set Rep Low", ratDebugSetRep, 30);
-	addButton(6, "Set Rep Mid", ratDebugSetRep, 60);
-	addButton(7, "Set Rep Hi", ratDebugSetRep, 90);
-	addButton(8, "Buttfuck 1", ratDebugButtfuck, 1);
-	addButton(9, "Buttfuck 2", ratDebugButtfuck, 4);
-	
-	addButton(14, "Done", ratDebugDone);
-}
-
-public function ratDebugDone():void
-{
-	removeInput();
-	mainGameMenu();
-}
-
-public function ratDebugSetRep(newRep:int):void
-{
-	if (newRep == 101)
-	{
-		flags["RATPUTATION"] = 101;
-	}
-	else
-	{
-		flags["RATPUTATION"] = newRep;
-		if (flags["RATPUTATION"] > 100) flags["RATPUTATION"] = 100;
-		else if (flags["RATPUTATION"] < 0) flags["RATPUTATION"] = 0;
-	}
-	
-	ratMenu();
-}
-
-public function ratDebugFight(groupOne:Boolean):void
-{
-	removeInput();
-
-	if (groupOne)
-	{
-		rat0 = new RatsRaider(RatsRaider.PINK_RODENIAN);
-		rat1 = new RatsRaider(RatsRaider.TAN_MOUSEBOY);
-		rat2 = new RatsRaider(RatsRaider.HALF_GIRL);
-	}
-	else
-	{
-		rat0 = new RatsRaider(RatsRaider.WHITE_RODENIAN);
-		rat1 = new RatsRaider(RatsRaider.FAIR_MOUSEBOY);
-		rat2 = new RatsRaider(RatsRaider.HALF_BOY);
-	}
-
-	CombatManager.newGroundCombat();
-	CombatManager.setHostileActors(rat0, rat1, rat2);	
-	CombatManager.setFriendlyActors(pc);
-	CombatManager.victoryScene(ratDebugFightWrapup);
-	CombatManager.lossScene(ratDebugFightWrapup);
-	CombatManager.displayLocation("RAT THIEVES");
-	CombatManager.encounterTextGenerator(ratcounterTextGenerator);
-	CombatManager.beginCombat();
-}
-
-public function ratDebugFightWrapup():void
-{
-	clearOutput();
-	
-	if (pc.isDefeated()) output("Player lost");
-	else output("Rats lost");
-	
-	output("\n" + int(CombatManager.getHostileActors().length) + " rats remaining.");
-	CombatManager.abortCombat();
-}
-
-public function ratDebugButtfuck(maus:int):void
-{
-	if (flags["RAT_ANUSES_TAKEN"] == undefined) flags["RAT_ANUSES_TAKEN"] = 0;
-	flags["RAT_ANUSES_TAKEN"] |= 1<<maus;
-	ratMenu();
-}
- 
-public function ratPCIsPoor():Boolean
-{
-	if (pc.credits >= 2000) return false;
-	for each (var item:ItemSlotClass in pc.inventory)
-		if (item.type == GLOBAL.GEM && !item.hasFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE))
-			return false;
-	return true;
-}
- 
-public function ratputation(increase:int = 0, goodCEO:Boolean = false):int
-{
-	//improve rep
-	if (increase && flags["RATPUTATION"] != 101)
-	{
-		if (flags["RATPUTATION"] == undefined) flags["RATPUTATION"] = increase;
-		else flags["RATPUTATION"] += increase;
-		if (flags["RATPUTATION"] > 100) flags["RATPUTATION"] = 100;
-		else if (flags["RATPUTATION"] < 0) flags["RATPUTATION"] = 0;
-	}
-	if (goodCEO) flags["RATPUTATION"] = 101;
-	//return rep
-	if (flags["RATPUTATION"] == undefined) return RatsRaider.RAT_REP_NONE;
-	else if (flags["RATPUTATION"] < 30) return RatsRaider.RAT_REP_LOW;
-	else if (flags["RATPUTATION"] < 70) return RatsRaider.RAT_REP_MID;
-	else if (flags["RATPUTATION"] < 101) return RatsRaider.RAT_REP_HIGH;
-	else return RatsRaider.RAT_REP_GOOD_CEO;
-}
-
-public function ratTheftPercent(inFight:Boolean = false):Number
-{
-	//Modifier
-	var mod:int = 0;
-	if (inFight) mod += 10;
-	if (ratputation() == RatsRaider.RAT_REP_GOOD_CEO) mod -= 15;
-	return Math.min(100, Math.max(5, 5 + rand(16) + mod));
-	//Goodbye beautiful legacy code, William couldn't withstand your greatness. -lighterfluid
-	/*
-	//Based on 6d6-26
-	var odds:Array = [{v:10,w:1666}, {v:20,w:1161}, {v:30,w:756}, {v:40,w:456}, {v:50,w:252}, {v:60,w:126}, {v:70,w:56}, {v:80,w:21}, {v:90,w:6}, {v:100,w:1}];
-	return Math.min(Math.max(5, weightedRand(odds) + mod),100);
-	*/
-}
-
-public function ratTallyLoot(thief:RatsRaider, returned:Boolean = false):void
-{
-	var mult:int = (returned ? -1 : 1);
-	if (flags["RAT_BIG_GEMS_STOLEN"] == undefined) flags["RAT_BIG_GEMS_STOLEN"] = 0;
-	if (flags["RAT_SMOL_GEMS_STOLEN"] == undefined) flags["RAT_SMOL_GEMS_STOLEN"] = 0;
-	if (flags["RAT_CREDITS_STOLEN"] == undefined) flags["RAT_CREDITS_STOLEN"] = 0;
-	flags["RAT_SMOL_GEMS_STOLEN"] += thief.statusEffectv2("Plunder over Pillage!")*mult;
-	flags["RAT_BIG_GEMS_STOLEN"] += thief.statusEffectv3("Plunder over Pillage!")*mult;
-	flags["RAT_CREDITS_STOLEN"] += thief.credits*mult;
-}
-
-public function ratSetupGroup(groupOne:Boolean = true):void
-{
-	if (groupOne)
-	{
-		rat0 = new RatsRaider(RatsRaider.PINK_RODENIAN);
-		rat1 = new RatsRaider(RatsRaider.TAN_MOUSEBOY);
-		rat2 = new RatsRaider(RatsRaider.HALF_GIRL);
-	}
-	else
-	{
-		rat0 = new RatsRaider(RatsRaider.WHITE_RODENIAN);
-		rat1 = new RatsRaider(RatsRaider.FAIR_MOUSEBOY);
-		rat2 = new RatsRaider(RatsRaider.HALF_BOY);
 	}
 }
 

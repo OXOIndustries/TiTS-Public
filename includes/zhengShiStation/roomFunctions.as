@@ -80,6 +80,8 @@ public function zhengMinesEncounterBonus():Boolean
 			encounters.push(boredJumperAttackProc);
 			encounters.push(boredJumperAttackProc);
 		}
+		
+		if (flags["RATS_ENABLED"] != undefined && rand(3) == 0) encounters.push(ratInTheMineEncounter);
 	}
 	if(encounters.length > 0) 
 	{

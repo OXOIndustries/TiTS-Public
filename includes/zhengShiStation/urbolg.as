@@ -28,6 +28,11 @@ public function zhengShiHangerFloorBonus():Boolean
 		urbolgMeeting();
 		return true;
 	}
+	else if (!pc.hasStatusEffect("Rat Delay") && flags["RATS_ENABLED"] == undefined)
+	{
+		ratAttemptUrbolgRobbery();
+		return true;
+	}
 	else
 	{
 		if(pc.hasStatusEffect("URBOLG_DISABLED"))
@@ -273,6 +278,7 @@ public function urbolgBadEndV():void
 public function defeatUrbolg():void
 {
 	flags["MET_URBOLG"] = 1;
+	pc.createStatusEffect("Rat Delay"); pc.setStatusMinutes("Rat Delay", 3*24*60);
 	//Lust
 	if(enemy.lust() >= enemy.lustMax())
 	{

@@ -21,7 +21,7 @@ package classes.Characters
 	
 	public class RatsRaider extends Creature
 	{
-		private var bustName:String = "MABBS";
+		public var ratVariety:int;
 		private static const specialCost:int = 25;
 		private var specialAttacks:Array;
 		
@@ -40,6 +40,8 @@ package classes.Characters
 		
 		public function RatsRaider(ratVariety:int = 0)
 		{
+			this.ratVariety = ratVariety;
+		
 			this._latestVersion = 1;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
@@ -68,6 +70,7 @@ package classes.Characters
 			
 			this.shield = new SalamanderShield();
 			this.armor = new RattyArmor();
+			this.armor.evasion = 10;
 			this.baseHPResistances.burning.resistanceValue = 75.0;
 			this.baseHPResistances.electric.resistanceValue = 75.0;
 			
@@ -340,7 +343,8 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			return bustName;
+			if (ratVariety == 0 || ratVariety == 3) return "MABBS";
+			return mf("ERRA", "ANNO");
 		}
 		
 		public function isLeaderRat():Boolean
@@ -533,11 +537,11 @@ package classes.Characters
 			// Hit
 			else
 			{
-				output(" The freckeled pirate's armored head collides with yours, a loud <i>SMACK</i> booming like thunder!");
+				output(" The freckled pirate's armored head collides with yours, a loud <i>SMACK</i> booming like thunder!");
 				if (physique() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stun Immune"))
 				{
 					output(" Stars explode in your eyes and you stumble back with a pained grunt, unable to act! <i>\"Now's our chance! Get [pc.himHer]\"</i> one rat triumphantly yells!");
-					CombatAttacks.applyStun(target, 2);
+					CombatAttacks.applyStun(target);
 				}
 				else
 				{
@@ -618,16 +622,16 @@ package classes.Characters
 					var damage:TypeCollection = new TypeCollection();
 					damage.electric.damageValue = rangedDamage().getTotal();
 					damage.addFlag(DamageFlag.ONLY_SHIELD);
-					applyDamage(damageRand(damage.multiply(3), 20), this, target, "ranged");
+					applyDamage(damageRand(damage.multiply(2), 20), this, target, "ranged");
 				}
 				else
 				{
 					output(" A painful electrical current is run through your body, bringing you to your knees");
-					if (intelligence() / 2 + rand(20) + 1 >= target.willpower() / 2 + 10 && !target.hasStatusEffect("Stun Immune"))) output(" before you can rip the darts out and catch your breath.");
+					if (intelligence() / 2 + rand(20) + 1 >= target.willpower() / 2 + 10 && !target.hasStatusEffect("Stun Immune")) output(" before you can rip the darts out and catch your breath.");
 					else
 					{
 						output(" and even to all fours. When the current stops, the darts are reeled back in by a smug rat.");
-						if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO) output(" <i>\"Gotcha. [pc.mister] CEO!");
+						if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO) output(" <i>\"Gotcha. [pc.Mister] CEO!");
 						else output(" <i>\"That's a better look for you.");
 						if (ratCount(false) > 1) output(" Now, get [pc.himHer]!");
 						output("\"</i>");
@@ -761,7 +765,7 @@ package classes.Characters
 			output("<i>\"" + RandomInCollection(dialog) + "\"</i> yells one of the raiders, and you feel " + num2Text(ratCount()) + " bodies smash into you. Unable to resist, you are tackled to the floor. You flail defiant, madly struggling against their quick-fingered hands and constricting tails as they crawl upon and pin you. If you don't shake your stupor, <b>who knows what they're going to do</b>!");
 
 			target.removeStatusEffect("Stunned");
-			CombatAttacks.applyGrapple(target, 75);
+			CombatAttacks.applyGrapple(target, 65);
 			//Store rat count
 			target.setStatusValue("Grappled",3,ratCount());
 			for each (var ally:Creature in CombatManager.getHostileActors())
@@ -822,7 +826,7 @@ package classes.Characters
 					output(" a female voice titters as your weapons are flung in two directions. If you manage to break free you're gonna have to get your gear back, <b>as you have been disarmed!</b>");
 					output("\n\nYou push back desperately against the hands holding you down, still defiling the sanctity of your precious inventory and of your body too. Dainty, adept paws skip and jump across your [pc.skinFurScalesNoun], searching for plunder while pillaging your body. Strength gradually stokes the indignant fire inside, fueled by the pretentious laughter ringing in your [pc.ears].");
 				}
-				CombatAttacks.applyDisarm(target, 2);
+				CombatAttacks.applyDisarm(target, 2, true);
 			}
 			//Robbery
 			else
@@ -968,7 +972,7 @@ package classes.Characters
 			if (!thief) return null;
 			
 			//Steal from credits-2000
-			thief.credits = Math.floor(Math.max(target.credits-2000, 0)*kGAMECLASS.ratTheftPercent(true)/100);
+			thief.credits = Math.min(target.credits - 2000, Math.floor(Math.max(target.credits, 0)*kGAMECLASS.ratTheftPercent(target.credits, true)/100));
 			target.credits -= thief.credits;
 			
 			//Fill a temporary inventory, this way we don't have to worry about
@@ -1015,7 +1019,7 @@ package classes.Characters
 					smallestGem = itemClass;
 				}
 				//Split
-				gemsToSteal = Math.ceil(kGAMECLASS.ratTheftPercent(true)*item.quantity/100);
+				gemsToSteal = Math.ceil(kGAMECLASS.ratTheftPercent(item.quantity*item.basePrice, true)*item.quantity/100);
 				//Count money
 				if (item.basePrice >= 10000) bigGemValue += item.basePrice*gemsToSteal
 				else smallGemValue += item.basePrice*gemsToSteal;
