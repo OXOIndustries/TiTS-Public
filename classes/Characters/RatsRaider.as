@@ -332,7 +332,7 @@ package classes.Characters
 			
 			createPerk("Appearance Enabled");
 			createPerk("Inhuman Desire", 25);
-			createPerk("Giant Slayer", 6*12+1, 10);
+			createPerk("Giant Slayer", 6*12, 10);
 			createPerk("Get Down!", 50);
 
 			this.isUniqueInFight = false;
@@ -626,7 +626,7 @@ package classes.Characters
 				}
 				else
 				{
-					output(" A painful electrical current is run through your body, bringing you to your knees");
+					output(" A seizing electrical current is run through your body, bringing you to your knees");
 					if (intelligence() / 2 + rand(20) + 1 >= target.willpower() / 2 + 10 && !target.hasStatusEffect("Stun Immune")) output(" before you can rip the darts out and catch your breath.");
 					else
 					{
