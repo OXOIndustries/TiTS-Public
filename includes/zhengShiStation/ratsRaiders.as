@@ -19,7 +19,7 @@ public function showRats(ratCount:int = 1):void
 		case 1: showBust(rat0.bustDisplay); break;
 		case 2: showBust(rat0.bustDisplay, rat1.bustDisplay); break;
 		case 3: showBust(rat0.bustDisplay, rat1.bustDisplay, rat2.bustDisplay); break;
-		case -1: showBust("MABBS", "URBOLG"); showName("\nRobbery?"); break;
+		case -1: showBust("MABBS", "URBOLG"); showName("\nROBBERY?"); break;
 	}
 }
 
@@ -56,8 +56,11 @@ public function ratMenu():void
 	output("\n<b>Ratbutt Virginities:</b> " + (flags["RAT_ANUSES_TAKEN"] == undefined ? 0 : flags["RAT_ANUSES_TAKEN"]));
 	output("\n<b>rat0.legs:</b> [rat0.legs]");
 	
+	output("\n\n<b>" + (flags["RATS_ENABLED"] ? "Can" : "Cannot") + " be encountered in the Zheng Shi Mines!");
+	
 	addButton(0, "Fight!", ratDebugFight);
-	addButton(2, "Random Encounter", ratInTheMineEncounter);
+	addButton(1, "Reset", ratDebugResetAll);
+	addButton(2, "Random Encounter", ratInTheMineEncounter, true);
 	addButton(3, "Urbolg Introduction", ratAttemptUrbolgRobbery);
 	addButton(4, "GoodCEO", ratDebugSetRep, 101);
 	addButton(5, "Set Rep Low", ratDebugSetRep, 25);
@@ -70,6 +73,19 @@ public function ratMenu():void
 	addButton(9, "Switch Rats", function(){ratSetupGroup((rat0.ratVariety == 0 ? 1 : 0)); ratMenu();});
 	
 	addButton(14, "Done", ratDebugDone);
+}
+
+public function ratDebugResetAll():void
+{
+	ratCleanup();
+	flags["RAT_ANUSES_TAKEN"] = undefined;
+	flags["RAT_SMOL_GEMS_STOLEN"] = undefined;
+	flags["RAT_BIG_GEMS_STOLEN"] = undefined;
+	flags["RAT_CREDITS_STOLEN"] = undefined;
+	flags["RATPUTATION"] = undefined;
+	flags["RATCOUNTERS"] = undefined;
+	flags["RATS_ENABLED"] = undefined;
+	ratMenu();
 }
 
 public function ratDebugDone():void
@@ -109,13 +125,18 @@ public function ratDebugFight():void
 
 public function ratDebugFightWrapup():void
 {
-	ratCleanup();
 	clearOutput();
 	
 	if (pc.isDefeated()) output("Player lost");
 	else output("Rats lost");
 	
 	output("\n" + int(CombatManager.getHostileActors().length) + " rats remaining.");
+	
+	CombatManager.removeHostileActor(rat1);
+	CombatManager.removeHostileActor(rat2);
+	showRats(3);
+	ratCleanup();
+
 	CombatManager.abortCombat();
 }
 
@@ -231,14 +252,98 @@ public function ratAttemptUrbolgRobbery():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function ratInTheMineEncounter():Boolean
+// Every encounter begins with the player being accosted by three mouse-eared pirates.
+// Plenty of references and ways to start off depending on player actions, want these little runts to be everywhere.
+// Comment out the variants checking for PC being a Mouse TF unless mouse stuff gets added.
+// Cycle through all of the repeat encounter texts. Randomize only on Silly Mode.
+// For First Time Encounter, use Rat Group 1, with Light-pink Furred Rodenian
+public function ratInTheMineEncounter(debug:Boolean = false):Boolean
 {
-	if (rat0 == null) ratSetupGroup();
+	if (!debug) {ratCleanup(); ratSetupGroup(rand(2))};
 	clearMenu();
 	clearOutput();
+
+	// First Time
+	if (flags["RATCOUNTERS"] == undefined)
+	{
+		ratSetupGroup(1);
+		
+		output("A blue glow catches your eye in the distance, a faint wisp of light that splits into three. Blinking, you reach for your [pc.weapon] as an effeminate snicker echoes out. <i>\"Oooh! There, look!\"</i>"); 
+		output("\n\nBefore you can even consider backing off, three diminutive figures with chubby round ears fly from the dark, their impish laughs filling your [pc.ears] as their long tails excitedly thrash the air behind them. You're caught well off guard by the abruptness of it all; they encircle you with an incessant clamor, invading your personal space before you can come to an understanding. If not for their armor or weapons, they'd look positively unthreatening. You soon realize they've expertly steered your back to the nearest wall.");
+		if (pc.tallness >= 6*12) output(" Even though they're much smaller, your greater stature only seems to make them work harder.");
+		output("\n\nCloying smiles distract from the equally flustering claptrap they blabber in unison. A prevailing fight-or-flight response is triggered when they get a little touchy-feely down below, tugging on your belongings.");
+
+		// PC met Rodenian
+		if (CodexManager.entryUnlocked("Rodenians"))
+		{
+			output("\n\nShouting and cursing, you swipe your arm and force them all back. In a quiet moment, the [rat0.furColor]-furred rodenian sizes you up and quirks an eyebrow. <i>\"You new here?");
+			if (/* pc.mouseScore() > something*/ false) output(" I don't recognize your face, you're not one of ours.");
+			else if (pc.earType == GLOBAL.TYPE_LAPINE) output(" A Jumper? No… Not you. " + (pc.armor is JumperJumpsuit || pc.armor is JumperJumpsuitSlutty ? "You don't walk or smell like one of them, and that gear is way too high tech for them." : "You're not even in uniform."));
+			else if (pc.armor is Slavesuit) output(" A slave wandering all alone? Nah, you can't be a slave… you must be sneaking something!");
+			output("\"</i> she says in a cool, confident voice, although her shaky tone betrays an unscrupulous desire.");
+		}
+		// PC didn't meet Rodenian
+		else
+		{
+			output("\n\nThey all jump back in shock when your ever-helpful codex loudly beeps, their tails freezing when it mechanically chirps: <i>\"<b>Rodenian detected!</b> This race bears resemblance to the common terran rat!\"</i>"); 
+			output("\n\n<i>\"Rat!? Huh! Screw you! As if we needed any proof you don't belong here!\"</i> The leading rodenian scoffs, an annoyed frown forming on her [rat0.furColor] snout.");
+		}
+
+		output("\n\n<i>\"Well it's obvious you're out of place, and that means you're unaffiliated!\"</i> the halfbreed [rat2.boyGirl] calls, lazily waving a sparking baton. <i>\"And that's great, we could use your help with something!\"</i> She and the mouse-boy opposite her reach out longingly for your waist - your packs.");
+		
+		if (pc.isBimbo()) output("\n\n<i>\"Oooh? Is it about pussy or dick? I know everything about pussy and dick, I'll help you out!\"</i> You declare in a sing-song voice while openly touching yourself, though the mouse-pirates look less than enthused.");
+		else if (pc.isBro()) output("\n\n<i>\"Is that so? I'll have you know there's nobody better to help you with your problems,\"</i> you start, though their widening smiles disappear as you finish by groping yourself. <i>\"We'll take care of each other's needs just fine.\"</i>");
+		else if (pc.isNice()) output("\n\nYou smirk and take a cautious step backward, narrowly avoiding unwelcome paws. <i>\"I'm <i>sure</i> you need help, but is common thievery any way to ask?\"</i> As your arms fold, they immediately take on a belligerent and smarmy stance.");
+		else if (pc.isMisch()) output("\n\nYou spot a fuzzy hand, fingers stretched, reaching slowly for your codex out of the corner of your [pc.eye]. Grinning, you make a sudden move in that direction, stepping out of their obvious entrapment. <i>\"I'm always willing to help those in need… of an ass kicking.\"</i> Their fingers tighten around the handles of their weapons in petulant frustration.");
+		else output("\n\nYou cast your gaze down and a probing hand stops, fingers outstretched towards you belt. Scowling, you smack the rat's arm away and step back, drawing your [pc.weapon] and meeting their eyes. <i>\"Was already thinking of helping you get some rest in the infirmary, rat.\"</i>");
+
+		output("\n\nThe [rat1.hairColor]-haired and freckled mouse-boy shakes his hands and clears his throat, <i>\"We're not here to hurt you or anyone else, but we are here to help others!\"</i> he says piously, gesturing so wildly you can see the kindlings of sincerity in his [rat1.eyeColor] eyes.");
+		output("\n\nThe [rat2.furColor]-furred half-rodenian steps forward follows up, <i>\"So come on, we'll let you go if you do us a favor,\"</i> [rat2.heShe] raise a finger, <i>\"just give us some money or gems! If you're carrying a lot, there's no reason you can't share with others! So many out there need help, you know?\"</i>");
+		
+		if (flags["ARDIA_GOT_INFODUMP"] != undefined) output("\n\nBased on what " + (addictedToArdia() ? "your alpha" : "Ardia") + " told you before, these mice are little more than petty thieves… And they're giving you a hearty dose of their altruism.");
+	
+		output("\n\n<i>\"What's that old saying? <i>Better to give than to receive</i>?\"</i> The sharp accented rodenian casts a glance to the side, brushing long and unkempt bangs from her snout. <i>\"I know what it looks like, but we're not 'yer enemies.\"</i>");
+		output("\n\n<i>Yeah, that's rich</i>. Shit, can't you go anywhere on this station peacefully? Still, they're covering all angles and they haven't taken their paws off their batons. The ominous crackle of their weapons and the creaky joints of their crappy armor tells you they'll brook no refusal…");
+		output("\n\nWhat will you do to get out of this?");
+		
+		CodexManager.unlockEntry("Rodenians");
+	}
+/*
+
+
+// repeat Encounters
+// Random Approach Text 1
+The next step you take, something inherently aggravating comes into view. Three black-clad figures are squatting down the corridor, thin tails weaving around hunched feet; they're happily chatting the time away. Whilst this might be an ordinary sight anywhere else, you know those rodents are affiliated with one of the gangs here on Zheng Shi. Before you can bail, they spot you and spring to their feet, charging in your direction. In only a few seconds they're snickering at you, invading your personal space, and prodding for your things all over again. Geez, these runts can move fast...
+// RAT 2
+	From behind you hear a flurry of footfalls. Armored feet stomp against the ground and you spin around with your [pc.weapon] at the ready. You spot three rat thieves sauntering slowly up to you, having shifted gears in that split second of reaction. They lazily handle their stun batons while their long tails slash the air behind them. Just like before, they're keeping close as they intrude upon your personal space, preventing easy escape. Where the hell do they come from?
+// RAT 3
+Just before you reach another split, an electrically charged rod is swung out in front of you. You stop on your heels, nearly colliding with it before jumping back, your whole body tensing up as a snickering laughter reverberates off the walls. The hand holding the shock-stick, wearing a shining blue wristband, swells into the diminutive body of a rodent stepping out with two others. {ratRepLowMedHigh: Not this shit again… /goodCEO: Here you go again…}
+// RAT 4
+The next step you take brings you into the sight of another group of mouse thieves, huddled together, furtive and vulnerable… Rats in a maze. Your approach startles them from their quiet nap. Shaking the sleepiness off, they hurriedly cut off your means of easy retreat before giving you the usual rundown. Crap.
+// RAT 5 (Silly, but 10% chance to play outside of Silly)
+"Rats, we're rats... weee'rrreee <i><b>the rats</i></b>!" A smooth bunch of singing voices break out abruptly. You turn to see <i>just</i> where it's coming from... "We prey at night, we stalk at night, we're <i><b>the rats</i></b>!" They slither closer to you, punctuating their strange song and dance by smacking their electrical batons against the wall. "We're the giant rats that make aaalll of the rules!" The rodenian girl smirks at you. Before you know it, they've encircled you. "Let's see what kind of trouble we can get ourselves into!"
+You sigh loudly and slap a sticky hand away from your waist. God damn it.
+// RAT 6 (Silly)
+	A throbbing growl takes you off guard. This sound is… it's not a sound you'd expect to hear on a station. Certainly not where you're standing! All of a sudden, three motorbikes go racing towards you, indistinguishable helmeted figures astride them. You dive out of the way in shock as they go flying by, their… <i>rat</i> tails!? Whipping in the colors trailing off their bikes. Smoke fills the area as the sound dissipates, making you cough. By the time it clears, three different figures are standing in the clearing, each one a mouse-morph figure dressed in black armor.
+They walk up to you like nothing had just happened, pointing their batons at you. The fuck..?
+// RAT 7 (Silly)
+	Something odd up ahead catches your eye. A dapper man in a black suit wearing a strange… <i>creepy</i> mask pirouettes towards you, his dance perfect and rhythm elegant. He stops in front of you with a flourish, and you notice a giant mouse on his shoulder and a fancy cane in his left hand. "Into your sanctum you let them in. This wretched mischief is now coursing through your soul," he says, tapping you coldly on the shoulder. What? He then points his cane behind you, and when you turn, three mouse-eared pirates lamely walk forward, smiling confidently.
+"Them filthy rodents are still coming for your soul, never to let go. They're still coming after you, and there's nothing y'can do," the man's mechanical voice comes again, ending with an AAWOAAAAH not unlike background chorus in a song. You whip around, the hairs on your neck standing, to find that he's gone. Was he ever there? What the hell was that all about? 
+Shit, now you have to deal with rats again!
+// Merge
+{randomDialogue: "Hey, you don't look like you belong here, but that's no biggie," says the lead rodenian girl. / "What have 'ya got in there?" A particularly femmy mouse boy pokes your bag with his baton. / "Here to make a donation, [pc.mister] Independent?" They all ask in flowery unison. /pcSlaveSuit: "What's a slave walking around alone for? You carrying something for someone?" one says as they press into you. /pcLapineEars: "You a jumper? Nah… you can't be. You don't smell like those dopey sweat-rags at all," the lead rat girl quips, making no effort to hide her annoyance with that gang. /pcLaquineJJSuit: "You're no jumper… They don't have gear like <i>that</i>!" one points a tiny finger to your codex and [pc.weapon].}
+{pcKnown: They pause and look you over again, eyes positively glowing. "Ohhh… wait a second… You're the CEO!" the [rat0.furColor] rodenian and her entourage laugh uproariously. "Are you ready to pay for your crimes?" /pcGoodCEO: When they stop giving you their well-rehearsed play, they look up and shake their heads. "Oh, sorry, didn't see you in the quickness of it!" laughs the [rat0.furColor] rodenian, her entourage adding their voices to the chorus. "Well um, you know the rules, [pc.mister] CEO!" she smiles, "what are you gonna do?"}
+{ratRepLowMedHigh: Shoving the greedy runts back, /goodCEO: You step back calmly, although} they still encircle you{, goodCEO: still intent on playing hardball}. Hungry eyes linger on your belongings too long. {randomDialogue: "You'll have to pay us in gems or creds if you want to go on. Don't they say it's better to give than receive?" / "Gems or credits are fine, we're not here to fight. It's going to a good cause, you know!" / "Please, think about others worse off than you or us! We're just trying to help people, not hurt them!" /pcKnown: "You aren't going anywhere scoundrel! Just pay us and we'll leave you alone. You don't need to get your pretty [pc.skinFurScalesNoun] hurt!" /pcGoodCEO: "Gems, credits, or a good scrap. Either way, it only helps us help others!" the rodenian leader proffers. "So what'll it be, [pc.mister] CEO? Just try us, we'll prove we mean what we say!"}
+{pcLibidoHighBimboBro: "Sex works just like that!" you announce, shaking your hips and giving them a sweet smile. They scoff at your seduction and level their batons. /else: Yeah, right. You're sure you can think of something to give them… /pcKnown: Damn that cousin of yours... Well, how are you going to resolve this? /pcGoodCEO: Indeed, what will it be this time?}
+
+[Fight] [Pay Credits] [Pay Gems] [Offer Oral] [Offer Milk]
+[I'm Poor!]
+*/
 	showRats(3);
-	output("hello we're rats");
-	addButton(0, "Next", ratDebugFight);
+	IncrementFlag("RATCOUNTERS");
+	
+	addButton(0, "Fight!", ratDebugFight);
+	addButton(4, "Run!", mainGameMenu);
 	return true;
 }
 
