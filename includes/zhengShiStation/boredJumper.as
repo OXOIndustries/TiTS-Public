@@ -77,6 +77,7 @@ public function boredJumperAttackProc():Boolean
 public function winVsBoredJumper():void
 {
 	flags["BORED_JUMPER_CONSECUTIVE_LOSSES"] = 0;
+	IncrementFlag(flags["BORED_JUMPER_SEXED"]);
 	//HP
 	if(enemy.HP() <= 1)
 	{
@@ -150,6 +151,7 @@ public function leaveTheBoredJumperAfterWinning():void
 {
 	clearOutput();
 	showBoredJumper();
+	flags["BORED_JUMPER_SEXED"]--;
 	output("You wave off the oversexed bunny-slut’s passionate exhortations and turn away.");
 	output("\n\n<i>“Wait! No!”</i> She briefly reaches out for you before giving up and yanking down her zipper. <i>“I wanted to fuck yoooouuuuuu!”</i>");
 	output("\n\nHer moans continue for some time.\n\n");
