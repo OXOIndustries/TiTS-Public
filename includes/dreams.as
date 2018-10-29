@@ -94,6 +94,10 @@ public function dreamChances(inShip:Boolean = false):Boolean
 			if(pc.hasCock()) dreams.push(goblinMadScientistDream);
 			//Saurmorian Dream
 			if(CodexManager.entryUnlocked("Saurmorians") && pc.hasGenitals() && !pc.isPregnant()) dreams.push(saurmorianCultDream);
+			//Paige dream!
+			if(paigeIsCrew()) dreams.push(hyperPaigeDream);
+			//Dr. Hyena dream!
+			if(pc.hasGenitals() && flags["SEXED_VERUSHA"] != undefined) dreams.push(spookyHyenaDream);
 		}
 		if(MailManager.isEntryViewed("lets_fap_unlock"))
 		{

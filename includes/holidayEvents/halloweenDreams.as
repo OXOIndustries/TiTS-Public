@@ -1,4 +1,194 @@
-﻿//Saurmorian Cult Dream
+﻿//Spooky hyena dream
+//Doots dream
+//Can be procked when sleeping if you’ve fucked verusha prior to the dream. After getting the dream the pc will need to fuck Verusha again to get the dream again. Requires it to be Halloween.
+//To no one’s surprise requires genitalia.
+public function spookyHyenaDream():void
+{
+	clearOutput();
+	author("Doots");
+	output("You don’t remember your mattress being this hard, nor do you remember shackling yourself to your own bed. Opening your [pc.eyes] to see what’s going on, you don’t see your bedroom like you were expecting. Instead you see a large, dark room with what look like generators and large vats of mystery liquid on the walls.");
+	output("\n\n<i>“Mistress, [pc.heShe] is awake,”</i> a raspy, feminine voice to your left calls out. You turn to look at the speaker. It’s a female ausar. You can’t really tell since she’s standing with a slight hunch, but you’d estimate that she’s about six foot tall. Her snow-white, wolf-like ears peek from the holes in her hood. You notice that she’s wearing nothing but a hooded cloak, leaving her full DD-cups out in the open alongside her well-toned midriff and her pretty little pussy. You also notice that her chin, tits, and thighs are dripping with cum. Whoever this person is, she’s also pulling the role of cum dump.");
+	output("\n\n<i>“Good girl, Angor.”</i> another voice says. You crane your neck to see who’s speaking this time. You spot a very tall hyena standing by a table. She’s almost ten feet tall, and what you can see of her body is covered in coarse brown fur. There’s a pair of hyena-like ears atop of her head and a mohawk between said ears. Her eyes are hidden behind a pair of protective goggles, but you still can see the numerous scars littering her muzzle. You also notice that her right hand is artificial.");
+	output("\n\nJust like her assistant, she’s not wearing all that much. Only a lab coat that barely covers her muscular body and E-cup breasts. With her outerwear hanging open, you can see a rather large sheath and hand-filling balls swinging between her legs. The tip of a black canine dick peeks out of her sheath, and judging by the state of her cum-glazed balls, you’re pretty sure who’s the one that has been fucking the so-called Angor.");
+	output("\n\nYou call out to her, demanding to know what she’s going to do with you. She looks dumbfounded for a moment, almost astonished that you asked her something. <i>“You don’t know who I am? You haven’t heard of the mad Dr. Hyena!?”</i> she asks with wounded pride. <i>“Bad name, I know,”</i> she adds and then remembers that you asked her a question. <i>“You, my less than willing test subject, shall help me take my revenge on those ignorant town people. I’ve been researching my serum for thirty years, and it’s finally ready.”</i> Holding up the vial filled with what seems to be the same liquid as the vials on the walls, she breaks into a maniac laughter as lightning strikes outside. You’re not even sure if it was raining before.");
+	output("\n\n<i>“Angor! Get the injectors!”</i> she yells triumphantly. The hunchbacked assistant runs off and grabs the tubes hanging off the vats. She hands them to the mad doctor who then secures the injectors into your flesh.  She places syringes on your neck");
+	if(pc.isHerm()) output(", [pc.breasts], [pc.hips], [pc.thighs], arms, [pc.ass], [pc.cocks], and [pc.balls].");
+	if(pc.hasVagina()) output(", [pc.breasts], [pc.hips], [pc.thighs], arms, [pc.ass], [pc.vaginas], and [pc.clits].");
+	else output(", biceps, stomach, legs, " + (pc.balls > 0 ? "[pc.balls], ":"") + "and [pc.cocks].");
+	output(" Your body itches in the places where the needles are inserted, but she’s not done. She hooks two jumper cables onto a metal band around your head.");
+	output("\n\nPanic starts creeping into your bones as she grabs the electrical switch. Worried for yourself, you ask if she’s sure it’s going to work. <i>“Nope,”</i> she laughs and hits the switch. You feel the liquid pump into your body and the electricity running around your head.");
+	output("\n\nYou groan as your body suddenly starts growing, both in muscle mass and height. Soon you’re twelve feet tall, then fourteen, sixteen, and so on. When you stop expanding, you’re at least 20 feet tall, but your muscles haven’t stopped swelling. A moment ago you looked like a wrestler, but soon you're like a bodybuilder. It doesn’t take long for you to look like you could flip a tank if you’d try.");
+	output("\n\nYour size and muscles aren’t the only targets of growth." + (pc.biggestTitSize() >= 1 ? " Your boobs swell like balloons. They fill out and become firmer while retaining a certain amount of sag. You’d swear that your tits are the size of an average person.":"") + (pc.hasCock() ? " [pc.EachCock] gives a hearty throb and gains several inches in seconds, and then several more. Length isn’t the only change your dick goes through - it also thickens enough to be wider than a fire extinguisher. With a tidal wave of pre, your now mammothian cock finally ceases its expansion. You’re not sure if you can fit it inside any normal person anymore.":"") + (pc.hasVagina() ? " Your pussy doesn’t go through many external changes, only swelling in size with your body. Internal adjustments, on the other hand, are plentiful. You can feel your [pc.vagina] grow more accommodating without losing tightness. Additional muscles develop around your cunt; it feels like you could crush a fire hydrant with your cunny if you’d try.":""));
+	output("\n\nToo busy with your groin's raucous transformation, you don’t notice that the rest of your body is shifting even more. Your ");
+	if(!pc.hasFur()) output(" [pc.Skin] tickles and grows goosebumps as coarse fur starts to sprout from your skin. Your new coat is brown with dark splotches in it.");
+	else output(" Your [pc.skin] sheds itself in waves, leaving you feeling even more naked than you already are. You’re not furless for long before a new coat bursts from your skin, brown with rough splotches of darker fur.");
+	//if muzzle:
+	if(pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) output(" The bones in your muzzle creak as it changes form.");
+	else output(" Your face morphs as bones creak, and your skin stretches to cover your new muzzle.");
+	if(pc.tailCount == 1) output(" Your tail goes numb and slowly warps to that of a hyena.");
+	else if(pc.tailCount > 1) output(" Your [pc.tails] go numb and slowly warp to that of a hyena.");
+	else output(" You feel pain in your tailbone as it starts growing, and in no time you have a hyena-tail above your ass.");
+
+	output("\n\n<i>“It’s horny!”</i> the doctor laughs maniacally as more lightning crackles behind her. Something tickles inside your head when you hear the words horny. You are horny... incredibly horny. You rip off the shackles like they’re made from paper. Standing up and looking down on the ausar girl, you note that she looks more like a toy than a real person.");
+	if(pc.cocks[0].cType != GLOBAL.TYPE_CANINE || pc.cocks[0].cockColor != "black") output(" Glancing down at your crotch, you’re taken back when you find that your cock has turned to a huge, turgid, black doggy dick, but somehow it feels right.");
+
+	output("\n\nYou look at Angor again and forget what you were thinking about. Was it fucking? No, you weren’t thinking about fucking, but why weren’t you thinking about fucking? You should be thinking about fucking. You bring your massive hand to your head and try to concentrate on what you were thinking, but quickly give up. After all, fucking sounds a lot better than whatever you were thinking about before.  Your head snaps to Angor again as she takes a step back. Reaching forward, you grab hold of her body and lift her up with one hand. She lets out a panicked yelp as you bring her closer to inspection. Your loins stir as you drink in her naked form.");
+
+	if(!pc.hasCock())
+	{
+		output("\n\nWith a loud thud, you plop your muscular ass down to the stone floor and force the poor ausar between your thighs. You try to tell her to start licking, but all that comes out is a demanding growl. You don’t care though; she got the point and started licking your leaking slit. With how small she is compared to you, she’s not making any headway with her tongue alone, so you let out another growl. You feel her whimpering into your cunny as she thrusts both her fists into your gushing slit and starts sucking [pc.oneClit]. Amusingly enough, your clit is big enough for her to put her considerable dick sucking skills to good use.");
+		output("\n\nYou let out an approving growl as she fists you with both hands. The hyena scientist that turned you into this hulking creature walks around your massive leg and stops behind the elbow deep-ausar in your vagina. You could easily take out your wrath on her, but you don’t feel angry. You feel reverence towards her. Angor squeals into your clit as the far smaller hyena blows into her from behind.");
+		output("\n\nYou’re going to cum soon. You let out another growl, demanding her to go faster. Biting your lip and clawing at the stone floor, you orgasm like a tidal wave, literally. Feminine juices squirt out of your hole and coat the two girls in your fluids. The force of your climax knocks both of them on their asses. You pant softly as you come down from your climax, looking at the pair of drenched hyenas laying in the pool of your juices.");
+	}
+	else
+	{
+		output("\n\nYou align your monstrous cock with her tight hole. If you were thinking, you might be worried that it’s not going to fit, but right now you don’t care. Using her body like a fuck-toy, you pull her into your crotch. To your surprise, her stomach bulges absurdly, but it accepts your titanic dick with ease. You almost wonder how, but you don’t really care. Plopping your muscular ass down, you start jerking off with her. You let out a growl as someone suddenly starts massaging your exercise ball-sized nuts. Looking past your ausar fleshlight, you see the mad doctor. Someone else might want to take revenge on her, but you feel nothing but reverence towards her, thankful that she made you into the magnificent fuck-monster you are.");
+		output("\n\nLooking at your poor cum-dump, you notice that her stomach is even more swollen than before. You haven’t cum yet, so it must be nothing but pre. Lifting the doggy girl off of your dick, you let the pre-cum waterfall onto the ground. There must be enough inside her to fill a couple of kegs.");
+		output("\n\nWhen she’s empty again, you spear her back onto your cock and start to jack off once more. You could sit here forever, jerking off with the tiny ausar if not for the fact that you’re going to cum soon. You can feel your balls tightening and your cock pulsing inside her.");
+		output("\n\nYou let out an earth-shaking roar as you climax. Holding the ausar cocksleeve tightly, you shoot your jizz inside her. Despite your strong grip, the canine cock-wrapper slips from your hand like a cork from a bottle, propelled by your humongous balls’ elephantine discharge. Thick ropes of cum follow her arch and hose her down where she lands on the stone floor. When you stop ejaculating, there’s enough spooge floating around to bathe in.");
+		output("\n\nThe dazed ausar stands up. She’s covered from head to toe in baby batter and she looks dazed.");
+	}
+	output(" You <b>need</b> more. You stand up and look to the window. From here you can see the lights of a small town. Decision made, you leap through the shattering glass and start sprinting towards the civilization - toward people... toward more fucking.");
+	output("\n\n<i>“We have a door you know!”</i> the doctor yells after you.");
+	if(silly) output(" Not paying any attention to your surroundings, you accidentally knock a red-coated crocodile playing an accordion off of the bridge. You can hear a splash of water behind you as he falls into the river below.");
+	output(" Skidding to a halt on the outskirts of town, you take a moment to scan for someone... anyone to fuck. There’s no one in sight. It’s dark and it’s pouring. The rain feels cold against your fur but the lust inside you burns your skin. Letting out an earthshaking roar, you wander between the buildings. Panicked screams begin soon after as people wake up and see your monstrous form. Ignoring them, you continue your search for pleasure.");
+
+	if(pc.hasCock())
+	{
+		output("\n\nYou stop as a small group of women approach you nervously.");
+		output("\n\n<i>“Are you sure this is a good idea?”</i> the youngest of the group asks the older woman.");
+		output("\n\n<i>“No, but my mother always warned me of the mad scientist living in the castle and of her research. And this monster,”</i> she gestures at you, <i>“must be her creation. This is the only way to stop it.”</i>");
+		output("\n\nShe takes a step closer to you. Looking curiously at her, you indulge her presence. After all, she’s no threat to you. To your surprise, she reaches up to touch your doggy dick. Letting out a pleased growl, you sit down, allowing her better access to your endowment.");
+		output("\n\n<i>“See girls, it’s working,”</i> she says as she climbs atop you. The three other women approach you cautiously, still unsure about the plan. A black-haired girl kneels between your legs and starts to rub and kiss your balls. A petite, limber looking blonde maiden climbs onto your dick and starts rubbing her soaking pussy against your cock head, and a buxom redhead joins the older girl in worshiping your titanic cock.");
+		output("\n\nIt’s not an easy job to pleasure you, but the four girls are managing it better than you’d expect. You pick up the blonde and carefully put her down next to the black haired one. She scoots to the side, allowing blondie to start working on your other ball.");
+		output("\n\nA pleased rumble escapes your chest as pre-cum starts to leak down your cock. The girls tending to your balls bear the brunt of your now freely flowing pre, and they’re quickly coated. Pushing the two sluts closer to your cock with your fingers, you demand them to worship you more. You let out a groan as they start rubbing their entire bodies against your huge member.");
+		output("\n\nYou hear a gasp and turn to look. There’s another woman of similar age to the others. Before she can run away, you pick her up. Bringing her up to your over-sized muzzle, you sniff her pussy. She’s wet alright, and not just from the rain. Carefully ripping her panties, you lift her up and begin licking at her cunt. She moans and squirms as your large tongue drags against her wet folds. The taste of her pussy only makes you hornier, your cock throbbing violently.");
+		output("\n\nYou’re panting and messily licking at the woman’s pussy. Despite your monstrous licking, she’s quivering and about to cum. She reaches to massage her clit as her body quivers and squirts her juices over your muzzle. You let her down so that you don’t accidentally squish her, and you do it just in time as you shoot your load into the air, your hands balling into fists. The science-augmented seed arches high before splattering back down over everyone. More spunk follows the first rope. It’s almost raining cum by now. You and the girls are utterly soaked in your jizz, and so are the surrounding buildings.");
+	}
+	else
+	{
+		output("\n\n<i>“The fuck are you doing! You scared away all the hotties!”</i> someone yells behind you. Amuse, you turn around, looking to see who has the spine to yell at you. You find yourself staring at a huge kaithrit woman, though still small compared to you, but by normal standards, she’s quite the sight. She’s heavily armed and armored, and she’s pointing some kind of a plasma rifle at you.");
+		output("\n\nYou both stare at each other while the rain beats down on the two of you. Something catches your nose: masculine musk. You can smell her dick, and it smells wonderful. Now that you look at it, she’s packing quite the bulge in her pants. Staring at each other, neither of you moves a muscle. You don't even hear the rain over your hammering heartbeat.");
+		output("\n\nSuddenly you dash forward. She’s startled by your abrupt charge and her shot goes slightly wide, hitting you in the shoulder. Fur singes and smokes but that’s all. Something in your fur must be resistant to heat. Grabbing her rifle from her, you fling it as hard as you can. She lets out a small whimper as it flies to the distance.");
+		output("\n\nGrinning sinisterly, you push her to the ground and rip the offending armor out of the way. Oh, fuck YES! Her cock is massive! It’s at least down to her knees, and it’s not even hard yet. You can’t wait to get it inside you. The barbed cock in your face gives a healthy throb as your breath washes over it. Wrapping your tongue around it, you bring it into your mouth. The kaithrit below you moans and squirms as you suck her over-sized tool.");
+		output("\n\n<i>“Fuck, no one has ever-”</i> she tries to say but you draw a moan from her by taking her cock all the way into your throat. You let the kitty cock out of your mouth with a soft pop. Flopping down onto your back, you curl your finger at her, inviting her to come and fuck you. She looks around, conflicting emotions clearly written across her face. Irritated by her taking too long, you wrap your legs around her and pull her into your crotch. <i>“All right, all right, just give me some space,”</i> she grunts. Keeping your eyes on her, you spread your legs again, allowing her to pull back and align her magnificent cock with your cunt.");
+		output("\n\nYou let out a satisfied moan as she spears her cock into your tight folds. You could take a bigger dick without an issue, but it’s still a great cock. You let out a small growl as she pulls out, but it fades away as she starts thrusting back into you. When she starts fucking your cock-hungry cunt, she fucks it with all the might her body can muster. Maybe she’s taking the chance to really fuck someone who can take it or she’s just furious about what happened. Nonetheless, it feels amazing.");
+		output("\n\n<i>“Never would have guessed you’re into big women,”</i> someone laughs. Turning to see who’s interrupting your fuck, you spot a burly male ausar striding towards you.");
+		output("\n\n<i>“It’s not like I had a choice,”</i> she grunts while plowing into your pussy.");
+		output("\n\n<i>“I don’t know, you seem pretty willing,”</i> he chuckles. <i>“Easy, girl,”</i> he says while stepping closer to you. <i>“I’m not looking for trouble, just wanting to join in on the fun.”</i> You sniff the air again, trying to pick up on his scent.");
+		output("\n\nDamn, he smells even better than the kaithrit. Starting to drool slightly, you tug at his belt, which comes off easily. The hermaphrodite kaithrit is not the only one with a dream-worthy cock! Hers is a bit longer than your new ausar friend's, but what he’s lacking in length, he makes up in thickness. When you get your lips wrapped around the thick doggy dong you can’t but to quiver at the taste.");
+		output("\n\nThe buff dog is as rough as his kathrit friend, pummeling your muzzle with enough force to make a lesser partner faint, but for you, it’s a nicely pleasant pace.");
+		output("\n\nYou were already close to the edge before, and the delicious pre leaking into your mouth is only forcing you closer to your orgasm. Suddenly a warmth spreads inside you as the cat girl moans and pumps her spunk inside you. Your cries mix with hers as you enjoy the feeling of warm spunk boiling into your sopping cunt. Even though she’s cumming inside you, she doesn’t bother to slow down. Shuddering violently, your muscled cunt clenches around it. She winces and pulls out before you crush her cock in your vice of a cunt. Ropes of creamy spunk land on your stomach and tits as she finishes emptying her balls.");
+		output("\n\nTo your surprise, your mouth is suddenly filled with the ausar's baby batter. He pulls out and coats your muzzle in some more of his jizz. <i>“I swear that’s never happened to me before,”</i> he mutters while blushing. You would be pissed for the quick cumshot, but you’re really tired.");
+	}
+	output("\n\nYou blink a couple of times before starting to snore. A good fuck is just what you needed, but now you’re tired. Maybe you’ll fuck someone else when you wake up.");
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",dootsDreamEpilogue);
+}
+public function dootsDreamEpilogue():void
+{
+	clearOutput();
+	showName("A\nDREAM!");
+	author("Doots");
+	output("You sit up in your bed, soaked in cold sweat. Your body is back to normal, and you’re sitting in your own bed, everything is fine. The dream is still vivid in your memory, but when you try to recall any details it all seems to disappear. Stepping into the bathroom you splash your face with cold water. It’s fine. You’re fine. Nothing’s wrong with you... Right?");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Fenoxian Dream!
+public function hyperPaigeDream():void
+{
+	clearOutput();
+	author("Fenoxo");
+	showName("\nSPOOKY!");
+	output("<i>“OooooooOOooooo,”</i> calls a haunting voice in the distance. Its pitch rises and falls in confusion and pain... and the haunting wail is getting closer. It echoes and rebounds through the corridors of your ship so thickly that you can’t pinpoint its location, only that it’s close enough to your chambers for you to feel it rattling in your teeth.");
+	output("\n\nYou sit up in shock, clutching your blanket tight. Your other hand darts for the nearest [pc.weapon]. You swear you propped your weapon against the nightstand, but the feverishly scrabbling tips of your fingers come across nothing but the crinkling wrappers of ultra-heavy-duty condoms. At that sound, the voice outside goes quiet. You’re left alone with a single sealed condom for a weapon and a closed doorway for armor.");
+	output("\n\nThe handle turns slowly, haltingly, like it’s being operated by something that never had to learn how to work a door. Whatever’s outside is about to burst in, and there’s nothing you can do to stop it but ball your hand into a fist around the prophylactic and hope you can land a few punches on the ghoulishly haunting presence.");
+	clearMenu();
+	addButton(0,"Next",hyperPaigeDream2);
+}
+public function hyperPaigeDream2():void
+{
+	clearOutput();
+	author("Fenoxo");
+	showPaige(true);
+	output("With a resounding ‘BANG!’ the door folds backwards on its hinges and slams into the wall, crushing the doorstop into a haphazardly folded chunk of metallic foil. The silhouette on the other side stands strangely off-kilter, one hip cocked and gyrating. The arms hang flaccid and sweep back and forth bonelessly as it shifts aimlessly about. Two eyes as brilliant blue as a lightning strike flash around as the creature takes its first shambling step into the room. Its footfalls are quieter than a mouse-girl’s, but its breath is heavier than an ausar in heat’s.");
+	output("\n\n<i>SLAP.</i>");
+	output("\n\nThe impact is wet and heavy. Your ghoulish visitor takes another step, again, that fetid sound assaults your [pc.ears].");
+	output("\n\n<i>SLAP!</i>");
+	output("\n\nCloser now, the silhouette's features are clearer. Its hips are wide enough to suggest femininity, the limbs ropey with lithe muscle. A hint of sideboob from one angle confirms that your visitor is a woman, and the canine ears on top of the head provide the final clue as to her identity. It’s Paige! But what could that sound be?");
+	output("\n\n<i>SLAP!</i>");
+	output("\n\nToo late you remember to fumble for your Codex. With your fingers still shaking from surprise, you key in the codes to bring up the lights.");
+	output("\n\nPaige stands there strangely, shoulders back and almost limp, her crotch thrust forward. Her legs wobble unsteadily as she brings one in front of the other. But the most alarming of all is the thing between her legs: a thirty-inch pillar glossy red cock, hybridized into the hellish proportions of equine and canine blended together without any concern for the natural order of either. <i>SLAP!</i> It smacks wetly into her chest, matting her fur with a fat, gumball-sized bubble of pre. The basketball-sized nuts keeping her sack stretched taut gurgle powerfully.");
+	output("\n\n<i>“Paige?”</i> The you tell yourself that the tremor in your voice is hardly noticeable. <i>“Paige!?”</i>");
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Next",hyperPaigeDream3);
+}
+public function hyperPaigeDream3():void
+{
+	clearOutput();
+	author("Fenoxo");
+	showPaige(true);
+	output("Paige’s body goes rigid at the sound of your voice - bright red dick and all. Turning slowly, the dog-woman fixes her eyes on you. They glow almost white-hot with intensity. <i>“Fuuuuuck.”</i> A second voice thrums beneath her own, ingraining itself alongside the ausar’s dulcet pipes to twist her tone into something otherworldly. <i>“Need... fuuuuuck.”</i> Her balls gurgle again, and a baseball sized rope of pre-seed launches into the air. It isn't clear as one might would expect. It’s oily and refractive, scattering a dozen blurred rainbow fractals. When it splatters into the sheets and oozes toward your [pc.feetOrFoot], the colors grow dizzyingly bright.");
+	output("\n\nYou look away before it gives you a headache. <i>“Tell me what’s wrong. What happened?”</i>");
+	output("\n\nThis seems to give the ausar pause. She bites her lip. A little of the old paige surfaces in her confused expression, then fades behind a mask of desperate need. <i>“Fuck. Pussy.”</i> She steps forward, less wobbly now. Her gait is slow but determined. One hand curls in to heft at the swollen nuts between her legs only to have the taut, fuzzy wrapping surge out in greeting. <i>SMACK!</i> A torrent of chromatic, opalescent goo races down her shaft, slicking the valley between those watermelon-sized nads. <i>“Fuck you. Better than pussy. Oooooh yes. Fuck. Need fuck you. Need cum you.”</i>");
+	output("\n\nUh oh. Paige is clearly not herself. Do you help her... or run for it?");
+	pc.lust(10);
+	clearMenu();
+	addButton(1,"Crotch Kick",crotchKickAPaige);
+	addButton(0,"Help",hyperPaigeDream4);
+}
+//Help
+public function hyperPaigeDream4():void
+{
+	clearOutput();
+	author("Fenoxo");
+	showPaige(true);
+	output("<i>“I can help you,”</i> you promise. A second later, you gesture at her cock without looking directly at its unnatural, self-produced glaze. <i>“With that.”</i>");
+	output("\n\nPaige stops in her tracks, regarding you for a long second. Both her hands wrap around her giant-slaying boner, barely holding it in place as it idly throbs, spilling fresh squirts of ropey, reality-distorting jism into the increasingly muddied sheets. The corners of her mouth rise slowly. <i>“Yes. Help.”</i> She squats down all the way to the floor, her fluffy tail sliding through a puddle of cock-drool. The tendons in her legs snap tight, and she’s airborne. Paige lands directly atop you, arms and legs akimbo. The burning heat of cock slams down " + (pc.biggestTitSize() < 1 ? "into your":"between your") + " [pc.chest]. <i>“Help cum.”</i> The baleful light in her eyes dims somewhat. <i>“Please?”</i>");
+	output("\n\nA puddle of ectoplasmic pre-seed forms almost instantly on contact. Patterns twirl and swirl across its surface, reflected dimly in the slick, blunt tip of her hybrid prong. Her heartbeat hammers into the [pc.skinFurScales] of your [pc.belly] through her knot as it fattens. Her dick slides hungrily through its leavings as it climbs higher on its own expanding, ever more tumescent flesh. The swirling, capacious cum-tanks pin you [pc.legOrLegs] down firmly. Squirming only makes them gurgle and swell. Struggling earns you a thicker, wetter blast of hypnotic goo on your [pc.nipple].");
+	output("\n\nYou watch the flare wobble and flex. The light plays across it so beautifully, so... <i>passionately</i>. That bitch-breaking god-prick almost seems to wink at you, in between spurting torrid batches of ghostly pre-spunk onto your neck. The more it drools onto you, the more you understand how it feels, the more you can comprehend the all-consuming desire to spill out all over everything you see - to release the knot of burning desire inside that only seems to tighten as the moments tick by.");
+	output("\n\n<i>Blink.</i>");
+	output("\n\nYour eyes hurt. The enchanting liquid pattern lingers against your eyelids. When you open up, your hands are pumping Paige’s cock, favoring it with brisk back and forth motions that culminate in big, flare-rubbing caresses. The puddle on your [pc.chest] is a lake now, spilling rivers onto either side. The grinning ausar’s eyes have rolled the whole way back, while her balls have swollen to such a size that her hips are actually lifted clear of you. Those big,, high-pressure cum-tanks rock Paige forward with each syrupy blast and back with each cooing, double-voiced groan of delight.");
+	output("\n\nEyes crossing, you watch the viscous stuff pour out. It’s a continuous flow thanks to your stroking, though it ebbs and flows to rhythm of your handjob. Mouth wide, you lean up toward it, and it surges toward you. Its torrid flesh meets your [pc.lips] in a sopping wet kiss, hosing so much musky canine dick-juice into your maw" + (pc.canDeepthroat() ? " that you’re forced to hold your breath and open wide, getting off yourself on the sensation of so much heavy goo sliding across your esophagus":" that you’re forced to chug it like a frat pledge chugs beer, all but suppressing your gag reflex in an attempt to keep up with the heavy goo") + ".");
+	output("\n\nThe taste is salty and... something else. Something primal tickles at the back of your brainstem while you milk the inexplicable seedflow into your gut. It tastes sort of like sex <i>feels</i>. Where it touches your taste buds, you’re gifted with the most sensuous, erotic thrill. Sucking very much feels like <i>fucking</i>. Kissing the flare, spreading your spunk-glazed lips over the heady tip... it’s better than receiving oral. When the flow overwhelms the capacity of your meager mortal body, you relish it, because you’ll get to experience the sensation of being completely drenched in Paige’s magical goo, every inch of you subjected to the passion of her god-like cock.");
+	output("\n\nYou close your eyes and let her seed web them closed. You don’t need to see to thrust your tongue deep in her urethra. You suck, and you fuck. You coax Paige bigger and hotter, until her spooge feels like it’s steaming, the air saturated with muggy aroma of endless hours spent jacking off and breeding. You bathe in her cum. Her balls clench. They make a sound like a waterfall while your fingers struggle to hold onto the bucking bronco between.");
+	output("\n\nPaige’s knot swells, its weight pushing you deep into the mattress. Cum puddles above your [pc.hips]. She gurgles inarticulately, then cries, <i>“Yes! Fuck! FuckfuckfuckfuckfuuuuuUUUUUCK!”</i>");
+	output("\n\nThrough the inch-deep mask of jism and your eyelids, a muffled blue flash reaches you. The unearthly timber augmenting the ausar’s cries fades with something that sounds like a sigh, but Paige keeps screaming, at first in pleasure and then in disbelief, seemingly unable to comprehend how she got such a monstrous member or how good it feels to empty a tanker truck’s worth of semen onto you.");
+	output("\n\nThe ausar’s hands clap around your own and squeeze. Her hips rock as she takes a more active role. Her next eruption impacts the wall above your headboard like a grenade going off, but you’re not content with what you’ve already swallowed. You’re too <i>thirsty</i>. You’re too horny. You need the cum. You cling tight and swing your [pc.lips] into place around her urethra and suck until the next ejaculation arrives to pressurize your throat and spill into your unresisting stomach. So much floods you that a little dribbles from your nose, but you’re past caring. Her cum, her magic cum feels too good resist.");
+	output("\n\nYou barely notice that the dick is getting smaller. You cling to it like a drowning [pc.manWoman] to a life raft. When the next jaw-stretching semen-infusion strikes you, the excess sprays out of the corners of your mouth. You cum again while Paige gasps in disbelief and tries to push you away. You cum again when you <i>suck</i> still more of her filthy, fragrant seed into a belly that doesn’t seem nearly full enough. You cum again when you roll Paige onto her back and force her dwindling cock the entire way into your throat, catching every single drop she has to offer.");
+	output("\n\nHer only escape is to cum herself back to normal, and she does. She cums until your chin is a waterfall of rainbow-infused alabaster and your belly is swollen bigger than it would be with a gutful of the worst parasites the galaxy has to offer. She oozes gallons of cream until her big, taut ballsack diminishes into a pair of plush little lips. You get to enjoy the feeling of her knot wedged behind your teeth for a bit, but even that fades into nothing. Her member, like the presence inside her, fades away until there’s nothing for you to suck but Paige’s big fat clit.");
+	output("\n\nShe breaks away, a tired look in her eyes. They’re full of concern and compassion. It’s that look that breaks whatever spell had taken hold of you. She wraps you in her arms, uncaring for how caked in sexual filth you are, and leans down into bed with you, your head pressed tight against the softness of her bosom. You sit there, content. Your belly gurgles. Paige snores.");
+	output("\n\nSo do you.");
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Crotch Kick
+public function crotchKickAPaige():void
+{
+	clearOutput();
+	showPaige(true);
+	author("Fenoxo");
+	output("With strength born of fear, you deliver your [pc.foot] into Paige’s crotch with every ounce of force in your body. You should hit something, but your [pc.leg] keeps going. Everything flashes blindingly white. You throw up your arms to shield your face...");
+	output("\n\nYou’re alone in bed. The sheets are piled under the lightswitch: exactly where you kicked them. It was all a dream.");
+	//Paige
+	if(flags["CREWMEMBER_SLEEP_WITH"] == "PAIGE") output("\n\nPaige recoils and nearly rolls out of bed from your sudden motions. It takes several minutes to explain that you were experiencing a very vivid, terrifying nightmare.");
+	//Other follow
+	else if(getSleepingPartnerName() != "")
+	{
+
+		output("\n\n" + getSleepingPartnerName() + " stares up at you in shock. <i>“Do you usually wake up screaming and kicking all the blankets out of bed?”</i>");
+		output("\n\nNot usually.");
+	}
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Saurmorian Cult Dream
 //by Aullama
 //Neuters can not get this dream
 ///Can not get this dream while pregnant
@@ -89,7 +279,7 @@ public function saurmorianCultDream2():void
 		if(pc.isLactating()) output("Though inevitable between your arousal and the rough squeezing, the rutting saurmorian girl gasps in surprise when a " + (!pc.canMilkSquirt() ? "trickle":"spurt") + " of [pc.milk] coats her fingers. She squeezes a titty again, and once more, gasps when more [pc.milk] comes out. There’s a pause, then you hear her mutter <i>“Well he won’t be needing this for a while...”</i> and she resumes roughly milking you, spreading your matronly bounty until you’re glazed from collarbone to [pc.belly]. ");
 		output("She continues teasing and playing with your [pc.nipples], and you feel her needy dick bloat even further against your thigh to the sight and feel of your soft titties.");
 		output("\n\nHer hips twitch and quiver, dragging her searing cock back and forth across your thigh as she momentarily revels to the feel of it on your [pc.skinFurScales]. When she finally snaps out of her trance and moves the blunt tip to your dripping petals, she brings strands of sticky pre with - your legs smeared in the clear lube.");
-		output("\n\nShe looks like she’s about to say something, but whatever it is is lost as she grabs your [pc.hips] and thrusts into you with a bestial grunt. You both let out whorish moans; you as your slick folds are impaled by thick saurmorian cock, and her as she feels your cunt stretch around her girth. The juicy sound of her sliding further and further in is enough to make even the most practiced whores blush. Her hips tap into your crotch, and just like that she’s hilt deep; your canal spread wide by over a foot of girthy meat." + (pc.tallness <= 5*12 ? "  A tentative glance down shows the very prominent bulge of her cock in your [pc.belly], and you drop your head back down as you struggle not to cum from the sight alone.":""));
+		output("\n\nShe looks like she’s about to say something, but whatever it is is lost as she grabs your [pc.hips] and thrusts into you with a bestial grunt. You both let out whorish moans; you as your slick folds are impaled by thick saurmorian cock, and her as she feels your cunt stretch around her girth. The juicy sound of her sliding further and further in is enough to make even the most practiced whores blush. Her hips tap into your crotch, and just like that she’s hilt deep; your canal spread wide by over a foot of girthy meat." + (pc.tallness <= 5*12 ? " A tentative glance down shows the very prominent bulge of her cock in your [pc.belly], and you drop your head back down as you struggle not to cum from the sight alone.":""));
 		output("\n\nYour vision starts to get spotty, and that’s when you realize you haven’t been breathing, and your tense body is arched powerfully. Your back smacks into the floor as you force yourself to relax, and take several wheezy breathes. A glance back up to the hermaphrodite hilt deep inside you shows her face beaming back at you beatifically.");
 		output("\n\nWithout saying a word, she slowly drags her prick out, both of you gasping and groaning as your [pc.vagina] instinctively tries to pull her deeper, and milk her for her undoubtedly potent seed. After just a handful of thrusts - each more and more forceful - it becomes clear that she can’t hold back any longer.");
 		output("\n\n<i>“I hope you’re ready.”</i>");
@@ -239,17 +429,17 @@ public function werewolfDream2():void
 	showName("\nWEREWOLF");
 	author("TheGreatAlbert");
 
-	output("\n\nWhere you had imagined witnessing an eldritch horror born of your worst nightmares, instead stands a magnificent creature, feral yet human, the marriage of a wild wolf and a man: a werewolf. <i>“It”</i> is actually most definitely a <i>“she”</i>, judging by the two massive puppies the size of beach balls that stand proudly on her chest and the man-eating snatch resting between her tree-trunks thighs. She has the body of a titan, standing at nine, ten feet in height, maybe more, with immense muscles, their rock-hard definition hidden under a coat of snow-white fur, glistening under the moonlight. A large furry crest around her neck gives her an almost regal appearance, along with her luscious white mane, so long that it manages to cascade over her big, muscular, yet still inexplicably soft ass. A pair of huge, perky wolf ears crowning her head completes the picture: you are in the presence of a queen.");
+	output("Where you had imagined witnessing an eldritch horror born of your worst nightmares, instead stands a magnificent creature, feral yet human, the marriage of a wild wolf and a man: a werewolf. <i>“It”</i> is actually most definitely a <i>“she”</i>, judging by the two massive puppies the size of beach balls that stand proudly on her chest and the man-eating snatch resting between her tree-trunks thighs. She has the body of a titan, standing at nine, ten feet in height, maybe more, with immense muscles, their rock-hard definition hidden under a coat of snow-white fur, glistening under the moonlight. A large furry crest around her neck gives her an almost regal appearance, along with her luscious white mane, so long that it manages to cascade over her big, muscular, yet still inexplicably soft ass. A pair of huge, perky wolf ears crowning her head completes the picture: you are in the presence of a queen.");
 	output("\n\nThe werewolf examines you for an instant, grinning, showcasing a row of fangs that could easily rip a bull’s neck in one bite. Then she says, <i>“Oh, look at that, it seems I’ve found myself a treat! Lucky me!”</i>");
 	output("\n\nYou blink a few times, baffled by what you’ve just heard. That voice... it doesn’t belong here. A she-beast such as that should have a voice as powerful as a thunderstorm, deep and commandeering. <i>Her</i> voice is nothing like that! It’s high pitched, girly, playful, cheerful even, with seductive undertones! It belongs to a sweet, bubbly girl, not a towering werewolf titaness. It belongs to...");
 	output("\n\nAgain, you blink a few times, and start looking at her directly in the eyes. With that elongated snout, her face is definitely that of a wolf, a strong wolf, and her eyes are too, those large, glowing blue eyes. But inside them, you see a glint you know all too well, the one a certain person gets when she <i>really</i> wants to fuck, and so you cry, confused, <i>Anno!?</i>");
 	output("\n\n<i>“Heya, boss!”</i> the werewolf answers giddily, wagging a tail the size a large bush. <i>“Fancy meeting you here! Although, calling you <i>“boss”</i> seems a little bit inappropriate given the circumstances, don’t you think? We’ve got to find a more fitting title for you... How about “pet”? Yes, I like it! I think “pet” will do juuuuuust fine.”</i>");
 	output("\n\nShe takes another step towards you.");
-	output("\n\n<i>“W-w-wait!”</i> you stutter. <i>“Anno, what’s going on? What happened to you? Where are we? Why are you-<i>“");
+	output("\n\n<i>“W-w-wait!”</i> you stutter. <i>“Anno, what’s going on? What happened to you? Where are we? Why are you-”</i>");
 	output("\n\nYou are cut mid-sentence as one of Anno’s massive paws grabs your head and shoves your face inside her musky cunt, brutally enough to clearly assert dominance, but gently enough to not hurt you <i>too much</i>.");
 	output("\n\n<i>“Sorry, pet, but the full moon only lasts for so many hours, and there’s so much fucking that needs to be done! So let’s not waste any time and get right down to business! Now lick.”</i>");
 	output("\n\nWith your nose now deep into her crotch, a wave of powerful pheromones washes over your brain like a flood, and it becomes much harder to form rational thoughts. Though her voice and personality seem to be <i>mostly</i> that of sweet Anno, every aspect of her body definitely belong to an invincible beast. She’s in heat, and the scent of her arousal is now overpowering any meager defense you might muster, replacing doubts and fear with pure lust. Yes... yes she’s right, questions can wait, they WILL wait, after you’ve licked that nasty pussy for all it’s worth! And so you get to work.");
-	output("\n\nThere is no way your tongue would be able to please every nook and cranny of that man-eating cave. It’s just too vast. So you make up for it with eagerness, and judging by the appreciative growl that Anno is starting to emit, you’re quite successful. Her pussy tastes just like it smells: thick, feral, and strong; the taste will linger for weeks, but you don’t care, as you yourself start  to fall into a sex-induced trance, making you forget everything but your need to lick her cunt, including the fact you’re now servicing a massive ripped werewolf version of Anno.");
+	output("\n\nThere is no way your tongue would be able to please every nook and cranny of that man-eating cave. It’s just too vast. So you make up for it with eagerness, and judging by the appreciative growl that Anno is starting to emit, you’re quite successful. Her pussy tastes just like it smells: thick, feral, and strong; the taste will linger for weeks, but you don’t care, as you yourself start to fall into a sex-induced trance, making you forget everything but your need to lick her cunt, including the fact you’re now servicing a massive ripped werewolf version of Anno.");
 	output("\n\nSpeaking of the wolf, she suddenly pulls back your head from her delicious snatch, and smiles when she sees your face drenched with her love juices.");
 	output("\n\n<i>“Ok, warm up’s over, pet!”</i> she declares. <i>“Let’s hope you’re ready for the main event, because I certainly am!”</i>");
 	output("\n\nShe then drops you on the ground, once again lying on your back, and in one fell swoop, rips your pants off, revealing your manhood, standing proudly erect in the cold night air, and a delighted Anno licks her lips suggestively. Although her purpose may be to be lewd and sexy, perhaps due to her intimidating appearance, it looked more like she is preparing to eat you alive. And maybe she is, figuratively.");
