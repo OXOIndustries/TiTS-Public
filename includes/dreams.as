@@ -90,6 +90,10 @@ public function dreamChances(inShip:Boolean = false):Boolean
 			if(pc.hasGenitals()) dreams.push(halloweenNurseDream);
 			//Anno werewolf
 			if(pc.hasCock() && flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") dreams.push(werewolfLady);
+			//Goblin mad scientist!
+			if(pc.hasCock()) dreams.push(goblinMadScientistDream);
+			//Saurmorian Dream
+			if(CodexManager.entryUnlocked("Saurmorians") && pc.hasGenitals() && !pc.isPregnant()) dreams.push(saurmorianCultDream);
 		}
 		if(MailManager.isEntryViewed("lets_fap_unlock"))
 		{

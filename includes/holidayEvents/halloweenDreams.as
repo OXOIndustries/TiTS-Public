@@ -1,7 +1,223 @@
-﻿//Werewolf by TheGreatAlbert
+﻿//Saurmorian Cult Dream
+//by Aullama
+//Neuters can not get this dream
+///Can not get this dream while pregnant
+//While this was not written for 'taurs in mind, I feel like they should still be able to get this dream.
+//7 or 8 hours pass like normal sleep I guess
+public function saurmorianCultDream():void
+{
+	clearOutput();
+	author("Aullama");
+	showName("\nSAURMORIANS");
+
+	output("You don’t remember getting the invitation to the biggest seasonal gala on Molis, but that hardly matters now that you’ve arrived. Like the rest of Aegidis - capital city of the saurmorian homeworld - the great manor before you seems to be made of black stone carved from the land itself; an old building, retrofitted with modern necessities. The setting sun colors the sky a deep crimson, which in turn casts shades of red across the obsidian city - quite at odds with the lively chatter and music you hear coming from within the house.");
+	output("\n\n<i>“Oh, you made it! This is fantastic! Welcome, welcome,”</i> says a silky, feminine voice.");
+	output("\n\nYou blink, suddenly realizing you’re inside and being greeted by a beautiful saurmorian dressed in revealing ornate robes. Though she can’t be any older than you, she already cuts an enticingly curvy figure; her slim waist and curvy hips practically scream ‘fertile’. Fertility yet to be tapped, if the petite mounds on her chest are any indication. She also has the usual silver scales covering her rich purple hide. Other than her beauty, her most notable features are four massive, demonic horns sprouting from the sides of her head - far larger and longer than any you’ve seen on any of the armored lizards - and slitted, red eyes.");
+	output("\n\nEyes that <i>glow</i>.");
+	output("\n\nIt dawns on you that she probably looks like this for the party, and looking around, you see saurmorians of every shape and size and color - but with several similarities; every one of them has a crown of demonic horns, are adorned in lavish, revealing robes, and have slitted, glowing eyes.");
+	output("\n\nYou look back to the one that greeted you, feeling a little out of place. <i>“The invitation didn’t mention-”</i>");
+	output("\n\n<i>“Don’t worry about that. Come, come,”</i> she insists, taking you by the hand and leading you to the center of the great, candle-lit foyer. This draws the attention of dozens, if not hundreds of other guests, until every pair of burning eyes are on you.");
+	output("\n\nYou’re brought to the center of the foyer, where you notice a large circle filled with unrecognizable symbols and surrounded by evenly spaced candles. " + (!pc.isNude() ? "With an impressive flourish, she completely removes your [pc.gear], leaving you bare for every interested gaze to drink in. ":"") + "She takes a moment to admire your form, watching the dim light of the flames flicker across your [pc.skinFurScales]. Seeming to like what she sees, the young saurmorian leads you inside the runic ring - her eyes locked on yours even as she deftly steps around the candles. Your hand is released as soon as you reach the center. Her own scaled hands quickly grasp onto either side of your [pc.face] as her eyes seem to burn with an ever increasing passion.");
+	output("\n\n<i>“Ohh, rejoice [pc.name]! Rejoice! This is a wondrous night!”</i> she exclaims with a wide and bright smile. <i>“This time of the galactic year, the souls of the passed are ever closer to the realm of life - so close that those that are strong enough can even cross over. We have communed with the greatest soul of all, and after ten thousand years, he’s ready for life once more! That’s why you’re here; to conceive a vessel for this great one, and bring a new age of conquest and glory!”</i>");
+	output("\n\n<i>“Wait, wha-”</i>");
+	output("\n\nYou’re pulled against her as she slides her pretty muzzle against you, and takes a deep sniff of your scent before whispering into your ear, <i>“And you’re going to be the " + (pc.hasCock() ? "father":"mother") + ".”</i>");
+	clearMenu();
+	addButton(0,"Next",saurmorianCultDream2)
+}
+public function saurmorianCultDream2():void
+{
+	clearOutput();
+	author("Aullama");
+	showName("\nSAURMORIANS");
+	output("After a blur of motion, you suddenly find yourself spread-eagle on your back with your arms and [pc.legOrLegs] bound to the floor by some unseen force. You grunt as you try to lift your limbs, but they don’t budge.");
+	output("\n\nThe amethyst beauty straddles your waist as she gazes down at you with smoldering lust. Her hips start shifting back and forth, and she sighs, grinding her already-sodden nethers against you. Her thin robes do nothing to conceal her sex; you can feel her plump lips as they " + (pc.hasCock() ? "part along your [pc.cocks], frotting up and down and coating you in her ardor.":"are squeezed and squished against your mons.") + " She begins to pant, and slides her hand up to her chest, palming a petite titty. Your body starts responding to the wanton display with your own budding arousal, ");
+	if(pc.hasCock()) output("[pc.eachCock] stiffening");
+	if(pc.isHerm()) output(" and ");
+	if(pc.hasVagina()) output("your [pc.vaginas] glistening");
+	output(" under the saurmorian’s heated movements - but then she frowns, and leans down, tenderly caressing your [pc.face] while she gyrates against you.");
+	output("\n\n<i>“Do you not feel it?”</i> she asks, noting your lack of enthusiasm, <i>“Do you not feel </i>Him<i>?”</i>");
+	output("\n\nYou begin to shake your head, but are interrupted as a frigid breeze hits you. The candles flicker, but don’t go out. You think you hear a whisper, and though you can’t understand it, it’s message is clear as you feel icy claws cleave straight down your middle like a flint striking " + (silly ? "Steele":"steel") + " and igniting your prostrate form with intense desire. You let out a strained moan and arch your back, your limbs quivering against their invisible bonds. Your lover grins ecstatically, pressing into you even harder as");
+
+	if(pc.hasCock()) 
+	{
+		output(" your [pc.biggestCock]");
+		if(pc.biggestCockLength() >= 24) output(" absolutely engorges against her, dragging its slickened mass along her body and causing her to cling to it urgently.");
+		else output(" throbs to full size against her silky vulva.");
+		output(" She can’t hold back a happy sigh as the sudden girth spreads her swollen lips further apart.");
+	}
+	if(pc.isHerm()) output(" Meanwhile,");
+	if(pc.hasVagina()) output(" [pc.eachVagina] gushes [pc.girlCumNoun] between your thighs, adding your own juices to the soaked lizard’s movements.");
+	output("\n\n<i>“Yessss,”</i> she hisses, her grin looking much more predatory; her teeth much sharper. <i>“You have His blessing!”</i> Her jubilant eyes flick to the other lizards, and your own [pc.eyes] follow. You didn’t notice until now, but your runic circle is surrounded by every single person attending this ‘party’; hands groping, bodies grinding, and steamy breaths panting as they watch - they were so quiet, you almost forgot about them! After sharing her joy with those she looks to, her molten eyes turn their focus onto you once more. <i>“I hope you’ll remember this forever, like I will...”</i> she murmurs as she slips off her wispy robes, <i>“I saved myself for this - waited my whole life for this moment!”</i>");
+	output("\n\nYou shudder at the euphoria those eyes promise, and brace yourself.");
+
+	//hasONLYVag:
+	if(pc.hasVagina() && !pc.hasCock())
+	{
+		output("\n\n<i>“Although... There is something I need to do first,”</i> she says, nibbling on her lip. She lifts herself up, moaning with you as her mound parts with yours in a web of mixed feminine fluids.");
+		output("\n\nYour brow furrows in confusion; what else could she-... <i>Oh</i>. It clicks within your lust fogged mind exactly what she means as you watch her gingerly touch the spot just above her cunt.");
+		output("\n\n<i>“We are both destined to be His p-parents... And since you’re to be the womb, it’s up to me to, mmm, to plant the seed!”</i> Her eyes remain locked on yours, but her dainty hand starts rubbing, more and more passionately every second. <i>“W-With His blessing, I-I can... I can...”</i> she stutters as her hips twitch and jerk against her. Barely maintaining her composure, she manages to say <i>“Just-a-bit-more. I-”</i> and she’s cut off by her own scream of ecstasy.");
+		output("\n\nBursting out of her crotch - and into the tight grip of her claws - is the thick shaft of a dark red saurmorian cock, lurching and throbbing angrily as it immediately swells to its full size; twelve inches, at least, with its girth more than filling the new hermaphrodite’s hand. Her groin now free of obstruction, you can see a distinct sheath, and two hand filling, cum swollen balls bouncing down in front of her drooling cunt.");
+		output("\n\nHer other hand abruptly joins the other, and she begins wildly pumping along her length, seeming to lose herself to the pleasure as her panting becomes desperate. After only a few moments, she lashes her tail in frustration; the spontaneous member is only getting harder, leaking more pre, but doesn’t look close to cumming even though it must be incredibly sensitive.");
+		output("\n\n<i>“N-No, you’re right! I’m sorry...”</i> she mutters, and lets go of her raging erection. <i>“This isn’t for, mmm, for me. I can’t waste a drop.”</i> Her mesmerising eyes lock onto yours once more, <i>“This is for you.”</i>}");
+	}
+	//hasCock:
+	if(pc.hasCock())
+	{
+		if(pc.biggestCockLength() >= 24) 
+		{
+			output("\n\nShe sits back, tugging your [pc.biggestCock] with her as she marvels at its sheer size.");
+			output("\n\n<i>“I never dreamed... I-I mean I never knew... But of course,”</i> she says in wonder, <i>“of course the sire of His new vessel would...”</i> Leaning in closer, her eyes cross as she tries to take in every detail. <i>“Of course His sire would have something this-”</i> her scaled snout suddenly presses into your cock’s bulging urethra, and she takes a deep, desperate breath full of your musk, <i>“-magnificent!”</i> Your precum coats her nose, causing her to snuffle and snort. She spends a moment more praising her new favorite [pc.biggestCock], before pulling herself away and standing above you.");
+			output("\n\nYou’re not sure how she’s going to fit that monster into her comparatively delicate frame, but she seems confident somehow - and fucking stars you want nothing more than to have this zealous virgin ruin herself on your obscene cock. If only you could move; then you could take matters into your own hands. You’ll have to make do, though, and after some awkward maneuvering, she has your [pc.biggestCockHead] pressed against her plush quim. Her eyes flicker across your body, a needy whine slipping past her lips, and then her legs give out.");
+			output("\n\nThe young saurmorian lets out a cry of utter ecstasy as your [pc.biggestCockHead] opens her wide and her weight impales her further on the first few inches, her hips straining as they’re forced to spread wide. She tries to stand up, but her legs fail her, and her breath hitches as even more [pc.biggestCock] barrels its way in.");
+			output("\n\nYou can only grit your teeth and groan as she slides more cock into her sweltering depths, feeling like a wet vice as every new millimeter of length squeezes out streams of girlcum. When you feel her crotch meet yours once again, your jaw drops - gaping like the former-virgin’s entire lower body will - stunned that this girl-turned-cocksleeve could take you to the hilt. Your [pc.biggestCock] is wrung by taut muscles, and she writhes in your lap, whining and sighing with short breaths as her torso bulges from your unreal size. You can’t help but admire saurmorian biology, even as it’s stretched to its limit.");
+		}
+		//else:
+		else
+		{
+			output("\n\nElegant, scaled hands grip your shaft as she raises her hips. The young saurmorian lines your [pc.biggestCock] up with her cunt, and wastes no time as she abruptly impales herself to the hilt in one swift plunge. Her walls clench like a vice, and you can practically feel every contour of her silky, ribbed folds as they squeeze your entire length.");
+			output("\n\nHer jaw gapes as her mind struggles to catch up with her body. She collapses forward, catching herself by bracing her arms on your shoulders.");
+			output("\n\n<i>“O-Oh void that’s p-perfect!”</i> she groans in wonder. A hand shifts to her middle " + (pc.biggestCockLength() >= 14 ? "- where you can see the noticeable bulge of your [pc.biggestCockHead] - ":"") + "and she gradually gyrates her hips to some unheard rhythm, grinding her spread vulva harder into your [pc.sheath]." + (pc.cockVirgin ? " She notices a similar look of awe from you, and she gasps as it dawns on her. <i>“Is this y-your first time too?! Oh by my scales, this is- I can’t express how wonderful this is! This is truly meant to be!”</i>":""));
+			output("\n\nYou can only groan in frustrated lust; wishing to thrust and rut against this fertile female, but unable to do more than let her have her way with you. Focusing on the feeling of her luscious walls wrapped around you, you marvel as they pull and tug in sync to her motions, as if to pull your cock - and your inevitable load - as deep as possible.");
+			output("\n\nShe lowers her snout down to your collarbone, and reverently laps at your [pc.skinFurScales]. She moves up your neck, kissing along your jaw and stopping with a flick of her incredibly soft tongue across your lips.");
+			output("\n\n<i>“Don’t worry,”</i> she husks, her steamy breath hot against your [pc.face]. <i>“Don’t worry,”</i> she echoes, <i>“we have plenty of time. P-Plenty of time for us to enjoy this...”</i>");
+		}
+	}
+	else
+	{
+		output("\n\nShe tries to prostrate herself on top of you, but in her feverish state she clumsily tumbles into you, landing face first into your [pc.chest]." + (pc.biggestTitSize() >= 7 ? " As if seeing them for the first time, she becomes infatuated with your squishy bosom. She sniffs and nuzzles into one breast while groping another with a pre-cum coated hand, obviously delighted with your more gifted endowments.":""));
+		output("\n\n<i>“O-Oh this is... so perfect. You’ll have so much milk to feed Him once he hatches! He’ll be even stronger!”</i> ");
+		if(pc.isLactating()) output("Though inevitable between your arousal and the rough squeezing, the rutting saurmorian girl gasps in surprise when a " + (!pc.canMilkSquirt() ? "trickle":"spurt") + " of [pc.milk] coats her fingers. She squeezes a titty again, and once more, gasps when more [pc.milk] comes out. There’s a pause, then you hear her mutter <i>“Well he won’t be needing this for a while...”</i> and she resumes roughly milking you, spreading your matronly bounty until you’re glazed from collarbone to [pc.belly]. ");
+		output("She continues teasing and playing with your [pc.nipples], and you feel her needy dick bloat even further against your thigh to the sight and feel of your soft titties.");
+		output("\n\nHer hips twitch and quiver, dragging her searing cock back and forth across your thigh as she momentarily revels to the feel of it on your [pc.skinFurScales]. When she finally snaps out of her trance and moves the blunt tip to your dripping petals, she brings strands of sticky pre with - your legs smeared in the clear lube.");
+		output("\n\nShe looks like she’s about to say something, but whatever it is is lost as she grabs your [pc.hips] and thrusts into you with a bestial grunt. You both let out whorish moans; you as your slick folds are impaled by thick saurmorian cock, and her as she feels your cunt stretch around her girth. The juicy sound of her sliding further and further in is enough to make even the most practiced whores blush. Her hips tap into your crotch, and just like that she’s hilt deep; your canal spread wide by over a foot of girthy meat." + (pc.tallness <= 5*12 ? "  A tentative glance down shows the very prominent bulge of her cock in your [pc.belly], and you drop your head back down as you struggle not to cum from the sight alone.":""));
+		output("\n\nYour vision starts to get spotty, and that’s when you realize you haven’t been breathing, and your tense body is arched powerfully. Your back smacks into the floor as you force yourself to relax, and take several wheezy breathes. A glance back up to the hermaphrodite hilt deep inside you shows her face beaming back at you beatifically.");
+		output("\n\nWithout saying a word, she slowly drags her prick out, both of you gasping and groaning as your [pc.vagina] instinctively tries to pull her deeper, and milk her for her undoubtedly potent seed. After just a handful of thrusts - each more and more forceful - it becomes clear that she can’t hold back any longer.");
+		output("\n\n<i>“I hope you’re ready.”</i>");
+		output("\n\nYou nod. You couldn’t be more ready.}");
+	}
+	clearMenu();
+	addButton(0,"Next",saurmorianCultDream3)
+}
+public function saurmorianCultDream3():void
+{
+	clearOutput();
+	author("Aullama");
+	showName("\nSAURMORIANS");
+	output("The scaled beauty’s muzzle splits with a grin that looks... <i>hungry</i>, eyes glowing brighter and teeth seeming longer. Her entire visage seems more malevolent, especially as she begins " + (pc.hasCock() ? "bouncing in your lap":"thrusting in and out of you") + " with increasing fervor, taking some perverse pleasure in watching you squirm beneath her.");
+	output("\n\nYou gasp at this shift in demeanor, but can’t do anything else other than writhe and moan as your mate takes her pleasure - and gives you yours.");
+	output("\n\nThe most salacious sounds of debauchery draw a glance to outside the circle, and your eyes go wide; the entire foyer is filled with hundreds of lust-lost saurmorians in what has to be one of the largest orgies you’ve ever seen. And you’re the guest of honor, stuck in the center of it.");
+	output("\n\nFat cocks fill gushing pussies and tight asses, licked by drooling serpentine tongues searching for the deepest depths of every hole. Anything not occupied by a cock or filling a hole is passionately pleasured by claws, tails, breasts, thighs, and virtually anything else available. The floor is already glazed goopy white by who-knows-how-many loads.");
+	output("\n\nWait, serpentine tongues? Saurmorians don’t have-");
+	output("\n\nA sudden violent thrust of the hips from the saurmorian above you causes you both to cry out as you both cum at the same time, <i>hard</i>. You squeeze your eyes shut - ignoring the sound of shattering and scattering metal - and strain once more against your bonds as you feel");
+	//hasCock:
+	if(pc.hasCock()) output(" your middle clench, " + (pc.balls > 1 ? " your [pc.balls] jouncing before pulling taut":"") + " and your cock bloating just before unloading an unholy amount of seed " + (pc.cumQ() < 1000 ? "- much more than you ever normally would - ":"") + " into the alien womb. You feel her belly expand and bloat as it rounds out from the sheer volume, soon bulging off of her waist and resting heavily on top of you. A sloppy mixture of [pc.cum] and clear femslime streams out around your joined genitals" + (pc.isHerm() ? ", your own feminine climax forgotten":"") + ".");
+	else output("your [pc.vagina] clench tightly onto the intruding shaft, your internal muscles fluttering and quivering and the lightning bolt of orgasm shoots across your nerves. Your malevolent lover huffs and grunts as her cock pulses within you. You hear her claws scraping against the ground as she fights to get just a little bit more shoved into you. A heartbeat later and your cunt is absolutely flooded with her thick cum, your [pc.belly] bulging out on the first blast. Each successive cock-distending load fills you more and more, your middle expanding until you’re utterly full, and an unholy amount of potent seed is leaking out from around the saurmorian’s lurching dick.}");
+	output("\n\nYou open blurry, unfocused eyes as you pant in exhaustion and - to your dismay - lust; you’re still incredibly horny. Looking to the purple saurmorian, your slack jaw drops even further than it already has, as the woman on top of you has gone through quite the metamorphosis.");
+	output("\n\nHer horns are longer, as are her claws and canines - which are also much sharper. A serpentine tongue polishes her grinning lips. Her breasts have gone up many cup sizes; the once cute mounds now luscious, motherly mammaries. " + (!pc.hasCock() && pc.hasVagina() ? "And her dick - oh <i>fuck</i> her dick has grown, still hilt deep inside you while her sack presses against your thighs, the orbs now the size of soccer balls. ":"") + "Strong, wide wings spread from her back, and it dawns on you that that must have been the source of the breaking metal; her wings violently bursting forth. Lastly, her eyes; before, they were glowing red balls of lust and wonder. Now; they burn bright like the red brilliance of a dying sun, painful to look at but unable to turn away from.");
+	output("\n\nWith your eyes transfixed to hers, she leans in close and flicks her tongue across your face in a very snake-like gesture. She coos, and clutches onto your jaw with a painful grip.");
+	output("\n\n<i>“</i>Very<i> good, lover. He will be most pleased. But... We’re not done. Even if that took, I want to be sure... And,”</i> she pauses, looking over you with a hint of possessive affection, <i>“you’re all mine. From now until He hatches, I can do whatever I want with you. And you can do whatever you want with me...”</i> Her tongue flicks your face once more, and she smiles that demonic smile. <i>“Oh... But you </i>do<i> look tired. You can rest. My followers and I will... continue from where we left of...”</i> Her statement is punctuated by a ragged groan and a feminine moan, and the sloppy sound of an excessive load backwashing out of a cunt and onto the ground. Like a snake, she darts forward and nips your ear, and whispers unknowable words into your soul.");
+	output("\n\nYour eyelids grow heavy, and consciousness starts to slip.");
+	output("\n\nJust before everything goes dark, she whispers once more, <i>“Though, be sure to </i>wake up<i>, so you don’t miss out on too much...”</i>");
+	output("\n\n<b><i>“Wake up.”</i></b>");
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",saurmorianCultDream4)
+}
+public function saurmorianCultDream4():void
+{
+	clearOutput();
+	author("Aullama");
+	showName("\nSAURMORIANS");
+	output("You let out a tired moan, and slowly crack an eye open. Strange; you’re in your cabin, sleeping in your bed like normal.");
+	output("\n\nSitting up, you look at the clock, and shake your head both in confusion and to get rid of the grogginess. You slept for a while, yet you feel more drained than when you went to sleep... Did you have some strange dream? You can’t remember, really; maybe something to do with saurmorians?");
+	output("\n\nOh well. Probably nothing serious.");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Carol J's Goblin Mad Scientist
+public function goblinMadScientistDream():void
+{
+	clearOutput();
+	showName("MAD\nSCIENTIST");
+	author("Carol J.");
+	output("A new reality slides over your mind like silk drapes across a window.");
+	output("\n\nNormally you wouldn’t be caught anywhere near the creepy old mansion on the hill outside of town. It’s surrounded by dead and/or dying trees and seems to be under a perpetual thunder cloud. You aren’t one for superstitions or the type to shy away from something because it’s <i>“too spooky”</i> or the like, but it’s just a largely unpleasant place to be.");
+	output("\n\nThat being said, the person who lives there is also offering a hundred dollars to anyone willing to participate in a clinical study this afternoon. For less than two hours of your time? That’s a good enough deal to pull out an umbrella and make the hike up to the front gates.");
+	output("\n\nSo there you are, sitting in the parlor room, waiting for your hostess to finally arrive and explain what’s going on. There’d been a maid at the front door to let you in and provide you with a few release forms to sign, but she was quick to assure you she wasn’t the <i>“mistress of the house.”</i> You keep trying to make conversation with her - she’s just kind of standing in the corner of the room, waiting silently - but she’s not having a word. Kind of a shame, given the hourglass figure she’s got straining under her uniform.");
+	output("\n\nOh, well. At least you have tea to drink in the meantime. <i>“Courtesy of the lady of the house,”</i> according to the maid. You’ve never really been a fan of tea, but this has a mellow sort of flavor that you can appreciate.");
+	output("\n\nIt’s not long before the mistress of the house finally makes her appearance, and it’s an explosive one. <i>“Felicia!”</i> A reedy voice rings out, cut off by a loud bang and the hiss of smoke following that. From the smoking doorway emerges a goblin, sputtering and coughing as she waves her hand in front of her face. <i>“Felicia, damn you! Where were you?! I had to manage the-”</i>");
+	output("\n\nShe stops dead in her tracks when she sees you, and as she takes you in, you have a chance to take her in, too. She’s short, of course. You’ve known some goblins to be almost as tall as a shorter human woman, but she looks like she’d barely make it up to your bellybutton. Her height isn’t the only typical <i>“goblin”</i> trait she has, though: she’s absolutely stacked. Her outfit isn’t the most sensuous one - a white labcoat with black rubber gloves nearly going up to her elbows, but her tits are all but bursting out, and her hips are similarly testing the fabric’s strength. When you finally tear your eyes away from the pair of big, bouncy boobs she’s got under her labcoat, you feel your cheeks go red at the sight of her cutely dimpled cheeks and button nose. Two glittering green eyes appraise you eagerly. You get the feeling that her wavy, black hair would be a bit unruly if it weren’t for the pair of goggles on her head serving as a makeshift headband, but that’s far from the center of your attention.");
+	output("\n\nYou shake your head and rise from your seat to introduce yourself. All of the sudden the tone in the room went from <i>“job interview”</i> to <i>“first date,”</i> and her body language is suggestive of the same shift in priorities. She steps forward with a pronounced sway to her hips, giggling into her hand primly.");
+	output("\n\n<i>“Felicia, you didn’t tell me that our assistant had arrived. Or that he was so deliciously handsome.”</i> She plants her hands on her hips as she cranes her neck to look you in the eyes. <i>“I’m Doctor Von Gobbenstein. But you can call me Veronica.”</i> She takes one step too close, and it’s with a shiver of delight that you realize she’s mashed her tits up against your groin. <i>“Believe me when I say.”</i> She winks up at you and purrs with delight. <i>“The pleasure is all mine.”</i>");
+	output("\n\nYou’re inclined to disagree, but you’re also not about to argue with the shortstacked pin-up model all but tit-fucking you. For now, you compromise and let her know that you’re more than happy to be here.");
+	output("\n\n<i>“Excellent!”</i>");
+	output("\n\nShe leans back and turns on her heel, marching away from you to scramble into the seat opposite yours. Not the best course of action, but you can make do. Especially when part of the process is watching her wiggle her hips trying to hop up into the armchair she’s chosen.");
+	output("\n\n<i>“So, you’re here to assist me in my experiments, yes?”</i> She smiles like a shark once she’s finally gotten into her seat, and you nod in response. That’s why you’re here, right? Or at least it’s why you came. You wonder aloud if you might come for a different reason, and Veronica giggles in response. <i>“Ooh, a healthy libido. That’s going to come in handy. Felicia!”</i> She claps twice. <i>“Our assistant looks thirsty. More tea!”</i>");
+	output("\n\nFelicia refills your cup not a moment later, and when Veronica bids you drink up, you can’t very well refuse her hospitality. Hell, you’d drink the entire pot if she asked you to at this point. You almost want to suggest she put on another kettle, because you get the feeling the idea would earn you even more brownie points with Veronica.");
+	output("\n\nFor the moment, though, you’re happy to lean back in your seat and let Doctor Von Gobbenstein explain what’s going on. The experiment, she explains, is a simple one. Harmless, even. She uses a lot of big words in the process of explaining just how safe it is, but the only thing you take away from the explanation of the science behind it is that...something feels good. Apparently. You’re pretty sure you heard the word <i>“dopamine”</i> in there a few times, and you can kind of remember that that’s the thing that makes you...feel good. In your brain.");
+	output("\n\n<i>“...So that’s where you come in, my dear.”</i> Veronica finally addresses you directly, and the sudden lilt to her voice sends your cock twitching in anticipatory delight. <i>“You’re here to make sure the formula I’ve concocted has the intended effect.”</i>");
+	output("\n\nYou blink at her, lowering your seemingly perpetually-refilled teacup to its saucer. Felicia is relentlessly attentive, and Veronica always seems to lick her lips whenever you take a sip of your tea, so. You keep doing it. Effect. Intended effect.");
+	output("\n\nWhat’s the intended effect again?");
+	clearMenu();
+	addButton(0,"Next",goblinMadScientistDream2);
+}
+public function goblinMadScientistDream2():void
+{
+	clearOutput();
+	showName("MAD\nSCIENTIST");
+	author("Carol J.");
+	output("<i>“Felicia, make a note of this.”</i> Veronica seems intrigued. Impressed, even, given the smile she has as she taps her fingertips together. <i>“Subject is still capable of speech after ingesting over two dozen servings of zombonium. Anyway, to answer your question, my dear test subject...”</i> She hops down from her seat, stepping up towards you and reaching one gloved hand up to pat your wrist reassuringly...and then squeeze your crotch greedily. <i>“...it makes you feel good! Felicia!”</i>");
+	output("\n\nVeronica snaps her fingers, and it’s with a heavy ka-thunk! that your seat leans back. You didn’t realize that you were sitting in a recliner, but you’re happy to deal with the sudden change. Laying back is comfortable, after all, and it makes it all the more easy to listen to Veronica as she speaks.");
+	output("\n\n<i>“Yes, for years they’ve laughed at Doctor Von Gobbenstein.”</i> Her silky-smooth voice carries an edge of hateful bitterness now, but her every emphatic word is punctuated by an equally intense pump of her hand around your cock. <i>“Told me that my plans were insane. That I was a madwoman for following my aspirations!”</i>");
+	output("\n\nYou murmur that you don’t think she’s insane, and for a moment, her hand’s a bit more affectionate in its stimulation.");
+	output("\n\n<i>“Why, thank you, darling. But even I must admit that they were right, even if it’s only in some small part.”</i> She sighs, pausing for a moment. <i>“I suppose it is a bit silly to try and take over the world with a legion of zombies, even if the science behind their reanimation is sound.”</i>");
+	output("\n\n...You feel like you should be a bit more worried than you currently are, but the sensation of her hand pumping your cock through your pants makes it very difficult to focus.");
+	output("\n\n<i>“So that’s why I turned my efforts towards the living!”</i> She exclaims, monologuing gleefully. <i>“The dead returning to life. That’s far more work than it’s worth, and they’re not even obedient when you zap them alive, the ungrateful wretches! No, there’s a far easier solution, my darling test subject, and you’re going to be the first of many!”</i>");
+	output("\n\n<i>“You see, I made the amateur’s mistake of trying to reinvent the wheel,”</i> she giggles, pulling her hand away as Felicia moves in to strip you down. If her mistress is enthusiastic in her work, the maid is all business. <i>“Why go through all the trouble of raising an army of zombies that have to then be rendered mindless when you can cut out the middle man and just turn someone living mindless instead? So brilliant in its simplicity that even I, Doctor Veronica Von Gobbenstein failed to realize the true way forward! But no longer!”</i>");
+	output("\n\n<i>“A simple combination of chemicals, commonly available to even the laziest of laymen! And yet their effect is all the more potent for their commonality! It’s likely you’ve felt their effect before, even! The artificial scent of flowers, spritzed daintily onto a woman’s collarbone! The familiar haze of ethyl alcohol as it muddies the senses! And finally, the musky aroma of a woman’s arousal! In sequence, they turn a man’s mind to mush and send him staggering cock-first into whichever temptress sets her sights on him! All at once, they send his prick swelling and his brain all but useless in the face of his desire to mindlessly obey the first woman to claim him as her own!”</i>");
+	output("\n\n<i>“And you’ve been guzzling the formula down by the cupful!”</i> Veronica’s giddy now, her voice wavering as she explains her sinister plan. <i>“If my calculations are correct - and they very often are - one good cumshot is all it’s going to take before you’re a drooling boytoy, helpless to resist my commands!”</i>");
+	output("\n\nYou’ve long since stopped watching her, content to lay back and shut your eyes instead. Still, when you hear the harsh snap! of rubber, you can only assume it’s because she’s pulled her goggles back down over her eyes from her forehead. <i>“Felicia!”</i> Veronica booms. <i>“Apply the device to our test subject’s groin while I try to think of something to shout!”</i> Veronica cackles over the sound of whirring and sucking. <i>“I’d shout ‘It’s alive,’ but that would be redundant!”</i>");
+	output("\n\nFor the most part, you’ve been getting jacked off for the past fifteen or so minutes, and the steady pleasure has been enough to keep you mostly satisfied. Sure, some of what Veronica’s said is worrying, but...you’re confident that you’ll be able to sit up and make a break for it. Just as soon as no one’s pumping your cock. Well, they’ve finally stopped! You realize that it’s now or never, and with a grunt of exertion-");
+	output("\n\n-you manage to sit up for all of five seconds before something latches onto your groin and starts slurping at your prick harder than anything you’ve ever felt or even dreamed of feeling. You slump back with a groan, jaw dropping as <i>“the device”</i> works your twitching, throbbing cock with mechanical precision. It’s wet, tight, just the right temperature, and absolutely relentless in its suction.");
+	output("\n\nAnd as it milks your cock, you feel something else begin to churn your balls. <i>“Normally the effect would be temporary,”</i> Veronica explains, massaging some sort of cream into the sensitive - and now straining - skin of your ballsack. You can actually feel your nuts begin to plump up, and soon they feel so deliciously full that you start to drool. <i>“But with a few adjustments - and some hands-on training - I’m certain that you’ll end up addicted to being my personal fuck-slave! And from there?”</i> She laughs louder than ever. <i>“You’ll be my eager assistant until the formula is perfected! I’ll release it into the municipal water supply, begin mailing out the complimentary Von Gobbenstein male masturbatory aids, and simply wait for my soon-to-be-loyal minions to fuck themselves obedient for me!”</i>");
+	output("\n\nAt this point, Veronica’s just white noise. You’re more focused on the merciless slurping and sucking and milking of this incredible machine latched onto your cock. Every second that passes is another moment of exquisite pleasure, the kind that makes your eyes cross, your back arch, and your balls ache to unload into this warm, wet hole. You feel the ecstasy creep higher and higher, all but irresistible, the best you’ve ever felt, and then-");
+	output("\n\nYou groan as you finally cum, the mechanical mouth wrapped around your bloated fuckpole slurping down every drop of cum you have to offer. You pump every drop of seed you have into its open maw, and even after your orgasm begins to fade, the device’s sheer sucking power ensures that your balls are completely and absolutely drained. All you can do is lay back, slack-jawed and drowsy as you’re wrung dry.");
+	output("\n\nAnd after that.");
+	output("\n\n...You blink. You feel good. Real good. Feeling good is good. You like feeling good. You smile dimly to yourself, because you feel good, and that’s good.");
+	output("\n\nVeronica presses her hands to your chest, propping herself up to get a better look at your face. She peers down into your eyes, lips pursed. <i>“Hm. Subject is initially unresponsive following an emphatically successful evacuation of ejaculate. Test subject!”</i> She hops down and snaps her fingers. <i>“Stand up!”</i>");
+	output("\n\nFor a second, you’re too comfortable to bother. Then you feel yourself realize something. Wait, hold on. You’re on the verge of something big here.");
+	output("\n\n...Veronica is a girl. A really sexy girl.");
+	output("\n\nMaybe if you do what she tells you to do... she’ll touch your cock!");
+
+	output("\n\nYou stumble to your feet, grunting stupidly and gawking down at her fat, wobbly tits. You’re so utterly spellbound by her rack that you don’t see the widening smile on her face. When she thrusts her hands into the air and shouts, you’re more interested in the bounce of her chest than what she’s saying.");
+	output("\n\n<i>“It’s allied!”</i>");
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",wakingFromGoblinDream);
+}
+
+public function wakingFromGoblinDream():void
+{
+	clearOutput();
+	showName("A\nDREAM?");
+	author("Fenoxo");
+	if(mitziIsCrew()) 
+	{
+		output("You wake to the sensation of Mitzi sliding her [pc.cumNoun]-glazed tits off your [pc.cock] with a giggle and a smile. <i>“G’morning, [pc.Master]! You got suuuuper hard and said something about goblins feeling good, so Mitzi thought she’d like... do that. Make you feel good.”</i> She scoops a fat wad of cum into her mouth and giggles with delight. <i>“Real good.”</i>");
+		output("Feeling good is indeed good. Very good.");
+	}
+	else
+	{
+		output("You waken feel groggy and well... cummy. Everything tingles with the aftershocks of complacent pleasure, your [pc.cocks] still half-hard and tingling. The image of the doctor and her enormous chest lingers in your mind like a flashbulb’s glow, refusing to fade entirely until you stumble into the bathroom, still feeling quite... good.");
+	}
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Werewolf by TheGreatAlbert
 //Notes
 //Of course, this dream only triggers if the PC has a penis and Anno sleeping in bed.
-
 //First Part
 public function werewolfLady():void
 {
@@ -52,10 +268,10 @@ public function werewolfDream2():void
 	pc.orgasm();
 	pc.orgasm();
 	clearMenu();
-	addButton(0,"Next",werewolfDream2);
+	addButton(0,"Next",werewolfDream3);
 }
 
-public function werewolfDream2():void
+public function werewolfDream3():void
 {
 	clearOutput();
 	showName("WAKING\nUP");
@@ -155,7 +371,7 @@ public function nurseDream4():void
 	author("Breebee");
 	showName("HELLO\nNURSE");
 	output("The next thing you know, she’s undoing the leather straps holding you. You give her a hazy look, because you just got your brains fucked out, and also, she didn’t seem like she wanted to let you go before. <i>“Hello, Sleeping Beaut,y”</i> she says with affection and strokes your cheek, wiping off some of her saliva-cum. <i>“I know what you’re thinking! I <i>was</i> supposed to cut you up and sell your pretty, pretty parts; but I just couldn’t do it to such a cutie.”</i> She fumbles around you, and when you’re finally free you open your mouth, but before you can say anything she puts her clawed finger to your lips. <i>“Shh-shh-shh. No questions, or I might change my mind. No hurry!”</i>");
-	output("\n\nYou wake up in your ship. In sweat, and other bodily fluids, soaked sheets. It... wasn’t real, was it? You shake your head, laughing at yourself. It couldn’t have been." + (crew(true) > 1 ? " You’re just lucky you didn’t wake any of your companions up.":"");
+	output("\n\nYou wake up in your ship. In sweat, and other bodily fluids, soaked sheets. It... wasn’t real, was it? You shake your head, laughing at yourself. It couldn’t have been." + (crew(true) > 1 ? " You’re just lucky you didn’t wake any of your companions up.":""));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
