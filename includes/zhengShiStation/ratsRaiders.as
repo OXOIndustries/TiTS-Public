@@ -63,9 +63,9 @@ public function ratMenu():void
 	addButton(7, "Set Rep Hi", ratDebugSetRep, 75);
 	addButton(8, "Buttfuck 1", ratDebugButtfuck, 1);
 	addButton(9, "Buttfuck 2", ratDebugButtfuck, 4);
-	addButton(10, "Ratputation +5", function(){ratputation(5);ratMenu();});
-	addButton(11, "Ratputation -5", function(){ratputation(-5);ratMenu();});
-	addButton(9, "Switch Rats", function(){ratSetupGroup((rat0.ratVariety == 0 ? 1 : 0)); ratMenu();});
+	addButton(10, "Ratputation +5", function():void{ratputation(5);ratMenu();});
+	addButton(11, "Ratputation -5", function():void{ratputation(-5);ratMenu();});
+	addButton(9, "Switch Rats", function():void{ratSetupGroup((rat0.ratVariety == 0 ? 1 : 0)); ratMenu();});
 	
 	addButton(14, "Done", ratDebugDone);
 }
@@ -362,6 +362,12 @@ public function ratInTheMineEncounter(debug:Boolean = false):Boolean
 	showRats(3);
 	IncrementFlag("RATCOUNTERS");
 	
+	ratButtons();
+	return true;
+}
+
+public function ratButtons(offers:int = 0):void
+{
 	//If nothing else works, punch it
 	addButton(0, "Fight", ratStartEncounterFight, undefined, "Fight", "Negotiations have broken down. Time to knock some sense into these vermin!");
 
@@ -375,24 +381,24 @@ public function ratInTheMineEncounter(debug:Boolean = false):Boolean
 	else addDisabledButton(2, "Pay Gems", "Pay Gems", "You've not enough minerals!!");
 	
 	//If nothing else works, blow it
-	addButton(3, "Offer Oral", ratGiveService, undefined, "Offer Oral", "It's demeaning, but maybe you can get out of having to fight or pay if you offer them a little stress relief?");
+	if (offers & 1) addDisabledButton(3, "Offer Oral", "Offer Oral", "They're not interested. Crap.");
+	else addButton(3, "Offer Oral", ratGiveService, offers, "Offer Oral", "It's demeaning, but maybe you can get out of having to fight or pay if you offer them a little stress relief?");
 	
 	//Milk
 	// PC must have NORMAL tits. No dicknipples, tentacle nipples, or lipples. There are also lactation types: Cum/GirlCum. These won't fly!
+	if (offers & 2) addDisabledButton(4, "Offer Milk", "Offer Milk", "They're not interested. Well, crap.");
 	if (/* weird tits */ false) addButton(2, "A");
-	else if (pc.isLactating()) addButton(4, "Offer Milk", ratGiveMilk, undefined, "Offer Milk", "You're not feeling up to fighting today, certainly not with breasts this full. See if the mouse-pirates will accept a <i>creamier</i> treasure than they're used to.");
+	else if (pc.isLactating()) addButton(4, "Offer Milk", ratGiveMilk, offers, "Offer Milk", "You're not feeling up to fighting today, certainly not with breasts this full. See if the mouse-pirates will accept a <i>creamier</i> treasure than they're used to.");
 	else addDisabledButton(4, "Offer Milk", "Offer Milk", "You need to be lactating to give them a drink.");
 	//else They're {not going to/can't} drink from {mutant/gooey} tits!
-	
-	addButton(8, "Fail Oral", ratGiveService, true);
-	addButton(9, "Fail Milk", ratGiveMilk, true);
+
+	if (!(1&offers)) addButton(8, "Fail Oral", function():void{pc.createStatusEffect("Debug Force Fail"); ratGiveService(offers);});
+	if (2^offers) addButton(9, "Fail Milk", function():void{pc.createStatusEffect("Debug Force Fail"); ratGiveMilk(offers);});
 	
 	if (ratPCIsPoor()) addButton(5, "I'm Poor!", ratGiveNothing, undefined, "I'm Poor!", "You have nothing to offer. If they've any principles, they won't attack you!");
 	else if (flags["RAT_POORED"] != undefined) addDisabledButton(6, "I'm Poor!", "I'm Poor!", "You can't exactly lie about having nothing. They're going to search you and find out!");
 	
 	addButton(14, "Run!", mainGameMenu);
-
-	return true;
 }
 
 public function ratStartEncounterFight(argumentOverGems:Boolean = false):void
@@ -619,17 +625,22 @@ public function ratGiveAllRocks():void
 	ratFinish();
 }
 
-public function ratsDeclineOffer(debugForceFail:Boolean):Boolean
+
+// Offer Milk and Offer Oral have a chance to fail. 40% for Oral and Milk offers to fail, Rats won't take the bait. If the player starts a fight after it fails, they start with higher lust.
+// Pheromone Cloud effects (i.e from the Treatment, Inessa's item, others) will decrease the fail chance by 10% per effect but only down to a 10% fail chance.
+public function ratsDeclineOffer():Boolean
 {
-	if (!debugForceFail && rand(10) + Math.min(pc.pheromoneLevel()/4, 3) > 3) return false;
+	if (!pc.hasStatusEffect("Debug Force Fail") && rand(10) + Math.min(pc.pheromoneLevel()/4, 3) > 3) return false;
 	rat0.lust(15+rand(16));
 	rat1.lust(15+rand(16));
 	rat2.lust(15+rand(16));
+	pc.removeStatusEffect("Debug Force Fail");
 	return true;
 }
 
-public function ratGiveService(debugForceFail:Boolean = false):void
+public function ratGiveService(offers:int):void
 {
+	clearMenu();
 	clearOutput();
 	showRats(3);
 	processTime(5);
@@ -683,28 +694,28 @@ public function ratGiveService(debugForceFail:Boolean = false):void
 
 	if (pc.hasPheromones()) output("\n\nSure, just about anyone can hope to get out of something by offering a diplomatic blowjob, but you've got more than that. Your heady pheromonal aura is having a clear effect on the mouse-pirates. Red cheeks shine just a few feet away; lungs full of hot air struggle to find a balanced rhythm. They're all mentally humping your high quality curves, leaning towards acceptance...");
 	
-
-	// Offer Milk and Offer Oral have a chance to fail. 40% for Oral and Milk offers to fail, Rats won't take the bait. If the player starts a fight after it fails, they start with higher lust.
-	// Pheromone Cloud effects (i.e from the Treatment, Inessa's item, others) will decrease the fail chance by 10% per effect but only down to a 10% fail chance.
-	if (ratsDeclineOffer(debugForceFail))
-	{
-		output("\n\nWith what must be incredible self-control, the sexy rat leading the group howls and shakes her entire body. <i>\"Ha… Ha-ha! Did you think that would work? 'Yer not a slave, you should have some dignity!\"</i> The [rat0.furColor] Rodenian grins.");
-		if (ratPCIsGood()) output(" <i>\"Awwhh…\"</i> she groans, rubbing her temple, <i>\"not this time! Now pay up, [pc.mister] CEO!\"</i>");
-		else output(" <i>\"Now pay up!\"</i>");
-		output("\n\nThe rest of them level their batons at you smirkingly, though they're no less turned on by your lewd display. <i>\"Yeah, hurry up, you skank!\"</i> another exclaims, already puffed up by their <i>stoic</i> decision.");
-		output("\n\nWell, nothing for it now. Time to either knock some sense into these rodents or pay the toll…");
+	addButton(0, "Next", (ratsDeclineOffer() ? ratDeclineService : ratContinueService), offers);
+}	
 	
-		flags["RAT_ACCEPTED_LAST_SERVICE"] = 0;
-		addDisabledButton(3, "Offer Oral", "Offer Oral", "They're not interested. Crap.");
-	}
-	else
-	{
-		clearMenu();
-		addButton(0, "Next", ratContinueService);
-	}
+public function ratDeclineService(offers:int):void
+{
+	clearMenu();
+	clearOutput();
+	showRats(3);
+	processTime(1);
+
+	output("\n\nWith what must be incredible self-control, the sexy rat leading the group howls and shakes her entire body. <i>\"Ha… Ha-ha! Did you think that would work? 'Yer not a slave, you should have some dignity!\"</i> The [rat0.furColor] Rodenian grins.");
+	if (ratPCIsGood()) output(" <i>\"Awwhh…\"</i> she groans, rubbing her temple, <i>\"not this time! Now pay up, [pc.mister] CEO!\"</i>");
+	else output(" <i>\"Now pay up!\"</i>");
+	output("\n\nThe rest of them level their batons at you smirkingly, though they're no less turned on by your lewd display. <i>\"Yeah, hurry up, you skank!\"</i> another exclaims, already puffed up by their <i>stoic</i> decision.");
+	output("\n\nWell, nothing for it now. Time to either knock some sense into these rodents or pay the toll…");
+	
+	flags["RAT_ACCEPTED_LAST_SERVICE"] = 0;
+	
+	ratButtons(offers | 1);
 }
 
-public function ratContinueService():void
+public function ratContinueService(offers:int):void
 {
 	clearMenu();
 	clearOutput();
@@ -725,20 +736,24 @@ public function ratContinueService():void
 	ratFinish();
 }
 
-public function ratGiveMilk(debugForceFail:Boolean = false):void
+public function ratGiveMilk(offers:int):void
 {
 	clearMenu();
 	clearOutput();
 	showRats(3);
 	processTime(1);
 	
-	if (ratsDeclineOffer(debugForceFail))
-	{
-		output("no");
-		flags["RAT_ACCEPTED_LAST_MILKING"] = 0;
-		addDisabledButton(4, "Offer Milk", "Offer Milk", "They're not interested. Well, crap.");
-		return;
-	}
+	output("got?");
+	
+	addButton(0, "Next", (ratsDeclineOffer() ? ratDeclineMilk : ratContinueMilk), offers);
+}
+
+public function ratContinueMilk(offers:int):void
+{
+	clearMenu();
+	clearOutput();
+	showRats(3);
+	processTime(1);
 	
 	output("the rats accept milk");
 	if (flags["RAT_ACCEPTED_LAST_MILKING"]) output(", again");
@@ -746,6 +761,20 @@ public function ratGiveMilk(debugForceFail:Boolean = false):void
 	flags["RAT_ACCEPTED_LAST_MILKING"] = 1;
 	
 	ratFinish();
+}
+
+public function ratDeclineMilk(offers:int):void
+{
+	clearMenu();
+	clearOutput();
+	showRats(3);
+	processTime(1);
+	
+	output("no");
+	
+	flags["RAT_ACCEPTED_LAST_MILKING"] = 0;
+	
+	ratButtons(offers | 2);
 }
 
 public function ratGiveNothing():void
