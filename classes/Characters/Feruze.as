@@ -96,6 +96,7 @@
 			this.tongueType = 0;
 			this.tongueFlags = [GLOBAL.FLAG_LONG,GLOBAL.FLAG_PREHENSILE];
 			this.lipMod = 1;
+			this.lipColor = "black";
 			this.earType = GLOBAL.TYPE_SUULA;
 			this.antennae = 0;
 			this.antennaeType = 0;
