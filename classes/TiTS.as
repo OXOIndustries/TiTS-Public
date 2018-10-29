@@ -131,6 +131,7 @@
 		include "../includes/holidayEvents/ghostSexDream.as";
 		include "../includes/holidayEvents/halloweenCostumes.as";
 		include "../includes/holidayEvents/halloweenDreams.as";
+		include "../includes/holidayEvents/halloweenNunneryFacefuckMassacre.as";
 		include "../includes/holidayEvents/merryShademas.as";
 		include "../includes/holidayEvents/milodanBreedingSolstice.as";
 		include "../includes/holidayEvents/myrnaTheGenerousKorgonne.as";
