@@ -1,4 +1,73 @@
-﻿//Hello, Nurse
+﻿//Werewolf by TheGreatAlbert
+//Notes
+//Of course, this dream only triggers if the PC has a penis and Anno sleeping in bed.
+
+//First Part
+public function werewolfLady():void
+{
+	clearOutput();
+	showName("\nRUNNING");
+	author("TheGreatAlbert");
+	output("Blood pumping, you rush through the woods, avoiding trees, ducking under branches, jumping over the roots, as fast as you can. The only thing you hear is the pounding of your heartbeat against your temples, but what you <i>feel</i>, through your whole body, is each earth-shaking stride taken by the beast pursuing you. <i>THUD.</i> <i>THUD.</i> <i>THUD.</i> It’s getting closer.");
+	output("\n\nYou have no idea what you are doing here, how you managed to get into this situation, or even what exactly is chasing you. You are only certain of one thing : <i>you must not get caught!</i>");
+	output("\n\nNow the echoes of thunderous crashes reach you, as the beast mercilessly annihilates any obstacle standing on its path. Trees are knocked down, rocks are pulverized; it leaves a trail of destruction in its wake, and little by little, it keeps getting closer. <i>You must not get caught!</i>");
+	output("\n\nHow long have you been running? One hour? Two hours? Ten? You don’t remember. It doesn’t matter. It is soon coming to an end: you are out of breath; you can’t feel your legs; your whole body, pushed to its limits, screams in agony. Before you, a dark form suddenly appears. A tall hill is in your way. You can’t get around it, you’re forced to climb, but that proves to be the last straw. You reach the apex, and, after that final effort, collapse face first into the cold grass. It’s over. You’ve accepted your fate. <i>You got caught!</i>");
+	output("\n\nIt’s not long before you hear the footsteps behind you, getting closer. Each step is taken slowly, deliberately, and with such power that it shakes the entire hill. It tells you three things: that the beast is standing on its hind legs; that it is extremely powerful; and that it is <i>loving> the catch, savoring the moment. As it approaches, you think it might at least be worth getting a good look at the predator, before it finishes you off, to see the face of your killer. Painfully, you twist around until you are lying on your back, and you look up.");
+	clearMenu();
+	addButton(0,"Next",werewolfDream2);
+}
+
+public function werewolfDream2():void
+{
+	clearOutput();
+	showName("\nWEREWOLF");
+	author("TheGreatAlbert");
+
+	output("\n\nWhere you had imagined witnessing an eldritch horror born of your worst nightmares, instead stands a magnificent creature, feral yet human, the marriage of a wild wolf and a man: a werewolf. <i>“It”</i> is actually most definitely a <i>“she”</i>, judging by the two massive puppies the size of beach balls that stand proudly on her chest and the man-eating snatch resting between her tree-trunks thighs. She has the body of a titan, standing at nine, ten feet in height, maybe more, with immense muscles, their rock-hard definition hidden under a coat of snow-white fur, glistening under the moonlight. A large furry crest around her neck gives her an almost regal appearance, along with her luscious white mane, so long that it manages to cascade over her big, muscular, yet still inexplicably soft ass. A pair of huge, perky wolf ears crowning her head completes the picture: you are in the presence of a queen.");
+	output("\n\nThe werewolf examines you for an instant, grinning, showcasing a row of fangs that could easily rip a bull’s neck in one bite. Then she says, <i>“Oh, look at that, it seems I’ve found myself a treat! Lucky me!”</i>");
+	output("\n\nYou blink a few times, baffled by what you’ve just heard. That voice... it doesn’t belong here. A she-beast such as that should have a voice as powerful as a thunderstorm, deep and commandeering. <i>Her</i> voice is nothing like that! It’s high pitched, girly, playful, cheerful even, with seductive undertones! It belongs to a sweet, bubbly girl, not a towering werewolf titaness. It belongs to...");
+	output("\n\nAgain, you blink a few times, and start looking at her directly in the eyes. With that elongated snout, her face is definitely that of a wolf, a strong wolf, and her eyes are too, those large, glowing blue eyes. But inside them, you see a glint you know all too well, the one a certain person gets when she <i>really</i> wants to fuck, and so you cry, confused, <i>Anno!?</i>");
+	output("\n\n<i>“Heya, boss!”</i> the werewolf answers giddily, wagging a tail the size a large bush. <i>“Fancy meeting you here! Although, calling you <i>“boss”</i> seems a little bit inappropriate given the circumstances, don’t you think? We’ve got to find a more fitting title for you... How about “pet”? Yes, I like it! I think “pet” will do juuuuuust fine.”</i>");
+	output("\n\nShe takes another step towards you.");
+	output("\n\n<i>“W-w-wait!”</i> you stutter. <i>“Anno, what’s going on? What happened to you? Where are we? Why are you-<i>“");
+	output("\n\nYou are cut mid-sentence as one of Anno’s massive paws grabs your head and shoves your face inside her musky cunt, brutally enough to clearly assert dominance, but gently enough to not hurt you <i>too much</i>.");
+	output("\n\n<i>“Sorry, pet, but the full moon only lasts for so many hours, and there’s so much fucking that needs to be done! So let’s not waste any time and get right down to business! Now lick.”</i>");
+	output("\n\nWith your nose now deep into her crotch, a wave of powerful pheromones washes over your brain like a flood, and it becomes much harder to form rational thoughts. Though her voice and personality seem to be <i>mostly</i> that of sweet Anno, every aspect of her body definitely belong to an invincible beast. She’s in heat, and the scent of her arousal is now overpowering any meager defense you might muster, replacing doubts and fear with pure lust. Yes... yes she’s right, questions can wait, they WILL wait, after you’ve licked that nasty pussy for all it’s worth! And so you get to work.");
+	output("\n\nThere is no way your tongue would be able to please every nook and cranny of that man-eating cave. It’s just too vast. So you make up for it with eagerness, and judging by the appreciative growl that Anno is starting to emit, you’re quite successful. Her pussy tastes just like it smells: thick, feral, and strong; the taste will linger for weeks, but you don’t care, as you yourself start  to fall into a sex-induced trance, making you forget everything but your need to lick her cunt, including the fact you’re now servicing a massive ripped werewolf version of Anno.");
+	output("\n\nSpeaking of the wolf, she suddenly pulls back your head from her delicious snatch, and smiles when she sees your face drenched with her love juices.");
+	output("\n\n<i>“Ok, warm up’s over, pet!”</i> she declares. <i>“Let’s hope you’re ready for the main event, because I certainly am!”</i>");
+	output("\n\nShe then drops you on the ground, once again lying on your back, and in one fell swoop, rips your pants off, revealing your manhood, standing proudly erect in the cold night air, and a delighted Anno licks her lips suggestively. Although her purpose may be to be lewd and sexy, perhaps due to her intimidating appearance, it looked more like she is preparing to eat you alive. And maybe she is, figuratively.");
+	output("\n\nIndeed, you start shaking involuntarily as you see Anno’s massive werewolf form positioning her pussy right above your cock. You suppose this is what people in bunkers must feel when they know nuclear missiles are on the way: you know it’s coming, you know it will hurt, but there’s nothing you can do except bracing for impact and hoping for the best.");
+	output("\n\nAnd you were right to do so. It’s not long before your crotch becomes ground zero. The sensation of your dick sliding into Anno’s velvet pussy as her hips collide into yours is equal pleasure and pain. You sense that she is holding back considerably so your body is not instantly reduced to a bloody pulp – how kind of her! – yet each impact is strong enough to shake the ground under you. You grit your teeth, your hands vainly grasping at the earth to find some sort of meager support that might help you weather the onslaught.");
+	output("\n\nAnno takes her time, and does her best to makes sure your satisfaction trumps your suffering. And her best is quite something: after every slam, she lingers for a moment, massaging your rod with her inner muscles. Inhuman strength and inhuman control work in tandem to bring you to new highs of pure bliss. It’s an extremely pleasurable ordeal, yet remains an ordeal nonetheless. Pelvis-crushing slam after bone-shattering impact grinds down you stamina, and it’s not long before you are holding on to dear life. You are close to your body’s limits, and the limits of your arousal too.");
+	output("\n\nBoth of you are actually on the verge of climax, and in the midst of all the pain and all the pleasure, you feel a tingle a pride: to be able to satisfy such an immensely powerful creature is no small feat! The signs are here: Anno’s massive tits bounce happily as she pounds you into the ground, while her tongue is hanging out, her tail wagging madly. She praises your performance, and it sounds like music to your ears.");
+	output("\n\n<i>“You’re so... Ah!-... So fucking great!”</i> she pants, more due to pleasure than any kind of exhaustion. <i>“I might just... Ah!-... I might just have to keep you, pet!”</i>");
+	output("\n\nFinally, with a final impact that shatters your hopes not to end up in a body cast, you explode, spreading your seed inside her as she howls in ecstasy at the full moon that gifted her with such a wondrous body.");
+	output("\n\n<i>AWOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!</i>");
+	output("\n\nFor what feels like an eternity, her cry of triumph echoes through the forest. Then it stops, and she sighs in contentment, her lust sated. Or so you think.");
+	output("\n\nBut then, she starts to smile, a predatory grin. She lowers her head. Her blue eyes meet yours. She seems <i>excited</i>.");
+	output("\n\n<i>“Oh, that was amazing, pet! But...”</i> Anno muses mischievously with her lips pursed, <i>“you know, why don’t we do it again? Oh, don’t give me that look! I’m pretty sure you’ll survive.”</i>");
+	output("\n\nYou very much doubt that. Sadly, your complaint dies in your mouth as it is invaded by her giant tongue. A forceful, languorous kiss that melts all resistance. Where did she learn to do that? Is this a werewolf thing? You don’t know, and for the time being, you don’t care, as Anno is busying herself getting your body all hot and ready for the next round, and the one after...");
+	output("\n\n<i>“After all,”</i> she says, <i>“the moon is high, and the night is still young.”</i>");
+	pc.orgasm();
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",werewolfDream2);
+}
+
+public function werewolfDream2():void
+{
+	clearOutput();
+	showName("WAKING\nUP");
+	author("TheGreatAlbert");
+	output("You suddenly wake up, a little disoriented. It takes a few moments to adjust to your surroundings. There is no forest, no tall hill bathed in moonlight, just your old bed in your old ship. And, more importantly, no white-furred werewolf amazon about to fuck you to death, just sweet, regular Anno, snoring gently beside you. Yet, as you gaze upon her sleeping form, you can’t help but wonder: where did all of that come from? Was that some unknown fetish of yours that simply took her form to manifest? Some unresolved issues? Something totally unrelated, like some mad star god putting lewd, unwanted dreams into your head? Or, if we really go deep into Daddy Freud territory, is this how your subconscious, or part of it, truly sees Anno?");
+	output("\n\nOf course, that’s ridiculous. Look at Anno! Look at that " + (!annoIsHuskar() ? "cute little fluffy puppy":"big pile of fluffy goodness") + "! There’s no way she would be capable of such brutality. However... you know her well, and you know she has a dominant side to her. And you wonder: is there some part of her, hiding deep inside " + (!annoIsHuskar() ? "that sexy, bubbly exterior":"those soft, delicious curves") + ", that is beastly and untamed, longing to break free to ride the galaxy for all its worth?");
+	output("\n\nOh, now you’ve done it. It’s gonna be a miracle if you manage to get back to sleep after filling your head with so many unanswered questions. One thing’s certain though: you’re definitely <i>not</i> going to ask Anno. If you shared your dream with her, you’re pretty sure she would tease you until you’re lying on your deathbed. And maybe even a little afterwards too.");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Hello, Nurse
 //TiTS Contest Submission by Breebee
 //Reqs genitals of some descriptions
 public function halloweenNurseDream():void

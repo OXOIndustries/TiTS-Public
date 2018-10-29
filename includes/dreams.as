@@ -88,6 +88,8 @@ public function dreamChances(inShip:Boolean = false):Boolean
 			if(pc.hasStatusEffect("Anally-Filled")) dreams.push(analButtCumMonster);
 			//Hello Nurse
 			if(pc.hasGenitals()) dreams.push(halloweenNurseDream);
+			//Anno werewolf
+			if(pc.hasCock() && flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") dreams.push(werewolfLady);
 		}
 		if(MailManager.isEntryViewed("lets_fap_unlock"))
 		{
