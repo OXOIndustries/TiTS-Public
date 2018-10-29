@@ -1203,7 +1203,6 @@ public function pumpkinFuckOver():void
 //Gardeford’s College Goblin Slut Trick-or-Gangbang
 //happen when pc fall aslep
 //Dickgirl wiv tiddie biguns
-//7777 contendah!
 public function gardefordsCollegeGoblinSlutTrickOrTreatbang():void
 {
 	clearOutput();
@@ -1424,7 +1423,6 @@ Kama-tanha encounters are of questionable veracity, as many describe the encount
 //Witch’s Kitten
 //By: ThereWasAnAttempt
 //For Dickhaving PCs
-//7777 real winner contendah!
 public function witchsKittenScene():void
 {
 	clearOutput();
