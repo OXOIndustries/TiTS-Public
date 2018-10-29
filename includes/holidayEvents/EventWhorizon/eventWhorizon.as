@@ -23,7 +23,7 @@ EVENT_WHORIZON_TORMENT_CAGES
 public function isDoingEventWhorizon():Boolean
 {
 	// Fix my bumblefuckery
-	if (flags["EVENT_WHORIZON_STATE"] != 2 && InCollection(shipLocation, "TAVROS HANGAR", "SHIP HANGAR", "201", "600", "2I7", "LZ L50", "500", "POESPACE", "UVS F15", "CANADA1", "K16_DOCK", "BREEDWELL_HANGAR"))
+	if (flags["EVENT_WHORIZON_STATE"] != 2 && flags["EVENT_WHORIZON_STATE"] != undefined && InCollection(shipLocation, "TAVROS HANGAR", "SHIP HANGAR", "201", "600", "2I7", "LZ L50", "500", "POESPACE", "UVS F15", "CANADA1", "K16_DOCK", "BREEDWELL_HANGAR"))
 	{
 		flags["EVENT_WHORIZON_STATE"] = 2;
 	}
