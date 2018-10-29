@@ -1,4 +1,234 @@
-﻿//Dullahan Spoopy Times
+﻿//Hello, Nurse
+//TiTS Contest Submission by Breebee
+//Reqs genitals of some descriptions
+public function halloweenNurseDream():void
+{
+	clearOutput();
+	author("Breebee");
+	showName("HELLO\nNURSE");
+	output("You are woken up by a high-pitched giggle ringing in your ears. You instantly open your eyes and try to look around, but only see darkness. A blindfold, you quickly realize. And that’s only the first of many devices binding you. Your jaw is pried uncomfortably open by a metal ring, with hooks keeping your [pc.lipsChaste] from closing. And the strange pressure around your wrists... yup, can’t move them. You gather all your rationality and assess the situation.");
+	output("\n\nYou’re laying on a cold, flat surface; naked. Painfully tight leather straps hold your wrists down your sides. More run above your [pc.belly] and biceps. A particular, collar-like one around your neck makes sure you can’t even raise your head. It also makes you feel like you’re on the edge of being choked.");
+	//If pc has a tail:
+	if(pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG))
+	{
+		output("\n\nYour [pc.tails] " + (pc.tailCount == 1 ? "hasn’t":"haven’t") + " been forgotten either. " + (pc.tailCount == 1 ? "It’s":"They’re") + " strapped down securely, not allowing you even an inch of wiggle room. Not like you’re in the mood for wagging, anyway.");
+	}
+	//If pc has wings:
+	if(pc.hasWings() && pc.wingCount > 1) output("\n\nThe way your [pc.wings] are bound may be the most frustrating. They aren’t strapped to the table, making you hope you could somehow use them to get free. But tight belts wrap around them, making it impossible to spread them; and rendering them useless.");
+	//if pc is naga:
+	else if(pc.isNaga()) output("\n\nYou grin, knowing at least your [pc.leg] must’ve been problematic to the captor. Your smile soon fades, as it becomes apparent, whatever difficulty your tail posed, the kidnapper overcame. Many straps hold down its entire length, just few inches apart from each other. Seemingly overdone, the bondage is definitely effective. You can’t slither out, or wiggle out, or use the tip to mingle with the straps.");
+	//if pc is taur:
+	else if(pc.isTaur()) output("\n\nA strap thicker than the rest runs across your tauric underbelly. As if laying on your back wasn’t uncomfortable enough, all your [pc.legOrLegs] have belts around them, keeping them forcibly bent. No matter how hard you try to kick and straighten them, they remain folded near your torso; like little stubs.");
+	//if pc is biped:
+	else output("\n\nYour legs are forcefully spread, and fastened to the table by the straps. Hard leather digs into your [pc.thighs] and wraps vice-like around your ankles. You shiver, feeling cold air on your exposed groin.");
+
+	output("\n\nYou’re immobilized, thoroughly. Still, you pull at your bindings with all the strength you have. What you wish to be an impressive effort resembles mere pathetic thrashing. You’re left breathing heavily and as tightly bound as you were at the beginning. The straps just burn more now, probably already digging red marks into your [pc.skin].");
+	output("\n\nYour struggle does, however, gain you the attention of your captor.");
+	output("\n\n<i>“Lookie here! Sleeping Beauty decided to join us.”</i> It is the same person whose giggle woke you up, no doubt, her voice so high and screechy that it makes your head hurt. <i>“You must be dyyyying to see where I took you!”</i>");
+	output("\n\nBefore you can register the words, you feel your blindfold lifted, and immediately wish it had stayed in place.");
+	clearMenu();
+	addButton(0,"Next",nurseDream2);
+}
+
+public function nurseDream2():void
+{
+	clearOutput();
+	author("Breebee");
+	showName("HELLO\nNURSE");
+	output("You’re in a hospital, or what used to be a hospital. Red splashes cover the room’s dirty, cracked walls. Ancient medical equipment lays scattered on the floor in various states of decay, all clearly unusable. A single stool stands next to the table you’re displayed on, with an array of all things sharp and pointy. Above you, a lamp flickers, and you have to squint to see the... person... bending over you.");
+	output("\n\nFirst, you notice her huge lips, slutty red, stretched in an unnaturally wide smile. Your eyes wander higher up to meet hers, but find a film of gauze. Other than her lips, her whole body is covered in bandages. <i>“Hellllooo, cute thing!”</i> she bounces up, and her huge tits almost spill out of the rugged nurse’s uniform she’s wearing. Outside of the bandages, she seems human, though her voluptuous curves shouldn’t be achievable without mods. <i>“Just look at that face! Ooh, I could eat you up!”</i> As she speaks, you notice her mouth is filled with at least two rows of sharp, uneven teeth. If you could, you’d gulp with horror. Instead, you just have to let drool dribble down your chin.");
+	output("\n\n<i>“My, are you scared? That’s not a good look on you, honey!”</i> Her smile gets, though you’d think it impossible, even wider <i>“You know how you’d look better?”</i> she asks, bringing a syringe up to your face. You shake your head, as little as you can. <i>“Horny,”</i> the Nurse hisses into your ear. She pushes out an experimental drop of the liquid and lets it fall into your open mouth. It stings at first, but then a warmth spreads through your throat. For a split-second, all your worries and questions disappear, and the only thing left is unspeakable pleasure. A wanton moan escapes your lips before you can regain your conscience. <i>“Mmm, there, wasn’t that nice?”</i> The Nurse sticks out her long, reptilian tongue and licks her lips, coating them in saliva <i>“Now just to make you like that fo-re-ver!”</i> she squeals.");
+	output("\n\nWait, what? Your eyes widen, as you begin struggling against the restrains again. She just giggles at the panicked, muffled noises you make, drawing the needle closer to your wrist. <i>“After that nothing will hurt anymore,”</i> you hear, before the pain in your veins blurs out everything else.");
+	pc.lust(30);
+	clearMenu();
+	addButton(0,"Next",nurseDream3);
+}
+
+public function nurseDream3():void
+{
+	clearOutput();
+	author("Breebee");
+	showName("HELLO\nNURSE");
+	pc.lust(100);
+	output("When you come back to your senses, the first thing you check is if you can still remember your name. [pc.Name] Steele, you repeat in your head a few times. So she didn’t turn you into a completely mindless piece of fuckmeat. Just a... regular piece of fuckmeat, you admit to yourself, finally acknowledging your ");
+	if(pc.hasCock()) output("stone hard [pc.cocksNounSimple]");
+	if(pc.isHerm()) output(" and ");
+	if(pc.hasVagina()) output("needily twitching [pc.vaginas]");
+	output(". As soon as you let lust cloud your thoughts, it’s all that’s left on your mind. You push against the straps holding you, this time not to get free, but to sluttily thrust your hips into the air. You need, need, need to be touched, now. You let the Nurse know that by moaning in the most pleading way you can, whimpering even.\n\n<i>“There, there, I know,”</i> she coos, <i>“but first promise you’ll be a good [pc.boyGirl], and let me do aaanything I want to you”</i>.\n\nBefore you can stop yourself, you nod enthusiastically.");
+	output("\n\nShe places her fingernail, no, her claw, on " + (pc.hasCock() ? "the tip of your [pc.biggestCock]":"[pc.oneClit]") + ", barely brushing against it. You gasp as she draws circles on your most sensitive part. With how sharp her nail looks, it shouldn’t feel this good. But instead of discomfort, or even pain, you only feel pleasure. Warm sparks spread through your body, making you roll back your half-lidded eyes. The only problem you can think of right now is it’s not enough. You desperately try to stick your [pc.hips] out more. The Nurse’s tongue flashes before your eyes, dripping saliva.");
+
+	//If pc has dick:
+	if(pc.hasCock())
+	{
+		output("\n\nHer teasing, light touches soon get more generous. Seeing glistens of pre on the tip of your [pc.biggestCock], she grips it tight and starts stroking. Her long claws curve around your cock grotesquely, like twisted tree branches. The sight makes you shiver even in your lustful state, but she moves her hand with such expertise and confidence, you let go of the worries. It isn’t what you’d imagine bandages to feel like. Instead of rough and dry, her hand is warm, silky, and alive. Just when you get used to the tempo, her grip tightens, sending jolts of pleasure through your body. She holds your [pc.biggestCock] like a toy, expandable and replaceable, but not to be broken yet. Her fingers dig deeper into your sensitive flesh, and right after the first spark of discomfort hits you, her grip relaxes. She strokes your [pc.biggestCock] in a way that now seems almost too gentle.");
+		output("\n\nShe must realize the anticipation building inside you, and sends you a very toothy grin. Her tongue slips from between her lips with a wet smack, quick and elastic. You watch with your breath held - how it extends, curls up and wraps around itself, constantly in motion. It looks to be almost 20 inches of hungry flesh, searching for something to latch itself onto. It gets so, so close to your [pc.biggestCock], and stops just before it touches you. The Nurse gives it one last pump and takes away her hand. She motions ostensibly to her tongue, and the space between you and it. You can feel its warmth, and imagine how all its bumps and ridges will feel. There is very little hesitation before you thrust your [pc.hips] as far up as you can. She accepts your plea immediately, the tongue hungrily wrapping itself around your cock in a spiral. It engulfs you, makes you forget you’re strapped to a surgery table, forget about the mission, and yes, forget your own name.\n\nThe tongue slides up and down, squeezing the whole length of your [pc.biggestCock]. It’s pillowy soft, shaping itself around you, yet muscular, with distinct bumps that keep you shivering each time it moves. You squeeze your eyes shut and let your own tongue move in muffled screams of pleasure. It’s like a rope tying and untying itself around your cock, if a rope felt like heaven. It’s like tens of fingers moving in perfect unison and synchrony, constantly keeping you on the edge of how much you can take. No, actually, it’s like nothing from this world. It’s better.");
+		output("\n\nYou bite into the gag, as your jaw tenses, and your hips buck wildly. This is your limit, you feel your [pc.balls] clench, ready to shoot sperm, and your head get light from the promise of release- and the Nurse’s tongue tightens around the base of your [pc.biggestCock] like a ring. You get barely the hint of the oncoming orgasmic pleasure, and feel it wave off like a distant dream. You gasp and try to catch your breath. Your denied cock twitches, and you give the Nurse your most pitiful expression. Her tongue slithers back into her mouth, and first thing she does is giggle at you. <i>“Sweetie, I’m sorry, but I have to test all of your parts first”</i>." + (pc.cockTotal() > 1 || pc.hasVagina() ? " Right. You forgot the cock she focused on wasn’t your only equipment, honestly. Now you can’t wait to experience this treatment anew.":"") + " She shoots you what may be her attempt at a sweet smile, but still gives you goosebumps.");
+	}
+	else
+	{
+		output("\n\nYou whine when she takes her finger from your [pc.clit], but stop your wordless complaining as you feel the same finger between your [pc.vagina]’s folds. A shiver runs down your spine at the thought of her sharp claws going inside you, but she only uses her fingertip to stroke the outside of your mound. She takes the finger up to her lips and licks your [pc.girlCum] off it. You look in awe as her tongue extends and sensually wraps around her hand. The Nurse smiles maniacally, baring her rows of teeth, and then, quick as a whip, her tongue stands in the air, before your face. She makes a show of its length and elasticity, the way it curls up and straightens in a blink of an eye. You can imagine how good it could make you feel. Your [pc.vagina] can, too. But the tongue doesn’t move down your body, where you want it. Instead, it stands still, right before your [pc.lipsChaste]. You have to ask nicely, you realize, and you do, in the only way you can, with your movement so restricted. Sticking out your own [pc.tongue], you touch hers with it. It’s smooth, with some harder bumps, and it tastes... surprisingly sweet, yet still somehow medical. As she reciprocates the kiss, and buries her tongue inside your mouth, you place the taste the closest to sweet cough syrup.");
+		output("\n\nYou get lost in the kiss and moan against her tongue. It’s so good, you protest when she slowly takes it out and moves her red lips away from yours. The inside of your mouth feels cold and empty without her. But there is another hole that wants attention more, and still hasn’t had its share.");
+		output("\n\nYour [pc.vagina] pulsates under her tongue’s long, careful licks. They start gently, and you breathe slowly in peaceful bliss. It’s magic, this tongue. It can get wide and cover your whole groin, or thin and precise, each lick sending sparks through your body. When it wraps around your [pc.clit], you sharply suck in air and momentarily see stars. The Nurse lavishes it with love, until your cries of pleasure echo in the room, and then, when she deems you ready, you feel the tip of her tongue prodding at your entrance. It slides inside effortlessly, shaping itself to fit your body perfectly. And when it’s already inside, it expands, taking your capacity to its limit. It starts to move, as the Nurse takes care of your [pc.clit] with her juicy, full lips. The way her tongue jackhammers into you doesn’t feel like anything you’ve experienced before. It brushes against all your most sensitive spots, and fills you to the brim, while never being painful, and it’s constantly in motion. Throbbing in tune with your walls tightening, it feels like a living being, and at the same time, a part of you.\n\nYou move your hips to meet its thrusts, and somehow you keep up with its brutish tempo. The wet smacks, your moans, the Nurse’s muffled cries, it all blends into a melody, which can only end in one way. You feel your body slipping out of your control, as you push against the restraints just to feel her tongue <i>deeper</i>. Your [pc.cunt] clenches, and you’re ready for the sweet release, when- It’s empty again. Instead of the cry of satisfaction, you give your most disappointed whine. And your poor, denied pussy twitches around nothing. The Nurse giggles at your misery. <i>“Sweetie, I’m sorry, but I have to test all of your parts first.”</i> She shoots you what may be her attempt at a sweet smile, but still gives you goosebumps.");
+	}
+	//merge
+	output("\n\nAnd then her jaw unhinges, and her lips split open. From behind the rows of sharp teeth emerge more... tongues? They look more like tentacles now, swarming in a mass towards you. All you can do is" + (pc.hasToes() ? " curl your toes,":"") + " tighten your fists, and brace yourself.");
+	output("\n\nIn a second you are all but consumed by the tentacles. They stretch out to your [pc.chest] and wrap themselves around your [pc.stomach]. To your surprise (though nothing should surprise you now) you feel a sucking sensation on your [pc.nipples]. Definitely more than tongues, you note, before your thoughts drift away once more." + (pc.biggestTitSize() >= 1 ? " They play with your [pc.breastCupSize] boobs, squeezing them and making them bounce up and down.":"") + (pc.skinType == GLOBAL.SKIN_TYPE_SKIN ? " Some of the more mischievous tentacles suck into your [pc.skinColor] wherever they please, giving you hickeys.":""));
+	output("\n\n" + (pc.hasCock() ? " They quickly wrap around your [pc.cocks] like vines.":" They quickly wrap around your [pc.clit].") + " It’s different from before, when the movements seemed controlled and exact. Now they’re faster, more frantic, like the Nurse is desperate to get herself off too. Her breathy moans hitting your ears confirm it. And it’s not just your body she’s getting pleasure from, either. She’s masturbating herself with the tentacles, and giving you quite a show at the same time. They’re creeping under her tight dress, their prints clearly visible. You watch, entranced, as they grope and play with her bandaged skin. The main focus are her tits, roughly squeezed, their soft flesh pushing from between the tentacles. Her hips and thighs are similarly bound, with the tongues sinking deep into their pillow like flesh. And with a lewd sound, one tentacle slips inside of her. Right at this moment, you feel something pressing inside of you, too." + (pc.hasVagina() ? " Your neglected [pc.cunt] and [pc.asshole] get double penetrated, without much gentleness.":" Without much gentleness, your [pc.asshole] gets penetrated.") + " Thankfully, the tongues are dripping with saliva like fluid, making the intrusion smooth. Still, you gasp with surprise, and other tentacles fill your forcefully opened mouth. The slick intruders feel at home in your throat, coating it in the sweet tasting saliva, going ever deeper. You give in, and suck on them, at least to taste the intoxicating fluid. Penetrated from both sides, you squirm and moan. You get filled up and stretched, as more and more tentacles try to wriggle their way inside of you. With half-open eyes, you look back at the Nurse, and notice you’re being pumped at the same rhythm as her. Your moans synchronize, as the tentacles stretch to their limit and bottom out inside the two of you.");
+	output("\n\nIt’s too much, it’s way too much. Your [pc.vagOrAss] clenches around the tentacles" + (pc.hasCock() ? ", your [pc.cocks] throbbing":"") + ". This time the Nurse encourages your orgasm, fucking you harder and faster, deeper than you thought possible, stimulating you everywhere, inside and outside. When you cum, you hear her squeal in ecstasy, and barely register the tentacles shooting fluid inside you and on you, mixing with your own " + (pc.hasCock() ? "[pc.cum]":"[pc.girlCum]") + ". You twitch and buck your hips. You probably scream just as loud as her, but your senses give out. You don’t hear anything anymore.");
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",nurseDream4);
+}
+
+public function nurseDream4():void
+{
+	clearOutput();
+	author("Breebee");
+	showName("HELLO\nNURSE");
+	output("The next thing you know, she’s undoing the leather straps holding you. You give her a hazy look, because you just got your brains fucked out, and also, she didn’t seem like she wanted to let you go before. <i>“Hello, Sleeping Beaut,y”</i> she says with affection and strokes your cheek, wiping off some of her saliva-cum. <i>“I know what you’re thinking! I <i>was</i> supposed to cut you up and sell your pretty, pretty parts; but I just couldn’t do it to such a cutie.”</i> She fumbles around you, and when you’re finally free you open your mouth, but before you can say anything she puts her clawed finger to your lips. <i>“Shh-shh-shh. No questions, or I might change my mind. No hurry!”</i>");
+	output("\n\nYou wake up in your ship. In sweat, and other bodily fluids, soaked sheets. It... wasn’t real, was it? You shake your head, laughing at yourself. It couldn’t have been." + (crew(true) > 1 ? " You’re just lucky you didn’t wake any of your companions up.":"");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//TheMightyQuinn's latex kitty dream
+//Req's male-seeming PC with a dickus
+public function gooKittyLatexDream():void
+{
+	clearOutput();
+	showName("\nMEOW...");
+	author("TheMightyQuinn");
+	output("You awaken in a puddle of black, sticky goo. Ordinarily, such a situation would disgust you, perhaps even disturb you. And yet you find yourself... relaxed. Yes, relaxed, calm, and blissful as the goo slithers across your skin, enveloping you further in its soft stickiness. First your feet, then your legs... the goo works its way up your thighs, up to your cock, and it forms a little mound there, trapping it inside. And you’d be frightened, so frightened and afraid, if it weren’t for the fact that you’re not frightened at all, that something in you knows that the goo is safe, that the goo knows best. And it keeps working your way up, over your tummy, and your back, and your chest, and your aching, tingling nipples, up, up to your head until you’re entirely painted with goo and that’s all you want to be.");
+	output("\n\nIt’s warm in here. So warm and cozy that you could almost melt away as the goo binds you tighter, making you feel small and meek in its embrace. That sort of smallness and meekness might have frightened you once, made you feel afraid, but you can’t be afraid, because the goo will keep you safe, yes, safe from all your problems, and so warm, so happy...");
+	output("\n\nYou can’t tell the difference between yourself and the goo, now. All you know is that you are content, as you begin to sprout soft, silky fur across your body" + (pc.hasFur() ? " (but you have fur?)":"") + ", and you just feel so happy that you practically writhe in contentment as your face stretches and twists and suddenly you’ve got two perkly littly ears" + (pc.earType == GLOBAL.TYPE_FELINE ? " (bigger ones, maybe?)":"") + " and a cute little mouth and a tiny little button nose and it doesn’t seem so surprising when you feel a strange little stretch, and your furry little rump sprouts a" + (pc.tailCount > 0 && pc.tailType == GLOBAL.TYPE_FELINE ? "nother":"") + " cute black tail, and you just want to... just want to... aaah... that’s it... <i>'Purrrrrrrr...'</i> Yes, like the sexy little kitty you are now. There you go, just let it all out as you stretch your thighs and rub your legs together and you <i>purrr</i> as you feel a warm glow in your little sexless lump. Silly little kitties don’t have cocks, after all. They have happy little lumps and hungry little holes.");
+	output("\n\nAnd now your hungry little hole is starting to <i>itch</i>, and it’s making you into a grumpy kitty. You try to help yourself, but your little kitty paws can’t do the trick, so you meow and you cry and you make as much noise as a kitty can, trying to get someone to help you fill your hungry little hole.");
+	output("\n\nAnd who should come slithering by but a big, mean, nasty naga! He seems to dwarf you, with his long, scaly body, and his huge, muscular torso. It seems as thought he could just pick you up and hold you, willing or no... which is exactly what he does.");
+	output("\n\nFor a moment, you are panicked, but then he runs one of his big, strong hands over your soft, silky, kitty fur, and suddenly you feel calm and safe and protected by this big, scary snake. And you half close your eyes as he holds you in one hand and strokes you with the other and you begin to <i>purrrrr</i> again, and for but a brief moment you are once again a happy kitty.");
+	output("\n\n<i>“Ssssssuch a ssssweet kitty,”</i> he hisses, his voice smooth and soft against your ear. <i>“Do you want ssssome milk?”</i>");
+	output("\n\nAnd of course you want milk because you’re a kitty and a kitty always wants his milk. So when the snake pushes your little kitty snout towards one of his hard, round nipples, beautifully stretched across his big, strong pecs, you begin to suckle it, and lap at it with your rough little kitty tongue as it start to put out some warm, wonderful milk. And as you do, the naga starts to let out little hissing moans.");
+	output("\n\nThe milk doesn’t taste like any milk you’ve ever had before. It’s sweeter, and yummier, and it feels so very nice sliding down your throat into your little kitty tummy, so nice that you start to make some happy kitty noises, and you start to mewl, and purr, and your mewls and purrs mix with the hisses and moans of the naga, and it seems so beautiful, so beautiful that it warms your little kitty heart and it makes you writhe with happiness, and then you start to heat up, and as you get hotter, that itch in your little kitty hole starts to come back, only this time it’s so much stronger and you grind your hole back against the arms that are holding you so tight and so close and keeping you so warm but the griding just makes you hornier and hornier until finally you can’t take it anymore and you let out a cry, a cry of need so deep within you that you can’t express it any other way.");
+	output("\n\nSilly kitty. Everyone knows that naga milk is a powerful aphrodisiac. But it can’t be helped now.");
+	output("\n\n<i>“Are you hungry, my sssssweet, sssssssexy little kitty?”</i> The naga croons to you, and you keep crying out, rubbing against him, but you now that he knows what you want, what you <i>need</i>. He chuckles, and slowly, lazily, he adjusts his grip, turning you so that you’re facing up at him but he can lower you down until your hungry kitty hole is right over his slit, out of which is emerging is big, hard cock.");
+	output("\n\nAnd you struggle, trying to push yourself down. You know that you need this big strong snake’s cock inside of you but he laughs gently, only slowly easing you into it. <i>“Sssslow down my little pet...”</i> he whispers, smiling down at you until about halfway, when he just can’t take it any more and throws his head back into a hiss of satisfaction as he pushes the rest of his cock into your tight little hole.");
+	output("\n\nYour mind disappears as you emit cries and mewls of delight, any pretense of buildup or anticipation from either of you gone as both of you throw yourselves into the fucking wholeheartedly, you crying and mewling as he hisses until finally, explosively, he cums inside of you.");
+	output("\n\nA warm glow spreads across your lump and you can finally relax again, letting out a slow purr of contentment as your big strong snake takes you off of his cock and holds you tight against him, the seed still dripping from you.");
+	output("\n\nAnd as he slithers away, carrying you along, you know that this is how it will be from now on. You will be a sexy little pet for this strong, beautiful snake, and he will keep you warm, and keep you safe, and fuck your little kitty hole and make your life a kitty paradise. And knowing that makes you so happy. So happy that the last thing you do before you drift away, carried in his arms, is <i>purr.</i>");
+	output("\n\n<i>Purrrrrrrrrrrrrrrrrrrrrrrrrrrrr...</i>");
+	clearMenu();
+	addButton(0,"Next",kittyDreamEpilogue);
+}
+
+public function kittyDreamEpilogue():void
+{
+	clearOutput();
+	showName("JUST\nA DREAM");
+	output("The bizarre rumble in your throat actually rouses you from slumber. What a dream!");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function frogTentacleMaskDream():void
+{
+	clearOutput();
+	showName("A\nMASK...");
+	author("Frogapus");
+
+	output("It feels like only moments have passed since you closed your eyes, but you snap them open as a frigid blast of wind shakes you awake. You’re standing in the middle of a frozen plain. A star-studded sky spreads out endlessly overhead, and the howling wind brings sweeping draperies of snow. The mournful wind fills the air, providing an eerie counterpoint to the crunch ‘of snow and ice underneath your " + (pc.legCount > 1 ? "[pc.feet]":"[pc.leg]") + "’. When a blast of snow gusts over you, you squint your eyes against the spontaneous snowstorm, determined to keep your bearings.");
+	output("\n\nAs you push through the flurry, you spot a distant figure against the frigid field. Shielding your eyes from the snow, you try to get a better look.");
+	output("\n\n<i>“Ahh ....”</i> The muffled sigh is the only sound you can make out over the gusting wind.");
+	output("\n\nYou take cautious steps forward, making sure to make sure your feet are firmly planted against the sudden snowstorm. Slowly, a figure emerges from the swirling, white void." + (silly ? " Your sphincter tightens. You’ve heard tales of some sort of actual cannibal living out here in the wild. You hope you haven’t encountered him.":""));
+	output("\n\nSquinting, you make out a vague outline. A dark silhouette stands a few meters away. Your vision obstructed, all you can make out is ");
+	if(CodexManager.entryUnlocked("Milodan")) output("a thick, shaggy outline-it must be a huskar!");
+	else if(CodexManager.entryUnlocked("Korgonne")) output("a squat, furred figure-a lone korgonne out in the snow?");
+	else output("a bulky, armored shape-is it one of the fierce Stormguard warriors?");
+	output(" It must be another traveler, caught in the sudden squall.");
+	if(pc.isNice()) output(" You call out to it, asking if it needs help.");
+	else if(pc.isMischievous()) output(" You raise your voice over the wind, asking if this kind of abominable weather is normal.");
+	else output(" You narrow your eyes, readying your weapon in case this newcomer is stalking you.");
+
+	output("\n\nIt draws nearer, and something is <i>off</i> about this thing. ");
+	if(pc.IQ() >= 50) output(" Its movements are unnerving, more like it’s flowing or bending towards you than actually walking.");
+	else output(" You can’t quite figure it out, but you’re definitely getting a creepy feeling from whoever this is.");
+	output(" You decide to change tactics, and call out again to them. <i>“Hello?”</i> you ask. <i>“Who goes there?”</i>");
+
+	output("\n\n<i>“Hello?”</i> it says, drifting closer. The snow flurry increases. <i>“Who goes there?”</i>");
+	output("\n\nOkay, so it just repeated your words. That alone would be creepy enough, but it repeated them in <i>exactly your voice</i>. You take a step back and draw your weapon.");
+	output("\n\n<i>“Hello?”</i> The wind howls as the strangers stalks closer.");
+	output("\n\n<i>“Hello? Hello? HellohellohellohelloOOOOOOOO!”</i> it shrieks. The figure surges forward at you, and in an instant, you see it with perfect, disturbing clarity. Its face is an unmoving mask, ");
+
+	output(RandomInCollection(["a grotesque caricature of a face formed from messy red streaks","an eerily smiling, perfectly made-up female face","a perfect circle of matte black","a child’s drawing of a sharp-toothed grin","an expressionless face with too many mouths","the upside-down face of a beautiful woman","a sallow-skinned depiction of a clown’s leering face","a devilish face with ruby skin","a feline face with a too-wide, too-pointed grin","a bone-white skeletal leer","a sleepy kui-tan muzzle","a jowly, beady-eyed man’s face","a goggle-eyed, cartoonish visage","a single, blood-red eye in the center of a bone-white field","a jagged spiral radiating out from an indecipherable symbol","an adorable puppy face","a black field covered with mis-matching eyes","five disturbing symbols overlapping on a dirty-white background","an expressionless vulpine visage","the expression of a leering woman with unfocused eyes","a too-wide, gaping mouth with beady holes above","a blank, bone-white face with lips barely parted"]));
+
+	output(" with four glittering, black eyes. Its body erupts into a sea of leafy, frond-like tentacles, lashing through the air towards you." + (pc.WQ() <= 65 ? " You let out a scream and stumble backward.":""));
+	output("\n\n<i>“HELLO!”</i>");
+	output("\n\nTentacles snap through the air and seize tight around your limbs. You struggle against the horror’s grip, succeeding only in tangling yourself further. More tentacles lash around you, unwrapping smaller fronds plastered against your body.");
+	output("\n\nThe monster’s leering head draws nearer to you as more tentacles rise up in an obscene halo around its unchanging face. They drift almost lazily towards you, brushing along your body, finding places not yet bound, then sealing their broad, icy sides against you. Once in place, the tentacles rub softly against you, never releasing their grip, but almost massaging your body, coaxing more warmth from you. The detached, alien care, coupled with the slow, constant rubbing of the tentacles feels strangely blissful, and you can’t help but feel turned on despite the creeping cold.");
+	output("\n\nMore and more tentacles wrap around your limbs until you topple over, helpless against the frozen ground. You struggle, but there are just too many, and they’re wrapped too tightly for you to wiggle free. A cage of black, living ropes surround you, crawling over your form, trapping you beneath the monster. You can feel them winding around your limbs, hauling tight and hobbling you. Each tentacle is broad and slightly flat, like a thick ribbon, and you can feel dozens of them wriggling across your body.");
+	output("\n\nYou struggle, helpless, as the beast’s tentacles coil tighter and tighter around you. Its face, floating amidst a sea of tentacles, drifts upwards to face you, meeting your frustrated eyes with its four, beetle-black orbs. You’re not sure what this thing is doing, but you’re getting more and more nervous. The flat, ribbon-like tentacles wrap tightly around your [pc.legOrLegs], skin-tight, layering themselves. At the same time, the ones around your arms go taut, more tentacles snaking across your chest to bind them at your sides.");
+	output("\n\nStrips of red-black, rubbery tentacle snap across your torso, making your breath catch in your chest. ");
+	if(pc.biggestTitSize() >= 1) 
+	{
+		output("The tentacles cinch down tight against your ");
+		if(pc.biggestTitSize() < 2) output("petite");
+		else if(pc.biggestTitSize() < 5) output("sizable");
+		else if(pc.biggestTitSize() < 10) output("voluminous");
+		else if(pc.biggestTitSize() < 25) output("enormous");
+		else output("gargantuan");
+		output(" breast, binding them tight against your chest, while more and more shiny black tentacles layer on. ");
+	}
+	output("When several cold, rubbery tentacles drag across your nipples, you let out a cry, a jolt of pleasure running through you. You arch your back, halfway encased in the creature’s embrace, struggling against the alien fetters. What is this thing doing to you?");
+	output("\n\nThe horror’s face bobs above you, the anchor for its dendritic body, hundreds of fleshy strips sprouting from behind it. It tilts back and forth lazily, occasionally rotating upside-down its eyes remaining fixed on you as it claims more and more of your frame.");
+	if(pc.isNaga()) output("\n\nThe monster’s tentacles spiral up your tail.You thrash your powerful lower half, swinging it through the beast’s amorphous cluster, but succeed only in tangling more of the creature. Red-black ribbons of tentacle coil up around your serpentine lower half, encasing your form one inch at a time.");
+	else if(pc.legCount >= 4) output("\n\nThe creature’s tentacles snap tight around your ankles, drawing them together, hogtying your lower half. You lurch at the waist, trying to reach them, remembering too late that your arms are bound at your sides, and proceed to only flop against the frozen ground. You do realize, though, that as chill as the tentacle wraps are to the touch, they shield you from contact with the even-colder snow. Soon, the monster has your entire lower half bound in skin-tight strips of red-black tentacle. You clench your toes, barely able to move them in the creature’s tight embrace.");
+	else output("\n\nYou feel more tightness around your [pc.thighs], drawing them tight against each other. You pull your knees up instinctively, only to find that you can barely move them with the layered coils wrapped snugly around your extremities. You strain your muscles and find that you can barely wiggle your toes.");
+	output("\n\nYou yelp when the tentacles brush across your cheek, your eyes widening as the horror’s face drifts nearer to yours. Your arms are pinned at your sides, your [pc.legOrLegs] wrapped tighter than a tove’s bank account. You open your mouth, managing to yelp out a single syllable before the cool, living strips of tentacle clap down tightly around your jaw. You thrash, wrestling your head away from the rubbery touch of the nightmare’s icy touch, only to see three more red-black pseudopods descend upon you.");
+	output("\n\nLayers of tentacle wrap around your head, mummifying you in living bandages. When the bands finally cross your vision, you are treated to one last sight of the creature’s unchanging face, watching you with eerie calm.");
+	output("\n\nYou can’t move-you can’t see! You thrash blindly, barely able to wiggle your body. It’s all you can do to breathe through a few gaps near your mouth. Your bound limbs are stuck tight to your sides, and the cold tentacles pull ever tighter against your [pc.skinFurScales]. Is this nightmarish creature trying to crush you? You struggle harder against the monster, but the cold touch of this creature is making you feel sluggish. Your muscles feel stiff, and every movement brings another squeeze from the horror.");
+	output("\n\nAfter a few moments, your struggles slow, and the creature stops squeezing. The tentacles around you are snug, but not so tight that you’re losing circulation. Under the right circumstances-certainly less frightening circumstances-the compression might actually feel relaxing, like a full-body massage.");
+	output("\n\nWithout warning, the tentacles begin shifting again. Is it too much to hope that the creature can read your mind? For a moment, you’re almost certain it can, as the living bindings around you shift and squirm around your hips. You gasp through the organic gag in your mouth as the tentacles worm their way between your thighs.");
+	output("\n\nWhen the first chilly pseudopod wriggles against your backdoor, you moan in apprehension. The beast is already wrapped so tightly around you-what else could it possibly do? Tentacles slither between your buttcheeks as one pushes insistently against your pucker. Resisting initially, you can’t help but shiver at the chilly teasing at your bud. In that moment of weakness, the spade-like tip worms into your hole. You let out a muffled yelp as it immediately squirms its way into you. As if sensing their fellow’s invasion, more follow suit, squirming into your dark recesses, twisting and stretching you out for even more writhing lengths. You yelp as the creature fills you with its members, creeping deeper and deeper inside you. But with every probing push you shudder, realizing how good it feels to be filled to the brim with tentacles.");
+	if(pc.hasVagina()) output("\n\nYou yelp at the cold touch of a spade-shaped tentacle tip against your undercurve. The pliant tips of the frigid feelers worm their way against your shivering folds. You feel the wraps around your mouth flutter outward with the surprisingly lustful gasp that spills from between your lips. The creature’s bands are pulled so tight around you that you’re not sure how it’s slipping more and more against your quivering cooch. But you can certainly feel them-one, two, three-the creature invades your body, its lissome lengths exploring your snatch, filling you up with cthonic members. It’s not quite fucking-the monster doesn’t actually seem interested in that-but the constant pressure filling you up is starting to feel really, really, good. Soon you feel a knot of at least a half dozen of tentacles writhing deep inside you, eliciting a profoundly disturbing pleasure.");
+	if(pc.hasCock()) 
+	{
+		output("\n\nThe tight coil of fleshy fronds slithers around your dick, winding around and around your ");
+		if(pc.cocks[0].cLength() < 6) output("pitiful");
+		else if(pc.cocks[0].cLength() < 12) output("substantial");
+		else if(pc.cocks[0].cLength() < 25) output("massive");
+		else output("gargantuan");
+		output(" length. You buck your hips involuntarily at the long, slow squeezing of the tentacles, sure that you just felt the first bead of pre-cum leak from the head of your cock. An odd, rhythmic shiver runs through the tentacles, and they continue slithering around your shaft, sliding around it in irregular paths. It’s not quite jacking you off, but at the same time, you can feel your own pulse speeding up against the fronds. With the tentacles wrapped so tightly around your dick, you can feel the next bead of pre-cum traveling all the way up your urethra, practically squirting from your tip into the layer of monster. The wraps around your dick slither faster in response, spiraling around your meat, making your heart pound faster.");
+	}
+	output("\n\nYour breath quickens as you squirm against the horror’s dendritic body. Apparently mistaking your intention, it squeezes tighter around you. You moan against your living gag, the extra stimulations only serving to turn you on even more. You drool against the living bonds, feeling the the tentacles wicking away the moisture as fast as you produce it.");
+	output("\n\nIt’s so tight! All you can do is lie motionlessly, blind and dumb as the monster wrings out your helpless body. You feel a heat rising in you-it should be sweltering, wrapped up so tight like this, but the beast is cold, and its members steal the heat from your [pc.skinFurScales] as fast as it comes. You’re in ecstatic agony-feeling the surge of a climax building in your rigid body, and unable to do anything except whimper.");
+	output("\n\nWhen your orgasm quakes through your vulnerable body, all you can do is scream through your mouthful of tentacle. Your sphincter squeezes tight against the invading cluster of tentacles");
+	if(pc.hasCock()) output(" as they grind down hard against your prostate");
+	output(".");
+	if(pc.hasCock()) 
+	{
+		output(" Sealed in a slithering sheath of tentacles, your cock" + (pc.cockTotal() > 1 ? "s spasm":" spasms") + ", throbbing hard against " + (pc.cockTotal() == 1 ? "its":"their") + " tight restraint. You let out a groan as you release, ");
+		if(pc.cumQ() < 10) output("droplets");
+		else if(pc.cumQ() < 250) output("a load");
+		else if(pc.cumQ() < 1000) output("a huge jet");
+		else if(pc.cumQ() < 5000) output("a heavy stream");
+		else output("buckets of cum");
+		output(" firing against the tight tentacles bands. With no place to go, it squirts against your body, squelching between you and the horror, oozing against the hermetic wraps.");
+	}
+	//vag=
+	if(pc.hasVagina()) 
+	{
+		output("\n\nYour [pc.vagina] clamps down on the barrage of tentacles pistoning in and out of it. Slick with your juices, the creature’s arms squelch audibly as " + (silly ? "you cuntvulse":"your cunt convulses") + ".You suck in a ragged gasp as your orgasm hits you, bringing a tidal wave of pleasure down on your helpless form. Your [pc.vagina] " + (!pc.isSquirter() ? "oozes out a trickle":"gushes a fountain") + " of girlcum across the invading tentacles.");
+	}
+	if(!pc.hasGenitals()) output("\n\n");
+	else output(" ");
+	output("In the darkness of the living blindfold, fireworks explode across your vision as your body is wracked with your convulsive climax. You spasm again, overwhelmed by the full-body crush of tentacles, before your poor brain finally overloads, pitching you down into insensibility.");
+	output("\n\n...");
+	output("\n\nThe wind howls and you open your eyes. You blink and sit up. Gone is the tentacled horror, and with it, the empty wasteland. You glance around, finding nothing out of the ordinary. It must have been a dream!");
+	output("\n\nBut then, where did that gust of wind come from?");
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+
+//Dullahan Spoopy Times
 //A Halloween 2018 Contest Submission
 //By: Lkynmbr24
 //available to PCs with a penis.

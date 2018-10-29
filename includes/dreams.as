@@ -86,6 +86,8 @@ public function dreamChances(inShip:Boolean = false):Boolean
 			if(pc.hasStatusEffect("Orally-Filled")) dreams.push(foxxlingsOralCumDream);
 			//Anal Cummies
 			if(pc.hasStatusEffect("Anally-Filled")) dreams.push(analButtCumMonster);
+			//Hello Nurse
+			if(pc.hasGenitals()) dreams.push(halloweenNurseDream);
 		}
 		if(MailManager.isEntryViewed("lets_fap_unlock"))
 		{
