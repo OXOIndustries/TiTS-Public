@@ -1,4 +1,96 @@
-﻿//Spooky hyena dream
+﻿//" Spooky " Halloween Dream
+//Mistybirb
+//My random attempt at a Halloween dream, but it's not for the contest. Just something I did randomly. I don't want to officially submit it because Fen won't be able to pay me even if I win and I just don't really want to have it be in the contest in general. It took me like an hour anyways. :P
+
+//If I get motivated I'll tweak a few things in this and make a CoC2 version. It'd fit either of them, being a dream and all.
+//Pure female vagina-having Steeles/Champions only. Because it's fuckin' holiday dream and I don't wanna hassle with PC set-ups I don't care about. :P
+//Tags: F/F(H), Transformation, Futa, bondage, femdomme, impreg/breeding
+
+//TiTS Version
+public function mistybirbsDream():void
+{
+	clearOutput();
+	author("MistyBirb");
+	showName("WHERE\nARE YOU?");
+	output("You slumber peacefully, breathing deeply in and out, until you feel something poke you in the side. Still unconscious, you frown and roll over, a loud rustling and cracking sound accompanying your movement. Slowly waking up, you shake your head and blink, wondering what is going on, and what’s in your bed.");
+	output("\n\nThe answer to your question shocks you. You are no longer in your bed at all, but a dark forest. Utterly confused, you rise to your feet and look around. A full moon is high overhead, giving you just enough light to see your immediate surroundings. The trees are mostly leafless and bare, their naked branches carving menacing silhouettes into the moonlit sky. At your feet are piles of leaves and twigs, covering the majority of the forest floor in autumnal detritus. There’s a chill in the air, and you shiver when a breeze rustles your hair. As you instinctively cross your arms and run your hands across your [pc.skinFurScales] for warmth, you realize that not only have you somehow been transported to a cold, creepy forest, but you have been stripped naked!");
+	output("\n\nA real sense of panic is creeping into the corners of your mind, and you frantically look around for any sign of what direction to go to get out of the woods, any small light or sound that might lead to civilization. Surely, you had to have been brought here by someone or something. People don’t just go to sleep in their ship and wake up on an unknown planet without cause.");
+	output("\n\nYou breathe a sigh of relief as you spot the faintest flicker of light in the distance, a speck of orange-ish yellow that sticks out against the pitch blackness beyond the reach of the moonlight. Freezing, you hurry towards it as fast as you can, shuffling your way through the forest. Even better, the light is not as far away as it seemed, and you come upon a rag-tag little cottage with a small candle illuminating its door. The abode looks as if it’s all alone in these woods, more like a hermit’s lonely home than a part of a larger settlement, but it’s something.");
+	output("\n\nAs you reach out to open the door, you stop, not letting your eagerness to get out of the cold usurp your sense of caution. And, to a lesser extent, your shame. You have no idea who lives here, it could be the very person that is responsible for bringing you to this place, and even if that’s not the case, barging into their home completely naked in the middle of the night is not likely to make a good first impression...");
+	output("\n\nHowever, you have no other options. Hesitantly, you knock on the door, but there’s no response. You knock again, this time pressing your ear to the shoddy wooden planks to try and hear if someone is inside. You think you hear something, a voice, maybe, and you lean in more to try and catch anything that’s being said.");
+	clearMenu();
+	addButton(0,"Next",mistybirbsDream2);
+}
+
+public function mistybirbsDream2():void
+{
+	clearOutput();
+	showName("A\nWITCH");
+	author("MistyBirb");
+	output("But the door is far shoddier in construction than you first thought, and a series of loud snaps precedes its total collapse inwards! You cry out as you lose your balance and fall forwards with the door, slamming against the floor of the cottage. Dazed, you raise your head, looking the owner of the cottage right in the eye. A strange-looking woman lounging on a couch, wearing a bizarre pointed hat and what looks like a... robe or dress of some kind.");
+	output("\n\nCoughing, you can’t manage an apology. You just pull yourself halfway to your feet and raise your arms, trying to be as non-threatening as possible and hoping she doesn’t have any weapons on her. As the dust settles, there’s a long and awkward silence, the woman with the strange hat staring at you with an unreadable expression. Getting a better look at her, you can see she is <i>quite</i> the woman, with breasts and hips so big and curvaceous they look as if they’re about ready to burst out of her clothing. Finally, she rises to her feet, a menacing smile on her face. Her robe has several cuts in it to bare a great deal of her skin, and a perfectly smooth, bare thigh comes to rest directly in front of your face as she sensually walks over to you, her high heels clicking against the wood floor of her cottage with each step.");
+	output("\n\nUneasily, you slowly move your gaze upward, seeing nothing but the underside of her enormous bosom until she leans forward a bit to look down at you with an intimidating air of authority. <i>“Hello there,”</i> she murmurs, still smiling.");
+	output("\n\nYou try to stammer out a greeting of your own, but it’s turned into a frightened yelp as you are yanked into the air by some unknown force, pulling all of your limbs outwards and leaving you hanging there, completely defenseless. You struggle against your mysterious bindings, not understanding what has happened to you. Nothing is holding your wrists and ankles, yet you are held aloft all the same. You see that the woman is pointing a single finger at you, and as she twirls it and points towards a nearby table, you are carried through the air and slammed against the tabletop with crushing force, left staring up at the ceiling of the cottage.");
+	output("\n\n<i>“There I was, lamenting how I had no guests to entertain me,”</i> she says, <i>“And then you barge right in, naked and ready! How thoughtful of you.”</i> She settles beside you and runs her hands along your naked body, laughing as she does. <i>“Though I really wish you’d not broken down my door...”</i> ");
+	output("\n\n<i>“I’m sorry,”</i> you gasp, <i>“I didn’t mean to-”</i> She covers your mouth with her hand, her soft skin perfumed and alluring. Her pleasant scent is so pronounced that it overrides your thoughts entirely for a moment, leaving you blinking in surprise and taking a deep breath through your nose. As you do, you feel your face flush and your vagina clench in need. Her perfume is definitely more than just an enticing fragrance...");
+	output("\n\n<i>“Hush,”</i> she says, <i>“I’m not interested in apologies. I’ve already determined how you’re going to repay me. You see, I’m lonely out here. I’ve no friends to speak of, no one to spend any time with. It gets boring. You’re going to help me change that.”</i> You look up at her nervously, seeing a twisted smirk and a malicious glint in her eyes. <i>“Of course, I’ll need to make a few <b>changes</b> before that can happen...”</i>");
+	pc.lust(20);
+	clearMenu();
+	addButton(0,"Next",mistybirbsDream3);
+}
+
+public function mistybirbsDream3():void
+{
+	clearOutput();
+	author("MistyBirb");
+	showName("A\nWITCH");
+	output("Without elaborating, she pulls her hand away and sashays across the cottage. You catch a glimpse of her bare ass as her high-slit garment sways to and fro with her movement, and you clear your throat uncomfortably, squirming against your bindings both out of a desire to escape and an increasingly powerful need to touch yourself. A cold breeze from outside helps you focus, and you realize that if you can just free yourself from whatever this strange woman has done to you, you could slip out into the night before she even had a chance to turn around.");
+	output("\n\nThe clinking of glass and a bubbling sound catch your attention, and you turn your head to see your captor carefully pouring a neon liquid into another, equally garish concoction. She hums a happy tune as she swirls the mixture about, tapping her finger against the glass and watching it closely. It begins to glow, and as she smiles broadly, you break into a sweat. You wrack your brain, and the only conclusion you can come to, despite the seeming impossibility of it, is that you’ve been taken captive by some kind of witch out of a fairy tale! The hat, the potions, and the inexplicable, almost <i>magical</i> nature of your bondage all point towards it, and you don’t really have time to argue with yourself over how impossible such a thing is.");
+	output("\n\nRealizing it’s now or never, you struggle valiantly, grunting in exertion as you try to break free, but the witch scoffs and rolls her eyes, pointing another finger at you and pinning the entirety of your body against the table. You can’t move a muscle, and you’re helpless to stop her as she leans over you, pulls your mouth open, and dumps the mysterious glowing liquid down your throat. You can’t help but swallow it, eyes wide in horror as your imagination runs wild with what it might do to you.");
+	output("\n\nSatisfied, the witch pulls her clothing down around her magnificent breasts, then lets it fall to the ground entirely, baring her immaculate, voluptuous body. She walks back over to her couch and falls into it, stretching sensually and slipping a hand between her legs.");
+	output("\n\n<i>“Oh, you have no idea how long I’ve been wanting to do this, dear,”</i> she says, letting out cute moans and sighs as she openly masturbates. You want to stare, but the rising heat in your groin is distracting you. You can feel the mixture already having an effect on you; you’re sweating, and your heart is beating faster and faster with each passing second. There is this irrepressible impulse to buck your hips overtaking you, and you do so several times, humping the empty air for some inexplicable reason.");
+	output("\n\n<i>“Ah, fuck...”</i> you gasp, frowning and throwing your head back and forth. Something is very wrong with you, and it’s only getting worse with time. You thrust into the air again, your ass slamming against the table violently as your hips come back down. Looking at your crotch, you pale as you see something... phallic growing out of your pelvis. Unable to control yourself, you cry out and thrust again, then again. Each time you do, you sprout a few more inches of dick, until you thrust one final time and break down, letting out an orgasmic scream as you cum all over your stomach. The sensation of covering yourself in semen is an entirely new one, and it cements the reality of your situation. Tears welling in your eyes, you pant wildly as you take in your new cock, easily more than half a foot long, maybe even a full foot in length.");
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Next",mistybirbsDream4);
+}
+
+public function mistybirbsDream4():void
+{
+	clearOutput();
+	author("MistyBirb");
+	showName("A\nWITCH");
+	output("<i>“Oh my,”</i> the witch says, <i>“That worked better than I expected.”</i> She stops playing with herself and stands up, climbing onto the table and straddling you. <i>“I can’t wait to try it out.”</i> With a quick snap of her fingers, she makes your cock spring back to life, and you shiver with newfound need mere moments after covering yourself in your own cum.");
+	output("\n\n<i>“Now then,”</i> she continues, <i>“I mentioned you repaying me for barging into my house and breaking down my door, yes?”</i> You nod meekly. <i>“Well, you’re going to give me an adorable little baby as payment. A child of my own to love and cuddle and fawn over all day, so I’ll never be lonely again.”</i> Before you can even process her ultimatum, she’s lifted herself up and lowered herself onto your dick, leading you to arch your back and let out a long, lusty moan. In the span of a few minutes you’ve gone from holding an idle curiosity about what it might feel like to have a cock and bury it in a hot, needy woman to experiencing it firsthand, and your head is spinning, struggling to keep up.");
+	output("\n\n<i>“Remember, every drop goes inside me, are we clear? I’ll be keeping you here until I’m pregnant, so no funny business.”</i>");
+	output("\n\nDespite the absurdity of your situation, you can’t help but speak up. <i>“H-how will you know?”</i>");
+	output("\n\nYour partner smiles, gently tracing her fingertips across her belly. Swirls of light and color are left in their wake, and a strange, distinctly heart-shaped sigil appears on her skin. <i>“When this starts to glow, you can leave, sweetie. Deal?”</i>");
+	output("\n\nYou nod, your head so fogged with desire that you barely even comprehend what you’re agreeing to. All you know is that you now have a cock, and it’s currently in heaven. You babble incoherently as the mommy-to-be begins to ride you, and squirm against your bindings beneath her, though no longer out of a desire to escape, but simply an unconscious response to her warm, wet folds sliding up and down the length of your shaft. In mere moments, you cum again, vision going black for a few seconds as your orgasm overpowers you.");
+	output("\n\nBut you hear the witch snap her fingers once more and your cock, still inside her, surges back to its full hardness. You whimper and whine, already exhausted, but it’s clear you’re not going anywhere anytime soon.");
+	output("\n\n<i>“Aww, I’m sure you’re tired,”</i> the witch coos, leaning forward to plant kisses on your neck and gently massage your breasts, <i>“but we’re just getting started.”</i> She grabs the sides of your head and pulls you into a <i>violent</i> kiss, bouncing on your cock with enough force to make the table shake. You can only hope it’s sturdier than the door was as you stare into the witch’s eyes and have your aching cock milked by her sperm-craving slit. You endure about as long as last time, wincing as your sore and battered body tenses yet again, your third orgasm in what has to have been only a few minutes.");
+	output("\n\n<i>“Yes, yes!”</i> the witch yells, clearly enjoying herself, <i>“Cum in me, I want it deep inside!”</i> You do as you’re told, not like you have any choice, pumping another load into in her baby-crazed body. She never even stops riding you this time, snapping her fingers twice without missing a beat. Whatever magic she’s using is clearly cumulative, and you’re left a shivering, incoherent wreck as your cock comes back from the dead a fourth time. You can barely tell what’s going on anymore, the entirety of your perception reduced to the sounds and sensations of carnal, almost bestial lovemaking.");
+	output("\n\n<i>“Fuck me, fuck me, fuck me! Knock me up!!”</i> the witch screams, and you realize that at some point she stopped riding you and you started thrusting into her of your own free will. It’s hard and uncomfortable to do so, bound as you are, but the sexual madness that has consumed you means you pay no mind to such trivial things. All that matters now is shoving your dick inside the beautiful woman on top of you.");
+	output("\n\nThis time, it’s the witch that cums. Her voice breaks as she throws her head back, her hat flying across the cottage. She falls forward, clinging to you as she’s rocked by an orgasm, and your own isn’t far behind. You’re barely conscious now, maybe even barely <i>alive</i>, but it seems the third time’s the charm. As the witch takes a few deep breaths and pulls herself upright, you notice a bright pink glow coming from her belly. She runs a hand through her hair and laughs, almost in disbelief, before shakily climbing off of you and falling back onto her couch. Your wrists and ankles are promptly freed from their binding, and you curl into a ball atop the table, gasping for breath.");
+	output("\n\n<i>“Thank you darling,”</i> the witch pants, <i>“you’re free to go.”</i>");
+	output("\n\nBut you can’t even stand up. You’re an exhausted, quivering mess, and you hear the witch sigh. Your eyes are fluttering as you feel yourself being lifted into the air and set down gently on something soft and sweet-smelling. The last thing you see is a glimpse of the witch’s smiling face as she lovingly strokes her stomach...");
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mistybirbsDream5);
+}
+
+public function mistybirbsDream5():void
+{
+	clearOutput();
+	author("MistyBirb");
+	output("You yell as you fly upright in your bed, covered in sweat. You pull your blankets off yourself and look down between your legs, groping blindly to see if you have a cock or not. You don’t. Laughing to yourself, you fall back into your bed. It was a dream...");
+	output("\n\nJust a dream.");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+
+
+//Spooky hyena dream
 //Doots dream
 //Can be procked when sleeping if you’ve fucked verusha prior to the dream. After getting the dream the pc will need to fuck Verusha again to get the dream again. Requires it to be Halloween.
 //To no one’s surprise requires genitalia.

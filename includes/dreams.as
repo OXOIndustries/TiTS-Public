@@ -98,6 +98,8 @@ public function dreamChances(inShip:Boolean = false):Boolean
 			if(paigeIsCrew()) dreams.push(hyperPaigeDream);
 			//Dr. Hyena dream!
 			if(pc.hasGenitals() && flags["SEXED_VERUSHA"] != undefined) dreams.push(spookyHyenaDream);
+			//MistyBirbs witch futa stuff
+			if(pc.hasVagina() && !pc.hasCock()) dreams.push(mistybirbsDream);
 		}
 		if(MailManager.isEntryViewed("lets_fap_unlock"))
 		{
