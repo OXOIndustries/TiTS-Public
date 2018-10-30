@@ -1,4 +1,5 @@
 ﻿import classes.Items.Toys.GravCuffs;
+import classes.Items.HalloweenItems.WitchsOutfit;
 
 /*Inessa and the Happy Tails
 By JimThermic
@@ -595,6 +596,12 @@ public function inessaBuyGo():void
 	}
 	else chars["INESSA"].destroyItemByClass(LeatherLeash, -1);
 	
+	if(isHalloweenish())
+	{
+		if(!chars["INESSA"].hasItemByClass(WitchsOutfit)) chars["INESSA"].inventory.push(new WitchsOutfit());
+	}
+	else chars["INESSA"].destroyItemByClass(WitchsOutfit, -1);
+
 	CodexManager.unlockEntry("BionaHoles");
 	CodexManager.unlockEntry("Grav Cuffs");
 	//[Sex Gear] [Clothes] [Other]
