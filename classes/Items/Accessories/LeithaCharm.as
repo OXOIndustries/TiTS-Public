@@ -58,7 +58,7 @@
 		
 		// Using Leitha Charm as the test for this system, so there's going to be some hard-coded checks in various places
 		// to ensure this stuff works.
-		override public function onEquip(targetCreature:Creature):void
+		override public function onEquip(targetCreature:Creature, outputText:Boolean = false):void
 		{
 			/*
 			 * se1 + deltaT
@@ -68,7 +68,7 @@
 			targetCreature.createStatusEffect("Leitha Charm", -720 + rand(360), 0, 0, 0, false, "Pill", "Your leitha charm necklace hangs from your neck, infusing your body with targeted transformative nanomachines.", false, 0);
 		}
 		
-		override public function onRemove(targetCreature:Creature):void
+		override public function onRemove(targetCreature:Creature, outputText:Boolean = false):void
 		{
 			targetCreature.removeStatusEffect("Leitha Charm");
 		}
@@ -276,10 +276,13 @@
 			{
 				nl = true;
 				output("Your [pc.legs] start to tremble, suddenly wracked with an aching agony that quickly has you on your ass, clutching at your mutating lower body. Eventually, your");
-				if (target.legCount <= 1)
+				if (target.legCount < 2 && target.legCountUnlocked(2))
 				{
 					output(" lower body splits, becoming a pair of legs!");
 					if (wrongLegType) output(" They quickly start to resemble those of a leithan, complete with luminescent streaks and chitinous plates.");
+					
+					target.genitalSpot = 0;
+					target.legCount = 2;
 				}
 				else output(" [pc.legs] begin to look like those of a leithan, growing chitinous plates and luminescent streaks.");
 
@@ -291,7 +294,6 @@
 					target.addLegFlag(GLOBAL.FLAG_SCALED);
 					target.addLegFlag(GLOBAL.FLAG_PAWS);
 				}
-				if (target.legCount < 2 && target.legCountUnlocked(2)) target.legCount = 2;
 				
 				output(" You clamber up onto your");
 				if (wrongLegType) output(" clawed toes");

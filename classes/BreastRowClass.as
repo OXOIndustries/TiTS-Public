@@ -1,6 +1,8 @@
 ﻿package classes
 {
 	import classes.DataManager.Serialization.UnversionedSaveable;
+	import classes.ItemSlotClass;
+	import classes.Items.Miscellaneous.EmptySlot;
 	public class BreastRowClass extends UnversionedSaveable
 	{
 		//constructor
@@ -19,9 +21,17 @@
 		public var breastRatingMod:Number = 0;
 		public var breastRatingLactationMod:Number = 0;
 		public var breastRatingHoneypotMod:Number = 0;
+
+		//New piercing hotness:
+		public var piercing:ItemSlotClass = new EmptySlot();
 		
 		public function breastRating(arg:Number = 0, apply:Boolean = false):Number
 		{
+			if(isNaN(breastRatingRaw)) breastRatingRaw = 0;
+			if(isNaN(breastRatingMod)) breastRatingMod = 0;
+			if(isNaN(breastRatingLactationMod)) breastRatingLactationMod = 0;
+			if(isNaN(breastRatingHoneypotMod)) breastRatingHoneypotMod = 0;
+			
 			if (apply)
 			{
 				breastRatingRaw = arg;

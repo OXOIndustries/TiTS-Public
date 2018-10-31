@@ -33,8 +33,8 @@ package classes.Characters
 			this.originalRace = "ausar";
 			this.a = "the ";
 			this.capitalA = "The ";
-			// this.long = "You're fighting a pirate techie, an ausar woman in a flight suit with a machine pistol at her hip. She's got a shock of blonde hair, perky breasts under her suit, and a shield generator that's thrumming with overcharged energy."
-			this.long = "An ausar woman in a flight suit with a machine pistol at her hip. She's got a shock of blonde hair, perky breasts under her suit, and a shield generator that's thrumming with overcharged energy.";
+			// this.long = "You’re fighting a pirate techie, an ausar woman in a flight suit with a machine pistol at her hip. She’s got a shock of blonde hair, perky breasts under her suit, and a shield generator that’s thrumming with overcharged energy."
+			this.long = "";
 			this.customBlock = "The pirates armor deflects your attack with an alarming ease.";
 			this.isPlural = false;
 			isLustImmune = false;
@@ -158,7 +158,7 @@ package classes.Characters
 			//Goo is hyper friendly!
 			this.elasticity = 1;
 			//Fertility is a % out of 100. 
-			this.fertilityRaw = 1.05;
+			this.fertilityRaw = 10;
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 			
@@ -189,6 +189,8 @@ package classes.Characters
 		{
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
+			
+			long = "An ausar woman in a flight suit with a machine pistol at her hip. She’s got a shock of blonde hair, perky breasts under her suit, and a " + (shields() > 0 ? "shield generator that’s thrumming with overcharged energy" : "currently disabled shield generator") + ".";
 			
 			// 1x per encounter, don't call it "Cooldown" to avoid auto-handling
 			if (shields() <= 0 && !hasStatusEffect("Shield Boost CD"))
@@ -233,7 +235,7 @@ package classes.Characters
 			}
 			else
 			{
-				output("\n\nYou respond with a polite, and obviously fake, cough. The ausar womans sensual show ends as abruptly as it started. <i>“Hey, don’t stop now!”</i> You shoot a glare at Saen. <i>“What? I'm not going to turn down a free show.”</i> Touché.");
+				output("\n\nYou respond with a polite, and obviously fake, cough. The ausar womans sensual show ends as abruptly as it started. <i>“Hey, don’t stop now!”</i> You shoot a glare at Saen. <i>“What? I’m not going to turn down a free show.”</i> Touché.");
 				applyDamage(new TypeCollection( { tease: 2 } ), this, pc, "minimal");
 				applyDamage(new TypeCollection( { tease: 2 } ), this, saen, "suppress");
 			}
@@ -246,7 +248,7 @@ package classes.Characters
 
 			if (rangedCombatMiss(this, target))
 			{
-				output(" though " + (target is PlayerCharacter ? "you're" : target.a + target.short + " is") + " able to duck out of the way.");
+				output(" though " + (target is PlayerCharacter ? "you’re" : target.a + target.short + " is") + " able to duck out of the way.");
 			}
 			else
 			{
@@ -256,8 +258,8 @@ package classes.Characters
 
 				if (target.physique() + rand(25) + 1 < 35)
 				{
-					output(" The shock of it leaves " + (target is PlayerCharacter ? "you" : target.a + target.short) + " reeling -- <b>" + (target is PlayerCharacter ? "you're" : target.mfn("he's", "she's", "it's")) + " stunned!</b>");
-					target.createStatusEffect("Stunned", 3, 0, 0, 0, false, "Stun", "Cannot take action!", true, 0,0xFF0000);
+					output(" The shock of it leaves " + (target is PlayerCharacter ? "you" : target.a + target.short) + " reeling -- <b>" + (target is PlayerCharacter ? "you’re" : target.mfn("he’s", "she’s", "it’s")) + " stunned!</b>");
+					CombatAttacks.applyStun(target, 3);
 				}
 			}
 			
@@ -304,6 +306,11 @@ package classes.Characters
 		override public function getCombatDescriptionExtension():void
 		{
 			output("\n\nA small ball-shaped hover drone floats around her, spraying laser fire everywhere."); 
+		}
+		
+		override public function isPregnant(vIdx:int = 0):Boolean
+		{
+			return (kGAMECLASS.flags["SAM_GAST_PREG_TIMER"] != undefined);
 		}
 	}
 }

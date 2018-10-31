@@ -119,23 +119,21 @@ package classes.GameData.Pregnancy
 			if (pregSlot == 3 && !this.canImpregnateButt) return false;
 			
 			// This may need to be reworked depending on a discussion about the actual handling of cunttail preggers
-			if (pregSlot == 4 && !this.canFertilizeEggs)
+			if (pregSlot == 4)
 			{
-				return false;
-			}
-			else
-			{			
-				// Egg fertilization
-				if (this.canFertilizeEggs)
+				if(this.canFertilizeEggs)
 				{
-					if (mother.hasTailFlag(GLOBAL.FLAG_OVIPOSITOR) && (mother.tailType == GLOBAL.TYPE_ARACHNID || mother.tailType == GLOBAL.TYPE_DRIDER || mother.tailType == GLOBAL.TYPE_BEE))
+					// Egg fertilization
+					if (mother.hasTailOvipositor())
 					{
 						if (this.alwaysImpregnate || mother.fertility() > Math.floor(Math.random() * this.basePregnancyChance))
 						{
-							mother.fertilizeEggs();
+							mother.fertilizeEggs("tail");
+							return true;
 						}
 					}
 				}
+				return false;
 			}
 			
 			var wasSuccessful:Boolean = false;
@@ -229,6 +227,9 @@ package classes.GameData.Pregnancy
 			if (newInc < 0 && oldInc >= 0)
 			{
 				if (_debugTrace) trace("Incubation expired");
+				
+				pData.pregnancyIncubation = -1;
+				
 				if (_onDurationEnd != null)
 				{
 					if (debugTrace) trace("Calling onDurationEnd handler");
@@ -238,9 +239,6 @@ package classes.GameData.Pregnancy
 				{
 					throw new Error("BasePregnancyHandler for type " + _handlesType + " doesn't have a defined onDurationEnd event handler.");
 				}
-				
-				pData.pregnancyIncubation = -1;
-				
 				return;
 			}
 			
@@ -269,11 +267,11 @@ package classes.GameData.Pregnancy
 			if (pregSlot == -1)
 			{
 				// Find the first available pregnancy slot on the mother, else return a failure
-				var slotType:uint;
+				var slotType:uint = Creature.PREGSLOT_NONE;
 				
 				if (thisPtr.canImpregnateButt && thisPtr.canImpregnateVagina) slotType = Creature.PREGSLOT_ANY;
-				else if (!thisPtr.canImpregnateButt) Creature.PREGSLOT_VAG;
-				else if (!thisPtr.canImpregnateVagina) Creature.PREGSLOT_ASS;
+				else if (thisPtr.canImpregnateVagina) slotType = Creature.PREGSLOT_VAG;
+				else if (thisPtr.canImpregnateButt) slotType = Creature.PREGSLOT_ASS;
 				
 				pregSlot = mother.findEmptyPregnancySlot(slotType);
 				
@@ -379,7 +377,7 @@ package classes.GameData.Pregnancy
 		 */
 		public function set onSuccessfulImpregnation(v:Function):void { _onSuccessfulImpregnation = v; }
 		public function get onSuccessfulImpregnation():Function { return _onSuccessfulImpregnation; }
-		public static function defaultOnSuccessfulImpregnation(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
+		public static function defaultOnSuccessfulImpregnation(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler, qtyEdit:Array = null):void
 		{
 			if (thisPtr.debugTrace) trace("defaultOnSuccessfulImpregnation handler called");
 			
@@ -395,16 +393,51 @@ package classes.GameData.Pregnancy
 			pData.pregnancyIncubation = thisPtr.basePregnancyIncubationTime;
 			if (thisPtr.debugTrace) trace("Total incubation time as " + pData.pregnancyIncubation);
 			
-			// Calculate the *number* of "children", if applicable
-			var quantity:int = rand(thisPtr.pregnancyQuantityMaximum + 1);
-			if (quantity < thisPtr.pregnancyQuantityMinimum) quantity = thisPtr.pregnancyQuantityMinimum;
+			// Define limits
+			var quantityMin:int = thisPtr.pregnancyQuantityMinimum;
+			var quantityMax:int = thisPtr.pregnancyQuantityMaximum;
 			
+			// Limit bonuses
+			var qtyMultOverride:Number = 1;
+			if (mother.perkv2("Broodmother") > 1) qtyMultOverride *= mother.perkv2("Broodmother");
+			if (qtyMultOverride > 1) quantityMax = Math.max(quantityMax, Math.round(quantityMax * qtyMultOverride));
+			
+			// Calculate the *number* of "children", if applicable
+			var quantity:int = rand(quantityMax + 1);
+			if (quantity < quantityMin) quantity = quantityMin;
+			
+			// qtyEdit is Array used to override the children calculations
+			// 0: Applies extra multiplier to quantityMax (after fertility calculation).
+			// 1: Minimum fertility threshold before adding extra children.
+			// 2: Increment to count through fertility loop.
+			if (qtyEdit != null && qtyEdit.length > 2)
+			{
+				var limit:Number = Math.min(qtyEdit[1], 100);
+				var inc:Number = Math.max(qtyEdit[2], 0.1);
+				var cnt:Number = 0;
+				
+				// Always start with the minimum amount of children.
+				quantity = quantityMin;
+				
+				// Unnaturally fertile mothers may get multiple children.
+				for(var i:Number = mother.fertility(); i >= limit; i -= inc)
+				{
+					quantity += rand((quantityMax - quantityMin) + 1);
+					// To prevent overloop crashes.
+					cnt++;
+					if (cnt >= 100) break;
+				}
+			}
+			if (qtyEdit != null && qtyEdit.length > 0 && qtyEdit[0] > 1) quantityMax = Math.round(quantityMax * qtyEdit[0]);
+			
+			// Quantity bonuses
 			var fatherBonus:int = Math.round((father.cumQ() * 2) / thisPtr.definedAverageLoadSize);
 			var motherBonus:int = Math.round((quantity * mother.pregnancyMultiplier()) - quantity);
 			
 			quantity += fatherBonus + motherBonus;
 			
-			if (quantity > thisPtr.pregnancyQuantityMaximum) quantity = thisPtr.pregnancyQuantityMaximum;
+			if (quantity < quantityMin) quantity = quantityMin;
+			if (quantity > quantityMax) quantity = quantityMax;
 			
 			pData.pregnancyQuantity = quantity;
 		}

@@ -269,14 +269,14 @@ package classes.Characters
 		
 		public function cumSpray(target:Creature, hostiles:Array):void
 		{
-			output("The captain stumbles back, rearing his tentacle-laden head back and convulsing violently. You blink in surprise as his head snaps forward, and every tentacle he’s got goes completely rigid, pointed right at [target.combatName] with all of their tapered tips. They swell, and then erupt in a geyser of pink-hued liquid, spraying it all over [target.combatHimHer].");
+			output("The captain stumbles back, rearing his tentacle-laden head back and convulsing violently. You blink in surprise as his head snaps forward, and every tentacle he’s got goes completely rigid, pointed right at " + target.getCombatName() + " with all of their tapered tips. They swell, and then erupt in a geyser of pink-hued liquid, spraying it all over " + target.getCombatPronoun("himher") + ".");
 			if (combatMiss(this, target))
 			{
-				output(" [target.CombatHeShe] shake" + (target is PlayerCharacter ? "" : "s") +" it off, drooling pink spunk everywhere.");
+				output(" " + StringUtil.capitalize(target.getCombatPronoun("heshe"), false) + " shake" + (target is PlayerCharacter || target.isPlural ? "" : "s") + " it off, drooling pink spunk everywhere.");
 			}
 			else
 			{
-				output(" Heat burns through [target.combatName], [target.combatHisHer] body reacting to the intense musk of the mutant jizz. The smell is incredible, intoxicating... alluring...");
+				output(" Heat burns through " + target.getCombatName() + ", " + target.getCombatPronoun("hisher") + " body reacting to the intense musk of the mutant jizz. The smell is incredible, intoxicating... alluring...");
 				
 				applyDamage(damageRand(new TypeCollection( { drug: 15 } ), 15), this, target, "minimal");
 			}
@@ -284,18 +284,19 @@ package classes.Characters
 		
 		public function cumFacial(target:Creature, hostiles:Array):void
 		{
-			output("One of Holmes’s tentacles snaps forward, flinging a huge gout of pink cum at [target.combatName]" + (target is PlayerCharacter ? "" : "’s") + " face! The mutant spunk splatters on [target.combatHimHer] face, tainting the air with its musk.");
+			output("One of Holmes’s tentacles snaps forward, flinging a huge gout of pink cum at " + target.getCombatName() + (target is PlayerCharacter ? "" : "’s") + " face! The mutant spunk splatters on " + target.getCombatPronoun("himher") + " face, tainting the air with its musk.");
 			if (!rangedCombatMiss(this, target))
 			{
-				output(" Worse, it lands right in [target.combatHisHer] eyes.");
-				
+				output(" Worse, it lands right in " + target.getCombatPronoun("hisher") + " eyes.");
+				var bBlind:Boolean = false;
 				if (!target.hasBlindImmunity())
 				{
 					output(" <b>" + (target is PlayerCharacter ? "You" : "The Chief is") + " blinded!</b>");
-					target.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0, 0xFF0000);
+					bBlind = true;
 				}
 				
 				applyDamage(damageRand(new TypeCollection( { drug: 15 } ), 15), this, target, "minimal");
+				if(bBlind) CombatAttacks.applyBlind(target, 3);
 			}
 		}
 		
@@ -312,7 +313,7 @@ package classes.Characters
 				
 				applyDamage(damageRand(new TypeCollection( { kinetic: 4, drug: target.hasAirtightSuit() ? 0 : 4 } ), 15), this, target, "minimal");
 				
-				target.createStatusEffect("Grappled", 0, 50, 0, 0, false, "Constrict", "You’re pinned in a grapple.", true, 0);
+				CombatAttacks.applyGrapple(target, 50);
 			}
 			else
 			{
@@ -332,7 +333,7 @@ package classes.Characters
 				output("The deranged mutant roars, hefting you up with his half dozen tentacles. You scream, flailing about as you’re hauled off your [pc.feet] by inhuman strength. Holmes lets out a bellow that rocks the bridge, and you’re sent flying across the room. You slam head-first into one of the bulkheads, and your vision explodes in shooting stars! <b>The force of the blow leaves you stunned!</b>");
 
 				applyDamage(damageRand(new TypeCollection( { kinetic: 25 }, DamageFlag.CRUSHING), 15), this, target, "minimal");
-				target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0, 0xFF0000);
+				CombatAttacks.applyStun(target, 2);
 				target.removeStatusEffect("Grappled");
 			}
 		}

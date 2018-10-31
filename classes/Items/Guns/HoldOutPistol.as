@@ -9,6 +9,7 @@
 	
 	public class HoldOutPistol extends ItemSlotClass
 	{
+		//Level 1. Balance 2.0
 		//constructor
 		public function HoldOutPistol()
 		{
@@ -38,10 +39,10 @@
 			attackNoun = "shot";
 			
 			//Information
-			this.basePrice = 300;
+			this.basePrice = 105;
 			this.attack = 0;
 			
-			baseDamage.kinetic.damageValue = 6;
+			baseDamage.kinetic.damageValue = 5;
 			baseDamage.addFlag(DamageFlag.BULLET);
 			
 			this.defense = 0;
@@ -49,7 +50,7 @@
 			this.shields = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
-			this.evasion = 0;
+			this.evasion = 1;
 			this.fortification = 0;
 
 			this.version = _latestVersion;

@@ -47,7 +47,7 @@ package classes.GameData
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_LOCATION] 		= new Object();
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_ITEM] 			= new Object();
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_MEDICAL] 		= new Object();
-			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_STORY] 			= new Object();	
+			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_STORY] 			= new Object();
 		}
 		
 		private static var ALWAYSUNLOCKEDENTRIES:Array;
@@ -208,7 +208,7 @@ package classes.GameData
 			}
 			
 			base[entryName] = CodexManager.CODEXCONTENTFUNCTORS[entryName];
-			CodexManager.CODEXCONTENTFUNCTORS[entryName].parent = base[entryName];
+			//CodexManager.CODEXCONTENTFUNCTORS[entryName].parent = base[entryName];
 		}
 		
 	}

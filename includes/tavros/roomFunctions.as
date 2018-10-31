@@ -2,20 +2,29 @@
 
 public function flyToTavros():void
 {
+	if (annoIsCrew() && flags["ANNO_MAID_OUTFIT"] == undefined) flags["ANNO_MAID_OUTFIT"] = 1;
+	
 	output("You fly to Tavros");
 	if(leaveShipOK()) output(" and step out of your ship.");
+	showBust("TAVROS");
+	showName("\nTAVROS");
 }
 public function puntToShip():Boolean
 {
 	clearOutput();
-	if(currentLocation == "POESPACE" && flags["POE_A_DISABLED"] == undefined)
+	if(currentLocation == "POESPACE")
 	{
-		landingOnPoeA();
-		return true;
+		var curDate:Date = new Date();
+		var curYear:Number = (curDate.getFullYear());
+		
+		if(flags["POE_A_DISABLED"] == undefined || flags["POE_A_YEAR"] == undefined || flags["POE_A_YEAR"] != curYear)
+		{
+			landingOnPoeA();
+			return true;
+		}
 	}
-	output("You really don't want to step out into the cold void of space. Maybe you should land somewhere?");
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	output("You really don’t want to step out into the cold void of space. Maybe you should land somewhere?");
+	moveTo("SHIP INTERIOR");
 	showLocationName();
 	processTime(1);
 	clearMenu();
@@ -92,6 +101,10 @@ public function hangarBonus():Boolean
 			}
 		}
 	}
+	if(days >= 8 && flags["AZRA_RECRUITED"] == undefined && flags["AZRA_DISABLED"] == undefined) 
+	{
+		if(azraBonusProc(btnSlot++)) return true;
+	}
 	
 	return false;
 }
@@ -137,35 +150,35 @@ public function hangarMoveTo(arg:Array):void
 
 public function tavrosHangarStuff():Boolean
 {
-	if(flags["MET_VAHN"] == undefined) {
-		output("\n\nYou spot a blond, half-ausar technician standing next to your ship, looking down at a datapad.");
-		addButton(0,"Tech",VahnTheMechanic);
-	}
-	else
+	// NPCs
+	var btnSlot:int = 0;
+	vahnTavrosBonus(btnSlot++);
+	if(celiseIsFollower() && !celiseIsCrew()) celiseTavrosBonus(btnSlot++);
+	if(bessAtTavros()) bessTavrosBonus(btnSlot++);
+	if(flags["AZRA_DISABLED"] == 0) azraBonusProc(btnSlot++);
+	//Mitzi
+	if(mitziOutsideShip())
 	{
-		output("\n\nVahn's around here somewhere, if you want to look for him.");
-		addButton(0,"Vahn",VahnTheMechanic);
-	}
-	//Celise In Tavros
-	if(celiseIsFollower() && !celiseIsCrew())
-	{
-		output("\n\nCelise is lounging here, just as green as ever and chatting amicably with one of the station's mechanics.");
-		addButton(1,"Celise",approachNonCrewCelise);
-	}
-	if (bessAtTavros())
-	{
-		output("\n\n[bess.name] is here, waiting around and generally staying out of the way as best [bess.heShe] can.");
-		addButton(2, bess.short, approachBessAtTavros);
-	}
-	if (flags["FALL OF THE PHOENIX STATUS"] == 1)
-	{
-		output("\n\n<i>The Phoenix</i> is nearby, only a stones-throw away from your own ship, docked in a much smaller neighboring hangar.");
-		
-		if (flags["SAENDRA PHOENIX AVAILABLE"] != undefined)
-			addButton(7, "The Phoenix", move, "PHOENIX RECROOM");
+		if(flags["MET_MITZI"] == undefined)
+		{
+			if(!pc.hasStatusEffect("SeenMitzi"))
+			{
+				pc.createStatusEffect("SeenMitzi");
+				pc.setStatusMinutes("SeenMitzi",120);
+			}
+			output("\n\n<b>A buxon gabilani leans against the side of your ship, vacantly chewing bubblegum and twirling a lock of purple-dyed hair.</b> She doesn’t seem the least bit concerned about anything else.");
+			addButton(btnSlot++,"Gabilani",mitziFirstShipApproach);
+		}
+		//Mitzi has been kicked off or is lurking around.
 		else
-			addDisabledButton(7, "The Phoenix", "The Phoenix", "This ship is locked and cannot be entered.");
+		{
+			output("\n\nMitzi the gabilani bimbo is lounging around, casting ‘fuck-me’ eyes at everything with two legs... or three... or more.");
+			addButton(btnSlot++,"Mitzi",mitziLurkingApproach);
+		}
 	}
+	
+	// Ships
+	
 	return false;
 }
 
@@ -208,15 +221,17 @@ public function redlightSEBonus():void
 }
 
 public function anonsBarAddendums():Boolean {
-	if (saendraBarAddendum(3))
-	{
-		return true;
-	}
 	anonsBarWaitressAddendum(0);
 	alexManHermIntro(1);
 	ShellyBlurb(2);
+	if (saendraBarAddendum(3)) return true;
 	annoAtAnonsAddendum(4);
-	ramisAtAnonsAddendum(5);
+	
+	var NPCs:Array = [];
+	if (ramisAtAnons()) NPCs.push(ramisAtAnonsAddendum);
+	if (fisiAtAnons()) NPCs.push(fisiAtAnonsAddendum);
+	if (NPCs.length > 0) NPCs[rand(NPCs.length)](5);
+	
 	roamingBarEncounter(7);
 	return false;
 }
@@ -247,7 +262,7 @@ public function tavrosResidentialDeckNoticeBoard():void
 public function displayNoticeBoardRD():void {
 	clearOutput();
 	
-	output("While this public notice board is holographic, it's easy to bring up a digipen and scribble whatever you want on it. There's a section for official notices to deck residents, informing them of maintenance schedules and other important events. The rest is for use by the public; filled with general requests or advertisements.");
+	output("While this public notice board is holographic, it’s easy to bring up a digipen and scribble whatever you want on it. There’s a section for official notices to deck residents, informing them of maintenance schedules and other important events. The rest is for use by the public; filled with general requests or advertisements.");
 	
 	output("\n\n");
 	if(flags["AINA_NOTICE_1_READ"] == undefined) {
@@ -255,7 +270,7 @@ public function displayNoticeBoardRD():void {
 		flags["AINA_NOTICE_1_READ"] = true;
 	}
 	else output("<b>Seen Before:</b>");
-	output(" It appears someone in the western walkway, room 154, is looking for a 'discreet individual' to help them with an unspecified problem. Pretty ambiguous.");
+	output(" It appears someone in the western walkway, room 154, is looking for a ‘discreet individual’ to help them with an unspecified problem. Pretty ambiguous.");
 	
 	output("\n\n");
 	if(flags["FYN_NOTICE_1_READ"] == undefined) {
@@ -263,7 +278,7 @@ public function displayNoticeBoardRD():void {
 		flags["FYN_NOTICE_1_READ"] = true;
 	}
 	else output("<b>Seen Before:</b>");
-	output(" There's a notice for 'interested individuals' to visit the eastern walkway for 'lessons', room 112. There seems to have been more to the message, but someone else has placed their own holo notice over it.");
+	output(" There’s a notice for ‘interested individuals’ to visit the eastern walkway for ‘lessons’, room 112. There seems to have been more to the message, but someone else has placed their own holo notice over it.");
 	
 	output("\n\n");
 	if(flags["SEMITH_NOTICE_1_READ"] == undefined) {
@@ -276,4 +291,15 @@ public function displayNoticeBoardRD():void {
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function northEastPlazaBonus():void
+{
+	fisiAtResDeckAddendum(0);
+}
+
+public function northWalkwayBonus():void
+{
+	fisiannaApartmentHandler(0);
+	kaseApartmentHandler(1);
 }

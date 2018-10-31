@@ -374,7 +374,7 @@ public function hanaFlirt():void
 			if (silly) output(" Awh yeah, looks like this is happening.");
 
 			clearMenu();
-			if (pc.hasCock() || pc.hasVagina()) addButton(0, "Backroom", hanaSexBackroom, undefined, "Backroom", "You could ask Hana to invite you into the private backroom of the bar for some perfectly vanilla frisky business.");
+			if (pc.hasCock() || pc.totalVaginas() > pc.blockedVaginas()) addButton(0, "Backroom", hanaSexBackroom, undefined, "Backroom", "You could ask Hana to invite you into the private backroom of the bar for some perfectly vanilla frisky business.");
 			else addDisabledButton(0, "Backroom", "Backroom", "You need genitalia to bang the huskar MILF!");
 
 			addButton(14, "Back", hanaMenu);
@@ -428,7 +428,7 @@ public function hanaSexBackroomII():void
 		if (pc.hasCock() && pc.isMasculine())
 		{
 			output("\n\nHana practically chirps when you got down to business and even now, with you grinding your [pc.thigh] against her she has her palm squeezing into the [pc.cockhead], teasing it with her fuzz-gloved fingers and getting a curious feel for it all");
-			if (pc.cocks.length > 1) output(" while dutifully ignoring the rest of your [pc.multicock]");
+			if (pc.cocks.length > 1) output(" while dutifully ignoring the rest of your [pc.multiCocks]");
 			output(".");
 		}
 		else if (pc.hasCock() && pc.isFeminine())
@@ -490,9 +490,10 @@ public function hanaSexBackroomII():void
 	}
 	else
 	{
-		output("\n\nWhile Hana is a little disappointed when you reveal your [pc.cunt] in full, admitting she’s a lot more heterosexual than not, you’re making up the difference. You liberally grind your thigh into her, twisting your leg side to side as you bounce and grind on her own, leaving a little sheen of [pc.girlCumNoun] along it, just shy of her natural, fuzzy stocking. Tentatively, not wanting to rush something she wasn’t entirely comfortable with, you plant your hands along her plush bosom, teasing your fingers along the sensitive titflesh and drawing your palm into those teats - nipples that were probably used for their proper purpose once before. Her one good eye widens at the touch, mouth fluttering open in fish-like little gasps before she merely breaks down into a trembling mess beneath you, buttons well pressed. Such a serious face got all mushy in short order... you can’t help but titter at her expense. Still, as nice as her thigh flesh grinding along your [pc.clit] in particular feels lovely, it’s barely the main course.");
+		var p:int = pc.pickUnblocked();
+		output("\n\nWhile Hana is a little disappointed when you reveal your [pc.vaginas] in full, admitting she’s a lot more heterosexual than not, you’re making up the difference. You liberally grind your thigh into her, twisting your leg side to side as you bounce and grind on her own, leaving a little sheen of [pc.girlCumNoun] along it, just shy of her natural, fuzzy stocking. Tentatively, not wanting to rush something she wasn’t entirely comfortable with, you plant your hands along her plush bosom, teasing your fingers along the sensitive titflesh and drawing your palm into those teats - nipples that were probably used for their proper purpose once before. Her one good eye widens at the touch, mouth fluttering open in fish-like little gasps before she merely breaks down into a trembling mess beneath you, buttons well pressed. Such a serious face got all mushy in short order... you can’t help but titter at her expense. Still, as nice as her thigh flesh grinding along your [pc.clit] in particular feels lovely, it’s barely the main course.");
 		
-		output("\n\nGrunting, you shift, dismounting that thigh and instead scooting beneath one of her legs, interlocking together. Hana looks a little out of it, her brows furrowing together in confusion as you start working - only to go right back to melting pleasantly as you mash your [pc.pussy] into her own. While she might not be experienced in the fine art of tribbing, she still curls her thighs around your legs and pulls you closer, rolling her waist to grind and rub against your own, similar movements, filling the room with sloppy wet mashing as two pussies come together time and time again. On occasion you flick your hips to the side just so, banging your [pc.clit] into her modest bean and drawing a squeal of pleasure from both of you. When your thighs bang together it comes out as a girl-honey mess, though you can feel a little pool form on that mat just below your bottom.");
+		output("\n\nGrunting, you shift, dismounting that thigh and instead scooting beneath one of her legs, interlocking together. Hana looks a little out of it, her brows furrowing together in confusion as you start working - only to go right back to melting pleasantly as you mash your [pc.pussy " + p + "] into her own. While she might not be experienced in the fine art of tribbing, she still curls her thighs around your legs and pulls you closer, rolling her waist to grind and rub against your own, similar movements, filling the room with sloppy wet mashing as two pussies come together time and time again. On occasion you flick your hips to the side just so, banging your [pc.clit] into her modest bean and drawing a squeal of pleasure from both of you. When your thighs bang together it comes out as a girl-honey mess, though you can feel a little pool form on that mat just below your bottom.");
 		
 		output("\n\nBreaking the monotony, you yank on both of the other woman’s legs under your arms and squeeze them into you, sharply, dragging the curvy ausar into you firmly. Her counter attack is arguably more effective, though, as she swings a hand haphazardly in front of her just to land between those pressed-flush pelvi, fingers immediately clamping down on your clit. With treatment like <i>that</i> it doesn’t take you very long at all to reach your peak, while Hana is pent enough that the different doesn’t really matter. The backroom echoes the cacophony of your combined cries as you both pop, you leaving Hana’s waist and mat a mess of [pc.girlCum].");
 	}
@@ -587,9 +588,9 @@ public function hanaFiresideRecovery():void
 	{
 		output(" Her hand nonchalantly squeezes at your [pc.biggestCock], grinding her palm into the side of that fully erect, twitching appendage.");
 	}
-	else if (pc.hasVagina())
+	else if (pc.totalVaginas() > pc.blockedVaginas())
 	{
-		output(" The fuzzy digits of her fur-gloved hand dip into your awaiting [pc.cunt] lazily, drawing up your already liberal juices.");
+		output(" The fuzzy digits of her fur-gloved hand dip into your awaiting [pc.cunt " + pc.pickUnblocked() + "] lazily, drawing up your already liberal juices.");
 	}
 	else
 	{
@@ -606,7 +607,7 @@ public function hanaFiresideRecovery():void
 
 		output("\n\nYour caretaker isn’t taking a particularly lively pace but, instead, a slow, methodical one, not entirely concerned with actually getting you off. It’s a lazy Sunday sort of handjob, one that you grow to enjoy more and more as time goes on.");
 	}
-	else if (pc.hasVagina())
+	else if (pc.totalVaginas() > pc.blockedVaginas())
 	{
 		output("\n\nThe two fingers burrowing into your snatch flex and bow along your [pc.girlCum] lined walls, the slick muscles of your cunt constantly contracting and squeezing around those invaders naturally. Hana’s motions ultimately never really seem to stimulate you much more than this, not actually trying to get you off - yet on occasion her fingers spread, making a scissor motion deep within you, or her unused thumb lazily teases along your [pc.clit] for that extra jolt of pleasure.");
 
@@ -625,7 +626,7 @@ public function hanaFiresideRecovery():void
 	output("\n\nHuh? Blanket? Oh... you’re naked in the middle of the bar, a blanket is probably good. Though all this heat is getting pretty uncomfortable. Tempering your worked up arousal, you shift to make yourself passingly decent while looking up to Hana in a mixture of thanks and desire.");
 
 	output("\n\n<i>“Get dressed.");
-	if (syriAtTheFreezer()) output(" Your friend was rather concerned about you, you know.");
+	if (syriAtFreeezer()) output(" Your friend was rather concerned about you, you know.");
 	output(" Don’t let this happen again.");
 	if (flags["UVETO_FROZEN_RESCUE_TO_BAR"] != undefined) output(" <b>Again.</b>");
 	output("”</i> With that Hana wanders away, presumably to go back to her bar duties. As if she hadn’t just done anything at all - although the smile on her lips and whisk of her hips say otherwise. Ugh...");
@@ -637,8 +638,7 @@ public function hanaFiresideRecovery():void
 	pc.energy(pc.energyMax());
 	processTime((4 * 60) + rand(30));
 
-	currentLocation = "UVI R32";
-	generateMap();
+	moveTo("UVI R32");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

@@ -162,7 +162,7 @@ public function getWaltPregContainer():PregnancyPlaceholder
 	return ppWalt;
 }
 // Wolfie wiener size
-public function walkCockVolume():Number
+public function waltCockVolume():Number
 {
 	var ppWalt:PregnancyPlaceholder = getWaltPregContainer();
 	return Math.max(ppWalt.cockVolume(0) , 300);
@@ -195,6 +195,7 @@ public function waltSex(arg:Array = null):void
 			if(!pc.hasCock()) addDisabledButton(1, "Table Suck", "Under Table Suck", "You need a penis for this.");
 			else addButton(1, "Table Suck", waltSex, ["table suck"], "Under Table Suck", "Make Walt get under the table and service your dick orally.");
 			if(!pc.hasVagina()) addDisabledButton(2, "Table Lick", "Under Table Lick", "You need a vagina for this.");
+			else if(pc.blockedVaginas() > 0) addDisabledButton(2,"Table Lick","Table Lick","You should get rid of any vaginal blockages before pursuing this.");
 			else addButton(2, "Table Lick", waltSex, ["table lick"], "Under Table Lick", "Make Walt get under the table and service your cunt orally.");
 			break;
 		// Anal Ride
@@ -205,7 +206,7 @@ public function waltSex(arg:Array = null):void
 			if(pc.hasVagina()) output(" Your pussy is simmering with excitement at the thought of being stuffed out in public, but it’s going to have to wait its turn; you have a different hole in mind.");
 			output("\n\nYou turn around to face away from Walt and grasp his cock with a hand, guiding it to your waiting backdoor. You’re delighted to find he’s pre-lubed with some sort of light glazing, perhaps the source of his exceptional scent, and a soft coo slips from your lips as the pointed tip of his shaft slips readily into your [pc.asshole]. You let your weight do the work of carrying you down, your ass hungrily swallowing inch after inch of crimson cock. Finally you settle comfortably into Walt’s lap, his knot just the right size to press snugly against your tailhole but not quite push inside.");
 			
-			pc.buttChange(walkCockVolume());
+			pc.buttChange(waltCockVolume());
 			
 			output("\n\n<i>“Goooood boy.”</i> you purr. <i>“Order us a round, would you?”</i>");
 			output("\n\nWalt obeys, letting you soak in the thrill of sitting in public with a cock firmly wedged up your ass. The heady grin plastered on your face makes the waiter give you a curious look, but if he suspects what you’re doing he doesn’t say anything. You sip at your drink slowly, enjoying rhythmically clenching your ass around that big fat dog dick. You guide one of Walt’s hands down under the table");
@@ -229,7 +230,7 @@ public function waltSex(arg:Array = null):void
 			output("You let out a loud, shuddering moan, no longer caring in the slightest if everyone watches you cum. Behind you you hear Walt let out a suppressed growl as he shoots his load, filling your ass with long, thick spurts of lupine spunk that serve as the perfect capstone to your own orgasm.");
 			output("\n\n<i>“Yesssss,”</i> you purr, <i>“give it to me. </i>Good<i> wolfie.”</i>");
 			output("\n\nWalt’s too focused on cumming and growling to respond. His knot swells between your buns, pressed firmly up against your [pc.asshole] without quite stretching it open.");
-			if(pc.analCapacity() >= (walkCockVolume() + 200)) output(" You’re almost tempted to see if you can push down hard enough with your hips to shove it in, though getting it back out would be enough of a hassle to dissuade you.");
+			if(pc.analCapacity() >= (waltCockVolume() + 200)) output(" You’re almost tempted to see if you can push down hard enough with your hips to shove it in, though getting it back out would be enough of a hassle to dissuade you.");
 			output("\n\nYou look around to see most of the patrons around you looking surprised, amused, aroused, or some combination of the three. Thankfully none seem interested in notifying the owners, and you don’t see anyone coming to throw you out. You give your audience an appreciative grin as you pull off Walt’s lap and slip your gear back on.");
 			output("\n\n<i>“Make sure you hide that.”</i> you tease as you glance indicatively at Walt’s still-erect dick, before taking your leave with a thrilled sway in your step and your ass clenched to hold onto the cum inside you.");
 			if(pc.exhibitionism() >= 33)
@@ -320,7 +321,7 @@ public function waltSex(arg:Array = null):void
 			output(", looking around to make sure the coast is clear. You flash a grin at the couple in front of you, knowing you’re about to give them dinner and a show.");
 			output("\n\nWalt’s furry hands grasp you just above your hips as he mounts you, one hand briefly letting go again to help guide his canine tip into your waiting nether lips. You let out an exultant groan as inch after inch of fat crimson cock slides into your greedy cunt, slowly enough for you to be able to relish the decadence of what you’re doing. He has the good sense to put a hand over your mouth as you finish taking him to the hilt, preventing you from letting out a louder moan at the sensation of his balls slapping against your delta and his furry sheath pressing against your pussy lips.");
 			
-			pc.cuntChange(vIdx, walkCockVolume());
+			pc.cuntChange(vIdx, waltCockVolume());
 			
 			output("\n\nWalt gives a soft growl as he starts fucking you, starting off just as slowly as the initial penetration so that you don’t start raising your voice too much. It’s still completely obvious to everyone around you what you’re doing, and that makes your [pc.girlCum] come in torrents, every eye on you getting you wetter and wetter still.");
 			output("\n\n<i>“Good boy,”</i> you half-whisper, a heady grin on as you look behind you at the werewolf pounding your pussy. <i>“Fuck me just like that, let everyone see what a good, naughty wolfie you are.”</i>");

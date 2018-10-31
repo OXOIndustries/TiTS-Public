@@ -52,8 +52,8 @@ package classes.Characters
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "";
-			this.customDodge = "The goo's liquid flexibility allows [enemy.himHerIt] to handily avoid your attack.";
-			this.customBlock = "The goo's liquidity absorbs a great deal of punishment - without taking damage.";
+			this.customDodge = "The goo’s liquid flexibility allows [enemy.himHerIt] to handily avoid your attack.";
+			this.customBlock = "The goo’s liquidity absorbs a great deal of punishment - without taking damage.";
 			this.isPlural = false;
 			
 			baseHPResistances = new TypeCollection();
@@ -79,7 +79,7 @@ package classes.Characters
 			armor.resistances.drug.resistanceValue = -30.0;
 			armor.resistances.poison.resistanceValue = -30.0;
 			armor.resistances.kinetic.resistanceValue = 15.0;
-			
+			armor.resistances.addFlag(DamageFlag.MIRRORED);
 			armor.hasRandomProperties = true;
 			
 			this.rangedWeapon = new EmptySlot();
@@ -165,6 +165,8 @@ package classes.Characters
 			isUniqueInFight = true;
 			btnTargetText = "GooDeadeye";
 			sexualPreferences.setRandomPrefs(2 + rand(3));
+			sexualPreferences.setPref(GLOBAL.SEXPREF_CUMMY, sexualPreferences.getRandomLikesFactor());
+			if(rand(2) == 0) sexualPreferences.setPref(GLOBAL.SEXPREF_SWEAT, sexualPreferences.getRandomLikesFactor());
 			
 			Randomise();
 			
@@ -210,7 +212,7 @@ package classes.Characters
 			else
 			{
 				if (!hasStatusEffect("Force It Gender")) createStatusEffect("Force It Gender");
-				if (hasStatusEffect("Force Fem Gender")) removeStatusEffect("Force Fem Gender");	
+				if (hasStatusEffect("Force Fem Gender")) removeStatusEffect("Force Fem Gender");
 			}
 			
 			// Interpolate the armor value as a percent between a multiplier between 1 and 0.33. Use this multiplier to modify the base reflex value of the enemy.
@@ -411,18 +413,9 @@ package classes.Characters
 					else
 					{
 						output(" A sharp pain spreads and you look down to see a shard of crystal plating sticking out!");
-						if (!target.hasStatusEffect("Bleeding"))
-						{
-							output(" <b>You’re bleeding!</b>");
-							target.createStatusEffect("Bleeding", 1, 3, 15, 0, false, "Icon_Crying", "You're bleeding!", true, 0);
-						}
-						else
-						{
-							output(" <b>You're bleeding a little!</b>");
-							// Add a stack and refresh duration
-							target.addStatusValue("Bleeding", 1, 1);
-							target.setStatusValue("Bleeding", 2, 3);
-						}
+						if (!target.hasStatusEffect("Bleeding")) output(" <b>You’re bleeding!</b>");
+						else output(" <b>You’re bleeding a little!</b>");
+						CombatAttacks.applyBleed(target, 1, 3, 15);
 					}
 				}
 				
@@ -477,18 +470,9 @@ package classes.Characters
 				
 				if (dr.hpDamage > 0)
 				{
-					if (!target.hasStatusEffect("Bleeding"))
-					{
-						output(" <b>You’re bleeding!</b>");
-						target.createStatusEffect("Bleeding", 1, 3, 15, 0, false, "Icon_Crying", "You're bleeding!", true, 0);
-					}
-					else
-					{
-						output(" <b>Your bleeding is aggravated further!</b>");
-						// Add a stack and refresh duration
-						target.addStatusValue("Bleeding", 1, 1);
-						target.setStatusValue("Bleeding", 2, 3);
-					}
+					if (!target.hasStatusEffect("Bleeding")) output(" <b>You’re bleeding!</b>");
+					else output(" <b>Your bleeding is aggravated further!</b>");
+					CombatAttacks.applyBleed(target, 1, 3, 15);
 				}
 			}
 		}

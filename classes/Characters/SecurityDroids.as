@@ -6,6 +6,7 @@ package classes.Characters
 	import classes.Items.Guns.HammerPistol;
 	import classes.Items.Protection.BasicShield;
 	import classes.Items.Protection.JoyCoPremiumShield;
+	import classes.Items.Accessories.FlashGoggles;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -199,7 +200,7 @@ package classes.Characters
 			for (var i:int = 0; i < 2; i++)
 			{
 				output("\n");
-				CombatAttacks.SingleRangedAttackImpl(this, target, true);		
+				CombatAttacks.SingleRangedAttackImpl(this, target, true);
 			}
 
 			// Heavy attack
@@ -230,14 +231,14 @@ package classes.Characters
 
 			if(aim()/2 + rand(20) + 6 > target.reflexes()/2 + 10 && !target.hasStatusEffect("Blinded") && !target.hasBlindImmunity())
 			{
-				target.createStatusEffect("Blinded",3,0,0,0,false,"Blind","Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0,0xFF0000);
+				CombatAttacks.applyBlind(target, 3);
 				if(target is Anno) output(" Anno wasn’t able to avoid it in time as the flash grenade goes off with a deafening BANG, leaving her <b>blinded</b>!");
 				else output(" You aren’t able to shield yourself in time as the flash grenade goes off with a deafening BANG, leaving you <b>blinded</b>!");
 			}
 			else
 			{
-				if(target is Anno) output(" Anno looks away just in time to avoid the flash as the stun grenade goes off with a deafening BANG!");
-				else output(" You cover your eyes just in time to avoid the flash as the stun grenade goes off with a deafening BANG!");
+				if(target is Anno) output(" Anno" + (target.accessory is FlashGoggles ? "’s goggles cover her eyes" : " looks away") + " just in time to avoid the flash as the stun grenade goes off with a deafening BANG!");
+				else output(" You" + (target.accessory is FlashGoggles ? "r goggles" : "") + " cover your eyes just in time to avoid the flash as the stun grenade goes off with a deafening BANG!");
 			}
 		}
 	}

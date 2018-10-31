@@ -35,7 +35,7 @@
 			this.capitalA = "The ";
 			this.long = "Placeholder";
 			this.customDodge = "The sydian rolls aside in a remarkable display of agility for one with such a large frame.";
-			this.customBlock = "The alien's chitin deflects the attack.";
+			this.customBlock = "The alien’s chitin deflects the attack.";
 			this.isPlural = false;
 			
 			this.meleeWeapon = new Fists();
@@ -218,7 +218,7 @@
 				{ v: "dark green", w: 1 },
 				{ v: "brick red", w: 1 },
 				{ v: "brown", w: 5 }
-			];	
+			];
 			
 			hairColor = weightedRand(hcolour);
 			
@@ -309,11 +309,9 @@
 			}	
 			else
 			{
-				if (target.physique() + rand(20) + 1 < 15)
+				if ((target.physique() + rand(20) + 1 < 15) && !target.isPlanted())
 				{
 					output(" It lashes your [pc.leg], leaving a swipe of enzyme and taking your support from under you! With a thud, you hit the ground.");
-					
-					
 					
 					if (!target.hasAirtightSuit())
 					{
@@ -323,7 +321,7 @@
 					
 					applyDamage(new TypeCollection( { kinetic: 9 + rand(2), drug: dd } ), this, target, "minimal");
 					
-					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+					CombatAttacks.applyTrip(target);
 				}
 				else
 				{
@@ -388,7 +386,7 @@
 				else
 				{
 					output(" blinding you!");
-					target.createStatusEffect("Blinded", 2 + rand(2), 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+					CombatAttacks.applyBlind(target, 2 + rand(2));
 				}
 			}
 		}
@@ -413,15 +411,15 @@
 		private function TickleTrip(target:Creature):void
 		{
 			output("The sydian thrusts her face toward yours with a curious, friendly expression.");
-			if (combatMiss(this, target, 10, -1))
+			if (combatMiss(this, target, 10, -1) || target.isPlanted())
 			{
 				output(" You ignore the distraction and pull your [pc.leg] away from the tail she’s trying to hook it with.");
 			}
 			else
 			{
 				output(" Her coy smile distracts you from the tail that caresses your [pc.leg] and then yanks it from under you!");
-				output(" <b>You're going to have a difficult time fighting from down here!</b>");
-				target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+				output(" <b>You’re going to have a difficult time fighting from down here!</b>");
+				CombatAttacks.applyTrip(target);
 				applyDamage(new TypeCollection( { kinetic: 9 + rand(2) } ), this, target, "minimal");
 			}
 		}

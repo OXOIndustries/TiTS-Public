@@ -143,8 +143,8 @@ public function kiGoUseCargoLift():void
 	h[0].createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(f);
-	CombatManager.setHostileCharacters(h);
+	CombatManager.setFriendlyActors(f);
+	CombatManager.setHostileActors(h);
 	CombatManager.displayLocation("INFECTED CREW");
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
@@ -184,6 +184,11 @@ public function kiEnterMedbay():Boolean
 	else
 	{
 		addDisabledButton(1, "Elenora", "Approach Elenora", "You’ve got places to be and things to do, no point wasting time.");
+	}
+	
+	if (flags["KI_REFUSED_VANDERBILT"] != undefined && flags["KI_VANDERBILT_WORKING"] != undefined)
+	{
+		addDisabledButton(9, "Sleep", "Sleep", "You can’t afford to risk sleeping with Elenora around. Who knows if she’ll be able to hold it together... or if she’ll try something while you rest.");
 	}
 	
 	return false;
@@ -323,7 +328,7 @@ public function kiP16TakeSword():void
 
 public function kiP16TakeSwordCheck():void
 {
-	if (pc.meleeWeapon is VampBlade || pc.hasItemByType(VampBlade))
+	if (pc.meleeWeapon is VampBlade || pc.hasItemByClass(VampBlade))
 	{
 		mainGameMenu();
 		return;
@@ -438,7 +443,7 @@ public function kiK5CMOQuartersMeds():void
 
 public function kiK5CMOMedSuppliesCheck():void
 {
-	if (pc.hasItemByType(OSStimBoost) || flags["KI_CMO_MEDSUPPLIES"] == 2)
+	if (pc.hasItemByClass(OSStimBoost) || flags["KI_CMO_MEDSUPPLIES"] == 2)
 	{
 		mainGameMenu();
 		return;
@@ -662,8 +667,8 @@ public function kiCommandDeckTriggerEncounter():void
 	output(" mutants crawl out of it, leaping down onto the deck just feet away from you. Oh, shit, here we go again!");
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(f);
-	CombatManager.setHostileCharacters(h);
+	CombatManager.setFriendlyActors(f);
+	CombatManager.setHostileActors(h);
 	CombatManager.displayLocation("INFECTED CREW");
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
@@ -690,8 +695,8 @@ public function kiOfficersDeckTriggerEncounter():void
 	output(" mutants crawl out of it, leaping down onto the deck just feet away from you. Oh, shit, here we go again!");
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(h);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(h);
 	CombatManager.displayLocation("INFECTED CREW");
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
@@ -895,8 +900,8 @@ public function kiBridgeContinued():void
 	var h:Array = [new CaptainHolmes()];
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(f);
-	CombatManager.setHostileCharacters(h);
+	CombatManager.setFriendlyActors(f);
+	CombatManager.setHostileActors(h);
 	CombatManager.displayLocation("CAPT. HOLMES");
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
@@ -1215,8 +1220,8 @@ public function kiMeetingVanderbilt():void
 	h[0].createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(h);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(h);
 	CombatManager.displayLocation("INFECTED CREW");
 	CombatManager.victoryCondition(CombatManager.SURVIVE_WAVES, 3);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
@@ -1473,12 +1478,12 @@ public function kiDiscoverVanderbiltsSecret():void
 
 	output("\n\nSlowly, you find yourself asking, <i>“How long can you hold out?”</i>");
 	
-	output("\n\n<i>“Not long,”</i> Elenora sighs. <i>“I don’t know. I’m starting to hear things, and it’s getting hard t-to control myself,”</i> she adds, glancing down at her soaked thighs. If I go too long... without... I start to lose control. And the tentacles start growing e-even faster. Spreading.”</i>");
+	output("\n\n<i>“Not long,”</i> Elenora sighs. <i>“I don’t know. I’m starting to hear things, and it’s getting hard t-to control myself,”</i> she adds, glancing down at her soaked thighs. <i>“If I go too long... without... I start to lose control. And the tentacles start growing e-even faster. Spreading.”</i>");
 
-	output("\n\n<i>“");
-	if (pc.isNice()) output("Is there anything I can... do for you?”</i> you ask uncertainly.");
-	else if (pc.isMisc()) output("Think there’s anything I can do to keep you from turning into a mutant?”</i> you say with a forced grin.");
-	else output("You better have a way to keep yourself from turning, doctor,”</i> you grunt, putting a hand on your [pc.weapon].");
+	output("\n\n");
+	if (pc.isNice()) output("<i>“Is there anything I can... do for you?”</i> you ask uncertainly.");
+	else if (pc.isMisc()) output("<i>“Think there’s anything I can do to keep you from turning into a mutant?”</i> you say with a forced grin.");
+	else output("<i>“You better have a way to keep yourself from turning, doctor,”</i> you grunt, putting a hand on your [pc.weapon].");
 
 	output("\n\nYour companion fidgets nervously, glancing from you to");
 	if (pc.isAss()) output(" your weapon");
@@ -1542,7 +1547,7 @@ public function kiVanderbiltFuckHer():void
 		
 		output("\n\n<i>“The parasites,”</i> Elenora mumbles, still gasping for breath. <i>“They’re... they’re still. For now.”</i>");
 		
-		output("\n\nYou give a sigh of relief. Looks like the gamble payed off. <i>“How long do you think they’ll stay quiet?”</i>");
+		output("\n\nYou give a sigh of relief. Looks like the gamble paid off. <i>“How long do you think they’ll stay quiet?”</i>");
 		
 		output("\n\n<i>“A few hours. Maybe,”</i> she answers with a grimace. Almost as a reflex afterwards, she licks the cum off her lips. She flushes the second she realizes what she’s done, quickly looking down to the floor. <i>“Whatever you intend to do, you need to hurry, [pc.name]. Please.”</i>");
 	}
@@ -1565,7 +1570,7 @@ public function kiVanderbiltFuckHer():void
 		
 		output("\n\n<i>“The parasites,”</i> Elenora mumbles, still gasping for breath. <i>“They’re... they’re still. For now.”</i>");
 		
-		output("\n\nYou give a sigh of relief. Looks like the gamble payed off. <i>“How long do you think they’ll stay quiet?”</i>");
+		output("\n\nYou give a sigh of relief. Looks like the gamble paid off. <i>“How long do you think they’ll stay quiet?”</i>");
 		
 		output("\n\n<i>“A few hours. Maybe,”</i> she answers with a grimace. Almost as a reflex afterwards, she licks the cum off her lips. She flushes the second she realizes what she’s done, quickly looking down to the floor. <i>“Whatever you intend to do, you need to hurry, [pc.name]. Please.”</i>");
 	}
@@ -1601,7 +1606,7 @@ public function kiVanderbiltFuckHer():void
 		
 		output("\n\n<i>“The parasites,”</i> Elenora mumbles, still gasping for breath. <i>“They’re... they’re still. For now.”</i>");
 		
-		output("\n\nYou give a sigh of relief. Looks like the gamble payed off. <i>“How long do you think they’ll stay quiet?”</i>");
+		output("\n\nYou give a sigh of relief. Looks like the gamble paid off. <i>“How long do you think they’ll stay quiet?”</i>");
 		
 		output("\n\n<i>“A few hours. Maybe,”</i> she answers with a grimace. Almost as a reflex afterwards, she licks the cum off her lips. She flushes the second she realizes what she’s done, quickly looking down to the floor. <i>“Whatever you intend to do, you need to hurry, [pc.name]. Please.”</i>");
 	}
@@ -1762,8 +1767,8 @@ public function kiEngineeringBossFight():void
 	processTime(7);
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new CommanderHenderson());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new CommanderHenderson());
 	CombatManager.displayLocation("HENDERSON");
 	CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 	CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
@@ -1772,7 +1777,7 @@ public function kiEngineeringBossFight():void
 	CombatManager.encounterTextGenerator(function():String {
 		var m:String = "Before you stands a particularly massive mutant crewman, easily seven feet tall, with skin as red as cold blood. He was human once, you’re sure, but now he looks like a tentacle abomination straight out of a Neo-Tokyo ultraporn, with legs and arms nothing more than dozens of wrapped tentacles, and dozens more drooping and squirming from his crotch, chest, and face. Two pink-hued eyes, glowing as bright as embers, stare down at you from sockets surrounded by dozens of cilia-like shafts.";
 		
-		var h:Array = CombatManager.getHostileCharacters();
+		var h:Array = CombatManager.getHostileActors();
 		if (CombatManager.hasFriendlyOfClass(ChiefNeykkar))
 		{
 			// noop

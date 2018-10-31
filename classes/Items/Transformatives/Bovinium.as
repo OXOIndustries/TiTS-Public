@@ -10,6 +10,7 @@ package classes.Items.Transformatives
 	import classes.VaginaClass;
 	
 	import classes.Engine.Utility.rand;
+	import classes.Engine.Utility.num2Text;
 	
 	import classes.Engine.Interfaces.*;
 	
@@ -220,7 +221,7 @@ package classes.Items.Transformatives
 						
 						if (target.hasCock()) 
 						{
-							output(" with " + kGAMECLASS.num2Text(cCocks.length) +" less cock");
+							output(" with " + num2Text(cCocks.length) +" less cock");
 							if (cCocks.length > 1) output("s");
 						}
 						else output(" completely without cocks");
@@ -608,7 +609,7 @@ package classes.Items.Transformatives
 			
 			if (!(target is PlayerCharacter))
 			{
-				output(target.capitalA + target.short + " swollows the candy but to no effect.");
+				output(target.capitalA + target.short + " swallows the candy but to no effect.");
 				return false;
 			}
 			

@@ -9,7 +9,7 @@ package classes.Items.Transformatives
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
@@ -36,7 +36,7 @@ package classes.Items.Transformatives
 			//Longass shit, not sure what used for yet.
 			this.description = "a spraypen loaded with Gush";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Illegal on almost every civilized planet, Gush is a drug synonymous with big-breasted, lactating addicts. It unerringly increases bust size and overall milkiness, but is said to raise libidos to uncontrollable levels.";
+			this.tooltip = "Illegal on almost every civilized planet, Gush is a drug synonymous with big-breasted, lactating addicts. It unerringly increases bust size and overall milkiness, but is said to raise libidos to uncontrollable levels.\n\n<b>Known to cause high amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -194,6 +194,8 @@ package classes.Items.Transformatives
 					if(!kGAMECLASS.infiniteItems()) quantity++;
 					return false;
 				}
+				//Add mandatory taint!
+				pc.taint(5);
 				//First Time
 				if(kGAMECLASS.flags["USED_GUSH"] == undefined)
 				{

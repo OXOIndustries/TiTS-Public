@@ -39,7 +39,7 @@ public function buyAPowahPotionMachine():void
 	clearOutput();
 	showBust("JOYCO_VENDING_MACHINE");
 	showName("VENDING\nMACHINE");
-	output("You walk over to the vending machine and give it a look. The main draw looks to be <i>JoyCo Power-up Potions</i>, guaranteed to double your pep. The small print spells out: <i>Only while cold. JoyCo is not responsible for food poisoning as a result of consuming warm beverages.</i> You might not be able to tote these wherever you go, but at least you can get a quick pick me up whenever you’re feeling down, just five measly credits!");
+	output("You [pc.walk] over to the vending machine and give it a look. The main draw looks to be <i>JoyCo Power-up Potions</i>, guaranteed to double your pep. The small print spells out: <i>Only while cold. JoyCo is not responsible for food poisoning as a result of consuming warm beverages.</i> You might not be able to tote these wherever you go, but at least you can get a quick pick me up whenever you’re feeling down, just five measly credits!");
 	if(canVendAmazonaIcedTea()) amazonaIcedTeaBonus();
 	processTime(1);
 	buyAPowahPotionMenu();
@@ -48,8 +48,9 @@ public function buyAPowahPotionMenu():void
 {
 	clearMenu();
 	if(pc.credits >= 5) addButton(0, "P.Potion", buyAPowahPotion,undefined, "Power Potion", "Get yourself an energy drink. Only 5 credits!");
-	else addDisabledButton(0, "P.Potion", "Power Potion", "You can’t even afford a five credit drink. Any poorer and you’ll be living out of a box.");
+	else addDisabledButton(0, "P.Potion", "Power Potion", "You can’t even afford a five " + (isAprilFools() ? "dogecoin" : "credit") + " drink. Any poorer and you’ll be living out of a box.");
 	if(canVendAmazonaIcedTea()) addButton(1, "Amazona", approachItemVendingMachine, "Amazona", "Amazona Iced Tea", "Get yourself an Amazona drink.");
+	addButton(4, "Other", approachItemVendingMachine, "JoyCo", "Other JoyCo Products", "Browse some other JoyCo-brand products.");
 	addButton(14, "Back", mainGameMenu);
 }
 public function buyAPowahPotion():void
@@ -68,6 +69,16 @@ public function buyAPowahPotion():void
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",buyAPowahPotionMenu);
+}
+public function joyCoVendingBack():void
+{
+	clearOutput();
+	showBust("JOYCO_VENDING_MACHINE");
+	showName("VENDING\nMACHINE");
+	
+	output("Maybe you should try something else...");
+	
+	buyAPowahPotionMenu();
 }
 
 // Item vending machine
@@ -126,6 +137,7 @@ public function approachItemVendingMachine(machine:String = "none"):void
 			chars["VENDINGMACHINE"].keeperGreeting = "ERROR.\n";
 			
 			chars["VENDINGMACHINE"].inventory.push(new TauricoVenidae());
+			chars["VENDINGMACHINE"].inventory.push(new ChillPill());
 			
 			chars["VENDINGMACHINE"].sellMarkup = 1.05;
 			chars["VENDINGMACHINE"].buyMarkdown = 0.1;
@@ -147,6 +159,9 @@ public function approachItemVendingMachine(machine:String = "none"):void
 			if(planet != "tavros station" && flags["PLANET_3_UNLOCKED"] != undefined) chars["VENDINGMACHINE"].inventory.push(new FrontRackCream());
 			chars["VENDINGMACHINE"].inventory.push(new LemonLoftcake());
 			chars["VENDINGMACHINE"].inventory.push(new StrawberryShortcake());
+			chars["VENDINGMACHINE"].inventory.push(new ManDown());
+			chars["VENDINGMACHINE"].inventory.push(new ChillPill());
+			chars["VENDINGMACHINE"].inventory.push(new DrySpell());
 			
 			chars["VENDINGMACHINE"].sellMarkup = 1.00;
 			chars["VENDINGMACHINE"].buyMarkdown = 0.1;
@@ -160,7 +175,7 @@ public function approachItemVendingMachine(machine:String = "none"):void
 			author("Shadefalcon");
 			
 			chars["VENDINGMACHINE"].originalRace = "XXX";
-			chars["VENDINGMACHINE"].keeperBuy = "You walk over to the dispenser, " + (pc.exhibitionism() >= 66 ? "a confident stride as you get the occasional looks by the murmuring bystanders" : "trying your best not to feel overly conscious of the occasional looks you get by the murmuring bystanders" ) + ". When you finally reach the black box you firmly press a button on it’s front, opening a holo screen which displays the many adult wares sold by the vending machine.\n";
+			chars["VENDINGMACHINE"].keeperBuy = "You [pc.walk] over to the dispenser, " + (pc.exhibitionism() >= 66 ? "a confident stride as you get the occasional looks by the murmuring bystanders" : "trying your best not to feel overly conscious of the occasional looks you get by the murmuring bystanders" ) + ". When you finally reach the black box you firmly press a button on it’s front, opening a holo screen which displays the many adult wares sold by the vending machine.\n";
 			chars["VENDINGMACHINE"].keeperSell = "ERROR.\n";
 			chars["VENDINGMACHINE"].keeperGreeting = "ERROR.\n";
 			
@@ -168,10 +183,11 @@ public function approachItemVendingMachine(machine:String = "none"):void
 			if(planet != "tavros station") chars["VENDINGMACHINE"].inventory.push(new BreedersBliss());
 			chars["VENDINGMACHINE"].inventory.push(new Condensol());
 			chars["VENDINGMACHINE"].inventory.push(new EasyFit());
-			chars["VENDINGMACHINE"].inventory.push(new FizzyFix());
+			if(planet != "canadia station") chars["VENDINGMACHINE"].inventory.push(new FizzyFix());
 			chars["VENDINGMACHINE"].inventory.push(new MightyTight());
 			chars["VENDINGMACHINE"].inventory.push(new OmegaOil());
-			if(planet != "new texas") chars["VENDINGMACHINE"].inventory.push(new SaltyJawBreaker());
+			chars["VENDINGMACHINE"].inventory.push(new ReductPro());
+			if(!InCollection(planet, ["new texas", "canadia station"])) chars["VENDINGMACHINE"].inventory.push(new SaltyJawBreaker());
 			chars["VENDINGMACHINE"].inventory.push(new Sterilex());
 			if(planet != "uveto station" || flags["TLAKO_THANKED"] != undefined) chars["VENDINGMACHINE"].inventory.push(new YTRLube());
 			
@@ -197,7 +213,24 @@ public function approachItemVendingMachine(machine:String = "none"):void
 			chars["VENDINGMACHINE"].sellMarkup = 1.0;
 			chars["VENDINGMACHINE"].buyMarkdown = 0.1;
 			
-			shopkeepBackFunctor = amazonaIcedTeaBack;
+			shopkeepBackFunctor = joyCoVendingBack;
+			break;
+		case "JoyCo":
+			showBust("JOYCO_VENDING_MACHINE");
+			
+			chars["VENDINGMACHINE"].originalRace = "JoyCo";
+			chars["VENDINGMACHINE"].keeperBuy = "You press the button on the machine and a small holoscreen projects a menu of miscellaneous JoyCo-related products. What do you decide to buy?\n";
+			chars["VENDINGMACHINE"].keeperSell = "ERROR.\n";
+			chars["VENDINGMACHINE"].keeperGreeting = "ERROR.\n";
+			
+			chars["VENDINGMACHINE"].inventory.push(new FocusPill());
+			chars["VENDINGMACHINE"].inventory.push(new LipTease());
+			chars["VENDINGMACHINE"].inventory.push(new ThiccNShake());
+			
+			chars["VENDINGMACHINE"].sellMarkup = 1.0;
+			chars["VENDINGMACHINE"].buyMarkdown = 0.1;
+			
+			shopkeepBackFunctor = joyCoVendingBack;
 			break;
 	}
 	
@@ -231,7 +264,7 @@ public function jejuneMachineBack():void
 	showName("VENDING\nMACHINE");
 	author("Couch");
 	
-	output("After a few seconds of browsing, you opt to back away from the vending machine. As you walk away, you can still hear the infomercials playing just as clearly as if you were still standing right next to them. My, but Milly Bayes has some pipes on her.");
+	output("After a few seconds of browsing, you opt to back away from the vending machine. As you [pc.walk] away, you can still hear the infomercials playing just as clearly as if you were still standing right next to them. My, but Milly Bayes has some pipes on her.");
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -281,17 +314,6 @@ public function amazonaIcedTeaList(item:ItemSlotClass):String
 	}
 	
 	return msg;
-}
-public function amazonaIcedTeaBack():void
-{
-	clearOutput();
-	showBust("JOYCO_VENDING_MACHINE");
-	showName("VENDING\nMACHINE");
-	author("QuestyRobo");
-	
-	output("Maybe you should try something else...");
-	
-	buyAPowahPotionMenu();
 }
 public function amazonaIcedTeaBuyGo(item:ItemSlotClass):void
 {

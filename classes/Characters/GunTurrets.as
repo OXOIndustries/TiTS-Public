@@ -199,7 +199,7 @@
 			else
 			{
 				output("\n\nYou try and cover your eyes, but too late! A streak of machine oil jets out of the drone dog, splattering across your face! <b>You are blinded!</b>");
-				target.createStatusEffect("Blinded",rand(3)+1,0,0,0,false,"Blind","You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0,0xFF0000);
+				CombatAttacks.applyBlind(target, rand(3) + 1);
 			}
 		}
 		
@@ -225,7 +225,7 @@
 		
 		public function tamtamPhaseTwoLetsGo(target:Creature):void
 		{
-			//{Play when the Turret Fight reaches half its normal health}
+			// Play when the Turret Fight reaches half its normal health
 			output("You’re slowly tearing through the turrets. The foyer has certainly seen better days: it’s littered with broken bits of machinery and destroyed turret husks, not to mention the walls riddled with bullet holes. Still, you’re making progress, and the cat-girl behind the counter is starting to look awfully nervous. Finally, she plants her hands on her (now that you look, surprisingly big) hips and scowls at you.");
 			output("\n\n<i>“Look at what you did to my poor turrets! What did they ever do to you, huh!?”</i> she shouts over the din of gunfire as her pets continue to fire at you. <i>“Well fine! Boss said nobody gets past here, so I’ll just have to use my SUPER SECRET WEAPON! Come on out, boy!”</i>");
 			output("\n\nWhat!? You look up just in time to see the door behind the desk being bashed open and a huge, quadrupedal black form rush out. It leaps over the desk, skidding to a halt between you and the guns, barring a set of glittering metallic teeth. It looks like ");

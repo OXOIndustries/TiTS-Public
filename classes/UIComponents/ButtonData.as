@@ -1,7 +1,6 @@
 ﻿
 package classes.UIComponents 
 {
-	import classes.kGAMECLASS;
 	/**
 	 * ...
 	 * @author Gedan
@@ -41,12 +40,16 @@ package classes.UIComponents
 		 */
 		private var _buttonName:String;
 		private var _itemQuantity:int;
+		private var _stackSize:int;
 		
 		public function get buttonName():String { return _buttonName; }
 		public function set buttonName(v:String):void { _buttonName = v; }
 		
 		public function get itemQuantity():int { return _itemQuantity; }
 		public function set itemQuantity(v:int):void { _itemQuantity = v; }
+		
+		public function get stackSize():int { return _stackSize; }
+		public function set stackSize(v:int):void { _stackSize = v; }
 		
 		public function ButtonData() 
 		{
@@ -66,9 +69,6 @@ package classes.UIComponents
 			this.buttonName = cap;
 			this.func = func;
 			this.arg = arg;
-			//APRIL FOOLS!
-			//if(ttHeader is String) this.tooltipHeader = ttHeader;
-			//else this.tooltipHeader = ttHeader;
 			this.tooltipHeader = ttHeader;
 			this.tooltipBody = ttBody;
 		}
@@ -83,6 +83,7 @@ package classes.UIComponents
 			this.tooltipHeader = "";
 			this.tooltipComparison = "";
 			this.itemQuantity = 0;
+			this.stackSize = 1;
 			this.func = null;
 			this.arg = null;
 		}

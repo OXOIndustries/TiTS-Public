@@ -152,7 +152,7 @@
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 90;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 9000;
 			this.timesCum = 4182;
 			this.cockVirgin = false;
@@ -215,6 +215,17 @@
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.approachSera();
+		}
+		
+		override public function isPregnant(vIdx:int = 0):Boolean
+		{
+			if(kGAMECLASS.flags["SERA_PREGNANCY_TIMER"] != undefined) return true;
+			return false;
+		}
+		override public function bellyRating():Number
+		{
+			if(!isPregnant()) return 0;
+			return Math.round(kGAMECLASS.flags["SERA_PREGNANCY_TIMER"] / 3);
 		}
 	}
 

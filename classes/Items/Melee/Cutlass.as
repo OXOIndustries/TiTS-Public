@@ -13,7 +13,7 @@ package classes.Items.Melee
 	 */
 	public class Cutlass extends ItemSlotClass
 	{
-		
+		//Level 2 (Rare). Balance 2.0
 		public function Cutlass() 
 		{
 			this._latestVersion = 1;
@@ -47,17 +47,17 @@ package classes.Items.Melee
 			
 			//Information
 			this.basePrice = 1;
-			this.attack = 2;
 			
 			baseDamage.kinetic.damageValue = 9;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
 			
+			this.attack = 3;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
-			this.evasion = 0;
+			this.evasion = 1;
 			this.fortification = 0;
 
 			this.version = _latestVersion;

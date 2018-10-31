@@ -1,3 +1,8 @@
+import classes.Items.Apparel.AnalPrincessPanties;
+import classes.Items.Apparel.AssManBoxers;
+import classes.Items.Apparel.BackdoorBoiSlutwear;
+import classes.Items.Apparel.CumflationControlBoyshorts;
+import classes.Items.Apparel.SlutSealThong;
 /*
 	LERRIS_TALKED_BACKROOM
 		0/undefined -- not even attempted the talk scene
@@ -112,12 +117,20 @@ public function lerrisProducts():void
 	// No point in it being sold again if it's already installed!
 	if(flags["EGG_TRAINER_INSTALLED"] != 1) chars["LERRIS"].inventory.push(new EggTrainer());
 	chars["LERRIS"].inventory.push(new FertitePlus());
-	if(flags["PLANET_3_UNLOCKED"] != undefined) chars["LERRIS"].inventory.push(new FrontRackCream());
+	chars["LERRIS"].inventory.push(new FrontRackCream());
 	chars["LERRIS"].inventory.push(new Lactaid());
 	chars["LERRIS"].inventory.push(new LactaidMilkTank());
 	chars["LERRIS"].inventory.push(new LactaidOverdrive());
 	// Unlocks
 	if(pc.level >= 2) chars["LERRIS"].inventory.push(new NukiNutbutter());
+	if(pc.level >= 3) 
+	{
+		chars["LERRIS"].inventory.push(new SlutSealThong());
+		chars["LERRIS"].inventory.push(new AnalPrincessPanties());
+		chars["LERRIS"].inventory.push(new AssManBoxers());
+		chars["LERRIS"].inventory.push(new BackdoorBoiSlutwear());
+		chars["LERRIS"].inventory.push(new CumflationControlBoyshorts());
+	}
 	// Sera babies
 	if(flags["MET_SERA"] != undefined) chars["LERRIS"].inventory.push(new Priapin());
 	//chars["LERRIS"].inventory.push(new Sterilex());
@@ -195,8 +208,8 @@ public function lerrisBackRoom():void
 	clearMenu();
 	addButton(0, "Suckle", lerrisSuckle, undefined, "Suckle", "Lerris is always eager to give you a sweet drink, straight from the taps!" +(pc.hasCock() ? " She might even reward you with a little reciprocal oral action..." : ""));
 	
-	var iTypes:Array = hasItemForLerris();
-	if (iTypes.length > 0) addButton(1, "Items", lerrisGiveItems, iTypes);
+	var items:Object = hasItemForLerris();
+	if (items.count > 0) addButton(1, "Items", lerrisGiveItems, items);
 	else addDisabledButton(1, "Items");
 
 	if (pc.hasCock() || pc.hasHardLightEquipped()) addButton(2, "BendHerOver", lerrisBendHerOver, undefined, "Bend Her Over", "Bend her over and go to town!");
@@ -205,23 +218,33 @@ public function lerrisBackRoom():void
 	addButton(14, "Back", lerrisMenu);
 }
 
-public function hasItemForLerris():Array
+public function hasItemForLerris():Object
 {
-	var itemTypes:Array = [];
-
-	if (pc.hasItemByType(Lactaid)) itemTypes.push(Lactaid);
-	if (pc.hasItemByType(Chocolac) && lerris.milkType != GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) itemTypes.push(Chocolac);
-	if (pc.hasItemByType(Honeydew) && lerris.milkType != GLOBAL.FLUID_TYPE_HONEY) itemTypes.push(Honeydew);
-	if (pc.hasItemByType(BoobswellPads) && lerris.breastRows[0].breastRatingRaw < 23.4) itemTypes.push(BoobswellPads);
-	if (pc.hasItemByType(Tittyblossom) && lerris.breastRows[0].breastRatingRaw < 23.4) itemTypes.push(Tittyblossom);
-	if (pc.hasItemByType(Nepeta) && lerris.breastRows[0].breastRatingRaw < 23.4) itemTypes.push(Nepeta);
-	if (flags["FUCKED_LERRIS"] != undefined && !lerris.hasVagina() && flags["LERRIS_ITEMS_GIVEN"] != undefined && pc.hasItemByType(Pussybloom)) itemTypes.push(Pussybloom); // (Only if PC has found out she's a trap)
-	if (flags["FUCKED_LERRIS"] != undefined && flags["LERRIS_ITEMS_GIVEN"] != undefined && flags["LERRIS_BOVINIUMED"] == undefined && pc.hasItemByType(Bovinium)) itemTypes.push(Bovinium); 
-
-	return itemTypes;
+	var items:Object = { count:0 };
+	for each (var item:ItemSlotClass in pc.inventory)
+	{
+		if (item is Lactaid)
+		{ if (!items.Lactaid) ++items.count, items.Lactaid = item; }
+		else if (item is Chocolac)
+		{ if (!items.Chocolac && lerris.milkType != GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) ++items.count, items.Chocolac = item; }
+		else if (item is Honeydew)
+		{ if (!items.Honeydew && lerris.milkType != GLOBAL.FLUID_TYPE_HONEY) ++items.count, items.Honeydew = item; }
+		else if (item is BoobswellPads)
+		{ if (!items.BoobswellPads && lerris.breastRows[0].breastRatingRaw < 23.4) ++items.count, items.BoobswellPads = item; }
+		else if (item is Tittyblossom)
+		{ if (!items.Tittyblossom && lerris.breastRows[0].breastRatingRaw < 23.4) ++items.count, items.Tittyblossom = item; }
+		else if (item is Nepeta)
+		{ if (!items.Nepeta && lerris.breastRows[0].breastRatingRaw < 23.4) ++items.count, items.Nepeta = item; }
+		// (Only if PC has found out she's a trap)
+		else if (item is Pussybloom)
+		{ if (flags["FUCKED_LERRIS"] != undefined && !lerris.hasVagina() && flags["LERRIS_ITEMS_GIVEN"] != undefined && !items.Pussybloom) ++items.count, items.Pussybloom = item; }
+		else if (item is Bovinium)
+		{ if (flags["FUCKED_LERRIS"] != undefined && flags["LERRIS_ITEMS_GIVEN"] != undefined && flags["LERRIS_BOVINIUMED"] == undefined && !items.Bovinium) ++items.count, items.Bovinium = item; }
+	}
+	return items;
 }
 
-public function lerrisGiveItems(itemTypes:Array):void
+public function lerrisGiveItems(items:Object):void
 {
 	clearOutput();
 	showLerris();
@@ -229,11 +252,15 @@ public function lerrisGiveItems(itemTypes:Array):void
 	output("Before the two of you get started, you tell Lerris you have a present for her. Her big cat-eyes widen, and she makes a giddy little squeak. <i>“Ooh, what is it?”</i> she purrs, sniffing at your hand as you pull out your gift...");
 	
 	clearMenu();
-	for (var i:int = 0; i < itemTypes.length; i++)
-	{
-		var itemInstance:ItemSlotClass = new itemTypes[i]();
-		addButton(i, itemInstance.shortName, lerrisConsumeItem, itemInstance, StringUtil.toDisplayCase(itemInstance.longName), itemInstance.tooltip);
-	}
+	var i:int = 0;
+	if (items.Lactaid) addButton(i++, items.Lactaid.shortName, lerrisConsumeItem, items.Lactaid, StringUtil.toDisplayCase(items.Lactaid.longName), items.Lactaid.tooltip);
+	if (items.Chocolac) addButton(i++, items.Chocolac.shortName, lerrisConsumeItem, items.Chocolac, StringUtil.toDisplayCase(items.Chocolac.longName), items.Chocolac.tooltip);
+	if (items.Honeydew) addButton(i++, items.Honeydew.shortName, lerrisConsumeItem, items.Honeydew, StringUtil.toDisplayCase(items.Honeydew.longName), items.Honeydew.tooltip);
+	if (items.BoobswellPads) addButton(i++, items.BoobswellPads.shortName, lerrisConsumeItem, items.BoobswellPads, StringUtil.toDisplayCase(items.BoobswellPads.longName), items.BoobswellPads.tooltip);
+	if (items.Tittyblossom) addButton(i++, items.Tittyblossom.shortName, lerrisConsumeItem, items.Tittyblossom, StringUtil.toDisplayCase(items.Tittyblossom.longName), items.Tittyblossom.tooltip);
+	if (items.Nepeta) addButton(++i, items.Nepeta.shortName, lerrisConsumeItem, items.Nepeta, StringUtil.toDisplayCase(items.Nepeta.longName), items.Nepeta.tooltip);
+	if (items.Pussybloom) addButton(i++, items.Pussybloom.shortName, lerrisConsumeItem, items.Pussybloom, StringUtil.toDisplayCase(items.Pussybloom.longName), items.Pussybloom.tooltip);
+	if (items.Bovinium) addButton(i++, items.Bovinium.shortName, lerrisConsumeItem, items.Bovinium, StringUtil.toDisplayCase(items.Bovinium.longName), items.Bovinium.tooltip);
 	addButton(14, "Back", lerrisBackRoom);
 }
 
@@ -260,7 +287,7 @@ public function lerrisConsumeItem(itemInstance:ItemSlotClass):void
 		
 		output("\n\n<i>“Ah, that’s awesome!”</i> Lerris says between little moans. <i>“My nips feel so sensitive now, I can almost cum just from feeling them squirt! Oh, I hope you’re thirsty, [pc.name],”</i> she adds, crawling back into your lap and planting a long train of kisses from your chest up to your neck.");
 
-		pc.destroyItem(itemInstance);
+		pc.destroyItemByReference(itemInstance);
 		clearMenu();
 		addButton(0, "Next", lerrisSuckle);
 	}
@@ -279,7 +306,7 @@ public function lerrisConsumeItem(itemInstance:ItemSlotClass):void
 		
 		output("\n\n<i>“I need to get that thing ported for a straw. Ooh, that’s nice,”</i> Lerris moans, pressing herself deeper into your groping grasp. <i>“Until then... why don’t you tear this off me and get your treat?”</i>");
 
-		pc.destroyItem(itemInstance);
+		pc.destroyItemByReference(itemInstance);
 		clearMenu();
 		addButton(0, "Next", lerrisSuckle);
 	}
@@ -299,7 +326,7 @@ public function lerrisConsumeItem(itemInstance:ItemSlotClass):void
 		
 		output("\n\n<i>“So how’re you gonna use these... and me?”</i> she murmurs in your [pc.ear], grinding her tits in your face. Like she said earlier, everything’s on the menu with this slutty kitten!");
 		
-		pc.destroyItem(itemInstance);
+		pc.destroyItemByReference(itemInstance);
 		clearMenu();
 		addButton(0, "Suckle", lerrisSuckle, undefined, "Suckle", "Lerris is always eager to give you a sweet drink, straight from the taps!" +(pc.hasCock() ? " She might even reward you with a little reciprocal oral action..." : ""));
 		if (pc.hasCock() || pc.hasHardLightEquipped()) addButton(1, "BendHerOver", lerrisBendHerOver, undefined, "Bend Her Over", "Bend her over and go to town!");
@@ -311,7 +338,7 @@ public function lerrisConsumeItem(itemInstance:ItemSlotClass):void
 		
 		output("\n\nYou grin up at her, saying that you remembered her having said she never got the mods to complete her transformation into a full-fledged dickgirl. So you thought you’d help her out with that... if she wants.");
 		
-		output("\n\nLerris glances between you and the pussy-growth drug. Her ears are tucked down against her scalp, and her twinned tails brush slowly against your [pc.leg]. <i>“Uhhh.... wow,”</i> she breathes, chewing on her lip ring. <i>“[pc.name], that’s... that’s <b>so generous</b> of you. I don’t know what to say.”</i>");
+		output("\n\nLerris glances between you and the pussy-growth drug. Her ears are tucked down against her scalp, and her twinned tails brush slowly against your [pc.leg]. <i>“Uhhh... wow,”</i> she breathes, chewing on her lip ring. <i>“[pc.name], that’s... that’s <b>so generous</b> of you. I don’t know what to say.”</i>");
 		
 		output("\n\nA yes or no to accepting it would be a start.");
 		
@@ -335,7 +362,7 @@ public function lerrisConsumeItem(itemInstance:ItemSlotClass):void
 		lerris.vaginas = [];
 		lerris.vaginas.push(new VaginaClass());
 
-		pc.destroyItem(itemInstance);
+		pc.destroyItemByReference(itemInstance);
 		clearMenu();
 		addButton(0, "Suckle", lerrisSuckle, undefined, "Suckle", "Lerris is always eager to give you a sweet drink, straight from the taps!" +(pc.hasCock() ? " She might even reward you with a little reciprocal oral action..." : ""));
 		if (pc.hasCock() || pc.hasHardLightEquipped()) addButton(1, "BendHerOver", lerrisBendHerOver, undefined, "Bend Her Over", "Bend her over and go to town!");
@@ -367,7 +394,7 @@ public function lerrisConsumeItem(itemInstance:ItemSlotClass):void
 		output("\n\n<i>“Wait!”</i> you start to say, <i>“You’re only supposed to take one!”</i>");
 		if (silly) output(" Why doesn’t anybody ever read directions!?!!?");
 
-		output("\n\nHer eyes go wide. <i>“Uh.... uh-oh.”</i>");
+		output("\n\nHer eyes go wide. <i>“Uh... uh-oh.”</i>");
 
 		if (lerris.breastRows[0].breastRatingRaw < 23.5)
 		{
@@ -440,7 +467,7 @@ public function lerrisConsumeItem(itemInstance:ItemSlotClass):void
 			lerris.vaginas[0].wetnessRaw = 4;
 		}
 
-		pc.destroyItem(itemInstance);
+		pc.destroyItemByReference(itemInstance);
 		clearMenu();
 		addButton(0, "Suckle", lerrisSuckle, undefined, "Suckle", "Lerris is always eager to give you a sweet drink, straight from the taps!" +(pc.hasCock() ? " She might even reward you with a little reciprocal oral action..." : ""));
 		if (pc.hasCock() || pc.hasHardLightEquipped()) addButton(1, "BendHerOver", lerrisBendHerOver, undefined, "Bend Her Over", "Bend her over and go to town!");
@@ -798,10 +825,12 @@ public function lerrisTalkMenu(fromFunc:Function = null):void
 			if (fromFunc != lerrisTalkGirlfriend) addButton(1, "Her Girlfriend", lerrisTalkGirlfriend, undefined, "Her Girlfriend", "Ask Lerris about her girlfriend. She sounds like a real hard-ass of a mistress.");
 			else addDisabledButton(1, "Her Girlfriend");
 		}
-		//else
-		//{
-			//addDisabledButton(1, "Jessa"); // 9999 scenes not finished/present :V
-		//}
+		/*
+		else
+		{
+			addDisabledButton(1, "Jessa"); // 9999 scenes not finished/present :V
+		}
+		*/
 	}
 	
 	addButton(14, "Back", lerrisMenu);
@@ -877,7 +906,7 @@ public function lerrisTalkMods():void
 
 	output("<i>“You said you’ve got some experience with the products?”</i> you ask, glancing around at everything from biotic sex-toys to ultra-strong fertility pills. Wonder what a cute cat like her has been getting into.");
 	
-	output("\n\n<i>“More than some, sweetie,”</i> she giggles playfully, flipping a locke of green hair behind a purple-hued cat-ear. As she does so, you can’t help but notice the way her bouncy C-cups push against the front of her jumpsuit. They’re as soft and shapely as a pair of tits can be, perfectly sculpted beneath the fabric. They look like they belong on a statue more than a girl working at a shop. Lerris sees you looking and smiles, shifting her shoulders a little. <i>“Yeah, I used to be kind of a mod fiend. I’ve had one of almost everything TamaniCorp sells here. At <b>least</b>!”</i>");
+	output("\n\n<i>“More than some, sweetie,”</i> she giggles playfully, flipping a lock of green hair behind a purple-hued cat-ear. As she does so, you can’t help but notice the way her bouncy C-cups push against the front of her jumpsuit. They’re as soft and shapely as a pair of tits can be, perfectly sculpted beneath the fabric. They look like they belong on a statue more than a girl working at a shop. Lerris sees you looking and smiles, shifting her shoulders a little. <i>“Yeah, I used to be kind of a mod fiend. I’ve had one of almost everything TamaniCorp sells here. At <b>least</b>!”</i>");
 	
 	output("\n\nLerris laughs gaily, her violet tails swishing behind her. Taking that as an invitation, you ask if she’s got any particular favorites. Maybe something she’s taken more than once...");
 	

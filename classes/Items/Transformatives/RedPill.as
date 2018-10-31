@@ -31,7 +31,7 @@ package classes.Items.Transformatives
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
@@ -210,7 +210,7 @@ package classes.Items.Transformatives
 						{
 							output("\n\nYou feel a tingling in your scalp. Running a hand ");
 							if(pc.hasHair()) output("through your [pc.hair], you realize it’s changed color - you’re now sporting a head of dark red hair!");
-							else output("\n\nacross your bald head across your head, you don’t feel any differences. A quick look in your Codex’s reflective backplate, though, shows that your eyebrows and lashes have changed to a dark red - your hair color’s different!");
+							else output("across your head, you don’t feel any differences. A quick look in your Codex’s reflective backplate, though, shows that your eyebrows and lashes have changed to a dark red - your hair color’s different!");
 							pc.hairColor = "red";
 							changes++;
 						}
@@ -222,7 +222,7 @@ package classes.Items.Transformatives
 						{
 							output("\n\nYou feel a tingling in your scalp. Running a hand ");
 							if(pc.hasHair()) output("through your [pc.hair], you realize it’s changed color - you’re now sporting a head of hair that’s black as night!");
-							else output("across your bald head across your head, you don’t feel any differences. A quick look in your Codex’s reflective backplate, though, shows that your eyebrows and lashes have changed to pitch black - your hair color’s different!");
+							else output("across your head, you don’t feel any differences. A quick look in your Codex’s reflective backplate, though, shows that your eyebrows and lashes have changed to pitch black - your hair color’s different!");
 							pc.hairColor = "black";
 							changes++;
 						}
@@ -317,6 +317,7 @@ package classes.Items.Transformatives
 					output("\n\nAfter a few moments, your Codex beeps, informing you that a new chemical has been detected in your mouth, corresponding to a weak version of the venom of a red myrmedion. <b>You’ve gained a form of red myr venom!</b>");
 					changes++;
 					pc.createPerk("Myr Venom",0,0,0,0,"Grants a love-bite tease ability that deals a little lust damage to your opponent.");
+					if(!pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) pc.addTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 					// Perk Swapped!
 					if(pc.hasPerk("Honeypot"))
 					{

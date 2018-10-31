@@ -1,3 +1,5 @@
+import classes.Items.Upgrades.ExpandedBackpackII;
+
 public function uvetoApproachNerrasaFirstTime():void
 {
 	clearOutput();
@@ -46,7 +48,7 @@ public function uvetoApproachNerrasaRepeat():void
 	}
 	else
 	{
-		output("<i>“Welcome back, "+ pc.mf("boy", "girl") +",”</i> Nerrasa coos as you approach, reaching across the counter to stroke your hair. <i>“Ready for your walkies? Or did you just wanna buy something?”</i>");
+		output("<i>“Welcome back, "+ pc.mf("boy", "girl") +",”</i> Nerrasa coos as you approach, reaching across the counter to " + (pc.hasHair() ? "stroke your hair" : "pats your head") + ". <i>“Ready for your walkies? Or did you just wanna buy something?”</i>");
 	}
 
 	uvetoNerrasaMenu();
@@ -65,27 +67,33 @@ public function uvetoNerrasaBuy():void
 {
 	if(pc.level >= 4)
 	{
-		if(!chars["NERRASA"].hasItemByType(Frostfire)) chars["NERRASA"].inventory.push(new Frostfire());
+		if(!chars["NERRASA"].hasItemByClass(Frostfire)) chars["NERRASA"].inventory.push(new Frostfire());
 	}
-	else chars["NERRASA"].destroyItem(new Frostfire());
+	else chars["NERRASA"].destroyItemByClass(Frostfire, -1);
 	
 	if(pc.level >= 7)
 	{
-		if(!chars["NERRASA"].hasItemByType(HardlightDagger)) chars["NERRASA"].inventory.push(new HardlightDagger());
+		if(!chars["NERRASA"].hasItemByClass(HardlightDagger)) chars["NERRASA"].inventory.push(new HardlightDagger());
 	}
-	else chars["NERRASA"].destroyItem(new HardlightDagger());
+	else chars["NERRASA"].destroyItemByClass(HardlightDagger, -1);
 	if(pc.level >= 8)
 	{
-		if(!chars["NERRASA"].hasItemByType(HardlightBow)) chars["NERRASA"].inventory.push(new HardlightBow());
+		if(!chars["NERRASA"].hasItemByClass(HardlightBow)) chars["NERRASA"].inventory.push(new HardlightBow());
 	}
-	else chars["NERRASA"].destroyItem(new HardlightBow());
+	else chars["NERRASA"].destroyItemByClass(HardlightBow, -1);
 	
 	if(canBuySiegwulfe())
 	{
-		if(!chars["NERRASA"].hasItemByType(SiegwulfeItem)) chars["NERRASA"].inventory.push(new SiegwulfeItem());
+		if(!chars["NERRASA"].hasItemByClass(SiegwulfeItem)) chars["NERRASA"].inventory.push(new SiegwulfeItem());
 	}
-	else chars["NERRASA"].destroyItem(new SiegwulfeItem());
+	else chars["NERRASA"].destroyItemByClass(SiegwulfeItem, -1);
 	
+	if(pc.statusEffectv1("Backpack Upgrade") < 10)
+	{
+		if(!chars["NERRASA"].hasItemByClass(ExpandedBackpackII)) chars["NERRASA"].inventory.push(new ExpandedBackpackII());
+	}
+	else chars["NERRASA"].destroyItemByClass(ExpandedBackpackII, -1);
+
 	shopkeep = nerrasa;
 	buyItem();
 }

@@ -32,7 +32,7 @@ public function goAheadAndDumbfuck():void
 		}
 		else if(pc.hasCockTail()) output("Maybe you should check your [pc.cockTails] - just to make sure you aren’t suddenly super horny.");
 		else if(pc.hasTailCunt()) output("Maybe you should check your [pc.tailCunts] - just to make sure you aren’t suddenly super horny.");
-		else output("Maybe you should touch your [asshole] - just to make sure it’s not super-sensitive all of a sudden.");
+		else output("Maybe you should touch your [pc.asshole] - just to make sure it’s not super-sensitive all of a sudden.");
 		output(" Nope, normal. You sigh and have a seat.");
 		output("\n\nJust how long does this stuff take to have an effect, really? You took it to supercharge your sex-drive and maybe take a little bit of the edge off, not to sit around wondering. Hopefully the effects will be good, like getting that good, warm feeling that you get when you’re really turned on all the time. It’ll be hard not to masturbate or fuck everyone you meet if that’s the case, and if you wind up doing that, you’ll just wind up fucking yourself into sluthood.");
 		output("\n\nA blush warms your cheek at the thought. That wouldn’t be THAT bad, would it? Your heart beats a bit faster as you realize you’re getting aroused. Maybe you could get off quickly before it takes effect, perhaps blow off a little steam before you have to spend a day simmering in lust. That might be nice.");
@@ -76,11 +76,47 @@ public function goAheadAndDumbfuck():void
 //After Orgasm Procs
 //Stored in: "Dumbfuck Orgasm Procced" in v1.
 //Probably going to be done via an event queue-like system. Add to Q AFTER time passage.
+public function processDumbfuckEvents():void
+{
+	//Got some cums to pile oN?
+	if(pc.hasStatusEffect("Dumbfuck Orgasm Procced"))
+	{
+		//No sneezes set up yet. Start dis shit.
+		pc.createStatusEffect("Dumbfuck Orgasm Queued", 0, 0, 0, 0, true, "", "", false, 0);
+		//Already got some. PILE ON!
+		pc.addStatusValue("Dumbfuck Orgasm Queued",1,pc.statusEffectv1("Dumbfuck Orgasm Procced"));
+		//Clear out the holding status now that we're cued up for sneezin'
+		pc.removeStatusEffect("Dumbfuck Orgasm Procced");
+	}
+	//Add to event queue so long as it isn't on there already
+	if(pc.hasStatusEffect("Dumbfuck Orgasm Queued"))
+	{
+		if(eventQueue.indexOf(procDumbfuckStuff) == -1) eventQueue.push(procDumbfuckStuff);
+	}
+}
 public function procDumbfuckStuff():void
 {
 	clearOutput();
+	
+	var dumbfuckOrgasms:StorageClass = pc.getStatusEffect("Dumbfuck Orgasm Queued");
+	
+	if(dumbfuckOrgasms == null)
+	{
+		output("Error: “Dumbfuck Orgasm Queued” Status Effect does not exist!");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
+	var nMult:Number = 1;
+	var taint:Number = pc.taint();
+	if(taint <= 50) nMult = 3;
+	else if(taint <= 70) nMult = 2.5;
+	else if(taint <= 85) nMult = 2;
+	else if(taint <= 95) nMult = 1.5;
+	
 	//Small sneeze - 1 cum
-	if(pc.statusEffectv1("Dumbfuck Orgasm Queued") <= 1)
+	if(dumbfuckOrgasms.value1 <= 1)
 	{
 		//Random variant
 		if(rand(3) == 0) output("An abrupt sneeze brings you to a standstill.");
@@ -88,24 +124,27 @@ public function procDumbfuckStuff():void
 		else output("A sudden, somewhat quiet sneeze goes off in your nose.");
 		pc.intelligence(-1);
 		pc.libido(1);
+		pc.taint(0.5 * nMult);
 	}
 	//Medium sneeze - 2-3 cums
-	else if(pc.statusEffectv1("Dumbfuck Orgasm Queued") <= 3)
+	else if(dumbfuckOrgasms.value1 <= 3)
 	{
 		if(rand(3) == 0) output("A large, messy sneeze doubles you over.");
 		else if(rand(2) == 0) output("Nearly knocking you back, the inevitable, dumbfuck-created sneeze stops you in your tracks.");
 		else output("A big sneeze slowly builds in your nose. You try to hold it in, but it erupts out all the same.");
 		pc.intelligence(-2);
 		pc.libido(2);
+		pc.taint(1 * nMult);
 	}
 	//Huge sneeze - 4-6 cums
-	else if(pc.statusEffectv1("Dumbfuck Orgasm Queued") <= 6)
+	else if(dumbfuckOrgasms.value1 <= 6)
 	{
 		if(rand(3) == 0) output("Oh wow, there’s a huge sneeze coming. You can feel it building up, already making you lightheaded. You get a tissue up just in time to catch some of the mess.");
 		else if(rand(2) == 0) output("A sneeze the size of a house rocks you back on your [pc.feet] and nearly topples you to the ground.");
 		else output("A chain of three decent-sized sneezes interrupts you.");
 		pc.intelligence(-4);
 		pc.libido(4);
+		pc.taint(2 * nMult);
 	}
 	//Sneezing fit - 7+
 	else
@@ -114,11 +153,13 @@ public function procDumbfuckStuff():void
 		else output("A bunch of sneezes are rising up in the back of your nose, and there’s nothing you can do but hold onto yourself and wait it out. If only you hadn’t cum so-achoo! The first one hits a split second before the second... and the third... and the fourth.... You sneeze for what feels like a minute straight, each one feeling better than the last.");
 		pc.intelligence(-5 - rand(3));
 		pc.libido(5 + rand(3));
+		pc.taint(3 * nMult);
 	}
 	
 	if(flags["DUMBFUCK_SNEEZES"] == undefined) flags["DUMBFUCK_SNEEZES"] = 0;
-	flags["DUMBFUCK_SNEEZES"] += pc.statusEffectv1("Dumbfuck Orgasm Queued");
+	flags["DUMBFUCK_SNEEZES"] += dumbfuckOrgasms.value1;
 	pc.removeStatusEffect("Dumbfuck Orgasm Queued");
+	
 	if(flags["DUMBFUCK_SNEEZES"] <= 1)
 	{
 		
@@ -256,13 +297,13 @@ public function procDumbfuckStuff():void
 		pc.createPerk("Fuck Sense",15,0,0,0,"Allows your sense ability to base success off your libido instead of intelligence.");
 	}
 	//Gain weak willed
-	if(flags["DUMBFUCK_SNEEZES"] >= 17 && !pc.hasPerk("Weak Willed"))
+	if(flags["DUMBFUCK_SNEEZES"] >= 17 && !pc.hasPerk("Weak Mind"))
 	{
 		output("\n\nBut why stop yourself? You could just let go and do what feels good, and it all feels good. Particularly touching. You love touching, being touched, whatever. You’d let someone do all kinds of stuff to you if they touched you!");
-		output("\n\n(<b>Gained Perk: Weak Will</b> - You lose willpower twice as fast.)");
+		output("\n\n(<b>Gained Perk: Weak Mind</b> - You lose willpower twice as fast.)");
 		//Reduce willpower by 6 immediately. (only need to mod by 3 if perk active)
 		pc.willpower(-6);
-		pc.createPerk("Weak Willed",0,0,0,0,"Willpower losses are doubled.");
+		pc.createPerk("Weak Mind",0,0,0,0,"Intelligence and willpower losses doubled.");
 	}
 	if(flags["DUMBFUCK_SNEEZES"] >= 20 && !pc.hasPerk("Ditz Speech") && !pc.hasPerk("Brute Speech"))
 	{
@@ -281,7 +322,11 @@ public function procDumbfuckStuff():void
 			pc.createPerk("Brute Speech",0,0,0,0,"Alters dialogue in certain scenes.");
 		}
 	}
-
+	
+	// Sneezing Tits synergy
+	var sneezeTits:StorageClass = pc.getStatusEffect("Sneezing Tits");
+	if(sneezeTits != null) output(sneezingTitsSneeze(pc, sneezeTits, sneezeTits.value4));
+	
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

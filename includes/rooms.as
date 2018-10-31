@@ -17,6 +17,32 @@ import classes.RoomClass;
 	rooms[""].addFlag(GLOBAL.HAZARD);
 	*/
 
+public function buildRooms():void
+{
+	//if(rooms != null || rooms.length > 0) rooms.length = 0;
+	
+	initializeRooms();
+	initTavrosRooms();
+	initMhengaRooms();
+	initTarkusRooms();
+	initNewTexasRooms();
+	initializeMyrellionRooms();
+	kquest2InitRooms();
+	initUvetoRooms();
+	initUvetoRoomsII();
+	initZhengRooms();
+	initGastigothRooms();
+	kiInitRooms();
+	initVesperiaRoom();
+	initBreedwellRooms();
+	fqInitRooms();
+	syriQuestInitRooms();
+	initGreatMajinRooms();
+	eventWhorizonInitRooms();
+	
+	mapper = new Mapper(rooms);
+}
+
 public function initializeRooms():void 
 {
 
@@ -61,6 +87,7 @@ public function initializeRooms():void
 	rooms["SPACE"].moveMinutes = 1;
 	rooms["SPACE"].runOnEnter = puntToShip;
 	rooms["SPACE"].addFlag(GLOBAL.OUTDOOR);
+	rooms["SPACE"].addFlag(GLOBAL.LOW_GRAVITY);
 
 	rooms["POESPACE"] = new RoomClass(this);
 	rooms["POESPACE"].roomName = "\nSPACE";
@@ -70,6 +97,7 @@ public function initializeRooms():void
 	rooms["POESPACE"].moveMinutes = 1;
 	rooms["POESPACE"].runOnEnter = puntToShip;
 	rooms["POESPACE"].addFlag(GLOBAL.OUTDOOR);
+	rooms["POESPACE"].addFlag(GLOBAL.LOW_GRAVITY);
 
 	rooms["GAME OVER"] = new RoomClass(this);
 	rooms["GAME OVER"].roomName = "";
@@ -78,7 +106,7 @@ public function initializeRooms():void
 	rooms["GAME OVER"].system = "";
 	rooms["GAME OVER"].moveMinutes = 1;
 	rooms["GAME OVER"].runOnEnter = undefined;
-	rooms["GAME OVER"].addFlag(GLOBAL.INDOOR);	
+	rooms["GAME OVER"].addFlag(GLOBAL.INDOOR);
 
 	// SAENDRA QUEST! -----------------------------------------------
 
@@ -260,6 +288,7 @@ public function initializeRooms():void
 	rooms["DEBUG1"].planet = "PLANET: MHEN'GA";
 	rooms["DEBUG1"].system = "SYSTEM: ARA ARA";
 	rooms["DEBUG1"].eastExit = "WEST ESBETH 1";
+	rooms["DEBUG1"].westExit = "DEBUG2";
 	rooms["DEBUG1"].addFlag(GLOBAL.INDOOR);
 	rooms["DEBUG1"].runOnEnter = debugMenus;
 	
@@ -280,9 +309,10 @@ public function initializeRooms():void
 	rooms["DEBUG3"].planet = "PLANET: MHEN'GA";
 	rooms["DEBUG3"].system = "SYSTEM: ARA ARA";
 	rooms["DEBUG3"].northExit = "DEBUG2";
+	rooms["DEBUG3"].southExit = "FLAG EDIT";
 	rooms["DEBUG3"].addFlag(GLOBAL.INDOOR);
 	rooms["DEBUG3"].runOnEnter = debugMenusThree;
-
+	
 	rooms["FLAG EDIT"] = new RoomClass(this);
 	rooms["FLAG EDIT"].roomName = "FLAG\nEDITOR";
 	rooms["FLAG EDIT"].description = "";
@@ -291,4 +321,5 @@ public function initializeRooms():void
 	rooms["FLAG EDIT"].northExit = "DEBUG3";
 	rooms["FLAG EDIT"].addFlag(GLOBAL.INDOOR);
 	rooms["FLAG EDIT"].runOnEnter = flagEditing;
+	
 }

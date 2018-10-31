@@ -6,10 +6,12 @@ package classes.Characters
 	import classes.Items.Miscellaneous.TerranTreats;
 	import classes.Items.Transformatives.DoveBalm;
 	import classes.Items.Transformatives.Hornitol;
+	import classes.Items.Transformatives.Hornucopia;
 	import classes.Items.Transformatives.Pickmentation;
 	import classes.Items.Transformatives.PleasurePalette;
 	import classes.Items.Transformatives.RainbowGaze;
 	import classes.Items.Transformatives.SheepTF;
+	import classes.Items.Transformatives.UthraPlus;
 	import classes.kGAMECLASS;
 
 	public class DrLessau extends Creature
@@ -34,10 +36,12 @@ package classes.Characters
 			this.inventory.push(new TerranTreats());
 			this.inventory.push(new DoveBalm());
 			this.inventory.push(new Hornitol());
+			this.inventory.push(new Hornucopia());
 			this.inventory.push(new Pickmentation());
 			this.inventory.push(new PleasurePalette());
 			this.inventory.push(new RainbowGaze());
 			this.inventory.push(new SheepTF());
+			this.inventory.push(new UthraPlus());
 			
 			this.keeperBuy = "<i>“Ah, interested in improving yourself?”</i> Lessau opens up a holoterminal for you displaying a menu of various transformative agents. <i>“Go right ahead, mix and match to your heart’s desire. I’ll have the treatments prepared for you immediately. I will, unfortunately, have to charge for the service, but you'll benefit from the employee discount.”</i>\n";
 			
@@ -153,7 +157,7 @@ package classes.Characters
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 4;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 9000;
 			this.timesCum = 785;
 			this.cockVirgin = false;

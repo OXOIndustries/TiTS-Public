@@ -181,6 +181,8 @@
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 			
+			impregnationType = "ZilPregnancy";
+			
 			this.breastRows[0].breastRatingRaw = 0;
 			this.nippleColor = "black";
 			this.milkMultiplier = 0;
@@ -265,9 +267,9 @@
 			choices.push(getStabbedBiyatch);
 			choices.push(arrowAttack);
 			//1x limit
-			if(!isBlocked(clobberAttack,blocked)) choices.push(clobberAttack);
+			if(!isZilBlocked(clobberAttack,blocked)) choices.push(clobberAttack);
 			choices.push(lustDartFoLyfe);
-			if(!isBlocked(grabWoundedPCs,blocked))
+			if(!isZilBlocked(grabWoundedPCs,blocked))
 			{
 				if(this.HP() < 180 && !target.hasStatusEffect("Tripped") && !this.hasStatusEffect("Trip CD")) choices.push(grabWoundedPCs);
 			}
@@ -282,7 +284,7 @@
 
 			return choices;
 		}
-		public function isBlocked(target:Function,blocked:Array):Boolean
+		public function isZilBlocked(target:Function,blocked:Array):Boolean
 		{
 			for(var x:int = 0; x < blocked.length; x++)
 			{
@@ -335,7 +337,7 @@
 				if(target.shields() < 0 && this.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
 				{
 					output(" You taste iron, and you’re knocked to a place where it seems as if the battle is coming from a long way away...");
-					target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "Cannot act for a turn.", true, 0, 0xFF0000);
+					CombatAttacks.applyStun(target, 2);
 				}
 			}
 			meleeWeapon.attackVerb = "stab";
@@ -366,11 +368,11 @@
 		public function grabWoundedPCs(target:Creature):void
 		{
 			output("One of the zil you’ve driven wounded to the ground grabs desperately at your [pc.legs].");
-			if(this.physique()/2 + rand(20) + 1 <= target.physique()/2 + 10) output(" You manage to wrench yourself out of his grip.");
+			if((this.physique()/2 + rand(20) + 1 <= target.physique()/2 + 10) || target.isPlanted()) output(" You manage to wrench yourself out of his grip.");
 			else
 			{
 				output(" You can’t stop yourself being pulled down in turn! The remaining zil cheer and close in, scenting victory.");
-				target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+				CombatAttacks.applyTrip(target);
 			}
 			this.createStatusEffect("Trip CD",5,0,0,0);
 		}

@@ -27,6 +27,7 @@ package classes.GameData
 			vendorToggle = true;
 			showRoomAndSceneNames = true;
 			tempHideRoomAndSceneNames = false;
+			seasonalOverridePreferences = { };
 		}
 		
 		public var primaryBustArtist:String = "SHOU";
@@ -57,6 +58,9 @@ package classes.GameData
 		
 		// Silly
 		public var sillyMode:Boolean;
+		
+		// Seasonal content
+		public var seasonalOverridePreferences:Object;
 		
 		// Text Settings
 		

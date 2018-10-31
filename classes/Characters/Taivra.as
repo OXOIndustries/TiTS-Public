@@ -157,7 +157,7 @@
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 4;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 9000;
 			this.timesCum = 122;
 			this.cockVirgin = true;
@@ -278,7 +278,7 @@
 			//Hit
 			else
 			{
-				output("\nTaivra tries to twist out of the way, but there's just so many hands grabbing for her at once. Her arms are pinned to her [pc.hips] by one pair while the other bear hugs her against his broad chest. <i>\"Now, [pc.name]! Hit her now!\"</i>");
+				output("\nTaivra tries to twist out of the way, but there’s just so many hands grabbing for her at once. Her arms are pinned to her [pc.hips] by one pair while the other bear hugs her against his broad chest. <i>\"Now, [pc.name]! Hit her now!\"</i>");
 				output("\n<b>Taivra is grappled!</b>");
 				createStatusEffect("Dane Grappled",0,35,0,0,false,"Constrict","Taivra is pinned in a grapple.",true,0);
 			}
@@ -286,7 +286,7 @@
 		
 		private function taivraGrappleBreak():void
 		{
-			output("With a contemptuous sneer, Taivra breaks Dane's grip and boots him backward. He converts the momentum into a combat roll and comes up with a fresh spear in his hand.");
+			output("With a contemptuous sneer, Taivra breaks Dane’s grip and boots him backward. He converts the momentum into a combat roll and comes up with a fresh spear in his hand.");
 		}
 		
 		private function quadGripSpearStab():void
@@ -354,7 +354,7 @@
 				if(physique()/2 + rand(20) + 1 > target.physique()/2 + 10 && !target.hasStatusEffect("Stunned"))
 				{
 					output(" <b>You are stunned!</b>");
-					target.createStatusEffect("Stunned",2,0,0,0,false,"Stun","You cannot act until you recover!",true,0,0xFF0000);
+					CombatAttacks.applyStun(target, 2);
 				}
 			}
 			output(" A moment later and she’s dancing around you, slashing at you with the sharp end.");
@@ -408,7 +408,7 @@
 				output("\nThe vial shatters against your chest, bursting into a cloud of pink mist. You cough as the mist billows out, making your eyes water and flesh tingle. <b>You are surrounded by a cloud of lust-drug!</b>");
 				applyDamage(new TypeCollection( { drug: 6 } ), this, target, "minimal");
 				//4 rounds of lust damage!
-				if(!target.hasStatusEffect("Aphro Gas")) target.createStatusEffect("Aphro Gas",5,4,0,0,false,"Icon_LustUp","A cloud of aphrodisiac hangs in the air, turning you on as you breathe!",true,0);
+				if(!target.hasStatusEffect("Aphro Gas")) CombatAttacks.applyAphroGas(target, 5, 4);
 				else 
 				{
 					output(" <b>The chemical in your air is getting stronger!</b>");
@@ -432,7 +432,7 @@
 			else
 			{
 				output("! <b>You’re blinded!</b>");
-				target.createStatusEffect("Blinded", 2 + rand(3), 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0, 0xFF0000);
+				CombatAttacks.applyBlind(target, 2 + rand(3));
 			}
 		}
 		

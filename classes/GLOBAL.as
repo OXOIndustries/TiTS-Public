@@ -79,6 +79,7 @@
 		public static const FLAG_CORKSCREWED:int							= 44;
 		public static const FLAG_TONGUE:int									= 45;
 		public static const FLAG_FRECKLED:int                               = 46;
+		public static const FLAG_PLUGGED:int                   	            = 47;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -128,6 +129,7 @@
 			"Corkscrewed",
 			"Tongued",
 			"Freckled",
+			"Plugged",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -222,7 +224,15 @@
 		public static const TYPE_MOUTHGINA:int 								= 74;
 		public static const TYPE_LUPINE:int 								= 75;
 		public static const TYPE_SHEEP:int 									= 76;
-		public static const TYPE_REDPANDA:int 									= 77;
+		public static const TYPE_REDPANDA:int 								= 77;
+		public static const TYPE_RAHN:int 									= 78;
+		public static const TYPE_THRAGGEN:int 								= 79;
+		public static const TYPE_ADREMMALEX:int 							= 80;
+		public static const TYPE_MOTHRINE:int 								= 81;
+		public static const TYPE_FROSTWYRM:int 								= 82;
+		public static const TYPE_SANDWORM:int 								= 83;
+		public static const TYPE_SANDWORM_PARASITE:int 						= 84;
+		public static const TYPE_JANERIA:int								= 85;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -303,6 +313,14 @@
 			"Lupine",
 			"Sheep",
 			"Lesser Panda",
+			"Rahn",
+			"Thraggen",
+			"Adremmalex",
+			"Mothrine",
+			"Frostwyrm",
+			"Sand Worm",
+			"Butt Bug",
+			"Janeria",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -333,6 +351,7 @@
 			TYPE_LUPINE,
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
@@ -359,6 +378,9 @@
 			TYPE_NYREA,
 			TYPE_GRYVAIN,
 			TYPE_SHEEP,
+			TYPE_COCKVINE,
+			TYPE_JANERIA,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -378,6 +400,7 @@
 			TYPE_BEE,
 			TYPE_FROG,
 			TYPE_TENTACLE,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_TONGUE_FLAGS:Array = [
@@ -424,6 +447,7 @@
 			TYPE_LUPINE,
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -448,6 +472,7 @@
 			TYPE_TENTACLE,
 			TYPE_LUPINE,
 			TYPE_REDPANDA,
+			TYPE_FROSTWYRM,
 		];
 
 		public static const VALID_ARM_FLAGS:Array = [
@@ -498,6 +523,8 @@
 			TYPE_LUPINE,
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
+			TYPE_JANERIA,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -539,6 +566,7 @@
 			TYPE_GRYVAIN,
 			TYPE_DRYAD,
 			TYPE_SHEEP,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_WING_TYPES:Array = [
@@ -559,6 +587,8 @@
 			TYPE_GRYVAIN,
 			TYPE_COCKVINE,
 			TYPE_TENTACLE,
+			TYPE_JANERIA,
+			TYPE_FROSTWYRM,
 		];
 		
 		// None is for specifying no tail, which would normally pull the HUMAN name.
@@ -602,6 +632,7 @@
 			TYPE_LUPINE,
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [
@@ -694,7 +725,7 @@
 		public static const NIPPLE_TYPE_NAMES:Array = [
 			"Normal",
 			"Cunt",
-			"Lipples",
+			"Lip",
 			"Dick",
 			"Flat",
 			"Inverted",
@@ -750,6 +781,7 @@
 		public static const FLUID_TYPE_EGGNOG:int								= 27;
 		public static const FLUID_TYPE_PEPPERMINT:int							= 28;
 		public static const FLUID_TYPE_SUGAR:int								= 29;
+		public static const FLUID_TYPE_CUNDARIAN_SEED:int						= 30;
 		
 		public static const FLUID_TYPE_NAMES:Array = [
 			"Milk",
@@ -937,6 +969,8 @@
 			TYPE_HRAD,
 			TYPE_GRYVAIN,
 			TYPE_SWINE,
+			TYPE_FROSTWYRM,
+			TYPE_JANERIA,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
@@ -981,6 +1015,7 @@
 			TYPE_FLOWER,
 			TYPE_SWINE,
 			TYPE_MOUTHGINA,
+			TYPE_FROSTWYRM,
 		];
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas
@@ -996,6 +1031,7 @@
 			FLAG_PUMPED,
 			FLAG_CORKSCREWED,
 			FLAG_TONGUE,
+			FLAG_PLUGGED
 		];
 		
 		//ROOM FLAGS
@@ -1029,6 +1065,8 @@
 		public static const SHIPINTERIOR:int							= 27; // Used to flag all rooms of player-own ships.
 		public static const POOL:int									= 28;
 		public static const WATERFALL:int								= 29;
+		public static const SPIDER_WEB:int								= 30;
+		public static const LOW_GRAVITY:int								= 31;
 		
 		// Temp flag alias whilst the asset gets introduced
 		public static const LIFT:int = OBJECTIVE;
@@ -1039,24 +1077,26 @@
 		public static const TIMES_CELISE_IN_BALLS:int                  = 2;
 
 		//ITEM TYPES
-		public static const PILL:int                                   = 0; // Used for medicinal/misc and mostly legal drugs.
-		public static const FOOD:int                                   = 1; // Used for consumable food items.
-		public static const POTION:int                                 = 2; // Used for drinks/recovery items.
-		public static const MELEE_WEAPON:int                           = 3;
-		public static const RANGED_WEAPON:int                          = 4;
-		public static const ARMOR:int                                  = 5;
-		public static const SHIELD:int                                 = 6;
-		public static const UPPER_UNDERGARMENT:int                     = 7;
-		public static const LOWER_UNDERGARMENT:int                     = 8;
-		public static const ACCESSORY:int                              = 9;
-		public static const DRUG:int                                   = 10; // Used for illegal or detrimental drugs/consumables.
-		public static const CLOTHING:int                               = 11;
-		public static const ALL:int                                    = 12; // Used for pawn shops!
-		public static const GADGET:int 								   = 13; // Used for devices/appliances.
-		public static const EXPLOSIVECONSUMABLE:int					   = 14;
-		public static const QUEST_ITEM:int							   = 15; // Used for quest-related items.
-		public static const GEM:int 								   = 16; // Used for very valuable items.
-		public static const SEXTOY:int 								   = 17; // Used for any portable sexual relief devices.
+		public static const PILL:int									= 0; // Used for medicinal/misc and mostly legal drugs.
+		public static const FOOD:int									= 1; // Used for consumable food items.
+		public static const POTION:int									= 2; // Used for drinks/recovery items.
+		public static const MELEE_WEAPON:int							= 3;
+		public static const RANGED_WEAPON:int							= 4;
+		public static const ARMOR:int									= 5;
+		public static const SHIELD:int									= 6;
+		public static const UPPER_UNDERGARMENT:int 						= 7;
+		public static const LOWER_UNDERGARMENT:int 						= 8;
+		public static const ACCESSORY:int 								= 9;
+		public static const DRUG:int									= 10; // Used for illegal or detrimental drugs/consumables.
+		public static const CLOTHING:int 								= 11;
+		public static const ALL:int										= 12; // Used for pawn shops!
+		public static const GADGET:int 									= 13; // Used for devices/appliances.
+		public static const EXPLOSIVECONSUMABLE:int						= 14;
+		public static const QUEST_ITEM:int								= 15; // Used for quest-related items.
+		public static const GEM:int 									= 16; // Used for very valuable items.
+		public static const SEXTOY:int 									= 17; // Used for any portable sexual relief devices.
+		public static const PIERCING:int 								= 18; // Used for piercings
+		public static const COCKSOCK:int 								= 19; // Used for cockwear
 		
 		public static const ITEM_TYPE_NAMES:Array = [
 			"Pill",
@@ -1077,6 +1117,8 @@
 			"Quest Item",
 			"Gem",
 			"Sex Toy",
+			"Piercing",
+			"Cockwear",
 		];
 
 		//CHARACTERS
@@ -1120,6 +1162,22 @@
 		public static const ITEM_FLAG_INTERNAL_POWER:int				= 16; // For drones that do not require shields in order to function.
 		public static const ITEM_FLAG_UNDROPPABLE:int					= 17; // For items that cannot be dropped.
 		public static const ITEM_FLAG_TRANSPARENT:int					= 18; // Used specifically for clothing/armor that is see-through.
+		public static const ITEM_FLAG_ANTIGRAV:int						= 19; // Used for items that can levitate heavy parts.
+		public static const ITEM_FLAG_BLIND_IGNORE:int 					= 20; // Used for items with no penalties for blind-fire.
+		public static const ITEM_FLAG_COVER_BODY:int					= 21; // Used specifically for accessories that cover the body (like duster jackets).
+		public static const ITEM_FLAG_SKIN_TIGHT:int					= 22; // Used specifically for items that are body conforming (like goo armor and omnisuit).
+		public static const ITEM_FLAG_VAGINAL_CHASTITY:int 				= 23; //Used for undies that prevent penetration. Y u do dis, Nonesuch?
+		public static const ITEM_FLAG_ANAL_CHASTITY:int 				= 24; //Used for undies that prevent penetration. Y u do dis, Nonesuch?
+		public static const ITEM_FLAG_VAGINALLY_SEALED:int 				= 25; //For undies that seal in cumflation :3
+		public static const ITEM_FLAG_ANALLY_SEALED:int 				= 26; //For undies that seal in Kiro's enormous loads.
+		public static const ITEM_FLAG_HIGH_PHYSIQUE:int 				= 27; //For items that require high physique - 66%+, rounded up.
+		public static const ITEM_FLAG_PIERCING_MULTIPLE:int 			= 28; //For piercings that are multiple - IE, will fit on both ears or all 
+		public static const ITEM_FLAG_PIERCING_STUD:int 				= 29; //Piercings of the "stud" type.
+		public static const ITEM_FLAG_PIERCING_RING:int 				= 30; //Piercings of the "ring" type.
+		public static const ITEM_FLAG_PIERCING_CHAINS:int 				= 31; //Piercings of the "chain" type.
+		public static const ITEM_FLAG_NO_REMOVE:int 					= 32; //Worn items that the PC cannot remove by themself.
+		public static const ITEM_FLAG_SMALL_DICK_ONLY:int               = 33; //Cocksock can only be equipped by smol
+
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1141,6 +1199,21 @@
 			"Self-Powered",
 			"Undroppable",
 			"Transparent",
+			"Anti-Gravity",
+			"Ignores Blindness",
+			"Covers Body",
+			"Body Conforming",
+			"Vaginal Chastity",
+			"Anal Chastity",
+			"Vaginal Cum-Sealed",
+			"Anal Cum-Sealed",
+			"Requires High Physique",
+			"Multiples",
+			"Stud",
+			"Ring",
+			"Chained",
+			"Permanent",
+			"Requires Small Cock",
 		];
 		
 		/**
@@ -1188,8 +1261,15 @@
 		public static const SEXPREF_BALDNESS:int = 24;
 		public static const SEXPREF_LONG_HAIR:int = 25;
 		public static const SEXPREF_NEUTER:int = 26
+		public static const SEXPREF_SWEAT:int = 27
+		public static const SEXPREF_CUMMY:int = 28
+		//"racial" type
+		public static const SEXPREF_FURRIES:int = 29
+		public static const SEXPREF_SCALIES:int = 30
+		public static const SEXPREF_FEATHERS:int = 31
+		public static const SEXPREF_CHITIN:int = 32
 		
-		public static const MAX_SEXPREF_VALUE:int = 27; // Keep this as a book-end on the values. Check penny for how you'd random shit
+		public static const MAX_SEXPREF_VALUE:int = 33; // Keep this as a book-end on the values. Check penny for how you'd random shit
 		
 		// Not ideal, but it's possibly better than using switch statements, plus it keeps the Keys ^ with Descriptors \/
 		// The two will have to forever be in the same order though, but I can probably rig up some better system.
@@ -1222,6 +1302,12 @@
 			"Baldness",
 			"Long hair",
 			"Neuters",
+			"Sweat",
+			"Sexjuice coatings",
+			"Furries",
+			"Scalies",
+			"Feathers",
+			"Chitin",
 			"ERROR ERROR ABORT ABORT"
 		];
 		
@@ -1259,25 +1345,35 @@
 			"AKI",
 			"ALDER",
 			"BNG",
+			"BER00",
+			"BUSTEDRADIO",
 			"CHESHIRE",
+			"CROSSMAN",
 			"CYANCAPSULE",
 			"DAMNIT",
 			"DOCBADGER",
 			"DOXY",
+			"FRIENDLYALIENFRIEND",
 			"GATS",
 			"GATSOLD",
 			"JACQUES",
 			"JAMESAB",
 			"JAYECHO",
+			"JLIKESTODRAW",
 			"LAPINBEAU",
+			"LILIRURU",
 			"MANIACPAINT",
+			"MISSBEHAVIOR",
 			"NUBATTORI",
 			"PEEKAY",
 			"RENEZUO",
 			"SHOU",
+			"TSUDA",
 			"UTHSTAR",
 			"WOLFYNAIL",
 			"FUBMISTRESS",
+			"JAYFIREGROWLITHE",
+			"YOHSL",
 		];
 		
 		// Any time we want to show a name, this is where it'll be getting pulled from
@@ -1287,25 +1383,35 @@
 			"Aki",
 			"Alder",
 			"Benji",
+			"Ber00",
+			"BustedRadio",
 			"Cheshire",
+			"Crossman",
 			"CyanCapsule",
 			"Damnit",
 			"DatBadger",
 			"Doxy",
+			"FriendlyAlienFriend",
 			"Gats",
 			"Old Gats",
 			"Jacques00",
 			"James AB",
 			"Jay Echo",
+			"J-Likes-To-Draw",
 			"Lapinbeau",
+			"LiliRuru",
 			"ManiacPaint",
+			"MissBehavior",
 			"Nu Battori",
 			"Pee-Kay",
 			"Renezuo",
 			"Shou",
+			"Tsuda",
 			"Uthstar",
 			"Wolfy-Nail",
 			"FubMistress",
+			"JayfireGrowlithe",
+			"YohSL",
 		];
 		
 		// These are what show up in the options menu combo boxes

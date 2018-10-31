@@ -41,7 +41,7 @@
 			
 			//Information
 			this.basePrice = 800;
-			this.attack = 2;
+			this.attack = 6;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;

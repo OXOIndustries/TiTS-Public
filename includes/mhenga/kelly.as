@@ -7,9 +7,6 @@ public function showKellyName():void
 }
 public function kellyBustDisplay(nude:Boolean = false):String
 {
-	// 9999 - Special artist exceptions!
-	if(!InCollection(kGAMECLASS.gameOptions.configuredBustPreferences["KELLY"], ["ADJATHA", "GATS"])) return "KELLY";
-	
 	return "KELLY" + (nude ? "_NUDE" : "");
 }
 public function showKelly(nude:Boolean = false):void {
@@ -46,7 +43,9 @@ public function kellyAppearance():void {
 	clearOutput();
 	showKelly();
 	author("Quiet Browser & LD");
-	output("Louise “Kelly” Epona, though if you dare call her <i>Louise</i> she’d be pretty mad at you, is a gene-modded laquine you met on the planet Mhen’gha in the town of Esbeth.");
+	if(flags["KELLY_MET"] < 2) output("Kelly");
+	else output("Louise “Kelly” Epona, though if you dare call her <i>Louise</i> she’d be pretty mad at you,");
+	output(" is a gene-modded laquine you met on the planet Mhen’gha in the town of Esbeth.");
 	output("\n\nStanding five feet and nine inches tall with a buxom, curvy body strongly resembling a humanoid rabbit, she stares at you through amber eyes with a confident smile. Her rabbit-like ears fall down the back of her skull from the top of her head to her shoulders in an iconic “Floppy-eared bunny” look. A rabbit-like tail flashes above her bum, and her bare feet extend into rabbit-like appendages, her legs jointed in an odd fashion that lets her stand on both the balls of her feet, making them digitigrade, or on the heels of her feet, making them look plantigrade, like a human’s.");
 	output("\n\nHer face is unquestionably rabbit-like, with a short muzzle. However, you note that her features are possessed of soft, feminine curves that make her quite attractive. Her lips in particular are full and enticing, naturally kissable and prone to a seemingly unconscious pout that amplifies the sexiness of her smile. Her whole body");
 	//if not sexed:
@@ -173,14 +172,17 @@ public function kellysStoreSetup():void
 	{
 		chars["KELLY"].inventory.push(new Ovilium());
 	}
-	if(flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined || flags["JULIANS_QUEST_DISABLED"] != undefined)
+	if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] != undefined || flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] != undefined)
 	{
-		chars["KELLY"].inventory.push(new HoneySeed());
-	}
-	if(flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined || flags["JULIANS_QUEST_DISABLED"] != undefined)
-	{
-		chars["KELLY"].inventory.push(new Honeydew());
-		chars["KELLY"].inventory.push(new Honeypot());
+		if(flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined || flags["JULIANS_QUEST_DISABLED"] != undefined)
+		{
+			chars["KELLY"].inventory.push(new HoneySeed());
+		}
+		if(flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined || flags["JULIANS_QUEST_DISABLED"] != undefined)
+		{
+			chars["KELLY"].inventory.push(new Honeydew());
+			chars["KELLY"].inventory.push(new Honeypot());
+		}
 	}
 	if(flags["SYNTHSAP_UNLOCKED"] != undefined)
 	{
@@ -399,8 +401,8 @@ public function kellySkySapCollect():void
 	{
 		output("Kelly looks up at you as you enter, shooting you her warm, trademark smile, <i>“Oh, [pc.name]! Guess what? We’ve got a new product for sale, all thanks to those sap samples you keep bringing us.”</i>");
 		output("\n\n<i>“It’s called ‘Synth Sap’ - not a terribly original name, if you ask me.”</i>");
-		output("\n\nYou ask Kelly what it does. She brings up a long looking holodoc and reads from it. <i>“... Well, it’s a transformative. Apparently Doctor Haswell tried to create a substance that would recreate the extinct vanae male and bring the species back to life. That’s Xenogen for you - shaking up one world at a time.”</i>");
-		output("\n\nDid he succeed? The secretary flips down the page. She shakes her head. <i>“... Almost, but not quite. If you consume it, it’ll give you the external appearance of what a vanae male was like.”</i>");
+		output("\n\nYou ask Kelly what it does. She brings up a long looking holodoc and reads from it. <i>“...Well, it’s a transformative. Apparently Doctor Haswell tried to create a substance that would recreate the extinct vanae male and bring the species back to life. That’s Xenogen for you - shaking up one world at a time.”</i>");
+		output("\n\nDid he succeed? The secretary flips down the page. She shakes her head. <i>“...Almost, but not quite. If you consume it, it’ll give you the external appearance of what a vanae male was like.”</i>");
 		output("\n\n<i>“Your genitals will transform and apparently you’ll get glow-in-the-dark semen,”</i> Kelly raises an eyebrow, <i>“That sounds... pretty nifty. However, except for a sharp virility spike, your sperm will remain untouched.”</i>");
 		output("\n\n<i>“If you want to buy some, just ask. We’ve got a fair bit in stock. You’ll need to sign a disclaimer before you try it, though -- cutting edge products and all that.”</i>");
 		
@@ -445,7 +447,7 @@ public function giveKellySkySap(count:int):void
 	
 	for(var x:int = 0; x < count; x++)
 	{
-		pc.destroyItem(new SkySap(), 1);
+		pc.destroyItemByClass(SkySap, 1);
 		IncrementFlag("KELLY_SKYSAP_COLLECT");
 		creds += 100;
 	}
@@ -773,6 +775,9 @@ public function talkToKelly():void
 	output("\n\n<i>“Now, I know what you’re probably thinking - I’m a modder as well as a staff member, right? This gorgeous furry coat and these sweet ears and all the rest of it, it all came out of a bio-sculptor’s toolkit, yeah?”</i> she smirks at you and then shakes her head, floppy ears swishing through the air from the motions. <i>“Well, you’d be partly right. I do have a couple of mods in my system, and I’m very happy with them. However, the most obvious things about me? All natural, I assure you. See, I’m not one of those ‘furries’ that you humans have, who mod themselves to look more animal-like - though we do have one of those here in Esbeth; you met Penny yet? She’s our chief of security, really nice girl, sure you’d like her,”</i> she interjects into her own conversation. <i>“Now, where was I? Ah, yes, I’m not a human at all. I’m a laquine.”</i>");
 	output("\n\nJust as suddenly as she began, she stops herself, smiling at you and wagging a finger. <i>“And I think that’s enough about me for now.”</i> She rests her chin in her hands, giving you a coy look. <i>“If you wanna know more, you’re going to have to pry the information.... From. My. Lips.”</i> Her eyes hood themselves in a seductive smoulder, her lips pouting invitingly.");
 	processTime(3);
+	
+	if(flags["KELLY_MET"] < 2) flags["KELLY_MET"] = 2;
+	
 	pc.lust(2);
 	//[KissHer][DoNothing]
 	clearMenu();
@@ -2003,7 +2008,7 @@ public function helpKellyFindHerHoneyThisWasntAPloyForCumPlayAtAll():void
 		output("\n\nYou accept her and move your other hand to her breast. You cup both orbs, hefting and massaging them; every now and then you give her nipples a little tug, earning an excited squeak out of your laquine lover.");
 
 		output("\n\nWith a pleased hum she shifts on the couch, falling over onto her back and dragging you down with her, her long, powerful legs wrapping themselves around your waist to hug you closer to her. ");
-		if(!pc.isNude()) output("Her twin shafts brush against your [pc.crotchGarments], warm enough that you can feel a sense of heat against your [pc.belly] even through them.");
+		if(!pc.isNude()) output("Her twin shafts brush against your [pc.lowerGarments], warm enough that you can feel a sense of heat against your [pc.belly] even through them.");
 		else output("Naked as you are, there is nothing to keep her shafts pushing against your [pc.belly], hot and hard against your [pc.skin].");
 		output(" She keeps kissing you, tongue squirming as it wraps affectionately around your own [pc.tongue], then slurps lewdly out between your lips as she breaks the kiss, eyes half-closed and chest heaving as she pants for breath. Her arms move and pull you down against her, burying your face squarely in her cleavage. <i>“Oh, I do love it when you want to play,”</i> she giggles, smooshing your face a little deeper into her tits, then smirking down at you.");
 
@@ -2274,7 +2279,7 @@ public function kellyHyperPlayAwwwYiss():void
 			output("\n\nKelly bites her lip indecisively, but from the way you can see precum starting to bead at the tip of each dick and drool down, you know you’ve got her. <i>“O-okay,”</i> she declares, nodding as she convinces herself. <i>“If you want to see all of me, then I’ll give you a show to remember.”</i> she declares. <i>“But my medicine just doesn’t wear off like that; I’ll need a counter-agent first. There’s this mod I’ve heard of called Throbb; a small dose of that should be just the trick. But I don’t have any on me, and it’s not the sort of thing I can get at work, though I could synthesize more for my needs if I did have some. Do you have any?”</i> she asks.");
 		}
 		//No Throbb in inventory:
-		if(!pc.hasItem(new Throbb(),1))
+		if(!pc.hasItemByClass(Throbb,1))
 		{
 			output("\n\nYou shrug. Sadly you don’t really have any on yourself. But you’ll keep this chat of yours in mind in case you ever come across any.");
 			output("\n\n<i>“Good idea,”</i> Kelly grins. <i>“But, since we both seem to be in the mood for some ‘fun,’ I’m sure there’s plenty of other things we can do together,”</i> she suggests, posing slightly for emphasis.");
@@ -2290,7 +2295,7 @@ public function kellyHyperPlayAwwwYiss():void
 			output("\n\nKelly takes it from you, a little uncertainly, but with a determined look on her face, already adjusting the delivery mechanism. <i>“Right, I just need a little of this; too much and I might end up getting modded, not countered,”</i> she explains. Satisfied with her tweaking, she nods and brings the business end of it to rest against the base of her shafts. <i>“Alright, here goes nothing,”</i> she declares, and depresses the trigger, hissing as the minute dose rushes into her bloodstream.");
 			output("\n\nShe shivers, and rubs the injection site tenderly. <i>“Okay now... it’s going to take time for this stuff to kick in, but arousal should help; why don’t you and I have a little fun to give it a jumpstart?”</i> she suggests. <i>“Your cock in my cunt would be just the thing... besides, it’d be more fun than just sitting around watching my junk,”</i> she manages to quip dryly.");
 			output("\n\nSounds like a plan.");
-			pc.destroyItem(new Throbb(),1);
+			pc.destroyItemByClass(Throbb,1);
 		}
 	}
 	//After Throbb (Repeatable)
@@ -3332,6 +3337,7 @@ public function splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ(onCouch:Bool
 			output("\n\nAt that, she pouts and sticks out her tongue, clearly unable to think of a verbal retort to that.");
 		}
 		//Hard:
+		else
 		{
 			output("\n\nA fine job, but you already expected as much from your bitch-bunny.");
 			output("\n\n<i>“But of course,”</i> she grins smugly. <i>“Only the finest for my rose,”</i> she declares in a triumphant tone, closing the distance between you so that she is sitting on your lap, more or less, arms going around your neck, clearly a moment’s whim away from closing the distance and kissing you.");
@@ -3939,7 +3945,7 @@ public function kellyDPForTaursThatWannaGetDPed():void
 	{
 		output("\n\nKelly grabs ahold of your tail, ready to use it as an anchor, when she sees the slightest dribble of your [pc.girlCumColor] juice drip down from it onto your haunches. <i>“<i>Well, Someone likes this cute parasite, doesn’t [pc.heShe]? Or do you think of it more like a symbiote? Either way, I’m going to make all of your holes feel good.</i>”</i> She starts licking at it, and you can feel the nerves in your tail shooting pleasure into your brain. You have a strange conflict in your mind between wanting a dick in your rear, or in your tail.");
 		
-		if(pc.willpower()/2 + rand(20) + 1 > 15) output(" You manage to resist the [pc.tailGina]’s urges though, and let Kelly continue to pleasure it the way you want her to. It may have thought it was the predator, but now, it was the prey of your powerful mind.");
+		if(pc.willpower()/2 + rand(20) + 1 > 15) output(" You manage to resist the [pc.tailgina]’s urges though, and let Kelly continue to pleasure it the way you want her to. It may have thought it was the predator, but now, it was the prey of your powerful mind.");
 		else
 		{
 			tailginad = true;
@@ -4004,7 +4010,7 @@ public function taurKellyDPCumInside(x:int):void
 	output("You can almost feel your belly swelling up underneath you. She may make others swell like balloons, but not you. ");
 	if(tailginad && !pc.hasCock()) output("Your tail begins to swell, too much honey filling it. It quickly surrenders, and simply lets her cum drip out, like a perverted waterfall onto the bed. ");
 	//if tailingulus: 
-	if(pc.hasCuntTail() && !tailginad) output("You can feel your tail scrunch and almost flail in Kelly’s grip as she eats it, pressing down on its mons and pressing into your [pc.tailGina] insides. ");
+	if(pc.hasCuntTail() && !tailginad) output("You can feel your tail scrunch and almost flail in Kelly’s grip as she eats it, pressing down on its mons and pressing into your [pc.tailgina] insides. ");
 	output("Rope after thick, impregnating rope of her jism fills you, making you cum in an almost motherly bliss.");
 	if(pc.isPregnant(x) || (pc.isPregnant(y) && (!tailginad || pc.hasCock()))) output(" Maybe you’ll let her knock you up one day.");
 	else output(" You want her to make you pregnant, you don’t care about anything else right now. Pure instinct has you need to make life.");
@@ -4680,7 +4686,7 @@ public function getLickedOutByKellllaaaahhhh(noIntro:Boolean = false):void
 	{
 		output("\n\nYou ask if she wants to hear a little secret.");
 		output("\n\n<i>“Uh... sure?”</i> she replies, blinking in confusion.");
-		output("\n\nNobody likes a blabber-mouth, particularly when there’s something far more important she could be doing with those plump lips of hers. Having said that you waste no time in burying her short muzzle into your [pc.vagina " + x + "], gasping when you feel her nose make contact with ");
+		output("\n\nNobody likes a blabber-mouth, particularly when there’s something far more important she could be doing with those plump lips of hers. Having said that you waste no time in burying her short muzzle into your [pc.vagina], gasping when you feel her nose make contact with ");
 		if(pc.clitLength > 3) output("the base of ");
 		output("your [pc.clit].");
 	}

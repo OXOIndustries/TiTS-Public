@@ -1,6 +1,11 @@
 ﻿package classes
 {
+	import classes.Engine.SharedData;
+	import classes.GameData.CombatManager;
 	import classes.GameData.Perks;
+	import classes.GameData.ShipManager;
+	import classes.Ships.Library.TestHostileShip;
+	import classes.Ships.SpaceShip;
 	import classes.TiTS_Settings;
 	import classes.UIComponents.ContentModule;
 	import classes.UIComponents.ContentModules.GameTextModule;
@@ -22,10 +27,10 @@
 	import flash.net.SharedObject;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.system.Capabilities;
 	import flash.text.Font;
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
-	import flash.display.MovieClip;
 	import flash.text.Font;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
@@ -59,6 +64,8 @@
 	import classes.Items.Miscellaneous.*
 	import classes.Items.Accessories.*
 	import classes.Items.Transformatives.*;
+	//Change SilkyCockBell to * when it's time -lighterfluid
+	import classes.Items.Piercings.SilkyCockBell;
 
 	import classes.Parser.ParseEngine;
 
@@ -110,9 +117,6 @@
 		include "../includes/items.as";
 		include "../includes/items.tooltips.as";
 		include "../includes/MailEntries.as";
-		include "../includes/masturbation.as";
-		include "../includes/masturbation.eggTrainer.as";
-		include "../includes/masturbation.magicMilker.as";
 		include "../includes/NPCTemplates.as";
 		include "../includes/rareDrops.as";
 		include "../includes/rooms.as";
@@ -120,53 +124,106 @@
 		include "../includes/StubbedFunctions.as";
 
 		//Holiday shit
-		include "../includes/holidayEvents/halloweenCostumes.as";
+		include "../includes/holidayEvents/candyRahn.as";
+		include "../includes/holidayEvents/chupacabro.as";
 		include "../includes/holidayEvents/freedomBeef.as";
-		include "../includes/event.puppyslutmas.as";
+		include "../includes/holidayEvents/furryTreatsAndTricks.as";
+		include "../includes/holidayEvents/ghostSexDream.as";
+		include "../includes/holidayEvents/halloweenCostumes.as";
+		include "../includes/holidayEvents/halloweenDreams.as";
+		include "../includes/holidayEvents/halloweenNunneryFacefuckMassacre.as";
+		include "../includes/holidayEvents/merryShademas.as";
+		include "../includes/holidayEvents/milodanBreedingSolstice.as";
+		include "../includes/holidayEvents/myrnaTheGenerousKorgonne.as";
+		include "../includes/holidayEvents/pumpkinCarving.as";
+		include "../includes/holidayEvents/pumpking.as";
+		include "../includes/holidayEvents/puppyslutmas.as";
+		include "../includes/holidayEvents/randyClaws.as";
+		include "../includes/holidayEvents/succucow.as";
+		include "../includes/holidayEvents/EventWhorizon/rooms.as";
+		include "../includes/holidayEvents/EventWhorizon/eventWhorizon.as";
 
 		//Followers
-		include "../includes/follower.anno.as";
-		include "../includes/follower.celise.as";
-		include "../includes/follower.celiseGiga.as";
-		include "../includes/follower.siegwulfe.as";
-		include "../includes/follower.yammi.as";
+		include "../includes/follower/amber.as";
+		include "../includes/follower/anno.as";
+		include "../includes/follower/azra.as";
+		include "../includes/follower/azraExpeditions.as";
+		include "../includes/follower/azraPlantSamples.as";
+		include "../includes/follower/celise.as";
+		include "../includes/follower/celiseGiga.as";
+		include "../includes/follower/kase.as";
+		include "../includes/follower/mitzi.as";
+		include "../includes/follower/multi_interactions.as";
+		include "../includes/follower/paige.as";
+		include "../includes/follower/paigeCuddles.as";        
+		include "../includes/follower/paigeHalloweener.as";
+		include "../includes/follower/paigeSex.as";
+		include "../includes/follower/paigeSpar.as";
+		include "../includes/follower/pippa.as";
+		include "../includes/follower/ramis.as";
+		include "../includes/follower/shekka.as";
+		include "../includes/follower/siegwulfe.as";
+		include "../includes/follower/yammi.as";
 		
 		//Sidequest shit
 		include "../includes/events/seraSexParty.as";
 		include "../includes/events/pexigaQuest/pexigaQuest.as";
 		include "../includes/events/pexigaQuest/follower.pexiga.as";
 		include "../includes/events/plantationQuest/plantationQuestMain.as";
+		include "../includes/events/plantationQuest/plantationQuestXPack1.as";
+		include "../includes/events/spaceYakuza/spaceYakuza.as";
+		include "../includes/events/spaceYakuza/akaneQuest.as";
+		include "../includes/events/syriQuest/syriQuestMain.as";
+		include "../includes/events/syriQuest/rooms.as";
+		include "../includes/events/syriQuest/roomFunctions.as";
 
 		//Misc content
+		include "../includes/masturbation.as";
 		include "../includes/masturbation/bubbleBuddy.as";
 		include "../includes/masturbation/cockTailMasturbation.as";
+		include "../includes/masturbation/eggTrainer.as";
 		include "../includes/masturbation/exhibitionismPerk.as";
 		include "../includes/masturbation/hardlightAGThong.as";
+		include "../includes/masturbation/magicMilker.as";
+		include "../includes/masturbation/sleepFapnea.as";
 		include "../includes/masturbation/sukMastr.as";
 		include "../includes/rivalEncounters.as";
-		include "../includes/saendra.as";
-		include "../includes/travelEvents.as";
-		include "../includes/travelEvents.fallOfThePhoenix.as";
-		include "../includes/travelEvents.kiroRescue.as";
-		include "../includes/travelEvents.kiro.as";
 		include "../includes/vendingMachine.as";
 		
 		// Misc Events
+		include "../includes/events/araDiplomacyMission.as";
 		include "../includes/events/atha_lets_fapper.as";
 		include "../includes/events/bimboPennyAndBadgerQuest/badgerGifts.as";
 		include "../includes/events/erra.as";
+		include "../includes/events/kattomOsgood.as";
 		include "../includes/events/kiroCrewQuest/buttslutinator.as";
 		include "../includes/events/kiroCrewQuest/omnisuitExtras.as";
 		include "../includes/events/kiroCrewQuest/orgasmender.as";
+		include "../includes/events/kiro_x_paige_threesomes.as";
+		include "../includes/events/pyriteSatelliteRecovery.as";
 		include "../includes/events/steph_on_demand.as";
 		include "../includes/events/tentacle_psychic_hatchling.as";
+		include "../includes/events/federationQuest/federationQuest.as";
+		include "../includes/events/federationQuest/rooms.as";
+		include "../includes/events/federationQuest/roomFunctions.as";
+		include "../includes/events/extrameet/extrameet.as";
+		include "../includes/events/extrameet/extrameetProfiles.as";
+		
+		// Travel Events
+		include "../includes/travelEvents.as";
+		include "../includes/travelEvents/fallOfThePhoenix.as";
+		include "../includes/travelEvents/kiro.as";
+		include "../includes/travelEvents/kiroRescue.as";
+		include "../includes/travelEvents/shizuya.as";
+		include "../includes/travelEvents/shizuyaGreatMajin.as";
+		include "../includes/travelEvents/shizuyaGreatMajinFunctions.as";
 
 		//Tavros Station
-		include "../includes/tavros/aina.as";
+		include "../includes/tavros/akane.as";
 		include "../includes/tavros/aliss.as";
 		include "../includes/tavros/alex.as";
 		include "../includes/tavros/beths.as";
-		include "../includes/tavros/fyn.as";
+		include "../includes/tavros/fisianna.as";
 		include "../includes/tavros/gil.as";
 		include "../includes/tavros/ilaria.as";
 		include "../includes/tavros/inessa.as";
@@ -180,46 +237,60 @@
 		include "../includes/tavros/riya.as";
 		include "../includes/tavros/rooms.as";
 		include "../includes/tavros/roomFunctions.as";
+		include "../includes/tavros/saendra.as";
 		include "../includes/tavros/saendraXPack1.as";
 		include "../includes/tavros/sellesy.as";
-		include "../includes/tavros/semith.as";
 		include "../includes/tavros/sera.as";
 		include "../includes/tavros/seraXPack1.as";
 		include "../includes/tavros/seraXPack2.as";
-		include "../includes/tavros/seraXPreg.as";
+		include "../includes/tavros/seraXPreg1.as";
+		include "../includes/tavros/seraXPreg2.as";
 		include "../includes/tavros/shearBeauty.as";
 		include "../includes/tavros/shelly.as";
+		include "../includes/tavros/stella.as";
 		include "../includes/tavros/tamaniCorpShop.as";
 		include "../includes/tavros/terensha.as";
 		include "../includes/tavros/vahn.as";
 
 		//Tavros Residential Deck
+		include "../includes/tavros/resDeck/aina.as";
+		include "../includes/tavros/resDeck/ainaXPack1.as";
+		include "../includes/tavros/resDeck/fyn.as";
 		include "../includes/tavros/resDeck/liamme.as";
+		include "../includes/tavros/resDeck/semith.as";
 
 		//Vesperia/Canadia Station
 		include "../includes/vesperia/delOnVesperia.as";
 		include "../includes/vesperia/gloryhole.as";
+		include "../includes/vesperia/jesse.as";
 		include "../includes/vesperia/kaede.as";
 		include "../includes/vesperia/kally.as";
+		include "../includes/vesperia/luca.as";
 		include "../includes/vesperia/mabbs.as";
 		include "../includes/vesperia/rooms.as";
 		include "../includes/vesperia/roomFunctions.as";
 		include "../includes/vesperia/sylvie.as";
+		include "../includes/vesperia/ushamee.as";
 		
 		//First planet
 		include "../includes/mhenga/burt.as";
 		include "../includes/mhenga/crazyCarl.as";
 		include "../includes/mhenga/cuntSnakes.as";
 		include "../includes/mhenga/dryad.as";
+		include "../includes/mhenga/erika.as";
 		include "../includes/mhenga/flahne.as";
 		include "../includes/mhenga/frogGirls.as";
 		include "../includes/mhenga/julianSHaswell.as";
+		include "../includes/mhenga/kane.as";
+		include "../includes/mhenga/kase.as";
 		include "../includes/mhenga/kelly.as";
 		include "../includes/mhenga/mimbranes.as";
 		include "../includes/mhenga/naleen.as";
 		include "../includes/mhenga/naleenMale.as";
+		include "../includes/mhenga/naleenFuta.as";
 		include "../includes/mhenga/penny.as";
 		include "../includes/mhenga/penny_bimbo.as";
+		include "../includes/mhenga/prai.as";
 		include "../includes/mhenga/rooms.as";
 		include "../includes/mhenga/roomFunctions.as";
 		include "../includes/mhenga/scrapyard.as";
@@ -229,13 +300,16 @@
 		include "../includes/mhenga/vanae.as";
 		include "../includes/mhenga/venusPitchers.as";
 		include "../includes/mhenga/vko.as";
+		include "../includes/mhenga/yoma.as";
 		include "../includes/mhenga/zilMale.as";
 		include "../includes/mhenga/zilFemale.as";
+		include "../includes/mhenga/zilTwins.as";
 		
 		//Second planet
 		include "../includes/tarkus/anno.as";
 		include "../includes/tarkus/aurora.as";
 		include "../includes/tarkus/bess.as";
+		include "../includes/tarkus/buttBugs.as";
 		include "../includes/tarkus/chaurmine.as";
 		include "../includes/tarkus/cockBox.as";
 		include "../includes/tarkus/colenso.as";
@@ -243,11 +317,13 @@
 		include "../includes/tarkus/drLash.as";
 		include "../includes/tarkus/dumbfuckBonus.as";
 		include "../includes/tarkus/edan.as";
+		include "../includes/tarkus/gabilani_LGBT.as";
 		include "../includes/tarkus/goblinPool.as";
 		include "../includes/tarkus/grayGoo.as";
 		include "../includes/tarkus/grayGooArmor.as";
 		include "../includes/tarkus/lane.as";
 		include "../includes/tarkus/lapinara.as";
+		include "../includes/tarkus/mindwashVisor.as";
 		include "../includes/tarkus/raskvelFemaleFight.as";
 		include "../includes/tarkus/raskvelMaleFight.as";
 		include "../includes/tarkus/rooms.as";
@@ -255,18 +331,24 @@
 		include "../includes/tarkus/sexbots.as";
 		include "../includes/tarkus/shekka.as";
 		include "../includes/tarkus/stellarTether.as";
+		include "../includes/tarkus/sydianFemale.as";
 		include "../includes/tarkus/sydianMale.as";
+		include "../includes/tarkus/SydianQueenEnc.as";
 		include "../includes/tarkus/taxi.as";
 		include "../includes/tarkus/theMess.as";
-		include "../includes/tarkus/sydianFemale.as";
+		include "../includes/tarkus/tessa.as";
+		include "../includes/tarkus/verusha.as";
+		
 
 		//Third planet
 		include "../includes/newTexas/newTexas.as";
 		include "../includes/newTexas/bigT.as";
 		include "../includes/newTexas/brandy.as";
+		include "../includes/newTexas/brandyXPack1.as";
 		include "../includes/newTexas/brynn.as";
 		include "../includes/newTexas/buckingBronco.as";
 		include "../includes/newTexas/busky.as";
+		include "../includes/newTexas/ciaran.as";
 		include "../includes/newTexas/ellie.as";
 		include "../includes/newTexas/haley.as";
 		include "../includes/newTexas/gianna.as";
@@ -290,6 +372,7 @@
 		include "../includes/myrellion/bothriocAmbassador.as";
 		include "../includes/myrellion/bothriocSharedFunctions.as";
 		include "../includes/myrellion/bothriocCombatMobs.as";
+		include "../includes/myrellion/bothriocQuadomme.as";
 		include "../includes/myrellion/cockvines.as";
 		include "../includes/myrellion/cockvineseedling.as";
 		include "../includes/myrellion/crystalGoo.as";
@@ -321,6 +404,7 @@
 		include "../includes/myrellion/renvra.as";
 		include "../includes/myrellion/rooms.as";
 		include "../includes/myrellion/roomFunctions.as";
+		include "../includes/myrellion/seer.as";
 		include "../includes/myrellion/steph.as";
 		include "../includes/myrellion/tavern.as";
 		include "../includes/myrellion/taivrasPalace.as";
@@ -331,6 +415,35 @@
 		include "../includes/myrellion/wetraxxel.as";
 		include "../includes/myrellion/xanthe.as";
 		include "../includes/myrellion/xenogenbiotech.as";
+
+		//FIFTH PLANET: ZHENG SHI
+		include "../includes/zhengShiStation/agroshAndArdia.as";
+		include "../includes/zhengShiStation/boredJumper.as";
+		include "../includes/zhengShiStation/boredJumperExpanded.as";
+		include "../includes/zhengShiStation/boredJumperGangbangs.as";
+		include "../includes/zhengShiStation/forgehound.as";
+		include "../includes/zhengShiStation/maike.as";
+		include "../includes/zhengShiStation/olympia.as";
+		include "../includes/zhengShiStation/punkSecOp.as";
+		include "../includes/zhengShiStation/rivalEncounter.as";
+		include "../includes/zhengShiStation/rooms.as";
+		include "../includes/zhengShiStation/roomFunctions.as";
+		include "../includes/zhengShiStation/rozPowerGoo.as";
+		include "../includes/zhengShiStation/slyverenSlavebreaker.as";
+		include "../includes/zhengShiStation/spacewalk.as";
+		include "../includes/zhengShiStation/tivf.as";
+		include "../includes/zhengShiStation/teyaalTheEngineer.as";
+		include "../includes/zhengShiStation/urbolg.as";
+		
+		// Breedwell
+		include "../includes/breedwell/breedwell.as";
+		include "../includes/breedwell/rooms.as";
+		
+		// GASTIGOTH!
+		include "../includes/gastigoth/gastigoth.as";
+		include "../includes/gastigoth/rooms.as";
+		include "../includes/gastigoth/sam.as";
+		include "../includes/gastigoth/pregStuff.as";
 		
 		// Karaquest 2- Karaharder.
 		include "../includes/events/karaquest2/content.as";
@@ -346,38 +459,54 @@
 		include "../includes/events/icequeen/icequeen.as"; // Alt. path to unlocking uvetoooo
 		include "../includes/uveto/carbonado.as";
 		include "../includes/uveto/chaurmine.as";
+		include "../includes/uveto/chrissy.as";
 		include "../includes/uveto/cynthia.as";
 		include "../includes/uveto/drlessau.as";
 		include "../includes/uveto/freezer.as";
 		include "../includes/uveto/frostwyrm.as";
+		include "../includes/uveto/heidrun.as";
 		include "../includes/uveto/jerome.as";
 		include "../includes/uveto/jerynn.as";
 		include "../includes/uveto/kaede.as";
 		include "../includes/uveto/kirila.as";
 		include "../includes/uveto/korgonneFemaleHostile.as";
+		include "../includes/uveto/korgonneMaleHostile.as";
+		include "../includes/uveto/krym.as";
+		include "../includes/uveto/lund.as";
+		include "../includes/uveto/majaTamedTamelings.as";
+		include "../includes/uveto/milodanFertilityPriestess.as";
 		include "../includes/uveto/milodanMaleHostile.as";
 		include "../includes/uveto/natalie.as";
 		include "../includes/uveto/nayna.as";
+		include "../includes/uveto/nenne.as";
 		include "../includes/uveto/nerrasa.as";
+		include "../includes/uveto/nykke.as";
 		include "../includes/uveto/pippa.as"
 		include "../includes/uveto/reasner.as";
 		include "../includes/uveto/rhenworld.as";
 		include "../includes/uveto/rooms.as";
 		include "../includes/uveto/roomFunctions.as";
 		include "../includes/uveto/shade.as";
+		include "../includes/uveto/stormguardMale.as";
 		include "../includes/uveto/subTuner.as";
+		include "../includes/uveto/syri.as";
 		include "../includes/uveto/tlako_and_xotchi.as";
+		include "../includes/uveto/tuuvaBlacksmith.as";
+		include "../includes/uveto/ula.as";
+		include "../includes/uveto/vark.as";
 		include "../includes/uveto/vavaGroom.as";
 		include "../includes/uveto/walt.as";
-		include "../includes/follower.pippa.as";
-		include "../includes/follower.multi_interactions.as";
+		include "../includes/uveto/willow.as";
 		
 		include "../includes/chargendata.as";
 		include "../includes/SSTDs/furpies.as";
 		include "../includes/SSTDs/locofever.as";
+		include "../includes/SSTDs/sneezingTits.as";
 		include "../includes/SSTDs/sstdNPCHooks.as";
 		
 		public var chars:Object;
+		public var charDict:Dictionary;
+		public var shipDb:ShipManager;
 
 		public var days:int;
 		public var hours:int;
@@ -405,7 +534,8 @@
 		public var items:Object;
 		
 		//Toggles
-		public var gameOptions:GameOptions;
+		public var gameOptions:GameOptions; // Options is tied to a single save file
+		public var sharedData:SharedData; // SharedData is used across ALL save files
 		
 		public function get silly():Boolean { return gameOptions.sillyMode; }
 		public function get easy():Boolean { return gameOptions.easyMode; }
@@ -461,7 +591,7 @@
 		}
 		
 		private function init(e:Event):void
-		{				
+		{
 			loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, uncaughtErrorHandler);
 			
 			stage.quality = StageQuality.BEST;
@@ -469,6 +599,7 @@
 			kGAMECLASS = this;
 			dataManager = new DataManager();
 			gameOptions = new GameOptions();
+			sharedData = SharedData.Load();
 			
 			hours = 0;
 			minutes = 0;
@@ -476,16 +607,16 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.58";
+			version = "0.7.229";
 
 			//temporary nonsense variables.
 			temp = 0;
 
 			import classes.Creature;
 			import classes.ItemSlotClass;
-			import classes.ShipClass;
 
 			chars = new Object();
+			charDict = new Dictionary();
 			
 			//What inventory screen is up?
 			shopkeep = undefined;
@@ -497,7 +628,7 @@
 			itemUser = undefined;
 			itemTarget = undefined;
 
-			this.inSceneBlockSaving = false;
+			inSceneBlockSaving = false;
 			gameOverEvent = false;
 			
 			eventQueue = [];
@@ -515,22 +646,15 @@
 			parser = new ParseEngine(this, TiTS_Settings);
 
 			flags = new Dictionary();
-
-			initializeRooms();
-			initTavrosRooms();
-			initMhengaRooms();
-			initTarkusRooms();
-			initNewTexasRooms();
-			initializeMyrellionRooms();
-			kquest2InitRooms();
-			initUvetoRooms();
-			initUvetoRoomsII();
-			kiInitRooms();
-			initVesperiaRoom();
 			
-			mapper = new Mapper(this.rooms)
-
-			this.chars["PC"] = new PlayerCharacter();
+			// Make the rooms, build the map
+			buildRooms();
+			
+			var tPC:PlayerCharacter = new PlayerCharacter();
+			chars["PC"] = tPC;
+			charDict[tPC] = "PC";
+			
+			shipDb = new ShipManager(); // Gotta do this after at least the PC object exists
 			_perkDB = new Perks();
 			
 			inputManager = new InputManager(stage, false);
@@ -545,23 +669,106 @@
 			addEventListener(Event.FRAME_CONSTRUCTED, finishInit);
 		}
 		
+		/* Try to safely report errors to the user
+		 * Usage:
+		 *
+			try
+			{
+				<code>
+			}
+			catch (e:*)
+			{
+				if (kGAMECLASS.reportError(e)) throw e;
+			}
+		 *
+		 * <code> can be a little thing or something big as displaying the complete appearance/stat/log output
+		 * but to work as intended interrupting the code block at any point should never leave the game state broken
+		 *
+		 * returns true if error reporting failed - just rethrow the exception
+		*/
+		public function reportError(arg:*):Boolean
+		{
+			var text:String;
+			
+			// Step 1: generate an error message based on the argument type passed in
+			if (arg is Error)
+			{
+				var ee:Error = arg as Error;
+				text = ("\n\n<b>Something bad happened!</b>\n\n<b>Please report this message, and include any prior scene text or a description of what you did before seeing this message:</b>\n\n");
+				//output("Version: " + version + "\n\n");
+				text += ("<b>Flash Player:</b>  " + Capabilities.playerType + " - " + Capabilities.os + "\n");
+				text += ("<b>Flash Version:</b> " + Capabilities.version + "\n");
+				text += ("<b>Game Version:</b> " + version + "\n\n");
+				text += ("<b>Error Name:</b> " + ee.name + "\n");
+				text += ("<b>Error Mesg:</b> " + ee.message + "\n");
+				text += (ee.getStackTrace());
+			}
+			
+			// Step 2: Try to display the error text without disrupting the control flow
+			// Goal is that -apart from the failed action- the game continues as smooth as possible
+			if ( text )
+			{
+				var module:ContentModule = userInterface.activeModule;
+				
+				// during startup - little we can do but try to resume default error handling
+				if (!module) return true;
+				
+				switch ( module.moduleName )
+				{
+					case "PrimaryOutput":
+						output( text, false, false );
+						return false;
+						break;
+					case "SecondaryOutput":
+						output2( text.replace( /\[/g, '\\[' ), false ); // work around missing parse arg
+						return false;
+						break;
+					case "CodexDisplay":
+						outputCodex( text.replace( /\[/g, '\\[' ), false ); // work around missing parse arg
+						userInterface.outputCodex();
+						return false;
+						break;
+					// email needs a public method to print text so errors during mail display aren't fatal anymore
+				}
+			}
+			// We either could not handle the argument type or display the message
+			// let the calling method handle it if it can
+			return true;
+		}
 		private function uncaughtErrorHandler(e:UncaughtErrorEvent):void
 		{
+			if(stage.contains(userInterface.textInput)) removeInput();
+			
+			output("<b>[Uncaught " + getQualifiedClassName(e.error) + "]</b>", false, false);
+			
 			if (e.error is Error)
 			{
 				var ee:Error = e.error as Error;
+				var bGameOver:Boolean = true;
 				
 				output("\n\n<b>Something bad happened!</b>\n\n<b>Please report this message, and include any prior scene text or a description of what you did before seeing this message:</b>\n\n");
-				output("Version: " + version + "\n\n");
+				//output("Version: " + version + "\n\n");
+				output("<b>Flash Player:</b>  " + Capabilities.playerType + " - " + Capabilities.os + "\n");
+				output("<b>Flash Version:</b> " + Capabilities.version + "\n");
+				output("<b>Game Version:</b> " + version + "\n\n");
+				output("<b>Error Name:</b> " + ee.name + "\n", false, false);
+				output("<b>Error Mesg:</b> " + ee.message + "\n", false, false);
 				output(ee.getStackTrace(), false, false);
 				clearMenu();
-				addButton(14, "Next", mainGameMenu);
+				if(bGameOver)
+				{
+					gameOverEvent = true;
+					backToPrimaryOutput();
+					output("\n\n(Access the main menu to start a new game or use the data menu to load a previously saved game. The buttons are located in the lower left of the game screen.)");
+				}
+				else addButton(14, "Next", mainGameMenu);
 			}
 		}
 		
 		private function finishInit(e:Event):void
 		{
 			this.removeEventListener(Event.FRAME_CONSTRUCTED, finishInit);
+			addEventListener(Event.ENTER_FRAME, updateBuffers);
 			this.configureCodex();
 			this.configureMails();
 			this.userInterface.showMainMenu();
@@ -638,7 +845,7 @@
 				trace("Button " + evt.currentTarget.caption.text + " clicked.");
 			}
 			
-			if (evt.currentTarget.arg == undefined)
+			if (evt.currentTarget.arg === undefined)
 			{
 				if (evt.currentTarget.func != null) evt.currentTarget.func();
 			}
@@ -684,6 +891,11 @@
 			userInterface.addButton(slot, cap, func, arg, ttHeader, ttBody);
 		}
 		
+		public function hasButton(slot:int):Boolean
+		{
+			return (userInterface.buttonTray.getButtonNameForIndex(slot) != "");
+		}
+		
 		public function addGhostButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
 		{
 			userInterface.addGhostButton(slot, cap, func, arg, ttHeader, ttBody);
@@ -699,6 +911,11 @@
 			userInterface.addDisabledGhostButton(slot, cap, ttHeader, ttBody);
 		}
 		
+		public function setButtonDisabled(slot:int):void
+		{
+			userInterface.setButtonDisabled(slot);
+		}
+
 		public function addItemButton(slot:int, item:ItemSlotClass, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, seller:Creature = null, buyer:Creature = null):void
 		{
 			var comparisonString:String = null;
@@ -742,7 +959,12 @@
 			
 			// Do GUI stuff with the compareItem string -- can probably mangle a call together a call to addButton() to do the needful
 			// if we have any null arguments at this point rather than throwing an error and shit.
-			userInterface.addItemButton(slot, item.shortName, item.quantity, func, arg, ttHeader, ttBody, comparisonString);
+			userInterface.addItemButton(slot, item.shortName, item.quantity, item.stackSize, func, arg, ttHeader, ttBody, comparisonString);
+		}
+		
+		public function addItemDisabledButton(slot:int, item:ItemSlotClass, ttHeader:String = null, ttBody:String = null, seller:Creature = null, buyer:Creature = null):void
+		{
+			addItemButton(slot, item, undefined, undefined, ttHeader, ttBody, seller, buyer);
 		}
 		
 		public function addOverrideItemButton(slot:int, item:ItemSlotClass, buttonName:String, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
@@ -797,7 +1019,7 @@
 			
 			// Do GUI stuff with the compareItem string -- can probably mangle a call together a call to addButton() to do the needful
 			// if we have any null arguments at this point rather than throwing an error and shit.
-			userInterface.addItemButton(slot, buttonName, 1, func, arg, itemHeader, itemBody, comparisonString);
+			userInterface.addItemButton(slot, buttonName, 1, item.stackSize, func, arg, itemHeader, itemBody, comparisonString);
 		}
 		
 		public function removeButton(slot:int):void
@@ -827,16 +1049,19 @@
 				{
 					this.userInterface.showLevelUpPerks(pc);
 				}
-				// else if ((pc as PlayerCharacter).unclaimedGenericPerks > 0)
-				//{
-				//		this.userInterface.showLevelUpGenericPerks(pc);
-				//}
+				/*
+				else if ((pc as PlayerCharacter).unclaimedGenericPerks > 0)
+				{
+					this.userInterface.showLevelUpGenericPerks(pc);
+				}
+				*/
 				userInterface.DeGlowButtons();
-				this.userInterface.levelUpButton.Glow();
+				userInterface.levelUpButton.Glow();
 			}
 			else
 			{
-				this.userInterface.showPrimaryOutput();
+				kGAMECLASS.backToPrimaryOutput(true);
+				//userInterface.showPrimaryOutput();
 				userInterface.DeGlowButtons();
 			}
 		}
@@ -1102,6 +1327,18 @@
 		public function get enemy():Creature { return _enemy; }
 		public function setEnemy(v:Creature):void { _enemy = v; }
 		
+		private var _targetShip:SpaceShip = null;
+		public function get TargetShip():SpaceShip { return _targetShip; }
+		public function SetTargetShip(v:SpaceShip):void { _targetShip = v; }
+		
+		private var _attackerShip:SpaceShip = null;
+		public function get AttackerShip():SpaceShip { return _attackerShip; }
+		public function SetAttackerShip(v:SpaceShip):void { _attackerShip = v; }
+		
+		private var _enemyShip:SpaceShip = null;
+		public function get EnemyShip():SpaceShip { return _enemyShip; }
+		public function SetEnemyShip(v:SpaceShip):void { _enemyShip = v; }
+		
 		public function get celise():Celise
 		{
 			return chars["CELISE"];
@@ -1346,9 +1583,145 @@
 		{
 			return chars["DELILAH"];
 		}
+		public function get yammi():Yammi
+		{
+			return chars["YAMMI"];
+		}
 		public function get mirrin():Mirrin
 		{
 			return chars["MIRRIN"];
+		}
+		public function get fisianna():Fisianna
+		{
+			return chars["FISIANNA"];
+		}
+		public function get azra():Azra
+		{
+			return chars["AZRA"];
+		}
+		public function get zil9tails():Zil9Tail
+		{
+			return chars["ZIL9TAILS"];
+		}
+		public function get krymhilde():Krym
+		{
+			return chars["KRYM"];
+		}
+		public function get paige():Paige 
+		{
+			return chars["PAIGE"];
+		}
+		public function get ciaran():Ciaran
+		{
+			return chars["CIARAN"];
+		}
+		public function get ellie():Ellie
+		{
+			return chars["ELLIE"];
+		}
+		public function get sam():SX1Techguard
+		{
+			return chars["SX1TECHGUARD"];
+		}
+		public function get khorgan():CaptainKhorgan
+		{
+			return chars["CAPTAINKHORGAN"];
+		}
+		public function get tamtam():TamTam
+		{
+			return chars["TAMTAM"];
+		}
+		public function get erika():Erika
+		{
+			return chars["ERIKA"];
+		}
+		public function get lieve():Lieve
+		{
+			return chars["LIEVE"];
+		}
+		public function get tuuva():Tuuva
+		{
+			return chars["TUUVA"];
+		}
+		public function get mitzi():Mitzi
+		{
+			return chars["MITZI"];
+		}
+		public function get frostwyrm():Frostwyrm
+		{
+			return chars["FROSTWYRM"];
+		}
+		public function get lah():RKLah
+		{
+			return chars["LAH"];
+		}
+		public function get ardia():Ardia
+		{
+			return chars["ARDIA"];
+		}
+		public function get emmrfox():EMMrFox
+		{
+			return chars["MRFOX"];
+		}
+		public function get emredd():EMRedd
+		{
+			return chars["REDD"];
+		}
+		public function get emponyluver():EMPonyLuver
+		{
+			return chars["PONYLUVER"];
+		}
+		public function get emsexyydaddyy():EMSexyyDaddyy
+		{
+			return chars["SEXYYDADDYY"];
+		}
+		public function get embountifulbotany():EMBountifulBotany
+		{
+			return chars["BOUNTIFULBOTANY"];
+		}
+		public function get emsneakysnek():EMSneakySnek
+		{
+			return chars["SNEAKYSNEK"];
+		}
+		public function get emripped4yourpleasure():EMRipped4YourPleasure
+		{
+			return chars["RIPPED4YOURPLEASURE"];
+		}
+		public function get emstormdragon():EMStormDragon
+		{
+			return chars["STORMDRAGON"];
+		}
+		
+		public function get aina():Aina
+		{
+			return chars["AINA"];
+		}
+		
+		public function get amber():Dryad
+		{
+			return chars["DRYAD"];
+		}
+
+		public function testShipCombat():void
+		{
+			CombatManager.newSpaceCombat();
+			CombatManager.setFriendlyActors(shipDb.ActivePlayerShip);
+			CombatManager.setHostileActors(new TestHostileShip());
+			CombatManager.victoryScene(function():void { } );
+			CombatManager.lossScene(function():void { } );
+			CombatManager.displayLocation("Basic Ship Test");
+			
+			clearOutput();
+			output("Basic Ship Fight Test");
+			
+			clearMenu();
+			addButton(0, "Next", CombatManager.beginCombat);
+		}
+		public function testShipSave():void
+		{
+			var v:* = shipDb.ActivePlayerShip.Agility;
+			v = shipDb.ActivePlayerShip.Armor;
+			trace("bp");
 		}
 	}
 }

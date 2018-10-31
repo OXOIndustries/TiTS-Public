@@ -7,6 +7,7 @@ package classes.UIComponents.SideBarComponents
 	import classes.UIComponents.UIStyleSettings;
 	import flash.text.AntiAliasType;
 	import classes.UIComponents.SideBarComponents.StatBar;
+	import classes.Engine.Interfaces.ParseText;
 	
 	/**
 	 * Container class for "Advancement" stats. Can probably get away with not generalizing this.
@@ -84,22 +85,20 @@ package classes.UIComponents.SideBarComponents
 		{
 			_levelBar = new StatBar(StatBar.MODE_NOBAR);
 			_barContainer.addChild(_levelBar);
-			_levelBar.caption = "LEVEL";
 			_levelBar.value = "1";
 			_levelBar.y = 4;
 			
 			_xpBar = new StatBar(StatBar.MODE_SMALL);
 			_barContainer.addChild(_xpBar);
-			_xpBar.caption = "XP";
 			_xpBar.value = "50 / 1000";
 			_xpBar.y = Math.floor(_levelBar.y + 30);
 			
 			_creditsBar = new StatBar(StatBar.MODE_NOBAR);
 			_barContainer.addChild(_creditsBar);
-			//APRIL FOOLS _creditsBar.caption = "DOGECOINS";
-			_creditsBar.caption = "CREDITS";
 			_creditsBar.value = "9001";
 			_creditsBar.y = Math.floor(_xpBar.y + 30);
+			
+			updateStatCaptions();
 		}
 		
 		public function removeGlows():void
@@ -121,6 +120,13 @@ package classes.UIComponents.SideBarComponents
 			_xpBar.updateBar(char.XP(), char.XPMax(), asInit);
 			_levelBar.updateBar(char.level, Number.NaN, asInit);
 			_creditsBar.updateBar(char.credits, Number.NaN, asInit);
+		}
+		
+		public function updateStatCaptions():void
+		{
+			_levelBar.caption = "LEVEL";
+			_xpBar.caption = "XP";
+			_creditsBar.caption = ParseText("CREDITS");
 		}
 	}
 

@@ -121,7 +121,7 @@ package classes.Items.Transformatives
 			var target:Creature = args[0];
 			var type:Class = args[1];
 			var frost:Boolean = type == Frostfire;
-			if(!kGAMECLASS.infiniteItems()) target.destroyItemByType(type);
+			if(!kGAMECLASS.infiniteItems()) target.destroyItemByClass(type);
 			clearOutput();
 			
 			if (!target.hasHair())
@@ -189,7 +189,7 @@ package classes.Items.Transformatives
 			var target:Creature = args[0];
 			var type:Class = args[1];
 			var frost:Boolean = type == Frostfire;
-			if(!kGAMECLASS.infiniteItems()) target.destroyItemByType(type);
+			if(!kGAMECLASS.infiniteItems()) target.destroyItemByClass(type);
 			clearOutput();
 			
 			if (target.hasTail())
@@ -294,13 +294,13 @@ package classes.Items.Transformatives
 						options.push(function():*{
 							var newColor:String = colorsMatching(target) ? target.lipColor : "red";
 							
-							AddLogEvent("Your " + target.cockDescript(i) + " throbs suddenly ", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+							AddLogEvent("Your " + target.cockDescript(i) + " throbs suddenly", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 							
-							if (target.hasCockFlag(GLOBAL.FLAG_SHEATHED, i)) ExtendLogEvent("in it’s sheath");
-							else if (target.hasStatusEffect("Genital Slit")) ExtendLogEvent("in it’s slit");
-							else if (!target.isCrotchExposed()) ExtendLogEvent("beneath your " + target.lowerGarmentDescript());
-							else if(target.legCount == 1) ExtendLogEvent("on your " + target.legs());
-							else ExtendLogEvent("between your " + target.legs());
+							if (target.hasCockFlag(GLOBAL.FLAG_SHEATHED, i)) ExtendLogEvent(" in it’s sheath");
+							else if (target.hasStatusEffect("Genital Slit")) ExtendLogEvent(" in it’s slit");
+							else if (!target.isCrotchExposed()) ExtendLogEvent(" beneath your " + target.lowerGarmentDescript());
+							else if(target.legCount == 1) ExtendLogEvent(" on your " + target.legs());
+							else ExtendLogEvent(" between your " + target.legs());
 							
 							ExtendLogEvent(" and begins to transform, drooling a river of pre from its engorged slit. You double over in a sick twist of pain and pleasure");
 							
@@ -382,14 +382,14 @@ package classes.Items.Transformatives
 				}
 			}
 			
-			if (target.bRows() < 4 && target.hasFur() && (target.biggestTitSize(true) > 0 || target.hasVagina()) && target.createBreastRowUnlocked(1))
+			if (target.bRows() < 4 && target.hasFur() && (target.biggestTitSize(true) > 0 || target.hasVagina()) && target.createBreastRowUnlocked(target.bRows() + 1))
 			{ // if female or shemale, grow another row of nipples up to 4 total
 				options.push(function():*{
 					if (minSizeBreasts == 0)
 					{ // normal case - flats
 						AddLogEvent("A sudden sensation erupts on your chest, as if your nipples had just been flicked during an intense bout of lovemaking. As you reflexively raise your hands to them, you notice that the feeling in fact came from below your nipples. Taking a quick peek", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 						if (target.hasArmor() && !(target.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || target.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))) ExtendLogEvent(" under your clothes");
-						ExtendLogEvent("to assess the situation, you discover a new " + (target.breastRows[target.breastRows.length - 1].breasts == 2 ? "pair" : "set") + " of nipples standing beneath the ones you previously had!");
+						ExtendLogEvent(" to assess the situation, you discover a new " + (target.breastRows[target.breastRows.length - 1].breasts == 2 ? "pair" : "set") + " of nipples standing beneath the ones you previously had!");
 					}
 					else
 					{ // lactating - A-cups to avoid parser weirdshit
@@ -590,6 +590,7 @@ package classes.Items.Transformatives
 					AddLogEvent("Your " + target.skin() + " starts to itch intensely, as a feeling of warmth quickly spreads across your inhuman skin. You barely have time to realize what is happening as <b>your " + target.skinFurScales() + " morphs to be replaced by regular human-like skin</b>.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				}
 				target.skinType = GLOBAL.SKIN_TYPE_SKIN;
+				target.clearSkinFlags();
 				
 				return false;
 			}

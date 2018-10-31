@@ -160,7 +160,7 @@ public function chooseRedOfficerForBathShenanigansIllPistolWhipTheNextPersonWhoS
 		output("\n\nYou imagine most myr must not get to see a lot of dick in their lives - you’ve barely seen any men at all on the planet, after all.");
 		output("\n\nActivating the old Steele charm, such as it is when you’re already this close, you give the red myr a nod and slightly shift your [pc.legs] to emphasize your package. Her eyes rapturously follow your movements, a pair of black orbs stark against her rosy skin that betray nothing. The rest of her body, though, is not quite so subtle: you appreciatively note that the arm that was covering up her breasts droops down into the water, revealing a pair of succulent D-cups, each peaked by a stiff red nipple just poking out over the lip of the water. She chews on her lips, clearly trying to hold back... and rapidly faltering.");
 		output("\n\n<i>“I’ve never been this close to a male myr before,”</i> she confesses, sliding ever so much closer to you along the marble bench. Blushing even darker, she mumbles out a nervous <i>“C-can I, uh... oh, what am I doing! Never mind, I’m sorry, I-”</i>");
-		output("\n\nYou smile at the flustered red and urge her to speak her mind. After all, there’s not a lot of point in holding back in room full of naked women. She flicks her eyes between your face and your cock, her mouth moving silently as if she’s churning through words to find just the right ones.");
+		output("\n\nYou smile at the flustered red and urge her to speak her mind. After all, there’s not a lot of point in holding back in a room full of naked women. She flicks her eyes between your face and your cock, her mouth moving silently as if she’s churning through words to find just the right ones.");
 		output("\n\nThe anticipation she manages to build up climaxes in an almost hilariously simple statement: <i>“Can I... touch it?”</i>");
 		output("\n\nLeave it to a red myr to be direct. Still, that’s the response you were hoping for - if a little sooner than you were expecting. Poor thing’s never had the chance to get her hands on another dick before, you imagine. Smiling at the cock-hungry ant-girl, you lean back against the stone side of the bath and pat your thigh invitingly. Your bathing partner’s eyes go a bit wider, as if she expected you to refuse her lewd request.");
 		output("\n\nWith the steam boiling off the bath water acting as a shroud, and being as isolated from the cavorting golds as you are, there’s not <i>too</i> much risk of detection - but just enough to give your heart a little flutter as the red beauty starts to snake one of her hands up your [pc.leg]. She’s feeling much the same way, you reckon, if the furtive glances she’s constantly shooting through the steam are any indication. For what comfort it’s worth, you slip an arm around your partner’s shoulders, pulling her nice and close.");
@@ -763,7 +763,7 @@ public function treasureHunt():void
 		output("your enormous, back-bending rack. Her eyebrows almost lift the veil from her face as she gropes and gropes without reaching the apogee of your tit-flesh. <i>“Heavens, madam. It’s as though you’re more breast than...”</i> She arrests her tongue suddenly, biting her lip as her hands take in the worlds of flesh attached to your chest. From the adoring way she caresses them, disapproval is the furthest thing from her mind.");
 		if(pc.hasLipples() || pc.hasDickNipples() || pc.hasCuntNipples()) output(" Her fingertips slide into your slippery nipple-holes unexpectedly, and she sobers as she contacts the genitals within. You gasp from the sudden intimacy and almost miss her remarks. <i>“What an... unusual feature. One can only imagine the variations possible with these.”</i>");
 		//(multi-rack)
-		if(pc.bRows() > 1) output(" Finally, her hands slip lingeringly from your breasts, only to find more as they move around your chest. <i>“O-oh...”</i> she gasps, searching out each one, <i>“... so alien. And yet, exciting at the same time.”</i> You can guess that she’s imagining her own honey-laden breasts multiplied to match, by the way her chest heaves.");
+		if(pc.bRows() > 1) output(" Finally, her hands slip lingeringly from your breasts, only to find more as they move around your chest. <i>“O-oh...”</i> she gasps, searching out each one, <i>“...so alien. And yet, exciting at the same time.”</i> You can guess that she’s imagining her own honey-laden breasts multiplied to match, by the way her chest heaves.");
 	}
 	output("\n\n<i>“I think I have a good outline of you in my mind’s eye, now,”</i> Oserre says, emptying water from her hands over your chest and washing gently, <i>“but of course, I’ll need to fill in the particulars of your vessel.”</i> Her oily palms slide down");
 	if(pc.isTaur() && pc.isNaga()) 
@@ -1102,7 +1102,7 @@ public function doubleEndedOserre():void
 	output("\n\n");
 	if(pc.looseness(x) <= 1) output("The warning is appropriate; you feel fingers spreading your labia and creating a guided pathway just before her abdomen bobs down again and a sharp sensation of pressure washes over you. The nubby toy presses against your opening and slowly slips into you, though not before your tight snatch feels every ridge and fake vein on it.");
 	else output("The warning is unnecessary, as are the fingers sent down to spread your labia; the nubby cock plunges right into you without so much as a coat-check, hilting itself so deeply that your [pc.vagina " + x + "] kisses Oserre’s.");
-	//{hymen/stretch check}
+	// hymen/stretch check
 	pc.cuntChange(x,30,true,true,false);
 	output("\n\nThe myr sighs as her grip on your shoulders tightens. Her backside begins to bob regularly, thrusting the lubed dick inside both of you with regular, even strokes. A feeling of stickiness spreads over your chest; the rhythmic compressions caused by her pumping must be squeezing myr nectar from her golden boobs. You enjoy the warm, wet smears her nipples make, but more acutely feel the veiny, thick surface of the false cock as Oserre slides it into your [pc.vagina " + x + "], clamping down on it instinctually in a way that your lover is likely to appreciate, since it draws the shaft part way from her own hole for the next thrust.");
 	output("\n\n<i>“Yes... yess,”</i> she moans, quivering as if close to orgasm.");
@@ -1205,7 +1205,7 @@ public function assistanceWithPrivateBath():void
 	else output(" The soap feels cool on your heated skin, quickly turning to bubbles as she scrubs it in with a silky washcloth");
 	output(".");
 	
-	output("\n\nThe orderly assistant’s hands explore your body as she rubs in the cleaning concoction. Her touches run briskly over your sex, but the movements are wholly professional for the time being. Beneath the water, she scrubs till the soap dissipates, distributing it evenly on your ");
+	output("\n\nThe orderly assistant’s hands explore your body as she rubs in the cleaning concoction. Her touches run briskly over your sex, but the movements are wholly professional for the time being. Beneath the water, she scrubs until the soap dissipates, distributing it evenly on your ");
 	if(!pc.isTaur()) output("[pc.legOrLegs]");
 	else output("tauric hindquarters");
 	output(". Once her hands are free of foam, she takes the pitcher from before, using it to clean away the suds from your body.");
@@ -1241,7 +1241,7 @@ public function declineBathHJs():void
 	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
-	//{return to savins main room menu}
+	// return to savins main room menu
 }
 
 //Accept
@@ -1276,7 +1276,7 @@ public function acceptPrivateBathHJs(dick:Boolean = false):void
 		else output("takes as much of your length as she can handle, grazing your cockflesh with her teeth as gently as she can manage");
 		output(". The venom in her saliva gushes through your bloodstream, leaking between failsafes already weakened by the heat of the bath. The aphrodisiac moves like a living thing, starting in your loins before fanning out to your limbs. Finally it settles in your chest like the warmth of a midsummer fire before creeping into your mind with bubbly promises of release.");
 		output("\n\nYou find yourself unable to judge the ant-girl’s efforts, as her venom renders you unable to remember if she dove minutes or seconds ago. Time slips out of your comprehension, and all you can think of is the heat and the feeling of her lips on your [pc.cockBiggest]. Jets of pre-cum serve to further wetten her throat, preparing it for your load.");
-		output("\n\nAll at once the the heat in your body collects into your crotch, and you feel your ");
+		output("\n\nAll at once, the heat in your body collects into your crotch, and you feel your ");
 		if(pc.balls > 0) output("[pc.balls]");
 		else output("prostate");
 		if(pc.balls <= 1) output(" tightens");
@@ -1316,7 +1316,7 @@ public function acceptPrivateBathHJs(dick:Boolean = false):void
 		if(pc.hasClit()) output(" before focusing on your [pc.clit]");
 		output(". Her hands move with surprising speed under the water, showing just how skillful she is.");
 		output("\n\n<i>“Many of the lower ranking members of red myr command come here to cleanse themselves and relieve stress. I hear gold queens visited the baths on occasion, but if that’s true it was before my time,”</i> she continues, and you nod as you half-listen to her words, the rest of your attention snared by her touch.");
-		output("\n\nThe bathhouse adherent’s free hand slides smoothly over your body, stopping to squeeze one of your buttcheeks. You can see the flush in your partner’s face even through the silky veil over her nose, and her stiff nipples press into your [pc.chest]. She leans in close, licking your chin and prodding your lips till they part for her tongue. Any attempts to resist her are quickly calmed by a sensual warmth.");
+		output("\n\nThe bathhouse adherent’s free hand slides smoothly over your body, stopping to squeeze one of your buttcheeks. You can see the flush in your partner’s face even through the silky veil over her nose, and her stiff nipples press into your [pc.chest]. She leans in close, licking your chin and prodding your lips until they part for her tongue. Any attempts to resist her are quickly calmed by a sensual warmth.");
 		output("\n\nThis is the real stuff, multitudes better than a facsimile. The diluted lotion is nothing compared to the aching lust created by the full strength venom in her saliva. You melt into her kiss, ");
 		//unaddicted/addicted:
 		if(flags["VENOM_ADDICTION"] == undefined) output("wanting");
@@ -1486,7 +1486,7 @@ public function oserreDildoDisplayScene():void
 	//merge intros
 	output("\n\nYou take the myr’s hands eagerly, posing her in your mind like a love doll, trying to decide on the best way to have her. A simple cowgirl position seems the best way to enjoy her enthusiasm - and those gorgeous, heavy tits.");
 	output("\n\nOserre follows obediently as you lead her to her personal bath. You take a seat at poolside, ");
-	if(pc.isTaur()) output("awkwardly resting your {num. of legs}-legged bulk against the adjoining wall,");
+	if(pc.isTaur()) output("awkwardly resting your " + num2Text(pc.legCount) + "-legged bulk against the adjoining wall,");
 	else output("dangling your [pc.feet] in the water,");
 	output(" and pull the unwary matron onto your lap - the sudden descent elicits a gasp from her, and the sharp intake of air presses her breasts against you, with their hard, wet nipples. Speaking of... you tug at Oserre’s neckline, trying to free her gorgeous bust. The myr helps, impatiently grabbing the fabric in four hands and tearing a deep rip. She reaches in and lifts her breasts free of her robe, allowing them to jiggle as she moves, bumping into your");
 	if(pc.biggestTitSize() < 1) output(" chest");
@@ -1517,7 +1517,8 @@ public function oserreDildoDisplayScene():void
 		if(pc.cockTotal() == 1) output("s");
 		output(" to drool precum, trapped under the fabric of your [pc.lowerUndergarment] and the myr’s booty.");
 	}
-	else output(" Your [pc.vagOrAss] inflames with lust, twitching and protesting its emptiness to your spinal nerves. }Understanding comes quickly: the oil must be an aphrodisiac.");
+	else output(" Your [pc.vagOrAss] inflames with lust, twitching and protesting its emptiness to your spinal nerves.");
+	output(" Understanding comes quickly: the oil must be an aphrodisiac.");
 
 	output("\n\nOserre slides down the slut-slicked strap-on stanchion again, and the change wrought by the aphrodisiac oil is immediate and intense. Her whole chest colors a brilliant orange as heated blood rushes to her golden skin and she pumps her pussy on you, grinding the oil into a froth and releasing even more fragrance into the air. Your whole body aches for release as you watch and feel the randy myr ride your toy; she begins to pump her hips so violently that her gorgeous, unrestrained breasts fly freely in the air as she sinks down, bobbing and swinging like globose pendulums. They slap against her ribs so loudly when they fall that they begin to gush and drool honey all over the both of you, turning your lovemaking into a soupy, syrupy mess of slick flesh.");
 	output("\n\nThe oils and enthusiasm bring Oserre to her ‘spiritual relief’ within minutes. The myr woman groans and shudders, pressing her sopping bust to your chest and going limp in your arms as her abdomen ripples around its huge invader. You can literally see the bands of chitin on it rise and fall as contractions pass through the muscle, desperately milking the photo-prick for cum but collecting only more aphrodisiacs. Close as you are to your own climax, the pressure of her orgasm on your toy is maddening. Sweet-scented fem-cum pours from her, running down your lap and into the pool, adulterating the clean water with oily, sticky love. The myr’s skin glows with burning blood, and her pelvis jerks back and forth, cutely flexing her stomach as she works out her enormous orgasm onto you. After a minute of twitching, she seems to regain some muscle control.");
@@ -1565,7 +1566,7 @@ public function oserreDildoDisplayScene():void
 	{
 		output("\n\n[pc.Cum] ");
 		if(pc.cumQ() < 20) output("dribbles from you, blending flawlessly with the rainbows of colored oil continuously forming and breaking on the water’s surface with nary a [pc.cumColor] speck to reveal your release.");
-		else if(pc.cumQ() < 250) output("spurts from your cock in thick, pent-up ropes that lance out with enough force to break the water’s surface.");
+		else output("spurts from your cock in thick, pent-up ropes that lance out with enough force to break the water’s surface.");
 		//big only
 		if(pc.cumQ() >= 500) output(" Your wanton body produces so much, spurt after shot after stroke, that the color and consistency of the pool begin to change, becoming tangibly [pc.cumVisc] and streaked with [pc.cumColor]. The spunk clings to Oserre’s hand as it glides up your prick, in and out of the water, churning your mess of cum in with her own like a surreal external fertilization.");
 	}

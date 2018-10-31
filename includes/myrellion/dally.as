@@ -96,11 +96,13 @@ public function honeyNozzleClub():Boolean
 					output("\n\nFazian, the anat cabaret performer, is sat at the quieter end of one of the bars, craned over a glass of honey wine. You could go and talk to him if you wished.");
 					addButton(1, "Fazian", fazianApproach);
 				}
+				/*
 				else
 				{
 					output("\n\nThe entrance to the cabaret is currently closed. The signage in front says that it is open from 15:30 to 20:30.");
 					addDisabledButton(1, "Cabaret", "Cabaret", "It looks like the entrance is closed at the moment.");
 				}
+				*/
 			}
 		}
 	}
@@ -138,6 +140,15 @@ public function showDally(nude:Boolean = false):void
 	if(!nude) showBust("DALLY");
 	else showBust("DALLY_NUDE");
 }
+public function getDallyPregContainer():PregnancyPlaceholder
+{
+	var ppDally:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppDally.cumType = GLOBAL.FLUID_TYPE_HONEY;
+	ppDally.balls = 2;
+	ppDally.ballSizeRaw = 20;
+	ppDally.createPerk("Fixed CumQ", 9000, 0, 0, 0);
+	return ppDally;
+}
 
 //Approach
 public function dallyApproach():void
@@ -171,7 +182,7 @@ public function dallyApproach():void
 		output(". The dancer spins around a pole, leaning back to smile at you.");
 		output("\n\n<i>“Ahh, the mysterious star-walker returns to my humble stage once more.”</i> Dally’s abdomen passes in front of you. It bobs heavily under its own weight. It almost looks out of place on his lean physique, all bulbous and frankly bloated. His muscles in his legs and back must be corded like iron to support it, a biological mesh designed to help him carry burden of being so prized by his own countrymen - and women.");
 		output("\n\nThe male myr’s motions cause his loincloth to reveal a strapping, eight-inch cock that’s lengthening by the second. Someone’s happy to see you. <i>“Dance, a drink, or ...”</i> He shimmies closer, firmly holding your gaze in sable orbs. <i>“...something else?”</i>");
-		dallyMenu();		
+		dallyMenu();
 	}
 }
 
@@ -361,7 +372,8 @@ public function talkMilkAnAntGuy():void
 	flags["CUNTTAILED_DALLY"]++;
 	//[No Tip] [100 Creds] [250 Creds] [999 Creds]
 	//4-5 cums
-	pc.loadInCuntTail();
+	var ppDally:PregnancyPlaceholder = getDallyPregContainer();
+	pc.loadInCuntTail(ppDally);
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
@@ -497,7 +509,7 @@ public function makeDallyBlowALoadOnYerFaceYeSloot():void
 	output("\n\nHe’s smothering you with his hot, sticky release. The smell is so thick to you that it’s almost cloying, musky and sweet at the same time. You can’t help but let your tongue slide out of your mouth to try a little. It’s ");
 	if(pc.isBimbo()) output("divine");
 	else output("better than it smells, honestly");
-	output(". There must be some of his nectar mixing in with it. Some splashes down in your hair, and you shudder, listening to the myr girls collect around you, cooing in excitement.");
+	output(". There must be some of his nectar mixing in with it. Some splashes down " + (pc.hasHair() ? "in your hair" : "on your head") + ", and you shudder, listening to the myr girls collect around you, cooing in excitement.");
 	output("\n\nDally’s still going too. The deliciously warm ropes hitting you aren’t as big as the first ones, but there’s enough on you at this point that it must look like a solid mask to your audience. You wind up letting go of him at some point, but he keeps pumping, shooting more ");
 	if(!pc.hasHair()) output("over the top of your head");
 	else output("into your [pc.hair]");
@@ -530,13 +542,9 @@ public function takeSomeDallySploogeInYerMouthYaSloooooot():void
 	output("\n\nDally tastes a little salty but more sweet, and in the span of two seconds it becomes the only thing you can taste. He floods your mouth with it. Trickles of his whitish goo leak from the corners of your mouth. You swallow as best you can, but more escapes to drip from your chin, fed from a seemingly unending stream of virile jism. Dally bathes your mouth in his syrupy load, painting your lips with the excess, forcing you to gulp again and again.");
 	output("\n\nWhen you can handle no more, you pull back and gasp for breath, offering his still-spurting rod to an ant-girl who has appeared beside you, mouth open in anticipation. She feeds the spurting shaft into her gullet and sucks with the kind of earnest eagerness that speaks of a sort of wanton hunger for cock. You watch and dab the dripping spooge from your face, offering it to another myr. She sucks the proffered digits clean one after another, relishing it.");
 	output("\n\nDally finishes not long after - you clearly got the lion’s share of his load. Even now, you can feel it sloshing in your tummy. The dancer extricates himself from his fan’s sucking maw with a bit of difficulty and gives you a grateful nod. His balls actually look a little lighter thanks to your intervention. <i>“Thank you ladies, but I’ve got to walk the rest of stage before the boss gripes at me. I’ll try and return the favor if I ever get the chance.”</i> He winks at you and turns away, launching into a dance as well as his tired legs will allow.");
-	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
-	pp.cumType = GLOBAL.FLUID_TYPE_HONEY;
-	pp.balls = 2;
-	pp.ballSizeRaw = 20;
-	pp.createPerk("Fixed CumQ", 9000, 0, 0, 0);
+	var ppDally:PregnancyPlaceholder = getDallyPregContainer();
 	pc.exhibitionism(1);
-	pc.loadInMouth(pp);
+	pc.loadInMouth(ppDally);
 	//Doesnt get the unified epilogue
 	processTime(6);
 	pc.lust(20);
@@ -601,7 +609,7 @@ public function nectarSuckFromDallyProper():void
 	else if(pc.isNice()) output("A warm smile slowly spreads across your features. <i>“A handsome myr told me it was quite delicious.”</i>");
 	else if(pc.isMischievous()) output("You look him and down, a mischievous grin on your features. <i>“If the tap still works after a long day on stage.”</i>");
 	else output("You spare him a hungry look.");
-	output("\n\nAn excited tremor runs through Dally’s antennae. His sable eyes glimmer black and blue from the club’s phosphorescent light, unreadable save for a sense of excitement. <i>“Then prepare to my people’s fruit... or my incarnation of them, anyway.”</i> He flips his loincloth up and out of the way while he fiddles with a clasp on his hip. It releases with an audible pop, the garment drifting to the floor to lie in a tiny, nectar-stained heap.");
+	output("\n\nAn excited tremor runs through Dally’s antennae. His sable eyes glimmer black and blue from the club’s phosphorescent light, unreadable save for a sense of excitement. <i>“Then prepare to sample my people’s fruit... or my incarnation of them, anyway.”</i> He flips his loincloth up and out of the way while he fiddles with a clasp on his hip. It releases with an audible pop, the garment drifting to the floor to lie in a tiny, nectar-stained heap.");
 	output("\n\nDally isn’t hard. If anything, he’s smaller than he looked when you approached. An arched eyebrow garners a smirk from the chitinous stripper.");
 	output("\n\n<i>“My body anticipates a different kind of relief, star-walker. Were I hard, it would be quite difficult to give you the nectar you seek. Perhaps you might get dribs and drabs, a little mixed with cum even, but you would not get to taste the pure delight I’m offering.”</i> Dally squats to place himself level with your head, his knees parted to either side of your ears. It’s impossible to ignore the rich, sweet scent of his manhood with his musky cologne or the way his glans bobs an inch or two from your chin.");
 	output("\n\nThe dancer’s breathing is heavy and excited. His gold-toned skin is flushed. Every facet of his posture and appearance betrays arousal save for his dick. The limp noodle between his legs seems even softer now, though a trickle of honey flows freely from its tip, like a bottle tipped on its side.");
@@ -887,7 +895,7 @@ public function askDallyRedAnts():void
 	output("\n\nOh. Poor guy.");
 	output("\n\n<i>“Jessa had another male on the bed, covered in kisses, and she was telling him things, the exact same things she told me - that he was special and she adored him like none other. She filled him with so much nonsense that he seemed barely conscious of. Jessa was going to have him come on another transport.”</i> Dally visibly winces. Though no longer fresh, he can’t ignore that deep of a hurt. <i>“I hid while the other guy left, and she called up another guy. I don’t know how many she had on the hook, but I had had enough.”</i>");
 	output("\n\n<i>“What’d you do?”</i> you ask.");
-	output("\n\nDally straightens and looks you firmly in the eye. <i>“I did what honorable drone would. I reported her activities to the security council anonymously and went through two weeks of agonizing withdrawal.”</i> His voice quiets, undercut by steely determination. <i>“I nearly jumped a red I saw on the street. I needed a fix that bad, but I beat it. I beat it, star-walker, and I’d do it again and again.”</i>");
+	output("\n\nDally straightens and looks you firmly in the eye. <i>“I did what any honorable drone would. I reported her activities to the security council anonymously and went through two weeks of agonizing withdrawal.”</i> His voice quiets, undercut by steely determination. <i>“I nearly jumped a red I saw on the street. I needed a fix that bad, but I beat it. I beat it, star-walker, and I’d do it again and again.”</i>");
 	output("\n\nYou tilt your head. <i>“What happened to her?”</i>");
 	output("\n\n<i>“She got picked up on her way out of the city and interrogated. The official story is that she was miffed about her inability to get males within the Federation and set up her own private slaving operation here to capture new lovers.”</i> Dally shakes his head. <i>“It wouldn’t surprise me if the whole thing was part of a government scheme, though. They’ll do anything for an edge, and we weren’t even at war back then.”</i>");
 	output("\n\n<i>“Wow.”</i>");
@@ -1220,7 +1228,7 @@ public function dallySucksYouOff():void
 		}
 		//merge back in after balls
 		output("\n\n<i>“Delicious,”</i> he comments while stopping to lick his lips clean. He leans in closer, pressing your titanic member against his chest. <i>“Absolutely delicious. More.”</i> He vigorously pumps your shaft while lapping at the underside of your [pc.cockHeadBiggest]. You can feel his heart hammering through your cock, a staccato thump-thump-thump of affection that even now causes his own member to rise against yours. His honey-seeping head snakes higher by the moment.");
-		output("\n\nYou throw your head back and cry out in ecstasy, twisting your hips back forth to better rub against him and his own plus-sized tumescence. His fingertips dance across your veiny length, tickling your nerves till they’re practically sparking with delight, overloading the connections to the pleasure-centers of your brain with white-hot lust. You barely manage to warn, <i>“Gonna cum!”</i>");
+		output("\n\nYou throw your head back and cry out in ecstasy, twisting your hips back forth to better rub against him and his own plus-sized tumescence. His fingertips dance across your veiny length, tickling your nerves until they’re practically sparking with delight, overloading the connections to the pleasure-centers of your brain with white-hot lust. You barely manage to warn, <i>“Gonna cum!”</i>");
 		output("\n\nHot breath against your [pc.cockHeadBiggest] answers, <i>“Go on; do it!”</i>");
 		output("\n\nAs if you were capable of doing anything else. Your eyes flutter partway open, though only to halfway back from the waves of bliss. Magma-hot pulses shiver your [pc.cockBiggest] from stern to stem, ");
 		if(pc.cumQ() < 10) output("expelling a few meager droplets of [pc.cum]. You should probably give yourself a chance to recharge before committing yourself to public blowjob shows...");

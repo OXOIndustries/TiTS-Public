@@ -33,7 +33,7 @@ package classes.Items.Transformatives
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
 			description = "a healthy Goblinola snack bar";
-			tooltip = "A snack bar that is gaudily advertised on its plastic wrap as a tasty, healthy treat for the gabilani on the go. Your codex indicates that it is edible and quite nourishing, but is also likely to trigger the reconfiguration function of your nanites.";
+			tooltip = "A snack bar that is gaudily advertised on its plastic wrap as a tasty, healthy treat for the gabilani on the go. Your codex indicates that it is edible and quite nourishing, but is also likely to trigger the reconfiguration function of your nanites.\n\n<b>Known to cause moderate amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -103,9 +103,11 @@ package classes.Items.Transformatives
 			if(target.hasTail() && target.legType == GLOBAL.TYPE_HUMAN && target.isBiped())
 				TFList[TFList.length] = 10;
 			
+			if(TFList.length <= 0) TFList[TFList.length] = select;
+			
 			//Loop through doing TFs until we run out, pulling out whichever we use.
 			while(TFList.length > 0 && totalTFs > 0)
-			{	
+			{
 				msg += "\n\n";
 				//Pick a TF	
 				x = rand(TFList.length);
@@ -349,6 +351,9 @@ package classes.Items.Transformatives
 						msg += target.tailTypeLockedMessage();
 					}
 				}
+				
+				if(select != 0) target.taint(1);
+				
 				totalTFs--;
 			}
 			if (msg.length > 0) ExtendLogEvent(msg);
@@ -413,6 +418,8 @@ package classes.Items.Transformatives
 			//#10 If fully morphed: Some sort of cybernetics bonus if/when that ever happens
 			if(((target.race() == "gabilani" && target.isCyborg()) || (target.isCyborg(2) && rand(4) == 0)) && !target.hasPerk("Cybernetic Synchronization"))
 				TFList[TFList.length] = 10;
+			
+			if(TFList.length <= 0) TFList[TFList.length] = select;
 			
 			//Loop through doing TFs until we run out, pulling out whichever we use.
 			while(TFList.length > 0 && totalTFs > 0)
@@ -613,6 +620,9 @@ package classes.Items.Transformatives
 					// v4: ???
 					target.createPerk("Cybernetic Synchronization", 5, 0, 0, 0, "Cybernetic enhancements will give you an additional intelligence capacity boost.");
 				}
+				
+				if(select != 0) target.taint(1);
+				
 				totalTFs--;
 			}
 			if (msg.length > 0) ExtendLogEvent(msg);

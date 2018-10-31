@@ -240,17 +240,17 @@ package classes.Characters
 		
 		public function tentacleWhip(target:Creature, hostiles:Array):void
 		{
-			output("The tentacle abomination sweeps his arm towards [target.combatName], extending the squirming mass of red vines far beyond a human’s reach to smash its targets.");
+			output("The tentacle abomination sweeps his arm towards " + target.getCombatName() + ", extending the squirming mass of red vines far beyond a human’s reach to smash its targets.");
 			if (combatMiss(this, target))
 			{
 				output(" Luckily, it’s attack is slow, and easily dodged!");
 			}
 			else
 			{
-				output(" The tentacles slam into [target.combatName] like a Pyrite freighter");
+				output(" The tentacles slam into " + target.getCombatName() + " like a Pyrite freighter");
 				if (rand(4) == 0)
 				{
-					output(", throwing [target.combatHimHer] to the ground");
+					output(", throwing " + target.getCombatPronoun("himher") + " to the ground");
 					createStaggeredEffect(target);
 				}
 				output("!");
@@ -263,7 +263,7 @@ package classes.Characters
 		{
 			createStatusEffect("Grapple Cooldown", 4);
 			
-			output("Henderson lunges for [target.combatName], tentacle-arms outstretched in a writhing mass of squirming sub-creatures.");
+			output("Henderson lunges for " + target.getCombatName() + ", tentacle-arms outstretched in a writhing mass of squirming sub-creatures.");
 			if (combatMiss(this, target))
 			{
 				output(" Luckily, you manage to dodge the grab!");
@@ -274,7 +274,7 @@ package classes.Characters
 				
 				applyDamage(damageRand(new TypeCollection( { corrosive: 8 }, DamageFlag.BYPASS_SHIELD), 15), this, target, "minimal");
 				
-				target.createStatusEffect("Grappled", 0, 66, 0, 0, false, "Constrict", "You’re pinned in a grapple.", true, 0);
+				CombatAttacks.applyGrapple(target, 66);
 			}
 		}
 		
@@ -311,7 +311,7 @@ package classes.Characters
 						else if(!struct.pc.hasStatusEffect("Blinded"))
 						{
 							output(" forming a blinding morass of sticky goop.");
-							struct.pc.createStatusEffect("Blinded", rand(3) + 1, 0, 0, 0, false, "Blind", "You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are for more likely to miss.", true, 0xFF0000);
+							CombatAttacks.applyBlind(struct.pc, rand(3) + 1);
 						}
 						else
 						{
@@ -328,7 +328,7 @@ package classes.Characters
 				{
 					output(" Another roar and spray of liquid splatters across the Chief’s face, forming a blinding mask of sticky aphrodesiacs!");
 					applyDamage(damageRand(new TypeCollection( { drug: 7 } ), 15), this, struct.neykkar, "minimal");
-					struct.neykkar.createStatusEffect("Blinded", rand(3) + 1, 0, 0, 0, false, "Blind", "You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0xFF0000);
+					CombatAttacks.applyBlind(struct.neykkar, rand(3) + 1);
 				}
 			}
 			else
@@ -347,7 +347,7 @@ package classes.Characters
 						else if(!struct.pc.hasStatusEffect("Blinded"))
 						{
 							output(" forming a blinding mask of sticky aphrodesiacs!");
-							struct.pc.createStatusEffect("Blinded", rand(3) + 1, 0, 0, 0, false, "Blind", "You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0xFF0000);
+							CombatAttacks.applyBlind(struct.pc, rand(3) + 1);
 						}
 						else
 						{
@@ -365,7 +365,7 @@ package classes.Characters
 				{
 					output(" Even as you’re struggling against the fumes, another roar and spray of liquid splatters across the Chief’s face, forming a blinding mask of sticky aphrodesiacs!");
 					applyDamage(damageRand(new TypeCollection( { drug: 7 } ), 15), this, struct.neykkar, "minimal");
-					struct.neykkar.createStatusEffect("Blinded", rand(3) + 1, 0, 0, 0, false, "Blind", "You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0xFF0000);
+					CombatAttacks.applyBlind(struct.neykkar, rand(3) + 1);
 				}
 			}
 		}
@@ -374,9 +374,9 @@ package classes.Characters
 		{
 			var struct:Object = GetCharacterStructure(hostiles, { pc: PlayerCharacter, neykkar: ChiefNeykkar } );
 			
-			var bStaggeredPC:Boolean = rand(3) == 0;
-			var bHitNeykkar:Boolean = struct.neykkar != undefined && !struct.neykkar.isDefeated();
-			var bStaggeredNeykkar:Boolean = bHitNeykkar && rand(3) == 0;
+			var bStaggeredPC:Boolean = (rand(3) == 0 && !struct.pc.isPlanted());
+			var bHitNeykkar:Boolean = (struct.neykkar != undefined && !struct.neykkar.isDefeated());
+			var bStaggeredNeykkar:Boolean = (bHitNeykkar && rand(3) == 0 && !struct.neykkar.isPlanted());
 			
 			output("The Commander throws his hands up and hurls them down, slamming the deck with all his augmented might. A veritable shockwave slams you as the deck rocks precariously.");
 			
@@ -420,7 +420,7 @@ package classes.Characters
 			}
 			else
 			{
-				target.createStatusEffect("Staggered", 5, 0, 0, 0, false, "Icon_OffDown", (target is PlayerCharacter ? "You’re staggered, and your Aim and Reflexes have been reduced!" : "Staggered, Aim and Reflexes are reduced."), true, 0);
+				CombatAttacks.applyStagger(target, 5);
 			}
 		}
 		
@@ -430,7 +430,7 @@ package classes.Characters
 			output("Henderson slowly extends one of his mutated, writhing limbs in");
 			if (target is PlayerCharacter) output(" your");
 			else output(" the Chief’s");
-			output(" direction. With a gurgling roar, several of the blood-red tendrils detatch from his arm, flopping down onto the ground and squirming like fish out of water. They’d almost be comical looking, if they didn’t quickly right themselves and start bee-lining for [target.combatHimHer]. Several of the things leap for [target.combatName], grasping and wrapping around [target.combatHisHer] arms and legs like a dozen tiny snakes. They start squeezing and hammering, doing everything they can to drag [target.combatHimHer] down with them!");
+			output(" direction. With a gurgling roar, several of the blood-red tendrils detatch from his arm, flopping down onto the ground and squirming like fish out of water. They’d almost be comical looking, if they didn’t quickly right themselves and start bee-lining for " + target.getCombatPronoun("himher") + ". Several of the things leap for " + target.getCombatName() + ", grasping and wrapping around " + target.getCombatPronoun("hisher") + " arms and legs like a dozen tiny snakes. They start squeezing and hammering, doing everything they can to drag " + target.getCombatPronoun("himher") + " down with them!");
 			
 			applyDamage(damageRand(new TypeCollection( { kinetic: 5 }, DamageFlag.BYPASS_SHIELD), 15), this, target, "minimal");
 			if (target.hasStatusEffect("Crushing Worms"))
@@ -470,7 +470,7 @@ package classes.Characters
 			var f:ChiefNeykkar = new ChiefNeykkar();
 			f.hendersonConfig();
 			
-			CombatManager.addFriendlyCreature(f);
+			CombatManager.addFriendlyActor(f);
 		}
 		
 		public function attemptCure():void

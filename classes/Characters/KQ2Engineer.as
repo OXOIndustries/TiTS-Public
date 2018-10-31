@@ -216,7 +216,7 @@ package classes.Characters
 				}
 				
 				var worstPerc:Number = 1.0;
-				var shieldTarget:Creature = null;				
+				var shieldTarget:Creature = null;
 				
 				for (var i:int = 0; i < alliedCreatures.length; i++)
 				{
@@ -240,7 +240,7 @@ package classes.Characters
 			
 			var attacks:Array = [];
 			
-			if (!target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Disarmed")) attacks.push( { v: pistolShot, w: 50 } );
+			if (!hasStatusEffect("Stunned") && !hasStatusEffect("Disarmed")) attacks.push( { v: pistolShot, w: 50 } );
 			if (CombatAttacks.Overcharge.IsAvailable(this) && !target.hasStatusEffect("Stunned")) attacks.push( { v: CombatAttacks.Overcharge, w: 20 } );
 			if (CombatAttacks.WeaponHack.IsAvailable(this) && !target.hasStatusEffect("Disarmed")) attacks.push( { v: CombatAttacks.WeaponHack, w: 10 } );
 			if (attacks.length <= 0)
@@ -304,7 +304,7 @@ package classes.Characters
 		private function numFenrisDronesAlive():int
 		{
 			var numAlive:int = 0;
-			var hostiles:Array = CombatManager.getHostileCharacters();
+			var hostiles:Array = CombatManager.getHostileActors();
 			
 			for (var i:int = 0; i < hostiles.length; i++)
 			{

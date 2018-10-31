@@ -35,7 +35,7 @@ package classes.GameData.Pregnancy.Handlers
 			_canFertilizeEggs = false;
 			_pregnancyQuantityMinimum = 1;
 			_pregnancyQuantityMaximum = 5;
-			_definedAverageLoadSize = 4800;
+			_definedAverageLoadSize = 2400;
 			_pregnancyChildType = GLOBAL.CHILD_TYPE_LIVE;
 			_pregnancyChildRace = GLOBAL.TYPE_MILODAN;
 			_childMaturationMultiplier = 1.0;
@@ -44,7 +44,7 @@ package classes.GameData.Pregnancy.Handlers
 			_onDurationEnd = milodanOnDurationEnd;
 			
 			addStageProgression(_basePregnancyIncubationTime - (14 * 24 * 60), function(pregSlot:int):void {
-				AddLogEvent(ParseText("You feel slightly nauseous as you’re walking, light-headedness suddenly washing over you before passing every bit as quickly, leaving you with a slight stirring in your [pc.stomach]. Your codex chirps a notification at you - <b>you’re pregnant!</b>\n\nA rapidly-scrolling text informs you that the pregnancy is Milodan, and you briefly remember the time you spent in the snow under the barbarian. It looks like his effort to breed you did pay off in the end. You wonder, just for a moment, if he had any inkling that his kits would have a better life than he has… if he knows that you’ll care for them, away from the harshness of Uveto’s glacial wastes. They’ll get a fair shot at life in the safety of your nursery on Tavros when the time comes."), "passive");
+				AddLogEvent(ParseText("You feel slightly nauseous as you’re walking, light-headedness suddenly washing over you before passing every bit as quickly, leaving you with a slight stirring in your [pc.stomach]. Your codex chirps a notification at you - <b>you’re pregnant!</b>\n\nA rapidly-scrolling text informs you that the pregnancy is Milodan, and you briefly remember the time you spent in the snow under the barbarian. It looks like his effort to breed you did pay off in the end. You wonder, just for a moment, if he had any inkling that his kits would have a better life than he has... if he knows that you’ll care for them, away from the harshness of Uveto’s glacial wastes. They’ll get a fair shot at life in the safety of your nursery on Tavros when the time comes."), "passive");
 			}, true);
 			
 			addStageProgression(_basePregnancyIncubationTime - (35 * 24 * 60), function(pregSlot:int):void {
@@ -103,30 +103,7 @@ package classes.GameData.Pregnancy.Handlers
 		
 		public static function milodanSuccessfulImpregnation(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
-			BasePregnancyHandler.defaultOnSuccessfulImpregnation(father, mother, pregSlot, thisPtr);
-			
-			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
-			
-			// Always start with the minimum amount of children.
-			var quantity:int = thisPtr.pregnancyQuantityMinimum;
-			
-			// Unnaturally fertile mothers may get multiple children.
-			for(var i:Number = mother.fertility(); i >= 1.5; i -= 0.5)
-			{
-				quantity += rand(thisPtr.pregnancyQuantityMaximum + 1);
-			}
-			if (quantity > thisPtr.pregnancyQuantityMaximum) quantity = thisPtr.pregnancyQuantityMaximum;
-			
-			// Add extra bonuses.
-			var fatherBonus:int = Math.round((father.cumQ() * 2) / thisPtr.definedAverageLoadSize);
-			var motherBonus:int = Math.round((quantity * mother.pregnancyMultiplier()) - quantity);
-			quantity += fatherBonus + motherBonus;
-			
-			// Cap at 3x the maximum!
-			var quantityMax:int = Math.round(thisPtr.pregnancyQuantityMaximum * 3.0);
-			if (quantity > quantityMax) quantity = quantityMax;
-			
-			pData.pregnancyQuantity = quantity;
+			BasePregnancyHandler.defaultOnSuccessfulImpregnation(father, mother, pregSlot, thisPtr, [3.0, 1.5, 0.5]);
 		}
 		
 		public static function milodanOnDurationEnd(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void

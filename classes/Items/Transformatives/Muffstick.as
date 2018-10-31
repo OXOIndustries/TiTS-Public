@@ -118,8 +118,8 @@
 			output("\n\nAs you stare down at your crotch, you realize that it won’t be easy to apply the lipstick correctly, let alone see the upcoming process. Getting a clear view of one’s own pussy is no simple task after all. Luckily, you’ve got the trusty Codex to help you out. By using its camera-display app, you’re able to see every little detail of your sexual equipment in ultra HD as you position the device a short distance away from you.");
 			
 			clearMenu();
-			addButton(0, "Next", rbgSelColor, [target], "Choose Color", String("Choose a color of lipstick."));
-			if(target.isBimbo()) addButton(5, "Like, Next!", rbgSelColor, [target, true], "*Choose Glitter*", String("Like, totally choose a better color of lipstick."));
+			addButton(0, "Next", rbgSelColor, [target], "Choose Color", ("Choose a color of lipstick."));
+			if(target.isBimbo()) addButton(5, "Like, Next!", rbgSelColor, [target, true], "*Choose Glitter*", ("Like, totally choose a better color of lipstick."));
 		}
 		private function rbgSelColor(arg:Array):void
 		{
@@ -193,7 +193,7 @@
 				for(i = 0; i < colorList.length; i++)
 				{
 					if(colorList[i][0] == "null") bimboColors.push(["null", "Transparent"]);
-					else bimboColors.push([String("glittering " + colorList[i][0]), String("*" + colorList[i][1] + "*")]);
+					else bimboColors.push([("glittering " + colorList[i][0]), ("*" + colorList[i][1] + "*")]);
 				}
 				colorList = bimboColors;
 			}
@@ -201,8 +201,8 @@
 			kGAMECLASS.clearMenu();
 			for(i = 0; i < colorList.length; i++)
 			{
-				if(colorList[i][0] == "null") addButton(btnSlot, colorList[i][1], vagMenu, [target, colorList[i][0]], "No Color Change", String("Keep your nether-lips the same color."));
-				else addButton(btnSlot, colorList[i][1], vagMenu, [target, colorList[i][0]], StringUtil.toDisplayCase(colorList[i][0]), String("Change the color of your nether-lips to " + colorList[i][0] + "."));
+				if(colorList[i][0] == "null") addButton(btnSlot, colorList[i][1], vagMenu, [target, colorList[i][0]], "No Color Change", ("Keep your nether-lips the same color."));
+				else addButton(btnSlot, colorList[i][1], vagMenu, [target, colorList[i][0]], StringUtil.toDisplayCase(colorList[i][0]), ("Change the color of your nether-lips to " + colorList[i][0] + "."));
 				btnSlot++;
 			}
 		}
@@ -330,7 +330,7 @@
 				target.vaginas[selVag].addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 				
 				target.orgasm();
-				if(target.hasCock() && target.cumQ() >= 1000) kGAMECLASS.applyCumSoaked(target);
+				if(target.hasCock() && target.cumQ() >= 1000) target.applyCumSoaked();
 			}
 			
 			// Repeated uses:

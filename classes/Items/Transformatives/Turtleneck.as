@@ -7,7 +7,7 @@ package classes.Items.Transformatives
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
@@ -130,7 +130,7 @@ package classes.Items.Transformatives
 			}
 			output(". You apply the rest around and on your [pc.cockHead " + i + "]");
 			if(target.cocks[i].hasFlag(GLOBAL.FLAG_FORESKINNED)) output(", pulling down your foreskin, coating its insides and releasing it, letting it spread the cream more thoroughly by itself");
-			output(". As you wait for the transformation, the blue cream dries up and the aphrodisiacs kick in as your [pc.cock " + i + "] stiffens into a bulging erection, covered in gray glitter.");			
+			output(". As you wait for the transformation, the blue cream dries up and the aphrodisiacs kick in as your [pc.cock " + i + "] stiffens into a bulging erection, covered in gray glitter.");
 			
 			output("\n\n");
 			if(!target.cocks[i].hasFlag(GLOBAL.FLAG_FORESKINNED) && rand(2) == 0) foreskinTF([target, i]);

@@ -6,7 +6,7 @@ package classes.Items.Transformatives
 	import classes.GLOBAL;
 	import classes.Creature;
 	import classes.StorageClass;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
@@ -89,7 +89,7 @@ package classes.Items.Transformatives
 			return false;
 		}
 		
-		public static function tentacoolTF(target:Creature, effect:StorageClass):void
+		public static function tentacoolTF(target:Creature, effect:StorageClass, deltaT:int = 0):void
 		{
 			var isPlus:Boolean = effect.value1 > 1;
 			
@@ -407,7 +407,7 @@ package classes.Items.Transformatives
 				// #11 add a breast row
 				else if (select == 11)
 				{
-					if (target.createBreastRowUnlocked())
+					if (target.createBreastRowUnlocked(target.bRows() + 1))
 					{
 						msg += "\n\nYou feel a sharp prickling down your body just before <b>another row of tentacle nipples grows below your existing ones, starting a new row of breasts</b>.";
 						
@@ -435,12 +435,12 @@ package classes.Items.Transformatives
 							}
 							else
 							{
-								msg += "Your [pc.wings] begin";
+								msg += ParseText("Your [pc.wings] begin");
 								if(target.wingCount == 1) msg += "s";
-								msg += " to itch. The itching is quickly replaced by a strained sensation. You feel your [pc.wingsNoun]";
+								msg += ParseText(" to itch. The itching is quickly replaced by a strained sensation. You feel your [pc.wingsNoun]");
 								if(target.wingCount == 1) msg += " split into two seperate appendages, each warping and changing into new shapes. You";
 								else msg += " changing and";
-								msg += " realize you’ve gained even greater control of them. You’re able to bring one within your field of vision. <b>It seems your [pc.wingsNoun] have been replaced with writhing, prehensile tentacles.</b>";
+								msg += ParseText(" realize you’ve gained even greater control of them. You’re able to bring one within your field of vision. <b>It seems your [pc.wingsNoun] have been replaced with writhing, prehensile tentacles.</b>");
 							}
 							target.wingType = GLOBAL.TYPE_TENTACLE;
 							if(target.wingCount < 2) target.wingCount = 2;
@@ -545,7 +545,7 @@ package classes.Items.Transformatives
 					{
 						if (target.legCountUnlocked(2))
 						{
-							msg += "\n\nAn intense pain shoots through your [pc.legOrLegs] as if " + (target.legCount == 1 ? "it’s" : "they’re") + " tearing apart, and you barely remain standing. The next moment, your lower body unravels out from underneath you and you fall to the ground. Where you once had " + (target.legCount == 1 ? "a [pc.legNoun]" : "[pc.legsNoun]") + ", <b>you now have a writhing bundle of tentacles</b>. You gain control over them, and manage to bound them into a facsimile of normal legs and stand up. It’s a bit shakey, but the tentacle legs do their job. Perhaps you could travel around without forming the tentacles into two leg shapes.";
+							msg += ParseText("\n\nAn intense pain shoots through your [pc.legOrLegs] as if " + (target.legCount == 1 ? "it’s" : "they’re") + " tearing apart, and you barely remain standing. The next moment, your lower body unravels out from underneath you and you fall to the ground. Where you once had " + (target.legCount == 1 ? "a [pc.legNoun]" : "[pc.legsNoun]") + ", <b>you now have a writhing bundle of tentacles</b>. You gain control over them, and manage to bound them into a facsimile of normal legs and stand up. It’s a bit shakey, but the tentacle legs do their job. Perhaps you could travel around without forming the tentacles into two leg shapes.");
 							
 							target.legCount = 2;
 							target.legType = GLOBAL.TYPE_TENTACLE;
@@ -573,7 +573,7 @@ package classes.Items.Transformatives
 			// Effect over:
 			msg += "Finally your skin stops tingling and any remaining tension dissipates. It seems the effects of the Tentatool have worn off."
 			
-			AddLogEvent(msg, "passive");
+			AddLogEvent(msg, "passive", deltaT);
 			
 			return;
 		}

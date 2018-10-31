@@ -65,6 +65,18 @@ package classes.Items.Transformatives
 				//Fen: NOPE!
 				//boobRowMax = 10;
 				
+				var doses:int = target.statusEffectv1("Estrobloom Doses");
+				if(doses >= 2)
+				{
+					boobRowMax = 4;
+					if(pc.isNaga() || pc.isGoo()) boobRowMax = 7;
+				}
+				if(doses >= 5)
+				{
+					boobRowMax = 5;
+					if(pc.isNaga() || pc.isGoo()) boobRowMax = 10;
+				}
+				
 				if(pc.bRows() == boobRowMax) maxBoobsWarn(target);
 				else if (pc.bRows() < boobRowMax && rand(2) == 0) boobRowTF(target, boobRowMax);
 				else dudWarn(target);
@@ -149,7 +161,7 @@ package classes.Items.Transformatives
 			output("After waiting for the results for several minutes, your [pc.chest] remains the same. Either this product you bought was a dud or you were a very unlucky customer.");
 			
 			kGAMECLASS.clearMenu();
-			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);	
+			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
 		}
 	}
 }

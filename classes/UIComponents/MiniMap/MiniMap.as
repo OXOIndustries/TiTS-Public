@@ -36,11 +36,12 @@
 		public static const ICON_TAXI:uint = 9;
 		public static const ICON_PLANE:uint = 10;
 		public static const ICON_PLANT_BULB:uint = 11;
-		public static const ICONS_MAX:uint = 12;
+		public static const ICON_SPIDER_WEB:uint = 12;
+		public static const ICONS_MAX:uint = 13;
 		
 		// I've spied rumblings of a way to search through an SWF class definitions to build a list like this completely dynamically... but the code I found to do it looks a) awful b) is russian... maybe later? maybe.
 		// Basically, this is the list of linkage class names for the icons symbols in the FLA's library, which we're going to use to build icons in the correct order -- you might notice that they're in the same order as the integer flags up ^ there... the integer flags are used as array indexes to find the proper classname.
-		public static const ICON_NAMES:Array = new Array("Map_Ship", "Map_Quest", "Map_Objective", "Map_NPC", "Map_Medical", "Map_Down", "Map_Up", "Map_Commerce", "Map_Bar", "Map_Taxi", "Map_Plane","Map_Plant_Bulb");
+		public static const ICON_NAMES:Array = new Array("Map_Ship", "Map_Quest", "Map_Objective", "Map_NPC", "Map_Medical", "Map_Down", "Map_Up", "Map_Commerce", "Map_Bar", "Map_Taxi", "Map_Plane","Map_Plant_Bulb","Map_SpiderWeb");
 		
 		
 		/* Each room only deals with the links it has to neighbours in the East + South direction (Right + Down)
@@ -422,7 +423,7 @@
 			{
 				for (yPos = 0; yPos < 7; yPos++)
 				{
-					roomFlags = map[xPos][yPos][zPos];					
+					roomFlags = map[xPos][yPos][zPos];
 					var tarSprite:MinimapRoom = _childElements[xPos][6 - yPos];
 					
 					// Room visibility
@@ -516,6 +517,10 @@
 						else if (roomFlags & Mapper.room_plant_bulb_mask)
 						{
 							tarSprite.setIcon(ICON_PLANT_BULB);
+						}
+						else if (roomFlags & Mapper.room_spider_web_mask)
+						{
+							tarSprite.setIcon(ICON_SPIDER_WEB);
 						}
 						else if (roomFlags & Mapper.room_objective_mask)
 						{

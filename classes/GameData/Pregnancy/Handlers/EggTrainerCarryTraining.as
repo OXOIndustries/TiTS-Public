@@ -32,7 +32,7 @@ package classes.GameData.Pregnancy.Handlers
 			_definedAverageLoadSize = 240;
 			_pregnancyChildType = GLOBAL.CHILD_TYPE_EGGS;
 			
-			var msg:String = "";		
+			var msg:String = "";
 			
 			_onSuccessfulImpregnation = eggTrainerCarryTrainingSuccessfulImpregnation;
 			_onDurationEnd = eggTrainerCarryTrainingEnd;

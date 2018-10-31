@@ -13,7 +13,7 @@ public function viBonus():Boolean
 			output(" She looks like a V-Ko android. But why is she on Myrellion?");
 			output(" Your codex chimes, <i>“V-Ko model nursedroid detected. Manufactured by JoyCo. Provides basic medical services. More data available upon request.”</i>");
 			// Unlock 'V-Ko IV' Codex Entry
-			CodexManager.unlockEntry("V-Ko");			
+			CodexManager.unlockEntry("V-Ko");
 		}
 		addButton(0,"V-Ko",approachVi);
 	}
@@ -52,7 +52,7 @@ public function approachVi():void
 	if(flags["MET_VI"] == undefined)
 	{
 		output("As you approach the V-Ko unit, you’re struck by how, well, <i>risque</i> she looks. The tail of her violet side-plait tumbles over one of her shoulders and rests atop her hefty, well-formed tits, the tip threatening to disappear between their ampleness. They’re even more exaggerated by her tight-fitting corset. Besides a garter belt and stockings, there’s simply no coverage below her waist, leaving her smooth feminine mound on display.");
-		output("\n\nAlmost as an afterthought – and perhaps so people didn’t think she was a sex-bot – the violet-haired VI wears a white cap with a red cross on it and a pair of medical gloves. What little clothing she wears looks attached to her snowy skin. She has an equally pale tail protruding from above her hand-crafted rump, long and visibly prehensile.");
+		output("\n\nAlmost as an afterthought – and perhaps so people didn’t think she was a sex-bot – the violet-haired VI wears a white cap with a cross on it and a pair of medical gloves. What little clothing she wears looks attached to her snowy skin. She has an equally pale tail protruding from above her hand-crafted rump, long and visibly prehensile.");
 		output("\n\nHer eyes lock onto you – midnight black except for two pale cross-shaped irises. <i>“Hello, prospective patient!”</i> she exclaims, crossing her arms underneath those voluptuous breasts. <i>“My designated name is ‘Vi’. I have been placed here to dispense medical procedures for a reasonable, profit ensuring price.”</i>");
 		processTime(3);
 		flags["MET_VI"] = 1;
@@ -66,7 +66,7 @@ public function approachVi():void
 		//if health is below 25%:
 		if(pc.HPQ() < 25)
 		{
-			output(" The moment she spots how injured you are, a look of shocked concern spreads across her face. <i>“Oh my! How can you still stand? Please, allow me to heal you! The credit charge is more survivable than your wounds.”</i>");
+			output(" The moment she spots how injured you are, a look of shocked concern spreads across her face. <i>“Oh my! How can you still stand? Please, allow me to heal you! The " + (isAprilFools() ? "dogecoin" : "credit") + " charge is more survivable than your wounds.”</i>");
 		}
 		//else if health is below 50%:
 		else if(pc.HPQ() < 50)
@@ -97,7 +97,6 @@ public function approachViFirstTimePart2():void
 public function viMenu():void
 {
 	clearMenu();
-	showVi();
 	//[Appearance] [Talk] [Heal] [Examination] [S.Relief]
 	//[Buy] [Sell]
 	// tooltip.sRelief: Ask Vi if she can provide you with sexual relief services.
@@ -113,9 +112,11 @@ public function viMenu():void
 	// ‘Pleasure’ talk topic must have been watched, to learn that she’s been tampered with already.
 	if(flags["VI_PLEASURE_TALKED"] != undefined) addButton(7,"Modify",modifyViMenu,undefined,"Modify","Modify Vi’s specs to suit your tastes!");
 	else addDisabledButton(7,"Modify","Modify","She doesn’t look like the kind of ‘bot that would modify her chassis.");
-	if(pc.hasItem(new DamagedVIChip())) addButton(8,"Give VI Chip",nurseDroidChipTurnIn,"Vi","Give VI Chip","Give the V-Ko droid the damaged chip you looted off the Nym-Foe. Maybe she can do something with it, or give you a few space-bucks for the trouble.");
-	addButton(14,"Leave",mainGameMenu);
+	if(pc.hasItemByClass(DamagedVIChip)) addButton(8,"Give VI Chip",nurseDroidChipTurnIn,"Vi","Give VI Chip","Give the V-Ko droid the damaged chip you looted off the Nym-Foe. Maybe she can do something with it, or give you a few space-bucks for the trouble.");
 	
+	joyCoDonationButton(9, "vi");
+	
+	addButton(14,"Leave",mainGameMenu);
 }
 
 //Appearance
@@ -130,7 +131,7 @@ public function viAppearance():void
 	output("\n\nBelow the hem of this, however, she’s wearing nothing but a garter belt and stockings, leaving her smooth feminine mound brazenly on display.");
 	//Borrowed Her Pussy:
 	if(pc.hasKeyItem("Vi's Vagina")) output("Right now it’s utterly featureless, since you’ve purloined her actual pussy.");
-	output(" She’s so scantily-clad that it would be hard to tell she was a medical bot at all, if it wasn’t for her white nurse’s cap with a red cross on it, and a pair of medical gloves. A closer examination shows every piece of clothing is actually attached to her snowy skin.");
+	output(" She’s so scantily-clad that it would be hard to tell she was a medical bot at all, if it wasn’t for her white nurse’s cap with a cross on it, and a pair of medical gloves. A closer examination shows every piece of clothing is actually attached to her snowy skin.");
 	output("\n\nTwo other features really stand out; her midnight black eyes with pale, cross-shaped irises, and her snowy white tail. The latter is very long and visibly prehensile – you’ve seen her use it to pick up all sorts of things with little effort.");
 	output("\n\nThere’s a small inscription on her upper right arm: <i>“V-Ko Model IV”</i>.");
 	processTime(3);
@@ -272,7 +273,7 @@ public function talkToViAboutPleasure():void
 	}
 	else 
 	{
-		output("\n\nVi then bows and looks incredibly apologetic, <i>“... I’m very sorry if this device has interfered with my sexual relief services. I’d hate to think I was giving you a sub-par effort because, um, of the sudden twitching and wetness I experience when I’m pleasuring you.”</i>");
+		output("\n\nVi then bows and looks incredibly apologetic, <i>“...I’m very sorry if this device has interfered with my sexual relief services. I’d hate to think I was giving you a sub-par effort because, um, of the sudden twitching and wetness I experience when I’m pleasuring you.”</i>");
 		output("\n\nBy the way she’s blushing and rubbing her thighs together, you have a feeling she’s picturing exactly that right now.");
 	}
 	// Mark topic ‘Pleasure’ as having been read.
@@ -296,7 +297,7 @@ public function healFromVi():void
 	output(".");
 
 	//Cost = 5 times HP 
-	var cost:int = pc.HPMax() - pc.HP();
+	var cost:int = Math.round(pc.HPMax() - pc.HP());
 	cost *= 5;
 
 	output("\n\n<i>“Good,”</i> Vi visibly sighs with relief, pressing a hand to her chest. <i>“Judging by your injuries, your treatment should cost " + num2Text(cost) + " credits in total. Are you okay with that, " + pc.mf("sir","ma’am") + "?”</i>");
@@ -393,7 +394,7 @@ public function getExamanitedByVi():void
 		else if(pc.exhibitionism() < 66)
 		{
 			output("\n\nYou blushingly begin stripping off your things before you reach the curtain, unsure if you’re happy or sad that you don’t need to do it in front of an audience. Still, when the privacy screen closes with a loud <i>shhh</i>, Vi is standing there and giving what you swear is an appreciative glance at your ass.");
-			output("\n\n<i>“... Do you like what you see?”</i> you ask, simultaneously stripping off. The violet-haired nurse toys with the end of her side plait, a light smile on her snowy lips.");
+			output("\n\n<i>“...Do you like what you see?”</i> you ask, simultaneously stripping off. The violet-haired nurse toys with the end of her side plait, a light smile on her snowy lips.");
 			output("\n\n<i>“Your posterior has an admirable amount of symmetry, " + pc.mf("sir","ma’am") + ". My medical database informs me symmetry is considered attractive amongst organics. In that sense, your backside is excellent.”</i>");
 			pc.lust(3);
 		}
@@ -402,7 +403,7 @@ public function getExamanitedByVi():void
 		{
 			output("\n\nYou brazenly begin stripping off on the spot, right in front of all the other medical staff. While the half-nude doctors and nurses are not abashed by your nudity, they are certainly <i>attracted</i> to it, watching with avid interest as you strip off.");
 			output("\n\n<i>“Um, " + pc.mf("sir","ma’am") + ", there’s a privacy curtain?”</i> Vi pipes up. You notice she’s holding it back for you... apparently stripping was a bit premature. Chuckling a little, you stride butt-naked behind it. As you strut past, you swear you see the violet-haired nurse give your ass an appreciative glance.");
-			output("\n\n<i>“... Do you like what you see?”</i> you ask, feeling a little worked up from all the attention. Vi closes the screen with a loud <i>shhhh</i> behind you, a light smile on her snowy lips.");
+			output("\n\n<i>“...Do you like what you see?”</i> you ask, feeling a little worked up from all the attention. Vi closes the screen with a loud <i>shhhh</i> behind you, a light smile on her snowy lips.");
 			output("\n\n<i>“Your posterior has an admirable amount of symmetry, " + pc.mf("sir","ma’am") + ". My medical database informs me symmetry is considered attractive amongst organics. In that sense, your backside is excellent.”</i>");
 			pc.lust(5);
 		}
@@ -417,17 +418,39 @@ public function getExamanitedByVi():void
 	output("\n\nNow that your obligatory ogling is done, you climb onto the surprisingly comfy bed. The curvaceous nurse then brings her fingers to your chest. You try to sit calmly as her slender digits roam across your [pc.skinFurScalesNoun]. Her long-lashed lids are intensely narrowed as she examines you, each of her fingertips glowing with pale, purple light. The whole thing feels <i>very</i> intimate...");
 	output("\n\n<i>“I can hear your heartbeat, " + pc.mf("sir","ma’am") + ". It’s very strong,”</i> Vi murmurs, her fingers splaying across your [pc.chest]. Your cheeks burn brightly, your pulse speeding up, her delicate fingers brushing awfully close to your nipples.");
 	output("\n\nSuddenly, tiny, delicious little jolts begin to tickle them – not painful in the least, but instead <i>very</i> stimulating. You gasp out loud, trying not to squirm as her fingers splay around them, lightly pinching the sides.");
-	output("\n\n<i>“... Commencing deep scan. We don’t want to miss anything,”</i> Vi smiles, rubbing her fingers against your ");
+	output("\n\n<i>“...Commencing deep scan. We don’t want to miss anything,”</i> Vi smiles, rubbing her fingers against your ");
 	if(pc.biggestTitSize() >= 1) output("breasts");
 	else output("chest");
 	output(". <i>“Analyzing...”</i>");
 
 	processTime(14);
-	var parasites:int = 0;
-	if(pc.hasCuntTail()) parasites++;
-	if(pc.hasCockTail()) parasites++;
-	if (attachedMimbranes() > 0) parasites++;
+	
 	var sstds:Number = pc.sstdTotal();
+	var parasites:int = 0;
+	if(pc.hasStatusEffect("Butt Bug (Female)")) parasites++;
+	if(pc.hasCuntTail() && pc.hasParasiteTail()) parasites++;
+	if(pc.hasCockTail() && pc.hasParasiteTail()) parasites++;
+	if(attachedMimbranes() > 0) parasites++;
+	//if Detected No Parasites:
+	if(sstds <= 0 && parasites <= 0)
+	{
+		output("\n\nVi pulls back and puts a hand on her synthetic chest, letting out a relieved sigh. <i>“Good. You appear to be in perfect health, " + pc.mf("sir","ma’am") + ". Apart from a highly advanced group of microsurgeons, there are no foreign contaminants in your system. Nothing to worry about!”</i>");
+		output("\n\n<i>“");
+		if(pc.isNice()) output("So, the cost...?");
+		else if(pc.isMischievous()) output("What’s the damage, doc?");
+		else output("That was pretty quick, you better not charge me much. Cost?");
+		output("”</i> You ask, bringing up your credit balance on your codex.");
+
+		output("\n\nVi chuckles and picks up a chart with her tail, dumping it in her hands. <i>“No cost, " + pc.mf("sir","ma’am") + " – examinations are always free. Treatments are a little different. I still have to charge a small fee, but it’s well below galactic norms. Thankfully I can provide my services to you at a dime.”</i>");
+
+		output("\n\n<i>“Is there anything else I can help you with today, " + pc.mf("sir","ma’am") + "?”</i>");
+		// Return to menu
+		viMenu();
+		return;
+	}
+	
+	var buttons:Array = [];
+	
 	//if detected more than one lot of parasites:
 	if(sstds > 0)
 	{
@@ -442,7 +465,6 @@ public function getExamanitedByVi():void
 			output(". Unfortunately, I can only ");
 			if(parasites > 1) output("treat one of your parasitic infections at a time. Alternatively, I can cure your diseases for a modest 500 credits.");
 			else output("treat a parasite or your diseases at a time. The latter costs 500 credits.");
-			
 		}
 		else
 		{
@@ -452,83 +474,99 @@ public function getExamanitedByVi():void
 			output(" can be produced for only 500 credits and a few minutes of processing time. Would you like a treatment?");
 		}
 		output(" Please indicate your choice, " + pc.mf("sir","ma’am") + ".”</i>");
-		clearMenu();
-		if(attachedMimbranes() > 0) addButton(0,"Treat Mimb",removeAParasiteWithVi,"Mimbrane","Mimbrane Treatment","Get any mimbranes removed.");
-		else addDisabledButton(0,"Treat Mimb","Mimbrane Treatment","You don’t have any mimbranes to remove.");
-		if(pc.hasParasiteTail() && pc.hasCuntTail()) addButton(1,"Treat C.Snake",removeAParasiteWithVi,"Cuntsnake","Cuntsnake Treatment","Get any parasitic tails removed.");
-		else addDisabledButton(1,"Treat C.Snake","Cuntsnake Treatment","You have no parasitic snakes to remove.");
-		if(pc.hasParasiteTail() && pc.hasCockTail()) addButton(2,"Treat C.Vine",removeAParasiteWithVi,"Cockvine","Cockvine Treatment","Get any parasitic tails removed.");
-		else addDisabledButton(2,"Treat C.Vine","Cockvine Treatment","You have no cockvines to remove.");
-
-		if(sstds > 0 && pc.credits >= 500) addButton(3,"TreatDisease",removeDiseasesVI,undefined,"Treat Disease","Get any diseases you’re carrying removed for 500 credits.");
-		else if(pc.credits < 500 && sstds > 0) addDisabledButton(3,"TreatDisease","Treat Disease","You cannot afford this treatment.");
-		else addDisabledButton(3,"TreatDisease","Treat Disease","You don’t have any diseases.");
-		addButton(4,"None",declineParasiteTreatmentFromVi,undefined,"No","Decline to get any parasites removed.");
+		
+		if(pc.credits < 500)
+		{
+			buttons.push(["TreatDisease", null, undefined, "Treat Disease", "You cannot afford this treatment.\n\nCosts 500 credits"]);
+		}
+		else
+		{
+			buttons.push(["TreatDisease", removeDiseasesVI, undefined, "Treat Disease", "Get any diseases you’re carrying removed for 500 credits."]);
+		}
 	}
-	else if(parasites > 1)
+	if(parasites > 0)
 	{
-		output("\n\n<i>“I should also inform you, it appears you have more than one type of parasitic affliction. Unfortunately, I can only treat one lot of parasites in a single procedure. Please indicate which infestation you would like me to treat first, " + pc.mf("sir","ma’am") + ".”</i>");
-		// Show list of parasites + no removal button.
-		// Treating a parasite goes to the ‘Remove Parasite’ Scene further down. No Removal goes to the ‘Turn Down’’ scene, also further down.
-		clearMenu();
-		if(attachedMimbranes() > 0) addButton(0,"Treat Mimb",removeAParasiteWithVi,"Mimbrane","Mimbrane Treatment","Get any mimbranes removed.");
-		else addDisabledButton(0,"Treat Mimb","Mimbrane Treatment","You don’t have any mimbranes to remove.");
-		if(pc.hasParasiteTail() && pc.hasCuntTail()) addButton(1,"Treat C.Snake",removeAParasiteWithVi,"Cuntsnake","Cuntsnake Treatment","Get any parasitic tails removed.");
-		else addDisabledButton(1,"Treat C.Snake","Cuntsnake Treatment","You have no parasitic snakes to remove.");
-		if(pc.hasParasiteTail() && pc.hasCockTail()) addButton(2,"Treat C.Vine",removeAParasiteWithVi,"Cockvine","Cockvine Treatment","Get any parasitic tails removed.");
-		else addDisabledButton(2,"Treat C.Vine","Cockvine Treatment","You have no cockvines to remove.");
-		addButton(4,"None",declineParasiteTreatmentFromVi,undefined,"No","Decline to get any parasites removed.");
+		if(sstds <= 0)
+		{
+			if(parasites > 1)
+			{
+				output("\n\n<i>“I should also inform you, it appears you have more than one type of parasitic affliction. Unfortunately, I can only treat one lot of parasites in a single procedure. Please indicate which infestation you would like me to treat first, " + pc.mf("sir","ma’am") + ".”</i>");
+				// Show list of parasites + no removal button.
+				// Treating a parasite goes to the ‘Remove Parasite’ Scene further down. No Removal goes to the ‘Turn Down’ scene, also further down.
+			}
+		}
+		// if PC has butt bug:
+		if(pc.hasStatusEffect("Butt Bug (Female)"))
+		{
+			if(parasites == 1)
+			{
+				output("\n\nHer fingers reach up to clasp your shoulder, and she turns you slightly around to gaze at your ass – the second time in a row! This time, however, she’s staring with a concerned look in her eyes.");
+				output("\n\n<i>“It is as I thought. I’m sorry to inform you of this, " + pc.mf("sir","ma’am") + ", but you’ve been infected by a hilinara parasite. In order to treat it, I will have to administer anesthesia. Will you consent to treatment?");
+			}
+			buttons.push(["Treat B.Bug", removeAParasiteWithVi, "buttbug", "Treat Butt Bug", "Remove the butt bug parasite."]);
+		}
+		// if cock snake:
+		if(pc.hasParasiteTail() && pc.hasCockTail())
+		{
+			if(parasites == 1)
+			{
+				output("\n\nHer fingers reach up to clasp your shoulder, and she turns you slightly around to gaze at your ass – the second time in a row! This time, however, she’s staring with a concerned look in her eyes.");
+				output("\n\n<i>“It’s as I thought. I’m sorry to inform you of this, " + pc.mf("sir","ma’am") + ", but you’ve been infected by a hydrus constuprula parasitic vine. In order to treat it, I will have to administer anesthesia. Will you consent to treatment?");
+				//[Treat Cock.S] [NoRemoval]
+				// Treating goes to ‘Remove Parasite’ Scene further down. No Removal goes to the ‘Turn Down’ scene, also further down.
+			}
+			buttons.push(["Treat C.Vne", removeAParasiteWithVi, "cockvine", "Cockvine Treatment", "Get any parasitic tails removed."]);
+		}
+		// If Cunt Snake:
+		if(pc.hasParasiteTail() && pc.hasCuntTail())
+		{
+			if(parasites == 1)
+			{
+				output("\n\nHer fingers reach up to clasp your shoulder, and she turns you slightly around to gaze at your ass – the second time in a row! This time, however, she’s staring with a concerned look in her eyes.");
+				output("\n\n<i>“It is as I thought. I’m sorry to inform you of this, " + pc.mf("sir","ma’am") + ", but you’ve been infected by a class ‘C’ parasitic snake. In order to treat it, I will have to administer anesthesia. Will you consent to treatment?");
+				//[Treat Cnt.S] [NoRemoval]
+				// Treating goes to ‘Remove Parasite’ Scene further down. No Removal goes to the ‘Turn Down’ scene, also further down.
+			}
+			buttons.push(["Treat C.Snk", removeAParasiteWithVi, "cuntsnake", "Cunt Snake Treatment", "Get any parasitic tails removed."]);
+		}
+		// if PC has mimbranes attached:
+		if (attachedMimbranes() > 0)
+		{
+			if(parasites == 1)
+			{
+				output("\n\nPulling back, there’s a concerned look in Vi’s eyes. She reaches up with a hand and toys with the tip of her side plait. <i>“I’m sorry to inform you of this, " + pc.mf("sir","ma’am") + ", but you appear infected with " + (attachedMimbranes() == 1 ? "a class ‘M’ epidel parasite" : "class ‘M’ epidel parasites") + ". In order to treat it, I will have to administer anesthesia. Will you consent to treatment?”</i>");
+				//[Treat Mimb] [NoRemoval]
+				// Treating goes to ‘Remove Parasite’ Scene further down. No Removal goes to the ‘Turn Down’ scene, also further down.
+			}
+			buttons.push(["Treat Mimbs", removeAParasiteWithVi, "mimbrane", "Mimbrane Treatment", "Get any mimbranes removed."]);
+		}
 	}
-	//If Cunt Snake:
-	else if(pc.hasCuntTail() && pc.hasParasiteTail())
+	
+	if(buttons.length > 0)
 	{
-		output("\n\nHer fingers reach up to clasp your shoulder, and she turns you slightly around to gaze at your ass – the second time in a row! This time, however, she’s staring with a concerned look in her eyes.");
-		output("\n\n<i>“It is as I thought. I’m sorry to inform you of this, " + pc.mf("sir","ma’am") + ", but you’ve been infected by a class ‘C’ parasitic snake. In order to treat it, I will have to administer anesthesia. Will you consent to treatment?");
-		//[Treat Cnt.S] [NoRemoval]
-		// Treating goes to ‘Remove Parasite’ Scene further down. No Removal goes to the ‘Turn Down’ scene, also further down.
 		clearMenu();
-		addButton(0,"Treat C.Snake",removeAParasiteWithVi,"Cuntsnake","Cuntsnake Treatment","Get any parasitic tails removed.");
-		addButton(1,"No",declineParasiteTreatmentFromVi,undefined,"No","Decline to get any parasites removed.");
-	}
-	//else if cock snake:
-	else if(pc.hasCockTail() && pc.hasParasiteTail())
-	{
-		output("\n\nHer fingers reach up to clasp your shoulder, and she turns you slightly around to gaze at your ass – the second time in a row! This time, however, she’s staring with a concerned look in her eyes.");
-		output("\n\n<i>“It’s as I thought. I’m sorry to inform you of this, " + pc.mf("sir","ma’am") + ", but you’ve been infected by a hydrus constuprula parasitic vine. In order to treat it, I will have to administer anesthesia. Will you consent to treatment?");
-		//[Treat Cock.S] [NoRemoval]
-		// Treating goes to ‘Remove Parasite’ Scene further down. No Removal goes to the ‘Turn Down’ scene, also further down.
-		clearMenu();
-		addButton(0,"Treat C.Vine",removeAParasiteWithVi,"Cockvine","Cockvine Treatment","Get any parasitic tails removed.");
-		addButton(1,"No",declineParasiteTreatmentFromVi,undefined,"No","Decline to get any parasites removed.");
-	}
-	//else if PC has mimbranes attached:
-	else if (attachedMimbranes() > 0)
-	{
-		output("\n\nPulling back, there’s a concerned look in Vi’s eyes. She reaches up with a hand and toys with the tip of her side plait. <i>“I’m sorry to inform you of this, " + pc.mf("sir","ma’am") + ", but you appear infected with ");
-		if(attachedMimbranes() == 1) output("a class ‘M’ epidel parasite");
-		else output("class ‘M’ epidel parasites");
-		output(". In order to treat it, I will have to administer anesthesia. Will you consent to treatment?”</i>");
-		//[Treat Mimb] [NoRemoval]
-		// Treating goes to ‘Remove Parasite’ Scene further down. No Removal goes to the ‘Turn Down’ scene, also further down.
-		clearMenu();
-		addButton(0,"Treat Mimb",removeAParasiteWithVi,"Mimbrane","Mimbrane Treatment","Get any mimbranes removed.");
-		addButton(1,"No",declineParasiteTreatmentFromVi,undefined,"No","Decline to get any parasites removed.");
-	}
-	//if Detected No Parasites:
-	else
-	{
-		output("\n\nVi pulls back and puts a hand on her synthetic chest, letting out a relieved sigh. <i>“Good. You appear to be in perfect health, " + pc.mf("sir","ma’am") + ". Apart from a highly advanced group of microsurgeons, there are no foreign contaminants in your system. Nothing to worry about!”</i>");
-		output("\n\n<i>“");
-		if(pc.isNice()) output("So, the cost...?");
-		else if(pc.isMischievous()) output("What’s the damage, doc?");
-		else output("That was pretty quick, you better not charge me much. Cost?");
-		output("”</i> You ask, bringing up your credit balance on your codex.");
-
-		output("\n\nVi chuckles and picks up a chart with her tail, dumping it in her hands. <i>“No cost, " + pc.mf("sir","ma’am") + " – examinations are always free. Treatments are a little different. I still have to charge a small fee, but it’s well below galactic norms. Thankfully I can provide my services to you at a dime.”</i>");
-
-		output("\n\n<i>“Is there anything else I can help you with today, " + pc.mf("sir","ma’am") + "?”</i>");
-		// Return to menu
-		viMenu();
+		
+		var btn:int = 0;
+		var i:int = 0;
+		for(i = 0; i < buttons.length; i++)
+		{
+			if(btn >= 14 && (btn + 1) % 15 == 0)
+			{
+				addButton(btn, "None", declineParasiteTreatmentFromVi, undefined, "No", "Decline to get any parasites removed.");
+				btn++;
+			}
+			
+			if(buttons[i][1] == null) addDisabledButton(btn, buttons[i][0], buttons[i][3], buttons[i][4]);
+			else addButton(btn, buttons[i][0], buttons[i][1], buttons[i][2], buttons[i][3], buttons[i][4]);
+			btn++;
+		
+			if(buttons.length > 14 && (i + 1) == buttons.length)
+			{
+				while((btn + 1) % 15 != 0) { btn++; }
+				addButton(btn, "None", declineParasiteTreatmentFromVi, undefined, "No", "Decline to get any parasites removed.");
+			}
+		}
+		addButton(14, "None", declineParasiteTreatmentFromVi, undefined, "No", "Decline to get any parasites removed.");
 	}
 }
 
@@ -544,7 +582,6 @@ public function removeDiseasesVI():void
 	pc.credits -= 500;
 	IncrementFlag("TREATED_BY_VI");
 	viMenu();
-
 }
 
 //Remove Parasite
@@ -568,34 +605,21 @@ public function postParasiteRemoval(arg:String):void
 	showVi();
 	author("JimThermic");
 	output("When you awaken, you feel a slight stroking of your cheek. There’s a warm pressure there. It feels kind of soothing.");
-	output("\n\n<i>“... Vitals are nominal... " + pc.mf("Mister","Miss") + " Steele, can you hear me?”</i> You hear Vi ask. It takes you a few moments to respond in the affirmative, and longer still to open your eyes. When you do, however, the medic looks very pleased. <i>“Here, let me help you up. The chemicals should be metabolized out of your system any second now, though you may have a slight aftertaste...”</i>");
+	output("\n\n<i>“...Vitals are nominal... " + pc.mf("Mister","Miss") + " Steele, can you hear me?”</i> You hear Vi ask. It takes you a few moments to respond in the affirmative, and longer still to open your eyes. When you do, however, the medic looks very pleased. <i>“Here, let me help you up. The chemicals should be metabolized out of your system any second now, though you may have a slight aftertaste...”</i>");
 	output("\n\nShe’s right. There’s a slightly unpleasant metallic flavor on your tongue. You feel something being pressed into your hands. Feels like a cup. The straw is brought to your lips, and you suck on it. Mmm, it’s some sort of flavorful juice. Just the thing to flush the bad taste out.");
 	output("\n\n<i>“How did the treatment go?”</i> You ask, your vision slowly clearing. Vi seems to be clutching a chart to her bountiful bust, looking very pleased. Her synthetic tail is even flicking!");
 	output("\n\n<i>“It was a complete success, " + pc.mf("sir","ma’am") + "! All ");
-	if(arg == "Cuntsnake") output("‘C’ type snakes");
-	else if(arg == "Cockvine") output("‘H’ class parasitic vines");
-	else output("‘M’ class epidel parasites");
+	if(arg == "cuntsnake") output("‘C’ type snakes");
+	else if(arg == "cockvine") output("‘H’ class parasitic vines");
+	else if(arg == "mimbrane") output("‘M’ class epidel parasites");
+	else if(arg == "buttbug") output("‘B’ class parasitic worm");
 	output(" were removed from your body. There should be no lasting effects, but if you do find yourself exhibiting strange symptoms, please come find me.”</i>");
 
 	output("\n\nYou ask Vi if she’s going to charge you for the treatment, and she shakes her head. There’s suddenly a lively look in her eyes. <i>“Oh no, the operation was free! Due to the inherent dangers of first contact and the introduction of parasites, JoyCo can invoice the UGC directly for any containment costs.”</i>");
-	output("\n\nWell, that’s handy for you. You thank her for her services, since she apparently performed the surgery. Not so coincidentally. there’s a quarantine container not too far away from your bed, marked for immediate medical incineration.");
+	output("\n\nWell, that’s handy for you. You thank her for her services, since she apparently performed the surgery. Not so coincidentally. There’s a quarantine container not too far away from your bed, marked for immediate medical incineration.");
 	// Do the removal shit
-	if (arg == "Cuntsnake" || arg == "Cockvine")
-	{
-		pc.tailType = GLOBAL.TYPE_HUMAN;
-		pc.tailCount = 0;
-		pc.tailFlags = [];
-		pc.tailGenital = 0;
-		pc.tailGenitalArg = 0;
-		pc.tailGenitalColor = "";
-		
-		flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
-		flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
-	}
-	else if (arg == "Mimbrane")
-	{
-		removeMimbranes();
-	}
+	purgeParasites(arg);
+	
 	IncrementFlag("TREATED_BY_VI");
 	// Return to menu.
 	processTime(120+rand(20));
@@ -629,7 +653,7 @@ public function viShop(buy:Boolean = true):void
 		buyText += "\n\n<i>“Whew! Sorry about that, " + pc.mf("sir","ma’am") + ", I was beginning to think nobody would ever ask!";
 	}
 	else buyText += "\n\n<i>“Sorry, I put away the stock container. Nobody but you ever asks for it - n-not that I mind that you do!";
-	buyText += "”</i> Vi flushes, taking a moment to compose herself. <i>“... So, this is what I’ve been sent at the moment. Is there anything you’d like?”</i>\n";
+	buyText += "”</i> Vi flushes, taking a moment to compose herself. <i>“...So, this is what I’ve been sent at the moment. Is there anything you’d like?”</i>\n";
 	
 	//Sell texts!
 	var sellText:String = "You ask Vi if you can sell her some medical supplies. She nods happily, grabbing a digipad with her prehensile tail and dropping it into her hands.\n\n<i>“Of course! We’re always looking for more medical supplies around here. What do you have?”</i>\n";
@@ -672,8 +696,8 @@ public function viSexualRelief():void
 		if(flags["VI_SEXED"] == undefined)
 		{
 			output("<i>“You mentioned ‘relief’ earlier. Relief from what, exactly?”</i>");
-			output("\n\nVi gives a telling glance towards one of the nearby beds, her fingertips toying with her side braid. <i>“... Um, well, the sexual kind, " + pc.mf("sir","ma’am") + ". Sexual frustration is a leading cause of accidents. It’s not good to be pent up all the time, and I was designed to help relieve those frustrations.”</i>");
-			output("\n\nThe violet-haired femme-droid looks up at you through her long lashes. It’s hard not to notice her stocking clad thighs rubbing together. <i>“... Would you like me to show you my special functionalities, " + pc.mf("sir","ma’am") + "? It’s been a long while – I apologise if I’m a little uncalibrated...”</i>");
+			output("\n\nVi gives a telling glance towards one of the nearby beds, her fingertips toying with her side braid. <i>“...Um, well, the sexual kind, " + pc.mf("sir","ma’am") + ". Sexual frustration is a leading cause of accidents. It’s not good to be pent up all the time, and I was designed to help relieve those frustrations.”</i>");
+			output("\n\nThe violet-haired femme-droid looks up at you through her long lashes. It’s hard not to notice her stocking clad thighs rubbing together. <i>“...Would you like me to show you my special functionalities, " + pc.mf("sir","ma’am") + "? It’s been a long while – I apologise if I’m a little uncalibrated...”</i>");
 		}
 		//Had Sex with her more than once AND less than ten times:
 		else if(flags["VI_SEXED"] < 10)
@@ -701,7 +725,7 @@ public function returnVisPussyPot():void
 	showVi();
 	author("JimThermic");
 	output("Handing over her purloined pussy, Vi positions it between her stocking-clad thighs and inserts it back into her body. There’s a little bit of wiggling before it’s finally back in place.");
-	output("\n\n<i>“... There! I should be back at full functionality now, " + pc.mf("sir","ma’am") + ". Please don’t run off with JoyCo property again!”</i> Vi pleads.");
+	output("\n\n<i>“...There! I should be back at full functionality now, " + pc.mf("sir","ma’am") + ". Please don’t run off with JoyCo property again!”</i> Vi pleads.");
 	if(flags["VI_PUSSY_FAPPED"] != undefined)
 	{
 		output(" At the same time, she looks a <i>little</i> pleased, perhaps with how you were using her pussy in its absence?");
@@ -771,7 +795,8 @@ public function viSexMenu():void
 		// No taurs
 		// No back genitals
 		// No Neuters
-		addButton(3,"Get Head",giveHeadToVi,undefined,"Get Head","Ask her to ‘give you some head’. Request may not work out as intended. Must not be a neuter or taur.");
+		if(pc.genitalLocation() >= 2 || pc.isTaur()) addDisabledButton(3,"Get Head","You must have your genitalia in the proper location and not be a taur for this.");
+		else addButton(3,"Get Head",giveHeadToVi,undefined,"Get Head","Ask her to ‘give you some head’. Request may not work out as intended. Must not be a neuter or taur.");
 	}
 	else addDisabledButton(3,"Get Head","Get Head","You need genitalia for this.");
 
@@ -810,18 +835,18 @@ public function rideVi():void
 	//PC is wearing clothes:
 	if(!pc.isNude())
 	{
-		output("\n\n<i>“... Please, " + pc.mf("sir","ma’am") + ", let me strip off your clothes...”</i> Vi breathily requests, her slender fingers stroking intimately across your chest. You silently nod.");
+		output("\n\n<i>“...Please, " + pc.mf("sir","ma’am") + ", let me strip off your clothes...”</i> Vi breathily requests, her slender fingers stroking intimately across your chest. You silently nod.");
 		//ArmorYes:
 		if(!(pc.armor is EmptySlot)) output(" The violet-haired medic strips off your [pc.armor], kissing your shoulder blades and back with her synthetic lips, almost worshipfully so.");
 		if(!(pc.upperUndergarment is EmptySlot)) output(" Her hands slide upward and remove your [pc.upperUndergarment].");
 		if(!(pc.lowerUndergarment is EmptySlot)) output(" With practiced precision, her fingers then delve downward, pulling off your [pc.lowerUndergarment].");
 	}
-	output("\n\nFeeling impulsive, you grab Vi firmly by the hips and lead her to the bed. The medic-bot blushes harder – it seems she’s unused to patients taking the lead. Once there, you twirl her on the spot and push her face-forward against the bed, enjoying her surprised squeak. <i>“... " + pc.mf("S-s-sir","M-m-ma’am") + ", I’m meant to be the one administering relief!”</i>");
+	output("\n\nFeeling impulsive, you grab Vi firmly by the hips and lead her to the bed. The medic-bot blushes harder – it seems she’s unused to patients taking the lead. Once there, you twirl her on the spot and push her face-forward against the bed, enjoying her surprised squeak. <i>“..." + pc.mf("S-s-sir","M-m-ma’am") + ", I’m meant to be the one administering relief!”</i>");
 	if(flags["VI_SEXED"] != undefined && flags["VI_SEXED"] >= 10) output(" Her ivory pussy can’t stop gushing; synthetic lubricant is streaming down her stocking-clad thighs and making a big, messy puddle between her tiny feet.");
 	else output(" There’s already synthetic lubricant dribbling out from her ivory pussy. It’s dribbling and glistening down her stocking-clad thighs, making a little puddle between her tiny feet.");
 
 	output("\n\n<i>“Who said I’m not enjoying myself?”</i> You ask, sliding two of your fingers into her sopping wet snatch. Vi trembles and moans as your fingers penetrate her from behind and wiggle about inside of her. You caress her surprisingly human g-spot, stroking a finger against her quaking insides, until she lets out a high pitched cry. The medical droid begins spasming on the spot, squirting lubricant wildly from her thighs, and utterly drenching your hand!");
-	output("\n\n<i>“AH-AHHH! Muh-Muscular systems malfunctioning! Cognitive functions impaired!”</i> Vi whimpers, clutching desperately at the bedsheets. <i>“E-Experiencing strange, unregulated input. Buh-behavioral system shutting down!”</i> Her hips buck back against your knuckles, forcing your fingers as deep as they can go into her slopping wet pussy. <i>“... P-please, </i>more<i>, " + pc.mf("sir","ma’am") + "!”</i>");
+	output("\n\n<i>“AH-AHHH! Muh-Muscular systems malfunctioning! Cognitive functions impaired!”</i> Vi whimpers, clutching desperately at the bedsheets. <i>“E-Experiencing strange, unregulated input. Buh-behavioral system shutting down!”</i> Her hips buck back against your knuckles, forcing your fingers as deep as they can go into her slopping wet pussy. <i>“...P-please, </i>more<i>, " + pc.mf("sir","ma’am") + "!”</i>");
 	output("\n\nOnce her explosive climax is finally finished, Vi collapses in a heap against the sheets.");
 
 	if(flags["VI_PLEASURE_TALKED"] == undefined) output("\n\nWhat was that, some kind of digital orgasm..? You’re surprised, since that shouldn’t be possible, but also");
@@ -832,7 +857,7 @@ public function rideVi():void
 	output(" you plunge [pc.oneCock] into her squirting snatch. Her passage is so warm and slick that it only takes a few seconds before you’re buried in her right up to the hilt.");
 	pc.cockChange();
 
-	output("\n\n<i>“... " + pc.mf("S-sir","M-ma’am") + "’s inside of me,”</i> she moans. The nurse-droid’s well-lubed passage suddenly constricts around your shaft, her pale hips shaking with unconcealed delight. Gripping tightly to her tail, you grind against her pale asscheeks, massaging her passage with your [pc.cockNounSimple " + x + "]. With trembling little sighs, she presses back into your thrusts, desperately coaxing your crown deeper inside of her. Her snowy hands ball up in the sheets and her whole back arches like a synthetic cat, one that you’ve ");
+	output("\n\n<i>“..." + pc.mf("S-sir","M-ma’am") + "’s inside of me,”</i> she moans. The nurse-droid’s well-lubed passage suddenly constricts around your shaft, her pale hips shaking with unconcealed delight. Gripping tightly to her tail, you grind against her pale asscheeks, massaging her passage with your [pc.cockNounSimple " + x + "]. With trembling little sighs, she presses back into your thrusts, desperately coaxing your crown deeper inside of her. Her snowy hands ball up in the sheets and her whole back arches like a synthetic cat, one that you’ve ");
 	if(!pc.isTaur()) output("caught by the tail!");
 	else output("mounted in heat.");
 	output(" <i>“P-Please... unload your sperm inside of me!”</i> Vi breathily begs.");
@@ -851,7 +876,7 @@ public function rideVi():void
 	}
 	else output(" When you pull out your prick, a small stream of [pc.cumColor] trickles down the inside of her pearly thighs.");
 
-	output("\n\n<i>“... T-that experience was incalculable, " + pc.mf("s-sir","m-ma’am") + ". I-I think I’m going to have trouble categorizing it for my memory databanks,”</i> Vi dreamily murmurs, rubbing a hand longingly between her legs. She looks up at you, her long lashes fluttering. <i>“... My motor functions are still impaired... and my processing time is reduced... I believe this unit may have trouble standing up.”</i>");
+	output("\n\n<i>“...T-that experience was incalculable, " + pc.mf("s-sir","m-ma’am") + ". I-I think I’m going to have trouble categorizing it for my memory databanks,”</i> Vi dreamily murmurs, rubbing a hand longingly between her legs. She looks up at you, her long lashes fluttering. <i>“...My motor functions are still impaired... and my processing time is reduced... I believe this unit may have trouble standing up.”</i>");
 
 	if(!pc.isAss()) output("\n\nYou reach out a hand and help Vi to her feet. Even then, she’s a little wobbly, falling moments later into your arms and chest.");
 	else output("\n\nPfft. That’s not your problem.");
@@ -872,6 +897,7 @@ public function rideVi():void
 	// Scene end, back to menu
 	processTime(37);
 	IncrementFlag("VI_SEXED");
+	StatTracking.track("joyco/cum milked", cum);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -926,7 +952,7 @@ public function analViTease():void
 		output("you’re creaming yourself and ");
 		if(pc.isSquirter()) output("squirting");
 		else output("dribbling");
-		output(" your [pc.girlcumVisc] girl-cum all over the sheets, your thighs shaking spastically");
+		output(" your [pc.girlCumVisc] girl-cum all over the sheets, your thighs shaking spastically");
 	}
 	else 
 	{
@@ -980,7 +1006,7 @@ public function viPotencyTest():void
 	//PC has multi-cocks:
 	if(pc.cockTotal() > 1) output(" – now one of many – ");
 	else output(" ");
-	output("and pulls out a box of condoms from underneath the bed. She pulls out one and removes the rubbery ring from a packet, placing it flush on your [pc.cockHeadBiggest]. <i>“... Here’s the bit I like the most!”</i> The violet-haired nurse exclaims. Placing her plush lips on the tip of your prick, she masterfully slides the prophylactic down your prick, sliding her soft lips down and around it at the same time. By the time she reaches your [pc.knotBiggest], your twitching tip is completely buried in her ");
+	output("and pulls out a box of condoms from underneath the bed. She pulls out one and removes the rubbery ring from a packet, placing it flush on your [pc.cockHeadBiggest]. <i>“...Here’s the bit I like the most!”</i> The violet-haired nurse exclaims. Placing her plush lips on the tip of your prick, she masterfully slides the prophylactic down your prick, sliding her soft lips down and around it at the same time. By the time she reaches your [pc.knotBiggest], your twitching tip is completely buried in her ");
 	if(pc.biggestCockLength() < 7) output("mouth");
 	//mid:
 	else if(pc.biggestCockLength() < 10) output("gullet");
@@ -1091,6 +1117,7 @@ public function viPotencyTest():void
 	else output("I mean, you’re a kui-tan!");
 	output("”</i>");
 	IncrementFlag("VI_POTENCY_TEST");
+	StatTracking.track("joyco/cum milked", totalCum);
 
 	processTime(63);
 	pc.orgasm();
@@ -1428,7 +1455,7 @@ public function cowgirlWithVi():void
 
 	output("\n\nHearing her words makes your slickened dick twitch in response. You seize her soft, grabbable ass and continue grinding against her with renewed vigor. Her cute whimpers fill the air as she squirms against your chest, her warm juices liberally dripping down your shaft. Her hips are soon rocking back with fevered urgency against your thrusts, her slick insides masterfully coaxing and wringing your [pc.cockHead " + x + "] for <i>more</i>. It pushes you well and truly over the edge, and with a throaty groan, you shoot your hot [pc.cumNoun] up and inside of the nurse droid, filling her with synthetic womb with your organic seed. You then both fall down in a heap, sweaty bodies pressed against each other, relishing in the afterglow and each other’s thermal warmth.");
 
-	output("\n\n<i>“... T-thank you for your genetic input, " + pc.mf("sir","ma’am") + ",”</i> Vi whispers, sliding up to bite and nibble lightly at your [pc.ear]. You can feel your [pc.cumVisc] [pc.cumNoun] drooling out of her and rolling delightfully down ");
+	output("\n\n<i>“...T-thank you for your genetic input, " + pc.mf("sir","ma’am") + ",”</i> Vi whispers, sliding up to bite and nibble lightly at your [pc.ear]. You can feel your [pc.cumVisc] [pc.cumNoun] drooling out of her and rolling delightfully down ");
 	if(pc.balls > 1) output("your balls");
 	else output("between your buttocks");
 	output(", linking the two of you with a string of [pc.cumColor] warmth.");
@@ -1436,6 +1463,7 @@ public function cowgirlWithVi():void
 	// Unlock talk topic ‘Pleasure’ if not unlocked already.
 	// Scene end, back to menu
 	IncrementFlag("VI_SEXED");
+	StatTracking.track("joyco/cum milked", pc.cumQ());
 	processTime(13);
 	pc.orgasm();
 	clearMenu();
@@ -1673,7 +1701,7 @@ public function takeVisVagina():void
 	{
 		output("A devilish thought pops into your head. Having Vi’s remote controlled pocket pussy could be pretty useful. Still, it’d lose its signal once you left the solar system... <i>unleeesss</i>... what if you were to hook it to your ship’s communications system, using it as a relay? That just might work.");
 		output("\n\n<i>“You know what? I might take this off your hands,”</i> you remark, holding on to her pale pussylips. <i>“Journeys in space can be pretty lonesome, and I need the stress relief. You don’t mind, do you?”</i>");
-		output("\n\nVi blinks furiously, unable to properly process what’s going on. Instead, she stands there agape, looking back and forth between you and the snatched snatch. <i>“Wuh–this... this isn’t among my list of situational parameters!”</i> she exclaims, looking more than a little lost. <i>“... Running search on nearest approximation... " + pc.mf("Sir","Ma’am") + ", is this theft?!”</i>");
+		output("\n\nVi blinks furiously, unable to properly process what’s going on. Instead, she stands there agape, looking back and forth between you and the snatched snatch. <i>“Wuh–this... this isn’t among my list of situational parameters!”</i> she exclaims, looking more than a little lost. <i>“...Running search on nearest approximation... " + pc.mf("Sir","Ma’am") + ", is this theft?!”</i>");
 		output("\n\n<i>“No, this is borrowing,”</i> you ");
 		if(pc.isNice()) output("reassure her with a grin");
 		else if(pc.isMischievous()) output("playfully explain");
@@ -1733,6 +1761,7 @@ public function roughSexWithVi():void
 	// Unlock talk topic ‘Pleasure’ if not unlocked already.
 	// Scene end, back to menu
 	IncrementFlag("VI_SEXED");
+	StatTracking.track("joyco/cum milked", pc.cumQ());
 	processTime(19);
 	pc.orgasm();
 	clearMenu();
@@ -2007,7 +2036,7 @@ public function viBoobSizeMenu():void
 	clearMenu();
 	//Tooltip.increaseboobs: 
 	if(flags["VI_BIGBOOBS"] == 1) addDisabledButton(0,"IncreaseBoobs","IncreaseBoobs","You’ve already filled Vi’s breasts to capacity!")
-	else if(pc.hasItem(new Silicone(), 2)) addButton(0,"IncreaseBoobs",inflateViBoobs,undefined,"IncreaseBoobs","Inflate Vi’s puppies until they’re heavy and hyper-sized!\n\n<b>Cost: 2 units of Silicone</b>");
+	else if(pc.hasItemByClass(Silicone, 2)) addButton(0,"IncreaseBoobs",inflateViBoobs,undefined,"IncreaseBoobs","Inflate Vi’s puppies until they’re heavy and hyper-sized!\n\n<b>Cost: 2 units of Silicone</b>");
 	else addDisabledButton(0,"IncreaseBoobs","IncreaseBoobs","Inflate Vi’s puppies until they’re heavy and hyper-sized! You’ll need 2 units of silicone in order to inflate Vi’s breasts");
 	//Tooltip.Shrinkbreasts: 
 	if(flags["VI_BIGBOOBS"] == 1) addButton(1,"ShrinkBreasts",shrinkViBreasts,undefined,"ShrinkBreasts","Bring Vi’s breasts back down to their original size.");
@@ -2103,7 +2132,7 @@ public function inflateViBoobs():void
 		output(" [pc.oneCock] and smother it between her now mountainous cleavage. Her snowy skin is so soft and smooth that you’re slapping away against her hefty tits in no time, groaning and smacking against her constantly swelling cleavage. The nurse-droid is blushing as you forcibly fuck her billiowing bust, your [pc.cockHead] eager to fire another slick load all over her exterior as she’s pumped inside as well!");
 		pc.lust(500);
 	}
-	output("\n\nStimulating you visually as well as with her involuntary moans, Vi dips a finger inside of her slick pussy and wiggles it about, her pinky pulled back and rubbing against her budding clit. If the bed wasn’t soaked before, it’s drenched down to the mattress now as she violet-haired VI humps the air, her butt-flesh quivering and flexing against an invisible lover plumbing her slit. Her shivering and shaking breasts continue to swell until you can barely see her actual chest at all now; it’s going to be hard for the nurse to take temperatures properly after this!");
+	output("\n\nStimulating you visually as well as with her involuntary moans, Vi dips a finger inside of her slick pussy and wiggles it about, her pinky pulled back and rubbing against her budding clit. If the bed wasn’t soaked before, it’s drenched down to the mattress now as the violet-haired VI humps the air, her butt-flesh quivering and flexing against an invisible lover plumbing her slit. Her shivering and shaking breasts continue to swell until you can barely see her actual chest at all now; it’s going to be hard for the nurse to take temperatures properly after this!");
 	output("\n\nThere’s an excited squeal, and she throws her head back, her ponytail whipping backwards and slapping against her back. Wracked with orgasmic pleasure, she splutters and shoots a second intermittent pussy-burst all over the ground and her nurse stockings, staining them with her lady cream.");
 	pc.lust(20);
 	if(pc.hasCock()) 
@@ -2123,12 +2152,16 @@ public function inflateViBoobs():void
 	output("\n\nWith a little difficulty, Vi clips the maternity-like flaps back over her nipples. Only a few moments later, the material looks a little stained.");
 	output("\n\n<i>“How strange. Constant lactation isn’t within my normal operational parameters,”</i> Vi remarks, touching her ponytail. You’re not surprised, considering you just pumped her full of an unauthorized product. A few side effects are to be expected.");
 	output("\n\n<b>Vi now has Q-cups!</b>");
-	processTime(15);
+	
 	flags["VI_BIGBOOBS"] = 1;
-	IncrementFlag("INFLATED_VI");
-	pc.destroyItem(new Silicone(),2);
 	showVi(true);
-	viMenu();
+	
+	processTime(15);
+	IncrementFlag("INFLATED_VI");
+	
+	pc.destroyItemByClass(Silicone,2);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 //ShrinkBreasts
@@ -2164,14 +2197,13 @@ public function shrinkViBreasts():void
 	output("\n\nWhen the process is finally finished, you pull your shining finger out of her quim. The violet-haired nurse’s breasts are drastically reduced in size, though they’re really just back to how they were before.");
 	output("\n\n<i>“That input was very stimulating for my processors,”</i> Vi exclaims, her snowy-white cheeks flushed. <i>“If you need to do any more modifications, please feel free to do it at any time, " + pc.mf("sir","ma’am") +".”</i>");
 	output("\n\n<b>Vi now has D-cups again!</b>\n\n");
+	
 	flags["VI_BIGBOOBS"] = 0;
+	showVi(true);
+	
 	processTime(25);
 	
 	var silicone:ItemSlotClass = new Silicone();
 	silicone.quantity = 2;
-	itemScreen = viMenu;
-	lootScreen = viMenu;
-	useItemFunction = viMenu;
-	showVi(true);
 	quickLoot(silicone);
 }

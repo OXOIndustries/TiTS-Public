@@ -86,7 +86,7 @@
 			this.genitalSpot = 0;
 			this.tailType = GLOBAL.TYPE_FELINE;
 			this.tailCount = 2;
-			this.tailFlags = [GLOBAL.FLAG_FLUFFY,GLOBAL.FLAG_LONG,GLOBAL.FLAG_FURRED];
+			this.tailFlags = [GLOBAL.FLAG_FLUFFY,GLOBAL.FLAG_LONG,GLOBAL.FLAG_FURRED, GLOBAL.FLAG_PREHENSILE];
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
 			//tailGenital:
@@ -142,7 +142,7 @@
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 4;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 9000;
 			this.timesCum = 785;
 			this.cockVirgin = false;

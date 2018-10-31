@@ -4,6 +4,7 @@
 	import classes.GLOBAL;
 	import classes.Items.Apparel.ComfortableClothes;
 	import classes.Items.Melee.Fists;
+	import classes.GameData.MailManager;
 
 	public class Delilah extends Creature
 	{
@@ -48,9 +49,9 @@
 			this.tallness = 65;
 			this.thickness = 20;
 			this.tone = 30;
-			this.hairColor = "blond";
+			this.hairColor = "blonde";
 			this.scaleColor = "black";
-			this.furColor = "blond";
+			this.furColor = "blonde";
 			this.hairLength = 9;
 			this.hairType = 0;
 			this.beardLength = 0;
@@ -155,6 +156,16 @@
 			this.version = _latestVersion;
 			this._isLoading = false;
 			this.createStatusEffect("Uniball",0,0,0,0,true,"","",false,0);
+		}
+		
+		override public function mfn(m:String, f:String, n:String, ignorePref:Boolean = false):String
+		{
+			// Trap
+			if(MailManager.isEntryUnlocked("del_moved_light")) return m;
+			// Shemale
+			if(MailManager.isEntryUnlocked("del_moved")) return f;
+			// Default
+			return m;
 		}
 	}
 }

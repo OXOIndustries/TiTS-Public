@@ -75,7 +75,7 @@
 			this.lustRaw = 25;
 			
 			baseHPResistances = new TypeCollection();
-			baseHPResistances.kinetic.damageValue = 10.0;			
+			baseHPResistances.kinetic.damageValue = 10.0;
 			
 			this.level = 5;
 			this.XPRaw = normalXP();
@@ -165,7 +165,7 @@
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 4;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 635;
 			this.timesCum = 255;
 			this.cockVirgin = true;
@@ -196,12 +196,12 @@
 			this.vaginas[0].loosenessRaw = 3;
 			
 			isUniqueInFight = true;
-			btnTargetText = "Gold Myr";			
+			btnTargetText = "Gold Myr";
 			
 			credits = rand(200);
 			if(rand(20) == 0) inventory.push(new Kirkite());
 			else if(rand(20) == 0) inventory.push(new Satyrite());
-			else if(rand(5) == 0) inventory.push(new RedMyrVenom());		
+			else if(rand(5) == 0) inventory.push(new RedMyrVenom());
 			sexualPreferences.setRandomPrefs(2 + rand(3), 1);
 			
 			if (flags["KNOW_GOLD_MYR_NAME"] != undefined)
@@ -212,7 +212,7 @@
 			}
 			
 			createPerk("Can Crit",0,0,0,0);
-			kGAMECLASS.myrellionSSTDChance(this);
+			//kGAMECLASS.myrellionSSTDChance(this);
 			_isLoading = false;
 		}
 		
@@ -293,11 +293,11 @@
 				applyDamage(rangedDamage(), this, target, "ranged");
 
 				//Physique check. DC 25 vs trip!
-				if(target.physique + rand(20) + 1 < 25 && target.shields() <= 0)
+				if((target.physique + rand(20) + 1 < 25 && target.shields() <= 0) && !target.isPlanted())
 				{
 					output("\nA hot, burning sensation sprays out from your chest. You’re knocked back and off your [pc.feet].");
 					//Effect: Decent physical damage with small crit chance. If the PC’s shields are down, there is a 25% knockback chance. 100% knockback chance on crit.
-					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+					CombatAttacks.applyTrip(target);
 				}
 			}
 		}

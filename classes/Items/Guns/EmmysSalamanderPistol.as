@@ -10,6 +10,7 @@
 	
 	public class EmmysSalamanderPistol extends ItemSlotClass
 	{
+		//Level 7 (Rare). Balance 2.0
 		//constructor
 		public function EmmysSalamanderPistol()
 		{
@@ -39,12 +40,12 @@
 			attackNoun = "laser beam";
 			
 			//Information
-			this.basePrice = 13500;
-			this.attack = 2;
+			this.basePrice = 11000;
+			this.attack = 8;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.electric.damageValue = 1;
-			baseDamage.burning.damageValue = 19;
+			//baseDamage.electric.damageValue = 1;
+			baseDamage.burning.damageValue = 21;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			baseDamage.addFlag(DamageFlag.LASER);
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
@@ -53,7 +54,7 @@
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 5;
+			this.critBonus = 8;
 			this.evasion = 0;
 			this.fortification = 0;
 			

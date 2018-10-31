@@ -53,7 +53,9 @@ public function naynaShutterUpdate():void
 		//0 = clear
 		//1 = closed,
 		//2 = cloud
-		flags["SHUTTER_STATUS"] = rand(3);
+		flags["SHUTTER_STATUS"] = 0;
+		if(uvetoBlizzard()) flags["SHUTTER_STATUS"] = 1;
+		else if(uvetoCloudy()) flags["SHUTTER_STATUS"] = 2;
 		flags["UVETO_UPDATE"] = hours;
 	}
 }
@@ -173,7 +175,7 @@ public function upstairsGeoSurveyBonus():Boolean
 		else output("dismal");
 		output(" view and all. She’s a short, chubby little thing with floppy bunny ears and an animalistic nose that quivers with every breath she takes. Presently, she’s pacing back and forth, looking over an incomprehensible projection from her Codex and as completely unaware of your presence as someone could possibly be.");
 		output("\n\nYour Codex seems to indicate that she’s a laquine, though she’s much shorter than any you’ve ever seen.");
-		CodexManager.unlockEntry("Laquine");
+		CodexManager.unlockEntry("Laquines");
 		addButton(0,"Laquine",approachDatLaquineSloot);
 	}
 	//Repeat Bonustext
@@ -450,7 +452,7 @@ public function repeatNaynaApproach(backsies:Boolean = false):void
 		{
 			output("Nayna’s ear lifts higher and higher, pivoting to follow your progress through the room. When you’re a few steps away, the other joins it, swiveling to regard you a half-second before the rest of the laquine. <i>“[pc.name]! How goes your adventures? Have you come across any of my drones yet?”</i>");
 			//No drones
-			if(!pc.hasItem(new WeatherDrone(),1))
+			if(!pc.hasItemByClass(WeatherDrone,1))
 			{
 				output("\n\nYou shake your head apologetically.");
 				output("\n\n<i>“Hey, don’t worry about it,”</i> Nayna chirps. <i>“I’m sure you’ll find some before too long. After all, you’re the brave rusher, out looking for adventure!”</i>");
@@ -471,7 +473,7 @@ public function naynaMainMenu():void
 	//[Appearance] [Talk] [Give Drone] [Flirt]
 	addButton(0,"Appearance",appearanceOfNayna);
 	addButton(1,"Talk",talkToNayna);
-	if(pc.hasItem(new WeatherDrone(),1)) addButton(2,"Give Drone",giveHerADrone,undefined,"Give Her A Drone","Give Nayna one of the drones she’s missing. Turns out these are the drones she’s looking for.");
+	if(pc.hasItemByClass(WeatherDrone,1)) addButton(2,"Give Drone",giveHerADrone,undefined,"Give Her A Drone","Give Nayna one of the drones she’s missing. Turns out these are the drones she’s looking for.");
 	addButton(3,"Flirt",flirtWithNayna,undefined,"Flirt","Flirt with the cuddly bunny.");
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -483,7 +485,7 @@ public function appearanceOfNayna():void
 	showNayna();
 	output("Nayna");
 	if(flags["NAYNA_LAST_NAME"] != undefined) output(" Triverre");
-	output(" is..... Well, she’s a rabbit-woman, like most laquine. She’s got big bunny ears that seem content to droop down the back of head and fur that covers every visible part of her body. Her black and white hair is tied back in a sensible ponytail, which when combined with her ears, could easily be mistaken for a trio of ponytails. A triangular black nose tips her short, rabbit-like muzzle, matched by inky little lips that seem ready to smile at a moment’s notice.");
+	output(" is.... Well, she’s a rabbit-woman, like most laquine. She’s got big bunny ears that seem content to droop down the back of head and fur that covers every visible part of her body. Her black and white hair is tied back in a sensible ponytail, which when combined with her ears, could easily be mistaken for a trio of ponytails. A triangular black nose tips her short, rabbit-like muzzle, matched by inky little lips that seem ready to smile at a moment’s notice.");
 	//Warm!
 	if(naynaWarm())
 	{
@@ -763,7 +765,7 @@ public function giveHerADrone():void
 		}
 	}
 	IncrementFlag("NAYNA_DRONES_TURNED_IN");
-	pc.destroyItem(new WeatherDrone(),1);
+	pc.destroyItemByClass(WeatherDrone,1);
 	processTime(2);
 	//[Accept Hug] [Nah]
 	clearMenu();
@@ -1224,7 +1226,7 @@ public function blowNayna3():void
 	pc.loadInMouth(pp);
 	processTime(11);
 	pc.lust(100);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	//[Next]
 	clearMenu();
 	addButton(0,"Next",blowNayna4);
@@ -1393,7 +1395,7 @@ public function fuckNayna():void
 	output("\n\nShe cranes her neck to kiss you, tasting heavily of her own cum, and you kiss her right back, trying not to grin when you reach up to discover that she’s <i>still</i> cumming. There are worse things than making someone orgasm so hard that they ejaculate for two minutes straight, you suppose. Closing your eyes, you snuggle in your exceedingly productive fuck-bunny, happy to doze against her once she finally stops squirting.");
 	processTime(22);
 	pc.orgasm();
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",naynaFuckEppiloggie,cum);
 }
@@ -1558,7 +1560,7 @@ public function naynaFucksYourButt():void
 		else output("flooding");
 		output(" your load out on the floor!");
 	}
-	if(pc.hasVagina()) 
+	if(pc.hasVagina() && pc.blockedVaginas() == 0) 
 	{
 		output(" Your body is far too overwhelmed with sensations to not finish with your [pc.vaginas]. You shove one hand to your mound");
 		if(pc.totalVaginas() > 1) output("s");
@@ -1650,7 +1652,7 @@ public function naynaDockingForHyperPCs():void
 		output(". It surges out into her waiting palms, letting her guide its engorgement at the perfect waist height for her. <i>“...naughty... fuckable....”</i>");
 		output("\n\nNayna stops talking and simply stares, shifting the weight of your enormous boner into the crook of her arm so that she can stretch her clingy undergarment out of the way. Her dick springs out, rock hard and ready to go, the tip fully engorged and leaking.");
 		output("\n\n<i>“Somebody’s being naughty and fuckable,”</i> you point out, grabbing your outsized dong in both hands to take the pressure off the fluffy little sex-pot, aiming your [pc.cockHead " + x + "] square at her animalistic endowment.");
-		output("\n\nJumping like she’s been shot, Nayna shakes her head, clapping her hands over her chubby, laquine prick. <i>“No I’m... oh, fuck it!”</i> Curling her padded palms around to the sides, she starts jacking herself off, moaning at her own lewd display. <i>“Maybe I am!”</i> Her hips shake like a jackhammer, plowing her pre-greased palms with reckless abandon. <i>“Maybe I’m just as filthy inside as some rushward whore! Maybe I just want to fuck you ‘till you’re a cummy wreck!”</i> Nayna stumbles forward, her slobbering prick a hairsbreadth away from your pulsing, eager urethra. She growls, <i>“But right now all I can think about is stuffing that ridiculous dick of yours with enough spunk to drown a galotian.”</i>");
+		output("\n\nJumping like she’s been shot, Nayna shakes her head, clapping her hands over her chubby, laquine prick. <i>“No I’m... oh, fuck it!”</i> Curling her padded palms around to the sides, she starts jacking herself off, moaning at her own lewd display. <i>“Maybe I am!”</i> Her hips shake like a jackhammer, plowing her pre-greased palms with reckless abandon. <i>“Maybe I’m just as filthy inside as some rushward whore! Maybe I just want to fuck you till you’re a cummy wreck!”</i> Nayna stumbles forward, her slobbering prick a hairsbreadth away from your pulsing, eager urethra. She growls, <i>“But right now all I can think about is stuffing that ridiculous dick of yours with enough spunk to drown a galotian.”</i>");
 	}
 	IncrementFlag("NAYNA_HYPERDOCKED");
 	//Merge
@@ -1756,7 +1758,7 @@ public function helpNaynaWithBallflation():void
 	clearOutput();
 	showNayna(true);
 	output("Grinning, you kneel down and take her dick in both hands, stroking it. When you pump down, the flow doubles. When you stroke up, its owner moans, balls quivering, and the next downstroke is nearly four times as thick as the first. Nayna’s balls gradually diminish while you milk her, but her cum gets absolutely everywhere: ");
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	if(pc.hasHair()) output("in your [pc.hairNoun]");
 	else output("on your head");
 	output(", in your mouth, on your [pc.chest], and all over your arms from the elbows down.");

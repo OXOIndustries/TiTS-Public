@@ -76,8 +76,12 @@ public function exhibitionismLocationToggle():void
 	
 	var ultraExhib:StorageClass = pc.getPerkEffect("Ultra-Exhibitionist");
 	var inPublic:Boolean = (rooms[currentLocation].hasFlag(GLOBAL.PUBLIC));
+	var libidoQ:Number = pc.LQ();
+	var libidoMult:Number = 2;
+	if(libidoQ >= 33) libidoMult = 1.5;
+	if(libidoQ >= 66) libidoMult = 1;
 	
-	if(rand(4) == 0)
+	if(rand(4 * libidoMult) == 0)
 	{
 		var pcLocation:String = getPlanetName();
 		var msg:String = "";
@@ -113,10 +117,12 @@ public function exhibitionismLocationToggle():void
 	
 	ultraExhib.value1 = (!inPublic ? 0 : 1);
 	
-	if(inPublic && rand(10) == 1)
+	if(inPublic && rand(10 * libidoMult) == 0 && !pc.hasStatusEffect("Exhibitionist Blurb Cooldown"))
 	{
 		//if(eventQueue.indexOf(exhibitionismBlurbs) == -1) eventQueue.push(exhibitionismBlurbs);
 		exhibitionismBlurbs();
+		
+		pc.createStatusEffect("Exhibitionist Blurb Cooldown", 0, 0, 0, 0, true, "", "", false, 60);
 	}
 }
 
@@ -277,7 +283,7 @@ public function exhibitionismBlurbs():void
 			var exhibFaps:Array = [];
 			exhibFaps.push(moderateExhibitionOmniFap);
 			exhibFaps.push(goddamnitJimTAndYourExhibitionism);
-			if(pc.hasItem(new GravCuffs()) && pcLocation == "New Texas") exhibFaps.push(cuffSelfRouter);
+			if(pc.hasItemByClass(GravCuffs) && pcLocation == "New Texas") exhibFaps.push(cuffSelfRouter);
 			exhibFaps.push(exhibitionismForceStrip);
 			
 			exhibFunc = exhibFaps[rand(exhibFaps.length)];
@@ -321,6 +327,7 @@ public function processExhibitionismStrip(totalDays:uint):void
 	ultraExhib.value2 += totalDays;
 	
 	if(rooms[currentLocation].hasFlag(GLOBAL.NOFAP) || rooms[currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL)) return;
+	if(rooms[currentLocation].hasFlag(GLOBAL.PRIVATE) || !rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) return;
 	
 	if(ultraExhib.value2 >= 7 && !pc.isNude())
 	{
@@ -341,7 +348,7 @@ public function exhibitionismStrip(voluntary:Boolean = true):void
 	
 	var pcLocation:String = getPlanetName();
 	
-	if(voluntary) output("An urge to strip off and give the citizens of " + pcLocation + " a show grips you... and it doesn’t leave. You <i>have</i> to scratch this itch!");
+	if(voluntary) output("An urge to strip off and give the good people of " + pcLocation + " a show grips you... and it doesn’t leave. You <i>have</i> to scratch this itch!");
 	else output("A thought crosses your mind... maybe you should give the good people of " + pcLocation + " a show? Yes... that would be <i>just</i> right.");
 	output("\n\nYou find a spot at the center of a busy place and take a deep breath. Loudly, you announce to the good citizens of " + pcLocation + " to gather around for a free and exciting show. A few heads turn around,");
 	if(!pc.isNude()) output(" snickering when they see you, assuming you are the victim of some sort of prank. A few of them are struck by curiosity and hang around to see what you’re up to.");
@@ -367,7 +374,9 @@ public function exhibitionismStrip(voluntary:Boolean = true):void
 				if(pc.biggestTitSize() >= 11) output(" attempt to");
 				output(" cover your [pc.chest] with one hand as you");
 			}
-			output(" throw your underwear to the side with the other. Finally, you release your " + (bigWings ? "[pc.wings]" : "hand") + " " + (pc.hasBreasts() ? "sending your [pc.breasts] bouncing with an enticing jiggle" : "exposing your [pc.breasts]") + ", mesmerizing the gathering crowd. Finally, you proceed with");
+			output(" throw your underwear to the side");
+			if(!bigWings) output(" with the other");
+			output(". Finally, you release your " + (bigWings ? "[pc.wings]" : "hand") + " " + (pc.hasBreasts() ? "sending your [pc.breasts] bouncing with an enticing jiggle" : "exposing your [pc.breasts]") + ", mesmerizing the gathering crowd. Finally, you proceed with");
 		}
 		if(pc.hasLowerGarment())
 		{
@@ -425,7 +434,7 @@ public function exhibitionismStrip(voluntary:Boolean = true):void
 	output(" You lose yourself in the hodge podge of feelings that wash over you as you pleasure yourself in front of all the " + pcLocation + " residents you managed to bring here. But alas, you did not start this to bring yourself to orgasm. All you want is to expose as much of yourself to as many people as possible. You can’t be selfish, you <i>have</i> to continue the show...");
 	output("\n\nAfter taking a few breaths to recollect your thoughts, you slowly bend at the waist to reveal the last bit of you yet to be fully exposed. With a light slap to your [pc.ass], you hold both buttcheeks and spread them out,");
 	if(pc.hasTail() && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output(" [pc.eachTail] writhing wildly in the process,");
-	output(" revealing your [pc.asshole] to the entrapped audience. " + (pc.ass.wetness() > 3 ? "You slide a finger inside" : "You force a finger in") + " and begin to slowly fuck your butthole, accompanied by involuntary thrusts from you [pc.hips] and pleasured whimpers. Soon you follow with a second finger and up your rhythm. Once you have spent a few minutes pleasuring your [pc.asshole], you bring yourself back up and prepare to address your audience.");
+	output(" revealing your [pc.asshole] to the entrapped audience. " + (pc.ass.wetness() > 3 ? "You slide a finger inside" : "You force a finger in") + " and begin to slowly fuck your butthole, accompanied by involuntary thrusts from your [pc.hips] and pleasured whimpers. Soon you follow with a second finger and up your rhythm. Once you have spent a few minutes pleasuring your [pc.asshole], you bring yourself back up and prepare to address your audience.");
 	output("\n\nYou take a look at the horny faces fixated on your body and can’t help but feel elated. The host of cameras capturing every scene of your slutty show reminds you of how your actions will be shared all over the extranet, and of the number of people who will masturbate watching you debase yourself. That thought alone clouds your mind with lust and pushes your urge to please the gathered strangers further. " + (!voluntary ? "How could you ever bring yourself to avoid all the pleasures of exposing yourself for so long?" : "<i>This</i> is what you live for") + "!");
 	output("\n\nIt takes a moment for you to properly focus before you begin to speak. You ask the audience to share their opinions on what they saw, sending them into a frenzy as they shout all sorts of things at you. Cocktease, whore, good [pc.boy] and everything in between, and you don’t disagree with them, you can’t... after all you are here to be everything they want you to be. Once they calm down a little, you tell them just that, and strike up as many sexy poses as you can, letting them sear your image into their memories and devices to their hearts’ content.");
 	if(pcLocation != "Tavros Station")

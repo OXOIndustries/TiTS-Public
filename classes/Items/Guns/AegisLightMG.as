@@ -13,7 +13,7 @@ package classes.Items.Guns
 	 */
 	public class AegisLightMG extends ItemSlotClass
 	{
-		
+		//Level 8 (Rare). Balance 2.0
 		public function AegisLightMG() 
 		{
 			this._latestVersion = 1;
@@ -34,27 +34,28 @@ package classes.Items.Guns
 			this.description = "an aegis light machinegun";
 			
 			//Displayed on tooltips during mouseovers
-			tooltip = "A military-grade squad automatic weapon, the Aegis is a high-tech solution to front line offense and defense. Equipped with a huge box of ammunition, the user can send a withering hail of bullets down range and generate a hardlight shield around the weapon's muzzle, creating moving point of cover in whatever direction he or she is firing.";
+			tooltip = "A military-grade squad automatic weapon, the Aegis is a high-tech solution to front line offense and defense. Equipped with a huge box of ammunition, the user can send a withering hail of bullets down range and generate a hardlight shield around the weapon’s muzzle, creating moving point of cover in whatever direction he or she is firing.";
 			this.attackVerb = "shoot";
 			attackNoun = "shot"
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 12500;
-			this.attack = -5;
+			this.basePrice = 20000;
+			this.attack = 10;
 			
-			baseDamage.kinetic.damageValue = 24;
+			baseDamage.kinetic.damageValue = 29;
 			baseDamage.addFlag(DamageFlag.BULLET);
 			addFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR);
 			addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
+			baseDamage.addFlag(DamageFlag.NO_CRIT);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;
-			this.shields = 15;
+			this.shields = 25;
 			this.sexiness = 0;
-			this.critBonus = -5;
-			this.evasion = 0;
+			this.critBonus = 0;
+			this.evasion = -2;
 			this.fortification = 0;
 
 			this.version = _latestVersion;

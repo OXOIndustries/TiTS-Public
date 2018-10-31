@@ -4,6 +4,7 @@
 	import classes.GLOBAL;
 	import classes.Items.Apparel.UGCUniform;
 	import classes.Items.Melee.Tonfas;
+	import classes.kGAMECLASS;
 	
 	public class Penny extends Creature
 	{
@@ -127,7 +128,7 @@
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 4;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 9000;
 			this.timesCum = 785;
 			this.cockVirgin = true;
@@ -157,7 +158,10 @@
 			
 			this._isLoading = false;
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return kGAMECLASS.pennyBustDisplay();
+		}
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			if (dataObject.legFlags.length == 0)

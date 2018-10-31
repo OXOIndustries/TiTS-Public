@@ -112,7 +112,7 @@
 			this.genitalSpot = 0;
 			this.tailType = GLOBAL.TYPE_FELINE;
 			this.tailCount = 2;
-			this.tailFlags = [GLOBAL.FLAG_FLUFFY,GLOBAL.FLAG_LONG];
+			this.tailFlags = [GLOBAL.FLAG_FURRED, GLOBAL.FLAG_FLUFFY,GLOBAL.FLAG_LONG, GLOBAL.FLAG_PREHENSILE];
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
 			//tailGenital:
@@ -289,7 +289,7 @@
 			// if (CombatManager.combatEncounter() == CombatEncounters.KaraVsShadeFight)
 			if (flags["KQ2_QUEST_BEGIN"] == undefined)
 			{
-				var hostiles:Array = CombatManager.getHostileCharacters();
+				var hostiles:Array = CombatManager.getHostileActors();
 				
 				if (hostiles.indexOf(this) == -1)
 				{
@@ -341,12 +341,13 @@
 				damageRand(damage, 15);
 				applyDamage(damage, this, target);
 
-				//{It hits for X damage! // } {If burn: ");
+				// It hits for X damage!
+				// If burn:
 				if(!target.hasStatusEffect("Burn") && rand(2) == 0)
 				{
 					if(target is PlayerCharacter) output("\nThe bolt explodes across you, slathering you in burning hot green plasma. <b>You are burning!</b>");
 					else output("\nThe bolt explodes across " + target.a + target.short + ", slathering " + target.mfn("him","her","it") + " in burning hot green plasma. <b>" + target.mfn("He","She","It") + " is burning!</b>");
-					target.createStatusEffect("Burn",2,0,0,0,false,"Icon_Smelly","Burning for thermal damage over time.",true,0);
+					CombatAttacks.applyBurn(target, 2);
 				}
 			}
 		}

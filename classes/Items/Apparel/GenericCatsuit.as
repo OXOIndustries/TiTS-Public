@@ -11,7 +11,7 @@ package classes.Items.Apparel
 	 */
 	public class GenericCatsuit extends ItemSlotClass
 	{
-		
+		//Level 2 (Common). Balance 2.0
 		public function GenericCatsuit() 
 		{
 			this._latestVersion = 1;
@@ -34,14 +34,14 @@ package classes.Items.Apparel
 			
 			this.attackVerb = "";
 			
-			this.basePrice = 300;
+			this.basePrice = 220;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
-			this.sexiness = 2;
+			this.sexiness = 3;
 			this.critBonus = 0;
 			this.evasion = 4;
-			this.fortification = 1;
+			this.fortification = 4;
 			
 			this.version = this._latestVersion;
 		}

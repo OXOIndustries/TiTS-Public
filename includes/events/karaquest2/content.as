@@ -61,7 +61,7 @@ SILENCE_RESCUED_CONNIE	-- 0/undefined, no
 
 public function completedKQ2Good():Boolean
 {
-	return flags["KQ2_QUEST_FINISHED"] != undefined && flags["KQ2_QUEST_FINISHED"] == 1;
+	return (flags["KQ2_QUEST_FINISHED"] == 1);
 }
 
 public function tryProcKQuest2Entry():Boolean
@@ -129,7 +129,7 @@ public function kq2TravelToKara(shortTravel:Boolean):void
 	output("\n\nYou take a steadying breath and ease your ship into the crack in the rock. You’re quickly bathed in darkness, no light from the sun or moon to guide you past the craggy cave mouth. A moment of doubt passes, before being blasted away by blinding light shining from inside the cavern. Your ship’s shielding keeps the worst of it at bay, just making you squint as the view outside consolidates into several large floodlights mounted on the walls, hanging over some kind of catwalk.");
 
 	output("\n\nAnother ship is parked ahead, a sleek, blue-and-white freighter");
-	if (9999 == 0) output(" not much bigger than your old Z14");
+	if (PCShipModel() != "Z14") output(" not much bigger than your old Z14");
 	else output(" not much bigger than your own ship");
 	output(". Your comms bleep with an incoming message.");
 
@@ -188,10 +188,7 @@ public function kq2TravelToKara(shortTravel:Boolean):void
 	else output("<i>“Sure, come on in,”</i> you say, waving her aboard.");
 	output(" You turn and lead her out of the airlock and into the ship’s common area.");
 
-	output("\n\n<i>“Nice ship,”</i> she murmurs, a gloved hand running along the bulkhead as she enters, looking cautiously around. <i>“Haven’t been aboard a");
-	// {ship model}
-	if(9999 == 9999) output(" Z14")
-	output(" in a while.”</i>");
+	output("\n\n<i>“Nice ship,”</i> she murmurs, a gloved hand running along the bulkhead as she enters, looking cautiously around. <i>“Haven’t been aboard " + indefiniteArticle(PCShipModel()) + " in a while.”</i>");
 
 	//if PC has Anno aboard:
 	if (annoIsCrew())
@@ -205,7 +202,7 @@ public function kq2TravelToKara(shortTravel:Boolean):void
 	{
 		if (!annoIsCrew()) output("\n\nYou hear footsteps coming your way. Both you and Kara turn to see Reaha");
 		else output("\n\nThe moment Anno leaves, Reaha comes out of her quarters,");
-		output(" padding down the corridor, moaning slightly as an auto-milker attached to her breasts buzzes happily. She stops and blinks at Kara, her own bare breasts jiggling as the milk is sucked out of them.");	
+		output(" padding down the corridor, moaning slightly as an auto-milker attached to her breasts buzzes happily. She stops and blinks at Kara, her own bare breasts jiggling as the milk is sucked out of them.");
 
 		output("\n\nKara returns the stare, her feline tails moving more quickly behind her. <i>“That looks... really good,”</i> she purrs, eyes affixed to the cow-girl’s bosom.");
 
@@ -357,7 +354,7 @@ public function kq2KaraThePlan():void
 
 	output("\n\n<i>“Really!”</i> Kara says, a little defensive. <i>“They’re not expecting trouble - they don’t think anybody knows they’re there.");
 	if (kara.isMischievous()) output(" P-probably!");
-	output(" It’s a backwater research base, after all. A couple dozen foot-soldiers at worst, plus some automated security. But leave that to me - punching through security systems is my specialty. If I can get access to their communications systems or a computer, I’ll be able to shut down the alarms and make sure no reinforcements show up. Once done, we push into the the subterranean research complex, and shut it down. Permanently.”</i>");
+	output(" It’s a backwater research base, after all. A couple dozen foot-soldiers at worst, plus some automated security. But leave that to me - punching through security systems is my specialty. If I can get access to their communications systems or a computer, I’ll be able to shut down the alarms and make sure no reinforcements show up. Once done, we push into the subterranean research complex, and shut it down. Permanently.”</i>");
 
 	output("\n\n<i>“Any idea what they’re researching, exactly?”</i>");
 
@@ -507,7 +504,7 @@ public function kq2DontTrust():void
 
 	addDisabledButton(0, "DontTrust");
 
-	addButton(5, "PayFirst", kq2PayFirst, undefined, "Payment First", "Tell Kara you might trust her if she payed you up front.");
+	addButton(5, "PayFirst", kq2PayFirst, undefined, "Payment First", "Tell Kara you might trust her if she paid you up front.");
 	addButton(6, "Sex", kq2SexFirst, undefined, "Sex", "Tell Kara you might trust her if she threw in a more... <i>personal</i> incentive.");
 }
 
@@ -996,8 +993,8 @@ public function kq2FightEngineer(numDrones:int):void
 	}
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(f);
-	CombatManager.setHostileCharacters(h);
+	CombatManager.setFriendlyActors(f);
+	CombatManager.setHostileActors(h);
 	CombatManager.displayLocation("ENGINEER");
 	CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, h[0]);
 	CombatManager.victoryScene(kq2EngineerPCVictory);
@@ -1011,7 +1008,7 @@ public function kq2EngineerPCVictory():void
 	showKQ2Engineer();
 
 	output("The lapinara and her drone");
-	if (CombatManager.getHostileCharacters().length > 2) output("s");
+	if (CombatManager.getHostileActors().length > 2) output("s");
 	output(" collapse, utterly defeated.");
 	
 	if (!pc.hasKeyItem("Key Card - R&D Security Pass"))
@@ -1068,7 +1065,7 @@ public function kq2GibEngyDirtyMag():void
 	clearOutput();
 	showKQ2Engineer();
 
-	output("<i>“... give me that magazine!”</i> she says, pointing to the hentai comic sticking out of your pack.");
+	output("<i>“...give me that magazine!”</i> she says, pointing to the hentai comic sticking out of your pack.");
 	
 	output("\n\nWell, that’s a pretty low price. You take it out and give it to the tiny dick-girl, noticing her cock harden as she takes possession of it. Her dog");
 	if (flags["KQ2_ENGINEER_NUM_DRONES"] > 1) output("s");
@@ -1103,7 +1100,7 @@ public function kq2GibEngyCash():void
 	clearOutput();
 	showKQ2Engineer();
 
-	output("<i>“... give me a thousand credits!”</i> she says, extending a hand to you, palm open and expectant. You dig a credit chit out of your pack and plant it in her outstretched hand. The engineer squeals in excitement, bouncing around on her powerful legs. <i>“Score! Take the card, I’m going on a SHOPPING SPREE! Whoo!”</i>");
+	output("<i>“...give me a thousand credits!”</i> she says, extending a hand to you, palm open and expectant. You dig a credit chit out of your pack and plant it in her outstretched hand. The engineer squeals in excitement, bouncing around on her powerful legs. <i>“Score! Take the card, I’m going on a SHOPPING SPREE! Whoo!”</i>");
 	
 	pc.credits -= 1000;
 	
@@ -1131,7 +1128,7 @@ public function kq2GibEngyDankHoles():void
 
 	var engineer:KQ2Engineer = new KQ2Engineer();
 
-	output("<i>“... bend over and let me fuck you!”</i> the lapinara finishes, thrusting her crotch at you. Her bright red puppy pecker bobs eagerly, a tiny glint of moisture already on its tip. <i>“All the other pirates call me a parasite and won’t touch me! Please... I’m so horny, I’ll trade the card for just a quick fuck.”</i>");
+	output("<i>“...bend over and let me fuck you!”</i> the lapinara finishes, thrusting her crotch at you. Her bright red puppy pecker bobs eagerly, a tiny glint of moisture already on its tip. <i>“All the other pirates call me a parasite and won’t touch me! Please... I’m so horny, I’ll trade the card for just a quick fuck.”</i>");
 
 	if (flags["KQ2_KARA_WITH_PC"] == 1) output("\n\n<i>“I’ll just, uh, wait outside.... Cover the door for you.”</i> Kara says, slipping away.");
 
@@ -1260,13 +1257,13 @@ public function kq2EncounterKhan():void
 	var tKhan:KQ2Khan = new KQ2Khan();
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc, kara]);
-	CombatManager.setHostileCharacters([tKhan, new KQ2SecurityDroid(), new KQ2SecurityDroid(), new KQ2SecurityDroid()]);
+	CombatManager.setFriendlyActors([pc, kara]);
+	CombatManager.setHostileActors([tKhan, new KQ2SecurityDroid(), new KQ2SecurityDroid(), new KQ2SecurityDroid()]);
 	CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, tKhan);
 	CombatManager.victoryScene(kq2KhanPCVictory);
 	CombatManager.lossScene(kq2KhanPCDefeat);
 	CombatManager.displayLocation("DR KHAN");
-	CombatManager.encounterText("You’re fighting Doctor Khan, a kui-tan male with a pair of balls"+ (flags["MET_KIRO"] == undefined ? " that look more like a couple economy-sized beanbag chairs underneath him." : " that would make even Kiro jealous -- or wet. It’s hard to tell!") +" The doctor’s carrying an over-sized lightning gun, but is otherwise unarmed and unarmored -- he’s sitting buck naked on his mammoth balls. A shimmering green hardlight device encloses his cock, which seems to be at full mast, but is completely untended to by the girls surrounding him.\n\nSeveral gold myr girls surround the doctor, fawning over him with blissful, vapid expressions on their faces. They’re clad in nothing but open-faced lab coats, showing off bare breasts and groins, and each wears a small metal collar around her neck, displaying a tiny holographic tag. They lovingly caress his sack, chest, any inch of tender flesh save for the light-bound cock between his raised legs.");
+	CombatManager.encounterText("You’re fighting Doctor Khan, a kui-tan male with a pair of balls"+ (!metKiro() ? " that look more like a couple economy-sized beanbag chairs underneath him." : " that would make even Kiro jealous -- or wet. It’s hard to tell!") +" The doctor’s carrying an over-sized lightning gun, but is otherwise unarmed and unarmored -- he’s sitting buck naked on his mammoth balls. A shimmering green hardlight device encloses his cock, which seems to be at full mast, but is completely untended to by the girls surrounding him.\n\nSeveral gold myr girls surround the doctor, fawning over him with blissful, vapid expressions on their faces. They’re clad in nothing but open-faced lab coats, showing off bare breasts and groins, and each wears a small metal collar around her neck, displaying a tiny holographic tag. They lovingly caress his sack, chest, any inch of tender flesh save for the light-bound cock between his raised legs.");
 
 	clearMenu();
 	addButton(0, "Fight!", CombatManager.beginCombat);
@@ -1311,6 +1308,7 @@ public function kq2KhanPCVictory():void
 
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
+	generateMap();
 	
 	//[Talk: Gold Myr] [Talk: Khan] [Fuck Khan] [Loot Room] [Leave]
 	kq2KhanVictoryMenu();
@@ -1420,7 +1418,7 @@ public function kq2LootLabCoat(noncombatMenu:Boolean = false):void
 // Cheesy hack to see what the player did with the item. If they discarded it, clear the flag that said they looted it.
 public function kq2LabCoatCheck():void
 {
-	if (pc.armor is KhansLabCoat || pc.hasItemByType(KhansLabCoat))
+	if (pc.armor is KhansLabCoat || pc.hasItemByClass(KhansLabCoat))
 	{
 		kq2KhanVictoryMenu();
 		return;
@@ -1431,7 +1429,7 @@ public function kq2LabCoatCheck():void
 
 public function kq2LabCoatCheckMenu():void
 {
-	if (pc.armor is KhansLabCoat || pc.hasItemByType(KhansLabCoat))
+	if (pc.armor is KhansLabCoat || pc.hasItemByClass(KhansLabCoat))
 	{
 		mainGameMenu();
 		return;
@@ -1450,7 +1448,7 @@ public function kq2LootArcCaster(noncombatMenu:Boolean = false):void
 
 public function kq2LootArcCasterCheck():void
 {
-	if (pc.rangedWeapon is KhansArcCaster || pc.hasItemByType(KhansArcCaster))
+	if (pc.rangedWeapon is KhansArcCaster || pc.hasItemByClass(KhansArcCaster))
 	{
 		kq2KhanVictoryMenu();
 		return;
@@ -1461,7 +1459,7 @@ public function kq2LootArcCasterCheck():void
 
 public function kq2LootArcCasterCheckMenu():void
 {
-	if (pc.rangedWeapon is KhansArcCaster || pc.hasItemByType(KhansArcCaster))
+	if (pc.rangedWeapon is KhansArcCaster || pc.hasItemByClass(KhansArcCaster))
 	{
 		mainGameMenu();
 		return;
@@ -1668,7 +1666,7 @@ public function kq2KhanPCDefeat():void
 	else output("Shocked too badly to keep fighting, you collapse at the kui-tan’s feet... or you would, if his feet could touch the ground around his enormous nads.");
 
 	output("\n\n<i>“Girls, help our friends here into their collars,”</i> Khan says, setting his lightning gun aside and reclining back on his huge testicles. He picks up a pair of metal collars from the table beside him and hands them off to two of the gold myr girls, each wearing an identical collar of their own. You try to block them, but in your state, it doesn’t take much for even a pair of naked lab-rats to pin you down, pulling away your [pc.gear]");
-	if (!(pc.rangedWeapon is EmptySlot) || !(pc.meleeWeapon is EmptySlot)) output(" and weapons");
+	if (pc.hasEquippedWeapon()) output(" and weapons");
 	output(" and sliding the slim metal ring around your neck.");
 	
 	pc.removeAll();
@@ -1772,8 +1770,8 @@ public function kq2EncounterShade():void
 		var tShade:Shade = new Shade();
 
 		CombatManager.newGroundCombat();
-		CombatManager.setFriendlyCharacters([pc, kara]);
-		CombatManager.setHostileCharacters([tShade, new KQ2FenrisDrone(), new KQ2FenrisDrone(), new KQ2FenrisDrone()]);
+		CombatManager.setFriendlyActors([pc, kara]);
+		CombatManager.setHostileActors([tShade, new KQ2FenrisDrone(), new KQ2FenrisDrone(), new KQ2FenrisDrone()]);
 		CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, tShade);
 		CombatManager.victoryScene(kq2ShadePCVictory);
 		CombatManager.lossScene(kq2CapturedByPiratesBadEnd);
@@ -1856,7 +1854,7 @@ public function kq2ShadePCVictoryKaraHard():void
 
 	output("With a grunt, Shade slumps down against the wall, clutching her wounds. Her gun clatters to the ground out of reach");
 
-	var hostiles:Array = CombatManager.getHostileCharacters();
+	var hostiles:Array = CombatManager.getHostileActors();
 	var numDronesAlive:int = 0;
 
 	for (var i:int = 0; i < hostiles.length; i++)
@@ -1892,7 +1890,7 @@ public function kq2ShadePCVictoryKaraNotHard():void
 
 	output("With a grunt, Shade slumps down against the wall, clutching her wounds. Her gun clatters to the ground out of reach");
 
-	var hostiles:Array = CombatManager.getHostileCharacters();
+	var hostiles:Array = CombatManager.getHostileActors();
 	var numDronesAlive:int = 0;
 
 	for (var i:int = 0; i < hostiles.length; i++)
@@ -1954,7 +1952,11 @@ public function kq2CapturedByPiratesBadEndII():void
 	output("\n\nThe armored woman reaches down, grabbing Kara’s chin in her gauntleted fingers and forcing the defeated cat-girl to look up at her. Your companion moans, blinking through a black eye and a bloodied nose - looks like she’s suffered a much more thorough beating than you already.");
 	
 	output("\n\n<i>“I don’t know what’s worse:”</i> the pirate lord growls, <i>“That you were stupid enough to come knocking on my door... or that you were stupid enough to pick the wrong group of pirates.");
-	if (flags["KQ2_NUKE_STARTED"] != undefined) output(" And don’t worry about the self destruct. It’s been deactivated.");
+	if (flags["KQ2_NUKE_STARTED"] >= 0)
+	{
+		output(" And don’t worry about the self destruct. It’s been deactivated.");
+		flags["KQ2_NUKE_STARTED"] = -1;
+	}
 	output(" Either way, Lord Bragga has a bounty the size of a small moon out on your head.");
 	if (flags["KQ2_SHADE_DEAD"] == undefined)
 	{
@@ -2004,10 +2006,7 @@ public function kq2CapturedByPiratesBadEndII():void
 
 	output("\n\nYou nod, slowly, dread forming a knot in your stomach. What’s about to happen to you?");
 
-	output("\n\n<i>“Be a good");
-	if (pc.race().indexOf("ausar") != -1) output(" puppy");
-	else output(pc.mf(" boy", " girl"));
-	output(", and you won’t even notice it’s there. Unless I decide to play with it, that is. See, you’ve got some fire in you. That meek, beaten act doesn’t suit you... and it doesn’t fool me. You’ve seen some action and adventure, haven’t you?”</i>");
+	output("\n\n<i>“Be a good " + pc.catDog(pc.mf("boy", "girl"), "puppy", false) + ", and you won’t even notice it’s there. Unless I decide to play with it, that is. See, you’ve got some fire in you. That meek, beaten act doesn’t suit you... and it doesn’t fool me. You’ve seen some action and adventure, haven’t you?”</i>");
 
 	output("\n\nYou nod again.");
 
@@ -2079,7 +2078,7 @@ public function kq2JuggernautPCVictoryII(takeWeapon:Boolean):void
 	output("You");
 	if (takeWeapon)
 	{
-		var tEnemy:Creature = CombatManager.getHostileCharacters()[0];
+		var tEnemy:Creature = CombatManager.getHostileActors()[0];
 		tEnemy.inventory.push(new AegisLightMG());
 
 		output(" stow the weapon");
@@ -2190,7 +2189,11 @@ public function kq2AmaraBetrayKara():void
 	output("\n\nYou pocket your Codex and admit, you’re surprised they’re letting this go so easily.");
 
 	output("\n\nAmara shrugs");
-	if (flags["KQ2_NUKE_STARTED"] != undefined) output(", as she sends some of her goons down to deactivate the self-destruct");
+	if (flags["KQ2_NUKE_STARTED"] >= 0)
+	{
+		output(", as she sends some of her goons down to deactivate the self-destruct");
+		flags["KQ2_NUKE_STARTED"] = -1;
+	}
 	output(". <i>“Like I said, you seem like a badass, and I didn’t come back dirt-side for a fight. Just to catch the kitten there for Lord Bragga. No reward for fighting you, except personal satisfaction. And Watson says you gave Khan a swift kick in the nuts, so what the hell. That earns you enough credit with me to get out of here. So go on. Just keep your mouth shut, or you’re dead. Though that goes without saying.”</i>");
 
 	output("\n\nYou guess you can’t argue with that. You give the gunship one last look before hopping into one of the smaller shuttles and letting it take you back the D.M.Z., much richer for your efforts. From there’s it’s one short hitchhike back to the smuggler’s base and your own ship.");
@@ -2280,8 +2283,8 @@ public function kq2FightAmara():void
 	var h:Array = [new KQ2Amara(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt(), new KQ2BlackVoidGrunt()];
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc, kara]);
-	CombatManager.setHostileCharacters(h);
+	CombatManager.setFriendlyActors([pc, kara]);
+	CombatManager.setHostileActors(h);
 	CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, h[0]);
 	CombatManager.displayLocation("AMARA");
 	CombatManager.victoryScene(kq2AmaraPCVictory);
@@ -2326,7 +2329,7 @@ public function kq2AmaraPCVictory():void
 
 	output("\n\nLooks like you’re home free.");
 	// Nuke due to explode within 30 minutes
-	if (flags["KQ2_NUKE_STARTED"] != undefined)
+	if (flags["KQ2_NUKE_STARTED"] >= 0)
 	{
 		output(" And just in time: you cover your eyes as a nuke goes off in the caldera, a flash of light followed by a shockwave that makes your teeth ache. Luckily, the re-activated shields protect you from harm.");
 		flags["KQ2_NUKE_EXPLODED"] = 1;
@@ -2454,7 +2457,7 @@ public function kq2AmaraSpecialEnd():void
 	
 	output("\n\nYou manage to get the engine started and punch it back towards... something. The DMZ! Civilization! Nothing follows you, nothing tries to stop you. You’re not sure there’s anything, or any<i>one</i> left to.");
 	// Nuke due to explode within 30 minutes
-	if (flags["KQ2_NUKE_STARTED"] != undefined)
+	if (flags["KQ2_NUKE_STARTED"] >= 0)
 	{
 		output(" Especially after the nuke goes off, flashing in the distance in your rear mirror.");
 		flags["KQ2_NUKE_EXPLODED"] = 1;
@@ -2582,11 +2585,13 @@ public function kq2KaraTakeKittydick():void
 	var looseness:Number;
 	if (pc.hasVagina()) looseness = pc.tightestVaginalLooseness();
 	else looseness = pc.ass.looseness();
-
-	if (looseness <= 1) output(" <i>“You’re so tight! I’m not your first, am I?”</i>");
-	else if (looseness < 4) output(" Mmm, you’re a perfect fit for my cock, [pc.name]. Makes me wish we’d done this sooner...”</i>");
-	else output(" Nice and loose! Just means I can fuck you harder!”</i>");
-	output(" your lover teases.");
+	
+	output(" <i>“");
+	if (looseness <= 1) output("You’re so tight! I’m not your first, am I?");
+	else if (looseness < 4) output("Mmm, you’re a perfect fit for my cock, [pc.name]. Makes me wish we’d done this sooner...");
+	else output("Nice and loose! Just means I can fuck you harder!");
+	output("”</i> your lover teases.");
+	
 	pc.cuntChange(0, kara.biggestCockVolume(), true, true, false);
 
 	output("\n\nYou manage to get your arms around Kara, groping blindly at her pert ass and hips as she starts to thrust. Her bumpy ridges sliding across your inner walls feels as incredible as you imagined and more, dragging across your sex-crazed flesh with steadily increasing speed.");
@@ -3050,7 +3055,7 @@ public function kq2ShadeFollowUpResponse(response:String = "none"):void
 	}
 	else if(response == "kara")
 	{
-		output("You tell Shade the truth: the Kara paid you to distract her that day. You decided to make absolutely sure Shade was nowhere near her quarry, and if that meant sex, then so be it. Anything to make sure Kara got out alright.");
+		output("You tell Shade the truth: that Kara paid you to distract her that day. You decided to make absolutely sure Shade was nowhere near her quarry, and if that meant sex, then so be it. Anything to make sure Kara got out alright.");
 		
 		if(flags["SEXED_SHADE"] <= 1)
 		{

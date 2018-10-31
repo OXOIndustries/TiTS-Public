@@ -11,7 +11,7 @@ package classes.Items.Apparel
 	 */
 	public class KhansLabCoat extends ItemSlotClass
 	{
-		
+		//Level 8 (Rare). Balance 2.0
 		public function KhansLabCoat() 
 		{
 			this._latestVersion = 1;
@@ -34,13 +34,13 @@ package classes.Items.Apparel
 			
 			this.attackVerb = "";
 			
-			this.basePrice = 1000;
+			this.basePrice = 21000;
 			this.attack = 0;
 			this.defense = 2;
 			this.shieldDefense = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
-			this.evasion = 1;
+			this.evasion = 3;
 			this.fortification = 0;
 			
 			resistances.corrosive.resistanceValue = 20;

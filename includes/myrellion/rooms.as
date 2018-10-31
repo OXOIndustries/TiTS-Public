@@ -601,11 +601,25 @@ public function initializeMyrellionRooms():void
 	rooms["720"].system = "SYSTEM: SINDATHU";
 	rooms["720"].eastExit = "719";
 	rooms["720"].westExit = "721";
+	//rooms["720"].northExit = "ENTITE";
 	rooms["720"].moveMinutes = 2;
 	rooms["720"].runOnEnter = gildenmereStreetBonus;
 	rooms["720"].addFlag(GLOBAL.INDOOR);
 	rooms["720"].addFlag(GLOBAL.PUBLIC);
 	rooms["720"].addFlag(GLOBAL.CAVE);
+	
+	//THE ENTITE
+	rooms["ENTITE"] = new RoomClass(this);
+	rooms["ENTITE"].roomName = "THE\nENTITE";
+	rooms["ENTITE"].description = "";
+	rooms["ENTITE"].planet = "PLANET: MYRELLION";
+	rooms["ENTITE"].system = "SYSTEM: SINDATHU";
+	rooms["ENTITE"].southExit = "720";
+	rooms["ENTITE"].moveMinutes = 2;
+	rooms["ENTITE"].runOnEnter = theEntiteBonus;
+	rooms["ENTITE"].addFlag(GLOBAL.INDOOR);
+	rooms["ENTITE"].addFlag(GLOBAL.PUBLIC);
+	rooms["ENTITE"].addFlag(GLOBAL.COMMERCE);
 
 	//721 Halcyon Way
 	rooms["721"] = new RoomClass(this);
@@ -1054,7 +1068,7 @@ public function initializeMyrellionRooms():void
 	//Kressia Gates
 	rooms["803"] = new RoomClass(this);
 	rooms["803"].roomName = "KRESSIA\nGATES";
-	rooms["803"].description = "The gates that separate Kressia from the trenchlines outside are newly erected, sliding gates supporting rolls of concertina wire. A couple of soldiers are standing to either side, each with a full trench coat and gas mask set. The rest of the city looms large to the north. To the south, through the gates, you see a heavy concrete bunker facing the trenches.\n\nSeeing you about, the guards offer to open the gates and let you by.\n\nA huge concrete bunker stands between the gates and the trenches, bristling with weapons bolted into the firing ports. A door stands open near you,";
+	rooms["803"].description = "The gates that separate Kressia from the trenchlines outside are newly erected, sliding gates supporting rolls of concertina wire. A couple of soldiers are standing to either side, each with a full trench coat and gas mask set. The rest of the city looms large to the north. To the south, through the gates, you see a heavy concrete bunker facing the trenches.\n\nSeeing you about, the guards offer to open the gates and let you by.\n\nA huge concrete bunker stands between the gates and the trenches, bristling with weapons bolted into the firing ports. ";
 	rooms["803"].planet = "PLANET: MYRELLION";
 	rooms["803"].system = "SYSTEM: SINDATHU";
 	//rooms["803"].westExit = "9999";
@@ -1247,7 +1261,7 @@ public function initializeMyrellionRooms():void
 	//Street L20
 	rooms["815"] = new RoomClass(this);
 	rooms["815"].roomName = "\nSTREET";
-	rooms["815"].description = "A four-way intersection leads south to the city gates, north to the Queen’s Solace city park, and east towards Kressia’s airfield. A large series of dirt-filled trenches decorate the corners just off the sidewalks, filled with some very pretty, pink-glowing funguses.";
+	rooms["815"].description = "A four-way intersection leads south to the city gates, north to the Queen’s Solace city park, and east towards Kressia’s airfield. A large series of dirt-filled trenches decorate the corners just off the sidewalks, filled with some very pretty, pink-glowing fungi.";
 	rooms["815"].system = "SYSTEM: SINDATHU";
 	rooms["815"].planet = "PLANET: MYRELLION";
 	rooms["815"].eastExit = "816";
@@ -2881,7 +2895,7 @@ public function initializeMyrellionRooms():void
 	rooms["2K7"].southExit = "";
 	rooms["2K7"].westExit = "2I7";
 	rooms["2K7"].moveMinutes = 5;
-	rooms["2K7"].runOnEnter = DeepCavesBonus;
+	rooms["2K7"].runOnEnter = myrellionDerelictApproachBonus;
 	rooms["2K7"].addFlag(GLOBAL.CAVE);
 	rooms["2K7"].addFlag(GLOBAL.INDOOR);
 	rooms["2K7"].addFlag(GLOBAL.HAZARD);

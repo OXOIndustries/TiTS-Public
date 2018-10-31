@@ -2,6 +2,9 @@
 
 //Bakery/Confectionary run by a manic futa bunnygirl (formerly ausar). Breed-hungry. Likes to add her own special "icing" for willing customers. White ears/floof/puffball tail. Ice blue hair, worn long and messy. Husky build, big boobs, average ausar donger.
 //Outfit: Black corset, collar and tie, thigh-high stockings with bows, garters, short skirt, high heels, arm-length gloves. Came here to work for Beth, got fed up with it, made her own place.
+//The "ILARIA_PREG_EMAIL1" flag: 	1 = You both know she's pregnant
+//									2 = You've talked about it in-person
+//									3 = She gave you free food
 
 public function showIlaria(nude:Boolean = false):void
 {
@@ -52,6 +55,14 @@ public function approachIlaria():void
 		flags["MET_ILARIA"] = 1;
 	}
 	//Repeat
+	else if(flags["ILARIA_PREG_EMAIL1"] == 1)
+	{
+		output("<i>“[pc.name]!”</i> the bunny-babe yips, bounding over and hopping into your arms. She gives you a kiss and grabs your hand, directing it down to her [ilaria.belly]. <i>“I’m glad you came by. Really glad... my virile stud.”</i>");
+		output("\n\nShe giggles, and nuzzles herself under your arm. <i>“Sorry, I’m terrible about the whole ‘romance’ thing, but I’m definitely excited! Super duper extra excited! I’ve " + (flags["ILARIA_TOTAL_KIDS"] > 0 ? "been waiting for the next happy accident you left in my pussy to take root -- the last time was awesome" : "never been pregnant before") + "!”</i>");
+		output("\n\nIlaria squeals excitedly, bouncing on her bunny-like heels. Her excitement is infectious, and soon you’re allowing her to guide you into a barstool and enticing whatever your favorite order from the menu is -- her treat. Between her giddy ejaculations, you manage to " + (flags["ILARIA_TOTAL_KIDS"] > 0 ? "remind" : "inform") + " her of the nursery dedicated to you upstairs -- she’s free to make use of its facilities during and after her pregnancy. That, she says, takes what little weight she’d been feeling off her shoulders: a place that’ll take care of her children while she works will make this all the sweeter for her.");
+		
+		flags["ILARIA_PREG_EMAIL1"] = 2;
+	}
 	else
 	{
 		output("Ilaria bounds over to you with a smile. <i>“Welcome back!");
@@ -112,19 +123,20 @@ public function orderFromIlaria():void
 	output("\n(" + getOrderPrice("Gryvain Jigglers") + " C) <b>Gryvain Jigglers</b> - A bowl of fruity gelatin from the gryvain homeworld of Vendiko. Kept in the planet’s dense, thick atmosphere, these treats all but dissolve on contact with your mouth, giving you a burst of flavor with every bite!");
 
 	clearMenu();
-	if(getOrderPrice("Sin-a-Bunny") <= pc.credits) addButton(0,"Sin-a-Bunny",actuallyOrderFromIlaria,"Sin-a-Bunny","Sin-a-Bunny","Ilaria’s famous cinnamon-sprinkle buns, served piping hot and sinfully soft straight from her oven. Best with a glaze of her special homemade cream!");
+	var free:Boolean = (flags["ILARIA_PREG_EMAIL1"] == 2);
+	if(getOrderPrice("Sin-a-Bunny") <= pc.credits || free) addButton(0,"Sin-a-Bunny",actuallyOrderFromIlaria,"Sin-a-Bunny","Sin-a-Bunny","Ilaria’s famous cinnamon-sprinkle buns, served piping hot and sinfully soft straight from her oven. Best with a glaze of her special homemade cream!");
 	else addDisabledButton(0,"Sin-a-Bunny","Sin-a-Bunny","You can’t afford this.");
-	if(getOrderPrice("Vanilla Iced Teats") <= pc.credits) addButton(1,"Vanilla Ice C.",actuallyOrderFromIlaria,"Vanilla Iced Teats","Vanilla Iced Teats","Ye olde ice cream, but with a milky twist! This designer brand is sourced from humanoid milk, but processed and flavored to be ten times tastier than a Terran bovine!");
+	if(getOrderPrice("Vanilla Iced Teats") <= pc.credits || free) addButton(1,"Vanilla Ice C.",actuallyOrderFromIlaria,"Vanilla Iced Teats","Vanilla Iced Teats","Ye olde ice cream, but with a milky twist! This designer brand is sourced from humanoid milk, but processed and flavored to be ten times tastier than a Terran bovine!");
 	else addDisabledButton(1,"Vanilla Iced Teats","Vanilla Iced Teats","You can’t afford this.");
-	if(getOrderPrice("Kaithrit Kittycake") <= pc.credits) addButton(2,"Kaithrit Cake",actuallyOrderFromIlaria,"Kaithrit Kittycake","Kaithrit Kittycake","Cheesecake, sort of. Made with a rich, thick cream that kaithrit go wild for, but condensed into a milky cake. Way more sugary than the Terran equivalent, it’ll melt in your mouth in the blink of an eye!");
+	if(getOrderPrice("Kaithrit Kittycake") <= pc.credits || free) addButton(2,"Kaithrit Cake",actuallyOrderFromIlaria,"Kaithrit Kittycake","Kaithrit Kittycake","Cheesecake, sort of. Made with a rich, thick cream that kaithrit go wild for, but condensed into a milky cake. Way more sugary than the Terran equivalent, it’ll melt in your mouth in the blink of an eye!");
 	else addDisabledButton(2,"Kaithrit Kittycake","Kaithrit Kittycake","You can’t afford this.");
-	if(getOrderPrice("Ausar Pup Pie") <= pc.credits) addButton(3,"Ausar Pup Pie",actuallyOrderFromIlaria,"Ausar Pup Pie","Ausar Pup Pie","A sweet, earthy pie made from Ausaril fruits and crust. Served in bite-sized cubes with individual flavorings - always piping hot!");
+	if(getOrderPrice("Ausar Pup Pie") <= pc.credits || free) addButton(3,"Ausar Pup Pie",actuallyOrderFromIlaria,"Ausar Pup Pie","Ausar Pup Pie","A sweet, earthy pie made from Ausaril fruits and crust. Served in bite-sized cubes with individual flavorings - always piping hot!");
 	else addDisabledButton(3,"Ausar Pup Pie","Ausar Pup Pie","You can’t afford this.");
-	if(getOrderPrice("Dzaan Cream Smoothie") <= pc.credits) addButton(4,"D. Smoothie",actuallyOrderFromIlaria,"Dzaan Cream Smoothie","Dzaan Cream Smoothie","Called as such because it’s as addictive as a dzaan alpha - well, maybe not really, but one taste will have you begging for more of this sweet, creamy smoothy, guaranteed!");
+	if(getOrderPrice("Dzaan Cream Smoothie") <= pc.credits || free) addButton(4,"D. Smoothie",actuallyOrderFromIlaria,"Dzaan Cream Smoothie","Dzaan Cream Smoothie","Called as such because it’s as addictive as a dzaan alpha - well, maybe not really, but one taste will have you begging for more of this sweet, creamy smoothy, guaranteed!");
 	else addDisabledButton(4,"Dzaan Cream Smoothie","Dzaan Cream Smoothie","You can’t afford this.");
-	if(getOrderPrice("Raxxian Road") <= pc.credits) addButton(5,"Raxxian Road",actuallyOrderFromIlaria,"Raxxian Road","Raxxian Road","A chunky whipped cream dessert filled with chocolate chunks and loaded down with cookie crumble and sprinkles. The favorite of kids on the station!");
+	if(getOrderPrice("Raxxian Road") <= pc.credits || free) addButton(5,"Raxxian Road",actuallyOrderFromIlaria,"Raxxian Road","Raxxian Road","A chunky whipped cream dessert filled with chocolate chunks and loaded down with cookie crumble and sprinkles. The favorite of kids on the station!");
 	else addDisabledButton(5,"Raxxian Road","Raxxian Road","You can’t afford this.");
-	if(getOrderPrice("Gryvain Jigglers") <= pc.credits) addButton(6,"GryvainJiggler",actuallyOrderFromIlaria,"Gryvain Jigglers","Gryvain Jigglers","A bowl of fruity gelatin from the gryvain homeworld of Vendiko. Kept in the planet’s dense, thick atmosphere, these treats all but dissolve on contact with your mouth, giving you a burst of flavor with every bite!");
+	if(getOrderPrice("Gryvain Jigglers") <= pc.credits || free) addButton(6,"GryvainJiggler",actuallyOrderFromIlaria,"Gryvain Jigglers","Gryvain Jigglers","A bowl of fruity gelatin from the gryvain homeworld of Vendiko. Kept in the planet’s dense, thick atmosphere, these treats all but dissolve on contact with your mouth, giving you a burst of flavor with every bite!");
 	else addDisabledButton(6,"Gryvain Jigglers","Gryvain Jigglers","You can’t afford this.");
 	
 	addButton(14,"Back",ilariaMenu);
@@ -237,7 +249,8 @@ public function actuallyOrderFromIlaria(order:String = ""):void
 	clearOutput();
 	showIlaria();
 	author("Savin");
-	pc.credits -= getOrderPrice(order);
+	if(flags["ILARIA_PREG_EMAIL1"] == 2) flags["ILARIA_PREG_EMAIL1"] = 3;
+	else pc.credits -= getOrderPrice(order);
 	//Hasn’t Unlocked Sex; ordered anything but a Sin-A-Bunny
 	if(flags["ILERIA_GLAZED"] == undefined && order != "Sin-a-Bunny")
 	{
@@ -252,14 +265,14 @@ public function actuallyOrderFromIlaria(order:String = ""):void
 	else if(flags["ILERIA_GLAZED"] == undefined)
 	{
 		//Unlocks Ilaria’s sex stuff.
-		output("<i>“Oh, my speciality!”</i> Illaria cheers, rocking back on her heels. Her towering bunny-ears crane towards you as she comes back your way, and she adds, <i>“Soooo, you gonna take that with my <b>special</b> sauce, sweetheart? I’ve got plenty saved up, nice and hot and creamy, just wait’n for you!”</i>");
+		output("<i>“Oh, my speciality!”</i> Ilaria cheers, rocking back on her heels. Her towering bunny-ears crane towards you as she comes back your way, and she adds, <i>“Soooo, you gonna take that with my <b>special</b> sauce, sweetheart? I’ve got plenty saved up, nice and hot and creamy, just wait’n for you!”</i>");
 		output("\n\n<i>“Special sauce?”</i> you ask. The menu did say something about a homemade cream, but...");
 		output("\n\n<i>“O-oh! Whoops!”</i> the bunny giggles sheepishly, biting her lip. <i>“I figured you knew. Don’t mind me, sweetie, I’ll get your order...”</i>");
 		output("\n\nYou ");
 		if(pc.isBro() || pc.isAss()) output("grab");
 		else output("gently brush");
-		output(" her wrist, keeping her from hopping away. Illaria blushes darkly, but her poof-ball tail wiggles so much that her ruffled skirts threaten to tear. <i>“What’s the special sauce?”</i> you ask again.");
-		output("\n\nIllaria bounces on her feet, mulling it over a second. <i>“Oh, fine! You look like the kind of person who’d enjoy it: my sin-a-bunny sauce comes straight from under the skirt. From a thick, throbbing faucet. Y’know?”</i> she grins mischievously, leans in, and adds, <i>“Cock-sauce! A nice, creamy glaze of bunny-spunk to brighten your day and mine! Whadda ya say?”</i>");
+		output(" her wrist, keeping her from hopping away. Ilaria blushes darkly, but her poof-ball tail wiggles so much that her ruffled skirts threaten to tear. <i>“What’s the special sauce?”</i> you ask again.");
+		output("\n\nIlaria bounces on her feet, mulling it over a second. <i>“Oh, fine! You look like the kind of person who’d enjoy it: my sin-a-bunny sauce comes straight from under the skirt. From a thick, throbbing faucet. Y’know?”</i> she grins mischievously, leans in, and adds, <i>“Cock-sauce! A nice, creamy glaze of bunny-spunk to brighten your day and mine! Whadda ya say?”</i>");
 		//[Sure] [Nope]
 		processTime(2);
 		clearMenu();
@@ -401,7 +414,9 @@ public function bunnyCreamCumBonanzaBullshitRemoteFuntimesExplosionIDunnoWhyThis
 	output(". <i>“Of course. A little secret ingredient goes a long way. And a <b>lot</b> of it goes... even further, I guess! Enjoy, sweet thing!”</i>");
 	output("\n\nShe bounces off with a spring in her step, leaving you to enjoy your well-earned meal.");
 	processTime(15);
-	pc.loadInMouth();
+	chars["ILARIA"].setPerkValue("Fixed CumQ", 1, 500);
+	pc.loadInMouth(chars["ILARIA"]);
+	chars["ILARIA"].setPerkValue("Fixed CumQ", 1, 50000);
 	setOrderTFAndDeets(order,true);
 	IncrementFlag("ILERIA_GLAZED");
 	clearMenu();
@@ -460,6 +475,43 @@ public function sexWithIlaria():void
 		else addDisabledButton(1,"Pound Her","Pound Her","You need a penis that will fit inside her for this.");
 	}
 	else addDisabledButton(1,"Pound Her","Pound Her","You need a penis for this.");
+	addButton(2,"Urethral Suck",ilariaCumSlurp,undefined,"Urethral Suck","Suck Ilaria to a massive orgasm then siphon her cum directly out of her with a straw.");
+}
+
+public function ilariaCumSlurp():void
+{
+	clearOutput();
+	showIlaria(true);
+	author("Wsan");
+	[Blowjob]
+	//tooltip: Suck Ilaria to a massive orgasm then siphon her cum directly out of her with a straw.
+	output("<i>“Nuh uh,”</i> you say, shaking your head. Ilaria moans in disappointment as you take the milker off her from behind, but quickly recovers as you bend down to lick her between the legs.");
+	output("\n\n<i>“Oh!”</i> she gasps, reaching back to " + (pc.hasHair() ? "stroke your [pc.hair]":"place her palm on your head") + ". <i>“I guess you wanna do things the hard way" + (flags["ILARIA_CUMSUCKED_URETHRAL"] != undefined ? " again":"") + ", huh?”</i>");
+	output("\n\n<i>“You know it,”</i> you murmur, lashing your [pc.tongue] over her knot while she pulls herself out. She can’t resist holding herself in place for a few seconds of fun before extricating herself completely and turning around as you sink to your knees. <i>“I want to try something" + (flags["ILARIA_CUMSUCKED_URETHRAL"] == undefined ? " new..":"") + ".”</i>");
+	output("\n\n<i>“I’m all yours, babe,”</i> Ilaria says, leaning back against the milker’s mount with an easy grin. <i>“" + (flags["ILARIA_CUMSUCKED_URETHRAL"] == undefined ? "Show me your stuff!":"Still gettin’ used to the straw thing, but last time was so much fun I can’t say no!") + "”</i>");
+	output("\n\nShe lets out a quiet grunt as you plant your [pc.lipsChaste] on her swollen cock and suck, letting your tongue loll out along her underside. You give her some hard, loving sucks that make her shudder against you before you let her out of your mouth with a satisfied sigh and duck a little lower to tend to the heavy cumtanks hanging between her legs. Each one is big enough to give even an experienced partner pause, but not you.");
+	output("\n\nYou gently drag your tongue along the underside of one of her fat, musky nuts, bigger than a grapefruit and every bit as plump. Lifting her red puppycock out of the way to really get at her hefty balls, you lick her up and down until you can feel them shifting in her sack, gaining liquid weight while you tantalize her. When she blows her load, it’s going to be monumental. Already you can feel her uncontrollably dripping all over your hand, sticky clear precum running over your fingers.");
+	output("\n\nYou pull back and lick it off your hand with slow, deliberate motions of your tongue, swallowing hard after each one and revelling in the way Ilaria bites her lip while she watches. When you’ve finished with your fingers you tend to her swollen cock, tongue-bathing her until she’s veritably shining with saliva before resealing your lips around her dick, this time intent upon bringing her swift relief.");
+	output("\n\n<i>“Oh- oh, that’s </i>good<i>,”</i> Ilaria moans, letting out a pant while she shakily grasps your " + (pc.hasLongHorns() ? "horns":"head") + ". <i>“I’m gonna c-cum pretty hard, [pc.name]! I huh-hope you’re ready!”</i>");
+	output("\n\nYou reach for the controller to her vibrators and grin around her prick as she gasps, her very cock shaking in your mouth as shudders run throughout her entire body. Her thighs tighten and her hips begin to flick back and forth as she gives into the irresistible instinct of pure, animal pleasure. Grabbing handfuls of her curvy asscheeks, you let her start battering your face against her taut stomach, panting all the while.");
+	output("\n\n<i>“Gonna cum,”</i> Ilaria whines needily, spittle flying from your lips as you’re rocked back and forth over the entire length of her throbbing dick. <i>“Oh fuck oh fuck oh fuck gonna cum gonna cum nnnh-!”</i>");
+	output("\n\nRight on cue you switch the vibes to max and she suddenly doubles over, breath catching in her throat while her eyes go wide. The pause affords you the precious seconds you need to gently slide the straw you procured from a container earlier right down the first few inches of her shaft before she blows. She doesn’t even notice the intrusion, and in a flash you have your lips wrapped around the straw and suck <i>hard</i>.");
+	output("\n\nYour effort almost makes you choke on her seed. Her cum doesn’t even come in loads, it just jets into your mouth as a high-pressure stream of hot, thick cream that you’re forced to chug lest it spill from your lips. Even so, you don’t let up on sucking it straight out of her churning balls for even a second. Her voice comes out in desperate, breathless utterances and wordless moans, the vibrators inside her keeping her trapped in endless orgasm.");
+	output("\n\nThe flood of cum gushing into your mouth and down your overworked throat certainly <i>feels</i> endless, your stomach swelling with the sheer amount of her seed you’re swallowing down. It seems like she’ll never stop, and you’re not sure either of you want her to. You can feel her ass flexing in your grip, straining and squeezing down on the buzzing vibe set against her overactive prostate.");
+	output("\n\n<i>“Cuh- can’t, stop,”</i> Ilaria pants. <i>“Nnnnnnngh!”</i>");
+	output("\n\nFeeling overwhelmed, you let your concentration lapse for a moment and the straw slips past your lips and almost down your throat before you realize. Ilaria’s prodigious offering pumps straight down your unresisting throat, your gag reflex long since subdued in the wake of her ridiculous outpouring. By the time you get yourself repositioned your stomach has swollen a few extra inches outward.");
+	output("\n\nWhen you finally enter the home stretch, it feels like you’ve both won. Shuddering violently, Ilaria leans back and spreads her legs wide with her head tilted back to look at the ceiling, relaxing at last. She pants while you dutifully suck every single last remnant out of her, letting out a long, tired moan when you’re done and withdraw your little straw.");
+	output("\n\n<i>“Oh </i>man<i>,”</i> Ilaria huffs, breasts jiggling while she takes deep breaths. <i>“I do not regret letting you do that at all. I’ve never felt so light in my life!”</i>");
+	output("\n\nAs if to emphasize the point, she puts her hand between her legs and gives her balls a gentle squeeze. You feel warmth splatter across your nose and blink in surprise, earning an abashed giggle from the bunnywoman.");
+	output("\n\n<i>“Whoops! Sorry sugar. I guess I’ve always got a little left in the tank! Lemme get that for ya,”</i> she says, bending down to lick it off your cheek. <i>“Thanks for the suckjob, babe. I’ll meet you back outside after I get cleaned up!”</i>");
+	IncrementFlag("ILARIA_CUMSUCKED_URETHRAL");
+	processTime(20);
+	pc.lust(10);
+	chars["ILARIA"].setPerkValue("Fixed CumQ", 1, 15000);
+	pc.loadInMouth(chars["ILARIA"]);
+	chars["ILARIA"].setPerkValue("Fixed CumQ", 1, 50000);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Munch Pussy
@@ -639,6 +691,7 @@ public function poundIlariaLikeMad():void
 
 	processTime(30);
 	chars["ILARIA"].loadInCunt(pc, 0);
+	tryKnockUpIlaria();
 	if(y >= 0) chars["ILARIA"].loadInAss(pc);
 	pc.orgasm();
 	clearMenu();
@@ -667,6 +720,163 @@ public function ilariaAppearance():void
 	addButton(0,"Next",approachIlaria);
 }
 
+//return 0-6 for number of babies she's impregnated with
+//Also does the mechanical impregnation
+public function tryKnockUpIlaria():int
+{
+	if(!ilaria.isPregnant())
+	{
+		if(pc.virility() == 0 || ilaria.fertility() == 0) return 0;
+		var x:Number = (pc.virility() + ilaria.fertility())/2;
+		var score:Number = (1 - Math.exp(-0.38*x))*10000;
+		
+		//roll for pregnancy
+		if(rand(10000) <= score)
+		{
+			flags["ILARIA_PREG_TIMER"] = 0;
+			pc.clearRut();
+			
+			x /= 2;
+			
+			//6 Babies!
+			if(rand(10000) <= ((Math.atan(x - 5) + Math.PI/2)/Math.PI)*10000)
+			{
+				flags["ILARIA_NUM_BABIES"] = 6;
+			}
+			//5 Babies!
+			else if(rand(10000) <= ((Math.atan(x - 4) + Math.PI/2)/Math.PI)*10000)
+			{
+				flags["ILARIA_NUM_BABIES"] = 5;
+			}
+			//4 Babies!
+			else if(rand(10000) <= ((Math.atan(x - 3) + Math.PI/2)/Math.PI)*10000)
+			{
+				flags["ILARIA_NUM_BABIES"] = 4;
+			}
+			//3 Babies!
+			else if(rand(10000) <= ((Math.atan(x - 2) + Math.PI/2)/Math.PI)*10000)
+			{
+				flags["ILARIA_NUM_BABIES"] = 3;
+			}
+			//2 Babies!
+			else if(rand(10000) <= ((Math.atan(x - 1) + Math.PI/2)/Math.PI)*10000)
+			{
+				flags["ILARIA_NUM_BABIES"] = 2;
+			}
+			//1 Baby!
+			else
+			{
+				flags["ILARIA_NUM_BABIES"] = 1;
+			}
+			
+			//Lets roll for genders 50/50
+			flags["ILARIA_BABY_GENDERS"] = new Array();
+			for(var i:int = 0; i < flags["ILARIA_NUM_BABIES"]; i++)
+			{
+				if(rand(2) == 0) flags["ILARIA_BABY_GENDERS"].push("M");
+				else flags["ILARIA_BABY_GENDERS"].push("F");
+			}
+			
+			processTime(1);
+			return flags["ILARIA_NUM_BABIES"];
+		}
+	}
+	return 0;
+}
+
+public function ilariaBirth(birthTimestamp:int = -1):void
+{
+	if(birthTimestamp < 0) birthTimestamp = GetGameTimestamp();
+	
+	var traitChar:Creature = chars["PC_BABY"];
+	var c:UniqueChild = new IlariaUniqueChild();
+	
+	c.RaceType = GLOBAL.TYPE_CANINE;
+	// 50% Male or Female
+	for(var i:int = 0; i < flags["ILARIA_NUM_BABIES"]; i++)
+	{
+		if(flags["ILARIA_BABY_GENDERS"][i] == "M") c.NumMale += 1;
+		else c.NumFemale += 1;
+	}
+	
+	// Race modifier (if different races)
+	c.originalRace = c.hybridizeRace(c.originalRace, pc.originalRace, true);
+	
+	// Adopt father's colors at random (if applicable):
+	if(rand(2) == 0) c.skinTone = traitChar.skinTone;
+	if(rand(2) == 0) c.lipColor = traitChar.lipColor;
+	if(rand(2) == 0) c.nippleColor = traitChar.nippleColor;
+	if(rand(2) == 0) c.eyeColor = traitChar.eyeColor;
+	if(traitChar.hairColor != "NOT SET" && rand(2) == 0) c.hairColor = traitChar.hairColor;
+	if(traitChar.furColor != "NOT SET" && rand(2) == 0) c.furColor = traitChar.furColor;
+	
+	c.MaturationRate = 1.0;
+	c.BornTimestamp = birthTimestamp;
+	ChildManager.addChild(c);
+	
+	StatTracking.track("pregnancy/ilaria sired", flags["ILARIA_NUM_BABIES"]);
+	StatTracking.track("pregnancy/total sired", flags["ILARIA_NUM_BABIES"]);
+	StatTracking.track("pregnancy/total day care", flags["ILARIA_NUM_BABIES"]);
+	
+	if(flags["ILARIA_TOTAL_KIDS"] == undefined) flags["ILARIA_TOTAL_KIDS"] = 0;
+	flags["ILARIA_TOTAL_KIDS"] += flags["ILARIA_NUM_BABIES"];
+	flags["ILARIA_PREG_TIMER"] = undefined;
+	flags["ILARIA_NUM_BABIES"] = undefined;
+	flags["ILARIA_BABY_GENDERS"] = undefined;
+	flags["ILARIA_PREG_EMAIL1"] = undefined;
+	ilaria.bellyRatingMod = 0;
+}
+
+public function processIlariaPregEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
+{
+	if(ilaria.isPregnant())
+	{
+		flags["ILARIA_PREG_TIMER"] += totalDays;
+		
+		if(flags["ILARIA_PREG_EMAIL1"] == undefined && flags["ILARIA_PREG_TIMER"] >= 7)
+		{
+			var mailTimestamp:int = (GetGameTimestamp() + deltaT - (flags["ILARIA_PREG_TIMER"] * 24 * 60) + (7 * 24 * 60));
+			resendMail("ilaria_preg1", mailTimestamp);
+			flags["ILARIA_PREG_EMAIL1"] = 1;
+			ilaria.bellyRatingMod = 10;
+		}
+		if(flags["ILARIA_PREG_TIMER"] >= 180)
+		{
+			var birthTimestamp:int = (GetGameTimestamp() + deltaT - (flags["ILARIA_PREG_TIMER"] * 24 * 60) + (180 * 24 * 60));
+			resendMail("ilaria_preg2", birthTimestamp);
+			ilariaBirth(birthTimestamp);
+		}
+		
+		//belly stuff
+		if(flags["ILARIA_PREG_TIMER"] > 7 && (int(flags["ILARIA_PREG_TIMER"]) % 5) == 0) ilaria.bellyRatingMod += (flags["ILARIA_NUM_BABIES"] > 3 ? 1.5 : 1);
+	}
+}
+
+public function ilariaPreg1EmailText():String
+{
+	var eText:String = "";
+	
+	eText+=(!(flags["ILARIA_TOTAL_KIDS"] > 0) ? "Hope this is the right address, otherwise I’m gonna be real embarrassed!" : "Well, I’m emailing you, so I guess you know what that means by now~");
+	eText+="\n\nI just got back from the station clinic. Missed a certain regular ausar-girl function, and... well... somebody’s going to be a daddy! I’d say “whoops” or something, but I’m just too excited! Yay! " + (!(flags["ILARIA_TOTAL_KIDS"] > 0) ? "I’ve always wanted to be a mom, even if it’s a happy lil’ accident with my favorite cock-milking assistant. I hope you’re not freaked out, but I’ve heard about that nursery upstairs... so we’ve got that taken care of, right? It’s all gonna be okay! " : "You keep breeding me, and I’ll keep pumping ‘em out, babe! ") + "Just thinking about swelling up all gravid and full of our litter is making me rock hard with anticipation!!!";
+	eText+="\n\nCome on by the bakery and we’ll have some sweets to celebrate!";
+	eText+="\n\n<3 <3 <3 <3 <3";
+	eText+="\n-Ily";
+	
+	return doParse(eText);
+}
+
+public function ilariaPreg2EmailText():String
+{
+	var eText:String = "";
+	
+	eText+="Hello, [pc.Mr]. Steele, I’m writing on behalf of Ms. Ilaria Ilgade, who gave me this address and asked me to inform you that she arrived here at the medical center a few minutes ago, going into labor. Our staff is already tending to her, and according to our scans, you are about to be the father of " + flags["ILARIA_NUM_BABIES"] + " " + (pc.race() == "half-ausar" || pc.isAusar() ? "" : "half-") + "ausar pups. Per her request, they will be sent to the Steele Tech nursery after they and Ilaria have recovered. The mother should be able to leave later today.";
+	eText+="\n\nCongratulations!";
+	eText+="\n\nNurse Carter";
+	eText+="\nTavros Residential Clinic, Deck 45";
+	eText+="\n<i>Healthier living for tomorrow.</i>";
+	
+	return doParse(eText);
+}
 /*
 //Pregshit
 output("\n\n//AAaaaahhhhhhh");

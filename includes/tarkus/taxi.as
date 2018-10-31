@@ -118,8 +118,7 @@ public function tarkusFlyTo(arg:String):void
 		output("\n\nNot long after, you arrive at your destination, and disembark into the wasteland. The hover-car zips away a minute later, leaving you behind.");
 	}
 	pc.credits -= 80;
-	currentLocation = arg;
-	generateMapForLocation(currentLocation);
+	moveTo(arg);
 	processTime(15);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -345,7 +344,7 @@ public function nessaFuckTimeLetsGo():void
 		else output("- both within and without");
 		output(". [pc.CumNoun] slops out of her with every squirt, soaking you in the bed in [pc.cumColor] mess.");
 		//Add cum splatter flag for PC, cause fuck showers.
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 		
 		if(cumSave > 40000) cumSave = 40000 + rand(Math.ceil((pc.cumQ() - 40000) / 2));
 	}
@@ -357,7 +356,7 @@ public function nessaFuckTimeLetsGo():void
 
 	output("\n\n<i>“Fuuuck, tiger. You did good.”</i>");
 	output("\n\nYou grin and sigh, sprawling in the bed.");
-	output("\n\n<i>“You did real good,”</i> Nessa adds, <i>“... Real fuckin’ good. Hey, hand me that plug, would ya?”</i> She gestures at a bright pink plug on the edge of her dresser. <i>“");
+	output("\n\n<i>“You did real good,”</i> Nessa adds, <i>“...Real fuckin’ good. Hey, hand me that plug, would ya?”</i> She gestures at a bright pink plug on the edge of her dresser. <i>“");
 
 	if(nessaBellyRating() <= 0) output("I’m gonna savor this. See if I can get some of those raskvel bitches jealous.");
 	else output("If you keep doing this, I’m going to wind up being the Novahome’s biggest spunk-bank.");

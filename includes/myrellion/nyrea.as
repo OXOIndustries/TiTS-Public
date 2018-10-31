@@ -125,17 +125,17 @@ public function encounterNyreaHuntress(forceType:uint = NYREA_UNKNOWN):void
 	else output(" taking advantage of your vulnerable state to loom over you threateningly, spear leveled at you.");
 	if (nyreaEggs)
 	{
-		output(" <i>“I'm not too picky where I put my eggs,”</i> she growls, circling you, <i>“Even an offworlder will do in a pinch. So why don't you just make this easy on yourself and submit. You might even like it.”</i>");
+		output(" <i>“I’m not too picky where I put my eggs,”</i> she growls, circling you, <i>“Even an offworlder will do in a pinch. So why don’t you just make this easy on yourself and submit. You might even like it.”</i>");
 	}
 	else
 	{
-		output(" <i>“You look like a healthy breeder,”</i> she growls, circling you, <i>“so why don't you just make this easy on yourself and submit. You might even like it.”</i>");
+		output(" <i>“You look like a healthy breeder,”</i> she growls, circling you, <i>“so why don’t you just make this easy on yourself and submit. You might even like it.”</i>");
 	}
 
 	if (!CodexManager.entryUnlocked("Nyrea"))
 	{
 		CodexManager.unlockEntry("Nyrea");
-		output("\n\nYou stare at the insectile woman as your codex beeps, <i>“Warning: Nyrea encountered. This species’ females are known to be extremely hostile, and may attempt to use unsuspecting travelers as breeding stock or as incubation space for her eggs. Caution is recommended, especially around the species' pseudo-penis.”</i>");
+		output("\n\nYou stare at the insectile woman as your codex beeps, <i>“Warning: Nyrea encountered. This species’ females are known to be extremely hostile, and may attempt to use unsuspecting travelers as breeding stock or as incubation space for her eggs. Caution is recommended, especially around the species’ pseudo-penis.”</i>");
 
 		output("\n\n<i>“Cute toy,”</i> the huntress grins, twirling her spear. <i>“Don’t think it’ll help you now, though.”</i>");
 	}
@@ -154,7 +154,7 @@ public function nyreaFight(settings:Array):void
 	var tEnemy:Creature;
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setFriendlyActors(pc);
 	CombatManager.victoryScene(pcVictoryOverNyrea);
 	if ((nyreaType == NYREA_ALPHA) && (lostToAlpha() == 3)) //not exactly elegant
 	{
@@ -180,13 +180,13 @@ public function nyreaFight(settings:Array):void
 	if (nyreaType == NYREA_ALPHA)
 	{
 		tEnemy = new NyreaAlpha();
-		CombatManager.setHostileCharacters(tEnemy);
+		CombatManager.setHostileActors(tEnemy);
 		CombatManager.displayLocation("NYREA ALPHA");
 	}
 	else
 	{
 		tEnemy = new NyreaBeta();
-		CombatManager.setHostileCharacters(tEnemy);
+		CombatManager.setHostileActors(tEnemy);
 		CombatManager.displayLocation("NYREA BETA");
 	}
 
@@ -201,6 +201,8 @@ public function nyreaFight(settings:Array):void
 
 public function pcLossToNyrea():void
 {
+	if(bothriocQuestBetaNyreaMiniquestActive()) bothriocQuestBetaNyreaMiniquestReset();
+	
 	clearOutput();
 
 	if (enemy is NyreaAlpha) lostToAlpha(1);
@@ -293,10 +295,13 @@ public function pcLossToNyrea():void
 		pData = pc.getPregnancyOfType("NyreaEggPregnancy");
 		
 		output("\n\n<i>“Take my eggs,”</i> the huntress growls as the hefty orb enters you, lodging in your ass amid the sticky swamp of sexual fluids she’s squirting. Another egg soon follows, discharged into your rapidly-growing belly.");
-		if (pData.pregnancyQuantity >= 4) output(" Another comes");
-		if (pData.pregnancyQuantity >= 5) output(", and another, until");
-		else if (pData.pregnancyQuantity == 4) output(" and");
-		if (pData.pregnancyQuantity >= 4) output(" you count "+ pData.pregnancyQuantity +" big, hard-shelled eggs now resting inside you.");
+		if(pData != null)
+		{
+			if (pData.pregnancyQuantity >= 4) output(" Another comes");
+			if (pData.pregnancyQuantity >= 5) output(", and another, until");
+			else if (pData.pregnancyQuantity == 4) output(" and");
+			if (pData.pregnancyQuantity >= 4) output(" you count "+ pData.pregnancyQuantity +" big, hard-shelled eggs now resting inside you.");
+		}
 		
 		output("\n\n<i>“Finally free,”</i> the nyrean woman sighs, resting a hand on her own belly. <i>“Goodbye, my young. Live well and flourish.”</i>");
 		
@@ -345,10 +350,13 @@ public function pcLossToNyrea():void
 			pData = pc.getPregnancyOfType("NyreaEggPregnancy");
 			
 			output("\n\n<i>“Take my eggs,”</i> the huntress growls as the hefty orb enters you, lodging in your womb amid the sticky swamp of sexual fluids she’s squirting. Another egg soon follows, discharged into your rapidly-growing belly.");
-			if (pData.pregnancyQuantity >= 4) output(" Another comes");
-			if (pData.pregnancyQuantity >= 5) output(", and another, until");
-			else if (pData.pregnancyQuantity == 4) output(" and");
-			if (pData.pregnancyQuantity >= 4) output(" you count "+ pData.pregnancyQuantity +" big, hard-shelled eggs now resting inside you.");
+			if(pData != null)
+			{
+				if (pData.pregnancyQuantity >= 4) output(" Another comes");
+				if (pData.pregnancyQuantity >= 5) output(", and another, until");
+				else if (pData.pregnancyQuantity == 4) output(" and");
+				if (pData.pregnancyQuantity >= 4) output(" you count "+ pData.pregnancyQuantity +" big, hard-shelled eggs now resting inside you.");
+			}
 			
 			output("\n\n<i>“Finally free,”</i> the nyrean woman sighs, resting a hand on her own belly. <i>“Goodbye, my young. Live well and flourish.”</i>");
 			
@@ -558,21 +566,28 @@ public function pcVictoryOverNyrea():void
 	clearOutput();
 	nyreaHeaderFromCreature(enemy, "VICTORY:");
 
-	if (enemy.lust() >= enemy.lustMax())
+	if(enemy is NyreaBeta && bothriocQuestBetaNyreaMiniquestActive())
 	{
-		output("The nyrea stumbles back, breathing hard as you relentlessly tease her, forcing her further and further back until she's pressed against a cave wall, helpless. She tries to ward you off with her spear; you easily bat her spear-point away, pressing yourself right up against her. She gives a quiet moan, hands reaching for her groin, desperate for release. You grab her wrists, pinning them to the cave wall.");
+		bothriocQuestBetaNyreaPCVictoryBlurb();
 	}
 	else
 	{
-		output("Battered down, the nyrea starts trying to withdraw, warding you back with increasingly desperate thrusts of her spear. You grab the tip at the apex of one of her weakest thrusts, and easily snap the haft over");
-		if (pc.isBiped()) output(" your knee");
-		else output(" a nearby rock");
-		output(", leaving her helpless. With a look of panic, the nyrea turns to run, but finds nothing but cave wall behind her. You slam her up against it, grabbing her wrists before she can try and strike back.");
-	}
+		if (enemy.lust() >= enemy.lustMax())
+		{
+			output("The nyrea stumbles back, breathing hard as you relentlessly tease her, forcing her further and further back until she’s pressed against a cave wall, helpless. She tries to ward you off with her spear; you easily bat her spear-point away, pressing yourself right up against her. She gives a quiet moan, hands reaching for her groin, desperate for release. You grab her wrists, pinning them to the cave wall.");
+		}
+		else
+		{
+			output("Battered down, the nyrea starts trying to withdraw, warding you back with increasingly desperate thrusts of her spear. You grab the tip at the apex of one of her weakest thrusts, and easily snap the haft over");
+			if (pc.isBiped()) output(" your knee");
+			else output(" a nearby rock");
+			output(", leaving her helpless. With a look of panic, the nyrea turns to run, but finds nothing but cave wall behind her. You slam her up against it, grabbing her wrists before she can try and strike back.");
+		}
 
-	output("\n\n<i>“No...”</i> she moans, going almost limp in your grasp.");
-	if (enemy is NyreaBeta) output(" She turns her cheek from you, refusing to meet your gaze. <i>“H-how am I ever going to get my own harem fighting like this... I’m too weak to even ambush an offworlder. Go ahead... do whatever you want to me. I deserve it.”</i>");
-	else if (enemy is NyreaAlpha) output(" <i>“Go ahead,”</i> the alpha nyrea growls, looking you dead in the eye, <i>“I’ve taken my share of conquests... I know how this goes. You won, fair and square. I won’t resist you... this time.”</i>");
+		output("\n\n<i>“No...”</i> she moans, going almost limp in your grasp.");
+		if (enemy is NyreaBeta) output(" She turns her cheek from you, refusing to meet your gaze. <i>“H-how am I ever going to get my own harem fighting like this... I’m too weak to even ambush an offworlder. Go ahead... do whatever you want to me. I deserve it.”</i>");
+		else if (enemy is NyreaAlpha) output(" <i>“Go ahead,”</i> the alpha nyrea growls, looking you dead in the eye, <i>“I’ve taken my share of conquests... I know how this goes. You won, fair and square. I won’t resist you... this time.”</i>");
+	}
 
 	clearMenu();
 	if (pc.hasCock()) addButton(0, "Pitch Anal", fuckNyreaButts);
@@ -588,8 +603,7 @@ public function pcVictoryOverNyrea():void
 		clearOutput();
 		nyreaHeaderFromCreature(enemy, "VICTORY:");
 		processTime(10);
-		clearMenu();
-		lostToAlpha(-1);
+		if(enemy is NyreaAlpha) lostToAlpha(-1);
 		CombatManager.genericVictory();
 	});
 }
@@ -1031,7 +1045,8 @@ public function pcLossToNyreaAdditionalOne():void
 		output("\n\nShe redoubles her efforts, making you cry out every time she roughly thrusts into you, both with delight and the realization she’s forcing her knot into you. She fiercely pulls your hips down, stretching you out over the massive base of her cock as it begins to shift, hard lumps pressing into your [pc.ass]. Your first notice that she’s cumming is a spray of sexual fluid into your asshole, readying you for carrying her clutch. The next thing you feel is a mixture of intense pleasure and pressure, her eggs bulging out her already-huge length as they travel down it to be deposited into your fecund intestines.");
 		pc.loadInAss(enemy); //errors here
 		pData = pc.getPregnancyOfType("NyreaEggPregnancy");
-		output("\n\nShe holds you as tightly as she can on her gigantic cock, focused only on filling you with her eggs as deeply as possible. You shudder and shake on the end of her at each insertion, your ass kept sealed for her breeding efforts by the knot. You can feel yourself swelling with each deposit, your insides stretched tightly with their newfound purpose. By the time she’s finished with you, the huntress has gifted you "+ pData.pregnancyQuantity +" eggs to carry for her as her beta.");
+		output("\n\nShe holds you as tightly as she can on her gigantic cock, focused only on filling you with her eggs as deeply as possible. You shudder and shake on the end of her at each insertion, your ass kept sealed for her breeding efforts by the knot. You can feel yourself swelling with each deposit, your insides stretched tightly with their newfound purpose.");
+		if(pData != null) output(" By the time she’s finished with you, the huntress has gifted you "+ pData.pregnancyQuantity +" eggs to carry for her as her beta.");
 		output("\n\nShe releases you with a satisfied groan and you go limp, draped across the cavern floor like a puppet with its’ strings cut as her cock slides out of your abused [pc.asshole]. She stands and collects her chainmail bikini, talking as she dresses herself.");
 		output("\n\n<i>“It was worth saving up for you, outsider. I’ve half a mind to take you back to the palace with me, such is your talent for being bred. There’s really only one reason I’m not.”</i>");
 		output("\n\n She pauses to meet your eyes and gives you a predatory smile.");
@@ -1070,7 +1085,9 @@ public function pcLossToNyreaAdditionalOne():void
 			output("\n\n<i>“See? Isn’t it – wonderful – offworlder? To be fucked – full of my eggs?”</i> The huntress inquires between grunts of effort and pleasure, clearly not expecting a coherent answer out of your gritted teeth. <i>“You’ll never – go empty again – if you submit.”</i>");
 			pc.loadInCunt(enemy, tHole);
 			pData = pc.getPregnancyOfType("NyreaEggPregnancy");
-			output("\n\nAt last all " + pData.pregnancyQuantity +" of her eggs lie where they should and she slowly pulls out of you, savoring your reactions as you’re stretched around the knot again. She gets to her feet, rolling you onto your back to get a good look at your tummy. The alpha smiles triumphantly at your massively swollen form, limbs still trembling in the wake of your intense climax during breeding. She pads away silently, slipping into the darkness. It’s going to be a while before your numb lower half will even allow for getting up...");
+			output("\n\n");
+			if(pData != null) output("At last all " + pData.pregnancyQuantity +" of her eggs lie where they should and she slowly pulls out of you, savoring your reactions as you’re stretched around the knot again. ");
+			output("She gets to her feet, rolling you onto your back to get a good look at your tummy. The alpha smiles triumphantly at your massively swollen form, limbs still trembling in the wake of your intense climax during breeding. She pads away silently, slipping into the darkness. It’s going to be a while before your numb lower half will even allow for getting up...");
 			processTime(60);
 			pc.orgasm();
 			lostToAlpha(1);
@@ -1188,7 +1205,7 @@ public function pcLossToNyreaAdditionalTwo():void
 	
 	if ((pc.hasCock()) && (!pc.hasVagina())) output(" Your dick jerks and paints the rock below you [pc.cumColor], staining your [pc.stomach] as your back arches like a whore. Each savage thrust from behind rubs along your prostate and elicits another spurt until you’re groaning stuck somewhere between agony and ecstasy, a nonstop stream of cum threading from your overtaxed cock.");
 	else if ((!pc.hasCock()) && (pc.hasVagina())) output(" Your neglected pussy spasms and contracts impossibly tight as your back arches like a whore, spraying girlcum on the rock beneath you as you shake and ball up your hands. You open the eyes you didn’t know you had closed and take a halting, gasping breath as you ride out the aftershocks of being taken so utterly.");
-	else if ((pc.hasCock()) && (pc.hasVagina())) output(" You squeeze your eyes shut and groan through gritted teeth as the dual orgasms overwhelm you, your dick jerking and painting your stomach and the rock below you [pc.cumColour] as your neglected pussy spasms and contracts. You arch your back like a whore, shaking with your white-knuckled hands balled into fists as you ride out the intense sensations. When you resurface from your orgiastic pleasure, you take a halting, gasping breath and ride out the aftershocks of being taken so utterly.");
+	else if ((pc.hasCock()) && (pc.hasVagina())) output(" You squeeze your eyes shut and groan through gritted teeth as the dual orgasms overwhelm you, your dick jerking and painting your stomach and the rock below you [pc.cumColor] as your neglected pussy spasms and contracts. You arch your back like a whore, shaking with your white-knuckled hands balled into fists as you ride out the intense sensations. When you resurface from your orgiastic pleasure, you take a halting, gasping breath and ride out the aftershocks of being taken so utterly.");
 	else output(" You squeeze your eyes shut and groan through gritted teeth as the anal orgasm overwhelms you. You arch your back like a whore, shaking with your white-knuckled hands balled into fists as you ride out the intense sensations. When you resurface from your orgiastic pleasure, you take a halting, gasping breath and ride out the aftershocks of being taken so utterly.");
 	output(" You hear a coo of approval from behind you.");
 	output("\n\n<i>“Wasn’t that easy? I can be generous to my betas.”</i>");
@@ -1278,9 +1295,9 @@ public function pcLossToNyreaBadEndPartTwo():void
 			pc.cuntChange(x, enemy.cockVolume(0), false);
 		}
 	}
-	applyCumSoaked(pc);
-	applyCumSoaked(pc);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
+	pc.applyCumSoaked();
+	pc.applyCumSoaked();
 	
 	output("\n\nYou don’t question it when you pass through a community of myr, nyrea, and wetraxxel to stand in front of a large stone gate guarded by what looks to be nyrean elites. You don’t question it when she fucks you to a screaming orgasm in front of them, either. You are, after all, hers. It’s not your place to do anything except happily submit to her will. She takes you past a well lit cavern with a guard post, traveling through a tunnel network until you arrive at a set of heavy stone doors flanked by brilliantly glowing blue lanterns. Pushing it open, she steps inside and the sight that greets your eyes is one of debauchery and lust. Several dozen nyrean males are within, all in various states of bondage. Some are cuffed to each other, others are chained to the bed or to chairs, and still others are locked in stocks. All of them have dildos or plugs shoved deep into their cunts and pools of wetness below them. You realize with an inward spike of happiness that your mistress must have left them here while looking for you. She must have really wanted you to be her breeder! While you’re taking stock of the situation, your Alpha lets go of your hand and fetches something from the near-empty racks of bondage gear. When she brings it back, you see it’s a golden collar. You can’t read the writing on it, though. She sees you looking and smirks knowingly.");
 	output("\n\n<i>“It says you’re my property, offworlder.”</i>");

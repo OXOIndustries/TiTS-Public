@@ -114,8 +114,8 @@ public function frogGirlsEncounter():void
 public function configFrogGirlFight(tEnemy:Creature):void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(tEnemy);
 	CombatManager.victoryScene(victoryAgainstTheFrogs);
 	CombatManager.lossScene(loseAgainstTheFrogs);
 	CombatManager.displayLocation("KEROKORAS");
@@ -175,15 +175,19 @@ public function loseAgainstTheFrogs():void
 	//Loss by HP text
 	else output("Despite your mind’s protests, your body can no longer resist the beating it has been subject to. The victorious frog girl saunters proudly over to you, grinning as she decides what she should do with you.");
 	output("\n\n");
+	
+	kerokorasLossScene();
+}
+
+public function kerokorasLossScene():void
+{
 	// Player loss scenes
 	//[hasCock Loss] // Obv. cocks >= 1
 	//[!hasCock Loss] // basic fem/neuter loss scene
 	//[Item rape] // if fem pc has any items that would cause dick growth, frog girl eats it, sexes pc with new cock.
-	var scenes:Array = new Array();
-	if(pc.hasVagina() && pc.hasItem(new Throbb())) scenes.push(itemRapeAFrogGirl);
-	else if(pc.hasCock()) scenes.push(hasCockLossForForgGirls)
-	else scenes.push(youDontHaveADickLossToFrogGirls);
-	scenes[0]();
+	if(pc.hasVagina() && pc.hasItemByClass(Throbb)) itemRapeAFrogGirl();
+	else if(pc.hasCock()) hasCockLossForForgGirls();
+	else youDontHaveADickLossToFrogGirls();
 }
 
 public function submitToFrogSex(tEnemy:Creature):void
@@ -191,10 +195,10 @@ public function submitToFrogSex(tEnemy:Creature):void
 	clearOutput();
 	setEnemy(tEnemy);
 	showFrogGirl(tEnemy);
-	if(pc.hasVagina() && pc.hasItem(new Throbb())) itemRapeAFrogGirl();
-	else if(pc.hasCock()) hasCockLossForForgGirls();
-	else youDontHaveADickLossToFrogGirls();
+	
+	kerokorasLossScene();
 }
+
 
 //hasCock Loss
 //should be able to fit just about anything under a foot thick.
@@ -264,7 +268,6 @@ public function hasCockLossForForgGirls():void
 			output(" as she thrusts");
 		}
 		output(". You feel your mind melt into the need to impregnate her with everything you have.");
-		// pc.cockChange();
 		pc.cockChange();
 		output("\n\nThe fuck hungry frog girl unwraps her tongue from around your cock");
 		if(pc.cockTotal() > 1) output("s");
@@ -273,6 +276,8 @@ public function hasCockLossForForgGirls():void
 		if(pc.cockTotal() > 1) output(", [pc.eachCock] not wrapped in the blissfully tight warmth of the frog girls pussy blowing their own loads all over her legs and the surrounding jungle in tandem");
 		output(". You moan with the satisfaction of long awaited release, and the frog girl reciprocates, shuddering with primordial bliss as she’s filled to the brim with your fluid. After the last of your juice has been expelled into her, she weakly pulls herself from your [pc.cock " + x + "]. She idly rubs her full belly and kisses your still half-erect dick.");
 		output("\n\n<i>“That’s... good babymaker. Enough for now, I’m sure there’s plenty of them in here now,”</i> she states, a pleased smile on her face. The " + enemy.skinTone + " girl scoots back to the water, kicking away on her back and leaving you to recover yourself.");
+		
+		enemy.loadInCunt(pc, 0);
 	}
 	else
 	{
@@ -675,7 +680,7 @@ output("\n\n<i>“No wait! You can get snake babies before me, just don’t do t
 
 output("\n\nHer half-hearted struggles continue, punctuated with grunts and gasps, but you put an end to it when your thumb casually slips down to meet her clit. It’s love at first touch, and all of her pent up resilience is obliterated in one moaning sigh. She breathes heavily as liquid rapture rushes in to refill the chalice left empty by her earlier defiance; you can feel the lust building as her muscles heat up and more venomous sweat lets you move even faster.");
 
-output("\n\n<i>“Yes! Tease my butt ‘till I cum!”</i> she shouts before covering her mouth with her hands, eyes widening in surprise. Her shock shields her for a second before she’s pulled butt-first back to reality. An orgasm rocks her body, starting at her waist and reverberating up and down her gilded flesh. Her legs tense and turn in to spasming jelly as her toes splay out. A torrent of fem-cum splatters against your hand and the forest floor as you continue to play with her shuddering body.");
+output("\n\n<i>“Yes! Tease my butt till I cum!”</i> she shouts before covering her mouth with her hands, eyes widening in surprise. Her shock shields her for a second before she’s pulled butt-first back to reality. An orgasm rocks her body, starting at her waist and reverberating up and down her gilded flesh. Her legs tense and turn in to spasming jelly as her toes splay out. A torrent of fem-cum splatters against your hand and the forest floor as you continue to play with her shuddering body.");
 
 output("\n\nHer long tongue hangs out of her mouth as her hands clench and unclench at invisible holds. The lean muscles in her arms flex with each repetition, and you squeeze them softly to make sure she doesn’t pull one of them in her tensed pleasure. You look over to the other two {silly: members of Team Forest Debauchery/writhing bodies}, finding them in a similar state to the one you left them in: the huntress’s tail is wrapped around her newfound friends lower body, pulling the frog-girl onto her dick. A near constant string of orgasms has left the tails and pair of legs completely covered with creamy white jizz. The tiger striped kerokoras is so full of cum you can’t imagine a scenario where she doesn’t wind up pregnant.");
 
@@ -698,7 +703,7 @@ public function itemRapeAFrogGirl():void
 {
 	author("Gardeford");
 	showFrogGirl();
-	pc.destroyItem(new Throbb(), 1);
+	pc.destroyItemByClass(Throbb, 1);
 	output("The nimble frog-girl walks up to your helpless body, sighing as she appraises you carefully. After a moment she hops over to you and presses your weakened frame into the ground, apparently having made her decision. As you fall to the floor the contents of your pack spill out around you, and the kerokoras pauses to scan the scattered items. She steps over you to pick something up, and you can see her examining it closely.");
 	output("\n\n<i>“Hey, isn’t this one of those things sky people use to become babymakers? I wonder what it feels like...”</i> she says, and you hear her gasp as she injects herself with the syringe of Throbb you were carrying. You hear a wet schlick and a moan of pleasure from the frog-girl before she turns to face you.");
 	output("\n\n<i>“This is feeling like a really good idea so far. I very much hope you’ll agree,”</i> she says as she spins back to face you. An 8” long " + enemy.skinTone + ", human-looking dick sprouts from just above her clit, already rock hard and twitching; the need to use it is apparent in its owner’s eyes. The lithe now-futa girl practically hops over to you, kneading your body with her slippery hands as she strips you of your [pc.gear].");

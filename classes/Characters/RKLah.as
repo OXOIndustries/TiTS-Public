@@ -22,12 +22,12 @@ package classes.Characters
 			this.version = this._latestVersion;
 			this._neverSerialize = true;
 			
-			this.short = "RK Lah";
+			this.short = "R.K. Lah";
 			this.originalRace = "ausar";
 			this.a = "";
 			this.capitalA = "";
-			this.long = "The ausar fugitive stands maybe 6 foot tall, a height accentuated by his hard, jungle-leaned body and his wide, pointy ears. His skin is a sun-bronzed teak and his fur an orangey-grey, a shoulder-length matt of the stuff between his ears and down his bushy tail. Around his neck he has tied a long fur of some kind, which combined with the hunch of his shoulders lends him a prowling profile. Aside from that all he’s dressed in are the tattered remains of his bright orange jumpsuit bottoms; his bare feet are floured pale yellow with use.\n\nHe has a long, studious face which would be reasonably fetching in some circumstance in which his lips weren’t curled up in a mask of rage and fear. Similarly, his pale grey eyes could be pools of moon-like calm, were they not nakedly shining the light of a mind that has spent weeks marching far into the jungle night. He is armed with black, thorn-like claws and a zil spear, which with his spidery arms give him considerable reach.";
-			this.customDodge = "RK Lah casually sidesteps out of the way.";
+			this.long = "The ausar fugitive stands maybe 6 foot tall, a height accentuated by his hard, jungle-leaned body and his wide, pointy ears. His skin is a sun-bronzed teak and his fur an orangey-gray, a shoulder-length matt of the stuff between his ears and down his bushy tail. Around his neck he has tied a long fur of some kind, which combined with the hunch of his shoulders lends him a prowling profile. Aside from that all he’s dressed in are the tattered remains of his bright orange jumpsuit bottoms; his bare feet are floured pale yellow with use.\n\nHe has a long, studious face which would be reasonably fetching in some circumstance in which his lips weren’t curled up in a mask of rage and fear. Similarly, his pale gray eyes could be pools of moon-like calm, were they not nakedly shining the light of a mind that has spent weeks marching far into the jungle night. He is armed with black, thorn-like claws and a zil spear, which with his spidery arms give him considerable reach.";
+			this.customDodge = "Lah casually sidesteps out of the way.";
 			this.customBlock = "Obvious placeholder is obvious.";
 			this.isPlural = false;
 			
@@ -69,9 +69,9 @@ package classes.Characters
 			this.tallness = 72;
 			this.thickness = 25;
 			this.tone = 85;
-			this.hairColor = "orangey-gray";
+			this.hairColor = "orange-gray";
 			this.scaleColor = "orange";
-			this.furColor = "orangey-gray";
+			this.furColor = "orange-gray";
 			this.hairLength = 3;
 			this.hairType = 0;
 			this.beardLength = 0;
@@ -150,7 +150,7 @@ package classes.Characters
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 30;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 2000;
 			this.timesCum = 762;
 			this.cockVirgin = false;
@@ -171,15 +171,17 @@ package classes.Characters
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 1;
-
+			
+			impregnationType = "LahPregnancy";
+			
 			//this.createPerk("Multiple Attacks",1,0,0,0,"");
 			//this.createPerk("Multiple Shots",1,0,0,0,"");
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			
 			isUniqueInFight = true;
-			btnTargetText = "RK Lah";
+			btnTargetText = "R.K. Lah";
 			setDefaultSexualPreferences();
-			kGAMECLASS.mhengaSSTDChance(this);
+			//kGAMECLASS.mhengaSSTDChance(this);
 			_isLoading = false;
 		}
 		
@@ -194,8 +196,8 @@ package classes.Characters
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,			GLOBAL.KINDA_LIKES_SEXPREF);
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BUTTS,		GLOBAL.KINDA_LIKES_SEXPREF);
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_PUSSIES,			GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_WETNESS,	GLOBAL.REALLY_LIKES_SEXPREF);	
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_LONG_HAIR,		GLOBAL.REALLY_LIKES_SEXPREF);						
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_VAGINAL_WETNESS,	GLOBAL.REALLY_LIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_LONG_HAIR,		GLOBAL.REALLY_LIKES_SEXPREF);
 
 			//Dislikes
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_MULTIPLES,		GLOBAL.REALLY_DISLIKES_SEXPREF);
@@ -220,7 +222,7 @@ package classes.Characters
 			}
 			choices.push(redFlowerAttackWhatIsThisFuckingJungleBook);
 			choices.push(wolfsToothytooth);
-			if(!target.hasStatusEffect("Evasion Boost")) choices.push(dancesWithWolves);
+			if(!this.hasStatusEffect("Evasion Boost")) choices.push(dancesWithWolves);
 			choices.push(willItBleed);
 			choices[rand(choices.length)](target);
 		}
@@ -240,22 +242,9 @@ package classes.Characters
 				damage.multiply(0.5);
 				applyDamage(damageRand(damage, 15), this, target);
 				//If bleed:
-				if(!target.hasStatusEffect("Bleeding")) 
-				{
-					target.createStatusEffect("Bleeding", 1, 3, 5, 0, false, "Icon_Crying", "You’re bleeding! (1x)", true, 0,0xFF0000);
-					output("\n<b>Blood dribbles freely from the ragged wound.</b>");
-				}
-				else 
-				{
-					output("\n<b>The deepened cuts bleed faster!</b>");
-					// Add a stack and refresh duration
-					target.addStatusValue("Bleeding", 1, 1);
-					target.setStatusValue("Bleeding", 2, 3);
-				}
-				var stacks:int = target.statusEffectv1("Bleeding");
-				var rounds:int = target.statusEffectv2("Bleeding");
-				var damage2:int = target.statusEffectv3("Bleeding");
-				target.setStatusTooltip("Bleeding","You’re bleeding!\n" + damage2 + " bleed strength.\n" + stacks + " stack" + ((stacks > 1) ? "s":"") + ".\n" + rounds + " round" + ((rounds > 1) ? "s":"") + " remaining.");
+				if(!target.hasStatusEffect("Bleeding")) output("\n<b>Blood dribbles freely from the ragged wound.</b>");
+				else output("\n<b>The deepened cuts bleed faster!</b>");
+				CombatAttacks.applyBleed(target, 1, 3, 5);
 			}
 		}
 		//Dances With Wolves
@@ -281,22 +270,9 @@ package classes.Characters
 				//Causes bleed:
 				if(rand(5) == 0 && target.shields() <= 0)
 				{
-					if(!target.hasStatusEffect("Bleeding"))
-					{
-						output("\nHorribly unprotected as you are, there’s nothing stopping the blade hitting a vein and the merlot to start flowing down your [pc.skinFurScales], dripping in the dirt below your [pc.feet]. <b>You are bleeding.</b>");
-						target.createStatusEffect("Bleeding", 1, 3, 5, 0, false, "Icon_Crying", "You’re bleeding! (1x)", true, 0,0xFF0000);
-					}
-					else 
-					{
-						output("\n<b>The deepened cuts bleed faster!</b>");
-						// Add a stack and refresh duration
-						target.addStatusValue("Bleeding", 1, 1);
-						target.setStatusValue("Bleeding", 2, 3);
-					}
-					var stacks:int = target.statusEffectv1("Bleeding");
-					var rounds:int = target.statusEffectv2("Bleeding");
-					var damage2:int = target.statusEffectv3("Bleeding");
-					target.setStatusTooltip("Bleeding","You’re bleeding!\n" + damage2 + " bleed strength.\n" + stacks + " stack" + ((stacks > 1) ? "s":"") + ".\n" + rounds + " round" + ((rounds > 1) ? "s":"") + " remaining.");
+					if(!target.hasStatusEffect("Bleeding")) output("\nHorribly unprotected as you are, there’s nothing stopping the blade hitting a vein and the merlot to start flowing down your [pc.skinFurScales], dripping in the dirt below your [pc.feet]. <b>You are bleeding.</b>");
+					else output("\n<b>The deepened cuts bleed faster!</b>");
+					CombatAttacks.applyBleed(target, 1, 3, 5);
 				}
 			}
 		}
@@ -306,7 +282,7 @@ package classes.Characters
 		{
 			output("Lah staggers backwards, seemingly cringing away from you in fear - before snatching a torch out of the hand of a zil behind him and thrusting its lit end at your face.");
 			output("\n\n<i>“Burn, pig!”</i> he snarls.");
-			//{Thankfully your shield deflects it upwards.} {Your shield can’t stop it entirely and instinctively you throw your arms in the way. Ffffffuck that stings!}
+			// {Thankfully your shield deflects it upwards.} {Your shield can’t stop it entirely and instinctively you throw your arms in the way. Ffffffuck that stings!}
 			
 			if(combatMiss(this, target)) output("\nYou manage to sidestep the attack.");
 			else
@@ -317,7 +293,7 @@ package classes.Characters
 				if(rand(2) == 0 && !target.hasStatusEffect("Burning") && target.shields() <= 0)
   				{
   					output("\n<b>You are now on fire!</b>");
-  					target.createStatusEffect("Burning", rand(2)+2, 0, 0, 0, false, "DefenseDown", "Reduces your defense by five points and causes damage over time.", true, 0);
+					CombatAttacks.applyBurning(target, 2 + rand(2));
   				}
 			}
 		}
@@ -331,7 +307,7 @@ package classes.Characters
 			{
 				output(" Wind escapes your lungs as he grabs you around the neck, forcing you downwards in an arm-lock.");
 				output("\n\n<i>“Give in,”</i> he barks gruffly in your ear. <i>“Better now, before your wounds force you to.”</i>");
-				target.createStatusEffect("Grappled", 0, 35, 0, 0, false, "Constrict", "You’re pinned in a grapple.", true, 0);
+				CombatAttacks.applyGrapple(target, 35);
 			}
 		}
 	}

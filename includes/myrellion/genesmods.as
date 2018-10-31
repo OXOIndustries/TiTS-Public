@@ -59,7 +59,7 @@ public function geneLustIncrease():void
 	if (geneSubmissionLevel() >= 7) pc.lust(5);
 }
 
-public function genesModsExteriorRoomDecorator():Boolean
+public function genesModsExteriorRoomDecorator():void
 {
 	if (flags["GENES_MODS_ENTERED"] == undefined)
 	{
@@ -69,8 +69,6 @@ public function genesModsExteriorRoomDecorator():Boolean
 	{
 		output("\n\nTo the west are the jarringly modern white curves of Gene’s Mods. The entrance to the shop, as ever, yawns open a welcome to you.");
 	}
-
-	return false;
 }
 
 public function genesModsInteriorBonus():Boolean
@@ -127,7 +125,8 @@ public function genesModsInterior():void
 		
 		if (geneSubmissionLevel() >= 0 && geneSubmissionLevel() <= 2)
 		{
-			output("\n\n<i>“Captain Steele!”</i> Gene grins hugely when you step back into his airy shop. <i>“To what do I owe this rare pleasure?”</i>");
+			if(flags["GENE_TALKED_TO"] != undefined) output("\n\n<i>“Captain Steele!”</i> Gene grins hugely when you step back into his airy shop. <i>“To what do I owe this rare pleasure?”</i>");
+			else output("\n\n<i>“Welcome back!”</i> the fanfir man grins hugely when you step back into his airy shop. <i>“What can I do for you?”</i>");
 		}
 		else if (geneSubmissionLevel() >= 3 && geneSubmissionLevel() <= 6)
 		{
@@ -264,21 +263,21 @@ public function genesModsBuyStuff():void
 	{
 		if(flags["PURCHASED_GENES_GALO"] == undefined)
 		{
-			if(!chars["GENE"].hasItemByType(GaloMax)) chars["GENE"].inventory.push(new GaloMax());
+			if(!chars["GENE"].hasItemByClass(GaloMax)) chars["GENE"].inventory.push(new GaloMax());
 		}
-		else chars["GENE"].destroyItem(new GaloMax());
+		else chars["GENE"].destroyItemByClass(GaloMax, -1);
 	}
 	if(flags["GENE_UNLOCK_CERESPIRIN"] != undefined)
 	{
-		if(!chars["GENE"].hasItemByType(Cerespirin)) chars["GENE"].inventory.push(new Cerespirin());
+		if(!chars["GENE"].hasItemByClass(Cerespirin)) chars["GENE"].inventory.push(new Cerespirin());
 	}
-	else chars["GENE"].destroyItem(new Cerespirin());
+	else chars["GENE"].destroyItemByClass(Cerespirin, -1);
 	if(CodexManager.entryUnlocked("Muffstick"))
 	{
-		if(!chars["GENE"].hasItemByType(Muffstick)) chars["GENE"].inventory.push(new Muffstick());
+		if(!chars["GENE"].hasItemByClass(Muffstick)) chars["GENE"].inventory.push(new Muffstick());
 	}
-	else chars["GENE"].destroyItem(new Muffstick());
-	shopkeep = chars["GENE"];;
+	else chars["GENE"].destroyItemByClass(Muffstick, -1);
+	shopkeep = chars["GENE"];
 	itemScreen = mainGameMenu;
 	lootScreen = mainGameMenu;
 	useItemFunction = mainGameMenu;
@@ -902,7 +901,10 @@ public function genesModsBlowjob():void
 			output(" All of your instincts tell you that this is where you most belong -");
 			if (pc.isBiped()) output(" on your knees");
 			else output(" down");
-			output(" in front of a big, dominant male polishing his cock, and that fact combined with the sensations bathing your lips, nose and tongue envelopes you in a deep, golden bliss, your [pc.vagina] becoming wetter and wetter.");
+			output(" in front of a big, dominant male polishing his cock, and that fact combined with the sensations bathing your lips, nose and tongue envelopes you in a deep, golden bliss");
+			if(pc.hasVagina()) output(", your [pc.vagina] becoming wetter and wetter");
+			else if(pc.hasCock()) output(", your [pc.cock] becoming harder and harder");
+			output(".");
 		}
 		
 		output("\n\n<i>“That is exceptional,”</i> he murmurs, the tremors of his rich voice traveling down his cock and then your spine. <i>“The myr aren’t anywhere near as good as you at this, Steele. Too much teeth... no practice, you see...”</i> You make him trail off into a heartfelt rumble with a well-timed squeeze of the testicle.");
@@ -1171,7 +1173,7 @@ public function genesModsBellyrubRelease():void
 	
 	output("\n\n<i>“That’s enough for today, I think,”</i> you say breezily. <i>“If you’re a really good boy, though... maybe we’ll do it again.”</i>");
 	
-	output("\n\n<i>“You,”</i> replies Gene, gathering back all his deep, declamatory delivery, <i>“are a terrible [player.race], and I rue the day you ever darkened my threshold.”</i> You think you detect a chord of complete fascination runs through his words; whatever the case, you give him a big unashamed grin in response.");
+	output("\n\n<i>“You,”</i> replies Gene, gathering back all his deep, declamatory delivery, <i>“are a terrible [pc.raceShort], and I rue the day you ever darkened my threshold.”</i> You think you detect a chord of complete fascination runs through his words; whatever the case, you give him a big unashamed grin in response.");
 	processTime(3);
 	pc.lust(10+rand(5));
 	geneSubmissionLevel(-3);
@@ -1193,7 +1195,7 @@ public function genesModsBellyrubDeny():void
 	
 	output("\n\n<i>“That’s enough for today, I think,”</i> you say breezily. <i>“If you’re really good... and are extra polite... I’ll empty those big, frustrated balls of yours next time.?”</i> Gene stares at you, breast still heaving, his modest human cock hotly erect, palpably barely able to believe you.");
 	
-	output("\n\n<i>“You,”</i> he says eventually gathering back all his deep, declamatory delivery, <i>“are a terrible [player.type], and I rue the day you ever darkened my threshold.”</i> You think you detect a chord of complete fascination runs through his words, maybe even a thrill of submission; whatever the case, you give him a big unashamed grin in response.");
+	output("\n\n<i>“You,”</i> he says eventually gathering back all his deep, declamatory delivery, <i>“are a terrible [pc.raceShort], and I rue the day you ever darkened my threshold.”</i> You think you detect a chord of complete fascination runs through his words, maybe even a thrill of submission; whatever the case, you give him a big unashamed grin in response.");
 
 	geneSubmissionLevel(-3);
 	processTime(2);

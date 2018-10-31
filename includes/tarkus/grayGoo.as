@@ -35,8 +35,8 @@ public function encounterDasGooGray():void
 	
 	CodexManager.unlockEntry("Gray Goos");
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new GrayGoo());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new GrayGoo());
 	CombatManager.victoryScene(pcDefeatsGrayGooInTheNameOfLove);
 	CombatManager.lossScene(loseToGrayGooRouter);
 	CombatManager.displayLocation("GRAY GOO");
@@ -51,13 +51,13 @@ public function dontDoAnythingFromHardenAttack():void
 	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("FIGHT:\nGRAY GOO");
 	author("Savin");
-	//{PC +Lust, Goo -Lust}
+	// PC +Lust, Goo -Lust
 	output("The goo gives you a pleading look, but after a moment her now more-solid fingers plunge into her empty cooch anyway, jilling the slavering hole with abandon. Her synthetic voice cries out as she teases her nub of a clit, back arching as she slides a pair of fingers in up to the last knuckle. You feel a stirring in your [pc.groin] as the goo puts on a show for you, her eyes locking with yours as she puts on her lewd display. After a moment, she hops onto her feet, keeping to a low crouch as she continues to finger herself; she cups one of her oversized tits, bringing the teat up to her mouth to suckle on it, tongue swirling around her hard, silver areola.");
 	output("\n\n<i>“Like what you see, space cow" + pc.mfn("boy","girl","person") + "?”</i> she giggles, rolling onto all fours and giving you a full view of her jiggling ass. She reaches back around, sticking a few fingers back in her slit before humping back against them, thrusting faster and faster until you can see a wet sheen spilling down around her digits... which she promptly licks up, bringing it to her lips and cleaning off each finger with measured, sultry slowness. Licking her lips, she rises back to her feet, clearly done going it solo and ready for more!");
 	
 	// TODO Peep a better way to handle this
 	// GetHostileOfType? Index override? By unique-name?
-	var hostiles:Array = CombatManager.getHostileCharacters();
+	var hostiles:Array = CombatManager.getHostileActors();
 	for (var i:int = 0; i < hostiles.length; i++)
 	{
 		if (hostiles[i] is GrayGoo)
@@ -67,7 +67,7 @@ public function dontDoAnythingFromHardenAttack():void
 	}
 	
 	pc.lust(10);
-	CombatManager.continueCombat();	
+	CombatManager.continueCombat();
 }
 
 //[Quickie] (Masculine) {PC -Lust, Goo -Lust, Goo +HP}
@@ -91,7 +91,7 @@ public function quickieAfterGooHarden():void
 	}
 	pc.orgasm();
 	
-	var hostiles:Array = CombatManager.getHostileCharacters();
+	var hostiles:Array = CombatManager.getHostileActors();
 	for (var i:int = 0; i < hostiles.length; i++)
 	{
 		if (hostiles[i] is GrayGoo)
@@ -100,7 +100,7 @@ public function quickieAfterGooHarden():void
 		}
 	}
 	
-	CombatManager.continueCombat();	
+	CombatManager.continueCombat();
 }
 
 public function loseToGrayGooRouter():void
@@ -150,7 +150,7 @@ public function pcDefeatsGrayGooInTheNameOfLove():void
 }
 
 //Reprogram
-//{Requirement: Tech Specialist /or/ INT of 20+}
+// Requirement: Tech Specialist /or/ INT of 20+
 public function reprogramGrayGoosForYerPleasure():void
 {
 	clearOutput();
@@ -165,7 +165,7 @@ public function reprogramGrayGoosForYerPleasure():void
 	
 	CodexManager.unlockEntry("BI/G");
 	
-	if(CodexManager.entryViewed("BI/G") || flags["DECK13_CREW_TALK"] != undefined) output("\n\n<i>“Bell-Isle/Grunmann?”</i> you muse, watching the goo-girl reformat herself. <i>“Never heard of ‘em.”</i>");
+	if(!CodexManager.entryViewed("BI/G") && flags["DECK13_CREW_TALK"] == undefined) output("\n\n<i>“Bell-Isle/Grunmann?”</i> you muse, watching the goo-girl reformat herself. <i>“Never heard of ‘em.”</i>");
 	else output("\n\nYou watch the goo-girl reformat herself.");
 	output("\n\nAnother violent shudder and the goo-girl blinks as if waking from a long sleep. Her body quickly morphs itself into more... normal... human proportions: still voluptuous, but her tits slip down to a reasonable D-cup, and her butt and hips slim down to a more reasonable level. Were it not for her gray, shimmering exterior, she might just pass for human, now.");
 	output("\n\nTurning to you, she says, <i>“You are not on the crew manifest. ADDENDUM: Databanks corrupted. Re-setting security protocols to factory standards. How may I help you, master?”</i>");
@@ -174,12 +174,12 @@ public function reprogramGrayGoosForYerPleasure():void
 	clearMenu();
 	if(pc.HP() < pc.maxHP()) addButton(0,"Heal Me",healMeGrayGooYoureMyOnlyHopeDotDotDot,undefined,"Heal Me","Have the goo woman user her microsurgeons to heal you.");
 	else addDisabledButton(0,"Heal Me");
-	addButton(1,"Take Sample",takeASampleOfTheGrayGoo,undefined,"Sample","Collect a sample of the mysterious woman for... science!");;
+	addButton(1,"Take Sample",takeASampleOfTheGrayGoo,undefined,"Sample","Collect a sample of the mysterious woman for... science!");
 	addButton(14,"Leave",CombatManager.genericVictory);
 }
 
 //Heal Me
-//{Needs less than max HP}
+// Needs less than max HP
 public function healMeGrayGooYoureMyOnlyHopeDotDotDot():void {
 	clearOutput();
 	author("Savin");
@@ -224,7 +224,7 @@ public function getSomeGrayGoo():void {
 
 
 //Multicock Victory
-//{PC has 2+ cocks}
+// PC has 2+ cocks
 public function multiCockMayhem():void
 {
 	clearOutput();
@@ -253,7 +253,7 @@ public function multiCockMayhem():void
 		output(" your [pc.legOrLegs] to the crack of your [pc.butt], strong enough to spread your cheeks apart and bare your [pc.asshole] to the naked air. Breath catches in your throat as the goo’s tongue teases the tight-clenched ring of your ass, gentle yet forceful strokes that soon have you subconsciously relaxing your body. Biting your lip to contain your gasps of pleasure, you let your hands sink into the goo’s slippery, pliant body, at one moment groping her big, soft tits, and the next watching your hands delve into them, surrounded by a gooey prison of churning cyber-goo. It’s impossible to concentrate on that, though, as the silvery babe slowly presses her long, writhing tongue into your [pc.asshole], spreading you apart and pushing the tip into you.");
 		output("\n\nThe sensation is practically overwhelming, feeling the writhing, tentacle-like length of gooey micro-bots slithering through your ass, spreading your rectal passage wide. You shift your [pc.hips], rolling them back across the goo’s face, shuddering as her tongue slips almost out of you, only to thrust back in. Your back arches as you’re penetrated, hips moving instinctively as the goo-girl rims you; your hips bring your [pc.cocks] closer and closer to the goo’s chest-cunt, inching towards the spread cleavage between her massive mounds, the gash between them all but drooling in anticipation.");
 	}
-	//{Combine}
+	// Combine
 	output("\n\nSpurred on by the goo’s oral ministrations, you finally press into the slick slit between her tits. You both share a gasp as your [pc.cocks] spread");
 	output(" the forged lips of her silver pussy, spreading her whole body wide to take your multiple lengths together like only a goo can. You watch with glee as her torso deforms to take your [pc.cocks], widening and deepening to accommodate all the cockmeat you can offer her. And you’re happy to give it: the feeling of your cocks submerged in an undulating sea of slippery goo is almost too much for you, and it takes everything you have to hold back your orgasm.");
 	pc.cockChange();
@@ -272,6 +272,8 @@ public function multiCockMayhem():void
 	output("\n\nShe doesn’t let up until you do. Minutes pass as the goo-girl suckles from your exhausted body, head bobbing happily up and down your lengths, even getting her tits in on it, rubbing your rods between their soft, jiggling mounds until your back is arching with the overwhelming pleasure. Another orgasm rocks through your body, another rush of cum shooting from your lip-locked [pc.cocks] until the girl’s cheeks are bulging with a second wave of seed.");
 	output("\n\nSlurping it down with a happy hum, the gray goo finally releases your cocks, wiping a trickle of cum from her puffy lips and giving you a playful wink as she stands. <i>“Thanks for that!”</i> she beams, staggering to her feet. <i>“A little all-natural lubrication’s just what I needed! See ya around!”</i>");
 	output("\n\nYou start to speak, but the goo’s slipped off beyond the junk before you can say a word. With a fatigued sigh, you gather up your gear and stumble off.\n\n");
+	
+	for(var c:int = 0; c < pc.cockTotal(); c++) { enemy.loadInCunt(pc, 0); }
 	pc.energy(-5);
 	processTime(20+rand(5));
 	pc.orgasm();
@@ -331,7 +333,7 @@ public function mutualGooMasturbation():void
 }
 
 //Divide and Conquer (Goo Splits in half, double-teams)
-//{PC needs a ladyhole}
+// PC needs a ladyhole
 public function divideAndConquerGinasWithGoos():void
 {
 	clearOutput();
@@ -391,27 +393,27 @@ public function divideAndConquerGinasWithGoos():void
 	output("\n\n<i>“Okay!”</i> the first sister beams, giggling as she starts to slither away in the direction her sister pointed. <i>“Bye, sis! See you later!”</i>");
 	output("\n\n<i>“Bye!”</i> the other goo says, waving as she, too, wanders away, leaving you soaked in a pool of your own cum and discarded goo-bots.");
 	output("\n\nYou’re gonna be sore after that.\n\n");
-	pc.loadInAss(chars["GRAYGOO"]);
-	pc.loadInAss(chars["GRAYGOO"]);
-	pc.loadInAss(chars["GRAYGOO"]);
-	pc.loadInCunt(chars["GRAYGOO"], 0);
-	pc.loadInCunt(chars["GRAYGOO"], 0);
-	pc.loadInCunt(chars["GRAYGOO"], rand(pc.vaginas.length));
-	pc.loadInCunt(chars["GRAYGOO"], rand(pc.vaginas.length));
-	pc.loadInCunt(chars["GRAYGOO"], rand(pc.vaginas.length));
-	pc.loadInCunt(chars["GRAYGOO"], rand(pc.vaginas.length));
+	pc.loadInAss(enemy);
+	pc.loadInAss(enemy);
+	pc.loadInAss(enemy);
+	pc.loadInCunt(enemy, 0);
+	pc.loadInCunt(enemy, 0);
+	pc.loadInCunt(enemy, rand(pc.vaginas.length));
+	pc.loadInCunt(enemy, rand(pc.vaginas.length));
+	pc.loadInCunt(enemy, rand(pc.vaginas.length));
+	pc.loadInCunt(enemy, rand(pc.vaginas.length));
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
 	pc.energy(-5);
 	CombatManager.genericVictory();
 }
 
 //PC Defeat
 //PC gets Body-Suited and Fucked in Every Hole
-//{Omni-gender. In soviet Tarkus, goo wear you.}
+// Omni-gender. In soviet Tarkus, goo wear you.
 public function pcDefeatByGooBitch():void
 {
 	author("Savin");
@@ -464,7 +466,7 @@ public function pcDefeatByGooBitch():void
 		output("\n\nYou shudder as the goo surrounding your dong shifts and writhes, sending shockwaves of pleasure through your body, nearly enough to knock your off your [pc.feet].");
 		if(pc.cocks[pc.biggestCockIndex()].cType != GLOBAL.TYPE_EQUINE) output(" You gasp and groan as the glistening waves of liquid metal shape your member into the form of an immense, equine-like phallus.");
 	}
-	//{Combine all cock variants:}
+	// Combine all cock variants:
 	output("\n\nHappily jerking on her big, new cock, the goo-girl takes a few steps forward, twisting her head as if looking for something. <i>“Hmm. Where’s a cute lil’ raskvel when you need one, huh? Ooh! I think I hear one over there!”</i>");
 	output("\n\nA few more paces brings you around a nearby pile of junk and right into the waiting wrench of a diminutive brown raskvel girl. Seeing what’s coming for her, though, she gives a terrified yelp and drops her wrench, trying to escape. You and your gooey captor are much too fast for the little thing, though, and in a flash she’s been barreled to the ground, pinned beneath your [pc.legOrLegs] as your massive prick slaps down onto her belly, half as large as she is!");
 	output("\n\n<i>“G-get away from me!”</i> the scaley wench cries out, squirming underneath the goo’s grasp. <i>“You can’t even give me eggs!”</i>");
@@ -485,7 +487,8 @@ public function pcDefeatByGooBitch():void
 
 	output("\n\nAnd grow the orgy does. Just as the male rask blows his load in your ass, filling you with his hot, creamy seed, another male seems to take his place, another cock slamming into the abused hole. You cry out, just in time for another cock to find your mouth an inviting target, plunging it.");
 	//This should be changed to a male raskvel once they're done.
-	pc.loadInAss(chars["RASKVEL_MALE"]);
+	var ppRaskvel:RaskvelMale = new RaskvelMale();
+	pc.loadInAss(ppRaskvel);
 
 	output("\n\n<i>“Oh, wow, there’s SO MANY!”</i> the googirl giggles into your ear, twisting your head just enough to let you see a growing crowd of rask boys clambering over the junk toward the sounds of rampant sex. <i>“Oooh, you’re gonna get me so much juice!”</i>");
 
@@ -498,23 +501,24 @@ public function pcDefeatByGooBitch():void
 	processTime(120+rand(10));
 	pc.exhibitionism(1);
 	//This should be changed to a male raskvel once they're done.
-	pc.loadInAss(chars["RASKVEL_MALE"]);
-	pc.loadInMouth(chars["RASKVEL_MALE"]);
-	pc.loadInAss(chars["RASKVEL_MALE"]);
-	pc.loadInMouth(chars["RASKVEL_MALE"]);
-	pc.loadInAss(chars["RASKVEL_MALE"]);
-	pc.loadInMouth(chars["RASKVEL_MALE"]);
-	pc.loadInAss(chars["RASKVEL_MALE"]);
-	pc.loadInMouth(chars["RASKVEL_MALE"]);
-	pc.loadInAss(chars["RASKVEL_MALE"]);
-	pc.loadInMouth(chars["RASKVEL_MALE"]);
-	pc.loadInAss(chars["RASKVEL_MALE"]);
-	pc.loadInMouth(chars["RASKVEL_MALE"]);
-	pc.loadInAss(chars["RASKVEL_MALE"]);
-	pc.loadInMouth(chars["RASKVEL_MALE"]);
+	pc.loadInAss(ppRaskvel);
+	pc.loadInMouth(ppRaskvel);
+	pc.loadInAss(ppRaskvel);
+	pc.loadInMouth(ppRaskvel);
+	pc.loadInAss(ppRaskvel);
+	pc.loadInMouth(ppRaskvel);
+	pc.loadInAss(ppRaskvel);
+	pc.loadInMouth(ppRaskvel);
+	pc.loadInAss(ppRaskvel);
+	pc.loadInMouth(ppRaskvel);
+	pc.loadInAss(ppRaskvel);
+	pc.loadInMouth(ppRaskvel);
+	pc.loadInAss(ppRaskvel);
+	pc.loadInMouth(ppRaskvel);
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
+	pc.shower();
 	pc.energy(-5);
 	CombatManager.genericLoss();
 }
@@ -600,10 +604,13 @@ public function cockVariantForGrayGooKirbutashis():void
 	output("\n\n<i>“Okay! Okay! I’m not in the slave-taking business!”</i> the blob shouts. She meekly reforms beside you, barely even resembling her original appearance. It’s apparent just how much that little masturbatory session took out of her.");
 	output("\n\n<i>“But you gotta admit you enjoyed it as much as I did.”</i>");
 	output("\n\nA raising hand is the most you’ll give her, still a tad out of breath. You think she rolled her eyes in response, but there’s no telling. Despite her words to the contrary, you imagine your predicament would have been entirely different had she the strength to subdue you. With that chilling thought, you see yourself away and back to where you lost your gear.\n\n");
+	
+	enemy.loadInCunt(pc, 0);
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
+	pc.shower();
 	pc.energy(-5);
 	CombatManager.genericLoss();
 }
@@ -666,6 +673,7 @@ public function gooGooEnvelopsCunts():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
+	pc.shower();
 	pc.energy(-5);
 	CombatManager.genericLoss();
 }

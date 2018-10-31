@@ -2,17 +2,15 @@ import classes.Creature;
 import classes.Items.Accessories.Minesweeper;
 public function tryEncounterLandmines():Boolean
 {
+	if (pc.accessory is Minesweeper) return false;
+	if (flags["KATTOM_LOCATION"] == currentLocation) return false;
+	
 	var hitChance:int = 100;
-	if(pc.hasItem(new Hoverboard())) hitChance += 200;
+	if(pc.hasItemByClass(Hoverboard)) hitChance += 200;
 	
 	if (rand(hitChance) <= 2)
 	{
 		IncrementFlag("ENCOUNTERED_LANDMINES");
-
-		if ((pc as Creature).accessory is Minesweeper)
-		{
-			return false;
-		}
 
 		if (pc.characterClass == GLOBAL.CLASS_SMUGGLER)
 		{
@@ -30,7 +28,7 @@ public function tryEncounterLandmines():Boolean
 public function encounterLandmines():void
 {
 	output("As you’re making your way through the caverns connecting the myr front lines, your");
-	if(pc.hasItem(new Hoverboard())) output(" hoverboard suddenly dips and bumps into");
+	if(pc.hasItemByClass(Hoverboard)) output(" hoverboard suddenly dips and bumps into");
 	else output(" [pc.foot] suddenly hits");
 	output(" something heavy and metallic. You only have the span of a heartbeat to think before a shrill whine echoes through the cavern and a little metal ball pops up from the ground, no bigger than your fist.");
 
@@ -46,7 +44,7 @@ public function encounterLandmines():void
 	}
 	else
 	{
-		//{if Failed: PC takes heavy damage + Lust}
+		// if Failed: PC takes heavy damage + Lust
 		output("\n\nYou have just enough time to scream before the mine detonates. A deafening explosion rocks the cavern, throwing you back against the far wall with concussive force. Shrapnel and debris slam into you, tearing into your");
 		if (pc.shields() > 0) output(" shields");
 		else if (pc.hasArmor()) output(" [pc.armor]");
@@ -55,18 +53,11 @@ public function encounterLandmines():void
 
 		output("\n\nBy the void, it isn’t deadly, but you quickly find your flesh reddening, sensitivity and desire spreading through your body. What you wouldn’t give for a nice ant-cooch to lick right about now... wait, what?");
 
+		var physDamage:Number = (pc.shields() > 0 ? 20 : 40);
+		var lustDamage:Number = 40;
+		applyDamage(new TypeCollection( { kinetic: physDamage, pheromone: lustDamage }, DamageFlag.BYPASS_SHIELD, DamageFlag.PENETRATING, DamageFlag.EXPLOSIVE ), null, pc, "minimal");
+		pc.shieldsRaw = 0;
 		processTime(20);
-
-		pc.lust(40);
-		if (pc.shields() == 0)
-		{
-			pc.HPRaw -= pc.HPMax() / 2;
-		}
-		if (pc.shields() > 0)
-		{
-			pc.shieldsRaw = 0;
-			pc.HPRaw -= pc.HPMax() / 3;
-		}
 	}
 
 	clearMenu();

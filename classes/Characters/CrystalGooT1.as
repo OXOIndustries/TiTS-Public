@@ -50,8 +50,8 @@ package classes.Characters
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "";
-			this.customDodge = "The goo's liquid flexibility allows it to handily avoid your attack.";
-			this.customBlock = "The goo's liquidity absorbs a great deal of punishment - without taking damage.";
+			this.customDodge = "The goo’s liquid flexibility allows it to handily avoid your attack.";
+			this.customBlock = "The goo’s liquidity absorbs a great deal of punishment - without taking damage.";
 			this.isPlural = false;
 			
 			baseHPResistances = new TypeCollection();
@@ -71,6 +71,7 @@ package classes.Characters
 			
 			armor = new GooeyCoverings();
 			armor.defense = 10;
+			armor.resistances.addFlag(DamageFlag.MIRRORED);
 			armor.hasRandomProperties = true;
 			
 			this.rangedWeapon = new EmptySlot();
@@ -149,7 +150,8 @@ package classes.Characters
 			isUniqueInFight = true;
 			btnTargetText = "GooAmbusher";
 			sexualPreferences.setRandomPrefs(2 + rand(3));
-			
+			sexualPreferences.setPref(GLOBAL.SEXPREF_CUMMY, sexualPreferences.getRandomLikesFactor());
+			if(rand(2) == 0) sexualPreferences.setPref(GLOBAL.SEXPREF_SWEAT, sexualPreferences.getRandomLikesFactor());
 			Randomise();
 			
 			this._isLoading = false;
@@ -179,7 +181,7 @@ package classes.Characters
 		{
 			if (hasStatusEffect("GooCamo"))
 			{
-				long = "The ganrael is hidden among the stones and fungi at the moment, prowling for the best direction to strike from. Disturbing scuttling sounds echo in the chamber, and you’ve no doubt that you’ll get another look all too soon.";		
+				long = "The ganrael is hidden among the stones and fungi at the moment, prowling for the best direction to strike from. Disturbing scuttling sounds echo in the chamber, and you’ve no doubt that you’ll get another look all too soon.";
 			}
 			else if (!hasStatusEffect("Unarmored"))
 			{
@@ -389,12 +391,12 @@ package classes.Characters
 				
 				missed = combatMiss(this, target, -1, 0.5);
 				if (missed && target.hasWings()) output(" It connects, but your wings keep you upright anyway.");
-				else if (missed && !target.hasWings()) output(" You easily hop over it.");
+				else if ((missed && !target.hasWings()) || target.isPlanted()) output(" You easily hop over it.");
 				else
 				{
-					output(" It takes out your support and you crash to the cave floor!");
+					output(" It takes out your support and you crash to the cave floor! <b>You’ve been tripped!</b>");
 					applyDamage(new TypeCollection( { kinetic: 7 + rand(5) } ), this, target, "minimal");
-					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped!", true, 0);
+					CombatAttacks.applyTrip(target);
 				}
 			}
 			else
@@ -407,13 +409,13 @@ package classes.Characters
 				missed = combatMiss(this, target, -1, 3);
 
 				output("The ganrael tries to stick to you, clinging at you with gooey fingers and being a nuisance.");
-				if (missed) output(" You manage to keep away from it.");
+				if (missed || target.isPlanted()) output(" You manage to keep away from it.");
 				else
 				{
 					output(" Your [pc.foot] slips on its gooey trunk and you stumble, landing right on the alien’s body! It drags you to the ground, oozing warm tongues of flesh into your intimate places. Using all your focus, you");
 					if (target.lust() >= target.lustMax() * 0.66) output(" barely");
-					output(" resist its caresses and roll away.");
-					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped!", true, 0);
+					output(" resist its caresses and roll away. <b>You’ve been tripped!</b>");
+					CombatAttacks.applyTrip(target);
 					applyDamage(new TypeCollection( { tease: 5 + rand(3) } ), this, target, "minimal");
 				}
 			}

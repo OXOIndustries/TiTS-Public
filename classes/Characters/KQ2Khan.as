@@ -198,7 +198,7 @@ package classes.Characters
 			
 			// enemy AI
 			var enemyAttacks:Array = [];
-			if (!target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Disarmed")) enemyAttacks.push( { v: arcCaster, w: 40 } );
+			if (!hasStatusEffect("Stunned") && !hasStatusEffect("Disarmed")) enemyAttacks.push( { v: arcCaster, w: 40 } );
 			enemyAttacks.push( { v: labGirlsStriptease, w: 10 } );
 			if (!target.hasStatusEffect("Stunned")) enemyAttacks.push( { v: lustbang, w: 30 } );
 			if (lust() >= 110 && !hasStatusEffect("Worship Cooldown")) enemyAttacks.push( { v: ballWorship, w: lust() } );
@@ -377,7 +377,7 @@ package classes.Characters
 		override public function getCombatDescriptionExtension():void
 		{
 			var numDronesAlive:int = 0;
-			var hostiles:Array = CombatManager.getHostileCharacters();
+			var hostiles:Array = CombatManager.getHostileActors();
 			
 			for (var i:int = 0; i < hostiles.length; i++)
 			{

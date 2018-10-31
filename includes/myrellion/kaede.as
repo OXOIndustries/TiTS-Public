@@ -129,7 +129,7 @@ public function kaedeMyrellionDrinks():void
 	output(". <i>“I guess. It’s nice having a steady job for once. I don’t know if Anno ever told you, but for a long time I was struggling just to eat noodles and crackers more often than not.”</i>");
 	
 	output("\n\nYou shake your head - no, Anno never mentioned. Her tail flicks a little in response, though she says nothing.");
-	if (pc.originalRace == "ausar") output(" You’re sure that was a relieved gesture, at least.");
+	if (pc.originalRace == "half-ausar") output(" You’re sure that was a relieved gesture, at least.");
 	output(" You and Kaede take a seat at the bar, and Kaede flashes a pair of fingers to the bartender.");
 	
 	output("\n\nA moment later, and a quick word with the ausar girl working behind the bar, and you’ve both got a whiskey on the rocks sitting in front of you.");
@@ -177,7 +177,7 @@ public function kaedeMyrellionTalkJob():void
 	
 	output("\n\n<i>“You bought a ship? That’s not cheap,”</i> you say, remembering what Kaede mentioned about noodles and crackers just a few minutes ago.");
 	
-	output("\n\nShe gives you a wry look. <i>“It wasn’t. I’m still paying </i>Talon<i> off, a chunk out of every paycheck I get. I’m so far in debt over her I can barely see the light, but she’s worth every credit. Every single one,”</i> Kaede says, her lips softening into a far-away smile.");
+	output("\n\nShe gives you a wry look. <i>“It wasn’t. I’m still paying </i>Talon<i> off, a chunk out of every paycheck I get. I’m so far in debt over her I can barely see the light, but she’s worth every " + (isAprilFools() ? "dogecoin" : "credit") + ". Every single one,”</i> Kaede says, her lips softening into a far-away smile.");
 	
 	output("\n\n<i>“Being out here, in space, seeing these strange planets... this is everything I ever wanted. I wouldn’t trade it for the world.”</i>");
 	
@@ -201,7 +201,7 @@ public function kaedeMyrellionTalkRenWorld():void
 
 	output("<i>“So, this RhenWorld contract...”</i>");
 	
-	output("\n\nKaede blushes, cheeks reddening like rosepetals as you start to ask your question. <i>“I, uh, got lucky is all,”</i> she says, running a hand through her crimson hair. <i>“I bumped into a V.P. of the company in an elevator on Tavros. We, uh.... we hit it off, I guess, and she invited me to come do a few jobs for the company.”</i>");
+	output("\n\nKaede blushes, cheeks reddening like rosepetals as you start to ask your question. <i>“I, uh, got lucky is all,”</i> she says, running a hand through her crimson hair. <i>“I bumped into a V.P. of the company in an elevator on Tavros. We, uh... we hit it off, I guess, and she invited me to come do a few jobs for the company.”</i>");
 	
 	output("\n\n<i>“You hit it off, huh?”</i>");
 	
@@ -217,7 +217,7 @@ public function kaedeMyrellionTalkRenWorld():void
 	flags["HEARD_ASHINARI"] = 1;
 	output("\n\n<i>“Must be worth it. They’ve made a pretty big deal with the, uh, something or other Federation here. The ones that control pretty much the whole planet, anyway. From what Ashinari told me, the ant-folk here are working hard to get off-worlders invested here. They’re giving away mining rights away like candy. They’ve got no use for Oxonium, Thorolium, a bunch of other rare elements. Not to mention there’s gold and silver and all that to be had. It’s a rich planet, and a lot of the hard work’s already done. After all, the myr live underground to begin with. Plenty of caverns and tunnels to get RhenWorld and the other mega-corps started.”</i>");
 	
-	output("\n\nInteresting. <i>“I knew XenoGen was interested in the golds,”</i> you say, thinking back to your initial meeting with Juro, and the hordes of XenoGen employees you’ve seen wandering around. <i>“So the Federation’s courting mining companies, now?”</i>");
+	output("\n\nInteresting. <i>“I knew Xenogen was interested in the golds,”</i> you say, thinking back to your initial meeting with Juro, and the hordes of Xenogen employees you’ve seen wandering around. <i>“So the Federation’s courting mining companies, now?”</i>");
 	
 	output("\n\nKaede nods, taking a big swig of whiskey to mask the lingering traces of her bashful blush. <i>“I guess so? Sorry, I’m not really up to date on xeno-politics. I know things are pretty tense around here, though, especially with the Confederate fleet up in orbit. Everyone looks like they’re sweating bullets here.”</i>");
 	
@@ -362,7 +362,7 @@ public function kaedeMyrellionBarFlirt():void
 	
 	output("\n\n<i>“I guess,”</i> she says. Her human side is trying awfully hard to be coy about it, but you can see the way her fluffy red tail starts swishing a little faster behind her that she’s enjoying your presence, and your growing closeness.");
 
-	//{If PC's fucked Kaede before:
+	// If PC's fucked Kaede before:
 	if (hasFuckedKaede())
 	{
 		output("\n\nYou hand slips down to stroke the wagging bush of canid tail behind her, making the halfbreed girl moan softly. <i>“What do you say we get out of here?”</i> you suggest, letting your hand play down from her tail to the tight butt beneath it.");
@@ -649,10 +649,7 @@ public function kaedeMyrellionSucknRide():void
 	clearOutput();
 	kaedeHeader(true);
 
-	output("Your eyes wander inexorably towards the turgid red shaft resting on your belly.");
-	if (pc.race().indexOf("ausar") != -1) output(" Now that’s one doggy bone you can’t wait to lick!");
-	else output(" You can’t help but lick your lips at the sight of it.");
-	output(" Your hand slips down and wraps around her cock, and you suck in a sharp breath as you feel the hotness of it, more than a human’s ought to be, and diamond hard between your fingers. Kaede moans, leaning back on her knees and cupping one of her breasts as you start to tentatively stroke her length.");
+	output("Your eyes wander inexorably towards the turgid red shaft resting on your belly. " + pc.catDog("You can’t help but lick your lips at the sight of it.", "Now that’s one doggy bone you can’t wait to lick!", false) + " Your hand slips down and wraps around her cock, and you suck in a sharp breath as you feel the hotness of it, more than a human’s ought to be, and diamond hard between your fingers. Kaede moans, leaning back on her knees and cupping one of her breasts as you start to tentatively stroke her length.");
 	
 	output("\n\n<i>“Oooh,”</i> she purrs, starting to move her hips. <i>“That’s nice...”</i>");
 	
@@ -669,7 +666,7 @@ public function kaedeMyrellionSucknRide():void
 	
 	output("\n\nYou look up at her, in time to see the cute halfbreed chewing on her lip and blushing like a rose. She reaches an unsure hand down to stroke your [pc.hair]. You answer the sweet gesture with a swirl of your tongue around the still-flaccid ball of her knot, sending a throbbing shudder through her prick. Something delightfully warm and sticky smears onto the back of your throat from where her crown is nestled, and the salty scent of pre-cum roils through your senses.");
 	// {if bimbo/Treated/cum-dependant:
-	if (pc.isBimbo() || pc.isTreated() || pc.isDependant(Creature.DEPENDANT_CUM)) output(" You wish you could just suck this little cutie off until she gives you a big, hot load of spunk to swallow down... but then you wouldn’t get to shove it in your [pc.vagOrAss]!");
+	if (pc.isBimbo() || pc.isTreated() || pc.isCumSlut()) output(" You wish you could just suck this little cutie off until she gives you a big, hot load of spunk to swallow down... but then you wouldn’t get to shove it in your [pc.vagOrAss]!");
 	
 	output("\n\nThe thought of Kaede’s knotty cock going somewhere other than your mouth spurs you on, urging you to slather her shaft with a nice, thick coating of spittle. You work your tongue from base to crown and down again, lavishing every inch of red puppy prick with wet affection. She answers your motions with cute little moans and twitches of her hips, bucking against your lips. You let her have her fun, thrusting her hips into you until she sounds like she’s barely holding on. Kaede cups her breasts, squeezing her nipples and moaning like a lusty whore. You enjoy every second of her sensual show until you’re more than satisfied with the glaze of spit-lube coating her cock.");
 	
@@ -678,10 +675,10 @@ public function kaedeMyrellionSucknRide():void
 	else output(" against your thigh");
 	output(".");
 	
-	output("\n\nA second of silent tension passes, Kaede staring at you, and you steadying yourself before you take the plunge. Finally, she gives you a little nod, and you start your slow descent. Your fingers wrap around Kaede’s spit-slicked cock, angling it towards the waiting");
-	if (pc.hasVagina()) output(" lips");
-	else output(" ring");
-	output(" of your [pc.vagOrAss]. Your lover shudders as her pointed tip brushes the entrance to your hole, but you hold her steady as your [pc.hips] start to slide downwards.");
+	output("\n\nA second of silent tension passes, Kaede staring at you, and you steadying yourself before you take the plunge. Finally, she gives you a little nod, and you start your slow descent.");
+	if(pc.genitalLocation() <= 1) output(" Your fingers wrap around Kaede’s spit-slicked cock, angling it towards the waiting " + (pc.hasVagina() ? "lips" : "ring") + " of your [pc.vagOrAss].");
+	else output(" You moan as Kaede takes her spit-slicked cock and angles it towards the waiting " + (pc.hasVagina() ? "lips" : "ring") + " of your [pc.vagOrAss].");
+	output(" Your lover shudders as her pointed tip brushes the entrance to your hole, but you hold her steady as your [pc.hips] start to slide downwards.");
 	
 	output("\n\nYour breath catches in your throat, feeling tendrils of electric pleasure writhing through your body when Kaede’s cock starts to spread your [pc.vagOrAss] open.");
 	if (pc.hasCock())
@@ -689,7 +686,10 @@ public function kaedeMyrellionSucknRide():void
 		output(" Your own [pc.cock] jumps in response, feeling the pressure on your");
 		if (!pc.hasVagina()) output(" prostate");
 		else output(" g-spot");
-		output(" reciprocating through your own prick. You can’t help but wrap a few fingers around your [pc.cock], stroking yourself while you slide down Kaede’s length.");
+		output(" reciprocating through your own prick. You");
+		if(pc.genitalLocation() <= 1) output(" can’t help but wrap a few fingers around your [pc.cock], stroking yourself");
+		else output("r [pc.cock] feels terribly neglected when your reach fails, all");
+		output(" while you slide down Kaede’s length.");
 	}
 	output(" A moan escapes your lips, voice warbling as you feel the stiff, pointed shaft of Kaede’s prick spear your hole.");
 	
@@ -1136,7 +1136,7 @@ public function cumInKaedesAssDuringCassThreesome():void
 	output("\n\n<i>“D-do it!”</i> she manages to cry, pulling herself off of Cass’s tit long enough to try and speak. <i>“I-I wanna feel what Cass does! Give it to me!”</i>");
 	output("\n\nHer last word trails off into a mindless scream of pleasure as you pound her ass and blow your load, hammering all the [pc.cumNoun] you have to offer deep into her tight little pucker.");
 	pc.cockChange();
-	output("\n\n<i>“ You can feel her respond with another, final orgasm of her own - just a little shudder and a weak clench of her backside around your cock, but Cass is more than happy to moan about how <i>“how fucking </i>stuffed<i>”</i> she is with Kaede’s cum.");
+	output("\n\n<i>“You can feel her respond with another, final orgasm of her own - just a little shudder and a weak clench of her backside around your cock, but Cass is more than happy to moan about how <i>“how fucking </i>stuffed<i>”</i> she is with Kaede’s cum.");
 	output("\n\n<i>“Oh... Oh God,”</i> Kaede mumbles, face-planting between Cass’s tits. <i>“Everything is sore... and it feels <b>amazing</b>.”</i>");
 	output("\n\n<i>“I know, sweetheart,”</i> Cass sighs, stroking her lover’s hair. As she does, you rock your hips back until your cockhead pops out of Kaede’s gaping behind, ");
 	if(pc.cumQ() >= 250) output("filled with so much cum you could practically spoon it out.");
@@ -1189,7 +1189,7 @@ public function joinInCleaningUpCassKaedePostScene():void
 	addButton(0,"Next",postCassKaedeOrgasmEpilogue);
 }
 
-//{Combine ALL}
+// Combine ALL
 public function postCassKaedeOrgasmEpilogue():void
 {
 	clearOutput();
@@ -1280,7 +1280,7 @@ public function girlsCassMeetingEpilogue():void
 	output("Cass’s final orgasm barely elicits a whimper from the sweaty, cum-drenched kitty. It’s taken many, many rounds of vigorous oral sex to get her this far, but finally the treated slut’s starting to wear out despite all that sexual stamina. With a heavy sigh of contentment, you feel Cass let out the last of her tension around your sore tongue in a strained trickle of fem-cum, adding to the veritable lake the two of you have made on her couch.");
 	output("\n\nYou’re pretty sure it’s water-proof, at least.");
 	output("\n\nLeaving her insensate on the couch, you stagger up onto your [pc.feet] and collect the gear you’ve left scattered all over the floor. While you’re wearily re-equipping yourself, you hear Kaede coming back downstairs, tiptoeing around a now-sleeping Cass to give you a big kiss on the lips");
-	if(silly || pc.race() == "half-ausar" || pc.race() == "ausar") output(", which spirals into her spending a few moments licking your face clean of her lover’s juices");
+	if(silly || pc.isAusar()) output(", which spirals into her spending a few moments licking your face clean of her lover’s juices");
 	output(".");
 	output("\n\n<i>“Thanks for that, [pc.name],”</i> she whispers, giving you a firm hug. <i>“I’ve never... ever... been this worn out by someone before.”</i>");
 	output("\n\nGiven that she knows Anno, that’s probably saying something.");

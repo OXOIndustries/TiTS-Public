@@ -11,7 +11,7 @@ package classes.Items.Apparel
 	 */
 	public class LibrarianOutfit extends ItemSlotClass
 	{
-		
+		//Bess Only?
 		public function LibrarianOutfit() 
 		{
 			this._latestVersion = 1;

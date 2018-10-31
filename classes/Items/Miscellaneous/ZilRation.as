@@ -3,11 +3,12 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.Util.InCollection;
 	import classes.StringUtil;
+	import classes.Engine.Utility.num2Text;
 	
 	public class ZilRation extends ItemSlotClass
 	{
@@ -33,7 +34,7 @@
 			this.description = "a tasty-smelling zil ration";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "These are dried rations appear to be made from local fruits and plant nectars. There’s a good chance that something in it would make you sick if you didn’t have a microsurgeon-boosted immune system. In your case, you’ll probably just undergo a mutation or two.";
+			this.tooltip = "These are dried rations appear to be made from local fruits and plant nectars. There’s a good chance that something in it would make you sick if you didn’t have a microsurgeon-boosted immune system. In your case, you’ll probably just undergo a mutation or two.\n\n<b>Known to cause slight amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -67,7 +68,7 @@
 			if(target is PlayerCharacter) {
 				//Consume:
 				kGAMECLASS.output("You unwrap the dried fruits and find them to be surprisingly tasty. They’re both sweet and a touch spicy to your tongue at the some time. Some of the rations even have a nectar glaze applied to them to make them even more delicious. Before you know it, they’re gone.");
-				
+				target.taint(1);
 				//Stat TFs before everything!
 				if(rand(3) == 0 && changes < changeLimit && target.libido() < 40) {
 					if(target.libido() < 10) kGAMECLASS.output("\n\nIdly daydreaming as you examine the lingering taste in your mouth, you find yourself considering the zil and their oddly sexual rituals and society. Do they try to fuck every stranger they meet? What would it be like to live like that.... You shake your head to clear the errant thoughts away, a slight blush on your [pc.skin].");
@@ -295,7 +296,7 @@
 				else kGAMECLASS.output("them");
 				kGAMECLASS.output(" open to find");
 				if(target.vaginas[x].clits > 1) {
-					kGAMECLASS.output(" yourself with " + kGAMECLASS.num2Text(target.vaginas[x].clits - 1) + " less clit");
+					kGAMECLASS.output(" yourself with " + num2Text(target.vaginas[x].clits - 1) + " less clit");
 					if(target.vaginas[x].clits > 2) kGAMECLASS.output("s");
 					if(target.vaginaTotal() > 1) kGAMECLASS.output(" at each channel");
 					kGAMECLASS.output(" than before and");
@@ -599,7 +600,7 @@
 
 					if(y >= 13) kGAMECLASS.output(" Inch after inch, it shortens rapidly until you’ve lost well over a foot of cock flesh.");
 					else if(y >= 9) kGAMECLASS.output(" An inch at a time, it shortens until you’ve lost the better part of a foot.");
-					else if(y >= 2) kGAMECLASS.output(" It recedes until you’ve lost " + kGAMECLASS.num2Text(Math.round(y)) + " inches from your length.");
+					else if(y >= 2) kGAMECLASS.output(" It recedes until you’ve lost " + num2Text(Math.round(y)) + " inches from your length.");
 					else if(y >= 1.1) kGAMECLASS.output(" Gradually, you lose well over an inch.");
 					else kGAMECLASS.output(" Gradually, you lose about an inch.");
 					target.cocks[x].cLengthRaw -= y;

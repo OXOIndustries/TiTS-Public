@@ -251,7 +251,7 @@ public function fuckHerYouNancy(fromRaceTalk:int = 0):void
 		else output("under your arm");
 		output(" and hurriedly pulling you through the curtain. Renvra leads you through a short span of the back room, to a small office with shaded windows and <i>“Quartermaster”</i> printed on the door. She unlocks it and leads you in, her hands already moving to the buttons on her uniform.\n\n");
 	}
-	//{Combine:}
+	// Combine:
 	output("In the blink of an eye, Renvra’s uniform hangs limply from her shoulder, revealing the hefty swells of her F-cup breasts, each tipped with a rose-red nipple that stiffens under your gaze. She shrugs her shirt off, leaving herself with hands planted in her hips, black eyes wandering over your body. You slip off your [pc.gear] and go to her, pulling the halfbreed tight against yourself and grabbing one of her tits. Your fingers disappear into the startlingly soft boobflesh, a stark and pleasant contrast to the hardened woman they’re attached to. Renvra’s feelers twitch through her short hair, and her chitinous hands wrap around your waist. You gasp as her fingers brush your bare ass, squeezing your cheeks hard enough to make you groan.");
 
 	output("\n\nThe moment your mouth is open, her lips are hot against yours, her tongue thrusting in between them. You melt into the surprise attack, squeezing Ren’s breasts and ass in turn, exploring every inch of her body until your hands find the loops of her belt. You yank it down with a single, rough motion, dropping her pants down around her ankles. More than a foot of thick, half-hard, horse-shaped ovipositor drops free between her legs. The thankfully spine-free flare of her ovicock throbs with anticipation, and its X-shaped slit glistens with a viscous pink moisture.");
@@ -281,7 +281,7 @@ public function fuckHerYouNancy(fromRaceTalk:int = 0):void
 	if(pc.hasCock()) addButton(0,"FuckHerButt",buttFuckRenvra,undefined,"Buttfuck Her","Flop Renvra’s oversized cock out of the way and sink your dick in her tight ass.");
 	else addDisabledButton(0,"FuckHerButt","Buttfuck Her","You need a penis to be able to put it in her butt.");
 	addButton(1,"Bend Over",bendItLikeBeckhamForRenvra,undefined,"Bend Over","Bend over Renvra’s desk and let her fuck your [pc.vagOrAss] with her ovipositor-cock.");
-	if((pc.hasCock() && pc.cockThatFits(renvra.cockCapacity(0)) >= 0) || pc.lowerUndergarment.hardLightEquipped || "PCHasDildo" == "9999") 
+	if((pc.hasCock() && pc.cockThatFits(renvra.cockCapacity(0)) >= 0) || pc.hasHardLightEquipped() || "PCHasDildo" == "9999") 
 	{
 		if(pc.hasCock() && pc.cockThatFits(renvra.cockCapacity(0)) >= 0) addButton(2,"Urethra Fuck",fuckRenvrasUrethra,undefined,"Urethra Fuck","Fuck Renvra by sticking your dick in her ovipositor’s slit. Cumming down her cock is likely to fertilize her eggs.");
 		else if(pc.hasCock() && pc.cockThatFits(renvra.cockCapacity(0)) >= 0) addButton(2,"Urethra Fuck",fuckRenvrasUrethra,undefined,"Urethra Fuck","Diddle Renvra with your hardlight strap-on in her dick. She’s not liable to care about your lust once the sex toy gets her off, though.");
@@ -627,7 +627,7 @@ public function buttFuckRenvra():void
 		else if(pc.cumQ() < 1000) output(" The moment you part, though, you’re treated to a veritable waterfull of your seed racing out after you, splattering onto the floor.");
 		output("\n\n<i>“Ugh,”</i> Renvra groans, finishing with her own load before flicking the towel down between her legs to clean up your mess as well. When she’s done, she tosses the towel into a waste basket with a contemptuous grunt and picks up her shirt, careful to avoid the puddle of spunk you’ve left on the floor. As she gets dressed, you hear her muttering about getting her trench wives to clean it up later.");
 	}
-	//{Combine}
+	// Combine
 	output("\n\n<i>“Well, I think that’s a long enough smoke break,”</i> Renvra says, flashing you a slight grin over her shoulders as she pulls her pants up and works at her belt. It looks like a herculean effort to shove that much cock back into such tight pants.");
 	output("\n\nAs you gather your [pc.gear], Ren steps over to you, grabbing your chin and pulling you up to look her in the eye. <i>“Let’s do this again,”</i> she says, quickly pressing her lips to yours. <i>“I’ve had much worse distractions.”</i>");
 	output("\n\nHigh praise, coming from her. ");
@@ -782,7 +782,7 @@ public function renvraBellyrubs():void
 		if (InPublicSpace() && (kGAMECLASS.hours > 4 && kGAMECLASS.hours < 22))
 		{
 			m = "As you walk through town, people occasionally walk up to you, asking to feel your belly or how far along you are. You don’t have the heart to tell them you’re full of alien eggs."
-			if (pc.isBimbo() || pc.isTreated() || pc.race().indexOf("ausar") != -1 || pc.race().indexOf("kaithrit") != -1)
+			if (pc.isBimbo() || pc.isTreated() || pc.isPuppyorKitten())
 			{
 				m += " Besides, people rubbing all over you feels super good!";
 			}
@@ -831,7 +831,7 @@ public function renvraPregnancyMessage2():void
 
 public function renvraPregnancyMessage3():void
 {
-	AddLogEvent("Your belly is bulging slightly, the first visible signs of pregnancy. Your halfbreed spawn seem to be behaving... not that differently from human offspring so far. At least you’re not getting horribly sick in the mornings anymore!");	
+	AddLogEvent("Your belly is bulging slightly, the first visible signs of pregnancy. Your halfbreed spawn seem to be behaving... not that differently from human offspring so far. At least you’re not getting horribly sick in the mornings anymore!");
 }
 
 public function renvraPregnancyMessage4():void
@@ -1014,7 +1014,7 @@ public function fuckRenvrasUrethra():void
 	// 2 = dick.
 	if(pc.hasCock() && pc.cockThatFits(renvra.cockCapacity(0)) >= 0) dildo = 2
 	// 1 = hardlight
-	else if(pc.lowerUndergarment.hardLightEquipped) dildo = 1;
+	else if(pc.hasHardLightEquipped()) dildo = 1;
 
 	//(bimbo)
 	if(pc.isBimbo()) 
@@ -1448,8 +1448,24 @@ public function renvraDoubleTrouble():void
 	var x:int = -1;
 	if(pc.hasVagina()) 
 	{
-		x = pc.cuntThatFits(renvra.cockVolume(0));
-		if(x < 0) x = rand(pc.totalVaginas());
+		var nonPregWombsFit:Array = [];
+		var nonPregWombs:Array = [];
+		for(var i:int = 0; i < pc.vaginas.length; i++)
+		{
+			if(!pc.isPregnant(i))
+			{
+				if(pc.vaginalCapacity(i) >= renvra.cockVolume(0)) nonPregWombsFit.push(i);
+				nonPregWombs.push(i);
+			}
+		}
+		
+		if(nonPregWombsFit.length > 0) x = nonPregWombsFit[rand(nonPregWombsFit.length)];
+		else if(nonPregWombs.length > 0) x = nonPregWombs[rand(nonPregWombs.length)];
+		else
+		{
+			x = pc.cuntThatFits(renvra.cockVolume(0));
+			if(x < 0) x = rand(pc.totalVaginas());
+		}
 	}
 	if(pc.isBimbo()) 
 	{
@@ -1538,7 +1554,7 @@ public function renvraDoubleTrouble():void
 		else output("taint");
 		output(". <i>“Damn, it’s unusual to find such a good breeding slut outside the Federation camps,”</i> she says, squeezing your [pc.butt] in appreciation.");
 	}
-	//{vag or anal stretch check}
+	// vag or anal stretch check
 	if(x >= 0) pc.cuntChange(x,renvra.cockVolume(0));
 	else pc.buttChange(renvra.cockVolume(0));
 
@@ -1586,7 +1602,7 @@ public function renvraDoubleTrouble():void
 	if(pc.biggestTitSize() >= 1) output("crushing yours might be un");
 	else output("might be quite ");
 	output("pleasant, but you can’t even parse it with your head swimming in cum-induced delirium. More than once, a red fuzz encroaches on your vision and you almost slip into unconsciousness from overstimulation.");
-	output("\n\n<i>“... Hey!”</i> shouts Renvra, slapping your face gently. You blink the fuzz away and try to slow down your mind to focus on her. <i>“You’re not done yet,”</i> she says. A lump pushes against your swollen ");
+	output("\n\n<i>“...Hey!”</i> shouts Renvra, slapping your face gently. You blink the fuzz away and try to slow down your mind to focus on her. <i>“You’re not done yet,”</i> she says. A lump pushes against your swollen ");
 	if(x >= 0) output("labia");
 	else output("anus");
 	output(" and you look down, only to see the alien rubbing her bulging ballsack on it, equine ovipositor swaying in the air. The red delirium returns as you watch her egg-spewing cock swell from half-hard to fully erect again, and a voice cuts into your racing thoughts.");
@@ -1626,7 +1642,7 @@ public function renvraSuperCumPartII(x:int = -1):void
 	output("\n\nYou realize you’re still bent over her desk. Your gut throbs and moving brings a twinge of dull ache; you try to stand up but you’re practically glued to the furniture by sticky pink slime. Your belly sloshes, and the enormous loads of Renvra’s sexual fluids that were pumped into you come back in an aggravating flash.");
 	output("\n\n<i>“Not that you don’t look hot draped on my desk with my cum drooling from your hole");
 	if(pc.hasVagina()) output("s");
-	output("...”</i> the half-myr begins, brushing your [pc.skinFurScales] with her fingers almost affectionately, <i>“... but you should ");
+	output("...”</i> the half-myr begins, brushing your [pc.skinFurScales] with her fingers almost affectionately, <i>“...but you should ");
 	if(!pc.isNude()) output("throw some " + pc.mf("pants","panties") + " on and ");
 	output("get the fuck out - people in the neighborhood are starting to wonder why they never saw you leave the store.”</i>");
 	output("\n\nYou nod dumbly, still high as a kite on myr venom, and collect your gear. Renvra steps aside as you move to take the door handle, but then grabs you and pulls you into a kiss.");

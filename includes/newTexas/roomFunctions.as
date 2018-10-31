@@ -1,4 +1,4 @@
-﻿
+
 
 public function newTexasRoadFirstTime():Boolean
 {
@@ -60,6 +60,20 @@ public function milkBarn514Func():Boolean
 
 public function manMilkerRoomBonusFunc():Boolean
 {
+	//Special Cameron Scene
+	//PC has cock, has sexed Cameron, has used the milker, the milker isn't broken, hasn't done the scene in 24 hours, 
+	//and then it's a ~15% chance
+	if (pc.hasCock() 
+			&& flags["SEXED_CAMERON"] != undefined 
+			&& StatTracking.getStat("milkers/prostate milker uses") > 0 
+			&& flags["MILK_BARN_COCKMILKER_BROKEN"] == undefined
+			&& !pc.hasStatusEffect("Cameron Milker Cooldown")
+			&& rand(7) == 0)
+	{
+		cameronCockMilker();
+		return true;
+	}
+	
 	output("Unlike most of the stalls in the Milk Barn, this one isn’t closed or empty.");
 	if(StatTracking.getStat("milkers/prostate milker uses") == 0) output(" A single auburn-haired cow");
 	else output(" Carrie");
@@ -85,12 +99,67 @@ public function manMilkerRoomBonusFunc():Boolean
 
 public function NTGiftShopBonusFunc():Boolean
 {
+	//Ellie Pregnancy Announcement
+	if(flags["ELLIE_PREG_TIMER"] >= 1 && (flags["ELLIE_OPERATION"] == 1 || flags["ELLIE_OPERATION"] == undefined))
+	{
+		clearOutput();
+		clearMenu();
+		author("Wsan");
+		showBust("ELLIE");
+		showName("\nELLIE");
+		
+		output("Upon walking into Ellie's store, you can immediately tell something is different. There are fewer bulls milling around restlessly, and the air is somehow... clearer. Ellie, however, looks exactly the same. She stands at her till animatedly chatting to a cowgirl, and when she spots you she utters a little squeal and comes bounding around the counter, eyes wide with excitement.");
+		output("\n\n<i>“[pc.name]!”</i> she squeals, ");
+		if(!pc.isTaur() && pc.tallness < 8*12) output("sweeping you off your feet into a big, squishy hug between her huge breasts.");
+		else output("throwing her arms around you and nuzzling her face into your neck, along with her massive rack into your [pc.chest].");
+		if(pc.isBimbo()) output("\n\n<i>“Oof! Jeez, Ellie, did your tits get even bigger?”</i>");
+		else output("\n\n<i>“Oof! Hello to you too, Ellie.”</i>");
+		output("\n\nShe pulls back, ");
+		if(!pc.isTaur() && pc.tallness < 8*12) output("lifting you into the air until you're level with her face, beaming at you proudly.");
+		else output("looking you square in the eye and beaming proudly.");
+		output("\n\n<i>“I'm pregnant!”</i> she brazenly announces to you in front of the entire store before pulling you in for another hug. <i>“We're gonna have kids!”</i>");
+		if(pc.isBimbo()) output("\n\n<i>“Hooray! Tinytaurs!”</i> you squee.");
+		else output("\n\nOvercome with emotion, you wrap your arms around Ellie in celebration. <i>“Ellie!”</i>");
+		output("\n\nThe two of you rock side to side in each other's gleeful hugs, laughing and smiling in celebration.");
+		output("\n\n<i>“It's gonna be so much fun,”</i> Ellie gushes. <i>“Our kids'll be so cute! I'm still trying to think of names! And I gotta get toys for them!”</i>");
+		output("\n\n<i>“Whoa, slow down, Ellie,”</i> you say, suddenly comprehending something. <i>“Exactly how many kids are we having?”</i>");
+		output("\n\n<i>“Three!”</i> she says, smiling happily without a care in the world. <i>“Two girls and a boy. I need a place to lay the eggs, too...”</i>");
+		output("\n\n<i>“You can lay them at the Nursery, no problem,”</i> you reply, thinking about logistics for a second. <i>Three kids!</i> If they're anything like Ellie, this is going to be a real handful...");
+		output("\n\n<i>“Thanks, [pc.name],”</i> Ellie says, squishing her chest against you. <i>“You're a real sweetheart, y'know that?”</i>");
+		output("\n\n<i>“Hey, no problem,”</i> you reply, tightening your grip on her before letting go. <i>“Are you doing okay? Is there anything you need?”</i>");
+		output("\n\n<i>“Hmm,”</i> she hums thoughtfully, tapping a plated finger against her pouty lips before fixing you with a cheerful smile. <i>“I could do with a kiss.”</i>");
+		output("\n\nYou unhesitantly " + (pc.tallness < 8*12 ? "reach up and " : "") + "bring her pretty face closer to yours, planting a kiss right on her welcoming lips and leave her beaming radiantly.");
+		output("\n\n<i>“Okay! I've been given leave for the next few months that I can use whenever I want, so let me know when you wanna check out the nursery 'n stuff!”</i> Ellie says, hopping back behind the counter.");
+		flags["ELLIE_OPERATION"] = 2;
+		//Might as well max this shit
+		nephAffection(100);
+		processTime(10+rand(5));
+		addButton(0, "Next", mainGameMenu, undefined, "", "");
+		return true;
+	}
+	//Ellie is at the Nursery visiting kiddos
+	if(flags["ELLIE_AT_NURSERY"] != undefined)
+	{
+		output("Ellie doesn't seem to be around, and there's a little placard on her counter that reads 'out on break'. Maybe she's at the Nursery on Tavros?");
+		addDisabledButton(0, "Ellie", "Ellie", "Ellie isn't around right now.");
+		vendingMachineButton(1, "J'ejune");
+		return false;
+	}
+	//Kids are about to be hatched why are you here
+	if(flags["ELLIE_OPERATION"] == 3 && flags["ELLIE_PREG_TIMER"] == 70)
+	{
+		output("Ellie isn't here right now, she's at the Nursery waiting for you! You're gunna be a dad any minute now!");
+		addDisabledButton(0, "Ellie", "Ellie", "Go to the Nursery! ASAP!");
+		vendingMachineButton(1, "J'ejune");
+		return false;
+	}
 	//First Time Entering the Shop
 	if(flags["SEEN_ELLIES_SHOP"] == undefined)
 	{
 		flags["SEEN_ELLIES_SHOP"] = 1;
-		output("You step into the gift shop, pushing the glass door open ahead of you. You all but recoil when the door slides open, and an almost overpowering aroma assails your senses. It feels like you’ve just been hit by a brick, right in the chest; catching your breath is almost impossible for a long moment. Your mind swims as the potent musk in the shop washes over you, and you suddenly manage to identify the odor: sex. Raw, untamed sexuality and need. Your skin flushes as the musky odor clings to you, feeling like a haze around you as you force yourself to walk, not run, into the gift shop.\n\n");
+		output("You step into the gift shop, pushing the glass door open ahead of you. You all but recoil when the door slides open, and an almost overpowering aroma assails your senses. It feels like you’ve just been hit by a brick, right in the chest; catching your breath is almost impossible for a long moment. Your mind swims as the potent musk in the shop washes over you, and you suddenly manage to identify the odor: sex. Raw, untamed sexuality and need. Your skin flushes as the musky odor clings to you, feeling like a haze around you as you force yourself to walk, not run, into the gift shop.");
 		applyDamage(new TypeCollection( { tease: 10 } ), chars["ELLIE"], pc, "minimal");
+		output("\n\n");
 	}
 	else pc.lust(5);
 	output("The gift shop looks like every other gift shop in the ‘verse, with racks of memorabilia ranging from ten-gallon hats to holographic greeting cards. There’s a pretty good line leading up to the cashiers, and the most popular item going out seems to be a small white medipen labeled “The Treatment.” ");
@@ -140,6 +209,9 @@ public function randomBarnEntranceEventsFunc():Boolean
 public function randomBarnEventFunc():Boolean
 {
 	var retVal:Boolean = false;
+	
+	//If Cameron is getting milked right now disable entering the male milker
+	if (currentLocation == "511" && pc.hasStatusEffect("Cameron Getting Milked")) flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
 	
 	//Chance to proc any one of these events when passing by a milking stall. Each can proc 1/day at most.
 	if(flags["MILK_BARN_EVENT_TODAY"] == undefined && rand(10) == 0)

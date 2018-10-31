@@ -23,7 +23,7 @@
 			this.type = GLOBAL.SEXTOY;
 			
 			//Used on inventory buttons
-			this.shortName = "Horse-Cock";
+			this.shortName = "HorseCock";
 			
 			//Regular name
 			this.longName = "equine phallus complete with balls";
@@ -34,14 +34,14 @@
 			this.description = "an equine phallus complete with balls";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This oddly-detached penis has been crafted to look like a perfect representation of equine virility. It’s dotted with veins that look real enough to pump blood, to say nothing of the swaying balls that dangle from its base. The back end is flat; perhaps it’s meant to slot into a harness as a strap-on. Then again, there is a slit hidden on that smooth edge. Is it some kind of perverted masturbation sleeve?";
+			this.tooltip = "This oddly-detached penis has been crafted to look like a perfect representation of equine virility. It’s dotted with veins that look real enough to pump blood, to say nothing of the swaying balls that dangle from its base. The back end is flat; perhaps it’s meant to slot into a harness as a strap-on. Then again, there is a slit hidden on that smooth edge. Is it some kind of perverted masturbation sleeve?\n\n<b>Causes high amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "";
 			
 			//Information
-			this.basePrice = 1000;
+			this.basePrice = 18000;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
@@ -63,14 +63,14 @@
 			author("Alkahest");
 			//Trying it on yourself
 			if(target is PlayerCharacter) {
-				kGAMECLASS.flags["SYNTHSHEATH_USED"] = 1;
+				if(kGAMECLASS.flags["SYNTHSHEATH_USED"] == undefined) kGAMECLASS.flags["SYNTHSHEATH_USED"] = 0;
 				//<You no cock>
 				if(!pc.hasCock())
 				{
 					kGAMECLASS.output("You turn the sheath over in your hands, jiggling it around and chuckling as the large balls bounce around your hand. You absentmindedly stick the sheath to your naked groin, swinging your [pc.hips] around you briefly relinquish your grip on the toy only to find it remaining stuck to your crotch. You try to pull it away from your groin but are unable to do so. It must have some sort of suction device or something, you think.. You waggle your [pc.hips], and the fleshy tube sticking to your crotch sways back and forth, the apple-sized balls slapping into your thighs.");
 					kGAMECLASS.output("\n\nYou chuckle at the sight of yourself with the equine sheath attached to your formerly bare crotch and lose yourself momentarily in a day-dream of railing some busty alien with a massive horse-cock. A sharp pain in your stomach causes you to double over, and you nearly scream in pain as you accidentally squish one of the fake testicles between your legs. A white hot lance of agony shoots up from your groin, and you freeze in shock. You look down at your crotch in confusion as a warm tingling begins emanating from your genitals replacing the previous pain with pure pleasure.");
 					kGAMECLASS.output("\n\nYou moan at the alien sensations assaulting the pleasure centers of your brain, and idly note in your mild stupor that you can feel new and different parts of your anatomy that weren’t there before. Tentatively, you reach down with a trembling hand to touch the balls dangling heavily from your groin. You nearly pass out as you heft your new balls; you feel them rolling around in your hand and simultaneously enjoy the sensation of a warm palm cupping your sensitive spheres. You grit your teeth from involuntary, mounting arousal, large veins rising on the surface of the sheath from blood feeding into the dark depths of your fleshy tube. You gasp in amazement as a massive horsecock snakes from the entrance of your sheath.");
-					kGAMECLASS.output("\n\nInch after inch of horse meat pours from your crotch in what seems a never-ending march up your chest: six inches, eight inches, 12 inches.... Finally it tops out at a mind boggling 16 inches, hovering temptingly in front of your nose. A potent, musky scent pours from the tip of your new cock, and a slick, sweet and salty smelling fluid dribbles from your urethra before your big balls tense up to blow a load of creamy white equine seed across your face. You gasp in surprise before another huge load of cum fills your agape mouth. You continue painting yourself for another minute or so before, spent, your cock slithers back into its sheath to hang innocuously along your thigh.");
+					kGAMECLASS.output("\n\nInch after inch of horse meat pours from your crotch in what seems a never-ending march up your chest: six inches, eight inches, 12 inches.... Finally it tops out at a mind boggling 16 inches, hovering temptingly in front of your nose. A potent, musky scent pours from the tip of your new cock, and a slick, sweet and salty smelling fluid dribbles from your urethra before your big balls tense up to blow a load of " + (pc.cumType == GLOBAL.FLUID_TYPE_CUM ? "creamy white" : "[pc.cumColor]") + " equine seed across your face. You gasp in surprise before another huge load of cum fills your agape mouth. You continue painting yourself for another minute or so before, spent, your cock slithers back into its sheath to hang innocuously along your thigh.");
 					//Codex not unlocked!
 					if(!CodexManager.entryUnlocked("SynthSheath"))
 					{
@@ -90,6 +90,8 @@
 					kGAMECLASS.processTime(5);
 					pc.orgasm();
 					pc.libido(2);
+					pc.taint(5);
+					kGAMECLASS.flags["SYNTHSHEATH_USED"]++;
 					return false;
 				}
  				//Hazcawk
@@ -113,7 +115,7 @@
  						}
  						return true;
  					}
- 				}				
+ 				}
 			}
 			else {
 				kGAMECLASS.output(target.capitalA + target.short + " fiddles with the sheath to no effect, and worse yet, it tears. This ruins the sheath.");
@@ -139,11 +141,11 @@
 			{
 				kGAMECLASS.output("Your [pc.cock " + target + "] lies draped over your thigh as you look at the far smaller sheath in your hand. There’s no way in heaven this could fit on your massive dong, but you ruefully lose yourself in a daydream of having a horse-cock this large. The ones you saw on ultraporn stars on the extranet always looked so... bestial and masculine. It’s hard not to appreciate the qualities.\n\nAbsentmindedly, you tug on the opening of the tube and find it stretches far farther than you would have first thought. You don’t know why, but you can’t seem to stop yourself from taking the head of your [pc.cock " + target + "] and gently stuff it in the stretchy end of the sheath. The rubbery tube distends massively as your enormous cock invades its depths, stretching wide and long to hang heavily from your crotch.");
 				if(pc.hasKnot(target)) kGAMECLASS.output(" Your thick knot stretches the poor abused toy even further, a visible lump remains in the depths of the sheath.");
-				//{if Balls}
+				// if Balls
 				if(pc.balls > 0)
 				{
 					kGAMECLASS.output("\n\n");
-					//{if Small -> Average}
+					// if Small -> Average
 					if(pc.ballDiameter() <= 2)
 					{
 						kGAMECLASS.output("You pull the skin of the sheath’s balls up and around your own modest ");
@@ -153,7 +155,7 @@
 						kGAMECLASS.output("; now it looks as though your balls have been replaced with a massive set of apple-sized nuts.");
 						pc.ballSizeRaw = 11;
 					}
-					//{If Large -> Goddamn}
+					// If Large -> Goddamn
 					else
 					{
 						kGAMECLASS.output("You look at your [pc.balls] and at the rubbery sack dangling from the sheath. You sigh and think to yourself that if it’s worth doing, it’s worth doing right. Reaching down, you tug at the rubbery skin to stretch it wide around your ");
@@ -183,16 +185,16 @@
 				pc.cocks[target].cockColor = "mottled pink and black";
 				pc.shower();
 			}
-			//{ifRegularCock/LargeCockles}
+			// ifRegularCock/LargeCockles
 			else
 			{
 				kGAMECLASS.output("You examine the fleshy sheath in your hand before looking at your [pc.cock " + target + "]. A momentary daydream passes through your mind of you with a massive horse-cock, surrounded by a number of buxom aliens all interested in taking your equine seed for their own. You look in the end of the tube and slide your [pc.cock " + target + "] into the tight, rubbery orifice.");
 				if(pc.hasKnot(target)) kGAMECLASS.output(" Your thick knot stretches the toy even further, a visible lump remains in the depths of the sheath.");
-				//{if Balls}
+				// if Balls
 				if(pc.balls > 0)
 				{
 					kGAMECLASS.output("\n\n");
-					//{if Small -> Average}
+					// if Small -> Average
 					if(pc.ballDiameter() <= 2)
 					{
 						kGAMECLASS.output("You pull the skin of the sheath’s balls up and around your own modest ");
@@ -202,7 +204,7 @@
 						kGAMECLASS.output("; now it looks as though your balls have been replaced with a massive set of apple-sized nuts.");
 						pc.ballSizeRaw = 11;
 					}
-					//{If Large -> Goddamn}
+					// If Large -> Goddamn
 					else
 					{
 						kGAMECLASS.output("You look at your [pc.balls] and at the rubbery sack dangling from the sheath. You sigh and think to yourself that if it’s worth doing, it’s worth doing right. Reaching down, you tug at the rubbery skin to stretch it wide around your ");
@@ -229,7 +231,7 @@
 				}
 				kGAMECLASS.output(" The stiff flesh bobs in front of your face.");
 
-				kGAMECLASS.output("\n\nA potent, musky scent pours from the tip of your new cock. A slick, sweet and salty smelling fluid is dribbling from your urethra, and your big balls are tensing up. A load of creamy white equine seed blasts you across the face, and you gasp in surprise before another huge load of cum fills your agape mouth. You continue painting yourself for another minute or so before, spent, your cock slithers back into its sheath to hang innocuously along your thigh.");
+				kGAMECLASS.output("\n\nA potent, musky scent pours from the tip of your new cock. A slick, sweet and salty smelling fluid is dribbling from your urethra, and your big balls are tensing up. A load of " + (pc.cumType == GLOBAL.FLUID_TYPE_CUM ? "creamy white" : "[pc.cumColor]") + " equine seed blasts you across the face, and you gasp in surprise before another huge load of cum fills your agape mouth. You continue painting yourself for another minute or so before, spent, your cock slithers back into its sheath to hang innocuously along your thigh.");
 				if(!CodexManager.entryUnlocked("SynthSheath"))
 				{
 					kGAMECLASS.output("\n\nYour Codex beeps with a warning about how this device may irreversibly alter one’s biology. You grimace ruefully at the device before regarding your enhanced genitalia. You smile and think that you definitely can get used to this.");
@@ -246,6 +248,8 @@
 			kGAMECLASS.processTime(5);
 			pc.orgasm();
 			pc.libido(2);
+			pc.taint(5);
+			kGAMECLASS.flags["SYNTHSHEATH_USED"]++;
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
 		}

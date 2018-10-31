@@ -24,7 +24,7 @@ package classes.UIComponents.SideBarComponents
 		private function Build():void
 		{
 			_characterDisplays = new Vector.<SingleCharacterDisplay>();
-			for (var i:int = 0; i < 4; i++)
+			for (var i:int = 0; i < 5; i++)
 			{
 				var t:SingleCharacterDisplay = new SingleCharacterDisplay("left");
 				addChild(t);

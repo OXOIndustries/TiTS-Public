@@ -34,8 +34,8 @@ public function encounterMaleSydian():void
 	
 	CodexManager.unlockEntry("Sydians");
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new SydianMale());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new SydianMale());
 	CombatManager.victoryScene(beatUpARustMonster);
 	CombatManager.lossScene(loseToSydianMaleRouter);
 	CombatManager.displayLocation("SYDIAN (M)");
@@ -223,7 +223,8 @@ public function dudesButtFuckInATotallyNonGayWay():void
 	else output("giving you a weak thumbs up ");
 	output("before closing his eyes in slumber. You suppose they won’t do much about the stereotype of males sleeping after sex.\n\n");
 	processTime(20+rand(10));
-	pc.orgasm();	
+	enemy.loadInAss(pc);
+	pc.orgasm();
 	CombatManager.genericVictory();
 }
 

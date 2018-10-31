@@ -3,10 +3,11 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Utility.num2Text;
 	import classes.Engine.Utility.possessive;
 	
 	public class Pandaneen extends ItemSlotClass
@@ -349,7 +350,7 @@
 								if(target.cockTotal() > 1) kGAMECLASS.output(", but it’s your [pc.cock " + x + "] specifically that really catches your eye");
 								kGAMECLASS.output(". It’s getting longer. You watch in fascination as you gain a full inch of length");
 								if(y > 1) kGAMECLASS.output(", and it keeps going");
-								kGAMECLASS.output(", not stopping until you’re " + kGAMECLASS.num2Text(Math.round((target.cocks[x].cLength() + y)*10)/10) + " inches long. A pearl of pre-cum slips out of the tip once the change completes, leaving you nicely hung.");
+								kGAMECLASS.output(", not stopping until you’re " + num2Text(Math.round((target.cocks[x].cLength() + y)*10)/10) + " inches long. A pearl of pre-cum slips out of the tip once the change completes, leaving you nicely hung.");
 							}
 							target.lust(5+rand(10));
 							target.cocks[x].cLengthRaw += y;

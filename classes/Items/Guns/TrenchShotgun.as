@@ -8,6 +8,7 @@
 	
 	public class TrenchShotgun extends ItemSlotClass
 	{
+		//Level 6 (Common). Balance 2.0
 		//constructor
 		public function TrenchShotgun()
 		{
@@ -37,10 +38,10 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 2300;
-			this.attack = 25;
+			this.basePrice = 7000;
+			this.attack = 23;
 			
-			baseDamage.kinetic.damageValue = 10;
+			baseDamage.kinetic.damageValue = 14;
 			baseDamage.addFlag(DamageFlag.BULLET);
 			
 			this.defense = 0;

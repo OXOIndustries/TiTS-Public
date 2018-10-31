@@ -3,7 +3,7 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
@@ -389,7 +389,7 @@
 					pc.ballSizeRaw += 1.5;
 					if(pc.hasPerk("Bulgy")) pc.ballSizeRaw += 1.5;
 					pc.orgasm();
-					pc.ballFullness = 100;	
+					pc.ballFullness = 100;
 					changes++;
 				}
 				//Bigger Balls

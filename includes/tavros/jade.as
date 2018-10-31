@@ -279,7 +279,7 @@ public function askJadeAboutHerShop():void {
 	showJade();
 	flags["TALKED_WITH_JADE_ABOUT_HER_SHOP"] = 1;
 	output("<i>“My shop?”</i> Jade asks. <i>“I guess you could say that it’s like my hopes and dreams rolled together into my baby.”</i> She smirks a little. <i>“I wanted to share what I had discovered with everyone, and a shop seemed the best way to do it. I can support myself and meet furries all day long! Hell, I can even work with people that don’t have the credits to make the transformation on their own. You’d be amazed by what solid financial planning can accomplish.”</i>");
-	output("\n\nTicking off one finger, Jade explains, <i>“First, I had to get the money for the place. I worked as an accountant another two years to save up enough to start up. It wasn’t easy, but I did. Next, I needed a location. I caught a lucky break with picking my location, though. The planet rush was coming up, and Tavros was positioned perfectly to catch a ton of lucrative trades with the new planets. That’s not even mentioning all the adventurers coming out of the new systems with wallets full of credit chits.”</i> She gestures at her shop. <i>“I’ve done well enough to redecorate twice, and each time I wind up making the place cozier. I’ve even managed to open up a few new locations out there on the rim.”</i> She sighs. <i>“I can’t run all of them personally of course. I mainly stay here... this place has kind of become my home.”</i> She brushes a stray strand of hair out of her eyes. <i>“Not much more to tell.”</i>");
+	output("\n\nTicking off one finger, Jade explains, <i>“First, I had to get the money for the place. I worked as an accountant another two years to save up enough to start up. It wasn’t easy, but I did. Next, I needed a location. I caught a lucky break with picking my location, though. The planet rush was coming up, and Tavros was positioned perfectly to catch a ton of lucrative trades with the new planets. That’s not even mentioning all the adventurers coming out of the new systems with wallets full of " + (isAprilFools() ? "dogecoins" : "credit chits") + ".”</i> She gestures at her shop. <i>“I’ve done well enough to redecorate twice, and each time I wind up making the place cozier. I’ve even managed to open up a few new locations out there on the rim.”</i> She sighs. <i>“I can’t run all of them personally of course. I mainly stay here... this place has kind of become my home.”</i> She brushes a stray strand of hair out of her eyes. <i>“Not much more to tell.”</i>");
 	output("\n\nThe cuddly-looking woman begs a story or two out of you before saying, <i>“You’re easy to talk to, you know that? I can tell you’ve got at least one more question.”</i> She gives you a sultry blink. <i>“I saw you looking back when I touched them and talked about growing them...”</i> she says with a gesture at her breasts. <i>“Just ask. I won’t bite.”</i> She snaps her jaws. <i>“Much.”</i>");
 	talkToJade(false);
 	removeButton(2);
@@ -428,7 +428,7 @@ public function jadeGetsAGropeGasm():void {
 		//Mischievous
 		else if(pc.isMischievous()) output("\n\nYou help a while, cracking plenty wise about her orgasms and how wet they were until the whole place is clean. Then, you help her get dressed once more, being sure to cup her breast, just to get her motor going again.");
 		//Hard
-		else output("\n\nYou wave, walking out the door with a smile on your face.");
+		else output("\n\nYou wave, [pc.walking] out the door with a smile on your face.");
 		
 		//Gropegasm Insight
 		//Blurb to be displayed after the Gropegasm scene. Available after Gropegasmin 3 times.
@@ -1031,7 +1031,7 @@ public function boobToBoobSexathon():void {
 	if(x < 0 && pc.hasCock())
 	{
 		output("\n\nJade simply grins at you as her tentacles tickle your fingertips, her own fingers trailing up and down your mammoth [pc.cockNounSimple " + pc.smallestCockIndex() + "]. <i>“Mmm... too bad this bad boy is too big for me, or we could have some real fun. I’ll make do, but maybe you should shrink that down before you come back next time?”</i> she suggests, winking at you.");
-		output("\n\nNot giving you time to answer, the panda shifts in closer, pressing her pillowy boobs against your face when she slides her legs in to straddle you. As she slides down into your lap, you can feel the warm, soft fur of her thighs trailing ticklishly over your mighty " + pc.mf("man-meat","girl-cock") + " as she lowers herself. The softness of her pussy scrapes along the underside of your oversized shaft, polishing you with the the vulva that is far too dainty to fit you.");
+		output("\n\nNot giving you time to answer, the panda shifts in closer, pressing her pillowy boobs against your face when she slides her legs in to straddle you. As she slides down into your lap, you can feel the warm, soft fur of her thighs trailing ticklishly over your mighty " + pc.mf("man-meat","girl-cock") + " as she lowers herself. The softness of her pussy scrapes along the underside of your oversized shaft, polishing you with a vulva that is far too dainty to fit you.");
 	}
 	//else if PC.Cock=Else:
 	else if(pc.hasCock())
@@ -1059,7 +1059,7 @@ public function boobToBoobSexathon():void {
 		output("\n\nShe shakes her head with a slight look of disbelief. <i>“It’s quite a universe, isn’t it? Okay, I guess this will feel good enough for you without any extra help,”</i> she declares.");
 		output("\n\nBefore you say anything, she steps forward, muffling your words and blocking your vision with her impressive cleavage as she slides in to straddle your waist. The plush panda-girl settles into your lap until she is quite comfortable seated atop you, her warm feminine treasure pressed plush and firm against your own featureless loins.");
 	}
-	output("\n\nWith a smile, Jade wraps her arms around your back as best she can, squeezing her own voluptuous tits against your [pc.boobs], gently rubbing them together. Her mouth opens into an O-shape, a soft moan echoing up from her throat as her tentacle-like nipples stretch out and out, sliding up and down the valleys of your respective cleavages to wrap themselves around both of pairs of pressed tits like perverse pythons encircling their prey.");
+	output("\n\nWith a smile, Jade wraps her arms around your back as best she can, squeezing her own voluptuous tits against your [pc.boobs], gently rubbing them together. Her mouth opens into an O-shape, a soft moan echoing up from her throat as her tentacle-like nipples stretch out and out, sliding up and down the valleys of your respective cleavages to wrap themselves around both pairs of pressed tits like perverse pythons encircling their prey.");
 
 	output("\n\nYou join her with your own moans of pleasure. ");
 	if(pc.hasCock() || (pc.hasVagina() && pc.hasClit() && pc.clitLength >= 4))
@@ -1196,7 +1196,7 @@ public function jadeMuffStuffedDumplingsOffer():void
 	output("You walk into Fur Effect, only to find the whole place empty save for a one of Jade’s legs, which promptly disappears into the employee room, chased by tittering laughter.");
 	output("You follow after to find the plush panda sitting atop a countertop, facing away from you. She giggles again at the sound of your approach.");
 	output("\n\n<i>“Hey [pc.name], I see you finally came for the dumplings,”</i> she then turns towards you, revealing her belly to look a few months pregnant. She starts to bite her lower lip, then shakes her head and straightens, looking you straight in the eye. <i>“Don’t be shy, they’re right here! I’m keeping them warm.”</i>");
-	output("\n\nYou walk towards her, suspicion slowly giving way to realization of what she’s done. When she sees your shift in expression slowly spreads her legs, clearly anxious about your reaction... up until a dumpling slips out of her plump panda pussy onto the counter, slick with her juices. At that, her legs fall completely open, revealing a well-stuffed and dribbling cunt.");
+	output("\n\nYou [pc.walk] towards her, suspicion slowly giving way to realization of what she’s done. When she sees your shift in expression slowly spreads her legs, clearly anxious about your reaction... up until a dumpling slips out of her plump panda pussy onto the counter, slick with her juices. At that, her legs fall completely open, revealing a well-stuffed and dribbling cunt.");
 	output("\n\nYou stop in your tracks, should you continue?");
 
 	processTime(2);

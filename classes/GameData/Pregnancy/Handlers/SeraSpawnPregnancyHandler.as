@@ -23,7 +23,7 @@ package classes.GameData.Pregnancy.Handlers
 			_handlesType = "SeraSpawnPregnancy";
 			_basePregnancyIncubationTime = (60 * 24 * 272); // 9 Months
 			_basePregnancyChance = 0.1;
-			_alwaysImpregnate = true;
+			_alwaysImpregnate = false;
 			_ignoreInfertility = false;
 			_ignoreFatherInfertility = false;
 			_ignoreMotherInfertility = false;
@@ -33,7 +33,7 @@ package classes.GameData.Pregnancy.Handlers
 			_canFertilizeEggs = false;
 			_pregnancyQuantityMinimum = 1;
 			_pregnancyQuantityMaximum = 3;
-			_definedAverageLoadSize = 6400;
+			_definedAverageLoadSize = 2400;
 			_pregnancyChildType = GLOBAL.CHILD_TYPE_LIVE;
 			_pregnancyChildRace = GLOBAL.TYPE_HUMAN;
 			_childMaturationMultiplier = 1.0;
@@ -51,7 +51,7 @@ package classes.GameData.Pregnancy.Handlers
 				if(i == 45)
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						AddLogEvent("Your stomach lurches, and you stop what you’re doing. It feels like you’re going to puke. Urk... bleah- nope. You take long breaths, waiting for the nausea to recede, before carrying on.", "passive");
+						AddLogEvent("Your stomach lurches, and you stop what you’re doing. It feels like you’re going to puke. Urk... bleah - nope. You take long breaths, waiting for the nausea to recede, before carrying on.", "passive");
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 1, true);
 					}, true);
 				}
@@ -85,6 +85,8 @@ package classes.GameData.Pregnancy.Handlers
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
 						AddLogEvent("Your stomach continues to swell inexorably outwards, damping your body in a swelter of soft warmth and low-level horniness. The areola of your [pc.nipples] have spread a bit, and your [pc.chest] in general feels sensitive and pleasant to touch. More difficult to quantify is a certain self-satisfied rightness; a deep, ancient knowledge of contentment. You certainly feel a lot more sold on this interminable pregnancy than you did a couple of months ago.", "passive");
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 1, true);
+						if(kGAMECLASS.pc.milkMultiplier < 25) kGAMECLASS.pc.milkMultiplier = 25;
+						if(kGAMECLASS.pc.milkFullness < 25) kGAMECLASS.pc.milkFullness = 25;
 						kGAMECLASS.pc.milkFullness += 15;
 					}, true);
 				}
@@ -92,8 +94,10 @@ package classes.GameData.Pregnancy.Handlers
 				else if(i == 175)
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						AddLogEvent("You now walk with a rounded gait in order to support the soccer ball you’re toting out in front of you, and you feel very nervy about attempting to run." + (kGAMECLASS.pc.biggestTitSize() > 1 ? " " + (kGAMECLASS.pc.isLactating() ? "Your [pc.breasts] are also starting to leak [pc.milk] at the most inopportune of moments" : "Your [pc.breasts] are also starting to swell with even more [pc.milk] than usual") : "") + ", your body stepping up its anticipation of providing for your growing child. You start slightly as something boops against the taut skin of your stomach from within.", "passive");
+						AddLogEvent("You now walk with a rounded gait in order to support the soccer ball you’re toting out in front of you, and you feel very nervy about attempting to run." + (kGAMECLASS.pc.biggestTitSize() > 1 ? " " + (!kGAMECLASS.pc.isLactating() ? "Your [pc.breasts] are also starting to leak [pc.milk] at the most inopportune of moments" : "Your [pc.breasts] are also starting to swell with even more [pc.milk] than usual") : "") + ", your body stepping up its anticipation of providing for your growing child. You start slightly as something boops against the taut skin of your stomach from within.", "passive");
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 1.5, true);
+						if(kGAMECLASS.pc.milkMultiplier < 50) kGAMECLASS.pc.milkMultiplier = 50;
+						if(kGAMECLASS.pc.milkFullness < 50) kGAMECLASS.pc.milkFullness = 50;
 						kGAMECLASS.pc.milkFullness += 15;
 						// Insert Reflex reduction modifier
 						if(kGAMECLASS.pc.hasStatusEffect("Sera Spawn Reflex Mod")) kGAMECLASS.pc.addStatusValue("Sera Spawn Reflex Mod", 1, 5);
@@ -127,7 +131,13 @@ package classes.GameData.Pregnancy.Handlers
 				else if(i == 260)
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						AddLogEvent("You really can’t be far off giving birth now - a week, at most. Your [pc.vagina] is permanently soft and slightly dilated now, and the kicks inside your distended stomach grow more prominent by the day." + (!kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC) ? " The instinct to find somewhere safe to have your child is growing very difficult to ignore." : ""), "passive");
+						var sTime:String = "a week";
+						var sTime2:String = "day";
+						var nTime:Number = Math.floor(10080/kGAMECLASS.pc.pregnancyData[pregSlot].pregnancyIncubationMulti);
+						if(nTime <= 1440) { sTime = "a day"; sTime2 = "hour"; }
+						if(nTime <= 60) { sTime = "an hour"; sTime2 = "minute"; }
+						if(nTime <= 0) { sTime = "a minute"; sTime2 = "second"; }
+						AddLogEvent("You really can’t be far off giving birth now - " + sTime + ", at most. Your [pc.vagina " + pregSlot + "] is permanently soft and slightly dilated now, and the kicks inside your distended stomach grow more prominent by the " + sTime2 + "." + (!kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC) ? " The instinct to find somewhere safe to have your child is growing very difficult to ignore." : ""), "passive");
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 2, true);
 						if (kGAMECLASS.pc.milkFullness < 20) kGAMECLASS.pc.milkFullness += 25;
 						if (kGAMECLASS.pc.milkMultiplier < 1.5) kGAMECLASS.pc.milkMultiplier += 0.15;
@@ -164,30 +174,7 @@ package classes.GameData.Pregnancy.Handlers
 		
 		public static function seraSpawnSuccessfulImpregnation(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
-			BasePregnancyHandler.defaultOnSuccessfulImpregnation(father, mother, pregSlot, thisPtr);
-			
-			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
-			
-			// Always start with the minimum amount of children.
-			var quantity:int = thisPtr.pregnancyQuantityMinimum;
-			
-			// Unnaturally fertile mothers may get multiple children.
-			for(var i:Number = mother.fertility(); i >= 2.0; i -= 1.0)
-			{
-				quantity += rand(thisPtr.pregnancyQuantityMaximum + 1);
-			}
-			if (quantity > thisPtr.pregnancyQuantityMaximum) quantity = thisPtr.pregnancyQuantityMaximum;
-			
-			// Add extra bonuses.
-			var fatherBonus:int = Math.round((father.cumQ() * 2) / thisPtr.definedAverageLoadSize);
-			var motherBonus:int = Math.round((quantity * mother.pregnancyMultiplier()) - quantity);
-			quantity += fatherBonus + motherBonus;
-			
-			// Cap at 3x the maximum!
-			var quantityMax:int = Math.round(thisPtr.pregnancyQuantityMaximum * 3.0);
-			if (quantity > quantityMax) quantity = quantityMax;
-			
-			pData.pregnancyQuantity = quantity;
+			BasePregnancyHandler.defaultOnSuccessfulImpregnation(father, mother, pregSlot, thisPtr, [3.0, 2.0, 1.0]);
 		}
 		
 		public static function seraSpawnOnDurationEnd(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
@@ -294,7 +281,7 @@ package classes.GameData.Pregnancy.Handlers
 				else { c.NumMale = 0; c.NumFemale = 1; c.NumIntersex = 0; c.NumNeuter = 0; }
 				
 				// Race modifier (if different races)
-				c.originalRace = c.hybridizeRace(mother.originalRace, c.originalRace, ((mother is PlayerCharacter) ? true : false));
+				c.originalRace = c.hybridizeRace(mother.originalRace, c.originalRace, (mother is PlayerCharacter));
 				
 				// Adopt mother's colors at random (if applicable):
 				if(rand(2) == 0) c.skinTone = traitChar.skinTone;

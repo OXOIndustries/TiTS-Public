@@ -159,7 +159,7 @@
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 4;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 9000;
 			this.timesCum = 122;
 			this.cockVirgin = true;
@@ -238,12 +238,12 @@
 				output("\n");
 				CombatAttacks.SingleMeleeAttackImpl(this, target, true);
 			}
-			//{You manage to dodge, block, and parry every attack they send your way! // You block and dodge most of the attacks, but a few still manage to get through, hammering you down. // You try to defend yourself, but most if not all of the strikes get through, battering you brutally.}
+			// You manage to dodge, block, and parry every attack they send your way! // You block and dodge most of the attacks, but a few still manage to get through, hammering you down. // You try to defend yourself, but most if not all of the strikes get through, battering you brutally.
 		}
 		
 		private function nyreaGroupBackstabby(target:Creature):void
 		{
-			output("Several of the huntresses attack you for the front, jabbing and stabbing and pushing you back. As they do, though, you ");
+			output("Several of the huntresses attack you from the front, jabbing and stabbing and pushing you back. As they do, though, you ");
 			if(combatMiss(this, target))
 			{
 				output("just barely notice another nyrea attempting to stab you in the back. You quickly spin around and shove her back, preventing the attack.");
@@ -291,13 +291,15 @@
 			if(combatMiss(this, target)) output("\nYou dodge out of the way, narrowly avoiding a crushing blow.");
 			else 
 			{
+				var bStun:Boolean = false;
 				output("\nYou don’t manage to dodge in time, and get a thunderous wallop on the head for your trouble! You stagger back, clutching your aching head.");
 				if(physique()/2 + rand(20) + 1 > target.physique()/2 + 10 && !target.hasStatusEffect("Stunned"))
 				{
 					output(" <b>You are stunned!</b>");
-					target.createStatusEffect("Stunned",2,0,0,0,false,"Stun","You cannot act until you recover!",true,0,0xFF0000);
+					bStun = true;
 				}
 				applyDamage(meleeDamage(), this, target, "melee");
+				if(bStun) CombatAttacks.applyStun(target, 2);
 			}
 			energy(-5);
 		}

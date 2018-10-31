@@ -15,6 +15,7 @@ public function gobblesAvailable():Boolean
 	//if (flags["GOBBLES_EVENT_DATE"] == undefined || flags["GOBBLES_EVENT_DATE"] < currDate.fullYear)
 	
 	// Play for future dates, plus room "because nice". Also because fuck doing something to tie it to a single day that moves around every year.
+	/*
 	// 0-indexed month numbers. Woo.
 	if (currDate.month == 9 && (currDate.date >= 10 && currDate.date <= 15))
 	{
@@ -25,8 +26,9 @@ public function gobblesAvailable():Boolean
 	{
 		return true;
 	}
+	*/
 	
-	if (silly)
+	if (isThanksgiving() || silly)
 	{
 		/* Once every 7 in game days whilst silly is enabled methinks.
 		if (flags["GOBBLES_SILLY_DAYCOUNT"] == undefined || flags["GOBBLES_SILLY_DAYCOUNT"] < days - 7)
@@ -80,7 +82,7 @@ public function supGobbles2014CanadaEdition():void
 
 	clearMenu();
 	addButton(0, "Yes", orderUpOneTurkeySlut);
-	addButton(1, "No", noThanksGobbles);	
+	addButton(1, "No", noThanksGobbles);
 }
 
 public function noThanksGobbles():void
@@ -436,13 +438,13 @@ public function milkGobblesRepeat():void
 	else output("on your haunches");
 	output(", and the cow-girl shudders in response as your [pc.leg] grinds against her sex. She only barely suppresses a moan, turning it into a cute little whimper as she pushes back ever so slightly against you. Her pussy rubs wetly over your [pc.leg], and you can feel her tits tremble and squirt in turn, pumping out a thicker and faster trail of syrup that plops onto the surface of the bucket. Another desperate moan escapes Canada’s lips as her movements become more and more erratic, more desperate");
 	//elseif PC has a dick OR hardlight strapon: 
-	if(pc.hasCock() || pc.lowerUndergarment.hardLightEquipped) output(" until she finally looks over her shoulder at you and murmurs: <i>“I-if you want to fuck me, you can.... Treated girls give the best milk - or, um, syrup I guess - when we’re happy. That’s what they say, anyway.”</i>");
+	if(pc.hasCock() || pc.hasHardLightEquipped()) output(" until she finally looks over her shoulder at you and murmurs: <i>“I-if you want to fuck me, you can.... Treated girls give the best milk - or, um, syrup I guess - when we’re happy. That’s what they say, anyway.”</i>");
 	else output(".");
 
 	pc.lust(20);
 	processTime(10);
 	//if PC has a dick/strapon, option to [Fuck Her] or [No]. Else, continue with <i>“no”</i> for non-cockbags
-	if(pc.hasCock() || pc.lowerUndergarment.hardLightEquipped) addButton(0,"Fuck Her",fuckAmeriturkeyGobbleButt,undefined,"Fuck Her","I think we all know where this is going....");
+	if(pc.hasCock() || pc.hasHardLightEquipped()) addButton(0,"Fuck Her",fuckAmeriturkeyGobbleButt,undefined,"Fuck Her","I think we all know where this is going....");
 	else addDisabledButton(0,"Fuck Her","Fuck Her","This scene requires a penis or hardlight strap-on.");
 	addButton(1,"Cuddle",noCockTurkeyBastingRoundIIYEehawAMURRICA,undefined,"Cuddle","Cuddle up with the turkey - no sex needed.");
 }

@@ -176,7 +176,7 @@ public function approachMyrDesertersCombatBlurb(gold:Boolean = false):void
 		if(gold) flags["MET_GOLD_DESERTER"] = 1;
 		else flags["MET_RED_DESERTER"] = 1;
 		output("\n\nAs you [pc.walk] through the desolate and war torn wasteland, the wind howls around you. It rages against its underground confines. Instinctively, you ");
-		if(pc.meleeWeapon is EmptySlot && pc.rangedWeapon is EmptySlot) output("grab a nearby rock.");
+		if(!pc.hasEquippedWeapon()) output("grab a nearby rock.");
 		else output("tighten your grip on your [pc.weapon].");
 
 		output("\n\nA deafening boom fills the air. The ground trembles, and dirt and stalactites fall from the cavern ceiling. Heart racing in your chest, you throw yourself to the ground.");
@@ -191,7 +191,7 @@ public function approachMyrDesertersCombatBlurb(gold:Boolean = false):void
 		output("\n\n<i>“You’ve got terrible luck, off-worlder, running into the likes of me,”</i> she dryly smiles. ");
 		if(gold) output("A notable scar mars her otherwise pretty mouth");
 		else output("There’s a distinct scar over her right eye, which is half closed");
-		output(". <i>“... I’m going to help myself to your things. Maybe I’ll help myself to you too, while I’m at it.”</i>");
+		output(". <i>“...I’m going to help myself to your things. Maybe I’ll help myself to you too, while I’m at it.”</i>");
 
 		output("\n\n<i>“It’s the rules of this place, so don’t feel too hard done by - I’ve been on the receiving end as well. It’s just your turn, that’s all.”</i>");
 		output("\n\n");
@@ -230,8 +230,8 @@ public function approachMyrDesertersCombatBlurb(gold:Boolean = false):void
 public function configureGoldDeserterFight(tEnemy:Creature):void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(tEnemy);
 	CombatManager.victoryScene(winVsAntGrillDeserts);
 	CombatManager.lossScene(loseToAntGrillDeserts);
 	CombatManager.displayLocation(flags["KNOW_GOLD_MYR_NAME"] == undefined ? "GOLD DSTR" : "LYS");
@@ -240,8 +240,8 @@ public function configureGoldDeserterFight(tEnemy:Creature):void
 public function configureRedDeserterFight(tEnemy:Creature):void
 {
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(tEnemy);
 	CombatManager.victoryScene(winVsAntGrillDeserts);
 	CombatManager.lossScene(loseToAntGrillDeserts);
 	CombatManager.displayLocation(flags["KNOW_RED_MYR_NAME"] == undefined ? "RED DSTR" : "BRIHA");
@@ -300,7 +300,7 @@ public function approachMyrDesertersNonCombatShit(gold:Boolean = false):void
 		}
 		else
 		{
-			output("\n\n<i>“Hi there, soldier. I’m just sitting down for a rest,”</i> she smiles and stretches out. <i>“... So, what brings you out to ");
+			output("\n\n<i>“Hi there, soldier. I’m just sitting down for a rest,”</i> she smiles and stretches out. <i>“...So, what brings you out to ");
 			if(hasRedDildo()) output("my forsaken parts? Hopefully a vibrator delivery to relieve my horniness.");
 			else output("these forsaken parts?");
 			output("”</i>");
@@ -343,7 +343,7 @@ public function approachMyrDesertersNonCombatShit(gold:Boolean = false):void
 					if(flags["GOLD_MYR_DESERTER_BEATEN"] != undefined && flags["GOLD_MYR_DESERTER_BEATEN"] >= 5) output(", winking to tell you she’s not up for a fight");
 					output(". <i>“Either way, I’ll try not to be too hard on you.”</i>");
 				}
-				else output("\n\n<i>“... Got time to spend with me? I’d appreciate the company.”</i>");
+				else output("\n\n<i>“...Got time to spend with me? I’d appreciate the company.”</i>");
 			}
 			else
 			{
@@ -404,7 +404,7 @@ public function myrDeserterNonCombatMenu(gold:Boolean = false):void
 	//avail. thru ‘About Her’ topic, consensual sex menu or victory-sex menu if Lys is friendly
 	if(gold)
 	{
-		if(pc.hasItem(new VenusBloom()) && flags["ENABLE_LYS_FLOWER"] != undefined) addButton(4,"Give Flower",giveFlowerToLys,undefined,"Give Flower","Present Lys with the exotic flower you found on Mhen’ga and see if it’ll cheer the poor girl up.");
+		if(pc.hasItemByClass(VenusBloom) && flags["ENABLE_LYS_FLOWER"] != undefined) addButton(4,"Give Flower",giveFlowerToLys,undefined,"Give Flower","Present Lys with the exotic flower you found on Mhen’ga and see if it’ll cheer the poor girl up.");
 		else if(flags["ENABLE_LYS_FLOWER"] != undefined) addDisabledButton(4,"Give Flower","Give Flower","Lys would appreciate any flowers you find. You wonder where you could get one....");
 		else addDisabledButton(4,"Locked","Locked","You don’t know her well enough for this.");
 	}
@@ -418,14 +418,14 @@ public function fightADumbShitAntWaifu(gold:Boolean = false):void
 	clearOutput();
 	showDeserter(gold);
 	author("Jim Thermic");
-	output("You pull out your [pc.weapon]. [enemy.name] clicks her tongue. <i>“... Damn. Oh well, it was worth a try, right?”</i>");
+	output("You pull out your [pc.weapon]. [enemy.name] clicks her tongue. <i>“...Damn. Oh well, it was worth a try, right?”</i>");
 	output("\n\n<b>It’s a fight!</b>");
 	processTime(1);
 	clearMenu();
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(enemy);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(enemy);
 	CombatManager.victoryScene(winVsAntGrillDeserts);
 	CombatManager.lossScene(loseToAntGrillDeserts);
 	if (gold) CombatManager.displayLocation(flags["KNOW_GOLD_MYR_NAME"] == undefined ? "GOLD DSTR" : "LYS");
@@ -555,7 +555,7 @@ public function aboutAnAntSlootDeserter(gold:Boolean = false):void
 	if(!gold)
 	{
 		output("You ask Briha a little bit about herself. The amber-haired ant girl scratches her head, looking a little self-conscious.");
-		output("\n\n<i>“... Me? Just another dumb girl who got sucked into the propaganda,”</i> she answers. <i>“Honestly, girls like me are a credit a dozen. I’m nothing that special.”</i>");
+		output("\n\n<i>“...Me? Just another dumb girl who got sucked into the propaganda,”</i> she answers. <i>“Honestly, girls like me are a " + (isAprilFools() ? "dogecoin" : "credit") + " a dozen. I’m nothing that special.”</i>");
 		output("\n\nPushing her a little further, she gives you a bit more of an answer. <i>“Oh, okay. Well, where to start? I’m a twenty one year-old ex-career soldier from Rivalle. I was a Sergeant before I went AWOL.”</i>");
 		output("\n\n<i>“I’m not all work - or rather, I wasn’t. I used to want to be a career dancer before the war started. I’m a bit too scarred for that now, though,”</i> she smiles wryly. <i>“Plus, I’m pretty sure we’re all going to get blown up before long... not that I can return home.”</i>");
 	}
@@ -566,7 +566,7 @@ public function aboutAnAntSlootDeserter(gold:Boolean = false):void
 		output("You ask Lys a little bit about herself. She curls a finger around her wild locks, her other arms hugging under her voluptuous breasts.");
 		output("\n\n<i>“I guess I can tell you a little bit about myself. After all, it’s not exactly like I have a lot better to do,”</i> Lys chuckles. <i>“Maybe I should start with my measurements, or are you after something a little bit more personal?”</i>");
 		output("\n\n<i>“Let’s see... I’m twenty six years old and an ex-florist. I used to have a lovely garden and my own cosy home not far from where we are now. My wife and I sold the loveliest blue-green sydranas... at least until we were both conscripted.”</i>");
-		output("\n\nShe sighs and looks down at her assorted hands, lacing her fingers together. <i>“... That was so long ago... four years? It feels like forever.”</i>");
+		output("\n\nShe sighs and looks down at her assorted hands, lacing her fingers together. <i>“...That was so long ago... four years? It feels like forever.”</i>");
 		output("\n\n<i>“Needless to say, she’s dead, along with the rest of our platoon. Our house is in ruins - there’s barely anything left. I’ve got some seeds left, but the soil is so ruined they refuse to bloom.”</i>");
 		output("\n\n<i>“All I’m doing is wasting my time until someone hunts me down for desertion, or the world ends - whichever comes first.”</i>");
 	}
@@ -577,7 +577,7 @@ public function aboutAnAntSlootDeserter(gold:Boolean = false):void
 	//avail. thru ‘About Her’ topic, consensual sex menu or victory-sex menu if Lys is friendly
 	if(gold)
 	{
-		if(pc.hasItem(new VenusBloom()) && flags["ENABLE_LYS_FLOWER"] != undefined) addButton(1,"Give Flower",giveFlowerToLys,undefined,"Give Flower","Present Lys with the exotic flower you found on Mhen’ga and see if it’ll cheer the poor girl up.");
+		if(pc.hasItemByClass(VenusBloom) && flags["ENABLE_LYS_FLOWER"] != undefined) addButton(1,"Give Flower",giveFlowerToLys,undefined,"Give Flower","Present Lys with the exotic flower you found on Mhen’ga and see if it’ll cheer the poor girl up.");
 		else if(flags["ENABLE_LYS_FLOWER"] != undefined) addDisabledButton(1,"Give Flower","Give Flower","Lys would appreciate any flowers you find. You wonder where you could get one....");
 		else addDisabledButton(1,"Locked","Locked","You don’t know her well enough for this.");
 	}
@@ -593,19 +593,19 @@ public function askAntSlootsAboutDesertion(gold:Boolean = false):void
 	if(!gold)
 	{
 		output("You ask Briha why she deserted the Scarlet Federation. Her face screws up a little, but she still answers the question.");
-		output("\n\n<i>“... I guess it’s the obvious question, right? I guess... I had an image of how things would be. I was going to be the glorious defender of my homeland, fighting back against the hypocritical Golds, who were going to stomp all over us if we didn’t do something.”</i>");
+		output("\n\n<i>“...I guess it’s the obvious question, right? I guess... I had an image of how things would be. I was going to be the glorious defender of my homeland, fighting back against the hypocritical Golds, who were going to stomp all over us if we didn’t do something.”</i>");
 		output("\n\n<i>“My dream of being a bold, adventurous heroine, delivering justice to the dirty Golds... I was so naive. I’ve shot and killed more people than I can count. Not just enemy soldiers, but civvies too. Sure, it was orders, but I was the one who pulled the trigger... or brought down the axe.”</i>");
-		output("\n\nShe sighs and bites her fingernail. <i>“... I was thinking about deserting for a while, but I couldn’t do it to my squad. When you desert, you burn your whole squad. When they all died, I was in anguish, but I was relieved... how sick is that?”</i>");
+		output("\n\nShe sighs and bites her fingernail. <i>“...I was thinking about deserting for a while, but I couldn’t do it to my squad. When you desert, you burn your whole squad. When they all died, I was in anguish, but I was relieved... how sick is that?”</i>");
 		output("\n\n<i>“When that happened, I left the front. It was easier than I thought. Now, I’m living out here in the middle of nowhere, scraping together what I can to survive. But you know what? It beats having to shoot any more defenseless people and call it justice.”</i>");
 	}
 	//Gold/Lys:
 	else
 	{
 		output("You ask Lys why she deserted the Gilden Republic. She sighs and looks at one of her fingers, rubbing it compulsively.");
-		output("\n\n<i>“... My wife. We were both conscripted early on during the war. She... I... well... same platoon,”</i> she chokes up. Her black eyes become glassy with tears. <i>“... Sorry. I really thought I could talk about it this time... but I just can’t.”</i>");
-		output("\n\nTaking a deep breath, she tries to calm her trembling body. <i>“... Whoooh. Right. So. When she left me, I ended up in a medical hospital for a little while. They put me back on the front line when the war effort started going south, though.”</i>");
+		output("\n\n<i>“...My wife. We were both conscripted early on during the war. She... I... well... same platoon,”</i> she chokes up. Her black eyes become glassy with tears. <i>“...Sorry. I really thought I could talk about it this time... but I just can’t.”</i>");
+		output("\n\nTaking a deep breath, she tries to calm her trembling body. <i>“...Whoooh. Right. So. When she left me, I ended up in a medical hospital for a little while. They put me back on the front line when the war effort started going south, though.”</i>");
 		output("\n\n<i>“When the Reds took Kressia, I figured it wasn’t long before the End, what with the nukes. If I’m going to die, I wanted to do it near where our old house was, here in No Myr’s Land - not in some hopeless defense of the capital.”</i>");
-		output("\n\n<i>“... So that’s it. I wander the wastes, stealing what I can, robbing strays, all so I can stay close to where she and I lived. I kind of feel like she’s there, you know?”</i>");
+		output("\n\n<i>“...So that’s it. I wander the wastes, stealing what I can, robbing strays, all so I can stay close to where she and I lived. I kind of feel like she’s there, you know?”</i>");
 		output("\n\n<i>“I know I’m a terrible person, but the whole world is terrible. I don’t think there’s a single thing worth salvaging anymore - we’re all just a bunch of trampled flowers, struggling to grow on scorched earth.”</i>");
 	}
 	processTime(4);
@@ -623,9 +623,9 @@ public function askAntDesertersAboutScurrs(gold:Boolean = false):void
 	if(!gold)
 	{
 		output("You ask Briha about her scars; the one over her damaged eye and one to the side of her heart.");
-		output("\n\nBriha touches her scarred eye self consciously. <i>“... T-these? I suppose you would be curious,”</i> she mumbles, <i>“The eye I got early on in the war from being careless.”</i>");
+		output("\n\nBriha touches her scarred eye self consciously. <i>“...T-these? I suppose you would be curious,”</i> she mumbles, <i>“The eye I got early on in the war from being careless.”</i>");
 		output("\n\n<i>“I’d taken a pot shot with a rifle at a gold scout. When I moved up to grab her hand-held, she damn near sliced my face open with a knife. We struggled for a bit before I smashed open her temple with her radio.”</i>");
-		output("\n\nThe red myr brings down her hand to rub the scar just next to her heart. <i>“... This one’s a bit more painful. My squad and I ran into some wire entanglements. While trying to get through, we were herded into a machine gun.”</i>");
+		output("\n\nThe red myr brings down her hand to rub the scar just next to her heart. <i>“...This one’s a bit more painful. My squad and I ran into some wire entanglements. While trying to get through, we were herded into a machine gun.”</i>");
 		output("\n\n<i>“Thankfully, a shelling took out the enemy gunner and I was dragged off the field. They stitched me up, and now I’ve got a scar and a story to tell off-worlders wandering through the wastes,”</i> she bitterly smiles.");
 		output("\n\n<i>“You, though, look at you! All scarless and " + pc.mf("handsome","pretty") + ". Off-world medicine really is something else, isn’t it?”</i>");
 	}
@@ -633,9 +633,9 @@ public function askAntDesertersAboutScurrs(gold:Boolean = false):void
 	else
 	{
 		output("You ask Lys about her scars; the one on her lower lip and on her belly.");
-		output("\n\nLys laughs and rubs her lower lip. <i>“... Well, you don’t spend time on the front without walking away with scars of one kind or another, right?”</i>");
+		output("\n\nLys laughs and rubs her lower lip. <i>“...Well, you don’t spend time on the front without walking away with scars of one kind or another, right?”</i>");
 		output("\n\n<i>“The belly and the lip are actually connected. We were pushing forward to take an enemy trench. When we reached it, I looked over and a red shot me at point blank.”</i>");
-		output("\n\nShe taps her belly, <i>“... The bullet went right through me. Thankfully, it missed all the important stuff. But I was so shocked I toppled forward and fell face-first into the trench.”</i>");
+		output("\n\nShe taps her belly, <i>“...The bullet went right through me. Thankfully, it missed all the important stuff. But I was so shocked I toppled forward and fell face-first into the trench.”</i>");
 		output("\n\n<i>“When I hit the ground, one of my teeth dug into my lower lip and cut it in half. Good thing we took the trench, otherwise I wouldn’t be alive to laugh about it. The doctors stitched my lip and belly back together, but it scarred over - no room for cosmetics on the front.”</i>");
 	}
 	processTime(4);
@@ -716,12 +716,12 @@ public function specialRedAntPreggosShitEvent():void
 		else output("her outer shell, protecting her from the world she has yet to enter.");
 
 		if(flags["BRIHA_INCUBATION_TIMER"] >= 120) output("\n\nYour heart stops as your little daughter smiles up at you - an innocent, perfect little smile - and grabs one of your fingers. Her tiny hand clasps it and doesn’t let go. The world seems to stop, just for that perfect moment.");
-		output("\n\nCoughing a little, Briha hugs her waist. There’s a tense look on her face. <i>“... Look. I’m a deserter. It-it breaks my heart into a million pieces, but you should take Aya. This place - not just the wastelands, but Myrellion - I don’t want her growing up here.”</i>");
+		output("\n\nCoughing a little, Briha hugs her waist. There’s a tense look on her face. <i>“...Look. I’m a deserter. It-it breaks my heart into a million pieces, but you should take Aya. This place - not just the wastelands, but Myrellion - I don’t want her growing up here.”</i>");
 		output("\n\nYou look at her intently. Her words are heavy, like each one is an effort to push out. Motherly concern is written all over her scarred face.");
 		output("\n\n<i>“It’s a no-brainer, right? This world might end any moment, and even if it doesn’t, I’m a deserter. The Scarlet Federation will never take me back and I can never go to the Golds. What kind of future can she have here?”</i> She strokes ");
 		if(flags["BRIHA_INCUBATION_TIMER"] < 120) output("the fragile shell");
 		else output("her baby’s cheek");
-		output(", a tear running down her half-lidded eye. <i>“... With you, off-worlder, she can have a real future. Something better than this scarred dustball. She can make her mother proud.”</i>");
+		output(", a tear running down her half-lidded eye. <i>“...With you, off-worlder, she can have a real future. Something better than this scarred dustball. She can make her mother proud.”</i>");
 		
 		addUniqueChildBriha(false, flags["BRIHA_OLDEST_SPAWN_AGE"]);
 	}
@@ -737,7 +737,7 @@ public function specialRedAntPreggosShitEvent():void
 		else output("The world stops as you look down at your precious little son. His hair, sparse and babyish, is a mess of " + flags["BRIHA_SPAWN_2_DEETS"][0] + ", and two gorgeous " + flags["BRIHA_SPAWN_2_DEETS"][1] + " eyes stare up at you.");
 		output("\n\n<i>“Just like Aya, he takes after you. His name is Brahn, after my grandfather,”</i> Briha smiles, then adds, <i>“You know the rules. I do all the work, I get to name them.”</i>");
 		output("\n\nA son! You have a son named Brahn Steele. And Aya has a little brother!");
-		output("\n\nSwallowing hard, Briha turns to you, a somber expression on her face. <i>“... You know what to do. He can’t stay here - take him. Every second I look at him, I love him a little more.”</i>");
+		output("\n\nSwallowing hard, Briha turns to you, a somber expression on her face. <i>“...You know what to do. He can’t stay here - take him. Every second I look at him, I love him a little more.”</i>");
 		
 		addUniqueChildBriha(true, flags["BRIHA_SECOND_OLDEST_SPAWN_AGE"]);
 	}
@@ -760,8 +760,8 @@ public function specialRedAntPreggosShitEvent():void
 			if(son) output("son");
 			else output("daughter");
 		}
-		output("\n\n<i>“You’re wearing me out, stud!”</i> Briha chuckles, but the mother’s face is positively aglow. <i>“... And another younger sibling for Aya and Brahn. They definitely won’t be lonely growing up - not with this little one to fuss over.”</i>");
-		output("\n\nSwallowing hard, Briha turns to you, a somber expression on her face. <i>“... You know what to do. ");
+		output("\n\n<i>“You’re wearing me out, stud!”</i> Briha chuckles, but the mother’s face is positively aglow. <i>“...And another younger sibling for Aya and Brahn. They definitely won’t be lonely growing up - not with this little one to fuss over.”</i>");
+		output("\n\nSwallowing hard, Briha turns to you, a somber expression on her face. <i>“...You know what to do. ");
 		if(son) output("He");
 		else output("She");
 		output(" can’t stay here - take ");
@@ -807,7 +807,7 @@ public function specialRedAntPreggosShitEvent():void
 	StatTracking.track("pregnancy/briha kids");
 	if(son) StatTracking.track("pregnancy/briha sons");
 	else StatTracking.track("pregnancy/briha daughters");
-	StatTracking.track("pregnancy/total births");
+	StatTracking.track("pregnancy/total sired");
 	StatTracking.track("pregnancy/total day care");
 }
 public function addUniqueChildBriha(isMale:Boolean = false, timeOffset:int = 0):void
@@ -915,7 +915,7 @@ public function loseToAntGrillDeserts():void
 		if(flags["LOST_TO_MYR_DESERTS"] == undefined)
 		{
 			flags["LOST_TO_MYR_DESERTS"] = 1;
-			output("\n\n<i>“There you go, hon,”</i> the scrappy deserter smiles, patting your patched-up cheek. <i>“... I told you it’s just your turn to be on the receiving end. I may be a turncoat, but I’m not a </i>total<i> bitch - just a little bit of one.”</i>");
+			output("\n\n<i>“There you go, hon,”</i> the scrappy deserter smiles, patting your patched-up cheek. <i>“...I told you it’s just your turn to be on the receiving end. I may be a turncoat, but I’m not a </i>total<i> bitch - just a little bit of one.”</i>");
 		}
 		//else (not first time):
 		else output("\n\n<i>“We just keep on running into each other, and you keep drawing the short end of the stick. It’s nothing personal, hon,”</i> the scrappy deserter reassures you, patting your patched-up cheek. <i>“How about I find a way to make it up to you? I’ve got a few ways in mind.”</i>");
@@ -969,8 +969,8 @@ public function winVsAntGrillDeserts():void
 
 		output("\n\nThere’s not an ounce of fight left in her - her exhausted expression affirms her submission to your superior skill.");
 		
-		if((enemy is MyrRedFemaleDeserter && flags["RED_MYR_DESERTER_BEATEN"] == undefined) || (enemy is MyrGoldFemaleDeserter && flags["GOLD_MYR_DESERTER_BEATEN"] == undefined)) output("\n\n<i>“... Guess you weren’t such an easy mark after all.");
-		else output("<i>“... Guess it’s my turn after all.");
+		if((enemy is MyrRedFemaleDeserter && flags["RED_MYR_DESERTER_BEATEN"] == undefined) || (enemy is MyrGoldFemaleDeserter && flags["GOLD_MYR_DESERTER_BEATEN"] == undefined)) output("\n\n<i>“...Guess you weren’t such an easy mark after all.");
+		else output("<i>“...Guess it’s my turn after all.");
 		output(" My life is yours, soldier. What are you going to do with me?”</i> Her singularly black eyes");
 		if(!gold) output("- one partially closed -");
 		output(" stare at you.");
@@ -980,7 +980,7 @@ public function winVsAntGrillDeserts():void
 	{
 		if(enemy.short != "Briha" && enemy.short != "Lys") output("The ");
 		output("[enemy.name] falls to her knees and drops her weapons. Instead of picking them up, she feverishly touches herself. Her face is flushed as she lets out lewd little moans.");
-		output("\n\n<i>“... F-fuck-! I-I can’t stop!”</i> The [enemy.skinColor] skinned deserter moans, <i>“It’s been far too long since I’ve had a good lay. Come on, soldier, h-have your way with me.”</i> She begs.");
+		output("\n\n<i>“...F-fuck-! I-I can’t stop!”</i> The [enemy.skinColor] skinned deserter moans, <i>“It’s been far too long since I’ve had a good lay. Come on, soldier, h-have your way with me.”</i> She begs.");
 		//Red
 		if(!gold) output("\n\nRaising her knees and hips, she lewdly displays the damp spot between her thighs. The fabric against her pussy is utterly soaked. It clings to her pussy lips, showing you her sinful contours.");
 	}
@@ -1066,7 +1066,7 @@ public function winVsAntGrillDeserts():void
 	//avail. thru ‘About Her’ topic, consensual sex menu or victory-sex menu if Lys is friendly
 	if(enemy is MyrGoldFemaleDeserter)
 	{
-		if(pc.hasItem(new VenusBloom()) && flags["ENABLE_LYS_FLOWER"] != undefined) addButton(7,"Give Flower",giveFlowerToLys,undefined,"Give Flower","Present Lys with the exotic flower you found on Mhen’ga and see if it’ll cheer the poor girl up.");
+		if(pc.hasItemByClass(VenusBloom) && flags["ENABLE_LYS_FLOWER"] != undefined) addButton(7,"Give Flower",giveFlowerToLys,undefined,"Give Flower","Present Lys with the exotic flower you found on Mhen’ga and see if it’ll cheer the poor girl up.");
 		else if(flags["ENABLE_LYS_FLOWER"] != undefined) addDisabledButton(7,"Give Flower","Give Flower","Lys would appreciate any flowers you find. You wonder where you could get one....");
 		else addDisabledButton(7,"Locked","Locked","You don’t know her well enough for this.");
 	}
@@ -1107,7 +1107,7 @@ public function handPlayForGoldWaifusInTraining():void
 	else output("She");
 	output(" slowly strips off her battered combat fatigues. Underneath, she’s wearing an olive camo bra and matching panties. Reaching behind her, there’s a tiny click, and her honey-hued knockers spill out, bouncing before your eyes.");
 
-	output("\n\nAs you lick your lips, the alieness saunters over, her sizable breasts jiggling about. <i>“... I think it’s better if I leave on my panties. Can’t have you getting too excited, now, can I?”</i>");
+	output("\n\nAs you lick your lips, the alieness saunters over, her sizable breasts jiggling about. <i>“...I think it’s better if I leave on my panties. Can’t have you getting too excited, now, can I?”</i>");
 
 	output("\n\n");
 	if(enemy.short != "Lys") output("She");
@@ -1250,7 +1250,7 @@ public function analRedButtStuffMcStuffinButts():void
 	}
 	else output("\n\nShe shivers as she realizes what you’re doing. <i>“Y-you’re going to stick it in </i>there<i> again? But that’s so naughty...”</i>");
 
-	output("\n\nYou tease her extremely cuppable breasts some more. Her protests lessen, until at last she caves, <i>“... O-o-oh all right. B-but be gentle, all right?");
+	output("\n\nYou tease her extremely cuppable breasts some more. Her protests lessen, until at last she caves, <i>“...O-o-oh all right. B-but be gentle, all right?");
 	if(flags["FUCKED_RED_DESERTBUTT"] == undefined)
 	{
 		output(" It’s my first time.");
@@ -1264,7 +1264,7 @@ public function analRedButtStuffMcStuffinButts():void
 	if(chars["RED_DESERTER"].isPregnant()) output("the pregnant myr’s");
 	else output("the female soldier’s");
 	output(" narrow hole begins to slacken, and you’re able to slowly slip your tip inside. Because she’s so tense, her ring and rectum are gloriously tight. At the same time, it takes a lot of effort to sheathe yourself inside of her muscled backside.");
-	output("\n\nWhen at last your [pc.cock] bottoms out inside of her butt, you let out a throaty groan. Every inch of her narrow confines are deliciously wringing you. Reflexively, your [pc.cockHead " + x + "] swells deep inside of her ass, and she lets out another sharp cry. <i>“... O-Oh - you’re breaking my ass!”</i> Her whole butt tenses up. Void! She’s so tight inside it’s almost criminal!");
+	output("\n\nWhen at last your [pc.cock] bottoms out inside of her butt, you let out a throaty groan. Every inch of her narrow confines are deliciously wringing you. Reflexively, your [pc.cockHead " + x + "] swells deep inside of her ass, and she lets out another sharp cry. <i>“...O-Oh - you’re breaking my ass!”</i> Her whole butt tenses up. Void! She’s so tight inside it’s almost criminal!");
 	pc.cockChange();
 
 	output("\n\nHolding her back against you, you suck on her neck and pinch her nipples. Her clinging insides ripple around your [pc.cock " + x + "]. Moaning into her shoulder, you can’t help but thrust upwards, using gravity to fully impale her on your turgid tool. This time ");
@@ -1421,7 +1421,7 @@ public function cumSplurgeForRedAntSloots():void
 	else output("[pc.balls]");
 	output(" ache");
 	if(pc.balls <= 1) output("s");
-	output(" in protest. <i>“... Now to take you a little bit deeper.”</i>");
+	output(" in protest. <i>“...Now to take you a little bit deeper.”</i>");
 
 	output("\n\nYou’re utterly blown away as she sucks [pc.oneCock] into her moist mouth. Her intoxicating saliva mixes with your [pc.cumVisc] [pc.cum] and pools around your [pc.cockHead]. It feels as intense as sex, if not <i>more</i> so!");
 
@@ -1447,7 +1447,7 @@ public function cumSplurgeForRedAntSloots():void
 	output("\n\n<i>“That was fun,”</i> ");
 	if(enemy.short != "Briha") output("she");
 	else output("Briha");
-	output(" purrs and licks her lips. When she notices your eyes are rolled back, the soldier instinctively checks your pulse. <i>“... Whoops, did I go a little bit overboard?”</i>");
+	output(" purrs and licks her lips. When she notices your eyes are rolled back, the soldier instinctively checks your pulse. <i>“...Whoops, did I go a little bit overboard?”</i>");
 
 	output("\n\nUnable to lift even a single finger, you lie there on the ground, tiny pearls of [pc.cum] dripping from your [pc.cocksNounSimple].");
 	//If have won five or more fights:
@@ -1629,7 +1629,7 @@ public function doggieStyleWithMyrBitches(gold:Boolean = false):void
 	{
 		output("\n\nOnce the raven-haired myr is finished, she looks up at you and erotically parts her mouth. Her lips and tongue are coated in [pc.cumColor]. With a single lick and gulp, she swallows the remainder.");
 	}
-	output("\n\n<i>“... Delicious - your [pc.cumNoun] really is delicious,”</i> she murmurs. <i>“");
+	output("\n\n<i>“...Delicious - your [pc.cumNoun] really is delicious,”</i> she murmurs. <i>“");
 
 	if(firstTime) 
 	{
@@ -1725,11 +1725,11 @@ public function redDildoScrew():void
 		{
 			output("You notice there’s a sizable lump in her kitpack. Curious, you ask her what’s inside of it.");
 			output("\n\nSurprised by your interest, the amber-haired ant-girl pulls out an imposing dildo, a full eight inches of veiny goodness. It’s shaped just like a myr cock, but instead of being scarlet, it’s a mottled green from tip to base with the occasional splotch of chocolate brown.");
-			output("\n\n<i>“... This? It’s standard issue for us girls in the trenches. I’ve spent many a happy night with the Private inside of me, both of us quivering away.”</i>");
+			output("\n\n<i>“...This? It’s standard issue for us girls in the trenches. I’ve spent many a happy night with the Private inside of me, both of us quivering away.”</i>");
 			output("\n\nYou ask ");
 			//if(DontKnowName) output("the ");
 			output("[enemy.name] if she could use it on you. She blinks her big black eyes, clearly surprised by your request. At the same time, she gulps, and a delighted flush travels across her cheeks.");
-			output("\n\n<i>“... Of course. I mean, I’m no stranger on using it on other" + pc.mf("s"," girls") + ",”</i> she smiles. The beautiful deserter gestures for you to lie back on the ground and you do so. She straddles your waist, sitting on top of you, and touches the toy against the tip of your nose.");
+			output("\n\n<i>“...Of course. I mean, I’m no stranger on using it on other" + pc.mf("s"," girls") + ",”</i> she smiles. The beautiful deserter gestures for you to lie back on the ground and you do so. She straddles your waist, sitting on top of you, and touches the toy against the tip of your nose.");
 			output("\n\nThere’s a clicking noise. The synthetic wang begins to wizz against your sensitive nose. It’s shaped like a dildo, but it’s actually a vibrator? Two separate motors - one in the tip and another in the base - wildly whir.");
 			output("\n\nDoes it look so thick because it’s right in front of your eyes, or is it <i>really</i>that big? A matching shiver courses through you, starting at your nose and ending at your [pc.toes].");
 			flags["RED_MYR_DESERT_DILDO_DONE"] = 1;
@@ -1740,7 +1740,7 @@ public function redDildoScrew():void
 			output("You ask ");
 			//if(DontKnowName) output("her ");
 			output("[enemy.name] if she could use the Private on you. She shoots you a saucy grin, clearly happy with your request.");
-			output("\n\n<i>“... Of course. Lie back and I’ll whip him out,”</i> she smiles. The beautiful deserter gestures for you to lie back on the ground and you do so. She straddles your waist, sitting on top of you, and touches it against the tip of your nose.");
+			output("\n\n<i>“...Of course. Lie back and I’ll whip him out,”</i> she smiles. The beautiful deserter gestures for you to lie back on the ground and you do so. She straddles your waist, sitting on top of you, and touches it against the tip of your nose.");
 			output("\n\nThere’s a clicking noise. The synthetic wang begins to wizz against your sensitive nose. The two separate motors - one in the tip and another in the base - wildly whir. A matching shiver courses through you, starting at your nose and ending at your [pc.toes].");
 		}
 	}
@@ -1775,8 +1775,8 @@ public function redDildoScrew():void
 			if(pc.totalVaginas() == 1) output("is");
 			else output("are");
 			output(" glistening wet");
-			if(pc.isCrotchGarbed()) output(" under your [pc.lowerUndergarments]");
 		}
+		if(!pc.isCrotchExposed()) output(" under your " + (!pc.isCrotchExposedByLowerUndergarment() ? "[pc.lowerUndergarment]" : "[pc.armor]"));
 		output(".");
 	}
 	var x:int = -1;
@@ -1936,7 +1936,7 @@ public function redDildoScrew():void
 		output("\n\nSome time later, when you come to, you find ");
 		//if(DontKnowName) output("the ");
 		output("[enemy.name] nestled against your side. She looks up at you with one big, black eye and the other scarred one, peering through her messed up amber hair. Lightly, she grasps at your chest, nails teasing your [pc.skinFurScales].");
-		output("\n\n<i>“S-so, that was fun,”</i> she breathily states. You’re acutely aware of her pert, naked breasts pressing up against you. <i>“... Um, I guess I should get going? Hopefully I’ll see you around...”</i>");
+		output("\n\n<i>“S-so, that was fun,”</i> she breathily states. You’re acutely aware of her pert, naked breasts pressing up against you. <i>“...Um, I guess I should get going? Hopefully I’ll see you around...”</i>");
 		output("\n\n");
 		if(enemy.isPregnant()) output("The pregnant myr");
 		else output("She");
@@ -2015,7 +2015,7 @@ public function sitAndScrewGoldMyr():void
 		//PC GotCock:
 		if(pc.hasCock())
 		{
-			output("\n\n<i>“Mmm, I think I’m going to borrow </i>this<i> for a while,”</i> the naked deserter sultrily purrs, <i>“... You don’t mind, right?”</i>");
+			output("\n\n<i>“Mmm, I think I’m going to borrow </i>this<i> for a while,”</i> the naked deserter sultrily purrs, <i>“...You don’t mind, right?”</i>");
 			output("\n\nRegardless of your answer, the busty battle-maiden strips off your [pc.gear]. You’re left lying there with your aching [pc.cocksLight] brazenly exposed. Despite your embarassment - or perhaps because of it - your [pc.cockHeads] swell");
 			if(pc.cockTotal() == 1) output("s");
 			output(" with arousal.");
@@ -2024,7 +2024,7 @@ public function sitAndScrewGoldMyr():void
 		//Else PC GotNoCock:
 		else
 		{
-			output("\n\n<i>“Mmm, you’re lacking a little something-something here,”</i> the naked deserter sultrily purrs, <i>“... Thankfully, ");
+			output("\n\n<i>“Mmm, you’re lacking a little something-something here,”</i> the naked deserter sultrily purrs, <i>“...Thankfully, ");
 			if(hasGoldDildo()) output("you’ve brought back");
 			else output("I’ve got just");
 			output(" the thing to fix that.”</i>");
@@ -2034,7 +2034,7 @@ public function sitAndScrewGoldMyr():void
 				removeGoldDildo();
 			}
 			else output("reaches into her kitpack. Out comes a rather impressive looking strap on - ten inches of golden veiny goodness. There’s another, smaller protrusion on the other side, designed to stimulate the wearer. It’s double-ended!");
-			output("\n\n<i>“We trench girls have got to help each other out. This little beauty is no fun on your own, you know? That’s where you come in,”</i> the raven-haired soldier explains, <i>“... ");
+			output("\n\n<i>“We trench girls have got to help each other out. This little beauty is no fun on your own, you know? That’s where you come in,”</i> the raven-haired soldier explains, <i>“...");
 			if(pc.hasVagina()) output("How about both of us have a good time?");
 			else output("I’ll have to remove the other end though. Sorry hon!”</i>");
 		}
@@ -2059,7 +2059,7 @@ public function sitAndScrewGoldMyr():void
 
 			output("\n\nThe raven-haired ant girl blushes and pulls out a strap-on dildo. It’s pretty impressive - ten inches of veiny goodness - and the same hue as a gold myr’s cock.");
 
-			output("\n\n<i>“... This? The Gilden Republic issues this to all the girls on the front line. We’ve got to use it on each other, mind you, since we can’t easily play with ourselves.”</i>");
+			output("\n\n<i>“...This? The Gilden Republic issues this to all the girls on the front line. We’ve got to use it on each other, mind you, since we can’t easily play with ourselves.”</i>");
 
 			output("\n\nYou notice there’s another, smaller protrusion on the other side, designed to stimulate the wearer. It’s double-ended!");
 			if(pc.hasVagina()) output(" You ask her if you can use it on her.");
@@ -2218,7 +2218,8 @@ public function knockUpRedBitchChance():void
 {
 	if(enemy is MyrRedFemaleDeserter && !enemy.isPregnant())
 	{
-		var bonusChance:int = pc.cumQ()/ 50 + 10;
+		/*
+		var bonusChance:int = (pc.cumQ()/ 50) + 10;
 		if(bonusChance > 25) bonusChance = 25;
 		bonusChance *= pc.virility();
 		if(bonusChance > 75) bonusChance = 75;
@@ -2228,6 +2229,24 @@ public function knockUpRedBitchChance():void
 			//Track hair/eye color for first shitbabies.
 			if(flags["RED_MYR_BIRTHS"] == undefined) flags["BRIHA_SPAWN_1_DEETS"] = [pc.hairColor,pc.eyeColor];
 			else if(flags["RED_MYR_BIRTHS"] == 1) flags["BRIHA_SPAWN_2_DEETS"] = [pc.hairColor,pc.eyeColor];
+			//Set incubation timer
+			flags["BRIHA_INCUBATION_TIMER"] = 0;
+			pc.clearRut();
+			trace("RED MYR KNOCKED UP!");
+		}
+		*/
+		
+		if(chars["PC"].virility() <= 0 || chars["RED_DESERTER"].fertility() <= 0) return;
+		var x:Number = (chars["PC"].virility() + chars["RED_DESERTER"].fertility())/2;
+		var score:Number = (1 - Math.exp(-0.38*x))*10000;
+		
+		if(rand(10000) <= score)
+		{
+			var traitChar:Creature = ((chars["PC_BABY"].eyeColor != "NOT SET" && chars["PC_BABY"].hairColor != "NOT SET") ? chars["PC_BABY"] : chars["PC"]);
+			
+			//Track hair/eye color for first shitbabies.
+			if(flags["RED_MYR_BIRTHS"] == undefined) flags["BRIHA_SPAWN_1_DEETS"] = [traitChar.hairColor, traitChar.eyeColor];
+			else if(flags["RED_MYR_BIRTHS"] == 1) flags["BRIHA_SPAWN_2_DEETS"] = [traitChar.hairColor, traitChar.eyeColor];
 			//Set incubation timer
 			flags["BRIHA_INCUBATION_TIMER"] = 0;
 			pc.clearRut();
@@ -2470,7 +2489,7 @@ public function stealDildoScene(gold:Boolean):void
 		else output("\n\n<i>“Damn right,”</i> you assure her.");
 		//(post-combat only)
 		if(combatWin) output(" <i>“Them’s the rules around here.”</i>");
-		else output("\n\n<i>“... Fine. Only because I kinda like you.”</i>");
+		else output("\n\n<i>“...Fine. Only because I kinda like you.”</i>");
 	}
 	//repeat, PC already has this myr’s dildo
 	else
@@ -2754,7 +2773,7 @@ public function teaseBrihaWithDildoStealAsshole():void
 			output("\n\n<i>“Why don’t you come and take it? That’s the rule here,”</i> you cajole.");
 		}
 		output(" You hold the toy out to her and pull it back when she grabs for it.");
-		if(pc.isBro()) output("<i>“Just keeping it for a li’l while. Prob’ly.”</i>");
+		if(pc.isBro()) output("<i>“Just keeping it for a lil’ while. Prob’ly.”</i>");
 		else output("<i>“I’ll give it back next time... probably.”</i>");
 		if(!pc.isAss()) output(" You wink.");
 
@@ -3107,11 +3126,21 @@ public function useBrihasVibeAnal():void
 		//flag Briha’s vibro as used 1
 		//if taur, reduce shields by 1 point
 	}
+	if(inCombat())
+	{
+		output("\n\n");
+		if(pc.HP() <= 0 || pc.lust() >= pc.lustMax()) CombatManager.genericLoss();
+		else CombatManager.genericVictory();
+	}
+	else
+	{
+		setEnemy(null);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 	processTime(20);
 	pc.orgasm();
 	if(pc.isTaur()) pc.shields(-1);
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
 }
 
 //requiring Lys’s dildo
@@ -3184,11 +3213,21 @@ public function didloDPWivStolenDildo(target:String = "vag"):void
 		}
 		output("\n\nSpent, you lay down for a brief rest. The sex toys stuffing your hole are a problem for the awake you.");
 	}
+	if(inCombat())
+	{
+		output("\n\n");
+		if(pc.HP() <= 0 || pc.lust() >= pc.lustMax()) CombatManager.genericLoss();
+		else CombatManager.genericVictory();
+	}
+	else
+	{
+		setEnemy(null);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 	//end, lust, time, set ‘used’ flag for Lys’s toy
 	processTime(30);
 	pc.orgasm();
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
 }
 
 //Give Flower - new scene for Lys
@@ -3204,7 +3243,7 @@ public function giveFlowerToLys():void
 	showDeserter(true);
 	author("Zeikfried");
 	pc.addNice(2);
-	pc.destroyItem(new VenusBloom());
+	pc.destroyItemByClass(VenusBloom);
 	var combatWin:Boolean = (inCombat() && (pc.HP() > 0 && pc.lust() < pc.lustMax()));
 
 	if(pc.isBro() || pc.isBimbo()) output("<i>“Um, I found a thing,”</i> you announce.");
@@ -3224,7 +3263,7 @@ public function giveFlowerToLys():void
 		else if(pc.isNice()) output("\n\n<i>“You seemed very sad, and I thought it might cheer you up.”</i>");
 		else output("\n\nYou nod.");
 	}
-	output("\n\n<i>“So...”</i> Lys says, playing with her hair like a shy date. It’s funny when you remember that she’s a hardened soldier who’s probably killed more myr than you’ve met. <i>“... are you going to give that pretty flower to me?”</i>");
+	output("\n\n<i>“So...”</i> Lys says, playing with her hair like a shy date. It’s funny when you remember that she’s a hardened soldier who’s probably killed more myr than you’ve met. <i>“...are you going to give that pretty flower to me?”</i>");
 
 	//first time
 	if(flags["GAVE_LYS_FLOWER"] == undefined)
@@ -3431,11 +3470,21 @@ public function useCockOnLysPostFlower(tailCawk:Boolean = false):void
 	if(pc.isNice()) output("laugh");
 	else output("roll your eyes");
 	output(", then collect your gear. Lys re-equips as well, holding the flower away to prevent crushing it, and then you bid one another goodbye.");
+	if(inCombat())
+	{
+		output("\n\n");
+		if(pc.HP() <= 0 || pc.lust() >= pc.lustMax()) CombatManager.genericLoss();
+		else CombatManager.genericVictory();
+	}
+	else
+	{
+		setEnemy(null);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 	//end, reduce lust, time, remove 1x venus flower
 	processTime(21);
 	pc.orgasm();
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
 }
 
 //Cunnilingus/Analingus
@@ -3492,11 +3541,21 @@ public function enolAngusAkaColonelAngus(puss:Boolean = true):void
 	if(pc.isNice()) output("laugh");
 	else output("roll your eyes");
 	output(", then collect your gear. Lys re-equips as well, holding the flower away to prevent crushing it, and then you bid one another goodbye.");
+	if(inCombat())
+	{
+		output("\n\n");
+		if(pc.HP() <= 0 || pc.lust() >= pc.lustMax()) CombatManager.genericLoss();
+		else CombatManager.genericVictory();
+	}
+	else
+	{
+		setEnemy(null);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 	//end, reduce lust, time, remove 1x venus flower
 	processTime(20);
 	pc.orgasm();
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
 }
 
 //double dildo stuffing on Briha [title: 'Compare Toys']
@@ -3581,7 +3640,7 @@ public function doubleDildoBrihaStuffing():void
 		output("\n\n<i>“Well...”</i> you begin");
 		//(has outer garment)
 		if(!pc.isCrotchExposedByArmor()) output(", opening your [pc.armor] to expose your [pc.lowerUndergarment]");
-		output(". You slip a hand into your underwear to find the projector controls and turn them on. Emphasized by a theatrical hip thrust, a fat, photonic cock springs from your girt loins. <i>“... something like this, maybe?”</i>");
+		output(". You slip a hand into your underwear to find the projector controls and turn them on. Emphasized by a theatrical hip thrust, a fat, photonic cock springs from your girt loins. <i>“...something like this, maybe?”</i>");
 		output("\n\n<i>“Ooh, shiny,”</i> she says. She reaches out to touch it, haltingly, as if she expects it to fade like a hologram. Instead, you push it through her hand, which closes reflexively. <i>“What... it’s solid? That’s pretty cool....”</i>");
 		output("\n\n’Size-adjustable, too,”</i> you add, pulsing it with the control.");
 		output("\n\n<i>“But does it vibrate?”</i> she asks, knowingly.");
@@ -3747,20 +3806,15 @@ public function doubleDildoBrihaStuffing():void
 	//(else not nice)
 	else
 	{
-		output("<i>“Sure...”</i> you reply, reaching for the vibrator. You grasp the end but, instead of pulling it out, simply twist it back down to the lowest setting. <i>“... in your dreams.”</i> ");
+		output("<i>“Sure...”</i> you reply, reaching for the vibrator. You grasp the end but, instead of pulling it out, simply twist it back down to the lowest setting. <i>“...in your dreams.”</i> ");
 		if(flags["KNOW_RED_MYR_NAME"] == undefined) output("Briha");
 		else output("The girl");
 		output(" gasps as you back away, leaving her at the mercy of her enthusiastic mechanical companion. She flops over, laid out in a haze of sex and sweat, stomach muscles working as the toy continues to ravish her; you pick up your things and leave, but don’t get far enough away before you hear the low moans of an ant-girl in orgasm reverberate through the cave a second time.");
 	}
-	//do pc orgasm unless unsexed, pass time
-	processTime(19);
-	IncrementFlag("BRIHA_HARDLIGHT_STUFFED");
-	pc.orgasm();
-	clearMenu();
-	if(inCombat()) 
+	if(inCombat())
 	{
 		output("\n\n");
-		if(inCombat() && (pc.HP() <= 0 || pc.lust() >= pc.lustMax())) CombatManager.genericLoss();
+		if(pc.HP() <= 0 || pc.lust() >= pc.lustMax()) CombatManager.genericLoss();
 		else CombatManager.genericVictory();
 	}
 	else
@@ -3769,4 +3823,8 @@ public function doubleDildoBrihaStuffing():void
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
+	//do pc orgasm unless unsexed, pass time
+	processTime(19);
+	IncrementFlag("BRIHA_HARDLIGHT_STUFFED");
+	pc.orgasm();
 }

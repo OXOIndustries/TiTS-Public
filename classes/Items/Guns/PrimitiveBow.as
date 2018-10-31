@@ -9,6 +9,7 @@
 	
 	public class PrimitiveBow extends ItemSlotClass
 	{
+		//Level 1. Balance 2.0
 		//constructor
 		public function PrimitiveBow()
 		{
@@ -39,7 +40,7 @@
 			//Information
 			this.basePrice = 5;
 			
-			baseDamage.kinetic.damageValue = 1;			
+			baseDamage.kinetic.damageValue = 4;			
 			
 			this.attack = 0;
 			this.critBonus = 0;
@@ -47,7 +48,7 @@
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.evasion = 5;
+			this.evasion = 2;
 			this.fortification = 0;
 			
 			this.addFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON);

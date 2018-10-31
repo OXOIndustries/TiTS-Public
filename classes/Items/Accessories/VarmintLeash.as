@@ -49,7 +49,7 @@ package classes.Items.Accessories
 			version = _latestVersion;
 		}
 		
-		override public function onEquip(targetCreature:Creature):void
+		override public function onEquip(targetCreature:Creature, outputText:Boolean = false):void
 		{
 			if(kGAMECLASS.varmintIsTame())
 			{
@@ -57,7 +57,7 @@ package classes.Items.Accessories
 			}
 		}
 		
-		override public function onRemove(targetCreature:Creature):void
+		override public function onRemove(targetCreature:Creature, outputText:Boolean = false):void
 		{
 			targetCreature.removeStatusEffect("Varmint Buddy");
 		}

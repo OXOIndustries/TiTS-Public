@@ -10,7 +10,7 @@ package classes.Items.Apparel
 	 */
 	public class BunnyOutfit extends ItemSlotClass
 	{
-		
+		//Level 3 (Common). Balance 2.0
 		public function BunnyOutfit() 
 		{
 			this._latestVersion = 1;
@@ -37,9 +37,9 @@ package classes.Items.Apparel
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
-			this.sexiness = 5;
+			this.sexiness = 6;
 			this.critBonus = 0;
-			this.evasion = 0;
+			this.evasion = 3;
 			this.fortification = 0;
 			
 			this.version = this._latestVersion;

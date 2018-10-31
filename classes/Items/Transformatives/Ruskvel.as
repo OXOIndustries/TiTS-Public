@@ -3,7 +3,7 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
@@ -30,7 +30,7 @@
 			//Longass shit, not sure what used for yet.
 			this.description = "a greasy treat commonly called ‘Ruskvel’";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "The staple of the raskvel’s diet takes the form of a round, doughy, oatmeal-coloured dumpling the size of a cauliflower, wrapped in tinfoil, dense and greasy to touch. Aerodynamic it is not but everything about it has speed in mind: How fast it takes to bake, how quickly it can be eaten, and the number of calories it contains to keep a short-legged, high-libido’d rabbit-reptile running around from dawn until dusk. Your codex warns you that eating it may well cause your microbots to physically alter you.";
+			this.tooltip = "The staple of the raskvel’s diet takes the form of a round, doughy, oatmeal-coloured dumpling the size of a cauliflower, wrapped in tinfoil, dense and greasy to touch. Aerodynamic it is not but everything about it has speed in mind: How fast it takes to bake, how quickly it can be eaten, and the number of calories it contains to keep a short-legged, high-libido’d rabbit-reptile running around from dawn until dusk. Your codex warns you that eating it may well cause your microbots to physically alter you.\n\n<b>Known to cause moderate amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -69,6 +69,7 @@
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
 				var pc:PlayerCharacter = target as PlayerCharacter;
+				pc.taint(3);
 				//Usage text:
 				author("Nonesuch");
 				//Nonrask
@@ -96,7 +97,7 @@
 				//NOPE! 60%!
 				if(pc.IQ() < 60 && rand(3) == 0 && changes < changeLimit)
 				{
-					kGAMECLASS.output("\n\nYour mind wanders back to your [pc.ship], considering all its small, annoying, mechanical problems; ways you could fix them, parts you could reuse in so doing, systems you could make more efficient by taking apart and reworking them... oh, if only you had the time! But the moment you’ve redesigned something in your head you’ve moved on and forgotten it, another manual problem occurring to you and occupying your busy, impatient mind.");
+					kGAMECLASS.output("\n\nYour mind wanders back to your ship, considering all its small, annoying, mechanical problems; ways you could fix them, parts you could reuse in so doing, systems you could make more efficient by taking apart and reworking them... oh, if only you had the time! But the moment you’ve redesigned something in your head you’ve moved on and forgotten it, another manual problem occurring to you and occupying your busy, impatient mind.");
 					pc.slowStatGain("intelligence",2);
 					changes++;
 				}
@@ -465,7 +466,7 @@
 					}
 				}
 				//Increase elasticity/depth
-				if(pc.elasticity < 2 && pc.hasVagina() && rand(3) == 0 && changes < changeLimit)
+				if(pc.elasticity < (pc.hasPerk("Elasticity") ? 3 : 2) && pc.hasVagina() && rand(3) == 0 && changes < changeLimit)
 				{
 					kGAMECLASS.output("\n\nWarmth pushes into the sensitive inner parts of your [pc.vaginas], massaging your tunnel");
 					if(pc.totalVaginas() > 1) kGAMECLASS.output("s and wombs");

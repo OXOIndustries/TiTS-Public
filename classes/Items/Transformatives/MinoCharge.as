@@ -144,7 +144,7 @@ package classes.Items.Transformatives
 					if (target.cockTotal() == 1) output(" withdraws");
 					else output("s withdraw");
 					output(" into the new fleshy container");
-					if (target.balls > 0) output(" , with your [pc.balls] hanging beneath");
+					if (target.balls > 0) output(", with your [pc.balls] hanging beneath");
 					output(". <b>[pc.EachCock]");
 					if (target.cockTotal() == 1) output(" is");
 					else output(" are");
@@ -750,7 +750,7 @@ package classes.Items.Transformatives
 					// cock 12 inches or more:
 					if (target.biggestCockLength() >= 12) output(" massive");
 					output(" bulge ");
-					if (target.isCrotchGarbed()) output("in your [pc.lowerUnderGarments]");
+					if (target.isCrotchGarbed()) output("in your [pc.lowerGarment]");
 					else output(" between your [pc.legOrLegs]");
 					output(".");
 					// 12 inches or more:

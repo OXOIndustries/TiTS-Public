@@ -245,7 +245,7 @@ public function climbIntoTheDamnedTank():void
 		output(" fitfully, fighting to remain active, perhaps roused by your own arousal. It doesn’t matter, not when a tentacle is looping around it, squeezing it so tightly that it can’t possible move. You feel a pinch, passed your way by your conjoined nervous systems, and then the rogue appendage goes as obligingly limp as the rest of your body. It feels somewhat numb, but that’s fine, there’s so many sensations pouring out of the rest of your body that you’re thankful not to have to endure another source of intense arousal.");
 	}
 	processTime(14);
-	pc.lust(9001);
+	pc.maxOutLust();
 	clearMenu();
 	addButton(0,"Next",orgasmenderScene2);
 }
@@ -440,7 +440,7 @@ public function orgasmenderScene3():void
 	//Lipples
 	else if(pc.hasLipples())
 	{
-		output("\n\nSticky-slick heat explodes behind your [pc.lipples], accompanied by the faint pleasure of your lip-gasms. It seems so distant compared to what’s happening in your loins, but that doesn’t stop you from enjoying it. It doesn’t stop you from loving the way the tentacle-cum feels as it cascades over your bloated lips, or how your cock-loving cushions squeeze and compress around the hard-pumping, thrusting mass. It’s a constant, thumping rhythm layered just behind the more intense jolts of the rest of your climax.");
+		output("\n\nSticky-slick heat explodes behind your [pc.nipples], accompanied by the faint pleasure of your lip-gasms. It seems so distant compared to what’s happening in your loins, but that doesn’t stop you from enjoying it. It doesn’t stop you from loving the way the tentacle-cum feels as it cascades over your bloated lips, or how your cock-loving cushions squeeze and compress around the hard-pumping, thrusting mass. It’s a constant, thumping rhythm layered just behind the more intense jolts of the rest of your climax.");
 	}
 	//Pusspples
 	else if(pc.hasNippleCunts())

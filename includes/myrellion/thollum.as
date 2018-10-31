@@ -28,7 +28,7 @@ public function showYarastaThreesome(nude:Boolean = false):void
 {
 	if(!nude) showBust("GIALA","YARASTA");
 	else showBust("GIALA_NUDE","YARASTA_NUDE");
-	showName("GIALA\n& YARASTA");	
+	showName("GIALA\n& YARASTA");
 	author("Zeikfried");
 }
 
@@ -966,7 +966,7 @@ public function currentEventsYarastaTalk():void
 		flags["YARASTA_EVENTS_TALK"] = 1;
 		output("\n\nYou shift to sit comfortably for the anticipated lecture.");
 		output("\n\n<i>“I’ve been thinking a lot about the U.G.C. and their technology. Myrellion may not be the straight-forward assimilation into the galactic economy that everyone seems to assume.”</i> The pretty myr tucks her left two arms under the others and taps her fine cheekbones - a strange sight, since her two right index fingers tap in alternating rhythm. <i>“Of course, it would be nice if it were absorbed into the U.G.C. without incident and everyone could benefit according to their station. But consider some of the medical breakthroughs you take for granted. For example...”</i>");
-		output("\n\nYou nod politely when she looks at you, and she continues, holding her hands palm-up to suggest an offering of knowledge. <i>“... we see already that Queen Irellia’s desire for more power has prompted a risky, untested gene manipulation that allows her to breed and lay simultaneously, an advantage which surely must have the other queens thinking. What if other such procedures are adapted? For instance, suppose next is introduced a treatment to turn any myrmedion into a functional hermaphrodite");
+		output("\n\nYou nod politely when she looks at you, and she continues, holding her hands palm-up to suggest an offering of knowledge. <i>“...we see already that Queen Irellia’s desire for more power has prompted a risky, untested gene manipulation that allows her to breed and lay simultaneously, an advantage which surely must have the other queens thinking. What if other such procedures are adapted? For instance, suppose next is introduced a treatment to turn any myrmedion into a functional hermaphrodite");
 		if(pc.isHerm()) output(" like yourself");
 		output("? If we look past the cosmetic and recreational value of such a change, we see immediately that it offers the Scarlet Federation an enormous breeding advantage, as nearly half of their females are fertile by recent scholarly estimates. Within two decades of such an advance, they could outnumber us by a factor of five!”</i>");
 		output("\n\nShe answers your ");

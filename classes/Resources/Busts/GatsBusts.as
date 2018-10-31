@@ -24,6 +24,8 @@
 		public var Bounds_ANNO:Rectangle = new Rectangle(8, 17, 61, 56);
 		[Embed(source = "../../../assets/images/npcs/gats/Anno_Nude.png", mimeType = "image/png")]
 		public var Bust_ANNO_NUDE:Class;
+		public function get Bust_ANNO_HUSKAR():Class { return Bust_ANNO; }
+		public function get Bust_ANNO_HUSKAR_NUDE():Class { return Bust_ANNO_NUDE; }
 
 		[Embed(source = "../../../assets/images/npcs/gats/Artie.png", mimeType = "image/png")]
 		public var Bust_ARTIE:Class;
@@ -246,6 +248,8 @@
 		public var Bust_SHELLY:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Shelly_Nude.png", mimeType = "image/png")]
 		public var Bust_SHELLY_NUDE:Class;
+		public function get Bust_SHELLY_HUGE():Class { return Bust_SHELLY; }
+		public function get Bust_SHELLY_HUGE_NUDE():Class { return Bust_SHELLY_NUDE; }
 
 		[Embed(source = "../../../assets/images/npcs/gats/Steph.png", mimeType = "image/png")]
 		public var Bust_STEPH:Class;

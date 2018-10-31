@@ -52,7 +52,7 @@ public function bimboPennyMenu():void
 	addButton(0,"Talk",bimboPennyTalk);
 	if(pc.lust() >= 33) addButton(1,"Sex",bimboPennySex);
 	else addDisabledButton(1,"Sex","Sex","You are not quite in the mood for this at the moment.");
-	if(pc.hasItem(new IQBGone())) addButton(2,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
+	if(pc.hasItemByClass(IQBGone)) addButton(2,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -195,7 +195,7 @@ public function getFuckedByBimboPenny():void
 	output("\n\n<i>“Mhmmm, that’s good girl,”</i> you sigh happily. <i>“You’re good at this, aren’t you?”</i>");
 	output("\n\n<i>“Yes, yes, yes,”</i> she pants, each word in time with her thrusts.");
 	output("\n\nYou lean back into it, savoring the feeling of her thick cock pushing so deep inside you. <i>“That’s what you’re for, isn’t it girl? Being always ready to fuck, whenever I want...”</i>");
-	output("\n\n<i>“Yes... yes... yes...”</i> She’s having trouble concentrating enough to speak, only managing to get words out once every few thrusts, and the rest of the time her longue tongue simply hangs needfully from her muzzle.");
+	output("\n\n<i>“Yes... yes... yes...”</i> She’s having trouble concentrating enough to speak, only managing to get words out once every few thrusts, and the rest of the time her long tongue simply hangs needfully from her muzzle.");
 	output("\n\n<i>“This is what you are now; an eager, bimbo slut,");
 	if(pc.isBimbo()) output(" just like me,");
 	output(" and doesn’t it feel good?”</i>");
@@ -294,7 +294,7 @@ public function getOralFromBimboPenny():void
 	{
 		output(" Your unnattended cock");
 		if(pc.cockTotal() > 2) output("s also fire");
-		else output("also fires off");
+		else output(" also fires");
 		output(" off, sending long slick waves of [pc.cumColor] cum sliding down her fur.");
 	}
 	output(" She cums too, so blissfully happy to have successfully been of service, her thick cock spurting again and again down beneath the desk");

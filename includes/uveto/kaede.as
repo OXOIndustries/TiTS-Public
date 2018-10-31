@@ -62,8 +62,7 @@ public function uvetoKaedeRainCheck():void
 
 public function uvetoKaedeSure():void
 {
-	currentLocation = "UVS B7";
-	generateMap();
+	moveTo("UVS B7");
 	
 	clearOutput();
 	kaedeHeader();
@@ -72,7 +71,7 @@ public function uvetoKaedeSure():void
 
 	output("<i>“Sure,”</i> you say, releasing the half-ausar from your end of the hug. <i>“Lead the way.”</i>");
 	
-	output("\n\nKaede gives a little cheer and takes you by the hand, marching down the corridor with a cute little skip in her step. You follow at her side, letting her ginger tail swish against your [pc.leg] and her fingers wrap tightly between your own. As you walk towards the inner sanctum of the station, Kaede calls your attention to the viewports on the right, showing the curving ice plane of the Uvetan moon down below.");
+	output("\n\nKaede gives a little cheer and takes you by the hand, marching down the corridor with a cute little skip in her step. You follow at her side, letting her ginger tail swish against your [pc.leg] and her fingers wrap tightly between your own. As you [pc.walk] towards the inner sanctum of the station, Kaede calls your attention to the viewports on the right, showing the curving ice plane of the Uvetan moon down below.");
 	
 	output("\n\n<i>“Beautiful, isn’t it?”</i> she smiles, pausing to gaze out into the pale wastes. <i>“I barely ever go planetside, but Uveto really tempts me. Even though it’s so cold, I’ve seen the holovids of the ice plains and... wow. Even those coreward resort planets you see all the time don’t hold a candle to those snowy fields. They’re just so... so fake, you know? But this place, it’s still wild and untamed. A natural beauty.”</i>");
 	
@@ -217,7 +216,7 @@ public function uvetoKaedeAnno():void
 		output("\n\n<i>“We’re doing alright, thanks,”</i> Kaede answers with a bright smile. <i>“I wish I was leading the kind of lifestyle where we could be together on a more permanent basis, but we make do. I’m always keeping an eye out for");
 		if (annoNotRecruited()) output(" Tarkus");
 		else output(" Tavros");
-		output(" contracts so I have an excuse to visit as often as I can. Just about every spare credit I can put together goes into taking her out to nice places, buying little presents...”</i>");
+		output(" contracts so I have an excuse to visit as often as I can. Just about every spare " + (isAprilFools() ? "dogecoin" : "credit") + " I can put together goes into taking her out to nice places, buying little presents...”</i>");
 		
 		output("\n\nHang on a minute, isn’t Anno kind of rich? Why’s Kaede all but putting herself in the poor house like that; surely Anno should be doing the expensive wooing.");
 		
@@ -252,13 +251,28 @@ public function uvetoKaedeCass():void
 
 	output("\n\nGlancing up at you, Kaede asks, <i>“Do you have any kids, [pc.name]?”</i>");
 
-	var numChildren:Number = StatTracking.getStat("pregnancy/total births");
+	var numChildren:Number = (StatTracking.getStat("pregnancy/total births") + StatTracking.getStat("pregnancy/total sired"));
+	// preggos
+	if(pc.isPregnant() && pc.bellyRatingMod > 10)
+	{
+		for (var i:int = 0; i < pc.pregnancyData.length; i++)
+		{
+			var pData:PregnancyData = pc.pregnancyData[i];
+			if(pData.pregnancyType != "" && pData.pregnancyQuantity > 0)
+			{
+				var pChildType:int = PregnancyManager.getPregnancyChildType(pc, i);
+				if(pChildType == GLOBAL.CHILD_TYPE_LIVE) numChildren += pData.pregnancyQuantity;
+				//else if(pChildType == GLOBAL.CHILD_TYPE_SEED) numChildren += pData.pregnancyQuantity;
+				//else if(pChildType == GLOBAL.CHILD_TYPE_EGGS) numChildren += pData.pregnancyQuantity;
+			}
+		}
+	}
 	if (numChildren > 0)
 	{
 		output("\n\n<i>“I do,”</i> you answer.");
 		if (numChildren >= 10) output(" <i>“Lots.”</i>");
 	}
-	else output(" <i>“Not yet,”</i> you answer. Given your ancestry, who knows how long that’ll stay true.");
+	else output("\n\n<i>“Not yet,”</i> you answer. Given your ancestry, who knows how long that’ll stay true.");
 
 	output("\n\nKaede smiles. <i>“That’s good. You");
 	if (numChildren == 0) output("’ll have some eventually, I’m sure. It’s... it’s a trip.");
@@ -355,8 +369,9 @@ public function uvetoKaedeTease():void
 	kaedeHeader();
 
 	//+Exhibitionism. If you track NPC stats like that, give +KaedeExhibitionism, too! She probably starts off really low.
+	kaedeIncreaseExhibitionism(10);
+	
 	//+Mischievous
-
 	pc.addMischievous(3);
 	pc.exhibitionism(5);
 
@@ -389,7 +404,7 @@ public function uvetoKaedeDone():void
 	clearOutput();
 	kaedeHeader();
 
-	output("You lean back in your chair as the little server droid zooms back to your table, balancing a steaming tray of food on its cylindrical head. Kaede slides the tray over from it and deposits a credit chit before sending it on its way. The droid beeps a polite <i>“Thank you!”</i> as it wheels off to tend to another table.");
+	output("You lean back in your chair as the little server droid zooms back to your table, balancing a steaming tray of food on its cylindrical head. Kaede slides the tray over from it and deposits a " + (isAprilFools() ? "dogecoin" : "credit chit") + " before sending it on its way. The droid beeps a polite <i>“Thank you!”</i> as it wheels off to tend to another table.");
 	
 	output("\n\nYour companion digs in with ferocity");
 	if (flags["KAEDE_UVETO_TEASED"] != undefined) output(", taking out the frustrations of your previous teasing on");
@@ -443,8 +458,7 @@ public function uvetoKaedeNotToday():void
 
 public function uvetoKaedeSEXYTIMESENSUE():void
 {
-	currentLocation = "UVS F15";
-	generateMap();
+	moveTo("UVS F15");
 	
 	clearOutput();
 	kaedeHeader();
@@ -502,7 +516,7 @@ public function uvetoKaedeShowerWith(fuckedHer:Boolean = false):void
 	output(" as Kaede starts for the shower.");
 	
 	output("\n\n");
-	if (silly) output("<i>“Only if you don’t mind the smell of wet ausar!”</i> she teases");
+	if (silly) output("<i>“Only if you don’t mind the smell of wet ausar!”</i> she teases.");
 	else output("<i>“Only if you don’t mind scrubbing some hard-to-reach places,”</i> Kaede laughs.");
 	output(" Your lover takes you by the hand and leads you through a hatch into a decidedly cramped, dark bathroom. About what you’d expect from a one-man-crew ship, though it’s definitely standing room only in her stall. Kaede gives you an apologetic smile as she taps a control panel inside, and steaming-hot water starts pumping out. She turns on a heel, leading you in and pulling you tight against herself as the water beats down from above, drenching you and your lover in a heartbeat. Kaede quickly grabs a cloth and wipes away the cum sticking to her flesh, but catches your hand when you move to do the same.");
 	
@@ -577,7 +591,7 @@ public function uvetoKaedeDildoPlay(fuckedHer:Boolean = false):void
 	
 	output("\n\n<i>“I thought you didn’t want to use your cock,”</i> you tease back, sliding down until the knot presses against your clenching hole. You give Kaede the same treatment, pushing the smaller shaft so deep that the knot sinks half way in, stretching her even wider than before. Your lover just keeps moaning, grabbing at her breasts and hiking her tail in the air, a silent plea to keep pounding her.");
 	
-	output("\n\nYou’re taken by a wicked idea, though - one leagues better than just teasing the poor butt-slut till she creams herself! Grabbing Kaede’s waist to steady her, you lean forward and whisper relaxing nothings in her ear, telling her to just stay nice and open for you. She whines, but her ass is utterly unresistant as you sink the rest of the latex shaft’s knot into her, tying her to the toy. Her cock throbs, drooling thicker streaks of white onto the floor as your ministrations milk her prostate but never let her really cum.");
+	output("\n\nYou’re taken by a wicked idea, though - one leagues better than just teasing the poor butt-slut until she creams herself! Grabbing Kaede’s waist to steady her, you lean forward and whisper relaxing nothings in her ear, telling her to just stay nice and open for you. She whines, but her ass is utterly unresistant as you sink the rest of the latex shaft’s knot into her, tying her to the toy. Her cock throbs, drooling thicker streaks of white onto the floor as your ministrations milk her prostate but never let her really cum.");
 	
 	output("\n\nNow that the toy’s firmly knotted in Kaede’s ass, you grab her hips in both hands and yank her back, planting the half-ausar’s firm behind right in your crotch");
 	if (pc.hasCock()) output(" and sliding your semi-hard schlong through the crack of her ass and into the base of her fluffy tail");
@@ -702,7 +716,7 @@ public function uvetoKaedeFuckHerAss(arg:Array):void
 	
 	output("\n\nYou’re not far behind yourself, now that you think about it. The way Kaede’s tight little tail-hole squeezes and kneads your member with every thrust, milking you as eagerly as any cum-thirsty quim, is driving you ever more wild with lust. All you can do to sate yourself now, though, is grab two handfuls of Kaede’s plush behind and spread her wide, hammering yourself as deep in as you can possibly go until the pleasure finally overwhelms you - and your lover.");
 	
-	output("\n\n<i>“Gonna... gonna... ohfuck!”</i> Kaede cries a moment before you announce your own climax. She cries out in absolute bliss, throwing her head back and letting you ream her to orgasm. Thick streaks of white ausar cream shoot straight down from her untouched prick, splattering across her feet as you milk her much-abused prostate for everything it’s got. Her climax brings yours on as sure as sunrise, though, as her ass squeezes down so forcefully around your [pc.cock] that you can’t help but give the randy pup what her hole’s been craving all this time.");
+	output("\n\n<i>“Gonna... gonna... ohfuck!”</i> Kaede cries a moment before you announce your own climax. She cries out in absolute bliss, throwing her head back and letting you ream her to orgasm. Thick streaks of white ausar cream shoot straight down from her untouched prick, splattering across her feet as you milk her much-abused prostate for everything it’s got. Her climax brings yours on as sure as sunrise, though, as her ass squeezes down so forcefully around your [pc.cock "+cIdx+"] that you can’t help but give the randy pup what her hole’s been craving all this time.");
 
 	output("\n\nWith a grunt of climactic pleasure, you");
 	if (pc.cockVolume(cIdx) <= 250) output(" hilt yourself in Kaede’s ass");
@@ -751,7 +765,7 @@ public function uvetoKaedeGoodbye():void
 
 	output("You nod at her, giving Kaede’s tight behind an appreciative swat as she slinks past. She gasps and blushes, flicking her bushy red tail at you. <i>“Thanks for the fun, [pc.name]. That was... well, I hope that was half as good for you as it was for me.”</i>");
 	
-	output("\n\nDefinitely. You swing out of your seat and walk over to her, grabbing Kaede by the waist and spinning her around into a quick kiss. Her eyes are wide open, taken by surprise, but quickly flutter down into a sated lull.");
+	output("\n\nDefinitely. You swing out of your seat and [pc.walk] over to her, grabbing Kaede by the waist and spinning her around into a quick kiss. Her eyes are wide open, taken by surprise, but quickly flutter down into a sated lull.");
 	
 	output("\n\n<i>“I’ll take that as a yes,”</i> she smiles, wrapping her arms around you. <i>“I’m gonna see you again, right?”</i>");
 	

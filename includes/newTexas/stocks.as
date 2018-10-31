@@ -82,6 +82,34 @@ public function useMiscreantManor():void
 	addButton(0,"Next",useMiscreantManor2);
 }
 
+public function getNTStocksPregContainer(arg:String = ""):PregnancyPlaceholder
+{
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	
+	if(!pp.hasCock()) pp.createCock();
+	switch(arg)
+	{
+		case "hellhound":
+			pp.shiftCock(0, GLOBAL.TYPE_CANINE);
+			pp.impregnationType = "AusarPregnancy";
+			break;
+		case "kaithrit":
+			pp.shiftCock(0, GLOBAL.TYPE_FELINE);
+			// 9999 pp.impregnationType = "KaithritPregnancy";
+			break;
+		case "farmer":
+			pp.shiftCock(0, GLOBAL.TYPE_HUMAN);
+			// 9999 pp.impregnationType = "HumanPregnancy";
+			break;
+		case "leithan":
+			pp.shiftCock(0, GLOBAL.TYPE_SNAKE);
+			// 9999 pp.impregnationType = "LeithanPregnancy";
+			break;
+	}
+	pp.ballFullness = 100;
+	
+	return pp;
+}
 //Randomly assign boners to mouth, each pussy, and asshole.
 //Random dudes that can show: Zephyr, Unnamed Hellhound (Ausar Bull), Vacationing Kaithrit Heiress, Kiro, Leithan Male, Treated Male Laquine, New Texan farmer (Always at least one of these). Each gets 2-3 paragraphs per hole.
 public function useMiscreantManor2():void
@@ -142,13 +170,26 @@ public function useMiscreantManor2():void
 		output("\n\n<i>“Well, guess I just won the lotto!”</i> You look up to see ");
 		if(flags["MET_ZEPHYR"] == undefined) output("a statuesque cow-girl");
 		else output("Zephyr");
-		output(" looming over you, flashing a toothy smile. <i>“Tee’s gonna lose his mind when he hears that I got first dibs on the Steele [pc.boyGirl]. To think you’d just strap yourself in for a gangbang with anyone who happens to walk by.");
-		if(pc.isTreated() && pc.isBimbo()) output(" Guess that’s to be expected since you took the treatment.");
-		else if(pc.isBimbo()) output(" Guess that’s to be expected since you’re just another ditzy bimbo who wandered over to New Texas for a good drilling.");
-		else output(" Guess it’s my lucky day.");
-		output("”</i>");
+		output(" looming over you, flashing a toothy smile");
+
+		if (!zephKnowsAboutKids())
+		{
+			output(". <i>“Tee’s gonna lose his mind when he hears that I got first dibs on the Steele [pc.boyGirl]. To think you’d just strap yourself in for a gangbang with anyone who happens to walk by.");
+			if(pc.isTreated() && pc.isBimbo()) output(" Guess that’s to be expected since you took the treatment.");
+			else if(pc.isBimbo()) output(" Guess that’s to be expected since you’re just another ditzy bimbo who wandered over to New Texas for a good drilling.");
+			else output(" Guess it’s my lucky day.");
+			output("”</i>");
+		}
+		else
+		{
+			output(". <i>“Is that [pc.name], all tied up and ready to be ridden hard? I’m gonna enjoy this, you loveable little slut. We can just skip the bet bullshit and get right to fucking you full of more kids.”</i>");
+		}
+
 		output("\n\nYou tilt your head up for a better look at the nine foot cow-girl, but all you manage to do is bump your forehead into her skirt-lifting erection, every bit as massive as the cow-girl herself... and twice as bestial. It’s bright red and pointed, like a dog’s, and it throbs menacingly the moment it brushes against your temple.");
-		output("\n\n<i>“This is going in your pussy, rich-bitch, and everyone that fucks you after is going to know it from the way you gape.”</i> ");
+		output("\n\n<i>“This is going in your pussy,");
+		if (!zephKnowsAboutKids()) output(" rich-bitch");
+		else output(" my little breeder");
+		output(", and everyone that fucks you after is going to know it from the way you gape.”</i> ");
 		if(flags["MET_ZEPHYR"] == undefined) output("Zephyr");
 		else output("the dick-toting bitch");
 		output(" slaps your cheek playfully as she prowls around you, skirting the wood posts to get in position.");
@@ -219,7 +260,7 @@ public function useMiscreantManor2():void
 		output("rubs your [pc.vagina " + x + "] experimentally. <i>“Oh, nice and wet!”</i>");
 		output("\n\nYou twist against the rubber, but you can’t escape her fingers no matter how you writhe, nor the excitement she teases from your netherlips. In no time at all, she has your [pc.hips] twitching back against her, aching for her to slip another finger inside. She pushes her cock in instead, giving you a nice warm, cat-dick to tease your cunny. It’s still twitching, smacking into your g-spot, abusing your passage. Despite its small size, it soon has you mewling every bit as eagerly as its owner.");
 		pc.cuntChange(x,5);
-		output("\n\nYour perverse vocalizations soon lure another figure. That, or they heard the unsubtle ’smack-smack-smack’ of a happy couple fucking... or they smelled the scent of a ");
+		output("\n\nYour perverse vocalizations soon lure another figure. That, or they heard the unsubtle ‘smack-smack-smack’ of a happy couple fucking... or they smelled the scent of a ");
 		if(pc.inHeat() || pc.isBimbo() || pc.catDog("nyan", "bork", false) == "bork") output("bitch in heat");
 		else output("woman in need");
 		output(". Whatever the case, they jog faster once you start openly moaning from the sudden appearance of the cat-girl’s fingers on [pc.oneClit].");
@@ -310,7 +351,10 @@ public function stocksOralIntros(args:Array):void
 		output("The new-comer resolves into ");
 		if(flags["MET_ZEPHYR"] != undefined) output("a familiar shape - Zephyr, the Governor’s imposing, nine-foot tall secretary.");
 		else output("an imposing shape - that of a nine-foot tall cow-girl dressed in a secretary’s garb.");
-		output("\n\n<i>“I should’ve looked through the window sooner. If I had realized someone this fuckable had signed up for a gangbang, I would’ve been first in line, believe me.”</i> The cow-girl smirks and flips up her skirt, revealing a full nine inches of stiffening dog-dick. <i>“Good thing your mouth is still open, at least. Don’t feel like starting a brawl for first dibs on ");
+		output("\n\n<i>“I should’ve looked through the window sooner. If I had realized someone this fuckable had signed up for a gangbang, I would’ve been first in line, believe me.”</i> The cow-girl smirks and flips up her skirt, revealing a full");
+		if (flags["ZEPHYR_RAWDOGGED_PUSS"] == undefined) output(" nine");
+		else output(" fifteen");
+		output(" inches of stiffening dog-dick. <i>“Good thing your mouth is still open, at least. Don’t feel like starting a brawl for first dibs on ");
 		if(flags["MET_ZEPHYR"] != undefined) output("your");
 		else output("some slut’s");
 		output(" pussy today.”</i> She leans heavily on the stocks, aiming her bright red rocket between your lips. <i>“Start suckin’, bitch. It’ll be more fun for you that way.”</i>");
@@ -407,7 +451,7 @@ public function stocksOralIntros(args:Array):void
 	pc.lust(100);
 	processTime(10);
 	var args:Array = [inCunt,inMouth,x];
-	clearMenu();	
+	clearMenu();
 	addButton(0,"Next",stocksMiddleUsageAndCumStart,args);
 }
 	
@@ -462,6 +506,7 @@ public function stocksMiddleUsageAndCumStart(args:Array):void
 		output("\n\nThen you feel the cum, not in your pussy but in your womb. It manifests as a muted, half-felt warmth. In a way, it reminds you of taking a shot of whiskey. That warmth intensifies, radiating outward with every spurt of spunk, twisting to fill up every inch of your fallopian tubes. And still, the cow-girl keeps cumming. It feels like it has gone on for minutes already, but her knot will not deflate. She hump and humps, and you’re left with the impression that even though her orgasm has wound down, she’s still pouring spooge into your body the moment her balls finish brewing it.");
 		output("\n\nAt some point in the half-hour long dick-binding, you cum again, but it’s difficult to tell when it starts and when it stops. You’re floating on cloud nine as it is, caught between orgasmic afterglow, sensuous pleasure, and the ecstasy of giving yourself to potential impregnation.");
 		output("\n\nYou’re too out of it to notice when Zephyr reluctantly withdraws, audibly popping her knot from your ruined-looking pussy. White trickles down your well-used thighs while you feel a cool breeze against parts of you never meant to be exposed to open air.");
+		if (zephKnowsAboutKids()) output(" She whispers loving words into your ear before leaving.");
 		output("\n\nYou miss her already.");
 		pc.orgasm();
 		var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
@@ -481,8 +526,8 @@ public function stocksMiddleUsageAndCumStart(args:Array):void
 		output(", muttering tender nothings so deep that you feel the vibrations more than hear the words. When you gurgle around the dick in your mouth, he caresses your back comfortingly, and you swear his turgid doggie-dick pulses reassuringly.");
 		output("\n\nAn eternity passes like that, but it must be closer to an hour. Eventually, his dick does soften, allowing him to pop free and stagger off, whistling happy. The studly ausar doesn’t bother to look back over his shoulder, but you do catch sight of him out of the corner of your eye. He gathers the mixed sex-juice from his prick with a finger and lifts it to his lips, then resumes his jaunty tune. Evidently he liked what he tasted.");
 		output("\n\nYour thoroughly gaped, cum-drooling vagina did too. It wants more. You could always come back later and hope he remembers you. You won’t forget him.");
-		//9999 lazyfen is too lazy to bother wiring up an ausar cumdump atm.
-		var ppHellhound:PregnancyPlaceholder = getZephyrPregContainer();
+		// lazyfen is too lazy to bother wiring up an ausar cumdump atm.
+		var ppHellhound:PregnancyPlaceholder = getNTStocksPregContainer("hellhound");
 		pc.loadInCunt(ppHellhound, x);
 	}
 	//Kaithrit
@@ -492,8 +537,8 @@ public function stocksMiddleUsageAndCumStart(args:Array):void
 		output("\n\nCat-cum pools along the bottom of your [pc.vagina " + x + "] by the time the sex-kitten finishes releasing her load. When she pulls out, some of it slops out with her, smacking wetly to the boards below, but you’re fairly certain that some got into your womb as well, if the pleasant glow emanating from your belly is any indication.");
 		output("\n\n<i>“Thanks for that. If I see your boss, I’ll be sure to recommend you for a promotion,”</i> the panting kaithrit purrs, <i>“I swear it felt like your pussy was actually begging for me to cum inside it.”</i> She staggers away, shaking her head, mumbling, <i>“What a pro...”</i>");
 		output("\n\nYour [pc.vagina " + x + "] may have acquired a healthy glaze, but without the warm, pulsing rod inside, it just feels empty.");
-		//9999 lazyfen is too lazy to bother wiring up a kaithrit cumdump atm.
-		var ppKaithrit:PregnancyPlaceholder = getZephyrPregContainer();
+		// lazyfen is too lazy to bother wiring up a kaithrit cumdump atm.
+		var ppKaithrit:PregnancyPlaceholder = getNTStocksPregContainer("kaithrit");
 		pc.loadInCunt(ppKaithrit, x);
 	}
 	//New Texan Farmer
@@ -509,8 +554,8 @@ public function stocksMiddleUsageAndCumStart(args:Array):void
 		if(pc.legCount > 1) output("between your [pc.legs]");
 		else output("your [pc.vagina " + x + "]");
 		output(", misses his powerful, confident strokes. At least you can squeeze your muscles and feel his creamy deposit rolling around inside of you.");
-		//9999 lazyfen is too lazy to bother wiring up a texan farmer cumdump atm.
-		var ppFarmer:PregnancyPlaceholder = getZephyrPregContainer();
+		// lazyfen is too lazy to bother wiring up a texan farmer cumdump atm.
+		var ppFarmer:PregnancyPlaceholder = getNTStocksPregContainer("farmer");
 		pc.loadInCunt(ppFarmer, x);
 	}
 	//Leithan
@@ -525,14 +570,14 @@ public function stocksMiddleUsageAndCumStart(args:Array):void
 		output("\n\n<i>“Sweet fuck, that was awesome.”</i> The leithan slaps your ass, then nervously giggles. <i>“Uh, thanks again for that! I better get back before they find out I was here!”</i> He trots away, waving giddily on his way by. <i>“Thanks again!”</i>");
 		output("\n\nPart of you is glad the bulky brute is no longer weighing down on you. The rest of you, mostly between your [pc.thighs], is wondering if anyone is going to come get sloppy seconds.");
 		IncrementFlag("LEITHAN_STOCKED");
-		//9999 lazyfen is too lazy to bother wiring up a leithan cumdump atm.
-		var ppLeithan:PregnancyPlaceholder = getZephyrPregContainer();
+		// lazyfen is too lazy to bother wiring up a leithan cumdump atm.
+		var ppLeithan:PregnancyPlaceholder = getNTStocksPregContainer("leithan");
 		pc.loadInCunt(ppLeithan, x);
 	}
 	processTime(10);
 	pc.orgasm();
 	var args:Array = [inCunt,inMouth,x];
-	clearMenu();	
+	clearMenu();
 	addButton(0,"Next",stocksMouthgasms,args);
 }
 	
@@ -564,7 +609,7 @@ public function stocksMouthgasms(args:Array):void
 		output("\n\nYou’re practically creme-filled... and still getting glazed. You shudder in climax, moaning louder and hotter, spurring Kiro to squirt still more upon you. It splatters the boards and coats your back. Pearly bliss oozes down your [pc.hips] and elbows, completing the thickest coat of paint you’ve ever seen.");
 		output("\n\nAt some point, the orgasmic splashes stop falling. A familiar voice says something grateful sounding, and another cock winds its way into your lips. You hum happily and suck, curious how they’ll match up to the kui-tan cum cannon.");
 		pc.loadInMouth(chars["KIRO"]);
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 		pc.orgasm();
 	}
 	//Zephyr
@@ -579,7 +624,7 @@ public function stocksMouthgasms(args:Array):void
 		else output("nearly cream yourself from the first taste of her yummy, Treated cum");
 		output(", squirted directly into the back of your throat, but once you begin to swallow, milking the tip of her dick with your esophagus, ");
 		if(pc.isBimbo()) output("it’s easy to fall into a blissed out, almost bovine rhythm");
-		else output("any nausia fades, allowing you to enjoy the sensation of drinking down such a lovely woman’s pleasure");
+		else output("any nausea fades, allowing you to enjoy the sensation of drinking down such a lovely woman’s pleasure");
 		output(". She makes so much too! You can feel it swirling around in your stomach. In short order, you can even tell that it has added a little jiggle to your middle - an obvious declaration to any wandering bulls that you’re Zephyr’s cum-drunk slut.");
 		output("\n\nGrabbing you by the back of the head, she grinds against your [pc.lips] for a few more moments, shooting her last thick lances of seed. Her knot, however, does not deflate in the slightest. It stays right where it is, trapping her dick in your mouth, allowing it to leak alabaster bliss into you the moment her balls finish brewing it.");
 		output("\n\nIt feels like hours are passing. You orgasm repeatedly from the hard fucking, your pleasured groans egging Zephyr to spurt a little more inside you before she finally, belatedly deflates. Your jaw aches, and your tongue tingles. Your teeth feel like they’re swimming in jism.");
@@ -626,7 +671,7 @@ public function stocksMouthgasms(args:Array):void
 		if(pc.isTreated()) output(" Must be a Treated instinct, you surmise. Your intuitive understanding of all things sexual is always a pleasant surprise to you, like you’ve got extra-sense... extra-sweet per... extra-sweet pillows. Yeah, your cock-pillows are just about to make this guy cream.");
 		else output(" There’s just something about the rich aroma of his pubes that reaches into your nose and tweaks your [pc.clits], begging you to start ovulating. New Texans truly are the masters of inaudible communication.");
 		output(" Puckering up, you drag your bleary eyes open and try to meet the <i>man’s</i> gaze.");
-		output("\n\nHis eyes nearly cross from the smoky look you just flashed, and his cock seems to double in girth in an instant, transitioning from mere phallic firmness into diamond-hard fuck-tool. <i>“Hold onto yer horse!”</i> the yokel grunts, half-chuckling, <i>“’Cause he’s about to cum!”</i>");
+		output("\n\nHis eyes nearly cross from the smoky look you just flashed, and his cock seems to double in girth in an instant, transitioning from mere phallic firmness into diamond-hard fuck-tool. <i>“Hold onto yer horse!”</i> the yokel grunts, half-chuckling, <i>“‘Cause he’s about to cum!”</i>");
 		output("\n\nThrusting deep, the farmer plows so far into your mouth that you can’t even taste the spunk he’s jetting out. You’re forced to feel it in the way his urethra bulges on your tongue and in the warm, healthy gurgles coming from your stomach. He cums and cums, but as the orgasm drags on, he pulls back, finally allowing you savor the salty ambrosia. He’s even courteous enough to pop his still-spurting dick out of your insatiable lips and paint a thick layer of bull-boy bliss across your features, showing everyone exactly how good of a cock-sucker you are.");
 		output("\n\nStars, these hicks know how to live! Just when you’re sure that another drop of jism couldn’t possibly fit on your face, he slaps his cock back onto your tongue, letting you gratefully swallow the last few pulses of your reward.");
 		if(!pc.isBimbo()) output(" You never knew dicks could be so... demanding, or that servicing them could feel so good! You’re practically dizzy on cock-sucking bliss, and your [pc.vagina " + x + "] won’t stop spasming. It’s like one constant, orgasmic high that never stops feeling better, not when you’ve got cock in both ends.");
@@ -643,7 +688,7 @@ public function stocksMouthgasms(args:Array):void
 	pc.orgasm();
 	pc.lust(50);
 	var args:Array = [inCunt,inMouth,x];
-	clearMenu();	
+	clearMenu();
 	addButton(0,"Next",stocksEpilogue,args);
 }
 	

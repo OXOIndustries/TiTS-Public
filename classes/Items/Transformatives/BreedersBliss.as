@@ -5,14 +5,10 @@ package classes.Items.Transformatives
 	import classes.GLOBAL;
 	import classes.Creature;
 	import classes.Items.Miscellaneous.EmptySlot;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
-	import classes.Util.InCollection;
-	import classes.Util.RandomInCollection;
-	import classes.Engine.Utility.num2Text;
-	import classes.Engine.Utility.indefiniteArticle;
 	
 	public class BreedersBliss extends ItemSlotClass
 	{

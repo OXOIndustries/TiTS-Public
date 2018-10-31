@@ -10,6 +10,7 @@
 	
 	public class LaserCarbine extends ItemSlotClass
 	{
+		//Level 4 (Common). Balance 2.0
 		//constructor
 		public function LaserCarbine()
 		{
@@ -38,12 +39,12 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 3750;
-			this.attack = 3;
+			this.basePrice = 1000;
+			this.attack = 9;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.electric.damageValue = 1;
-			baseDamage.burning.damageValue = 11;
+			//baseDamage.electric.damageValue = 1;
+			baseDamage.burning.damageValue = 12;
 			baseDamage.addFlag(DamageFlag.LASER);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			this.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);

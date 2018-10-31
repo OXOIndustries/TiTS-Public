@@ -1,3 +1,6 @@
+import flash.utils.getDefinitionByName;
+import flash.utils.getQualifiedClassName;
+
 //Author: Savin
 //Coder: Mostlynoxo
 
@@ -203,7 +206,7 @@ public function reahaAppearanceCured():void
 	}
 	output("\n\nNo longer bound and chained in Beth’s dungeon, Reaha’s able to keep herself milked down enough to stay nice and mobile, though she’s still extraordinarily busty by any human standard. Her breasts are nice and full of [reaha.milk], and Reaha’s more than happy to show her bountiful rack off to you at the slightest provocation, milking herself in the ship’s common areas or pressing them up against you");
 	if(!reaha.isNude()) output(" through her clothes");
-	output(" whenever you get near enough. You’d estimate your bovine companion’s packing a pair of hefty FF-cups, each tipped with a big, pink nipple that’ll leak a trickle of [reaha.milk] at the slightest touch.");
+	output(" whenever you get near enough. You’d estimate your bovine companion’s packing a pair of hefty " + chars["REAHA"].breastCup(0) + "s, each tipped with a big, pink nipple that’ll leak a trickle of [reaha.milk] at the slightest touch.");
 	output("\n\nShe has a loose, wet pussy tucked between her legs and a [reaha.asshole] between the cheeks of her [reaha.ass], right where it belongs.");
 	curedReahaMenu();
 	addDisabledButton(1,"Appearance","Appearance","You’re looking at her right now.");
@@ -226,7 +229,7 @@ public function reahaMilkStand():void
 		//Var 2.
 		else if(rand(2) == 0)
 		{
-			output("As you’re heading through the airlock, you find Reaha just coming back aboard the ship. She’s got a spring to her step, and a pack of credit chits held tight in her hand. She gives you a wink as she walks by, hefting the sack to show off just how much her delicious bovine milk has managed to earn her.");
+			output("As you’re heading through the airlock, you find Reaha just coming back aboard the ship. She’s got a spring to her step, and a pack of " + (isAprilFools() ? "dogecoins" : "credit chits") + " held tight in her hand. She gives you a wink as she walks by, hefting the sack to show off just how much her delicious bovine milk has managed to earn her.");
 		}
 		//Var 3.
 		else
@@ -280,7 +283,7 @@ public function getCashFromTheCow(credits:Number):void
 	reahaHeader();
 	if(flags["REAHA_WHORING_UNLOCKED"] != 2)
 	{
-		output("<i>“Hey, [pc.name],”</i> Reaha says, giving you a tug on the arm as you’re passing her quarters. You stop and turn your attention to your bovine companion. She gives you a smile and pulls a small credit chit out ");
+		output("<i>“Hey, [pc.name],”</i> Reaha says, giving you a tug on the arm as you’re passing her quarters. You stop and turn your attention to your bovine companion. She gives you a smile and pulls a small " + (isAprilFools() ? "dogecoin" : "credit chit") + " out ");
 		if(!(reaha.armor is EmptySlot)) output("of her pocket");
 		else output("of her desk drawer");
 		output(", handing it off to you.");
@@ -297,7 +300,7 @@ public function getCashFromTheCow(credits:Number):void
 	}
 	else
 	{
-		output("<i>“Hey, [pc.name],”</i> Reaha says, giving you a tug on the arm as you’re passing her quarters. You stop and turn your attention to your bovine companion. She gives you a smile and pulls a small credit chit out of her desk drawer, handing it off to you.");
+		output("<i>“Hey, [pc.name],”</i> Reaha says, giving you a tug on the arm as you’re passing her quarters. You stop and turn your attention to your bovine companion. She gives you a smile and pulls a small " + (isAprilFools() ? "dogecoin" : "credit chit") + " out of her desk drawer, handing it off to you.");
 		output("\n\n<i>“Here you go: your pound of flesh, from me selling mine. Keep on pimpin’, [pc.name]!”</i>");
 		output("\n\nYou nod and swipe the chit through your Codex. After a moment of digital beeping, the device chirps out that you’ve just had " + credits + " credits transferred to your account. Not bad!");
 		
@@ -318,9 +321,14 @@ public function reahaFinishesPayingPC(credits:int = 0):void
 {
 	clearOutput();
 	reahaHeader();
+	
+	if(flags["REAHA_PC_PAY"] + credits > 5000) credits = (5000 - flags["REAHA_PC_PAY"]);
+	flags["REAHA_PC_PAY"] += credits;
+	pc.credits += credits;
+	
 	output("<i>“Hey, [pc.name],”</i> Reaha says, slinking up from behind you with an amount of sashay in her hips beyond even the sultry cow’s norm.");
-	output("\n\n<i>“I’ve got a present for you,”</i> she says with a smile, holding up a credit chit. <i>“Guess what this is?”</i>");
-	if(pc.isMischievous()) output("\n\n<i>“A credit chit?”</i> you say, returning her smile.");
+	output("\n\n<i>“I’ve got a present for you,”</i> she says with a smile, holding up a " + (isAprilFools() ? "dogecoin" : "credit chit") + ". <i>“Guess what this is?”</i>");
+	if(pc.isMischievous()) output("\n\n<i>“A " + (isAprilFools() ? "dogecoin" : "credit chit") + "?”</i> you say, returning her smile.");
 	else output("\n\n<i>“What?”</i>");
 	output("\n\nShe giggles and presses it into your hand, locking her fingers firmly around yours. <i>“That’s the last of it. Should be enough in there to totally clear out my debt... right?”</i>");
 	output("\n\nYou pull out your Codex and swipe the chit, letting your bank account soak up all those delicious credits. A digital beep tells you that " + credits + " credits have just been transferred to your account and, at Reaha’s urging, you double check through your list of transactions and tally up. Reaha’s given you exactly 5,000 credits over the last several weeks: enough to pay off her debt in full.");
@@ -575,7 +583,7 @@ public function curedReahaMenu():void
 	else addButton(9, "Boot Reaha", reahaBootOffShip, undefined, "Boot Reaha", "Kick Reaha off the ship. You can send her to hang out on Tavros Station");
 	
 	addButton(11, "Take Clothes", whatOutfitWillCuredReahaReturn, undefined, "Take Clothes", "Take back some clothes from Reaha.");
-	addButton(12,"DestroyOutfit", whatOutfitWillCuredReahaRemove, undefined, "Destroy Outfit", "Choose an outfit for Reaha to throw away.");
+	addButton(12,"DestroyOutfit", whatOutfitWillCuredReahaDestroy, undefined, "Destroy Outfit", "Choose an outfit for Reaha to throw away.");
 	
 	addButton(14,"Back",crew);
 }
@@ -658,6 +666,7 @@ public function milkCuredReaha():void
 	pc.orgasm();
 	pc.milkInMouth(reaha);
 	reaha.orgasm();
+	IncrementFlag("SEXED_REAHA");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -698,7 +707,7 @@ public function reahaTalkMenu(arg:Function):void
 	//[Prostitution]
 	if(flags["REAHA_WHORING_UNLOCKED"] == 2) addDisabledButton(4,"Whoring","Whoring","She’s a little too busy being a whore to get all cerebral about her time as one.");
 	else if(arg != curedReahaProstitution) addButton(4,"Whoring",curedReahaProstitution,undefined,"Whoring","Talk to Reaha about her views on whoring.");
-	else addDisabledButton(4,"Whoring","Whoring","You just did that!");	//[Her Job]
+	else addDisabledButton(4,"Whoring","Whoring","You just did that!"); //[Her Job]
 	if(arg != talkToReahaAboutHerJob) addButton(5,"Her Job",talkToReahaAboutHerJob,undefined,"Her Job","Job selection go here. Defaults to selling milk; unlock other jobs through talking.");
 	else addDisabledButton(5,"Her Job","Her Job","You just did that!");
 	addButton(14,"Back",curedReahaApproach);
@@ -718,7 +727,7 @@ public function talkToReahaFamily():void
 		output("\n\nFor starters, how big of a family does she have. Any siblings?");
 		output("\n\n<i>“For a New Texan family, mine’s about average I guess. Even with all the birth control medicine the government puts in the water - what? You do </i>not<i> want them to stop that, trust me! Everyone would be pregnant all of the time. Even the men, probably. The Treatment makes sure people are rutting pretty much constantly, so to avoid over-population....”</i>");
 		output("\n\n<i>“Anyway! Even with all that, New Texans still tend to have lots of kids. Put your mind to something and nothing stops you, I guess. Certainly didn’t stop my mother. I swear the Treatment must have given her a breeding fetish, the rate she popped me and my sisters out. There’s six of us; no brothers. She was always pretty proud of that. Even prouder that every one of us had a different father. ‘Diversity,’ she called it. Ha! Even then, most of us all look pretty much the same: short, soft, a little on the big-boned side. Every one but me was totally stacked, too!”</i>");
-		output("\n\nReaha, not stacked? You cock an inquisitive eyebrow and grope one of her meaty F-cups, just hard enough that a little [reaha.milkNoun] ");
+		output("\n\nReaha, not stacked? You cock an inquisitive eyebrow and grope one of her meaty " + chars["REAHA"].breastCup(0) + "s, just hard enough that a little [reaha.milkNoun] ");
 		if(reaha.isChestExposed()) output("trickles onto your fingers");
 		else output("stains the front of her [reaha.upperGarment]");
 		output(". She squeals with pleasure, kicking her legs around in your lap.");
@@ -931,7 +940,7 @@ public function askReahaAboutHerMods():void
 		if(flags["REAHA_MILK_CHANGED"] != undefined) output("<i>“You mean aside from the stuff you’ve given me, right?”</i> she teases, hefting up her tits in both hands.\n\n");
 		output("<i>“First off, I was born with these,”</i> she says, running a couple fingers along her nubby white horns. <i>“Yeah, I’m a full-blood human, but after so many generations of the Treatment... I guess it’s started to change us New Texans on a genetic level. Or something, I dunno. I’m a cow, not a scientist!”</i> Reaha giggles.");
 		output("\n\nAnd aside from that?");
-		output("\n\n<i>“Aside from that, everything I had done was designer work. See, the cow transformatives on the market weren’t quite what I was looking for, so... I ended up spending every credit I made in the army, and taking out a bunch of loans... all so I could convince a specialist to make me what I wanted. It’s dumb, I know, but I never felt </i>right<i> in my body until I started modding. Like I was this big, curvy cow trapped in a little beanstalk of a girl. I was actually really fit back then, too - more amazon than squishy lil’ cow. If amazons can be like, five foot nothing. Mini-zon? I dunno!”</i> She giggles, wrapping her arms around you a little tighter. She’s still fairly strong, about squeezing the life out of you until you gasp. <i>“But I’m a lot happier being all soft and curvy. Way more than I ever was as soldier material.”</i>");
+		output("\n\n<i>“Aside from that, everything I had done was designer work. See, the cow transformatives on the market weren’t quite what I was looking for, so... I ended up spending every " + (isAprilFools() ? "dogecoin" : "credit") + " I made in the army, and taking out a bunch of loans... all so I could convince a specialist to make me what I wanted. It’s dumb, I know, but I never felt </i>right<i> in my body until I started modding. Like I was this big, curvy cow trapped in a little beanstalk of a girl. I was actually really fit back then, too - more amazon than squishy lil’ cow. If amazons can be like, five foot nothing. Mini-zon? I dunno!”</i> She giggles, wrapping her arms around you a little tighter. She’s still fairly strong, about squeezing the life out of you until you gasp. <i>“But I’m a lot happier being all soft and curvy. Way more than I ever was as soldier material.”</i>");
 		output("\n\nCurious, you ask how Reaha got in touch with a gene-mod designer. That seems a little out of her social league.");
 		output("\n\nShe gives you a light-hearted shrug. <i>“I actually found her on an extranet forum. A support group for New Texan girls that go out early, un-Treated. She was this absolutely amazing blonde bombshell, looked more like a cow-girl than most New Texans with all those majestic curves and tits that make mine look small even now. All natural, all kaithrit. I didn’t even know kaithrit lived on New Texas! She said after she got out, she went to some big Terran school on a scholarship, specialized in gene therapy. You’d never know it, the way she purred and jiggled like she was constantly in heat.”</i>");
 		output("\n\n<i>“So I got in touch with her, asked her to do the mod work for me. She agreed, but didn’t really understand why I wanted to. Said she wished she had my physique - but then, I wanted hers! I think we would have traded in a heartbeat.”</i>");
@@ -972,7 +981,7 @@ public function reahaModsRepeatPartTwo():void
 {
 	clearOutput();
 	reahaHeader();
-	output("<i>“Of course,”</i> Reaha sighs, <i>“I woke up in my friend’s bedroom. She’d found out what I did and paid my bail. I gave her the biggest, wettest hug ever... but she was less than happy. I guess she’d realized I’d been paying her with loans when the cops had found I didn’t have a credit to my name left to pay my own way out. Or that my apartment was empty now. I-I’d even pawned the appliances that came with it. My friend was furious. How stupid could I be, chasing rich-chick mods until I was worse than broke? She gave me the worst dressing-down of my life, worse than anything a drill sergeant had ever said cuz she was my friend... and she was <b>right</b>.”</i>");
+	output("<i>“Of course,”</i> Reaha sighs, <i>“I woke up in my friend’s bedroom. She’d found out what I did and paid my bail. I gave her the biggest, wettest hug ever... but she was less than happy. I guess she’d realized I’d been paying her with loans when the cops had found I didn’t have a " + (isAprilFools() ? "dogecoin" : "credit") + " to my name left to pay my own way out. Or that my apartment was empty now. I-I’d even pawned the appliances that came with it. My friend was furious. How stupid could I be, chasing rich-chick mods until I was worse than broke? She gave me the worst dressing-down of my life, worse than anything a drill sergeant had ever said cuz she was my friend... and she was <b>right</b>.”</i>");
 	output("\n\nThe flirtatiously playful cow-girl’s gone now, you realize. Reaha’s not meeting your gaze anymore, and she’s hugging you tight. You run a hand through her hair and tell her");
 	if(!pc.isAss()) output(" that it’s all alright");
 	else output(" to pull herself together");
@@ -1009,7 +1018,7 @@ public function continueToMakeMeSadReaha():void
 	reahaHeader();
 	output("You pat Reaha’s head and ask her to finish her story. What happened after that?");
 	output("\n\nShe groans in your shoulder. <i>“What happened... she said I could pay <b>her</b> back for bail, at the very least. I was still naked, felt tingly and hot all over. I didn’t do anything but moan like a whore when she pushed me back on the bed and pulled out that big slab of dick I’d been drooling over on GalNet. She emptied her balls in me like an animal, again and again until I was a soaked mess. Didn’t even notice she’d taken my virginity, I don’t think.”</i>");
-	output("\n\nReaha shudders, but you can feel her nipples getting a little stiffer against your chest. <i>“It was the most amazing thing I’d ever felt... until they put me on patches later, anyway. When she was done... totally drained of every last drop... she got out of bed, threw on a bathrobe, and dropped a credit chit on my cum-stained chest. Told me I’d earned it, the only way a girl like me could. Said I should buy some new clothes and a ticket back to New Texas. Or anywhere.”</i>");
+	output("\n\nReaha shudders, but you can feel her nipples getting a little stiffer against your chest. <i>“It was the most amazing thing I’d ever felt... until they put me on patches later, anyway. When she was done... totally drained of every last drop... she got out of bed, threw on a bathrobe, and dropped a " + (isAprilFools() ? "dogecoin" : "credit chit") + " on my cum-stained chest. Told me I’d earned it, the only way a girl like me could. Said I should buy some new clothes and a ticket back to New Texas. Or anywhere.”</i>");
 	output("\n\nYou have to ask, <i>“Did you?”</i>");
 	output("\n\n<i>“Of course not!”</i> Reaha laughs. <i>“You forgot the part where I’m an idiot. I followed her out, begging her to take care of me... just to be with me. I didn’t know what else to do, so I said I’d do anything to pay her back. To make everything okay.”</i>");
 	output("\n\n<i>“I didn’t realize she’d given me a way out. A ‘get out of jail free’ card, covered in cum. I could have taken that money and disappeared. Gone to the fringe across the galaxy. Maybe even started paying off my debt. But I kept badgering her, until she finally said ‘Okay, if you’ll do ANYTHING...’ and then she called the bank. She bought my debt contract that night, made me confirm my details over the comms while she was balls-deep in my asshole. Had to deflower that, too, she said. Break me in. I was... I could barely talk, the feeling was so intense. The guy on the phone could hardly understand me, until my friend spanked me hard enough to make me scream my name.”</i>");
@@ -1246,8 +1255,10 @@ public function curedReahaSexApproach():void
 public function buttFuckReahaSlooot():void
 {
 	clearOutput();
-	reahaHeader();
 	if(reaha.ass.hasFlag(GLOBAL.FLAG_PUMPED) || reaha.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) showBust("REAHA_ANUSOFT");
+	else showBust(reahaBustDisplay());
+	showName("\nREAHA");
+	author("Savin");
 	var x:int = -1;
 	if(pc.hasCock())
 	{
@@ -1289,8 +1300,10 @@ public function buttFuckReahaSlooot():void
 public function goddamnSavinsAsslust(x:int):void
 {
 	clearOutput();
-	reahaHeader();
 	if(reaha.ass.hasFlag(GLOBAL.FLAG_PUMPED) || reaha.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) showBust("REAHA_ANUSOFT");
+	else showBust(reahaBustDisplay());
+	showName("\nREAHA");
+	author("Savin");
 	output("While Reaha’s gasping for breath, nuzzling against your shoulder, you reach into the nightstand and pull out a pair of fuzzy handcuffs halfway into the mound of toys. She looks back at you with eyes blanked with lust, utterly limp in your grasp as you push her forward, planting her face a bare inch from the stained wall she’s left dripping with her breasts’ bounty, and pull her arms behind her back. Realizing what’s about to happen, she resists for the first time, trying to pull her hands free - but her knees just buckle, leaving her defenseless as you tie your milk whore’s hands and secure the link between the cuffs in your grasp.");
 	output("\n\n<i>“Now, let’s see that big cow tongue of yours at work,”</i> you say, running an appreciative hand across the great big curves of her tremendous rump, patting the tattooed flanks - and giving your milky servant just enough push toward the wall to put her nose in it. Reaha groans, looking over her shoulder to stare at you with her big blue eyes, her tiny little cow horns just catching the light. You smirk, <i>“Clean it up, and I’ll fuck you again.”</i>");
 	output("\n\nThat’s all the encouragement she needs. Reaha’s long, wide tongue slips from between her lips, dragging across the nearest [reaha.milk]-smeared bulkhead, licking up her own orgasm. As a reward, you gently dig your fingers into her big, soft ass, kneading her supple flesh until you can hear her moaning, wiggling her hips as if to entice you further. Such a wanton girl... you give Reaha a quick, affectionate spank, sending her swaying as you ");
@@ -1338,6 +1351,7 @@ public function goddamnSavinsAsslust(x:int):void
 	output(" as she sways listlessly in her bonds, chest heaving as the last of her [reaha.milk] dribbles from her teats. <i>“Aww,”</i> you laugh, letting her down to flop into the sea of her own lactation. She groans weakly as you remind her to clean up after herself, leaving her with a nice pat on her well-abused rump. Her tattoo jiggles obscenely as you grab your kit and leave.");
 	processTime(20);
 	pc.orgasm();
+	IncrementFlag("SEXED_REAHA");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1347,8 +1361,10 @@ public function goddamnSavinsAsslust(x:int):void
 public function goGentleIntoThatDarkNightReaha(x:int):void
 {
 	clearOutput();
-	reahaHeader();
 	if(reaha.ass.hasFlag(GLOBAL.FLAG_PUMPED) || reaha.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) showBust("REAHA_ANUSOFT");
+	else showBust(reahaBustDisplay());
+	showName("\nREAHA");
+	author("Savin");
 	output("You heft Reaha up, one arm wrapped under her heaving chest, and the other cupping her cheek. She moans weakly, twisting to accept a long, tongue-filled kiss. Her broad hips press back against your groin, rubbing the cum-and-lube-slathered mound of her sex into your crotch. Even in her half-delirious post-climactic haze, she manages to reach back and ");
 	if(x < 0) output("flick on your hardlight panties");
 	else output("grab your half-hard prick");
@@ -1395,6 +1411,7 @@ public function goGentleIntoThatDarkNightReaha(x:int):void
 	output("\n\nYou lean forward and wrap the cow up in another long kiss, squeezing ass and breasts until she’s moaning again, relaxing utterly in your arms. You’ve been with Reaha long enough by now to know what she needs after that: a little love, and a lot of cuddling.");
 	processTime(20);
 	pc.orgasm();
+	IncrementFlag("SEXED_REAHA");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1450,6 +1467,7 @@ public function getATitjobFromCuredReaha():void
 	else output("<i>“You really do love my tits, don’t you, [pc.name]?”</i> she teases, pinching a nipple. <i>“I’m glad! Makes me think all this wasn’t for nothing...”</i>");
 	processTime(25);
 	pc.orgasm();
+	IncrementFlag("SEXED_REAHA");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1583,6 +1601,7 @@ public function curedReahaFucksASubbyPCsButt():void
 		output("\n\nYou give a whine of sexual need, but the cow takes your mind off it with a harsh slap to the ass, digging her fingers in as she pulls her legs up onto the bed with you, angling down for a proper fucking. Your free hand wraps itself in the sheets, trying to get a firm hold on something as Reaha’s powerful hips hammering into you. Her thrusts are relentless, each pounding inch after inch of [reaha.milk]-soaked latex deep into your defenseless bowels, bulging your stomach obscenely as she finally works the greater part of the shaft into you. Your mind races, wishing beyond hope for some sexual organ to gratify amid the buttfucking, but your decisions have rendered you sexless, totally reliant on Reaha’s tender mercies to bring your pleasure. You’re stuck thrusting back against Reaha’s hips, taking even more of her huge dildo-cock until with a scream of glee you feel the leather straps pressing into your [pc.butt]. 18 inches of cock is buried inside you, stretching your spasming anal muscles to the very limit, pushing against the walls of your gut until you can feel it pounding into the bed right through you! Anal orgasm, the elusive holy grail of buttfucking, seems imminent. your butt muscles squeeze and wring the dildo, going wild around the fake cock Reaha’s pushed so deep into you. You arch your back and cry your pleasure, squeezing down as hard as you can around Reaha’s relentlessly ramming rod, daring her to ream your clenched ass as hard as she can as you finally peak as she buttfucks you into a body-rocking orgasm. Exhausted, you collapse utterly into Reaha’s bed, panting hard as you recover from the reaming.");
 		processTime(25);
 		pc.orgasm();
+		IncrementFlag("SEXED_REAHA");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 		return;
@@ -1604,8 +1623,9 @@ public function curedReahaFucksASubbyPCsButt():void
 	output("”</i> Reaha giggles, patting your hip. Half-aware of what she’s saying, and feeling utterly empty and wet after that oversized insertion, your head lolls forward as you pass out on Reaha’s bed.");
 	processTime(45);
 	pc.orgasm();
-	clearMenu();
 	reahaConfidence(5);
+	IncrementFlag("SEXED_REAHA");
+	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
@@ -1675,6 +1695,7 @@ public function dominantlyTakeItInThebUttFromReahaLel():void
 	processTime(35);
 	pc.orgasm();
 	pc.milkInMouth(chars["REAHA"]);
+	IncrementFlag("SEXED_REAHA");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1787,8 +1808,8 @@ public function displayReahaInventory():void
 	output("<b><u>Reaha’s Available Clothing:</u></b>\n");
 	for(var x:int = 0; x < reaha.inventory.length; x++)
 	{
-		if(x >= REAHA_INV_SLOT_MAX) output("<span class='bad'>" + StringUtil.upperCase(reaha.inventory[x].description) + "</span>\n");
-		else output(StringUtil.upperCase(reaha.inventory[x].description) + "\n");
+		if(x >= REAHA_INV_SLOT_MAX) output("<span class='bad'>" + StringUtil.upperCase(reaha.inventory[x].description, false) + "</span>\n");
+		else output(StringUtil.upperCase(reaha.inventory[x].description, false) + "\n");
 	}
 	if(reaha.inventory.length == 0) output("Nothing. <i>Reaha has no" + (reaha.isNude() ? "": " extra") + " clothes!</i>\n");
 }
@@ -1797,55 +1818,84 @@ public function displayReahaInventory():void
 //Tooltip: Give Reaha some clothes to wear.
 public function giveReahaClothes():void
 {
-	clearOutput();
 	reahaHeader();
+	
+	clearOutput();
 	output("What do you intend to give her?\n\n");
 	displayReahaInventory();
 
 	clearMenu();
-	var buttons:int = 0;
-	for(var x:int = 0; x < pc.inventory.length; x++)
-	{
-		//Lazy failsafe: only first 14 clothing items up for grabs.
-		//if(buttons < 14) {}
-		
-		if(InCollection(pc.inventory[x].type, [GLOBAL.CLOTHING, GLOBAL.ARMOR,GLOBAL.LOWER_UNDERGARMENT,GLOBAL.UPPER_UNDERGARMENT]))
-		{
-			if(buttons >= 14 && (buttons + 1) % 15 == 0)
-			{
-				addButton(buttons, "Back", curedReahaApproach);
-				buttons++;
-			}
-			
-			//No gray goo giveaway!
-			if(pc.inventory[x] is GooArmor) {}
-			else
-			{
-				//Make sure Reaha doesn't already have it
-				if(
-					InCollection(pc.inventory[x].shortName, [reaha.armor.shortName, reaha.lowerUndergarment.shortName, reaha.upperUndergarment.shortName])
-				) addDisabledButton(buttons, pc.inventory[x].shortName, StringUtil.toDisplayCase(pc.inventory[x].longName), "Reaha is already wearing one of these!");
-				else if(reaha.hasItem(pc.inventory[x])) addDisabledButton(buttons, pc.inventory[x].shortName, StringUtil.toDisplayCase(pc.inventory[x].longName), "Reaha already has one of these.");
-				else addItemButton(buttons, pc.inventory[x], reahaClothingGiftConfirm, x);
-				buttons++;
-			}
-			
-			if(buttons > 14 && pc.inventory.length > 14 && (x + 1) == pc.inventory.length)
-			{
-				while((buttons + 1) % 15 != 0) { buttons++; }
-				addButton(buttons, "Back", curedReahaApproach);
-			}
+ 	var buttons:int = 0;
+	var x:int = 0;
+	var state:int = 0; // 0 invalid, 1 can give, 2 already equipped by reaha, 3 in reaha's inventory
+	while (true)
+ 	{
+		if (x < pc.inventory.length)
+ 		{
+			var cname:String = getQualifiedClassName(pc.inventory[x]);
+			switch (pc.inventory[x].type)
+ 			{
+				case GLOBAL.CLOTHING:
+					state = cname == getQualifiedClassName(reaha.armor) ? 2 : 1;
+					break;
+				case GLOBAL.ARMOR:
+					if (pc.inventory[x] is GooArmor)
+					{ state = 0; }
+					else
+					{ state = cname == getQualifiedClassName(reaha.armor) ? 2 : 1; }
+					break;
+				case GLOBAL.LOWER_UNDERGARMENT:
+					state = cname == getQualifiedClassName(reaha.lowerUndergarment) ? 2 : 1;
+					break;
+				case GLOBAL.UPPER_UNDERGARMENT:
+					state = cname == getQualifiedClassName(reaha.upperUndergarment) ? 2 : 1;
+					break;
+				default:
+					state = 0;
+					break;
+ 			}
+			if (state == 1 && reaha.hasItemByClass(getDefinitionByName(cname) as Class)) state = 3;
+			if (state == 1 && pc.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE)) state = -1;
 		}
-	}
-	if(buttons == 0) output("\nOh right... You don’t have anything to give her.");
-	addButton(14,"Back",curedReahaApproach);
+		
+		if (buttons % 15 == 0 && (state || !buttons))
+		{
+			addButton(buttons+14, "Back", curedReahaApproach);
+			buttons++;
+		}
+		
+		if (x == pc.inventory.length) break;
+		
+		switch (state)
+		{
+			case 1: // can give
+				addItemButton(buttons-1, pc.inventory[x], reahaClothingGiftConfirm, x);
+				buttons++;
+				break;
+			case 2: // already equipped by reaha
+				addDisabledButton(buttons-1, pc.inventory[x].shortName, StringUtil.toDisplayCase(pc.inventory[x].longName), "Reaha is already wearing one of these!");
+				buttons++;
+				break;
+			case 3: // in reaha's inventory
+				addDisabledButton(buttons-1, pc.inventory[x].shortName, StringUtil.toDisplayCase(pc.inventory[x].longName), "Reaha already has one of these.");
+				buttons++;
+				break;
+			case -1: // cannot drop!
+				addDisabledButton(buttons-1, pc.inventory[x].shortName, StringUtil.toDisplayCase(pc.inventory[x].longName), "You cannot drop this item.");
+				buttons++;
+				break;
+ 		}
+		x++;
+ 	}
+	if(buttons == 1) output("\nOh right... You don’t have anything to give her.");
+	addButton(14, "Back", curedReahaApproach);
 }
 
 public function reahaClothingGiftConfirm(x:int):void
 {
 	clearOutput();
 	reahaHeader();
-	output("You cannot get clothing back from Reaha once you give it to her.\n\n<b>Are you sure you want to give Reaha " + pc.inventory[x].description + "?</b>");
+	output("Are you sure you want to give Reaha " + pc.inventory[x].description + "?");
 	//Inventory options here. Pick 1. Confirm:
 	//Are you sure you want to give {item} to Reaha?
 	//Yes // No (Back to Inventory)
@@ -1937,7 +1987,7 @@ public function whatOutfitWillCuredReahaWear():void
 	if(!reaha.isNude())
 	{
 		buttons = 1;
-		addButton(0,"Get Naked",dressCuredReahaSelection,new EmptySlot(),"Get Naked","Get Reaha naked so you can dress her all over again... or leave her nude.");
+		addButton(0,"Get Naked",dressCuredReahaSelection,null,"Get Naked","Get Reaha naked so you can dress her all over again... or leave her nude.");
 	}
 	addButton(14,"Back",curedReahaApproach);
 	for(var x:int = 0; x < invLimit; x++)
@@ -1949,7 +1999,7 @@ public function whatOutfitWillCuredReahaWear():void
 			buttons++;
 		}
 		
-		//Make sure Reaha doesn't already have it (failsafe)
+		//Make sure Reaha doesn't wear it (failsafe)
 		if(
 			InCollection(reaha.inventory[x].shortName, [reaha.armor.shortName, reaha.lowerUndergarment.shortName, reaha.upperUndergarment.shortName])
 		) addDisabledButton(buttons, reaha.inventory[x].shortName, StringUtil.toDisplayCase(reaha.inventory[x].longName), "Reaha is already wearing one of these!");
@@ -1970,38 +2020,47 @@ public function dressCuredReahaSelection(item:ItemSlotClass):void
 	reahaHeader();
 
 	output("<i>“You want me to ");
-	if(!(item is EmptySlot)) output("wear this");
+	if(item != null) output("wear this");
 	else output("go naked for a while");
 	output("?”</i> Reaha asks sweetly. <i>“For you, anything! I’ll go get changed!”</i>");
 
 	//GIT NAKKID
-	if(item is EmptySlot)
-	{
-		if(!(reaha.armor is EmptySlot)) reaha.inventory.push(reaha.armor);
-		if(!(reaha.lowerUndergarment is EmptySlot)) reaha.inventory.push(reaha.lowerUndergarment);
-		if(!(reaha.upperUndergarment is EmptySlot)) reaha.inventory.push(reaha.upperUndergarment);
-		reaha.armor = new EmptySlot();
-		reaha.lowerUndergarment = new EmptySlot();
-		reaha.upperUndergarment = new EmptySlot();
-	}
+	if(item == null)
+ 	{
+		if (!(reaha.armor is EmptySlot))
+		{
+			reaha.inventory.push(reaha.armor);
+			reaha.armor = new EmptySlot();
+		}
+		if (!(reaha.lowerUndergarment is EmptySlot))
+		{
+			reaha.inventory.push(reaha.lowerUndergarment);
+			reaha.lowerUndergarment = new EmptySlot();
+		}
+		if (!(reaha.upperUndergarment is EmptySlot))
+		{
+			reaha.inventory.push(reaha.upperUndergarment);
+			reaha.upperUndergarment = new EmptySlot();
+		}
+ 	}
 	//ELSE ARMOR
 	else if(InCollection(item.type, [GLOBAL.CLOTHING, GLOBAL.ARMOR]))
 	{
 		if(!(reaha.armor is EmptySlot)) reaha.inventory.push(reaha.armor);
 		reaha.armor = item;
-		reaha.destroyItem(item, -1);
+		reaha.inventory.splice(reaha.inventory.indexOf(item), 1);
 	}
 	else if(item.type == GLOBAL.LOWER_UNDERGARMENT)
 	{
 		if(!(reaha.lowerUndergarment is EmptySlot)) reaha.inventory.push(reaha.lowerUndergarment);
 		reaha.lowerUndergarment = item;
-		reaha.destroyItem(item, -1);
+		reaha.inventory.splice(reaha.inventory.indexOf(item), 1);
 	}
 	else if(item.type == GLOBAL.UPPER_UNDERGARMENT)
 	{
 		if(!(reaha.upperUndergarment is EmptySlot)) reaha.inventory.push(reaha.upperUndergarment);
 		reaha.upperUndergarment = item;
-		reaha.destroyItem(item, -1);
+		reaha.inventory.splice(reaha.inventory.indexOf(item), 1);
 	}
 	else
 	{
@@ -2009,7 +2068,7 @@ public function dressCuredReahaSelection(item:ItemSlotClass):void
 	}
 	
 	output("\n\nReaha collects her things and skips off to her quarters. A few moments later and she’s wandering the corridors");
-	if(item is EmptySlot) output(" butt naked, flaunting what she’s got for you.");
+	if(item == null) output(" butt naked, flaunting what she’s got for you.");
 	else output(" trussed up in her [reaha.gear].");
 	//Whoring Reaha, item has +Sexiness or Nudist:
 	if(flags["REAHA_WHORING_UNLOCKED"] == 2) output(" You bet her johns will get a kick out of that!");
@@ -2045,7 +2104,7 @@ public function whatOutfitWillCuredReahaReturn():void
 			buttons++;
 		}
 		
-		//Make sure Reaha doesn't already have it (failsafe)
+		//Make sure Reaha doesn't wear it (failsafe)
 		if(
 			InCollection(reaha.inventory[x].shortName, [reaha.armor.shortName, reaha.lowerUndergarment.shortName, reaha.upperUndergarment.shortName])
 		) addDisabledButton(buttons, reaha.inventory[x].shortName, StringUtil.toDisplayCase(reaha.inventory[x].longName), "Reaha is already wearing one of these!");
@@ -2070,23 +2129,23 @@ public function takeCuredReahaSelection(item:ItemSlotClass):void
 	author("Jacques00");
 	
 	output("<i>“You want this back?”</i> Reaha asks curiously, holding up the " + (InCollection(item.type, [GLOBAL.CLOTHING, GLOBAL.ARMOR]) ? "outfit" : "article of clothing") + ". <i>“Hmm, I guess I can part with it...”</i>");
-	output("\n\nReaha neatly " + (InCollection(item.type, [GLOBAL.CLOTHING, GLOBAL.ARMOR]) ? "hangs" : "folds") + " the item and hands it to you. <i>“Better make good use of it, okay!”</i>");
+	output("\n\nReaha neatly " + (InCollection(item.type, [GLOBAL.CLOTHING, GLOBAL.ARMOR]) ? "hangs" : "folds") + " the item and hands it to you. <i>“Better make good use of it, okay?”</i>");
 	output("\n\n");
 	
 	itemCollect([item]);
-	reaha.destroyItem(item, -1);
+	reaha.inventory.splice(reaha.inventory.indexOf(item), 1);
 	
 	processTime(1);
 	clearMenu();
 	addButton(0, "Next", whatOutfitWillCuredReahaReturn);
 }
-public function whatOutfitWillCuredReahaRemove():void
+public function whatOutfitWillCuredReahaDestroy():void
 {
 	clearOutput();
 	reahaHeader();
 	author("Jacques00");
 	
-	output("What will you have Reaha toss out?\n\n");
+	output("You cannot get clothing back from Reaha once you allow her to get rid of it.\n\nWhat will you have Reaha toss out?\n\n");
 	displayReahaInventory();
 	
 	var buttons:Number = 0;
@@ -2104,11 +2163,12 @@ public function whatOutfitWillCuredReahaRemove():void
 			buttons++;
 		}
 		
-		//Make sure Reaha doesn't already have it (failsafe)
+		//Make sure Reaha doesn't wear it (failsafe)
 		if(
 			InCollection(reaha.inventory[x].shortName, [reaha.armor.shortName, reaha.lowerUndergarment.shortName, reaha.upperUndergarment.shortName])
 		) addDisabledButton(buttons, reaha.inventory[x].shortName, StringUtil.toDisplayCase(reaha.inventory[x].longName), "Reaha is already wearing one of these!");
-		else addItemButton(buttons, reaha.inventory[x], destroyCuredReahaSelection, reaha.inventory[x]);
+		//OLD: else addItemButton(buttons, reaha.inventory[x], destroyCuredReahaSelection, reaha.inventory[x]);
+		else addItemButton(buttons, reaha.inventory[x], reahaClothingDestroyConfirm, x);
 		buttons++;
 		
 		if(invLimit > 14 && (x + 1) == invLimit)
@@ -2120,6 +2180,20 @@ public function whatOutfitWillCuredReahaRemove():void
 	
 	addButton(14, "Back", curedReahaApproach);
 }
+
+public function reahaClothingDestroyConfirm(x:int):void
+{
+	clearOutput();
+	reahaHeader();
+	output("Are you sure you want Reaha to throw away " + reaha.inventory[x].description + "?");
+	//Inventory options here. Pick 1. Confirm:
+	//Are you sure you want to give {item} to Reaha?
+	//Yes // No (Back to Inventory)
+	clearMenu();
+	addButton(1,"No",whatOutfitWillCuredReahaDestroy);
+	addButton(0,"Yes",destroyCuredReahaSelection,reaha.inventory[x],"Yes","Destroy the item!");
+}
+
 public function destroyCuredReahaSelection(item:ItemSlotClass):void
 {
 	clearOutput();
@@ -2129,12 +2203,12 @@ public function destroyCuredReahaSelection(item:ItemSlotClass):void
 	output("<i>“You want me to throw this out?”</i> Reaha asks innocently, holding up the " + (InCollection(item.type, [GLOBAL.CLOTHING, GLOBAL.ARMOR]) ? "outfit" : "article of clothing") + ". <i>“O-okay...”</i>");
 	output("\n\nReaha " + (InCollection(item.type, [GLOBAL.CLOTHING, GLOBAL.ARMOR]) ? "flattens out the piece" : "softly balls up the material") + " and tosses it in the trash chute. <i>“Well, on the bright side, my wardrobe would be a little less stuffed now.”</i>");
 	
-	reaha.destroyItem(item, -1);
 	output("\n\n<b>Reaha removed " + item.description + " from her wardrobe.<\b>");
+	reaha.destroyItemByReference(item);
 	
 	processTime(1);
 	clearMenu();
-	addButton(0, "Next", whatOutfitWillCuredReahaRemove);
+	addButton(0, "Next", whatOutfitWillCuredReahaDestroy);
 }
 
 //Give Item
@@ -2184,7 +2258,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 			output("\n\nReaha draws in a sharp gasp and grabs her tits, moaning under her breath as something changes beneath the surface. She pinches her nipples, and rather than her normal [reaha.milkNoun], you’re greeted by a squirt of milky white cream!");
 			output("\n\n<i>“Oh! Back to the same old, same old, I guess!”</i> she giggles, scooping up a boob and sucking her teat dry. <i>“Mmm, and tasty, too! Wanna try?”</i>");
 			output("\n\nDon’t mind if you do...");
-			output("\n\nYou nod and, at Reaha’s prompting, cup the other breast op to your [pc.lips]. One little suck and you’re treated to a steady flow of thick, creamy cow’s milk squirting from Reaha’s puffy nipple. Its owner moans and laces her hands around your shoulders, pulling you deep into that jiggly, supple boobflesh of hers. She cradles your head, cooing softly until you’ve had your fill, cheeks flush with her delicious bounty.");
+			output("\n\nYou nod and, at Reaha’s prompting, cup the other breast up to your [pc.lips]. One little suck and you’re treated to a steady flow of thick, creamy cow’s milk squirting from Reaha’s puffy nipple. Its owner moans and laces her hands around your shoulders, pulling you deep into that jiggly, supple boobflesh of hers. She cradles your head, cooing softly until you’ve had your fill, cheeks flush with her delicious bounty.");
 			output("\n\nWhen you’ve had your fill, you slip off her nipple and give her a pat on the flank. She giggles and presses back against your hand. <i>“Lemme know when you want some milk in your morning tea... or coffee... or if you just wanna get your fill from the tap. I’m your girl. Always.”</i>");
 			reaha.milkType = GLOBAL.FLUID_TYPE_MILK;
 		}
@@ -2217,7 +2291,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 		clearMenu();
 		addButton(0,"Milk Reaha",milkCuredReaha);
 		addButton(14,"Leave",mainGameMenu);
-		pc.destroyItem(item);
+		pc.destroyItemByReference(item);
 		return;
 	}
 	//Give Bovinium
@@ -2240,7 +2314,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 			output("\n\nReaha draws in a sharp gasp and grabs her tits, moaning under her breath as something changes beneath the surface. She pinches her nipples, and rather than her normal [reaha.milk], you’re greeted by a squirt of milky white cream!");
 			output("\n\n<i>“Oh! Back to the same old, same old, I guess!”</i> she giggles, scooping up a boob and sucking her teat dry. <i>“Mmm, and tasty, too! Wanna try?”</i>");
 			output("\n\nDon’t mind if you do...");
-			output("\n\nYou nod and, at Reaha’s prompting, cup the other breast op to your [pc.lips]. One little suck and you’re treated to a steady flow of thick, creamy cow’s milk squirting from Reaha’s puffy nipple. Its owner moans and laces her hands around your shoulders, pulling you deep into that jiggly, supple boobflesh of hers. She cradles your head, cooing softly until you’ve had your fill, cheeks flush with her delicious bounty.");
+			output("\n\nYou nod and, at Reaha’s prompting, cup the other breast up to your [pc.lips]. One little suck and you’re treated to a steady flow of thick, creamy cow’s milk squirting from Reaha’s puffy nipple. Its owner moans and laces her hands around your shoulders, pulling you deep into that jiggly, supple boobflesh of hers. She cradles your head, cooing softly until you’ve had your fill, cheeks flush with her delicious bounty.");
 			output("\n\nWhen you’ve had your fill, you slip off her nipple and give her a pat on the flank. She giggles and presses back against your hand. <i>“Lemme know when you want some milk in your morning tea... or coffee... or if you just wanna get your fill from the tap. I’m your girl. Always.”</i>");
 			reaha.milkType = GLOBAL.FLUID_TYPE_MILK;
 		}
@@ -2292,7 +2366,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 		output(". Eventually, Reaha shivers with pleasure and cups her breasts. She thumbs her nipples, gently coaxing out a few droplets of her new lactic bounty. With a moan, she produces a few droplets of [reaha.milk], staining her fingers before drooling down her curvaceous chest. Once a steady flow has worked up, Reaha brings her boob up to her mouth and takes a long, deep drink from herself, moaning all the while.");
 		output("\n\n<i>“Oooh, tasty!”</i> she giggles, licking her lips. <i>“Wanna try?”</i>");
 		output("\n\nDon’t mind if you do...");
-		output("\n\nYou nod and, at Reaha’s prompting, cup the other breast op to your [pc.lips]. One little suck and you’re treated to a steady flow of thick, creamy cow’s milk squirting from Reaha’s puffy nipple. Its owner moans and laces her hands around your shoulders, pulling you deep into that jiggly, supple boobflesh of hers. She cradles your head, cooing softly until you’ve had your fill, cheeks flush with her delicious bounty.");
+		output("\n\nYou nod and, at Reaha’s prompting, cup the other breast up to your [pc.lips]. One little suck and you’re treated to a steady flow of thick, creamy cow’s milk squirting from Reaha’s puffy nipple. Its owner moans and laces her hands around your shoulders, pulling you deep into that jiggly, supple boobflesh of hers. She cradles your head, cooing softly until you’ve had your fill, cheeks flush with her delicious bounty.");
 		output("\n\nWhen you’ve had your fill, you slip off her nipple and give her a pat on the flank. She giggles and presses back against your hand. <i>“Lemme know when you want some milk in your morning tea... or coffee... or if you just wanna get your fill from the tap. I’m your girl. Always.”</i>");
 		pc.lust(5);
 	}
@@ -2347,7 +2421,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 			output("\n\n<i>“Gimme a sec to catch my breath and we can really test this out...”</i> Reaha murmurs, reaching a hand back to circle her plump butt. <i>“If a finger can do that... unf.”</i>");
 			processTime(10);
 			pc.lust(10);
-			pc.destroyItem(item);
+			pc.destroyItemByReference(item);
 			reaha.ass.addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 			clearMenu();
 			addButton(0,"Buttfuck",buttFuckReahaSlooot);
@@ -2364,12 +2438,12 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 			output("\n\nYou’re really turning Reaha into a shameless anal addict, aren’t you?");
 			output("\n\nEnough foreplay. You twist open the container and scoop out the cream onto your fingers, lathering up before smearing it through the crack of Reaha’s ass. She gasps at the shock of cold, but it turns into a lustful purr as you start to spread the stuff around, coating her plump pucker ring in glistening anusoft. The rest of the cream goes inside, smearing it around the inside of her derriere, just inside the lip-like sphincter. Gotta make sure she’s nice and stretchy-soft inside and out!");
 			output("\n\nReaha loves every second of it, pushing back against your hand and showering you in a chorus of moans, groans, and sweet pleasured whimpers. Of course, that’s only partly due to your finger-fucking her: while you’re still buried knuckle-deep in Reaha’s pucker, her plump ring starts to thicken and expand, swelling up and out away from her behind. A rubbery tightness squeezes down on your digit, wrapping you up in a warm, almost spongy grip that clenches rhythmically around you.");
-			output("\n\n<i>“Oh God, it feels so.... so <b>fat</b>!”</i> Reaha groans, squeezing down as hard as she can... which feels just like a feather’s kiss on your [pc.skinFurScales]. Just to show her how deliciously right she is, you reach in and pinch one edge of the fat black rim - each side is as thick as a finger now, and you’re able to roll her rim between your fingers until Reaha’s trembling in your grasp.");
+			output("\n\n<i>“Oh God, it feels so... so <b>fat</b>!”</i> Reaha groans, squeezing down as hard as she can... which feels just like a feather’s kiss on your [pc.skinFurScales]. Just to show her how deliciously right she is, you reach in and pinch one edge of the fat black rim - each side is as thick as a finger now, and you’re able to roll her rim between your fingers until Reaha’s trembling in your grasp.");
 			output("\n\nGrinning, you release her and step back, admiring your work. Reaha’s asshole is plump, black, and utterly bestial - it looks like it would belong more on a randy leithan than a humanoid girl, and the sheer thickness of it keeps her asscheeks spread just a little, showing off her donut-like tailhole for anyone to see.");
 			output("\n\nIt takes a moment for Reaha to catch her breath after that. When she does, she rights herself and turns to you with a look of wanton, unabashed desire on her blushing face. <i>“I need you. Right now. Please, [pc.name].”</i>");
 			processTime(10);
 			pc.lust(10);
-			pc.destroyItem(item);
+			pc.destroyItemByReference(item);
 			reaha.ass.addFlag(GLOBAL.FLAG_PUMPED);
 			reaha.ass.delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 			clearMenu();
@@ -2386,7 +2460,7 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 			return;
 		}
 	}
-	pc.destroyItem(item);
+	pc.destroyItemByReference(item);
 	processTime(3);
 	clearMenu();
 	addButton(0,"Next",curedReahaApproach);

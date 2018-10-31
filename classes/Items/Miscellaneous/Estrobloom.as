@@ -3,10 +3,11 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Utility.num2Text;
 	
 	public class Estrobloom extends ItemSlotClass
 	{
@@ -65,6 +66,11 @@
 				var flavorIndex:int = rand(flavors.length);
 				var popFlavor:String = flavors[flavorIndex][0];
 				var popColor:String = flavors[flavorIndex][1];
+				
+				target.createStatusEffect("Estrobloom Doses", 0, 0, 0, 0, true, "", "", false, 720);
+				target.addStatusValue("Estrobloom Doses", 1, 1);
+				target.setStatusMinutes("Estrobloom Doses", 720);
+				var doses:int = target.statusEffectv1("Estrobloom Doses");
 				
 				//Consume:
 				if(target.hasStatusEffect("Taken Estrobloom")) 
@@ -219,6 +225,23 @@
 				if(target.hasBeard())
 				{
 					choices[choices.length] = 10;
+					if (target.femininity >= 25) choices[choices.length] = 10;
+					if (target.femininity >= 50) choices[choices.length] = 10;
+					if (target.femininity >= 75) choices[choices.length] = 10;
+					if (target.femininity >= 90) choices[choices.length] = 10;
+				}
+				if(doses >= 5 && target.hasPerk("Perma-cute"))
+				{
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
 				}
 
 				//Default to no changes, then roll on the array for a change if some are available.
@@ -279,7 +302,7 @@
 					else
 					{
 						x = 2 + rand(4);
-						kGAMECLASS.output("\n\nYour [pc.hair] tickles your scalp as it grows longer. You grab a strand and hold it taut, feeling each additional inch of new length. After you’ve gained " + kGAMECLASS.num2Text(x) + " inches, your expanded locks stop their frenzied expansion.");
+						kGAMECLASS.output("\n\nYour [pc.hair] tickles your scalp as it grows longer. You grab a strand and hold it taut, feeling each additional inch of new length. After you’ve gained " + num2Text(x) + " inches, your expanded locks stop their frenzied expansion.");
 						target.hairLength += x;
 					}
 				}
@@ -295,7 +318,7 @@
 						target.cocks[x].cLengthRaw *= .75;
 						if(target.hasPerk("Mini")) target.cocks[x].cLengthRaw *= .75;
 						if(target.cocks[x].cLengthRaw < 1) target.cocks[x].cLengthRaw = 1;
-						kGAMECLASS.output(kGAMECLASS.num2Text(Math.round(target.cocks[x].cLength()*10)/10) + " inches. If you keep taking this stuff, you’re going to have a lot less dick to play with.");
+						kGAMECLASS.output(num2Text(Math.round(target.cocks[x].cLength()*10)/10) + " inches. If you keep taking this stuff, you’re going to have a lot less dick to play with.");
 					}
 					//Otherwise lose 2-3", minimum 4.5/8"
 					else
@@ -353,6 +376,17 @@
 					else kGAMECLASS.output("Y");
 					kGAMECLASS.output("ou no longer have a beard!</b>");
 					target.removeBeard();
+				}
+				// Remove "Perma-cute" perk
+				else if(select == 13)
+				{
+					kGAMECLASS.output("\n\nYour face... <i>tingles</i>. Weird, because you thought that was supposed to stop. Unless... Oh, right. <b>You have lost the “Perma-cute” perk, removing your protection from masculinity-altering transformatives.</b> You’re also noticing a slight pain... Wow, you didn’t miss the feeling of face bones and cartilage contorting like this. Looking at your face (this time with your codex’s camera to make sure you get a better look than at a black screen), you see that it has also become <b>significantly more feminine</b>, so it would appear that you won’t have boyish looks forever, anymore.");
+					
+					kGAMECLASS.output("\n\n(<b>Perk Lost: Perma-cute</b>)");
+					target.removePerk("Perma-cute");
+					target.modFem(10);
+					
+					kGAMECLASS.output("\n\n<i>It’s over!</i>");
 				}
 				else if(select == 9)
 				{

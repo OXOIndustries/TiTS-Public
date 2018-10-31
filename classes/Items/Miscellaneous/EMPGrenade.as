@@ -101,7 +101,7 @@ package classes.Items.Miscellaneous
 		
 		public function throwGrenade(targetCreature:Creature, attacker:Creature):void 
 		{
-			var hGroup:Array = CombatManager.getHostileCharacters();
+			var hGroup:Array = CombatManager.getHostileActors();
 			var aTarget:Creature = CombatAttacks.GetBestPotentialTarget(hGroup);
 			if(aTarget == null)
 			{
@@ -126,16 +126,16 @@ package classes.Items.Miscellaneous
 				output("\n\n" + cTarget.capitalA + cTarget.uniqueName + " " + (cTarget.isPlural ? "are" : "is") + " caught in the explosion!");
 				outputDamage(d);
 				
-				if (!cTarget.hasStatusEffect("Blinded") && (cTarget.originalRace == "robot" || cTarget.originalRace == "Automaton") && cTarget.hasShields() && !cTarget.getHPResistances().hasFlag(DamageFlag.GROUNDED))
+				if (!cTarget.hasStatusEffect("Stunned") && cTarget.isRobot() && cTarget.hasShields() && !cTarget.getHPResistances().hasFlag(DamageFlag.GROUNDED))
 				{
 					if(cTarget is PlayerCharacter)
 					{
-						cTarget.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "An electrical burst has temporarily stunned your equipment!", true, 0,0xFF0000);
+						CombatAttacks.applyStun(cTarget, 2, false,"An electrical burst has temporarily stunned your equipment!");
 						output("\n\nThe electronic burst from the grenade has temporarily disrupted your systems!");
 					}
 					else
 					{
-						cTarget.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "An electrical burst has temporarily stunned your target!", true, 0,0xFF0000);
+						CombatAttacks.applyStun(cTarget, 2, false,"An electrical burst has temporarily stunned the target!");
 						output("\n\nThe electronic burst from the grenade has temporarily disrupted " + cTarget.a + cTarget.short + "’s systems!");
 					}
 				}

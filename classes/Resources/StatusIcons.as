@@ -126,6 +126,12 @@ package classes.Resources
 
 		[Embed(source = "../../assets/icons/statuseffects/poison.svg", mimeType = "image/svg")]
 		public static var Icon_Poison:Class;
+
+		[Embed(source = "../../assets/icons/statuseffects/rain-drops.svg", mimeType = "image/svg")]
+		public static var Icon_Rain_Drops:Class;
+
+		[Embed(source = "../../assets/icons/statuseffects/rotate.svg", mimeType = "image/svg")]
+		public static var Icon_Rotate:Class;
 		
 		[Embed(source = "../../assets/icons/statuseffects/splatter.svg", mimeType = "image/svg")]
 		public static var Icon_Splatter:Class;
@@ -146,6 +152,9 @@ package classes.Resources
 		[Embed(source = "../../assets/icons/statuseffects/sperm_multi.svg", mimeType = "image/svg")]
 		public static var Icon_Sperm_Multi:Class;
 		
+		[Embed(source = "../../assets/icons/statuseffects/spiderweb.svg", mimeType = "image/svg")]
+		public static var Icon_SpiderWeb:Class;
+		
 		[Embed(source = "../../assets/icons/statuseffects/unknown.svg", mimeType = "image/svg")]
 		public static var Icon_Unknown:Class;
 
@@ -158,6 +167,9 @@ package classes.Resources
 		[Embed(source = "../../assets/icons/statuseffects/wine.svg", mimeType = "image/svg")]
 		public static var Icon_Wine:Class;
 		
+		[Embed(source = "../../assets/icons/statuseffects/wings.svg", mimeType = "image/svg")]
+		public static var Icon_Wings:Class;
+
 		[Embed(source = "../../assets/icons/statuseffects/snowflake.svg", mimeType = "image/svg")]
 		public static var Icon_Snowflake:Class;
 		

@@ -43,7 +43,7 @@
 			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballFullness = 100;
 			
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 65;
 			this.cockVirgin = false;
 			this.vaginalVirgin = false;

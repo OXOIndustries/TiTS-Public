@@ -6,7 +6,7 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
@@ -239,7 +239,7 @@
 			}
 			else
 			{
-				if(!pro) output(target.capitalA + target.short + " swollows the pill to no effect.");
+				if(!pro) output(target.capitalA + target.short + " swallows the pill to no effect.");
 				else output(target.capitalA + target.short + " uses the medipen to no effect.");
 			}
 		}

@@ -10,9 +10,12 @@ package classes.Engine.Combat
 	import classes.Engine.Utility.possessive;
 	import classes.Engine.Utility.rand;
 	import classes.Items.Guns.Goovolver;
+	import classes.Items.Accessories.SalamanderDefenseSystem;
+	import classes.Items.Accessories.BimboleumDefenseSystem;
 	import classes.Util.RandomInCollection;
 	import classes.kGAMECLASS;
 	import classes.GameData.CombatContainer;
+	import classes.GameData.CombatAttacks;
 	import classes.StringUtil;
 	
 	/**
@@ -37,36 +40,62 @@ package classes.Engine.Combat
 		
 		target.OnTakeDamage(damageResult.typedTotalDamage);
 		
-		// Damage has already been applied by this point, so we can skip output if we want...
-		if (special == "suppress" || attacker == null)
+		/* Damage has already been applied by this point, so we can skip output if we want...
+	       FEN NOTE: Cut these so we can have all the procs still go off!
+		if (special == "suppress" || (attacker == null && special != "minimal"))
 		{
 			return damageResult;
 		}
-		else if (special == "minimal")
+		else if (special == "minimal" || attacker == null)
 		{
 			outputDamage(damageResult);
+			return damageResult;
+		}*/
+
+		//FEN NOTE: New hotness
+		var displayDamage:Boolean = true;
+		var displayBonusTexts:Boolean = true;
+		if (special == "suppress" || (attacker == null && special != "minimal"))
+		{
+			displayBonusTexts = false;
+			displayDamage = false;
+		}
+		else if (special == "minimal" || attacker == null)
+		{
+			displayBonusTexts = false;
+			displayDamage = true;
+		}
+		//Better keep this so as not to crash shit...
+		if(attacker == null)
+		{
+			if(displayDamage) outputDamage(damageResult);
 			return damageResult;
 		}
 		
 		// Begin message outpuuuuut.
 		if (damageResult.wasCrit == true)
 		{
-			output("\n<b>Critical hit!</b>");
+			if(displayBonusTexts) output("\n<b>Critical hit!</b>");
+			if(special == "melee" && attacker.hasPerk("Can Opener") && attacker.physique()/2 + rand(20) + 1 > target.physique()/2 + 10)
+			{
+				CombatAttacks.applySunder(target, 4 + rand(2));
+				if(displayBonusTexts)
+				{
+					if(target is PlayerCharacter) output(" <b>You are sundered by the critical strike!</b>");
+					else output(" <b>" + StringUtil.capitalize(target.getCombatName(), false) + " is sundered by " + (attacker is PlayerCharacter ? "your" : "the") + " critical strike!</b>");
+				}
+			}
 		}
 		
 		if (damageResult.wasSneak == true)
 		{
-			output("\n<b>Sneak attack!</b>");
+			if(displayBonusTexts) output("\n<b>Sneak attack!</b>");
 		}
 		
 		// Shield damage happened, but the target still has shields.
 		if (damageResult.shieldDamage > 0 && target.shieldsRaw > 0)
 		{
-			if (target is PlayerCharacter)
-			{
-				output(" Your shield crackles but holds.");
-			}
-			else
+			if(displayBonusTexts)
 			{
 				if (target.isPlural) 
 				{
@@ -95,11 +124,7 @@ package classes.Engine.Combat
 		// Shield damage happened, but the target no longer has shields.
 		else if (damageResult.shieldDamage > 0 && target.shieldsRaw <= 0)
 		{
-			if (target is PlayerCharacter) 
-			{
-				output(" There is a concussive boom and tingling aftershock of energy as your shield is breached.");
-			}
-			else 
+			if(displayBonusTexts)
 			{
 				if (target.isPlural) 
 				{
@@ -124,32 +149,45 @@ package classes.Engine.Combat
 					}
 				}
 			}
+			//Cool accessory procs!
+			if(target.accessory is SalamanderDefenseSystem || target.accessory is BimboleumDefenseSystem)
+			{
+				if(!target.hasStatusEffect("Def Proc")) target.createStatusEffect("Def Proc",1,0,0,0,true,"","",true,0);
+			}
 		}
 		//Set up a shield proc!
+		var chargedShieldMeleeCounter:Boolean = false;
 		if (target.statusEffectv1("Charged Shield") > 0 && rand(2) == 0 && damageResult.shieldDamage > 0)
 		{
-			if(target is PlayerCharacter) output("\nYour charged shield flashes brilliantly");
-			else output("\nA brilliant flash from the shield dazzles you");
-			target.addStatusValue("Charged Shield",1,-1);
-			if(target.statusEffectv1("Charged Shield") <= 0) 
+			if(displayBonusTexts)
 			{
-				output(" and fades back to normalcy");
+				if(target is PlayerCharacter) output("\nYour charged shield flashes brilliantly");
+				else output("\nA brilliant flash from the shield dazzles you");
 			}
-			output(".");
-			
-			//Blind chance!
-			if(target.statusEffectv4("Charged Shield") / 2 + rand(20) + 1 > attacker.intelligence() / 2 + 10 && !attacker.hasStatusEffect("Blinded"))
+			target.addStatusValue("Charged Shield",1,-1);
+			if(displayBonusTexts)
 			{
-				if(attacker is PlayerCharacter) output(" <b>You are blinded!</b>");
-				else output(" <b>" + StringUtil.capitalize(attacker.getCombatName(), false) + " is blinded!</b>");
-				attacker.createStatusEffect("Blinded", 2, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0, 0xFF0000);
+				if(target.statusEffectv1("Charged Shield") <= 0) 
+				{
+					output(" and fades back to normalcy");
+				}
+				output(".");
+			}
+			//Blind chance!
+			if(target.statusEffectv4("Charged Shield") / 2 + rand(20) + 1 > attacker.bimboIntelligence() / 2 + 10 && !attacker.hasStatusEffect("Blinded"))
+			{
+				if(displayBonusTexts)
+				{
+					if(attacker is PlayerCharacter) output(" <b>You are blinded!</b>");
+					else output(" <b>" + StringUtil.capitalize(attacker.getCombatName(), false) + " is blinded!</b>");
+				}
+				if(attacker is PlayerCharacter) CombatAttacks.applyBlind(attacker, 3);
+				else CombatAttacks.applyBlind(attacker, 2);
 			}
 			//Melee damage
 			if(special == "melee") 
 			{
-				output(" <b>" + StringUtil.capitalize(attacker.getCombatName(), false) + " got a nasty shock!</b>");
-				applyDamage(damageRand(new TypeCollection( { electric: target.statusEffectv2("Charged Shield") } ), 15), target, attacker, "minimal");
-				output("\nBut you still took damage too...");
+				chargedShieldMeleeCounter = true;
 			}
 			//Remove status if time for it.
 			if(target.statusEffectv1("Charged Shield") <= 0) target.removeStatusEffect("Charged Shield");
@@ -159,14 +197,20 @@ package classes.Engine.Combat
 		{
 			if (damageResult.shieldDamage >= 2 && baseDamage.hasFlag(DamageFlag.DRAINING) && attacker.shields() < attacker.shieldsMax())
 			{
-				if(attacker is PlayerCharacter) output(" Your weapon drains half of the energy into your own shield!");
-				else output(" Your foes shields strengthen at your expense!");
+				if(displayBonusTexts)
+				{
+					if(attacker is PlayerCharacter) output(" Your weapon drains half of the energy into your own shield!");
+					else output(" Your foe’s shields strengthen at your expense!");
+				}
 				attacker.shields(Math.round(damageResult.shieldDamage * .5))
 			}
 			else if (damageResult.shieldDamage > 0 && baseDamage.hasFlag(DamageFlag.GREATER_DRAINING) && attacker.shields() < attacker.shieldsMax())
 			{
-				if(attacker is PlayerCharacter) output(" Your weapon drains most of the energy into your own shield!");
-				else output(" Your foes shields strengthen at your expense!");
+				if(displayBonusTexts)
+				{
+					if(attacker is PlayerCharacter) output(" Your weapon drains most of the energy into your own shield!");
+					else output(" Your foe’s shields strengthen at your expense!");
+				}
 				attacker.shields(Math.round(damageResult.shieldDamage * .9))
 			}
 		}
@@ -174,55 +218,50 @@ package classes.Engine.Combat
 		// HP Damage
 		if (damageResult.hpDamage > 0 && damageResult.shieldDamage > 0)
 		{
-			if (target is PlayerCharacter) 
-			{
-				output(" The attack continues on to connect with you!");
-			}
-			else 
-			{
-				output(" The attack continues on to connect with [target.combatName]!");
-			}
+			if(displayBonusTexts) output(" The attack continues on to connect with " + target.getCombatName() + "!");
 		}
 		// HP damage, didn't pass through shield
 		else if (damageResult.hpDamage > 0 && damageResult.shieldDamage == 0)
 		{
-			if (target is PlayerCharacter)
-			{
-				output(" The attack connects with you!");
-			}
-			else
-			{
-				output(" The attack connects with [target.combatName]!");
-			}
+			if(displayBonusTexts) output(" The attack connects with " + target.getCombatName() + "!");
 		}
 		
 		//Magic HP Drain shit
 		if (damageResult.hpDamage >= 2 && baseDamage.hasFlag(DamageFlag.VAMPIRIC) && attacker.HP() < attacker.HPMax())
 		{
-			if(attacker is PlayerCharacter)
+			if(displayBonusTexts) 
 			{
-				if(target.isPlural) output(" You gain vitality as your opponent’s vigor is stolen.");
-				else output(" You gain vitality as your opponents’ vigor is stolen.");
+				if(attacker is PlayerCharacter)
+				{
+					if(target.isPlural) output(" You gain vitality as your opponent’s vigor is stolen.");
+					else output(" You gain vitality as your opponents’ vigor is stolen.");
+				}
+				else output(" You feel weaker as your vitality is leeched away.");
 			}
-			else output(" You feel weaker as your vitality is leeched away.");
 			attacker.HP(Math.round(damageResult.hpDamage * .5));
 		}
 		else if (damageResult.hpDamage > 0 && baseDamage.hasFlag(DamageFlag.GREATER_VAMPIRIC) && attacker.HP() < attacker.HPMax())
 		{
-			if(attacker is PlayerCharacter)
+			if(displayBonusTexts) 
 			{
-				if(target.isPlural) output(" You gain vitality as your opponent’s vigor is stolen.");
-				else output(" You gain vitality as your opponents’ vigor is stolen.");
+				if(attacker is PlayerCharacter)
+				{
+					if(target.isPlural) output(" You gain vitality as your opponent’s vigor is stolen.");
+					else output(" You gain vitality as your opponents’ vigor is stolen.");
+				}
+				else output(" You feel weaker as your vitality is leeched away.");
 			}
-			else output(" You feel weaker as your vitality is leeched away.");
 			attacker.HP(Math.round(damageResult.hpDamage * .9));
 		}
 		// Stun Special
 		if (damageResult.hpDamage > 0 && baseDamage.hasFlag(DamageFlag.CHANCE_APPLY_STUN) && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune") && rand(4) == 0)
 		{
-			if (target is PlayerCharacter) output(" <b>You are stunned!</b>");
-			else output(" <b>[target.CombatName] is stunned!</b>");
-			target.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", (target is PlayerCharacter ? "You are stunned and cannot move until you recover!" : "Cannot act for a turn."), true, 0, 0xFF0000);
+			if(displayBonusTexts) 
+			{
+				if (target is PlayerCharacter) output(" <b>You are stunned!</b>");
+				else output(" <b>" + StringUtil.capitalize(target.getCombatName(), false) + " is stunned!</b>");
+			}
+			CombatAttacks.applyStun(target, 2);
 		}
 		
 		// Special stuff
@@ -231,10 +270,7 @@ package classes.Engine.Combat
 			case "fzr":
 				if(target.hasStatusEffect("Burning") || target.hasStatusEffect("Burn"))
 				{
-					output("\n<b>The flames burning");
-					if (target is PlayerCharacter) output(" your");
-					else output(" [target.combatName]’s");
-					output(" body have been extinguished!</b>");
+					if(displayBonusTexts) output("\n<b>The flames burning" + possessive(target.getCombatName()) + " body have been extinguished!</b>");
 					target.removeStatusEffect("Burning");
 					target.removeStatusEffect("Burn");
 				}
@@ -244,11 +280,13 @@ package classes.Engine.Combat
 					if(!target.willTakeColdDamage(baseDamage.freezing.damageValue)) deepFreezeChance += 2 ;
 					if(rand(deepFreezeChance) == 0)
 					{
-						output("\n<b>");
-						if (target is PlayerCharacter) output("The freezing sensation hits you, slowing down your movememnts. You’re frozen!");
-						else output("The freezing sensation slows down the target" + (!target.isPlural ? "’s" : "s’") + " movements. [target.CombatName] " + (!target.isPlural ? "is" : "are") + " frozen!");
-						output("</b>");
-						
+						if(displayBonusTexts) 
+						{
+							output("\n<b>");
+							if (target is PlayerCharacter) output("The freezing sensation hits you, slowing down your movements. You’re frozen!");
+							else output("The freezing sensation slows down the target" + (!target.isPlural ? "’s" : "s’") + " movements. " + StringUtil.capitalize(target.getCombatName()) + " " + (!target.isPlural ? "is" : "are") + " frozen!");
+							output("</b>");
+						}
 						// "Deep Freeze"
 						// v1: Number of turns.
 						// v2: Evasion change.
@@ -263,7 +301,7 @@ package classes.Engine.Combat
 		// Lust damage output
 		
 		// Attack included lust damage, but was resisted.
-		if (damageResult.shieldDamage <= 0 && damageResult.hpDamage <= 0 && damageResult.lustResisted == true)
+		if (damageResult.shieldDamage <= 0 && damageResult.hpDamage <= 0 && damageResult.lustResisted == true && displayBonusTexts)
 		{
 			// Any special resistance message overrides
 			switch(special)
@@ -271,16 +309,13 @@ package classes.Engine.Combat
 				case "goovolver":
 					output("\n<b>");
 					if (target is PlayerCharacter) output("You don’t");
-					else output("[target.CombatName]" + (target.isPlural ? " don’t" : " doesn’t"));
+					else output(StringUtil.capitalize(target.getCombatName()) + " " + (target.isPlural ? "don’t" : "doesn’t"));
 					output(" seem the least bit bothered by the miniature goo crawling over them.</b>");
 					break;
 				case "slut ray":
 					output("\n<b>");
 					if (target is PlayerCharacter) output("You don’t");
-					else
-					{
-						output("[target.CombatName]" + (target.isPlural ? " don’t" : " doesn’t"));
-					}
+					else output(StringUtil.capitalize(target.getCombatName()) + " " + (target.isPlural ? "don’t" : "doesn’t"));
 					output(" seem to be affected by the gun’s ray....</b>");
 					break;
 				default:
@@ -289,19 +324,19 @@ package classes.Engine.Combat
 					{
 						output("\n<b>");
 						if (target is PlayerCharacter) output("You don’t");
-						else output("[target.CombatName]" + (target.isPlural ? " don’t" : " doesn’t"));
-						output(" seem at all interested in " + (attacker is PlayerCharacter ? "your" : "[target.CombatName]’s") + " teasing.</b>");
+						else output(StringUtil.capitalize(target.getCombatName()) + " " + (target.isPlural ? "don’t" : "doesn’t"));
+						output(" seem at all interested in " + possessive(attacker.getCombatName()) + " teasing.</b>");
 					}
 					break;
 			}
 		}
 		// Lust damage happened
-		else if (damageResult.shieldDamage <= 0 && damageResult.hpDamage <= 0 && damageResult.lustDamage > 0)
+		else if (damageResult.shieldDamage <= 0 && damageResult.hpDamage <= 0 && damageResult.lustDamage > 0 && displayBonusTexts)
 		{
 			switch(special)
 			{
 				case "goovolver":
-					output(" A tiny " + (attacker.rangedWeapon as Goovolver).randGooColour() + " goo, vaguely female in shape, pops out and starts to crawl over [target.combatHimHer], teasing [target.combatHisHer] most sensitive parts!");
+					output(" A tiny " + (attacker.rangedWeapon as Goovolver).randGooColour() + " goo, vaguely female in shape, pops out and starts to crawl over " + target.getCombatPronoun("himher") + ", teasing " + target.getCombatPronoun("hisher") + " most sensitive parts!");
 					break;
 				case "slut ray":
 					var lewdAdjective:String = "";
@@ -310,8 +345,8 @@ package classes.Engine.Combat
 					
 					output("\n");
 					if(target is PlayerCharacter) output("Suddenly, your mind is filled with sexual fantasies, briefly obscuring your vision with " + lewdAdjective + " images!");
-					else output("[target.CombatName] " + (target.isPlural ? "are" : "is") + " mentally filled with sexual fantasies, briefly obscuring [target.combatHisHer] vision with " + lewdAdjective + " images!");
-					output(" " + CombatContainer.teaseReactions(damageResult.lustDamage, target));
+					else output(StringUtil.capitalize(target.getCombatName()) + " " + (target.isPlural ? "are" : "is") + " mentally filled with sexual fantasies, briefly obscuring " + target.getCombatPronoun("hisher") + " vision with " + lewdAdjective + " images!");
+					output(" " + teaseReactions(damageResult.lustDamage, target));
 					break;
 				default:
 					// TODO: Maybe move tease reaction shit here???
@@ -319,7 +354,17 @@ package classes.Engine.Combat
 			}
 		}
 		
-		outputDamage(damageResult);
+		if(displayDamage) outputDamage(damageResult);
+		
+		// Counter effects
+		if(chargedShieldMeleeCounter)
+		{
+			if(displayBonusTexts)
+			{
+				output("\nBut " + StringUtil.capitalize(attacker.getCombatName(), false) + " still took damage too... <b>" + StringUtil.capitalize(attacker.getCombatPronoun("heshe")) + " got a nasty shock from the charged shield!</b>");
+			}
+			applyDamage(damageRand(new TypeCollection( { electric: target.statusEffectv2("Charged Shield") } ), 15), target, attacker, "minimal");
+		}
 		
 		return damageResult;
 	}

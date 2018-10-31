@@ -8,6 +8,7 @@
 	
 	public class WeavemailShirt extends ItemSlotClass
 	{
+		//Level 7 (Common). Balance 2.0
 		//constructor
 		public function WeavemailShirt()
 		{
@@ -37,7 +38,7 @@
 			this.attackVerb = "null";
 			
 			//Information
-			this.basePrice = 14000;
+			this.basePrice = 7000;
 			this.attack = 0;
 			this.defense = 7;
 			this.shieldDefense = 0;
@@ -47,8 +48,8 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			
-			resistances.kinetic.resistanceValue = 20.0;
-			resistances.freezing.resistanceValue = 15.0;
+			//resistances.kinetic.resistanceValue = 20.0;
+			resistances.freezing.resistanceValue = 16.0;
 			//resistances.addFlag(DamageFlag.ABLATIVE);
 			
 			this.version = _latestVersion;

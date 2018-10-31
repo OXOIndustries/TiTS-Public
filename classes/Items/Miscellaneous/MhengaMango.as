@@ -40,18 +40,6 @@
 			version = _latestVersion;
 		}
 		
-		// Plus/Minus sign printing
-		protected function printPlusMinus(aVal:Number = 0):String
-		{
-			var sVal:String = "";
-			
-			if (aVal > 0) sVal = String("+" + aVal);
-			else if (aVal < 0) sVal = String("-" + aVal);
-			else sVal = String(aVal);
-			
-			return sVal;
-		}
-		
 		// Limit max; adjust if necessary!
 		protected var sexyMax:Number = 10;
 		
@@ -68,8 +56,8 @@
 			// If no mango, give mango
 			if (!target.hasStatusEffect("The Mango"))
 			{
-				if (target is PlayerCharacter) target.createStatusEffect("The Mango", sexyBoost, 0, 0, 0, false, "Charmed", String("You are irresistible!\n\n(" + printPlusMinus(sexyBoost) + " sexiness)"), false, sexyHours,0xB793C4);
-				else target.createStatusEffect("The Mango", sexyBoost, 0, 0, 0, false, "Charmed", String(target.capitalA + target.short + " is irresistible!\n\n(" + printPlusMinus(sexyBoost) + " sexiness)"), true, 0,0xB793C4);
+				if (target is PlayerCharacter) target.createStatusEffect("The Mango", sexyBoost, 0, 0, 0, false, "Charmed", ("You are irresistible!\n\n(" + StringUtil.printPlusMinus(sexyBoost) + " sexiness)"), false, sexyHours,0xB793C4);
+				else target.createStatusEffect("The Mango", sexyBoost, 0, 0, 0, false, "Charmed", (target.capitalA + target.short + " is irresistible!\n\n(" + StringUtil.printPlusMinus(sexyBoost) + " sexiness)"), true, 0,0xB793C4);
 			}
 			// If have mango, upgrade mango
 			else
@@ -85,9 +73,9 @@
 					// Hours are additive for each time consumed.
 					target.addStatusMinutes("The Mango", sexyHours);
 					// Update the effect tooltip message, just in case!
-					target.setStatusTooltip("The Mango", String("You are irresistible!\n\n(" + printPlusMinus(sexyBoost) + " sexiness)"));
+					target.setStatusTooltip("The Mango", ("You are irresistible!\n\n(" + StringUtil.printPlusMinus(sexyBoost) + " sexiness)"));
 				}
-				else target.setStatusTooltip("The Mango", String(target.capitalA + target.short + " is irresistible!\n\n(" + printPlusMinus(sexyBoost) + " sexiness)"));
+				else target.setStatusTooltip("The Mango", (target.capitalA + target.short + " is irresistible!\n\n(" + StringUtil.printPlusMinus(sexyBoost) + " sexiness)"));
 			}
 		}
 		

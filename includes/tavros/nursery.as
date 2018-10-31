@@ -43,7 +43,7 @@ public function numNurseryUpgrades():int
 
 public function hasNurseryStaff():Boolean
 {
-	return yammiAtNursery() || reahaAtNursery() || zilCallgirlAtNursery();
+	return (numNurseryStaff() > 0);
 }
 
 public function numNurseryStaff():int
@@ -83,11 +83,28 @@ public function zilCallgirlAtNursery():Boolean
 	return false;
 }
 
+public function visitedNursery():Boolean
+{
+	if (flags["BRIGET_MET"] != undefined || flags["NURSERY_VISITED"] != undefined || flags["USED_NURSERY_COMPUTER"] != undefined) return true;
+	return false;
+}
+
 // Room functions
 
 
 public function nurseryFoyerFunc():Boolean
 {
+	if (pc.hasStatusEffect("Pregnancy Pending") && pc.hasPregnancyOfType("ZephyrPregnancy"))
+	{
+		zephyrPregnancyEnds();
+		return false;
+	}
+
+	if (flags["ELLIE_PREG_TIMER"] == 70 && flags["ELLIE_OPERATION"] == 3) return ellieEggsHatching();
+	else if (ainaKids() == 1 && ainaBirthScene()) return ainaFirstBirth();
+	else if(isHalloweenish() && havePumpkinCarvingScenes() && flags["CARVED_W_KIDDOS"] == undefined) return doPumpkinCarving();
+	else if(!isHalloweenish()) flags["CARVED_W_KIDDOS"] = undefined;
+	
 	output(" The Steele Tech logo is emblazoned across the wall opposite the elevator, surrounded by pastel-colored images of flowers and small animals.");
 	if (silly) output(" There’s even a cute little cartoonish cow!");
 	output(" A holo-terminal dominates the western wall, slowly scrolling through reams of digital text - the status of");
@@ -110,7 +127,189 @@ public function nurseryFoyerFunc():Boolean
 
 	addButton(1, "NurseryComp.", nurseryComputer, undefined, "Nursery Status Computer", "The holoterminal in the nursery is set up to monitor and summarize the status "+ (numChildren == 0 ? "of your potential children" : (numChildren == 1 ? "of your child" : "of all your children")) +", letting you stay up-to-date with a push of a button.");
 
+	if(ChildManager.numChildrenAtNursery() < 1 && flags["ELLIE_PREG_TIMER"] < 70 && flags["ELLIE_AT_NURSERY"] != undefined)
+	{
+		output("\n\nYou find Ellie milling about in the reception area, clearly deep in thought as she mumbles to herself.");
+		addButton(2, "Ellie", ellieAtNurseryPreHatch, undefined, "", "");
+	}
+
+	if(flags["NURSERY_VISITED"] == undefined) flags["NURSERY_VISITED"] =1;
+
 	return false;
+}
+
+public function zephyrKidsOption(btnSlot:Number):Number
+{
+	var numZephKids:int = ChildManager.numOfUniqueType(ZephyrUniqueChild);
+
+	if (numZephKids > 0)
+	{
+		if (hours > 6 && hours < 22)
+		{
+			output("\n\nYour kids fathered by Zephyr look like they’re growing up fast; undoutedly entirely human, something of a rarity in your nursery, but mightily energetic. Probably little troublemakers in waiting for you and the nursery staff!");
+
+			addButton(btnSlot, "ZephyrKids", playWithZephKids, undefined, "Zephyr Kids", "Play with your kids.");
+			btnSlot++;
+		}
+		else if (zephAtNursery())
+		{
+			output("\n\nYour kids fathered by Zephyr are fast asleep, tuckered out from a long day of activity. Zephyr herself has fallen victim to her exhaustion too, sound asleep amongst your children.");
+
+			addButton(btnSlot, "ZephyrPics", picsWithZephKids, undefined, "Zephyr Pics", "Take some pictures of your kids’ proud second mommy.");
+			btnSlot++;
+		}
+		else
+		{
+			output("\n\nYour kids fathered by Zephyr are fast asleep, tuckered out from a long day of activity.");
+		}
+	}
+	
+	return btnSlot;
+}
+
+public function zilBabyBonus(btnSlot:Number):Number
+{
+	var zilBlurbs:Array = [];
+	
+	if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 0, 12) > 0) zilBlurbs.push("Your half-breed zil babies are happily resting their day away nearby, and you could probably pay them a visit if you’d like.");
+	if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 13, 36) > 0) zilBlurbs.push("Your bee-kids are playing nearby, quickly noticing your presence and giggling happily, probably hoping you’ll pay them a visit.");
+	if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 0, 12) > 0 && ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 13, 36) > 0) zilBlurbs.push("Your half-breed zil babies are happily resting their day away nearby, and your older bee-kids are playing around the nursery, giggling happily, probably hoping you’ll pay them a visit.");
+	
+	if(zilBlurbs.length > 0) output("\n\n" + zilBlurbs[rand(zilBlurbs.length)]);
+	
+	if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 0, 36) > 0)
+	{
+		// Picks randomly if the PC has both toddlers and newborns. Should exclude Zhen’s kids if possible, should actually just be restricted to generic zil offspring, or require multiple zil children. 
+		addButton(btnSlot, "Zil", playWithZil, undefined, "Zil Kids", "Pay a visit to your half-breed children.");
+		btnSlot++;
+	}
+	else if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 37, 9001) > 0)
+	{
+		addDisabledButton(btnSlot, "Zil", "Zil Kids", "You don’t have any kids young enough to play with. Maybe when you finish the quest, you’ll have time to be a real parent.");
+		btnSlot++;
+	}
+	return btnSlot;
+}
+public function playWithZil(choice:Number = -1):void
+{
+	clearOutput();
+	author("HugsAlright");
+	showName("PLAY\nTIME!");
+	
+	if(choice == -1)
+	{
+		output("Which age group will you play with? (Buttons are in month age ranges)");
+		clearMenu();
+		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 0, 12) > 0) addButton(0, "0-12 Months", playWithZil, 0);
+		else addDisabledButton(0, "0-12 Months", "0-12 Months", "You have no kids in that age range.");
+		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 13, 36) > 0) addButton(1, "13-36 Months", playWithZil, 1);
+		else addDisabledButton(1, "13-36 Months", "13-36 Months", "You have no kids in that age range.");
+		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_BEE, 37, 9001) > 0) addDisabledButton(3, "37+ Months", "37+ Month", "These kids are too old to play with.");
+		return;
+	}
+	
+	var boy:Boolean = false;
+	var girl:Boolean = false;
+	var msg:String = "";
+	var numBabies:int = 0;
+	
+	var minAge:int;
+	var maxAge:int;
+	var children:Array = ChildManager.getChildrenOfType(GLOBAL.TYPE_BEE);
+	var zilChildren:Array = [];
+	var zilIdx:int = -1;
+	
+	if(choice == 0) { minAge = 0; maxAge = 12; }
+	else if(choice == 1) { minAge = 13; maxAge = 36; }
+	
+	// Filter for children and ages
+	if(children != null && children.length > 0)
+	{
+		zilIdx = 0; // The oldest should be first in the array!
+		if(maxAge != -1 && maxAge < minAge) maxAge = -1;
+		for(var i:int = 0; i < children.length; i++)
+		{
+			var c:Child = children[i] as Child;
+			var m:int = c.Months;
+			if((maxAge == -1 || m <= maxAge) && m >= minAge)
+			{
+				zilChildren.push(c);
+				numBabies += c.Quantity;
+			}
+		}
+	}
+	// If valid children, set perameters.
+	if(zilChildren.length > 0)
+	{
+		zilIdx = rand(zilChildren.length);
+		if(zilChildren[zilIdx].NumMale > 0) boy = true;
+		if(zilChildren[zilIdx].NumFemale > 0) girl = true;
+		if(boy && girl) boy = (rand(2) == 0);
+	}
+	
+	// Newborn
+	// Available from 0-730 days in game, chooses random child gender if both are available.
+	if(choice == 0)
+	{
+		if(pc.isLactating() && rand(2) == 0)
+		{
+			msg += "You decide you’re going to feed your babies while you’re here. Picking up one of from them from their cribs, you hear " + (boy ? "him" : "her") + " coo with glee when they open their " + ((zilIdx >= 0 && (zilChildren[zilIdx] is UniqueChild)) ? zilChildren[zilIdx].eyeColor : "[baby.eyeColor]") + " eyes and see your face looking back at them. Even with the amazing staff this nursery has, you’re sure all your children would enjoy a meal from their " + pc.mf("father", "mother") + ".";
+			msg += "\n\nWith just that in mind, you";
+			if(!pc.isChestExposed()) msg += " remove your top and";
+			msg += " lift your " + (boy ? "son" : "daughter") + " to your chest. Almost immediately " + (boy ? "he" : "she") + " latches onto your teat and starts to suckle, taking in your nourishing nectar. You’re left alone in a blissful silence, a warm fuzzy feeling permeating your body as parental instincts take over.";
+			msg += "\n\nAfter a while your baby has had " + (boy ? "his" : "her") + " fill, and you put the delicate bundle back into " + (boy ? "his" : "her") + " crib, quietly sleeping and well-fed.";
+			if(numBabies == 2) msg += " Then, you do the same for " + (boy ? "his" : "her") + " sibling, giving the infant a nice meal and a warm, " + pc.mf("fatherly", "motherly") + " embrace before you set the baby down to rest again.";
+			else if(numBabies > 2) msg += " Then, you do the same for all your other babies, giving them a nice meal and a warm, " + pc.mf("fatherly", "motherly") + " embrace before you set them down to rest again.";
+			msg += "\n\nOnce all is said and done, you’re left feeling fulfilled as a parent, gazing down upon your offspring one last time before heading back to the rest of the nursery.";
+		}
+		else
+		{
+			msg += "You decide you’re going to play with your babies for a bit while you’re here. Picking up one of from them from their cribs, you hear " + (boy ? "him" : "her") + " coo with glee when they open their " + ((zilIdx >= 0 && (zilChildren[zilIdx] is UniqueChild)) ? zilChildren[zilIdx].eyeColor : "[baby.eyeColor]") + " eyes and see your face looking back at them. Even with the amazing staff this nursery has, you’re sure they could use a " + pc.mf("father", "mother") + "’s touch.";
+			msg += "\n\nWith that in mind, you lift your baby up to your to your face, looking at " + (boy ? "his" : "her") + " smiling face for a moment. You can’t help but grin at your offspring’s happy mien, and blowing a raspberry on " + (boy ? "his" : "her") + " cheeks, drawing a chorus of joyous baby-giggles from the half-breed.";
+			msg += "\n\nPlaying with babies seems to be so easy, bouncing " + (boy ? "him" : "her") + " in your arms, tickling, and peek-a-boo, all of it making for one happy bee. Eventually, your child grows tired, and with a few last embraces, you put the newborn back in " + (boy ? "his" : "her") + " crib, happily sleeping. Then, you do the same for all your other babies, taking time out of your busy schedule to make sure they all have smiles on their faces before setting them down to rest again.";
+			msg += "\n\nOnce all is said and done, you’re left feeling fulfilled as a parent, gazing down upon your offspring one last time before heading back to the rest of the nursery.";
+		}
+		output(msg);
+		
+		processTime(5);
+	}
+	// Toddler
+	// Available from 731 day in game and onwards. Chooses a random variant if both genders are available.
+	else if(choice == 1)
+	{
+		if(boy)
+		{
+			msg += "Before you can even go over to them, one of your zil sons runs up to you, flanked by his " + (numBabies == 2 ? "twin" : "siblings at either side") + ". He looks quite a bit like you, bearing human skin and hair, but maintaining a zil’s appearance, especially with all that chitin growing on his limbs and those wings on his back.";
+			msg += "\n\n<i>“" + pc.mf("Daddy, Daddy", "Mommy, Mommy") + "!”</i> he shouts barely able to stop himself from tripping when he stops in front of you, <i>“Wanna see something cool I learned how to do?!”</i>";
+			msg += "\n\nYou smile and bring yourself down";
+			if(pc.isTaur()) msg += " on your haunches";
+			else if(pc.hasKnees()) msg += " on your knees";
+			msg += " in front of the toddler and tell him you’d love to see.";
+			msg += "\n\nA huge grin appears on your son’s face, <i>“Alright! Watch this!”</i> His mien quickly changes to one of pure concentration. Then <i>pop</i>! His wings fold out and start to buzz gently... much less intimidation than his full-sized kinsmen. Nevertheless, you smile as the young half-breed attempts a take-off, and sure enough, his perseverance pays off. His quickly flapping wings propel him off the ground, only a few inches, hovering there for a moment before he drops back onto the ground. He seems exhausted after that, breathing heavily but looking up at your with pride in his smile, <i>“Did I do that good, " + pc.mf("daddy", "mommy") + "?”</i>";
+			msg += "\n\nYou chuckle and tell the tiny bee-boy you’re very impressed with that, and think he’ll be soaring all around the nursery in no time at all.";
+			msg += "\n\n<i>“Really?!”</i> he exclaims, his " + (numBabies == 2 ? "twin" : "siblings") + " clapping supportively behind him, <i>“Okay! I’m gonna go practice some more then!”</i>";
+			msg += "\n\nAnd like that, your son " + (numBabies == 2 ? "is" : "and his kin are") + " running off again. They seem to get along well together...";
+		}
+		else
+		{
+			msg += "Before you can even go over to them, one of your zil daughters runs up to you, flanked by her " + (numBabies == 2 ? "twin" : "siblings at either side") + ". She looks quite a bit like you, bearing human skin and hair, but maintaining a zil’s appearance, especially with all that chitin growing on her limbs and that abdomen behind her.";
+			msg += "\n\n<i>“" + pc.mf("Daddy, Daddy", "Mommy, Mommy") + "!”</i> she shouts, barely able to stop herself from tripping when she stops in front of you. Then she takes up a slightly guilty stance, hiding her hands behind her back, <i>“I think I stung someone accidentally.”</i>";
+			msg += "\n\nYou look at that tiny stinger on the bee-girl’s abdomen and smile warmly at your offspring asking her just who she thinks she hurt.";
+			msg += "\n\nBefore she can answer, " + (numBabies == 2 ? "her twin" : "one of her siblings") + " takes a couple steps towards you, brandishing quite the welt on their tiny arm. This prompts you to ask your daughter why she hasn’t gone to Briget about this.";
+			msg += "\n\n<i>“I thought I would get in trouble...”</i> she mumbles, looking down at her feet.";
+			msg += "\n\nYou chuckle and extend your arms forward, then pull the tiny half-breed into a hug, telling her that sometimes you do something wrong and you have to get in trouble, but that it’s also the right thing to do. It also behooves you to explain that she needs to be more careful with her abdomen.";
+			msg += "\n\nWhen she pulls back from the hug, her face seems a lot less nervous, and a lot more happy, <i>“Thanks, " + pc.mf("daddy", "mommy") + ", I promise we’ll go to Briget now!”</i>";
+			msg += "\n\nThen like that she and her kin are off in their caretaker’s direction, leaving you with quite a bit of parental-pride swelling in your chest.";
+		}
+		msg += "\n\nWell, you unfortunately don’t have much more time to spend here with a fortune that still needs chasing, looks like you should say your goodbyes and get moving.";
+		output(msg);
+		
+		processTime(7);
+	}
+	
+	// Returns the PC to the nursery.
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 public function milodanPlayOptions(button:Number):Number
@@ -144,182 +343,93 @@ public function playWithMilodan(choice:Number = -1):void
 		else addDisabledButton(1,"3-6 Months","3-6 Months","You have no kits in that age range.");
 		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 7, 16) > 0) addButton(2,"7-16 Months",playWithMilodan,2);
 		else addDisabledButton(2,"7-16 Months","7-16 Months","You have no kits in that age range.");
-		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 17, 9001) > 0) addDisabledButton(3,"16+ Months","16+ Month","These kits are too old to play with.");
+		if(ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 17, 9001) > 0) addDisabledButton(3,"17+ Months","17+ Month","These kits are too old to play with.");
 		return;
 	}
 	
-	var boy:Boolean = true;
+	var boy:Boolean = false;
 	var girl:Boolean = false;
-	var youngMilos:Number = ChildManager.numOfTypeInRange(GLOBAL.TYPE_MILODAN, 7, 16);
+	var numBabies:int = 0;
+	
+	var minAge:int;
+	var maxAge:int;
+	var children:Array = ChildManager.getChildrenOfType(GLOBAL.TYPE_MILODAN);
+	var milChildren:Array = [];
+	var milIdx:int = -1;
+	
+	if(choice == 0) { minAge = 0; maxAge = 2; }
+	else if(choice == 1) { minAge = 3; maxAge = 6; }
+	else if(choice == 2) { minAge = 7; maxAge = 16; }
+	
+	// Filter for children and ages
+	if(children != null && children.length > 0)
+	{
+		milIdx = 0; // The oldest should be first in the array!
+		if(maxAge != -1 && maxAge < minAge) maxAge = -1;
+		for(var i:int = 0; i < children.length; i++)
+		{
+			var c:Child = children[i] as Child;
+			var m:int = c.Months;
+			if((maxAge == -1 || m <= maxAge) && m >= minAge)
+			{
+				milChildren.push(c);
+				numBabies += c.Quantity;
+			}
+		}
+	}
+	// If valid children, set perameters.
+	if(milChildren.length > 0)
+	{
+		milIdx = rand(milChildren.length);
+		if(milChildren[milIdx].NumMale > 0) boy = true;
+		if(milChildren[milIdx].NumFemale > 0) girl = true;
+		if(boy && girl) boy = (rand(2) == 0);
+	}
 
 	//Play with baby (0-8 weeks)
 	if(choice == 0)
 	{
-		boy = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_MILODAN, ChildManager.GENDER_MALE, 0, 2);
-		girl = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_MILODAN, ChildManager.GENDER_FEMALE, 0, 2);
-		if(boy && girl) boy = (rand(2) == 0);		
-
-		if(boy) output("He’s");
-		else output("She’s");
-		output(" too young to play yet, but you reach into the cot where a kit is swaddled in cloth and gently boop ");
-		if(boy) output("him");
-		else output("her");
-		output(" on the nose. Milodan kits are blind for several weeks, so the kit can’t see you, but ");
-		if(boy) output("he");
-		else output("she");
-		output(" can smell you. ");
-		if(boy) output("He");
-		else output("She");
-		output(" sniffles when you remove your finger from ");
-		if(boy) output("his");
-		else output("her");
-		output(" snout and waves at you with outstretched arms, grabbing onto your fingertip with ");
-		if(boy) output("his");
-		else output("her");
-		output(" tiny hands. You can feel ");
-		if(boy) output("him");
-		else output("her");
-		output(" pulling your hand down, and when you acquiesce ");
-		if(boy) output("he");
-		else output("she");
-		output(" wraps ");
-		if(boy) output("his");
-		else output("her");
-		output(" arms around your fingers and falls asleep. You stroke ");
-		if(boy) output("his");
-		else output("her");
-		output(" hair with a smile, stealthily extricating your hand from the tiny kit’s grip and watching ");
-		if(boy) output("him");
-		else output("her");
-		output(" snoozing in the cot.");
+		output((boy ? "He" : "She") + "’s too young to play yet, but you reach into the cot where a kit is swaddled in cloth and gently boop " + (boy ? "him" : "her") + " on the nose. Milodan kits are blind for several weeks, so the kit can’t see you, but " + (boy ? "he" : "she") + " can smell you. " + (boy ? "He" : "She") + " sniffles when you remove your finger from " + (boy ? "his" : "her") + " snout and waves at you with outstretched arms, grabbing onto your fingertip with " + (boy ? "his" : "her") + " tiny hands. You can feel " + (boy ? "him" : "her") + " pulling your hand down, and when you acquiesce " + (boy ? "he" : "she") + " wraps " + (boy ? "his" : "her") + " arms around your fingers and falls asleep. You stroke " + (boy ? "his" : "her") + " hair with a smile, stealthily extricating your hand from the tiny kit’s grip and watching " + (boy ? "him" : "her") + " snoozing in the cot.");
+		
+		processTime(5);
 	}
 	//Play with baby (9-24 weeks)
 	else if(choice == 1)
 	{
-		boy = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_MILODAN, ChildManager.GENDER_MALE, 3, 6);
-		girl = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_MILODAN, ChildManager.GENDER_FEMALE, 3, 6);
-		if(boy && girl) boy = (rand(2) == 0);
-
-		output("You notice a kit sitting upright in ");
-		if(boy) output("his");
-		else output("her");
-		output(" cot as you tiptoe by. ");
-		if(boy) output("He");
-		else output("She");
-		output(" lifts ");
-		if(boy) output("his");
-		else output("her");
-		output(" arms up, pointing upwards and clearly wanting to be picked up.");
-		output("\n\nYou lift ");
-		if(boy) output("him");
-		else output("her");
-		output(" out of ");
-		if(boy) output("his");
-		else output("her");
-		output(" little bed. Woof! ");
-		if(boy) output("He’s");
-		else output("She’s");
-		output(" a lot heavier than ");
-		if(boy) output("he");
-		else output("she");
-		output(" was a few weeks ago. ");
-		if(boy) output("He");
-		else output("She");
-		output(" solemnly inspects you with wide eyes, reaching out to paw at your chin. You give ");
-		if(boy) output("his");
-		else output("her");
-		output(" little tufts of cheek fur a scruff, and ");
-		if(boy) output("he");
-		else output("she");
-		output(" responds by making a little noise that sounds like a bark. What a little cutie. You place the kit back in ");
-		if(boy) output("his");
-		else output("her");
-		output(" cot after a couple of minutes of idle play.");
+		output("You notice a kit sitting upright in " + (boy ? "his" : "her") + " cot as you tiptoe by. " + (boy ? "He" : "She") + " lifts " + (boy ? "his" : "her") + " arms up, pointing upwards and clearly wanting to be picked up.");
+		output("\n\nYou lift " + (boy ? "him" : "her") + " out of " + (boy ? "his" : "her") + " little bed. Woof! " + (boy ? "He" : "She") + "’s a lot heavier than " + (boy ? "he" : "she") + " was a few weeks ago. " + (boy ? "He" : "She") + " solemnly inspects you with wide eyes, reaching out to paw at your chin. You give " + (boy ? "his" : "her") + " little tufts of cheek fur a scruff, and " + (boy ? "he" : "she") + " responds by making a little noise that sounds like a bark. What a little cutie. You place the kit back in " + (boy ? "his" : "her") + " cot after a couple of minutes of idle play.");
+		
+		processTime(7);
 	}
 	//Play with baby (25-52 weeks)
 	else if(choice == 2)
 	{
-		boy = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_MILODAN, ChildManager.GENDER_MALE, 7, 16);
-		girl = ChildManager.ofTypeAndGenderInRange(GLOBAL.TYPE_MILODAN, ChildManager.GENDER_FEMALE, 7, 16);
-		if(boy && girl) boy = (rand(2) == 0);
 		//One kit
-		if(youngMilos == 1)
+		if(numBabies == 1)
 		{
-			output("You see your kit sitting down in ");
-			if(boy) output("his");
-			else output("her");
-			output(" nappies in the play area, waving a rattle around with a pacifier in ");
-			if(boy) output("his");
-			else output("her");
-			output(" mouth. Upon spotting you, ");
-			if(boy) output("he");
-			else output("she");
-			output(" shakily gets to ");
-			if(boy) output("his");
-			else output("her");
-			output(" feet and takes a few wobbling steps towards you before toppling over. Not to be deterred, though, ");
-			if(boy) output("he");
-			else output("she");
-			output(" crawls over to your [pc.leg] and uses it to brace ");
-			if(boy) output("himself");
-			else output("herself");
-			output(", raising ");
-			if(boy) output("him");
-			else output("her");
-			output(" to a standing position.");
-			output("\n\n<i>“Mu mu,”</i> ");
-			if(boy) output("he");
-			else output("she");
-			output(" says, looking up at you very seriously. <i>“Mu mu.”</i>");
-			output("\n\n<i>“Hey kiddo,”</i> you say with a grin, leaning down to muss ");
-			if(boy) output("his");
-			else output("her");
-			output(" hair a bit, your gaze softening. <i>“You’re growing up fast, huh?”</i>");
-			output("\n\n<i>“Buh,”</i> the kit responds, shaking ");
-			if(boy) output("his");
-			else output("her");
-			output(" rattle.");
-			output("\n\nYou spend some time with your fluffy kit, playing with ");
-			if(boy) output("him");
-			else output("her");
-			output(" and ");
-			if(boy) output("his");
-			else output("her");
-			output(" little set of blocks.");
+			output("You see your kit sitting down in " + (boy ? "his" : "her") + " nappies in the play area, waving a rattle around with a pacifier in " + (boy ? "his" : "her") + " mouth. Upon spotting you, " + (boy ? "he" : "she") + " shakily gets to " + (boy ? "his" : "her") + " feet and takes a few wobbling steps towards you before toppling over. Not to be deterred, though, " + (boy ? "he" : "she") + " crawls over to your [pc.leg] and uses it to brace " + (boy ? "him" : "her") + "self, raising " + (boy ? "him" : "her") + " to a standing position.");
+			output("\n\n<i>“Mu mu,”</i> " + (boy ? "he" : "she") + " says, looking up at you very seriously. <i>“Mu mu.”</i>");
+			output("\n\n<i>“Hey kiddo,”</i> you say with a grin, leaning down to muss " + (boy ? "his" : "her") + " hair a bit, your gaze softening. <i>“You’re growing up fast, huh?”</i>");
+			output("\n\n<i>“Buh,”</i> the kit responds, shaking " + (boy ? "his" : "her") + " rattle.");
+			output("\n\nYou spend some time with your fluffy kit, playing with " + (boy ? "him" : "her") + " and " + (boy ? "his" : "her") + " little set of blocks.");
+		
+			processTime(12);
 		}
 		//Multiple kits
 		else
 		{
-			output("You see your kits sitting in their nappies in the play area, waving rattles around emphatically. One of them spots you, nudging ");
-			if(boy) output("his");
-			else output(" littermate over and clambering atop ");
-			if(boy) output("him");
-			else output("her");
-			output(" to get to you. Standing and taking a few wobbly steps, ");
-			if(boy) output("he");
-			else output("she");
-			output(" falls back down when the kit ");
-			if(boy) output("he");
-			else output("she");
-			output(" climbed over bops ");
-			if(boy) output("him");
-			else output("her");
-			output(" with a rattle. Rather than crying, though, both of them crawl over to you to hug your [pc.leg].");
+			output("You see your kits sitting in their nappies in the play area, waving rattles around emphatically. One of them spots you, nudging " + (boy ? "his" : "her") + " littermate over and clambering atop " + (boy ? "him" : "her") + " to get to you. Standing and taking a few wobbly steps, " + (boy ? "he" : "she") + " falls back down when the kit " + (boy ? "he" : "she") + " climbed over bops " + (boy ? "him" : "her") + " with a rattle. Rather than crying, though, both of them crawl over to you to hug your [pc.leg].");
 			output("\n\n<i>“Muh,”</i> one of them says, looking up at you intently. <i>“Mu mu.”</i>");
-			output("\n\n<i>“Hey kiddo,”</i> you say with a grin, leaning down to muss ");
-			if(boy) output("his");
-			else output("her");
-			output(" hair a bit, your gaze softening. <i>“You’re growing up fast, huh?”</i>");
-			output("\n\n<i>“Buh,”</i> the kit responds, shaking ");
-			if(boy) output("his");
-			else output("her");
-			output(" rattle.");
+			output("\n\n<i>“Hey kiddo,”</i> you say with a grin, leaning down to muss " + (boy ? "his" : "her") + " hair a bit, your gaze softening. <i>“You’re growing up fast, huh?”</i>");
+			output("\n\n<i>“Buh,”</i> the kit responds, shaking " + (boy ? "his" : "her") + " rattle.");
 
 			//2 kits: 
-			if(youngMilos <= 2) output("\n\nYou spend some time with the two fluffy kits, playing with them and their little set of blocks.");
+			if(numBabies <= 2) output("\n\nYou spend some time with the two fluffy kits, playing with them and their little set of blocks.");
 			//3-9 kits:
-			else if(youngMilos < 10) output("\n\nYou’re quickly joined by the rest of your fluffy kits. You spend some time playing with them and their little set of blocks, making sure they play nice.");
+			else if(numBabies < 10) output("\n\nYou’re quickly joined by the rest of your fluffy kits. You spend some time playing with them and their little set of blocks, making sure they play nice.");
 			else output("\n\nYou’re soon surrounded by a fluffy horde of kits, crawling all around (and over) you. You spend some time playing with them and their little set of blocks, making sure they play nice.");
+		
+			processTime(21);
 		}
 	}
 	clearMenu();
@@ -382,6 +492,22 @@ public function nurseryI14Func():Boolean
 
 public function nurseryCommonAreaFunc():Boolean
 {
+	var btnIdx:int = 0;
+
+	if(ChildManager.numChildrenAtNursery() > 0 && flags["ELLIE_PREG_TIMER"] < 70 && flags["ELLIE_AT_NURSERY"] != undefined)
+	{
+		output("\n\nYou find Ellie, happily playing with your other kids, singing to them in a lilting tone and waving her hands from side to side.");
+		addButton(0, "Ellie", ellieAtNurseryPreHatch, undefined, "", "");
+		return true;
+	}
+
+	if (zephAtNursery())
+	{
+		output("\n\nZephyr is here, idly rifling through a stack of computer tablets. Seems as though even if she leaves work, work doesn’t leave her!");
+		addButton(btnIdx, "Zephyr", zephTalkAtNursery, undefined, "Go talk to Zephyr. She’ll probably want to fuck!");
+		btnIdx++;
+	}
+	
 	nurseryZilCallgirlRandomEvents();
 
 	return false;
@@ -391,10 +517,14 @@ public function nurseryCafeteriaFunc():Boolean
 {
 	output("\n\nA pair of server bots are sitting in the kitchen, making sure there’s plenty of food and drink to go around.");
 	if (yammiIsFollower() && !yammiIsCrew()) output(" Yammi’s hanging out in the kitchen, too, overseeing things while she’s not assigned to your ship’s crew.");
-	
-	seraNurseryCafeteriaBonus(1);
 
 	nurseryZilCallgirlRandomEvents();
+	
+	var btnSlot:int = 0;
+	if(seraAtNursery()) seraNurseryCafeteriaBonus(btnSlot++);
+	else pc.removeStatusEffect("Sera at Nursery");
+	if(riyaAtNursery()) riyaNurseryCafeteriaBonus(btnSlot++);
+	else pc.removeStatusEffect("Riya at Nursery");
 	
 	return false;
 }
@@ -402,9 +532,9 @@ public function nurseryCafeteriaFunc():Boolean
 public function nurseryG14Func():Boolean
 {
 	output("You’re standing in a long, pastel-blue corridor connecting the foyer to the children’s wing of the nursery.");
-	var numKids:int = ChildManager.numOfMobileGendersInRange(2, 8).total;
-	if (numKids >= 10) output(" It looks as though a tornado has swept through here, leaving toys scattered around <i>everywhere</i>.");
-	else if (numKids >= 1) output(" A few toys have been scattered around, left by one of your kids passing through.");
+	var numKids:Genders = ChildManager.numOfMobileGendersInRange(ChildManager.ALL_GENDERS, 2, 8);
+	if (numKids.total >= 10) output(" It looks as though a tornado has swept through here, leaving toys scattered around <i>everywhere</i>.");
+	else if (numKids.total >= 1) output(" A few toys have been scattered around, left by one of your kids passing through.");
 
 	nurseryZilCallgirlRandomEvents();
 	
@@ -437,8 +567,15 @@ public function nurseryKidsDormsFunc():Boolean
 	output(" would be many, many offspring. A central hub provides access to over a dozen small halls, branching off like tunnels in an anthill off in every direction. There must be hundreds of individual rooms available here, not to mention bathrooms, showers, laundry facilities... everything your heirs and the station’s support staff could ever need.");
 
 	nurseryZilCallgirlRandomEvents();
+	khorganBabyBlurbs();
+	tamtamBabyBlurbs();
+	ainaBabyBlurbs();
 	var button:Number = 0;
+	button = zilBabyBonus(button);
 	button = milodanPlayOptions(button);
+	button = ellieKidVisits(button);
+	button = samBabiesVisitOptions(button);
+	button = zephyrKidsOption(button);
 
 	return false;
 }
@@ -451,21 +588,46 @@ public function nurserySpecialistRooms():Boolean
 	if (pc.hasCock()) output(" bear you an heir");
 	output(", so the nursery comes equipped with a sub-deck of modular living chambers, able to easily be adapted to specific needs: from water tanks to zero-G to alternative atmospheres. Several specialist nurse-droids stand ready to tend to your more unique offspring.");
 
+	addButton(0, "Chambers", nurserySpecialistRoomMenu, undefined, "Modular Chambers", "Take a look at the special chambers.");
+
+	return false;
+}
+
+public function nurserySpecialistRoomMenu():void
+{
+	clearOutput();
+	showBust("");
+	showName("SPECIAL\nCHAMBERS");
+
 	var numSpecials:int = 0;
-	var numSpecialsButtons:int = 0;
+	var specials:Array = [];
+	var btnSlot:int = 0;
+	var i:int = 0;
+
+	output("Which chamber do you wish to observe?");
 
 	if(ChildManager.ofType(GLOBAL.TYPE_CUNTSNAKE) || hasCuntsnakesInHatchery())
 	{
 		var numSnake:int = ChildManager.numOfType(GLOBAL.TYPE_CUNTSNAKE);
 		
 		output("\n\nA modular chamber simulating tropical rainforest weather is filled with various flora from Mhen’ga. There, it houses a hatchery and living environment perfectly suited for any cunt snakes you may have.");
-		addButton(numSpecialsButtons++, "C.Snake", cuntsnakeHatchery, numSnake, "Cunt Snake Chamber", "Check on any cunt snakes or cunt snake eggs you may have.");
+		specials.push(["C.Snake", cuntsnakeHatchery, numSnake, "Cunt Snake Chamber", "Check on any cunt snakes or cunt snake eggs you may have."]);
 		numSpecials++;
 	}
 
 	if (ChildManager.ofType(GLOBAL.TYPE_VENUSPITCHER))
 	{
-		output("\n\nOne of the modular chambers has been opened up and filled with soil sourced directly from Mhen’ga, allowing for the absolute best growing conditions possible for your venus pitcher offspring. Somehow, Briget has managed to secure a naleen female onto the staff, who is currently slithering about the jungle-like environ making sure everything is picture-perfect - and guaranteeing that your planty offpsring will have someone native to play with as they develop.");
+		output("\n\nOne of the modular chambers has been opened up and filled with soil sourced directly from Mhen’ga, allowing for the absolute best growing conditions possible for your venus pitcher offspring. Somehow, Briget has managed to secure a naleen female onto the staff, who is currently slithering about the jungle-like environ making sure everything is picture-perfect - and guaranteeing that your planty offspring will have someone native to play with as they develop.");
+		numSpecials++;
+	}
+
+	if (ChildManager.ofType(GLOBAL.TYPE_SANDWORM_PARASITE) || ChildManager.ofType(GLOBAL.TYPE_SANDWORM))
+	{
+		var numButtBugWorm:int = ChildManager.numOfTypeInRange(GLOBAL.TYPE_SANDWORM_PARASITE, 0, 9001);
+		var numButtBugHybrid:int = ChildManager.numOfTypeInRange(GLOBAL.TYPE_SANDWORM, 1, 9001);
+		var numButtBugTotal:int = (numButtBugWorm + numButtBugHybrid);
+		output("\n\nOne of the largest rooms have been converted to a simulation of Tarkus, evident by the smell and the sand being tracked in by the nurse droids as they leave it. The sand doesn’t stay there for long as it seems like it gets vacuumed back into the room after the doors close. Seems like either transporting sand here is expensive or they’re trying to minimize the need for new sand while keeping the place clean. A screen on top states that there " + (numButtBugTotal == 1 ? "is" : "are") + " currently " + num2Text(numButtBugTotal) + " of your Hilinara parasite children here, maybe you should visit " + (numButtBugTotal == 1 ? "it" : "them") + ".");
+		specials.push(["Hilinara", nurseryHilinaraRoom, [numButtBugWorm, numButtBugHybrid, numButtBugTotal], "Hilinara Room", "Go into the room simulating Tarkus."]);
 		numSpecials++;
 	}
 
@@ -474,14 +636,14 @@ public function nurserySpecialistRooms():Boolean
 		var numVines:int = ChildManager.numOfType(GLOBAL.TYPE_COCKVINE);
 
 		output("\n\n" + (numSpecials == 0 ? "One" : "Another one") +" of the rooms is kept air-tight, its locked door plastered with warnings. The viewing window next to it reveals nothing but blackness - but you can use controls next to it to change the whole screen to stark night vision, allowing you to see within. The room itself is narrower than most but considerably taller, filled with the vertically arranged porous Myrellion rock that Hydrus Constuprula loves undulating its way through. The wall-attached micro-cameras can be moved up and down, enabling you to pick out your cockvine offspring wherever "+ (numVines == 1 ? "it" : "they") +" may roam.");
-		addButton(numSpecialsButtons++, "Cockvine", nurserySpecialistCockvine, numVines, "Cockvine Habitat", "Take a peek at your cockvines.");
+		specials.push(["Cockvine", nurserySpecialistCockvine, numVines, "Cockvine Habitat", "Take a peek at your cockvines."]);
 		numSpecials++;
 	}
 
 	if (ChildManager.ofType(GLOBAL.TYPE_WATERQUEEN))
 	{
 		output("\n\nConnected to the main entrance via a pressurized airlock is a water-filled chamber, simulating a deep saltwater lake with a sandy island in its center. Though the rooms inside are pitch black, a camera feed inside has been set to night vision, showing your Water Princesses scuttling about, half-submerged and completely hidden in the dark waters. Your head nurse has hired on a dusky female nyrea from their homeworld to help oversee their development - a brief word with her reveals the huntress is well acquainted with the Queen of the Deep, and that the princesses’ mother sends her regards.");
-		addButton(numSpecialsButtons++, "W.Princess", nurserySpecialistWaterPricesses, undefined, "Water Princesses", "Interact with your princesses.");
+		specials.push(["W.Princess", nurserySpecialistWaterPricesses, undefined, "Water Princesses", "Interact with your princesses."]);
 		numSpecials++;
 	}
 
@@ -489,7 +651,7 @@ public function nurserySpecialistRooms():Boolean
 	{
 		var numTentacles:int = ChildManager.numOfType(GLOBAL.TYPE_TENTACLE);
 		
-		output("\n\nA" + (numSpecials == 0 ? "" : "nother") +" modular chamber with very thick glass holds your " + (numTentacles == 1 ? "tentacle child" : (num2Text(numTentacles) + "tentacle children")) + ". The chamber itself looks very sturdy and high-tech. You’re told that the viewing glass is a one-way mirror to prevent the beast" + (numTentacles == 1 ? "" : "s") + " from peering back at any unsuspecting passerbys. The inside speakers also emit soothing harmonics to keep " + (numTentacles == 1 ? "it" : "them") + " less agitated. " + (numTentacles == 1 ? "It looks" : "They look") + " quite happy in there.");
+		output("\n\nA" + (numSpecials == 0 ? "" : "nother") +" modular chamber with very thick glass holds your " + (numTentacles == 1 ? "tentacle child" : (num2Text(numTentacles) + " tentacle children")) + ". The chamber itself looks very sturdy and high-tech. You’re told that the viewing glass is a one-way mirror to prevent the beast" + (numTentacles == 1 ? "" : "s") + " from peering back at any unsuspecting passerbys. The inside speakers also emit soothing harmonics to keep " + (numTentacles == 1 ? "it" : "them") + " less agitated. " + (numTentacles == 1 ? "It looks" : "They look") + " quite happy in there.");
 		numSpecials++;
 	}
 
@@ -497,18 +659,33 @@ public function nurserySpecialistRooms():Boolean
 	{
 		output("\n\nCurrently, the specialist deck is empty.");
 	}
-
-	return false;
+	output("\n\n");
+	
+	clearMenu();
+	for(i = 0; i < specials.length; i++)
+	{
+		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+		{
+			addButton(btnSlot, "Back", mainGameMenu);
+			btnSlot++;
+		}
+		
+		if(specials[i][1] == null) addDisabledButton(btnSlot, specials[i][0], specials[i][3], specials[i][4]);
+		else addButton(btnSlot, specials[i][0], specials[i][1], specials[i][2], specials[i][3], specials[i][4]);
+		btnSlot++;
+		
+		if(specials.length > 14 && (i + 1) == specials.length)
+		{
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			addButton(btnSlot, "Back", mainGameMenu);
+		}
+	}
+	addButton(14, "Back", mainGameMenu);
 }
-
-private const NURSERY_STAIRS_NAMES:Array = [
-	"first",
-	"second"
-];
 
 public function nurseryStairsShared(activeFloor:int):void
 {
-	output("A gunmetal-gray stairwell connects the children’s floor with the second, dedicated to the nursery’s staff and support facilities. You’re currently on the "+ NURSERY_STAIRS_NAMES[activeFloor - 1] +" floor.");
+	output("A gunmetal-gray stairwell connects the children’s floor with the second, dedicated to the nursery’s staff and support facilities. You’re currently on the "+ num2Ordinal(activeFloor) +" floor.");
 }
 
 public function nurseryStairs1F():Boolean
@@ -529,6 +706,9 @@ public function nurseryPlayerApptFunc():Boolean
 	else if (flags["BRIGET_MET"] == undefined) addDisabledButton(0, "Maternity", "Maternity Wait", "Perhaps you should meet with the head nurse before trying to do this...");
 	else addDisabledButton(0, "Maternity", "Maternity Wait", "If you were pregnant, you could probably camp out here and be looked after until you were due...");
 	addButton(1, "Shower", showerMenu, "nursery"); // this will probably require some tweaking internally to allow it to make complete sense off of the players actual ship.
+	
+	// Belly size hotfix
+	if (!pc.isPregnant() && pc.bellyRatingMod != 0) addButton(4, "Fix Belly", nurseryFixBelly, undefined, "Fix Belly", "It seems your belly size is off...");
 
 	return false;
 }
@@ -547,12 +727,17 @@ public function nurseryBrigetsApptFunc():Boolean
 	return false;
 }
 
+public function nurserySpareApptIsOccupied():Boolean
+{
+	if(flags["SERA_CREWMEMBER"] == 0) return true;
+	return false;
+}
 public function nurserySpareApptBonus():Boolean
 {
 	var btnSlot:int = 0;
 	
 	// For followers or grown kids and stuff.
-	seraOnTavrosBonus(btnSlot++);
+	if(flags["SERA_CREWMEMBER"] == 0) output(seraOnTavrosBonus(btnSlot++));
 
 	return false;
 }
@@ -565,7 +750,7 @@ public function nurseryC6Func():Boolean
 
 public function nurseryE6Func():Boolean
 {
-	flags["NAV_DISABLED"] = NAV_NORTH_DISABLE | NAV_SOUTH_DISABLE;
+	flags["NAV_DISABLED"] = NAV_SOUTH_DISABLE;
 	return false;
 }
 
@@ -615,7 +800,13 @@ public function nurseryComputerMenu(lastUsed:Function = null):void
 
 	if (lastUsed == nurseryComputerFacilities) addDisabledButton(3, "Facilities");
 	else addButton(3, "Facilities", nurseryComputerFacilities);
-
+	
+	if(debug)
+	{
+		if (lastUsed == pregAverageLoadSizes) addDisabledButton(13, "Load Sizes");
+		else addButton(13, "Load Sizes", pregAverageLoadSizes);
+	}
+	
 	addButton(14, "Back", nurseryComputerLeaveMenu);
 }
 
@@ -686,6 +877,7 @@ public function nurseryComputerStaff():void
 		output("You currently have the following specialist staff on hand:\n");
 		if (yammiAtNursery()) output("\n<b>* Yammi, Head Chef");
 		if (reahaAtNursery()) output("\n<b>* Cured Reaha, Milk-giver");
+		if (zilCallgirlAtNursery()) output("\n<b>* Zheniya, Caregiver");
 	}
 
 	nurseryComputerMenu(nurseryComputerStaff);
@@ -694,9 +886,18 @@ public function nurseryComputerStaff():void
 
 public function nurseryComputerChildren():void
 {
+	
+	// Children sired count hotfix.
+	if(nurserySiredBabyDiff() > 0)
+	{
+		nurserySiredRecordsFix();
+		return;
+	}
+	
 	clearOutput();
 	clearBust();
 	
+	// Children at daycare count hotfix.
 	if(nurseryOrphanedBabyDiff() > 0 || (StatTracking.getStat("pregnancy/total day care") < ChildManager.numChildrenAtNursery()))
 	{
 		author("Jacques00");
@@ -723,6 +924,7 @@ public function nurseryComputerChildren():void
 		var genders:Genders = ChildManager.numGenders();
 		output("Your one and only child here at the nursery is the center of attention.");
 		if (genders.Male > 0) output(" His");
+		else if (genders.Neuter > 0) output(" Its");
 		else output(" Her");
 		output(" status is summarized below:");
 	}
@@ -740,7 +942,7 @@ public function nurseryComputerChildren():void
 private var orphanList:Array = [
 	"pregnancy/cockvine seedlings captured",
 	"pregnancy/nyrea eggs", "pregnancy/royal nyrea eggs", "pregnancy/renvra eggs", "pregnancy/renvra kids",
-	"pregnancy/psychic tentacle beast birthed",
+	"pregnancy/psychic tentacle beast day care",
 	"pregnancy/sydian births",
 	"pregnancy/fertilized venus pitcher seeds/day care",
 	"pregnancy/briha kids",
@@ -754,6 +956,12 @@ public function nurseryOrphanedBabyDiff():int
 	for(var i:int = 0; i < orphanList.length; i++)
 	{
 		numNurseryKids += StatTracking.getStat(orphanList[i]);
+		
+		// Fix uneven stats.
+		if(orphanList[i] == "pregnancy/psychic tentacle beast day care" && ChildManager.numOfType(GLOBAL.TYPE_TENTACLE) > 0)
+		{
+			if(ChildManager.numOfType(GLOBAL.TYPE_TENTACLE) != StatTracking.getStat(orphanList[i])) StatTracking.setStat(orphanList[i], ChildManager.numOfType(GLOBAL.TYPE_TENTACLE));
+		}
 	}
 	
 	if(debug)
@@ -877,7 +1085,7 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 			childTotal = (StatTracking.getStat("pregnancy/nyrea eggs") + StatTracking.getStat("pregnancy/renvra eggs") + StatTracking.getStat("pregnancy/royal nyrea eggs") + StatTracking.getStat("pregnancy/renvra kids"));
 			break;
 		// Tentacle
-		case "pregnancy/psychic tentacle beast birthed":
+		case "pregnancy/psychic tentacle beast day care":
 			childType = GLOBAL.TYPE_TENTACLE;
 			childMRate = 2.5;
 			childTotal = StatTracking.getStat(statPath);
@@ -932,7 +1140,7 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 		for (i = 0; i < children.length; i++)
 		{
 			var c:Child = children[i] as Child;
-			if(c is UniqueChild) { uniqueChildren.push(c) }
+			if(c is UniqueChild) { uniqueChildren.push(c); }
 			else totalNum += c.Quantity;
 		}
 		
@@ -1008,7 +1216,7 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 							addChildBriha(1, true, brihaDaySpan);
 							StatTracking.track("pregnancy/briha sons");
 						}
-						StatTracking.track("pregnancy/total births");
+						StatTracking.track("pregnancy/total sired");
 					}
 					brihaKids--;
 					corrected = true;
@@ -1029,6 +1237,67 @@ public function nurseryAddOrphanedChild(statPath:String = ""):Boolean
 	}
 	
 	return corrected;
+}
+private var siredList:Array = [
+	"pregnancy/briha kids",
+	"pregnancy/ellie sired",
+	"pregnancy/ilaria sired",
+	"pregnancy/khorgan sired",
+	"pregnancy/raskvel sired/total",
+	"pregnancy/sam sired",
+	"pregnancy/sera sired",
+	"pregnancy/tam sired",
+	"pregnancy/ula sired",
+	"pregnancy/zil call girl kids",
+];
+public function nurserySiredBabyDiff():int
+{
+	var numSired:int = 0;
+	
+	for(var i:int = 0; i < siredList.length; i++)
+	{
+		numSired += StatTracking.getStat(siredList[i]);
+	}
+	
+	return (numSired - StatTracking.getStat("pregnancy/total sired"));
+}
+public function nurserySiredRecordsFix():void
+{
+	clearOutput();
+	clearBust();
+	author("Jacques00");
+	
+	output("<b>The computer makes some blips while it syncs with your codex.</b> It then displays a holo pop-up that reads:");
+	output("\n\n<i>“It seems that the nursery computer and your codex are out of sync. Please wait while we correct your records....”</i> After a few seconds, it then concludes, <i>“... Data sync successful! Thank you for your patience.”</i>");
+	output("\n\nLooks like whatever information was off has been corrected now.");
+	
+	var numSired:int = 0;
+	var numBirth:int = StatTracking.getStat("pregnancy/total births");
+	
+	for(var i:int = 0; i < siredList.length; i++)
+	{
+		if(StatTracking.getStat(siredList[i]) > 0)
+		{
+			numSired += StatTracking.getStat(siredList[i]);
+			switch(siredList[i])
+			{
+				case "pregnancy/briha kids":
+					numBirth -= StatTracking.getStat("pregnancy/briha kids");
+					break;
+				case "pregnancy/raskvel sired/total":
+					numBirth -= StatTracking.getStat("pregnancy/raskvel sired/day care");
+					break;
+			}
+		}
+	}
+	if(numSired < 0) numSired = 0;
+	if(numBirth < 0) numBirth = 0;
+	
+	StatTracking.setStat("pregnancy/total sired", numSired);
+	StatTracking.setStat("pregnancy/total births", numBirth);
+	
+	clearMenu();
+	addButton(0, "Next", nurseryComputerChildren);
 }
 
 
@@ -1141,14 +1410,23 @@ public function nurseryDisplayGenericChildren(sortedTypedBuckets:Object):void
 			{
 				var b:Genders = thisBucket[i];
 				var entries:Array = [];
-				if (b.Male > 0) entries.push(" " + b.Male + " son" + (b.Male == 1 ? "" : "s"));
-				if (b.Female > 0) entries.push(" " + b.Female + " daughter" + (b.Female == 1 ? "" : "s"));
-				if (b.Intersex > 0) entries.push(" " + b.Intersex + " mixed-gender");
-				if (b.Neuter > 0) entries.push(" " + b.Neuter + " ungendered");
+				if (b.Male > 0) entries.push(b.Male + " son" + (b.Male == 1 ? "" : "s"));
+				if (b.Female > 0) entries.push(b.Female + " daughter" + (b.Female == 1 ? "" : "s"));
+				if (b.Intersex > 0)
+				{
+					switch(int(key))
+					{
+						case GLOBAL.TYPE_GOOEY:
+						case GLOBAL.TYPE_BOTHRIOC:
+						case GLOBAL.TYPE_RAHN: entries.push(b.Intersex + " monogender" + (b.Intersex == 1 ? "" : "s")); break;
+						default: entries.push(b.Intersex + " mixed-gender"); break;
+					}
+				}
+				if (b.Neuter > 0) entries.push(b.Neuter + " ungendered");
 
 				if(entries.length > 0)
 				{
-					output("\n<b>* " + StringUtil.toDisplayCase(displayAges[i]) + ":</b>" + CompressToList(entries));
+					output("\n<b>* " + StringUtil.toDisplayCase(displayAges[i]) + ":</b> " + CompressToList(entries));
 					displayCnt++;
 				}
 			}
@@ -1201,9 +1479,10 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 	{
 		parentName = parentList[p];
 		var babies:Array = listBabiesOfParent(parentName);
+		var nKids:Number = (StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " kids") + StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " sired"));
 		
 		output("\n<u><b>Children by " + (chars[parentName] != null ? chars[parentName].short : StringUtil.toDisplayCase(parentName.toLowerCase())) + "</b></u>");
-		if(StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " kids") > 0) output(" - Total: " + StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " kids"));
+		if(nKids > 0) output(" - Total: " + nKids);
 		if(babies.length > 0)
 		{
 			for(var i:int = 0; i < babies.length; i++)
@@ -1227,7 +1506,11 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 				if(baby.originalRace != "human" && baby.originalRace.indexOf("half") != -1 && baby.originalRace.indexOf("human") != -1) baby.originalRace = "human";
 				
 				// Print stats
-				if(baby.Quantity == 1) output("\n<b>* " + (baby.Name == "" ? "<i>(Unnamed)</i>" : baby.Name) + ":</b> ");
+				if(baby.Quantity == 1) 
+				{
+					if(baby.Name == "") output("\n<b>* One Child:</b> ");
+					else output("\n<b>* " + (baby.Name == "" ? "<i>(Unnamed)</i>" : baby.Name) + ":</b> ");
+				}
 				else output("\n<b>* " + StringUtil.toDisplayCase(num2Text(baby.Quantity)) + " Children:</b> ");
 				if(baby.Days >= 6570) output("18+ years");
 				else if(baby.Days >= 365) output(baby.Years + " year" + (baby.Years == 1 ? "" : "s"));
@@ -1243,32 +1526,50 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 					if(baby.NumNeuter > 0) output(" Sexless");
 					if(baby.NumFemale > 0) output(" Female");
 					if(baby.NumMale > 0) output(" Male");
-					if(baby.NumIntersex > 0) output(" Hermaphrodite");
+					if(baby.NumIntersex > 0)
+					{
+						switch(baby.RaceType)
+						{
+							case GLOBAL.TYPE_GOOEY:
+							case GLOBAL.TYPE_BOTHRIOC:
+							case GLOBAL.TYPE_RAHN: output(" Monogender"); break;
+							default: output(" Hermaphrodite"); break;
+						}
+					}
 				}
 				else if(baby.Quantity > 1)
 				{
 					var sexes:Array = [];
-					if(baby.NumMale > 0) sexes.push(" " + baby.NumMale + " son" + (baby.NumMale == 1 ? "" : "s"));
-					if(baby.NumFemale > 0) sexes.push(" " + baby.NumFemale + " daughter" + (baby.NumFemale == 1 ? "" : "s"));
-					if(baby.NumIntersex > 0) sexes.push(" " + baby.NumIntersex + " mixed-gender");
-					if(baby.NumNeuter > 0) sexes.push(" " + baby.NumNeuter + " ungendered");
+					if(baby.NumMale > 0) sexes.push(baby.NumMale + " son" + (baby.NumMale == 1 ? "" : "s"));
+					if(baby.NumFemale > 0) sexes.push(baby.NumFemale + " daughter" + (baby.NumFemale == 1 ? "" : "s"));
+					if(baby.NumIntersex > 0)
+					{
+						switch(baby.RaceType)
+						{
+							case GLOBAL.TYPE_GOOEY:
+							case GLOBAL.TYPE_BOTHRIOC:
+							case GLOBAL.TYPE_RAHN: sexes.push(baby.NumIntersex + " monogender" + (baby.NumIntersex == 1 ? "" : "s")); break;
+							default: sexes.push(baby.NumIntersex + " mixed-gender"); break;
+						}
+					}
+					if(baby.NumNeuter > 0) sexes.push(baby.NumNeuter + " ungendered");
 					if(sexes.length > 0) output(" " + CompressToList(sexes));
 				}
 				else output("<i>Unknown Sex</i>");
 				
 				var desc:Array = [];
 				if(baby.skinTone != "NOT SET") desc.push(" " + baby.skinTone + " skin");
-				//if(baby.lipColor != "NOT SET") desc.push(" " + baby.lipColor + " lips");
-				//if(baby.nippleColor != "NOT SET") desc.push(" " + baby.nippleColor + " nipples");
-				if(baby.eyeColor != "NOT SET") desc.push(" " + baby.eyeColor + " eyes");
-				if(baby.hairColor != "NOT SET") desc.push(" " + baby.hairColor + " hair");
-				if(baby.furColor != "NOT SET") desc.push(" " + baby.furColor + " fur");
-				if(baby.scaleColor != "NOT SET") desc.push(" " + baby.scaleColor + " scales");
-				if(baby.chitinColor != "NOT SET") desc.push(" " + baby.chitinColor + " chitin");
-				if(baby.featherColor != "NOT SET") desc.push(" " + baby.featherColor + " feathers");
+				//if(baby.lipColor != "NOT SET") desc.push(baby.lipColor + " lips");
+				//if(baby.nippleColor != "NOT SET") desc.push(baby.nippleColor + " nipples");
+				if(baby.eyeColor != "NOT SET") desc.push(baby.eyeColor + " eyes");
+				if(baby.hairColor != "NOT SET") desc.push(baby.hairColor + " hair");
+				if(baby.furColor != "NOT SET") desc.push(baby.furColor + " fur");
+				if(baby.scaleColor != "NOT SET") desc.push(baby.scaleColor + " scales");
+				if(baby.chitinColor != "NOT SET") desc.push(baby.chitinColor + " chitin");
+				if(baby.featherColor != "NOT SET") desc.push(baby.featherColor + " feathers");
 				if(desc.length > 0)
 				{
-					output("\n\t- Having" + CompressToList(desc) + ".");
+					output("\n\t- Having " + CompressToList(desc) + ".");
 				}
 			}
 		}
@@ -1351,7 +1652,7 @@ public function nurseryMeetBrigetII(acceptedHug:Boolean):void
 			output("\n\nEducation, you know, Briget can handle in spades. She looks every bit the sexy teacher, and has the cyber-brain to match.");
 			break;
 		/*case GLOBAL.UPBRINGING_SLUTTY:
-			output("\n\nBriget must not have realized exactly what you were up to all those years, but you feel that she won't let them get up to anything naughty for a long while.");
+			output("\n\nBriget must not have realized exactly what you were up to all those years, but you feel that she won’t let them get up to anything naughty for a long while.");
 			break;*/
 		case GLOBAL.UPBRINGING_BALANCED:
 		default:
@@ -1382,11 +1683,21 @@ public function nurseryApproachBriget():void
 public function nurseryBrigetMenu():void
 {
 	clearMenu();
+	
 	//addButton(0, "Talk", nurseryBrigetTalkMenu, undefined, "Talk", "Sit and have a chat with Briget.");
 	addButton(1, "Nursery", nurseryBrigetNurseryTalk, undefined, "Nursery", "Discuss the nursery’s status and functions with its head nurse.");
 	//if (hours >= 7 && hours <= 16) addButton(2, "PrivateRoom", nurseryBrigetPrivateRoom, undefined, "Private Room", "Suggest that you and Briget move somewhere more private");
 	//else addButton(2, "Sex", nurseryBrigetSex, undefined, "Sex", "See if you can make this motherly gynoid feel like a woman...");
-	//addButton(10, "Appearance", );
+	//addButton(10, "Appearance", nurseryBrigetAppearance);
+	
+	var btnSlot:int = 5;
+	
+	if(seraPregnancyIsDue())
+	{
+		if(flags["SERA_PREGNANCY_CHECK"] != undefined && (flags["SERA_PREGNANCY_CHECK"] + 1) >= days) addDisabledButton(btnSlot++, "Sera", "Sera", "Maybe you should wait before checking on her again.");
+		else addButton(btnSlot++, "Sera", brigetSeraPregCheck, undefined, "Sera", (flags["SERA_PREGNANCY_CHECK"] == undefined ? "Ask where she is." : "Ask how she’s doing."));
+	}
+	
 	addButton(14, "Back", mainGameMenu);
 }
 
@@ -1506,7 +1817,7 @@ public function nurseryBrigetNurseryStaff():void
 		if (numNurseryStaff() < 10) output(" Though most of the nursery’s duties are still fulfilled by drones and nurse droids, having an organic touch has certainly made our little home away from home that much more vibrant and pleasant. Even I have to admit, children do seem to respond better to living caregivers... at least until they get to know me.”</i> She chuckles pleasantly, though her eyes turn downcast rather quickly.");
 		else if (numNurseryStaff() >= 10)
 		{
-			output(" You’ve certainly found more employees than I would have expected. Our budget is a bit strained at present, but I believe the effects more than justify a bit of credit-pinching here and there: I never expected the nursery to feel so vibrant and alive");
+			output(" You’ve certainly found more employees than I would have expected. Our budget is a bit strained at present, but I believe the effects more than justify a bit of " + (isAprilFools() ? "dogecoin" : "credit") + "-pinching here and there: I never expected the nursery to feel so vibrant and alive");
 			if (ChildManager.numChildren() >= 2) output(", even with all your precious darlings here with me");
 			if (ChildManager.numChildren() >= 10) output("! We’ve built a community here thanks to you, dear");
 			output(". They say it takes a village, and I can certainly see the wisdom in that now. I simply </i>know<i> that your offspring will be the best and brightest the galaxy has to offer under our care");
@@ -1608,7 +1919,7 @@ public function nurseryMaternityWaitTime(duration:int = 0):void
 	var timeList:Array = minutesToDurationList(duration, true);
 	
 	// 9999 - Maybe needs better text...
-	output("You wait for" + (timeList.length > 0 ? (" approximately" + CompressToList(timeList)) : " some time") + " as Briget tends to you for the desired amount of time....");
+	output("You wait for" + (timeList.length > 0 ? (" approximately " + CompressToList(timeList)) : "some time") + " as Briget tends to you for the desired amount of time....");
 	
 	flags["NURSERY_MATERNITY_WAIT_ACTIVE"] = 1;
 	processTime(duration);
@@ -1617,6 +1928,8 @@ public function nurseryMaternityWaitTime(duration:int = 0):void
 	var firstSlot:int = PregnancyManager.getNextEndingSlot(pc, "EggTrainerFauxPreg");
 	var firstDuration:int = PregnancyManager.getRemainingDurationForSlot(pc, firstSlot);
 	output("\n\nYou get up and are on your way" + (firstDuration <= 30 ? " -- extremely close to delivering at any moment!" : "."));
+	
+	dailyAutoSleep(duration);
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1699,18 +2012,7 @@ public function nurseryMaternityWaitGo():void
 
 		if (flags["CREWMEMBER_SLEEP_WITH"] != undefined)
 		{
-			var sleepWithIsMale:Boolean = false;
-			if (flags["CREWMEMBER_SLEEP_WITH"] == "BESS")
-			{
-				output(" [bess.name]");
-				sleepWithIsMale = bess.mf("m", "f") == "m";
-			}
-			else
-			{
-				output(" " + StringUtil.capitalize(flags["CREWMEMBER_SLEEP_WITH"], true));
-				// 9999 for crewmember gender
-			}
-			output(" joins you after the first night, carrying in a handful of belongings and making "+ (sleepWithIsMale ? "him" : "her") + "self comfortable in your shared living space. Briget");
+			output(" " + getSleepingPartnerName() + " joins you after the first night, carrying in a handful of belongings and making " + (isSleepingPartnerMale() ? "him" : "her") + "self comfortable in your shared living space. Briget");
 			if (flags["BRIGET_FUCKED"] != undefined) output(" takes the extra presence in your bed in stride - you are a Steele, after all. Your poor bed, however, clearly wasn’t made for the sexual escapades that the three of you get up to - though a shattered headboard or two is easily replaced.");
 			else output(" quickly rearranges things to accommodate your lover, making sure you’re both well tended to.");
 		}
@@ -1763,7 +2065,9 @@ public function nurseryMaternityWaitGo():void
 	flags["NURSERY_MATERNITY_WAIT_ACTIVE"] = 1;
 	processTime(finalDuration);
 	flags["NURSERY_MATERNITY_WAIT_ACTIVE"] = undefined;
-
+	
+	dailyAutoSleep(firstDuration);
+	
 	clearMenu();
 	addButton(0, "Next", nurseryMaternityWaitPostBirths, { births: allBirths, dur: finalDuration });
 }
@@ -1810,9 +2114,37 @@ public function nurseryMaternityWaitPostBirths(args:Object):void
 	output("\n\nNow unburdened of your pregnancy, you figure it’s time to get back on the space-trail.");
 
 	processTime(15);
+	pc.shower();
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+public function nurseryFixBelly(response:String = "intro"):void
+{
+	clearOutput();
+	showName("BELLY\nFIX");
+	clearMenu();
+	
+	switch(response)
+	{
+		case "intro":
+			output("Choosing to do this will clear your excess belly size and revert your belly back to its default size. Are you sure you want to do this?");
+			addButton(0, "Yes", nurseryFixBelly, "yes");
+			addButton(1, "No", nurseryFixBelly, "no");
+			break;
+		case "yes":
+			output("Your nanomachines get to work and tingles run across your [pc.belly]. Suddenly, it shifts and reverts back to its former shape... more or less.");
+			
+			pc.bellyRatingMod = 0;
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		case "no":
+			output("It’s just a minor bug, really. Maybe later perhaps?");
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
 }
 
 public function nurserySpecialistCockvine(numVines:int = 1):void
@@ -1917,7 +2249,7 @@ public function nurserySpecialistWaterPricesses():void
 			}
 		}
 
-		output("You step up to the door and take a peek at the night-sight monitor next to it. The screen is divided into a number of different viewpoints, each keeping track of one of your "+ totalNum +" young princesses. Most of your royal brood is quietly nesting, tucked away in the various half-submerged corners of the modified chamber and soaking underneath beds of fungus and leaves.");
+		output("You step up to the door and take a peek at the night-sight monitor next to it. The screen is divided into a number of different viewpoints, each keeping track of one of your "+ num2Text(totalNum) +" young princesses. Most of your royal brood is quietly nesting, tucked away in the various half-submerged corners of the modified chamber and soaking underneath beds of fungus and leaves.");
 
 		output("\n\nAs their caretaker suggested, you make sure that opening the door makes plenty of noise. The door itself is huge, befitting the size its occupants will grow to, and a long tunnel stretches out after it to help funnel out the nursery’s light so opening up doesn’t accidentally blind your subterranean spawn. You traverse the tunnel, stepping out onto a little sandy island at the water’s edge, not much more than three yards to a side.");
 		
@@ -2026,3 +2358,81 @@ public function nurserySpecialistWaterPricessesII(child:Child):void
 	addButton(0, "Next", mainGameMenu);
 }
 
+// Debug function!
+public function pregAverageLoadSizes():void
+{
+	clearOutput();
+	showName("AVERAGE\nLOAD SIZES");
+	
+	output("The average load sizes for each potential sire are as follows:\n<i>(Pregnancies that are set to alwaysImpregnate are omitted.)</i>");
+	
+	output("\n\n<b><u>ButtBugPregnancy</u></b>: " + (new ButtBugPregnancy()).definedAverageLoadSize + " mLs");
+	output("\n\n<b><u>ButtBugPregnancy0</u></b>: " + (new ButtBugPregnancy0()).definedAverageLoadSize + " mLs");
+	output("\n\n<b><u>ButtBugPregnancy1</u></b>: " + (new ButtBugPregnancy1()).definedAverageLoadSize + " mLs");
+	output("\n\n<b><u>ButtBugPregnancy2</u></b>: " + (new ButtBugPregnancy2()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Butt Bug Male:</b> " + getButtBugPregContainer(-1).cumQ() + " mLs");
+	
+	output("\n\n<b><u>CockvinePregnancy</u></b>: " + (new CockvinePregnancy()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Cockvine:</b> " + (new Cockvine()).cumQ() + " mLs");
+	
+	output("\n\n<b><u>KorgonnePregnancy</u></b>: " + (new KorgonnePregnancyHandler()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Korgonne Male:</b> " + (new KorgonneMale()).cumQ() + " mLs");
+	
+	output("\n\n<b><u>MilodanPregnancy</u></b>: " + (new MilodanPregnancyHandler()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Milodan Male:</b> " + (new MilodanMale()).cumQ() + " mLs");
+	output("\n* <b>Milodan Male (Group):</b> " + (new MilodanMaleGroup()).cumQ() + " mLs");
+	
+	output("\n\n<b><u>RenvraEggPregnancy</u></b>: " + (new RenvraEggPregnancy()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Renvra:</b> " + chars["RENVRA"].cumQ() + " mLs");
+	
+	output("\n\n<b><u>RenvraFullPregnancy</u></b>: " + (new RenvraFullPregnancy()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Renvra:</b> " + chars["RENVRA"].cumQ() + " mLs");
+	
+	output("\n\n<b><u>RiyaPregnancy</u></b>: " + (new RiyaPregnancyHandler()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Riya:</b> " + getRiyaPregContainer().cumQ() + " mLs");
+	
+	output("\n\n<b><u>SeraSpawnPregnancy</u></b>: " + (new SeraSpawnPregnancyHandler()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Sera:</b> " + chars["SERA"].cumQ() + " mLs");
+	
+	output("\n\n<b><u>SydianPregnancy</u></b>: " + (new SydianPregnancyHandler()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Sydian Male:</b> " + (new SydianMale()).cumQ() + " mLs");
+	
+	output("\n\n<b><u>ZaaltPregnancy</u></b>: " + (new ZaaltPregnancyHandler()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Zaalt:</b> " + (new Zaalt()).cumQ() + " mLs");
+	
+	output("\n\n<b><u>ZephyrPregnancy</u></b>: " + (new ZephyrPregnancyHandler()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Zephyr:</b> " + getZephyrPregContainer().cumQ() + " mLs");
+	
+	output("\n\n<b><u>ZilPregnancy</u></b>: " + (new ZilPregnancyHandler()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Zil Male:</b> " + (new ZilMale()).cumQ() + " mLs");
+	output("\n* <b>Zil Male (Pack):</b> " + (new ZilPack()).cumQ() + " mLs");
+	output("\n* <b>Zil Hover Fly:</b> " + (new ZilHoverFly()).cumQ() + " mLs");
+	output("\n* <b>Zil Tribe:</b> " + (new ZilTribe()).cumQ() + " mLs");
+	output("\n* <b>Zil Champion Bow:</b> " + (new ZilChampionBow()).cumQ() + " mLs");
+	output("\n* <b>Zil Champion Spear:</b> " + (new ZilChampionSpear()).cumQ() + " mLs");
+	
+	/*
+	
+	output("\n\n<b><u></u></b>: " + (new ()).definedAverageLoadSize + " mLs");
+	output("\n* <b>:</b> " + (new ()).cumQ() + " mLs");
+	*/
+	
+	output("\n\n");
+	
+	nurseryComputerMenu(pregAverageLoadSizes);
+}
+
+public function nurseryMilkingRoomFunc():Boolean
+{
+	if(flags["MET_ZEPHYR"] != undefined)
+	{
+		if (!zephAtNursery()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "Zephyr isn’t at the nursery to lend a hand.");
+		else if (!pc.isLactating()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "You need to be lactating to milk yourself!");
+		else if (!pc.hasVagina()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "You need a pussy for Zephyr to assist in your endeavours!");
+		else if (pc.isPregnant()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "Zephyr won’t want to be too rough on her pregnant lover...");
+		else if (!pc.hasItemByClass(MagicMilker)) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "You need a MagicMilker to hand.");
+		else addButton(0, "ZephMilking", milkedByZeph, undefined, "Zephyr Milking", "Take some time to milk yourself and perhaps a little more time with Zephyr too...");
+	}
+
+	return false;
+}

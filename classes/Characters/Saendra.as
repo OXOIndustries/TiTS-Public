@@ -100,7 +100,7 @@ package classes.Characters
 			this.genitalSpot = 0;
 			this.tailType = GLOBAL.TYPE_FELINE;
 			this.tailCount = 2;
-			this.tailFlags = [GLOBAL.FLAG_FURRED, GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_LONG];
+			this.tailFlags = [GLOBAL.FLAG_FURRED, GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_LONG, GLOBAL.FLAG_PREHENSILE];
 			this.tailGenitalArg = 0;
 			this.tailGenital = 0;
 			
@@ -155,7 +155,7 @@ package classes.Characters
 		{
 			if (this.cocks.length > 0)
 			{
-				trace("Saen already has a cock. Can't add a second.");
+				trace("Saen already has a cock. Can’t add a second.");
 				return;
 			}
 			
@@ -236,10 +236,10 @@ package classes.Characters
 			
 			var sHackAvail:Boolean = !hasStatusEffect("Shield Hack Cooldown");
 			var sBoostAvail:Boolean = !hasStatusEffect("Shield Boost Cooldown");
-			var sDisarmAvail:Boolean = !hasStatusEffect("Disarm Cooldown") && !target.hasStatusEffect("Disarmed");
+			var sDisarmAvail:Boolean = !hasStatusEffect("Disarm Cooldown") && !hasStatusEffect("Disarmed") && !target.hasStatusEffect("Disarmed") && !target.hasStatusEffect("Disarm Immune");
 			
 			var attacks:Array = [];
-			attacks.push( { v: x1HammerPistol, w: 40 } );
+			if(!hasStatusEffect("Disarmed")) attacks.push( { v: x1HammerPistol, w: 40 } );
 			attacks.push( { v: x1LowBlow, w:20 } );
 			
 			if (target.shields() > 0 && sHackAvail) attacks.push( { v: x1ShieldHack, w: 25 } );
@@ -262,8 +262,8 @@ package classes.Characters
 
 			if (rand(3) == 0)
 			{
-				output(" and the target's weapon goes flying to the ground in a shower of sparks! Damn, she's a deadshot!");
-				target.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","Cannot use normal melee or ranged attacks!",true,0,0xFF0000);
+				output(" and the target’s weapon goes flying to the ground in a shower of sparks! Damn, she’s a deadshot!");
+				CombatAttacks.applyDisarm(target, 4);
 
 				applyDamage(new TypeCollection({kinetic: 7}), this, target, "minimal");
 			}
@@ -272,30 +272,22 @@ package classes.Characters
 				output(", but just barely misses.");
 			}
 
-			target.createStatusEffect("Disarm Cooldown", 4, 0, 0, 0, false);
+			createStatusEffect("Disarm Cooldown", 4, 0, 0, 0, false);
 		}
 		
 		private function x1ShieldBooster(alliedCreatures:Array):void
 		{
 			// target will be the one with the worst current shield state
-			var target:Creature = null;
+			var target:Creature = alliedCreatures[0];
 			
-			for (var i:int = 0; i < alliedCreatures.length; i++)
+			for (var i:int = 1; i < alliedCreatures.length; i++)
 			{
-				if (target == null) target = alliedCreatures[i] as Creature;
-				else
+				var poss:Creature = alliedCreatures[i] as Creature;
+				
+				// If this possibles shield perc is worse than the currents, switch
+				if (poss.shields() / poss.shieldsMax() < target.shields() / target.shieldsMax())
 				{
-					var poss:Creature = alliedCreatures[i] as Creature;
-					
-					// If below the critical point
-					if (poss.shields() < 0.5 * poss.shieldsMax())
-					{
-						// If this possibles shield perc is worse than the currents, switch
-						if (poss.shields() / poss.shieldsMax() < target.shields() / target.shieldsMax())
-						{
-							target = poss;
-						}
-					}
+					target = poss;
 				}
 			}
 			
@@ -303,7 +295,7 @@ package classes.Characters
 			output("Saen waves her mechanical arm " + (target is PlayerCharacter ? "at you" : "over herself") + " and the metallic probe shoots out, jacking into " + (target is PlayerCharacter ? "your" : "her") + " shield generator. " + (target is PlayerCharacter ? "You breath" : "She breathes") + " a sigh of relief as " + (target is PlayerCharacter ? "your" : "her") + " shields are restored!");
 
 			target.shields(target.shieldsMax() * 0.25);
-			target.createStatusEffect("Shield Boost Cooldown", 5, 0, 0, 0, false);
+			createStatusEffect("Shield Boost Cooldown", 5, 0, 0, 0, false);
 		}
 		
 		private function x1ShieldHack(target:Creature, hostileCreatures:Array):void
@@ -312,7 +304,7 @@ package classes.Characters
 			// Valeria Shield Hack
 			output("Saendra taps on her wrist, yanking Valeria out of her digital hidey-hole and aiming the fluttery holo-avatar at");
 			if (CombatManager.multipleEnemies()) output(" one of");
-			output(" " + target.a + target.short + ". A concussive wave blasts from her target's shield belt as it's overloaded,");
+			output(" " + target.a + target.short + ". A concussive wave blasts from her target’s shield belt as it’s overloaded,");
 			if (CombatManager.multipleEnemies()) output(" a chain of energy shooting forth and connecting to his compatriots");
 			if (target.shields() <= 0) output(" completely");
 			else output(" nearly");
@@ -365,9 +357,11 @@ package classes.Characters
 		{
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
+			var sDisarmAvail:Boolean = !hasStatusEffect("Disarm Cooldown") && !hasStatusEffect("Disarmed") && !target.hasStatusEffect("Disarmed") && !target.hasStatusEffect("Disarm Immune");
 			
-			if (rand(4) == 0) saendraDisarmingShot(target);
-			else saendraHammerPistol(target);
+			if (sDisarmAvail && rand(4) == 0) saendraDisarmingShot(target);
+			else if(!hasStatusEffect("Disarmed")) saendraHammerPistol(target);
+			else saendraNoAction();
 		}
 		
 		private function saendraDisarmingShot(target:Creature):void
@@ -384,8 +378,10 @@ package classes.Characters
 				
 				applyDamage(new TypeCollection( { kinetic: 5 }, DamageFlag.BULLET), this, target);
 
-				target.createStatusEffect("Disarmed", 2 + rand(2), 0, 0, 0, false, "Blocked", "Cannot use normal melee or ranged attacks!", true, 0,0xFF0000);
+				CombatAttacks.applyDisarm(target, 2 + rand(2));
 			}
+			
+			createStatusEffect("Disarm Cooldown", 4, 0, 0, 0, false);
 		}
 		
 		private function saendraHammerPistol(target:Creature):void
@@ -402,6 +398,11 @@ package classes.Characters
 				output(" shooting one of the pirates square in the back!");
 				applyDamage(new TypeCollection( { kinetic: 10 }, DamageFlag.BULLET), this, target);
 			}
+		}
+		
+		private function saendraNoAction():void
+		{
+			output("Saendra attempts to get a hold of her Hammer pistol as the battle ensues but is unsuccessful.");
 		}
 	}
 

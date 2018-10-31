@@ -13,6 +13,7 @@ package classes.Items.Guns
 	 */
 	public class SaurmorianRifle extends ItemSlotClass
 	{
+		//Level 9 (Rare). Balance 2.0
 		public function SaurmorianRifle() 
 		{
 			this._latestVersion = 1;
@@ -33,25 +34,29 @@ package classes.Items.Guns
 			this.description = "a custom saurmorian railgun";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This matte-black cannon, with its long and heavy barrel and dual drum-magazine, is a beloved weapon of freelancing saurmorians. Unable to be efficiently used by the military (to their utter chagrin) and never found whole, these manually constructed weapons almost always have some sentimental value to their wielders. Though you may not be able to hold one of these cumbersome things as easily as a saurmorian, you nonetheless may find yourself capable of using it as an effective weapon.";
+			this.tooltip = "This matte-black cannon, with its long and heavy barrel and dual drum-magazine, is a beloved weapon of freelancing saurmorians. Unable to be efficiently used by the military (to their utter chagrin) and never found whole, these manually constructed weapons almost always have some sentimental value to their wielders. Though properly using one of these cumbersome things is difficult, even for a saurmorian, you nonetheless may find yourself capable of using it as an effective weapon.";
 			this.attackVerb = "shoot";
 			attackNoun = "shot";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 25000;
+			this.basePrice = 41000;
 			
-			baseDamage.kinetic.damageValue = 28;
+			baseDamage.kinetic.damageValue = 41;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
-			
-			this.attack = -2;
-			this.critBonus = -2;
+			baseDamage.addFlag(DamageFlag.BULLET);
+			addFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR);
+			addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
+			baseDamage.addFlag(DamageFlag.NO_CRIT);
+
+			this.attack = 7;
+			this.critBonus = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.evasion = -5;
+			this.evasion = -3;
 			this.fortification = 0;
 			
 			//addFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR);

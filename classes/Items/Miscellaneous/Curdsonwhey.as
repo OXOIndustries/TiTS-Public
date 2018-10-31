@@ -3,7 +3,7 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
@@ -53,7 +53,7 @@
 			{
 				kGAMECLASS.output(target.capitalA + target.short + " gobs the pill to no effect.");
 			}
-			return false;			
+			return false;
 		}
 		
 		public static function effectProc(target:Creature, initDuration:uint, targetDelta:uint):void
@@ -64,14 +64,7 @@
 			var initAddiction:Number = kGAMECLASS.bothriocAddiction();
 			
 			// Reduce addiction based on rolls^, but clamp to 50 if addiction has gone above 50
-			if (kGAMECLASS.bothriocAddiction() > 50 && kGAMECLASS.bothriocAddiction() - addictionReduction < 50)
-			{
-				kGAMECLASS.flags["BOTHRIOC_ADDICTION"] = 50;
-			}
-			else
-			{
-				kGAMECLASS.flags["BOTHRIOC_ADDICTION"] -= addictionReduction;
-			}
+			kGAMECLASS.bothriocAddiction((-1 * addictionReduction));
 			
 			// If addiction is present at all, chance for +Will
 			if (kGAMECLASS.bothriocAddiction() > 0 && rand(2) == 0)
@@ -80,7 +73,7 @@
 			}
 			
 			// Don't output if addiction didn't actually change
-			if (initAddiction != kGAMECLASS.flags["BOTHRIOC_ADDICTION"]) return;
+			if (kGAMECLASS.flags["BOTHRIOC_ADDICTION"] == undefined || initAddiction == kGAMECLASS.flags["BOTHRIOC_ADDICTION"]) return;
 			
 			// Calculate the time offset
 			var deltaShift:uint = initDuration - targetDelta;

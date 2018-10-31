@@ -153,6 +153,8 @@
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 			
+			impregnationType = "ZilPregnancy";
+			
 			this.breastRows[0].breastRatingRaw = 0;
 			this.nippleColor = "black";
 			this.milkMultiplier = 0;
@@ -261,7 +263,7 @@
 					if (!target.hasStatusEffect("Stunned"))
 					{
 						output("<b> It’s concussive enough to leave you stunned.</b>");
-						target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0,0xFF0000);
+						CombatAttacks.applyStun(target, 1);
 					}
 				}
 				
@@ -292,7 +294,7 @@
 		private function zilPheromoneFanPlural(target:Creature):void 
 		{
 			output("The two zil abruptly begin to fondle their rigid members, stimulating the organs as they alter their wingbeats to gust musk-laced air your direction. There’s nothing to do but try and hold your breath!");
-			//{Moderate toughness check pass}
+			// Moderate toughness check pass
 			if (target.physique() + rand(20) + 1 > 20) 
 			{
 				output("\nThey get tired long before you do and give up, but it still leaves a cloud of their delicious aroma floating around you. It’s strong enough to make your pulse quicken.");

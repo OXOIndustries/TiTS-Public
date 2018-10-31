@@ -6,6 +6,9 @@ package classes.Characters
 	import classes.Items.Melee.Fists;
 	import classes.Items.Miscellaneous.*
 	import classes.Items.Protection.JoyCoPremiumShield;
+	import classes.TITSSaveEdit.Data.CoCVaginaClass;
+	import classes.VaginaClass;
+	import classes.CockClass;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -22,9 +25,9 @@ package classes.Characters
 		//constructor
 		public function Frostwyrm()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
-			this._neverSerialize = true;
+			this._neverSerialize = false;
 			
 			//Bunch of cosmetic items are placeholders
 			this.short = "Frostwyrm";
@@ -139,16 +142,65 @@ package classes.Characters
 			//20 - inconceivably large/big/huge etc
 			this.buttRatingRaw = 20;
 			
+			this.vaginas = new Array();
+			this.createVagina();
+			this.shiftVagina(0, GLOBAL.TYPE_FROSTWYRM);
+			this.vaginas[0].hymen = false;
+			this.vaginas[0].wetnessRaw = 5;
+			this.vaginas[0].loosenessRaw = 3;
+			this.vaginas[0].vaginaColor = "blue";
+			
+			this.cocks = new Array();
+			this.createCock();
+			this.shiftCock(0, GLOBAL.TYPE_FROSTWYRM);
+			this.cocks[0].cLengthRaw = 36;
+			this.cocks[0].cThicknessRatioRaw = 5.5;
+			
+			this.balls = 2;
+			this.cumMultiplierRaw = 3500;
+			this.cumQualityRaw = 1;
+			this.cumType = GLOBAL.FLUID_TYPE_CUM;
+			this.ballSizeRaw = 100;
+			this.ballFullness = 100;
+			this.ballEfficiency = 200;
+			this.refractoryRate = 50;
+			this.minutesSinceCum = 5256000;
+			this.timesCum = 0;
+			
+			this.createPerk("Fixed CumQ",450000,0,0,0);
+			
+			this.cockVirgin = true;
+			this.analVirgin = true;
+			this.vaginalVirgin = true;
+			
+			this.elasticity = 1;
+			this.fertilityRaw = 10;
+			this.clitLength = 3;
+			this.pregnancyMultiplierRaw = 1;
+			
+			this.ass.wetnessRaw = 0;
+			this.ass.bonusCapacity += 500
+			this.ass.loosenessRaw = 1;
+			
+			impregnationType = "FrostwyrmPregnancy";
+			
 			createStatusEffect("Disarm Immune");
 			createStatusEffect("Stun Immune");
+			createStatusEffect("Force It Gender");
 			
 			isUniqueInFight = true;
 			btnTargetText = "Frostwyrm";
 			
 			sexualPreferences.setRandomPrefs(4 + rand(3), 2);
-			kGAMECLASS.uvetoSSTDChance(this);
-
+			//kGAMECLASS.uvetoSSTDChance(this);
+			
+			
 			this._isLoading = false;
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			//dataObject._neverSerialize = false;
 		}
 		
 		override public function get bustDisplay():String
@@ -167,7 +219,7 @@ package classes.Characters
 			{	
 				enemyAttacks.push( { v: wyrmPsiScream, w: 10 } );
 			}
-			if (!target.hasStatusEffect("Blinded") && !hasStatusEffect("Buffet Cooldown") )
+			if (!target.hasStatusEffect("Blinded") && !hasStatusEffect("Buffet Cooldown"))
 			{
 				enemyAttacks.push( { v: wyrmWingBuffet, w: 10 } );
 			}
@@ -182,30 +234,38 @@ package classes.Characters
 			
 			weightedRand(enemyAttacks)(target);
 			
-			wyrmBarrier()
-		}	
+			wyrmBarrier();
+		}
+		
+		override public function isPregnant(x:int = 0):Boolean
+		{
+			return (kGAMECLASS.flags["FROSTWYRM_INCUBATION_TIMER"] != undefined);
+		}
 		
 		private function wyrmPsiScream(target:Creature):void
 		{
 			output("The frostwyrm throws its head back and lets out a bellowing roar that echoes across the glacial rift, sending out shockwaves of energy that hammer against the very walls of your mind. You grab the sides of your head and groan in agony as the creature’s roar wracks your brain.");
 			
+			var bStun:Boolean = false;
+			
 			//PC fails willpower save and is stunned
 			if (target.willpower() + rand(20) + 1 < willpower())
-				{
-					output("\n\nThe psychic onslaught leaves you staggered, reeling from the mental blow. <b>You’re Stunned</b>");
-					target.createStatusEffect("Stunned",2,0,0,0,false,"Stun","You cannot act until you recover!",true,0,0xFF0000);
-				}
+			{
+				output("\n\nThe psychic onslaught leaves you staggered, reeling from the mental blow. <b>You’re Stunned</b>");
+				bStun = true;
+			}
 			//PC passes willpower save
 			else
-				{
-					output("\n\nThough you’re reeling, and suffering from an intense headache, you manage to pull yourself together in a hurry.");
-				}
-				
-				var damMulti:Number = willpower() / target.willpower();
-				if (damMulti > 2) damMulti = 2;
-				if (damMulti < 1) damMulti = 1;
-				
-				applyDamage(new TypeCollection( { psionic: 5 * damMulti } ), this, target, "minimal");
+			{
+				output("\n\nThough you’re reeling, and suffering from an intense headache, you manage to pull yourself together in a hurry.");
+			}
+			
+			var damMulti:Number = willpower() / target.willpower();
+			if (damMulti > 2) damMulti = 2;
+			if (damMulti < 1) damMulti = 1;
+			
+			applyDamage(new TypeCollection( { psionic: 5 * damMulti } ), this, target, "minimal");
+			if(bStun) CombatAttacks.applyStun(target, 2);
 		}
 		
 		//My Wings, a hurricane!
@@ -214,21 +274,20 @@ package classes.Characters
 			output("The wyrm rears back and gives you a bellowing shriek, furiously beating its wings at you. They generate a hurricane-like force, sending flurries of snow roaring out around you.");
 			
 			//Pass physical check, blinded
-			if (target.physique() + rand(20) + 1 > physique())
-				{
-					output("\n\nYou dig your [pc.feet] in and hold on for dear life, refusing to be blown away by the beast... but even then, you quickly realize that the snow is blasting all around you. It’s almost impossible to see -- <b>you’re all but blinded!</b>");
-					target.createStatusEffect("Blinded",rand(2)+2,0,0,0,false,"Blind","You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0xFF0000);
-				}
+			if ((target.physique() + rand(20) + 1 > physique()) || target.isPlanted())
+			{
+				output("\n\nYou dig your [pc.feet] in and hold on for dear life, refusing to be blown away by the beast... but even then, you quickly realize that the snow is blasting all around you. It’s almost impossible to see -- <b>you’re all but blinded!</b>");
+				CombatAttacks.applyBlind(target, rand(2) + 2);
+			}
 			//Fail physical check, blinded and tripped
 			else
-				{
-					output("\n\nThe gail-force of the wind sends you flying to the ground, sprawling out across the ice. Worse, you quickly realize that the snow is blasting all around you. It’s almost impossible to see -- <b>you’re knocked down and all but blinded");
-					output("!</b>");
-					target.createStatusEffect("Blinded", rand(2) + 2, 0, 0, 0, false, "Blind", "You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0xFF0000);
-					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You’ve been tripped, reducing your effective physique and reflexes by 4. You’ll have to spend an action standing up.", true, 0);
-				}
+			{
+				output("\n\nThe gail-force of the wind sends you flying to the ground, sprawling out across the ice. Worse, you quickly realize that the snow is blasting all around you. It’s almost impossible to see -- <b>you’re knocked down and all but blinded!</b>");
+				CombatAttacks.applyBlind(target, rand(2) + 2);
+				CombatAttacks.applyTrip(target);
+			}
 			
-			createStatusEffect("Buffet Cooldown", 6)
+			createStatusEffect("Buffet Cooldown", 6);
 		}
 		
 		private function wyrmPsiMiasma(target:Creature):void
@@ -314,7 +373,7 @@ package classes.Characters
 			{
 				output("\n\nThe air around the frostwyrm crackles and shimmers with strange energy. With this protection, the creature can amplify its psionic abilities.");
 				willpowerRaw += 10;
-				createStatusEffect("Psionic Amplifier",0,0,0,0,false,"Icon_OffUp","Undisturbed focus due to the barrier",true);
+				createStatusEffect("Psionic Amplifier",0,0,0,0,false,"Icon_OffUp","Undisturbed focus due to the barrier.",true);
 			}
 			
 			else if (shields() <= 0)

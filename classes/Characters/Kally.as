@@ -43,7 +43,7 @@
 				if(kGAMECLASS.flags["SISTER_MILK_ACT"] < 15) amount *= kGAMECLASS.flags["SISTER_MILK_ACT"];
 				else amount *= 15;
 			}
-			return amount;		
+			return amount;
 		}
 	}
 }

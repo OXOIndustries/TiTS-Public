@@ -35,13 +35,13 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 	else targetType = GLOBAL.TYPE_CANINE;
 
 	//Day 2 - Temporary Genital Swelling
-	if(effect.value4 == 0 && effect.minutesLeft < (17280 - 48*60))
+	if(effect.value4 < 2 && effect.minutesLeft < (17280 - 2*24*60))
 	{
 		effect.value4 = 2;
 		if(pc.hasFur())
 		{
 			textBuff += "A rapid, hacking cough afflicts you out of nowhere, leaving you hacking and retching until you expel a ball of viscous looking green slime. Looks like you caught some kind of infection that your body rejected...";
-			pc.removeStatusEffect("Undetected Furpies");
+			pc.removeStatusEffect("Undetected Furpies", true);
 		}
 		//Only boy parts
 		else if(pc.hasCock() && !pc.hasVagina())
@@ -108,11 +108,11 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 		else
 		{
 			textBuff += "A rapid, hacking cough afflicts you out of nowhere, leaving you hacking and retching until you expel a ball of viscous looking green slime. Looks like you caught some kind of infection that your body rejected...";
-			pc.removeStatusEffect("Undetected Furpies");
+			pc.removeStatusEffect("Undetected Furpies", true);
 		}
 	}
 	//[Day 3] Codex Identifies
-	else if(effect.value4 < 3 && effect.minutesLeft < (17280 - 72*60))
+	else if(effect.value4 < 3 && effect.minutesLeft < (17280 - 3*24*60))
 	{
 		effect.value4 = 3;
 		textBuff += "<i>BEEP!</i> An irritating tone from your Codex interrupts your thoughts. <i>“Alert! Infection detected! Preliminary scans identify a variant of Furpies Simplex ";
@@ -122,17 +122,23 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 		if(rand(3) == 0) 
 		{
 			textBuff += "H";
-			pc.createStatusEffect("Furpies Simplex H",0,0,0,3,false,"Icon_Cow","You’ve been infected with Furpies Simplex H! If left untreated, it will slowly transform you into a furry horse-person (probably). Consult your Codex for more information.",false,(17280 - 3*24*60),0xFF69B4);
+			effect.storageName = "Furpies Simplex H";
+			effect.iconName = "Icon_Horse";
+			effect.tooltip = "You’ve been infected with Furpies Simplex H! If left untreated, it will slowly transform you into a furry horse-person (probably). Consult your Codex for more information.";
 		}
 		else if(rand(2) == 0) 
 		{
 			textBuff += "C";
-			pc.createStatusEffect("Furpies Simplex C",0,0,0,3,false,"Icon_Cow","You’ve been infected with Furpies Simplex C! If left untreated, it will slowly transform you into a furry cat-person (probably). Consult your Codex for more information.",false,(17280 - 3*24*60),0xFF69B4);
+			effect.storageName = "Furpies Simplex C";
+			effect.iconName = "Icon_Dog_Paw";
+			effect.tooltip = "You’ve been infected with Furpies Simplex C! If left untreated, it will slowly transform you into a furry cat-person (probably). Consult your Codex for more information.";
 		}
 		else 
 		{
 			textBuff += "D";
-			pc.createStatusEffect("Furpies Simplex D",0,0,0,3,false,"Icon_Cow","You’ve been infected with Furpies Simplex D! If left untreated, it will slowly transform you into a furry dog-person (probably). Consult your Codex for more information.",false,(17280 - 3*24*60),0xFF69B4);
+			effect.storageName = "Furpies Simplex D";
+			effect.iconName = "Icon_Dog_Paw";
+			effect.tooltip = "You’ve been infected with Furpies Simplex D! If left untreated, it will slowly transform you into a furry dog-person (probably). Consult your Codex for more information.";
 		}
 		textBuff += " in your bloodstream, an artificial pathogen developed by Doctor Badger. Your enhanced immune system should prevent contagious infection, but removal will require the assistance of a medical installation.”</i>";
 		textBuff += "\n\nShit.";
@@ -140,7 +146,14 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 		textBuff += "\n\nBetter find a doctor if you don’t want to grow some fur.";
 
 		//Change from hidden status to perm status.
-		pc.removeStatusEffect("Undetected Furpies");
+		effect.value1 = 0;
+		effect.value2 = 0;
+		effect.value3 = 0;
+		effect.value4 = 3;
+		effect.hidden = false;
+		effect.combatOnly = false;
+		effect.minutesLeft = (17280 - 3*24*60);
+		effect.iconShade = 0xFF69B4;
 	}
 	//[Day 4] Fursluttiness kicks in (extra lust damage from fur-having foes)
 	else if(effect.value4 < 4 && effect.minutesLeft < (17280 - 4*24*60))
@@ -530,9 +543,9 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 				pc.tailCount = 1;
 				pc.tailType = GLOBAL.TYPE_CANINE;
 				pc.clearTailFlags();
+				pc.addTailFlag(GLOBAL.FLAG_LONG);
 				pc.addTailFlag(GLOBAL.FLAG_FURRED);
 				pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
-				pc.addTailFlag(GLOBAL.FLAG_LONG);
 			}
 			//Cat
 			else if(targetType == GLOBAL.TYPE_FELINE)
@@ -541,7 +554,11 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 				textBuff += ParseText(". You give it a little flex, and find that it curls about your [pc.leg] with prehensile grace. Yep, <b>you’ve definitely got a cat’s tail now.</b>");
 				pc.tailCount = 1;
 				pc.tailType = GLOBAL.TYPE_FELINE;
-				pc.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_FURRED];
+				pc.clearTailFlags();
+				pc.addTailFlag(GLOBAL.FLAG_LONG);
+				pc.addTailFlag(GLOBAL.FLAG_FURRED);
+				if(pc.hasSkinFlag(GLOBAL.FLAG_FLUFFY)) pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
+				pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 			}
 		}
 	}

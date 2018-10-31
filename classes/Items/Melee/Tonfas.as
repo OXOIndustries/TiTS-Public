@@ -13,6 +13,7 @@ package classes.Items.Melee
 	 */
 	public class Tonfas extends ItemSlotClass
 	{
+		//NPC-only.
 		public function Tonfas() 
 		{
 			this._latestVersion = 1;

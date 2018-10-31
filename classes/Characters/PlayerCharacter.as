@@ -7,19 +7,17 @@ package classes.Characters
 	import classes.Items.Accessories.LeithaCharm;
 	import classes.Items.Transformatives.OmegaOil;
 	import classes.Items.Transformatives.SheepTF;
+	import classes.Items.Melee.Rock;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.RoomClass;
 	import classes.StorageClass;
 	import classes.kGAMECLASS;
 	import classes.GLOBAL;
 	import classes.ItemSlotClass;
-	import classes.Engine.Interfaces.ParseText;
-	import classes.Engine.Interfaces.ParseQuotes;
 	import classes.Engine.Utility.num2Text;
 	import classes.Util.InCollection;
 	import classes.Util.RandomInCollection;
-	import classes.Engine.Interfaces.AddLogEvent;
-	import classes.Engine.Interfaces.ExtendLogEvent;
+	import classes.Engine.Interfaces.*;
 	
 	/**
 	 * Yeah this is kinda bullshit, but it also means we can version the PC data structure like NPCs.
@@ -30,7 +28,7 @@ package classes.Characters
 	{
 		public function PlayerCharacter() 
 		{
-			this._latestVersion = 3;
+			this._latestVersion = 4;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			this._isLoading = false;
@@ -54,7 +52,7 @@ package classes.Characters
 		// Level Cap
 		override public function levelMax():int
 		{
-			return 9;
+			return 10;
 		}
 		
 		override public function nameDisplay():String
@@ -64,26 +62,42 @@ package classes.Characters
 		
 		override public function lustDef():Number
 		{
-			return willpower()/5;
+			var bonus:Number = 0;
+			bonus += statusEffectv1("Beta's Satisfaction")
+			return willpower()/5 + bonus;
 		}
 		
 		override public function loadInCunt(cumFrom:Creature = null, vagIndex:int = -1):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("vagina");
 			//Goo TFed? GATHER BIOMASS
-			if(hairType == GLOBAL.HAIR_TYPE_GOO)
+			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
 			}
+			if(hasPerk("Cum Highs"))
+			{
+				kGAMECLASS.cumHighUpdate();
+			}
 			if (cumFrom != null)
 			{
+				if(cumFrom is Ardia) kGAMECLASS.drinkArdiasCum();
 				if(!cumFrom.hasStatusEffect("Ovilium Effect") && hasStatusEffect("Ovilium"))
 				{
 					kGAMECLASS.oviliumEggBump(cumFrom, vagIndex);
 				}
-				if(cumflationEnabled()) cumflationHappens(cumFrom,vagIndex);
+				if(cumflationEnabled() && cumFrom.cumType != GLOBAL.FLUID_TYPE_CUNDARIAN_SEED) cumflationHappens(cumFrom,vagIndex);
 				sstdChecks(cumFrom,"vagina");
+				//PLUGGING TIME!
+				if(cumFrom.cumType == GLOBAL.FLUID_TYPE_CUNDARIAN_SEED)
+				{
+					if(vagIndex >= 0 && vagIndex < totalVaginas())
+					{
+						if(!vaginas[vagIndex].hasFlag(GLOBAL.FLAG_PLUGGED)) vaginas[vagIndex].addFlag(GLOBAL.FLAG_PLUGGED);
+						if(!hasStatusEffect("Pussy Plugged")) createStatusEffect("Pussy Plugged",vagIndex,0,0,0,false,"Icon_Blocked","A plug is currently obstructing your pussy, the constant pressure on your tender areas constantly arousing your libido.\n\n<b>+100% Libido.</b>",false,0,0xB793C4);
+					}
+				}
 				return this.tryKnockUp(cumFrom, vagIndex);
 			}
 			return false;
@@ -91,8 +105,11 @@ package classes.Characters
 		override public function loadInAss(cumFrom:Creature = null):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("ass");
+			// Butt bug load
+			kGAMECLASS.loadInButtBug(this, cumFrom);
+			
 			//Goo TFed? GATHER BIOMASS
-			if(hairType == GLOBAL.HAIR_TYPE_GOO)
+			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
@@ -108,14 +125,24 @@ package classes.Characters
 			{
 				OmegaOil.reduceOmegaEffect(this);
 			}
+			if(hasPerk("Cum Highs"))
+			{
+				kGAMECLASS.cumHighUpdate();
+			}
 			// Cumflation
 			if (cumFrom != null)
 			{
+				if(cumFrom is Ardia) kGAMECLASS.drinkArdiasCum();
+				if(cumFrom is Kally) imbibeAlcohol(100);
 				sstdChecks(cumFrom,"ass");
-				if(cumflationEnabled()) cumflationHappens(cumFrom,3);
+				if(cumflationEnabled() && cumFrom.cumType != GLOBAL.FLUID_TYPE_CUNDARIAN_SEED) cumflationHappens(cumFrom,3);
+				//PLUGGING TIME!
+				if(cumFrom.cumType == GLOBAL.FLUID_TYPE_CUNDARIAN_SEED)
+				{
+					if(!ass.hasFlag(GLOBAL.FLAG_PLUGGED)) ass.addFlag(GLOBAL.FLAG_PLUGGED);
+				}
 				return this.tryKnockUp(cumFrom, 3);
 			}
-			
 			return false;
 		}
 		
@@ -139,6 +166,7 @@ package classes.Characters
 					if(milkFrom.lactationQ() >= 2000) kGAMECLASS.honeyPotBump(true);
 				}
 			}
+			if(milkFrom != null) sstdChecks(milkFrom,"mouth");
 			return false;
 		}
 		
@@ -172,7 +200,7 @@ package classes.Characters
 			
 			kGAMECLASS.mimbraneFeed("face");
 			//Goo TFed? GATHER BIOMASS
-			if(hairType == GLOBAL.HAIR_TYPE_GOO)
+			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
@@ -186,6 +214,10 @@ package classes.Characters
 					if(cumFrom.cumQ() >= 1000) kGAMECLASS.honeyPotBump(true);
 					if(cumFrom.cumQ() >= 2000) kGAMECLASS.honeyPotBump(true);
 				}
+			}
+			if(hasPerk("Cum Highs"))
+			{
+				kGAMECLASS.cumHighUpdate();
 			}
 			if(hasPerk("Dumb4Cum"))
 			{
@@ -204,22 +236,27 @@ package classes.Characters
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
 			}
+			if(hasPerk("Cum Highs"))
+			{
+				kGAMECLASS.cumHighUpdate();
+			}
 			kGAMECLASS.mimbraneFeed("boobs");
+			if(cumFrom != null) sstdChecks(cumFrom,"nipple");
 			return false;
 		}
 		
 		override public function loadInCuntTail(cumFrom:Creature = null):Boolean
 		{
-			if (this.hasTailCunt()) 
+			if (this.hasTailCunt()) kGAMECLASS.feedCuntSnake(cumFrom);
+			if(hasPerk("Cum Highs"))
 			{
-				if(cumFrom is Flahne) kGAMECLASS.feedCuntSnake(false);
-				else kGAMECLASS.feedCuntSnake();
+				kGAMECLASS.cumHighUpdate();
 			}
 			if (cumFrom != null)
 			{
+				sstdChecks(cumFrom,"tail cunt");
 				return this.tryKnockUp(cumFrom, 4);
 			}
-			
 			return false;
 		}
 		
@@ -244,7 +281,8 @@ package classes.Characters
 					}
 					break;
 				case "cum":
-					if(fluidFrom is Kally) imbibeAlcohol(20);
+					if(fluidFrom is Kally) imbibeAlcohol(100);
+					if(fluidFrom is Ardia) kGAMECLASS.drinkArdiasCum();
 					if(hasPerk("Autofellatio Queen") && fluidFrom is PlayerCharacter) energy(35 * fxMult);
 					break;
 				case "girl-cum":
@@ -291,6 +329,7 @@ package classes.Characters
 		}
 		
 		public var ShipStorageInventory:Array = [];
+		/*
 		public function hasItemInStorage(arg:ItemSlotClass,amount:int = 1):Boolean
 		{
 			if(ShipStorageInventory.length == 0) return false;
@@ -321,6 +360,315 @@ package classes.Characters
 				}
 			}
 			return;
+		}
+		*/
+		public function numberOfItemInStorageByClass(ref:Class):int
+		{
+			if (ref == null || ShipStorageInventory.length == 0) return 0;
+			
+			var amt:int = 0;
+			
+			for (var i:uint = 0; i < ShipStorageInventory.length; i++)
+			{
+				if (ShipStorageInventory[i] is ref) amt += ShipStorageInventory[i].quantity;
+			}
+			return amt;
+		}
+		public function hasItemInStorageByClass(ref:Class, amount:int = 1):Boolean
+		{
+			if (ref == null || ShipStorageInventory.length == 0) return false;
+			
+			var amt:int = numberOfItemInStorageByClass(ref);
+			
+			if (amt >= amount) return true;
+			return false;
+		}
+		public function destroyItemInStorageByClass(ref:Class, amount:int = 1):void
+		{
+			if (ref == null || ShipStorageInventory.length == 0 || amount == 0) return;
+			
+			var i:int = 0;
+			
+			// Remove all!
+			if (amount < 0)
+			{
+				while (i < ShipStorageInventory.length)
+				{
+					if (ShipStorageInventory[i] is ref)
+					{
+						ShipStorageInventory[i].quantity = 0;
+						ShipStorageInventory.splice(i, 1);
+					}
+					else i++;
+				}
+			}
+			// Normal
+			else
+			{
+				while (amount > 0 && i < ShipStorageInventory.length)
+				{
+					//Item in the slot?
+					if (ShipStorageInventory[i] is ref)
+					{
+						var nFromSlot:int = Math.min(amount, ShipStorageInventory[i].quantity);
+						amount -= nFromSlot;
+						ShipStorageInventory[i].quantity -= nFromSlot;
+						if (ShipStorageInventory[i].quantity == 0)
+						{
+							ShipStorageInventory.splice(i, 1);
+						}
+						//else i++;
+						else return;
+					}
+					else i++;
+				}
+				if(amount > 0) output("<b>ERROR - Ship inventory item quantity needed: " + amount + "!</b>");
+			}
+		}
+		
+		// Hidden storage
+		public var hiddenMeleeWeapon:ItemSlotClass = new EmptySlot();
+		public var hiddenRangedWeapon:ItemSlotClass = new EmptySlot();
+		public var hiddenArmor:ItemSlotClass = new EmptySlot();
+		public var hiddenUpperUndergarment:ItemSlotClass = new EmptySlot();
+		public var hiddenLowerUndergarment:ItemSlotClass = new EmptySlot();
+		public var hiddenAccessory:ItemSlotClass = new EmptySlot();
+		public var hiddenShield:ItemSlotClass = new EmptySlot();
+		public var hiddenInventory:Array = [];
+		
+		// Take item, Put in storage
+		public function takeMeleeWeapon():void
+		{
+			if((meleeWeapon is EmptySlot) || (meleeWeapon is Rock)) return;
+			
+			var item:ItemSlotClass = meleeWeapon;
+			
+			if(!(hiddenMeleeWeapon is EmptySlot))
+			{ var prev:ItemSlotClass = hiddenMeleeWeapon; hiddenInventory.push(prev); }
+			
+			hiddenMeleeWeapon = item;
+			meleeWeapon.onRemove(this);
+			meleeWeapon = new Rock();
+		}
+		public function takeRangedWeapon():void
+		{
+			if((rangedWeapon is EmptySlot) || (rangedWeapon is Rock)) return;
+			
+			var item:ItemSlotClass = rangedWeapon;
+			
+			if(!(hiddenRangedWeapon is EmptySlot))
+			{ var prev:ItemSlotClass = hiddenRangedWeapon; hiddenInventory.push(prev); }
+			
+			hiddenRangedWeapon = item;
+			rangedWeapon.onRemove(this);
+			rangedWeapon = new Rock();
+		}
+		public function takeArmor():void
+		{
+			if(armor is EmptySlot) return;
+			
+			var item:ItemSlotClass = armor;
+			
+			if(!(hiddenArmor is EmptySlot))
+			{ var prev:ItemSlotClass = hiddenArmor; hiddenInventory.push(prev); }
+			
+			hiddenArmor = item;
+			armor.onRemove(this);
+			armor = new EmptySlot();
+		}
+		public function takeUpperUndergarment():void
+		{
+			if(upperUndergarment is EmptySlot) return;
+			
+			var item:ItemSlotClass = upperUndergarment;
+			
+			if(!(hiddenUpperUndergarment is EmptySlot))
+			{ var prev:ItemSlotClass = hiddenUpperUndergarment; hiddenInventory.push(prev); }
+			
+			hiddenUpperUndergarment = item;
+			upperUndergarment.onRemove(this);
+			upperUndergarment = new EmptySlot();
+		}
+		public function takeLowerUndergarment():void
+		{
+			if(lowerUndergarment is EmptySlot) return;
+			
+			var item:ItemSlotClass = lowerUndergarment;
+			
+			if(!(hiddenLowerUndergarment is EmptySlot))
+			{ var prev:ItemSlotClass = hiddenLowerUndergarment; hiddenInventory.push(prev); }
+			
+			hiddenLowerUndergarment = item;
+			lowerUndergarment.onRemove(this);
+			lowerUndergarment = new EmptySlot();
+		}
+		public function takeAccessory():void
+		{
+			if(accessory is EmptySlot) return;
+			
+			var item:ItemSlotClass = accessory;
+			
+			if(!(hiddenAccessory is EmptySlot))
+			{ var prev:ItemSlotClass = hiddenAccessory; hiddenInventory.push(prev); }
+			
+			hiddenAccessory = item;
+			accessory.onRemove(this);
+			accessory = new EmptySlot();
+		}
+		public function takeShield():void
+		{
+			if(shield is EmptySlot) return;
+			
+			var item:ItemSlotClass = shield;
+			
+			if(!(hiddenShield is EmptySlot))
+			{ var prev:ItemSlotClass = hiddenShield; hiddenInventory.push(prev); }
+			
+			hiddenShield = item;
+			shield.onRemove(this);
+			shield = new EmptySlot();
+		}
+		// Take all inventory items
+		public function takeInventory():void
+		{
+			for(var i:int = 0; i < inventory.length; i++)
+			{
+				var item:ItemSlotClass = inventory[i];
+				hiddenInventory.push(item);
+			}
+			inventory.length = 0;
+		}
+		
+		// Return item, Reset storage
+		// If slot already filled, place in hidden inventory for collecting.
+		public function giveMeleeWeapon():void
+		{
+			if(hiddenMeleeWeapon is EmptySlot) return;
+			
+			var item:ItemSlotClass = hiddenMeleeWeapon;
+			
+			if(!(meleeWeapon is EmptySlot) && !(meleeWeapon is Rock))
+			{ hiddenInventory.push(item); return; }
+			
+			meleeWeapon = item;
+			meleeWeapon.onEquip(this);
+			hiddenMeleeWeapon = new EmptySlot();
+		}
+		public function giveRangedWeapon():void
+		{
+			if(hiddenRangedWeapon is EmptySlot) return;
+			
+			var item:ItemSlotClass = hiddenRangedWeapon;
+			
+			if(!(rangedWeapon is EmptySlot) && !(rangedWeapon is Rock))
+			{ hiddenInventory.push(item); return; }
+			
+			rangedWeapon = item;
+			rangedWeapon.onEquip(this);
+			hiddenRangedWeapon = new EmptySlot();
+		}
+		public function giveArmor():void
+		{
+			if(hiddenArmor is EmptySlot) return;
+			
+			var item:ItemSlotClass = hiddenArmor;
+			
+			if(!(armor is EmptySlot))
+			{ hiddenInventory.push(item); return; }
+			
+			armor = item;
+			armor.onEquip(this);
+			hiddenArmor = new EmptySlot();
+		}
+		public function giveUpperUndergarment():void
+		{
+			if(hiddenUpperUndergarment is EmptySlot) return;
+			
+			var item:ItemSlotClass = hiddenUpperUndergarment;
+			
+			if(!(upperUndergarment is EmptySlot))
+			{ hiddenInventory.push(item); return; }
+			
+			upperUndergarment = item;
+			upperUndergarment.onEquip(this);
+			hiddenUpperUndergarment = new EmptySlot();
+		}
+		public function giveLowerUndergarment():void
+		{
+			if(hiddenLowerUndergarment is EmptySlot) return;
+			
+			var item:ItemSlotClass = hiddenLowerUndergarment;
+			
+			if(!(lowerUndergarment is EmptySlot))
+			{ hiddenInventory.push(item); return; }
+			
+			lowerUndergarment = item;
+			lowerUndergarment.onEquip(this);
+			hiddenLowerUndergarment = new EmptySlot();
+		}
+		public function giveAccessory():void
+		{
+			if(hiddenAccessory is EmptySlot) return;
+			
+			var item:ItemSlotClass = hiddenAccessory;
+			
+			if(!(accessory is EmptySlot))
+			{ hiddenInventory.push(item); return; }
+			
+			accessory = item;
+			accessory.onEquip(this);
+			hiddenAccessory = new EmptySlot();
+		}
+		public function giveShield():void
+		{
+			if(hiddenShield is EmptySlot) return;
+			
+			var item:ItemSlotClass = hiddenShield;
+			
+			if(!(shield is EmptySlot))
+			{ hiddenInventory.push(item); return; }
+			
+			shield = item;
+			shield.onEquip(this);
+			hiddenShield = new EmptySlot();
+		}
+		// Return all inventory items
+		public function giveInventory():void
+		{
+			for(var i:int = 0; i < hiddenInventory.length; i++)
+			{
+				var item:ItemSlotClass = hiddenInventory[i];
+				inventory.push(item);
+			}
+			hiddenInventory.length = 0;
+		}
+		
+		// Dump all hidden slots to inventory, if any
+		public function moveSlotsToInventory():void
+		{
+			var item:ItemSlotClass
+			if(!(hiddenMeleeWeapon is EmptySlot)) { item = hiddenMeleeWeapon; hiddenInventory.push(item); hiddenMeleeWeapon = new EmptySlot(); }
+			if(!(hiddenRangedWeapon is EmptySlot)) { item = hiddenRangedWeapon; hiddenInventory.push(item); hiddenRangedWeapon = new EmptySlot(); }
+			if(!(hiddenArmor is EmptySlot)) { item = hiddenArmor; hiddenInventory.push(item); hiddenArmor = new EmptySlot(); }
+			if(!(hiddenUpperUndergarment is EmptySlot)) { item = hiddenUpperUndergarment; hiddenInventory.push(item); hiddenUpperUndergarment = new EmptySlot(); }
+			if(!(hiddenLowerUndergarment is EmptySlot)) { item = hiddenLowerUndergarment; hiddenInventory.push(item); hiddenLowerUndergarment = new EmptySlot(); }
+			if(!(hiddenAccessory is EmptySlot)) { item = hiddenAccessory; hiddenInventory.push(item); hiddenAccessory = new EmptySlot(); }
+			if(!(hiddenShield is EmptySlot)) { item = hiddenShield; hiddenInventory.push(item); hiddenShield = new EmptySlot(); }
+		}
+		// Returns array of all stored inventory items, if any.
+		// Resets storage.
+		public function returnInventoryItems():Array
+		{
+			var itemList:Array = [];
+			
+			for(var i:int = 0; i < hiddenInventory.length; i++)
+			{
+				var item:ItemSlotClass = hiddenInventory[i];
+				itemList.push(item);
+			}
+			hiddenInventory.length = 0;
+			
+			return itemList;
 		}
 		
 		override public function HPMax():Number
@@ -359,7 +707,7 @@ package classes.Characters
 			nBaseShield.kinetic.resistanceValue = toughVal;
 			
 			d.baseHPResistances = nBaseHP.getSaveObject();
-			d.baseShieldResistances = nBaseShield.getSaveObject();			
+			d.baseShieldResistances = nBaseShield.getSaveObject();
 			
 			delete d.lustVuln;
 			delete d.resistances;
@@ -418,6 +766,46 @@ package classes.Characters
 				}
 			}
 		}
+		public function UpgradeVersion3(d:Object):void
+		{
+			var i:uint = 0;
+			var willIdx:int = -1;
+			var hasMind:Boolean = false;
+			if (d.perks)
+			{
+				for (i = 0; i < d.perks.length; i++)
+				{
+					if (d.perks[i] && d.perks[i].storageName)
+					{
+						switch(d.perks[i].storageName)
+						{
+							case "Weak Willed": willIdx = i; break;
+							case "Weak Mind": hasMind = true; break;
+						}
+					}
+				}
+				if(willIdx >= 0)
+				{
+					// Already has perk, remove dupe.
+					if(hasMind) d.perks.splice(willIdx, 1);
+					// Otherwise, replace old perk.
+					else
+					{
+						d.perks[willIdx].storageName = "Weak Mind";
+						d.perks[willIdx].tooltip = "Intelligence and willpower losses doubled.";
+					}
+				}
+			}
+		}
+		
+		override public function get bustDisplay():String
+		{
+			var sBust:String = "PC";
+			
+			if(isNude()) sBust += "_NUDE";
+			
+			return sBust;
+		}
 		
 		override public function getCombatName():String
 		{
@@ -426,6 +814,7 @@ package classes.Characters
 		
 		override public function processTime(deltaT:uint, doOut:Boolean):void
 		{	
+			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
 			var totalDays:int = ((GetGameTimestamp() + deltaT) / 1440) - kGAMECLASS.days;
 			
 			if (!hasCock() && balls == 0 && hasStatusEffect("Blue Balls"))
@@ -433,6 +822,7 @@ package classes.Characters
 				removeStatusEffect("Blue Balls");
 			}
 			
+			// Daily changes
 			if (totalDays >= 1)
 			{
 				if (hasCuntTail())
@@ -464,6 +854,11 @@ package classes.Characters
 					woolyFurGrow(totalDays);
 				}
 				
+				if (hasPerk("Hips Don't Lie"))
+				{
+					hipsDontLieHipGrowth(totalDays);
+				}
+				
 				if (hasPerk("Buttslut"))
 				{
 					buttslutBootyGrowth(totalDays);
@@ -474,7 +869,7 @@ package classes.Characters
 					fecundFigure(totalDays);
 				}
 				
-				if (hasStatusEffect("Nyrea Eggs") && fertility() > 0)
+				if (hasStatusEffect("Nyrea Eggs") && fertility() > 0 && hasOvipositor())
 				{
 					nyreaEggStuff(totalDays);
 				}
@@ -485,10 +880,15 @@ package classes.Characters
 				//updateHeatPerk(totalDays);
 				//updateRutPerk(totalDays);
 			}
-			
+			// Hourly changes
+			if(totalHours >= 1)
+			{
+				updateFemininity(deltaT, doOut);
+				updateGooState(deltaT, doOut);
+			}
+			// Minutely changes
 			updateVaginaStretch(deltaT, doOut);
 			updateButtStretch(deltaT, doOut);
-			updateGooState(deltaT, doOut);
 			
 			super.processTime(deltaT, doOut);
 			
@@ -545,10 +945,7 @@ package classes.Characters
 		{
 			if (!hasStatusEffect("Goo Crotch")) return;
 			
-			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
 			var m:String = "";
-			
-			if (totalHours < 1) return;
 			
 			var unflaggedGenital:Array = [];
 			for (var i:int = 0; i < cocks.length; i++)
@@ -602,7 +999,7 @@ package classes.Characters
 				if (unflaggedVagNum == vaginas.length)
 				{
 					m = "You’re getting incredibly wet";
-					if(legCount > 1) m += " between the [pc.legs]";
+					if(legCount > 1) m += ParseText(" between the [pc.legs]");
 					else m += "... down there";
 					m += ". Moisture seems to be dripping everywhere, transforming your puss";
 					if(totalVaginas() == 1) m += "y into a slipperier, gooier version of itself. <b>Your entire vagina has become semi-solid, like the rest of your crotch.";
@@ -614,6 +1011,15 @@ package classes.Characters
 				{
 					AddLogEvent("Unsurprisingly, the slime that surrounds your multiple mounds trickles in, remaking the more solid flesh into an even wetter, slicker parody of itself. <b>All of your vaginas are made of goo.</b>", "passive", deltaT);
 				}
+			}
+		}
+		
+		private function updateFemininity(deltaT:uint, doOut:Boolean):void
+		{
+			if(canFixFemininity())
+			{
+				var msg:String = fixFemininity();
+				if(msg != "") AddLogEvent(msg, "passive", deltaT);
 			}
 		}
 		
@@ -653,9 +1059,13 @@ package classes.Characters
 				addPerkValue("Fecund Figure", 1, (0.05 * totalDays)); // Hips
 				addPerkValue("Fecund Figure", 2, (0.05 * totalDays)); // Butt
 				addPerkValue("Fecund Figure", 4, -(totalDays)); // Gains
+				
+				var msg:String = "";
+				if(numPreg > 0 && bellyRating() >= 10) msg += "You nestle your belly with your hand and feel your hips and ass ripen in blissful contentment.";
+				if(msg != "") AddLogEvent(msg, "passive", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
 			}
 			
-			if(perkv4("Fecund Figure") < 0) setPerkValue("Fecund Figure", 4, 0);			
+			if(perkv4("Fecund Figure") < 0) setPerkValue("Fecund Figure", 4, 0);
 		}
 		
 		private function buttslutBootyGrowth(totalDays:int):void
@@ -669,7 +1079,7 @@ package classes.Characters
 			
 			for (var i:int = 0; i < totalDays; i++)
 			{
-				var oldBooty:Number = buttRatingRaw;
+				//var oldBooty:Number = buttRatingRaw;
 				var addBooty:Number = 1 + rand(9);
 				if (buttRatingRaw + addBooty > bootyMin) addBooty = bootyMin - buttRatingRaw;
 				if (addBooty < 0) return;
@@ -700,6 +1110,48 @@ package classes.Characters
 			}
 		}
 		
+		private function hipsDontLieHipGrowth(totalDays:int):void
+		{
+			var hipsMin:Number = 18;
+			
+			// If hips is max size or is currently filled, no need to grow.
+			if (hipRatingRaw >= hipsMin) return;
+			
+			var baseDShift:uint = 1440 - (GetGameTimestamp() % 1440);
+			
+			for (var i:int = 0; i < totalDays; i++)
+			{
+				//var oldHips:Number = hipRatingRaw;
+				var addHips:Number = 1 + rand(9);
+				if (hipRatingRaw + addHips > hipsMin) addHips = hipsMin - hipRatingRaw;
+				if (addHips < 0) return;
+				
+				var m:String = "You suddenly wobble as your stride changes, surprising you where you stand. Putting your hands to your sides and moving downward, you find that your hips have gained"
+				
+				if (addHips > 5) m += " a monstrous amount of girth";
+				else if (addHips > 4) m += " a massive surge in width";
+				else if (addHips > 3) m += " a much wider measurement";
+				else if (addHips > 2) m += " a few sizes horizontally";
+				else if (addHips > 1) m += " a couple sizes in width";
+				else m += " some width";
+				m += ParseText("... It seems your body is not happy with you looking as thin as a rail, so it is adding a few pounds of fecund weight where it counts most" + (hipRatingRaw < 10 ? "." : "--much to your pleasure!") + " <b>Your [pc.hips] have grown wider!</b>");
+				
+				hipRatingRaw += addHips;
+				
+				if(hairType == GLOBAL.HAIR_TYPE_GOO && addHips > 0)
+				{
+					var gooCost:Number = (20 * addHips);
+					if(gooCost > 0 && kGAMECLASS.gooBiomass() >= gooCost)
+					{
+						m += " Although, the growth took up some of your gooey biomass in the process...";
+						kGAMECLASS.gooBiomass(-1 * gooCost);
+					}
+				}
+				
+				AddLogEvent(m, "passive", baseDShift + (i * 1440));
+			}
+		}
+		
 		private function maneHairGrow(totalDays:uint):void
 		{
 			var lengthMin:Number = 3;
@@ -709,7 +1161,7 @@ package classes.Characters
 			var deltaShift:uint = 1440 - (GetGameTimestamp() % 1440);
 	
 			for (var i:int = 0; i < totalDays; i++)
-			{ 
+			{
 				var m:String = "Your scalp tingles and you";
 				if (hairLength <= 0)
 				{
@@ -762,6 +1214,13 @@ package classes.Characters
 			}
 		}
 		
+		public function createHeatPerk(dayCycle:int = 7):void
+		{
+			return; // 9999 Pending writing before enabling.
+			createPerk("Heat Cycle", 0, 0, 0, 0, "");
+			setPerkValue("Heat Cycle", 2, dayCycle);
+			setPerkTooltip("Heat Cycle", "Your body will periodically cycle through the stages of heat every" + (dayCycle == 1 ? "day" : (" " + dayCycle + " days")) + ".");
+		}
 		private function updateHeatPerk(totalDays:uint):void
 		{
 			// Ignore if already pregnant or infertile
@@ -823,6 +1282,14 @@ package classes.Characters
 			}
 			
 			if(msg.length > 0) AddLogEvent(msg, "passive", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
+		}
+		
+		public function createRutPerk(dayCycle:int = 7):void
+		{
+			return; // 9999 Pending writing before enabling.
+			createPerk("Rut Cycle", 0, 0, 0, 0, "");
+			setPerkValue("Rut Cycle", 2, dayCycle);
+			setPerkTooltip("Rut Cycle", "Your body will periodically cycle through the stages of rut every" + (dayCycle == 1 ? "day" : (" " + dayCycle + " days")) + ".");
 		}
 		private function updateRutPerk(totalDays:uint):void
 		{
@@ -903,22 +1370,27 @@ package classes.Characters
 						{
 							AddLogEvent(ParseText("A tingle spreads through your [pc.balls]. Once it fades, you realize that your [pc.sack] is noticeably less elastic. Perhaps you’ve replaced too much kui-tan DNA to reap the full benefits."), "passive", deltaT);
 						}
-						ExtendLogEvent("\n\n(<b>Perk Lost: 'Nuki Nuts</b>)");
+						ExtendLogEvent("\n\n(<b>Perk Lost: ‘Nuki Nuts</b>)");
 						ballSizeMod -= perkv1("'Nuki Nuts");
 						removePerk("'Nuki Nuts");
 						kGAMECLASS.nutStatusCleanup();
 					}
 					else
 					{
-						AddLogEvent("(<b>Perk Lost: 'Nuki Nuts</b> - You no longer meet the requirements. You’ve lost too many kui-tan transformations.)", "passive", deltaT);
+						AddLogEvent("(<b>Perk Lost: ‘Nuki Nuts</b> - You no longer meet the requirements. You’ve lost too many kui-tan transformations.)", "passive", deltaT);
 						removePerk("'Nuki Nuts");
 					}
 				}
 				else if(perkv2("'Nuki Nuts") == 1 && balls <= 0)
 				{
-					AddLogEvent("A strange sensation hits your nethers that forces you to wobble a little... Checking your status on your codex, it seems that removing your ballsack has also made the signature testicle-expanding tanuki mod vanish as well!\n\n(<b>Perk Lost: 'Nuki Nuts</b> - You have no nuts to expand!)", "passive", deltaT);
+					AddLogEvent("A strange sensation hits your nethers that forces you to wobble a little... Checking your status on your codex, it seems that removing your ballsack has also made the signature testicle-expanding tanuki mod vanish as well!\n\n(<b>Perk Lost: ‘Nuki Nuts</b> - You have no nuts to expand!)", "passive", deltaT);
 					removePerk("'Nuki Nuts");
 				}
+			}
+			if(hasPerk("Cum Cascade") && !hasPerk("'Nuki Nuts"))
+			{
+				AddLogEvent("(<b>Perk Lost: Cum Cascade</b> - You have lost the extra semen producing side effect of ‘Nuki Nuts.)");
+				removePerk("Cum Cascade");
 			}
 			if(hasPerk("Fecund Figure"))
 			{
@@ -948,7 +1420,8 @@ package classes.Characters
 			}
 			if(hasStatusEffect("Nyrea Eggs"))
 			{
-				if(nyreaScore() < 3)
+				if(!hasPerk("Nyrea Eggs") && statusEffectv4("Nyrea Eggs") != 0) setStatusValue("Nyrea Eggs", 4, 0);
+				if(statusEffectv4("Nyrea Eggs") != 1 && nyreaScore() < 3)
 				{
 					AddLogEvent("You are interrupted by a shifting in your insides as a bubbling sensation fills your loins, and then... nothing.", "passive", deltaT);
 					if(statusEffectv1("Nyrea Eggs") > 0)
@@ -961,11 +1434,17 @@ package classes.Characters
 						else ExtendLogEvent(" like a huge weight has been lifted from you.");
 					}
 					ExtendLogEvent(" Double-checking your codex, you find that");
-					if(statusEffectv1("Nyrea Eggs") > 0) ExtendLogEvent(ParseText(" the nyrean eggs you’ve been carrying in your [pc.cumNoun] have dissolved and absobed into your body"));
+					if(statusEffectv1("Nyrea Eggs") > 0) ExtendLogEvent(ParseText(" the nyrean eggs you’ve been carrying in your [pc.cumNoun] have dissolved and absorbed into your body"));
 					else ExtendLogEvent(ParseText(" your [pc.cumNoun] is no longer capable of producing eggs anymore"));
 					ExtendLogEvent(". It must be due to the lack of nyrean genes in your system....");
 					removeStatusEffect("Nyrea Eggs");
 				}
+			}
+			else if(hasPerk("Nyrea Eggs") && hasOvipositor())
+			{
+				// Regain permanent effect if has perk.
+				AddLogEvent(ParseText("You feel a familiar bloating in your body and discover that your [pc.cumNoun] has started producing nyrean eggs again!"), "passive", deltaT);
+				createStatusEffect("Nyrea Eggs", 80 + rand(21), 1, 0, 1, true, "", "", false, 0);
 			}
 			if(hasPerk("Slut Stamp"))
 			{
@@ -1005,23 +1484,21 @@ package classes.Characters
 			}
 			if(armType == GLOBAL.TYPE_FLOWER && hasVagina())
 			{
-				if(totalWombPregnancies() < vaginas.length)
+				if(!hasStatusEffect("Arm Flower") && totalWombPregnancies() < vaginas.length)
 				{
-					if(hasStatusEffect("Arm Flower")) return;
-					
 					// Choose Flower Color
 					var flowerColor:String = RandomInCollection(["red", "yellow", "blue", "purple", "pink", "white"]);
 					
-					AddLogEvent("A summery feeling spreads down your arm ivy, like tiny veins of lustful energy. You intimately feel each of the small " + flowerColor + " flowers that pop and blossom into being on the delicate vines, like little skips of the heart.\n\nWhy have you flowered like this? The rational part of your brain doesn’t have an answer... but the clear, green part of you knows. Your empty womb and [pc.eachVagina] know. You are ripe and ready for seeding, and your body is brightly signaling that fact to anyone that looks at you the best way it knows how.", "passive", deltaT);
+					AddLogEvent(ParseText("A summery feeling spreads down your arm ivy, like tiny veins of lustful energy. You intimately feel each of the small " + flowerColor + " flowers that pop and blossom into being on the delicate vines, like little skips of the heart.\n\nWhy have you flowered like this? The rational part of your brain doesn’t have an answer... but the clear, green part of you knows. Your empty womb and [pc.eachVagina] know. You are ripe and ready for seeding, and your body is brightly signaling that fact to anyone that looks at you the best way it knows how."), "passive", deltaT);
 					
 					createStatusEffect("Arm Flower", 0, 0, 0, 0, true, "", flowerColor, false);
 					// +Lust, slow Libido increase of 5
 					slowStatGain("libido", 5);
 					lust(50);
 				}
-				else if(hasStatusEffect("Arm Flower"))
+				else if(hasStatusEffect("Arm Flower") && totalWombPregnancies() >= vaginas.length)
 				{
-					AddLogEvent("Your " + getStatusTooltip("Arm Flower") + " arm flowers droop and, over the course of the next hour, de-petal. Evidently they feel their work is done... which can only mean one thing. You stroke your [pc.belly].", "passive", deltaT);
+					AddLogEvent(ParseText("Your " + getStatusTooltip("Arm Flower") + " arm flowers droop and, over the course of the next hour, de-petal. Evidently they feel their work is done... which can only mean one thing. You stroke your [pc.belly]."), "passive", deltaT);
 					
 					//Libido decrease of 3
 					libido(-3);
@@ -1085,12 +1562,11 @@ package classes.Characters
 				if(perkv1("Wooly") >= 1 && !hasFur())
 				{
 					setPerkValue("Wooly", 1, -7);
-					return;
 				}
 				// Regrow wool when timer hits 0.
-				if(perkv1("Wooly") == 0)
+				else if(perkv1("Wooly") == 0)
 				{
-					AddLogEvent(("A familiar tingle spreads across your [pc.skin], and before you can scratch the itch, " + (hasFur() ? "the fur on your chest and back grows and thickens into curls" : "thick, curly fur starts to push out from your chest and back") + ", making you appear like quite the sheep. <b>You have regrown your coat of wool!</b>"), "passive", deltaT);
+					AddLogEvent(ParseText("A familiar tingle spreads across your [pc.skin], and before you can scratch the itch, " + (hasFur() ? "the fur on your chest and back grows and thickens into curls" : "thick, curly fur starts to push out from your chest and back") + ", making you appear like quite the sheep. <b>You have regrown your coat of wool!</b>"), "passive", deltaT);
 					SheepTF.growWool(this);
 				}
 			}
@@ -1100,19 +1576,27 @@ package classes.Characters
 				// Remove Wooly Perk.
 				if(hasPerk("Wooly"))
 				{
-					if(hasFur() && perkv1("Wooly") >= 1) ExtendLogEvent(" As you claw at your [pc.skinNoun], thick patches of curly wool fall off the surface like loose yarn, " + (hasFur() ? "leaving behind relatively short fur" : "leaving you with your [pc.skinFurScales]") + ". Checking your codex, you confirm that your body has lost the ability to maintain its wooly coat.");
-					else ExtendLogEvent(" You claw at your [pc.skinNoun] until the irritation subsides. Relaxed, you check your codex, only to find that your body has lost the ability to regrow and maintain its wooly coat.");
+					if(hasFur() && perkv1("Wooly") >= 1) ExtendLogEvent(ParseText(" As you claw at your [pc.skinNoun], thick patches of curly wool fall off the surface like loose yarn, " + (hasFur() ? "leaving behind relatively short fur" : "leaving you with your [pc.skinFurScales]") + ". Checking your codex, you confirm that your body has lost the ability to maintain its wooly coat."));
+					else ExtendLogEvent(ParseText(" You claw at your [pc.skinNoun] until the irritation subsides. Relaxed, you check your codex, only to find that your body has lost the ability to regrow and maintain its wooly coat."));
 					ExtendLogEvent("\n\n(<b>Perk Lost: Wooly</b>)");
 					removePerk("Wooly");
 				}
 				removeStatusEffect("Wool Removal");
+			}
+			if(hasPerk("Myr Venom"))
+			{
+				if(!hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED))
+				{
+					AddLogEvent(ParseText("Your natural venom drips into your mouth so much that your [pc.tongue] may as well be stained with it. Certain people might react to the diluted dose..."), "passive", deltaT);
+					addTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+				}
 			}
 		}
 		
 		// Mimbrane jazz.
 		public function mimbranePartDescript(mimType: String = ""): String
 		{
-			var mimbrane:StorageClass = getPerkEffect(mimType);
+			var mimbrane:StorageClass = getStatusEffect(mimType);
 			
 			if(mimbrane == null) return ("<b>ERROR: mimbranePartDescript() called for unknown mimbrane “" + mimType + "”</b>");
 			
@@ -1155,6 +1639,36 @@ package classes.Characters
 			else desc += RandomInCollection(["parasite", "epidel", "graft", "second skin", "cum leech"]);
 			
 			return desc;
+		}
+		public function mimbranePuffiness(mimType: String = ""):Number
+		{
+			var mimbrane:StorageClass = getStatusEffect(mimType);
+			
+			if(mimbrane == null) return 0;
+			
+			var toggle:String = "";
+			switch(mimType)
+			{
+				case "Mimbrane Cock": toggle = "COCK"; break;
+				case "Mimbrane Pussy": toggle = "CUNT"; break;
+				case "Mimbrane Ass": toggle = "BUTT"; break;
+				case "Mimbrane Balls": toggle = "SACK"; break;
+				case "Mimbrane Boobs": toggle = "TITS"; break;
+				case "Mimbrane Hand Left":
+				case "Mimbrane Hand Right": toggle = "HAND"; break;
+				case "Mimbrane Foot Left":
+				case "Mimbrane Foot Right": toggle = "FOOT"; break;
+				case "Mimbrane Face": toggle = "FACE"; break;
+			}
+			if(toggle != "" && flags["MIMBRANE_NOSWELL_" + toggle]) return 0;
+			
+			var puffScore:Number = 0;
+			
+			if(mimbrane.value3 >= 3) puffScore += 1;
+			if(mimbrane.value3 >= 8) puffScore += 1;
+			if(mimbrane.value3 >= 13) puffScore += 1;
+			
+			return puffScore;
 		}
 	}
 }

@@ -10,7 +10,7 @@ package classes.Items.Apparel
 	 */
 	public class ButlerOutfit extends ItemSlotClass
 	{
-		
+		//Bess only?
 		public function ButlerOutfit() 
 		{
 			this._latestVersion = 1;

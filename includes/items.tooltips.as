@@ -6,19 +6,32 @@ public function altTooltip(itemName:String = "none"):String
 	
 	switch(itemName)
 	{
+		// Perks
+		case "Overcharge":
+			if(pc.hasPerk("Heroic Reserves")) tooltip += "200";
+			else tooltip += "150";
+			break;
+		
 		// Weapons
 		case "HoldOutPistol":
-			tooltip = "A simple black-powder pistol. It is easy to conceal but does not pack a particularly strong punch";
+			tooltip += "A simple black-powder pistol. It is easy to conceal but does not pack a particularly strong punch";
 			if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) tooltip += ", the perfect weapon for a smuggler";
 			tooltip += ".";
 			break;
 		case "EagleHandgun":
-			tooltip = "A large barreled fifty caliber handgun. This particular pistol packs a wallop for such a compact weapon.";
+			tooltip += "A large barreled fifty caliber handgun. This particular pistol packs a wallop for such a compact weapon.";
 			if(pc.characterClass == GLOBAL.CLASS_MERCENARY) tooltip += " It’s the perfect weapon for a mercenary on the go.";
 			break;
 		case "LaserPistol":
 			tooltip += "The mark III laser pistol carries many refinements over previous models that make it far less likely to explode than its predecessors.";
 			if(pc.characterClass == GLOBAL.CLASS_ENGINEER) tooltip += " It’s the perfect weapon for a tech specialist to start with.";
+			break;
+		
+		// Treasures
+		case "Savicite":
+			if(getPlanetName().toLowerCase().indexOf("uveto") != -1) tooltip += "Savicite, an item that seems too useful and too ubiquitous to be real, yet here it is. It has uses in everything from starship fuel to medical treatments and more. You could sell this for a pretty penny.";
+			else tooltip += "Savicite is a moderately rare mineral used as both a fuel source and a psionic focus by several Confederate-space factions. The chunks found in the wilderlands of Uveto are usually fist-sized green rocks with a strangely fuzzy texture.";
+			tooltip += "\n\nJust holding it makes your skin feel oddly warm, flushed with unbidden desire.";
 			break;
 		
 		// Consumables
@@ -33,6 +46,9 @@ public function altTooltip(itemName:String = "none"):String
 			break;
 		case "Futazona":
 			tooltip += "A 20 oz solid steel thermos labeled: “Futazona.” The thermos is decorated with a stylized mural depicting several muscular hermaphrodites caught up in an orgy. The cap has a dial on it labeled: “Classic,” “Lite,” and “Plus.” Small text reveals that this is Hazelnut and Honey flavored.";
+			break;
+		case "AssSlapPatch":
+			tooltip += "A recent addition to the Xenogen line, The Ass Slap Patch actually started as a running joke between two Xenogen executives. One day a" + (silly ? " brown nosing" : "n enterprising") + " member of the R&D team misheard them and decided to develop such a product. Similiar to their boobswell line of products, as long as the patch is worn it will slowly massage the glutes while feeding nanomachines and synthetic tissue into the buttocks, causing them to increase in size over time. The nanomachines go so far as to even reshape the ass once plenty of the synthetic material is available for reconstruction. A single patch lasts three full days. May also cause hole tightening, increased elasticity and even self lubing of the anal cavity as a side effect to the chemical composition of the synthetic material.";
 			break;
 		case "KerokorasVenom":
 			tooltip += "A vial of ";
@@ -49,6 +65,11 @@ public function altTooltip(itemName:String = "none"):String
 			if(!silly) tooltip += " Equally colorful lettering informs you that this is an after-sex drug which tightens vaginas and asses that have gotten stretched out by too much attention or excessively hung playmates.";
 			else tooltip += "\n\n<i>“Hi, Milly Bayes here with Mighty Tight! Gotten knotted one too many times? Stopped by New Texas and ran with the bulls? Do you feel like you’re just worn out down there? J’ejune Pharmaceutical has your back with Mighty Tight! Mighty Tight is guaranteed to tighten your cooch, leaving you fresh and ready to party some more! Not only that, Mighty Tight works on asses too! Put the squeeze on your playmates with Mighty Tight!”</i>";
 			tooltip += "\n\nBelow this, in much smaller text, is a warning informing you <b>not to take Mighty Tight more than twice every four hours</b>. It also lists off a long string of minor potential side effects. Within the colorful packaging is a dull pink pill.";
+			break;
+		case "SirensBounty":
+			tooltip += "This Xenogen product is some kind of liquid contained in a stylish glass flask. ‘Siren’s Bounty’ is spelled out on the base in a combination of fancy cursive and musical notes which wrap around the entire container.";
+			tooltip += "\n\nYou idly note the little warning preamble on the back, but pay it no mind.";
+			if(silly) tooltip += " It’s not like you <i>read</i> warning labels anyway.";
 			break;
 		case "Sterilex":
 			tooltip += "This is a colorfully-packaged box featuring some holovid sales girl.";

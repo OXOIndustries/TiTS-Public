@@ -201,7 +201,7 @@ public function turnYourShitInToScalla():void
 	showName("QUEEN\nSCALLA");
 	showBust("SCALLA");
 	output("You step up to Scalla, intent on asking after your reward.");
-	output("\n\nThe silk-wrapped ant-woman smiles, extending her lower pair of hands to shake your own while her upper ones draw forth a UGC standard credit chit. <i>“Well done, star-walker.”</i> She presses the chit into your palm. <i>“You have brought a measure of peace to our people in these most troubling times.”</i>\n\nThe chit’s display shows a 20,000 credit balance. <i>“Where’s Irellia? I thought she would be here for this.”</i>");
+	output("\n\nThe silk-wrapped ant-woman smiles, extending her lower pair of hands to shake your own while her upper ones draw forth a UGC standard credit chit. <i>“Well done, star-walker.”</i> She presses the chit into your palm. <i>“You have brought a measure of peace to our people in these most troubling times.”</i>\n\nThe chit’s display shows a 20,000 " + (isAprilFools() ? "dogecoin" : "credit") + " balance. <i>“Where’s Irellia? I thought she would be here for this.”</i>");
 	output("\n\nScalla’s eyes twinkle knowingly as she separates from you. <i>“She offered you a private audience, did she not? You are welcome in her chambers, now and in the future, should you wish her council. The events of the day have wearied her greatly.”</i> A knowing, all too confident look spreads across her face. <i>“For all your science and technology, you miss so many obvious things. Standing erect like this can be difficult for a queen. The eldest among us cannot even carry themselves, so large are their abdomens. Irellia means you no disrespect.”</i>");
 	output("\n\nYou pocket the chit and bow to the queen, glad that your bargain was upheld after all. <i>“");
 	if(pc.isBro()) output("Thanks");
@@ -434,8 +434,8 @@ public function beADumbShitFallGuyForTheRebels():void
 	
 	if(pc.HPRaw > 5)
 	{
-		pc.HPRaw -= 50;
-		if(pc.HPRaw < 5) pc.HPRaw = 5;
+		var damage:Number = (pc.HPRaw < 55 ? (pc.HPRaw - 5) : 50);
+		if(damage > 0) applyDamage(new TypeCollection( { kinetic: damage }, DamageFlag.BYPASS_SHIELD, DamageFlag.PENETRATING, DamageFlag.EXPLOSIVE ), null, pc, "minimal");
 	}
 	pc.credits = 0;
 	pc.removeEquipment();

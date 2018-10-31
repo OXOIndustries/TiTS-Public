@@ -58,7 +58,7 @@ public function approachMabbs():void
 		else
 		{
 			output("You slyly sidle up to your table and give the pink-furred alien the slightest nod in greeting. <i>“Sylvie said you could hook me up?”</i>");
-			output("\n\nThe " + mabbsRace() + " laconically tilts her head your way. <i>“Izzat so? Didn’t think ol’ Moose-tits approved of my sorta fun.”</i> She giggles to herself and presses a knob on the side of her headgear, presumably to lower the volume. <i>“’Tween you and me, I think she’d rather dosed up on gush and strapped into a milker. But instead of doin’ what she wants, she’s always lecturin’ me and shovin’ her fat ass into my business.”</i> Her ears waft a breeze your way when she shakes her head. <i>“She isn’t the type to skeeze me over to pad her numbers though, so I guess that makes you legit by association.”</i>");
+			output("\n\nThe " + mabbsRace() + " laconically tilts her head your way. <i>“Izzat so? Didn’t think ol’ Moose-tits approved of my sorta fun.”</i> She giggles to herself and presses a knob on the side of her headgear, presumably to lower the volume. <i>“‘Tween you and me, I think she’d rather dosed up on gush and strapped into a milker. But instead of doin’ what she wants, she’s always lecturin’ me and shovin’ her fat ass into my business.”</i> Her ears waft a breeze your way when she shakes her head. <i>“She isn’t the type to skeeze me over to pad her numbers though, so I guess that makes you legit by association.”</i>");
 			//bimb
 			if(pc.isBimbo())
 			{
@@ -124,7 +124,7 @@ public function mabbsSpeciesTalk():void
 	output("\n\nMabbs squints at you. <i>“Rodenian, dummy. You see mouse-girls anywhere else? Didn’t think so. Go look it up on your computer if you wanna know more, ‘cause I ain’t here to blather on and on about my people. So buy something or get out of my face.”</i>");
 	if(!CodexManager.entryUnlocked("Rodenians"))
 	{
-		output("\n\n(<b>Codex entry unlocked!</b>)");
+		output("\n\n<b>(‘Rodenian’ Codex entry unlocked!)</b>");
 		CodexManager.unlockEntry("Rodenians");
 	}
 	processTime(2);

@@ -54,6 +54,9 @@
 			resistances = new TypeCollection();
 			resistances.electric.resistanceValue = 60.0;
 			
+			itemFlags = [];
+			itemFlags.push(GLOBAL.ITEM_FLAG_COVER_BODY);
+			
 			this.version = _latestVersion;
 		}	
 	}

@@ -48,6 +48,7 @@ package classes.UIComponents
 		private var _buttonBodyLabel:TextField;
 		private var _buttonName:String;
 		private var _itemQuantity:int;
+		private var _stackSize:int;
 		
 		/**
 		 * Button textual display
@@ -77,10 +78,28 @@ package classes.UIComponents
 		public function set itemQuantity(v:int):void 
 		{ 
 			_itemQuantity = v; 
+			UpdateItemDisplay();
+		}
 		
-			if (buttonName.length > 0 && v >= 1)
+		public function get stackSize():int { return _stackSize; }
+		public function set stackSize(v:int):void
+		{
+			_stackSize = v;
+			UpdateItemDisplay();
+		}
+		
+		private function UpdateItemDisplay():void
+		{
+			if (buttonName.length > 0 && _itemQuantity >= 1)
 			{
-				buttonHtmlText = buttonName + " x" + v;
+				if (_stackSize > 1)
+				{
+					buttonHtmlText = buttonName + " x" + _itemQuantity;
+				}
+				else
+				{
+					buttonHtmlText = buttonName;
+				}
 			}
 		}
 		
@@ -236,10 +255,11 @@ package classes.UIComponents
 			this.mouseEnabled = true;
 		}
 		
-		public function setItemData(cap:String = "", quantity:int = 1, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, ttComparison:String = null):void
+		public function setItemData(cap:String = "", quantity:int = 1, stackSize:int = 1, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, ttComparison:String = null):void
 		{
 			this.buttonName = cap;
 			this.itemQuantity = quantity;
+			this.stackSize = stackSize;
 			this.func = func;
 			this.arg = arg;
 			this.tooltipHeader = ttHeader;
@@ -252,13 +272,25 @@ package classes.UIComponents
 			this.mouseEnabled = true;
 		}
 		
+		public function setItemDisabledData(cap:String = "", quantity:int = 1, stackSize:int = 1, ttHeader:String = null, ttBody:String = null, ttComparison:String = null):void
+		{
+			this.clearData();
+			this.buttonName = cap;
+			this.itemQuantity = quantity;
+			this.stackSize = stackSize;
+			this.tooltipHeader = ttHeader;
+			this.tooltipBody = ttBody;
+			this.tooltipComparison = ttComparison;
+			this.mouseEnabled = true;
+		}
+		
 		public function setDisabledData(cap:String = "", ttHeader:String = null, ttBody:String = null):void
 		{
 			this.clearData();
 			this.buttonName = cap;
 			this.tooltipHeader = ttHeader;
 			this.tooltipBody = ttBody;
-			this.mouseEnabled = true;	
+			this.mouseEnabled = true;
 		}
 		
 		public function clearData():void
@@ -302,6 +334,9 @@ package classes.UIComponents
 		public function setDisabled():void
 		{
 			this.alpha = 0.3;
+			this.func = undefined;
+			this.arg = undefined;
+			this.buttonMode = false;
 		}
 		
 		public function setActive():void

@@ -46,8 +46,8 @@ public function encounterCuntSnakeOnJungleLand():void {
 	CodexManager.unlockEntry("Cunt Snakes");
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new CuntSnake());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new CuntSnake());
 	CombatManager.victoryScene(defeatACuntSnake);
 	CombatManager.lossScene(loseToCuntSnake);
 	CombatManager.displayLocation("CUNT SNAKE");
@@ -151,9 +151,11 @@ public function getSuckedOffByACuntSnakeAfterLosing():void {
 	}
 	//MERGE
 	output("\n\nTwo pin-pricks of pain hit your [pc.leg], and you realize the creature is biting you again. The added aphrodisiac is more than you can bear, sending you to such heights of sexual need that your internal muscles begin to spasm and flutter, gathering up a hot, thick load to feed this slurping twat. You cry out as the pressure mounts, and then, relief. You cum hard, straight into the alien’s sucking slit, its surface clenching in concentric rings to draw your release towards the snake’s middle. It swallows your load with aplomb");
-	if(pc.cumQ() >= 1000) output(", at first. Each pulse of [pc.cum] is so large that it distends the alien’s surface with spherical bulges");
-	if(pc.cumQ() >= 2000) output(". Your lusty deposit leaks out around the edges of the " + enemy.tailVaginaDescript() + ", dripping from its noticeable clit in sticky ropes");
-	if(pc.cumQ() >= 10000) output(". Before long the excess is spraying out in a tidal wave of genetic material, though the tubular fuckhole seems content to drink as much as it can");
+	
+	var cumQ:Number = pc.cumQ();
+	if(cumQ >= 1000) output(", at first. Each pulse of [pc.cum] is so large that it distends the alien’s surface with spherical bulges");
+	if(cumQ >= 2000) output(". Your lusty deposit leaks out around the edges of the " + enemy.tailVaginaDescript() + ", dripping from its noticeable clit in sticky ropes");
+	if(cumQ >= 10000) output(". Before long the excess is spraying out in a tidal wave of genetic material, though the tubular fuckhole seems content to drink as much as it can");
 	output(".");
 	if(pc.cockTotal() > 1)
 	{
@@ -167,6 +169,7 @@ public function getSuckedOffByACuntSnakeAfterLosing():void {
 	
 	output("\n\nSpent, you relax back as a much thicker snake slides from your member, insolently slithering off of you while it struggles to handle the deposit. Sleep creeps in from the edges of your vision, and after what you’ve been through, you’re in no position to resist a little rest.");
 	processTime(10+rand(5));
+	enemy.loadInMouth(pc);
 	pc.orgasm();
 	processTime(45+rand(35));
 	cuntSnakeLossEpilogueTailChances();
@@ -197,7 +200,7 @@ public function loseToCuntSnakeAndDontGetSucked():void {
 		if(pc.hasFuckableNipples()) choices[choices.length] = 3;
 		if(pc.hasDickNipples()) choices[choices.length] = 4;
 		
-		var select:int = choices[rand(choices.length)];
+		var select:int = (choices.length > 0 ? choices[rand(choices.length)] : -1);
 		
 		output("Your body is so hot... so very hot. You’re burning up! You tear out of your gear as fast as possible, shedding the assembled equipment into a loose pile on the ground. Your [pc.skin] is flush with lust, and your ");
 		if(select == 0) output("juices are dripping");
@@ -466,9 +469,11 @@ public function fuckACuntSnake():void {
 		else output(" Trickles");
 		output(" of girl-cum escape your ignored netherlips, splattering all over your gear.");
 	}
-	if(pc.cumQ() >= 500) output(" The serpentine snake-pussy is soon bloating in your hands, and the cock-ring like front half of the creature unwinds, languidly sliding off of you as your load fills it beyond capacity. Bubbles of [pc.cum] dribble out of its gaped entrance as it falls to the ground and slowly begins to move away, a trail of [pc.cumColor] behind it.");
-	if(pc.cumQ() >= 1500) output(" You make sure to hose the snake down with the rest of your prodigious, gushing load, splattering huge ropes across its body until it’s practically swimming through your seed.");
-	else if(pc.cumQ() < 500) output(" The snake gulps down the last few pulses of [pc.cumColor] treat, squeezing and milking your rod as long as it can. Only after you cease to leak any ejaculate at all does it finally give up and uncoil, slipping off and squirming into the bushes before you can catch your breath.");
+	
+	var cumQ:Number = pc.cumQ();
+	if(cumQ >= 500) output(" The serpentine snake-pussy is soon bloating in your hands, and the cock-ring like front half of the creature unwinds, languidly sliding off of you as your load fills it beyond capacity. Bubbles of [pc.cum] dribble out of its gaped entrance as it falls to the ground and slowly begins to move away, a trail of [pc.cumColor] behind it.");
+	if(cumQ >= 1500) output(" You make sure to hose the snake down with the rest of your prodigious, gushing load, splattering huge ropes across its body until it’s practically swimming through your seed.");
+	else if(cumQ < 500) output(" The snake gulps down the last few pulses of [pc.cumColor] treat, squeezing and milking your rod as long as it can. Only after you cease to leak any ejaculate at all does it finally give up and uncoil, slipping off and squirming into the bushes before you can catch your breath.");
 	
 	output("\n\n[pc.OneCock] is soaked in pussy juice but not a drop of cum, and you tuck your female-scented package ");
 	if(pc.armor.shortName != "") output("back into your [pc.armor] with a rueful smile.");
@@ -477,6 +482,7 @@ public function fuckACuntSnake():void {
 	output("\n\n");
 	
 	processTime(15+rand(15));
+	enemy.loadInCuntTail(pc);
 	pc.orgasm();
 	CombatManager.genericVictory();
 }
@@ -573,7 +579,7 @@ public function approachCuntSnake(response:String = "intro"):void
 					output("\n\nYou stare at your new [pc.tailVagina], then look down at your fully erect dick" + (pc.cockTotal() == 1 ? "" : "s") + ". It’s certainly not rocket science. You " + (oldTailCount > 0 ? "shift the tip of your new and improved tail downwards" : "clumsily shift your tail downwards, still getting a feel for moving the strange new addition,") + " and press it against the [pc.cockHead] of your [pc.biggestCock]. With an awkward combination of pelvic thrusts and tail curling, you penetrate yourself, sinking to " + (pc.isBiped() ? "your knees as your legs grow weak" : "the ground as your strength fails you") + ".");
 					output("\n\nOh yeah, that’s good. That’s really good. Your tail seems to take it upon itself to keep going, hinting that a trace of the cunt snake is still there, but you don’t mind. Not one bit. You moan as your tail convulses around your [pc.biggestCock], and you wrap your hands around it to keep it in place. With a building excitement, you buck your hips, using your tail like an onahole and fucking yourself into a stupor.");
 					output("\n\nThere’s definitely a bit of the cunt snake’s aphrodisiac-laced venom in your system, because you don’t last long. Your excited tail-fuck only lasts for a dozen or so thrusts before you’re leaning back and screaming, [pc.cum] flooding your [pc.tailVagina]. You can feel both sides of experience, and the pleasure is mind-numbing.");
-					if(pc.hasVagina()) output(" Your other " + (pc.totalVaginas() == 1 ? "vagina soaks" : "vaginas soak") + " your [pc.thighs] with [pc.girlCum], wishing " + (pc.totalVaginas() == 1 ? "it" : "they") + " could recieve such splendid attention.");
+					if(pc.hasVagina()) output(" Your other " + (pc.totalVaginas() == 1 ? "vagina soaks" : "vaginas soak") + " your [pc.thighs] with [pc.girlCum], wishing " + (pc.totalVaginas() == 1 ? "it" : "they") + " could receive such splendid attention.");
 					output(" You’re pulled in " + (pc.totalGenitals() <= 1 ? "two" : num2Text(pc.totalGenitals() + 1)) + " different directions as you orgasm, and your brain just can’t keep up. You collapse onto your back as the world starts to spin.");
 					output("\n\nA few minutes pass before your senses return. You whistle as you sit up, your tail still giving the occasional twitch around your limp [pc.biggestCock]. It slides off as you stand up, and you’re pleased to learn you can control it with almost no effort now that it’s been fed. It seems like it’s in your best interest to keep your new friend full and happy, not that it’s going to be too hard to convince you to do so. Desires satisfied, you rise to your feet and collect your things.");
 				}
@@ -587,7 +593,7 @@ public function approachCuntSnake(response:String = "intro"):void
 					if(pc.girlCumQ() >= 1000)
 					{
 						output(" Your hands, " + (pc.hasLegs() ? " legs," : "") + " tail, and practically everything else nearby are left soaked and dripping.");
-						applyPussyDrenched(pc);
+						pc.applyPussyDrenched();
 					}
 					output("\n\nThe relief of orgasm lulls you to sleep, but you wake up with a start only a few minutes later. You look down at the mess you made and give a nervous laugh. That was a ride. You stand up and get a feel for moving around again, then work to gather your " + (pc.isNude() ? "possessions" : "clothing") + ". There’s still a lingering hunger coming from your tail, the need for a meal of a more masculine nature, but the sensation is little more than an itch for now. You’ll probably want to take your new friend out to dinner fairly soon, though, lest its appetite become a serious distraction... ");
 				}
@@ -612,7 +618,7 @@ public function approachCuntSnake(response:String = "intro"):void
 						if(pc.cumQ() >= 1000)
 						{
 							output(", drenching your lower half with a copious amount of [pc.cum] at the same time");
-							applyCumSoaked(pc);
+							pc.applyCumSoaked();
 						}
 						output(".");
 					}
@@ -703,7 +709,16 @@ public function approachCuntSnake(response:String = "intro"):void
 public function giveBirthThroughCuntTail():void {
 	clearOutput();
 	showCuntSnake();
-	output("There is a shifting within you that startles you to awareness, centered just above your [pc.butt]. You wince when a spherical bulge lurches perhaps an inch down your [pc.tail]. It’s trapped inside but slowly moving downwards in fits and starts. The everpresent wetness of your [pc.tailCunt] increases, leaking out in a tide that would shame you even if you were locked in the throes of masturbation. Unwanted pleasure rears up in the back of your mind as the exotic sensation of pushing something out through your dripping pussy asserts itself.");
+	
+	if(!pc.hasCuntSnake())
+	{
+		output("There is a phantom tingling feeling centered just above your [pc.butt]... but it then subsides. You check your codex for anything off and nothing out of the ordinary returns. Hmm, odd.");
+		processTime(2);
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
+	
+	output("There is a shifting within you that startles you to awareness, centered just above your [pc.butt]. You wince when a spherical bulge lurches perhaps an inch down [pc.oneTail]. It’s trapped inside but slowly moving downwards in fits and starts. The everpresent wetness of your [pc.tailCunt] increases, leaking out in a tide that would shame you even if you were locked in the throes of masturbation. Unwanted pleasure rears up in the back of your mind as the exotic sensation of pushing something out through your dripping pussy asserts itself.");
 	output("\n\nYou flop down onto your side and curl your spasming tail around, watching the distention make progress along its length. Looking at the shape of the spheroid, you surmise that your tailcunt has created an egg and is giving birth to it now. Pulsing, muscular contractions work to push your ovum closer to the exit, eliciting a moan of pleasure from you in spite of your mild distress at the situation.");
 	output("\n\nThe egg begins to move faster, squishing and sliding through as it reaches the well-lubed part of your sloppy channel, and the ensuing feeling causes your back to arch and your tongue to loll from your mouth. Gurgled vocalizations of pleasure escape your mouth. Your hands, desperate to help somehow, grab hold of your [pc.chest] and grope at your [pc.nipples]");
 	if(pc.hasNippleCocks()) output(", lewdly pulling on your suddenly-exposed nippledicks");
@@ -843,11 +858,20 @@ public function addChildCuntsnake(numChild:int = 1):void
 }
 
 // Feeding
-public function feedCuntSnake(preg:Boolean = true):void
+public function feedCuntSnake(cumFrom:Creature = null):void
 {
 	IncrementFlag("TIMES_FED_CUNT_SNAKE");
-	
 	flags["DAYS_SINCE_FED_CUNT_TAIL"] = 0;
 	
-	if(preg && flags["CUNT_TAIL_PREGNANT_TIMER"] == undefined && rand(5) == 0) flags["CUNT_TAIL_PREGNANT_TIMER"] = ((20 + rand(9)) * 60);
+	var preg:Boolean = true;
+	if(cumFrom is Flahne) preg = false;
+	
+	if(preg && rand(5) == 0) fertilizeCuntSnake();
 }
+public function fertilizeCuntSnake():int
+{
+	if(flags["CUNT_TAIL_PREGNANT_TIMER"] == undefined) flags["CUNT_TAIL_PREGNANT_TIMER"] = ((20 + rand(9)) * 60);
+	
+	return 1;
+}
+

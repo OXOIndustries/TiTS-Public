@@ -9,6 +9,13 @@ package classes.Resources.Busts
 	{
 		public function get PREVIEW():Class { return Bust_QUEENOFTHEDEEP; }
 		
+		[Embed(source = "../../../assets/images/pc/jacques00/pc.png", mimeType = "image/png")]
+		public var Bust_PC:Class;
+		public var Bounds_PC:Rectangle = new Rectangle(30, 5, 90, 85);
+		[Embed(source = "../../../assets/images/pc/jacques00/pc_nude.png", mimeType = "image/png")]
+		public var Bust_PC_NUDE:Class;
+		public var Bounds_PC_NUDE:Rectangle = new Rectangle(30, 5, 90, 85);
+		
 		[Embed(source = "../../../assets/images/npcs/jacques00/reasner.png", mimeType = "image/png")]
 		public var Bust_BEATRICE:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/reasner_nude.png", mimeType = "image/png")]
@@ -208,6 +215,8 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/riya.png", mimeType = "image/png")]
 		public var Bust_RIYA:Class;
+		[Embed(source = "../../../assets/images/npcs/jacques00/riya_casual.png", mimeType = "image/png")]
+		public var Bust_RIYA_CASUAL:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/riya_nude.png", mimeType = "image/png")]
 		public var Bust_RIYA_NUDE:Class;
 		
@@ -272,6 +281,11 @@ package classes.Resources.Busts
 		// Easiest way to specify these- compiler constants will avoid these being embedded in the non-imagepack version aka OH GOD WHERE DID THE FILESIZE GOOOOO
 		CONFIG::IMAGEPACK
 		{
+			[Embed(source = "../../../assets/images/pc/jacques00/hr/pc.png", mimeType = "image/png")]
+			public var Full_PC:Class;
+			[Embed(source = "../../../assets/images/pc/jacques00/hr/pc_nude.png", mimeType = "image/png")]
+			public var Full_PC_NUDE:Class;
+			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/reasner.png", mimeType = "image/png")]
 			public var Full_BEATRICE:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/reasner_nude.png", mimeType = "image/png")]
@@ -378,12 +392,12 @@ package classes.Resources.Busts
 			public var Full_MYR_RED_GUARD_MASK:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/natalie.png", mimeType = "image/png")]
-			public var Full_NATALIE:Class;		
+			public var Full_NATALIE:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/natalie_nude.png", mimeType = "image/png")]
 			public var Full_NATALIE_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nehzara.png", mimeType = "image/png")]
-			public var Full_NEHZARA:Class;		
+			public var Full_NEHZARA:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/nehzara_nude.png", mimeType = "image/png")]
 			public var Full_NEHZARA_NUDE:Class;
 			
@@ -527,6 +541,8 @@ package classes.Resources.Busts
 		public var Bust_LOGO_GALACTIC_HUNTRESS:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/galactic_huntress_1.png", mimeType = "image/png")]
 		public var Bust_LOGO_GALACTIC_HUNTRESS_1:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/gilden.png", mimeType = "image/png")]
+		public var Bust_LOGO_GILDEN_REP:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/humphard.png", mimeType = "image/png")]
 		public var Bust_LOGO_HUMPHARD:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/jejune.png", mimeType = "image/png")]
@@ -543,6 +559,8 @@ package classes.Resources.Busts
 		public var Bust_LOGO_REAPER:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/rhenworld.png", mimeType = "image/png")]
 		public var Bust_LOGO_RHENWORLD:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/scarlet.png", mimeType = "image/png")]
+		public var Bust_LOGO_SCARLET_FED:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/sits.png", mimeType = "image/png")]
 		public var Bust_LOGO_SITS:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/snuggle.png", mimeType = "image/png")]
@@ -570,6 +588,8 @@ package classes.Resources.Busts
 			public var Full_LOGO_GALACTIC_HUNTRESS:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/galactic_huntress_1.png", mimeType = "image/png")]
 			public var Full_LOGO_GALACTIC_HUNTRESS_1:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/gilden.png", mimeType = "image/png")]
+			public var Full_LOGO_GILDEN_REP:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/humphard.png", mimeType = "image/png")]
 			public var Full_LOGO_HUMPHARD:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/jejune.png", mimeType = "image/png")]
@@ -586,6 +606,8 @@ package classes.Resources.Busts
 			public var Full_LOGO_REAPER:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/rhenworld.png", mimeType = "image/png")]
 			public var Full_LOGO_RHENWORLD:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/scarlet.png", mimeType = "image/png")]
+			public var Full_LOGO_SCARLET_FED:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/sits.png", mimeType = "image/png")]
 			public var Full_LOGO_SITS:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/snuggle.png", mimeType = "image/png")]

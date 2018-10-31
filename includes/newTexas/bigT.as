@@ -60,9 +60,7 @@ public function TsDoorIsLocked():void
 	showZephyrDeets();
 	output("You pull on the door, but all it does is rattle, locked.\n\nThe secretary just laughs to herself, making her implausibly large bust wobble. <i>“You’ll need to talk to me if you want to get in there, but why don’t you save us both the time and just leave?”</i>\n\nRude.");
 
-	currentLocation = "529";
-	var map:* = mapper.generateMap(currentLocation);
-	userInterface.setMapData(map);
+	moveTo("529");
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -146,7 +144,7 @@ public function talkWithBigTAboutNudeTexas():void
 	else output("\n\n<i>“Anything else to it?”</i> you finally ask.");
 	output("\n\nTee guffaws and slaps his knee. <i>“That not enough for you, Steele? What else can ya want from a home, huh? Sure, it ain’t the most exciting place in the galaxy. Just ask Ogram down at Customs. He’s always complaining about not having pirates and kidnappers to shoot. Or at least he does when that Amma of his isn’t keeping him busy. Ha! That’s the real beauty of our little world, isn’t it? There’s always something to distract you from your woes. Never a bad day on New Texas - and if it is, just pop down to the milk barn until it ain’t one!”</i>");
 
-	output("\n\nTee laughs and shakes his head. <i>“Life ain’t all sex and milk, but there’s enough of it on tap to keep anybody happy, thanks to the Treatment. That’s what makes New Texas run, " + pc.mf("son","girl") + "! Or at least, run as smooth as it does for as long as it has. All the way back to the old colony days up ‘til now!”</i>");
+	output("\n\nTee laughs and shakes his head. <i>“Life ain’t all sex and milk, but there’s enough of it on tap to keep anybody happy, thanks to the Treatment. That’s what makes New Texas run, " + pc.mf("son","girl") + "! Or at least, run as smooth as it does for as long as it has. All the way back to the old colony days up till now!”</i>");
 	processTime(2);
 	talkToBigT(talkWithBigTAboutNudeTexas);
 }
@@ -201,9 +199,9 @@ public function oldColonyBigTTalk():void
 	showBigT();
 	output("<i>“What was New Texas like, back in the day? You mentioned the Treatment used to be something pretty different.”</i>");
 	output("\n\n<i>“Sure,”</i> Tee laughs, <i>“Every place changes, right? Even New Texas’s grown over the years since my great great etcetera grandpappy landed us all here generations ago. Used to be some native, non-sapient species here, and the place was a little less grassy for starters. Mostly dry, dusty plains, far as the eye could see. Course, we didn’t come with much in the way of fancy terraformin’ machines, no " + pc.mf("sir","ma’am") + ". Settled this world the old fashioned way, with guns and grit and a whole lot of hard work.”</i>");
-	output("\n\nTee gets a proud, faraway look as he speaks. <i>“Back when men were men and women were women. ‘Fore all this pre-fab colony nonsense, when you fought and bled for your stake of land! Even with the old Treatment doin’ its thing, it was a long time ‘fore we managed to settle the whole planet. Generations! Folk were living out of the original colony boat for decades, ‘til we cleared out the biggest of the super-varmints. Practically a war, that was, the way my grandpappy told it. Huge bastards with claws and fangs thicker‘n my arm, came raidin’ at night to steal supplies, the bunch of scav-wolves. Even the little ones still around are a pain in the ass. Ask my girl Gianna sometime why she can’t leave the property, she’ll tell you what they still get up to.”</i>");
+	output("\n\nTee gets a proud, faraway look as he speaks. <i>“Back when men were men and women were women. ‘Fore all this pre-fab colony nonsense, when you fought and bled for your stake of land! Even with the old Treatment doin’ its thing, it was a long time ‘fore we managed to settle the whole planet. Generations! Folk were living out of the original colony boat for decades, till we cleared out the biggest of the super-varmints. Practically a war, that was, the way my grandpappy told it. Huge bastards with claws and fangs thicker‘n my arm, came raidin’ at night to steal supplies, the bunch of scav-wolves. Even the little ones still around are a pain in the ass. Ask my girl Gianna sometime why she can’t leave the property, she’ll tell you what they still get up to.”</i>");
 	output("\n\n<i>“You lived out of the colony ship?”</i> you ask, cocking an eyebrow. Most colony ships back then would have been stripped down for scrap to make houses and other structures.");
-	output("\n\n<i>“Sure,”</i> Tee shrugs, punching one of the buttons on his holoscreen. An image of a massive, sleek starship flickers to life. <i>“Managed to actually land the damn thing... right ‘round here, actually. Most colony ships just sorta crash, fall onto a good planet then wake the crew up outta cryo. Texas ship did it the other way around, see, and my great great etcetera grandpappy managed to land the big bastard. Perfect touchdown, not a scratch on ‘er. Considerin’ the creepy crawlies living here already, colonists figured it’d be better to stay aboard for the first while, ‘til they could push the varms back a ways.”</i>");
+	output("\n\n<i>“Sure,”</i> Tee shrugs, punching one of the buttons on his holoscreen. An image of a massive, sleek starship flickers to life. <i>“Managed to actually land the damn thing... right ‘round here, actually. Most colony ships just sorta crash, fall onto a good planet then wake the crew up outta cryo. Texas ship did it the other way around, see, and my great great etcetera grandpappy managed to land the big bastard. Perfect touchdown, not a scratch on ‘er. Considerin’ the creepy crawlies living here already, colonists figured it’d be better to stay aboard for the first while, till they could push the varms back a ways.”</i>");
 	output("\n\n<i>“So what happened to the ship, then?”</i> you ask. You haven’t seen any gigantic colony ships sitting around.");
 	output("\n\nTee laughs, <i>“Great big sinkhole opened up a ways back, swallowed the old girl. Between you and me, the ranch house here’s built right on top of ‘er. Generator’s still powering the whole ranch!”</i>");
 	processTime(2);
@@ -350,7 +348,7 @@ public function bigTHasABigDDeskBlowjob():void
 		output("\n\nIs someone distracting him from your wonderful blowjob, and more importantly, from getting your delicious bull cream? You cradle his massive, virile balls in your hands and bob your head back and forth, deliberately trying to distract Big T from the call, feeling a naughty, possessive instinct overtake you. Your eyes flick upwards, eagerly watching his reaction.");
 		output("\n\nBig Tee can’t help himself, roughly thrusting his hips to meet your every motion. His flat tip flares in your throat as he struggles to control himself. <i>“A-ah heck! I’m sure that milk’ll show up soon enough, maybe sooner than you think--?”</i> He grabs your head and grinds you against his base, and your [pc.thighs] tremble with delight.");
 		output("\n\nAs the man on the screen complains more, you slide your tongue teasingly along the underside of his mammoth cock, and Tee’s eyes roll back. <i>“Tee, are you rolling your eyes at me--?!?”</i> The man yells. ");
-		output("\n\nCompletely ignoring him, Tee suddenly grabs your head and shoves forward, letting out a bellowing roar. <i>“... I’M COMING--!”</i> You utterly bliss out as he buries his flat-tipped horse cock down your throat, where it flares and explodes. Thick jets of hot bull semen slides down your gullet and you swallow Tee’s cum eagerly, trembling as it slides into your eager belly.");
+		output("\n\nCompletely ignoring him, Tee suddenly grabs your head and shoves forward, letting out a bellowing roar. <i>“...I’M COMING--!”</i> You utterly bliss out as he buries his flat-tipped horse cock down your throat, where it flares and explodes. Thick jets of hot bull semen slides down your gullet and you swallow Tee’s cum eagerly, trembling as it slides into your eager belly.");
 		pc.exhibitionism(1);
 	}
 	else // No phone call
@@ -400,7 +398,7 @@ public function bigTCockSuckPartII():void
 	output("\n\nWhen you finally leave Big T’s office, you’re barely able to put one foot in front of the other without tripping. You hold your [pc.gear] to your cum covered [pc.chestSimple]. You’re in a complete daze as you stumble giddily pass his receptionist,");
 	if(!pc.isNude()) output(" half");
 	output(" naked and too spaced out to care.");
-	output("\n\nAs you leave, you barely register the governor buzzing Zephyr on the intercom, and the rough, breathless voice that follows. <i>“... Cancel my next few appointments, Zephyr. This bull’s all worn out!”</i>");
+	output("\n\nAs you leave, you barely register the governor buzzing Zephyr on the intercom, and the rough, breathless voice that follows. <i>“...Cancel my next few appointments, Zephyr. This bull’s all worn out!”</i>");
 	sexedBigT();
 	// Might want to kick the player two squares south after this. 
 	flags["FUCKED_BY_BIGT"] = 1;
@@ -607,7 +605,7 @@ public function pitchTOverATable():void
 	output("\n\nYour orgasm is throttled, however, as your [pc.cum] surges up your [pc.cocks] only to be obstructed by his clenching ring. You’re utterly consumed by mind-numbing pleasure as you’re forcefully kept at the pinnacle of your climax. Pleasure-pain seizes your loins, your release denied, until Tee’s ass finally lets up. Your [pc.cum] explodes into his ass all at once and you nearly black out, holding onto his horns for dear life.");
 
 	output("\n\nYou cling to them and spurt burst after burst of spunk into the big bull’s ass. Finally you can hold yourself up no more and fall against his muscular back. You can feel yourself quivering, and he too, both of you absolutely wrecked from your respective orgasms. It takes you a long time to slide off, and when you finally do, your [pc.cumVisc] [pc.cumNoun] drools down his barrel-like thighs, coating them in [pc.cumColor].");
-	output("\n\n<i>“... Hot damn. It’s been a long time since I’ve came like that from a bull ride!”</i> Tee guffaws. It takes him a while to turn around on his wobbly legs and seat himself in his chair. <i>“Ahh--! I don’t think I’m going to be walking anywhere for the rest of the day, no siree.”</i>");
+	output("\n\n<i>“...Hot damn. It’s been a long time since I’ve came like that from a bull ride!”</i> Tee guffaws. It takes him a while to turn around on his wobbly legs and seat himself in his chair. <i>“Ahh--! I don’t think I’m going to be walking anywhere for the rest of the day, no siree.”</i>");
 	output("\n\nAfter slipping your gear back on, you say goodbye to Tee and slip out. You notice Zephyr is giving you a smug, knowing look. Well, it wasn’t exactly like the two of you were quiet, and she’s probably familiar with his noise....");
 	// Might want to kick the player two squares south after this. 
 	flags["FUCKED_BY_BIGT"] = 1;
@@ -777,7 +775,7 @@ public function bigTFucksYouEpilogue():void
 	output("\n\nWhen you finally leave Big T’s office, you’re barely able to put one foot in front of the other without tripping. You hold your gear to your cum covered [pc.chestSimple]. You’re in a complete daze as you stumble giddily pass his receptionist,");
 	if(!pc.isNude()) output(" half");
 	output(" naked and too spaced out to care.");
-	output("\n\nAs you leave, you barely register the governor buzzing Zephyr on the intercom, and the rough, breathless voice that follows. <i>“... Cancel my next few appointments, Zephyr. This bull’s all worn out!”</i>");
+	output("\n\nAs you leave, you barely register the governor buzzing Zephyr on the intercom, and the rough, breathless voice that follows. <i>“...Cancel my next few appointments, Zephyr. This bull’s all worn out!”</i>");
 	// Might want to kick the player two squares south after this. 
 	flags["FUCKED_BY_BIGT"] = 1;
 	processTime(59);

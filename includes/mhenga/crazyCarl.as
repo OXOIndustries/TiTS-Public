@@ -93,7 +93,7 @@ public function chatWithCrazyCarlAboutHim():void
 	output("\n\n<i>“Hm. Been workin’ in this buisness since I was a brat. Mother did it and I just kinda helped. Goin’ with it in the end just made sense, ya know? Besides, I’d like to call myself pretty good at it. Made quite the little empire in my name, ya know!”</i>");
 	output("\n\nYou get a solid scoff out of him when you glance behind yourself into the simplistic stock, pointedly.");
 
-	output("\n\n<i>“Ha! Ya think this is my main place of business? Nah, I’m retired! Technically, anyway. This is more of a hobby than a real bit of work now. Only gonna be out here for a bit. Got a bit stir crazy and hey, lil cuz’ got married. Might as well step in and mind the store for a bit so she can have a lively time, eh? I’ll head back home when she’s done and see to a bit of civilization n’ life in the mean time. Everyone wins!”</i> There is a short little pause before he bashfully murmurs, <i>“Well. Such as it is, anyway.”</i>");
+	output("\n\n<i>“Ha! Ya think this is my main place of business? Nah, I’m retired! Technically, anyway. This is more of a hobby than a real bit of work now. Only gonna be out here for a bit. Got a bit stir crazy and hey, lil’ cuz’ got married. Might as well step in and mind the store for a bit so she can have a lively time, eh? I’ll head back home when she’s done and see to a bit of civilization n’ life in the mean time. Everyone wins!”</i> There is a short little pause before he bashfully murmurs, <i>“Well. Such as it is, anyway.”</i>");
 	output("\n\nThere is a chuckle from you in response. Still, you find yourself a bit curious; how’d he make his fortune? This sort of work pays pretty well, sure, but it’s not exactly consistent.");
 	output("\n\n<i>“Ah... kicked off way back when, prolly why you haven’t heard of me. Might not of born yet even, sprout! Way back when I was just a pretty proficient, prolific craftsman. All sorts of shooters, just not a lot of clients n’ fame to go ‘round. Then comes around a future-legend, buys up a massive load of my stock over the course of a few months and sets me off as a result. Tinkered with his stuff when he needed it, too, but mostly just was a shopkeep. Said who he got his prized guns from and my popularity shot up, heh. Had a place everywhere, pretty big deal. Started to die down ‘gain, though, and I got old enough to start wantin’ to liquidate and sell off my assets to retire. Now it’s just a few stores run by my family that’s in the business usin’ the name to get them by.”</i> His expression reeks of nostalgia as his mind wanders, shaking his head with a fat grin. <i>“Ah, Victor Steele. Good lad, him, wonder how he’s doing...”</i>");
 	processTime(3);
@@ -204,7 +204,7 @@ public function aboutTheRobotFromCrazyCarl():void {
 		output("\n\n<i>“Nah, it’s fine. Legally speakin’ this place doesn’t even have the permit to sell it normally, so this is under the table. You’ve got somethin’ going on if you sallied forth into that mess and came out with this ‘ole bucket, I might as well enable ya and make sure you don’t come out like the bucket later on. Now, then, ‘fore I do...”</i>");
 
 		output("\n\nUh oh.");
-		output("\n\n<i>“Do you have a license for HC-5 class weapons and energy disposal, or a Klamer’s certification card or other U.G.C accepted Eighteen Ninety Weapons Treaty-accommodating titles?”</i>");
+		output("\n\n<i>“Do you have a license for HC-5 class weapons and energy disposal, a Klamer’s certification card or other U.G.C accepted Eighteen Ninety Weapons Treaty-accommodating titles?”</i>");
 
 		//*If mercenary:
 		if(pc.characterClass == GLOBAL.CLASS_MERCENARY) output("\n\nYou give a firm nod. <i>“Of course.”</i>");
@@ -257,238 +257,136 @@ public function crazyCarlShop():void {
 	output("\n\nCurious.");
 	processTime(1);
 	clearMenu();
-	addItemButton(0, new HammerPistol(), hammerPistolBuyTalk);
-	addItemButton(1, new MagnumPistol(), magnumPistolBuyTalk);
-	addItemButton(2, new LaserPistol(), lasPistolBuyTalk);
-	addItemButton(3, new TheShocker(), shockerBuyTalk);
-	if(flags["TALKED_ABOUT_ZK_RIFLE_WITH_CARL"] == undefined) addItemButton(4, new ZKRifle(), zkRifleCarlTalk);
-	else if(flags["ROBOT_QUEST_COMPLETE"] != 2) addDisabledButton(4, "ZK Rifle");
-	addItemButton(5, new Warhammer(), warhammerBuyTalk);
-	addItemButton(6, new Machette(), machetteBuyTalk);
-	addItemButton(7, new Shortsword(), shortswordBuyTalk);
+	addCarlItemButton(0, new HammerPistol());
+	addCarlItemButton(1, new MagnumPistol());
+	addCarlItemButton(2, new LaserPistol());
+	addCarlItemButton(3, new TheShocker());
+	addCarlItemButton(4, new ZKRifle());
+	addCarlItemButton(5, new Warhammer());
+	addCarlItemButton(6, new Machette());
+	addCarlItemButton(7, new Shortsword());
 	if(pc.level >= 6)
 	{
-		addItemButton(8, new ShockBow(), shockBowBuyTalk);
-		addItemButton(9, new LightningRod(), lightningRodBuyTalk);
+		addCarlItemButton(8, new ShockBow());
+		addCarlItemButton(9, new LightningRod());
+	}
+	else
+	{
+		addDisabledButton(8, "Locked", "Locked", "Return at level 6 or higher to reveal this weapon!");
+		addDisabledButton(9, "Locked", "Locked", "Return at level 6 or higher to reveal this weapon!");
 	}
 	
 	addButton(14,"Back",insideCarlsShop); 
 }
-
-public function warhammerBuyTalk():void
+public function addCarlItemButton(btnSlot:int, item:ItemSlotClass):void
 {
-	clearOutput();
-	author("Magic Ted");
-	showBust("CARL");
-	output("You tap a button and it expands, displaying view of a wicked looking warhammer. <i>“I sell a pistol called the Hammer. This is an actual hammer. You could use to crack some nuts, maybe to smash open a hostile native if‘n ya need. Not too pricey, and she’s effective to boot.”</i>");
-	output("\n\nYou nod and consider.");
-	processTime(1);
-	output("\n\nDamage Rating: 12");
-	output("\nAccuracy Bonus: -4");
-	output("\nDamage Type: Piercing");
-	clearMenu();
-	if(pc.credits >= 550) addButton(0,"Buy",buyFromCarl,"warhammer");
-	else addDisabledButton(0,"Buy");
-	addButton(14,"Back",crazyCarlShop);
-}
-public function machetteBuyTalk():void
-{
-	clearOutput();
-	author("Magic Ted");
-	showBust("CARL");
-	output("You tap a button and it expands, displaying view of a fairly standard curved blade. <i>“The Machete? Ya figurin’ on chopping yer way through yonder jungle then? She’ll serve you well without costing too much. Probably handy for dealin’ with some of them snakes too.”</i>");
-	output("\n\nYou nod.");
-	processTime(1);
-	output("\n\nDamage Rating: 8");
-	output("\nDamage Type: Slashing");
-	clearMenu();
-	if(pc.credits >= 550) addButton(0,"Buy",buyFromCarl,"machette");
-	else addDisabledButton(0,"Buy");
-	addButton(14,"Back",crazyCarlShop);
-}
-public function shortswordBuyTalk():void
-{
-	clearOutput();
-	author("Magic Ted");
-	showBust("CARL");
-	output("You tap a button and it expands, displaying view of a quick, deadly-looking sword. Carl interrupts, <i>“That’s a simple shortblade. Back before we figured out how to kill each other with guns, that was the way to do it. Good for stabbing and does lots of damage. Not sure what else you’d need in a weapon.”</i>");
-	output("\n\nYou nod.");
-	processTime(1);
-	
-	output("\n\nDamage Rating: 7");
-	output("\nAccuracy Bonus: 1");
-	output("\nDamage Type: Piercing");
-
-	clearMenu();
-	if(pc.credits >= 550) addButton(0,"Buy",buyFromCarl,"shortsword");
-	else addDisabledButton(0,"Buy");
-	addButton(14,"Back",crazyCarlShop);
-}
-
-//[Hammer Pistol]
-public function hammerPistolBuyTalk():void {
-	clearOutput();
-	author("Magic Ted");
-	showBust("CARL");
-	output("You tap one of the buttons and it expands, taking up most of the display. Carl cuts you off before you can start reading off the appearing information, however; <i>“Ah, the Hammer. Good all ‘round model, that one. Never really sits in stock for too long. Modified a bit, got a different trigger mechanism to stop it from accidentally firin’ all the time. Still need to have good trigger discipline, though, sprout.”</i>");
-	output("\n\nYou nod gently, looking back down to the information.");
-	processTime(1);
-
-	//*Codex-like information here. Plus price.*
-	// This DOES work, but the formatting doesn't look too nice in the main text area. I could fiddle with the CSS for that TextField to make it look better...
-	//output("\n\n" + new HammerPistol().compareTo(pc.rangedWeapon));
-	
-	output("\n\nDamage Rating: 9");
-	output("\nDamage Type: Kinetic");
-	//[Buy] [Back]
-	clearMenu();
-	if(pc.credits >= 2000) addButton(0,"Buy",buyFromCarl,"hammer pistol");
-	else addDisabledButton(0,"Buy");
-	addButton(14,"Back",crazyCarlShop);
-}
-
-//[Magnum Pistol]
-public function magnumPistolBuyTalk():void {
-	clearOutput();
-	author("Magic Ted");
-	showBust("CARL");
-	output("You tap one of the buttons and it expands, taking up a fair amount of the display. Before you can look over the appearing information, however, Carl pipes in, <i>“Now here’s an ancient thing, no real surprise why it doesn’t move off too fast. Still one of the best of its type; big, powerful and simple. Got a bit of a kick, though, so aimin’s a bit tricky. Careful with ‘er. Gonna make ya look like a cowpoke, too. Don’t go for the look.”</i>");
-	processTime(1);
-	//All the cool spacers use revolvers, right?
-	//*Codex-like information here.*
-	output("\n\nAccuracy Bonus: -2");
-	output("\nDamage Rating: 12");
-	output("\nDamage Type: Kinetic");
-	clearMenu();
-	//[Buy] [Back]
-	if(pc.credits >= 2000) addButton(0,"Buy",buyFromCarl,"magnum pistol");
-	else addDisabledButton(0,"Buy");
-	addButton(14,"Back",crazyCarlShop);
-}
-
-//[Las branded affordable Laser Pistol]
-public function lasPistolBuyTalk():void {
-	clearOutput();
-	author("Magic Ted");
-	showBust("CARL");
-	output("You notice that a few of the choices are actually the same weapon or at least extremely similar one. Curious, you give it a tap and the screen flickers with a image of the pistol, taking up the entire display. <i>“Cha, those things... Crowd favorite among the kids without much sense. Keep a bunch ‘round just to satisfy people who want something flashy, just in case, but if you ask me, you’re better off with a good ol’ fashioned powder-banger. Can’t be too careful ‘round on the frontier, even if you’re pretty well off.”</i>");
-	output("\n\nYou nod. It’s good to keep your options open, at least, and the rest of the available weapons look to be ballistic, too. Not that slugthrowers are worse than lasers, just a little less practical.");
-	processTime(1);
-	//yo yo, info up in here.*
-	output("\n\nAccuracy Bonus: 2");
-	output("\nDamage Rating: 4");
-	output("\nDamage Type: Laser");
-	clearMenu();
-	//[Buy] [Back]
-	if(pc.credits >= 1050) addButton(0,"Buy",buyFromCarl,"laser pistol");
-	else addDisabledButton(0,"Buy");
-	addButton(14,"Back",crazyCarlShop);
-}
-
-//[Las branded affordable Laser Pistol]
-public function shockerBuyTalk():void {
-	clearOutput();
-	author("Magic Ted");
-	showBust("CARL");
-	output("You push a button to bring up an interestingly named weapon, looking something like a cross between a pistol and a tesla coil. <i>“Ah, fuckin’ shocker. They’re really called ‘shock pistols,’ but I like to call this one ‘the shocker’ on account of how it damn near fried my-... You know what? Let’s just forget about that story. Point is, it’ll fry shields like they were made of lard. Packs a bigger punch than the laser pistol too, even if it costs a bunch more.”</i>");
-	processTime(1);
-	output("\n\nAccuracy Bonus: 2");
-	output("\nDamage Rating: 8");
-	output("\nDamage Type: Electricity");
-	//yo yo, info up in here.*
-	clearMenu();
-	//[Buy] [Back]
-	if(pc.credits >= 2300) addButton(0,"Buy",buyFromCarl,"shock pistol");
-	else addDisabledButton(0,"Buy");
-	addButton(14,"Back",crazyCarlShop);
-}
-
-public function shockBowBuyTalk():void {
-	clearOutput();
-	author("Magic Ted");
-	showBust("CARL");
-	output("You push a button to open a side panel that showcases a rack with a bow-shaped weapon. <i>“A hunter’s choice, that one. Quite a powerful bow, too. It comes with specially-tipped arrows that give an electric shock upon impact.”</i>");
-	processTime(1);
-	output("\n")
-	output("\nAccuracy Bonus: 2");
-	output("\nDamage Rating: 18");
-	output("\nDamage Type: Electricity");
-	clearMenu();
-	//[Buy] [Back]
-	if(pc.credits >= 10000) addButton(0, "Buy", buyFromCarl, "shock bow");
-	else addDisabledButton(0, "Buy");
-	addButton(14, "Back", crazyCarlShop);
-}
-public function lightningRodBuyTalk():void {
-	clearOutput();
-	author("Magic Ted");
-	showBust("CARL");
-	output("You push a button to rotate the display case until it stops to a quarterstaff-type weapon. <i>“A weapon of choice by the Ausar riot police. ‘Lightning Rods,’ they call ‘em. If you don’t knock an opponent into submission in the first hit, you at least have a chance to stun them with some nasty electric shocks.”</i>");
-	processTime(1);
-	output("\n");
-	output("\nDamage Rating: 18");
-	output("\nDamage Type: Electricity");
-	clearMenu();
-	//[Buy] [Back]
-	if(pc.credits >= 10000) addButton(0, "Buy", buyFromCarl, "lightning rod");
-	else addDisabledButton(0, "Buy");
-	addButton(14, "Back", crazyCarlShop);
-}
-
-public function buyFromCarl(arg:String = "ERROR"):void {
-	var foundLootItems:Array = new Array();
-	var cost:int = 0;
-	
-	switch(arg)
+	if(item.longName == "ZK rifle")
 	{
-		case "shock pistol":
-			cost += 2300;
-			foundLootItems.push(new TheShocker());
-			break;
-		case "laser pistol":
-			cost = 1050;
-			foundLootItems.push(new LaserPistol());
-			break;
-		case "magnum pistol":
-			cost = 2000;
-			foundLootItems.push(new MagnumPistol());
-			break;
-		case "hammer pistol":
-			cost = 2000;
-			foundLootItems.push(new HammerPistol());
-			break;
+		if(flags["TALKED_ABOUT_ZK_RIFLE_WITH_CARL"] == undefined) addButton(btnSlot, item.shortName, zkRifleCarlTalk, undefined, StringUtil.toDisplayCase(item.longName), item.tooltip);
+		else if(flags["ROBOT_QUEST_COMPLETE"] != 2) addDisabledButton(btnSlot, item.shortName, StringUtil.toDisplayCase(item.longName), item.tooltip);
+		else addDisabledButton(btnSlot, item.shortName, StringUtil.toDisplayCase(item.longName), "You have already earned this weapon!");
+		return;
+	}
+	addButton(btnSlot, item.shortName, carlBuyTalk, item, StringUtil.toDisplayCase(item.longName), item.tooltip);
+}
+public function getCarlPrice(item:ItemSlotClass):Number {
+	return Math.round(item.basePrice);
+}
+
+public function carlBuyTalk(item:ItemSlotClass):void
+{
+	clearOutput();
+	author("Magic Ted");
+	showBust("CARL");
+	
+	switch(item.longName)
+	{
 		case "warhammer":
-			cost = 550;
-			foundLootItems.push(new Warhammer());
+			output("You tap a button and it expands, displaying view of a wicked looking warhammer. <i>“I sell a pistol called the Hammer. This is an actual hammer. You could use to crack some nuts, maybe to smash open a hostile native if‘n ya need. Not too pricey, and she’s effective to boot.”</i>");
+			output("\n\nYou nod and consider.");
+			output("\n\nDamage Rating: 12 Kinetic");
+			output("\nAccuracy Bonus: -4");
+			output("\nDamage Type: Crushing");
 			break;
-		case "machette":
-			cost = 550;
-			foundLootItems.push(new Machette());
+		case "machete":
+			output("You tap a button and it expands, displaying view of a fairly standard curved blade. <i>“The Machete? Ya figurin’ on chopping yer way through yonder jungle then? She’ll serve you well without costing too much. Probably handy for dealin’ with some of them snakes too.”</i>");
+			output("\n\nYou nod.");
+			output("\n\nDamage Rating: 9 Kinetic");
+			output("\nDamage Type: Penetrating");
+			output("\nCritical Bonus: 2");
 			break;
 		case "shortsword":
-			cost = 550;
-			foundLootItems.push(new Shortsword());
+			output("You tap a button and it expands, displaying view of a quick, deadly-looking sword. Carl interrupts, <i>“That’s a simple shortblade. Back before we figured out how to kill each other with guns, that was the way to do it. Good for stabbing and does lots of damage. Not sure what else you’d need in a weapon.”</i>");
+			output("\n\nYou nod.");
+			output("\n\nDamage Rating: 10 Kinetic");
+			output("\nDamage Type: Penetrating");
+			output("\nAccuracy Bonus: 1");
+			break;
+		case "hammer pistol":
+			output("You tap one of the buttons and it expands, taking up most of the display. Carl cuts you off before you can start reading off the appearing information, however; <i>“Ah, the Hammer. Good all ‘round model, that one. Never really sits in stock for too long. Modified a bit, got a different trigger mechanism to stop it from accidentally firin’ all the time. Still need to have good trigger discipline, though, sprout.”</i>");
+			output("\n\nYou nod gently, looking back down to the information.");
+			output("\n\nDamage Rating: 9 Kinetic");
+			output("\nDamage Type: Bullet");
+			output("\nCritical Bonus: 2");
+			break;
+		case "magnum pistol":
+			output("You tap one of the buttons and it expands, taking up a fair amount of the display. Before you can look over the appearing information, however, Carl pipes in, <i>“Now here’s an ancient thing, no real surprise why it doesn’t move off too fast. Still one of the best of its type; big, powerful and simple. Got a bit of a kick, though, so aimin’s a bit tricky. Careful with ‘er. Gonna make ya look like a cowpoke, too. Don’t go for the look.”</i>");
+			output("\n\nDamage Rating: 11 Kinetic");
+			output("\nDamage Type: Bullet");
+			output("\nAccuracy Bonus: -5");
+			output("\nCritical Bonus: 2");
+			break;
+		case "mark III laser pistol":
+			output("You notice that a few of the choices are actually the same weapon or at least extremely similar one. Curious, you give it a tap and the screen flickers with a image of the pistol, taking up the entire display. <i>“Cha, those things... Crowd favorite among the kids without much sense. Keep a bunch ‘round just to satisfy people who want something flashy, just in case, but if you ask me, you’re better off with a good ol’ fashioned powder-banger. Can’t be too careful ‘round on the frontier, even if you’re pretty well off.”</i>");
+			output("\n\nYou nod. It’s good to keep your options open, at least, and the rest of the available weapons look to be ballistic, too. Not that slugthrowers are worse than lasers, just a little less practical.");
+			output("\n\nDamage Rating: 6 Burning");
+			output("\nDamage Type: Energy, Laser");
+			output("\nAccuracy Bonus: 1");
+			output("\nCritical Bonus: 6");
+			break;
+		case "shock pistol":
+			output("You push a button to bring up an interestingly named weapon, looking something like a cross between a pistol and a tesla coil. <i>“Ah, fuckin’ shocker. They’re really called ‘shock pistols,’ but I like to call this one ‘the shocker’ on account of how it damn near fried my-... You know what? Let’s just forget about that story. Point is, it’ll fry shields like they were made of lard. Packs a bigger punch than the laser pistol too, even if it costs a bunch more.”</i>");
+			output("\n\nDamage Rating: 8 Electric");
+			output("\nDamage Type: Energy");
+			output("\nAccuracy Bonus: 2");
 			break;
 		case "shock bow":
-			cost = 10000;
-			foundLootItems.push(new ShockBow());
+			output("You push a button to open a side panel that showcases a rack with a bow-shaped weapon. <i>“A hunter’s choice, that one. Quite a powerful bow, too. It comes with specially-tipped arrows that give an electric shock upon impact.”</i>");
+			output("\n")
+			output("\nDamage Rating: 7 Kinetic, 6 Electric");
+			output("\nDamage Type: Penetrating, Energy, Chance to Stun");
+			output("\nAccuracy Bonus: 1");
+			output("\nEvasion Bonus: 4");
 			break;
 		case "lightning rod":
-			cost = 10000;
-			foundLootItems.push(new LightningRod());
+			output("You push a button to rotate the display case until it stops to a quarterstaff-type weapon. <i>“A weapon of choice by the Ausar riot police. ‘Lightning Rods,’ they call ‘em. If you don’t knock an opponent into submission in the first hit, you at least have a chance to stun them with some nasty electric shocks.”</i>");
+			output("\n");
+			output("\nDamage Rating: 7 Kinetic, 6 Electric");
+			output("\nDamage Type: Crushing, Energy, Chance to Stun");
+			output("\nAccuracy Bonus: 1");
+			output("\nEvasion Bonus: 4");
 			break;
 	}
 	
+	processTime(1);
+	
+	clearMenu();
+	if(pc.credits >= getCarlPrice(item)) addOverrideItemButton(0, item, "Buy", buyFromCarl, item);
+	else addDisabledButton(0, "Buy", "Buy", "You cannot afford the " + getCarlPrice(item) + " credits for this item.");
+	addButton(14, "Back", crazyCarlShop);
+}
+
+public function buyFromCarl(item:ItemSlotClass):void {
 	clearOutput();
-	output("You purchase a " + arg + " for " + cost + ".");
-	pc.credits -= cost;
+	output("You purchase " + item.description + " for " + getCarlPrice(item) + " credits.");
+	pc.credits -= getCarlPrice(item);
 	
 	itemScreen = crazyCarlShop;
 	lootScreen = crazyCarlShop;
 	useItemFunction = crazyCarlShop;
 	
 	output("\n\n");
-	itemCollect(foundLootItems);
+	itemCollect([item]);
 }
 
 //[ZK Rifle]
@@ -568,8 +466,8 @@ public function fightMachina():void {
 	flags["JUNGLE_STEP"] = 0;
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new CarlsRobot());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new CarlsRobot());
 	CombatManager.victoryScene(pushButtanOnMagicTedsFireRobot);
 	CombatManager.lossScene(ohShitLoseToRobot);
 	CombatManager.displayLocation("MACHINA");

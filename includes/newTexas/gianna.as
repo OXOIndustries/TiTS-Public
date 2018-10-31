@@ -89,9 +89,6 @@ public function giannaDisplay():void
 }
 public function giannaBustDisplay():String
 {
-	// 9999 - Special artist exceptions!
-	if(kGAMECLASS.gameOptions.configuredBustPreferences["GIANNA_NUDE"] != "SHOU") return "GIANNA_NUDE";
-	
 	var sBust:String = "GIANNA";
 	if(gianna.biggestTitSize() <= 9) sBust += "";
 	else if(gianna.biggestTitSize() <= 18) sBust += "_MEDIUM";
@@ -121,22 +118,52 @@ public function giannaAvailableSilicone(arg:int = 0):Number
 	return flags["GIANNA_SILICONE_STORAGE"];
 }
 
+public function giannaCumflated(cumFrom:Creature = null):Boolean
+{
+	if(cumFrom != null && flags["GIANNA_CUMFLATION_DISABLED"] != 1)
+	{
+		// cumflate her!
+		gianna.fluidSimulate = true;
+		gianna.loadInCunt(cumFrom, 0);
+	}
+	//if(gianna.hasStatusEffect("Cumflated9999")) return true;
+	if(gianna.isCumflated() && gianna.bellyRating() >= 10) return true;
+	return false;
+}
+
 
 //================================
 //  ACTUAL CONTENT FUNCTIONS
 //================================
 
-public function giannaBonusShit():void
+public function giannaBonusShit(btnSlot:int = 0):void
 {
 	if(giannaAWOL()) return;
+	
+	if(pc.hasStatusEffect("Gianna Peeved"))
+	{
+		output("\n\nGianna is busily working away and as you get into the corner of her view, she reflexively looks away, trying her best to ignore your presence. It looks like she is not interested in interacting with you at the moment.");
+		addDisabledButton(btnSlot, "Gianna", "Gianna", "She seems irritated--maybe you should leave her alone for a little bit...");
+		return;
+	}
 	
 	//Unmet blurb
 	if(flags["MET_GIANNA"] == undefined)
 	{
 		output("\n\nA raven-haired beauty is busy tweaking one of the machines embedded in the wall, standing straight-kneed and bent provocatively. Glowing light emanates from her eyes and illuminates the panels she’s fiddling with. This girl is either a cyborg or a synthetic, no doubt about it. She wiggles her unclothed backside for you, smiling as she catches you looking in her direction.");
+		addButton(btnSlot,"Android",approachGianna,undefined,"Android","Approach the naked android.");
+		return;
 	}
+	
+	if(flags["ANNO_SEXED"] != undefined && flags["ANNO_SEXED"] > 0 && annoIsCrew() && flags["MET_GIANNA"] != undefined && pc.cockThatFits(anno.vaginalCapacity(0)) >= 0 && !pc.hasStatusEffect("Anno X Gianna Cooldown") && rand(5) == 0)
+	{
+		output("\n\nThere’s no mistaking the twitching of Anno’s alabaster ears, even when she’s hunched over Gianna’s shoulder. The companion droid doesn’t seem to mind the weight riding on her shoulders, judging by the way she wiggles her [gianna.butt] into the ausar’s creamy thighs. <b>What could those two be up to?</b>");
+		addButton(0,"Anno/Gianna",approachAnnoXXXGianna);
+		return;
+	}
+	
 	//PC Cumflated Special
-	else if(gianna.hasStatusEffect("Cumflated9999"))
+	if(giannaCumflated())
 	{
 		output("\n\nGianna is doing her best to keep the machinery running, but she’s having some difficulty with her swollen belly and all the trickles of [pc.cum] spilling out from in between her thighs. She keeps bumping the swollen dome against the wall and squirting streamers of your leftover love-juice onto the once-clean floor, only to stop and clean it up. She hasn’t even noticed your appearance yet.");
 	}
@@ -203,8 +230,7 @@ public function giannaBonusShit():void
 		output(".");
 		if(gianna.biggestTitSize() >= 30) output(" Silicone-filled teats drag across the floor with every motion she makes, making her arms shake and her thighs quiver as the pleasure-data practically overwhelms the poor AI.");
 	}
-	addButton(0,"Gianna",approachGianna,undefined,"Gianna","Approach the naked android.");
-	if(flags["MET_GIANNA"] == undefined) addButton(0,"Android",approachGianna,undefined,"Android","Approach the naked android.");
+	addButton(btnSlot,"Gianna",approachGianna,undefined,"Gianna","Approach the naked android.");
 }
 
 public function approachGianna(special:String = ""):void
@@ -244,7 +270,7 @@ public function approachGianna(special:String = ""):void
 			}
 			if(pc.hasVagina()) output(" [pc.EachVagina] distinctly moistens in response to the wanton robot.");
 			if(!pc.hasVagina() && !pc.hasCock()) output(" You feel your [pc.skin] flush a little at her wanton declaration.");
-			applyDamage(new TypeCollection( { tease: 25 } ), null, pc, "minimal");
+			applyDamage(new TypeCollection( { tease: 25 } ), chars["GIANNA"], pc, "minimal");
 			output("\n\nShe smiles knowingly, doubtless aware of the effects her lewd actions would have. <i>“I’d be happy to give you almost any kind of relief, even if it’s just talking, all right?”</i> She looks down at her toes abruptly. <i>“This is the first real conversation I’ve had in weeks.”</i> Her gleaming onyx lip pouts ever so slightly, and a worried look crosses her face. <i>“We can fuck now if you need, but please... don’t ignore me. Okay?”</i>");
 			processTime(7);
 			//Normal menu! See bottom.
@@ -252,7 +278,7 @@ public function approachGianna(special:String = ""):void
 			flags["GIANNA_TEMP"] = 0;
 		}
 		//Repeat PC Cumflated Approach
-		else if(gianna.hasStatusEffect("cumflated9999"))
+		else if(giannaCumflated() && flags["GIANNA_CUMFLATION_DISABLED"] == undefined)
 		{
 			output("<i>“Hey,”</i> you call. <i>“You okay?”</i>");
 			output("\n\nGianna starts, ");
@@ -454,22 +480,20 @@ public function yesILikeYouCumFlatedGianna():void
 {
 	clearOutput();
 	giannaDisplay();
-	output("\n\n<i>“");
+	output("<i>“");
 	if(pc.isBimbo()) output("Like, totally!");
 	else if(pc.isBro()) output("Duh!");
 	else if(pc.isNice()) output("Of course.");
 	else if(pc.isMischievous()) output("You bet I do!");
 	else output("As if you needed to ask.");
 	output("”</i> You rub her belly affectionately, and the android woman melts against you, smiling happily");
-	if(flags["GIANNA_TEMP"] == -1) 
-	{
-		output(", her cool flesh so impossible to ignore against your own");
-		//, her almost feverish synthflesh impossible to ignore against your own}
-		output(".");
-	}
+	if(flags["GIANNA_TEMP"] == -1) output(", her cool flesh so impossible to ignore against your own");
+	else if(flags["GIANNA_TEMP"] == 1) output(", her almost feverish synthflesh impossible to ignore against your own");
+	output(".");
 	output("\n\nSighing, Gianna asks, <i>“What now then? We could talk, or you could pump me up a little bigger and really make them jealous.”</i> The blue of her eyes sinks to a contented dim. <i>“Your call.”</i>");
 	//+10 positivity!
 	giannaPersonality(5);
+	flags["GIANNA_CUMFLATION_DISABLED"] = -1;
 	processTime(1);
 	//Menu!
 	approachGianna("noText");
@@ -491,6 +515,7 @@ public function yesButAboutCumFlation():void
 	output(", and she asks, <i>“What would you have us do, [pc.name]?”</i>");
 	//+10 negativity
 	giannaPersonality(-5);
+	flags["GIANNA_CUMFLATION_DISABLED"] = -1;
 	processTime(1);
 	//Menu!
 	approachGianna("noText");
@@ -501,7 +526,7 @@ public function neverCumflateAgain():void
 {
 	clearOutput();
 	giannaDisplay();
-	output("\n\n<i>“");
+	output("<i>“");
 	if(pc.isBimbo()) output("Like, it’s kind of tacky");
 	else if(pc.isNice()) output("I like you normal");
 	else if(pc.isMischievous()) output("Well, I actually prefer how you normally look");
@@ -515,7 +540,7 @@ public function neverCumflateAgain():void
 	output("the whole way.");
 	if(gianna.biggestTitSize() >= 35) output(" Her tits nearly keep her from fitting through the door.");
 
-	output("\n\nDo you want for her to clean up?");
+	output("\n\nDo you wait for her to clean up?");
 	processTime(1);
 	//No cumflation until turned on via a talk choice	
 	flags["GIANNA_CUMFLATION_DISABLED"] = 1;
@@ -530,6 +555,7 @@ public function leaveWhileGiannaGetsRidOfCum():void
 	clearOutput();
 	giannaDisplay();
 	output("You don’t have time to wait around for this. She might be disappointed to see you go, but she’ll get over it.");
+	gianna.flushCumflation();
 	giannaPersonality(-10);
 	giannaAWOL(13);
 	variableRoomUpdateCheck();
@@ -545,10 +571,51 @@ public function waitForGiannaToDespunk():void
 	giannaDisplay();
 	//Pass 13 minutes
 	processTime(13);
-	output("Gianna sure takes her time getting cleaned up, but when she comes out, she looks as fresh as the day you met her. There aren’t even any stretch marks on her synthskin, just a smooth, unblemished middle positioned eight inches a clean, juicy-looking pussy.");
+	output("Gianna sure takes her time getting cleaned up, but when she comes out, she looks as fresh as the day you met her. There aren’t even any stretch marks on her synthskin, just a smooth, unblemished middle positioned eight inches from a clean, juicy-looking pussy.");
 	output("\n\nSpinning, the companion shows off, coming to rest with a slight giggle. <i>“This should be more suitable to your tastes, then. Now, was there anything I could help you with?”</i>");
+	gianna.flushCumflation();
 	//main menu!
 	approachGianna("noText");
+}
+
+public function giannaToggleCumflation():void
+{
+	clearOutput();
+	giannaDisplay();
+	author("Jacques00");
+	
+	// Enable cumflation
+	if(flags["GIANNA_CUMFLATION_DISABLED"] == 1)
+	{
+		output("You ask Gianna to enable her feature to be inflated by your [pc.cumNoun].");
+		output("\n\nWith a nod, the android does as you ask, internally turning and switching some of her settings to accommodate your request.");
+		if(giannaCumflated())
+		{
+			output(" She then rubs her [gianna.belly] with eagerness, contemplating about another one of your loads making her even bigger.");
+			processTime(1);
+		}
+		output("\n\n<b>Gianna is now able to be cumflated.</b>");
+		flags["GIANNA_CUMFLATION_DISABLED"] = -1;
+	}
+	// Disable cumflation
+	else
+	{
+		output("You ask Gianna to disable her cum-flation feature.");
+		output("\n\nWith a nod, the android does as you ask, internally turning and switching some of her settings to accommodate your request.");
+		// flush any cum she has
+		if(gianna.isCumflated())
+		{
+			output(" She then goes to the nearest restroom and flushes the contents in her [gianna.belly]. After a brief moment, she returns, cleaned and more normal looking.");
+			gianna.flushCumflation();
+			processTime(5);
+		}
+		output("\n\n<b>Gianna is no longer able to be inflated by cum.</b>");
+		flags["GIANNA_CUMFLATION_DISABLED"] = 1;
+	}
+	
+	processTime(1);
+	
+	talkToGianna(false);
 }
 
 //Appearance
@@ -556,7 +623,7 @@ public function giannaAppearance():void
 {
 	clearOutput();
 	giannaDisplay();
-	output("Gianna is a 5\'8\" tall android of terran appearance and design, so realistic that if her eyes didn’t glow a pale blue she could pass for an albino human, if humans had sculpted proportions and pranced around without a single scrap of clothing. The surface of her skin looks and feels exactly like the organic equivalent");
+	output("Gianna is a 5\' 8\" tall android of terran appearance and design, so realistic that if her eyes didn’t glow a pale blue she could pass for an albino human, if humans had sculpted proportions and pranced around without a single scrap of clothing. The surface of her skin looks and feels exactly like the organic equivalent");
 	if(flags["GIANNA_TEMP"] == 0) output(", right down to a 98.6 degree body heat.");
 	else if(flags["GIANNA_TEMP"] == -1) output(", if you can ignore the chilly temperature she currently has it set to.");
 	else output(", if you can ignore the fact that she radiates an almost feverish heat from her manufactured dermis.");
@@ -564,22 +631,24 @@ public function giannaAppearance():void
 
 	output("\n\nThe artificial woman’s face was also designed to replicate classical beauty, engineered with a small, slightly upturned nose, elegant cheekbones, and smoothly shaped eyebrows. Glowing faintly, her eyes are manufactured to work in the same way as their organic counterparts, and as a consequence, they look fairly natural at a distance. Lines of circuitry pattern her iris, only visible on close inspection, rotating and shifting as the companion droid’s gaze roves.");
 	// No silicone distributed to Giannas lips gives lipRating() == 2, Maxed out it gives lipRating() == 7
-	if(gianna.lipRating() <= 2) output(" Her lips are shapely and well-proportioned, eminently feminine with just a hint of pout.");
-	else if(gianna.lipRating() <= 3) output(" Her lips are luscious and shapely, the kind of lips only the most gifted woman would naturally bear.");
-	else if(gianna.lipRating() <= 4) output(" Her voluptuous lips are so swollen that when you look at them, the term ‘bee-stung’ springs to mind. They practically beg to be kissed.");
-	else if(gianna.lipRating() <= 5) output(" Her dazzling lips are exquisitely large. Their sable hue at once seems to devour all the light while simultaneously reflecting. They’re almost hypnotic, begging you to press against them.");
-	else if(gianna.lipRating() <= 6) output(" Her lips are plush and pillowy, kept slightly pursed by sheer volume. Any larger and they’d be useless for anything but sucking dicks.");
+	var tempLips:Number = gianna.lipRating();
+	if(tempLips <= 2) output(" Her lips are shapely and well-proportioned, eminently feminine with just a hint of pout.");
+	else if(tempLips <= 3) output(" Her lips are luscious and shapely, the kind of lips only the most gifted woman would naturally bear.");
+	else if(tempLips <= 4) output(" Her voluptuous lips are so swollen that when you look at them, the term ‘bee-stung’ springs to mind. They practically beg to be kissed.");
+	else if(tempLips <= 5) output(" Her dazzling lips are exquisitely large. Their sable hue at once seems to devour all the light while simultaneously reflecting. They’re almost hypnotic, begging you to press against them.");
+	else if(tempLips <= 6) output(" Her lips are plush and pillowy, kept slightly pursed by sheer volume. Any larger and they’d be useless for anything but sucking dicks.");
 	else output(" Her lips appear ‘o’-shaped and whorish in the extreme, so swollen and pouty that they would make proper speech impossible on a real girl. A mouth like that is only good for sucking cock or slobbering across a swollen cunt and little else.");
 
 	output("\n\nAn elaborately-braided ponytail of coal-black hair hangs down the back of the android’s head all the way to her ass. The fibers are thick and lustrous in spite of their synthetic nature, and they look as if they would be silky smooth to the touch. She frequently brings her hair over a shoulder to drape across her chest, deepening the contrast between her milk-white skin and sable locks.");
 
 	//Each boob size comes with its own custom paragraph about it!
+	var tempTits:Number = gianna.biggestTitSize();
 	//C Cup
-	if(gianna.biggestTitSize() < 4) output("\n\nIt’d be impossible to look Gianna over without pausing to take in the sight of her chest. She’s reduced the amount of silicone in her chest since your first meeting, leaving her with two pear-shaped, approximately C-cup breasts. Of course, she never actually wears a bra, owing to her boobs’ seeming ability to support themselves while remaining perfectly pleasing and jiggly. Modest, ink-black areolae cap her well-formed peaks, gleaming in a way that gives the impression of having just been spit- or oil-shined. Her nipples are erect, just as you’d expect during arousal, protruding a half-inch forward, firm and a little pebbly.");
+	if(tempTits < 4) output("\n\nIt’d be impossible to look Gianna over without pausing to take in the sight of her chest. She’s reduced the amount of silicone in her chest since your first meeting, leaving her with two pear-shaped, approximately C-cup breasts. Of course, she never actually wears a bra, owing to her boobs’ seeming ability to support themselves while remaining perfectly pleasing and jiggly. Modest, ink-black areolae cap her well-formed peaks, gleaming in a way that gives the impression of having just been spit- or oil-shined. Her nipples are erect, just as you’d expect during arousal, protruding a half-inch forward, firm and a little pebbly.");
 	//E Cup
-	else if(gianna.biggestTitSize() < 9) output("\n\nNo description of Gianna would be complete without mentioning her perfectly symmetrical, teardrop-shaped breasts. They’re positioned high on her torso and miraculously appear to support themselves, still jiggly but somehow supported well enough to keep from sagging awkwardly. If you had to guess, you’d judge they’d fit well into an E-cup bra. Large, ink-black areolae cap her impressive peaks, gleaming in a way that makes them appear to have been freshly oiled. Her nipples erect just as you would expect during arousal, sticking out three-quarters of an inch, firm and pebbly.");
+	else if(tempTits < 9) output("\n\nNo description of Gianna would be complete without mentioning her perfectly symmetrical, teardrop-shaped breasts. They’re positioned high on her torso and miraculously appear to support themselves, still jiggly but somehow supported well enough to keep from sagging awkwardly. If you had to guess, you’d judge they’d fit well into an E-cup bra. Large, ink-black areolae cap her impressive peaks, gleaming in a way that makes them appear to have been freshly oiled. Her nipples erect just as you would expect during arousal, sticking out three-quarters of an inch, firm and pebbly.");
 	//GG Cup
-	else if(gianna.biggestTitSize() <= 18) 
+	else if(tempTits <= 18) 
 	{
 		output("\n\nGianna’s breasts are impossible to ignore. Originally teardrop-shaped E-cups, she’s shifted enough silicone into them to pump them up to round, GG-cup behemoths. Some quirk of her engineering keeps them from sagging, but they still dominate the top-half of her torso, jiggling with wild abandon every time the companion makes the slightest movement. They’re pillowy enough that you’re sure your fingers could vanish into them if you gave them a squeeze. Tits like that are made for fucking or admiring and little else.");
 		output("\n\nInk-black areolae the size of small plates crown the mountainous melons, gleaming in a way that makes them appear to have been freshly spit-shined or oiled. Their pebbly texture is visible at a distance, extending all the way to the tips of her prominent nipples. Just like most mammalian and similar species, her teats erect when stimulated or aroused, extending almost an inch forward, easily fatter than the biggest pencil erasers.");
@@ -592,21 +661,38 @@ public function giannaAppearance():void
 		output("\n\nInk-black areolae the size of dinner plates crown her beachball-sized tits, shining in a way that makes them almost glisten. Perhaps they’re somehow self-oiling. You can appreciate the result all the same. Slightly pebbly, their texture invites hands to reach and touch, pinch, and squeeze. You resist the impulse for now to let your eyes take in swollen tips of her nipples. They stick out at least two inches if not more and are almost as thick around as her thumbs.");
 	}
 	//Merge back together
-	output("\n\nA belly button sits exactly where you would expect it. It’s small and barely-defined, there to present the appearance of familiarity without truly distorting the flow of the android’s flawless skin. Her belly is flat, unmarred by fat or displaying a hint of muscle. It falls squarely in the middle between soft balls and toned abdominals, the kind that would indicate an organic girl who takes care of herself. Of course, as an artificial being, she doesn’t require trips to the gym, only regularly scheduled maintenance.");
+	output("\n\nA belly button sits exactly where you would expect it. It’s small and barely-defined, there to present the appearance of familiarity without truly distorting the flow of the android’s flawless skin.");
+	
+	//Display belly size
+	var tempBelly:Number = gianna.bellyRating();
+	if(tempBelly < 10) output(" Her belly is flat, unmarred by fat or displaying a hint of muscle. It falls squarely in the middle between soft balls and toned abdominals, the kind that would indicate an organic girl who takes care of herself. Of course, as an artificial being, she doesn’t require trips to the gym, only regularly scheduled maintenance.");
+	else if(tempBelly <= 15) output(" Her [gianna.belly] would just barely push past the waistband of a pair of pants. It’s a little bit of a muffin-top.");
+	else if(tempBelly <= 20) output(" Her [gianna.belly] is pretty decent-sized. There’s no real hiding it.");
+	else if(tempBelly <= 30) output(" Her [gianna.belly] is impossible to miss. Wearing loose clothing wouldn’t even help at this point.");
+	else if(tempBelly <= 40) output(" Her [gianna.belly] is big enough that a passersby might think her pregnant at a glance.");
+	else if(tempBelly <= 50) output(" Her [gianna.belly] would look more at home on a woman in the later stages of her pregnancy.");
+	else if(tempBelly <= 60) output(" Her [gianna.belly] is weighty enough to jiggle when she shifts positions too suddenly, but still small enough for easy portability.");
+	else if(tempBelly <= 70) output(" Her [gianna.belly] sticks out very noticeably, wobbling slightly with her motions. It would look right at home on a reclining, full-time breeding servant.");
+	else if(tempBelly <= 80) output(" Her [gianna.belly] is obscene testament to what her body can endure. You wonder if she can even see her [gianna.feet].");
+	else if(tempBelly <= 90) output(" Her [gianna.belly] is so big that it makes her [gianna.skin] tight and shiny. Her movement must be a bit impractical with the extra bulk.");
+	else output(" Her [gianna.belly] protrudes obscenely from her form, hanging heavily. Getting around should be a struggle with so much extra mass on her.");
+	if(tempBelly >= 10 && gianna.isCumflated()) output(".. all this thanks to the spunk that’s stuffed in her!");
+	
 	//Butt & Hips Variant
+	var tempButt:Number = gianna.buttRating();
 	//Thin & Trim (5-7 rating)
-	if(gianna.buttRating() <= 7)
+	if(tempButt <= 7)
 	{
 		output("\n\nThe sculpted android’s waistline is narrow, though not so narrow as to be humanly impossible, and perched atop a pair of modest, decently trim hips.");
 		//7
-		if(gianna.buttRating() == 7) output("\n\nA pert behind that’s all smooth ivory curves hides just behind them, begging to be touched and squeezed. This is all thanks to reduced levels of silicone in her posterior and waistline. Her hips no longer look like they belong on a sexpot pornstar and would be right at home on a runner or gymnast. Gianna shows no signs of minding the change. She’s quite happy to let her new lissom figure do all the talking, even spreading her legs to reveal a [gianna.vagina] from time to time.");
+		if(tempButt == 7) output("\n\nA pert behind that’s all smooth ivory curves hides just behind them, begging to be touched and squeezed. This is all thanks to reduced levels of silicone in her posterior and waistline. Her hips no longer look like they belong on a sexpot pornstar and would be right at home on a runner or gymnast. Gianna shows no signs of minding the change. She’s quite happy to let her new lissom figure do all the talking, even spreading her legs to reveal a [gianna.vagina] from time to time.");
 		//5
 		else output("\n\nA small, soft little butt hides just behind them, almost unnoticeable. It doesn’t stick out very far, and honestly doesn’t look like it’d be that fun to grab. It would barely fill your palm, just a little bit of squishy bottom for you to handle. Gianna seems a little embarrassed by it whenever she sees you looking at it.");
 	}
 	//Normal - 9
-	else if(gianna.buttRating() <= 9) output("\n\nThe sculpted android’s waistline is narrow, though not so narrow as to be impossible for a human. It’s perched delicately atop a pair of wide-flared hips that swivel hypnotically with every step. The sinuous rocking comes naturally to her, her entire lower body crafted to give her the sexually exaggerated walk. Whenever she see you watching, she’s sure to tense her [gianna.butt] to enhance the view or to trace a hand down the outside of a shapely thigh before bringing it back up the middle to her [gianna.vagina], leading your eyes all the while.");
+	else if(tempButt <= 9) output("\n\nThe sculpted android’s waistline is narrow, though not so narrow as to be impossible for a human. It’s perched delicately atop a pair of wide-flared hips that swivel hypnotically with every step. The sinuous rocking comes naturally to her, her entire lower body crafted to give her the sexually exaggerated walk. Whenever she see you watching, she’s sure to tense her [gianna.butt] to enhance the view or to trace a hand down the outside of a shapely thigh before bringing it back up the middle to her [gianna.vagina], leading your eyes all the while.");
 	//Purty big bootay - 15
-	else if(gianna.buttRating() <= 15) output("\n\nThe sculpted android’s waistline used to be a narrowish thing, but with the expansion of her growing backside, her hips have widened considerably. They make her look more than a little curvy, like perfectly molded handholds. Just behind them, her well-rounded ass bulges out. Its shapely mass is almost impossible to ignore. It’s a lush capstone to the robotic woman’s rearward appearance. The silicone jiggles when she moves, and how she moves! Her walk is sinuous, wiggling thing that sways all the wider when she spies your eyes upon her. Her synthetic asshole is only visible when she’s bending over, but the crinkled, white star is a perfect, albeit totally clean, mimic of a terran’s.");
+	else if(tempButt <= 15) output("\n\nThe sculpted android’s waistline used to be a narrowish thing, but with the expansion of her growing backside, her hips have widened considerably. They make her look more than a little curvy, like perfectly molded handholds. Just behind them, her well-rounded ass bulges out. Its shapely mass is almost impossible to ignore. It’s a lush capstone to the robotic woman’s rearward appearance. The silicone jiggles when she moves, and how she moves! Her walk is sinuous, wiggling thing that sways all the wider when she spies your eyes upon her. Her synthetic asshole is only visible when she’s bending over, but the crinkled, white star is a perfect, albeit totally clean, mimic of a terran’s.");
 	//Badonkalicious - 20
 	else output("\n\nThe sculpted android’s waistline used to be narrow, but her wide, over-exaggerated hips have widened her middle to match. And what hips she has! They’re flaring, powerful things that threaten to knock over furniture if the poor girl isn’t careful, supporting a pair of thick, juicy thighs and a quivering ass. That derriere would threaten to spill over the edges of the captain’s chair back in your ship, but those half-moon cheeks wouldn’t look bad doing it. Gianna is sure to emphasize them as well, bending over at every opportunity. Her silicone-laden backside is rounded and squishy that even then you can’t make out her synthetic asshole, but her [gianna.vagina] is more than happy to make an appearance.");
 	//Merge
@@ -663,7 +749,7 @@ public function talkToGianna(display:Boolean = true):void
 			//Hyper positive
 			else if(giannaPersonality() >= 100)
 			{
-				output("\n\nGianna puts an arm around you and spins you into place against the wall, sliding her palm down your cheek with sensuous grace as her [gianna.buttAdjectives]ass comes to rest against you");
+				output("\n\nGianna puts an arm around you and spins you into place against the wall, sliding her palm down your cheek with sensuous grace as her [gianna.buttDescript] comes to rest against you");
 				if(gianna.buttRating() >= 15) output(", pinning you in place with enormous butt");
 				output(". <i>“Are you sure you want to talk,”</i> she coos, rocking her [gianna.hips] just enough to drag her butt up and down against your crotch. <i>“Wouldn’t you rather rather go lie down on a hay bale and let me tend to your tension.”</i> Giggling, the android runs her fingers ");
 				if(pc.hasHair()) output("through your [pc.hair]");
@@ -723,6 +809,10 @@ public function talkToGianna(display:Boolean = true):void
 	}
 	addButton(2,"Ex-Owner",talkToGiannaAboutHerFormerOwner,undefined,"Ex-Owner","Ask her about her ex-owner. What was the guy like? Where did he go?");
 	addButton(3,"Big T",talkToGiannaAboutBigT,undefined,"Big T","Ask her about Big T, the planetary governor that she said was like an adoptive father to her.");
+	if(flags["GIANNA_CUMFLATION_DISABLED"] != undefined)
+	{
+		addButton(4, ("Cumflate: " + (flags["GIANNA_CUMFLATION_DISABLED"] == 1 ? "OFF" : "ON")), giannaToggleCumflation, undefined, "Cumflation", ("Turn Gianna’s cum inflation settings " + (flags["GIANNA_CUMFLATION_DISABLED"] == 1 ? "on" : "off") + "."));
+	}
 	addButton(14,"Back",approachGianna,"back");
 }
 
@@ -817,7 +907,7 @@ public function talkToGiannaAboutHerAI():void
 	else if(giannaPersonality() >= 20) output(". Wouldn’t that be crazy? Me, flying around in space, all steel plates, guns, and engines. It might not be as fun, but it’d be so empowering!");
 	else output(". Please don’t make me do that. It would make me all unfeeling, hard metal. I’ve grown to love this body. Don’t make me become a thing like that, [pc.master] [pc.name].");
 	output("”</i>");
-	//{If subianna}
+	// If subianna
 	if(giannaPersonality() < 20) output("\n\nYou promise not to, at least for now.");
 	//Merge
 	output("\n\nCapabilities like that don’t come cheap, you’re sure of it. You ask her how much an intelligence like hers costs.");
@@ -1135,7 +1225,8 @@ public function talkToGiannaAboutHerFormerOwner():void
 			processTime(10);
 			clearMenu();
 			addButton(0,"Next",mainGameMenu);
-			//9999 add an irritated status with timer? - would need a new intro written
+			// add an irritated status with timer? - would need a new intro written
+			pc.createStatusEffect("Gianna Peeved", 0, 0, 0, 0, true, "", "", false, 1440);
 		}
 		return;
 	}
@@ -1188,7 +1279,7 @@ public function dissuadeGiannaSheTotesIsAThing():void
 {
 	clearOutput();
 	giannaDisplay();
-	output("<i>“Gianna, be honest with yourself. No matter your sapience, you are still a thing. He </i>owned<i> you, and the Treated him did not have time for his old things. It’s terrible that you had to go through that. He certainly could have handled it better - maybe sold you off to someone on the extranet, but it was well within his right to wander off and plug some girls ‘til those cows came home.”</i> You speak matter of factly, stating what you see as simple truth.");
+	output("<i>“Gianna, be honest with yourself. No matter your sapience, you are still a thing. He </i>owned<i> you, and the Treated him did not have time for his old things. It’s terrible that you had to go through that. He certainly could have handled it better - maybe sold you off to someone on the extranet, but it was well within his right to wander off and plug some girls till those cows came home.”</i> You speak matter of factly, stating what you see as simple truth.");
 	output("\n\nGianna’s lip quivers, and she appears on the verge of crying. The pained look in her eyes flickers and dies, replaced by a depressing sort of acceptance. <i>“Fine.... I just... I’ve been alone so long and every here-”</i> She glances back your way and wilts. <i>“Never mind. Was there something else you would like me to do?”</i>");
 	processTime(2);
 	giannaPersonality(-10);
@@ -1219,7 +1310,9 @@ public function talkToGiannaAboutBigT():void
 	output("<i>“So what about this Big T guy?”</i> you ask.");
 	output("\n\nGianna smiles warmly at the question. <i>“What about him?”</i>");
 	output("\n\nYou shrug. <i>“Start at the beginning, I guess. How’d you meet him?”</i>");
-	output("\n\nThe companion plays with her braid, swishing it back and forth across her chin as she thinks. Her expression sags somewhat but never quite journeys into the realms of sadness. <i>“It’s a long story. Ask me about my old owner if you want to hear more of that. The short version is that he left - ditched me and his ship after getting treated.”</i> Her lower lip quivers. <i>“I’m a companion damnit! Being alone is like torture and starvation mixed together into a depressing stew for us.”</i> She sighs. <i>“After a week of suffering, I realized I couldn’t take it anymore and stepped off the ship.”</i>");
+	output("\n\nThe companion plays with her braid, swishing it back and forth across her chin as she thinks. Her expression sags somewhat but never quite journeys into the realms of sadness. <i>“It’s a long story.");
+	if(flags["GIANNA_OWNER_TALK_RESULT"] == undefined) output(" Ask me about my old owner if you want to hear more of that.");
+	output(" The short version is that he left - ditched me and his ship after getting treated.”</i> Her lower lip quivers. <i>“I’m a companion damnit! Being alone is like torture and starvation mixed together into a depressing stew for us.”</i> She sighs. <i>“After a week of suffering, I realized I couldn’t take it anymore and stepped off the ship.”</i>");
 	output("\n\nYou cock your head, listening intently. <i>“Then?”</i>");
 	output("\n\n<i>“Then I hit customs and....”</i> Gianna blushes.");
 	output("\n\n<i>“And?”</i> you ask.");
@@ -1247,7 +1340,7 @@ public function talkToGiannaAboutBigT():void
 	output("\n\nReally?");
 	output("\n\nSeeing your disbelief, she nods again. <i>“Don’t get me wrong, his dick looked like someone had snuck a support beam into the seam of his pants, but he didn’t try to push it on me. I could tell that just by being alive, or as close as I can get to it, I had made him happy.”</i>");
 	output("\n\n<i>“Wow.”</i>");
-	output("\n\n<i>“I know, right?”</i> the naked, artificial woman seems as wowed as you. <i>“I didn’t figure it out ‘til later, but treated people put out pheromones like smoke from chimneys. They can practically smell each other’s consent. I don’t produce pheromones, so the lug, no matter how confident he may be with the cow-girls, never made a move on me.”</i>");
+	output("\n\n<i>“I know, right?”</i> the naked, artificial woman seems as wowed as you. <i>“I didn’t figure it out till later, but treated people put out pheromones like smoke from chimneys. They can practically smell each other’s consent. I don’t produce pheromones, so the lug, no matter how confident he may be with the cow-girls, never made a move on me.”</i>");
 	//Treated/bimbo/studmuffin
 	if(pc.isBimbo() || pc.isBro())
 	{
@@ -1311,7 +1404,7 @@ public function giannaBodyModMenu(display:Boolean = true):void
 		if(flags["BEEN_IN_GIANNA_BODYMOD_MENU"] == undefined)
 		{
 			output("<i>“Would you resize yourself if I asked you to?”</i> you question.");
-			output("\n\nGianna poses for you. <i>“Baby, I can look like anything from an ultraporn star to a newly-matured maiden.”</i> She hefts her breasts. <i>“I can blow these up ‘til I have trouble walking.”</i> She spins to shake her ass at you. <i>“I can make this ass so big that you’d need climbing equipment for doggy-style.”</i> Looking over her shoulder, she purses her plump lips. <i>“I can even make these so big that the bulls won’t be able to walk past without needing to ram their cock into my mouth, just to feel these pillows on their dick.”</i>");
+			output("\n\nGianna poses for you. <i>“Baby, I can look like anything from an ultraporn star to a newly-matured maiden.”</i> She hefts her breasts. <i>“I can blow these up till I have trouble walking.”</i> She spins to shake her ass at you. <i>“I can make this ass so big that you’d need climbing equipment for doggy-style.”</i> Looking over her shoulder, she purses her plump lips. <i>“I can even make these so big that the bulls won’t be able to walk past without needing to ram their cock into my mouth, just to feel these pillows on their dick.”</i>");
 			output("\n\nFinally, she straightens and considers you. <i>“I find my current attributes to be a decent middle-ground between being sexually attractive and able to move about unhindered by my own weight. I wouldn’t really mind toning it down for you, if that’s what you really wanted, so long as you keep visiting. The bulls like how I look now, and I’m not sure how I could handle being ignored if there wasn’t at least someone to keep me company.”</i> A sly smirk spreads across her lips. <i>“Unless... you wanted me to pump myself up for you. I wouldn’t mind blowing up my tits for you, or giving you a rump you could really sink your fingers into. Just so long as we don’t go so big that I can’t work.”</i>");
 			output("\n\nSurprised at just how far she’s willing to go to please and curious if you can push her further, you ask her what she would do if you really wanted her to be immobilized by her breasts, or sport a butt that pinned her to the floor.");
 			output("\n\nEyes dimming thoughtfully, Gianna answers, <i>“I’d get them as close as I could without immobilizing myself. I can’t just lay around all day being your over-inflated fuck-pillow, after all.”</i> She tugs at her braid. <i>“And it doesn’t matter anyway. The silicone I have in me is all I have!”</i>");
@@ -1439,7 +1532,7 @@ public function giannaBodyModMenu(display:Boolean = true):void
 		addButton(7,"Shrink Lips",giannaLipDecrease,2,"Shrink Lips","Shrinking Gianna’s [gianna.lips] will free up 2 units of silicone.");
 	}
 	
-	if(pc.hasItem(new Silicone(),1)) addButton(8,"GiveSilicone",giveGiannaSilicone,undefined,"GiveSilicone","Give Gianna a bag of silicone.");
+	if(pc.hasItemByClass(Silicone,1)) addButton(8,"GiveSilicone",giveGiannaSilicone,undefined,"GiveSilicone","Give Gianna a bag of silicone.");
 	else addDisabledButton(8,"GiveSilicone","GiveSilicone","You need to find a bag of silicone before you can give it to Gianna.");
 
 	if(!gianna.hasStatusEffect("Hose Plugged In")) addButton(14,"Back",approachGianna,"back");
@@ -1451,6 +1544,7 @@ public function unhookGiannaHose():void
 	clearOutput();
 	giannaDisplay();
 	output("Gianna says, <i>“One sec!”</i> Twisting almost 180 degrees around, she gives the hose in her back a gentle twist. It comes off with a pop and retracts into one of the machines in the wall. Her blue eyes seem alight with electric energy. <i>“What now?”</i>");
+	gianna.removeStatusEffect("Hose Plugged In");
 	approachGianna("noText");
 }
 
@@ -1527,7 +1621,7 @@ public function increaseGiannaBoobs(siliconeUsed:int):void
 	{
 		output("<i>“Could you go a little bigger?”</i>");
 		output("\n\nGianna’s eyebrows shoot up in surprise, then drop into a low, sultry look. <i>“");
-		if(giannaPersonality() >= 75) output("Could they go bigger? Of course they could. I can swell them up ‘til they’re bigger than your head, with nipples so large you could palm them. Just watch.");
+		if(giannaPersonality() >= 75) output("Could they go bigger? Of course they could. I can swell them up till they’re bigger than your head, with nipples so large you could palm them. Just watch.");
 		else if(giannaPersonality() >= 25) output("You want me to have boobs like the cows huh? Big, fat tits that just look they’d hose milk at the slightest provocation? Well, I won’t be able to lactate, but I can certainly be your big-breasted android bimbo, if that’s what you want. Just watch.");
 		else output("Of course I can go bigger, if that’s what you wish. I can go much, much bigger, but for now, I’ll merely go a little bigger, as you requested. Then, if you want me even curvier, I can do it for you.");
 		output("”</i> ");
@@ -2002,7 +2096,7 @@ public function giveGiannaSilicone():void
 	output("\n\nGianna pushes her prize against a port in the machinery on the wall. Shortly after, you hear the sound of liquid being sucked away, presumably to a holding tank somewhere. A mechanical click follows, and Gianna takes the empty canister to toss into a nearby disposal. <i>“Let’s get started.”</i>");
 	//Menu!
 	giannaAvailableSilicone(6);
-	pc.destroyItem(new Silicone(),1);
+	pc.destroyItemByClass(Silicone,1);
 	giannaBodyModMenu(false);
 }
 
@@ -2923,7 +3017,7 @@ public function girlyTongueVibeEpilogue(clitSucked:Boolean = false):void
 {
 	clearOutput();
 	giannaDisplay();
-	output("You wake up to the sensation of being towelled off. Gianna is wiping the last wetness from your cheek as you come to. You’re in a different room now - a shower, by the looks of it, and the robotic woman has obviously spent some time cleaning you up.");
+	output("You wake up to the sensation of being toweled off. Gianna is wiping the last wetness from your cheek as you come to. You’re in a different room now - a shower, by the looks of it, and the robotic woman has obviously spent some time cleaning you up.");
 	output("\n\n<i>“Your stuff is over there. ");
 	//Dommy
 	if(giannaPersonality() >= 80)
@@ -2932,7 +3026,7 @@ public function girlyTongueVibeEpilogue(clitSucked:Boolean = false):void
 		output("\n\n<i>“An hour!?”</i> Your disbelief is evident.");
 		output("\n\nThe alabaster woman nods");
 		if(gianna.biggestTitSize() >= 15) output(", setting her breasts swaying");
-		output(". <i>“Yeah. You should have seen all the cute expressions you made while you came.”</i> She runs a delicate hand through your hair. <i>“If we keep this up, I’ll get you addicted to my mouth in no time. You’d better pace yourself, [pc.name]!”</i>");
+		output(". <i>“Yeah. You should have seen all the cute expressions you made while you came.”</i> She runs a delicate hand " + (pc.hasHair() ? "through your hair" : "across your head") + ". <i>“If we keep this up, I’ll get you addicted to my mouth in no time. You’d better pace yourself, [pc.name]!”</i>");
 		output("\n\nYou assure her that you will, and make your way out into the barn’s main corridor, the smiling android just behind you.");
 	}
 	//Normal
@@ -3303,6 +3397,9 @@ public function coochFuckThreeMaybeFourInOne():void
 	output(" Your robotic mate is leaning against the table with her palm flat against her mons");
 	if(gianna.hasCock()) output(", her dick pushed aside");
 	output(", slipping two fingers into her audibly wet snatch.");
+	
+	IncrementFlag("FUCKED_GIANNA_VAGINALLY");
+	
 	//Normal Variant - Not a taur.
 	if(!pc.isTaur())
 	{
@@ -3415,7 +3512,7 @@ public function coochFuckThreeMaybeFourInOne():void
 		else if(giannaPersonality() < 70)
 		{
 			output("\n\n<i>“Why don’t we use the table, lover?”</i> Gianna gives the bed a few pats. <i>“I’ll lie down and you can make love to me like ");
-			if(pc.race() == "human") output("your people");
+			if(pc.isHuman()) output("your people");
 			else output("the terrans");
 			output(" do.”</i> Smiling roguishly, she adds, <i>“It’ll be a good way to remind you just how good I can be at keeping you happy - even the hard, overeager parts of you.”</i>");
 			output("\n\nSmiling back, you graciously extend your arm towards the table. <i>“Ladies first.”</i>");
@@ -3455,7 +3552,7 @@ public function coochFuckThreeMaybeFourInOne():void
 				else 
 				{
 					output(", bloating into an obscenely pregnant, jiggly sphere.");
-					if(!pc.hasKnot()) output(" Thick streams of [pc.cum] wash out from around you, pushed out from her overpressurized womb.");
+					if(!pc.hasKnot(x)) output(" Thick streams of [pc.cum] wash out from around you, pushed out from her overpressurized womb.");
 					else output(" Not a single drop escapes around the tight seal your knot provides, no matter how overfilled she becomes.");
 				}
 			}
@@ -3467,9 +3564,10 @@ public function coochFuckThreeMaybeFourInOne():void
 				output("\n\nPoking you on the nose, she laughs again. <i>“Then I guess I’ll just have to be your bitch for an hour then, huh?”</i> She squeezes your [pc.butt] affectionately, simultaneously caressing your knot from the inside, overwhelming your still-sensitive dick with sensation. You drop into her waiting arms. <i>“I don’t mind. Just hold me, [pc.name].”</i>");
 				output("\n\nYou can do that.");
 				processTime(20);
+				//Dont forget to cumflate if needed.
+				giannaCumflated(pc);
 				pc.orgasm();
 				processTime(60);
-				//Dont forget to cumflate if needed.
 				clearMenu();
 				addButton(0,"Next",missionaryKnotEpilogue);
 				return;
@@ -3490,8 +3588,9 @@ public function coochFuckThreeMaybeFourInOne():void
 				output("\n\nWhat a girl.");
 				//Pass 25 minutes
 				processTime(25);
-				pc.orgasm();
 				//Dont forget to cumflate if needed.
+				giannaCumflated(pc);
+				pc.orgasm();
 			}
 		}
 		//Dommy Gianna - cowgirl
@@ -3589,20 +3688,21 @@ public function coochFuckThreeMaybeFourInOne():void
 			output("\n\nYou gently push her up when her thrashings slow.");
 			output("\n\nThe android smiles at you, rubbing her hand across your lube");
 			if(pc.cumQ() > 500) output(" and cum");
-			output("-soaked [pc.belly]. <i>“I told you I’d wring out every drop.”</i> Judging by how empty you");
+			output("-soaked belly. <i>“I told you I’d wring out every drop.”</i> Judging by how empty you");
 			if(pc.balls > 1) output("r [pc.balls] feel");
 			else if(pc.balls > 0) output("r [pc.balls] feels");
 			else output(" feel");
 			output(", you’re inclined to agree with her.");
 			output("\n\nGianna drags herself off your pole like an exhausted swimmer climbing from a pool. She nearly falls when she rolls off the table onto the straw-covered floor");
-			if(pc.cumQ() >= 8000) output(", dragged down by her inflated [pc.belly]");
+			if(pc.cumQ() >= 8000) output(", dragged down by her inflated belly");
 			output(". <i>“I’m gonna... gonna go wipe up. I’ll be right back.”</i>");
 			output("\n\nYou get dressed while the made-to-order woman does her business.");
-			//Orgasm - make sure to COMPLETELY empty balls.
 			processTime(41);
+			//Dont forget to cumflate if needed.
+			giannaCumflated(pc);
+			//Orgasm - make sure to COMPLETELY empty balls.
 			pc.orgasm();
 			pc.ballFullness = 0;
-			//Dont forget to cumflate if needed.
 		}
 	}
 	flags["GIANNA_FUCK_TIMER"] = 0;
@@ -3811,7 +3911,7 @@ public function savinTriesToWriteGiannaButtfux():void
 		output("<i>“Would you like to...”</i> she starts, trailing off as your hand continues to molest her backside, causing her voice to twist into a coo of pleasure. Her body relaxes utterly, giving you easy access to the crack of her ass. You slide a finger through it, grinning as she mewls and groans when you find the tight ring of her asshole. Your probing digit slides right on it, easily spreading her anal ring open around you. She gasps, her [gianna.chest] quaking as you finger her behind.");
 		output("\n\n<i>“Would you like to fuck it?”</i> Gianna finally manages to say, pushing back against your buried digit until you’re buried to the hilt. Now that’s an offer you could never refuse....");
 	}
-	//{Combine}
+	// Combine
 	output("\n\nGianna pushes off your hand, twirling on a heel and taking your hand in hers. She eagerly guides you out of the barn foyer and into one of the stalls. Every step brings a wider and wider smile to the sexbot’s face until she’s practically giddy with excitement when the two of you make your way into the stall, the door slamming shut behind you. By the time the two of you tumble in, your [pc.cockBiggest] is straining hard");
 	if(!pc.isCrotchGarbed()) output(" in the muggy, sex-scented air of the barn.");
 	else output(" against your [pc.lowerGarment].");
@@ -3875,19 +3975,31 @@ public function savinTriesToWriteGiannaButtfux():void
 	if(giannaPersonality() >= 70) output("<i>“Oh, just like that,”</i> she moans, bracing her hands against the edge of the table. <i>“Come on, tiger. Fuck me harder!”</i>");
 	else if(giannaPersonality() >= 30) output("<i>“Ooooh, that’s the stuff, [pc.name]!”</i> Gianna cries, her voice ringing with exuberance. <i>“Go ahead and fuck me as hard as you want - as hard as you can! I want to feel your thick, sticky seed shooting into my tight ass!”</i>");
 	else output("<i>“I hope it feels good,”</i> Gianna moans, her fingers digging into the table - clearly, <i>she</i>’s enjoying it! You tell her that you are as well, and earn a bashful grin from the sexy android between booty-jiggling thrusts into her backdoor. <i>“I’m glad you like my slutty asshole... please fuck it as hard as you want.”</i>");
-	//{Combine}
+	// Combine
 	output("\n\nGianna’s words spur you on, urging you to fuck her faster until every impact is sending her shuddering forward, lurching into the table. The whole setup rocks forward every time you ");
 	if(pc.biggestCockLength() > 20) output("hammer a gut-straining cock-thrust into Gianna’s well-stretched asshole");
 	else output("thrust hilt-deep into Gianna’s welcoming behind");
-	output(". Her hips hump back against you, moving to take you deeper and faster as best she can, reaching back to meet your thrusting [pc.cockNounBiggest]. In turn, you plant a hand on the metallic port just over her quivering backside and give her a slight push down onto the table");
+	output(". Her hips hump back against you, moving to take you deeper and faster as best she can, reaching back to meet your thrusting [pc.cockNounBiggest]. In turn, you");
+	if(pc.isTaur()) output(" shift the weight of your bestial body");
+	else output(" plant a hand on the metallic port just");
+	output(" over her quivering backside and give her a slight push down onto the table");
 	if(gianna.biggestTitSize() >= 15) output(", though it’s not much considering her massive rack");
 	output(". Her hands move fluidly from one end of the table to the other, stretching herself out across the surface. She’s not quite tall enough to make it, and ends up pulling her feet off the ground to reach; that won’t do at all.");
 
-	output("\n\nReaching forward, you grab one of Gianna’s ");
-	if(gianna.biggestTitSize() <= 3) output("high, perky tits");
-	else if(gianna.biggestTitSize() < 40) output("hefty, silicon-laden tits");
-	else output("immense, cow-girl-like boobs");
-	output(". Starting there, you give her another little push, this time onto her back. She obediently rolls over");
+	output("\n\n");
+	if(pc.isTaur())
+	{
+		output("Shifting your weight again, you give her another little push and tell her to get onto her back.");
+	}
+	else
+	{
+		output("Reaching forward, you grab one of Gianna’s ");
+		if(gianna.biggestTitSize() <= 3) output("high, perky tits");
+		else if(gianna.biggestTitSize() < 40) output("hefty, silicon-laden tits");
+		else output("immense, cow-girl-like boobs");
+		output(". Starting there, you give her another little push, this time onto her back.");
+	}
+	output(" She obediently rolls over");
 	if(gianna.biggestTitSize() >= 15) output(", though with some effort, thanks to her massive rack,");
 	output(" which sends an incredible shock of twisting, wringing pleasure through your [pc.cockBiggest]. Even as she moves, you don’t let up, vigorously pounding into the android’s ass. She grins at you from her new vantage, cupping her arms under her jiggling breasts.");
 	output("\n\n<i>“I love the view,”</i> she purrs, licking her lips as she drinks in the sight of you. Her long, alabaster legs slip around your waist, pulling you tight against herself. Your ability to thrust evaporates under Gianna’s leg-lock, but that doesn’t mean the fun’s over - not for an instant. Her synthetic muscles go to work on you, squirming and writhing and wringing your [pc.cockBiggest]. Her tight passage kisses and caresses your prick, sucking you in. Her creamy skin flushes darker, and she adds, <i>“And I love the feeling of you inside me... stretching my ass like this. Mmmmm.”</i>");
@@ -3910,7 +4022,9 @@ public function savinTriesToWriteGiannaButtfux():void
 	output("\n\n");
 	if(giannaPersonality() >= 70) 
 	{
-		output("Gianna reaches up with one of her perfect, creamy-skinned feet and brushes her big toe across your [pc.lip]. <i>“Mmm, that was nice. My circuits are just </i>trembling<i> after that, " + pc.mf("stud","babe") + ".”</i> She makes a quiet purring sound, languidly stretching her arms back");
+		output("Gianna reaches up with one of her perfect, creamy-skinned feet");
+		if(!pc.isTaur()) output(" and brushes her big toe across your [pc.lip]");
+		output(". <i>“Mmm, that was nice. My circuits are just </i>trembling<i> after that, " + pc.mf("stud","babe") + ".”</i> She makes a quiet purring sound, languidly stretching her arms back");
 		if(pc.cumQ() > 5000) output(" and rubbing her cum-stuffed belly");
 		output(".");
 	}
@@ -3941,18 +4055,18 @@ public function giveGiannaSomethingCoolYouSlut():void
 	processTime(2);
 	//Menu of give things
 	clearMenu();
-	if(pc.hasItem(new AHCock())) addButton(0,"A.H.Cock",giveGiannaSomethingTransform,"hoss","Android Horse Cock","Give Gianna the android horse-cock you’ve been carrying around.");
+	if(pc.hasItemByClass(AHCock)) addButton(0,"A.H.Cock",giveGiannaSomethingTransform,"hoss","Android Horse Cock","Give Gianna the android horse-cock you’ve been carrying around.");
 	else addDisabledButton(0,"Locked","Locked","You’ve no idea what this could be.");
-	if(pc.hasItem(new ACock())) addButton(1,"A.Cock",giveGiannaSomethingTransform,"humancock","Android Cock","Give Gianna the android cock you’ve been carrying around.");
+	if(pc.hasItemByClass(ACock)) addButton(1,"A.Cock",giveGiannaSomethingTransform,"humancock","Android Cock","Give Gianna the android cock you’ve been carrying around.");
 	else addDisabledButton(1,"Locked","Locked","You’ve no idea what this could be.");
-	if(pc.hasItem(new ADCock())) addButton(2,"A.D.Cock",giveGiannaSomethingTransform,"dragon","Android Dragon Cock","Give Gianna the android dragon-cock you’ve been carrying around.");
+	if(pc.hasItemByClass(ADCock)) addButton(2,"A.D.Cock",giveGiannaSomethingTransform,"dragon","Android Dragon Cock","Give Gianna the android dragon-cock you’ve been carrying around.");
 	else addDisabledButton(2,"Locked","Locked","You’ve no idea what this could be.");
 	addButton(14,"Back",giannaMenu);
 }
 
 public function hasGiannaGift():Boolean
 {
-	if (pc.hasItem(new AHCock()) || pc.hasItem(new ACock()) || pc.hasItem(new ADCock())) return true;
+	if (pc.hasItemByClass(AHCock) || pc.hasItemByClass(ACock) || pc.hasItemByClass(ADCock)) return true;
 	return false;
 }
 
@@ -4084,7 +4198,7 @@ public function giannaCrotchTF(arg:String = "clit"):void
 		if(flags["GIANNA_HAS_HORSE_COCK"] == undefined)
 		{
 			flags["GIANNA_HAS_HORSE_COCK"] = 1;
-			pc.destroyItem(new AHCock());
+			pc.destroyItemByClass(AHCock);
 		}
 		gianna.createCock(14,1.3);
 		gianna.shiftCock(0,GLOBAL.TYPE_EQUINE);
@@ -4095,7 +4209,7 @@ public function giannaCrotchTF(arg:String = "clit"):void
 		if(flags["GIANNA_HAS_HUMAN_COCK"] == undefined)
 		{
 			flags["GIANNA_HAS_HUMAN_COCK"] = 1;
-			pc.destroyItem(new ACock());
+			pc.destroyItemByClass(ACock);
 		}
 		gianna.createCock(10,1.1);
 		gianna.cocks[0].cockColor = "pink";
@@ -4105,7 +4219,7 @@ public function giannaCrotchTF(arg:String = "clit"):void
 		if(flags["GIANNA_HAS_DRAGON_COCK"] == undefined)
 		{
 			flags["GIANNA_HAS_DRAGON_COCK"] = 1;
-			pc.destroyItem(new ADCock());
+			pc.destroyItemByClass(ADCock);
 		}
 		gianna.createCock(10,1.1);
 		gianna.shiftCock(0,GLOBAL.TYPE_DRACONIC);
@@ -4267,6 +4381,216 @@ public function getButtReamedByFutaGigi():void
 
 	processTime(20+rand(11));
 	pc.orgasm();
+	pc.loadInAss(gianna);
+	pc.maxOutCumflation("ass", gianna);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Approach
+public function approachAnnoXXXGianna():void
+{
+	clearOutput();
+	showName("ANNO\&GIANNA");
+	showBust(annoBustDisplay(),giannaBustDisplay());
+	output("Neither Anno nor Gianna notice your approach, not even when you’re right behind them.");
+	if(flags["GIANNA_X_ANNO_3SUM"] == undefined)
+	{
+		output("\n\n<i>“You should’ve gotten [pc.himHer] from the ship.”</i> Gianna’s voice warbles with uncertainty.");
+		output("\n\nAnno plays with the android’s ponytail, flicking it back and forth. <i>“[pc.HeShe]’s a busy [pc.manWoman]. Besides, while the boss is away, the girls can play.”</i> She runs her arms down Gianna’s flawless, exposed skin, leaning her lips up to one synthetic ear. <i>“Did I tell you that I’m a squirter?”</i>");
+	}
+	else
+	{
+		output("\n\n<i>“You should’ve gotten [pc.himHer] from the ship.”</i> Gianna’s voice warbles with eagerness. <i>“Some things deserve to be shared...”</i>.");
+		output("\n\nAnno plays with the android’s ponytail, flicking it back and forth. <i>“[pc.HeShe]’s a busy [pc.manWoman]. Besides, while the boss is away, the girls can play.”</i> She runs her arms down Gianna’s flawless, exposed skin, leaning her lips up to one synthetic ear. <i>“I bet your tongue can make me squirt just as hard as [pc.hisHer] dick.”</i>");
+	}
+	output("\n\nYou could get their attention and join in, or leave and let them have a little girl on girl time in peace. What do you do?");
+	processTime(1);
+	
+	giannaAWOL(50 + rand(11));
+	pc.createStatusEffect("Anno X Gianna Cooldown", 0, 0, 0, 0, true, "", "", false, 720);
+	
+	clearMenu();
+	//[Cough] [Leave]
+	addButton(0,"Cough",coughAtAnnoXGianna);
+	addButton(1,"Leave",leaveAnnoXGianna);
+}
+
+public function leaveAnnoXGianna():void
+{
+	clearOutput();
+	showName("ANNO\n& GIANNA");
+	showBust(annoBustDisplay(),giannaBustDisplay());
+	output("You stay silent as the two girls head into a stall. Gianna’s in for some fun.");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Cough
+public function coughAtAnnoXGianna():void
+{
+	clearOutput();
+	showName("ANNO\n& GIANNA");
+	showBust(annoBustDisplay(),giannaBustDisplay());
+	var x:int = pc.cockThatFits(anno.vaginalCapacity(0));
+	if(x < 0) x = pc.smallestCockIndex();
+	output("You clear your throat.");
+	output("\n\nAnno spins around, her lusty look displaced by a guilty grimace. <i>“Hiiiii Boss!”</i> A fluffy arm slips around your shoulder. Gianna is squeezed into the other. <i>“We were just talking about you. Guess I’m not the only girl to fall prey to your charms. This lovely honey is so keen on you she all but insisted we invite you.”</i> Her ears flick playfully. <i>“You saved us the trouble of a call.”</i>");
+	output("\n\nGianna ");
+	if(giannaPersonality() < 33) output("averts her gaze while simultaneously arching her back to better display her [gianna.chest]. <i>“I’m available, if you’d like.”</i>");
+	else if(giannaPersonality() < 66) output("looks longingly between the two of you. <i>“Can we? Please?”</i>");
+	else output("flashes a saucy smile, her [gianna.lips] glistening enticingly. <i>“You know you’re thinking about it.”</i> She rubs one of her nipples, making the inky pigment strobe an eye-catching luminescent pink. <i>“We both know you like what you see.”</i>");
+
+	output("\n\nYou lean into the embrace. <i>“");
+	if(pc.isBimbo()) output("Fuck yeah! Let’s go in that stall!”</i> You impishly point one out, and Anno is all too happy lead the giggling hussy brigade inside.");
+	else output("Let’s go.”</i> You point out the nearest empty stall, and the lusty pair is all too happy to pile on in.");
+
+	//[Next]
+	processTime(2);
+	pc.lust(3);
+	clearMenu();
+	addButton(0,"Next",giannaXAnnoThreesomeGo, x);
+}
+
+public function giannaXAnnoThreesomeGo(x:int):void
+{
+	rooms["512"].removeFlag(GLOBAL.NPC);
+	currentLocation = "STALL EAST";
+	rooms[currentLocation].addFlag(GLOBAL.NPC);
+	generateMap();
+	
+	clearOutput();
+	showName("ANNO\n& GIANNA");
+	showBust(annoBustDisplay(true),giannaBustDisplay());
+	
+	output("The moment the door closes behind you, Anno is on Gianna, kissing her hard, bearing her into the wall. The synthetic companion squeaks cutely, slamming hard into the rustic, wood-panelled wall before sliding down to the bench.");
+	if(gianna.buttRating() >= 15) output(" Her silicone-packed ass distends beneath the weight of two eager girls, creating half-moons that protrude out to either side.");
+	output(" Savage ausar muscle collides with a well-engineered simulacrum, slurping wetly. A throaty sound of passion squeezes from the corners of their locked lips, followed by wet smacking and near-orgasmic moans from Gianna.");
+	//Clothed
+	if(!pc.isCrotchExposed())
+	{
+		output("\n\nSlender digits probe into your [pc.crotchCover]. Somehow Gianna is able to continue to kissing, eyes closed, while expertly removing every barrier between herself and your crotch. Those fingers don’t just strip away garments either: they caress. They squeeze. They fondle [pc.oneCock]");
+		if(pc.lust() >= 66) output(", lovely hard rod that it is.");
+		else output(", feeding it the pleasure it needs to grow to a full, tumescent stiffness.");
+	}
+	//Unclothed
+	else
+	{
+		output("\n\nSlender digits abruptly encircle [pc.oneCock] and stroke. Somehow Gianna is able to continue kissing, eyes closed, all while effortlessly giving you the beginnings of a handjob. She caresses. She squeezes. She lovingly fondles your [pc.cockNoun " + x + "]");
+		if(pc.lust() < 66) output(" until it is in a fully erect state");
+		output(".");
+	}
+	//Merge - no new paragraph:
+	output(" You could probably cum like this, in time, wallowing in the silk-smooth touches, letting her stroke you until your nerves overload and you nut all over the sex-droid’s slippery palms.");
+	output("\n\nHowever, you don’t get the chance, because Gianna rolls Anno onto the milking bench. The shocked ausar barely manages to reach for Gianna’s tits before her jumpsuit is unzipped from head to toe. It peels away from her dewy mound with a whimper from the slutty pup. She wriggles in excitement, legs spreading on their own.");
+	output("\n\nAnno gasps, <i>“F-fuck they move fast on New Texas.”</i>");
+	output("\n\n<i>“Only because you want this, Anno,”</i> Gianna answers, explaining, <i>“You said as much, though your body does most of the talking. My time on New Texas has made me quite adept at picking up on nonverbal cues.”</i> The android’s fingers slip inside the sodden puppy. <i>“Your skin is flushed");
+	if(giannaPersonality() < 50) output(" in a manner consistent with arousal, not shame");
+	else output(" brighter than a galotian whore");
+	output(".”</i> She spreads her fingers to stretch Anno wide, just as the ausar likes it. <i>“Your pupils are dilated");
+	if(giannaPersonality() >= 75) output(" like a slut seeing her first dick");
+	output(".”</i> An alabaster thumb dances in circles over a pinkish clit. <i>“And most importantly you’re wet enough to take half the bulls on the planet... or [pc.name].”</i>");
+
+	output("\n\nAnno whimpers, hips grinding back against Gianna’s palm. <i>“B-boss,”</i> she whimpers, <i>“Do something. Ah~!”</i> A full-body shudder wracks her. <i>“I d-don’t want to cum yet.”</i>");
+	output("\n\nWatching those fingers slip in and out... and in and out over and over, you cannot help but feel a touch jealous. Your [pc.cock " + x + "] wants inside the horned-up ausar, bad, and Gianna’s incessant stroking of your erection and Anno alike has only worsened the devilish cravings.");
+	output("\n\nFortunately Gianna seems to be on the same page as you. She nods her head slightly, cooing, <i>“");
+	if(giannaPersonality() < 65) output("Allow me to roll out the red carpet for you.");
+	else output("Let me see how wet we can make this puppy first.”</i> She rubs small circles beneath your glans, the rest of her fingers squeezing you tight. <i>“You deserve the wettest, cummiest boxes to bring yourself off in.");
+	output("”</i>");
+	output("\n\nThe excited android frees her fingers with a wet-sounding ‘schluck’ and adjusts herself so her face is poised directly over Anno’s enflamed pussy, lips still slightly spread. The white-furred ausar’s thighs are already soaked with arousal - so wet that when Gianna lowers her face into the soaked box, her face acquires a gleaming, slut-soaked sheen. Her inky oral organ thrusts deep. You can hear it as much as see it. Its passage deep into the pliant puppy is marked in the way Anno whimpers and squirms, abdominals clenching and spasming.");
+	output("\n\nTrickles of feminine lubricant slowly drip from the side of the overloaded milking bench. Gianna’s tugs soon pull you into it, basting your dick in the waterfall of girlcum in between strokes. She massages it into your skin, fingers working every crease and crevice of excited cockflesh until it is absolutely drenched in Anno’s excited ejaculate.");
+	if(pc.cumQ() >= 1000) output(" You drip your own pre like a faucet. Carelessly, the android mixes that into the sexual melange until you aren’t sure how much of the nerve-stimulating slickness is your own and how much belongs to your fluffy puppy.");
+	else if(pc.cumQ() >= 10) output(" You leak a little bit of pre, and Gianna is not at all shy about gathering it to dilute into Anno’s overwhelmingly sloppy contributions.");
+	output(" Her fist slaps wetly against your crotch. If she were to pull her fingers away, webs of wetness would connect it.");
+	output("\n\nYou grab hold of Gianna’s [gianna.butt] and squeeze in desperation, holding on to anything as the pleasure builds inside you. It sloshes back inside you to the rhythm of the android’s cock-milking hand, like every stroke is adding more and more kinetic energy to the fluid-filled reservoir until it is ready to spill over the lip of your restraint.");
+	if(pc.isBimbo()) output(" Yay!");
+	else if(pc.isBro()) output(" The girl gives a decent handjob. Would be better if she produced some pheromones though, like Anno.");
+	output(" She never takes you to that point, however. Gianna manipulates you with inhuman precision until you feel almost desperate to fuck somebody, anybody.");
+	output("\n\nAnno is in a similar state. She arches her back and rolls her hips against Gianna’s face again and again, trying to stimulate herself by friction alone, but the android moves with her, never giving the aroused ausar any more than she means to. Her tongue slithers around, but it’s slower now, designed to tease rather than to please. Gianna’s eyes sparkle with delight, the blue casting over the room, deriving her own pleasure from what she’s doing to you. Her thighs are glossy, you realize. You could slip out of her massaging fingertips and fuck her.");
+	output("\n\nIt’d be easiest thing in the universe.");
+	output("\n\nPerhaps sensing this, Gianna releases you both simultaneously. She straightens, hands and face completely soaked. <i>“");
+	if(giannaPersonality() < 33) output("She’s ready for you.");
+	else if(giannaPersonality() < 66) output("Go get her, champ.");
+	else output("Fuck her, " + pc.mf("stud","slut") + ". Fuck her so hard.");
+	output("”</i>");
+	output("\n\nAnno looks back over her shoulder in desperation, spreading her legs as wide as they’ll go. <i>“B-b-boss? Puh-please!”</i>");
+	processTime(20);
+	pc.lust(500);
+	clearMenu();
+	addButton(0,"Next",giannaXAnnoThreesomeGo2, x);
+}
+
+public function giannaXAnnoThreesomeGo2(x:int):void
+{
+	clearOutput();
+	showName("ANNO\n& GIANNA");
+	showBust(annoBustDisplay(true),giannaBustDisplay());
+	
+	output("You’re on Anno in a flash, [pc.cockNoun " + x + "] delving deep into the ausar’s needy cunny. She is so <i>drenched</i> that it’s like riding into her pussy on a red carpet. Her velvety folds squeeze tight, just like the girl behind them. Her knees lock behind your back to pull you deeper, and her arms fall on your shoulders, sharp-clawed fingers scraping ");
+	if(!pc.hasScales()) output("across your [pc.skinFurScales]");
+	else output("furrows into your [pc.skin]");
+	output(". You grunt with the force of your thrust. Anno tilts her head upward and captures your lips with hers, silencing you with a feverish tongue.");
+	pc.cockChange();
+	output("\n\nWhen the kiss breaks, she growls, <i>“Harder! Fuck me harder!”</i>");
+	output("\n\nYou answer by slamming your pelvis into hers hard enough to make her eyes roll halfway back and her voice cut off into a canine squeak. Pounding this bitch feels <i>good</i>. Her pussy can’t get enough, and neither can you, now that you’ve started really working her over. You take Anno on a first-class trip to poundtown. Pussyjuice squirts over your thighs from how forcefully you penetrate her, but the bitch just eats it up, squirming and gasping, her tail thumping the wall with excited wags.");
+	output("\n\nYou fuck her like the animal she is, and she loves it. It’s musky, feral sex. The kind that makes you both break out in sweat. You’re going to smell like puppy pussy for hours when this is over, and you relish it. Your [pc.cockNoun " + x + "] swells inside her, thicker and harder, preparing to disgorge a load of [pc.cum] inside her. Girlcum sprays your middle again and again as Anno climaxes repeatedly, the long denied pleasure scorching through her nerves in bolts of erotic lightning.");
+	output("\n\nShe whimpers and begs. Her orgasms seem endless. She even stops squirting after a time, but you can feel her clenching about you as if her body is trying to expel another girlish load over you. Anno grimaces and shakes her head. <i>“Too much!”</i> She pushes on the bench, trying to drag herself away. <i>“Too sensitive!”</i>");
+	processTime(6);
+	clearMenu();
+	addButton(0,"Next",giannaXAnnoThreesomeGo3, x);
+}
+
+public function giannaXAnnoThreesomeGo3(x:int):void
+{
+	clearOutput();
+	showName("ANNO\n& GIANNA");
+	showBust(annoBustDisplay(true),giannaBustDisplay());
+	
+	output("It is then that Gianna takes your hand and presses it against her tight, synthetic cunt. She leans over the table next to Anno, offering you a chance to take her doggie-style for desert after having your fill of missionary with the canine slut. Something seems mismatched about that, but you’re too horny to care. You pull out of the fucked-out pup and thrust yourself into the eager android, burying your ausar-basted bone deep into silken lips of Gianna’s talented nethers. They cup and caress you, stroking you, fluttering over your flesh in ripples that demand you orgasm as soon as possible.");
+	output("\n\nGianna moans, but not for long. The exhausted Anno slides over to her, and soon the two hotties are frenching, trading tongues as you satisfy your second quim of the day. There are differences between the two that you’d love to point out, were you not on the edge of exploding. Gianna’s cunt is definitely the more active of the two, but Anno’s has a certain something to it, perhaps the smell, perhaps her pheromones that keep Gianna’s expertly manipulated folds from massaging her out of your brain entirely.");
+	output("\n\nThey’re both watching you from the corners of their eyes. Gianna’s twinkle mischievously, and her [gianna.butt] starts twerking against you, rocking and bouncing, the lips dragging tightly along your length. It’s too much, too pleasing to the eye and the dick. Overwhelmed by the erotic might of these two seductresses, you groan and climax, your [pc.cock " + x + "] becoming hypersensitive as Gianna’s synthflesh folds squeeze down on your [pc.cockHead " + x + "].");
+	//No cum!
+	if(pc.cumQ() < 4) output("\n\nYou feel your [pc.cock " + x + "] flex with the rhythmic force of attempted ejaculations, and Gianna must feel it too, because her eyes flash white with what you can only assume is pleasure. The android shakes beneath you, her kisses suddenly artless. She cums right alongside you until the feeling passes, leaving muted satisfaction and exhaustion in its wake. You slide out of her slippery slit and flop down alongside the two girls, cuddling into soft breasts and post-coital hugs.");
+	//Normal jizz
+	else if(pc.cumQ() < 250) 
+	{
+		output("\n\nYou feel your [pc.cock " + x + "] flex in rhythmic ejaculation, even some slight trickles along your ");
+		if(pc.balls > 0) output("[pc.sack]");
+		else output("taint");
+		output(" as a little leaks out of Gianna’s slippery slit.. The android shakes and squirms beneath you, her kisses suddenly artless. She’s cumming to the feeling of your orgasm, her pleasure matched in perfect 1 to 1 ratio. When the feeling finally passes, you sag down together, your [pc.cock " + x + "] slipping free with one last shock of heavenly satisfaction.");
+		output("\n\nYou flop onto the table alongside the two fucked-out girls, cuddling into soft breasts and post-coital hugs.");
+	}
+	//Biggo Jizzo
+	else
+	{
+		output("\n\nYou feel your [pc.cock " + x + "] erupting in rhythmic ejaculation, dumping huge loads of [pc.cumVisc] spooge into Gianna’s syrupy slit. Her eyes flash white with what you can only assume is pleasure. Her body shakes and quivers, her kisses suddenly artless. She’s cumming right alongside you, her bliss perfectly synced to yours. You keep basting her perfect pussy for as long as you can, more than long enough for [pc.cumGem] juices to drizzle out of her box in steady streams.");
+		output("\n\nWhen you finally pull out, you’re pleased to see Gianna’s cunt absolutely drenched in [pc.cum]. You sit down on the bench, snuggling into the two exhausted beauties and their curvaceous bodies, trading tired kisses and reveling in the post-coital bliss together.");
+	}
+	//Merge
+	processTime(15);
+	pc.orgasm();
+	pc.applyPussyDrenched();
+	sweatyDebuff(2);
+	clearMenu();
+	addButton(0,"Next",giannaXAnnoThreesomeGo4, x);
+}
+
+public function giannaXAnnoThreesomeGo4(x:int):void
+{
+	clearOutput();
+	showName("ANNO\n& GIANNA");
+	showBust(annoBustDisplay(true),giannaBustDisplay());
+	
+	output("There’s no shower in this stall, so cleanup is a brief affair, one interrupted numerous times by Gianna or Anno offering to clean the fluids from a patch of cum-soaked skin with their tongues.");
+	output("\n\nWhen you and Anno leave, she remarks, <i>“We should spend more time on New Texas, Boss. I liked that one.”</i>");
+	output("\n\nYou feel inclined to agree.");
+	IncrementFlag("GIANNA_X_ANNO_3SUM");
+	processTime(2);
+	
+	rooms[currentLocation].removeFlag(GLOBAL.NPC);
+	rooms["512"].addFlag(GLOBAL.NPC);
+	currentLocation = "512";
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

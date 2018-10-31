@@ -59,10 +59,35 @@ public function initVesperiaRoom():void
 	rooms["CANADA4"].system = "SYSTEM: LIBERTERIA";
 	rooms["CANADA4"].eastExit = "CANADA3";
 	rooms["CANADA4"].southExit = "CANADA5";
+	rooms["CANADA4"].westExit = "CANADAEXT";
 	rooms["CANADA4"].moveMinutes = 1;
 	rooms["CANADA4"].runOnEnter = outsideCanadiaBarBonus;
 	rooms["CANADA4"].addFlag(GLOBAL.INDOOR);
 	rooms["CANADA4"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["CANADAEXT"] = new RoomClass(this);
+	rooms["CANADAEXT"].roomName = "ACCESS\nCORRIDOR BETA";
+	rooms["CANADAEXT"].description = "Having gotten used to the station's more homey appearance, the redwood door with <i>“The Lotus Eater”</i> burned into the top of it doesn’t surprise you much. Next to the door is a sign that reads: <i>“Open All Hours.”</i>  There appears to be a much more recent handwritten sign as well: <i>“Please Treat The Help With Respect.”</i>";
+	rooms["CANADAEXT"].planet = "CANADIA STATION";
+	rooms["CANADAEXT"].system = "SYSTEM: LIBERTERIA";
+	rooms["CANADAEXT"].eastExit = "CANADA4";
+	rooms["CANADAEXT"].northExit = "VRLOUNGE";
+	rooms["CANADAEXT"].moveMinutes = 1;
+	//rooms["CANADAEXT"].runOnEnter = undefined;
+	rooms["CANADAEXT"].addFlag(GLOBAL.INDOOR);
+	rooms["CANADAEXT"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["VRLOUNGE"] = new RoomClass(this);
+	rooms["VRLOUNGE"].roomName = "THE LOTUS\nEATER";
+	rooms["VRLOUNGE"].description = "";
+	rooms["VRLOUNGE"].planet = "CANADIA STATION";
+	rooms["VRLOUNGE"].system = "SYSTEM: LIBERTERIA";
+	rooms["VRLOUNGE"].southExit = "CANADAEXT";
+	rooms["VRLOUNGE"].moveMinutes = 1;
+	rooms["VRLOUNGE"].runOnEnter = lotusEaterBonus;
+	rooms["VRLOUNGE"].addFlag(GLOBAL.INDOOR);
+	rooms["VRLOUNGE"].addFlag(GLOBAL.PUBLIC);
+	rooms["VRLOUNGE"].addFlag(GLOBAL.NPC);
 
 	rooms["CANADA5"] = new RoomClass(this);
 	rooms["CANADA5"].roomName = "BAR\nLOUNGE";
@@ -138,4 +163,41 @@ public function initVesperiaRoom():void
 	rooms["CANADA9"].addFlag(GLOBAL.PRIVATE);
 	rooms["CANADA9"].addFlag(GLOBAL.BED);
 	rooms["CANADA9"].addFlag(GLOBAL.OBJECTIVE);
+	
+	rooms["CANADAELEVATOR"] = new RoomClass(this);
+	rooms["CANADAELEVATOR"].roomName = "\nELEVATOR";
+	rooms["CANADAELEVATOR"].description = "";
+	rooms["CANADAELEVATOR"].planet = "CANADIA STATION";
+	rooms["CANADAELEVATOR"].system = "SYSTEM: LIBERTERIA";
+	rooms["CANADAELEVATOR"].eastExit = "CANADA5";
+	rooms["CANADAELEVATOR"].moveMinutes = 1;
+	rooms["CANADAELEVATOR"].runOnEnter = undefined;
+	rooms["CANADAELEVATOR"].addFlag(GLOBAL.INDOOR);
+	rooms["CANADAELEVATOR"].addFlag(GLOBAL.PRIVATE);
+	rooms["CANADAELEVATOR"].addFlag(GLOBAL.LIFTDOWN);
+	
+	rooms["SPUNKBUNKERCORRIDOR"] = new RoomClass(this);
+	rooms["SPUNKBUNKERCORRIDOR"].roomName = "\nCORRIDOR";
+	rooms["SPUNKBUNKERCORRIDOR"].description = "";
+	rooms["SPUNKBUNKERCORRIDOR"].planet = "CANADIA STATION";
+	rooms["SPUNKBUNKERCORRIDOR"].system = "SYSTEM: LIBERTERIA";
+	rooms["SPUNKBUNKERCORRIDOR"].outExit = "CANADAELEVATOR";
+	rooms["SPUNKBUNKERCORRIDOR"].eastExit = "SPUNKBUNKER";
+	rooms["SPUNKBUNKERCORRIDOR"].moveMinutes = 1;
+	rooms["SPUNKBUNKERCORRIDOR"].runOnEnter = undefined;
+	rooms["SPUNKBUNKERCORRIDOR"].addFlag(GLOBAL.INDOOR);
+	rooms["SPUNKBUNKERCORRIDOR"].addFlag(GLOBAL.PRIVATE);
+	rooms["SPUNKBUNKERCORRIDOR"].addFlag(GLOBAL.LIFTUP);
+	
+	rooms["SPUNKBUNKER"] = new RoomClass(this);
+	rooms["SPUNKBUNKER"].roomName = "SPUNK\nBUNKER";
+	rooms["SPUNKBUNKER"].description = "";
+	rooms["SPUNKBUNKER"].planet = "CANADIA STATION";
+	rooms["SPUNKBUNKER"].system = "SYSTEM: LIBERTERIA";
+	rooms["SPUNKBUNKER"].westExit = "SPUNKBUNKERCORRIDOR";
+	rooms["SPUNKBUNKER"].moveMinutes = 1;
+	rooms["SPUNKBUNKER"].runOnEnter = undefined;
+	rooms["SPUNKBUNKER"].addFlag(GLOBAL.INDOOR);
+	rooms["SPUNKBUNKER"].addFlag(GLOBAL.PRIVATE);
+	rooms["SPUNKBUNKER"].addFlag(GLOBAL.NPC);
 }

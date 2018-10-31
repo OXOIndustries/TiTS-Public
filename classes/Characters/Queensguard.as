@@ -157,7 +157,7 @@
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 4;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 9000;
 			this.timesCum = 122;
 			this.cockVirgin = true;
@@ -259,15 +259,21 @@
 		
 		private function queensGuardThunderKick(target:Creature):void
 		{
-			output("Queensguard feints, drawing your defenses to her sword, only to kick you square in the gut. You stumble back, but she’s not done yet: the knight pirouettes and slams her shield into you, <b>leaving you staggered</b>.");
-			if (target.hasStatusEffect("Staggered"))
+			output("Queensguard feints, drawing your defenses to her sword, only to kick you square in the gut. You stumble back, but she’s not done yet: the knight pirouettes and slams her shield into you");
+			if(!target.isPlanted())
 			{
-				target.setStatusValue("Staggered", 1, 5);
+				output(", <b>leaving you staggered</b>");
+				if (target.hasStatusEffect("Staggered"))
+				{
+					target.setStatusValue("Staggered", 1, 5);
+				}
+				else
+				{
+					CombatAttacks.applyStagger(target, 5);
+				}
 			}
-			else
-			{
-				target.createStatusEffect("Staggered", 5, 0, 0, 0, false, "Icon_OffDown", "You're staggered, and your Aim and Reflexes have been reduced!", true, 0);
-			}
+			else output("--the impact almost staggering you, but you are too firmly planted to the ground for that to happen");
+			output(".");
 			applyDamage(meleeDamage(), this, target, "melee");
 		}
 		
@@ -297,7 +303,7 @@
 				if(physique()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned"))
 				{
 					output("\n<b>You’re stunned by the blow!</b>");
-					target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","Cannot act for a turn.",true,0,0xFF0000);
+					CombatAttacks.applyStun(target, 1);
 				}
 			}
 		}
@@ -349,7 +355,7 @@
 				output(".");
 
 				output(" The sheer weight of the impact");
-				if(target.physique() + rand(20) + 1 >= physique() + 10) output(" nearly staggers you");
+				if((target.physique() + rand(20) + 1 >= physique() + 10) || target.isPlanted()) output(" nearly staggers you");
 				else
 				{
 					if(target.statusEffectv1("Cage Distance") < 2) 
@@ -361,7 +367,7 @@
 					else
 					{
 						output(", knocking the wind out of you enough that the knight is easily able to strike you again, sending you flat on your back. <b>You’re knocked prone!</b>");
-						if(!target.hasStatusEffect("Tripped")) target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+						CombatAttacks.applyTrip(target);
 					}
 				}
 				output("!");

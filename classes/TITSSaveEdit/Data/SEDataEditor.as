@@ -255,7 +255,7 @@ package classes.TITSSaveEdit.Data
 				
 				titsCock.cLengthRaw = cocCock.cockLength;
 				
-				titsCock.cThicknessRatioRaw = 6 * (cocCock.cockThickness / cocCock.cockLength);	
+				titsCock.cThicknessRatioRaw = 6 * (cocCock.cockThickness / cocCock.cockLength);
 				titsCock.knotMultiplier = cocCock.knotMultiplier;
 				
 				//titsCock.cockColor = ???
@@ -695,7 +695,7 @@ package classes.TITSSaveEdit.Data
 			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_DRAGON] = GLOBAL.TYPE_DRACONIC;
 			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_RACCOON] = GLOBAL.TYPE_KUITAN;
 			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_MOUSE] = GLOBAL.TYPE_MOUSE;
-			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_FERRET] = GLOBAL.TYPE_HUMAN;	
+			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_FERRET] = GLOBAL.TYPE_HUMAN;
 		}
 		
 		private static function convertHeadData(tits:TiTsCharacterData, coc:CoCCharacterData):void

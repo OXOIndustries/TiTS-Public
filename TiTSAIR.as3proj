@@ -8,11 +8,11 @@
     <movie fps="24" />
     <movie width="1200" />
     <movie height="800" />
-    <movie version="13" />
+    <movie version="23" />
     <movie minorVersion="0" />
-    <movie platform="AIR Mobile" />
+    <movie platform="AIR" />
     <movie background="#3D5174" />
-    <movie preferredSDK="Flex 4.6.0, AIR 20.0;4.6.0, 20.0;" />
+    <movie preferredSDK="Flex 4.6.0, AIR 27.0;4.6.0, 27.0;" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
@@ -29,21 +29,21 @@
     <option locale="" />
     <option loadConfig="" />
     <option optimize="True" />
-    <option omitTraces="True" />
+    <option omitTraces="False" />
     <option showActionScriptWarnings="True" />
     <option showBindingWarnings="True" />
     <option showInvalidCSS="True" />
     <option showDeprecationWarnings="True" />
     <option showUnusedTypeSelectorWarnings="True" />
     <option strict="True" />
-    <option useNetwork="True" />
+    <option useNetwork="False" />
     <option useResourceBundleMetadata="True" />
     <option warnings="True" />
     <option verboseStackTraces="False" />
     <option linkReport="" />
     <option loadExterns="" />
     <option staticLinkRSL="True" />
-    <option additional="-managers flash.fonts.AFEFontManager" />
+    <option additional="-managers flash.fonts.AFEFontManager -keep-as3-metadata+=Serialize" />
     <option compilerConstants="CONFIG::IMAGEPACK,false&#xA;CONFIG::AIR,true&#xA;CONFIG::FLASH,false&#xA;CONFIG::CHARGEN,false" />
     <option minorVersion="" />
   </build>

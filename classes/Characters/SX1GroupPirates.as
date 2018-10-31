@@ -16,6 +16,7 @@ package classes.Characters
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.*; 
 	import classes.Engine.Interfaces.output;
+	import classes.StringUtil;
 	
 	//Fight is in pitch black. Aim and Reflexes are significantly reduced. 
 	public class SX1GroupPirates extends Creature
@@ -176,6 +177,7 @@ package classes.Characters
 			this.ass.wetnessRaw = 0;
 			
 			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+			//createStatusEffect("Disarm Immune");
 			
 			isUniqueInFight = false;
 			btnTargetText = "VoidPirate";
@@ -192,6 +194,12 @@ package classes.Characters
 		{
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
+			
+			if(hasStatusEffect("Stunned") || hasStatusEffect("Disarmed"))
+			{
+				attackPass();
+				return;
+			}
 			
 			var nadesAvail:Boolean = true;
 			for (var i:int = 0; i < alliedCreatures.length; i++)
@@ -215,6 +223,11 @@ package classes.Characters
 			
 			if (attack == rangedAttack || attack == machinePistols) attack(target);
 			else attack(hostileCreatures);
+		}
+		
+		private function attackPass():void
+		{
+			output(StringUtil.capitalize(uniqueName, false) + (hasStatusEffect("Stunned") ? " is unable to attack!" : " goes scrambling for his dropped weapon."));
 		}
 		
 		private function rangedAttack(target:Creature):void
@@ -257,13 +270,18 @@ package classes.Characters
 			if (blindedPC && blindedSaen)
 			{
 				output(" blinding you and Saendra.");
-				pc.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
-				saen.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+				CombatAttacks.applyBlind(pc, 3);
+				CombatAttacks.applyBlind(saen, 3);
 			}
 			else if (!blindedPC && blindedSaen)
 			{
 				output(" blinding Saendra, though you manage to avoid any serious effect.");
-				saen.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
+				CombatAttacks.applyBlind(saen, 3);
+			}
+			else if (blindedPC && !blindedSaen)
+			{
+				output(" blinding you, as Saendra moves to avoid the blast.");
+				CombatAttacks.applyBlind(pc, 3);
 			}
 			else
 			{
@@ -301,7 +319,7 @@ package classes.Characters
 				applyDamage(new TypeCollection( { kinetic: 8 * mul } ), this, target, (target is PlayerCharacter ? "minimal" : "suppress"));
 			}
 
-			createStatusEffect("NadeCD", 5);
+			createStatusEffect("Nade Cooldown", 5);
 		}
 	}
 }

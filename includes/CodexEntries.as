@@ -22,30 +22,35 @@ public function configureCodex():void
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Anatae", anataeCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Ausar", ausarCodexEntry, true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Cundarians", cundarianCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Daynar", daynarCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Dzaan", dzaanCodex,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Fanfir", fanfirCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Galotians", galotianCodexEntry, true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Gryvain", gryvainCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Humans", humanTerranCodex, true);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Laquines", laquineCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Leithans", leithanCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Kaithrit", kaithritCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Kalabast/Fhan’i", kalabastFhaniCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Kui-Tan", kuitanCodexEntry,true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Laquines", laquineCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Leithans", leithanCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Mothrine", mothrineCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Ovir", ovirCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Rahn", rahnCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Rodenians", rodenianCodexEntry);
-	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Roehm", roehmCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Siel", sielCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Roehm", roehmCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Saeri", saeriCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Saurmorians",saurmorianCodexEntry,true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Siel", sielCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Simii", simiiCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Slyverens",slyverenCodex);
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Sionach", sionachCodexEntry);
-	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Suulas", suulaCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Spinarrans", spinarranCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Suulas", suulaCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Tarratch", tarratchCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Thraggen", thraggenCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Toves", toveCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Varmints", varmintCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Gryvain", gryvainCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Vildarii", vildariiCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds", "Vulkrimi", vulkrimiCodexEntry);
 	
@@ -58,28 +63,29 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Venus Pitchers", venusPitcherCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MHENGA, "Mhen'ga", "Zil", zilCodexEntry);
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Gabilani", gabilaniCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Gray Goos", grayGooCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Lapinara", lapinaraCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Raskvel", raskVelCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus","Sydians", sydianCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus", "Sand Worms", buttBugsCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus", "Gabilani", gabilaniCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus", "Gray Goos", grayGooCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus", "Lapinara", lapinaraCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus", "Raskvel", raskVelCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_TARKUS, "Tarkus", "Sydians", sydianCodexEntry);
 	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Bothrioc", bothriocCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Cockvines", cockvinesCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Ganrael", crystalGooCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Gold Myr", goldMyrmedionCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Myr Fungus", myrFungusCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Nyrea", nyreaCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Red Myr", redMyrmedionCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_MYRELLION, "Myrellion", "Bothrioc", bothriocCodexEntry);
-
+	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Essyras", essyraCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Frostwyrm", frostwyrmCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Korgonne", korgonneCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Lurelings", lurelingsCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_UVETO, "Uveto", "Milodan", milodanCodexEntry);
-
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_XAMDAM, "Xamdam", "Divrani", divraniCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_XAMDAM, "Xamdam", "Hyraxxi", hyraxxiCodexEntry);
+	
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_XAMDAM, "Xamdam", "Divrani", divraniCodexEntry);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE_XAMDAM, "Xamdam", "Hyraxxi", hyraxxiCodexEntry);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ROBOT, "Androids", "V-Ko", VKoCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ROBOT, "Androids", "V-Ko IVs", VKoIVsCodex);
@@ -89,6 +95,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Aegis", aegisShipyardsCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "BI/G", bellIsleGrunmannCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Camarilla", camarillaCodex);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Envyoidics", envyoidicsCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Humphard Inc.", humphardIncCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "J’ejune", jejuneCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "JoyCo", joyCoCodex, true);
@@ -97,35 +104,38 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Pyrite", pyriteCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Reaper", reaperCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "RhenWorld", rhenWorldCodex, true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "SagiTom", sagiTomCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Snugglé", snuggleCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Steele Tech", steeleTechCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Corporations", "Xenogen", xenogenCodex, true);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Factions", "Black Void", blackVoidCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Factions", "J.A.F.", jointAusarFederationCodex, true);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Factions", "Gilden Republic", gildenRepublicCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Factions", "Scarlet Federation", scarletFederationCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Factions", "T.S.C.", terranSpaceCoalitionCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Factions", "U.G.C.", unitedGalacticConfederacyCodex, true);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ORGANIZATION, "Religions", "Stormguard", stormguardCodex);
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Throbb", throbbCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Dumbfuck", dumbfuckCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Gush", gushCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "The Treatment", treatmentCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Tentatool", tentacoolCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "Throbb", throbbCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Illegal Items", "The Treatment", treatmentCodexEntry);
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "SynthSheath", synthSheathCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "BionaHoles", bionaholeCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Bubble Buddy", bubbBuddyCodex);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Capraphorm", capraphormCodex);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Chill Pill", chillPillCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "ClearYu", clearYuCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "FizzyFix", fizzyfixCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Grav Cuffs", gravCuffsCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Holodom", holodomCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Suma Cream", sumaCreamCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "ClearYu", clearYuCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Rubber-Made", rubberMadeCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Bubble Buddy", bubbBuddyCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Muffstick", muffstickCodex);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "FizzyFix", fizzyfixCodex);
-	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Chill Pill", chillPillCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Rubber-Made", rubberMadeCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "Suma Cream", sumaCreamCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Legal Items", "SynthSheath", synthSheathCodex);
 	
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Ships", "9999", shipNameCodex);
 	
@@ -133,29 +143,36 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Item Mechanics", mechanicsCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Maia Series AI", Bess13CodexEntry);
 	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "General Knowledge", "Taint", taintCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "SSTDs", "Furpies", furpiesCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "SSTDs", "Locofever", locofeverCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "SSTDs", "Sneezing Tits", sneezingTitsCodexEntry);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "||||||||", eightClicksStory);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Assistant", assistantStory);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Becoming One...", becomingOneOfTheGirlsStory);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Bull’s Strength", bullsStrength, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "BXBI: I", bxbiChapter1Story);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "BXBI: II", bxbiChapter2Story);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Captured...", capturedByTheDemons);	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dragon’s Hoard", dragonsHordeCodexStory, true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Captured...", capturedByTheDemons);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Cow Stuff", cowStuffStory);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Diverting Jokes", DivertingTarkusJokesAndJests);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dildo Snakes", dildoSnakes, true);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dragon’s Hoard", dragonsHordeCodexStory, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Fuck the System", fuckTheSystem);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Satyr Slave", satyrSlaveStory);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Stolen Goods", stolenGoodsStory);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Tentacles & Tanukis", tentacleTroubleForTurnedOnTanukis);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Tower of Trials",towerOfTrialsStory);
 }
 
 public function codexHomeFunction():void
 {
 	// Written in style of technical documentation because why not.
 	clearOutputCodex();
-	showBust("NONE");
+	clearBust();
 	outputCodex("Welcome to the Steele Industries® Computerized Observational Directory of Environmental eXposure® (CODEX™), version 12b.");
-	outputCodex("\n\nThe Steele Industries® CODEX™ system has been designed to provide emergency-level informative warnings of Class 4 environmental and Class M biological hazards to a designated user of the device and will notify the user should the CODEX™ device detect such a hazard within a defined unsafe radius.");
+	outputCodex("\n\nThe Steele Industries® CODEX™ system has been designed to provide emergency-level informative warnings of Class 4 environmental and Class M biological hazards to a designated user of the device and will notify the user should the CODEX™ device detect such a hazard within a defined unsafe radius.");
 	outputCodex("\n\nSystem usability has been designed for rapid dissemination of information to the designated user when facing potentially life threatening situations. The following QuickStart™ documentation is always available from the CODEX™ root menu:");
 	
 	outputCodex("\n\nThe buttons displayed along the bottom edge of the CODEX™ display access the core information stores offered as part of the CODEX™ devices databases.");
@@ -168,7 +185,7 @@ public function codexHomeFunction():void
 	outputCodex("\n\t<span class='locked'>\\\[Missing Entries\\\]</span> are red.");
 	outputCodex("\n\t<span class='active'>\\\[Active Entries\\\]</span> are blue.");
 
-	outputCodex("\n\nSteele Industries® would like to thank [pc.name] for additionally equipping this CODEX™ device with the the following optional modules:");
+	outputCodex("\n\nSteele Industries® would like to thank [pc.name] for additionally equipping this CODEX™ device with the following optional modules:");
 	outputCodex("\n\tSteele Industries® Resource Acquisition System™ (RAS™)");
 	outputCodex("\n\tSteele Industries® Automated Fringe Classifier™ (ScanNow™)");
 	outputCodex("\n\tSteele Industries® Biosign Monitor Alerting™ (MedSign™)");
@@ -197,7 +214,7 @@ public function humanTerranCodex():void
 	outputCodex("\n<b>Weight:</b> Adult humans commonly weigh between 140 and 180 pounds, with males being 20 to 30 pounds heavier than females on average.");
 	outputCodex("\n<b>Average Lifespan:</b> Most humans have a natural lifespan between 80 and 90 years without the assistance of modern medicine, though particularly healthy humans may live upwards of a century.");
 	outputCodex("\n<b>Skin:</b> Humans are covered in a soft, supple skin which is largely furless save for at the hair on the top of their head. Vestigial fur remains on their forearms and lower legs which is used for temperature regulation, though some humans may have this hair removed. Color variation of the skin ranges from a fair, peach-like tone to a very dark brown. Lighter shades of human skin will often become temporarily darker when exposed to sunlight.");
-	outputCodex("\n<b>Hair:</b> Color varies, with brown, blond, and black as the three most common colors, though auburn and red hair also exist. Growth of pubic and facial hair are markers of age. As a human ages extensively, individual strands may grow white, causing the hair to become gray or entirely white. Balding is common for males of the species at certain ages.");
+	outputCodex("\n<b>Hair:</b> Color varies, with brown, blonde, and black as the three most common colors, though auburn and red hair also exist. Growth of pubic and facial hair are markers of age. As a human ages extensively, individual strands may grow white, causing the hair to become gray or entirely white. Balding is common for males of the species at certain ages.");
 	outputCodex("\n<b>Eyes:</b> Human eyes are circular, with a colored iris surrounding a black pupil that may dilate under dark conditions or when focusing on an object of interest, though this dilation is not especially pronounced relative to many other species. Naturally, blue, green, brown and hazel are the most common eye colors.");
 	outputCodex("\n<b>Ears:</b> Human ears are mounted on either side of their head, having a largely ovoid shape. The organ is used for detecting sound and aiding with maintaining balance while moving. Human ears are compact compared to many other races, though their quality of hearing is quite good. The audible range for human ears is between 20 to 20,000 Hz on average.");
 	outputCodex("\n<b>Homeworld:</b> Terra");
@@ -212,7 +229,7 @@ public function humanTerranCodex():void
 	outputCodex("\n\nHuman pregnancy generally lasts nine months and usually bears only one child at a time, though instances of multiple births are not uncommon, especially among the more fertile. Human infants can see at birth and mature to adulthood biologically at 10-12 years for females and 12-14 years for males, but recognized legally at 18 years of age. Though newborns consist of primarily females and males, there have been rare cases of natural hermaphrodites.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Combat"));
-	outputCodex("While lacking significant natural biological defenses compared to other species, humans nonetheless bear a number of useful traits, with hands capable of balling into primitive clubs and a bite that carries all manner of infectious agents. Humans have also developed many styles of martial arts focused on landing hits with their fists or legs which are remarkably effective. With the rise of technology, they have also developed large arrays of deadly weapons and armors, even going to far as to devise weapons capable of driving their own race to an early extinction. Galactic opinion is still varied on whether or not surviving that stage of their development was a good thing.");
+	outputCodex("While lacking significant natural biological defenses compared to other species, humans nonetheless bear a number of useful traits, with hands capable of balling into primitive clubs and a bite that carries all manner of infectious agents. Humans have also developed many styles of martial arts focused on landing hits with their fists or legs which are remarkably effective. With the rise of technology, they have also developed large arrays of deadly weapons and armors, even going so far as to devise weapons capable of driving their own race to an early extinction. Galactic opinion is still varied on whether or not surviving that stage of their development was a good thing.");
 	outputCodex("\n\nThe sword is the most culturally iconic human weapon, and swords continue to be made today, from simple to elaborate metal blades, even to the more technologically-driven weaponry.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Environs Typically Inhabited"));
@@ -247,26 +264,26 @@ public function ausarCodexEntry():void
 	outputCodex("\n<b>Tails:</b> Ausar have long, bushy tails of an exceptionally pleasant, soft fur. These tails usually display their emotional state, wagging when happy or tucking when sad -- though their owners have some measure of control over the tail’s movements. They often brush it against those they hold in great affection.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Combat"));
-	outputCodex("Ausar naturally have a soft, velvety fur covering their arms and legs, though this serves as poor protection against anything besides of the environment. As such, the race has strongly invested in personal shield technology, producing some of the most advanced in the galaxy. Due to their high physical agility, most Ausar shun heavier armors such as that worn by human Marines, instead relying on linked shields across fighting formations to guard against attacks. The staff was, in ancient times, the primary weapon of their race, and the staff is the basis for their current weapons technology, with both shock-pikes and crook-shaped railguns being the favored armaments of the day.");
+	outputCodex("Ausar naturally have a soft, velvety fur covering their arms and legs, though this serves as poor protection against anything besides the environment. As such, the race has strongly invested in personal shield technology, producing some of the most advanced in the galaxy. Due to their high physical agility, most Ausar shun heavier armors such as that worn by human Marines, instead relying on linked shields across fighting formations to guard against attacks. The staff was, in ancient times, the primary weapon of their race, and remains the basis for their current weapons technology, with both shock-pikes and crook-shaped railguns being their favored armaments of the day.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Gender Differences"));
-	outputCodex("Ausar genders are largely divided as in humans, with males having broader chests and shoulders while females have wider hips and milk-producing breasts. Male Ausar are known to possess knotted phalluses, which can sometimes cause copulation to take hours once it’s lodged in a lover. To compensate, females of the race have exceptionally well lubricated, often quite elastic vaginas, which also to help in the birthing of litters.");
+	outputCodex("Ausar genders are largely divided as in humans, with males having broader chests and shoulders while females have wider hips and milk-producing breasts. Male Ausar are known to possess knotted phalluses, which can sometimes cause copulation to take hours once it’s lodged in a lover. To compensate, females of the race have exceptionally well lubricated, often quite elastic vaginas, which also helps during the birthing of litters.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Typical Environments"));
-	outputCodex("The Ausar homeworld is a vast, arid desert spotted with great shimmering oases and vast temple-cities dedicated to the god-kings of old. Most of the world is uninhabited, occupied by deadly scorpion-like creatures the size of a horse as well as huge worms which have been the race’s primary source of food for aeons. After taking to the stars roughly 1000 years before contact with humans, the Ausar have come to adapt to many different environs, though most worlds they terraform retain the hot, dry desert conditions of the homeworld.");
+	outputCodex("The Ausar homeworld is a vast, arid desert spotted with great shimmering oases and vast temple-cities dedicated to the god-kings of old. Most of the world is uninhabited, occupied by deadly scorpion-like creatures the size of a horse as well as huge worms which have been the race’s primary source of food for aeons. After taking to the stars roughly 1000 years before contact with humans, the Ausar have come to adapt to many different environs, though most worlds they terraform retain the hot, dry desert conditions of their homeworld.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Reproduction"));
 	outputCodex("As mentioned above, Ausar copulation is often an hours-long affair thanks to the male knot, and rapid recovery periods on both sides. Though not overly libidinous, the race is known for being more sexually forward than humans, as marriage and long-term sexual relationships are rarer among the race, though by no means unheard of. Once impregnated, an Ausar female will carry a “litter” of up to six children for a period of six months before giving birth. Ausar are born blind for the first few weeks and need a mother’s milk, but naturally grow and mature somewhat faster than humans, reaching adulthood at fifteen years.");
-	outputCodex("\n\nDue to the long standing friendship between Ausar and Mankind, the two are perhaps the most common of xeno-romantic entanglements. Halfbreeds produced by Ausar-Human relationships are somewhat taller and heavier than an Ausar, often losing arm and leg fur, though they retain the tails of their alien parent, and smaller, floppier and less sensitive wolf ears. Half-ausar are born usually in pairs, can see at birth, and come of age as humans do. As one of the most common hybrid races in the galaxy, half-ausar has recently become a primary option in the U.G.C. census, rather than being filled in under “Other/Hybrid race.”");
+	outputCodex("\n\nDue to the long standing friendship between Ausar and Mankind, the two are perhaps the most common of xeno-romantic entanglements. Halfbreeds resulting from Ausar-Human relationships are typically somewhat taller and heavier than the average Ausar, often losing arm and leg fur, though they tend to retain the tails of their alien parent, and have smaller, floppier and less sensitive wolf ears. Half-ausar are usually born in pairs, can see at birth, and come of age as humans do. Being one of the most common hybrid races in the galaxy, half-ausar have recently become a primary option in the U.G.C. census, rather than being filled under “Other/Hybrid race.”");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Society"));
-	outputCodex("Unlike most modern civilizations, the Ausar have not unified into a central government. Rather, their planets are ruled by independent kings and queens, who convene to decide matters related to the race; it was, indeed, humanity’s gift of quantum communication that allowed the fragmented Ausar society, spread across the stars, to tighten and present a strong, united front to the galaxy. However, the local kings are still relatively free to act as they choose, though the King of Ausaril, the homeworld, is considered the “King of Kings,” and is generally deferred to by lesser despots, and holds the only post able to call the entire Ausar to war or countermand planetary kings (in large part thanks to a crushingly huge fleet and more advanced technology produced on the homeworld). In times of trouble or war, the Joint Ausar Fleet can be called on, with each world in the federation contracted to supply a certain number of ships and soldiers to the joint defense each decade.");
+	outputCodex("Unlike most modern civilizations, the Ausar have not unified under a central government. Instead, their planets are ruled by independent kings and queens, who convene to decide matters related to their race. It wasn't until humanity’s gift of quantum communication that the fragmented Ausar society, spread across the stars, tightened to present a strong, united front in the galaxy. However, the local kings are still relatively free to act as they choose, though the King of Ausaril, the homeworld, is considered the “King of Kings”, is generally deferred to by lesser despots and holds the only post able to call the entire Ausar to war or countermand planetary kings (in large part thanks to a crushingly huge fleet and more advanced technology produced on the homeworld). In times of trouble or war, the Joint Ausar Fleet can be called on, with each world in the federation contracted to supply a certain number of ships and soldiers to the joint defense each decade.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Relationships"));
-	outputCodex("The Ausar are known to be an exceptionally friendly and peaceful race. They are slow to anger, though they are quite territorial, and have rarely warred with other races. In interactions with humans, the Ausar are known to be outgoing and affectionate, readily making friendships that last a lifetime. Indeed, some have commented that most Ausar get along better with humans than their own kind, and thanks to their wolf-like appearance, are occasionally called “Man’s best friend among the stars.” As humanity’s first contact with alien life, and longest and staunchest ally, the saying has thus far rung true.");
+	outputCodex("The Ausar are known to be an exceptionally friendly and peaceful race. They are slow to anger, though they are quite territorial, and have rarely warred with other races. When interacting with humans, the Ausar are known to be outgoing and affectionate, readily making friendships that last a lifetime. Some have commented that most Ausar get along better with humans than even their own kind, and thanks to their wolf-like appearance, they are occasionally called “Man’s best friend among the stars.” As humanity’s first contact with alien life, and longest and staunchest ally, this saying has thus far rung true.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Technology"));
-	outputCodex("The Ausar invented the Warp Gates, and therefore firmly placed themselves at the forefront of galactic technology. While they have yet to field an invention to overshadow the gates, the Ausar are still renowned as brilliant scientists, especially in regards to interstellar travel and ships. Ausar shields are second to none, and their ships are exceptionally quick, equipped with advanced LightDrive engines (a refinement on the human invention). Their technology, being exceptionally complex and prone to gaps in electronic defenses, is well-known to be vulnerable to security breaches. More than once, a powerful Ausar fleet or financial institute has been decimated by a skilled hacker.");
+	outputCodex("The Ausar invented the Warp Gates, and therefore firmly placed themselves at the forefront of galactic technology. While they have yet to field an invention to overshadow the gates, the Ausar are still renowned as brilliant scientists, especially in regards to interstellar travel and ships. Ausar shields are second to none, and their ships are exceptionally quick, equipped with advanced LightDrive engines (a refinement on the human invention). However, their technology, being exceptionally complex and prone to gaps in electronic defenses, is well-known to be vulnerable to security breaches. More than once, powerful Ausar fleets or financial institutes have become victims of skilled hackers.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Ausar");
 }
@@ -292,11 +309,11 @@ public function kaithritCodexEntry():void
 	outputCodex(blockHeader("Environs Typically Inhabited"));
 	outputCodex("Although a widely scattered race that can be encountered across much of the known galaxy, with the existence of nomadic space-faring clans and families that happily establish themselves in human or ausar-created colonies alike being reliably documented, kaithrit do in fact have a homeworld. Known as Rosha, it is a lush, verdant orb that sits just slightly closer to its sun than Earth, resulting in an overall tropical and sub-tropical climate. Much of Rosha is grassland or open scrub forests, with dense jungles towards the cooler polar regions, vast mangrove swamps along the coastlines and a dense strip of arid savannas and bushland across the equators. Only at the very poles themselves do tundras and taigas form.");
 	outputCodex("\n\nAs a consequence, kaithrit are most comfortable in similar environments; the jungle-rich world of Mhen’gha is expected to see many of these aliens coming to settle, with its wild, lawless frontier world status sure to act as a magnet for this bold, brash species. However, Kaithrit have been seen all over the galaxy. Some of the more daring have succumbed to their wanderlust and taken to traveling through space, often in clan crews, to colonize and seek their fortune abroad.");
-	outputCodex("\n\nThough it is true that many kaithrit enjoy traveling through space, the truth is that the great majority of them are traditionalists unwilling to leave their home planet, Even if they do take trips to stations and other planets. After the Great Exodus, an event that marked the beginning of a new age, not many Kaithrit born on their homeworld choose to leave it.");
+	outputCodex("\n\nDespite the fact that many kaithrit enjoy traveling through space, the great majority of them are traditionalists unwilling to leave their home planet, even if they do take trips to stations and other planets. After the Great Exodus, an event that marked the beginning of a new age, not many Kaithrit born on their homeworld choose to leave it.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Reproduction"));
 	outputCodex("Kaithrit reproduce in fundamentally normal mammalian style, with males impregnating females who then give birth to live young that are suckled on milk from their mammary glands. Furthering the gender confusion are males who remain in close, constant proximity to an expectant female. Pregnant kaithrit emit a steady wave of hormonal musk which can trigger a lactation response in males, swelling his breasts and allowing mother and father alike to nurse. Kaithrit pregnancy lasts approximately eight months after conception, and results in one to three kittens, though incidents of multiple births are quite low -- most pregnancies result in a single healthy child. Male hormonal balance tends to return to equilibrium faster than females, allowing them to recover from the effects of a female’s pregnancy and return to their normal chest size quickly.");
-	outputCodex("\n\nConfirmed kaithrit crossbreeding has been documented between both humans and ausar. Human/kaithrit hybrids tend to have more human-like facial features and typically only have one tail. Ausar/kaithrit crossbreeds are most distinctive from purebred kaithrit because males and hermaphrodites typically have ausar-like phalluses, albeit usually with the typical kaithrit texturing.");
+	outputCodex("\n\nConfirmed kaithrit crossbreeding has been documented with both humans and ausar. Human/kaithrit hybrids tend to have more human-like facial features and typically only one tail. Ausar/kaithrit crossbreeds are most distinctive from purebred kaithrit because males and hermaphrodites typically have ausar-like phalluses, albeit usually with the typical kaithrit texturing.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("History"));
 	outputCodex("The kaithrit are believed to have a rather human-like evolutionary story, beginning as tree-dwellers who, as the trees gave way to grassland, evolved towards a bipedal frame. As one may expect, the kaithrit’s most distant ancestor was more feline than primate. Perhaps because of this, gender roles also evolved differently to humans; unlike human precursors, these proto-kaithrit were a matriarchal species. The females were, as they are today, bigger and stronger than the males, responsible for hunting and warring with other prides, while the males cared for the offspring. This inversion of human gender roles shows through in many aspects of kaithrit society; it is far more common for a female kaithrit to initiate a relationship than it is for the males, for instance.");
@@ -324,11 +341,11 @@ public function leithanCodexEntry():void
 	outputCodex("\n<b>Sexes:</b> Male and Female");
 	outputCodex("\n<b>Height:</b> Leithans can range from 8\' 6\" to 10\' tall, with females usually slightly shorter and lighter than males. Their tauric frames are roughly 5\' at the shoulders, with their humanoid halves ranging from three and a half to five additional feet.");
 	outputCodex("\n<b>Hair:</b> Most Leithans have dark, stringy hair. Black, dark yellow, and shades of gray and brown are all common.");
-	outputCodex("\n<b>Eyes:</b> Leithan eyes are bright and universally blue, with white storm patterns surrounding their twin irises. Leithans have exceptional eyesight, and a secondary eyelid allows them to see even in extreme brightness, as is common on their homeworld, without sacrificing their low-light vision.");
+	outputCodex("\n<b>Eyes:</b> Leithan eyes have bright, universally blue irises, with white storm patterns surrounding their twin pupils. Leithans have exceptional eyesight, and a secondary eyelid allows them to see even in extreme brightness, as is common on their homeworld, without sacrificing their low-light vision.");
 	outputCodex("\n<b>Ears:</b> Leithans have two large, sensitive ears which grow from the center of their brows, roughly two inches apart. Their ears are alert, but are soft and frequently flop back against their heads at high speeds or in emotive response. A secondary pair of ears are located where human ears are, on the sides of the head. While larger than a human’s and gently tapered (some describe them as “elfin”), the secondary ears are for all intents and purposes without special function.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Combat"));
-	outputCodex("Unlike many advanced species through the galaxy, the Leithans began as prey creatures on their homeworld, and have over the millennia developed several defensive adaptations to ward off the very large, unintelligent predators that attacked them. The first feature most people notice about a Leithan is her natural armor: while the tauric lower body is completely covered with thick, leathery scales (befitting the species’ reptilian origin), the flanks, arms, legs, and tail are protected by a chitinous secondary layer. Leithan armor is thick enough to stop most low-caliber bullets, and even deflect low-grade laser fire at range; more importantly for the species, however, it is capable of withstanding the enormous pressure of most titanic predators’ crushing maws, giving Leithans some defense against their native hunters.");
+	outputCodex("Unlike many advanced species through the galaxy, the Leithans began as prey creatures on their homeworld, and have over the millennia developed several defensive adaptations to ward off the very large, unintelligent predators that attacked them. The first feature most people notice about a Leithan is their natural armor: while the tauric lower body is completely covered with thick, leathery scales (befitting the species’ reptilian origin), the flanks, arms, legs, and tail are protected by a chitinous secondary layer. Leithan armor is thick enough to stop most low-caliber bullets, and even deflect low-grade laser fire at range; more importantly for the species, however, it is capable of withstanding the enormous pressure of most titanic predators’ crushing maws, giving Leithans some defense against their native hunters.");
 	outputCodex("\n\nSecond, the Leithans have developed six powerful legs, allowing them unparalleled running speeds over short bursts. Leithan endurance is not above average, but their speed is usually enough to avoid or outrun danger before exhaustion sets in.");
 	outputCodex("\n\nThird, Leithans have adapted bright warning signs on their armor plates. These yellow, bioluminescent patterns are unique to each Leithan, and serve to frighten off some larger predators, especially at night. The coloration of their warning lights has become iconic in Leithan culture, and many Leithans choose to dye their hair or decorate themselves with gold stripes and swirls, adding to the effect of their natural defense. The bioluminescent stripes have a variable brightness, controlled subconsciously by their owner: in times of extreme emotion or distress, they flare brighter, while when calm and relaxed, the lights are almost completely dimmed.");
 	outputCodex("\n\n");
@@ -398,7 +415,8 @@ public function kuitanCodexEntry():void
 public function gryvainCodexEntry():void 
 {
 	clearOutputCodex();
-	showBust("9999");
+	var randBust:Array = ["GRYVAIN","GRYVAIN_AGENT"];
+	showBust(randBust[rand(randBust.length)]);
 	outputCodex(header("Gryvain"));
 	outputCodex("<i>The dragon women are as beautiful and artistic as they are breed-hungry.</i>\n\n");
 	outputCodex("<b>Name:</b> Gryvain (plural and singular)");
@@ -487,7 +505,7 @@ public function galotianCodexEntry():void
 	outputCodex("\n<b>Height & Weight:</b> Highly variable");
 	outputCodex("\n<b>Coloration:</b> Highly variable, typically matches the local environs for camouflage purposes.");
 	outputCodex("\n<b>Lifespan:</b> Indefinite. Galotians show no signs of aging or cellular degeneration.");
-	outputCodex("\n\n");	
+	outputCodex("\n\n");
 	outputCodex(blockHeader("History"));
 	outputCodex("Galotians were the first species encountered with any true shape-shifting potential. Discovered during the chaotic second Planet Rush, they were originally thought to be hostile predators. Early explorers fought tooth and nail to stop themselves from being enveloped in the horrifying blobs of goo that rolled out of Galotia’s swamps with little success.");
 	outputCodex("\n\nThese unfortunate first victims often did not survive the curious creature’s attentions. The galotians did not understand most species’ need to be exposed to gaseous oxygen in order to remain alive. Rather than devour the resulting corpses, the living oozes spat out the lifeless bodies and lumbered away. For no explicable reason, ‘Attacks’ died away almost entirely after the first week of contact with the rest of the galaxy. Plans to declare the planet unfit for colonization were scuttled, and more and more visitors came to the wet, swampy planet, seeking riches amongst the muck.");
@@ -514,7 +532,7 @@ public function galotianCodexEntry():void
 	outputCodex(blockHeader("Reproduction"));
 	outputCodex("Galotians reproduce entirely asexually. Asexual reproduction has many disadvantages, but these ‘goo-girls’ get around most of them by virtue of their own malleability. They only reproduce when they have a large amount of body mass, and it is at this time that they’re best able to alter their own forms, even capable of adjusting the DNA strands in different portions of their bodies.");
 	outputCodex("\n\nEvery galotian will spawn a half dozen daughters once she accumulates enough body mass, each with her own hand-tailored, evolutionary adaptations. The young galotians emerge fully formed and, with a portion of their mother’s memories, often retaining abilities like speech and literacy in their entirety. The loss of so much mass will bring the mother down to a few hundred pounds of weight, her daughters each easily a little heavier than the average terran.");
-	outputCodex("\n\nKeeping a galotian from reproducing is easy. Simply manage her food intake so that she never grows too large. Of course, the chance to feed a galotian can be difficult to turn down, particularly if one has managed to alter your sexual organs or drive in any way.");
+	outputCodex("\n\nKeeping a galotian from reproducing is easy. Simply manage her food intake so that she never grows too large. Of course, the chance to feed a galotian can be difficult to turn down, particularly if one has managed to alter the sexual organs or sex drive of their victim.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Place in the U.G.C."));
 	outputCodex("Galotians do not seek traditional jobs or employment. They desire warmth, companionship, and sexual fluids. Invariably, they wind up serving as sexual companions, indentured servants, or sources of cheap genital enhancement. Many serving in long term jobs soon forget about collecting payment so long as suitable living areas and food are present.");
@@ -535,7 +553,7 @@ public function anataeCodexEntry():void
 	outputCodex("\n<b>Sexes:</b> Male (85%), Female (15%)");
 	outputCodex("\n<b>Height:</b> Both sexes range between 5\' 11\" and 6\' 4\"");
 	outputCodex("\n<b>Weight:</b> 160 to 200 lbs");
-	outputCodex("\n<b>Hair:</b> Anatae males have a plume of feathers on their crowns, which can reach two feet in length. Both sexes have small tufts of feathers on the outsides of their elbows. These feathers come in many different colours, often artificial.");
+	outputCodex("\n<b>Hair:</b> Anatae males have a plume of feathers on their crowns, which can reach two feet in length. Both sexes have small tufts of feathers on the outsides of their elbows. These feathers come in many different colors, often artificial.");
 	outputCodex("\n<b>Eyes:</b> Almost universally light blue. Anatae generally have exceptionally good eye vision, in clear conditions able to discern activity over 5 kilometers away.");
 	outputCodex("\n<b>Ears:</b> In contrast, anatae do not have exterior pinna and whilst their hearing is technically about as good as a human’s, they struggle to pinpoint the source and direction of sounds through that sense alone.");
 	outputCodex("\n\n");
@@ -567,6 +585,33 @@ public function anataeCodexEntry():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Anatae");
 }
+
+public function cundarianCodexEntry():void
+{
+	clearOutputCodex();
+	var randBust:Array = ["STORMGUARD_MALE"];
+	showBust(randBust[rand(randBust.length)]);
+	outputCodex(header("Cundarians"));
+	outputCodex("<i>You can’t have space without physically intimidating goats.</i>\n\n");
+	outputCodex("<b>Name:</b> Cundarian (Singular) and Cundarians (Plural)");
+	outputCodex("\n<b>Sexes:</b> Male & Female split 50/50.");
+	outputCodex("\n<b>Height:</b> Males average 6\' 4\" in height. Females average 5\' 11\".");
+	outputCodex("\n<b>Weight:</b> 80-115 kilograms.");
+	outputCodex("\n<b>Hair:</b> None");
+	outputCodex("\n<b>Eyes:</b> One pair, slit-pupiled and generally yellow sclera.");
+	outputCodex("\n<b>Skin:</b> Grey, dark blue and mauve are the most common shades.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Features"));
+	outputCodex("Cundarians are digitigrade bipeds of slightly above average body mass in comparison to the galactic norm. Their males are taller and bulkier than the females, a dimorphism exaggerated further by the different lives they tend to lead. Cundarians have prominent, defined faces immediately recognisable to humans and ausar, with the average compliment of two eyes, a fairly flat nose, a mouth and two fin-shaped ears. They do not grow body hair, however almost all adult males sprout small tentacles from their chin and jaw. These grow slowly over the course of a male cundarian’s life, displaying how old they are. All cundarians grow plated ridges from their brows across the top of their heads, and sometimes long, dreadlock-like tentacles as well. Whether head-tentacles are present, and the size and shape of the ridges, is dependent upon an individual cundarian’s ethnicity.\n\nCundarians have a slightly top-heavy, muscular frame most notable in their males as a result of an evolution spent mostly climbing the mountainous regions of their home world of Samaria. For the same reason they have blunt, balance-imparting tails, and their legs are hoofed; three toed and keratinous, perfect for traversing rocky, vertiginous territory.\n\nProbably the cundarians’ most remarkable bodily feature is their ability to enter a torpor-like state in extreme temperatures. Across most of their body, their skin is smooth but tough, pebble-like. When they enter torpor, the chemical composition of their epidermis changes to further toughen until it enters a rock-like state across the entirety of the cundarian’s frame, virtually impervious to outside conditions. This necessitates the cundarian freeze in place, as well as drastically slowing their body and cognitive functions, but allows them to survive atmospheric conditions that would kill others for days at a time.\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("Outwardly, cundarians have a sexual arrangement which is immediately recognisable to most of the rest of the galaxy. Males grow a quartet of testicles and a large, free-hanging, blunt penis; females grow a spacious vagina behind a stony cloaca. The nature of their reproduction however is unique, thanks to the physical qualities of cundarian semen.\n\nImmediately after ejaculation, cundarian semen is a moist, foam-like substance. If allowed to settle, it holds its shape and hardens into a smooth, tough but lightweight solid. After insemination has occurred within a female cundarian’s womb, the semen forms around the fertilised ova, and in a relatively short amount of time becomes a hard-shelled egg that the female can then give birth to. This enables cundarians to lay large ova much faster than they ordinarily would be able to, vital for them given that only one is laid per batch and the high turn-over of their population (see below).\n\nBeing oviparous, female cundarians do not have breasts, but do have large hips and backsides to enable frequent egg-laying. Cundarian penises are muscular and the male’s orgasm particularly powerful in order to ejaculate their semi-solid cum. A popular practice in traditional cundarian relationships is for the male to “seal” the female’s vaginal entrance with a plug of semen, broken only by the egg’s birth. This has the effect of constantly arousing the female via rubbing and stretching, “proving” her chasteness and loyalty to her partner by leaving it unbroken nonetheless.\n\n");
+	outputCodex(blockHeader("Culture"));
+	outputCodex("The cundarians are a patriarchal society who place great value in honor earned through battle or personal hardship. Their very name is a samarin term meaning “bloodthirsty savage”, subsequently adopted with pride. Although their traditional values have mellowed through exposure to the outside galaxy, it is still rare for non-cundarians to meet female cundarians - they are largely confined to home worlds and colonies, where they are expected to raise children and maintain the social fabric. Male cundarians often express a desire to protect the moral sanctity of their females, a viewpoint they feel is confirmed by the licentiousness of a largely effeminate outside galaxy. This is not to say females wield absolutely no power within cundarian society - owners of property and land as a matter of course, they are traditionally the ultimate arbiters as to whether a male has earned enough honor to breed and hold station or not.\n\nCundarian honor is earned through vanquishing foes in battle or by overcoming intimidating trials of the body or mind. Mere strength or stamina are only one facet - tactical or technical brilliance are celebrated equally, if not more so. Whatever is materially gained from said battles or trials is of distant, secondary importance. Reports abound of cundarian raiders defeating colonial patrols and merchant convoys before simply leaving them without actually taking or killing anyone, the filmed proof of their victory enough. Outside of the anatae navy and military, cundarians usually find employment in mercenary groups and pirate gangs or on particularly hostile worlds, settings in which their mettle can be tested.\n\n");
+	outputCodex(blockHeader("History"));
+	outputCodex("When the anatae discovered Samaria and uplifted the samarin in the Fifth Planetary Rush, little thought was given to the planet’s other sentient species, who unlike the literary-minded and sophisticated samarin were war-like, barely beyond the Bronze Age and confined mostly to the planet’s mountainous regions. In their early history the cundarians had brutalized the samarin, using their superior strength and aggression to tyrannize them across large tracts of the planet. Eventually, thanks to the samarin’s greater interest in and grasp of technology, they drove the cundarians back into the infertile wastelands of Samaria, where they subsequently lived a backward existence.\n\nUnsurprisingly the samarin had a negative cultural view of the cundarians, and advised the anatae against attempting to uplift them as well. The cundarians’ natural love of adventure however saw them escape their planet anyway - mostly thanks to careless slavers - and eventually the Empire was forced into the difficult process of officially integrating them as well.\n\nHow successful that process was is debated. The anatae have ameliorated but never truly curbed the species’ entrenched traditional values, and cundarian raiders and pirates are a constant menace along new frontiers and poorly policed regions of space, a source of tension between the Empire and the rest of the U.G.C. They have however proved their worth many positive contributions elsewhere. Many of the Empire’s chief military and naval advisors are cundarian, and the first boots on the ground in any imperial intercession are invariably owned by cundarians (many of whom would refuse to serve if that wasn’t the case). Cundarians are also willing to colonize worlds most races would regard as out of the question, making them perfect for crewing mining installations and power plants on planets with hostile climates. The anatae generally view the cundarians as worth their boisterousness, given their willingness to serve at the sharp end of the Empire’s quest to spread its influence to as much of the galaxy as possible.\n");
+	CodexManager.viewedEntry("Cundarians");
+}
+
 public function daynarCodexEntry():void
 {
 	clearOutputCodex();
@@ -630,7 +675,7 @@ public function dzaanCodex():void
 	outputCodex("\n\nWith the latest rush, many resorts have closed; these strange aliens’ attentions are firmly on the heavens. Only the isolationist tribes on their homeworld continue as they have, avoiding outsiders at all costs.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Appearance"));
-	outputCodex("Dzaan are almost entirely human-like in appearance, leading many exotic races to have difficulty distinguishing the two. Leithans in particular seem to struggle to identify these “two-legs,” but significant biological disparities do exist between the two races. First and foremost, dzaan have longer spinal cords than terrans, containing six more vertebrae, giving them a longer torso.");
+	outputCodex("Dzaan are almost entirely human-like in appearance, leading many exotic races to have difficulty distinguishing the two. Leithans in particular seem to struggle to identify these “two-legs” but significant biological disparities do exist between the two races. First and foremost, dzaan have longer spinal cords than terrans, containing six more vertebrae, giving them a longer torso.");
 	outputCodex("\n\nTheir sinuous posture does a good job at concealing the extra size, giving them an outthrust chest and subtly arched behind. Their wide hips and strong, muscular legs give them something of a sensuous gait, always seeming to display their secondary sexual characteristics for maximum effect, and the short tendons in their heels keep them on the balls of their feet.");
 	outputCodex("\n\nDark skin colors are the norm for both sexes, a leftover from their tropical homeworld (and preferred climes). The only hair a dzaan will ever grow sprouts from her head, much like a human’s, though alphas typically have less than betas, owing to the keratin protrusions that often form on their foreheads, sometimes even manifesting as rounded horns. Alphas may also have these ridges on their cheeks, shoulders, elbows, knees, and feet. It is uncommon for any one alpha to have growths in all these places; many never get anything more than horns.");
 	outputCodex("\n\nBetas lack the keratin protrusions but are ornamented with a variety of spots or stripes, sometimes both in complementary locations. The mechanisms behind their formation were studied for years with only middling success before being abandoned entirely. Why spend tens of millions of credits researching a gene-mod when anyone can get their own markings from a cheap tattoo artist?");
@@ -688,7 +733,7 @@ public function fanfirCodexEntry():void
 	outputCodex("\n\nAfter initial attempts to make contact faltered, thanks to the fanfir having no concept of written text and misunderstanding attempts to talk to them as insulting animal screeches, they were largely ignored by early settlers to the planet, who were composed of small scale human and daynar mining concerns interested in the semi-precious metals held within its crust. Taking grave exception to miners inadvertently hitting burial sites and religious proving grounds, a large number of fanfir tribes united in an attempt to drive the extra-terrestrials away. Initially killed in droves by the weaponry deployed against them by the mining companies, they displayed intelligence beyond the estimations made of them by the humans and daynar by changing tactics, fighting a guerrilla war involving sweeping isolated individuals away in hit and run assaults, collapsing dig sites by channelling heavy vibrations into the earth, and terrorizing camps with all-night banshee-like choirs.");
 	outputCodex("\n\nWhilst the materiel companies involved could counter each of these individually, together they made the cost of extracting metals and sending workers to Haerum prohibitive, and they withdrew. The planet was on the verge of being declared off-limits when the anatae intervened.");
 	outputCodex("\n\nToday the integration of the fanfir into larger galactic civilization is held up as an exemplary case to all anatae first contact parties. At the time, the amount of time and resources they poured into attempting to consolidate a monstrously sized race of primitives that had proven itself to be barbarous and bloodthirsty was ridiculed. The anatae spent years analyzing the vocalizations of the fanfir with remote drones before approaching their nesting sites with offerings of tools and medicine, leaving them in places their research concluded were neutral bartering sites, favouring no tribe more than any other. The breakthrough was made when the imperial researchers finally offered the fanfir something they would come to value more than anything else in the entire galaxy: an additional pair of arms with opposable thumbs. Outfitted with the secondary set of cybernetic arms that would become synonymous with the race, the fanfir were immediately able to manipulate the world in a way that had long been denied them. They became eager recipients of the anatae, who were able to fully integrate them within the next decade, landing their own state mining corps on Haerum at the same time.");
-	outputCodex("\n\nToday the fanfir are an integral part of the Anatae Empire, with around twenty official colonies of their own. They are often found working as bankers, merchants and entrepreneurs in the rigidly controlled business sector, go-betweens to the galaxy outside and sources of credit, acting in roles anatae themselves are not given to. Plenty can be found outside the empire, preferring to operate outside of its restrictions; many more are found within its public works and navy.");
+	outputCodex("\n\nToday the fanfir are an integral part of the Anatae Empire, with around twenty official colonies of their own. They are often found working as bankers, merchants and entrepreneurs in the rigidly controlled business sector, go-betweens to the galaxy outside and sources of " + (isAprilFools() ? "dogecoin" : "credit") + ", acting in roles anatae themselves are not given to. Plenty can be found outside the empire, preferring to operate outside of its restrictions; many more are found within its public works and navy.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Culture and Society"));
 	outputCodex("Thanks largely to their size, the fanfir are a highly individualistic race that chafe in crowds, and do not particularly like the company of their own kind for lengths of time. Fanfir instead gather together in one off “flings”, two or three day convocations that usually involve plenty of singing and speech-giving. Such events can satiate a fanfir’s wish to be amongst his or her own kind for years.");
@@ -700,7 +745,7 @@ public function fanfirCodexEntry():void
 public function kalabastFhaniCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("CRUFF", "ESTIE");
 	outputCodex(header("Kalabast / Fhan’i"));
 	outputCodex("<b>Name:</b> Kalabast (singular & plural); Fhan’i (singular & plural)");
 	outputCodex("\n<b>Genders:</b> Biologically, Kalabast 100% male, Fhan’i 100% female. Gene-modded exceptions are uncommon but existent.");
@@ -772,7 +817,7 @@ public function laquineCodexEntry():void
 	outputCodex("A relatively young species as far as the United Galactic Confederacy is concerned, the laquines of Asherah were discovered only towards the end of the last planet rush, when the human exploratory vessel Blue Orion entered a newly revealed solar system and encountered a scientific exploration vessel that had recently reached that same area and was quite surprised to encounter an alien vessel. First contact was tenuous, but swiftly proved successful, despite some diplomatic tension resulting from an incident when one of the laquine crew impregnated a female human scientist, and the laquine captain herself becoming pregnant by Captain Small of the Blue Orion. Peaceful acceptance into the U.G.C. followed quite soon thereafter.");
 	outputCodex("\n\nAfterwards, the laquine population in the greater galaxy grew quite swiftly, thanks to the rather explosive breeding rate of the species. Though quick and eager to offer their services as organic crop producers, workers and even sexual operators, the speed with which the laquines colonised new lands outside of their own solar system attracted rumblings of discontent, especially from certain human organisations. Indeed, certain races have been known to openly proclaim the laquines as “pests” or “parasites”.");
 	outputCodex("\n\nWithin the last thirty years, however, this accelerated rate of colonisation began to severely die back, as the laquine species found itself assailed by a mysterious plague-like condition that has caused widespread fertility problems. Indeed, the laquines have become increasingly introverted as a species, as more and more attention is being devoted to pursuing possible causes for the sterility plague - and, far more importantly, seeking out potential cures. Despite decades of work, the laquines’ top minds are still trying to unravel the dark secrets of this disease. This extreme and unnatural difficulty in analysis and diagnosis has led to conspiracy theories of it being artificially engineered, which has furthered the general withdrawal of the laquine community from the U.G.C.");
-	outputCodex("\n\nMedical experts have established by way of testing and observation that neither mod-transformed laquines, nor the half-breed offspring of laquines and other alien races, seem to be affected by the disease. This fact is carefully hidden from public consumption, an effort to minimize paranoia, conspiracy and xenophobia amongst an already suspicious and distrustful populace.");
+	outputCodex("\n\nMedical experts have established by way of testing and observation that neither mod-transformed laquines, nor the half-breed offspring of laquines and other alien races, seem to be affected by the disease. This fact is carefully hidden from public consumption, in an effort to minimize paranoia, conspiracy and xenophobia amongst an already suspicious and distrustful populace.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Other Notes"));
 	outputCodex("Though it is not socially enforced, traditionally, laquine culture falls under a gender-based trichotomy. Females are responsible for roles that revolve around caring for the children and adults, such as being homemakers, chefs or nurses. Males are responsible for tasks that require strength or endurance as a general rule; construction work, farming, manual labor, etcetera. Hermaphrodites, finally, tend to gravitate towards the social power and intelligence-based roles, such as scientists and politicians. As stated, these roles are not socially enforced - no one would force a female laquine to not be a scientist, for example - but they are traditional and thusly stereotyped amongst this species.");
@@ -783,14 +828,59 @@ public function laquineCodexEntry():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Laquines");
 }
+public function mothrineCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Mothrine"));
+	outputCodex("<i>Ancient, long dead, and with much to tell us...</i>\n\n");
+	outputCodex("<b>Name (Singular & Plural):</b> Mothrine");
+	outputCodex("\n<b>Sexes:</b> Male, Female, Sexless.");
+	outputCodex("\n<b>Height:</b> 6\' to 6\' 7\" for males, 5\' 10\" to 6\' 5\" for females and sexless mothrine.");
+	outputCodex("\n<b>Weight:</b> 90 to 150 lbs across all sexes.");
+	outputCodex("\n<b>Hair:</b> Extremely varied, white and green being the most common.");
+	outputCodex("\n<b>Eyes:</b> Extremely varied but usually one of four colors ‘clan types’; black, cyan, white or gold.");
+	outputCodex("\n<b>Ears:</b> Two ear holes on each side, no pronounced ears.");
+	outputCodex("\n<b>Average Lifespan:</b> Estimated at 340 Terran years although some sources say far less than that.");
+	outputCodex("\n<b>Homeworld:</b> First Cidulfixulu.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("History"));
+	outputCodex("The mothrine appeared to have died out as a race at some point within the last seven centuries. What is believed to be their homeworld, First Cidulfixulu, contained some extremely well preserved remains deep within a mountain cavern. Most information has been collated from the settlement uncovered there and some few instances of further habitation along the planet’s surface.");
+	outputCodex("\n\nWhat’s known is that they were a society of insectoid, bipedal, moth-like humanoids. Their society had no technological analogue that we’d recognize, even the concept of ‘weapons’ seemed to be lacking if the archeological research is to be understood. It’s surmised that they based their society on bio-mechanics and organic materials rather than regular synthetic construction. This is postulated due to the fact that evidence of extremely detailed architecture exists, yet no known instrument can accurately recreate that ‘mothrine touch’.");
+	outputCodex("\n\nWhat’s also known is that something exceedingly powerful wiped out the mothrine within the course of a few days. Evidence of bodies and preserved brain material show heavy psionic scarring, suggesting a virus or energy wave that targeted their psionically latent minds.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Appearance"));
+	outputCodex("From reconstructions, mothrine remains, and real-time projections through gene-theoritics, the mothrine have shown to be that: Tall, bi-pedal moth-like humanoids.");
+	outputCodex("\n\nHumanoid, as it turns out, is mostly a rough guide, as they were most certainly insects first. All mothrine were tall to some degree and taller than the current Terran average. All mothrine had large wings that more than likely gave them the power of flight: To what degree is unknown.Mothrine came in many different and vibrant colors across all their features but evidence suggests that there were four ‘clans’ that flourished with a specific palette for each.");
+	outputCodex("\n\nThese four form the majority of the physical remains found.");
+	outputCodex("\n\nWhat’s also known is that there were three distinct sexes and there were few physical differences between either aside from genitalia. Sexless mothrine appeared to have a high place in their society as some evidence points to advanced cranial development and activity within such individuals.");
+	outputCodex("\n\nMothrine had exoskeletons and endoskeletons, both being lightweight and hollow. They had svelte limbs, well developed tendons and figures that would be considered ‘ultra-thin’ by modern Terran standards.");
+	outputCodex("\n\nTheir bodies were covered in a mix of chitin and fuzzy down, similar to some species of Terran moths. Their eyes are posited to be quite large and bulbous although no preserved examples remain. Aside from ‘clan’ markings, colors of each feature would change dramatically between individual mothrine. It’s posited that their gene sequences, being different to Terran gene construction, allowed for more ‘harmless’ if random mutations to develop within color pigments.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Society"));
+	outputCodex("Mothrine society has only been hinted at through paleontology and archeology.");
+	outputCodex("\n\nWhat’s known is that there was no hierarchy of sexes aside the rare ‘sexless’ individuals. Oftentimes these individuals seemed to display physical and mental ability quite above the mothrine average but the relative scales for both sets of claims are difficult to compare.");
+	outputCodex("\n\nAs a flying species, the lush canopy and wide plains of First Cidulfixulu seemed to form a basis for mothrine society, as depictions and architecture showed amazing displays of flight-based migration.");
+	outputCodex("\n\nTechnologically speaking, there are no recorded instances of advanced metallurgy. Most uses of metal tended to be in a raw, powdered form for reasons unknown. It’s presumed that mothrine were able to use some sort of biomechanical matter and engineer it at the base level for their needs. Even so, very little evidence for that hypothesis exists. How the four clans interacted with the society remains just hidden and unexplainable.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("Through reconstructions and theories, it’s touted that mothrine were very ceremonial. Males and females underwent several rituals and rites of joining, often leading to monogamous and lifelong relationships. How this culture and these traditions developed is unknown.");
+	outputCodex("\n\nSexual orientation shows some rare outliers with two recorded cases of high-value couples being F/F pairings.");
+	outputCodex("\n\nGiven the lack of physical evidence, it’s unknown how large the mothrine population was or how many offspring were produced in a typical joining.");
+	outputCodex("\n\nMothrine sexual habits tended to be complex and draped in ritual, often with displays, dances, and bouts of so called ‘flight-joinings’ being performed before any coitus.");
+	outputCodex("\n\nMale mothrine had a large, hardened ovipositor-like penis and lacked a visible scrotum. Female genitals tended to be closer to Terran vaginas but more fitting for tube-like insertions. It’s wildly suggested that intercourse could last from anywhere between seven minutes to seventeen hours. It apparently wasn’t uncommon to sustain injuries given how light and potentially delicate mothrine features were and some more obscure references found in surface sites.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Mothrine");
+}
 public function rahnCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("FLAHNE");
-	outputCodex(header("Fuu’Rahn and ’Rahn"));
+	var randBust:Array = ["FLAHNE", "ZODEE", "VAANDE", "JARDI"];
+	showBust(randBust[rand(randBust.length)]);
+	outputCodex(header("Fuu’Rahn and ‘Rahn"));
 	outputCodex("<i>They may just be one cell, but really they’re all heart.</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Rahn");
-	outputCodex("\n<b>Sexes:</b> “Female”");
+	outputCodex("\n<b>Sexes:</b> Monogendered, usually considered “Female”");
 	outputCodex("\n<b>Height:</b> 4\' to 5\' 8\" commonly. Most are shorter, but a rare few can attain heights as tall as six feet.");
 	outputCodex("\n<b>Weight:</b> 60 to 140 pounds.");
 	outputCodex("\n<b>Hair:</b> Rahn do not have hair in the traditional sense, though most will morph their body to have the appearance of hair after sufficient exposure to haired races.");
@@ -825,7 +915,6 @@ public function rahnCodexEntry():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Rahn");
 }
-
 public function rodenianCodexEntry():void
 {
 	clearOutputCodex();
@@ -872,8 +961,6 @@ public function rodenianCodexEntry():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Rodenians");
 }
-
-
 public function roehmCodexEntry():void
 {
 	clearOutputCodex();
@@ -918,7 +1005,6 @@ public function saeriCodexEntry():void
 	outputCodex("<b>Name (Singular):</b> Saeri");
 	outputCodex("\n<b>Taxonym:</b> Saeri");
 	outputCodex("\n<b>Sexes:</b> Male, Female");
-	outputCodex("\n<b>Sex:</b> Male, Female");
 	outputCodex("\n<b>Height:</b> Fully matured saeri commonly range from five feet to just over six.");
 	outputCodex("\n<b>Weight:</b> Saeri are very light for their size, ranging between forty to sixty kilos.");
 	outputCodex("\n<b>Hair:</b> Light and dark variations of blue, purple, and pink, as well as black or white.");
@@ -1030,6 +1116,49 @@ public function sielCodexEntry():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Siel");
 }
+public function saurmorianCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("CHAURMINE");
+	//Author: Aullama
+	outputCodex(header("Saurmorians"));
+	outputCodex("<i>Hot-blooded dinosaurs from outer space.</i>\n\n");
+	outputCodex("<b>Name: </b>Saurmorian (singular), Saurmorians (plural)");
+	outputCodex("\n<b>Genders:</b> Male and female");
+	outputCodex("\n<b>Height:</b> Females average 6\' to 8\', males average 7\' to 9\'");
+	outputCodex("\n<b>Weight:</b> Females average 250 - 300lbs, males average 600-750lbs");
+	outputCodex("\n<b>Eyes:</b> Saurmorian eyes have a solidly colored sclera that vary between shades of yellow, green, brown, and some very rare reds or blues. Slim, similarly colored irises envelop their vertically slitted pupils, though they are virtually indistinguishable from the surrounding tissue.");
+	outputCodex("\n<b>Scales:</b> Saurmorians have organic metal scales that grow from their bodies. These hard scales are highly resistant to heat and corrosion, and with a metallic-silver color, they are often compared to the elements platinum and titanium. The layering and formation of these scales give the impression of ancient terran style armor, akin to heavy platemail. Though generally identical in appearance, females’ scales are much lighter.\n\n");
+	outputCodex(blockHeader("Appearance"));
+	outputCodex("Male saurmorians are tall, incredibly stout reptilian humanoids with a barrel-chested body. Pulled taut over their bulging muscles is a tough, thick reptilian hide in varying shades of grays, browns, greens, reds, and blacks, though usually quite hard to see under their scales. On top of their hide, males are encased from head to toe in dense, massive metal scales. They are especially dense along the male’s vicious snout, up their skull, broad shoulders, and down the spine to end at the tip of their thick tails. The groin though consists of smaller and much finer scales. The weight of all these scales forces them to have a fairly hunched posture, and for their bulky plantigrade legs to tend toward a constant bend at the knee.");
+	outputCodex("\n\nTheir feet are wide, flat, and four toed. Though instead of regular claws or nails, razor-sharp scales grow from the feet in their place. Their hefty arms, slightly longer and thicker than their legs, end in hands just as imposing as the rest of their frame with five digits tipped with scale-claws. Metal horns crown their bestial visage, these horns being described as bovine, demonic, and/or draconic.");
+	outputCodex("\n\nFemale saurmorians have long and slim humanoid bodies, seeming outright delicate next to a male. The lithe muscles on their dainty frames combined with their elongated neck, torso, and tail gives them a decidedly serpentine appearance.");
+	outputCodex("\n\nInstead of the thick hide that the males have, females have incredibly smooth and soft scaly flesh that is seen with brighter shades of colors. Their skin is covered by metallic scales like their male counterparts, though much lighter. The scales also fit their bodies more for physical appeal than protection. While their bestial snout and visage can be intimidating, it manages to maintain a feminine allure, having more elegant angles than a male.");
+	outputCodex("\n\nTheir long arms are seemingly as exquisitely covered as the rest of them, the inside of their arms however bare no scales, just as the inside of their lissom legs, commonly flat torso, and groin are without scales. Opposite from the males, females have two prominent nipples adorning their chest in a very mammalian manner.");
+	outputCodex("\n\nThough their rather soft, heart shaped asses are not scaled, they may seem to be slightly cupped and caressed by the scales of the hips and thighs of some females. The hands end in five digits tipped with scale-claws. Their slender feet end in 4 toes tipped with scale-claws, and a curved vestigial scale-claw on the heel. Though females aren’t naturally born with horns, it’s not uncommon to see some adorning accessories or modded horns.\n\n");
+	outputCodex(blockHeader("Sex and Reproduction"));
+	outputCodex("Being reptilian, saurmorians naturally lay clutches of eggs, ranging from 10-15 eggs. A surprisingly large number, given a female’s rather slender hips. Such large clutches require the females to have large, flexible and elastic wombs and vaginas for both incubating and laying. To assist with laying, the walls of the vagina are lined with soft ribbing. Said ribbed walls will also assist with carrying seed to the womb during coitus.The labia are smooth and glossy, though fairly plump, topped off with a petite clitoris. The color of a female’s genitals matches her skin.");
+	outputCodex("\n\nDuring incubation, the female’s body always produces an excess of the proteins used in developing both the shells of her eggs and the scales of her young. This abundance of nutrition gathers along her chest to form two breasts, allowing the woman to breastfeed her hatchlings to further help strengthen their scales. The larger clutches produce more excess protein, resulting in the more fruitful and fertile females having larger and larger breasts in order to accommodate their bountiful and more regular pregnancies.");
+	outputCodex("\n\nTo complement their mates’ more pliant organs, males have thick penises with a ribbed length leading to a blunt head. The penis averages 10\" to 12\" in length, usually 2\" to 3\" in width, and can be seen in colors of dark red, dark blue, purple, or black. When not aroused, it will be contained in a rather mammalian sheath guarded in the male’s slighter crotch scales. To better inseminate eggs, males have large, incredibly productive and heavy testicles hanging below their members. While still thick, the hide containing these orbs is rather smooth and soft.");
+	outputCodex("\n\nWith a rather dainty frame for laying eggs, females often become very rotund and weighed down. Though the number of fertile females is low, those that are fertile often go into estrus four or five times a year, with incubation lasting no more than two months. Male hatchlings mature slightly faster than females, being fully grown roughly after fifteen years. Females however require at least twenty years.");
+	outputCodex("\n\nSaurmorians always start with a single name at initial hatching. Then later in life, roughly when they reach maturity, they receive a secondary name befitting their actions or feats. These names bear a similarity to ancient Latin.");
+	outputCodex("\n\nSaurmorian young are viciously protected, with primal ferocity from the males in addition to the maternal instincts from the females. Any inquiries about their children are met with guarded silence at best.");
+	outputCodex("\n\nWithout extreme actions, bringing up their young seems to be the only circumstance where females show much aggression. Though they mirror the males’ instinctive distrust, they otherwise act with a calm and gentle affection to their presence. Granted, this soft demeanor is often used as a facade to hide incredibly sinister and venomous feelings or thoughts. In contrast, males have no qualms dealing with anything in a bullish or intimidating manner, and are always very forward and blunt. They are surprisingly hard to anger, or to upset emotionally in general. Whether instinctual or taught, males seem to have impressive control over their emotions.\n\n");
+	outputCodex(blockHeader("History"));
+	outputCodex("On their primal homeworld of Molis, an incredibly mineral rich planet strewn with active volcanos, saurmorians were a reclusive and stationary people; due to a deep seated desire to protect the few fertile females each clan had, and to lay claim to rich mineral veins so they could consume the metals in order to grow healthier scales. Though facing threats from many would-be predators, saurmorians stubbornly remained on top in no small part because of these scales.");
+	outputCodex("\n\nEventually this isolated way of life no longer supported the increasingly larger clans, and dividing into smaller families only lead to conflict, so the saurmorians were forced to try a more open and united civilization. This lead to the largest families forming a simple but inevitable oligarchy, usually with the fertile females being the ones in power.");
+	outputCodex("\n\nWhen the UGC arrived, they were met with a surprisingly well organized central society on the tail end of their own digital technological era. Though initially united, the saurmorians found themselves divided when faced with the UGC; some wanted to resist the Confederacy that many viewed as fragmented and inefficient, while others saw the advantage of being integrated into galactic society. The latter won out - barely - after a short but devastating civil war shattered the saurmorian capital. The sudden, violent outburst almost cost them what they had fought for though.");
+	outputCodex("\n\nThe UGC were on the verge of withdrawing and removing any possibility of uplifting, until they were shown the saurmorians’ proficiency in refining and using the more basic weapons technology - specifically coil and rail weapons - and being adept at surviving in both hot and cold environments.");
+	outputCodex("\n\nOnce integrated into galactic society, it became clear that saurmorians, especially the males, fit well as heavy labor in the more hazardous environments. Females are still far less common to see away from large colonies, let alone their home planet.\n\n");
+	outputCodex(blockHeader("Culture"));
+	outputCodex("For millennia the saurmorians have had a central matriarchy, in which the most fertile females would have the responsibilities of both breeding and leading. Over time though, fertility became less important; connections and political weight taking its place. This lead to the largest families staying in power more easily as their numbers swelled. For a relatively short period, incestual breeding within these political families became common in order to remain in power. It was around this time that the UGC arrived, eventually cutting off any further familial mating as the saurmorians saw the stigma towards these practices throughout most of galactic civilization.");
+	outputCodex("\n\nStill maintaining a matriarchy, the saurmorians encourage their matrons to keep their own harems of the more virile males. To keep the blood fresh, males are chosen equally from both high and low-born families; a double edged sword, especially with the lower families, as those connected to a male chosen for a matron’s harem are well cared for. Male hatchlings that are indicated to have this genetic advantage usually become seen as future offerings for a matron.");
+	outputCodex("\n\nAfter the devastation their forces suffered, effectively disabling any and all martial, following first contact, the saurmorians attempted to reconstruct what was lost in a bid to keep their people calm. When it became clear the shattered forces couldn’t be salvaged, an infamous saurmorian mercenary company, known then as the ‘Morian Bulwark, sought to take advantage of this chance and offered their services until a solid military could be constructed. Instead, they grew so efficient and effective at not only servicing their own people, but assisting allies in other systems and worlds, that they have become the official saurmorian military. Their guns-for-hire past hardly a concern, the risen Saurmorian Bulwark Command managed to keep themselves separate from the central government; the hope being that having the political and martial powers separate and equal will prevent a repeat of the past.\n\n");
+	outputCodex(blockHeader("Technology"));
+	outputCodex("Saurmorian tech has a three word criteria that needs to be met in order for them to use something; it needs to be effective, heavy, and loud. As a result, saurmorians can be seen using a wide variety of equipment, but usually prefer the heavier and clunkier technology throughout the galaxy at the cost of efficiency. Their ships, especially, are known for being very slow but incredibly durable and powerful.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Saurmorians");
+}
 public function simiiCodex():void
 {
 	clearOutputCodex();
@@ -1067,6 +1196,47 @@ public function simiiCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Simii");
 }
+public function slyverenCodex():void
+{
+	clearOutputCodex();
+	showBust("SLAVEBREAKER_1","SLAVEBREAKER_2");
+	outputCodex(header("Slyverens"));
+	outputCodex("<i>Snake-woman as voracious for protein as they are engineered for beauty.</i>\n\n");
+	outputCodex("\n\n<b>Name:</b> Slyverens (Singular: Slyveren)");
+	outputCodex("\n<b>Sex:</b> Hermaphrodites with female characteristics.");
+	outputCodex("\n<b>Height:</b> 5\' to 7\' tall. Tallest unaugmented specimen recorded at 8\' 7\".");
+	outputCodex("\n<b>Weight:</b> 120 to 270 lbs.");
+	outputCodex("\n<b>Eyes:</b> Vertically slit with metallic sclera. Coloration is widely diverse, though gold and bronze colorations are most common.");
+	outputCodex("\n<b>Skin:</b> Covered in vestigial scales which long ago lost their rigidity in favor of softened flexibility.");
+	outputCodex("\n<b>Ears:</b> Small holes posited deep into their cobra-like “hood.”");
+	outputCodex("\n<b>Face:</b> Serpentine muzzle blended with humanoid traits.");
+	outputCodex("\n<b>Limbs:</b> Humanoid arms and legs.");
+	outputCodex("\n<b>Tail:</b> Thick, long, and muscular, tapered to a narrow tip.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Appearance"));
+	outputCodex("The reptilian Slyverens are what one might expect to see if you somehow crossbred a snake and a terran: all the hallmarks of humanoid shape and form with all the unique secondary properties of a serpent. Perhaps the only feature they are truly lacking is hair - on the head or body. Instead they bear wide cobra-like hoods from their heads to the napes of their necks, often decorated with intricate tattoo patterns designed to please the eye. Small ear holes lie inside, offering them incredible forward hearing in exchange for near deafness from behind.");
+	outputCodex("\n\nSlyveren faces are snout-like, featuring slitted eyes and largely decorative nostrils. Scent is instead communicated through their long, forked tongue, though it is broader and fleshier than one assume from their snake-like appearance. An unusually plump lower lip lends them what many would consider to be an appearance of sensuality, but inside that deceptively squishly, toothless-looking maw are two retractable, needle-like fangs. Fortunately, slyveren maidens have attained excellent control over the associated muscle groups.");
+	outputCodex("\n\nThe rest of a slyveren woman’s body is as one might expect. Soft scales bedeck their skin from crown to heels. Five-fingered hands on a pair of humanoid arms allow them compatibility with most forms of galactic weaponry. Plantigrade legs and feet offer them the chance to strut around in the heels popularized by terran fashion. The biggest outliers are their breasts, known to be as weighty as the most well-fed rahn’s, and the prototypical reptilian tail, long enough to trail on the ground behind them and counterbalance their otherwise untenable chestiness.");
+	outputCodex("\n\nThese curvaceous snake-girls have taken to the cosmopolitan world of core society with gusto, leaving them as one of the biggest consumers of colorizering body-mods. Glittering golden scales are just as common as flashing bioluminescent hide. DNA analysis hints that they may have once been brown but permanently altered their own genome to the point where bright, flashy colors have become the norm.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Origins & Biological Modification"));
+	outputCodex("Slyveren biology is a perfect example of how genetic alteration can allow a cultural dispute to spill over into the creation of a whole new race. The slyverens were originally \\\[REDACTED\\\], but after contact with the UGC, a schism in thought divided the species in two. One side felt their species could survive in greater comfort by feeding off the sexual drives of other species’ males. The other wished to remain as they were and prosper on their own merits, unaltered.");
+	outputCodex("\n\nThe former aggressively pursued an initiative to modify themselves to take advantage of too-virile mammalian breeders, like the kui-tan. \\\[REDACTED\\\] venom was refined to be non-toxic and cleanly metabolized. Its effects were made more potent, suppressing voluntary muscle activity and subtly altering brain chemistry to reduce inhibition. New chemicals were introduced to temporarily enhance elasticity, necessary to allow the most-endowed males to flex around the bends in a slyveren throat. Finally, a cellular growth agent was added to rapidly repair the damages caused by injection.");
+	outputCodex("\n\nOf course the proto-slyverens did more than modify their venom. They changed their very body shape to be more familiar to their “prey”. Bipedal legs made them seem less alien. Mammalian-style breasts offered something to draw the eye of prospective “seeders,” and with their long tails as counterbalances, they’ve been able to grow some of the biggest chests the galaxy has to offer. These seductive snake-women altered themselves to appeal to the masses, and judging by the popularity of slyveren blowjob holos on the extranet, they succeeded with gusto.");
+	outputCodex("\n\nTime has only given the slyverens more opportunities for self-improvement. In modernity, they boast a numbing coating on their fangs, additionally salivary glands along the inside edge of their lower lip, hyper-sensitivity to pheromones, and an aptitude toward psychic ability that left terrans in the dust two generations ago. Fully 50% of their population is considered to have some degree of psychic talent, with projections estimating race-wide telepathic capability in 100 years.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("\n\nSlyverens do not reproduce utilizing penises, like most races. Instead, a slyveren woman will produce a fist-sized egg once a year. When mating, she press her vagina to her lover’s, and specialized muscles will eject the ovum into her mate’s channel. Hard-wired reflexes kick in at this point and draw the egg all the way into womb, pushing the second slyveren’s egg out to trade places with the first’s. This exchange triggers the release of semen from a combination ovary/gonad gland until fertilization occurs.");
+	outputCodex("\n\nA full incubation term lasts five months, after which the egg will be roughly melon-sized. Hatching takes four to five months, much longer than the \\\[REDACTED\\\]s they originated from. Slyveren younglings emerge tiny but capable of basic locomotion. Milk, an adaptation stolen from other races, provides sustenance for them well into adolescence. It is only after maturation that they switch to the licentious food-source that has given rise to their fame - and only after lactation stops does a slyveren mother’s body begin to produce eggs once more.");
+	outputCodex("\n\nUnfertilized eggs are expelled from the body after a few months. The more debased among high society consider them to be an exquisite delicacy.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Current Intragalactic Relations"));
+	outputCodex("Slyveren-controlled space is small, mostly centered around their originating system. Colonization by more aggressive races has found their territories surrounded, and the increasing number of protein hunters in the core has reduced demand for their services to record lows. Shrewdly negotiated trade deals by Galotian-controlled holdings have crippled most local industries to leave the slyverens as a people in crisis.");
+	outputCodex("\n\nThe 14th Planet Rush brings with it a chance at untold wealth and riches, and the slyveren government has responded by aggressively subsidizing would-be rushers to colonize primitive, unincorporated planets. Galotian rushers are encouraged to avoid contact with slyverens in the wilds. Males and hermaphrodites should exercise caution. Thirsty slyveren will disregard consent laws in favor of a fresh meal, should they find themselves in the wilds of a rimward planet.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Slyverens");
+}
+
 public function sionachCodexEntry():void
 {
 	clearOutputCodex();
@@ -1110,7 +1280,7 @@ public function sionachCodexEntry():void
 public function suulaCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("AZRA");
 	outputCodex(header("Suulas"));
 	outputCodex("<i>Colloquially known as “sirens” for their singing voice.</i>\n\n");
 	outputCodex("<b>Name (Singular):</b> Suula");
@@ -1194,7 +1364,7 @@ public function tarratchCodexEntry():void
 	outputCodex("Aside from the mundane requirement to eat that is understood by most other biological life, the tarratch are driven to feed upon the thoughts and feelings of other beings. This process, still not fully understood by wider galactic society, apparently provides them with the nutrients they need to continue being functionally psionic.");
 	outputCodex("\n\nA tarratch looking to feed hypnotizes his or her target with their feather ruff, drawing their most intimate thoughts and memories to the surface, sexually overwhelming them. They then insert their long, hollow tongues into whatever closest resembles a mouth upon the target and feed upon the heady froth of psychic imagery that has formed, usually taking advantage of the aroused state of the victim at the same time. The sensation is described as like receiving long, extremely ruthless mental oral sex.");
 	outputCodex("\n\nThe tarratch are capable of reading their victim’s minds to a limited extent this way – particularly clear memories and strong impulses can be discerned – but observably and explicitly prefer the “taste” of raw emotion, usually seeking to drain a strongly perceived feeling from an invaded mind before anything else. Short term effects from being fed upon by a tarratch include memory blanks, sexual arousal backwash and complete loss of one or several emotions; if the victim is given enough time to recover however this recedes and missing thoughts grow back.");
-	outputCodex("\n\nHaving spent millennia feeding upon the simple and base emotions of animals, the tarratch found the sentient life of the galaxy an almost impossibly rich banquet which they have spent most of the intervening time gorging upon whilst working out new ways to make it even more delicious. Tarratch will rarely simply attack other beings on gate-worlds and stations, unless suitably desperate – they are much more likely to solicit willing “donations” with money or credit. Sentients encountered on the frontier, or indentured servants the tarratch themselves own, are considered fair game.");
+	outputCodex("\n\nHaving spent millennia feeding upon the simple and base emotions of animals, the tarratch found the sentient life of the galaxy an almost impossibly rich banquet which they have spent most of the intervening time gorging upon whilst working out new ways to make it even more delicious. Tarratch will rarely simply attack other beings on gate-worlds and stations, unless suitably desperate – they are much more likely to solicit willing “donations” with money or " + (isAprilFools() ? "dogecoin" : "credit") + ". Sentients encountered on the frontier, or indentured servants the tarratch themselves own, are considered fair game.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Tarratch");
 }
@@ -1221,7 +1391,7 @@ public function thraggenCodexEntry():void
 	outputCodex("\n\n");
 	outputCodex(blockHeader("History"));
 	outputCodex("Arising on the jungle world of \\\[REDACTED\\\], the thraggen survived for many millennia as hunter-gatherer tribes, hunting the towering Gryllan beasts rather than attempting agriculture, even into what would, on earth, have been analogous to the middle ages. Formed into closely-knit warrior tribes, the thraggen warred heavily against each other for territory, often resulting in clan feuds that would last for generations, and in some cases, persist to the modern day. Their early space flight was ramshackle at best, with most attempts at extraterrestrial flight merely attempts at weaponizing satellites or rapidly deploying soldiers. However, as the age of technology progressed on \\\[REDACTED\\\], the longer lives granted by advancing technology combined for the thraggen tendency to fuck rather than kill their enemies, began to lead to overpopulation of the homeworld. Hunting grounds became ever more precious, and the first major settlements, or clan holds, were established to secure precious land against rival tribes and upstart bands.");
-	outputCodex("\n\nWithout warp gates, however, the options for leaving the homeworld were few: the \\\[REDACTED\\\] system is largely made of gas giants, not terrestrial worlds. The wealthiest tribes were able to hold onto their growing empires, and grew settled; it was the younger tribes who were eventually forced to leave, packing up into primitive colony ships and settle sail for nearby worlds at near the speed of light, on voyages that would take years or decades to complete. On the backs of these young explorers, the thraggen race took to the stars, largely by crashing irrevocably on desert worlds and wasteland planets. The starward clans began to eke out an existence on the new worlds, colonizing and terraforming to the best of their abilities, though even now most thraggen worlds are rugged and deadly wastelands between the few surviving clan holds.");
+	outputCodex("\n\nWithout warp gates, however, the options for leaving the homeworld were few: the \\\[REDACTED\\\] system is largely made of gas giants, not terrestrial worlds. The wealthiest tribes were able to hold onto their growing empires, and grew settled; it was the younger tribes who were eventually forced to leave, packing up into primitive colony ships and setting sail for nearby worlds at near the speed of light, on voyages that would take years or decades to complete. On the backs of these young explorers, the thraggen race took to the stars, largely by crashing irrevocably on desert worlds and wasteland planets. The starward clans began to eke out an existence on the new worlds, colonizing and terraforming to the best of their abilities, though even now most thraggen worlds are rugged and deadly wastelands between the few surviving clan holds.");
 	outputCodex("\n\nThe thraggen only enter the galactic stage in 227 A.C., when a U.G.C. warp gate flew into orbit around a starward thraggen world, and activated. An element of the Terran’s Coalition Expeditionary Force arrived with it, eager to explore the new world -- and were immediately met with a rampaging horde of towering greenskins, descending upon them like wild animals. The bulk of the Terran force retreated, with several dozen captured and enslaved before the C.E.F. could leave the planet. By the time the Coalition returned with a full fleet to rescue the prisoners, they met -- to their horror and surprise -- an equal fleet of cobbled-together thraggen warships, with several more fleets on the way as the underestimated “brutes” co-opted the Ausar gates to unite their own worlds.");
 	outputCodex("\n\nThe war that immediately bloomed turned a dozen U.G.C. worlds into smokey, wasted husks before a proper response could be mustered and a military assembled. With a friendly casualty count in excess of 50 billion, the U.G.C. won. It was not a pleasant victory, nor a clean one. To this day, the surviving thraggen worlds exist in perpetual blockade, closely watched by an army of spy satellites for any signs of hostility.");
 	outputCodex("\n\n");
@@ -1255,7 +1425,7 @@ public function toveCodexEntry():void
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Environs Typically Inhabited"));
 	outputCodex("Because of the race’s mercantile predilections, the majority of toves dwell in Wabeships, dome-shaped satellites containing what appear to be small cities surrounding well-manicured lawns and clear ponds. Upon entry, though, a visitor finds that the majority of the buildings within the domes are not residencies but commercial businesses, making Wabeships effectively floating shopping malls, designed to entice and attract potential customers. The center of these cities is often a large bordello of non-tove species, overseen by the captain of the ship. The toves themselves generally dwell in the sections of the ship below the dome in water-filled corridors and chambers. Due to the high level of water pressure utilized by toves, and the three-dimensional layout of corridors, rooms, and terminals, the sub-sections of a Wabeship are generally inaccessible to other races. Smaller tove ships, not designed to cater to other races are likewise filled with water and designed to tove sensibilities.");
-	outputCodex("\n\nThe only reason a tove can be found outside of a Wabeship or off its home planet is the possibility of money. Toves are not explorers, thrill-seekers, or scientists, but WILL seek out any opportunity to turn a profit. Thus, Toves can be found on any planet hosting a decent number of credit-carrying individuals. They are generally not far from a small stand or pressurized chamber to provide them with the comforts of home.");
+	outputCodex("\n\nThe only reason a tove can be found outside of a Wabeship or off its home planet is the possibility of money. Toves are not explorers, thrill-seekers, or scientists, but WILL seek out any opportunity to turn a profit. Thus, Toves can be found on any planet hosting a decent number of " + (isAprilFools() ? "dogecoin" : "credit") + "-carrying individuals. They are generally not far from a small stand or pressurized chamber to provide them with the comforts of home.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Reproduction"));
 	outputCodex("Though toves resemble avian or mammalian creatures in appearance and behavior, their nearest terran reproductive equivalents are plants. Their bizarre reproductive systems and lack of sexually-derived pleasure mean that they are not sexually or reproductively compatible with other species.");
@@ -1318,7 +1488,7 @@ public function vildariiCodexEntry():void
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Religion"));
 	outputCodex("Vildarii have a native religious order called ‘Followers of the Infinite Aspect’. They believe a single entity exists that represents all things, able to take the face and empathize with every species and being in the universe. They believe being able to comprehend such a being is nigh-impossible, but adherents strive to emulate the Infinite Aspect by living their lives in other people’s shoes and trying to see the universe from as many aspects as possible.");
-	
+	outputCodex("\n\n");
 	CodexManager.viewedEntry("Vildarii");
 }
 public function vulkrimiCodexEntry():void 
@@ -1374,7 +1544,7 @@ public function vulkrimiCodexEntry():void
 	outputCodex("The females of this species chose to breed with males with exceptional libidos so that subsequent generations would be easier to control. Once a male vulkrim hits sexual maturity, at around sixteen terran years of age, their libido starts to go into overdrive, increasing exponentially as they grow older. Since then several custom gene-mods have been designed to maintain their libido at reasonable levels, but they are costly and require yearly intakes. If they don’t take any at all, by the time they reach their forties the barest touch in any of their erogenous zones can send them into a rut.");
 	outputCodex("\n\nVulkrim personalities change a lot depending on whether they are or aren’t sexually satisfied. If kept from having sex for a long time, they will grow dominant and unruly and often try to force themselves on others. If on the other hand they are consistently satisfied, they will be obedient and submissive, going to great lengths to prove their loyalty to their lovers, family and friends.");
 	outputCodex("\n\nThese characteristics are some of the many reasons why the vulkrimi are so inclined toward criminal activity and have a reputation for being sexual slavers. When the females died they left behind an impressive armada of ships that were stolen during the collapse of society and used for piracy. The descendants of many of those pirates still exist to this day and make their living raiding ships throughout the more vulnerable regions of the U.G.C.");
-	
+	outputCodex("\n\n");
 	CodexManager.viewedEntry("Vulkrimi");
 }
 public function varmintCodex():void
@@ -1512,7 +1682,7 @@ public function cuntSnakeCodexEntry():void
 public function kerokorasCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("FROG_" + rand(2 + rand(7)),"FROG_" + rand(2 + rand(7)),"FROG_" + rand(2 + rand(7)));
+	showBust("FROG_" + (1 + rand(8)),"FROG_" + (1 + rand(8)),"FROG_" + (1 + rand(8)));
 	outputCodex(header("Kerokoras"));
 	outputCodex("<i>U.G.C. survival guidelines recommend you do not lick them.</i>\n\n")
 	outputCodex("<b>Name (Singular & Plural):</b> Kerokoras");
@@ -1844,6 +2014,76 @@ public function zilCodexEntry():void
 
 /* Tarkus */
 
+public function buttBugsCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("BUTTBUG_B", "BUTTBUG_G", "BUTTBUG_O");
+	outputCodex(header("Sand Worms"));
+	outputCodex("(Entire Symbiotic Organism)\n\n");
+	outputCodex("<b>Name (Singular):</b> Hilinara");
+	outputCodex("\n<b>Most Notable Features:</b> A faux symbiotic creature, and a burrowing organism. Its entire body is controlled by a smaller organism that is ejected when the larger body becomes too damaged, or the smaller organism is parasitizing another creature. The inner flesh and blood of the large worms are a deep green color.");
+	outputCodex("\n<b>Sex:</b> Male and female. The sex is only discernible through dissection or after the parasite has been ejected.");
+	outputCodex("\n\n<b>Organism</b>");
+	outputCodex("\n<b>* Name (Singular):</b> Hilinara worm or sand worm.");
+	outputCodex("\n<b>* Height:</b> Two to six feet.");
+	outputCodex("\n<b>* Length:</b> Two to twenty meters, or even larger depending on available burrowing space. Most of the body won’t be seen even after death, unless dug out.");
+	outputCodex("\n<b>* Weight:</b> Seventy pounds to two tons, depending on size.");
+	outputCodex("\n\n<b>Parasite</b>");
+	outputCodex("\n<b>* Name (Singular):</b> Hilinara parasite, colloquially known as “butt bugs”.");
+	outputCodex("\n<b>* Height:</b> One to six inches depending on age and subspecies.");
+	outputCodex("\n<b>* Length:</b> Between six inches and one foot. Subspecies can vary.");
+	outputCodex("\n<b>* Weight:</b> Five to fifteen pounds, depends on age. Subspecies can vary.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Senses"));
+	outputCodex("They have weak eyesight in bright light, and the two pairs of segmented eyes on the heads of both bodies are short-sighted. Thermal sensors line the undersides of the mouths of both bodies. Seeking adequate warmth on cold nights is just as much a priority for them as most other species. Both entities are extremely sensitive to vibrations, and use this to detect prey and hosts through sand, dirt, mud, and the other loose terrain they can call home. The smaller body seems to have a weak sense of smell, and the ability to detect moisture through the membrane of its skin. They seem to prefer warm, moist, or wet areas, but can live in a multitude of climates.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Movement"));
+	outputCodex("Not unlike the earthworms of Earth, these creatures undulate their bodies to dig through the ground and move above it. However, unlike Earth’s earthworms, they can do so at speeds fast enough to destabilize the ground above them, at times throwing up chunks of dirt and rocks. Some have even been observed creating sinkholes in order to trap their targets before eating or parasitizing them.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Defenses"));
+	outputCodex("Specialized plates on the larger body allows it to remain unscathed no matter how fast or hard it burrows through the ground. The body however is quite soft and breaks easily to direct impact by any object with force. This has caused some to get injured by crashing into unmoving obstacles underground, it is rarely the case however as they’ll detect the obstruction long before they actually get to it. The smaller body has no defenses besides running/crawling away or hiding. They can use their inbuilt chemicals, but they need to be extremely close to have any chance of hitting their target. The large bodies are surprisingly agile for worm-like creatures of their size; they can dodge and avoid many attacks aimed towards them if they happen to be above ground.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Offenses"));
+	outputCodex("Both bodies are able to synthesize a versatile green substance. They make it by releasing a cocktail of chemicals into their saliva to create the green substance that increases hormone and sensitivity levels. This substance can be rigid, sticky, slippery, or all of the above at once, based on what is currently needed. The larger body is able to create this liquid much more quickly than the smaller body and and greater magnitudes of mass. It has the ability to concentrate this substance into a ball, which can be flung to incapacitate above-ground enemies. Their fast underground movement speed gives them an advantage over above-ground adversaries, allowing them to sneak up on foes should their target not know how to identify their movements.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Sexual Dimorphism"));
+	outputCodex("The larger bodies are completely indistinguishable from one another. However, the smaller bodies can clearly be identified as either male or female through sight alone. The majority of the male’s body is a large, phallic protrusion that normally flops around, but stiffens when it is near females. This protrusion is attached to a bulbous base where its eyes, mouth, and six spindly legs are situated. All males are dull yellow in color, and uniform in shape. Females have the same wormlike body structure as the larger entity they normally inhabit, and move the same way, albeit much slower. On either end of their body, they have an orifice resembling the exterior of an anus. A large variety of females exist, with differences in body structures and biological mechanisms. Humanoid and other body types of hilinara organisms exist, but only as the result of the successful parasitization and pregnancy of a large female inside an appropriate host.");
+	outputCodex("\n\nBoth sexes have nerve manipulation organs that extend from within their main bodies to control their larger worm-like body. In the case of males, these are ripped away in the process of ejection. Females, on the other hand, are able to retract and subsequently reuse them while they are embedded in their hosts. These tendrils are stored within their main body, hidden until they are needed. Only a few of the tendrils are used in the ‘nerve merge’, while the rest remain available as tentacular feelers capable of manual manipulation.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Environments Typically Inhabited"));
+	outputCodex("While they are currently only found on Tarkus, it is likely that they would thrive in any environment containing the soft ground or sand that allows them to move their larger worm-like bodies.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Intelligence"));
+	outputCodex("Nowhere near sapient levels, they follow a main biological imperative. They have some degree of intelligence, which is higher while connected to the larger sandworm bodies’ neural matrix. They seem able to develop an affection for long-term hosts. Worm-hybrids have considerably more intelligence than the regular sandworms, but are still considered rudimentary compared to galactic standards. Their capacity for compassion seems limited to their carrier or others with genetic similarities, making cooperation between them and another person more or less impossible without the original host nearby. If a particular female has enough offspring they can create something like a hive mind, and have occasionally been seen to work together like ant or bee colonies.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Construction of The Larger Body"));
+	outputCodex("By instinctively applying their secretions and by varying their hormones, they build a greenish-webbed-up pod in the soil or sand. This pod grows their secondary body over a long period of time as they enter into a state of hibernation outside of it, safely hidden away. Once several weeks have passed, the secondary body will be about twice the size of the insect that built it, and will be ready to be taken control of. The parasite then enters it by breaking open the pod and sliding in through a fleshy slit in the head of the new creature. Once inside, it will merge with the freshly grown worm, using its nerve tendrils to control the larger body until a more suitable host is found.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Parasitism"));
+	outputCodex("If the larger body controlled by the smaller organism manages to defeat or incapacitate an enemy that would be receptive to parasitization, the organism moves in to hold onto the future host with hidden pincer-ended limbs located behind the jaws. This helps to expose the soon-to-be-occupied anal cavity. Once the desired hole is found, the sand worm excretes an especially slippery version of its secretions on the host’s cavity. A couple of its long prehensile tongues are then used to massage the liquid further into the hole. After this is done, the tongues retract and the worm locks its body into position, essentially trapping the victim. The majority of the head where the smaller parasite first entered splits open, exposing the neural slit where the parasite is located, and the ejection process begins.");
+	outputCodex("\n\nOnce ejected through the slit and onto the immobilized creature, a female parasite will position its tapered front at the anal ring. This is when it uses the tongue tendrils to force the anus open and wriggle inside to merge with the host. Male parasites will sense whether or not the host is already infected: if they are, he will be ejected just like the female, so that he can have sex with the female inside the host and fertilize any eggs that might be ready to be laid. However, if his target is not host to a female he’ll often punish his foe using his larger body as leverage. By the time that this process has finished, the larger body has usually dried up enough for the creature being held to break free of its now brittle confines.");
+	outputCodex("\n\nHilinara parasites attached to a host’s digestive system gain sustenance both from direct absorption of nutrients through the bloodstream, and from consuming what the carrier hasn’t been able to digest. Hilinara organisms not attached to hosts are opportunistic scavengers, eating anything smaller than them and remotely digestible. Those that have been inserted into the vaginal cavity during volunteer experiments became malnourished after a while. One specimen was observed trying to move from the subject’s vaginal cavity to the anus while the subject was sleeping. Oddly enough, the subject did not awaken during the organism’s move. Once the Hilinara parasite finds its way into a host’s anus, either by forcefully crawling into a pacified target’s biologically lubed-up anal ring, or through the willing permission of the intended host, the female begins their parasitic stage. They do this by using two of their six neural tendrils to merge with the inner flesh and nerves of their carrier. Once this has happened the victim will require medical assistance to remove it.");
+	outputCodex("\n\nFemales are heavily territorial when it comes to captured hosts, and due to the infrequency of obtaining a host they also have enzymes to separate another female from its host. In order to do this the invading female has to crawl into the target’s anus along with the one already present. Once there, it will release the enzymes at the nerve connection points, severing the established female from its host. The two females will then wrestle inside the recipient, using their nerve tendrils as grapplers to eventually decide the victor.");
+	outputCodex("\n\nThis process often causes spikes in the nerve sensitivity of the anal cavity, almost always causing non-stop orgasms in species that are able to have them. For some the orgasms can occur with such strength and frequency that it can nearly drive the host insane. Though it may feel like an eternity to the carrier, most fights don’t last longer than a few minutes. It should be noted that some of the female variants do have distinct biological advantages over others: data suggests it to be a cyclical hierarchy in the order of the examples listed below.");
+	outputCodex("\n\nSome hosts in voluntary experiments reported their parasite as having an active influence in their lives. Most of the time the parasites disappear deeper into the anus and disguise themselves to make it look as though they aren’t there when hosts try to tell sexual partners of their ‘passenger’. Other times the parasite will make its presence blatantly obvious by stimulating the anal passage in the presence of male reproductive organs or even pulling down garments to expose the carrier. In most cases, hosts will develop a preference for anal sex. Many will become addicted to the endorphins released during the egg laying phase, and start actively seeking out male Hilinara parasites. Some individuals have made a profit out of selling captured males, but this business has only thrived in the black market among egg fetishists during the rush, primarily around Tarkus.");
+	outputCodex("\n\nAll female Hillinara parasites have the ability to expand their inner muscles and forcefully stretch the host’s anal walls, essentially turning themselves into biological speculums, gaping the anus and easing egg passage. Further details on eggs and egg laying can be located in the section on reproduction.");
+	outputCodex("\n\nThese are the known female variations found so far in recent expeditions:");
+	outputCodex("\n\n<b>* The ‘Beige’ Female:</b> This variant is by far the most abundant and widespread type found to date. They are beige in color and have a relatively smooth skin texture. They stay reproductively dormant in the host until it has been fertilized by a male butt bug, after which it will lay fertilized eggs inside of the gut of the host where they will mature for a week. As the eggs gestate, they grow and expand, often making the carrier look pregnant with their combined bulk. Once the female deems them ready, she forces the host into a state of faux labor, birthing the now enlarged eggs through her own body and out of the host’s anal cavity. During the laying process, they force the host’s orifice to stretch just wide enough to allow the passage of the eggs. Beige females generally produce just over a dozen eggs.");
+	outputCodex("\n\n<b>* The ‘Green’ Female:</b> Slightly larger and rarer than the beige female, this one is as green as the flesh of the larger worm body and covered in lighter green bumps that dot the majority of its surface. This variant of the parasite continuously lays full-sized eggs, producing one every eight hours, keeping its host in a state of ‘pregnancy’ until a male comes along to fertilize them. There is a refractory period after a fertilized laying which will temporarily cause the parasite to not lay eggs; times average at about three days. The newly fertilized eggs will be laid a short time after fertilization, often creating very large piles of eggs depending on how long it has been since the host was last fertilized. Hosts who choose to live with this type of parasite are advised not to let the growing number of eggs immobilize them. Emergency staff might take awhile to get to afflicted hosts and by then they may be in an even worse, if not critical, condition.");
+	// Yes, a scene with medical staff using all sorts of rectal removal methods to get the eggs out are planned for future expansion content. At the moment the placeholder scene is you turning into an egg machine gun when you accidentally tripped. Not sure if bad end appropriate, if so it will be a volunteer scene. Meaning Somebody who wants to do so can write it and contribute, highly likely I’m not going to do it myself. I haven’t even read the CoC bad ends apart from kelt’s and the pod as I have almost no interest in most game over scenes concerning smut.
+	outputCodex("\n\n<b>* The ‘Orange’ Female:</b> So far the rarest of all, these females are almost double the size of the other variants. They share the same color scheme with the beige female, with the exception of a large orange stripe running all along their undersides and continuing to the top of their body. They are a strange breed of ‘butt bug’ that when fertilized only lays a single egg into their host. This egg incubates for several months, and is expelled through a labor-intensive event somewhat akin to a vaginal birth, but through the anal cavity instead. This egg is much larger than most other eggs laid by these anal parasites, increasing in size until the carrier looks severely pregnant. Even stranger is that the egg absorbs genetic material from the host. This alters the body of the offspring in accordance to the carrier’s overall body shape. This has created bipedal, tauric, and even flying insectoid hybrids of all varieties with just enough intelligence to behave in a very tribalistic manner. Unfortunately their numbers are incredibly low, and there are no recorded cases of them actually forming civilizations. These hybrids are essential for the making of more orange females, as they need to be parasitized by other hilinara parasites in order for this specific female variant to continue.");
+	outputCodex("\n\n<i>Other unfound variants may exist.</i>");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("Hilinara organisms cannot reproduce on their own: they require a suitable host to incubate their eggs until the female deems them suitably developed to be laid. Gestation times vary between female types but it is known that most of the females already have eggs waiting to be laid within the host when a male comes along. In order to be fertilized, a female hilinara parasite needs to be inseminated by a male through the constant insertion of the male’s phallic body into one of the female’s orifices. This process goes on until the male is stimulated enough to ejaculate his spermatozoa into the awaiting body of the female, whereupon she will, through the use of her remaining tendrils, cover every egg she has in the deposited seminal fluids. After approximately an hour of soaking her eggs in the sperm, the female lays the eggs into the intestines of the carrier. It is here that they will gestate and grow in size until ready to be laid, often bulging a host’s body to the point of looking pregnant. An unwilling host will often feel discomfort at this act, as they may not want any phallic objects in their anus, let alone the parasite they are carrying. However, this will only happen if the host is subdued by the larger body of the male earlier on, so most hosts are safe from this happening to them in civilized or well travelled areas.");
+	outputCodex("\n\nThe eggs seem to be completely immune to any sort of stomach acids. They do not need to be cared for in environments where soft soil or sand is abundant considering that they hatch shortly after they are laid. With the exception of the green female, all females already have an egg prepared and ready to be laid into the gut of their host once the female has confirmed that a male butt bug has inseminated her. If their unfertilized eggs come into contact with any sperm that is not from a male butt bug, they will induce an early ‘labor’ and lay all of the available eggs they have outside the host in order to prevent genetic contamination. This is often without warning, and without a care for where they end up. These eggs will not develop with no body incubating them and no female bug to care for them.");
+	outputCodex("\n\nHybrids grow astronomically quickly when compared to their ‘parent’; with ‘parent’ being the host. As stated above, the continuation of the orange female strain requires the infection of a hybrid by another orange parasite type. The hybrid genes that they pick up in each reproduction cycle keeps the inevitable incestual damage to a minimum. This reproductive quirk hints at some genetic crisis in their evolutionary past, thus requiring them to take on genes from another species or become essentially sterile. Why they needed to do this, or what led up to this reproductive crisis is a mystery so far. The only lead so far is that there is an unusually high amount of sydian DNA located in their cells. Because of this, xenobiologists speculate that the first genetic hybrids were of sydian descent and could be why the hybrids are always more insectoid than the host species.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Parent/Child Interaction"));
+	outputCodex("Almost all Hilinara organisms, hybrid or otherwise, seem to instantly be able to recognize the host who carried them while they were an egg, no matter how long a period of time has passed. Even subjects that were separated from their carrier for several years, and had never met them beforehand, seemed to know not to attack; while hybrids treat them like long lost parents the moment they sense them. Current data suggests that the carrier’s heat signature and unique chemical scent is imprinted into the brains of these creatures while they are carried, creating a permanent reminder of who they share DNA with. The most likely explanation for this is that it serves as a warning marker to prevent incestual genetic mixing. Only in the case of hybrids does this not make sense, as they are sexually sterile. However, it is entirely possible for a carrier to accidentally become the host of one of the parasites created by a hybrid they carried. Long term study has determined that this marker lasts for several generations, further providing evidence that this is to prevent against incestous genetic mixing.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Sand Worms");
+}
 public function gabilaniCodex():void
 {
 	clearOutputCodex();
@@ -1914,7 +2154,7 @@ public function raskVelCodexEntry():void
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Reproduction"));
 	outputCodex("Raskvel are consummate breeders, one of the few races able to compete with gabilani when it comes to sheer reproductive enthusiasm. They will breed with almost anything at any time, so long as it has a pleasant disposition and a compatible-looking penis or vagina. Most would consider them sluts, but to them, it is a way to survive a planet rife with industrial accidents and deadly foes. They love to mate with creatures bigger than themselves, believing it will give the young the strength to survive longer on their harsh home planet.");
-	outputCodex("\n\nShortly before pregnancy they will be immobilized by the size of their incubating bellies, but birth occurs with such rapidity after that that there is little danger from this. They will lay anywhere from three to ten large eggs in an act that they describe as “hellishly pleasurable” before slumbering to recover. The eggs will hatch within a month, each containing a young raskvel if fertilized. The eggs do not need to be incubated. Once laid they are often left to fend for themselves, as the Raskvel are quite lacking in maternal instincts. The offspring are inquisitive, knowledge-hungry creatures that soak up information like sponges and mature enough to work and talk within a month or two. Full adulthood and sexual maturity do not come for at least two years.");
+	outputCodex("\n\nShortly before birth, they will be immobilized by the size of their incubating bellies, but birth occurs with such rapidity after that that there is little danger from this. They will lay anywhere from three to ten large eggs in an act that they describe as “hellishly pleasurable” before slumbering to recover. The eggs will hatch within a month, each containing a young raskvel if fertilized. The eggs do not need to be incubated. Once laid they are often left to fend for themselves, as the Raskvel are quite lacking in maternal instincts. The offspring are inquisitive, knowledge-hungry creatures that soak up information like sponges and mature enough to work and talk within a month or two. Full adulthood and sexual maturity do not come for at least two years.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Diplomatic Relations"));
 	outputCodex("Raskvel are often hostile toward gabilani but will rarely throw the first attack. They hate rust monsters with a passion, due to that race’s propensity for devouring their recently repaired machinery.");
@@ -1941,7 +2181,6 @@ public function sydianCodexEntry():void
 	outputCodex("\n<b>Eyes:</b> Insectoid and multi-faceted. Typically black, but rarely found with greenish sheen.");
 	outputCodex("\n<b>Ears:</b> Internal. Located under small openings in the head chitin, above the jaw hinges.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Anatomy"));
 	outputCodex("Sydians are covered in chitinous plating, with only the face and, in females, the front torso and groin exposed. Located under the porous chitin are glands that secrete a corrosive enzyme. While concentrated in the antennae and tail fuzz, they are found all over the body. This enzyme catalyzes oxidation of (i.e. rusts) most metallic elements. When living tissue is exposed, the enzyme stimulates low-level ion exchange in the nerves, causing a feeling of pleasure. On non-metallic substances or organisms lacking nervous systems, the enzyme sits inert or is absorbed without effect.");
 	if (flags["SYDIAN QUEST STARTED"] != undefined) outputCodex(" The enzyme-generating cells bear surface structures with their own DNA; similarities to mitochondria suggest incorporation of protobacteria or archaea into sydian cellular biology. All sydian cells also contain mitochondria with mtDNA nearly identical to that of <i>Homo sapiens</i>, indicating common ancestry.");
@@ -1949,37 +2188,28 @@ public function sydianCodexEntry():void
 	if (flags["SYDIAN QUEST STARTED"] != undefined) outputCodex(", possibly due to acidic enzymes adapted from the protobactera or archaea");
 	outputCodex(".");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Habitat and Diet"));
 	outputCodex("Sydians are warm-blooded (endothermic) and live almost exclusively in the junkyard wastes of Tarkus; their ability to oxidize most types of metal suits them to this environment. Infrequently, individuals are found in settled areas but encounter difficulty co-existing with other civilized species.");
 	outputCodex("\n\nSydian dietary requirements include heavy metals alongside water and organic nutrients; colonies form when the three are found in close proximity. Freshwater bodies carrying fish and trace metals are common sites. Isolated colonies have developed rudimentary farms using scavenged or stone tools once forage no longer supports population growth. Lone individuals, social groups without settlements, and those in frequent conflict exist as nomadic hunter-gatherers, sometimes for generations before a colony is founded.");
 	if (flags["SYDIAN QUEST STARTED"] != undefined) outputCodex("\n\nRecent research has shed light on the role of metals in sydian biology: individuals deprived of metals can survive on food and water for months but suffer from blood poisoning as the enzyme-generating cells in their bodies die. The replication of the organelles on the cell surfaces during mitosis requires heavy metal compounds. When these compounds are not available, a hormone messenger from the organelle interrupts mitosis and the cell lyses to release usable metals for other cells, along with metallic waste stored within the organelle. As the number of generative cells dwindles, the remainder can no longer reuptake enough of the metallic waste from the blood plasma, resulting in heavy metal toxicity. Sydians deprived of organic nutrients or water suffer ordinary malnutrition and dehydration, respectively.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Sexual Dimorphism"));
 	outputCodex("Male sydians are taller and burlier than females, with larger, stockier tails. Male antennae tend to be smaller, growing no longer than 1\' 4\". The chitinous plating is more prominent on the male, covering all of his body except the eyes and mouth. Flexible plates protect the male genitals, and open slightly during copulation. Females bear chitin only on the arms, legs, tail, and back, including the back and sides of the head up to the sites of the antennae. Large areas of the female sydian’s front torso are exposed, including the throat, breasts, stomach, and groin. Females conceal and protect these places with a layered patina of metal oxides mixed with clay and body oils; these solidified body paints are usually styled, decorated, and accented to resemble male plating. High-ranking females exhibit more abstract and colorful patterns to symbolize their rank. Female sydians have a much higher concentration of enzyme-producing cells in the armor they do possess. The head hair and downy fuzz found on the antenna and tail grows longer on the female. ");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Reproduction"));
 	outputCodex("Sydians reproduce sexually. The male penis, when exposed during arousal and copulation, is slightly larger than an average human’s (prior to genetic manipulation). First-hand accounts estimate lengths between nine to thirteen inches. Sydian penises are orange and covered in tiny brushes that flutter on contact to stimulate the partner. Ejaculate is silvery in color and may have a metallic component, though rudimentary testing establishes it as nontoxic to at least 85% of known sapient life forms.");
 	outputCodex("\n\nThe female vagina appears as a simple slit or lipped opening that, according to report, blooms to ease penetration upon arousal, exposing its orange color. The upper edge of the vulva bears a single clitoris.");
 	outputCodex("\n\nFemale sydians do not have an established breeding season and ovulate multiple times throughout the year. Roughly every 240 days and lasting up to 30 days, regardless of estrous phase, female sydians begin to crave the oxidizing enzyme of other sydians; male-female interactions during this state almost always result in intercourse. This heat-like state is indicated by the head hair becoming fiery orange and the affected female seeking out other sydians more diligently.");
 	if (flags["SYDIAN QUEST STARTED"] != undefined) outputCodex(" The change appears related to the release of extra luteinizing hormone during a heavy ovulation; the hormone acts as a cupric receptor antagonist to the bacterial organelles, preventing uptake of inorganic copper. The metal settles in body tissues, including hair follicles, provoking a strong craving for additional sources of enzyme to chelate it. The receptive state can be triggered artificially by fertility treatments with LH components, and an active pregnancy suppresses or diminishes the condition."); // http://i.imgur.com/clsVxPF.jpg
 	outputCodex(" While males prefer females in the receptive state, they are not above seducing non-receptive females or employing physical force to breed."); 
-
 	outputCodex("\n\nDuring either consensual couplings or forced copulation, the male penetrates the female with his penis, ejaculates, and potentially impregnates the female, who ovulates two to three eggs in each cycle. Embryos attach via hemochorial placenta to the uterine wall. Gestation lasts six months, after which the female gives live birth.");
 	if (flags["SYDIAN QUEST STARTED"] != undefined) outputCodex(" Sydian embryos are colonized by the mother’s enzyme-producing organelles late in the first trimester, and it is surmised that these organelles trigger accelerated growth and the development of chitin in place of keratinous vellus hair. Pure human and mixed-breed embryos develop indistinguishably from sydians in sydian wombs, excepting variations in head hair that do not appear in pure sydians. Sydian embryos grown in human wombs or <i>in vitro</i> resemble human fetuses.");
-
 	outputCodex("\n\nSydian children are born with scaly, soft gray chitin that persists until puberty. Puberty occurs between the ages of eleven and thirteen, whereupon the chitin scales thicken into the sex-appropriate adult configuration, darken, and join together.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Behavior and Society"));
 	outputCodex("Sydian society is patriarchal, with groups of ten to one hundred led by a dominant male. Larger size, thicker armor, and weaker corrosives cause male sydians to rely on and respect brute strength, giving rise to a culture underlaid with terrible violence. Most do not hesitate to resort to force to obtain food, breeding rights, and positions of power, resulting in a semi-stable group dynamic frequently interrupted by internal and external challenges. The leading sydian has absolute primacy in matters of females, food, and, when found in settlements, housing and governance. Some subject males willingly take positions of servitude, looking after children or performing manual labor; other males are forced into such positions. Younger sydians, especially powerful males, may eschew the group, striking out to join or attract a new clan. All males court mates from among the group’s females and establish relationships, though the leader’s ability to claim rights on any female at any time usually prevents monogamous coupling. Cuckolding is commonplace, especially toward subject males who have challenged the dominant male and lost. Vengeful leaders sometimes assign a rival as the personal slave of a favored female; while intended as humiliation, this has lead to the clandestine rape or seduction of the female in many observed cases.");
-
 	outputCodex("\n\nFemale society is shaped by the parallel male society, with females favored by the dominant male assuming positions of dominance themselves. The highest-ranking female has access to the best housing and finest goods as well as many social liberties; such females can be distinguished by the breathtaking detail on their body paintings, made from the most colorful metal oxides and applied by subordinates. Correspondingly, lower females shoulder more of the work and employ lower-value materials for their coverings. Lower-caste females not currently pregnant are expected and often forced to aid in hunting and gathering, accomplishing the task with exceptional reflexes and higher chemical load. Dressing accessories, usually made from scavenged non-metallic materials, are used to highlight or conceal body features. Such possessions are one of the few items sydian females prize enough to hand down to their offspring, and being offered one as an outsider can be considered a sign of ultimate trust.");
-
 	outputCodex("\n\nFemale sydians regard being without their body paint as an extremely vulnerable position, both mentally and physically, and such ‘naked’ females are scorned in public; this has been exploited to humiliate social adversaries and captives. Non-consensual couplings often involve intentional damage to the paint as a display of power by the transgressing male.");
-
 	outputCodex("\n\nThough extremely unpopular among other Tarkus races and held in a literal stone age by their diets and tempers, observation suggests sydians are no less intelligent than the galactic average. Their culture is tribal and traditionalist, with little room for scholarship or what would be seen in higher societies as a progressive attitude toward sex and gender. Most sydians have accepted the limitations of their biology; some prominent individuals publically express quasi-neo-Luddite, anti-technology opinions. Conversely, a few have left their colonies, using specially-tailored clothing to study machinery in detail.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Sydians");
@@ -2082,6 +2312,7 @@ public function goldMyrmedionCodexEntry():void
 	outputCodex("\n\nJust before First Contact, the war between red and gold myr took an unexpectedly lethal turn due to the gold myr introducing poison gasses into the conflict, an incredibly effective deterrent against the unchecked red myr advance into their territory, followed by the red myr threatening to unleash a primitive atomic weapon the day before First Contact. Due to the appearance of the ausar expedition to Myrellion, thermonuclear war has been temporarily averted, which has since given the gold myr the opportunity to fashion their own WMDs in response.");
 	outputCodex("\n\nThe presence of the alien expedition is assumed to be the only preventative factor keeping the world war from escalating to a nuclear inferno. Due to the surprisingly advanced nature of the race, and their “honeypot” biology (which is seen as highly promising by Xenogen), U.G.C. diplomats have arrived on the planet and are working with both hierarchies to achieve a cease fire in the seven years’ war.");
 	outputCodex("\n\n");
+	//CodexManager.unlockEntry("Gilden Republic");
 	CodexManager.viewedEntry("Gold Myr");
 }
 public function redMyrmedionCodexEntry():void
@@ -2154,6 +2385,7 @@ public function redMyrmedionCodexEntry():void
 	outputCodex("\n\nJust before First Contact, the war between red and gold myr took an unexpectedly lethal turn due to the gold myr introducing poison gases into the conflict, an incredibly effective deterrent against the unchecked red myr advance into their territory, followed by the red myr threatening to unleash a primitive atomic weapon the day before First Contact. Due to the appearance of the ausar expedition to Myrellion, thermonuclear war has been temporarily averted, which has since given the gold myr the opportunity to fashion their own WMDs in response.");
 	outputCodex("\n\nThe presence of the alien expedition is assumed to be the only preventative factor keeping the world war from escalating to a nuclear inferno. This has caused some consternation on the part of the Federation, who saw themselves as on the brink of a final victory, and now are being largely ignored by the off-worlders in favor of the more alluring gold myr. Xenogen Biotech has, however, made preliminary inquiries into the reds’ lust venom while other parties have expressed interest in exporting red myr labor (either reds themselves or selections of their many, many gold myr prisoners of war).");
 	outputCodex("\n\n");
+	CodexManager.unlockEntry("Scarlet Federation");
 	CodexManager.viewedEntry("Red Myr");
 }
 public function cockvinesCodexEntry():void
@@ -2166,12 +2398,12 @@ public function cockvinesCodexEntry():void
 	outputCodex(blockHeader("Overview"));
 	outputCodex("Hydrus Constuprula, better known by its colloquial name cockvine, is a mobile, parasitic, invasive, troglophile plant species native to Myrellion. It is endemic to large parts of the Myrellion underground, a status acknowledged by both sides of the on-going Myr conflict to be a result of its historical use as a biological weapon. A Class A non-sentient species, it is illegal for it to be transported or for individuals seeded by it to travel outside Myrellion.");
 	outputCodex("\n\n");
-	outputCodex(blockHeader("Growth cycles and physiology"));
+	outputCodex(blockHeader("Growth Cycles and Physiology"));
 	outputCodex("At “birth” cockvine seedlings resemble short, thick, green snakes with a grasping, anemone-like hand at one end and a slit, blunt purple head of variable shape at the other. The hand end is remarkable for its stem cell-like versatility – whilst it functions primarily as a catcher and mouth for the cockvine seedling, it not only acts as the beginning of its root system once it enters adulthood but it can also be used to actively splice itself not just to other cockvines but to animal life as well.");
 	outputCodex("\n\nAside from the rings of flexible, fibrous muscle that they retain throughout their lives, cockvines are seeded with a huge reserve of fructose-based energy which allows them to move swiftly away from their place of origin. During this stage of their life cockvines show a snake-like aversion to large sapient creatures, actively avoiding them except in certain circumstances (see parasitism below). They do however have a ravenous attitude towards life of a similar size to it and during this, their most mobile period of existence, hunt and eat as much food as they can in preparation for the dramatic growth stages ahead. Cockvine seedlings are omnivorous and will consume almost anything, which is cited as a key reason for its over-reaching success on Myrellion.");
 	outputCodex("\n\nLike most herbaceous life cockvines react to light and moisture and, once an infant cockvine has consumed enough, it will seek out a dark, moist place to germinate. They are particularly fond of deep, narrow crevices, as these are ideal for the purposes of their adult selves. Here the cockvine buries its hand end into the earth and proceeds to branch out a considerable root system. The stem of the plant thickens and then sprouts thick vines, similar in appearance to its infant state but far longer and stronger. Large, successfully rooted cockvines have the ability to attract less fortunate infants; these may choose to graft themselves symbiotically to it in order to provide one more tentacle to the alpha cockvine, thus increasing the overall chances of the creature successfully snagging prey. An adult cockvine can have as many as twenty appendages, each up to thirteen feet in length.");
 	outputCodex("\n\n");
-	outputCodex(blockHeader("Predatory habits and breeding"));
+	outputCodex(blockHeader("Predatory Habits and Breeding"));
 	outputCodex("When ready to feed or mate adult cockvines extend tentacles out of their burrow, laying them still on the ground, relying on the dark of their chosen habitat and the swiftness of their grab to surprise prey. Cockvines are sensitive to vibration and express two different behaviors based on the size of an animal approaching its burrow. Smaller creatures – observational data suggests the upper bound for this category is Terran dog-sized animals - are swept straight into the crevice and, if they cannot escape in time, are slid into a pit of digestive juices below the main stem.");
 	outputCodex("\n\nBigger creatures are regarded as potential mates. Once a creature in this category has been induced into its burrow a cockvine will attempt to immobilize it with its tentacles. Cockvine tentacles sweat an oily substance and seep a pungent herbal semen from their tips in the presence of potential mates; this has a muscle-relaxing, aphrodisiac effect which in the close confines of a cockvine burrow is described as overpowering. Once a victim has been incapacitated the cockvine mates with it vigorously in every way it possibly can. Although they are only capable of inseminating functioning wombs, cockvines cannot discriminate between different entrances on a mate and simply seek to seed every hole as thoroughly as they can. Once it has finished, the cockvine carefully discharges the victim from its burrow and then retracts itself.");
 	outputCodex("\n\nAfter insemination en utero cockvines only take around a week to come to term; litter sizes vary between 8 and 20. In itself the task of birthing them is described as extremely pleasurable, however mating with and bearing cockvines has been known to cause several side effects, including increased vaginal and anal wetness as well as outright contraction of cockvine parasitism.");
@@ -2312,8 +2544,7 @@ public function crystalGooCodexEntry():void
 public function bothriocCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("9999");
-	
+	showBust("ARAKEI");
 	outputCodex(header("Bothrioc"));
 	outputCodex("<b>Name (Singular & Plural):</b> Bothrioc");
 	outputCodex("\n<b>Sexes:</b> Monogendered, generally regarded as feminine. A subtype comprising less than 5% of the population are known as the “quadommes” due to their tendency to keep a large harem of submissives and their unique physical characteristics.");
@@ -2321,7 +2552,6 @@ public function bothriocCodexEntry():void
 	outputCodex("\n<b>Weight:</b> 150 lbs pidemme, 300 lbs quadomme.");
 	outputCodex("\n<b>Life Expectancy:</b> Upwards of 90 years. Low fertility and primitive understanding of medicine keeps population growth slow.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Physical Characteristics"));
 	outputCodex("Bothrioc are a white-skinned, four-armed humanoid species with extensive, flexible chitinous armor. The only places on their body that have skin are the stomach beneath the ribs, the head and major joints such as the groin, armpits and buttocks. Their noseless faces are mostly free of chitin, but for a few plates that sculpt their features. Where these plates form differ from bothrioc to bothrioc, although all have an upper and lower lip plate creating smooth, thin, hard lips that nevertheless are fully capable of articulation. Furthermore, their foreheads possess the only skin tone plate of chitin on their body, which blends in seamlessly to the skin around it, but is grooved to direct sweat away from their eyes in lieu of the more common eyebrow seen amongst most species. All bothrioc have solid-color eyes, ranging from dark brown to iridescent purple to pitch black. Bothrioc can see in the dark better than most species, relying on a light reflection system to enhance dim conditions. In complete darkness they are as blind as any other.");
 	outputCodex("\n\nBothrioc ears are sensitive and have a chitinous coat that dampens incoming sounds, limiting the amount of damage loud noises may otherwise do to them. Sensorially bothrioc largely rely on a small pair of antennae embedded just behind the hairline that are angled straight up. These pick up minute vibrations and allow them to detect movement relative to their position. Amongst other things, this feature of bothrioc anatomy is crucial to their famous trapdoor ambush as it allows them to detect when prey enter their range without having to see them. Furthermore, the antennae are capable of picking up scents, though bothrioc tend to have peculiar preferences in scent compared to other species due to the unusual structure of this olfactory organ.");
@@ -2329,28 +2559,23 @@ public function bothriocCodexEntry():void
 	outputCodex("\n\nBothrioc possess good strength all around, but are notable for their extreme agility. The traditional hunting technique of bothrioc is to lie in wait with a spear and bolas, then spring out of hiding while letting loose a pair of bolas, followed by rapidly closing the distance to attack with their spear. Generally, most prey animals are dead before they are able to make a move. In modern times, bothrioc are adept gunslingers and tend to favor rapiers and other quick, thrusting implements when in melee combat. The bothrioc are no strangers to psychological warfare and will attempt to tease or dominate opponents not defeated in the first strike whenever appropriate.");
 	outputCodex("\n\nAll bothrioc possess a chitinous abdomen analogous to a tail above their buttocks, which is their reproductive organ, a complex ovipositor. Other than this organ, they only possess a cloaca situated between their buttocks.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Quadommes"));
 	outputCodex("The “quadomme” bothrioc, also known as harem-queens, have two unique adaptations from their brethren. The most noteworthy is their larger ovipositing abdomens: These contain a functioning silk spinnerette which they can use to produce durable and adhesive webs. The second is that they possess four legs, allowing them to rest comfortably atop one of their large webs. The legs are arranged in a diamond configuration such that two legs point forward and two back. The legs are longer on a dominatrix bothrioc than their cousins which allows them to maintain height comparable to their standing kin even with their knees completely relaxed, and while they can get into a respectable running gait, they find it uncomfortable and are unlikely to be distance runners. These adaptations have resulted in a change in their predation habits from being solitary mobile predators to sedate entrapment predators. This mindset causes them to collect lovers as well as food, and they will generally keep submissive bothrioc or other suitable incubators around for many years. Successful dominatrixes occasionally have as few as ten such incubators but up to as many as two hundred, according to one legend of a bothrioc warlord.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Reproduction"));
 	outputCodex("The reproductive habits of bothrioc are complex and have only recently become understood by the limited research teams able to travel around the cave systems of Myrellion.");
 	outputCodex("\n\nGenerally speaking, the species creates a dominant and submissive role between two members when they meet, if one of them feels the desire to reproduce. One partner assumes dominance by force or persuasion, inserting their ovipositor into the ovipositor of the submissive party and retrieving some of the fluid within the reserve. This fluid, which serves as a lubricant and psychoaffective when used for oviposition, is able to fertilize eggs when taken into the ovipositing cavity of a bothrioc. Some debate exists about the viability of potential insemination using other fluids; as no alien researcher has been willing to engage in intercourse with the ovipositor, it remains uncertain. It is theorized that any genetic-material delivery fluid will suffice, as it has been shown a nyrean male can fertilize bothrioc eggs.");
 	outputCodex("\n\nHaving taken their fertilization fluid from the submissive party, the dominant will then insert their ovipositor into the cloaca of the submissive party to begin oviposition. Alternatively, they will elect to hunt down a different submissive to lay the eggs into, depending upon taste. The eggs themselves are round and somewhat pliable, getting firmer as the young within mature and need more protection. The eggs are noted to be about 5” across and of a distinct, dark violet hue when laid. ");
 	outputCodex("\n\nThe effects of the slime that accompanies eggs from their ovipositor are incredibly versatile. First, it acts as a lubricant, easing passage for both the dominant and submissive parties. Second, it acts as a fertilizer or semen-analogue, as discussed above. Third, it is mildly adhesive to egg shells and strongly adhesive to itself, creating a situation in which eggs attach to the lining of whatever orifice they are in surrounded by a substantial bubble of the slime. Fourth, it carries a hormonal and psychoaffective payload.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Psychoactive Effects"));
 	outputCodex("Hormonally, bothrioc reproductive oil carries many oestrogen and progesterone analogues, which in most species will have a feminizing effect as well as an uptick in sex drive due to a more minute amount of testosterone. In a technically-genderless species like bothrioc, there is little to no effect on secondary sexual characteristics, but instead these hormones serve as a trigger to reduce egg production and increase slime production within their ovipositing abdomens. As such, a repeated submissive is pushed further and further into the fertilizing role and becomes less and less effective when ovipositing. The hormones used in egg production, however, are self-reinforcing. A bothrioc who has reason to produce more eggs, for example, having deposited them or having had them deteriorate, will experience a mild increase in egg production. As such, a dominant bothrioc will eventually produce vast amounts of eggs, but a submissive bothrioc is not eternally caught on the submissive side if they seek to change.");
 	outputCodex("\n\nThe psychoaffective payload, however, may keep a submissive member of the bothrioc on the submissive side. These chemicals produce low-level euphoria and suggestibility through the duration of egg incubation, reaching a peak during the final evacuation of the eggs, generally guaranteeing orgasm and, due to heightened suggestibility, firmly entrenching the idea in the egg-layer’s mind that carrying and laying eggs is an activity they enjoy and would like to experience again. Thanks to the suggestibility throughout the incubation, an incubator is more easily acquired by another dominant bothrioc for further oviposition if they have currently unimpregnated orifices.");
 	outputCodex("\n\nWhile the psychoaffective payload’s effects are not inherently permanent, they are self-reinforcing and will eventually achieve permanence within the subject’s mind on repeated or intense exposure. The end result of this, easily observable among the harems of dominatrix bothrioc, is an extremely carefree and happy state of mind, resulting in low willpower and high libido. Many have assumed that this results in intelligence loss, however when sufficiently invested in something the submissives have tested to have mental faculties within the standard deviations of their species and notably some geniuses.Their altered state of mind does, on occasion, result in such a disconnect from usual affairs that the subjects become less capable of understanding someone who is not motivated by sex. Additionally, their speech becomes peppered with frequent vocalized pauses to collect their thoughts as well as a changing vocabulary reflecting their general pleasure with life and lack of desire to be serious or be particularly invested in matters most would consider important.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Intelligence"));
 	outputCodex("Bothrioc are sentient, sapient, language-using predators. They lack much of a distinctive culture due to their solitary nature. They hunt alone, and usually only seek each other out for reproductive or sexual satisfaction. As such, while they are not actively shunned by the myr that rule the surface, they have little say in the affairs of the world above or below. Dominant bothrioc are excellent tacticians and cavern combat experts, typically have excellent vision unlike the myr, and have been occasionally hired by both sides as commanders for troops, especially when plotting surgical strikes. They lack a head for numbers and have fallen out of favor in the trench warfare currently underway on Myrellion.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("History"));
 	outputCodex("Traditionally apex predators, the bothrioc’s inability to collectively organize has resulted in them been completely outstripped by the myr and even the nyrea, so have little to no say in the wider affairs of the planet, occupying the same political position the similarly-minded wetraxxal do. If bothrioc were removed from the planet today, there would be little evidence they existed aside from mentions in myr records.");
 	outputCodex("\n\nThe long history between bothrioc and the two myr species is recorded universally by the latter and is thus biased. What can be understood to be true is that bothrioc have enjoyed a sort of mixed fascination and revulsion from the myr, as evidenced by their twin nicknames of “Egg-Giver” and “Egg-Beast.” In fact, most tales the myrs tell of bothrioc are twinned with one variant favoring them and another casting them down. Gold myr tell of a beautiful queen who came to be enthralled of a bothrioc lover. In one telling, the bothrioc became her consort and inseminated the queen via her ovipositor, and also gave the queen eggs to build a sizable bothrioc family at the palace in addition to the royal family. In another telling, the bothrioc was in fact of the dominatrix subspecies, and stole the queen away to the deeper caverns where she simply became another pet in the harem. Both tellings are uncharacteristic of bothrioc behavior as they neither form families nor do they kidnap their harems, generally. What this and dozens of other tales tell the anthropologist is that bothrioc have always participated in history alongside the myr, whether as slaves, merchants, prostitutes, generals or royalty.");
@@ -2364,8 +2589,7 @@ public function bothriocCodexEntry():void
 public function essyraCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("9999");
-	
+	showBust("KAZRA_AND_LORRE");
 	outputCodex(header("Essyras"));
 	outputCodex("<b>Name:</b> Essyra (Singular), Essyras (Plural)");
 	outputCodex("\n<b>Sexes:</b> Female and Hermaphrodites");
@@ -2375,15 +2599,12 @@ public function essyraCodexEntry():void
 	outputCodex("\n<b>Ears:</b> Essyras have large, vulpine ears");
 	outputCodex("\n<b>Tails:</b> Essyras have several thick, furry tails: usually between six and nine, and in the case of hermaphrodites, always in the same number as their penile tendrils.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Combat"));
 	outputCodex("Essyras are consummate huntresses, combining a natural stealth and agility with amazonian strength. Most prefer to fight with a bow or throwing spear, giving them sure strikes from ambush before finishing their prey in close combat with daggers or axes. Essyras prefer armor made of treated hides and leather, usually from local predators they’ve slain and in snowy colors to maintain their natural camouflage. Centuries after their homeworld was colonized by the ausar, many essyra have adapted to use salvaged arms and armor from spacers to supplement their traditional hunting styles.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Environs"));
 	outputCodex("Natives of the snowy world of Uveto, essyras are well-adjusted to cold weather and snow. Their natural adaptation includes snow-white skin and cold-colored hair, effectively making them what other species might consider albinos (complete with pink eyes and susceptibility to skin disorder), and have intense body heat which is compounded by a tremendous ability to store body fats for warmth, much like the colonial ausar have adapted. These body fats are usually stored in the belly, buttocks, and breasts, giving a well-fed essyra an extremely curvaceous appearance. This chubby body-type should not be underestimated, however, as essyras are also considerably stronger than the average human, owing to their size and natural musculature.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Sexuality & Reproduction"));
 	outputCodex("The essyra are a race entirely composed of feminine individuals, broken into both a female and hermaphrodite sex. They appear to share a single social gender between them, as is common for species with feminine hermaphrodites. All members of the species have a galactic-standard vagina in the usual place for bipeds, completely with black lips and a sensitive clitoris.");
 	outputCodex("\n\nHermaphrodite essyra have a number of penile tendrils that surround their feminine sex, in the same number as the individual’s tails (usually between six and nine) between 6 and 10 inches in length. Each tentacle has a series of three bulbous knots near the base that inflate during intercourse, growing turgid during and after orgasm to bind mates together. Essyra typically have one “dominant” penis that is longer and thicker than the others, growing up to 16 inches in length.");
@@ -2391,27 +2612,23 @@ public function essyraCodexEntry():void
 	outputCodex("\n\nEssyra reproduction is fundamentally mammalian, with penetrative sex resulting in pregnancies that last six months. Once young are born, they grow quickly to adulthood over the course of one year. They are helpless for only a few days. This quick rise to adulthood is offset by the very short lifespan of essyras, who rarely live more than 10 years. When two essyran hermaphrodites engage in intercourse, impregnation of both partners is seen as highly undesirable, as the sire is expected to take care of her lover while she is with child.");
 	outputCodex("\n\nWhen pairs of essyras become mated, it is usually for life, and one of the pair will assume the ongoing role of mother and caregiver, and one the father and provider. In instances where essyra mate with offworlders or natives of other races, they have shown strong tendencies towards impregnating their partner or restricting themselves to non reproductive sex. Single motherhood appears to carry an extreme social stigma among the species.");
 	outputCodex("\n\n");
-	
 	outputCodex(blockHeader("Culture & Society"));
 	outputCodex("Essyras are solitary creatures, usually living alone or with a single mate and their children. Essyra typically live in large, easily moved tents made of bone, leather, and hide from large animals. They are prone to staying in the same abodes for extended periods of time, sometimes several years, so long as good hunting maintains, only occasionally shifting their home’s location with the changing ice floes and snow accumulation.");
 	outputCodex("\n\nWhile explorers initially feared interaction with essyra huntresses during early exploration based on their fearsome reputation among other native species, the essyra were eventually discovered to be surprisingly friendly towards off-worlders, and instances of violence were remarkably low. Indeed, several huntresses volunteered to act as guides and hunters for the initial exploration teams, and were instrumental in early mappings of the surface before the modern sensor relays were installed. Essyra DNA was even used in the early variants of the “huskar” gene mod that has allowed colonists to comfortably inhabit Uveto -- a fact that many huntresses relish, treating the colonists as their “children.”");
 	outputCodex("\n\nThis friendship has maintained quite well since then. Essyras freely come and go from Irestead and other settlements, and many take ausar colonists as mates. Despite many, many generations of the short-lived race having passed since first contact, essyras today still treat the huskar as their “responsibility,” and there have been countless instances of them intervening to rescue an endangered colonist from a predator or natural hazard.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Lureling Essyras"));
 	outputCodex("Of special note is the relationship between the essyra and another species native to Uveto: the so-called “lurelings,” powerfully psionic creatures that live beneath the ice. Though research on the matter is thus far limited, it appears that essyras are very susceptible to psionics, much moreso than other Uvetan races, and have developed no natural talent themselves. Lurelings prey on young essyras, taking advantage of their low mental defenses to psychically dominate them -- usually for life.");
 	outputCodex("\n\nThe dominated essyra will follow her master above the ice, acting like a sexual lure for adventurers and feeding back sensual pleasures to their master once they’ve secured a mate. The purpose of these actions is poorly understood, as no reliable contact has ever been established with the lurelings, but by all accounts they appear to engage in both the domination and luring for pleasure, rather than any biological imperative.");
 	outputCodex("\n\nUnsurprisingly, essyra kill lurelings on sight. Other races treat lure-essyra with a mix of difference and amusement, as encountering them usually means easy sex, and the lure usually carries deep-sea treasure or bounties of fish taken by her master to trade in villages.");
 	outputCodex("\n\nLureling-bound essyras have existed since before First Contact, and appear to have diverged from their free-willed kin on a biological level. Different combinations of sexes, including pure female and male essyras, are apparently selectively bred for their appearance or other physical traits that help them attain mates for their master’s pleasure.");
 	outputCodex("\n\n");
-
 	CodexManager.viewedEntry("Essyras");
 }
 public function frostwyrmCodexEntry():void
 {
 	clearOutputCodex();
 	showBust("FROSTWYRM");
-	
 	outputCodex(header("Frostwyrm"));
 	outputCodex("<b>Name:</b> Unknown (Colloquially: Frostwyrm)");
 	outputCodex("\n<b>Sexes:</b> Unknown. Assumed Male and Female.");
@@ -2421,14 +2638,10 @@ public function frostwyrmCodexEntry():void
 	outputCodex("\n<b>Ears:</b> Reptilian");
 	outputCodex("\n<b>Tails:</b> Each Frostwyrm has a powerful reptilian tail that stretches out nearly the length of its body, covered in spikes.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Combat"));
 	outputCodex("The apex predator on the frozen world of Uveto VII, the Frostwyrms are mythological beasts spoken of in hushed, fearful whispers by the native races. Rarely encountered by colonists, these reclusive creatures are mighty behemoths able to rend armored vehicles asunder. Wyrms have eight spear-like claws on each of their six legs, and several spikes line the length of its tail, able to hit with the force of a thunderbolt. The creatures’ teeth are like arrays of swords, set three rows deep in a bestial maw, and its scales act as an interlocking pattern of shields like any other reptile’s. Even its wings can be weaponized, creating a hurricane-like gale that batters attackers down to the earth, or send them flying - not to mention sending snow flurrying about to obscure itself.");
-
 	outputCodex("\n\nPerhaps the most notable combat traits of the wyrm is that despite its bestial appearance, it is powerfully psionic. The wyrm radiates a powerful field of psychic energy around itself that is able to both give it lift for flight, and act as a barrier that completely shields it from harm. Wyrms can actuate their mental power as attacks as well, sending psychic whiplashes that batter their attackers’ minds, or focusing it through a powerful roar that can cause intense pain and mental trauma.");
-
 	outputCodex("\n\nFighting a frostwyrm is considered suicidal by most native races, and foolhardy hunters that go to bring one down rarely if ever return. Luckily for the people of Uveto, frostwyrms are reclusive and few in number -- they have never attacked a settlement, and do not seem interested in aggressive action unless their territory is invaded.");
-
 	if (flags["FROSTWYRMWARNING"] == undefined)
 	{
 		outputCodex("\n\nWhile psionic power is generally associated with high mental acuity, it is unknown if frostwyrms are actually sapient -- no communication has ever been possible, and the wyrms appear to have no language beyond roars and grunts.");
@@ -2441,25 +2654,20 @@ public function frostwyrmCodexEntry():void
 
 	outputCodex(blockHeader("Environs"));
 	outputCodex("Native to the snowy world of Uveto, frostwyrms are amphibious reptiles that tend to be found on the coastlines and glacial outcroppings that dot eastern Uveto. They are capable of breathing air and either possess secondary gills or else extreme lung capacity akin to whales, as they are able to submerge in the icy waters of the planet for an extreme duration - possibly hours at a time.");
-
 	outputCodex("\n\nIt is believed that frostwyrms live in large caves on the coast, possibly submerged under water. As yet, no wyrm lair has ever been discovered.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Reproduction"));
 	outputCodex("Unknown. It is believed that frostwyrms are traditionally reptilian and lay eggs, though none have ever been seen. Several enessae and milodan legends tell of sighting a wyrm heavy with eggs, though none have been seen since colonization.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Culture & Society"));
 	outputCodex("Unknown. Wyrms are believed to be solitary creatures with no culture to speak of.");
 	outputCodex("\n\n");
-
 	CodexManager.viewedEntry("Frostwyrm");
 }
 public function korgonneCodexEntry():void
 {
 	clearOutputCodex();
 	showBust("KORGONNE_FEMALE");
-	
 	outputCodex(header("Korgonne"));
 	outputCodex("<i>Honest little furballs as tough as they are short.</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Korgonne");
@@ -2471,11 +2679,10 @@ public function korgonneCodexEntry():void
 	outputCodex("\n<b>Fur:</b> A mixture of white and tawny with black down the back.");
 	outputCodex("\n<b>Hair:</b> Longer fur growing from the top of the head to the nape of the neck. Typically brown, white, or burnt orange.");
 	outputCodex("\n<b>Ears:</b> Positioned atop the head; triangular in shape and slightly rounded at the tip.");
-	outputCodex("\n<b>Face:</b> Humanoid in appearance with wide, expressive eyes and a short muzzle capped by a black, moist nose.");
+	outputCodex("\n<b>Face:</b> Humanoid in appearance with wide, expressive eyes and a short muzzle capped by a black or blue, moist nose.");
 	outputCodex("\n<b>Limbs:</b> Two arms and two digitigrade legs. Both palms and soles contain soft, leathery pads, similar to a cat’s.");
 	outputCodex("\n<b>Tails:</b> Either a foot long and fluffy or short and curled upward, depending on parentage.");
 	outputCodex("\n<b>Lifespan:</b> 156 years on average with exceptional individuals reaching into their second century.");
-
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Appearance Notes"));
 	outputCodex("Korgonne fur is typically short but dense, suitable for protection during brief jaunts to the frozen surface but not so stifling as to cause problems for those that remain in their warmer burrows for long periods of time. They tend toward stockiness thanks to their chill environment. With great effort, it is possible for them to attain the lithe appearance the rest of the galaxy seems to strive for, but few have shown such inclinations.");
@@ -2493,7 +2700,34 @@ public function korgonneCodexEntry():void
 	outputCodex("Korgonne culture holds industriousness as the highest virtue. The more productive an individual, the greater respect they are afforded by their peers. The quality of work contributes as well; a miner who slaves at his job for fifteen hours straight would not be as well-regarded as one who finds a way to extract three times the minerals in half as many hours.");
 	outputCodex("\n\nIntelligence and wit are valued commodities. They see no greater sin than having a brilliant mind and refusing to use it to its fullest, viewing idle genius as the worst kind of sloth. To this end, they rigorously school their young, affording their teachers luxurious pay. Korgonne have achieved a level of scientific understanding well beyond what many anthropologists thought isolated, tribal cultures capable of. Further diplomatic studies by the U.G.C. are planned, and a number of private corporations have expressed interest in bringing a korgonne scientist up to galactic standards.");
 	outputCodex("\n\nAnother major difference from galactic norms is the korgonne attitude toward loyalty and honesty, going far beyond general approval to a fanatical adherence to code. Dishonesty is considered gauche and a habitual liar absolute scum. The punishment for thievery is banishment, considered to be worse than death; this sentiment also extends to alien explorers, making it difficult for outsiders to befriend and enter even the most peaceful korgonne colony. A korgonne’s word is his bond, and a cultivated friendship often transforms into a lifetime of loyalty. Similarly, one social misstep could make a mortal, implacable enemy.");
-	outputCodex("\n\nLastly, their language has proven difficult for procedural translation software to adapt to. Extensive samples are needed to improve the accuracy; though basic conceptual understanding is still possible, many subtleties are lost. Developing algorithms to properly handle korgonne speech could advance translation technology by decades.");
+	if(flags["KORGI_TRANSLATING"] == undefined)
+	{
+		outputCodex("\n\nLastly, their language has proven difficult for procedural translation software to adapt to. Extensive samples are needed to improve the accuracy; though basic conceptual understanding is still possible, many subtleties are lost. Developing algorithms to properly handle korgonne speech could advance translation technology by decades.");
+		if(korgiTranslateProgress() != 0) 
+		{
+			outputCodex(" (<b>Data Collection Progress: " + Math.round(korgiTranslateProgress()) + "%.</b>");
+
+			if(korgiTranslateProgress() >= 100) 
+			{
+				output(" <b>Would you like to submit your Codex’s language data to improve translations?</b>");
+				clearGhostMenu();
+				addGhostButton(4, "Back", showCodex);
+				addGhostButton(0, "Translate", translateKorgii);
+			}
+			outputCodex(")");
+		}
+	}
+	else
+	{
+		outputCodex("\n\nLastly, while their language has proven difficult for procedural translation software to adapt to, your extensive sampling of the residents of Korg’ii Hold improved the algorithm to near perfection. Your efforts to refine translation software has not gone unnoticed.");
+		if(!korgiTranslate()) 
+		{
+			output(" <b>For some reason, you’re using the old software version.</b>");
+		}
+		clearGhostMenu();
+		addGhostButton(0, "Translate", translationToggle);
+		addGhostButton(4, "Back", showCodex);		
+	}
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Sex and Mating"));
 	outputCodex("Reproduction among the korgonne is slow, not because of infrequent mating but because of infrequent ovulation. Females are only fertile in times of plenty, when supplies and space both exist in ample quantities. Further study is needed to determine the exact mechanisms behind this selective behavior. Pregnancies result in a single, helpless offspring that matures over a period of 25 to 30 years. Development is comparable to terran and ausar stages, though at a more gradual pace.");
@@ -2511,7 +2745,6 @@ public function lurelingsCodexEntry():void
 {
 	clearOutputCodex();
 	showBust("9999");
-	
 	outputCodex(header("Lureling"));
 	outputCodex("<b>Sexes:</b> Male and Female");
 	outputCodex("\n<b>Height:</b> 8\' 0\" to 8\' 8\" at the shoulders. Roughly 9\' from tip to tail.");
@@ -2520,45 +2753,30 @@ public function lurelingsCodexEntry():void
 	outputCodex("\n<b>Ears:</b> Small ear-holes above their gills.");
 	outputCodex("\n<b>Tails:</b> Lurelings have short, thick tails growing from their haunches.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Power of the Lurelings"));
 	outputCodex("Lurelings are a native species of the icy moon of Uveto VII, and are one of the most dangerous creatures encountered on the world - when they wish to be. Lurelings are an aquatic species of exceptional intelligence (generally believed to be at ausar/human levels or higher), yet their deep-sea origins and physical inability or cultural refusal to make contact make their motivations and goals all but unknowable. Lurelings are perfectly capable of communication, yet refuse to make their presence known to, much less discourse with, the colonists unless the given lureling is in immediate and overwhelming distress.");
-
 	outputCodex("\n\nWhat <i>is</i> known about them, however, is that lurelings are very large, very ugly amphibians resembling something between a frog and an angler fish, with four stubby legs propelling a teardrop-shaped body that supports an immense head. Their heads play home to a large, circle-shaped mouth filled with concentric rows of teeth that rotate like a drill, allowing the lureling to tunnel through surface ice with ease.");
-
 	outputCodex("\n\nWhat makes lurelings truly interesting - and dangerous - to the Uvetan colonists, however, is their native psionic ability and how they manifest it. Like several other native species (such as the frostwyrms and korgonne), lurelings have developed extranormal mental powers, and thus far all encountered lurelings possess this power, rather than only a select few individuals as with most psionically active species. Also abnormally, all known lurelings exercise the same mental power: the ability to dominate and control others.");
-
 	outputCodex("\n\nThe lurelings’ mental domination seems to be an understood and integral part of the ecology of primitive Uvetan species, and has been for many millenia. Each lureling finds and dominates a single, weak-willed surfacer by projecting its mental powers through the ice (usually while the intended victim is sleeping or otherwise vulnerable). Once a lureling asserts its mental dominance, the bond is usually permanent, and the victim will spend the rest of his or her life as a puppet (called “marions” by the locals) to their lureling master, following it from above the ice.");
-
 	outputCodex("\n\nWhile that alone would be cause for great concern among the natives, the lurelings have asserted and confirmed their intelligence in a most horrifying way: research indicates they <i>breed</i> their marions, creating bloodlines particularly well-suited to serving a lureling. Specific traits such as obedience, stamina, and even beauty have been shown to take preference among species bred by lurelings. Young lurelings will often take control of newborn or young children born of their parents’ marions: some speculate that breeding puppets is associated in some way with the lurelings’ own breeding season.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Marions"));
 	outputCodex("The primary purpose of a marion seems to be twofold: marions provide visual information to their masters, acting as eyes above the water and helping to find food, shelter, and other resources their masters may desire. Beyond mere visual data, it seems that a lureling’s mental feedback from its marion is so strong that it can feel sensation and emotion back through its psychic connection. This leads to the second, and more curious purpose: lurelings frequently have their marions wander the frigid wastes, where they inevitably come across other humanoids: usually enessa or korgonne, but ausar colonists or human adventurers seem to suit them just as well. Upon encounter, the marion will offer herself sexually to the target, eagerly pursuing intercourse until the mark eventually gives in or flees. Lurelings appear to command their marions to do this entirely for pleasure, and some unsuspecting ausar have reported hearing orgasmic roars and tremors in the ice after causing a(n unbeknownst to them) marion to climax.");
-
 	outputCodex("\n\nThis behavior certainly explains the tendency of lurelings to breed their puppets for beauty and sex appeal, making them more likely to secure the affections of unwary colonists.");
-
 	outputCodex("\n\nUvetan natives have a complex relationship to marions. Most marions today appear to be descendants of purpose-bred creatures, rather than kidnapped villagers, and thus other surfacers show markedly less aggression towards lurelings and marions than was anticipated by researchers. Marions (and thus, the lurelings following them under the ice) are even allowed to wander freely in some villages, and find shelter there during harsh weather. Some natives, particularly milodan males, find it a great honor to be chosen to breed with a marion, as they believe this proves they are of exceptional strength and charisma. Other natives, particularly enessa, shun marions, and sometimes even assault them if the puppet proves too amorous for the huntress’s liking.");
-
 	outputCodex("\n\nThis more aggressive behavior is likely because the vast majority of modern-day lureling marions are of enessa descent, though many have been altered considerably after many thousands of years of careful crossbreeding. These modified enessa usually follow the same physical form of their parent race, though different lurelings seem to prefer different sexual characteristics: some marions have been bred into pure, phallus-less females; others into masculine creatures in stark contrast to the enessa norm. Others share traits and characteristics of other races such as a fur coat like a milodan or korgonne, while others (especially recently) display ausar-like traits such as patchwork fur, heavier body fat, and seasonal heats and ruts.");
-
 	outputCodex("\n\nDespite all of this, the lureling-marion relationship does seem at least somewhat symbiotic (especially among those marions purpose-bred for their role). In exchange for pleasure and scouting, the lureling usually provides its marion with an abundance of food the creature hunts below the waters, and can be counted on to find good shelter and necessary clothing and other supplies its marion needs. Some have even been recorded providing gemstones and other precious substances from the in-world sea for their marions to trade for what they need. More importantly, the lureling provides extremely effective protection for its puppet, and few if any marions ever need fear for their safety.");
-
 	outputCodex("\n\nA few marions have been separated from their lureling masters (including one specimen “rescued” by the authors of this codex, who broke the psychic connection by taking the marion - a young adult enessa female - off planet, out of her master’s mental reach). Those who were psychicly dominated during adulthood generally only remember bits and pieces of their captivity, and after some rehabilitation, can be reintegrated into society. Purpose-bred marions, such as the descendant enessa species, have a much more difficult time, as they have never been forced to think for themselves. These marions, however, seem to remember most if not all of their lives, and once trained to speak, do so with fond remembrance of their “papas” or “mommas.” Throughout post-separation adulthood, ex-marions remain extraordinarily weak-willed, easy to influence, and remarkably trusting. They are also, however, eager to please and hard working, and do indeed possess exceptional physical traits including strength and charisma, which may prove advantageous. For their own sake, most must be cared for by a village of their native species (or a responsible, caring researcher, as the case may be).");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Combat"));
 	outputCodex("Despite their psychic powers, lurelings are surprisingly non-violent: if they intend to harm a surfacer, it is usually through psychic assault or domination at night. Even then, though, lurelings seem to have little or no interest in altercation with surfacers: most of their interactions are through their marions seeking sexual intercourse (sometimes in exchange for shelter or resources the marion needs to survive). The only time a lureling has ever been provoked to direct violence is when a surfacer assaults a marion. This behavior is almost universally met with instant and overwhelming retaliation, with the lureling bursting up from the ice and crushing, eating, or dragging the assailant under the ice. Perhaps this is why marions are welcomed peacefully into some native villages...");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Environs"));
 	outputCodex("Lurelings themselves seem to have shark-like behavior, rarely staying still for any length of time. They make no permanent homes, and migrate around the ice a few dozen kilometers around humanoid settlements (particularly those korgonne and milodan villages which welcome their marions). Because the psychic connection to their marions is distance-based, lurelings must inhabit the water very near to the surface, and stay within a few hundred meters of their marion.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Reproduction"));
 	outputCodex("As lurelings themselves are secretive and averse to contact with settlers (aside from through their marions, at least), little is known about their biological processes. Several researchers studying them have, however, postulated that the breeding of marions seems to be related to breeding more lurelings, as the newborn children of the puppets are almost immediately dominated in turn by young lurelings (who themselves are only strong enough to control a young and unresistant mind). Some speculate that breeding marions may even be necessary for the lurelings’ reproduction, as this may psychically trigger some sort of breeding response in the creatures. This seems to be corroberated by several native legends and stories telling of whole families of marions encountered in secluded places in the ice-caves, raising their children as their lurelings raise their tadpoles before eventually separating.");
 	outputCodex("\n\n");
-
 	CodexManager.viewedEntry("Lurelings");
 }
 public function milodanCodexEntry():void
@@ -2566,7 +2784,6 @@ public function milodanCodexEntry():void
 	clearOutputCodex();
 	var randBust:Array = ["MILODANMALE","MILODANFEM","MILODAN_PRIESTESS"];
 	showBust(randBust[rand(randBust.length)]);
-	
 	outputCodex(header("Milodan"));
 	outputCodex("<b>Name:</b> Milodan");
 	outputCodex("\n<b>Sexes:</b> Males and Females, Rare Hermaphrodites");
@@ -2577,7 +2794,6 @@ public function milodanCodexEntry():void
 	outputCodex("\n<b>Tails:</b> Milodan females have long, bushy tails. They are prehensile and both quite dexterous and emotive, similar in many ways to that of an ausar’s. Males, on the other hand, have short, stubby tails with little range of motion. Males’ tails are fluffy, but neither sensitive nor as expressive as a female’s.");
 	outputCodex("\n<b>Fur:</b> Milodans are covered from head to toe in a layer of thick, insulating fur. Typically, their patterns include much darker fur on the tails, shoulders, hands, and feet, with stripes all across the limbs. Both sexes have a particularly thick tuft in the center of the chest, between the female’s breasts. Native Uvetan milodans typically have white, light blue, or silver fur; uplifted ones often modify their coats to better suit their environment.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Combat"));
 	outputCodex("Milodans are capable combatants in their native, icy home of Uveto VII. Both sexes have long, sharp claws on all four limbs, and sharp down-pointed fangs - males’ being considerably longer and more pronounced than the females’. Both sexes have considerable physical strength and dexterity, and among those who remain on Uveto, they are famously adept with spear and bow. Like most humanoids, milodan prefer to use weapons when they can, both for hunting and for combat.");
 	outputCodex("\n\n");
@@ -2598,7 +2814,6 @@ public function milodanCodexEntry():void
 	outputCodex("\n\nThe milodan who remain on Uveto are largely unchanged from their primitive origins, living in coastal villages made up of tents, ice structures, and material salvaged from offworlder expeditions. Villages are ruled by an elder, usually a veteran hunter or shaman of some sort who acts as the tribe’s matriarch or patriarch. Milodan are notoriously independent, however, and village leaders act more as advisors and wise-men to their tribesmen.");
 	outputCodex("\n\nMale and female milodans share hunting and salvaging responsibilities. The males are more aggressive towards outsiders, deeming them a threat whereas the females, whilst fierce, are the friendlier face of their tribe. Both male and female milodan will attempt to be dominant in their sexual advances, especially when they couple with offworlders or members of other species. This can easily escalate into outright assault from females in heat or males who believe their territory is threatened, ending only when the target of their aggression has been thoroughly bred.");
 	outputCodex("\n\n");
-
 	CodexManager.viewedEntry("Milodan");
 }
 
@@ -2609,7 +2824,6 @@ public function divraniCodexEntry():void
 {
 	clearOutputCodex();
 	showBust("9999");
-	
 	outputCodex(header("Divrani"));
 	outputCodex("<b>Name:</b> Divrani (singular and plural)");
 	outputCodex("\n<b>Sexes:</b> Male and Female. Females become similar to hermaphoridtes when bonded with a radglow plant.");
@@ -2622,49 +2836,32 @@ public function divraniCodexEntry():void
 	outputCodex("\n<b>Feet &</b> Legs: Divrani legs are large and reptilian in shape, with broad, flat paws tipped with three claws.");
 	outputCodex("\n<b>Tails:</b> Long and thick reptilian tails that taper down to slender points. Divrani tails, once bonded, are especially smooth and oily compared to the rest of their skin.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Appearance"));
 	outputCodex("Divrani are a race of small, often heavyset or overly voluptuous reptiles native to the oceanic coastlands once common on Xamdam. At birth, the species is covered with pink, blue, or green scales, with flat, noseless faces bear a pair of raised vertical nose-slits and covered ear-holes. They are bald, with small horns and large, clawed digits; especially of the feet, which they use to navigate difficult and often wet or muddy terrain. Males are naturally slight and somewhat effeminate, difficult to tell from females of the race save for their general lack of breasts. They have reptilian phalluses, with bulbous knot-like bases and ending with a tapered tip. Their phalluses are relatively small for their size, but the knots are extremely thick, nearly as much so as a divrani’s fist. Females have correspondingly large, highly lubricated vaginas and overly wide hips meant to both accommodate the males’ thick sex as well as the large eggs their copulation results in.");
-	
 	outputCodex("\n\nHowever, a divrani’s appearance generally changes drastically early in their life, when they become bonded to the plants called “radglow.” The plants have developed a unique relationship with the divrani since the Glass War, with seedling radglows able to infest young divrani and bond to their nervous system. This changes the appearance of the host in several ways, as described below.");
 	outputCodex("\n\n");
-	
 	outputCodex(blockHeader("Radglow Bonding"));
 	outputCodex("Shortly after a newborn divrani hatches, its parents will seek out or produce a seedling radglow plant - a native species to Xamdam’s stayglo lake that adapted a way to filter out radiation it intakes. By bonding the plant to themselves, the divrani have found a way to naturally protect themselves from harmful radiation without needing help from the nukas or other more technologically advanced factions.");
-	
 	outputCodex("\n\nThe bonding has several effects on the developing divrani. The most obvious is the system of flowering vines that quickly grow from their head, allowing the symbiote plant to photosynthesize. Over time, the plant will cause the host’s scales to fuse into a single, fleshy carapace which secrets a fragrant, slick oil. Both sexes can develop lengthy prehensile vines, growing from the hands, shoulders, or even back, which the host controls as extra sets of limbs both for utility, defense, and sexual contact.");
-	
 	outputCodex("\n\nFemales (and more rarely, males) will develop large breasts wherein the radglow plant stores nutrient-rich nectar, and the flesh at their tips will split open and flower, creating a pair of petal-lined nipples that secrete it for other divrani to eat if need be, as well as to entice other species with its extraordinarily sweet scent and honeysuckle taste.");
-	
 	outputCodex("\n\nIn addition to the nipple-like growths, bonded divrani begin to secrete an extremely potent sexual pheromone once they reach maturity. This comes primarily from the oil on their skin, but also from the individual’s sex-organs, where the concentration is much more potent. The host is immune to the pheromone cloud’s effects, but other divrani and offworlders alike are not. The cloud causes intense arousal and suggestibility in those it affects, allowing the divrani to easily overwhelm others in order to help their symbiote plant reproduce.");
-	
 	outputCodex("\n\nWhile the divrani’s reproduction is unchanged after bonding, the plant’s reproductive systems causes an intense mutation in the host. Members of both sexes grow a phallus-like organ above their natural sexes. Near the age of sexual maturity in the host, this organ has grown into a large, pulsating, constantly-leaking “lotus”: similar in shape to a pinecone, but made up of soft, wet petals growing from a single semi-hard root. The lotus-phallus does not have a traditional urethra, but rather ejactulates outwards from thousands of small slits between the petals. According to early research, these organs are constantly producing an over-abundance of the symbiote’s seed, which leaks out at the slightest touch or hint of arousal.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Reproduction (Radglow)"));
 	outputCodex("When a divrani subdues a female of another species through its pheromone seduction, it will usually attempt to breed the victim with this additional phallus. Penetration is difficult and messy due to the organ’s pliability and leakage, but fertilization is highly likely due to the sheer output of plant seed. Due to their parasitic, mutagenic nature, the radglow is able to fertilize nearly any species known. Rather than produce a hybrid offspring, however, it uses the female’s egg as a catalyst to create a seed of its own - such offspring are always radglow seedlings.");
-	
 	outputCodex("\n\nA radglow “pregnancy” takes about two weeks to complete, growing to a little bigger than a human fist within the female’s womb. During this time, the hosts’ vagina will become much more wet, similar to a divrani, to help ease the seed’s passing. Once the term of pregnancy has come to completion, the female will deliver the seedling much as if it were an egg or infant of her own race. The seedling is helpless for the first hour or so as its first roots and first petals fill out, after which it can either be planted or bonded in order to facilitate growth.");
 	outputCodex("\n\n");
-	
 	outputCodex(blockHeader("Reproduction (Divrani)"));
 	outputCodex("When a female and male divrani meet, their mutual pheromone clouds will often render both incredibly aroused and eager to breed. Reproduction between bonded divrani is effectively identical, with the male inserting his non-floral penis into the female’s vagina and, when nearing climax, using his bulbous base to tie them together to ensure insemination. Female drivrani are fertile year round, though they do enter twice-yearly “heat” cycles of increased fertility and libido, typically lasting two weeks each.");
-	
 	outputCodex("\n\nNormal pregnancy results in a single over-large egg being formed in the female’s womb, growing to melon size in the course of about four weeks. At this stage, the female will experience a dramatic increase in vaginal wetness and sensitivity. Orgasm virtually always ensues during the egg-laying, after which the female rapidly recovers her mobility - though increased wetness is usually permanent. The egg must be tended to for an additional two weeks, whereupon it will hatch into an infant davrani. Infants are largely helpless, feeding primarily on the mother’s nectar and soft food until its teeth come in.");
-	
 	outputCodex("\n\nDavrani reach maturity after about two standard years, and can live for up to eighty naturally.");
-	
 	outputCodex("\n\nMale divrani likely can breed with off-worlders and other native females, though in these instances the bonded plant will usually attempt to spread its seed instead. No research is yet available regarding divrani-offworlder pregnancies, though rumors from nuka females indicate that such couplings do indeed result in their laying eggs. Similarly, male hyraxx claim that they are able to cause female divrani to produce live offspring.");
 	outputCodex("\n\n");
-	
 	outputCodex(blockHeader("History & Society"));
 	outputCodex("Divrani are a naturally solitary species, and there are few to no records of their having possessed a social structure of note before the Glass War. It appears they were simple hunter-gatherers living on the coastlands, well removed from the larger nuka and hyraxxi settlements. At best, records indicate hyraxxi commonly took divrani as slaves in pre-industrial times, apparently quite taken with the way the females grew heavy with eggs.");
-	
 	outputCodex("\n\nPost Glass War, divrani are not much changed in terms of social structure, remaining isolated individuals. However, the instinctual need to help their symbiote plant breed, as well as the protection afforded by their aromatic aura, has made most divrani much more extroverted and promiscuous. They seek out mates of other races with growing regularity, and are much more likely to attempt to trade with other races (typically trading their nectar for tools or more exotic food).");
-	
 	outputCodex("\n\nUnfortunately, the breeding instinct of some individuals is elevated to the point that the divrani simply won’t take “no” for an answer, and attempt to force themselves on those strong enough to resist simply giving in to their aroma. This behavior has made them dangerous to off-world explorers.");
 	outputCodex("\n\n");
-	
 	outputCodex(blockHeader("Technology"));
 	outputCodex("Davrani were primitive before the Glass War and remain so now, with little technology of their own. Some learn to use weapons or tech from other native races, especially nukas, but as the divrani have no organized society, and their lusty aroma makes extended contact with others difficult at best, they have little hope of self-advancement. Confederate sources indicate that Uplifting existing members the race will be very difficult, as will integrating them into society, unless they are separated from the radglow plant.");
 	outputCodex("\n\n");
@@ -2674,7 +2871,6 @@ public function hyraxxiCodexEntry():void
 {
 	clearOutputCodex();
 	showBust("9999");
-	
 	outputCodex(header("Hyraxxi"));
 	outputCodex("<b>Name:</b> Hyraxx (Singular), Hyraxxi (Plural, Adjectival)");
 	outputCodex("\n<b>Sexes:</b> Male and Female. Males are exponentially more common than females, perhaps 80% or more of the population. Note “Dual-soul” under Appearance.");
@@ -2686,47 +2882,115 @@ public function hyraxxiCodexEntry():void
 	outputCodex("\n<b>Feet </b>& Legs: Hyraxx have digitigrade legs, with three large, clawed toes and a dew claw. Their legs are long for their size and extremely powerful, making them able sprinters and jumpers.");
 	outputCodex("\n<b>Aging:</b> Hyraxx are relatively short-lived and fast growing, reaching maturity at about 10 years of age and living for up to 50 years.");
 	outputCodex("\n\n");
-
 	outputCodex(blockHeader("Appearance"));
 	outputCodex("Hyraxx are large, powerfully-built feliform bipeds native to Xamdam. The species stands on digitigrade legs with fur covering the extremities, and have expressive and thick-furred tails coupled with sensitive ears on the tops of their heads. They have bare, usually dark skin on the torso, head, and upper limbs. Some rare members have lion-like manes around their necks, and spotting of the fur is common. Females are noticeably larger, stronger, and more aggressive than males.");
-	
 	outputCodex("\n\nThe hyraxxi people were dramatically affected at a biological level by their planet’s apocalyptic war. While they themselves keep little record, it can be surmised that at one point, the race was fairly evenly divided between males and females. In the generations that followed, the species’ birthrate rapidly declined and, notably, the ratio of male to female became more and more skewed. Very few hyraxxi births are female, likely less than 20%.");
-	
 	outputCodex("\n\nFemales who are born have a hugely enlarged, phallic-shaped clitoris and oversized labia that partially fuse together to obscure and shroud the vagina, making penetration very difficult and tight to even the males’ smaller phalluses. This enlarged clitoris is much more sensitive than a male’s phallus, and can become at least partially erect (fully erect in some cases). Evidence, especially the highly-encouraged submissive, sexually receptive role of males in Hyraxxi society, indicates it is commonly used for the penetration of others. However, this enlarged female sex also hampers both birth and insemination, putting yet another obstacle in the way Hyraxxi fertility.");
-	
 	outputCodex("\n\nMales are comparatively slender and less muscular than females, with appearances varying from girlishly effeminate to chiseled masculinity. Males have a normal phallus-and-testicles combination between their legs, with a hybrid manhood tucked into a sheath. Their penises can grow from 4 to 8 inches when erect, come in shades from blood red to black, and have a single large knot at the base. The crown is tapered and covered in rings of small, sensitive bulbs of flesh.");
-	
 	outputCodex("\n\nThe hyraxxi also have a “third gender,” so to speak., that has arisen in the wake of the radiation bombing. These intersex individuals, commonly referred to as “dual-souls” by their people, are biologically male hyraxxi that were likely originally female in the womb, but partially changed during gestation. In adulthood, these individuals grow to a female’s size and shape, including breasts, feminine features, and even the ability to induce lactation - the only indication of masculinity is their sexual organs, which are distinctly and completely male. Dual-soul hyraxx make up an additional 10-15% of the population, and are generally treated as women culturally.");
 	outputCodex("\n\n");
-	
 	outputCodex(blockHeader("Sexuality"));
 	outputCodex("The hyraxxi are quite promiscuous sexually, especially among men. With low chances of mating with a female of their race, hyraxxi males are rather well-known on Xamdam for pursuing inter-species relations, high rates of homosexuality (especially with each other), and for their high libidos and easy-going attitudes towards sex. Males that don’t belong to a tribe are often integrated as prostitutes or harem-members in other species’ settlements.");
-	
 	outputCodex("\n\nFemales and dual-souls of the race, on the other hand, have dramatically different outlooks towards sex. Given that hyraxxi males are submissive by nature, especially towards females in the hopes of reproducing, feminine members of the species frequently use their tribe’s males for relief of tension and sexual frustration, using their penises or over-sized clitorises to anally penetrate the male (or, more rarely, allow him to anally penetrate her). Couplings are considered pleasant but meaningless at best, and hyraxxi do not constrain this sexual activity to their mates. While males may use this behavior to ingratiate themselves to a female in hopes of proper mating, the other genders frequently take multiple passing partners, sometimes in large numbers at once.");
-	
 	outputCodex("\n\nParadoxically for such a sexually active race, actual mating (ie, vaginal penetration) is extremely rare, taking place only between mated pairs. Hyraxxi mate for life, usually with a single partner though sometimes to two or three males or dual-souls to a female, and form extremely close familial bonds. While members of these bonds still may engage non-vaginal sex outside the family, reproductive intercourse is strictly confined for both male and female to their mates. Unlike outside the family, where females rule with all but unquestioned authority, members of all sexes share equal responsibility and authority.");
 	outputCodex("\n\n");
-	
 	outputCodex(blockHeader("Reproduction"));
 	outputCodex("Hyraxxi reproduction is, despite everything, relatively unremarkable. Though it is difficult and often requires external devices and a great deal of lubrication, male or dual-souls penetrate the female vagina and inseminate her. When successfully impregnated, a female hyraxx grows gravid and eventually gives birth to between 3 and 5 kits. Pregnancy lasts for about five months, during which time she becomes largely helpless due to her large size, and her breasts grow up to three cup sizes due to the onset of lactation.");
-	
 	outputCodex("\n\nHyraxxi childbirth is typically awkward and painful for the mother, with most preferring C-Section over natural birth due to the extremely tight, difficult-to-open vaginal passage. After birth, the mother and her mates care for the children for about a decade before they reach adulthood, at which point they join the tribe as equals to their parents. Young hyraxx kits tend to be rambunctious explorers as soon as they learn to walk - a real handful for the inexperienced - and are highly energetic.");
-	
 	outputCodex(blockHeader("History & Society"));
 	outputCodex("Hyraxx society is highly tribal, consisting of roving bands of nomads that scour the wastelands for resources, usually consisting of thirty to fifty families. Most tribes are led by a Matriarch, a veteran warrior female who dueled the previous Matriarch and won. The Matriarch is not an absolute ruler, but more like a “first citizen,” someone who guides the many families and helps them work together for the good of the tribe.");
-	
 	outputCodex("\n\nDifferent hyraxxi tribes rarely cooperate, preferring to stay well away from each other in the interest of resources and mitigating the chance of infighting. Hyraxx are infamous on Xamdam for holding grudges, even compared to the Nukas who have been in ideological conflict for generations. There is little more important to a hyraxx, especially a female, than her perceived honor. Skill at arms, sexual prowess, and cunning are all points of contention that hyraxxi are particularly sensitive about.");
 	outputCodex("\n\n");
-	
 	outputCodex(blockHeader("Technology"));
 	outputCodex("Hyraxxi naturally have a strong affinity for large, powerful vehicles due to their nomadic nature. While high tech is rare on their world, the hyraxx of all remaining races on Xamdam have almost religiously maintained their vehicles. Trucks, buggies, jetbikes, and sports cars are all frequently seen in Hyraxxi camps, amongst huge cargo crawlers that transport a tribe’s heavy belongings. They are extremely adept at vehicular combat, preferring lightning-fast skirmishes over protracted combat.");
-	
 	outputCodex("\n\nOther than that, Hyraxx technology is unremarkable for their planet. Robotics, functioning firearms, and computers are relatively rare but not unheard of amongst their tribes. Most hyraxxi warriors, especially feminine ones, prefer to fight with spears and polearms (preferably from the side of a high-speed car or bike).");
 	outputCodex("\n\n");
-
 	CodexManager.viewedEntry("Hyraxxi");
 }
 
+//Introduction to the Spinarrans 
+public function spinarranCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("KIRILA")
+	outputCodex(header("Spinarrans"));
+	outputCodex("<i>Metallic arachnid creatures whose genders come in two different styles of terrifyingly intriguing.</i>\n\n");
+	
+	outputCodex(blockHeader("Driders"));
+	outputCodex("<i>Amazonian, eight-legged behemoths.</i>");
+	outputCodex("\n<b>Name:</b> Drider (Singular), Driders (Plural)");
+	outputCodex("\n<b>Sexes:</b> Female.");
+	outputCodex("\n<b>Height:</b> Average 8\' to 9\' tall.");
+	outputCodex("\n<b>Weight:</b> Between 500 and 700 pounds.");
+	outputCodex("\n<b>Hair:</b> Finger-thick chitinous locks, vaguely resembling human dreadlocks at a glance.");
+	outputCodex("\n<b>Skin:</b> Head-to-toe metallic chitin. Various patterns and colorations are possible depending on diet, region, and parentage.");
+	outputCodex("\n<b>Ears:</b> Appear at a glance as metallic flanges on the side of the head, complemented by a pair of insectile antennae on the brow.");
+	outputCodex("\n<b>Eyes:</b> Three vertically arranged pairs, each larger than the one above. Coloration is typically red, blue, green, or gold. Pupils are vertically slit against a solid background with no visible definition between sclera and iris.");
+	outputCodex("\n<b>Body Type </b>: Humanoid upper body with a spider-like lower half. Two arms, eight arachnid-style legs, and a large abdomen. Forelegs display a notable increase in size and strength over the remaining limbs.");
+	outputCodex("\n\n");
+
+	outputCodex(blockHeader("Arachne"));
+	outputCodex("<i>Four-armed, spidery humanoid males.</i>");
+	outputCodex("\n<b>Name:</b> Arachnid (Singular), Arachne (Plural)");
+	outputCodex("\n<b>Sexes:</b> Male.");
+	outputCodex("\n<b>Height:</b> 5’11” - 6’6” tall.");
+	outputCodex("\n<b>Weight:</b> Between 160 and 190 pounds.");
+	outputCodex("\n<b>Hair:</b> Finger-thick chitinous locks, vaguely resembling human dreadlocks at a glance.");
+	outputCodex("\n<b>Skin:</b> Head-to-toe metallic chitin. Various patterns and colorations are possible depending on diet, region, and parentage.");
+	outputCodex("\n<b>Ears:</b> Appear at a glance as metallic flanges on the side of the head, complemented by a pair of insectile antennae on the brow.");
+	outputCodex("\n<b>Eyes:</b> Three vertically arranged pairs, each larger than the one above. Coloration is typically red, blue, green, or gold. Pupils are vertically slit against a solid background with no visible definition between sclera and iris.");
+	outputCodex("\n<b>Body Type </b>: Typical humanoid, excepting for a second set of arms below the first. Both secondary arms are tipped with diamond-hard chitinous growths in place of hands.");
+	outputCodex("\n\n");
+
+	outputCodex(blockHeader("Appearance"));
+	outputCodex("Spinarrans are an insectoid species resembling arthropods. Males are a little taller than humans on average, while females are significantly taller. Metallic chitin girds their impressive height from their feet all the way to the crowns of their heads with few exceptions. Eyes, mouths, anuses, and genitals are the most visible weak points in their impressive biological defenses. Striking one is not recommended. Attempting to strike such a creature in such a small place is even more inadvisable.\n\n");
+	outputCodex("Like arthropods, the females are much larger and stronger than the males, resulting in the atypical behavior of males carrying and birthing offspring. These males, known as Arachne, are humanoid in shape, with two legs and four arms. The females of the species, commonly referred to as Driders, are several feet taller and monstrous in shape, with a humanoid upper body like an Arachne, two arms and a head. The female’s lower body however, is like that of a giant spider, with eight long legs and an large arachnid like abdomen.\n\n");
+
+	outputCodex(blockHeader("Biology"));
+	outputCodex("Spinarrans originated from a large, rocky world called Spinarra in the Chelicera system of the milky way galaxy. This world, while larger than most Terra class worlds, is lighter, mostly due to the lower levels of heavy metals such as gold, iron, uranium and so on. However, their world contains abundant titanium, platinum, nickel, and palladium. Spinarra is a planet whose crust is riddled with tunnels and deep caverns made not by nature itself, but by the planets native species that live and thrive under the surface, the Spinarrans and the native rock worms.");
+	outputCodex("\n\nWhile the Spinarran diet is technically omnivorous, they are primarily lithophagous, eating raw rock and metal. The minerals they eat are broken down by specialized chemicals secreted by glands in their mouth. These chemicals can be manually ejected by spinarrans as a defense or mining mechanism, but most of the time remain safely stored away from their oral cavity. This adaption is considered quite useful by interspecies couples.");
+	outputCodex("\n\n<b>Advisory:</b> Have caution when kissing a spinarran. It is ill advised to kiss soon after eating as mineral compromising chemicals may still be present within the mouth.");
+	outputCodex("\n\nIt is this unique diet that makes Spinarran’s a such a valued species. Spinarrans dig deep underground and eat the rocks and ore they dig up. Some of these minerals are used to make their remarkably hard metallic chitin and their carbon filament silk. The excess metal is expelled as waste in the form of concentrated metal spheres of astounding purity. When spinarran’s gorge themselves on metallic ore, it can force them to go through rapid molting, shedding their carapace to make a new one from the ore they are consuming. Over eating too causes them to repeatedly molt their refined chitin, which then can be melted down and be used. Their services as miners and prospectors are in high demand as all they have to do is be brought in and directed to ore veins; the Spinarrans will dig and eat to their heart’s content, making purified metal as they go.\n\nTheir sense of taste, sight, and smell are specially attuned to detect trace amounts of metal ore, helping them find rich sources of food. The metal, as well as their old discarded carapace, are valued trade goods that are sold into the galactic market for all manner of high end manufacturing.\n\nTheir silk is another valuable material; spun from the drider’s abdomen much like the way Terran arthropods make webs. Unlike other species of silk spinners, Spinarran webs are a flexible alloyed filament of carbon and titanium along with several other materials. A braided cable of Spinarran silk is nearly unbreakable, construction laced with it more durable, ballistic armor made from it resists heat from thermal weapons and is for the most part, bulletproof. Spinarran silk has the fascinating attribute of being able to conduct electricity well, even at standard room temperature. This gives it applications for power relay cables or in more general electronics.\n\n");
+	
+	outputCodex(blockHeader("Society"));
+	outputCodex("Currently, the spinarrans have been adapting to the presence of the UGC and greater galaxy for the last one hundred and ninety years. Being a subterranean species, they are not particularly comfortable with space travel. Some spinarrans suffer acute agoraphobia if they look out a window into space. Their technology lags behind galactic norms in most areas; spinarran spaceships in particular make easy prey for pirates. In contrast, spinarran geothermal generators are well-known for their efficiency and reliability, making them popular choices for geologically active worlds. Similarly, spinarran industry has adapted technological innovations from the rest of the galaxy to refine their mining equipment.");
+	outputCodex("\n\nSpinarrans are led by a unique individual: a special drider a foot or so larger than other driders. This empress can vary with appearance, mostly due to different metals in her chitin. Every empress has flecks or veins of gold in their carapace and a large crest of chitin atop their head. Her body also forms crystalline jewels at her ears, crest and along her lower body. The small, blue, luminous, teardrop shaped crystals help show the empress’s stature among her people. The empress is leaner than other driders, more speedy and sinuous. The Spinarran empress is an exceptionally intelligent and wise ruler as she inherits all the memories of the preceding empress and so on, so long as the chain of descendants is unbroken. Every empress lays only a single, glittering gold flecked egg in their lifetime, and the act is fatal to the drider, passing on her memories and her silk robes, to her offspring before dying shortly after. In ages past, this meant that the empress was to be celibate for her entire life before laying her egg near the end of her lifespan. Now there are drugs that can prevent a drider from laying her eggs, but even so, the empress often maintains the tradition of celibacy.");
+	outputCodex("\n\nThe empress’s mate and egg are cared for as if they were the empress themselves, waited on hand and foot by servants, making sure their every need is taken care of. Once the egg is hatched, the newborn empress is carefully tended to and raised until she is ready to lead, usually by her 9th year though in some cases she has taken up her rulership as early as her 8th year or as late as her 18th. It has been told that if the empress were to be killed, another spinarran will become an empress, either by going through physical and mental changes to become the empress. At times, a drider may get extreme cravings for gold a week or so before she lays the gold flecked empress egg. In this case, the slate is wiped clean. The new empress is born without her predecessors’ memories. The current Spinarran empress is Empress Yalla Araemika Elerra the XVII.\n\n");
+	
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("Driders (females) have ovipositors located on the underside of their spider body. These organs are quite large by terran standards - easily 16 to 20 inches long and 3 inches across. A small lump of flesh near the base is capable of engorgement upon climax, much like an ausar knot, in order to safely transfer eggs into the recipient. The tip is bulbous, with three grooves along the head. Upon climax, it opens to latch onto the cervix of a partner arachne’s womb.\n\nBy contrast, their secondary sexual characteristics are much smaller - B to C cup breasts at most. As there is no need for lactation, there seems to be little reason for their existence save for ornamentation.");
+	outputCodex("\n\nSpinarran eggs are squishy, silvery, and gel-like in texture. Their surface is surprisingly durable and difficult to rupture. Additionally, drider eggs are much larger than their arachne kin - at least twice their size on average. When no eggs are ready for laying, the ovipositor merely releases a metallic, glue-like gel. Normally this would help to bind the eggs in place and provide additional nutrition.\n\n");
+	//outputCodex("\n\nNarcotic venom caused intense euphoria, enhances sensations felt, excluding arousal.");
+	//Arachne
+	outputCodex("Arachne (males) also have ornamental breasts, though theirs are slightly larger (C-D cups). They also have wide hips to accommodate pregnancy. More interestingly, they have a feminine-appearing vagina and womb-like cavity. The entrance is smooth and glossy, puffing up when aroused. It is quite stretchy and pliant, to deal with the largeness of drider ovipositors.\n\nUpon successful mating, arachne immediately appear several months pregnant, making it quite easy to identify when a mating has occurred.");
+
+	//outputCodex("\n\nMating and reproductive cycle");
+	outputCodex("\n\nDriders and arachne are usually monogamous, though not always the case. Traditionally, driders will court an arachne for some time, then try and capture their prospective mate in webs. The arachne will fight and run to make sure the drider is strong and capable. Once captured, the drider then bites the arachne, injecting them with addictive, narcotic venom. However these traditions are not practiced so much in modern times. In smaller communities, the hunt is still practiced. In larger communities (and offworld settlements), spinarrans use different means to “hunt” their mates. These alternative methods include: dom-sub roleplay, collars, leashes, web bondage and envenoming. Traditionally, it is the female that courts the males, females being the larger eight legged members of the species. However since being discovered by the UGC some males have taken to courting their female counterparts in the style of more patriarchal species.");
+	outputCodex("\n\nThe venom puts the Arachne into a state of blissful euphoria and keeps them from fighting back while arousing them at the same time. Once the Arachne has submitted to its mate, the drider then mounts their Arachne, mating until they climax. Driders typically lay between 6 to 10 eggs each reproductive cycle, with each batch of eggs only having 3 to 4 viable eggs. Extra eggs are absorbed as nutrients by the fertilized ones. Once the eggs are deposited, the drider begins mating their Arachne again. Driders will keep their lover bound and drugged for hours at a time, fucking them repeatedly. With each mating, the drider’s orgasms will fill the arachne’s womb with a thick jelly-like substance, packing its womb full of this gel. This filling serves two purposes: first, so the eggs can feed on its biomass as extra nutrition; second, to seal the womb shut and keep the eggs inside.");
+	outputCodex("\n\nWhen the eggs are inside the arachne, they secrete hormones that cause the release of sperm from the carrier’s womb to fertilize the eggs. Afterwards, the newly impregnated arachne follows its drider mate, the pair staying together as long as they are both alive. The drider keeps its chosen mate for pleasure, continued reproduction, companionship, and shared protection. The arachne stays to keeps its source of narcotic venom, pleasure, reproduction, companionship, and the protection of their bigger, stronger drider mate.");
+	outputCodex("\n\nSpinarran eggs gestate for 5-6 months inside their host before being birthed. In the week before birthing, the remaining gel within the womb changes composition, adhering to the eggs and gaining a kind of aphrodisiac, simulating pleasure centers as they are passed through the vagina. It is not terribly uncommon for arachne ‘mothers’ to come to orgasm at least once by the time birthing is complete. These eggs are then cared for until they hatch, a process which can take anywhere from 3 to 7 days. The newly hatched offspring are then cared for and raised by their parents.\n\nYoung spinarrans are born with fully functioning teeth and mineral dissolving glands. Parents often chip and break small rocks into tiny pieces for their young to eat. Mature spinarrans who have recently given birth can be re-impregnated within two weeks and particularly amorous or productive pairs get started with another clutch within days of birthing eggs.");
+	outputCodex("\n\nMost Spinarran offspring reach maturity within 12-15 years.\n\n");
+	
+	outputCodex(blockHeader("Culture"));
+	outputCodex("Spinarrans are a species that highly favors large groups. Their culture is very communal, and this is reflected in the way they govern themselves. On a small scale, individual broods come to a consensus on issues internal and external. On a large scale, Spinarrans are led by their empress, and she is aided by a senate of elected officials from every state in the Spinarran empire.");
+
+	outputCodex("\n\nLarge broods are commonplace, typically between 40 and 60 members per family. Driders that come of breeding age normally are pushed out of their brood for a year or two to meet other broods. Successful meetings help to bond different broods tighter for mutual defence and resource sharing. For most Spinarrans, mated pairs are a single drider picking an Arachne they really like and taking them as a mate. It’s is not very common for driders to pair together or for arachne to pair together. While most broods lean towards monogamy some broods do lean more towards maintaining relationships with multiple partners. On some occasions, a drider will take multiple males as a harem. The culture promotes good companionship between mated pairs and the addictive nature of the driders narcotic venom makes couples much harder to break apart. In times past, the death of a mated drider almost certainly meant the death of the drider’s mate, with the withdrawal from their addiction to the drider’s venom giving them a slow, aching death. These days, synthetic venom can be used to wean a grieving Arachne off their drider’s venom until they are ready to find another mate. Some family members could even donate their own venom to their grieving sibling, parent or offspring, though this can result in awkward situations or acts of incest due to the euphoric nature of the venom.");
+
+	outputCodex("\n\nSpinarrans are a subterranean species, normally sticking to the underground tunnels and caverns that riddle the crust of their planet. Some more adventurous or eccentric individuals form communities on the surface. Surface ventures are not easy for Spinarrans. Being creatures of the underground, their eyes are well adapted to low light and darkness. Surface light is harsh on spinarran eyes, and without protection, sunlight is near blinding to them. All spinarrans going onto the surface of their world or even into the light of foreign space stations wear goggles or fully enclosed helmets to protect their eyes from the harsh surface light.");
+	outputCodex("\n\nDue to limited advances in some areas of technology and underground communities, the Spinarrans never put much thought toward long ranged weaponry like artillery or long ranged rifles. Instead, the tight confines and close quarters of tunnels and caverns made them more comfortable and suited with close ranged and melee combat. In older times, plate armor, swords, shields, spears were commonplace. In more modern times mono-molecular blades, thermal axes, electrical bludgeons, and energy shields are very common. Spears gave way to firearms briefly before being pushed aside for thermal weapons. Lasers and plasma are much more friendly to their caves then explosives and bullets, and today there is a total embargo on concussive and explosive weapons for all spinarran settlements.");
+	outputCodex("\n\nIn modern times, spinarrans work together in combat. Arachne commonly ride driders into combat as heavily armored mounts, carrying heavy armor, laser weapons, and mono-molecular sabers. Some particularly strong driders are decked out in enough armor to serve as biological tanks - complete with abdomen-mounted canons.");
+
+	//outputCodex("\n\nSpinarrans naturally spin silk to make webs to trap prey and mates. Unlike other creatures that make silk from their bodies, Spinarran silk is not suitable for regular clothing. The fine threads are in reality a tightly woven carbon filament with an extraordinary tensile strength. Since normal clothes are hard for spinarrans to wear, due to their Carapace and drider lower bodies, spinarrans go without clothing for the most part, most arachne just wear the bare minimum to cover their genitals. Some however do choose to have custom tailored clothing if they are around a lot of aliens. Of course should survival depend on it, such as if they were going to an environment that is very cold, they will likely put up with warm clothing for the sake of survival.");
+	//outputCodex("\n\nWhile most species use clothes and makeup to change their appearance or make themselves look more appealing, spinarrans do things a bit differently. Most spinarrans adorn themselves in glittering gemstones and rare gold as fashion or keep to a particular diet of minerals to keep their chitin a certain color or design. A popular trend of fashion, is for spinarrans to visit what would be considered a mix of a tattoo parlor and a spa for most species. In these places, spinarrans relax in hot chemical baths before introducing a minor electrical current to undergo metallic anodizing in order to color their carapace different colors. Another way they do this is by sealing custom made patches of this chemical to the carapace to make specific designs, though this usually requires several applications to get all the details. The only spinarrans that do wear more normal clothing are soldiers. Warrior spinarrans, both drider and arachne alike wear armor and uniforms that most races would find to be archaic or low tech in that they wear dresses and coats of mail made from woven silk. While primitive in concept, the composition of spinarran silk makes this mail extraordinarily durable and resistant to heat, making it able to resist bullets and thermal weapons.");
+	//outputCodex("\n\nThe arrival of off-worlders led to a few cultural changes for Spinarrans. While there already had been drugs to help natives deal with addictive drider venom, there had never really been a need for a cure until outsiders arrived. A kind of morning-after pill was developed that dulls the after effects of drider venom, and for the most part keeps non-natives from getting addicted to Spinarran driders after finding themselves in bed with one.");
+	//FEN NOTE: Already mentioned weaning them off above.
+
+	outputCodex("\n\nPrior to being discovered by the UGC late in the last planet rush, Spinarran life spans ranged from 60-70 years of age. Access to more advanced medicine this lifespan shot to an average of 150 years of age. With the comparatively fast pace of spinarran reproduction, this new lifespan has led to some overcrowding on Spinarra, prompting Spinarra to encourage whole broods to seek out colonies on other planets.");
+	outputCodex("\n\nNaturally, spinarran gene mods were inevitable. Some such mods can give the full body chitinous exoskeleton, others can give the eyes, genitals, and even the driders’ narcotic venom fangs. Off-worlders taking arachne lovers are sometimes encouraged by more traditional lovers to get a set of venom fangs so they can devote themselves to their mate completely.");
+	outputCodex("\n\nThere is yet some concern for spinarrans as unlawful harvesting of their natural venom in drug use could cause them to be a target for slavery or other criminal activities.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Spinarrans");
+}
 
 /* Illegal Items */
 public function throbbCodexEntry():void
@@ -2941,7 +3205,7 @@ public function synthSheathCodex():void
 	outputCodex("<b>Manufactured By:</b> Xenogen Biotech");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("About:"));
-	outputCodex("The XenoGen Biotech SynthSheath was a prototypical effort in their genital modification program. The device consists of a depopulated cellular matrix which functions by microsyringes on the lip and inside the shaft injecting a potent cocktail of specialized microsurgeons, equine genetic material, and a powerful cell division stimulant. In the case of a male or hermaphroditic subject, the sheath takes the cells of the existing genitals, treats them with their new genetic makeup and migrates them to their place in the cellular matrix of the sheath.");
+	outputCodex("The Xenogen Biotech SynthSheath was a prototypical effort in their genital modification program. The device consists of a depopulated cellular matrix which functions by microsyringes on the lip and inside the shaft injecting a potent cocktail of specialized microsurgeons, equine genetic material, and a powerful cell division stimulant. In the case of a male or hermaphroditic subject, the sheath takes the cells of the existing genitals, treats them with their new genetic makeup and migrates them to their place in the cellular matrix of the sheath.");
 	outputCodex("\n\nFemale subjects attaching this device have their blood cells used to populate their new penis and testicles. The microsurgeons also insert a prostate near the device; genetic manipulation of the subject’s brain chemistry links the device to the subjects nervous, circulatory, and immune systems to prevent phantom limb disorder and tissue rejection.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("SynthSheath");
@@ -3074,6 +3338,23 @@ public function fizzyfixCodex():void
 	CodexManager.unlockEntry("Muffstick");
 	CodexManager.viewedEntry("FizzyFix");
 }
+/*
+public function capraphormCodex():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("Capraphorm"));
+	outputCodex("<b>Manufactured By:</b> Envyoidics LTD");
+	outputCodex("\n<i>“A cool combo of fresh mint, lemon, orange and strawberry!”</i>");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("About:"));
+	outputCodex("Capraphorm is a new product created by the modding specialists Envyoidics. The vision was to preserve and recreate the form of an ancient race of goat-like humanoids. Using preserved remains as primogenitor samples, they found the genes of the dead race to be surprisingly flexible with Terran biology.");
+	outputCodex("\n\nThe mod has garnered a rumor or two about some of its effects, with some surprised customers reporting green fur, strange dreams after usage, and some pretty nice tattooes. However, the small sample size and general exclusivity of Capraphorm has not raised enough concern for a recall.");
+	outputCodex("\n\nThe method of delivery has been branded as ‘unique’ and ‘ingenious’: By inhaling the contents, the user takes in an interactive experience doused in a delicious flavor. A simple trick but an effective one as there have been little to no complaints and only praise on the inhaler design.");
+	outputCodex("\n");
+	CodexManager.unlockEntry("Envyoidics");
+	CodexManager.viewedEntry("Capraphorm");
+}
 public function chillPillCodex():void
 {
 	clearOutputCodex();
@@ -3091,6 +3372,7 @@ public function chillPillCodex():void
 	outputCodex("\n");
 	CodexManager.viewedEntry("Chill Pill");
 }
+*/
 
 
 /* Technology */
@@ -3160,7 +3442,8 @@ public function mechanicsCodex():void
 public function Bess13CodexEntry():void
 {
 	clearOutputCodex();
-	showBust("BESS");
+	var randBust:Array = ["BEN","BESS"];
+	showBust(randBust[rand(randBust.length)]);
 	outputCodex(header("Bess-13 and Ben-14 Units"));
 	outputCodex("<b>Name:</b> Bess-13 and Ben 14 Units");
 	outputCodex("\n<b>Sexes:</b> Female (Bess-13) or Male (Ben-14)");
@@ -3260,8 +3543,8 @@ public function branFlazinganCodex():void
 	outputCodex("There aren’t many environs he won’t inhabit - or let his cock inhabit, for that matter. Bran is well known for being the tycoon that will quite literally stick his junk in anything and everything for a thrill.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("History/Personality:"));
-	outputCodex("Bran Flazingan is well known as the the Universe’s sixth richest man and a thoroughly eccentric one to boot. The extranet adores his antics and follows his escapades, most of which are highly scandalous and sexual in nature.");
-	outputCodex("\n\nHis most infamous act is attempting to get an entire planet pregnant with his sperm. After several virility enhancements, he offered two large credit payments. The first for anyone who had sex with him without protection, and the second for anyone who became pregnant with his child. He also offered free transgender treatment for any men who wished to take him up on the offer.");
+	outputCodex("Bran Flazingan is well known as the Universe’s sixth richest man and a thoroughly eccentric one to boot. The extranet adores his antics and follows his escapades, most of which are highly scandalous and sexual in nature.");
+	outputCodex("\n\nHis most infamous act is attempting to get an entire planet pregnant with his sperm. After several virility enhancements, he offered two large " + (isAprilFools() ? "dogecoin" : "credit") + " payments. The first for anyone who had sex with him without protection, and the second for anyone who became pregnant with his child. He also offered free transgender treatment for any men who wished to take him up on the offer.");
 	outputCodex("\n\nDespite his antics he is also a shrewd businessman who has made billions of credits by selling sex products to the galaxy through his company, Humphard Inc. His outrageous persona has only added to his sales figures over the years.");
 	outputCodex("\n\nClaiming to be on the forefront of sexploration, Bran spends a good deal of his time documenting his travels and trialling his products in the field. He is well known for giving a “Humpter Score” for both his products and the places he visits. Bran was also a friend of influential tycoon and fellow hedonist Victor Steele.");
 	outputCodex("\n\nBran’s opinion is so influential that a single statement from him can drastically change market sales. After he called JoyCo’s Bess-13 and Ben-14 models “the most enticing object you’ll ever feel the need to fuck,” sales immediately shot through the roof. The incident caused massive contention with Bran’s business partners who were already at threat of being eclipsed by JoyCo’s domination of frontier planet trade. The irony was that Bran was referring to the A.I. models, and not the V.I. models, when he made his statement.");
@@ -3427,6 +3710,27 @@ public function rhenWorldCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("RhenWorld");
 }
+public function sagiTomCodex():void
+{
+	clearOutputCodex();
+	showBust("LOGO_SAGITOM");
+	outputCodex(header("SagiTom"));
+	outputCodex("<b>Company Name:</b> SagiTom Solutions");
+	outputCodex("\n<b>Industry:</b> Private military");
+	outputCodex("\n\n");
+	outputCodex("SagiTom Solutions is a large scale private security firm that operates throughout the Milky Way. Whilst primarily focused upon corporate security, the company also offers mercenary contraction, starship convoying and bounty hunting services. SagiTom markets itself as a specialist PMC; relatively small in comparison to OHGR or mercenary groups operating under the Black Void umbrella, it promises clean, efficient operations carried out by highly trained, well-vetted and well-equipped soldiers at premium prices.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Background"));
+	outputCodex("SagiTom is the brainchild of former kaithrit freebooter Grettin ans Loderre and human white collar criminal Hendon Schulz. The two met in an orbital prison during the Twelfth Planetary Rush, and according to their own accounts bonded over a shared love of astrology; ‘SagiTom’ is a portmanteau of Sagittarius and Haurtom, constellations interpreted as tauric archers by ancient human and kaithrit civilisations alike. A lawyer by training, Schulz aided ans Loderre in beating 11 charges of piracy, battery, rape and aggravated assault. A year after Schulz was released the two of them founded the business, with the aim of creating a mercenary group that was legally watertight, more efficient and more trustworthy than competitors.");
+	outputCodex("\n\nIn this the company has been a qualified success; during the centuries of its operation numerous court cases have been brought against STS - most notably accusations of protection racketeering and involvement in drug and gene-mod smuggling - but the charges have always been beaten, and the company heavily remunerated each time.");
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Philosophy"));
+	outputCodex("As well as signing an NDA, all SagiTom recruits are required to pass a vigorous vetting process that aims to test mental and emotional acumen as well as physical. The company favors hiring combat vets and former criminals intelligent and level-headed enough to either shave years off their sentences or evade sentencing entirely.");
+	outputCodex("\n\nSTS’s official operation philosophy is “Target down without a sound”. Heavy emphasis is placed upon data analysis, surveillance and meticulous planning before any mission, with the intention of defeating opponents before a shot is even fired. This feeds into their decorated corporate security division, where the express aim is highly effective protection without STS’s clients even being aware of the presence of heavily armed mercs.");
+	outputCodex("\n\nWith this in mind, STS favor tech specialists and long range single target weaponry over close combat units, droids and explosives. The organization prides itself however on its capacity to take on any target a client capable of affording them can name, so maintains arousal-based operatives as well as more heavy duty military equipment and spacecraft.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("SagiTom");
+}
 public function snuggleCodex():void
 {
 	clearOutputCodex();
@@ -3466,6 +3770,21 @@ public function xenogenCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Xenogen");
 }
+/*
+public function envyoidicsCodex():void
+{
+	clearOutputCodex();
+	showBust("LOGO_ENVYOIDICS");
+	outputCodex(header("Envyoidics LTD"));
+	outputCodex("<b>Company Name:</b> Envyoidics LTD");
+	outputCodex("\n<b>Industry:</b> Modification, historical preservation");
+	outputCodex("\n\n");
+	outputCodex("Formed relatively recently with the increase in rushes and technological developments, Envyoidics is a boutique gene-modding company specializing in obscure, exotic morphs. Whilst relatively successful for such a small company, they remain mostly unknown to U.G.C space as their distributors and partners tend to be independant businesses operating on the frontier.");
+	outputCodex("\n\nTheir reputation is such that prominent scientists and historians, who do know about them, hold great respect for their work; and yet there is a sharp ethical divide about their business patterns: Uncovering histories of long dead civilizations and then marketing them as play toys for the rich. So far, their slow but provable growth shows that the researchers and scientists at Envyoidics know their niche: Illumorpheme in particular has taken some sectors by storm with it’s body-friendly transformations, exclusivity and pleasing end results.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Envyoidics");
+}
+*/
 
 
 /* Organizations */
@@ -3499,16 +3818,30 @@ public function jointAusarFederationCodex():void
 public function scarletFederationCodex():void
 {
 	clearOutputCodex();
-	showBust("9999");
+	showBust("LOGO_SCARLET_FED");
 	outputCodex(header("The Scarlet Federation"));
 	outputCodex("The Scarlet Federation is the governing body of the Red Myr on Myrellion. The Federation is ruled by a junta of generals, collectively known as the High Command, and is heavily militarized compared to their Gold Myr neighbors. Full citizenship -- and the right to vote -- are gated behind Federal service (usually, but not always, military), and many large industries are government-backed private ventures run by citizens.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("History:"));
 	outputCodex("The Scarlet Federation was formed from several disparate city-states of red myr who lived far to the north-east of the gold myr heartlands, and on another continent. Near their territory were several of the largest cities of nyrea, as well as over “monsters” from the barren wastelands of the far north. The Federation was formed during a series of unification wars, which eventually saw most of the red myr cities (and a handful of nyrean ones) collected under one banner. The Federation was formed in the same generation as the Red-Gold war, and several veterans from the unification conflicts fought in the world war that followed.");
 	outputCodex("\n\nEven before the Federation’s formation, however, tensions were high between the red myr cities and the larger Gilden Republic to the west. Several border skirmishes were fought between the two races, and hostility was steadily on the rise until the start of the Red-Gold conflict. The war began with a dogfight between red and gold air forces, and has since escalated to total world war, with the Scarlet Federation having pushed deep into Gilden Republic territory. The conflict was escalating towards the use of weapons of mass destruction before an ausar expedition arrived in Myrellion’s airspace.");
-	outputCodex("\n\nOf the two races, the Federation was the second to employ chemical weapons, but the first to develop nuclear ones. ");
+	outputCodex("\n\nOf the two races, the Federation was the second to employ chemical weapons, but the first to develop nuclear ones.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Scarlet Federation");
+}
+public function gildenRepublicCodex():void
+{
+	clearOutputCodex();
+	showBust("LOGO_GILDEN_REP");
+	outputCodex(header("The Gilden Republic"));
+	outputCodex("Main governing body of the Gold Myr on Myrellion.");
+	outputCodex("\n\n9999 - Please help fill me in. D:");
+	outputCodex(blockHeader("History:"));
+	outputCodex("");
+	outputCodex("\n\n");
+	outputCodex("\n\n");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Gilden Republic");
 }
 public function terranSpaceCoalitionCodex():void
 {
@@ -3521,7 +3854,7 @@ public function terranSpaceCoalitionCodex():void
 	outputCodex("Earth’s government, growing out of the United Nations in the early 25th Century. While humanity doesn’t play a huge role in the galactic scene, the exploits of adventurers like Victor Steele have done wonders to put mankind on the forefront of public thought, especially as adventurers and colonists line up for the newest Planet Rush. Terra itself is far-removed from the “fringes” of U.G.C. space, and therefore strongly emphasizes that it cannot and will not protect its citizens outside its borders. This firmly localized policy has caused a significant population build up in the core worlds of Coalition space, while human pirates and outlaws are free to roam unimpeded through foreign space on the fringes with little fear of interference.");
 	outputCodex("\n\nThe T.S.C. is governed by a Parliament based on Terra, with duly elected representatives from all Coalition-controlled worlds representing the public interest. Though all member planets must abide by Coalition law, they are each free to individually govern themselves in any way they see fit within that scope -- one human planet may be a metropolis visited by a thousand alien races each day while another may be a domineering dictatorship under a mega-corporation’s thrall.");
 	outputCodex("\n\nIt should be noted that, while the Coalition would like to imply that they are the face of humanity, the truth is there are hundreds of colonies and stations filled with humans outside Coalition jurisdiction. While the T.S.C. is the most prevalent human government, it is by no means the only one. The Terran military is relatively strong and technologically advanced, but highly concentrated in the core worlds. T.S.C.S. Odyssey, the flagship, is one of the most advanced starships in the U.G.C. Most Terran starships are slow, lumbering vessels with exceptional armor and moderate shields, but relatively low weapons power: they rely primarily on firing lines for combat effect, and starfighter escorts and planetary bombers are the primary force projection for Coalition fleets.");
-	outputCodex("\n\nWith the new planet rush beginning and with hundreds of thousands of colonists waiting and raring to go, Coalition presence in the fringe has increased somewhat, with a small fleet of cruisers and escorts patrolling the edge of Coalition space, ready to respond to emergency distress calls put out by the colonists -- a rare exception to the localization policies the fleet usually observes. However, this does not by any means guarantee safety, and any human colonist or explorer operating beyond Terran space is strongly warned that they may be on their own if disaster strikes.");
+	outputCodex("\n\nWith the new planet rush beginning and hundreds of thousands of colonists waiting and raring to go, Coalition presence in the fringe has increased somewhat, with a small fleet of cruisers and escorts patrolling the edge of Coalition space, ready to respond to emergency distress calls put out by the colonists -- a rare exception to the localization policies the fleet usually observes. However, this does not by any means guarantee safety, and any human colonist or explorer operating beyond Terran space is strongly warned that they may be on their own if disaster strikes.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("T.S.C.");
 }
@@ -3536,7 +3869,7 @@ public function unitedGalacticConfederacyCodex():void
 	outputCodex("The U.G.C. is the current central government of the universe. As a government, it’s just cohesive enough to function. Representation in its central, law-making body (the Parliament) is determined by the amount exported from the planet, which has lead to some rather odd scenarios, like an agricultural planet importing food so that they can export their entire crop, gaining more power on the galactic stage.");
 	outputCodex("\n\nUniversal laws require a two thirds majority to pass, and as a result, not that many laws get passed. Those that do are often backed by nearly all large corporations or immense political pressure from the public. Because of this, local governments have a large degree of freedom to govern themselves, so long as they follow trade protocols.");
 	outputCodex("\n\nSlavery is technically illegal within the U.G.C., but indentured servitude remains. Most indentured servants are treated fairly. There DOES remain a sizable portion of shady corporations and people that charge their servants unscrupulously to keep them perpetually in debt and unable to free themselves from their contracts.");
-	outputCodex("\n\nThe U.G.C. does maintain a standing military with advanced ships and technology. However, those ships are technically kept near the core and used to suppress any rebellion. Planets at or near the rim, particularly ones newly added to the warp-gate network recently, tend to receive little protection and even less direct oversight.");
+	outputCodex("\n\nThe U.G.C. maintains a standing military including advanced ships and technology. However, those ships are technically kept near the core and used to suppress any rebellion. Planets at or near the rim, particularly ones newly added to the warp-gate network recently, tend to receive little protection and even less direct oversight.");
 	outputCodex("\n\nThe Confederacy is viewed with a mixture of suspicion, fear, and awe out on the borders.");
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("U.G.C.");
@@ -3568,12 +3901,12 @@ public function furpiesCodexEntry():void
 	clearOutputCodex();
 	showBust("9999");
 	outputCodex(header("Furpies"));
-	outputCodex("Furpies is not a naturally occurring disease. Rather, it is a carefully engineered pathogen created by the infamous Doctor Badger in response to what she describes as “fursecution” in her 1,300 page manifesto. She initially infected a small group of not-so-willing volunteers on <REDACTED>, but it was not identified for six more months thanks to its insidious design.");
+	outputCodex("Furpies is not a naturally occurring disease. Rather, it is a carefully engineered pathogen created by the infamous Doctor Badger in response to what she describes as “fursecution” in her 1,300 page manifesto. She initially infected a small group of not-so-willing volunteers on \\\[REDACTED\\\], but it was not identified for six more months thanks to its insidious design.");
 	outputCodex("\n\nThis strange disease was carefully engineered to appear asymptomatic in most of its hosts. Thousands were infected before the first symptoms were identified, and millions more had this pernicious plague before the scientific community could even begin to pin down its unnatural biology. It spread like wildfire through the core for nearly two years before countermeasures were devised. Hundreds of billions had been infected, with billions more ready to fall victim to it with the coming of the rush.");
 	outputCodex("\n\nFurpies is an ongoing public health crisis on the frontier, though many core planets have succeeded in wiping it out at great cost. The ausar in particular are stamped it out quite quickly.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("How Furpies is Spread"));
-	outputCodex("Furpies is transmitted through almost any bodily fluid, including saliva, semen, blood, vaginal secretions, anal secretions, milk, and similar protein-based secretions. Genderless beings as those with full-body fur are curiously immune to infection, though almost any other species can fall prey to its terrifying effects. It is even known to bypass most commercial immune system enhancements.");
+	outputCodex("Furpies is transmitted through almost any bodily fluid, including saliva, semen, blood, vaginal secretions, anal secretions, milk, and similar protein-based secretions. Genderless beings as well as those with full-body fur are curiously immune to infection, though almost any other species can fall prey to its terrifying effects. It is even known to bypass most commercial immune system enhancements.");
 	outputCodex("\n\nAs always, the Galactic Health Ministry recommends abstaining from sex with unfamiliar partners or usage of prophylactic devices to prevent the spread of disease (and minimize mess!)");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Asymptomatic Carriers"));
@@ -3609,4 +3942,26 @@ public function locofeverCodexEntry():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Locofever");
 }
+public function sneezingTitsCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("9999");
+	outputCodex(header("The Sneezing Tits"));
+	outputCodex("The mammovirus (more commonly known as the ‘Sneezing Tits’) is a viral infectious agent known to affect a significant number of mammalian species. While it is both acquired and passed in a similar faction to the rhinovirus (more commonly known as the common cold) and causes many of the same effects, its additional effect of causing spontaneous mammary gland enlargement led to its unique classification.");
+	outputCodex("\n\nBecause its initial symptoms are no different from the common cold, most who carry the mammovirus are unaware of it until they sneeze. The virus causes each sneeze to accelerate the growth of the infected’s mammary tissue. While the growth is usually to small degrees, a single cup size in standard measurement, growth of as much as four cup sizes has been observed.");
+	outputCodex("\n\nThe origins of the mammovirus are unknown. Rumors trace it back to an abandoned Xenogen Biotech project, an inhalable mammary-enlarging fluid that was intended to compete with the Boobswell pads. Xenogen Biotech listed this product among other items for upcoming release, but never became available to the public. The first known case of the mammovirus was recorded several months later, leading to rumors that the two were related. Xenogen Biotech has not commented on the matter.");
+	outputCodex("\n\nDue to the mammovirus’s effects, reaction to it varies greatly. Those who do not want the additional mammary growth often seek to cure any cold they get as quickly as possible, while those who desire the effect will seek to induce sneezes. In some communities, those who are known to be infected visit and attempt to infect those who desire the additional mammary growth.");
+	outputCodex("\n\n");
+	CodexManager.viewedEntry("Sneezing Tits");
+}
 
+public function taintCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("CREATION_DOCTOR");
+	outputCodex(header("Taint"))
+	outputCodex("“Taint” is a slang term for a measure of the corruption of one’s genetic code (and/or microsurgeon subsystems). Early effects of taint manifest via a heightened libido, leading to lowered inhibitions. Very high levels of taint have been known to cause sexual mania, delusions of grandeur, extreme fetishes, and uncontrolled genetic mutation.");
+	outputCodex("\n\nLow levels of genetic taint can be repaired via expensive DNA treatment. More severe cases are treatable, though not curable, and in some cases can scramble the user’s genome to such an extent that even the best gene-mods will fail to have an effect. Microsurgeon taint is easier to handle typically. A few days in a dedicated center can typically reverse it, but treatment is still very expensive, requiring a programmer’s individual attention. In rare cases, whole planets have been quarantined due to especially virulent strains of infectious, tainted microsurgeons.");
+	outputCodex("\n\nVictor Steele notably survived near record levels of taint, though cutting-edge medical treatments helped him to keep his symptoms to a minimum after his early successes in the 13th Galactic Rush. Many well-to-do galactic citizens (including Victor’s heir apparent) have procured next-gen immune system enhancements, capable of altering genetic code on the fly to resist disease, poison, and hazardous conditions. Doing so comes at a cost: small amounts of genetic taint. Fortunately, most of these systems come with automatic repair subroutines, capable of reversing minor damage with sufficient time.\n\nMany street drugs, back-alley doctors, and supposed “salons” are prime sources of taint. The U.G.C. health commission recommends only using vendors backed by well-known mega-corps.\n\nThis particular Codex’s sensor package is capable of detecting your current taint level.\n\t<b>Current Taint:</b> " + Math.round(pc.taint()*10)/10 + " %\n");
+	CodexManager.viewedEntry("Taint");
+}

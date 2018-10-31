@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.CockClass;
 	
 	public class Syri extends Creature
 	{
@@ -10,7 +11,7 @@
 		//constructor
 		public function Syri()
 		{
-			this._latestVersion = 3;
+			this._latestVersion = 6;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -52,7 +53,7 @@
 			this.eyeColor = "dark blue";
 			this.tallness = 72;
 			this.thickness = 40;
-			this.tone = 0;
+			this.tone = 30;
 			this.hairColor = "black";
 			this.scaleColor = "ebony";
 			this.furColor = "black";
@@ -60,7 +61,7 @@
 			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN_TYPE_FUR;
+			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
 			this.skinTone = "tanned";
 			this.skinFlags = [GLOBAL.FLAG_FLUFFY];
 			this.faceType = 0;
@@ -124,6 +125,9 @@
 			this.cocks[0].cLengthRaw = 8;
 			this.cocks[0].addFlag(GLOBAL.FLAG_TAPERED);
 			this.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
+			this.cocks[0].cType = GLOBAL.TYPE_CANINE;
+			this.cocks[0].cockColor = "red";
+			this.cocks[0].knotMultiplier = 1.5;
 			//balls
 			this.balls = 2;
 			this.cumMultiplierRaw = 3;
@@ -135,7 +139,7 @@
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 15;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 65;
 			this.timesCum = 9001;
 			this.cockVirgin = false;
@@ -159,7 +163,10 @@
 			
 			this._isLoading = false;
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "SYRI";
+		}
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			dataObject.physiqueRaw = 13;
@@ -168,7 +175,6 @@
 			dataObject.intelligenceRaw = 9;
 			dataObject.willpowerRaw = 4;
 		}
-		
 		public function UpgradeVersion2(d:Object):void
 		{
 			delete d.armor;
@@ -178,6 +184,24 @@
 			delete d.resistances;
 			delete d.bonusResistances;
 			delete d.bonusLustVuln;
+		}
+		public function UpgradeVersion3(dataObject:Object):void
+		{
+			dataObject.tone = 30;
+		}
+		public function UpgradeVersion4(dataObject:Object):void
+		{
+			dataObject.skinType = GLOBAL.SKIN_TYPE_SKIN;
+		}
+		public function UpgradeVersion5(dataObject:Object):void
+		{
+			if(dataObject.cocks.length <= 0) dataObject.cocks.push(new CockClass());
+			dataObject.cocks[0].cType = GLOBAL.TYPE_CANINE;
+			dataObject.cocks[0].cockColor = "red";
+			dataObject.cocks[0].cThicknessRatioRaw = 1.5;
+			dataObject.cocks[0].knotMultiplier = 1.5;
+			if(dataObject.cocks[0].cockFlags.indexOf(GLOBAL.FLAG_TAPERED) == -1) dataObject.cocks[0].cockFlags.push(GLOBAL.FLAG_TAPERED);
+			if(dataObject.cocks[0].cockFlags.indexOf(GLOBAL.FLAG_KNOTTED) == -1) dataObject.cocks[0].cockFlags.push(GLOBAL.FLAG_KNOTTED);
 		}
 	}
 }

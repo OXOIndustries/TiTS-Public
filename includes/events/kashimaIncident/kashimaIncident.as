@@ -7,11 +7,6 @@ KASHIMA_STATE:
 	4 				ended without curing shit
 	-1 				avoided/abandoned/failed
 
-KASHIMA_OUTCOME:
-	0/undefined		unknown
-	1 				removed & killed neykkars parasite
-	2 				ST removed the parasite
-
 CHIEF_NEYKKAR_WITH_PC
 	0/undefined		not with pc/unknown cause
 	1 				with pc
@@ -190,8 +185,7 @@ public function kiCargoLiftVictory():void
 	showBust("USHAMEE");
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
-	currentLocation = "KI-L22";
-	generateMap();
+	moveTo("KI-L22");
 	
 	output("You’ve dropped the closest of the creatures, buying yourself some time, but the elevator’s still clogged with bodies now. Most of the Nova troops have been dragged to the deck by writhing tentacles, their armor torn open and their bodies violated. More and more of your mutated employees are leaping down from the open doors, grabbing at whoever’s left standing.");
 	
@@ -241,8 +235,7 @@ public function kiCargoLiftVictoryII():void
 	processTime(5);
 	
 	flags["KI_ELEVATOR_DEFEATED"] = 1;
-	currentLocation = "KI-L20";
-	generateMap();
+	moveTo("KI-L20");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -483,7 +476,7 @@ public function lustyBugponyCocked():void
 			
 			output("\n\n<i>“O-oh <b>fuck!</b>”</i> she cries out, clawing her fingers at the unyielding steel of the bulkhead. <i>“S-so big... take it slow!”</i>");
 			
-			output("\n\nYou can’t go much slower, unless she wants you to cum before you’re half way in. Then again, the way her pussy’s clenching and squirting around your shaft, something tells you she doesn’t <i>want</i> you to slow do. Quite the opposite. Giving her a reassuring rub on the haunch, you give the buxom amazon a second of stillness to adjust to you as best she can... before you grab two handfuls of ass and ram yourself in to the hilt.");
+			output("\n\nYou can’t go much slower, unless she wants you to cum before you’re half way in. Then again, the way her pussy’s clenching and squirting around your shaft, something tells you she doesn’t <i>want</i> you to slow down. Quite the opposite. Giving her a reassuring rub on the haunch, you give the buxom amazon a second of stillness to adjust to you as best she can... before you grab two handfuls of ass and ram yourself in to the hilt.");
 
 			output("\n\n<i>“Gah!”</i> she screams, knees buckling. She staggers, groping helplessly at the smooth metal around her until she’s slinking onto her forelegs’ knees, body still rocking with the ecstatic shockwaves of your surprise attack. You can’t help but appreciate the way her big tits spread out like clay on the cold steel, and the spastic way her twat squeezes and cums around your shaft, spraying your thighs with thick, musky leithan fem-cum. <i>“B-"+ pc.mf("bastard", "bitch") +"! I said-”</i>");
 
@@ -600,7 +593,7 @@ public function lustyBugponyCocked():void
 		if (pc.balls > 0) output(" and your [pc.balls] are bouncing on her rump");
 		output(". Her tail curls around one of your [pc.legs], pulling you as close against herself as she can as juices pour like a waterfall around your shaft. Damn, but she was ready for this!");
 
-		output("\n\nYou grab a handful of tit and squeeze, making her clench down all the harder on your [pc.cock "+cIdx+"]. Her back arches against your [pc.chest], hands desperately grabbing at your human half’s hips and and your own hands, trying to find something to hold on to while you hammer your [pc.hips] against her plated ass, pounding in that amazonian cunny. The sheer force of your fucking sends the pair of you staggering forward, pushing the Chief’s chest against one of the bulkheads and spreading her malleable tits out in a lake of quaking gray flesh.");
+		output("\n\nYou grab a handful of tit and squeeze, making her clench down all the harder on your [pc.cock "+cIdx+"]. Her back arches against your [pc.chest], hands desperately grabbing at your human half’s hips and your own hands, trying to find something to hold on to while you hammer your [pc.hips] against her plated ass, pounding in that amazonian cunny. The sheer force of your fucking sends the pair of you staggering forward, pushing the Chief’s chest against one of the bulkheads and spreading her malleable tits out in a lake of quaking gray flesh.");
 
 		output("\n\nThe sight of her body bouncing against the wall, feeling her breasts flow like dough through your fingers and her velvety pussy squeeze you so tightly... it all combines to drive you absolutely wild with lust. It isn’t long before you feel the rush of need building in your loins, the insatiable desire for release - the absolute biological imperative to spill your seed into the Chief’s eager womb.");
 
@@ -924,8 +917,8 @@ public function kiApproachingEscapeShuttle():Boolean
 		h[0].createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 
 		CombatManager.newGroundCombat();
-		CombatManager.setFriendlyCharacters(pc);
-		CombatManager.setHostileCharacters(h);
+		CombatManager.setFriendlyActors(pc);
+		CombatManager.setHostileActors(h);
 		CombatManager.displayLocation("INFECTED CREW");
 		CombatManager.victoryCondition(CombatManager.ENTIRE_PARTY_DEFEATED);
 		CombatManager.lossCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, pc);
@@ -960,8 +953,7 @@ public function kiEscapeShuttle():void
 	
 	output("\n\nBut there’s nothing more you can do for them now. Nothing but find a doctor and make sure you’re okay. First, though, a long rest...");
 
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	flags["KASHIMA_STATE"] = 4;
 	
 	processTime(25);
@@ -1079,7 +1071,7 @@ public function kiHendersonMedbay():void
 	output("\n\n<i>“Get fucked you little bastard,”</i> she grunts, scraping the parasite off of her clawed foot. <i>“That’s for my crew.”</i>");
 
 	output("\n\nShe’s barely finished speaking when you hear a thunderous <i>CLANG</i> from just outside. You spin around as the MedBay doors slide open, and several armed and armored men in Steele Tech suits storm in, covering you with laser sights. They’re all kit up in HAZMAT gear, vacuum-sealed and shielded. They shout to stay calm and put your weapons down. You do so, making sure the Chief’s nice and calm, even as she’s yelling about lights in her eyes and people staring at her crotch. Back to her old self, it seems!");
-
+	
 	processTime(11);
 	
 	clearMenu();
@@ -1088,8 +1080,7 @@ public function kiHendersonMedbay():void
 
 public function kiHendersonMedbayII():void
 {
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	
 	clearOutput();
 	author("Savin");
@@ -1185,7 +1176,11 @@ public function kiHendersonSteeleTech():void
 	}
 
 	output("\n\nYou squint, shielding your eyes as the lights consolidate into several flashlights, carried by Steele Tech security personnel, all armed and armored. They look down at you from under HAZMAT visors, shouting for everyone to stay calm and put your weapons down. You do so, making sure the Chief’s nice and calm");
-	if (pc.hasGenitals() && (pc.lust() >= 33 || flags["FUCKED_CHIEF_NEYKKAR"] != undefined)) output(" when she gets off your crotch");
+	if (pc.hasGenitals() && (pc.lust() >= 33 || flags["FUCKED_CHIEF_NEYKKAR"] != undefined))
+	{
+		output(" when she gets off your crotch");
+		IncrementFlag("FUCKED_CHIEF_NEYKKAR");
+	}
 	output(". Per your communique, they quickly surround Chief Neykkar and, as gently as they can, surround her in a quarantine forcefield and start to cart her off. She looks around confused, glancing at you for reassurance. You tell her everything’s going to be fine all the way until the security folks have her aboard their rescue boat.");
 
 	processTime(12);
@@ -1196,8 +1191,7 @@ public function kiHendersonSteeleTech():void
 
 public function kiHendersonSteeleTechII():void
 {
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	
 	clearOutput();
 	author("Savin");

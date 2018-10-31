@@ -32,7 +32,11 @@ public function fuckingEggHatchOhFuck(destination:String):void
 	output(", leaving a trail of viscous slime in its wake. You jerk away, rolling out of your chair, and come up on your [pc.footOrFeet], ready for a fight.");
 	output("\n\nDirectly opposite of you is the creature - a mass of tentacles as thick as steel cables surrounded a squishy-looking central bulb roughly the size of a coconut. You recoil in horror <i>and arousal</i>. Every single one of the tendrils is tipped with something different. Most have phallic-looking protrusions, but some are hollow cups. Still more bear a shapely split that looks eerily reminiscent of a vagina. And every single one of them is closing in you. <i>It’ll feel so good.</i>");
 	output("\n\nShaking the errant <i>but sexy</i> thoughts away, you reach for a weapon and come up empty. Your [pc.rangedWeapon] and [pc.meleeWeapon] are gone! Even more shockingly, you’re completely naked. <i>God, that’s so much more convenient!</i> Trails of slime wind their way across much of your torso. Just how long did this thing spend violating you before you woke up? <i>Its tentacles could have even been inside you, stroking and squeezing and turning you into the perfect mother for its young.</i> Where do these thoughts keep coming from?");
-	output("\n\nThere’s nowhere to run, <i>not that you want to</i>. You can’t defend yourself either. <i>You’re so vulnerable.</i> Wildly searching for a solution, you try to pull free of the tentacles wrapping around your [pc.feet] and <i>submit</i>. No, that wasn’t it. You were going to break free <i>and get on all fours</i>. Definitely the first part.");
+	output("\n\nThere’s nowhere to run, <i>not that you want to</i>. You can’t defend yourself either. <i>You’re so vulnerable.</i> Wildly searching for a solution, you try to pull free of the tentacles wrapping around your [pc.feet] and <i>submit</i>. No, that wasn’t it. You were going to break free <i>and get");
+	if(pc.isBiped()) output(" on all fours");
+	else if(pc.hasKnees()) output(" on your knees");
+	else output(" low to the floor");
+	output("</i>. Definitely the first part.");
 	output("\n\nYour eyes alight not on a solution, but on evidence of just how royally fucked you are. The large green egg you brought with you is sitting not far from the creature, split in half and trailing green ichor. You brought this <i><b>sexy</b></i> thing onboard yourself! There’s no one else to blame. <i>You might as well enjoy it.</i> You moan");
 	if(pc.hasVagina()) output(" and <i>rub your hungry pussy</i>. When did you get so wet?");
 	else if(pc.hasCock()) output(" and stroke your rigid cock. How did it get so hard?");
@@ -137,8 +141,8 @@ public function fuckingEggHatchOhFuck(destination:String):void
 	pc.orgasm();
 	pc.orgasm();
 	//GET RID OF EGGS
-	if(pc.hasItem(new StrangeEgg())) pc.destroyItem(new StrangeEgg());
-	else pc.destroyItemInStorage(new StrangeEgg());
+	if(pc.hasItemByClass(StrangeEgg)) pc.destroyItemByClass(StrangeEgg);
+	else pc.destroyItemInStorageByClass(StrangeEgg);
 	clearMenu();
 	addButton(0,"Next",postPychicTentacleImpreg,[destination,x]);
 }
@@ -231,7 +235,7 @@ public function PsychicTentacleBirthing(pregSlot:int):void
 	else output(" [pc.vaginaNoun " + x + "]");
 	output(".");
 	if(x == -1) pc.buttChange(2000);
-	else pc.cuntChange(x,2000);	
+	else pc.cuntChange(x,2000);
 	output("\n\nNo matter how disquieting the sloppy sounds of your birthing may be, <i>they’re music to your ears.</i> You wouldn’t mind having a recording to listen to later. Maybe you could listen when you next masturbate... and pull yourself wide open once more. Or you could keep lying here, semi-conscious and exhausted, releasing your <i>beautiful master</i> on the universe.");
 	if(x == -1) pc.buttChange(2000);
 	else pc.cuntChange(x,2000);
@@ -239,12 +243,20 @@ public function PsychicTentacleBirthing(pregSlot:int):void
 	if(x == -1) pc.buttChange(2000);
 	else pc.cuntChange(x,2000);
 	output("\n\nFor now, you can doze on the floor and recover. <i>Your master fades from your awareness. Now that you’ve served your function, you don’t need to be aware of him anymore. Surely he’s close by, but when you open your eyes, he’s gone. He didn’t even make a sound. Maybe he’ll leave you an egg somewhere.</i>");
-	if(pc.elasticity < 5)
+	if(pc.elasticity < (pc.hasPerk("Elasticity") ? 7 : 5))
 	{
-		pc.elasticity++;
+		pc.elasticity += (pc.hasPerk("Elasticity") ? 1.5 : 1);
 		output(" <b>You’re pretty sure the master’s slime changed your body, making it far stretchier than ever before.</b>");
 	}
 	pc.orgasm();
+	
+	if(rooms[currentLocation].planet == "TAVROS STATION" || InPublicSpace())
+	{
+		output("\n\nAfter your head clears, you check the time on your Codex. It gives you a beep and informs you that your lovely tentacle beast was encountered in the public and has been swiftly caught by one of your droids and sent to your nursery.");
+		
+		pc.createStatusEffect("Psychic Tentacles Birth To Nursery");
+	}
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

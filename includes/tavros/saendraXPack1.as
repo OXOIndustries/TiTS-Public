@@ -68,6 +68,8 @@ public function unlockSaendraXPackMail():void
 
 public function updateSaendraXPackTimer(deltaT:Number = 0):void
 {
+	if (flags["SAENDRA_DISABLED"] != undefined || flags["SAENDRA GONNA GO GET A COCK"] == 1 || flags["SAENDRA GONNA GO GET A COCK"] == 2) return;
+	
 	if (flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"] == 5)
 	{
 		flags["SAENDRA_XPACK1_TIMER"] += deltaT;
@@ -170,6 +172,7 @@ public function initsx1PirateGroupFight():void
 	pc.createStatusEffect("Pitch Black", 0, 0, 0, 0, false, "Icon_Slow", "It’s pitch black here, making it almost impossible to see anything but for bursts of light accompanying weaponsfire.", true, 0);
 	saendra.createStatusEffect("Pitch Black", 0, 0, 0, 0, false, "Icon_Slow", "It’s pitch black here, making it almost impossible to see anything but for bursts of light accompanying weaponsfire.", true, 0);
 	saendra.long = "";
+	saendra.customDodge = "";
 	
 	var enemies:Array = [];
 	
@@ -181,8 +184,8 @@ public function initsx1PirateGroupFight():void
 	}
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc, saendra]);
-	CombatManager.setHostileCharacters(enemies);
+	CombatManager.setFriendlyActors([pc, saendra]);
+	CombatManager.setHostileActors(enemies);
 	CombatManager.victoryScene(sx1PirateGroupPCVictory);
 	CombatManager.lossScene(sx1PirateGroupPCLoss);
 	CombatManager.displayLocation("VOID PIRATES");
@@ -218,7 +221,7 @@ public function sx1PirateGroupPCLoss():void
 	
 	output("\n\nThe woman twists Saen’s face, making her look at you. One of the heavy-armored men around you rears back the butt of his weapon and cracks you in the back of the skull. You see stars and reel from the impact.");
 	
-	if(pc.HPRaw > 15) pc.HPRaw -= 15;
+	if(pc.HPRaw > 15) applyDamage(new TypeCollection( { unresistablehp: 15 }, DamageFlag.BYPASS_SHIELD ), null, pc, "minimal");
 	
 	output("\n\nThe woman reaches down and grabs one of Saendra’s tits, reaching right into her shirt. Saen recoils, struggling against the men holding her down.... until her hand comes back with a small data chit, still stuck to a piece of tape.");
 	
@@ -442,7 +445,7 @@ public function sx1PuzzleOfDoomMenu():void
 	else if (flags["SAENDRA_XPACK1_ASKEDVAL"] == 1) addButton(3, "Holo Burn", sx1Holoburn, undefined, "Holo Burn", "Try and overload the rooms electronics, and fry whoever’s jacked into the computer system in there.");
 	else addDisabledButton(3, "Holo Burn");
 
-	if (pc.characterClass == GLOBAL.CLASS_SMUGGLER || pc.hasItem(new FlashGrenade())) addButton(4, "Flashbang", sx1ThrowFlashbang, undefined, "Flashbang", "Throw a flashbang in and storm the room.");
+	if (pc.characterClass == GLOBAL.CLASS_SMUGGLER || pc.hasItemByClass(FlashGrenade)) addButton(4, "Flashbang", sx1ThrowFlashbang, undefined, "Flashbang", "Throw a flashbang in and storm the room.");
 	else addDisabledButton(4, "Flashbang", "Throw Flashbang", "You don’t have any flashbangs to hand.");
 }
 
@@ -724,7 +727,7 @@ public function sx1CallgirlOfferJob():void
 	
 	output("\n\n<i>“Knock knock!”</i> Saen says, cracking the woman over the head with the butt of her pistol.");
 	
-	output("\n\nThe pirate tech collapses with blood spilling out of her nose, leaving you and Saen to hop over her body and into the room. It’s a small, cramped space with peeling wallpaper and dim lights that barely let you see. A bed has been pushed against the western wall, opposite a metal desk where a truckload of computer gear is set up.");
+	output("\n\nThe pirate tech collapses with blood spilling out of her nose, leaving you and Saen to hop over her body and into the room. It’s a small, cramped space with peeling wallpaper and dim lights that barely let you see. A bed has been pushed against the northern wall, opposite a metal desk where a truckload of computer gear is set up.");
 	
 	output("\n\nSitting on the bed with ropes tied around his arms and legs is a grizzled looking human who’s clearly had some better days: he’s gotten roughed up pretty good, and his mechanic’s outfit’s been darkened with blood and grease. Saendra runs over to him and grabs the man’s shoulders.");
 	
@@ -819,6 +822,8 @@ public function sx1ThrowFlashbang():void
 	output("\n\nA thunderous <i>kabang</i> echoes out of the room with a blinding flash to accompany it. The moment the bang passes, you and Saendra charge in with weapons drawn - and come face to face with a staggering man, dressed in a long coat and a ballistic vest, fumbling for the shotgun strapped to his back.");
 	
 	processTime(1);
+	
+	if(pc.characterClass != GLOBAL.CLASS_SMUGGLER && pc.hasItemByClass(FlashGrenade)) pc.destroyItemByClass(FlashGrenade, 1);
 
 	clearMenu();
 	addButton(0, "Fight!", sx1InitShotguardFight, true);
@@ -832,13 +837,13 @@ public function sx1DoorBreach():void
 	
 	output("<i>“Fuck it. Let’s do it loud,”</i> you say, nodding towards the door. Saen grins and thumbs the safety on her Hammer pistol.");
 	
-	output("\n\n<i>“Guess I didn’t need a free place to stay anyway,”</i> she chuckles, following your head and getting ready to knock the door in. The two of you exchange and glance, then shove the door in together, charging in the moment the heavy mass of steel buckles beneath your shoulder.");
+	output("\n\n<i>“Guess I didn’t need a free place to stay anyway,”</i> she chuckles, following your lead and getting ready to knock the door in. The two of you exchange and glance, then shove the door in together, charging in the moment the heavy mass of steel buckles beneath your shoulder.");
 	
 	output("\n\nJust inside the door is a gruff-looking man in a long coat and a ballistic vest - and who’s got a shotgun aimed right at you. There’s no avoiding a fight now!");
 	
 	processTime(1);
 
-	//{To Shotgun Guard fite}
+	// To Shotgun Guard fite
 	clearMenu();
 	addButton(0, "Fight!", sx1InitShotguardFight);
 }
@@ -846,12 +851,13 @@ public function sx1DoorBreach():void
 public function sx1InitShotguardFight(wasFlashed:Boolean = false):void
 {
 	var tEnemy:Creature = new SX1Shotguard();
-	tEnemy.createStatusEffect("Blinded", 3, 0, 0, 0, false, "Blind", "Accuracy is reduced, and ranged attacks are far more likely to miss.", true, 0,0xFF0000);
-	saendra.long = "Saendra lithely snakes out of cover from time to time, ready to take potshots at anything and everything she can sight quickly enough before ducking back to safety.";
+	if(wasFlashed) CombatAttacks.applyBlind(tEnemy, 3);
+	saendra.long = "Saendra quickly pokes out of cover from time to time, ready to take potshots at anything and everything she can sight quickly enough before shifting back to safety.";
+	saendra.customDodge = "Saen casually sidesteps out of the way.";
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc, saendra]);
-	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.setFriendlyActors([pc, saendra]);
+	CombatManager.setHostileActors(tEnemy);
 	CombatManager.victoryScene(sx1ShotguardPCVictory);
 	CombatManager.lossScene(sx1ShotguardPCLoss);
 	CombatManager.displayLocation("VOID PIRATE");
@@ -868,13 +874,15 @@ public function sx1ShotguardPCVictory():void
 
 	flags["SAENDRA_XPACK1_RESCUE_SHOTGUARD_STATE"] = 3;
 
-	output("The guard collapses, unable to fight anymore. Saen gives him a solid kick to the head, making sure he’s down for the count, and flashes you a cocky grin. The two of you advance into the pirates’ room, stepping over the guard’s body as you go.");
+	output("The guard collapses, unable to fight anymore. Saen gives him a solid kick to the head, making sure he’s down for the count, and flashes you a cocky grin.");
 
 	if (flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] != undefined)
 	{
+		output(" The two of you advance into the pirates’ room, stepping over the guard’s body as you go.");
+		
 		output("\n\nInside, you find a knocked out ausar woman jacked into an expensive-looking computer rig. She’s face-down on a desk at the side of the room, with smoke coming from the headset plugged into her ears. Ouch.");
 		
-		output("\n\nOpposite her, a bed has been pushed against the western wall, opposite a metal desk where a truckload of computer gear is set up. Sitting on the bed with ropes tied around his arms and legs is a grizzled looking human who’s clearly had some better days: he’s gotten roughed up pretty good, and his mechanic’s outfit’s been darkened with blood and grease. Saendra runs over to him and grabs the man’s shoulders.");
+		output("\n\nOpposite her, a bed has been pushed against the northern wall, opposite a metal desk where a truckload of computer gear is set up. Sitting on the bed with ropes tied around his arms and legs is a grizzled looking human who’s clearly had some better days: he’s gotten roughed up pretty good, and his mechanic’s outfit’s been darkened with blood and grease. Saendra runs over to him and grabs the man’s shoulders.");
 
 		//Go to "Rescue" scene
 		clearMenu();
@@ -882,19 +890,34 @@ public function sx1ShotguardPCVictory():void
 	}
 	else
 	{
-		output("\n\nAn ausar woman with a shock of blonde hair is standing inside, aiming a machine pistol at you and stumbling back until she’s against the far wall with nowhere else to go. Wires lead down from a brace around her neck to a huge rig of computer equipment planted on a desk a few feet away.");
+		pc.shieldsRaw = pc.shieldsMax();
 		
-		output("\n\n<i>“Stay back!”</i> she shouts, waving her gun around. <i>“I’m warning you!”</i>");
+		output("\n\n");
 		
-		output("\n\n<i>“Get fucked, bitch,”</i> Saen answers, taking aim.");
-		
-		output("\n\nThat settles that!");
-
-		// [Fight] {To Tech Fite}
-		clearMenu();
-		addButton(0, "Fight!", sx1InitTechguardFight);
+		CombatManager.genericVictory(sx1ShotguardPCVictory2);
 	}
 }
+public function sx1ShotguardPCVictory2():void
+{
+	clearOutput();
+	saenHeader();
+	
+	generateMapForLocation("SX1 RESCUE ROOM");
+	
+	output("The two of you advance into the pirates’ room, stepping over the guard’s body as you go.");
+	
+	output("\n\nAn ausar woman with a shock of blonde hair is standing inside, aiming a machine pistol at you and stumbling back until she’s against the far wall with nowhere else to go. Wires lead down from a brace around her neck to a huge rig of computer equipment planted on a desk a few feet away.");
+	
+	output("\n\n<i>“Stay back!”</i> she shouts, waving her gun around. <i>“I’m warning you!”</i>");
+	
+	output("\n\n<i>“Get fucked, bitch,”</i> Saen answers, taking aim.");
+	
+	output("\n\nThat settles that!");
+
+	// [Fight] {To Tech Fite}
+	clearMenu();
+	addButton(0, "Fight!", sx1InitTechguardFight);
+ }
 
 public function sx1SkipShotguard():void
 {
@@ -936,11 +959,12 @@ public function sx1ShotguardPCLoss():void
 
 public function sx1InitTechguardFight():void
 {
-	saendra.long = "Saendra lithely snakes out of cover from time to time, ready to take potshots at anything and everything she can sight quickly enough before ducking back to safety.";
+	saendra.long = "Saendra quickly pokes out of cover from time to time, ready to take potshots at anything and everything she can sight quickly enough before shifting back to safety.";
+	saendra.customDodge = "Saen casually sidesteps out of the way.";
 	
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters([pc, saendra]);
-	CombatManager.setHostileCharacters(new SX1Techguard());
+	CombatManager.setFriendlyActors([pc, saendra]);
+	CombatManager.setHostileActors(new SX1Techguard());
 	CombatManager.victoryScene(sx1TechguardPCVictory);
 	CombatManager.lossScene(sx1TechguardPCLoss);
 	CombatManager.displayLocation("VOID TECHIE");
@@ -957,12 +981,12 @@ public function sx1TechguardPCVictory():void
 
 	if (flags["SAENDRA_XPACK1_RESCUE_SHOTGUARD_STATE"] != 3) output("The last of the pirates");
 	else output("The techie pirate");
-	output(" collapses, unable to put up any more resistance. Saen breathes a sigh of relief, and the two of you advance into the room. It’s a small affair, with peeling wallpaper and dim lights that barely let you see. A bed has been pushed against the western wall, opposite a metal desk where a truckload of computer gear is set up.");
+	output(" collapses, unable to put up any more resistance. Saen breathes a sigh of relief, and the two of you advance into the room. It’s a small affair, with peeling wallpaper and dim lights that barely let you see. A bed has been pushed against the northern wall, opposite a metal desk where a truckload of computer gear is set up.");
 
 	output("\n\nSitting on the bed with ropes tied around his arms and legs is a grizzled looking human who’s clearly had some better days: he’s gotten roughed up pretty good, and his mechanic’s outfit’s been darkened with blood and grease. Saendra runs over to him and grabs the man’s shoulders.");
 	
 	processTime(1);
-
+	flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] = 3;
 	// {To Rescue scene}
 	clearMenu();
 	addButton(0, "Next", sx1RescueTheDude, true);
@@ -988,8 +1012,10 @@ public function sx1TechguardPCLoss():void
 	output("\n\nHer boot comes down with an agonizing <i>crack</i>, and your world goes black.");
 	
 	processTime(1);
-	pc.HPRaw -= 35;
-	if(pc.HPRaw < 1) pc.HPRaw = 1;
+	var damage:Number = 35;
+	var maxDamage:Number = (pc.HPRaw - 1);
+	if (damage > maxDamage) damage = maxDamage;
+	if (damage > 0) applyDamage(new TypeCollection( { unresistablehp: damage }, DamageFlag.BYPASS_SHIELD ), null, pc, "minimal");
 
 	clearMenu();
 	addButton(0, "Next", sx1TechguardPCLossII);
@@ -1187,6 +1213,22 @@ public function sx1TalkPirates():void
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+// Techie Hotfix
+public function sx1TalkTechGuardFix():void
+{
+	clearOutput();
+	showSaendra();
+	author("Jacques00");
+
+	output("You ask Saendra about the whereabouts of the ausar techie the two of you encountered during her rescue mission on Deck 92.");
+	output("\n\nThe crimson halfbreed perks up. <i>“Oh? I distinctly remember we defeated her in a fight... and it’s very likely she was sent off to the bowels of Gastigoth with the rest of the other low-lives. Bitch got what was coming to her if you ask me!”</i>");
+	output("\n\nAs she continues with a more snarled expression, you tap your codex and make a note then segway the conversation to something less hostile. Soon, you find yourself chuckling at one of Val’s compromising anecdotes about Saendra with an embarrassed Saendra just taking it with some modest humility.");
+	
+	processTime(5);
+	flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] = 3;
+	
+	saendrasBarMenu();
 }
 
 // Zil Call Girl:
@@ -1421,7 +1463,7 @@ public function zilCallGirlSexed(count:Boolean = false):int
 public function zilCallGirlKnockUp(nVirility:Number = 0):void
 {
 	// Already visibly pregnant? Early return
-	if (flags["ZIL_CALLGIRL_EGG_COUNT"] != undefined)
+	if (flags["ZIL_CALLGIRL_EGG_COUNT"] != undefined || (flags["ZIL_CALLGIRL_PREG"] != undefined && flags["ZIL_CALLGIRL_GESTATION"] != undefined))
 	{
 		trace("Already preggers");
 		return;
@@ -1447,6 +1489,7 @@ public function zilCallGirlKnockUp(nVirility:Number = 0):void
 		if (nVirility >= 2 && rand(10) == 0) flags["ZIL_CALLGIRL_EGG_COUNT"] += rand(4);
 		flags["ZIL_CALLGIRL_GESTATION"] = (debug ? 30 : ((180 + rand(31)) * 24 * 60));
 		flags["ZIL_CALLGIRL_PREG"] = GetGameTimestamp();
+		pc.clearRut();
 		trace("Knocked up");
 	}
 	return;
@@ -1457,16 +1500,16 @@ public function zilCallGirlPregTime(percentage:Boolean = false, deltaT:uint = 0)
 	if (flags["ZIL_CALLGIRL_PREG"] != undefined && flags["ZIL_CALLGIRL_GESTATION"] != undefined)
 	{
 		if (flags["ZIL_CALLGIRL_GESTATION"] > (30 * (60 * 24)) && debug) flags["ZIL_CALLGIRL_GESTATION"] = (30 * (60 * 24));
-
+		
 		var pregTime:Number = ((GetGameTimestamp() + deltaT) - flags["ZIL_CALLGIRL_PREG"]);
-
-		// Returns a percentage 0% to 100% of completion, for simplicity!
-		var perc:Number = formatFloat(((pregTime / flags["ZIL_CALLGIRL_GESTATION"]) * 100), 2);
-
-		trace("Zil Callgirl preg progression", perc, "%");
-
+		
 		if (percentage)
 		{
+			// Returns a percentage 0% to 100% of completion, for simplicity!
+			var perc:Number = formatFloat(((pregTime / flags["ZIL_CALLGIRL_GESTATION"]) * 100), 2);
+			
+			trace("Zil Callgirl preg progression", perc, "%");
+			
 			return perc;
 		}
 		// Otherwise, returns the time pregnant (in minutes)
@@ -1723,8 +1766,7 @@ public function zilCallgirlStopWhoring(fromPregnancyTalk:Boolean = false):void
 		else if (pc.isBro() || pc.isAss()) output(" Taking her hips possessively in your hands, you once again say that you want her to give up on whoring. This is no way for your child’s mother to be living.");
 		else output(" You understand she enjoys it, but surely she doesn’t have to turn tricks to make ends meet. Amorous encounters on her terms would be so much better, wouldn’t they?");
 
-		output("\n\nZheniya sighs, running a hand through her wild black hair. <i>“Sweetie... [pc.name]... listen, I understand where you’re coming from, but you’ve gotta understand, there’s not much else I can do to make a living here. I hate to say it, but even if I wanted a change of profession, what would I do? There’s not a lot of call for a spear-hunter on a metal city in space, with no animals to be found.");
-
+		output("\n\nZheniya sighs, running a hand through her wild black hair. <i>“Sweetie... [pc.name]... listen, I understand where you’re coming from, but you’ve gotta understand, there’s not much else I can do to make a living here. I hate to say it, but even if I wanted a change of profession, what would I do? There’s not a lot of call for a spear-hunter on a metal city in space, with no animals to be found.”</i>");
 
 		output("\n\n<i>“And before you ask,”</i> she says, putting a black-plated finger on your [pc.lips], <i>“I don’t want you to completely support me. A little help with");
 		if (flags["ZIL_CALLGIRL_HAS_BIRTHED"] == undefined || flags["ZIL_CALLGIRL_HAS_BIRTHED"] == 1) output(" the baby");
@@ -2160,6 +2202,7 @@ public function zilCallGirlSuckleHoney(doClear:Boolean = true):void
 	}
 }
 
+/*
 public function zilCallGirlPregScene(isBirthing:Boolean = false):void
 {
 	clearOutput();
@@ -2217,6 +2260,7 @@ public function zilCallGirlPregScene(isBirthing:Boolean = false):void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
+*/
 
 public function resDeck16Func():Boolean
 {
@@ -2305,7 +2349,30 @@ public function zheniyaInAppt():void
 	else if (!pc.hasGenitals()) addDisabledButton(0, "Sex", "Sex", "You’d need some genitals to fully enjoy the experience...");
 	else addButton(0, "Sex", zheniyaApptSex, undefined, "Sex", "Fuck your zil lover.");
 	addButton(2, "Get Honey", zheniyaApptGetHoney, undefined, "Get Honey", "Ask Zheniya for a little of her sweet, sweet honey to go.");
+	
+	// Preg disable flag hotfix
+	if(zilCallGirlPregTime(true) >= 100 && flags["ZIL_CALLGIRL_DISABLED_TYPE"] == 4 && (flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] > GetGameTimestamp()) && flags["ZIL_CALLGIRL_BIRTH_MEETING_REQ"] == undefined)
+	{
+		output("\n\nYOU DONE FUCKED UP.");
+		addButton(13, "Fix Preg", zheniyaFixPreg, undefined, "Fix Zheniya’s Pregnancy", "There was a mistake... use this to fix it.");
+	}
+	
 	addButton(14, "Back", zheniyaApptBack);
+}
+
+public function zheniyaFixPreg():void
+{
+	clearOutput();
+	showBust("");
+	showName("PREGNANCY\nFIXED!");
+	author("Jacques00");
+	
+	output("Zheniya’s pregnancy has been fixed. <b>You may need to wait for up to a day or so until a message appears.</b>");
+	
+	flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] = GetGameTimestamp();
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function zheniyaApptSex():void
@@ -2405,7 +2472,7 @@ public function processZheniyaEvents(deltaT:uint, doOut:Boolean, totalDays:int):
 			if (flags["ZIL_CALLGIRL_PREGNANT_TOLD"] != undefined) zilCallGirlPregnancyEnds(deltaT);
 		}
 
-		if ((flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] + 360) < GetGameTimestamp() + deltaT)
+		if ((flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] + 360) < (GetGameTimestamp() + deltaT))
 		{
 			flags["ZIL_CALLGIRL_DISABLED_TYPE"] = undefined;
 			flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] = undefined;
@@ -2419,24 +2486,38 @@ public function zilCallGirlBirthMessage():String
 {
 	var cs:String;
 
-	if (_tempZilGirlChildRef == null || (_tempZilGirlChildRef.NumMale == 1 && _tempZilGirlChildRef.NumFemale == 0)) cs = "Our staff has taken her in and delivered a healthy son. She and your child";
+	if (_tempZilGirlChildRef == null || _tempZilGirlChildRef.Quantity <= 0) cs = "Our staff has taken her in and delivered the young. She and your offspring";
+	else if (_tempZilGirlChildRef.NumMale == 1 && _tempZilGirlChildRef.NumFemale == 0) cs = "Our staff has taken her in and delivered a healthy son. She and your child";
 	else if (_tempZilGirlChildRef.NumFemale == 1 && _tempZilGirlChildRef.NumMale == 0) cs = "Our staff has taken her in and delivered a healthy daughter. She and your child";
 	else if (_tempZilGirlChildRef.NumFemale == 1 && _tempZilGirlChildRef.NumMale == 1) cs = "Our staff has taken her in and delivered a healthy son and daughter. She and your children";
 	else cs = "Our staff has taken her in and delivered " + num2Text(_tempZilGirlChildRef.Quantity) + " healthy children. She and your offspring";
 
 	var m:String = "Hello, " + pc.mf("Mr", "Miss") + ". Steele, I’m writing on behalf of Zheniya to inform you that your partner arrived at the Tavros Residential Clinic a few moments ago, having gone into labor. " + cs + " should be free to return home within the next few hours.\n\nCongratulations!\n\nNurse Carter\nTavros Residential Clinic, Deck 45\n<i>Healthier living for tomorrow.</i>";
 
-	return m;
-
 	_tempZilGirlChildRef = null;
+
+	return m;
 }
 
 public function zilCallGirlPregnancyEnds(deltaT:uint):void
 {
+	if(flags["ZIL_CALLGIRL_EGG_COUNT"] == undefined || flags["ZIL_CALLGIRL_EGG_COUNT"] <= 0) return;
+	
 	_tempZilGirlChildRef = new ZilCallgirlUniqueChild();
 	_tempZilGirlChildRef.RaceType = GLOBAL.TYPE_BEE;
-	_tempZilGirlChildRef.BornTimestamp = GetGameTimestamp() + deltaT;
+	_tempZilGirlChildRef.BornTimestamp = (flags["ZIL_CALLGIRL_PREG"] + flags["ZIL_CALLGIRL_GESTATION"]);
 	_tempZilGirlChildRef.MaturationRate = 1.0;
+	
+	// Adopt father's colors at random (if applicable):
+	if(rand(2) == 0) _tempZilGirlChildRef.skinTone = chars["PC_BABY"].skinTone;
+	//if(rand(2) == 0) _tempZilGirlChildRef.lipColor = chars["PC_BABY"].lipColor;
+	//if(rand(2) == 0) _tempZilGirlChildRef.nippleColor = chars["PC_BABY"].nippleColor;
+	if(rand(2) == 0) _tempZilGirlChildRef.eyeColor = chars["PC_BABY"].eyeColor;
+	if(rand(2) == 0) _tempZilGirlChildRef.hairColor = chars["PC_BABY"].hairColor;
+	//if(rand(2) == 0) _tempZilGirlChildRef.furColor = chars["PC_BABY"].furColor;
+	//if(rand(2) == 0) _tempZilGirlChildRef.scaleColor = chars["PC_BABY"].scaleColor;
+	//if(rand(2) == 0) _tempZilGirlChildRef.chitinColor = chars["PC_BABY"].scaleColor;
+	//if(rand(2) == 0) _tempZilGirlChildRef.featherColor = chars["PC_BABY"].furColor;
 
 	for (var i:int = 0; i < flags["ZIL_CALLGIRL_EGG_COUNT"]; i++)
 	{
@@ -2449,12 +2530,11 @@ public function zilCallGirlPregnancyEnds(deltaT:uint):void
 		ChildManager.addChild(_tempZilGirlChildRef);
 		StatTracking.track("pregnancy/total day care", flags["ZIL_CALLGIRL_EGG_COUNT"]);
 		
-		MailManager.clearEntry("zil_callgirl_birth"); // Removes cached text but also sets timestamps to default
-		MailManager.unlockEntry("zil_callgirl_birth", GetGameTimestamp() + deltaT); // Regenerates cache and sets new appropriate timestamp
-		AddLogEvent("<b>New Email from Nurse Amanda Carter (A_Carter@TavrosMedical.net)!</b>", "words");
+		resendMail("zil_callgirl_birth", (flags["ZIL_CALLGIRL_PREG"] + flags["ZIL_CALLGIRL_GESTATION"]));
 	}
 	
 	StatTracking.track("pregnancy/zil call girl kids", flags["ZIL_CALLGIRL_EGG_COUNT"]);
+	StatTracking.track("pregnancy/total sired", flags["ZIL_CALLGIRL_EGG_COUNT"]);
 	
 	zilCallGirlPregnancyCleanup();
 	if (flags["ZIL_CALLGIRL_HAS_BIRTHED"] == undefined) flags["ZIL_CALLGIRL_HAS_BIRTHED"] = 1;
@@ -2479,9 +2559,10 @@ public function zilCallgirlPregnantAgain():void
 
 	output("<i>“Oh, [pc.name],”</i> you hear a sing-song voice call from inside before you’re halfway through the door. Zheniya is in your arms a moment later, hopping up into a hug that all but spins you around and into her waiting bed. You gasp, reeling as zil girl settles on her knees overtop you, both hands planted on her "+zilCallGirlBellyFragment()+".");
 
-	output("\n\n");
+	output("\n\n<i>“");
 	if (zilCallGirlPregTime(true) <= 33) output("I’ve just come back from the clinic, sweetie. It seems like no matter how carefully I prepare, your seed is simply too virile for my poor herbs and teas to contend with. I’m pregnant again!");
-	else output("See what you’ve done, [pc.name]?”</i> she coos, running her dark fingers along the stretched-taut flesh of her belly. <i>“Nothing I do seems able to stop you, you awful... sexy... wonderful beast! We’re going to be parents once more, as you can see.”</i>");
+	else output("See what you’ve done, [pc.name]?”</i> she coos, running her dark fingers along the stretched-taut flesh of her belly. <i>“Nothing I do seems able to stop you, you awful... sexy... wonderful beast! We’re going to be parents once more, as you can see.");
+	output("”</i>");
 
 	output("\n\nYou blink in surprise, but soon find your hands playing across hers, and onto her "+zilCallGirlBellyFragment()+". She moans huskily, leaning down and planting kisses along your neck and jaw, finally working her way up to one long, tongue-filled, lip-sucking; she lets you pull her flush against yourself");
 	if (zilCallGirlPregTime(true) >= 50) output(" - or at least as much as her gravid belly will allow - ");
@@ -2512,3 +2593,4 @@ public function zilCallgirlPregnantAgain():void
 		zilCallgirlSexMenu(true);
 	}
 }
+

@@ -2,7 +2,7 @@ import classes.RoomClass;
 
 public function canadiaUnlocked():Boolean
 {
-	return (flags["CANADA_UNLOCKED"] == 1 || MailManager.isEntryViewed("kirodatemeet") || MailManager.isEntryViewed("del_moved") || MailManager.isEntryUnlocked("del_moved_light"));
+	return (flags["CANADA_UNLOCKED"] == 1 || MailManager.isEntryViewed("kirodatemeet") || MailManager.isEntryViewed("del_moved") || MailManager.isEntryViewed("del_moved_light") || MailManager.isEntryViewed("ushamee_meet"));
 }
 
 public function flyToCanadia():void
@@ -29,14 +29,14 @@ public function canadiaAirlockBonus():Boolean
 public function canadiaHallwayBonus():Boolean
 {
 	kiroKallyCanadiaHallwayBonus();
-	
+	ushameeCanadiaCorridorBonus(0);
 	return false;
 }
 
 public function outsideCanadiaBarBonus():Boolean
 {
+	if(riyaBonus()) return true;
 	kiroKallyCanadiaBarBonus();
-	
 	return false;
 }
 

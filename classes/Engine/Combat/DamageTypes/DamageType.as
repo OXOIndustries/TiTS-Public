@@ -164,7 +164,7 @@ package classes.Engine.Combat.DamageTypes
 		public function makeCopy():*
 		{
 			var ndt:DamageType = new DamageType();
-			ndt.loadSaveObject(this.getSaveObject);
+			ndt.loadSaveObject(this.getSaveObject());
 			return ndt;
 		}
 	}

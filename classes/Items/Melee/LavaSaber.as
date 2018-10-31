@@ -10,6 +10,7 @@
 	
 	public class LavaSaber extends ItemSlotClass
 	{
+		//Level 7 (Common). Balance 2.0
 		//constructor
 		public function LavaSaber()
 		{
@@ -39,22 +40,22 @@
 			attackNoun = "burning slash";
 			
 			//Information
-			this.basePrice = 14199;
-			this.attack = 0;
+			this.basePrice = 6400;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 4;
+			baseDamage.kinetic.damageValue = 5;
 			baseDamage.burning.damageValue = 14;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			baseDamage.addFlag(DamageFlag.CHANCE_APPLY_BURN);
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
+			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 5;
-			this.evasion = 3;
+			this.critBonus = 0;
+			this.evasion = 2;
 			this.fortification = 0;
 			
 			this.version = _latestVersion;

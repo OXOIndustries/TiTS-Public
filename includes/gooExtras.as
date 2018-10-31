@@ -211,7 +211,7 @@ public function galoMaxTFProc():void
 		else if(pc.isBimbo()) 
 		{
 			output(" You lick your lip and giggle. This is nothing a little cock can’t fix. You’ll have beautiful, long goo hair in no time!");
-			if(flags["MET_KIRO"] != undefined) output(" Maybe Kiro is in town?");
+			if(metKiro()) output(" Maybe Kiro is in town?");
 		}
 		output("\n\nNo other changes seem forthcoming. You’ll need another GaloMax to get any gooeyer.");
 		//Uncool hair colors are changed to green, blue, or some other standard goo color. Maybe consult codex to see what choices we have?
@@ -219,6 +219,7 @@ public function galoMaxTFProc():void
 		if(pc.hairType == GLOBAL.HAIR_TYPE_TENTACLES) pc.hairStyle = "tentacle";
 		else pc.hairStyle = "null";
 		pc.hairType = GLOBAL.HAIR_TYPE_GOO;
+		if(!pc.hasStatusEffect("Cumflation Immune")) pc.createStatusEffect("Cumflation Immune");
 	}
 	//Dose 2
 	//Sexual fluids replaced with hairColor slime + biomass vent (increases cumQ or girlCumQ by biomass quantities. Toggled in goo submenu)
@@ -264,8 +265,8 @@ public function galoMaxTFProc():void
 			if(pc.totalVaginas() == 1) output("your");
 			else output("an");
 			output(" oozing snatch before you’re consciously aware of it. ");
-			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output("They don’t care that you’re in public, out where anyone could see you. If peacekeepers show up, they’ll have to pry them out with a crowbar.");
-			else output("They don’t care a whit about your location. If you were out in public, they’d still be knuckle-deep inside you. The peacekeepers would have to pry them out of you with a crowbar");
+			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output("They don’t care that you’re in public, out where anyone could see you. If Peacekeepers show up, they’ll have to pry them out with a crowbar.");
+			else output("They don’t care a whit about your location. If you were out in public, they’d still be knuckle-deep inside you. The Peacekeepers would have to pry them out of you with a crowbar");
 			output(". Your other hand settles on [pc.oneCock] and begins to stroke, and pre-cum spills out in eager response. Everything feels so hot and wet, and the faster you masturbate, the slipperier you get.");
 			output("\n\nYour boundless sex juices fill your palms to overflowing, and you instinctively smear it all over your genitals, your own slippery, gooey lubricant. It provides the perfect mix of slickness and friction, just enough to ease the passage of your hands’ back and forth motions. You squelch and stroke and whine, dribbling down your [pc.legOrLegs] - so wet... so very, very wet. Your cock");
 			if(pc.cockTotal() > 1) output("s are fountains");
@@ -298,8 +299,8 @@ public function galoMaxTFProc():void
 			output(". Biting your lip, you struggle to keep your hands away, but it’s a futile effort.");
 
 			output("\n\nYour fingers know where they belong, know where they can touch to bring relief, where they can stroke to make your nerves dance pirouettes of bliss. They make the journey to [pc.oneCock] before you’re consciously aware of it. ");
-			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output("They don’t care that you’re in public, out where anyone could see you. If peacekeepers show up, they’ll have to pry them off with a crowbar.");
-			else output("They don’t care a whit about your location. If you were out in public, they’d still be wrapped around your length. The peacekeepers would have to pry them off of you with a crowbar");
+			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output("They don’t care that you’re in public, out where anyone could see you. If Peacekeepers show up, they’ll have to pry them off with a crowbar.");
+			else output("They don’t care a whit about your location. If you were out in public, they’d still be wrapped around your length. The Peacekeepers would have to pry them off of you with a crowbar");
 			output(". Pre-cum spills out in eager response. Everything feels so hot and wet, and the faster you masturbate, the slipperier you get.");
 			output("\n\nYour boundless sex juices fill your palms to overflowing, and you instinctively smear it all over your genitals, your own slippery, gooey lubricant. It provides the perfect mix of slickness and friction, just enough to ease the passage of your hands’ back and forth motions. You squelch and stroke and whine, dribbling down your [pc.legOrLegs] - so wet... so very, very wet. Your cock");
 			if(pc.cockTotal() > 1) output("s are fountains.");
@@ -318,8 +319,8 @@ public function galoMaxTFProc():void
 			if(pc.totalVaginas() == 1) output("your");
 			else output("an");
 			output(" oozing snatch before you’re consciously aware of it. ");
-			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output("They don’t care that you’re in public, out where anyone could see you. If peacekeepers show up, they’ll have to pry them out with a crowbar.");
-			else output("They don’t care a whit about your location. If you were out in public, they’d still be knuckle-deep inside you. The peacekeepers would have to pry them out of you with a crowbar.");
+			if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output("They don’t care that you’re in public, out where anyone could see you. If Peacekeepers show up, they’ll have to pry them out with a crowbar.");
+			else output("They don’t care a whit about your location. If you were out in public, they’d still be knuckle-deep inside you. The Peacekeepers would have to pry them out of you with a crowbar.");
 			output(" Everything feels so hot and wet, and the faster you masturbate, the slipperier you get.");
 			output("\n\nYour boundless sex juices fill your palms to overflowing, and you instinctively smear it all over your genitals, your own slippery, gooey lubricant. It provides the perfect mix of slickness and friction, just enough to ease the passage of your fingers. You squelch and stroke and whine, dribbling down your [pc.legOrLegs] - so wet... so very, very wet. Your puss");
 			if(pc.totalVaginas() > 1) output("ies");
@@ -401,7 +402,7 @@ public function galoMaxTFProc():void
 		pc.createStatusEffect("Goo Crotch");
 		//Elasticity to 3
 		//Cocks/Cunts to goo
-		if(pc.elasticity < 3) pc.elasticity = 3;
+		if(pc.elasticity < (pc.hasPerk("Elasticity") ? 4 : 3)) pc.elasticity = (pc.hasPerk("Elasticity") ? 4 : 3);
 		var x:int = 0;
 		for(x = 0; x < pc.totalCocks(); x++)
 		{
@@ -488,6 +489,7 @@ public function galoMaxTFProc():void
 		output(".</b>");
 		revertGooBody();
 		pc.createStatusEffect("Gel Body");
+		if(pc.elasticity < (pc.hasPerk("Elasticity") ? 4.5 : 3.5)) pc.elasticity = (pc.hasPerk("Elasticity") ? 4.5 : 3.5);
 	}
 	else if(flags["GALOMAX_DOSES"] == 5)
 	{
@@ -508,6 +510,7 @@ public function galoMaxTFProc():void
 		pc.genitalSpot = 0;
 		//Set v1 of Gel Body to 1. Better than piling on more wasted status effects.
 		pc.addStatusValue("Gel Body",1,1);
+		if(pc.elasticity < (pc.hasPerk("Elasticity") ? 5 : 4)) pc.elasticity = (pc.hasPerk("Elasticity") ? 5 : 4);
 		//Mimbranes!
 		pc.removeStatusEffect("Mimbrane Foot Left");
 		pc.removeStatusEffect("Mimbrane Foot Right");
@@ -737,22 +740,23 @@ public function gooShiftMenu():void
 	output2("Now that you’re ");
 	if(!pc.isGoo()) output2("part");
 	else output2("a");
-	output2(" goo creature, you can resize the goo’ed up parts of your form however you like. Which part of yourself will you focus on?");
+	output2(" goo creature, you can resize and change the goo’ed up parts of your form however you like. Which part of yourself will you focus on?");
 	showBiomass();
 	clearGhostMenu();
-	if(flags["GALOMAX_DOSES"] > 1 || (!pc.hasStatusEffect("GaloMax") && flags["GALOMAX_DOSES"] == 1))
+	var isGaloMaxxing:Boolean = pc.hasStatusEffect("GaloMax");
+	if(flags["GALOMAX_DOSES"] > 1 || (!isGaloMaxxing && flags["GALOMAX_DOSES"] == 1))
 	{
 		if(pc.hairType == GLOBAL.HAIR_TYPE_GOO) addGhostButton(0, "Hair", gooHairAdjustmenu);
 		else addGhostButton(0,"Fix Hair",doseEffectRevertFix,"hair");
 	}
 	else addDisabledGhostButton(0, "Hair");
-	if(flags["GALOMAX_DOSES"] > 3 || (!pc.hasStatusEffect("GaloMax") && flags["GALOMAX_DOSES"] == 3))
+	if(flags["GALOMAX_DOSES"] > 3 || (!isGaloMaxxing && flags["GALOMAX_DOSES"] == 3))
 	{
 		if(pc.hasStatusEffect("Goo Crotch")) addGhostButton(1,"Crotch",gooCrotchCustomizer);
 		else addGhostButton(1,"Fix Crotch",doseEffectRevertFix,"crotch");
 	}
 	else addDisabledGhostButton(1,"Locked","Locked","It takes three doses of GaloMax to unlock this option.");
-	if(flags["GALOMAX_DOSES"] > 4 || (!pc.hasStatusEffect("GaloMax") && flags["GALOMAX_DOSES"] == 4))
+	if(flags["GALOMAX_DOSES"] > 4 || (!isGaloMaxxing && flags["GALOMAX_DOSES"] == 4))
 	{
 		if(pc.hasStatusEffect("Gel Body")) addGhostButton(2,"Chest",gooChestCustomizer);
 		else addGhostButton(2,"Fix Chest",doseEffectRevertFix,"body");
@@ -764,12 +768,23 @@ public function gooShiftMenu():void
 		addDisabledGhostButton(2,"Locked","Locked","It takes four doses of GaloMax to unlock this option.");
 		addDisabledGhostButton(3,"Locked","Locked","It takes four doses of GaloMax to unlock this option.");
 	}
-	if(flags["GALOMAX_DOSES"] > 2 || (!pc.hasStatusEffect("GaloMax") && flags["GALOMAX_DOSES"] == 2))
+	if(flags["GALOMAX_DOSES"] > 2 || (!isGaloMaxxing && flags["GALOMAX_DOSES"] == 2))
 	{
 		if(pc.hasStatusEffect("Goo Vent")) addGhostButton(4,"ToggleVent",ventToggle,undefined,"Toggle Vent","Toggle on or off whether you would like to add excess biomass to your own orgasmic releases.");
 		else addGhostButton(4,"Fix Vent",doseEffectRevertFix,"vent");
 	}
 	else addDisabledGhostButton(4,"Locked","Locked","It takes two doses of GaloMax to unlock this option.");
+	
+	addGhostButton(5, "Cumflation", gooCumflationOptions, undefined, "Cumflation Options", "Adjust whether or not you want to retain the fluids pumped into you or convert them to biomass.");
+	
+	if(pc.hasSkinFlag(GLOBAL.FLAG_ABSORBENT) && (pc.hasStatusEffect("Cum Soaked") || pc.hasStatusEffect("Pussy Drenched"))) addGhostButton(6, "Clean Self", gooCleanSelf, undefined, "Clean Yourself", "Use your absorbant skin to clean off the sex fluids you are covered in.");
+	
+	if(flags["GALOMAX_DOSES"] > 2 || (!isGaloMaxxing && flags["GALOMAX_DOSES"] == 2))
+	{
+		addGhostButton(9, "Fluids", gooFluidOptions, undefined, "Body Fluid Options", "Adjust the type of your bodily fluids.");
+	}
+	else addDisabledGhostButton(9,"Locked","Locked","It takes two doses of GaloMax to unlock this option.");
+	
 	addGhostButton(14, "Back", backToAppearance, pc);
 }
 
@@ -1013,7 +1028,7 @@ public function gooBodyCustomizer():void
 	addGhostButton(3,"Hip Size",adjustGooBody,["hip size","menu"],"Hip Size","Make adjustments to your hip size.");
 	addGhostButton(4,"Butt Size",adjustGooBody,["butt size","menu"],"Butt Size","Make adjustments to your butt size.");
 	
-	// Bodypart fixans: (Primarily for things that got force changes--like Dr.Badger and Holiday events)
+	// Bodypart fixans: (Primarily for things that got force changes--like Dr. Badger and Holiday events)
 	var nonGooPart:Number = 0;
 	if(pc.skinType != GLOBAL.SKIN_TYPE_GOO || pc.hairType != GLOBAL.HAIR_TYPE_GOO)
 	{
@@ -2063,7 +2078,7 @@ public function gooBallsMenu():void
 	{
 		if(gooBiomass() >= nutExpansionCost()) addGhostButton(2,"Expand Balls",expandoNuts,undefined,"Expand Balls","Expand the diameter of your balls by approximately one inch.\n\n<b>" + nutExpansionCost() + " mLs Biomass</b>");
 		else addDisabledGhostButton(2,"Expand Balls","Expand Balls","You don’t have the necessary biomass to expand your testicular endowments.\n\n<b>" + nutExpansionCost() + " mLs Biomass</b>");
-		if(pc.ballDiameter() > 1) addGhostButton(3,"Shrink Balls",nutShrinkGo,undefined,"Shrink Balls","Reduce the size of your testicular endowments significantly.");
+		if(pc.ballSizeRaw > 0.5) addGhostButton(3,"Shrink Balls",nutShrinkGo,undefined,"Shrink Balls","Reduce the size of your testicular endowments significantly.");
 		else addDisabledGhostButton(3,"Shrink Balls","Shrink Balls","You can’t get any smaller down there!");
 
 		if(pc.hasStatusEffect("Uniball")) addGhostButton(5,"Loosen Sack",tautSackToggle,undefined,"Loosen Sack","Let your nutsack hang a little lower and freer.");
@@ -2082,9 +2097,23 @@ public function gooBallsMenu():void
 		addDisabledGhostButton(3,"Shrink Balls","Shrink Balls","You don’t have any balls to shrink!");
 		addDisabledGhostButton(5,"Sack Options","Sack Options","If you had balls, you could use this button to make your nutsack pull up high and tight or swing low and free.");
 	}
+	if(isNaN(pc.ballSize()) || pc.balls < 0 || pc.ballDiameter() < 0) addGhostButton(13, "Fix Balls", gooFixBalls, undefined, "Fix Balls", "Something is wrong here... maybe you should fix it?");
 	addGhostButton(14,"Back",gooCrotchCustomizer);
 }
 
+public function gooFixBalls():void
+{
+	clearOutput2();
+	
+	output2("You concentrate hard on some weird anomalies near your crotch. After it bubbles, a feeling of normalcy runs through you. Your crotch anatomy has been corrected!");
+	
+	if(isNaN(pc.balls) || pc.balls < 0) pc.balls = 0;
+	if(isNaN(pc.ballSizeRaw) || pc.ballSize() < 0) pc.ballSizeRaw = 0;
+	if(isNaN(pc.ballSizeMod) || pc.ballSize() < 0) pc.ballSizeMod = 0;
+	
+	clearGhostMenu();
+	addGhostButton(0,"Next",gooBallsMenu);
+}
 public function gooSpecialSack(response:String = "none"):void
 {
 	clearOutput2();
@@ -2313,7 +2342,7 @@ public function reshapeACaaaawk():void
 		else
 		{
 			output2("\n" + (x+1) + ": [pc.CockShape " + x + "] - <b>Not goo</b>");
-			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn’t made of goo.");	
+			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn’t made of goo.");
 		}
 	}
 	showBiomass();
@@ -2351,6 +2380,14 @@ public function reshapeAGooCawkMenu(arg:Array):void
 		cTypes.push(GLOBAL.TYPE_HRAD);
 	if(flags["AMBER_SEED_USED"] != undefined && (flags["AMBER_SEED_USED"] & AmberSeed.FLAG_GOO_COCK) == AmberSeed.FLAG_GOO_COCK)
 		cTypes.push(GLOBAL.TYPE_AVIAN);
+	if(CodexManager.entryViewed("Suulas"))
+		cTypes.push(GLOBAL.TYPE_SIREN);
+	if(CodexManager.entryViewed("Saurmorians"))
+		cTypes.push(GLOBAL.TYPE_SAURIAN);
+	if(flags["KNOW_JADES_NAME"] != undefined)
+		cTypes.push(GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SWINE);
+	if(flags["SEER_MET"] == undefined)
+		cTypes.push(GLOBAL.TYPE_GOAT, GLOBAL.TYPE_MOTHRINE);
 	
 	var newType:Number = 0;
 	var btnName:String = "";
@@ -2489,7 +2526,7 @@ public function removeGooCockRoot():void
 		else
 		{
 			output2("\n" + (x+1) + ": [pc.Cock " + x + "] - <b>Not goo</b>");
-			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn’t made of goo.");	
+			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn’t made of goo.");
 		}
 	}
 	showBiomass();
@@ -2559,7 +2596,7 @@ public function lengthenGooCock():void
 		else
 		{
 			output2("\n" + (x+1) + ": [pc.Cock " + x + "] - <b>Not goo</b>");
-			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn’t made of goo.");	
+			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn’t made of goo.");
 		}
 	}
 	showBiomass();
@@ -2614,7 +2651,7 @@ public function shortenADick():void
 		else
 		{
 			output2("\n" + (x+1) + ": [pc.Cock " + x + "] - <b>Not goo</b>");
-			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn’t made of goo.");	
+			addDisabledGhostButton(x,StringUtil.upperCase(num2Text(x+1)),StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock","This penis isn’t made of goo.");
 		}
 	}
 	showBiomass();
@@ -2853,7 +2890,7 @@ public function removeAllVags():void
 	}
 	pc.removeVaginas();
 	clearGhostMenu();
-	addGhostButton(0,"Next",vaginaGooRootMenu);	
+	addGhostButton(0,"Next",vaginaGooRootMenu);
 }
 
 public function addClitGooMenu():void
@@ -2985,7 +3022,11 @@ public function pickNewGooCuntMenu(arg:Array):void
 		vTypes.push(GLOBAL.TYPE_NYREA);
 	if (flags["AMBER_SEED_USED"] != undefined && (flags["AMBER_SEED_USED"] & AmberSeed.FLAG_GOO_CUNT) == AmberSeed.FLAG_GOO_CUNT)
 		vTypes.push(GLOBAL.TYPE_AVIAN);
-	if(kGAMECLASS.flags["MUFFSTICK_COLORED"] != undefined)
+	if(flags["KNOW_JADES_NAME"] != undefined)
+		vTypes.push(GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SWINE);
+	if(CodexManager.entryViewed("Venus Pitchers") || CodexManager.entryViewed("Cockvines"))
+		vTypes.push(GLOBAL.TYPE_FLOWER);
+	if(flags["MUFFSTICK_COLORED"] != undefined)
 		vTypes.push(GLOBAL.TYPE_MOUTHGINA);
 	
 	var newType:Number = 0;
@@ -3115,7 +3156,7 @@ public function gooVaginaPuffMenu():void
 		clearGhostMenu();
 		if(pc.vaginas[0].hasFlag(GLOBAL.FLAG_GOOEY))
 		{
-			output2("How do  you want to change your vagina?\n");
+			output2("How do you want to change your vagina?\n");
 			if(pc.vaginas[0].hasFlag(GLOBAL.FLAG_PUMPED)) addDisabledGhostButton(0,"Inflate","Inflate Vagina","Your vagina is as puffy as it is going to get!");
 			else if(gooBiomass() >= 100) addGhostButton(0,"Inflate",gooVaginaInflate,0,"Inflate Vagina","Inflate your vagina.\n\n<b>100 mLs Biomass</b>");
 			else addDisabledGhostButton(0,"Inflate","Inflate Vagina","You do not have enough biomass for this!\n\n<b>100 mLs Biomass</b>");
@@ -3195,11 +3236,212 @@ public function gooVaginaDeflate(arg:int = 0):void
 	addGhostButton(0,"Next",vaginaGooRootMenu);
 }
 
+// Cumflation options
+public function gooCumflationOptions():void
+{
+	clearOutput2();
+	
+	var cumflate:Boolean = (!pc.hasStatusEffect("Cumflation Immune"));
+	var leakage:Boolean = (!pc.hasStatusEffect("No Cum Leakage"));
+	output2("Currently, you are " + (!cumflate ? "not allowing" : "allowing") + " your body to cumflate.");
+	if(!cumflate) output2("\n\nThis means that when you take in a load, your body will automatically convert the fluids into goo biomass.");
+	else
+	{
+		output2("\n\nAllowing your body to do this will prevent it from automatically absorbing some injected fluids.");
+		if(!leakage) output2(" Fortunately, you have chosen not to let your body leak the fluids stored inside you.");
+		else output2(" Be careful, however, since doing that may lead to leakage!");
+		output2(" In any case, you can choose to <b>Ingest</b> the fluids if you like, preventing leaks by absorbing the fluids into your body and converting it to goo biomass.");
+	}
+	
+	clearGhostMenu();
+	
+	addGhostButton(0, "Cumflate:" + (!cumflate ? "OFF" : "ON"), gooToggleCumflation, undefined, "Toggle Cumflation " + (!cumflate ? "On" : "Off"), (!cumflate ? "Activate the ability to cumflate." : "Disable cumflation and automatically absorb the loads put into you."));
+	if (cumflate) addGhostButton(1, "Leaking:" + (!leakage ? "OFF" : "ON"), gooToggleLeaking, undefined, "Toggle Leaking " + (!leakage ? "On" : "Off"), (!leakage ? "Enable your body to leak your cumflated fluids." : "Prevent the cumflated fluids in your body from leaking out."));
+	if (pc.isCumflated()) addGhostButton(2, "Ingest", gooAbsorbFluids, undefined, "Ingest Cumflation Fluids", "Absorb the fluids that have been pumped into you.");
+	else addDisabledGhostButton(2, "Ingest", "Ingest Cumflation Fluids", "You are currently not inflated with any fluids.");
+	
+	addGhostButton(14, "Back", gooShiftMenu);
+}
+public function gooToggleCumflation():void
+{
+	if(!pc.hasStatusEffect("Cumflation Immune")) pc.createStatusEffect("Cumflation Immune");
+	else pc.removeStatusEffect("Cumflation Immune");
+	
+	gooCumflationOptions();
+}
+public function gooToggleLeaking():void
+{
+	if(!pc.hasStatusEffect("No Cum Leakage")) pc.createStatusEffect("No Cum Leakage");
+	else pc.removeStatusEffect("No Cum Leakage");
+	
+	gooCumflationOptions();
+}
+public function gooAbsorbFluids():void
+{
+	clearOutput2();
+	
+	var fluidQ:Number = pc.cumFlationAmount();
+	
+	output2("You notice your middle is a bit bigger than normal... and judging by the look of things, it is because you are currently filled with " + Math.round(fluidQ) + " mLs of sexual fluids.");
+	output2("\n\nAre you sure you want to absorb the contents of your [pc.belly]?");
+	
+	clearGhostMenu();
+	addGhostButton(0, "Yes", gooAbsorbFluidsGo, fluidQ);
+	addGhostButton(1, "No", gooCumflationOptions);
+}
+public function gooAbsorbFluidsGo(fluidQ:Number):void
+{
+	clearOutput2();
+	
+	output2("You lick your [pc.lips]");
+	if(pc.isBimbo()) output2(" and wiggle your [pc.hips]");
+	output2(" at the thought of consuming");
+	if(fluidQ < 100) output2(" a tiny snack");
+	else if(fluidQ < 500) output2(" a small meal");
+	else if(fluidQ < 1000) output2(" a good meal");
+	else if(fluidQ < 5000) output2(" a heavy meal");
+	else if(fluidQ < 10000) output2(" a full dinner");
+	else if(fluidQ < 50000) output2(" a couple dinners");
+	else output2(" a massive, multi-course dinner");
+	output2(". Suddenly, you fizz from the inside, the contents in your [pc.belly] swirling, mixing, then turning into tiny bubbles that disperse outwards to be infused by the rest of your body. Your [pc.hair] tingles as your belly deflates, your");
+	if(pc.hasStatusEffect("Gel Body")) output2(" gooey");
+	output2(" body taking its fill to sate your appetite. Once the feeling subsides, the fluid volume is converted over to your biomass reserves and your middle is back to its normal size again");
+	if(pc.isPregnant()) output2(", more or less");
+	output2(".");
+	output2("<i>" + (!pc.isBimbo() ? "Delicious!" : "Mmm, yummy!") + "</i>");
+	
+	gooBiomass(Math.round(fluidQ));
+	pc.flushCumflation();
+	
+	clearGhostMenu();
+	addGhostButton(0, "Next", gooShiftMenu);
+}
+
+// Absorbent skin
+public function gooCleanSelf():void
+{
+	clearOutput2();
+	
+	output2("Your body is definitely covered in sexual fluids, making it obvious to anyone of what activities you have been involved in...");
+	output2("\n\nDo you use your absorbent skin to clean yourself off?");
+	
+	clearGhostMenu();
+	addGhostButton(0, "Yes", gooCleanSelfGo);
+	addGhostButton(1, "No", gooShiftMenu);
+}
+public function gooCleanSelfGo():void
+{
+	clearOutput2();
+	
+	output2("With some concentration, you stimulate your [pc.skinNoun] to accept the fluids. Your body soaks it up like a sponge, wicking up the sex juices greedily and leaving you a little more cleansed - and a little more filled in the reserves.");
+	
+	var cumScale:Number = ((pc.statusEffectv1("Cum Soaked") + pc.statusEffectv1("Pussy Drenched")) / 60);
+	
+	gooBiomass(Math.round(500 * cumScale));
+	if(pc.hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) gooBiomass(Math.round(500 * cumScale));
+	
+	pc.removeStatusEffect("Cum Soaked");
+	pc.removeStatusEffect("Pussy Drenched");
+	
+	clearGhostMenu();
+	addGhostButton(0, "Next", gooShiftMenu);
+}
+
+// Fluid options
+public function gooFluidOptions():void
+{
+	clearOutput2();
+	clearGhostMenu();
+	
+	output2("Being able to manipulate your body, you have the ability to change your expressed fluids to goo at will.");
+	
+	if(!pc.canLactate() && !pc.hasCock() && !pc.hasVagina())
+	{
+		output2(" <b>Your body does not have any valid fluids to change at the moment!</b>");
+	}
+	else
+	{
+		output2(" Your current bodily fluids are as follows:");
+		output2("\n");
+		var gooCost:int = 200;
+		var btnSlot:int = 0;
+		if(pc.canLactate())
+		{
+			output2("\n<b>Lactation:</b> " + StringUtil.capitalize(pc.fluidColorSimple(pc.milkType)) + " " + GLOBAL.FLUID_TYPE_NAMES[pc.milkType]);
+			if(pc.milkType != GLOBAL.FLUID_TYPE_SPECIAL_GOO)
+			{
+				if(gooBiomass() < gooCost) addDisabledGhostButton(btnSlot, "Goo Lact.", "Goo Lactation Fluid", "You don’t have enough biomass for that.\n\n<b>" + gooCost + " mLs Biomass</b>");
+				else addGhostButton(btnSlot, "Goo Lact.", gooFluidOptionsRevert, "milk", "Goo Lactation Fluid", "Change your lactation fluid to goo.\n\n<b>" + gooCost + " mLs Biomass</b>");
+			}
+			else addDisabledGhostButton(btnSlot, "Goo Lact.", "Goo Lactation Fluid", "Your lactation fluid is already goo!");
+			btnSlot++;
+		}
+		if(pc.hasCock())
+		{
+			output2("\n<b>Cum Type:</b> " + StringUtil.capitalize(pc.fluidColorSimple(pc.cumType)) + " " + GLOBAL.FLUID_TYPE_NAMES[pc.cumType]);
+			if(pc.cumType != GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO)
+			{
+				if(gooBiomass() < gooCost) addDisabledGhostButton(btnSlot, "Goo Cum", "Goo Cum", "You don’t have enough biomass for that.\n\n<b>" + gooCost + " mLs Biomass</b>");
+				else addGhostButton(btnSlot, "Goo Cum", gooFluidOptionsRevert, "cum", "Goo Cum", "Change your cum to goo.\n\n<b>" + gooCost + " mLs Biomass</b>");
+			}
+			else addDisabledGhostButton(btnSlot, "Goo Cum", "Goo Cum", "Your cum is already goo!");
+			btnSlot++;
+		}
+		if(pc.hasVagina())
+		{
+			output2("\n<b>Girlcum Type:</b> " + StringUtil.capitalize(pc.fluidColorSimple(pc.girlCumType)) + " " + GLOBAL.FLUID_TYPE_NAMES[pc.girlCumType]);
+			if(pc.girlCumType != GLOBAL.FLUID_TYPE_SPECIAL_GOO)
+			{
+				if(gooBiomass() < gooCost) addDisabledGhostButton(btnSlot, "Goo Femcum", "Goo Girlcum", "You don’t have enough biomass for that.\n\n<b>" + gooCost + " mLs Biomass</b>");
+				else addGhostButton(btnSlot, "Goo Femcum", gooFluidOptionsRevert, "girlcum", "Goo Girlcum", "Change your girlcum to goo.\n\n<b>" + gooCost + " mLs Biomass</b>");
+			}
+			else addDisabledGhostButton(btnSlot, "Goo Femcum", "Goo Girlcum", "Your girlcum is already goo!");
+			btnSlot++;
+		}
+		showBiomass();
+	}
+	
+	addGhostButton(14, "Back", gooShiftMenu);
+}
+public function gooFluidOptionsRevert(fluidType:String = "none"):void
+{
+	clearOutput2();
+	
+	output2("Closing your [pc.eyes] and applying some concentration, you focus your will into your");
+	
+	switch(fluidType)
+	{
+		case "milk":
+			output2(" lactation glands. You can feel your chest fizz for a moment while your mind clouds, but it soon passes and your discover a change after softly pinching your [pc.nipple]...");
+			pc.milkType = GLOBAL.FLUID_TYPE_SPECIAL_GOO;
+			output2("\n\n<b>You now lactate [pc.milk] from your [pc.nipples]!</b>");
+			break;
+		case "cum":
+			output2(" masculine glands. You can feel your prostate fizz for a moment while your mind clouds, but it soon passes and your discover a change after gently stroking [pc.oneCock]...");
+			pc.cumType = GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO;
+			output2("\n\n<b>You now expel [pc.cum] from your [pc.cocks]!</b>");
+			break;
+		case "girlcum":
+			output2(" feminine glands. You can feel your female organs fizz for a moment while your mind clouds, but it soon passes and your discover a change after delicately slipping a finger into [pc.oneVagina]...");
+			pc.girlCumType = GLOBAL.FLUID_TYPE_SPECIAL_GOO;
+			output2("\n\n<b>You now expel [pc.girlCum] from your [pc.vaginas]!</b>");
+			break;
+		default:
+			output2("... nothing. Welp. Something went wrong here--and you lost some goo to boot. Ack!");
+			break;
+	}
+	
+	gooBiomass(-200);
+	
+	clearGhostMenu();
+	addGhostButton(0, "Next", gooShiftMenu);
+}
+
 
 /* Goo Ball Functions */
 public function gooballUsed(gooBall:Class):void
 {
-	pc.destroyItemByType(gooBall);
+	pc.destroyItemByClass(gooBall);
 	
 	clearMenu();
 	addButton(0, "Next", useItemFunction);
@@ -3215,7 +3457,7 @@ public function gooballOption(arg:Array):void
 		case GooBallRed: gooColor = "red"; break;
 		case GooBallOrange: gooColor = "orange"; break;
 		case GooBallYellow: gooColor = "yellow"; break;
-		case GooBallGreen: gooColor = "grean"; break;
+		case GooBallGreen: gooColor = "green"; break;
 		case GooBallBlue: gooColor = "blue"; break;
 		case GooBallPurple: gooColor = "purple"; break;
 		case GooBallPink: gooColor = "pink"; break;

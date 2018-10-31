@@ -24,7 +24,7 @@ public function adultCockvineEncounter():void
 	{
 		clearMenu();
 		
-		var isSlut:Boolean = ((pc.isTreated() && pc.isBimbo()) || pc.isBimbo() || pc.isDependant(Creature.DEPENDANT_CUM) || (pc.libido() >= 50 && pc.lust() >= 33) || pc.lust() > 66);
+		var isSlut:Boolean = ((pc.isTreated() && pc.isBimbo()) || pc.isBimbo() || pc.isCumSlut() || (pc.libido() >= 50 && pc.lust() >= 33) || pc.lust() > 66);
 		
 		output("In the gloom of the deep caverns you feel constantly on edge; the second you set your gaze anywhere your neck begins to crawl, expecting an attack to come from behind. The ground is the last place your instincts tell you to keep an eye on, but when you glance downwards momentarily you are glad you did. You jerk to an immediate halt, staring at the thick, tubular, organic object sprawled out from a crevice across your path.");
 
@@ -48,7 +48,7 @@ public function adultCockvineEncounter():void
 				output("\n\nGazing at the emerging tentacles now – those pliable, thick, strong frustrated tentacles which look like just so much juicy cock to you – you feel dim annoyance with yourself for <i>not</i> letting yourself get caught. It is only natural for a creature like this to react to the presence of someone like you, so well-suited to blissfully taking care of such tense, hot, veiny frustration. And how good would that feel... you realize vaguely you are moving towards the mass of writhing cockvines automatically.");
 
 				// Weak willed/otherwise srsly far gone:
-				if (pc.WQ() < 15 || pc.isDependant(Creature.DEPENDANT_CUM))
+				if (pc.WQ() < 15 || pc.isCumSlut())
 				{
 					output("\n\nYou couldn’t stop your body’s instincts even if you wanted to. You smile beatifically as first one tentacle, then a second wrap their warm embrace around you, beading their herbal semen onto your skin, leading and welcoming you to their deep, wet boudoir.");
 
@@ -78,7 +78,7 @@ public function adultCockvineEncounter():void
 				output("\n\nGazing at the emerging tentacles now – those pliable, thick, strong frustrated tentacles which look like just so much juicy cock – you feel dim annoyance with yourself for <i>not</i> letting yourself get caught. It is only natural for a creature like this to react to the presence of someone like you, so well-suited to blissfully taking care of such tense, hot, veiny frustration. And how good would that feel... you realize vaguely you are moving towards the mass of writhing cockvines automatically.");
 
 				// Weak willed/otherwise srsly far gone
-				if (pc.WQ() < 5 || pc.isDependant(Creature.DEPENDANT_CUM))
+				if (pc.WQ() < 5 || pc.isCumSlut())
 				{
 					output("\n\nYou couldn’t stop your body’s instincts even if you wanted to. You smile beatifically as first one tentacle, then a second wrap their warm embrace around you, beading their herbal semen onto your skin, leading and welcoming you to their deep, wet boudoir.");
 
@@ -124,8 +124,8 @@ public function adultCockvineEncounter():void
 		clearMenu();
 		
 		CombatManager.newGroundCombat();
-		CombatManager.setFriendlyCharacters(pc);
-		CombatManager.setHostileCharacters(new Cockvine());
+		CombatManager.setFriendlyActors(pc);
+		CombatManager.setHostileActors(new Cockvine());
 		CombatManager.victoryScene(adultCockvinePCVictory);
 		CombatManager.lossScene(cockvineLossRouter);
 		CombatManager.displayLocation("COCKVINE");
@@ -201,6 +201,9 @@ public function adultCockvineStruggleOverride():void
 
 	if (pc.PQ() > pc.RQ()) chance = pc.PQ();
 	else chance = pc.RQ();
+	
+	//Limber confers a 20% escape chance.
+	if(pc.hasPerk("Limber")) chance += 20;
 
 	if (rand(100) > chance)
 	{
@@ -262,7 +265,7 @@ public function adultCockvineConsentacles():void
 
 	output("\n\nThe cockvine that has your tongue’s attention undulates peacefully over your [pc.lips] for a moment, taking the time to smear them with its fruit, before parting them in a single fluid movement. Hollowing your cheeks you practically vacuum the leaking purple head inwards, the heavy herbal musk invading your mouth, intensifying the fug of pheromone arousal you’re lost in to an almost trance-like state.");
 	// Oral Fixation
-	if (pc.isDependant(Creature.DEPENDANT_CUM))
+	if (pc.isCumSlut())
 	{
 		output("\n\nYour tender lips, puffed up to the tentacle’s teasing and eagerly absorbing its fluids, have already driven you practically to the edge – when it stretches them wide and fills your mouth with bulging, heavily scented prick it’s too much. The sound of your muffled moans reaches your ears from somewhere far away as you rocket to an orgasm,");
 		if (pc.hasVagina()) output(" [pc.eachVagina] quivering and wetting itself across the tentacle sliding across it");
@@ -304,7 +307,7 @@ public function adultCockvineConsentacles():void
 	else
 	{
 		output("\n\nYou grind against the throbbing mass of warm plant flesh beneath you needily, eager to be filled. You rotate your head, running your tongue and cheeks across the bulging cockvine stuffing your mouth, trying to goad it on, and your attention is rewarded moments later when a particularly large cockvine penetrates your [pc.asshole], its head spreading your sensitive sphincter wide before the deliciously thick, firm shaft ploughs deep into your tunnel.");
-		if (pc.hasCock()) output(" It thoughtlessly mashes over your prostrate, your helplessly hard [pc.cocksNounSimple] flexing and bulging to the pump of the questing, oily, sugared plant dick.");
+		if (pc.hasCock()) output(" It thoughtlessly mashes over your prostate, your helplessly hard [pc.cocksNounSimple] flexing and bulging to the pump of the questing, oily, sugared plant dick.");
 	}
 
 	if (pc.hasCuntTail())
@@ -374,15 +377,17 @@ public function adultCockvineConsentacles():void
 	output(", ready to carry on. The fun you’ve had here will stay with you, though; you smile dozily as the high taste, texture and smell of citrus sex inundates your senses as you go on your unsteady way.");
 
 	processTime(60);
-
+	
+	var ppCockvine:Cockvine = new Cockvine();
+	
 	for (var i:int = 0; i < pc.vaginas.length; i++)
 	{
-		pc.loadInCunt(chars["COCKVINE"], i);
-		pc.cuntChange(i, chars["COCKVINE"].cockVolume(0));
+		pc.loadInCunt(ppCockvine, i);
+		pc.cuntChange(i, ppCockvine.cockVolume(0));
 	}
-	pc.loadInAss(chars["COCKVINE"]);
-	pc.buttChange(chars["COCKVINE"].cockVolume(0));
-	pc.loadInMouth(chars["COCKVINE"]);
+	pc.loadInAss(ppCockvine);
+	pc.buttChange(ppCockvine.cockVolume(0));
+	pc.loadInMouth(ppCockvine);
 
 	pc.orgasm();
 	pc.orgasm();

@@ -135,8 +135,7 @@ public function buskyStrapsShopFunc():Boolean {
 		output("Straps is currently closed.\n\nA sign beside the door announces the opening hours: <b>06:00 to 17:00</b>.");
 		
 		//put player back on previous tile
-		currentLocation = "508";
-		generateMap();
+		moveTo("508");
 		showLocationName();
 		clearMenu();
 		addButton(0,"Next", mainGameMenu);
@@ -222,7 +221,7 @@ public function buskyTalksAboutHimself():void {
 	output("\n\nYou introduce yourself as Steele, [pc.name] Steele.");
 	output("\n\n<i>“Kind of an odd last name; it Terran or something?”</i>");
 	output("\n\nYou awkwardly explain Steele Co. and how you’re the soon to be CEO while Busky nods in understanding.");
-	output("\n\n<i>“Cool. Never really payed attention to Steele Co. myself, not much of a big deal to me since I don’t really have much need for tetratazmanian carbonoid alloys or whatever. Anyway, nice to meet you, [pc.name].”</i>");
+	output("\n\n<i>“Cool. Never really paid attention to Steele Co. myself, not much of a big deal to me since I don’t really have much need for tetratazmanian carbonoid alloys or whatever. Anyway, nice to meet you, [pc.name].”</i>");
 	
 	processTime(2);
 	
@@ -259,7 +258,7 @@ public function buskyTalksAboutTreatment():void {
 	
 	if (pc.isTreated()) output(" A lot of people do, although it’s usually just tourists, and you...”</i> he glances at your treated physique, <i>“you’re no newcomer.");
 	else output(" Everyone wants to know the changes before they take it themselves.");
-	output(" Well, The Treatment was originally a fertility drug administered to the initial immigrants who landed on this here planet, used to boost the population to colonize and fight against what Big T. calls ’Mega Varmints’. After we got control of the planet a few... scratch that. A buncha people took a liking to The Treatment, soft women, strong men, was pretty natural to ‘em. The details around this time are a little fuzzy for me, but fast forward a couple generations and now it’s sunk into our genes, mandatory on our 18th birthday, and better than ever.”</i>");
+	output(" Well, The Treatment was originally a fertility drug administered to the initial immigrants who landed on this here planet, used to boost the population to colonize and fight against what Big T. calls ‘Mega Varmints’. After we got control of the planet a few... scratch that. A buncha people took a liking to The Treatment, soft women, strong men, was pretty natural to ‘em. The details around this time are a little fuzzy for me, but fast forward a couple generations and now it’s sunk into our genes, mandatory on our 18th birthday, and better than ever.”</i>");
 
 	output("\n\n<i>“And what about you? Were you always the hulking slab of meat you are today?”</i> You ask sarcastically, underestimating the power of the Treatment.");
 	output("\n\n<i>“Actually, I was quite the nerd. Glasses, thin, nose-deep in books, no muscle bulk. Nothin’. But then once I got the Treatment at the beginning of my Senior school year things turned out much better for me. You see, before my Treating I was... close with the football team.");
@@ -423,7 +422,7 @@ public function buskySexTeaseAndDenial(modelingItem:*):void {
 		if (pc.cocks.length == 1) output("s");
 		output(" against your [pc.lowerGarment], trying to burst free and assault Busky’s ass");
 	} else if (pc.hasLowerGarment() && pc.hasHardLightEquipped()) {
-		output(" You almost consider taking off your [pc.undergarment] and forcing Busky to wear it inside out, but you decide maintain control of the situation");
+		output(" You almost consider taking off your [pc.lowerGarment] and forcing Busky to wear it inside out, but you decide maintain control of the situation");
 	} else if (silly && pc.clitLength >= 12) {
 		output(" You nibble on Busky’s ear as you rub your [pc.clit] against Busky’s tight ass, you shiver in delight and let out a soft moan as the pleasure courses through you");
 	}
@@ -714,7 +713,7 @@ public function buskySexAnalPitch():void {
 	output("\n\nBusky’s ass");
 	if(pc.hasKnot()) output(" continues");
 	else output(" begins");
-	output(" to clench and tighten in preparation for orgasm, but that’s not the the only way you can tell.");
+	output(" to clench and tighten in preparation for orgasm, but that’s not the only way you can tell.");
 	
 	if (!pc.isTaur()) output(" You let go of his ass cheeks and move boths hands to");
 	else output(" You turn your attention to");
@@ -729,13 +728,13 @@ public function buskySexAnalPitch():void {
 	else if (pc.cumQ() >= 1000 && pc.cumQ() < 5000) output("\n\nThe amount of spunk you pour into Busky is clearly enough to make an impression, as you can see him place a hand over his belly, your seed filling him to the brim.");
 	else if (pc.cumQ() >= 5000) output("\n\nThe first few spurts of your seed are already enough to fill him full, but your balls are still churning, and you aren’t pulling out.\n\nHe looks back at you as he tries to get away but you hold him tight, forcing each drop of your load into his ass. You watch as his belly expands with your cum, slowly growing and growing, until he looks like he’s about to give birth.");
 
-	output("\n\nAfter you both finish, Busky collapses on the countertop, lying in a pool of his own cum and heaving in air. You follow suit and fall on top of him, still hilted inside his ass. You don’t pull out just yet, instead you take some time to rest yourself, absolutely wrecked by your orgasm. It takes a while, but you finally regain the strength to stand up.");
+	output("\n\nAfter you both finish, Busky collapses on the countertop, lying in a pool of his own cum and heaving in air. You follow suit and fall " + (pc.isTaur() ? "right next to" : "on top of") + " him, still hilted inside his ass. You don’t pull out just yet, instead you take some time to rest yourself, absolutely wrecked by your orgasm. It takes a while, but you finally regain the strength to stand up.");
 	
 	if(pc.hasKnot()) {
 		output("\n\nYou mindlessly try to pull out, only to be met with a tug of resistance, forgetting about your knot. Busky pulls his face out of the puddle cum and wipes it off with his hand, before turning back to face you.");
 		output("\n\n<i>“Why aren’t you... oh yeah,”</i> he sheepishly looks away.");
 		output("\n\nYou lean over and whisper into his ears that this might take a while. All he can do is nod and reply.");
-		output("\n\n<i>“... I’m going to move back over to the other side of the counter, I still have to ring people up...”</i>");
+		output("\n\n<i>“...I’m going to move back over to the other side of the counter, I still have to ring people up...”</i>");
 		output("\n\nYou agree with him, and you both awkwardly make your way back around the counter as he activates a cleaning drone to wipe up the counter and tosses on his stock standard undershirt.");
 		output("\n\nAn hour passes, with Busky trying to ring up customers as nonchalantly as possible, trying not to bring attention to the cock knotted in his ass, and the person attached to it. However, as Busky is ringing up a customer, you start to feel your knot die down, and you start to pull.");
 		
@@ -836,21 +835,21 @@ public function buskyShopInitialization():void {
 	// Unlockables
 	if(StatTracking.getStat("milkers/prostate milker uses") > 0)
 	{
-		if(!chars["BUSKY"].hasItemByType(SumaCream)) chars["BUSKY"].inventory.push(new SumaCream());
+		if(!chars["BUSKY"].hasItemByClass(SumaCream)) chars["BUSKY"].inventory.push(new SumaCream());
 		CodexManager.unlockEntry("Suma Cream");
 	}
-	else chars["BUSKY"].destroyItem(new SumaCream());
+	else chars["BUSKY"].destroyItemByClass(SumaCream, -1);
 	
 	//During christmas season sell extra stuff
-	if (checkDate(24, 12, 14)) {
+	if (isChristmas()) {
 		//make sure this is not added everytime you visit him
-		if(!chars["BUSKY"].hasItem(new Nutnog())) chars["BUSKY"].inventory.push(new Nutnog());
-		if(!chars["BUSKY"].hasItem(new Peckermint())) chars["BUSKY"].inventory.push(new Peckermint());
+		if(!chars["BUSKY"].hasItemByClass(Nutnog)) chars["BUSKY"].inventory.push(new Nutnog());
+		if(!chars["BUSKY"].hasItemByClass(Peckermint)) chars["BUSKY"].inventory.push(new Peckermint());
 	}
 	else
 	{
-		chars["BUSKY"].destroyItem(new Nutnog());
-		chars["BUSKY"].destroyItem(new Peckermint());
+		chars["BUSKY"].destroyItemByClass(Nutnog, -1);
+		chars["BUSKY"].destroyItemByClass(Peckermint, -1);
 	}
 }
 
@@ -1198,7 +1197,7 @@ public function buskyModelsClothingItem(item:*):void {
 		else output(" Oh, and the ultra-elastic is extremely durable.");
 		output("”</i>");
 		
-		output("\n\nYou look the boxers over and consider your options. The holographic price tag says " + getBuskyPrice(item) + " credits.");	
+		output("\n\nYou look the boxers over and consider your options. The holographic price tag says " + getBuskyPrice(item) + " credits.");
 		
 		if (flags["BUSKY_MODELLED_HORSESHOEBOXERS"] == undefined) buskyAdjustAffection(0.5);
 		flags["BUSKY_MODELLED_HORSESHOEBOXERS"] = true;
@@ -1324,17 +1323,17 @@ public function buskyWorkoutMenu():void {
 		
 		clearMenu();
 		if(pc.isTaur()) addDisabledButton(0, "S.Motivate", "Sexually Motivate", "You can’t be a Taur when you want to do this.");
-		else addButton(0, "S.Motivate", buskySexMotivation, null, "Sexually Motivate", "Give Busky the motivation to push his limits. You will be on the receiving end of all action.");
+		else addButton(0, "S.Motivate", buskySexMotivation, undefined, "Sexually Motivate", "Give Busky the motivation to push his limits. You will be on the receiving end of all action.");
 		
 		if(pc.isTaur()) addDisabledButton(1, "BenchAnal", "Bench Anal", "As a taur it’d be out of the question to do this.");
 		else if(!pc.hasCock()) addDisabledButton(1, "BenchAnal", "Bench Anal", "You’ll need a cock.");
-		if(pc.analCapacity() < chars["BUSKY"].cockVolume(0)) addDisabledButton(1, "BenchAnal", "Bench Anal", "You can’t take a bull as well endowed as Busky.");
-		else addButton(1, "BenchAnal", buskySexBenchAnal, null, "Bench Anal", "Use the bench for some anal fun, pitching and catching.");
+		else if(pc.analCapacity() < chars["BUSKY"].cockVolume(0)) addDisabledButton(1, "BenchAnal", "Bench Anal", "You can’t take a bull as well endowed as Busky.");
+		else addButton(1, "BenchAnal", buskySexBenchAnal, undefined, "Bench Anal", "Use the bench for some anal fun, pitching and catching.");
 		
 		if (!pc.hasVagina() && pc.analCapacity() < chars["BUSKY"].cockVolume(0)) addDisabledButton(2, "HotTubFuck", "Hot-Tub Fuck", "You can’t take a bull as well endowed as Busky.");
 		else if(pc.hasVagina() && pc.vaginalCapacity(0) < chars["BUSKY"].cockVolume(0)) addDisabledButton(2, "HotTubFuck", "Hot-Tub Fuck", "You can’t take a bull as well endowed as Busky.");
 		else if (pc.isTaur()) addDisabledButton(2, "HotTubFuck", "Hot-Tub Fuck", "As a taur it’d be out of the question to do this.");
-		else addButton(2, "HotTubFuck", buskySexHotTubFuck, null, "Hot-Tub Fuck", "Head to the hot tubs, relax, and ride Busky’s cock.");
+		else addButton(2, "HotTubFuck", buskySexHotTubFuck, undefined, "Hot-Tub Fuck", "Head to the hot tubs, relax, and ride Busky’s cock.");
 	} else {
 		clearMenu();
 	}
@@ -1352,11 +1351,13 @@ public function buskySexMotivation():void {
 	output("\n\n<i>“Now look here [pc.name], you know you’re gonna have to keep your end of the bargain right?”</i> Busky chuckles as he slowly lowers the weight down to his chest and back up again. <i>“That’s one press right there, get ready to pay up.”</i>");
 	output("\n\nYou watch his arms strain under the weight, glistening with beads of sweat, slowly trickling down his figure. Some drip down to the floor, most of them however, are just soaked up by his undershirt, all of this only adds to the familiar musk of the bull. You stand in a trance, only snapping out of it when you realize he already completed his third rep.");
 	output("\n\nYou don’t want to make it <i>too</i> easy though, so you lower yourself to your knees. You level with his crotch and gaze at his large bulge, quite visible against the saggy gym shorts. But, you decide you’d rather see a bit more, so you pull off his gym shorts. As soon as his shorts come off his hypnotizing aroma permeates the air, making your mouth water with cocklust. Without a moment’s hesitation you tug at the jockstrap, attempting to free his bountiful crotch. You pull down his jockstrap only to be caught on his flare, after a bit of fiddling his now turgid horsecock springs out, almost smacking you in the face. As soon as you get his jockstrap off of his legs you hold it up to your face, basking in the deep, musky scent.");
-	output("\n\n<i>“Hey, what you think you’re doing down there? Can’t wait ‘til I’m done?”</i>");
+	output("\n\n<i>“Hey, what you think you’re doing down there? Can’t wait till I’m done?”</i>");
 	
 	output("\n\nYou ignore Busky’s comments");
 	if (pc.hasArmor()) output(", strip off your [pc.armor]");
-	output(" and put on Busky’s leather jockstrap. His jockstrap doing a poor job of hiding your fully erect [pc.cocksLight]. Looking back to his crotch you find his 16 inch cock fully erect. Smirking, you run your fingers around his flare, taking your thumb and running it up and down his most sensitive spots, driving Busky into a sexual frenzy as he resists kicking you away and finishing the handjob himself. You can see him cracking under the pressure, as more of his salty sweat runs down his body.");
+	output(" and put on Busky’s leather jockstrap.");
+	if (pc.hasCock()) output(" His jockstrap doing a poor job of hiding your fully erect [pc.cocksLight].");
+	output(" Looking back to his crotch you find his 16 inch cock fully erect. Smirking, you run your fingers around his flare, taking your thumb and running it up and down his most sensitive spots, driving Busky into a sexual frenzy as he resists kicking you away and finishing the handjob himself. You can see him cracking under the pressure, as more of his salty sweat runs down his body.");
 	
 	output("\n\nNot wanting to let all of his heavenly musk juice go to waste, you run your tongue along one of his balls, lapping up all of the sweat from his love spheres. You dive your spare hand into your new jockstrap and begin");
 	if (pc.balls > 0) output(" fondling your [pc.balls]");
@@ -1373,7 +1374,7 @@ public function buskySexMotivation():void {
 	output("\n\nBusky dropped the dumbbell and is now sitting up, trying to force words through pants. <i>“20 sets ...of 10, 400 ... pounds, done. Now... showers... my prize.”</i> You get up off the floor and notice some of the other gym patrons giving you passing glances. Clearly this was not an uncommon occurrence.");
 	
 	clearMenu();
-	addButton(0, "Next", buskySexMotivationFollowUp, null);
+	addButton(0, "Next", buskySexMotivationFollowUp);
 }
 
 //second screen of sexMotivation
@@ -1412,7 +1413,9 @@ public function buskySexMotivationFollowUp():void {
 	if (pc.hasCock()) output(" prostate");
 	else if (pc.hasVagina()) output(" g-spot");
 	else output(" ass");
-	output(" starts to take effect on your genitalia.");
+	output(" starts to take effect on you");
+	if (pc.hasGenitals()) output("r genitalia");
+	output(".");
 	
 	//randomly pick a scene if both cock + pussy present
 	var doCockScene:Boolean = true;
@@ -1450,10 +1453,12 @@ public function buskySexMotivationFollowUp():void {
 	output("\n\nNeither you or the breeding bull can hold out much longer. Busky bites down on his lip as he suppresses a loud, lustful moan. As his cum shoots up into your [pc.vagOrAss], slightly expanding your belly with its force, your eyes roll back as another orgasm surges through your body. With your");
 	if (pc.hasVagina()) output(" womb");
 	else output(" belly");
-	output(" filled to the brim with his thick seed, you start to lose consciousness. Busky catches you as he sits down on the shower floor, your collective fluids being washed away. Now in his lap, resting your head on his shoulder, you lie there for a moment, recovering from the romp within the comforting grip of the lovable bull.");
+	output(" filled to the brim with his thick seed, you start to lose consciousness. Busky catches you as he sits down on the shower floor");
+	if (pc.hasGenitals()) output(", your collective fluids being washed away");
+	output(". Now in his lap, resting your head on his shoulder, you lie there for a moment, recovering from the romp within the comforting grip of the lovable bull.");
 	
 	clearMenu()
-	addButton(0, "Next", buskySexMotivationFollowUpFollowUp, null);
+	addButton(0, "Next", buskySexMotivationFollowUpFollowUp);
 }
 
 //and the third screen of sexMotivation
@@ -1463,7 +1468,7 @@ public function buskySexMotivationFollowUpFollowUp():void {
 	
 	output("After you’ve fully rested, you get out of his lap and stretch. Busky follows you back to the bench where your romp started, only to find it entirely wiped down. The only proof of your sexual escapade being Busky’s jockstrap, hanging from the weight with a note tacked to it.");
 	output("\n\n<i>“I took the liberty of moving your clothes back to Straps for you, Busky.”</i> ~Q");
-	output("\n\n<i>“... Dammit Quenton,”</i> Busky chuckles.");
+	output("\n\n<i>“...Dammit Quenton,”</i> Busky chuckles.");
 	output("\n\nAfter a brief goodbye, you and Busky part ways. The massive bull, wearing nothing but his jockstrap, walks back to his shop, attracting the eyes of more than a few cows.");
 	
 	processTime(80 + rand(15));
@@ -1491,14 +1496,14 @@ public function buskySexBenchAnal():void {
 	output("\n\nBoth you and the bull strip in unison, with Busky leaving on only his brown leather jockstrap. He slowly pulls out his long flared cock as it quickly springs to life, leaving his quartet of balls in the jock. You slide it against your cheek, bringing it up to your lips, almost slipping it into your mouth, before the flare passes your lips, you go back down to his sheath. sliding your tongue up and down his length, not giving him the full satisfaction of a blowjob, only the taste.");
 	output("\n\n<i>“Ey, [pc.name] you don’t have to pace yourself. I’m ready at any time,”</i> Busky chides. Briefly taking his statement into account, it’s clear he’s in the mood for anything, so you take the opportunity to take the lead.");
 	
-	output("\n\nGetting off your knees you slowly position yourself over Busky’s throbbing member, slowly lowering yourself onto the flared shaft. The impatient bull can’t seem to wait as he thrusts his hips upward, quickly pushing his cock against your ass, his blunt flare slips past your anus, leaving a smear of precum. After a second trust, he successfully rams his blunt head into your ass.");
+	output("\n\nGetting off your knees you slowly position yourself over Busky’s throbbing member, slowly lowering yourself onto the flared shaft. The impatient bull can’t seem to wait as he thrusts his hips upward, quickly pushing his cock against your ass, his blunt flare slips past your anus, leaving a smear of precum. After a second thrust, he successfully rams his blunt head into your ass.");
 	if (pc.ass.looseness() <= 2) output(" A loud gasp escapes your mouth while you try to adjust.");
 	//do away with potential virginity 
 	pc.buttChange(chars["BUSKY"].cockVolume(0), true, true, false);
 	
 	output(" As he tries to sit up you swiftly pin his heaving chest down, telling him that <i>you’re</i> leading. You lift yourself off of his turgid member, leaving just the tip inside your [pc.ass], and began gyrating your [pc.hips] while ascending and descending on his cock. Busky keeps trying to move to his pace, placing his hands on your hips, trying to bring you deeper. But you continuously slap his hands away, stopping him from taking the handlebar on the bike that is your ass. Eventually he relents, and instead raises his hand up and caresses your [pc.cock] with his callused hands.");
 	output("\n\n<i>“Oh, fuck. [pc.name] I’m close. Speed it up will ya?”</i> Busky begs. With a smirk you slide off of his cock and straddle his chest. He looks up at you with pleading eyes, place a hand on his cheek and slide it into his nest of brown hair. Slowly, you lean in and whisper.");
-	output("\n\n<i>“I cum first,”</i> With that you shove your [pc.cockFull] into his mouth and begin facefucking him. His lips seal around your cock as his tongue works in a flurry. Soon you’re dribbling a few drops of precum into Busky’s mouth, just barely able to hold in your load. You lean in and whisper, <i>“Drink all of it you muscleslut. I don’t want one drop spilled got it?”</i> Busky submits to your will as he drink every last drop of your pre and licks your shaft clean.");
+	output("\n\n<i>“I cum first,”</i> With that you shove your [pc.cock] into his mouth and begin facefucking him. His lips seal around your cock as his tongue works in a flurry. Soon you’re dribbling a few drops of precum into Busky’s mouth, just barely able to hold in your load. You lean in and whisper, <i>“Drink all of it you muscleslut. I don’t want one drop spilled got it?”</i> Busky submits to your will as he drink every last drop of your pre and licks your shaft clean.");
 	output("\n\n<i>“Get your ass off the bench and come to your new seat,”</i> you command, rubbing your cock. Busky obliges, totally overwhelmed by your dominance. He takes a moment, positioning his anus above your [pc.biggestCock] before slowly stuffing himself full of your cock, as he happily bounces his musclebutt up and down.");
 	if (pc.longestCockLength() > 20) {
 		output(" You notice Busky’s body break out into a cold sweat, clearly he is struggling to accommodate your mammoth length.");
@@ -1558,8 +1563,7 @@ public function buskySexHotTubFuck():void {
 	clearOutput();
 	showBusky();
 	
-	currentLocation = "574";
-	generateMap();
+	moveTo("574");
 	showLocationName();
 	
 	output("Instead of working out with Busky, you ask him about doing something a tad more, relaxing.");
@@ -1574,7 +1578,7 @@ public function buskySexHotTubFuck():void {
 	if(!pc.isNude()) output("\n\nRight before you enter the tub, you and Busky both strip off your clothes. After you’re fully nude, you notice Busky’s still wearing his jockstrap, blushing slightly.");
 	else output("\n\nAlready naked, you start taking off Busky’s undershirt. After you neatly fold it up, you reach for his jockstrap, but he brushes your hand to the side, blushing slightly.");
 
-	output("\n\n<i>“C’mon, let the boys breath,”</i> you softly whisper into Busky’s ear as you slip your hand into his jockstrap, fondling his quartet of cum churning balls, so large you can only cup one at a time.");
+	output("\n\n<i>“C’mon, let the boys breathe,”</i> you softly whisper into Busky’s ear as you slip your hand into his jockstrap, fondling his quartet of cum churning balls, so large you can only cup one at a time.");
 	output("\n\nYour hand slips out of the jockstrap, marked with Busky’s ball scent. You take a deep whiff of the deep, masculine, almost addicting smell. After satisfying your musk cravings, you guide Busky’s hands, still tense and restrained for some reason. Still, his hands follow yours and he slips off his jockstrap. Tossing it onto his folded up undershirt.");
 	
 	if(silly) output("\n\nHis balls, now free from their support, bounce with each step he takes, his legs uncomfortably knocking against them. Busky winced in discomfort, as any normal person with these balls would experience great pain. You dutifully take them into your hands, carefully holding them as you both step past the sliding door, into the hot tub. Once Busky’s crotch submerges, you let go of his balls, and");
@@ -1602,7 +1606,7 @@ public function buskySexHotTubFuck():void {
 
 	if(pc.isBro()) {
 		output("\n\n<i>“Hey! Step off bimbo! Can’t you stop thinking about cock for long enough to realize that maybe there’s a reason he came here with me?”</i>");
-		output("\n\n<i>“... HEY!”</i> the cowgirl whines, <i>“I don’t care, I saw him first. And he’s probably just shy. C’mon, ya big lug,”</i> she turns back to Busky, tugging at his arm. <i>“Let’s get out of here!”</i>");
+		output("\n\n<i>“...HEY!”</i> the cowgirl whines, <i>“I don’t care, I saw him first. And he’s probably just shy. C’mon, ya big lug,”</i> she turns back to Busky, tugging at his arm. <i>“Let’s get out of here!”</i>");
 		output("\n\n<i>“He’s gay you cockguzzling cowslut! You’d realize that if you’d stop begging for dick for half a second!”</i>");
 
 	} else {
@@ -1614,7 +1618,7 @@ public function buskySexHotTubFuck():void {
 	processTime(20 + rand(10));
 	
 	clearMenu()
-	addButton(0, "Next", buskySexHotTubFuckFollowUp, null);
+	addButton(0, "Next", buskySexHotTubFuckFollowUp);
 }
 
 //Hot tub second screen
@@ -1627,7 +1631,7 @@ public function buskySexHotTubFuckFollowUp():void {
 	output("The cow pouts her lips, brushes her wet, brown hair out of her face, and heads on over to one of the other guys in the tub.");
 	output("\n\n<i>“Thank fuck man. You saved my hide-</i>” Busky was quickly interrupted by you, reaching down and grabbing his quartet of balls.");
 	output("\n\n<i>“You’re my fuck, not hers,”</i> you joke, as you get into position, working your way into his lap as his hands work their way to your [pc.ass].");
-	output("\n\nYou rub Busky’s length between your ass cheeks, feeling it throb with anticipation. You move a hand and grab onto one his his horns Busky’s, using your free hand to position the large, pulsating member under your [pc.vagOrAss].");
+	output("\n\nYou rub Busky’s length between your ass cheeks, feeling it throb with anticipation. You move a hand and grab onto one of his horns, using your free hand to position the large, pulsating member under your [pc.vagOrAss].");
 	output("\n\nAfter steadying yourself for a moment you lower yourself onto his turgid horsecock, his flare spreading your hole wide.");
 	//do away with potential virginity
 	if (pc.hasVagina()) pc.cuntChange(0, chars["BUSKY"].cockVolume(0), true, true, false);
@@ -1640,7 +1644,7 @@ public function buskySexHotTubFuckFollowUp():void {
 	if (pc.isBimbo()) output(" a whorish moan echoing around you");
 	else if(pc.isBro()) output(" a grunt of raw sexual power erupting from your lungs");
 	else output(" a pleasurable groan coming out of your mouth");
-	output(", as a splash of water ripples through the hot tub, alerting the other patrons of your current activity. They give you passing glances, before resuming their previous conversations/coitious.");
+	output(", as a splash of water ripples through the hot tub, alerting the other patrons of your current activity. They give you passing glances, before resuming their previous conversations/coitus.");
 	
 	if(pc.hasCock() && pc.hasVagina()) {
 		output("\n\nYou can feel your [pc.cocks] dribbling small spurts of precum as your cunt produces much needed lubricant. With every pump inside your quivering cunt, it becomes more and more of a challenge not to start");
@@ -1656,25 +1660,29 @@ public function buskySexHotTubFuckFollowUp():void {
 	
 	output("\n\nYou continue like that for a while, adding to the waves of the pool. Looking over to the corner of the pool where the young bulls were, you see the brunette cow getting gangbanged by the group. Your eyes linger for a while, until Busky turns your head back to face him. He leans up to your ear and whispers.");
 	
-	output("\n\n<i>“You’re my fuck, not hers,”</i> he says as his hand slips to your [pc.biggestCock], playing with it as he begins to thrust in time with your bounces. The numb pleasure of having your");
+	output("\n\n<i>“You’re my fuck, not hers,”</i> he says");
+	if (pc.hasCock()) output(" as his hand slips to your [pc.biggestCock], playing with it");
+	output(" as he begins to thrust in time with your bounces. The numb pleasure of having your");
 	if (pc.hasCock()) output(" prostate");
 	else if (pc.hasVagina()) output(" [pc.vagina]");
 	else output(" [pc.ass]");
 	output(" pounded flooding through your body, you feel your legs grow weak.");
 
-	if(pc.hasCock() && pc.hasVagina()) {
+	if(pc.hasCock()) {
 		output("\n\nYour breathing becomes more and more shallow, your heart races, and your cock throbs. The inevitable occurs, and a small rope of cum flies out of your cock, and lands on Busky’s chest. Followed by another, more powerful rope, and another, and another. Your [pc.vagOrAss] clenches down hard on his length as he continuously pounds your");
-		var random:int = rand(1);
-		if (random == 0) output(" prostate");
+		if (!pc.hasVagina()) output(" prostate");
 		else output(" quivering cunt");
 		output(".");
 	} else if(pc.hasVagina()) {
-		output("\n\nYour breathing becomes more and more shallow, your heart races, and your cock throbs. The inevitable occurs and you reflexively clench your [pc.thighs] as multiple spurts of [pc.girlCum] fly down Busky’s length.");
+		output("\n\nYour breathing becomes more and more shallow, your heart races. The inevitable occurs and you reflexively clench your [pc.thighs] as multiple spurts of [pc.girlCum] fly down Busky’s length.");
 	}
 	output("\n\nYou melt in his lap, falling limply into his arms");
-	if (pc.hasCock()) output(" as the last of your cum dribbles out of your length");
-	if (pc.cocks.length > 1) output("s");
-	output("The warm water thrashing around you as Busky ruts into your [pc.vagOrAss]. The musclebound bull is close to orgasm himself, as he thrusts slower, and harder.");
+	if (pc.hasCock())
+	{
+		output(" as the last of your cum dribbles out of your length");
+		if (pc.cocks.length > 1) output("s");
+	}
+	output(", the warm water thrashing around you as Busky ruts into your [pc.vagOrAss]. The musclebound bull is close to orgasm himself, as he thrusts slower, and harder.");
 
 	output("\n\nBusky eventually bottoms out in your [pc.vagOrAss], thrusting his full length inside. You can practically feel his cock distend with the first rope, flooding your [pc.vagOrAss] to the brim, leaving the rest of his cum with nowhere to go. But he doesn’t pull out. The next jet of bull cream stretches your belly, distending it a bit.");
 	output("\n\nYou let out a groan as the pain of belly expansion is mixed with the still fading pleasure of your orgasm. If anything it feels amazing, being breed like a cow, your belly swelling with Busky’s seed. Load after load fills your");
@@ -1685,7 +1693,7 @@ public function buskySexHotTubFuckFollowUp():void {
 	processTime(40 + rand(10));
 	
 	clearMenu()
-	addButton(0, "Next", buskySexHotTubFuckEnd, null);
+	addButton(0, "Next", buskySexHotTubFuckEnd);
 }
 
 //Hot tub final screen
@@ -1693,8 +1701,7 @@ public function buskySexHotTubFuckEnd():void {
 	clearOutput();
 	showBusky(true);
 	
-	currentLocation = "571";
-	generateMap();
+	moveTo("571");
 	showLocationName();
 	
 	output("Busky lifts you off of his length, as your hole clenches down on reflex. You float in the tub, patting your belly in satisfaction of a good fuck. Time passes while your mind is fogged with pure bliss, that is until you notice a strong arm wrap around you. Opening your eyes you see Busky pulling you out of the hot tub, wearing a towel around his waist. He slings you over his shoulder before retrieving both of your items.");

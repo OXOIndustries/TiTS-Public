@@ -1,0 +1,110 @@
+[
+	{
+		"args":
+		{
+			"extend": false,
+			"to": "hardbol"
+		},
+		"command": "move_to"
+	},
+	{
+		"args":
+		{
+			"extend": true,
+			"to": "hardeol"
+		},
+		"command": "move_to"
+	},
+	{
+		"args":
+		{
+			"replacements":
+			[
+				"fix_savvy_spaces",
+				"fix_regular_quotes_open",
+				"fix_regular_quotes_close",
+				"fix_fancyapos_open",
+				"fix_fancyapos_close",
+				"replace_emdash",
+				"replace_doubledash",
+				"replace_ellipses"
+			]
+		},
+		"command": "reg_replace"
+	},
+	{
+		"args":
+		{
+			"extend": true,
+			"to": "hardeol"
+		},
+		"command": "move_to"
+	},
+	{
+		"args":
+		{
+			"replacements":
+			[
+				"fix_fancyquotes_open",
+				"fix_fancyquotes_close"
+			]
+		},
+		"command": "reg_replace"
+	},
+	{
+		"args":
+		{
+			"extend": false,
+			"to": "hardbol"
+		},
+		"command": "move_to"
+	},
+	{
+		"args":
+		{
+			"characters": "output(\"\\n\\n"
+		},
+		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"extend": false,
+			"to": "hardeol"
+		},
+		"command": "move_to"
+	},
+	{
+		"args":
+		{
+			"characters": "\");"
+		},
+		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"extend": false,
+			"to": "hardbol"
+		},
+		"command": "move_to"
+	},
+	{
+		"args":
+		{
+			"extend": true,
+			"to": "hardeol"
+		},
+		"command": "move_to"
+	},
+	{
+		"args":
+		{
+			"replacements":
+			[
+				"remove_blank_outputs"
+			]
+		},
+		"command": "reg_replace"
+	}
+]

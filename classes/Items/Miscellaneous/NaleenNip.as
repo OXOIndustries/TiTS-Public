@@ -3,10 +3,11 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Utility.num2Text;
 	
 	public class NaleenNip extends ItemSlotClass
 	{
@@ -28,7 +29,7 @@
 			//Longass shit, not sure what used for yet.
 			this.description = "a pouch of naleen nip";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This small pouch has a few dried leaves inside. The codex indicates that they’re locally referred to on Mhen’ga as naleen nip. When chewed by the aliens of the same name, they supposedly introduce a state of mild euphoria. The feline snake-women love them. You’re fairly certain the foreign plant matter <b>will</b> transform you if you chew on it.";
+			this.tooltip = "This small pouch has a few dried leaves inside. The codex indicates that they’re locally referred to on Mhen’ga as naleen nip. When chewed by the aliens of the same name, they supposedly introduce a state of mild euphoria. The feline snake-women love them. You’re fairly certain the foreign plant matter <b>will</b> transform you if you chew on it.\n\n<b>Known to cause slight amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -63,6 +64,7 @@
 				if(target.race() == "naleen") kGAMECLASS.output("full-blooded ");
 				kGAMECLASS.output("naleen.");
 				kGAMECLASS.processTime(3);
+				target.taint(1);
 				
 				//Stat TFs
 				//Increase libido to 60
@@ -123,7 +125,7 @@
 						kGAMECLASS.output("\n\nVertigo plays tricks with your balance, making the ground seem to drift a little further away as you nearly lose your balance. You do your best to keep upright until the sensation passes, but something isn’t quite right. You... are you taller? You check the codex’s scanners and confirm that you’ve grown ");
 						x = 1 + rand(5);
 						if(x == 1) kGAMECLASS.output("an inch.");
-						else kGAMECLASS.output(kGAMECLASS.num2Text(x) + " inches.");
+						else kGAMECLASS.output(num2Text(x) + " inches.");
 						target.tallness += x;
 						changes++;
 					}
@@ -317,7 +319,7 @@
 				changes++;
 			}
 			//rarely grow upup to F (rare version requires naleen tail and cunt)
-			if(target.breastRows[0].breastRatingRaw < 11 && target.breastRatingUnlocked(0, 11) && rand(6) == 0 && changes < changeLimit && target.isNaga() && target.hasVagina(GLOBAL.TYPE_NAGA)) {
+			if(target.breastRows[0].breastRatingRaw < 11 && target.breastRatingUnlocked(0, 11) && rand(6) == 0 && changes < changeLimit && target.isNaga() && target.hasVaginaType(GLOBAL.TYPE_NAGA)) {
 				kGAMECLASS.output("\n\nOhhh, your [pc.fullChest] feels warm! You reach up to idly rub at the affected area, but your fingers make contact sooner than you anticipated. They’re way bigger than before and still going! Maybe letting yourself change this much has made your breasts more receptive to the naleen mutations. ");
 				target.breastRows[0].breastRatingRaw += 3 + rand(3);
 				kGAMECLASS.output("Whatever the case, <b>you’re left with two, big pillowy " + target.breastCup(0) + "s.</b>");

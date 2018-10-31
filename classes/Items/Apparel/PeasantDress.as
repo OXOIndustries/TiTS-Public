@@ -7,7 +7,7 @@
 
 	public class PeasantDress extends ItemSlotClass
 	{
-
+		//Embry-only?
 		//constructor
 		public function PeasantDress()
 		{

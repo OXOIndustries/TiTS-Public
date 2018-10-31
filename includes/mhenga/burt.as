@@ -11,6 +11,7 @@
 
 public function burtsBarFunc():Boolean {
 	//Add to Jungle Planet Bar Descriptor, Afternoon -> Closing
+	if(myrOnMhenga()) output("\n\nYou notice several gold myr now count themselves amongst the mead hall’s patrons, and the smell of honey is thick and rich in the air.");
 	if(flags["MET_BURT"] == undefined) addButton(0,"Bar",burtapproach);
 	else addButton(0,"Burt",burtapproach);
 	if(syriAtBurts())
@@ -22,10 +23,19 @@ public function burtsBarFunc():Boolean {
 		}
 		syriAtBurtsBonus(2);
 	}
+	//Syri has left the building
+	else if (syriQuestRunning() && flags["SYRIQUEST_STATE"] == undefined) {
+		syriQuestBurtsBlubt();
+		return true;
+	}
 	roamingBarEncounter(3);
 	if(debug) addButton(4,"Oil Cheat",oilyButt);
 	else vendingMachineButton(4, "XXX");
+
 	addButton(1,"Watch Screen",stephIrsonBountHunterEpisodeOne,undefined,"Watch Screen","Watch an episode of Steph Irson: Galactic Hunter.");
+	if (kaseAtBurts()) kaseAtBurtsAddendum(5);
+	if(hours >= 8 && hours < 16) erikaBarAddendum(7);
+
 	return false;
 }
 
@@ -51,7 +61,7 @@ public function approachBurtFirstTime():void {
 	userInterface.showBust("BURT");
 	output("You approach the bar and get your first good look at the owner and namesake of Burt’s Badass Mead Hall, Burt himself. At first glance one can easily see that the term ‘Badass’ doesn’t just refer to his mead hall, but himself as well. He is every bit the stereotype of a rough and tough spacer on the edge of civilization.");
 	output("\n\nHe stands just shy of seven feet tall, and has a frame that speaks of big bones and muscles earned through hard work and not vanity. His head is shaved bald, but his chiseled jaw bears a healthy five-o’clock shadow no matter what time of day it is. He has a healthy tan and a scar over his left ear. His dark brown eyes watch the room, flicking from patron to patron alert for any problems.");
-	output("\n\nHe is dressed in a yellow and black checkered flannel, left open over a white tank-top that clings to the muscles of his chest. The pocket of the flannel has an old model Codex in it, as well as a grease pencil, with the Codex having more than a few black greasy marks on it, hinting that the bartender goes for the pencil more often than the technology. He has a bar apron wrapped around his waist, the black cloth having more pockets, one stuffed with an A.B.Curse credit tabulator, and the other holding a variety of bottle openers. Below the apron he wears a pair of combat pants, marked with the gray and tan square patches of various hues that implies that it was intended for urban use. You can’t see his shoes while he stands behind the bar, but the occasional thumps you hear as he moves about imply biker or combat boots.");
+	output("\n\nHe is dressed in a yellow and black checkered flannel, left open over a white tank-top that clings to the muscles of his chest. The pocket of the flannel has an old model Codex in it, as well as a grease pencil, with the Codex having more than a few black greasy marks on it, hinting that the bartender goes for the pencil more often than the technology. He has a bar apron wrapped around his waist, the black cloth having more pockets, one stuffed with an A.B.Curse " + (isAprilFools() ? "dogecoin" : "credit") + " tabulator, and the other holding a variety of bottle openers. Below the apron he wears a pair of combat pants, marked with the gray and tan square patches of various hues that implies that it was intended for urban use. You can’t see his shoes while he stands behind the bar, but the occasional thumps you hear as he moves about imply biker or combat boots.");
 	output("\n\nHe glances up at you as he washes a tumbler out with one of the tails of his flannel shirt, raising a brow at you, <i>“Welcome to Burt’s Badass Mead Hall, stranger. I’m Burt, the owner and bartender. Ya need anything to wet your whistle, just let me know.”</i> He sets down the glass and grins at you, half leaning against the bar as he adds, <i>“I’ve got drinks on tap, gossip to share, and a keen interest in certain... collectables.”</i>");
 	burtBarMenu();
 }
@@ -246,7 +256,7 @@ public function BurtShopCollectables():void {
 	{
 		output("<i>“Oh no, I don’t really need any of that type of stuff from you anymore.”</i> The big human drums his fingers on the counter with an air of cheery industry. <i>“A tribe of zil are selling honey, their plates, anything they’re willing to give directly to us now. Barter, anyway - they got a real thing against credits for some reason. But it’s great! I’ve got vats of different honeys fermenting in the back now, people back in the core interested in the samples I’ve been sending out. I think we could really make a go of things here now!”</i>");
 		clearMenu();
-		this.addButton(0,"Next",burtapproach);
+		addButton(0,"Next",burtapproach);
 		return;
 	}
 	//First Visit
@@ -265,17 +275,30 @@ public function BurtShopCollectables():void {
 		output("Burt’s eyes light up as you mention his offer to buy Zil items from you. <i>“Hey, [pc.name], I’m still interested, if you have the stuff. But don’t go trying to pawn off any regular old honey or some old chunk of shredded plastic. I know what’s really theirs. I’m an expert.”</i> He clearly meant his warning in good humor and faith. <i>“So, you got anything for me?”</i> He gives you a hopeful grin.");
 		//[pg]
 	}
-	this.clearMenu();
-	for(var x:int = 0; x < pc.inventory.length; x++) {
-		if(pc.inventory[x].quantity > 0) {
-			if(x >= 14) this.addButton(x+1,pc.inventory[x].shortName + " x" + pc.inventory[x].quantity,burtPurchase,x);
-			else this.addButton(x,pc.inventory[x].shortName + " x" + pc.inventory[x].quantity,burtPurchase,x);
-		}
-	}
-	//[Inv1]		[Inv2]		[Inv3]		[Inv4]		[Inv5]
+	clearMenu();
+	
+ 	var buttons:int = 0;
+	var x:int = 0;
 	//Zil purchase menu!
-	//[Back]
-	this.addButton(14,"Back",burtapproach);
+	while (x < pc.inventory.length)
+ 	{	
+		//[Back]
+		if (buttons % 15 == 0)
+		{
+			addButton(buttons+14, "Back", burtapproach);
+			buttons++;
+		}
+		
+		if (x == pc.inventory.length) break;
+		
+		if(!pc.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE)) addItemButton(buttons-1, pc.inventory[x], burtPurchase, x);
+		else addDisabledButton(buttons-1, pc.inventory[x].shortName + " x" + pc.inventory[x].quantity, StringUtil.toDisplayCase(pc.inventory[x].longName), "You cannot drop this item.");
+		buttons++;
+		
+		x++;
+ 	}
+	if(pc.inventory.length <= 0) output("\nOh right... You don’t have anything to give him.");
+	addButton(14,"Back",burtapproach);
 }
 
 public function burtPurchase(arg:int = 0):void {
@@ -417,7 +440,7 @@ public function buyMeadFromBurt():void {
 	pc.imbibeAlcohol(10);
 	if(flags["BURT_DRINKS_BOUGHT"] == undefined) flags["BURT_DRINKS_BOUGHT"] = 1;
 	else flags["BURT_DRINKS_BOUGHT"]++;
-	pc.credits-= 10;
+	pc.credits -= 10;
 	processTime(10);
 	this.clearMenu();
 	this.addButton(0,"Next",burtDrinkMenu);
@@ -452,7 +475,7 @@ public function burtXilErAte():void {
 	if(flags["BURT_DRINKS_BOUGHT"] == undefined) flags["BURT_DRINKS_BOUGHT"] = 1;
 	else flags["BURT_DRINKS_BOUGHT"]++;
 	pc.imbibeAlcohol(15);
-	pc.credits-= 50;
+	pc.credits -= 50;
 	processTime(10);
 	this.clearMenu();
 	this.addButton(0,"Next",burtDrinkMenu);
@@ -561,7 +584,7 @@ public function talkToBurtAboutDeseZilGueys():void {
 		output("\n\n<i>“Yeah! This gaggle of ‘em came in from the jungle, wouldn’t leave until they got to talk to Penny and the wobbly U.G.C. gal,”</i> Burt explains, leaning on the bar. <i>“This tribe of ‘em decided they want to trade with us, all of a sudden, and I for one am not saying no to ‘em. What they want is really simple stuff - basic medicine, fabrics, building material - and what they’re selling, well, you can’t get it anywhere else in the galaxy.”</i> He kisses his fingers effusively. <i>“These are golden days, [pc.name]. Golden. Now I’ve got a surplus to work with, I can really start to think about all the things that might be done with that honey, cuz you know it’s amazing stuff. Not just mead, but perfume... therapeutic massages... aphrodisiac... once I send it off to a lab and know all of its properties...”</i>");
 		output("\n\n<i>“But they want more than clothes, don’t they?”</i> you interrupt.");
 		output("\n\n<i>“Oh yeah,”</i> Burt says, sobering. <i>“They reckon those Snugglé folks took their land when they built their big ass farm, way out there. They want them gone, they’ve made that pretty damn clear.”</i> He sighs, knitting his fingers. <i>“Not gonna lie, that’s a tough ask. Snugglé aren’t some two bit operation you can send a few letters to your system delegate about and expect they’ll pack up tomorrow. And plenty of people are going to </i>want<i> ‘em here, because they mean jobs and security. It’s a tough ask [pc.name], no question about that.”</i>");
-		output("\n\n<i>“But...”</i> he gestures expansively. <i>“They haven’t really got started on Mhen’ga yet. The U.G.C. rep seems to think there’s a chance we can persuade ‘em to go elsewhere. And if there’s a chance we can make Esbeth a prosperous lil place by itself, rather than as some agri-corp’s soulless space-port, then I’m all for it. I’ll fight for the cute lil bee girls ‘n boys, if there’s a chance!”</i>");
+		output("\n\n<i>“But...”</i> he gestures expansively. <i>“They haven’t really got started on Mhen’ga yet. The U.G.C. rep seems to think there’s a chance we can persuade ‘em to go elsewhere. And if there’s a chance we can make Esbeth a prosperous lil’ place by itself, rather than as some agri-corp’s soulless space-port, then I’m all for it. I’ll fight for the cute lil’ bee girls ‘n boys, if there’s a chance!”</i>");
 	}
 	//Scene1
 	else if(flags["BURT_ZIL_TALK"] == undefined || flags["BURT_ZIL_TALK"] == 3)
@@ -620,7 +643,9 @@ public function giveBurtABJ():void {
 	userInterface.showBust("BURT_NUDE");
 	output("Your eyes linger on that pulsing cybernetic erection, and you find that you just can’t help yourself. You lean forward towards it and drag your [pc.tongue] across the cool metal flare. You can feel a tingle shiver through your tongue, like licking a battery, but you can also taste a hint of old musk lingering around his piss hole. Burt lets out a groan of pleasure as you give oral attention to his erection and smiles down at you, his hands reaching out to stroke through your [pc.hair]. You give a few more licks before moving your hands to caress his length, feeling the nearly seamless segments of his length as they shift and adjust to his body’s needs. It is a marvel of technology, almost feeling like flesh save for its completely unyielding surface.");
 	output("\n\nBurt groans out, <i>“Oh [pc.name]....”</i> and then without warning his hands grip your [pc.hair] tightly and he pulls forward, forcing your jaw to stretch almost painfully around the nearly five inch thick shaft, but it is clear that his mechanical cock is immune to the scrape of your teeth. Your [pc.tongue] tries to push against the invasion, but that just spurs Burt on further. He shudders in pleasure and pushes slowly deeper into your mouth.");
-	output("\n\nHis flare nears in on your gag reflex and you feel tears well in your eyes as you fear he will rip your throat apart, but then you hear a click and hiss, and feel something cold spray down your throat. You can’t taste it, whatever it is, but the effect is almost instant, numbing your throat and relaxing the muscles, as well as killing your gag reflex. He waits the length of a few breaths, moaning in pleasure, and then he jerks at your hair, pulling you down his shaft until your lips kiss his medial ring, sending well over half a foot of equine metal down your throat. You don’t choke, and you don’t feel pain, but you can clearly feel the passage, and your hand drifts to your neck, feeling how your neck bulges and expands to accommodate him.");
+	output("\n\nHis flare nears in on your gag reflex and you feel tears well in your eyes as you fear he will rip your throat apart, but then you hear a click and hiss, and feel something cold spray down your throat. You can’t taste it, whatever it is, but the effect is almost instant, numbing your throat and relaxing the muscles, as well as killing your gag reflex. He waits the length of a few breaths, moaning in pleasure");
+	if(pc.hasHair()) output(", and then he jerks at your hair");
+	output(", pulling you down his shaft until your lips kiss his medial ring, sending well over half a foot of equine metal down your throat. You don’t choke, and you don’t feel pain, but you can clearly feel the passage, and your hand drifts to your neck, feeling how your neck bulges and expands to accommodate him.");
 	//[Next]
 	processTime(10+rand(3));
 	pc.lust(3);
@@ -633,7 +658,9 @@ public function giveBurtABJPartII():void {
 	author("Danaume");
 	userInterface.showName("\nBURT");
 	userInterface.showBust("BURT_NUDE");
-	output("You are forced to hold your breath, with your mouth and throat stretched beyond taut around his member, but he doesn’t hold his position long. Burt draws back, dragging that flare back up your neck, against the swallowing grip of your throat muscles. He draws away until his flare escapes into your mouth, letting you grab a quick breath through your nose before he slams back in, pulling your hair again as he drives back deep into your throat. It is a slow pace, but intense, as he draws back and then slams back in, stretching your mouth and throat a little more each time.");
+	output("You are forced to hold your breath, with your mouth and throat stretched beyond taut around his member, but he doesn’t hold his position long. Burt draws back, dragging that flare back up your neck, against the swallowing grip of your throat muscles. He draws away until his flare escapes into your mouth, letting you grab a quick breath through your nose before he slams back in");
+	if(pc.hasHair()) output(", pulling your hair again as he drives back");
+	output(" deep into your throat. It is a slow pace, but intense, as he draws back and then slams back in, stretching your mouth and throat a little more each time.");
 	output("\n\nHis medial ring clacks against your teeth again and again with his thrusts, and finally he gives a firm shove, spearing deeper into your throat and pushing his ring past your teeth and into your throat as he starts to fuck your face in earnest. His hips drive forward hard and fast as the muscles of his toned ass cheeks clench and relax again and again. Your hands move to his hips to steady yourself, but it does nothing to slow his pace.");
 	output("\n\nYou can feel his flare and ring overstretching your throat and jaws again and again as he pounds away, and before long his hairy human balls are slapping your chin with each thrust, your nose hitting his belly as he well and truly fucks your face.");
 	output("\n\nYour lungs burn as he thrusts down your throat again and again, only drawing back enough to let you catch a breath on occasion. It is intense, and leaves you feeling deeply submissive as he uses you with only the barest concern for your safety required. Your view of the world blurs through tears and shortness of breath, the whole of your existence narrowing to the hands jerking at your [pc.hair], the crotch growing closer and farther in rapid thrusts, and the cock sinking into your body again and again and again.");
@@ -1132,7 +1159,7 @@ public function titFuckBurtBecauseYoureAFilthyFatChestedHo():void {
 	if(pc.hasLipples()) 
 	{
 		output("\n\nHe looks down at your [pc.nipples] and smirks as an idea comes to his mind, his hands leaving your head to begin fingering your juicy teat holes in time with the thrusting of his cock between your fleshy orbs. He traces the kissable bow lips, tracing the sensitive mouths decorating your breasts between deep thrusts of his fingers into your supple titflesh.");
-		output("\n\nHe doesn’t seem interested in fucking your [pc.nipples] however, keeping his eyes on your [face] as he continues to hunch and thrust against your [pc.chest], that swollen cybernetic flare bumping your chin with every forward thrust, eager for your kisses and licks. He fucks your breasts with a singular focus, his hips driving at a steady pace focused on his pleasure and not yours. Between thrusts, he grunts out, <i>“You deserve a gift, [pc.name]... how about a pearl necklace?”</i>");
+		output("\n\nHe doesn’t seem interested in fucking your [pc.nipples] however, keeping his eyes on your [pc.face] as he continues to hunch and thrust against your [pc.chest], that swollen cybernetic flare bumping your chin with every forward thrust, eager for your kisses and licks. He fucks your breasts with a singular focus, his hips driving at a steady pace focused on his pleasure and not yours. Between thrusts, he grunts out, <i>“You deserve a gift, [pc.name]... how about a pearl necklace?”</i>");
 	}
 	//[if (nipplecunts = true)]
 	else if(pc.hasFuckableNipples()) {
@@ -1316,7 +1343,7 @@ public function stephIrsonBountHunterEpisodeOne():void {
 	
 	output("\n\n<i>“Uh-oh, she’s noticed me! If I try to run, she’ll hunt me down in an instant! All I can do is lie perfectly still and hope she backs off! As a predator, the naleen shouldn’t bother me if I’m dead still.”</i>");
 	
-	output("\n\n<i>“... I can hear you,”</i> the busty monster sighs, cocking an eyebrow at Steph as she lies face-down in the dirt, heart-shaped ass swaying just inches in front of the camera.");
+	output("\n\n<i>“...I can hear you,”</i> the busty monster sighs, cocking an eyebrow at Steph as she lies face-down in the dirt, heart-shaped ass swaying just inches in front of the camera.");
 	
 	output("\n\n<i>“Crikey! Looks like she’s coming in for the kill! All I can do now is try to overpower her!”</i> Steph shouts, leaping to her feet and tackling the naleen, throwing the two of them over the boulder and into the brush. The camera drone speedily follows the brawl as Steph and the naleen tumble around in the dirt, eventually rolling into a wet mud-pit at the edge of the clearing.");
 	
@@ -1352,6 +1379,8 @@ public function stephIrsonEpisodeOnePartTwo():void
 	clearOutput();
 	stephHeader(1, true);
 	
+	var bSyri:Boolean = (syriAtBurts() && flags["SYRI_TALKS"] != undefined);
+	
 	output("<i>“Ugh, mah head!”</i> Steph drawls, rubbing her temples as the naleen plants her at the edge of the pit. <i>“Crickey! Looks like she’s dragged me back to her nest! Oh, but look here! Before she eats me, I’m getting to witness the ultimate alien curiosity: the naleen mating ball!”</i> The camera cranes down to the pit, highlighting dozens - hundreds, even - of writhing bodies intertwined, cocks and breasts bouncing everywhere, no hole left unfucked as kitty-nagas bend and twist to accommodate several mates of either sex at once.");
 
 	output("\n\nWith a chuckle, the naleen gives Steph a little push, sending the New Brisbaner tumbling down the slope and into the heart of the pit... and right into the waiting arms of a particularly well-endowed male naleen whose two cocks are still dripping with juices from his last partner. Steph gives a shrill scream as her clothes are torn away, revealing the clean snatch between her long legs and her bouncing breasts, both quickly gripped by the male as she’s bent over the backs of an entwined couple, ass raised in the air for his inspection. He doesn’t waste a moment before lunging in, cocks ramming into her defenseless pussy and ass - and in glorious HD, all over galactic television.");
@@ -1370,7 +1399,7 @@ public function stephIrsonEpisodeOnePartTwo():void
 	output("\n\nA giddy female, less busty that the first but with an almost inhumanly wide set of hips and a jiggling ass, slithers in under Steph’s ass, slender reptilian tongue lapping up the alien spunk dripping from her cunt as another male lines up his shot, sliding in with the last’s cum as lube. Powerful thrusts send Steph’s bubble butt jiggling as the kitty-naga hammers her holes, squirting the last’s cum out with each mighty blow, right onto the waiting face of the female. The bustier huntress gives an orgasmic cry as the male finishes in her ass, pushing Steph’s face as hard into her groin as she can before tumbling aside, pushed down by another horny male who immediately crams his dual cocks into Steph’s fem-cum slathered gob.");
 	
 	//If Friend!Syri:
-	if(flags["SYRI_TALKS"] != undefined) output("\n\nAs you’re watching the orgy unfold, you feel a pair of familiar hands on your shoulder, and a pair of big, soft tits resting on your head. <i>“Holy shit, Steele, watching a porno in public? Ballsy!”</i> Syri chuckles, hopping over the back of the couch to watch. You try to tell her it’s a nature show, but she just rolls her eyes and shamelessly unzips her pants. <i>“If you do mine, I’ll do yours!”</i> she says with a slight giggle, a hand drifting to your crotch.");
+	if(bSyri) output("\n\nAs you’re watching the orgy unfold, you feel a pair of familiar hands on your shoulder, and a pair of big, soft tits resting on your head. <i>“Holy shit, Steele, watching a porno in public? Ballsy!”</i> Syri chuckles, hopping over the back of the couch to watch. You try to tell her it’s a nature show, but she just rolls her eyes and shamelessly unzips her pants. <i>“If you do mine, I’ll do yours!”</i> she says with a slight giggle, a hand drifting to your crotch.");
 	
 	output("\n\nMales and females both takes turns force-fucking the half-conscious hostess, smearing her with gallons of alien spunk until her gaping holes are a constant waterfall of creamy spooge, glowing in the camera’s eye. The show’s runtime is almost up by the time the huge naleen orgy is winding down; a final male has pulled Steph into his lap, both cocks shoved up her ass as the busty naleen that brought her idly fingers the human girl’s pussy, cooing, <i>“Was it everything you hoped it would be, dear?”</i>");
 	
@@ -1381,7 +1410,7 @@ public function stephIrsonEpisodeOnePartTwo():void
 	watchStephEpisodeBroadcast("STEPH_NYAN");
 	
 	processTime(30);
-	if(flags["SYRI_TALKS"] != undefined) pc.orgasm();
+	if(bSyri) pc.orgasm();
 	else pc.lust(33);
 	this.clearMenu();
 	addButton(0,"Next",mainGameMenu);

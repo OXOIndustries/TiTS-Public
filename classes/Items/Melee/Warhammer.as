@@ -9,6 +9,7 @@
 	
 	public class Warhammer extends ItemSlotClass
 	{
+		//Level 2 (Common). Balance 2.0
 		//constructor
 		public function Warhammer()
 		{
@@ -37,7 +38,7 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 550;
+			this.basePrice = 200;
 			this.attack = -4;
 			
 			baseDamage = new TypeCollection();

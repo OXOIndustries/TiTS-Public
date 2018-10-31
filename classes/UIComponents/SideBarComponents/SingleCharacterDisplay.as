@@ -19,6 +19,7 @@ package classes.UIComponents.SideBarComponents
 	import flash.text.AntiAliasType;
 	import classes.Resources.NPCBustImages;
 	import classes.StringUtil;
+	import classes.Engine.Interfaces.ParseText;
 	/**
 	 * ...
 	 * @author Gedan
@@ -74,7 +75,7 @@ package classes.UIComponents.SideBarComponents
 		{
 			if (asInit) ResetBarValues();
 			
-			_nameHeader.text = (char.uniqueName && char.uniqueName.length > 0 ? char.uniqueName.toUpperCase() : char.short.toUpperCase());
+			_nameHeader.text = (char.uniqueName && char.uniqueName.length > 0 ? ParseText(char.uniqueName).toUpperCase() : ParseText(char.short).toUpperCase());
 			
 			_statBars.shield.setValue(char.shields(), char.shieldsMax());
 			_statBars.hp.setValue(char.HP(), char.HPMax());
@@ -213,7 +214,7 @@ package classes.UIComponents.SideBarComponents
 		
 		public function SingleCharacterDisplay(alignment:String = "left") 
 		{
-			_leftAlign = (alignment == "left" ? true : false);
+			_leftAlign = (alignment == "left");
 			
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
@@ -244,7 +245,7 @@ package classes.UIComponents.SideBarComponents
 			_nameUnderline.y = 17;
 			_nameUnderline.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
 			_nameUnderline.graphics.drawRect(0, 0, 187, 1);
-			_nameUnderline.graphics.endFill();			
+			_nameUnderline.graphics.endFill();
 			addChild(_nameUnderline);
 			
 			_nameHeader = new TextField();
@@ -314,7 +315,7 @@ package classes.UIComponents.SideBarComponents
 			_statusEffects.childSizeY = 25;
 			_statusEffects.childSpacing = 5;
 			_statusEffects.targetWidth = 180;
-			addChild(_statusEffects);			
+			addChild(_statusEffects);
 			
 			_elementBkg.graphics.beginFill(UIStyleSettings.gBackgroundColour);
 			_elementBkg.graphics.drawRoundRect((_leftAlign ? -3 : 11), 0, this.width + (_leftAlign ? -6 : 2), this.height + 2, 3, 3);

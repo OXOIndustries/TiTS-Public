@@ -43,6 +43,7 @@
 			
 			itemFlags = [];
 			itemFlags.push(GLOBAL.ITEM_FLAG_TRANSPARENT);
+			itemFlags.push(GLOBAL.ITEM_FLAG_ANTIGRAV);
 			
 			this.version = _latestVersion;
 		}
@@ -60,12 +61,12 @@
 			}
 		}
 		
-		override public function onEquip(targetCreature:Creature):void
+		override public function onEquip(targetCreature:Creature, outputText:Boolean = false):void
 		{
 			toggleSexiness(targetCreature.hasStatusEffect("Jock Sexiness"));
 		}
 		
-		override public function onRemove(targetCreature:Creature):void
+		override public function onRemove(targetCreature:Creature, outputText:Boolean = false):void
 		{
 			toggleSexiness(false);
 		}

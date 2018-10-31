@@ -130,7 +130,7 @@ package classes.UIComponents.ContentModules
 			
 			// Make some buttons available
 			kGAMECLASS.userInterface.clearGhostMenu();
-			kGAMECLASS.userInterface.addGhostButton(14, "Back", kGAMECLASS.backToPrimaryOutput);
+			kGAMECLASS.userInterface.addGhostButton(14, "Back", kGAMECLASS.backToPrimaryOutput, true);
 			
 			_targetCreature = tarCreature;
 			_pointDistribution = new Array();
@@ -156,12 +156,16 @@ package classes.UIComponents.ContentModules
 			
 			for (var i:int = 0; i < _barLabels.length; i++)
 			{
+				var barVal:Number = (Math.max(_targetCreature[_barLabels[i]](), _targetCreature[_barLabels[i] + "Raw"]) + _pointDistribution[i]);
+				
 				//_statBars[i].barValue = _targetCreature[_barLabels[i]]() + _pointDistribution[i];
-				_statBars[i].barValue = _targetCreature[_barLabels[i] + "Raw"] + _pointDistribution[i];
+				//_statBars[i].barValue = _targetCreature[_barLabels[i] + "Raw"] + _pointDistribution[i];
+				_statBars[i].barValue = String(Math.floor(barVal));
 				
 				// General bar settings
 				//if ((_targetCreature[_barLabels[i]]() + _pointDistribution[i]) < _targetCreature[_barLabels[i] + "Max"]())
-				if ((_targetCreature[_barLabels[i] + "Raw"] + _pointDistribution[i]) < _targetCreature[_barLabels[i] + "Max"]()) // Take account Mod values!
+				//if ((_targetCreature[_barLabels[i] + "Raw"] + _pointDistribution[i]) < _targetCreature[_barLabels[i] + "Max"]()) // Take account Mod values!
+				if (barVal < _targetCreature[_barLabels[i] + "Max"](true))
 				{
 					_statBars[i].setBarChangeableMode();
 				}
@@ -189,8 +193,6 @@ package classes.UIComponents.ContentModules
 					_statBars[i].hideAddArrow();
 				}
 			}
-			
-			if (_availablePoints < _initialPoints) kGAMECLASS.userInterface.addGhostButton(13, "Reset", resetPoints);
 			
 			updateButton();
 		}
@@ -245,11 +247,12 @@ package classes.UIComponents.ContentModules
 			var gavePoints:Boolean = false;
 			
 			// Remove the spent points from the creature object
-			_targetCreature.unspentStatPoints = _availablePoints;			
+			_targetCreature.unspentStatPoints = _availablePoints;
 			
 			for (var i:int = 0; i < _barLabels.length; i++)
 			{
-				_targetCreature[_barLabels[i]](_pointDistribution[i]);
+				//_targetCreature[_barLabels[i]](_pointDistribution[i]);
+				_targetCreature[_barLabels[i] + "Raw"] += _pointDistribution[i];
 				if(_pointDistribution[i] > 0) gavePoints = true;
 			}
 			

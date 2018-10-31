@@ -7,8 +7,7 @@
 	
 	public class LeatherStrapHarness extends ItemSlotClass
 	{
-
-		//constructor
+		//Level 3 (Common). Balance 2.0		//constructor
 		public function LeatherStrapHarness()
 		{
 			this._latestVersion = 1;
@@ -41,9 +40,9 @@
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = 5;
+			this.sexiness = 6;
 			this.critBonus = 0;
-			this.evasion = 0;
+			this.evasion = 3;
 			this.fortification = 0;
 			
 			itemFlags = [];

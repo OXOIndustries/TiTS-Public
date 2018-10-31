@@ -22,7 +22,7 @@ public function miAmoreBonusShit():Boolean
 		output("From the outside this store, “Mi Amour” appears to be the prototypical lingerie shop. In the outside windows mannequins of various species model matching panties and bras. From here, the inside looks darker and moodier than the rest of the space station. Curious, you step inside.");
 		output("\n\nThough indeed darker, your eyes quickly adjust and find the light quite pleasant. Red and pink braziers dangle from the ceiling, giving the place a warm, cozy feel. Racks of lingerie cover the walls to the south and west, while numerous circular displays are set up on the floor itself. To the north is the check-out counter, as well as a set of changing rooms and a door to the back room.");
 		output("\n\nSeveral other humans and aliens are milling about the shop. Most are fully clothed, but some are wearing only lingerie. You’d guess they work here, and assume that must be part of the “work uniform.” One individual, however, catches your attention.");
-		output("\n\nThe first thing you notice is her thick tail, almost as big around as her waist, and almost as long as she is tall! She stands about 6 feet tall, and her skin appears to be a light lavender color, speckled with yellow patches. Long tresses of blond hair dangle just past her shoulders, and as she turns you notice her eyes: large viridian globes with slender, reptilian slits. Now that she’s turned your way, you can see her chest and stomach are a lighter shade of purple. Her body is toned but not muscular. She clearly looks after herself.");
+		output("\n\nThe first thing you notice is her thick tail, almost as big around as her waist, and almost as long as she is tall! She stands about 6 feet tall, and her skin appears to be a light lavender color, speckled with yellow patches. Long tresses of blonde hair dangle just past her shoulders, and as she turns you notice her eyes: large viridian globes with slender, reptilian slits. Now that she’s turned your way, you can see her chest and stomach are a lighter shade of purple. Her body is toned but not muscular. She clearly looks after herself.");
 		output("\n\nLike the other employees of this quaint little shop, she is dressed only in lingerie. A black bra adorned with pink lace cups her rather large DD-cup breasts, while a matching pair of panties fits snugly over her smooth groin. A pair of black fishnets grace her legs, and she teeters on a pair of 3-inch red pumps that match the vivid shade of her lips. From head to toe, this woman just oozes sex.");
 		output("\n\nThe reptilian woman runs a hand through her blonde hair as her eyes fall upon you. She casually saunters over and gives you a quick wink before saying, in a very cheerful voice, <i>“Welcome, </i>mi amour,<i> to Mi Amour!”</i> She giggles softly at her own joke. <i>“Sorry for the joke. Those are on the house. Anyway, I don’t think I’ve seen you here before, and I know everyone that comes into my shop. I’m Aliss, and I own this place. We specialize in lingerie for every body type, from ausar to zeidrich, and everything in between. Male, female, tranz, or just a little curious, we cater to everyone.”</i> She smiles broadly and motions to the various racks of under garments. <i>“Just say the word and I, or any of my employees, will model anything you see here.”</i>");
 		output("\n\nYou raise an eyebrow. <i>“Anything?”</i> you ask, eyeing the nearest rack. There’s some pretty skimpy stuff here... items that would only barely classify as floss.");
@@ -41,6 +41,26 @@ public function miAmoreBonusShit():Boolean
 		output("\n\nAliss is here, tending to one of the circular displays. Her long tail curls around in front of her, and you’re surprised to note she’s using it to help fold the various intimates.");
 		output("\n\nYou take a glance around the shop. They have a wide selection of items for sale. Various bras, corsets, and negligees to cover your upper body, and panties, garters and all manner of stockings to cover your lower body. There is even a display labeled “Handmade Cocksocks by Aliss”.");
 		output("\n\nAliss sees you checking the place out and approaches you, saying, <i>“Welcome back, </i>mi amour<i>. See anything you like?”</i>");
+	}
+	if(flags["LIAMME_EXHIB"] != undefined)
+	{
+		//If not procced or expired:
+		if(flags["LIAMME_ALISS_PROC"] == undefined || flags["LIAMME_ALISS_PROC"] + 60 < GetGameTimestamp())
+		{
+			//20% chance he shows up
+			if(rand(5) == 0)
+			{
+				flags["LIAMME_ALISS_PROC"] = GetGameTimestamp();
+			}
+		}
+		//If Liamme has already procced: stick around an hour
+		if(flags["LIAMME_ALISS_PROC"] + 60 > GetGameTimestamp())
+		{
+
+			addBust(liammeBustString());
+			output("\n\nYou see a blonde ausar femboy walking around the shop with a bag full of naughty goodies. By your guess, it’s <b>Liamme doing a little bit of shopping</b>. Maybe you could pay him a visit.");
+			addButton(3,"Liamme",liammeShoppingAtAlissApproach,undefined,"Liamme","See what the trappy ausar is up to.");
+		}
 	}
 	//[Upper Body] [Lower Body] [Cocksocks] [Aliss] [Leave]
 	addButton(0,"Upper Body",upperBodyAlice,undefined,"Upper Body","See what tops Aliss has for sale.");
@@ -851,7 +871,7 @@ public function helpAlissWithSexyTiems():void
 		if(pc.cockThatFits(chars["ALISS"].analCapacity()) >= 0) addButton(0,"Fuck Her",fuckDatBitchesSluttyAss,undefined,"Fuck Her","Fuck Aliss in the ass.");
 		else addDisabledButton(0,"Fuck Her","Fuck Her","You’re a little too big to fuck Aliss in the ass.");
 	}
-	else if(pc.lowerUndergarment.hardLightEquipped) addButton(0,"Fuck Her",fuckDatBitchesSluttyAss,undefined,"Fuck Her","Fuck Aliss in the ass with a hardlight strapon.");
+	else if(pc.hasHardLightEquipped()) addButton(0,"Fuck Her",fuckDatBitchesSluttyAss,undefined,"Fuck Her","Fuck Aliss in the ass with a hardlight strapon.");
 	else addDisabledButton(0,"Fuck Her","Fuck Her","You need a dick to fuck her.");
 	if(pc.hasVagina()) addButton(1,"Offer Pussy",offerPussyYouSloot,undefined,"Offer Pussy","Offer Aliss the use of a proper cocksheath - your pussy.");
 	else addDisabledButton(1,"Offer Pussy","Offer Pussy","You need a vagina to offer Aliss the use of it!");
@@ -896,7 +916,7 @@ public function fuckDatBitchesSluttyAss():void
 {
 	//Should go for the largest cock that will fit (we'll say... an area of 100? she's had some practice)
 	var x:int = pc.cockThatFits(chars["ALISS"].analCapacity());
-	if(x < 0 && !pc.lowerUndergarment.hardLightEquipped) x = pc.smallestCockIndex();
+	if(x < 0 && !pc.hasHardLightEquipped()) x = pc.smallestCockIndex();
 
 	//PC can also use a hardlight strapon that she sells, if it's worn and the PC has no applicable cocks.
 	clearOutput();
@@ -1528,7 +1548,7 @@ public function sexWithAlissFromMainMenu():void
 		if(pc.cockThatFits(chars["ALISS"].analCapacity()) >= 0) addButton(0,"Fuck Her",fuckDatBitchesSluttyAss,undefined,"Fuck Her","Fuck Aliss in the ass.");
 		else addDisabledButton(0,"Fuck Her","Fuck Her","You’re a little too big to fuck Aliss in the ass.");
 	}
-	else if(pc.lowerUndergarment.hardLightEquipped) addButton(0,"Fuck Her",fuckDatBitchesSluttyAss,undefined,"Fuck Her","Fuck Aliss in the ass with a hardlight strapon.");
+	else if(pc.hasHardLightEquipped()) addButton(0,"Fuck Her",fuckDatBitchesSluttyAss,undefined,"Fuck Her","Fuck Aliss in the ass with a hardlight strapon.");
 	else addDisabledButton(0,"Fuck Her","Fuck Her","You need a dick to fuck her.");
 	if(pc.hasVagina()) addButton(1,"Offer Pussy",offerPussyYouSloot,undefined,"Offer Pussy","Offer Aliss the use of a proper cocksheath - your pussy.");
 	else addDisabledButton(1,"Offer Pussy","Offer Pussy","You need a vagina to offer Aliss the use of it!");
@@ -1573,7 +1593,7 @@ public function talkToAlissAboutOvier():void
 	output("\n\nAliss stretches and asks, <i>“Anything else you want to ask?”</i>");
 	processTime(3);
 	clearMenu();
-	addButton(14,"Back",talkToAliss);	
+	addButton(14,"Back",talkToAliss);
 }
 
 //Mi Amour
@@ -1660,7 +1680,7 @@ public function lustOvahTimeEvent():void
 	pc.lust(40);
 	output("A strange feeling brings your movements up short... something is tickling the ");
 	if(pc.hasVagina()) output("tip of your [pc.clit]");
-	else if(pc.hasCock()) output("[pc.cockHeadSimple] of your [pc.cockNounSimple]");
+	else if(pc.hasCock()) output("[pc.cockHead] of your [pc.cockNounSimple]");
 	else output("ring of your [pc.asshole]");
 	output(". A warmth spreads through your crotch, far away and irregular, like your groin is falling asleep just as you slip into a bath.");
 	if(pc.isCrotchExposedByArmor()) output(" You look down, trying to find any cause,");
@@ -1767,7 +1787,7 @@ public function lustOvahTimeEvent():void
 				else if(pc.hasVagina()) output("the nub of your [pc.clit]");
 				else output("your flat, featureless groin");
 				output(". You tremble, and she stops just short. Your climax is so urgent that your vision begins to sharpen. Her chest falls with a released breath... her pussy glints as a drop of moisture wets her labia... her fingers flinch, then extend again. Her eyes lock to yours, reading your expression; your need brings a twinkle to her eye, and she presses her palm into you. You can no longer hold back. At the same moment as her hand begins to cup your ");
-				if(pc.hasCock()) output("[pc.cockHeadNoun]");
+				if(pc.hasCock()) output("[pc.cockHead]");
 				else if(pc.hasVagina()) output("[pc.vagina]");
 				else output("crotch");
 				output(", you orgasm.");
@@ -1827,6 +1847,7 @@ public function lustOvahTimeEvent():void
 				pc.orgasm();
 			}
 			//boy
+			else
 			{
 				output("\n\nPanning the crowd of observers, immobilized by your lust, your eye lights on a young man and woman standing together. The girl, a frilly-skirted, flat-chested little slip, looks away bashfully, but the young man returns your gaze with prurient, almost knowing, interest. He cracks a smile as he takes in your condition - ");
 				if(pc.hasCock()) output("your bulging [pc.cocksLight]");
@@ -1956,6 +1977,7 @@ public function processHLPantyShit():void
 		//Broken!
 		else if(flags["ALISS_FIXED_HL"] == -1)
 		{
+			if(rooms[currentLocation].hasFlag(GLOBAL.NOFAP) || rooms[currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL)) return;
 			if(rand(25) == 0 && !pc.hasStatusEffect("PANTYBREAK_CD")) 
 			{
 				pc.createStatusEffect("PANTYBREAK_CD", 0, 0, 0, 0, true, "", "", false, 48*60);

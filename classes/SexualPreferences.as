@@ -109,6 +109,16 @@
 				}
 				//trace("CURRENT MULTI: " + getTotalPrefMultiplier());
 			}
+			//33% chance to hate sweat on top of everything else
+			if(this.getPref(GLOBAL.SEXPREF_SWEAT) == 0 && rand(3) == 0)
+			{
+				this.setPref(GLOBAL.SEXPREF_SWEAT, this.getRandomDislikeFactor());
+			}
+			//25% chance to hate cum on top of everything else
+			if(this.getPref(GLOBAL.SEXPREF_CUMMY) == 0 && rand(3) == 0)
+			{
+				this.setPref(GLOBAL.SEXPREF_CUMMY, this.getRandomDislikeFactor());
+			}
 			//trace("Sexprefs generated. total multiplier: " + getTotalPrefMultiplier(true))
 		}
 		public function getTotalPrefMultiplier(traced:Boolean = false):Number
@@ -117,7 +127,7 @@
 			var foundPrefs:int = 0;
 
 			//var args:Array
-			if(traced) trace("SEXPREFS.LENGTH" + _sexPrefs.length);
+			if(traced) trace("SEXPREFS.LENGTH: " + GLOBAL.MAX_SEXPREF_VALUE);
 			for (var flagNum:int = 0; flagNum < GLOBAL.MAX_SEXPREF_VALUE; flagNum++)
 			{
 				if (getPref(flagNum) != 0)

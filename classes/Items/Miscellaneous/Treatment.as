@@ -8,11 +8,13 @@ package classes.Items.Miscellaneous
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	import classes.GameData.CodexManager;
+	import classes.Engine.Utility.rand;
+	import classes.Engine.Interfaces.*;
 	
 	public class Treatment extends ItemSlotClass
 	{
@@ -37,7 +39,7 @@ package classes.Items.Miscellaneous
 			this.description = "a medipen loaded with the Treatment";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This little pen contains one of the most sophisticated and highly regulated transformatives in the known universe. It’s called “The Treatment,” and it’s responsible for New Texas being the libertine sexual paradise it is today. They give it out for free, or near free, strangely enough.";
+			this.tooltip = "This little pen contains one of the most sophisticated and highly regulated transformatives in the known universe. It’s called “The Treatment,” and it’s responsible for New Texas being the libertine sexual paradise it is today. They give it out for free, or near free, strangely enough.\n\n<b>Known to cause moderate amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -218,14 +220,7 @@ package classes.Items.Miscellaneous
 			}
 			return false;
 		}
-		protected function rand(max:Number):Number
-		{
-			return int(Math.random()*max);
-		}
-		protected function output(arg:String):void
-		{
-			kGAMECLASS.output(arg);
-		}
+
 		private function hasSheathedNonHorsecocks(target:Creature):Boolean
 		{
 			if(target.cockTotal() == 0) return false;

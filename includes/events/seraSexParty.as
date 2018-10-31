@@ -48,14 +48,14 @@ public function seraSexPartyWearOutfit(outfit:ItemSlotClass):void
 		output("\n\n");
 		var oldOutfit:ItemSlotClass = pc.armor;
 		oldOutfit.onRemove(pc);
-		outfit.onEquip(pc);
 		itemCollect([oldOutfit]);
 		pc.armor = outfit;
+		outfit.onEquip(pc);
 	}
 	else
 	{
-		outfit.onEquip(pc);
 		pc.armor = outfit;
+		outfit.onEquip(pc);
 	}
 	pc.createStatusEffect("Armor Slot Disabled", 0, 0, 0, 0, true, "Blocked", "Better not. Sera will have a fit.", false, 0);
 }
@@ -77,9 +77,10 @@ public function seraSexPartyIntro(response:String = "intro"):void
 			output("\n\n<i>“Jarvis,”</i> you read out loud. You turn the card over before looking at your mistress skeptically. <i>“Jarvis who?”</i>");
 			output("\n\n<i>“You don’t know Jarvis?”</i> Sera grips the air with her claws and stares at the ceiling in exasperation. <i>“For One’s sake [pc.name]. You don’t </i>need<i> a second name when you are one of the most influential human modders in the galaxy! He personally </i>designed<i> most of the things I’ve used on myself. I heard that he was one of the original founders of Xenogen, but he’s been working independently for years now. I met him only once, back on Earth... I’m amazed that he remembers me. I mean I don’t know why – I don’t know what he’s doing here, why he sent a card when he could have fucking e-mailed me, who else is going to be there...”</i> she’s pacing back and forth, ranting almost, gesticulating fretfully.");
 			output("\n\n<i>“What are you so wound up about?”</i> you ask as gently as you can. <i>“It’s just a party, right?”</i>");
-			output("\n\nIn response the succubus reaches across the counter and grips you tightly around the shoulders, making you stare directly into her fluorescent yellow orbs. Her nails dig into your");
-			if(!pc.isChestCovered()) output(" flesh");
-			else output(" [pc.upperGarment]");
+			output("\n\nIn response the succubus reaches across the counter and grips you tightly around your arms, making you stare directly into her fluorescent yellow orbs. Her nails dig into your");
+			if(pc.isChestExposed()) output(" flesh");
+			else if(pc.isChestExposedByArmor()) output(" [pc.upperUndergarment]");
+			else output(" [pc.armor]");
 			output(" as she stabs the words out through her lips. <i>“Jarvis’s get-togethers are </i>legendary<i>, pet. Every influential person who has even a passing interest in gene-mods on Tavros, and star systems for light years around, will be there. It’s a once-in-a-lifetime opportunity to make contacts, network with the real galactic elite, talk to people who could invest in this place. Make a splash. Make people know I’m here! Not to mention the </i>things<i> that are supposed to go on at these parties... S ‘n M goes with modding like a wrist in a cuff. And when the rich are interested in S ‘n M...”</i> Her grip thankfully loosens as her eyes glaze over a bit.");
 			output("\n\n<i>“So you will be going then, mistress?”</i> you prompt. Sera’s eyes focus back on you and she smirks.");
 			output("\n\n<i>“With a guest, dear. With a guest who is going to show supreme gratitude for my generosity. Nothing says up-and-coming modder like a well-behaved, presentable bitch on a leash. You won’t even have to worry about a costume. I’ve got that sorted out...”</i> She laughs to herself, before going on more soberly. <i>“We only get one chance at this, [pc.name]. This is the biggest opportunity I will ever have to get the kind of contacts that could put this place on a secure financial footing, and everything we do and say with these people could make a difference. Jarvis won’t be here for long – it’s likely this is the only party he’ll be throwing on Tavros. So if you want to go prepare or primp or whatever, go ahead and do it. I can wait.”</i>");
@@ -196,7 +197,7 @@ public function seraSexPartyStage1(response:String = "none"):void
 					output("\n\nThe next item will be every bit as tight, but at least – you test the elastic of the white, barely-there thong – it will stretch a bit. You unclip the arms and carefully thread the crotch through the gap between your [pc.hips], fastening it up again so that the cup is snug on your [pc.crotch], up to the line on your [pc.butt].");
 				}
 				output("\n\nSera sits herself down behind you and applies the finishing touch; fastens the white collar around your neck and then tightens it, straightening the black bow tie primly. She considers the final product with you in the mirror, her grin widening as she drinks in the vision she’s created, and your cheeks burn as the all-consuming simmer of emotions you so often feel around Sera engulfing you; deep embarrassment, shameless arousal, submissive bliss at causing your sadistic mistress pleasure.");
-				output("\n\n<i>“I thought I’d done enough to mark you out from the actual servants that are going to be there, but maybe I haven’t,”</i> she breathes. <i>“You’re pretty damn convincing. Maybe we’re going to have to do a few training lessons here, to make sure I can pick you out at the end. Make sure you’ve got a sweeter, softer mouth than any random waiter I could pick up. You’d like that, wouldn’t you? I could grip your hair and call you Jeeves...”</i> With visible effort, she stops her hand sinking downwards. <i>“... later, maybe. There will be time later...”</i> She takes a deep breath and then gestures irritably at the pile of clothes she’s created on her side of the bed. <i>“I can’t decide. What do you think I should wear?”</i> Flattered and vaguely confused by her asking your opinion, you consider the outfits she’s laid out with as clear a mind as you can.");
+				output("\n\n<i>“I thought I’d done enough to mark you out from the actual servants that are going to be there, but maybe I haven’t,”</i> she breathes. <i>“You’re pretty damn convincing. Maybe we’re going to have to do a few training lessons here, to make sure I can pick you out at the end. Make sure you’ve got a sweeter, softer mouth than any random waiter I could pick up. You’d like that, wouldn’t you? I could grip your hair and call you Jeeves...”</i> With visible effort, she stops her hand sinking downwards. <i>“...later, maybe. There will be time later...”</i> She takes a deep breath and then gestures irritably at the pile of clothes she’s created on her side of the bed. <i>“I can’t decide. What do you think I should wear?”</i> Flattered and vaguely confused by her asking your opinion, you consider the outfits she’s laid out with as clear a mind as you can.");
 				
 				output("\n\n<b>You are wearing a sexy butler costume. Equal parts ridiculous to slutty, it consists of a waistcoat and smart white shirt with the front cut out, white pasties plastered over your [pc.nipples], a black bow tie");
 				if(pc.isBiped()) output(", a tight pair of black trousers with the seat cut out");
@@ -303,7 +304,7 @@ public function seraSexPartyStage1(response:String = "none"):void
 				output(" You sit down, feeling hot, shamefully aroused in this tight, ludicrous uniform. Distracted, you don’t even realize what the little blobs of color still remaining on the rack are until Sera sits down behind you, plucks them off, and takes a handful of your [pc.hair] at the back.");
 				output("\n\n<i>“Aaaand... there we go,”</i> she murmurs as she uses the two scrunchies to give you matching pigtails. She gets up and takes you in from the front. Your cheeks burn as she breaks out into a huge smile at the vision she’s created, that all-consuming simmer of emotions you so often feel around Sera engulfing you; deep embarrassment, shameless arousal, submissive bliss at causing your sadistic mistress pleasure.");
 				
-				output("\n\n<i>“Yesssss, that’s it,”</i> she breathes, stroking a nipple. <i>“Look down and blush, </i>be<i> the naughty little schoolgirl. Feel the guilt. You deserve to be punished, don’t you? Oh, that takes me back. I want to cane you and then nail you and then cane and nail you some more until you’re begging me to stop...”</i> With visible effort, she stops her hand sinking downwards. <i>“... later, maybe. There will be time later...”</i> She takes a deep breath and then gestures irritably at the pile of clothes she’s created on her side of the bed. <i>“I can’t decide. What do you think I should wear?”</i> Flattered and vaguely confused by her asking your opinion, you consider the outfits she’s laid out with as clear a mind as you can.");
+				output("\n\n<i>“Yesssss, that’s it,”</i> she breathes, stroking a nipple. <i>“Look down and blush, </i>be<i> the naughty little schoolgirl. Feel the guilt. You deserve to be punished, don’t you? Oh, that takes me back. I want to cane you and then nail you and then cane and nail you some more until you’re begging me to stop...”</i> With visible effort, she stops her hand sinking downwards. <i>“...later, maybe. There will be time later...”</i> She takes a deep breath and then gestures irritably at the pile of clothes she’s created on her side of the bed. <i>“I can’t decide. What do you think I should wear?”</i> Flattered and vaguely confused by her asking your opinion, you consider the outfits she’s laid out with as clear a mind as you can.");
 				
 				output("\n\n<b>You are wearing a schoolgirl costume - although you sincerely hope no <i>actual</i> schoolgirl dresses like this. It consists of a thin, clinging white blouse, a frilly pair of white knickers with the word SLUT emblazoned in pink on the seat,");
 				if(pc.isBiped()) output(" knee-high socks and plimsolls,");
@@ -391,8 +392,7 @@ public function seraSexPartyStage1(response:String = "none"):void
 			break;
 		case "leave":
 			// Move to Elevator.
-			currentLocation = "LIFT: MERCHANT DECK";
-			generateMap();
+			moveTo("LIFT: MERCHANT DECK");
 			showLocationName();
 			
 			showBust("SERA");
@@ -433,9 +433,7 @@ public function seraSexPartyStage1(response:String = "none"):void
 			break;
 		case "arrive":
 			// Move to Res Deck.
-			//currentLocation = "RESIDENTIAL DECK 4";
-			currentLocation = "RESIDENTIAL DECK 10";
-			generateMap();
+			moveTo("RESIDENTIAL DECK 10");
 			showLocationName();
 			
 			showBust("SERA");
@@ -599,7 +597,7 @@ public function seraSexPartyStage2(response:String = "none"):void
 			showName("ESTATE\nLOUNGE");
 			
 			output("You enter a darkened, plushily furnished lounge. A holographic projector dominates the room, standing in front of which a small group are talking and laughing excitedly around a console. On a circular couch in the middle of the room lie five other people, clad in bulky helmets. They occasionally twitch, writhe and moan. On the screen seems to be playing some sort of adventure movie; five scantily clad warriors are fighting off a swarm of bee-girls, their dripping stingers and ovipositors at the ready. It doesn’t look like it’s going well for the adventurers...");
-			output("\n\n<i>“Hello,”</i> says a delicate blue mantis-like creature at your elbow. <i>“Are you here to bet, or to participate?”</i> It takes a moment to look you up and down. <i>“... I suppose that’s not much of a question, is it? Come; let’s get you suited up. You’re just in time for the next round.”</i>");
+			output("\n\n<i>“Hello,”</i> says a delicate blue mantis-like creature at your elbow. <i>“Are you here to bet, or to participate?”</i> It takes a moment to look you up and down. <i>“...I suppose that’s not much of a question, is it? Come; let’s get you suited up. You’re just in time for the next round.”</i>");
 			
 			processTime(3);
 			
@@ -679,7 +677,7 @@ public function seraSexPartyStage2(response:String = "none"):void
 			// Naga:
 			if(pc.isNaga()) output(" It’s more of a flop-dive really, but the way your tail reared and flowed into the pool probably looked impressive.");
 			output(" The buzz you feel at your spontaneous audacity dissolves as a dozen soft hands and lips fasten themselves onto you, easily slipping beneath your meager clothes to touch, cusp and wetly pinch your flesh, impatiently searching out your [pc.crotch], slathering");
-			if(pc.totalGenitals() <= 1) output(" it");
+			if(pc.totalGenitals() + pc.balls <= 1) output(" it");
 			else output(" them");
 			output(" in milking, kneading goo. A cacophony of excited, tittering voices in your ears and your mouth full of goo, you find yourself pulled further and deeper into the pool, the pressure of the galotians and other trapped guests piling on top of you. You struggle – try and madly swim, even - but there’s nothing to grab onto, no purchase to be had except upon quivering wetness which coos delightedly when you sink your fingers into it. When your pulse is pounding in your head and you think you might scream you are carried to the top, allowed to breathe for a second, and then carried back to the depths where the licking, milking and fucking continues unabated.");
 			output("\n\nYour eyes roll as one goo girl pressed on top of you forms a club-like limb, spreads your cheeks and vigorously fists your [pc.anus] with it,");
@@ -707,8 +705,8 @@ public function seraSexPartyStage2(response:String = "none"):void
 			if(pc.hasVagina()) pc.orgasm();
 			if(pc.isLactating()) pc.milked(100);
 			pc.exhibitionism(1);
-			//applyCumSoaked(pc);
-			applyPussyDrenched(pc);
+			//pc.applyCumSoaked();
+			pc.applyPussyDrenched();
 			restHeal();
 			
 			clearMenu();
@@ -979,7 +977,7 @@ public function seraSexPartyStage3(response:String = "none"):void
 				if(pc.hairStyle == "pigtails") output(" You’re going to keep the pigtails, aren’t you? Yes you are. A cumdump as good as you without handlebars is such a waste.");
 				else if(outfitPC == "butler") output(" How did I ever think I could misplace you, Jeeves? The throat... I always forget how nice and obedient your throat is...");
 				output("”</i> Her dirty talk makes you feel warm, aglow with blissful submission. You utter a low, muffled moan around the thick, musky meat stretching your throat, knowing by the urgency of her movements and the tenseness of her flesh she’s close. <i>“I know you’re hungry [pc.boy], don’t worry, it’s coming... a big, hot serving of a bitch’s rightful rew--”</i> The door opens.");
-				output("\n\n<i>“Maybe I left it in he--oh!”</i> The big, square reptile creature stares agog at the scene. Your eyes shoot open and you clamp down on an urge to retch only with great difficulty. Sera is past caring; she keeps hold of you and continues pumping her trunk-like length into your mouth regardless. Shock, then embarrassment pass over the creature’s face as you look at each other; then, dawning revelation. <i>“... yes! </i>That’s<i> what I was going to say! That testicle mod, it worked perfectly! All night long, listening to that awful roehm go on and on about homeopathic solutions to infertility, how could it have slipped my mind?”</i>");
+				output("\n\n<i>“Maybe I left it in he--oh!”</i> The big, square reptile creature stares agog at the scene. Your eyes shoot open and you clamp down on an urge to retch only with great difficulty. Sera is past caring; she keeps hold of you and continues pumping her trunk-like length into your mouth regardless. Shock, then embarrassment pass over the creature’s face as you look at each other; then, dawning revelation. <i>“...yes! </i>That’s<i> what I was going to say! That testicle mod, it worked perfectly! All night long, listening to that awful roehm go on and on about homeopathic solutions to infertility, how could it have slipped my mind?”</i>");
 				output("\n\n<i>“Little... privacy?”</i> groans Sera.");
 				output("\n\n<i>“Yes, yes of course. Thanks again!”</i> The door clicks shut. Sera surges her cock up and down every inch of your stretched throat for a few seconds more then holds you tight up to her hairless crotch as, with a heartfelt gasp, she unloads herself directly into your stomach, warming and filling you with her copious seed. Possibly because she doesn’t want to ruin your costume (yet) she doesn’t perform her usual trick of pulling out and splashing her last few spurts across your face and [pc.chest]; instead she makes sure you get every single drop, clenching up half a dozen times first down your throat and then, sliding out, in your mouth. She keeps a firm hand on your shoulder, waiting for you to swallow the thick slime down before presenting her oozing cock head to your [pc.lips].");
 				output("\n\n<i>“What do you say?”</i> she asks brusquely after you’ve finished carefully licking it gleaming clean.");
@@ -994,6 +992,7 @@ public function seraSexPartyStage3(response:String = "none"):void
 				pc.lust(15);
 				pc.loadInMouth(sera);
 				pc.loadInMouth(sera);
+				sera.orgasm();
 				pc.exhibitionism(1);
 				IncrementFlag("SERA_PARTY_FUCKED");
 				flags["SERA_PARTY_STAGE3"] = response;
@@ -1391,7 +1390,7 @@ public function seraSexPartyStage4(response:String = "none"):void
 			if(pc.hasVagina()) pc.orgasm();
 			pc.girlCumInMouth(ppVedice);
 			pc.girlCumInMouth(ppVedice);
-			applyPussyDrenched(pc);
+			pc.applyPussyDrenched();
 			pc.exhibitionism(1);
 			
 			// {merge}
@@ -1521,7 +1520,7 @@ public function seraSexPartyStage4(response:String = "none"):void
 			pc.loadInAss(sera);
 			sera.orgasm();
 			sera.orgasm();
-			applyPussyDrenched(pc);
+			pc.applyPussyDrenched();
 			pc.exhibitionism(1);
 			IncrementFlag("SERA_PARTY_FUCKED");
 			
@@ -1534,8 +1533,7 @@ public function seraSexPartyStage4(response:String = "none"):void
 			rooms["RES DECK EAST ESTATE"].removeFlag(GLOBAL.NPC);
 			// Time +2 hours
 			processTime(120);
-			currentLocation = "9018";
-			generateMap();
+			moveTo("9018");
 			showLocationName();
 			
 			showBust("SERA");
@@ -1573,7 +1571,9 @@ public function seraSexPartyStage4(response:String = "none"):void
 			// Went to Vedice:
 			if(flags["SERA_PARTY_STAGE4"] == "vedice") {
 				output(" <i>“You know I’m – I’m very angry with you. Why didja wander off with that snake cow for, huh? I’m your mistress, not her.”</i> She giggles slightly. <i>“You know if I hadn’t stepped in, I could have sworn she was going to take you home with her! Probably to, like, a snake pit or something.”</i> She laughs hilariously at her own Wildean wit. <i>“Good thing your mistress looks out for you even when you’re being the sluttiest of sluts, ain’t it?”</i>");
-				output("\n\n<i>“Uh huh,”</i> you say fervently. You close your eyes as once again your lips tingle and the taste of Vedice comes vividly back; your [pc.groin] throbs achingly at the same time. You really hope the blowback the evil naga has inflicted on you doesn’t last.");
+				output("\n\n<i>“Uh huh,”</i> you say fervently. You close your eyes as once again your lips tingle and the taste of Vedice comes vividly back; your [pc.groin] throb");
+				if(pc.totalGenitals() + pc.balls <= 1) output("s");
+				output(" achingly at the same time. You really hope the blowback the evil naga has inflicted on you doesn’t last.");
 			}
 			// Went to Sera:
 			if(flags["SERA_PARTY_STAGE4"] == "sera") {
@@ -1622,7 +1622,7 @@ public function seraSexPartyConclusion():void
 	// If >5 days
 	else
 	{
-		showBust("SERA");
+		showBust("SERA","FIX");
 		
 		if(seraInfluence() <= 90)
 		{
@@ -1639,7 +1639,7 @@ public function seraSexPartyConclusion():void
 		{
 			output("\n\nThere’s a strange, wet rasping sound coming from somewhere, but it doesn’t seem to have anything to do with Sera, who has gotten up and briskly tack-tacked around the counter in response to your question, running her fingers over her ornaments.");
 			output("\n\n<i>“Oh...not bad, not bad,”</i> she says, examining her prints for dust. Although she’s feigning nonchalance it’s clear she’s been waiting for you to ask this question for some time. <i>“I’ve definitely been getting more customers through the door. Paying ones too, rather than looking ones or maybe-I’ll-go-across-the-street-to-the-other-place-because-I’m-a-fucking-jackass ones. People have been placing orders as well, and I’ve found a new supplier who trades in </i>really<i> cool shit, so I’ll be in a better position to meet demand. Much better than all that though...”</i> she’s clutching the Anubis ornament excitedly as she talks to you, her inhuman eyes lit up, affectations of casualness forgotten.");
-			output("\n\n<i>“... Today I secured a commission to supply a whole frontier colony with luxury mods for a year. A year! I can use the money from that to pay off my outstanding debt. You wouldn’t </i>believe<i> how that has been hanging over me, pet. I kept imagining never being able to get rid of it, and then getting indentured to some creepy psychopath or having to phone my dad asking for help... it’s gone. I’m free. Free to really enjoy myself.”</i> She grins widely at you, yellow eyes running up and down your frame, before turning with a flick of blue hair and sashaying back behind the counter. <i>“Isn’t that nice, Fix?”</i>");
+			output("\n\n<i>“...Today I secured a commission to supply a whole frontier colony with luxury mods for a year. A year! I can use the money from that to pay off my outstanding debt. You wouldn’t </i>believe<i> how that has been hanging over me, pet. I kept imagining never being able to get rid of it, and then getting indentured to some creepy psychopath or having to phone my dad asking for help... it’s gone. I’m free. Free to really enjoy myself.”</i> She grins widely at you, yellow eyes running up and down your frame, before turning with a flick of blue hair and sashaying back behind the counter. <i>“Isn’t that nice, Fix?”</i>");
 			output("\n\n<i>“Yes mistress,”</i> says a small voice on the other side of the counter; the rhythmic rasping sound stops momentarily. Moving so that you can see over it you find the source – a slender kaithrit boy with apple cheeks and freckles, naked except for a latex shorts and chastity device combo, finishing off the bowl of wet, off-white substance in front of him with his rough, pink slip of a tongue. He has eyes only for the purple succubus towering over him. <i>“Please now may I - ?”</i>");
 			output("\n\n<i>“Go into the back,”</i> Sera orders coolly. <i>“We’ll see if you’ve done enough to earn a thorough prostate examination shortly.”</i> She smirks at his retreating back before returning to you. <i>“Thanks again for helping me, [pc.name]. I don’t think any of my other bitches would have been anywhere near as useful as you were at that party. Now... was there something else you wanted?”</i>");
 			
@@ -1650,7 +1650,7 @@ public function seraSexPartyConclusion():void
 		{
 			output("\n\nThere’s a strange, wet rasping sound coming from somewhere, but it doesn’t seem to have anything to do with Sera, who has gotten up and tack-tacked around the counter in response to your question, absentmindedly running her fingers over her ornaments.");
 			output("\n\n<i>“It’s been... I don’t know how to put it.”</i> She laughs suddenly, a sound of pure joy, undistorted by her usual strains of malice. <i>“It’s like everything I’d been doing here up until that party was just </i>playing<i> at being a merchant. Now I’m actually doing it. I’m so connected, so many doors I didn’t know fucking existed have opened for me, I can’t even keep up. There have been lots more customers coming in, loads of orders being placed - more than I can cope with right now - but since I’ve been approached by half a dozen new suppliers that won’t be a problem for long. Much better than that though...”</i> she’s clutching the Anubis ornament excitedly as she talks, her inhuman eyes shining.");
-			output("\n\n<i>“... I’m actually getting commissions. Three frontier colonies have asked me to supply them with luxury mods for a year, with views to extend. A year! I can use the money from that to pay off my outstanding debt. You wouldn’t </i>believe<i> how that has been hanging over me, pet. I kept imagining never being able to get rid of it, and then getting indentured to some creepy psychopath or having to phone my dad asking for help... it’s gone. I’m free. Free to really enjoy myself.”</i> She grins widely at you, yellow eyes running up and down your frame, before turning with a flick of blue hair and sashaying back behind the counter. <i>“Isn’t that nice, Fix?”</i>");
+			output("\n\n<i>“...I’m actually getting commissions. Three frontier colonies have asked me to supply them with luxury mods for a year, with views to extend. A year! I can use the money from that to pay off my outstanding debt. You wouldn’t </i>believe<i> how that has been hanging over me, pet. I kept imagining never being able to get rid of it, and then getting indentured to some creepy psychopath or having to phone my dad asking for help... it’s gone. I’m free. Free to really enjoy myself.”</i> She grins widely at you, yellow eyes running up and down your frame, before turning with a flick of blue hair and sashaying back behind the counter. <i>“Isn’t that nice, Fix?”</i>");
 			output("\n\n<i>“Yes mistress,”</i> says a small voice on the other side of the counter; the rhythmic rasping sound stops momentarily. Moving so that you can see over it you find the source – a slender kaithrit boy with apple cheeks and freckles, naked except for a latex shorts and chastity device combo, finishing off the bowl of wet, off-white substance in front of him with his rough, pink slip of a tongue. He has eyes only for the purple succubus towering over him. <i>“Please now may I - ?”</i>");
 			output("\n\n<i>“Go into the back,”</i> Sera orders coolly. <i>“We’ll see if you’ve done enough to earn a thorough prostate examination shortly.”</i> She smirks at his retreating back before returning to you. <i>“You know,”</i> she says huskily, leaning on the counter, pointedly displaying her breasts to you, <i>“By performing so well at that party, really making those fat cats’ heads turn, you’ve actually made life harder for me. There’s so much that needs to be done, I’m going to have to start employing people. And I think I know who I’m going to engage first.”</i> She leers at you.");
 			output("\n\n<i>“Me? But I can’t...”</i>");
@@ -1684,7 +1684,7 @@ public function seraGetSalary():void
 	
 	if(pc.hasCuntTail()) surpriseSex.push(getTailUsedBySera);
 	if(pc.hasParasiteTailCock()) surpriseSex.push(seraCockvineScene);
-	if((flags["MET_FEMALE_RASKVEL"] != undefined || flags["MET_MALE_RASKVEL_GANG"] != undefined || flags["MET_KEROKORAS"] != undefined) && pc.hasGenitals()) surpriseSex.push(seraTongueFuckBonus);
+	if((flags["MET_FEMALE_RASKVEL"] != undefined || flags["MET_MALE_RASKVEL_GANG"] != undefined || flags["MET_KEROKORAS"] != undefined || flags["TIMES_MET_FEMZIL"] != undefined || flags["ENCOUNTERED_ZIL"] != undefined) && pc.hasGenitals()) surpriseSex.push(seraTongueFuckBonus);
 	
 	if(surpriseSex.length > 0) selFunc = surpriseSex[rand(surpriseSex.length)];
 	

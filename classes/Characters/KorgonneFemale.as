@@ -10,6 +10,7 @@
 	import classes.Items.Melee.YappiStrap;
 	import classes.Items.Armor.InsulatedCoat;
 	import classes.Items.Upgrades.HardLightUpgrade;
+	import classes.Items.Transformatives.KorgonneSnacks;
 
 
 	import classes.kGAMECLASS;
@@ -241,6 +242,7 @@
 			if(rand(20) == 0) inventory.push(new InsulatedCoat());
 			//Temporarily put on these snowbitches till I find a real home for it.
 			if(!kGAMECLASS.pc.hasHardLightUpgraded() && rand(10) == 0) inventory.push(new HardLightUpgrade());
+			if(rand(4) == 0 && inventory.length == 0) inventory.push(new KorgonneSnacks());
 			/*
 			if (rand(10) == 0)
 			{
@@ -302,8 +304,8 @@
 			else
 			{
 				output("\n\nYou try to close your eyes, but it’s not enough. The flare turns the reflective snow all around you into diamond-sharp luminance that feels like it’s cauterizing your eyes. Your head reels, a slight ringing in your ears as you blink rapidly, unable to clear the white emptiness that fills your sight. <b>You have been blinded!</b>");
-				//(Inflicts the <i>“Blindness”</i> status)
-				target.createStatusEffect("Blinded",rand(3)+1,0,0,0,false,"Blind","You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0xFF0000);
+				//(Inflicts the “Blindness” status)
+				CombatAttacks.applyBlind(target, rand(3) + 1);
 			}
 			createStatusEffect("Korgi Blind Used");
 		}
@@ -321,7 +323,7 @@
 			else
 			{
 				output("The savage launches herself at you, attempting to drag you to the ground once more!");
-				if(kGAMECLASS.korgiTranslate())
+				if(kGAMECLASS.korgiSillyTranslate())
 				{
 					if(kGAMECLASS.silly) output(" <i>“Very brr! Such frolic!”</i>");
 				}
@@ -336,10 +338,10 @@
 				var damage:TypeCollection = new TypeCollection( { kinetic: (physique()-5), freezing: 10 } );
 				damageRand(damage, 15);
 				applyDamage(damage, this, target);
-				if(!target.hasStatusEffect("Tripped") && target.reflexes() + rand(20) + 1 < 35)
+				if(!target.hasStatusEffect("Tripped") && !target.isPlanted() && target.reflexes() + rand(20) + 1 < 35)
 				{
-					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You’ve been tripped, reducing your effective physique and reflexes by 4. You’ll have to spend an action standing up.", true, 0);
-					output(" Worst of all, <b>You’re stuck in the snow for the moment, tripped up.</b>");
+					CombatAttacks.applyTrip(target);
+					output("\nWorst of all, <b>You’re stuck in the snow for the moment, tripped up.</b>");
 				}
 			}
 		}
@@ -348,7 +350,7 @@
 		{
 			//(three uses) - statusEffectv1("Heavy Gun") < 3
 			output("Fishing one of the guns from her pocket, the barbarian struggles with the device for a minute before gripping it properly, pointing the armament in your direction. She jerks the trigger and to her shock, loses control of the gun as it discharges its magazine in rapid succession. Before she can adjust her aim, she’s emptied it entirely.");
-			if(kGAMECLASS.korgiTranslate())
+			if(kGAMECLASS.korgiSillyTranslate())
 			{
 				if(!kGAMECLASS.silly) output(" <i>“Dumb, tiny darts! You too fast!”</i>");
 				else output(" <i>“So zip! Very recoil. Wow! Much junk!”</i>");
@@ -363,8 +365,8 @@
 					applyDamage(damage, this, target);
 					if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < physique() + 4)
 					{
-						target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0,0xFF0000);
-						output(" <b>The blow leaves you stunned and reeling.</b>");
+						CombatAttacks.applyStun(target, 1);
+						output("\n<b>The blow leaves you stunned and reeling.</b>");
 					}
 				}
 			}
@@ -409,11 +411,10 @@
 					damage = new TypeCollection( { kinetic: (physique()+5) });
 					damageRand(damage, 15);
 					applyDamage(damage, this, target);
-					if(target.physique()/2 + rand(20) + 1 < 10 + this.physique()/2)
+					if((target.physique()/2 + rand(20) + 1 < 10 + this.physique()/2) && !target.isPlanted())
 					{
-						output(" <b>You are sent realing by the blow, staggered.</b>");
-						if (target.hasStatusEffect("Staggered")) target.setStatusValue("Staggered", 1, 5);
-						else target.createStatusEffect("Staggered", 5, 0, 0, 0, false, "Icon_OffDown", "You’re staggered, and your Aim and Reflexes have been reduced!", true, 0);
+						output("\n<b>You are sent reeling by the blow, staggered.</b>");
+						CombatAttacks.applyStagger(target, 5, true);
 					}
 				}
 				//Miss

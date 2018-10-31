@@ -57,12 +57,13 @@ package classes.Characters
 			this.ballEfficiency = 30;
 			
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 2000;
 			this.timesCum = 1689;
 			this.cockVirgin = false;
 			this.vaginalVirgin = false;
 			this.analVirgin = false;
+			this.fertilityRaw = 8;
 			createPerk("Fixed CumQ",50000,0,0,0);
 			//createPerk("No Cum Leakage",0,0,0,0);
 		}
@@ -71,6 +72,11 @@ package classes.Characters
 		{
 			if(bellyRating() >= 25) return "ILARIA_PREG";
 			return "ILARIA";
+		}
+		
+		override public function isPregnant(vIdx:int = 0):Boolean
+		{
+			return (kGAMECLASS.flags["ILARIA_PREG_TIMER"] != undefined);
 		}
 	}
 }

@@ -67,7 +67,7 @@ public function crystalGooEncounterType1():void
 		if ((pc.aim() + pc.intelligence() + rand(60)) / 4 > (tEnemy.aim() + tEnemy.intelligence()))
 		{
 			output("\n\nA twitching fungus alerts you to its location.");
-			if (pc.rangedWeapon is EmptySlot)
+			if (!pc.hasRangedWeapon())
 			{
 				output(" You flick");
 				tEnemy.shieldsRaw -= 3;
@@ -102,12 +102,11 @@ public function crystalGooEncounterType1():void
 			if ((pc.reflexes() + rand(30) + 1) / 2 > tEnemy.reflexes())
 			{
 				output(" Your blow lands dead center, sending the ganrael’s charge off-course. It recovers in a rolling slither of loops while spitting what you imagine are curses.");
-				if (!(pc.meleeWeapon is EmptySlot)) tEnemy.shieldsRaw -= 17;
+				if (pc.hasMeleeWeapon()) tEnemy.shieldsRaw -= 17;
 				else tEnemy.shieldsRaw -= 6;
 			}
 			else
 			{
-				
 				output(" Your slow strike glances harmlessly to the side as the ganrael barrels into you, coiling and holding you with spindly, jointed legs.");
 				pc.createStatusEffect("Grappled", 3); // 9999
 			}
@@ -126,10 +125,10 @@ public function crystalGooEncounterType1():void
 	flags["CRYSTALGOO_T1_ENCOUNTERS"]++;
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setFriendlyActors(pc);
 	CombatManager.victoryScene(pcDefeatsCrystalGooToo);
 	CombatManager.lossScene(crystalGooPCLoss);
-	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.setHostileActors(tEnemy);
 	CombatManager.displayLocation("CRYSTAL GOO");
 
 	showCrystalGooToo();
@@ -172,7 +171,7 @@ public function crystalGooEncounterType2():void
 		output("”</i> it sighs, in a feminine voice.");
 		
 		output("\n\nYour codex beeps out a warning too late: <i>“Ganrael detected. An amorphous, intelligent lifeform capable of hardening its outer skin into exoskeletal arms and armor. Available reports indicate that ganrael will attempt to harvest genetic material from individuals they encounter.”</i> On cue, the statue closes in!");
-		
+		CodexManager.unlockEntry("Ganrael");
 		output("\n\n<b>It’s a fight!</b>");
 		//go to fight
 	}
@@ -199,10 +198,10 @@ public function crystalGooEncounterType2():void
 	flags["CRYSTALGOO_T2_ENCOUNTERS"]++;
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setFriendlyActors(pc);
 	CombatManager.victoryScene(pcDefeatsCrystalGooToo);
 	CombatManager.lossScene(crystalGooPCLoss);
-	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.setHostileActors(tEnemy);
 	CombatManager.displayLocation("CRYSTAL GOO");
 
 	showCrystalGooToo();
@@ -475,7 +474,7 @@ public function crystalGooSculptingMale():void
 		
 		output("\n\nHis chest quivers under the pile of [pc.cumNoun] you left, slurping the sperm down into its depths. Your ganrael pushes at your hips urgently and you find the strength to slip off of him, wincing when his expanded dong drags out. He rolls over onto his hands and knees, trembling as your massive load filters through every part of him and swells his limbs with new fluid. With a mad tremor, his body bulges and begins to fray, peeling apart at the fingers and toes. His new arms wrap themselves around his chest for leverage and a second body pulls away, briefly resembling a lewd picture of two lovers before the newcomer’s crotch separates from the original’s ass with a final tug. The new body - your offspring - relaxes its grip and falls off as the first collapses.");
 		
-		output("\n\n<i>“Never done...”</i> your ganrael gasps, <i>“... never happened so fast before.”</i> He reaches a hand out to you and laces his goopy fingers with yours. <i>“Amazing.”</i>");
+		output("\n\n<i>“Never done...”</i> your ganrael gasps, <i>“...never happened so fast before.”</i> He reaches a hand out to you and laces his goopy fingers with yours. <i>“Amazing.”</i>");
 		
 		output("\n\nThe other reaches as well, petting at your swollen, aftershocking [pc.cocksNounSimple]. You pull back quickly before your naive child can touch it; it changes focus to the sculpted rod on your alien lover instead. You collect your things while watching, feeling strange urges that encourage you to hurry.");
 	}
@@ -898,7 +897,7 @@ public function crystalGooFreeformFucks():void
 
 			output("\n\nYou shrug and nod with the peace of mind of someone who has just gotten laid.");
 
-			output("\n\n<i>“But... but...”</i> "+ cgender("she", "it") +" stammers, <i>“... I didn’t get enough! I need more seed!”</i> "+ cgender("She", "It") +" reaches for your oversensitive [pc.vagOrAss] and you back away on reflex. The alien tries again with the same result, then drops "+ cgender("her", "its") +" arm, defeated.");
+			output("\n\n<i>“But... but...”</i> "+ cgender("she", "it") +" stammers, <i>“...I didn’t get enough! I need more seed!”</i> "+ cgender("She", "It") +" reaches for your oversensitive [pc.vagOrAss] and you back away on reflex. The alien tries again with the same result, then drops "+ cgender("her", "its") +" arm, defeated.");
 
 			output("\n\n<i>“Maybe next time,”</i> you offer");
 			if (pc.isNice()) output(" politely.");
@@ -1247,7 +1246,7 @@ public function crystalGooSounding(pcVictory:Boolean = false):void
 	
 	if (!megaDong)
 	{
-		output("\n\nThe ganrael inspects the opening, then slides a finger under the palm plate of her left hand and and pries upward; "+enemy.skinTone+" gel drools from the ‘wound’, forming a thin strand with a teardrop tip. It bubbles and clouds, stiffening into a small rod. She takes a knee and brings the newly-made sound to your genitals, and you shudder.");
+		output("\n\nThe ganrael inspects the opening, then slides a finger under the palm plate of her left hand and pries upward; "+enemy.skinTone+" gel drools from the ‘wound’, forming a thin strand with a teardrop tip. It bubbles and clouds, stiffening into a small rod. She takes a knee and brings the newly-made sound to your genitals, and you shudder.");
 	}
 	
 	output("\n\nThe alien begins slowly, testing your urethra with ticklish care. The");
@@ -1783,7 +1782,7 @@ public function crystalGooVagooLoss():void
 	else if (pc.isGoo())
 	{
 		output("\n\n<i>“You need to be punished for hunting in my territory,");
-		//{(type 1) droplet,}
+		// (type 1) droplet,
 		if(enemy is CrystalGooT1) output(" droplet,");
 		output("<i>“ "+ cgender("she", "it") +" says. <i>“I’m going to find your sweet spots and tease them until you beg me for reprieve.”</i>");
 		

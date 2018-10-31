@@ -5,9 +5,11 @@ package classes.Items.Guns
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	import classes.GameData.CombatAttacks;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
 	public class SlutRayAdvanced extends ItemSlotClass
 	{
+		//Level 5 (Rare). Balance 2.0
 		public function SlutRayAdvanced()
 		{
 			_latestVersion = 1;
@@ -31,9 +33,10 @@ package classes.Items.Guns
 			attackVerb = "shoot";
 			attackNoun = "sexual fantasy";
 			
-			basePrice = 4500;
+			basePrice = 2500;
 			attack = 0;
-			baseDamage.tease.damageValue = 12;
+			baseDamage.tease.damageValue = 5;
+			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			addFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON);
 			
@@ -41,7 +44,7 @@ package classes.Items.Guns
 			shieldDefense = 0;
 			shields = 0;
 			sexiness = 0;
-			critBonus = 2;
+			critBonus = 5;
 			evasion = 0;
 			fortification = 0;
 			

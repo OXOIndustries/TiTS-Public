@@ -9,6 +9,7 @@
 	
 	public class SecureMP extends ItemSlotClass
 	{
+		//Level 6 (Rare). Balance 2.0
 		//constructor
 		public function SecureMP()
 		{
@@ -19,7 +20,7 @@
 			this.type = GLOBAL.RANGED_WEAPON;
 			
 			//Used on inventory buttons
-			this.shortName = "secureMP";
+			this.shortName = "SecureMP";
 			
 			//Regular name
 			this.longName = "Secure MP";
@@ -37,20 +38,21 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 5500;
-			this.attack = 1;
+			this.basePrice = 3400;
+			this.attack = 0;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 13;
+			baseDamage.kinetic.damageValue = 19;
 			baseDamage.addFlag(DamageFlag.BULLET);
 			itemFlags = [GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS];
+			baseDamage.addFlag(DamageFlag.NO_CRIT);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 2;
-			this.evasion = 0;
+			this.critBonus = 0;
+			this.evasion = 4;
 			this.fortification = 0;
 
 			this.version = _latestVersion;

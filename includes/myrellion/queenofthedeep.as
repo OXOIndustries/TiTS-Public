@@ -79,8 +79,8 @@ public function queenOfTheDeepInitFight():void
 	pc.createStatusEffect("Watered Down", 0, 0, 0, 0, false, "Icon_Slow", "You’re submerged in water, and your movements are dramatically slowed because of it. While you’re fighting in the lake, your Reflex is reduced!", true, 0);
 
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(new QueenOfTheDeep());
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new QueenOfTheDeep());
 	CombatManager.victoryScene(queenOfTheDeepPCVictory);
 	CombatManager.lossScene(queenOfTheDeepPCLoss);
 	CombatManager.displayLocation("DEEPS QUEEN");
@@ -126,7 +126,7 @@ public function queenOfTheDeepPCLoss():void
 	var cIdx:int = -1;
 	if (pc.hasCock()) cIdx = pc.biggestCockIndex();
 
-	var bMultiTentacle:Boolean = numEmptyHoles > 1 ? true : false;
+	var bMultiTentacle:Boolean = (numEmptyHoles > 1);
 
 	output("The creeping realization that you have no hope of victory against this mammoth creature begins to take root in your mind, and you start to retreat, stumbling back through the water.");
 
@@ -379,7 +379,7 @@ public function queenOfTheDeepSurrenderII(fromCombat:Boolean):void
 		}
 	}
 
-	var bMultiTentacle:Boolean = numEmptyHoles > 1 ? true : false;
+	var bMultiTentacle:Boolean = (numEmptyHoles > 1);
 
 	output("\n\nHer long, spindly legs draw her closer to you, lowering her down as she approaches until her bestial body is half-submerged in the water, and her humanoid half looms close to you, arms outstretched. <i>“Come to me, then,”</i> she purrs. <i>“Let me show you the true meaning of pleasure.”</i>");
 
@@ -491,7 +491,7 @@ public function queenOfTheDeepSurrenderIISplit(fromCombat:Boolean):void
 	var cIdx:int = -1;
 	if (pc.hasCock()) cIdx = pc.biggestCockIndex();
 
-	var bMultiTentacle:Boolean = numEmptyHoles > 1 ? true : false;
+	var bMultiTentacle:Boolean = (numEmptyHoles > 1);
 	
 	output("<i>“Now it is time for you to truly submit to your queen,”</i> your captor-queen says, running a hand along your [pc.butt] and gently sliding a finger into your well-lubed behind. <i>“I am all that remains... I require you to ensure my lineage continues. That I am not the last as my mother prophesied. Surrender your body to me, bear my young back among your people. Become the herald of a new age for my kind.”</i>");
 
@@ -829,7 +829,7 @@ public function queenOfTheDeepGetEgged():void
 	var cIdx:int = -1;
 	if (pc.hasCock()) cIdx = pc.biggestCockIndex();
 	
-	var bMultiTentacle:Boolean = numEmptyHoles > 1 ? true : false;
+	var bMultiTentacle:Boolean = (numEmptyHoles > 1);
 
 	output("<i>“Now that you’ve calmed down,”</i> you say, starting to peel off your [pc.gear], <i>“maybe we can work something out.”</i>");
 
@@ -1193,8 +1193,8 @@ public function queenPregnancyEnds():void
 	
 	var se:StorageClass = pc.getStatusEffect("Queen Pregnancy End");
 
-	var buttPreggers:Boolean = se.value3 > 0 ? true : false;
-	var cuntPreggers:Boolean = se.value4 > 0 ? true : false;
+	var buttPreggers:Boolean = (se.value3 > 0);
+	var cuntPreggers:Boolean = (se.value4 > 0);
 	var numCuntPreggers:Number = se.value4;
 	var numPreggers:Boolean = se.value3 + se.value4;
 

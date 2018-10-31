@@ -135,7 +135,7 @@ public function tanisBowTrainingRepeat():void
 	flags["TANIS_BOW_TRAINING"]++;
 
 	//PC must have a bow in inventory or equipped. Pass ~30 minutes.
-	//{50-Aim %} Chance to increase Aim by a point, up to level max.
+	// 50-Aim % - Chance to increase Aim by a point, up to level max.
 
 	if (rand(100) >= 50 && pc.aim() < 25 && pc.AQ() < 50)
 	{
@@ -175,6 +175,8 @@ public function tanisBowTrainingRepeat():void
 	output("\n\nYou give him a grin and sling your bow over your back, following the towering ‘taur back into the scout office.");
 	if (pc.isTreated()) output(" You can’t help but look at that big, muscular ass all the way in.");
 
+	processTime(25+rand(5));
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -187,7 +189,7 @@ public function tanisBowTrainingFinaleRepeats():void
 	flags["TANIS_BOW_TRAINING"]++;
 
 	//PC must have a bow in inventory or equipped. Pass ~30 minutes.
-	//{80-Aim %} Chance to increase Aim by a point, up to level max.
+	// 80-Aim % - Chance to increase Aim by a point, up to level max.
 
 	if (rand(100) >= 80 && pc.aim() < 25 && pc.AQ() < 50)
 	{

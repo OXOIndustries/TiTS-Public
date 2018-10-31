@@ -9,6 +9,7 @@
 	
 	public class LightningRod extends ItemSlotClass
 	{
+		//Level 6 (Common). Balance 2.0
 		// Lightning Rod (Level 6)
 		// by HugsAlright
 		// Vendor: Somewhere on Myrellion?
@@ -34,7 +35,7 @@
 			attackVerb = "swing";
 			attackNoun = "shocking thrust";
 			
-			basePrice = 10000;
+			basePrice = 3400;
 			
 			baseDamage = new TypeCollection();
 			baseDamage.kinetic.damageValue = 7;
@@ -43,13 +44,13 @@
 			baseDamage.addFlag(DamageFlag.CHANCE_APPLY_STUN);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			
-			attack = 0;
+			attack = 1;
 			critBonus = 0;
 			defense = 0;
 			shieldDefense = 0;
 			shields = 0;
 			sexiness = 0;
-			evasion = 3;
+			evasion = 4;
 			fortification = 0;
 			
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);

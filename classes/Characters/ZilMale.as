@@ -7,6 +7,7 @@
 	import classes.Items.Melee.Fists;
 	import classes.Items.Miscellaneous.*
 	import classes.Items.Guns.PrimitiveBow;
+	import classes.Items.Guns.LaserCarbine;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -66,13 +67,13 @@
 			this.scaleColor = "black";
 			this.furColor = "yellow";
 			this.hairLength = 3;
-			this.hairType = GLOBAL.TYPE_BEE;
+			this.hairType = GLOBAL.HAIR_TYPE_HAIR;
 			this.beardLength = 0;
 			this.beardStyle = 0;
 			this.skinType = GLOBAL.SKIN_TYPE_CHITIN;
 			this.skinTone = "black";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.TYPE_BEE;
+			this.faceType = GLOBAL.TYPE_HUMAN;
 			this.faceFlags = new Array();
 			this.tongueType = GLOBAL.TYPE_BEE;
 			this.lipMod = 0;
@@ -130,6 +131,7 @@
 			//No dicks here!
 			this.cocks = new Array();
 			this.createCock();
+			this.cockVirgin = false;
 			this.cocks[0].cLengthRaw = 6;
 			this.cocks[0].cThicknessRatioRaw = 1.75;
 			this.cocks[0].cockColor = "black";
@@ -156,16 +158,20 @@
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 			
+			impregnationType = "ZilPregnancy";
+			
 			this.breastRows[0].breastRatingRaw = 0;
 			this.nippleColor = "black";
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.FLUID_TYPE_HONEY;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
+			this.analVirgin = false;
 			this.ass.wetnessRaw = 0;
 			this.ass.bonusCapacity += 15;
 
 			this.createStatusEffect("Disarm Immune");
+			this.createPerk("Appearance Enabled");
 			
 			isUniqueInFight = true;
 			btnTargetText = "ZilMale";
@@ -185,6 +191,8 @@
 			if(rand(5) == 0) inventory.push(new PrimitiveBow());
 			else inventory.push(new ZilRation());
 
+			createStatusEffect("Flying", 0, 0, 0, 0, false, "Icon_Wings", "Flying, cannot be struck by normal melee attacks!", true, 0);
+
 			kGAMECLASS.mhengaSSTDChance(this);
 		}
 		
@@ -200,14 +208,24 @@
 				dataObject.legFlags.push(GLOBAL.FLAG_PLANTIGRADE);
 			}
 		}
-		
+		public function pumpkingIt():void
+		{
+			isUniqueInFight = false;
+			this.rangedWeapon = new LaserCarbine();
+			this.inventory = [];
+		}
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);
 			
 			if (target == null) return;
 			
-			if(((HPMax() - HP())/HPMax()) * 200 > rand(100))
+			if(this.rangedWeapon is LaserCarbine)
+			{
+				if(CombatManager.getRoundCount() % 4 == 0) zilHardenSingle();
+				else CombatAttacks.SingleRangedAttackImpl(this, target);
+			}
+			else if(((HPMax() - HP())/HPMax()) * 200 > rand(100))
 			{
 				if(CombatManager.getRoundCount() % 4 == 0) zilHardenSingle();
 				else if(rand(4) == 0) flurryOfBlows(target);
@@ -256,9 +274,9 @@
 			output("The zil abruptly begins to fondle his [zil.cock], stimulating the organ as he alters his wingbeats to gust musk-laced air in your direction. He floats up high and flies erratically enough that you doubt you could hit him.");
 			if(target.hasAirtightSuit())
 			{
-				output("\n\nLuckily your [pc.armor] is sealed tight, so you unaffected by it. He grumps at his failed attempt. You definitely came prepared!");
+				output("\n\nLuckily your [pc.armor] is sealed tight, so you are unaffected by it. He grumps at his failed attempt. You definitely came prepared!");
 			}
-			//{Moderate toughness check pass}
+			// Moderate toughness check pass
 			else if(target.physique() + rand(20) + 1 > 20) {
 				output(" There’s nothing to do but try and hold your breath!");
 				output("\nHe gets tired long before you do and gives up, but it still leaves a cloud of his delicious aroma floating around you. It’s strong enough to make your pulse quicken.");
@@ -322,7 +340,7 @@
 					if (!target.hasStatusEffect("Stunned"))
 					{
 						output("<b> It’s concussive enough to leave you stunned.</b>");
-						target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0,0xFF0000);
+						CombatAttacks.applyStun(target, 1);
 					}
 				}
 				
@@ -338,10 +356,10 @@
 				output(" You avoid it!");
 				return;
 			}
-			//{lift fail}
+			// lift fail
 			if((target.thickness + 100) * target.tallness >= 9900) {
 				output(" He strains for a second, but the zil just can’t get your [pc.feet] up off the ground. Frustrated, he kicks off your back just before you can react.");
-				//{low damage}
+				// low damage
 				applyDamage(new TypeCollection( { kinetic: 1 + rand(4) } ), this, target);
 			}
 			else 

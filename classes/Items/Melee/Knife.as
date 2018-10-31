@@ -10,14 +10,14 @@
 	
 	public class Knife extends ItemSlotClass
 	{
+		//Level 1 (Common). Balance 2.0
 		//constructor
 		public function Knife()
 		{
 			this._latestVersion = 1;
 			
 			//A KNIFE
-			//4
-			
+
 			//this.indexNumber = 4;
 			this.quantity = 1;
 			this.stackSize = 1;
@@ -43,17 +43,17 @@
 			
 			//Information
 			this.basePrice = 150;
-			this.attack = 0;
-			
+				
 			baseDamage.kinetic.damageValue = 4;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
 			
+			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
-			this.evasion = 0;
+			this.evasion = 2;
 			this.fortification = 0;
 
 			this.version = _latestVersion;

@@ -41,7 +41,7 @@ public function initTarkusRooms():void
 	rooms["202"] = new RoomClass(this);
 	rooms["202"].roomName = "EASTERN\nHANGAR";
 	rooms["202"].description = "This huge, open air hangar could easily hold whole squadrons of fighters or a dozen much larger ships. It’s obvious that the craft that once called this place home have long-since departed, either scrapped or looted ages ago. In their place are ships of every shape and size, many obviously owned by planet-rushers, but there are a few cobbled-together junk-heaps standing on rusted landing struts that must belong to locals. Further to the west, you can make out the distinctive outline of your own ship. Most of the foot traffic is going east into an access tunnel; the nearby cargo elevator’s doors sit askew in their frame, obviously nonfunctional.\n\nThe U.G.C. scouts have set up an office to the north. They might be able to give you a lift to some of the more remote destinations on planet.";
-	rooms["202"].runOnEnter = novahomeChaurmineGoodbyeBonus;
+	rooms["202"].runOnEnter = novahomeHangerBonus;
 	rooms["202"].westExit = "201";
 	rooms["202"].eastExit = "203";
 	rooms["202"].northExit = "TARKUS SCOUT AUTHORITY";
@@ -245,7 +245,7 @@ public function initTarkusRooms():void
 	rooms["215"] = new RoomClass(this);
 	rooms["215"].roomName = "MAKESHIFT\nGANGPLANK";
 	rooms["215"].description = "With every step you take out onto this gangplank, you hear the telltale groans of metal straining. You can feel it flexing from the combined foot traffic of dozens of raskvel scavengers, droids, and other rushers as they move along the improvised structure. You’d be more worried if it wasn’t so thick and the welds didn’t look so solid. All you have to do is stay away from the edges and keep your balance. If you follow it up to the north, you’ll find yourself back inside the Nova, now Novahome. Continuing south will deposit you on the surface of Tarkus.";
-	rooms["215"].runOnEnter = undefined;
+	rooms["215"].runOnEnter = novahomeGangplankBonus;
 	rooms["215"].northExit = "211";
 	rooms["215"].southExit = "216";
 	rooms["215"].planet = "PLANET: TARKUS";
@@ -662,7 +662,7 @@ public function initTarkusRooms():void
 	//#43 NEXT TO\nA JUNK PILE
 	rooms["243"] = new RoomClass(this);
 	rooms["243"].roomName = "NEXT TO\nA JUNK PILE";
-	rooms["243"].description = "You gape at this section of the robot pile. Different parts have been loosely arranged into different heaps. You’re aware that it was likely someone sorting through the scrap, but the end result is extremely unnerving. A tangle of limbs, rusted pistons, snapped and bent bars, makes up the largest pile, a thicket of malformed pincers and robotic hands. Next to them is a heap of chassis of varying colors, smeared with the fungal encroach of rust and verdigris. Most unnerving, though, is the pile of heads next to the path. You know it to be act of a scrapper, but you just can’t shake the vaguely threatening feel of a stack of two dozen severed, metal heads pointed at you. The gathered robots continue to loom above you to the east and west. Distantly to the south, you can see huge, metal blades sticking up out of the metal-flaked earth.";
+	rooms["243"].description = "You gape at this section of the robot pile. Different parts have been loosely arranged into different heaps. You’re aware that it was likely someone sorting through the scrap, but the end result is extremely unnerving. A tangle of limbs, rusted pistons, snapped and bent bars, makes up the largest pile, a thicket of malformed pincers and robotic hands. Next to them is a heap of chassis of varying colors, smeared with the fungal encroach of rust and verdigris. Most unnerving, though, is the pile of heads next to the path. You know it to be the act of a scrapper, but you just can’t shake the vaguely threatening feel of a stack of two dozen severed, metal heads pointed at you. The gathered robots continue to loom above you to the east and west. Distantly to the south, you can see huge, metal blades sticking up out of the metal-flaked earth.";
 	rooms["243"].runOnEnter = rustRidgesEncounters;
 	rooms["243"].eastExit = "242";
 	rooms["243"].westExit = "244";
@@ -1346,8 +1346,8 @@ public function initTarkusRooms():void
 	rooms["295"].planet = "PLANET: TARKUS";
 	rooms["295"].system = "SYSTEM: REDACTED";
 	rooms["295"].addFlag(GLOBAL.INDOOR);
-    rooms["295"].addFlag(GLOBAL.COMMERCE);
-    rooms["295"].addFlag(GLOBAL.NOFAP);
+	rooms["295"].addFlag(GLOBAL.COMMERCE);
+	rooms["295"].addFlag(GLOBAL.NOFAP);
 
 	rooms["301"] = new RoomClass(this);
 	rooms["301"].roomName = "THE\nMESS";
@@ -1398,6 +1398,18 @@ public function initTarkusRooms():void
 	rooms["304"].addFlag(GLOBAL.INDOOR);
 	rooms["304"].addFlag(GLOBAL.NPC);
 	rooms["304"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["BIMBOTORIUM LAB"] = new RoomClass(this);
+	rooms["BIMBOTORIUM LAB"].roomName = "BIMBOTORIUM\nLAB";
+	rooms["BIMBOTORIUM LAB"].description = "";
+	rooms["BIMBOTORIUM LAB"].runOnEnter = drBadgerLaboratoryBonus;
+	rooms["BIMBOTORIUM LAB"].moveMinutes = 1;
+	rooms["BIMBOTORIUM LAB"].outExit = "304";
+	rooms["BIMBOTORIUM LAB"].planet = "PLANET: TARKUS";
+	rooms["BIMBOTORIUM LAB"].system = "SYSTEM: REDACTED";
+	rooms["BIMBOTORIUM LAB"].addFlag(GLOBAL.INDOOR);
+	rooms["BIMBOTORIUM LAB"].addFlag(GLOBAL.PRIVATE);
+	rooms["BIMBOTORIUM LAB"].addFlag(GLOBAL.LIFTUP);
 	
 	rooms["305"] = new RoomClass(this);
 	rooms["305"].roomName = "COLENSO’S\nJUNK";
@@ -1638,6 +1650,7 @@ public function initTarkusRooms():void
 	rooms["364"].planet = "PLANET: TARKUS";
 	rooms["364"].system = "SYSTEM: REDACTED";
 	rooms["364"].moveMinutes = 1;
+	rooms["364"].runOnEnter = stellarMitziBonus;
 	rooms["364"].addFlag(GLOBAL.OUTDOOR);
 	
 	rooms["365"] = new RoomClass(this);

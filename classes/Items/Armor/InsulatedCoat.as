@@ -8,6 +8,7 @@
 	
 	public class InsulatedCoat extends ItemSlotClass
 	{
+		//Level 7 (Rare). Balance 2.0
 		//constructor
 		public function InsulatedCoat()
 		{
@@ -38,7 +39,7 @@
 			this.attackVerb = "null";
 			
 			//Information
-			this.basePrice = 3000;
+			this.basePrice = 11000;
 			this.attack = 0;
 			this.defense = 6;
 			this.shieldDefense = 0;
@@ -46,7 +47,7 @@
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
-			this.fortification = 10;
+			this.fortification = 18;
 			
 			resistances.freezing.resistanceValue = 25.0;
 			resistances.kinetic.resistanceValue = 10.0;

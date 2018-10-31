@@ -9,6 +9,7 @@
 	public class MirroredJumpsuit extends ItemSlotClass
 	{
 		//constructor
+		//Unused so far as I can see.
 		public function MirroredJumpsuit()
 		{
 			this._latestVersion = 1;

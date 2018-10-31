@@ -30,7 +30,7 @@
 			
 			this.description = "a vial of gray microbots";
 			
-			this.tooltip = "This vial of a sloshing, semi-viscous gray liquid was taken from the body of a reprogrammed gray goo, one of the artificial creatures native to Tarkus. Thanks to your tech-savviness, it should be safe to handle. It shouldn’t do anything unless you drink it. You’re going to drink it, aren’t you?";
+			this.tooltip = "This vial of a sloshing, semi-viscous gray liquid was taken from the body of a reprogrammed gray goo, one of the artificial creatures native to Tarkus. Thanks to your tech-savviness, it should be safe to handle. It shouldn’t do anything unless you drink it. You’re going to drink it, aren’t you?\n\n<b>Known to cause slight amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -59,13 +59,13 @@
 				if (targetCreature == kGAMECLASS.pc)
 				{
 					kGAMECLASS.clearOutput();
-					kGAMECLASS.output("Using suppliments to heal yourself will only work once per fight. No body can handle the metabolic strain of downing multiple regenerative items in such quick succession.");
+					kGAMECLASS.output("Using supplements to heal yourself will only work once per fight. No body can handle the metabolic strain of downing multiple regenerative items in such quick succession.");
 				}
 				else
 				{
 					if(inCombat()) kGAMECLASS.output("\n\n");
 					else kGAMECLASS.clearOutput();
-					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " has already used a vial of gray goo during this fight so drinking it again could be dangerous!");
+					kGAMECLASS.output(targetCreature.capitalA + targetCreature.short + " has already healed during this fight! Doing so again would be more than ill-advised!");
 				}
 				return false;
 			}
@@ -95,7 +95,7 @@
 		public function playerUsed(targetCreature:Creature, usingCreature:Creature):void
 		{
 			kGAMECLASS.output("Bottoms up! You pop the cork on your vial and down the reprogrammed healer bots.");
-			//{Restores moderate HP}
+			// Restores moderate HP
 			var healing:int = 40;
 			if(targetCreature.HP() + healing > targetCreature.HPMax())
 			{
@@ -105,12 +105,13 @@
 			targetCreature.HP(healing);
 			if(healing > 0) kGAMECLASS.output(" You give a little shudder as they go to work, patching up any injuries they come across. (<b>+" + healing + " HP</b>)");
 			else kGAMECLASS.output(" There is a slight gurgling in your belly but the item seems to have no effect.");
+			targetCreature.taint(1);
 		}
 		
 		public function npcUsed(targetCreature:Creature, usingCreature:Creature):void
 		{
 			kGAMECLASS.output((inCombat() ? StringUtil.capitalize(usingCreature.getCombatName(), false) : (usingCreature.capitalA + usingCreature.short)) + " pulls a vial of silvery-looking goo and downs it!");
-			//{Restores moderate HP}
+			// Restores moderate HP
 			var healing:int = 40;
 			if(targetCreature.HP() + healing > targetCreature.HPMax())
 			{

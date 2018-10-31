@@ -3,7 +3,7 @@ package classes.Items.Transformatives
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
@@ -68,7 +68,7 @@ package classes.Items.Transformatives
 				//Usage text:
 				kGAMECLASS.output("You take a big bite out of the swineapple. It mostly tastes and feels like a terran apple, but the flavor has earthy undertones. Somehow you end up feeling hungrier.");
 				
-				//{ Make face human if it's not human or swine
+				// Make face human if it's not human or swine
 				if (changes < changeLimit && !InCollection(pc.faceType, GLOBAL.TYPE_HUMAN, GLOBAL.TYPE_SWINE) && rand(4) == 0)
 				{
 					if (pc.faceTypeUnlocked(GLOBAL.TYPE_HUMAN))
@@ -81,9 +81,8 @@ package classes.Items.Transformatives
 					}
 					else kGAMECLASS.output("\n\n" + pc.faceTypeLockedMessage());
 				}
-				//}
 				
-				//{ Make face swine if it's human
+				// Make face swine if it's human
 				if (changes < changeLimit && pc.faceType == GLOBAL.TYPE_HUMAN && rand(4) == 0)
 				{
 					if (pc.faceTypeUnlocked(GLOBAL.TYPE_SWINE))
@@ -95,9 +94,8 @@ package classes.Items.Transformatives
 					}
 					else kGAMECLASS.output("\n\n" + pc.faceTypeLockedMessage());
 				}
-				//}
 				
-				//{ Sheath random cock
+				// Sheath random cock
 				
 				//First find an unTF'ed prick
 				choices = new Array();
@@ -114,7 +112,7 @@ package classes.Items.Transformatives
 				{
 					if (pc.cockFlagsUnlocked(x, [GLOBAL.FLAG_SHEATHED]))
 					{
-						kGAMECLASS.output("\n\nYour [pc.cock " + x + "] feels as if it’s shrinking and tearing apart at it’s based, but you realized that it’s simply become <b>sheathed.</b>");
+						kGAMECLASS.output("\n\nYour [pc.cock " + x + "] feels as if it’s shrinking and tearing apart at its base, but you realize that it’s simply becoming <b>sheathed.</b>");
 						
 						pc.cocks[x].addFlag(GLOBAL.FLAG_SHEATHED);
 						
@@ -125,9 +123,9 @@ package classes.Items.Transformatives
 						kGAMECLASS.output("\n\n" + pc.cockFlagsLockedMessage());
 					}
 				}
-				//} endregion
+				// endregion
 				
-				//{ Turn random sheathed cock into swine cock
+				// Turn random sheathed cock into swine cock
 				//First find an unTF'ed prick
 				choices = new Array();
 				for(x = 0; x < pc.cockTotal(); x++)
@@ -176,16 +174,14 @@ package classes.Items.Transformatives
 						
 						changes++;
 						pc.shiftCock(x, GLOBAL.TYPE_SWINE);
-						pc.cocks[x].addFlag(GLOBAL.FLAG_CORKSCREWED);
 					}
 					else
 					{
 						kGAMECLASS.output("\n\n" + target.cockTypeLockedMessage());
 					}
 				}
-				//}
 				
-				//{ Grow cock length (if pig penis)
+				// Grow cock length (if pig penis)
 				
 				//Dick size+ (Max: 24 inches)
 				choices = new Array();
@@ -209,9 +205,8 @@ package classes.Items.Transformatives
 					changes++;
 					pc.lust(10+rand(5));
 				}
-				//}
 				
-				//{ Cock shrink thickness ratio (if pig penis)
+				// Cock shrink thickness ratio (if pig penis)
 				choices = new Array();
 				for(x = 0; x < pc.cockTotal(); x++)
 				{
@@ -225,7 +220,7 @@ package classes.Items.Transformatives
 				{
 					if (pc.cockThicknessUnlocked(x, pc.cocks[x].cThicknessRatio() - 0.1))
 					{
-						kGAMECLASS.output("\n\nYou feel your [pc.cock " + x + "]’s tightening. Alarmed, you ");
+						kGAMECLASS.output("\n\nYou feel your [pc.cock " + x + "] tightening. Alarmed, you ");
 						if(!pc.isCrotchGarbed()) kGAMECLASS.output("strip");
 						else kGAMECLASS.output("spread your [pc.legOrLegs]");
 						kGAMECLASS.output(" and grab your cock. It shrinks away from your grasp, thinner than before!");
@@ -235,9 +230,8 @@ package classes.Items.Transformatives
 					}
 					else kGAMECLASS.output("\n\n" + pc.cockThicknessLockedMessage());
 				}
-				//}
 				
-				//{ Turn random vagina into swine vagina
+				// Turn random vagina into swine vagina
 				choices = new Array();
 				for(x = 0; x < pc.vaginaTotal(); x++)
 				{
@@ -257,16 +251,14 @@ package classes.Items.Transformatives
 						
 						changes++;
 						pc.shiftVagina(x, GLOBAL.TYPE_SWINE);
-						pc.vaginas[x].addFlag(GLOBAL.FLAG_CORKSCREWED);
 					}
 					else
 					{
 						kGAMECLASS.output("\n\n" + target.vaginaTypeLockedMessage());
 					}
 				}
-				//}
 				
-				//{ Change leg-type to pig legs (skin, digitigrade, hoofed)
+				// Change leg-type to pig legs (skin, digitigrade, hoofed)
 				if(pc.legType != GLOBAL.TYPE_SWINE && changes < changeLimit && pc.legCount == 2 && rand(3) == 0)
 				{
 					if (target.legTypeUnlocked(GLOBAL.TYPE_SWINE))
@@ -290,9 +282,8 @@ package classes.Items.Transformatives
 					}
 					else kGAMECLASS.output("\n\n" + target.legTypeLockedMessage());
 				}
-				//}
 				
-				//{ Change leg type to bipedal pig legs
+				// Change leg type to bipedal pig legs
 				if(pc.legCount != 2 && changes < changeLimit && rand(3) == 0)
 				{
 					if (target.legTypeUnlocked(GLOBAL.TYPE_SWINE))
@@ -316,9 +307,8 @@ package classes.Items.Transformatives
 					}
 					else kGAMECLASS.output("\n\n" + target.legTypeLockedMessage());
 				}
-				//}
 				
-				//{ Grow pig tail
+				// Grow pig tail
 				if(pc.tailType != GLOBAL.TYPE_SWINE && changes < changeLimit && rand(4) == 0)
 				{
 					if (target.tailTypeUnlocked(GLOBAL.TYPE_SWINE))
@@ -342,9 +332,8 @@ package classes.Items.Transformatives
 					}
 					else kGAMECLASS.output("\n\n" + target.tailTypeLockedMessage());
 				}
-				//}
 				
-				//{ Grow pig ears
+				// Grow pig ears
 				if(pc.earType != GLOBAL.TYPE_SWINE && changes < changeLimit && rand(4) == 0)
 				{
 					if (pc.earTypeUnlocked(GLOBAL.TYPE_SWINE))
@@ -355,9 +344,8 @@ package classes.Items.Transformatives
 					}
 					else kGAMECLASS.output("\n\n" + pc.earTypeLockedMessage());
 				}
-				//}
 				
-				//{ Increase thickness
+				// Increase thickness
 				if (pc.thickness < pc.thicknessMax() && changes < changeLimit && rand(2) == 0)
 				{
 					var thicknessIncrease:int = 2 + rand(2);
@@ -369,19 +357,17 @@ package classes.Items.Transformatives
 					}
 					else kGAMECLASS.output("\n\n" + pc.thicknessLockedMessage());
 				}
-				//}
 				
-				//{ Increase belly size
+				// Increase belly size
 				if (pc.bellyRatingRaw < 17 && changes < changeLimit && rand(2) == 0)
 				{
 					pc.bellyRatingRaw += 2 + rand(2);
 					
-					kGAMECLASS.output("\n\nYou feel your stomach rumbling and begin to feel queasy. Did you just eat a spoiled swineapple? The rumbling dies and as quickly as it came on, the sickness is quickly replaced with a feeling of growth. You’re left with a larger stomach.");
+					kGAMECLASS.output("\n\nYou feel your stomach rumbling and begin to feel queasy. Did you just eat a spoiled swineapple? The rumbling dies and as quickly as it came on, the sickness is replaced with a feeling of growth. You’re left with a larger stomach.");
 					changes++;
 				}
-				//}
 				
-				//{ Give normal skin
+				// Give normal skin
 				if (pc.skinType != GLOBAL.SKIN_TYPE_SKIN && changes < changeLimit && rand(4) == 0)
 				{
 					if (pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN))
@@ -398,9 +384,8 @@ package classes.Items.Transformatives
 					}
 					else kGAMECLASS.output("\n\n" + pc.skinTypeLockedMessage());
 				}
-				//}
 				
-				//{ Change skin tone if normal skin (and maybe change nipples to match)
+				// Change skin tone if normal skin (and maybe change nipples to match)
 				if (!InCollection(pc.skinTone, "pink", "light pink", "brown-pink", "red-pink", "white", "black", "gray", "brown") && pc.skinType == GLOBAL.SKIN_TYPE_SKIN && changes < changeLimit && rand(2) == 0)
 				{
 					var newSkinTone:String = RandomInCollection("pink", "brown-pink", "red-pink", "white", "black", "gray", "brown");
@@ -439,7 +424,6 @@ package classes.Items.Transformatives
 					}
 					else kGAMECLASS.output("\n\n" + pc.skinToneLockedMessage());
 				}
-				//}
 				
 				if(changes == 0)
 				{

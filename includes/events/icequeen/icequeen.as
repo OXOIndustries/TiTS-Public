@@ -298,7 +298,7 @@ public function iceQueenHelpHim():void
 	output("\n\nHer lips twist in an irate scowl. <i>“No. But we’re screwed if he doesn’t. Gotta make this stupid delivery, and Zaalt’s the least qualified to make repairs here. If anybody’s going, it’s him.”</i>");
 	
 	output("\n\n<i>“So what’s so important about these");
-	if (pc.isBimbo()) output(", uh.... like,");
+	if (pc.isBimbo()) output(", uh... like,");
 	output(" computer parts?”</i>");
 	
 	output("\n\n<i>“No idea. I’m a mechanic, not a computer nerd. All I know is some Uvetan company is paying top creds for express delivery... and we’re going expressly nowhere while our engine’s belching gas at us.”</i>");
@@ -555,7 +555,7 @@ public function iceQueenUvetoEntry(oldUvetoVisitFlagValue:* = undefined):void
 	output("\n\n<i>“Are you sure?”</i> you ask, following Zaalt as he forces himself towards the airlock. He gasps and slumps against the bulkhead, gritting his tusked teeth against the pain. Again, you draw near to help... but this time Zaalt slams one of his meaty paws against your chest, sending you staggering back! He roars like a beast, throwing his head back with feral outrage.");
 	
 	output("\n\nYour brain hurts. Not a headache, but a sudden rush of internal agony that makes you stumble back and scream, clawing at your skull as if to get at your brain and stave off the agonizing assault. It feels like talons are clawing at your mind, rending your senses. What’s happening to you!?");
-	//9999 " {PC is Psionic: You can feel the psionic energy suddenly rushing out of Zaalt’s mind, slamming against you like a wave of mental force. You never felt anything from him before, but all of a sudden he’s radiating mental energy like the most powerful psion you’ve ever seen!}");
+	//9999 PC is Psionic: output(" You can feel the psionic energy suddenly rushing out of Zaalt’s mind, slamming against you like a wave of mental force. You never felt anything from him before, but all of a sudden he’s radiating mental energy like the most powerful psion you’ve ever seen!");
 	
 	if (crew(true) > 0)
 	{
@@ -579,10 +579,10 @@ public function iceQueenUvetoEntry(oldUvetoVisitFlagValue:* = undefined):void
 
 	clearMenu();
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
+	CombatManager.setFriendlyActors(pc);
 	CombatManager.victoryScene(iceQueenBeatZaalt);
 	CombatManager.lossScene(iceQueenLossToZaalt);
-	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.setHostileActors(tEnemy);
 	CombatManager.displayLocation("CAPT. KANDAR");
 	addButton(0, "Next", CombatManager.beginCombat);
 }
@@ -590,6 +590,18 @@ public function iceQueenUvetoEntry(oldUvetoVisitFlagValue:* = undefined):void
 public function iceQueenLossToZaalt():void
 {
 	showBust("ZAALT_NUDE");
+	
+	var vIdx:int = -1;
+	if(pc.hasVagina())
+	{
+		var wombs:Array = [];
+		for (var i:int = 0; i < pc.vaginas.length; i++)
+		{
+			if(!pc.isPregnant(i)) wombs.push(i);
+		}
+		if(wombs.length > 0) vIdx = wombs[rand(wombs.length)];
+	}
+	
 	output("Zaalt slams into you like a Thraggen freighter, throwing you against a bulkhead and tearing into your");
 	if (pc.hasArmor()) output(" [pc.armor]");
 	else output(" gear");
@@ -600,33 +612,33 @@ public function iceQueenLossToZaalt():void
 	if (CombatManager.hasFriendlyOfClass(Anno)) output(" Anno grabs Zaalt’s arm, trying to pull him off you. The sabertooth snarls and back-hands her, throwing her away with inhuman strength. The snowy dog-girl crashes against the bulkhead and falls still, knocked out.");
 	output(" Zaalt snarls, sniffing at your neck. His eyes are dilated like someone as high as a kite, but his teeth are bared in a feral snarl as he drinks in your scent like a beast at hunt.");
 	
-	output("\n\nHis claws dispose of your [pc.gear], baring your flesh... and his, a moment later, leaving a throbbing shaft of black masculinity hanging down from his pelt of orange-black fur, tumescent in his animalistic need. Snarling, the feral milodan grabs you by the waist and throws you over your pilot’s console, leaving your ass bare and vulnerable. He grabs your cheeks, squeezing hard enough to make you squeal as he spreads them open and thrusts unceremoniously into your [pc.vagOrAss].");
+	output("\n\nHis claws dispose of your [pc.gear], baring your flesh... and his, a moment later, leaving a throbbing shaft of black masculinity hanging down from his pelt of orange-black fur, tumescent in his animalistic need. Snarling, the feral milodan grabs you by the waist and throws you over your pilot’s console, leaving your ass bare and vulnerable. He grabs your cheeks, squeezing hard enough to make you squeal as he spreads them open and thrusts unceremoniously into your [pc.vagOrAss " + vIdx + "].");
 	
 	output("\n\nYour eyes go wide as the thick, black spear of cock brute-forces its way into your unprepared hole. Zaalt grunts, clutching at your hips and leaning over you, breathing hot and heavy against your back and neck as he shoves himself inside. Your hole clenches desperately around his thick shaft, trying instinctively to repulse the invading appendage. Zaalt breathes hard, letting you feel his pounding, strong heartbeat through his chest and cock.");
 	
 	output("\n\nYou whine, giving one last, desperate struggle against the domineering beast, but he plants a strong hand on your back and forces you down, leaving you no choice but to submit as he");
-	if (pc.hasVagina()) output(" breeds");
+	if (vIdx >= 0) output(" breeds");
 	else output(" violates");
-	output(" you. Whatever’s gotten to Zaalt has left him as nothing more than a rutting beast, savagely thrusting into your [pc.vagOrAss] again and again. Between deep strokes, he nips and bites at your bare neck, marking you as his mate for all to see.");
+	output(" you. Whatever’s gotten to Zaalt has left him as nothing more than a rutting beast, savagely thrusting into your [pc.vagOrAss " + vIdx + "] again and again. Between deep strokes, he nips and bites at your bare neck, marking you as his mate for all to see.");
 	
 	output("\n\nZaalt’s hips pound savagely against your [pc.butt], slamming you hard against your console.");
-	if (pc.hasCock()) output(" Even in your state of utter submission, your body responds unconsciously. Your [pc.cock] stiffens, flopping uselessly against the dash and drooling your subconscious arousal.");
+	if (pc.hasCock()) output(" Even in your state of utter submission, your body responds unconsciously. Your [pc.cocks] stiffen" + (pc.cocks.length == 1 ? "s" : "") + ", flopping uselessly against the dash and drooling your subconscious arousal.");
 	output(" Your body tries to clench and push back, but that only seems to enhance the beast-man’s pleasure, making him growl into your ear and thrust all the more savagely against you.");
 	
-	output("\n\nBefore long, you feel something thick and heavy pressing against the entrance to your [pc.vagOrAss]. Your eyes go wide as you realize that the milodan equivalent of a bitch-breaking knot is pressing against your battered");
-	if (pc.hasVagina()) output(" pussy");
+	output("\n\nBefore long, you feel something thick and heavy pressing against the entrance to your [pc.vagOrAss " + vIdx + "]. Your eyes go wide as you realize that the milodan equivalent of a bitch-breaking knot is pressing against your battered");
+	if (vIdx >= 0) output(" pussy");
 	else output(" ass");
 	output("-flesh. The heavy bulb of meat hammers against you with every thrust, trying to force its way past your flagging defenses to fully bind you to the feral beast that was your passenger.");
 	
 	output("\n\nThankfully,");
 	
-	if ((pc.hasVagina() && pc.biggestVaginalCapacity() > enemy.cockVolume(0) * 1.2) || (!pc.hasVagina() && pc.analCapacity() > enemy.cockVolume(0) * 1.2))
+	if ((vIdx >= 0 && pc.vaginalCapacity(vIdx) > enemy.cockVolume(0) * 1.2) || (vIdx < 0 && pc.analCapacity() > enemy.cockVolume(0) * 1.2))
 	{
-		output(" you’re so stretched out already that he’s able to easily grind his knot into your [pc.vagOrAss], straining your hole open and making you spasm around the thick tie.");
+		output(" you’re so stretched out already that he’s able to easily grind his knot into your [pc.vagOrAss " + vIdx + "], straining your hole open and making you spasm around the thick tie.");
 	}
 	else output(" he isn’t quite able to force himself inside you all the way, thanks to the way you’re clenching and squeezing down around his shaft. Zaalt growls in frustration, fucking you harder to try and force it in, to no avail.");
 
-	if (pc.hasVagina()) pc.cuntChange(0, enemy.cockVolume(0));
+	if (vIdx >= 0) pc.cuntChange(vIdx, enemy.cockVolume(0));
 	else pc.buttChange(enemy.cockVolume(0));
 	
 	output(" You moan as the knotty cat-man ruts you, claws raking your bare flesh and breath coming heavily against the nape of your neck.");
@@ -634,11 +646,11 @@ public function iceQueenLossToZaalt():void
 	output("\n\nSlowly, you realize that Zaalt’s reaching his climax.");
 	
 	output("\n\nBellowing with feral need, Zaalt slams himself as deep into you as he can. You cry out, moaning weakly as you feel the first rushes of hot seed spilling into you, shooting deep into your");
-	if (pc.hasVagina()) output(" womb");
+	if (vIdx >= 0) output(" womb");
 	else output(" bowels");
 	output(" and plastering your insides with musky cat-cream. The milodan’s claws grip you fiercely, scoring your hips with dark lines as he empties his churning balls into your quivering hole.");
 	
-	output("\n\nWhen he’s finally finished, Zaalt lets out a long, ragged breath and collapses heavily on your back, breathing hard. You can do little more than squirm around the still-hard rod of cockmeat in your [pc.vagOrAss], trying not to let the cat’s claws hurt you. Slowly but surely, his breathing calms and his cock softens, drooping out of your abused hole in a waterfall of cooling kitty-cream.");
+	output("\n\nWhen he’s finally finished, Zaalt lets out a long, ragged breath and collapses heavily on your back, breathing hard. You can do little more than squirm around the still-hard rod of cockmeat in your [pc.vagOrAss " + vIdx + "], trying not to let the cat’s claws hurt you. Slowly but surely, his breathing calms and his cock softens, drooping out of your abused hole in a waterfall of cooling kitty-cream.");
 	
 	output("\n\nZaalt grunts and staggers back, leaving you bent over in a complete mess. He looks around in a panic, suddenly breathing hard again, and turns. Your head falls against the dash, but you hear Zaalt wandering through your ship and, eventually, the airlock cycling. By the time you’ve recovered, your erstwhile passenger is nowhere to be found - long gone.");
 	
@@ -648,7 +660,7 @@ public function iceQueenLossToZaalt():void
 	flags["ICEQUEEN COMPLETE"] = -3;
 	flags["ZAALT_DISABLED"] = 1;
 
-	if (pc.hasVagina()) pc.loadInCunt(enemy, 0);
+	if (vIdx >= 0) pc.loadInCunt(enemy, vIdx);
 	else pc.loadInAss(enemy);
 	pc.orgasm();
 	enemy.orgasm();
@@ -848,8 +860,7 @@ public function iceQueenBeatZaaltHelpHimII():void
 
 public function iceQueenNoKara():void
 {
-	currentLocation = "UVS B7"; // Uveto cafe
-	generateMap();
+	moveTo("UVS B7"); // Uveto cafe
 	showLocationName();
 	
 	clearOutput();
@@ -903,8 +914,7 @@ public function showKaraAndZaalt():void
 
 public function iceQueenKaraShowsUp():void
 {
-	currentLocation = "UVS B7"; // Uveto cafe
-	generateMap();
+	moveTo("UVS B7"); // Uveto cafe
 	showLocationName();
 	
 	clearOutput();
@@ -964,7 +974,7 @@ public function iceQueenKaraShowsUpCOOLIT():void
 	
 	output("\n\n<i>“Okay, all set,”</i> Kara says, giving you another playful wink. <i>“Thanks "+ pc.mf("boys", "you guys") + ", I’ll make sure this gets to the right place. And for you...”</i>");
 	
-	output("\n\nThe cobalt kaithrit fishes a credit chit from out of her skintight suit’s very generous cleavage, planting it on the table and sliding it across. <i>“Divvy it up however you want. As for me, I have an appointment to keep. It was good seeing you again, [pc.name]. Till next time.”</i>");
+	output("\n\nThe cobalt kaithrit fishes a credit chit from out of her skintight suit’s very generous cleavage, planting it on the table and sliding it across. <i>“Divvy it up however you want. As for me, I have an appointment to keep. It was good seeing you again, [pc.name]. till next time.”</i>");
 	
 	output("\n\nKara slips out of her seat and heads for the dock");
 	if (flags["SEXED_KARA"] != undefined) output(", pausing to plant a parting kiss on your brow");
@@ -1002,7 +1012,7 @@ public function iceQueenKaraShowsUpInterrupt():void
 	
 	output("\n\n<i>“Don’t look at me like that!”</i> he grunts, crossing his arms. <i>“How the hell was I supposed to know [pc.name] was in good with you and Chow? [pc.HeShe] was just the first person to answer my mayday.”</i>");
 	
-	output("\n\n<i>“Ugh! Look, I’m sorry, [pc.name],”</i> Kara says, putting a hand on yours. <i>“I didn’t know. So let me be honest for Zaalt: that implant of his is, well, not corporate standard. Which is to say, it’s illegal to sell or use in sapients because it hasn’t been tested properly. But it’s supposed to be powerful. </i>Way<i> powerful, compared to what’s on the market now. Zaalt and I were both hired to take the implant prototype from the lab it was built in, out here to the Uveto system for testing. This is a corporate word, basically a non-concern for Confederate law enforcement, and so many of the native races have primal psionic ability that it seemed like the ideal place to conduct tests.”</i>");
+	output("\n\n<i>“Ugh! Look, I’m sorry, [pc.name],”</i> Kara says, putting a hand on yours. <i>“I didn’t know. So let me be honest for Zaalt: that implant of his is, well, not corporate standard. Which is to say, it’s illegal to sell or use in sapients because it hasn’t been tested properly. But it’s supposed to be powerful. </i>Way<i> powerful, compared to what’s on the market now. Zaalt and I were both hired to take the implant prototype from the lab it was built in, out here to the Uveto system for testing. This is a corporate world, basically a non-concern for Confederate law enforcement, and so many of the native races have primal psionic ability that it seemed like the ideal place to conduct tests.”</i>");
 	
 	output("\n\nSays who? Who paid for all of this, anyway?");
 	
@@ -1119,7 +1129,7 @@ public function iceQueenKaraShowsUpInterruptSex():void
 
 	flags["ICEQUEEN KARA STUFF"] = 3;
 
-	output("<i>“I guess we can call it even,”</i> you answer, reaching across the table to stroke one of Kara’s hands. <i>“... if you throw in a little </i>extra<i>.”</i>");
+	output("<i>“I guess we can call it even,”</i> you answer, reaching across the table to stroke one of Kara’s hands. <i>“...if you throw in a little </i>extra<i>.”</i>");
 	
 	output("\n\nKara giggles, chewing on a lip for a moment before giving you a smile. <i>“I was starting to think");
 	if (flags["SEXED_KARA"] == undefined) output(" you’d never ask");
@@ -1147,8 +1157,7 @@ public function iceQueenKaraShowsUpInterruptSex():void
 
 public function iceQueenKaraSexytimes():void
 {
-	currentLocation = "UVS F15"; // Ship hangar
-	generateMap();
+	moveTo("UVS F15"); // Ship hangar
 	showLocationName();
 	
 	clearOutput();
@@ -1189,4 +1198,81 @@ public function iceQueenKaraSexytimes():void
 		addButton(0, "TakeDick", kq2KaraTakeKittydick, undefined, "Take Her Dick", "Ride her kitty cock!");
 		addButton(1, "FuckHer", kq2KaraFuckKittysKitty, undefined, "Fuck Kara", "Fuck Pussy’s Pussy!");
 	}
+}
+
+public function zaaltPregnancyEnds():void
+{
+	clearOutput();
+	author("Wsan");
+	showBust("");
+	showName("\nBIRTHING!");
+	
+	var se:StorageClass = pc.getStatusEffect("Zaalt Pregnancy Ends");
+	
+	var numChildren:int = se.value1;
+	var bRatingContrib:int = se.value2;
+	var pregSlot:int = se.value3;
+	var babym:Boolean = (se.value4 == 1 ? false : true);
+
+	if(currentLocation != "SHIP INTERIOR") 
+	{
+		output("Oh, jeez! You can feel a stirring in your stomach; it feels like the kit");
+		if(numChildren > 1) output("s");
+		output(" want");
+		if(numChildren == 1) output("s");
+		output(" out. Time to get back to your ship!");
+		output("\n\nYou stumble aboard your ship, shutting yourself in your room and lying down on a blanket.");
+	}
+	else
+	{
+		output("Oh, jeez! The kit");
+		if(numChildren > 1) output("s");
+		output(" want");
+		if(numChildren == 1) output("s");
+		output(" out, and ");
+		if(numChildren == 1) output("it wants");
+		else output("they want");
+		output(" out <i>now</i>. You shut yourself in your room and lie down on a blanket.");
+	}
+	//Hour passes
+	output("\n\nBy the time you’re finished, there’s ");
+	if(numChildren == 1) output("a lone kit");
+	else
+	{
+		output(num2Text(numChildren) + " healthy kits");
+	}
+	output(" on your blanket, waving ");
+	if(numChildren == 1)
+	{
+		if( babym ) output("his");
+		else output("her");
+	}
+	else output("their");
+	output(" little arms and feet about. Oddly enough, none of them are crying. That Milodan toughness at work, you suspect. With a tired smile, you gently wash ");
+	if(numChildren > 1) output("each one");
+	else output( babym ? "him" : "her" );
+	output(" off with some warm water and bundle your ");
+	if(numChildren == 1) output("child");
+	else output("children");
+	output(" up in some comfortable sheets before calling for the nursery pods.");
+	output("\n\nWatching the kit");
+	if(numChildren > 1) output("s");
+	output(" disappear makes you forlorn for a while, but you remind yourself that it’d be wildly irresponsible to take your kids along on your incredibly dangerous space journey. This is for the best, really. You can see them on Tavros any time you want to.");
+	output("\n\nAs for you, you quickly wash yourself off in the shower and practically crawl into your bed looking and feeling like some kind of half-dead sea slug. Giving birth is tiring work, and it’s definitely time for a nap.");
+	
+	moveTo("SHIP INTERIOR");
+	pc.removeStatusEffect("Zaalt Pregnancy Ends");
+	//14 hours pass
+	
+	processTime(14*60);
+	clearMenu();
+	addButton(0, "Next", zaaltPreggoEpilogue);
+}
+public function zaaltPreggoEpilogue():void
+{
+	clearOutput();
+	showName("MORNING\nAFTER");
+	output("You wake up with a slight headache and a dry mouth, both of which dissipate when you rouse yourself from your well-deserved slumber and wash yourself. Time to get back to adventuring!");
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }

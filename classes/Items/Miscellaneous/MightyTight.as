@@ -2,12 +2,13 @@
 {
 	import classes.Engine.Interfaces.*;
 	import classes.Engine.Utility.indefiniteArticle;
+	import classes.Engine.Utility.num2Text;
 	import classes.Engine.Utility.num2Ordinal;
 	import classes.Engine.Utility.rand;
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
@@ -39,6 +40,7 @@
 		}
 		private function useAddDose(target:Creature):void
 		{
+			target.createStatusEffect("Mighty Tight", 0, 0, 0, 0, true, "", "", false, 0);
 			target.addStatusValue("Mighty Tight", 1, 1);
 			target.setStatusMinutes("Mighty Tight", 240);
 		}
@@ -89,7 +91,7 @@
 				var myBodyIsReady:Boolean = ((holes > 1) || (pc.ass.loosenessRaw > smallestLooseness));
 				
 				// When using as directed:
-				if(!pc.hasStatusEffect("Mighty Tight") && myBodyIsReady)
+				if(myBodyIsReady && (!pc.hasStatusEffect("Mighty Tight") || pc.statusEffectv1("Mighty Tight") <= 1))
 				{
 					kGAMECLASS.output("You swallow the pill of Mighty Tight, feeling your hole");
 					if(holes != 1) kGAMECLASS.output("s");
@@ -115,12 +117,11 @@
 						}
 					}
 					
-					pc.createStatusEffect("Mighty Tight", 1, 0, 0, 0, true, "", "", false, 240);
-				}
-				// Second time in four hours:
-				else if(pc.hasStatusEffect("Mighty Tight") && pc.statusEffectv1("Mighty Tight") <= 1 && myBodyIsReady)
-				{
-					kGAMECLASS.output("That’s the " + num2Ordinal(target.statusEffectv1("Mighty Tight") + 1) + " one you’ve taken, and the clenching feeling was noticeably stronger this time. <b>You probably shouldn’t take another one of these until your body finishes flushing it out of your system, or who knows what could happen.</b> <i>Maybe give it about four hours from now...</i>");
+					// Second time in four hours:
+					if(pc.hasStatusEffect("Mighty Tight"))
+					{
+						kGAMECLASS.output("\n\nThat’s the " + num2Ordinal(target.statusEffectv1("Mighty Tight") + 1) + " one you’ve taken, and the clenching feeling was noticeably stronger this time. <b>You probably shouldn’t take another one of these until your body finishes flushing it out of your system, or who knows what could happen.</b> <i>Maybe give it about four hours from now...</i>");
+					}
 					
 					useAddDose(pc);
 				}
@@ -157,7 +158,7 @@
 							
 							if(pc.totalVaginas() > 0)
 							{
-								kGAMECLASS.output(" <b>You only have " + kGAMECLASS.num2Text(pc.totalVaginas()) + " vagina");
+								kGAMECLASS.output(" <b>You only have " + num2Text(pc.totalVaginas()) + " vagina");
 								if(pc.totalVaginas() != 1) kGAMECLASS.output("s");
 								kGAMECLASS.output(" now!</b>");
 							}

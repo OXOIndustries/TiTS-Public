@@ -47,7 +47,7 @@ package classes.Characters
 			this.ballSizeRaw = 0;
 			this.ballFullness = 100;
 			this.ballEfficiency = 400;
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 65;
 			this.timesCum = rand(2000) + 1;
 

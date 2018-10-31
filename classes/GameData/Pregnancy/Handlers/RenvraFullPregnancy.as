@@ -9,6 +9,7 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.GLOBAL;
 	import classes.GameData.ChildManager;
 	import classes.GameData.Pregnancy.Child;
+	import classes.Engine.Utility.shortMinutes;
 	
 	/**
 	 * ...
@@ -32,7 +33,7 @@ package classes.GameData.Pregnancy.Handlers
 			_canFertilizeEggs = false;
 			_pregnancyQuantityMinimum = 1;
 			_pregnancyQuantityMaximum = 4;
-			_definedAverageLoadSize = 4800;
+			_definedAverageLoadSize = 2400;
 			_pregnancyChildRace = GLOBAL.TYPE_NYREA;
 			_childMaturationMultiplier = 1.0;
 			
@@ -248,7 +249,8 @@ package classes.GameData.Pregnancy.Handlers
 						break;
 						
 					case 3:
-						return "You find your hands wandering to your belly more and more -- as much to support the growing weight you’re bearing as to caress the home of your unborn children.\n\nYou’re so heavily showing now that you can’t go much of anywhere without people staring. It won’t be long now... maybe just a few weeks more!"
+						var nTime:Number = Math.floor(30240/kGAMECLASS.pc.pregnancyData[slot].pregnancyIncubationMulti);
+						return "You find your hands wandering to your belly more and more -- as much to support the growing weight you’re bearing as to caress the home of your unborn children.\n\nYou’re so heavily showing now that you can’t go much of anywhere without people staring. It won’t be long now... maybe just " + shortMinutes(nTime, true, true) + " more!"
 						break;
 						
 					case 4:

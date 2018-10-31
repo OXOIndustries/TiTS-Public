@@ -1,6 +1,16 @@
-﻿public function initializeNPCs(justUpdate:Boolean = false):void 
+﻿import classes.Characters.PlayerCharacter;
+import flash.utils.Dictionary;
+public function initializeNPCs(justUpdate:Boolean = false):void 
 {
-	trace("initializeNPCs Called, just doing cleanup?", justUpdate)
+	if (!justUpdate)
+	{
+		chars = new Object();
+		charDict = new Dictionary();
+		
+		var nPC:PlayerCharacter = new PlayerCharacter();
+		chars["PC"] = nPC;
+		charDict[nPC] = "PC";
+	}
 	
 	prepChar(justUpdate, "CELISE", Celise);
 	prepChar(justUpdate, "RIVAL", Rival);
@@ -126,6 +136,49 @@
 	prepChar(justUpdate, "CYNTHIA", Cynthia);
 	prepChar(justUpdate, "CHAURMINE", Chaurmine);
 	prepChar(justUpdate, "MIRRIN", Mirrin);
+	prepChar(justUpdate, "YAMMI", Yammi);
+	prepChar(justUpdate, "FISIANNA", Fisianna);
+	prepChar(justUpdate, "NALEENBROA", NaleenBrotherA);
+	prepChar(justUpdate, "NALEENBROB", NaleenBrotherB);
+	prepChar(justUpdate, "AZRA", Azra);
+	prepChar(justUpdate, "ZIL9TAILS", Zil9Tail);
+	prepChar(justUpdate, "GRYVAINAGENT", GryvainAgent);
+	prepChar(justUpdate, "LUCA", Luca);
+	prepChar(justUpdate, "KRYM", Krym);
+	prepChar(justUpdate, "PAIGE", Paige);
+	prepChar(justUpdate, "CIARAN", Ciaran);
+	prepChar(justUpdate, "KATTON", KattomOsgood);
+	prepChar(justUpdate, "TAMTAM", TamTam);
+	prepChar(justUpdate, "ERIKA", Erika);
+	prepChar(justUpdate, "LIEVE", Lieve);
+	prepChar(justUpdate, "STORMGUARD_MALE", StormguardMale);
+	prepChar(justUpdate, "HEIDRUN", Heidrun);
+	prepChar(justUpdate, "NENNE", Nenne);
+	prepChar(justUpdate, "TUUVA", Tuuva);
+	prepChar(justUpdate, "ALEX_SURF", AlexSurf);
+	prepChar(justUpdate, "MITZI", Mitzi);
+	prepChar(justUpdate, "URBOLG", Urbolg);
+	prepChar(justUpdate, "FROSTWYRM", Frostwyrm);
+	prepChar(justUpdate, "SECURITY_ROBOTS", AkkadiSecurityRobots);
+	prepChar(justUpdate, "SCHORA", CommanderSchora);
+	prepChar(justUpdate, "TORRA", Torra);
+	prepChar(justUpdate, "DRCALNOR", DrCalnor);
+	prepChar(justUpdate, "THAREDRONE", ThareDrone);
+	prepChar(justUpdate, "LAH", RKLah);
+	prepChar(justUpdate, "KANE", Kane);
+	prepChar(justUpdate, "SHIZUYA", Shizuya);
+	prepChar(justUpdate, "ARDIA", Ardia);
+	prepChar(justUpdate, "MRFOX", EMMrFox);
+	prepChar(justUpdate, "REDD", EMRedd);
+	prepChar(justUpdate, "PONYLUVER", EMPonyLuver);
+	prepChar(justUpdate, "SEXYYDADDYY", EMSexyyDaddyy);
+	prepChar(justUpdate, "BOUNTIFULBOTANY", EMBountifulBotany);
+	prepChar(justUpdate, "SNEAKYSNEK", EMSneakySnek);
+	prepChar(justUpdate, "RIPPED4YOURPLEASURE", EMRipped4YourPleasure);
+	prepChar(justUpdate, "STORMDRAGON", EMStormDragon);
+	prepChar(justUpdate, "MAIKE", Maike);
+	prepChar(justUpdate, "AINA", Aina);
+	prepChar(justUpdate, "DRYAD", Dryad);
 	
 	
 	// Check all characters have version information set
@@ -146,6 +199,8 @@ public function prepChar(justUpdate:Boolean, index:String, classT:Class):void
 {
 	if (!justUpdate || (justUpdate && chars[index] == undefined))
 	{
-		chars[index] = new classT();
+		var objInst:Object = new classT();
+		chars[index] = objInst;
+		charDict[objInst] = index;
 	}
 }

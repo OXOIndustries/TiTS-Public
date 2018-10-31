@@ -7,6 +7,7 @@ package classes.UIComponents.ContentModules
 	
 	import classes.Engine.Interfaces.clearGhostMenu;
 	import classes.Engine.Interfaces.addGhostButton;
+	import classes.Engine.Interfaces.addDisabledGhostButton;
 	import classes.Engine.Interfaces.userInterface;
 	import classes.kGAMECLASS;
 	
@@ -190,7 +191,8 @@ package classes.UIComponents.ContentModules
 		
 		public function resetPuzzle():void
 		{
-			setPuzzleState(_nextOnComplete, _width, _height, _defState);
+			if(_FailureStateType != NO_FAILURE_STATE) setFailablePuzzleState(_nextOnComplete, _nextOnFailure, _FailureStateType, _FailureStateArgument, _width, _height, _defState);
+			else setPuzzleState(_nextOnComplete, _width, _height, _defState);
 		}
 		
 		public function getNearby(s:RotateGameElement, dir:uint):RotateGameElement
@@ -247,18 +249,22 @@ package classes.UIComponents.ContentModules
 			
 			for (var i:int = 0; i < _pieces.length; i++)
 			{
-				var tElem:RotateGameElement = _pieces[i] as RotateGameElement;			
+				var tElem:RotateGameElement = _pieces[i] as RotateGameElement;
 				clrConnections(tElem);
-				if (tElem == _basePower) tElem.isPowered = true;	
+				if (tElem == _basePower) tElem.isPowered = true;
 			}
 			
 			tryConnect(_basePower);
 			checkVictory();
 			checkLoss();
+			
+			if(_FailureStateType == MAX_MOVES && _FailureStateArgument != null && _numMoves >= 0) addDisabledGhostButton(3, ("(" + _numMoves + " / " + (_FailureStateArgument + 1) + ")"), ("Moves Taken: " + _numMoves + " of " + (_FailureStateArgument + 1)), ("You have attempted " + _numMoves + " of " + (_FailureStateArgument + 1) + " possible move" + ((_FailureStateArgument + 1) == 1 ? "" : "s") + "."));
 		}
 		
 		private function checkVictory():void
 		{
+			if (_isComplete) return;
+			
 			var allPowered:Boolean = true;
 			
 			for (var i:int = 0; i < _goalNodes.length; i++)
@@ -277,6 +283,8 @@ package classes.UIComponents.ContentModules
 		
 		private function checkLoss():void
 		{
+			if (_isComplete) return;
+			
 			// If a potential failure state has been set...
 			if (_FailureStateType != NO_FAILURE_STATE)
 			{

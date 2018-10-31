@@ -3,7 +3,7 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
@@ -31,7 +31,7 @@
 			this.description = "a chunk of raw savicite";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Savicite, an item that seems too useful and too ubiquitous to be real, yet here it is. It has uses in everything from starship fuel to medical treatments and more. You could sell this for a pretty penny.";
+			this.tooltip = "[altTooltip Savicite]";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

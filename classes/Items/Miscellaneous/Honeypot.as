@@ -3,7 +3,7 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
@@ -65,7 +65,7 @@
 			if(target is PlayerCharacter) {
 				author("n666");
 				//Usage text:
-				//{Effect: If pc has a Vagina, changes girlCum to Honey.}
+				// Effect: If pc has a Vagina, changes girlCum to Honey.
 				if(target.hasVagina())
 				{
 					kGAMECLASS.output("You take out the egg shaped yellow pill from your pack. Its package shows the large Honeypot label, the last ‘o’ is replaced by a pair of puffy, black, honey-dripping labia. You look for a nearby seat");

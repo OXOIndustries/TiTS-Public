@@ -3,7 +3,7 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
@@ -30,7 +30,7 @@
 			//Longass shit, not sure what used for yet.
 			this.description = "a vial of red venom";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This tiny glass vial is full of a frothy pink liquid - the venom of a red myr woman. It’s a potent aphrodisiac, and may be somewhat addictive.";
+			this.tooltip = "This tiny glass vial is full of a frothy pink liquid - the venom of a red myr woman. It’s a potent aphrodisiac, and may be somewhat addictive.\n\n<b>May induce very slight taint. See your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

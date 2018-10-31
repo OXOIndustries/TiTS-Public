@@ -22,7 +22,7 @@ public function showGil(nude:Boolean = false):void
 //Triggers if the PC leaves Jade’s shop with a Pupper Popper in their inventory.
 public function gilPupperProccer():Boolean
 {
-	if(pc.hasItem(new PupperPoppers()) && flags["MET_GIL"] == undefined)
+	if(pc.hasItemByClass(PupperPoppers) && flags["MET_GIL"] == undefined)
 	{
 		showGil();
 		author("Lashcharge");
@@ -108,7 +108,7 @@ public function repeatGilApproach():void
 	showGil();
 	author("Lashcharge");
 	output("You approach the hooded dog-morph and lean on the wall next to him.");
-	output("\n\nAfter a few moments of awkward silence, he says <i>“’Sup.”</i>");
+	output("\n\nAfter a few moments of awkward silence, he says <i>“‘Sup.”</i>");
 
 	//pc is nice:
 	if(pc.isNice()) output("\n\n<i>“Hello, Gil.”</i>");
@@ -116,7 +116,8 @@ public function repeatGilApproach():void
 	//pc is hard:
 	else output("\n\nYou simply stand there silently, not bothering to give him any answer. He knows why you’re here.");
 
-	if(flags["GIL_DOSES"] != undefined && flags["GIL_DOSES"] >= 9) output("\n\n<i>“Are y’here to collect?”</i> he asks with a lascivious smirk.");
+	output("\n\n");
+	if(flags["GIL_DOSES"] != undefined && flags["GIL_DOSES"] >= 9) output("<i>“Are y’here to collect?”</i> he asks with a lascivious smirk.");
 	else output("<i>“Do y’have any more pupper poppers I can buy?”</i>");
 
 	processTime(2);
@@ -134,14 +135,14 @@ public function gilMenu():void
 	addButton(0,"Appearance",gilAppearance,undefined,"Appearance","Take a gander at the dog boy.");
 	if(flags["GIL_DOSES"] == undefined || flags["GIL_DOSES"] < 9) 
 	{
-		if(pc.hasItem(new PupperPoppers())) addButton(1,"Trade",giveDoggoADoggoTreat,undefined,"Trade","Give Gil one of the Pupper Poppers he wants.");
+		if(pc.hasItemByClass(PupperPoppers)) addButton(1,"Trade",giveDoggoADoggoTreat,undefined,"Trade","Give Gil one of the Pupper Poppers he wants.");
 		else addDisabledButton(1,"Trade","Trade","You need a Pupper Popper to trade it to him.");
 		addDisabledButton(2,"Talk","Talk","Gil might be more inclined to chat after his transformative problems are over.");
 		addDisabledButton(3,"Sex","Sex","You’ll need to deal with his transformative problems before you can have sex with him for free.");
 	}
 	else
 	{
-		if(pc.hasItem(new PupperPoppers())) addButton(1,"Sell",getCashForDoggo,true,"Sell","Sell him some pupper poppers.");
+		if(pc.hasItemByClass(PupperPoppers)) addButton(1,"Sell",getCashForDoggo,true,"Sell","Sell him some pupper poppers.");
 		else addDisabledButton(1,"Sell","Sell","You don’t have any Pupper Poppers to sell.");
 		addButton(2,"Talk",talkToGilDoggo,undefined,"Talk","Chat with him.");
 		if(pc.lust() >= 33) addButton(3,"Sex",sexWithGilYaDumbshit,undefined,"Sex","Tell him that you would like to collect his reward.");
@@ -168,8 +169,8 @@ public function gilAppearance():void
 	if(gilWorgEyes()) output("casts a shadow over his minty green eyes, but fails to hide his");
 	else output(", but can’t hide the glow of his minty green eyes or his");
 	//Gil has worg face:
-	if(gilWorgFace()) output("powerful worg snout with teeth poking out from between his lips.");
-	else output("elongated doberman snout.");
+	if(gilWorgFace()) output(" powerful worg snout with teeth poking out from between his lips.");
+	else output(" elongated doberman snout.");
 	//upper body revealed:
 	if(flags["GIL_UPPER_BODY_REVEAL"] != undefined) output("\n\nHis frame is exceedingly thin, without an ounce of fat or muscle visible on his belly and chest. This is especially noticeable in his hips and waist, which are as thin as they can possibly be, making his shoulders look broad in comparison and giving him a distinctly masculine frame. Most of his body is covered in black fur, with the exception of a large patch of light brown that extends from his chin down to his inner thighs, with his forearms also covered in fur of the same shade of brown. His thin chest sports a pair of midnight black nipples, barely visible beneath the dark fur around them.");
 	else output("\n\nHis frame is exceedingly thin, and even though his baggy clothes obscures his waist, it shows. Both his hips and his shoulders are just the right size to give him a distinctly masculine shape.");
@@ -199,7 +200,7 @@ public function giveDoggoADoggoTreat():void
 	clearOutput();
 	showGil();
 	author("Lashcharge");
-	pc.destroyItem(new PupperPoppers());
+	pc.destroyItemByClass(PupperPoppers);
 	//1st snausage tf:
 	if(flags["GIL_DOSES"] == undefined)
 	{
@@ -345,7 +346,7 @@ public function getCashForDoggo(direct:Boolean = false):void
 	if(direct) 
 	{
 		IncrementFlag("GIL_DOSES");
-		if(flags["GIL_BONUS_TALK"] != undefined) pc.destroyItem(new PupperPoppers());
+		if(flags["GIL_BONUS_TALK"] != undefined) pc.destroyItemByClass(PupperPoppers);
 	}
 	//If first time selling it after getting worg eyes:
 	if(flags["GIL_DOSES"] > 9 && flags["GIL_BONUS_TALK"] == undefined)
@@ -454,8 +455,7 @@ public function sexWithGilYaDumbshit(fromTrade:Boolean = false):void
 
 	output("\n\nYou both head for your ship. He shadows you, trying his best to stay inconspicuous.");
 
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 
 	output("\n\nOnce you are both inside your bedroom, he begins to undress, pulling up his dark blue hoodie and white undershirt showing off his thin chest covered in brown fur.");
 	flags["GIL_UPPER_BODY_REVEAL"] = 1;
@@ -612,9 +612,9 @@ public function getASloppyGrillBLowjorb(fromTrade:Boolean):void
 		if(pheromones) output("the smell of your potent pheromones");
 		else if(pc.hasStatusEffect("Sweaty")) output("the smell of your sweat-covered body");
 		else output(pc.mf("the smell of your masculine musk","your scent"));
-		output(". He lets loose on your slit and slobbers all around it, using his doggy tongue to thoroughly polish its [pc.skinFurScaleColor] surface. Your erection");
+		output(". He lets loose on your slit and slobbers all around it, using his doggy tongue to thoroughly polish its [pc.skinFurScalesColor] surface. Your erection");
 		if(pc.totalCocks() == 1) output(" begins");
-		else output(" begins");
+		else output("s begin");
 		output(" to grow, ");
 		if(pc.cockTotal() == 1) output("the tip");
 		else output("their tips");
@@ -628,7 +628,7 @@ public function getASloppyGrillBLowjorb(fromTrade:Boolean):void
 		if(pheromones) output("the smell of your potent pheromones");
 		else if(pc.hasStatusEffect("Sweaty")) output("the smell of your sweat-covered body");
 		else output(pc.mf("the smell of your masculine musk","your scent"));
-		output(". Then, he lets his tongue loose on the [pc.sheath " + x + "], slobbering all over its [pc.skinFurScaleColor] surface. Your erection begins to grow, expanding the sheath with the increasing volume of your cock, but the tip has yet to poke out of it. Only when it’s entirely covered in a warm, glistening glaze does Gil prod its insides, using his tongue to masterfully unwrap your [pc.cock " + x + "] from its now tight container. The more he licks, the larger your erection grows, and the more of your [pc.cockColor " + x + "] dick is exposed to the open air. When your cock is as big as it’s gonna get, the dog-morph gives your sheath one final lick and begins to pull away. He drags his large, floppy tongue along the underside of your dick as he moves back, trailing from base to tip.");
+		output(". Then, he lets his tongue loose on the [pc.sheath " + x + "], slobbering all over its [pc.skinFurScalesColor] surface. Your erection begins to grow, expanding the sheath with the increasing volume of your cock, but the tip has yet to poke out of it. Only when it’s entirely covered in a warm, glistening glaze does Gil prod its insides, using his tongue to masterfully unwrap your [pc.cock " + x + "] from its now tight container. The more he licks, the larger your erection grows, and the more of your [pc.cockColor " + x + "] dick is exposed to the open air. When your cock is as big as it’s gonna get, the dog-morph gives your sheath one final lick and begins to pull away. He drags his large, floppy tongue along the underside of your dick as he moves back, trailing from base to tip.");
 	}
 	//else:
 	else
@@ -1008,7 +1008,7 @@ public function doggyStyleWithGil():void
 		if(pc.biggestTitSize() >= 1) output("bosoms");
 		else if(pc.tone >= 70) output("pecs");
 		else output("chest");
-		output(". You plant a passionate kiss on his lips and spend a while just enjoying each other’s embrace. Then you break your kiss, throw him onto the bed, and fall on top of him.");
+		output(". You plant a passionate kiss on his lips and spend a while just enjoying each other’s embrace. Then you break your kiss, throw him onto the bed, and " + (pc.isTaur() ? "and lay beside" : "fall on top of") + " him.");
 	}
 	//else:
 	else
@@ -1018,7 +1018,7 @@ public function doggyStyleWithGil():void
 		//less than 5 feet:
 		if(pc.tallness < 5*12) output("really short, so the best you can do is bring him down to your level");
 		else output("about the same height as him, so you bring him down");
-		output(" and plant a romantic kiss on his lips. Both of you spend a while there, just enjoying each other’s embrace, before you break your kiss, throw him onto the bed, and fall on top of him.");
+		output(" and plant a romantic kiss on his lips. Both of you spend a while there, just enjoying each other’s embrace, before you break your kiss, throw him onto the bed, and " + (pc.isTaur() ? "and lay beside" : "fall on top of") + " him.");
 	}
 
 	output("\n\nYou put your hands on your lover’s chest and pinch his nipples. He moans and pulls you closer in response, caressing your back as he does. When you tire of teasing his nipples, you let one hand descend to his groin, while the other grabs one of his asscheeks. ");

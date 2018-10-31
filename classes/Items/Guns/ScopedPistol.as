@@ -10,7 +10,7 @@
 	
 	public class ScopedPistol extends ItemSlotClass
 	{
-		
+		//Level 1. Balance 2.0 
 		//constructor
 		public function ScopedPistol()
 		{
@@ -35,9 +35,7 @@
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "This compact laser pistol is equipped with a rather impressive scope and energy cell";
 			//if(kGAMECLASS.chars["PC"].characterClass == GLOBAL.CLASS_ENGINEER) this.tooltip += " of your own manufacture";
-			this.tooltip += ". It is quite accurate but relatively low-powered";
-			//if(kGAMECLASS.chars["PC"].characterClass == GLOBAL.CLASS_ENGINEER) this.tooltip += " - the perfect weapon for a tech specialist to start with";
-			this.tooltip += ".";
+			this.tooltip += ". It is quite accurate but relatively low-powered.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -45,11 +43,11 @@
 			attackNoun = "shot";
 			
 			//Information
-			this.basePrice = 350;
-			this.attack = 2;
+			this.basePrice = 120;
+			this.attack = 3;
 			
-			baseDamage.electric.damageValue = 1;
-			baseDamage.burning.damageValue = 4;
+			//baseDamage.electric.damageValue = 1;
+			baseDamage.burning.damageValue = 5;
 			baseDamage.addFlag(DamageFlag.LASER);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			
@@ -57,7 +55,7 @@
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 0;
+			this.critBonus = 1;
 			this.evasion = 0;
 			this.fortification = 0;
 			

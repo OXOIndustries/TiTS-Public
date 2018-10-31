@@ -5,7 +5,7 @@
 	import classes.GLOBAL;
 	import classes.Creature;
 	import classes.Items.Miscellaneous.EmptySlot;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
@@ -27,7 +27,7 @@
 			//Used on inventory buttons
 			this.shortName = "S.Bites";
 			//Regular name
-			this.longName = "Shark Bites"
+			this.longName = "Shark Bites";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
@@ -116,7 +116,7 @@
 				if(!pc.hasAccentMarkings())
 				{
 					//Gain Stripes perk.
-					if(hasSharkScales() && !pc.hasStatusEffect("Shark Markings") && rand(50) == 0 && changes < changeLimit)
+					if(hasSharkScales() && !pc.hasStatusEffect("Shark Markings") && rand(5) == 0 && changes < changeLimit)
 					{
 						pc.skinAccent = RandomInCollection(["black","brown","white"]);
 						if(pc.skinAccent == pc.skinTone) pc.skinAccent = "orange";
@@ -125,7 +125,7 @@
 						pc.createStatusEffect("Shark Markings",1,0,0,0);
 						changes++;
 					}
-					if(hasSharkScales() && !pc.hasStatusEffect("Shark Markings") && rand(50) == 0 && changes < changeLimit)
+					if(hasSharkScales() && !pc.hasStatusEffect("Shark Markings") && rand(5) == 0 && changes < changeLimit)
 					{
 						pc.skinAccent = RandomInCollection(["black","brown","white"]);
 						if(pc.skinAccent == pc.skinTone) pc.skinAccent = "orange";
@@ -135,7 +135,7 @@
 						pc.createStatusEffect("Shark Markings",2,0,0,0);
 						changes++;
 					}
-					if(hasSharkScales() && !pc.hasStatusEffect("Shark Markings") && rand(50) == 0 && changes < changeLimit)
+					if(hasSharkScales() && !pc.hasStatusEffect("Shark Markings") && rand(5) == 0 && changes < changeLimit)
 					{
 						pc.skinAccent = RandomInCollection(["beige","white"]);
 						if(pc.skinAccent == pc.skinTone) pc.skinAccent = "neon green";
@@ -171,7 +171,7 @@
 					changes++;
 				}
 				//Decrease Breast Size
-				if(pc.biggestTitSize() >= 2 && rand(4) == 0 && changes < changeLimit)
+				if(pc.breastRows[pc.biggestTitRow()].breastRatingRaw > 2 && rand(4) == 0 && changes < changeLimit)
 				{
 					if(pc.breastRatingUnlocked(0, 2))
 					{
@@ -223,6 +223,7 @@
 					{
 						output("\n\nHow odd... your ears feel oddly numb. You press your hands against the side of your face, noticing that your ear holes are still there but your ear lobes are missing. Suddenly, you feel a pressure against your hands and you move them away, as skin and cartilage bursts forth. They look kind of like three tiny sails were taken off a ship and used to make <b>your new shark ears</b>!");
 						pc.earType = GLOBAL.TYPE_SHARK;
+						pc.earLength = 4;
 					}
 					else output("\n\n" + pc.earTypeLockedMessage());
 					changes++;
@@ -270,20 +271,35 @@
 					changes++;
 				}
 				//Return to Humanoid form
-				if((pc.isTaur() || pc.isNaga()) && rand(2) == 0 && changes < changeLimit)
+				if(pc.legType != GLOBAL.TYPE_SHARK && (pc.isTaur() || pc.isNaga()) && rand(2) == 0 && changes < changeLimit)
 				{
-					if(pc.legCountUnlocked(GLOBAL.TYPE_SHARK))
+					if(pc.isNaga() || pc.legCountUnlocked(2))
 					{
 						output("\n\nAs you ");
 						if(pc.isTaur()) output("trot");
 						else output("slither");
-						output(" around, you feel a great warmth in your lower body. You look down only for that warmth to turn into searing pain. You barely stop yourself from screaming bloody murder as you black out for a brief second before the most soothing feeling runs through your body. It almost feel like the afterglow of sex in some respects. You wipe some tears from your eyes as you look down, noticing that <b>your body now has a human configuration, with two human legs!</b> You hope that this was mentioned in the potential side effects of consuming Shark Bites...");
-						pc.genitalSpot = 0;
-						pc.legType = GLOBAL.TYPE_HUMAN;
-						pc.legCount = 2;
-						pc.clearLegFlags();
-						pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-						pc.addLegFlag(GLOBAL.FLAG_SCALED);
+						output(" around, you feel a great warmth in your lower body. You look down only for that warmth to turn into searing pain. You barely stop yourself from screaming bloody murder as you black out for a brief second before the most soothing feeling runs through your body. It almost feel like the afterglow of sex in some respects. You wipe some tears from your eyes as you look down, noticing that <b>");
+						if(pc.isNaga())
+						{
+							output("your snake-like lower body has now converted to a shape much similar to that of a shark!");
+							pc.genitalSpot = 0;
+							pc.legType = GLOBAL.TYPE_SHARK;
+							pc.legCount = 1;
+							pc.clearLegFlags();
+							pc.addLegFlag(GLOBAL.FLAG_PREHENSILE);
+							pc.addLegFlag(GLOBAL.FLAG_SCALED);
+						}
+						else
+						{
+							output("your body now has a human configuration, with two human legs!");
+							pc.genitalSpot = 0;
+							pc.legType = GLOBAL.TYPE_HUMAN;
+							pc.legCount = 2;
+							pc.clearLegFlags();
+							pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+							//pc.addLegFlag(GLOBAL.FLAG_SCALED);
+						}
+						output("</b> You hope that this was mentioned in the potential side effects of consuming Shark Bites...");
 					}
 					else output("\n\n" + pc.legCountLockedMessage());
 					changes++;
@@ -327,9 +343,8 @@
 						output("\n\nYour [pc.cock " + i + "] grows painfully hard before a pleasant warmth flows through it, base to tip, then back up again. It feels really, really good. You ");
 						if(!pc.isCrotchExposedByArmor()) output("pull the lower part of your [pc.armor] forward and ");
 						output("look down ");
-						if(!pc.isCrotchExposedByLowerUndergarment()) output("into your [pc.lowerUndergarments] ");
+						if(!pc.isCrotchExposedByLowerUndergarment()) output("into your [pc.lowerUndergarment] ");
 						output("to find that your penis has changed into an smoothly contoured tube. The head is now a tapered point, and downy-soft fins ring the base. <b>You have a shark cock now!</b>");
-						pc.cocks[i].cType = GLOBAL.TYPE_SHARK;
 						pc.shiftCock(i,GLOBAL.TYPE_SHARK);
 						pc.libido(1);
 						pc.lust(5);
@@ -406,7 +421,6 @@
 						pc.clearTailFlags();
 						pc.addTailFlag(GLOBAL.FLAG_LONG);
 						pc.addTailFlag(GLOBAL.FLAG_SCALED);
-						pc.addTailFlag(GLOBAL.FLAG_LONG);
 					}
 					else output("\n\n" + pc.tailCountLockedMessage());
 					changes++;
@@ -424,6 +438,7 @@
 						pc.tailType = GLOBAL.TYPE_SHARK;
 						pc.clearTailFlags();
 						pc.addTailFlag(GLOBAL.FLAG_LONG);
+						pc.addTailFlag(GLOBAL.FLAG_SCALED);
 					}
 					else output("\n\n" + pc.tailTypeLockedMessage());
 					changes++;
@@ -435,9 +450,9 @@
 					if(pc.sharkScore() >= 5) output(" Maybe you’re as shark like as you are going to get?");
 				}
 				return false;
-			}			
+			}
 			else {
-				kGAMECLASS.output(target.capitalA + target.short + " injects the Sylvanol to no effect.");
+				output(target.capitalA + target.short + " eats the jerky to no effect.");
 			}
 			return false;
 		}

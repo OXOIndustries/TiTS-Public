@@ -55,7 +55,7 @@ public function seraSexXXXTFModsAsk():void
 	author("Nonesuch");
 	showSera();
 	
-	output("<i>“Do you have anything that’s a bit more...”</i> You want to say “interesting”. <i>“... exotic?”</i>");
+	output("<i>“Do you have anything that’s a bit more...”</i> You want to say “interesting”. <i>“...exotic?”</i>");
 	
 	// PC has submitted
 	if(seraIsMistress())
@@ -97,7 +97,7 @@ public function seraSexXXXTFModsAsk():void
 		else 
 		{
 			output("\n\n<i>“This is a mod shop!”</i> you snap angrily. <i>“Show me your goddamn mods!”</i>");
-			output("\n\n<i>“Stick to the fem-pops, sweetheart,”</i> Sera sneers. <i>“You need to mellow out some. If I had a top shelf I wouldn’t be showing it to some credit-less slack-jawed colony hick who shuttled in here yesterday, I can tell you that.”</i>");
+			output("\n\n<i>“Stick to the fem-pops, sweetheart,”</i> Sera sneers. <i>“You need to mellow out some. If I had a top shelf I wouldn’t be showing it to some " + (isAprilFools() ? "dogecoin" : "credit") + "-less slack-jawed colony hick who shuttled in here yesterday, I can tell you that.”</i>");
 			processTime(2);
 		}
 	}
@@ -635,7 +635,7 @@ public function seraInchStealing(response:String = ""):void
 			processTime(5);
 		}
 		output("\n\n<i>“That’s enough,”</i> says Sera thickly. You disengage from her, feeling mildly dazed.");
-		if(pc.isBimbo() || pc.isTreated() || pc.isDependant(Creature.DEPENDANT_CUM)) output(" Your smeared lips feel lavish and vaguely tingly; you stifle the urge to lick them.");
+		if(pc.isBimbo() || pc.isTreated() || pc.isCumSlut()) output(" Your smeared lips feel lavish and vaguely tingly; you stifle the urge to lick them.");
 		output(" She turns to you, her bulging cock pointing lividly at your face. <i>“Come sit across me. In close. That’s it.”</i> Her dark, bullet-like nipples press into your [pc.chest] as you shuffle yourself into her on the bed, your [pc.hips] rubbing against her own smooth thighs. She looks down at your semi-erect [pc.cock " + cockIndex + "] disdainfully. <i>“Rub that against me. Nice and slow.”</i>");
 		output("\n\nTentatively you grip her waist and do as she says, pumping your hips to frot your prick against hers. The oozing grease it’s covered in makes the friction smooth, there’s plenty of warmth and soon enough you’re erect as she is. Sera responds once you’re there, pumping her smaller cock against yours with harder and harder strokes, clutching your back almost painfully, her mountainous breasts plumping into you. You press into each other with fierce intimacy, jousting your bulging, pleasure-dense cocks.");
 		output("\n\nShe reaches forward and limpets her lips on yours, invading your mouth with her tongue, attacking your walls with it fiercely. At the same time a tingling sensation spreads down your [pc.cock " + cockIndex + "]. It suddenly feels achingly sensitive, as if the skin on it has disappeared. You cry out in shock, muffled, around Sera’s tongue. She smirks against your face and then forces herself onto you, forcing you back onto the duvet, holding your arms down as she humps you vigorously, throwing her whole body into it. Your eyes roll to the sensation of the savage friction on your sensitized cock.");
@@ -812,7 +812,7 @@ public function seraInchStealing(response:String = ""):void
 			output(" as you slather the grease all around Sera’s hardness. You moan softly as it occurs to you you’re sucking the dick that is shortly going to literally emasculate you.");
 		}
 		output("\n\n<i>“That’s enough,”</i> says Sera thickly. You disengage from her, feeling mildly dazed.");
-		if(pc.isBimbo() || pc.isTreated() || pc.isDependant(Creature.DEPENDANT_CUM)) output(" Your smeared lips feel lavish and vaguely tingly; you stifle the urge to lick them.");
+		if(pc.isBimbo() || pc.isTreated() || pc.isCumSlut()) output(" Your smeared lips feel lavish and vaguely tingly; you stifle the urge to lick them.");
 		output(" She turns to you, her bulging cock pointing lividly at your face. <i>“Come sit across me. In close. That’s it.”</i> Her dark, bullet-like nipples press into your [pc.chest] as you shuffle yourself into her on the bed, your [pc.hips] rubbing against her own smooth thighs. She looks down at your semi-erect [pc.cock " + cockIndex + "]");
 		if(biggestLength >= 12) output(" disdainfully");
 		else output(" with a smirk");
@@ -1035,7 +1035,7 @@ public function seraInchStealingAintEasy(intro:Boolean = false):void
 	
 	//Orgasm scene only for PCs who either a) have some sort of oral fixation mechanic or b) have //been through the face-riding training scene with Sera 3+ times.
 	// Orally Fixated:
-	if(pc.isBimbo() || pc.isTreated() || pc.isDependant(Creature.DEPENDANT_CUM))
+	if(pc.isBimbo() || pc.isTreated() || pc.isCumSlut())
 	{
 		output("\n\nSucking her cock for so long with nothing else has already engorged your lips and livened your mouth. Feeling the pulsing beat of her cock wrapped in your [pc.lips] with such a huge load spilling into your mouth is enough to finally send you over the edge with warmth radiating out from cock and lips and jizz and tongue");
 		// also done face-riding
@@ -1084,7 +1084,7 @@ public function seraInchStealingAintEasy(intro:Boolean = false):void
 		}
 		if(pc.canOviposit())
 		{
-			output(" Your ovipositor even seems to come alive with the electric sensation of your orally-motivated orgasm. Eggs and fluids churn with pregnant poise, bringing with it that breed-hungry sensation they always provoke before calming back into the afterglow of your orgasm.");
+			output(" Your ovipositor" + (pc.totalTailOvipositors() == 1 ? " even seems" : "s even seem") + " to come alive with the electric sensation of your orally-motivated orgasm. Eggs and fluids churn with pregnant poise, bringing with it that breed-hungry sensation they always provoke before calming back into the afterglow of your orgasm.");
 		}
 		output("\n\nYour mistress catches sight of your orgasm as you swallow down every drop like a proper cumslut, and seems positively giddy at the sight. <i>“Oh. My. God. You actually,”</i> and here she stops and trips over her thoughts. <i>“You actually came from that.");
 		if(flags["SERA_INCH_STEALING_HELP"] == undefined) output(" I was just going to fucking leave you to stew on it, ‘cause it’s your fucking fault this happened. Fuck that though, this is amazing, the best damn thing I’ve seen all day.");
@@ -2267,9 +2267,9 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 		}
 		
 		output("\n\nTalking done, she uses the hand not holding your wrists back to pull your head back, squeezing it between her heaving breasts as she rams into you, filling you from stem to stern.");
-		if(pc.hasTongueFlag(GLOBAL.FLAG_LONG))
+		if(pc.hasLongTongue())
 		{
-			output(" Aware this is one of her favourite moves and ready for it, you slide your long, flexible tongue out of your open mouth and glide it across your skin and hers, flicking it over one of her erect nipples.");
+			output(" Aware this is one of her favorite moves and ready for it, you slide your long, flexible tongue out of your open mouth and glide it across your skin and hers, flicking it over one of her erect nipples.");
 			output("\n\n<i>“Oh – you – clever – fucking – [pc.boy]!”</i> she gasps, between slams of her hips into your ass.");
 		}
 		output("\n\nYour moans turn into cries of ecstasy as your");
@@ -2289,10 +2289,10 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 		output(" – with an expression of profound contentment.");
 		
 		processTime(15);
-		pc.orgasm();
 		pc.loadInMouth(chars["SERA"]);
 		if(vagIndex >= 0) pc.loadInCunt(chars["SERA"], vagIndex);
 		else pc.loadInAss(chars["SERA"]);
+		pc.orgasm();
 		sera.orgasm();
 		clearMenu();
 		if(TFItem == "Semen’s Friend") addButton(0, "Semen’s?", seraSexXXXTitfuckLuckyDip, [TFItem, vagIndex, cockIndex], TFItem + "?", "Ask your mistress for some " + TFItem + ".");
@@ -2515,7 +2515,7 @@ public function seraGiftCollar(page:int = 0):void
 			break;
 		case 2:
 			output("The collar strains your neck as you wrap your hand around the hot, purple meat of Sera’s shaft. Just enough to be uncomfortable, just enough to remind you of its presence, whilst you pull her to full, wooden erection and spread your [pc.lips] over the bulbous tip, savoring the heavy, spicy flavor of her musk spreading over your taste buds.");
-			output("\n\n<i>“I know the dildo won’t be as good as the real thing,”</i> Sera murmurs, exhaling long and low and closing her eyes as you open wide and fill your mouth with her cock. <i>“That’s why we make the most of these li’l opportunities...”</i> ");
+			output("\n\n<i>“I know the dildo won’t be as good as the real thing,”</i> Sera murmurs, exhaling long and low and closing her eyes as you open wide and fill your mouth with her cock. <i>“That’s why we make the most of these lil’ opportunities...”</i> ");
 			output("\n\nYou sink deep onto her hot, delicious root, deep enough for the bulb to press against your tonsils, before slowly slurping outwards, retracting so you can lick her further down, fondling her big, heavy balls as you do it, creeping your fingers further inside even to trace the lips of her pussy. Her husky groans, and the presence of sharp nails stroking");
 			if(!pc.hasHair()) output(" behind your [pc.ear]");
 			else output(" you through your [pc.hair]");
@@ -2793,8 +2793,10 @@ public function seraTongueFuckBonus():Boolean
 	if(pc.tongueType == GLOBAL.TYPE_DEMONIC) select = 1;
 	if(pc.tongueType == GLOBAL.TYPE_RASKVEL) select = 2;
 	if(pc.tongueType == GLOBAL.TYPE_FROG) select = 3;
-	if(select < 0 && (flags["MET_FEMALE_RASKVEL"] != undefined || flags["MET_MALE_RASKVEL_GANG"] != undefined)) convoList.push(4);
-	if(select < 0 && flags["MET_KEROKORAS"] != undefined) convoList.push(5);
+	if(pc.tongueType == GLOBAL.TYPE_BEE) select = 4;
+	if(select < 0 && (flags["MET_FEMALE_RASKVEL"] != undefined || flags["MET_MALE_RASKVEL_GANG"] != undefined)) convoList.push(5);
+	if(select < 0 && flags["MET_KEROKORAS"] != undefined) convoList.push(6);
+	if(select < 0 && (flags["TIMES_MET_FEMZIL"] != undefined || flags["ENCOUNTERED_ZIL"] != undefined)) convoList.push(7);
 	
 	if(select < 0 && convoList.length > 0) select = (convoList[rand(convoList.length)]);
 	
@@ -2813,15 +2815,24 @@ public function seraTongueFuckBonus():Boolean
 		// Kerokeras tongue:
 		case 3:
 			output("\n\n<i>“Kinda?”</i> Your tongue never turns down the opportunity to perform, and the moment you open your mouth it’s out there, whipping this way and that with wet, sticky intent. You have it catch a fetish doll off a nearby shelf and deposit it clumsily next to Sera. Her eyes widen slightly, and she retracts her own to speak.");
-			output("\n\n<i>“That’s pretty good,”</i> she murmurs, eyeing it. <i>“Bit lizard-y, but... useful-looking. Tell me how you got it.”</i>");
+			output("\n\n<i>“That’s pretty good,”</i> she murmurs, eyeing it. <i>“Bit frog-like, but... useful-looking. Tell me how you got it.”</i>");
+			break;
+		// Zil tongue:
+		case 4:
+			output("\n\n<i>“Kinda?”</i> You open your own mouth and lollop out your own tongue, a hollow, wet, yellow muscle that touches the your [pc.chest]. You make it run kisses all along the surface with its talented tip. Sera eyes widen slightly, and she retracts her own to speak.");
+			output("\n\n<i>“That’s pretty good,”</i> she murmurs, eyeing it. <i>“Too much like a nectar-sucking bug, but... useful-looking. Tell me how you got it.”</i>");
 			break;
 		// Raskvel met:
-		case 4:
+		case 5:
 			output("\n\n<i>“Kinda?”</i> Slightly nervously, you begin to talk about the raskvel, the Tarkus-born race of rabbit-reptiles and their big, long tongues. Sera slurps her obscene mouth appendage away, bit by flailing bit, listening to you with half-lidded eyes.");
 			break;
-		// If not raskvel but kerokeras:
-		case 5:
+		// Kerokeras met:
+		case 6:
 			output("\n\n<i>“Kinda?”</i> Slightly nervously, you begin to talk about the kerokeras, the obscure race of frog-alogues that inhabit Mhen’ga, and their long, sticky whip-tongues. Sera slurps her obscene mouth appendage away, bit by flailing bit, listening to you with half-lidded eyes.");
+			break;
+		// Zil met:
+		case 7:
+			output("\n\n<i>“Kinda?”</i> Slightly nervously, you begin to talk about the zil, the race of wasp-like beings that inhabit Mhen’ga, and their long, hollow tongues. Sera slurps her obscene mouth appendage away, bit by flailing bit, listening to you with half-lidded eyes.");
 			break;
 	}
 	
@@ -2832,7 +2843,7 @@ public function seraTongueFuckBonus():Boolean
 	if(hasCock) output(" gripping your [pc.cock] and brusquely jerking you, working leaden arousal into your shaft with sharp, certain movements");
 	else output(" sliding her digits into your [pc.pussy], brusquely fingering you with clever, certain movements");
 	output(". You quiver as she ravages you, pinioned upon her extremities at both ends, and she husks something wicked into your mouth, " + (hasCock ? "jacking" : "jilling") + " you harder. The next second she’s withdrawing her tongue, slithering up your esophagus and then past your own [pc.tongue], pulling away from you sharply. You heave for breath.");
-	output("\n\n<i>“‘S why I’m interested in long tongues,”</i> she growls. <i>“For me, anyway. " + (InCollection(select, [1, 2, 3]) ? "Yours is for other purposes." : "On you it’d be for other purposes.") + " Sub, dom... a tonsil toucher is something to have. I wanna have a selection of gene mods that produce ‘em in my shop.”</i>");
+	output("\n\n<i>“‘S why I’m interested in long tongues,”</i> she growls. <i>“For me, anyway. " + (InCollection(select, [1, 2, 3, 4]) ? "Yours is for other purposes." : "On you it’d be for other purposes.") + " Sub, dom... a tonsil toucher is something to have. I wanna have a selection of gene mods that produce ‘em in my shop.”</i>");
 	
 	processTime(4);
 	pc.lust(20);
@@ -2915,7 +2926,7 @@ public function seraTongueFuck(arg:Array):void
 	{
 		output("\n\nShe steps back and considers the respectably sized puddle of " + (hasCock ? "[pc.cum]" : "[pc.girlCum]") + " on the floor beneath you dispassionately.");
 		output("\n\n<i>“You’re such a messy pet, aren’t you?”</i> She shakes her head. <i>“It’s fun making you squirt, but man, I don’t envy the person who has to clean that up.”</i> She sashays back behind her counter, tail swinging. <i>“");
-		if(InCollection(select, [1, 2, 3])) output("Good thing you’ve got that tongue.");
+		if(InCollection(select, [1, 2, 3, 4])) output("Good thing you’ve got that tongue.");
 		else output("Like I said - you need to sort yourself out with a better tongue.");
 		output(" Don’t take too long - I don’t want a customer slipping in it.”</i>");
 		output("\n\nHumiliation burns on your cheeks as you " + (pc.hasKnees() ? "kneel" : "lower yourself") + " down over the " + (hasCock ? "[pc.cumVisc]" : "[pc.girlCumVisc]") + " pool and begin to lap it up. This tastes nowhere <i>near</i> as good going cold. The pleasant ache in your genitals and the fuzz of subspace help a lot, though...");

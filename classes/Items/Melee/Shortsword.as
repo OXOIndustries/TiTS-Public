@@ -10,13 +10,11 @@
 	
 	public class Shortsword extends ItemSlotClass
 	{
+		//Level 2 (Common). Balance 2.0
 		//constructor
 		public function Shortsword()
 		{
 			this._latestVersion = 1;
-			
-			//A KNIFE
-			//4
 			
 			//this.indexNumber = 4;
 			this.quantity = 1;
@@ -42,12 +40,12 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 550;
-			this.attack = 1;
+			this.basePrice = 200;
 			
-			baseDamage.kinetic.damageValue = 7;
+			baseDamage.kinetic.damageValue = 10;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
 			
+			this.attack = 1;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;

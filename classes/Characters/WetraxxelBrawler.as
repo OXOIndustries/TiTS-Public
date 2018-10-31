@@ -29,9 +29,9 @@
 			this.originalRace = "wetraxxel";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "The wetraxxel is a towering, insectile man -- easily ten feet tall, and covered in chitinous plates. A pair of small insectile feelers adorn his head, over small black eyes and a pair of slits for nostrils. His mouth is a four-part set of sharply fanged mandibles, which click quietly as his grunts and growls. He's monstrously broad-shouldered, with lighter-colored and more flexible plates on his chest; his gut is an off-white against the midnight black of his other chitin. His plated fists are raised to you in a classic boxing stance, ready to punch and block in equal measure.\n\nThe wetraxxal male's naked save for a simple loincloth which barely conceals a hefty-looking package, certainly sizable even for its owner's great height. ";
+			this.long = "The wetraxxel is a towering, insectile man -- easily ten feet tall, and covered in chitinous plates. A pair of small insectile feelers adorn his head, over small black eyes and a pair of slits for nostrils. His mouth is a four-part set of sharply fanged mandibles, which click quietly as his grunts and growls. He’s monstrously broad-shouldered, with lighter-colored and more flexible plates on his chest; his gut is an off-white against the midnight black of his other chitin. His plated fists are raised to you in a classic boxing stance, ready to punch and block in equal measure.\n\nThe wetraxxal male’s naked save for a simple loincloth which barely conceals a hefty-looking package, certainly sizable even for its owner’s great height. ";
 			this.customDodge = "The wetraxxel brawler rolls aside in a remarkable display of agility for one with such a large frame.";
-			this.customBlock = "The alien's chitin deflects the attack.";
+			this.customBlock = "The alien’s chitin deflects the attack.";
 			this.isPlural = false;
 			
 			baseHPResistances.drug.resistanceValue = 20.0;
@@ -179,7 +179,7 @@
 			isUniqueInFight = true;
 			btnTargetText = "Wetraxxel";
 			sexualPreferences.setRandomPrefs(4 + rand(3),2);
-			kGAMECLASS.myrellionSSTDChance(this);
+			//kGAMECLASS.myrellionSSTDChance(this);
 			this._isLoading = false;
 		}
 		
@@ -243,14 +243,14 @@
 			//Low kinetic attack. Chance to knockdown.
 
 			output("The wetraxxel rushes at you, thrusting his arm out to the side and twisting his body, catching you in a clothesline!");
-			if (combatMiss(this, target, -1, 2))
+			if (combatMiss(this, target, -1, 2) || target.isPlanted())
 			{
 				output(" You manage to keep your footing, blocking the worst of the brawler’s strike.");
 			}
 			else
 			{
 				output(" His forearm catches you right on the chin, and the weight of the brawler’s body slams you into the ground. You feel the weight of the world slam into the back of your head, rattling you to your core. <b>You’re knocked down!</b>");
-				target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped!", true, 0);
+				CombatAttacks.applyTrip(target);
 				applyDamage(damageRand(new TypeCollection( { kinetic: 10 } ), 10), this, target);
 			}
 		}
@@ -260,7 +260,7 @@
 			//Strong kinetic attack. Chance to Stagger on hit (reduces Reflexes and Aim for several turns)
 
 			output("The brawler takes a running start, hurling himself feet-first at you.");
-			if (combatMiss(this, target))
+			if (combatMiss(this, target) || target.isPlanted())
 			{
 				output(" You duck the attack, letting his weight carry him over your head and into the wall!");
 			}
@@ -276,7 +276,7 @@
 				}
 				else
 				{
-					target.createStatusEffect("Staggered", 5, 0, 0, 0, false, "Icon_OffDown", "You're staggered, and your Aim and Reflexes have been reduced!", true, 0);
+					CombatAttacks.applyStagger(target, 5);
 				}
 			}
 		}
@@ -298,14 +298,14 @@
 				}
 				else
 				{
-					if (rand(target.reflexes()) >= target.reflexesMax() / 3)
+					if ((rand(target.reflexes()) >= target.reflexesMax() / 3) || target.isPlanted())
 					{
 						output(" The kick takes you completely by surprise, momentarily throwing you off balance and almost tumbling to the ground. You grunt as you narrowly manage to stay upright.");
 					}
 					else
 					{
 						output(" The kick takes you completely by surprise, throwing you off your feet and sending you tumbling to the ground. You grunt as the wind’s knocked out of you, narrowly avoiding cracking your head on a sharp stone nearby. <b>You’re knocked down!</b>");
-						target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped!", true, 0);
+						CombatAttacks.applyTrip(target);
 					}
 				}
 

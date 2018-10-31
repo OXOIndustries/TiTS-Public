@@ -3,13 +3,14 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
-	import classes.kGAMECLASS;	
+	import classes.kGAMECLASS;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	
 	public class Smartclothes extends ItemSlotClass
 	{
+		//Level 4 (Common). Balance 2.0
 		//constructor
 		public function Smartclothes()
 		{
@@ -20,7 +21,7 @@
 			this.type = GLOBAL.ARMOR;
 			
 			//Used on inventory buttons
-			this.shortName = "Smartclothes";
+			this.shortName = "S.Clothes";
 			
 			//Regular name
 			this.longName = "smart jacket and pants";
@@ -38,7 +39,7 @@
 			this.attackVerb = "";
 			
 			//Information
-			this.basePrice = 3350;
+			this.basePrice = 880;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
@@ -49,7 +50,7 @@
 			this.fortification = 0;
 			
 			resistances.electric.resistanceValue = 30.0;
-			resistances.burning.resistanceValue = 30.0;
+			resistances.burning.resistanceValue = 24.0;
 			
 			this.version = _latestVersion;
 		}	

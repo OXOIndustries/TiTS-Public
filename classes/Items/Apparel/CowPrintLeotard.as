@@ -7,7 +7,7 @@
 
 	public class CowPrintLeotard extends ItemSlotClass
 	{
-
+		//Level 2 (Common). Balance 2.0
 		//constructor
 		public function CowPrintLeotard()
 		{
@@ -36,14 +36,14 @@
 			this.attackVerb = "null";
 			
 			//Information
-			this.basePrice = 800;
+			this.basePrice = 220;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = 5;
+			this.sexiness = 4;
 			this.critBonus = 0;
-			this.evasion = 0;
+			this.evasion = 3;
 			this.fortification = 0;
 			
 			this.version = _latestVersion;

@@ -104,9 +104,9 @@
 			
 			// Based on PC's choice of setting. Note that colors also apply to lip nipples exactly like facial lips.
 			clearMenu();
-			addButton(0, "Yes", rbgSelColor, [target, colorType, false, "", idx], "Choose Color", String("Choose a color for your " + lipTypeString(colorType) + "."));
-			addButton(1, "No", sizeMenu, [target, colorType, "null", "", idx], "No Color", String("Don’t change the color of your " + lipTypeString(colorType) + "."));
-			if(target.isBimbo()) addButton(5, "Like, Ya!", rbgSelColor, [target, colorType, true, "", idx], "*Choose Glitter*", String("Like, totally choose a better color for your " + lipTypeString(colorType) + "."));
+			addButton(0, "Yes", rbgSelColor, [target, colorType, false, "", idx], "Choose Color", ("Choose a color for your " + lipTypeString(colorType) + "."));
+			addButton(1, "No", sizeMenu, [target, colorType, "null", "", idx], "No Color", ("Don’t change the color of your " + lipTypeString(colorType) + "."));
+			if(target.isBimbo()) addButton(5, "Like, Ya!", rbgSelColor, [target, colorType, true, "", idx], "*Choose Glitter*", ("Like, totally choose a better color for your " + lipTypeString(colorType) + "."));
 			
 			if(colorType != "lip") addButton(14, "Back", lipMenu, target);
 			else addButton(14, "Back", rbgCancel, target);
@@ -236,7 +236,7 @@
 				var bimboColors:Array = [];
 				for(i = 0; i < colorList.length; i++)
 				{
-					bimboColors.push([String("glittering " + colorList[i][0]), String("*" + colorList[i][1] + "*")]);
+					bimboColors.push([("glittering " + colorList[i][0]), ("*" + colorList[i][1] + "*")]);
 				}
 				colorList = bimboColors;
 			}
@@ -251,10 +251,10 @@
 					btnSlot++;
 				}
 				
-				if(colorType == "lip" && target.lipColor != colorList[i][0]) addButton(btnSlot, colorList[i][1], sizeMenu, [target, colorType, colorList[i][0]], StringUtil.toDisplayCase(colorList[i][0]), String("Change the color of your lips to " + colorList[i][0] + "."));
-				else if(colorType == "lipple" && target.nippleColor != colorList[i][0]) addButton(btnSlot, colorList[i][1], sizeMenu, [target, colorType, colorList[i][0]], StringUtil.toDisplayCase(colorList[i][0]), String("Change the color of your lipples to " + colorList[i][0] + "."));
-				else if(colorType == "mouthgina" && target.vaginas[idx].vaginaColor != colorList[i][0]) addButton(btnSlot, colorList[i][1], sizeMenu, [target, colorType, colorList[i][0], "", idx], StringUtil.toDisplayCase(colorList[i][0]), String("Change the color of your [pc.vaginaNoun " + idx + "] to " + colorList[i][0] + "."));
-				else addDisabledButton(btnSlot, colorList[i][1], StringUtil.toDisplayCase(colorList[i][0]), String("Your " + lipTypeString(colorType) + " are already " + colorList[i][0] + "."));
+				if(colorType == "lip" && target.lipColor != colorList[i][0]) addButton(btnSlot, colorList[i][1], sizeMenu, [target, colorType, colorList[i][0]], StringUtil.toDisplayCase(colorList[i][0]), ("Change the color of your lips to " + colorList[i][0] + "."));
+				else if(colorType == "lipple" && target.nippleColor != colorList[i][0]) addButton(btnSlot, colorList[i][1], sizeMenu, [target, colorType, colorList[i][0]], StringUtil.toDisplayCase(colorList[i][0]), ("Change the color of your lipples to " + colorList[i][0] + "."));
+				else if(colorType == "mouthgina" && target.vaginas[idx].vaginaColor != colorList[i][0]) addButton(btnSlot, colorList[i][1], sizeMenu, [target, colorType, colorList[i][0], "", idx], StringUtil.toDisplayCase(colorList[i][0]), ("Change the color of your [pc.vaginaNoun " + idx + "] to " + colorList[i][0] + "."));
+				else addDisabledButton(btnSlot, colorList[i][1], StringUtil.toDisplayCase(colorList[i][0]), ("Your " + lipTypeString(colorType) + " are already " + colorList[i][0] + "."));
 				btnSlot++;
 				
 				if(colorList.length > 14 && (i + 1) == colorList.length)

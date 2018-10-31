@@ -31,7 +31,7 @@ public function encounterHostileRaskvelFemale():void
 		output("\n\nBeeping, your codex alerts you that this is a hostile female of the raskvel race just like the ones you met when you landed. It issues a quick summary: <i>The Raskvel are a race obsessed with fixing technology and breeding in equal measure. They are generally a very friendly race, but some are more than happy to turn to violence to secure a mate.</i> Looking back up at the approaching creature, you ready yourself.");
 		output("\n\nThe raskvel mechanic leans on her wrench as she considers you, her long, floppy ears dangling to her waist. <i>“An off-worlder, huh?”</i>");
 		output("\n\nYou nod.");
-		output("\n\n<i>“That’s too bad. Since you’re trespassing, you’re going to have to pay the hundred credit fee,”</i> the scaly little thing offers before smiling. <i>“If you don’t pay, I’ll find another way to take it out of you.”</i> She looks at " + pc.rawmfn(" your crotch before reaching down to pull her alien twat wide open, winking.","your face before rubbing her palm across her exposed pussy, flicking her tongue out to indicate just how you could pay her.","your face before rubbing her palm across her exposed pussy, flicking her tongue out to indicate just how you could pay.") + ". <i>“I’d rather just play with you, but we need the money.”</i> She shrugs her little shoulders apologetically and awaits your response.");
+		output("\n\n<i>“That’s too bad. Since you’re trespassing, you’re going to have to pay the hundred " + (isAprilFools() ? "dogecoin" : "credit") + " fee,”</i> the scaly little thing offers before smiling. <i>“If you don’t pay, I’ll find another way to take it out of you.”</i> She looks at " + pc.rawmfn(" your crotch before reaching down to pull her alien twat wide open, winking.","your face before rubbing her palm across her exposed pussy, flicking her tongue out to indicate just how you could pay her.","your face before rubbing her palm across her exposed pussy, flicking her tongue out to indicate just how you could pay.") + ". <i>“I’d rather just play with you, but we need the money.”</i> She shrugs her little shoulders apologetically and awaits your response.");
 		output("\n\nDo you pay the fiesty little alien, fight her, or try and get a little something for your credits?");
 	}
 	else if(flags["RASKVEL_PREG_TIMER"] != undefined && flags["RASKVEL_PREG_TIMER"] <= 0)
@@ -44,7 +44,7 @@ public function encounterHostileRaskvelFemale():void
 	else
 	{
 		IncrementFlag("MET_FEMALE_RASKVEL");
-		output("\n\nAnother raskvel emerges from behind a piece of forgotten wreckage. This one seems as determined as the first one you met, proudly declaring, <i>“Fork over your credits, off-worlder. I need ‘em!”</i> She hefts her wrench threateningly. It doesn’t look like negotiation is an option.");	
+		output("\n\nAnother raskvel emerges from behind a piece of forgotten wreckage. This one seems as determined as the first one you met, proudly declaring, <i>“Fork over your credits, off-worlder. I need ‘em!”</i> She hefts her wrench threateningly. It doesn’t look like negotiation is an option.");
 	}
 	//[FIght] [Pay] ["Pay"]
 	clearMenu();
@@ -57,8 +57,8 @@ public function fightFemRask(tEnemy:Creature):void
 {
 	CodexManager.unlockEntry("Raskvel");
 	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyCharacters(pc);
-	CombatManager.setHostileCharacters(tEnemy);
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(tEnemy);
 	CombatManager.victoryScene(victoryVsRaskvel);
 	CombatManager.lossScene(defeatRoutingForFemRasks);
 	CombatManager.displayLocation("RASKVEL (F)");
@@ -146,7 +146,7 @@ public function victoryVsRaskvel():void
 		addDisabledButton(3,"AnalPunish");
 	}
 	output("\n\n");
-	addButton(14,"Leave",CombatManager.genericVictory);	
+	addButton(14,"Leave",CombatManager.genericVictory);
 }
 
 //Doggie Style
@@ -270,6 +270,7 @@ public function raskVelBabeGetsDoggieStyled():void
 	//EPILOGUE FOR BOTH
 	output("\n\nShe slumps onto her side, still trembling, and smiles, rubbing her hands back and forth all over her belly while you ready yourself to resume your journeys.\n\n");
 	processTime(30+rand(5));
+	enemy.loadInCunt(pc, 0);
 	knockUpRaskChance();
 	pc.orgasm();
 	processTime(5);
@@ -496,7 +497,7 @@ public function raskvelGirlsSitsIfTheyFits(combat:Boolean = false):void
 	else showName("RASKVEL\nFEMALE");
 	//By Savin
 	author("Savin");
-	//{Combat Loss: Have a Dick}
+	// Combat Loss: Have a Dick
 	if(combat)
 	{
 		output("You slump to the ground, ");
@@ -508,13 +509,13 @@ public function raskvelGirlsSitsIfTheyFits(combat:Boolean = false):void
 		output("to resist her.");
 		output("\n\n<i>“Tsk, could have just paid the fee...”</i> she sighs, tossing her wrench-gun aside.");
 	}
-	//{Pay the Fee & Have a Cock}
+	// Pay the Fee & Have a Cock
 	else
 	{
 		clearOutput();
 		output("Well, let’s be honest. You don’t want to fight the little scaly slut, and the way she moves those hips and flaunts her pussy... you couldn’t resist that if you tried. You pull out a credit chit and toss it her way, and the tiny raskvel girl snatches it eagerly, stumbling to catch it. She looks awfully surprised when you decide to pay up, but the look of glee on her face is priceless. She must really need the cash!");
 		output("\n\nBut just as you’re starting to warm up to the girl, her look of glee turns into one of lust, and she’s on you in a moment, tossing her wrench aside and pushing you down onto the ground. You decide to go along with it, letting her man-handle you onto your back, pinning you down with one of her warm, leathery soles.");
-		//{Combine}
+		// Combine
 		//charge money
 		payRaskvel();
 	}
@@ -545,9 +546,10 @@ public function raskvelGirlsSitsIfTheyFits(combat:Boolean = false):void
 	output("\n\nWith a contented sigh, you gather your gear and, rubbing your sore, utterly emptied [pc.cockBiggest], you get ready to resume your exploration, eager to meet another of these sultry sluts.");
 
 	processTime(20+rand(10));
+	enemy.loadInCunt(pc, 0);
 	knockUpRaskChance();
 	pc.orgasm();
-	pc.girlCumInMouth(chars["RASKVEL_FEMALE"]);
+	pc.girlCumInMouth(enemy);
 	if(combat)
 	{
 		//end combat
@@ -571,7 +573,7 @@ public function getRaskVelTailPegged(combat:Boolean = false):void
 	showBust(raskvelFemaleBustDisplay(true));
 	if(combat) showName("LOST VS: F.\nRASKVEL");
 	else showName("RASKVEL\nFEMALE");
-	//{Combat Loss: Don't Have a Dick}
+	// Combat Loss: Don't Have a Dick
 	if(combat)
 	{
 		output("You fall to your [pc.knees], too ");
@@ -580,7 +582,7 @@ public function getRaskVelTailPegged(combat:Boolean = false):void
 		output("to resist the slutty scaly’s advances. She grins as you succumb, sharp teeth flashing brightly as she drops the bulging head of her wrench to the ground, leaning on it as you collapse.");
 		output("\n\n<i>“Tsk, coulda just paid the fee,”</i> she scolds, her voice playful as one of her hands deftly hooks into her clothes, neatly stripping herself bare with a flourish. <i>“Now that we had to do it the hard way, I guess I’ll just have to take a little... extra.”</i>");
 	}
-	//{Pay the Fee: Don't Have a Dick}
+	// Pay the Fee: Don't Have a Dick
 	else
 	{
 		clearOutput();
@@ -589,7 +591,7 @@ public function getRaskVelTailPegged(combat:Boolean = false):void
 		//deduct credits!
 		payRaskvel();
 	}
-	//{Combine:}
+	// Combine:
 	output("\n\nYou follow her gaze as she hungrily takes in your body, eyes trailing from your [pc.legOrLegs] to your [pc.hips]; she makes a little twirling motion with her finger, and you slowly turn around, getting onto all ");
 	if(pc.legCount == 2) output("fours");
 	else output(num2Text(pc.legCount + 2));
@@ -601,8 +603,8 @@ public function getRaskVelTailPegged(combat:Boolean = false):void
 	output(" the raskvel grins, giving you a sharp swat on the behind that makes your flesh jiggle. You feel her deft hands playing across your [pc.skinFurScales], slowly peeling your [pc.gear] off, tossing them carelessly aside before giving your bared ass a little squeeze and a spank as she circles around you, fingers brushing along your side until you shiver in anticipation of what’s to come.");
 	output("\n\nThe little raskven spends nearly a minute winding her way around your body, caressing and teasing your [pc.skinFurScales], reaching around to squeeze a [pc.nipple]");
 	if(pc.biggestTitSize() >= 1) output(" and cup a breast");
-	output(" before finally standing before you, a pair of fingers stretching her bi-clitted cunt wide, the stretchy sex already beading with anxious lubricant, awaiting a cock that’ll never come. <i>“Alright, if you wanna get off too, you better get me started,”</i> she commands, presenting her pussy to your face, so close that her clits practically bump your chin and nose. It doesn’t take anything more than that to get you working; the scent alone wafting from her snatch, the potent aroma of sex and desire, is enough to lure your tongue out to drag from clit to clit, lapping at the sweet secretions of her womanhood. The raskvel’s entire body seems to quake at that first touch, her hands grabbing your hair to steady herself as your [pc.tongue] probes ahead, lapping up a bead of feminine slime before pushing past her feminine folds. She accomodates you easily; a twat made to take cocks and lay eggs isn’t able to come down hard enough to stop your delving oral organ, only gently squeeze and massage it, slathering you in lube.");
-	output("\n\nThe raskvel slut moans and groans, her " + enemy.skinTone + " scales darkening as you eat her out, hips slowly starting to grind against your face, bucking and squealing as your tongue goes deeper and deeper, her fingers digging through your hair. You take that as a sign of her enjoyment, licking harder, reaching deeper until she’s practically cumming around your tongue, her fem-slime pouring out to pool between your hands. Just as she’s on the verge, hips quaking and cunt spasming, the raskvel pushes herself off you, breathing hard, her tiny tits heaving as her knees quake.");
+	output(" before finally standing before you, a pair of fingers stretching her bi-clitted cunt wide, the stretchy sex already beading with anxious lubricant, awaiting a cock that’ll never come. <i>“Alright, if you wanna get off too, you better get me started,”</i> she commands, presenting her pussy to your face, so close that her clits practically bump your chin and nose. It doesn’t take anything more than that to get you working; the scent alone wafting from her snatch, the potent aroma of sex and desire, is enough to lure your tongue out to drag from clit to clit, lapping at the sweet secretions of her womanhood. The raskvel’s entire body seems to quake at that first touch, her hands grabbing your " + (pc.hasHair() ? "hair" : "head") + " to steady herself as your [pc.tongue] probes ahead, lapping up a bead of feminine slime before pushing past her feminine folds. She accomodates you easily; a twat made to take cocks and lay eggs isn’t able to come down hard enough to stop your delving oral organ, only gently squeeze and massage it, slathering you in lube.");
+	output("\n\nThe raskvel slut moans and groans, her " + enemy.skinTone + " scales darkening as you eat her out, hips slowly starting to grind against your face, bucking and squealing as your tongue goes deeper and deeper, her fingers " + (pc.hasHair() ? "digging through your hair" : "gliding across your head") + ". You take that as a sign of her enjoyment, licking harder, reaching deeper until she’s practically cumming around your tongue, her fem-slime pouring out to pool between your hands. Just as she’s on the verge, hips quaking and cunt spasming, the raskvel pushes herself off you, breathing hard, her tiny tits heaving as her knees quake.");
 	output("\n\n<i>“T-that’s enough!”</i> she gasps, putting a hand to her chest, as if to calm her hammering heart. <i>“I’m not gonna cum before you. No way!”</i>");
 	output("\n\nSo haughty all of a sudden! Well, on your hands");
 	if(pc.hasKnees() || pc.isNaga()) output(" and [pc.knees]");
@@ -622,7 +624,7 @@ public function getRaskVelTailPegged(combat:Boolean = false):void
 	output(" as she starts to move her tail, letting it grind and slide and writhe inside you, and with that you cum, and cum hard. You scream, back arching as she slams her tail into you again and again, hammering a mind-shattering orgasm from you, your own cries masking hers as your tongue drives her over the edge with you, spattering your face with alien fem-cum.");
 	output("\n\nBy the time you come back to your senses, the raskvel slut’s rolled off of you, clutching her clothes to her cum-smeared body, chest heaving. <i>“You off-worlders... I gotta get my toll from you more often, " + pc.mf("handsome","beautiful") + ",”</i> she winks, staggering to her feet. You meekly nod, feeling horribly, wonderfully loose after the mammoth tail-pegging you just received. The raskvel saunters off with a wink and a blown kiss, leaving you to collect your kit and leave the scene, [pc.legOrLegs] wobbling as you waddle off.");
 	processTime(40+rand(20));
-	pc.girlCumInMouth(chars["RASKVEL_FEMALE"]);
+	pc.girlCumInMouth(enemy);
 	pc.orgasm();
 	//Incombat
 	if(combat)
@@ -758,6 +760,7 @@ public function hugeDicksGetForceWorshippedByFemRaskvel(fromCombat:Boolean = fal
 	if(pc.virility() <= 0) output(".. if you’re a virile one, that is.");
 	output("”</i>");
 	processTime(30+rand(10));
+	enemy.loadInCunt(pc, 0);
 	knockUpRaskChance();
 	pc.orgasm();
 	output("\n\n");
@@ -876,6 +879,7 @@ public function getPeggedWhileDoublePenetrate():void
 	if(pc.cumQ() >= 2000) output(" as best she can, given how thoroughly you filled her");
 	output(" and bends down for one last kiss. There’s a snap of pain on your neck, and then you’re unconscious.");
 	processTime(30+rand(10));
+	enemy.loadInCunt(pc, 0);
 	knockUpRaskChance();
 	pc.orgasm();
 	processTime(200+rand(50));
@@ -1053,7 +1057,7 @@ public function takeOneEggSloot():void
 	addChildRaskvel();
 	StatTracking.track("pregnancy/raskvel sired/day care");
 	StatTracking.track("pregnancy/raskvel sired/total",flags["RASKVEL_EGG_COUNT"]);
-	StatTracking.track("pregnancy/total births");
+	StatTracking.track("pregnancy/total sired",flags["RASKVEL_EGG_COUNT"]);
 	StatTracking.track("pregnancy/total day care");
 	
 	flags["RASKVEL_EGG_COUNT"] = undefined;
@@ -1085,7 +1089,7 @@ public function dontTakeARaskEgg():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 	StatTracking.track("pregnancy/raskvel sired/total",flags["RASKVEL_EGG_COUNT"]);
-	StatTracking.track("pregnancy/total births");
+	StatTracking.track("pregnancy/total sired",flags["RASKVEL_EGG_COUNT"]);
 	flags["RASKVEL_EGG_COUNT"] = undefined;
 	flags["RASKVEL_PREG_TIMER"] = undefined;
 }
@@ -1136,7 +1140,7 @@ public function watchDatRaskvelEggLayyyy():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 	StatTracking.track("pregnancy/raskvel sired/total",flags["RASKVEL_EGG_COUNT"]);
-	StatTracking.track("pregnancy/total births");
+	StatTracking.track("pregnancy/total sired",flags["RASKVEL_EGG_COUNT"]);
 	flags["RASKVEL_EGG_COUNT"] = undefined;
 	flags["RASKVEL_PREG_TIMER"] = undefined;
 }
@@ -1158,7 +1162,7 @@ public function watchDatRaskvelEggLayyyy():void
  	output("place down your equipment and sit down next to her, letting your [pc.cocks] ");
  	if(pc.balls > 0) output("and [pc.balls] ");
  	output("dangle in front of the horny reptilian. It looks like curiosity and lust have taken the better of her as she locks eyes with your package, not even trying to run away at this point.");
- 	var x:int = pc.cockThatFits(chars["RASKVEL_FEMALE"].analCapacity());
+ 	var x:int = pc.cockThatFits(enemy.analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 
  	output("\n\n<i>“Are you just going to stare?”</i> You raise your voice. That’s all the encouragement she needs to jump at your [pc.cock " + x + "] and eagerly rub it with her tiny hands. Her strokes rapidly become longer along with your rising cock until you reach full hardness. <i>“Come on, prepare it.”</i>");
@@ -1212,10 +1216,12 @@ public function knockUpRaskChance():void
 		if(cumQ >= 1000) bonusChance += 10;
 		if(cumQ >= 4000) bonusChance += 10;
 		if(cumQ >= 10000) bonusChance += 20;
+		// Multiply the chances based on virility
+		bonusChance = Math.round(bonusChance * pc.virility());
 		//Roll the dice - base 10% pregrate
 		if(rand(100) + 1 <= 10 + bonusChance)
 		{
-			var bonusEggs:int = rand(Math.floor(cumQ/500)+2);
+			var bonusEggs:int = Math.round(rand(Math.floor(cumQ/500)+2) * pc.virility());
 			if(bonusEggs > 12) bonusEggs = 12;
 			//Succeed! Induce Preggoz
 			flags["RASKVEL_EGG_COUNT"] = 3 + bonusEggs;

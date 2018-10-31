@@ -64,6 +64,10 @@ public function chaurmineOnTarkus():Boolean
 	}
 	return false;
 }
+public function chaurmineAtWastes():Boolean
+{
+	return (flags["CHAURMINE_GUARDED"] == undefined && flags["CHAURMINE_HELPED"] == undefined && (flags["ABANDONED_CHAURMINE"] == undefined || flags["ABANDONED_CHAURMINE"] < 3));
+}
 
 public function encounterChaurmine():void
 {
@@ -151,7 +155,7 @@ public function helpChaurmine():void
 	addButton(1,"Blowjob",blowjobChaurmineHelp,undefined,"Blowjob","He looks quite juicy.");
 	//[Titfuck] // PC has bust size 11+
 	if(pc.biggestTitSize() >= 11) addButton(2,"Titfuck",titfuckChaurmineToiletPaper,undefined,"Titfuck","Though he seems to dislike breasts, you <i>know</i> you can change his mind.");
-	else addDisabledButton(2,"Titfuck","Titfuck","You need a bigger penis for this.")
+	else addDisabledButton(2,"Titfuck","Titfuck",("You need " + (!pc.hasBreasts() ? "huge tits" : "bigger boobs") + " for this..."));
 }
 
 //Handjob
@@ -201,7 +205,7 @@ public function gentleChaurmineHJFinisher():void
 	output("\n\nYou let him ride out the last of his lengthy orgasm by his own movements; given that he hasn’t gotten too sensitive. After a few last thrusts, he seems to start to calm down, almost immediately going soft in your grip. Seems you nearly exhausted the titan. Certain that that’s the best you can do for him right now, you clear your face of what remains of his thick seed.");
 	processTime(5);
 	pc.lust(5);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	pc.addNice(1);
 
 	//[Next] // Go to Handjob End
@@ -221,7 +225,7 @@ public function chaurmineHJRoughEnd():void
 	output("\n\nAs his amber sack tenses intensely and seems to shrink, his ribbed shaft bulges even more. The metal behemoth’s hands claw at the air, and feet dig and tear into the ground in both incredible pain and sublime pleasure, forcing a hoarse growl from his maw as his bloated shaft fires rapid loads of thick seed onto his face and chest repeatedly, drenching him from horn to cock. As his release peaks in ferocity, you find yourself just as covered as he is, your chagrin almost causing you to miss his clenching spout of a shaft slow to a trickle.");
 	processTime(5);
 	pc.lust(5);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	pc.addHard(1);
 	//[Next] // Go to Handjob End
 	clearMenu();
@@ -242,7 +246,7 @@ public function playfulChaurmineHJend():void
 	output("\n\nSatisfied, you straighten yourself as you release the brute’s cock, and caress his prostate one last time as your fingers exit his clenching depths. As the big lizard’s black dick thumps onto his torso, he groans tiredly and lets loose one last massive blast of his seed, coating himself in the musky glaze.");
 	processTime(5);
 	pc.lust(5);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	pc.addMischievous(1);
 	//[Next] // Go to Handjob End
 	clearMenu();
@@ -320,7 +324,7 @@ public function titfuckChaurmineToiletPaper():void
 	author("Aullama");
 	output("Seeing how he eyed your [pc.fullChest] gives you an idea. Sensually cupping your [pc.chest] with both hands, you compress your tits together to amplify the cleavage. Seeing him struggle not to even peek at your chest mounds causes you to giggle, the ensuing boobquake making it all the harder on him.");
 	output("\n\n<i>“Something the matter? I’d </i>love<i> to help, but you gotta speak up first!”</i> you offer with a devilish grin, casually swaying your ensnaring cleavage from side to side.");
-	output("\n\nWith an irritated growl, he snaps his eyes back to yours and sweeps an arm in a dismissive gesture, <i>“You can start by putting those...”</i> he starts to rumble, but pauses as his hand unintentionally bats a luscious boob, <i>“... those meat sacks away. As soft as they are...”</i> His apprehension all but crumbles with clashing desires.");
+	output("\n\nWith an irritated growl, he snaps his eyes back to yours and sweeps an arm in a dismissive gesture, <i>“You can start by putting those...”</i> he starts to rumble, but pauses as his hand unintentionally bats a luscious boob, <i>“...those meat sacks away. As soft as they are...”</i> His apprehension all but crumbles with clashing desires.");
 	output("\n\nYou roll your eyes with an agitated sigh, <i>“I was trying to be coy, dumbass. You can either play with my tits, or yourself,”</i> you huff.");
 	output("\n\nEyeing your chest pillows with reluctant desire, he seems to come to a rather quick decision, <i>“Alright, fine, let’s use your body bags,”</i> he growls with a frown, his plated visage all the more bestial. With terms laid out, and agreements made, he proceeds to grab your shoulders and, to your delighted surprise, thrust his metal snout directly into your cleavage.");
 	output("\n\nHappy to let the creature lead in his amateur chest worship, you sigh as you feel an incredibly soft and wet tongue wash a breast before homing in on a ");
@@ -339,7 +343,7 @@ public function titfuckChaurmineToiletPaper():void
 	output("\n\nNot daring to touch him and not quite able to slide from under his titanic form, you can only watch as he sits up flaccidly, his head weakly tilting back as his jaws almost screech open from his heated scales grinding together. With a great sigh of relief, you feel the dangerous incandescence virtually vanish as, with a sound somewhere between a growl and a sigh, you both see and <i>feel</i> the heat violently vent, almost burst, from between his jaws.");
 	output("\n\nShortly the shimmering heat all but disappears, seeming to mean he’s recovered, as he stands with a much less audible creak from his scales. Snorting a hot breath of what you think is gratitude down onto you, he proceeds to lumber northward. Talking over his shoulder as well as his thick scales let him, he rumbles, <i>“What happened here never leaves this place. No one knows what we did because it never happened. But uh... I suppose I could help you improve your... technique, if we meet again.”</i> He grunts dismissively, leaving you to continue gratefully breathe in cool and fresh air.");
 	processTime(35);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	pc.lust(10);
 	if(pc.isLactating()) pc.milked(10);
 	clearMenu();
@@ -356,7 +360,7 @@ public function guardDatScaleDino():void
 	if(pc.isNice()) output("With a raised brow, you try to make it clear that you have no ulterior motives, nor desire to get hands on, you just want to make sure he isn’t taken advantage of in this state");
 	else if(pc.isMischievous()) output("With a cheeky smile, you say you’ll <i>gladly</i> do what you do best, your smile widening as the big brute scowls in ever growing irritation");
 	else output("Crossing your arms over your [pc.chest] with a scoff, you can’t help but note that he isn’t in a favorable position right now to make demands. In fact, you’d rather see how he avoids getting any more fucked than he is right now. As a growl resounds threateningly low from his core, his muscles tense in immediate outrage");
-	output(". <i>“Oh, is that all?”</i> he snarls, tail lashing at the ground. <i>“Well why don’t you-”</i> he is abruptly cut off by a <i>tink</i> <i>tink</i> <i>tink</i>, and you see three syringes, each filled with a viscous pinkish/reddish substance, fall harmlessly to the ground at the metal lizard’s feet. Seeming to forget you exist, the brute slowly turns in the direction the needles must have come from, his scales scraping together with the motion.”</i>");
+	output(". <i>“Oh, is that all?”</i> he snarls, tail lashing at the ground. <i>“Well why don’t you-”</i> he is abruptly cut off by a <i>tink</i> <i>tink</i> <i>tink</i>, and you see three syringes, each filled with a viscous pinkish/reddish substance, fall harmlessly to the ground at the metal lizard’s feet. Seeming to forget you exist, the brute slowly turns in the direction the needles must have come from, his scales scraping together with the motion.");
 
 	output("\n\nIn the direction he turns, you see a raskvel several yards away, cursing as she reloads the gun in her hand with more syringes. As she mumbles something about ‘the hard way’, she jabs a finger in your direction, <i>“You! I see you. Back off, kay? I got dibs,”</i> she orders as the metal brute takes thundering steps towards her, his lips curled in rage. She holds her ground at his approach, though looking at least a little nervous, <i>“Alright big guy, gonna fuck you so hard those fine scales of yours will fall right off...”</i> she mutters more to herself than anyone else. ");
 	if(pc.isNice()) output("Though you said you wanted to help prevent this sort of situation, the raskvel already seems outmatched... And she DID say that she had dibs.");
@@ -413,7 +417,7 @@ public function leaveChaurmineToiletPaper():void
 //Add to the bar of The Mess on Novahome
 
 //Room description
-public function chaurmineBonus(button:Number):Number
+public function chaurmineBonus(button:Number):void
 {
 	if(chaurmineOnTarkus())
 	{
@@ -430,9 +434,7 @@ public function chaurmineBonus(button:Number):Number
 			//[Chaurmine] // Go to Approach Chaurmine
 			addButton(button,"Chaurmine",approachTarkusCivilizedChaurmine);
 		}
-		return (button + 1);
 	}
-	else return (button);
 
 }
 
@@ -463,7 +465,7 @@ public function approachTarkusCivilizedChaurmine():void
 		clearMenu();
 		//[Talk]
 		//[Leave]
-		chaurmineMenu(2);	
+		chaurmineMenu(2);
 	}
 	//Repeating:
 	else
@@ -490,9 +492,8 @@ public function chaurmineMenu(disabledButton:Number = -1):void
 	else addButton(1,"Talk",talkToChaurmine,undefined,"Talk","Find out some more about Chaurmine");
 	if(disabledButton == 2) addDisabledButton(2,"Sex","Sex","Maybe do something else for a bit.");
 	else if(pc.lust() < 33) addDisabledButton(2,"Sex","Sex","You aren’t really in the mood for this.\n\n(Lust 33+ required.)");
-	//else addButton(2,"Sex",,undefined,"Sex","Take the big brute for a ride.");
 	else if(chaurmineRelationship() < 10) addDisabledButton(2,"Sex","Sex","He doesn’t seem ready for sex yet. Maybe talk to him, get to know him. See if he has any hobbies.");
-	else addButton(2,"Sex",sexWithChaurmine);
+	else addButton(2,"Sex",sexWithChaurmine,undefined,"Sex","Take the big brute for a ride.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -502,7 +503,7 @@ public function chaurmineAppearance():void
 	clearOutput();
 	showChaurmine();
 	author("Aullama");
-	output("Chaurmine is a saurmorian. Standing at approximately 8 feet 6 inches tall by ancient imperial measurements and 2.6 meters in the more accepted metric system. He wears little, remaining topless, but wears tough tactical groin armor fitted for saurmorian use.");
+	output("Chaurmine is a saurmorian. Standing at approximately 8 feet, 6 inches tall by ancient imperial measurements and 2.6 meters in the more accepted metric system. He wears little, remaining topless, but wears tough tactical groin armor fitted for saurmorian use.");
 	output("\n\nHe has a thick and boxy reptilian face, covered in a tough, amber hide. Massive, incredibly heavy scales - a shiny metallic-silver - encase him from head to toe, virtually obscuring the underlying amber skin. His primal visage an example of rugged masculinity, he seems all the more bestial with his heavy scales guarding a massive jaw along his snout. His two eyes are solid pools of azure, each parted by a vertical slit for a pupil, his fiery gaze always seeming to sear through whatever he is focusing on. While hairless, his scales run extra thick along his jaw, over his head, neck and shoulders to cascade down his back and along his tail; as if mocking a more mammalian mane with metal scales. You assume he has ears, though you can’t see them. He has a black tongue, at first appearing canine, but a closer look reveals it to be wider and longer, as well as looking quite a bit softer. Three dangerous metal horns jut from his head; the two bigger horns starting at the back of his skull, the thick bases curving up along his head before protruding up just above his brows. The third one thrusting upwards from his nose.");
 	output("\n\nHe has a humanoid upper body with the usual torso, arms, hands, and fingers. While human in function and structure, his fingers are covered in scales like the rest of him, which continue to grow from his fingers in place of nails or claws. A thick, reptilian tail sways behind him towards the ground, weighed down by incredibly heavy scales sheathing its length. His muscular thighs hold up his stout, strapping build, accentuated by a brawny ass. Two bulky plantigrade legs extend below his waist, ending in wide and flat saurmorian feet, with four toes tipped with scale-claws.");
 	output("\n\nHe has beefy pecs, and a rock solid six pack. Both are shielded and reinforced by his thick scales. His form shows no signs of nipples.");
@@ -576,8 +577,11 @@ public function aboutChaurmineTheCunt():void
 	output("\n\nChaurmine nods and leans forward. <i>“Must be some ship, huh?”</i> he rumbles.");
 
 	processTime(15);
-	if(flags["CHAURMINE_HIM_TALKED"] == undefined) chaurmineRelationship(5);
-	flags["CHAURMINE_HIM_TALKED"] = 1;
+	if(flags["CHAURMINE_HIM_TALKED"] == undefined)
+	{
+		flags["CHAURMINE_HIM_TALKED"] = 1;
+		chaurmineRelationship(5);
+	}
 	clearMenu();
 	//[Tarkus] What brought him to Tarkus?
 	addButton(0,"Tarkus",talkToChaurmineAboutTarkus,undefined,"Tarkus","What brought him to Tarkus?");
@@ -769,7 +773,7 @@ public function chaurmineFamilyPush():void
 	output("\n\nYou mention how open he’s been so far, feeling put off by having the ‘book’ close shut in front of you.");
 	output("\n\nThis only earns you a hard frown. His nostrils puff out a gust of hot breath across the table as he folds his heavy arms over his chest dismissively.");
 	if(flags["CHAURMINE_FAMIRY_TALKED"] == 2) chaurmineRelationship(-5);
-	flags["CHAURMINE_FAMIRY_TALKED"] = 2;
+	else flags["CHAURMINE_FAMIRY_TALKED"] = 2;
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",backToChaurmineMain,1);
@@ -865,7 +869,7 @@ public function chaurmineSexMenu():void
 	addButton(2,"Handjob",shipHandjob,undefined,"Handjob","You <i>still</i> want to feel that bulging, ribbed shaft in your hands.");
 	addButton(3,"Blowjob",chaurmineHJShipBeej,undefined,"Blowjob","His fat onyx shaft still looks <i>really</i> juicy.");
 	if(pc.biggestTitSize() >= 11) addButton(4,"Titfuck",chaurmineShippyShipTitfuckyDuckyHucky,undefined,"Titfuck","Maybe he could use some more convincing...");
-	else addDisabledButton(4,"Titfuck","Titfuck","You need bigger boobs for this...");
+	else addDisabledButton(4,"Titfuck","Titfuck",("You need " + (!pc.hasBreasts() ? "huge tits" : "bigger boobs") + " for this..."));
 	addButton(14,"Leave", leaveCharmineSex);
 }
 
@@ -891,7 +895,19 @@ public function intimateCatchChaurmine():void
 	author("Aullama");
 	//Vaginas should have priority over asses if the PC has both
 	var x:int = -1;
-	if(pc.hasVagina()) x = rand(pc.totalVaginas());
+
+	var choices:Array = [-1];
+	for(var i:int = 0; i < pc.totalVaginas(); i++)
+	{
+		if(!pc.isBlocked(i)) 
+		{
+			choices.push(i);
+			choices.push(i);
+			choices.push(i);
+		}
+	}
+	//3-1 odds for pussy is good enough for me!
+	if(choices.length > 1) x = choices[rand(choices.length)];
 
 	//pcDitz:
 	if(pc.isBimbo())
@@ -959,7 +975,7 @@ public function intimateCatchChaurmine():void
 		output(" against the edges of his hard, heavy scales. With a pleased huff, his hot breath billowing down against you, he runs a hand");
 		if(pc.hasHair()) output(" through your [pc.hair]; his scale-claws feeling like a warm comb as they caress your scalp");
 		else output("along your scalp; his scale-claws massaging their warmth into you");
-		if(pc.earType == GLOBAL.TYPE_EQUINE || pc.earType == GLOBAL.TYPE_CANINE || pc.earType == GLOBAL.TYPE_FELINE) output(", and a moan slips through your [pc.lips] when the titan lightly grazes your [pc.ears]");
+		if(pc.hasEmoteEars()) output(", and a moan slips through your [pc.lips] when the titan lightly grazes your [pc.ears]");
 		output(".");
 
 		output("\n\nReveling in the heat and continuing affections, you reach up to Chaurmine’s bestial visage, tenderly rubbing his armored jaw");
@@ -1029,7 +1045,7 @@ public function intimateCatchChaurmine():void
 	if(pc.hasVagina())
 	{
 		output("\n\nHe quickly zeroes in on your [pc.clits], the lizard’s fingers teasing [pc.eachClit] as he runs them along your mons. Moans slip from you at his touch, your lower lips wedged between his [pc.girlCum]-slicked digits. You suddenly jolt, half in alarm and half in pleasure, when two of his sharp scale-claws curve and dip into [pc.oneVagina]; the grip he has on its outer folds is delightfully smooth. Writhing and whining in his arms, you’re thankful that his claws are apparently too wet and lubed up by your [pc.girlCumNoun] juices to cause harm or discomfort; instead, his claws and scales have <i>just</i> enough of an edge to stimulate your inner walls with the most lascivious friction. On the verge of a toe-curling high, you cry out in distress when he slides out of your [pc.vagina], the mind blowing friction gone as he brings his ");
-		if(pc.vaginas[x].wetness() >= 3) output("[pc.girlCum] drenched hand");
+		if(pc.isSquirter() || pc.girlCumQ() >= 500) output("[pc.girlCum] drenched hand");
 		else output("[pc.girlCum] sheened fingers");
 		output(" to his rapacious tongue, rumbling happily as he licks himself clean");
 		output(".");
@@ -1061,9 +1077,11 @@ public function intimateCatchChaurmine():void
 		output(".");
 	}
 	output("\n\nYou feel him tense up, using his grip to pull you tighter against his blunt head as he grinds against you. <i>“Relax, [pc.name], and I guarantee you you’ll enjoy this,”</i> he sultrily breathes, his words almost hot enough to feel like flames licking at your neck. His hot breath, steamy atmosphere, warm embrace; all these have made you pretty relaxed already, but you let out a sigh and give him a wiggle of your rear anyways. This seems to satisfy the metal lizard, and he abruptly thrusts, your breath catching as he enters with a wet <i>pop</i>.");
-	if(x >= 0) pc.cuntChange(x,chars["CHAURMINE"].cockVolume(0));
-	else pc.buttChange(chars["CHAURMINE"].cockVolume(0));
 
+	var capacity:Number = 0;
+	if(x >= 0) capacity = pc.vaginalCapacity(x);
+	else capacity = pc.analCapacity();
+	
 	//pcIsAnalOrVagVirgin:
 	if((x < 0 && pc.analVirgin) || (x >= 0 && pc.vaginalVirgin))
 	{
@@ -1080,11 +1098,11 @@ public function intimateCatchChaurmine():void
 
 		output("\n\nHe extracts his blunt tip from your [pc.vagOrAss " + x + "] with a grunt and a pop, and waits for your word. Though you take a few moments to collect yourself, you quickly signal your readiness with a wiggle of your [pc.hips], which Chaurmine clutches tight with an amused snort, before thrusting in once again.");
 	}
+	
+	if(x >= 0) pc.cuntChange(x,chars["CHAURMINE"].cockVolume(0));
+	else pc.buttChange(chars["CHAURMINE"].cockVolume(0));
+	
 	output("\n\nYou cry out in shameless ecstasy,");
-
-	var capacity:Number = 0;
-	if(x >= 0) capacity = pc.vaginalCapacity(0);
-	else capacity = pc.analCapacity();
 	//pcOrificeCapacity<135cubedinches:
 	if(capacity < 135)
 	{
@@ -1144,7 +1162,7 @@ public function intimateCatchChaurmine():void
 		}
 
 		output("\n\nYou gasp, the fat cock spreading you wide, grinding against your tight walls, hits <i>that</i> spot. Swooning as the renewed inner heat boils over, you all but cream yourself silly on that juicy shaft, ");
-		if(pc.vaginas[x].wetness() >= 3) output("[pc.girlCum] gushing from your [pc.vaginas], drenching both of your lower bodies in your love lube");
+		if(pc.isSquirter()) output("[pc.girlCum] gushing from your [pc.vaginas], drenching both of your lower bodies in your love lube");
 		else output("streams of [pc.girlCum] running down into the lizard’s studded sheath");
 		output(". You can’t help but shudder with each luxurious contraction.");
 
@@ -1216,9 +1234,9 @@ public function stayWithCharmineAfterRiding():void
 	if(pc.hasWings()) output(", as well as your [pc.wings]");
 	if(pc.tailCount > 0) output(" and your [pc.tails]");
 	output(" kick, thrash, and flail for a grip. You laugh with mirth as his stomps take you to the ship’s crew showers.");
-	pc.shower();
 
 	processTime(65);
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1233,6 +1251,7 @@ public function leaveChaurmine():void
 	output("After a few minutes, Chaurmine still seems to have not had his fill, but he relents; he guides you out into the corridor and into a large shower. Obviously meant for a small saurmorian crew. Once clean and proper, you exit the ship and onto the landing bay, ready for... whatever.");
 
 	processTime(4);
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1308,7 +1327,7 @@ public function chaurmineTaurOral():void
 	output(".");
 
 	//pcHasCockNoCunt:
-	if(pc.hasCock() && !pc.hasVagina())
+	if(pc.hasCock() && (!pc.hasVagina() || pc.isBlocked(0)))
 	{
 		output("\n\nReaffirming his grip, the brute’s dark canine-like tongue slaps just below your [pc.asshole], dragging down to tease your perineum.");
 		output("\n\n<i>“A shame you don’t have a cunt back here,”</i> he murmurs against your taint, drawing his snout down to your ");
@@ -1462,6 +1481,7 @@ public function chaurmineTaurOral():void
 	
 	chaurmineRelationship(5);
 	IncrementFlag("SEXED_CHAURMINE");
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1514,7 +1534,7 @@ public function gentleChaurmineHJFinisherOnShip():void
 	pc.addNice(1);
 	processTime(5);
 	pc.lust(5);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",chaurmineHJShipRecovery);
 }
@@ -1532,7 +1552,7 @@ public function roughChaurmineHJFinisherOnShip():void
 	pc.addHard(1);
 	processTime(5);
 	pc.lust(5);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",chaurmineHJShipRecovery);
 }
@@ -1552,7 +1572,7 @@ public function playfulChaurmineHJEndingOnShip():void
 	pc.addMischievous(1);
 	processTime(5);
 	pc.lust(5);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",chaurmineHJShipRecovery);
 }
@@ -1566,6 +1586,7 @@ public function chaurmineHJShipRecovery():void
 	output("As you wait for Chaurmine to recover, you absently clean your [pc.hands] of his rich seed, [pc.tongue] weaving and slurping around each digit. Feeling the thick virility oozing down his scales as he stands, the lizard instinctively shakes, attempting to fling as much of the sticky cum off as he can; apparently not caring about the mess already drenching his space. Chaurmine gives you an irritated glare, shoving you to the ship’s large showers.");
 	IncrementFlag("SEXED_CHAURMINE");
 	chaurmineRelationship(4);
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1643,25 +1664,23 @@ public function chaurmineShippyShipTitfuckyDuckyHucky():void
 	output("\n\nShortly the he removes his claws, seeming to mean he’s recovered, as he stands with a slightly audible creak from his scales. Snorting a hot breath of what you think is gratitude down onto you, he proceeds to lumber to what can only be the ship’s showers. Talking over his shoulder as well as his thick scales let him, he rumbles, <i>“What happened here never leaves this place. No one knows what we did because it never happened. But uh... I suppose I could help you improve your... technique, if you want.”</i> He grunts dismissively, leaving you to continue gratefully breathe in the thick, musky air before promptly following him, the scandalously messy and sloppy sounds preceding you reverberating in the ship’s halls.");
 
 	processTime(25);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	chaurmineRelationship(4);
 	IncrementFlag("SEXED_CHAURMINE");
 	pc.lust(10);
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
 //Novahome Event
 //Unlocks at 50% relationship, taking place in the Eastern Hangar tile just east of Steele’s ship on the Novahome
-public function novahomeChaurmineGoodbyeBonus():void
+public function novahomeChaurmineGoodbyeBonus(btnSlot:int = 0):void
 {
 	//Removes Chaurmine from The Mess
 	//Add to Eastern Hanger tile description
-	if(chaurmineRelationship() >= 50 && flags["CHAURMINE_LOVER"] == undefined && flags["ABANDONED_CHAURMINE"] != 3)
-	{
-		output("\n\nEasily spotted among the droves of much shorter and less metallic people, you see Chaurmine standing near his corvette in the distance. He’s looking at his clunky codex, occasionally interrupted when he shoos away a few curious or grabby raskvel.");
-		addButton(0,"Chaurmine",whatsNewChaurmine,undefined,"Chaurmine","Ask him what’s new.");
-	}
+	output("\n\nEasily spotted among the droves of much shorter and less metallic people, you see Chaurmine standing near his corvette in the distance. He’s looking at his clunky codex, occasionally interrupted when he shoos away a few curious or grabby raskvel.");
+	addButton(btnSlot,"Chaurmine",whatsNewChaurmine,undefined,"Chaurmine","Ask him what’s new.");
 }
 
 //What’s New

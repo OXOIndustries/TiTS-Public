@@ -20,7 +20,7 @@ public function edanRoomDesc():void
 	{
 		
 		output("You see a massive leithan sitting next to some animated raskvel, their eager chittering a juxtaposition to his calm silence as he eats. His eyes flicker to you for a moment before he returns to his meal.");
-		addButton(0, "Leithan", talkToEdan, undefined, "Leithan", "Say hello to the Leithan.");	
+		addButton(0, "Leithan", talkToEdan, undefined, "Leithan", "Say hello to the Leithan.");
 	}
 	else if (flags["EDAN_FUCKED"] == undefined)
 	{
@@ -333,7 +333,7 @@ public function edanSex():void
 	clearMenu();
 	edanHeader();
 	
-	if ((flags["EDAN_FUCKED"] == undefined) && pc.hasVagina())
+	if ((flags["EDAN_FUCKED"] == undefined) && pc.hasVagina() && !pc.isMasculine(true))
 	{
 		output("You mention sating your sexual curiosity and he laughs.");
 		output("\n\n<i>“In the middle of the mess hall? I’d heard rumors, but I thought they were just fantasies. Sure, Steele. I doubt you could handle being fucked over a bench in the middle of the mess hall, but I give you permission to suck my dick under the table.”</i>");
@@ -341,7 +341,7 @@ public function edanSex():void
 		addButton(0, "Yes", edanSexFirst, undefined, "Yes", "Get under that table.");
 		addButton(1, "No", edanSexRefusal, undefined, "No", "You’re not about to suck his dick like a floozy!");
 	}
-	else if (!pc.hasVagina())
+	else if (!pc.hasVagina() || pc.isMasculine(true))
 	{
 		output("You mention sating your sexual curiosity and he shakes his head.");
 		output("\n\n<i>“Sorry, Steele. Guys and shemales just aren’t my thing,”</i> he explains. <i>“Nothing personal, it’s just that there’s so many people open to sex that there’s really no reason to sleep with anyone except the ones you really prefer. I like a regular woman, even with extra bits.”</i>");
@@ -715,7 +715,7 @@ public function edanSexFourth():void
 		output("\n\nHe grunts as his oversized manhood forces your seizing and dripping cunt into submission, slipping further into your depths until you’re sure he must be at least halfway hilted. You’re not sure anyone or any<i>thing</i> will ever be able to fuck your pussy properly again but this is well worth it, you think as your back half sags into his penetration. Edan speaks up again as he drills you, the tip of his cock getting closer and closer to your cervix.");
 		output("\n\n<i>“Not that I don’t like fucking you, but for you it seems like something more than that. You just love...”</i>");
 		output("\n\nHe seizes your midsection and pulls you towards him, pumping you with his powerful hips as he does, making you cry out in alarm as you feel his flared head finally come into contact with the opening to your womb, dribbling warm precum into the recesses of your thoroughly stretched cunt.");
-		output("\n\n<i>“... To submit. That’s what it is, isn’t it? You just can’t help wetting yourself at the thought of being fucked full of cum, whether it’s your throat or your pussy. You love playing the part of the bitch.”</i>");
+		output("\n\n<i>“...To submit. That’s what it is, isn’t it? You just can’t help wetting yourself at the thought of being fucked full of cum, whether it’s your throat or your pussy. You love playing the part of the bitch.”</i>");
 		output("\n\nYou groan as he starts fucking you harder, more self-assured in his discovery of you, his hands sliding down your body to your humanoid half and pulling you backwards by your shoulders until you’re looking up at him with a slutty expression on your face, cowed into submission by the gigantic cock invading your nethers. You can’t even tell him he’s wrong, and he grins down at you.");
 		output("\n\n<i>“I knew it. You really </i>are<i> the sexiest girl I’ve ever seen.”</i>");
 		output("\n\nYou’re too incoherent to reply, your entire canal wrapped around what feels like a rock-hard pillar of flesh, muscles too weak to flex but retaining your tightness by virtue of his size. You moan instead, the only thing you’re really capable of doing at the moment. You suddenly realize you can feel his cock actually getting slightly wider inside you followed by a sensation of intense warmth in your womb. You remember from your rough facefuckings that this is what happened immediately before he came, and thrust back at him with a desperate renewed vigor, panting in your eagerness to be filled and overflowing.");
@@ -787,7 +787,7 @@ public function edanSexFourth():void
 		output("\n\nHe grunts as his oversized manhood forces your seizing and dripping cunt into submission, slipping further into your depths until you’re sure he must be at least halfway hilted. You’re not sure anyone or any<i>thing</i> will ever be able to fuck your pussy properly again but this is well worth it, you think as you sag into his penetration. Edan speaks up again as he drills you, the tip of his cock getting closer and closer to your cervix.");
 		output("\n\n<i>“Not that I don’t like fucking you, but for you it seems like something more than that. You just love...”</i>");
 		output("\n\nHe seizes your [pc.hips] in his giant hands and pulls you towards him, pumping you with his powerful hips as he does, making you cry out in alarm as you feel his flared head finally come into contact with the opening to your womb, dribbling warm precum into the recesses of your thoroughly stretched cunt.");
-		output("\n\n<i>“... To submit. That’s what it is, isn’t it? You just can’t help wetting yourself at the thought of being fucked full of cum, whether it’s your throat or your pussy. You love playing the part of the bitch.”</i>");
+		output("\n\n<i>“...To submit. That’s what it is, isn’t it? You just can’t help wetting yourself at the thought of being fucked full of cum, whether it’s your throat or your pussy. You love playing the part of the bitch.”</i>");
 		output("\n\nYou groan as he starts fucking you harder, more self-assured in his discovery of you, his hands sliding down up body and pulling you backwards by your shoulders until you’re looking up at him with a slutty expression on your face, cowed into submission by the gigantic cock invading your nethers. You can’t even tell him he’s wrong, and he grins down at you.");
 		output("\n\n<i>“I knew it. You really </i>are<i> the sexiest girl I’ve ever seen.”</i>");
 		output("\n\nYou’re too incoherent to reply, your entire canal wrapped around what feels like a rock-hard pillar of flesh, muscles too weak to flex but retaining your tightness by virtue of his size. You moan instead, the only thing you’re really capable of doing at the moment. You suddenly realize you can feel his cock actually getting slightly wider inside you followed by a sensation of intense warmth in your womb. You remember from your rough facefuckings that this is what happened immediately before he came, and thrust back at him with a desperate renewed vigor, panting in your eagerness to be filled and overflowing.");

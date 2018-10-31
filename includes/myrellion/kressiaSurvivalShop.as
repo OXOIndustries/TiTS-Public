@@ -340,7 +340,7 @@ public function milkingShiareCuckoldBullshit():void
 	else output("brushing your hands over your lower body");
 	output(". ");
 	if(x >= 0) output("Your [pc.cocks] spring to attention, ready to penetrate the ant-girl’s ample abdomen");
-	else if(pc.hasHardLightEquipped()) output("You pull out your [pc.hardlightStrapon], feeling the jolting pleasure as it connects to your nerves");
+	else if(pc.hasHardLightEquipped()) output("You pull out your [pc.lowerUndergarment], feeling the jolting pleasure as it connects to your nerves");
 	else output("You pull a silvery strapon from the bondage gear. It’s no hardlight, but it’ll do for now");
 	output(". The candied ant’s breath quickens as you crawl steadily closer behind her, mounting in a gasp as you push her into a better position. Her bust hangs over the edge of the bed, giving Anarrie a perfect view of her wife’s helplessness.");
 
@@ -348,14 +348,14 @@ public function milkingShiareCuckoldBullshit():void
 	{
 		output("\n\nYou grip the begrudging sub’s twitching abdomen, lining yourself up with her glistening slit. Just as she begins to voice what you assume is a complaint, you let ");
 		if(x >= 0) output("your [pc.cock " + x + "]");
-		else if(pc.hasHardLightEquipped()) output("your [pc.hardlightStrapon]");
+		else if(pc.hasHardLightEquipped()) output("your [pc.lowerUndergarment]");
 		else output("the silvery metal strapon");
 		output(" penetrate her. Attempted objections die in her throat, replaced by a drawn out moan. You can’t see her face from behind, but all four of her hands clench into fists, straining in their restraints as you begin to slowly grind your hips.");
 	}
 	//Taur with cock that fits:
 	else
 	{
-		output("\n\nYou steady the begrudging sub’s abdomen, climbing over her prone form till she lies directly beneath your tauric frame. Heated breaths grace your foreleg as she tries to turn to see what you’re doing. An attempted complaint catches in her throat as you thrust forward, burying every inch of your [pc.cock " + x + "] into her accommodating passage. Tense fingers grasp at your underbelly, ");
+		output("\n\nYou steady the begrudging sub’s abdomen, climbing over her prone form until she lies directly beneath your tauric frame. Heated breaths grace your foreleg as she tries to turn to see what you’re doing. An attempted complaint catches in her throat as you thrust forward, burying every inch of your [pc.cock " + x + "] into her accommodating passage. Tense fingers grasp at your underbelly, ");
 		if(!pc.hasFur() && !pc.hasFeathers()) output("sliding uselessly over your smooth [pc.skinFurScalesNoun]");
 		else output("unable to find a grip in your [pc.skinFurScalesNoun]");
 		output(".");
@@ -365,7 +365,7 @@ public function milkingShiareCuckoldBullshit():void
 
 	output("\n\nVice-like pressure compresses your ");
 	if(x >= 0) output("[pc.cock " + x + "]");
-	else if(pc.hasHardLightEquipped()) output("[pc.hardlightStrapon]");
+	else if(pc.hasHardLightEquipped()) output("[pc.lowerUndergarment]");
 	else output("strapon");
 	output(" in rhythmic intervals, and you struggle to increase the speed of your pistoning. ");
 	if(x >= 0 || pc.hasHardLightEquipped())
@@ -392,7 +392,7 @@ public function milkingShiareCuckoldBullshit():void
 		if(x < 0) output("quivering ecstatically");
 		else if(pc.cumQ() < 100) output("spurting [pc.cumColor] into her depths");
 		else if(pc.cumQ() < 1000) output("filling her with [pc.cumGem] fluid");
-		else output("continuing to thrust till your [pc.cum] overflows");
+		else output("continuing to thrust until your [pc.cum] overflows");
 		output(". The Gold myr’s tethered arms tense mightily, nearly pulling the binding cuffs apart with ecstasy enhanced strength. Her body goes limp as the energy leaves it, the cuffs snapping snuggly back into place.");
 		output("\n\nYou pull yourself away from the sticky situation, Moving around to ");
 		if(!pc.isNaga()) output("kneel");
@@ -409,7 +409,7 @@ public function milkingShiareCuckoldBullshit():void
 		output(" by the bed.");
 	}
 	//merge
-	output("\n\nShiare is slumped over the edge of the bed, head held just high enough to get a good look at you. Eyes that focused sharply minutes ago now struggle to fixate on your stationary body. You reach out, cupping her chin in one hand and undoing the clasp on her ball-gag. The metallic sphere drops free, trailing saliva till it hits the ground. Its exhausted gold owner takes a few deep breaths to recover herself.");
+	output("\n\nShiare is slumped over the edge of the bed, head held just high enough to get a good look at you. Eyes that focused sharply minutes ago now struggle to fixate on your stationary body. You reach out, cupping her chin in one hand and undoing the clasp on her ball-gag. The metallic sphere drops free, trailing saliva until it hits the ground. Its exhausted gold owner takes a few deep breaths to recover herself.");
 	output("\n\n<i>“Ready for milking?”</i> you ask, placing the evacuated flowerpot beneath her honey filled teats. Droplets of saccharine sweetness pepper the vase, leaking from containment in small streams. The docile ex-dom gives you a drained sound of compliance, laying her head against your [pc.chest]. You run your fingers along the underside of her breasts before firmly gripping each, massaging the supple orbs until the streams of honey begin to thicken. Shiare coos as you tap her reserves, antennae bumping your neck at odd intervals as they flutter about.");
 	output("\n\nWhen your vessel is almost overflowing with golden milk, you cease your stimulation. You grasp the container, turning to face Anarrie once more. The red myr veteran can’t decide whether to focus on you or the pitcher of her wife’s honey. Dark irises flit between the two with pained longing.");
 	output("\n\n<i>“Want some?”</i> you ask, coating a finger with the sugary liquid before seductively cleaning it. The sweet taste fills your mouth, bringing a current of relaxing warmth along with it. Ana nods, attention caught fully by the honey-filled pot. The closer you bring it, the further she leans forward in her attempt to reach it faster. Despite this, she makes no attempt to grab at it, keeping her hands crossed in her lap.");
@@ -443,7 +443,7 @@ public function anarrieAmbush():void
 	else output("The red myr is bright with anticipation, brimming with fervor and ready for a show. Her excitement turns to alarmed surprise when she sees her wife’s hungry grin.");
 	output(" Shiare grasps the smaller woman firmly around both her hips and midsection, lifting with a grunt of effort and tossing her onto the queen-sized bed.");
 
-	output("\n\n<i>“Quick, hold her legs!”</i> she shouts to you, quickly positioning herself atop the bewildered red myr’s stomach. You grasp Anarrie’s unmachined leg, not anticipation much resistance from the bulky prosthetic. The eager gold myr restrains her victim, two hands clasped around her wrists, and the second pair fondling her sensitive A-cups.");
+	output("\n\n<i>“Quick, hold her legs!”</i> she shouts to you, quickly positioning herself atop the bewildered red myr’s stomach. You grasp Anarrie’s unmachined leg, not anticipating much resistance from the bulky prosthetic. The eager gold myr restrains her victim, two hands clasped around her wrists, and the second pair fondling her sensitive A-cups.");
 
 	output("\n\n<i>“W-wait! Can’t we talk about this?”</i> Ana asks timidly, not so much struggling as squirming uncomfortably beneath your combined confinement.");
 
@@ -483,11 +483,10 @@ public function anarrieAmbush():void
 	}
 	else
 	{
-		if(pc.hasVagina()) output("Your insides clamp down tightly as she continues to stir them up, and you join Anarrie in a duet of climactic choruses.");
+		if(pc.hasVagina()) output(" Your insides clamp down tightly as she continues to stir them up, and you join Anarrie in a duet of climactic choruses.");
 		if(pc.hasCock()) 
 		{
-			if(pc.hasVagina()) output(" ");
-			output("Lust flows through the conduit of your [pc.cocks], splattering her hands");
+			output(" Lust flows through the conduit of your [pc.cocks], splattering her hands");
 			if(pc.cumQ() >= 150) output(", and Anarrie’s back,");
 			output(" with [pc.cumNoun].");
 		}
@@ -608,7 +607,7 @@ public function antPowerOverwhelming():void
 	output("\n\nThe love-happy honeypot growls as the clenching walls bring about her own orgasm. Slippery sex-juice spurts from her abdomen, squirting over the bedsheets and dripping down her legs. She nuzzles into her wife’s crimson locks, drinking in her scent like a sweet merlot. It only takes a minute for her to recover, taking Annarie’s chin between a thumb and finger and turning her into another kiss. The poor girl does her best to reciprocate, letting her tongue loll out to meet the affection.");
 	output("\n\nOnce their lips separate, Shiare lifts herself on a quartet of shaking arms. Ana gets a much needed breather, shifting in her passion induced stupor before she’s flipped onto her back by the ravenous gold dom. Perky A-cups shudder cutely with each heaving breath, slick with sweat from the lengthy endeavor. Shiare gazes lovingly at her sub, begining to thumb her clit just as she begins to settle down.");
 	output("\n\nShe pauses for a moment to fully undress, Stripping out of her top and supporting maternity bra. Plentiful beads of amber dribble from her honey smeared nipples, coaxed by the exertion and their sudden release. The droplets land on Anarrie’s bare waist, mixing with her sweat into a sweet smelling natural oil.");
-	output("\n\nOne pair of her hands rise to her chest, cupping her nipples and squeezing till her fingers drip with sticky-sweet sugar. The syrupy liquid tints her pale skin bronze in the dim light, falling in thick globules to land on Ana’s stomach with a pleasant splatter. She massages the smaller girl’s breasts, teasing her nipples with each movement, before continuing up to her mouth. The still inebriated ant-girl suckles the nectar covered digits, licking them clean till the liquid is replaced entirely with aphrodisiac saliva.");
+	output("\n\nOne pair of her hands rise to her chest, cupping her nipples and squeezing until her fingers drip with sticky-sweet sugar. The syrupy liquid tints her pale skin bronze in the dim light, falling in thick globules to land on Ana’s stomach with a pleasant splatter. She massages the smaller girl’s breasts, teasing her nipples with each movement, before continuing up to her mouth. The still inebriated ant-girl suckles the nectar covered digits, licking them clean until the liquid is replaced entirely with aphrodisiac saliva.");
 	output("\n\nDelicious smells permeate the air, almost putting you into a stupor from the sight and smell alone.");
 	if(pc.hasCock()) output(" [pc.EachCock]");
 	if(pc.isHerm()) output(" and y");

@@ -17,6 +17,7 @@
 	import classes.UIComponents.MainButton;
 	import classes.UIComponents.RightSideBar;
 	import classes.UIComponents.SideBarComponents.BigStatBlock;
+	import classes.UIComponents.SideBarComponents.LocationHeader;
 	import classes.UIComponents.SquareButton;
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
@@ -757,9 +758,7 @@
 		
 		public function showName(name:String):void
 		{
-			//APRIL FOOLS! roomText = name;
-			//roomText = ParseText(name);
-			roomText = name;
+			roomText = (name != null ? ParseText(name) : "");
 		}
 
 		// Text input bullshittery
@@ -794,7 +793,7 @@
 		
 		public function restoreLocation():void
 		{
-			if (cachePlanet == "CODEX")
+			if (cachePlanet == "CODEX" || cachePlanet == "LEVEL UP" || cacheRoom == "MAIN\nMENU" || cacheRoom == "DATA\nMENU" || cacheRoom == "\nAPPEARANCE")
 			{
 				if (InShipInterior())
 				{
@@ -855,7 +854,7 @@
 			var btnArray:Array = _buttonTray.buttons;
 			
 			if (btnArray[0].buttonName == "Next" || btnArray[0].buttonName == "Leave" || btnArray[0].buttonName == "Back") kGAMECLASS.pressButton(0);
-			else if (btnArray[14].buttonName == "Next" || btnArray[14].buttonName == "Leave" || btnArray[14].buttonName == "Back") kGAMECLASS.pressButton(14);
+			else if (btnArray[14].buttonName == "Next" || btnArray[14].buttonName == "Leave" || btnArray[14].buttonName == "Back" || btnArray[14].buttonName == "Bail") kGAMECLASS.pressButton(14);
 			else if (btnArray[4].buttonName == "Back") kGAMECLASS.pressButton(4);
 		}
 		
@@ -876,7 +875,7 @@
 			
 			kGAMECLASS.clearBust();
 			
-			if (tarButton.arg == undefined) 
+			if (tarButton.arg === undefined) 
 			{
 				tarButton.func();
 			}
@@ -951,11 +950,25 @@
 		{
 			if (_currentModule is GameTextModule && _currentModule.moduleName == "PrimaryOutput")
 			{
-				(_currentModule as GameTextModule).htmlText = "<span class='words'><p>" + outputBuffer + "</p></span>";
-			}
-			else
-			{
-				throw new Error("Output called whilst the currently active module was not the PrimaryOutput display!");
+				var gmt:GameTextModule = _currentModule as GameTextModule;
+				if (gmt.inputEnabled())
+				{
+					gmt.htmlText = "";
+					
+					var str:String = outputBuffer;
+					var res:Array = str.split("\n\n\n");
+					
+					for(var i:int = 0; i < res.length; i++)
+					{
+						gmt.htmlText += "<span class='words'><p>" + res[i] + "</p></span>";
+						if(i == 0)
+						{
+							gmt.showInput();
+							gmt.htmlText += "<span class='words'><p>\n</p></span>";
+						}
+					}
+				}
+				else gmt.htmlText = "<span class='words'><p>" + outputBuffer + "</p></span>";
 			}
 		}
 		
@@ -986,17 +999,33 @@
 		{
 			if (_currentModule is GameTextModule && _currentModule.moduleName == "SecondaryOutput")
 			{
-				(_currentModule as GameTextModule).htmlText = "<span class='words'><p>" + outputBuffer2 + "</p></span>";
-			}
-			else
-			{
-				throw new Error("Output2 called whilst the currently active module was not the SecondaryOutput display!");
+				var gmt:GameTextModule = _currentModule as GameTextModule;
+				if (gmt.inputEnabled())
+				{
+					gmt.htmlText = "";
+					
+					var str:String = outputBuffer2;
+					var res:Array = str.split("\n\n\n");
+					
+					for(var i:int = 0; i < res.length; i++)
+					{
+						gmt.htmlText += "<span class='words'><p>" + res[i] + "</p></span>";
+						if(i == 0)
+						{
+							gmt.showInput();
+							gmt.htmlText += "<span class='words'><p>\n</p></span>";
+						}
+					}
+				}
+				else gmt.htmlText = "<span class='words'><p>" + outputBuffer2 + "</p></span>";
 			}
 		}
 		
 		public function clearOutput2():void
 		{
+			if (outputBuffer2 == "\n") return;
 			showSecondaryOutput();
+			(_currentModule as GameTextModule).htmlText = "\n";
 			outputBuffer2 = "\n";
 		}
 		
@@ -1052,14 +1081,26 @@
 
 		public function addButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void 
 		{
-			//APRIL FOOLS!
-			//cap = kGAMECLASS.parser.recursiveParser(cap);
-			_buttonTray.addButton(slot, cap, func, arg, ttHeader, ttBody);
+			try
+			{
+				_buttonTray.addButton(slot, (cap != null ? ParseText(cap) : ""), func, arg, (ttHeader != null ? ParseText(ttHeader) : ""), ttBody);
+			}
+			catch (e:*)
+			{
+				if (kGAMECLASS.reportError(e)) throw e;
+			}
 		}
 		
-		public function addItemButton(slot:int, cap:String = "", quantity:int = 0, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, ttCompare:String = null):void
+		public function addItemButton(slot:int, cap:String = "", quantity:int = 0, stackSize:int = 1, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, ttCompare:String = null):void
 		{
-			_buttonTray.addItemButton(slot, cap, quantity, func, arg, ttHeader, ttBody, ttCompare);
+			try
+			{
+				_buttonTray.addItemButton(slot, cap, quantity, stackSize, func, arg, ttHeader, ttBody, ttCompare);
+			}
+			catch (e:*)
+			{
+				if (kGAMECLASS.reportError(e)) throw e;
+			}
 		}
 		
 		public function setButtonBlue(slot:int):void
@@ -1095,18 +1136,39 @@
 		
 		public function addDisabledButton(slot:int, cap:String = "", ttHeader:String = null, ttBody:String = null):void 
 		{
-			_buttonTray.addDisabledButton(slot, cap, ttHeader, ttBody);
+			try
+			{
+				_buttonTray.addDisabledButton(slot, (cap != null ? ParseText(cap) : ""), (ttHeader != null ? ParseText(ttHeader) : ""), ttBody);
+			}
+			catch (e:*)
+			{
+				if (kGAMECLASS.reportError(e)) throw e;
+			}
 		}
 		
 		//Ghost button - used for menu buttons that overlay the normal buttons. 
 		public function addGhostButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void 
 		{
-			_buttonTray.addGhostButton(slot, cap, func, arg, ttHeader, ttBody);
+			try
+			{
+				_buttonTray.addGhostButton(slot, (cap != null ? ParseText(cap) : ""), func, arg, (ttHeader != null ? ParseText(ttHeader) : ""), ttBody);
+			}
+			catch (e:*)
+			{
+				if (kGAMECLASS.reportError(e)) throw e;
+			}
 		}
 		
 		public function addDisabledGhostButton(slot:int, cap:String = "", ttHeader:String = null, ttBody:String = null):void
 		{
-			_buttonTray.addDisabledGhostButton(slot, cap, ttHeader, ttBody);
+			try
+			{
+				_buttonTray.addDisabledGhostButton(slot, (cap != null ? ParseText(cap) : ""), (ttHeader != null ? ParseText(ttHeader) : ""), ttBody);
+			}
+			catch (e:*)
+			{
+				if (kGAMECLASS.reportError(e)) throw e;
+			}
 		}
 
 		public function pushToBuffer():void 
@@ -1340,12 +1402,12 @@
 		
 		public function showPlayerParty(chars:Array, asInit:Boolean = false):void
 		{
-			_rightSideBar.showPlayerParty(chars, false);
+			_rightSideBar.showPlayer(chars, asInit);
 		}
 		
 		public function showHostileParty(chars:Array, asInit:Boolean = false):void
 		{
-			_leftSideBar.showHostileParty(chars, false);
+			_leftSideBar.showHostiles(chars, asInit);
 		}
 		
 		public function hideTime():void 
@@ -1373,6 +1435,11 @@
 		public function resetPCStats():void
 		{
 			this._rightSideBar.resetItems();
+		}
+		
+		public function resetPCCaptions():void
+		{
+			this._rightSideBar.resetCaptions();
 		}
 		
 		public function showNPCStats():void 
@@ -1408,21 +1475,14 @@
 
 		public function showBust(... args):void 
 		{
-			if(args.length == 1 && args[0] == "")
-			{
-				hideBust();
-				return;
-			}
+			var busts:Array = args.length && args[0] is Array ? args[0] : args;
 			
-			var argS:String = "";
-			for (var i:int = 0; i < args.length; i++)
-			{
-				if (i > 0) argS += ", ";
-				argS += args[i];
-			}
-			//trace("showBust called with args: [" + args.join(", ") + "]");
-			if(args.length > 0) _leftSideBar.locationBlock.showBust(args);
-			else _leftSideBar.locationBlock.showBust(args);
+			_leftSideBar.locationBlock.showBust(busts);
+		}
+		
+		public function getCurrentBusts():Array
+		{
+			return _leftSideBar.locationBlock.CurrentBusts;
 		}
 		
 		public function bringLastBustToTop():void
@@ -1434,6 +1494,11 @@
 		{
 			//trace("hideBust called");
 			_leftSideBar.locationBlock.hideBust();
+		}
+		
+		public function hideBustWindows():void
+		{
+			_leftSideBar.locationBlock.hideBustWindows();
 		}
 
 		//2. DISPLAY STUFF

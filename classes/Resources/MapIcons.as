@@ -58,6 +58,9 @@ package classes.Resources
 
 		[Embed(source = "../../assets/icons/map/map_plant_bulb.svg", mimeType = "image/svg")]
 		public static var Map_Plant_Bulb:Class;
+
+		[Embed(source = "../../assets/icons/map/map_spiderweb.svg", mimeType = "image/svg")]
+		public static var Map_SpiderWeb:Class;
 		
 	}
 

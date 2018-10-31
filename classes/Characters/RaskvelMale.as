@@ -161,6 +161,8 @@
 			this.minutesSinceCum = 420;
 			this.timesCum = 3711;
 
+			this.impregnationType = "RaskvelPregnancy";
+
 			this.elasticity = 2;
 			//Fertility is a % out of 100. 
 			this.fertilityRaw = 1.05;
@@ -197,7 +199,7 @@
 			long += " Their dicks are hidden away in their genital slits, although their snug, pouch-like balls are clear to see.";
 			long += " They have jolly, lively faces, and they laugh and call to each other as they fight you, as if they’re not taking this particularly seriously. Their attacks, though, are very definitely serious.";
 
-			credits = 100+rand(200);	
+			credits = 100+rand(200);
 			if(rand(8) <= 6) inventory.push(new Ruskvel());
 		}
 		
@@ -256,7 +258,7 @@
 				target.energy(-5);
 				//Lust 0-80:
 				if(target.lust() < 80) output(" You feel drained and hot underneath the unwelcome attention.");
-				else output(" It’s impossible not to feel warm and aroused underneath this exhausting, persistent attention. You find yourself wondering if you are thrusting yourself into the raskvels’ tight flesh and grasping hands because you want them off you or simply because of how nice it feels.");	
+				else output(" It’s impossible not to feel warm and aroused underneath this exhausting, persistent attention. You find yourself wondering if you are thrusting yourself into the raskvels’ tight flesh and grasping hands because you want them off you or simply because of how nice it feels.");
 			}
 		}
 		
@@ -265,7 +267,7 @@
 			output("The three of them simultaneously dart in at you, laughing gleefully as they run around your [pc.legOrLegs], ducking and weaving beneath your attacks. They are fast, and it’s really difficult to discern what their intention is when they are all buffeting you at once like this.");
 
 			//Fail: 
-			if(!target.isImmobilized() && physique()/2 + 10 <= target.reflexes()/2 + rand(20) + 1)
+			if((!target.isImmobilized() && physique()/2 + 10 <= target.reflexes()/2 + rand(20) + 1) || target.isPlanted())
 			{
 				output("\n\nYou sense one of them crouching down behind you and react just in time, barreling into the other two before they can push you over.");
 				output("\n\n<i>“Spoilsport,”</i> grouses one as they scramble back out again.");
@@ -282,7 +284,7 @@
 				else output("You");
 				output(" cannot prevent yourself losing balance and falling onto your back, winding yourself. The clamor of male laughter is in your ears.");
 
-				target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You’ve been tripped, reducing your effective physique and reflexes by 4. You’ll have to spend an action standing up.", true, 0);
+				CombatAttacks.applyTrip(target);
 			}
 		}
 		
@@ -331,7 +333,7 @@
 				{
 					//Stunned:
 					output("\nOne of them clonks you a good one and you stagger back, stunned. Groaning, you wait for the world to stop spinning.");
-					target.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You cannot act for one turn!",true,0,0xFF0000);
+					CombatAttacks.applyStun(target, 1);
 				}
 			}
 		}

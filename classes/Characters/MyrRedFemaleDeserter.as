@@ -73,7 +73,7 @@
 			this.lustRaw = 25;
 			
 			baseHPResistances = new TypeCollection();
-			baseHPResistances.kinetic.damageValue = 10.0;			
+			baseHPResistances.kinetic.damageValue = 10.0;
 			
 			this.level = 5;
 			this.XPRaw = normalXP();
@@ -163,7 +163,7 @@
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 4;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 635;
 			this.timesCum = 255;
 			this.cockVirgin = true;
@@ -210,7 +210,7 @@
 				a = "";
 				capitalA = "";
 			}
-			kGAMECLASS.myrellionSSTDChance(this);
+			//kGAMECLASS.myrellionSSTDChance(this);
 			this._isLoading = false;
 		}
 		
@@ -325,7 +325,8 @@
 			else
 			{
 				output("\nHer feint succeeds - she lands a blow with her blade!");
-				//{ShieldUp: and your shield crackles in protest/else: and you swear loudly. There’s no shield to stop her strikes}!");
+				// ShieldUp: and your shield crackles in protest!
+				// else: and you swear loudly. There’s no shield to stop her strikes!
 				applyDamage(meleeDamage(), this, target, "melee");
 			}
 		}
@@ -347,11 +348,11 @@
 				applyDamage(rangedDamage(), this, target, "ranged");
 
 				//Physique check. DC 25 vs trip!
-				if(target.physique + rand(20) + 1 < 25 && target.shields() <= 0)
+				if((target.physique + rand(20) + 1 < 25 && target.shields() <= 0) && !target.isPlanted())
 				{
 					output("\nA hot, burning sensation sprays out from your chest. Your [pc.legs] go weak and you fall to the ground.");
 					//Effect: Decent physical damage with small crit chance. If the PC’s shields are down, there is a 25% knockback chance. 100% knockback chance on crit.
-					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+					CombatAttacks.applyTrip(target);
 				}
 			}
 		}
@@ -382,7 +383,7 @@
 				output("\nThere’s a loud ‘whump’ and a cloud of red mist swiftly engulfs you.");
 				if (target.hasAirtightSuit())
 				{
-					output(" Fortunately for you, the smoke doesn't leak through your airtight [pc.armor], but it obscures your vision just briefly.");
+					output(" Fortunately for you, the smoke doesn’t leak through your airtight [pc.armor], but it obscures your vision just briefly.");
 				}
 				else
 				{

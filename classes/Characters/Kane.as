@@ -268,6 +268,7 @@ package classes.Characters
 			if(combatMiss(this, target)) output("You duck out of the way, allowing him to fly past you.");
 			else
 			{
+				var bStun:Boolean = false;
 				output("The heavy rock smacks you in the temple");
 				if(target.physique()/2 + rand(20) + 1 >= this.physique()/2 + 10)
 				{
@@ -276,13 +277,14 @@ package classes.Characters
 				else
 				{
 					output(". You taste iron, and the horrible sound of pain and shock rings in your [pc.ears]. <b>You are stunned.</b>");
-					target.createStatusEffect("Stunned",2+rand(2),0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0,0xFF0000);
+					bStun = true;
 					if(!this.hasStatusEffect("Roofied")) this.createStatusEffect("Roofied",4,0,0,0);
 					else this.addStatusValue("Roofied",1,4);
 				}
 				var damage:TypeCollection = meleeDamage();
 				damageRand(damage, 15);
 				applyDamage(damage, this, target);
+				if(bStun) CombatAttacks.applyStun(target, 2 + rand(2));
 			}
 		}
 		//Bee Wit U
@@ -336,7 +338,7 @@ package classes.Characters
 					else
 					{
 						output(" - unfortunately, it leaves a smear that obscures your vision. <b>You are now blind!</b>");
-						target.createStatusEffect("Blinded",2,0,0,0,false,"Blind","You’re blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0,0xFF0000);
+						CombatAttacks.applyBlind(target, 2);
 					}
 				}
 				else

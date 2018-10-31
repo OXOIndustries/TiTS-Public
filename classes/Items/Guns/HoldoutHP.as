@@ -13,7 +13,7 @@ package classes.Items.Guns
 	 */
 	public class HoldoutHP extends ItemSlotClass
 	{
-		
+		//Level 4 (Rare). Balance 2.0
 		public function HoldoutHP() 
 		{
 			this._latestVersion = 1;
@@ -34,7 +34,7 @@ package classes.Items.Guns
 			this.description = "a modified holdout hammer pistol";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Based on an old Earth favorite, this modified holdout pistol was custom-built by Dr. Anno Dorna. Compact, easy to hide, and exceptionally accurate, this gun can really punch a hole for a weapon its size thanks to a proprietary armor-piercing round. It has an integrated suppressor and laser sight. ";
+			this.tooltip = "Based on an old Earth favorite, this modified holdout pistol was custom-built by Dr. Anno Dorna. Compact, easy to hide, and exceptionally accurate, this gun can really punch a hole for a weapon its size thanks to a proprietary armor-piercing round. It has an integrated suppressor and laser sight.";
 			
 			this.attackVerb = "shoot";
 			attackNoun = "shot";
@@ -42,18 +42,18 @@ package classes.Items.Guns
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 3000;
+			this.basePrice = 1300;
 			this.attack = 4;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 10;
+			baseDamage.kinetic.damageValue = 11;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 2;
+			this.critBonus = 11;
 			this.evasion = 0;
 			this.fortification = 0;
 

@@ -187,6 +187,8 @@ package classes.Items.Transformatives
 					output(" It takes you a minute or two to fully peel away the layer of shed "+ target.skinNoun() +", but once your new epidermis is fully revealed you feel energized and ready to take on the world.");
 
 					target.skinType = GLOBAL.SKIN_TYPE_SCALES;
+					target.clearSkinFlags();
+					target.addSkinFlag(GLOBAL.FLAG_SMOOTH);
 					target.scaleColor = tarColor;
 
 					var remColors:Array = scaleColors.splice(scaleColors.splice(scaleColors.indexOf(tarColor), 1));
@@ -503,6 +505,8 @@ package classes.Items.Transformatives
 					output(" It takes you a minute or two to fully peel away the layer of shed "+ target.skinNoun() +", but once your new epidermis is fully revealed you feel energized and ready to take on the world.");
 
 					target.skinType = GLOBAL.SKIN_TYPE_SCALES;
+					target.clearSkinFlags();
+					target.addSkinFlag(GLOBAL.FLAG_SMOOTH);
 					target.scaleColor = tarColor;
 
 					remColors = scaleColors.splice(scaleColors.splice(scaleColors.indexOf(tarColor), 1));
@@ -633,7 +637,7 @@ package classes.Items.Transformatives
 				//If no tail
 				if (target.tailType == 0 || target.tailCount == 0)
 				{
-					output("\n\nA piercing pain suddenly strikes your back, as if your spine were being stretched. You double over, clutching your stomach until the pain subsides. When you stand back up, you nearly topple over backwards as you notice a new weight on your body… a large, thick reptilian tail extends from your tailbone. You swish it back and forth, getting used to its bulk.");
+					output("\n\nA piercing pain suddenly strikes your back, as if your spine were being stretched. You double over, clutching your stomach until the pain subsides. When you stand back up, you nearly topple over backwards as you notice a new weight on your body... a large, thick reptilian tail extends from your tailbone. You swish it back and forth, getting used to its bulk.");
 				}
 				//If PC has a tail
 				else

@@ -3,7 +3,7 @@
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Items.Melee.Fists;
-	import classes.Items.Protection.DecentShield;
+	import classes.Items.Protection.NovaShield;
 	import classes.kGAMECLASS;
 	import classes.Util.RandomInCollection;
 
@@ -13,9 +13,9 @@
 	import classes.Items.Miscellaneous.Satyrite;
 	import classes.Items.Drinks.RedMyrVenom;
 	import classes.Items.Transformatives.NyreanCandy;
+	
 	import classes.GLOBAL;
 	import classes.CockClass;
-	
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	import classes.Engine.Combat.DamageTypes.*;
@@ -42,7 +42,7 @@
 			this.capitalA = "The ";
 			this.tallness = 72;
 			this.scaleColor = "green";
-			this.long = "This insectile woman looks like a black-armored amazon, tall and exceptionally buxom, with dark chitin plates covering her arms and legs, combining into an underbust corset of armor to protect her torso -- though conveniently leaving her big tits and groin exposed -- a groin which is sporting an impressive cock. Easily a foot long, her shaft is barely restrained by a padded chainmail bikini, though even partially covered you can see how thick and heavy it is. Even as one weapon draws your attention, the huntress moves with preternatural grace, circling you, probing at your defenses with her long, steel-tipped spear. Any hesitation, any weakness, and she'll be on you!";
+			this.long = "This insectile woman looks like a black-armored amazon, tall and exceptionally buxom, with dark chitin plates covering her arms and legs, combining into an underbust corset of armor to protect her torso -- though conveniently leaving her big tits and groin exposed -- a groin which is sporting an impressive cock. Easily a foot long, her shaft is barely restrained by a padded chainmail bikini, though even partially covered you can see how thick and heavy it is. Even as one weapon draws your attention, the huntress moves with preternatural grace, circling you, probing at your defenses with her long, steel-tipped spear. Any hesitation, any weakness, and she’ll be on you!";
 			
 			this.isPlural = false;
 			
@@ -151,7 +151,7 @@
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 4;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 9000;
 			this.timesCum = 122;
 			this.cockVirgin = true;
@@ -193,8 +193,17 @@
 			if (rand(20) == 0) inventory.push(new Kirkite());
 			else if(rand(20) == 0) inventory.push(new Satyrite());
 			else if (rand(20) == 0) inventory.push(meleeWeapon.makeCopy());
-			else if (rand(3) == 0) inventory.push(new RedMyrVenom());
-			else if (rand(3) == 0) inventory.push(new NyreanCandy());
+			else if (rand(5) == 0)
+			{
+				inventory.push(new NovaShield());
+				shield = new NovaShield();
+				shields(shieldsMax());
+				this.long += "\n\n<b>This Nyrea has a shield generator! If you can beat her, you can claim it for yourself...</b>";
+				this.HPMod = -10;
+				this.HPRaw = this.HPMax();
+			}
+			if (rand(3) == 0) inventory.push(new NyreanCandy());
+			if (rand(3) == 0) inventory.push(new RedMyrVenom());
 			
 			sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,		GLOBAL.REALLY_LIKES_SEXPREF);
 			sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,		GLOBAL.REALLY_LIKES_SEXPREF);
@@ -250,7 +259,7 @@
 			}
 			else
 			{
-				output("\nYou try to contain the watering of your mouth as you watch the lewd display in front of you. What you wouldn't give for a taste of that sweet cream...");
+				output("\nYou try to contain the watering of your mouth as you watch the lewd display in front of you. What you wouldn’t give for a taste of that sweet cream...");
 			}
 
 			applyDamage(damageRand(damage, 15), this, target);
@@ -269,7 +278,7 @@
 			else
 			{
 				output("\nYou try and dodge, but too late! You give a yelp as the heavy net carries you down to the ground, entangling you!");
-				target.createStatusEffect("Grappled", 0, 35, 0, 0, false, "Constrict", "You're stuck in a nyrea's hunting net!", true, 0);
+				CombatAttacks.applyGrapple(target, 35, false, "You’re stuck in a nyrea’s hunting net!");
 			}
 		}
 		
@@ -287,7 +296,7 @@
 			}
 			else
 			{
-				output("\nYou can't deny the growing heat in your loins as the nyrea puts on a show for you, all but inviting you into her embrace...");
+				output("\nYou can’t deny the growing heat in your loins as the nyrea puts on a show for you, all but inviting you into her embrace...");
 
 				var damage:TypeCollection = new TypeCollection( { tease: 15 } );
 				applyDamage(damageRand(damage, 15), this, target);
@@ -344,9 +353,9 @@
 			//Rarest of her attacks, ramps up use on low HP. Lower chance to hit, but HEAVY damage. Has a chance to STAGGER the PC.
 			output("The nyrea woman rushes at you, leaping into the air and issuing a mighty warcry as she slams her spear down at you with crushing force.");
 
-			if (combatMiss(this, target))
+			if (combatMiss(this, target) || target.isPlanted())
 			{
-				output(" You tumble out of the way in the nick of time, looking back to see the huntress crash into the ground, nearly falling over thanks to the force of her attack. She staggers to her feet and scowls. <i>“You wanted to do this the hard way!”</i>\n");
+				output(" You tumble out of the way in the nick of time, looking back to see the huntress crash into the ground, nearly falling over thanks to the force of her attack. She staggers to her feet and scowls. <i>“You wanted to do this the hard way!”</i>");
 			}
 			else
 			{
@@ -363,7 +372,7 @@
 					else output(" wiping blood from your brow");
 					output(" as your vision swims. The nyrea, battered herself, scowls at you. <i>“You wanted to do this the hard way!”</i>");
 
-					target.createStatusEffect("Tripped", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+					CombatAttacks.applyTrip(target);
 				}
 			}
 		}
