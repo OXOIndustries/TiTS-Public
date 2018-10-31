@@ -1051,6 +1051,7 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		{
 			crewMessages += "\n\n" + amberShipBonusText();
 			if (amberCurrentlyDumbfucked()) addDisabledButton(btnSlot,"Amber","Amber","You’ve decided to leave Amber alone while the effects of the Dumbfuck she took wear off.");
+			else if(pc.hasStatusEffect("Amber Disabled")) addDisabledButton(btnSlot,"Amber","Amber","Amber's busy doing something else right now." + (mitziIsCrew() ? " Probably Mitzi.":""));
 			else addButton(btnSlot, "Amber", amberInTheHold);
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
@@ -1144,6 +1145,7 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		{
 			crewMessages += mitziCrewBonus();
 			if(pc.hasStatusEffect("Mitzi_Gushed_Out")) addDisabledButton(btnSlot,"Mitzi","Mitzi","Maybe let her recover from that Gush, huh?");
+			else if(pc.hasStatusEffect("Mitzi Disabled")) addDisabledButton(btnSlot,"Mitzi","Mitzi","Mitzi's not around at the moment." + (amberIsCrew() ? " She's probably getting into trouble with Amber.":""));
 			else addButton(btnSlot,"Mitzi",approachCrewMitzi);
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
@@ -1995,6 +1997,11 @@ public function insideShipEvents():Boolean
 	if (ramisMolestingAvailable() && rand(10) == 0)
 	{
 		ramisCorridorMolesting();
+		return true;
+	}
+	if(amberAvailable() && mitziAvailable() && mitziIsCrew() && amberIsCrew() && amberDumbfuckDoses() >= 3 && flags["MITZI_FAV_DRUG"] != undefined && (flags["MITZI_AMBER_SOAK_LAST"] == undefined || flags["MITZI_AMBER_SOAK_LAST"] + 60*24*3 < GetGameTimestamp()) && rand(10) == 0) 
+	{
+		amberAndMitziFun();
 		return true;
 	}
 

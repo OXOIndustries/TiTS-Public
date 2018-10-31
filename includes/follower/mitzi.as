@@ -52,6 +52,11 @@ public function mitziRecruited():Boolean
 public function showMitzi(nude:Boolean = false):void
 {
 	showName("\nMITZI");
+	showBust(mitziBustString(true));
+}
+
+public function mitziBustString(nude:Boolean = false):String
+{
 	var dressString:String = "";
 	var dress:ItemSlotClass = mitziCurrentDress();
 	if(dress is MitzisDress || !mitziIsCrew()) dressString = "_PINK_DRESS";
@@ -64,7 +69,12 @@ public function showMitzi(nude:Boolean = false):void
 	else if(dress is MitziNunFetishCostume) dressString = "_NUN";
 	else dressString = "_PINK_DRESS";
 	if(nude) dressString = "_NUDE";
-	showBust("MITZI" + dressString);
+	return ("MITZI" + dressString);
+}
+
+public function mitziAvailable():Boolean
+{
+	return (!pc.hasStatusEffect("Mitzi Disabled") && !pc.hasStatusEffect("Mitzi_Gushed_Out"));
 }
 
 //Mitzi first appears in the stellar tether dungeon in an empty square.
@@ -698,8 +708,21 @@ public function mitziCrewBonus():String
 {
 	var dress:ItemSlotClass = mitziCurrentDress();
 	var buff:String = "";
+	
+	//SPECIAL MITZI TEXTS:
+	if(pc.hasStatusEffect("Mitzi Disabled")) buff += "\n\nMitzi isn't anywhere to be found." + (amberIsCrew() ? " She's probably up to something with Amber.":"");
+	//Milky Mitzi still recovering
+	else if(pc.hasStatusEffect("Mitzi_Gushed_Out"))
+	{
+		if(rand(2) == 0) buff = "\n\nMitzi is in her bathroom, kneeling in the shower and tugging on her nipples. Soft, emphatic moos can be heard every now and then, accompanied by wet-sounding splats. You put your ear to the door and listen: <i>“Miss Moo is... Miss Moo? Noooo, wrong mooooo. Mmm, milking feels so gooood! [pc.Master] won’t fuck Moo if she doesn’t remember her name... Missy or Mimsy... MOOOO!”</i> You pull away and decide to <b>let her recover from that Gush dose in privacy.</b>";
+		//Repeat recovery
+		else buff = "\n\nMitzi is in her bedroom, milking her prodigious teats and mooing like a barnyard animal. Every now and then you hear an orgasmic screech and a liquid spattering followed by a high-pitched cry of, <i>“[pc.Master] so good to Moooo!”</i> <b>Mitzi still needs to recover from her recent bout with Gush.</b>";
+	}
+	else if(pc.hasStatusEffect("Mitzi_Gush_Thankyou")) buff = "\n\n<b>Mitzi has recovered from that dose of Gush!</b> She may be a little more top-heavy now, but she’d really like to see you.";
+	
+	//NORMAL MITZI TEXTS:
 	//Pink dress
-	if(dress is MitzisDress)
+	else if(dress is MitzisDress)
 	{
 		buff += "\n\nMitzi is brushing her pigtails, clad in the same pink, latex dress she wore when you met her. It seems to enhance her curves rather than hide them, displaying the highlights of her nipples in shimmering neon. At the sight of you, she puts down the brush and puckers her lips, rolling a layer of heavy, purple gloss across them with deliberate slowness.";
 	}
@@ -767,14 +790,7 @@ public function mitziCrewBonus():String
 			buff += ". When she’s not snapping the pictures, she’s inspecting them, applying filters and weeding any unsuitable to for later mailing to her [pc.master].";
 		}
 	}
-	//Milky Mitzi still recovering
-	if(pc.hasStatusEffect("Mitzi_Gushed_Out"))
-	{
-		if(rand(2) == 0) buff = "\n\nMitzi is in her bathroom, kneeling in the shower and tugging on her nipples. Soft, emphatic moos can be heard every now and then, accompanied by wet-sounding splats. You put your ear to the door and listen: <i>“Miss Moo is... Miss Moo? Noooo, wrong mooooo. Mmm, milking feels so gooood! [pc.Master] won’t fuck Moo if she doesn’t remember her name... Missy or Mimsy... MOOOO!”</i> You pull away and decide to <b>let her recover from that Gush dose in privacy.</b>";
-		//Repeat recovery
-		else buff = "\n\nMitzi is in her bedroom, milking her prodigious teats and mooing like a barnyard animal. Every now and then you hear an orgasmic screech and a liquid spattering followed by a high-pitched cry of, <i>“[pc.Master] so good to Moooo!”</i> <b>Mitzi still needs to recover from her recent bout with Gush.</b>";
-	}
-	else if(pc.hasStatusEffect("Mitzi_Gush_Thankyou")) buff = "\n\n<b>Mitzi has recovered from that dose of Gush!</b> She may be a little more top-heavy now, but she’d really like to see you.";
+	
 	return buff;
 }
 

@@ -47,6 +47,23 @@ public function amberHeader():void
 	showBust(dryadBustDisplay());
 	author("Wsan");
 }
+// amber has been recruited and is currently on the players ship.
+public function amberIsCrew():Boolean
+{
+	if (flags["AMBER_CREWMEMBER"] == 1) return true;
+	return false;
+}
+//amber has been recruited (current ship status non withstanding) (not currently possible to dismiss once recruited but function coded to account for the possibility)
+public function amberRecruited():Boolean
+{
+	if (flags["AMBER_CREWMEMBER"] != undefined) return true;
+	return false;
+}
+public function amberAvailable():Boolean
+{
+	return (!pc.hasStatusEffect("Amber Disabled") && !amberCurrentlyDumbfucked());
+}
+
 //show hint text about getting special gear to recruit the dryad, 
 //been to zheng shi and fucked dryad 5+ time
 public function amberEncounterAppend():void
@@ -122,18 +139,7 @@ public function amberComeWith():void
 	addButton(1, "Get Fucked", vaginaRouter,[amberComeWithTalkGetFucked,ppAmber.cockVolume(0),1,0], "Get Fucked", "Let the girl fuck one of your holes.");
 	addButton(2, "No", amberComeWithTalkNo, undefined, "No", "You don’t wanna bang right now.");
 }
-// amber has been recruited and is currently on the players ship.
-public function amberIsCrew():Boolean
-{
-	if (flags["AMBER_CREWMEMBER"] == 1) return true;
-	return false;
-}
-//amber has been recruited (current ship status non withstanding) (not currently possible to dismiss once recruited but function coded to account for the possibility)
-public function amberRecruited():Boolean
-{
-	if (flags["AMBER_CREWMEMBER"] != undefined) return true;
-	return false;
-}
+
 //refuse to help her get off
 public function amberComeWithTalkNo():void
 {
@@ -490,9 +496,17 @@ public function amberShipBonusText():String
 {
 	var desc:String;
 	
-	desc = "Amber is likely relaxing down in the hold";
-	if (crew(true) > 0) desc += " or hanging out with a crew member";
-	desc += ".";
+	if(pc.hasStatusEffect("Amber Disabled")) 
+	{
+		desc = "Amber is not available at the moment.";
+		if(mitziIsCrew()) desc += " She's probably getting into trouble with Mitzi somewhere...";
+	}
+	else
+	{
+		desc = "Amber is likely relaxing down in the hold";
+		if (crew(true) > 0) desc += " or hanging out with a crew member";
+		desc += ".";
+	}
 	
 	return desc;
 }
@@ -3091,4 +3105,224 @@ public function amberOnshipSexMounting(kok:int=0):void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
-	
+
+//Requires Amber at Dumbfucked3-4, crew content enabled, Mitzi onboard. Random event on ship.
+//Moan!
+//By Wsan
+public function amberAndMitziFun():void
+{
+	clearOutput();
+	showName("AMBER\nMOANING...?");
+	author("Wsan");
+	output("You’re " + (pc.isNaga() ? "slithering through your ship, idly considering your options":"walking through your ship, footfalls resounding in the corridor") + ", when you hear a very loud, desirous moan from the hold. It sounds a <i>lot</i> like Amber in heat.");
+	clearMenu();
+	addButton(0,"Investigate",investigateMitziAndAmber,undefined,"Investigate","Check out the source of the noise. Whatever Amber’s up to, you can probably help.");
+	addButton(1,"Don't",dontHelpAmber,undefined,"Don't","Leave Amber to her own devices.");
+}
+
+//[Investigate]
+//tooltip:Check out the source of the noise. Whatever Amber’s up to, you can probably help.
+public function investigateMitziAndAmber():void
+{
+	clearOutput();
+	showName("AMBER\n& MITZI");
+	showBust(dryadBustDisplay(),mitziBustString(true));
+	author("Wsan");
+	output("You arrive in the hold to find a hell of a scene playing out before you. Amber’s leaned against a wall, panting and moaning, drool running from her hanging-open mouth. She’s flushed and sweaty, almost steaming with red-hot lust, her sex pheromones billowing wildly into the hold. She hasn’t even noticed you’re here yet, too engrossed by the lewd activity occurring between her spread and shaking hindlegs.");
+	output("\n\nBehind her stands Mitzi, your <i>other</i> Dumbfucked love-whore, completely naked and standing on her tip-toes with her hand jammed in Amber’s sodden, squeezing cunt up to her wrist. Beneath the deertaur’s damp-furred flanks lies a veritable puddle of lust.");
+	output("\n\n<i>“Oh, hi [pc.Master]!”</i> Mitzi says cheerfully, drawing her hand out of Amber’s mareslit to wave her fingers at you.");
+	output("\n\n<i>“Gggooooohhhhh!”</i> Amber cries out, lifting her head as a thick spurt of seed gushes from her equine cock, splattering the wall in front of her with gooey white spunk. A river of phermone-laden juices spills from her slick black pussy, spilling to the ground in the wake of Mitzi’s abrupt exit. <i>“Uuuhhh...”</i>");
+	output("\n\n<i>“Mitzi gave the deergirl some Soak!”</i> Mitzi continues, patting Amber’s quivering flank as though nothing were amiss. <i>“She’s tooooootally into it. See?”</i>");
+	output("\n\nShe slips one finger into Amber’s hot, wet passage and presses down on the centauress’ large pink clit, earning a desperate groan and a further spreading of her legs. Her fat, heavy " + (amberEquilicumDoses() > 0 ? "cumtanks":"balls") + " draw taut against her underside as another abundant fountain of rich seed erupts from her blunted flare.");
+	output("\n\n<i>“She </i>is<i> into it,”</i> you muse, experiencing some enthusiasm of your own. The sight of Amber debasing herself so utterly has");
+	if(pc.isHerm()) output(" your [pc.cocks] growing hard and your [pc.pussies] dripping.");
+	else if(pc.hasCock()) output(" your [pc.cocks] growing hard" + (!pc.isCrotchExposed() ? " in your [pc.crotchCoverUnder]":"") + ".");
+	else if(pc.hasVagina()) output(" your [pc.pussies] dripping" + (!pc.isCrotchExposed() ? " in your [pc.crotchCoverUnder]":"") + ".");
+	else output(" arousal fluttering in your stomach, nowhere to go but present all the same.");
+
+	output("\n\n<i>“Riiight?”</i> Mitzi giggles, her enormous breasts bouncing with her mirth. <i>“Mitzi just took hers before you got here!”</i>");
+	output("\n\nYou raise your eyebrows as Mitzi begins to drool from both pairs of lips, moaning in happiness as saliva spatters across her giant green teats. Her eyes dilate, and her skin flushes. She sloppily giggles, then suckles a finger, mouthing, <i>“Sthoo weeeeet!”</i> Twin rivers of girlcum slide down the insides of her glistening thighs, cueing her to grind them together. So you have two drugged-up sluts looking for nothing more than to have their sexual thirst satiated? Sounds like a fun diversion.");
+
+	processTime(15);
+	pc.lust(33);
+	clearMenu();
+	if(pc.hasCock())
+	{
+		if(pc.cockThatFits(amber.vaginalCapacity(0)*1.5) >= 0) addButton(0,"Fuck Amber", penisRouter,[fuckSoakAmberMitziWithOneDick,amber.vaginalCapacity()*1.5,false,0], "Fuck One", "Fuck Amber and eat out Mitzi... then pick one at random to cum in.");
+		else addDisabledButton(0,"Fuck Amber","Fuck Amber","Not even Amber can take that behemoth.")
+		if(pc.cockTotal() > 1)
+		{
+			if(pc.cockThatFits(amber.vaginalCapacity(0)) >= 0 && pc.cockThatFits2(amber.vaginalCapacity(0)) >= 0) addButton(1,"Fuck Both", penisRouter,[fuckSoakAmberMitziWithOneDick,amber.vaginalCapacity()*1.5,false,0], "Fuck Both", "Fuck Amber and Mitzi at the same time!");
+			else addDisabledButton(1,"Fuck Both","Fuck Both","You need two dicks small enough to wedge inside.");
+		}
+		else addDisabledButton(1,"Fuck Both","Fuck Both","You need two dicks for this.");
+	}
+	else 
+	{
+		addDisabledButton(0,"Fuck Amber","Fuck Amber","You need a penis for this.");
+		addDisabledButton(1,"Fuck Both","Fuck Both","You need a penis for this.");
+	}
+	addButton(2,"Double Fist",doubleFistThoseSluts,undefined,"Double Fist","Double fist the two horny, slippery sluts.");
+}
+
+public function fuckSoakAmberMitziWithOneDick(x:int):void
+{
+	clearOutput();
+	showName("AMBER\n& MITZI");
+	showBust(dryadBustDisplay(),mitziBustString(true));
+	author("Wsan");
+	output("<i>“Amber. Amber!”</i> you call, catching the attention of the barely-there dryad. <i>“Sit down and I’ll get to you.”</i>");
+	output("\n\nGroaning, she slumps to the floor and waits, shaky arms out against the wall to support herself.");
+	output("\n\n<i>“Mitzi, you can sit on her ass,”</i> you say, ushering her over with a light spank to her butt that sets it jiggling. <i>“Facing me.”</i>");
+	output("\n\n<i>“Oh, Mitzi </i>likes<i> the sound of that,”</i> she giggles, hopping up onto Amber’s hindquarters and spinning to face you. <i>“Is [pc.Master] gonna treat Mitzi all nice?”</i>");
+
+	output("\n\n<i>“You bet,”</i> you mutter, kneeling behind Amber and grabbing her tail. The first order is giving this needy, shivering fuckbeast the dicking of her life, but you’ve always been good at multitasking. <i>“Lie back.”</i>");
+	output("\n\nYou slip between Amber’s thick black lips and into her juicy cunt with ease, her hungry hole" + (pc.cocks[x].thickness() < 4 && pc.cocks[x].cType != GLOBAL.TYPE_EQUINE ? "swallowing your first few inches aided by the excess lubricant.":"stretching around your cockhead to swallow the first few inches.") + " It feels like heaven. She’s so hot, wet and welcoming to your cock, her body recognizing you have the capacity to give her exactly what she needs. Her dripping cunny tightens up on you immediately, back half weakly thrusting back in an effort to get you to dig deeper into her, to assuage the infernal itch of unfulfilled lust. It feels like a soft, silken glove wrapping around your stiffened cock, urging you further inside.");
+	pc.cockChange();
+	output("\n\nSo possessed by the impulse to fuck, you don’t see the need to communicate. You push Mitzi down even as you thrust into the deergirl below her, laying her out atop Amber’s furry flanks and grabbing her thick thighs. Mitzi lets out a blissful moan as you dive headfirst into her sloppy cunt, running your [pc.tongue] between her thick-lipped labia and getting a mouthful of her sexual juices for your efforts. The taste of her infuses you with a rush of sexual vigor, your cock hardening deep inside Amber’s cunt while you plow her.");
+	output("\n\nYou shift your focus upwards momentarily, alighting upon Mitzi’s oversized clit and seizing the opportunity with your tongue. She responds by immediately crying out in pleasure and wrapping her shaking thighs around your head, squirting femcum all over your chin and [pc.chest] as you tongue-tie her quivering clitty.");
+	output("\n\n<i>“Ooohhh, that’s </i>suuuper<i> good, [pc.Master]!”</i> Mitzi cries, ineffectually pulling you in towards her with her calves. <i>“Don’t stop now!”</i>");
+	output("\n\nYou don’t even hear her. Between the breeder pheromones these two bombshells are exuding your mind is nothing but a frenzied mess of pussy-lust and slick, saucy sex. You mindlessly pound Amber’s rear, ");
+	if(pc.cocks[x].cLength() < 26)
+	{
+		if(pc.balls > 0) output("going ball" + (pc.balls > 1 ? "s":"") + "-deep");
+		else output("hilting yourself");
+		output(" on every thrust");
+	}
+	else output("rubbing up against her eager, receptive womb with every thrust");
+	output(" while you flick your tongue up and down Mitzi’s entrance. Both of them are cumming impossibly hard, Mitzi’s legs juddering around your head while a rapidly growing pool of horse jizz spreads out from Amber’s underbelly, and you’re not far from it yourself.");
+	output("\n\nYou surprise the gabilani girl by suddenly switching it up and digging your tongue as far into her femcum-soaked cunt you can get it, " + (pc.hasTongueFlag(GLOBAL.FLAG_LONG) ? "unfurling it all the way to her pliant cervix and giving it an affectionate lick. Her legs immediately spring upwards as she lets out a scream of outrageous surprise and ecstasy, kicking the air as you begin to tongue-massage the entrance to her womb.":"curling it upwards and lapping at her passage’s ceiling. She responds by way of letting out a blissfully happy moan and squirting all over your face again, only motivating you further."));
+	output("\n\n<i>“Gonna cum,”</i> you gasp before getting another faceful of horny goblin muff. You can hardly pick which one to blow a load in. <i>“Mmmnngh!”</i>");
+
+	//Randomly picks Mitzi or Amber.
+	if(rand(2) == 0)
+	{
+		output("\n\n<i>“Inside! Please!”</i> Amber screams, the first words she’s said since you walked down here. <i>“Cum in my hot little cunt!”</i>");
+		output("\n\nIt’s impossible to ignore a request like that. Planting your [pc.lipsChaste] on Mitzi’s fat, juicy clit and sucking on her as hard as you can, you shove yourself");
+		if(pc.cocks[0].cLength() < 26)
+		{
+			if(pc.balls > 0) output(" ball" + (pc.balls > 1 ? "s":"") + "-deep");
+			else output(" to the hilt");
+		}
+		else output(" right up against Amber’s womb");
+		output(" and let loose, a desperate, muffled groan escaping your mouth as [pc.cum] jets from your rock-solid cock." + (pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED) ? "She’s loving the way you’re flaring inside her if the climbing pitch of her rapturous moans are any indication, just like a broodmare should.":"") + (pc.hasKnot(x) ? " To top it all off, you can feel your [pc.knot " + x + "] pumping up to its full size while your seed bathes her depths, sealing your loads inside her desirous womb.":""));
+		output("\n\nMitzi’s too distracted by the multiple breathtaking clitgasms to even notice, her eyes rolling in her silly bimbo head as you almost knock her unconscious with your oral skills. She’s an insensate wreck in the wake of your performance, allowing you to finally dislodge her from your face and place her on the ground - right in Amber’s thick, sticky pool of spent spunk. You’re sure she’ll be fucking delighted.");
+		output("\n\n<i>“Fuuuck,”</i> you and Amber moan in unison, the tension in your bodies dissipating just a little.");
+		output("\n\nWith a cuntful of cream she’s not quite as desperate to get fucked, though the Soak is still running its course. You can see her drooling even now as she turns to face you, her cheeks scarlet and sweaty, breath coming in pants and gasps. Her freckled breasts bounce up and down with the rhythm, nipples hard as diamonds.");
+		output("\n\n<i>“Okay,”</i> you groan, climbing back to your [pc.footOrFeet]. <i>“If you still need to fuck, use Mitzi. Trust me, she’s more than happy to help.”</i>");
+		output("\n\nAmber’s already taking your advice, struggling to her hooves to circle around and advance on the half-conscious gabilani, keen lust in her eyes. You give the two of them a wave as she plunges her thick, flared studcock straight into Mitzi’s primed pussy, a unified scream of pleasure accompanying you on the way back up to your shower.");
+	}
+	else
+	{
+		output("\n\n<i>“C-c-cum insuh-inside Mitzi’s p-p-pussy, [pc.Master]!”</i> Mitzi stutters, struggling through the sentence as your oral skills distract her to the point of incoherence. <i>“Creampie her stupid slut-snatch!”</i>");
+		output("\n\nImpossible to ignore a request like that, and Amber’s about unconscious with pleasure at this point anyway. Grabbing the shortstack gabilani around her waist, you pull out of Amber and slam Mitzi down on your cock, " + (pc.cocks[x].cLength() < 20 ? "hilting her on your iron-hard length":"pounding almost two feet of your iron-hard length into her") + " in a single violent motion. She cums on the spot, clenching down on you so hard that the first jet of your seed into her spasming cunt paints her entire womb [pc.cumColor].");
+		output("\n\nBoth of you groan in bliss as she milks you, shuddering from head to nail-painted toe while her greedy cunt forcibly extracts every iota of sperm " + (pc.balls > 0 ? "from your [pc.balls]":"you have to give") + " with vigorous contractions.");
+		if(pc.cumQ() < 2000) output(" Barely a drip of your essence escapes her, the goblin fuck-toy taking everything on offer and keeping it for herself.");
+		else if(pc.cumQ() < 8000) output(" She looks like she’s swallowed a watermelon by the time you’re done, both hands perched on her seed-swollen stomach as she admires her form.");
+		else output(" The excess of your essence gushes from her overtaxed snatch but her womb drinks in enough of you in its eagerness to be bred that she looks like she’s swallowed a fucking beach ball. She rubs her cum-inflated stomach and you think you feel her cum just once more, her own juices mixing with yours as they roll from her sodden slit.");
+		output("\n\nYou pull yourself out" + (pc.hasKnot(x) ? ", [pc.knot " + x + "] briefly straining her into obscenity,":"") + " and let her fall on her jiggly ass, right in a thick pool of Amber’s spent seed. No doubt she’ll be utterly delighted when she rouses herself to what passes for consciousness among sluts of this caliber. Amber’s already beginning to awaken from her fuck-stupor as you rise to your [pc.footOrFeet], finding the effects of the Soak haven’t quite worn off... and eyeing the half-conscious gabilani between her legs.");
+		output("\n\nYou hear a unified scream of pleasure, two voices entwined in carnal union, as you exit the hold and head up to your shower. Sounds like they’ve <i>both</i> found a solution to the problem.");
+	}
+	processTime(20);
+	pc.orgasm();
+	pc.applyPussyDrenched();
+	mitziAndAmberPostSoakFuckMenuAndStats();
+}
+
+public function fuckSoakAmberMitziWithTwoDicks():void
+{
+	clearOutput();
+	showName("AMBER\n& MITZI");
+	showBust(dryadBustDisplay(),mitziBustString(true));
+	author("Wsan");
+	var x:int = pc.cockThatFits(amber.vaginalCapacity(0)*1.5);
+	var y:int = pc.cockThatFits2(amber.vaginalCapacity(0)*1.5);
+
+	output("<i>“Alright, I’ve got a solution for both of you,”</i> you say, " + (!pc.isCrotchExposed() ? "shedding your [pc.lowerGarments] to reveal":"grinning at Mitzi as she eyefucks") + " your" + (pc.cockTotal() == 2 ? " two cocks.":" two biggest cocks."));
+	output("\n\n<i>“[pc.Master] is like, so smart!”</i> Mitzi gasps, mouth wide in awe as she leans over to inspect them. <i>“How about...”</i>");
+	output("\n\nYou’re not even surprised when she bends over far enough to suck your [pc.cockHead " + x + "] between her plump, purple lips, looking up at you with an expression of greed.");
+	output("\n\n<i>“Little slut,”</i> you murmur, planting one hand on Mitzi’s head. She’s just <i>waiting</i> for you to force her deeper with that slutty look on her face - hovering at your tip, not indulging herself just yet. <i>“Here, then!”</i>");
+	output("\n\nHer eyes upturn in rapturous bliss as you slam" + (pc.cocks[x].cLength() < 25 ? " your entire length":" two feet of your cock") + " down her bulging throat and into her stomach, impaling the gurgling whore on your studly length. If she hadn’t already had hearts in her eyes you suspect they’d appear now, her expression nothing but pure, unadulterated love for the way you’re treating her.");
+	output("\n\n<i>“How’s that, Mitzi? You pint-sized </i>whore<i>,”</i> you say, grinning.");
+	output("\n\nHer long, dextrous tongue snakes from her mouth to slowly wrap around your " + (pc.balls > 0 && pc.cocks[x].cLength() < 25 ? "[pc.balls]":"stiff shaft") + " by way of reply, her innermost thoughts on plain display.");
+	output("\n\n<i>“And don’t think I’ve forgotten about you,”</i> you mutter, seizing Amber’s white-furred flank with a hand and stretching her skin to reveal the object of your desire, the tight pink opening between those soft, rubbery black lips of her leaking marecunt. <i>“You can get some too!”</i>");
+	output("\n\nHolding Mitzi in place on your first cock with a rough grip, you shamelessly thrust yourself into Amber’s welcoming pussy. The hopelessly slutty deergirl cries out in unashamed pleasure, her warmth immediately enveloping your second dick as she orgasms on the spot, sexual juices bursting from her depths to bathe your rock hard member. Then you’re slamming yourself ");
+	if(pc.cocks[y].cLength() < 26) output((pc.balls > 0 ? "balls-deep":"to the hilt") + " inside her sodden cunny");
+	else output("all the way up to her womb’s opening");
+	output(", grunting like an animal.");
+	output("\n\nThere’s no need for words between the three of you. Like a machine, you pound Amber’s behind with a relentless rhythm, your hands sunken into her fur at her hips. You’ve got her right where you want her and there’s no other place in the world she’d rather be, her screams of pleasure echoing off the walls of the hold. Mitzi is blessedly silent save for wet gurgling as she sucks you off, looking up at you for approval while she throats your shaft. You think she deserves a gift.");
+	output("\n\nPausing for the scantest of seconds, you grab Mitzi and pull the gabilani slut’s mouth right off your dick, your head popping free of her saliva-filled mouth with the slurp of a whore that doesn’t want to let dinner go. She doesn’t even have time to squeak before you’ve rammed it back inside her pussy-first, " + (pc.cocks[x].cLength() >= 20 ? "thrusting into her so deeply that her stomach bulges with the size of you.":"thrusting into her hard enough to make her clench around you.") + " You can feel the submissive bimbo cumming almost immediately, juices spilling from both the fucked-full slit between her puffy lower lips and saliva from the recently vacated fuckhole between the juicy lips on her face.");
+	output("\n\n<i>“Haaah,”</i> Mitzi moans, a single syllable as she looks up at you, expression burning with lust.");
+	output("\n\nNow that you’ve got them both of them under control, a kind of idle curiosity occupies your mind. How many times can you make these drooling fucksluts cum before you blow your own loads deep in their pussies? It’s that thought that drives you to push Mitzi up against Amber’s ass, leaning forward as you begin to rock your [pc.hips] into the both of them with the strength of ten men. They cry out in unrestrained ecstasy in response, Mitzi arching her back and grabbing two fistfuls of the deertaur’s fur to ensure she stays in place - all the better for you to pound your fat cock into her needy cunt.");
+	output("\n\nThis is it. This is what you were looking for; two completely subservient whores ready to be taken to bed at a moment’s notice, their pussies gushing and squirting around you, helpless to resist the pleasure you’re inflicting upon them. Each of them gasps, groans, and sings your praise with every breath, cumming again and again, forcefully clamping down on your cocks as they slam inside, edging ever further towards a massive orgasm. You’ve long since lost count of how many times they’ve cum at your hands - it’s been nonstop since you started ravaging them, rutting them like they’re no more than your subjects.");
+	output("\n\nAmber’s thick, ridged horsecock has been violently jetting cum for minutes now, a pool of her equine seed gathering underneath her forelegs. She’s completely incapable of doing anything right now but cumming her brains out, her hindquarters stuck between instinctively thrusting forward to seek out a mate as her male half orgasms and jerking back into you when she realizes how fucking good your cock feels crammed inside her slavering pussy. Nothing comes from her mouth but high-pitched screams of pleasure and shocked groans, as if she herself can scarcely believe just how good it feels to give up everything to her master.");
+	output("\n\n<i>“Here it comes,”</i> you pant, sweat running down your brow. You’ve been fucking these wanton whores like a runaway freighter and the time has come to grant them the final gift of their submission - a massive load right in each of their wombs.");
+	output("\n\nYou let out a wordless, feral roar of dominance as you thrust forward and cum, " + (pc.cumQ() >= 3000 ? "the first shot filling Mitzi so violently she suffers an explosive orgasm just from the sensation of feeling herself swell with [pc.cum].":"filling each of them within seconds.") + " Not satisfied with stopping there, you withdraw and ram yourself back home with every successive jet of seed from your cockheads, feeling like your entire being is draining from you.");
+	output("\n\nBy the time it finishes, you pant like you’ve run a marathon at a sprint, and you look like it too. Sweat courses down your body, and steam rises from it, your [pc.chest] heaving with each draw of breath, the two sluts below you looking even worse for wear. Amber’s fur is soaked through with a mix of all three of your fluids, her own cum still weakly spewing from the end of her throbbing cock even as you withdraw your own with a grunt.");
+	output("\n\nBoth of their empty cunts drip with your seed, symbolic of their purpose, winking and flexing in your absence. Mitzi is hardly even conscious after that, so utterly used that the successive orgasms must have left her on the verge of passing out from pleasure. Even now you can see her cumming, her walls clenching around a cock that isn’t there.");
+	output("\n\nRising slowly, you give Amber a light spank on her quivering butt that rouses her from her post-fuck stupor and stokes the coals of her lust once more. The Soak hasn’t worn off just yet, leaving her with some small, unfulfilled need... but she can handle that on her own. After all, you see her note as you leave the hold in search of a towel and your shower, there’s a perfectly fuckable gabilani lying next to her with her cunt gaping open and ready to accept another cock.");
+	output("\n\nYou can hear muffled screams of bliss followed by loud, rhythmic thudding that persists until you turn your shower on in your room.");
+	processTime(20);
+	pc.orgasm();
+	pc.applyPussyDrenched();
+	mitziAndAmberPostSoakFuckMenuAndStats();
+}
+public function doubleFistThoseSluts():void
+{
+	clearOutput();
+	showName("AMBER\n& MITZI");
+	showBust(dryadBustDisplay(),mitziBustString(true));
+	author("Wsan");
+	output("<i>“I’ve got just enough time to handle both of you sluts at once before I get back to it,”</i> you say, grinning as you kneel behind Amber and direct Mitzi to sit atop the dryad’s flanks. <i>“Let’s make it snappy.”</i>");
+	output("\n\nMitzi’ll be appreciative of a little technique and finesse, but Amber... Amber doesn’t need any of that. You don’t even bother testing the waters before you slide all five of your fingers into her slavering fuckhole, drenching your hand in her juices when she squirts in eager reciprocity, screaming in joy. It’s only when you clench your fist that her giant horsecock joins in too, stiffening up and ejaculating what must be half a gallon of thick, bubbling equine spunk in a continuous flow as you slide yourself deeper.");
+	output("\n\n<i>“I didn’t forget you,”</i> you murmur to Mitzi, taking two fingers and rubbing the thick, puffy lips between her thick thighs. <i>“Spread ‘em, slut.”</i>");
+	output("\n\n<i>“Oooh, it sounds so sexy when you say it, [pc.Master],”</i> Mitzi moans, leaning back against Amber for support and spreading her legs wide. <i>“Here you goooo...”</i>");
+	output("\n\nYou share a smile with her as you gently spread her folds apart and slide your index and middle fingers into her juicy pussy, enjoying the way she moans and tilts her head back. You don’t even need to push at her before she’s sitting down on your hand, fucking her own slit on your fingers while you noisily fistfuck Amber’s hot, slippery marecunt behind her.");
+	output("\n\n<i>“More,”</i> Mitzi moans, shuddering on your fingers. <i>“More!”</i>");
+	output("\n\n<i>“You want what she’s getting?”</i> you ask with a knowing grin, nodding at Amber.");
+	output("\n\n<i>“Yes! Yes!”</i> Mitzi chants enthusiastically.");
+	output("\n\nOf course she does. There’s no way a shortstack slut like Mitzi could be happy with just two of your fingers. Spreading her wide enough to make her groan in bliss, you slide your fingers inside the gabilani’s tight, stretchy honeypot and push upwards, earning a pleasured groan as you begin to fingerfuck her with all your might. Even this, though, isn’t what she really needs - and you know it.");
+	output("\n\nShe cums once, desperate and trembling, before you lean in and whisper your offer to her. Her eyes light up immediately, a slut’s eager nod, her hand caressing the back of your neck as you get deeper inside her. It’s amazing that each inch of her is so sensual and sexual - every inch of her pussy squeezes at you, envelops you, grips at you as if to invite you into her deepest recesses.");
+	output("\n\nIt there’s that you find the sensitive entrance to her womb, running your fingers along the sides of her walls to make her legs tremble, the gabilani fuckslut’s toes curling even as she stands on them. She lets out short, gasping breaths as you push her closer and closer to the edge, never quite addressing the issue until she’s totally ready and right on the brink.");
+	output("\n\n<i>“Huuuuooooh!”</i> Mitzi screams in ecstasy, arching her back as you lightly press two fingers into her and stroke with maddening gentleness. <i>“Uuuuhhhh!”</i>");
+	output("\n\nHer little body shakes so violently that her juices spray in every direction, squeezed from her clenching cunt and spurting down your forearm. You can keep her dancing there as long as you want, too, owing to the fact she’s clamping down on you so tightly she can’t move or do anything but cum and scream.");
+	output("\n\nBehind her Amber is in an almost identical state, brought on by the combination of cumming with both her throbbing studcock and her thick-lipped marepussy. You’re in her almost up to the elbow, ramming your flexed forearm into her stretching fuckhole with reckless abandon, treating her just the way you know she likes it. Her cock jumps and strains with every move you make, seed spurting from the flared tip with the urgency of a breeding stallion, hips bucking back and forth between the sensation of orgasm and seeking more of the same.");
+	output("\n\nYou force your two sluts to almost literally dance on your palms for a stretch of several minutes, cumming their brains out several times over until little comes from their mouths but deep, lewd groans of bliss and fulfillment. Even whispers of your name fade until there’s nothing left but the rapturous euphoria of multiple orgasms at your hands, femcum squirting down your arms again and again until you deign to release them from their bonds.");
+	output("\n\nMitzi slumps to the ground with legs splayed the moment you slip free, her supporting beam and reason for consciousness now absent. Amber responds in kind by letting out a deep, bestial moan that sounds almost like a moo as she cums one last time, giving the wall a fresh coat of paint. You don’t think she’s done just yet, though... not by a long shot.");
+	output("\n\nYou’re walking to the shower when you hear two screams of bliss followed by loud, rhythmic thudding that fades into the noise of water coursing down your body. After all that, you’re still incredibly pent up... after this, maybe you should go back down there and see if you can catch some of Amber’s lust for yourself.");
+	processTime(20);
+	pc.lust(20);
+	pc.applyPussyDrenched();
+	mitziAndAmberPostSoakFuckMenuAndStats();
+}
+
+public function mitziAndAmberPostSoakFuckMenuAndStats():void
+{
+	//Disable Mitzi and Amber for 50m
+	if(!pc.hasStatusEffect("Amber Disabled")) pc.createStatusEffect("Amber Disabled");
+	pc.setStatusMinutes("Amber Disabled",60);
+	if(!pc.hasStatusEffect("Mitzi Disabled")) pc.createStatusEffect("Mitzi Disabled");
+	pc.setStatusMinutes("Mitzi Disabled",60);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+	IncrementFlag("MITZI_AMBER_SOAK_HELPINGS");
+	flags["MITZI_AMBER_SOAK_LAST"] = GetGameTimestamp();
+}
+
+//[Don’t]
+//tooltip:Leave Amber to her own devices.
+public function dontHelpAmber():void
+{
+	clearOutput();
+	showName("\nNAH...");
+	author("Wsan");
+	output("Whatever her problem is - and you think you can probably guess - it sounds like she’s well on her way to solving it herself. No need to interrupt. You think you can hear rhythmic thudding emanating from the hold not long after, but you can’t be sure - hopefully she remembers to clean up or it’s going to be like a stable during breeding season down there the next time you set foot in the hold.");
+	//Disable Mitzi and Amber for 120m
+	if(!pc.hasStatusEffect("Amber Disabled")) pc.createStatusEffect("Amber Disabled");
+	pc.setStatusMinutes("Amber Disabled",60);
+	if(!pc.hasStatusEffect("Mitzi Disabled")) pc.createStatusEffect("Mitzi Disabled");
+	pc.setStatusMinutes("Mitzi Disabled",60);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
