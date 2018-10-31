@@ -1611,6 +1611,14 @@ package classes.GameData
 				{
 					(_hostiles[0] as KorgonneMale).setStatusValue("SURPRISE_MUTHA_TRUCKAH",1,1);
 				}
+				else if(_hostiles.length == 1 && _hostiles[0] is Johr) 
+				{
+					if( _hostiles[0].hasStatusEffect("GPrep"))
+					{
+						output(" It's better to bide your time until he throws that deadly projectile.");
+						(_hostiles[0] as Johr).createStatusEffect("Pumpkin Dodge");
+					}
+				}
 				waitRoundEffects();
 			}
 		}
@@ -2247,6 +2255,7 @@ package classes.GameData
 						}
 						else if (hasEnemyOfClass(RKLah)) output("You pull him to one side, before delivering a sucker punch hard and low from the other. Lah gasps in pain, and you manage to rip out of his grasp.");
 						else if (hasEnemyOfClass(AkkadiSecurityRobots)) output("You finally manage to tear your way out of the net!");
+						else if (hasEnemyOfClass(Johr)) output("You break free of the zil, narrowly dodging another heavy blow from Johr as you regain your feet and rejoin the fight. The zil circle around you, snarling.");
 						else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
 						if(panicJack)
 						{

@@ -136,6 +136,7 @@
 		include "../includes/holidayEvents/milodanBreedingSolstice.as";
 		include "../includes/holidayEvents/myrnaTheGenerousKorgonne.as";
 		include "../includes/holidayEvents/pumpkinCarving.as";
+		include "../includes/holidayEvents/pumpking.as";
 		include "../includes/holidayEvents/puppyslutmas.as";
 		include "../includes/holidayEvents/randyClaws.as";
 		include "../includes/holidayEvents/succucow.as";

@@ -294,6 +294,9 @@ public function configureMails():void
 	MailManager.addMailEntry("aina_preg4", ainaPregEmail4, "Oof", "Aina Berkanis", "FreeFilly98@Gerbilmedia.com", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("aina_preg5", ainaPregEmail5, "almost time", "Aina Berkanis", "FreeFilly98@Gerbilmedia.com", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("aina_preg6", ainaPregEmail6, "Come to the nursery", "Aina Berkanis", "FreeFilly98@Gerbilmedia.com", quickPCTo, quickPCToAddress);
+
+	//Pumpking email from Penpen
+	MailManager.addMailEntry("pumpking_alert", pennyPumpkingEmailText, pennyPumpkingEmailSubject, "Penny Inoue", "Penny_Inoue@UGC.gov", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String

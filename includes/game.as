@@ -3318,7 +3318,13 @@ public function variableRoomUpdateCheck():void
 		else rooms["WEST ESBETH 1"].westExit = "";
 	}
 	else rooms["WEST ESBETH 1"].westExit = "";
-	
+	//Pumpking:
+	if(flags["PUMPKING_COMPLETION"] == 2 || flags["PUMPKING_COMPLETION"] == 3)
+	{
+		if(rooms["DENSE ORANGE 1"].eastExit == "") rooms["DENSE ORANGE 1"].eastExit = "PUMPKING_MAIN_GATE";
+	}
+	else if(rooms["DENSE ORANGE 1"].eastExit == "PUMPKING_MAIN_GATE") rooms["DENSE ORANGE 1"].eastExit = "";
+
 	/* TARKUS */
 	
 	// Chasmfall entrance
@@ -3879,6 +3885,11 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	
 	if(sendMails)
 	{
+		//Halloween pumpking event!
+		if(pc.level >= 7 && isHalloweenish())
+		{
+			if(!MailManager.isEntryUnlocked("pumpking_alert") && !pennyIsCrew() && flags["PUMPKING_COMPLETION"] == undefined && flags["SEXED_PENNY"] != undefined) goMailGet("pumpking_alert");
+		}
 		/* SHEKKA RECROOT */
 		if(!shekkaRecruited() && flags["SHEKKA_REPEAT_TALKED"] != undefined && flags["SHEKKA_TALKED_PLAN"] != undefined && flags["PLANET_3_UNLOCKED"] != undefined && flags["TIMES_SEXED_SHEKKA"] != undefined)
 		{

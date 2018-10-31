@@ -57,8 +57,8 @@ public function pennyAffection(arg:int = 0):Number {
 	return flags["PENNY_AFFECTION"];
 }
 
-public function pennysOffice():void {
-	pennyRoomDesc();
+public function pennysOffice():Boolean {
+	return pennyRoomDesc();
 }
 
 public function showPennyName():void
@@ -112,10 +112,21 @@ public function showPenny(nude:Boolean = false):void
 
 //First Encounter
 //Appended to room description!
-public function pennyRoomDesc():void {
+public function pennyRoomDesc():Boolean {
 	showPennyBust();
 	
-	if(flags["ZIL_PROBLEM_DEALT_WITH"] == undefined) {
+	if(isHalloweenish() && !pennyIsCrew() && flags["PUMPKING_COMPLETION"] != 3)
+	{
+		showName("PEACEKEEPER\nOFFICE");
+		showBust("");
+		if(flags["PUMPKING_COMPLETION"] == undefined) 
+		{
+			pumpkinStartingQuest();
+			return true;
+		}
+		else addDisabledButton(0,"Officer T.","Officer Trent","Officer Trent is laying low until this whole mess blows over." + (flags["PUMPKING_COMPLETION"] == -1 ? " Not your problem, at least.":""))
+	}
+	else if(flags["ZIL_PROBLEM_DEALT_WITH"] == undefined) {
 		if(flags["MET_PENNY"] == undefined) {
 			flags["MET_PENNY"] = 1;
 			output("\n\nBehind the desk, sits a female... fox-girl? She’s definitely a girl, or at least very feminine, judging by the DD-cup bosom, barely constrained by her white wrap and loose, open black vest. An armband stamped with the words “U.G.C. Peacekeeper” adorns her right arm, marking her as a source of law on this backwater planet. The frown she’s giving you is spread across a vulpine muzzle, her blue eyes narrowed as she sizes you up. Two pointed ears swivel like radar dishes, each almost as large as her head. A quarter of the way up those ears, a close-cropped, auburn mohawk sweeps back towards the nape of her neck. With ears like that, her species seems closer to the fennec foxes of earth, almost perfectly so.");
@@ -140,6 +151,7 @@ public function pennyRoomDesc():void {
 		}
 		this.addButton(0,"Need Help?",askPennyIfSheNeedsHelp);
 	}
+
 	//Badgurquest raygun handoff 
 	else if(flags["BADGER_QUEST_TIMER"] == -1 && !pc.hasKeyItem("Doctor Badger's Bimbo Raygun - Still programmed for use on Penny.")) 
 	{
@@ -154,7 +166,7 @@ public function pennyRoomDesc():void {
 		else output("\n\nPenny is slouched with a lazy, half-aware grin on her face. Now that regular office hours have come and gone, she must be indulging herself beneath her desk.");
 		output(" She doesn’t seem to notice you, that or she can’t see you past all the cum plastered over her fur.")
 		addButton(0,"Approach",approachBimboPenny);
-		return;
+		return false;
 	}
 	//Friendly penny
 	else if(flags["SEXED_PENNY"] == undefined) {
@@ -197,6 +209,7 @@ public function pennyRoomDesc():void {
 		else output("\n\nPenny is hard at work as ever, though once you enter, she flashes a knowing smile and a brazen leer in your direction. Her nipples are so hard that they’ve popped out and become visible through her bra and wrappings, though given that she’s packing sex organs for two, you suppose it makes sense. The fennec tries her best to keep working in spite of her rampant hormones.");
 		this.addButton(0,"Approach",approachGirlfriendPenny);
 	}
+	return false;
 }
 
 //[Need Help?]
