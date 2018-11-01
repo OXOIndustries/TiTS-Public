@@ -506,7 +506,7 @@ public function getExamanitedByVi():void
 			buttons.push(["Treat B.Bug", removeAParasiteWithVi, "buttbug", "Treat Butt Bug", "Remove the butt bug parasite."]);
 		}
 		// if cock snake:
-		if(pc.hasCockTail() && pc.hasParasiteTail())
+		if(pc.hasParasiteTail() && pc.hasCockTail())
 		{
 			if(parasites == 1)
 			{
@@ -518,7 +518,7 @@ public function getExamanitedByVi():void
 			buttons.push(["Treat C.Vne", removeAParasiteWithVi, "cockvine", "Cockvine Treatment", "Get any parasitic tails removed."]);
 		}
 		// If Cunt Snake:
-		if(pc.hasCuntTail() && pc.hasParasiteTail())
+		if(pc.hasParasiteTail() && pc.hasCuntTail())
 		{
 			if(parasites == 1)
 			{
@@ -542,7 +542,7 @@ public function getExamanitedByVi():void
 		}
 	}
 	
-	if(sstds > 0 || parasites > 0)
+	if(buttons.length > 0)
 	{
 		clearMenu();
 		

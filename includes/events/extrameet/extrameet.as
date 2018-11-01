@@ -226,118 +226,115 @@ public function extrameetGetProfiles(num:int):Array
 	var loc:String = getPlanetName().toLowerCase();  //current planet
 	
 	trace("location: " + loc);
-	if (loc == "tavros station")
+	switch(loc)
 	{
-		if (extrameetProfileStatus("EXTRAMEET_SAVINGGRACE04") == num) pospro.push("EXTRAMEET_SAVINGGRACE04");
-		if (extrameetProfileStatus("EXTRAMEET_MRFOX") == num) pospro.push("EXTRAMEET_MRFOX");
-		if (extrameetProfileStatus("EXTRAMEET_LADYGLAMOR") == num) pospro.push("EXTRAMEET_LADYGLAMOR");
-		if (extrameetProfileStatus("EXTRAMEET_REDD") == num) pospro.push("EXTRAMEET_REDD");
-		if (extrameetProfileStatus("EXTRAMEET_HAWTSTUFF") == num) pospro.push("EXTRAMEET_HAWTSTUFF");
-		if (extrameetProfileStatus("EXTRAMEET_THROBBIN34") == num) pospro.push("EXTRAMEET_THROBBIN34");
-		if (extrameetProfileStatus("EXTRAMEET_MYNAMEISJON") == num) pospro.push("EXTRAMEET_MYNAMEISJON");
-		if (extrameetProfileStatus("EXTRAMEET_CATBOOBS") == num) pospro.push("EXTRAMEET_CATBOOBS");
-		if (extrameetProfileStatus("EXTRAMEET_DARKANGEL01") == num) pospro.push("EXTRAMEET_DARKANGEL01");
-		if (extrameetProfileStatus("EXTRAMEET_BRAZENBITCH") == num) pospro.push("EXTRAMEET_BRAZENBITCH");
-		if (extrameetProfileStatus("EXTRAMEET_CASUALD") == num) pospro.push("EXTRAMEET_CASUALD");
-		if (extrameetProfileStatus("EXTRAMEET_LETHALLADY") == num) pospro.push("EXTRAMEET_LETHALLADY");
-		if (extrameetProfileStatus("EXTRAMEET_ROCKHARDFORYOU") == num) pospro.push("EXTRAMEET_ROCKHARDFORYOU");
-		if (extrameetProfileStatus("EXTRAMEET_MOONLESSNIGHTS") == num) pospro.push("EXTRAMEET_MOONLESSNIGHTS");
-		if (extrameetProfileStatus("EXTRAMEET_ALPHAWOLF") == num) pospro.push("EXTRAMEET_ALPHAWOLF");
-	}
-	else if (loc == "mhen'ga")
-	{
-		if (extrameetProfileStatus("EXTRAMEET_HUGGATREE") == num) pospro.push("EXTRAMEET_HUGGATREE");
-		if (extrameetProfileStatus("EXTRAMEET_HONEYPOTT") == num) pospro.push("EXTRAMEET_HONEYPOTT");
-		if (extrameetProfileStatus("EXTRAMEET_BOUNTIFULBOTANY") == num) pospro.push("EXTRAMEET_BOUNTIFULBOTANY");
-		if (extrameetProfileStatus("EXTRAMEET_SNEAKYSNEK") == num) pospro.push("EXTRAMEET_SNEAKYSNEK");
-		if (extrameetProfileStatus("EXTRAMEET_ENCHANTINGFAE") == num) pospro.push("EXTRAMEET_ENCHANTINGFAE");
-		if (extrameetProfileStatus("EXTRAMEET_BIGDAWG") == num) pospro.push("EXTRAMEET_BIGDAWG");
-		if (extrameetProfileStatus("EXTRAMEET_NYMPHO69") == num) pospro.push("EXTRAMEET_NYMPHO69");
-		if (extrameetProfileStatus("EXTRAMEET_SHOWYOURS2ME") == num) pospro.push("EXTRAMEET_SHOWYOURS2ME");
-		if (extrameetProfileStatus("EXTRAMEET_AWKWARDSOUL") == num) pospro.push("EXTRAMEET_AWKWARDSOUL");
-		if (extrameetProfileStatus("EXTRAMEET_GLITTERCUNT") == num) pospro.push("EXTRAMEET_GLITTERCUNT");
-		if (extrameetProfileStatus("EXTRAMEET_HOGWASH") == num) pospro.push("EXTRAMEET_HOGWASH");
-		if (extrameetProfileStatus("EXTRAMEET_DIRTYGUR114") == num) pospro.push("EXTRAMEET_DIRTYGUR114");
-		if (extrameetProfileStatus("EXTRAMEET_LOOKING4A3RD") == num) pospro.push("EXTRAMEET_LOOKING4A3RD");
-		if (extrameetProfileStatus("EXTRAMEET_DIGBICK") == num) pospro.push("EXTRAMEET_DIGBICK");
-		if (extrameetProfileStatus("EXTRAMEET_BIRDY") == num) pospro.push("EXTRAMEET_BIRDY");
-	}
-	else if (loc == "tarkus")
-	{
-		if (extrameetProfileStatus("EXTRAMEET_WANTSUMJUNK") == num) pospro.push("EXTRAMEET_WANTSUMJUNK");
-		if (extrameetProfileStatus("EXTRAMEET_XXTHRASHERCATXX") == num) pospro.push("EXTRAMEET_XXTHRASHERCATXX");
-		if (extrameetProfileStatus("EXTRAMEET_SWEETNLOW") == num) pospro.push("EXTRAMEET_SWEETNLOW");
-		if (extrameetProfileStatus("EXTRAMEET_MIDNIGHTXROSE") == num) pospro.push("EXTRAMEET_MIDNIGHTXROSE");
-		if (extrameetProfileStatus("EXTRAMEET_TRUEPOWER69") == num) pospro.push("EXTRAMEET_TRUEPOWER69");
-		if (extrameetProfileStatus("EXTRAMEET_R4X0121") == num) pospro.push("EXTRAMEET_R4X0121");
-		if (extrameetProfileStatus("EXTRAMEET_BEBOPBOSS") == num) pospro.push("EXTRAMEET_BEBOPBOSS");
-		if (extrameetProfileStatus("EXTRAMEET_SEXPLOSIVE") == num) pospro.push("EXTRAMEET_SEXPLOSIVE");
-		if (extrameetProfileStatus("EXTRAMEET_BIGGYZ") == num) pospro.push("EXTRAMEET_BIGGYZ");
-		if (extrameetProfileStatus("EXTRAMEET_POWERLOVERS2") == num) pospro.push("EXTRAMEET_POWERLOVERS2");
-		if (extrameetProfileStatus("EXTRAMEET_DIRTYHABITZ") == num) pospro.push("EXTRAMEET_DIRTYHABITZ");
-		if (extrameetProfileStatus("EXTRAMEET_AVRICE56") == num) pospro.push("EXTRAMEET_AVRICE56");
-		if (extrameetProfileStatus("EXTRAMEET_TWISTED") == num) pospro.push("EXTRAMEET_TWISTED");
-		if (extrameetProfileStatus("EXTRAMEET_SLAVEBOI") == num) pospro.push("EXTRAMEET_SLAVEBOI");
-		if (extrameetProfileStatus("EXTRAMEET_HAWTSHOT") == num) pospro.push("EXTRAMEET_HAWTSHOT");
-	}
-	else if (loc == "myrellion")
-	{
-		if (extrameetProfileStatus("EXTRAMEET_DOGGE") == num) pospro.push("EXTRAMEET_DOGGE");
-		if (extrameetProfileStatus("EXTRAMEET_DAREGULATOR") == num) pospro.push("EXTRAMEET_DAREGULATOR");
-		if (extrameetProfileStatus("EXTRAMEET_HUNTRESS") == num) pospro.push("EXTRAMEET_HUNTRESS");
-		if (extrameetProfileStatus("EXTRAMEET_MISTRESSVENOM") == num) pospro.push("EXTRAMEET_MISTRESSVENOM");
-		if (extrameetProfileStatus("EXTRAMEET_REBEL23") == num) pospro.push("EXTRAMEET_REBEL23");
-		if (extrameetProfileStatus("EXTRAMEET_SWEETHEART") == num) pospro.push("EXTRAMEET_SWEETHEART");
-		if (extrameetProfileStatus("EXTRAMEET_RDY4PLY") == num) pospro.push("EXTRAMEET_RDY4PLY");
-		if (extrameetProfileStatus("EXTRAMEET_AL") == num) pospro.push("EXTRAMEET_AL");
-		if (extrameetProfileStatus("EXTRAMEET_DEVIANTSHEEPDOG") == num) pospro.push("EXTRAMEET_DEVIANTSHEEPDOG");
-		if (extrameetProfileStatus("EXTRAMEET_NAUGHTY232") == num) pospro.push("EXTRAMEET_NAUGHTY232");
-		if (extrameetProfileStatus("EXTRAMEET_SIRENSONG") == num) pospro.push("EXTRAMEET_SIRENSONG");
-		if (extrameetProfileStatus("EXTRAMEET_KINKDADDY") == num) pospro.push("EXTRAMEET_KINKDADDY");
-		if (extrameetProfileStatus("EXTRAMEET_ALLYOURS12") == num) pospro.push("EXTRAMEET_ALLYOURS12");
-		if (extrameetProfileStatus("EXTRAMEET_PURPLEBOWTIE") == num) pospro.push("EXTRAMEET_PURPLEBOWTIE");
-		if (extrameetProfileStatus("EXTRAMEET_LEMMESMASH") == num) pospro.push("EXTRAMEET_LEMMESMASH");
-	}
-	else if (loc == "uveto station")
-	{
-		if (extrameetProfileStatus("EXTRAMEET_THEPROFESSOR") == num) pospro.push("EXTRAMEET_THEPROFESSOR");
-		if (extrameetProfileStatus("EXTRAMEET_FUKA") == num) pospro.push("EXTRAMEET_FUKA");
-		if (extrameetProfileStatus("EXTRAMEET_SCIENCERULEZ41") == num) pospro.push("EXTRAMEET_SCIENCERULEZ41");
-		if (extrameetProfileStatus("EXTRAMEET_RIPPED4YOURPLEASURE") == num) pospro.push("EXTRAMEET_RIPPED4YOURPLEASURE");
-		if (extrameetProfileStatus("EXTRAMEET_STORMDRAGON") == num) pospro.push("EXTRAMEET_STORMDRAGON");
-		if (extrameetProfileStatus("EXTRAMEET_LOVEBELOW0") == num) pospro.push("EXTRAMEET_LOVEBELOW0");
-		if (extrameetProfileStatus("EXTRAMEET_ASSBLASTER") == num) pospro.push("EXTRAMEET_ASSBLASTER");
-		if (extrameetProfileStatus("EXTRAMEET_GRANITE75") == num) pospro.push("EXTRAMEET_GRANITE75");
-		if (extrameetProfileStatus("EXTRAMEET_SUPAXSTAR") == num) pospro.push("EXTRAMEET_SUPAXSTAR");
-		if (extrameetProfileStatus("EXTRAMEET_HALL9001") == num) pospro.push("EXTRAMEET_HALL9001");
-		if (extrameetProfileStatus("EXTRAMEET_HELLOIMPAUL") == num) pospro.push("EXTRAMEET_HELLOIMPAUL");
-		if (extrameetProfileStatus("EXTRAMEET_LONELY1") == num) pospro.push("EXTRAMEET_LONELY1");
-		if (extrameetProfileStatus("EXTRAMEET_HANSI") == num) pospro.push("EXTRAMEET_HANSI");
-		if (extrameetProfileStatus("EXTRAMEET_DOMME90") == num) pospro.push("EXTRAMEET_DOMME90");
-		if (extrameetProfileStatus("EXTRAMEET_BIGDICKRICK") == num) pospro.push("EXTRAMEET_BIGDICKRICK");
-	}
-	else if (loc == "new texas")
-	{
-		if (extrameetProfileStatus("EXTRAMEET_FRANKMOLLY") == num) pospro.push("EXTRAMEET_FRANKMOLLY");
-		if (extrameetProfileStatus("EXTRAMEET_PONYLUVER") == num) pospro.push("EXTRAMEET_PONYLUVER");
-		if (extrameetProfileStatus("EXTRAMEET_MISSYMAY") == num) pospro.push("EXTRAMEET_MISSYMAY");
-		if (extrameetProfileStatus("EXTRAMEET_VKO") == num) pospro.push("EXTRAMEET_VKO");
-		if (extrameetProfileStatus("EXTRAMEET_SEXYYDADDYY") == num) pospro.push("EXTRAMEET_SEXYYDADDYY");
-		if (extrameetProfileStatus("EXTRAMEET_FUNNYBOI1") == num) pospro.push("EXTRAMEET_FUNNYBOI1");
-		if (extrameetProfileStatus("EXTRAMEET_MYLITTLEFUNBOX") == num) pospro.push("EXTRAMEET_MYLITTLEFUNBOX");
-		if (extrameetProfileStatus("EXTRAMEET_YOURMOMMY") == num) pospro.push("EXTRAMEET_YOURMOMMY");
-		if (extrameetProfileStatus("EXTRAMEET_BRATTYKITTEN") == num) pospro.push("EXTRAMEET_BRATTYKITTEN");
-		if (extrameetProfileStatus("EXTRAMEET_EVERYTHINGDIES") == num) pospro.push("EXTRAMEET_EVERYTHINGDIES");
-		if (extrameetProfileStatus("EXTRAMEET_THICKLOADZ") == num) pospro.push("EXTRAMEET_THICKLOADZ");
-		if (extrameetProfileStatus("EXTRAMEET_STROKE4ME") == num) pospro.push("EXTRAMEET_STROKE4ME");
-		if (extrameetProfileStatus("EXTRAMEET_LAUGHINGDRAGON") == num) pospro.push("EXTRAMEET_LAUGHINGDRAGON");
-		if (extrameetProfileStatus("EXTRAMEET_THEBIGGESTHORSE") == num) pospro.push("EXTRAMEET_THEBIGGESTHORSE");
-		if (extrameetProfileStatus("EXTRAMEET_CUMSNUGGLE") == num) pospro.push("EXTRAMEET_CUMSNUGGLE");
-	}
-	else
-	{
-		//no content for location
-		trace("extrameetGetProfiles, no logic for " + loc);
+		case "tavros station":
+			if (extrameetProfileStatus("EXTRAMEET_SAVINGGRACE04") == num) pospro.push("EXTRAMEET_SAVINGGRACE04");
+			if (extrameetProfileStatus("EXTRAMEET_MRFOX") == num) pospro.push("EXTRAMEET_MRFOX");
+			if (extrameetProfileStatus("EXTRAMEET_LADYGLAMOR") == num) pospro.push("EXTRAMEET_LADYGLAMOR");
+			if (extrameetProfileStatus("EXTRAMEET_REDD") == num) pospro.push("EXTRAMEET_REDD");
+			if (extrameetProfileStatus("EXTRAMEET_HAWTSTUFF") == num) pospro.push("EXTRAMEET_HAWTSTUFF");
+			if (extrameetProfileStatus("EXTRAMEET_THROBBIN34") == num) pospro.push("EXTRAMEET_THROBBIN34");
+			if (extrameetProfileStatus("EXTRAMEET_MYNAMEISJON") == num) pospro.push("EXTRAMEET_MYNAMEISJON");
+			if (extrameetProfileStatus("EXTRAMEET_CATBOOBS") == num) pospro.push("EXTRAMEET_CATBOOBS");
+			if (extrameetProfileStatus("EXTRAMEET_DARKANGEL01") == num) pospro.push("EXTRAMEET_DARKANGEL01");
+			if (extrameetProfileStatus("EXTRAMEET_BRAZENBITCH") == num) pospro.push("EXTRAMEET_BRAZENBITCH");
+			if (extrameetProfileStatus("EXTRAMEET_CASUALD") == num) pospro.push("EXTRAMEET_CASUALD");
+			if (extrameetProfileStatus("EXTRAMEET_LETHALLADY") == num) pospro.push("EXTRAMEET_LETHALLADY");
+			if (extrameetProfileStatus("EXTRAMEET_ROCKHARDFORYOU") == num) pospro.push("EXTRAMEET_ROCKHARDFORYOU");
+			if (extrameetProfileStatus("EXTRAMEET_MOONLESSNIGHTS") == num) pospro.push("EXTRAMEET_MOONLESSNIGHTS");
+			if (extrameetProfileStatus("EXTRAMEET_ALPHAWOLF") == num) pospro.push("EXTRAMEET_ALPHAWOLF");
+			break;
+		case "mhen'ga":
+			if (extrameetProfileStatus("EXTRAMEET_HUGGATREE") == num) pospro.push("EXTRAMEET_HUGGATREE");
+			if (extrameetProfileStatus("EXTRAMEET_HONEYPOTT") == num) pospro.push("EXTRAMEET_HONEYPOTT");
+			if (extrameetProfileStatus("EXTRAMEET_BOUNTIFULBOTANY") == num) pospro.push("EXTRAMEET_BOUNTIFULBOTANY");
+			if (extrameetProfileStatus("EXTRAMEET_SNEAKYSNEK") == num) pospro.push("EXTRAMEET_SNEAKYSNEK");
+			if (extrameetProfileStatus("EXTRAMEET_ENCHANTINGFAE") == num) pospro.push("EXTRAMEET_ENCHANTINGFAE");
+			if (extrameetProfileStatus("EXTRAMEET_BIGDAWG") == num) pospro.push("EXTRAMEET_BIGDAWG");
+			if (extrameetProfileStatus("EXTRAMEET_NYMPHO69") == num) pospro.push("EXTRAMEET_NYMPHO69");
+			if (extrameetProfileStatus("EXTRAMEET_SHOWYOURS2ME") == num) pospro.push("EXTRAMEET_SHOWYOURS2ME");
+			if (extrameetProfileStatus("EXTRAMEET_AWKWARDSOUL") == num) pospro.push("EXTRAMEET_AWKWARDSOUL");
+			if (extrameetProfileStatus("EXTRAMEET_GLITTERCUNT") == num) pospro.push("EXTRAMEET_GLITTERCUNT");
+			if (extrameetProfileStatus("EXTRAMEET_HOGWASH") == num) pospro.push("EXTRAMEET_HOGWASH");
+			if (extrameetProfileStatus("EXTRAMEET_DIRTYGUR114") == num) pospro.push("EXTRAMEET_DIRTYGUR114");
+			if (extrameetProfileStatus("EXTRAMEET_LOOKING4A3RD") == num) pospro.push("EXTRAMEET_LOOKING4A3RD");
+			if (extrameetProfileStatus("EXTRAMEET_DIGBICK") == num) pospro.push("EXTRAMEET_DIGBICK");
+			if (extrameetProfileStatus("EXTRAMEET_BIRDY") == num) pospro.push("EXTRAMEET_BIRDY");
+			break;
+		case "tarkus":
+			if (extrameetProfileStatus("EXTRAMEET_WANTSUMJUNK") == num) pospro.push("EXTRAMEET_WANTSUMJUNK");
+			if (extrameetProfileStatus("EXTRAMEET_XXTHRASHERCATXX") == num) pospro.push("EXTRAMEET_XXTHRASHERCATXX");
+			if (extrameetProfileStatus("EXTRAMEET_SWEETNLOW") == num) pospro.push("EXTRAMEET_SWEETNLOW");
+			if (extrameetProfileStatus("EXTRAMEET_MIDNIGHTXROSE") == num) pospro.push("EXTRAMEET_MIDNIGHTXROSE");
+			if (extrameetProfileStatus("EXTRAMEET_TRUEPOWER69") == num) pospro.push("EXTRAMEET_TRUEPOWER69");
+			if (extrameetProfileStatus("EXTRAMEET_R4X0121") == num) pospro.push("EXTRAMEET_R4X0121");
+			if (extrameetProfileStatus("EXTRAMEET_BEBOPBOSS") == num) pospro.push("EXTRAMEET_BEBOPBOSS");
+			if (extrameetProfileStatus("EXTRAMEET_SEXPLOSIVE") == num) pospro.push("EXTRAMEET_SEXPLOSIVE");
+			if (extrameetProfileStatus("EXTRAMEET_BIGGYZ") == num) pospro.push("EXTRAMEET_BIGGYZ");
+			if (extrameetProfileStatus("EXTRAMEET_POWERLOVERS2") == num) pospro.push("EXTRAMEET_POWERLOVERS2");
+			if (extrameetProfileStatus("EXTRAMEET_DIRTYHABITZ") == num) pospro.push("EXTRAMEET_DIRTYHABITZ");
+			if (extrameetProfileStatus("EXTRAMEET_AVRICE56") == num) pospro.push("EXTRAMEET_AVRICE56");
+			if (extrameetProfileStatus("EXTRAMEET_TWISTED") == num) pospro.push("EXTRAMEET_TWISTED");
+			if (extrameetProfileStatus("EXTRAMEET_SLAVEBOI") == num) pospro.push("EXTRAMEET_SLAVEBOI");
+			if (extrameetProfileStatus("EXTRAMEET_HAWTSHOT") == num) pospro.push("EXTRAMEET_HAWTSHOT");
+			break;
+		case "myrellion":
+			if (extrameetProfileStatus("EXTRAMEET_DOGGE") == num) pospro.push("EXTRAMEET_DOGGE");
+			if (extrameetProfileStatus("EXTRAMEET_DAREGULATOR") == num) pospro.push("EXTRAMEET_DAREGULATOR");
+			if (extrameetProfileStatus("EXTRAMEET_HUNTRESS") == num) pospro.push("EXTRAMEET_HUNTRESS");
+			if (extrameetProfileStatus("EXTRAMEET_MISTRESSVENOM") == num) pospro.push("EXTRAMEET_MISTRESSVENOM");
+			if (extrameetProfileStatus("EXTRAMEET_REBEL23") == num) pospro.push("EXTRAMEET_REBEL23");
+			if (extrameetProfileStatus("EXTRAMEET_SWEETHEART") == num) pospro.push("EXTRAMEET_SWEETHEART");
+			if (extrameetProfileStatus("EXTRAMEET_RDY4PLY") == num) pospro.push("EXTRAMEET_RDY4PLY");
+			if (extrameetProfileStatus("EXTRAMEET_AL") == num) pospro.push("EXTRAMEET_AL");
+			if (extrameetProfileStatus("EXTRAMEET_DEVIANTSHEEPDOG") == num) pospro.push("EXTRAMEET_DEVIANTSHEEPDOG");
+			if (extrameetProfileStatus("EXTRAMEET_NAUGHTY232") == num) pospro.push("EXTRAMEET_NAUGHTY232");
+			if (extrameetProfileStatus("EXTRAMEET_SIRENSONG") == num) pospro.push("EXTRAMEET_SIRENSONG");
+			if (extrameetProfileStatus("EXTRAMEET_KINKDADDY") == num) pospro.push("EXTRAMEET_KINKDADDY");
+			if (extrameetProfileStatus("EXTRAMEET_ALLYOURS12") == num) pospro.push("EXTRAMEET_ALLYOURS12");
+			if (extrameetProfileStatus("EXTRAMEET_PURPLEBOWTIE") == num) pospro.push("EXTRAMEET_PURPLEBOWTIE");
+			if (extrameetProfileStatus("EXTRAMEET_LEMMESMASH") == num) pospro.push("EXTRAMEET_LEMMESMASH");
+			break;
+		case "uveto station":
+		case "uveto vii":
+			if (extrameetProfileStatus("EXTRAMEET_THEPROFESSOR") == num) pospro.push("EXTRAMEET_THEPROFESSOR");
+			if (extrameetProfileStatus("EXTRAMEET_FUKA") == num) pospro.push("EXTRAMEET_FUKA");
+			if (extrameetProfileStatus("EXTRAMEET_SCIENCERULEZ41") == num) pospro.push("EXTRAMEET_SCIENCERULEZ41");
+			if (extrameetProfileStatus("EXTRAMEET_RIPPED4YOURPLEASURE") == num) pospro.push("EXTRAMEET_RIPPED4YOURPLEASURE");
+			if (extrameetProfileStatus("EXTRAMEET_STORMDRAGON") == num) pospro.push("EXTRAMEET_STORMDRAGON");
+			if (extrameetProfileStatus("EXTRAMEET_LOVEBELOW0") == num) pospro.push("EXTRAMEET_LOVEBELOW0");
+			if (extrameetProfileStatus("EXTRAMEET_ASSBLASTER") == num) pospro.push("EXTRAMEET_ASSBLASTER");
+			if (extrameetProfileStatus("EXTRAMEET_GRANITE75") == num) pospro.push("EXTRAMEET_GRANITE75");
+			if (extrameetProfileStatus("EXTRAMEET_SUPAXSTAR") == num) pospro.push("EXTRAMEET_SUPAXSTAR");
+			if (extrameetProfileStatus("EXTRAMEET_HALL9001") == num) pospro.push("EXTRAMEET_HALL9001");
+			if (extrameetProfileStatus("EXTRAMEET_HELLOIMPAUL") == num) pospro.push("EXTRAMEET_HELLOIMPAUL");
+			if (extrameetProfileStatus("EXTRAMEET_LONELY1") == num) pospro.push("EXTRAMEET_LONELY1");
+			if (extrameetProfileStatus("EXTRAMEET_HANSI") == num) pospro.push("EXTRAMEET_HANSI");
+			if (extrameetProfileStatus("EXTRAMEET_DOMME90") == num) pospro.push("EXTRAMEET_DOMME90");
+			if (extrameetProfileStatus("EXTRAMEET_BIGDICKRICK") == num) pospro.push("EXTRAMEET_BIGDICKRICK");
+			break;
+		case "new texas":
+			if (extrameetProfileStatus("EXTRAMEET_FRANKMOLLY") == num) pospro.push("EXTRAMEET_FRANKMOLLY");
+			if (extrameetProfileStatus("EXTRAMEET_PONYLUVER") == num) pospro.push("EXTRAMEET_PONYLUVER");
+			if (extrameetProfileStatus("EXTRAMEET_MISSYMAY") == num) pospro.push("EXTRAMEET_MISSYMAY");
+			if (extrameetProfileStatus("EXTRAMEET_VKO") == num) pospro.push("EXTRAMEET_VKO");
+			if (extrameetProfileStatus("EXTRAMEET_SEXYYDADDYY") == num) pospro.push("EXTRAMEET_SEXYYDADDYY");
+			if (extrameetProfileStatus("EXTRAMEET_FUNNYBOI1") == num) pospro.push("EXTRAMEET_FUNNYBOI1");
+			if (extrameetProfileStatus("EXTRAMEET_MYLITTLEFUNBOX") == num) pospro.push("EXTRAMEET_MYLITTLEFUNBOX");
+			if (extrameetProfileStatus("EXTRAMEET_YOURMOMMY") == num) pospro.push("EXTRAMEET_YOURMOMMY");
+			if (extrameetProfileStatus("EXTRAMEET_BRATTYKITTEN") == num) pospro.push("EXTRAMEET_BRATTYKITTEN");
+			if (extrameetProfileStatus("EXTRAMEET_EVERYTHINGDIES") == num) pospro.push("EXTRAMEET_EVERYTHINGDIES");
+			if (extrameetProfileStatus("EXTRAMEET_THICKLOADZ") == num) pospro.push("EXTRAMEET_THICKLOADZ");
+			if (extrameetProfileStatus("EXTRAMEET_STROKE4ME") == num) pospro.push("EXTRAMEET_STROKE4ME");
+			if (extrameetProfileStatus("EXTRAMEET_LAUGHINGDRAGON") == num) pospro.push("EXTRAMEET_LAUGHINGDRAGON");
+			if (extrameetProfileStatus("EXTRAMEET_THEBIGGESTHORSE") == num) pospro.push("EXTRAMEET_THEBIGGESTHORSE");
+			if (extrameetProfileStatus("EXTRAMEET_CUMSNUGGLE") == num) pospro.push("EXTRAMEET_CUMSNUGGLE");
+			break;
+		default:
+			//no content for location
+			trace("extrameetGetProfiles, no logic for " + loc);
+			break;
 	}
 	return pospro;
 }

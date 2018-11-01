@@ -409,7 +409,7 @@ public function askAboutDatSexyTessa():void
 	processTime(3);
 	
 	//+5 Trust each visit first time talked about
-	if (tessaTrust() < 70 && flags["TESSA_HERSELF"]!=1)
+	if (tessaTrust() < 70 && flags["TESSA_HERSELF"] != 1)
 	{
 		tessaTrust(10);
 		if (tessaTrust() > 70) flags["TESSA_TRUST"] = 70;
@@ -451,7 +451,7 @@ public function tessaSpecies():void
 	output("\n\nThe death glare Tessa shoots you ends the conversation quickly.");
 	
 	//+5 Trust each visit first time talked about
-	if (tessaTrust() < 70 && flags["TESSA_SPECIES"]!=1)
+	if (tessaTrust() < 70 && flags["TESSA_SPECIES"] != 1)
 	{
 		tessaTrust(10);
 		if (tessaTrust() > 70) flags["TESSA_TRUST"] = 70;
@@ -484,7 +484,7 @@ public function whySoLonelyTessa():void
 	processTime(5);
 	
 	//+5 Trust each visit first time talked about
-	if (tessaTrust() < 70 && flags["TESSA_ALONE"]!=1)
+	if (tessaTrust() < 70 && flags["TESSA_ALONE"] != 1)
 	{
 		tessaTrust(10);
 		if (tessaTrust() > 70) flags["TESSA_TRUST"] = 70;
@@ -637,7 +637,7 @@ public function whatSexyTessaDo():void
 		addButton(0,"Next",talkWifDatLizTessa);
 	}
 	
-	if (tessaTrust() <70 && flags["TESSA_JOB"]!= 1)
+	if (tessaTrust() < 70 && flags["TESSA_JOB"] != 1)
 	{
 		tessaTrust(10);
 		if (tessaTrust() > 70) flags["TESSA_TRUST"] = 70;
@@ -911,13 +911,22 @@ public function tessaNewIdea():void
 	else if (flags["TESSA_ORAL"] == undefined) addDisabledButton(1,"Oral","Oral");
 	if (tessaTrust()>=90 &&pc.hasGenitals() && flags["TESSA_ORAL"] != undefined && flags["TESSA_PCNEEDS"] == undefined) addButton(2,"My Turn",tessaPCNeeds,undefined,"My Turn","Promises should be kept.");
 	else if (flags["TESSA_PCNEEDS"] == undefined) addDisabledButton(2,"My Turn","My Turn");
-	if (flags["TESSA_H2H1"]!= undefined && pc.biggestTitSize() > 4 && CodexManager.entryViewed("Ovir") && chars["JADE"].hasTentacleNipples() && flags["TESSA_BREAST"] == undefined) addButton(3,"Her Breasts",tessaBreasts,undefined,"Her Breasts","Who doesn’t love boobs?");
-	else if (flags["TESSA_BREAST"] == undefined) addDisabledButton(3,"Her Breasts","Her Breasts","You’ll need to know somebody who has gotten new nipples for their breasts as well as have read the Ovir Codex entry for this. Pretty complicated, but Tessa is a complicated girl!");
-	if (flags["TESSA_H2H1"]!= undefined && pc.hasItemByClass(HoneyWine)&& StatTracking.getStat("contests/kiro drinkoff wins") >0 && flags["TESSA_DRINK"] == undefined) addButton(4,"Drink",tessaDrinkOff,undefined,"Drink Together","Can she say no to a drink?");
-	else if (flags["TESSA_DRINK"] == undefined) addDisabledButton(4,"Drink","Drink Together","Maybe you should get some wine or prove you can hold your drink.");
+	if (flags["TESSA_BREAST"] == undefined)
+	{
+		if (flags["TESSA_H2H1"]!= undefined && CodexManager.entryViewed("Ovir") && chars["JADE"].hasTentacleNipples())
+		{
+			if(pc.biggestTitSize() <= 4) addDisabledButton(3,"Her Breasts","Her Breasts","You’ll need sizeable breasts in order to try this!");
+			else addButton(3,"Her Breasts",tessaBreasts,undefined,"Her Breasts","Who doesn’t love boobs?");
+		}
+		else addDisabledButton(3,"Her Breasts","Her Breasts","You’ll need to know somebody who has gotten new nipples for their breasts as well as have read the Ovir Codex entry for this. Pretty complicated, but Tessa is a complicated girl!");
+	}
+	if(flags["TESSA_DRINK"] == undefined)
+	{
+		if (flags["TESSA_H2H1"]!= undefined && pc.hasItemByClass(HoneyWine)&& StatTracking.getStat("contests/kiro drinkoff wins") > 0) addButton(4,"Drink",tessaDrinkOff,undefined,"Drink Together","Can she say no to a drink?");
+		else addDisabledButton(4,"Drink","Drink Together","Maybe you should get some wine or prove you can hold your drink.");
+	}
 	addButton(14,"Back",flirtWithTessa,undefined,"Back","Maybe not.");
-}	
-		
+}
 public function tessaHandsy():void
 {	
 	clearOutput();
@@ -1225,7 +1234,7 @@ public function tessaPcOral ():void
 		output("\n\nYou speak up after a long pause. <i>“We can do it again.”</i> You reach down and stroke yourself. <i>“It won’t take me long to get ready.”</i> You give the ovir a smile of your own.");
 		output("\n\nTessa stays silent a moment. <i>“No. That’s enough for me.”</i> Tessa sighs and pulls herself to her feet, taking another swig of her drink. <i>“I need to brush my teeth or something.”</i> Tessa stares off into the distance, her still red face giving you the impression that the <i>or something</i> she mentioned was likely going to be messy.");
 		output("\n\nYou rise to your feet and sigh. You know the drill and gather your stuff. While getting ready to leave, you can’t help but notice Tessa watching you, sipping away at her drink. You move to the ships exit and hear Tessa call to you. Turning you see the ovir woman holding her beer in both hands, tail swishing behind her.");
-		output("\n\n“If it’s alright with you. I think we should do that again....” She blushes. It was a funny way to say she liked it, but it was welcome.");
+		output("\n\n<i>“If it’s alright with you. I think we should do that again....”</i> She blushes. It was a funny way to say she liked it, but it was welcome.");
 		output("\n\nYou smile and nod. <i>“Sure, I think that would be great. Wouldn’t want you skip any more meals now would we?”</i>");
 		output("\n\nTessa’s expression changes and she scowls. You yelp and run out of the ship as Tessa hurls her still half full bottle at you, smashing it against the wall. You hear here call after you. <i>“Asshole! I’ll see you at the bar!”</i>");
 	

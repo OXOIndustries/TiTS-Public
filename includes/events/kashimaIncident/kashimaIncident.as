@@ -476,7 +476,7 @@ public function lustyBugponyCocked():void
 			
 			output("\n\n<i>“O-oh <b>fuck!</b>”</i> she cries out, clawing her fingers at the unyielding steel of the bulkhead. <i>“S-so big... take it slow!”</i>");
 			
-			output("\n\nYou can’t go much slower, unless she wants you to cum before you’re half way in. Then again, the way her pussy’s clenching and squirting around your shaft, something tells you she doesn’t <i>want</i> you to slow do. Quite the opposite. Giving her a reassuring rub on the haunch, you give the buxom amazon a second of stillness to adjust to you as best she can... before you grab two handfuls of ass and ram yourself in to the hilt.");
+			output("\n\nYou can’t go much slower, unless she wants you to cum before you’re half way in. Then again, the way her pussy’s clenching and squirting around your shaft, something tells you she doesn’t <i>want</i> you to slow down. Quite the opposite. Giving her a reassuring rub on the haunch, you give the buxom amazon a second of stillness to adjust to you as best she can... before you grab two handfuls of ass and ram yourself in to the hilt.");
 
 			output("\n\n<i>“Gah!”</i> she screams, knees buckling. She staggers, groping helplessly at the smooth metal around her until she’s slinking onto her forelegs’ knees, body still rocking with the ecstatic shockwaves of your surprise attack. You can’t help but appreciate the way her big tits spread out like clay on the cold steel, and the spastic way her twat squeezes and cums around your shaft, spraying your thighs with thick, musky leithan fem-cum. <i>“B-"+ pc.mf("bastard", "bitch") +"! I said-”</i>");
 

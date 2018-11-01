@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.CockClass;
 	
 	public class Syri extends Creature
 	{
@@ -194,9 +195,13 @@
 		}
 		public function UpgradeVersion5(dataObject:Object):void
 		{
+			if(dataObject.cocks.length <= 0) dataObject.cocks.push(new CockClass());
 			dataObject.cocks[0].cType = GLOBAL.TYPE_CANINE;
 			dataObject.cocks[0].cockColor = "red";
+			dataObject.cocks[0].cThicknessRatioRaw = 1.5;
 			dataObject.cocks[0].knotMultiplier = 1.5;
+			if(dataObject.cocks[0].cockFlags.indexOf(GLOBAL.FLAG_TAPERED) == -1) dataObject.cocks[0].cockFlags.push(GLOBAL.FLAG_TAPERED);
+			if(dataObject.cocks[0].cockFlags.indexOf(GLOBAL.FLAG_KNOTTED) == -1) dataObject.cocks[0].cockFlags.push(GLOBAL.FLAG_KNOTTED);
 		}
 	}
 }

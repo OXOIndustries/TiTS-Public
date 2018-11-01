@@ -282,7 +282,7 @@ package classes.GameData
 			ThermalDisruptor.RequiresPerk = "Thermal Disruptor";
 			ThermalDisruptor.DisabledIfEffectedBy = ["Disarmed"];
 			ThermalDisruptor.TooltipTitle = "Thermal Disruptor";
-			ThermalDisruptor.TooltipBody = "Deals a large amount of intelligence-based thermal damage to a single target.";
+			ThermalDisruptor.TooltipBody = "Deals a large amount of intelligence-based, thermal damage to a single target before spreading out to nearby foes.";
 			ThermalDisruptor.Implementor = ThermalDisruptorImpl;
 			ThermalDisruptor.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(ThermalDisruptor);
@@ -294,7 +294,7 @@ package classes.GameData
 			GravidicDisruptor.RequiresPerk = "Gravidic Disruptor";
 			GravidicDisruptor.DisabledIfEffectedBy = ["Disarmed"];
 			GravidicDisruptor.TooltipTitle = "Gravidic Disruptor";
-			GravidicDisruptor.TooltipBody = "Deals a moderate amount of intelligence-based, Unresistable damage to a single target.";
+			GravidicDisruptor.TooltipBody = "Deals a moderate amount of intelligence-based, unresistable damage to a single target before spreading out to nearby foes.";
 			GravidicDisruptor.Implementor = GravidicDisruptorImpl;
 			GravidicDisruptor.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(GravidicDisruptor);
@@ -1526,7 +1526,6 @@ package classes.GameData
 			if (target is Cockvine)
 			{
 				kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, true, false, false);
-				//(damageValue:TypeCollection, pluralNades:Boolean = false, usedLauncher:Boolean = false, isLustGas:Boolean = false):void
 			}
 			
 			for (var x:int = 0; x < hGroup.length; x++)
@@ -1550,7 +1549,6 @@ package classes.GameData
 			if (target is Cockvine)
 			{
 				kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, false, false, false);
-				//(damageValue:TypeCollection, pluralNades:Boolean = false, usedLauncher:Boolean = false, isLustGas:Boolean = false):void
 			}
 			
 			applyDamage(damage, attacker, target);
@@ -1756,7 +1754,7 @@ package classes.GameData
 			
 			if (CombatManager.multipleEnemies())
 			{
-				output(" The flames surge, licking at your targets compatriots!");
+				output(" The flames surge, licking at your target’s compatriots!");
 			}
 			
 			var targetDamage:int = Math.round(20 + attacker.level * 4 + attacker.bimboIntelligence());
@@ -1774,13 +1772,13 @@ package classes.GameData
 			{
 				if (hGroup[i] != target && !hGroup[i].isDefeated())
 				{
-					totalDamage.addResult(applyDamage(damageRand((target.isPlural == true ? pluralDamage : baseDamage), 15), attacker, hGroup[i], "suppress"));
+					totalDamage.addResult(applyDamage(damageRand((hGroup[i].isPlural == true ? pluralDamage : baseDamage), 15), attacker, hGroup[i], "suppress"));
 				}
 			}
 			
 			outputDamage(totalDamage);
 
-			if(!target.hasStatusEffect("Burning"))
+			if(attacker.hasPerk("Boosted Charges") && !target.hasStatusEffect("Burning") && rand(3) != 0)
 			{
 				applyBurning(target, 2);
 				if (target is PlayerCharacter) output("\n<b>You are on fire!</b>");
@@ -1823,9 +1821,9 @@ package classes.GameData
 			
 			for (var i:int = 0; i < hGroup.length; i++)
 			{
-				if (hGroup[i] != target)
+				if (hGroup[i] != target && !hGroup[i].isDefeated())
 				{
-					totalDamage.addResult(applyDamage(damageRand((target.isPlural == true ? pluralDamage : baseDamage), 15), attacker, hGroup[i], "suppress"));
+					totalDamage.addResult(applyDamage(damageRand((hGroup[i].isPlural == true ? pluralDamage : baseDamage), 15), attacker, hGroup[i], "suppress"));
 				}
 			}
 			
@@ -2215,8 +2213,16 @@ package classes.GameData
 				
 				var damage:TypeCollection = damageRand(new TypeCollection( { drug: d } ), 15);
 				
-				if (cTarget is Cockvine) kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, false, false, true);
 				if (cTarget.hasPerk("Get Down!")) ++gasDodged;
+				if (cTarget is Cockvine)
+				{
+					kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, false, false, true);
+				}
+				if(cTarget.hasAirtightSuit())
+				{
+					output("\nThe attack is ineffective against " + ((hGroup.length == 1 || (cTarget is PlayerCharacter)) ? cTarget.getCombatPronoun("hisher") : (cTarget.getCombatName() + "’s")) + " airtight suit" + (((cTarget is PlayerCharacter) || !cTarget.isPlural) ? "" : "s") + "!");
+					continue;
+				}
 				
 				totalDamage.addResult(applyDamage(damage, attacker, cTarget, "suppress"));
 			}
@@ -2654,12 +2660,20 @@ package classes.GameData
 			}
 			if(target is NaleenHerm)
 			{
-				target.addStatusValue("Counters Ranged",1,1);
-				target.setStatusValue("Counters Melee",1,0);
-				if(target.statusEffectv1("Counters Ranged") >= 3)
+				if(target.isBlind() || target.isImmobilized())
 				{
-					(target as NaleenHerm).rangedCounter(attacker);
-					return true;
+					target.setStatusValue("Counters Melee",1,0);
+					target.setStatusValue("Counters Ranged",1,0);
+				}
+				else
+				{
+					target.addStatusValue("Counters Ranged",1,1);
+					target.setStatusValue("Counters Melee",1,0);
+					if(target.statusEffectv1("Counters Ranged") >= 3)
+					{
+						(target as NaleenHerm).rangedCounter(attacker);
+						return true;
+					}
 				}
 			}
 			return false;
@@ -2673,12 +2687,20 @@ package classes.GameData
 			}
 			if(target is NaleenHerm)
 			{
-				target.addStatusValue("Counters Melee",1,1);
-				target.setStatusValue("Counters Ranged",1,0);
-				if(target.statusEffectv1("Counters Melee") >= 3)
+				if(target.isBlind() || target.isImmobilized())
 				{
-					(target as NaleenHerm).meleeCounter(attacker);
-					return true;
+					target.setStatusValue("Counters Melee",1,0);
+					target.setStatusValue("Counters Ranged",1,0);
+				}
+				else
+				{
+					target.addStatusValue("Counters Melee",1,1);
+					target.setStatusValue("Counters Ranged",1,0);
+					if(target.statusEffectv1("Counters Melee") >= 3)
+					{
+						(target as NaleenHerm).meleeCounter(attacker);
+						return true;
+					}
 				}
 			}
 			return false;

@@ -77,6 +77,8 @@ public function startMindwashSceneLucas(choice:String = "menu"):void
 		author("Adjatha");
 		
 		output("A menu spits a torrent of small, preview images out. With the sheer volume of smut available, it’d be impossible to focus on a single one. With a little effort, you could at least narrow down what kind of character you’ll be inhabiting.\n\nAlthough... there’s a pink flashing selection marked “CoC” that always seems to be there. You could give that a go.");
+
+		if(isHalloweenish()) output("\n\nA glowing, orange box pops up, interrupting your experience before it even starts. It reads <i>“Click here if you dare!”</i> and has a small, photo-negative picture of a screaming face next to it. Is this some kind of advertising? A virus? Or maybe somebody’s just been screwing with the machine?");
 		
 		processTime(1);
 		clearMenu();
@@ -87,6 +89,7 @@ public function startMindwashSceneLucas(choice:String = "menu"):void
 		addButton(2,"Female",startMindwashSceneLucas, "female");
 		addButton(3,"Futa",startMindwashSceneLucas, "futa");
 		addButton(4,"Game: CoC",startMindwashSceneLucas,"CoC");
+		if(isHalloweenish()) addButton(5,"Pop-Up Ad",startingThisShit,undefined,"Pop-Up Ad","This hacked scenario seems to be holiday-related. Maybe it's worth checking out? From what you can see, you'll be playing from the point of view of a male avatar. The whole thing seems vaguely sketchy. Hopefully it doesn't give you some kind of brain virus.");
 		return;
 	}
 	if(characterSelect && choice != "random")
@@ -324,7 +327,7 @@ public function mindwashVisorScenes(choice:String = "menu"):void
 		author("Adjatha");
 		
 		output("A menu spits a torrent of small, preview images out. With the sheer volume of smut available, it’d be impossible to focus on a single one. With a little effort, you could at least narrow down what kind of character you’ll be inhabiting.\n\nAlthough... there’s a pink flashing selection marked “CoC” that always seems to be there. You could give that a go.");
-		
+		if(isHalloweenish()) output("\n\nA glowing, orange box pops up, interrupting your experience before it even starts. It reads <i>“Click here if you dare!”</i> and has a small, photo-negative picture of a screaming face next to it. Is this some kind of advertising? A virus? Or maybe somebody’s just been screwing with the machine?");
 		processTime(1);
 		clearMenu();
 		// [Random] [Male] [Female] [Futa]
@@ -334,6 +337,7 @@ public function mindwashVisorScenes(choice:String = "menu"):void
 		addButton(2,"Female",mindwashVisorScenes, "female");
 		addButton(3,"Futa",mindwashVisorScenes, "futa");
 		addButton(4,"Game: CoC",mindwashVisorScenes,"CoC");
+		if(isHalloweenish()) addButton(5,"Pop-Up Ad",startingThisShit,undefined,"Pop-Up Ad","This hacked scenario seems to be holiday-related. Maybe it's worth checking out? From what you can see, you'll be playing from the point of view of a male avatar. The whole thing seems vaguely sketchy. Hopefully it doesn't give you some kind of brain virus.");
 		return;
 	}
 	

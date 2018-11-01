@@ -1051,9 +1051,9 @@ public function defeatTheSlavebreaker():void
 	}
 	if(enemy.hasItemByClass(Throbb))
 	{
-		if(CodexManager.entryUnlocked("Throbb"))
+		if(!CodexManager.entryUnlocked("Throbb"))
 		{
-			output("\n\nYour Codex identifies an injector she’s carrying as Throbb - an illegal drug that causes phallic growth in its users. Perhaps she’d be a bit more amenable if you used it on her? (<b>Codex Entry Unlocked!</b>)");
+			output("\n\nYour Codex identifies an injector she’s carrying as Throbb - an illegal drug that causes phallic growth in its users. Perhaps she’d be a bit more amenable if you used it on her? (<b>(‘Throbb’ Codex entry unlocked!)</b>)");
 			CodexManager.unlockEntry("Throbb");
 		}
 		else output("\n\nShe’s packing some Throbb. It might be fun to give this tease a dose of her own medicine.");

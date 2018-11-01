@@ -121,7 +121,7 @@ package classes.Items.Transformatives
 					output("\n\nYou ache with desire, maleness");
 					if(pc.cockTotal() > 1) output("es");
 					output(" jutting free.");
-					if(pc.cockTotal() > 1) output(" One in particular throbs more than the other" + (pc.cockTotal() > 2 ? "s":"") + ": your [pc.cock " + selCock + "]");
+					if(pc.cockTotal() > 1) output(" One in particular throbs more than the other" + (pc.cockTotal() > 2 ? "s":"") + ": your [pc.cock " + selCock + "].");
 					output(" You reach down to give it a squeeze, and the answering sensation of taut, tight pleasure nearly knocks you out. You collapse, panting heavily. Your tongue won’t stay in your mouth anymore than your hand will let go of your dick.");
 					output("\n\nYou squeeze again. This time the ecstasy comes with a fantasy: the mental image a canine woman, bent over and presenting. She’s soaked, her cunt <i>dripping</i> with excitement as she watches you over her shoulder. Her scent is everywhere. It consumes you. It makes your cock ache. The urge to mount her is nearly overwhelming, yet your body won’t cooperate.");
 					output("\n\nSitting with your pointed cock in your hand, can only let it play out.");

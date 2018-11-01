@@ -137,6 +137,7 @@
 			this.createVagina();
 			this.girlCumType = GLOBAL.FLUID_TYPE_HONEY;
 			this.vaginalVirgin = false;
+			this.vaginas[0].hymen = false;
 			this.vaginas[0].loosenessRaw = 2;
 			this.vaginas[0].wetnessRaw = 4;
 			this.vaginas[0].type = GLOBAL.TYPE_BEE;
@@ -170,6 +171,7 @@
 			this.milkType = GLOBAL.FLUID_TYPE_HONEY;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
+			this.analVirgin = false;
 			this.ass.wetnessRaw = 0;
 			this.ass.bonusCapacity += 15;
 			this.createStatusEffect("Disarm Immune");
@@ -200,7 +202,12 @@
 			
 			long = "The female zil stands just shy of 5\'6\", and is covered from head to toes in shiny black chitin. A downy fuzz falls from her head down to her shoulders, resembling curly " + hairColor + " hair. She’s got dozens of sharp darts on her belt, noticeably discolored with chemicals, and a number of glass vials at hand full of who-knows what. Worse, she’s got a full bee-like abdomen behind her with a deadly-looking stinger. She moves with a liquid, feline grace, assuming a combat stance that leaves her crotch pointed at you to fill the air with lusty pheromones as her perky tits jut out at you, bobbing from side to side enticingly.";
 		}
-		
+		public function pumpkingIt():void
+		{
+			isUniqueInFight = false;
+			this.rangedWeapon = new LaserCarbine();
+			this.inventory = [];
+		}
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			if (dataObject.legFlags.length == 0)
@@ -230,18 +237,24 @@
 			var target:Creature = selectTarget(hostileCreatures);
 			
 			if (target == null) return;
-			
-			if (flags["HIT_A_ZILGIRL"] != undefined) 
+			if(this.rangedWeapon is LaserCarbine)
 			{
-				flags["HIT_A_ZILGIRL"] = undefined;
-				zilFemSting(target);
+				CombatAttacks.SingleRangedAttackImpl(this, target);
 			}
-			else if(rand(4) == 0) lustBangOut(target);
-			else if((HP()/HPMax()) < 0.5 && rand(4) == 0) zilFemSting(target);
-			else if(rand(4) == 0) pheromoneFanFromZilFemale(target);
-			else if(rand(3) == 0) zilFemaleDartThrow(target);
-			else if(rand(2) == 0) flurryOfFemBlows(target);
-			else zilFemHarden(target);
+			else
+			{
+				if (flags["HIT_A_ZILGIRL"] != undefined) 
+				{
+					flags["HIT_A_ZILGIRL"] = undefined;
+					zilFemSting(target);
+				}
+				else if(rand(4) == 0) lustBangOut(target);
+				else if((HP()/HPMax()) < 0.5 && rand(4) == 0) zilFemSting(target);
+				else if(rand(4) == 0) pheromoneFanFromZilFemale(target);
+				else if(rand(3) == 0) zilFemaleDartThrow(target);
+				else if(rand(2) == 0) flurryOfFemBlows(target);
+				else zilFemHarden(target);
+			}
 		}
 		
 		private function zilFemHarden(target:Creature):void

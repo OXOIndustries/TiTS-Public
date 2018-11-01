@@ -308,7 +308,7 @@ public function syriQuestGetJiggly():void {
 
 	processTime(30+rand(15));
 	//Give minor exhibitionism.
-	pc.exhibitionism(2);
+	pc.exhibitionism(1);
 	pc.lust(33);
 	//pc.loadInMouth(chars["SYRI"]);
 	chars["SYRI"].orgasm();

@@ -108,15 +108,16 @@ package classes.GameData.Pregnancy.Handlers
 			{
 				return function():void
 				{
-					kGAMECLASS.expelButtBugEgg(c_mother.pregnancyData[c_pregSlot].pregnancyQuantity);
-					ButtBugPregnancy.cleanupPregnancy(c_mother, c_pregSlot, c_thisPtr);
+					var eggs:int = c_mother.pregnancyData[c_pregSlot].pregnancyQuantity;
+					kGAMECLASS.expelButtBugEgg(eggs);
+					ButtBugPregnancy.cleanupPregnancy(c_mother, c_pregSlot);
 				}
 			})(mother, pregSlot, thisPtr);
 			
 			kGAMECLASS.eventQueue.push(tEventCall);
 		}
 		
-		public static function cleanupPregnancy(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
+		public static function cleanupPregnancy(mother:Creature, pregSlot:int):void
 		{
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
@@ -133,7 +134,7 @@ package classes.GameData.Pregnancy.Handlers
 			
 			kGAMECLASS.trackButtBugEggs(buttBugF, "infertile", eggs);
 			
-			ButtBugPregnancy.cleanupPregnancy(mother, pregSlot, this);
+			ButtBugPregnancy.cleanupPregnancy(mother, pregSlot);
 			return null;
 		}
 	}

@@ -130,7 +130,7 @@ package classes.UIComponents.ContentModules
 			
 			// Make some buttons available
 			kGAMECLASS.userInterface.clearGhostMenu();
-			kGAMECLASS.userInterface.addGhostButton(14, "Back", kGAMECLASS.backToPrimaryOutput);
+			kGAMECLASS.userInterface.addGhostButton(14, "Back", kGAMECLASS.backToPrimaryOutput, true);
 			
 			_targetCreature = tarCreature;
 			_pointDistribution = new Array();

@@ -949,7 +949,7 @@ public function loseToKorgonneWithABigDickAfterGivingHerBigDickFetish2():void
 
 public function eligibleForKorgiHumiliation():Boolean
 {
-	return (pc.hasCock() && pc.biggestCockThickness() < 2.7);
+	return (pc.hasCock() && pc.biggestCockThickness() >= 2.7);
 }
 
 //hardlight overclock versus giant korgonne pussy [tbd title]

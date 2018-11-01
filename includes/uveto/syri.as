@@ -75,7 +75,7 @@ public function syriFreezerTalkMenu(outputs:Boolean = true):void
 	}
 	addButton(1,"What’s Next?",syriFreezerTalkWhatsNext,undefined,"What’s Next?","What’s next for Syri Dorna?");
 	//dont activate this if the quest got refused
-	if (flags["SYRIQUEST_STATE"] >= 21)
+	if (flags["SYRIQUEST_STATE"] >= 23)
 	{
 		if(flags["SYRIQUEST_POST_GAME_TALK_LOVE"] == undefined) addButton(2,"Love?",syriFreezerTalkLove,undefined,"Love?","Syri dropped a very particular word at the end of your mission to save Valden. Press her on it.");
 		else addDisabledButton(2,"Love?");
@@ -84,13 +84,13 @@ public function syriFreezerTalkMenu(outputs:Boolean = true):void
 	{
 		if (flags["SYRIQUEST_POST_GAME_TALK_PENIS"] >= 1) addButton(3,"Penis",syriFreezerTalkPenis,undefined,"Penis","So now that Valden’s the living dead, what’s Syri gonna do about her dick?");
 		else addDisabledButton(3,"Locked");
-		if (flags["SYRIQUEST_POST_GAME_TALK_PENIS"] >= 2)
-		{
-			if(flags["SYRIQUEST_SYRI_ONAHOLE"] == 1) addButton(4, "Cunt Sleeve", syriFreezerTalkCuntSleeve, undefined, "Cunt Sleeve", "Since Syri’s not interested in a new pussy, maybe she’d be interested in seeing what happened to the old model...");
-			else addDisabledButton(4, "Cunt Sleeve", "Cunt Sleeve", "Since Syri’s not interested in a new pussy, maybe she’d be interested in seeing what happened to the old model...");
-		}
-		else addDisabledButton(4,"Locked");
 	}
+	if (flags["SYRIQUEST_POST_GAME_TALK_PENIS"] >= 2 || flags["SYRIQUEST_SYRI_ONAHOLE"] >= 1)
+	{
+		if(flags["SYRIQUEST_SYRI_ONAHOLE"] == 1) addButton(4, "Cunt Sleeve", syriFreezerTalkCuntSleeve, undefined, "Cunt Sleeve", (flags["SYRIQUEST_POST_GAME_TALK_PENIS"] >= 2 ? "Since Syri’s not interested in a new pussy, maybe she’d be interested in seeing what happened to the old model..." : "Return Syri’s pussy."));
+		else addDisabledButton(4, "Cunt Sleeve", "Cunt Sleeve", "Since Syri’s not interested in a new pussy, maybe she’d be interested in seeing what happened to the old model...");
+	}
+	else if(flags["SYRIQUEST_POST_GAME_TALK_PENIS"] >= 2) addDisabledButton(4,"Locked");
 	addButton(5,"Books",syriTalkThree,undefined,"Books","What is she reading these days?");
 	addButton(14,"Back",syriFreezerMenu,false);
 }
@@ -205,7 +205,7 @@ public function syriFreezerTalkCuntSleeve():void
 	output("<i>“Hey, I found something in the Akkadi base you might be interested in,”</i> you tell her, reaching into your pack and pulling out the black plastic tube. It makes a soft beep as you transfer it over to Syri -- didn’t do that for you, did it? ");
 	output("\n\nThe ausar girl flips the sleeve around in her hands, looking it over. <i>“Nice, a... flashlight? Can always use one of those I guess.”</i>");
 	output("\n\nYou roll your eyes and tell her to look inside.");
-	output("\n\nSyri furrows her brow but does as you say, unscrewing the top cover and staring inside. Her lips scrunch together as she stares into her own quivering pussylips. After a long moment of staring, Syri snickers and looks up at you. <i>“No way. I recognize that little little birthmark next to the lips. The way the left one folds a little... holy shit [pc.name] is this actually...?”</i>");
+	output("\n\nSyri furrows her brow but does as you say, unscrewing the top cover and staring inside. Her lips scrunch together as she stares into her own quivering pussylips. After a long moment of staring, Syri snickers and looks up at you. <i>“No way. I recognize that little birthmark next to the lips. The way the left one folds a little... holy shit [pc.name] is this actually...?”</i>");
 	output("\n\n<i>“Yeah it is.”</i> You have no idea why Akkadi kept it, much less kept it alive in a sleeve like this... and it’s probably best not to think too hard about it. Point is, you found Syri’s puss in its own little living onahole.");
 	output("\n\n<i>“Like one of those bi-onahole-thingies,”</i> Syri says. <i>“I thought they were a TamaniCorp thing. Not that I’m complaining. As much as I totally said I don’t want this back between my legs... it’s fucking cool to have it back and living! I wonder if...”</i>");
 	output("\n\nFlashing you a grin, Syri plants the bottom of the onahole on the table and presses two fingers into the top, straight down into her ex-twat. You hear a wet <i>schlick</i> sound, and Syri’s tail shoots out straight behind her. <i>“Whew! Phantom pleasure right there... aaaand that’s it. Damn, I was hoping I’d actually be able to fuck myself. I mean, I guess technically I can but I don’t think I’m gonna really feel it. Oh well. Thanks, [pc.name]. Now I’ve got a proper cocksleeve when you’re not around.”</i>");

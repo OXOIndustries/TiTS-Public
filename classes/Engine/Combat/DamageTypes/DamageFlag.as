@@ -98,7 +98,7 @@ package classes.Engine.Combat.DamageTypes
 				_thisFlag = UNSET;
 			}
 			// Build defaults based on supplied flag.
-			else if (dFlag != UNSET)
+			else if (dFlag != UNSET && (dTriggers == null || dTriggers.length == 0))
 			{
 				// Try and create the default values if none were specified
 				switch (dFlag)

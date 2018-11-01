@@ -177,6 +177,8 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "RIPPED4YOURPLEASURE", EMRipped4YourPleasure);
 	prepChar(justUpdate, "STORMDRAGON", EMStormDragon);
 	prepChar(justUpdate, "MAIKE", Maike);
+	prepChar(justUpdate, "AINA", Aina);
+	prepChar(justUpdate, "DRYAD", Dryad);
 	
 	
 	// Check all characters have version information set
