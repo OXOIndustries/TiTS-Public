@@ -254,6 +254,8 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/dryad.png", mimeType = "image/png")]
 		public var Bust_DRYAD:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/dryad_dumbfuck.png", mimeType = "image/png")]
+		public var Bust_DRYAD_DUMBFUCK:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/egg_trainer.png", mimeType = "image/png")]
 		public var Bust_EGG_TRAINER:Class;
@@ -1177,6 +1179,8 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/dryad.png", mimeType = "image/png")]
 			public var Full_DRYAD:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/dryad_dumbfuck.png", mimeType = "image/png")]
+			public var Full_DRYAD_DUMBFUCK:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/egg_trainer.png", mimeType = "image/png")]
 			public var Full_EGG_TRAINER:Class;

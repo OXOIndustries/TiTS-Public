@@ -13,7 +13,8 @@ public function dryadHeader():void
 }
 public function dryadBustDisplay():String
 {
-	return "DRYAD";
+	if(amberDumbfuckDoses() >= 3) return "DRYAD_DUMBFUCK";
+	else return "DRYAD";
 }
 
 public function dryadIsActive():Boolean

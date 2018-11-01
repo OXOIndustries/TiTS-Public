@@ -73,6 +73,40 @@ public function amberEncounterAppend():void
 		output("\n\n<b>If you could get some ‘taur-centric equipment from a merchant, you might be able to convince her to board your ship. Maybe Urbolg would know where to get some.</b>");
 	}
 }
+//returns number of doses of dumbfuck she has taken
+public function amberDumbfuckDoses():int
+{
+	if (flags["AMBER_DUMBFUCK"] == undefined) return 0;
+	
+	return flags["AMBER_DUMBFUCK"];
+}
+//returns if amber is in heat or not
+public function amberInHeat():Boolean
+{
+	//for when cure content is implemented
+	if (flags["AMBER_CURED"] == 1) return false;
+	//below is a temp solution until crew sex events are implemented
+	if (flags["AMBER_CREW_SEX"] == 1)
+	{
+		if (celiseIsCrew()) return false;
+		if (annoIsCrew()) return false;
+		if (mitziIsCrew()) return false;
+	}
+	
+	var timeframe:int = 4320; //3 days
+	if (flags["AMBER_LASTCUM"] == undefined) return false;
+	
+	if (GetGameTimestamp() - timeframe > flags["AMBER_LASTCUM"]) return true;
+	else return false;
+}
+//returns if currently under the effects of a dose of dumbfuck
+public function amberCurrentlyDumbfucked():Boolean
+{
+	var timeframe:int = 1440; //1 days
+	if (flags["AMBER_DUMBFUCK_LASTGIVEN"] == undefined) return false;
+	if (GetGameTimestamp() - timeframe < flags["AMBER_DUMBFUCK_LASTGIVEN"]) return true;
+	else return false;
+}
 //show taur equip button in Urlbolg talk
 public function amberShowTaurEquipButton():Boolean
 {
@@ -554,40 +588,7 @@ public function amberInTheHold():void
 	}
 	amberMainMenu();
 }
-//returns number of doses of dumbfuck she has taken
-public function amberDumbfuckDoses():int
-{
-	if (flags["AMBER_DUMBFUCK"] == undefined) return 0;
-	
-	return flags["AMBER_DUMBFUCK"];
-}
-//returns if amber is in heat or not
-public function amberInHeat():Boolean
-{
-	//for when cure content is implemented
-	if (flags["AMBER_CURED"] == 1) return false;
-	//below is a temp solution until crew sex events are implemented
-	if (flags["AMBER_CREW_SEX"] == 1)
-	{
-		if (celiseIsCrew()) return false;
-		if (annoIsCrew()) return false;
-		if (mitziIsCrew()) return false;
-	}
-	
-	var timeframe:int = 4320; //3 days
-	if (flags["AMBER_LASTCUM"] == undefined) return false;
-	
-	if (GetGameTimestamp() - timeframe > flags["AMBER_LASTCUM"]) return true;
-	else return false;
-}
-//returns if currently under the effects of a dose of dumbfuck
-public function amberCurrentlyDumbfucked():Boolean
-{
-	var timeframe:int = 1440; //1 days
-	if (flags["AMBER_DUMBFUCK_LASTGIVEN"] == undefined) return false;
-	if (GetGameTimestamp() - timeframe < flags["AMBER_DUMBFUCK_LASTGIVEN"]) return true;
-	else return false;
-}
+
 //main menu for interacting with amber on the ship
 public function amberMainMenu():void
 {
@@ -3152,7 +3153,7 @@ public function investigateMitziAndAmber():void
 		else addDisabledButton(0,"Fuck Amber","Fuck Amber","Not even Amber can take that behemoth.")
 		if(pc.cockTotal() > 1)
 		{
-			if(pc.cockThatFits(amber.vaginalCapacity(0)) >= 0 && pc.cockThatFits2(amber.vaginalCapacity(0)) >= 0) addButton(1,"Fuck Both", penisRouter,[fuckSoakAmberMitziWithOneDick,amber.vaginalCapacity()*1.5,false,0], "Fuck Both", "Fuck Amber and Mitzi at the same time!");
+			if(pc.cockThatFits(amber.vaginalCapacity(0)) >= 0 && pc.cockThatFits2(amber.vaginalCapacity(0)) >= 0) addButton(1,"Fuck Both", penisRouter,[fuckSoakAmberMitziWithTwoDicks,amber.vaginalCapacity()*1.5,false,0], "Fuck Both", "Fuck Amber and Mitzi at the same time!");
 			else addDisabledButton(1,"Fuck Both","Fuck Both","You need two dicks small enough to wedge inside.");
 		}
 		else addDisabledButton(1,"Fuck Both","Fuck Both","You need two dicks for this.");
