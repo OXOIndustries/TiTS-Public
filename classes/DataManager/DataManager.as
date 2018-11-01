@@ -888,7 +888,7 @@
 			// Valid file to preview!
 			returnString += slotNumber;
 			returnString += ": <b>" + dataFile.data.saveName + "</b>";
-			returnString += " - <i>" + dataFile.data.saveNotes + "</i>\n";
+			returnString += " - <i>" + (dataFile.data.saveNotes == "" ? "No notes available." : dataFile.data.saveNotes) + "</i>\n";
 			returnString += "\t<b>Days:</b> " + dataFile.data.daysPassed;
 			returnString += " - <b>Time:</b> " + (dataFile.data.currentHours < 10 ? "0" + dataFile.data.currentHours : dataFile.data.currentHours) + ":" + (dataFile.data.currentMinutes < 10 ? "0" + dataFile.data.currentMinutes : dataFile.data.currentMinutes);
 			returnString += " - <b>Gender:</b> " + dataFile.data.playerGender;
@@ -1541,10 +1541,10 @@
 			
 			// Blank entries get cleared notes!
 			if (kGAMECLASS.userInterface.currentPCNotes == null || kGAMECLASS.userInterface.currentPCNotes.length == 0 || kGAMECLASS.userInterface.currentPCNotes == "")
-			{ dataFile.saveNotes = "No notes available."; }
+			{ dataFile.saveNotes = ""; }
 			// Keywords to clear current saved notes! (Also if save notes toggle is disabled)
 			else if (kGAMECLASS.userInterface.currentPCNotes.toLowerCase() == "none" || kGAMECLASS.userInterface.currentPCNotes == "N/A" || kGAMECLASS.gameOptions.saveNotesToggle == false)
-			{ dataFile.saveNotes = "No notes available."; }
+			{ dataFile.saveNotes = ""; }
 			// Save note!
 			else
 			{ dataFile.saveNotes = kGAMECLASS.userInterface.currentPCNotes; }
@@ -1735,7 +1735,7 @@
 			kGAMECLASS.days = obj.daysPassed;
 			kGAMECLASS.hours = obj.currentHours;
 			kGAMECLASS.minutes = obj.currentMinutes;
-			if (obj.saveNotes != "No notes available.") kGAMECLASS.userInterface.currentPCNotes = obj.saveNotes;
+			kGAMECLASS.userInterface.currentPCNotes = obj.saveNotes;
 			
 			// Game data
 			kGAMECLASS.initializeNPCs();

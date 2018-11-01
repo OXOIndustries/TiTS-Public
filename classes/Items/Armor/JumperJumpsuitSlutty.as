@@ -30,7 +30,7 @@
 			this.description = "a slutty Jumper jumpsuit";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A favorite of the infamous <i>“Jumper”</i> gang, this form-fitting suit of latex-like material is perfect for anyone who wants to win fights <b>and look like an absolute slut while doing it</b>. A huge, thick-seamed opening stretches from the crotch to the small of the back, gleefully exposing the wearer’s nethers to any curious eyes. Neon lettering on the thigh declares the wearer’s lawless allegiances with unsubtle glare. Unfortunately, it's raw sluttiness does little to help with resisting the more libidinous temptations of the galaxy. Oh well!";
+			this.tooltip = "A favorite of the infamous “Jumper” gang, this form-fitting suit of latex-like material is perfect for anyone who wants to win fights <b>and look like an absolute slut while doing it</b>. A huge, thick-seamed opening stretches from the crotch to the small of the back, gleefully exposing the wearer’s nethers to any curious eyes. Neon lettering on the thigh declares the wearer’s lawless allegiances with unsubtle glare. Unfortunately, it's raw sluttiness does little to help with resisting the more libidinous temptations of the galaxy. Oh well!";
 
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

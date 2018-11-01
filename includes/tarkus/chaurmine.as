@@ -1234,9 +1234,9 @@ public function stayWithCharmineAfterRiding():void
 	if(pc.hasWings()) output(", as well as your [pc.wings]");
 	if(pc.tailCount > 0) output(" and your [pc.tails]");
 	output(" kick, thrash, and flail for a grip. You laugh with mirth as his stomps take you to the ship’s crew showers.");
-	pc.shower();
 
 	processTime(65);
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1251,6 +1251,7 @@ public function leaveChaurmine():void
 	output("After a few minutes, Chaurmine still seems to have not had his fill, but he relents; he guides you out into the corridor and into a large shower. Obviously meant for a small saurmorian crew. Once clean and proper, you exit the ship and onto the landing bay, ready for... whatever.");
 
 	processTime(4);
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1480,6 +1481,7 @@ public function chaurmineTaurOral():void
 	
 	chaurmineRelationship(5);
 	IncrementFlag("SEXED_CHAURMINE");
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1584,6 +1586,7 @@ public function chaurmineHJShipRecovery():void
 	output("As you wait for Chaurmine to recover, you absently clean your [pc.hands] of his rich seed, [pc.tongue] weaving and slurping around each digit. Feeling the thick virility oozing down his scales as he stands, the lizard instinctively shakes, attempting to fling as much of the sticky cum off as he can; apparently not caring about the mess already drenching his space. Chaurmine gives you an irritated glare, shoving you to the ship’s large showers.");
 	IncrementFlag("SEXED_CHAURMINE");
 	chaurmineRelationship(4);
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1665,6 +1668,7 @@ public function chaurmineShippyShipTitfuckyDuckyHucky():void
 	chaurmineRelationship(4);
 	IncrementFlag("SEXED_CHAURMINE");
 	pc.lust(10);
+	pc.shower();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

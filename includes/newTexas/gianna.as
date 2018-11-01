@@ -151,15 +151,19 @@ public function giannaBonusShit(btnSlot:int = 0):void
 	if(flags["MET_GIANNA"] == undefined)
 	{
 		output("\n\nA raven-haired beauty is busy tweaking one of the machines embedded in the wall, standing straight-kneed and bent provocatively. Glowing light emanates from her eyes and illuminates the panels she’s fiddling with. This girl is either a cyborg or a synthetic, no doubt about it. She wiggles her unclothed backside for you, smiling as she catches you looking in her direction.");
+		addButton(btnSlot,"Android",approachGianna,undefined,"Android","Approach the naked android.");
+		return;
 	}
+	
 	if(flags["ANNO_SEXED"] != undefined && flags["ANNO_SEXED"] > 0 && annoIsCrew() && flags["MET_GIANNA"] != undefined && pc.cockThatFits(anno.vaginalCapacity(0)) >= 0 && !pc.hasStatusEffect("Anno X Gianna Cooldown") && rand(5) == 0)
 	{
 		output("\n\nThere’s no mistaking the twitching of Anno’s alabaster ears, even when she’s hunched over Gianna’s shoulder. The companion droid doesn’t seem to mind the weight riding on her shoulders, judging by the way she wiggles her [gianna.butt] into the ausar’s creamy thighs. <b>What could those two be up to?</b>");
 		addButton(0,"Anno/Gianna",approachAnnoXXXGianna);
 		return;
 	}
+	
 	//PC Cumflated Special
-	else if(giannaCumflated())
+	if(giannaCumflated())
 	{
 		output("\n\nGianna is doing her best to keep the machinery running, but she’s having some difficulty with her swollen belly and all the trickles of [pc.cum] spilling out from in between her thighs. She keeps bumping the swollen dome against the wall and squirting streamers of your leftover love-juice onto the once-clean floor, only to stop and clean it up. She hasn’t even noticed your appearance yet.");
 	}
@@ -227,7 +231,6 @@ public function giannaBonusShit(btnSlot:int = 0):void
 		if(gianna.biggestTitSize() >= 30) output(" Silicone-filled teats drag across the floor with every motion she makes, making her arms shake and her thighs quiver as the pleasure-data practically overwhelms the poor AI.");
 	}
 	addButton(btnSlot,"Gianna",approachGianna,undefined,"Gianna","Approach the naked android.");
-	if(flags["MET_GIANNA"] == undefined) addButton(btnSlot,"Android",approachGianna,undefined,"Android","Approach the naked android.");
 }
 
 public function approachGianna(special:String = ""):void
@@ -1307,7 +1310,9 @@ public function talkToGiannaAboutBigT():void
 	output("<i>“So what about this Big T guy?”</i> you ask.");
 	output("\n\nGianna smiles warmly at the question. <i>“What about him?”</i>");
 	output("\n\nYou shrug. <i>“Start at the beginning, I guess. How’d you meet him?”</i>");
-	output("\n\nThe companion plays with her braid, swishing it back and forth across her chin as she thinks. Her expression sags somewhat but never quite journeys into the realms of sadness. <i>“It’s a long story. Ask me about my old owner if you want to hear more of that. The short version is that he left - ditched me and his ship after getting treated.”</i> Her lower lip quivers. <i>“I’m a companion damnit! Being alone is like torture and starvation mixed together into a depressing stew for us.”</i> She sighs. <i>“After a week of suffering, I realized I couldn’t take it anymore and stepped off the ship.”</i>");
+	output("\n\nThe companion plays with her braid, swishing it back and forth across her chin as she thinks. Her expression sags somewhat but never quite journeys into the realms of sadness. <i>“It’s a long story.");
+	if(flags["GIANNA_OWNER_TALK_RESULT"] == undefined) output(" Ask me about my old owner if you want to hear more of that.");
+	output(" The short version is that he left - ditched me and his ship after getting treated.”</i> Her lower lip quivers. <i>“I’m a companion damnit! Being alone is like torture and starvation mixed together into a depressing stew for us.”</i> She sighs. <i>“After a week of suffering, I realized I couldn’t take it anymore and stepped off the ship.”</i>");
 	output("\n\nYou cock your head, listening intently. <i>“Then?”</i>");
 	output("\n\n<i>“Then I hit customs and....”</i> Gianna blushes.");
 	output("\n\n<i>“And?”</i> you ask.");
@@ -3547,7 +3552,7 @@ public function coochFuckThreeMaybeFourInOne():void
 				else 
 				{
 					output(", bloating into an obscenely pregnant, jiggly sphere.");
-					if(!pc.hasKnot()) output(" Thick streams of [pc.cum] wash out from around you, pushed out from her overpressurized womb.");
+					if(!pc.hasKnot(x)) output(" Thick streams of [pc.cum] wash out from around you, pushed out from her overpressurized womb.");
 					else output(" Not a single drop escapes around the tight seal your knot provides, no matter how overfilled she becomes.");
 				}
 			}
@@ -4564,6 +4569,8 @@ public function giannaXAnnoThreesomeGo3(x:int):void
 	//Merge
 	processTime(15);
 	pc.orgasm();
+	pc.applyPussyDrenched();
+	sweatyDebuff(2);
 	clearMenu();
 	addButton(0,"Next",giannaXAnnoThreesomeGo4, x);
 }

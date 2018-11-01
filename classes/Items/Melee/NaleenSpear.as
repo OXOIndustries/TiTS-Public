@@ -21,12 +21,12 @@ package classes.Items.Melee
 			this.stackSize = 1;
 			this.type = GLOBAL.MELEE_WEAPON;
 			
-			this.shortName = "N.Spear";
-			this.longName = "nyrean spear";
+			this.shortName = "NaleenSpear";
+			this.longName = "naleen spear";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = "a two-handed combat spear";
+			this.description = "a one-handed combat spear";
 			
 			this.tooltip = "The one-handed spear you stole from the hermaphrodite naleen. It has a smooth stone tip that looks very sharp. There’s a bunch of colorful feathers are tied under the tip, you’re not sure if they serve a purpose or if they are just for decoration.\n\nDue to being made from light wood and having a shorter reach it can be used to attack very quickly.";
 			this.attackVerb = "stab";

@@ -7,6 +7,7 @@
 	import classes.Items.Melee.Fists;
 	import classes.Items.Miscellaneous.*
 	import classes.Items.Guns.PrimitiveBow;
+	import classes.Items.Guns.LaserCarbine;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -130,6 +131,7 @@
 			//No dicks here!
 			this.cocks = new Array();
 			this.createCock();
+			this.cockVirgin = false;
 			this.cocks[0].cLengthRaw = 6;
 			this.cocks[0].cThicknessRatioRaw = 1.75;
 			this.cocks[0].cockColor = "black";
@@ -164,6 +166,7 @@
 			this.milkType = GLOBAL.FLUID_TYPE_HONEY;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
+			this.analVirgin = false;
 			this.ass.wetnessRaw = 0;
 			this.ass.bonusCapacity += 15;
 
@@ -205,14 +208,24 @@
 				dataObject.legFlags.push(GLOBAL.FLAG_PLANTIGRADE);
 			}
 		}
-		
+		public function pumpkingIt():void
+		{
+			isUniqueInFight = false;
+			this.rangedWeapon = new LaserCarbine();
+			this.inventory = [];
+		}
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);
 			
 			if (target == null) return;
 			
-			if(((HPMax() - HP())/HPMax()) * 200 > rand(100))
+			if(this.rangedWeapon is LaserCarbine)
+			{
+				if(CombatManager.getRoundCount() % 4 == 0) zilHardenSingle();
+				else CombatAttacks.SingleRangedAttackImpl(this, target);
+			}
+			else if(((HPMax() - HP())/HPMax()) * 200 > rand(100))
 			{
 				if(CombatManager.getRoundCount() % 4 == 0) zilHardenSingle();
 				else if(rand(4) == 0) flurryOfBlows(target);

@@ -8,13 +8,17 @@ Maybe more action in repeat encounters. Can't get carried away though...
 public function dryadHeader():void
 {
 	showName("\nDRYAD");
-	showBust("DRYAD");
+	showBust(dryadBustDisplay());
 	author("Wsan");
+}
+public function dryadBustDisplay():String
+{
+	return "DRYAD";
 }
 
 public function dryadIsActive():Boolean
 {
-	if (amberRecruited()) return false;
+	if(amberRecruited()) return false;
 	if(pc.hasStatusEffect("Dryad Cooldown")) return false;
 	if(pc.lust() < 33 && rand(3) == 0) return false;
 	if(pc.statusEffectv1("Dryad Encounters") < 8)
@@ -75,7 +79,7 @@ public function dryadMeeting():void
 	processTime(3);
 	pc.lust(5);
 	
-	if(!pc.hasStatusEffect("Dryad Encounters")) pc.createStatusEffect("Dryad Encounters", 0, 0, 0, 0, true, "", "", false, 1400);
+	pc.createStatusEffect("Dryad Encounters", 0, 0, 0, 0, true, "", "", false, 1400);
 	pc.addStatusValue("Dryad Encounters", 1, 1);
 	
 	var pp:PregnancyPlaceholder = getDryadPregContainer();

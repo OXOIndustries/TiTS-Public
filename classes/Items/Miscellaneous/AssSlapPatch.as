@@ -181,7 +181,7 @@ package classes.Items.Miscellaneous
 					case 6:
 						msg += "You feel the tell-tale coolness and sudden wave of warmth that accompanies your ass growing more wet, a feeling that makes you a little randy if you’re quite honest. That Ass Slap Patch must be doing its thing.";
 						// asshole wetness +1 and lust + 10
-						target.ass.wetnessRaw -= 1;
+						target.ass.wetnessRaw += 1;
 						target.lust(10);
 						break;
 					case 7:

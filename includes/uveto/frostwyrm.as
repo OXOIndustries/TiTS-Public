@@ -2701,14 +2701,15 @@ public function frostwyrmWhyDoesMommyLookDifferent():void
 			if (pc.isHerm()) output("You have a penis and a vagina, just like the Qim and I do , so that’s not any different");
 			else if (pc.hasCock()) output("You have a penis, just like the Qim, but you don’t have a vagina");
 			else output("You have a vagina, just like the Qim, but you don’t have a penis");
-			output(" ");
+			output(". ");
 		}
 		if (pc.biggestTitSize() > 0) {
-			output(" You have these meaty things on your chest, just like I do");
+			output("You have these meaty things on your chest, just like I do");
 			if (pc.biggestTitSize() < 6) output(", although they’re smaller than mine");
 			else output(", and they’re bigger than mine");
+			output(", but the Qim doesn’t have any. ");
 		}
-		output("”</i>, but the Qim doesn’t have any. Her face is a lot longer than ours, too, and she doesn’t have these puffy things around our mouths.");
+		output("Her face is a lot longer than ours, too, and she doesn’t have these puffy things around our mouths.”</i>");
 		if (pc.biggestTitSize() > 0 && pc.biggestTitSize() < 6) output("\n\nYou grit your teeth at " + (flags["NYKKE_MET"] == undefined ? "your kip" : "Nykke") + " reminding you that your boobs are smaller than hers, and tell yourself that she meant nothing by it.");
 	}
 	output("\n\nYou respond to most of her questions at once by saying that everyone is born a little different: some people have more than others; some are born taller, or with bigger assets. But you remind her that not always is bigger, better, and that she should judge others by their personality and their merits rather than their physical appearance.");

@@ -130,13 +130,18 @@
 		include "../includes/holidayEvents/furryTreatsAndTricks.as";
 		include "../includes/holidayEvents/ghostSexDream.as";
 		include "../includes/holidayEvents/halloweenCostumes.as";
+		include "../includes/holidayEvents/halloweenDreams.as";
+		include "../includes/holidayEvents/halloweenNunneryFacefuckMassacre.as";
 		include "../includes/holidayEvents/merryShademas.as";
 		include "../includes/holidayEvents/milodanBreedingSolstice.as";
 		include "../includes/holidayEvents/myrnaTheGenerousKorgonne.as";
 		include "../includes/holidayEvents/pumpkinCarving.as";
+		include "../includes/holidayEvents/pumpking.as";
 		include "../includes/holidayEvents/puppyslutmas.as";
 		include "../includes/holidayEvents/randyClaws.as";
 		include "../includes/holidayEvents/succucow.as";
+		include "../includes/holidayEvents/EventWhorizon/rooms.as";
+		include "../includes/holidayEvents/EventWhorizon/eventWhorizon.as";
 
 		//Followers
 		include "../includes/follower/amber.as";
@@ -249,6 +254,7 @@
 
 		//Tavros Residential Deck
 		include "../includes/tavros/resDeck/aina.as";
+		include "../includes/tavros/resDeck/ainaXPack1.as";
 		include "../includes/tavros/resDeck/fyn.as";
 		include "../includes/tavros/resDeck/liamme.as";
 		include "../includes/tavros/resDeck/semith.as";
@@ -419,6 +425,7 @@
 		include "../includes/zhengShiStation/maike.as";
 		include "../includes/zhengShiStation/olympia.as";
 		include "../includes/zhengShiStation/punkSecOp.as";
+		include "../includes/zhengShiStation/rivalEncounter.as";
 		include "../includes/zhengShiStation/rooms.as";
 		include "../includes/zhengShiStation/roomFunctions.as";
 		include "../includes/zhengShiStation/rozPowerGoo.as";
@@ -600,7 +607,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.218";
+			version = "0.7.229";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -689,11 +696,11 @@
 				var ee:Error = arg as Error;
 				text = ("\n\n<b>Something bad happened!</b>\n\n<b>Please report this message, and include any prior scene text or a description of what you did before seeing this message:</b>\n\n");
 				//output("Version: " + version + "\n\n");
-				text += ("Flash Player:  " + Capabilities.playerType + " - " + Capabilities.os + "\n");
-				text += ("Flash Version: " + Capabilities.version + "\n");
-				text += ("Game Version: " + version + "\n\n");
-				text += ("Error Name: " + ee.name + "\n");
-				text += ("Error Mesg: " + ee.message + "\n");
+				text += ("<b>Flash Player:</b>  " + Capabilities.playerType + " - " + Capabilities.os + "\n");
+				text += ("<b>Flash Version:</b> " + Capabilities.version + "\n");
+				text += ("<b>Game Version:</b> " + version + "\n\n");
+				text += ("<b>Error Name:</b> " + ee.name + "\n");
+				text += ("<b>Error Mesg:</b> " + ee.message + "\n");
 				text += (ee.getStackTrace());
 			}
 			
@@ -741,11 +748,11 @@
 				
 				output("\n\n<b>Something bad happened!</b>\n\n<b>Please report this message, and include any prior scene text or a description of what you did before seeing this message:</b>\n\n");
 				//output("Version: " + version + "\n\n");
-				output("Flash Player:  " + Capabilities.playerType + " - " + Capabilities.os + "\n");
-				output("Flash Version: " + Capabilities.version + "\n");
-				output("Game Version: " + version + "\n\n");
-				output("Error Name: " + ee.name + "\n", false, false);
-				output("Error Mesg: " + ee.message + "\n", false, false);
+				output("<b>Flash Player:</b>  " + Capabilities.playerType + " - " + Capabilities.os + "\n");
+				output("<b>Flash Version:</b> " + Capabilities.version + "\n");
+				output("<b>Game Version:</b> " + version + "\n\n");
+				output("<b>Error Name:</b> " + ee.name + "\n", false, false);
+				output("<b>Error Mesg:</b> " + ee.message + "\n", false, false);
 				output(ee.getStackTrace(), false, false);
 				clearMenu();
 				if(bGameOver)
@@ -1049,11 +1056,12 @@
 				}
 				*/
 				userInterface.DeGlowButtons();
-				this.userInterface.levelUpButton.Glow();
+				userInterface.levelUpButton.Glow();
 			}
 			else
 			{
-				this.userInterface.showPrimaryOutput();
+				kGAMECLASS.backToPrimaryOutput(true);
+				//userInterface.showPrimaryOutput();
 				userInterface.DeGlowButtons();
 			}
 		}
@@ -1682,6 +1690,16 @@
 		public function get emstormdragon():EMStormDragon
 		{
 			return chars["STORMDRAGON"];
+		}
+		
+		public function get aina():Aina
+		{
+			return chars["AINA"];
+		}
+		
+		public function get amber():Dryad
+		{
+			return chars["DRYAD"];
 		}
 
 		public function testShipCombat():void

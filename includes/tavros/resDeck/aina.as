@@ -23,10 +23,15 @@
 
 public function showAina(nude:Boolean = false):void
 {
-	if(!flags["MET_AINA"]) showName("CENTAUR\nGIRL");
-	else showName("\nAINA");
-	if(!nude) showBust("AINA");
-	else showBust("AINA_NUDE");
+	//added logic to show preg bust in old scenes
+	if (flags["AINA_PREG_EMAIL1"] == 1) showPregAina(nude,true);
+	else
+	{
+		if(!flags["MET_AINA"]) showName("CENTAUR\nGIRL");
+		else showName("\nAINA");
+		if(!nude) showBust("AINA");
+		else showBust("AINA_NUDE");	
+	}
 	author("JimThermic");
 }
 
@@ -54,7 +59,8 @@ public function unlockAinasRoom(genMap:Boolean = false):void {
 	rooms["RESIDENTIAL DECK 18"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK 18"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 18"].addFlag(GLOBAL.PRIVATE);
-	rooms["RESIDENTIAL DECK 18"].addFlag(GLOBAL.NPC);
+	//if aina is in the nursery dont add npc flag
+	if (!ainaAtNursery()) rooms["RESIDENTIAL DECK 18"].addFlag(GLOBAL.NPC);
 	rooms["RESIDENTIAL DECK 18"].runOnEnter = ainaApartmentMeet
 		
 	//add door towards Aina's apartment
@@ -340,12 +346,17 @@ public function ainaSexed(times:int):void {
 	//currently applies to all sex scenes, but since this may not be the case in the future,
 	//the effect is kept as a seperate function
 	applyAinaMareMuskEffect();
+	ainaMakeDirty();
 }
 
 //render Button for meeting Aina in her apartment on the residential deck(#18)
 public function ainaApartmentMeet():void 
 {
-	addButton(0,"Aina",ainaMenu);
+	if (ainaPregMeetUpCheck()) addButton(0, "Aina", ainaPregMeetUp);
+	else if (ainaBirthScene() && ainaKids() > 1) addButton(0, "Aina", ainaRepeatBirth);
+	else if (ainaAtNursery()) addDisabledButton(0, "Aina", "Aina", "Aina is not here. She is at the nursery.");
+	else if (ainaIsInHeat() && ainaKids() >= 1 && flags["AINA_PREG_TIMER"] != undefined && rand(4) == 0) addButton(0, "Aina", ainaPregHeatSex);
+	else addButton(0,"Aina",ainaMenu);
 	if(!pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) addButton(1,"HerDresser",ainasDresser,undefined,"Dresser","Check out her dresser.");
 }
 
@@ -353,51 +364,64 @@ public function ainaApartmentMeet():void
 public function ainaMenu():void
 {
 	clearOutput();
-	showAina();
+	showAina();	
 	
-	if(ainaIsInHeat())
-	{
-		if (!ainaRecentlyRelieved()) {
-			output("Aina waves and clops over to you. She looks visibly flushed as she brushes back a honey-gold bang. <i>“Hi there, [pc.short]. Sorry if I’m a little scatterbrained right now. I’m, um,");
+	if (flags["AINA_COMFORT"] >= 2 && hours >= 21)
+	{		
+		output("You don't see Aina around, but soon enough you hear a noise from her bedroom.");
 		
-			if(ainaMetThisCycle()) output(" still in heat.");
-			else output(" in heat again.");
-			output("”</i>");
-			
-			output("\n\nYou can definitely smell it! Every time her equine tail flicks, you’re hit with a fresh wave of her musky mare-scent. The moment you get a whiff of her juicy cunt, you feel the instinct to <i>breed</i> her like crazy.");
-			
-			pc.lust(5);
-		} 
-		else 
+		clearMenu();
+		addButton(0, "Bedroom", ainaPregComfort3, undefined,"Bedroom","Head over to investigate.");
+	}
+    else
+	{
+		if(ainaIsInHeat())
 		{
-			output("Aina clops over to you, her skin covered in a sweaty sheen. Her honey-blonde hair is thoroughly tousled. <i>“Whew. What a relief! I can think straight for a bit. Thanks for that.”</i>");
-			output("\n\n<i>“Did you want a cup of tea or something? I can brew something up to replenish your energy.”</i>");
-		}
-	}
-	else
-	{
-		output("Aina warmly waves and clops over to you, brushing back a honey-gold bang. <i>“Hey there!");
-		if(ainaMetThisCycle() && ainaLastMetInHeat()) output(" Finally out of heat, thank goodness.");
-		else output(" Always good to see your face around here.");
-		output("”</i>");
+			if (!ainaRecentlyRelieved()) {
+				output("Aina waves and clops over to you. She looks visibly flushed as she brushes back a honey-gold bang. <i>“Hi there, [pc.short]. Sorry if I’m a little scatterbrained right now. I’m, um,");
 		
-		output("\n\n<i>“I just finished brewing up a pot of tea - did you want some?”</i>");
+				if(ainaMetThisCycle()) output(" still in heat.");
+				else output(" in heat again.");
+				output("”</i>");
+			
+				output("\n\nYou can definitely smell it! Every time her equine tail flicks, you’re hit with a fresh wave of her musky mare-scent. The moment you get a whiff of her juicy cunt, you feel the instinct to <i>breed</i> her like crazy.");
+			
+				pc.lust(5);
+			} 
+			else 
+			{
+				output("Aina clops over to you, her skin covered in a sweaty sheen. Her honey-blonde hair is thoroughly tousled. <i>“Whew. What a relief! I can think straight for a bit. Thanks for that.”</i>");
+				output("\n\n<i>“Did you want a cup of tea or something? I can brew something up to replenish your energy.”</i>");
+			}
+		}
+		else
+		{
+			output("Aina warmly waves and clops over to you, brushing back a honey-gold bang. <i>“Hey there!");
+			if(ainaMetThisCycle() && ainaLastMetInHeat()) output(" Finally out of heat, thank goodness.");
+			else output(" Always good to see your face around here.");
+			output("”</i>");
+		
+			output("\n\n<i>“I just finished brewing up a pot of tea - did you want some?”</i>");
+		}
+	
+		//Upate the last time Aina was met
+		flags["AINA_LAST_DAY_MET"] = days;
+	
+		processTime(2);
+	
+		clearMenu();
+		addButton(0, "Appearance", ainaAppearance);
+		if(!ainaIsInHeat() || ainaRecentlyRelieved()) addButton(1, "Talk", ainaTalk);
+		else addDisabledButton(1, "Talk", "Talk", "Aina is in no state for talking.");
+		addButton(2, "Tea", ainaSharesSomeTea, undefined, "Tea", "Take Aina up on her Tea offer.");
+		if(pc.lust() >= 33) addButton(3, "Offer Sex", ainaSexMenu);
+		else addDisabledButton(3,"Offer Sex","Offer Sex","You aren’t aroused enough for this.");
+		if (ainaIsDirty()) addButton(4, "Shower with", ainaDirtyShowerIntro, undefined,"Shower with horsie","Ask Aina to take a shower with you");
+		else addButton(4, "Shower", ainaShower);
+		if (flags["AINA_COMFORT"] >= 2 && (hours >= 5 && hours <= 8)) addButton(5, "Comfort", ainaPregComfort2, undefined,"Have breakfast","Eat breakfast with Aina");
+		else if (flags["AINA_COMFORT"] >= 1) addButton(5, "Comfort", ainaPregComfort1, undefined,"Watch a movie","Ask Aina to watch a movie with you");
+	
 	}
-	
-	//Upate the last time Aina was met
-	flags["AINA_LAST_DAY_MET"] = days;
-	
-	processTime(2);
-	
-	clearMenu();
-	addButton(0, "Appearance", ainaAppearance);
-	if(!ainaIsInHeat() || ainaRecentlyRelieved()) addButton(1, "Talk", ainaTalk);
-	else addDisabledButton(1, "Talk", "Talk", "Aina is in no state for talking.");
-	addButton(2, "Tea", ainaSharesSomeTea, undefined, "Tea", "Take Aina up on her Tea offer.");
-	if(pc.lust() >= 33) addButton(3, "Offer Sex", ainaSexMenu);
-	else addDisabledButton(3,"Offer Sex","Offer Sex","You aren’t aroused enough for this.");
-	addButton(4, "Shower", ainaShower);
-	
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -407,8 +431,11 @@ public function ainaAppearance():void
 	showAina();
 	
 	output("Aina is what you’d call the girl next door, if the girl next door was a chestnut-colored centaur. From her champagne-colored sweater to her long cream-linen skirt, she hardly flashes her assets. That said, they’re definitely there; it’s hard to miss the curvaceous swell of her breasts.");
+	if (flags["AINA_LACTATING"] == 1) output(" Her breasts are larger than normal since she is currently lactating.");
 	output("\n\nHer honey-blonde hair is tied back with a lace ribbon, hanging down her back in a ponytail. Her tawny eyes are soft edged, matching the warm smile usually lighting up her lips. Her fair skin is soft and youthful.");
 	output("\n\nHer rump, like that of any centauress, is sizably huge. Even though her hem is long, it does nothing to cover it up, leaving her puffy-lipped equine pussy openly exposed. She doesn’t seem self-conscious about it, holding her human and tauric halves to different standards.");
+	if (ainaBellyShowing()) output(" Her belly is noticeably swollen due to her pregnancy.");
+	else if (flags["AINA_PREG_TIMER"] != undefined && flags["AINA_PREG_TIMER"] >= 15) output(" If you look closely you can see a slight curve to her stomach due to her pregnancy.");
 	
 	addDisabledButton(0, "Appearance");
 }
@@ -833,6 +860,7 @@ public function ainaSexedFromBehind():void
 	flags["AINA_LAST_HOUR_RELIEVED"] = hours;
 	
 	processTime(20 + rand(15));
+	aina.loadInCunt(pc, 0); //overridden function in Aina.as
 	pc.orgasm();
 	
 	clearMenu();
@@ -1041,6 +1069,7 @@ public function breedAinaAsATaur():void
 	flags["AINA_LAST_HOUR_RELIEVED"] = hours;
 
 	processTime(17);
+	aina.loadInCunt(pc, 0); //overridden function in Aina.as
 	pc.orgasm();
 
 	clearMenu();

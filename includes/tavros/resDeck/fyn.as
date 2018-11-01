@@ -746,7 +746,7 @@ public function fynTeachesStripping():void
 			break;
 		case 2 :
 			output("\n\n<i>“Always remember, when it comes to stripping, there are no strict rules. Don’t just memorize a dance routine, or think there’s an ‘order’ of undressing. What a turn off, for you </i>and<i> the audience! Just play it by ear, </i>watch<i> their faces, do what you like, and above all, enjoy the process!”</i>");
-			output("\n\n<i>“If you feel more comfortable with routine, that’s okay, but add your own touch - your own flare - to your performance. Own it, it’s yours!”</i>");
+			output("\n\n<i>“If you feel more comfortable with routine, that’s okay, but add your own touch - your own flair - to your performance. Own it, it’s yours!”</i>");
 			output("\n\nAfter going over the theory, the lesson turns to practice. After dancing a few routines, you’re asked to free-style the strip tease. It takes a little getting used to making things up on the fly, but once you start to feel the music in the background, it becomes much easier.");
 			break;
 		case 3 :

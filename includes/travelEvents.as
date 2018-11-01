@@ -35,6 +35,11 @@ public function tryProcTravelEvent(destination:String):Function
 		{
 			possibleMessages.push(sendKashimaMessage);
 		}
+		
+		if (flags["EVENT_WHORIZON_STATE"] == undefined && (pc.hasVagina() || pc.hasCock()) && pc.level >= 7)
+		{
+			possibleMessages.push(sendEventWhorizonMessage);
+		}
 	}
 	
 	// If there's an available message, and the player has unlocked the second planet (ie had the fight with Dane):

@@ -191,6 +191,7 @@
 			this.ass.bonusCapacity = 400;
 
 			this.createVagina();
+			this.vaginas[0].hymen = false;
 			this.vaginas[0].wetnessRaw = 4;
 			this.vaginas[0].loosenessRaw = 3;
 			this.vaginas[0].bonusCapacity = 400;
@@ -200,7 +201,7 @@
 			//this.createStatusEffect("Disarm Immune");
 			createStatusEffect("Force Fem Gender");
 			createPerk("Appearance Enabled");
-
+			
 			inventory = [];
 
 			var lossLoot:Array = [];

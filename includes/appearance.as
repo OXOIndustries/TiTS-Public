@@ -21,7 +21,7 @@ public function pcAppearance(e:MouseEvent = null):void
 	else if (pButton.isActive && pButton.isHighlighted)
 	{
 		clearBust();
-		backToPrimaryOutput();
+		backToPrimaryOutput(true);
 		userInterface.showingPCAppearance = false;
 	}
 }
@@ -77,7 +77,8 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	{
 		clearOutput2();
 		showPCBust();
-		showName("\nAPPEARANCE");
+		//showName("\nAPPEARANCE");
+		setLocation("", "CODEX", "APPEARANCE");
 		clearGhostMenu();
 		addGhostButton(14, "Back", pcAppearance);
 		if(debug) addGhostButton(13, ("Debug: " + (debug ? "ON" : "OFF")), Cheats.toggleDebug, undefined, "Toggle Debug", "Turn debug mode off.");
@@ -94,7 +95,8 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	{
 		clearOutput();
 		//NPCs use main output window.
-		showName("\n" + target.short.toUpperCase())
+		showName("\n" + target.short.toUpperCase());
+		//setLocation("", target.short.toUpperCase(), "APPEARANCE");
 		showBust(target.bustDisplay);
 		outputRouter = output;
 		switch(target)
@@ -108,7 +110,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			addButton(0,"Next",backTarget);
 		}
 	}
-	author("Fenoxo's Code");
+	author("Fenoxo’s Code");
 	
 	//Stinging Bruises & Lash Marks
 	if (target.hasStatusEffect("Stinging Bruises")) target.HP(target.statusEffectv1("Stinging Bruises"));
@@ -293,13 +295,13 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		//dog-face
 		case GLOBAL.TYPE_CANINE:
 		case GLOBAL.TYPE_KORGONNE:
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "You have":"[target.Name] has") + " a dog’s face, complete with wet nose and panting tongue. " + (target == pc ? "You've got":"[target.HeShe] has") + " " + faceFurScales + ", hiding " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin(true,true,true) + " underneath " + (target == pc ? "your":"[target.hisHer]") + " furry visage.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "You have":"[target.Name] has") + " a dog’s face, complete with wet nose and panting tongue. " + (target == pc ? "You’ve got":"[target.HeShe] has") + " " + faceFurScales + ", hiding " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin(true,true,true) + " underneath " + (target == pc ? "your":"[target.hisHer]") + " furry visage.");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "You have":"[target.Name] has") + " the facial structure of a dog, wet nose and all, but overlaid with " + faceFurScales + ".");
 			else outputRouter((target == pc ? "You have":"[target.Name] has") + " a dog-like face, complete with a wet nose. The odd visage is hairless and covered with " + faceFurScales + ".");
 			break;
 		//wolf-face
 		case GLOBAL.TYPE_LUPINE:
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "You have":"[target.Name] has") + " a wolf’s face, wide and majestic, with jaws filled with sharp teeth. " + (target == pc ? "You've got":"[target.HeShe] has") + " " + faceFurScales + ", hiding " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin(true,true,true) + " underneath " + (target == pc ? "your":"[target.hisHer]") + " furry visage.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "You have":"[target.Name] has") + " a wolf’s face, wide and majestic, with jaws filled with sharp teeth. " + (target == pc ? "You’ve got":"[target.HeShe] has") + " " + faceFurScales + ", hiding " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin(true,true,true) + " underneath " + (target == pc ? "your":"[target.hisHer]") + " furry visage.");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "You have":"[target.Name] has") + " the facial structure of a wolf, wide and majestic, but overlaid with " + faceFurScales + ", and having jaws filled with sharp teeth.");
 			else outputRouter((target == pc ? "You have":"[target.Name] has") + " a wolf-like face, wide and majestic, with jaws filled with sharp teeth. The odd visage is hairless and covered with " + faceFurScales + ".");
 			break;
@@ -417,6 +419,12 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			break;
 		case GLOBAL.TYPE_MOTHRINE:
 			outputRouter((target == pc ? "Your":"[target.Name]’s") + " moth-like face is covered in " + faceFurScales + " and has a sculpted look.");
+			break;
+		case GLOBAL.TYPE_FROSTWYRM:
+			//9999 check for scales
+			outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is the fearsome visage of a frostwyrm, a reptilian snout laden in rough, jagged scales that lend you an exotic sharpness. " + (target == pc ? "Your":"[target.hisHer]") + " jaws conceal two rows of razor-sharp fangs");
+			if (target == pc) outputRouter(", which fortunately you’ve mastered keeping in check during oral sex.");
+			else outputRouter(".");
 			break;
 	}
 	if(target.hasStatusEffect("Mimbrane Face") && target == pc)
@@ -595,6 +603,12 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				outputRouter(", interfering with the natural light around them.");
 			}
 			else outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " " + target.eyeColor + " orbs-for-eyes bulge slightly forward, bathed in a muted, ambient glow.");
+			break;
+		case GLOBAL.TYPE_FROSTWYRM:
+			outputRouter(" Two [target.eyeColor] slits sit on " + (target == pc ? "your":"[target.hisHer]") + " face. The center of each slit is a slightly brighter shade, giving " + (target == pc ? "you":"[target.himHer]") + " a fiercely imposing appearance even when relaxed.");
+			break;
+		case GLOBAL.TYPE_JANERIA:
+			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " eyes are solid, featureless orbs of [target.eyeColor], giving " + (target == pc ? "you":"[target.himHer]") + " a thoroughly disturbing visage.");
 			break;
 		default:
 			if(hasMetallicEyes) outputRouter(" Metallically glistening " + target.eyeColor + " eyes allow " + (target == pc ? "you":"[target.himHer]") + " to take in " + (target == pc ? "your":"[target.hisHer]") + " surroundings without trouble.");
@@ -788,6 +802,9 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			case GLOBAL.TYPE_MOTHRINE:
 				outputRouter(" A pair of moth ears are recessed at the sides of " + (target == pc ? "your":"[target.hisHer]") + " " + headNoun + ", looking like slightly raised mounds of membranous tissue.");
 				break;
+			case GLOBAL.TYPE_FROSTWYRM:
+				outputRouter(" A trio of sharp, fin-like scales adorn either side of " + (target == pc ? "your":"[target.hisHer]") + " head, looking almost like exotic headphones and concealing " + (target == pc ? "your":"[target.hisHer]") + " ears within their protective armor.");
+				break;
 			default:
 				outputRouter(" There is nothing notable to mention about " + (target == pc ? "your":"[target.hisHer]") + " ears.");
 				break;
@@ -942,6 +959,9 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			case GLOBAL.TYPE_MOTHRINE:
 				outputRouter(" The " + target.hairDescript(true,true) + " atop " + (target == pc ? "your":"[target.hisHer]") + " head hides the two raised mounds of membranous tissue that are your ears.");
 				break;
+			case GLOBAL.TYPE_FROSTWYRM:
+				outputRouter(" The " + target.hairDescript(true,true) + " atop " + (target == pc ? "your":"[target.hisHer]") + " head is parted by a trio of sharp, fin-like scales adorn either side of " + (target == pc ? "your":"[target.hisHer]") + " head, looking almost like exotic headphones and concealing " + (target == pc ? "your":"[target.hisHer]") + " ears within their protective armor.");
+				break;
 			default:
 				outputRouter(" The " + target.hairDescript(true,true) + " atop " + (target == pc ? "your":"[target.hisHer]") + " head hides non-descript ears.");
 				break;
@@ -1039,6 +1059,13 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			break;
 		case GLOBAL.TYPE_TENTACLE:
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " mouth contains a long, prehensile tentacle-like tongue.");
+			break;
+		case GLOBAL.TYPE_FROSTWYRM:
+			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " tongue is a");
+			if (target.hasTongueFlag(GLOBAL.FLAG_LONG)) outputRouter(" long");
+			outputRouter(" pink tube of");
+			if (target.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) outputRouter(" practically prehensile");
+			outputRouter(" flesh, capable of extending up to four feet in length when " + (target == pc ? "you let":"[target.heShe] lets") + " it hang down all the way.");
 			break;
 		default:
 			if(target.hasTongueFlag(GLOBAL.FLAG_LONG)) outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " mouth contains a lengthy tongue.");
@@ -1165,6 +1192,14 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			//Unicorn horn!
 			case GLOBAL.TYPE_NARWHAL:
 				outputRouter(" A slender ivory horn extends from " + (target == pc ? "your":"[target.hisHer]") + " forehead, " + num2Text(int(target.hornLength)) + "-inches long with a spiral pattern of ridges and grooves up its length, giving it a graceful appearance.");
+				break;
+			case GLOBAL.TYPE_FROSTWYRM:
+				outputRouter(" A pair of ivory, thick horns extend from " + (target == pc ? "your":"[target.hisHer]") + " forehead, arcing upward and over " + (target == pc ? "your":"[target.hisHer]") + " skull, sort of like they’re protecting " + (target == pc ? "you":"[target.himHer]") + " from anything that might fall onto " + (target == pc ? "your":"[target.hisHer]") + " head. They’re each");
+				if (target.hornLength < 8 || target.hornLength > 12) outputRouter(num2Text(int(target.hornLength)) + "-inches long");
+				else outputRouter(" maybe a foot long");
+				outputRouter(" and as thick as two or three fingers together.  They’re useless for attacking, but they provide decent coverage - and they no doubt add to your imposing visage");
+				if (target.race() == "frostwyrm") outputRouter(" as a Frostwyrm.");
+				else outputRouter(".");
 				break;
 		}
 		if(hornMaterial > 0 && hornColor != "")
@@ -1339,6 +1374,12 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				if(target.wingTexture() == GLOBAL.FLAG_FURRED) outputRouter(" They’re covered in a soft fuzz and feel very light.");
 				else outputRouter(" They feel very light and delicate to the touch.");
 				outputRouter(" They fold behind " + (target == pc ? "you":"[target.himHer]") + " neatly and compactly, the ends in line with the back of " + (target == pc ? "your":"[target.hisHer]") + " lower calves. They let " + (target == pc ? "you":"[target.himHer]") + " hover for a short time and glide easily, although true flight is deceptively difficult to maintain.");
+				break;
+			case GLOBAL.TYPE_FROSTWYRM:
+				outputRouter(" " + (target.wingCount == 2 ? "a pair of":num2Text(int(target.wingCount))) + " majestic reptilian wings sprout from " + (target == pc ? "your":"[target.hisHer]") + " back. The arms are covered in [target.scaleColor] scales, each bone tipped with a small talon, while the membranes are a glittering silver shade that produces a mesmerizing display in the light. Thanks to " + (target == pc ? "your":"[target.hisHer]") + " smaller size, they have no trouble bearing " + (target == pc ? "you":"[target.himHer]") + " aloft even without the frostwyrm’s psionic abilities.");
+				break;
+			case GLOBAL.TYPE_JANERIA:
+				outputRouter(" " + (target.wingCount == 4 ? "a quartet of":num2Text(int(target.wingCount))) + " large [target.skinColor] tentacles sprout from just behind " + (target == pc ? "your":"[target.hisHer]") + " shoulders, curling upward before drooping down so that the tips hang just a few inches above the ground. Each ends in a huge diamond-shaped pad, featureless but lightly sticky to the touch on one side while smooth and slippery on the other. When you curl the sticky sides of the pads inward, the result looks distinctly phallic.");
 				break;
 		}
 	}
@@ -1679,6 +1720,9 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			break;
 		case GLOBAL.TYPE_TENTACLE:
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " arms are actually bunches of tentacles, formed together into arm-like shapes. They end in long, wiggly tentacle fingers.");
+			break;
+		case GLOBAL.TYPE_FROSTWYRM:
+			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " forearms are covered in rough [target.scaleColor] scales that give them a serrated appearance, while " + (target == pc ? "your":"[target.hisHer]") + " fingers are slim and dextrous. Long, sharp talons have replaced " + (target == pc ? "your":"[target.hisHer]") + " nails, able to give someone a nasty scratch.");
 			break;
 		// Catch all
 		default:
@@ -2283,6 +2327,9 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			if(target.tailCount == 1) outputRouter(" A long, writhing, tentacle-like tail flows after " + (target == pc ? "you":"[target.himHer]") + ", bobbing and undulating with the slightest movement of " + (target == pc ? "your":"[target.hisHer]") + " hips.");
 			else outputRouter(" " + StringUtil.upperCase(num2Text(target.tailCount)) + " long, writhing, tentacle tails flow after " + (target == pc ? "you":"[target.himHer]") + ", all similar in appearance. Studying one of them, you find that " + (target == pc ? "you have":"[target.heShe] has") + " excellent control over their movements."); 
 			break;
+		case GLOBAL.TYPE_FROSTWYRM:
+			outputRouter(" " + (target.tailCount == 1 ? "A long, flexible reptilian tail extends":"Long, flexible reptilian tails extend") + " from " + (target == pc ? "your":"[target.hisHer]") + " back. " + (target.tailCount == 1 ? "The":"On each, the") + " whole surface is covered in rough [target.scaleColor] scales, particularly along the top where they form a long row of spikes and at its tip, where they congregate into a blunt ball, best used for smashing things if " + (target == pc ? "you":"[target.heShe]") + " needed.");
+			break;
 	}
 	//Tail cunts
 	if(target.hasTailCunt() && target.tailType != GLOBAL.TYPE_CUNTSNAKE)
@@ -2642,6 +2689,16 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			if(target.hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " lower body is an ever-shifting mass of writhing tentacles. The strong, prehensile tentacles can easily and quickly carry " + (target == pc ? "you":"[target.himHer]") + " along.");
 			else outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " lower body consists of " + num2Text(target.legCount) + " imitation legs formed by " + (target == pc ? "your":"[target.hisHer]") + " dexterous, prehensile tentacles. " + (target == pc ? "Your":"[target.HisHer]") + " tentacle legs work just as well as real legs.");
 			break;
+		case GLOBAL.TYPE_FROSTWYRM:
+			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " legs are thick and jointed in two places, giving " + (target == pc ? "you":"[target.himHer]") + " a ");
+			if (target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) outputRouter(" digitigrade");
+			else if (target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) outputRouter(" plantigrade");
+			else outputRouter(" strange"); //Just in case
+			outputRouter(" appearance. They’re covered in rough, thick [target.scaleColor] scales so sharp that they’re practically spiked, while " + (target == pc ? "your":"[target.hisHer]") + " feet sport long, sharp talons for toes.");
+			break;
+		case GLOBAL.TYPE_JANERIA:
+			outputRouter(" Subtle contours and indentations that run all the way down the length of " + (target == pc ? "your":"[target.hisHer]") + " legs make them look as though they were formed from a mass of tentacles woven together. " + (target == pc ? "Your":"[target.HisHer]") + " feet have foregone toes entirely in favor of a smooth, supple boot where the tips of the tentacles appear to join together.");
+			break;
 		// Catch all
 		default:
 			if(target.isTaur() && target.hasFeet())
@@ -2922,8 +2979,8 @@ public function appearanceWornCollar():void
 				outputRouter(" Your neck is adorned with Belle’s Sub-Tuner collar, covered with circuitry and locked around your nape with a magnetic seal, bearing a small holo-tag labeled " + (flags["SUBTUNER_NAMED"] == 2 ? "“[pc.name]”" : "“Subject 69”") + ".");
 				break;
 			case "Vark's Collar":
-				outputRouter(" Around your neck is a thick leather collar, fashioned by your master, Vark. It's laced with Savicite, the buckles and exposed surfaces sending jolts of pleasure into your [pc.skinScalesFurNoun] whenever it rubs against you, reminding you of the big sexy cat you belong to.");
-				if (wornCollar.value2 == 1) outputRouter(" You didn't know you wanted it at first, but you can't say you haven't come around to how good it feels.");
+				outputRouter(" Around your neck is a thick leather collar, fashioned by your master, Vark. It’s laced with Savicite, the buckles and exposed surfaces sending jolts of pleasure into your [pc.skinScalesFurNoun] whenever it rubs against you, reminding you of the big sexy cat you belong to.");
+				if (wornCollar.value2 == 1) outputRouter(" You didn’t know you wanted it at first, but you can’t say you haven’t come around to how good it feels.");
 				break;
 			default:
 				outputRouter(" You are currently wearing " + wornCollar.storageName + " around your neck.");
@@ -2952,7 +3009,7 @@ public function manageWornCollar():void
 				outputRouter(".");
 				break;
 			case "Vark's Collar":
-				outputRouter("Around your neck is a thick leather collar, fashioned by your master, Vark. It's laced with Savicite, the buckles and exposed surfaces sending jolts of pleasure into your [pc.skinScalesFurNoun] whenever it rubs against you.");
+				outputRouter("Around your neck is a thick leather collar, fashioned by your master, Vark. It’s laced with Savicite, the buckles and exposed surfaces sending jolts of pleasure into your [pc.skinScalesFurNoun] whenever it rubs against you.");
 				break;
 			default:
 				outputRouter("You are currently wearing " + wornCollar.storageName + ".");
@@ -3995,10 +4052,44 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 			if(rand(2) == 0) outputRouter(" It’s a sensitive tube of stiff muscle that retracts inwards when soft. The head is pointed and slightly damp, suggesting self-lubrication.");
 			else outputRouter(" It’s essentially a flexible, semi-hollow, sensitive tube that retracts inwards when not aroused. The head of your moth-cock is slightly pointed but soft, springy and a little moist.");
 			break;
+		case GLOBAL.TYPE_FROSTWYRM:
+			outputRouter(" The entirety of " + (target == pc ? "your":"[target.hisHer]") + " [target.cockColor] shaft is smooth along its top and sides");
+			if (target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY)) outputRouter(", with a number of faintly-visible, pulsing blue veins, and a number of smaller nubs lining the underside.");
+			else outputRouter(".");
+			if (target.cocks[x].hasFlag(GLOBAL.FLAG_BLUNT)) outputRouter(" The tip is blunt, wide, and flat, with a ring of muscle around the edges of the glans; this battering-ram of a cock will be sure to leave a memory on anyone " + (target == pc ? "you use":"[target.heShe] uses") + " it on.");
+			break;
+		case GLOBAL.TYPE_JANERIA:
+			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " [target.cockColor] dick is");
+			//There has to be a better way but I don't wanna think that hard -lighterfluid
+			if (target.cocks[x].hasFlag(GLOBAL.FLAG_SMOOTH))
+			{
+				outputRouter(" smooth");
+				if (target.cocks[x].hasFlag(GLOBAL.FLAG_PREHENSILE))
+				{
+					outputRouter(" and prehensile");
+					if (target.cocks[x].hasFlag(GLOBAL.FLAG_LUBRICATED)) outputRouter(", not to mention a little slippery to the touch");
+				}
+				else if (target.cocks[x].hasFlag(GLOBAL.FLAG_LUBRICATED)) outputRouter(" and a little slippery to the touch");
+			}
+			else if (target.cocks[x].hasFlag(GLOBAL.FLAG_PREHENSILE))
+			{
+				outputRouter(" prehensile");
+				if (target.cocks[x].hasFlag(GLOBAL.FLAG_LUBRICATED)) outputRouter(" and a little slippery to the touch");
+			}
+			else if (target.cocks[x].hasFlag(GLOBAL.FLAG_LUBRICATED))
+			{
+				outputRouter(" a little slippery to the touch");
+			}
+			else
+			{
+				outputRouter(" average");
+			}
+			outputRouter(". The diamond-shaped tip with a cumslit hidden along the underside makes it resemble the tentacle of some aquatic creature.");
+			break;
 	}
 	
 	//Nubby or Ribbed
-	if((target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY) && target.cocks[x].cType != GLOBAL.TYPE_FELINE) || target.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED))
+	if((target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY) && !InCollection(target.cocks[x].cType, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_FROSTWYRM)) || target.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED))
 	{
 		outputRouter(" It is");
 		if(target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY)) outputRouter(" covered in nub-like protrusions, spread out evenly across the shaft");
@@ -4011,7 +4102,7 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 		if(target.cockTotal() == 1 || (target.cockTotal() > 1 && !target.hasFullSheaths())) outputRouter(" The shaft of " + (target == pc ? "your":"[target.hisHer]") + " manhood naturally retracts into an animalistic sheath when completely flaccid.");
 	}
 	//Lube
-	if(target.cocks[x].hasFlag(GLOBAL.FLAG_LUBRICATED) && target.cocks[x].cType != GLOBAL.TYPE_TENTACLE)
+	if(target.cocks[x].hasFlag(GLOBAL.FLAG_LUBRICATED) && !InCollection(target.cocks[x].cType, GLOBAL.TYPE_TENTACLE, GLOBAL.TYPE_JANERIA))
 	{
 		outputRouter(" Its surface is slick and slippery, covered in an abundant amount of moist lubrication.");
 	}
@@ -4027,7 +4118,7 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 		else outputRouter(" The ‘head’ of " + (target == pc ? "your":"[target.hisHer]") + " shaft widens quite noticeably, the better to stimulate " + (target == pc ? "your":"[target.hisHer]") + " partners.");
 	}
 	//"Blunt" head - for non-flared flat-tops
-	else if(target.cocks[x].hasFlag(GLOBAL.FLAG_BLUNT))
+	else if(target.cocks[x].hasFlag(GLOBAL.FLAG_BLUNT) && target.cocks[x].cType != GLOBAL.TYPE_FROSTWYRM)
 	{
 		outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " shaft ends in a blunted tip");
 		if(target.cocks[x].cType == GLOBAL.TYPE_EQUINE) outputRouter(" similar to a terran horse’s");
@@ -4242,6 +4333,10 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 			if(!eachOne) outputRouter(" The");
 			else outputRouter("\nEach vagina’s");
 			outputRouter(" exterior lips are typically featureless, except for when " + (target == pc ? "you’re":"[target.heShe]’s") + " aroused and they swell outward.");
+			break;
+		//Cold Fly Lizard flavor:
+		case GLOBAL.TYPE_FROSTWYRM:
+			outputRouter((eachOne ? "\nThe entire length of each":" The entire length of "+(target == pc?"your":"[target.hisHer]")) + " cunt is filled with folds that put a human woman’s to shame in their depth and quantity, catching even the smallest bit of texture on a dick and refusing to let go. Dozens of small but powerful muscles ensure " + (target == pc ? "your":"[target.hisHer]") + " fold-filled " + (eachOne ? "snatches":"snatch") + " can exert its grip on any dick no matter the size, while a few tweaks to the shape and position of " + (target == pc ? "your":"[target.hisHer]") + " " + (target.hasVaginas() || target.vaginas[0].clits > 1 ? "clits":"clit") + " ensure " + (target == pc ? "you're":"[target.heShe]'s") + " optimized for being taken from behind.");
 			break;
 		//Attack of the mouthginas!
 		case GLOBAL.TYPE_MOUTHGINA:

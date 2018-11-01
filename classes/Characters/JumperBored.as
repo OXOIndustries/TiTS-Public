@@ -153,9 +153,11 @@
 			this.buttRatingRaw = 9;
 			//No dicks here!
 			this.cocks = new Array();
+			this.cockVirgin = false;
 			this.createVagina();
 			this.girlCumType = GLOBAL.FLUID_TYPE_GIRLCUM;
 			this.vaginalVirgin = false;
+			this.vaginas[0].hymen = false;
 			this.vaginas[0].loosenessRaw = 2;
 			this.vaginas[0].wetnessRaw = 3;
 			this.vaginas[0].bonusCapacity = 130;
@@ -187,6 +189,7 @@
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
+			this.analVirgin = false;
 			this.ass.wetnessRaw = 0;
 			this.ass.bonusCapacity += 15;
 			

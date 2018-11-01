@@ -683,7 +683,7 @@ public function yomaSexCocktail():void
 	author("GothPastel");
 
 	output("Your tail has been acting up recently with no relief to be found, but it looks like you’ve just found the perfect victim. Seemingly sensing your thoughts, it coils itself around your hip, in plain view of the fennec android.");
-	output("\n\n<i>“A parasitic life formlifeform?”</i> he asks, curiously, <i>“That is certainly interesting... It is not contagious, is it?”</i>");
+	output("\n\n<i>“A parasitic lifeform?”</i> he asks, curiously, <i>“That is certainly interesting... It is not contagious, is it?”</i>");
 	output("\n\nYou allay his fears, telling him you had to almost force it to join with you in the first place and if he can’t get pregnant, he’s not going to be spreading it anywhere.");
 	output("\n\n<i>“Hm,”</i> he still doesn’t look convinced, but soon relents, <i>“I suppose it would be a new experience.”</i>");
 	output("\n\nIt would be, you tell him stepping closer, your [pc.tailCock] also shuffling closer to him.");

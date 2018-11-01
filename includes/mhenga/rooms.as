@@ -609,6 +609,7 @@ public function initMhengaRooms():void
 	rooms["DENSE ORANGE 1"].system = "SYSTEM: ARA ARA";
 	rooms["DENSE ORANGE 1"].northExit = "IRONWOODS BEND 2";
 	rooms["DENSE ORANGE 1"].southExit = "DENSE ORANGE 2";
+	//rooms["DENSE ORANGE 1"].eastExit = "PUMPKING_MAIN_GATE";
 	rooms["DENSE ORANGE 1"].addFlag(GLOBAL.OUTDOOR);
 	rooms["DENSE ORANGE 1"].addFlag(GLOBAL.HAZARD);
 	rooms["DENSE ORANGE 1"].addFlag(GLOBAL.FOREST);
@@ -1803,6 +1804,123 @@ public function initMhengaRooms():void
 	rooms["GOLD MYR CHAMBER"].addFlag(GLOBAL.PUBLIC);
 	rooms["GOLD MYR CHAMBER"].addFlag(GLOBAL.NPC);
 	
+	//===============================================
+	//		PUMPKING EVENT ROOMS (By Franks)
+	//===============================================
+	rooms["PUMPKING_MAIN_GATE"] = new RoomClass(this);
+	rooms["PUMPKING_MAIN_GATE"].roomName = "MAIN\nGATE";
+	rooms["PUMPKING_MAIN_GATE"].description = "";
+	rooms["PUMPKING_MAIN_GATE"].runOnEnter = pumpkingMainGateBonus;
+	rooms["PUMPKING_MAIN_GATE"].planet = "PLANET: MHEN'GA";
+	rooms["PUMPKING_MAIN_GATE"].system = "SYSTEM: ARA ARA";
+	rooms["PUMPKING_MAIN_GATE"].eastExit = "PUMPKING_WEST_PASSAGE";
+	rooms["PUMPKING_MAIN_GATE"].westExit = "DENSE ORANGE 1";
+	rooms["PUMPKING_MAIN_GATE"].addFlag(GLOBAL.JUNGLE);
+	rooms["PUMPKING_MAIN_GATE"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["PUMPKING_WEST_PASSAGE"] = new RoomClass(this);
+	rooms["PUMPKING_WEST_PASSAGE"].roomName = "WEST\nPASSAGE";
+	rooms["PUMPKING_WEST_PASSAGE"].description = "";
+	rooms["PUMPKING_WEST_PASSAGE"].runOnEnter = pumpkingPassageBonus;
+	rooms["PUMPKING_WEST_PASSAGE"].planet = "PLANET: MHEN'GA";
+	rooms["PUMPKING_WEST_PASSAGE"].system = "SYSTEM: ARA ARA";
+	rooms["PUMPKING_WEST_PASSAGE"].westExit = "PUMPKING_MAIN_GATE";
+	rooms["PUMPKING_WEST_PASSAGE"].eastExit = "PUMPKING_GREAT_HALL";
+	rooms["PUMPKING_WEST_PASSAGE"].addFlag(GLOBAL.JUNGLE);
+	rooms["PUMPKING_WEST_PASSAGE"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["PUMPKING_GREAT_HALL"] = new RoomClass(this);
+	rooms["PUMPKING_GREAT_HALL"].roomName = "WEST\nPASSAGE";
+	rooms["PUMPKING_GREAT_HALL"].description = "";
+	rooms["PUMPKING_GREAT_HALL"].runOnEnter = pumpkingMainHallBonus;
+	rooms["PUMPKING_GREAT_HALL"].planet = "PLANET: MHEN'GA";
+	rooms["PUMPKING_GREAT_HALL"].system = "SYSTEM: ARA ARA";
+	rooms["PUMPKING_GREAT_HALL"].westExit = "PUMPKING_WEST_PASSAGE";
+	rooms["PUMPKING_GREAT_HALL"].eastExit = "PUMPKING_EAST_PASSAGE";
+	rooms["PUMPKING_GREAT_HALL"].northExit = "PUMPKING_NORTH_PASSAGE";
+	rooms["PUMPKING_GREAT_HALL"].southExit = "PUMPKING_SOUTH_PASSAGE";
+	rooms["PUMPKING_GREAT_HALL"].addFlag(GLOBAL.JUNGLE);
+	rooms["PUMPKING_GREAT_HALL"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["PUMPKING_NORTH_PASSAGE"] = new RoomClass(this);
+	rooms["PUMPKING_NORTH_PASSAGE"].roomName = "NORTH\nPASSAGE";
+	rooms["PUMPKING_NORTH_PASSAGE"].description = "";
+	rooms["PUMPKING_NORTH_PASSAGE"].runOnEnter = pumpkingPassageBonus;
+	rooms["PUMPKING_NORTH_PASSAGE"].planet = "PLANET: MHEN'GA";
+	rooms["PUMPKING_NORTH_PASSAGE"].system = "SYSTEM: ARA ARA";
+	rooms["PUMPKING_NORTH_PASSAGE"].westExit = "";
+	rooms["PUMPKING_NORTH_PASSAGE"].eastExit = "";
+	rooms["PUMPKING_NORTH_PASSAGE"].northExit = "PUMPKING_ARMORY";
+	rooms["PUMPKING_NORTH_PASSAGE"].southExit = "PUMPKING_GREAT_HALL";
+	rooms["PUMPKING_NORTH_PASSAGE"].addFlag(GLOBAL.JUNGLE);
+	rooms["PUMPKING_NORTH_PASSAGE"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["PUMPKING_ARMORY"] = new RoomClass(this);
+	rooms["PUMPKING_ARMORY"].roomName = "\nARMORY";
+	rooms["PUMPKING_ARMORY"].description = "";
+	rooms["PUMPKING_ARMORY"].runOnEnter = pumpkinTrainingRoomArmoryBonus;
+	rooms["PUMPKING_ARMORY"].planet = "PLANET: MHEN'GA";
+	rooms["PUMPKING_ARMORY"].system = "SYSTEM: ARA ARA";
+	rooms["PUMPKING_ARMORY"].westExit = "";
+	rooms["PUMPKING_ARMORY"].eastExit = "";
+	rooms["PUMPKING_ARMORY"].northExit = "";
+	rooms["PUMPKING_ARMORY"].southExit = "PUMPKING_NORTH_PASSAGE";
+	rooms["PUMPKING_ARMORY"].addFlag(GLOBAL.JUNGLE);
+	rooms["PUMPKING_ARMORY"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["PUMPKING_SOUTH_PASSAGE"] = new RoomClass(this);
+	rooms["PUMPKING_SOUTH_PASSAGE"].roomName = "SOUTH\nPASSAGE";
+	rooms["PUMPKING_SOUTH_PASSAGE"].description = "";
+	rooms["PUMPKING_SOUTH_PASSAGE"].runOnEnter = pumpkingPassageBonus;
+	rooms["PUMPKING_SOUTH_PASSAGE"].planet = "PLANET: MHEN'GA";
+	rooms["PUMPKING_SOUTH_PASSAGE"].system = "SYSTEM: ARA ARA";
+	rooms["PUMPKING_SOUTH_PASSAGE"].westExit = "";
+	rooms["PUMPKING_SOUTH_PASSAGE"].eastExit = "";
+	rooms["PUMPKING_SOUTH_PASSAGE"].northExit = "PUMPKING_GREAT_HALL";
+	rooms["PUMPKING_SOUTH_PASSAGE"].southExit = "PUMPKING_DUNGEON";
+	rooms["PUMPKING_SOUTH_PASSAGE"].addFlag(GLOBAL.JUNGLE);
+	rooms["PUMPKING_SOUTH_PASSAGE"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["PUMPKING_DUNGEON"] = new RoomClass(this);
+	rooms["PUMPKING_DUNGEON"].roomName = "\nDUNGEON";
+	rooms["PUMPKING_DUNGEON"].description = "";
+	rooms["PUMPKING_DUNGEON"].runOnEnter = pumpkingDungeonBonus;
+	rooms["PUMPKING_DUNGEON"].planet = "PLANET: MHEN'GA";
+	rooms["PUMPKING_DUNGEON"].system = "SYSTEM: ARA ARA";
+	rooms["PUMPKING_DUNGEON"].westExit = "";
+	rooms["PUMPKING_DUNGEON"].eastExit = "";
+	rooms["PUMPKING_DUNGEON"].northExit = "PUMPKING_SOUTH_PASSAGE";
+	rooms["PUMPKING_DUNGEON"].southExit = "";
+	rooms["PUMPKING_DUNGEON"].addFlag(GLOBAL.JUNGLE);
+	rooms["PUMPKING_DUNGEON"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["PUMPKING_EAST_PASSAGE"] = new RoomClass(this);
+	rooms["PUMPKING_EAST_PASSAGE"].roomName = "EAST\nPASSAGE";
+	rooms["PUMPKING_EAST_PASSAGE"].description = "";
+	rooms["PUMPKING_EAST_PASSAGE"].runOnEnter = pumpkingPassageBonus;
+	rooms["PUMPKING_EAST_PASSAGE"].planet = "PLANET: MHEN'GA";
+	rooms["PUMPKING_EAST_PASSAGE"].system = "SYSTEM: ARA ARA";
+	rooms["PUMPKING_EAST_PASSAGE"].westExit = "PUMPKING_GREAT_HALL";
+	rooms["PUMPKING_EAST_PASSAGE"].eastExit = "PUMPKING_THRONE_ROOM";
+	rooms["PUMPKING_EAST_PASSAGE"].northExit = "";
+	rooms["PUMPKING_EAST_PASSAGE"].southExit = "";
+	rooms["PUMPKING_EAST_PASSAGE"].addFlag(GLOBAL.JUNGLE);
+	rooms["PUMPKING_EAST_PASSAGE"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["PUMPKING_THRONE_ROOM"] = new RoomClass(this);
+	rooms["PUMPKING_THRONE_ROOM"].roomName = "THRONE\nROOM";
+	rooms["PUMPKING_THRONE_ROOM"].description = "";
+	rooms["PUMPKING_THRONE_ROOM"].runOnEnter = pumpkingThroneBonus;
+	rooms["PUMPKING_THRONE_ROOM"].planet = "PLANET: MHEN'GA";
+	rooms["PUMPKING_THRONE_ROOM"].system = "SYSTEM: ARA ARA";
+	rooms["PUMPKING_THRONE_ROOM"].westExit = "PUMPKING_EAST_PASSAGE";
+	rooms["PUMPKING_THRONE_ROOM"].eastExit = "";
+	rooms["PUMPKING_THRONE_ROOM"].northExit = "";
+	rooms["PUMPKING_THRONE_ROOM"].southExit = "";
+	rooms["PUMPKING_THRONE_ROOM"].addFlag(GLOBAL.JUNGLE);
+	rooms["PUMPKING_THRONE_ROOM"].addFlag(GLOBAL.PUBLIC);
+	rooms["PUMPKING_THRONE_ROOM"].addFlag(GLOBAL.OBJECTIVE);
+
 	//I should be banned for this but I'm not combing through all these rooms 1 by 1 and 
 	//ammending their runOnEnter functions and/or adding new ones
 	//Iterates through all the rooms, if the key contains "ESBETH" and it has no runOnEnter and it's outdoor/public

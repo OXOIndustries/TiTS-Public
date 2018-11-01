@@ -3569,3 +3569,53 @@ public function cowStuffStory():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Cow Stuff");
 }
+
+/*
+Exgartuan Bad End by Carol J
+The memory's long since been faded in the face of white-hot pleasure, but your slow descent into hedonism began with but a single sip from a fountain in the desert. Just one sip, one cupped handful of water, and you had invited him into you. As your monstrous, bloated fucklog of a cock drools another fist-sized bead of precum, you smile dully to yourself. Best decision you ever made.
+
+At first, you hadn't known his name. It had been months before he even really revealed himself to you, a demon of excess. Devil? Angel? God, maybe? It was hard to classify him, even harder now that you were just a stupid cum-gushing cock-toy. But one thing was for sure: he knew how to make you feel good. That's how he'd managed to turn you from your path, after all.
+
+The first sip from the Fountain of Endowment had blessed your manhood with a few inches of length and girth, along with a teeny, niggling itch in the back of your head. Nothing major, nothing powerful enough to turn you from your mission to defeat Lethice, but...
+
+Well, it was hard to concentrate sometimes. You'd be jerking yourself off, nice and slow, luxurious, and...you'd wonder. Wouldn't it feel even better if you had more cock to stroke? Just a nice, thick, fat rod of a cock? Mm. Yeah, the idea had been so tempting, so simple in its appeal. And it'd be such a shame to let all the potions and tinctures that you'd accrued fighting imps and goblins go to waste... Besides, you'd gotten them purified by that rat down by the lake. It was blissfully easy to justify it, and that's all it took before you uncapped a purified Incubus Draft and downed the whole bottle during one of your cockpumping sessions. Even now, you can still feel the rush of that first indulgence. The eyecrossing pleasure of your cock bloating up nice and fat, even bigger than before... and the mindless pleasure of the hot, thick cumshot that followed.
+
+Once you got that first taste, the voice in the back of your head only got louder, and it only got harder and harder to resist it. You kind of made a ritual of it, actually. You'd adventure and explore during the day, looking for any hints as to where Lethice could be found or how her vile minions could be defeated. Maybe you'd fight a few more imps and goblins, you know, just to make sure your stocks didn't run low. Then when the sun began to dip towards the horizon, you'd make your way back to camp. You'd strip naked. Find a nice, warm rock by the stream to lay back on. Choose one of your potions to guzzle. And you'd spend a few hours stroking yourself.
+
+Incubus Drafts were always incredible. Way better when they were unpurified, as you discovered one day when you couldn't make it to Rathazul. You remember cumming so fucking hard after drinking one down. Sometimes two when you were feeling selfindulgent, which was often. But even a rush like that got old eventually. Or...no, not old. Never old. But why deny yourself when there were so many other possibilities? It wasn't like you had to stop drinking Incubus Drafts. And there was a certain appeal to Equinum, too. Yeah, you'd sip it, savor it, and sink into daydreams of stuffing cunts full, the big-dicked Alpha in the barnyard, a stupid, horny animal with a body made for fucking thick bitches pregnant. You definitely felt lazier when you came after an Incubus Draft, but you felt fucking stupid when you had a nice, fat cumshot after an Equinum.
+
+And your dick just got bigger and bigger.
+
+It got kind of difficult to adventure, so you decided that it made more sense to explore every other day instead of every day. After all, you were only tiring yourself out, lugging that thick, juicy fucklog around. It didn't take much time before your manhood was longer than your arm...soft. Stiff? It was big enough -- and weighty enough -- to necessitate a little rest whenever you got hard. It was just so fucking heavy, and you got so fucking distracted when you got horny. Eventually it got too dangerous to go out past midday. You ran the risk of catching a whiff of something on the air, some hint of musk, and after that? You'd be reduced to drooling precum from your bloated bitchtamer until you jerked yourself soft again.
+
+Well, there was one place that it was generally safe to go: the forest. With a cock as thick and girthy as yours, it never took too long before you found some wide-hipped goblin slut to worship your prick if you needed to calm down. Most of the time it'd be just one. Sometimes you'd get lucky and find two, one to hug your prick and grind her tits up against it, one to make sure you had a steady supply of Lust Drafts and Incubus Drafts.
+
+You still remember the first time one of your eager helpers zoned out as she jerked you off, mashing her tits up against your shaft and grinding her body against it. Cock-drunk, all but mesmerized as she watched the tip of your prick bulge and drool pearls of pre. Utterly entranced by the sight of it...and you were really no better, drooling and slack-jawed from the pleasure.
+
+One day, though, something changed, and you had no choice but to change with it. You didn't know it at first, but Incubus Drafts had a...side effect. An uncommon one, as it turned out, but you'd had enough of them to make even rarities commonplace. One day, lounging at camp with one of the goblins who'd gotten so attached to your fucktool that you decided she could stay around...you felt this incredible rush of pleasure. The biggest, messiest cumshot you'd ever had, enough to arch your back and make your eyes cross from the sheer physical bliss of it. You all but passed out in its wake. When you finally managed to collect your focus through the golden warmth of the afterglow, you remember only being able to muster a wide, stupid grin.
+
+You'd grown another prick. Another thick, sensitive cock, one to be worshiped and serviced and masturbated.
+
+After that, moving from camp was too much of a hassle for you to bother with it. You had a steadily growing harem of goblins to run errands for you, a coterie of happy servants to gather food, to make sure you always had an Incubus Draft to guzzle when you got thirsty, to make sure you never had to deal with more than one of your pricks getting stiff at the same time. It's all a blur past your second cock, and you were just about as empty-headed as your fucktoy slaves, so that's why you let the little voice in the back of your head take over. The one that you first heard the instant you took that first sip back at that wonderful
+fountain.
+
+Exgartuan.
+
+Exgartuan always knew what to do. He knew what felt good, what would make sure you had as much cockmeat as possible. But he didn't just have good ideas. He knew magic, too. Nothing that would actually make your cock grow, but you still get a dull thrill watching your pricks bloat up nice and fat, drawing every fertile female's eyes like magnets, drawing them forward, spellbound, until they take their proper place worshiping your fucklogs. With a cluster of mind-controlling bitchtamers twitching and throbbing and splurting fat wads of cum every so often, there wasn't a single person who could stand up to you, and Exgartuan made sure there was always someone willing to try. He had your goblins spread rumors, whispers of a new demon, one that was threatening to take over Mareth. One that was going to usurp Lethice.
+
+The first ones to try and stop your supposed conquest were the Sand Witches. Proud, confident, eager to cleanse the realm of its corruption...starting with you.
+
+Now you always had a milk-drooling tit to drink from and enough empty-headed thralls to titfuck your monstrous fuckrods whenever you wanted. Their Queen is your personal dairy cow, permanently entranced by the thick, sperm-belching tip of your first cock. She'd delivered a long-winded speech as she led her coven into "battle" against you, but the most she can manage now is a quiet mewl when you splatter her cleavage with a cumshot.
+
+Then there'd been the harpies, their queen boldly assuming she'd be able to use her magic to tame you, turn you into a breeding stud for her plans to expand her brood.
+
+All she'd managed to do was make sure you finally had pussies that could fit around some of your smaller cocks. Goblins were too small, and while Sand Witches had tits big enough to smother a few of your pricks, it took the harpies and their eager surrender before you could actually pump one of your loads into a nice, fertile cunt. The Harpy Queen is your personal broodmother bitch now, drooling and clenching pitifully around your cockhead as her daughters coo and moan, worshiping the shaft and ensuring that their mommy never has to go too long before you go pumping another wad into her womb.
+
+And after that, it's just a matter of letting Exgartuan take control. Not just of you. Of everyone. With a veritable forest of juicy, twitching cocks sprouting from your lap, he has all the power he needs to extend his influence further and further. With every cock you grow from the Incubus Drafts you guzzle like wine, with every new worshiper come to surrender their minds to the sight of your bloated, bitchtaming fuckrods, he grows stronger and stronger. His magic is insidious from a distance, sapping female willpower until they can't help but follow the little tug in the back of their head. Up close, it's irresistible.
+
+You grunt, hips unable to even twitch upwards as one of your myriad cocks pumps a load of cum into the air. Or maybe it's into some slut's mouth. It's so hard to tell, your mind is a slurry of sensation and sex and lust and pleasure. You cum again not a moment later, locked in a perpetual daze of mindless hedonism. You can't even think, really. You can only feel. Maybe you can tell that the warm, sticky liquid slathered over one of your fatter pricks is honey from a hypnotized bee-girl. But it could very well be a milk-bath from a cockaddicted Lacta Bovine. Maybe even just a goo girl wrapping her body around you to milk you for a few hours.
+
+Who knows? Who cares?
+
+You used to be a champion. You used to have hopes and dreams and aspirations. Now you just cum.
+*/

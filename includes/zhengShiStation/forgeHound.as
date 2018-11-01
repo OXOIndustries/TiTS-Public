@@ -1,4 +1,17 @@
 //Corona Lord Forgehound, by Wsan
+
+/* FLAGS:
+FORGEHOUND_ENCOUNTERED 	- times encountered (largely depreciated)
+FORGEHOUND_WREKT		- did you defeat the forgehound?
+FORGEHOUND_APOLIFUCKED 	- pretty self-explanatory.
+FORGEHOUND_INSULTED		- were you an ass to him?
+FORGEHOUND_PEGGED		- did you peg the boi?
+FORGEHOUND_FISTED
+FORGEHOUND_FACEFUCKED
+FORGEHOUND_BUKKAKED
+FORGEHOUND_KERATIN_TALK
+*/
+
 public function showForgehound(nude:Boolean = false):void
 {
 	showName("\nFORGEHOUND");
@@ -390,7 +403,7 @@ public function okayApologySexItIs():void
 		else pc.loadInAss(tempE);
 	}
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",move,rooms[currentLocation].northExit);
 }
 
 //[No]
@@ -495,6 +508,7 @@ public function submitToForgehound():void
 //PC wins
 public function defeatForgy():void
 {
+	flags["FORGEHOUND_WREKT"] = 1;
 	author("Wsan");
 	//Win by lust
 	if(enemy.lust() >= enemy.lustMax()) 

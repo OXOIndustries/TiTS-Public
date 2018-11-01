@@ -7451,7 +7451,7 @@ public function bessEvent7():void
 	
 	output("\n\nLooking into the glass as [bess.heShe] hands it to you it’s hard not to be concerned not just about the taste but also the safety of ingesting the beverage. You ask what [bess.heShe] put in it.");
 	
-	output("\n\n<i>“Well, all the minerals and vitamins needed to replenish the human body. I also added plenty of iron supplements, since I figured you were a Steele, ginseng, spanish fly, m’hengan watermelon, salamander brandy, cashapona, ambergris, as well as deer and tiger penis - oh, and I added some of your favorite drink!”</i>");
+	output("\n\n<i>“Well, all the minerals and vitamins needed to replenish the human body. I also added plenty of iron supplements, since I figured you were a Steele, ginseng, spanish fly, mhen’gan watermelon, salamander brandy, cashapona, ambergris, as well as deer and tiger penis - oh, and I added some of your favorite drink!”</i>");
 	
 	
 	output("\n\nYou look down and you can clearly see bits of meat floating around in the gloop among the watermelon chunks. You’re fairly sure that’s chopped up animal cock. Where did [bess.heShe] even find ingredients like deer and tiger penis on the outer galactic rim?");
@@ -10486,7 +10486,7 @@ public function bessDate2():void
 
 	output("For your next date, you head to a nearby water planet called Brelia. You park the ship on one of the small islands dotting the planet and walk out across the obsidian sand. The ocean quietly laps up the beach - once again it feels like you’ve got the entire planet to yourselves.");
 	
-	output("\n\n[bess.name] pulls out the trusty food hamper and a beach ball - apparently that’s another thing [bess.heShe] wants to experience - as well as a pair of snorkels. The scans showed there weren’t too many nasty things in the water, so it was safe for human habitation. Then again, so was M’henga.");
+	output("\n\n[bess.name] pulls out the trusty food hamper and a beach ball - apparently that’s another thing [bess.heShe] wants to experience - as well as a pair of snorkels. The scans showed there weren’t too many nasty things in the water, so it was safe for human habitation. Then again, so was Mhen’ga.");
 	
 	output("\n\n<i>“Remember, swimming THEN food. I don’t want you sinking on me!”</i> You ask [bess.name] exactly why [bess.heShe] had brought two snorkel sets when [bess.heShe] doesn’t even need to breathe. <i>“...I don’t like doing things halfway. If you go snorkeling, you need a snorkel!”</i>");
 	

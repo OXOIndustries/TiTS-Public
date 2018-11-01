@@ -1,4 +1,6 @@
-﻿// Butt Bugs: A Tarkus Parasite
+﻿import classes.GameData.Pregnancy.BasePregnancyHandler;
+
+// Butt Bugs: A Tarkus Parasite
 // Created By: Preacher
 // Proofread By: In large part Kirbu, Tori Toritori and RanmaChan, don’t know how much Thaumx, Vento and some anons.
 /*
@@ -1697,12 +1699,22 @@ public function removeButtBug():void
 }
 public function resetButtBugEffects():void
 {
-	if(pc.pregnancyData.length > 3 && InCollection(pc.pregnancyData[3].pregnancyType, typeButtBugPregList))
-	{
-		pc.pregnancyData[3].cleanupPregnancy(pc, 3);
-	}
+	cleanupButtBugPregnancy();
 	pc.removeStatusEffect("Butt Bug Egg Cycle");
 	pc.removeStatusEffect("Butt Bug Message Cooldown");
+}
+public function cleanupButtBugPregnancy():void
+{
+	if(pc.pregnancyData.length > 3)
+	{
+		switch(pc.pregnancyData[3].pregnancyType)
+		{
+			case "ButtBugPregnancy": ButtBugPregnancy.cleanupPregnancy(pc, 3); break;
+			case "ButtBugPregnancy0": ButtBugPregnancy0.cleanupPregnancy(pc, 3); break;
+			case "ButtBugPregnancy1": ButtBugPregnancy1.cleanupPregnancy(pc, 3); break;
+			case "ButtBugPregnancy2": ButtBugPregnancy2.cleanupPregnancy(pc, 3); break;
+		}
+	}
 }
 public function removeButtBugImmunoBooster():void
 {
@@ -1874,7 +1886,7 @@ public function messageButtBugParasitism(deltaT:uint, maxEffectLength:uint, doOu
 
 // Butt Bug pregnancy types
 // normal, overproductive, large
-private var typeButtBugPregList:Array = ["ButtBugPregnancy0", "ButtBugPregnancy1", "ButtBugPregnancy2"];
+private var typeButtBugPregList:Array = ["ButtBugPregnancy", "ButtBugPregnancy0", "ButtBugPregnancy1", "ButtBugPregnancy2"];
 public function loadInButtBug(mother:Creature = null, father:Creature = null):void
 {
 	// No dad
@@ -1916,9 +1928,17 @@ public function loadInButtBug(mother:Creature = null, father:Creature = null):vo
 		mother.addStatusValue("Butt Bug (Female)", 2, 1);
 		father.impregnationType = "";
 	}
+	// Ignore pregnancies that can activate in butts
+	// Otherwise, butt bug will impregnate first
 	else
 	{
-		ppButtBug.impregnationType = "ButtBugPregnancy";
+		var swapIt:Boolean = true;
+		if(father.impregnationType != "")
+		{
+			var pHandler:BasePregnancyHandler = PregnancyManager.findHandler(father.impregnationType);
+			if(pHandler != null && pHandler.canImpregnateButt) swapIt = false;
+		}
+		if(swapIt) ppButtBug.impregnationType = "ButtBugPregnancy";
 	}
 	
 	// Get preg with butt bugs!
@@ -1952,10 +1972,6 @@ public function expelButtBugEgg(eggs:int = 0):void
 	var buttBugF:StorageClass = pc.getStatusEffect("Butt Bug (Female)");
 	var swfVariant:int = ((buttBugF != null) ? buttBugF.value1 : -1);
 	var maxLooseness:Number = 2;
-	if(pc.pregnancyData.length > 3 && InCollection(pc.pregnancyData[3].pregnancyType, typeButtBugPregList))
-	{
-		eggs += pc.pregnancyData[3].pregnancyQuantity;
-	}
 	
 	var cIdx:int = (pc.hasCock() ? rand(pc.cocks.length) : -1);
 	var vIdx:int = (pc.hasVagina() ? rand(pc.vaginas.length) : -1);
@@ -2054,10 +2070,6 @@ public function birthButtBugType0(eggs:int = 0):void
 	var buttBugF:StorageClass = pc.getStatusEffect("Butt Bug (Female)");
 	var swfVariant:int = ((buttBugF != null) ? buttBugF.value1 : -1);
 	var maxLooseness:Number = 2;
-	if(pc.pregnancyData.length > 3 && InCollection(pc.pregnancyData[3].pregnancyType, typeButtBugPregList))
-	{
-		eggs += pc.pregnancyData[3].pregnancyQuantity;
-	}
 	
 	var cIdx:int = (pc.hasCock() ? rand(pc.cocks.length) : -1);
 	var vIdx:int = (pc.hasVagina() ? rand(pc.vaginas.length) : -1);
@@ -2138,10 +2150,6 @@ public function birthButtBugType1(eggs:int = 0):void
 	var buttBugF:StorageClass = pc.getStatusEffect("Butt Bug (Female)");
 	var swfVariant:int = ((buttBugF != null) ? buttBugF.value1 : -1);
 	var maxLooseness:Number = 2;
-	if(pc.pregnancyData.length > 3 && InCollection(pc.pregnancyData[3].pregnancyType, typeButtBugPregList))
-	{
-		eggs += pc.pregnancyData[3].pregnancyQuantity;
-	}
 	
 	var cIdx:int = (pc.hasCock() ? rand(pc.cocks.length) : -1);
 	var vIdx:int = (pc.hasVagina() ? rand(pc.vaginas.length) : -1);
@@ -2259,10 +2267,6 @@ public function birthButtBugType2(eggs:int = 0):void
 	var buttBugF:StorageClass = pc.getStatusEffect("Butt Bug (Female)");
 	var swfVariant:int = ((buttBugF != null) ? buttBugF.value1 : -1);
 	var maxLooseness:Number = 2;
-	if(pc.pregnancyData.length > 3 && InCollection(pc.pregnancyData[3].pregnancyType, typeButtBugPregList))
-	{
-		eggs += pc.pregnancyData[3].pregnancyQuantity;
-	}
 	
 	var cIdx:int = (pc.hasCock() ? rand(pc.cocks.length) : -1);
 	var vIdx:int = (pc.hasVagina() ? rand(pc.vaginas.length) : -1);
@@ -2465,7 +2469,7 @@ public function expelButtBugEggImmobile():void
 	
 	processTime(15);
 	
-	pc.pregnancyData[3].cleanupPregnancy(pc, 3);
+	cleanupButtBugPregnancy();
 	
 	// end overproductive parasite egg cycle and set egg count to 0
 	resetButtBugEggCycle();
@@ -2557,7 +2561,9 @@ public function nurseryHilinaraPetWorm(arg:Array):void
 			processTime(1);
 			
 			// Display buttons [Yes] and [No]
-			addButton(0, "Yes", nurseryHilinaraPetWorm, [1, numButtBugWorm, numButtBugHybrid, gender]);
+			if(pc.isWornOut()) addDisabledButton(0, "Yes", "Yes", "You are too tired to play with it at the moment!");
+			else if(pc.energy() < 10) addDisabledButton(0, "Yes", "Yes", "You do not have enough energy to play with it at the moment!");
+			else addButton(0, "Yes", nurseryHilinaraPetWorm, [1, numButtBugWorm, numButtBugHybrid, gender]);
 			addButton(1, "No", nurseryHilinaraPetWorm, [0, numButtBugWorm, numButtBugHybrid, gender]);
 			break;
 		case 1:

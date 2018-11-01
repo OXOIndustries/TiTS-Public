@@ -744,9 +744,17 @@ package classes.GameData
 			{
 				if(target.hasPerk("Leap Up"))
 				{
-					if (target is PlayerCharacter) output("\n\n<b>You roll up onto your [pc.feet] immediately thanks to your quick reflexes.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " jumps back onto " + target.getCombatPronoun("hisher") + " " + target.feet() + " almost immediately!</b>");
-					target.removeStatusEffect("Tripped");
+					if(target.hasStatusEffect("Don't Get Up"))
+					{
+						if(target is PlayerCharacter) output("\n\n<b>Since you chose not to do anything, you don't see the point in hopping up.</b>");
+						target.removeStatusEffect("Don't Get Up");
+					}
+					else
+					{
+						if (target is PlayerCharacter) output("\n\n<b>You roll up onto your [pc.feet] immediately thanks to your quick reflexes.</b>");
+						else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " jumps back onto " + target.getCombatPronoun("hisher") + " " + target.feet() + " almost immediately!</b>");
+						target.removeStatusEffect("Tripped");
+					}
 				}
 			}
 	
@@ -1120,8 +1128,18 @@ package classes.GameData
 				
 				if (!pollenFailed)
 				{
-					var pollenDamage:TypeCollection = new TypeCollection( { tease: 6 + rand(3) } );
-					var pollenResult:DamageResult = applyDamage(pollenDamage, pc, target, "suppress");
+					var pollenLustSC:StorageClass = target.getStatusEffect("Pollen Lust");
+					
+					if (pollenLustSC.value2 == 0)
+					{
+						var pollenDamage:TypeCollection = new TypeCollection( { tease: 6 + rand(3) } );
+						var pollenResult:DamageResult = applyDamage(pollenDamage, pc, target, "suppress");
+					}
+					else
+					{
+						pollenDamage = new TypeCollection( { pheromone: (3 * pollenLustSC.value3) } );
+						pollenResult = applyDamage(pollenDamage, null, target, "suppress");
+					}
 				}
 				
 				target.addStatusValue("Pollen Lust",1,-1);
@@ -1412,6 +1430,10 @@ package classes.GameData
 				{
 					output("\n\n<b>You are forced to stare dizzily at the ground, the bay and throb of the crowd in your ears, Lah’s hard, wiry arms locked firmly around your neck. You’ve got to get him off you!</b>");
 				}
+				else if (hasEnemyOfClass(TentacleGardener))
+				{
+					output("\n\n<b>The tendrils surrounding you squeeze down, probing at your body in every way that you can possibly get fucked. Purple pre smears across your [pc.skinFurScales], bathing you in musky fuck-scent.</b>");
+				}
 				else
 				{
 					output("\n\n<b>You are grappled and unable to fight normally!</b>");
@@ -1556,6 +1578,10 @@ package classes.GameData
 		private function waitRound():void
 		{
 			clearOutput();
+			if (pc.hasStatusEffect("Tripped") && pc.hasPerk("Leap Up"))
+			{
+				if(!pc.hasStatusEffect("Don't Get Up")) pc.createStatusEffect("Don't Get Up",0,0,0,0,true,"","",true,0);
+			}
 			if (pc.hasStatusEffect("Grappled"))
 			{
 				if (hasEnemyOfClass(Kaska)) kGAMECLASS.doNothingWhileTittyGrappled();
@@ -1584,6 +1610,14 @@ package classes.GameData
 				else if (_hostiles.length == 1 && _hostiles[0] is KorgonneMale)
 				{
 					(_hostiles[0] as KorgonneMale).setStatusValue("SURPRISE_MUTHA_TRUCKAH",1,1);
+				}
+				else if(_hostiles.length == 1 && _hostiles[0] is Johr) 
+				{
+					if( _hostiles[0].hasStatusEffect("GPrep"))
+					{
+						output(" It's better to bide your time until he throws that deadly projectile.");
+						(_hostiles[0] as Johr).createStatusEffect("Pumpkin Dodge");
+					}
 				}
 				waitRoundEffects();
 			}
@@ -2221,6 +2255,7 @@ package classes.GameData
 						}
 						else if (hasEnemyOfClass(RKLah)) output("You pull him to one side, before delivering a sucker punch hard and low from the other. Lah gasps in pain, and you manage to rip out of his grasp.");
 						else if (hasEnemyOfClass(AkkadiSecurityRobots)) output("You finally manage to tear your way out of the net!");
+						else if (hasEnemyOfClass(Johr)) output("You break free of the zil, narrowly dodging another heavy blow from Johr as you regain your feet and rejoin the fight. The zil circle around you, snarling.");
 						else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
 						if(panicJack)
 						{

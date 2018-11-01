@@ -183,7 +183,6 @@
 			dataObject.breastRows[0].breastRatingRaw = 28;
 			dataObject.nippleWidthRatio = 2;
 			dataObject.nippleColor = "black";
-
 		}
 	}
 }

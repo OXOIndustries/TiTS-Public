@@ -100,7 +100,8 @@ public function nurseryFoyerFunc():Boolean
 		return false;
 	}
 
-	if(flags["ELLIE_PREG_TIMER"] == 70 && flags["ELLIE_OPERATION"] == 3) return ellieEggsHatching();
+	if (flags["ELLIE_PREG_TIMER"] == 70 && flags["ELLIE_OPERATION"] == 3) return ellieEggsHatching();
+	else if (ainaKids() == 1 && ainaBirthScene()) return ainaFirstBirth();
 	else if(isHalloweenish() && havePumpkinCarvingScenes() && flags["CARVED_W_KIDDOS"] == undefined) return doPumpkinCarving();
 	else if(!isHalloweenish()) flags["CARVED_W_KIDDOS"] = undefined;
 	
@@ -568,6 +569,7 @@ public function nurseryKidsDormsFunc():Boolean
 	nurseryZilCallgirlRandomEvents();
 	khorganBabyBlurbs();
 	tamtamBabyBlurbs();
+	ainaBabyBlurbs();
 	var button:Number = 0;
 	button = zilBabyBonus(button);
 	button = milodanPlayOptions(button);

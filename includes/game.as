@@ -521,7 +521,7 @@ public function showCodex():void
 	addGhostButton(1, "Log", displayQuestLog, flags["TOGGLE_MENU_LOG"]);
 	addGhostButton(2, "Extra", showCodexExtra, undefined, "Extra Functions", "Use your codex add-on functions.");
 	addGhostButton(3, "Options", displayCodexOptions, undefined, "Codex Options", "Adjust the settings to your codex display.");
-	addGhostButton(4, "Back", backToPrimaryOutput);
+	addGhostButton(4, "Back", backToPrimaryOutput, true);
 }
 public function showCodexExtra():void
 {
@@ -587,7 +587,7 @@ public function showPerkListHandler(e:Event = null):void
 	}
 	else if (pButton.isActive && pButton.isHighlighted)
 	{
-		backToPrimaryOutput();
+		backToPrimaryOutput(true);
 	}
 }
 
@@ -703,7 +703,7 @@ public function showPerksList(filter:String = ""):void
 {
 	clearOutput2();
 	showPCBust();
-	setLocation("\nPERKS", "CODEX", "DATABASE");
+	setLocation("", "CODEX", "PERKS");
 	author("");
 	
 	var desc:Boolean = (flags["PERKS_DESC_OFF"] ? false : true);
@@ -756,6 +756,7 @@ public const CREW_KASE:int = 14;
 public const CREW_SHEKKA:int = 15;
 public const CREW_SYRI:int = 16;
 public const CREW_RAMIS:int = 17;
+public const CREW_AMBER:int = 18;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -777,6 +778,7 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	if (kaseIsCrew()) crewMembers.push(CREW_KASE);
 	if (shekkaIsCrew()) crewMembers.push(CREW_SHEKKA);
 	if (ramisRecruited()) crewMembers.push(CREW_RAMIS);
+	if (amberRecruited()) crewMembers.push(CREW_AMBER);
 
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -895,6 +897,7 @@ public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean =
 {
 	var crewMembers:Array = [];
 	
+	if (amberIsCrew()) crewMembers.push("Amber");
 	if (annoIsCrew()) crewMembers.push("Anno");
 	if (azraIsCrew()) crewMembers.push("Azra");
 	if (bessIsCrew()) crewMembers.push(customName ? chars["BESS"].short : chars["BESS"].mf("Ben-14","Bess-13"));
@@ -939,6 +942,7 @@ public function getFollowerBustDisplay(followerName:String = ""):String
 {
 	switch(followerName)
 	{
+		case "Amber": return dryadBustDisplay(); break;
 		case "Anno": return annoBustDisplay(); break;
 		case "Azra": return azraBustString(); break;
 		case "Ben-14":
@@ -985,6 +989,7 @@ public function getSleepingPartnerBustDisplay():String
 	if (flags["CREWMEMBER_SLEEP_WITH"] == undefined) return "";
 	switch(flags["CREWMEMBER_SLEEP_WITH"])
 	{
+		case "AMBER": return dryadBustDisplay(); break;
 		case "ANNO": return annoBustDisplay(); break;
 		case "AZRA": return azraBustString(); break;
 		case "BESS": return bessBustDisplay(); break;
@@ -1039,7 +1044,6 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 	var btnSlot:int = 0;
 	
 	// Followers
-	//amber (dryad)
 	if (amberIsCrew())
 	{
 		count++;
@@ -2042,6 +2046,7 @@ public function shipMenu():Boolean
 public function flyMenu():void
 {
 	clearOutput();
+	showName("CHOOSE\nDESTINATION");
 	
 	//Make sure you can leave the planet!
 	if(!leavePlanetOK())
@@ -2068,7 +2073,14 @@ public function flyMenu():void
 			addButton(14, "Back", mainGameMenu);
 			return;
 		}
-			
+		
+		if (isDoingEventWhorizon())
+		{
+			output("<b>Without a way to navigate back through the spatial anomoly, it's probably best you don't try and take off right now...</b>");
+			clearMenu();
+			addButton(14, "Back", mainGameMenu);
+			return;
+		}	
 		
 		if(flags["CHECKED_GEAR_AT_OGGY"] != undefined) flags["CHECKED_GEAR_AT_OGGY"] = undefined;
 		pc.removeStatusEffect("Disarmed");
@@ -2133,8 +2145,7 @@ public function flyMenu():void
 	//POE A
 	if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)
 	{
-		if(flags["POE_A_DISABLED"] == 1) addDisabledButton(6, "Poe A", "Poe A", "You probably shouldn’t go back there after your last trip to ‘The Masque.’")
-		else if(shipLocation != "POESPACE") addButton(6, "Poe A", flyToPoeAConfirm);
+		if(shipLocation != "POESPACE") addButton(6, "Poe A", flyToPoeAConfirm);
 		else addDisabledButton(6, "Poe A", "Poe A", "You’re already here.");
 	}
 	else addDisabledButton(6, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
@@ -2378,7 +2389,8 @@ public function leavePlanetOK():Boolean
 {
 	if(pc.hasStatusEffect("Disarmed") && shipLocation == "500") return false;
 	if(pc.hasKeyItem("RK Lay - Captured")) return false;
-	if(ramisOutDrinking()) return false;
+	if (ramisOutDrinking()) return false;
+	if (isDoingEventWhorizon()) return false;
 	return true;
 }
 
@@ -3306,7 +3318,13 @@ public function variableRoomUpdateCheck():void
 		else rooms["WEST ESBETH 1"].westExit = "";
 	}
 	else rooms["WEST ESBETH 1"].westExit = "";
-	
+	//Pumpking:
+	if(flags["PUMPKING_COMPLETION"] == 2 || flags["PUMPKING_COMPLETION"] == 3)
+	{
+		if(rooms["DENSE ORANGE 1"].eastExit == "") rooms["DENSE ORANGE 1"].eastExit = "PUMPKING_MAIN_GATE";
+	}
+	else if(rooms["DENSE ORANGE 1"].eastExit == "PUMPKING_MAIN_GATE") rooms["DENSE ORANGE 1"].eastExit = "";
+
 	/* TARKUS */
 	
 	// Chasmfall entrance
@@ -3596,6 +3614,13 @@ public function variableRoomUpdateCheck():void
 
 	if(rooms["ZSM U2"].hasFlag(GLOBAL.NPC) && flags["MAIKE_SLAVES_RELEASED"] != undefined) rooms["ZSM U2"].removeFlag(GLOBAL.NPC);
 	else if(!rooms["ZSM U2"].hasFlag(GLOBAL.NPC) && flags["MAIKE_SLAVES_RELEASED"] == undefined) rooms["ZSM U2"].addFlag(GLOBAL.NPC);
+
+	if(rooms["ZSF V22"].hasFlag(GLOBAL.OBJECTIVE) && flags["FERUZE_ZHENG_OUTCOME"] != undefined) rooms["ZSF V22"].removeFlag(GLOBAL.OBJECTIVE);
+	else if(!rooms["ZSF V22"].hasFlag(GLOBAL.OBJECTIVE) && flags["FERUZE_ZHENG_OUTCOME"] == undefined) rooms["ZSF V22"].addFlag(GLOBAL.OBJECTIVE);
+
+	if(rooms["ZSF I8"].hasFlag(GLOBAL.NPC) && flags["FORGEHOUND_WREKT"] != undefined) rooms["ZSF I8"].removeFlag(GLOBAL.NPC);
+	else if(!rooms["ZSF I8"].hasFlag(GLOBAL.NPC) && flags["FORGEHOUND_WREKT"] == undefined) rooms["ZSF I8"].addFlag(GLOBAL.NPC);
+
 	 
 	/* UVETO */
 	
@@ -3806,6 +3831,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processHardlightAGThongBlurbs(deltaT, doOut);
 	processGastigothPregEvents(deltaT, doOut, totalDays);
 	processFrostwyrmPregEvents(deltaT, doOut, totalDays);
+	processAinaPregEvents(deltaT, doOut, totalDays);
 	
 	
 	// Per-day events
@@ -3859,6 +3885,11 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	
 	if(sendMails)
 	{
+		//Halloween pumpking event!
+		if(pc.level >= 7 && isHalloweenish())
+		{
+			if(!MailManager.isEntryUnlocked("pumpking_alert") && !pennyIsCrew() && flags["PUMPKING_COMPLETION"] == undefined && flags["SEXED_PENNY"] != undefined) goMailGet("pumpking_alert");
+		}
 		/* SHEKKA RECROOT */
 		if(!shekkaRecruited() && flags["SHEKKA_REPEAT_TALKED"] != undefined && flags["SHEKKA_TALKED_PLAN"] != undefined && flags["PLANET_3_UNLOCKED"] != undefined && flags["TIMES_SEXED_SHEKKA"] != undefined)
 		{
@@ -3977,14 +4008,13 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			goMailGet("akanequest_email", flags["AKANE_RIVALS_TIMESTAMP"] + (60*24*7));
 		}
 		//Sucuccow email
-		if(pc.hasCock() && flags["SUCCUCOW_EMAIL_THIS_YEAR"] == undefined && flags["CIARAN_MET"] != undefined && isHalloweenish())
+		if(pc.hasCock() && flags["CIARAN_MET"] != undefined && isHalloweenish() && (flags["SUCCUCOW_EMAIL_THIS_YEAR"] == undefined || flags["SUCCUCOW_EMAIL_THIS_YEAR"] != getRealtimeYear()))
 		{
 			resendMail("succucow_email");
-			flags["SUCCUCOW_EMAIL_THIS_YEAR"] = 1;
+			flags["SUCCUCOW_EMAIL_THIS_YEAR"] = getRealtimeYear();
 		}
-		else if (!isHalloweenish())
+		else if (!isHalloweenish() && flags["SUCCUCOW'D"] != undefined)
 		{
-			flags["SUCCUCOW_EMAIL_THIS_YEAR"] = undefined;
 			flags["SUCCUCOW'D"] = undefined;
 		}
 		//RandyClaws email
@@ -4848,6 +4878,12 @@ public function isOktoberfest():Boolean { return holidaySeasonCheck("OKTOBERFEST
 public function isHalloweenish():Boolean { return holidaySeasonCheck("HALLOWEEN"); }
 public function isThanksgiving():Boolean { return holidaySeasonCheck("THANKSGIVING"); }
 public function isChristmas():Boolean { return holidaySeasonCheck("CHRISTMAS"); }
+
+public function getRealtimeYear():Number
+{
+	var curDate:Date = new Date();
+	return (curDate.getFullYear());
+}
 
 // Bad Ends
 public function deathByNoHP():void
