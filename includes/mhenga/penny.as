@@ -411,7 +411,7 @@ public function getSpitRoastedForPenny():void {
 	//Cum, pregnancy chances, sensitivity reduction
 	//Pass 2 hours.
 	processTime(120+rand(20));
-	flags["ZIL_PROBLEM_DEALT_WITH"] = 1;
+	flags["ZIL_PROBLEM_DEALT_WITH"] = 2;
 	pc.exhibitionism(1);
 	this.clearMenu();
 	this.addButton(0,"Next",getFucked4PennyEpilogue);
@@ -579,7 +579,7 @@ public function finishLosingToZilYouLoser():void {
 	pc.shower();
 	//Pass 30m
 	processTime(30);
-	flags["ZIL_PROBLEM_DEALT_WITH"] = 1;
+	flags["ZIL_PROBLEM_DEALT_WITH"] = 0;
 	CombatManager.genericLoss();
 }
 
@@ -688,6 +688,10 @@ public function friendPennyTalkMenu(func:Function = null):void
 	else addButton(2, "Fun", whatDoesPennyDoForFun);
 	if(func == talkToPennyAboutSpecies) addDisabledButton(3, "Species");
 	else addButton(3, "Species", talkToPennyAboutSpecies);
+
+	if(flags["PENNY_CREW_ASKED"] == undefined) addButton(4,"Recruit Her",offerPennyAJob,undefined,"Recruit Her","Penny looks like a stern, capable, reliable type.  You could probably find a place for her as a security officer on your ship, easy.");
+	else addDisabledButton(4,"Recruit Her","Recruit Her","You already tried, and Penny wasn't having it. However, with the way the conversation ended, you might be able to win her over in time...");
+
 	addButton(14, "Back", approachFriendPenny, false);
 }
 
@@ -1172,7 +1176,7 @@ public function talkToPennyAboutSpecies():void {
 	output(". <i>“I’ll admit, I may have seen some racier footage out there on the extranet that gave me the extra push to do this. I mean, what young single girl doesn’t want to be unique and sexy, to literally embody an animal associated with pleasing female forms?”</i> Penny smiles and stretches, arching her back for good measure. <i>“I never really took it seriously until I was in the academy though...”</i>");
 	output("\n\n<i>“What happened in the academy?”</i> you ask.");
 	output("\n\nPenny answers, <i>“I met someone that was doing it already, and... she loved it. She even changed her name to Kit after her cat ears grew in. I wound up being pretty good friends with her... great friends actually, and I decided I was going to go for it.”</i> The way she talks, it sounds like her and this cat-girl might have been a little more than friends, but you don’t push the issue. <i>“Unfortunately, I didn’t have a nice inheritance from a rich aunt to pay for my changes. Instead, I took the toughest, best paying posts I could.”</i> Penny growls low in her throat. <i>“It was hell, but I stuck it out. I knew what I wanted, and bit by bit, I saved up the cash for some splices.”</i>");
-	output("\n\nThe fox-girl curls her left hand into a fist. <i>“I had to take out a huge loan for the rest, but I managed to afford what I wanted: a fox transformation, and not just any fox, a fennec fox.”</i>Her ears flit this way and that. <i>“Not to sound all girly or anything, but don’t fennecs just have the cutest ears?!”</i> They swivel your direction. <i>“First my ears moved up and started reshaping. Then, my face started to reshape and the fur began growing out. It wasn’t long before I wound up with digitigrade legs and footpaws.”</i> Penny snugs her vest a bit more tightly around her chest wrap. <i>“I actually managed to get some breast enhancement included with it. As a flat-chested asian girl, I always wanted a big pair. Given my vocation, I think I went a bit overboard. I gotta keep the girls packed pretty tight if I want to be able to run or fight worth a damn.”</i>");
+	output("\n\nThe fox-girl curls her left hand into a fist. <i>“I had to take out a huge loan for the rest, but I managed to afford what I wanted: a fox transformation, and not just any fox, a fennec fox.”</i>Her ears flit this way and that. <i>“Not to sound all girly or anything, but don’t fennecs just have the cutest ears?!”</i> They swivel your direction. <i>“First my ears moved up and started reshaping. Then, my face started to elongate, and the fur began growing out. It wasn’t long before I wound up with digitigrade legs and footpaws.”</i> Penny snugs her vest a bit more tightly around her chest wrap. <i>“I actually managed to get some breast enhancement included with it. As a flat-chested asian girl, I always wanted a big pair. Given my vocation, I think I went a bit overboard. I gotta keep the girls packed pretty tight if I want to be able to run or fight worth a damn.”</i>");
 	
 	output("\n\nYou’re a little stunned by the information she’s piled onto you, but it seems to have lifted the big-eared vixen’s attitude a bit. <i>“I better get this report filed, [pc.name]. Thanks for listening. It’s nice to get things off your chest every once and a while.”</i> She chuckles at her inadvertant pun as she turns back to her computer.");
 	
@@ -1205,7 +1209,7 @@ public function pennysYouth():void {
 	output("\n\n<i>“Oh, hell yes something motivated me to be a Peacekeeper,”</i> Penny answers. <i>“I was always a smaller kid. I had small parents who didn’t really get behind the whole gene selection technologies a lot of richer couples take advantage of. I was a genetic roll of the dice, and I came up short. I didn’t have that much trouble for it myself, but I always saw nerdier or fatter kids getting beat up on. I lived in a bad neighborhood too, so witnessing crime was an almost everyday affair.”</i> Penny’s visage hardens. <i>“I was too little to do anything about either one.”</i>");
 	output("\n\nThe fennec-girl relaxes as she continues, <i>“I actually got mugged, or near enough to it, as a teenager. A Peacekeeper was passing through the neighborhood and saved my bacon that day. He wasn’t big or particularly strong, just smart and skilled. He had the perp disarmed and stunned before I knew what happened.”</i> Penny smiles enthusiastically. <i>“At that moment, I realized what I wanted to do with my life.”</i>");
 	output("\n\nYou ask her if she ran off to join up after that.");
-	output("\n\n<i>“Don’t be crazy, Crazy. I finished school first before I enrolled. I wanted to protect people, even though I’m not the biggest or the strongest, and the U.G.C. gave me a chance to do that.”</i> Penny beams. <i>“The academy wasn’t easy, particularly not for a small Penny Inoue. I toughed it out all the same. You don’t get to serve law and order if you can’t take a few hits.”</i>");
+	output("\n\n<i>“Don’t be crazy, crazy. I finished school first before I enrolled. I wanted to protect people, even though I’m not the biggest or the strongest, and the U.G.C. gave me a chance to do that.”</i> Penny beams. <i>“The academy wasn’t easy, particularly not for a small Penny Inoue. I toughed it out all the same. You don’t get to serve law and order if you can’t take a few hits.”</i>");
 	processTime(20);
 	friendPennyTalkMenu(pennysYouth);
 }
@@ -1407,6 +1411,11 @@ public function pennyGirlfriendMenu():void
 	if(flags["BADGER_QUEST"] == -3) addDisabledButton(2,"ReportBadger","Report Dr. Badger","Why would you report Dr. Badger when you’ve turned her into your big-breasted, bimbo badger fucktoy?");
 
 	if(pc.hasItemByClass(IQBGone)) addButton(3,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
+
+	//[=Cave=]
+	// Add this button after having spoken to Penny about getting the Oxonium.
+	// Tooltip: Set off for the cave full of Oxonium that Penny had told you about.
+	if(flags["PENNY_CREW_ASKED"] == 1) addButton(5,"OxoniumHunt",startPenpenQuest,undefined,"Oxonium Hunt","Help Penny score that Oxonium, pay of a bunch of her debt, and convince her to join your crew.");
 	this.addButton(14,"Back",mainGameMenu);
 }
 
@@ -1437,6 +1446,10 @@ public function talkToGirfriendPenny():void {
 	else addDisabledButton(5,"Buy Throbb","Buy Throbb","You need to talk to Penny about futanarification before you can buy this from her.");
 	if(flags["PENNY_IS_A_CUMSLUT"] != undefined) addButton(6,"Cumsluttery",pennyCumslutterMenuTalk);
 	else addDisabledButton(6,"Cumsluttery");
+
+	if(flags["HAD_PENNY_GOAL_CHAT"] == undefined) addDisabledButton(7,"Recruit Her","Recruit Her","You’ve been playing with a thought ever since you first had sex with Penny and she called you her mate, but you think it’d be safer if you could lead into it through conversation....");
+	else if(pennyIsCumSlut()) addDisabledButton(7,"Recruit Her","Recruit Her","Recruiting Cumslut Penny is not currently supported.");
+	else addButton(7,"Recruit Her",fuckedPennyRecruitmentInvite,undefined,"Recruit Her","Penny said something <i>very</i> interesting to you when you asked her what her plans for the future are. If you’re going to ask her more about it, now would be the time....");
 	this.addButton(14,"Back",approachGirlfriendPenny);
 }
 
@@ -1478,7 +1491,7 @@ public function askGFPennyAboutSpecies():void {
 	output("\n\nYou nod and motion for her to go on.");
 	output("\n\nIdly playing with her ear, the tawny fox mulls it over until her eyes light up. <i>“There are some things I wasn’t comfortable telling you about before that you might like to hear.”</i> She winks knowingly and pulls back on her vest to display the curves of her breasts to you. <i>“My libido definitely spiked with the size of my boobs. That was one thing I didn’t mind at the time, but it’s been a pain in my ass ever since.”</i> During the discussion, one of her hands had begun to squeeze at a breast, pawing at the plush orb. She tears it away with a look of infinite irritation. <i>“It’s hard as hell when you take down some muscly hunk, really pin him to the ground, and all you want to do is shag his balls off instead of dragging him back to a cell. I’ve gotten pretty damned good at reining myself in as a result.”</i>");
 	output("\n\nYou suppose that explains why she was fingering herself at her desk so often when you met her.");
-	output("\n\n<i>“No,”</i> Penny asserts, <i>“That was my sex drive combined with alien fuck pheromones. I may not have shown it, but I was pretty much in heat from breathing in so much of their musk. The only way to keep my head was with a steady diet of climaxes. So, I did what I had to do. I spent so much time schlicking that I gave up on running to the restroom to hide it after the first few hours. Turns out that fingerfucking yourself in between report pages is one way to get through the day.”</i> Penny casually runs her tawny hand through her close-cropped mohawk. <i>“It’s not really an approved tack, though.”</i>");
+	output("\n\n<i>“No,”</i> Penny asserts, <i>“That was my sex drive combined with alien fuck pheromones. I may not have shown it, but I was pretty much in heat from breathing in so much of their musk. The only way to keep my head was with a steady diet of climaxes. So, I did what I had to do. I spent so much time schlicking that I gave up on running to the restroom to hide it after the first few hours. Turns out that fingerfucking yourself in between report pages is one way to get through the day.”</i> Penny casually runs her tawny hand through her close-cropped mohawk. <i>“It’s not really an approved tack, though.”</i>\n\n");
 	
 	if(pc.isNice()) output("That’s quite the confession! You had no idea she had so much trouble with her baser urges and ask her if there’s anything else about the transformation that she held back.");
 	else if(pc.isMischievous())
@@ -3890,6 +3903,417 @@ public function pennyJailRPEpilogue():void
 	output("You spend the next half an hour in the shower in the gentle care of Penny. She thoroughly cleans you up while paying gentle attention to your thoroughly abused ass and the bite mark she left on your neck.");
 	output("\n\nAfter the shower, you get back to the front room with Penny. She sits down on the edge of her desk before pulling you into her lap. Her erection palpably throbs against your ass as you settle into position. <i>“I had so much fun, my mate. I really hope you’re up for this again sometime, but if not I understand.”</i> She’s still apologetic about biting your neck!\n\nYou assure her that your neck is fine before taking your leave. As you step outside, the bite mark on your neck tingles, you touch it instinctively, feeling a wave of lust shudder down your spine down to your [pc.asshole] at the memory.");
 	processTime(4);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+/*==========================================
+		Penny Crew Recruitment Stuff
+==========================================*/
+//With lots of help from TheLetterB
+//Overview:
+//We’re making Penny into a crewmate/waifu! !!!!!
+
+/* NOTES FROM B:
+Fenoxo asked me on Discord to handle pure Penny’s recruitment because I’m pretty good at handling waifus (Paige, Nenne, Frosty) – pure, in this case, referring to Penny that is not a bimbo or a cumslut.  So, she can have a dick, as long as it’s not as long as she is tall.
+
+The initial idea was that you could just buy out Penny’s contract and convince her to leave Mhen’ga and join you based on you throwing money at her, but Fen opted against that because Shekka and Paige had beaten Penny to that.  So, there’s going to be a small sidequest with her (assuming she’s pure.  Corrupted Penny will join you because you’re such a stud/slut).  I won’t be involved with that; I’m just writing the beginning and the end.
+
+My current agenda is to write the PC approaching Penny about buying out her contract; the lead-up to the quest; and everything upon completing the quest, where she accepts your offer and joins you on her ship.  Fen’s wordcount includes some crew interactions, but I’ll probably be pretty light on those, with the exception of Paige.  Whether she gets any additional scenes is still in the air as of this writing.*/
+
+
+//[=Offer=]
+// Include this new button on Penny’s Talk menu, after having dealt with the Zil but before having sex with her.
+// Tooltip: Penny looks like a stern, capable, reliable type.  You could probably find a place for her as a security officer on your ship, easy.
+// Tooltip (greyed out): You, um, might want to wait until you and Penny are a little more than just friends before asking her this again.
+// I made this scene kind of absurd since Penny’s pre-sex talking topics are rather on the bare side, so you barely know her, but Fen wanted a scene where you offer to take her onboard before having sexed her up.
+// (scene: Premature Offer)
+
+public function offerPennyAJob():void
+{
+	clearOutput();
+	showPenny();
+
+	output("You lean onto Penny’s office desk. " + (!penny.hasCock() ? "She has a casual, relaxed look about her, and you can see her tail swish gently behind her chair as you approach her":"She’s trying to act casual, but you can see her hand idly waxing a throbbing bulge between her legs at the sight of you") + ". You study her form – she really commands a sense of authority, from her toned body and the sturdiness and totality of her outfit - exactly what you're looking for in a security officer.");
+	output("\n\nEvidently, the intensity of your expression proves unnerving; as you lean in closer to her, her tail stops swishing and her smile slowly drains from her face. <i>“Uh,”</i> she says as your noses come dangerously close to " + (silly ? "booping":"touching") + ". <i>“Earth to crazy...?”</i>");
+
+	if(pc.isAss()) 
+	{
+		output("\n\nYour mind made up, you place both your palms on the top of her desk, and you tell her that you’ll hire her onto your crew as your security officer. She’s perfect for the job, and you won’t take a no for an answer.");
+	}
+	else output("\n\nTrying to be as nonchalant as you can, you tell her that it just so happens that your ship has a vacancy for a security officer. If she’s in the market for a new position, you two could work something out.");
+	output("\n\n<i>“Whoaaa,”</i> Penny says, bringing both her hands up and patting her vulpine-padded palms toward you, <i>“You’re coming at me pretty fast there, crazy. Join you on your ship? What the fuck?! I’m literally the only thing keeping this little hamlet from getting overrun by a swarm of pervert wasp-people. You know that! I can’t just pack up and leave. Besides, I barely known you!”</i>");
+	output("\n\nShe said it herself, she owes you for helping her with that Zil problem. You " + (pc.isAss() ? "tell":"beg") + " her to reconsider.");
+	output("\n\n<i>“Okay, fuck off with that right now,”</i> she warns, pointing a stern finger in your direction. <i>“Helping me deal with a pair of horny bugs doesn’t mean I’m going to just up and change my whole life because you think an inch is the same as a mile. I owe you, like, a beer or or something - nothing more than that.”</i>");
+	output("\n\n" + (pc.isAss() ? "You straighten your back, frustrated":"You slump backwards, dejected") + " at Penny rejecting your offer.");
+	output("\n\n<i>“Where did all this come from, anyway?”</i> she asks. <i>“You hardly know the first thing about me, and here you are, telling me to quit my job and come work for you – you’re a rusher, right? I can’t risk everything I’ve worked for on something as inconsistent as rushing, no matter how big the payoff might be or how cute the rusher.”</i> The fox-girl’s ears fold back a bit at her slip-up, but the cat’s out of the bag: she thinks you’re cute!");
+	output("\n\nYou step back, giving Penny a bit of space.\n\nShe sighs heavily, her wide, inhuman eyes flicking back up to you. <i>“Don’t take it the wrong way. I’m thrilled to have someone as " + (flags["ZIL_PROBLEM_DEALT_WITH"] == 2 ? "slutty":"capable") + " as you helping out around here, but I can’t throw this town away to hunt space-gold with a [pc.guyGirl] I barely know.”</i> She smirks, fingers tapping at some digitized paperwork. <i>“So how about this: we both forget about this for right now, and if anything changes to make more amenable to being abducted by your spaceship, you can ask me again. Deal?”</i>");
+	output("\n\nYou suppose it’ll have to be, at least until you know Officer Penny a bit better.");
+	processTime(20);
+	flags["PENNY_CREW_ASKED"] = -1;
+	friendPennyTalkMenu();
+}
+
+//[=Offer=]
+// Include this new button on Penny’s Talk menu, after having dealt with the two Zil and after having asked her about her [=Goals=]; grey it out until they spoken about her goals.
+// Tooltip: Penny said something <i>very</i> interesting to you when you asked her what her plans for the future are. If you’re going to ask her more about it, now would be the time….
+// Tooltip (greyed out): You’ve been playing with a thought ever since you first had sex with Penny and she called you her mate, but you think it’d be safer if you could lead into it through conversation….
+// (scene: Offer)
+public function fuckedPennyRecruitmentInvite():void
+{
+	clearOutput();
+	showPenny();
+	author("B");
+	if(flags["PENNY_CREW_ASKED"] == -1) output("You’re somewhat hesitant to even think of making this offer, but, well....\n\n");
+	output((pc.isTaur() ? "You fold your [pc.legs] under your lower half and seat yourself":"You take a seat") + " across from Penny" + (!pc.isTaur() ? ", in one of her office chairs":"") + ". You tell her that you have a very serious question you want to ask her.");
+
+	output("\n\n" + (flags["PENNY_CREW_ASKED"] == 1 ? "<i>“This sounds awfully familiar,”</i> she snarks. <i>“Good to see you’re pumping the breaks a bit this time, at least.”</i>":"Sensing your sincerity, Penny puts down her paperwork and turns her chair to face you, sitting upright. Her large ears are perked and are facing towards you. <i>“You have my undivided attention, [pc.name],”</i> she says, and you can tell, she means it."));
+	output("\n\nWhen you asked her about her goals in life, she mentioned towards the end that she might consider retiring and traveling the stars with you as an adventurer. You know that she has a lot on her plate right now, but... you ask her what it would take to get her to seriously consider it. You’d love to have her with you on your ship.");
+	output("\n\nAt the question, Penny takes a long, deep sigh. Her gaze falters and focuses elsewhere in the room as she considers the question. <i>“There’s a lot to keep in mind with a question like that, [pc.name],”</i> she says. <i>“It’s more than just picking up and leaving. Esbeth may only have a handful people in it to call it a community, but, fuck, I can’t just leave them. I’m the only law enforcement here.”</i>");
+	output("\n\nSo, the challenge is to find a replacement for her? <i>“It would be a good start, for sure,”</i> she says, her fingers twiddling senseless patterns on her desk. <i>“But I still have payments and debts of my own to worry about. I won’t doubt that being a rusher can be lucrative, but I need something more stable than the occasional lucky gold dig or whatever.”</i>");
+
+	output("\n\n" + (pc.credits >= 50000 ? "You’re pretty loaded. You could offer to help her out.":"You could offer to help her out with that, even if you’re not exactly [pc.misterMiss] moneybags at the moment."));
+	processTime(3);
+	clearMenu();
+	addButton(0,"Offer Creds",offerCreds,undefined,"Offer Creds","Help a girl out.");
+	addButton(1,"Don’t Offer",dontOfferPenPenCreds,undefined,"Don’t Offer","Penny’s a strong, independent furry who don’t need no creds.");
+}
+
+public function offerCreds():void
+{
+	clearOutput();
+	showPenny();
+	author("B");
+	output((pc.credits >= 50000 ? "In that case, you offer to pay off whatever outstanding debts Penny has on the spot. You’ve got some pretty hefty pockets, and if it means giving Penny a more exhilarating future than just sitting at a desk and waiting for danger to come to her, you’d gladly pay it.":"You ask her if she isn’t averse to getting a donation or two to help dig her out of whatever hole she’s in. If it means getting Penny out of this cramped office and out from behind that desk so she can live a more exciting life, you wouldn’t mind putting in a few extra hours to raise the funds and help her out."));
+	output("\n\n<i>“Hey!”</i> Penny barks, extending an authoritative finger towards you – but, as soon as the command rises in her throat, it dissipates, and her expression softens. <i>“I’m sorry. You’re just trying to be a good mate to me, and I shouldn’t have snapped at you like that.”</i>");
+	output("\n\nYou ask her why she did. <i>“Because I don’t like the idea of being dependent. It’s a generous offer, [pc.name], but, mate or not, I’d just be going from one debt to another. I can’t rely on handouts all my life. I dug this hole, and I’m going to climb out with my own two hands.”</i>");
+	pennyHelpNoHelpScene1Outro();
+}
+public function dontOfferPenPenCreds():void
+{
+	clearOutput();
+	showPenny();
+	author("B & Fenoxo");
+	output("You offer a sober nod. <i>“I understand. You wanna ");
+	if(pc.isBimbo()) output("like, make your own money and stuff, even if it’s totally hard.”</i> You stifle a giggle.");
+	else output("lift yourself up on your own two feet - er, paws.”</i>");
+	output("\n\n<i>“Exactly!”</i> Penny barks, extending an authoritative finger. <i>“That’s why you’re my fucking mate, right there. I don’t like the idea of being dependent. Taking a loan to look like this damn near killed me inside, but I don’t need handouts any more. I’m going to climb out of this hole with my own two hands.”</i>");
+	pennyHelpNoHelpScene1Outro();
+}
+
+public function pennyHelpNoHelpScene1Outro():void
+{
+	output("\n\nYou ask, in that case, if... there’s any other way you can help her. If you can’t just give her money, can you at least help her <i>earn</i> her way out of her debt?");
+	output("\n\n<i>“You’re serious about this, aren’t you?”</i> Penny asks, her face lowered but her eyes raised, on yours. You respond that you are. <i>“Well...”</i>");
+	processTime(6);
+	clearMenu();
+	addButton(0,"Next",fuckedPennyRecruitmentInvite2);
+	flags["PENNY_CREW_ASKED"] = 1;
+}
+
+//[=Next=]
+// end scene (scene: Offer); go to (scene: Offer 2)
+
+// (scene: Offer 2)
+public function fuckedPennyRecruitmentInvite2():void
+{
+	clearOutput();
+	showPenny();
+	author("B & Fenoxo");
+	output("Penny faces her monitor and taps on her keyboard for a moment. Windows open up and sift through files and folders, until she comes to an image file that, with the press of a button, takes up the whole screen, turning it black and green: it appears to be a screenshot of some kind of radar, with a number of white dots appearing in various spots all over the screen – including a massive cluster of them in the corner.");
+	output("\n\n<i>“This is a screenshot of an Oxonium scanner, [pc.name],”</i> she says, leaning back to give you a better view of the monitor. <i>“The station has a dish on the top that is primarily used for interplanetary communications, so I can report into the U.G.C. every now and then, but one night I caught some shithead rusher trying to rig it to scan for Oxonium deposits while I was off-duty. I uninstalled the software and gave him the boot – but not before taking a screenshot of the results. Every white dot that you see is a positive reading.”</i>");
+
+	if(flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] == undefined) output("\n\nYou ask her what the significance is. <i>“Oxonium is a mineral used in holographic displays, like the one in your Codex. It’s not that easy mineral to come by, which is why holographic projectors don’t come cheap. And... that means Oxonium is worth a pretty penny on its own.”</i>");
+	output("\n\nThe news takes you by surprise – " + (flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] != undefined ? "you’re aware of just how valuable a single deposit of Oxonium is, and ":"") + "she has a screenshot that just <i>tells</i> her of all the Oxonium within twenty miles? <i>“Don’t go spreading the word; this wasn’t the most legal use of U.G.C. tech in the handbook, and if word gets back to base, the photo will be confiscated. Worse, I’ll be reprimanded for taking advantage of a sour situation.”</i>");
+	output("\n\nYou stare at all the white dots on the screen. You avoid the obvious question first, and ask instead why she hasn’t tried to track down all the stray little dots littered across the screen. <i>“A lot of them are false positives,”</i> she answers. <i>“I tried. The ones that</i> do <i>pay off only get me about three grand in credits or so, which I don’t think is worth the risk.”</i>");
+	output("\n\nSo, then, you broach the obvious question – what about the massive cluster in the corner?");
+
+	output("\n\n<i>“<b>That,</b>”</i> she says, adjusting herself in her seat, <i>“is from a cave located a couple miles deep into the bush. A cave with that much Oxonium in it would <i>easily</i> give me enough leeway to consider joining you as a rusher. But I haven’t gone for it because the partners of that one shithead that jacked my dish went after the cave, and they never came back. So I had the place cordoned off.”</i> She plants both her elbows on the table and strains her fingers, angrily snarling at the monitor. <i>“Argh, it’s been</i> torture <i>knowing that so much money is sitting</i> right there, <i>but I haven’t been able to do a damn thing about it!”</i>");
+
+	if(pc.isNice()) output("\n\nYou can probably guess what the next words out of Penny’s mouth are going to be, but you let her go ahead.\n\n<i>“That’s where you come in,”</i> she says, her hand clasping securely onto your shoulder. <i>“It would be crazy for me to go there alone... but if I had my mate at my side, we could make it work. After I saw you handle those two Zil, I knew that, if anyone would be willing to risk going after it, it’d be you. You and me, [pc.name], we could make that jungle our bitch. Our prey!”</i>");
+	else if(pc.isMischievous()) output("\n\n<i>“Let’s go get it, then,”</i> you offer. <i>“You and me.”</i>");
+	else output("\n\n<i>“Well, there’s no sense in standing around, is there? That Oxonium isn’t going to go claim itself.”</i>");
+
+	if(!pc.isNice()) output("\n\n<i>“I was hoping you’d say that, my mate,”</i> she replies with a smug, self-satisfied grin. <i>“As soon as you handled those Zil, I knew you were crazy enough to go and tackle that deposit with me.”</i>");
+	output(" She leans into you and nuzzles her cheek against yours affectionately. <i>“Making you into my mate just happened to be a bonus.”</i>");
+	output("\n\nPenny closes the image, returning her monitor to its previous state. <i>“I’ve had the coordinates for the cave mapped out for some time, now. We don’t have to go to it right now; I’ll give you some time to get ready. You know where I am when you are.”</i>");
+	output("\n\nYou stand and make for the door – but, as soon as you do, you feel a hard, hearty slap against your [pc.ass], making you jump in surprise, followed by a five-fingered grope.");
+	output("\n\nYou turn back to Penny, and to her narrow-eyed, devious, predatory expression, her tongue coyly licking at one corner of her mouth. <i>“There’ll be more in it for you than just a take if it all works out, my mate,”</i> she promises.");
+	output("\n\nWith that in mind, you leave her station – for now.");
+
+	processTime(10);
+	pc.lust(5);
+	clearMenu();
+	addButton(0,"Next",moveSouth);
+}
+
+//[=Cave=]
+// Add this button after having spoken to Penny about getting the Oxonium.
+// Tooltip: Set off for the cave full of Oxonium that Penny had told you about.
+// (scene: Sidequest Start)
+public function startPenpenQuest():void
+{
+	clearOutput();
+	showPenny();
+	author("B & Fen");
+	output("You approach Penny’s desk");
+	if(pc.isBimbo()) output(" with a happy giggle and the friendliest smile in all the galaxy.");
+	else if(pc.isMischievous()) output(" with a confident, surly stride.");
+	else if(pc.isNice()) output(" with a friendly smile and a wave.");
+	else if(pc.isAss()) output(" with a firmly set jaw and a determined glare.");
+	output("\n\n<i>“By the look on your face, my mate,”</i> Penny begins – a sly, confident smirk spreading on her lips as she stands. <i>“You’re ready to go bag us some Oxonium, am I right?”</i>");
+	output("\n\nAs a matter of fact–");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Ready",readyToGoOnAnAdventure,undefined,"Ready","Get this party started.\n\n<b>Warning:</b> this is a dangerous adventure that may result in sudden game overs.");
+	addButton(1,"No",noPennyLetsNotStart,undefined,"No","Uh, maybe if you just had a few more hours.");
+}
+
+//[=…No!=]
+// Tooltip: Uh, maybe if you just had a few more hours….
+public function noPennyLetsNotStart():void
+{
+	clearOutput();
+	showPenny();
+	author("B");
+	output("You hesitate, and tell Penny that you’re just reminding her that you haven’t forgotten; you just need a few more hours of prep time.");
+	output("\n\nPenny’s expression sours into a frown, and she plops herself back onto her chair, returning to her professional demeanor and busying herself with her paperwork. <i>“Well, I won’t ever be going anywhere until you are,”</i> she says. And that’s the end of the conversation.");
+	//Normal Menu
+	this.addButton(0,"Next",approachGirlfriendPenny);
+}
+
+
+//[=Ready!=]
+// Tooltip: Set out for that cave of Oxonium and change the course of Penny’s future! <b>Make sure you’re ready before choosing this option!</b>
+// This would be the start of the sidequest, which is no longer my area, so I’m leaving this content blank.
+public function readyToGoOnAnAdventure():void
+{
+	clearOutput();
+	showPenny();
+	author("Fenoxo");
+	output("<i>“Yep.”</i>");
+	output("\n\nPenny slaps the ‘standby’ key on her workstation with visceral glee. <i>“Then what are we standing around for?”</i> She bounces to a corner of the room and, swiftly keying in a passcode, reveals the chromed metal of a U.G.C.-issue room-sweeper. The fox-woman grabs an accompanying greatcoat and shovels a dizzying amount of blue-patterned shells into the bulging pockets before finally hefting the comparatively huge powder-banger. <i>“Just in case we run into any male zil.”</i> She racks the action. <i>“Can’t exactly smack them around with a Tonfa when they’re flying in the air, and don’t worry - these are less-than-lethal rounds. I’m not killing anybody unless I have to.”</i>");
+	//Bimbo
+	if(pc.isBimbo()) output("\n\nYou boisterously applaud, thrilled to see her all gussied up in combat gear. She’s super hot with a shotgun!");
+	//Bro
+	else if(pc.isBro()) output("\n\nYou nod approvingly. <i>“Good.”</i>");
+	//nice
+	else if(pc.isNice()) output("\n\nYou weren’t sure what to expect, but it’s good to see that Penny is taking this so seriously. <i>“Badass, Penny.”</i>");
+	//Mischievous
+	else if(pc.isMischievous()) output("\n\nYou clap her on the back approvingly. <i>“Lookin’ good there, Penny! You ought to bring the coat to our next bedroom adventure. Just in case.”</i>");
+	//Hard
+	else output("\n\nYou eyeball the shells warily. <i>“Your call. The lethal kind would put ‘em down faster. Besides, I’m pretty sure it takes more than buckshot to keep the bastards down.”</i> You look over Penny’s coat next, taking note of where the sewn-in armor hangs heavily on the cloth. <i>“Good choice of coat though. Who knows what’s out there.”</i>");
+	output("\n\nThe fox-woman fidgets briefly, undoubtedly flushing beneath her sleek, tawny fur. <i>“Thanks, [pc.name]. I’ve had a lot of time to think about how I’d approach a mission like this - what gear I’d take, the path through the jungle... all I was missing was a capable mate to watch my back.”</i> She tosses the shotgun over her shoulder and leans into you, pulling you dangerously close. <i>“I was missing you.”</i> Lips parting, she leans ");
+	if(pc.tallness - 10 > penny.tallness) output("up ");
+	else if(pc.tallness + 10 > penny.tallness) output("in ");
+	else output("down ");
+	output("for a long, slow kiss, one of her hands possessively squeezing your [pc.butt]" + (pc.buttRating() >= 12 && pc.tone < 66 ? ", the fingers all but vanishing into one of your oh-so expansive cheeks":"") + ".");
+	output("\n\n<i>“Let’s go,”</i> Penny declares, breathing a bit heavily.");
+	processTime(5);
+	pc.lust(3);
+	clearMenu();
+	addButton(0,"Next",pennyMissionStart);
+}
+
+public function pennyMissionStart():void
+{
+	clearOutput();
+	showPenny();
+	author("Fenoxo");
+	showName("HIKING\nWEST");
+	moveTo("WEST ESBETH 2");
+	output("The walk to the west side of town draws more than a few concerned stares at Penny’s appearance. It’s not every day the local peacekeeper marches down the street kitted out to take down a riot single-handedly. Citizens and Rushers alike give you a wide berth. Less reputable members of Esbeth’s public keep their eyes down and slink into shadowy alcoves.");
+	output("\n\nPenny is smiling like a maniac by the time you clear the west edge of town and march toward the jungle. <i>“Did you see the looks on their faces, [pc.name]?”</i> She cackles. <i>“I don’t even get respect like that from Burt when I’m dragging a half-dozen drunks out of his bar.”</i> Popping the shotgun off its holster, she thumbs off the safety and coolly regards the edge of the jungle. <i>“Assuming we don’t end up captured by man-eating plants or zil slavers, I am going to give them such a hard time about it when I get back.”</i> Her head pivots as she scans the jungle for something. <i>“Gun or not, I’m still the same old Penny.”</i>");
+	output("\n\nShe glances between her thighs, then sheepishly up at you. <i>“Mostly the same old Penny. Just a little sluttier for her " + pc.mf("handsome","sexy") + " mate.”</i>");
+	output("\n\nYou point out that they’ve never had a chance to see her when she’s wholly focused on a goal.");
+	output("\n\n<i>“I suppose so.”</i> The fox-girl’s enormous ears perk up. <i>“There!”</i> She points to a natural break in the foliage. <i>“That’s a natural path that’ll take us almost directly to the Oxonium deposit, assuming the jungle hasn’t shifted too much since the last orbital scan.”</i> She steps up to it and breaths deeply, gathering up the courage to face the unknown without the coverage of turret emplacements. <i>“Let’s do this.”</i>");
+	output("\n\nTogether, you walk into the untamed wilderness of Mhen’ga’s western jungle.");
+	processTime(15);
+	pc.lust(-50);
+	clearMenu();
+	addButton(0,"Next",pennyMissionWalk);
+}
+
+public function pennyMissionWalk():void
+{
+	clearOutput();
+	showPenny();
+	showName("DEEP\nFOREST");
+	showBust(pennyBustDisplay(true),"ZIL_RED","ZIL_RED");
+	moveTo("PENNYQUESTSTANDIN");
+	output("Travel is slow going. Between the foreign environment, unstable footing, and the hazards inherent to an alien jungle, neither you nor Penny is in a hurry to take any unnecessary risks. You make steady progress through razor-sharp ferns, hop over fallen tree trunks so infested with fungus that they squish like mud, and even manage to catch Penny when her coat catches on the edge of a broken branch.");
+	output("\n\nNo venture into these dangerous woods would be complete without an encounter with the wasp-like zil, and this particular journey is no different. The telltale buzzing wing-beats alert you to the presence of wasp-men moments before three of them flutter down from the canopy. Unlike others you have encountered, these ones are red and black, the chitinous armor of their chests and loins fully retracted to expose oily nipples and phalli thickened by rapacious lust.");
+	output("\n\nTo her credit, Penny has her gun aimed up in the air almost before you free your own [pc.weapon]. She takes aim... and the smell hits you: sweet and cloying. It’s like sex set to marinate in honey for days. " + (!pc.hasAirtightSuit() ? "While you certainly feel a bit warmer from your first breath":"While you’re silently thankful for your airtight equipment") + ", the gun-toting vixen suffers far worse. Eyes wide, she whines, high-pitched and desperate. Her hands shake as her shoulders slowly slump.");
+	if(penny.hasCock()) output(" A growing distention appears at her crotch until she can bear it no longer. Penny drops her weapon to get her hands on another, whimpering, <i>“S-s-sorry, mate! They smell so goooood!”</i> Pre bubbles between her fingers instantly as her body responds to a pheromonal trigger her mind has made synonymous with masturbation." + (penny.cocks[0].cLength() >= 13 ? "<i>“And I’m just a horny, big-dicked fuck-toy of a fox!”</i> Her spilling excitement thickens, a little opaque at that admission. <i>“F-fuck those zil, and then fuck me!”</i>":""));
+	else output("\n\nA growing damp patch appears at her crotch until she can bear it no longer. Penny drops her weapons to deal with the more serious threat of her waistband and panties, nearly ripping them in her hurry to plunge her fingers deep into her own sodden honeypot. <i>“S-s-sorry, mate! They smell so goooood!”</i> she whimpers while rubbing her palm against her flushed and swollen mound, completely soaked the second she got a whiff of the oh-so-familiar pheromonal trigger.");
+	output("\n\nJust how much time did she spend huffing zilmusk and masturbating before you helped her out? <b>You'll have to deal with them yourself!</b>");
+	processTime(20);
+	pc.lust(4);
+	clearMenu();
+	//start combat
+	CodexManager.unlockEntry("Zil");
+	CombatManager.newGroundCombat();
+
+	//Setup Penny with all the combat stats she needs.
+	penny.pennyQuestSetup();
+
+	CombatManager.setFriendlyActors(pc, penny);
+	penny.lust(1000);
+	var enemies:Array = [new ZilMale(),new ZilMale(),new ZilMale()];
+	enemies[0].pennyQuestIt();
+	enemies[0].long = "Floating the highest, this red and black zil is notable for the size of his erection and the intensity of the gaze he fixes upon you. His thin black lips curl with the hint of a smile, undoubtedly anticipating all the sordid things he intends to make you and Penny do.";
+	enemies[1].pennyQuestIt();
+	enemies[1].long = "The second zil your gaze sweeps across is colored much the same as the first, though his reddish hues are more muted and his dick merely porn-star grade. He looks stronger too and carries himself with the bearing of a leader - albeit one determined to shove his dick into a Rusher at the first opportunity.";
+	enemies[2].pennyQuestIt();
+	enemies[2].long = "Your final alien foe hangs lower in the air than his compatriots but appears no less libidinous or dangerous. His wings flutter steadily, his dick almost casually leaking strings of sweet pre-cum. He keeps looking at Penny with a wide, excited smile.";
+	CombatManager.setHostileActors(enemies[0],enemies[1],enemies[2]);
+	CombatManager.victoryScene(defeatThatZilgang);
+	CombatManager.lossScene(loseToZilGangWithPenpen);
+	CombatManager.displayLocation("ZIL HUNTERS");
+	
+	clearMenu();
+	addButton(0,"Next",CombatManager.beginCombat);
+}
+
+//Penny & You Zil Ambush Bad-End
+public function loseToZilGangWithPenpen():void
+{
+	pc.lust(300);
+	var enemies:Array = CombatManager.getHostileActors();
+	while(enemies.length > 1)
+	{
+		CombatManager.removeHostileActor(enemies[0]);
+	}
+	author("Fenoxo");
+	showBust("ZIL_RED",pennyBustDisplay(true),"ZIL_RED");
+	showName("\nDEFEATED");
+	output("You should’ve known this little quest would result in you and Penny on " + (pc.hasKnees() ? "on your knees":"on the ground") + " with your mouths open and your nostrils wide-open, drinking in as much of the wasp-men’s intoxicating musk as possible." + (pc.hasAirtightSuit() ? " And all they had to do was pry off your equipment and spend a little time fluttering in front of your face.":"") + " Penny’s nose is simply too sensitive and, frankly, too-well trained to adore the sensuous fragrance. She was doomed to " + (penny.hasCock() ? "milk her [penny.cock] into orgasm after orgasm":"do her thinking with the steaming slit between her legs") + " the moment she stepped into the jungle. Tears of shame well at the corners of her eyes as she utterly submits to the fluttering, insectile incubi, rolling out her tongue invitingly.");
+	output("\n\nPlans forgotten, the vixen just wants to get fucked.");
+	output("\n\nYou know exactly how she feels. You might have been a little bit more resistant, but there were so many of them, infusing the air with their potent alien scents. Now you’re just like her - equally aroused and equally pliant to their whims. You lean toward the closest one and give him an audible sniff, stroking your body as his mere aroma arouses you to entirely new heights. You can’t entirely describe how you perceive their blissfully pleasant odor, only understand that it makes you feel so deliciously depraved and ready to be fucked. You whimper and wobble, leaning up against Penny for support.");
+	output("\n\nYour tongue slides out alongside hers" + (pc.hasTongueFlag(GLOBAL.FLAG_LONG) ? ", so much longer and more inviting but no less eagerly provided":"") + ". You hope they fuck your mouth first. " + (pc.hasVagina() ? "Or [pc.oneVagina]. ":"") + (pc.totalVaginas() > 1 ? "Or all of them. ":"") + "Or your ass. Whatever.");
+	output("\n\n<i>“How lucky we caught this pair of sky-sluts,”</i> one of the handsome, gloriously erect wasp-men buzzes. <i>“And this one is so pretty, with fur like naleen but on legs instead of those wretched snake tails. They will fetch quite a bounty from the sky traders when they arrive.”</i> He chuckles, easing himself into Penny’s unresisting maw. She gurgles messily at first, but her lips soon seal into a tight, slurping ring. <i>“Maybe I will keep this one though. She pleases me.”</i>");
+	output("\n\nAnother strides forward, hip-to-hip with his spit-shined compatriot. <i>“Truly? Then my brother and I may lay claim to this one.”</i> He sets his cock upon your tongue, filling you with the raw taste of ambrosial honey. His smell is so much more potent this close. Your breaths are tinted with potent wafts of his arousing loins. You don’t wait for him to push his way inside. You slide forward, thanking him for wanting to keep you by sucking him " + (!pc.canDeepthroat() ? "as deeply as you dare. You struggle to go deeper, wanting his balls to rest on his chin, but he’s simply bigger than most other zil, and your poor throat isn’t well-trained enough.":"deep. When his balls rest against your chin and the smooth skin of his abdominals is flattening your nose, you shudder with oral ecstasy."));
+	output("\n\nA wet slap pulls your eyes from this chitinous god’s loins and over to Penny. She’s taken her zil all the way to the hilt. Her eyes water with the effort of it, but her lips curl with a hint of smile, even as they struggle to maintain a tight seal for the candied cock. She glances your way when she slides back, somehow pleased to share this moment with you, delighted to know that if she’s going to become a zil’s cock-polisher, that you’ll get to be right there beside her, sliding your tongue into the syrupy spot between glans and foreskin. The fox bobs back and forth, sucking to the rhythm of the fingers she has " + (penny.hasCock() ? "jerking her [penny.cockNoun] off":"plunged squishing between her thighs") + ", staring lovingly at you until the moment her eyes roll back and close.");
+	output("\n\n<i>“Just like that,”</i> the zil moans, grabbing Penny by the ears and pulling back down to the root of his member. <i>“Work the tongue, sky slut.”</i>");
+	output("\n\nNot to be outdone, your own zil counters by pushing you back and forth, using your mouth like a pussy. You make up for your helplessness by working your [pc.tongue] even harder, exploring every nook and cranny of the bug-boy’s pulsating phallus, coaxing him to leak droplets of sugary anticipation onto your tongue" + (pc.canDeepthroat() ? " and deep into your throat":"") + ". He grunts in approval, a noise that brings its own sort of pleasure. You let your eyes drift closed and allow the flavor and scent to become your world. The hot pulse of cock in your mouth may as well be your own heartbeat for how it drives you.");
+	output("\n\nYou suck alongside Penny until time seems to lose all meaning. There is only the taste of zil on your tongue, the scent in your nose, and the wet sounds of your [pc.lips] gliding back and forth. You suck cock like you were born to, and ");
+	if(!pc.canDeepthroat())
+	{
+		output("increasingly, you come to realize how much you love doing it, especially when <i>his</i> moans drive you to climax" + (pc.hasCock() ? " all over the forest floor":"") + ".");
+	}
+	else output("you suppose that’s no big surprise, given the transformations you’ve undergone. You <i>love</i> to suck cock, and when you can make <i>him</i> moan, it’s enough to make you cum" + (pc.hasCock() ? " all over the forest floor":"") + ".");
+	processTime(20);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",loseToZilBoisWithPenpen);
+}
+
+public function loseToZilBoisWithPenpen():void
+{
+	clearOutput();
+	showName("ZIL\nSWARM");
+	showBust("ZIL_RED",pennyBustDisplay(true),"ZIL_RED");
+	author("Fenoxo");
+	output("How lucky that you get <i>two whole</i> zil boys all to yourself! Penny’s owner went dry long before your two males finished throatfucking you into subservience, leaving her with nothing to do but lamely lap at his balls and smear his scent into her fur. She’s a hyperventilating wreck now, masturbating even now on the way into the village proper. The pink collar her owner fitted her with illuminates the surrounding jungle as well as the curves of her bared bosom in licentious light. It looks so pretty that you almost wish you had one of your own until one of the hands on your ass gives a possessive squeeze and reminds you that you have twice as many owners.");
+	output("\n\nThe village, to your surprise, isn’t a gigantic cloud of brain-frying pheromones. Your owners keep their crotches firmly closed, even if the chitin creaks worryingly with every step, not built to contain porn-star pythons. The other zil are much the same, aside from a dozen warriors standing around a cage, gently fanning their wings to blow their scent into the orgy of off-worlders inside - future slaves.");
+	output("\n\n<i>“These belong to us,”</i> your owners boldly proclaim to a female who tries to lead you away. <i>“We have provided more than a bounty to the village. We claim these by right of hunt.”</i>");
+	output("\n\nYou giggle when she spins away in a huff, allowing yourself to be lead into a squat structure of sweet-smelling mud and amber-fortified thatch. You lick the residual sugar-cum from your lips as you’re pushed inside. Penny vanishes into a darkened doorway a few huts over, unresisting. You suppose maybe you should’ve struggled or made a run for it, but your face still smells faintly of zil-cock. Every breath reminds you of how <i>nice</i> they smell, and how hot you are for another chance to slobber on those big, meaty cocks. You’re still thinking about those same cocks when two of them swim back into view, ready for round two.");
+	output("\n\nPenny’s muffled moans reach your ears at the exact moment that two swollen pricks push into you, claiming you from each end.");
+	pc.lust(100);
+	clearMenu();
+	addButton(0,"Next",loseToZilBoisWithPenpen2);
+}
+public function loseToZilBoisWithPenpen2():void
+{
+	clearOutput();
+	showName("GAME\nOVER");
+	showBust("ZIL_RED",pennyBustDisplay(true),"ZIL_RED");
+	author("Fenoxo");
+	output("Life is simpler as property. You don’t have to worry about money or probes or inheritances or anything like that. The only thing you have to worry about is being as sexy as possible as much as possible, and fucking your owners at the drop of a hat, of course.");
+	output("\n\nBy your second day in the village, the female zil present you with a tube of lipstick, presumably distilled from the ejaculate of their males, judging by its glossy amber sheen and overwhelmingly arousing fragrance. Your owners give you slinky bits of latex that reveal almost as much as they cover, paid for in the flesh of innumerable other slaves. Your [pc.belly] and [pc.butt] are tattooed with intricate designs that you don’t entirely understand, but the look in your owners’ eyes when they see your new look makes it all worthwhile.");
+	output("\n\nPenny winds up coming out even sluttier than you. Maybe it’s something about her collar, but she throws herself at every zil she sees. The moment a chitinous crotch opens up, she’s pressing her face into the opening and sucking the lucky wasp-boy to a full erection in seconds. Her ears seem permanently pressed back in pure submission and her fur matted with honey-seed. In the rare moment you have alone with her, she jumps directly to kissing and humping, and with all the sexifying lipstick on your mouth, you’re in no position to protest the tarted-up vixen’s attentions.");
+	output("\n\nThe first couple times that you fuck her, you try to talk her with her inbetween orgasms, but she seems more interested in tonguing your [pc.nipples] or grinding against your thigh with a faraway look in her eyes. It’s easier not to bother - better to rub and grind and take what pleasure you can from her company. Neither of your owner’s seems to mind you fucking each other so long as your mouth falls open the moment a zil-dick enters the room.");
+	output("\n\nAs the days go on, you lose more and more time with Penny. Hours go by between her thighs. She’s almost always as sweet as they are between the legs, and her fur acts like a sponge for her owner’s pheromones, ensuring that the fat-tittied fox-slut puts you into heat the moment you get a whiff of her presence. You know she’s a bad influence on you, but you’re helpless to resist diving into her pussy" + (penny.hasCock() ? " or slobbering on her continuously erect pillar of fox-cock":"") + ". You love fucking Penny almost as much as you love servicing your twin masters. It’s not like you have anything better to do. Why not pay her back with pleasure for taking her on this fool’s errand?");
+	output("\n\nPenny’s once athletic figure softens from all the calories she’s swallowing and how much time she spends on her back, but it’s more than that. She’s getting bigger all over, especially her tits. When your masters mention what a lovely broodmare she’s become, the pieces finally come together for your increasingly addled mind: Penny is pregnant! She’s going to give birth to a zil baby, the first of many. That’s why her belly is pudging out so much, and why her nipples seem extra thick and suckable.");
+	//No vag
+	if(!pc.hasVagina()) output("\n\nYour owners make sure to procure a mod to grow you one too, and while your pregnancy is longer in coming, it’s every bit as wonderful to fill with new life as it is to spend an entire day sucking zil-cock after zil-cock...");
+	//Vag
+	else output("\n\nYou turn out to be pregnant not long after, and it’s every bit as wonderful as Penny makes it seem - almost as good as spending an entire day sucking zil-cock after zil-cock....");
+	//Merge
+	output("\n\n<b>Together, you and Penny endear yourselves to the entire village both for your fertility and your unceasing amory to all the beautiful, chitinous creatures.</b>");
+	badEnd();
+}
+
+//Zil Victory: Use A Normal Zil Victory Scene With Penny Stuff Appended:
+public function defeatThatZilgang():void
+{
+	var enemies:Array = CombatManager.getHostileActors();
+	while(enemies.length > 1)
+	{
+		CombatManager.removeHostileActor(enemies[0]);
+	}
+	author("Fenoxo");
+	showBust("ZIL_RED",pennyBustDisplay(true),"ZIL_RED");
+	showName("\nVICTORY");
+	eventQueue.push(pennyGetsHerselfOffOnAZil);
+	//9999 put event on queue that starts next phase.
+	currentLocation = "SHIP INTERIOR";
+
+	output("With the zil defeated, you’re left to choose - do you tend to your fallen comrade or avail yourself of one of the bug-boys for personal satisfaction?");
+
+	clearMenu();
+	if(pc.hasCock())
+	{
+		if(pc.cockThatFits(enemy.analCapacity()) >= 0 || pc.shortestCockLength() < 20) addButton(0,"Buttfuck",buttfuckDefeatedZil,undefined,"Buttfuck","Buttfuck a defeated Zil male.");
+		else addDisabledButton(0,"Buttfuck","Buttfuck","You’ll need a smaller sized cock in order to plug this wasp.");
+	}
+	else addDisabledButton(0,"Buttfuck","Buttfuck","You’ll need a cock for this!");
+	//*Ride His Cock
+	//To cumfinity, and beyond! REQS CUNT
+	if(pc.hasVagina()) addButton(1,"Ride Him",rideDatZilCawk,undefined,"Ride Him","Take wasp-boy's lovely cock for a ride.");
+	else addDisabledButton(1,"Ride Him","Ride Him","You must have a vagina to ride this ride.");
+	//*Footjob scene - Req's humanlike feetsies
+	//(By Miesha)
+	if(pc.hasFeet() && !pc.isTaur()) addButton(2,"GiveFootjob",giveTheZilAFootjob,undefined,"Give Footjob","Give a male zil a footjob... for fun.");
+	else addDisabledButton(2,"GiveFootjob","GiveFootjob","Giving a zil a footjob requires human-like feet.");
+	//*Foreskin Oral Play
+	//(By Alkahest) (If this needs to be edited, I will do so. Lemme know your opinion plz)
+	//Requires a decent amount of zil sex, a dick, a pussy, or nippledicks!
+	//Reqs loss suck some.
+	if((pc.hasCock() || pc.hasVagina() || pc.hasNippleCocks()) && flags["TIMES_LOSS_SUCKED_ZIL_MALE"] >= 2) addButton(3,"Oral Play",alkahestsForeskinOralPlay,undefined,"Oral Play","Really get in there and play with a male zil's foreskin-clad cock.");
+	else addDisabledButton(3,"Oral Play","Oral Play","This scene would only make sense if you’ve had to suck a zil off twice already.... Oh, and you’ll need to have genitals too.");
+	if(pc.hasCuntTail()) addButton(4,"Tail Milk",useTailOnZilWhenUWin,undefined,"Tail Milk","Milk his sugary dick with your parasitic tail.");
+	else addDisabledButton(4,"Tail Milk","Tail Milk","You need a tail-mounted vagina to do this.");
+
+	addButton(5,"Check Penny",checkOnPenny,undefined,"Check Penny","Check on Penny and make sure she gets the satisfaction she needs.");
+}
+
+public function checkOnPenny():void
+{
+	clearOutput();
+	showPenny(true);
+	flags["PENNY_CHECKED_ON_POST_ZIL"] = 1;
+	//Remove queued up penny using zil.
+	for(var x:int = 0; x < eventQueue.length; x++)
+	{
+		if(eventQueue[x] == pennyGetsHerselfOffOnAZil) eventQueue.splice(x,1);
+	}
+	if(pc.lust() >= 50) output("You ignore the stirrings in your loins in favor of checking on your fallen comrade.");
+	else output("You turn to your fallen comrade out of concern.");
+	output(" Penny doesn’t notice you approach at first. She’s too enraptured by the " + (penny.hasCock() ? "leaky pillar of girl-cock she’s presently worshiping":"sensations pouring out of her straining box, augmented by the plunging strokes of three fingers") + ". When you clear your throat and kneel next to her, the poor girl sheepishly moans, <i>“Please... h-help.”</i> Her eyes are wide and searching, but her legs fall even further open at the sight of you.");
+	output("\n\nRather than adding another set of hands to the already crowded space around the vixen’s sloppy, leaking genitals, you take her by the back of the head and lean over to give her a kiss. The moment your [pc.lipsChaste] contact hers, Penny’s frame seizes. Her back arches, and she grabs your [pc.thigh] in one fluffy paw, squeezing dangerously hard. " + (penny.hasCock() ? "Hot ropes of fox-cum spill onto the forest floor":"A torrid flow of pussy-juice spools out onto the forest floor") + " as she finally achieves the climax she so desperately needs. Her tongue spears deep into your maw in that long moment, wrestling with your own, before she sags back bonelessly, panting for breath.");
+	output("\n\n<i>“Th-thanks,”</i> Penny groans, unthinkingly licking her sex-juices from her sodden fingertips. <i>“I’ll be more help next time.”</i> She fumbles around for her shotgun. <i>“Promise.”</i>\n\n");
+	CombatManager.genericVictory();
+}
+
+//Use a victory
+public function pennyGetsHerselfOffOnAZil():void
+{
+	clearOutput();
+	showBust(pennyBustDisplay(),"ZIL_RED");
+	showName("PENNY'S\nSATISFACTION");
+	output("Penny separates herself from a fallen zil around the same time as you, standing up from the face of a gasping bug-man with a sheepish look on her face. <i>“Sorry I wasn’t much help in the fight. I guess all that time jilling off in my office to that smell... made me easy prey for them.”</i> She pulls up her pants and grabs her shotgun off the ground. <i>“Hopefully that’s the last we’ll see of them, huh?”</i>");
+	output("\n\nYou don’t mention that her nipples are hard enough to be seen through her coat" + (penny.hasCock() ? " or that her [penny.cock] makes a lovely bulge in her pants":"") + ".\n\n");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

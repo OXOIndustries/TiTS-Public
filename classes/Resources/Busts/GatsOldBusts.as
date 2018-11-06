@@ -1,5 +1,6 @@
 package classes.Resources.Busts 
 {
+	import flash.geom.Rectangle;
 	/**
 	 * ...
 	 * @author Gedan
@@ -51,6 +52,7 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/gats_old/penny.png", mimeType = "image/png")]
 		public var Bust_PENNY:Class;
+		public var Bounds_PENNY:Rectangle = new Rectangle(5,1,80,74);
 		public function get Bust_PENNY_NUDE():Class { return Bust_PENNY; }
 		public function get Bust_PENNY_NUDE_VIXEN():Class { return Bust_PENNY; }
 		public function get Bust_PENNY_NUDE_VIXEN_1():Class { return Bust_PENNY; }
@@ -86,6 +88,7 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/gats_old/zilMale.png", mimeType = "image/png")]
 		public var Bust_ZIL:Class;
+		public var Bounds_ZIL:Rectangle = new Rectangle(31, 4, 91, 79);
 		
 	}
 

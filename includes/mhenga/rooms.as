@@ -1921,6 +1921,17 @@ public function initMhengaRooms():void
 	rooms["PUMPKING_THRONE_ROOM"].addFlag(GLOBAL.PUBLIC);
 	rooms["PUMPKING_THRONE_ROOM"].addFlag(GLOBAL.OBJECTIVE);
 
+	rooms["PENNYQUESTSTANDIN"] = new RoomClass(this);
+	rooms["PENNYQUESTSTANDIN"].roomName = "WESTERN\nJUNGLE";
+	rooms["PENNYQUESTSTANDIN"].description = "";
+	rooms["PENNYQUESTSTANDIN"].runOnEnter = undefined;
+	rooms["PENNYQUESTSTANDIN"].planet = "PLANET: MHEN'GA";
+	rooms["PENNYQUESTSTANDIN"].system = "SYSTEM: ARA ARA";
+	//rooms["PENNYQUESTSTANDIN"].westExit = "EAST ESBETH";
+	//rooms["PENNYQUESTSTANDIN"].addFlag(GLOBAL.INDOOR);
+	//rooms["PENNYQUESTSTANDIN"].addFlag(GLOBAL.MEDICAL);
+	rooms["PENNYQUESTSTANDIN"].addFlag(GLOBAL.HAZARD);
+
 	//I should be banned for this but I'm not combing through all these rooms 1 by 1 and 
 	//ammending their runOnEnter functions and/or adding new ones
 	//Iterates through all the rooms, if the key contains "ESBETH" and it has no runOnEnter and it's outdoor/public

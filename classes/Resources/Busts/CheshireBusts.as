@@ -106,6 +106,7 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/cheshire/Penny.png", mimeType = "image/png")]
 		public var Bust_PENNY:Class;
+		public var Bounds_PENNY:Rectangle = new Rectangle(27,15,87,79);
 		public function get Bust_PENNY_NUDE():Class { return Bust_PENNY; }
 		public function get Bust_PENNY_NUDE_VIXEN():Class { return Bust_PENNY; }
 		public function get Bust_PENNY_NUDE_VIXEN_1():Class { return Bust_PENNY; }
@@ -154,6 +155,10 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/Zil_Male.png", mimeType = "image/png")]
 		public var Bust_ZIL:Class;
+		public var Bounds_ZIL:Rectangle = new Rectangle(40, 3, 100, 75);
+		[Embed(source = "../../../assets/images/npcs/cheshire/zil_red.png", mimeType = "image/png")]
+		public var Bust_ZIL_RED:Class;
+		public var Bounds_ZIL_RED:Rectangle = new Rectangle(30, 3, 100, 75);
 
 		CONFIG::IMAGEPACK
 		{
