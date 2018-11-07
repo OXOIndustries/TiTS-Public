@@ -4475,6 +4475,16 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SERA_TAILED"] != undefined) output2("\n<b>* Sera, Times She Fucked Your Parasitic Tail Cock:</b> " + flags["SERA_TAILED"]);
 					if(flags["SERA_INCH_STEALING_SEX"] > 0) output2("\n<b>* Sera, Times She Absorbed Your Length:</b> " + flags["SERA_INCH_STEALING_SEX"]);
 					if(flags["SERA_INCH_STEALING_HELP"] > 0) output2("\n<b>* Sera, Times You Untangled Her Tail Cock:</b> " + flags["SERA_INCH_STEALING_HELP"]);
+					if(flags["SERA_BITCHENING_PUNISH_SPANK"] > 0) output2("\n<b>* Sera, Punish, Times You Spanked Her:</b> " + flags["SERA_BITCHENING_PUNISH_SPANK"]);
+					if(flags["SERA_BITCHENING_PUNISH_RATION"] > 0) output2("\n<b>* Sera, Punish, Times You Fed Her Cum:</b> " + flags["SERA_BITCHENING_PUNISH_RATION"]);
+					if(flags["SERA_BITCHENING_PUNISH_WALKIES"] > 0) output2("\n<b>* Sera, Punish, Times You Took Her Walkies:</b> " + flags["SERA_BITCHENING_PUNISH_WALKIES"]);
+					if(flags["SERA_BITCHENING_TEASE_DENY"] > 0) output2("\n<b>* Sera, Times You Teased Her But Didn't Let Her Finish:</b> " + flags["SERA_BITCHENING_TEASE_DENY"]);
+					if(flags["SERA_BITCHENING_TEASE_RELEASE"] > 0) output2("\n<b>* Sera, Times You Teased Her and Let Her Finish:</b> " + flags["SERA_BITCHENING_TEASE_RELEASE"]);
+					if(flags["SERA_BITCHENING_BUTTFUCK"] > 0) output2("\n<b>* Sera, Times You Fucked Her Ass:</b> " + flags["SERA_BITCHENING_BUTTFUCK"]);
+					if(flags["SERA_BITCHENING_TITTYFUCK"] > 0) output2("\n<b>* Sera, Times You Titty Fucked Her:</b> " + flags["SERA_BITCHENING_TITTYFUCK"]);
+					if(flags["SERA_BITCHENING_DP"] > 0) output2("\n<b>* Sera, Times You DP'd Her Pussy and Ass:</b> " + flags["SERA_BITCHENING_DP"]);
+					if(flags["SERA_WAKEUP_SEX"] > 0) output2("\n<b>* Sera, Times She Woke You Up With Sex:</b> " + flags["SERA_WAKEUP_SEX"]);
+					if(flags["SERA_MADE_LOVE"] > 0) output2("\n<b>* Sera, Times You Made Tender Love to Her:</b> " + flags["SERA_MADE_LOVE"]);
 				}
 				//if(pc.hasStatusEffect("Sera Credit Debt")) output2("\n<b>* Sera, Credit Debt:</b> " + pc.statusEffectv1("Sera Credit Debt") + " credits");
 				variousCount++;
