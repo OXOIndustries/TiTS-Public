@@ -17,8 +17,8 @@ public function pattonIsHere():Boolean
 		||	rooms[currentLocation].hasFlag(GLOBAL.PLANT_BULB)
 		||	rooms[currentLocation].hasFlag(GLOBAL.SPIDER_WEB)
 		||	rooms[currentLocation].hasFlag(GLOBAL.PRIVATE)
-		||  InCollection(shipLocation, ["500", "ZS L50"])
-		||  InCollection(getPlanetName().toLowerCase(), ["new texas", "zheng shi station"])
+		||  InCollection(shipLocation, ["500", "ZS L50", "EW-M23"])
+		||  InCollection(getPlanetName().toLowerCase(), ["new texas", "zheng shi station", "spatial anomoly"])
 		)
 		{
 			flags["KATTOM_LOCATION"] = undefined;

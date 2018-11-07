@@ -276,8 +276,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	}
 	else
 	{
-		if(canRest() || canSleep()) addButton(9, "Sleep", sleepMenu);
-		else addDisabledButton(9, "Sleep", "Sleep", "You can’t seem to sleep here at the moment....");
+		addButton(9, "Sleep", sleepMenu);
 	}
 	addButton(14, "Codex", showCodex);
 	
@@ -2083,7 +2082,7 @@ public function flyMenu():void
 		
 		if (isDoingEventWhorizon())
 		{
-			output("<b>Without a way to navigate back through the spatial anomoly, it's probably best you don't try and take off right now...</b>");
+			output("<b>Without a way to navigate back through the spatial anomoly, it’s probably best you don’t try and take off right now...</b>");
 			clearMenu();
 			addButton(14, "Back", mainGameMenu);
 			return;
@@ -2123,14 +2122,14 @@ public function flyMenu():void
 			if(shipLocation != "600") addButton(3, "Myrellion", flyTo, "Myrellion");
 			else addDisabledButton(3, "Myrellion", "Myrellion", "You’re already here.");
 		}
-		else if (flags["KQ2_MYRELLION_STATE"] == 1)
-		{
-			addDisabledButton(3, "Myrellion", "Myrellion", "It would be wise not to visit a planet currently experiencing a heavy nuclear winter...");
-		}
-		else
+		else if (flags["KQ2_MYRELLION_STATE"] != 1)
 		{
 			if (shipLocation != "2I7") addButton(3, "Myrellion", flyTo, "MyrellionDeepCaves");
 			else addDisabledButton(3, "Myrellion", "Myrellion - Deep Caves", "You’re already here.");
+		}
+		else
+		{
+			addDisabledButton(3, "Myrellion", "Myrellion", "It would be wise not to visit a planet currently experiencing a heavy nuclear winter...");
 		}
 	}
 	else addDisabledButton(3, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
@@ -4025,14 +4024,13 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			flags["SUCCUCOW'D"] = undefined;
 		}
 		//RandyClaws email
-		if(flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] == undefined && flags["CIARAN_MET"] != undefined && isChristmas())
+		if(flags["CIARAN_MET"] != undefined && isChristmas() && (flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] == undefined || flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] != getRealtimeYear()))
 		{
 			resendMail("randy_claws_email");
-			flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] = 1;
+			flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] = getRealtimeYear();
 		}
-		else if(!isChristmas())
+		else if(!isChristmas() && flags["RANDY_CLAWS"] != undefined)
 		{
-			flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] = undefined;
 			flags["RANDY_CLAWS"] = undefined;
 		}
 		

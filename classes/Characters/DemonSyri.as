@@ -35,7 +35,7 @@
 			this.originalRace = "ausar";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "She's a towering mound of muscular ausar meat: more than eight feet tall, olive-skin glistening with sweat and fuck-juices, black fur on her arms and legs bristling. Her thick tail slaps heavily on the stone floor with every step, swaying with overt enjoyment of your battle. Her eyes are a fiery, almost glowing orange, burning with rage and lust. The horns that grow from her head stick out to the sides like a prize bull's, adorned with chains and rings. Syri's fangs are long and sharp, catching the waning light from outside as she circles you, and her claws ball into brawler's fists in preparation for her attacks.";
+			this.long = "She’s a towering mound of muscular ausar meat: more than eight feet tall, olive-skin glistening with sweat and fuck-juices, black fur on her arms and legs bristling. Her thick tail slaps heavily on the stone floor with every step, swaying with overt enjoyment of your battle. Her eyes are a fiery, almost glowing orange, burning with rage and lust. The horns that grow from her head stick out to the sides like a prize bull’s, adorned with chains and rings. Syri’s fangs are long and sharp, catching the waning light from outside as she circles you, and her claws ball into brawler’s fists in preparation for her attacks.";
 			this.customDodge = "The demon queen slides past your attack with graceful agility.";
 			this.customBlock = "The demon queen meets your attack with one of her own, glancing it away.";
 			this.isPlural = false;
@@ -164,7 +164,7 @@
 			}
 			else
 			{
-				output(" Syri comes at you hard, slamming you into the legs of one of the statues behind you and slicing into your [pc.armor] with her razor-like claws and fangs. When she's finished, <b>your armor is sundered!</b>");
+				output(" Syri comes at you hard, slamming you into the legs of one of the statues behind you and slicing into your [pc.armor] with her razor-like claws and fangs. When she’s finished, <b>your armor is sundered!</b>");
 				
 				CombatAttacks.applySunder(target, 4, true);
 				applyDamage(damageRand(new TypeCollection( { kinetic: 35 } ), 15), this, target);
@@ -186,7 +186,7 @@
 				
 				if ((target.physique + rand(30) + 1 < 35) && !target.isPlanted())
 				{
-					output(" The sheer force of impact barrels you backwards, throwing you on your ass. <b>You're prone!</b>");
+					output(" The sheer force of impact barrels you backwards, throwing you on your ass. <b>You’re prone!</b>");
 					applyDamage(damageRand(new TypeCollection( {kinetic: 35 }, DamageFlag.PENETRATING), 15), this, target);
 					CombatAttacks.applyTrip(target);
 				}
@@ -197,7 +197,7 @@
 		{
 			//If PC is knocked down. Massive Crushing damage and lowers Physique for the rest of the fight.
 
-			output("Before you're able to get back up, Queen Syri snarls and lumps into the air, twisting so that her elbow is pointed right down at you. You have just enough time to lament your fate before a couple hundred pounds of asuar muscle slam down on you like the fist of an angry god. Pain explodes through your midriff, and it takes everything you have not to retch as all the air is knocked out of you.");
+			output("Before you’re able to get back up, Queen Syri snarls and lumps into the air, twisting so that her elbow is pointed right down at you. You have just enough time to lament your fate before a couple hundred pounds of asuar muscle slam down on you like the fist of an angry god. Pain explodes through your midriff, and it takes everything you have not to retch as all the air is knocked out of you.");
 			
 			applyDamage(damageRand(new TypeCollection({ kinetic: 50 }, DamageFlag.CRUSHING), 10), this, target);
 			
@@ -223,12 +223,12 @@
 			}
 			else
 			{
-				output(" You try and block it just a second too late. Syri's fist slams into your [pc.face], sending you reeling back with the impact!");
+				output(" You try and block it just a second too late. Syri’s fist slams into your [pc.face], sending you reeling back with the impact!");
 				applyDamage(damageRand(new TypeCollection({ kinetic: 50 }, DamageFlag.CRUSHING), 10), this, target);
 				
 				if ((target.physique + rand(25) + 1 < 35))
 				{
-					output(" <b>You're Stunned by the blow!</b>");
+					output(" <b>You’re stunned by the blow!</b>");
 					CombatAttacks.applyStun(target, 2, true);
 				}
 			}
@@ -252,7 +252,7 @@
 			
 			if (numHits == 0)
 			{
-				output(" ducking and weaving until she's out of steam.");
+				output(" ducking and weaving until she’s out of steam.");
 			}
 			else if (numHits == 5)
 			{

@@ -2398,6 +2398,22 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["ZHENG_SHI_PASSWORDED"] >= 1) output2(" Access granted");
 				else output2(" <i>Unknown</i>, Access denied");
 			}
+			if(flags["FERUZE_ZHENG_OUTCOME"] != undefined)
+			{
+				// Rival
+				output2("\n<b>* [rival.name]:</b> Seen");
+				// Feruze
+				output2("\n<b>* Feruze:</b> Seen");
+				switch(flags["FERUZE_ZHENG_OUTCOME"])
+				{
+					case -2: output2(", Lost to her face-sitting on you in combat"); break;
+					case -1: output2(", Lost to her in combat"); break;
+					case 1: output2(", Defeated her"); break;
+				}
+				if(flags["FERUZE_SEXED"] != undefined) output2("\n<b>* Feruze, Times Sexed:</b> " + flags["FERUZE_SEXED"]);
+				if(flags["FERUZE_CAME_INSIDE"] != undefined) output2("\n<b>* Feruze, Times You Came Inside Her:</b> " + flags["FERUZE_CAME_INSIDE"]);
+				if(flags["FERUZE_BIG_DICK_TITFUCKED"] != undefined) output2("\n<b>* Feruze, Times Titfucked:</b> " + flags["FERUZE_BIG_DICK_TITFUCKED"]);
+			}
 			
 			mainCount++;
 		}
@@ -4104,6 +4120,38 @@ public function displayQuestLog(showID:String = "All"):void
 		output2("\n\n" + blockHeader("Miscellaneous", false));
 		var otherCount:int = 0;
 		
+		// Event Whorizon
+		if(flags["EVENT_WHORIZON_STATE"] != undefined)
+		{
+			output2("\n<b><u>Event Whorizon</u></b>");
+			output2("\n<b>* Status:</b>");
+			if(flags["EVENT_WHORIZON_STATE"] == -1) output2(" Avoided the anomaly");
+			else
+			{
+				output2(" Entered the anomaly");
+				if(flags["EVENT_WHORIZON_STATE"] >= 2) output2(", Investigated, Completed");
+				else output2(", <i>Investigating...</i>");
+			}
+			if(flags["EVENT_WHORIZON_TENTACLE_GARDEN"] != undefined)
+			{
+				if(flags["EVENT_WHORIZON_TENTACLE_GARDEN"] <= -1) output2("\n<b>* Tentacle Garden, Monster:</b> Lost against it in combat");
+				if(flags["EVENT_WHORIZON_TENTACLE_GARDEN"] >= 1) output2("\n<b>* Tentacle Garden, Monster:</b> Defeated it");
+				if(flags["EVENT_WHORIZON_TENTACLE_GARDEN"] >= 2) output2("\n<b>* Tentacle Garden, Gardener:</b> Defeated her");
+			}
+			if(flags["EVENT_WHORIZON_TORMENT_CAGES"] != undefined)
+			{
+				output2("\n<b>* Torment Cages:</b>");
+				if(flags["EVENT_WHORIZON_TORMENT_CAGES"] == -1) output2(" Left rusher");
+				if(flags["EVENT_WHORIZON_TORMENT_CAGES"] == 1) output2(" Saved rusher");
+			}
+			if(flags["EVENT_WHORIZON_FUCK_PRISON"] != undefined) output2("\n<b>* The Fuck Prison, Succubus:</b> Met her");
+			if(flags["EVENT_WHORIZON_BONDAGE_PALACE"] != undefined || flags["EVENT_WHORIZON_DEMONSYRI_TALK"] != undefined || flags["EVENT_WHORIZON_FUCKED_DEMONSYRI"] != undefined || flags["EVENT_WHORIZON_DEMONSYRI_LOOKAROUND"] != undefined)
+			{
+				output2("\n<b>* The Bondage Palace, Hellhound Syri:</b> Met her");
+				if(flags["EVENT_WHORIZON_FUCKED_DEMONSYRI"] != undefined) output2(", Sexed her");
+			}
+			otherCount++;
+		}
 		// Puppyslutmas
 		if(flags["PUPPYSLUTMAS_2014"] != undefined)
 		{

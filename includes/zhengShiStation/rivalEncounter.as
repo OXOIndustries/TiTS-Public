@@ -166,11 +166,11 @@ public function pussyLickingLoseToFeruze2():void
 	showFeruze(true);
 	author("Fenoxo");
 	output("You don’t know how long you spent locked between Feruze’s thighs in perpetual orgasm, delighted to bring her to climax after climax. You do know that at some point you passed beyond the realm of conscious understanding and operated entirely in the realm of pleasure and animalistic impulses, desiring on the taste of your siren-goddess’s perfect pussy and the lilting cries of her pleasure.");
-	output("\n\nFor hours, you were little more than a tongue on " + (pc.legCount == 1 ? "a ":"") + "[pc.legOrLegs], fit to lick and wanting nothing more from life.");
+	output("\n\nFor hours, you were little more than a tongue on " + (pc.legCount == 1 ? "a [pc.leg]":"[pc.legs]") + ", fit to lick and wanting nothing more from life.");
 	output("\n\nNow as you stir from exhaustion, you blink the gummy, leftover pussy-juice from your eyes and yawn, working your sore jaw back and forth. The stink of sex fills your nostrils like never before, and you ache all over from the endless climax... climaxes? Whether it was truly one endless orgasm or many spun together into a never-ending line, you cannot say, but a part of you fills with regret when you realize that Feruze is gone.");
 	output("\n\nYou won’t get to lick her pussy any more, and the knowledge brings a tear to your eye.");
 	output("\n\nSighing, you climb up on your [pc.footOrFeet] and glance to the ship’s door. It’s open. A small note hangs next to it:");
-	output("\n\n\t<i>You are pathetic! You know that right? If I had known you’d lay down and take it from any pretty girl I presented you with, I would’ve saved a lot of money on dear Feruze’s fees. Anyway, I found the probe while you were busy, but since I’m soooo kind, I left it behind for you... if you think you can get past all the pirates onboard this beauty without enslaving yourself. Either way suits me, but if I do bump onto you on the next planet, I don’t think a weak little slut like you is any real competition.");
+	output("\n\n\t<i>You are pathetic! You know that right? If I had known you’d lay down and take it from any pretty girl I presented you with, I would’ve saved a lot of money on dear Feruze’s fees. Anyway, I found the probe while you were busy, but since I’m soooo kind, I left it behind for you... if you think you can get past all the pirates onboard this beauty without enslaving yourself. Either way suits me, but if I do bump into you on the next planet, I don’t think a weak little slut like you is any real competition.");
 	output("\n\tStill... it’ll be nice to have another chance to defeat you so totally. Then again, maybe you like that sort of thing?");
 	output("\n\tTa ta,");
 	output("\n\t\t[rival.name]</i>");
@@ -179,12 +179,15 @@ public function pussyLickingLoseToFeruze2():void
 	output("\n\n\t<i>Heyyy there, champion box-muncher! Hope you had as much fun as I did! Look, there’s some nasty pirates on the ship, so you rest up and make sure you have a nice big cum before you go in there, okay? I want to make sure you make it to the next planet so we can do that again. Maybe next time I’ll wear some panties so you can tear them off with your teeth, maybe keep them as a keepsake?");
 	output("\n\t\tHugs and cunny-kisses!</i>");
 
+	processTime(126);
+	
 	//end! Make sure PC cums like 200 times.
 	for(var x:int = 0; x < 194; x++) { pc.orgasm(); }
+	pc.girlCumInMouth(enemy);
 	pc.applyPussyDrenched();
 
 	flags["FERUZE_ZHENG_OUTCOME"] = -2;
-	IncrementFlag("FERUZE_CAME_INSIDE");
+	//IncrementFlag("FERUZE_CAME_INSIDE");
 	IncrementFlag("FERUZE_SEXED");
 	variableRoomUpdateCheck();
 	CombatManager.genericLoss();
@@ -401,7 +404,7 @@ public function defeatFeruze():void
 	pc.lust(10);
 	if(pc.lust() < 33)
 	{
-		addDisabledButton(0,"FuckHerPuss","FuckHerPuss","You aren’t aroused enough for this.");	
+		addDisabledButton(0,"FuckHerPuss","Fuck Her Puss","You aren’t aroused enough for this.");	
 		addDisabledButton(1,"Scissor","Scissor","You aren’t aroused enough for this.");
 		addDisabledButton(2,"Big Titfuck","Big Titfuck","You aren’t aroused enough for this.");
 	}

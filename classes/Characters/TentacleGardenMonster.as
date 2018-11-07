@@ -30,7 +30,7 @@
 			this.originalRace = "foliage";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "You're surrounded on all sides by wriggling green vines, mercilessly whipping and grabbing at you. A wall of pink pussy-flowers box you in, sucking at your [pc.legs] if you stray out of the center of the garden. The tentacles grab at your [pc.arms], trying to restrain you -- and the cockhead-shaped tips at their ends make it abundantly clear what will happen if they succeed!";
+			this.long = "You’re surrounded on all sides by wriggling green vines, mercilessly whipping and grabbing at you. A wall of pink pussy-flowers box you in, sucking at your [pc.legOrLegs] if you stray out of the center of the garden. The tentacles grab at your [pc.arms], trying to restrain you -- and the cockhead-shaped tips at their ends make it abundantly clear what will happen if they succeed!";
 			this.customDodge = "Vines writhing and twisting, they manage to slip away from your attack.";
 			this.customBlock = "The spongey vines just seem to absorb your attack.";
 			this.isPlural = true;
@@ -140,14 +140,14 @@
 			var missMod:Number = 5;
 			if (!combatMiss(this, target, -1, missMod))
 			{
-				output(" Several of the thick green dick-vines slap you, knocking you around with sheer blunt impacts. Every time you're hit, the alien fuck - vines squirt out their musky - smelling spunk across your" + (target.isNude() ? " [pc.chest]" : " [pc.armor]") + ". You're left with purple smears all over");
+				output(" Several of the thick green dick-vines slap you, knocking you around with sheer blunt impacts. Every time you’re hit, the alien fuck - vines squirt out their musky - smelling spunk across your" + (target.isNude() ? " [pc.chest]" : " [pc.armor]") + ". You’re left with purple smears all over");
 				if (target.hasAirtightSuit()) output(", smearing your suit with slightly stringy, sticky splatters of goo.");
 				else output(", flooding your senses with fuck-pheromones.");
 				applyDamage(damageRand(new TypeCollection( { kinetic: 20, pheromone: (target.hasAirtightSuit() ? 0 : 5) } ), 10), this, target);
 			}
 			else
 			{
-				output(" You duck and weave, avoiding the vines' attacks!");
+				output(" You duck and weave, avoiding the vines’ attacks!");
 			}
 		}
 		
@@ -157,7 +157,7 @@
 			
 			hasTripped = true;
 
-			output("You're having a good enough time dodging a hundred fuck-hungry tentacles that for a moment, the pussy-flowers underfoot slip your mind");
+			output("You’re having a good enough time dodging a hundred fuck-hungry tentacles that for a moment, the pussy-flowers underfoot slip your mind");
 			
 			var reflexFail:Boolean = (target.reflexes() / 2 + rand(20) + 1 < 24);
 			
@@ -167,11 +167,11 @@
 			
 			if (!reflexFail || target.isPlanted())
 			{
-				output(" Something wet smears underneath you, and you're forced to grab some of the squirming tentacles, pulling on them to keep yourself upright. Not today, fuck-plants!");
+				output(" Something wet smears underneath you, and you’re forced to grab some of the squirming tentacles, pulling on them to keep yourself upright. Not today, fuck-plants!");
 			}
 			else
 			{
-				output(" You feel something wet under you, but by the time you realize you've just stepped into a puddle of fuck-juices, you're already slipping, thrown on your ass by an errant tentacle-slap. <b>You're prone!</b>");
+				output(" You feel something wet under you, but by the time you realize you’ve just stepped into a puddle of fuck-juices, you’re already slipping, thrown on your ass by an errant tentacle-slap. <b>You’re prone!</b>");
 				CombatAttacks.applyTrip(target);
 			}
 		}
@@ -180,14 +180,14 @@
 		{
 			//Only if player is prone. Deals massive Lust damage.
 
-			output("You're too busy trying not to get beaten into the dirt by the hundreds of thrashing tentacles to notice a handful of them rising back into the air. Only when the rest of them pull apart, creating a perfect circle of open air over you, do you see all of the drooling purple cock-heads looming over you, throbbing with pent-up juices.");
+			output("You’re too busy trying not to get beaten into the dirt by the hundreds of thrashing tentacles to notice a handful of them rising back into the air. Only when the rest of them pull apart, creating a perfect circle of open air over you, do you see all of the drooling purple cock-heads looming over you, throbbing with pent-up juices.");
 
-			output("\n\nAnd then, all as one, they ejaculate. Purple plant-spunk pours down on you, squirting from the vines' cockheads. Thick gouts of musky goo splatter all over your [pc.face], coating your body in the pheromone-laden seed.");
+			output("\n\nAnd then, all as one, they ejaculate. Purple plant-spunk pours down on you, squirting from the vines’ cockheads. Thick gouts of musky goo splatter all over your [pc.face], coating your body in the pheromone-laden seed.");
 			
 			var res:TypeCollection = target.getLustResistances();
 			if (res.pheromone.resistanceValue < 100 && target.hasAirtightSuit() == false)
 			{
-				output(" Your mind is reeling by the time they're done, filled with the irresistible scents of sex. Stars, it would be so easy to just spread your [pc.legs] and let these plants breed you senseless...");
+				output(" Your mind is reeling by the time they’re done, filled with the irresistible scents of sex. Stars, it would be so easy to just spread your [pc.legs] and let these plants breed you senseless...");
 				
 				applyDamage(damageRand(new TypeCollection( { pheromone: 20 } ), 10), this, target);
 			}
