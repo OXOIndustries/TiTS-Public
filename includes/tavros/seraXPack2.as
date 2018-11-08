@@ -974,8 +974,8 @@ public function approachServantSera(introText:Boolean = false):void
 						}
 						else
 						{
-						  output("Stepping into Sera’s room, you are greeted with a passable imitation of the sound you made jumping out of the shower, followed by an aria of filthy laughter.");
-						  output("\n\n<i>“You do something with your hair, [pc.master]? Or is it your skin?”</i> Sera sniggers, delighted eyes dancing over your frame. <i>“It’s not the color I’d choose, but hey, if it works for you...”</i>");
+							output("Stepping into Sera’s room, you are greeted with a passable imitation of the sound you made jumping out of the shower, followed by an aria of filthy laughter.");
+							output("\n\n<i>“You do something with your hair, [pc.master]? Or is it your skin?”</i> Sera sniggers, delighted eyes dancing over your frame. <i>“It’s not the color I’d choose, but hey, if it works for you...”</i>");
 						}
 						break;
 				}
@@ -3122,13 +3122,13 @@ public function seranigansEvent(sEvent:String = "none"):void
 			
 			//chance to detect the prank after the first time
 			if (flags["SERANIGANS_SHOWER"] > 1)
-			{				
-			  if (pc.IQ() > rand(100)) flags["SERA_PRANK_DETECTED"] = 1;
+			{
+				if (pc.IQ() > rand(100)) flags["SERA_PRANK_DETECTED"] = 1;
 			}
 			
 			if (flags["SERA_PRANK_DETECTED"] == 1)
 			{
-				output("You step into the shower and… wait. Did you leave the bathroom door open when you left earlier? You don’t think you did. Which means <b>someone</b> maybe came in here, and… you reach up and gingerly touch the shower nozzle with a flannel. Aha! The colorless slime it’s slathered in turns the cloth " + RandomInCollection(seranigansRainbowtoxColors()) + ", but leaves your naked body mercifully unscathed. Sera’s antics have been foiled!");
+				output("You step into the shower and... wait. Did you leave the bathroom door open when you left earlier? You don’t think you did. Which means <b>someone</b> maybe came in here, and... you reach up and gingerly touch the shower nozzle with a flannel. Aha! The colorless slime it’s slathered in turns the cloth " + RandomInCollection(seranigansRainbowtoxColors()) + ", but leaves your naked body mercifully unscathed. Sera’s antics have been foiled!");
 			}
 			else
 			{

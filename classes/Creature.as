@@ -8912,7 +8912,12 @@
 		public function knotThickness(arg:int = 0):Number
 		{
 			if(arg < 0 || arg >= cocks.length) return 0;
-			return cocks[arg].thickness() * cocks[arg].knotMultiplier;
+			return (cocks[arg].thickness() * cocks[arg].knotMultiplier);
+		}
+		public function knotGirth(arg:int = 0):Number
+		{
+			if(arg < 0 || arg >= cocks.length) return 0;
+			return (cocks[arg].girth() * cocks[arg].knotMultiplier);
 		}
 		public function hasCockFlag(arg: int = 0, cockNum: int = 0): Boolean {
 			if (cockNum >= cocks.length || cockNum < 0) return false;
@@ -9090,6 +9095,12 @@
 			if(arg >= cocks.length) return -1;
 			if(arg < 0) return -1;
 			return cocks[arg].thickness();
+		}
+		public function cGirth(arg:int = 0):Number
+		{
+			if(arg >= cocks.length) return -1;
+			if(arg < 0) return -1;
+			return cocks[arg].girth();
 		}
 		public function cLength(arg:int = 0, dynamicLength:Boolean = false):Number
 		{

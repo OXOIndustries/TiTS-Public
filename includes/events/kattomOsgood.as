@@ -1,29 +1,42 @@
+// Exclusions
+public function pattonIsNotSupposedToBeHere():Boolean
+{
+	if(	rooms[currentLocation].runAfterEnter != null
+	||	rooms[currentLocation].hasFlag(GLOBAL.WATERFALL)
+	||	rooms[currentLocation].hasFlag(GLOBAL.LIFTUP)
+	||	rooms[currentLocation].hasFlag(GLOBAL.LIFTDOWN)
+	||	rooms[currentLocation].hasFlag(GLOBAL.PLANT_BULB)
+	||	rooms[currentLocation].hasFlag(GLOBAL.SPIDER_WEB)
+	||	rooms[currentLocation].hasFlag(GLOBAL.PRIVATE)
+	||  InCollection(shipLocation, ["500", "ZS L50", "EW-M23"])
+	||  InCollection(getPlanetName().toLowerCase(), ["new texas", "zheng shi station", "spatial anomoly"])
+	)
+	{
+		flags["KATTOM_LOCATION"] = undefined;
+		generateMap();
+		return true;
+	}
+	return false;
+}
+
 public function pattonIsHere():Boolean
 {
-	//Set CD so you don't run into him immediately.
+	// Set CD so you don't run into him immediately.
 	if(flags["KATTOM_MOVE_CD"] == undefined) 
 	{
 		flags["KATTOM_MOVE_CD"] = GetGameTimestamp();
 		flags["KATTOM_LOCATION"] = "SHIP INTERIOR"; //Probably not a real room so please don't go there, kthnx.
 	}
-	//If 35 hours since his last move, move him.
+	// If in a restricted area, remove immediately.
+	if(flags["KATTOM_LOCATION"] == currentLocation)
+	{
+		if(pattonIsNotSupposedToBeHere()) return false;
+	}
+	// If 35 hours since his last move, move him.
 	if(flags["KATTOM_MOVE_CD"] + 2100 < GetGameTimestamp() && rand(10) == 0)
 	{
 		// Exclusions
-		if(	rooms[currentLocation].runAfterEnter != null
-		||	rooms[currentLocation].hasFlag(GLOBAL.WATERFALL)
-		||	rooms[currentLocation].hasFlag(GLOBAL.LIFTUP)
-		||	rooms[currentLocation].hasFlag(GLOBAL.LIFTDOWN)
-		||	rooms[currentLocation].hasFlag(GLOBAL.PLANT_BULB)
-		||	rooms[currentLocation].hasFlag(GLOBAL.SPIDER_WEB)
-		||	rooms[currentLocation].hasFlag(GLOBAL.PRIVATE)
-		||  InCollection(shipLocation, ["500", "ZS L50", "EW-M23"])
-		||  InCollection(getPlanetName().toLowerCase(), ["new texas", "zheng shi station", "spatial anomoly"])
-		)
-		{
-			flags["KATTOM_LOCATION"] = undefined;
-			return false;
-		}
+		if(pattonIsNotSupposedToBeHere()) return false;
 		
 		flags["KATTOM_LOCATION"] = currentLocation;
 		generateMap();

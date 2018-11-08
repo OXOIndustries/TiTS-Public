@@ -368,12 +368,12 @@ public function ainaMenu():void
 	
 	if (flags["AINA_COMFORT"] >= 2 && hours >= 21)
 	{		
-		output("You don't see Aina around, but soon enough you hear a noise from her bedroom.");
+		output("You don’t see Aina around, but soon enough you hear a noise from her bedroom.");
 		
 		clearMenu();
 		addButton(0, "Bedroom", ainaPregComfort3, undefined,"Bedroom","Head over to investigate.");
 	}
-    else
+	else
 	{
 		if(ainaIsInHeat())
 		{

@@ -462,7 +462,12 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Length, Erect:</b> " + prettifyLength(pc.cLength(x)));
 					output2("\n<b>* Thickness:</b> " + prettifyLength(pc.cThickness(x)));
 					output2("\n<b>* Thickness, Ratio Modifier:</b> " + Math.round(pc.cocks[x].cThicknessRatio()*1000)/10 + " %");
-					if(pc.hasKnot(x)) output2("\n<b>* Knot Thickness:</b> " + prettifyLength(pc.knotThickness(x)));
+					output2("\n<b>* Girth:</b> " + prettifyLength(pc.cGirth(x)));
+					if(pc.hasKnot(x))
+					{
+						output2("\n<b>* Knot Thickness:</b> " + prettifyLength(pc.knotThickness(x)));
+						output2("\n<b>* Knot Girth:</b> " + prettifyLength(pc.knotGirth(x)));
+					}
 					if(pc.cockVolume(x, false) != pc.cockVolume(x))
 					{
 						output2("\n<b>* Volume, Physical:</b> " + prettifyVolume(pc.cockVolume(x, false)));
@@ -747,8 +752,11 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b><u>Active Stats</u></b>");
 		output2("\n<b>* " + StringUtil.capitalize(pc.shieldDisplayName) + ":</b> " + Math.round((pc.shieldsRaw/pc.shieldsMax()) * 100) + " %, " + "0/" + pc.shieldsRaw + "/" + pc.shieldsMax());
 		output2("\n<b>* HP:</b> " + pc.HPQ() + " %, " + "0/" + pc.HP() + "/" + pc.HPMax());
+		if(pc.HPMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.HPMod, 3)) + ")");
 		output2("\n<b>* Lust:</b> " + Math.round((pc.lust()/pc.lustMax()) * 100) + " %, " + pc.lustMin() + "/" + pc.lust() + "/" + pc.lustMax());
+		if(pc.lustMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.lustMod, 3)) + ")");
 		output2("\n<b>* Energy:</b> " + Math.round((pc.energy()/pc.energyMax()) * 100) + " %, " + pc.energyMin() + "/" + pc.energy() + "/" + pc.energyMax());
+		if(pc.energyMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.energyMod, 3)) + ")");
 		output2("\n<b><u>Passive Stats</u></b>");
 		output2("\n<b>* Physique:</b> " + pc.PQ() + " %, " + "0/" + pc.physique() + "/" + pc.physiqueMax());
 		if(pc.physiqueMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.physiqueMod, 3)) + ")");
@@ -2756,6 +2764,31 @@ public function displayQuestLog(showID:String = "All"):void
 				
 				sideCount++;
 			}
+			// Pump-King
+			if(flags["PUMPKING_COMPLETION"] != undefined || MailManager.isEntryViewed("pumpking_alert"))
+			{
+				output2("\n<b><u>The Pump-King</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(flags["PUMPKING_COMPLETION"] == undefined) output2(" <i>Return to Penny...</i>");
+				else
+				{
+					switch(flags["PUMPKING_COMPLETION"])
+					{
+						case -1: output2(" Refused to look for Penny, Failed"); break;
+						case 1: output2(" Accepted to look for Penny, <i>Find the Pump-king...</i>"); break;
+						case 2: output2(" Accepted, Seen ‘Pump-king’, <i>Find the hideout to save Penny...</i>"); break;
+						case 3: output2(" Accepted, Found and defeated the ‘Pump-king’, Penny returned, Completed"); break;
+					}
+				}
+				if(flags["PUMPKING_COMPLETION"] != undefined) output2("\n<b>* Lana:</b> Met her");
+				if(flags["PUMPKINGS_JOHR_DEFEATED"] != undefined) output2("\n<b>* Johr:</b> Defeated him in combat");
+				if(flags["PUMPKING_COMPLETION"] >= 2)
+				{
+					output2("\n<b>* ‘" + (flags["PUMPKING_COMPLETION"] < 3 ? "Pump-king" : "Amelia") + "’:</b> Met her");
+					if(flags["PUMPKING_FUCKED"] != undefined) output2(", Sexed her");
+				}
+				sideCount++;
+			}
 			// Pyrite Satellite Recovery
 			if(flags["SATELLITE_QUEST"] != undefined)
 			{
@@ -4147,7 +4180,7 @@ public function displayQuestLog(showID:String = "All"):void
 			if(flags["EVENT_WHORIZON_FUCK_PRISON"] != undefined) output2("\n<b>* The Fuck Prison, Succubus:</b> Met her");
 			if(flags["EVENT_WHORIZON_BONDAGE_PALACE"] != undefined || flags["EVENT_WHORIZON_DEMONSYRI_TALK"] != undefined || flags["EVENT_WHORIZON_FUCKED_DEMONSYRI"] != undefined || flags["EVENT_WHORIZON_DEMONSYRI_LOOKAROUND"] != undefined)
 			{
-				output2("\n<b>* The Bondage Palace, Hellhound Syri:</b> Met her");
+				output2("\n<b>* The Bondage Palace, Demon Queen Syri:</b> Met her");
 				if(flags["EVENT_WHORIZON_FUCKED_DEMONSYRI"] != undefined) output2(", Sexed her");
 			}
 			otherCount++;
@@ -5378,7 +5411,11 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Erika:</b> Met her");
 					if(flags["ERIKA_SEEN_NAKED"] != undefined) output2(", Seen her naked");
 					if(flags["ERIKA_GIVEN_ANUSOFT"] != undefined) output2(", Gave her Anusoft");
-					if(flags["ERIKA_SEXED"] != undefined) output2("\n<b>* Erika, Times Sexed:</b> " + flags["ERIKA_SEXED"]);
+					if(flags["ERIKA_SEXED"] != undefined)
+					{
+						output2("\n<b>* Erika, Sexual Organs:</b> " + listCharGenitals("ERIKA"));
+						output2("\n<b>* Erika, Times Sexed:</b> " + flags["ERIKA_SEXED"]);
+					}
 				}
 				//Tetra & Mica The Zil Twins
 				if(flags["ZILTWINS_MET"] != undefined)
@@ -5426,23 +5463,29 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b><u>U.G.C. Peacekeepers Office</u></b>");
 				output2("\n<b>* Penny:</b> Met her");
 				if(flags["PENNY_BADGER_BIMBO"] != undefined) output2(", Bimbofied");
+				if(pennyRecruited())
+				{
+					output2(", Crew member");
+					if(pennyIsCrew()) output2(" (Onboard Ship)");
+				}
 				if(flags["PENNY_IS_A_CUMSLUT"] != undefined)
 				{
+					output2("\n<b>* Penny, Visible Libido:</b>");
 					if(flags["PENNY_HIDING_CUMSLUTTERY"] != undefined)
 					{
-						output2(", Hiding her");
+						output2(" Hiding her");
 						if(flags["SEEN_PENNY_HIDE_CUMSLUTTERY"] != undefined) output2(" obvious");
 						output2(" cum-sluttery");
 					}
 					if(flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] != undefined)
 					{
-						output2(", Allowing others to watch her");
+						output2(" Allowing others to watch her");
 						if(flags["PENNY_BEEN_IN_WATCH_CUMSLUT_MODE_AND_BLOWN_IN_FRONT_OF_PC"] != undefined) output2(" exhibitionist");
 						output2(" cum-sluttery");
 					}
 					if(flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] != undefined)
 					{
-						output2(", Having others join in sexing her as a");
+						output2(" Having others join in sexing her as a");
 						if(flags["SEEN_PENNY_BE_A_GANGBANG_SLUT"] != undefined) output2(" gangbanged");
 						output2(" cum-slut");
 					}
@@ -7793,7 +7836,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			output2("\n<b>* Dane:</b> Met him");
 			if(flags["FOUGHT_DANE_ON_MHENGA"] != undefined) output2(", Fought him on Mhen’ga");
 			if(flags["FREED_DANE_FROM_TAIVRA"] != undefined) output2(", Freed him on Myrellion");
-			if(9999 == 0)
+			if(daneRecruited())
 			{
 				output2(", Crew member");
 				if(daneIsCrew()) output2(" (Onboard Ship)");
@@ -7810,7 +7853,7 @@ public function displayEncounterLog(showID:String = "All"):void
 		if(flags["MET_AZRA"] != undefined)
 		{
 			output2("\n<b>* Azra:</b> Met her");
-			if(!azraRecruited())
+			if(azraRecruited())
 			{
 				output2(", Crew member");
 				if(azraIsCrew()) output2(" (Onboard Ship)");
@@ -7935,7 +7978,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			output2("\n<b>* Kiro:</b>");
 			if(flags["KIRO_DISABLED_MINUTES"] > 0) output2(" Away");
 			else output2(" Active");
-			if(9999 == 0)
+			if(kiroRecruited())
 			{
 				output2(", Crew member");
 				if(kiroIsCrew()) output2(" (Onboard Ship)");

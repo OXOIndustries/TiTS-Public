@@ -82,9 +82,20 @@ public function dryadMeeting():void
 	
 	pc.createStatusEffect("Dryad Encounters", 0, 0, 0, 0, true, "", "", false, 1400);
 	pc.addStatusValue("Dryad Encounters", 1, 1);
-	
-	var pp:PregnancyPlaceholder = getDryadPregContainer();
 
+	dryadMeetingMenu();
+}
+public function dryadMeetingMenu():void
+{
+	clearMenu();
+	addButton(0,"Sex!", dryadMeetingSexMenu,undefined,"Sex!","Give her what she is asking for.");
+	if (pc.hasKeyItem("Taur-centric Ship Equipment") && flags["DRYAD_FUCKED"] != undefined && flags["DRYAD_FUCKED"] >= 5) addButton(2, "Come With", amberComeWith, undefined, "Come With", "Ask the dryad to come with you aboard your ship.");
+	addButton(14, "Leave", dryadNo, undefined, "Leave", "You don’t wanna bang right now.");
+}
+public function dryadMeetingSexMenu():void
+{
+	var pp:PregnancyPlaceholder = getDryadPregContainer();
+	
 	clearMenu();
 	addButton(0,"Give BJ", dryadBlowjob,undefined,"Give BJ","Use your mouth to get the girl off.");
 	if(pc.lust() >= 33)
@@ -134,8 +145,7 @@ public function dryadMeeting():void
 		addDisabledButton(6,"FuckHerAss","Fuck Her Ass","You aren’t aroused enough for this.");
 		addDisabledButton(7,"Drain Her","Drain Her","You have to let her fuck you at least once to do this.");
 	}
-	if (pc.hasKeyItem("Taur-centric Ship Equipment") && flags["DRYAD_FUCKED"] != undefined && flags["DRYAD_FUCKED"] >= 5) addButton(8, "Come With", amberComeWith, undefined, "Come With", "Ask the dryad to come with you aboard your ship.");
-	addButton(14, "Leave", dryadNo, undefined, "Leave", "You don’t wanna bang right now.");
+	addButton(14, "Back", dryadMeetingMenu);
 }
 
 public function dryadBlowjob():void

@@ -53,9 +53,9 @@ public function cousinEncounterBonus():Boolean
 	{
 		showRivalAndFeruze();
 		author("Fenoxo");
-		output("\n\nPoised at the ship’s door are two figures - closest is the eight-foot tall ");
-		if(CodexManager.entryUnlocked("Suulas")) output("suula with");
-		else output("creature with angel wings and");
+		output("Poised at the ship’s door are two figures - closest is the eight-foot tall");
+		if(CodexManager.entryUnlocked("Suulas")) output(" suula with");
+		else output(" creature with angel wings and");
 		output(" the sharp-toothed grin of a true predator. In her shadow, your cousin leers out at you with [rival.hisHer] oh-so-familiar cock-sure smile. <i>“Hello there,”</i> [rival.name] says. Lines of code scroll across the codex in [rival.hisHer] hand, chipping away at the ship’s security. <i>“I should’ve known you’d be here. The air on this station is thick with the stink of low-lifes. Your kind of place.”</i>");
 		output("\n\nYou hand shifts towards your [pc.weapon].");
 		output("\n\n<i>“Look at that, another of the infamous Steele line who can’t manage to adhere to the simplest tenants of civilization. Why wait your turn when you can brute force your way through life and take it all for yourself?”</i> [rival.HeShe] spits in apparent disgust, the oblong blob of spittle sailing for long seconds into the foundry’s red glow. <i>“Well I’m not relying on that idiot with a dog-dick for brains anymore. You won’t get past Feruze.”</i> [rival.name] giggles to [rival.himHer]self. <i>“That inheritance belongs to </i>me<i>.”</i>");

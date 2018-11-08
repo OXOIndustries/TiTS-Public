@@ -458,7 +458,7 @@ package classes.Items.Transformatives
 				target.thickness += 2;
 				if (target.thickness < 30) target.thickness += 2;
 				
-				output("\n\nIt’s obvious that some of your body weight is shifting around. You smile as your belly and libs seem to soften, fat distributing to them.");
+				output("\n\nIt’s obvious that some of your body weight is shifting around. You smile as your belly and limbs seem to soften, fat distributing to them.");
 				if (target.thickness < 40) output(" <b>You now look a little thicker!</b>");
 				else if (target.thickness < 60) output(" <b>You’re now fairly thick!</b> If you ever get tired of adventuring or C.E.O.ing, you think you’d make a pretty solid plus-size model! Especially with your otherwise very curvy figure!");
 				else output(" <b>You now look quite thick!</b> You’ve got a distinctly chubby, soft appearance now. You’re developing a bit of a belly, just enough to make you look delightfully thick and curvy.");
@@ -561,7 +561,7 @@ package classes.Items.Transformatives
 				output("\n\nYou shiver as a lurid wetness seeps out of your [pc.cunts]. You");
 				if(target.isBiped()) output(" cross your [pc.legs], groaning and");
 				else output(" moan,");
-				output(" rubbing a finger through the valley of ");
+				output(" rubbing a finger through the valley of");
 				if (target.vaginas.length > 1) output(" one of");
 				output(" your slit");
 				if (target.vaginas.length > 1) output("s");

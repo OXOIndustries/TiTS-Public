@@ -1021,7 +1021,7 @@ private function ewDemonSyriPoundPuss():void
 	
 	output("\n\nNow that she’s nice and pliant, you decide it’s time to properly put this bitch in her place. You pull yourself off her tits and grab her hips, flipping Syri onto her hands and knees. She grunts and protests, but a few gropes of her breasts and add, and feeling your [pc.cockOrStrapon] twist inside her. The way she cries out, you’re pretty sure she cums - but her pleasure isn’t what you’re interested in. The extra wetness leaking out of her quim is just extra lube, letting you pound her puss hard. The hellhound’s tail swishes heavily, batting against your [pc.face] - when her ass isn’t being slammed forward by your [pc.hips] crashing against it, sending ripples through her supple olive flesh.");
 	
-	output("\n\n<i>“Fuck yes!”</i> the demoness screams. Her claws rake trenches into the stone, her voice barely able to contain her pleasure. She’s putty in your hands, a willing slave to your cock. Syris thrusts back against you, driving your dick deeper and deeper into her hidden depths, taking every inch of");
+	output("\n\n<i>“Fuck yes!”</i> the demoness screams. Her claws rake trenches into the stone, her voice barely able to contain her pleasure. She’s putty in your hands, a willing slave to your cock. Syri thrusts back against you, driving your dick deeper and deeper into her hidden depths, taking every inch of");
 	if (pc.hasCock()) output(" man meat");
 	else output(" hardlight shaft");
 	output(" with desperate glee. <i>“Fuck me fuck me <b>fuck me!</b>”</i>");

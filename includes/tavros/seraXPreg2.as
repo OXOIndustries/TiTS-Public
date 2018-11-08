@@ -749,8 +749,8 @@ public function seraBitchImpregnateBedWake():void
 			else output(" still stirring your spent member inside of her.");
 			output(" Her tail spade brushes over your lips teasingly.");
 			
-			output("\n\n<i>“I love you in the morning,”</i> she says. <i>“That higher thinking hasn’t quite clicked in yet… and we can do it like animals.");			
-			if (flags["SERA_PREGNANCY_TIMER"] >= 60) output(" Always reminds me of the time you first knocked me up. Just making me your breeding bitch, total abandon… yeah. That does feel pretty good.”</i>");
+			output("\n\n<i>“I love you in the morning,”</i> she says. <i>“That higher thinking hasn’t quite clicked in yet... and we can do it like animals.");			
+			if (flags["SERA_PREGNANCY_TIMER"] >= 60) output(" Always reminds me of the time you first knocked me up. Just making me your breeding bitch, total abandon... yeah. That does feel pretty good.”</i>");
 			else if (!seraIsPregnant() && chars["SERA"].fertility() > 0) output("”</i> She rests her hand on her stomach. <i>“Feels like the best way of getting knocked up, don’t you think?”</i>");
 			else ("”</i>");
 			
@@ -1046,7 +1046,7 @@ public function seraPregSterilexOn(turnon:Boolean):void
 			else output(" a baby factory");	
 			output(" is an undeniable turn-on.");			
 		}
-		else output("\n\n<i>“You want to make babies, do you,”</i> she says, with an odd mix of coyness and nervousness. <i>“Well… they’re on you. That’s all I’m going to say.”</i>");
+		else output("\n\n<i>“You want to make babies, do you,”</i> she says, with an odd mix of coyness and nervousness. <i>“Well... they’re on you. That’s all I’m going to say.”</i>");
 		
 		flags["SERA_STERILEX_STATE"] = 0;	
 		chars["SERA"].impregnationType = "SeraSpawnPregnancy";
@@ -1068,22 +1068,22 @@ public function seraPregMakeLove(kok:int=0):void
 	
 	output("You retrieve the grav-cuffs from the case and carefully fasten her wrists to the bedposts. You do it with the ease that comes with practice, and it gives you plenty of license to touch her smooth, supple [sera.skinColor] skin, puff breath on her sensitive neck and ears, trace the curves of her generous breasts. The succubus tries to bite you when you get too close - perhaps in jest, perhaps not - and smirks, biting her lip in anticipation when you finally sit back, admiring the succulent, heavily modded body of the slave you’ve spread-eagled helpless over the sheets.");
 	output("\n\n<i>“What are you gonna do to little ol’ helpless me, [pc.master]?”</i> she breathes. <i>“You gonna treat her nasty? You gonna bite her and hit her and do it to her rough, until all she can think of is how <i>good</i> it feels to be your fuckdoll?”</i> Her long, tapering tongue slips out of her mouth, a fleshy snake flicking its tail across her lips. <i>“I fucking hope so.”</i>");
-	output("\n\nLike any good sex demon, just being near her and listening to her smoky tones makes you tetchy, pent up and eager to throw yourself on her, lust burning a path to your groin, inflating [pc.eachCock] with leaden, reckless need. Yeah. You could treat her rough… or maybe there’s something even more perverse you could do with her.");
+	output("\n\nLike any good sex demon, just being near her and listening to her smoky tones makes you tetchy, pent up and eager to throw yourself on her, lust burning a path to your groin, inflating [pc.eachCock] with leaden, reckless need. Yeah. You could treat her rough... or maybe there’s something even more perverse you could do with her.");
 	output("\n\nSlowly, ever so slowly, you lie yourself down besides Sera, sinking your hand between the cleft of her thighs and playing with her, enjoying the lust and frustration that quickly bubbles to the surface of her pretty round face as you diddle her, hot silkiness beneath your touch that just gets more and more sodden the longer you stroke her innards and flick at that irascible little clit of hers.");
-	output("\n\n<i>“C’mon… “</i> she starts to huff, slim muscles tensing in her trapped arms, breasts trembling. <i>“You gonna… fuck me or what…?”</i>");
+	output("\n\n<i>“C’mon... “</i> she starts to huff, slim muscles tensing in her trapped arms, breasts trembling. <i>“You gonna... fuck me or what...?”</i>");
 	output("\n\nYes, but not the way she’s anticipating. You gently nibble her ear as you climb on top of her, trailing a series of soft kisses from there across to her lovely little nose, which you boop with your [pc.lips] as you slide your throbbing, ready [pc.cock " + kok + "] down the");
 	if (seraIsPregnant(true)) output(" growing curve");
 	else output(" plain");	
 	output(" of her belly. There’s no fakery in the love you do it with: you <i>do</i> have great affection for this raunchy pest you’ve made your own, and you show that to her with each little kiss.");
 	
-	output("\n\n<i>“What are you doing?”</i> she cries, pulling her face away and glaring at you with genuine alarm. <i>“Don’t do… that!”</i> She splits her thighs beneath you, baring her steaming pussy to you. <i>“Fuck me hard, like you should! Look, I swore!”</i> she exclaims with sudden inspiration. <i>“Now you have to punish me!”</i>");
-	output("\n\nYes… but punishment is almost what this is to her, isn’t it? You chuckle softly, and then draw her into a passionate kiss, lining yourself up as you do it sinking your [pc.cockHead " + kok + "] past her lips, slipping deep into her wonderfully supple innards. But you do it slowly… lovingly. Sliding your [pc.hip] upwards, marvelling at the smooth warmth of hers as you simply sit inside her, gently rocking back and forth, hand on the small of her back, drawing her into a tender embrace, [sera.SkinColor] boobies flattening against your [pc.chest].");
+	output("\n\n<i>“What are you doing?”</i> she cries, pulling her face away and glaring at you with genuine alarm. <i>“Don’t do... that!”</i> She splits her thighs beneath you, baring her steaming pussy to you. <i>“Fuck me hard, like you should! Look, I swore!”</i> she exclaims with sudden inspiration. <i>“Now you have to punish me!”</i>");
+	output("\n\nYes... but punishment is almost what this is to her, isn’t it? You chuckle softly, and then draw her into a passionate kiss, lining yourself up as you do it sinking your [pc.cockHead " + kok + "] past her lips, slipping deep into her wonderfully supple innards. But you do it slowly... lovingly. Sliding your [pc.hip] upwards, marvelling at the smooth warmth of hers as you simply sit inside her, gently rocking back and forth, hand on the small of her back, drawing her into a tender embrace, [sera.SkinColor] boobies flattening against your [pc.chest].");
 	
 	pc.cockChange();
 	
 	output("\n\nShe breathes heavily into your mouth and bucks against you frustratedly, pussy wetly stirring itself around your cock, then wrapping her wide hips around your waist and clinching you as hard as she can, doing her very best to will you on. Arousal throbs thickly up your [pc.cock]; it is an effort not to just do what she wants and go to pound-town on her. ");
 	output("\n\nBut no. You had to master your own desires in order to tame her, and you’re perfectly able to call upon that self-control now. You wait until she subsides, panting, and then go back to making love to her, laying kisses at the base of her horns, stroking them and her cerulean hair as you allow a gentle tide dictate your [pc.hips], slowly sliding in and out of her, enjoying every inch of her supple sex and body beneath you with leisurely movements.");
-	output("\n\n<i>“You’re not supposed to… “</i> she groans. <i>“I’m your whore! Your pet! Your fuck-toy! Not your WIFE!”</i> She is trapped in an incredibly sensual, horny body, and she can’t help but react to what you’re doing to her, femcum drooling down your [pc.cock " + kok + "], hips and breasts raising themselves reactively to your touch. When she opens her unholy, fluorescent eyes, breath hard in her throat, she’s confronted by your gloating grin. <i>“Oh, Onedammit. I hate you <b>so</b> much.”</i>");
+	output("\n\n<i>“You’re not supposed to... “</i> she groans. <i>“I’m your whore! Your pet! Your fuck-toy! Not your WIFE!”</i> She is trapped in an incredibly sensual, horny body, and she can’t help but react to what you’re doing to her, femcum drooling down your [pc.cock " + kok + "], hips and breasts raising themselves reactively to your touch. When she opens her unholy, fluorescent eyes, breath hard in her throat, she’s confronted by your gloating grin. <i>“Oh, Onedammit. I hate you <b>so</b> much.”</i>");
 	
 	output("\n\nYou laugh and then kiss her again, just letting your [pc.lips] and [pc.tongue] trace shapes over her lips and mouth, and this time she lets you slip inside, twine it with her own, a genuinely loving snog as orgasm inexorably tightens your body. You let your hand slide down to her big, juicy rump, stroking it rather than gripping it as you sink");
 	if (pc.cocks[kok].cLength() >= 11.5) output(" the greater portion of your massive length inside her");
@@ -1097,7 +1097,7 @@ public function seraPregMakeLove(kok:int=0):void
 	
 	output("\n\nYou rest on top of Sera when you’re spent, gently stroking her hair and face, breathing in her scent as [pc.cum] drools out of her stuffed pussy and seeps into the bed beneath you.");
 	output("\n\n<i>“You really are one sick puppy, [pc.master],”</i> she says, gazing at you with a kind of smirking awe. <i>“I never would have done something as twisted as that with any of my slaves. You need to get your head looked at.”</i>");
-	output("\n\nWhen you uncuff her though, her claws do momentarily scrape down your sides, giving you a little squeeze as you draw away.  You think maybe she didn’t dislike that <i>so</i> much.");
+	output("\n\nWhen you uncuff her though, her claws do momentarily scrape down your sides, giving you a little squeeze as you draw away. You think maybe she didn’t dislike that <i>so</i> much.");
 	
 	processTime(15 + rand(15));
 	knockUpSeraChance();

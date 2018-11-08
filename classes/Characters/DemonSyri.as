@@ -75,6 +75,7 @@
 			this.HPMod = 300;
 			this.HPRaw = this.HPMax();
 			
+			/*
 			var c:CockClass = new CockClass();
 			c.cLengthRaw = 12;
 			c.cType = GLOBAL.TYPE_CANINE;
@@ -84,6 +85,7 @@
 			c.addFlag(GLOBAL.FLAG_TAPERED);
 			c.addFlag(GLOBAL.FLAG_KNOTTED);
 			cocks = [c];
+			*/
 			
 			var v:VaginaClass = new VaginaClass();
 			vaginas = [v];
