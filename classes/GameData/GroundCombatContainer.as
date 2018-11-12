@@ -4258,7 +4258,7 @@ package classes.GameData
 				var currTarget:Creature = collection[i] as Creature;
 				
 				// Looking for creatures of the same type as the one we're adding
-				if (currTarget is tType && currTarget != target && target.short == currTarget.short)
+				if (currTarget is tType && currTarget != target && target.btnTargetText == currTarget.btnTargetText)
 				{
 					// Fuck it, just force set these every time through :V
 					/*
@@ -4737,6 +4737,7 @@ package classes.GameData
 				if (_hostiles[i].isDefeated() && _hostiles[i].alreadyDefeated == false)
 				{
 					_hostiles[i].alreadyDefeated = true;
+					if (_hostiles[i] is RatsRaider) (_hostiles[i] as RatsRaider).setLastFallenRat();
 					
 					// Legacy mode kinda- if we're in a single-enemy fight, don't output anything.
 					if (_hostiles.length > 1)

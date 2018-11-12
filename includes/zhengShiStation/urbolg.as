@@ -30,7 +30,7 @@ public function zhengShiHangerFloorBonus():Boolean
 	}
 	else if (!pc.hasStatusEffect("Rat Delay") && flags["RATS_ENABLED"] == undefined)
 	{
-		ratAttemptUrbolgRobbery();
+		ratsAttemptUrbolgRobbery();
 		return true;
 	}
 	else

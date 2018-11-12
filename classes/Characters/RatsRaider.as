@@ -80,6 +80,7 @@ package classes.Characters
 				//Rodenians
 				case PINK_RODENIAN: case WHITE_RODENIAN:		
 					originalRace = "rodenian";
+					btnTargetText = "Rodent Girl";
 					
 					hairLength = 12;
 					
@@ -92,6 +93,8 @@ package classes.Characters
 					break;
 				//Mouse-boys
 				case TAN_MOUSEBOY: case FAIR_MOUSEBOY:
+					btnTargetText = "Mouse-boy";
+					
 					hipRatingRaw = 7;
 					buttRatingRaw = 4;
 					
@@ -108,6 +111,7 @@ package classes.Characters
 				//Half-rodenians
 				case HALF_BOY: case HALF_GIRL: default:
 					originalRace = "half-rodenian";
+					btnTargetText = "H.Roden " + (ratVariety == HALF_BOY ? "Boy" : "Girl");
 					break;
 			}
 			
@@ -116,8 +120,8 @@ package classes.Characters
 			{
 				//Females
 				case PINK_RODENIAN: case WHITE_RODENIAN: case HALF_GIRL: default:
-					btnTargetText += " Girl";
 					short += " girl";
+					createStatusEffect("Force Fem Gender");
 					
 					//Takes them down to "slender"
 					lipMod = -2;
@@ -147,8 +151,8 @@ package classes.Characters
 					break;
 				//Males
 				case TAN_MOUSEBOY: case FAIR_MOUSEBOY: case HALF_BOY:
-					btnTargetText += " Boy";
 					short += " boy";
+					createStatusEffect("Force Male Gender");
 					tallness = 64; //default
 
 					nippleColor = "peach";
@@ -326,7 +330,7 @@ package classes.Characters
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 			this.XPRaw = this.normalXP();
-			//Loot is handled when the fight ends
+			//Loot is handled by ratPostFightAdjustments()
 			this.credits = 0;
 			this.inventory = new Array();
 			
@@ -335,16 +339,15 @@ package classes.Characters
 			createPerk("Giant Slayer", 6*12, 10);
 			createPerk("Get Down!", 50);
 
-			this.isUniqueInFight = false;
+			this.isUniqueInFight = true;
 			
-			//kGAMECLASS.tarkusSSTDChance(this);
+			kGAMECLASS.zhengShiSSTDChance(this);
 			this._isLoading = false;
 		}
 		
 		override public function get bustDisplay():String
 		{
-			if (ratVariety == 0 || ratVariety == 3) return "MABBS";
-			return mf("ERRA", "ANNO");
+			return ["MABBS", "URBOLG", "ROZ", "SLAVEBREAKER_2", "KASE", "AGROSH"][ratVariety];
 		}
 		
 		public function isLeaderRat():Boolean
@@ -375,7 +378,7 @@ package classes.Characters
 				if (ally is RatsRaider
 					&& !(ally.isImmobilized() && ignoreStunned)
 					&& !ally.isDefeated()
-					&& ally.mf("f", "m") != ignoreGender)
+					&& ally.mf("m", "f") != ignoreGender)
 					rats++;
 			return rats;
 		}	
@@ -412,16 +415,20 @@ package classes.Characters
 			//Starting the ratpile, fleeing, reviving an ally, continuing the grapple and being horny
 			//override normal rat AI
 			var woundedRats:Array = new Array();
+			var hornyRats:int = 0;
 			for each (var ally:Creature in alliedCreatures)
+			{
 				if (ally is RatsRaider && ally.HP() <= 0 && ally.lust() < ally.lustMax())
 					woundedRats.push(ally);
+				if (ally.hasStatusEffect("Rat Cascade Used")) hornyRats++;
+			}
 			if (target.isGrappled()) possibleAttacks = [ratpile];
 			else if (rand(2) == 0 && woundedRats.length > 0 && !hasStatusEffect("Rat Revive Used"))
 			{
 				possibleAttacks = [revive];
 				target = RandomInCollection(woundedRats);
 			}
-			else if (lust() > 80 && !hasStatusEffect("Rat Cascade Used")) possibleAttacks = [lustCade];
+			else if (lust() > 80 && !hasStatusEffect("Rat Cascade Used") && hornyRats < 2) possibleAttacks = [lustCade];
 			else if (hasStatusEffect("Plunder over Pillage!") && (HPQ() < 60 || ratCount(false) < 3)) possibleAttacks = [fleeWithTheMoney];
 			else if (ratpileReady(target)) possibleAttacks = [ratpileStart];
 			
@@ -679,7 +686,7 @@ package classes.Characters
 			var otherRat:RatsRaider;
 			for each (var rat:Creature in CombatManager.getHostileActors())
 			{
-				if (!(rat is RatsRaider) || rat.isDefeated() || rat == this) continue;
+				if (!(rat is RatsRaider) || rat == this) continue;
 				otherRat = rat as RatsRaider;
 				loost = 10+rand(11);
 				addedLust += loost;
@@ -832,6 +839,7 @@ package classes.Characters
 			else
 			{
 				var thief:RatsRaider = makeRatThief(target);
+				if (!thief) return;
 				kGAMECLASS.setTarget(thief);
 
 				if (ratCount() == 2) output("<i>\"Bingo, jackpot, score! This is it!\"</i> you hear. There's a universal pause that dilates your [pc.eyes]. Even through the " + (skinType == GLOBAL.SKIN_TYPE_FUR ? "fuzzy" : "smooth") + " butt on your face you know exactly the reason for their caterwauling: you feel a pouch yanked off your waist. <i>\"Here we go, here we go, this is perfect!\"</i> the mouse [target.boyGirl] exclaims. Your heart sinks hearing the pack open, its contents spilling out. <i>\"");
@@ -897,6 +905,7 @@ package classes.Characters
 				{
 					//Show defeated rat thing
 					rat.alreadyDefeated = true;
+					(rat as RatsRaider).setLastFallenRat();
 					if (rat.HP() <= 0) ++fallenRats;
 					else
 					{
@@ -924,7 +933,11 @@ package classes.Characters
 			if (hornyRats)
 			{
 				// If all rats (two or three) max out their lust during ratpile, somehow. Lol sure.
-				if (hornyRats + fallenRats >= target.statusEffectv3("Grappled")) output("\n\nThe laughs die down into reactionary moans, and those moans aren't of pain. The " + (hornyRats == 1 ? "body atop you slides" : num2Text(hornyRats) + " bodies atop you slide") + " off, thudding to the ground amidst a cacophany of pleasurable squeaks. It's so bizarre that you can't help but shake your head. You hurriedly check yourself for damages, monetary or physical, before turning your attentions to the bandits now debilitatingly aroused...");
+				if (hornyRats + fallenRats >= target.statusEffectv3("Grappled"))
+				{
+					output("\n\nThe laughs die down into reactionary moans, and those moans aren't of pain. The " + (hornyRats == 1 ? "body atop you slides" : num2Text(hornyRats) + " bodies atop you slide") + " off, thudding to the ground amidst a cacophany of pleasurable squeaks. It's so bizarre that you can't help but shake your head. You hurriedly check yourself for damages, monetary or physical, before turning your attentions to the bandits now debilitatingly aroused...");
+					target.createStatusEffect("Rats Lusted Themselves");
+				}
 				// If three rats, two get lustified
 				else if (hornyRats == 2) output("\n\nLike Atlas setting the world down, relief wrings the pain from your body when two rats, for whatever reason, slip off your body. Inundated by blissful squeals and squeaks, the one over your face scampers away, leaving you to rise, check yourself, and figure out just what happened. <i>\"H-how are you two like this!?\"</i> the one rat asks, the other two bandits flush with all-consuming lust masturbating furiously. You scratch your head before getting back into the fight!");
 				//Three rats, one rat gets turned on during this (Dogpile continues)
@@ -941,7 +954,7 @@ package classes.Characters
 			
 			//Update rat count
 			target.setStatusValue("Grappled",3,ratCount());
-			//Not enough rats to continue or ratpile runs its course
+			//Not enough rats to continue or ratpile runs its course. Don't end the grapple if the rats lose.
 			if (ratCount() < 2) target.removeStatusEffect("Grappled");
 			else if (target.statusEffectv4("Grappled") >= 3)
 			{
@@ -972,7 +985,7 @@ package classes.Characters
 			if (!thief) return null;
 			
 			//Steal from credits-2000
-			thief.credits = Math.min(target.credits - 2000, Math.floor(Math.max(target.credits, 0)*kGAMECLASS.ratTheftPercent(target.credits, true)/100));
+			thief.credits = Math.min(target.credits - 2000, Math.floor(Math.max(target.credits, 0)*kGAMECLASS.ratsTheftPercent(target.credits, true)/100));
 			target.credits -= thief.credits;
 			
 			//Fill a temporary inventory, this way we don't have to worry about
@@ -1019,7 +1032,7 @@ package classes.Characters
 					smallestGem = itemClass;
 				}
 				//Split
-				gemsToSteal = Math.ceil(kGAMECLASS.ratTheftPercent(item.quantity*item.basePrice, true)*item.quantity/100);
+				gemsToSteal = Math.ceil(kGAMECLASS.ratsTheftPercent(item.quantity*item.basePrice, true)*item.quantity/100);
 				//Count money
 				if (item.basePrice >= 10000) bigGemValue += item.basePrice*gemsToSteal
 				else smallGemValue += item.basePrice*gemsToSteal;
@@ -1084,7 +1097,7 @@ package classes.Characters
 				thief.createStatusEffect("Plunder over Pillage!",0,smallGemValue,bigGemValue,0,false,"Icon_MoneyBag",tooltip,true,0,0x00B000);
 			}
 			//Record thievery in ledger
-			kGAMECLASS.ratTallyLoot(thief);
+			kGAMECLASS.ratsTallyLoot(thief);
 			return thief;
 		}
 		private function fleeWithTheMoney(target:Creature):void
@@ -1123,6 +1136,7 @@ package classes.Characters
 			if (!thief) return;
 			if (thief.statusEffectv1("Plunder over Pillage!") < 3) return;
 			alliedCreatures.splice(alliedCreatures.indexOf(thief),1);
+			thief.setLastFallenRat();
 		}
 	
 		public static function processTallHate(alliedCreatures:Array, hostileCreatures:Array):void
@@ -1149,6 +1163,11 @@ package classes.Characters
 			if (lustLoss) output(" (<b>L: +<span class='lust'>" + lustLoss + "</span></b>)");
 			//Show lust loss
 			CombatManager.showCombatUI();
+		}
+		
+		public function setLastFallenRat():void
+		{
+			kGAMECLASS.flags["RAT_LAST_DOWN"] = this;
 		}
 	}
 }
