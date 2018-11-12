@@ -670,6 +670,8 @@ public function ainaShower():void
 	processTime(10 + rand(5));
 	
 	pc.shower();
+	
+	clearMenu();
 	addButton(14, "Back", ainaMenu);
 }
 

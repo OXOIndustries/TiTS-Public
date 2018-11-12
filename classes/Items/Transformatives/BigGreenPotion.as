@@ -318,15 +318,7 @@
 						}
 						if (pc.ballSizeUnlocked(newBallSize))
 						{
-							output("\n\nYour [pc.balls] begin to feel a little warm. Reaching down to give ");
-							if (pc.balls == 1) output("it");
-							else output("them");
-							output(" a quick rub to comfort the odd sensation you find <b>");
-							if (pc.balls == 1) output("it has");
-							else output("they’ve");
-							if (ballShrink) output(" gotten a bit smaller");
-							else output(" grown a bit larger");
-							output("</b>.");
+							output("\n\nYour [pc.balls] begin" + (pc.balls == 1 ? "s" : "") + " to feel a little warm. Reaching down to give " + (pc.balls == 1 ? "it" : "them") + " a quick rub to comfort the odd sensation you find <b>" + (pc.balls == 1 ? "it has" : "they’ve") + " " + (ballShrink ? "gotten a bit smaller" : "grown a bit larger") + "</b>.");
 							pc.ballSizeRaw = newBallSize;
 							changes++;
 						}

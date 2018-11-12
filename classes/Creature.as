@@ -10796,6 +10796,7 @@
 			{
 				if(flags["CUNT_TAIL_PREGNANT_TIMER"] != undefined) flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
 				if(flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined) flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
+				if(flags["TIMES_FED_CUNT_SNAKE"] != undefined) flags["TIMES_FED_CUNT_SNAKE"] = undefined;
 			}
 			return;
 		}
