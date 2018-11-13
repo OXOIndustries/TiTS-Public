@@ -356,7 +356,7 @@ private function ewTentacleGardenerVictory():void
 	
 	output("\n\nBefore you can ask who this queen is, the gardener explodes into a cloud of black smoke and dissipates into the cream-colored sky.");
 	
-	output("\n\nDamn it!");
+	output("\n\nDamn it!\n\n");
 
 	CombatManager.genericVictory();
 }

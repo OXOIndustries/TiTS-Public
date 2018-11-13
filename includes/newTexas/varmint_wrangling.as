@@ -885,7 +885,7 @@ public function approachPetVarmint(introText:Boolean = false):void
 			if(pc.getStatusMinutes("Varmint Unleashed Cooldown") > (1440 - 60)) addDisabledButton(1, "Leash", "Leash", (!varmintRenamend() ? "It" : chars["VARMINTPET"].short) +" seems to enjoy the freedom too much. Perhaps you should wait a bit before activating the leash.");
 			else addButton(1, "Leash", doVarmintPlayTime, "leash", "Leash", "Put "+ varmintPetName("your") +" on a leash.");
 		}
-		else addButton(1, "Unleash", doVarmintPlayTime, "unleash", "Unleash", "Take your varmint off its leash and let it wander around the ship.");
+		else addButton(1, "Unleash", doVarmintPlayTime, "unleash", "Unleash", "Take "+ varmintPetName("your") +" off its leash and let it wander around the ship.");
 		addDisabledButton(2, "Buy Leash", "Buy Leash", "You already own a leash so you don’t need to buy another. However, if you ever lose the one you have, you know where to buy a replacement.\n\n<b>50 Credits</b>");
 	}
 
