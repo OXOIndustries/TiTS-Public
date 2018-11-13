@@ -2339,6 +2339,7 @@ public function equipItem(arg:ItemSlotClass):void {
 		
 		if(removedItem.fortification != 0) pc.HP(-1 * removedItem.fortification);
 		if(arg.fortification != 0) pc.HP(arg.fortification);
+		if(arg.shields != 0) pc.shields(pc.shieldsMax());
 		
 		removedItem.onRemove(pc, true);
 		arg.onEquip(pc, true);

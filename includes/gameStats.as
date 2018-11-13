@@ -750,12 +750,13 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.level < pc.levelMax() && pc.XPRaw < pc.XPMax()) output2(", <i>" + (pc.XPMax() - pc.XPRaw) + " XP to next Level</i>");
 		output2("\n<b>* Credits:</b> " + pc.credits);
 		output2("\n<b><u>Active Stats</u></b>");
-		output2("\n<b>* " + StringUtil.capitalize(pc.shieldDisplayName) + ":</b> " + Math.round((pc.shieldsRaw/pc.shieldsMax()) * 100) + " %, " + "0/" + pc.shieldsRaw + "/" + pc.shieldsMax());
+		output2("\n<b>* " + StringUtil.capitalize(pc.shieldDisplayName) + ":</b> " + pc.shieldsQ() + " %, " + "0/" + pc.shields() + "/" + pc.shieldsMax());
+		if(pc.hasShields() && !pc.hasShieldGenerator(true)) output2(", <i>No active shield generator equipped!</i>");
 		output2("\n<b>* HP:</b> " + pc.HPQ() + " %, " + "0/" + pc.HP() + "/" + pc.HPMax());
 		if(pc.HPMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.HPMod, 3)) + ")");
-		output2("\n<b>* Lust:</b> " + Math.round((pc.lust()/pc.lustMax()) * 100) + " %, " + pc.lustMin() + "/" + pc.lust() + "/" + pc.lustMax());
+		output2("\n<b>* Lust:</b> " + pc.lustQ() + " %, " + pc.lustMin() + "/" + pc.lust() + "/" + pc.lustMax());
 		if(pc.lustMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.lustMod, 3)) + ")");
-		output2("\n<b>* Energy:</b> " + Math.round((pc.energy()/pc.energyMax()) * 100) + " %, " + pc.energyMin() + "/" + pc.energy() + "/" + pc.energyMax());
+		output2("\n<b>* Energy:</b> " + pc.energyQ() + " %, " + pc.energyMin() + "/" + pc.energy() + "/" + pc.energyMax());
 		if(pc.energyMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.energyMod, 3)) + ")");
 		output2("\n<b><u>Passive Stats</u></b>");
 		output2("\n<b>* Physique:</b> " + pc.PQ() + " %, " + "0/" + pc.physique() + "/" + pc.physiqueMax());
