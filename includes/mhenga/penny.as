@@ -4784,7 +4784,7 @@ public function fuckPlantHornedPenny(args:Array):void
 	var sceneRoute:Number = 3;
 	if(args.length > 0) sceneRoute = args[0];
 	var x:int = 0;
-	if(args.length > 1) sceneRoute = args[1];
+	if(args.length > 1) x = args[1];
 	clearOutput();
 	showPenny(true);
 	author("Fenoxo");
