@@ -124,6 +124,9 @@
 		public function thickness():Number {
 			return cLength() / 6 * cThicknessRatio();
 		}
+		public function girth():Number {
+			return (thickness() * Math.PI);
+		}
 		public function fitsSmallCocksock():Boolean
 		{
 			//These values are meant to be placeholders

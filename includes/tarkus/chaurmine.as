@@ -485,6 +485,8 @@ public function approachTarkusCivilizedChaurmine():void
 
 public function chaurmineMenu(disabledButton:Number = -1):void
 {
+	if(chaurmineOnUveto()) return chaurmineUvetoMenu();
+	
 	clearMenu();
 	if(disabledButton == 0) addDisabledButton(0,"Appearance","Appearance","You just did this.");
 	else addButton(0,"Appearance",chaurmineAppearance,undefined,"Appearance","Take a gander at the buff saurmorian.");

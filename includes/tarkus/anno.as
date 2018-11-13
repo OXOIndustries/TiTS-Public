@@ -175,13 +175,13 @@ public function didAnnoyKnowYourDad():void
 	output("\n\nOh, <i>EEEEWWWWWW!</i>");
 	output("\n\nShe snickers, covering her mouth. <i>“Sorry, sorry. But yeah, I did. Met him at a theoretical physics conference about three years back. I was doing a presentation on warp gate theory, and Victor was out in the audience, I guess. Afterwards, he pulled me aside and asked if I wanted a job. I worked in Steele’s R&D for a couple years before he picked me to represent us here to Tarkus, right before he died. I didn’t know him, uh, </i>personally<i> for very long, but he was a good man. Very kind.”</i>");
 	//If PC is male:
-	if(pc.hasCock())
+	if(pc.isMasculine())
 	{
 		output("\n\nAnno turns to you, chewing the tips of her stylus as she regards you again. <i>“You’ve got a big pair of shoes to fill, " + pc.mf("Mr.","Ms.") + " Steele, but ");
 		//if small dick:
-		if(pc.biggestCockVolume() < 25) output("I think, with a lot of work and skill, you might just be able to fill them.");
+		if(!pc.hasCock() || pc.biggestCockVolume() < 25) output("I think, with a lot of work and skill, you might just be able to fill them.");
 		//if PC has a big dick: 
-		else if(pc.biggestCockVolume() <= 150) output("I think you’ll make Victor proud.");
+		else if(pc.hasCock() && pc.biggestCockVolume() <= 150) output("I think you’ll make Victor proud.");
 		//if Megaschlong ACTIVATE:
 		else output("a guy like you might just surpass him. I’ve got a good feeling about you!");
 		output(" But that’s just my two creds.”</i>");
@@ -1030,7 +1030,7 @@ public function anyoneSpecial():void
 	addButton(0,"Threeway",threeWayAnno,undefined,"Threeway","Ask her if she’s up for threeways sometime.");
 	//[Leave] [Threeway?] If NotSex'd & PC is girl: [Into Girls?] PC is shemale/futa: [Into Dickgirls?]
 	//If NotSex'd & PC is girl: [Into Girls?]
-	if(pc.hasVagina() && !pc.hasCock() && annoSexed() == 0)
+	if(pc.isFemale() && pc.mf("he","she") == "she" && annoSexed() == 0)
 	{
 		//[Into Girls?]
 		addButton(1,"Into Girls?",intoGirlsAnno,undefined,"Into Girls?","Ask her if she’s into girls.");

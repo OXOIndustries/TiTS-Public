@@ -117,7 +117,7 @@ public function showPenny(nude:Boolean = false):void
 public function pennyRoomDesc():Boolean {
 	showPennyBust();
 	
-	if(isHalloweenish() && !pennyIsCrew() && flags["PUMPKING_COMPLETION"] != 3)
+	if((flags["PUMPKING_COMPLETION"] != undefined || isHalloweenish()) && MailManager.isEntryViewed("pumpking_alert") && !pennyIsCrew() && flags["PUMPKING_COMPLETION"] != 3)
 	{
 		showName("PEACEKEEPER\nOFFICE");
 		showBust("");
@@ -126,7 +126,7 @@ public function pennyRoomDesc():Boolean {
 			pumpkinStartingQuest();
 			return true;
 		}
-		else addDisabledButton(0,"Officer T.","Officer Trent","Officer Trent is laying low until this whole mess blows over." + (flags["PUMPKING_COMPLETION"] == -1 ? " Not your problem, at least.":""))
+		else addDisabledButton(0,"Officer T.","Officer Trent","Officer Trent is laying low until this whole mess blows over." + (flags["PUMPKING_COMPLETION"] == -1 ? " Not your problem, at least.":""));
 	}
 	else if(flags["ZIL_PROBLEM_DEALT_WITH"] == undefined) {
 		if(flags["MET_PENNY"] == undefined) {

@@ -294,7 +294,7 @@ public function kirosShipWails(doOutput:Boolean = true):Boolean
 	{
 		if (flags["RESCUE KIRO TECHSPEC MACHINE FIX"] == undefined)
 		{
-			addButton(4, "Fix Machine", kirosShipfixDaMachine, undefined, "Fix the Machine", "Bring your considerable technical knowhow to bare on the troubled machine.")
+			addButton(4, "Fix Machine", kirosShipfixDaMachine, undefined, "Fix the Machine", "Bring your considerable technical knowhow to bear on the troubled machine.")
 		}
 		else
 		{

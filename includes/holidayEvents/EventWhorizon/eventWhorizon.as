@@ -22,12 +22,20 @@ EVENT_WHORIZON_TORMENT_CAGES
 	
 public function isDoingEventWhorizon():Boolean
 {
+	/*
 	// Fix my bumblefuckery
 	if (flags["EVENT_WHORIZON_STATE"] != 2 && flags["EVENT_WHORIZON_STATE"] != undefined && InCollection(shipLocation, "TAVROS HANGAR", "SHIP HANGAR", "201", "600", "2I7", "LZ L50", "500", "POESPACE", "UVS F15", "CANADA1", "K16_DOCK", "BREEDWELL_HANGAR"))
 	{
 		flags["EVENT_WHORIZON_STATE"] = 2;
 	}
+	*/
+	// Maybe a fix for the previous fix?
+	if(flags["EVENT_WHORIZON_STATE"] == 2 && flags["EVENT_WHORIZON_BONDAGE_PALACE"] == undefined && flags["EVENT_WHORIZON_DEMONSYRI_TALK"] == undefined && flags["EVENT_WHORIZON_FUCKED_DEMONSYRI"] == undefined && flags["EVENT_WHORIZON_DEMONSYRI_LOOKAROUND"] == undefined)
+	{
+		flags["EVENT_WHORIZON_STATE"] = undefined;
+	}
 	
+	if (shipLocation != "EW-M23") return false;
 	if (flags["EVENT_WHORIZON_STATE"] == -1) return false;
 	if (flags["EVENT_WHORIZON_STATE"] == undefined) return false;
 	if (flags["EVENT_WHORIZON_STATE"] == 2) return false;
@@ -39,11 +47,11 @@ public function sendEventWhorizonMessage(destination:String = null):void
 	clearOutput();
 	author("Savin");
 
-	output("Of all the different alerts programmed into your ship’s nav computer, <i>“spacial anomaly detected”</i> is one of the ones you never, ever want to see. Black holes and gravitational distortions are pretty much a death sentence in the depths of space.");
+	output("Of all the different alerts programmed into your ship’s nav computer, “spacial anomaly detected” is one of the ones you never, ever want to see. Black holes and gravitational distortions are pretty much a death sentence in the depths of space.");
 	
 	output("\n\nAnd sometimes, you discover as you rush onto the bridge in a panic, it’s a giant pink tear in reality.");
 	
-	output("\n\nYou stare out the forward viewport, watching a luminescent pink field of gas and energy warble a few kilometers ahead of where the computer automatically dropped you out of LightDrive. You’re getting all sorts of radiation readings from the anomaly, and the automated scans are coming up with big, red <i>“inconclusive”</i> readings.");
+	output("\n\nYou stare out the forward viewport, watching a luminescent pink field of gas and energy warble a few kilometers ahead of where the computer automatically dropped you out of LightDrive. You’re getting all sorts of radiation readings from the anomaly, and the automated scans are coming up with big, red “inconclusive” readings.");
 	
 	output("\n\n<i>“What the hell is that?”</i> you wonder aloud, swinging into the captain’s seat. The pink field isn’t moving or growing, thankfully, but it is certainly discharging. It’s a very long but narrow oval, probably less than half a kilometer wide, and according to what readings you <b>are</b> getting, the anomaly is basically two dimensional.");
 	
@@ -55,7 +63,7 @@ public function sendEventWhorizonMessage(destination:String = null):void
 	
 	if (destination == null)
 	{
-		destination = "Tavros";
+		destination = "TAVROS HANGAR";
 	}
 
 	clearMenu();
@@ -110,9 +118,9 @@ public function ewEventOver():void
 		flags["STORED_SHIP_DESTINATION"] = undefined;
 	}
 	
-	if (flags["STORED SHIP DESTINATION"] == "TAVROS HANGAR" || flags["STORED SHIP DESTINATION"] == undefined)
+	if (flags["STORED SHIP DESTINATION"] == undefined)
 	{
-		flags["STORED SHIP DESTINATION"] = "Tavros";
+		flags["STORED SHIP DESTINATION"] = "TAVROS HANGAR";
 	}
 	
 	flags["EVENT_WHORIZON_STATE"] = 2;
@@ -208,7 +216,7 @@ public function EWTentacleGardenFight():void
 	CombatManager.victoryScene(ewTentacleGardenVictory);
 	CombatManager.lossScene(ewTentacleGardenLoss);
 	CombatManager.encounterTextGenerator(function():String {
-		var m:String = "You're surrounded on all sides by wriggling green vines, mercilessly whipping and grabbing at you. A wall of pink pussy-flowers box you in, sucking at your [pc.legs] if you stray out of the center of the garden. The tentacles grab at your [pc.arms], trying to restrain you -- and the cockhead-shaped tips at their ends make it abundantly clear what will happen if they succeed!";
+		var m:String = "You’re surrounded on all sides by wriggling green vines, mercilessly whipping and grabbing at you. A wall of pink pussy-flowers box you in, sucking at your [pc.legOrLegs] if you stray out of the center of the garden. The tentacles grab at your [pc.arms], trying to restrain you -- and the cockhead-shaped tips at their ends make it abundantly clear what will happen if they succeed!";
 		return m;
 	});
 	
@@ -300,7 +308,7 @@ private function ewTentacleGardenMerge(isVictory:Boolean):void
 	}
 
 	clearMenu();
-	addButton(0, "Okay", ewTentacleCageBadEnd, undefined, "Okay", "Now that she's <i>asking</i>, some tentacle fun might be... well, fun!");
+	addButton(0, "Okay", ewTentacleCageBadEnd, undefined, "Okay", "Now that she’s <i>asking</i>, some tentacle fun might be... well, fun!");
 	addButton(1, "Nope", ewTentacleGardenMergeNo, undefined, "Noped", "Uh... no?");
 }
 
@@ -330,7 +338,7 @@ private function ewTentacleGardenMergeNo():void
 	CombatManager.victoryScene(ewTentacleGardenerVictory);
 	CombatManager.lossScene(ewTentacleCageBadEnd);
 	CombatManager.encounterTextGenerator(function():String {
-		var m:String = "She's a tall, statuesque woman... if the statuary you're looking at has grossly exaggerated sexual attributes: an impossibly thin waistline but mareish hips, huge breasts decorated with golden chains, and demonic claws and horns. Black-and-green hair swirls around her as she moves, dancing around the garden with a feline grace that seems outright impossible considering the sheer weight of ass, hips, and titties she's carrying -- yet she makes her assets look feather-light. And predatory smile is drawn across her jade lips, and coal-black eyes betray a deep, fathomless hunger as she circles you.";
+		var m:String = "She’s a tall, statuesque woman... if the statuary you’re looking at has grossly exaggerated sexual attributes: an impossibly thin waistline but mareish hips, huge breasts decorated with golden chains, and demonic claws and horns. Black-and-green hair swirls around her as she moves, dancing around the garden with a feline grace that seems outright impossible considering the sheer weight of ass, hips, and titties she’s carrying -- yet she makes her assets look feather-light. And predatory smile is drawn across her jade lips, and coal-black eyes betray a deep, fathomless hunger as she circles you.";
 		return m;
 	});
 	
@@ -450,7 +458,7 @@ public function EWTormentCagesFight():void
 	//[Help] [Leave]
 
 	clearMenu();
-	addButton(0, "Help", EWTormentCagesHelp, undefined, "Help Him", "You can't just leave a fellow Rusher to this sexual torment. Get in there and help!");
+	addButton(0, "Help", EWTormentCagesHelp, undefined, "Help Him", "You can’t just leave a fellow Rusher to this sexual torment. Get in there and help!");
 	addButton(1, "Leave", EWTormentCagesLeave, undefined, "Leave Him", "Back off and leave the poor Rusher to his fate.");
 }
 
@@ -525,7 +533,7 @@ private function EWDemonicCaptorsFight():void
 	
 	output("\n\nYou shout to the sky, demanding to know what’s going on, but no answer is forthcoming. The sky clears a few seconds later, leaving you alone with the ausar in the cage. When you recover, you’re able to make your way up to the fuck-cages and start yanking the vines down and away, pulling the ausar free from the tentacle bondage.");
 	
-	output("\n\nIt’s a dickgirl, that much is obvious at first glance, with a smallish red rocket and balls hanging out from the tattered ruins of a pair of jeans. There’s nothing left of her shirt, leaving a pair of fairly hefty tits jutting out from a cum-soaked black vest hanging off her slender shoulders. You can see a patch on the jacket’s shoulder - the logo’s the same as the Confederate Scout Authority, where <i>“Galactic Confederacy”</i> should be written, you instead see <i>“Federation of Allied Planets”</i> in big, bold letters. Must be a cheap knockoff... right?");
+	output("\n\nIt’s a dickgirl, that much is obvious at first glance, with a smallish red rocket and balls hanging out from the tattered ruins of a pair of jeans. There’s nothing left of her shirt, leaving a pair of fairly hefty tits jutting out from a cum-soaked black vest hanging off her slender shoulders. You can see a patch on the jacket’s shoulder - the logo’s the same as the Confederate Scout Authority, where “Galactic Confederacy” should be written, you instead see “Federation of Allied Planets” in big, bold letters. Must be a cheap knockoff... right?");
 	
 	output("\n\nPurple plant-spooge is smeared all over her dark olive skin and drools from the corners of her mouth as she sputters and coughs.");
 	
@@ -632,6 +640,8 @@ public function EWBondagePalace():void
 	output("\n\nDoesn’t look like she’s going to leave you much choice...");
 
 	processTime(5+rand(2));
+	
+	flags["EVENT_WHORIZON_BONDAGE_PALACE"] = 1;
 
 	var h:DemonSyri = new DemonSyri();
 
@@ -643,7 +653,7 @@ public function EWBondagePalace():void
 	CombatManager.victoryScene(ewDemonSyriVictory);
 	CombatManager.lossScene(ewDemonSyriLoss);
 	CombatManager.encounterTextGenerator(function():String {
-		var m:String = "She's a towering mound of muscular ausar meat: more than eight feet tall, olive-skin glistening with sweat and fuck-juices, black fur on her arms and legs bristling. Her thick tail slaps heavily on the stone floor with every step, swaying with overt enjoyment of your battle. Her eyes are a fiery, almost glowing orange, burning with rage and lust. The horns that grow from her head stick out to the sides like a prize bull's, adorned with chains and rings. Syri's fangs are long and sharp, catching the waning light from outside as she circles you, and her claws ball into brawler's fists in preparation for her attacks.";
+		var m:String = "She’s a towering mound of muscular ausar meat: more than eight feet tall, olive-skin glistening with sweat and fuck-juices, black fur on her arms and legs bristling. Her thick tail slaps heavily on the stone floor with every step, swaying with overt enjoyment of your battle. Her eyes are a fiery, almost glowing orange, burning with rage and lust. The horns that grow from her head stick out to the sides like a prize bull’s, adorned with chains and rings. Syri’s fangs are long and sharp, catching the waning light from outside as she circles you, and her claws ball into brawler’s fists in preparation for her attacks.";
 		return m;
 	});
 	
@@ -683,7 +693,7 @@ private function ewDemonSyriPostCombatMenu():void
 	if (flags["EVENT_WHORIZON_FUCKED_DEMONSYRI"] == undefined) addButton(1, "Fuck", ewDemonSyriFuck, undefined, "Fuck", "Claim your reward from the oversexed demon queen’s body.");
 	else addDisabledButton(1, "Fuck");
 	
-	if (flags["EVENT_WHORIZON_DEMONSYRI_LOOKAROUND"] == undefined) addButton(2, "Look Around", ewDemonSyriLookAround, undefined, "Look Around", "See if there's any way you might be able to get out of here...");
+	if (flags["EVENT_WHORIZON_DEMONSYRI_LOOKAROUND"] == undefined) addButton(2, "Look Around", ewDemonSyriLookAround, undefined, "Look Around", "See if there’s any way you might be able to get out of here...");
 	else addDisabledButton(2, "Look Around");
 	
 	if (flags["EVENT_WHORIZON_DEMONSYRI_LOOKAROUND"] != undefined) addButton(14, "Leave", ewDemonSyriLeave, undefined, "Leave", "Use the data from the computer crate to get the hell out of this pocket plane.");
@@ -719,7 +729,7 @@ private function ewDemonSyriLeave():void
 	//[Okay] [Come With]
 	clearMenu();
 	addButton(0, "Okay", ewDemonSyriOkay, undefined, "Okay", "Sure thing, demon lady.");
-	addButton(1, "Come With", ewDemonSyriComeWith, undefined, "Come With", "Take the big demon-dog with you back to reality. She'll have to find her own way home, though... wherever that is.");
+	addButton(1, "Come With", ewDemonSyriComeWith, undefined, "Come With", "Take the big demon-dog with you back to reality. She’ll have to find her own way home, though... wherever that is.");
 }
 
 private function ewDemonSyriComeWith():void
@@ -1011,7 +1021,7 @@ private function ewDemonSyriPoundPuss():void
 	
 	output("\n\nNow that she’s nice and pliant, you decide it’s time to properly put this bitch in her place. You pull yourself off her tits and grab her hips, flipping Syri onto her hands and knees. She grunts and protests, but a few gropes of her breasts and add, and feeling your [pc.cockOrStrapon] twist inside her. The way she cries out, you’re pretty sure she cums - but her pleasure isn’t what you’re interested in. The extra wetness leaking out of her quim is just extra lube, letting you pound her puss hard. The hellhound’s tail swishes heavily, batting against your [pc.face] - when her ass isn’t being slammed forward by your [pc.hips] crashing against it, sending ripples through her supple olive flesh.");
 	
-	output("\n\n<i>“Fuck yes!”</i> the demoness screams. Her claws rake trenches into the stone, her voice barely able to contain her pleasure. She’s putty in your hands, a willing slave to your cock. Syris thrusts back against you, driving your dick deeper and deeper into her hidden depths, taking every inch of");
+	output("\n\n<i>“Fuck yes!”</i> the demoness screams. Her claws rake trenches into the stone, her voice barely able to contain her pleasure. She’s putty in your hands, a willing slave to your cock. Syri thrusts back against you, driving your dick deeper and deeper into her hidden depths, taking every inch of");
 	if (pc.hasCock()) output(" man meat");
 	else output(" hardlight shaft");
 	output(" with desperate glee. <i>“Fuck me fuck me <b>fuck me!</b>”</i>");
@@ -1033,6 +1043,7 @@ private function ewDemonSyriPoundPuss():void
 
 	output("\n\nIt’s a tempting offer...");
 
+	processTime(15+rand(10));
 	pc.orgasm();
 
 	flags["EVENT_WHORIZON_FUCKED_DEMONSYRI"] = 1;
@@ -1103,6 +1114,7 @@ private function ewDemonSyriTalkArrival():void
 
 	flags["EVENT_WHORIZON_DEMONSYRI_TALK"] = 2;
 
+	processTime(2);
 	ewDemonSyriPostCombatMenu();
 }
 

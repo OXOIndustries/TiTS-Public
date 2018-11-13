@@ -398,10 +398,10 @@ package classes.Items.Transformatives
 					
 					if (target.bRows() == 1) ExtendLogEvent(" With a second row of breasts, you now sport a more animalistic look.");
 					else if (target.bRows() == 2) ExtendLogEvent(" With a third row of breasts, your front is now starting to feel somewhat tightly-packed.");
-					else ExtendLogEvent(" With a forth row of breasts you are now able to feed a whole litter of kits! You’re not quite sure if this is strange, or just plain hot.");
+					else ExtendLogEvent(" With a fourth row of breasts you are now able to feed a whole litter of kits! You’re not quite sure if this is strange, or just plain hot.");
 					
-					if (minSizeBreasts == 0) ExtendLogEvent(" <b>You now have extra set of nipples!</b>");
-					else ExtendLogEvent(" <b>You now have extra set of breasts!</b>");
+					if (minSizeBreasts == 0) ExtendLogEvent(" <b>You now have an extra set of nipples!</b>");
+					else ExtendLogEvent(" <b>You now have an extra set of breasts!</b>");
 					
 					var newBreastRow:BreastRowClass = new BreastRowClass();
 					newBreastRow.nippleType = target.breastRows[target.breastRows.length - 1].nippleType; // same type as previous row

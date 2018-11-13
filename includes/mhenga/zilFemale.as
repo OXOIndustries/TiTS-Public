@@ -450,7 +450,7 @@ public function footjobFromFemzil():void {
 	
 	output("\n\n<i>“You’re awful cute when you squirm, stranger,”</i> the zil giggles, locking your [pc.cockHead " + x + "] between two of her toes. <i>“Now let’s see your face when you blow a load all over yourself.”</i>");
 	
-	output("\n\nHer dexterous toes start to jerk you off, leaving her heel to rub and grind along your shaft, ushering your orgasm up through the thick, throbbing vein. Your fingers dig into the soft dirt, teeth gritting as the waspy woman foot fucks your [pc.cock " + x + "], vigorously fondling and fingering herself as you come closer and closer to your breaking point. You determine to hold out just a little bit longer, to make her work to see you smear yourself in seed, and soon the clearing resounds with your sex-addled groans and cries, desperate moans of pleasure as your prick pulsates with mounting need, leaking more and more watery pre until your [pc.skin] around the tip is stained");
+	output("\n\nHer dexterous toes start to jerk you off, leaving her heel to rub and grind along your shaft, ushering your orgasm up through the thick, throbbing vein. Your fingers dig into the soft dirt, teeth gritting as the waspy woman foot fucks your [pc.cock " + x + "], vigorously fondling and fingering herself as you come closer and closer to your breaking point. You determine to hold out just a little bit longer, to make her work to see you smear yourself in seed, and soon the clearing resounds with your sex-addled groans and cries, desperate moans of pleasure as your prick pulsates with mounting need, leaking more and more watery pre until your [pc.cockColor " + x + "] around the tip is stained");
 	if(pc.fluidColorSimple(pc.cumType) == "white") output(" milk white");
 	else output(" [pc.cumGem]");
 	output(". But before you let loose, you can see the furrowed brow of effort on the zil’s face, making her work ever harder to bring you past the point of no return.");
@@ -1556,7 +1556,7 @@ public function normalZilgirlCockfuck():void
 	else output("\n\nYou grow still as the pleasure fades, your waspish partner coming down alongside you. " + (pc.isAss() ? "Satisfied, you pull away and " : "While you’d like to simply lie beside her and savor the blissful intimacy, you manage to ") + "force yourself upright to begin gathering your gear. The beaming zil stays on the ground, idly playing with her [pc.cum]-leaking sex as you get ready to leave.");
 	output("\n\n<i>“You don’t have to go,”</i> she murmurs, caressing herself enticingly. ");
 	if(pc.isAss()) output("\n\n<i>“Actually, I do.”</i> You secure your equipment with one final tug and give a farewell salute as you walk off. The zil looks disappointed, but shrugs and returns her attention to her vagina. You doubt she’ll be upset for long.");
-	output("\n\nYou smile. <i>“As much as I wish that were true, I do.”</i> You secure the last of your belongings and kneel down, giving the bee girl a final kiss goodbye before walking off, filled with warmth and satisfaction.");
+	else output("\n\nYou smile. <i>“As much as I wish that were true, I do.”</i> You secure the last of your belongings and kneel down, giving the bee girl a final kiss goodbye before walking off, filled with warmth and satisfaction.");
 	output("\n\n");
 	
 	processTime(20+rand(10));

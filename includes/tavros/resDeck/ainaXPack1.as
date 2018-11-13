@@ -7,7 +7,7 @@
 /*
 
 New Flags:
-	AINA_TOTAL_KIDS  //number of kids you and aina have together
+	AINA_TOTAL_KIDS //number of kids you and aina have together
 	AINA_PREG_TIMER //days aina has been pregnant
 	AINA_NUM_BABIES //number of babies in current pregnancy (currently always 1)
 	AINA_BABY_GENDERS //array used to track genders of current pregnancy
@@ -84,7 +84,7 @@ public function ainaCycle():Number {
 	//A modulo operation with 21 gives the days of her new cycle -1 as a remainder. 
 	var days_in_new_cycle:int = Math.round((days - day_met) % 21);
 	
-	//0 to 6 =  heat (50% base), 7-9 = post heat (10%), 10-16 (0%), 17-20 = pre-heat (10%) (Math.exp(-.693 * 1) is close to 50% and (Math.exp(-.105 * 1) is close to %10
+	//0 to 6 = heat (50% base), 7-9 = post heat (10%), 10-16 (0%), 17-20 = pre-heat (10%) (Math.exp(-.693 * 1) is close to 50% and (Math.exp(-.105 * 1) is close to %10
 	if (days_in_new_cycle <= 6) chance = -.693;
 	if (days_in_new_cycle >= 7 && days_in_new_cycle <= 9) chance = -.105;
 	if (days_in_new_cycle >= 10 && days_in_new_cycle <= 16) chance = 0;
@@ -195,11 +195,11 @@ public function ainaPregEmail1():String
 	var eText:String = "";
 	if (ainaKids() > 0)
 	{
-		eText+="Hey! I'm gonna have another baby. At this point I'm pretty sure you're ok with it, so I'm gonna send you all the status updates :). I hope it's another girl, but a boy might be fun too. I don't know which one I want more!";	
+		eText+="Hey! I’m gonna have another baby. At this point I’m pretty sure you’re ok with it, so I’m gonna send you all the status updates :). I hope it’s another girl, but a boy might be fun too. I don’t know which one I want more!";	
 	}
 	else
 	{		
-		eText+="Hey [pc.name], There's something I really need to talk with you about. If you could meet me at my place as soon as you can it'd be really cool. It won't take long, I promise.";	
+		eText+="Hey [pc.name], There’s something I really need to talk with you about. If you could meet me at my place as soon as you can it’d be really cool. It won’t take long, I promise.";	
 		eText+="\n\nSincerely, Aina";
 	}
 	
@@ -208,7 +208,7 @@ public function ainaPregEmail1():String
 public function ainaPregEmail2():String
 {
 	var eText:String = "";
-	eText+="Hey [pc.name]! Thought you'd want to know I've started showing. It's not much right now but it's just enough to be noticeable. Oh god, am I gonna have to stop eating junk food now? I didn't even think about that :(";	
+	eText+="Hey [pc.name]! Thought you’d want to know I’ve started showing. It’s not much right now but it’s just enough to be noticeable. Oh god, am I gonna have to stop eating junk food now? I didn’t even think about that :(";	
 	eText+="\n\n(A picture is included, with Aina’s midsection appearing slightly larger than the last time you saw her.)";
 	
 	return doParse(eText);
@@ -225,22 +225,22 @@ public function ainaPregEmail4():String
 {
 	var eText:String = "";
 	eText+="Baby started kicking at 3 am and decided it was wake up time for mom :( on the upside my boobs are getting bigger :D no milk yet but it should be coming soon.";	
-	if (flags["AINA_TOTAL_KIDS"] == undefined) eText+=" I still can't believe it sometimes, soon I'll be a parent.";
+	if (flags["AINA_TOTAL_KIDS"] == undefined) eText+=" I still can’t believe it sometimes, soon I’ll be a parent.";
 	
 	return doParse(eText);
 }
 public function ainaPregEmail5():String
 {
 	var eText:String = "";
-	eText+="I was talking about the milk last time. Now it won't stop coming. I woke up and the bed was soaking wet! Everything's sensitive too, and not in the good way :( Well sometimes in the good way too, but that's beside the point. I feel like the baby will come soon.";	
+	eText+="I was talking about the milk last time. Now it won’t stop coming. I woke up and the bed was soaking wet! Everything’s sensitive too, and not in the good way :( Well sometimes in the good way too, but that’s beside the point. I feel like the baby will come soon.";	
 	
 	return doParse(eText);
 }
 public function ainaPregEmail6():String
 {
 	var eText:String = "";
-	if (flags["AINA_TOTAL_KIDS"] == undefined) eText+="It happened so fast! One second I was thinking about this paper I have to write and the next my water broke. I managed to make it up to that nursery you mentioned, and this nice robot nursemaid helped me deliver. You should come up quick if you're nearby, I'm sure you'll want to see!";	
-	else eText+="Our newest child is resting comfortably in the nursery. You should come up if you're nearby, I'm sure you'll want to see!";	
+	if (flags["AINA_TOTAL_KIDS"] == undefined) eText+="It happened so fast! One second I was thinking about this paper I have to write and the next my water broke. I managed to make it up to that nursery you mentioned, and this nice robot nursemaid helped me deliver. You should come up quick if you’re nearby, I’m sure you’ll want to see!";	
+	else eText+="Our newest child is resting comfortably in the nursery. You should come up if you’re nearby, I’m sure you’ll want to see!";	
 	
 	return doParse(eText);
 }
@@ -261,21 +261,21 @@ public function ainaPregMeetUp():void
 	flags["AINA_MEETUP"] = 2;
 	
 	output("Aina trots over when she sees you enter, looking a little haggard. Her normally bound hair is hanging free and unkempt, with a few strands poking out haphazardly. The lace ribbon that normally holds it up is intertwined in her fingers, and she fidgets with the soft fabric as she approaches you.");
-	output("\n\n<i>“I-I'm glad you came. A-actually that's what I needed to talk with you about. I'm not gonna beat around the bush, I'm p-pregnant. You're the only person I've ever had sex with, so that means you're the dad. I won't ask you to marry me or anything archaic like that, but I'm keeping the baby and I thought you'd want to know,”</i> she gushes, growing red-faced and flustered as she speaks.");
+	output("\n\n<i>“I-I’m glad you came. A-actually that’s what I needed to talk with you about. I’m not gonna beat around the bush, I’m p-pregnant. You’re the only person I’ve ever had sex with, so that means you’re the dad. I won’t ask you to marry me or anything archaic like that, but I’m keeping the baby and I thought you’d want to know,”</i> she gushes, growing red-faced and flustered as she speaks.");
 	
 	output("\n\nThe impulsive centaur girl trots in place as you approach her, unable to look at you in her embarrassment. Before things can grow too awkward you");	
 	if (pc.isNice()) output(" throw your arms around her");
 	else output(" conk her gently on the head");	
 	output(", eliciting a surprised yelp and a confused look.");	
 	
-	output("\n\n<i>“Of course I'd want to know, ");
+	output("\n\n<i>“Of course I’d want to know, ");
 	if (pc.isAss()) output(" stupid");
 	else output(" silly");
-	output("”</i>, you whisper as she melts into your embrace. When you pull back, taking her hands in yours, you find her holding back tears with the help of a giant grin. Her pale hands are shaking as she finally meets your gaze, eyes full of joyous tears that won't quite fall.");
+	output("”</i>, you whisper as she melts into your embrace. When you pull back, taking her hands in yours, you find her holding back tears with the help of a giant grin. Her pale hands are shaking as she finally meets your gaze, eyes full of joyous tears that won’t quite fall.");
 	
-	output("\n\n<i>“If you have trouble taking care of the baby, don't be afraid to let the nursery up top take care of things. Even if it's just dropping the kid off for daycare while you do schoolwork. My dad left the place specifically for this kind of thing; it's got teachers and everything,”</i> You explain, wanting to make sure the soon-to-be new mom is as prepared as she can be.");
-	output("\n\n<i>“O-ok. I was prepared to drop out, but that sounds a lot better. Not to mention that seems like it wouldn't give my parents an even bigger heart attack. I'm sure I'll be able to do most of the work, but having that nursery should be really helpful. You don't know how happy I am that you had a plan for this kind of thing, cause I was really just winging it and had no real idea what I was gonna do,”</i> Aina admits, wiping her blurry eyes on the sleeve of her sweater.");
-	output("\n\n<i>“Now come on, let's get you showered up and feeling better. I could use a wash anyway,”</i> You beckon, pulling the tired college student toward her shower.");
+	output("\n\n<i>“If you have trouble taking care of the baby, don’t be afraid to let the nursery up top take care of things. Even if it’s just dropping the kid off for daycare while you do schoolwork. My dad left the place specifically for this kind of thing; it’s got teachers and everything,”</i> You explain, wanting to make sure the soon-to-be new mom is as prepared as she can be.");
+	output("\n\n<i>“O-ok. I was prepared to drop out, but that sounds a lot better. Not to mention that seems like it wouldn’t give my parents an even bigger heart attack. I’m sure I’ll be able to do most of the work, but having that nursery should be really helpful. You don’t know how happy I am that you had a plan for this kind of thing, cause I was really just winging it and had no real idea what I was gonna do,”</i> Aina admits, wiping her blurry eyes on the sleeve of her sweater.");
+	output("\n\n<i>“Now come on, let’s get you showered up and feeling better. I could use a wash anyway,”</i> You beckon, pulling the tired college student toward her shower.");
 
 	processTime(5);
 	
@@ -311,7 +311,7 @@ public function ainaDirtyShowerIntro():void
 	clearOutput();
 	showPregAina(false, true);
 	
-	output("You ask Aina if she'd like to join you in the shower.");
+	output("You ask Aina if she’d like to join you in the shower.");
 	output("\n\n<i>“Sure! I need to clean up anyway,”</i> she replies, quickly trotting ahead of you to reach her shower.");
 
 	clearMenu();
@@ -320,7 +320,7 @@ public function ainaDirtyShowerIntro():void
 //make aina dirty from sex
 public function ainaMakeDirty():void
 {
-  flags["AINA_DIRTY"] = 1;
+	flags["AINA_DIRTY"] = 1;
 }
 //check if aina is dirty
 public function ainaIsDirty():Boolean
@@ -354,9 +354,9 @@ public function ainaPregComfort1():void
 	else if (ainaKids() == 1) output(" Nina can join in too if she wants,");
 	output("”</i> you suggest, bringing a smile to the");
 	if (flags["AINA_PREG_EMAIL1"] == 1) output(" pregnant");
-	output(" centaur's face.");
+	output(" centaur’s face.");
 	
-	output("\n\n<i>“That would be awesome. A movie's just what I need right now,”</i> she says, taking your hand as you walk over to a large couch in front of the tv. She plops down, lying back on the cushions and patting the spot in front of her");
+	output("\n\n<i>“That would be awesome. A movie’s just what I need right now,”</i> she says, taking your hand as you walk over to a large couch in front of the tv. She plops down, lying back on the cushions and patting the spot in front of her");
 	if (ainaBellyShowing()) output(" pregnant belly");
 	output(".");
 	
@@ -372,14 +372,14 @@ public function ainaPregComfort1():void
 	if (ainaKids() >= 2) output(" as your kids dash to find places to sit before the movie starts.");
 	else if (ainaKids() == 1) output(" as Nina dashes in to find a good place to sit before the movie starts.");
 	else output(" the movie begin and settling in for the long haul.");
-	if (flags["AINA_COMFORT"] > 1) output(" The movie is actually pretty entertaining, regardless of how many times you've seen it.");
+	if (flags["AINA_COMFORT"] > 1) output(" The movie is actually pretty entertaining, regardless of how many times you’ve seen it.");
 	else output(" Despite your initial misgivings the movie is actually pretty entertaining.");
 	
 	if (ainaKids() >= 1)
 	{
 		output("\n\nYou watch the movie through to the end, cozily tucked between your lover and");
-		if (ainaKids() >= 2) output(" your children. You jokingly cover Aina's eyes during an exaggerated scare scene, prompting a stream of laughter from the kids.");
-		else output(" Nina. You jokingly cover Aina's eyes during an exaggerated scare scene, prompting a round of giggles from your daughter.");
+		if (ainaKids() >= 2) output(" your children. You jokingly cover Aina’s eyes during an exaggerated scare scene, prompting a stream of laughter from the kids.");
+		else output(" Nina. You jokingly cover Aina’s eyes during an exaggerated scare scene, prompting a round of giggles from your daughter.");
 		output(" After the movie, you usher");
 		if (ainaKids() >= 2) output(" the kids");
 		else output(" Nina");
@@ -389,7 +389,7 @@ public function ainaPregComfort1():void
 	{
 		if (ainaBellyShowing())
 		{
-			output("\n\nYou watch the movie through to the end, staying cozily tucked up against your lover's belly. At one point the baby kicks, distracting you from the explosions and excitement for a moment. Aina giggles as you brush your hand over the soft hair on her equine half. Before you know it the movie is over, leaving you to stretch and assist the pregnant centaur in standing up.");
+			output("\n\nYou watch the movie through to the end, staying cozily tucked up against your lover’s belly. At one point the baby kicks, distracting you from the explosions and excitement for a moment. Aina giggles as you brush your hand over the soft hair on her equine half. Before you know it the movie is over, leaving you to stretch and assist the pregnant centaur in standing up.");
 		}
 		else
 		{
@@ -429,22 +429,22 @@ public function ainaPregComfort2():void
 	if (ainaKids() >= 2) output(" The kids are still sleeping, so I usually use this time for school stuff,");
 	else if (ainaKids() == 1) output(" Nina is still sleeping, so I usually use this time for school stuff,");	
 	output("”</i> She responds, pouring an extra bowl of");
-	if (silly) output(" Semen-O's");
+	if (silly) output(" Semen-O’s");
 	else output(" cereal");	
-	output(" for you. The two of you eat in peace, sharing in the luxury of a quiet moment. You're");
+	output(" for you. The two of you eat in peace, sharing in the luxury of a quiet moment. You’re");
 	if (pc.hasFeet() && pc.isTaur()) output(" almost knocked off your feet");
 	else output(" surprised momentarily");	
 	output(" when the tauric woman leans against you, sighing contentedly. Her hair smells like fresh berries, the product of good grooming and excellent shampoo.");
 	
-	output("\n\n<i>“Thanks for this. I know you're busy with adventuring stuff,”</i> she says. You pause in eating, leaning over to give her a quick peck on the ear.");
+	output("\n\n<i>“Thanks for this. I know you’re busy with adventuring stuff,”</i> she says. You pause in eating, leaning over to give her a quick peck on the ear.");
 	output("\n\n<i>“I can always make time to stop by. A relaxing breakfast beats getting shot at any day, and getting to see you makes it even better,”</i> you say. Your tauric partner beams as the two of you resume eating. When you finish, Aina pushes the dishes over to her sink before pulling you into a kiss. The fruity taste of her cereal lingers on her tongue.");
 	
-	if (ainaKids() >= 2) output("\n\n<i>“You should get going before the kids wake up. I've gotta drop them off at daycare in less than an hour,”</i> she says.");
-	else if (ainaKids() == 1) output("\n\n<i>“You should get going before Nina wakes up. I've gotta drop her off at daycare in less than an hour,”</i> she says.");
+	if (ainaKids() >= 2) output("\n\n<i>“You should get going before the kids wake up. I’ve gotta drop them off at daycare in less than an hour,”</i> she says.");
+	else if (ainaKids() == 1) output("\n\n<i>“You should get going before Nina wakes up. I’ve gotta drop her off at daycare in less than an hour,”</i> she says.");
 	
 	output("\n\n");
-	if (ainaKids() >= 2) output("<i>“Maybe I'll visit them later, check in with Bridget and all that,”</i> you reply with a smile. ");
-	else if (ainaKids() == 1) output("<i>“Maybe I'll visit her later, check in with Bridget and all that,”</i> you reply with a smile. ");	
+	if (ainaKids() >= 2) output("<i>“Maybe I’ll visit them later, check in with Bridget and all that,”</i> you reply with a smile. ");
+	else if (ainaKids() == 1) output("<i>“Maybe I’ll visit her later, check in with Bridget and all that,”</i> you reply with a smile. ");	
 	output("You gather your wits, giving Aina one last peck on the lips before heading out to face the universe.");
 	
 	processTime(20 + rand(10));	
@@ -460,14 +460,14 @@ public function ainaPregComfort3():void
 	clearOutput();
 	showPregAina(true, true);
 	
-	output("You don't see Aina around at first, but soon enough you hear a noise from her bedroom and head over to investigate. You lean on the doorframe when you arrive, waiting for her to see you before you enter. The tauric beauty is in the process of undressing for bed, giving you a fantastic view of her chest and human belly as she pulls her shirt over her head.");
+	output("You don’t see Aina around at first, but soon enough you hear a noise from her bedroom and head over to investigate. You lean on the doorframe when you arrive, waiting for her to see you before you enter. The tauric beauty is in the process of undressing for bed, giving you a fantastic view of her chest and human belly as she pulls her shirt over her head.");
 	if (flags["AINA_LACTATING"] == 1) output(" Her full breasts bounce gently as she pulls her shirt over her head, contained by a cream colored maternity bra.");
 	else output(" Her breasts bounce cutely as she tugs the shirt over her head, it looks like she went commando today.");
 	output(" She sees you as the obstructing garment clears her head, looking surprised but doing nothing to cover herself.");
 	
 	output("\n\nHer surprise turns to a wide smile in moments, and she finishes undressing by unhitching the snaps on her skirt and pulling off the hair-tie on her tail. All the shed clothing falls into a conveniently placed hamper, ready to be taken away at her leisure.");
 	output("\n\n<i>“Did you stop by to chat, or something more fun? I was just about to tuck in for the night,”</i> she says, tracing a finger up her stomach.");
-	output("\n\n<i>“For now, I'd be fine with a good rest,”</i> you reply happily. Your tauric lover crawls up onto the bed and plops down on her side, opening her arms invitingly.");
+	output("\n\n<i>“For now, I’d be fine with a good rest,”</i> you reply happily. Your tauric lover crawls up onto the bed and plops down on her side, opening her arms invitingly.");
 	
 	if (pc.isTaur())
 	{		
@@ -488,7 +488,7 @@ public function ainaPregComfort3():void
 	
 	
 	output("\n\nYou sleep for what feels like a day, finding Aina up and dressed by the time you wake. She leans onto the bed in front of you and smiles wistfully.");
-	output("\n\n<i>“You look extra " + pc.mf("handsome","beautiful") + " when you're sleeping. I'm jealous,”</i> she says. You chuckle, rolling into a kneeling position and stretching. She admires you from the bed for a moment longer before standing and gathering the gear you'd discarded the night before. Once you're dressed, you follow her into the living room, stopping just before the door.");
+	output("\n\n<i>“You look extra " + pc.mf("handsome","beautiful") + " when you’re sleeping. I’m jealous,”</i> she says. You chuckle, rolling into a kneeling position and stretching. She admires you from the bed for a moment longer before standing and gathering the gear you’d discarded the night before. Once you’re dressed, you follow her into the living room, stopping just before the door.");
 	
 	output("\n\n<i>“Stay safe out there");
 	if (silly) output(", space cowboy");	
@@ -515,16 +515,16 @@ public function ainaPregHeatSex():void
 	//find if pc has a cock that will currently fit in aina
 	var kok:int = pc.cockThatFits(2000);
 	
-	output("When you walk through the door you're immediately treated to the musky scent of Aina's heat. She teeters behind the counter, eyeing you with a purely animal lust momentarily before coming back to her senses. Her needful gaze fills with purpose, no longer simple greed.");
+	output("When you walk through the door you’re immediately treated to the musky scent of Aina’s heat. She teeters behind the counter, eyeing you with a purely animal lust momentarily before coming back to her senses. Her needful gaze fills with purpose, no longer simple greed.");
 	output("\n\n<i>“Hey [pc.name], Bridget is bringing Nina");
 	if (ainaKids() > 1) output(" and the others");
-	output(" over for a visit, and of course the universe picks now to send me into heat. I think the pregnancy makes it worse. I really don't want to have to deal with this with them around, so could you do me a favor and help me 'fix’ this problem? But if you're gonna be here when they arrive I don't want you completely covered in juices.”</i>");
+	output(" over for a visit, and of course the universe picks now to send me into heat. I think the pregnancy makes it worse. I really don’t want to have to deal with this with them around, so could you do me a favor and help me ‘fix’ this problem? But if you’re gonna be here when they arrive I don’t want you completely covered in juices.”</i>");
 		
 	output("\n\nYou briefly consider mounting her anyway, but admit to yourself that it would be bad for");
 	if (ainaKids() > 1) output(" the kids");
 	else output(" Nina");
-	output(" to walk in on you. Not that you'll let your disappointment show too much. You can work plenty of magic with your fingers, especially on her heat sensitized pussy. She braces herself against the computer before you even touch her, clenching up when her swishing tail brushes against her exposed sex. The engorged organ is nearly as puffy as her pregnant belly, winking needfully in a call for something to fill it.");
-	output("\n\nNot one to ignore a girl in need, you dip 3 fingers in right off the bat. Aina shudders, not even attempting to stifle a hearty moan as she cums from the penetration. She's got it bad.");
+	output(" to walk in on you. Not that you’ll let your disappointment show too much. You can work plenty of magic with your fingers, especially on her heat sensitized pussy. She braces herself against the computer before you even touch her, clenching up when her swishing tail brushes against her exposed sex. The engorged organ is nearly as puffy as her pregnant belly, winking needfully in a call for something to fill it.");
+	output("\n\nNot one to ignore a girl in need, you dip 3 fingers in right off the bat. Aina shudders, not even attempting to stifle a hearty moan as she cums from the penetration. She’s got it bad.");
 	
 	if (pc.hasCock() && pc.hasVagina()) output(" Your twin sexes twang in sympathy, sad over being left out.");
 	else if (pc.hasCock())
@@ -539,21 +539,21 @@ public function ainaPregHeatSex():void
 		if (pc.vaginaTotal() > 1) output("es");
 		output(" in sympathy, sad over being left out.");		
 	}
-	output(" The wet heat of Aina's cunt radiates in your arm, sucking your other finger and the thumb into her depths.");
+	output(" The wet heat of Aina’s cunt radiates in your arm, sucking your other finger and the thumb into her depths.");
 	
 	if (kok >= 0 && (pc.lust() >= 90 || pc.inRut()))
 	{
-		output("\n\nYou can't resist the need any longer, impending visit be damned. With one hand on her sizeable equine ass, you pull your hand away with a wet pop. Before your");
+		output("\n\nYou can’t resist the need any longer, impending visit be damned. With one hand on her sizeable equine ass, you pull your hand away with a wet pop. Before your");
 		if (pc.inRut()) output(" rut");
 		else output(" lust");		
-		output(" crazed brain has you going all out to impregnate the delicious equine slit laid bare in front of you, some part of it remembers that you've already succeeded on that venture. This thought is far from enough to stop you, but a more gentle approach is needed.");
+		output(" crazed brain has you going all out to impregnate the delicious equine slit laid bare in front of you, some part of it remembers that you’ve already succeeded on that venture. This thought is far from enough to stop you, but a more gentle approach is needed.");
 		
-		output("\n\nHer winking hole is already drenched with enough natural lubricant to drown in, but enough is never enough. You dive in, mixing up her thick, musky love juice with your [pc.tongue]. An involuntary spasm runs through her thighs, and she backs up a little in an attempt to drive your tongue deeper inside. When you're finally satisfied with her thorough soaking, you pull away for long enough to bite one of her prodigious flanks.");
-		output("\n\n<i>“Ooooh. Hey, they're gonna get here soon,”</i> she whinnies, looking back at you over her shoulder and stamping one of her hooves in an attempt to re-assert herself. You hardly hear her, wiping poignant slut-sap off your chin with one hand. You line up your [pc.cock " + kok + "] with her heat engorged cunt and use every ounce of self control you have to slip it in without mashing your hips");
+		output("\n\nHer winking hole is already drenched with enough natural lubricant to drown in, but enough is never enough. You dive in, mixing up her thick, musky love juice with your [pc.tongue]. An involuntary spasm runs through her thighs, and she backs up a little in an attempt to drive your tongue deeper inside. When you’re finally satisfied with her thorough soaking, you pull away for long enough to bite one of her prodigious flanks.");
+		output("\n\n<i>“Ooooh. Hey, they’re gonna get here soon,”</i> she whinnies, looking back at you over her shoulder and stamping one of her hooves in an attempt to re-assert herself. You hardly hear her, wiping poignant slut-sap off your chin with one hand. You line up your [pc.cock " + kok + "] with her heat engorged cunt and use every ounce of self control you have to slip it in without mashing your hips");
 		if (silly) output(" like a tidal wave against a small, defenseless beach town.");
 		else output(" like a breeding stallion.");
 		
-		output("\n\n<i>“Wait. You weren't supposed to… nnn… actually fuck me… oh god!”</i> Hot fire spreads in your mind as you painstakingly inch your way into Aina's depths. With each orgasmic twitch of her insides your length is drawn further and further inside, only to be pushed back as she stiffens with each new sensation. You steady your hips just enough to deny the outward movement, giving one final slow push to");
+		output("\n\n<i>“Wait. You weren’t supposed to... nnn... actually fuck me... oh god!”</i> Hot fire spreads in your mind as you painstakingly inch your way into Aina’s depths. With each orgasmic twitch of her insides your length is drawn further and further inside, only to be pushed back as she stiffens with each new sensation. You steady your hips just enough to deny the outward movement, giving one final slow push to");
 		if (pc.cocks[kok].cLength() >= 12) output(" reach the deepest point of her cunt.");
 		else output(" hilt yourself inside her.");
 		
@@ -562,26 +562,26 @@ public function ainaPregHeatSex():void
 		else if (pc.hasClit() > 0) output(" your [pc.clit].");
 		else output(" the base of your [pc.cock " + kok + "].");
 		
-		output("\n\nAll four of Aina's legs tremble with effort as she does her best to stay standing. A trickling stream of mixed pre and femcum soaks the hair of her hindquarters, all the way from haunch to hoof. She looks over her shoulder as your ecstasy reaches a climax, her eyes burning with ardor.");
-		output("\n\n<i>“I can… Feel it coming. Your cock is getting even bigger inside me, just let it out inside. Nnn- like I'm getting pregnant all over again,”</i> she pants, the need evident in her stare as she grinds against you. Unable to resist the heated request, your pent-up lust culminates in a pleasurable jolt of energy that draws itself into your [pc.cock " + kok + "]. [pc.Cum]");
+		output("\n\nAll four of Aina’s legs tremble with effort as she does her best to stay standing. A trickling stream of mixed pre and femcum soaks the hair of her hindquarters, all the way from haunch to hoof. She looks over her shoulder as your ecstasy reaches a climax, her eyes burning with ardor.");
+		output("\n\n<i>“I can... Feel it coming. Your cock is getting even bigger inside me, just let it out inside. Nnn- like I’m getting pregnant all over again,”</i> she pants, the need evident in her stare as she grinds against you. Unable to resist the heated request, your pent-up lust culminates in a pleasurable jolt of energy that draws itself into your [pc.cock " + kok + "]. [pc.Cum]");
 		if (pc.cumQ() >= 1000) output(" gushes");
 		else output(" spurts");
-		output("  into her needful slit. She gives a final braying moan as her legs give out, sliding to her knees and then gently out to rest on her front half, her butt and pregnant belly still scarce inches from the floor.");
+		output(" into her needful slit. She gives a final braying moan as her legs give out, sliding to her knees and then gently out to rest on her front half, her butt and pregnant belly still scarce inches from the floor.");
 		
 		if (pc.cockTotal() > 1)
 		{
-			output("\n\n[pc.EachCock] throb in unison as the lucky one slides from her slit with a slick pop");	
+			output("\n\n[pc.EachCock] throb in unison, and as the lucky one slides from her slit with a slick pop,");	
 			if (pc.cockTotal() > 2) output(" two spurts of cum spatter onto");
 			else output(" one spurt of cum spatters onto");
 		}
 		else output("\n\n[pc.EachCock] continues to throb even as it slides from her slit with a slick pop. The remainder of the torrent paints");		
-		output(" her back as your [pc.cock " + kok + "] is left hanging in the open air. When the blissful energy fades you slump down to join her on the floor. The position gives you a perfect view of your potent seed dripping from the well-fucked centaur's over-filled cunt.");
+		output(" her back as your [pc.cock " + kok + "] is left hanging in the open air. When the blissful energy fades you slump down to join her on the floor. The position gives you a perfect view of your potent seed dripping from the well-fucked centaur’s over-filled cunt.");
 				
 		output("\n\nEventually Aina recovers enough for you to carefully lead her to the shower, wobbling all the way. The doorbell rings just as she gets inside. So you forego the shower, in favor of a quick rinse in the sink, before greeting Bridget and");
 		if (ainaKids() > 1) output(" the kids");
 		else output(" Nina");		
 		output(" at the door. Aina emerges from the shower a few minutes later, looking much cleaner and under control of her faculties. After making herself presentable, she hoists Nina into a hug and looks to you with a grin.");
-	    
+		
 		IncrementFlag("AINA_PREGHEATFUCK");
 		processTime(20 + rand(15));
 		ainaSexed(1);		
@@ -591,7 +591,7 @@ public function ainaPregHeatSex():void
 	}
 	else
 	{
-		output("\n\nYou're forced to take a grip on her plush ass with your other hand to keep up the pace of your fisting thrusts. With each push inward, the tauric strength of her insides attempts to lock you in, sucking you up to the elbow regardless of your intentions. She shouts a wordless request for more with each withdrawal, but each shuddering orgasm she goes through grows further and further apart. Eventually you're able to return to using just three fingers, leaving only the musky mare juice dripping down her thighs and your arm to remind you of the sudden heat. Just as the throes of orgasm work their way through Aina's body the door opens on Bridget and");
+		output("\n\nYou’re forced to take a grip on her plush ass with your other hand to keep up the pace of your fisting thrusts. With each push inward, the tauric strength of her insides attempts to lock you in, sucking you up to the elbow regardless of your intentions. She shouts a wordless request for more with each withdrawal, but each shuddering orgasm she goes through grows further and further apart. Eventually you’re able to return to using just three fingers, leaving only the musky mare juice dripping down her thighs and your arm to remind you of the sudden heat. Just as the throes of orgasm work their way through Aina’s body the door opens on Bridget and");
 		if (ainaKids() > 1) output(" the children.");
 		else output(" Nina.");		
 		output(" You immediately pull your fingers from the centaur snatch, feeling [pc.eachCock] throb mournfully at the missed opportunity. You swiftly wash your arm in the sink to clean the thick musk. ");
@@ -602,7 +602,7 @@ public function ainaPregHeatSex():void
 		output(" You join her, hoisting Nina into a hug and spinning her round before returning her to the ground.");	
 		
 		processTime(10 + rand(15));
-	    applyAinaMareMuskEffect();
+		applyAinaMareMuskEffect();
 		pc.lust(30);
 	}
 		
@@ -618,7 +618,7 @@ public function ainaPregHeatSexGo():void
 	clearOutput();
 	showPregAina(false, true);
 	
-	output("<i>“Sorry, I've got something I need to do,”</i> you apologize, getting ready to head out. Aina looks a little sad, but nods and corrals");
+	output("<i>“Sorry, I’ve got something I need to do,”</i> you apologize, getting ready to head out. Aina looks a little sad, but nods and corrals");
 	if (ainaKids() >= 2) output(" the kids");
 	else output(" Nina");	
 	output(" over to the couch. You head out the door, ready to return to your adventures.");
@@ -728,22 +728,22 @@ public function ainaFirstBirth():Boolean
 	output("You rush into the nursery, seeing Aina and Bridget");
 	if (StatTracking.getStat("pregnancy/total day care") > 2) output(", alongside a number of curious kids,");
 	else if (StatTracking.getStat("pregnancy/total day care") == 2) output(", alongside a curious kid,");
-	output(" standing together in a bedded corner of the room. Relieved to see her ok, you walk over to join them. You gasp excitedly when you see what they're standing in front of. Out of a small, tightly wrapped cloth blanket pokes a tiny face with a swath of dark hair. A particularly strong kick knocks the bundle apart and identifies this as your");
-	if (StatTracking.getStat("pregnancy/total day care") > 1) output(", or Aina's at least,");	
+	output(" standing together in a bedded corner of the room. Relieved to see her ok, you walk over to join them. You gasp excitedly when you see what they’re standing in front of. Out of a small, tightly wrapped cloth blanket pokes a tiny face with a swath of dark hair. A particularly strong kick knocks the bundle apart and identifies this as your");
+	if (StatTracking.getStat("pregnancy/total day care") > 1) output(", or Aina’s at least,");	
 	output(" firstborn daughter!");
 	
-	output("\n\n<i>“Sorry I didn't have time to call you to be there, but it was over really quickly. I'm not jumping on that natural 11 hour birth experience any time soon, and Bridget really knew what she was doing. The whole thing took just a couple of hours, and I mailed you right after. But look! Isn't she so cute?!”</i> The new mother exclaims, looking a bit haggard but otherwise none the worse for wear. You sweep a strand of blond hair out of her face and lean in to give her a short, simple kiss. She beams when you pull away, tossing her arms around you in a hug.");
+	output("\n\n<i>“Sorry I didn’t have time to call you to be there, but it was over really quickly. I’m not jumping on that natural 11 hour birth experience any time soon, and Bridget really knew what she was doing. The whole thing took just a couple of hours, and I mailed you right after. But look! Isn’t she so cute?!”</i> The new mother exclaims, looking a bit haggard but otherwise none the worse for wear. You sweep a strand of blond hair out of her face and lean in to give her a short, simple kiss. She beams when you pull away, tossing her arms around you in a hug.");
 	
-	if (pc.isBimbo()) output("\n\n<i>“She's so scrumptiolicious! I wanna, like, eat her up!”</i>");
-	else if (pc.isNice()) output("\n\n<i>“Don't be sorry. We made something perfect.”</i>");
-	else if (pc.isMisc()) output("\n\n<i>“You worry too much! she's adorable.”</i>");
+	if (pc.isBimbo()) output("\n\n<i>“She’s so scrumptiolicious! I wanna, like, eat her up!”</i>");
+	else if (pc.isNice()) output("\n\n<i>“Don’t be sorry. We made something perfect.”</i>");
+	else if (pc.isMisc()) output("\n\n<i>“You worry too much! she’s adorable.”</i>");
 	else output("\n\n<i>“She makes up for you not calling me.”</i>");	
 	output(" you reply, leaving an arm around her shoulder. Aina takes a few minutes to nurse the baby girl till she falls asleep, wrapped safely in a new bundle.");
 	
-	output("\n\n<i>“I want to name her Nina, after my mom. Let her know I still care, even if she's distant,”</i> she says, looking from the sleeping baby to you. ");
-	output("\n\n<i>“Sounds good to me, but I want her middle name to be Victoria,”</i> you respond. Gotta carry the name somehow if she's not gonna have your last name.");
-	output("\n\n<i>“Nina Victoria Berkanis, She'll be the envy of the station’s school children,”</i> she muses, looking suddenly tired herself. You give her a fortifying shoulder squeeze.");
-	output("\n\n<i>“You should get some sleep too. I'll leave you alone with her for now and stop in later,”</i> you say, standing to leave. Aina nods in response, settling into brushing Nina's hair as she nods off into a deep slumber. You smile as you head out, getting back to the galaxy at large.");
+	output("\n\n<i>“I want to name her Nina, after my mom. Let her know I still care, even if she’s distant,”</i> she says, looking from the sleeping baby to you. ");
+	output("\n\n<i>“Sounds good to me, but I want her middle name to be Victoria,”</i> you respond. Gotta carry the name somehow if she’s not gonna have your last name.");
+	output("\n\n<i>“Nina Victoria Berkanis, She’ll be the envy of the station’s school children,”</i> she muses, looking suddenly tired herself. You give her a fortifying shoulder squeeze.");
+	output("\n\n<i>“You should get some sleep too. I’ll leave you alone with her for now and stop in later,”</i> you say, standing to leave. Aina nods in response, settling into brushing Nina’s hair as she nods off into a deep slumber. You smile as you head out, getting back to the galaxy at large.");
 	
 	processTime(60 + rand(30));	
 	
@@ -764,25 +764,25 @@ public function ainaRepeatBirth():void
 	
 	moveTo("NURSERYG14");
 	
-	output("You're in the process of preparing a strawberry-banana smoothie for Aina when you hear a short gasp and a splash from the living room. You rush over to find her standing in a puddle of sticky fluids. It looks like her water has broken!");
+	output("You’re in the process of preparing a strawberry-banana smoothie for Aina when you hear a short gasp and a splash from the living room. You rush over to find her standing in a puddle of sticky fluids. It looks like her water has broken!");
 	if (pc.isNice()) output(" <i>“What do you need me to do?”</i> you ask, rushing to her as she steps out of the wet spot.");
-	else output(" <i>“Aren't you a little old to be wetting yourself?”</i> you can't help but snark, even as you rush up to help.");
+	else output(" <i>“Aren’t you a little old to be wetting yourself?”</i> you can’t help but snark, even as you rush up to help.");
 	
-	if (pc.isNice()) output("\n\n<i>“I hadn't been paying attention! Just help me get to Bridget. We've got like twenty minutes before the baby comes, and  don't want it to happen in my living room, she explains, already on her way out the door.”</i>");
-	else output("\n\n<i>“Now's not the time for jokes, stupid,”</i> she scolds, looking flustered. <i>“Help me get to the nursery, cause I don't want to have this kid in my living room and we have maybe twenty minutes.”</i>");
+	if (pc.isNice()) output("\n\n<i>“I hadn’t been paying attention! Just help me get to Bridget. We’ve got like twenty minutes before the baby comes, and don’t want it to happen in my living room, she explains, already on her way out the door.”</i>");
+	else output("\n\n<i>“Now’s not the time for jokes, stupid,”</i> she scolds, looking flustered. <i>“Help me get to the nursery, cause I don’t want to have this kid in my living room and we have maybe twenty minutes.”</i>");
 	output(" You hold her arm as the two of you exit her house and head to the elevator. Her breathing grows heavier as you push the button to move to the nursery, and you give her hand a squeeze.");
 	
-	output("\n\nBridget gives you a small smile as she sees you come in, but jumps into action upon seeing Aina. She leads the expecting mother over to a cushioned section of the nursery, one you remember as being the place where Nina was born. You wander over when it looks like they're situated,");
+	output("\n\nBridget gives you a small smile as she sees you come in, but jumps into action upon seeing Aina. She leads the expecting mother over to a cushioned section of the nursery, one you remember as being the place where Nina was born. You wander over when it looks like they’re situated,");
 	if (pc.isNaga()) output(" coiling up");
 	output(" kneeling down");
 	output(" in front of Aina.");
 	
-	output("\n\n<i>“I'm glad you could be here this time. It's not that bad actually, but it's still reassuring to have you here,”</i> she says, and then melts into your arms as Bridget injects her with an anaesthetic hypospray. Her eyes glaze over and she leans dreamily onto your shoulder, but her hand manages to stay loosely intertwined with yours.");
-	output("\n\n<i>“I don't know why humans took so long to improve birthing assistance drugs. The old methods seem so barbaric in comparison,”</i> she smirks, discarding the injector and giving Aina a reassuring rub on the flank. Her grip hardly gets tighter on your hand as her body works its way through the birth, with Bridget on hand to make sure nothing goes wrong.");
-	output("\n\nBy the occasional soft utterances in your ear you'd sooner think the pregnant centaur was getting a pleasurable massage than going through childbirth. Your robotic nursemaid scoots over to catch the baby before it can drop out, and you hear a burst of faint crying as the process finishes its course. Bridget coos quietly as she tucks the newborn into a tiny swaddle, cleaning it at the same time.");
+	output("\n\n<i>“I’m glad you could be here this time. It’s not that bad actually, but it’s still reassuring to have you here,”</i> she says, and then melts into your arms as Bridget injects her with an anaesthetic hypospray. Her eyes glaze over and she leans dreamily onto your shoulder, but her hand manages to stay loosely intertwined with yours.");
+	output("\n\n<i>“I don’t know why humans took so long to improve birthing assistance drugs. The old methods seem so barbaric in comparison,”</i> she smirks, discarding the injector and giving Aina a reassuring rub on the flank. Her grip hardly gets tighter on your hand as her body works its way through the birth, with Bridget on hand to make sure nothing goes wrong.");
+	output("\n\nBy the occasional soft utterances in your ear you’d sooner think the pregnant centaur was getting a pleasurable massage than going through childbirth. Your robotic nursemaid scoots over to catch the baby before it can drop out, and you hear a burst of faint crying as the process finishes its course. Bridget coos quietly as she tucks the newborn into a tiny swaddle, cleaning it at the same time.");
 	output("\n\nWhen she finishes she pulls a large body length cushion over to Aina, placing it beside her body so that her weight sits mostly against it. You pull her gently off your shoulder, giving her a kiss that she returns with all the enthusiasm she can muster before collapsing onto the pillow. Bridget places the child down next to her, placed for easy access to breastfeeding while not being too cloistered.");
-	output("\n\n<i>“It might not have sounded or felt like it, but even with the advanced medicine birth is still an exhausting process. She'll be all better by tomorrow, but for now she needs rest more than anything,”</i> Bridget explains. You nod and give Aina a kiss on the forehead, also softly brushing the mop of hair on your new baby's head.");
-	output("\n\n<i>“I'll see you both soon, but I'm gonna head out for now,”</i> you say quietly, getting a nod in response from the tired centaur. You head back to your adventures, smiling as you think of your family and its newest addition.");
+	output("\n\n<i>“It might not have sounded or felt like it, but even with the advanced medicine birth is still an exhausting process. She’ll be all better by tomorrow, but for now she needs rest more than anything,”</i> Bridget explains. You nod and give Aina a kiss on the forehead, also softly brushing the mop of hair on your new baby’s head.");
+	output("\n\n<i>“I’ll see you both soon, but I’m gonna head out for now,”</i> you say quietly, getting a nod in response from the tired centaur. You head back to your adventures, smiling as you think of your family and its newest addition.");
 	
 	processTime(30 + rand(30));	
 	
@@ -841,7 +841,7 @@ public function ainaBabyBlurbs():void
 		var kids:int = ChildManager.numOfUniqueTypeInRange(AinaUniqueChild,13,216)
 		var old:int = ChildManager.numOfUniqueTypeInRange(AinaUniqueChild, 217, -1)
 		var ttl:int = inf + kids;
-        
+		
 		if (ttl > 0)
 		{			
 			output("\n\nYour children with Aina");
@@ -852,15 +852,15 @@ public function ainaBabyBlurbs():void
 			else output(" around the nursery.");
 			if (old >= 1)
 			{
-				if (ttl == 1) output(" Currently it's just one kid, but that could change.");
+				if (ttl == 1) output(" Currently it’s just one kid, but that could change.");
 				else output(" The oldest heads the herd, doing laps around a patient Bridget. An odd assortment of horselike ears or tails separate them into their own group.");
 			}
 			else
 			{
-				if (ttl == 1) output(" So far it's just Nina, but that could change.");
+				if (ttl == 1) output(" So far it’s just Nina, but that could change.");
 				else output(" Nina heads the herd, doing laps around a patient Bridget. An odd assortment of horselike ears or tails separate them into their own group.");				
 			}
-			output(" Aina's centaur transformatives didn't bleed through entirely, but it looks like some of the minor details slipped in.");
+			output(" Aina’s centaur transformatives didn’t bleed through entirely, but it looks like some of the minor details slipped in.");
 		}		
 	}
 }

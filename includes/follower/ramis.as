@@ -2436,7 +2436,7 @@ public function ramisTrapsAndTheirNaturalPredator():void
 	showRamisAndThrag(true);
 	clearMenu();
 	processTime(15);
-		
+	
 	output("Ohrskun is not halted in the slightest by your orgasm. The moment Ramis lets go of your head with a blissful, purring sigh, he lifts you up bodily");
 	if (pc.hasLegs()) output(", hands gripping you beneath your knees,");
 	output(" and sits himself down on the bed, laying you back against his barrel-like chest and abs, driving his cock upwards into your tenderised innards. The different angle his hot cock now drives into you makes you twitch and gasp, more [pc.cum] milked out of your exhausted [pc.cock] in vivid little squeezes.");
@@ -2532,7 +2532,7 @@ public function ramisOrctermath():void
 	//Load in asshole, load in mouth, + 8 hours
 	pc.loadInMouth(new PregnancyPlaceholder());
 	pc.loadInAss(new PregnancyPlaceholder());
-		
+	
 	output("Ohrskun spreads the pair of you around his indomitable, unyielding body and then gives it to you hard in every way he can think of, often fucking one whilst fingering the other, preparing you for the next bout of intense shagging.");
 	output("\n\nYou eventually fall into a happy, drink-induced coma in a pile of cushions. You groggily come to your senses many hours later, finding a chaotic, empty room that smells of cheap champagne, perfume and sex. The hotel has no windows - if they did they’d look out onto the artificial lights of Tavros’s commercial district - but the lighting has changed from the sultry reds and purples of last to the pale, keen light of a rising sun, a placid reminder to vacate the premises in the next few hours.");
 	output("\n\n<i>“Hullo, sleepyhead!”</i> trills Ramis, emerging from the ensuite towelling her hair. <i>“Big lad was gone by the time I woke. Good lad - hate it when they linger’n try and get your number. Paid for everythen too!”</i>");

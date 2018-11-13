@@ -154,46 +154,46 @@ package classes.Resources.Busts
 		public var Bounds_PENNY:Rectangle = new Rectangle(40,0,121,79);
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_nude.png", mimeType = "image/png")]
 		public var Bust_PENNY_NUDE:Class;
-		public var Bounds_PENNY_NUDE:Rectangle = new Rectangle(40,0,121,79);
+		public function get Bounds_PENNY_NUDE():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_nude_canine_0.png", mimeType = "image/png")]
 		public var Bust_PENNY_NUDE_VIXEN:Class;
-		public var Bounds_PENNY_NUDE_VIXEN:Rectangle = new Rectangle(40,0,121,79);
+		public function get Bounds_PENNY_NUDE_VIXEN():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_nude_canine_1.png", mimeType = "image/png")]
 		public var Bust_PENNY_NUDE_VIXEN_1:Class;
-		public var Bounds_PENNY_NUDE_VIXEN_1:Rectangle = new Rectangle(40,0,121,79);
+		public function get Bounds_PENNY_NUDE_VIXEN_1():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_nude_canine_2.png", mimeType = "image/png")]
 		public var Bust_PENNY_NUDE_VIXEN_2:Class;
-		public var Bounds_PENNY_NUDE_VIXEN_2:Rectangle = new Rectangle(40,0,121,79);
+		public function get Bounds_PENNY_NUDE_VIXEN_2():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_nude_equine_0.png", mimeType = "image/png")]
 		public var Bust_PENNY_NUDE_HORSE:Class;
-		public var Bounds_PENNY_NUDE_HORSE:Rectangle = new Rectangle(40,0,121,79);
+		public function get Bounds_PENNY_NUDE_HORSE():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_nude_equine_1.png", mimeType = "image/png")]
 		public var Bust_PENNY_NUDE_HORSE_1:Class;
-		public var Bounds_PENNY_NUDE_HORSE_1:Rectangle = new Rectangle(40,0,121,79);
+		public function get Bounds_PENNY_NUDE_HORSE_1():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_nude_equine_2.png", mimeType = "image/png")]
 		public var Bust_PENNY_NUDE_HORSE_2:Class;
-		public var Bounds_PENNY_NUDE_HORSE_2:Rectangle = new Rectangle(40,0,121,79);
+		public function get Bounds_PENNY_NUDE_HORSE_2():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_bimbo.png", mimeType = "image/png")]
 		public var Bust_PENNY_BIMBO:Class;
-		public var Bounds_PENNY_BIMBO:Rectangle = new Rectangle(40,0,121,79);
+		public function get Bounds_PENNY_BIMBO():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_bimbo_canine_0.png", mimeType = "image/png")]
 		public var Bust_PENNY_BIMBO_VIXEN:Class;
-		public var Bounds_PENNY_BIMBO_VIXEN:Rectangle = new Rectangle(40,0,121,79);
+		public function get Bounds_PENNY_BIMBO_VIXEN():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_bimbo_canine_1.png", mimeType = "image/png")]
 		public var Bust_PENNY_BIMBO_VIXEN_1:Class;
-		public var Bounds_PENNY_BIMBO_VIXEN_1:Rectangle = new Rectangle(40,0,121,79);
+		public function get Bounds_PENNY_BIMBO_VIXEN_1():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_bimbo_canine_2.png", mimeType = "image/png")]
 		public var Bust_PENNY_BIMBO_VIXEN_2:Class;
-		public var Bounds_PENNY_BIMBO_VIXEN_2:Rectangle = new Rectangle(40,0,121,79);
+		public function get Bounds_PENNY_BIMBO_VIXEN_2():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_bimbo_equine_0.png", mimeType = "image/png")]
 		public var Bust_PENNY_BIMBO_HORSE:Class;
-		public var Bounds_PENNY_BIMBO_HORSE:Rectangle = new Rectangle(40,0,121,79);
+		public function get Bounds_PENNY_BIMBO_HORSE():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_bimbo_equine_1.png", mimeType = "image/png")]
 		public var Bust_PENNY_BIMBO_HORSE_1:Class;
-		public var Bounds_PENNY_BIMBO_HORSE_1:Rectangle = new Rectangle(40,0,121,79);
+		public function get Bounds_PENNY_BIMBO_HORSE_1():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_bimbo_equine_2.png", mimeType = "image/png")]
 		public var Bust_PENNY_BIMBO_HORSE_2:Class;
-		public var Bounds_PENNY_BIMBO_HORSE_2:Rectangle = new Rectangle(40,0,121,79);
+		public function get Bounds_PENNY_BIMBO_HORSE_2():Rectangle { return Bounds_PENNY; }
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/deep_lake_queen.png", mimeType = "image/png")]
 		public var Bust_QUEENOFTHEDEEP:Class;

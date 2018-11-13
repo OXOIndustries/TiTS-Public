@@ -550,7 +550,7 @@ package classes.Items.Transformatives
 					
 					if(pc.cockTypeUnlocked(cIdx, GLOBAL.TYPE_SIREN))
 					{
-						output("\n\nYour [pc.cockBiggest] grows painfully hard before a pleasant warmth flows through it, base to tip. That feels awfully good...You");
+						output("\n\nYour [pc.cockBiggest] grows painfully hard before a pleasant warmth flows through it, base to tip. That feels awfully good... You");
 						if(!pc.isCrotchExposedByArmor()) output(" pull the lower part of your [pc.armor] forward and");
 						output(" look down");
 						if(!pc.isCrotchExposedByLowerUndergarment()) output(" into your [pc.lowerUndergarment]");
@@ -561,6 +561,34 @@ package classes.Items.Transformatives
 					}
 					else output("\n\n" + pc.cockTypeLockedMessage());
 					changes++;
+				}
+				// PC has no balls: Grow grapefruit sized balls
+				// [pc.ballSize] not 8: increase ball size to 8
+				if(changes < changeLimit && ((pc.balls <= 0 && newBallSize > 0) || pc.ballSizeRaw < newBallSize) && rand(4) == 0)
+				{
+					if(pc.balls <= 0)
+					{
+						if(pc.ballsUnlocked(2))
+						{
+							output("\n\nYour gut churns and heaves similarly to when you’ve gotten sick in the past. This time, rather than resulting in a need to go to the bathroom, the discomfort merely migrates south, growing in intensity as it does. When you can take it no more, you groan as something slips within you, bringing with it immeasurable relief. The pain is reduced by perhaps half. The odd slipping sensation repeats. This time, you’re left sighing in contentment. Whatever just happened, it’s over now.");
+							output("\n\nYou check up on your groin once you’ve caught your breath, and to your shock, you discover a pair of nicely-rounded testicles contained in a ballsack. <b>You grew balls!</b>");
+							
+							pc.balls = 2;
+							pc.ballSizeRaw = newBallSize;
+						}
+						else output("\n\n" + pc.ballsLockedMessage());
+						changes++;
+					}
+					else
+					{
+						if(pc.ballSizeUnlocked(newBallSize))
+						{
+							output("\n\nYour [pc.balls] begin" + (pc.balls == 1 ? "s" : "") + " to feel a little warm. Reaching down to give " + (pc.balls == 1 ? "it" : "them") + " a quick rub to comfort the odd sensation you find <b>" + (pc.balls == 1 ? "it has" : "they’ve") + " grown a bit larger</b>.");
+							pc.ballSizeRaw = newBallSize;
+						}
+						else output("\n\n" + pc.ballSizeLockedMessage());
+						changes++;
+					}
 				}
 				// Change Vagina to Suula
 				// [pc.vaginaType] not suula: Change Vagina type to suula
