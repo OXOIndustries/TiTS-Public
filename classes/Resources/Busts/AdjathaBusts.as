@@ -8,10 +8,10 @@ package classes.Resources.Busts
 	public class AdjathaBusts 
 	{
 		public function get PREVIEW():Class { return Bust_AINA; }
-		public function get SIGNATURE():Class { return SigEmbed; }
+		//public function get SIGNATURE():Class { return SigEmbed; }
 		
-		[Embed(source = "../../../assets/images/npcs/adjatha/hr/sig.png", mimeType = "image/png")]
-		public var SigEmbed:Class;
+		//[Embed(source = "../../../assets/images/sig/adjatha.png", mimeType = "image/png")]
+		//public var SigEmbed:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/able.png", mimeType = "image/png")]
 		public var Bust_ABLE:Class;
