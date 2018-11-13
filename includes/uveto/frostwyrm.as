@@ -2376,7 +2376,7 @@ public function frostwyrmWowThisReallyTakesAWhile():void
 	processTime((4 * 4 * 7 * 24 * 60) + rand(1440));
 	
 	clearMenu();
-	else addButton(0, "Next", frostwyrmWhatDidYouChoose, nKids);
+	addButton(0, "Next", frostwyrmWhatDidYouChoose, nKids);
 	
 	frostwyrmMatureYoung();
 }
