@@ -1629,8 +1629,8 @@ package classes.GameData
 		{
 			if(!(attacker is PlayerCharacter))
 			{
-				if(attacker.isPlural) output(StringUtil.capitalize(attacker.getCombatName(), false) + " toggle wrist-mounted switches to light their weapons up with deadly arcs of electricity before thrusting them out for a quick, inaccurate strike!");
-				else output(StringUtil.capitalize(attacker.getCombatName(), false) + " toggles a wrist-mounted switch to light " + attacker.getCombatPronoun("hisher") + " weapon up with deadly arcs of electricity before thrusting it out for a quick, inaccurate strike!");
+				if(attacker.isPlural) output(StringUtil.capitalize(attacker.getCombatName(), false) + " toggle wrist-mounted switches to light their weapons up with deadly arcs of electricity before thrusting them out for a quick, inaccurate strike!\n");
+				else output(StringUtil.capitalize(attacker.getCombatName(), false) + " toggles a wrist-mounted switch to light " + attacker.getCombatPronoun("hisher") + " weapon up with deadly arcs of electricity before thrusting it out for a quick, inaccurate strike!\n");
 			}
 			else 
 			{

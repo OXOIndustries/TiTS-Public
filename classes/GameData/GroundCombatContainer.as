@@ -4690,7 +4690,7 @@ package classes.GameData
 					{
 						if(_hostiles[i].hasFlightEffects()) _hostiles[i].clearFlightEffects();
 						
-						output("\n\n" + StringUtil.capitalize(_hostiles[i].getCombatName(), false) + " falls to the ground,");
+						output("\n\n" + StringUtil.capitalize(_hostiles[i].getCombatName(), false) + " fall" + (_hostiles[i].isPlural ? "":"s") + " to the ground,");
 						if (_hostiles[i].HP() <= 0) output(" defeated.");
 						else output(" stricken with lust.");
 					}

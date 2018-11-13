@@ -20488,7 +20488,7 @@
 		}
 		public function hasBlindImmunity():Boolean
 		{
-			return (accessory is FlashGoggles);
+			return (accessory is FlashGoggles || hasStatusEffect("Blind Immune"));
 		}
 		public function hasAirtightSuit():Boolean
 		{

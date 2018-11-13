@@ -1,6 +1,7 @@
 ﻿package classes.Characters
 {
 	import classes.Creature;
+	import classes.Characters.VenusZiltrap;
 	import classes.GLOBAL;
 	import classes.Items.Apparel.UGCUniform;
 	import classes.Items.Melee.Tonfas;
@@ -30,8 +31,8 @@
 			this.short = "Penny";
 			this.originalRace = "human";
 			this.a = "";
-			this.capitalA = "Penny is not especially tall or especially strong, nor is she particularly well-armed. The big-eared fennec is simply tenacious and skilled. She holds her tonfos with firm grips, a variety of other peacekeeper gadgets strapped around her waist. Her stance is steady and indicative of a long history of martial arts training. A shoulder strap hefts an old-fashioned, powder-fired roomsweeper while tight wrappings struggle to contain the entirety of her heavy bosom, keeping it compressed and out of the way.";
-			this.long = "uncreated";
+			this.capitalA = "";
+			this.long = "Penny is not especially tall or especially strong, nor is she particularly well-armed. The big-eared fennec is simply tenacious and skilled. She holds her tonfos with firm grips, a variety of other peacekeeper gadgets strapped around her waist. Her stance is steady and indicative of a long history of martial arts training. A shoulder strap hefts an old-fashioned, powder-fired roomsweeper while tight wrappings struggle to contain the entirety of her heavy bosom, keeping it compressed and out of the way.";
 			this.customDodge = "uncreated";
 			this.customBlock = "uncreated";
 			this.isPlural = false;
@@ -57,7 +58,7 @@
 			this.HPMod = 20;
 			this.HPRaw = this.HPMax();
 
-			this.baseHPResistances.pheromone.resistanceValue = -200;
+			this.baseHPResistances.pheromone.resistanceValue = -100;
 			this.baseHPResistances.tease.resistanceValue = -33;
 			this.baseHPResistances.drug.resistanceValue = -25;
 			
@@ -172,7 +173,7 @@
 			this.milkRate = 1;
 			this.ass.wetnessRaw = 0;
 
-			this.createPerk("Multiple Attacks",1,0,0,0,"");
+			this.createPerk("Multiple Attacks",2,0,0,0,"");
 			
 			this._isLoading = false;
 		}
@@ -202,7 +203,11 @@
 			dataObject.vaginas[0].bonusCapacity = 20;
 			dataObject.elasticity = 3;
 		}
-		
+		override public function isSquirter(arg: int = -1):Boolean
+		{
+			if(flags["PQUEST_PENNY_PODDED"] != undefined) return true;
+			return super.isSquirter(arg);
+		}
 		public function UpgradeVersion4(dataObject:Object):void
 		{
 			// Clear out this shit and let the default constructor handle it.
@@ -231,10 +236,11 @@
 			
 			this.HP(this.HPMax());
 			this.shields(this.shieldsMax());
-			this.baseHPResistances.pheromone.resistanceValue = -200;
+			this.baseHPResistances.pheromone.resistanceValue = -100;
 			this.baseHPResistances.tease.resistanceValue = -33;
 			this.baseHPResistances.drug.resistanceValue = -25;
-			this.createPerk("Multiple Attacks",1,0,0,0,"");
+			this.createPerk("Multiple Attacks",2,0,0,0,"");
+			this.long = "Penny is not especially tall or especially strong, nor is she particularly well-armed. The big-eared fennec is simply tenacious and skilled. She holds her tonfos with firm grips, a variety of other peacekeeper gadgets strapped around her waist. Her stance is steady and indicative of a long history of martial arts training. A shoulder strap hefts an old-fashioned, powder-fired roomsweeper while tight wrappings struggle to contain the entirety of her heavy bosom, keeping it compressed and out of the way.";
 		}
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
@@ -267,11 +273,11 @@
 				meleePenny = false;
 			}
 			//Penny lust turn overrides everything else
-			if(this.lust() >= 60 && rand(10) + (this.lust()-60)/4 >= 9) pennyLustTurnLost(hostileCreatures, target);
+			if(this.lust() >= 60 && rand(10) + ((this.lust()-60)/4 >= 9 || target is VenusZiltrap)) pennyLustTurnLost(hostileCreatures, target);
 			//Second wind - use if wounded or energy is low
 			else if(!this.hasStatusEffect("Used Second Wind") && (this.HP()/this.HPMax() <= 0.6 || this.energy() < 33)) CombatAttacks.SecondWind.execute(alliedCreatures, hostileCreatures, this, target);
 			//Flashbang
-			else if(!target.hasStatusEffect("Blind") && this.energy() >= 10 && rand(3) == 0) 
+			else if(!target.hasStatusEffect("Blind") && !target.hasStatusEffect("Blind Immune") && this.energy() >= 10 && rand(3) == 0) 
 			{
 				pennyFlashGrenade(alliedCreatures,hostileCreatures,target);
 				this.energy(-10);

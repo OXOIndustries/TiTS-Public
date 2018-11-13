@@ -267,7 +267,7 @@ public function workAnFuckDatGynoidsGyni():void
 	output("<i>“Maybe I could help you out,”</i> you offer, sidling up to the voluptuous sexbot. You slip a hand around her waist, pressing your crotch into her plump bottom and putting the other hand on hers. Like some sort of nerd foreplay, you lean in and whisper some of your qualifications into her ear, " + (pc.characterClass == GLOBAL.CLASS_ENGINEER ? "like where you studied and under whom":"though you might be self-taught, you assure Olympia that you’re a damn quick study") + ".");
 	output("\n\n<i>“Is that so?”</i> the gynoid purrs. Though she’s still writing away, Olympia pushes her ass back against you and wraps her sinuous tail around your [pc.hips]. <i>“I suppose if you’re helping... a slight distraction would still be a net increase in productivity, wouldn’t it?”</i>");
 	output("\n\nSure. And maybe you’ll be the inspiration she’s been sorely lacking. You never know.");
-	output("\n\n<i>“Very well. Let me show you what I’m working on... and you get start working on me.”</i>");
+	output("\n\n<i>“Very well. Let me show you what I’m working on... and you can get started working on me.”</i>");
 	processTime(5);
 	pc.lust(5);
 	olympiaSexMenu();

@@ -326,7 +326,7 @@ public function jungleEncounterChances():Boolean {
 		flags["JUNGLE_STEP"] = 0;
 		
 		//Build possible encounters
-		if(flags["PUMPKING_COMPLETION"] == 1 && hours >= 23 || hours <= 1) 
+		if(flags["PUMPKING_COMPLETION"] == 1 && (hours >= 23 || hours <= 1) && isHalloweenish()) 
 		{
 			choices.push(encounterPumpkingEvent);
 			choices.push(encounterPumpkingEvent);
@@ -398,7 +398,7 @@ public function jungleMiddleEncounters():Boolean {
 		flags["JUNGLE_STEP"] = 0;
 		
 		//Build possible encounters
-		if(flags["PUMPKING_COMPLETION"] == 1 && hours >= 23 || hours <= 1) 
+		if(flags["PUMPKING_COMPLETION"] == 1 && (hours >= 23 || hours <= 1) && isHalloweenish()) 
 		{
 			choices.push(encounterPumpkingEvent);
 			choices.push(encounterPumpkingEvent);
@@ -506,7 +506,7 @@ public function jungleDeepEncounters():Boolean {
 		flags["JUNGLE_STEP"] = 0;
 		
 		//Build possible encounters
-		if(flags["PUMPKING_COMPLETION"] == 1 && hours >= 23 || hours <= 1) 
+		if(flags["PUMPKING_COMPLETION"] == 1 && (hours >= 23 || hours <= 1) && isHalloweenish()) 
 		{
 			choices.push(encounterPumpkingEvent);
 			choices.push(encounterPumpkingEvent);

@@ -129,6 +129,8 @@ public function disableExploreEvents():Boolean
 	if (flags["FEDERATION_QUEST"] > 0 && flags["FEDERATION_QUEST_AMBUSH"] != undefined && flags["FEDERATION_QUEST"] < 3) return true;
 	// Syri Quest
 	if (flags["SYRIQUEST_STATE"] >= 4 && flags["SYRIQUEST_STATE"] < 20) return true;
+	// Penny Quest
+	if (flags["PENNY_CREW_ASKED"] == 2) return true;
 
 	return false;
 }
@@ -185,10 +187,11 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	//trace("EventQueue = ", eventQueue);
 	//trace("this.eventQueue = ", this.eventQueue);
 	if(eventQueue.length > 0) {
-		//Do the most recent:
-		eventQueue[0]();
-		//Strip out the most recent:
+		//Bank the most recent for playing, then strip it out in case of recursive bullshit
+		var tempFunc:Function  = eventQueue[0];
 		eventQueue.splice(0,1);
+		//Do the most recent:
+		tempFunc();		
 		return;
 	}
 	
