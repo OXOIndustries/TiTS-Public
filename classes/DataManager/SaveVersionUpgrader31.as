@@ -22,7 +22,7 @@ package classes.DataManager
 		public function upgrade(data:Object):Boolean
 		{
 			var o:Object = data.gameOptions;
-			o.seasonalOverridePreferences = { };
+			if (!o.seasonalOverridePreferences) o.seasonalOverridePreferences = { };
 			
 			data.version = _newVersionValue;
 			data.minVersion = _newVersionValue;

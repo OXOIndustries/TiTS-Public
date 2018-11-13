@@ -49,8 +49,8 @@
 		}
 	
 		// Define the current version of save games.
-		public static const LATEST_SAVE_VERSION:int = 31;
-		public static const MINIMUM_SAVE_VERSION:int = 30;
+		public static const LATEST_SAVE_VERSION:int = 32;
+		public static const MINIMUM_SAVE_VERSION:int = 32;
 		
 		private var _autoSaveEnabled:Boolean = false;
 		private var _lastManualDataSlot:int = -1;
@@ -104,6 +104,7 @@
 			var sv28:SaveVersionUpgrader28;
 			var sv29:SaveVersionUpgrader29;
 			var sv30:SaveVersionUpgrader30;
+			var sv31:SaveVersionUpgrader31;
 			
 			// I'm putting this fucking thing here for the same reason.
 			var dbgShield:DBGShield;
@@ -1494,7 +1495,7 @@
 				kGAMECLASS.userInterface.hideNPCStats();
 				kGAMECLASS.userInterface.resetPCStats();
 				kGAMECLASS.userInterface.showPCStats();
-				kGAMECLASS.updatePCStats();
+				kGAMECLASS.updatePCStats(true);
 				kGAMECLASS.output2("\n\nGame loaded from file!");
 				executeGame();
 			}
@@ -1504,6 +1505,10 @@
 				{
 					var ph:Object = new Object();
 					this.loadBaseData(saveBackup, ph);
+				}
+				else if (kGAMECLASS.chars["PC"] != undefined)
+				{
+					kGAMECLASS.chars["PC"].short = "";
 				}
 				
 				kGAMECLASS.output2("Error: Could not load game data.");
@@ -1702,6 +1707,10 @@
 				{
 					var ph:Object = new Object();
 					this.loadBaseData(saveBackup, ph);
+				}
+				else if (kGAMECLASS.chars["PC"] != undefined)
+				{
+					kGAMECLASS.chars["PC"].short = "";
 				}
 				
 				kGAMECLASS.output2("Error: Could not load game data.");
@@ -2040,7 +2049,7 @@
 				
 				var aRef:* = kGAMECLASS.chars;
 				// Some plebshit
-				if (kGAMECLASS.chars["RIVAL"].short == "Jack" || kGAMECLASS.chars["RIVAL"].short == "Jill")
+				if (kGAMECLASS.rival.short == "Jack" || kGAMECLASS.rival.short == "Jill")
 				{
 					kGAMECLASS.flags["RIVALCONFIGURED"] = 1;
 				}
@@ -2049,7 +2058,7 @@
 					kGAMECLASS.flags["RIVALCONFIGURED"] = 2;
 				}
 				
-				if (kGAMECLASS.chars["LANE"].eyeColor != "dark blue" && kGAMECLASS.flags["MET_LANE"] != undefined)
+				if (kGAMECLASS.lane.eyeColor != "dark blue" && kGAMECLASS.flags["MET_LANE"] != undefined)
 				{
 					kGAMECLASS.flags["LANE_BROKEN_INCOMINGSAVE"] = 1;
 				}
@@ -2061,7 +2070,7 @@
 				}
 				
 				// Accidental pregnancy hotfix
-				if(kGAMECLASS.chars["SHEKKA"].isPregnant())
+				if(kGAMECLASS.shekka.isPregnant())
 				{
 					if(kGAMECLASS.eventQueue.indexOf(kGAMECLASS.shekkaPregnancyHotfix) == -1) kGAMECLASS.eventQueue.push(kGAMECLASS.shekkaPregnancyHotfix);
 				}

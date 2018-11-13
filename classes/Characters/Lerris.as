@@ -192,5 +192,9 @@
 		{
 			kGAMECLASS.lerrisMenu();
 		}
+		
+		public function UpgradeVersion1(d:Object):void {
+			// No changes!
+		}
 	}
 }
