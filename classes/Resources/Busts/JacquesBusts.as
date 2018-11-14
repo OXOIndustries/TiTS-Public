@@ -568,6 +568,8 @@ package classes.Resources.Busts
 		public var Bust_LOGO_KIHACORP:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/nova_securities.png", mimeType = "image/png")]
 		public var Bust_LOGO_NOVA_SECURITIES:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/maxcorp.png", mimeType = "image/png")]
+		public var Bust_LOGO_MAXCORP:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/pyrite.png", mimeType = "image/png")]
 		public var Bust_LOGO_PYRITE:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/reaper.png", mimeType = "image/png")]
@@ -613,6 +615,8 @@ package classes.Resources.Busts
 			public var Full_LOGO_JOYCO:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/kihacorp.png", mimeType = "image/png")]
 			public var Full_LOGO_KIHACORP:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/maxcorp.png", mimeType = "image/png")]
+			public var Full_LOGO_MAXCORP:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/nova_securities.png", mimeType = "image/png")]
 			public var Full_LOGO_NOVA_SECURITIES:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/pyrite.png", mimeType = "image/png")]
@@ -628,7 +632,7 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/snuggle.png", mimeType = "image/png")]
 			public var Full_LOGO_SNUGGLE:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/steele_tech.png", mimeType = "image/png")]
-			public var Full_LOGO_STEELETECH:Class;
+			public var Full_LOGO_STEELE_TECH:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/tamanicorp.png", mimeType = "image/png")]
 			public var Full_LOGO_TAMANICORP:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/ugc.png", mimeType = "image/png")]
