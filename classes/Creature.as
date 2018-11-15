@@ -1813,6 +1813,35 @@
 				case "raceBoyGirlSimple":
 					buffer = raceCute(true, true);
 					break;
+				case "aRace":
+					buffer = indefiniteArticle(race());
+					break;
+				case "aRaceType":
+				case "aRaceShort":
+				case "aRaceSimple":
+				case "aSimpleRace":
+				case "aRaceStrip":
+				case "aStripRace":
+					buffer = indefiniteArticle(raceShort());
+					break;
+				case "aRaceTypeStrict":
+				case "aRaceTypeHuman":
+					buffer = indefiniteArticle(raceShort(true));
+					break;
+				case "aRaceCute":
+					buffer = indefiniteArticle(raceCute());
+					break;
+				case "aRaceCuteShort":
+				case "aRaceCuteSimple":
+					buffer = indefiniteArticle(raceCute(true));
+					break;
+				case "aRaceBoyGirl":
+					buffer = indefiniteArticle(raceCute(false, true));
+					break;
+				case "aRaceBoyGirlShort":
+				case "aRaceBoyGirlSimple":
+					buffer = indefiniteArticle(raceCute(true, true));
+					break;
 				case "class":
 				case "classType":
 				case "characterClass":
