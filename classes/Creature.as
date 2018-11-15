@@ -12026,6 +12026,8 @@
 			var sRace:String = race();
 			var sRaceShort:String = raceShort();
 			if(sRace.indexOf("boy") != -1 || sRace.indexOf("boi") != -1 || sRace.indexOf("girl") != -1) return sRace;
+			if(sRace.indexOf("kui-tan") != -1 && sRace.indexOf("taur") != -1) sRaceShort = "kui-taur";
+			if(sRace.indexOf("korgonne") != -1 && sRace.indexOf("taur") != -1) sRaceShort = "korg-taur";
 		
 			var isCute:Boolean = (isBimbo() || tallness < 60);
 			// Cute conversions for complex short-race names.
