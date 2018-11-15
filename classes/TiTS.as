@@ -159,6 +159,7 @@
 		include "../includes/follower/paigeHalloweener.as";
 		include "../includes/follower/paigeSex.as";
 		include "../includes/follower/paigeSpar.as";
+		include "../includes/follower/penny.as";
 		include "../includes/follower/pippa.as";
 		include "../includes/follower/ramis.as";
 		include "../includes/follower/shekka.as";
@@ -607,7 +608,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.232";
+			version = "0.7.233";
 
 			//temporary nonsense variables.
 			temp = 0;

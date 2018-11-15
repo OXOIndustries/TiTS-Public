@@ -244,9 +244,6 @@
 		}
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
-			if(this.hasStatusEffect("cock out")) this.long = "Azra stands by your side, garbed in a suit of heavy armor that makes the otherwise unarmed siren seem even more imposing than her nine foot stature alone. Still, she moves with grace and purpose, and her armored fists could pack quite a wallop. She’d be far more imposing if it wasn’t for the fact that her 20\" dick and soft-ball sized balls are swinging in the open, doing their best to dribble pre everywhere she goes.";
-			else this.long = "Azra stands by your side, garbed in a suit of heavy armor that makes the otherwise unarmed siren seem even more imposing than her nine foot stature alone. Still, she moves with grace and purpose, and her armored fists could pack quite a wallop.";
-
 			var target:Creature;
 					
 			// More complex target selection to leverage some of Penny's abilities
@@ -274,6 +271,12 @@
 			}
 			//Penny lust turn overrides everything else
 			if(this.lust() >= 60 && rand(10) + ((this.lust()-60)/4 >= 9 || target is VenusZiltrap)) pennyLustTurnLost(hostileCreatures, target);
+			//Get up from trip
+			else if(this.hasStatusEffect("Tripped"))
+			{
+				output("Penny springs back up onto her feet. <b>She is no longer tripped!");
+				this.removeStatusEffect("Tripped");
+			}
 			//Second wind - use if wounded or energy is low
 			else if(!this.hasStatusEffect("Used Second Wind") && (this.HP()/this.HPMax() <= 0.6 || this.energy() < 33)) CombatAttacks.SecondWind.execute(alliedCreatures, hostileCreatures, this, target);
 			//Flashbang

@@ -4188,6 +4188,14 @@ package classes.GameData
 			_hostiles.splice(_hostiles.indexOf(remC), 1);
 			showCombatUI();
 		}
+
+		override public function removeFriendlyActor(remC:*):void
+		{
+			if (!(remC is Creature)) throw new Error("Removed actor is not a creature.");
+			
+			_friendlies.splice(_friendlies.indexOf(remC), 1);
+			showCombatUI();
+		}
 		
 		private function makeCharacterUnique(target:Creature, asGroup:String):void
 		{

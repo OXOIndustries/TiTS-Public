@@ -759,6 +759,7 @@ public const CREW_SHEKKA:int = 15;
 public const CREW_SYRI:int = 16;
 public const CREW_RAMIS:int = 17;
 public const CREW_AMBER:int = 18;
+public const CREW_PENNY:int = 19;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -781,6 +782,7 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	if (shekkaIsCrew()) crewMembers.push(CREW_SHEKKA);
 	if (ramisRecruited()) crewMembers.push(CREW_RAMIS);
 	if (amberRecruited()) crewMembers.push(CREW_AMBER);
+	if (pennyIsCrew()) crewMembers.push(CREW_PENNY);
 
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -885,6 +887,7 @@ public function getCrewOnShip():Array
 	//9999 - not sure what I need to set up for this. Probably just a creature link but none done yet:
 	//if (azraIsCrew()) c.push(azra);
 	//if (paigeIsCrew()) c.push(paige);
+	if (pennyIsCrew()) c.push(penny);
 	if (bessIsCrew()) c.push(bess);
 	if (celiseIsCrew()) c.push(celise);
 	if (reahaIsCrew()) c.push(reaha);
@@ -909,6 +912,7 @@ public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean =
 	if (kiroIsCrew()) crewMembers.push("Kiro");
 	if (gooArmorIsCrew()) crewMembers.push(customName ? chars["GOO"].short : "Goo Armor");
 	if (paigeIsCrew()) crewMembers.push("Paige");
+	if (pennyIsCrew()) crewMembers.push("Penny");
 	if (pippaOnShip()) crewMembers.push("Pippa");
 	if (ramisIsCrew()) crewMembers.push("Ramis");
 	if (reahaIsCrew()) crewMembers.push("Reaha");
@@ -955,6 +959,7 @@ public function getFollowerBustDisplay(followerName:String = ""):String
 		case "Kiro": return kiroBustDisplay(); break;
 		case "Goo Armor": return novaBustDisplay(); break;
 		case "Paige": return getPaigeBustString(); break;
+		case "Penny": return pennyBustDisplay(); break;
 		case "Pippa": return pippaBustDisplay(); break;
 		case "Ramis": return ramisBustDisplay(); break;
 		case "Reaha": return reahaBustDisplay(); break;
@@ -1000,6 +1005,7 @@ public function getSleepingPartnerBustDisplay():String
 		case "KASE": return kaseBustDisplay(); break;
 		case "KIRO": return kiroBustDisplay(); break;
 		case "PAIGE": return getPaigeBustString(); break;
+		case "PENNY": return pennyBustDisplay(); break;
 		case "PIPPA": return pippaBustDisplay(); break;
 		case "RAMIS": return ramisBustDisplay(); break;
 		case "REAHA": return reahaBustDisplay(); break;
@@ -1159,6 +1165,16 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		{
 			crewMessages += "\n\nPaige mostly keeps to her room when not helping you navigate the starways.";
 			addButton(btnSlot,"Paige",paigeCrewApproach);
+			btnSlot = crewButtonAdjustments(btnSlot);
+		}
+	}
+	if (pennyIsCrew())
+	{
+		count++;
+		if (!counter)
+		{
+			crewMessages += pennyCrewDesc();
+			addButton(btnSlot,"Penny",approachCrewPenny);
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
