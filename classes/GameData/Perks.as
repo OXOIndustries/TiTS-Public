@@ -525,7 +525,7 @@ package classes.GameData
 			attackDrone.classLimit = GLOBAL.CLASS_ENGINEER;
 			attackDrone.levelLimit = 2;
 			attackDrone.perkName = "Attack Drone";
-			attackDrone.perkDescription = "Grants an attack drone that will automatically fire on your enemies every combat round as long as your shields are up. The drone will also bolster your shields with its own, raising your maximum shielding by one point per level.";
+			attackDrone.perkDescription = "Grants an attack drone that will automatically fire on your enemies every combat round as long as your shields are up. The drone will also bolster your shields with its own, raising your maximum shielding by [altTooltip AttackDrone] per level.";
 			insertPerkData(attackDrone);
 			
 			var shieldBooster:PerkData = new PerkData();

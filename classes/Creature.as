@@ -4541,7 +4541,7 @@
 		}
 		public function HPQ():Number
 		{
-			return Math.round(HP()/HPMax()*100);
+			return (HPMax() == 0 ? 0 : Math.round((HP() / HPMax()) * 100));
 		}
 		//ENERGY
 		public function energy(arg: Number = 0): Number {
@@ -4568,6 +4568,10 @@
 		}
 		public function maxOutEnergy(): void {
 			energyRaw = energyMax();
+		}
+		public function energyQ():Number
+		{
+			return (energyMax() == 0 ? 0 : Math.round((energy() / energyMax()) * 100));
 		}
 		//Lust
 		public function lust(arg:Number = 0, apply:Boolean = false): Number 
@@ -4611,6 +4615,11 @@
 		{
 			return Math.ceil(level/1.5 + willpower()/4);
 		}
+		public function lustQ():Number
+		{
+			return (lustMax() == 0 ? 0 : Math.round((lust() / lustMax()) * 100));
+		}
+		
 		//% of max. Useful for determining things like how strong a PC is for his/her level.
 		public function PQ():Number
 		{
@@ -4764,11 +4773,6 @@
 		public function LQ():Number
 		{
 			return Math.round(libido() / libidoMax() * 100);
-		}
-		
-		public function lustQ():Number
-		{
-			return Math.round(lust() / lustMax() * 100);
 		}
 		
 		public function bimboIntelligence():Number
@@ -5447,7 +5451,7 @@
 		}
 		public function shieldsMax(): Number {
 			//No proper shield generator? NO SHIELD!
-			if(shield.shields == 0) return 0;
+			if(hasShields() && !hasShieldGenerator(true)) return 0;
 			
 			var temp: int = 0;
 			temp += meleeWeapon.shields;
@@ -5455,13 +5459,18 @@
 			temp += armor.shields + upperUndergarment.shields + lowerUndergarment.shields + accessory.shields + shield.shields;
 			if (hasPerk("Shield Tweaks")) temp += level * 2;
 			if (hasPerk("Shield Booster")) temp += level * 8;
-			if (hasPerk("Attack Drone") && hasActiveCombatDrone(true, true)) temp += (3 * level);
+			if (hasPerk("Attack Drone") && hasActiveCombatDrone(true, false)) temp += (3 * level);
 			if (hasStatusEffect("Valden-Possessed")) temp *= 1 + AkkadiSecurityRobots.valdenShieldBuffMult;
 
 			//Debuffs!
 			if(hasStatusEffect("Rusted Emitters")) temp = Math.round(temp * 0.75);
 			
+			if (temp < 0) temp = 0;
 			return temp;
+		}
+		public function shieldsQ():Number
+		{
+			return (shieldsMax() == 0 ? 0 : Math.round((shields() / shieldsMax()) * 100));
 		}
 		public function sexiness(): Number {
 			var temp: int = 0;

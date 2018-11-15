@@ -3149,11 +3149,11 @@ public function investigateMitziAndAmber():void
 	clearMenu();
 	if(pc.hasCock())
 	{
-		if(pc.cockThatFits(amber.vaginalCapacity(0)*1.5) >= 0) addButton(0,"Fuck Amber", penisRouter,[fuckSoakAmberMitziWithOneDick,amber.vaginalCapacity()*1.5,false,0], "Fuck One", "Fuck Amber and eat out Mitzi... then pick one at random to cum in.");
+		if(pc.cockThatFits(amber.vaginalCapacity(0)*1.5) >= 0) addButton(0,"Fuck Amber", penisRouter,[fuckSoakAmberMitziWithOneDick,(amber.vaginalCapacity()*1.5),false,0], "Fuck One", "Fuck Amber and eat out Mitzi... then pick one at random to cum in.");
 		else addDisabledButton(0,"Fuck Amber","Fuck Amber","Not even Amber can take that behemoth.")
 		if(pc.cockTotal() > 1)
 		{
-			if(pc.cockThatFits(amber.vaginalCapacity(0)) >= 0 && pc.cockThatFits2(amber.vaginalCapacity(0)) >= 0) addButton(1,"Fuck Both", penisRouter,[fuckSoakAmberMitziWithTwoDicks,amber.vaginalCapacity()*1.5,false,0], "Fuck Both", "Fuck Amber and Mitzi at the same time!");
+			if(pc.cockThatFits(amber.vaginalCapacity(0)*1.5) >= 0 && pc.cockThatFits2(amber.vaginalCapacity(0)*1.5) >= 0) addButton(1,"Fuck Both", fuckSoakAmberMitziWithTwoDicks, undefined, "Fuck Both", "Fuck Amber and Mitzi at the same time!");
 			else addDisabledButton(1,"Fuck Both","Fuck Both","You need two dicks small enough to wedge inside.");
 		}
 		else addDisabledButton(1,"Fuck Both","Fuck Both","You need two dicks for this.");

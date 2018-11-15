@@ -8,10 +8,10 @@ package classes.Resources.Busts
 	public class CheshireBusts 
 	{
 		public function get PREVIEW():Class { return Bust_ALISS; }
-		public function get SIGNATURE():Class { return SigEmbed; }
+		//public function get SIGNATURE():Class { return SigEmbed; }
 		
-		[Embed(source = "../../../assets/images/npcs/cheshire/HR/sig.png", mimeType = "image/png")]
-		public var SigEmbed:Class;
+		//[Embed(source = "../../../assets/images/sig/cheshire.png", mimeType = "image/png")]
+		//public var SigEmbed:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/cheshire/aliss.png", mimeType = "image/png")]
 		public var Bust_ALISS:Class;

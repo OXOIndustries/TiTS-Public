@@ -7,10 +7,10 @@ package classes.Resources.Busts
 	public class DamnitBusts 
 	{
 		public function get PREVIEW():Class { return Bust_HOLIDAY; }
-		public function get SIGNATURE():Class { return SigEmbed; }
+		//public function get SIGNATURE():Class { return SigEmbed; }
 		
-		[Embed(source = "../../../assets/images/npcs/damnit/HR/sig.png", mimeType = "image/png")]
-		public var SigEmbed:Class;
+		//[Embed(source = "../../../assets/images/sig/damnit.png", mimeType = "image/png")]
+		//public var SigEmbed:Class;
 		// Making assumptions here
 		
 		[Embed(source = "../../../assets/images/npcs/damnit/holiday.png", mimeType = "image/png")]
