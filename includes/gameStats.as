@@ -2620,6 +2620,30 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2(" <i>In progress...</i>");
 				sideCount++;
 			}
+			// Penny's Recruitment
+			if(flags["PENNY_CREW_ASKED"] != undefined)
+			{
+				output2("\n<b><u>Penny’s Recruitment</u></b>");
+				output2("\n<b>* Status:</b>");
+				switch(flags["PENNY_CREW_ASKED"])
+				{
+					case -1: output2(" Asked Penny, She refused, <i>Perhaps you should get to know her better?</i>"); break;
+					case 1: output2(" Asked Penny, She accepted"); break;
+					case 2: output2(" Asked Penny, Accepted, <i>Find Oxonium...</i>"); break;
+					case 3: output2(" Asked Penny, Accepted, Found and excavated Oxonium"); break;
+					case 3.5: output2(" Asked Penny, Accepted, Found and excavated Oxonium, Offered recruitment"); break;
+					case 4: output2(" Asked Penny, Accepted, Found and excavated Oxonium, Penny recruited, Completed"); break;
+					default: output2(" <i>In progress...</i>"); break;
+				}
+				if(flags["PQUEST_ZILTRAP_RESULTS"] != undefined || flags["PQUEST_PENNY_PODDED"] != undefined)
+				{
+					output2("\n<b>* Ziltraps:</b> Seen them");
+					if(flags["PQUEST_PENNY_PODDED"] != undefined) output2(", They trapped Penny");
+					if(flags["PQUEST_ZILTRAP_RESULTS"] == 1) output2(", Defeated them by health");
+					if(flags["PQUEST_ZILTRAP_RESULTS"] == 2) output2(", Defeated them by lust");
+				}
+				sideCount++;
+			}
 			// Penny's Zil Problem
 			if(flags["MET_PENNY"] != undefined)
 			{
