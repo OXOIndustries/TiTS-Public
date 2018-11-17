@@ -721,8 +721,7 @@ package classes.Items.Transformatives
 				//Change instantly, but proc message next time you get blue balls.
 				//FEN NOTE: FUCK THAT. How about Instant Blue Balls.
 				textBuff += ParseText("You’re getting blue balls already? Just how quickly is your body producing [pc.cumNoun]? Did the Laquine Ears do this to you? <b>You’re going to have to get off more frequently to avoid blue balls...</b>");
-				pc.createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
-				pc.ballFullness = 100;
+				pc.applyBlueBalls();
 				pc.refractoryRate = 4;
 			}
 			//(Penor & balls dun growin’) Get hard if not, and dribble pre. (+cum volume, target of 10L cumshot. Higher if bulgy?)
@@ -1991,7 +1990,7 @@ package classes.Items.Transformatives
 			if(!pc.isCrotchExposed()) textBuff += " as he yanks down your [pc.crotchCover]";
 			textBuff += ". His cock twitches in eagerness, and the hung rabbit stops resisting, choosing to guide his passions rather than let them break him. He pulls you tight, planting kisses from the nape of your neck up to your [pc.ear], whispering that he will ";
 			if(pc.inHeat()) textBuff += "give you every drop of seed in his body so that you may mother the next generation of his libidinous race";
-			else if(pc.hasVagina(GLOBAL.TYPE_EQUINE)) textBuff += "fill you like none other, teaching you what it means to fuck with a real male instead of some lesser species";
+			else if(pc.hasVaginaType(GLOBAL.TYPE_EQUINE)) textBuff += "fill you like none other, teaching you what it means to fuck with a real male instead of some lesser species";
 			else textBuff += "be gentle to you, his delicate flower";
 			textBuff += ". Meanwhile, his body swivels the rest of the way behind you, threading his burning-hot length between your [pc.thighs]. The medial ring brushes against [pc.oneClit], slick and warm, making you whimper.";
 

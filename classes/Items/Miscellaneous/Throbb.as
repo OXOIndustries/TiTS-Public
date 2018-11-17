@@ -38,7 +38,7 @@
 			this.description = "a vial of Throbb";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This vial of transparent cyan fluid seems so innocuous considering its supposed deleterious effects: overwhelming libido increase, massive male genital growth, and a titanic boost to production of semen (along with requisite swelling of semen-producing organs). In order to use it, females are to inject it just above the pubic mound. Males are supposed to inject directly into their preferred organ.";
+			this.tooltip = "This vial of transparent cyan fluid seems so innocuous considering its supposed deleterious effects: overwhelming libido increase, massive male genital growth, and a titanic boost to production of semen (along with requisite swelling of semen-producing organs). In order to use it, females are to inject it just above the pubic mound. Males are supposed to inject directly into their preferred organ.\n\n<b>Known to cause moderate amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -114,9 +114,10 @@
 			var changes:int = 0;
 			var changeLimit:int = 2;
 			var temp:* = 1;
-			if(rand(3) == 0) changeLimit++;
+			if(rand(2) == 0) changeLimit++;
 			if(kGAMECLASS.flags["TIMES_THROBB_USED"] == undefined) kGAMECLASS.flags["TIMES_THROBB_USED"] = 0;
 			kGAMECLASS.flags["TIMES_THROBB_USED"]++;
+
 			//First Use: 
 			if(kGAMECLASS.flags["TIMES_THROBB_USED"] == 1) {
 				kGAMECLASS.output("Well, here goes nothing. You twist the little plastic cap off one end of the vial to reveal the needle. It gleams menacingly in the light as you consider it. There’s no backing out now. You reverse your grip, align the needle with your ");
@@ -131,6 +132,7 @@
 			if(pc.libido() <= 25) {
 				kGAMECLASS.output("\n\nThe room tilts slightly on its axis, and you move your head to compensate, aware that the Throbb must be doing this but bound by your body’s traitorous senses to experience it all the same. Your [pc.skin] flushes hotly a moment later, fed by the rapid-fire hammering of your accelerating heartbeat. A slow moan slips out between your lips as your thoughts invariably slip into sexual musings, wondering how horny this is going to make you or if you’ll need to fuck six times a day just to function. That idea has more and more appeal; you briefly consider injecting yourself with more when your better sense asserts itself. This stuff has you panting with lust and has undoubtedly supercharged your libido!");
 				pc.libido(10);
+				pc.taint(5);
 				pc.lust(50+rand(10));
 				changes++;
 			}
@@ -139,6 +141,7 @@
 			{
 				kGAMECLASS.output("\n\nA slutty, whorish sounding moan slips out of your [pc.lips] before you can stop it. You didn’t even feel it coming, but you can tell why you made it now. Your whole body is burning up with lust, carried aloft on a wave of crimson, pulsating desire that pumps through your very veins, making your eyes cross and your tongue loll from you from your mouth. A simpering, needful whimper follows on the heels of the moan as you become completely, irrevocably aroused, too turned on to function in any sane manner. You’re certain it’s given your libido a bump, not that you mind. It’s just another excuse to fuck, after all.");
 				pc.libido(7);
+				pc.taint(3);
 				pc.lust(75+rand(10));
 				changes++;
 			}
@@ -151,6 +154,7 @@
 				if(!pc.hasCock()) kGAMECLASS.output(" There’s no banishing the strange thoughts.");
 				//+100+rand(10) lust
 				pc.libido(5);
+				pc.taint(2);
 				pc.lust(100);
 				changes++;
 			}
@@ -164,11 +168,12 @@
 				if(!pc.hasCock() && !pc.hasVagina()) kGAMECLASS.output("groin");
 				kGAMECLASS.output(". Every single inch of your [pc.skin] feels tingly and sensitive, and you break out into a sweat regardless of the ambient temperature. You’re hot, inside and out, fiendishly aroused by the Throbb. You wonder just how much fucking hornier it can get you. It’s kind of hard to think straight with how turned on you are right now, but you have a hard time caring. It feels so good, and you’re going to get so big and sexy!");
 				pc.libido(3);
+				pc.taint(1);
 				pc.lust(100);
 				changes++;
 			}
 			//GROWTH! REQUIRES DICK!
-			if(pc.hasCock() && ((pc.cockTotal() > 1 && rand(2) == 0) || (changes < changeLimit && rand(3) == 0))) {
+			if(pc.hasCock() && ((pc.cockTotal() > 1 && rand(2) == 0) || (changes < changeLimit && rand(2) == 0))) {
 				//Make a smallish dick bigger!
 				if(pc.cockLengthUnlocked(arg, 9) && pc.cocks[arg].cLengthRaw <= 8) {
 					kGAMECLASS.output("\n\nYour hand strays to your [pc.cock " + arg + "] without conscious thought. On noticing it, you merely smile, admiring the shape of your swollen length, like your hand belongs there. Your arm begins to pump, dragging your hand up and down the length, pleasuring yourself before you have a chance to react, and you just slump back, jacking on your [pc.cock " + arg + "] as it feels better and better.");
@@ -288,7 +293,7 @@
 			}
 			trace("LIBIDO: " + pc.libido() + " COCK LENGTH: " + pc.biggestCockLength() + " BALLS: " + pc.balls + " BALL SIZE: " + pc.ballSize);
 			//Bad end: Occurs if libido hits 100 and cock is bigger than 30" long and balls are at least 10"
-			if(pc.libido() >= 100 && pc.biggestCockLength() >= 30 && pc.balls > 0 && pc.ballDiameter() >= 10)
+			if(pc.libido() >= 100 && pc.biggestCockLength() >= 30 && pc.balls > 0 && pc.ballDiameter() >= 10 && pc.taint() > 50)
 			{
 				kGAMECLASS.output("\n\nEven after the transformation ends, you just can’t stop yourself....");
 				kGAMECLASS.clearMenu();
@@ -313,9 +318,7 @@
 			var pc:Creature = kGAMECLASS.chars["PC"];
 			
 			kGAMECLASS.clearOutput();
-			kGAMECLASS.output("You masturbate on the spot, rubbing your [pc.cockBiggest] again and again while thick rivulets of [pc.cum] spill out of your distended [pc.cockHeadBiggest]. Even though you aren’t orgasming, your swollen sack has become so productive that your pre-cum has been replaced by the real deal. You heft and squeeze ");
-			if(kGAMECLASS.pc.balls > 1) kGAMECLASS.output("one ");
-			kGAMECLASS.output("ball. The tightness against the sloshing orb is enough to make your length bloat and lurch, throwing a thick rope at least three meters into the air before it splatters down across your face.");
+			kGAMECLASS.output("You masturbate on the spot, rubbing your [pc.cockBiggest] again and again while thick rivulets of [pc.cum] spill out of your distended [pc.cockHeadBiggest]. Even though you aren’t orgasming, your swollen sack has become so productive that your pre-cum has been replaced by the real deal. You heft and squeeze " + (pc.balls > 1 ? "one" : "your") + " testicle. The tightness against the sloshing orb is enough to make your length bloat and lurch, throwing a thick rope at least three meters into the air before it splatters down across your face.");
 			kGAMECLASS.output("\n\nThe sensation of ejaculation is too irresistible not to indulge. You run your hands up and down your drooling shaft to coax out another lurid deluge, letting loose a low moan when your member immediately and voluminously responds with spontaneous orgasm, pumping out a glob of [pc.cumNoun] bigger than your head. A second follows before the first hits the ground. Your fourth shot is weaker; it mostly resembles one of those fountains that shoots laminar stream of water up to cascade back over itself. The feeling of being slicked in your own steaming hot [pc.cumNoun] mid-orgasm nearly makes you pass out from raw pleasure.");
 			kGAMECLASS.output("\n\nYou lose yourself in the growing [pc.cumColor] lake, rolling your [pc.hips] with each muscle-clenching burst of ecstasy, letting your hands slide and stream wherever their lusty whims carry them. The lust hammering through every fiber of your being demands no less, and you couldn’t resist if you wanted to. It’s too damn strong. Your [pc.cockBiggest] is a pillar of pleasure that may as well be magnetically bound to your palms, because the only way you’re going stop touching yourself is if your life depends on it.");
 			kGAMECLASS.output("\n\nPanting as you finish draining your [pc.balls], you try to remember what you were up to before you fell into another drug-fueled fap session. You were exploring or something, but everything was so sexy. Just thinking about some of the aliens you’ve encountered has your flagging phallus pumping up beautifully. Damn if you think about one more juicy, pliant pussy or pillowy bosom, you’re going to have to... ahhh, fuck it. You grab hold of yourself and start jacking off again. You’ll figure it out after another cum.");

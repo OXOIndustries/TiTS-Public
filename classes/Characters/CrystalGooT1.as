@@ -150,7 +150,8 @@ package classes.Characters
 			isUniqueInFight = true;
 			btnTargetText = "GooAmbusher";
 			sexualPreferences.setRandomPrefs(2 + rand(3));
-			
+			sexualPreferences.setPref(GLOBAL.SEXPREF_CUMMY, sexualPreferences.getRandomLikesFactor());
+			if(rand(2) == 0) sexualPreferences.setPref(GLOBAL.SEXPREF_SWEAT, sexualPreferences.getRandomLikesFactor());
 			Randomise();
 			
 			this._isLoading = false;
@@ -390,7 +391,7 @@ package classes.Characters
 				
 				missed = combatMiss(this, target, -1, 0.5);
 				if (missed && target.hasWings()) output(" It connects, but your wings keep you upright anyway.");
-				else if (missed && !target.hasWings()) output(" You easily hop over it.");
+				else if ((missed && !target.hasWings()) || target.isPlanted()) output(" You easily hop over it.");
 				else
 				{
 					output(" It takes out your support and you crash to the cave floor! <b>You’ve been tripped!</b>");
@@ -408,7 +409,7 @@ package classes.Characters
 				missed = combatMiss(this, target, -1, 3);
 
 				output("The ganrael tries to stick to you, clinging at you with gooey fingers and being a nuisance.");
-				if (missed) output(" You manage to keep away from it.");
+				if (missed || target.isPlanted()) output(" You manage to keep away from it.");
 				else
 				{
 					output(" Your [pc.foot] slips on its gooey trunk and you stumble, landing right on the alien’s body! It drags you to the ground, oozing warm tongues of flesh into your intimate places. Using all your focus, you");

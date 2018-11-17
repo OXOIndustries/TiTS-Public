@@ -45,12 +45,46 @@ public function hollidayOweenAlert():void
 public function flyToPoeAConfirm():void
 {
 	clearOutput();
-	showName("POE A\nCONFIRM?");
-	
-	output("Recalling what you’ve read in the invitation letter, the parties held at this location may have a tendency to get way out of hand, <b>resulting in permanent consequences.</b>");
-	output("\n\nYou should only proceed if you are definitely sure you want to travel here.");
-	
 	clearMenu();
+	
+	if(flags["POE_A_DISABLED"] != undefined)
+	{
+		output("You probably shouldn’t go back to Poe A after your last trip to ‘The Masque’.");
+		
+		if(!isHalloweenish())
+		{
+			showName("OUT OF\nSEASON!");
+			output("\n\n(Otherwise, you might want to wait until it is in-season before deciding to travel back there again.)");
+			output("\n\n");
+			
+			addButton(0, "Next", flyMenu);
+			return;
+		}
+		
+		if(flags["POE_A_YEAR"] != undefined && flags["POE_A_YEAR"] == getRealtimeYear())
+		{
+			showName("BEEN THERE,\nDONE THAT!");
+			output("\n\nBesides, you have already participated in the festivities for this year--it would be pointless to return again!");
+			output("\n\n");
+			
+			addButton(0, "Next", flyMenu);
+			return;
+		}
+		
+		showName("REVISIT\nPOE A?");
+		
+		output("\n\n(Due note that content for Poe A is intended to be experienced as a one-time event. <b>Revisiting this location is non-canon and will be treated as if you have been there for the very first time.</b> Keep that in mind and have a Happy Halloween!)");
+		output("\n\nAre you sure you want to continue?");
+	}
+	else
+	{
+		showName("POE A\nCONFIRM?");
+		
+		output("Recalling what you’ve read in the invitation letter, the parties held at this location may have a tendency to get way out of hand, <b>resulting in permanent consequences.</b>");
+		output("\n\nYou should only proceed if you are definitely sure you want to travel here.");
+	}
+	output("\n\n");
+	
 	addButton(0, "Continue", flyTo, "Poe A", "Fly to Poe A", "I can handle the consequences!");
 	addButton(14, "Nevermind", flyMenu);
 }
@@ -91,8 +125,22 @@ public function holidayoweenPartDues():void
 	clearOutput();
 	showHoliday();
 	author("Adjatha");
+	
+	// Save current year to prevent repeat visits.
+	flags["POE_A_YEAR"] = getRealtimeYear();
+	
+	if(flags["POE_A_DISABLED"] != undefined)
+	{
+		if(flags["POE_A_VISITED"] == undefined) flags["POE_A_VISITED"] = 1;
+		flags["POE_A_VISITED"]++;
+		
+		// 9999 needs some kind of repeat encounter text for meeting Holiday!
+		
+		// return;
+	}
 	//Go ahead and shut this down to prevent having to do it at the tail of every variant.
-	flags["POE_A_DISABLED"] = 1;
+	else flags["POE_A_DISABLED"] = 1;
+	
 	output("As you wander one such backstreet, an illuminated doorway catches your attention. A small, hand-written sign on the outside reads <i>“Holiday Supplies,”</i> and there seems to be a figure moving around in the back room of the otherwise empty store. Figuring it’s worth a shot, you step inside and stride up to the counter, calling out to the owner with a hopeful request. The shadowy figure in the back freezes for a second before slowly, reluctantly coming to the desk. The owner seems to be a young woman, around 6 feet tall, with generous curves and thick, pink hair that frames her angular face like a mane. She has a large number of piercings and a series of elaborate tattoos across her milky skin. Like everyone else on the planet, she’s wearing a costume, dressed in the white and red of a nurse’s uniform, though cut to be more revealing than practical - barely more than a risque swimsuit. Confusingly, she’s also wearing a pair of russet horns and a spaded tail. Maybe she couldn’t decide between a devil and a nurse and just decided to go with both?");
 	output("\n\nShe looks at you with a cautious glare, sizing you up while chewing on her lower lip. Seemingly satisfied, she relaxes and leans across the counter, displaying the ample cleavage her costume seems designed to show off. <i>“Sup?”</i>");
 	output("\n\nA little off-put, you ask her if she’s still got any costumes for sale.");
@@ -113,56 +161,64 @@ public function holidayCostumeMenu():void
 {
 	clearMenu();
 	
-	var btnSlot:int = 0;
-	if(pc.credits >= 1000)
-	{
-		addButton(btnSlot++,"GoblinSuit",goblinCostume,undefined,"Goblin","You could dress up as some kind of fantasy goblin.\n\nPrice: 1000 credits");
-		
-		addButton(btnSlot++,"Helmet",metroidMaskParody,undefined,"Helmet","This helmet looks pretty spacy! Rad!\n\nPrice: 1000 credits");
-		
-		if(!pc.hasGenitals()) addDisabledButton(btnSlot++,"Armor","Armor","Looks like that outfit is for people with genitalia.");
-		else addButton(btnSlot++,"Armor",greenArmor,undefined,"Armor",("There’s a suit of dark green armor on the rack, with a black bodysuit underneath holding the skimpy green plates together. You’re pretty sure it’s modeled after some video game character." + (flags["MET_SYRI"] == undefined ? "" : ".. didn’t you see Syri playing as this chick once?") + " The armor’s probably not real, but it’ll make a decent enough cosplay for a night on the town!\n\nPrice: 1000 credits"));
-		
-		if(pc.isTaur()) addDisabledButton(btnSlot++,"HorseSuit","HorseSuit","It looks like the bottom half of a centaur... though you have a tauric lower half already.");
-		else if(pc.isPregnant()) addDisabledButton(btnSlot++,"HorseSuit","HorseSuit","It looks like the bottom half of a centaur. To avoid complications, you probably shouldn’t wear this while pregnant.");
-		else if(pc.hasGenitals() && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined) addButton(btnSlot++,"HorseSuit",centaurBunsBunsBuns,undefined,"Horse Suit","It looks like the bottom half of a centaur. Must be robotic.\n\nPrice: 1000 credits");
-		else addDisabledButton(btnSlot++,"HorseSuit","HorseSuit","You need to have made it to the second planet (and have genitals) for this choice.");
-
-		//Spider Suit
-		if(pc.isPregnant()) addDisabledButton(btnSlot++,"SpiderSuit","Spider Suit","A warning label mentions that this costume contains substances harmful to pregnant individuals. Damn!");
-		else addButton(btnSlot++,"SpiderSuit",spiderSuitApproach,undefined,"Spider Suit","A forgotten pile of black armor attached to a gray body suit sits crumpled in the corner of the room. You’re not really sure what it is.\n\nPrice: 1000 credits");
-
-		if(pc.isPregnant()) addDisabledButton(btnSlot++,"MetalReptile","Metal Reptile","A warning label mentions that this costume contains substances harmful to pregnant individuals. Damn!");
-		else addButton(btnSlot++,"MetalReptile",metalReptileCostume,undefined,"Metal Reptile","There’s some kind of bodysuit - covered in metallic scales - laying atop one of the boxes. Looks like it could be pretty badass...\n\nPrice: 1000 credits");
-
-		if(pc.hasVagina()) addDisabledButton(btnSlot++,"Hero Garb","Hero Garb","This clothing features a very male cut. It even includes a warning label suggesting that females and hermaphrodites should not wear it. Weird.");
-		else if(pc.isTaur()) addDisabledButton(btnSlot++,"Hero Garb","Hero Garb","Your unconventional body type would never fit into the costume.");
-		else if(!pc.hasCock()) addDisabledButton(btnSlot++,"Hero Garb","Hero Garb","This clothing features a very male cut. You’ll need a phallus to properly fill it out.");
-		else addButton(btnSlot++,"Hero Garb",heroGarbCostume,undefined,"Hero Garb","A forest green pointed hat droops over the head of a mannequin, with a matching green tunic and white tights. A pair of brown leather boots and gauntlets lay strewn across the floor.\n\nPrice: 1000 credits");
-
-		addButton(btnSlot++,"KnottyNurse",becomeANaughtyNurse,undefined,"Knotty Nurse",knottyNurseTooltip());
-		
-		if(CodexManager.entryUnlocked("Cockvines")) addButton(btnSlot++,"GreenBikini",chooseCockvineBikini,undefined,"Green Bikini","What seems to be a green-colored bikini stuffed between the other outfits.\n\nPrice: 1000 credits");
-		else addDisabledButton(btnSlot++,"Locked","Locked","You are not familiar with this yet.");
-	}
-	else
-	{
-		addDisabledButton(btnSlot++,"GoblinSuit","GoblinSuit","You can’t afford this junk. Crap.");
-		addDisabledButton(btnSlot++,"Helmet","Helmet","You can’t afford this junk. Crap.");
-		addDisabledButton(btnSlot++,"Armor","Armor","You can’t afford this junk. Crap.");
-		addDisabledButton(btnSlot++,"HorseSuit","Horse Suit","You can’t afford this junk. Crap.");
-		addDisabledButton(btnSlot++,"Spider Suit","Spider Suit","You can’t afford this junk. Crap.");
-		addDisabledButton(btnSlot++,"MetalReptile","Metal Reptile","You can’t afford this junk. Crap.");
-		addDisabledButton(btnSlot++,"Hero Garb","Hero Garb","You can’t afford this junk. Crap.");
-		addDisabledButton(btnSlot++,"KnottyNurse","Knotty Nurse","You can’t afford this junk. Crap.");
-		if(CodexManager.entryUnlocked("Cockvines")) addDisabledButton(btnSlot++,"GreenBikini","Green Bikini","You can’t afford this junk. Crap.");
-		else addDisabledButton(btnSlot++,"Locked","Locked","You are not familiar with this yet.");
-	}
-	//Poe A - Bondage Kitty
-	if(pc.isTaur()) addDisabledButton(btnSlot++,"Black Cat","Black Cat","This wouldn’t fit your body type.");
-	else addButton(btnSlot++,"Black Cat",selectTheBlackCatCostume,undefined,"Black Cat","A whole crate full of brushed steel briefcases with the picture of a black cat on them. Could be a pretty cute outfit!\n\nPrice: ???");
+	var costumes:Array = [];
 	
-	addButton(14,"Back",holidayMenu);
+	costumes.push(["GoblinSuit", goblinCostume , undefined, "Goblin", "You could dress up as some kind of fantasy goblin.\n\nPrice: 1000 credits", 1000]);
+	
+	costumes.push(["Helmet", metroidMaskParody, undefined, "Helmet", "This helmet looks pretty spacy! Rad!\n\nPrice: 1000 credits", 1000]);
+	
+	if(!pc.hasGenitals()) costumes.push(["Armor", null, undefined, "Armor", "Looks like that outfit is for people with genitalia.", 0]);
+	else costumes.push(["Armor", greenArmor, undefined, "Armor", ("There’s a suit of dark green armor on the rack, with a black bodysuit underneath holding the skimpy green plates together. You’re pretty sure it’s modeled after some video game character." + (flags["MET_SYRI"] == undefined ? "" : ".. didn’t you see Syri playing as this chick once?") + " The armor’s probably not real, but it’ll make a decent enough cosplay for a night on the town!\n\nPrice: 1000 credits"), 1000]);
+	
+	if(pc.isTaur()) costumes.push(["HorseSuit", null, undefined, "Horse Suit", "It looks like the bottom half of a centaur... though you have a tauric lower half already.", 0]);
+	else if(pc.isPregnant()) costumes.push(["HorseSuit", null, undefined, "Horse Suit", "It looks like the bottom half of a centaur. To avoid complications, you probably shouldn’t wear this while pregnant.", 0]);
+	else if(pc.hasGenitals() && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined) costumes.push(["HorseSuit", centaurBunsBunsBuns, undefined, "Horse Suit", "It looks like the bottom half of a centaur. Must be robotic.\n\nPrice: 1000 credits", 1000]);
+	else costumes.push(["HorseSuit", null, undefined, "Horse Suit", "You need to have made it to the second planet (and have genitals) for this choice.", 0]);
+	
+	if(pc.isPregnant()) costumes.push(["SpiderSuit", null, undefined, "Spider Suit", "A warning label mentions that this costume contains substances harmful to pregnant individuals. Damn!", 0]);
+	else costumes.push(["SpiderSuit", spiderSuitApproach, undefined, "Spider Suit", "A forgotten pile of black armor attached to a gray body suit sits crumpled in the corner of the room. You’re not really sure what it is.\n\nPrice: 1000 credits", 1000]);
+	
+	if(pc.isPregnant()) costumes.push(["MetalReptile", null, undefined, "Metal Reptile", "A warning label mentions that this costume contains substances harmful to pregnant individuals. Damn!", 0]);
+	else costumes.push(["MetalReptile", metalReptileCostume, undefined, "Metal Reptile", "There’s some kind of bodysuit - covered in metallic scales - laying atop one of the boxes. Looks like it could be pretty badass...\n\nPrice: 1000 credits", 1000]);
+	
+	if(pc.hasVagina()) costumes.push(["Hero Garb", null, undefined, "Hero Garb", "This clothing features a very male cut. It even includes a warning label suggesting that females and hermaphrodites should not wear it. Weird.", 0]);
+	else if(pc.isTaur()) costumes.push(["Hero Garb", null, undefined, "Hero Garb", "Your unconventional body type would never fit into the costume.", 0]);
+	else if(!pc.hasCock()) costumes.push(["Hero Garb", null, undefined, "Hero Garb", "This clothing features a very male cut. You’ll need a phallus to properly fill it out.", 0]);
+	else costumes.push(["Hero Garb", heroGarbCostume, undefined, "Hero Garb", "A forest green pointed hat droops over the head of a mannequin, with a matching green tunic and white tights. A pair of brown leather boots and gauntlets lay strewn across the floor.\n\nPrice: 1000 credits", 1000]);
+	
+	costumes.push(["KnottyNurse", becomeANaughtyNurse, undefined, "Knotty Nurse", knottyNurseTooltip(), 1000]);
+	
+	if(!CodexManager.entryUnlocked("Cockvines")) costumes.push(["Locked", null, undefined, "Locked", "You are not familiar with this yet.", 0]);
+	else costumes.push(["GreenBikini", chooseCockvineBikini, undefined, "Green Bikini", "What seems to be a green-colored bikini stuffed between the other outfits.\n\nPrice: 1000 credits", 1000]);
+	
+	if(pc.isTaur()) costumes.push(["Black Cat", null, undefined, "Black Cat", "This wouldn’t fit your body type.", 0]);
+	else costumes.push(["Black Cat", selectTheBlackCatCostume, undefined, "Black Cat", "A whole crate full of brushed steel briefcases with the picture of a black cat on them. Could be a pretty cute outfit!\n\nPrice: ???", 0]);
+	
+	var btnSlot:int = 0;
+	var i:int = 0;
+	var offset:int = 5;
+	
+	for(i = 0; i < costumes.length; i++)
+	{
+		if((btnSlot + offset) % 15 == 0) btnSlot += offset;
+		
+		if(btnSlot > 14 && (btnSlot + 1) % 15 == 0)
+		{
+			addButton(btnSlot, "Back", holidayMenu);
+			btnSlot++;
+		}
+		
+		if(costumes[i][1] == null) addDisabledButton(btnSlot, costumes[i][0], costumes[i][3], costumes[i][4]);
+		else if(costumes[i][5] > pc.credits) addDisabledButton(btnSlot, costumes[i][0], costumes[i][3], "You can’t afford this junk. Crap.");
+		else addButton(btnSlot, costumes[i][0], costumes[i][1], costumes[i][2], costumes[i][3], costumes[i][4]);
+		btnSlot++;
+	}
+	if(btnSlot > 14)
+	{
+		while((btnSlot < 59) && ((btnSlot + 1) % 15 != 0)) { btnSlot++; }
+		addButton(btnSlot, "Back", holidayMenu);
+	}
+	addButton(14, "Back", holidayMenu);
 }
 
 //Talk
@@ -207,6 +263,7 @@ public function leaveLikeABitch():void
 	output("\n\nYou twist around, noticing the long, spaded tail wriggling from the base of your spine, twitching with agitation to mirror your mental state. Rushing to a mirror, you see that, sure enough, you’ve acquired some new additions. You’ve got a long, shaggy mane of pink hair that frames two russet horns on either side of your skull, and a tail to match. Just like Holiday had.");
 	output("\n\nYou think back on the strange, strangled, chanting cry that the masked creatures had been yelling. Now that you think of it, they may have been saying <i>“GPD! Freeze!”</i> Grabbing the mask and tearing it open, you find a small chip buried in the velvet lining with itty, bitty, tiny prongs barely poking through on the inside.");
 	output("\n\nNo wonder they were chasing you: <b>thanks to her sabotaged mask, you look like Holiday!</b>");
+	pc.taint(5);
 	processTime(44);
 	
 	var tailCnt:Number = pc.tailCount;
@@ -369,6 +426,7 @@ public function gobboEpilogue():void
 	}
 	if(pc.hipRatingRaw < 20) pc.hipRatingRaw = 20;
 	else pc.hipRatingRaw += 2;
+	pc.taint(10);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -574,6 +632,7 @@ public function bountyHuntEpilogue():void
 	if(pc.femininity < 70) pc.femininity = 70;
 	if(pc.lipMod < 5 && pc.femininity >= 90) pc.lipMod++;
 	if(pc.lipMod < 5) pc.lipMod++;
+	pc.taint(10);
 	processTime(560);
 	halloweenShipMove();
 	clearMenu();
@@ -613,11 +672,12 @@ Gain Brute Speech
 
 public function amazonTFShitApplied():void
 {
+	pc.taint(10);
 	pc.physique(5);
 	pc.reflexes(-3);
 	pc.aim(-2);
 	if(pc.tallness+12 <= 84) pc.tallness = 84;
-	else pc.tallness += 12;
+	else if(pc.tallness+12 <= 132) pc.tallness += 12;
 	pc.cumQualityRaw += .2;
 	pc.fertilityRaw += .2;
 	if(pc.breastRows[0].breastRatingRaw < 17 && pc.breastRows[0].breastRatingRaw + 5 > 17) pc.breastRows[0].breastRatingRaw = 17;
@@ -762,7 +822,7 @@ public function barbariannaCosplay():void
 
 	output("\n\n<i>“Where you going, babe?”</i> you grin, licking your lips and grabbing the ausar girl in your other arm. She yelps, tail flicking against your [pc.leg]... but she doesn’t exactly put up a fight, at least not against your overpowering strength. Both of them wriggle a little, until you’ve got each of their heads pressed against a big, heavy tit. <i>“Your boyfriend and I were just getting to know each other. You should join us.”</i>");
 
-	output("\n\nShe blinks, eyes wide. The crowd of revelers gets a little thicker around you, murmuring and watching with interest - and a few tented trousers - as you squeeze the mis-matched couple tight enough to make them squirm. You take the tiny pressure of the kaithrit’s boy-cock pressing into your shin as your answer from him, but the ausar girl... well, she’s got a lot less to show for herself, you take the initiative, grabbing her ass through the seat of her skin-tight bellbottoms, squeezing so hard she jumps in your grasp. Her tail starts swishing hard, but she forcefully looks away from you, grabbing her boy-toy’s hand and trying to pull him back.");
+	output("\n\nShe blinks, eyes wide. The crowd of revelers gets a little thicker around you, murmuring and watching with interest - and a few tented trousers - as you squeeze the mis-matched couple tight enough to make them squirm. You take the tiny pressure of the kaithrit’s boy-cock pressing into your shin as your answer from him, but the ausar girl... well, she’s got a lot less to show for herself, you take the initiative, grabbing her ass through the seat of her skin-tight bell-bottoms, squeezing so hard she jumps in your grasp. Her tail starts swishing hard, but she forcefully looks away from you, grabbing her boy-toy’s hand and trying to pull him back.");
 
 	output("\n\n<i>“Stop being a spoil-sport, babe,”</i> you growl, shifting your grip on her ass to grab her crotch, feeling right through her pants into her damp little mound. Oh, she’s <b>wet</b> all right. Hot damn, she must be smuggling a swamp in her pants. She squeals, pulling hard at her boyfriend’s hand until they both manage to pull out of your grasp; you let them go with a laugh.");
 
@@ -1293,6 +1353,7 @@ public function taurBarAdventures(config:int = 1):void
 
 public function taurTFs(arg:int = 1):void
 {
+	pc.taint(10);
 	//Strip mimbranes.
 	removeMimbranes();
 	//1 - dude, 2 chick, 3 herm
@@ -1398,7 +1459,7 @@ public function ladyTaursFuckDane():void
 {
 	clearOutput();
 	showName("DANE\n& HOLIDAY");
-	showBust("DANE_NUDE","HOLIDAY_HORSE");
+	showBust(daneBustDisplay(true),"HOLIDAY_HORSE");
 	output("That sounds like consent to you. You wiggle your rump, smearing long lines of glistering horse-lube across the loincloth dividing you and the four-armed ausar, marinating his wriggling phallus in slippery pheromones. A big boy like him is going to need lots of lube to help carry all his sperm into your womb. Your achingly empty crevasse clenches, hollow and needy. Grinding harder against him, you pin Dane between a rock and a wet place.");
 	output("\n\nFour powerful hands press back against your straining haunches, shifting your bulk enough to give the musclebound merc some breathing room - breathing room he’s all too happy to spend yanking the silk curtain from between your bodies. The slimy garment lands on a cheering human’s head, momentarily muffling her jubilation, but you pay it no mind. Without the condom-tight fabric stretched between Dane’s cock and your gushing nethers, his phallus is free to plunge into your waiting gates, spearing through the entrance with the force of a striking snake.");
 	//CuntChange
@@ -1452,7 +1513,7 @@ public function femTaurCostumeEpilogue():void
 	output("You wake up with a pounding headache back on your ship, and out in space. You don’t remember anything about taking off - letting Holiday ride your back and slap your ass while Dane has you up against the wall? Sure, but nothing about the trip back to your ship. Heck, you’re even pretty sure a white-furred ausar lass had a scoreboard to keep track of how many creampies you got. You came harder than ever, but you’re feeling pretty sore now.");
 	output("\n\nIt isn’t until you check your ship’s logs that you stumble upon some clarity. There’s a new message, one you didn’t put in there. You hit play, bringing it up on the main screen. A cute, white-furred kaithrit pops up on screen, waving nervously.");
 	output("\n\n<i>“Hey, I don’t know what you were on about when you said that the whole centaur thing was just a costume. I mean... damn, you must have been slipped something at the bar. It’s pretty obvious you got some high-quality mods to produce that piece of work.”</i> He chuckles and looks behind himself at your slumbering form. <i>“You might not remember me from the party. It was pretty fun - you can fuck like a goddamn freighter, by the way - but shit got real there at the end.”</i>");
-	output("\n\nThe kaithrit rubs his distended crotch and sighs. <i>“You were super out of it by the time the cops busted up the party. You should’ve seen the gear those peacekeepers were fitted with. They looked more like soldiers than officers of the law. From what I heard while me and that pink-haired girl were dragging you out the back, they were looking for some thief that made off with a bunch of symbiosis tech. Crazy shit, right?”</i> He tucks his hair behind a flicking cat ear and smiles.");
+	output("\n\nThe kaithrit rubs his distended crotch and sighs. <i>“You were super out of it by the time the cops busted up the party. You should’ve seen the gear those Peacekeepers were fitted with. They looked more like soldiers than officers of the law. From what I heard while me and that pink-haired girl were dragging you out the back, they were looking for some thief that made off with a bunch of symbiosis tech. Crazy shit, right?”</i> He tucks his hair behind a flicking cat ear and smiles.");
 	output("\n\n<i>“Lucky for you, I work in customs. Between me and your friend, Christmas or Halloday or whatever she called herself, we got you back to your ship, and I’ll be sending you off world in a minute. On the off chance that... well... I can’t have my baby born in a jail cell, can I?”</i> The kaithrit nervously fidgets. <i>“Oh, and your friend says she stashed your stuff in the compartments under your bunk. Uhmm... goodbye, in case I don’t see you again, you sexy centaur, you.”</i>");
 	output("\n\nBlushing one last time, the cat-boy cuts off the recording, leaving you alone with your thoughts.");
 	output("\n\nWait! <b>You’re still wearing the costume...</b>");
@@ -1465,7 +1526,7 @@ public function femTaurCostumeEpilogue():void
 public function finalLadyTaurCostumeEpilogue():void
 {
 	clearOutput();
-	output("No matter how hard you search, you can’t find a single catch or release. Worse still, attempts to peel away the border between your top and bottom half hurts. You can’t even feel your old lower half anymore - just the four, hoof-capped limbs below. It’s as if that equine shape has become a part of you for good. Is that what the peacekeepers meant by symbiosis tech? Are you a centaur forever?");
+	output("No matter how hard you search, you can’t find a single catch or release. Worse still, attempts to peel away the border between your top and bottom half hurts. You can’t even feel your old lower half anymore - just the four, hoof-capped limbs below. It’s as if that equine shape has become a part of you for good. Is that what the Peacekeepers meant by symbiosis tech? Are you a centaur forever?");
 	output("\n\nWell, at least you’ll be well-equipped for riding now. You doubt any sapient this side of the spiral arm would be too big for you, and better still, ");
 	if(flags["RESCUE KIRO FROM BLUEBALLS"] == 1) output("your cunt can probably keep up with Kiro now. Just the thought of taking her bitch-breaker of a dick has your pussy on a slow boil.");
 	else output("your cunt can squeeze down even tighter on littler dicks. Every little drop counts when you’re questing to fill up the nursery you inherited.");
@@ -1590,7 +1651,7 @@ public function mailTaurCostumeEpilogue():void
 	output(" You came harder than ever, but you’re feeling pretty sore now.");
 	output("\n\nIt isn’t until you check your ship’s logs that you stumble upon some clarity. There’s a new message, one you didn’t put in there. You hit play, bringing it up on the main screen. A cute, white-furred kaithrit pops up on screen, waving nervously.");
 	output("\n\n<i>“Hey, I don’t know what you were on about when you said that the whole centaur thing was just a costume. I mean... damn, you must have been slipped something at the bar. It’s pretty obvious you got some high-quality mods to produce that piece of work.”</i> She chuckles and looks behind herself at your slumbering form. <i>“You might not remember me from the party. It was pretty fun - you can fuck like a goddamn freighter, by the way - but shit got real there at the end.”</i>");
-	output("\n\nThe kaithrit rubs her belly and sighs. <i>“You were super out of it by the time the cops busted up the party. You should’ve seen the gear those peacekeepers were fitted with. They looked more like soldiers than officers of the law. From what I heard while me and that pink-haired girl were dragging you out the back, they were looking for some thief that made off with a bunch of symbiosis tech. Crazy shit, right?”</i> She tucks her hair behind a flicking cat ear and smiles.");
+	output("\n\nThe kaithrit rubs her belly and sighs. <i>“You were super out of it by the time the cops busted up the party. You should’ve seen the gear those Peacekeepers were fitted with. They looked more like soldiers than officers of the law. From what I heard while me and that pink-haired girl were dragging you out the back, they were looking for some thief that made off with a bunch of symbiosis tech. Crazy shit, right?”</i> She tucks her hair behind a flicking cat ear and smiles.");
 	output("\n\n<i>“Lucky for you, I work in customs. Between me and your friend, Christmas or Halloday or whatever she called herself, we got you back to your ship, and I’ll be sending you off world in a minute. On the off chance that... well... I can’t have my baby’s daddy rotting in a jail cell, can I?”</i> The kaithrit nervously rubs her belly. <i>“Oh, and your friend says she stashed your stuff in the compartments under your bunk. Uhmm... goodbye, in case I don’t see you again, you sexy centaur, you.”</i>");
 	output("\n\nBlushing one last time, the cat-girl cuts off the recording, leaving you alone with your thoughts.");
 	output("\n\nWait! <b>You’re still wearing the costume...</b>");
@@ -1602,7 +1663,7 @@ public function mailTaurCostumeEpilogue():void
 public function maleTaurCostumeFinale():void
 {
 	clearOutput();
-	output("No matter how hard you search, you can’t find a single catch or release. Worse still, attempts to peel away the border between your top and bottom half hurts. You can’t even feel your old lower half anymore - just the four, hoof-capped limbs below. It’s as if that equine shape has become a part of you for good. Is that what the peacekeepers meant by symbiosis tech? Are you a centaur forever?");
+	output("No matter how hard you search, you can’t find a single catch or release. Worse still, attempts to peel away the border between your top and bottom half hurts. You can’t even feel your old lower half anymore - just the four, hoof-capped limbs below. It’s as if that equine shape has become a part of you for good. Is that what the Peacekeepers meant by symbiosis tech? Are you a centaur forever?");
 	output("\n\nWell, at least you’ll be well-equipped to mate with some mares");
 	if(flags["MET_ELLIE"] != undefined) output(", like Ellie. She’s sure to be down for a quick filling..");
 	output(". ");
@@ -1671,7 +1732,7 @@ public function maleTaurSubbyEpilogue():void
 	output(" You came harder than ever, but you’re feeling pretty sore now.");
 	output("\n\nIt isn’t until you check your ship’s logs that you stumble upon some clarity. There’s a new message, one you didn’t put in there. You hit play, bringing it up on the main screen. A cute, white-furred kaithrit pops up on screen, waving nervously.");
 	output("\n\n<i>“Hey, I don’t know what you were on about when you said that the whole centaur thing was just a costume. I mean... damn, you must have been slipped something at the bar. It’s pretty obvious you got some high-quality mods to produce that piece of work.”</i> She chuckles and looks behind herself at your slumbering form. <i>“You might not remember me from the party. It was pretty fun - you can cum like a void-cursed geyser with the right encouragement, right show-pony?”</i>");
-	output("\n\nThe kaithrit rubs her belly and burps. <i>“You were super out of it by the time the cops busted up the party. You should’ve seen the gear those peacekeepers were fitted with. They looked more like soldiers than officers of the law. From what I heard while me and that pink-haired girl were dragging you out the back, they were looking for some thief that made off with a bunch of symbiosis tech. Crazy shit, right?”</i> She tucks her hair behind a flicking cat ear and smiles.");
+	output("\n\nThe kaithrit rubs her belly and burps. <i>“You were super out of it by the time the cops busted up the party. You should’ve seen the gear those Peacekeepers were fitted with. They looked more like soldiers than officers of the law. From what I heard while me and that pink-haired girl were dragging you out the back, they were looking for some thief that made off with a bunch of symbiosis tech. Crazy shit, right?”</i> She tucks her hair behind a flicking cat ear and smiles.");
 	output("\n\n<i>“Lucky for you, I work in customs. Between me and your friend, Christmas or Halloday or whatever she called herself, we got you back to your ship, and I’ll be sending you off world in a minute. You seemed too nice, and well... submissive to do anything wrong. Don’t let the other girls be too mean to you out there, okay?”</i> The kaithrit nervously smiles. <i>“Oh, and your friend says she stashed your stuff in the compartments under your bunk. Uhmm... goodbye, in case I don’t see you again, you sexy centaur, you.”</i>");
 	output("\n\nBlushing one last time, the cat-girl cuts off the recording, leaving you alone with your thoughts.");
 	output("\n\nWait! <b>You’re still wearing the costume...</b>");
@@ -1683,7 +1744,7 @@ public function maleTaurSubbyEpilogue():void
 public function maleTaurSubCostumeFinale():void
 {
 	clearOutput();
-	output("No matter how hard you search, you can’t find a single catch or release. Worse still, attempts to peel away the border between your top and bottom half hurts. You can’t even feel your old lower half anymore - just the four, hoof-capped limbs below. It’s as if that equine shape has become a part of you for good. Is that what the peacekeepers meant by symbiosis tech? Are you a centaur forever?");
+	output("No matter how hard you search, you can’t find a single catch or release. Worse still, attempts to peel away the border between your top and bottom half hurts. You can’t even feel your old lower half anymore - just the four, hoof-capped limbs below. It’s as if that equine shape has become a part of you for good. Is that what the Peacekeepers meant by symbiosis tech? Are you a centaur forever?");
 	output("\n\nWell, at least you’ll be well-equipped to mate with some mares, if they’ll let you near their pussies. Maybe they’ll let you flood a few milkers to prove your worth...");
 	output("Something seems a little off about that thought, but the mental image of a half-dozen girls crouching beneath you, giggling while they handle your jizz-swollen orbs has your cock threatening to rear its flaring head all over again, and who are you gonna find to help you get off in the cold void of space?");
 	output("\n\n<b>Looks like you’re a horny");
@@ -1781,7 +1842,7 @@ public function spiderCostumePart2():void
 	output("Before she can even react you shoot a stream of web to swathe her legs in your silk. With her long legs now indisposed, she falls to the ground, barely being able to catch herself with her hands. She pushes her luxurious hair out of her face to reveal a look of complete disbelief. Any attempt to push back against the ground is met with another shot of web until her arms are also cocooned. Holiday struggles against the bonds, but it’s a half-hearted attempt at best. You walk toward her at a brutally slow pace, each step emphasized by the click of your natural high-heels. Soon you’re looming over her, watching her squirming cease as you lean down. In a surprisingly soft gesture, you stroke the smooth skin of her cheeks. Gradually your hands trail down, all the way to her sizable breasts. Both are moving up and down more rapidly than normal, Holiday’s breathing amped up a notch, whether it’s from running to the alley or the sudden position she found herself in.");
 
 	output("\n\nOnly needing a flick of a finger to undo her top pillowy cushions burst from their confines. The milky skin surrounding bright pink aerolae are just begging to be licked. However you’re not the one who’s going to do the licking. You stride back to your Saeri, who is watching wide eyed at the scene before her. With relative ease, you cut her down from the wall and embrace her again. She gladly accepts it, almost purring as you stroke her head. Not above a whisper, you explain to her what you want to do. When you let go of her she tentatively walks over to the tied up Holiday and hunkers down so you can see her cute little behind. Following your orders she begins lapping at the demon-nurse’s breasts, sliding her tongue down and around her nipples. Holiday groans at the treatment, sticking up her chest so the Saeri has better access. Your pet expertly swirls her tongue around her tender nubs, giving them each a tiny nip. By this point Holiday is visibly panting, the tent in her skirt now almost vertical.");
-	output("\n\n<i>“Yo-you know, I thought, I... I-d be tied up by peacekeepers, th-though this...this is loads better,”</i> she stammers.");
+	output("\n\n<i>“Yo-you know, I thought, I... I-d be tied up by Peacekeepers, th-though this...this is loads better,”</i> she stammers.");
 
 	output("\n\nYou grin at her state, relishing at the fact that she is barely able to speak. In a low whisper you give another order to your pet, urging her to pick up the pace. She goes through with the order with flying colors. The Saeri plants a kiss on Holiday’s shapely lips, gradually deepening it until you can basically hear their greedy sucking and the exchange of spit. When she stops, she wipes a stray strand of saliva from her lips and begins to remove Holiday’s skirt. The flimsy piece of cloth is quickly torn away, revealing a throbbing horse-cock. Veins bulge from within its pink exterior, and its large size makes you wonder how she managed to hide it. You gently move your pet aside, giving her a quick pat on the head for doing such a good job. Aligning your crotch to her dick, you show her a gleaming new spider cunt, hidden in an encasing of chitin until now.");
 	output("\n\nThrough gritted teeth Holiday lets out a groan. <i>“Just fuck me already!”</i>");
@@ -1811,18 +1872,28 @@ public function spiderCostumeOutro():void
 		pc.eyeColor = "red";
 	}
 	output(".");
-	if(!pc.hasChitin() || pc.scaleColor != "gray")
+	if(!pc.hasChitin() || pc.skinTone != "gray" || pc.scaleColor != "black")
 	{
-		output(" It looks like your entire body is bathed in a pool of liquid gray ink. Even,");
+		output(" It looks like");
+		if(pc.skinTone != "gray")
+		{
+			output(" your entire body is bathed in a pool of liquid gray ink");
+			if(!pc.hasChitin()) output(" as glossy black chitin plates grow along its surface");
+			else if(pc.scaleColor != "black") output(" as your chitin pigment darkens to a glossy black");
+		}
+		else if(!pc.hasChitin()) output(" your body is affected as glossy black chitin plates grow along the surface of your gray skin");
+		else output(" the pigment of your chitin gradually darkens until it is a glossy black");
+		output(". Even,");
 		pc.skinType = GLOBAL.SKIN_TYPE_CHITIN;
 		pc.clearSkinFlags();
 		pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
-		pc.scaleColor = "gray";
+		pc.skinTone = "gray";
+		pc.scaleColor = "black";
 	}
 	else output(" Your chitin seems unchanged by the costume. No surprise, given that it was a perfect match. Still,");
 	if(pc.hairColor != "black")
 	{
-		output(" your hair is now an elegant shiny black, cascading down your back and ending right at your spider-like abdomen.");
+		output(" your hair is now an elegant shiny black, cascading down your back and ending right at your spider-like abdomen. In addition,");
 		pc.hairColor = "black";
 		pc.hairLength = pc.tallness/2;
 		pc.hairType = GLOBAL.HAIR_TYPE_REGULAR;
@@ -1830,7 +1901,7 @@ public function spiderCostumeOutro():void
 	else if(pc.hairLength < pc.tallness/2)
 	{
 		pc.hairLength = pc.tallness/2;
-		output(" your hair has lengthened, cascading down your back and ending right at your spider-like abdomen.");
+		output(" your hair has lengthened, cascading down your back and ending right at your spider-like abdomen. In addition,");
 	}
 	if(pc.tailType != GLOBAL.TYPE_ARACHNID && pc.tailCount != 1)
 	{
@@ -1874,7 +1945,7 @@ public function spiderCostumeOutro():void
 	{
 		output("\n\nMore interesting still is the <b>spider-like vagina that you’ve gained!</b>");
 	}
-	else if(pc.hasVagina(GLOBAL.TYPE_ARACHNID))
+	else if(pc.hasVaginaType(GLOBAL.TYPE_ARACHNID))
 	{
 		output("\n\nAt least your spidery vagina is unchanged. You suppose that’s one of the perks of matching your costume to your pre-existing mods.");
 	}
@@ -1885,7 +1956,7 @@ public function spiderCostumeOutro():void
 
 	output("\n\nLuckily your codex begins blinking, signaling you have an unread video message. When you open it up you see a familiar looking Saeri regarding you fondly.");
 
-	output("\n\n<i>“Hi! I had a great time at the club...you’re a perfect dom. Not sure if you remember, but the threesome we had with the demon chick was amazing! It got pretty crazy when those peacekeepers stormed into the alleyway and knocked you out. Somehow the demon lady managed to get us to safety, looks like she’s some sort of illegal mod dealer or something. Though given how amazing she is in bed I think I can look past that.”</i> She giggles cutely at that before continuing. <i>“Anyways I hope I’ll see you again someday... goodbye Mistress.”</i>");
+	output("\n\n<i>“Hi! I had a great time at the club...you’re a perfect dom. Not sure if you remember, but the threesome we had with the demon chick was amazing! It got pretty crazy when those Peacekeepers stormed into the alleyway and knocked you out. Somehow the demon lady managed to get us to safety, looks like she’s some sort of illegal mod dealer or something. Though given how amazing she is in bed I think I can look past that.”</i> She giggles cutely at that before continuing. <i>“Anyways I hope I’ll see you again someday... goodbye Mistress.”</i>");
 
 	output("\n\nOnce the video ends you’re left alone with your thoughts. From what you gathered Holiday’s ‘costumes’ are actually illegal mods. You should be mad, but honestly your new spider body feels like something you should have been born with. Maybe you should find Holiday and thank her for the new body. You’re sure she’d appreciate being bound up and subjected to your sexy ministrations again.");
 	if(pc.femininity < 75) pc.femininity = 75;
@@ -1932,7 +2003,7 @@ public function spiderCostumeOutro():void
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 	pp.createPerk("Fixed CumQ",2500,0,0,0);
 	pc.loadInCunt(pp, 0);
-	
+	pc.taint(10);
 	processTime(8*40);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -2028,6 +2099,7 @@ public function saurmorianTimes2():void
 		pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
 		pc.scaleColor = "silver";
 		pc.earType = GLOBAL.TYPE_LIZAN;
+		pc.eyeType = GLOBAL.TYPE_NAGA;
 		pc.tongueType = GLOBAL.TYPE_CANINE;
 		pc.tongueFlags = [GLOBAL.FLAG_LONG,GLOBAL.FLAG_SQUISHY];
 		pc.armType = GLOBAL.TYPE_LEITHAN;
@@ -2082,6 +2154,7 @@ public function saurmorianTimes2():void
 		pc.willpower(3);
 		pc.physique(-4);
 	}
+	pc.taint(10);
 	output("The unholy nurse coos as she leans in to examine you more closely, your own gaze following hers as she seems to take interest in the black material of the bodysuit. You gasp as, in the more scale-free bits of your chest and [pc.belly], it rapidly shifts to [pc.skinColor]. The rippling, tidal fashion in which it changes is a little unsettling - the ill-fitting giggle it draws out of Holiday even more so.");
 	output("\n\n<i>“Oh please, it’s just the chameleon weave kicking in.”</i> There’s a pause as the pink haired demoness’ eyes travel downward, and her lips pucker in a small, bemused smirk. <i>“Well well, isn’t that something.”</i>");
 	output("\n\nHuh? What is she looking at now?");
@@ -2601,7 +2674,7 @@ public function shortSwordTakingTimeNext():void
 
 	output("\n\nFollowing directions, you gently stand and pull your tights off, exposing your stiff dick and jiggling ass to her. ");
 	if(pc.biggestCockLength() > 3) output("It really did shrink! ");
-	output("She stands next to you, grabbing your ass with one hand while gripping your package with the other. The hand on your ass gropes and and squeezes, almost like a shopper checks a fruit for quality. She slaps your ass and watches the jiggles ripple through your flesh. Content with the result, she kneels down now to examine your cock. Her hand pulls back your foreskin before letting it go. Under her intense stare, it starts twitching releasing a drop of pre. Looking happy, she gathers it on one of her fingers. Raising her hand up to her mouth, she tastes her finger in an exaggerated way. The way she sucks on her finger and moans makes your twitch again, releasing even more pre-cum. She smiles and giggles, before getting off her knees, and gathers the pre with two fingers this time. She holds them up to your lips and utters a single word: <i>“Suck”</i>.");
+	output("She stands next to you, grabbing your ass with one hand while gripping your package with the other. The hand on your ass gropes and squeezes, almost like a shopper checks a fruit for quality. She slaps your ass and watches the jiggles ripple through your flesh. Content with the result, she kneels down now to examine your cock. Her hand pulls back your foreskin before letting it go. Under her intense stare, it starts twitching releasing a drop of pre. Looking happy, she gathers it on one of her fingers. Raising her hand up to her mouth, she tastes her finger in an exaggerated way. The way she sucks on her finger and moans makes your twitch again, releasing even more pre-cum. She smiles and giggles, before getting off her knees, and gathers the pre with two fingers this time. She holds them up to your lips and utters a single word: <i>“Suck”</i>.");
 
 	output("\n\nYou take her fingers in your mouth, eager to not disappoint. Your taste fills your mouth and you swirl your tongue over her fingers, trying your best to clean them. The depraved act heats you up inside, which in turn makes a few surprisingly high pitched moans come from your throat. She retracts her fingers from your mouth, leaving a trail of saliva and pre connecting them to your lolling tongue.");
 
@@ -2693,6 +2766,7 @@ public function applyLongswordChanges():void
 	pc.eyeColor = "blue";
 	//If Height is not 5’7" (67 inches)
 	pc.tallness = 67;
+	pc.taint(10);
 }
 
 //Path B (shortsword)
@@ -2738,6 +2812,7 @@ public function applyShortswordChanges():void
 	//If lip rating is below 4
 	//Fen note: trying to keep this from going overboard :3
 	if(pc.lipMod < 2) pc.lipMod = 2;
+	pc.taint(10);
 }
 
 //Poe A - Bondage Kitty
@@ -3041,6 +3116,7 @@ public function extraCatTFForCatCostume():void
 	}
 	//Increase Exhibitionism by 25%
 	for(var i:int = 0; i < 15; i++) { pc.exhibitionism(2); }
+	pc.taint(10);
 }
 
 //Req's genitals
@@ -3377,7 +3453,7 @@ public function knottyNurseHellhound():void
 	showBust("HELLHOUND");
 	showName("\nHELLHOUND!");
 	author("Fenoxo Fenbutt");
-	output("You step closer to the hellhound, your drooling dog-dick waggling in anticipation while you anonymously report the rodenian’s location to the local peacekeepers. That handled, you raise your voice. <i>“Over here!”</i>");
+	output("You step closer to the hellhound, your drooling dog-dick waggling in anticipation while you anonymously report the rodenian’s location to the local Peacekeepers. That handled, you raise your voice. <i>“Over here!”</i>");
 	output("\n\nThe dark-furred ausar growls, but at the sight of your exposed, bright-red tool, her expression softens - slightly. <i>“You expect me to fuck that toothpick?”</i> Bodies go flying as she thrusts her way through the crowd, muscled abs and oiled-up tits glistening. <i>“You couldn’t satisfy a virgin kaithrit, let alone a real woman.”</i> She grabs her crotch, scooping up a handful of the fragrant, gooey girl-cum. A sudden slap impacts your cheek, staggering you. Pain and pussy-musk dizzy your senses as the horny beast bears down on you, pinning you to the hard asphalt.");
 	output("\n\n<i>“Oof!”</i> you cry, immense thighs on either side of your [pc.chest], that sodden pussy heavier than a bag of bricks. Your dick threads through her muscled, bubbly butt-cheeks, savagely squeezed by the muscles’ errant flexings.");
 	output("\n\n<i>“That’s what I thought. You’re about to bust a nut all over my back.”</i> Her tail swishes back and forth across your taut, bound balls. <i>“How are you supposed to keep it up long enough to satisfy me.”</i> She bends low, almost double, to look you in the eye. <i>“How the fuck are you going to take care of </i>me<i>, little nurse?”</i>");
@@ -3562,7 +3638,7 @@ public function knuttyNurseRodenianIII(choice:String):void
 		output("\n\n<i>“And all the love of cum and cocks that you’ve felt tonight - it’ll come out for that special person.”</i> You pull your thumb out and stuff it in her mouth, making her savor the taste of her own pussy. <i>“You’ll be a whore for them, a slut for them, or a pregnancy obsessed broodmother - whatever they want. You’ll cum from the taste of their cum. You’ll be intoxicated by their scent. And your pussies will soak themselves at the possibility of sex.”</i>");
 		output("\n\nNodding stupidly, Toy twists her aural passage about your fat, jizz-drooling cock, distracting the both of you with hellish pleasure.");
 		output("\n\n<i>“Because you’re Toy.”</i>");
-		output("\n\n<i>“’Cause I’m... Toy.”</i>");
+		output("\n\n<i>“‘Cause I’m... Toy.”</i>");
 		output("\n\nYou resume fingering her, shaking with how good it feels to dump ounce after ounce of canine cum into her so-fuckable ears. <i>“And because you’re a toy, you can turn that off. You’re only a slut when the situation calls for it. When the dick in your face belongs to someone you like and trust. If some asshole in a bar whips out his cock, you won’t even notice it. To you, his crotch will be a barren, humiliating wasteland.”</i> You rock your hips, feeling her lips strain about your bulb for a moment before you relent. <i>“Of course, if you love and trust someone... what will you be?”</i>");
 		output("\n\n<i>“A fucktoy.”</i> Toy sounds confident now.");
 		output("\n\nYou pet her affectionately, letting the last few ribbons of spunk drain into her fertile passage. <i>“Exactly. And in public or with someone else, what will you be?”</i>");
@@ -3686,6 +3762,7 @@ public function applyKnottyNurseTF():void
 		pc.addFaceFlag(GLOBAL.FLAG_FURRED);
 	}
 	pc.tongueType = GLOBAL.TYPE_CANINE;
+	pc.taint(10);
 }
 
 
@@ -3810,6 +3887,7 @@ public function cockvineBikiniNext():void
 	pc.tailGenital = GLOBAL.TAIL_GENITAL_NONE;
 	pc.tailGenitalArg = GLOBAL.TYPE_COCKVINE;
 	pc.tailGenitalColor = "green";
+	pc.taint(10);
 	if(rand(5) == 0) pc.addTailFlag(GLOBAL.FLAG_RIBBED);
 	
 	clearMenu();

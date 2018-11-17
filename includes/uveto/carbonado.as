@@ -212,7 +212,7 @@ public function uvetoCarbonadoFirstTime():void
 	if (pc.humanScore() <= 2) output(" You don’t look human, but there must be some in your genes.");
 	output("”</i> she says, attempting to push the determined saleswoman away from the counter. Her efforts are impeded by the latter’s batting arms.");
 
-	output("\n\n<i>“It’s okay Eemee, it’s really not a really bad one this time. I can still run the ship. Now, what can I help for you today, "+pc.mf("sir", "ma’am") +",”</i> she asks, much to the ausar hybrid’s chagrin. The expression on her face looks anything but levelheaded, but you decide to humor her.");
+	output("\n\n<i>“It’s okay Eemee, it’s really not a really bad one this time. I can still run the shop. Now, what can I help for you today, "+pc.mf("sir", "ma’am") +",”</i> she asks, much to the ausar hybrid’s chagrin. The expression on her face looks anything but levelheaded, but you decide to humor her.");
 
 	clearMenu();
 	addButton(0, "Talk", uvetoCarbonadoIntroTalk);
@@ -725,7 +725,7 @@ public function cfsGoHangoutTimeII():void
 
 	output("\n\n<i>“You’ve made a tactical error, Ironwall,”</i> Flare replies, his tone sharp and serious, <i>“assuming that a hero like me is limited to one burst of energy. Double fist armor penetrating technique! Ivory thrust!”</i>");
 	
-	output("\n\nHe links his hands together as he shouts, a pearl of radiant energy forming between the gauntlets flared tips. Ironwall hisses, diverting the attack orb’s energy into a shield. A tornado of energy picks up around the superhero as he unleashes his attack, firing the tiny orb of force into the shield with enough strength to crack it on impact. Ironwall struggles, releasing Taurina and the shaft and returning the excess power to his main shield.");
+	output("\n\nHe links his hands together as he shouts, a pearl of radiant energy forming between the gauntlets flared tips. Ironwall hisses, diverting the attack orb’s energy into a shield. A tornado of energy picks up around the superhero as he unleashes his attack, firing the tiny orb of force into the shield with enough strength to crack it on impact. Ironwall struggles, releasing Taurina and the Shaft and returning the excess power to his main shield.");
 	
 	output("\n\n<i>“Justice! Flow and extinguish evil’s flame!”</i> The bright flash increases in intensity until nothing can be seen save an expanse of pure white. When the light dies down, Ironwall lies unconscious on the floor. Flare huffs and falls to his knees, breathing heavily. His suit is torn up the right arm, with trails of blood leaking onto the floor.");
 	

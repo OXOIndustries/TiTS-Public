@@ -264,7 +264,11 @@ public function drLessauOral():void
 	showLessau();
 	
 	output("You ask Lessau if he wouldn’t mind putting that long, flexible tongue of his to work, in response to which the chimera pats his desk invitingly. You take the offer, hauling yourself up ");
-	if (pc.legCount > 1) output("and swinging your legs around to sit in front of him.");
+	if (pc.legCount > 1)
+	{
+		if (pc.legCount > 3 || !pc.hasLegs()) output("and position your lower body to sit in front of him.");
+		else output("and swinging your legs around to sit in front of him.");
+	}
 	else output("after slithering around so your coils drape across his.");
 	output(" Two hands take hold of your hips, while two more set to relieving you of your gear so that you’re left completely nude.");
 	
@@ -375,7 +379,7 @@ public function drLessauVag():void
 	output("\n\n<i>“Thaaaat’s it, you beast,”</i> you purr, <i>“now <b>fuck</b> me!”</i>");
 	output("\n\nLessau’s perfectly happy to obey");
 	if (pc.milkFullness >= 30 && pc.biggestTitSize() > 3) output(" as he lets go of your tit to growl");
-	output(", drawing his hips back until his medial ring pops out and then ramming all the way back in. His barbs are perfectly placed along his cock so that every single inch of your cunt gets raked by them. You howl in ecstasy at the sensation, answered with a snarl from Lessau. The next thrust comes quickly as he starts fucking you fast and hard, ravaging you with his monster dick and gripping you with new roughness that stops just shy of his claws digging in. The intelligence in his eyes is gone, clouded over with a thick fog of animal lust, all of it focused on rutting your pussy until you won’t be able to " + (pc.legCount > 1 ? "walk" : "slither") + " straight for days after this. You laugh, relishing the way you’ve turned a brilliant scientist into a savage monster through the power of your pussy.");
+	output(", drawing his hips back until his medial ring pops out and then ramming all the way back in. His barbs are perfectly placed along his cock so that every single inch of your cunt gets raked by them. You howl in ecstasy at the sensation, answered with a snarl from Lessau. The next thrust comes quickly as he starts fucking you fast and hard, ravaging you with his monster dick and gripping you with new roughness that stops just shy of his claws digging in. The intelligence in his eyes is gone, clouded over with a thick fog of animal lust, all of it focused on rutting your pussy until you won’t be able to [pc.walk] straight for days after this. You laugh, relishing the way you’ve turned a brilliant scientist into a savage monster through the power of your pussy.");
 	
 	output("\n\nNot that you’re much different from him after the first round of spunk hits your cunt. It’s thick, it’s gooey, and it’s very, <b>very</b> plentiful. You gasp in delight at the first surge filling your womb to the brim, croon at the second as it blooms into a pleasant stretching, and let out a shuddering groan at the third as your stomach begins to bulge outward. Four, five, " + (flags["DRLESSAU_SEXED"] == undefined ? "how much is he going to <b>cum</b>?" : "fuck <b>yes</b>, more, <b>more</b>!") + " Your hands go to your belly as it swells into a thick pregnant bulge, mercifully stopping when it’s the size of a volleyball.");
 	if (pc.hasCock()) output(" Your cock spurts without even being touched, painting both of your fronts in [pc.cumColor].");
@@ -527,7 +531,7 @@ public function steeleBiomedGangbang():void
 		if (pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) output(", followed by briefly spiraling it around his dick, quietly laughing at the way he shudders");
 		output(".");
 		
-		output("\n\nSoon you set to blowing him properly, enjoying the rich, primal taste of canine cock, not to mention the way Walt has to increasingly struggle to keep his composure. One of his hands slip under the table to run his fingers through your hair, gently scratching just like you would to him. You continue unabated, driving him to further growls and whines that more and more risk blowing your cover. You look forward to it, of course, not relenting until you get a proper cumming howl out of Walt. All thoughts of being caught disappear under the flood of canine cum that fills your mouth, making you focus entirely on swallowing gulp after hot, sticky gulp.");
+		output("\n\nSoon you set to blowing him properly, enjoying the rich, primal taste of canine cock, not to mention the way Walt has to increasingly struggle to keep his composure. One of his hands slip under the table to run his fingers " + (pc.hasHair() ? "through your hair" : "across your head") + ", gently scratching just like you would to him. You continue unabated, driving him to further growls and whines that more and more risk blowing your cover. You look forward to it, of course, not relenting until you get a proper cumming howl out of Walt. All thoughts of being caught disappear under the flood of canine cum that fills your mouth, making you focus entirely on swallowing gulp after hot, sticky gulp.");
 		output("\n\nWhen you’re finished you open your eyes to see Walt looking up, Cynthia looking down at the two of you with a teasing smirk.");
 		output("\n\n<i>“Told you you could just ask if you wanted to fuck us again, [pc.name]. No need to sneak around.”</i>");
 		
@@ -621,12 +625,12 @@ public function steeleBiomedGangbangIII():void
 	{
 		for (var x:int = 0; x < pc.totalVaginas(); x++) 
 		{	
-			pc.cuntChange(x, walkCockVolume())
+			pc.cuntChange(x, waltCockVolume())
 			pc.loadInCunt(undefined, x)
 		}
 	}
-	pc.buttChange(walkCockVolume());
-	pc.loadInAss();
+	pc.buttChange(waltCockVolume());
+	pc.loadInAss(getWaltPregContainer());
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();

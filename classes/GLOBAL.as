@@ -229,6 +229,10 @@
 		public static const TYPE_THRAGGEN:int 								= 79;
 		public static const TYPE_ADREMMALEX:int 							= 80;
 		public static const TYPE_MOTHRINE:int 								= 81;
+		public static const TYPE_FROSTWYRM:int 								= 82;
+		public static const TYPE_SANDWORM:int 								= 83;
+		public static const TYPE_SANDWORM_PARASITE:int 						= 84;
+		public static const TYPE_JANERIA:int								= 85;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -313,6 +317,10 @@
 			"Thraggen",
 			"Adremmalex",
 			"Mothrine",
+			"Frostwyrm",
+			"Sand Worm",
+			"Butt Bug",
+			"Janeria",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -343,6 +351,7 @@
 			TYPE_LUPINE,
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
@@ -370,6 +379,8 @@
 			TYPE_GRYVAIN,
 			TYPE_SHEEP,
 			TYPE_COCKVINE,
+			TYPE_JANERIA,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -389,6 +400,7 @@
 			TYPE_BEE,
 			TYPE_FROG,
 			TYPE_TENTACLE,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_TONGUE_FLAGS:Array = [
@@ -435,6 +447,7 @@
 			TYPE_LUPINE,
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -459,6 +472,7 @@
 			TYPE_TENTACLE,
 			TYPE_LUPINE,
 			TYPE_REDPANDA,
+			TYPE_FROSTWYRM,
 		];
 
 		public static const VALID_ARM_FLAGS:Array = [
@@ -509,6 +523,8 @@
 			TYPE_LUPINE,
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
+			TYPE_JANERIA,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -550,6 +566,7 @@
 			TYPE_GRYVAIN,
 			TYPE_DRYAD,
 			TYPE_SHEEP,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_WING_TYPES:Array = [
@@ -570,6 +587,8 @@
 			TYPE_GRYVAIN,
 			TYPE_COCKVINE,
 			TYPE_TENTACLE,
+			TYPE_JANERIA,
+			TYPE_FROSTWYRM,
 		];
 		
 		// None is for specifying no tail, which would normally pull the HUMAN name.
@@ -613,6 +632,7 @@
 			TYPE_LUPINE,
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [
@@ -705,7 +725,7 @@
 		public static const NIPPLE_TYPE_NAMES:Array = [
 			"Normal",
 			"Cunt",
-			"Lipples",
+			"Lip",
 			"Dick",
 			"Flat",
 			"Inverted",
@@ -949,6 +969,8 @@
 			TYPE_HRAD,
 			TYPE_GRYVAIN,
 			TYPE_SWINE,
+			TYPE_FROSTWYRM,
+			TYPE_JANERIA,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
@@ -993,6 +1015,7 @@
 			TYPE_FLOWER,
 			TYPE_SWINE,
 			TYPE_MOUTHGINA,
+			TYPE_FROSTWYRM,
 		];
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas
@@ -1043,6 +1066,7 @@
 		public static const POOL:int									= 28;
 		public static const WATERFALL:int								= 29;
 		public static const SPIDER_WEB:int								= 30;
+		public static const LOW_GRAVITY:int								= 31;
 		
 		// Temp flag alias whilst the asset gets introduced
 		public static const LIFT:int = OBJECTIVE;
@@ -1152,6 +1176,7 @@
 		public static const ITEM_FLAG_PIERCING_RING:int 				= 30; //Piercings of the "ring" type.
 		public static const ITEM_FLAG_PIERCING_CHAINS:int 				= 31; //Piercings of the "chain" type.
 		public static const ITEM_FLAG_NO_REMOVE:int 					= 32; //Worn items that the PC cannot remove by themself.
+		public static const ITEM_FLAG_SMALL_DICK_ONLY:int               = 33; //Cocksock can only be equipped by smol
 
 		
 		public static const ITEM_FLAG_NAMES:Array = [
@@ -1188,6 +1213,7 @@
 			"Ring",
 			"Chained",
 			"Permanent",
+			"Requires Small Cock",
 		];
 		
 		/**
@@ -1235,7 +1261,15 @@
 		public static const SEXPREF_BALDNESS:int = 24;
 		public static const SEXPREF_LONG_HAIR:int = 25;
 		public static const SEXPREF_NEUTER:int = 26
-		public static const MAX_SEXPREF_VALUE:int = 27; // Keep this as a book-end on the values. Check penny for how you'd random shit
+		public static const SEXPREF_SWEAT:int = 27
+		public static const SEXPREF_CUMMY:int = 28
+		//"racial" type
+		public static const SEXPREF_FURRIES:int = 29
+		public static const SEXPREF_SCALIES:int = 30
+		public static const SEXPREF_FEATHERS:int = 31
+		public static const SEXPREF_CHITIN:int = 32
+		
+		public static const MAX_SEXPREF_VALUE:int = 33; // Keep this as a book-end on the values. Check penny for how you'd random shit
 		
 		// Not ideal, but it's possibly better than using switch statements, plus it keeps the Keys ^ with Descriptors \/
 		// The two will have to forever be in the same order though, but I can probably rig up some better system.
@@ -1268,6 +1302,12 @@
 			"Baldness",
 			"Long hair",
 			"Neuters",
+			"Sweat",
+			"Sexjuice coatings",
+			"Furries",
+			"Scalies",
+			"Feathers",
+			"Chitin",
 			"ERROR ERROR ABORT ABORT"
 		];
 		
@@ -1305,6 +1345,7 @@
 			"AKI",
 			"ALDER",
 			"BNG",
+			"BER00",
 			"BUSTEDRADIO",
 			"CHESHIRE",
 			"CROSSMAN",
@@ -1312,18 +1353,22 @@
 			"DAMNIT",
 			"DOCBADGER",
 			"DOXY",
+			"FRIENDLYALIENFRIEND",
 			"GATS",
 			"GATSOLD",
 			"JACQUES",
 			"JAMESAB",
 			"JAYECHO",
+			"JLIKESTODRAW",
 			"LAPINBEAU",
 			"LILIRURU",
 			"MANIACPAINT",
+			"MISSBEHAVIOR",
 			"NUBATTORI",
 			"PEEKAY",
 			"RENEZUO",
 			"SHOU",
+			"TSUDA",
 			"UTHSTAR",
 			"WOLFYNAIL",
 			"FUBMISTRESS",
@@ -1338,6 +1383,7 @@
 			"Aki",
 			"Alder",
 			"Benji",
+			"Ber00",
 			"BustedRadio",
 			"Cheshire",
 			"Crossman",
@@ -1345,18 +1391,22 @@
 			"Damnit",
 			"DatBadger",
 			"Doxy",
+			"FriendlyAlienFriend",
 			"Gats",
 			"Old Gats",
 			"Jacques00",
 			"James AB",
 			"Jay Echo",
+			"J-Likes-To-Draw",
 			"Lapinbeau",
 			"LiliRuru",
 			"ManiacPaint",
+			"MissBehavior",
 			"Nu Battori",
 			"Pee-Kay",
 			"Renezuo",
 			"Shou",
+			"Tsuda",
 			"Uthstar",
 			"Wolfy-Nail",
 			"FubMistress",

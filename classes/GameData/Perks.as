@@ -146,14 +146,14 @@ package classes.GameData
 			lowTechSolutions.classLimit = GLOBAL.CLASS_MERCENARY;
 			lowTechSolutions.levelLimit = 6;
 			lowTechSolutions.perkName = "Low Tech Solutions";
-			lowTechSolutions.perkDescription = "Increases damage from Kinetic melee weapons by 20%.";
+			lowTechSolutions.perkDescription = "Increases damage from physical, non-energy-based melee weapons by 20%.";
 			insertPerkData(lowTechSolutions);
 
 			var heavyWeapons:PerkData = new PerkData();
 			heavyWeapons.classLimit = GLOBAL.CLASS_MERCENARY;
 			heavyWeapons.levelLimit = 6;
 			heavyWeapons.perkName = "Heavy Weapons";
-			heavyWeapons.perkDescription = "Increases damage from Kinetic ranged weapons by 20%.";
+			heavyWeapons.perkDescription = "Increases damage from physical, non-energy-based ranged weapons by 20%.";
 			insertPerkData(heavyWeapons);
 
 			//Level 7
@@ -274,7 +274,7 @@ package classes.GameData
 			lucky.levelLimit = 2;
 			lucky.autoGained = true;
 			lucky.perkName = "Lucky Breaks";
-			lucky.perkDescription = "Grants you an additional 10% evasion chance.";
+			lucky.perkDescription = "Enemy attacks will have an extra 10% chance to miss you in combat.";
 			insertPerkData(lucky);
 			
 			var lowBlow:PerkData = new PerkData();
@@ -602,7 +602,7 @@ package classes.GameData
 			gDisrupt.classLimit = GLOBAL.CLASS_ENGINEER;
 			gDisrupt.levelLimit = 5;
 			gDisrupt.perkName = "Gravidic Disruptor";
-			gDisrupt.perkDescription = "Grants the ability to deal Unresistable damage to targetted enemies.";
+			gDisrupt.perkDescription = "Grants the ability to deal Unresistable damage to targeted enemies.";
 			insertPerkData(gDisrupt);
 			
 			var tDisrupt:PerkData = new PerkData();

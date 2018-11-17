@@ -133,8 +133,8 @@ package classes.Items.Transformatives
 			
 			if (!force) addButton(13, "Override", function():* { clearOutput(); routeMenu(target, true); }, null, "Override", "Enable override mode. The system would attempt to execute route without checking its availability.\nWarning: this menu is for authorized personnel only.\nWarning: bypassing of safety protocols is not advised, those functions are called unsafe for a reason.");
 			else {
+				output(" Status scan is bypassed.");
 				addButton(13, "Safe", function():* { clearOutput(); routeMenu(target, false); }, null, "Safe", "Enable safe mode. The system would check route availability before executing it.");
-				output(" status scan is bypassed.");
 			}
 			
 			addButton(14, "Abort", kGAMECLASS.generalInventoryMenu);
@@ -1005,6 +1005,16 @@ package classes.Items.Transformatives
 					target.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
 					target.addLegFlag(GLOBAL.FLAG_PAWS);
 					target.addLegFlag(GLOBAL.FLAG_FURRED);
+					
+					if (target.legCount >= 4 && target.genitalSpot != 2) {
+						if(target.hasGenitals()) output("\n\nAfter taking a moment to get used to your new body, you notice that your genitals now reside between the hind legs of your [pc.lowerBody].");
+						target.genitalSpot = 2;
+					}
+					else if (target.genitalSpot != 0) {
+						if(target.hasGenitals()) output("\n\nAfter taking a moment to get used to your new body, you notice that your genitals now reside below your waist, between your [pc.thighs].");
+						target.genitalSpot = 0;
+					}
+					
 					changes++;
 				}
 				else output(target.legTypeLockedMessage());

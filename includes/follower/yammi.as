@@ -146,7 +146,7 @@ public function declineYammiBunsInShip():void
 	clearOutput();
 	yammiFollowerDisplay();
 	output("<i>“Sorry,”</i> you say, trying to let her down gently. You don’t really need a cook, and your adventures are probably going to be too dangerous.");
-	output("\n\n<i>“Oh,”</i> she says, more than a little dejectedly. <i>“I just thought... since you payed off my debts. Well! I guess I’ll have to make my own path, then!”</i> she says, flashing you a green-lipped smile.");
+	output("\n\n<i>“Oh,”</i> she says, more than a little dejectedly. <i>“I just thought... since you paid off my debts. Well! I guess I’ll have to make my own path, then!”</i> she says, flashing you a green-lipped smile.");
 	output("\n\nYou wish her all the best and point her to the spaceport just down the way. She gives you a parting peck on the cheek before spinning on a heel and marching off, to new adventures.");
 	flags["YAMMI_RECRUITED"] = -1;
 	processTime(2);
@@ -224,6 +224,8 @@ public function yammiInTheKitchen():void
 	//Yammi in the Kitchen Main
 	else
 	{
+		//Shizuya's cunt snake recipe
+		if (flags["SHIZZY_MET"] != undefined && flags["SHIZZY_CUNT_SNAKE_RECIPE"] == undefined) return shizzyCuntRecipeGet();
 		//Interacting with Yammi:
 		output("The kitchen’s a busy place, with steam rising from boiling soups and hot food hissing as it is fried. A stove in back seems to be baking something. In the center of this storm of culinary chaos is Yammi, humming to herself and stirring, flipping, and chopping various foodstuffs, wearing nothing but an apron, gloves, and a bikini bottom. She smiles when she sees you.");
 		output("\n\n<i>“Heya, Boss! What’s up?”</i> She inquires, setting down her spatula and turning the heat down so nothing burns. <i>“Can I get you anything?”</i>");
@@ -236,13 +238,14 @@ public function yammiInTheKitchen():void
 public function yammiFollowerMenu():void
 {
 	clearMenu();
+	yammiFollowerDisplay();
 	addButton(0,"Talk",yammiTalkRouter,undefined,"Talk","Sit down and talk with your chef for a bit.");
 	//Help Yammi
 	addButton(1,"Help Out",offerToHelpYammi,undefined,"Help Out","Offer to help Yammi out around in the kitchen.");
 	//Pexiga
 	if(pexigaRecruited())
 	{
-		if(pexigaIsCrew()) addButton(1, (pexiga.short.toLowerCase() == "lil bobby tables" ? "Lil Bobby" : pexiga.short), approachPexigaCrew);
+		if(pexigaIsCrew()) addButton(1, pexigaName(), approachPexigaCrew);
 	}
 	else if(flags["YAMMI_HELPED"] >= 2) addButton(1,"Pexiga",pexigaVisit,undefined,"Pexiga","Visit Yammi’s pet pexiga.");
 	//[Food] (ie, Yammi’s Menu)
@@ -320,7 +323,7 @@ public function yesGetYammiBack():void
 	output("\n\n(<b>Yammi ");
 	if(pexigaRecruited()) output(" and [pexiga.name] have");
 	else output(" has");
-	output(" joined your crew!");
+	output(" rejoined your crew!");
 	output("</b>)");
 	flags["YAMMI_IS_CREW"] = 1;
 	clearMenu();
@@ -479,7 +482,7 @@ public function offerToHelpYammi():void
 		output("\n\n<i>“Trust me, I’m not above indentured service... what was good enough for me is fine for others for a little while! But this one’s different, it’s literally lived its entire life and would otherwise be waiting to die. But as long as I feed her, and keep her muzzled so she doesn’t eat anybody, she’s fine!”</i>");
 		output("\n\nEat anybody?");
 		output("\n\n<i>“Like I said, they’re cannibals. But now that she’s passed her young, she’s totally lethargic. Won’t even try to take the gag out, and even that’s just a safety precaution. She probably wouldn’t hurt anybody even if she could. Really, she’s a sweetie!”</i>");
-		output("\n\nYammi smiles and and pats the pexiga on the hair, careful to move her hand along the way its spines grow. The lizard-creature makes a soft, almost feline purring sound and swishes its tail, but otherwise doesn’t react much.");
+		output("\n\nYammi smiles and pats the pexiga on the hair, careful to move her hand along the way its spines grow. The lizard-creature makes a soft, almost feline purring sound and swishes its tail, but otherwise doesn’t react much.");
 		output("\n\nYammi giggles and hands you the bowl. <i>“I promise, she’s totally harmless! So you here to help or no?”</i>");
 		output("\n\nYou shrug and then nod, inquiring what you have to do. Yammi kneels on her opposite side. The captive reptilian flits her gaze back and forth between you two with barely any interest.");
 		output("\n\n<i>“Okay, hold her tongue from low down. Then firmly rub your thumbs up either side of the top. This will fool her body into thinking food’s coming, and she’ll start to, well, drool more or less.”</i> She instructs you. <i>“I think it’s because they eat each other and they must taste awful, so they make something they like to taste naturally.”</i>");
@@ -504,7 +507,7 @@ public function pexigaVisit():void
 {
 	clearOutput();
 	showName("\nA PEXIGA");
-	showBust("PEXIGA");
+	showBust(pexigaBustDisplay());
 	author("Lady Jenn");
 
 	output("You tell Yammi to keep on cooking; you’re just going to wander around the kitchen. She flashes you a bright smile and goes back to the dish she’s working on at the moment, and once she’s nice and distracted, you make your way into the pantry she keeps the pexiga in.");
@@ -527,7 +530,7 @@ public function milkSalivaFromPexiga():void
 {
 	clearOutput();
 	showName("\nA PEXIGA");
-	showBust("PEXIGA");
+	showBust(pexigaBustDisplay());
 	author("Lady Jenn");
 	
 	IncrementFlag("PEX_MILKED");
@@ -552,7 +555,7 @@ public function petPexiga():void
 {
 	clearOutput();
 	showName("\nA PEXIGA");
-	showBust("PEXIGA");
+	showBust(pexigaBustDisplay());
 	author("Lady Jenn");
 	
 	output("Feeling sorry for the lethargic reptilian beauty, you draw close and run your fingers through her spiny hair. The pexiga murmurs around her ring-gag, swishing her tail across the deck as you massage her scaly scalp. The big piercing on her tongue swishes ever so slightly, and her somewhat vacant expression shifts to something like a smile, and her eyes follow you as you move. With no food on offer, and without your hand working to milk her for her sweet saliva, she seems somewhat more attentive than usual. If only just.");
@@ -595,6 +598,7 @@ public function yammisMenu():void
 	if(flags["NALEEN_SNUGGLED"] != undefined) output("\n<b>Ginder Fish</b>\nA flame-cooked fish from the jungle world of Mhen’ga, imported at the captain’s request. Soft and rich; topped with lemons and a native honey-sauce.");
 	output("\n<b>Yammi’s Sandwich</b>\nA four foot long bread roll stuffed with a blend of spiced meat, seafood and cheese until it’s about to explode, then baked.");
 	if(reahaIsCrew()) output("\n<b>New Texas Milkshake</b>\nNew Texan Milkshake, made with all-natural New Texan cow-girl milk and refined into a delicious treat. Absolutely does not infringe on any Iced Teats copyrights.");
+	if (flags["SHIZZY_CUNT_SNAKE_RECIPE"] == 1) output("\n<b>Fried And Stuffed Cunt Snake</b>\nA meal made from the invasive Cunt Snakes of Mhen'ga. The head and 'tail' are removed, and the middle stuffed with a mixture of fruits and vegetables, all imported from Mhen'ga for an authentic taste. The meat is then coated in a special mixture, and fried in fruit oil.");
 	clearMenu();
 	//Pepper Pie
 	addButton(0,"Pepper Pie",pepperPieYammi,undefined,"Pepper Pie","A special blend of hot and sweet peppers in a ground meat pie with fresh baked crust and rolls. Spicy!");
@@ -617,7 +621,11 @@ public function yammisMenu():void
 	addButton(7,"Y’s Sammich",yammiSammich,undefined,"Yammi’s Sandwich","A four foot long bread roll stuffed with a blend of spiced meat, seafood and cheese until it’s about to explode, then baked.");
 	//N.T. Milkshake
 	//Requires Crew Reaha
-	if(reahaIsCrew()) addButton(8,"N.T.Milkshake",newTexasMilkshake,undefined,"N.T.Milkshake","New Texan Milkshake, made with all-natural New Texan cow-girl milk and refined into a delicious treat. Absolutely does not infringe on any Iced Teats copyrights.");
+	if (reahaIsCrew()) addButton(8, "N.T.Milkshake", newTexasMilkshake, undefined, "N.T.Milkshake", "New Texan Milkshake, made with all-natural New Texan cow-girl milk and refined into a delicious treat. Absolutely does not infringe on any Iced Teats copyrights.");
+	//Cunt Snake
+	//Get from shizuya
+	if (flags["SHIZZY_CUNT_SNAKE_RECIPE"] == 1) addButton(9, "F.S.CuntSnake", shizzyCuntSnakeEat, undefined, "Fried and Stuffed Cunt Snake", "A meal made from the invasive Cunt Snakes of Mhen'ga. The head and 'tail' are removed, and the middle stuffed with a mixture of fruits and vegetables, all imported from Mhen'ga for an authentic taste. The meat is then coated in a special mixture, and fried in fruit oil.");
+	
 	addButton(14,"Back",yammiInTheKitchen);
 }
 

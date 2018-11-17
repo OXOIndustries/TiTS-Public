@@ -20,6 +20,7 @@
 		public static var ADJATHA:Object = new AdjathaBusts();
 		public static var AKI:Object = new AkiBusts();
 		public static var ALDER:Object = new AlderBusts();
+		public static var BER00:Object = new Ber00Busts();
 		public static var BNG:Object = new BNGBusts();
 		public static var BUSTEDRADIO:Object = new BustedRadioBusts();
 		public static var CHESHIRE:Object = new CheshireBusts();
@@ -28,6 +29,7 @@
 		public static var DAMNIT:Object = new DamnitBusts();
 		public static var DOCBADGER:Object = new DocBadgerBusts();
 		public static var DOXY:Object = new DoxyBusts();
+		public static var FRIENDLYALIENFRIEND:Object = new FriendlyAlienFriendBusts();
 		public static var FUBMISTRESS:Object = new FubMistressBusts();
 		public static var GATS:Object = new GatsBusts();
 		public static var GATSOLD:Object = new GatsOldBusts();
@@ -35,13 +37,16 @@
 		public static var JAMESAB:Object = new JamesABBusts();
 		public static var JAYECHO:Object = new JayEchoBusts();
 		public static var JAYFIREGROWLITHE:Object = new JayfireGrowlitheBusts();
+		public static var JLIKESTODRAW:Object = new JLikesToDrawBusts();
 		public static var LAPINBEAU:Object = new LapinbeauBusts();
 		public static var LILIRURU:Object = new LiliRuruBusts();
 		public static var MANIACPAINT:Object = new ManiacPaintBusts();
+		public static var MISSBEHAVIOR:Object = new MissBehaviorBusts();
 		public static var NUBATTORI:Object = new NuBattoriBusts();
 		public static var PEEKAY:Object = new PeeKayBusts();
 		public static var RENEZUO:Object = new RenezuoBusts();
 		public static var SHOU:Object = new ShouBusts();
+		public static var TSUDA:Object = new TsudaBusts();
 		public static var UTHSTAR:Object = new UthstarBusts();
 		public static var WOLFYNAIL:Object = new WolfyNailBusts();
 		public static var YOHSL:Object = new YohSLBusts();
@@ -185,6 +190,7 @@
 			var doNude:Boolean = false;
 			if (bustName.indexOf("_NUDE") != -1) doNude = true;
 			
+			/*
 			// If there's a configured bust for this ident, use it
 			// TODO: Make this use the same artist for nude/non-nude if one is configured but the other isn't
 			if (bustName in opts.configuredBustPreferences)
@@ -229,6 +235,23 @@
 					}
 				}
 			}
+			*/
+			
+			// Get bounds that match the saved artist
+			var tArtist:String = "";
+			
+			if (bustName in opts.configuredBustPreferences) {
+				tArtist = opts.configuredBustPreferences[bustName];
+			}
+			else if (("Bust_" + bustName) in NPCBustImages[opts.primaryBustArtist]) {
+				tArtist = opts.primaryBustArtist;
+			}
+			else if (("Bust_" + bustName) in NPCBustImages[opts.secondaryBustArtist]) {
+				tArtist = opts.secondaryBustArtist;
+			}
+			
+			if (tArtist != "") bounds = lookupBoundsInClass(bustName, NPCBustImages[tArtist], doNude);
+			if (bounds != null) return bounds;
 			
 			return null;
 		}

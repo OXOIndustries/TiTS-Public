@@ -30,7 +30,7 @@ public function ramisBustDisplay(nude:Boolean = false):String
 
 public function ramisIsCrew():Boolean
 {
-	return false;
+	return flags["RAMIS_ONBOARD"] == 1;
 }
 
 // Intros
@@ -39,6 +39,7 @@ public function ramisIsCrew():Boolean
 public function ramisAtAnons():Boolean
 {
 	if(pc.hasStatusEffect("Ramis Away Time")) return false;
+	if(ramisIsCrew()) return false;
 	
 	if(flags["RAMIS_MET"] != undefined && pc.isFemboy() && looksFamiliarToRamis() && ramisFemboyHours()) return true;
 	// Regular hours
@@ -107,7 +108,7 @@ public function looksFamiliarToRamis():Boolean
 			if(pc.isFemboy()) isSame = true;
 			break;
 		case "lad":
-			if(pc.isMale() || pc.isManHerm()) isSame = true;
+			if(pc.isMan() || pc.isManHerm()) isSame = true;
 			break;
 	}
 	
@@ -121,9 +122,10 @@ public function getRamisPregContainer():PregnancyPlaceholder
 	ppRamis.breastRows[0].breastRatingRaw = 6;
 	if(!ppRamis.hasVagina()) ppRamis.createVagina();
 	ppRamis.shiftVagina(0, GLOBAL.TYPE_FELINE);
-	ppRamis.vaginas[0].wetnessRaw = 3;
+	//ppRamis.vaginas[0].wetnessRaw = 3;
 	ppRamis.vaginas[0].loosenessRaw = 1;
-	ppRamis.vaginas[0].bonusCapacity += 400;
+	ppRamis.vaginas[0].bonusCapacity += 125;
+	if (flags["RAMIS_STRETCHED"] != undefined) ppRamis.vaginas[0].bonusCapacity += flags["RAMIS_STRETCHED"];
 	return ppRamis;
 }
 
@@ -148,6 +150,7 @@ public function approachRamis(special:String = "none"):void
 	clearMenu();
 	
 	addButton(10, "Appearance", ramisAppearance, 10);
+	if(flags["RAMIS_MET"] != undefined) addButton(4, "Recruit", ramisRecruit, undefined, "Recruit", "She’s a mercenary, right? See what it would cost to get her on board your ship.");
 	
 	// Special femboy approach
 	if(special == "femboy")
@@ -162,12 +165,16 @@ public function approachRamis(special:String = "none"):void
 		addButton(1, "No", ramisLeave, "boy");
 		return;
 	}
+	
+	var isFem:Boolean = (pc.isFemale() || pc.isFemHerm() || pc.isSexless() || pc.isShemale());
+	var isFemboy:Boolean = pc.isFemboy();
+	
 	// Repeat Approaches
 	if(flags["RAMIS_MET"] != undefined && looksFamiliarToRamis())
 	{
 		// Ordered by priority for PCs that meet multiple requirements
 		// 1.	PC has done man fuck:
-		if(pc.hasCock() && flags["RAMIS_SEXED_MAN"] != undefined)
+		if(!isFem && pc.hasCock() && flags["RAMIS_SEXED_MAN"] != undefined)
 		{
 			output("<i>“Oh, hey you.”</i> Ramis’s eyes focus and take on a pleased, predatory slant when they land on you. <i>“I was beginnin’ to think you wouldn’t show.");
 			if(StatTracking.getStat("contests/ramis arm wrestle wins") > 0) output(" Fancy a drink? Or maybe you’re lookin’ for a rematch?”</i> her voice drops to a provocative growl. <i>“I might even let you win again...");
@@ -181,23 +188,24 @@ public function approachRamis(special:String = "none"):void
 			return;
 		}
 		// 2.	PC has been on a bender with her:
-		else if(flags["RAMIS_TIMES_BENDER"] != undefined)
+		else if(isFem && flags["RAMIS_TIMES_BENDER"] != undefined)
 		{
 			output("<i>“Tavros bezzie!”</i> Ramis grins hugely when she sees you, slapping your hand and gripping it excruciatingly tight. <i>“This " + pc.mf("lad", "lass") + ",”</i> she announces to her crew and the room in general, <i>“This fuckin’ " + pc.mf("lad", "lass") + ". Come and sit down - don’t be afraid of these idjets crampin’ your style.”</i>");
 			
 			// [Drink] [Back Off]
 			if(pc.credits >= 100) addButton(0, "Drink", ramisDrink, "drink", "Drink", "Make merry with Ramis.\n\nCosts 100 credits.");
 			else addDisabledButton(0, "Drink", "Drink", "You don’t have enough credits to do this!\n\nCosts 100 credits.");
-			if(pc.isMale() || pc.isManHerm())
+			if(pc.isMan() || pc.isManHerm())
 			{
 				if(pc.lust() >= 33) addButton(1, "Flirt", ramisFlirt);
 				else addDisabledButton(1, "Flirt", "Flirt", "You are not aroused enough for this!");
 			}
+			else addDisabledButton(1, "Flirt", "Flirt", "You are not physically man enough to try this!");
 			addButton(2, "Back Off", ramisLeave, pc.mf("man", "fem"));
 			return;
 		}
 		// 3.	PC feminine male, has done trap fuck: 
-		else if(pc.isFemboy() && flags["RAMIS_SEXED_TRAP"] != undefined)
+		else if(isFemboy && flags["RAMIS_SEXED_TRAP"] != undefined)
 		{
 			output("<i>“Oh, hello you. Don’t tell me you’re back for more?”</i> Ramis grins as she considers you with half-lidded predatory eyes, downing a shot as she does. <i>“Well, you know how it goes, knickers: Come back when I’ve had my fun for the evenen’. I might want to do bad things to you then, who knows...”</i>");
 			
@@ -206,7 +214,7 @@ public function approachRamis(special:String = "none"):void
 			return;
 		}
 		// 4.	PC has done arm wrestle but never won:
-		else if(pc.hasCock() && (StatTracking.getStat("contests/ramis arm wrestle wins") + StatTracking.getStat("contests/ramis arm wrestle losses") > 0) && StatTracking.getStat("contests/ramis arm wrestle wins") <= 0)
+		else if(!isFem && pc.hasCock() && (StatTracking.getStat("contests/ramis arm wrestle wins") + StatTracking.getStat("contests/ramis arm wrestle losses") > 0) && StatTracking.getStat("contests/ramis arm wrestle wins") <= 0)
 		{
 			output("<i>“Oh, hey " + pc.mf("boyo", "girlee") + ", how’s it goin’?”</i> Ramis grins at you amiably.");
 			output("<i>“[pc.HeShe] came back?”</i> says one of the mercs at the table nearby, incredulous.");
@@ -225,7 +233,7 @@ public function approachRamis(special:String = "none"):void
 	// First approach
 	output("<i>“...dangling backwards it was! Silly willy didn’t check the airlocks.”</i> As her friends guffaw, the seven foot tall kaithrit swings around on her stool to regard you with unfocused, golden eyes. She narrowly avoids whacking you with her large, tank-top clad boobs. <i>“Oh aye, what d’we have here then?”</i> Her accent lilts and lollops around the words, drawing out “l”s and making every finishing sentence a musical declamation.");
 	// PC is female or futa
-	if(pc.isFemale() || pc.isFemHerm() || pc.isSexless() || pc.isShemale())
+	if(isFem)
 	{
 		output("\n\n<i>“Come to join the party have we,");
 		if(pc.mfn("m", "f", "n") != "f") output(" uh...");
@@ -242,7 +250,7 @@ public function approachRamis(special:String = "none"):void
 		addButton(2, "Back Off", ramisLeave, "fem");
 	}
 	// PC is andro/feminine male, 
-	else if(pc.isFemboy())
+	else if(isFemboy)
 	{
 		// kaithrit score < 5
 		if(pc.kaithritScore() <= 4)
@@ -534,7 +542,7 @@ public function ramisFlirt(response:String = "flirt"):void
 				StatTracking.track("contests/ramis arm wrestle wins");
 				
 				// Go to man fucks
-				addButton(0, "Next", ramisFuck, "man");
+				addButton(0, "Next", ramisFuck, (pc.isFemboy() ? "trap" : "man"));
 			}
 			// PC fails normally
 			else if(physique > 40)
@@ -601,8 +609,8 @@ public function ramisFuck(response:String = "none"):void
 	
 	var ppRamis:PregnancyPlaceholder = getRamisPregContainer();
 	var x:int = -1;
-	//x = pc.cockThatFits(ppRamis.vaginalCapacity(0));
-	x = pc.cockThatFits(11, "length");
+	x = pc.cockThatFits(ppRamis.vaginalCapacity(0));
+	//x = pc.cockThatFits(11, "length");
 	var purrfectFit:Boolean = false;
 	var hasUndies:Boolean = (!(pc.lowerUndergarment is EmptySlot) && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN));
 	
@@ -700,7 +708,7 @@ public function ramisFuck(response:String = "none"):void
 			
 			processTime(20 + rand(15));
 			// Lust maxed out
-			pc.lust(9000);
+			pc.maxOutLust();
 			
 			break;
 		// Man Fuck
@@ -791,14 +799,15 @@ public function ramisFuck(response:String = "none"):void
 				output(" in her juices with the tiny, constricted movements available to her with husky, orgasmic barks, all of her thrashing absorbed into your suffocating leather. The trembling shaking through your core, translating through your [pc.groin] is dizzyingly gratifying - but as heavy as your arousal is, your [pc.cock " + x + "] primed and raring to release into the shaking, pulsing suck it’s mired in, you hold on, continuing to give her the dick with the measured ebb and flow of your hips until the thick, unyielding muscles underneath you cease their out-of-control spasms.");
 				output("\n\n<i>“Uff... I never got the whole tying up for shagging thing,”</i> she groans, delirium sloshing up and down her musical tones. <i>“But this... it’s like it’s all locked up inside you, and it’s so... uff!”</i> You hilt yourself in her, tracing her hot lips with your lithe tail tip as you do, teasingly shooting it between them, rasping it against her thin, rough tongue.");
 				output("\n\nYou force the big kaithrit to another tremendous, shaking orgasm - so much energy in those long, ropy limbs, but you have the strength to remain swaddled upon them, a giant leathery truss that pumps into her convulsing, dribbling cunt heedless of her rapturous struggles - before finally allowing yourself over the edge. You exhale long, throaty groans at the ceiling as you close up around her so tight you think you hear her ribs creak before a detonation of [pc.cum] shoots up your [pc.cock " + x + "] and geysers into her long, narrow pathway. Totally lost in the pleasurable pulses, you clap your hips against her hard thighs, intent on giving her as much of your pent-up fruit into her as possible.");
+				var cumQ:Number = pc.cumQ();
 				// High Cum:
-				if(pc.cumQ() >= 5000) output(" You quickly pack her out, [pc.cumColor] gunk spurting out around your flexing girth; you draw out, and with a series of stupendous clenches paint her sweat-dappled torso, breasts and face with generous amounts of it. Tied and weighed down as she is, Ramis can only flinch and coo, in the end angling her well-defined face to take your last heavy spurts full-on, so dazed with the pushing that she gladly accepts something from you that she probably never would from anyone else. It’s a thought that fires you on to cannon every last drop of your load onto her A-grade gym bunny form.");
+				if(cumQ >= 5000) output(" You quickly pack her out, [pc.cumColor] gunk spurting out around your flexing girth; you draw out, and with a series of stupendous clenches paint her sweat-dappled torso, breasts and face with generous amounts of it. Tied and weighed down as she is, Ramis can only flinch and coo, in the end angling her well-defined face to take your last heavy spurts full-on, so dazed with the pushing that she gladly accepts something from you that she probably never would from anyone else. It’s a thought that fires you on to cannon every last drop of your load onto her A-grade gym bunny form.");
 				output("\n\nYour cock droops at last, " + (pc.balls <= 0 ? "spent" : "your [pc.balls] spent") + " and drooling after a dozen succulent clenches.");
-				if(pc.cumQ() >= 5000) output(" You withdraw slowly from Ramis’s thoroughly creamed pussy, the slick motion over your gently aching member.");
+				if(cumQ >= 5000) output(" You withdraw slowly from Ramis’s thoroughly creamed pussy, the slick motion over your gently aching member.");
 				output(" At the pace of an anaconda that has just swallowed a leopard whole, you relax yourself, your patterned scales gently peeling off the kaithrit’s brown skin. She shifts her hands over your [pc.legOrLegs], claws gently trailing down your leather as you slither it slowly over her, a big, dozy grin on her");
-				if(pc.cumQ() >= 5000) output(" [pc.cum]-covered");
+				if(cumQ >= 5000) output(" [pc.cum]-covered");
 				output(" face.");
-				if(pc.cumQ() >= 5000) output(" You get completely smeared in the results of your own over-excitement, but you suppose that’s a price worth paying.");
+				if(cumQ >= 5000) output(" You get completely smeared in the results of your own over-excitement, but you suppose that’s a price worth paying.");
 				output("\n\n<i>“That was pretty good, string,”</i> she murmurs, her voice shivering through you. <i>“Think you broke a rib, but then I think I’ve done that to a few myself.”</i> She pauses, and goes on in an unusually hesitant tone. <i>“D’you think you could hold me a bit? Not as tight as before, but...”</i> Silently you twine yourself around her legs and midriff, drawing her back into your coils. The kaithrit hums with pleasure, sliding her arms underneath yours and snuggling her face into your [pc.chest]. <i>“That’s the way. I do like a man with nice, strong arm- leg- thingies...”</i>");
 				
 				pc.orgasm();
@@ -882,7 +891,7 @@ public function ramisCockFuck(arg:Array):void
 	{
 		// Sleep
 		case "trap sleep":
-			output("Ramis ruffles your hair fondly.");
+			output("Ramis " + (pc.hasHair() ? "ruffles your hair" : "strokes your head") + " fondly.");
 			output("\n\n<i>“Alright, I don’t mind,”</i> she says, laboriously climbing off your erect, needy cock, hiccupping as she settles herself down besides you. <i>“I know how fragial boyos are...”</i>");
 			output("\n\nShe’s rumbling the bed with her snores in moments.");
 			

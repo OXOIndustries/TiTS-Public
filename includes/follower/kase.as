@@ -215,7 +215,7 @@ public function kaseCrewMenu():void
 	else addButton(5, "Sleep With", kaseSleepToggleOn, undefined, "Sleep With", "Ask Kase to join you in your bed.");
 	if(flags["KASE_STEELETECH"] == undefined && annoIsCrew()) addButton(6, "JoinSteele", kaseJoinSteele, undefined, "Join SteeleTech", "See if your crewmate is interested in joining SteeleTech.");
 	addButton(13, "Evict", kaseEvict, undefined, "", "");
-	addButton(14,"Leave",mainGameMenu);
+	addButton(14, "Leave", crew);
 }
 
 public function kaseCrewTalk():void
@@ -275,7 +275,7 @@ public function kaseTalkCrewWork(btnSlot:int = 0):void
 	}
 	else
 	{
-		output("<i>“I’m feeling much better since I started working for you,”</i> he begins, a smile on his face, <i>“I’ve been experience a lot less anxiety and distress working on your ship. There’s been quite a few less broken arms, as well.”</i>");
+		output("<i>“I’m feeling much better since I started working for you,”</i> he begins, a smile on his face, <i>“I’ve been experiencing a lot less anxiety and distress working on your ship. There’s been quite a few less broken arms, as well.”</i>");
 		if(pc.isAss()) output("\n\nYou ask him what he’s been doing around your vessel.");
 		else output("\n\nYou tell him you’re glad he’s happy with his new job and ask him what he’s been doing around your vessel.");
 		output("\n\n<i>“Oh, plenty!”</i> he exclaims, picking up his datapad, <i>“I’ve been keeping track of our travel and fuel consumption mostly, along with cataloging the ship’s storage and anything that leaves or enters the ship. Even when I’m not busy I attempt to organizes the ship’s inventory to the best of my ability.”</i> He sighs complacently, <i>“I couldn’t be happier, Captain. Thank you, again, for this opportunity. There isn’t a boss I’d rather have.”</i>");
@@ -453,7 +453,7 @@ public function kaseSexRecOral(x:int):void
 		output("\n\nKase whines slightly when your cockhead touches the back of his throat, but continues his cocksucking all the same, taking things nice and slow. His nubby tongue swirls around your [pc.cock " + x + "], slathering it with a layer kitty-spit and teasing you with his wonderfully textured tongue. He knows math, logistics, and how to suck a dick, a skilled and “qualified” employee if there ever was one.");
 		output("\n\nIn fact, you feel as if the kaithrit deserve a little reward for all these oral pleasures he’s giving you. Grinning, you reach down and place your hand right between Kase’s feline ears. They twitch in response to your nearness, but their owner whimpers as you start to move your fingers, gently scritching at the base of his sensitive aural organs. His pleasured tones are quickly muffled by the [pc.cockNoun " + x + "] in his mouth, the vibrations of his blissful noises on your cockflesh sending ripples of ecstacy shooting up your spine. You run your digits through his pine green locks to the edges of his ears, gingerly tracing along their most sensitive spots. ");
 		output("\n\nThat’s all enough to make Kase moan onto your [pc.cock " + x + "], encouraging him to speed up his once gentle bobbing and licking. It’s all pulling you closer to your inevitable orgasm, your [pc.legs] tensing and squeezing around your subordinate’s head uncontrollably. You feel the need to give into pleasure and let your willpower slip away, and you have to admit, giving this kitty a mouth full of cum certainly wouldn’t be the worst thing in the void. So, you let your climax well to the point where all you can feel is the need for release, and allow everything else fall by the wayside.");
-		output("\n\nYou grunt hard as your orgasm ensues, your grip on Kase’s head and ears tightening and your back arching. Your [pc.cock " + x + "] spasms between the kaithrit’s supple lips, " + (pc.balls > 0 ? "[pc.balls]" : "prostate") + " letting " + (pc.balls > 1 ? "their" : "its") + "load empty onto his tongue. Kase coos happily as you fill his mouth with your seed, eagerly gulping down all the [pc.cumFlavor] [pc.cumNoun] you’ll give him" + (pc.cumQ() >= 5000 ? " until his stomach starts to swell" : "") + ". Your hips buck up into the catboy’s face with a mind of their own, forcing your convulsing cock down his throat.");
+		output("\n\nYou grunt hard as your orgasm ensues, your grip on Kase’s head and ears tightening and your back arching. Your [pc.cock " + x + "] spasms between the kaithrit’s supple lips, " + (pc.balls > 0 ? "[pc.balls]" : "prostate") + " letting " + (pc.balls > 1 ? "their" : "its") + " load empty onto his tongue. Kase coos happily as you fill his mouth with your seed, eagerly gulping down all the [pc.cumFlavor] [pc.cumNoun] you’ll give him" + (pc.cumQ() >= 5000 ? " until his stomach starts to swell" : "") + ". Your hips buck up into the catboy’s face with a mind of their own, forcing your convulsing cock down his throat.");
 		output("\n\nYou can feel your sense return to you as you come down from your plateauing peak, a haze of lust clearing from your eyes and leaving you with the sight of Kase pulling himself off your cock, face covered with cum. He smiles up at you, and " + (pc.breastRows[0].breastRating() >= 5 ? "although you’re barely able to see him behind your heaving [pc.chest], you smile right back at him" : "you smile right back at him, chest heaving") + ".");
 		output("\n\n<i>“I hope I serviced you well, " + pc.mf("sir","ma’am") + ",”</i> he says, licking some of your stray [pc.cumNoun] from his lips.");
 	}
@@ -831,28 +831,32 @@ public function kaseCrewSleepSuckling():void
 	showKase();
 	clearMenu();
 
-	output("As you're climbing into bed, Kase appears in the doorframe, dressed in nothing but a t-shirt and boy shorts.");
+	output("As you’re climbing into bed, Kase appears in the doorframe, dressed in nothing but a t-shirt and boy shorts.");
 	output("\n\nYou sit yourself up on your elbows and face the kaithrit as he enters your room, just like he was instructed to. He gives you a smile when his dichotomous eyes meet yours, stopping at the foot of your bed. Grinning at the femboy, you curl a finger to beckon him onto your prone form, legs spread.");
-	output("\n\nKase blushes at that, and quickly climbs down onto the bed, and on top of you, straddling your bare body for a moment with a somewhat nervous smile and his slitted pupils widening. You're quick to wrap your arms around his svelte shoulders and pull him closer, your [pc.skinFurScales] meeting whatever naked flesh he has exposed. He coos and sighs contentedly when he's met with your embrace, nuzzling his head against your bare [pc.breasts].");
-	output("\n\nYou smile down at the happy kaithrit as his warm, pine-green locks caress your [pc.skinFurScales] and naked breast, your chest suddenly feeling full and needy with your crewmate's nearness. With a grin, you place a hand on the back of the kitty's head and start to lead him to a [pc.nipple]. It seems like the kaithrit was just about nodding off, because his ears suddenly perk up and his breath stutters tiredly. ");
+	output("\n\nKase blushes at that, and quickly climbs down onto the bed, and on top of you, straddling your bare body for a moment with a somewhat nervous smile and his slitted pupils widening. You’re quick to wrap your arms around his svelte shoulders and pull him closer, your [pc.skinFurScales] meeting whatever naked flesh he has exposed. He coos and sighs contentedly when he’s met with your embrace, nuzzling his head against your bare [pc.breasts].");
+	output("\n\nYou smile down at the happy kaithrit as his warm, pine-green locks caress your [pc.skinFurScales] and naked breast, your chest suddenly feeling full and needy with your crewmate’s nearness. With a grin, you place a hand on the back of the kitty’s head and start to lead him to a [pc.nipple]. It seems like the kaithrit was just about nodding off, because his ears suddenly perk up and his breath stutters tiredly. ");
 	output("\n\nHe turns to face you with confused, sleepy eyes, letting out a quiet, curious <i>“Captain?”</i>");
 	output("\n\nSmirking at the catboy, you take hold of one of your breasts and angle your stiffening nipple ");
 	if (pc.hasPerk("Mega Milk") || pc.hasPerk("Milk Fountain")) output("- [pc.milk] already beading on it - ");
-	output("towards Kase's shapely lips, telling him you thought a little snack might help him sleep.");
+	output("towards Kase’s shapely lips, telling him you thought a little snack might help him sleep.");
 	output("\n\nThat leaves the femboy blushing before he speaks up, voice stuttering, <i>“O-oh, thank you, captain.”</i>");
 	output("\n\nHe lingers there for a moment with a smile, turning an even deeper shade of red before he lowers himself and allows his tongue to loll from his mouth, giving you a good view of his nub-covered appendage before it meets your nipple. His pleasurably textured tongue touching your teat draws a pleasured gasp from your [pc.lipsChaste].");
-	output("\n\nKase slowly wraps his lips around your [pc.nipple] as your nectar starts to drip from your needy nub and onto his oral organ. With his mouth firmly around your teat, the kitty starts to gently suckle you, tearing a few tired, blissful whimpers from you. Your [pc.milk] begins to flow from your breasts and onto Kase's tongue, who eagerly laps up and gulps down your maternal fluids, cooing happily.");
+	output("\n\nKase slowly wraps his lips around your [pc.nipple] as your nectar starts to drip from your needy nub and onto his oral organ. With his mouth firmly around your teat, the kitty starts to gently suckle you, tearing a few tired, blissful whimpers from you. Your [pc.milk] begins to flow from your breasts and onto Kase’s tongue, who eagerly laps up and gulps down your maternal fluids, cooing happily.");
 	output("\n\nYou place a hand on his back and another between his twitching ears, gently scritching and scratching at them until he starts to moan quietly, his pleasured noises muffled by your nipple. The femboy responds in kind by reaching his hands up to massage and caress your [pc.breasts], making you moan and coaxing more milk from your breasts... and earning him a more vigorous ear-scritching.");
 	if (pc.hasVagina()) {
-		output("\n\nBefore too long you can feel the kaithrit's nubby dick begin to stiffen beneath his underwear against your stomach. You smirk between quiet whimpers at Kase's obvious arousal and figure you might as well slip the kitty into you while you have him like this, at least so you can keep him nice and warm.");
-		output("\n\nSliding a hand down to the catboy's waist, you pull down his shorts just enough for his hard cat-cock to pop free, his warm dickflesh rubbing against your [pc.skinFurScales].");
-		output("\n\nGrinning, you wrap your fingers around Kase's tool and start to jerk him off, causing him to moan around your [pc.nipple] before he pops his mouth off it and switches to your other teat. Then, all there is to do is spread your legs a little more, angle his thick, throbbing member towards your [pc.vagina], and let him slide into you. The penetration is tantalizingly slow, especially with all those soft barbs of his caressing your inner walls. You both moan with shared pleasure before you begin flexing your inner muscles, tightening and loosening your love canal around Kase's shaft.");
+		output("\n\nBefore too long you can feel the kaithrit’s nubby dick begin to stiffen beneath his underwear against your stomach. You smirk between quiet whimpers at Kase’s obvious arousal and figure you might as well slip the kitty into you while you have him like this, at least so you can keep him nice and warm.");
+		output("\n\nSliding a hand down to the catboy’s waist, you pull down his shorts just enough for his hard cat-cock to pop free, his warm dickflesh rubbing against your [pc.skinFurScales].");
+		output("\n\nGrinning, you wrap your fingers around Kase’s tool and start to jerk him off, causing him to moan around your [pc.nipple] before he pops his mouth off it and switches to your other teat. Then, all there is to do is spread your legs a little more, angle his thick, throbbing member towards your [pc.vagina], and let him slide into you. The penetration is tantalizingly slow, especially with all those soft barbs of his caressing your inner walls. You both moan with shared pleasure before you begin flexing your inner muscles, tightening and loosening your love canal around Kase’s shaft.");
 		output("\n\nHis hips start to move soon enough: just gentle, tiny thrusts that leave you to groan with bliss, keeping you both locked in constant pleasure.");
-		output("\n\nIt's a nice night after all that, with Kase sleepily suckling your breasts and cumming again and again until you both fall asleep, filling your womb with load after load of kitty cream while you also find yourself powering your way through multiple orgasms. You wonder if you'll ever fall asleep with this kaithrit happily fucking your pussy and suckling your tits, but with each passing climax sapping more and more energy from your body, you can feel your eyelids becoming heavy, ready to fall asleep in Kase's warm, pleasurable embrace.");
+		output("\n\nIt’s a nice night after all that, with Kase sleepily suckling your breasts and cumming again and again until you both fall asleep, filling your womb with load after load of kitty cream while you also find yourself powering your way through multiple orgasms. You wonder if you’ll ever fall asleep with this kaithrit happily fucking your pussy and suckling your tits, but with each passing climax sapping more and more energy from your body, you can feel your eyelids becoming heavy, ready to fall asleep in Kase’s warm, pleasurable embrace.");
+		
+		pc.orgasm();
+		pc.orgasm();
+		pc.orgasm();
 	}
 	else {
-		output("\n\nBefore too long you can feel the kaithrit's nubby dick begin to stiffen beneath his underwear against your stomach. You smirk between quiet whimpers at Kase's obvious arousal and figure the femboy is going to be pretty pent up by the time you both wake up.");
-		output("\n\nSpeaking of, you can already feel your eyelids growing heavy, with only little jolts and surges of pleasure keeping you awake while your subordinate suckles away at your breasts, ready to fall asleep in Kase's warm, pleasurable embrace.");
+		output("\n\nBefore too long you can feel the kaithrit’s nubby dick begin to stiffen beneath his underwear against your stomach. You smirk between quiet whimpers at Kase’s obvious arousal and figure the femboy is going to be pretty pent up by the time you both wake up.");
+		output("\n\nSpeaking of, you can already feel your eyelids growing heavy, with only little jolts and surges of pleasure keeping you awake while your subordinate suckles away at your breasts, ready to fall asleep in Kase’s warm, pleasurable embrace.");
 	}
 
 	flags["KASE_SLEEPWITH_DOMORNING"] = 1;
@@ -986,8 +990,10 @@ public function kaseEvict():void
 	clearMenu();
 	
 	output("You " + (!pc.isAss() ? "sigh heavy and " : "") + "tell Kase that it’s time for him to leave the ship and he should pack his things.");
-	output("\n\nHis ears swivel rounds and perk at your word, looking like he didn’t hear you quite right. <i>“Oh, of course, " + pc.mf("sir","ma’am") + ",”</i> he says, keeping his poise, <i>“There’s " + (flags["KASE_STEELETECH"] != undefined ? "a place on Tavros SteeleTech has payed for so I can carry out my work when I’m not onboard your ship" : "an apartment on Tavros I rent out for any delays I had between Pyrite deployments") + ", I’ll head there, for now. I’m sure you can find me there if you require my services again.”</i>");
+	output("\n\nHis ears swivel rounds and perk at your word, looking like he didn’t hear you quite right. <i>“Oh, of course, " + pc.mf("sir","ma’am") + ",”</i> he says, keeping his poise, <i>“There’s " + (flags["KASE_STEELETECH"] != undefined ? "a place on Tavros SteeleTech has paid for so I can carry out my work when I’m not onboard your ship" : "an apartment on Tavros I rent out for any delays I had between Pyrite deployments") + ", I’ll head there, for now. I’m sure you can find me there if you require my services again.”</i>");
 	output("\n\nWith that, Kase quickly begins gathering his things, finding containers to neatly pack away his belongings in. Seems like he’s taking the sudden eviction well, at least, an unflinching employee if there ever was one.");
+	
+	output("\n\n(<b>Kase is no longer on your crew. You can find him again in Tavros Station.</b>)");
 	
 	processTime(3);
 	flags["KASE_CREW"] = 0;
@@ -1070,6 +1076,8 @@ public function kaseApartmentJoin():void
 	output("\n\nThose words bring a smile to your face, and you tell the femboy to gather his things and meet you on your ship.");
 	output("\n\n<i>“Aye-aye, Captain!”</i> he says ecstatically, saluting you before he heads off to gather his belongings, <i>“I’ll be there before you know it!”</i>");
 	output("\n\nWith that, he’s packing his things, tails moving in what you can only assume to be happy, if a bit erratic patterns. You guess you should leave Kase to finish his preparations.");
+	
+	output("\n\n(<b>Kase has rejoined your crew!</b>)");
 	
 	processTime(5+rand(3));
 	flags["KASE_CREW"] = 2;

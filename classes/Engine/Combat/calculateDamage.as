@@ -62,7 +62,12 @@ package classes.Engine.Combat
 				damageResult.wasCrit = true;
 				baseHPDamage.multiply(target.statusEffectv3("Deep Freeze"));
 			}
-			
+			if(target.evasion() < 0)
+			{
+				//So, -1 evasion = mult by 1.03
+				//-5 = mult by 1.15
+				baseHPDamage.multiply(target.evasion() * -4 / 100 + 1);
+			}
 			if (special == "melee")
 			{
 				// Melee crit
@@ -85,7 +90,7 @@ package classes.Engine.Combat
 					
 					baseHPDamage.add(attacker.level * 3 + attacker.bimboIntelligence()/2);
 					if (attacker.hasStatusEffect("Take Advantage")) baseHPDamage.add(attacker.level * 2);
-					if	(target.hasStatusEffect("Stunned") && target.isBlind()) baseHPDamage.add(attacker.level);
+					if (target.hasStatusEffect("Stunned") && target.isBlind()) baseHPDamage.add(attacker.level);
 				}
 				
 				//Burninate the countryside
@@ -105,7 +110,27 @@ package classes.Engine.Combat
 					}
 					baseHPDamage.add(new TypeCollection( { electric: chargeBonus } ));
 				}
-
+				
+				//Akane skills
+				if (target.hasStatusEffect("Fade-cloak"))
+				{
+					if (baseHPDamage.getTotal() > 0)
+					{
+						if (!target.hasStatusEffect("Fade-cloak struck")) target.createStatusEffect("Fade-cloak struck");
+					}
+				}
+				if (target.hasStatusEffect("Petra overcharge"))
+				{
+					if (target.hasStatusEffect("Petra shield hits")) target.addStatusValue("Petra shield hits", 1, 1);
+					else target.createStatusEffect("Petra shield hits", 1, 0, 0, 0, true, "", "", true);
+				}
+				
+				// War Cry Buff
+				if (attacker.hasStatusEffect("War Cry"))
+				{
+					baseHPDamage.add(attacker.statusEffectv1("War Cry"));
+				}
+				
 				//Special counter - added when PC melees something. Eaten at the end of the round.
 				if(attacker is PlayerCharacter && !target.hasStatusEffect("Melee Counter")) target.createStatusEffect("Melee Counter",0,0,0,0);
 			}
@@ -143,6 +168,26 @@ package classes.Engine.Combat
 				{
 					CombatAttacks.applyBurn(target, 2);
 				}
+				
+				//AkaneQuest skills ranged edition
+				if (target.hasStatusEffect("Petra overcharge") && rand(2) == 0)
+				{
+					if (baseHPDamage.hasFlag(DamageFlag.LASER) || baseHPDamage.hasFlag(DamageFlag.ENERGY_WEAPON))
+					{					
+						baseHPDamage.multiply(0.5);
+						baseHPDamage.applyResistances(target.getShieldResistances());
+						var dmg:int = baseHPDamage.getTotal();
+						output(" " + (target is PlayerCharacter ? "Your" : target.short + "'s") + " shield charges itself with the energy of the attack!");
+						target.shields(dmg);
+						baseHPDamage.multiply(0);
+					}
+				}
+				
+				// War Cry Buff
+				if (attacker.hasStatusEffect("War Cry"))
+				{
+					baseHPDamage.add(attacker.statusEffectv1("War Cry"));
+				}
 			}
 			//Track Alpha Strike. Don't need to track the perk here cause who cares.
 			if(attacker.hasPerk("Alpha Strike") && !attacker.hasStatusEffect("AlphaedStroked") && damageResult.wasCrit == true) attacker.createStatusEffect("AlphaedStroked",0,0,0,0,true,"","",true);
@@ -156,6 +201,20 @@ package classes.Engine.Combat
 				//baseHPDamage.multiply(0.5);
 				//baseHPDamage.multiply(new TypeCollection( { kinetic: 0.5 } ));
 				baseHPDamage.kinetic.damageValue *= 0.5;
+			}
+		}
+		
+		//More akane statuses
+		if(attacker != null)
+		{
+			if (attacker.hasStatusEffect("Fade-cloak"))
+			{
+				baseHPDamage.multiply(attacker.statusEffectv3("Fade-cloak")/100.0 + 1);
+			}
+			if (attacker.hasStatusEffect("Brutalized"))
+			{
+				baseHPDamage.multiply(0.9);
+				baseLustDamage.multiply(0.9);
 			}
 		}
 		

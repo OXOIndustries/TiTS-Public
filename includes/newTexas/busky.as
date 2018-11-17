@@ -221,7 +221,7 @@ public function buskyTalksAboutHimself():void {
 	output("\n\nYou introduce yourself as Steele, [pc.name] Steele.");
 	output("\n\n<i>“Kind of an odd last name; it Terran or something?”</i>");
 	output("\n\nYou awkwardly explain Steele Co. and how you’re the soon to be CEO while Busky nods in understanding.");
-	output("\n\n<i>“Cool. Never really payed attention to Steele Co. myself, not much of a big deal to me since I don’t really have much need for tetratazmanian carbonoid alloys or whatever. Anyway, nice to meet you, [pc.name].”</i>");
+	output("\n\n<i>“Cool. Never really paid attention to Steele Co. myself, not much of a big deal to me since I don’t really have much need for tetratazmanian carbonoid alloys or whatever. Anyway, nice to meet you, [pc.name].”</i>");
 	
 	processTime(2);
 	
@@ -258,7 +258,7 @@ public function buskyTalksAboutTreatment():void {
 	
 	if (pc.isTreated()) output(" A lot of people do, although it’s usually just tourists, and you...”</i> he glances at your treated physique, <i>“you’re no newcomer.");
 	else output(" Everyone wants to know the changes before they take it themselves.");
-	output(" Well, The Treatment was originally a fertility drug administered to the initial immigrants who landed on this here planet, used to boost the population to colonize and fight against what Big T. calls ’Mega Varmints’. After we got control of the planet a few... scratch that. A buncha people took a liking to The Treatment, soft women, strong men, was pretty natural to ‘em. The details around this time are a little fuzzy for me, but fast forward a couple generations and now it’s sunk into our genes, mandatory on our 18th birthday, and better than ever.”</i>");
+	output(" Well, The Treatment was originally a fertility drug administered to the initial immigrants who landed on this here planet, used to boost the population to colonize and fight against what Big T. calls ‘Mega Varmints’. After we got control of the planet a few... scratch that. A buncha people took a liking to The Treatment, soft women, strong men, was pretty natural to ‘em. The details around this time are a little fuzzy for me, but fast forward a couple generations and now it’s sunk into our genes, mandatory on our 18th birthday, and better than ever.”</i>");
 
 	output("\n\n<i>“And what about you? Were you always the hulking slab of meat you are today?”</i> You ask sarcastically, underestimating the power of the Treatment.");
 	output("\n\n<i>“Actually, I was quite the nerd. Glasses, thin, nose-deep in books, no muscle bulk. Nothin’. But then once I got the Treatment at the beginning of my Senior school year things turned out much better for me. You see, before my Treating I was... close with the football team.");
@@ -728,7 +728,7 @@ public function buskySexAnalPitch():void {
 	else if (pc.cumQ() >= 1000 && pc.cumQ() < 5000) output("\n\nThe amount of spunk you pour into Busky is clearly enough to make an impression, as you can see him place a hand over his belly, your seed filling him to the brim.");
 	else if (pc.cumQ() >= 5000) output("\n\nThe first few spurts of your seed are already enough to fill him full, but your balls are still churning, and you aren’t pulling out.\n\nHe looks back at you as he tries to get away but you hold him tight, forcing each drop of your load into his ass. You watch as his belly expands with your cum, slowly growing and growing, until he looks like he’s about to give birth.");
 
-	output("\n\nAfter you both finish, Busky collapses on the countertop, lying in a pool of his own cum and heaving in air. You follow suit and fall on top of him, still hilted inside his ass. You don’t pull out just yet, instead you take some time to rest yourself, absolutely wrecked by your orgasm. It takes a while, but you finally regain the strength to stand up.");
+	output("\n\nAfter you both finish, Busky collapses on the countertop, lying in a pool of his own cum and heaving in air. You follow suit and fall " + (pc.isTaur() ? "right next to" : "on top of") + " him, still hilted inside his ass. You don’t pull out just yet, instead you take some time to rest yourself, absolutely wrecked by your orgasm. It takes a while, but you finally regain the strength to stand up.");
 	
 	if(pc.hasKnot()) {
 		output("\n\nYou mindlessly try to pull out, only to be met with a tug of resistance, forgetting about your knot. Busky pulls his face out of the puddle cum and wipes it off with his hand, before turning back to face you.");

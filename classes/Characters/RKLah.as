@@ -22,12 +22,12 @@ package classes.Characters
 			this.version = this._latestVersion;
 			this._neverSerialize = true;
 			
-			this.short = "RK Lah";
+			this.short = "R.K. Lah";
 			this.originalRace = "ausar";
 			this.a = "";
 			this.capitalA = "";
-			this.long = "The ausar fugitive stands maybe 6 foot tall, a height accentuated by his hard, jungle-leaned body and his wide, pointy ears. His skin is a sun-bronzed teak and his fur an orangey-grey, a shoulder-length matt of the stuff between his ears and down his bushy tail. Around his neck he has tied a long fur of some kind, which combined with the hunch of his shoulders lends him a prowling profile. Aside from that all he’s dressed in are the tattered remains of his bright orange jumpsuit bottoms; his bare feet are floured pale yellow with use.\n\nHe has a long, studious face which would be reasonably fetching in some circumstance in which his lips weren’t curled up in a mask of rage and fear. Similarly, his pale grey eyes could be pools of moon-like calm, were they not nakedly shining the light of a mind that has spent weeks marching far into the jungle night. He is armed with black, thorn-like claws and a zil spear, which with his spidery arms give him considerable reach.";
-			this.customDodge = "RK Lah casually sidesteps out of the way.";
+			this.long = "The ausar fugitive stands maybe 6 foot tall, a height accentuated by his hard, jungle-leaned body and his wide, pointy ears. His skin is a sun-bronzed teak and his fur an orangey-gray, a shoulder-length matt of the stuff between his ears and down his bushy tail. Around his neck he has tied a long fur of some kind, which combined with the hunch of his shoulders lends him a prowling profile. Aside from that all he’s dressed in are the tattered remains of his bright orange jumpsuit bottoms; his bare feet are floured pale yellow with use.\n\nHe has a long, studious face which would be reasonably fetching in some circumstance in which his lips weren’t curled up in a mask of rage and fear. Similarly, his pale gray eyes could be pools of moon-like calm, were they not nakedly shining the light of a mind that has spent weeks marching far into the jungle night. He is armed with black, thorn-like claws and a zil spear, which with his spidery arms give him considerable reach.";
+			this.customDodge = "Lah casually sidesteps out of the way.";
 			this.customBlock = "Obvious placeholder is obvious.";
 			this.isPlural = false;
 			
@@ -69,9 +69,9 @@ package classes.Characters
 			this.tallness = 72;
 			this.thickness = 25;
 			this.tone = 85;
-			this.hairColor = "orangey-gray";
+			this.hairColor = "orange-gray";
 			this.scaleColor = "orange";
-			this.furColor = "orangey-gray";
+			this.furColor = "orange-gray";
 			this.hairLength = 3;
 			this.hairType = 0;
 			this.beardLength = 0;
@@ -150,7 +150,7 @@ package classes.Characters
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 30;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 2000;
 			this.timesCum = 762;
 			this.cockVirgin = false;
@@ -171,13 +171,15 @@ package classes.Characters
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 1;
-
+			
+			impregnationType = "LahPregnancy";
+			
 			//this.createPerk("Multiple Attacks",1,0,0,0,"");
 			//this.createPerk("Multiple Shots",1,0,0,0,"");
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			
 			isUniqueInFight = true;
-			btnTargetText = "RK Lah";
+			btnTargetText = "R.K. Lah";
 			setDefaultSexualPreferences();
 			//kGAMECLASS.mhengaSSTDChance(this);
 			_isLoading = false;
@@ -220,7 +222,7 @@ package classes.Characters
 			}
 			choices.push(redFlowerAttackWhatIsThisFuckingJungleBook);
 			choices.push(wolfsToothytooth);
-			if(!target.hasStatusEffect("Evasion Boost")) choices.push(dancesWithWolves);
+			if(!this.hasStatusEffect("Evasion Boost")) choices.push(dancesWithWolves);
 			choices.push(willItBleed);
 			choices[rand(choices.length)](target);
 		}

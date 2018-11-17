@@ -163,7 +163,7 @@
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 4;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 635;
 			this.timesCum = 255;
 			this.cockVirgin = true;
@@ -348,7 +348,7 @@
 				applyDamage(rangedDamage(), this, target, "ranged");
 
 				//Physique check. DC 25 vs trip!
-				if(target.physique + rand(20) + 1 < 25 && target.shields() <= 0)
+				if((target.physique + rand(20) + 1 < 25 && target.shields() <= 0) && !target.isPlanted())
 				{
 					output("\nA hot, burning sensation sprays out from your chest. Your [pc.legs] go weak and you fall to the ground.");
 					//Effect: Decent physical damage with small crit chance. If the PC’s shields are down, there is a 25% knockback chance. 100% knockback chance on crit.

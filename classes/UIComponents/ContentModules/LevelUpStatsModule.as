@@ -130,7 +130,7 @@ package classes.UIComponents.ContentModules
 			
 			// Make some buttons available
 			kGAMECLASS.userInterface.clearGhostMenu();
-			kGAMECLASS.userInterface.addGhostButton(14, "Back", kGAMECLASS.backToPrimaryOutput);
+			kGAMECLASS.userInterface.addGhostButton(14, "Back", kGAMECLASS.backToPrimaryOutput, true);
 			
 			_targetCreature = tarCreature;
 			_pointDistribution = new Array();
@@ -251,7 +251,8 @@ package classes.UIComponents.ContentModules
 			
 			for (var i:int = 0; i < _barLabels.length; i++)
 			{
-				_targetCreature[_barLabels[i]](_pointDistribution[i]);
+				//_targetCreature[_barLabels[i]](_pointDistribution[i]);
+				_targetCreature[_barLabels[i] + "Raw"] += _pointDistribution[i];
 				if(_pointDistribution[i] > 0) gavePoints = true;
 			}
 			

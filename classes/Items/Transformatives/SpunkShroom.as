@@ -13,7 +13,7 @@ package classes.Items.Transformatives {
 		public function SpunkShroom() {
 			this._latestVersion = 1;
 			this.quantity = 1;
-			this.stackSize = 9;
+			this.stackSize = 10;
 			this.type = GLOBAL.PILL;
 			
 			this.shortName = "Spunkshrm";
@@ -23,7 +23,7 @@ package classes.Items.Transformatives {
 			
 			this.description = "a droopy-looking spunkshroom";
 			
-			this.tooltip = "This mushroom has a huge droopy cap that reminds you vaguely of a primitive dwelling you’ve seen in the past. According to rumor on the extranet, it ought to make your emissions more voluminous and potentially more virile per ounce than ever before. It also might poison you, so there’s that.";
+			this.tooltip = "This mushroom has a huge droopy cap that reminds you vaguely of a primitive dwelling you’ve seen in the past. According to rumor on the extranet, it ought to make your emissions more voluminous and potentially more virile per ounce than ever before. It also might poison you, so there’s that.\n\n<b>Known to cause high amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -44,18 +44,19 @@ package classes.Items.Transformatives {
 			else author("Fenoxo");
 			if ((target is PlayerCharacter)) {
 				var pc:Creature = target;
+				var i:int = 0;
 
 				//Consume one
 				output("You pop the mushroom into your mouth and wince at the flavor. It’s like chewing on salt-dusted rust. You chomp a few times to break it into smaller pieces, then swallow the whole mess down before you have to taste it any longer. Ugh! The taste won’t quite leave your mouth...");
-
 				//Poison
-				if(rand(8) == 0 || !pc.hasCock())
+				if(rand(8) == 0 || !pc.hasCock() || pc.ballSize() <= 0)
 				{
 					output("\n\nIt takes less than a minute for you to double over from the stabbing pain in your gut. Your stomach ties itself in knots while you drop to the ground and double over. An involuntary spasm squeezes your middle like a toothpaste tube, and everything you’ve eaten in the past few hours comes up in a wave of burning pain - including the mushroom.");
 					output("\n\nThat <b>hurt</b>! (-" + (Math.round(pc.HPMax()* 0.5)+1) + ")");
 					pc.HP(-1*(Math.round(pc.HPMax()* 0.5)+1));
 					return false;
 				}
+				pc.taint(5);
 				//Cum quality:
 				if(pc.cumQualityRaw < 6 && pc.libido() >= 35 && pc.maxCum() >= 800 && rand(4) == 0)
 				{
@@ -126,9 +127,11 @@ package classes.Items.Transformatives {
 						output(". At least the spunkshroom did <i>something</i>.");
 						//Max lust!
 						pc.lust(pc.lustMax());
-						while(pc.maxCum() < 150)
+						i = 0;
+						while(pc.maxCum(true) < 150 && i < 800)
 						{
 							pc.boostCum(2);
+							i++;
 						}
 					}
 					//MaxCum < 400 -> 500
@@ -175,9 +178,11 @@ package classes.Items.Transformatives {
 						output(" after having some strange mycological hallucinations. Still, you managed to produce enough [pc.cum] to fill a glass or two - upwards of a half liter for sure!");
 						//Orgasm
 						pc.orgasm();
-						while(pc.maxCum() < 500)
+						i = 0;
+						while(pc.maxCum(true) < 500 && i < 800)
 						{
 							pc.boostCum(4);
+							i++;
 						}
 					}
 					//MaxCum < 1000 -> 1100
@@ -204,10 +209,12 @@ package classes.Items.Transformatives {
 						else output("body feeling a bit backed up and ready to go.");
 						//Gib blue balls status!
 						pc.lust(10);
-						applyBlueBalls(pc);
-						while(pc.maxCum() < 1100)
+						pc.applyBlueBalls();
+						i = 0;
+						while(pc.maxCum(true) < 1100 && i < 800)
 						{
 							pc.boostCum(4);
+							i++;
 						}
 					}
 					//MaxCum < 1100 -> 2000
@@ -252,12 +259,14 @@ package classes.Items.Transformatives {
 						output("\n\nIt’s a mercy when you black out after the tenth imaginary cum-shot.");
 
 						pc.lust(pc.lustMax());
-						while(pc.maxCum() < 2000)
+						i = 0;
+						while(pc.maxCum(true) < 2000 && i < 800)
 						{
 							pc.boostCum(4);
+							i++;
 						}
 						//Max lust. Give blue balls.
-						applyBlueBalls(pc);
+						pc.applyBlueBalls();
 						clearMenu();
 						addButton(0,"Next",blueBallsEpilogue,pc);
 						return true;
@@ -341,7 +350,7 @@ package classes.Items.Transformatives {
 						//+33lust.
 						pc.lust(33);
 						//Apply blueballs / fillcum. :3	
-						applyBlueBalls(pc);
+						pc.applyBlueBalls();
 						pc.boostCum(10);
 					}
 					//100k+ repeatable
@@ -382,7 +391,7 @@ package classes.Items.Transformatives {
 				}
 			}
 			else {	
-				kGAMECLASS.output(target.capitalA + target.short + " consumes the spunkshroom to no effect.");
+				output(target.capitalA + target.short + " consumes the spunkshroom to no effect.");
 			}
 			return false;
 		}
@@ -398,11 +407,6 @@ package classes.Items.Transformatives {
 			pc.applyCumSoaked();
 			clearMenu();
 			addButton(0,"Next",kGAMECLASS.mainGameMenu);
-		}
-		public function applyBlueBalls(target:Creature):void
-		{
-			if(target.ballFullness < 100) target.ballFullness = 100;
-			target.createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
 		}
 	}
 }

@@ -374,7 +374,7 @@ public function nenneBellyRub():void
 	if(!korgiTranslate()) output("You too good!");
 	else output("You’re good too!");
 	output("”</i> she says happily, drawing her tongue back into her mouth. It takes her another moment to roll onto her shaky limbs, and then another to pull herself back up. <i>“");
-	if(!korgiTranslate()) output("Knowing didn’t Korgonne doing could that! Liked! Afraiding not doing to again!");
+	if(!korgiTranslate()) output("Knowing didn’t Korgonne could doing that! Liked! Afraiding not to doing again!");
 	else output("I didn’t know the Korgonne could do that! I liked it a lot; don’t be afraid to give me another one!");
 	output("”</i>");
 	flags["NENNE_BELLY_RUBS"] = 1;
@@ -707,8 +707,9 @@ public function nenneGets69():void
 	output("\n\nThat said, your orgasm is a lot stronger than you remember any recent orgasm of yours: ");
 	if(pc.hasCock()) 
 	{
-		output("your [pc.cock] bloats suddenly in Nenne’s mouth, and you feel every pulse of your veins massaging every little muscle in your dick to usher every single drop of your [pc.cum] up");
-		if(pc.balls > 0) output(" from your [pc.balls]] and out your bloated [pc.cockHead], which is lodged comfortably in Nenne’s moist mouth");
+		output("your [pc.cock] swells suddenly in Nenne’s maw, and you feel every pulse of your veins massaging every little muscle in your dick to usher every single drop of your [pc.cum] up");
+		if(pc.balls > 0) output(" from your [pc.balls] and");
+		output(" out your bloated [pc.cockHead], which is lodged comfortably in Nenne’s moist mouth");
 		if(pc.cumQ() < 400) output(". She doesn’t let a drop out of her mouth, and she moans in delight at the [pc.cumFlavor] taste dressing her buds; her expert tongue coils around your shaft and lets your squirming [pc.cock] squirt into the back of her mouth, and when she’s got a mouthful, she withdraws slightly, dragging her tongue along your [pc.skinFurScales] so she can swish your jizz around before swallowing to make room for some more");
 		else 
 		{
@@ -749,8 +750,8 @@ public function maleOrHermAndNotDoingOral(x:int = 0):void
 	else output("crotch");
 	output(". And you feel when Nenne scoops it between her fingers and use that little drop as lube.");
 
-	// Continue here if the PC has a cock length of 14 or less
-	if(pc.cocks[x].cLength() < 14)
+	// Continue here if the PC cock fits
+	if(pc.cockThatFits(chars["NENNE"].vaginalCapacity()) >= 0)
 	{
 		output("\n\nThen, a light pinch, as Nenne adjusts her grip on you and gives you a light tug. Your [pc.cock " + x + "] is pulled along the tight, warm valley of her hefty bottom, until it finds something warmer and tighter: the pre that Nenne had used to lube your shaft is washed with the feminine juices that’s practically spilling from her pursed pussy lips. With a light downward thrust from her hips, you’ve entered her.");
 		pc.cockChange();
@@ -778,7 +779,7 @@ public function maleOrHermAndNotDoingOral(x:int = 0):void
 		if(pc.cumQ() < 400) output("\n\nYour [pc.cum] floods into Nenne in elongated spurts, jetting up your [pc.cock " + x + "] and bloating it. You can feel yourself expand from the inside of yourself, and likewise you can feel Nenne squeezing down on you from the outside, her own body convulsing in orgasmic pleasure as she wordlessly, physically begs you for your seed. Though most of your jizz disappears into Nenne’s womb, right where she wants it, you can feel some of your [pc.cum] backwash against you; that won’t do, and you thrust into her again, offering another heady spurt, which Nenne accepts graciously into herself.");
 		else output("\n\nNenne is momentarily snapped out of her sexual reverie when you burst inside her, your load filling her to the brim in one mere spurt. You feel your enormous quantity bloat your cock from its inside, which in turn causes Nenne’s cunt to feel all the more tighter around you, coaxing more and more out of your body. She gasps in surprise, and then her body tenses in a rolling orgasm; her fur bristles on end when you fill her welcoming womb to its limit, and your [pc.cum] rushes back onto you, backwashing your [pc.cock " + x + "] and squirting from the union between you in long, sprinkling bouts.");
 	}
-	// Continue here if the PC has a cock length of 15 or more
+	// Continue here if the PC cock doesn't fit
 	else
 	{
 		output("\n\nNenne hums to herself, a little in lust and a little in frustration, as she bucks her own motherly hips backward. You feel a light pinch at your [pc.knot " + x + "] as she gives your [pc.cock " + x + "] a pull, and your gargantuan shaft bends and pulls against her pelvis, but it’s clear that no matter how high she raises her hips, she’s not going to be able to align your tip with her entrance.");
@@ -811,7 +812,7 @@ public function maleOrHermAndNotDoingOral(x:int = 0):void
 	output(". Your mind is hazy and unfocused, but even you would know to not let a good thing pass.");
 	output("\n\nYou start rolling your [pc.hips] against her some more, rousing you both. Might as well get your money’s worth out of her....");
 
-	if(pc.cocks[x].cLength() < 14) chars["NENNE"].loadInCunt(pc);
+	if(pc.cocks[x].cLength() < 14) chars["NENNE"].loadInCunt(pc, 0);
 
 	processTime(30);
 	pc.orgasm();

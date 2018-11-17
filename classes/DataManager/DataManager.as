@@ -31,6 +31,7 @@
 	import classes.GameData.CombatManager;
 	import classes.GameData.ChildManager;
 	import classes.Engine.Interfaces.*;
+	import classes.Engine.Map.*;
 	import flash.system.Capabilities;
 	
 	/**
@@ -219,10 +220,11 @@
 			
 			kGAMECLASS.userInterface.mainButtonsOnly();
 			kGAMECLASS.userInterface.clearGhostMenu();
+			
 			kGAMECLASS.addGhostButton(0, "Load", this.loadGameMenu, undefined, "Load Game", "Load game data.");
 			if (kGAMECLASS.canSaveAtCurrentLocation) kGAMECLASS.addGhostButton(1, "Save", this.saveGameMenu, undefined, "Save Game", "Save game data.");
 			else kGAMECLASS.addDisabledGhostButton(1, "Save", "Save Game", "You can’t save in your current location.");
-			kGAMECLASS.addGhostButton(2, "Delete", this.deleteSaveMenu, undefined, "Delete Save", "Delete a save game slot."); // Added for parity with AIR, because it kinda has to be there...
+			kGAMECLASS.addGhostButton(3, "Delete", this.deleteSaveMenu, undefined, "Delete Save", "Delete a save game slot."); // Added for parity with AIR, because it kinda has to be there...
 			
 			kGAMECLASS.addGhostButton(5, "Load File", this.loadFromFile, undefined, "Load from File", "Load game data from a specific file.");
 			if (kGAMECLASS.canSaveAtCurrentLocation) kGAMECLASS.addGhostButton(6, "Save File", this.saveToFile, undefined, "Save to File", "Save game data to a specific file.");
@@ -640,7 +642,7 @@
 					default: break;
 					case SSET_NATIVE: break; // do nothing
 					case SSET_CHROMEREMOTE: copyFolderContents(File.applicationStorageDirectory.resolvePath("#SharedObjects/chrome_remote"), File.applicationStorageDirectory.resolvePath("#SharedObjects")); break;
-					case SSET_CHROMELOCAL:  copyFolderContents(File.applicationStorageDirectory.resolvePath("#SharedObjects/chrome_local"), File.applicationStorageDirectory.resolvePath("#SharedObjects")); break;
+					case SSET_CHROMELOCAL: copyFolderContents(File.applicationStorageDirectory.resolvePath("#SharedObjects/chrome_local"), File.applicationStorageDirectory.resolvePath("#SharedObjects")); break;
 					case SSET_PROJECTOR: copyFolderContents(File.applicationStorageDirectory.resolvePath("#SharedObjects/projector"), File.applicationStorageDirectory.resolvePath("#SharedObjects")); break;
 				}
 				
@@ -886,7 +888,7 @@
 			// Valid file to preview!
 			returnString += slotNumber;
 			returnString += ": <b>" + dataFile.data.saveName + "</b>";
-			returnString += " - <i>" + dataFile.data.saveNotes + "</i>\n";
+			returnString += " - <i>" + (dataFile.data.saveNotes == "" ? "No notes available." : dataFile.data.saveNotes) + "</i>\n";
 			returnString += "\t<b>Days:</b> " + dataFile.data.daysPassed;
 			returnString += " - <b>Time:</b> " + (dataFile.data.currentHours < 10 ? "0" + dataFile.data.currentHours : dataFile.data.currentHours) + ":" + (dataFile.data.currentMinutes < 10 ? "0" + dataFile.data.currentMinutes : dataFile.data.currentMinutes);
 			returnString += " - <b>Gender:</b> " + dataFile.data.playerGender;
@@ -1534,14 +1536,15 @@
 			
 			// We're going to extract some things from the player object and dump it in here for "preview" views into the file
 			dataFile.saveName 		= kGAMECLASS.chars["PC"].short;
-			dataFile.saveLocation 	= kGAMECLASS.userInterface.planetText + ", " + kGAMECLASS.userInterface.systemText;
+			//dataFile.saveLocation 	= kGAMECLASS.userInterface.planetText + ", " + kGAMECLASS.userInterface.systemText;
+			dataFile.saveLocation	= (InShipInterior() ? (kGAMECLASS.rooms[kGAMECLASS.shipLocation].planet + ", " + kGAMECLASS.rooms[kGAMECLASS.shipLocation].system) : (kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet + ", " + kGAMECLASS.rooms[kGAMECLASS.currentLocation].system));
 			
 			// Blank entries get cleared notes!
 			if (kGAMECLASS.userInterface.currentPCNotes == null || kGAMECLASS.userInterface.currentPCNotes.length == 0 || kGAMECLASS.userInterface.currentPCNotes == "")
-			{ dataFile.saveNotes = "No notes available."; }
+			{ dataFile.saveNotes = ""; }
 			// Keywords to clear current saved notes! (Also if save notes toggle is disabled)
 			else if (kGAMECLASS.userInterface.currentPCNotes.toLowerCase() == "none" || kGAMECLASS.userInterface.currentPCNotes == "N/A" || kGAMECLASS.gameOptions.saveNotesToggle == false)
-			{ dataFile.saveNotes = "No notes available."; }
+			{ dataFile.saveNotes = ""; }
 			// Save note!
 			else
 			{ dataFile.saveNotes = kGAMECLASS.userInterface.currentPCNotes; }
@@ -1732,7 +1735,7 @@
 			kGAMECLASS.days = obj.daysPassed;
 			kGAMECLASS.hours = obj.currentHours;
 			kGAMECLASS.minutes = obj.currentMinutes;
-			if (obj.saveNotes != "No notes available.") kGAMECLASS.userInterface.currentPCNotes = obj.saveNotes;
+			kGAMECLASS.userInterface.currentPCNotes = obj.saveNotes;
 			
 			// Game data
 			kGAMECLASS.initializeNPCs();
@@ -2014,7 +2017,6 @@
 			kGAMECLASS.userInterface.showPrimaryOutput();
 			
 			// *throws up in mouth a little*
-			kGAMECLASS.phoenixSetMapState();
 			kGAMECLASS.variableRoomUpdateCheck();
 			
 			// Trigger an attempt to update display font size
@@ -2056,6 +2058,12 @@
 				if (!kGAMECLASS.pc.hasPregnancyOfType("DeepQueenPregnancy") && kGAMECLASS.pc.hasStatusEffect("Queen Pregnancy State"))
 				{
 					kGAMECLASS.pc.removeStatusEffect("Queen Pregnancy State");
+				}
+				
+				// Accidental pregnancy hotfix
+				if(kGAMECLASS.chars["SHEKKA"].isPregnant())
+				{
+					if(kGAMECLASS.eventQueue.indexOf(kGAMECLASS.shekkaPregnancyHotfix) == -1) kGAMECLASS.eventQueue.push(kGAMECLASS.shekkaPregnancyHotfix);
 				}
 			}
 			

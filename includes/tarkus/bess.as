@@ -10,6 +10,8 @@ Wrap all the ternaries in the sex scenes because fuck debugging them ever
 Make sure up the breast size customisation stuff ties to the sex scenes properly
 */
 
+public var BESS_INV_SLOT_MAX:int = 55;
+
 public function bessSexName():String
 {
 	if (flags["BESS_SEX_NAME"] == undefined) flags["BESS_SEX_NAME"] = bess.short;
@@ -361,6 +363,9 @@ public function bessHasClothingItem(clothingType:Class):Boolean
 	// 9999
 	// can't really pack this into uints -- too many options (outfits) even if we split armor/upper/lower (more than 32 options)
 	// creature inventory I guess is a decent placeholder for now maybe -- can look into other options later, hence wrapping simple call here
+	if(bess.armor is clothingType) return true;
+	if(bess.upperUndergarment is clothingType) return true;
+	if(bess.lowerUndergarment is clothingType) return true;
 	return bess.hasItemByClass(clothingType);
 }
 
@@ -382,18 +387,14 @@ public static const BESS_DISABLED:uint = 3;
 
 public function bessHeader():void
 {
-	if (bess.isFeminine())
-	{
-		//showName("\nBESS-13");
-		showBust("BESS");
-	}
-	else
-	{
-		//showName("\nBEN-14");
-		showBust("BEN");
-	}
+	showBust(bessBustDisplay());
 	showName("\n" + chars["BESS"].short.toUpperCase());
 	author("JimT");
+}
+public function bessBustDisplay():String
+{
+	if (bess.isFeminine()) return "BESS";
+	return "BEN";
 }
 
 public function bessIsCrew():Boolean
@@ -1019,7 +1020,7 @@ public function nameBessResult():void
 public function followerBessRoom():void
 {
 	clearOutput();
-	bessHeader();
+	//bessHeader();
 
 	//if (Bess/Ben Event 11 completed)
 	if(flags["BESS_EVENT_11"] != undefined)
@@ -1076,8 +1077,8 @@ public function verifyBessModel(jailbreaking:Boolean = false):void
 		if (flags["BESS_OWNS_JBKIT"] == 1) output(". Surprisingly, [bess.heShe] doesnt seem to be fazed in the slightest by the request and");
 		else output(" again. With a smirk, [bess.heShe] quickly");
 		output(" turns around, giving you easy access to the ports on [bess.hisHer] back.");
-		output("\n\nConnecting the gadget with [bess.name] is straightforward and soon you find yourself watching a progressbar on the device's display, waiting for a menu to appear. Once the bar is full however, you only get a brief text telling you to disconnect the machines again. As you pull the plug");
-		if (flags["BESS_OWNS_JBKIT"] == 1) output(" out of [bess.name], you can't help but wonder if you just wasted 25, 000 credits on some scam.");
+		output("\n\nConnecting the gadget with [bess.name] is straightforward and soon you find yourself watching a progressbar on the device’s display, waiting for a menu to appear. Once the bar is full however, you only get a brief text telling you to disconnect the machines again. As you pull the plug");
+		if (flags["BESS_OWNS_JBKIT"] == 1) output(" out of [bess.name], you can’t help but wonder if you just wasted 25, 000 credits on some scam.");
 		else output(", you suddenly remember the energy bubble from last time and take a step back just in case.");
 	}
 	else output("As you approach [bess.name], [bess.heShe] greets you with wave and a bright smile.");
@@ -1368,6 +1369,7 @@ public function bessFollowerMenu():void
 	addButton(1, "Functions", bessFunctionsMenu, undefined, "Functions", "Go about setting [bess.name]’s various functions, from what [bess.heShe] calls you, [bess.hisHer] sexual roles, what [bess.heShe] wears, to [bess.hisHer] customizable body parts.");
 	addButton(2, "Accessories", talkToBessAboutAccessories);
 	
+
 	if ((flags["BESS_FRIEND"] != undefined || flags["BESS_LOVER"] != undefined) && bessAffection() < 30)
 	{
 		addDisabledButton(3, "Sex", "Sex", "[bess.name] isn’t feeling up for sex. You will need to raise [bess.hisHer] affection in order to have sex with [bess.himHer].");
@@ -1408,7 +1410,7 @@ public function bessFollowerMenu():void
 		}
 		else
 		{
-			addDisabledButton(5, "Date","Locked","It doens't seem like [bess.name] wants to go on a date ever again after the hassle on Ekurana.");
+			addDisabledButton(5, "Date","Date","It doesn’t seem like [bess.name] wants to go on a date ever again after the hassle on Ekurana.");
 		}
 	}
 
@@ -2208,7 +2210,7 @@ public function bessSetEyeColor(newColor:String):void
 
 	bess.eyeColor = newColor;
 
-	output("[bess.name] brings a silvery hand up beneath [bess.hisHer] eyes. With a simple wave upwards, [bess.hisHer] eyes change [bess.eyeColor] like a party trick.");
+	output("[bess.name] brings a silvery hand up beneath [bess.hisHer] eyes. With a simple wave upwards, [bess.hisHer] eyes change their color to [bess.eyeColor] like a party trick.");
 
 	output("\n\n<i>“Voila!”</i> [bess.heShe] exclaims, <i>“Easily done. Anything else you wanted?”</i>");
 
@@ -3549,6 +3551,16 @@ public function talkToBessAboutClothes():void
 	clearOutput();
 	bessHeader();
 
+	//for some reason, bess might have some empty inventory slots. better get rid of them
+	for(var x:int = 0; x < bess.inventory.length; x++)
+	{
+		if (bess.inventory[x] is EmptySlot) {
+			bess.inventory.splice(x, 1);
+			//output("slot " + x + " is empty!");
+			x = x - 1;
+		}
+	}
+
 	output("You ask [bess.name] to open [bess.hisHer] closet so that you can select a new outfit and accessories for [bess.himHer]. [bess.HeShe] shows you all the clothes that [bess.heShe] owns.");
 
 	// Bess always has access to "Nude". Others are bought from the JoyCo catalog. many of these are new additions (See Clothing Additions section towards the end of the document).
@@ -3558,18 +3570,406 @@ public function talkToBessAboutClothes():void
 	// Choosing the Glasses or Katana triggers bessGlasses or bessKatana boolean true or false (equipped or unequipped).
 
 	clearMenu();
-	addButton(0, "Outfits", talkToBessAboutOutfits, undefined, "Outfits", "Change [bess.hisHer] armor, outfit or clothing.");
-	addButton(1, "U. Tops", talkToBessAboutUpperUndergarments, undefined, "Underwear Tops", "Change [bess.hisHer] upper undergarment.");
-	addButton(2, "U. Bottoms", talkToBessAboutLowerUndergarments, undefined, "Underwear Bottoms", "Change [bess.hisHer] lower undergarment.");
-	addButton(3, "Ears", talkToBessAboutEars, undefined, "Ears", "Change [bess.hisHer] ears.");
-	addButton(4, "Horns", talkToBessAboutHorns, undefined, "Horns", "Change [bess.hisHer] horns.");
-	addButton(5, "Tails", talkToBessAboutTails, undefined, "Tails", "Change [bess.hisHer] tail.");
-	addButton(6, "Wings", talkToBessAboutWings, undefined, "Wings", "Change [bess.hisHer] wings.");
-	addButton(7, "Items", talkToBessAboutItems, undefined, "Items", "Change [bess.hisHer] accessories.");
+//	addButton(0, "Outfits", talkToBessAboutOutfits, undefined, "Outfits", "Change [bess.hisHer] armor, outfit or clothing.");
+//	addButton(1, "U. Tops", talkToBessAboutUpperUndergarments, undefined, "Underwear Tops", "Change [bess.hisHer] upper undergarment.");
+//	addButton(2, "U. Bottoms", talkToBessAboutLowerUndergarments, undefined, "Underwear Bottoms", "Change [bess.hisHer] lower undergarment.");
+	addButton(0, "Ears", talkToBessAboutEars, undefined, "Ears", "Change [bess.hisHer] ears.");
+	addButton(1, "Horns", talkToBessAboutHorns, undefined, "Horns", "Change [bess.hisHer] horns.");
+	addButton(2, "Tails", talkToBessAboutTails, undefined, "Tails", "Change [bess.hisHer] tail.");
+	addButton(3, "Wings", talkToBessAboutWings, undefined, "Wings", "Change [bess.hisHer] wings.");
+	addButton(4, "Items", talkToBessAboutItems, undefined, "Items", "Change [bess.hisHer] accessories.");
+
+	addButton(5, "Wear Clothes", bessWhatOutfitToWear, undefined, "Wear Clothes", "Change [bess.hisHer] clothes.");
+	addButton(6, "Give Clothes", bessGiveClothes, undefined, "Give Clothes", "Hand over some of your clothes to [bess.hisHer].");
+	addButton(7, "ReturnClothes", bessWhatOutfitToReturn, undefined, "Return Clothes", "Take back some clothes from [bess.hisHer].");
+	addButton(8, "DestroyClothes", bessWhatOutfitWillToDestroy, undefined, "Destroy Clothes", "Get rid of some of [bess.hisHer] clothes.");
 
 	addButton(14, "Back", bessFunctions);
 }
 
+// bess.inventory.splice(x, 1);
+public function bessDisplayInventory():void
+{
+	output("<b><u>[bess.name]’s Current Clothing</u></b>:\n");
+	output("<b>Armor:</b> [bess.Armor]\n");
+	output("<b>Upper Undergarment:</b> [bess.UpperUndergarment]\n");
+	output("<b>Lower Undergarment:</b> [bess.LowerUndergarment]\n\n");
+//	output("<b>Lower Undergarment:</b> [bess.LowerUndergarment]" + (bess.hasHardLightEquipped() ? " (with hardlight strap-on)" : "") + "\n\n");
+	output("<b><u>[bess.name]’s Available Clothing:</u></b>\n");
+	for(var x:int = 0; x < bess.inventory.length; x++)
+	{
+		if(x >= BESS_INV_SLOT_MAX) output("<span class='bad'>" + StringUtil.upperCase(bess.inventory[x].description, false) + "</span>\n");
+		else output(StringUtil.upperCase(bess.inventory[x].description, false) + "\n");
+	}
+	if(bess.inventory.length == 0) output("Nothing. <i>[bess.name] has no" + (bess.isNude() ? "": " extra") + " clothes in [bess.hisHer] closet!</i>\n");
+}
+
+public function bessGiveClothes():void
+{
+	clearOutput();
+	bessHeader();
+
+	clearMenu();
+ 	var buttons:int = 0;
+	var x:int = 0;
+	var state:int = 0; // 0 invalid, 1 can give, 2 already equipped by bess, 3 in bess's inventory
+	while (true)
+ 	{
+		if (x < pc.inventory.length)
+ 		{
+			var cname:String = getQualifiedClassName(pc.inventory[x]);
+			switch (pc.inventory[x].type)
+ 			{
+				case GLOBAL.CLOTHING:
+					state = cname == getQualifiedClassName(bess.armor) ? 2 : 1;
+					break;
+				case GLOBAL.ARMOR:
+					if (pc.inventory[x] is GooArmor)
+					{ state = 0; }
+					else
+					{ state = cname == getQualifiedClassName(bess.armor) ? 2 : 1; }
+					break;
+				case GLOBAL.LOWER_UNDERGARMENT:
+					state = cname == getQualifiedClassName(bess.lowerUndergarment) ? 2 : 1;
+					break;
+				case GLOBAL.UPPER_UNDERGARMENT:
+					state = cname == getQualifiedClassName(bess.upperUndergarment) ? 2 : 1;
+					break;
+				default:
+					state = 0;
+					break;
+ 			}
+			if (state == 1 && bess.hasItemByClass(getDefinitionByName(cname) as Class)) state = 3;
+			if (state == 1 && pc.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE)) state = -1;
+		}
+		
+		if (buttons % 15 == 0 && (state || !buttons))
+		{
+			addButton(buttons+14, "Back", talkToBessAboutClothes);
+			buttons++;
+		}
+		
+		if (x == pc.inventory.length) break;
+		
+		switch (state)
+		{
+			case 1: // can give
+				addItemButton(buttons-1, pc.inventory[x], bessClothingGiftConfirm, x);
+				buttons++;
+				break;
+			case 2: // already equipped by bess
+				addDisabledButton(buttons-1, pc.inventory[x].shortName, StringUtil.toDisplayCase(pc.inventory[x].longName), "[bess.name] is already wearing one of these!");
+				buttons++;
+				break;
+			case 3: // in bess's inventory
+				addDisabledButton(buttons-1, pc.inventory[x].shortName, StringUtil.toDisplayCase(pc.inventory[x].longName), "[bess.name] already has one of these.");
+				buttons++;
+				break;
+			case -1: // cannot drop!
+				addDisabledButton(buttons-1, pc.inventory[x].shortName, StringUtil.toDisplayCase(pc.inventory[x].longName), "You cannot drop this item.");
+				buttons++;
+				break;
+ 		}
+		x++;
+ 	}
+	if(buttons == 1) output("<b>You don’t have anything to give [bess.name] right now.</b>\n\n");
+	else output("Which clothes do you want to give [bess.name]?\n\n");
+	bessDisplayInventory();
+	
+	addButton(14, "Back", talkToBessAboutClothes);
+}
+
+public function bessClothingGiftConfirm(x:int):void
+{
+	clearOutput();
+	bessHeader();
+	output("Are you sure you want to give [bess.name] " + pc.inventory[x].description + "?");
+
+	clearMenu();
+	addButton(0,"No",bessGiveClothes,undefined,"No","Keep the clothes.");
+	addButton(1,"Yes",bessGiveClothesProcess,x,"Yes","Give [bess.name] the clothes.");
+}
+
+public function bessGiveClothesProcess(x:int):void
+{
+	clearOutput();
+	bessHeader();
+	var item:ItemSlotClass = pc.inventory[x];
+	//Move her old armor to inventory, if she had any.
+	if(InCollection(item.type, [GLOBAL.CLOTHING, GLOBAL.ARMOR])) 
+	{
+		if(!(bess.armor is EmptySlot)) bess.inventory.push(bess.armor);
+		bess.armor = item;
+	}
+	else if(item.type == GLOBAL.LOWER_UNDERGARMENT)
+	{
+		if(!(bess.lowerUndergarment is EmptySlot)) bess.inventory.push(bess.lowerUndergarment);
+		bess.lowerUndergarment = item;
+	}
+	else if(item.type == GLOBAL.UPPER_UNDERGARMENT)
+	{
+		if(!(bess.upperUndergarment is EmptySlot)) bess.inventory.push(bess.upperUndergarment);
+		bess.upperUndergarment = item;
+	}
+	else
+	{
+		output("\n\nA SEVERE ERROR OCCURRED. UNKNOWN CLOTHING TYPE GIVEN TO BESS. SOMEONE DUN FUCKED UP! ITEM ERROR: " + item.description + "\n\n");
+	}
+	pc.inventory.splice(x, 1);
+
+	output("<b>[bess.name] is now");
+	if (!bess.isNude()) output(" wearing [bess.gear]");
+	else output(" naked");
+	output("!</b>");
+
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",bessGiveClothes);
+}
+
+public function bessWhatOutfitToWear():void
+{
+	clearOutput();
+	bessHeader();
+	output("What outfit do you want [bess.name] to wear?\n\n");
+	bessDisplayInventory();
+	var buttons:Number = 0;
+	var invLimit:int = bess.inventory.length;
+	if(invLimit >= BESS_INV_SLOT_MAX) invLimit = BESS_INV_SLOT_MAX;
+	clearMenu();
+	if(!bess.isNude())
+	{
+		buttons = 1;
+		addButton(0,"Get Naked",bessDressSelection,null,"Get Naked","Why bother with clothes?");
+	}
+	addButton(14,"Back",talkToBessAboutClothes);
+	for(var x:int = 0; x < invLimit; x++)
+	{
+		//14 is for "Back"
+		if(buttons >= 14 && (buttons + 1) % 15 == 0)
+		{
+			addButton(buttons, "Back", talkToBessAboutClothes);
+			buttons++;
+		}
+		
+		//Make sure bess doesn't wear it (failsafe)
+		if(
+			InCollection(bess.inventory[x].shortName, [bess.armor.shortName, bess.lowerUndergarment.shortName, bess.upperUndergarment.shortName])
+		) addDisabledButton(buttons, bess.inventory[x].shortName, StringUtil.toDisplayCase(bess.inventory[x].longName), "[bess.name] is already wearing one of these!");
+		else addItemButton(buttons,bess.inventory[x],bessDressSelection,bess.inventory[x]);
+		buttons++;
+		
+		if(invLimit > 14 && (x + 1) == invLimit)
+		{
+			while((buttons + 1) % 15 != 0) { buttons++; }
+			addButton(buttons, "Back", talkToBessAboutClothes);
+		}
+	}
+}
+
+public function bessDressSelection(item:ItemSlotClass):void
+{
+	clearOutput();
+	bessHeader();
+
+	//GIT NAKKID
+	if(item == null)
+ 	{
+		if (!(bess.armor is EmptySlot))
+		{
+			bess.inventory.push(bess.armor);
+			bess.armor = new EmptySlot();
+		}
+		if (!(bess.lowerUndergarment is EmptySlot))
+		{
+			bess.inventory.push(bess.lowerUndergarment);
+			bess.lowerUndergarment = new EmptySlot();
+		}
+		if (!(bess.upperUndergarment is EmptySlot))
+		{
+			bess.inventory.push(bess.upperUndergarment);
+			bess.upperUndergarment = new EmptySlot();
+		}
+ 	}
+	//ELSE ARMOR
+	else if(InCollection(item.type, [GLOBAL.CLOTHING, GLOBAL.ARMOR]))
+	{
+		if(!(bess.armor is EmptySlot)) bess.inventory.push(bess.armor);
+		bess.armor = item;
+		bess.inventory.splice(bess.inventory.indexOf(item), 1);
+	}
+	else if(item.type == GLOBAL.LOWER_UNDERGARMENT)
+	{
+		if(!(bess.lowerUndergarment is EmptySlot)) bess.inventory.push(bess.lowerUndergarment);
+		bess.lowerUndergarment = item;
+		bess.inventory.splice(bess.inventory.indexOf(item), 1);
+	}
+	else if(item.type == GLOBAL.UPPER_UNDERGARMENT)
+	{
+		if(!(bess.upperUndergarment is EmptySlot)) bess.inventory.push(bess.upperUndergarment);
+		bess.upperUndergarment = item;
+		bess.inventory.splice(bess.inventory.indexOf(item), 1);
+	}
+	else
+	{
+		output("\n\nA SEVERE ERROR OCCURRED. UNKNOWN CLOTHING TYPE GIVEN TO bess. SOMEONE FUCKED UP! ITEM ERROR: " + item.description + "\n\n");
+	}
+	
+	output("<b>[bess.name] is now");
+	if (!bess.isNude()) output(" wearing [bess.gear]");
+	else output(" naked");
+	output("!</b>");
+
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",bessWhatOutfitToWear);
+}
+
+public function bessWhatOutfitToReturn():void
+{
+	clearOutput();
+	bessHeader();
+	
+	output("What will you have [bess.name] return to you?\n\n");
+	bessDisplayInventory();
+	
+	var pcInvFull:Boolean = (pc.inventory.length >= pc.inventorySlots());
+	var buttons:Number = 0;
+	var invLimit:int = bess.inventory.length;
+	if(invLimit >= BESS_INV_SLOT_MAX) invLimit = BESS_INV_SLOT_MAX;
+	
+	clearMenu();
+	
+	for(var x:int = 0; x < invLimit; x++)
+	{
+		//14 is for "Back"
+		if(buttons >= 14 && (buttons + 1) % 15 == 0)
+		{
+			addButton(buttons, "Back", talkToBessAboutClothes);
+			buttons++;
+		}
+
+		if( (bess.inventory[x] is UGCUniform)
+		||	(bess.inventory[x] is TopNSkirt)
+		||	(bess.inventory[x] is LibrarianOutfit)
+		||	(bess.inventory[x] is WaitressUniform)
+		||	(bess.inventory[x] is MilitaryUniform)
+		||	(bess.inventory[x] is ButlerOutfit)
+		||	(bess.inventory[x] is SchoolboyOutfit)
+		||	(bess.inventory[x] is LittleBlackDress)
+		||	(bess.inventory[x] is GirlyBra)
+		||	(bess.inventory[x] is GirlyPanties)
+		) addDisabledButton(buttons, bess.inventory[x].shortName, StringUtil.toDisplayCase(bess.inventory[x].longName), "These highly adjustable JoyCo products are exclusive for use with " + bess.mf("Ben-14", "Bess-13") + " units.");
+		//Make sure bess doesn't wear it (failsafe)
+		else if(
+			InCollection(bess.inventory[x].shortName, [bess.armor.shortName, bess.lowerUndergarment.shortName, bess.upperUndergarment.shortName])
+		) addDisabledButton(buttons, bess.inventory[x].shortName, StringUtil.toDisplayCase(bess.inventory[x].longName), "[bess.name] is currently wearing these!");
+		//Make sure inventory isn't already full!
+		else if(pcInvFull) addDisabledButton(buttons, bess.inventory[x].shortName, StringUtil.toDisplayCase(bess.inventory[x].longName), "Your inventory is too full for this!");
+		else addItemButton(buttons, bess.inventory[x], bessTakeSelection, bess.inventory[x]);
+		buttons++;
+		
+		if(invLimit > 14 && (x + 1) == invLimit)
+		{
+			while((buttons + 1) % 15 != 0) { buttons++; }
+			addButton(buttons, "Back", talkToBessAboutClothes);
+		}
+	}
+	
+	addButton(14, "Back", talkToBessAboutClothes);
+}
+public function bessTakeSelection(item:ItemSlotClass):void
+{
+	clearOutput();
+	bessHeader();
+	
+	output("[bess.name] hands " + item.description + " back to you.\n\n");
+	
+	itemCollect([item]);
+	bess.inventory.splice(bess.inventory.indexOf(item), 1);
+	
+	processTime(1);
+	clearMenu();
+	addButton(0, "Next", bessWhatOutfitToReturn);
+}
+
+public function bessWhatOutfitWillToDestroy():void
+{
+	clearOutput();
+	bessHeader();
+	
+	output("You cannot get clothing back from [bess.name] once you ask her to get rid of it.\n\nWhat will you have [bess.name] throw out?\n\n");
+	bessDisplayInventory();
+	
+	var buttons:Number = 0;
+	var invLimit:int = bess.inventory.length;
+	if(invLimit >= BESS_INV_SLOT_MAX) invLimit = BESS_INV_SLOT_MAX;
+	
+	clearMenu();
+	
+	for(var x:int = 0; x < invLimit; x++)
+	{
+		//14 is for "Back"
+		if(buttons >= 14 && (buttons + 1) % 15 == 0)
+		{
+			addButton(buttons, "Back", talkToBessAboutClothes);
+			buttons++;
+		}
+		
+		if( (bess.inventory[x] is UGCUniform)
+		||	(bess.inventory[x] is TopNSkirt)
+		||	(bess.inventory[x] is LibrarianOutfit)
+		||	(bess.inventory[x] is WaitressUniform)
+		||	(bess.inventory[x] is MilitaryUniform)
+		||	(bess.inventory[x] is ButlerOutfit)
+		||	(bess.inventory[x] is SchoolboyOutfit)
+		||	(bess.inventory[x] is LittleBlackDress)
+		||	(bess.inventory[x] is GirlyBra)
+		||	(bess.inventory[x] is GirlyPanties)
+		) addDisabledButton(buttons, bess.inventory[x].shortName, StringUtil.toDisplayCase(bess.inventory[x].longName), "These highly adjustable JoyCo products are exclusive for use with " + bess.mf("Ben-14", "Bess-13") + " units.");
+		//Make sure bess doesn't wear it (failsafe)
+		else if(
+			InCollection(bess.inventory[x].shortName, [bess.armor.shortName, bess.lowerUndergarment.shortName, bess.upperUndergarment.shortName])
+		) addDisabledButton(buttons, bess.inventory[x].shortName, StringUtil.toDisplayCase(bess.inventory[x].longName), "[bess.name] is already wearing one of these!");
+		else addItemButton(buttons, bess.inventory[x], bessClothingDestroyConfirm, x);
+		buttons++;
+		
+		if(invLimit > 14 && (x + 1) == invLimit)
+		{
+			while((buttons + 1) % 15 != 0) { buttons++; }
+			addButton(buttons, "Back", talkToBessAboutClothes);
+		}
+	}
+	
+	addButton(14, "Back", talkToBessAboutClothes);
+}
+
+public function bessClothingDestroyConfirm(x:int):void
+{
+	clearOutput();
+	bessHeader();
+	output("Are you sure you want [bess.name] to throw away " + bess.inventory[x].description + "?");
+	//Inventory options here. Pick 1. Confirm:
+	//Are you sure you want to give {item} to bess?
+	//Yes // No (Back to Inventory)
+	clearMenu();
+	addButton(0,"No",bessWhatOutfitWillToDestroy,"No","On second thought, better keep the clothes.");
+	addButton(1,"Yes",bessDestroySelection,bess.inventory[x],"Yes","Destroy the clothes.");
+}
+
+public function bessDestroySelection(item:ItemSlotClass):void
+{
+	clearOutput();
+	bessHeader();
+	
+	output("<b>[bess.name] has removed " + item.description + " from [bess.hisHer] wardrobe.<\b>");
+	bess.destroyItemByReference(item);
+	
+	processTime(1);
+	clearMenu();
+	addButton(0, "Next", bessWhatOutfitWillToDestroy);
+}
+/*
 // this is only really used to handle nudity
 public function bessSetArmorSlot(item:ItemSlotClass):void
 {
@@ -3627,7 +4027,7 @@ public function talkToBessAboutOutfits():void
 	
 	//addButton(44, "Back", talkToBessAboutClothes);
 }
-
+*/
 /**
  * Bess Clothing Item Wrapper - simplify simple calls determining if an item is available or not and handle button generation.
  * @param idx button index
@@ -3636,6 +4036,7 @@ public function talkToBessAboutOutfits():void
  * @param ttH tooltip header
  * @param ttB tooltop text body
  */
+/*
 public function bessCIW(idx:int, lbl:String, cType:Class, ttH:String, ttB:String):void
 {
 	if (bessHasClothingItem(cType))
@@ -3732,7 +4133,7 @@ public function setBessOutfit(classT:Class):void
 
 	bessFunctionsMenu();
 }
-
+*/
 public static const BESS_ACS_EAR:uint = 0;
 public static const BESS_ACS_HORNS:uint = 1;
 public static const BESS_ACS_TAIL:uint = 2;
@@ -4035,12 +4436,10 @@ public function talkToBessAboutAccessories():void
 	//Purchases alter which options unlock in the Functions -> Clothing & Acc Menu (where the clothes and accessories can actually be changed).
 
 	clearMenu();
-	addButton(0, "Outfits", bessBuyShitOutfits);
-	addButton(1, "U.Tops", bessBuyShitBras);
-	addButton(2, "U.Bottoms", bessBuyShitPanties);
-	addButton(3, "AccSets", bessBuyShitAccessories);
-	addButton(4, "Items", bessBuyShitItems);
-	addButton(5, "Cocks", bessBuyShitCocks);
+	addButton(0, "Clothing", bessBuyShitOutfits);
+	addButton(1, "AccSets", bessBuyShitAccessories);
+	addButton(2, "Items", bessBuyShitItems);
+	addButton(3, "Cocks", bessBuyShitCocks);
 
 	addButton(14, "Back", bessFollowerMenu);
 }
@@ -4050,40 +4449,22 @@ public function bessBuyShitOutfits():void
 	clearOutput();
 	bessHeader();
 	
+	output("What clothes would you like to purchase?\n\n");
+
 	clearMenu();
 	
-	bessBuyCIW(0, "C.Clothes", ComfortableClothes, "Casual Clothes", "Casual Clothes");
-	bessBuyCIW(1, "P.Jacket", ProtectiveJacket, "Protective Jacket", "Protective Jacket");
-	bessBuyCIW(2, "UGC Uniform", UGCUniform, "UGC Uniform", "UGC Uniform");
-	bessBuyCIW(3, "Top&Skirt", TopNSkirt, "Top & Skirt", "Top & Skirt");
-	bessBuyCIW(4, "B.Clothes", BusinessClothes, "Business Clothes", "Business Clothes");
-	
-	bessBuyCIW(5, "Librarian", LibrarianOutfit, "Librarian Outfit", "Librarian Outfit");
-	bessBuyCIW(6, "LatexBSuit", LatexBodysuit, "Latex Bodysuit", "Latex Bodysuit");
-	bessBuyCIW(7, "Maid", MaidOutfit, "Maid Outfit", "Maid Outfit");
-	bessBuyCIW(8, "Nurse", NurseOutfit, "Nurse Outfit", "Nurse Outfit");
-	bessBuyCIW(9, "Schoolgirl", SchoolgirlOutfit, "Schoolgirl", "Schoolgirl");
-	
-	bessBuyCIW(10, "Cheerleader", CheerleaderUniform, "Cheerleader Uniform", "CheerleaderUniform");
-	bessBuyCIW(11, "Waitress", WaitressUniform, "Waitress Uniform", "Waitress Uniform");
-	bessBuyCIW(12, "Bunnygirl", BunnyOutfit, "Bunnygirl Outfit", "Bunnygirl Outfit");
-	bessBuyCIW(13, "Military", MilitaryUniform, "Military Uniform", "Military Uniform");
+	bessBuyCIW(0, "UGC Uniform", UGCUniform, "UGC Uniform", "UGC Uniform");
+	bessBuyCIW(1, "Top&Skirt", TopNSkirt, "Top & Skirt", "Top & Skirt");
+	bessBuyCIW(2, "Librarian", LibrarianOutfit, "Librarian Outfit", "Librarian Outfit");
+	bessBuyCIW(3, "Waitress", WaitressUniform, "Waitress Uniform", "Waitress Uniform");
+	bessBuyCIW(4, "Military", MilitaryUniform, "Military Uniform", "Military Uniform");
+	bessBuyCIW(5, "Butler", ButlerOutfit, "Butler Outfit", "Butler Outfit");
+	bessBuyCIW(6, "Schoolboy", SchoolboyOutfit, "Schoolboy Outfit", "Schoolboy Outfit");
+	bessBuyCIW(7, "BlackDress", LittleBlackDress, "Little Black Dress", "Little Black Dress");
+	bessBuyCIW(8, "GirlyBra", GirlyBra, "Girly Bra", "Girly Bra");
+	bessBuyCIW(9, "GirlyPanties", GirlyPanties, "Girly Panties", "Girly Panties");
 
 	addButton(14, "Back", talkToBessAboutAccessories);
-	
-	bessBuyCIW(15, "Pirate", SpacePirateOutfit, "Space Pirate", "Space Pirate");
-	bessBuyCIW(16, "R.Fem Armor", RevealingFemaleArmor, "Revealing Female Armor", "Revealing Female Armor");
-	bessBuyCIW(17, "R.Male Armor", RevealingMaleArmor, "Revealing Male Armor", "Revealing Male Armor");
-	bessBuyCIW(18, "T.Zipsuit", TransparentZipsuit, "Transparent Zipsuit", "Transparent Zipsuit");
-	bessBuyCIW(19, "Butler", ButlerOutfit, "Butler Outfit", "Butler Outfit");
-	
-	bessBuyCIW(20, "M.Doctor", MaleDoctorOutfit, "Male Doctor Outfit", "Male Doctor Outfit");
-	bessBuyCIW(21, "F.Doctor", FemaleDoctorOutfit, "Female Doctor Outfit", "Female Doctor Outfit");
-	bessBuyCIW(22, "Schoolboy", SchoolboyOutfit, "Schoolboy Outfit", "Schoolboy Outfit");
-	bessBuyCIW(23, "StrapHarness", LeatherStrapHarness, "Leather Strap Harness", "Leather Strap Harness");
-	bessBuyCIW(24, "BlackDress", LittleBlackDress, "Little Black Dress", "Little Black Dress");
-	
-	addButton(29, "Back", talkToBessAboutAccessories);
 }
 
 public function bessBuyCIW(idx:int, lbl:String, classT:Class, ttH:String, ttB:String):void
@@ -4094,7 +4475,7 @@ public function bessBuyCIW(idx:int, lbl:String, classT:Class, ttH:String, ttB:St
 	if (bessHasClothingItem(classT))
 	{
 		output(StringUtil.toTitleCase(item.longName) + " - [bess.name] already owns this item!\n");
-		addDisabledButton(idx, lbl, ttH, "[bess.name] already owns this item!");
+		addDisabledButton(idx, lbl, (item.longName != null ? StringUtil.toDisplayCase(item.longName) : ttH), "[bess.name] already owns this item!");
 	}
 	else
 	{
@@ -4102,14 +4483,14 @@ public function bessBuyCIW(idx:int, lbl:String, classT:Class, ttH:String, ttB:St
 		// Can afford
 		if (pc.credits >= item.basePrice)
 		{
-			output(" Cost: " + String(item.basePrice));
-			addButton(idx, lbl, bessBuyOutfit, item, ttH, ttB + "\n\nCost: " + item.basePrice);
+			output(" Cost: " + String(item.basePrice) + " credits");
+			addButton(idx, lbl, bessBuyOutfit, item, (item.longName != null ? StringUtil.toDisplayCase(item.longName) : ttH), (item.tooltip != null ? item.tooltip : ttB) + "\n\nCost: " + item.basePrice + " credits");
 		}
 		// too spensive
 		else
 		{
-			output(" Cost: " + String(item.basePrice) + " (Too expensive!)");
-			addDisabledButton(idx, lbl, ttH, ttB + "\n\nCost: " + item.basePrice + "\nToo expensive!");
+			output(" Cost: " + String(item.basePrice) + " credits (Too expensive!)");
+			addDisabledButton(idx, lbl, (item.longName != null ? StringUtil.toDisplayCase(item.longName) : ttH), (item.tooltip != null ? item.tooltip : ttB) + "\n\nCost: " + item.basePrice + " credits\nToo expensive!");
 		}
 		output("\n");
 	}
@@ -4121,18 +4502,30 @@ public function bessBuyOutfit(boughtItem:ItemSlotClass):void
 	bessHeader();
 
 	output("You transfer the credits to JoyCo and place your order. It’s not long before a warp-space delivery service is dropping off a package to your spaceship hangar.");
+	output("\n\nYou’ve recieved " + boughtItem.description + " for [bess.name]!");
 
 	bess.inventory.push(boughtItem);
 	pc.credits -= boughtItem.basePrice;
-
+	
+/*
+	var backFunc:Function = talkToBessAboutAccessories;
+	if(boughtItem.type == GLOBAL.ARMOR || boughtItem.type == GLOBAL.CLOTHING) backFunc = bessBuyShitOutfits;
+	if(boughtItem.type == GLOBAL.UPPER_UNDERGARMENT) backFunc = bessBuyShitBras;
+	if(boughtItem.type == GLOBAL.LOWER_UNDERGARMENT) backFunc = bessBuyShitPanties;
+*/
 	clearMenu();
-	addButton(0, "Next", talkToBessAboutAccessories);
+	addButton(0, "Next", bessBuyShitOutfits);
 
 	// 9999 -- offer option to immediately equip?
 }
-
+/*
 public function bessBuyShitBras():void
 {
+	clearOutput();
+	bessHeader();
+	
+	output("What top undergarment would you like to purchase?\n\n");
+	
 	clearMenu();
 	bessBuyCIW(0, "NormalBra", PlainBra, "Normal Bra", "Normal Bra");
 	bessBuyCIW(1, "GirlyBra", GirlyBra, "Girly Bra", "Girly Bra");
@@ -4149,6 +4542,11 @@ public function bessBuyShitBras():void
 
 public function bessBuyShitPanties():void
 {
+	clearOutput();
+	bessHeader();
+	
+	output("What bottom undergarment would you like to purchase?\n\n");
+	
 	clearMenu();
 
 	bessBuyCIW(0, "Normal", PlainPanties, "Normal Panties", "Normal Panties");
@@ -4163,13 +4561,13 @@ public function bessBuyShitPanties():void
 	
 	addButton(14, "Back", talkToBessAboutAccessories);
 }
-
+*/
 public function bessBuyShitAccessories():void
 {
 	clearOutput();
 	bessHeader();
 
-	output("What set would you like to purchase?");
+	output("What set would you like to purchase?\n");
 
 	output("\nEquine set (Allows [bess.name] to set Equine Tail and Ears) - 250 Creds");
 	output("\nBovine Set (Allows [bess.name] to set Bovine Tail, Ears and Horns) - 250 Creds");
@@ -4215,11 +4613,11 @@ public function bessBASW(idx:int, lbl:String, accSet:uint, cost:int):void
 	{
 		if (pc.credits >= cost)
 		{
-			addButton(idx, lbl, bessBuyAccessory, [accSet, cost], lbl, "Cost: " + cost);
+			addButton(idx, lbl, bessBuyAccessory, [accSet, cost, lbl], lbl, "Cost: " + cost + " credits");
 		}
 		else
 		{
-			addDisabledButton(idx, lbl, lbl, "Cost: " + cost + "\nToo expensive!");
+			addDisabledButton(idx, lbl, lbl, "Cost: " + cost + " credits\nToo expensive!");
 		}
 	}
 }
@@ -4233,12 +4631,15 @@ public function bessBuyAccessory(opts:Array):void
 
 	var accSet:uint = opts[0];
 	var cost:int = opts[1];
+	var lbl:String = opts[2];
+	
+	output("\n\nYou’ve recieved " + indefiniteArticle(lbl.toLowerCase()) + " accessory set a for [bess.name]!");
 
 	pc.credits -= cost;
 	bessAddAccessorySet(accSet);
 
 	clearMenu();
-	addButton(0, "Next", bessBuyShitAccessories)
+	addButton(0, "Next", bessBuyShitAccessories);
 }
 
 public function bessBuyShitItems():void
@@ -4255,16 +4656,16 @@ public function bessBuyShitItems():void
 	clearMenu();
 	
 	if (bessHasGlasses()) addDisabledButton(0, "Glasses", "Glasses", "[bess.name] already owns glasses!");
-	else if (pc.credits < 500) addDisabledButton(0, "Glasses", "Glasses", "You can’t afford to buy [bess.name] glasses!");
-	else addButton(0, "Glasses", bessBuyGlasses, undefined, "Glasses", "Buy some glasses and allow [bess.name] to equip them!\n\nCost: 500");
+	else if (pc.credits < 500) addDisabledButton(0, "Glasses", "Glasses", "You can’t afford to buy [bess.name] glasses!\n\nCost: 500 credits");
+	else addButton(0, "Glasses", bessBuyGlasses, undefined, "Glasses", "Buy some glasses and allow [bess.name] to equip them!\n\nCost: 500 credits");
 
 	if (bessHasKatana()) addDisabledButton(1, "Katana", "Katana", "[bess.name] already owns a katana!");
-	else if (pc.credits < 1000) addDisabledButton(1, "Katana", "Katana", "You can’t afford to buy [bess.name] a katana!");
-	else addButton(1, "Katana", bessBuyKatana, undefined, "Katana", "Buy a katana for [bess.name] to saunter around with it!\n\nCost: 1000");
+	else if (pc.credits < 1000) addDisabledButton(1, "Katana", "Katana", "You can’t afford to buy [bess.name] a katana!\n\nCost: 1000 credits");
+	else addButton(1, "Katana", bessBuyKatana, undefined, "Katana", "Buy a katana for [bess.name] to saunter around with it!\n\nCost: 1000 credits");
 
 	if (flags["BESS_OWNS_JBKIT"] >= 1) addDisabledButton(2, "Jailbr. Kit", "Jailbreaking Kit", "You already own this!");
-	else if (pc.credits < 25000) addDisabledButton(2, "Jailbr. Kit", "Jailbreaking Kit", "Cost: 25000\nToo expensive!");
-	else addButton(2, "Jailbr. Kit", bessBuyJailbreakingKit, undefined, "Jailbreaking Kit", "This device allows you to change the model of your JoyCo unit from Bess-13 to Ben-14 and vice versa. \nWarning: While this should have no effect on the memory or personality of your android, the functionaly is no longer officially supported by JoyCo and may void the units warranty. Use with caution.\n\nCost: 25000");
+	else if (pc.credits < 25000) addDisabledButton(2, "Jailbr. Kit", "Jailbreaking Kit", "Cost: 25000 credits\nToo expensive!");
+	else addButton(2, "Jailbr. Kit", bessBuyJailbreakingKit, undefined, "Jailbreaking Kit", "This device allows you to change the model of your JoyCo unit from Bess-13 to Ben-14 and vice versa.\n\n<i><b>Warning:</b> While this should have no effect on the memory or personality of your android, the functionaly is no longer officially supported by JoyCo and may void the units warranty. Use with caution.</i>\n\nCost: 25000 credits");
 
 	addButton(14, "Back", talkToBessAboutAccessories);
 }
@@ -4275,6 +4676,7 @@ public function bessBuyGlasses():void
 	bessHeader();
 
 	output("You transfer the credits to JoyCo and place your order. It’s not long before a warp-space delivery service is dropping off a package to your spaceship hangar.");
+	output("\n\nYou’ve recieved a pair of glasses for [bess.name]!");
 
 	pc.credits -= 500;
 	flags["BESS_OWNS_GLASSES"] = 1;
@@ -4289,6 +4691,7 @@ public function bessBuyKatana():void
 	bessHeader();
 
 	output("You transfer the credits to JoyCo and place your order. It’s not long before a warp-space delivery service is dropping off a package to your spaceship hangar.");
+	output("\n\nYou’ve recieved a katana for [bess.name]!");
 
 	pc.credits -= 1000;
 	flags["BESS_OWNS_KATANA"] = 1;
@@ -4303,6 +4706,7 @@ public function bessBuyJailbreakingKit():void
 	bessHeader();
 
 	output("You transfer the credits to the vendor and place your order. It’s not long before a warp-space delivery service is dropping off a package to your spaceship hangar.");
+	output("\n\nYou’ve recieved a jail-breaking kit for use on [bess.name]!");
 
 	pc.credits -= 25000;
 	flags["BESS_OWNS_JBKIT"] = 1;
@@ -4345,11 +4749,11 @@ public function bessBCW(idx:int, lbl:String, cockType:uint, cost:int):void
 	{
 		if (pc.credits >= cost)
 		{
-			addButton(idx, lbl, bessBuyCockType, [cockType, cost], lbl, "Cost: " + cost);
+			addButton(idx, lbl, bessBuyCockType, [cockType, cost, lbl], lbl, "Cost: " + cost + " credits");
 		}
 		else
 		{
-			addDisabledButton(idx, lbl, lbl, "Cost: " + cost + "\nToo expensive!");
+			addDisabledButton(idx, lbl, lbl, "Cost: " + cost + " credits\nToo expensive!");
 		}
 	}
 }
@@ -4358,11 +4762,13 @@ public function bessBuyCockType(opts:Array):void
 {
 	var cType:uint = opts[0];
 	var cost:uint = opts[1];
+	var lbl:String = opts[2];
 
 	clearOutput();
 	bessHeader();
 
 	output("You transfer the credits to JoyCo and place your order. It’s not long before a warp-space delivery service is dropping off a package to your spaceship hangar.");
+	output("\n\nYou’ve recieved " + indefiniteArticle(lbl.toLowerCase()) + " cock for [bess.name]!");
 
 	bessAddCockType(cType);
 	pc.credits -= cost;
@@ -5675,7 +6081,7 @@ public function talkToBessPlayGraviballII():void
 			{
 				output("\n\nYou come up with a cunning plan in order to break through her defences. There’s no way you’re going to be able to beat her while she’s defending the goal - she’s far too good for that. Instead you come up with a plan to take advantage of ger biggest weakness, using your pulse boots to get up close to the goals.");
 				
-				output("\n\nYou stroke your her down your body and look at her rather suggestively, giving her a wink. <i>“...Hey Celise, how about you step away from those goals and we go get a little frisky?”</i>");
+				output("\n\nYou stroke your body and look at her rather suggestively, giving her a wink. <i>“...Hey Celise, how about you step away from those goals and we go get a little frisky?”</i>");
 				
 				output("\n\nCelise falls for it hook, line and sinker and moves away from the goals as soon as there’s a promise of a nice protein snack. The instant she does your team advances in, scoring a loud goal. The emerald galotian looks behind herself and suddenly realizes your ploy, looking thoroughly grumpy. <i>“...No fair, that’s cheating!”</i>");
 				
@@ -7045,7 +7451,7 @@ public function bessEvent7():void
 	
 	output("\n\nLooking into the glass as [bess.heShe] hands it to you it’s hard not to be concerned not just about the taste but also the safety of ingesting the beverage. You ask what [bess.heShe] put in it.");
 	
-	output("\n\n<i>“Well, all the minerals and vitamins needed to replenish the human body. I also added plenty of iron supplements, since I figured you were a Steele, ginseng, spanish fly, m’hengan watermelon, salamander brandy, cashapona, ambergris, as well as deer and tiger penis - oh, and I added some of your favorite drink!”</i>");
+	output("\n\n<i>“Well, all the minerals and vitamins needed to replenish the human body. I also added plenty of iron supplements, since I figured you were a Steele, ginseng, spanish fly, mhen’gan watermelon, salamander brandy, cashapona, ambergris, as well as deer and tiger penis - oh, and I added some of your favorite drink!”</i>");
 	
 	
 	output("\n\nYou look down and you can clearly see bits of meat floating around in the gloop among the watermelon chunks. You’re fairly sure that’s chopped up animal cock. Where did [bess.heShe] even find ingredients like deer and tiger penis on the outer galactic rim?");
@@ -8577,7 +8983,7 @@ public function bessEvent18Response(response:String):void
 			));
 			output(" song and begins to sing to it, clutching the microphone to [bess.hisHer] chest. You relax back and watch [bess.himHer] go - while you’re not going to get up and sing, it doesn’t mean you can’t enjoy the karaoke machine in other ways. ");
 
-			output("\n\n[bess.name] is a wonderful vocalist, but that’s not really surprising since [bess.hisHer] voice is naturally melodious. [bess.HeShe] seems to have masterfully synthesized qualities of all the best "+ bess.mf("male", "female") +" vocalists together into [bess.hisHer] own voice, keeping it [bess.himHers] while improving it tenfold. Most AI singers sound technically flawless, but lifeless and methodical. In contrast, when the" + (bess.hairLength > 0 ? " [bess.hairColor] haired" : "") + " synthetic sings, there is creativity, energy, and flair both in [bess.hisHer] timbre and movements. [bess.HeShe] sings with [bess.hisHer] entire body, letting the music flow through [bess.himHer] and course through [bess.hisHer] artificial skin.");
+			output("\n\n[bess.name] is a wonderful vocalist, but that’s not really surprising since [bess.hisHer] voice is naturally melodious. [bess.HeShe] seems to have masterfully synthesized qualities of all the best "+ bess.mf("male", "female") +" vocalists together into [bess.hisHer] own voice, keeping it [bess.hisHers] while improving it tenfold. Most AI singers sound technically flawless, but lifeless and methodical. In contrast, when the" + (bess.hairLength > 0 ? " [bess.hairColor] haired" : "") + " synthetic sings, there is creativity, energy, and flair both in [bess.hisHer] timbre and movements. [bess.HeShe] sings with [bess.hisHer] entire body, letting the music flow through [bess.himHer] and course through [bess.hisHer] artificial skin.");
 
 			output("\n\nYou can see [bess.hisHer] [bess.eyeColor] eyes flicking to you every now and then, eager to see the reaction on your face to [bess.hisHer] singing. You’re sure that if you weren’t here [bess.heShe]’d sing anyway, but since you are, [bess.heShe]’s singing some of these songs for your benefit. It’s different from when [bess.heShe] was programmed to bring happiness - [bess.heShe]’s doing it as a friend who wants to see you smile.");
 
@@ -9977,7 +10383,7 @@ public function bessEvent28ShipMerge():void
 
 	//[Of Course] [No Way]
 	clearMenu();
-	addButton(0, "OfCourse", bessEvent28Stay);
+	addButton(0, "Of Course", bessEvent28Stay);
 	addButton(1, "No Way", bessEvent28GoAway);
 }
 
@@ -10080,7 +10486,7 @@ public function bessDate2():void
 
 	output("For your next date, you head to a nearby water planet called Brelia. You park the ship on one of the small islands dotting the planet and walk out across the obsidian sand. The ocean quietly laps up the beach - once again it feels like you’ve got the entire planet to yourselves.");
 	
-	output("\n\n[bess.name] pulls out the trusty food hamper and a beach ball - apparently that’s another thing [bess.heShe] wants to experience - as well as a pair of snorkels. The scans showed there weren’t too many nasty things in the water, so it was safe for human habitation. Then again, so was M’henga.");
+	output("\n\n[bess.name] pulls out the trusty food hamper and a beach ball - apparently that’s another thing [bess.heShe] wants to experience - as well as a pair of snorkels. The scans showed there weren’t too many nasty things in the water, so it was safe for human habitation. Then again, so was Mhen’ga.");
 	
 	output("\n\n<i>“Remember, swimming THEN food. I don’t want you sinking on me!”</i> You ask [bess.name] exactly why [bess.heShe] had brought two snorkel sets when [bess.heShe] doesn’t even need to breathe. <i>“...I don’t like doing things halfway. If you go snorkeling, you need a snorkel!”</i>");
 	
@@ -11630,7 +12036,7 @@ public function bessGiveDoggySelected(bTargetVag:Boolean = false):void
 			output("\n\nNot all of it? What, does [bess.heShe] mean... lick your [pc.cum] out from inside of [bess.himHer] as well?");
 			
 			output("\n\nBurning with embarrassment, you slide your [pc.tongue] inside [bess.hisHer] cum-lined hole");
-			if (!bTargetVag) output(" - at least [bess.heShe]’s an android, so [bess.heShe] doesn’t use it for </i>that<i>");
+			if (!bTargetVag) output(" - at least [bess.heShe]’s an android, so [bess.heShe] doesn’t use it for <i>that</i>");
 			output(". You lap and dart inside of [bess.himHer], scooping up the last of your semen with great effort. Once you’re done, you’re sure it’s as clean as can be.");
 			
 			output("\n\n<i>“Now, swallow.”</i>");
@@ -12599,8 +13005,8 @@ public function bessMilkers(opts:Array = null):void
 	{
 		flags["BESS_MILKERS_TIMES"]++;
 		output("\n\nA blush dusts the synthetics cheeks, recalling [bess.hisHer] previous encounter with the milking machine.");
-		if (bess.isChestGarbed()) output("[bess.name] slips off [bess.hisHer] [bess.UpperGarments]. [bess.HeShe] then");
-		else output(" [bess.heShe]");
+		if (bess.isChestGarbed()) output(" [bess.name] slips off [bess.hisHer] [bess.UpperGarments]. [bess.HeShe] then");
+		else output(" [bess.HeShe]");
 		output(" gets on all fours on a nearby bench, positioning [bess.himHer]self to be the perfect height for you. [bess.HisHer] [bess.breasts] dangle below [bess.himHer].");
 	}
 

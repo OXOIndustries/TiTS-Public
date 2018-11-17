@@ -248,12 +248,20 @@ public function vaginaRouter(args:Array):void
 			switch(choices[x])
 			{
 				case -1:
-					output("\n<b>Anus</b>: " + vaginaRouterDesc(choices[x]));
+					output("\n<b>Anus:</b> " + vaginaRouterDesc(choices[x]));
 					addButton(x, "Anus", scene, choices[x], "Anus", "Use your [pc.asshole].");
 					break;
 				default:
-					output("\n<b>" + StringUtil.capitalize(num2Ordinal(choices[x] + 1)) + " Vagina:</b>" + vaginaRouterDesc(choices[x]));
-					addButton(x, ("Vagina " + (choices[x] + 1)), scene, choices[x], StringUtil.capitalize(num2Ordinal(choices[x] + 1)) + " Vagina", "Use your [pc.vagina " + choices[x] + "].");
+					if(choices[x] == 0 && pc.vaginas.length == 1)
+					{
+						output("\n<b>Vagina:</b>" + vaginaRouterDesc(choices[x]));
+						addButton(x, "Vagina", scene, choices[x], "Vagina", "Use your [pc.vagina].");
+					}
+					else
+					{
+						output("\n<b>" + StringUtil.capitalize(num2Ordinal(choices[x] + 1)) + " Vagina:</b>" + vaginaRouterDesc(choices[x]));
+						addButton(x, ("Vagina " + (choices[x] + 1)), scene, choices[x], StringUtil.capitalize(num2Ordinal(choices[x] + 1)) + " Vagina", "Use your [pc.vagina " + choices[x] + "].");
+					}
 					break;
 			}
 			if(choices[x] >= 0)
@@ -270,7 +278,8 @@ public function vaginaRouter(args:Array):void
 		if(ineligibles.length > 0) output("\n\n<b><u>Unsuitable:</u></b>");
 		for(x = 0; x < ineligibles.length; x++)
 		{
-			if(ineligibles[x] == -1) output("\n<b>Anus</b>: " + vaginaRouterDesc(ineligibles[x]));
+			if(ineligibles[x] == -1) output("\n<b>Anus:</b> " + vaginaRouterDesc(ineligibles[x]));
+			else if(ineligibles[x] == 0 && pc.vaginas.length == 1) output("\n<b>Vagina:</b>" + vaginaRouterDesc(ineligibles[x]));
 			else output("\n<b>" + StringUtil.capitalize(num2Ordinal(ineligibles[x] + 1)) + " Vagina:</b>" + vaginaRouterDesc(ineligibles[x]));
 			
 			var notes:Array = [];
@@ -334,6 +343,7 @@ public function vaginaRouterDesc(vIdx:int = -1, fullDesc:Boolean = false):String
 //Args[1] = max size.
 //Args[2] = boolean for if strapon allowed
 //Args[3] = min size
+public function cockSelect(args:Array):void { penisRouter(args); }
 public function penisRouter(args:Array):void
 {
 	var scene:Function = args[0];
@@ -367,19 +377,29 @@ public function penisRouter(args:Array):void
 			switch(choices[x])
 			{
 				case -1:
-					output("\n<b>Hardlight Strap-On</b>: " + StringUtil.toDisplayCase(pc.lowerUndergarment.longName));
+					output("\n<b>Hardlight Strap-On:</b> " + StringUtil.toDisplayCase(pc.lowerUndergarment.longName));
 					addButton(x, "HL Strapon", scene, choices[x], "Hardlight Strap-On", "Use the dildo from your [pc.lowerUndergarment].");
 					break;
 				default:
-					output("\n<b>" + StringUtil.capitalize(num2Ordinal(choices[x] + 1)) + " Penis:</b>" + penisRouterCockDesc(choices[x]));
-					addButton(x, ("Penis " + (choices[x] + 1)), scene, choices[x], StringUtil.capitalize(num2Ordinal(choices[x] + 1)) + " Penis", "Use your [pc.cock " + choices[x] + "].");
+					if(choices[x] == 0 && pc.cocks.length == 1)
+					{
+						output("\n<b>Penis:</b>" + penisRouterCockDesc(choices[x]));
+						addButton(x, "Penis", scene, choices[x], "Penis", "Use your [pc.cock].");
+					}
+					else
+					{
+						output("\n<b>" + StringUtil.capitalize(num2Ordinal(choices[x] + 1)) + " Penis:</b>" + penisRouterCockDesc(choices[x]));
+						addButton(x, ("Penis " + (choices[x] + 1)), scene, choices[x], StringUtil.capitalize(num2Ordinal(choices[x] + 1)) + " Penis", "Use your [pc.cock " + choices[x] + "].");
+					}
 					break;
 			}
 		}
 		if(ineligibles.length > 0) output("\n\n<b><u>Unsuitable:</u></b>");
 		for(x = 0; x < ineligibles.length; x++)
 		{
-			output("\n<b>" + StringUtil.capitalize(num2Ordinal(ineligibles[x] + 1)) + " Penis:</b>" + penisRouterCockDesc(ineligibles[x]));
+			if(ineligibles[x] == -1) output("\n<b>Hardlight Strap-On:</b> " + StringUtil.toDisplayCase(pc.lowerUndergarment.longName));
+			else if(ineligibles[x] == 0 && pc.cocks.length == 1) output("\n<b>Penis:</b>" + penisRouterCockDesc(ineligibles[x]));
+			else output("\n<b>" + StringUtil.capitalize(num2Ordinal(ineligibles[x] + 1)) + " Penis:</b>" + penisRouterCockDesc(ineligibles[x]));
 			
 			var notes:Array = [];
 			

@@ -6,6 +6,7 @@ package classes.Characters
 	import classes.Items.Guns.HammerPistol;
 	import classes.Items.Protection.BasicShield;
 	import classes.Items.Protection.JoyCoPremiumShield;
+	import classes.Items.Accessories.FlashGoggles;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -236,8 +237,8 @@ package classes.Characters
 			}
 			else
 			{
-				if(target is Anno) output(" Anno looks away just in time to avoid the flash as the stun grenade goes off with a deafening BANG!");
-				else output(" You cover your eyes just in time to avoid the flash as the stun grenade goes off with a deafening BANG!");
+				if(target is Anno) output(" Anno" + (target.accessory is FlashGoggles ? "’s goggles cover her eyes" : " looks away") + " just in time to avoid the flash as the stun grenade goes off with a deafening BANG!");
+				else output(" You" + (target.accessory is FlashGoggles ? "r goggles" : "") + " cover your eyes just in time to avoid the flash as the stun grenade goes off with a deafening BANG!");
 			}
 		}
 	}

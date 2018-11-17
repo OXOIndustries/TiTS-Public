@@ -61,7 +61,7 @@ SILENCE_RESCUED_CONNIE	-- 0/undefined, no
 
 public function completedKQ2Good():Boolean
 {
-	return flags["KQ2_QUEST_FINISHED"] != undefined && flags["KQ2_QUEST_FINISHED"] == 1;
+	return (flags["KQ2_QUEST_FINISHED"] == 1);
 }
 
 public function tryProcKQuest2Entry():Boolean
@@ -504,7 +504,7 @@ public function kq2DontTrust():void
 
 	addDisabledButton(0, "DontTrust");
 
-	addButton(5, "PayFirst", kq2PayFirst, undefined, "Payment First", "Tell Kara you might trust her if she payed you up front.");
+	addButton(5, "PayFirst", kq2PayFirst, undefined, "Payment First", "Tell Kara you might trust her if she paid you up front.");
 	addButton(6, "Sex", kq2SexFirst, undefined, "Sex", "Tell Kara you might trust her if she threw in a more... <i>personal</i> incentive.");
 }
 
@@ -1308,6 +1308,7 @@ public function kq2KhanPCVictory():void
 
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
+	generateMap();
 	
 	//[Talk: Gold Myr] [Talk: Khan] [Fuck Khan] [Loot Room] [Leave]
 	kq2KhanVictoryMenu();
@@ -1665,7 +1666,7 @@ public function kq2KhanPCDefeat():void
 	else output("Shocked too badly to keep fighting, you collapse at the kui-tan’s feet... or you would, if his feet could touch the ground around his enormous nads.");
 
 	output("\n\n<i>“Girls, help our friends here into their collars,”</i> Khan says, setting his lightning gun aside and reclining back on his huge testicles. He picks up a pair of metal collars from the table beside him and hands them off to two of the gold myr girls, each wearing an identical collar of their own. You try to block them, but in your state, it doesn’t take much for even a pair of naked lab-rats to pin you down, pulling away your [pc.gear]");
-	if (!(pc.rangedWeapon is EmptySlot) || !(pc.meleeWeapon is EmptySlot)) output(" and weapons");
+	if (pc.hasEquippedWeapon()) output(" and weapons");
 	output(" and sliding the slim metal ring around your neck.");
 	
 	pc.removeAll();
@@ -2584,11 +2585,13 @@ public function kq2KaraTakeKittydick():void
 	var looseness:Number;
 	if (pc.hasVagina()) looseness = pc.tightestVaginalLooseness();
 	else looseness = pc.ass.looseness();
-
-	if (looseness <= 1) output(" <i>“You’re so tight! I’m not your first, am I?”</i>");
-	else if (looseness < 4) output(" Mmm, you’re a perfect fit for my cock, [pc.name]. Makes me wish we’d done this sooner...”</i>");
-	else output(" Nice and loose! Just means I can fuck you harder!”</i>");
-	output(" your lover teases.");
+	
+	output(" <i>“");
+	if (looseness <= 1) output("You’re so tight! I’m not your first, am I?");
+	else if (looseness < 4) output("Mmm, you’re a perfect fit for my cock, [pc.name]. Makes me wish we’d done this sooner...");
+	else output("Nice and loose! Just means I can fuck you harder!");
+	output("”</i> your lover teases.");
+	
 	pc.cuntChange(0, kara.biggestCockVolume(), true, true, false);
 
 	output("\n\nYou manage to get your arms around Kara, groping blindly at her pert ass and hips as she starts to thrust. Her bumpy ridges sliding across your inner walls feels as incredible as you imagined and more, dragging across your sex-crazed flesh with steadily increasing speed.");
@@ -3052,7 +3055,7 @@ public function kq2ShadeFollowUpResponse(response:String = "none"):void
 	}
 	else if(response == "kara")
 	{
-		output("You tell Shade the truth: the Kara paid you to distract her that day. You decided to make absolutely sure Shade was nowhere near her quarry, and if that meant sex, then so be it. Anything to make sure Kara got out alright.");
+		output("You tell Shade the truth: that Kara paid you to distract her that day. You decided to make absolutely sure Shade was nowhere near her quarry, and if that meant sex, then so be it. Anything to make sure Kara got out alright.");
 		
 		if(flags["SEXED_SHADE"] <= 1)
 		{

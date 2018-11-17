@@ -39,7 +39,7 @@ package classes.Items.Miscellaneous
 			this.description = "a medipen loaded with the Treatment";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This little pen contains one of the most sophisticated and highly regulated transformatives in the known universe. It’s called “The Treatment,” and it’s responsible for New Texas being the libertine sexual paradise it is today. They give it out for free, or near free, strangely enough.";
+			this.tooltip = "This little pen contains one of the most sophisticated and highly regulated transformatives in the known universe. It’s called “The Treatment,” and it’s responsible for New Texas being the libertine sexual paradise it is today. They give it out for free, or near free, strangely enough.\n\n<b>Known to cause moderate amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

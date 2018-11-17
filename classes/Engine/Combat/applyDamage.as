@@ -156,6 +156,7 @@ package classes.Engine.Combat
 			}
 		}
 		//Set up a shield proc!
+		var chargedShieldMeleeCounter:Boolean = false;
 		if (target.statusEffectv1("Charged Shield") > 0 && rand(2) == 0 && damageResult.shieldDamage > 0)
 		{
 			if(displayBonusTexts)
@@ -172,7 +173,6 @@ package classes.Engine.Combat
 				}
 				output(".");
 			}
-			
 			//Blind chance!
 			if(target.statusEffectv4("Charged Shield") / 2 + rand(20) + 1 > attacker.bimboIntelligence() / 2 + 10 && !attacker.hasStatusEffect("Blinded"))
 			{
@@ -181,14 +181,13 @@ package classes.Engine.Combat
 					if(attacker is PlayerCharacter) output(" <b>You are blinded!</b>");
 					else output(" <b>" + StringUtil.capitalize(attacker.getCombatName(), false) + " is blinded!</b>");
 				}
-				CombatAttacks.applyBlind(attacker, 2);
+				if(attacker is PlayerCharacter) CombatAttacks.applyBlind(attacker, 3);
+				else CombatAttacks.applyBlind(attacker, 2);
 			}
 			//Melee damage
 			if(special == "melee") 
 			{
-				if(displayBonusTexts) output(" <b>" + StringUtil.capitalize(attacker.getCombatName(), false) + " got a nasty shock!</b>");
-				applyDamage(damageRand(new TypeCollection( { electric: target.statusEffectv2("Charged Shield") } ), 15), target, attacker, "minimal");
-				if(displayBonusTexts) output("\nBut you still took damage too...");
+				chargedShieldMeleeCounter = true;
 			}
 			//Remove status if time for it.
 			if(target.statusEffectv1("Charged Shield") <= 0) target.removeStatusEffect("Charged Shield");
@@ -356,6 +355,16 @@ package classes.Engine.Combat
 		}
 		
 		if(displayDamage) outputDamage(damageResult);
+		
+		// Counter effects
+		if(chargedShieldMeleeCounter)
+		{
+			if(displayBonusTexts)
+			{
+				output("\nBut " + StringUtil.capitalize(attacker.getCombatName(), false) + " still took damage too... <b>" + StringUtil.capitalize(attacker.getCombatPronoun("heshe")) + " got a nasty shock from the charged shield!</b>");
+			}
+			applyDamage(damageRand(new TypeCollection( { electric: target.statusEffectv2("Charged Shield") } ), 15), target, attacker, "minimal");
+		}
 		
 		return damageResult;
 	}

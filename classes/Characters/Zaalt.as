@@ -149,7 +149,7 @@
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 30;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 2000;
 			this.timesCum = 1549;
 			this.cockVirgin = false;
@@ -238,7 +238,7 @@
 			
 			if (energy() >= 15) attacks.push( { v: doLowBlow, w: 10 } );
 			attacks.push( { v: doUnarmedFlurry, w: 20 } );
-			if (target is PlayerCharacter && !target.hasStatusEffect("Staggered") && energy() >= 15) attacks.push( { v: doPsiShockwave, w: 10 } );
+			if (target is PlayerCharacter && !target.hasStatusEffect("Staggered") && !target.isPlanted() && energy() >= 15) attacks.push( { v: doPsiShockwave, w: 10 } );
 			if (_leechUses < 2 && target is PlayerCharacter && HPQ() < 50) attacks.push( { v: doMindLeech, w: 40 } );
 			
 			if (!hasStatusEffect("No Weaponry"))

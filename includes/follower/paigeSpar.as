@@ -410,7 +410,7 @@ public function FFLV():void
 		output("\n\nWith a few more pumps, she takes a sharp breath and holds still. You feel her pussy tighten around you, then convulse, milking your [pc.cock " + x + "] for its load. Already on the verge of an orgasm and eager to answer your dominator’s call, you oblige, ");
 		if(pc.cumQ() <= 300) output("your dick bloating with its load as it travels through you and into Paige. She winces in delight, her grip on your [pc.chest] tightening with every pulse she feels inside her; she rocks her hips and tenses her abs again, squeezing every last drop she can from you.");
 		else output("at last getting the upper hand on Paige, even if neither of you were expecting how: your load, far more substantial than she anticipated, rockets up your shaft and deluges her tunnel with your [pc.cum]. Her breath catches in her throat as her body instinctually works to take in as much as it can, even when it clearly can’t – her tense abs slowly bloat outward from her body trying to contain you, and when she can simply take no more, you feel it splash awkwardly back onto your pelvis, soaking you both through with your seed. And you’re still not done.");
-		paige.loadInCunt(pc);
+		paige.loadInCunt(pc, 0);
 	}
 	// Continue here if the PC is female or sexless
 	else
@@ -519,11 +519,7 @@ public function FFLA():void
 	processTime(30);
 	pc.lust(50);
 	soreDebuff(3);
-	if(!pc.hasStatusEffect("Blue Balls"))
-	{
-		pc.createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
-		pc.ballFullness = 100;
-	}
+	if(!pc.hasStatusEffect("Blue Balls")) pc.applyBlueBalls();
 	clearMenu();
 	addButton(0,"Next",paigeExitWrapper);
 }
@@ -615,8 +611,8 @@ public function FFWO():void
 		if(pc.hasVagina()) output("r labia");
 		output(", staying there momentarily and soaking her tastebuds with your essence; without a word, she takes a long, lazy lick, ");
 		if(pc.hasVagina()) output("from bottom to your [pc.clit]");
-		else output("from taint (or your crotch ends and that begins");
-		output(" to your [pc.belly]], then backing away to start again. You quiver in pleasure as she goes");
+		else output("from the taint where your crotch ends and that begins");
+		output(" to your [pc.belly], then backing away to start again. You quiver in pleasure as she goes");
 		if(pc.hasVagina()) output(", noting how she’s avoiding penetrating you until you give the word");
 		output(".");
 

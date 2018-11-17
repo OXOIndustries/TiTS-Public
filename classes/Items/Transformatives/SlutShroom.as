@@ -13,7 +13,7 @@ package classes.Items.Transformatives {
 		public function SlutShroom() {
 			this._latestVersion = 1;
 			this.quantity = 1;
-			this.stackSize = 9;
+			this.stackSize = 10;
 			this.type = GLOBAL.PILL;
 			
 			this.shortName = "Slutshroom";
@@ -23,7 +23,7 @@ package classes.Items.Transformatives {
 			
 			this.description = "a pink-colored mushroom, colloquially known as a slutshroom";
 			
-			this.tooltip = "This pink-colored mushroom is purported by locals to turn the imbiber into a total slut. It also purportedly increases vaginal secretions significantly.";
+			this.tooltip = "This pink-colored mushroom is purported by locals to turn the imbiber into a total slut. It also purportedly increases vaginal secretions significantly.\n\n<b>Known to cause high amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -43,13 +43,14 @@ package classes.Items.Transformatives {
 			if(kGAMECLASS.silly) author("Squirtnoxo");
 			else author("Fenoxo");
 			if ((target is PlayerCharacter)) {
+				var pc:Creature = target;
 				output("You pop the mushroom into your mouth. It has an unpleasant, metallic taste that makes you want to spit it out - so you do the sensible thing and gulp it down before you have to endure its offensive flavor any longer.");
-				if (!target.hasVagina())
+				if (!pc.hasVagina())
 				{
 					output(" <b>It’s a real shame it does absolutely nothing.</b>");
 					return false;
 				}
-				var pc:Creature = target;
+				pc.taint(5);
 				var gotWetter:Boolean = false;
 				//Wetness buff. Chooses at random until all pussies are 5.
 				var pussies:Array = [];
@@ -366,7 +367,7 @@ package classes.Items.Transformatives {
 				}
 			}
 			else {	
-				kGAMECLASS.output(target.capitalA + target.short + " consumes the slutshroom to no effect.");
+				output(target.capitalA + target.short + " consumes the slutshroom to no effect.");
 			}
 			return false;
 		}

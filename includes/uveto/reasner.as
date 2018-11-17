@@ -609,7 +609,7 @@ public function encounterMisterTrentReasner():void
 	output("\n\nYou’re sitting at just the right height to take a gander at the sizable bulge in his trousers; that is if you felt like looking away from his friendly, good-natured grin.");
 	output("\n\nHe wears a suit-like uniform that looks good on him but clashes with his roguish charm. You imagine he’d look more natural in a leather jacket and jeans. Three gold stripes decorate his shoulder boards, compared to " + flags["BEA_TITLE"] + "’s four.");
 	output("\n\n<i>“Please,”</i> " + flags["BEA_TITLE"] + " responds. You nod.");
-	output("\n\n<i>“I Should probably introduce myself,”</i> he says to you and offers his hand; only now do you notice a simple gold ring on his finger.");
+	output("\n\n<i>“I should probably introduce myself,”</i> he says to you and offers his hand; only now do you notice a simple gold ring on his finger.");
 	output("\n\n<i>“Sweetie,”</i> " + flags["BEA_TITLE"] + " politely says, <i>“I’d like you to meet my husband...”</i>");
 	output("\n\n<i>“Traven Reasner,”</i> you shake his hand and get a strong grip and a reassuring pat on the shoulder, <i>“glad to meet you, " + pc.mf("son","miss") + "! The missus had some nice things to say about a splendid young [pc.manWoman] she met here.”</i>");
 
@@ -636,7 +636,7 @@ public function encounterMisterTrentReasner():void
 	output("\n\nTraven taps the scar on his cheek. <i>“Really. Before we married, believe it or not, the missus was quite the hardass.”</i> He pauses and strokes his beard thoughtfully. <i>“Nah, that’s a bit too harsh. She was always a nice person, just way too serious and career focused. That made her a great officer, but she didn’t know how to relax.”</i> He crosses his arms as a fond expression spreads across his face. <i>“Just some of the many reasons I fell in love with her.”</i>");
 	output("\n\n" + flags["BEA_TITLE"] + " returns a minute later, glasses in hand. <i>“I have a sneaking suspicion that you were talking about me.”</i> She sets them down on the table: whiskey - neat - for her husband, brandy for herself, and whatever you ordered. <i>“I hope it was something pleasant, at least.”</i>");
 	output("\n\nThe three of you drink and shoot the breeze for the better part of an hour, talking adventures until Traven’s Codex starts beeping. He takes it out and checks.");
-	output("\n\n<i>“Looks like our little princess needs me.</i> He puts it away.");
+	output("\n\n<i>“Looks like our little princess needs me.”</i> He puts it away.");
 	output("\n\n<i>“My,”</i> " + flags["BEA_TITLE"] + " says, concerned, <i>“is everything alright?”</i>");
 	output("\n\n<i>“Yeah, I think she just wants me to read her report. I swear, that girl takes after you a little too much.”</i> He stands up and pushes his chair back in. <i>“She needs to get out and play more.”</i>");
 	output("\n\n<i>“I thinks she’s doing quite well.”</i>");
@@ -863,22 +863,25 @@ public function cowgirlMissReasner():void
 	if(pc.cocks[x].cLength() >= 6) output("fertile womb");
 	else output("[bea.vagina]");
 	output(" full of virile [pc.cumNoun].");
-
+	
+	var cumQ:Number = pc.cumQ();
+	
 	output("\n\nGirl-cum squirts over your [pc.crotch] as " + flags["BEA_TITLE"] + " gasps in pleasure, her back arched, from having her ");
 	if(pc.cocks[x].cLength() > 6) output("womb");
 	else output("depths");
-	output(" filled ");
-	if(pc.cumQ() >= 4000) 
+	output(" filled");
+	if(cumQ >= 4000) 
 	{
-		output("to the brim, her belly swelling more and more with every jet of [pc.cum] you can pump into her depths");
+		output(" to the brim. Her belly swells more and more with every jet of [pc.cum] you can pump into her depths");
 		//has knot and cum volume not too high: 
-		if(pc.hasKnot(x) && pc.cumQ() < 30000) output(", especially with your [pc.knot] making sure none of your [pc.cumNoun] spills back out");
+		if(pc.hasKnot(x) && cumQ < 30000) output(", especially with your [pc.knot] making sure none of your [pc.cumNoun] spills back out");
 	}
 	// else: {has knot:
-	else if(pc.hasKnot(x)) output(" and knotted ");
-	output("by someone other than her husband");
+	else if(pc.hasKnot(x)) output(" and knotted");
+	else output(" by someone other than her husband");
 	output(".");
-	if(pc.cumQ() >= 30000) 
+	
+	if(cumQ >= 30000) 
 	{
 		output(" But it’s too much for her womb to handle and the excess comes pouring out of her pussy and onto your groin");
 		if(pc.hasKnot(x)) output(", despite your knot being firmly in place");
@@ -899,16 +902,16 @@ public function cowgirlMissReasner():void
 		output(" tightly wrapped around her");
 	}
 	output(". It takes a conscious effort to relax your muscles enough to separate. " + flags["BEA_TITLE"] + ", still on your [pc.cock " + x + "], flushed and sweaty, with thoroughly mussed hair, looks radiant after such a strong orgasm");
-	if(pc.cumQ() >= 4000) output(" and with a tummy so stuffed with [pc.cumVisc] [pc.cumNoun] that she looks positively pregnant");
+	if(cumQ >= 4000) output(" and with a tummy so stuffed with [pc.cumVisc] [pc.cumNoun] that she looks positively pregnant");
 	output(".");
 	output("\n\nShe cradles her ");
-	if(pc.cumQ() >= 4000) output("inflated ");
+	if(cumQ >= 4000) output("inflated ");
 	output("belly and meets your gaze. <i>“I wonder if this will make my little girl into a big sister,”</i> she says with a maternal smile, resplendent in her fecundity. [pc.EachCock] twitches at the thought of impregnating " + flags["BEA_TITLE"] + ". Her thumb massages your cheekbone as soft hand cups your cheek and pulls you in for a long, wet kiss. She uses her internal muscle control to stroke your [pc.cock " + x + "] and draw every last drop of spunk out of you; it feels like you’re slowly sliding in and out of her even though neither of you are moving.");
 	output("\n\nEventually, your ");
 	if(pc.hasKnot(x)) output("[pc.knot] deflates, and your ");
 	output("[pc.cock " + x + "] softens and falls free from " + flags["BEA_TITLE"] + "’s now [pc.cumColor]-colored love-tunnel, a ");
 	//low cum volume: 
-	if(pc.cumQ() < 25) output("trickle");
+	if(cumQ < 25) output("trickle");
 	// large cum volume:
 	else output("stream");
 	output(" of [pc.cumVisc] [pc.cumNoun] leaks from her red, swollen pussy-lips. Quite spent from your lovemaking, " + flags["BEA_TITLE"] + " sinks down on your [pc.chest] and smiles");
@@ -919,7 +922,7 @@ public function cowgirlMissReasner():void
 	if(rand(3) == 0)
 	{
 		output("\n\nSome time later you awake, cleaned up and tucked into bed, to find " + flags["BEA_TITLE"] + " already showered and putting her clothes back on. She looks at the time. <i>“I wish I could stay longer, sweetie,”</i> she says, tucking her blouse into her skirt, <i>“but I have to give a speech at a meeting soon.”</i> The thought of her standing in front of a crowd, maybe even her husband, with ");
-		if(pc.cumQ() >= 3000) output("some of ");
+		if(cumQ >= 3000) output("some of ");
 		output("your cum still sloshing inside her womb almost turns you on enough for another round. She blows you a kiss before she leaves.");
 		processTime(27);
 		pc.orgasm();

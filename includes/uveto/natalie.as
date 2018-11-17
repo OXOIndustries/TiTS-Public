@@ -50,7 +50,7 @@ public function approachNatalie():void
 	// Intro
 	if(flags["NATALIE_MET"] == undefined)
 	{
-		output("You walk over to the blonde’s booth and rap a hand on her table, drawing her gaze out of her mug with a start. <i>“Y-yes?”</i> she stammers, in what is most certainly the famous Galactic Huntress’s voice. <i>“Can, uh... c-can I help you?”</i>");
+		output("You [pc.walk] over to the blonde’s booth and rap a hand on her table, drawing her gaze out of her mug with a start. <i>“Y-yes?”</i> she stammers, in what is most certainly the famous Galactic Huntress’s voice. <i>“Can, uh... c-can I help you?”</i>");
 		output("\n\nShe stares up at you with big, doe-like blue eyes while you introduce yourself. A messy lock of flaxen hair falls from under her hood, long enough to brush her unadorned lips before she tucks it back behind an ear -- a human ear, you notice. Your question dies in your throat before you have a chance to speak it. The last time you saw Steph, she was mutated with cat-parts and silver eyes and more... though now that you’re next to her, this woman still definitely strikes an uncanny resemblance.");
 		output("\n\nYou have to ask: <i>“You look " + (pc.isBimbo() ? ", like, suuuuper" : " really") + " familiar...”</i>");
 		output("\n\n<i>“Oh God,”</i> the blonde groans, putting her face in her hands. <i>“No, no, no -- no! You’ve never seen me before, sorry! I just have one of those faces. Haha! Just s-some nobody. That’s me.”</i>");
@@ -67,7 +67,7 @@ public function approachNatalie():void
 	// Repeat from no intro
 	if(flags["NATALIE_MET"] == -2)
 	{
-		output("You walk over to the blonde’s booth and rap a hand on her table, drawing her gaze out of her mug with a start. <i>“H-hi again.”</i> she stammers, curious by your return. <i>“Come back to join me?”</i>");
+		output("You [pc.walk] over to the blonde’s booth and rap a hand on her table, drawing her gaze out of her mug with a start. <i>“H-hi again.”</i> she stammers, curious by your return. <i>“Come back to join me?”</i>");
 		output("\n\nOn second glance, she does look very familiar... Do you stay and try to guess who she is?");
 		
 		processTime(1);
@@ -80,7 +80,7 @@ public function approachNatalie():void
 	// Repeat from Mischievous
 	if(flags["NATALIE_MET"] < 0)
 	{
-		output("You walk over to the blonde’s booth and rap a hand on her table, drawing her gaze out of her mug with a start. <i>“Y-you again?!”</i> she stammers, surprised by your return. <i>“W-what do you want this time?”</i>");
+		output("You [pc.walk] over to the blonde’s booth and rap a hand on her table, drawing her gaze out of her mug with a start. <i>“Y-you again?!”</i> she stammers, surprised by your return. <i>“W-what do you want this time?”</i>");
 		output("\n\nDo you take this opportunity to make amends with the Irson twin?");
 		
 		processTime(1);

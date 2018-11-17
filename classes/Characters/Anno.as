@@ -30,7 +30,7 @@
 		//constructor
 		public function Anno()
 		{
-			this._latestVersion = 11;
+			this._latestVersion = 13;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -101,7 +101,7 @@
 			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN_TYPE_FUR;
+			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
 			this.skinTone = "pale";
 			this.skinFlags = [GLOBAL.FLAG_FLUFFY];
 			this.faceType = 0;
@@ -161,7 +161,7 @@
 			//No dicks here!
 			this.cocks = new Array();
 			//balls
-			this.balls = 2;
+			this.balls = 0;
 			this.cumMultiplierRaw = 3;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
@@ -171,7 +171,7 @@
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 15;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 65;
 			this.timesCum = 9001;
 			this.cockVirgin = false;
@@ -274,6 +274,14 @@
 			dataObject.rangedWeapon.longName = "holdout pistol";
 			dataObject.rangedWeapon.description = "Anno’s holdout pistol";
 			dataObject.rangedWeapon.hasRandomProperties = true;
+		}
+		public function UpgradeVersion11(dataObject:Object):void
+		{
+			dataObject.skinType = GLOBAL.SKIN_TYPE_SKIN;
+		}
+		public function UpgradeVersion12(dataObject:Object):void
+		{
+			dataObject.balls = 0;
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

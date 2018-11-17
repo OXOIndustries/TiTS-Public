@@ -39,6 +39,13 @@ public function landOnNewTexas():void
 //output("\n\nRoom Description");
 public function customsAndCheckInOnNewTexas():Boolean
 {
+	//if brandy affection at 100, sexed at least once and pc does not yet have brandy's letter go to letter scene
+	if (brandyAffection() >= 100 && brandySexed() > 0 && !pc.hasKeyItem("Brandy's Letter") && !pc.hasItemByClass(BrandyLetter))
+	{
+		getBrandysLetter();
+		return true;
+	}
+	
 	clearOutput();
 	author("Savin");
 	showBust("OGRAM","AMMA");
@@ -70,6 +77,7 @@ public function customsAndCheckInOnNewTexas():Boolean
 		addButton(0,"Ogram",repeatOgramApproach,undefined,"Ogram","Talk to the burly bull at the customs desk.");
 		addButton(1,"Amma",approachDatCowGalRepeat,undefined,"Amma","Talk to the busty cow-girl at the visitor’s desk.")
 	}
+	
 	return false;
 }
 
@@ -91,7 +99,7 @@ public function approachCustomsFirstTime():void
 	if(pc.hasEquippedWeapon()) addButton(0,"Disarm",disarmMeHoss,undefined,"Disarm","Allow Ogram to disarm you.");
 	else addDisabledButton(0,"Disarm","Disarm","You don’t have any weapons to disarm!");
 	addButton(1,"No Way!",noWayTexasJose,undefined,"No Way!","Refuse to be disarmed.");
-	if(pc.meleeWeapon is Rock && pc.rangedWeapon is Rock) addButton(2,"No Weapons!",noWeaponsInTexasHoss,undefined,"No Weapons!","Inform Ogram that you aren’t carrying any real weapons. All you need are your fists or a rock to chuck, and you can find rocks anywhere.");
+	if(!pc.hasEquippedWeapon()) addButton(2,"No Weapons!",noWeaponsInTexasHoss,undefined,"No Weapons!","Inform Ogram that you aren’t carrying any real weapons. All you need are your fists or a rock to chuck, and you can find rocks anywhere.");
 	else addDisabledButton(2,"No Weapons","No Weapons","You can’t get by for having no weapons while actually carrying weapons. It just doesn’t work. Come on, man.");
 
 }
@@ -231,18 +239,15 @@ public function repeatOgramApproach():void
 
 	//[Talk] [Sex] [Rearm] [Disarm]
 	clearMenu();
-	addButton(0,"Talk",talkToOggy,true);
-	if(pc.lust() >= 33) addButton(1,"Sex",askOggyForSex,undefined,"Sex","See if the big bull is up for sex.");
-	else addDisabledButton(1,"Sex","Sex","You aren’t quite aroused enough for sex.");
-	if(pc.hasStatusEffect("Disarmed")) {
-		addButton(3,"Rearm",rearmAtOgram,undefined,"Rearm","Get your weapons back.");
-		addDisabledButton(4,"Disarm","Disarm","You’ve already been disarmed.");
-	}
-	else 
-	{
-		addDisabledButton(3,"Rearm","Rearm","You can’t pick up any weapons here - they don’t have yours.");
-		addButton(4,"Disarm",getDisarmedRepeat,undefined,"Get disarmed so that you can explore the planet.");
-	}
+	
+	if(pc.hasStatusEffect("Disarmed")) addButton(0,"Rearm",rearmAtOgram,undefined,"Rearm","Get your weapons back.");
+	else addButton(0,"Disarm",getDisarmedRepeat,undefined,"Get disarmed so that you can explore the planet.");
+	
+	addButton(1,"Talk",talkToOggy,true);
+	
+	if(pc.lust() >= 33) addButton(2,"Sex",askOggyForSex,undefined,"Sex","See if the big bull is up for sex.");
+	else addDisabledButton(2,"Sex","Sex","You aren’t quite aroused enough for sex.");
+	
 	addButton(14,"Leave",mainGameMenu);
 
 }
@@ -256,8 +261,11 @@ public function rearmAtOgram():void
 	showBust("OGRAM");
 	output("<i>“Alright, let’s see what we’ve got here,”</i> Ogram says, popping open the container behind his desk and pulling out your gear. He compares the bundle to the tag attached to it, checks something on his holo-terminal, and hands it over to you. <i>“Just sign here, and you’re all set.”</i>");
 	output("\n\nYou do so, and are promptly handed a bundle with your weapons in it. <i>“Cool. Take care out there, " + pc.mf("buddy","beautiful") + ".”</i>");
+	
+	returnAllItems(true);
 	pc.removeStatusEffect("Disarmed");
 	flags["CHECKED_GEAR_AT_OGGY"] = undefined;
+	
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -282,6 +290,9 @@ public function getDisarmedRepeat():void
 		output("You casually inform him that you don’t have any weapons, watching as Og’s eyebrow climbs steadily higher.\n\n<i>“I’ll have to give you a quick check-over,”</i> he says while waving a portable scanner over your body. <i>“All right, you’re clear. Have a good one.”</i>");
 		flags["CHECKED_GEAR_AT_OGGY"] = 0;
 	}
+	
+	pc.takeMeleeWeapon();
+	pc.takeRangedWeapon();
 	pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You’ve checked all forms of weaponry at New Texas’ customs.",false,0,0xFF0000);
 	
 	processTime(1);
@@ -302,7 +313,7 @@ public function talkToOggy(display:Boolean = false):void
 		output("\n\n" + pc.mf("<i>“Guess I’m not doing anything important. What’s up, buddy?”</i>","<i>“For a beautiful gal like you? Absolutely,”</i>") + " Og says, leaning back in his chair.");
 	}
 	clearMenu();
-	addButton(0,"The Treatment",talkToOggyAbootTreatManz,undefined,"The Treatment","Ask the brute what his take on the Treatment is.");
+	addButton(0,"TheTreatment",talkToOggyAbootTreatManz,undefined,"The Treatment","Ask the brute what his take on the Treatment is.");
 	addButton(1,"CurrentJob",oggysCurrentJob,undefined,"Current Job","Ask him about his job now.");
 	addButton(2,"Old Job",oggysOldJob,undefined,"Old Job","Ask him about his old job.");
 	addButton(3,"Amma",askOggyAboutAmma,undefined,"Amma","Ask him about that hot cow-girl manning the visitor’s desk.");
@@ -327,7 +338,7 @@ public function talkToOggyAbootTreatManz():void
 	processTime(6);
 	talkToOggy(false);
 	removeButton(0);
-	addDisabledButton(0,"The Treatment","The Treatment","Seriously? You’re talking about that right now.");
+	addDisabledButton(0,"TheTreatment","The Treatment","Seriously? You’re talking about that right now.");
 }
 
 //Current Job
@@ -469,8 +480,8 @@ public function talkToAmma(display:Boolean = false):void
 		output("\n\n<i>“Sure thing, sugar,”</i> the cow beams. <i>“Anything I can help you with, let me know!”</i>");
 	}
 	clearMenu();
-	addButton(0,"The Treatment",askAmmaAbootZeTreatManz,undefined,"The Treatment","Ask the cow-girl what she thinks of the Treatment.");
-	addButton(1,"Who’sInCharge",whosInCharge,undefined,"Who’s In Charge Here?","Ask Amma about who runs this planet.");
+	addButton(0,"TheTreatment",askAmmaAbootZeTreatManz,undefined,"The Treatment","Ask the cow-girl what she thinks of the Treatment.");
+	addButton(1,"In Charge?",whosInCharge,undefined,"Who’s In Charge Here?","Ask Amma about who runs this planet.");
 	addButton(2,"Herself",askAmmaAboutHerSelf,undefined,"Herself","Ask Amma about herself.");
 	if(flags["OGRIM_UNLOCKED_FROM_AMMA_TALK_MENU"] != undefined) addButton(3,"Ogram",askAmmaAboutOgram,undefined,"Ogram","Ask her about that big lug she’s been seeing, Ogram.");
 	else addDisabledButton(3,"Locked","Locked","You’ll need to talk to Amma about something else in particular before this scene unlocks.");
@@ -498,7 +509,7 @@ public function askAmmaAbootZeTreatManz():void
 	processTime(7);
 	talkToAmma(false);
 	removeButton(0);
-	addDisabledButton(0,"The Treatment","The Treatment","You’re already talking about that.");
+	addDisabledButton(0,"TheTreatment","The Treatment","You’re already talking about that.");
 }
 
 //Who’s in Charge?
@@ -539,7 +550,7 @@ public function whosInCharge():void
 	
 	talkToAmma(false);
 	removeButton(1);
-	addDisabledButton(1,"Who’sInCharge","Who’sInCharge","You’re already talking about that.");
+	addDisabledButton(1,"In Charge?","Who’sInCharge","You’re already talking about that.");
 }
 
 //Herself
@@ -1195,7 +1206,7 @@ public function getFoodAtBigTs():void
 	if(pc.credits >= 20) addButton(4,"BBQ To-Go",bbqToGo,undefined,"BBQ To-Go","Get some delicious BBQ for the road. Then you can grab a snack whenever you feel like it.\n\n20 Credits.")
 	else addDisabledButton(4,"BBQ To-Go","BBQ To-Go","You need 20 credits to afford BBQ To-Go.");
 	//If PC has Female Treatment/ is Bimbo/ has Fluid Addiction: 
-	if((pc.isTreated() && pc.isBimbo()) || pc.isBimbo() || pc.isDependant(Creature.DEPENDANT_CUM)) addButton(5,"“SpecialOrder”",specialOrdersForTreatedGals,undefined,"“Special Order”","Get a meal with some of the Chef’s special sauce. It’s practically free food!");
+	if((pc.isTreated() && pc.isBimbo()) || pc.isBimbo() || pc.isCumSlut()) addButton(5,"“SpecialOrder”",specialOrdersForTreatedGals,undefined,"“Special Order”","Get a meal with some of the Chef’s special sauce. It’s practically free food!");
 	//["Special Order"]...
 	addButton(14,"Back",mainGameMenu);
 
@@ -1818,7 +1829,7 @@ public function carrieBlowjobIntro():void
 		if(hours >= 9 && hours < 17)
 		{
 			output("\n\nCarrie grins back embarrassedly, squirming slightly. Her nipples are erect as cherries, rubbing against her tight top.");
-			output("\n\n<i>“Nooooo,”</i> she whines. <i>“C’mon " + pc.mf("guy","girl") + ", don’t do that. You know I’m on shift!”</i> You move casually forwards so that she’s deep in your pheromone fug, and you can feel her warm, bubblegum-flavored breath. You spread your hand over the orb of one of her fine butt-cheeks and smooth downwards to her cleft, tracing her plump pussy through her leotard, feeling for yourself how sodden it is.");
+			output("\n\n<i>“Nooooo,”</i> she whines. <i>“C’mon " + pc.mf("guy","girl") + ", don’t do that. You know I’m on shift!”</i> You move casually forwards so that she’s deep in your pheromone perfume, and you can feel her warm, bubblegum-flavored breath. You spread your hand over the orb of one of her fine butt-cheeks and smooth downwards to her cleft, tracing her plump pussy through her leotard, feeling for yourself how sodden it is.");
 			output("\n\n<i>“Later, then,”</i> you tease, pulling away and stepping back.");
 			output("\n\n<i>You’re terrible</i>, her eyes say.");
 			output("\n\n<i>I know</i>, yours reply.");
@@ -1854,11 +1865,8 @@ public function carrieBlowjobsGo():void
 	var y:int = pc.biggestCockIndex2();
 	var cumQ:Number = pc.cumQ();
 	var doubleDickEnough:Boolean = false;
-	if(pc.cockTotal() > 1)
-	{
-		if(pc.cocks[y].cLength() >= 12) doubleDickEnough = true;
-	}
-	if(pc.cockTotal() <= 1) y = -1;
+	if(pc.cockTotal() > 1 && y >= 0 && pc.cocks[y].cLength() >= 12) doubleDickEnough = true;
+	
 	//First
 	if(flags["CARRIE_BLOWJOBBED"] == undefined)
 	{
@@ -2015,7 +2023,7 @@ public function carrieBlowjobsGo():void
 			}
 			else
 			{
-				output("\n\nThe first wonderful spout of [pc.cum] looks like it clears the height of the tree - and that is after it gets past two horny, hungry mouths. The next two juicy blasts swell a cow girl’s stomach each, first one sister then the other fastening their hot mouth around your [pc.cockHead " + x + "] and dragging down a hot stream of cum intently. After that you are able to unsteadily you to your [pc.footOrFeet]");
+				output("\n\nThe first wonderful spout of [pc.cum] looks like it clears the height of the tree - and that is after it gets past two horny, hungry mouths. The next two juicy blasts swell a cow girl’s stomach each, first one sister then the other fastening their hot mouth around your [pc.cockHead " + x + "] and dragging down a hot stream of cum intently. After that you are able to unsteadily get to your [pc.footOrFeet]");
 				output(", Carrie quickly grabbing one of the glass jars between her knees. Clutching your massive cock, you growl and gasp as you unload again and again into the containers which are whisked in front of you. It’s a remarkably efficient operation, all things considered; Cora passes Carrie an empty jar as soon as you’ve filled another one up to the brim and slapped down its lid.");
 				output("\n\nYou’ve got more, plenty more coming by the time half a dozen jars have been filled with your virile seed, and there’s only one way to use it. The two cow-girls at your [pc.footOrFeet] flinch, gasp and giggle as you give them a heavy, well-deserved pasting each. Cora presents her plush tits, closes her eyes and opens her mouth and Carrie swiftly following suit, providing you with plenty of enjoyable targets. At long last, when their milky skin and red hair is absolutely dripping with [pc.cum], you sink back against the tree and wheeze, [pc.cocks] swinging, finally and utterly satiated.");
 				output("\n\n<i>“Whew!”</i> says Carrie, wiping cum out of her eyes and stroking her slightly swollen belly. <i>“Well, we didn’t get it all. But, um, we did better.”</i> She clinks the full jars together happily. <i>“We should definitely try again sometime.”</i>");
@@ -2962,7 +2970,7 @@ public function carrieCockTailSneakyDeaky():void
 	else output("<i>“You’re looking worn out, Carrie. Have they been working you hard?”</i> you ask.");
 
 	output("\n\nCarrie smiles patiently. <i>“I could use a gap and stretch for sure,”</i> she answers. <i>“I been cooped up in here a while.”</i>");
-	if(pc.isBro()) output("\n\n<i>“’How about starting me and taking off?”</i>");
+	if(pc.isBro()) output("\n\n<i>“‘How about starting me and taking off?”</i>");
 	else
 	{
 		output("\n\n<i>“So");
@@ -3120,20 +3128,20 @@ public function cameronCockMilker():void
 	showName("CARRIE\n& CAMERON");
 	showBust("CAMERON_NUDE", "CARRIE");
 	
-	output("As you open the door to head into the milker's stall, you hear voices inside: Carrie's, of course, and another feminine voice. At first, you think it might be ");
+	output("As you open the door to head into the milker’s stall, you hear voices inside: Carrie’s, of course, and another feminine voice. At first, you think it might be ");
 	if (flags["CORA_SUCKED"] != undefined) output("her sister");
 	else if (flags["MET_ZEPHYR"] != undefined) output("Zephyr");
 	else output("a futa cow-girl");
 	output(", but when you throw open the door and saunter in, you find the familiar figure of an effete cow-boi bending over with his overalls half-off, his thick, spankable booty pushed out in your direction.");
 	output("\n\n<i>“O-oh! Hey, uh, howdy [pc.name],”</i> Cameron half-chuckles, winking at you between his legs. His slender bovine tail swishes, rising submissively as you draw near.");
-	output("\n\n<i>“Oh shucks, I guess I forgot to lock the door. Hi, [pc.name],”</i> Carrie says, bouncing on her heels. <i>“Gonna have to wait for a bit if you wanna use the milker. Cam here's just about to strap in.”</i>");
+	output("\n\n<i>“Oh shucks, I guess I forgot to lock the door. Hi, [pc.name],”</i> Carrie says, bouncing on her heels. <i>“Gonna have to wait for a bit if you wanna use the milker. Cam here’s just about to strap in.”</i>");
 	output("\n\nCam blushes a little, though you can see the slab of meat between his legs twitching as he pulls his overalls down, showing his dark donut to you and Carrie. The milker attendant dutifully grabs a bottle of lube and snaps on a glove, telling Cameron to climb onto the machine. She gives you a saucy look while the little faux-cow gets ready, and uses her thumbs to pry apart his soft ass-cheeks, almost invitingly...");
 	
 	pc.lust(10);
 	pc.createStatusEffect("Cameron Milker Cooldown", 0, 0, 0, 0, true, "", "", false, 24*60);
 	
-	addButton(0, "Participate", megaMilkCameron, undefined, "Participate", "You're sure Cam wouldn't mind you spending a little quality time together, just the three of you.");
-	addButton(1, "Leave", imLactoseIntolerant, undefined, "Leave", "You'll come back later...");
+	addButton(0, "Participate", megaMilkCameron, undefined, "Participate", "You’re sure Cam wouldn’t mind you spending a little quality time together, just the three of you.");
+	addButton(1, "Leave", imLactoseIntolerant, undefined, "Leave", "You’ll come back later...");
 }
 
 public function imLactoseIntolerant():void
@@ -3144,8 +3152,8 @@ public function imLactoseIntolerant():void
 	showName("CARRIE\n& CAMERON");
 	showBust("CAMERON_NUDE", "CARRIE");
 	
-	output("You shake your head and turn to leave. You've got better things to do than watch Cameron get reamed.");
-	output("\n\n<i>“Oh well,”</i> Carrie sighs, before delivering a sharp slap to the faux-cow's ass. <i>“Don't even think about getting soft, mister!”</i>");
+	output("You shake your head and turn to leave. You’ve got better things to do than watch Cameron get reamed.");
+	output("\n\n<i>“Oh well,”</i> Carrie sighs, before delivering a sharp slap to the faux-cow’s ass. <i>“Don’t even think about getting soft, mister!”</i>");
 	
 	//Disable entering male milker while he's getting his bum beaten up
 	processTime(5);
@@ -3163,26 +3171,26 @@ public function megaMilkCameron():void
 	showBust("CAMERON_NUDE", "CARRIE_NUDE");
 	
 	output("You take her up on the invitation, locking the stall door behind you and sauntering on over to the milker station. Cameron looks at you over his shoulder, eyes wide in surprise, until Carrie reaches down and grabs his cock, wrapping her slender, gloved fingers around his thick equine shaft. ");
-	output("\n\n<i>“Stop squirmin', Cam,”</i> she chides, her voice taking on a much more authoritative, matronly tone than you're familiar with. <i>“Or that trappy little pony cock of yours is gonna end up shootin' all over.”</i>");
-	output("\n\nCameron whines, but eventually Carrie's able to guide his semi-hard shaft into the proper receptacle. Once she's fastened the suction cup to his flared crown, Carrie squirts a healthy glob of lube onto the palm of her glove and starts spreading it around Cam's ass, swirling two fingers around his tailhole to make sure it's nice and coated. When it is, Carrie handily slides her digits right into Cameron's pucker, making the cow-boi squeal and buck his hips against the harness. ");
-	output("\n\n<i>“Good boy,”</i> Carrie whispers, starting to move her hand. <i>“Just relax that little cock-hole for me, 'kay?”</i>");
-	output("\n\nTurning to you with a little smirk, she adds, <i>“Cam here's one of my most regular donors,”</i> she tells you, still thrusting her fingers into Cameron's ass. <i>“His ass is more sensitive than my pussy, and I'm pretty sure his Treatment got rid of his refractory. These balls of his are my succulent little cum-pumps until they're drained so dry, you'd think he's got a pair of raisins down there.”</i>");
-	output("\n\nAs she's speaking, Carrie's other hand reaches down and cups Cam's balls, caressing the plump black orbs as tenderly as her other hand is rough. As if on cue, Cameron's body tenses, he sucks in a sharp breath, and lets it out with a long, lurid moan. You look under the rig and see his dick throbbing in the sheath, spilling a thick wad straight down the collection tube. You her a wet sound from his butt, and look back to see his donut clinging to Carrie's fingers like he's trying to pull her whole fist in there. ");
-	output("\n\n<i>“I think he's ready for something more... masculine,”</i> Carrie purrs, reaching over and running her other hand over your crotch. <i>“Think you can help him out with that?”</i>");
-	output("\n\nYou're already " + (pc.isCrotchExposed() ? "slapping Carrie's bare thigh with your rock-hard erection," : "fishing out your cock out, throbbing with need and") + " raring to go. Grinning devilishly, the milker-maid guides you by the dick over to the whimpering cow-trap, lining your [pc.cockHead] up with his lube-slathered hole. You swing a [pc.leg] over the machine and grab Cameron's girly hips, rolling your [pc.hips] forward spreading that slutty cock-hole of his open around your crown. Cam whimpers and leaks more of his juicy dickmilk into the sucker attached to his shaft, pushing his ass back against you until you feel a wet, silky grip start sliding up your own length, and your cock starts sinking into Cam's boypussy.");
-	if (pc.cocks[0].cLength() >= 18) output("\n\n<i>“You're way thicker than the stimulator,”</i> Carrie giggles, patting your dick as you pump it into Cameron. <i>“I bet you'll get his biggest load ever, [pc.name]!”</i> ");
-	else output("\n\n<i>“A real dick's always better than a milker,”</i> Carrie giggles, patting your [pc.butt] as you pump Cameron's ass. <i>“He's been teasing me about getting a dick of my own so I could treat him like this, but like, why when I've got big studs like you to come in here and ream this little cow for me?”</i>");
-	output("\n\nWordlessly, you grab Carrie by the waist and pull her against your [pc.chest], thrusting your [pc.tongue] into her mouth. She moans and unlaces her cow-pattern corset, letting those big, milky hugs of hers spill out. One of her hands slips down around your [pc.butt] in turn, finding its way to your ass. She's still got some slick lube clinging to her fingers, and you feel the rush of cold around your own hole before a finger slips in.");
-	output("\n\n<i>“It's still my job,”</i> Carrie titters, moving her digits to find your anal g-spot. <i>“Besides, Cam's not the only one here who likes a little attention back here, is he?”</i>");
-	output("\n\nYou grin and bear it, feeling her fingers worm their way in to the third knuckle. She happily teases your prostate with little rubs and caresses until you feel that familiar, churning pressure in your [pc.balls], and your dick throbs inside the faux-cow's lurid hole. ");
-	output("\n\n<i>“I-I can feel it coming!”</i> Cam whines, pushing his plush booty back against your crotch. <i>“It's leakin' out already!”</i>");
-	output("\n\nYou're not sure if Cameron's talking about his orgasm or yours, but you guess it doesn't really matter -- either way, you're soon pouring your [pc.cumNoun] into his gaping backside, and he's squealing and leaking his own second -- or is it third now? -- orgasm into the milker. Carrie coos delightedly and pats his butt, telling him what a good little cum-dump he is, and how much nice, juicy spunk he's making for her. The cow's practically drooling, watching both of you orgasming together, blowing so much musky boy-goo into Cam and the milker machine that any good New Texan girl would probably cream herself on the spot just from smelling it.");
-	output("\n\n" + (pc.isTreated() ? "Knowing you're right" : "Just to see if you're right") + ", you shift your hand down from her hip and into her little thong, sliding two fingers straight into her quim. Your digits sink into depths that are the perfect mix of  hot, juicy, and tight, and you can feel the bovine-morphed beauty squeeze for you, massaging your fingers with the same insistent tenderness that she's working your ass with. You eventually pick the lusty bovine up and plant her on Cam's back, pushing the poor trap deeper into the milker's clutches while you spread his attendant's legs over his ass, making it easy to pull from one clenching kiester into another" + (pc.totalCocks() > 1 ? ", plugging Cam's hole with your second dick" : "") + ". Carrie gasps, yelps, and then moans as your dick slides into her butt" + (pc.cocks[0].cLength() >= 18 ? ", making her belly swell with the girth of cockflesh barreling into her body" : "") + ".");
-	output("\n\n<i>“Little treat for a hard-workin' girl,”</i> you tell her, easing yourself in to the hilt. Carrie can only moan breathlessly, unable to form words as pleasure rocks her plush, curvy body. ");
-	output("\n\nUnderneath her, the faux-cow leaks your seed back onto the milker's harness" + (pc.totalCocks() > 1 ? " from around your second schlong" : "") + ", prompting you to " + (pc.totalCocks() > 1 ? "start moving your hips, fucking his spunk-lubed ass and Carrie’s at the same time" : "thrust a few fingers into his winking donut, pleasuring it while you start thrusting into Carrie") + ". Before long, the two cows are moaning in unison, undulating atop one another and cumming their collective Treated brains out. The milker machine whirs and pumps loudly, sucking away the bull-boi's many loads into its processing tanks. You can see the veins pulsing in Cameron's taut black ballsack; the two cum-swollen orbs twitch and contract with every messy orgasm, pumping what seems like gallons of bull-cream down the funnel. And his ass... oh, that sweet hole's clenching like mad, squeezing down on you like his life depends on it. The faux-cow's got a prostate that feels as big as a pea, pressing against your " + (pc.totalCocks() > 1 ? "dick" : "fingers") + ", and letting you rub on it with every little motion. And every caress on that anal clit of his works out a thicker wad of cum, shooting from Cam's turgid pony shaft to the beat of your thrusts. You're not even sure if he's having separate orgasms anymore, the way he's unloading those nuts: it seems more like one continuous climax that's slowly draining him dry.");
-	output("\n\nAnd Carrie's about to drain <i>you</i> dry! The cow-girl plush rump has perfectly molded itself to your [pc.cock], and her pussy's squirting arcs of fem-cum, splattering your dick with more and more lube at the nadir of every thrust. Of course, every New Texan girl's a pro at taking dick -- thanks to the Treatment, if not from thousands of hours of practice -- and Carrie's obviously no exception. Even if she's not able to get at your [pc.asshole] anymore, she's still able to milk you to orgasm with her own. ");
-	output("\n\nWith a feral growl, you slam yourself into the hilt in the cow " + (pc.totalCocks() > 1 ? "and the faux-cow " : "") + "before another parting orgasm hits, flooding " + (pc.totalCocks() > 1 ? "their assholes" : "Carrie's ass") + " with [pc.cum]. A jet of milk erupts from the cow-girl's swollen breasts, followed by an undulating moo of pleasure as she cums in your wake.");
-	output("\n\n<i>“Whew, you two really... cum... words... mmm,”</i> Carrie moans as you pull out, reaching down and scooping up a handful of cum leaking out of her gaping hole. She licks it up with a blissful, contented smile on her full lips, eyes drooping heavily with cum-fueled contentment. You step back, admiring your spunk-soaked work: two cows sprawling atop one another, leaking your seed and quivering with lingering orgasms. You deliver a parting slap to Cam's ass, causing the mewling trap to bust yet another nut into the milker as you turn and head out.");
+	output("\n\n<i>“Stop squirmin’, Cam,”</i> she chides, her voice taking on a much more authoritative, matronly tone than you’re familiar with. <i>“Or that trappy little pony cock of yours is gonna end up shootin’ all over.”</i>");
+	output("\n\nCameron whines, but eventually Carrie’s able to guide his semi-hard shaft into the proper receptacle. Once she’s fastened the suction cup to his flared crown, Carrie squirts a healthy glob of lube onto the palm of her glove and starts spreading it around Cam’s ass, swirling two fingers around his tailhole to make sure it’s nice and coated. When it is, Carrie handily slides her digits right into Cameron’s pucker, making the cow-boi squeal and buck his hips against the harness. ");
+	output("\n\n<i>“Good boy,”</i> Carrie whispers, starting to move her hand. <i>“Just relax that little cock-hole for me, ‘kay?”</i>");
+	output("\n\nTurning to you with a little smirk, she adds, <i>“Cam here’s one of my most regular donors,”</i> she tells you, still thrusting her fingers into Cameron’s ass. <i>“His ass is more sensitive than my pussy, and I’m pretty sure his Treatment got rid of his refractory. These balls of his are my succulent little cum-pumps until they’re drained so dry, you’d think he’s got a pair of raisins down there.”</i>");
+	output("\n\nAs she’s speaking, Carrie’s other hand reaches down and cups Cam’s balls, caressing the plump black orbs as tenderly as her other hand is rough. As if on cue, Cameron’s body tenses, he sucks in a sharp breath, and lets it out with a long, lurid moan. You look under the rig and see his dick throbbing in the sheath, spilling a thick wad straight down the collection tube. You her a wet sound from his butt, and look back to see his donut clinging to Carrie’s fingers like he’s trying to pull her whole fist in there. ");
+	output("\n\n<i>“I think he’s ready for something more... masculine,”</i> Carrie purrs, reaching over and running her other hand over your crotch. <i>“Think you can help him out with that?”</i>");
+	output("\n\nYou’re already " + (pc.isCrotchExposed() ? "slapping Carrie’s bare thigh with your rock-hard erection," : "fishing out your cock out, throbbing with need and") + " raring to go. Grinning devilishly, the milker-maid guides you by the dick over to the whimpering cow-trap, lining your [pc.cockHead] up with his lube-slathered hole. You swing a [pc.leg] over the machine and grab Cameron’s girly hips, rolling your [pc.hips] forward spreading that slutty cock-hole of his open around your crown. Cam whimpers and leaks more of his juicy dickmilk into the sucker attached to his shaft, pushing his ass back against you until you feel a wet, silky grip start sliding up your own length, and your cock starts sinking into Cam’s boypussy.");
+	if (pc.cocks[0].cLength() >= 18) output("\n\n<i>“You’re way thicker than the stimulator,”</i> Carrie giggles, patting your dick as you pump it into Cameron. <i>“I bet you’ll get his biggest load ever, [pc.name]!”</i> ");
+	else output("\n\n<i>“A real dick’s always better than a milker,”</i> Carrie giggles, patting your [pc.butt] as you pump Cameron’s ass. <i>“He’s been teasing me about getting a dick of my own so I could treat him like this, but like, why when I’ve got big studs like you to come in here and ream this little cow for me?”</i>");
+	output("\n\nWordlessly, you grab Carrie by the waist and pull her against your [pc.chest], thrusting your [pc.tongue] into her mouth. She moans and unlaces her cow-pattern corset, letting those big, milky hugs of hers spill out. One of her hands slips down around your [pc.butt] in turn, finding its way to your ass. She’s still got some slick lube clinging to her fingers, and you feel the rush of cold around your own hole before a finger slips in.");
+	output("\n\n<i>“It’s still my job,”</i> Carrie titters, moving her digits to find your anal g-spot. <i>“Besides, Cam’s not the only one here who likes a little attention back here, is he?”</i>");
+	output("\n\nYou grin and bear it, feeling her fingers worm their way in to the third knuckle. She happily teases your prostate with little rubs and caresses until you feel that familiar, churning pressure in your [pc.balls], and your dick throbs inside the faux-cow’s lurid hole. ");
+	output("\n\n<i>“I-I can feel it coming!”</i> Cam whines, pushing his plush booty back against your crotch. <i>“It’s leakin’ out already!”</i>");
+	output("\n\nYou’re not sure if Cameron’s talking about his orgasm or yours, but you guess it doesn’t really matter -- either way, you’re soon pouring your [pc.cumNoun] into his gaping backside, and he’s squealing and leaking his own second -- or is it third now? -- orgasm into the milker. Carrie coos delightedly and pats his butt, telling him what a good little cum-dump he is, and how much nice, juicy spunk he’s making for her. The cow’s practically drooling, watching both of you orgasming together, blowing so much musky boy-goo into Cam and the milker machine that any good New Texan girl would probably cream herself on the spot just from smelling it.");
+	output("\n\n" + (pc.isTreated() ? "Knowing you’re right" : "Just to see if you’re right") + ", you shift your hand down from her hip and into her little thong, sliding two fingers straight into her quim. Your digits sink into depths that are the perfect mix of hot, juicy, and tight, and you can feel the bovine-morphed beauty squeeze for you, massaging your fingers with the same insistent tenderness that she’s working your ass with. You eventually pick the lusty bovine up and plant her on Cam’s back, pushing the poor trap deeper into the milker’s clutches while you spread his attendant’s legs over his ass, making it easy to pull from one clenching kiester into another" + (pc.totalCocks() > 1 ? ", plugging Cam’s hole with your second dick" : "") + ". Carrie gasps, yelps, and then moans as your dick slides into her butt" + (pc.cocks[0].cLength() >= 18 ? ", making her belly swell with the girth of cockflesh barreling into her body" : "") + ".");
+	output("\n\n<i>“Little treat for a hard-workin’ girl,”</i> you tell her, easing yourself in to the hilt. Carrie can only moan breathlessly, unable to form words as pleasure rocks her plush, curvy body. ");
+	output("\n\nUnderneath her, the faux-cow leaks your seed back onto the milker’s harness" + (pc.totalCocks() > 1 ? " from around your second schlong" : "") + ", prompting you to " + (pc.totalCocks() > 1 ? "start moving your hips, fucking his spunk-lubed ass and Carrie’s at the same time" : "thrust a few fingers into his winking donut, pleasuring it while you start thrusting into Carrie") + ". Before long, the two cows are moaning in unison, undulating atop one another and cumming their collective Treated brains out. The milker machine whirs and pumps loudly, sucking away the bull-boi’s many loads into its processing tanks. You can see the veins pulsing in Cameron’s taut black ballsack; the two cum-swollen orbs twitch and contract with every messy orgasm, pumping what seems like gallons of bull-cream down the funnel. And his ass... oh, that sweet hole’s clenching like mad, squeezing down on you like his life depends on it. The faux-cow’s got a prostate that feels as big as a pea, pressing against your " + (pc.totalCocks() > 1 ? "dick" : "fingers") + ", and letting you rub on it with every little motion. And every caress on that anal clit of his works out a thicker wad of cum, shooting from Cam’s turgid pony shaft to the beat of your thrusts. You’re not even sure if he’s having separate orgasms anymore, the way he’s unloading those nuts: it seems more like one continuous climax that’s slowly draining him dry.");
+	output("\n\nAnd Carrie’s about to drain <i>you</i> dry! The cow-girl plush rump has perfectly molded itself to your [pc.cock], and her pussy’s squirting arcs of fem-cum, splattering your dick with more and more lube at the nadir of every thrust. Of course, every New Texan girl’s a pro at taking dick -- thanks to the Treatment, if not from thousands of hours of practice -- and Carrie’s obviously no exception. Even if she’s not able to get at your [pc.asshole] anymore, she’s still able to milk you to orgasm with her own. ");
+	output("\n\nWith a feral growl, you slam yourself into the hilt in the cow " + (pc.totalCocks() > 1 ? "and the faux-cow " : "") + "before another parting orgasm hits, flooding " + (pc.totalCocks() > 1 ? "their assholes" : "Carrie’s ass") + " with [pc.cum]. A jet of milk erupts from the cow-girl’s swollen breasts, followed by an undulating moo of pleasure as she cums in your wake.");
+	output("\n\n<i>“Whew, you two really... cum... words... mmm,”</i> Carrie moans as you pull out, reaching down and scooping up a handful of cum leaking out of her gaping hole. She licks it up with a blissful, contented smile on her full lips, eyes drooping heavily with cum-fueled contentment. You step back, admiring your spunk-soaked work: two cows sprawling atop one another, leaking your seed and quivering with lingering orgasms. You deliver a parting slap to Cam’s ass, causing the mewling trap to bust yet another nut into the milker as you turn and head out.");
 	
 	IncrementFlag("CAMERON_MILKED");
 	processTime(30 + rand(10));

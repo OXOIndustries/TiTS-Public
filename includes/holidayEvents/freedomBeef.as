@@ -60,6 +60,8 @@ public static const FREEDOM_BEEF_RIPPED:uint = 3;
 
 public function doFreedomBeefEncounter():void
 {
+	showBust("");
+	
 	output("\n\nA deafening <i><b>crack!</b></i> booms overhead, a concussive blast of thunder that makes you duck and grab your [pc.weapon]. Your brain immediately leaps to a gunshot going off, but you’re able to relax a bit when you see a corona of crimson sparks erupting in the");
 	if (hours >= 20 || hours <= 4) output(" night’s");
 	else if (hours >= 12) output(" afternoon");
@@ -228,7 +230,7 @@ public function freedomBeefJoinHerII(beefType:uint):void
 	output(". Guess you could look it up real quick?");
 
 	output("\n\n<i>“Naah, don’t worry,”</i> Riley laughs, finish her drink and reaching for another. <i>“I’m just always surprised folk don’t know.");
-	if (pc.race() != "human") output(" Then again, you’re not human. Can’t expect everybody to keep up with everybody else’s holidays, right?");
+	if (!pc.isHuman()) output(" Then again, you’re not human. Can’t expect everybody to keep up with everybody else’s holidays, right?");
 	output(" Lib Day’s the anniversary of the first Terran colonies declaring their independence from the homeworld! Sure it was thousands of years ago, but it was our first real step towards the free-wheeling frontier society we’ve got today. My home colony, Vesperia, was one of the first to give Earth the big middle finger over Q-Comms. Hehe. Musta been a sight, seeing a buncha giant centaurs on screen daring Earth to come do something about it. Course they didn’t, cuz back then all anybody had was generation ships. Woulda taken centuries to fight out a war with anybody, so all us colonials got a free pass! Caught on real quick, and soon enough the whole fringe was making decisions for itself. To heck with Earth, we know how to run our own damn planets!”</i>");
 
 	output("\n\nWell, that’d explain why you’ve barely ever heard of the holiday before. Most of those colonies fell right back in line when the Warp Gates came around. But something tells you Vesperia didn’t...");

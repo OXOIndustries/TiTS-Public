@@ -6,6 +6,8 @@ package classes.Engine.Combat
 	import classes.Engine.Interfaces.output;
 	import classes.Engine.Utility.rand;
 	import classes.Characters.PlayerCharacter;
+	import classes.Items.Piercings.GeddaniumRingPiercing;
+	import classes.Items.Piercings.UrtaniumRingPiercing;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.kGAMECLASS;
 	
@@ -40,27 +42,39 @@ package classes.Engine.Combat
 		
 		if (lustDamage.tease.damageValue > 0 && attacker != null) lustDamage.tease.damageValue += attacker.sexiness() / 2;
 		if (lustDamage.tease.damageValue > 0 && attacker != null && attacker.hasPheromones()) lustDamage.pheromone.damageValue += 1 + rand(attacker.pheromoneLevel());
-		if (lustDamage.tease.damageValue > 0 && target.hasCock() && attacker != null && attacker.hasStatusEffect("Cum Soaked")) 
+
+		//Enemies with sexjuice coverings get bonuses against the PC - but not the other way around. PC bonuses handled by PC tease system.
+		if (lustDamage.tease.damageValue > 0 && target is PlayerCharacter)
 		{
-			var spunkBonus:Number = attacker.statusEffectv1("Cum Soaked");
-			if (spunkBonus > 5) spunkBonus = 5;
-			lustDamage.tease.damageValue += spunkBonus;
-		}
-		if (lustDamage.tease.damageValue > 0 && target.hasVagina() && attacker != null && attacker.hasStatusEffect("Pussy Drenched")) 
-		{
-			var slutsauceBonus:Number = attacker.statusEffectv1("Pussy Drenched");
-			if (slutsauceBonus > 5) slutsauceBonus = 5;
-			lustDamage.tease.damageValue += slutsauceBonus;
+			if(target.hasCock() && attacker != null && attacker.hasStatusEffect("Cum Soaked")) 
+			{
+				var spunkBonus:Number = attacker.statusEffectv1("Cum Soaked");
+				if (spunkBonus > 5) spunkBonus = 5;
+				lustDamage.tease.damageValue += spunkBonus;
+			}
+			if (lustDamage.tease.damageValue > 0 && target.hasVagina() && attacker != null && attacker.hasStatusEffect("Pussy Drenched")) 
+			{
+				var slutsauceBonus:Number = attacker.statusEffectv1("Pussy Drenched");
+				if (slutsauceBonus > 5) slutsauceBonus = 5;
+				lustDamage.tease.damageValue += slutsauceBonus;
+			}
 		}
 
 		//25% dam multiplier
-		if (lustDamage.tease.damageValue > 0 && target.hasStatusEffect("Red Myr Venom")) lustDamage.tease.damageValue *= 1.25; 
+		if (lustDamage.tease.damageValue > 0 && target.hasStatusEffect("Red Myr Venom")) lustDamage.tease.damageValue *= 1.25;
 
 		// Apply any defensive modifiers
 		var damMulti:Number = 1;
 		if (target.hasStatusEffect("Blue Balls")) damMulti += 0.25;
 		if (target.hasStatusEffect("Sex On a Meteor")) damMulti += 0.5;
+		if (target.hasStatusEffect("\"Rutting\"")) damMulti += 0.5;
 		if (target.hasStatusEffect("Tallavarian Tingler")) damMulti += 0.5;
+		if (lustDamage.tease.damageValue > 0)
+		{
+			if(target.hasPiercingOfClass(GeddaniumRingPiercing) && attacker != null && attacker.hasScales()) lustDamage.tease.damageValue *= 1.3;
+			if(target.hasPiercingOfClass(UrtaniumRingPiercing) && attacker != null && attacker.hasFur()) lustDamage.tease.damageValue *= 1.3;
+		}
+
 		//New status: "Red Myr Venom" replaces this.
 		//if (target.hasStatusEffect("Myr Venom")) damMulti += 0.25;
 		if (target.hasPerk("Easy")) damMulti += 0.2;
@@ -79,7 +93,10 @@ package classes.Engine.Combat
 		
 		// Lust ARMOOOOOR
 		var lustDef:Number = target.lustDef();
-		damageAfterResistances -= target.lustDef();
+		
+		if (target.hasPerk("Akane's Painslut")) lustDef -= Math.round(((target.HPMax() - target.HP()) / target.HPMax()) * 5 * target.level);
+		
+		damageAfterResistances -= lustDef;
 		damageAfterResistances = Math.round(damageAfterResistances);
 		
 		// Clamp damage done to 1 > Damage > DamageToCap

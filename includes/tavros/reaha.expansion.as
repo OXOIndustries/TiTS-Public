@@ -893,7 +893,7 @@ public function reahaTalkHerLife():void
 	
 	output("\n\n<i>“Why’d you leave, then?”</i>");
 	
-	output("\n\nShe grimaces. <i>“They told me I wasn’t allowed to use certain kinds of modifications that I wanted. I had the money for them, at least the first set I wanted to get, but the doctors told me I couldn’t. Things like chest enhancers, some of the ones that got rid of my muscle, made me nice and soft. I understand why, but that doesn’t mean I have to like it. So I didn’t sign back on after my two years were up.");
+	output("\n\nShe grimaces. <i>“They told me I wasn’t allowed to use certain kinds of modifications that I wanted. I had the money for them, at least the first set I wanted to get, but the doctors told me I couldn’t. Things like chest enhancers, some of the ones that got rid of my muscle, made me nice and soft. I understand why, but that doesn’t mean I have to like it. So I didn’t sign back on after my two years were up.”</i>");
 	
 	output("\n\n<i>“It wasn’t long after that that I ended up getting pinched by debt collectors. After having to wait so long, I guess I got kind of wild with my mods. I got addicted to taking them, just kept spending more and more until I was just PERFECT... and several thousand in debt. I guess I spent just under a year working for Beth Carver before you");
 	if (reahaConfidence() < REAHA_CONFIDENCE_MED) output(" bought me");
@@ -1042,6 +1042,7 @@ public function reahaAddictionTherapyDickwielder():void
 
 	reaha.orgasm();
 	pc.orgasm();
+	IncrementFlag("SEXED_REAHA");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1052,7 +1053,7 @@ public function reahaAddictionTherapyNoWingWang():void
 	clearOutput();
 	reahaHeader();
 
-	var hardLight:Boolean = pc.lowerUndergarment.hardLightEquipped;
+	var hardLight:Boolean = pc.hasHardLightEquipped();
 
 	output("You give your busty bovine companion a reassuring smile as you");
 	if (hardLight) output(" reach down and flick the tiny button on the hip of your [pc.lowerUndergarment], letting your hardlight strapon spring to life.");
@@ -1111,6 +1112,8 @@ public function reahaAddictionTherapyNoWingWang():void
 	if (reahaAddiction() < REAHA_ADDICTION_LOW) output("<i>“Who needs patches when I’ve got you?”</i> Reaha purrs, nuzzling against you.");
 	else output("<i>“I definitely feel better now,”</i> Reaha admits, giving a contented little groan as you pull out of her. <i>“If I can still feel like </i>this<i>... maybe I can make it without the patches.”</i>");
 
+	IncrementFlag("SEXED_REAHA");
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1376,6 +1379,7 @@ public function reahaDommyFuxTimeWait():void
 	pc.orgasm();
 	pc.milkInMouth(chars["REAHA"]);
 	pc.milkInMouth(chars["REAHA"]);
+	IncrementFlag("SEXED_REAHA");
 
 	addNextButton(mainGameMenu);
 }

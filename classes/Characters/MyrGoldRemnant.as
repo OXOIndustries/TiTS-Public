@@ -164,7 +164,7 @@ package classes.Characters
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 4;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 635;
 			this.timesCum = 255;
 			this.cockVirgin = true;
@@ -359,7 +359,7 @@ package classes.Characters
 				var damage:TypeCollection = meleeDamage();
 				damage.multiply(1.8);
 				applyDamage(damage, this, target, "minimal");
-				if(target.physique()/2 + rand(20) + 1 < this.physique()/2 + 13) CombatAttacks.applyStagger(target, rand(3)+1);
+				if((target.physique()/2 + rand(20) + 1 < this.physique()/2 + 13) && !target.isPlanted()) CombatAttacks.applyStagger(target, rand(3)+1);
 			}
 		}
 		

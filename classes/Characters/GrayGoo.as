@@ -182,7 +182,8 @@
 			btnTargetText = "GrayGoo";
 			credits = 50 + rand(200);
 			sexualPreferences.setRandomPrefs(3 + rand(3));
-			
+			sexualPreferences.setPref(GLOBAL.SEXPREF_CUMMY, sexualPreferences.getRandomLikesFactor());
+			if(rand(2) == 0) sexualPreferences.setPref(GLOBAL.SEXPREF_SWEAT, sexualPreferences.getRandomLikesFactor());
 			this._isLoading = false;
 		}
 		

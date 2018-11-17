@@ -807,7 +807,7 @@ public function talkToAzraAboutStud(fromDaughters:Boolean = false):void
 	output("\n\n");
 	if(isHuman) output("You decide to let that one slide. ");
 	output("<i>“What happened to him?”</i>");
-	output("\n\n<i>“Pirates.”</i> Azra pauses, inhaling shakily. <i>“They ambushed the ship he was on, and he refused to get down and grovel with the rest of the passengers.”</i> She wipes at the corner of her eye before a tear can form. <i>“I’m told he prevented them from abducting a juvenile kaithrit. He fought the pirates long enough for the peacekeepers to show up on scanners and drive them out. His wounds must have hurt him terribly, but... my Troktun died a hero.”</i> There’s no hiding the moisture leaking from her eyes now. <i>“I wish he hadn’t... but the man I loved, my stud... he would never sit idly by while a youngling was in danger.”</i>");
+	output("\n\n<i>“Pirates.”</i> Azra pauses, inhaling shakily. <i>“They ambushed the ship he was on, and he refused to get down and grovel with the rest of the passengers.”</i> She wipes at the corner of her eye before a tear can form. <i>“I’m told he prevented them from abducting a juvenile kaithrit. He fought the pirates long enough for the Peacekeepers to show up on scanners and drive them out. His wounds must have hurt him terribly, but... my Troktun died a hero.”</i> There’s no hiding the moisture leaking from her eyes now. <i>“I wish he hadn’t... but the man I loved, my stud... he would never sit idly by while a youngling was in danger.”</i>");
 	//Bimbo
 	if(pc.isBimbo()) output("\n\nYou sweep her up in a big, silent hug, instinctively comforting her with your body. No words could ever suffice, even if you were any good at putting them together.");
 	//Bro
@@ -1541,7 +1541,8 @@ public function azraMorningFucko():void
 	output("member");
 	if(pc.cocks[x].cLength() < azra.cocks[0].cLength() - 2) output(", smothering it in pheromonal alien phallus");
 	else if(pc.cocks[x].cLength() < azra.cocks[0].cLength() + 2) output(", matched up almost perfectly, inch-to-inch");
-	else output(", sinfully pleasant against the sensitive skin of your absolutely monstrous tool.");
+	else output(", sinfully pleasant against the sensitive skin of your absolutely monstrous tool");
+	output(".");
 
 	output("\n\n<i>“");
 	if(pc.isBimbo()) output("Not yet,”</i> you cheerily quip, rocking your hips against her instinctively, seeking pleasure without thought, <i>“but it’s about to be.”</i>");
@@ -1685,7 +1686,9 @@ public function actualMorningAzraBone(x:int):void
 	if(azra.canMilkSquirt()) output(" as it sprays milk into the increasingly debauched sexual milieu");
 	output(". You cum to the feeling of her salty spooge plastering your eyes closed as much as much as to the ecstasy of her fluttering folds.");
 
-	output("\n\n<i>“God yes! More!”</i> the cum-fountaining shark-girl cries in ecstasy. Her dick bulges obscenely and sprays its biggest load yet{, even as the curve of her belly slowly bloats with your orgasmic filling}. She grabs hold in both hands, still grinding into your dick, and milks the last few sprays out, depositing the hot loads onto your [pc.chest] and [pc.belly] until you look like a siren-glazed donut.");
+	output("\n\n<i>“God yes! More!”</i> the cum-fountaining shark-girl cries in ecstasy. Her dick bulges obscenely and sprays its biggest load yet");
+	if(cumQ >= 1000) output(" as the curve of her belly slowly bloats with your orgasmic filling");
+	output(". She grabs hold in both hands, still grinding into your dick, and milks the last few sprays out, depositing the hot loads onto your [pc.chest] and [pc.belly] until you look like a siren-glazed donut.");
 	if(cumQ >= 5000) output(" Through it all, her belly continues to expand, pumped bigger and bigger with each passing second.");
 	if(cumQ >= 20000) output(" You inflate the gigantic suula until she looks positively pregnant, and she loves every second of it.");
 	if(azrasStud() && cumQ > 100) output(" Excess cum pools back onto your [pc.thighs], mixed with Azra’s own passionate leakings.");
@@ -1765,7 +1768,7 @@ public function morningFuckAzraRound2(args:Array):void
 	if(pc.cumQ() >= 1000) output("erupts out of you in long, lewd jets that feel like an internal massage through the passages of your too-tight genitalia.");
 	else if(pc.cumQ() > 250) output("spurts out of you in lewd pulses that feel like swollen beads travelling through your too-tight genitalia, massaging you from the inside out until you feel your orgasm will never end.");
 	else output("dribbles out in a thin stream, the too-tight confines of your genitalia pinching off a proper flow and seemingly doubling the length of your orgasm.");
-	output("\n\nFatigue slams into you the moment [pc.cock " + x + "] finishes twitching, heavier than Azra herself. You collapse right alongside your exhausted lover, deep in her puddled jizz, still embedded inside her. Neither of you has the energy to stir.");
+	output("\n\nFatigue slams into you the moment your [pc.cock " + x + "] finishes twitching, heavier than Azra herself. You collapse right alongside your exhausted lover, deep in her puddled jizz, still embedded inside her. Neither of you has the energy to stir.");
 	processTime(25);
 	pc.orgasm();
 	clearMenu();

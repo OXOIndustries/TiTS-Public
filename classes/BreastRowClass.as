@@ -27,6 +27,11 @@
 		
 		public function breastRating(arg:Number = 0, apply:Boolean = false):Number
 		{
+			if(isNaN(breastRatingRaw)) breastRatingRaw = 0;
+			if(isNaN(breastRatingMod)) breastRatingMod = 0;
+			if(isNaN(breastRatingLactationMod)) breastRatingLactationMod = 0;
+			if(isNaN(breastRatingHoneypotMod)) breastRatingHoneypotMod = 0;
+			
 			if (apply)
 			{
 				breastRatingRaw = arg;

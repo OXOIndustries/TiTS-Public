@@ -74,7 +74,7 @@ public function seraLustGain(minPassed:int = 60):void
 }
 public function serasBodyIsReady():void
 {
-	chars["SERA"].lust(9000);
+	chars["SERA"].maxOutLust();
 	chars["SERA"].ballFullness = 100;
 	chars["SERA"].cumQualityRaw = 1;
 	//chars["SERA"].minutesSinceCum = 9000;
@@ -937,10 +937,11 @@ public function getTailUsedBySera():void
 	output(" clench, and a drop of goo dangles down from your juice-soaked entrance. You catch it in your mouth before it can dirty her floor and spend the next several minutes obediently licking out every drop that your tail failed to consume.");
 	output("\n\nShe doesn’t seem to have any complaints about your face being covered in pussy juice. You do your best to wipe up anyway, but you’re sure you still smell vaguely of cunt. The satisfaction your [pc.tailgina] exudes makes it all worthwhile.");
 	
-	flags["SERA FUCKED PCS TAILCUNT"]++;
+	IncrementFlag("SERA FUCKED PCS TAILCUNT");
 	
 	pc.loadInCuntTail(chars["SERA"]);
 	processTime(45+rand(15));
+	sera.orgasm();
 	pc.orgasm();
 	pc.applyPussyDrenched();
 	clearMenu();
@@ -1055,8 +1056,9 @@ public function getRodeFemdomStyleBySera():void {
 	if(pc.cockTotal() == 1) output("es");
 	output(" in response. Luckily, she doesn’t see.");
 	output("\n\nAfter you’re both suitably presentable, you walk back around the corner. Sera mirthfully asks, <i>“Is there anything I can do for you, pet?”</i> You flush as you consider your options.");
-	flags["TIMES_RODE_BY_SERA"]++;
+	IncrementFlag("TIMES_RODE_BY_SERA");
 	processTime(35+rand(10));
+	sera.orgasm();
 	pc.orgasm();
 	seraMenu();
 }
@@ -1130,8 +1132,9 @@ public function getGiantDickTailfilledWhileEatingSeraOut():void
 	if(pc.cumQ() >= 5000) output(" She’s lucky there are drains in the floor sucking away all the cum!");
 	processTime(30+rand(10));
 	pc.girlCumInMouth(chars["SERA"]);
+	sera.orgasm();
 	pc.orgasm();
-	flags["SERA_URETHRA_TAILFUCKS"]++;
+	IncrementFlag("SERA_URETHRA_TAILFUCKS");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1155,8 +1158,10 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 			output("\n\n<i>“Wait,”</i> you answer, putting out a hand to stop her from turning away from you. <i>“I didn’t... I mean, I do, but...”</i>");
 			output("\n\nShe cocks an eyebrow at you, but her sneer slowly fades. <i>“Alright, meat, I’ll go easy on you this time. But next time...”</i>");
 		}
-		output("\n\n<i>“Meow!”</i> you answer, raising [pc.eachTail], approaching your mistress and lowering down to your knees.");
-		output("\n\n<i>“Now there’s a good kitty cat,”</i> she teases, long fingers running through your hair before hooking firmly behind your head, guiding your down until you’re kneeling before her, arms raised like a begging bitch. Seeing your debase yourself certainly seems to send a thrill through the demon-babe: her cock jumps to attention as you settle between her legs, raising up like a flagpole to loom over you, firm and throbbing in its immensity. <i>“Does pussy want a taste?”</i>");
+		output("\n\n<i>“Meow!”</i> you answer");
+		if(pc.hasTail()) output(", raising [pc.eachTail]");
+		output(", approaching your mistress and lowering down to your knees.");
+		output("\n\n<i>“Now there’s a good kitty cat,”</i> she teases, long fingers running " + (pc.hasHair() ? "through your hair" : "across your head") + " before hooking firmly behind your head, guiding your down until you’re kneeling before her, arms raised like a begging bitch. Seeing your debase yourself certainly seems to send a thrill through the demon-babe: her cock jumps to attention as you settle between her legs, raising up like a flagpole to loom over you, firm and throbbing in its immensity. <i>“Does pussy want a taste?”</i>");
 		output("\n\nYour eyes roll up to gaze upon the majesty of Sera’s mammoth member as it hangs over you; the purple temptress releases her tensed cock-muscles just enough to let it her prick flop onto your face. You give a muted gasp as the hot, musky rod twacks you on the cheek, rolling off the side of your face to hang beside your mouth, primed for entry. Sera leans back against the counter, arms braced on the edge, tail wiggling with anticipation. <i>“C’mon, slut-kitty, open wide. Where this is going next, you’re gonna be thanking me for every second I let you suck my cock beforehand.”</i>");
 	}
 	// Default
@@ -1298,10 +1303,11 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == 0) output("\n\nYou shudder at the thought");
 	else output("\n\nBefore you annoy the mistress, you hurriedly gather your things");
 	output(" and run off.");
-	flags["SERA_STUCK_IT_ALL_IN_BUTT"]++;
+	IncrementFlag("SERA_STUCK_IT_ALL_IN_BUTT");
 	processTime(40+rand(10));
 	pc.loadInAss(chars["SERA"]);
 	if(pc.hasVagina()) pc.loadInCunt(chars["SERA"],0);
+	sera.orgasm();
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1335,7 +1341,7 @@ public function seraCockvineScene():void
 	output("\n\nSera coos, eyes half-closing as the thick dick-vine eagerly wriggles itself into her deep, tight tunnel, the writhing of it evidently sending pleasure vibrating through her. Your hands ball into fists on your [pc.knees] as the [pc.cockTail] does as it so desperately wants to do - thrust its bulging, tender head into a fertile hole, plough it good and then thoroughly seed it. But you are in control of it, you are! With a slight bark of effort, you flex those strange nerve ends at the bottom of your spine and grab hold of the reigns on the coiling, frenzied appendage. Slowly the thing stops shaking around wildly, and thrusts back and forth into your mistress’s slick pussy in a measured fashion.");
 	output("\n\n<i>“Ahh,”</i> Sera sighs, somewhere between sighing arousal and slinking menace. The energetic pump of your tail-cock translates through her whole body, her big, perky boobs bouncing gently. <i>“So you can make it dance to your tune if you want! It just requires a little bit of incentive.”</i> She closes her hips, and her pliant cunt muscles suddenly clench up around the " + (pc.tailType == GLOBAL.TYPE_COCKVINE ? "cockvine" : "phallic tail") + "’s shaft, forcing a gasp past your [pc.lips]. The underlying current of green, alien lust flares up, and the tail-cock shivers right down its undulating shaft. Sera snickers, high pleasure plucking at her tones. <i>“Let’s see how we do once your mistress really gets what she needs, huh?”</i>");
 	output("\n\nThe succubus rocks backward and forward on her heels, breasts blatting steadily against her corset as she wrings the cock-vine stuck in her wet tightness, steadily increasing in pace as her own excitement takes over. Good fucking void can she squeeze if she wants to - has she had work done to her female sex too? Her pussy seems to be able to grip your over-stimulated tail up and down, like the warmest, wettest, most skilful hand-job imaginable. Her reptilian eyes stay fixed on your face, glorying in the sadistic power she has assumed over you. You can’t stop the sexual anguish you feel showing there; your [pc.cockTail] is now absolutely desperate to spray its load in this wonderful, tight breeding hole it’s found, and only your own urging is preventing it. A single drop of sweat works its way down your temple and you moan.");
-	output("\n\n<i>“Aww yeah, that’s it,”</i> gloats Sera, reaching down to jerk her own twelve inch dick furiously a few inches away from your nose, utterly drunk on her own dominance. <i>“Hurts so good, doesn’t it? Fuck, I wish I could paint that expression on you 24/7.”</i> Her pussy ripples around you, femcum dripping down your unbelievably pent-up tentacle cock, and your own cry combines with Sera’s squawk of joy. She rides the bulging, tender flesh inside her with violent pushes of her hips, hand thwipping down her erect cock with savage flicks of the wrist. <i>“Hold onto it for just a little longer, slut...”</i> she groans. <i>“Just a little more...”</i>");
+	output("\n\n<i>“Aww yeah, that’s it,”</i> gloats Sera, reaching down to jerk her own twelve-inch dick furiously a few inches away from your nose, utterly drunk on her own dominance. <i>“Hurts so good, doesn’t it? Fuck, I wish I could paint that expression on you 24/7.”</i> Her pussy ripples around you, femcum dripping down your unbelievably pent-up tentacle cock, and your own cry combines with Sera’s squawk of joy. She rides the bulging, tender flesh inside her with violent pushes of her hips, hand thwipping down her erect cock with savage flicks of the wrist. <i>“Hold onto it for just a little longer, slut...”</i> she groans. <i>“Just a little more...”</i>");
 
 	// ++ Lust
 	pc.lust(100);
@@ -1368,6 +1374,8 @@ public function holdBackForSera():void
 	output("\n\nThe last pulse oozing onto the floor and a throaty giggle tell you, at last, you can wipe your eyes clear and look up. Sera lets your lolling, throbbing " + (pc.tailType == GLOBAL.TYPE_COCKVINE ? "cockvine" : "tail") + " fall from her hand and casually swaggers her purple butt back behind the counter, leaning on it to drink your drenched form in.");
 	output("\n\n<i>“Hmm,”</i> she smirks contentedly, toying with her hair. <i>“A lustful tail-dick attached to you that </i>I<i> control. Very nice indeed. I think we’ll do this again. Regularly.”</i>");
 	processTime(10);
+	sera.orgasm();
+	sera.orgasm();
 	pc.orgasm();
 	pc.applyCumSoaked();
 	clearMenu();
@@ -1392,6 +1400,7 @@ public function releaseCuntailonSera():void
 	output(" fondly. <i>“It means I get to punish you more often.”</i> She draws over a chair, sits herself down and fully opens her thighs, magisterially considering you kneeling in front of her.");
 	output("\n\n<i>“You will begin by cleaning up the mess you made with your tongue - pussy and the floor. Then...”</i>");
 	processTime(1);
+	sera.orgasm();
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",releaseCuntTailOnSeraCleanup);

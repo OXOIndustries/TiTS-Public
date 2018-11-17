@@ -374,7 +374,8 @@ package classes.UIComponents.SideBarComponents
 			_maskingBar.scaleX = 0;
 			
 			_tGoal = 0;
-			_tMax = 100;
+			//_tMax = 100;
+			_tMax = 0;
 			_valueGlow.alpha = 0;
 			_values.filters = [_valueGlow];
 		}

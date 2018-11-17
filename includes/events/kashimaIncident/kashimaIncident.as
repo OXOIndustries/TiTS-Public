@@ -476,7 +476,7 @@ public function lustyBugponyCocked():void
 			
 			output("\n\n<i>“O-oh <b>fuck!</b>”</i> she cries out, clawing her fingers at the unyielding steel of the bulkhead. <i>“S-so big... take it slow!”</i>");
 			
-			output("\n\nYou can’t go much slower, unless she wants you to cum before you’re half way in. Then again, the way her pussy’s clenching and squirting around your shaft, something tells you she doesn’t <i>want</i> you to slow do. Quite the opposite. Giving her a reassuring rub on the haunch, you give the buxom amazon a second of stillness to adjust to you as best she can... before you grab two handfuls of ass and ram yourself in to the hilt.");
+			output("\n\nYou can’t go much slower, unless she wants you to cum before you’re half way in. Then again, the way her pussy’s clenching and squirting around your shaft, something tells you she doesn’t <i>want</i> you to slow down. Quite the opposite. Giving her a reassuring rub on the haunch, you give the buxom amazon a second of stillness to adjust to you as best she can... before you grab two handfuls of ass and ram yourself in to the hilt.");
 
 			output("\n\n<i>“Gah!”</i> she screams, knees buckling. She staggers, groping helplessly at the smooth metal around her until she’s slinking onto her forelegs’ knees, body still rocking with the ecstatic shockwaves of your surprise attack. You can’t help but appreciate the way her big tits spread out like clay on the cold steel, and the spastic way her twat squeezes and cums around your shaft, spraying your thighs with thick, musky leithan fem-cum. <i>“B-"+ pc.mf("bastard", "bitch") +"! I said-”</i>");
 
@@ -593,7 +593,7 @@ public function lustyBugponyCocked():void
 		if (pc.balls > 0) output(" and your [pc.balls] are bouncing on her rump");
 		output(". Her tail curls around one of your [pc.legs], pulling you as close against herself as she can as juices pour like a waterfall around your shaft. Damn, but she was ready for this!");
 
-		output("\n\nYou grab a handful of tit and squeeze, making her clench down all the harder on your [pc.cock "+cIdx+"]. Her back arches against your [pc.chest], hands desperately grabbing at your human half’s hips and and your own hands, trying to find something to hold on to while you hammer your [pc.hips] against her plated ass, pounding in that amazonian cunny. The sheer force of your fucking sends the pair of you staggering forward, pushing the Chief’s chest against one of the bulkheads and spreading her malleable tits out in a lake of quaking gray flesh.");
+		output("\n\nYou grab a handful of tit and squeeze, making her clench down all the harder on your [pc.cock "+cIdx+"]. Her back arches against your [pc.chest], hands desperately grabbing at your human half’s hips and your own hands, trying to find something to hold on to while you hammer your [pc.hips] against her plated ass, pounding in that amazonian cunny. The sheer force of your fucking sends the pair of you staggering forward, pushing the Chief’s chest against one of the bulkheads and spreading her malleable tits out in a lake of quaking gray flesh.");
 
 		output("\n\nThe sight of her body bouncing against the wall, feeling her breasts flow like dough through your fingers and her velvety pussy squeeze you so tightly... it all combines to drive you absolutely wild with lust. It isn’t long before you feel the rush of need building in your loins, the insatiable desire for release - the absolute biological imperative to spill your seed into the Chief’s eager womb.");
 

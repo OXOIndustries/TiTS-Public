@@ -15,7 +15,7 @@ public function havePumpkinCarvingScenes():Boolean
 	//If condition is met, set the '<<x'th bit to 1
 	//If any condition is met flags["HWEEN_BIT_FLAGS"] will be > 0
 	//for copy-pasta: (condition ?1<<x:0) + //what it means
-	flags["HWEEN_BIT_FLAGS"] = (zilCallgirlAtNursery()?1<<0:0) + //Zheniya is at Nursery
+	flags["HWEEN_BIT_FLAGS"] = (zilCallgirlAtNursery() && ChildManager.ofUniqueType(ZilCallgirlUniqueChild) ?1<<0:0) + //Zheniya is at Nursery and have Zheniya babies
 					(ChildManager.ofType(GLOBAL.TYPE_MILODAN) ?1<<1:0) + //Have Milodan pups
 					(ChildManager.ofType(GLOBAL.TYPE_CUNTSNAKE) && (ChildManager.numChildrenAtNursery() - ChildManager.numOfType(GLOBAL.TYPE_CUNTSNAKE)) > 0 ?1<<2:0) + //Have cuntsnake babies and other kids
 					(ChildManager.ofUniqueType(SeraUniqueChild) ?1<<3:0) + //Have Sera spawn
@@ -169,9 +169,10 @@ public function pumpkinSera(btnSlot:int):void
 	author("Bumbling Bee");
 	
 	var plural:Boolean = ChildManager.numOfUniqueType(SeraUniqueChild) > 1;
-	var namedKids:Boolean = listSeraBabies()[0].Name != "";
+	var babies:Array = listSeraBabies();
+	var namedKids:Boolean = (babies[0].Name != "");
 	
-	output("Instead of carving pumpkins, " + (plural ? "Sera and her kids" : (namedKids ? listSeraBabies()[0].Name + " and Sera" : "Sera and her kid")) + " are chowing down on a giant bag of candy corn. You raise an eyebrow at " + (plural ? "" : "the two of ") + "them. " + (namedKids ? listSeraBabies()[0].Name+" gives" : "They give") + " you a big grin. <i>“Briget says candy corn is both an inferior corn and candy, but dad is awesome and got " + (plural ? "us" : "me") + " some anyway!!”</i> They promptly shove another sticky handful into their mouths.");
+	output("Instead of carving pumpkins, " + (plural ? "Sera and her kids" : (namedKids ? (babies[0].Name + " and Sera") : "Sera and her kid")) + " are chowing down on a giant bag of candy corn. You raise an eyebrow at " + (plural ? "" : "the two of ") + "them. " + (namedKids ? (babies[0].Name + " gives") : "They give") + " you a big grin. <i>“Briget says candy corn is both an inferior corn and candy, but dad is awesome and got " + (plural ? "us" : "me") + " some anyway!”</i> They promptly shove another sticky handful into their mouths.");
 	output("\n\n<i>“That still doesn’t explain the hiding in a corner,”</i> you say looking at Sera. She stands up and stretches.");
 	if(flags["SERA_OBEDIENCE"] >= 80) output("\n\n<i>“I like my brat" + (plural ? "s" : "") + ", so they get a treat. I don’t want the rest of your brats begging me for candy. They need to beg you for that.”</i>");
 	else output("\n\n<i>“Look, I like my brat" + (plural ? "s" : "") + ", so they get a treat. I don’t want the rest of your brats barking at me for candy. They need to beg you for that shit.”</i>");

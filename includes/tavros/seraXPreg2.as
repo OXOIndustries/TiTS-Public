@@ -217,7 +217,9 @@ public function seraBitcheningImpregnate(response:String = "intro"):void
 		case "responsibility":
 			if(seraIsMerchant())
 			{
-				output("<i>“So you’re scared of responsibility, and have zero faith in your sugar " + pc.mf("daddy", "mommy") + ",”</i> you say, in the most contemptuous tones you can summon. <i>“Thought you wanted to be a bit more than a pathetic baby bitch for the rest of your life. Perhaps I should rescind my loan.”</i>");
+				output("<i>“So you’re scared of responsibility, and have zero faith in your sugar " + pc.mf("daddy", "mommy") + ",”</i> you say, in the most contemptuous tones you can summon. <i>“Thought you wanted to be a bit more than a pathetic baby bitch for the rest of your life.");
+				if(flags["SERA_REPAID_LOAN"] == undefined) output(" Perhaps I should rescind my loan.");
+				output("”</i>");
 				output("\n\nSera looks like you just slapped her, and not in the sexy way.");
 				output("\n\n<i>“What? No! I just--”</i>");
 				output("\n\n<i>“Think of it this way,”</i> you say, commandingly. <i>“Even if you don’t believe in me - and you should, I own your ass - kids are just another reason why you’ve got to make your career work. It’s obvious to me you work far better when you’ve got a focus, rather than flailing around on your own selfish terms. I’m gonna give you a downward reason, as well as an upward one. But I don’t know now...”</i> you gesture dismissively. <i>“Perhaps you aren’t as good at business as you think you are. Perhaps you’re pissing yourself for very good r--”</i>");
@@ -287,8 +289,9 @@ public function seraBitcheningImpregnate(response:String = "intro"):void
 	}
 	seraBitcheningImpregnateToggle();
 }
-public function seraBitcheningImpregnateToggle():void
+public function seraBitcheningImpregnateToggle(addLust:int = 0):void
 {
+	chars["SERA"].lust(addLust);
 	if(flags["SERA_TALKS_IMPREGNATE"] >= 2)
 	{
 		chars["SERA"].impregnationType = "SeraSpawnPregnancy";
@@ -313,7 +316,7 @@ public function seraBitchImpregnateRide(vIdx:int = 0, tinyVag:Boolean = false):v
 	showSera(true);
 	author("Nonesuch");
 	
-	seraBitcheningImpregnateToggle();
+	seraBitcheningImpregnateToggle(100);
 	
 	output("You smile at Sera and, without saying a word, twirl a finger. The fantastically augmented human flips over onto her back immediately, grinning back.");
 	output("\n\n<i>“Has [pc.master] come for a nice long ride on the Sera train?”</i> she coos, twiddling and tweaking her nipple piercings as she gazes up at you, generous erection pointing upwards.");
@@ -364,6 +367,7 @@ public function seraBitchImpregnateRideEnd(vIdx:int = 0):void
 	processTime(8);
 	
 	pc.loadInCunt(chars["SERA"], vIdx);
+	chars["SERA"].orgasm();
 	pc.orgasm();
 	
 	IncrementFlag("SERA_BITCHENING_RIDE");
@@ -560,7 +564,7 @@ public function seraBitchImpregnateBedWake():void
 			processTime(3);
 			break;
 		case 1:
-			seraBitcheningImpregnateToggle();
+			seraBitcheningImpregnateToggle(100);
 			if(pc.hasVagina()) vIdx = rand(pc.vaginas.length);
 			if(pc.hasCock()) cIdx = rand(pc.cocks.length);
 			
@@ -600,7 +604,7 @@ public function seraBitchImpregnateBedWake():void
 			output(".");
 			output("\n\n<i>“Mmm, you like that don’t you?”</i> the opportunistic hellion husks in your ear. <i>“Slutty [pc.master]...”</i> She locks her smooth, full thigh around yours, boobs pressed deeper into you, tightening her grip as she begins to pump you, bending her dick outwards only to mire it firmly back home in your trembling [pc.vagOrAss].");
 			// PC pregnant by her:
-			if(pc.isPregnant() && pc.bellyRating() >= 10) output(" Her hand rests upon your [pc.belly] again, shifting over it rhythmically. <i>“You can’t get enough of it, can you? Even now, after I’ve made you totter around carrying my child. You just can’t get enough of the feeling of me filling your pretty, prissy pussy full of demon sperm. You can go on pretending you’re in charge if you like, but... ungh! I know who’s addicted to what.”</i>");
+			if(pc.hasPregnancyOfType("SeraSpawnPregnancy") && pc.bellyRating() >= 10) output(" Her hand rests upon your [pc.belly] again, shifting over it rhythmically. <i>“You can’t get enough of it, can you? Even now, after I’ve made you totter around carrying my child. You just can’t get enough of the feeling of me filling your pretty, prissy pussy full of demon sperm. You can go on pretending you’re in charge if you like, but... ungh! I know who’s addicted to what.”</i>");
 			// Sera pregnant by 3 months or more:
 			else if(seraIsPregnant(true, 60)) output(" Her watermelon-like belly bumps into your lower back with every thrust, taut in comparison to the softness of her tits. <i>“You’d think the estrogen and shit would calm it down, but it doesn’t, it fucking doesn’t. I can’t stop getting hard, and I can’t even fap because of you. This is my reward for obeying... getting to use you like you use me...”</i>");
 			// If else:
@@ -615,13 +619,14 @@ public function seraBitchImpregnateBedWake():void
 			output("\n\n<i>“Mmm,”</i> she sighs, wiping the offending foot long member on the sheets, <i>“I do so love it when [pc.master] lets me be in charge for once.”</i> She winks when you stare at her stone-faced, utterly unabashed, and she hums a jaunty little tune to herself as she saunters off towards the shower.");
 			output("\n\nShe’s a piece of work. Still, there are definitely worse ways of being woken up.");
 			processTime(35);
-			pc.orgasm();
 			if(vIdx >= 0) pc.loadInCunt(chars["SERA"], vIdx);
 			else pc.loadInAss(chars["SERA"]);
+			chars["SERA"].orgasm();
+			pc.orgasm();
 			IncrementFlag("SERA_WAKEUP_SEX");
 			break;
 		case 2:
-			seraBitcheningImpregnateToggle();
+			seraBitcheningImpregnateToggle(100);
 			cIdx = rand(pc.cocks.length);
 			
 			output("You’re being held down and ridden briskly by a snake-headed alien princess, in some deranged, open-air palace out of M.C. Escher’s most warped fantasies. You have been here for years, deathless aeons perhaps, but that doesn’t matter. What matters is the moment; what matters is your [pc.cock " + cIdx + "] sunk deep in sopping, muscular pussy that writhes and wrings it with jealous zeal. You don’t dare reach up and touch the snake princess’s perfect breasts or curvy hips, because then she’ll bite you, and then the clear venom she’s drooling all over your [pc.belly] and [pc.chest] will enter your veins. You just have to lie perfectly still and let her take her satisfaction from you... be her slave, and let the wet, wringing heat around your cock overwhelm you...");
@@ -632,7 +637,7 @@ public function seraBitchImpregnateBedWake():void
 			pc.cockChange();
 			
 			output("\n\n<i>“No, no, [pc.master], I’ll do everything. Doesn’t this feel good?”</i> She moves her hip back and forth, and you groan woozily as her pussy tightens... then loosens, tightens... then loosens around your eagerly erect prick. <i>“Isn’t that wonderful?”</i> she purrs, " + (pc.hasHair() ? "running her claws through your [pc.hair]" : "stroking your pate with her claws") + " before firmly pushing your " + (pc.tallness > (chars["SERA"].tallness + 6) ? "head over shoulder" : ("head into her big, soft, " + (chars["SERA"].skinTone!= "bright pink" ? "purple" : "pink") + " cleavage")) + ". <i>“I modded every part of my body to be in control. To make my every bitc... lover powerless against me. Because doesn’t it feel good? For me to be in control?”</i>");
-			output("\n\nWith the barest of movement, the soaked tunnel of her pussy tightens up like a silken vice around you, and when she writhes her curves against you it <i>jerks </i> your [pc.cock] most sensitive zone so that you reflexively arch your back to it. Void yes... it does feel so good to let go and let her have you however she wants...");
+			output("\n\nWith the barest of movement, the soaked tunnel of her pussy tightens up like a silken vice around you, and when she writhes her curves against you it <i>jerks</i> your [pc.cock " + cIdx + "] most sensitive zone so that you reflexively arch your back to it. Void yes... it does feel so good to let go and let her have you however she wants...");
 			output("\n\n<i>“Thaaaat’s it,”</i> sniggers Sera. She exhales slowly into your ear as she sinks herself even further down your shaft,");
 			if(pc.cockVolume(cIdx) <= chars["SERA"].vaginalCapacity(0)) output(" enveloping the entirety of it in supple, wet magic");
 			else output(" enveloping even more of the long, ponderous fuck-stick in supple, wet magic");
@@ -658,16 +663,17 @@ public function seraBitchImpregnateBedWake():void
 			if(pc.tallness < chars["SERA"].tallness) output(", thrusting your face back between her breasts as she does");
 			output(".");
 			if(pc.cumQ() >= 500) output(" Abundant amounts of cum is soon spurting out around " + (pc.cocks[cIdx].hasFlag(GLOBAL.FLAG_KNOTTED) ? "your [pc.knot]" : "the base of your dick") + ", spattering all over your [pc.skinFurScales] and the bed, but the demon morph continues to clamp and ride you heedlessly.");
-			output("\n\nYour [pc.cock] is " + (pc.cumQ() < 500 ? "soon" : "eventually") + " shooting blanks, flexing dryly in her silky, kneading wetness");
+			output("\n\nYour [pc.cock " + cIdx + "] is " + (pc.cumQ() < 500 ? "soon" : "eventually") + " shooting blanks, flexing dryly in her silky, kneading wetness");
 			if(pc.balls > 0) output(", your [pc.balls] achingly spent");
 			output(", and yet Sera doesn’t stop milking you like you’re the last bull in the universe for a moment. It’s only when a groan in protest is forced past your lips that she eases up, her flexible sex blessedly loosening around your abused prick.");
 			output("\n\n<i>“You’ve done very well for me, [pc.boyGirl],”</i> she purrs, slowly peeling away from you to consider the heavy amounts of [pc.cum] trailing from your [pc.cock " + cIdx + "] and her snatch. <i>“I feel quite full up.");
-			if(!seraIsPregnant()) output(" Mmm, if I get pregnant from that... yes, I think I’d be willing to accept it this way. Milking you like a cute kitty bitch boi.");
+			if(knockUpSeraChance(false)) output(" Mmm, if I get pregnant from that... yes, I think I’d be willing to accept it this way. Milking you like a cute kitty bitch boi.");
 			output("”</i> Perhaps she’s able to sense your growing irritation with her brazenness, because she slithers away from you the next moment, tail grazing your flank as she head towards the shower, leaving a dripping trail of [pc.cumColor] fluid behind her.");
 			output("\n\n<i>“Thank you, [pc.master],”</i> she coos at the door. <i>“You know how much I love it when you let me be in charge for once!”</i>");
 			output("\n\nShe’s a piece of work. Still, there are worse things to be woken up by than an extremely thorough screw.");
 			processTime(35);
 			knockUpSeraChance();
+			chars["SERA"].orgasm();
 			pc.orgasm();
 			pc.ballFullness = 0;
 			IncrementFlag("SERA_WAKEUP_SEX");
@@ -689,10 +695,11 @@ public function seraBitchImpregnateBedWake():void
 			else if(pc.vaginas[vIdx].type == GLOBAL.TYPE_FLOWER) output(" petals");
 			else output(" walls");
 			output(" as Sera slowly withdraws. She maintains eye contact, eerily yellow slits as she continues to lap at you, this time concentrating on [pc.eachClit]. She makes out with " + (pc.vaginas[vIdx].clits == 1 ? "it" : "them") + ", surrounding the sensitive bud" + (pc.vaginas[vIdx].clits == 1 ? "" : "s") + " with her lips and pulling at " + (pc.vaginas[vIdx].clits == 1 ? "it" : "them") + " with wet smooches, a different but almost equally intense rhythm she inundated your innards with. Sera doesn’t stop until " + (pc.vaginas[vIdx].clits == 1 ? "it is" : "they are") + " bulging so hard " + (pc.vaginas[vIdx].clits == 1 ? "it feels like it’s" : "they feel like they’re") + " going to explode, and then actually seems to, bursting with joy, flexing up repeatedly to her suckling and licking. You moan and harshly huff your approval, once again making sure that well-trained mouth of hers goes nowhere by tightening your hips around her head hard, silky hair shifting against your [pc.skinFurScales].");
-			output("\n\nOnly when the last delicious pulse has chimed through you do you loosen your grip, let her withdraw and grin up at you. [pc.eachVagina] feels like " + (pc.vaginas.length == 1 ? "it’s" : "they’re") + " gently steaming.");
+			output("\n\nOnly when the last delicious pulse has chimed through you do you loosen your grip, let her withdraw and grin up at you. [pc.EachVagina] feels like " + (pc.vaginas.length == 1 ? "it’s" : "they’re") + " gently steaming.");
 			output("\n\n<i>“I sleep with you just so I get to eat you,”</i> she whispers. <i>“I could do it aaaaaall day.”</i>");
 			output("\n\nBe that as it may, you should probably get into action. You shoo her off you and head for the shower, still enjoying little aftershocks and a certain loosened tenderness. You could definitely get used to being woken up this way.");
 			processTime(35);
+			chars["SERA"].orgasm();
 			pc.orgasm();
 			IncrementFlag("SERA_WAKEUP_SEX");
 			break;
@@ -703,6 +710,7 @@ public function seraBitchImpregnateBedWake():void
 			output("\n\n");
 			output("\n\n");
 			processTime(3);
+			chars["SERA"].orgasm();
 			pc.orgasm();
 			IncrementFlag("SERA_WAKEUP_SEX");
 			break;

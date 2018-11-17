@@ -204,7 +204,7 @@ public function aboutTheRobotFromCrazyCarl():void {
 		output("\n\n<i>“Nah, it’s fine. Legally speakin’ this place doesn’t even have the permit to sell it normally, so this is under the table. You’ve got somethin’ going on if you sallied forth into that mess and came out with this ‘ole bucket, I might as well enable ya and make sure you don’t come out like the bucket later on. Now, then, ‘fore I do...”</i>");
 
 		output("\n\nUh oh.");
-		output("\n\n<i>“Do you have a license for HC-5 class weapons and energy disposal, or a Klamer’s certification card or other U.G.C accepted Eighteen Ninety Weapons Treaty-accommodating titles?”</i>");
+		output("\n\n<i>“Do you have a license for HC-5 class weapons and energy disposal, a Klamer’s certification card or other U.G.C accepted Eighteen Ninety Weapons Treaty-accommodating titles?”</i>");
 
 		//*If mercenary:
 		if(pc.characterClass == GLOBAL.CLASS_MERCENARY) output("\n\nYou give a firm nod. <i>“Of course.”</i>");
@@ -272,8 +272,8 @@ public function crazyCarlShop():void {
 	}
 	else
 	{
-		addDisabledButton(8, "Locked", "Locked", "Return at a level 6 or higher to reveal this weapon!");
-		addDisabledButton(9, "Locked", "Locked", "Return at a level 6 or higher to reveal this weapon!");
+		addDisabledButton(8, "Locked", "Locked", "Return at level 6 or higher to reveal this weapon!");
+		addDisabledButton(9, "Locked", "Locked", "Return at level 6 or higher to reveal this weapon!");
 	}
 	
 	addButton(14,"Back",insideCarlsShop); 

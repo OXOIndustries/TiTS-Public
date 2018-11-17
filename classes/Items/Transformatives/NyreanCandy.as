@@ -27,7 +27,7 @@
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
 			description = "a piece of nyrean rock candy";
-			tooltip = "This is a small piece of what appears to be rock candy. This candy supposedly has some trace amounts of nyrean spunk in it, used to temporarily increase lust upon consumption. You have a feeling that if you eat this, you’ll start turning into a nyrea...";
+			tooltip = "This is a small piece of what appears to be rock candy. This candy supposedly has some trace amounts of nyrean spunk in it, used to temporarily increase lust upon consumption. You have a feeling that if you eat this, you’ll start turning into a nyrea...\n\n<b>Known to cause moderate amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -51,7 +51,7 @@
 				if(rand(2) == 0) changeLimit++;
 				if(rand(2) == 0) changeLimit++;
 				if(rand(2) == 0) changeLimit++;
-				
+				target.taint(3);
 				// Human Face
 				if(changes < changeLimit && target.faceType != GLOBAL.TYPE_HUMAN && rand(2) == 0)
 				{
@@ -499,7 +499,7 @@
 					output("\n\nA pressure hits your");
 					if(target.balls > 0) output(" [pc.balls]");
 					else output(" gut");
-					output(" as " + (target.balls <= 0 ? "it fills" : "they fill") + " with more and more nyrea eggs...");
+					output(" as " + (target.balls <= 1 ? "it fills" : "they fill") + " with more and more nyrea eggs...");
 					
 					// Increase multiplier
 					if(target.statusEffectv2("Nyrea Eggs") < 10 && (target.hasPerk("Nyrea Eggs") || rand(5) != 0))

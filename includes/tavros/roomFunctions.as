@@ -12,10 +12,16 @@ public function flyToTavros():void
 public function puntToShip():Boolean
 {
 	clearOutput();
-	if(currentLocation == "POESPACE" && flags["POE_A_DISABLED"] == undefined)
+	if(currentLocation == "POESPACE")
 	{
-		landingOnPoeA();
-		return true;
+		var curDate:Date = new Date();
+		var curYear:Number = (curDate.getFullYear());
+		
+		if(flags["POE_A_DISABLED"] == undefined || flags["POE_A_YEAR"] == undefined || flags["POE_A_YEAR"] != curYear)
+		{
+			landingOnPoeA();
+			return true;
+		}
 	}
 	output("You really don’t want to step out into the cold void of space. Maybe you should land somewhere?");
 	moveTo("SHIP INTERIOR");
@@ -150,17 +156,28 @@ public function tavrosHangarStuff():Boolean
 	if(celiseIsFollower() && !celiseIsCrew()) celiseTavrosBonus(btnSlot++);
 	if(bessAtTavros()) bessTavrosBonus(btnSlot++);
 	if(flags["AZRA_DISABLED"] == 0) azraBonusProc(btnSlot++);
+	//Mitzi
+	if(mitziOutsideShip())
+	{
+		if(flags["MET_MITZI"] == undefined)
+		{
+			if(!pc.hasStatusEffect("SeenMitzi"))
+			{
+				pc.createStatusEffect("SeenMitzi");
+				pc.setStatusMinutes("SeenMitzi",120);
+			}
+			output("\n\n<b>A buxon gabilani leans against the side of your ship, vacantly chewing bubblegum and twirling a lock of purple-dyed hair.</b> She doesn’t seem the least bit concerned about anything else.");
+			addButton(btnSlot++,"Gabilani",mitziFirstShipApproach);
+		}
+		//Mitzi has been kicked off or is lurking around.
+		else
+		{
+			output("\n\nMitzi the gabilani bimbo is lounging around, casting ‘fuck-me’ eyes at everything with two legs... or three... or more.");
+			addButton(btnSlot++,"Mitzi",mitziLurkingApproach);
+		}
+	}
 	
 	// Ships
-	if (flags["FALL OF THE PHOENIX STATUS"] == 1)
-	{
-		output("\n\n<i>The Phoenix</i> is nearby, only a stones-throw away from your own ship, docked in a much smaller neighboring hangar.");
-		
-		if (flags["SAENDRA PHOENIX AVAILABLE"] != undefined)
-			addButton(7, "The Phoenix", move, "PHOENIX RECROOM");
-		else
-			addDisabledButton(7, "The Phoenix", "The Phoenix", "This ship is locked and cannot be entered.");
-	}
 	
 	return false;
 }

@@ -44,11 +44,17 @@ public function paigeBlind():Boolean
 
 public function showPaige(nude:Boolean = false):void
 {
-	if(nude) showBust("PAIGE_NUDE");
-	if(currentLocation == "PAIGE_HOUSE") showBust("PAIGE_CASUAL");
-	else showBust("PAIGE_YOGA");
+	showBust(getPaigeBustString(nude));
+	
 	if(flags["MET_PAIGE"] != undefined) showName("\nPAIGE");
 	author("B");
+}
+
+public function getPaigeBustString(nude:Boolean = false):String
+{
+	if(nude) return "PAIGE_NUDE";
+	if(currentLocation == "PAIGE_HOUSE") return "PAIGE_CASUAL";
+	else return "PAIGE_YOGA";
 }
 
 public function showIddi():void
@@ -645,7 +651,7 @@ public function yogaHardMode():void
 	}
 	else
 	{
-		output("You tell Paige that you’re not afraid of a little more challenge. She’s gotten you pretty limber and able-bodied at yoga so far, and you’re ready for whatever she can throw at you. <i>“’Anything,’ you say?”</i> she asks deviously. <i>“I have just the thing in mind for you.");
+		output("You tell Paige that you’re not afraid of a little more challenge. She’s gotten you pretty limber and able-bodied at yoga so far, and you’re ready for whatever she can throw at you. <i>“‘Anything,’ you say?”</i> she asks deviously. <i>“I have just the thing in mind for you.");
 		output("\n\n<i>“First, lay flat on your back.”</i> You do so on the mat, laying at rest. Unexpectedly, Paige stands over you, her feet against your shoulders. You have a direct line of sight up her naval, to the underside of her breasts, and directly at her crotch");
 		if(pc.hasCock()) output(". You don’t need a view to your own to know the signals you’re now sending out");
 		output(". <i>“I want you to wrap your arms up my legs, your hands against my knees.”</i> This is getting kind of weird and sexy, but you do as she asks.");
@@ -822,6 +828,13 @@ public function paigeMenu():void
 		else addButton(13, "Dismiss", paigeCrewToggle, false, "Dismiss", "Dismiss Paige from your ship.");
 	}
 	
+	if (currentLocation == "SHIP INTERIOR")
+	{
+		if (flags["CREWMEMBER_SLEEP_WITH"] == "PAIGE") addButton(9, "Sleep Alone", paigeRegardingTheBed);
+		else if (flags["CREWMEMBER_SLEEP_WITH"] == undefined) addButton(9, "Sleep With", paigeRegardingTheBed, false, "Sleep With Paige", "Ask Paige if she’d be willing to spend the nights with you. In a purely non-sexual way, of course. Purely.");
+		else addDisabledButton(9, "Sleep With", "Sleep With Paige", "You promised someone else that they could share your bed with you! Go and break it off with them first if you want Paige warming your bed at night.");
+	}
+	
 	addButton(14,"Leave",leavePaige);
 }
 public function paigeCrewToggle(recruit:Boolean = true):void
@@ -951,7 +964,7 @@ public function givePaigHoneyWine():void
 	showPaige();
 	pc.destroyItemByClass(HoneyWine);
 	output("You grin in response. <i>“Don’t suppose I can bribe them open with money?”</i>");
-	output("\n\n<i>“’fraid not, sweet thing.”</i>");
+	output("\n\n<i>“‘fraid not, sweet thing.”</i>");
 	output("\n\nYou sigh. <i>“In that case,”</i> you say as you withdraw your bottle of Honey Wine, <i>“I guess this Honey Wine will have to do instead.”</i>");
 	output("\n\nHer ears perk straight up when she hears the viscous sloshing of the alcohol in its bottle. <i>“Hot damn!”</i> she shouts, her grabby hands reaching for the wine. You let her snatch it from your grip. Within moments, her practiced yoga grip has the cork out, but she takes her time gargling it down and instead takes a heady whiff of the drink.");
 	output("\n\n<i>“That’s the stuff,”</i> she says dreamily. <i>“Tonight’s gonna be a great night.”</i> She puts the cork back in the neck of the bottle and faces you attentively, a sweet, sincere smile on her face. <i>“Fair’s fair! So, where did we leave off?”</i>");
@@ -1277,11 +1290,47 @@ public function paigeSexPrologue2():void
 	}
 	else output("Which you’d know if you hadn’t been skipping classes to buy me Honey Wine. But that’s okay. I’ll make sure we make up for lost time tonight.");
 	output("”</i>\n\n");
-
-	if(!pc.isChestExposed()) output("You finish removing your [pc.upperGarments], exposing your [pc.chest] and [pc.belly] to the warm air of her bedroom, just as ");
+	
+	var i:int = 0;
+	var upperClothesList:Array = [];
+	var lowerClothesList:Array = [];
+	
+	if(!pc.isChestExposedByArmor()) upperClothesList.push(pc.armor.longName);
+	if(!pc.isChestExposedByUpperUndergarment()) upperClothesList.push(pc.upperUndergarment.longName);
+	
+	if(upperClothesList.indexOf(pc.armor.longName) == -1 && (!pc.isCrotchExposedByArmor() || !pc.isAssExposedByArmor())) lowerClothesList.push(pc.armor.longName);
+	if(!pc.isCrotchExposedByLowerUndergarment() || !pc.isAssExposedByLowerUndergarment()) lowerClothesList.push(pc.lowerUndergarment.longName);
+	
+	if(upperClothesList.length > 0)
+	{
+		output("You finish removing your");
+		for(i = 0; i < upperClothesList.length; i++)
+		{
+			if(i > 0)
+			{
+				if(i + 1 == upperClothesList.length) output(" and");
+				else output(",");
+			}
+			output(" " + upperClothesList[i]);
+		}
+		output(", exposing your [pc.chest] and [pc.belly] to the warm air of her bedroom, just as ");
+	}
 	output("Paige is ");
 	//if {the PC is wearing lower garments}
-	if(!pc.isCrotchExposed() || !pc.isAssExposed()) output("done removing your [pc.crotchCovers], revealing your naked [pc.crotch] to her. She’s ");
+	if(lowerClothesList.length > 0)
+	{
+		output("done removing your");
+		for(i = 0; i < lowerClothesList.length; i++)
+		{
+			if(i > 0)
+			{
+				if(i + 1 == lowerClothesList.length) output(" and");
+				else output(",");
+			}
+			output(" " + lowerClothesList[i]);
+		}
+		output(", revealing your naked [pc.crotch] to her. She’s ");
+	}
 	output("finished talking – knowing there’s nothing between her and all of you, she stalks her way forward to claim you for herself.");
 
 	processTime(20);
@@ -1621,6 +1670,7 @@ public function mediumModeEndingInApartment():void
 	output("\n\nYour muscles are still quaking from the exercise, and it takes a bit more effort to put your things back on. You’re in no rush anyway. Paige fills the air with talking about how well you’ve been doing and how excited she is for some future poses she could try with you, if you’re willing to push yourself a bit harder. <i>“We still have some time to kill, sweet thing,”</i> she says lovingly, wrapping her arms around your left one and hugging it tight. <i>“Anything else you want to do today?”</i>");
 	// end scene (scene: Medium Mode Ending 2); advance time by one hour; increase Physique by 2; increase Tone by 7; deduct 40 energy
 	processTime(50);
+	IncrementFlag("YOGA_MEDIUM");
 	yogaToning(7);
 	pc.energy(-40);
 	paigeMenu();
@@ -1860,7 +1910,7 @@ public function declareSparWithPaige():void
 public function paigeSparAccept():void
 {
 	clearOutput();
-	showPaige(true);
+	showPaige();
 	if(paigeIsCrew())
 	{
 		output("No weapons? You ask Paige: aren’t we beyond that, now that she doesn’t have her disability?");
@@ -2312,7 +2362,7 @@ public function firstTimePaigeCrewHiHi():void
 			output("\n\nYou’re utterly confused; you don’t know whether she’s being earnest and her reaction to your eclectic crew is completely casual, or if she’s feigning some kind of bubbling rage. You sheepishly apologize for not telling her about your crew earlier.");
 			output("\n\n<i>“Why didn’t you?”</i>");
 			output("\n\nYou admit that you weren’t sure how she would take sharing the ship with a crew that had certain... <i>requirements</i> as yours. You have... <i>obligations</i> as this ship’s captain, and you weren’t sure how to explain that to her. Hell, you still don’t.");
-			output("\n\n<i>“’Obligations?’ Hah! That’s a pretty vague way of saying you fuck most of them, if not all of them.”</i> You say nothing. <i>“Hey, don’t worry about it, [pc.name]! Look, I’m going to be totally honest with you: I was kind of hoping for an open relationship myself.”</i>");
+			output("\n\n<i>“‘Obligations?’ Hah! That’s a pretty vague way of saying you fuck most of them, if not all of them.”</i> You say nothing. <i>“Hey, don’t worry about it, [pc.name]! Look, I’m going to be totally honest with you: I was kind of hoping for an open relationship myself.”</i>");
 			output("\n\nThat takes you by surprise. Paige never gave you any hint of the sort. <i>“Because I was worried how</i> you <i>were going to take it! A thing as sweet as you, [pc.name], I wasn’t sure if you were the type to be so... active!”</i> She approaches you, wrapping an arm around your shoulder. <i>“It’s fine with me, [pc.name], because I feel safe knowing that, even if I have to share this,”</i> she says, cupping your [pc.crotch] with her other hand, <i>“nobody else is taking this,”</i> she says, placing her hand over your heart.");
 			output("\n\nYou’re relieved to hear that she’s not only okay with it, but she’s practically encouraging it. <i>“Well, I should hope so.”</i> She leans in, breathing hotly into your ear as she whispers, <i>“A ship full of horny studs and sluts sounds like a fun time to me, too.”</i>");
 			flags["PAIGE_POLYAMORY"] = 2;

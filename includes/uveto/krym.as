@@ -90,7 +90,7 @@ public function approachKrym():void
 	author("Savin");
 	if(flags["MET_KRYM"] == undefined)
 	{
-		output("You walk over to the armored woman, raising a hand in greeting. She turns to you, lips in a hard line and both hands on her spear. <i>“Who goes there?”</i> she shouts, <i>“Not expecting any researchers.”</i>");
+		output("You [pc.walk] over to the armored woman, raising a hand in greeting. She turns to you, lips in a hard line and both hands on her spear. <i>“Who goes there?”</i> she shouts, <i>“Not expecting any researchers.”</i>");
 		output("\n\nYou call back your name, saying that you’re an explorer of sorts. If she wasn’t expecting you, you sure weren’t expecting to find a fortified base out here in the middle of nowhere.");
 		output("\n\nShe lowers her spear after a moment, A head of blond hair whips in the wind, shaved on one side and swept over near her shoulder on the other, revealing an ear full of glistening holo-rings and a pierced nostril. She pushes a pair of blue-tinted goggles, matching blue eyes, up on her forehead. <i>“Fair enough. This is a Stormguard outpost. We keep it safe for Iresteaders that wander too far afield, or scientists coming through to study the Rift. ‘Course, they all pay a premium to use the place. You, though...”</i>");
 		output("\n\nThe woman taps a button on a wrist-mounted device and waves her arm in your direction. <i>“You’re lucky you’re loaded down with nanomachines. Otherwise the turrets woulda ripped you a new one when you got inside a hundred meters. But, you’re still not supposed to be here. So.”</i>");
@@ -252,11 +252,11 @@ public function useUvetoBeaconMenu():void
 {
 	clearMenu();
 	//Display destination options
-	addButton(0,"Irestead",uvetoTaxiShitGooo,"UVI P40");
-	if (flags["UVIP_R10_PROBE_ACTIVE"] == undefined) addDisabledButton(1, "Probe");
+	addButton(0, "Irestead", uvetoTaxiShitGooo, "UVI P40");
+	if(flags["UVIP_R10_PROBE_ACTIVE"] == undefined) addDisabledButton(1, "Probe");
 	else addButton(1, "Probe", uvetoTaxiShitGooo, "UVIP R10");
-	if(hours >= 5 && hours < 19) addButton(14,"Nevermind",krymMenu);
-	else addButton(14,"Nevermind",mainGameMenu);
+	if(hours >= 5 && hours < 19) addButton(14, "Nevermind", krymMenu);
+	else addButton(14, "Back", mainGameMenu);
 }
 
 //PC chooses destination:
@@ -329,7 +329,11 @@ public function restOfKrym():void
 		//[Fuck Krym] [Not Now]
 		clearMenu();
 		addButton(1,"Not Now",noSexForKrym,undefined,"Not Now","Maybe next time, Krym...");
-		if(pc.lust() >= 33) addButton(0,"Fuck Krym",fuckKrym,undefined,"Fuck Krym","Take Krym up on her offer and bed the stormy valkyrie.");
+		if(pc.lust() >= 33)
+		{
+			if((!pc.hasCock() || pc.cockThatFits(krymhilde.analCapacity()) < 0) && (!pc.hasHardLightEquipped() && !pc.hasCock()) && (!pc.hasVagina() || pc.blockedVaginas() >= pc.totalVaginas())) addDisabledButton(0,"Fuck Krym","Fuck Krym","You need to have a penis or hardlight strap-on, or an unblocked vagina, in order to fuck her.");
+			else addButton(0,"Fuck Krym",fuckKrym,undefined,"Fuck Krym","Take Krym up on her offer and bed the stormy valkyrie.");
+		}
 		else addDisabledButton(0,"Fuck Krym","Fuck Krym","You aren’t aroused enough for this.");
 	}
 }
@@ -362,6 +366,7 @@ public function loseToThatIcyBimbo():void
 {
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
+	generateMap();
 	
 	clearOutput();
 	showBust("KRYM_NUDE");
@@ -458,7 +463,7 @@ public function cumBucketsForKrym():void
 	showKrym(true);
 	author("Savin");
 	output("You’ve lost count of how many times Krym’s milked your [pc.balls], draining you dry one cumshot at a time. her thighs and slit are a sticky, cum-slathered mess, and the bed is soaked with juices and sweat. Throughout the whole affair, Krym’s refused to let your [pc.cock] go, holding you inside her with those iron pussy-muscles of hers.");
-	output("\n\nBetween crushing bounces, you feel your amazonian partner cum again, squeezing your drained prick and roaring with her climax, soaking your crotch once again. This time, though, her orgasm rocks her body, making her breath come in ragged gasps. Her breasts bounce, quaking with her chest’s uneven movements, before the strength left in her mighty thighs gives out. Krym collapses ontop of you, face pressing into your [pc.chest], breathing hard. Her grip on your dick finally releases, and you shudder as your abused member slides from her cunt in a deluge of musky juices that leak down her thighs and onto your [pc.leg].");
+	output("\n\nBetween crushing bounces, you feel your amazonian partner cum again, squeezing your drained prick and roaring with her climax, soaking your crotch once again. This time, though, her orgasm rocks her body, making her breath come in ragged gasps. Her breasts bounce, quaking with her chest’s uneven movements, before the strength left in her mighty thighs gives out. Krym collapses on top of you, face pressing into your [pc.chest], breathing hard. Her grip on your dick finally releases, and you shudder as your abused member slides from her cunt in a deluge of musky juices that leak down her thighs and onto your [pc.leg].");
 	output("\n\n<i>“Fuck! That was good,”</i> Krym manages to moan after a few seconds, catching her breath in your chest. Despite the crushing ride she just took you on, you find your arms wrapping around the naked amazon’s waist, clinging to her as you too recover from the assault. After a while, though, Krym props herself up on her elbows and grins down at you.");
 	//NoRespect:
 	if(!krymRespectsYou()) output("\n\n<i>“Well, that was worth my while alright. Camp’s yours: rest up, and use the beacon if you need to. Feel free to use my tits as a pillow, cuz I’m going to sleep that off.”</i>");
@@ -573,6 +578,7 @@ public function combatVictoryWithKrymm():void
 {
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
+	generateMap();
 	
 	clearOutput();
 	showBust("KRYM");
@@ -589,7 +595,11 @@ public function combatVictoryWithKrymm():void
 
 	krymCombatTrack(true);
 	clearMenu();
-	if(pc.lust() >= 33) addButton(0,"Fuck Her",fuckKrym,undefined,"Fuck Her","Take Krym up on her offer and bed the stormy valkyrie.");
+	if(pc.lust() >= 33)
+	{
+		if((!pc.hasCock() || pc.cockThatFits(krymhilde.analCapacity()) < 0) && (!pc.hasHardLightEquipped() && !pc.hasCock()) && (!pc.hasVagina() || pc.blockedVaginas() >= pc.totalVaginas())) addDisabledButton(0,"Fuck Her","Fuck Her","You need to have a penis or hardlight strap-on, or an unblocked vagina, in order to fuck her.");
+		else addButton(0,"Fuck Her",fuckKrym,undefined,"Fuck Her","Take Krym up on her offer and bed the stormy valkyrie.");
+	}
 	else addDisabledButton(0,"Fuck Her","Fuck Her","You aren’t aroused enough for this.");
 
 	addButton(1,"Rest",restOfKrym,undefined,"Rest","Take a rest in the safety of Krym’s camp.");
@@ -622,7 +632,8 @@ public function fuckKrym():void
 	if(pc.hasHardLightEquipped() || pc.hasCock()) addButton(1,"Pitch Vaginal",pitchVagimalKrym,undefined,"Pitch Vaginal","Take Krym to pound town.");
 	else if(pc.hasCock()) addDisabledButton(1,"Pitch Vaginal","Pitch Vaginal","Your dick is way too fat to fit in there.");
 	else addDisabledButton(1,"Pitch Vaginal","Pitch Vaginal","You need a penis or hardlight strap-on to give her pussy the pounding it so righteously deserves.");
-	if(pc.hasVagina() && pc.blockedVaginas() == 0) addButton(2,"Tribbing",consensualTribbingWithKrym,undefined,"Tribbing","Get down and dirty with Krym and rub pussies.");
+	
+	if(pc.hasVagina() && pc.blockedVaginas() < pc.totalVaginas()) addButton(2,"Tribbing",consensualTribbingWithKrym,undefined,"Tribbing","Get down and dirty with Krym and rub pussies.");
 	else if(pc.blockedVaginas() > 0) addDisabledButton(2,"Tribbing","Tribbing","You might want to get rid of whatever is blocking up your vagina before you do this.");
 	else addDisabledButton(2,"Tribbing","Tribbing","You need a vagina for this.");
 }
@@ -771,6 +782,7 @@ public function pitchVagimalKrym():void
 		output("\n\n<i>“Glad to see I’m not the only bitch on this iceball that likes her high-tech dongs,”</i> Krym grins, letting your hardlight erection erupt into existence... right into her waiting hand. You can’t help but shiver at the sudden rush of sensation, feeling Krym rub your hardlight hardon, pushing it down against your [pc.belly].");
 	}
 	output("\n\nThe valkyrie shifts forward on her hips, planting her pussy right on the base of your [pc.cockOrStrapon " + x + "]. She’s sweltering hot - a sweet relief from the oppressive cold you’ve been subjected to since landing on Uveto, spreading up the length of your shaft. Krym leaves a trail of wet excitement in her wake, slickening your shaft - and giving herself a taste of the pleasure she’s giving you. Your stormy lover moans, cupping one of her perky breasts as her hips start to move faster along your length, grinding back and forth until she’s moaning and laughing. Your hands naturally migrate towards her hips: her broad flanks have plenty of room to spare, and lead you towards one of the few places on her body sporting a nice bit of softness for you to dig into.");
+	if(pc.hasCock()) pc.cockChange();
 	output("\n\nKrym grins when your fingers sink into her rump, and you feel her pussy flex around your ");
 	if(x == -1) output("glowing tip");
 	else output("[pc.cockHead " + x + "]");
@@ -788,7 +800,7 @@ public function pitchVagimalKrym():void
 	output("\n\nShe just laughs, turning into a husky moan as you start to push your [pc.hips] against her. <i>“Dammit!”</i>");
 
 	output("\n\nYou know she loves it - and a few thrusts later, she’s not afraid to show it. Krym howls with pleasure with every thrust, fingers clutching at your bare, sweaty muscles while you pound her - and she all but <i>begs</i> for that pounding, shouting for you to fuck her harder, faster, any time you even think about slowing down. There’s no time to catch your breath with this girl! Even her pussy clings to you, making it an exquisite effort to pull yourself out of her... and blindingly pleasurable when you hammer back home, filling her with your [pc.cockOrStrapon " + x + "].");
-	output("\n\n<i>“Oh gods. Yeah! Right there!”</i> Krym groans, throwing her head back and thrusting a hand between her legs, molesting her stiff clitty to the beat of your thrusts. You can feel her climax coming a moment later, heralded by squirts of female lust leaking around your cock and wild clenches of her cunny. If feels as though your [pc.cockOrStrapon " + x + "] is drowning in her juices, bathed in a musky sea of femcum while her screams echo off the metal walls. It’s a symphony of sexual sounds all around you: flesh slapping flesh, wet slicks of her juices being fucked out by your dick, and both your voices mixing in a chorus of moans.");
+	output("\n\n<i>“Oh gods. Yeah! Right there!”</i> Krym groans, throwing her head back and thrusting a hand between her legs, molesting her stiff clitty to the beat of your thrusts. You can feel her climax coming a moment later, heralded by squirts of female lust leaking around your cock and wild clenches of her cunny. It feels as though your [pc.cockOrStrapon " + x + "] is drowning in her juices, bathed in a musky sea of femcum while her screams echo off the metal walls. It’s a symphony of sexual sounds all around you: flesh slapping flesh, wet slicks of her juices being fucked out by your dick, and both your voices mixing in a chorus of moans.");
 	output("\n\nWhen she’s done, the valkyrie falls back on the bed, chest heaving. Your hands are still on her tits, rising and falling with her unsteady breath. She smiles up at you, a mix of lust and fatigue on her lips, and her legs relax their death-grip on your [pc.hips]. You use that moment like a boost of momentum, pulling your [pc.cockOrStrapon " + x + "] out from the sweltering slit between her legs and lunging forward, thrusting it right between her lips.");
 	output("\n\nKrym grunts as her mouth is suddenly and violently battered open, but that fades away when she starts tasting herself all over your shaft. Her hands grab your [pc.butt] and hold you steady while she sucks, bobbing her head up and down your shaft. Those plush lips of hers are just as loving as her twat’s, sucking your cock hard until you’re gasping and throbbing, ready to pop.");
 	

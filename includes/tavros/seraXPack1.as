@@ -635,7 +635,7 @@ public function seraInchStealing(response:String = ""):void
 			processTime(5);
 		}
 		output("\n\n<i>“That’s enough,”</i> says Sera thickly. You disengage from her, feeling mildly dazed.");
-		if(pc.isBimbo() || pc.isTreated() || pc.isDependant(Creature.DEPENDANT_CUM)) output(" Your smeared lips feel lavish and vaguely tingly; you stifle the urge to lick them.");
+		if(pc.isBimbo() || pc.isTreated() || pc.isCumSlut()) output(" Your smeared lips feel lavish and vaguely tingly; you stifle the urge to lick them.");
 		output(" She turns to you, her bulging cock pointing lividly at your face. <i>“Come sit across me. In close. That’s it.”</i> Her dark, bullet-like nipples press into your [pc.chest] as you shuffle yourself into her on the bed, your [pc.hips] rubbing against her own smooth thighs. She looks down at your semi-erect [pc.cock " + cockIndex + "] disdainfully. <i>“Rub that against me. Nice and slow.”</i>");
 		output("\n\nTentatively you grip her waist and do as she says, pumping your hips to frot your prick against hers. The oozing grease it’s covered in makes the friction smooth, there’s plenty of warmth and soon enough you’re erect as she is. Sera responds once you’re there, pumping her smaller cock against yours with harder and harder strokes, clutching your back almost painfully, her mountainous breasts plumping into you. You press into each other with fierce intimacy, jousting your bulging, pleasure-dense cocks.");
 		output("\n\nShe reaches forward and limpets her lips on yours, invading your mouth with her tongue, attacking your walls with it fiercely. At the same time a tingling sensation spreads down your [pc.cock " + cockIndex + "]. It suddenly feels achingly sensitive, as if the skin on it has disappeared. You cry out in shock, muffled, around Sera’s tongue. She smirks against your face and then forces herself onto you, forcing you back onto the duvet, holding your arms down as she humps you vigorously, throwing her whole body into it. Your eyes roll to the sensation of the savage friction on your sensitized cock.");
@@ -812,7 +812,7 @@ public function seraInchStealing(response:String = ""):void
 			output(" as you slather the grease all around Sera’s hardness. You moan softly as it occurs to you you’re sucking the dick that is shortly going to literally emasculate you.");
 		}
 		output("\n\n<i>“That’s enough,”</i> says Sera thickly. You disengage from her, feeling mildly dazed.");
-		if(pc.isBimbo() || pc.isTreated() || pc.isDependant(Creature.DEPENDANT_CUM)) output(" Your smeared lips feel lavish and vaguely tingly; you stifle the urge to lick them.");
+		if(pc.isBimbo() || pc.isTreated() || pc.isCumSlut()) output(" Your smeared lips feel lavish and vaguely tingly; you stifle the urge to lick them.");
 		output(" She turns to you, her bulging cock pointing lividly at your face. <i>“Come sit across me. In close. That’s it.”</i> Her dark, bullet-like nipples press into your [pc.chest] as you shuffle yourself into her on the bed, your [pc.hips] rubbing against her own smooth thighs. She looks down at your semi-erect [pc.cock " + cockIndex + "]");
 		if(biggestLength >= 12) output(" disdainfully");
 		else output(" with a smirk");
@@ -1035,7 +1035,7 @@ public function seraInchStealingAintEasy(intro:Boolean = false):void
 	
 	//Orgasm scene only for PCs who either a) have some sort of oral fixation mechanic or b) have //been through the face-riding training scene with Sera 3+ times.
 	// Orally Fixated:
-	if(pc.isBimbo() || pc.isTreated() || pc.isDependant(Creature.DEPENDANT_CUM))
+	if(pc.isBimbo() || pc.isTreated() || pc.isCumSlut())
 	{
 		output("\n\nSucking her cock for so long with nothing else has already engorged your lips and livened your mouth. Feeling the pulsing beat of her cock wrapped in your [pc.lips] with such a huge load spilling into your mouth is enough to finally send you over the edge with warmth radiating out from cock and lips and jizz and tongue");
 		// also done face-riding
@@ -2289,10 +2289,10 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 		output(" – with an expression of profound contentment.");
 		
 		processTime(15);
-		pc.orgasm();
 		pc.loadInMouth(chars["SERA"]);
 		if(vagIndex >= 0) pc.loadInCunt(chars["SERA"], vagIndex);
 		else pc.loadInAss(chars["SERA"]);
+		pc.orgasm();
 		sera.orgasm();
 		clearMenu();
 		if(TFItem == "Semen’s Friend") addButton(0, "Semen’s?", seraSexXXXTitfuckLuckyDip, [TFItem, vagIndex, cockIndex], TFItem + "?", "Ask your mistress for some " + TFItem + ".");

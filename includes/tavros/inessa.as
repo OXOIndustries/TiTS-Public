@@ -1,4 +1,5 @@
 ﻿import classes.Items.Toys.GravCuffs;
+import classes.Items.HalloweenItems.WitchsOutfit;
 
 /*Inessa and the Happy Tails
 By JimThermic
@@ -595,6 +596,12 @@ public function inessaBuyGo():void
 	}
 	else chars["INESSA"].destroyItemByClass(LeatherLeash, -1);
 	
+	if(isHalloweenish())
+	{
+		if(!chars["INESSA"].hasItemByClass(WitchsOutfit)) chars["INESSA"].inventory.push(new WitchsOutfit());
+	}
+	else chars["INESSA"].destroyItemByClass(WitchsOutfit, -1);
+
 	CodexManager.unlockEntry("BionaHoles");
 	CodexManager.unlockEntry("Grav Cuffs");
 	//[Sex Gear] [Clothes] [Other]
@@ -1180,6 +1187,7 @@ public function cuffNFuck():void
 {
 	clearOutput();
 	author("JimThermic");
+	
 	output("Now that you’ve defeated [enemy.name], you know exactly what to do with [enemy.himHer]. As [enemy.heShe] reels from the effects your battle, you pull out your grav-cuffs. With a commanding whistle, you toss them up and out in front of you. They immediately hone in and clamp on your felled opponent’s wrists and ");
 	if(enemy.legCount == 1) output("[enemy.legNoun]");
 	else output("[enemy.legsNoun]");
@@ -1225,16 +1233,16 @@ public function cuffNFuck():void
 	if(!pc.isCrotchExposed()) output("You strip off your gear, then");
 	else output("Once you’re ready, you");
 	output(" grab [enemy.hisHer] wiggling hips from behind, unceremoniously flopping [pc.oneCock] onto [enemy.hisHer] ass. Teasing [enemy.himHer] for a bit, you grind it back and forth between [enemy.hisHer] buttocks, getting yourself nice and hard before sliding it in [enemy.hisHer] [enemy.vagOrAss].");
-
+	
 	pc.cockChange();
+	
 	output("\n\n" + enemy.capitalA + enemy.short + " gasps and arches [enemy.hisHer] back, trembling at your sudden entry. [enemy.HisHer] insides clench tightly around the foreign intruder suddenly ");
 	
 	var capacity:Number = 0;
 	if(enemy.hasVagina()) capacity = enemy.vaginalCapacity();
 	else capacity = enemy.analCapacity();
 	var x:int = pc.cockThatFits(capacity);
-
-
+	
 	//1/2 or lower capacity:
 	if(pc.cockVolume(x) < capacity/2) output("wiggling around inside of [enemy.himHer]");
 	else output("stretching [enemy.himHer] open");
@@ -1288,13 +1296,15 @@ public function cuffNFuck():void
 	if(enemy.hasVagina()) output("pussy");
 	else output("rectum");
 	output(" still quivering around your [pc.cock " + x + "]. With a grin, you begin fucking it with slamming thrusts, stirring up [enemy.hisHer] sensitive insides. [enemy.HeShe] melts and frantically slaps [enemy.hisHer] butt back against you, desperate for more. It’s not long before [enemy.heShe] is cumming again, babbling and shaking in [enemy.hisHer] cuffs.");
-
+	
+	var cumQ:Number = pc.cumQ();
+	
 	output("\n\nThe third time [enemy.name] cums you finally reach your own peak, groaning and ");
-	if(pc.cumQ() < 5) output("dribbling");
+	if(cumQ < 5) output("dribbling");
 	else output("spilling");
 	output(" your hot, [pc.cumVisc] load inside of [enemy.hisHer] well-fucked hole. ");
-	if(pc.cumQ() < 7) output("The barest dribbles of [pc.cumNoun] escape your flaring cockhole, splattering anti-climactically into [enemy.hisHer] [enemy.vagOrAss]. Still, it feels <i>amazing</i>!");
-	else if(pc.cumQ() < 100) 
+	if(cumQ < 7) output("The barest dribbles of [pc.cumNoun] escape your flaring cockhole, splattering anti-climactically into [enemy.hisHer] [enemy.vagOrAss]. Still, it feels <i>amazing</i>!");
+	else if(cumQ < 100) 
 	{
 		output("You spurt your [pc.cumNoun] ");
 		if(enemy.hasVagina()) output("against [enemy.hisHer] cervix ");
@@ -1303,7 +1313,7 @@ public function cuffNFuck():void
 		else output("bowels until they are");
 		output(" filled with your seed.");
 	}
-	else if(pc.cumQ() < 4000)
+	else if(cumQ < 4000)
 	{
 		output("A font of [pc.cumNoun] surges from your cock-tip and quickly fills up [enemy.hisHer] ");
 		if(enemy.hasVagina()) output("[enemy.pussy] and womb");
@@ -1321,8 +1331,12 @@ public function cuffNFuck():void
 		if(enemy.isPregnant()) output("even more ");
 		output("pregnant.");
 	}
+	
+	if(enemy.hasVagina()) enemy.loadInCunt(pc, 0);
+	else enemy.loadInAss(pc);
+	
 	output("\n\nAfterwards, you pull your [pc.cockNoun " + x + "] from [enemy.hisHer] [enemy.vagOrAss] and snap your fingers. The cuffs undo around [enemy.name]’s wrists and [enemy.legs]. " + enemy.capitalA + enemy.short + " immediately falls to [enemy.hisHer] side, a dreamy look on [enemy.hisHer] [enemy.face]");
-	if(pc.cumQ() >= 7) 
+	if(cumQ >= 7) 
 	{
 		output(", and a stream of [enemy.cum] dribbling ");
 		if(enemy.legCount >= 2) output("down [enemy.hisHer] [enemy.thighs]");
@@ -1333,8 +1347,16 @@ public function cuffNFuck():void
 	// NPC Pregnancy handling
 	if(enemy.hasVagina())
 	{
+		//if(enemy is ZilFemale) {}
+		//if(enemy is ZilMale) {}
+		//if(enemy is Naleen) {}
+		if(enemy is MaidenVanae) StatTracking.track("characters/maiden vanae/cherrys popped");
+		//if(enemy is HuntressVanae) {}
 		if(enemy is RaskvelFemale) knockUpRaskChance();
+		//if(enemy is MyrGoldFemaleDeserter) {}
 		if(enemy is MyrRedFemaleDeserter) knockUpRedBitchChance();
+		//if(enemy is NyreaAlpha) {}
+		//if(enemy is NyreaBeta) {}
 	}
 	
 	processTime(33);
@@ -1342,6 +1364,7 @@ public function cuffNFuck():void
 	enemy.orgasm();
 	IncrementFlag("GRAVCUFFS_USES");
 	output("\n\n");
+	
 	if(inCombat())
 	{
 		CombatManager.genericVictory();
@@ -2115,7 +2138,7 @@ public function giveInessaSilk():void
 	showInessa();
 	
 	output("You hand Inessa the silk panel that Xanthe gave you back on Myrellion, wondering what it actually means. Inessa runs her hands over it and her [inessa.eyes] seem to light up.");
-	output("\n\n<i>“Xanthe gave this to you didn’t she?”</i> You nod and she squees quite loudly. <i>“Ohmyzyi ohmyzyi!”</i> She exclaims, bouncing up and down on the spot, setting her [inessa.breasts] into a jiggle. She places the silk down and and begins fluttering around the store, her [inessa.wings] carrying her at a near breakneck speed. She closes up the curtains and shutters, turns off the alarm, dims the lights and turns over the sign on the shop front that says “Bound up tight” as a euphemism for closed. You chuckle at her enthusiasm and watch her do this for a couple of minutes more before giving a sharp whistle to call her over. Inessa stops in her tracks and turns towards you. <i>“Yes, what is it?”</i> She stammers out. Void she’s so cute sometimes, and you say as much before asking what the silk actually means and why she’s buzzing around closing the shop.");
+	output("\n\n<i>“Xanthe gave this to you didn’t she?”</i> You nod and she squees quite loudly. <i>“Ohmyzyi ohmyzyi!”</i> She exclaims, bouncing up and down on the spot, setting her [inessa.breasts] into a jiggle. She places the silk down and begins fluttering around the store, her [inessa.wings] carrying her at a near breakneck speed. She closes up the curtains and shutters, turns off the alarm, dims the lights and turns over the sign on the shop front that says “Bound up tight” as a euphemism for closed. You chuckle at her enthusiasm and watch her do this for a couple of minutes more before giving a sharp whistle to call her over. Inessa stops in her tracks and turns towards you. <i>“Yes, what is it?”</i> She stammers out. Void she’s so cute sometimes, and you say as much before asking what the silk actually means and why she’s buzzing around closing the shop.");
 	output("\n\nInessa goes a deep hue of blue at the comment before she replies. <i>“S-Sorry, I’m just so excited. Xanthe wants me to go to Myrellion with you, it’s been so long since I’ve seen her.”</i> She stammers out, then holds up the piece of silk. <i>“And this is how I know, it’s a way that Siel and some Saeri can talk with family members kind of in secret.”</i> She explains. <i>“Each family has a slightly different way of making them, so no other family quite knows how to understand them.”</i> Clutching the silk to her chest, she wiggles on the spot before continuing on. <i>“It’s mostly used by Siel since they can actually produce the silk, but some Saeri learn to stitch them together from plain silk sheets so they can still communicate the same way.”</i>");
 	output("\n\nYou nod and smile at her, thanking her for the explanation and letting her finish closing up the shop. <i>“Alright, everything’s all closed up here, let’s get going!”</i> You chuckle softly and tell her to slow down, it will be a long ride. She covers her mouth slightly and blushes. <i>“O-Of course, I’m sorry, whenever you’re ready.”</i>");
 	output("\n\nWith that you instruct the snowy haired sub to follow you out of the store and onto your ship.");

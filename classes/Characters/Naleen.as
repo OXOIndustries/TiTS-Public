@@ -141,7 +141,7 @@
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 4;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 9000;
 			this.timesCum = 998;
 			this.cockVirgin = true;
@@ -175,6 +175,7 @@
 			
 			this.createPerk("Multiple Attacks",1,0,0,0,"");
 			this.createStatusEffect("Disarm Immune");
+			this.createPerk("Appearance Enabled");
 
 			this.inventory.push(new NaleenNip());
 			

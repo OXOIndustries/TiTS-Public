@@ -187,7 +187,11 @@
 				
 				if (dataObject.version != this._latestVersion)
 				{
-					throw new VersionUpgraderError("Couldn't upgrade the save data for " + dataObject.classInstance);
+					var msg:String = ("Couldn't upgrade the save data for " + dataObject.classInstance);
+					
+					if (dataObject.version > this._latestVersion) msg += " - Object version is " + dataObject.version + " where its latest in-game version is " + this._latestVersion + ". <b>Please use a newer version of the game!</b>";
+					
+					throw new VersionUpgraderError(msg);
 				}
 			}
 			

@@ -356,6 +356,9 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/kara_nude.png", mimeType = "image/png")]
 		public var Bust_KARA_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/kattom.png", mimeType = "image/png")]
+		public var Bust_KATTOM_OSGOOD:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/dr_khan.png", mimeType = "image/png")]
 		public var Bust_KHAN:Class;
 		public var Bounds_KHAN:Rectangle = new Rectangle(42, 6, 64, 64);
@@ -551,6 +554,9 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/princess_bandoleer.png", mimeType = "image/png")]
 		public var Bust_PRINCESS_BANDOLEER:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/quaddomme.png", mimeType = "image/png")]
+		public var Bust_BOTHRIOC_QUADOMME:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/queensguard.png", mimeType = "image/png")]
 		public var Bust_QUEENSGUARD:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/queensguard_nude.png", mimeType = "image/png")]
@@ -632,6 +638,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/teron_nude.png", mimeType = "image/png")]
 		public var Bust_TERON_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/urbolg.png", mimeType = "image/png")]
+		public var Bust_URBOLG:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/urbolg_nude.png", mimeType = "image/png")]
+		public var Bust_URBOLG_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ushamee.png", mimeType = "image/png")]
 		public var Bust_USHAMEE:Class;
 		public var Bounds_USHAMEE:Rectangle = new Rectangle(52, 22, 64, 64);
@@ -666,6 +677,11 @@
 		public function get Bust_YAMMI_APRON():Class { return Bust_YAMMI; }
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/yammi_nude.png", mimeType = "image/png")]
 		public var Bust_YAMMI_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/yoma.png", mimeType = "image/png")]
+		public var Bust_YOMA:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/yoma_nude.png", mimeType = "image/png")]
+		public var Bust_YOMA_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/zaalt.png", mimeType = "image/png")]
 		public var Bust_ZAALT:Class;
@@ -1021,6 +1037,9 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kara_nude.png", mimeType = "image/png")]
 			public var Full_KARA_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kattom.png", mimeType = "image/png")]
+			public var Full_KATTOM_OSGOOD:Class;
+
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/dr_khan.png", mimeType = "image/png")]
 			public var Full_KHAN:Class;
 
@@ -1205,6 +1224,9 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/princess_bandoleer.png", mimeType = "image/png")]
 			public var Full_PRINCESS_BANDOLEER:Class;
 
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/quaddomme.png", mimeType = "image/png")]
+			public var Full_BOTHRIOC_QUADOMME:Class;
+
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/queensguard.png", mimeType = "image/png")]
 			public var Full_QUEENSGUARD:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/queensguard_nude.png", mimeType = "image/png")]
@@ -1279,6 +1301,11 @@
 			public var Full_TERON:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/teron_nude.png", mimeType = "image/png")]
 			public var Full_TERON_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/urbolg.png", mimeType = "image/png")]
+			public var Full_URBOLG:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/urbolg_nude.png", mimeType = "image/png")]
+			public var Full_URBOLG_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ushamee.png", mimeType = "image/png")]
 			public var Full_USHAMEE:Class;
@@ -1312,6 +1339,11 @@
 			public function get Full_YAMMI_APRON():Class { return Full_YAMMI; }
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/yammi_nude.png", mimeType = "image/png")]
 			public var Full_YAMMI_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/yoma.png", mimeType = "image/png")]
+			public var Full_YOMA:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/yoma_nude.png", mimeType = "image/png")]
+			public var Full_YOMA_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/zephyr.png", mimeType = "image/png")]
 			public var Full_ZEPHYR:Class;

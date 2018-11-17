@@ -149,7 +149,7 @@ package classes.Characters
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 4;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 635;
 			this.timesCum = 255;
 			this.cockVirgin = true;
@@ -262,7 +262,7 @@ package classes.Characters
 					//Figure out how much is left
 					applyDamage(damage, this, target, "minimal");
 					
-					if(target.physique()/2 + rand(20) + 1 < this.physique()/2 + 13)
+					if((target.physique()/2 + rand(20) + 1 < this.physique()/2 + 13) && !target.isPlanted())
 					{
 						output("\n<b>You end up knocked on your ass, covered in debris from the collapsing factory!</b>");
 						CombatAttacks.applyTrip(target);
@@ -316,7 +316,7 @@ package classes.Characters
 			else
 			{
 				output("try to roll out of the way, but there’s just no time! You avoid getting crushed to death by the treads, but still take a nasty blow from the front of the tank anyway.");
-				target.createStatusEffect("Crunched", 0, 0, 0, 0, false, "DefenseDown", "Getting hit in the head by a tank has lowered your physique!", true, 0);
+				target.createStatusEffect("Crunched", 1, 0, 0, 0, false, "DefenseDown", "Getting hit in the head by a tank has lowered your physique!", true, 0);
 				
 				var damage:TypeCollection = new TypeCollection( { kinetic: 70 }, DamageFlag.CRUSHING );
 				damageRand(damage, 15);
@@ -426,11 +426,9 @@ package classes.Characters
 				}
 				coverRemaining = flags["KHORGAN_RIGHT_COVER"]
 			}
-			//if(display)
-			//{
-				if(coverNuked) output(" <b>(Cover gone!)</b>");
-				else output(" (-" + damage/2 + "% Cover)");
-			//}
+			
+			if(coverNuked) output(" <b>(Cover gone!)</b>");
+			else output(" (-" + damage/2 + "% Cover)");
 		}
 	}
 }

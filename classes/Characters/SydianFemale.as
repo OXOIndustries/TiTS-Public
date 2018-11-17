@@ -309,11 +309,9 @@
 			}	
 			else
 			{
-				if (target.physique() + rand(20) + 1 < 15)
+				if ((target.physique() + rand(20) + 1 < 15) && !target.isPlanted())
 				{
 					output(" It lashes your [pc.leg], leaving a swipe of enzyme and taking your support from under you! With a thud, you hit the ground.");
-					
-					
 					
 					if (!target.hasAirtightSuit())
 					{
@@ -413,7 +411,7 @@
 		private function TickleTrip(target:Creature):void
 		{
 			output("The sydian thrusts her face toward yours with a curious, friendly expression.");
-			if (combatMiss(this, target, 10, -1))
+			if (combatMiss(this, target, 10, -1) || target.isPlanted())
 			{
 				output(" You ignore the distraction and pull your [pc.leg] away from the tail she’s trying to hook it with.");
 			}

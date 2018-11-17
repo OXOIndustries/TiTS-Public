@@ -62,7 +62,7 @@ public function shadeIsHome():Boolean
 }
 public function astraIsHome():Boolean
 {
-	if(9999 == 9999) return false;
+	if(9999 == 0) return true;
 	return false;
 }
 // Enemy / Not Friend / Friend / Lover. If Shade was never interacted with in a positive way (ie, you fought her in KaraQuest 1), she's an Enemy. If the player betrayed Shade in KQ2 and didn't make a good case to her afterwards, she's Not Friend. If you've been buddy-buddy with her so far (Helped her out in KQ1 or didn't do KQ2), she'll be your Friend. And of course, if you've fucked before and would otherwise be Friends, she's a Lover.
@@ -211,7 +211,7 @@ public function createLetterFromShade():String
 		{
 			msg = "Hey kid, welcome to the snowy little iceball I call home. Glad you could find the time off on your big important mission to come by.";
 			msg += "\n\nConsider my house... and bed... your home away from home while you’re here. It’s the first little hut between the Mead Hall and the temple, up in northern Irestead. Can’t miss it. Don’t worry, it’s bigger than it looks!";
-			msg += "\n\nGive me a re: before you stop by some evening, and I’ll have dinner cooking. Something to warm your bones up before I jump ’em. ;) Looking forward to seeing you!";
+			msg += "\n\nGive me a re: before you stop by some evening, and I’ll have dinner cooking. Something to warm your bones up before I jump ‘em. ;) Looking forward to seeing you!";
 			msg += "\n\nLove,";
 			msg += "\nShade";
 			
@@ -395,7 +395,7 @@ public function approachShadeAtTheBar(response:String = "intro"):void
 			output("<i>“Hey, Shade,”</i> you say, waving as you make your way over to the bar.");
 			output("\n\nYour bounty huntress friend glances up from her drink, smiles, and pushes out the empty barstool beside her. <i>“[pc.name]! Have a sit, kiddo!”</i>");
 			output("\n\nThe woman to her left leans around Shade to greet you with a smile, and you’re suddenly reminded Shade said something about bringing her kid...");
-			output("\n\nNow that you can see both at once, there’s no doubt about it: the resemblance is striking. Your niece is a little taller and, if the firm chestplate on her uniform is any indication, even bustier than her mother, but has the same chiseled facial features and cunning cat-eyes as Shade... even if she’s got what look like ausar ears peeking up through her snow-silver hair.");
+			output("\n\nNow that you can see both at once, there’s no doubt about it: the resemblance is striking. She is a little taller and, if the firm chestplate on her uniform is any indication, even bustier than her mother, but has the same chiseled facial features and cunning cat-eyes as Shade... even if she’s got what look like ausar ears peeking up through her snow-silver hair.");
 			output("\n\nStill, she’s older than you expected! Your friend’s daughter must be your age, maybe a few months apart one way or the other. A full grown woman, either way.");
 			output("\n\n<i>“Hi,”</i> the younger woman says, giving you a little wave as you take the offered seat. <i>“I’m Astra.”</i>");
 			output("\n\n<i>“My daughter,”</i> Shade confirms, putting an arm around the half-breed’s shoulder. Astra’s tail wiggles behind her, and she extends a hand which you shake warmly. <i>“You two are about the same age if I had to guess. Just turned eighteen a bit ago.”</i>");
@@ -647,27 +647,43 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 	if(!shadeIsActive() || flags["SHADE_ON_UVETO"] < 2) return;
 	// Add [Buzzer] to the outside of Shade's house, starting at 16:00 each night.
 	if(flags["SHADE_ON_UVETO"] == 2 && shadeIsLover() && (shadeIsSiblings() || hours >= 16)) { /* Exception, only for lovers! */ }
-	else if(!shadeIsHome()) return;
+	else if(!shadeIsHome() && !astraIsHome())
+	{
+		addDisabledButton(btnSlot, "Buzzer", "Buzzer", "No one is home at the moment!");
+		return;
+	}
 	
 	var response:String = "";
 	var tooltip:String = "";
 	
 	if(flags["SHADE_ON_UVETO"] >= 3)
 	{
-		if(MailManager.isEntryViewed("shade_xmas_invite") && isChristmas() && (flags["SHADE_XMAS"] == undefined || (flags["SHADE_XMAS"] != undefined && flags["SHADE_XMAS"] < new Date().fullYear)))
-		{ 
+		var currDate:Date = new Date();
+		
+		if(MailManager.isEntryViewed("shade_xmas_invite") && isChristmas())
+		{
 			/* EXCEPTION FOR HOLIDAYS! */
-			response = "ho ho ho";
-			tooltip = "This is Shade’s house. Time for some holiday cheer!";
+			
+			//Never done before or first time this year!
+			if(flags["SHADE_XMAS"] == undefined || (flags["SHADE_XMAS"] != undefined && flags["SHADE_XMAS"] < currDate.fullYear))
+			{
+				response = "ho ho ho";
+				tooltip = "This is Shade’s house. Time for some holiday cheer!";
+			}
 		}
 		
-		/* 9999 - Repeat events. Nothing planned yet? */
-		
 		//if(flags["SHADE_IS_YER_SIS"] != -1) flags["NAV_DISABLED"] = undefined;
-		if(flags["SHADE_IS_YER_SIS"] == 0)
+		else if(flags["SHADE_IS_YER_SIS"] == 0)
 		{
 			response = "lover sibling decision";
 			tooltip = "This is Shade’s house. Time to make a decision about where you want the pair of you to go.";
+		}
+		
+		/* 9999 - Repeat events. Nothing planned yet? */
+		else
+		{
+			response = "disabled";
+			tooltip = "There is currently nothing you can do at Shade’s residence at this time.";
 		}
 	}
 	// Lover Shade (Sibling Unrevealed)
@@ -684,7 +700,11 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 	}
 	
 	// [Buzzer]
-	if(response != "") addButton(btnSlot, "Buzzer", approachShadeAtHouse, response, "Buzzer", tooltip);
+	if(response != "")
+	{
+		if(response == "disabled") addDisabledButton(btnSlot, "Buzzer", "Buzzer", tooltip);
+		else addButton(btnSlot, "Buzzer", approachShadeAtHouse, response, "Buzzer", tooltip);
+	}
 }
 public function approachShadeAtHouse(response:String = "intro"):void
 {
@@ -694,14 +714,8 @@ public function approachShadeAtHouse(response:String = "intro"):void
 	switch(response)
 	{
 		case "ho ho ho":
-			var currDate:Date = new Date();
-			//Never done before or first time this year!
-			if(flags["SHADE_XMAS"] == undefined || (flags["SHADE_XMAS"] != undefined && flags["SHADE_XMAS"] < currDate.fullYear))
-			{
-				shadeHolidayKnock();
-				return;
-			}
-			//No "break;" in case something is somehow fubar.
+			shadeHolidayKnock();
+			break;
 		case "lover friend intro":
 			showBust(shadeBustDisplay());
 			showName("\nSHADE");
@@ -726,12 +740,12 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			output("\n\nYou hear a snort from the other room. <i>“Get your head out of the gutter, kiddo. Can’t exactly control the way my heart goes... and besides, we’ve got a lot more in common than... that.”</i>");
 			output("\n\n<i>“Sorry,”</i> you laugh, glancing around the pictures of Astra on the walls. She is cute, that’s for sure. Glad you found out now, otherwise you might have ended up flirting with her had you ever met. Speaking of which, <i>“Where’s she now?”</i>");
 			// KQ2 done, beat Amara w/o seeing Shade:
-			if(flags["KQ2_QUEST_FINISHED"] != undefined && flags["KQ2_SHADE_ENCOUNTERED"] == undefined)
+			if(completedKQ2Good() && flags["KQ2_SHADE_ENCOUNTERED"] == undefined)
 			{
 				output("\n\n<i>“Uhh... She’s off in the Cielovia system, right now. Her sire got put in the hospital by some punks, apparently, so she’s off visiting for a bit. Should be home tomorrow, she said. I’ll introduce you, if you’re staying.”</i>");
 			}
 			// KQ2 done, beat Amara, saw Shade:
-			else if(flags["KQ2_QUEST_FINISHED"] != undefined)
+			else if(completedKQ2Good())
 			{
 				output("\n\n<i>“Well, her pop’s in the hospital after you got done with her. She’s recovering back in the Cielovia system, and Astra’s off visiting. Should be home tomorrow, I think. I’ll introduce you.”</i>");
 				output("\n\nYou grimace at the sneer Shade gives you when she mentions Amara, but otherwise she doesn’t bring up your... accidental altercation back on Myrellion.");
@@ -956,12 +970,12 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			output("\n\nAny chance of you getting to meet your niece some time? The way she’s kitted up, Astra strikes the appearance of an adventurer like yourself. Considering how you and Shade hit it off, you’d probably get along.");
 			output("\n\nSilently, you add that you’re glad you found out now, otherwise you might have ended up flirting with her had you ever met.");
 			// KQ2 done, beat Amara w/o seeing Shade:
-			if(flags["KQ2_QUEST_FINISHED"] != undefined && flags["KQ2_SHADE_ENCOUNTERED"] == undefined)
+			if(completedKQ2Good() && flags["KQ2_SHADE_ENCOUNTERED"] == undefined)
 			{
 				output("\n\n<i>“Uhh... She’s off in the Cielovia system, right now. Her sire got put in the hospital by some punks, apparently, so she’s off visiting for a bit. Should be home tomorrow, she said. I’ll introduce you, if you’re staying.”</i>");
 			}
 			// KQ2 done, beat Amara, saw Shade:
-			else if(flags["KQ2_QUEST_FINISHED"] != undefined)
+			else if(completedKQ2Good())
 			{
 				output("\n\n<i>“Well, her pop’s in the hospital after you got done with her. She’s recovering back in the Cielovia system, and Astra’s off visiting. Should be home tomorrow, I think. I’ll introduce you.”</i>");
 				output("\n\nYou grimace at the sneer Shade gives you when she mentions Amara, but otherwise she doesn’t bring up your... accidental altercation back on Myrellion. You guess your sibling revelation has mollified her distrust of you, for now at least.");

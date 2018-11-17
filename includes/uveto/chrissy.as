@@ -9,7 +9,7 @@
  * CHRISSY_RIDDEN	1 if ridden Chrissy's dick, else undefined
  * CHRISSY_GETFKD	1 if let her pound you, else undefined
  * 
- * SQ_ACTIVE_9999		Placeholder flag for if SyriQuest is active, Replace when SyriQuest is implemented, assumed undefined == syriQuest not started, 0 = syriQuest over, 1 = syriQuest active
+ * SQ_ACTIVE_8888		Placeholder flag for if SyriQuest is active, Replace when SyriQuest is implemented, assumed undefined == syriQuest not started, 0 = syriQuest over, 1 = syriQuest active
  */
 
 public function showChrissy(nude:Boolean = false):void
@@ -40,7 +40,9 @@ public function getChrissyPregContainer():PregnancyPlaceholder
 
 public function chrissyAtBar():Boolean
 {
-	if (flags["SQ_ACTIVE_9999"] == 1) return false;
+	/* FEN NOTE: Disabled this. Having her disappear is dumb.
+	if (flags["SQ_ACTIVE_8888"] == 1) return false;
+	*/
 	return true;
 }
 
@@ -57,7 +59,7 @@ public function chrissyAtTheFreezer(btnSlot:int = 0):void
 	}
 	else
 	{
-		output("\n\nChrissy is at her usual spot, alone in her booth, either here to just relax or waiting for someone to make a move on her. She notices you walk in and takes a break from her drink to smile and wave your way.");
+		output("\n\nChrissy is at her usual spot, alone in her booth, either here to just relax or waiting for someone to make a move on her. She notices you [pc.walk] in and takes a break from her drink to smile and wave your way.");
 		
 		addButton(btnSlot, "Chrissy", approachChrissy);
 	}
@@ -79,11 +81,11 @@ public function approachChrissy():void
 		output("\n\nClosing in on the booth, your eyes are greeted by quite the bulge between the girl’s legs, leading you to the conclusion that she is most definitely a half kui-tan of some sort. You respond to the kui-girl’s query by telling the half-breed that you haven’t seen her around here either, finally taking a seat across from her at that table.");
 		output("\n\nShe gives you a giggle in return before speaking again, <i>“Yeah, I’m new here, moved in not too long ago, so I guess that means we’re both new.”</i> She gives you a big grin, filled with genuine happiness at her discovery of you, <i>“I’m Chrissy.”</i>");
 		output("\n\nGetting comfortable in your seat, you introduce yourself as “[pc.name]” and ask her why she moved out to this frozen moon.");
-		if (flags["SQ_ACTIVE_9999"] == undefined) output("\n\n<i>“Oh,”</i> Chrissy stutters, straightening herself before leaning forward on the table, <i>“Well, there’s supposed to be a big video game tournament here soon, and I’m supposed to be in it!”</i> She says that with a bit of pride in her voice before settling down, <i>“I- I’m not the best, but people are really looking forward to seeing me here, so I got here, uh, a couple months earlier because I thought I’d need time to adjust to the cold or something... and I just really wanted to get off Terra for a bit, but it turns out I really like it here, so I moved in! It’s nice and quiet, and all those big, fluffy huskar just make for the best cuddlers.”</i>");
+		if (!syriQuestComplete()) output("\n\n<i>“Oh,”</i> Chrissy stutters, straightening herself before leaning forward on the table, <i>“Well, there’s supposed to be a big video game tournament here soon, and I’m supposed to be in it!”</i> She says that with a bit of pride in her voice before settling down, <i>“I- I’m not the best, but people are really looking forward to seeing me here, so I got here, uh, a couple months earlier because I thought I’d need time to adjust to the cold or something... and I just really wanted to get off Terra for a bit, but it turns out I really like it here, so I moved in! It’s nice and quiet, and all those big, fluffy huskar just make for the best cuddlers.”</i>");
 		else output("\n\n<i>“Oh,”</i> Chrissy stutters, straightening herself before leaning forward on the table, <i>“You know that big video game tournament that happened here? I was in that.”</i> She says that with a bit of pride in her voice before settling down, and looking a bit disappointed, <i>“I- I didn’t win, but it was fun! That and it turns out I really like it here, so I moved in. It’s nice and quiet, and all those big, fluffy huskar just make for the best cuddlers.”</i>");
 		output("\n\nChrissy smiles, lost in her own thoughts for a moment before she turns her attention back to you, <i>“What about you, here for anything special?”</i> Finishing her question, she brings the straw in her brightly coloured drink between her dark lips and starts to suck, expecting you to answer.");
 		output("\n\n");
-		if (flags["SQ_ACTIVE_9999"] == 0) output("Leaning forward onto the table just like she is, you start to explain how you’re “friends” with one of the people who competed in that tournament she was in, causing the tanuki’s eyes to widen a bit before you continue your story. ");
+		if (syriQuestComplete()) output("Leaning forward onto the table just like she is, you start to explain how you’re “friends” with one of the people who competed in that tournament she was in, causing the tanuki’s eyes to widen a bit before you continue your story. ");
 		output("You tell her of your own personal journey, all those trials that brought you all the way out to this frozen moon, your ship, ");
 		if (crewRecruited().length > 0)output("and the crew you’ve assembled. ");
 		else output("and your solo flying adventures. ");
@@ -93,7 +95,7 @@ public function approachChrissy():void
 	else
 	{
 		output("Chrissy takes notice of your approach and her demeanor immediately becomes more than a bit bubbly, with a call of <i>“Hey, [pc.name]!”</i> to welcome you as you finally sit down across from her at the table.");
-		if (flags["SQ_ACTIVE_9999"] == undefined) output("\n\n<i>“Glad you came back,”</i> ");
+		if (!syriQuestComplete()) output("\n\n<i>“Glad you came back,”</i> ");
 		else output("\n\n<i>“I think I saw you out in the crowd during the tournament, hope I put on a good show!”</i> ");
 		output("the tanuki-girl says with a wide smiles on her face, <i>“So, wanna chat, or go back to my place for a round or two?”</i>");
 		output("\n\nYou cock an eyebrow at the clearly intended double-meaning of that last phrase, resulting in a playful giggle from the half kui-tan. She quickly settles down, resting her head in her hands and eagerly awaiting your answer.");
@@ -157,7 +159,7 @@ public function talkChrissyHer():void
 	output("\n\n<i>“O-oh,”</i> Chrissy stutters, shifting uncomfortably in her place, <i>“Guess I should’ve expected that, probably busy with more important stuff like... flying ships... and stuff to worry about video games, huh?”</i>");
 	output("\n\nThe girl looks a little down after that, her shoulders slumping and betraying her normally happy demeanor, prompting you to change the subject and ask her where she lived before her move to this frozen moon.");
 	output("\n\n<i>“I was born on Earth, and I like to move around every now and then. I’m not a spacer, but I enjoy going to new places. Then moved to Tavros for a bit. It was a little too noisy and busy for me, so I went back to Terra. ");
-	if (flags["SQ_ACTIVE_9999"] == undefined) output("Then I heard the tournament was gonna happen here so I came here early");
+	if (!syriQuestComplete()) output("Then I heard the tournament was gonna happen here so I came here early");
 	else output("Then the tournament here on Uveto happened");
 	output(", and after a few nights and a few huskar... I just really liked it here, so I moved in. Still likin’ it so far.”</i>");
 	output("\n\nOnce Chrissy finished her tale of how she got to this moon, she sighs and leans back in her seat, staring at her drink for a moment before she turns to you again, <i>“Like I said, there’s not much you don’t already know, and I hope I don’t sound weird by saying this, but I like to be held, ya know? Feeling someone’s arms around you... covered in blankets until the sound of their breathing makes you fall asleep.”</i> As she’s explaining herself, the half-breed seems lost in her own thoughts, a clear bit of blush appearing on her cheeks until she pulls herself back to reality, when her cheeks get even more red. <i>“That’s not a weird thing to tell someone, r- right?”</i>");
@@ -209,7 +211,7 @@ public function talkChrissyUveto():void
 	output("\n\n<i>“And I don’t know if I mentioned this,”</i> Chrissy says, placing her arms back on the table, though, now her sleeves are falling over her hands, a sure sign that sweater is a couple sizes too-big, <i>“but, uh... I like huskar, a lot. I don’t want to sound like an airhead or anything when I say this, but they’re so fluffy and warm-looking. Every time I see one I just want them to give me a big hug and take me home and... well, you know... uh, sorry if I got carried away.”</i>");
 	output("\n\nLeaning forward with a smirk on your face, you tell Chrissy that it sounds like she has a few more reasons than just drinks to come to the bar.");
 	output("\n\n<i>“Well...”</i> she’s says with more than a hint of tentativeness, <i>“Not really... I’m not very good at asking people out or stuff like that. So I just sort’ve... do whatever, and sometimes people come up to me, which is nice, but I don’t go out of my way for sex... even if I did, I wouldn’t be very good at it because I just get so nervous when I have to go up to someone, which is weird because I’m perfectly fine when someone comes up to me. It’s just weird.”</i>");
-	output("\n\nWell, looks like you made the right move by making the first move and walking up to Chrissy’s booth" + (silly ? ", what a smoothy." : "."));
+	output("\n\nWell, looks like you made the right move by making the first move and [pc.walking] up to Chrissy’s booth" + (silly ? ", what a smoothy." : "."));
 	
 	processTime(10 + rand(3));
 	
@@ -257,7 +259,7 @@ public function playChrissy2():void
 	else output("You and Chrissy are pretty evenly matched, with your quick reflexes and the half-breed’s honed skill with these types of games both put on display, but you ultimately come out on top.");
 	output("\n\n<i>“Man, that was fun,”</i> Chrissy says, putting down her controller and standing up from the couch, taking a big stretch as she does so, <i>“");
 	if (pc.reflexes() < (pc.reflexesMax() / 2)) output("Sorry if I got too competitive with it... it’s in my nature.");
-	else output("You’re pretty good, haven’t gotten a workout like that since the tournament!");
+	else output("You’re pretty good, haven’t gotten a workout like that " + (syriQuestComplete() ? "since the tournament!" : "for a while!"));
 	output("”</i> She gives you a warm smile and points her thumb over her shoulder, <i>“Anyways, wanna head back to the bar?”</i>");
 	
 	IncrementFlag("CHRISSY_VIDYA");
@@ -265,8 +267,17 @@ public function playChrissy2():void
 	if ((pc.reflexes()/pc.reflexesMax()) < .80) pc.slowStatGain("reflexes", 1);
 	
 	if (flags["CHRISSY_VIDYA"] == 5){
-		if (pc.reflexes() < (pc.reflexesMax() / 2)) pc.createPerk("Rage Aim", 1, 50, 0, 0, "You get so mad when you’re losing, you gain +1 accuracy when you’re below 50% health");
-		else pc.createPerk("Calm Aim", 1, 50, 0, 0, "You’re a pretty good shot when things aren’t too hectic, so you gain +1 accuracy when above 50% health.");
+		output("\n\n<b>You learned something from your play sessions with Chrissy</b>");
+		if (pc.reflexes() < (pc.reflexesMax() / 2)) 
+		{
+		pc.createPerk("Rage Aim", 1, 50, 0, 0, "You get so mad when you’re losing, you gain +1 accuracy when you’re below 50% health.");
+		output("\n(<b>Perk Gained: Rage Aim</b> - You get so mad when you’re losing, you gain +1 accuracy when you’re below 50% health.)");
+		}
+		else 
+		{
+		pc.createPerk("Calm Aim", 1, 50, 0, 0, "You’re a pretty good shot when things aren’t too hectic, so you gain +1 accuracy when above 50% health.");
+		output("\n(<b>Perk Gained: Calm Aim</b> - You’re a pretty good shot when things aren’t too hectic, so you gain +1 accuracy when above 50% health.)");
+		}
 	}
 	
 	processTime(60 + rand(15));
@@ -403,7 +414,7 @@ public function vagFuckChrissy():void
 	output("With a smirk, you step closer to your soon-to-be lover, reach down for the hem of her too-big sweater, and start to pull up, resulting in a stuttering breath from the tiny half-breed. Chrissy’s face turns a deep shade of red as the garment is pulled over her head and her pert B-cups are revealed, making her chestnut locks fall down around her face. Similarly, after tossing Chrissy’s sweater aside, you grab at the tanuki girl’s pants and start to work them downwards. She’s happy to assist, wiggling her hips and blushing redder than a zel’rahn at a stripclub, seeming to enjoy the experience of being stripped like this. As her pants pop over her round, full, fuzzy balls, you can already see her thrice-knotted cock appearing from its sheath, swiftly stiffening as you eye its owner’s bare body.");
 	if (!pc.isNude()) output("\n\nWith Chrissy good and nude, you figure you better get yourself undressed as well, and start to strip yourself of your [pc.gear] while your half-breed friend watches with great attention.");
 	output("\n\nThe seemingly subby tanuki takes the initiative and a few steps towards you, bringing her arms to wrap around the back of your neck and pull you down as best she can into a kiss. Chrissy’s whole body visibly shudders when your [pc.lipsChaste] connect with hers, leaving her to shiver in the bliss of the moment. Though, that kiss quickly becomes more fervent, and soon you find your tongues worming their ways into each others mouths, slipping and sliding across one another in an act of oral-passion.");
-	output("\n\nYou can feel your lust - and your [pc.cocks] - growing, urging you to move onward, and bury your stiffening tool deep inside this half-breed’s alien snatch. Aiming to make these thoughts a reality, you reach down and grab Chrissy by her slim waist, hoisting her upwards before dropping her onto the bed with a little yelp from the kui-girl before you follow her tight down onto the mattress. You find yourself pressed into Chrissy as she throws her arms around you once more, pulling you close as your kiss begins again, with the tanuki’s knotted shaft pressing hotly against your [pc.stomach]. Just as you’re settling into the half-breed’s embrace, her legs suddenly wrap around your waist, almost instinctively, begging to be bred as her thighs caress your back and sides with their warm flesh.");
+	output("\n\nYou can feel your lust - and your [pc.cocks] - growing, urging you to move onward, and bury your stiffening tool deep inside this half-breed’s alien snatch. Aiming to make these thoughts a reality, you reach down and grab Chrissy by her slim waist, hoisting her upwards before dropping her onto the bed with a little yelp from the kui-girl before you follow her right down onto the mattress. You find yourself pressed into Chrissy as she throws her arms around you once more, pulling you close as your kiss begins again, with the tanuki’s knotted shaft pressing hotly against your [pc.stomach]. Just as you’re settling into the half-breed’s embrace, her legs suddenly wrap around your waist, almost instinctively, begging to be bred as her thighs caress your back and sides with their warm flesh.");
 	output("\n\nBetween long, tongue filled kisses, Chrissy starts to moan her desires to you, bringing renewed blush to her cheeks. <i>“P- please,”</i> she stutters before she finds her mouth filled with [pc.tongue] again, <i>“I want it.”</i>");
 	output("\n\nWith that, she’s wiggling her ample hips, doing her best to line her already sopping cunt up with your [pc.cockHeadBiggest], clearly eager for a good fucking and a cock between her lower lips. You smile amidst the flurry of smooches you’re receiving and break your kiss, pulling back to look at Chrissy’s hungry gaze, watching her labored breaths, simply displaying that ache to have you fuck her.");
 	output("\n\nKeeping that smirk on your face, you pull back, rising to you knees with your lover’s legs still wrapped around your back, keeping you and your [pc.cockBiggest] close. You take hold of the girl’s plush thighs and angle them forward, lifting her rump off the sheets just slightly and allowing her big ol’ balls and knotty xeno-cock to fall onto her tummy. Chrissy stares up at you lustfully in response to the sudden change in position, her tongue nearly lolling from her mouth as you hold her there. Giving her thigh an affectionate little rub, you take hold of your already rock-hard shaft and line it up with the Chrissy’s kui-cunt. She’s already wet as can be, leaking bead after bead of stray girlcum onto the mattress, clearly eager for the fucking you intend to give her.");
@@ -531,7 +542,7 @@ public function getFuckedChrissy():void
 	output("\n\nFinally bottoming out inside you with her big, lower knot left pressing against your [pc.vagOrAss " + vagIdx + "], Chrissy keeps her position inside you, her breath shuddering. With a quiet groan escaping her darkened lips, the kui-girl fucking you collapses forward under the weight of her pleasure, stradling you on all fours. Almost immediately, you throw your [pc.legOrLegs] around her plush thighs, giving your lover some encouragement to get moving with a little flex of your inner muscles. Chrissy can only whimper in response to the minute movements of your [pc.vagOrAss " + vagIdx + "], prompting her to draw her hips back, dragging her ‘nuki dick out of you until her tapered tip is left pressing against your stretching " + (vagIdx >= 0 ? "pussy" : "asshole") + ". As soon as she’s out, you guide the half-breed back into your with a gentle push of your legs, her smaller knots widening your sodden hole with a delightful slowness. Once she’s buried deep inside you again, she starts to pull out, repeating the same motion again and again until you’re both moaning aloud.");
 	output("\n\nChrissy takes it slow, gently drawing her xeno-cock in and out of your [pc.vagOrAss " + vagIdx + "] while quiet, pleasured sounds fill the room. It seems like the tiny tanuki is trying to avoid an early orgasm by taking things slow, unitentionally teasing you with her gentle, near-sluggish movements while she moans and groans with your inner walls hugging warmly at her length. With need growing in your loins, all you can do is start to roll your own hips, gently grinding Chrissy’s knotty cock against your [pc.vagOrAss " + vagIdx + "], making your lover cry out and tremble with pleasure. It’s all enough to make to make the kui-girl reconsider her slow movements, not too much, just enough that you feel your own orgasm building.");
 	output("\n\nContinuing the gentle pumping and thrusting of her wide hips, Chrissy moans and groans with her barely restrained bliss, setting her compact tush jiggling when her sides meet yours, her swollen breeder’s knob teasing your supple entrance with each inward thrust. Before too long though, you can see the half-breed is close to her climax, shaking and trembling with until a long, drawn out cry of pleasure accentuates a particularly powerful thrust of her hips. You yelp aloud when Chrissy forcefully buries her cock deep inside your, her girthy lower knot forcing your [pc.vagOrAss " + vagIdx + "] to spread as wide as it can. ");
-	output("\n\nSeemingly unable to force her breeder’s knob into you, Chrissy pulls her hips back, leaving you to pant until she slams her hips forwards again, driving the ball of cockflesh into you with a girly grunt and a whimper as her orgasm begins. Virile ‘nuki spunk floods your " + (vagIdx >= 0 ? "womb" : "depths") + " while three entire knots inflate and and spasm inside you, your lover’s sack emptying into you. Chrissy whimpers the whole way through, swelling your [pc.stomach] with her seed and grinding her knot along your inner walls until you’re her personal cum balloon, filled to the brim with her creamy alabaster.");
+	output("\n\nSeemingly unable to force her breeder’s knob into you, Chrissy pulls her hips back, leaving you to pant until she slams her hips forwards again, driving the ball of cockflesh into you with a girly grunt and a whimper as her orgasm begins. Virile ‘nuki spunk floods your " + (vagIdx >= 0 ? "womb" : "depths") + " while three entire knots inflate and spasm inside you, your lover’s sack emptying into you. Chrissy whimpers the whole way through, swelling your [pc.stomach] with her seed and grinding her knot along your inner walls until you’re her personal cum balloon, filled to the brim with her creamy alabaster.");
 	output("\n\nWith a huge ball of cockflesh spreading you wide, kui-cum filling your " + (vagIdx >= 0 ? "cunt" : "asshole") + ", and Chrissy’s hips bucking jerkily against yours, all you can do is lie back and let your orgasm begin. Your [pc.vagOrAss " + vagIdx + "] clamps down around your lover, drawing her deeper into you as your body tenses and your inner muscles spasm, drawing a renewed chorus of pleasured tones from your tanuki lover.");
 	if (vagIdx >= 0) output(" [pc.Girlcum] spills out around Chrissy’s shaft, trickling down to her balls while you both cry out with the bliss of climax.");
 	if (pc.hasCock()) output(" Your [pc.cocks] convulse" + (pc.cocks.length == 1 ? "s" : "") + " alongside Chrissy’s, coating your [pc.chest] and cum-swollen tummy with a healthy amount of [pc.cumNoun].");

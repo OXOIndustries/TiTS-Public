@@ -284,15 +284,11 @@ package classes.Characters
 			{
 				var poss:Creature = alliedCreatures[i] as Creature;
 				
-				// If below the critical point
-				//if (poss.shields() < 0.5 * poss.shieldsMax())
-				//{
-					// If this possibles shield perc is worse than the currents, switch
-					if (poss.shields() / poss.shieldsMax() < target.shields() / target.shieldsMax())
-					{
-						target = poss;
-					}
-				//}
+				// If this possibles shield perc is worse than the currents, switch
+				if (poss.shields() / poss.shieldsMax() < target.shields() / target.shieldsMax())
+				{
+					target = poss;
+				}
 			}
 			
 			// Shield Booster

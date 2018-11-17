@@ -27,7 +27,7 @@
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
 			description = "a lollipop labeled “ClearYu”";
-			tooltip = "A crimson, candy sphere on a white stick that has been tied up in a pink, waxy wrapper. It’s a small, trivial looking thing, but somehow the lollipop seems heavier than it should be.";
+			tooltip = "A crimson, candy sphere on a white stick that has been tied up in a pink, waxy wrapper. It’s a small, trivial looking thing, but somehow the lollipop seems heavier than it should be.\n\n<b>Known to cause moderate amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -49,6 +49,7 @@
 			
 			if(target is PlayerCharacter)
 			{
+				target.taint(2);
 				//Consumption
 				//First time
 				var normal:Boolean = true;

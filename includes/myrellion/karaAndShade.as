@@ -580,7 +580,7 @@ public function helpShadeOutLastChance():void
 	showBust("KARA","SHADE_COMBAT");
 	showName("SHADE\n& KARA");
 	output("Can’t argue with a little bounty work. You ");
-	if(!(pc.meleeWeapon is Rock)) output("draw your weapon");
+	if(pc.hasMeleeWeapon()) output("draw your weapon");
 	else output("pick up a particularly vicious looking rock");
 	output(" and step up beside the huntress. She gives you an approving nod as Kara looks around in a panic.");
 	processTime(1);
@@ -608,7 +608,7 @@ public function helpKaraOutLastChance():void
 	showBust("KARA","SHADE_COMBAT");
 	showName("SHADE\n& KARA");
 	output("You can’t leave a damsel in distress, can you? You ");
-	if(!pc.meleeWeapon is Rock) output("draw your weapon");
+	if(pc.hasMeleeWeapon()) output("draw your weapon");
 	else output("pick up a particularly vicious looking rock");
 	output(" and step up beside Kara. The bounty hunter curses, waving her weapon between the two of you as she realizes things just took a turn for the worse.");
 	flags["LAST_MINUTE_KARASHADE_HELPED:"] = "Kara";
@@ -1260,11 +1260,29 @@ public function shadeApproach():void
 	clearOutput();
 	
 	// Shade left for Uveto Hotfix!
-	if(flags["MYRELLION_PROBE_CASH_GOT"] != undefined && flags["TOLD_SHADE_SHES_YER_SIS"] != undefined)
+	if(flags["MYRELLION_PROBE_CASH_GOT"] != undefined && (flags["TOLD_SHADE_SHES_YER_SIS"] != undefined || flags["SHADE_PAID_YOU"] != undefined || flags["SEXED_SHADE"] != undefined))
 	{
-		output("Before you get the chance to approach her, Shade stands up and leaves in a hurry, not once looking up or making eye-contact with you. She is obviously in a hurry... off to Uveto like she said she would, you guess.");
+		if(flags["TOLD_SHADE_SHES_YER_SIS"] != undefined)
+		{
+			output("Before you get the chance to approach her, Shade stands up and leaves in a hurry, not once looking up or making eye-contact with you. She is obviously in a hurry... off to Uveto like she said she would, you guess.");
+			
+			processTime(2);
+		}
+		else
+		{
+			output("Before you get the chance to approach her, Shade stands up, throws on her duster and adjusts her utility belt. She is obviously in quite a hurry to leave...");
+			output("\n\n<i>“Hey, Steele,”</i> Shade greets you soon as she makes eye contact with you. <i>“Sorry I can’t stay and chat. I’ve been on this dust ball for a long enough");
+			if(flags["SHADE_PAID_YOU"] != undefined) output(" -- my job here is done, my bounty’s been collected,");
+			output(" and I’m having that maternal urge to meet my family back home.”</i>");
+			output("\n\nYou ask her where exactly she is off to.");
+			output("\n\n<i>“On the frozen ice ball known as Uveto VII,”</i> she says as she walks by.");
+			if(!uvetoUnlocked()) output(" <b>Your codex beeps when you recieve the coordinates to location of the moon and its station.</b>");
+			output(" <i>“Feel free to come by and pay me a visit. " + (flags["SEXED_SHADE"] != undefined ? ("We can have a lot of fun together, " + pc.mf("handsome", "cutie", true) + ".") : "Would be nice to have company over.") + "”</i> With that, she leaves the bar and out of your view.");
+			
+			processTime(4);
+		}
+		output("\n\n");
 		
-		processTime(2);
 		if(flags["UVETO_UNLOCKED"] == undefined) flags["UVETO_UNLOCKED"] = 1;
 		if(flags["SHADE_ON_UVETO"] == undefined) flags["SHADE_ON_UVETO"] = 1;
 		

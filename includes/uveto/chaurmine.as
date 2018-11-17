@@ -175,7 +175,7 @@ public function TLCForChaurmineOnUveto():void
 	processTime(10);
 	pc.lust(5);
 	//[Cuddle] Stop the lewds, and just enjoy each other’s’ warmth. // Go to Cuddle
-	addButton(0,"Cuddle",cuddelWithCharmineAfterBeatDown,undefined,"Cuddle","Stop the lewds, and just enjoy each other’s’ warmth.");
+	addButton(0,"Cuddle",cuddelWithCharmineAfterBeatDown,undefined,"Cuddle","Stop the lewds, and just enjoy each other’s warmth.");
 	//[Get Fucked] Chaurmine takes the reigns. He’ll probably get quite rough, though... // Go to Get Fucked
 	addButton(1,"Get Fucked",getFuckedByChaurmine,undefined,"Get Fucked","Chaurmine takes the reigns. He’ll probably get quite rough, though...");
 }
@@ -380,14 +380,14 @@ public function pcLosesToChaurmine():void
 //Unlocks after Uveto Event is completed
 //Add to Uveto Hangar
 //Room description
-public function chaurmineUvetoStationBonus():void
+public function chaurmineUvetoStationBonus(btnSlot:int = 0):void
 {
-	showChaurmine();
-	author("Aullama");
+	//showChaurmine();
+	//author("Aullama");
 	output("\n\nIn the distance, you see the familiar sight of metallic silver scales covering a tall and bulky frame. Chaurmine lounges around the entrance to the umbilical connected to his large ship.");
 
 	//[Chaurmine] // Go to Visiting Chaurmine
-	addButton(0,"Chaurmine",approachCharmine);
+	addButton(btnSlot,"Chaurmine",approachCharmine);
 }
 
 // Visiting Chaurmine
@@ -844,10 +844,10 @@ public function myrVenomChaurmineFun():void
 	if(pc.hasFuckableNipples()) pc.loadInNipples(chars["CHAURMINE"]);
 
 	clearMenu();
-	addButton(0,"Next",chaurmineVenomsSlootings2);
+	addButton(0,"Next",chaurmineVenomsSlootings2, x);
 }
 
-public function chaurmineVenomsSlootings2():void
+public function chaurmineVenomsSlootings2(x:int):void
 {
 	clearOutput();
 	showChaurmine(true);

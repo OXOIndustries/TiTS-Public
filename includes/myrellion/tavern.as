@@ -163,7 +163,7 @@ public function reallySmashedEpiloguetoDrinkingWithCandicePartII():void
 	//PC's been to New Texas, either fucked Shade or has a Cunt Tail, and has Reaha on Crew
 	if(flags["NEW_TEXAN_CUSTOMS_MET"] != undefined && ((flags["SEXED_SHADE"] != undefined && pc.hasCock()) || pc.hasCuntTail()) && reahaIsCrew())
 	{
-		showBust("REAHA");
+		showBust(reahaBustDisplay());
 		showName("\nREAHA");
 		output("You wake up to a loud, head-pounding... pounding. You blink yourself awake and struggle to your [pc.feet] as... something... hammers the door to the bathroom. You take a second to take inventory: you’re on your ship, you’ve got your equipment, and your chest is splattered with blood, puke, and beer. Oof.");
 		output("\n\n<i>BANG</i> goes the bathroom door.");

@@ -2,16 +2,18 @@ package classes.Engine.Combat
 {
 	import classes.kGAMECLASS;
 	import classes.Creature;
+	import classes.Items.Piercings.GeddaniumRingPiercing;
+	import classes.Items.Piercings.UrtaniumRingPiercing;
 	import classes.Characters.*;
 	import classes.Engine.Interfaces.*;
 	import classes.GameData.CombatManager;
 	import classes.GameData.CombatAttacks;
 	import classes.Engine.Utility.rand;
+	import classes.Engine.Utility.possessive;
 	import classes.StringUtil;
 	import classes.Engine.Combat.*;
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.teaseReactions;
-	import classes.Engine.Utility.possessive;
 	import classes.Util.InCollection;
 	/**
 	 * ...
@@ -35,8 +37,12 @@ package classes.Engine.Combat
 		{
 			for (var i:int = 0; i < likeAdjustments.length; i++) factor *= likeAdjustments[i];
 		}
-		
+		//Free "really likes" for geddanium rang~
+		if (attacker.hasPiercingOfClass(GeddaniumRingPiercing) && target.hasScales()) factor *= 2;
+		if (attacker.hasPiercingOfClass(UrtaniumRingPiercing) && target.hasFur()) factor *= 2;
 		if (attacker.hasStatusEffect("Sex On a Meteor") || attacker.hasStatusEffect("Tallavarian Tingler")) factor *= 1.5;
+		if (attacker.hasStatusEffect("\"Rutting\"")) factor *= 1.5;
+		if (attacker.hasStatusEffect("Body Paint")) factor *= 1.15;
 		if (attacker.hasStatusEffect("Well-Groomed")) factor *= attacker.statusEffectv2("Well-Groomed");
 		if ((target.originalRace == "nyrea" && attacker.hasPerk("Nyrean Royal")) || attacker.hasStatusEffect("Oil Aroused")) factor *= 1.1;
 		if (attacker.hasFur())
@@ -50,16 +56,17 @@ package classes.Engine.Combat
 		if (teaseType == "SQUIRT") bonus += 2;
 		if (attacker.hasStatusEffect("Sweet Tooth")) bonus += 1;
 		
+		/* Fen note: cut to move this over to the sexprefs system.
 		var sweatyBonus:int = 0;
-		if(attacker.hasStatusEffect("Sweaty") && target.hasPerk("Likes_Sweaty")) 
+		if(attacker.hasStatusEffect("Sweaty") && target.sexualPreferences.getPref(GLOBAL.SEXPREF_SWEAT) > 0) 
 		{
 			//-5 per level normally, so add twice that since we flippin it'
 			sweatyBonus = attacker.statusEffectv1("Sweaty") * 10;
 			//Furries dont benefit quite as much.
 			if(attacker.hasFur()) sweatyBonus = attacker.statusEffectv1("Sweaty") * 5;
-		}
+		}*/
 		
-		if (target.isLustImmune || (target.willpower() / 2 + rand(20) + 1 > attacker.level * 2.5 * factor + 10 + teaseCount / 10 + attacker.sexiness() + bonus + sweatyBonus))
+		if (target.isLustImmune || (target.willpower() / 2 + rand(20) + 1 > attacker.level * 2.5 * factor + 10 + teaseCount / 10 + attacker.sexiness() + bonus))
 		{
 			if(target is HandSoBot)
 			{
@@ -124,7 +131,7 @@ package classes.Engine.Combat
 		}
 		else
 		{
-			var damage:Number = 10 * (teaseCount / 100 + 1) + attacker.sexiness() / 2 + sweatyBonus / 2 + attacker.statusEffectv2("Painted Penis") + attacker.statusEffectv4("Heat");
+			var damage:Number = 10 * (teaseCount / 100 + 1) + attacker.sexiness() / 2 + attacker.statusEffectv2("Painted Penis") + attacker.statusEffectv4("Heat");
 			if (teaseType == "SQUIRT") damage += 5;
 			if (attacker.hasPheromones()) damage += 1 + rand(4);
 			damage *= (rand(31) + 85) / 100;
@@ -230,9 +237,20 @@ package classes.Engine.Combat
 
 function teaseSkillUp(teaseType:String):void
 {
-	import classes.kGAMECLASS;
+	if(teaseType == null) return;
 	
-	if (teaseType == "SQUIRT") teaseType = "CHEST";
-	else if(teaseType == "DICK SLAP") teaseType = "CROTCH";
-	kGAMECLASS.flags["TIMES_" + teaseType + "_TEASED"]++; // the menu display handles wrapping this so w/e
+	import classes.kGAMECLASS;
+	import classes.Engine.Utility.IncrementFlag;
+	import classes.Util.InCollection;
+	
+	switch(teaseType)
+	{
+		case "SQUIRT": teaseType = "CHEST"; break;
+		case "DICK SLAP": teaseType = "CROTCH"; break;
+		case "MYR VENOM": teaseType = "ORAL"; break;
+	}
+	
+	if(InCollection(teaseType, ["BUTT", "CHEST", "CROTCH", "HIPS", "ORAL"]))
+		IncrementFlag("TIMES_" + teaseType + "_TEASED"); // the menu display handles wrapping this so w/e
 }
+

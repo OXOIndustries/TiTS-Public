@@ -204,7 +204,7 @@ package classes.Items.Transformatives
 			author("Owens");
 			
 			// if not brute/bimbo:
-			if(!target.isBro() && !target.isBimbo()) output("It seems a little silly that they would list a warning on what is clearly a skin product. Overcome by curiosity, you squeeze a small dollop onto a fingertip, hesitantly licking the clear drop. The taste of peaches and cream explodes in your mouth, a delightfully sweet combination. No wonder they had to put the warning! Well, might as well finish what you’ve started: unscrewing the top of the bottle, you place the opening to your [pc.lips] and tilt your head back, dumping the viscous liquid down your throat. It’s like a shot of the stickiest yogurt you’ve ever had, oozing down your throat and leaving a thick, creamy trail behind. As the last of the liquid leaves the bottle, you feel a rumbling in your belly. Setting the bottle down, yyou cover your mouth as your gut gurgles, feeling something working its way back up your throat. As if beyond your control, a hiccup forces your jaw open, releasing a smattering of small bubbles. They float gently upwards, drifting away from you as your upset tummy quiets. Smacking your lips after the strange experience, you settle down, waiting to see what happens.");
+			if(!target.isBro() && !target.isBimbo()) output("It seems a little silly that they would list a warning on what is clearly a skin product. Overcome by curiosity, you squeeze a small dollop onto a fingertip, hesitantly licking the clear drop. The taste of peaches and cream explodes in your mouth, a delightfully sweet combination. No wonder they had to put the warning! Well, might as well finish what you’ve started: unscrewing the top of the bottle, you place the opening to your [pc.lips] and tilt your head back, dumping the viscous liquid down your throat. It’s like a shot of the stickiest yogurt you’ve ever had, oozing down your throat and leaving a thick, creamy trail behind. As the last of the liquid leaves the bottle, you feel a rumbling in your belly. Setting the bottle down, you cover your mouth as your gut gurgles, feeling something working its way back up your throat. As if beyond your control, a hiccup forces your jaw open, releasing a smattering of small bubbles. They float gently upwards, drifting away from you as your upset tummy quiets. Smacking your lips after the strange experience, you settle down, waiting to see what happens.");
 			// If brute:
 			else if(target.isBro()) output("No stupid label tells you what to do! Ripping the cap off the bottle, you chug the liquid inside like a pro. No, like a bro! YEAH! Tossing the bottle aside, you swallow the last of the thick, clear stuff, feeling it clog your throat. Tastes like a fruity girly drink, not something you’d usually go for. A loud belch works it way up from your gut, letting a slew of bubbles escape from your mouth. Weird as shit, bro. Now bored, you wait, wondering what’s going to happen next.");
 			// if bimbo:
@@ -539,8 +539,8 @@ package classes.Items.Transformatives
 					target.girlCumType = GLOBAL.FLUID_TYPE_SPECIAL_GOO;
 					target.cumType = GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO;
 					
-					target.libido(9000);
-					target.lust(9000);
+					target.maxOutLibido();
+					target.maxOutLust();
 					break;
 				case 2:
 					kGAMECLASS.showName("CLEARER\nSKIN...");
@@ -584,7 +584,7 @@ package classes.Items.Transformatives
 					
 					target.cockChange();
 					
-					target.lust(9000);
+					target.maxOutLust();
 					target.orgasm();
 					target.cocks.push(newCock);
 					target.copyCock(target.cocks.length - 1, target.biggestCockIndex());
@@ -667,8 +667,8 @@ package classes.Items.Transformatives
 					output("\n\nYou enter the hangar, approaching your Vice Ruler. The title is meaningless, since she’s also you, but it’s fun to give her nicknames. She smiles at you, kissing you on the cheek in greeting as you slap her on her ass. She giggles, jiggling from the gesture, then turns to direct your attention to the ground below. All the starcrafts you could collect are assembled below and you’re loading them with dozens upon dozens of yourself. They all turn to look at you, saluting before resuming to board the multitude of ships. You grimace, gooey fists clenching the railings. The only option you have left is to try and reach for the stars, or sit here and go crazy. Your lover wraps her arms around you, trying to console you, but you can’t even return her affection. As the engines fire up below you, the burning need pushes all other thoughts from your mind.");
 					
 					kGAMECLASS.processTime(35 + rand(5));
-					target.libido(9000);
-					target.lust(9000);
+					target.maxOutLibido();
+					target.maxOutLust();
 					break;
 				default:
 					output("Oh no, something unexpected happened!");

@@ -488,7 +488,7 @@ public function fynTalksAboutFynPcIsNoFlirt():void {
 public function fynTalksAboutFynPartTwo():void {
 	output("\n\n<i>“My full name is Fyn Wilder; or at least, that’s my full stage name. Apparently ‘Eriladar’ wasn’t distinctive enough, or too hard to pronounce, so my agent suggested I axe it,”</i> he gives a light shrug, <i>“‘Fyn Wilder’ seemed like a good fit.”</i>");
 	output("\n\n<i>“I’m twenty eight, and my home planet is Merope, in the Pleaides star cluster. That’s not too far from Terra, galaxy-wise, so we got a lot of terran culture growing up. I’m actually a bit of a terraphile, truth be told; some of the old Earth cultures had some real character.”</i>");
-	output("\n\n<i>“Loving terran culture is probably what attracted to me to the stage,”</i> the raven-haired man pointedly touches his throat, <i>“Thankfully, my family had me genetically modified before I was born; my vocal cords are spliced with a fanfir’s. It was all the rage with vildarii back then, and it really helped keep up with the competition.”</i>");
+	output("\n\n<i>“Loving terran culture is probably what attracted me to the stage,”</i> the raven-haired man pointedly touches his throat, <i>“Thankfully, my family had me genetically modified before I was born; my vocal cords are spliced with a fanfir’s. It was all the rage with vildarii back then, and it really helped keep up with the competition.”</i>");
 
 	processTime(5);
 }
@@ -614,7 +614,7 @@ public function fynTalksAboutFencing():void {
 	clearOutput();
 	showFyn();
 	
-	output("Fencing seems like an interesting hobby, so you ask Fyn about it. He strides over to a wicker-basket and pulls out a what looks like a fencing sword. The raven-haired man gives it a lazy flourish.");
+	output("Fencing seems like an interesting hobby, so you ask Fyn about it. He strides over to a wicker-basket and pulls out what looks like a fencing sword. The raven-haired man gives it a lazy flourish.");
 	output("\n\n<i>“Good for footwork. That’s why I originally started. Some learn it for practicality - rushers in particular - while other for sport. Me? I do it for fun.”</i>");
 	output("\n\nHe hands you the fencing sword, and you take it. Feels light, very light; some sort of special blade? There’s a switch at the handle, and you flick it. There’s suddenly a low hum coming from the blade, and when you touch it against the ground, there’s a light blue crack.");
 	output("\n\n<i>“It’s a stun blade. I’m not one for wearing silly outfits or wearing shields. It’s one of the few sports that requires both mind and body in even measure. Self discipline, too. Whether you win or lose, with fencing, it’s up to you. Misinterpret a parry, you change tactics or you lose. You need quick thinking </i>and<i> quick feet.”</i>");
@@ -746,7 +746,7 @@ public function fynTeachesStripping():void
 			break;
 		case 2 :
 			output("\n\n<i>“Always remember, when it comes to stripping, there are no strict rules. Don’t just memorize a dance routine, or think there’s an ‘order’ of undressing. What a turn off, for you </i>and<i> the audience! Just play it by ear, </i>watch<i> their faces, do what you like, and above all, enjoy the process!”</i>");
-			output("\n\n<i>“If you feel more comfortable with routine, that’s okay, but add your own touch - your own flare - to your performance. Own it, it’s yours!”</i>");
+			output("\n\n<i>“If you feel more comfortable with routine, that’s okay, but add your own touch - your own flair - to your performance. Own it, it’s yours!”</i>");
 			output("\n\nAfter going over the theory, the lesson turns to practice. After dancing a few routines, you’re asked to free-style the strip tease. It takes a little getting used to making things up on the fly, but once you start to feel the music in the background, it becomes much easier.");
 			break;
 		case 3 :

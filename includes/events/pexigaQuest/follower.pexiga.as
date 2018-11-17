@@ -11,14 +11,15 @@ public function pexigaRecruited():Boolean
 
 public function showYammiAndPexiga(nude:Boolean = false):void
 {
-	var nudePrefix:String = "";
-	if(nude) nudePrefix = "_NUDE";
-	showName("YAMMI &\n" + pexiga.short.toUpperCase());
+	showName("YAMMI &\n" + pexigaName().toUpperCase());
+	showBust(yammiBustDisplay(nude), pexigaBustDisplay(nude));
+}
+public function pexigaBustDisplay(nude:Boolean = false):String
+{
+	var sBust:String = "PEXIGA";
+	if(pexiga.hasPerk("Ditz Speech")) sBust += "_BIMBO";
 	
-	var pexigaString:String = "PEXIGA";
-	if(pexiga.hasPerk("Ditz Speech")) pexigaString += "_BIMBO";
-
-	showBust("YAMMI" + nudePrefix, pexigaString);
+	return sBust;
 }
 
 //[Pexiga]
@@ -368,7 +369,7 @@ public function pexigaGagTalk():void
 	output("You have to admit, you’re a little curious why [pexiga.name] is still wearing that ring gag. She seems incapable of harming somebody else, beyond drenching their clothing in a thick layer of her endlessly dripping fluids. [pexiga.name] stares blankly at you for a minute before you take her hand and press it against the metal in her maw. <i>“Oh! Chewie,”</i> she coos, playfully gnawing at the gag a bit.");
 	output("\n\n<i>“So, it’s not uncomfortable or awkward?”</i> you ask.");
 	output("\n\n<i>“Nuh uh,”</i> she replies, shaking her head vigorously. <i>“It’s a gift from Miss Yammi! [pexiga.name] likes Miss Yammi. Also, before chewie I sometimes bit my tongue,”</i> she pouts, holding her hefty organ tenderly in both hands.");
-	if(pc.isBimbo()) output("\n\n<i>“Oh, okay!. Like, some people aren’t fans of bein’ sex objects or whatever. They’re like ‘blah blah don’t fuck everything that moves.’ It’s like they don’t even like sex or something!”</i>");
+	if(pc.isBimbo()) output("\n\n<i>“Oh, okay! Like, some people aren’t fans of bein’ sex objects or whatever. They’re like ‘blah blah don’t fuck everything that moves.’ It’s like they don’t even like sex or something!”</i>");
 	else output("\n\n<i>“It’s just, for most people, wearing a sex toy all the time seems a bit weird or makes them feel self-conscious. Like, all they’re good for is sex. Mating,”</i> you clarify.");
 	output("\n\n<i>“How come? Mating feels gooooood,”</i> she sighs. A thought strikes her. <i>“Oh! Did you want to mate my mouth?”</i> she asks hopefully. Her tail curls upward, stiffening at the prospect of a savage face fucking.");
 	if(pc.lust() < 30) output(" Now’s not really the time for that, though.");

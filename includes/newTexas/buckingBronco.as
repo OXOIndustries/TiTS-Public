@@ -61,9 +61,20 @@ public function saloonInteriorBonus():Boolean
 	//[Rum Cow] Follow the wonderful scent of that cowgirl to the bar. //replace with [Sally] after the first time the player selects this.
 	if(sallyBarHours())
 	{
-		if(flags["MET_SALLY"] == undefined) output("\n\nThat dark-skinned, rum-titted cowgirl is sitting at the bar and sipping a drink. She’s still completely nude, and you can practically smell whatever kind of pheromones she’s producing from over here, almost like the scent is calling you over to her.");
-		else output("\n\nSitting at the bar with a drink in her hands, and a lust-inducing haze surrounding her, is Sally, that rum-cow you met before. She’s looking at you like she knows her pheromones are already at work on your mind.");
-		addButton(3,(flags["MET_SALLY"] == undefined ? "Rum Cow" : "Sally"),approachSally,undefined,(flags["MET_SALLY"] == undefined ? "Rum Cow" : "Sally"),"Follow the wonderful scent of that cowgirl to the bar.");
+		if (isBrandyWithSally())
+		{
+			if (flags["MET_BRANDY_SALLY"] == undefined) output("\n\nLooking along the bar, where you'd normally see an empty seat next to Sally, you instead see New Texas' own minty-haired, mute cowgirl: Brandy. The quiet queenie is carrying out as much of a conversation as she can with Sally, blushing and giggling silently every once in awhile. Like her rum-titted friend (girlfriend?), Brandy appears to be <i>completely naked</i>.");
+			else output("\n\nSally and Brandy are sitting together at bar again, both of them completely nude. The darker-skinned cowgirl points you out to her girlfriend, and they both wave happily at you.");
+			addButton(3,"Sally & Brandy",approachBrandySally,undefined,"Sally & Brandy","Follow the wonderful scent of the cowgirls to the bar.");
+	
+		}
+		else
+		{
+			if(flags["MET_SALLY"] == undefined) output("\n\nThat dark-skinned, rum-titted cowgirl is sitting at the bar and sipping a drink. She’s still completely nude, and you can practically smell whatever kind of pheromones she’s producing from over here, almost like the scent is calling you over to her.");
+			else output("\n\nSitting at the bar with a drink in her hands, and a lust-inducing haze surrounding her, is Sally, that rum-cow you met before. She’s looking at you like she knows her pheromones are already at work on your mind.");
+			addButton(3,(flags["MET_SALLY"] == undefined ? "Rum Cow" : "Sally"),approachSally,undefined,(flags["MET_SALLY"] == undefined ? "Rum Cow" : "Sally"),"Follow the wonderful scent of that cowgirl to the bar.");
+	
+		}
 	}
 	//[Ride Bronco]
 	addButton(4,"Ride Bronco",ridingTheBuckingBronco,undefined,"Ride Bronco","Get on that perverted horsey!");
@@ -548,8 +559,8 @@ public function bbFoodMenu():void
 	else addDisabledButton(0,"B&Gravy","Biscuits and Gravy","You cannot afford that.\n\nCost: 5 Credits");
 	if(pc.credits >= 10) addButton(1,"Country Ham",eatAtTheBB,"Country Ham","Country Ham","Pan-fried ham on a bed of grits and smothered in red-eye gravy. Served with a side of skillet-baked cornbread.\n\nCost: 10 Credits");
 	else addDisabledButton(1,"Country Ham","Country Ham","You cannot afford that.\n\nCost: 10 Credits");
-	if(pc.credits >= 20) addButton(2,"CF Steak",eatAtTheBB,"CF Steak","Country Fried Steak","Not actually chicken but rather a cube steak soaked in milk, breaded with seasoned flour, and skillet-fried to perfection, slathered in a milk gravy. Served with a side of mashed potatoes.\n\nCost: 20 Credits");
-	else addDisabledButton(2,"Country Ham","Country Ham","You cannot afford that.\n\nCost: 20 Credits");
+	if(pc.credits >= 20) addButton(2,"CF Steak",eatAtTheBB,"CF Steak","Chicken Fried Steak","Not actually chicken but rather a cube steak soaked in milk, breaded with seasoned flour, and skillet-fried to perfection, slathered in a milk gravy. Served with a side of mashed potatoes.\n\nCost: 20 Credits");
+	else addDisabledButton(2,"CF Steak","Chicken Fried Steak","You cannot afford that.\n\nCost: 20 Credits");
 	if(pc.credits >= 50) addButton(3,"72oz Steak",eatAtTheBB,"72oz Steak","72 oz. Steak","Four and a half pounds of sirloin steak might seem insane on other planets, but for the massive, energetic residents of New Texas this is “just” a large steak. Popular with tourists who want the full “New Texas experience.”\n\nCost: 50 Credits");
 	else addDisabledButton(3,"72oz Steak","72 oz. Steak","You cannot afford that.\n\nCost: 50 Credits");
 	addButton(14,"Back",mainGameMenu);
@@ -581,7 +592,7 @@ public function eatAtTheBB(fud:String):void
 	else if(fud == "Country Ham")
 	{
 		output("\n\nYou grab your knife and fork and slice off a piece of the ham, scooping up a bit of the grits and gravy with it. It’s a symphony of flavors: the pan-seared ham is savory, the grits are creamy and slightly sweet, and the red-eye gravy is bitter and salty. Your mouth tingles deliciously from the salty taste of the meal. It’s as salty as something can be without being at all unpleasant, and it only gives you an excuse to drink more of your delicious iced tea.");
-		output("\n\nYou take a bite of the delicious cornbread. There’s no corn kernels in it and the texture is unlike like most bread you’ve had; rather, it’s made of cornmeal, flour, and buttermilk placed in a cast-iron skillet and baked in an oven. It crumbles in your mouth immediately, the top surface of the cornbread satisfyingly and audibly crunchy, while the interior and bottom is soft and chewy.");
+		output("\n\nYou take a bite of the delicious cornbread. There’s no corn kernels in it and the texture is unlike most bread you’ve had; rather, it’s made of cornmeal, flour, and buttermilk placed in a cast-iron skillet and baked in an oven. It crumbles in your mouth immediately, the top surface of the cornbread satisfyingly and audibly crunchy, while the interior and bottom is soft and chewy.");
 		output("\n\nYou make quick work of the ham before using the cornbread to sop up the red-eye gravy and remaining grits. The salty meal has left your tea pitcher completely empty, but your belly is delightfully full.");
 		restHeal();
 		pc.credits -= 10;
@@ -924,7 +935,8 @@ public function sallyJobTalk():void
 	output("\n\nWell, judging from the smile on her face you saw when she was at work, it seems like she has quite the job, and you tell her so.");
 	output("\n\n<i>“I don’t think there’s any other job I’d rather have,”</i> she says grinning wide down into her glass for a moment before facing you again, <i>“Especially if it brings " + pc.mf("hunks","cuties") + " like you my way after-hours.”</i>");
 	output("\n\nThe combination of her kind words and the lust hazing your mind makes you smile, right into the bovine girl’s blue eyes.");
-	output("\n\n<i>“Believe it or not, there’s some people that </i>don’t<i> want a dream job like this,”</i> she continues, taking a small sip from her glass, <i>“Not too long ago some girl quit to work in the stockyard. I think her name was Sandy, or something like that. Don’t know why she quit, but she was cute as a button, with those little green ponytails of hers.”</i> Sally pauses and puts a confused look on her pretty face, <i>“She never talked much, though.”</i>");
+	//skip the last paragraph if sally has brandy as girlfriend
+	if(flags["BRANDY_RELATIONSHIP"] != 1 || pc.hasStatusEffect("Brandy Sally Timer")) output("\n\n<i>“Believe it or not, there’s some people that </i>don’t<i> want a dream job like this,”</i> she continues, taking a small sip from her glass, <i>“Not too long ago some girl quit to work in the stockyard. I think her name was Sandy, or something like that. Don’t know why she quit, but she was cute as a button, with those little green ponytails of hers.”</i> Sally pauses and puts a confused look on her pretty face, <i>“She never talked much, though.”</i>");
 	processTime(4);
 	clearMenu();
 	addButton(0,"Next",backToSallyMain);

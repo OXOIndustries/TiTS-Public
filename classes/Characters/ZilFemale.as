@@ -7,6 +7,7 @@
 	import classes.Items.Guns.*
 	import classes.Items.Melee.Fists;
 	import classes.Items.Miscellaneous.*
+	import classes.Items.Accessories.FlashGoggles;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -70,13 +71,13 @@
 			this.scaleColor = this.scaleColor;
 			this.furColor = "yellow";
 			this.hairLength = 22;
-			this.hairType = GLOBAL.TYPE_BEE;
+			this.hairType = GLOBAL.HAIR_TYPE_HAIR;
 			this.beardLength = 0;
 			this.beardStyle = 0;
 			this.skinType = GLOBAL.SKIN_TYPE_CHITIN;
 			this.skinTone = "black";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.TYPE_BEE;
+			this.faceType = GLOBAL.TYPE_HUMAN;
 			this.faceFlags = new Array();
 			this.tongueType = GLOBAL.TYPE_BEE;
 			this.lipMod = 0;
@@ -87,7 +88,7 @@
 			this.hornType = 0;
 			this.armType = GLOBAL.TYPE_BEE;
 			this.gills = false;
-			this.wingType = GLOBAL.TYPE_BEE;
+			this.wingType = 0;
 			wingCount = 2;
 			this.legType = GLOBAL.TYPE_BEE;
 			this.legCount = 2;
@@ -136,6 +137,7 @@
 			this.createVagina();
 			this.girlCumType = GLOBAL.FLUID_TYPE_HONEY;
 			this.vaginalVirgin = false;
+			this.vaginas[0].hymen = false;
 			this.vaginas[0].loosenessRaw = 2;
 			this.vaginas[0].wetnessRaw = 4;
 			this.vaginas[0].type = GLOBAL.TYPE_BEE;
@@ -162,16 +164,18 @@
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 
-			this.breastRows[0].breastRatingRaw = 0;
+			this.breastRows[0].breastRatingRaw = 3;
 			this.nippleColor = "black";
 			this.milkMultiplier = 100;
 			this.milkFullness = 100;
 			this.milkType = GLOBAL.FLUID_TYPE_HONEY;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
+			this.analVirgin = false;
 			this.ass.wetnessRaw = 0;
 			this.ass.bonusCapacity += 15;
 			this.createStatusEffect("Disarm Immune");
+			this.createPerk("Appearance Enabled");
 			
 			isUniqueInFight = true;
 			btnTargetText = "ZilFemale";
@@ -198,7 +202,12 @@
 			
 			long = "The female zil stands just shy of 5\'6\", and is covered from head to toes in shiny black chitin. A downy fuzz falls from her head down to her shoulders, resembling curly " + hairColor + " hair. She’s got dozens of sharp darts on her belt, noticeably discolored with chemicals, and a number of glass vials at hand full of who-knows what. Worse, she’s got a full bee-like abdomen behind her with a deadly-looking stinger. She moves with a liquid, feline grace, assuming a combat stance that leaves her crotch pointed at you to fill the air with lusty pheromones as her perky tits jut out at you, bobbing from side to side enticingly.";
 		}
-		
+		public function pumpkingIt():void
+		{
+			isUniqueInFight = false;
+			this.rangedWeapon = new LaserCarbine();
+			this.inventory = [];
+		}
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			if (dataObject.legFlags.length == 0)
@@ -228,18 +237,24 @@
 			var target:Creature = selectTarget(hostileCreatures);
 			
 			if (target == null) return;
-			
-			if (flags["HIT_A_ZILGIRL"] != undefined) 
+			if(this.rangedWeapon is LaserCarbine)
 			{
-				flags["HIT_A_ZILGIRL"] = undefined;
-				zilFemSting(target);
+				CombatAttacks.SingleRangedAttackImpl(this, target);
 			}
-			else if(rand(4) == 0) lustBangOut(target);
-			else if((HP()/HPMax()) < 0.5 && rand(4) == 0) zilFemSting(target);
-			else if(rand(4) == 0) pheromoneFanFromZilFemale(target);
-			else if(rand(3) == 0) zilFemaleDartThrow(target);
-			else if(rand(2) == 0) flurryOfFemBlows(target);
-			else zilFemHarden(target);
+			else
+			{
+				if (flags["HIT_A_ZILGIRL"] != undefined) 
+				{
+					flags["HIT_A_ZILGIRL"] = undefined;
+					zilFemSting(target);
+				}
+				else if(rand(4) == 0) lustBangOut(target);
+				else if((HP()/HPMax()) < 0.5 && rand(4) == 0) zilFemSting(target);
+				else if(rand(4) == 0) pheromoneFanFromZilFemale(target);
+				else if(rand(3) == 0) zilFemaleDartThrow(target);
+				else if(rand(2) == 0) flurryOfFemBlows(target);
+				else zilFemHarden(target);
+			}
 		}
 		
 		private function zilFemHarden(target:Creature):void
@@ -321,9 +336,14 @@
 					output(" You cry out as the vial shatters, exploding in a pink cloud that blows over you. You gag and cough and suddenly your hands are reaching to your crotch as if on their own. You yank back, but feel a hot haze washing across your exposed body. What the hell is this stuff?");
 					//PC must pass an willpower check, else:
 					target.lust(5);
-					if(target.willpower() + rand(20) + 1 < 20 && !target.hasStatusEffect("Blinded") && !target.hasBlindImmunity()) {
-						output("\n\nSuddenly, you realize that in the wake of the pink cloud, your vision’s collapsed to just a few feet in front of you, and the zil girl is nowhere to be seen. You desperately rub at your eyes, but that only serves to make them burn as the lust-cloud sticks to your [pc.skin]. Oh, shit, <b>you’re blinded</b>!");
-						CombatAttacks.applyBlind(target,rand(3) + 1 );
+					if(!target.hasStatusEffect("Blinded"))
+					{
+						if(target.accessory is FlashGoggles) output("\n\nFortunately, your goggles shield your eyes from the pink cloud and you avoid being blinded!");
+						else if(target.hasBlindImmunity()) output("\n\nFortunately, your eyes are unaffected by the pink cloud and you avoid being blinded!");
+						else if(target.willpower() + rand(20) + 1 < 20) {
+							output("\n\nSuddenly, you realize that in the wake of the pink cloud, your vision’s collapsed to just a few feet in front of you, and the zil girl is nowhere to be seen. You desperately rub at your eyes, but that only serves to make them burn as the lust-cloud sticks to your [pc.skin]. Oh, shit, <b>you’re blinded</b>!");
+							CombatAttacks.applyBlind(target,rand(3) + 1 );
+						}
 					}
 				}
 			}

@@ -235,8 +235,8 @@ public function sneezingTitsFinish(deltaT:uint, maxEffectLength:uint, doOut:Bool
 	
 	if (msg.length > 0) AddLogEvent(msg, "passive", maxEffectLength);
 	
-	pc.removeStatusEffect("Undetected Sneezing Tits");
-	pc.removeStatusEffect("Sneezing Tits");
+	pc.removeStatusEffect("Undetected Sneezing Tits", true);
+	pc.removeStatusEffect("Sneezing Tits", true);
 }
 // Also, Steele can have the disease cured at any V-KO unit or at Vi on Myrellion.
 

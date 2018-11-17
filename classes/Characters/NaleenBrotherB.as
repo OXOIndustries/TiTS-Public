@@ -151,7 +151,7 @@
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 6;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 9000;
 			this.timesCum = 998;
 			this.cockVirgin = false;
@@ -281,7 +281,7 @@
 				if(target is PlayerCharacter) output(" You hop over it!");
 				else output(" Azra dodges the attack!");
 			}
-			else if(this.physique()/2 + rand(20) + 5 < target.physique()/2 + 10)
+			else if((this.physique()/2 + rand(20) + 5 < target.physique()/2 + 10) || target.isPlanted())
 			{
 				if(target is PlayerCharacter) output(" It smacks off your [pc.leg]. It hurts, but you’re not going down that easy.");
 				else output(" It strikes Azra’s leg, but to little effect.");
@@ -312,7 +312,7 @@
 			output(". It catches on the smallest eddy and breeze, spreading into a stinging white cloud.");
 
 			//Avoid
-			if(rangedCombatMiss(this, target))
+			if(target.hasBlindImmunity() || rangedCombatMiss(this, target))
 			{
 				if(target is PlayerCharacter) output(" You avoid getting any in your eyes.");
 				else output(" Azra avoids getting any in her eyes.");

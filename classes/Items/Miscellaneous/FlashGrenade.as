@@ -13,6 +13,7 @@ package classes.Items.Miscellaneous
 	import classes.GameData.CombatAttacks;
 	import classes.Engine.Utility.rand;
 	import classes.Characters.PlayerCharacter;
+	import classes.Items.Accessories.FlashGoggles;
 	
 	/**
 	 * ...
@@ -112,7 +113,17 @@ package classes.Items.Miscellaneous
 				
 				var cTarget:Creature = hGroup[i];
 				
-				if (attacker.aim() / 2 + rand(20) + 6 >= cTarget.reflexes() / 2 + 10 && !cTarget.hasStatusEffect("Blinded") && !cTarget.hasBlindImmunity())
+				if (cTarget.accessory is FlashGoggles)
+				{
+					if (cTarget is PlayerCharacter) output("\nYour goggles cover your eyes from the blinding projectile and you avoid being blinded.");
+					else output("\n" + StringUtil.capitalize(cTarget.getCombatName(), false) + "’s goggles are activated by the blinding projectile and " + aTarget.getCombatPronoun("heshe") + " avoid" + (cTarget.isPlural ? "" : "s") + " being blinded.");
+				}
+				else if (cTarget.hasBlindImmunity())
+				{
+					if (cTarget is PlayerCharacter) output("\nYour eyes are unaffected by the blinding projectile and you avoid being blinded.");
+					else output("\n" + StringUtil.capitalize(cTarget.getCombatName(), false) + " " + (cTarget.isPlural ? "are" : "is") + " unaffected by the blinding projectile and avoid" + (cTarget.isPlural ? "" : "s") + " being blinded.");
+				}
+				else if (attacker.aim() / 2 + rand(20) + 6 >= cTarget.reflexes() / 2 + 10 && !cTarget.hasStatusEffect("Blinded"))
 				{
 					CombatAttacks.applyBlind(cTarget, 3);
 					

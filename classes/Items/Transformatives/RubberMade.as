@@ -27,7 +27,7 @@
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
 			description = "a piece of gum labeled “Rubber-Made”";
-			tooltip = "A small piece of gum, roughly the size of a thumbnail. One side of the green and purple wrapper depicts a happy customer blowing a bubble with the gum. The other side is a small but strongly worded caution not to swallow the gum.";
+			tooltip = "A small piece of gum, roughly the size of a thumbnail. One side of the green and purple wrapper depicts a happy customer blowing a bubble with the gum. The other side is a small but strongly worded caution not to swallow the gum.\n\n<b>Known to cause moderate amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -50,6 +50,7 @@
 			
 			if(target is PlayerCharacter)
 			{
+				pc.taint(2);
 				pc.libido(1);
 				if((pc.isBimbo() || pc.isBro()) && (pc.IQ() < 95 || rand(2) == 0))
 				{
@@ -277,7 +278,7 @@
 			kGAMECLASS.days += ((7 * 3) + rand(5));
 			kGAMECLASS.hours = rand(24);
 			kGAMECLASS.processTime(rand(60));
-			target.lust(9000);
+			target.maxOutLust();
 			target.willpower(-50);
 			
 			if(!kGAMECLASS.pc.hasGenitals()) kGAMECLASS.badEnd();

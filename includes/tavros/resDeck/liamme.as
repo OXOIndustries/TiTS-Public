@@ -196,7 +196,7 @@ public function leaveLiamme():void
 {
 	clearOutput();
 	showLiamme();
-	output("You tell the femboy you have somewhere else to be. He tells you that’s fine with him and he bids you farewell, giving you a smile and a wink as you walk away.");
+	output("You tell the femboy you have somewhere else to be. He tells you that’s fine with him and bids you farewell, giving you a smile and a wink as you walk away.");
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -333,7 +333,7 @@ public function liammeExhibitionism():void
 
 	output("\n\nLiamme’s left panting after that, quietly, his fluffy tail swinging in an off-beat rhythm, trying to pull himself back together after emptying his tight, trappy sack all over his clothes and your hand. Speaking of which, you quickly retract your digits from the femboy’s cock and out from under his dress, still covered in his potent spunk. ");
 	var DEPENDANT_CUM:uint = 2;
-	if(pc.isNice() || pc.isBimbo() || pc.isDependant(DEPENDANT_CUM)) 
+	if(pc.isNice() || pc.isBimbo() || pc.isCumSlut()) 
 	{
 		output("Smiling and keeping eye contact with Liamme as he tries to conceal his softening erection, you bring your fingers to your [pc.lipsChaste] and let your [pc.tongue] trail along your fingers, licking them clean one by one, taking his seed into your mouth.");
 		//Syri seems like an appropriate stand-in...
@@ -507,7 +507,7 @@ public function buttfuckLiamme():void
 	if(pc.cumQ() >= 1500) output("swollen ");
 	output("tummy. Liamme quickly settles into your embrace, giving you a smirk over his shoulder before blue eyes flutter shut, ready to sleep ");
 	if(pc.hasKnot(x)) output("off your knot");
-	else output("off the afterglow of his orgams");
+	else output("off the afterglow of his orgasms");
 	output(", and you feel ready to do the same.");
 	processTime(35);
 	pc.orgasm();
@@ -894,7 +894,7 @@ public function liammeShoppingAtAlissApproach():void
 		else output("You");
 		output(" tell him you were looking for something cute, and just happened to find him.");
 	}
-	else output("\n\nYou tell him you were browsing the selection Aliss keeps here, but you noticed him and figured you stop to say hey.");
+	else output("\n\nYou tell him you were browsing the selection Aliss keeps here, but you noticed him and figured you’d stop to say hey.");
 
 	output("\n\nLiamme smiles and blushes at your words, <i>“Thanks! It’s nice to have friends around here, especially ones you can meet in a lingerie shop.”</i> The trappy ausar’s eyes dart left to right for a moment, and he takes a few steps closer to you before whispering, <i>“Uh, hey, speaking of, we’re pretty good buds, right?”</i>");
 

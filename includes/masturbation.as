@@ -33,7 +33,11 @@ public function nonLustFaps():Array
 	}
 	if(pc.hasStatusEffect("Boobswell Pads")) 
 	{
-		faps.push(["Remove B.Swell", removeBoobswellPads, "Remove Boobswell Pads", "Remove the attached boobswell pads."]);
+		faps.push(["Rem. B.Swell", removeBoobswellPads, "Remove Boobswell Pads", "Remove the attached Boobswell pads."]);
+	}
+	if(pc.hasStatusEffect("Ass Slap Patch")) 
+	{
+		faps.push(["Rem. A.Slap", removeAssSlapPatch, "Remove Ass Slap Patch", "Remove the attached Ass Slap patch."]);
 	}
 	if(hasSmutOptions())
 	{
@@ -106,7 +110,15 @@ public function arousalMenu():void
 	addButton(14, "Back", mainGameMenu);
 }
 
-public function availableFaps(roundTwo:Boolean = false):Array
+public function masturbateButton(btnSlot:int = 0, roundTwo:Boolean = false):void
+{
+	if(pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(btnSlot, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
+	else if(!pc.canMasturbate()) addDisabledButton(btnSlot, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
+	else if(availableFaps(roundTwo, true).length <= 0) addDisabledButton(btnSlot, "Masturbate", "Masturbate", "You don’t have any available masturbation options at the moment....");
+	else addButton(btnSlot, "Masturbate", masturbateMenu);
+}
+
+public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = false):Array
 {
 	var faps:Array = new Array();
 	var fap:FapCommandContainer;
@@ -114,7 +126,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	// Overrides
 	// If any of these are true, do whatever you need and return after pushing a single function into the array
 	// We can then autoexecute on the only available option
-	if (pc.hasCuntSnake() && pc.hasCock() && !pc.isTaur() && (pc.cockThatFits(pc.tailCuntCapacity()) >= 0) && flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7)
+	if (!checkOnly && pc.hasCuntSnake() && pc.hasCock() && !pc.isTaur() && (pc.cockThatFits(pc.tailCuntCapacity()) >= 0) && flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7)
 	{
 		clearOutput();
 		output("An insatiable hunger from your tail overwhelms you. <b>You have to feed it!</b>");
@@ -123,7 +135,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		return null;
 	}
 	
-	if (pc.milkFullness >= 150 && pc.isLactating() && flags["SUPRESS_TREATED_MILK_FAP_MESSAGE"] == undefined)
+	if (!checkOnly && pc.milkFullness >= 150 && pc.isLactating() && flags["SUPRESS_TREATED_MILK_FAP_MESSAGE"] == undefined)
 	{
 		// Super-lactation, must resist urge to fap!
 		if(pc.isMilkTank())
@@ -283,10 +295,20 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	if(pc.hasStatusEffect("Boobswell Pads")) 
 	{
 		fap = new FapCommandContainer();
-		fap.text = "Remove B.Swell";
+		fap.text = "Rem. B.Swell";
 		fap.ttHeader = "Remove Boobswell Pads";
-		fap.ttBody = "Remove the attached boobswell pads.";
+		fap.ttBody = "Remove the attached Boobswell pads.";
 		fap.func = removeBoobswellPads;
+		fap.ignoreRandomSelection = true;
+		faps.push(fap);
+	}
+	if(pc.hasStatusEffect("Ass Slap Patch")) 
+	{
+		fap = new FapCommandContainer();
+		fap.text = "Rem. A.Slap";
+		fap.ttHeader = "Remove Ass Slap Patch";
+		fap.ttBody = "Remove the attached Ass Slap patch.";
+		fap.func = removeAssSlapPatch;
 		fap.ignoreRandomSelection = true;
 		faps.push(fap);
 	}
@@ -322,7 +344,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.ignoreRandomSelection = false;
 		faps.push(fap);
 	}
-	if (flags["LAQUINE_GENT_BONED"] != undefined && pc.inHeat() && pc.hasVagina(GLOBAL.TYPE_EQUINE))
+	if (flags["LAQUINE_GENT_BONED"] != undefined && pc.inHeat() && pc.hasVaginaType(GLOBAL.TYPE_EQUINE))
 	{
 		fap = new FapCommandContainer();
 		fap.text = "M.Laquine";
@@ -332,6 +354,18 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.ignoreRandomSelection = false;
 		faps.push(fap);
 	}
+	
+	if (pc.hasStatusEffect("Thicc&Shake"))
+	{
+		fap = new FapCommandContainer();
+		fap.text = "Shake";
+		fap.ttHeader = "Shake the Thiccness";
+		fap.ttBody = "Shake what your momma gave ya!";
+		fap.func = thiccNShakeWrapper;
+		fap.ignoreRandomSelection = false;
+		faps.push(fap);
+	}
+	
 	//PANTY FAPS!
 	if(pc.hasCock()) 
 	{
@@ -387,6 +421,15 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.ttHeader = "Tamani BionaHole";
 		fap.ttBody = "Take the Tamani Ultralux edition BionaHole for a spin.";
 		fap.func = TamaniFapSetup;
+		faps.push(fap);
+	}
+	if(checkToyDrawer(MitziBionaHole) && pc.hasCock())
+	{
+		fap = new FapCommandContainer();
+		fap.text = "Mitzi B.H.";
+		fap.ttHeader = "Mitzi BionaHole";
+		fap.ttBody = "Put Mitzi's cloned pocket pussy to use.";
+		fap.func = mitziFapSetup;
 		faps.push(fap);
 	}
 	if(checkToyDrawer(TamaniBionaHole) && pc.hasCock() && flags["TAMANI_HOLED"] != undefined)
@@ -455,6 +498,15 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.func = useTheSuckMasta;
 		faps.push(fap);
 	}
+	if(InShipInterior() && flags["MINDWASH_VISOR_INSTALLED"] == 1)
+	{
+		fap = new FapCommandContainer();
+		fap.text = "Mindwash";
+		fap.ttHeader = "Mindwash Visor";
+		fap.ttBody = "A holovisor that has been significantly altered by Doctor Badger. While broadcasting smut, It induces a state of semi-hypnosis in the viewer, suppressing their sense of self and thrusting them into the role of one of the characters instead. At max power, it could very well be used to brainwash someone, but you’ve turned down the intensity, so it should be safe to use recreationally.";
+		fap.func = mindwashMeShipVers;
+		faps.push(fap);
+	}
 	if(pc.hasHardLightEquipped() && pc.hasHardLightUpgraded())
 	{
 		fap = new FapCommandContainer();
@@ -493,6 +545,16 @@ public function availableFaps(roundTwo:Boolean = false):Array
 			fap.func = tailSucking;
 			faps.push(fap);
 		}
+	}
+	// Butt Bug Male
+	if(pc.hasKeyItem("Butt Bug (Male)"))
+	{
+		fap = new FapCommandContainer();
+		fap.text = "Use ButtBug";
+		fap.ttHeader = "Use Butt Bug";
+		fap.ttBody = "Use the bug you captured earlier.";
+		fap.func = masturbateButtBugMale;
+		faps.push(fap);
 	}
 	// Sera Collar Faps
 	if(wearingSeraCollar())
@@ -539,6 +601,10 @@ public function nivasFapSetup():void
 public function TamaniFapSetup():void
 {
 	bionaholeUse("Tamani");
+}
+public function mitziFapSetup():void
+{
+	bionaholeUse("Mitzi");
 }
 
 public function selectRandomFap(faps:Array):void
@@ -858,7 +924,6 @@ public function vaginalFap():void {
 		output("\n\nIf one is this good... you thrust your other hand down to your crotch as fast as you can, brushing past your other wrist as you find your way to your [pc.vagina 1] and stroke it with eager, feverish need. Paroxysms of pleasure rock your body, alternately locking and convulsing your muscles but not quite bringing you off yet; this is still mere foreplay. You curl your hand into a fist and drag your knuckles up and down that slit, spreading its lips slightly around your digit, rubbing yourself with both hands and letting out quiet little moans of enjoyment. This taste of ecstasy is almost too much and yet not nearly enough, and you plunge two sets of fingers into your eager openings.");
 	}
 	//Nipple fucky
-	//9999
 	if(pc.hasFuckableNipples()) {
 		output("\n\nYour other hand finds its way up to your [pc.chest], and more importantly, to one of your ");
 		if(pc.nipplesPerBreast > 1) output("clusters of ");
@@ -869,7 +934,6 @@ public function vaginalFap():void {
 	}
 	//Regular Nips
 	else {
-		//9999
 		output("\n\nYour other hand finds its way to your [pc.chest], and more importantly, to one of your ");
 		if(pc.nipplesPerBreast > 1) output("clusters of ");
 		output("[pc.nipples]. You pinch and tweak at your sensitive bud, really working it back and forth as you toy with your nethers, tugging it from time to time to shoot darts of pleasurable agony through your licentiously contorting form. With one back-arching plunge, you work a pair of fingers into your needy slit, thrusting again and again, so hard that the wet squelches of female bliss are distinctly audible.");
@@ -1189,7 +1253,7 @@ public function multiCockFap():void {
 		else output("Y");
 		output("our [pc.tail] arcs around while you are handling your [pc.cocks] in a way that reminds you vaguely of a snake’s sinuous slithering, only with dripping pussy-juice in place of baleful hissing. It quickly snaps down onto [pc.oneCockHead], butting its outstretched folds against it before parting them with a quick thrust downward, devouring much of the shaft. You throw back your head and moan out at the overwhelmingly blissful gratification of fucking a pussy and having an overly-sensitive pussy fucked all at the same. Meanwhile, the greedy tail-twat pushes down until it hits your fast-pumping knuckle, and there, it stops, squeezing tight and beginning to ripple in heavenly contractions that threaten to milk every drop of pre-cum from your body.");
 	}
-	//Hugecock lick - 1/6th body height and less than 1/2 body height or prehensile!.
+	//Hugecock lick - 1/6th body height and less than 1/2 body height or prehensile!
 	else if(select == 3) {
 		sucked = true;
 		output("\n\nAs you stroke, the gleaming, sensitive [pc.cockHead " + x + "] of your [pc.cock " + x + "] bounces ");
@@ -1271,10 +1335,10 @@ public function multiCockFap():void {
 		output("Your orgasm bursts right out of your [pc.cockHead] and into your mouth");
 		if(cum <= 5) output(", leaving a drop of [pc.cum] for you to savor as you ride out the culmination of your masturbation session.");
 		else if(cum <= 15) output(", leaving you with a few nicely-sized blobs of [pc.cum] to swallow as you ride out the culmination of your masturbation session.");
-		else if(cum <= 50) output("filling your cheeks with a hot load of liquid bliss for you to hurriedly gulp down.");
-		else if(cum <= 200) output("flooding your cheeks with so much that you have to hurriedly gulp to keep it from leaking out your [pc.lips].");
-		else if(cum <= 750) output("stuffing your cheeks with so much that even with you hurriedly gulping there’s still blobs of [pc.cumColor] squrting at leaking out of the corners of your mouth, making a mess of your face and your cock.");
-		else output("flooding your cheeks so effectively with the first pulse that the second pushes your mouth clean off your [pc.cockHead], forcing you to get a head-drenching facial so thick that you’re likely unrecognizable.");
+		else if(cum <= 50) output(" filling your cheeks with a hot load of liquid bliss for you to hurriedly gulp down.");
+		else if(cum <= 200) output(" flooding your cheeks with so much that you have to hurriedly gulp to keep it from leaking out your [pc.lips].");
+		else if(cum <= 750) output(" stuffing your cheeks with so much that even with you hurriedly gulping there’s still blobs of [pc.cumColor] squrting at leaking out of the corners of your mouth, making a mess of your face and your cock.");
+		else output(" flooding your cheeks so effectively with the first pulse that the second pushes your mouth clean off your [pc.cockHead], forcing you to get a head-drenching facial so thick that you’re likely unrecognizable.");
 		output(" ");
 	}
 	//Bits for nipplefucking
@@ -1481,7 +1545,7 @@ public function milkturbation():void
 	{
 		output("\n\nYou work your chest with rhythmic, ");
 		if(flags["TIMES_HAND_MILKED_SELF"] == undefined || flags["TIMES_HAND_MILKED_SELF"] < 4) output("almost ");
-		output("practiced motions again and again, pinching your [pc.nipples] to try to squeeze out some [pc.milk]. However, all that you manage to do is make yourself irritated and sore. Whining in frustration, you tug harder at yourself, desperate to squeeze even a little bit of your [pc.cumColor] tit-cream out. It doesn’t work though; you’ll have to give your body time to build some up first.");
+		output("practiced motions again and again, pinching your [pc.nipples] to try to squeeze out some [pc.milk]. However, all that you manage to do is make yourself irritated and sore. Whining in frustration, you tug harder at yourself, desperate to squeeze even a little bit of your [pc.milkColor] tit-cream out. It doesn’t work though; you’ll have to give your body time to build some up first.");
 		pc.lust(5 + rand(3));
 		pc.boostLactation(1);
 	}
@@ -1616,6 +1680,7 @@ public function milkturbation():void
 		if(pc.isTreated() && orgasmOdds < 100) orgasmOdds = 100;
 		var orgasmed:Boolean = (rand(100) + 1 <= orgasmOdds);
 		if(pc.lust() < 33) orgasmed = false;
+		var canFapAgain:Boolean = (availableFaps(true, true).length > 0);
 		//End: Didn't orgasm due to not enough milking (20% or less chance of orgasm)
 		if(!orgasmed && orgasmOdds <= 20)
 		{
@@ -1627,7 +1692,7 @@ public function milkturbation():void
 			}
 		}
 		//End: Got really close to orgasm but couldn't quite get there -> Immediately choose a random fap scene for next (had a chance above 20%)
-		else if(!orgasmed && orgasmOdds > 20)
+		else if(!orgasmed && orgasmOdds > 20 && canFapAgain)
 		{
 			output("\n\nMoaning as your flow gradually tapers off, your fingers go wild on your [pc.chest], tugging, squeezing, and pulling in an effort to take you to orgasm. Milking has felt so good, so wonderfully, sensuously swell, that you’ve let yourself grow aroused beyond reason. Your slick teats ache from the constant stimulation, but it’s a wonderfully satisfying ache that sends tingles of ");
 			if(pc.hasVagina()) output("crotch-dampening ");
@@ -1635,7 +1700,7 @@ public function milkturbation():void
 			else if(pc.balls > 0) output("ball-teasing ");
 			output("warmth to your most sensitive areas. You grind your [pc.hips] and cry out in need as the last droplets of [pc.milk], leaving you unfulfilled and delirious with need.");
 			output("\n\n<b>You start masturbating before the thought even reaches your brain. You have to.</b>");
-			pc.lust(9001);
+			pc.maxOutLust();
 		}
 		//End: Minor orgasm all up in
 		else if(milk <= 5000)
@@ -1713,7 +1778,7 @@ public function milkturbation():void
 		pc.milked(pc.milkFullness);
 	}
 	//Force faps
-	if(!orgasmed && milked && pc.lust() >= pc.lustMax())
+	if(!orgasmed && milked && pc.lust() >= pc.lustMax() && canFapAgain)
 	{
 		clearMenu();
 		addButton(0,"Next",masturbateMenu,true);
@@ -1729,8 +1794,18 @@ public function removeBoobswellPads():void
 {
 	clearOutput();
 	author("Fenoxo");
+	output("You peel the pads off your chest and breathe a sigh of relief now that the constant moisture and vibration is no longer rubbing at your [pc.nipples].\n\n<b>The Boobswell pads shut down, their use expended.</b>");
 	pc.removeStatusEffect("Boobswell Pads");
-	output("You peel the pads off your chest and breathe a sigh of relief now that the constant moisture and vibration is no longer rubbing at your [pc.nipples].\n\n<b>The boobswell pads shut down, their use expended.</b>");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function removeAssSlapPatch():void
+{
+	clearOutput();
+	author("Foxxling");
+	output("You take a deep breath, grab a hold of the corner of the Xenogen Ass Slap Patch and rip it off like a bandaid. It doesn’t hurt but the constant vibrations are now gone.\n\n<b>The Ass Slap Patch powers down, its use expended.</b>");
+	pc.removeStatusEffect("Ass Slap Patch");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1814,31 +1889,30 @@ public function wutwutindabuttbuttFap():void
 	// pc.ass.looseness() <= 3
 	if (pc.ass.looseness() <= 2)
 	{
-		output("\n\nOwing to your lack of");
-		if (silly) output(" butt-stuff");
-		else output(" anal");
-		output(" experience,"); 
+		output("\n\n");
+		if(pc.analVirgin) output("Owing to your lack of " + (silly ? "butt-stuff" : "anal") + " experience, you");
+		else output("You");
 
 		if (pc.ass.wetness() >= 2) 
 		{
-			output(" you circle your fingertips around your wet bum, making sure to collect");
+			output(" circle your fingertips around your wet bum, making sure to collect");
 			if (pc.ass.wetness() >= 3) output(" a liberal amount of lubrication");
 			else output(" as much lubrication as you can muster");
 			output("; you have a feeling you’ll need all the help you can get.");
 		}
 		else if (pc.hasVagina())
 		{
-			output(" you take advantage of your [pc.vagina " + pc.highestWetnessIndex() + "] and coat your fingers with a");
+			output(" take advantage of your [pc.vagina " + pc.highestWetnessIndex() + "] and coat your fingers with a");
 			if (pc.wettestVaginalWetness() >= 3) output(" liberal");
 			output(" quantity of [pc.girlCum]; you have a feeling you’ll need all the help you can get.");
 		}
 		else if (pc.hasCock())
 		{
-			output(" you take advantage of your [pc.cock] and trail your fingers lazily along its length; scooping up some of the [pc.cumColor] pre-cum drooling from its [pc.cockHead].")
+			output(" take advantage of your [pc.cock] and trail your fingers lazily along its length; scooping up some of the [pc.cumColor] pre-cum drooling from its [pc.cockHead].")
 		}
 		else
 		{
-			output(" you divert one of your hands to your mouth and take a moment to");
+			output(" divert one of your hands to your mouth and take a moment to");
 			if (pc.ass.looseness() <= 1) output(" liberally");
 			output(" slaver a finger with spittle; you have a feeling you’ll need all the help you can get.");
 		}
@@ -3122,18 +3196,21 @@ public function bionaColor(arg:String = "Nivas"):String
 {
 	if(arg == "Nivas") return "creamy";
 	else if(arg == "Tamani") return "pink";
+	else if(arg == "Mitzi") return "green";
 	return "<b>ERROR UNDEFINED COLOR</b>";
 }
 public function bionaSheathColor(arg:String = "Nivas"):String
 {
 	if(arg == "Nivas") return "dark blue";
 	else if(arg == "Tamani") return "black";
+	else if(arg == "Mitzi") return "neon pink";
 	return "<b>ERROR UNDEFINED SHEATH COLOR</b>";
 }
 public function bionaTexture(arg:String = "Nivas"):String
 {
 	if(arg == "Nivas") return "smooth";
 	else if(arg == "Tamani") return "silken";
+	else if(arg == "Mitzi") return "silky-slick";
 	return "<b>ERROR UNDEFINED TEXTURE</b>";
 }
 
@@ -3148,9 +3225,14 @@ public function bionaholeUse(arg:String = "Nivas"):void
 		bionaHoleInstructionalBullshit();
 		return;
 	}
-	else if(arg == "Tamani" && flags["TAMANI_HOLED"] == undefined)
+	if(arg == "Tamani" && flags["TAMANI_HOLED"] == undefined)
 	{
 		tamaniBionaholeInstruction();
+		return;
+	}
+	if(arg == "Syri")
+	{
+		bionaHoleSyri();
 		return;
 	}
 	clearOutput();
@@ -3162,6 +3244,11 @@ public function bionaholeUse(arg:String = "Nivas"):void
 	if(InShipInterior()) output("pop the BionaHole off its charger");
 	else output("fish the BionaHole out of your pack");
 	output(" and twist off the vented cap, revealing the " + bionaColor(arg) + " flesh beneath. The visible part of the toy looks exactly like a perfectly shaved woman’s vulva, complete with mons and lips that glisten with just a hint of moisture. The cloned cunt looks positively delicious - enough so that you bring it up to your [pc.lips] and give it an experimental lick. The taste is lush and <i>alive</i>, warm and sweet in the same way any other pussy ought to be. And like a real cunt, the lips flush with arousal when you touch them, gently clenching around your [pc.tongue] as it passes between them.");
+	if(arg == "Mitzi") 
+	{
+		output("\n\nOf course, your indiscriminate licking lights a fire in your loins. Mitzi wasn't kidding about the aphrodisiacs.");
+		pc.lust(100);
+	}
 	output("\n\nGrinning to yourself, you ");
 	if(!pc.isCrotchExposed()) output("slip out of your clothes");
 	else output("toss your gear aside");
@@ -3176,6 +3263,7 @@ public function bionaholeUse(arg:String = "Nivas"):void
 	if(pc.cockVolume(x) < 500) output("until it’s pressing against your groin, completely enveloping your [pc.cock " + x + "] in its sultry embrace");
 	else output("until your [pc.cockHead " + x + "] is battering against the sealed back of the pussy’s channel, wrapped so tightly by " + bionaTexture(arg) + " wetness that you can barely think");
 	output(". Leaning back, you let your eyes roll closed and start to piston the BionaHole up and down your lube-slicked shaft. The toy is everything you’d expect it to be, reacting as if it was mounted between its owner’s legs, clenching and drooling and flushing with its own arousal. You can see its clit swelling, so sensitive that you can’t help but twist your thumb down to caress it. The pussy trembles at your touch, drenching you in sweet fem-cum at the apex of every thrust between its lips.");
+	if(arg == "Mitzi") output(" You can almost image the look on the slutty goblin's face as she takes you cervix-deep, the whorish delight painted heavily across her fuck-drunk features.");
 	
 	var cum:Number = pc.cumQ();
 	
@@ -3190,6 +3278,10 @@ public function bionaholeUse(arg:String = "Nivas"):void
 	if(cum < 400) output("until you’re utterly spent.");
 	else if(cum <= 1500) output("until the toy’s so full you’re afraid it will burst.");
 	else output("as wave after wave of [pc.cumNoun] fills it with inhuman magnitude, quickly overwhelming the poor toy’s ability to cope. Spunk gushes out of its tight pussylips and onto your lap, washing you down in spooge.");
+	if(arg == "Mitzi")
+	{
+		output("\n\nNot two seconds later, paroxysms of pleasure rock your [pc.cocks]. You erupt again and again, phallic flesh straining, spunk pumping. Aphrodisiac-induced pleasure wrings you for every drop. If you could think through the ejaculatory ecstasy, you might consider pulling the cloned cunt off, but you’re far too busy feeding Mitzi’s pouty pussylips with every single sperm in your body.");
+	}
 
 	output("\n\nWith a heavy sigh, you flop back and release your grip on the BionaHole, letting the " + bionaSheathColor(arg) + " case hang from your slowly deflating member");
 	if(pc.hasKnot(x)) output(", caught on the bulk of your [pc.knot " + x + "]");
@@ -3201,10 +3293,17 @@ public function bionaholeUse(arg:String = "Nivas"):void
 	if(InShipInterior()) output("return it to its power charger");
 	else output("toss it back in your pack");
 	output(" and get ready to return to work.");
-	IncrementFlag("NIVAS_BIONAHOLE_USES");
+	if(arg == "Nivas") IncrementFlag("NIVAS_BIONAHOLE_USES");
+	else if(arg == "Mitzi") IncrementFlag("MITZI_BIONAHOLE_USES");
+	else if(arg == "Tamani") IncrementFlag("TAMANI_HOLED");
 	processTime(25+rand(10));
 	pc.orgasm();
-
+	if(arg == "Mitzi") 
+	{
+		pc.orgasm();
+		pc.ballFullness = 0;
+		pc.taint(1);
+	}
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3279,7 +3378,7 @@ public function tamaniBionaholeInstruction():void
 		else output("the");
 		output(" needy slit, strumming your own feminine folds and wishing you could somehow fuck them as well.");
 	}
-	output(" A rhythmic tightening ache wells up inside you, burning hot with the need for release. Tamani was right. You really do want to creampie her pussy. UGC peacekeepers could ");
+	output(" A rhythmic tightening ache wells up inside you, burning hot with the need for release. Tamani was right. You really do want to creampie her pussy. UGC Peacekeepers could ");
 	if(InShipInterior()) output("break down your cabin door");
 	else output("catch you in the act right now");
 	output(", and you wouldn’t care. They’d have to pry the lewdly slurping sex-toy out of your hands with a crowbar.");
@@ -3340,7 +3439,7 @@ public function bionaHoleInstructionalBullshit():void
 	else output("your bed");
 	output(". Satisfied, you scroll through your stored media until you alight on the <i>“instructional”</i> holovid that came with the toy and punch it on.");
 
-	output("\n\nYou sit and and start to gently caress your [pc.cock " + x + "] as the vid starts to play, scrolling quickly through a bunch of multi-language legalese and credits before opening to a shot of Nivas herself, sitting back and relaxing on a plush leather couch. She’s as smoking hot an ausar babe as you could expect: long hair dyed a lustrous dark blue parting around a pair of tall canid ears. She’s got a cutely feminine face with big almond-shaped blue eyes under a hint of aqua shadow, and full pink-painted lips. Nivas is rocking a pair of tight black latex booty shorts that show off a lot of long, slender leg, and a too-tight latex top revealing a very, very generous amount of creamy cleavage. Several colorful silk ribbons adorn her dark blue tail, swishing beside her on the seat as the camera pans up and down her half-bare body.");
+	output("\n\nYou sit and start to gently caress your [pc.cock " + x + "] as the vid starts to play, scrolling quickly through a bunch of multi-language legalese and credits before opening to a shot of Nivas herself, sitting back and relaxing on a plush leather couch. She’s as smoking hot an ausar babe as you could expect: long hair dyed a lustrous dark blue parting around a pair of tall canid ears. She’s got a cutely feminine face with big almond-shaped blue eyes under a hint of aqua shadow, and full pink-painted lips. Nivas is rocking a pair of tight black latex booty shorts that show off a lot of long, slender leg, and a too-tight latex top revealing a very, very generous amount of creamy cleavage. Several colorful silk ribbons adorn her dark blue tail, swishing beside her on the seat as the camera pans up and down her half-bare body.");
 	output("\n\n<i>“Hey there,”</i> the starlet purrs seductively as the camera drone settles on her face. She blows it - and you - a rosy-lipped kiss, wrapping her arms around the back of the couch and thrusting out her ample chest.");
 	output("\n\n<i>“Hey,”</i> a disembodied masculine voice says from behind the camera. <i>“Why don’t you introduce yourself, beautiful?”</i>");
 	output("\n\nNivas chuckles and rolls her eyes. <i>“I think we all know the answer. Why don’t you look at the side of that toy you’ve got there, big boy?”</i>");
@@ -3397,7 +3496,6 @@ public function bionaHoleInstructionalBullshit():void
 }
 
 
-/*
 // Using Syri’s BionaHole
 // Must have follower Syri, have gotten her twat-in-a-box. PC must have a cock that can fit.
 // Add [BionaHole] to Syri’s menu.
@@ -3408,7 +3506,7 @@ public function bionaHoleSyri():void
 	author("Savin");
 	showSyri(true);
 	
-	var x:int = pc.cockThatFits(350);
+	var x:int = pc.cockThatFits(syriVaginalCapacity());
 	if (x < 0) x = pc.smallestCockIndex();
 	
 	output("You take a step towards your ausar lover, slipping one hand around Syri’s supple waist... and the other around behind her, to the hefty black pipe sitting on her desk. <i>“Mind if I borrow this?”</i> you ask with a coy smile, showing the randy pup what you’ve got in mind.");
@@ -3441,7 +3539,8 @@ public function bionaHoleSyri():void
 	
 	output("\n\nEmboldened by the effect you’re having on your lover, you press ahead, aligning your [pc.cockhead] with the sodden lips of her twat. The heat’s almost unbearable - her lips are hotter than any human girl’s could be, burning with alien desire even disembodied as it is. You’ve thoroughly turned her BionaHole on, and its flush lips draw you imperiously onward to penetration. Your breath catches as your");
 	if (pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output(" flared head presses against the pussylips, pushing in against them in demand of entrance");
-	else output(" crown brushes between the lips of her pussy, hovering on the brink}. A second later and you’re in, pushing the hard black sheath down the length of your shaft.");
+	else output(" crown brushes between the lips of her pussy, hovering on the brink");
+	output(". A second later and you’re in, pushing the hard black sheath down the length of your shaft.");
 	
 	output("\n\nGod damn, Syri was tight back in the day! Her cunt squeezes you");
 	if (flags["FUCKED_SYRI_COUNT"] != undefined) output(" as tight as Syri’s ass ever has");
@@ -3505,7 +3604,6 @@ public function bionaHoleSyri():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
-*/
 
 // Shower Fappings
 public function shipShowerFaps(genButtons:Boolean = false):Number
@@ -3514,12 +3612,20 @@ public function shipShowerFaps(genButtons:Boolean = false):Number
 	
 	if (pc.hasCock())
 	{
-		if(genButtons) addButton(showerSex, "Jerk Off", shipShowerFappening, "Jerk Off", "Jerk Off", "Time to lather up and beat off.");
+		if(genButtons)
+		{
+			if(pc.genitalLocation() >= 2) addDisabledButton(showerSex, "Jerk Off", "Jerk Off", "You can’t seem to easily reach your genitals for this!");
+			else addButton(showerSex, "Jerk Off", shipShowerFappening, "Jerk Off", "Jerk Off", "Time to lather up and beat off.");
+		}
 		showerSex++;
 	}
 	if (pc.hasVagina())
 	{
-		if(genButtons) addButton(showerSex, "Use Nozzle", shipShowerFappening, "Use Nozzle", "Use Nozzle", "That shower head looks pretty tempting for your pussy...");
+		if(genButtons)
+		{
+			if(pc.genitalLocation() >= 2) addDisabledButton(showerSex, "Use Nozzle", "Use Nozzle", "You can’t seem to easily reach your genitals for this!");
+			else addButton(showerSex, "Use Nozzle", shipShowerFappening, "Use Nozzle", "Use Nozzle", "That shower head looks pretty tempting for your pussy...");
+		}
 		showerSex++;
 	}
 	
@@ -3740,7 +3846,7 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 	//More than 40,000 mLs of cum
 	if(cum >= 40000) 
 	{
-		output("\n\nSadly, you’re too virile even for yourself. The [pc.cumNoun] is still shooting out like water from a firehose, and there isn’t room in your bloated gut for another drop. Catching enough to fill your mouth to the brim, you let the rest spray over your face, painting you [pc.cumColor] in the process. Streaks of it run down your neck, shoulders, and [pc.chest], but you have a hard time caring. If anyone notices, they’ll just get to see what a devoted cock-sucker you’ve become.");
+		output("\n\nSadly, you’re too virile even for yourself. The [pc.cumNoun] is still shooting out like water from a firehose, and there isn’t room in your bloated gut for another drop. Catching enough to fill your mouth to the brim, you let the rest spray over your face, painting your [pc.cumColor] in the process. Streaks of it run down your neck, shoulders, and [pc.chest], but you have a hard time caring. If anyone notices, they’ll just get to see what a devoted cock-sucker you’ve become.");
 		pc.applyCumSoaked();
 	}
 	//merge
@@ -3774,10 +3880,9 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 	{
 		output(" You are an absolute mess, however. You were so fixated on your lovely tool that you didn’t even notice the [pc.milkNoun] spraying from your [pc.chest].");
 		if(pc.milkType == GLOBAL.FLUID_TYPE_MILK) output(" You smell like a dairy.");
-		else if(pc.milkType == GLOBAL.FLUID_TYPE_HONEY && CodexManager.entryUnlocked("Zil")) output(" You smell like a zil orgy.");
-		else if(pc.milkType == GLOBAL.FLUID_TYPE_HONEY) output(" You smell like a beehive.");
+		else if(pc.milkType == GLOBAL.FLUID_TYPE_HONEY) output(" You smell like a " + ((CodexManager.entryUnlocked("Zil") && rand(2) == 0) ? "zil orgy" : "beehive") + ".");
 		output(" [pc.Milk] stains your body from the waist down. You could definitely use a shower... or someone else’s tongue.");
-		//9999 milksoaked status down the road?
+		pc.applyMilkBathed();
 	}
 	//First time post-script addendum
 	if(pc.perkv1("Auto-Autofellatio") == 0) autoautofellatioNotice(); 
@@ -3908,7 +4013,7 @@ public function autofellatioForNormies():void
 		}
 		else if(cum < 3001)
 		{
-			output("The volimunous ejaculate pours in so heavy and so fast that you have to swallow it. There isn’t really a choice. If you didn’t, you’d probably wind up choking on it.");
+			output("The voluminous ejaculate pours in so heavy and so fast that you have to swallow it. There isn’t really a choice. If you didn’t, you’d probably wind up choking on it.");
 			if(cum < 6000) output(" You spend a few minutes cumming and gulping, too dazzled by pleasure to contemplate guzzling your own [pc.cumNoun].");
 			else 
 			{
@@ -4214,6 +4319,11 @@ public function laquineEarsFemaleWrapper():void
 	LaquineEars.bunnyGirlFapScene(pc,true);
 }
 
+public function thiccNShakeWrapper():void
+{
+	ThiccNShake.masturbate(pc);
+}
+
 // Parasitic Pregnancy Placeholder Creation
 // Used to generate placeholder, for fluid in where ever, in relation to PC bodypart.
 // Input PC body part type.
@@ -4307,6 +4417,7 @@ public function cumCowCockvineSuck():void
 	processTime(22);
 	var pp:PregnancyPlaceholder = getParasiticPregContainer(pc.tailType);
 	pc.loadInMouth(pp);
+	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

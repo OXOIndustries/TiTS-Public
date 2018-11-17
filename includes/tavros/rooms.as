@@ -13,7 +13,7 @@ public function initTavrosRooms():void
 
 	rooms["HOTEL ROOM"] = new RoomClass(this);
 	rooms["HOTEL ROOM"].roomName = "HOTEL\nROOM";
-	rooms["HOTEL ROOM"].description = "This small, station-bound room is attached to Anon’s Bar and Board. The quarters are cramped, there are no windows, and worst of all, your cousin has a headstart on locking down your deceased father’s fortune. Luckily, the galaxy is vast. Your cousin won’t be claiming anything for at least a few months if the scale of your father’s challenge is anything like you expect. The door to the east is unlocked, leading back into the hallway above the bar. <b>Once you leave, it will seal shut behind you, since you only payed for one night.</b>";
+	rooms["HOTEL ROOM"].description = "This small, station-bound room is attached to Anon’s Bar and Board. The quarters are cramped, there are no windows, and worst of all, your cousin has a headstart on locking down your deceased father’s fortune. Luckily, the galaxy is vast. Your cousin won’t be claiming anything for at least a few months if the scale of your father’s challenge is anything like you expect. The door to the east is unlocked, leading back into the hallway above the bar. <b>Once you leave, it will seal shut behind you, since you only paid for one night.</b>";
 	rooms["HOTEL ROOM"].planet = "TAVROS STATION";
 	rooms["HOTEL ROOM"].system = "SYSTEM: KALAS";
 	rooms["HOTEL ROOM"].eastExit = "ANON'S BOARD HALL";
@@ -264,7 +264,7 @@ public function initTavrosRooms():void
 	rooms["110"].addFlag(GLOBAL.INDOOR);
 	rooms["110"].addFlag(GLOBAL.PUBLIC);
 	rooms["110"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["110"].runOnEnter = undefined;
+	rooms["110"].runOnEnter = akaneCeleritasVeritasTheLegitimateBusinessBonus;
 
 	//9004
 	rooms["9004"] = new RoomClass(this);
@@ -407,7 +407,7 @@ public function initTavrosRooms():void
 	rooms["9013"].addFlag(GLOBAL.INDOOR);
 	rooms["9013"].addFlag(GLOBAL.PUBLIC);
 	rooms["9013"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["9013"].runOnEnter = undefined;
+	rooms["9013"].runOnEnter = shukuchiFoxBonus;
 
 	//9014
 	rooms["9014"] = new RoomClass(this);
@@ -446,11 +446,25 @@ public function initTavrosRooms():void
 	rooms["9016"].system = "SYSTEM: KALAS";
 	rooms["9016"].westExit = "9017";
 	rooms["9016"].eastExit = "9015";
+	rooms["9016"].southExit = "TAVROS_BEACH";
 	rooms["9016"].moveMinutes = 1;
 	rooms["9016"].addFlag(GLOBAL.INDOOR);
 	rooms["9016"].addFlag(GLOBAL.PUBLIC);
 	rooms["9016"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["9016"].runOnEnter = undefined;
+	rooms["9016"].runOnEnter = beachNSurfOutsideBonus;
+
+	rooms["TAVROS_BEACH"] = new RoomClass(this);
+	rooms["TAVROS_BEACH"].roomName = "BEACH \n‘N SURF";
+	rooms["TAVROS_BEACH"].description = "";
+	rooms["TAVROS_BEACH"].planet = "TAVROS STATION";
+	rooms["TAVROS_BEACH"].system = "SYSTEM: KALAS";
+	rooms["TAVROS_BEACH"].northExit = "9016";
+	rooms["TAVROS_BEACH"].moveMinutes = 1;
+	rooms["TAVROS_BEACH"].addFlag(GLOBAL.INDOOR);
+	rooms["TAVROS_BEACH"].addFlag(GLOBAL.PUBLIC);
+	rooms["TAVROS_BEACH"].addFlag(GLOBAL.POOL);
+	rooms["TAVROS_BEACH"].addFlag(GLOBAL.NPC);
+	rooms["TAVROS_BEACH"].runOnEnter = approachBeachSurfNSurf;
 
 	//9017
 	rooms["9017"] = new RoomClass(this);
@@ -1059,8 +1073,8 @@ public function initTavrosRooms():void
 
 	rooms["NURSERYE4"] = new RoomClass(this);
 	rooms["NURSERYE4"].roomName = "NURSERY:\nMILKING STATION";
-	rooms["NURSERYE4"].description = "";
-	rooms["NURSERYE4"].runOnEnter = undefined;
+	rooms["NURSERYE4"].description = "The milking room feels so soft and comfortable, entirely designed to be as relaxing and soothing as possible for long, stress-free hours spent producing sustenance for the nursery’s charges. Soft, warm light floods the room; bright enough to comfortably illuminate the room, but completely unlike the harsh flourescent lighting used throughout the rest of the station, with a soft, inviting couch tucked against one of the walls. Far more homely than anywhere else around Tavros.";
+	rooms["NURSERYE4"].runOnEnter = nurseryMilkingRoomFunc;
 	rooms["NURSERYE4"].southExit = "NURSERYE6";
 	rooms["NURSERYE4"].planet = "TAVROS STATION";
 	rooms["NURSERYE4"].system = "SYSTEM: KALAS";
@@ -1148,4 +1162,17 @@ public function initTavrosRooms():void
 	rooms["NURSERYSERA"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYSERA"].addFlag(GLOBAL.PRIVATE);
 	rooms["NURSERYSERA"].addFlag(GLOBAL.NPC);
+	
+	//Random Ramis Bar
+	//Time forward 1 ½ hours, move to standalone Some Club, Somewhere On The Merchant Deck,
+	rooms["RAMISBAR"] = new RoomClass(this);
+	rooms["RAMISBAR"].roomName = "\nSOME BAR";
+	rooms["RAMISBAR"].description = "";
+	rooms["RAMISBAR"].runOnEnter = undefined;
+	rooms["RAMISBAR"].planet = "TAVROS STATION";
+	rooms["RAMISBAR"].system = "SYSTEM: KALAS";
+	rooms["RAMISBAR"].moveMinutes = 15;
+	rooms["RAMISBAR"].addFlag(GLOBAL.INDOOR);
+	rooms["RAMISBAR"].addFlag(GLOBAL.PRIVATE);
+	rooms["RAMISBAR"].addFlag(GLOBAL.NPC);
 }

@@ -6,7 +6,7 @@ public function reahaIsScaredOfTheChupacabro():void
 	clearMenu();
 	author("HugsAlright");
 	showName("\nREAHA");
-	showBust("REAHA");
+	showBust(reahaBustDisplay());
 	
 	output("As you’re " + (!pc.isNude() ? "undressing and " : "") + "getting ready for bed, your door hisses open, grabbing your attention and revealing a curvy, stout body standing in the frame. You can just barely make out the strawberry-blonde hue of the figure’s hair with almost all the lights out. It’s Reaha, no doubt.");
 	output("\n\nShe’s holding an arm under her big ol’ boobs and rubbing the other nervously. <i>“Hey, [pc.name],”</i> she says quietly, noticing she’s got your attention, <i>“Hey, uh, you wouldn’t mind me sleeping with with you tonight, do you?”</i>");
@@ -31,7 +31,7 @@ public function dontBringYourTexanMonstersInMyBed():void
 	clearMenu();
 	author("HugsAlright");
 	showName("\nREAHA");
-	showBust("REAHA");
+	showBust(reahaBustDisplay());
 	
 	output("You shake your head and tell Reaha she’s on her own tonight. Her smile immediately fades in place of a scared look, but you " + (!pc.isAss() ? "place a reassuring hand on her shoulder and " : "") + "explain to her that she’ll be better off facing her fears on her own.");
 	output("\n\nThe cowgirl’s eyes narrow with determination. <i>“You’re right,”</i> she states, going to stand up from the bed, <i>“I can do this! It’s just some dumb story, right?”</i> Walking her way towards the door again, she turns back with a warm smile on her face, <i>“Thanks, [pc.name], I think I needed to hear that.”</i>");
@@ -49,7 +49,7 @@ public function dontWorryReahaIllGetRapedWithYou():void
 	clearMenu();
 	author("HugsAlright");
 	showName("\nREAHA");
-	showBust("REAHA");
+	showBust(reahaBustDisplay());
 	
 	output("Smiling, you slide yourself over to Reaha, throwing your arms around her waist and pulling her close. You tell your little bovine friend she’s always welcome in your bed, gently fondling her " + (silly ? "biggy milky" : "big, milky") + " tits as you start to pull her down to the mattress.");
 	output("\n\n<i>“Thanks, [pc.name],”</i> she coos happily, falling into your embrace, <i>“You’re the best...”</i>");
@@ -81,7 +81,7 @@ public function ohYouAreBeingRapedIGuessThatsReasonableThen():void
 	author("HugsAlright");
 	showName("REAHA &\n" + (silly ? "EL" : "THE") + " CHUPACABRO");
 	//Maybe there will be a Chupacabro bust eventually idk
-	showBust("REAHA", "CHUPACABRO");
+	showBust(reahaBustDisplay(), "CHUPACABRO");
 	
 	output("You make your way out of your room as another cry for help permeates the otherwise eerily silent halls of your ship. Following the voice, you plunge into the pitch blackness of your ship’s corridors. You search for a light switch before pushing on, but the one you flick does nothing, leaving you in the dark.");
 	output("\n\nShit. " + (silly ? "Looks like you walked into a shitty horror story." : " Let this be a reminder that you should change your lights more often."));
@@ -115,7 +115,7 @@ public function chupacabroMoreLikeChupacablowsdick():void
 	author("HugsAlright");
 	showName("REAHA &\n" + (silly ? "EL" : "THE") + " CHUPACABRO");
 	//Maybe there will be a Chupacabro bust eventually idk
-	showBust("REAHA", "CHUPACABRO");
+	showBust(reahaBustDisplay(), "CHUPACABRO");
 	
 	output("" + (silly ? "El Chupacabro" : "The Chupacabro") + " takes a few stumbling, angry steps towards you before falling to the ground. The fire fades from his eyes as he hits the floor, a long, curling horn shattering when his head meets the cold, hard ground, defeated.");
 	output("\n\nYou breathe deep and let out a sigh of relief as you look down at the motionless monster lying on your ship’s hull, shaking your head with disbelief at whatever the fuck just happened. But, your thoughts are broken by Reaha’s voice.");

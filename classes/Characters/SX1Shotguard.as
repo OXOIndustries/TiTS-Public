@@ -193,7 +193,7 @@ package classes.Characters
 			if (target == null) return;
 			
 			var blastAvail:Boolean = energy() >= 20 && !hasStatusEffect("Disarmed");
-			var netAvail:Boolean = energy() >= 10 && !hasStatusEffect("Stun Net Cooldown");
+			var netAvail:Boolean = energy() >= 10 && !hasStatusEffect("Stun Net Cooldown") && !hasStatusEffect("Disarmed");
 			var zapAvail:Boolean = energy() >= 10 && !target.hasStatusEffect("Stunned");
 			
 			var attacks:Array = [];

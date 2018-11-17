@@ -428,7 +428,7 @@ public function jadeGetsAGropeGasm():void {
 		//Mischievous
 		else if(pc.isMischievous()) output("\n\nYou help a while, cracking plenty wise about her orgasms and how wet they were until the whole place is clean. Then, you help her get dressed once more, being sure to cup her breast, just to get her motor going again.");
 		//Hard
-		else output("\n\nYou wave, walking out the door with a smile on your face.");
+		else output("\n\nYou wave, [pc.walking] out the door with a smile on your face.");
 		
 		//Gropegasm Insight
 		//Blurb to be displayed after the Gropegasm scene. Available after Gropegasmin 3 times.
@@ -1059,7 +1059,7 @@ public function boobToBoobSexathon():void {
 		output("\n\nShe shakes her head with a slight look of disbelief. <i>“It’s quite a universe, isn’t it? Okay, I guess this will feel good enough for you without any extra help,”</i> she declares.");
 		output("\n\nBefore you say anything, she steps forward, muffling your words and blocking your vision with her impressive cleavage as she slides in to straddle your waist. The plush panda-girl settles into your lap until she is quite comfortable seated atop you, her warm feminine treasure pressed plush and firm against your own featureless loins.");
 	}
-	output("\n\nWith a smile, Jade wraps her arms around your back as best she can, squeezing her own voluptuous tits against your [pc.boobs], gently rubbing them together. Her mouth opens into an O-shape, a soft moan echoing up from her throat as her tentacle-like nipples stretch out and out, sliding up and down the valleys of your respective cleavages to wrap themselves around both of pairs of pressed tits like perverse pythons encircling their prey.");
+	output("\n\nWith a smile, Jade wraps her arms around your back as best she can, squeezing her own voluptuous tits against your [pc.boobs], gently rubbing them together. Her mouth opens into an O-shape, a soft moan echoing up from her throat as her tentacle-like nipples stretch out and out, sliding up and down the valleys of your respective cleavages to wrap themselves around both pairs of pressed tits like perverse pythons encircling their prey.");
 
 	output("\n\nYou join her with your own moans of pleasure. ");
 	if(pc.hasCock() || (pc.hasVagina() && pc.hasClit() && pc.clitLength >= 4))
@@ -1196,7 +1196,7 @@ public function jadeMuffStuffedDumplingsOffer():void
 	output("You walk into Fur Effect, only to find the whole place empty save for a one of Jade’s legs, which promptly disappears into the employee room, chased by tittering laughter.");
 	output("You follow after to find the plush panda sitting atop a countertop, facing away from you. She giggles again at the sound of your approach.");
 	output("\n\n<i>“Hey [pc.name], I see you finally came for the dumplings,”</i> she then turns towards you, revealing her belly to look a few months pregnant. She starts to bite her lower lip, then shakes her head and straightens, looking you straight in the eye. <i>“Don’t be shy, they’re right here! I’m keeping them warm.”</i>");
-	output("\n\nYou walk towards her, suspicion slowly giving way to realization of what she’s done. When she sees your shift in expression slowly spreads her legs, clearly anxious about your reaction... up until a dumpling slips out of her plump panda pussy onto the counter, slick with her juices. At that, her legs fall completely open, revealing a well-stuffed and dribbling cunt.");
+	output("\n\nYou [pc.walk] towards her, suspicion slowly giving way to realization of what she’s done. When she sees your shift in expression slowly spreads her legs, clearly anxious about your reaction... up until a dumpling slips out of her plump panda pussy onto the counter, slick with her juices. At that, her legs fall completely open, revealing a well-stuffed and dribbling cunt.");
 	output("\n\nYou stop in your tracks, should you continue?");
 
 	processTime(2);

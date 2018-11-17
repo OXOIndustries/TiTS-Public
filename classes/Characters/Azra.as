@@ -7,6 +7,7 @@
 	import classes.Items.Melee.ShockBlade;
 	import classes.Items.Guns.HammerCarbine;
 	import classes.Items.Protection.JoyCoPremiumShield;
+	import classes.Items.Accessories.FlashGoggles;
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
@@ -347,7 +348,7 @@
 			{
 				output("She hits!");
 				//Trip chance:
-				if(physique()/2 + rand(20) + 1 >= target.reflexes()/2 + 10)
+				if((physique()/2 + rand(20) + 1 >= target.reflexes()/2 + 10) && !target.isPlanted())
 				{
 					output(" The impact sends " + target.getCombatPronoun("o") + " sprawling on the ground.");
 					CombatAttacks.applyTrip(target);
@@ -360,7 +361,9 @@
 		public function dustStormAzra(target:Creature):void
 		{
 			output("Azra beats her wings until a gusting gale-force wind is blowing through the battle, hurling bits of dust and detritus at " + target.getCombatName() + "!");
-			if(target.reflexes()/2 + rand(20) + 1 >= this.physique()/2 + 10) output(" " + StringUtil.capitalize(target.getCombatName(), false) + " close" + (!target.isPlural ? "s" : "") + " " + target.getCombatPronoun("pa") + " eyes in time to avoid being blinded!");
+			if(target.accessory is FlashGoggles) output(" " + StringUtil.capitalize(target.getCombatName(), false) + "’s goggles shield " + target.getCombatPronoun("hisher") + " eyes from the attack and " + target.getCombatPronoun("heshe") + " avoid" + (!target.isPlural ? "s" : "") + " being blinded!");
+			else if(target.hasBlindImmunity()) output(" " + StringUtil.capitalize(target.getCombatName(), false) + " " + (!target.isPlural ? "is" : "are") + " unaffected by the attack and avoid" + (target.isPlural ? "" : "s") + " being blinded!");
+			else if(target.reflexes()/2 + rand(20) + 1 >= this.physique()/2 + 10) output(" " + StringUtil.capitalize(target.getCombatName(), false) + " close" + (!target.isPlural ? "s" : "") + " " + target.getCombatPronoun("pa") + " eyes in time to avoid being blinded!");
 			else
 			{
 				output(" <b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (!target.isPlural ? "is" : "are") + " blinded!</b>");
@@ -378,7 +381,7 @@
 				var damage:TypeCollection = meleeDamage();
 				applyDamage(damageRand(damage, 15), this, target);
 				//Chance of staggered.
-				if(physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
+				if((physique()/2 + rand(20) + 1 >= target.physique()/2 + 10) && !target.isPlanted())
 				{
 					output("\n<b>" + StringUtil.capitalize(target.getCombatPronoun("s")) + " " + (!target.isPlural ? "is" : "are") + " staggered.</b>");
 					CombatAttacks.applyStagger(target);

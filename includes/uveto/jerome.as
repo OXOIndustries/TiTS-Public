@@ -75,7 +75,7 @@ public function approachJerome():void
 
 	if (!metJerome)
 	{
-		output("\n\nAs you move closer, you finally start to make out some of the details behind the figure. The hungry eyes belong to a portly bear of a man, heavy set yet visibly well built, if the sheer size of his shoulders are anything to go by. A tight security uniform forms around his upper body, leaving a poof of off-white fur bursting out from the neck of the armored vest-come-shirt to obscure most of his neck and jawline.");
+		output("\n\nAs you [pc.move] closer, you finally start to make out some of the details behind the figure. The hungry eyes belong to a portly bear of a man, heavy set yet visibly well built, if the sheer size of his shoulders are anything to go by. A tight security uniform forms around his upper body, leaving a poof of off-white fur bursting out from the neck of the armored vest-come-shirt to obscure most of his neck and jawline.");
 	}
 	else
 	{
@@ -831,10 +831,7 @@ public function jeromeHipbusterIII(s:Object):void
 	output(" off to your attached washroom with a noticeable kink in your");
 	if (pc.isTaur() || pc.isBiped()) output(" step");
 	else output(" movement");
-	output("; you’re definitely not going to be");
-	if (!pc.isNaga()) output(" walking");
-	else output(" slithering");
-	output(" right for a while after that performance, a certain sense of... hollowness between your");
+	output("; you’re definitely not going to be [pc.walking] right for a while after that performance, a certain sense of... hollowness between your");
 	if (s.vIdx >= 0 && pc.hasLegs()) output(" legs");
 	else output(" cheeks");
 	output(".");

@@ -388,7 +388,9 @@ public function warnPennyAboutDoctorBadgersNefariousSchemes():void
 		}
 		else output(", forcing your [pc.upperGarment] to strain as your sizeable chest swells outwards.");
 		output("\n\n<i>“Uh, yeah,”</i> Penny coughs, reddening rapidly. <i>“Yeah they’re... they’re pretty great...”</i>");
-		output("\n\n<i>“Oh! Also - check this out!”</i> You take Penny by surprise as you spin around, moving to sit on one corner facing towards her, with one leg hanging down on either side. Penny only just manages to move back out of the way of your flailing legs, but before she can say anything about this you interrupt her by pulling down your [pc.underGarmets], letting your thick cock and balls fall freely onto her desk, your slick pussy already starting to make a mess beneath you. <i>“Look at all </i>this<i>!”</i> you say excitedly. <i>“Isn’t it great?”</i>");
+		output("\n\n<i>“Oh! Also - check this out!”</i> You take Penny by surprise as you spin around, moving to sit on one corner facing towards her, with one leg hanging down on either side. Penny only just manages to move back out of the way of your flailing legs");
+		if(!pc.isCrotchExposed()) output(", but before she can say anything about this you interrupt her by pulling down your [pc.lowerGarments]");
+		output(", letting your thick cock and balls fall freely onto her desk, your slick pussy already starting to make a mess beneath you. <i>“Look at all </i>this<i>!”</i> you say excitedly. <i>“Isn’t it great?”</i>");
 		output("\n\nIt takes you a few moments to realize that Penny isn’t saying anything. Looking up, you see she’s just staring straight forwards at you, her eyes wide and a thin line of drool sliding down from her slightly open mouth.");
 		output("\n\n<i>“Well, what are you just </i>looking<i> for silly,”</i> you laugh. <i>“You should get in there and see what it’s all like!”</i>");
 		output("\n\nWithout waiting for a response you reach out with one of your bluntly clawed hands, wrapping it around the back of her head and pulling her forcefully inwards. She lands heavily against you, her mouth just happening to wind up at the base of your cock, her tongue sliding for just a second along the length of your dripping slit. <i>“Good, huh?”</i>");
@@ -737,7 +739,9 @@ public function surpriseZapPennyWithBimboRay():void
 		output("\n\n <i>“Thanks!”</i> you answer chirpily. <i>“It feels super good too! Do you like my big tits?”</i> You lean forwards, cupping your breasts and pushing them out towards her, forcing your [pc.upperGarment] to strain as your sizeable chest swells outwards.");
 		output("\n\n<i>“Uh, yeah,”</i> Penny coughs, reddening rapidly. <i>“Yeah they’re... they’re pretty great...”</i>");
 
-		output("\n\n<i>“Oh! Also - check this out!”</i> You take Penny by surprise as you spin around, moving to sit on one corner facing towards her, with one leg hanging down on either side. Penny only just manages to move back out of the way of your flailing legs, but before she can say anything about this you interrupt her by pulling down your [pc.underGarmets], letting your thick cock and balls fall freely onto her desk, your slick pussy already starting to make a mess beneath you. <i>“Look at all </i>this<i>!”</i> you say excitedly. <i>“Isn’t it great?”</i>");
+		output("\n\n<i>“Oh! Also - check this out!”</i> You take Penny by surprise as you spin around, moving to sit on one corner facing towards her, with one leg hanging down on either side. Penny only just manages to move back out of the way of your flailing legs");
+		if(!pc.isCrotchExposed()) output(", but before she can say anything about this you interrupt her by pulling down your [pc.lowerGarments]");
+		output(", letting your thick cock and balls fall freely onto her desk, your slick pussy already starting to make a mess beneath you. <i>“Look at all </i>this<i>!”</i> you say excitedly. <i>“Isn’t it great?”</i>");
 
 		output("\n\nIt takes you a few moments to realize that Penny isn’t saying anything. Looking up, you see she’s just staring straight forwards at you, her eyes wide and a thin line of drool sliding down from her slightly open mouth.");
 
@@ -917,9 +921,9 @@ public function turnTheTablesOnBadgertwat():void
 		output("\n\nShe types on her terminal for a few moments, frowning at the display as she searches through the information. You pout as you wait. Maybe you <i>should</i> have just zapped her - you probably wouldn’t have agreed with her idea if you knew it would end up with all this standing around and not getting fucked. <i>“Listen,”</i> she says eventually, <i>“I can’t promise anything, but I know some people who know some people, and I’m sure with all the folks out here for the planet rush there’s got to be someone who knows enough to reconfigure this thing. I’ll put out the call, but it will probably take a while before I hear anything.”</i>");
 		output("\n\nNodding at the raygun in your hand, she says. <i>“Leave that with me. I’ll let you know when I’ve found something. And then after that we can have some fun, </i>and<i> show her U.G.C Peacekeepers aren’t something to fuck with.”</i>");
 		if(pennyIsCumSlut()) output(" Then, after a brief pause, she adds quietly, <i>“and, uh, </i>after<i> that, maybe we could find a way to make the whole cum-focused bimbo slut thing work on our terms. If, uh, if you want...”</i>");
-		output("\n\n seems to be it. For now you just need to sit tight and wait for Penny to get back to you. And maybe, while you’re waiting, like, actually get some sex. That would be <i>super</i> nice.");
+		output("\n\nThat seems to be it. For now you just need to sit tight and wait for Penny to get back to you. And maybe, while you’re waiting, like, actually get some sex. That would be <i>super</i> nice.");
 	}
-	output("\n\n<b>Penny has taken posession of the bimbo ray.</b>");
+	output("\n\n<b>Penny has taken possession of the bimbo ray.</b>");
 	pc.removeKeyItem("Doctor Badger's Bimbo Raygun - Programmed for use on Penny.");
 	flags["BADGER_QUEST"] = -1;
 	clearMenu();
@@ -1494,6 +1498,10 @@ public function approachDoctorBimboBadger():void
 	output("\n\nYou’re pretty sure that her abilities as an inventor have changed substantially. Given that you suspect she earlier made all the illegal drugs and equipment she sold herself, you doubt you’ll be able to buy anything further from her. But hey, that’s not what a bimbo is for anyway, right?");
 
 	processTime(1);
+	doctorBimboBadgerMenu();
+}
+public function doctorBimboBadgerMenu():void
+{
 	//[replace all previous interaction buttons with the below]
 	//[Talk][Sex]
 	clearMenu();
@@ -1501,6 +1509,7 @@ public function approachDoctorBimboBadger():void
 	if(pc.lust() >= 33) addButton(1,"Sex",sexWithBimboBadger,undefined,"Sex","Have your way with your new bimbo.");
 	else addDisabledButton(1,"Sex","Sex","You aren’t turned on enough to have sex right now.");
 	if(pexigaQuestDocChatsAvailable()) addButton(2,"Pexiga Help",talkToBimboBadgerAboutPexiga,undefined,"Pexiga Help","Ask for help with the Pexiga’s situation.");
+	
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -1539,11 +1548,8 @@ public function talkToDoctorBadger():void
 		pc.lust(20);
 		processTime(1);
 	}
-	clearMenu();
+	doctorBimboBadgerMenu();
 	addDisabledButton(0,"Talk","Talk","You won’t be getting much discussion out of this bimbo.");
-	if(pc.lust() >= 33) addButton(1,"Sex",sexWithBimboBadger,undefined,"Sex","Have your way with your new bimbo.");
-	else addDisabledButton(1,"Sex","Sex","You aren’t turned on enough to have sex right now.");
-	addButton(14,"Leave",mainGameMenu);
 }
 
 //Sex

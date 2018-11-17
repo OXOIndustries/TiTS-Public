@@ -9,10 +9,6 @@ public function kiroIsCrew():Boolean
 {
 	return false;
 }
-public function syriAtTheFreezer():Boolean
-{
-	return false;
-}
 public function PCShipName(customName:Boolean = true):String
 {
 	// 9999 if(customName) return ActivePlayerShip.Name;

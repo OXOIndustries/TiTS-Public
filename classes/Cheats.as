@@ -43,7 +43,28 @@
 			lootArray.push(loot);
 			kGAMECLASS.itemCollect(lootArray);
 		}
-		
+		public static function MitziUnlock():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			Cheats.OutputStuff(true);
+			kGAMECLASS.flags["MITZI_RESCUED"] = (kGAMECLASS.GetGameTimestamp() - (60*24*8));
+			//if(kGAMECLASS.flags["MITZI_RESCUED"] < 0) kGAMECLASS.flags["MITZI_RESCUED"] = 0;
+		}
+		public static function YakuzaUnlock():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0 || kGAMECLASS.flags["SHUKUCHI_FOURTH_ENCOUNTER"] != undefined)
+			{
+				return;
+			}
+			Cheats.OutputStuff(false);
+			kGAMECLASS.flags["SHUKUCHI_TAVROS_ENCOUNTER"] = 1; 
+			kGAMECLASS.flags["SHUKUCHI_MHENGA_ENCOUNTER"] = 0;
+			kGAMECLASS.flags["SHUKUCHI_UVETO7_ENCOUNTER"] = 0;
+			kGAMECLASS.flags["SHUKUCHI_EMAIL_TIMER"] = (kGAMECLASS.GetGameTimestamp() - (60 * 24 * 7));
+		}
 		public static function XPToLevel():void
 		{
 			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)

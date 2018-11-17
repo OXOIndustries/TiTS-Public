@@ -86,7 +86,12 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/jay_echo/mayren.png", mimeType = "image/png")]
 		public var Bust_MAYREN:Class;
-
+		
+		[Embed(source = "../../../assets/images/npcs/jay_echo/mica.png", mimeType = "image/png")]
+		public var Bust_MICA:Class;
+		/*[Embed(source = "../../../assets/images/npcs/jay_echo/mica_nude.png", mimeType = "image/png")]
+		public var Bust_MICA_NUDE:Class;*/
+		
 		[Embed(source = "../../../assets/images/npcs/jay_echo/mirrin.png", mimeType = "image/png")]
 		public var Bust_MIRRIN:Class;
 		[Embed(source = "../../../assets/images/npcs/jay_echo/mirrin_nude.png", mimeType = "image/png")]
@@ -98,6 +103,16 @@ package classes.Resources.Busts
 		public var Bust_NAYNA_SUIT:Class;
 		[Embed(source = "../../../assets/images/npcs/jay_echo/nayna_nude.png", mimeType = "image/png")]
 		public var Bust_NAYNA_SUIT_NUDE:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/jay_echo/paige_casual.png", mimeType = "image/png")]
+		public var Bust_PAIGE_CASUAL:Class;
+		/* Fen note: not used
+		[Embed(source = "../../../assets/images/npcs/jay_echo/paige_underwear.png", mimeType = "image/png")]
+		public var Bust_PAIGE_UNDERWEAR:Class;*/
+		[Embed(source = "../../../assets/images/npcs/jay_echo/paige.png", mimeType = "image/png")]
+		public var Bust_PAIGE_YOGA:Class;
+		[Embed(source = "../../../assets/images/npcs/jay_echo/paige_nude.png", mimeType = "image/png")]
+		public var Bust_PAIGE_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/jay_echo/saec.png", mimeType = "image/png")]
 		public var Bust_SAEC:Class;
@@ -120,6 +135,20 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/jay_echo/subtuner.png", mimeType = "image/png")]
 		public var Bust_SUBTUNER:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/jay_echo/tentacle_gardener.png", mimeType = "image/png")]
+		public var Bust_TENTACLEGARDENER:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/jay_echo/tetra.png", mimeType = "image/png")]
+		public var Bust_TETRA:Class;
+		/*
+		[Embed(source = "../../../assets/images/npcs/jay_echo/tetra_nude.png", mimeType = "image/png")]
+		public var Bust_TETRA_NUDE:Class;
+		*/
+		[Embed(source = "../../../assets/images/npcs/jay_echo/verusha.png", mimeType = "image/png")]
+		public var Bust_VERUSHA:Class;
+		[Embed(source = "../../../assets/images/npcs/jay_echo/verusha_nude.png", mimeType = "image/png")]
+		public var Bust_VERUSHA_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/jay_echo/walt.png", mimeType = "image/png")]
 		public var Bust_WALT:Class;
 		[Embed(source = "../../../assets/images/npcs/jay_echo/walt_nude.png", mimeType = "image/png")]
@@ -204,7 +233,12 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/mayren.png", mimeType = "image/png")]
 			public var Full_MAYREN:Class;
-
+			
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/mica.png", mimeType = "image/png")]
+			public var Full_MICA:Class;
+			/*[Embed(source = "../../../assets/images/npcs/jay_echo/hr/mica_nude.png", mimeType = "image/png")]
+			public var Full_MICA_NUDE:Class;*/
+			
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/mirrin.png", mimeType = "image/png")]
 			public var Full_MIRRIN:Class;
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/mirrin_nude.png", mimeType = "image/png")]
@@ -216,6 +250,16 @@ package classes.Resources.Busts
 			public var Full_NAYNA_SUIT:Class;
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/nayna_nude.png", mimeType = "image/png")]
 			public var Full_NAYNA_SUIT_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/paige_casual.png", mimeType = "image/png")]
+			public var Full_PAIGE_CASUAL:Class;
+			/*Fen note: not used:
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/paige_underwear.png", mimeType = "image/png")]
+			public var Full_PAIGE_UNDERWEAR:Class;*/
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/paige.png", mimeType = "image/png")]
+			public var Full_PAIGE_YOGA:Class;
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/paige_nude.png", mimeType = "image/png")]
+			public var Full_PAIGE_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/saec.png", mimeType = "image/png")]
 			public var Full_SAEC:Class;
@@ -238,10 +282,21 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/subtuner.png", mimeType = "image/png")]
 			public var Full_SUBTUNER:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/tetra.png", mimeType = "image/png")]
+			public var Full_TETRA:Class;
+			/*
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/tetra_nude.png", mimeType = "image/png")]
+			public var Full_TETRA_NUDE:Class;
+			*/
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/walt.png", mimeType = "image/png")]
 			public var Full_WALT:Class;
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/walt_nude.png", mimeType = "image/png")]
 			public var Full_WALT_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/verusha.png", mimeType = "image/png")]
+			public var Full_VERUSHA:Class;
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/verusha_nude.png", mimeType = "image/png")]
+			public var Full_VERUSHA_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/yarasta.png", mimeType = "image/png")]
 			public var Full_YARASTA:Class;

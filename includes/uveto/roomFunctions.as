@@ -105,33 +105,9 @@ public function GlacialRiftEncounterBonus():Boolean
 	return false;
 }
 
-public function HereBeDragonBonus():Boolean
+public function GlacialRiftCoast():Boolean
 {
-	if(flags["ENCOUNTERS_DISABLED"] != undefined || flags["FROSTWYRMSLAIN"] == 1) return false;
-	
-	//Always encounter Frostwyrm first time
-	if(flags["MET_FROSTWYRM"] == undefined)
-	{
-		flags["UVETOCOAST_STEP"] = 0;
-		encounterFrostwyrm();
-		return true;
-	}
-	
-	IncrementFlag("UVETOCOAST_STEP");
-
-	var choices:Array = new Array();
-	//If walked far enough w/o an encounter (temporary values, should be replaced when moved to Glacial Rift)
-	if(flags["UVETOCOAST_STEP"] >= 7 && rand(2) == 0) {
-		//Reset step counter
-		flags["UVETOCOAST_STEP"] = 0;
-		//Build encounter
-		encounterFrostwyrm();
-		return true;
-	}
-	if (tryUvetoWeatherEvent(flags["UVETOCOAST_STEP"])) return true;
-	if (tryEncounterSavicite(flags["UVETOCOAST_STEP"])) return true;
-	
-	return false;
+	return HereBeDragonBonus();
 }
 
 public function uvetoShipDock():Boolean
@@ -152,7 +128,12 @@ public function uvetoShipDock():Boolean
 	
 	if (tryProcKaedeUvetoEncounter()) return true;
 	
-	if(chaurmineOnUveto() && (flags["MET_CHAURMINE"] >= 2 || flags["CHAURMINE_WINS"] != undefined)) chaurmineUvetoStationBonus();
+	var btnSlot:int = 0;
+	
+	if(chaurmineOnUveto() && (flags["MET_CHAURMINE"] >= 2 || flags["CHAURMINE_WINS"] != undefined))
+	{
+		chaurmineUvetoStationBonus(btnSlot++);
+	}
 
 	return false;
 }
@@ -341,7 +322,7 @@ public function rideSpaceElevatorDown():void
 
 public function uvetoUnlocked():Boolean
 {
-	return flags["UVETO_UNLOCKED"] != undefined || reclaimedProbeMyrellion() || (flags["KQ2_MYRELLION_STATE"] == 1 && MailManager.isEntryUnlocked("danemyrellioncoords"));
+	return (flags["UVETO_UNLOCKED"] != undefined || reclaimedProbeMyrellion() || (flags["KQ2_MYRELLION_STATE"] == 1 && MailManager.isEntryUnlocked("danemyrellioncoords")));
 }
 
 public function flyToUveto():void
@@ -641,8 +622,7 @@ public function uvetoReactivateProbe():void
 	}
 	else
 	{
-		output("\n\nYou give the machine a long, thorough once-over, looking up parts and connections in your Codex, trying to deduce what went wrong... other than it explosively crashing, anyway. With a few helpful forum posts, you’re able to dig into the probe’s mechanical guts and and start pulling and rearranging things, trying to reboot it.");
-	
+		output("\n\nYou give the machine a long, thorough once-over, looking up parts and connections in your Codex, trying to deduce what went wrong... other than it explosively crashing, anyway. With a few helpful forum posts, you’re able to dig into the probe’s mechanical guts and start pulling and rearranging things, trying to reboot it.");
 		output("\n\nEventually, you manage to get it sorted out, and punch the power button inside it again. It takes a moment, but eventually the probe starts whirring and the systems begin coming online.");
 	}
 	
@@ -844,6 +824,9 @@ public function uvetoBarBonus():Boolean
 	if(isChristmas()) candyRahnBonus(5);
 	else roamingBarEncounter(5);
 	
+	//Devil Waitress
+	//DISABLED FOR NOW. willowBonus(6);
+	
 	// More random Freezer encounters
 	NPCs.length = 0;
 	//Chrissy
@@ -856,6 +839,22 @@ public function uvetoBarBonus():Boolean
 	}
 	if(NPCs.length > 0) NPCs[rand(NPCs.length)](7);
 
+	return false;
+}
+
+public function uvetoBarFirePitBonus():Boolean
+{
+	if (syriAtFreeezer())
+	{
+		if(pc.hasStatusEffect("Fuck Fever") && syriIsAFuckbuddy()) 
+		{
+			syriButtreamHeatButtPCButtsInTheButtWithAButtDIDISAYBUTTYET();
+			return true;
+		}
+		syriAtFreezerFirePitBonus(0);
+	}
+
+	setNavDisabled(NAV_SOUTH_DISABLE);
 	return false;
 }
 
@@ -888,7 +887,7 @@ public function watchTankBlowFirstPornLoad():void
 	showBust("TANK_KANNON");
 	showName("TANK\nKANNON");
 	output("After a brief commercial intermission for Intimints, the mints that get the hint, the show returns, cutting to a feed of a younger, nervous-looking Tank.");
-	output("\n\nStanding a little too close to the camera, the young hybrid scratches the back of his neck nervously. <i>“H-hey ‘net! My name’s... Tank. Yeah. Tank Kannon...”</i> He grins to himself, apparently pleased with his own trite cleverness. <i>“...and I’m got something to show you.”</i> He hops down from his perch, allowing the wide-angle lens to capture every inch of sizable body - and more sizable endowments. His cock, half-hard but rapidly thickening, is laid out across an expanse of slick-looking plastic, ending in a ramp leading up to an expansive bathtub. It’s obvious from the size of the room and the niceties on display that Tank’s station has already started to improve at the time of this recording.");
+	output("\n\nStanding a little too close to the camera, the young hybrid scratches the back of his neck nervously. <i>“H-hey ‘net! My name’s... Tank. Yeah. Tank Kannon...”</i> He grins to himself, apparently pleased with his own trite cleverness. <i>“...and I’m got something to show you.”</i> He hops down from his perch, allowing the wide-angle lens to capture every inch of sizable body - and more sizable endowments. His cock, half-hard but rapidly thickening, is laid out across an expanse of slick-looking plastic, ending in a ramp leading up to an expansive bathtub. It’s obvious from the size of the room and the niceties on display that Tank’s station had already started to improve at the time of this recording.");
 	output("\n\nThe ever-erect Mr. Kannon is grinning like a cheshire cat and gently patting the top of his insurmountable swell. <i>“Yes, ladies and gents - it’s all real. I haven’t been implanted. I don’t have a disease to my name. This is 100%, naturally grown UGC-approved cock-meat, though I will admit that certain... growth aids were used to help this little pony grow into the bitch-basting stallion he is today.”</i> Groaning in pleasure, Tank struggles to keep his slobbering, canine tongue in his mouth. <i>“S-sorry! I’ve got an assistant just out of frame, one thing they don’t warn you about when your balls get this big is how good it feels to have them licked. I can’t help but throb, and when I throb, my dick drags itself a few inches back and forth along this very, very slick plastic. Hnng!”</i>");
 	output("\n\nTank looks like he’s having trouble keeping it together. A few beads of sweat roll down his brow, and the muscles in his well-defined pectorals and biceps visibly clench. Veins in his cock swell, as thick as pipes, pumping gallons of blood in an effort to maintain the impressively-endowed amateur’s erect state. His eyelids flutter closed, and his hips lurch, compressing his sheath slightly before finally transferring the movement into the dozen feet of dick on display. Plastic crinkles beneath it, threatening to be drowned out by the sloppy sound of lube parting around the indiscrete erection.");
 	output("\n\n<i>“W-w-wow,”</i> Tank gasps, openly stroking his cock. <i>“I’ve never...”</i> He pants, his watermelon-sized nuts clenching and wobbling, undoubtedly in reaction to a salacious tongue-bath from behind. <i>“...had a setup like this,”</i> he tries to explain midway through a thrust. <i>“I’m n-not sure how long I’ll last! Fuck, babe keep licking like that!”</i>");
@@ -1084,12 +1083,61 @@ public function uvetoSheriffsOfficeBonus():Boolean
 public function uvetoMaglevStation():Boolean
 {
 	//removeUvetoColdBonus();
-	
-	if (flags["UVIP_R10_PROBE_ACTIVE"] == undefined) addDisabledButton(0, "Probe");
-	else addButton(0, "Probe", move, "UVIP R10");
-	if(krymRespectsYou()) addButton(1,"Krym’s Camp",move,"UVGR M4");
-
+	if (syriQuestRunning() && (flags["SYRIQUEST_STATE"] == undefined || flags["SYRIQUEST_STATE"] == 0)) {
+		syriQuestInitialEncounter();
+		return true;
+	}
+	else addButton(0, "Transit", useUvetoTransportMenu);
 	return false;
+}
+		
+public function uvetoCrashedProbe():Boolean {
+	if (flags["UVIP_R10_PROBE_ACTIVE"] == undefined)
+	{
+		output("\n\nIt looks like the probe was damaged in the crash. It’s silent and dark.");
+		addButton(0, "Reactivate", uvetoReactivateProbe, undefined, "Reactivate Probe", "You could probably give this probe a repair job and use it to broadcast a signal back to Irestead. If you do, you might be able to call for quick transportation...");
+	}
+	else
+	{
+		output("\n\nThe probe is blinking, occasionally making a high-pitched <i>beep!</i>");
+		addButton(0, "Use Probe", useUvetoTransportMenu);
+	}
+	return false;
+};
+
+public function useUvetoTransportMenu():void
+{
+	clearMenu();
+	var btnSlot:int = 0;
+	
+	if(currentLocation != "UVI P40")
+	{
+		addButton(btnSlot++, "Irestead", uvetoTaxiMove, "UVI P40");
+	}
+	if(currentLocation != "UVIP R10")
+	{
+		if(flags["UVIP_R10_PROBE_ACTIVE"] == undefined) addDisabledButton(btnSlot++, "Probe");
+		else addButton(btnSlot++, "Probe", uvetoTaxiMove, "UVIP R10");
+	}
+	if(currentLocation != "UVGR M4")
+	{
+		if(krymRespectsYou()) addButton(btnSlot++, "Krym’s Camp", uvetoTaxiMove, "UVGR M4");
+	}
+	
+	addButton(14, "Back", mainGameMenu);
+}
+public function uvetoTaxiMove(destination:String):void
+{
+	clearOutput();
+	showName("\nTRANSIT!");
+	output("You hop onto the nearest transit and lock in the desired coordinates.");
+	output("\n\nThe taxi drone takes you to your destination.");
+	
+	moveTo(destination);
+	processTime(20);
+	
+	clearMenu();
+	addButton(0,"Next", move, destination);
 }
 
 public function GlacialRiftS40():Boolean

@@ -307,8 +307,11 @@ public function infectedMyrWinOrLossFuckForGirlTypes(loss:Boolean = true):void
 	showInfectedMyr();
 	author("Gardeford");
 	output("You kiss the pale redhead again, leaning back into the rock and moss to give her a better view of your body. The nervous ant-girl ");
-	var x:int = rand(pc.totalVaginas());
-	if(pc.totalVaginas() == 1) output("gingerly lines her alabaster cock up to your [pc.vagina], flinching cutely at her own touch, still somewhat unused to having what she’s packing");
+	
+	var x:int = -1;
+	if(pc.hasVagina()) x = rand(pc.totalVaginas());
+	
+	if(x < 0 || pc.totalVaginas() == 1) output("gingerly lines her alabaster cock up to your [pc.vagOrAss], flinching cutely at her own touch, still somewhat unused to having what she’s packing");
 	else output("looks confusedly at [pc.eachVagina], mumbling about why your reproductive system has to be so complicated before you take over and line her up with your [pc.vagina " + x + "]");
 	output(". She clears her throat as if mentally preparing herself for whats to come, but you’ll be having none of that, proceeding to wrap your ");
 	if(pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output("[pc.tails]");
@@ -322,19 +325,21 @@ public function infectedMyrWinOrLossFuckForGirlTypes(loss:Boolean = true):void
 	output(". Are these your thoughts or the fungus’s?");
 
 	output("\n\nFor now it doesn’t matter. You rub her body up to the chest, taking one of her pert C-cups in each hand. The overwhelmed myrmedion coos as you squeeze them, testing the firmness before you move on, rubbing her nipples in small circles with your thumbs and smiling as they harden under your attentions. Your companion recovers eventually, squeezing her handholds and brushing her fingers against your own [pc.nipples].");
-	output("\n\nHer knees press into your hips as she slowly slides her way into your [pc.vagina " + x + "], letting out a number of heavenly noises as she does so, and you feel the heat and hardness of her human-like member as it penetrates you. The needful ant-girl pushes until her dick ");
-	if(enemy.cockVolume(0) <= pc.vaginalCapacity(x)) output("is totally enveloped in your folds");
+	output("\n\nHer knees press into your hips as she slowly slides her way into your [pc.vagOrAss " + x + "], letting out a number of heavenly noises as she does so, and you feel the heat and hardness of her human-like member as it penetrates you. The needful ant-girl pushes until her dick ");
+	if(enemy.cockVolume(0) <= (x < 0 ? pc.analCapacity() : pc.vaginalCapacity(x))) output("is totally enveloped in your " + (x < 0 ? "rectum" : "folds"));
 	else output("can’t move any deeper");
 	output(", still pushing but unable to go any further. When she pulls out, she remains just as slow, and as good as this must feel for her it’s not doing quite as much on your end.");
-	pc.cuntChange(x,enemy.cockVolume(0));
+	
+	if(x >= 0) pc.cuntChange(x,enemy.cockVolume(0));
+	else pc.buttChange(enemy.cockVolume(0));
 
-	output("\n\nAs soon as her porcelain-colored cock is nearly clear of you, you pull her back with force, slamming it into you with full speed. The unexpecting myr nearly goes limp, her hips seizing up as you clamp down on her length. You relocate your hands to her buttocks, prompting her to fuck you by pushing and pulling them. It takes a few repetitions, but she begins to shakily pound you.");
+	output("\n\nAs soon as her porcelain-colored cock is nearly clear of you, you pull her back with force, slamming it into you with full speed. The unexpecting myr nearly goes limp, her hips seizing up as you " + (x < 0 ? "sit" : "clamp") + " down on her length. You relocate your hands to her buttocks, prompting her to fuck you by pushing and pulling them. It takes a few repetitions, but she begins to shakily pound you.");
 	output("\n\nHer pace increases over time, eventually mounting as she collapses into your [pc.chest], her arms unable to support her as she humps madly into your depths. The shade of her mushroom companion cheers her on silently, watching with something akin to longing as the addled ant-girl has the time of her life. You ");
 	if(pc.tallness > enemy.tallness + 8) output("hug her head tightly as she pumps her hips with abandon");
 	else output("kiss and lick her chest as it bobs in front of you, your [pc.tongue] leaving wet spots on her pale skin");
 	output(".");
 	output("\n\nYou can feel her impending orgasm coming before it’s completely obvious, with her cock growing hotter and throbbing more often inside you, swelling as it prepares to fill you with fresh cream. You doubt the thought will occur to her based on her current lust-drunk stupor, but you tighten your hold on her to stop her from pulling out. The fuck-hungry futanari hardly notices, moaning as she loses the ability to hold it in for any longer.");
-	output("\n\n<i>“Hnng,”</i> is all she can manage as her reserves break free. You join her in moaning as the inner walls of your [pc.vagina " + x + "] are showered with hot jizz. Despite your best efforts to the contrary a little of it washes back out and slides to the cave floor. Her feet slip on the moist ground as she tries to push deeper into you, and they splay out behind her as she sporadically humps and gushes cum.");
+	output("\n\n<i>“Hnng,”</i> is all she can manage as her reserves break free. You join her in moaning as the inner walls of your [pc.vagOrAss " + x + "] are showered with hot jizz. Despite your best efforts to the contrary a little of it washes back out and slides to the cave floor. Her feet slip on the moist ground as she tries to push deeper into you, and they splay out behind her as she sporadically humps and gushes cum.");
 	output("\n\nA loud bang shakes your eardrums as the fungal creature becomes solid again. It quickly goes about massaging the redheaded ant-girl’s spasming legs, calming her body down enough to just lie against you and bask in the feeling. Then it grasps your shoulder, giving you a sympathetic look as it starts to fade again. You aren’t going to have it. You ");
 	if(pc.hasTailCock()) output("shove your [pc.tailCock]");
 	else if(pc.hasTailFlag(GLOBAL.FLAG_PREHENSILE) && pc.hasTailFlag(GLOBAL.FLAG_LONG) && pc.tailCount > 0) output("poke the tip of [pc.oneTail]");
@@ -347,7 +352,7 @@ public function infectedMyrWinOrLossFuckForGirlTypes(loss:Boolean = true):void
 	else output("fingers");
 	output(" into her cunt, matching her pace thrust for thrust.");
 	output("\n\nDespite her facade of bravery, she’s still unused to having a cock. Ragged breathing grows heavier by the second, and your ‘assistance’ isn’t helping to keep her calm. Her dick throbs with need inside you, practically shouting for a third release, and her determined thrusts have become wild and mindless, driven by the need for greater pleasure. The inexperienced ant-girl has become a house of cards ready to fall with the slightest breath.");
-	output("\n\nYou opt for something a little stronger, leaning up and giving her a deep kiss, playing with her tongue like a toy. She folds into you, cumming even as her hips continue to move instinctively. Her cock slips out of your [pc.vagina " + x + "] and splatters both of your stomachs with cum, some even reaching your [pc.chest].");
+	output("\n\nYou opt for something a little stronger, leaning up and giving her a deep kiss, playing with her tongue like a toy. She folds into you, cumming even as her hips continue to move instinctively. Her cock slips out of your [pc.vagOrAss " + x + "] and splatters both of your stomachs with cum, some even reaching your [pc.chest].");
 	if(pc.hasCock()) output(" [pc.EachCock] spurts out a few ropes of [pc.cum], joining hers between your bodies.");
 	output(" Her own love tunnel tightens intensely around your ");
 	if(pc.hasTailCock()) output("[pc.tailCock], which releases a torrent of [pc.cum] that floods her insides");
@@ -358,7 +363,8 @@ public function infectedMyrWinOrLossFuckForGirlTypes(loss:Boolean = true):void
 	output("\n\nYou grip her tightly as you deal with your own orgasm. Hot white lights flash in your head as you tense and moan in rapture, and when you finally come back to your senses the ant-girl is passed out atop you, with the fully solid mushroom creature in a similar state atop her. You gently slide the pair off of you and gather your [pc.gear], leaving them to sleep as you return to your previous endeavors.\n\n");
 	//(pass 1 hr)(pc gets nastygerms)
 	processTime(50+rand(20));
-	pc.loadInCunt(enemy, x);
+	if(x >= 0) pc.loadInCunt(enemy, x);
+	else pc.loadInAss(enemy);
 	pc.orgasm();
 	if(loss) CombatManager.genericLoss();
 	else CombatManager.genericVictory();

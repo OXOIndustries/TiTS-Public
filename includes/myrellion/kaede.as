@@ -666,7 +666,7 @@ public function kaedeMyrellionSucknRide():void
 	
 	output("\n\nYou look up at her, in time to see the cute halfbreed chewing on her lip and blushing like a rose. She reaches an unsure hand down to stroke your [pc.hair]. You answer the sweet gesture with a swirl of your tongue around the still-flaccid ball of her knot, sending a throbbing shudder through her prick. Something delightfully warm and sticky smears onto the back of your throat from where her crown is nestled, and the salty scent of pre-cum roils through your senses.");
 	// {if bimbo/Treated/cum-dependant:
-	if (pc.isBimbo() || pc.isTreated() || pc.isDependant(Creature.DEPENDANT_CUM)) output(" You wish you could just suck this little cutie off until she gives you a big, hot load of spunk to swallow down... but then you wouldn’t get to shove it in your [pc.vagOrAss]!");
+	if (pc.isBimbo() || pc.isTreated() || pc.isCumSlut()) output(" You wish you could just suck this little cutie off until she gives you a big, hot load of spunk to swallow down... but then you wouldn’t get to shove it in your [pc.vagOrAss]!");
 	
 	output("\n\nThe thought of Kaede’s knotty cock going somewhere other than your mouth spurs you on, urging you to slather her shaft with a nice, thick coating of spittle. You work your tongue from base to crown and down again, lavishing every inch of red puppy prick with wet affection. She answers your motions with cute little moans and twitches of her hips, bucking against your lips. You let her have her fun, thrusting her hips into you until she sounds like she’s barely holding on. Kaede cups her breasts, squeezing her nipples and moaning like a lusty whore. You enjoy every second of her sensual show until you’re more than satisfied with the glaze of spit-lube coating her cock.");
 	
@@ -675,10 +675,10 @@ public function kaedeMyrellionSucknRide():void
 	else output(" against your thigh");
 	output(".");
 	
-	output("\n\nA second of silent tension passes, Kaede staring at you, and you steadying yourself before you take the plunge. Finally, she gives you a little nod, and you start your slow descent. Your fingers wrap around Kaede’s spit-slicked cock, angling it towards the waiting");
-	if (pc.hasVagina()) output(" lips");
-	else output(" ring");
-	output(" of your [pc.vagOrAss]. Your lover shudders as her pointed tip brushes the entrance to your hole, but you hold her steady as your [pc.hips] start to slide downwards.");
+	output("\n\nA second of silent tension passes, Kaede staring at you, and you steadying yourself before you take the plunge. Finally, she gives you a little nod, and you start your slow descent.");
+	if(pc.genitalLocation() <= 1) output(" Your fingers wrap around Kaede’s spit-slicked cock, angling it towards the waiting " + (pc.hasVagina() ? "lips" : "ring") + " of your [pc.vagOrAss].");
+	else output(" You moan as Kaede takes her spit-slicked cock and angles it towards the waiting " + (pc.hasVagina() ? "lips" : "ring") + " of your [pc.vagOrAss].");
+	output(" Your lover shudders as her pointed tip brushes the entrance to your hole, but you hold her steady as your [pc.hips] start to slide downwards.");
 	
 	output("\n\nYour breath catches in your throat, feeling tendrils of electric pleasure writhing through your body when Kaede’s cock starts to spread your [pc.vagOrAss] open.");
 	if (pc.hasCock())
@@ -686,7 +686,10 @@ public function kaedeMyrellionSucknRide():void
 		output(" Your own [pc.cock] jumps in response, feeling the pressure on your");
 		if (!pc.hasVagina()) output(" prostate");
 		else output(" g-spot");
-		output(" reciprocating through your own prick. You can’t help but wrap a few fingers around your [pc.cock], stroking yourself while you slide down Kaede’s length.");
+		output(" reciprocating through your own prick. You");
+		if(pc.genitalLocation() <= 1) output(" can’t help but wrap a few fingers around your [pc.cock], stroking yourself");
+		else output("r [pc.cock] feels terribly neglected when your reach fails, all");
+		output(" while you slide down Kaede’s length.");
 	}
 	output(" A moan escapes your lips, voice warbling as you feel the stiff, pointed shaft of Kaede’s prick spear your hole.");
 	

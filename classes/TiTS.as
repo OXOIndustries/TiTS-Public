@@ -64,6 +64,8 @@
 	import classes.Items.Miscellaneous.*
 	import classes.Items.Accessories.*
 	import classes.Items.Transformatives.*;
+	//Change SilkyCockBell to * when it's time -lighterfluid
+	import classes.Items.Piercings.SilkyCockBell;
 
 	import classes.Parser.ParseEngine;
 
@@ -128,15 +130,21 @@
 		include "../includes/holidayEvents/furryTreatsAndTricks.as";
 		include "../includes/holidayEvents/ghostSexDream.as";
 		include "../includes/holidayEvents/halloweenCostumes.as";
+		include "../includes/holidayEvents/halloweenDreams.as";
+		include "../includes/holidayEvents/halloweenNunneryFacefuckMassacre.as";
 		include "../includes/holidayEvents/merryShademas.as";
 		include "../includes/holidayEvents/milodanBreedingSolstice.as";
 		include "../includes/holidayEvents/myrnaTheGenerousKorgonne.as";
 		include "../includes/holidayEvents/pumpkinCarving.as";
+		include "../includes/holidayEvents/pumpking.as";
 		include "../includes/holidayEvents/puppyslutmas.as";
 		include "../includes/holidayEvents/randyClaws.as";
 		include "../includes/holidayEvents/succucow.as";
+		include "../includes/holidayEvents/EventWhorizon/rooms.as";
+		include "../includes/holidayEvents/EventWhorizon/eventWhorizon.as";
 
 		//Followers
+		include "../includes/follower/amber.as";
 		include "../includes/follower/anno.as";
 		include "../includes/follower/azra.as";
 		include "../includes/follower/azraExpeditions.as";
@@ -144,12 +152,15 @@
 		include "../includes/follower/celise.as";
 		include "../includes/follower/celiseGiga.as";
 		include "../includes/follower/kase.as";
+		include "../includes/follower/mitzi.as";
 		include "../includes/follower/multi_interactions.as";
 		include "../includes/follower/paige.as";
+		include "../includes/follower/paigeCuddles.as";        
 		include "../includes/follower/paigeHalloweener.as";
 		include "../includes/follower/paigeSex.as";
 		include "../includes/follower/paigeSpar.as";
 		include "../includes/follower/pippa.as";
+		include "../includes/follower/ramis.as";
 		include "../includes/follower/shekka.as";
 		include "../includes/follower/siegwulfe.as";
 		include "../includes/follower/yammi.as";
@@ -159,6 +170,12 @@
 		include "../includes/events/pexigaQuest/pexigaQuest.as";
 		include "../includes/events/pexigaQuest/follower.pexiga.as";
 		include "../includes/events/plantationQuest/plantationQuestMain.as";
+		include "../includes/events/plantationQuest/plantationQuestXPack1.as";
+		include "../includes/events/spaceYakuza/spaceYakuza.as";
+		include "../includes/events/spaceYakuza/akaneQuest.as";
+		include "../includes/events/syriQuest/syriQuestMain.as";
+		include "../includes/events/syriQuest/rooms.as";
+		include "../includes/events/syriQuest/roomFunctions.as";
 
 		//Misc content
 		include "../includes/masturbation.as";
@@ -182,20 +199,27 @@
 		include "../includes/events/kiroCrewQuest/buttslutinator.as";
 		include "../includes/events/kiroCrewQuest/omnisuitExtras.as";
 		include "../includes/events/kiroCrewQuest/orgasmender.as";
+		include "../includes/events/kiro_x_paige_threesomes.as";
 		include "../includes/events/pyriteSatelliteRecovery.as";
 		include "../includes/events/steph_on_demand.as";
 		include "../includes/events/tentacle_psychic_hatchling.as";
 		include "../includes/events/federationQuest/federationQuest.as";
 		include "../includes/events/federationQuest/rooms.as";
 		include "../includes/events/federationQuest/roomFunctions.as";
+		include "../includes/events/extrameet/extrameet.as";
+		include "../includes/events/extrameet/extrameetProfiles.as";
 		
 		// Travel Events
 		include "../includes/travelEvents.as";
 		include "../includes/travelEvents/fallOfThePhoenix.as";
 		include "../includes/travelEvents/kiro.as";
 		include "../includes/travelEvents/kiroRescue.as";
+		include "../includes/travelEvents/shizuya.as";
+		include "../includes/travelEvents/shizuyaGreatMajin.as";
+		include "../includes/travelEvents/shizuyaGreatMajinFunctions.as";
 
 		//Tavros Station
+		include "../includes/tavros/akane.as";
 		include "../includes/tavros/aliss.as";
 		include "../includes/tavros/alex.as";
 		include "../includes/tavros/beths.as";
@@ -223,12 +247,14 @@
 		include "../includes/tavros/seraXPreg2.as";
 		include "../includes/tavros/shearBeauty.as";
 		include "../includes/tavros/shelly.as";
+		include "../includes/tavros/stella.as";
 		include "../includes/tavros/tamaniCorpShop.as";
 		include "../includes/tavros/terensha.as";
 		include "../includes/tavros/vahn.as";
 
 		//Tavros Residential Deck
 		include "../includes/tavros/resDeck/aina.as";
+		include "../includes/tavros/resDeck/ainaXPack1.as";
 		include "../includes/tavros/resDeck/fyn.as";
 		include "../includes/tavros/resDeck/liamme.as";
 		include "../includes/tavros/resDeck/semith.as";
@@ -236,6 +262,7 @@
 		//Vesperia/Canadia Station
 		include "../includes/vesperia/delOnVesperia.as";
 		include "../includes/vesperia/gloryhole.as";
+		include "../includes/vesperia/jesse.as";
 		include "../includes/vesperia/kaede.as";
 		include "../includes/vesperia/kally.as";
 		include "../includes/vesperia/luca.as";
@@ -254,11 +281,13 @@
 		include "../includes/mhenga/flahne.as";
 		include "../includes/mhenga/frogGirls.as";
 		include "../includes/mhenga/julianSHaswell.as";
+		include "../includes/mhenga/kane.as";
 		include "../includes/mhenga/kase.as";
 		include "../includes/mhenga/kelly.as";
 		include "../includes/mhenga/mimbranes.as";
 		include "../includes/mhenga/naleen.as";
 		include "../includes/mhenga/naleenMale.as";
+		include "../includes/mhenga/naleenFuta.as";
 		include "../includes/mhenga/penny.as";
 		include "../includes/mhenga/penny_bimbo.as";
 		include "../includes/mhenga/prai.as";
@@ -271,13 +300,16 @@
 		include "../includes/mhenga/vanae.as";
 		include "../includes/mhenga/venusPitchers.as";
 		include "../includes/mhenga/vko.as";
+		include "../includes/mhenga/yoma.as";
 		include "../includes/mhenga/zilMale.as";
 		include "../includes/mhenga/zilFemale.as";
+		include "../includes/mhenga/zilTwins.as";
 		
 		//Second planet
 		include "../includes/tarkus/anno.as";
 		include "../includes/tarkus/aurora.as";
 		include "../includes/tarkus/bess.as";
+		include "../includes/tarkus/buttBugs.as";
 		include "../includes/tarkus/chaurmine.as";
 		include "../includes/tarkus/cockBox.as";
 		include "../includes/tarkus/colenso.as";
@@ -285,11 +317,13 @@
 		include "../includes/tarkus/drLash.as";
 		include "../includes/tarkus/dumbfuckBonus.as";
 		include "../includes/tarkus/edan.as";
+		include "../includes/tarkus/gabilani_LGBT.as";
 		include "../includes/tarkus/goblinPool.as";
 		include "../includes/tarkus/grayGoo.as";
 		include "../includes/tarkus/grayGooArmor.as";
 		include "../includes/tarkus/lane.as";
 		include "../includes/tarkus/lapinara.as";
+		include "../includes/tarkus/mindwashVisor.as";
 		include "../includes/tarkus/raskvelFemaleFight.as";
 		include "../includes/tarkus/raskvelMaleFight.as";
 		include "../includes/tarkus/rooms.as";
@@ -299,14 +333,18 @@
 		include "../includes/tarkus/stellarTether.as";
 		include "../includes/tarkus/sydianFemale.as";
 		include "../includes/tarkus/sydianMale.as";
+		include "../includes/tarkus/SydianQueenEnc.as";
 		include "../includes/tarkus/taxi.as";
 		include "../includes/tarkus/theMess.as";
+		include "../includes/tarkus/tessa.as";
 		include "../includes/tarkus/verusha.as";
+		
 
 		//Third planet
 		include "../includes/newTexas/newTexas.as";
 		include "../includes/newTexas/bigT.as";
 		include "../includes/newTexas/brandy.as";
+		include "../includes/newTexas/brandyXPack1.as";
 		include "../includes/newTexas/brynn.as";
 		include "../includes/newTexas/buckingBronco.as";
 		include "../includes/newTexas/busky.as";
@@ -377,6 +415,25 @@
 		include "../includes/myrellion/wetraxxel.as";
 		include "../includes/myrellion/xanthe.as";
 		include "../includes/myrellion/xenogenbiotech.as";
+
+		//FIFTH PLANET: ZHENG SHI
+		include "../includes/zhengShiStation/agroshAndArdia.as";
+		include "../includes/zhengShiStation/boredJumper.as";
+		include "../includes/zhengShiStation/boredJumperExpanded.as";
+		include "../includes/zhengShiStation/boredJumperGangbangs.as";
+		include "../includes/zhengShiStation/forgehound.as";
+		include "../includes/zhengShiStation/maike.as";
+		include "../includes/zhengShiStation/olympia.as";
+		include "../includes/zhengShiStation/punkSecOp.as";
+		include "../includes/zhengShiStation/rivalEncounter.as";
+		include "../includes/zhengShiStation/rooms.as";
+		include "../includes/zhengShiStation/roomFunctions.as";
+		include "../includes/zhengShiStation/rozPowerGoo.as";
+		include "../includes/zhengShiStation/slyverenSlavebreaker.as";
+		include "../includes/zhengShiStation/spacewalk.as";
+		include "../includes/zhengShiStation/tivf.as";
+		include "../includes/zhengShiStation/teyaalTheEngineer.as";
+		include "../includes/zhengShiStation/urbolg.as";
 		
 		// Breedwell
 		include "../includes/breedwell/breedwell.as";
@@ -423,6 +480,7 @@
 		include "../includes/uveto/nayna.as";
 		include "../includes/uveto/nenne.as";
 		include "../includes/uveto/nerrasa.as";
+		include "../includes/uveto/nykke.as";
 		include "../includes/uveto/pippa.as"
 		include "../includes/uveto/reasner.as";
 		include "../includes/uveto/rhenworld.as";
@@ -431,11 +489,14 @@
 		include "../includes/uveto/shade.as";
 		include "../includes/uveto/stormguardMale.as";
 		include "../includes/uveto/subTuner.as";
+		include "../includes/uveto/syri.as";
 		include "../includes/uveto/tlako_and_xotchi.as";
 		include "../includes/uveto/tuuvaBlacksmith.as";
 		include "../includes/uveto/ula.as";
+		include "../includes/uveto/vark.as";
 		include "../includes/uveto/vavaGroom.as";
 		include "../includes/uveto/walt.as";
+		include "../includes/uveto/willow.as";
 		
 		include "../includes/chargendata.as";
 		include "../includes/SSTDs/furpies.as";
@@ -546,7 +607,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.151";
+			version = "0.7.229";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -585,24 +646,10 @@
 			parser = new ParseEngine(this, TiTS_Settings);
 
 			flags = new Dictionary();
-
-			initializeRooms();
-			initTavrosRooms();
-			initMhengaRooms();
-			initTarkusRooms();
-			initNewTexasRooms();
-			initializeMyrellionRooms();
-			kquest2InitRooms();
-			initUvetoRooms();
-			initUvetoRoomsII();
-			initGastigothRooms();
-			kiInitRooms();
-			initVesperiaRoom();
-			initBreedwellRooms();
-			fqInitRooms();
 			
-			mapper = new Mapper(this.rooms)
-
+			// Make the rooms, build the map
+			buildRooms();
+			
 			var tPC:PlayerCharacter = new PlayerCharacter();
 			chars["PC"] = tPC;
 			charDict[tPC] = "PC";
@@ -649,11 +696,11 @@
 				var ee:Error = arg as Error;
 				text = ("\n\n<b>Something bad happened!</b>\n\n<b>Please report this message, and include any prior scene text or a description of what you did before seeing this message:</b>\n\n");
 				//output("Version: " + version + "\n\n");
-				text += ("Flash Player:  " + Capabilities.playerType + " - " + Capabilities.os + "\n");
-				text += ("Flash Version: " + Capabilities.version + "\n");
-				text += ("Game Version: " + version + "\n\n");
-				text += ("Error Name: " + ee.name + "\n");
-				text += ("Error Mesg: " + ee.message + "\n");
+				text += ("<b>Flash Player:</b>  " + Capabilities.playerType + " - " + Capabilities.os + "\n");
+				text += ("<b>Flash Version:</b> " + Capabilities.version + "\n");
+				text += ("<b>Game Version:</b> " + version + "\n\n");
+				text += ("<b>Error Name:</b> " + ee.name + "\n");
+				text += ("<b>Error Mesg:</b> " + ee.message + "\n");
 				text += (ee.getStackTrace());
 			}
 			
@@ -701,11 +748,11 @@
 				
 				output("\n\n<b>Something bad happened!</b>\n\n<b>Please report this message, and include any prior scene text or a description of what you did before seeing this message:</b>\n\n");
 				//output("Version: " + version + "\n\n");
-				output("Flash Player:  " + Capabilities.playerType + " - " + Capabilities.os + "\n");
-				output("Flash Version: " + Capabilities.version + "\n");
-				output("Game Version: " + version + "\n\n");
-				output("Error Name: " + ee.name + "\n", false, false);
-				output("Error Mesg: " + ee.message + "\n", false, false);
+				output("<b>Flash Player:</b>  " + Capabilities.playerType + " - " + Capabilities.os + "\n");
+				output("<b>Flash Version:</b> " + Capabilities.version + "\n");
+				output("<b>Game Version:</b> " + version + "\n\n");
+				output("<b>Error Name:</b> " + ee.name + "\n", false, false);
+				output("<b>Error Mesg:</b> " + ee.message + "\n", false, false);
 				output(ee.getStackTrace(), false, false);
 				clearMenu();
 				if(bGameOver)
@@ -912,7 +959,12 @@
 			
 			// Do GUI stuff with the compareItem string -- can probably mangle a call together a call to addButton() to do the needful
 			// if we have any null arguments at this point rather than throwing an error and shit.
-			userInterface.addItemButton(slot, item.shortName, item.quantity, func, arg, ttHeader, ttBody, comparisonString);
+			userInterface.addItemButton(slot, item.shortName, item.quantity, item.stackSize, func, arg, ttHeader, ttBody, comparisonString);
+		}
+		
+		public function addItemDisabledButton(slot:int, item:ItemSlotClass, ttHeader:String = null, ttBody:String = null, seller:Creature = null, buyer:Creature = null):void
+		{
+			addItemButton(slot, item, undefined, undefined, ttHeader, ttBody, seller, buyer);
 		}
 		
 		public function addOverrideItemButton(slot:int, item:ItemSlotClass, buttonName:String, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
@@ -967,7 +1019,7 @@
 			
 			// Do GUI stuff with the compareItem string -- can probably mangle a call together a call to addButton() to do the needful
 			// if we have any null arguments at this point rather than throwing an error and shit.
-			userInterface.addItemButton(slot, buttonName, 1, func, arg, itemHeader, itemBody, comparisonString);
+			userInterface.addItemButton(slot, buttonName, 1, item.stackSize, func, arg, itemHeader, itemBody, comparisonString);
 		}
 		
 		public function removeButton(slot:int):void
@@ -1004,11 +1056,12 @@
 				}
 				*/
 				userInterface.DeGlowButtons();
-				this.userInterface.levelUpButton.Glow();
+				userInterface.levelUpButton.Glow();
 			}
 			else
 			{
-				this.userInterface.showPrimaryOutput();
+				kGAMECLASS.backToPrimaryOutput(true);
+				//userInterface.showPrimaryOutput();
 				userInterface.DeGlowButtons();
 			}
 		}
@@ -1530,7 +1583,6 @@
 		{
 			return chars["DELILAH"];
 		}
-
 		public function get yammi():Yammi
 		{
 			return chars["YAMMI"];
@@ -1555,42 +1607,34 @@
 		{
 			return chars["KRYM"];
 		}
-
 		public function get paige():Paige 
 		{
 			return chars["PAIGE"];
 		}
-		
 		public function get ciaran():Ciaran
 		{
 			return chars["CIARAN"];
 		}
-		
 		public function get ellie():Ellie
 		{
 			return chars["ELLIE"];
 		}
-		
 		public function get sam():SX1Techguard
 		{
 			return chars["SX1TECHGUARD"];
 		}
-		
 		public function get khorgan():CaptainKhorgan
 		{
 			return chars["CAPTAINKHORGAN"];
 		}
-		
 		public function get tamtam():TamTam
 		{
 			return chars["TAMTAM"];
 		}
-
 		public function get erika():Erika
 		{
 			return chars["ERIKA"];
 		}
-		
 		public function get lieve():Lieve
 		{
 			return chars["LIEVE"];
@@ -1598,6 +1642,64 @@
 		public function get tuuva():Tuuva
 		{
 			return chars["TUUVA"];
+		}
+		public function get mitzi():Mitzi
+		{
+			return chars["MITZI"];
+		}
+		public function get frostwyrm():Frostwyrm
+		{
+			return chars["FROSTWYRM"];
+		}
+		public function get lah():RKLah
+		{
+			return chars["LAH"];
+		}
+		public function get ardia():Ardia
+		{
+			return chars["ARDIA"];
+		}
+		public function get emmrfox():EMMrFox
+		{
+			return chars["MRFOX"];
+		}
+		public function get emredd():EMRedd
+		{
+			return chars["REDD"];
+		}
+		public function get emponyluver():EMPonyLuver
+		{
+			return chars["PONYLUVER"];
+		}
+		public function get emsexyydaddyy():EMSexyyDaddyy
+		{
+			return chars["SEXYYDADDYY"];
+		}
+		public function get embountifulbotany():EMBountifulBotany
+		{
+			return chars["BOUNTIFULBOTANY"];
+		}
+		public function get emsneakysnek():EMSneakySnek
+		{
+			return chars["SNEAKYSNEK"];
+		}
+		public function get emripped4yourpleasure():EMRipped4YourPleasure
+		{
+			return chars["RIPPED4YOURPLEASURE"];
+		}
+		public function get emstormdragon():EMStormDragon
+		{
+			return chars["STORMDRAGON"];
+		}
+		
+		public function get aina():Aina
+		{
+			return chars["AINA"];
+		}
+		
+		public function get amber():Dryad
+		{
+			return chars["DRYAD"];
 		}
 
 		public function testShipCombat():void

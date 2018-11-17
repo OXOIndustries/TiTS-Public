@@ -131,6 +131,12 @@ package classes.Items.Miscellaneous
 					effectUsed = true;
 				}
 				
+				if (target.hasStatusEffect("Butt Bug (Female)")) // Butt Bug removal
+				{
+					kGAMECLASS.removeButtBugImmunoBooster();
+					effectUsed = true;
+				}
+				
 				if(target.hasStatusEffect("Hair Flower"))
 				{
 					output("\n\nThere is a slight tingle on your head--most notably at the base of " + (target.statusEffectv1("Hair Flower") <= 1 ? "the huge orchid attached to it" : "your huge orchids") + ". Nothing seems to happen afterwards but your codex beeps, notifying you that something has indeed changed...");

@@ -407,11 +407,11 @@ public function tuuvaShopMenu(choice:String = ""):void
 			tuuvaShopOption(3, new FrostbanePlate());
 			tuuvaShopOption(4, new FrostbaneMail());
 			tuuvaShopOption(5, new FrostbaneBikini());
-			if(tuuvaCredits() <= 42000)
+			if(tuuvaCredits() < 42000)
 			{
 				setButtonDisabled(3);
 				setButtonDisabled(4);
-				if(tuuvaCredits() <= 40000) setButtonDisabled(5);
+				if(tuuvaCredits() < 40000) setButtonDisabled(5);
 			}
 		}
 
@@ -734,7 +734,6 @@ public function talkToTuuvaAboutDicks():void
 public function biggerDForTuuva():void
 {
 	clearOutput();
-	showTuuva();
 	output("She wants quick and simple dick growth, ey? Well you happen to have something right here that can give that. You take out a synth sheath and plant it on the counter in front of her.");
 	output("\n\n<i>“");
 	if(!korgiTranslate()) output("What this");
@@ -787,6 +786,8 @@ public function biggerDForTuuva():void
 		output("\n\nYour Codex beeps with a warning about how this device may irreversibly alter ones biology. You grimace ruefully at the device before regarding Tuuva’s enhanced genitalia.");
 		CodexManager.unlockEntry("SynthSheath");
 	}
+	
+	showTuuva();
 	
 	output("\n\n");
 	pc.destroyItemByClass(HorseCock);

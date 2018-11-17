@@ -411,7 +411,7 @@ public function rideVaginalMilodanMaleBecauseTHEYIFFENING():void
 	output("\n\n<i>“Guys would kill to have your stamina, you know,”</i> you pant raggedly, looking him in the eye. <i>“You’ve been fucking me for close to an hour by now and you haven’t cum once. Although,”</i> you say playfully, corners of your mouth curling upwards, <i>“I guess that’s mostly on me, huh?”</i>");
 	output("\n\nHe grunts noncommittally, but you see a measure of need in his expression. He definitely wants to blow his load inside you, the only question is whether you’ll let him.");
 	processTime(50);
-	pc.lust(9001);
+	pc.maxOutLust();
 	clearMenu();
 	addButton(0,"Yes",takeALootInYerCooterFromMildan,vIdx,"Yes","Take a load in the pussy.");
 	addButton(1,"No",noPuppyPoppersForYou,undefined,"No","In the far future, the pull-out method has a 100% success rate.");

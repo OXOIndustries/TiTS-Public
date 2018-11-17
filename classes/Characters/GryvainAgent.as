@@ -70,7 +70,7 @@
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 
-			this.femininity = 5;
+			this.femininity = 80;
 			this.eyeType = GLOBAL.TYPE_GRYVAIN;
 			this.eyeColor = "yellow";
 			this.tallness = 74;
@@ -154,7 +154,7 @@
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 60;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 9000;
 			this.timesCum = 1002;
 			this.cockVirgin = false;
@@ -190,7 +190,7 @@
 			this.vaginas[0].vaginaColor = "blue";
 			
 			//this.createStatusEffect("Disarm Immune");
-			createStatusEffect("Force Fem Gender");
+			createStatusEffect("Force Herm Gender");
 
 			this.inventory.push(new HeavyLaser());
 			
@@ -258,7 +258,8 @@
 			}
 			else output("blasts into the debris behind you, a narrow miss!");
 			//Reflex Save Failed:
-			if(target.reflexes()/2 + rand(20) + 1 < this.aim()/2 + 10)
+			if(target.hasBlindImmunity()) output(" Your eyes are unaffected by the brilliance of the attack and you avoid being blinded!");
+			else if(target.reflexes()/2 + rand(20) + 1 < this.aim()/2 + 10)
 			{
 				output(" <b>The sheer brilliance of the attack leaves you blinded!</b>");
 				CombatAttacks.applyBlind(target);
