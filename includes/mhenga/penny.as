@@ -1202,7 +1202,12 @@ public function talkToPennyAboutSpecies():void {
 	
 	//Pass 30m
 	processTime(30);
-	friendPennyTalkMenu(talkToPennyAboutSpecies);
+	if(pennyIsCrew())
+	{
+		clearMenu();
+		addButton(0,"Next",pennyCrewTalk)
+	}
+	else friendPennyTalkMenu(talkToPennyAboutSpecies);
 }
 
 //[Do For Fun?]

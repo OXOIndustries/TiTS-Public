@@ -112,7 +112,7 @@ public function pennyFollowerTalkMenu():void
 	// [=Her ‘Species’=] requires the least amount of rewriting and probably just needs some editing.
 	//[=Her ‘Species’=][=Outfit=][=Other Crew=][=Futanari=][=Buy Throbb?=][=Leave=]
 	clearMenu();
-	addButton(0,"Species",talkToPennyAboutSpecies);
+	addButton(0,"Her ‘Species’",talkToPennyAboutSpecies);
 	addButton(1,"Outfit",pennyOutfitTalk,undefined,"Outfit","Ask Penny to wear a different set of clothes.");
 	if(crew(true) > 1) addButton(2,"Other Crew",otherCrewPennyTalk,undefined,"Other Crew","Ask Penny what she thinks of the fact that you have other crewmates.");
 	else addDisabledButton(2,"Other Crew","Other Crew",(silly ? "And here is where you would talk about your other crewmates... IF YOU HAD ANY!!!!":"You don’t have any other crew mates to talk about, so this is a bit of a moot point."));
