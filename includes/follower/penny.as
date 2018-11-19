@@ -53,6 +53,7 @@ public function approachCrewPenny(back:Boolean = false):void
 		output("\n\n<i>“Yep, just a sec!”</i> Penny hollers from inside. In a moment, you hear the sound of her door’s electric lock undoing, and, with a bit of heft, she swings the door open.");
 		output("\n\n<i>“Hey there, my " + (penny.armor is UGCCasualOutfit ? "mate":"captain") + ",”</i> she says warmly. She’s wearing " + (penny.armor is UGCCasualOutfit ? "her civilian clothing: the one with the too-small T-shirt with the cartoon character on it and the cut-off jeans":"her police officer’s uniform: in fact, it looks freshly pressed and steamed, and it fits her as perfectly as the day you met her") + ". She doesn’t even hesitate to grab you by the wrist and show you into her quarters. Once you’re inside, she shuts the door, and you two are alone.");
 		output("\n\nYou both take a seat on the edge of her bed; she folds one leg and tucks her foot underneath her knee, reclining into a casual sitting position. <i>“Sooooo,”</i> she says lazily, " + (penny.armor is UGCCasualOutfit ? "putting both her hands behind her back for stability – and thrusting out her generous, DD-cup chest, giving you something to ogle":"folding her hands on her lap and keeping her back straight – ever the professional, at least while she’s wearing that uniform") + ", <i>“what can I do for you today?”</i>");
+		if(flags["PENNY_SQUIRT_TALK"] != undefined && penny.isSquirter()) output("\n\nA puck-shaped cleaning robot rests in its charging dock by the wall. Though there is no physical evidence of her messy climaxes, the room smells ever so faintly of Penny’s cunt. Judging by the charge level indicator, it has gotten quite a work-out.");
 	}
 	//Actual Approach:
 	else
@@ -65,6 +66,8 @@ public function approachCrewPenny(back:Boolean = false):void
 		else if(penny.longestCockLength() >= 10) output(" A quiet, stifled groan starts in her throat after her admission, and she squeezes her crotch up to show you the nice, big bulge hidden in her pants. The groan turns into a whimper, and then you hear the zipper on her trousers lowering. Gasping with relief, the fennec makes love to you with her eyes and offers, <i>“Looking for a booty call?”</i>");
 		//Small size
 		else output(" There’s the quiet sound of a zipper opening. <i>“I’m up for some fun if you are...”</i>");
+		if(flags["PENNY_SQUIRT_TALK"] != undefined && penny.isSquirter()) output("\n\nA small, puck-shaped robot rests in its charging dock by the wall. Though there isn’t a single soiled towel in sight, the whole room smells faintly of Penny’s juicy cunt, like she’s climaxed bareback on every exposed surface in her room with such enthusiasm that her feminine musk impregnated itself into their molecular structures.");
+
 	}
 	if(flags["BADGER_QUEST"] == 1)
 	{
