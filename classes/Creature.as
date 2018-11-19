@@ -2223,6 +2223,9 @@
 				case "cockhead":
 					buffer = cockHead(arg2);
 					break;
+				case "cockHeadNoun":
+					buffer = cockHeadNoun(arg2);
+					break;
 				case "cockHeads":
 				case "cockheads":
 					buffer = cockHeads(arg2);
@@ -18170,6 +18173,11 @@
 			else type = cocks[cockNum].cType;
 
 			return cockHeadGetName(type);
+		}
+		public function cockHeadNoun(cockNum: Number = 0):String {
+			if (cocks.length <= 0)
+				return "ERROR. CockHeadNoun lookup with no cocks!";
+			return cockHead(cockNum).split(" ").pop();
 		}
 		public function cockHeads(cockNum:Number = 0):String {
 			if(cocks.length == 1) return cockHead(cockNum);

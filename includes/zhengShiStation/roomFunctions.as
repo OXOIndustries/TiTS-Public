@@ -82,7 +82,6 @@ public function zhengMinesEncounterBonus():Boolean
 		}
 		
 		if (ratsAvailable() && rand(3) == 0) encounters.push(ratsInTheMineEncounter);
-		if (pc.hasStatusEffect("Rat Force Encounter")) encounters = [ratsInTheMineEncounter];
 	}
 	if(encounters.length > 0) 
 	{
@@ -162,7 +161,6 @@ public function zhengFoundryF1EncounterBonus():Boolean
 			encounters.push(ratsInTheMineEncounter);
 			encounters.push(ratsInTheMineEncounter);
 		}
-		if (pc.hasStatusEffect("Rat Force Encounter")) encounters = [ratsInTheMineEncounter];
 		/*encounters.push(boredJumperAttackProc);
 		encounters.push(boredJumperAttackProc);*/
 	}

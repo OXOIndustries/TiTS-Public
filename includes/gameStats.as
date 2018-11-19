@@ -6906,7 +6906,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
-			if(flags["TOOK_FEDORA"] == 1 || flags["SNAKEBYTE_LOOTED"] == 1 || flags["FORGEHOUND_ENCOUNTERED"] != undefined || flags["MET_SECOP_MALE"] != undefined || flags["MET_SECOP_FEMALE"] != undefined)
+			if(flags["TOOK_FEDORA"] == 1 || flags["SNAKEBYTE_LOOTED"] == 1 || flags["FORGEHOUND_ENCOUNTERED"] != undefined || flags["MET_SECOP_MALE"] != undefined || flags["MET_SECOP_FEMALE"] != undefined || flags["RATS_ENABLED"] != undefined)
 			{
 				output2("\n<b><u>Foundry</u></b>");
 				// Items looted
@@ -6928,6 +6928,48 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_SECOP_MALE"] != undefined) output2("\n<b>* Male Punk Security Operative, Times Encountered:</b> " + flags["MET_SECOP_MALE"]);
 				if(flags["MET_SECOP_FEMALE"] != undefined) output2("\n<b>* Female Punk Security Operative, Times Encountered:</b> " + flags["MET_SECOP_FEMALE"]);
 				variousCount++;
+				// Rat's Raiders
+				if (flags["RATS_ENABLED"] != undefined)
+				{
+					output2("\n<b>* Rat's Raiders:</b> Tried to rob Urbolg");
+					if (flags["RATCOUNTERS"] != undefined) output2(", Encountered");
+					if (flags["RATS_RIDDEN"] != undefined) output2(", Used as a horse");
+					if (ratsPCIsKnown()) output2("\n<b>* Rat's Raiders, Attitude:</b> " + (ratsReadyToBefriend() ? "Accepting" : ["", "Dirty", "Subdued", "Yielding", "Befriended"][ratputation()]) + " (" + flags["RATPUTATION"] + ")");
+					if (flags["RATS_OFFERED_SERVICE"] != undefined)
+					{
+						output2("\n*<b>Rat's Raiders, Offered Oral:</b> Attempted " + flags["RATS_OFFERED_SERVICE"] + " times");
+						if (flags["RAT_SERVICED"] != undefined) output2(", Succeded " + flags["RAT_SERVICED"] + " times");
+					}
+					if (flags["RATS_OFFERED_MILK"] != undefined)
+					{
+						output2("\n*<b>Rat's Raiders, Offered Milk:</b> Attempted " + flags["RATS_OFFERED_MILK"] + " times");
+						if (flags["RAT_MILKED"] != undefined) output2(", Succeded " + flags["RAT_MILKED"] + " times");
+					}
+					if (flags["RATS_SEXED"] != undefined)
+					{
+						output2("\n<b>* Rat's Raiders, Times Sexed:</b> " + flags["RATS_SEXED"]);
+						output2("\n<b>* Rat's Raiders, Sex Acts Done</b>: ");
+						var ratSex:Array = new Array();
+						if (flags["RATS_TRIPLE_SERVICED"] != undefined) ratSex.push("Triple Blowjob");
+						if (flags["RATS_POUNDED"] != undefined) ratSex.push("Doggystyle");
+						if (flags["RATS_WINRIDDEN"] != undefined) ratSex.push("Riding");
+						if (flags["RATS_SEXED_EAR"] != undefined) ratSex.push("Ear Sex");
+						if (flags["RATS_SPANKED"] != undefined) ratSex.push("Spanking");
+						if (flags["RATS_LOSS_SEXED"] != undefined) ratSex.push("Was Teased");
+						if (flags["RATS_GANGBANGED"] != undefined) ratSex.push("Gangbang");
+						if (flags["RATS_RIDDEN"] != undefined) ratSex.push("Was Abandoned With Jumper");
+						if (flags["RATS_HARVESTED"] != undefined) ratSex.push("Was \"Harvested\"");
+						output2(ratSex.join(", "));
+					}
+					if (flags["RAT_BOUNTY_STOLEN"] != undefined)
+					{
+						output2("\n<b>* Rat's Raiders, Bounty Lost:</b> " + flags["RAT_BOUNTY_STOLEN"]);
+						if (silly)
+						{
+							output2(" (Equivalent to ");
+						}
+					}
+				}
 			}
 			if(flags["MET_OLYMPIA"] != undefined)
 			{
