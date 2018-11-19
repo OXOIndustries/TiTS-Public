@@ -1813,6 +1813,35 @@
 				case "raceBoyGirlSimple":
 					buffer = raceCute(true, true);
 					break;
+				case "aRace":
+					buffer = indefiniteArticle(race());
+					break;
+				case "aRaceType":
+				case "aRaceShort":
+				case "aRaceSimple":
+				case "aSimpleRace":
+				case "aRaceStrip":
+				case "aStripRace":
+					buffer = indefiniteArticle(raceShort());
+					break;
+				case "aRaceTypeStrict":
+				case "aRaceTypeHuman":
+					buffer = indefiniteArticle(raceShort(true));
+					break;
+				case "aRaceCute":
+					buffer = indefiniteArticle(raceCute());
+					break;
+				case "aRaceCuteShort":
+				case "aRaceCuteSimple":
+					buffer = indefiniteArticle(raceCute(true));
+					break;
+				case "aRaceBoyGirl":
+					buffer = indefiniteArticle(raceCute(false, true));
+					break;
+				case "aRaceBoyGirlShort":
+				case "aRaceBoyGirlSimple":
+					buffer = indefiniteArticle(raceCute(true, true));
+					break;
 				case "class":
 				case "classType":
 				case "characterClass":
@@ -11997,6 +12026,8 @@
 			var sRace:String = race();
 			var sRaceShort:String = raceShort();
 			if(sRace.indexOf("boy") != -1 || sRace.indexOf("boi") != -1 || sRace.indexOf("girl") != -1) return sRace;
+			if(sRace.indexOf("kui-tan") != -1 && sRace.indexOf("taur") != -1) sRaceShort = "kui-taur";
+			if(sRace.indexOf("korgonne") != -1 && sRace.indexOf("taur") != -1) sRaceShort = "korg-taur";
 		
 			var isCute:Boolean = (isBimbo() || tallness < 60);
 			// Cute conversions for complex short-race names.

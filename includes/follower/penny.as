@@ -11,7 +11,7 @@ public function pennyCrewDesc():String {
 	{
 		if(flags["SEEN_BIMBO_PENNY"] == undefined) buffer += "Penny is sitting up straight in her chair, looking fairly perky and attentive, considering her recent transformation into a hyper-sexed, hermaphroditic bimbo.";
 		else if(hours >= 8 && hours < 17) buffer += "Penny is at her desk looking a little pent-up - and drinking something suspiciously white from her coffee cup.";
-		else buffer += "Penny is slouched with a lazy, half-aware grin on her face. Now that she's onboard your ship, she has no reason not to indulge herself beneath her desk.";
+		else buffer += "Penny is slouched with a lazy, half-aware grin on her face. Now that she’s onboard your ship, she has no reason not to indulge herself beneath her desk.";
 		buffer += " She doesn’t seem to notice you, that or she can’t see you past all the cum plastered over her fur.";
 		//addButton(0,"Approach",approachBimboPenny);
 		//return false;
@@ -20,11 +20,11 @@ public function pennyCrewDesc():String {
 	else {
 		//Non-Futa
 		//Appearance blurb: 
-		if(!penny.hasCock()) buffer += "Penny keeps herself busy on your ship. The gene-spliced fennec seems content to pass her time honing her fitness and tending to the various security apparatus onboard. She isn't all business, however. Sometimes you hear a the garbled voices of an anime, and she frequently favors you with lusty leers in the hallways.";
+		if(!penny.hasCock()) buffer += "Penny keeps herself busy on your ship. The gene-spliced fennec seems content to pass her time honing her fitness and tending to the various security apparatus onboard. She isn’t all business, however. Sometimes you hear a the garbled voices of an anime, and she frequently favors you with lusty leers in the hallways.";
 		//FUTA!
 		//Appearance Blurb: 
 		else 
-		buffer += "Penny keeps herself busy on your ship, though when she sees you, it's when a knowing smile and a brazen leer. Her nipples are hard enough to jut through whatever she dares to wear, and given that she's packing sex organs for two, it makes more than a little sense. The fennec tries her best to keep her raging hormones in control, but she can't quite seem to stifle her wanton moans during her frequent bouts of masturbation.";
+		buffer += "Penny keeps herself busy on your ship, though when she sees you, it’s when a knowing smile and a brazen leer. Her nipples are hard enough to jut through whatever she dares to wear, and given that she’s packing sex organs for two, it makes more than a little sense. The fennec tries her best to keep her raging hormones in control, but she can’t quite seem to stifle her wanton moans during her frequent bouts of masturbation.";
 	}
 	return "\n\n" + buffer;
 }
@@ -80,7 +80,7 @@ public function pennyCrewMenu():void
 	clearMenu();
 	addButton(0,"Talk",pennyCrewTalk,undefined,"Talk","Talk to Penny.");
 	if(pc.lust() >= 33) addButton(1,"Sex",pennyCrewSexApproach,undefined,"Sex","Get naughty with your mate.");
-	else addDisabledButton(1,"Sex","Sex","You aren't turned on enough right now.")
+	else addDisabledButton(1,"Sex","Sex","You aren’t turned on enough right now.")
 	addButton(14,"Back",crew);
 }
 
@@ -118,7 +118,7 @@ public function pennyFollowerTalkMenu():void
 	else addDisabledButton(2,"Other Crew","Other Crew",(silly ? "And here is where you would talk about your other crewmates... IF YOU HAD ANY!!!!":"You don’t have any other crew mates to talk about, so this is a bit of a moot point."));
 	addButton(3,"Futanari",futanariTalkWithPenpen,undefined,"Futanari","Talk to her about dickgirls, and becoming one.");
 	if(flags["PENNY_THROBB_PURCHASE_UNLOCKED"] == 1) addButton(4,"Buy Throbb",buyCrewPennyThrobb,undefined,"Buy Throbb","Purchase some illegal, dick-growing drug.");
-	else addDisabledButton(4,"Disabled","Disabled","You don't know her well enough for this.");
+	else addDisabledButton(4,"Disabled","Disabled","You don’t know her well enough for this.");
 	addButton(14,"Back",approachCrewPenny,true);
 }
 
