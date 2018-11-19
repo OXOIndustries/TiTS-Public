@@ -507,6 +507,15 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 		fap.func = mindwashMeShipVers;
 		faps.push(fap);
 	}
+	if(InShipInterior() && pc.hasKeyItem("Taur-centric Ship Equipment") && pc.hasCock())
+	{
+		fap = new FapCommandContainer();
+		fap.text = "Taur-Milker";
+		fap.ttHeader = "Taur-Milker";
+		fap.ttBody = "Use the Stud-Milker to get yourself off.";
+		fap.func = masturbateWithTaurMilker;
+		faps.push(fap);
+	}
 	if(pc.hasHardLightEquipped() && pc.hasHardLightUpgraded())
 	{
 		fap = new FapCommandContainer();

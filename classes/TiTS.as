@@ -188,6 +188,7 @@
 		include "../includes/masturbation/magicMilker.as";
 		include "../includes/masturbation/sleepFapnea.as";
 		include "../includes/masturbation/sukMastr.as";
+		include "../includes/masturbation/taurToys.as";
 		include "../includes/rivalEncounters.as";
 		include "../includes/vendingMachine.as";
 		
