@@ -631,6 +631,7 @@ public function ratsTailsAndOralAndFuckNamingFucntions():void
 	processTime(15);
 	
 	var catPC:Boolean = pc.catDog("a", "b", true) == "a";
+	var pcWasVirgin:Boolean = pc.hasHymen();
 	
 	if (pc.isBimbo()) output("<i>\"Mmmmyeaahhh, do it! I need it!\"</i> you shout.");
 	else if (pc.isBro()) output("<i>\"Go for it, all the better,\"</i> you reply.");
@@ -642,12 +643,9 @@ public function ratsTailsAndOralAndFuckNamingFucntions():void
 	if (pc.hasLegs()) output(" grabs your ankles and");
 	output(" crawls up your chest, wasting no time bringing you into a kiss and leaving your candied crotch fully exposed to everything and everyone."); 
 	output("\n\nThe rat slut takes control, forcing her tongue past your [pc.lipsChaste] as three tendrils lunge into your [pc.pussies] at the same time. Slithering in inch by inch, your velvety walls are spread beyond their limit to accommodate the raw, wiggling aggression of tactile tails.");
-	if (pc.hasHymen())
-	{
-		output(" Your hymen offers up no resistance as their sharp tips break through to tease the entrance of your gagging " + (pc.hasVaginas() ? "wombs" : "womb") + ", but they undulate in a way that reduces the pain.");
-		var notified:Boolean = false;
-		for (var i:int = 0; i < pc.vaginas.length; ++i) notified = notified || pc.holeChange(i, 50, !notified);
-	}
+	if (pc.hasHymen()) output(" Your hymen offers up no resistance as their sharp tips break through to tease the entrance of your gagging " + (pc.hasVaginas() ? "wombs" : "womb") + ", but they undulate in a way that reduces the pain.");
+	var notified:Boolean = false;
+	for (var i:int = 0; i < pc.vaginas.length; ++i) notified = notified || (pc.holeChange(i, 50, !notified));
 
 	if (pc.hasVaginas()) output("\n\nYour poor holes, " + (pc.tightestVaginalLooseness() < 3 ? "tight as they were" : "despite their ample space") + ", were not ready for this.");
 	else output("\n\nYour poor hole, " + (pc.tightestVaginalLooseness() < 3 ? "unstretched as it was" : "despite being loose") + ", was not ready for this.");
@@ -709,7 +707,7 @@ public function ratsTailsAndOralAndFuckNamingFucntions():void
 	pc.orgasm();
 	IncrementFlag("RATS_TAILED");
 	IncrementFlag("RATS_TRIPLE_SERVICED");
-	if (notified) flags["RATS_STOLE_VIRGINITY"] = 1;
+	if (pcWasVirgin) flags["RATS_STOLE_VIRGINITY"] = 1;
 	
 	ratsVictoryFinish();
 }
@@ -2449,8 +2447,9 @@ public function ratsIWannaGetOffOnMrMousesWildRide(vagId:int):void
 	output("\n\nMeeting the straddled mouse boy's [rat1.eyeColor] gaze, you settle comfortably on his small, well-toned form, ready to enjoy your prize -- you fall on his cock, breathy moans escaping your mouth. The exquisite glide of his pulsating thickness into your " + (vagId >= 0 ? "[pc.pussy " + vagId + "]" : "[pc.asshole]") + " is trivial, " + ((vagId < 0 ? pc.ass.looseness() : pc.looseness(vagId)) < 3 ? "surprising for how tight you are" : "perhaps more so with how loose you are") + ". His tender hardness is " + (vagId >= 0 ? "squeezed deeper, as if being invited by your womb as a guest of honor." : "almost sealed into your tailhole, but you relax enough for him to enjoy the pleasure of your ass."));
 	
 	// PC vaginal virgin
-	if (pc.holeChange(vagId, rat1.biggestCockVolume()) && vagId >= 0)
+	if (vagId >= 0 && pc.vaginas[vagId].hymen)
 	{
+		pc.holeChange(vagId, rat1.biggestCockVolume());
 		output("\n\nAfter your hymen is penetrated, the escaping whine alarms your diminutive partner, and the other rats too. <i>\"What's wrong? Are you hurt!?\"</i> he asks, arousal fading fast into fear. You allay him with a grin, pointing to the trickle of blood down below. His [rat1.eyeColor] eyes predictably widen. <i>\"W-w-w-whaaa..!! I… I'm sorry, I'm sorry, I didn't know! W-we'd, I'd never have done that to you if I knew! I Uh… I don't know what to say… I've stolen that from you...\"</i>");
 		output("\n\n<i>\"W-wow…\"</i> the rodenian girl marvels, <i>\"W-we would never have done that to you…\"</i>");
 		output("\n\nBut you knew, and you made your choice. Before he shuts down, you tap his cheek and breathily smile.");
@@ -2463,8 +2462,13 @@ public function ratsIWannaGetOffOnMrMousesWildRide(vagId:int):void
 		if (pc.isBimbo() || pc.isBro()) output("\n\nHe glares determinedly. <i>\"I'll do my best!\"</i>");
 		else output("\n\n<i>\"I promise!\"</i> he glares. <i>\"I'll make this up to you, I swear!\"</i>");
 		output("\n\nYou're looking forward to it.");
+		flags["RATS_STOLE_VIRGINITY"] = 1;
 	}
-	else output("\n\nHe's all yours now.");
+	else
+	{
+		pc.holeChange(vagId, rat1.biggestCockVolume());
+		output("\n\nHe's all yours now.");
+	}
 	
 	addButton(0, "Next", ratsTheRideNeverEnds, vagId);
 }

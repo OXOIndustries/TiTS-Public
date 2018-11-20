@@ -1579,26 +1579,6 @@ package classes.GameData
 				addButton(14, "Run", runAway, undefined, "Run", "Attempt to run away from your enemy. Success is greatly dependent on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
 			}
 			
-			//Rat BS REMOVE BEFORE PR
-			addButton(10, "OUCH", function():void
-			{
-				output("\n\nYou sock yourself in the head like a fucking idiot who appears on the Darwin Awards");
-				CombatAttacks.applyStun(CombatManager.getFriendlyActors()[0]);
-				waitRound();
-			});
-			addButton(11, "Lust Burst", function():void
-			{
-				for each (var enemy:Creature in CombatManager.getHostileActors())
-					if (!enemy.isDefeated()) enemy.lust(enemy.lustMax());
-				waitRound();
-			});
-			addButton(12, "BOOMSTICK", function():void
-			{
-				for each (var enemy:Creature in CombatManager.getHostileActors())
-					if (!enemy.isDefeated()) enemy.HP(-enemy.HPMax());
-				waitRound();
-			});
-			
 			// Hook in any additional menu entries -- allowing the hooks to override
 			// default entries
 			additionalCombatMenuEntries();

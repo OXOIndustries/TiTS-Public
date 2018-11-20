@@ -2040,8 +2040,6 @@ public function shipMenu():Boolean
 		}
 	}
 	
-	addButton(0, "Rats", ratMenu, undefined, "Rats", "They're the rats!");
-	
 	return false;
 }
 

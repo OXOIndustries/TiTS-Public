@@ -123,7 +123,6 @@ package classes.Characters
 			{
 				//Females
 				case PINK_RODENIAN: case WHITE_RODENIAN: case HALF_GIRL: default:
-					short += " girl";
 					createStatusEffect("Force Fem Gender");
 					
 					//Takes them down to "slender"
@@ -154,7 +153,6 @@ package classes.Characters
 					break;
 				//Males
 				case TAN_MOUSEBOY: case FAIR_MOUSEBOY: case HALF_BOY:
-					short += " boy";
 					createStatusEffect("Force Male Gender");
 					tallness = 64; //default
 

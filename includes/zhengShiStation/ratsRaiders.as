@@ -17,7 +17,7 @@
  * RATS_SEXED: guess
  * RATS_LOSS_SEXED: pc lost while one rat was above 80 lust
  * RATS_TAILED: TailPeg counter
- * RATS_WINRIDDEN
+ * RATS_WINRIDDEN: Ride Him/Them
  * RATS_POUNDED: Fuck Them counter
  * RATS_POUNDED_RODENIAN: Fuck Them -> Doggystyle -> Rodenian Girl
  * RATS_POUNDED_ALL: Fuck Them -> Stack 'Em
@@ -31,15 +31,11 @@
  * RATS_RIDDEN: Horse Thieves done
  *
  * Victory Sex in ratsRaidersVictory.as because this file was getting way too long
- *
- * TODO:
- * check for weird tits/nipples
- * remove debug menu in ship
- * remove ez win buttons
- * you could have bought:
- * confirm giant slayer works
- * redo Give Gems gem code
  */
+
+public var rat0:RatsRaider = null;
+public var rat1:RatsRaider = null;
+public var rat2:RatsRaider = null;
 
  public function showRat(rat:int, nude:Boolean = false, auth:Boolean = true):void
  {
@@ -104,117 +100,6 @@ public function ratShower(target:Creature):void
 	target.removeStatusEffect("Pussy Drenched");
 }
 
-public var rat0:RatsRaider = null;
-public var rat1:RatsRaider = null;
-public var rat2:RatsRaider = null;
-
-public function ratsMenu():void
-{
-	if (rat0 == null) ratsSetupGroup();
-
-	clearMenu();
-	clearOutput();
-	showRats(3);
-	author("lighterfluid");
-	showName("VERMIN\nSTOCKROOM");
-
-	output("Currently working with Group Nº" + rat0.ratVariety/3);
-	
-	output("\n\n<b>Ratcounters:</b> " + (flags["RATCOUNTERS"] == undefined ? 0 : flags["RATCOUNTERS"]));
-	output("\n<b>Rat Reputation:</b> ");
-	switch (ratputation())
-	{
-		case RatsRaider.RAT_REP_NONE: output("Unknown"); break;
-		case RatsRaider.RAT_REP_LOW: output("Poor (" + flags["RATPUTATION"] + ")"); break;
-		case RatsRaider.RAT_REP_MID: output("Average (" + flags["RATPUTATION"] + ")"); break;
-		case RatsRaider.RAT_REP_HIGH: output("Good (" + flags["RATPUTATION"] + ")"); break;
-		case RatsRaider.RAT_REP_GOOD_CEO: output("Friend"); break;
-	}
-	output("\n<b>Rat Booty:</b> " + flags["RAT_BOUNTY_STOLEN"]);
-	output("\n<b>Ratbutt Virginities:</b> " + (flags["RAT_ANUSES_TAKEN"] == undefined ? 0 : flags["RAT_ANUSES_TAKEN"]));
-	output("\n<b>PC vs Rats Win/Loss:</b> " + int(flags["RAT_VICTORIES"]) + "/" + int(flags["RAT_LOSSES"]));
-	output("\n<b>Rat Lust:</b> " + (pc.hasStatusEffect("Sexed Rats Raiders") ? "Sated for " + pc.getStatusMinutes("Sexed Rats Raiders") + " minutes." : "<b>Active.</b>"));
-	if (ratsLastEarSex() != -1) output("\n<b>Last fucked this rat " + ["gently.", "dommily.", "sluttily.", "neutraly. But <i>why</i>?"][ratsLastEarSex()] + "</b>");
-	
-	output("\n\n<b>" + (ratsAvailable() ? "Can" : "Cannot") + " be encountered in the Zheng Shi Mines!</b>");
-
-	addButton(0, "Encounter", ratsInTheMineEncounter, true);
-	addButton(1, "Lustize Rats", function():void {rat0.lust(125); rat1.lust(125); rat2.lust(125);ratsMenu();});
-	addButton(2, "Tenderize Rats", function():void {rat0.HP(-125); rat1.HP(-125); rat2.HP(-125);ratsMenu();});
-	addButton(3, "Urbolg Introduction", ratsAttemptUrbolgRobbery);
-	addButton(4, "Force Encounter", function():void
-	{	
-		if (pc.hasStatusEffect("Rat Force Encounter")) pc.removeStatusEffect("Rat Force Encounter");
-		else pc.createStatusEffect("Rat Force Encounter");
-		ratsMenu();
-	});
-	if (pc.hasStatusEffect("Rat Force Encounter")) setButtonPurple(4);
-	addButton(5, "Cycle Rep", function():void
-	{
-		flags["RATPUTATION"] = [25, 50, 75, 101, undefined][ratputation()];
-		ratsMenu();
-	},
-	undefined, "Cycle Reputation", "Cycle ratputation between unknown(-), low(25), mid(50), high(75), and good(101).");
-	addButton(6, "Sex Rats", function():void
-	{
-		ratsSateLusts();
-		ratsMenu();
-	},
-	undefined, "Sex The Rats", "Resets the rats' horniness timer.");
-	addButton(9, "Switch Rats", function():void{ratsSetupGroup((rat0.ratVariety == 0 ? 1 : 0)); ratsMenu();});
-	addButton(10, "Win", function():void{IncrementFlag("RAT_VICTORIES"); ratsMenu();});
-	addButton(11, "Lose", function():void{IncrementFlag("RAT_LOSSES"); ratsMenu();});
-	addButton(8, "M. Flavor", ratsDebugFluid, GLOBAL.VALID_MILK_TYPES, "Milk Flavor", "Mmmmm PC milk.");
-	addButton(12, "C. Flavor", ratsDebugFluid, GLOBAL.VALID_CUM_TYPES, "Cum Flavor", "Mmmmm PC- wait.");
-	addButton(13, "GC. Flavor", ratsDebugFluid, GLOBAL.VALID_GIRLCUM_TYPES, "GirlCum Flavor", "Mmmmm PC- wait.");
-	
-	addButton(14, "Done", ratsDebugDone);
-	
-	addButton(22, "Baton", function():void
-	{
-		output("\n\n");
-		itemScreen = ratsMenu;
-		lootScreen = ratsMenu;
-		useItemFunction = ratsMenu;
-		
-		itemCollect([new ReaperStunBaton()]);
-	}, undefined, "SON", "You think I can't have all the buttons I like?\n\n\n<b>BOI</b>");
-}
-
-public function ratsDebugFluid(VALID_FLUIDS:Array):void
-{
-	clearMenu();
-	clearOutput();
-	showRats(3);
-	author("lighterfluid");
-	output("Pick a flavah!");
-	for (var i:int = 0; i < VALID_FLUIDS.length; ++i)
-	{
-		addButton(i, GLOBAL.FLUID_TYPE_SHORT[VALID_FLUIDS[i]],
-			function(fluid:int):void
-			{
-				if (VALID_FLUIDS == GLOBAL.VALID_MILK_TYPES) pc.milkType = fluid;
-				else if (VALID_FLUIDS == GLOBAL.VALID_CUM_TYPES) pc.cumType = fluid;
-				else pc.girlCumType = fluid;
-				ratsMenu();
-			},
-		VALID_FLUIDS[i], GLOBAL.FLUID_TYPE_NAMES[VALID_FLUIDS[i]], "Choose this flavor.");
-	}
-}
-
-public function ratsDebugDone():void
-{
-	ratsCleanup();
-	mainGameMenu();
-}
-
-public function ratsDebugButtfuck(maus:int):void
-{
-	if (flags["RAT_ANUSES_TAKEN"] == undefined) 
-	flags["RAT_ANUSES_TAKEN"] |= 1<<maus;
-	ratsMenu();
-}
- 
 public function ratsPCIsPoor():Boolean
 {
 	if (pc.credits >= 2000) return false;
@@ -361,9 +246,9 @@ public function ratsAttemptUrbolgRobbery():void
 // Plenty of references and ways to start off depending on player actions, want these little runts to be everywhere.
 // Comment out the variants checking for PC being a Mouse TF unless mouse stuff gets added.
 // For First Time Encounter, use Rat Group 1, with Light-pink Furred Rodenian
-public function ratsInTheMineEncounter(debug:Boolean = false):Boolean
+public function ratsInTheMineEncounter():Boolean
 {
-	if (!debug) ratsSetupGroup(rand(2));
+	ratsSetupGroup(rand(2));
 	clearMenu();
 	clearOutput();
 	processTime(5);
@@ -540,14 +425,11 @@ public function ratButtons(offers:int = 0):void
 		//Milk
 		if (offers & 2) addDisabledButton(4, "Offer Milk", "Offer Milk", "They're not interested. Well, crap.");
 		// PC must have NORMAL tits. No dicknipples, tentacle nipples, or lipples. There are also lactation types: Cum/GirlCum. These won't fly!
-		//else if (InCollection(pc.milkType, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_GIRLCUM) addDisabledButton(4, "Offer Milk", "Offer Milk", " They're {not going to/can't} drink from {mutant/gooey} tits!");
-		//else if (!(pc.hasNormalNipples() || pc.hasFlatNipples() || pc.hasInvertedNipples) || ) addDisabledButton(4, "Offer Milk", "Offer Milk", " They're {not going to/can't} drink from {mutant/gooey} tits!");
+		else if (InCollection(pc.milkType, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_GIRLCUM)) addDisabledButton(4, "Offer Milk", "Offer Milk", "You'll need some real lactic flavor to feed them if you want to try this.");
+		else if (pc.skinType == GLOBAL.SKIN_TYPE_GOO) addDisabledButton(4, "Offer Milk", "Offer Milk", " They can't drink from gooey tits!");
+		else if (!(pc.hasNormalNipples() || pc.hasInvertedNipples())) addDisabledButton(4, "Offer Milk", "Offer Milk", " They're not going to drink from mutant tits!");
 		else if (!pc.isLactating()) addDisabledButton(4, "Offer Milk", "Offer Milk", "You need to be lactating to give them a drink.");
 		else addButton(4, "Offer Milk", ratGiveMilk, offers, "Offer Milk", "You're not feeling up to fighting today, certainly not with breasts this full. See if the mouse-pirates will accept a <i>creamier</i> treasure than they're used to.");
-		
-		//Delete when debug done
-		if (!(1&offers)) addButton(8, "Fail Oral", function():void{pc.createStatusEffect("Debug Force Fail"); ratGiveService(offers);});
-		if (2^offers) addButton(9, "Fail Milk", function():void{pc.createStatusEffect("Debug Force Fail"); ratGiveMilk(offers);});
 		
 		//Mercy
 		if (ratsPCIsPoor()) addButton(5, "I'm Poor!", ratGiveNothing, undefined, "I'm Poor!", "You have nothing to offer. If they've any principles, they won't attack you!");
@@ -721,36 +603,7 @@ public function ratGiveThemShinyRocks():void
 	}
 	
 	//Give gems to rat0
-	var gemsFromStack:int;
-	var gem:ItemSlotClass;
-	var copyGem:ItemSlotClass;
-	var j:int;
-	for (var i:int = 0; i < pc.inventory.length; ++i)
-	{
-		gem = pc.inventory[i];
-		if (gem.type != GLOBAL.GEM || gem.hasFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE)) continue;
-		//Grab fraction
-		gemsFromStack = Math.ceil(gemsToTake*gem.quantity/gems);
-		//Not too many!
-		if (gemsFromStack > gemsToTake) gemsFromStack = gemsToTake;
-		if (gemsFromStack > gem.quantity) gemsFromStack = gem.quantity;
-		if (gemsFromStack <= 0) continue;
-		//Nab
-		gemsToTake -= gemsFromStack;
-		gem.quantity -= gemsFromStack;
-		if (gem.quantity <= 0) pc.inventory.splice(i--,1);
-		//Give to rat0 for later tallying
-		for (j = 0; j < rat0.inventory.length; ++j) if (rat0.inventory[j].shortName == gem.shortName) break;
-		if (j == rat0.inventory.length) rat0.inventory.push(new ItemSlotClass());
-		copyGem = rat0.inventory[j];
-		copyGem.basePrice = gem.basePrice;
-		copyGem.shortName = gem.shortName;
-		copyGem.quantity += gemsFromStack;
-	}
-	
-	//Show gems
-	output("\n");
-	for each (gem in rat0.inventory) output("\n<b>" + gem.quantity + " x " + gem.shortName + " lost!</b>");
+	ratsStealRiches(rat0, pc, false, gemsToTake);
 	
 	flags["RAT_GOT_GEMS"] = 1;
 	
@@ -785,11 +638,10 @@ public function ratGiveAllRocks():void
 // Pheromone Cloud effects (i.e from the Treatment, Inessa's item, others) will decrease the fail chance by 10% per effect but only down to a 10% fail chance.
 public function ratsDeclineOffer():Boolean
 {
-	if (!pc.hasStatusEffect("Debug Force Fail") && rand(10) + Math.min(pc.pheromoneLevel()/4, 3) > 3) return false;
+	if (rand(10) + Math.min(pc.pheromoneLevel()/4, 3) > 3) return false;
 	rat0.lust(15+rand(16));
 	rat1.lust(15+rand(16));
 	rat2.lust(15+rand(16));
-	pc.removeStatusEffect("Debug Force Fail");
 	return true;
 }
 
@@ -1645,10 +1497,12 @@ public function ratGiveNothing():void
 	quickLoot(gem);
 }
 
-public function ratsStealRiches(thief:RatsRaider, target:Creature, inFight:Boolean = false):void
+public function ratsStealRiches(thief:RatsRaider, target:Creature, inFight:Boolean = false, gems:int = -1):void
 {
+	if (gems > 0) var totalGems:int = ratsGemCount();
+
 	//Steal credits
-	if (target.credits >= 2000)
+	if (target.credits >= 2000 && gems < 0)
 	{
 		thief.credits = Math.min(target.credits, Math.floor(target.credits*kGAMECLASS.ratsTheftPercent(target.credits, true)/100));
 		target.credits -= thief.credits;
@@ -1698,7 +1552,12 @@ public function ratsStealRiches(thief:RatsRaider, target:Creature, inFight:Boole
 			smallestGem = itemClass;
 		}
 		//Split
-		gemsToSteal = Math.ceil(kGAMECLASS.ratsTheftPercent(item.quantity*item.basePrice, true)*item.quantity/100);
+		if (gems < 0) gemsToSteal = Math.ceil(kGAMECLASS.ratsTheftPercent(item.quantity*item.basePrice, true)*item.quantity/100);
+		else
+		{
+			gemsToSteal = Math.min(gems, Math.ceil(gems*item.quantity/totalGems));
+			gems -= gemsToSteal;
+		}
 		//Count money
 		if (item.basePrice >= 10000) bigGemValue += item.basePrice*gemsToSteal
 		else smallGemValue += item.basePrice*gemsToSteal;
@@ -1725,7 +1584,7 @@ public function ratsStealRiches(thief:RatsRaider, target:Creature, inFight:Boole
 	var i:int;
 
 	//Make sure noone gets minerbot'd
-	if (returnedGems <= 0 && smallestGem)
+	if (returnedGems <= 0 && smallestGem && gems < 0)
 	{
 		//Find gem
 		for each (item in target.inventory) if (item is smallestGem) break;
@@ -3354,6 +3213,8 @@ public function ratsHarvestEnd():void
 //Not used in victory/loss scenes
 public function ratsFinish():void
 {
+	ratsShowLoot();
+
 	clearMenu();
 	ratsTallyLoot(rat0);
 	ratsCleanup();
@@ -3370,21 +3231,7 @@ public function ratsVictoryFinish(sex:Boolean = true):void
 
 public function ratsLossFinish(sex:Boolean = true):void
 {
-	if (rat0.credits > 0 || rat0.inventory.length > 0)
-	{
-		output("\n\n<b>You have lost");
-		if (rat0.credits > 0) output(" " + rat0.credits + " credits");
-		for (var i:int = 0; i < rat0.inventory.length; ++i)
-		{
-			if (rat0.credits > 0 || rat0.inventory.length > 1)
-			{
-				if (i == rat0.inventory.length - 1) output(" and");
-				else output(",");
-			}
-			output(" " + rat0.inventory[i].quantity + " " + rat0.inventory[i].shortName + " gems");
-		}
-		output(".</b>");
-	}
+	ratsShowLoot();
 
 	if (sex)
 	{
@@ -3396,6 +3243,25 @@ public function ratsLossFinish(sex:Boolean = true):void
 	
 	ratsCleanup();
 	CombatManager.genericLoss();
+}
+
+public function ratsShowLoot():void
+{
+	if (rat0.credits > 0 || rat0.inventory.length > 0)
+	{
+		output("\n\n<b>You have lost");
+		if (rat0.credits > 0) output(" " + rat0.credits + " credits");
+		for (var i:int = 0; i < rat0.inventory.length; ++i)
+		{
+			if (rat0.credits > 0 || rat0.inventory.length > 1)
+			{
+				if (i == rat0.inventory.length - 1) output(" and");
+				else if (rat0.credits > 0 || i > 0) output(",");
+			}
+			output(" " + rat0.inventory[i].quantity + " " + rat0.inventory[i].shortName + " gems");
+		}
+		output(".</b>");
+	}
 }
 
 public function ratsCleanup():void
