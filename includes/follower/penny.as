@@ -53,7 +53,11 @@ public function approachCrewPenny(back:Boolean = false):void
 		output("\n\n<i>“Yep, just a sec!”</i> Penny hollers from inside. In a moment, you hear the sound of her door’s electric lock undoing, and, with a bit of heft, she swings the door open.");
 		output("\n\n<i>“Hey there, my " + (penny.armor is UGCCasualOutfit ? "mate":"captain") + ",”</i> she says warmly. She’s wearing " + (penny.armor is UGCCasualOutfit ? "her civilian clothing: the one with the too-small T-shirt with the cartoon character on it and the cut-off jeans":"her police officer’s uniform: in fact, it looks freshly pressed and steamed, and it fits her as perfectly as the day you met her") + ". She doesn’t even hesitate to grab you by the wrist and show you into her quarters. Once you’re inside, she shuts the door, and you two are alone.");
 		output("\n\nYou both take a seat on the edge of her bed; she folds one leg and tucks her foot underneath her knee, reclining into a casual sitting position. <i>“Sooooo,”</i> she says lazily, " + (penny.armor is UGCCasualOutfit ? "putting both her hands behind her back for stability – and thrusting out her generous, DD-cup chest, giving you something to ogle":"folding her hands on her lap and keeping her back straight – ever the professional, at least while she’s wearing that uniform") + ", <i>“what can I do for you today?”</i>");
-		if(flags["PENNY_SQUIRT_TALK"] != undefined && penny.isSquirter()) output("\n\nA puck-shaped cleaning robot rests in its charging dock by the wall. Though there is no physical evidence of her messy climaxes, the room smells ever so faintly of Penny’s cunt. Judging by the charge level indicator, it has gotten quite a work-out.");
+		if(penny.isSquirter())
+		{
+			if(flags["PENNY_SQUIRT_TALK"] != undefined) output("\n\nA puck-shaped cleaning robot rests in its charging dock by the wall. Though there is no physical evidence of her messy climaxes, the room smells ever so faintly of Penny’s cunt. Judging by the charge level indicator, it has gotten quite a work-out.");
+			else output("\n\nThe fox-woman’s hamper is absolutely stuffed with towels. Not even the Odorguard seal it’s equipped with can completely nullify the scent of vaginal secretions. It would seem her encounter with the venus ziltrap left her wetter than ever before.")
+		}
 	}
 	//Actual Approach:
 	else
@@ -66,8 +70,11 @@ public function approachCrewPenny(back:Boolean = false):void
 		else if(penny.longestCockLength() >= 10) output(" A quiet, stifled groan starts in her throat after her admission, and she squeezes her crotch up to show you the nice, big bulge hidden in her pants. The groan turns into a whimper, and then you hear the zipper on her trousers lowering. Gasping with relief, the fennec makes love to you with her eyes and offers, <i>“Looking for a booty call?”</i>");
 		//Small size
 		else output(" There’s the quiet sound of a zipper opening. <i>“I’m up for some fun if you are...”</i>");
-		if(flags["PENNY_SQUIRT_TALK"] != undefined && penny.isSquirter()) output("\n\nA small, puck-shaped robot rests in its charging dock by the wall. Though there isn’t a single soiled towel in sight, the whole room smells faintly of Penny’s juicy cunt, like she’s climaxed bareback on every exposed surface in her room with such enthusiasm that her feminine musk impregnated itself into their molecular structures.");
-
+		if(penny.isSquirter())
+		{
+			if(flags["PENNY_SQUIRT_TALK"] != undefined) output("\n\nA small, puck-shaped robot rests in its charging dock by the wall. Though there isn’t a single soiled towel in sight, the whole room smells faintly of Penny’s juicy cunt, like she’s climaxed bareback on every exposed surface in her room with such enthusiasm that her feminine musk impregnated itself into their molecular structures.");
+			else output("\n\nThere’s no hiding the hints of feminine scent that linger in Penny’s sheets or waft through the hamper’s supposed Odorguard seal. It would seem that in the wake of her encounter with a venus ziltrap, Penny’s become a very wet girl. And of course, there’s the heady musk of her other genitalia resting atop it all.");
+		}
 	}
 	if(flags["BADGER_QUEST"] == 1)
 	{
@@ -122,6 +129,8 @@ public function pennyFollowerTalkMenu():void
 	addButton(3,"Futanari",futanariTalkWithPenpen,undefined,"Futanari","Talk to her about dickgirls, and becoming one.");
 	if(flags["PENNY_THROBB_PURCHASE_UNLOCKED"] == 1) addButton(4,"Buy Throbb",buyCrewPennyThrobb,undefined,"Buy Throbb","Purchase some illegal, dick-growing drug.");
 	else addDisabledButton(4,"Disabled","Disabled","You don’t know her well enough for this.");
+	if(penny.isSquirter()) addButton(5,"Squirting",pennySquirtingTalk,undefined,"Squirting","Ever since being encapsulated by the ziltrap, Penny has been a squirter. Ask how she feels about it.");
+	else addDisabledButton(5,"Disabled","Disabled","This option is only available as a result of certain events while recruiting Penny to your crew.");
 	addButton(14,"Back",approachCrewPenny,true);
 }
 
@@ -462,11 +471,11 @@ public function ask2ChangePenny():void
 
 //[=Interrupt=]
 // Tooltip: You’ve seen enough. You need to fuck her.
-// Play the <i>“OverDeskFuck”</i> scene or some PC-is-female scene; will require some contextual edits
+/* Play the <i>“OverDeskFuck”</i> scene or some PC-is-female scene; will require some contextual edits
 public function interruptPennyChanging():void
 {
-	//9999
-}
+
+}*/
 
 //[=Continue=]
 // Tooltip: Enjoy the show and let her finish
@@ -632,6 +641,57 @@ public function otherCrewPennyTalk():void
 	addButton(0,"Next",pennyCrewTalk);
 	//[=Next=]
 	// end scene (scene: Other Crew); increase Lust by 20; return to Talk menu
+}
+
+
+//Squirting Talk
+//Crew Penny only, post ziltraps.
+public function pennySquirtingTalk():void
+{
+	clearOutput();
+	showPenny();
+	author("Fenoxo");
+	flags["PENNY_SQUIRT_TALK"] = 1;
+	//Nonfuta
+	if(!penny.hasCock())
+	{
+		//Bimbo
+		if(pc.isBimbo()) output("<i>“Penny, have I ever told you how fucking hot it is that you squirt now?”</i>");
+		//Else
+		else output("You point out that Penny’s become a bit of a squirter recently.");
+		output("\n\nThe fox-girl fidgets, doubtlessly blushing crimson beneath her tawny fur. <i>“You noticed, huh?”</i> Squirming a little harder, she turns halfway away, looking back at you over her shoulder. <i>“It was that stupid ziltrap. I think whatever it did to me kind of... broke my pussy.”</i> Her luxuriously fluffy tail sags uncertainly. <i>“Now I can’t cum without squirting like a firehose. Every single time.”</i> She glances at a hamper that smells very, very much like her cunt. <i>“I can’t buy enough towels. I’m always doing laundry, and I swear I’m even hornier than I used to be.”</i> She pauses, watching your face anxiously.");
+		output("\n\nYou put your hand on her shoulder and squeeze comfortingly. You’d never hold her orgasmic enthusiasm against her.");
+		output("\n\n<i>“Really?”</i> Penny straightens, turning to face you full-on. Her ears, each almost the size of her head, perk up attentively. She stalks forward into a hug, wiggling her hips excitedly. The fluff of her tail tickles your cheek from over her shoulder. <i>“Then let’s say I get one of those little fluid neutralizer drones the kui-tan like so much. I could spend less time cleaning and more time " + (pc.hasCock() ? "soaking my mate’s cock":"soaking my mate") + ".”</i> She nips your neck. <i>“I may have held back a few credits from my debt payment... if I don’t need to pay to fix this...”</i> She grinds a very damp pussy against your thigh. Rivulets of vulpine moisture race down your [pc.legFurScales]. <i>“Then I have more than enough for that. Maybe even some bigger dildos, since I’m so <b>slick</b> all the time.”</i>");
+		output("\n\nThe libidinous fox-woman’s arousal is contagious, and you feel a hot flush overtaking you in response.");
+		output("\n\n<i>“Wanna feel?”</i> Penny offers.");
+	}
+	//Futa
+	else
+	{
+		//Bimbo
+		if(pc.isBimbo()) output("<i>“Penny, have I ever told you how fucking hot it is that you squirt now?”</i>");
+		//Else
+		else output("You point out that Penny’s become a bit of a squirter recently.");
+		output("\n\nThe fox-girl fidgets, dick firming, racing up to fill her hand. She strokes it automatically, unthinkingly, trained by instincts her female brain was never meant to encounter, let alone wallow in. <i>“Yeah, and it’s so awesome!”</i> She beams up at you. <i>“It’s like... that ziltrap took my pussy and turned it into another cock.”</i> She " + (penny.balls > 0 ? "hefts her balls up and ":"") + "spreads her labia wide with two fingers to expose the soaking pink interior. Juices dribble down her thighs. <i>“I squirt from </i>everywhere<i> when I cum. My cock has that pressure - the kind that’s almost painful but ecstatic, and then it pulsates so powerfully that my hot little fox-cunt can’t help but do the same thing, and mate...”</i> Penny’s fingers are rubbing now. <i>“I love it. I love the feel of it. I love <b>ruining</b> my bed with how much of a hot, fuckable mess I am.”</i> She leans forward against you, the fluff of her ear against your ");
+		if(pc.tallness >= 6*12) output("[pc.belly]");
+		else if(pc.tallness >= 58) output("[pc.chest]");
+		else output("cheek");
+		output(".");
+
+		output("\n\nYou stroke the near head-sized organ and smile when the fox-girl trembles from your touches.");
+		output("\n\n<i>“Hooo, fuck me, mate.”</i> Keep that up, and you’re gonna make me squirt right here, on command.”</i> She whimpers, biting her lip. Thick ribbons of pre-cum ooze down a very needy-looking shaft to lubricate the hand that’s never left her dick. Penny gasps. <i>“You’re trying to make me squirt right now, aren’t you? Treating me like some... hypersexed pet.”</i> She tilts her head to offer a better angle.");
+		output("\n\nThe fluff of her ear feels so soft against your fingers, so you stroke the other as well.");
+		output("\n\n<i>“Mmmmmph!”</i> Penny squeals and shudders. Her cock goes off like a cannon. Shot after shot of useless, animalistic jism splatters across the floor of her chambers. The prick-vixen’s legs tremble, and a second later a terrible splash of silvery girl-cum bursts onto the scene, filling the air with the lurid scent of a fertile bitch in heat. Thrusting against her own palm, Penny milks out an absolutely enormous load for you, never once letting her ecstatic spasming take her ears out of your hands.");
+		output("\n\nYou tease her, brushing your thumb around the inside of the blissed-out fox-woman’s pointed organs.");
+		output("\n\nPenny’s eyes roll back as her cunt repeatedly splatters more and more pheromonal pleasure onto the floor with concussive force. It splatters across her chair, onto the sheets draped from her bed, and all over your [pc.legOrLeg]. She whimpers at the behest of dual sensations her brain isn’t entirely equipped to handle, cumming so hard that when the next splash of juicy, girlish love drenches the deck, she slides off into the puddle with a happy sigh. Her tongue flops out of her mouth to lie in it as she pants, overheated and blissed out.");
+		output("\n\nYou gaze down at the fucked-out fox fondly.");
+		output("\n\n<i>“So you like being a squirter?”</i>");
+		output("\n\nPenny answers with a moan, one hand dipping to explore her tender delta. <i>“Ah! F-f-fuck yes. Gotta get one of those drones,”</i> she explains while casually toying with her lips, <i>“the ones kui-tan like so much. Something to clean up all the mess so I can focus on squirting whenever you want me to." + (pc.hasCock() ? " On your dick.":"") + " On your face. Anywhere on the ship. Maybe even in your bed. Just so it smells like cunt for any beta bitch you bring home.”</i> She pulls herself up onto wobbly knees and gazes at you with undisguised adoration. <i>“...Wanna see what it feels like when your mate squirts directly onto you?”</i>");
+	}
+	processTime(10);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Next",approachCrewPenny,true);
 }
 
 /*
