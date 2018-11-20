@@ -3190,7 +3190,7 @@ public function teasePenny():void
 	output("\n\nPenny’s tongue is stretching down to reach the tip of [penny.cockHead], desperately straining to coat itself in the thick moistness dripping from her. <i>“Pl-please!”</i> she manages eventually. <i>“Please let me swallow my cum!”</i>");
 	output("\n\nPlayfully, you look down at her, still holding her back, and ask, <i>“And why should I do that, exactly?”</i>");
 
-	output("\n\n<i>“Because I need it!”</i> she all but howls in response. She makes eye contact with you directly for a moment, treating you to a wide-eyed, pleading expression as the words tumble out of her uncontrollably. <i>“I’ve been an absolute slut for my cum ever since you first gave me a cock! I’ve been licking it off my fur, off my desk - I’ve been spending half of my time filling my mouth with that wonderful taste!”</i>");
+	output("\n\n<i>“Because I need it!”</i> she all but howls in response. She makes eye contact with you directly for a moment, treating you to a wide-eyed, pleading expression as the words tumble out of her uncontrollably. <i>“I’ve been an absolute slut for my cum ever since you first gave me a cock! I’ve been licking it off my fur, off my " + (pennyIsCrew() ? "sheets":"desk") + " - I’ve been spending half of my time filling my mouth with that wonderful taste!”</i>");
 	output("\n\nYou take her chin in your hand, forcing her to look back at you before she can break away to turn back to her throbbing cock. <i>“Well, that’s not right, is it?”</i>");
 	output("\n\nLocked submissively into your eyes, she can barely respond. <i>“Muh-uhh?”</i>");
 	output("\n\n<i>“No,”</i> you continue, <i>“that should take up </i>all<i> of your time.”</i>");
@@ -3202,7 +3202,8 @@ public function teasePenny():void
 
 	output("\n\nShe struggles to speak against the constant waves of quivering pleasure running through her, and only eventually manages to through sheer force of will. <i>“Buh-buh! But what about- uhhh! What about other people see-uh! Seeing me?”</i>");
 
-	output("\n\nShe raises a good point. She works in a public position after all - if she spends almost all of her time with her cock in her mouth people are going to notice. What do you tell her to do when someone walks in on her?");
+	if(!pennyIsCrew()) output("\n\nShe raises a good point. She works in a public position after all - if she spends almost all of her time with her cock in her mouth people are going to notice. What do you tell her to do when someone walks in on her?");
+	else output("\n\nPennny raises a good point. She lives on your ship after all - if she spends all her time with her cock in her mouth, nobody will get see how badly hooked she is - just how addicted to sucking down her endless, Throbb-augmented loads. The confused prickvixen needs direction. Perhaps camwhoring. If she’s going to be jacking off all day, she might as well work on paying off her debts while she does it.");
 
 	pc.lust(20+rand(10));
 	
@@ -3210,11 +3211,20 @@ public function teasePenny():void
 	if(flags["PENNY_FUTA_TEASE"] == undefined) pc.addHard(20);
 	IncrementFlag("PENNY_FUTA_TEASE");
 	
-	//[Let them join in] [Let them watch] [Hide her actions]
-	clearMenu();
-	addButton(0,"Join In",letThemJoinInPennyYouSlut,undefined,"Join In","Instruct Penny to fuck and suck just about everyone she meets. She’d probably enjoy it, the slut.");
-	addButton(1,"Let Watch",pennyLetThemWatchYouCumSlut,undefined,"Let Watch","Instruct Penny to be something of an exhibitionism slut. She seems like the type to get off on it.");
-	addButton(2,"Hide It",hideYourCumslutteryPennyYouSlut,undefined,"Hide It","Instruct Penny to keep her rampant cum-sluttery a secret if possible.");
+	if(!pennyIsCrew())
+	{
+		//[Let them join in] [Let them watch] [Hide her actions]
+		clearMenu();
+		addButton(0,"Join In",letThemJoinInPennyYouSlut,undefined,"Join In","Instruct Penny to fuck and suck just about everyone she meets. She’d probably enjoy it, the slut.");
+		addButton(1,"Let Watch",pennyLetThemWatchYouCumSlut,undefined,"Let Watch","Instruct Penny to be something of an exhibitionism slut. She seems like the type to get off on it.");
+		addButton(2,"Hide It",hideYourCumslutteryPennyYouSlut,undefined,"Hide It","Instruct Penny to keep her rampant cum-sluttery a secret if possible.");
+	}
+	else
+	{
+		clearMenu();
+		addButton(0,"Camwhore",turnPennyIntoACamwhore,undefined,"Camwhore","Instruct Penny to set up a camera so that everyone on the entire extranet can see how depraved she is. She’d enjoy it, the slut.");
+		addButton(1,"Discrete",turnPennyIntoACamwhore,true,"Discrete Camwhore","Instruct Penny to set up a camera with her face out of frame so that everyone can see what a perverted little cum-sucking slut she's becoming, even if they never get to watch her eyes roll back while she swallows a load.");
+	}
 }
 
 //HIDE HER ACTIONS

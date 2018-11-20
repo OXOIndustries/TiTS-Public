@@ -1062,3 +1062,36 @@ output("\n\nAfter all that, you’re ready to take on the next day of your adven
 
 output("\n\n// end scene (scene: Fucked By Penny); return the PC to the ship’s main menu; increase Lust by 10; advance clock by eight hours");
 */
+
+public fuction turnPennyIntoACamwhore(discrete:Boolean = false):void
+{
+	clearOutput();
+	showPenny(true);
+	author("Abe. E. Seedy & Fen");
+	output("<i>“Be a camwhore,”</i> you say simply. <i>“Then everyone in the galaxy can see what a depraved, cum-sucking slut you are. " + (discrete ? "You don’t even have to show your face. You could wear a mask or hood, maybe even set up an id-blurring filter if there’s enough blood left in your brain to figure out how to work a computer.":"Your face could be synonymous with jizz-addicted dick-girl sluts. You wouldn't be able to walk down the street without people seeing you and instantly knowing what you do in your free moments - every single one of them.") + "”</i>");
+	output("\n\nPenny moans, clearly turned on by the thought of becoming some kind of public slut. The knowledge that thousands could watch her jerk off live, seeing every detail of her [penny.cock] throbbing and jerking and spurting helplessly into her mouth... and they’d be cumming too, because of her. They’d be spilling their own creamy, salty loads all because she dared to be the biggest slut she could be. The vixen gurgles in lust and confusion, shaking once or twice before straining for her [penny.cockHead].");
+	output("\n\nStill making sure you have a strong enough of a grip to keep her away from her cock, you shift one of your hands to scratch lightly against the base of her ears. <i>“What?”</i> you tease her. <i>“Are you too shy for that? Doesn’t the thought of everyone seeing you desperately sucking your own dick turn you on?”</i>");
+	output("\n\n<i>“Muhhmmmm!”</i> she answers, leaving you unsure as to whether she’s struggling to speak further or break free from your grip and resume servicing herself. Finally she manages to make a more coherent response, whimpering, <i>“But... how will they respect m-”</i>");
+	output("\n\nYou cut her off by forcing her face suddenly down against her cock, her speech soon stopping as her lips switch effortlessly to sweeping over her slick [penny.cockHead]. <i>“Now now,”</i> you answer. <i>“What’s more important? Respect? Or being able to lick your dick clean at any moment? Being able to put that hot, sexy cock of yours to work in the service of giving the universe even more creamy cumshots? All you have to do is suck.”</i>");
+	output("\n\nPenny moans wordlessly, unable to stop herself from doing exactly that.");
+	output("\n\n<i>“Theeere you go,”</i> you say approvingly, forcing her head slowly downwards until she’s taken as much of her cock inside her mouth as possible and is limited to blissfully fucking her own face. <i>“Doesn’t that feel better? Isn’t it just so much nicer not to worry about what anyone thinks; and instead just focus on feeding your wonderful addiction?”</i>");
+	output("\n\nHer eyes roll slowly back in her head as she starts to inexorably lose herself in the sensation of swallowing her [penny.cock].");
+	output("\n\n<i>“In fact,”</i> you continue, moving around to stand beside her and whispering directly into her ear, <i>“you </i>want<i> people to see this, don’t you? You want people to see how you’re hooked on drinking your own cum, how you can’t stop putting your dick in your mouth and working it over again, and again, and again.”</i>");
+	output("\n\nPenny’s movements are becoming jerky and erratic, her whole body shuddering as she approaches what is clearly an unstoppable orgasm. Seizing the moment, you grab her fiercely and hiss, <i>“You’re a cumslut, aren’t you? You’re addicted to the taste of your own cum, and don’t care if the whole universe watches you milk yourself.”</i>");
+	output("\n\nShe manages to look up at you, her blushing face and the look of pleading desperation in her eyes conveying her hesitance, but even as she does her dick starts surging involuntarily, and soon burst after burst is splashing against the back of her throat, and all she can do is slurp it down greedily. Her resistance melts as she sinks into it, her eyes sliding closed and her blush fading as all her reservations are overcome by just how <i>good</i> this feels.");
+	output("\n\nSeeing her adjusting, you shift to crouch directly in front of her, watching approvingly as she gulps down her seemingly never-ending load. <i>“Good girl,”</i> you say encouragingly. <i>“Don’t you enjoy putting on a good show like this?”</i>");
+	output("\n\nEven muffled as she is, Penny manages to give out a slightly more concerted moan to attempt to express her approval.");
+	output("\n\nYou grin in response. <i>“Of course you do. So much better than letting your silly little shyness get in the way of enjoying your wonderful cock you went </i>so<i> out of your way to get. But remember...”</i> Without warning you slide three fingers inside her dripping slit, the sudden shock of which causes her cock to bulge with a startlingly intense orgasm, almost forcing it out of her mouth with the sheer volume of cum she produces in that one instant. <i>“Everyone can watch, but only </i>I<i> get to enjoy you.”</i>");
+	output("\n\nThat last emphatic orgasm seems to have wrung most of it out of her, and within moments Penny is left leaning exhausted back in her chair, while her [penny.cock] slides slowly out of her mouth to rest between her breasts. After spending a moment appraising the impressive amount of mess she left on your fingers you casually place them next to her mouth, and reflexively she leans forward and begins to eagerly lick them clean.");
+	output("\n\n<i>“What a good girl,”</i> you coo, before turning and walking out of the room, leaving the near-incoherent Penny to recover behind you. As you step outside, you place an order for a holocam delivery to your ship and forward a potential site she could register with later. After all, it wouldn’t do to let her talents go to waste by letting her shows go unseen.");
+	
+	if(discrete) flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] = 2;
+	else flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] = 3;
+	flags["PENNY_HIDING_CUMSLUTTERY"] = undefined;
+	flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] = undefined;
+	flags["PENNY_IS_A_CUMSLUT"] = 1;
+	pc.lust(10);
+	processTime(10);
+	clearMenu();
+	addButton(0,"Next",approachCrewPenny,true);
+}
