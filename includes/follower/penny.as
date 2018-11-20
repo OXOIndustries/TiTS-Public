@@ -1163,6 +1163,7 @@ public function morningFuckedByPennyAfter():void
 	// end scene (scene: Fucked By Penny); return the PC to the ship’s main menu; advance clock by eight hours
 	processTime(10);
 	clearMenu();
+}
 
 public fuction turnPennyIntoACamwhore(discrete:Boolean = false):void
 {
