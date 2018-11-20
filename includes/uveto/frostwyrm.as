@@ -2513,6 +2513,9 @@ public function frostwyrmBunchaKiddoContent():void
 	
 	frostWyrmlingHeader();
 	
+	//permanently disable sex with kips
+	flags["FROSTWYRM_INCEST_OPTION"] = 0;
+	
 	output("You look to your");
 	if (flags["FROSTWYRM_KIP_COUNT"] != 1) output(" eldest");
 	output(" daughter. She’s curled up against you, her legs entwined around your own [pc.legs] and her arms wrapped around your torso. Her eyes are closed, but you’re aware that she’s wide awake and she’s more than ready and willing to spend some time bonding with her Qal.");
@@ -2523,6 +2526,9 @@ public function frostwyrmBunchaKiddoContent():void
 	clearMenu();
 	addButton(0, "Appearance", frostwyrmlingAppearance, undefined);
 	addButton(1, "Talk", frostwyrmlingTalkMenu, undefined);
+	//if (flags["FROSTWYRM_INCEST_OPTION"] != 1) addDisabledButton(2, "Sex", "Sex", "You’ve opted out of participating in ‘inner circle coupling’ with your kips. If you’d like to change your mind, be sure to Talk with your daughter about it.");
+	//else if (flags["FROSTWYRM_KIP_COUNT"] < 3) addDisabledButton(2, "Sex", "Sex", "If you’re going to be teaching your daughters about proper mating, it’d be better to have more daughters than you do now.");
+	//else addButton(2, "Sex", frostwyrmlingSexMenu, undefined, "Sex", "Indulge in the common Frostwyrm practice of ‘inner circle coupling.’");
 	
 	addButton(14, "Qim", frostwyrmMainMenu, undefined);
 }
@@ -2568,6 +2574,7 @@ public function frostwyrmlingTalkMenu():void
 	addButton(0, "Biology", frostwyrmWhyDoesMommyLookDifferent, undefined);
 	addButton(1, "Technology", frostwyrmShinyShit, undefined);
 	addButton(2, "Traditions", frostwyrmBlessedBeOurSmutlords, undefined);
+	//addButton(3, "Incest", frostwyrmIChangeMyMind, undefined);
 	
 	addButton(14, "Back", frostwyrmBunchaKiddoContent, undefined);
 }
