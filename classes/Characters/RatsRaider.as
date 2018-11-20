@@ -222,7 +222,7 @@ package classes.Characters
 					furColor = "gray";
 					eyeColor = "blue";
 					hairColor = "white and green";
-					nippleColor = "dark red";
+					nippleColor = "pink";
 					
 					hipRatingRaw = 8;
 					buttRatingRaw = 6;
