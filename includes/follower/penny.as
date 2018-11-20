@@ -1165,7 +1165,7 @@ public function morningFuckedByPennyAfter():void
 	clearMenu();
 }
 
-public fuction turnPennyIntoACamwhore(discrete:Boolean = false):void
+public function turnPennyIntoACamwhore(discrete:Boolean = false):void
 {
 	clearOutput();
 	showPenny(true);
