@@ -9,7 +9,7 @@ public function pennyCrewDesc():String {
 	//Shortcut friend penny if bimboed.
 	else if(flags["PENNY_BADGER_BIMBO"] != undefined)
 	{
-		if(flags["SEEN_BIMBO_PENNY"] == undefined) buffer += "Penny is sitting up straight in her chair, looking fairly perky and attentive, considering her recent transformation into a hyper-sexed, hermaphroditic bimbo.";
+		if(flags["SEEN_BIMBO_PENNY"] == undefined) buffer += "Penny is sitting up straight in her quarters, looking fairly perky and attentive, considering her recent transformation into a hyper-sexed, hermaphroditic bimbo.";
 		else if(hours >= 8 && hours < 17) buffer += "Penny is at her desk looking a little pent-up - and drinking something suspiciously white from her coffee cup.";
 		else buffer += "Penny is slouched with a lazy, half-aware grin on her face. Now that she’s onboard your ship, she has no reason not to indulge herself beneath her desk.";
 		buffer += " She doesn’t seem to notice you, that or she can’t see you past all the cum plastered over her fur.";
@@ -18,9 +18,13 @@ public function pennyCrewDesc():String {
 	}
 	//Girlfriend penny
 	else {
+		if(flags["PENNY_IS_A_CUMSLUT"] != undefined)
+		{
+			buffer += "Penny is doubtless masturbating her quarters, putting on a show for the extranet. It seems like every time you walk past her room, you either hear impassioned moaning or pleased-sounding gurgles. Rarely, you hear her babbling a thankful platitude or request for her viewers to bust the biggest, fattest nuts they can.";
+		}
 		//Non-Futa
 		//Appearance blurb: 
-		if(!penny.hasCock()) buffer += "Penny keeps herself busy on your ship. The gene-spliced fennec seems content to pass her time honing her fitness and tending to the various security apparatus onboard. She isn’t all business, however. Sometimes you hear a the garbled voices of an anime, and she frequently favors you with lusty leers in the hallways.";
+		else if(!penny.hasCock()) buffer += "Penny keeps herself busy on your ship. The gene-spliced fennec seems content to pass her time honing her fitness and tending to the various security apparatus onboard. She isn’t all business, however. Sometimes you hear a the garbled voices of an anime, and she frequently favors you with lusty leers in the hallways.";
 		//FUTA!
 		//Appearance Blurb: 
 		else 
@@ -42,7 +46,8 @@ public function approachCrewPenny(back:Boolean = false):void
 			greetings.push("Penny smirks, <i>“We could always fuck...”</i>");
 		}
 		//Penny is bimbo
-		if(penny.isBimbo()) greetings.push("Penny guides her dick into her mouth, idly sucking. She raises one eyebrow as if to suggest that you should take advantage of the situation.");
+		if(penny.isBimbo() || flags["PENNY_IS_A_CUMSLUT"] != undefined) greetings.push("Penny guides her dick into her mouth, idly sucking. She raises one eyebrow as if to suggest that you should take advantage of the situation.");
+		if(flags["PENNY_IS_A_CUMSLUT"] != undefined) greetings.push("Penny smiles, languidly fondling her [penny.cockNoun]. <i>“Stars, I love this dick. Thank you so much, [pc.name].”</i> She favors her erection with a long, passionate kiss. <i>“Almost as much as I love you, mate.”</i>");
 		output(RandomInCollection(greetings));
 	}
 	// (scene: Crewmate Main Menu)
@@ -63,17 +68,25 @@ public function approachCrewPenny(back:Boolean = false):void
 	else
 	{
 		author("Fenoxo");
-		output("When you enter her chambers, Penny’s fluffy tail wags behind her, faster and faster the closer you come. When you’re right in front of her, she looks up at you with a lusty look and admits, <i>“I was just thinking of how much I enjoyed using this with you, my mate.”</i>");
-		//Max size {17-20}
-		if(penny.longestCockLength() >= 17) output(" There’s the sound of fabric starting to rip, cut short by the sound of a zipper and the heavy thud of flesh contacting wood. Penny exhales and looks at you meaningfully. <i>“I’m so glad you made it so big...”</i> Her voice trails off for a moment while she brazenly strokes. <i>“It gets hard so easily. All I have to do is think of you, and I have the biggest, hardest, most incredible erection.”</i>");
-		//Normal size {10-16”}
-		else if(penny.longestCockLength() >= 10) output(" A quiet, stifled groan starts in her throat after her admission, and she squeezes her crotch up to show you the nice, big bulge hidden in her pants. The groan turns into a whimper, and then you hear the zipper on her trousers lowering. Gasping with relief, the fennec makes love to you with her eyes and offers, <i>“Looking for a booty call?”</i>");
-		//Small size
-		else output(" There’s the quiet sound of a zipper opening. <i>“I’m up for some fun if you are...”</i>");
-		if(penny.isSquirter())
+		if(pennyIsCumSlut())
 		{
-			if(flags["PENNY_SQUIRT_TALK"] != undefined) output("\n\nA small, puck-shaped robot rests in its charging dock by the wall. Though there isn’t a single soiled towel in sight, the whole room smells faintly of Penny’s juicy cunt, like she’s climaxed bareback on every exposed surface in her room with such enthusiasm that her feminine musk impregnated itself into their molecular structures.");
-			else output("\n\nThere’s no hiding the hints of feminine scent that linger in Penny’s sheets or waft through the hamper’s supposed Odorguard seal. It would seem that in the wake of her encounter with a venus ziltrap, Penny’s become a very wet girl. And of course, there’s the heady musk of her other genitalia resting atop it all.");
+			output("When you enter her chambers, Penny looks at you sidelong just before her cock erupts, blasting a spermy load directly into her gullet. She makes a show of passionately suckling her at her boner, then pulls it out so that the excess can drench her tits. She dreamily opens her mouth to catch the last torrid squirts, then gathers a handful of excess vixen-cream to messily devour. <i>“Ta ta, my lovelies. Cum again soon!”</i>");
+			output("\n\nThe spunk-drunk fox-girl giggles and shuts down the broadcast. She turns to face you, casually hefting her pillowy, drenched tits up in order to suck the leftovers out of her fur. She murmurs a greeting through her busy, cum-soaked lips, <i>“Heyyy, [pc.name]. You wanna make your fox-slut cum? Or did you want me to make you cum.”</i> She sighs blissfully. <i>“Fuck! I loooove being your cam-whore pet.”</i> Letting go off one half-cleaned boob, she stalks forward aggressively, dick firming with alarming immediacy. <i>“I love being yours. What can I do for you, mate?”</i>");
+		}
+		else
+		{
+			output("When you enter her chambers, Penny’s fluffy tail wags behind her, faster and faster the closer you come. When you’re right in front of her, she looks up at you with a lusty look and admits, <i>“I was just thinking of how much I enjoyed using this with you, my mate.”</i>");
+			//Max size {17-20}
+			if(penny.longestCockLength() >= 17) output(" There’s the sound of fabric starting to rip, cut short by the sound of a zipper and the heavy thud of flesh contacting wood. Penny exhales and looks at you meaningfully. <i>“I’m so glad you made it so big...”</i> Her voice trails off for a moment while she brazenly strokes. <i>“It gets hard so easily. All I have to do is think of you, and I have the biggest, hardest, most incredible erection.”</i>");
+			//Normal size {10-16”}
+			else if(penny.longestCockLength() >= 10) output(" A quiet, stifled groan starts in her throat after her admission, and she squeezes her crotch up to show you the nice, big bulge hidden in her pants. The groan turns into a whimper, and then you hear the zipper on her trousers lowering. Gasping with relief, the fennec makes love to you with her eyes and offers, <i>“Looking for a booty call?”</i>");
+			//Small size
+			else output(" There’s the quiet sound of a zipper opening. <i>“I’m up for some fun if you are...”</i>");
+			if(penny.isSquirter())
+			{
+				if(flags["PENNY_SQUIRT_TALK"] != undefined) output("\n\nA small, puck-shaped robot rests in its charging dock by the wall. Though there isn’t a single soiled towel in sight, the whole room smells faintly of Penny’s juicy cunt, like she’s climaxed bareback on every exposed surface in her room with such enthusiasm that her feminine musk impregnated itself into their molecular structures.");
+				else output("\n\nThere’s no hiding the hints of feminine scent that linger in Penny’s sheets or waft through the hamper’s supposed Odorguard seal. It would seem that in the wake of her encounter with a venus ziltrap, Penny’s become a very wet girl. And of course, there’s the heady musk of her other genitalia resting atop it all.");
+			}
 		}
 	}
 	if(flags["BADGER_QUEST"] == 1)
@@ -112,10 +125,10 @@ public function pennyCrewTalk():void
 	output(" <i>“Of course; I’m not busy,”</i> she says. <i>“Got anything on your mind?”</i>");
 	processTime(2);
 	
-	pennyFollowerTalkMenu();
+	pennyCrewTalkMenu();
 }
 
-public function pennyFollowerTalkMenu():void
+public function pennyCrewTalkMenu():void
 {
 	// end scene (scene: Crewmate Talk Menu)
 	// Pretty much all of her in-game talk scenes are contextually dependent on her remaining on Mhen’ga, and they’ll need to be rewritten. I can probably write a few of them myself, but I’d need an increased word cap.
@@ -132,9 +145,11 @@ public function pennyFollowerTalkMenu():void
 	if(penny.isSquirter()) addButton(5,"Squirting",pennySquirtingTalk,undefined,"Squirting","Ever since being encapsulated by the ziltrap, Penny has been a squirter. Ask how she feels about it.");
 	else addDisabledButton(5,"Disabled","Disabled","This option is only available as a result of certain events while recruiting Penny to your crew.");
 
-	if (flags["CREWMEMBER_SLEEP_WITH"] == "PENNY") addButton(6, "No Sleep W.", pennySleepwithInvite, undefined, "Ask Penny to give you some space for the night.");
-	else addButton(6, "Sleep With", pennySleepwithInvite, undefined, "Sleep With", "Invite Penny to share your bed at night. A girl with that much fluff is sure to help keep it warm!");
+	if(flags["PENNY_IS_A_CUMSLUT"] != undefined) addButton(6,"Cumsluttery",pennyCumslutterMenuTalk);
+	else addDisabledButton(6,"Cumsluttery");
 
+	if (flags["CREWMEMBER_SLEEP_WITH"] == "PENNY") addButton(7, "No Sleep W.", pennySleepwithInvite, undefined, "Ask Penny to give you some space for the night.");
+	else addButton(7, "Sleep With", pennySleepwithInvite, undefined, "Sleep With", "Invite Penny to share your bed at night. A girl with that much fluff is sure to help keep it warm!");
 	addButton(14,"Back",approachCrewPenny,true);
 }
 
@@ -231,11 +246,10 @@ public function futanariTalkWithPenpen():void
 				else output("smirks knowingly. <i>“Imagine how much harder you could make me drool if we gave you a little boost. Just enough to make your dickgirl mate </i>really<i> whimper.”</i>");
 				flags["PENNY_THROBB_PURCHASE_UNLOCKED"] = 1;
 			}
-			/* CUMSLUT STUFF. NOT ENABLED ATM
 			clearMenu();
 			if(flags["PENNY_THROBB_USES"] >= 3 && flags["PENNY_THROBB_USES"] != undefined)
 			{
-				output("\n\nThat said, she’s more than a little pliable with her dick that close to her face, so if you wanted to turn her into an obedient, sex-addicted pet you could probably quite easily work her up into embracing throbb-enhanced horse-dick a little more enthusiastically. Chances are it would still impact on her ability to work, but not as irreversibly pumping her full of more drugs. Teasing her into being more of a orgasm-addicted love pet still wouldn’t exactly be <i>nice</i>, but at least she’d be able to control herself and do work when she absolutely had to.");
+				output("\n\nThat said, she’s more than a little pliable with her dick that close to her face, so if you wanted to turn her into an obedient, sex-addicted pet you could probably quite easily work her up into embracing throbb-enhanced horse-dick a little more enthusiastically. She wouldn't be much good for security, but maybe turning her into a camwhore would give her something to do. Teasing her into being more of a orgasm-addicted love pet still wouldn’t exactly be <i>nice</i>, but at least she’d be able to indulge her basest, most licentious urges.");
 				output("\n\nSo, what do you want to do?");
 				//[Tell her to calm down] [Have fun with her]
 				clearMenu();
@@ -303,8 +317,7 @@ public function futanariTalkWithPenpen():void
 
 				output("\n\nThinking about it for a moment, you realize that Penny probably wouldn’t be able to handle any more of the drug. Her lust seems to be stoked to a high degree already, and giving her more Throbb would certainly lead to her losing her post.");
 
-				/* CUMSLUT STUFF NOT ENABLED ATM:
-				output(" That said, she’s very pliable at the moment, so if you wanted to turn her into an obedient, sex-addicted pet you could probably quite easily work her up into embracing her new assets a little more enthusiastically. Chances are it would still impact on her ability to work, but not as irreversibly as pumping her full of drugs. Teasing her into being more of a orgasm-addicted love pet still wouldn’t exactly be <i>nice</i>, but at least she’d be able to control herself and do work when she absolutely had to.");
+				output(" That said, she’s very pliable at the moment, so if you wanted to turn her into an obedient, sex-addicted pet you could probably quite easily work her up into embracing her new assets a little more enthusiastically. Chances are she'd be useless as shipboard security, but maybe she could do something else. Maybe she could be a live-in camwhore. Teasing her into being more of a orgasm-addicted exhibition-pet still wouldn’t exactly be <i>nice</i>, but at least she’d be able to pay off her debts while indulging in her basest, most licentious urges.");
 				output("\n\nSo, what do you want to do?");
 				//[Tell her to calm down] [Have fun with her]
 				clearMenu();
