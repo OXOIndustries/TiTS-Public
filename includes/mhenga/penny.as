@@ -1473,7 +1473,8 @@ public function talkToGirfriendPenny():void {
 	if(flags["PENNY_IS_A_CUMSLUT"] != undefined) addButton(6,"Cumsluttery",pennyCumslutterMenuTalk);
 	else addDisabledButton(6,"Cumsluttery");
 
-	if(flags["HAD_PENNY_GOAL_CHAT"] == undefined) addDisabledButton(7,"Recruit Her","Recruit Her","You’ve been playing with a thought ever since you first had sex with Penny and she called you her mate, but you think it’d be safer if you could lead into it through conversation....");
+	if(flags["PENNY_CREW_ASKED"] != undefined && flags["PENNY_CREW_ASKED"] > 1) addDisabledButton(7,"Recruit Her","Recruit Her","You’ve already had this talk. Having it again won’t do anything.")
+	else if(flags["HAD_PENNY_GOAL_CHAT"] == undefined) addDisabledButton(7,"Recruit Her","Recruit Her","You’ve been playing with a thought ever since you first had sex with Penny and she called you her mate, but you think it’d be safer if you could lead into it through conversation....");
 	else if(pennyIsCumSlut()) addDisabledButton(7,"Recruit Her","Recruit Her","Recruiting Cumslut Penny is not currently supported.");
 	else addButton(7,"Recruit Her",fuckedPennyRecruitmentInvite,undefined,"Recruit Her","Penny said something <i>very</i> interesting to you when you asked her what her plans for the future are. If you’re going to ask her more about it, now would be the time....");
 	this.addButton(14,"Back",approachGirlfriendPenny);
@@ -2188,7 +2189,7 @@ public function getAssFuckedByPenny(fromFaceFuck:Boolean = false):void {
 	if(pc.biggestTitSize() >= 3) {
 		output(" The sight of the sexy fox playing with her own tits gives you an idea, though....");
 	
-		//Con't: 
+		//Con’t: 
 		output("\n\nYou rise up on your [pc.knees] and grab your [pc.chest], cupping the two heavy orbs and squeezing them together, giving Penny the perfect view of your sizable cleavage. Giving your tits a little jiggle for her, you lean in and let them wrap around her shaft, burying Penny’s cock in a bed of boobage. Slowly, you drag her [penny.cock] through the valley of your cleavage, lifting your tits up and down her girth until she’s left you a nice, pearly trail between your tits, her [penny.cockHead] just poking out between the two soft orbs. You gobble it up, sucking down the first inches of her cock as your tits work her length, sending the sensitive fox girl into a whole new realm of pleasure that soon has her panting and gasping, cock bubbling pre freely.");
 	}
 	
@@ -2251,7 +2252,7 @@ public function getAssFuckedByPenny(fromFaceFuck:Boolean = false):void {
 }
 
 //Fuck Her Butt (From Facefuck scene)
-//Read the function name in Lothar's voice.
+//Read the function name in Lothar’s voice.
 public function fuckPennyButtFromFraceFuckSceneNyahhhh():void {
 	clearOutput();
 	showPenny(true);
@@ -3349,7 +3350,7 @@ public function useYourCocksOnCumSluttyPenny():void {
 	if(flags["PENNY_CUMSLUT_JOIN_IN"] == undefined) pc.addHard(5);
 	IncrementFlag("PENNY_CUMSLUT_JOIN_IN");
 	clearMenu();
-	//move to the room outside of Penny's
+	//move to the room outside of Penny’s
 	addButton(0,"Next",move,"SOUTH ESBETH 3");
 	//[Add a considerable amount of a-hole points] [reduce lust to zero]
 }
@@ -3368,7 +3369,7 @@ public function makeUseOfPennysCumSlutCock():void {
 	if(flags["PENNY_CUMSLUT_JOIN_IN"] == undefined) pc.addHard(5);
 	IncrementFlag("PENNY_CUMSLUT_JOIN_IN");
 	clearMenu();
-	//move to the room outside of Penny's
+	//move to the room outside of Penny’s
 	addButton(0,"Next",move,"SOUTH ESBETH 3");
 	//[Add a considerable amount of a-hole points] [reduce lust to zero]
 }
@@ -3388,7 +3389,7 @@ public function findSomeonePublicToHelpPennyCumslut():void {
 	if(flags["PENNY_CUMSLUT_JOIN_IN"] == undefined) pc.addHard(5);
 	IncrementFlag("PENNY_CUMSLUT_JOIN_IN");
 	clearMenu();
-	//move to the room outside of Penny's
+	//move to the room outside of Penny’s
 	addButton(0,"Next",move,"SOUTH ESBETH 3");
 	//[Add a considerable amount of a-hole points] [reduce lust to zero]
 }
@@ -3521,7 +3522,7 @@ public function pennyVsFlahneWhoWillOutslutWho():void
 	output("\n\nThe two girls lie locked happily together, content to just thrust slowly and suck needfully on the cock they’re presented with. As fun as that is, after a minute or so you start to get a little bored, deciding that you could really do with a bit more of a show. Accordingly you lean down, positioning yourself right next to Penny’s ear. <i>“Good girl,”</i> you start encouragingly, enjoying the little quiver of pleasure she makes even before you scratch softly at the base of her pointed ears. <i>“But I think it’s time you moved on to the main event, don’t you?”</i>");
 	output("\n\nEven through her well-occupied mouth, Penny manages to moan in response. Her whole body shudders, and you can see her eyes rolling back in her head. Seeing how worked up she’s getting, you nod in approval, then lower your voice to a fierce whisper and continue. <i>“You </i>need<i> cum, don’t you? You need to milk her for all that she’s worth, feel her thick cum sliding down your throat and filling you up...”</i>");
 	output("\n\nParts of Penny are quietly spasming uncontrollably now, various limbs locking up and releasing as her body becomes overwhelmed by her insensate lust. Her mouth is filled with Flahne’s thick cock, but now even that isn’t enough. You press lightly against the back of her head with one hand");
-	// {hand/tentacle} Don't currently have a way to really indicate of the player has goohands/tentacools, so...
+	// {hand/tentacle} Don’t currently have a way to really indicate of the player has goohands/tentacools, so...
 	output(" and whisper one last thing to push her over the edge. <i>“Show Flahne just how much of an eager cum-addicted slut you really are.”</i>");
 	output("\n\nPenny’s eyes go wide, snapping open with manic, lust-fuelled intensity. With one great surge she pushes Flahne over, rolling the two of them so that Flahne is left on the bottom while Penny pins her to the floor by her wrists. Her hands are only occupied with that for a moment, however; as soon as the new position is established Penny moves them to begin frantically working over Flahne’s ovipositor, massaging it frenziedly with both hands. She even pulls her head out entirely to enable herself to get a better grip on Flahne’s trembling tool, thick strands of drool and gooey pre-cum keeping the two connected as her lips momentarily break free.");
 	output("\n\n<i>“I need your cum!”</i> Penny cries, only managing to work her tongue enough to speak due to the urgency of the message. <i>“Flahne, please, please I- uhhh! I can’t help it, I need, I need, I need your cum so badly, please, I just- I need you to cum in me, on me, over me, ffFUUCK I need it!”</i>");
@@ -4184,7 +4185,7 @@ public function pennyHelpNoHelpScene1Outro():void
 	processTime(6);
 	clearMenu();
 	addButton(0,"Next",fuckedPennyRecruitmentInvite2);
-	flags["PENNY_CREW_ASKED"] = 1;
+	if(flags["PENNY_CREW_ASKED"] == undefined || flags["PENNY_CREW_ASKED"] == -1) flags["PENNY_CREW_ASKED"] = 1;
 }
 
 //[=Next=]
@@ -5169,8 +5170,8 @@ public function oralDatPenpenMcPennyPostZiltrapFight():void
 		output("\n\nPenny laughs and stretches. <i>“I’ll have to pay you back for that sometime.”</i> With a wiggle of her toes, she stretches for her shotgun. <i>“But I suppose we should get moving before those plant-sluts recover.”</i>");
 		output("\n\nYou lick the residue of her unique flavor from your chin and make ready to move on.\n\n");
 		processTime(25);
-		if(penny.hasCock()) pc.loadInMouth(pc);
-		else pc.girlCumInMouth(pc);
+		if(penny.hasCock()) pc.loadInMouth(penny);
+		else pc.girlCumInMouth(penny);
 		penny.orgasm();
 		CombatManager.genericVictory();
 	}
@@ -5193,24 +5194,23 @@ public function oralDatPenpenMcPennyPostZiltrapFight():void
 		output("\n\nIt’s hard to keep track of what she’s saying with how good she tastes, how much you enjoy the sight of her genitalia shivering in absolute bliss. What’s important is that Penny loves you. She loves you and she bathes you in affectionate, sex-infused words just as you bathe her crotch in saliva.");
 		if(penny.hasCock()) 
 		{
-			pc.loadInMouth(pc);
-			pc.loadInMouth(pc);
-			pc.loadInMouth(pc);
-			pc.loadInMouth(pc);
+			pc.loadInMouth(penny);
+			pc.loadInMouth(penny);
+			pc.loadInMouth(penny);
+			pc.loadInMouth(penny);
 		}
 		else 
 		{
-			pc.girlCumInMouth(pc);
-			pc.girlCumInMouth(pc);
-			pc.girlCumInMouth(pc);
-			pc.girlCumInMouth(pc);
+			pc.girlCumInMouth(penny);
+			pc.girlCumInMouth(penny);
+			pc.girlCumInMouth(penny);
+			pc.girlCumInMouth(penny);
 		}
 		penny.orgasm();
 		penny.orgasm();
 		penny.orgasm();
 		penny.orgasm();
 		pc.lust(10);
-		CombatManager.genericVictory();
 		clearMenu();
 		addButton(0,"Next",eatOutPodPennyEnding);
 	}
@@ -5229,17 +5229,17 @@ public function eatOutPodPennyEnding():void
 	restHeal();
 	if(penny.hasCock()) 
 	{
-		pc.loadInMouth(pc);
-		pc.loadInMouth(pc);
-		pc.loadInMouth(pc);
-		pc.loadInMouth(pc);
+		pc.loadInMouth(penny);
+		pc.loadInMouth(penny);
+		pc.loadInMouth(penny);
+		pc.loadInMouth(penny);
 	}
 	else 
 	{
-		pc.girlCumInMouth(pc);
-		pc.girlCumInMouth(pc);
-		pc.girlCumInMouth(pc);
-		pc.girlCumInMouth(pc);
+		pc.girlCumInMouth(penny);
+		pc.girlCumInMouth(penny);
+		pc.girlCumInMouth(penny);
+		pc.girlCumInMouth(penny);
 	}
 	IncrementFlag("SEXED_PENNY");
 	output("\n\n");
@@ -5266,7 +5266,7 @@ public function finalPennyQuestRoomproc():Boolean
 	output("\n\nPenny grabs you by elbow and forcibly yanks back. <i>“Careful, mate. This mining operation isn’t on the books, and I’d bet credits to cumshots these lawbreaking drillboys are programmed to put an end to nosy explorers.”</i> She scowls.");
 	output("\n\nYou carefully - very carefully - lift up your Codex and edge the corner with the hololens past the crag of rock you and Penny are sheltered behind. A few taps later and you’re treated to an up-close view of the busy machinery.");
 	output("\n\n<i>“Spot any logos?”</i> Penny growls low in the back of her throat. <i>“I’d love to know which low-life scumcorp thought it would be a good idea to skip out on <b>my</b> planet’s taxes. Last I checked we barely had any. Just enough to keep the town running - mostly off mineral claims like this one.”</i>");
-	output("\n\nOne robot turns away, hauling a small fortune in Oxonium ore to the lander. On its back are streaks of faded enamel where somebody went at it with a power sander, not enough to prove anything in court, but enough for you to recognize edges of a design you’ve seen your father scowl at many times: the <i>9999placeholderdesc</i> logo of MaxCorp. <i>“These are MaxCorp mining robots. Dad always said they’d do anything for a credit, but I didn’t expect them to stoop quite this low." + (pc.isBimbo() ? " Lawbreaking is so silly!":"") + "”</i> You duck into hiding before they can spot you. <i>“Older ones though. " + (!pc.isBimbo() ? "Plenty strong but not exactly fast or smart. Probably hauled out of storage for plausible deniability. Blame smugglers with surplus ‘bots if they get caught.":"Not even good looking ones! They probably used them so they could blame some pirates that bought last season’s model. I mean... who wants old robots?") + "”</i>");
+	output("\n\nOne robot turns away, hauling a small fortune in Oxonium ore to the lander. On its back are streaks of faded enamel where somebody went at it with a power sander, not enough to prove anything in court, but enough for you to recognize edges of a design you’ve seen your father scowl at many times: the enormous bolded 'X' of the MaxCorp logo. <i>“These are MaxCorp mining robots. Dad always said they’d do anything for a credit, but I didn’t expect them to stoop quite this low." + (pc.isBimbo() ? " Lawbreaking is so silly!":"") + "”</i> You duck into hiding before they can spot you. <i>“Older ones though. " + (!pc.isBimbo() ? "Plenty strong but not exactly fast or smart. Probably hauled out of storage for plausible deniability. Blame smugglers with surplus ‘bots if they get caught.":"Not even good looking ones! They probably used them so they could blame some pirates that bought last season’s model. I mean... who wants old robots?") + "”</i>");
 	output("\n\nPenny scowls. <i>“I could call in peacekeeper reinforcements... but this would become a crime scene. The right to the Oxonium claim would go up for government auction, and a small fry like me would never stand a chance.”</i> Her ears lift upright, and her lip curls in a fearsome smile. <i>“Or we could dish out a little frontier justice. These robots are technically trespassing in a sovereign planet. We scrap ‘em, and there’s nothing MaxCorp can do except write them off as a tax deduction. Then we file a claim ourselves, bring in a legal crew - maybe one through your father’s company - and reap a sizable reward.”</i>");
 	penny.HP(penny.HPMax());
 	CombatManager.newGroundCombat();

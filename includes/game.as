@@ -1638,6 +1638,10 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 			
 			switch(flags["CREWMEMBER_SLEEP_WITH"])
 			{
+				case "PENNY":
+					bedTimeWithPenny();
+					interrupt = true;
+					break;
 				case "SHEKKA AND ANNO":
 					if (annoIsCrew() && (rand(3) == 0 || (isChristmas() && flags["ANNO_GIFT_WRAPPED"] == undefined)))
 					{
@@ -1773,6 +1777,11 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 		if (flags["KASE_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [kaseCrewWake];
 		if (flags["RAMIS_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [ramisSleepWake];
 		if (flags["PAIGE_WAKEY_FLAGS"] != undefined) wakeEvents = [paigeWakeyWakey];
+		if (pc.hasStatusEffect("PENNY_WAKEUP_CUED"))
+		{
+			pc.removeStatusEffect("PENNY_WAKEUP_CUED");
+			wakeEvents = [pennyMorningWakeups];
+		}
 		
 		if (wakeEvents.length > 0)
 		{
