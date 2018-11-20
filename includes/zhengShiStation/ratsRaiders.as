@@ -388,7 +388,7 @@ public function ratsInTheMineEncounter():Boolean
 		
 		output(RandomInCollection(randomDialogue));
 
-		if (pc.libido() > 66 || pc.isBimbo() || pc.isBro()) output("\n\n<i>\"Sex works just like that!\"</i> you announce, shaking your hips and giving them a sweet smile. They scoff at your seduction and level their batons.");
+		if (pc.isBimbo() || pc.isBro()) output("\n\n<i>\"Sex works just like that!\"</i> you announce, shaking your hips and giving them a sweet smile. They scoff at your seduction and level their batons.");
 		else if (ratsPCIsGood()) output("\n\nIndeed, what will it be this time?");
 		else if (ratsPCIsKnown()) output("\n\nDamn that cousin of yours... Well, how are you going to resolve this?");
 		else output("\n\nYeah, right. You're sure you can think of something to give them… ");
@@ -404,7 +404,7 @@ public function ratsInTheMineEncounter():Boolean
 public function ratButtons(offers:int = 0):void
 {
 	//If nothing else works, punch it
-	addButton(0, "Fight", ratStartEncounterFight, false, "Fight", "Negotiations have broken down. Time to knock some sense into these vermin!");
+	addButton(0, "Fight", ratStartEncounterFight, 0, "Fight", "Negotiations have broken down. Time to knock some sense into these vermin!");
 
 	//Moneh
 	if (pc.credits > 2000) addButton(1, "Pay Credits", ratGiveThemMoney, undefined, "Pay Credits", "Probably the safest option. All you have to do is load an anonymous chit and move on with your life… with quite a bit less in your digital wallet.");
@@ -437,19 +437,28 @@ public function ratButtons(offers:int = 0):void
 	}
 }
 
-public function ratStartEncounterFight(argumentOverGems:Boolean = false):void
+public function ratStartEncounterFight(argumentOver:int = 0):void
 {
 	clearMenu();
 	clearOutput();
 	showRats(3);
 	processTime(1);
 
-	if (argumentOverGems) output("<i>\"Fuck off.\"</i> You hurriedly pack your gems away and assume an aggressive stance as the recriminating robbers shout limp warnings at you.");
-	else
+	switch (argumentOver)
 	{
-		output("The moment you raise your [pc.weapon], they all crunch their bodies and toss their passive charades to the wind.");
-		if (ratsPCIsGood()) output(" <i>\"Oohh, a fight huh? Do your best, [pc.mister] CEO! We'll earn your donation!\"</i>");
-		else output(" <i>\"H-hey! This isn't funny, you're gonna get hurt!\"</i> the rodenian girl says. <i>\"You can't beat all three of us, just pay us and we'll let you go!\"</i>");
+		default:
+		case 0:
+			output("The moment you raise your [pc.weapon], they all crunch their bodies and toss their passive charades to the wind.");
+			if (ratsPCIsGood()) output(" <i>\"Oohh, a fight huh? Do your best, [pc.mister] CEO! We'll earn your donation!\"</i>");
+			else output(" <i>\"H-hey! This isn't funny, you're gonna get hurt!\"</i> the rodenian girl says. <i>\"You can't beat all three of us, just pay us and we'll let you go!\"</i>");
+			break;
+		case 1:
+			output("<i>\"Fuck off.\"</i> You hurriedly pack your gems away and assume an aggressive stance as the recriminating robbers shout limp warnings at you.");
+			break;
+		case 2:
+			if (ratsPCIsGood()) output("<i>\"On second thought…\"</i> You whip out your [pc.weapon] and smirk.\n\n<i>\"Ooh, I thought something was off! Do your best, [pc.mister] CEO!\"</i> the Rodenian laughs.");
+			else output((pc.isAss() && !pc.isBro() && !pc.isBimbo() ? "<i>\"Fuck you.\"</i>" : "<i>\"Not happening!\"</i>") + " You assume an aggressive stance as their batons crackle to life.");
+			break;
 	}
 
 	output("\n\n<b>It's a fight!</b>");
@@ -469,10 +478,9 @@ public function ratGiveThemMoney():void
 	clearMenu();
 	clearOutput();
 	showRats(3);
-	processTime(5);
+	processTime(2);
 
 	rat0.credits = Math.min(pc.credits, Math.ceil(pc.credits*ratsTheftPercent(pc.credits)/100));
-	pc.credits -= rat0.credits;
 
 	// Rats Respect PC (goodCEO)
 	if (ratsPCIsGood())
@@ -484,10 +492,6 @@ public function ratGiveThemMoney():void
 		else if (pc.isAss()) output("<i>\"Fine, I don't have time for this. Name your price.\"</i>");
 		
 		output("\n\nThe trio of mouse-eared bandits lean forward towards your [pc.belly], humming cutely as they arch their backs and press closer to you in an adorable fashion. <i>\"Oh, not much. You don't have to pay a lot, you're umm, really cool and nice... How about… " + rat0.credits + " credits?\"</i> the [rat0.furColor] rodenian simpers. <i>\"That's enough to restock on " + RandomInCollection(["medicine", "food", "replacement gear"]) + " and help out our… err… forget that part!\"</i>");
-		output("\n\n<i>\"Yeah! That's perfect!\"</i> the [rat1.skinColor] boy smiles, brushing his tail against your wrist.");
-		output("\n\nTheir tails all wind around your waist lovingly, but no matter how sweet they look, you remind yourself this is still a robbery. Of sorts. Dammit, they're too fucking cute. You rifle through your bag, load a chit with the amount specified, and hold it up. They make no effort to reach for it, and when you level it with the lead rodenian, she takes it with a twinkle in her [rat0.eyeColor] eyes. <i>\"Thank you!\"</i> she cries.");
-		output("\n\nThe half-rodenian [rat2.boyGirl] kisses your hand abruptly, the freckled mouse-boy doing the same with a deeper flush across his cheeks. <i>\"Thank you [pc.mister] CEO! We promise this isn't going to be spent frivolously!\"</i>");
-		output("\n\nAs quickly as they appeared, the three spin around and bound down the corridor, swooning about their latest gain. Somehow, you can't get mad about this.");
 	}
 	// EvilCEO
 	else
@@ -505,13 +509,39 @@ public function ratGiveThemMoney():void
 		else if (pc.credits >= 100000) output(" You seem like you could afford it, as clean as you are.");
 		else if (pc.credits >= 1000000) output(" You don't seem like you'd miss it! Just look at you!");
 		output("\"</i>");
+	}
+	
+	output("\n\n<b>Will you really give them that much?</b>");
+	
+	addButton(0, "Pay", ratsShutUpAndTakeMyMoney);
+	addButton(0, "Fight", ratStartEncounterFight, 2);
+}
 
-		output("\n\n" + (pc.isAss() ? "You clench your fists so hard that the bones and muscles in your fingers crack and bulge. As your digits uncurl, y" : "Y") + "ou sigh heavily and raise one hand to keep the gang back whilst you dig through your bag. They can't help but try to jump or stand on their toes to see what's inside. They're unable to stifle their happy squeaks when you load a credit chit with the desired amount. ");
+public function ratsShutUpAndTakeMyMoney():void
+{
+	clearMenu();
+	clearOutput();
+	showRats(3);
+	processTime(3);
+
+	// Rats Respect PC (goodCEO)
+	if (ratsPCIsGood())
+	{
+		output("<i>\"Yeah! That's perfect!\"</i> the [rat1.skinColor] boy smiles, brushing his tail against your wrist.");
+		output("\n\nTheir tails all wind around your waist lovingly, but no matter how sweet they look, you remind yourself this is still a robbery. Of sorts. Dammit, they're too fucking cute. You rifle through your bag, load a chit with the amount specified, and hold it up. They make no effort to reach for it, and when you level it with the lead rodenian, she takes it with a twinkle in her [rat0.eyeColor] eyes. <i>\"Thank you!\"</i> she cries.");
+		output("\n\nThe half-rodenian [rat2.boyGirl] kisses your hand abruptly, the freckled mouse-boy doing the same with a deeper flush across his cheeks. <i>\"Thank you [pc.mister] CEO! We promise this isn't going to be spent frivolously!\"</i>");
+		output("\n\nAs quickly as they appeared, the three spin around and bound down the corridor, swooning about their latest gain. Somehow, you can't get mad about this.");
+	}
+	// EvilCEO
+	else
+	{
+		output((pc.isAss() ? "You clench your fists so hard that the bones and muscles in your fingers crack and bulge. As your digits uncurl, y" : "Y") + "ou sigh heavily and raise one hand to keep the gang back whilst you dig through your bag. They can't help but try to jump or stand on their toes to see what's inside. They're unable to stifle their happy squeaks when you load a credit chit with the desired amount. ");
 		output("\n\nHolding the stick up, you would laugh if you weren't so annoyed: they all hold their paws close to their chests, breathlessly staring at it. Making sure they can see the amount now loaded on it you guide their unblinking eyes around by their greedy and beady eyes.");
 		output("\n\nYou might as well get some entertainment out of this. With a devilish smirk, you fling the chit over your shoulder and watch the avaricious trio all go scrambling for it with impatient squeals. They dive to the ground in a frenzy, scrounging for it wherever it landed.");
 		output("\n\nJust out of ear shot, you hear the little bandits laughing triumphantly.");
 	}
 
+	pc.credits -= rat0.credits;
 	ratsFinish();
 }
 
@@ -596,7 +626,7 @@ public function ratGiveThemShinyRocks():void
 			if (pc.isBro() || pc.isBimbo() || pc.libido() > 66) output(" though on his effeminate face it looks more like a sexual pout.");
 			output("\n\nWhat the hell? This is what you get for trying to play ball? Looks like they're serious… unfucking believable. <b>If you don't hand over all your gems, they're going to attack you!</b>");
 			
-			addButton(0, "Fight", ratStartEncounterFight, true, "Fight", "Negotiations have <i>definitely</i> broken down. Teach them a lesson for their greed!");
+			addButton(0, "Fight", ratStartEncounterFight, 1, "Fight", "Negotiations have <i>definitely</i> broken down. Teach them a lesson for their greed!");
 			addButton(1, "Give All", ratGiveAllRocks, undefined, "Give All Gems", "If you have to avoid a fight this badly…");
 			return;
 		}
@@ -896,7 +926,7 @@ public function ratsWilliamWantedANextButtonHere():void
 			output("\n\nThey're all packed together for an otherworldly oral experience.");
 			output("\n\nWhy keep them waiting? You wind your [pc.tongue] twice around the effete boy's ample cock, pressing your [pc.lips] to the broadside, and lance the half-rat's bitch-hole. She cums on the spot, squirting her tangy juices across your broad muscle. She fingers herself into unthinking ecstasy until the definition of 'slut' is etched on her flushed face, tongue lewdly lolling. You manage to reach her gagging womb, barely kissing her cervix. ");
 			output("\n\nYou stretch your probing organ just a bit more, filling her satiny canal with the rope of of your [pc.tongue], coordinating an undulating sensory assault on every exposed pussy nerve. <i>\"Ohhhhhmygooodddd that's soo gooood!\"</i> Your modded length lets you taste every inch she has to offer, even her G-spot! <i>\"Moooreee pleaaasseee!\"</i>");
-			output("\n\nSatisfied, you yank back and slather her fleshy delta with the flat of your straining flesh, laughing when she casually rubs a salivated finger across the top of it. <i>\"HhhaaAh! You have the best tongue <b></i>ever<i></b>, " + (ratsPCIsKnown() ? "[pc.mister] CEO!" : "stranger") + " It's just as good as a cock!\"</i> A litany of praises and exasperated cries follows.");
+			output("\n\nSatisfied, you yank back and slather her fleshy delta with the flat of your straining flesh, laughing when she casually rubs a salivated finger across the top of it. <i>\"HhhaaAh! You have the best tongue </i><b>ever</b><i>, " + (ratsPCIsKnown() ? "[pc.mister] CEO!" : "stranger") + " It's just as good as a cock!\"</i> A litany of praises and exasperated cries follows.");
 			output("\n\nYour [pc.tongue] is oiled and lubed, savoring a good taste of her too-sensitive pleasure-buzzer, enjoying the quake of her bucking hips transmitting through the rest of your frame.");
 			output("\n\nYour tongue snakes through the rodent's thighs and up her fuzzy canyon. You can't quite see it from here, but you know you're getting closer to the alien rat's asshole. You've entered a warzone of assflesh, both forgiving mounds of fur and skin gyrating against each other and your [pc.tongue] with reckless abandon. A certain squeak breaks the horny dance, a yelp that makes you cackle: you've pushed your tongue out as far as it will go, and the tip of your spear just slipped into the rodenian's pliant butt!");
 			output("\n\nYou shift forward, getting another inch of cavern kisser in there, just enough that you can play along her spasming walls. The mischief are all scrunched together now, able to do little more than squirm and squeal against each other, soon screeching in shameless enjoyment. Like this, you're jerking your coiled tongue along the mouse boy's length, slurping at his tip with your mouth, soaking up every drop of rodenian pussy juice, and lancing their leader's ass, making her buck and shake like a racehorse!");
@@ -2082,7 +2112,7 @@ public function ratFightLoss():void
 		rat0.credits = thiefRat.credits;
 		rat0.inventory = thiefRat.inventory;
 
-		return ratsLossFinish(false);
+		return ratsLossFinish(false, false);
 	}
 	
 	var liveRat:Creature;
@@ -3247,7 +3277,7 @@ public function ratsVictoryFinish(sex:Boolean = true):void
 	CombatManager.genericVictory();
 }
 
-public function ratsLossFinish(sex:Boolean = true):void
+public function ratsLossFinish(sex:Boolean = true, tally:Boolean = true):void
 {
 	ratsShowLoot();
 

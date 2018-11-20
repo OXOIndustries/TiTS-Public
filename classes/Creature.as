@@ -14728,7 +14728,7 @@
 		}
 		public function vaginaNounDescript(vaginaNum: Number = 0):String
 		{
-			if(vaginaNum > vaginas.length || vaginaNum < 0) return "ERROR, INVALID PUSSY";
+			if(vaginaNum >= vaginas.length || vaginaNum < 0) return "ERROR, INVALID PUSSY";
 			return vaginaNoun2(vaginas[vaginaNum]);
 		}
 		public function simpleVaginasNoun():String {
