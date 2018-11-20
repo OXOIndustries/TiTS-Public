@@ -5160,8 +5160,8 @@ public function oralDatPenpenMcPennyPostZiltrapFight():void
 		output("\n\nPenny laughs and stretches. <i>“I’ll have to pay you back for that sometime.”</i> With a wiggle of her toes, she stretches for her shotgun. <i>“But I suppose we should get moving before those plant-sluts recover.”</i>");
 		output("\n\nYou lick the residue of her unique flavor from your chin and make ready to move on.\n\n");
 		processTime(25);
-		if(penny.hasCock()) pc.loadInMouth(pc);
-		else pc.girlCumInMouth(pc);
+		if(penny.hasCock()) pc.loadInMouth(penny);
+		else pc.girlCumInMouth(penny);
 		penny.orgasm();
 		CombatManager.genericVictory();
 	}
@@ -5184,17 +5184,17 @@ public function oralDatPenpenMcPennyPostZiltrapFight():void
 		output("\n\nIt’s hard to keep track of what she’s saying with how good she tastes, how much you enjoy the sight of her genitalia shivering in absolute bliss. What’s important is that Penny loves you. She loves you and she bathes you in affectionate, sex-infused words just as you bathe her crotch in saliva.");
 		if(penny.hasCock()) 
 		{
-			pc.loadInMouth(pc);
-			pc.loadInMouth(pc);
-			pc.loadInMouth(pc);
-			pc.loadInMouth(pc);
+			pc.loadInMouth(penny);
+			pc.loadInMouth(penny);
+			pc.loadInMouth(penny);
+			pc.loadInMouth(penny);
 		}
 		else 
 		{
-			pc.girlCumInMouth(pc);
-			pc.girlCumInMouth(pc);
-			pc.girlCumInMouth(pc);
-			pc.girlCumInMouth(pc);
+			pc.girlCumInMouth(penny);
+			pc.girlCumInMouth(penny);
+			pc.girlCumInMouth(penny);
+			pc.girlCumInMouth(penny);
 		}
 		penny.orgasm();
 		penny.orgasm();
@@ -5219,17 +5219,17 @@ public function eatOutPodPennyEnding():void
 	restHeal();
 	if(penny.hasCock()) 
 	{
-		pc.loadInMouth(pc);
-		pc.loadInMouth(pc);
-		pc.loadInMouth(pc);
-		pc.loadInMouth(pc);
+		pc.loadInMouth(penny);
+		pc.loadInMouth(penny);
+		pc.loadInMouth(penny);
+		pc.loadInMouth(penny);
 	}
 	else 
 	{
-		pc.girlCumInMouth(pc);
-		pc.girlCumInMouth(pc);
-		pc.girlCumInMouth(pc);
-		pc.girlCumInMouth(pc);
+		pc.girlCumInMouth(penny);
+		pc.girlCumInMouth(penny);
+		pc.girlCumInMouth(penny);
+		pc.girlCumInMouth(penny);
 	}
 	IncrementFlag("SEXED_PENNY");
 	output("\n\n");
@@ -5256,7 +5256,7 @@ public function finalPennyQuestRoomproc():Boolean
 	output("\n\nPenny grabs you by elbow and forcibly yanks back. <i>“Careful, mate. This mining operation isn’t on the books, and I’d bet credits to cumshots these lawbreaking drillboys are programmed to put an end to nosy explorers.”</i> She scowls.");
 	output("\n\nYou carefully - very carefully - lift up your Codex and edge the corner with the hololens past the crag of rock you and Penny are sheltered behind. A few taps later and you’re treated to an up-close view of the busy machinery.");
 	output("\n\n<i>“Spot any logos?”</i> Penny growls low in the back of her throat. <i>“I’d love to know which low-life scumcorp thought it would be a good idea to skip out on <b>my</b> planet’s taxes. Last I checked we barely had any. Just enough to keep the town running - mostly off mineral claims like this one.”</i>");
-	output("\n\nOne robot turns away, hauling a small fortune in Oxonium ore to the lander. On its back are streaks of faded enamel where somebody went at it with a power sander, not enough to prove anything in court, but enough for you to recognize edges of a design you’ve seen your father scowl at many times: the <i>9999placeholderdesc</i> logo of MaxCorp. <i>“These are MaxCorp mining robots. Dad always said they’d do anything for a credit, but I didn’t expect them to stoop quite this low." + (pc.isBimbo() ? " Lawbreaking is so silly!":"") + "”</i> You duck into hiding before they can spot you. <i>“Older ones though. " + (!pc.isBimbo() ? "Plenty strong but not exactly fast or smart. Probably hauled out of storage for plausible deniability. Blame smugglers with surplus ‘bots if they get caught.":"Not even good looking ones! They probably used them so they could blame some pirates that bought last season’s model. I mean... who wants old robots?") + "”</i>");
+	output("\n\nOne robot turns away, hauling a small fortune in Oxonium ore to the lander. On its back are streaks of faded enamel where somebody went at it with a power sander, not enough to prove anything in court, but enough for you to recognize edges of a design you’ve seen your father scowl at many times: the enormous bolded 'X' of the MaxCorp logo. <i>“These are MaxCorp mining robots. Dad always said they’d do anything for a credit, but I didn’t expect them to stoop quite this low." + (pc.isBimbo() ? " Lawbreaking is so silly!":"") + "”</i> You duck into hiding before they can spot you. <i>“Older ones though. " + (!pc.isBimbo() ? "Plenty strong but not exactly fast or smart. Probably hauled out of storage for plausible deniability. Blame smugglers with surplus ‘bots if they get caught.":"Not even good looking ones! They probably used them so they could blame some pirates that bought last season’s model. I mean... who wants old robots?") + "”</i>");
 	output("\n\nPenny scowls. <i>“I could call in peacekeeper reinforcements... but this would become a crime scene. The right to the Oxonium claim would go up for government auction, and a small fry like me would never stand a chance.”</i> Her ears lift upright, and her lip curls in a fearsome smile. <i>“Or we could dish out a little frontier justice. These robots are technically trespassing in a sovereign planet. We scrap ‘em, and there’s nothing MaxCorp can do except write them off as a tax deduction. Then we file a claim ourselves, bring in a legal crew - maybe one through your father’s company - and reap a sizable reward.”</i>");
 	penny.HP(penny.HPMax());
 	CombatManager.newGroundCombat();
