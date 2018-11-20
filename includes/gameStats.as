@@ -7032,7 +7032,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
-			if(flags["TOOK_FEDORA"] == 1 || flags["SNAKEBYTE_LOOTED"] == 1 || flags["FORGEHOUND_ENCOUNTERED"] != undefined || flags["MET_SECOP_MALE"] != undefined || flags["MET_SECOP_FEMALE"] != undefined)
+			if(flags["TOOK_FEDORA"] == 1 || flags["SNAKEBYTE_LOOTED"] == 1 || flags["FORGEHOUND_ENCOUNTERED"] != undefined || flags["MET_SECOP_MALE"] != undefined || flags["MET_SECOP_FEMALE"] != undefined || flags["RATS_ENABLED"] != undefined)
 			{
 				output2("\n<b><u>Foundry</u></b>");
 				// Items looted
@@ -7054,6 +7054,161 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_SECOP_MALE"] != undefined) output2("\n<b>* Male Punk Security Operative, Times Encountered:</b> " + flags["MET_SECOP_MALE"]);
 				if(flags["MET_SECOP_FEMALE"] != undefined) output2("\n<b>* Female Punk Security Operative, Times Encountered:</b> " + flags["MET_SECOP_FEMALE"]);
 				variousCount++;
+				// Rat's Raiders
+				if (flags["RATS_ENABLED"] != undefined)
+				{
+					output2("\n<b>* Rat's Raiders:</b> Tried to rob Urbolg");
+					if (flags["RATCOUNTERS"] != undefined) output2(", Encountered");
+					if (flags["RATS_RIDDEN"] != undefined) output2(", Used as a horse");
+					if (ratsPCIsKnown()) output2("\n<b>* Rat's Raiders, Attitude:</b> " + (ratsReadyToBefriend() ? "Accepting" : ["", "Dirty", "Subdued", "Yielding", "Befriended"][ratputation()]) + " (" + flags["RATPUTATION"] + ")");
+					if (flags["RATS_OFFERED_SERVICE"] != undefined)
+					{
+						output2("\n* <b>Rat's Raiders, Offered Oral:</b> Attempted " + flags["RATS_OFFERED_SERVICE"] + " times");
+						if (flags["RAT_SERVICED"] != undefined) output2(", Succeded " + flags["RAT_SERVICED"] + " times");
+					}
+					if (flags["RATS_OFFERED_MILK"] != undefined)
+					{
+						output2("\n* <b>Rat's Raiders, Offered Milk:</b> Attempted " + flags["RATS_OFFERED_MILK"] + " times");
+						if (flags["RAT_MILKED"] != undefined) output2(", Succeded " + flags["RAT_MILKED"] + " times");
+					}
+					if (flags["RATS_SEXED"] != undefined)
+					{
+						output2("\n<b>* Rat's Raiders, Times Sexed:</b> " + flags["RATS_SEXED"]);
+						output2("\n<b>* Rat's Raiders, Sex Acts Done</b>: ");
+						var ratSex:Array = new Array();
+						if (flags["RATS_TRIPLE_SERVICED"] != undefined) ratSex.push("Triple Blowjob");
+						if (flags["RATS_POUNDED"] != undefined) ratSex.push("Doggystyle");
+						if (flags["RATS_WINRIDDEN"] != undefined) ratSex.push("Riding");
+						if (flags["RATS_SEXED_EAR"] != undefined) ratSex.push("Ear Sex");
+						if (flags["RATS_SPANKED"] != undefined) ratSex.push("Spanking");
+						if (flags["RATS_LOSS_SEXED"] != undefined) ratSex.push("Was Teased");
+						if (flags["RATS_GANGBANGED"] != undefined) ratSex.push("Gangbang");
+						if (flags["RATS_RIDDEN"] != undefined) ratSex.push("Was Abandoned With Jumper");
+						if (flags["RATS_HARVESTED"] != undefined) ratSex.push("Was \"Harvested\"");
+						output2(ratSex.join(", "));
+					}
+					if (flags["RAT_BOUNTY_STOLEN"] != undefined)
+					{
+						output2("\n<b>* Rat's Raiders, Bounty Lost:</b> " + flags["RAT_BOUNTY_STOLEN"]);
+						if (silly)
+						{
+							output2(" (With that, you could have");
+							var ratItems:Array = new Array();
+							if (flags["RAT_BOUNTY_STOLEN"] >= 7000000)
+							{
+								ratItems.push(" paid a therapist to determine how you lost this much money to three rodents over and over");
+								ratItems.push(" bought some drugs that would help you understand how the rats took this much money");
+							}
+							else if (flags["RAT_BOUNTY_STOLEN"] >= 5000000)
+							{
+								ratItems.push(" taken over Tavros and then... THE UNIVERSE!");
+								ratItems.push(" bought a series of concept art jpegs depicting ships in a virtual space-sim game");
+								ratItems.push(" conquered earth with a genetically identical army of clones");
+								ratItems.push(" bought some drugs that would help you understand how the rats took this much money");
+							}
+							else if (flags["RAT_BOUNTY_STOLEN"] >= 2600000)
+							{
+								ratItems.push(" bought an entire planet - well... maybe not");
+								ratItems.push(" paid for your nursery staff");
+								ratItems.push(" moved the raskvel broodmother off Tarkus");
+								ratItems.push(" started your own line of unnecessary social media-enabled devices and services");
+								ratItems.push(" bought some drugs that would help you understand how the rats took this much money");
+							}
+							else if (flags["RAT_BOUNTY_STOLEN"] >= 2100000)
+							{
+								ratItems.push(" bought an indie game development studio - only to lose it all again (Darn!)");
+								ratItems.push(" bought a PC monitor that displays 69-hertz");
+								ratItems.push(" bought some drugs that would help you understand how the rats took this much money");
+							}
+							else if (flags["RAT_BOUNTY_STOLEN"] >= 1600000)
+							{
+								ratItems.push(" bought a private army");
+								ratItems.push(" bought a fleet of ships to begin a trade empire");
+								ratItems.push(" bought some drugs that would help you understand how the rats took this much money");
+							}
+							else if (flags["RAT_BOUNTY_STOLEN"] >= 1300000)
+							{
+								ratItems.push(" bought your own luxury cruise liner");
+								ratItems.push(" bought a private island somewhere nice");
+								ratItems.push(" bought a new company");
+								ratItems.push(" bought some drugs that would help you understand how the rats took this much money");
+							}
+							else if (flags["RAT_BOUNTY_STOLEN"] >= 690000)
+							{
+								ratItems.push(" gotten more storage on your ship");
+								ratItems.push(" bought a sex bot with more sex scenes");
+								ratItems.push(" bought a new game plus mode");
+								ratItems.push(" bought some drugs that would help you understand how the rats took this much money");
+							}
+							else if (flags["RAT_BOUNTY_STOLEN"] >= 500000)
+							{
+								ratItems.push(" opened a TiTS-Coin Mining Station and made back all this money if the bubble didn't pop");
+								ratItems.push(" bought a new pair of eyes");
+							}
+							else if (flags["RAT_BOUNTY_STOLEN"] >= 240000)
+							{
+								ratItems.push(" bought one of Spacegate's 60-terabyte SSDs");
+								ratItems.push(" invested in your own small business with health benefits for a few employees");
+							}
+							else if (flags["RAT_BOUNTY_STOLEN"] >= 120000)
+							{
+								ratItems.push(" bought a brand new space ship");
+								ratItems.push(" paid off your mortgage");
+								ratItems.push(" bought a lot of emotes in Team Fortress 2");
+							}
+							else if (flags["RAT_BOUNTY_STOLEN"] >= 60000)
+							{
+								ratItems.push(" bought some shiny trinkets");
+								ratItems.push(" bought a musician's contract");
+								ratItems.push(" paid for two months of TiTS development");
+								ratItems.push(" bought Hand So back");
+								ratItems.push(" bought a brand new Casstech Z14");
+							}
+							else if (flags["RAT_BOUNTY_STOLEN"] >= 30000)
+							{
+								ratItems.push(" bought a bodyguard");
+								ratItems.push(" bought someone to keep you from losing this much money");
+							}
+							else if (flags["RAT_BOUNTY_STOLEN"] >= 15000)
+							{
+								ratItems.push(" bought a single outfit");
+								ratItems.push(" bought a brand new car");
+								ratItems.push(" bought a used Casstech Z14");
+							}
+							else if (flags["RAT_BOUNTY_STOLEN"] >= 6000)
+							{
+								ratItems.push(" bought a prostitute's contract");
+								ratItems.push(" bought the latest designer TFs");
+								ratItems.push(" bought a brand new SCV");
+								ratItems.push(" bought a lot of gift cards for ungrateful family members");
+								ratItems.push(" bought a new cousin");
+							}
+							else if (flags["RAT_BOUNTY_STOLEN"] >= 3000)
+							{
+								ratItems.push(" bought some Ausar Treats");
+								ratItems.push(" bought some DracoGuard");
+								ratItems.push(" bought a robo-arm");
+							}
+							else if (flags["RAT_BOUNTY_STOLEN"] >= 400)
+							{
+								if (pc.hasHair()) ratItems.push(" gotten a haircut");
+								ratItems.push(" bought some sterilex");
+								if (pc.hasCock()) ratItems.push(" bought a Condensol pill");
+								else if (pc.hasVagina()) ratItems.push(" bought a Mighty Tight pill");
+								ratItems.push(" bought a supply of Easy Fit cream");
+							}
+							else if (flags["RAT_BOUNTY_STOLEN"] >= 10)
+							{
+								ratItems.push(" bought a beer");
+								ratItems.push(" bought a sandwich");
+							}
+							if (ratItems.length == 0) output2(" bought... nothing? <i>How did you do this?</i>)");
+							else if (flags["RAT_BOUNTY_STOLEN"] >= 10000000) output2(" have completed the game by hiring every merc on the frontier to bring you the probes and deal with your cousin)");
+							else if (flags["RAT_BOUNTY_STOLEN"] >= 20000000) output2("... you could have just not lost this much money, you know?)");
+							else output2(RandomInCollection(ratItems) + ")");
+						}
+					}
+				}
 			}
 			if(flags["MET_OLYMPIA"] != undefined)
 			{

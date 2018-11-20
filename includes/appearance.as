@@ -2689,6 +2689,11 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			if(target.hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " lower body is an ever-shifting mass of writhing tentacles. The strong, prehensile tentacles can easily and quickly carry " + (target == pc ? "you":"[target.himHer]") + " along.");
 			else outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " lower body consists of " + num2Text(target.legCount) + " imitation legs formed by " + (target == pc ? "your":"[target.hisHer]") + " dexterous, prehensile tentacles. " + (target == pc ? "Your":"[target.HisHer]") + " tentacle legs work just as well as real legs.");
 			break;
+		case GLOBAL.TYPE_MOUSE:
+			if(rand(2) == 0) outputRouter(" Below " + (target == pc ? "your":"[target.hisHer]") + " waist are a pair of " + (target.hasLegFlag(GLOBAL.FLAG_FURRED) ? "furry":"fuzzy") + " mouse limbs that thin out towards the claw-tipped toes, their fragility making " + (target == pc ? "you":"[target.himHer]") + " look small and cute.");
+			else if (target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) outputRouter(" " + (target == pc ? "Your":"[target.HisHer] ") + (target.hasLegFlag(GLOBAL.FLAG_FURRED) ? "furry":"fuzzy") + " legs thin out the closer one looks to " + (target == pc ? "your":"[target.hisHer]") + " feet, their mouse-like design, complete with little claws on " + (target == pc ? "your toes, makes you":"[target.hisHer] toes, makes [target.himHer]") + " look diminutive and less threatening.");
+			else outputRouter(" " + (target == pc ? "You walk":"[target.HeShe] walks") + " on a pair of animalistic mouse limbs that curve past the knee, making it easier to run on " + (target == pc ? "your":"[target.hisHer]") + " claw-tipped toes than walk. The thinness of " + (target == pc ? "your legs makes you":"[target.hisHer] legs makes [target.himHer]") + " look cute and agile.");
+			break;
 		case GLOBAL.TYPE_FROSTWYRM:
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " legs are thick and jointed in two places, giving " + (target == pc ? "you":"[target.himHer]") + " a ");
 			if (target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) outputRouter(" digitigrade");

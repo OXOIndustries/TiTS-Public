@@ -427,6 +427,8 @@
 		include "../includes/zhengShiStation/maike.as";
 		include "../includes/zhengShiStation/olympia.as";
 		include "../includes/zhengShiStation/punkSecOp.as";
+		include "../includes/zhengShiStation/ratsRaiders.as";
+		include "../includes/zhengShiStation/ratsRaidersVictory.as";
 		include "../includes/zhengShiStation/rivalEncounter.as";
 		include "../includes/zhengShiStation/rooms.as";
 		include "../includes/zhengShiStation/roomFunctions.as";
