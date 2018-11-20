@@ -55,7 +55,14 @@ package classes.Engine.Combat
 		if (attacker != null && (special == "ranged" || special == "melee"))
 		{
 			var crittyBonus:Number = 0;
-			if(attacker.hasPerk("Giant Slayer") && target.tallness >= (7*12)) crittyBonus += 5;
+			if(attacker.hasPerk("Giant Slayer"))
+			{
+				var tallnessLimit:Number = attacker.perkv1("Giant Slayer");
+				if(tallnessLimit == 0) tallnessLimit = 7*12;
+				var crittyness:Number = attacker.perkv2("Giant Slayer");
+				if(crittyness == 0) crittyness = 5;
+				if(target.tallness >= tallnessLimit) crittyBonus += crittyness;
+			}
 
 			if(target.hasStatusEffect("Deep Freeze") && baseDamage.hasFlag(DamageFlag.CRUSHING))
 			{
@@ -188,6 +195,10 @@ package classes.Engine.Combat
 				{
 					baseHPDamage.add(attacker.statusEffectv1("War Cry"));
 				}
+			}
+			if (special == "explosion" || special == "cluster")
+			{
+				if (target.hasPerk("Get Down!")) baseHPDamage.multiply((100-target.perkv1("Get Down!")/100));
 			}
 			//Track Alpha Strike. Don't need to track the perk here cause who cares.
 			if(attacker.hasPerk("Alpha Strike") && !attacker.hasStatusEffect("AlphaedStroked") && damageResult.wasCrit == true) attacker.createStatusEffect("AlphaedStroked",0,0,0,0,true,"","",true);

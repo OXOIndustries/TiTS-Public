@@ -206,6 +206,12 @@ package classes.GameData
 					}
 				}
 			}
+			
+			if (hasEnemyOfClass(RatsRaider))
+			{
+				RatsRaider.processTallHate(_hostiles, _friendlies);
+			}
+			
 			//Shield pop here:
 			//v1 or 1 means queued, v2 means procced already this combat.
 			if(pc.statusEffectv1("Def Proc") == 1)
@@ -1289,6 +1295,8 @@ package classes.GameData
 			genericStatusEffectUpdate(target, "Chaff Grenade");
 			genericStatusEffectUpdate(target, "Weapon Lock");
 			genericStatusEffectUpdate(target, "Special Lock");
+			genericStatusEffectUpdate(target, "Rat Special'd");
+			genericStatusEffectUpdate(target, "NO AI");
 			
 			if (target.hasStatusEffect("SHIZZY CUM"))
 			{
@@ -1529,7 +1537,14 @@ package classes.GameData
 			// sense
 			addButton(6, "Sense", selectSimpleAttack, { func: generateSenseMenu }, "Sense", "Attempts to get a feel for a foe’s likes and dislikes. Absolutely critical for someone who plans on seducing " + pc.mf("his", "her") + " way out of a fight.");
 			
-			if(_hostiles[0].hasPerk("Appearance Enabled")) addButton(7,"Closer Look",combatAppearance,undefined,"Closer Look","Take a closer look at your foe’s appearance.\n\nThis does not consume your action for this round.");
+			for each (var hostile:Creature in _hostiles)
+			{
+				if(hostile.hasPerk("Appearance Enabled"))
+				{
+					addButton(7,"Closer Look",combatAppearance,undefined,"Closer Look","Take a closer look at your foe’s appearance.\n\nThis does not consume your action for this round.");
+					break;
+				}
+			}
 
 			// fantasize
 			addButton(8, "Fantasize", fantasizeRound, undefined, "Fantasize", "Fantasize about your foe until you’re helpless and on your [pc.knees] before them.");
@@ -1570,10 +1585,32 @@ package classes.GameData
 		}
 		public function combatAppearance():void
 		{
-			clearOutput();
-			kGAMECLASS.appearance(_hostiles[0]);
 			clearMenu();
+			//Normal functionality
+			if (_hostiles.length == 1)
+			{
+				clearOutput();
+				kGAMECLASS.appearance(_hostiles[0]);
+			}
+			//Multiple
+			else
+			{
+				var bOff:int = -1;
+				for (var i:int = 0; i < _hostiles.length; ++i) if (_hostiles[i].hasPerk("Appearance Enabled")) addButton(++bOff, _hostiles[i].buttonText, multiCombatAppearance, [i, bOff], "Closer Look", "Take a closer look at " + _hostiles[i].nameDisplay() + ".");
+			}
+				
 			addButton(14, "Back", generateCombatMenu, true);
+		}
+		public function multiCombatAppearance(iboff:Array):void
+		{
+			var i:int = iboff[0];
+			var bOff:int = iboff[1];
+			
+			clearOutput();
+			kGAMECLASS.appearance(_hostiles[i]);
+		
+			combatAppearance();
+			addDisabledButton(bOff, _hostiles[i].buttonText);
 		}
 		private function waitRound():void
 		{
@@ -2205,10 +2242,12 @@ package classes.GameData
 						{
 							output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. Shooting the bothrioc atop you a winning smile, you wriggle your way out from under them back between their legs, squirming out of your bindings as you take to your feet.");
 						}
+						else if (hasEnemyOfClass(RatsRaider)) output("You take a deep breath and focus. You aren't breaking through on raw physique, so you wait for an opening. Liquid movements too graceful for even the rats to catch have your arms free in short order; you push the rodent on your face up then push against the ground, sliding out by the limber strength of your [pc.leg] muscles, contorting and twisting to stand and gain some distance all at once. Your motions were so precise that the merry " + (RatsRaider.ratCount() == 2 ? "duo" : "trio") + " are left confused and nervous. You can't help but crack a smile.");
 						else output("You display a remarkable amount of flexibility as you twist and writhe to freedom.");
 						if(panicJack)
 						{
 							output(" The [pc.cumNoun] you squirt helps a little too.");
+							if (RatsRaider.ratCount()) output(" <i>\"Eugh, gross!!\"</i> one rodent whines. Their disgust is as apparent as their loosened hold on you!");
 							pc.lust(-10);
 						}
 						target.removeStatusEffect("Grappled");
@@ -2221,6 +2260,7 @@ package classes.GameData
 					if(panicJack)
 					{
 						output(" The [pc.cumNoun] you squirt helps a little too.");
+						if (RatsRaider.ratCount()) output(" <i>\"Eugh, gross!!\"</i> one rodent whines. Their disgust is as apparent as their loosened hold on you!");
 						pc.lust(-10);
 					}
 					target.removeStatusEffect("Grappled");
@@ -2255,11 +2295,21 @@ package classes.GameData
 						}
 						else if (hasEnemyOfClass(RKLah)) output("You pull him to one side, before delivering a sucker punch hard and low from the other. Lah gasps in pain, and you manage to rip out of his grasp.");
 						else if (hasEnemyOfClass(AkkadiSecurityRobots)) output("You finally manage to tear your way out of the net!");
+						else if (hasEnemyOfClass(RatsRaider))
+						{
+							if (kGAMECLASS.silly) output("<b>Circle in the dark, the battle may yet be won</b>, f");
+							else output("F");
+							output("ocused and determined, you howl at your loudest and strongest. Veins bulge and ropy muscles gorge and ripple as you rise up and shove away the presumptuous rat on your face. Before the");
+							if (RatsRaider.ratCount() > 2) output(" others can react, you kick them");
+							else output(" other can react, you kick " + RatsRaider.getLeaderRat().mf("him", "her"));
+							output(" in the stomach and roll backwards to your [pc.footOrFeet]!");
+						}
 						else if (hasEnemyOfClass(Johr)) output("You break free of the zil, narrowly dodging another heavy blow from Johr as you regain your feet and rejoin the fight. The zil circle around you, snarling.");
 						else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
 						if(panicJack)
 						{
 							output(" The [pc.cumNoun] you squirt helps a little too.");
+							if (RatsRaider.ratCount()) output(" <i>\"Eugh, gross!!\"</i> one rodent whines. Their disgust is as apparent as their loosened hold on you!");
 							pc.lust(-10);
 						}
 						target.removeStatusEffect("Grappled");
@@ -2284,6 +2334,8 @@ package classes.GameData
 						output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. The webs loosen a little, but your freedom is still out of reach... for now.");
 					}
 					else if (hasEnemyOfClass(RKLah)) output("You claw blindly at his face and try and buck furiously, to no avail.\n\n<i>“Stuck pig,”</i> grits the ausar, tightening his hold. <i>“Give in already.”</i>");
+					else if (hasEnemyOfClass(RatsRaider)) output("Try as you might, even with humiliation powering your enfeebled muscles, you cannot shake the raw kinetic burden of the scrappy pirates. Your refusal to concede only accelerates their hunt for loot.");
+
 					//else if (enemy is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
 					else output("You struggle madly to escape from the pin but ultimately fail. The pin does feel a little looser as a result, however.");
 					if(panicJack)
@@ -4214,7 +4266,7 @@ package classes.GameData
 				var currTarget:Creature = collection[i] as Creature;
 				
 				// Looking for creatures of the same type as the one we're adding
-				if (currTarget is tType && currTarget != target)
+				if (currTarget is tType && currTarget != target && target.btnTargetText == currTarget.btnTargetText)
 				{
 					// Fuck it, just force set these every time through :V
 					/*
@@ -4537,6 +4589,7 @@ package classes.GameData
 				if(pc.isGrappled()) output("You’re trapped in the enemy’s grip to do much");
 				else if(pc.hasStatusEffect("Stunned")) output("You’ve been stunned by the enemy and can’t do much");
 				else if(pc.hasStatusEffect("Paralyzed")) output("You’ve been paralyzed by the enemy and can’t do much");
+				else if(hasEnemyOfClass(RatsRaider)) output("You're fighting the " + (kGAMECLASS.silly ? "Ratlaws" : "Rat Thieves") + ", members of the gang 'Rat's Raiders'");
 				else
 				{
 					output("You perch behind cover wherever you can find it,");
@@ -4692,6 +4745,7 @@ package classes.GameData
 				if (_hostiles[i].isDefeated() && _hostiles[i].alreadyDefeated == false)
 				{
 					_hostiles[i].alreadyDefeated = true;
+					if (_hostiles[i] is RatsRaider) (_hostiles[i] as RatsRaider).setLastFallenRat();
 					
 					// Legacy mode kinda- if we're in a single-enemy fight, don't output anything.
 					if (_hostiles.length > 1)
@@ -4788,6 +4842,13 @@ package classes.GameData
 			applyHostileActions();
 			updateStatusEffects(_hostiles);
 			updateCooldowns(_hostiles);
+			//Not in postHostileTurnActions because it has unique victory text
+			//and sackRatFlees may trigger a victory
+			if (hasEnemyOfClass(RatsRaider))
+			{
+				if (pc.hasStatusEffect("Grappled")) RatsRaider.grappleInterrupt(_hostiles, pc);
+				RatsRaider.sackRatFlees(_hostiles);
+			}
 			
 			// Early-out in case a DOT tick defeated enemies
 			if (checkForVictory()) return;
@@ -4798,7 +4859,13 @@ package classes.GameData
 				{
 					if(_friendlies[i].hasFlightEffects()) _friendlies[i].clearFlightEffects();
 					_friendlies[i].alreadyDefeated = true;
-					if (_friendlies[i] is PlayerCharacter) output("\n\nYou fall to the ground,");
+					if (_friendlies[i] is PlayerCharacter && hasEnemyOfClass(RatsRaider) && pc.hasStatusEffect("Grappled"))
+					{
+						if (_friendlies[i].lust() >= _friendlies[i].lustMax()) kGAMECLASS.ratpileLustLoss();
+						else kGAMECLASS.ratpileHPLoss(_hostiles.length);
+						continue;
+					}
+					else if (_friendlies[i] is PlayerCharacter) output("\n\nYou fall to the ground,");
 					else output("\n\n" + StringUtil.capitalize(_friendlies[i].getCombatName(), false) + " falls to the ground,");
 					if (_friendlies[i].HP() <= 0) output(" defeated.");
 					else output(" stricken with lust.");
@@ -4876,6 +4943,10 @@ package classes.GameData
 				{
 					output("\n\n");
 					doTripRecover(target);
+				}
+				else if (target.hasStatusEffect("NO AI"))
+				{
+					//nothing :D
 				}
 				else
 				{

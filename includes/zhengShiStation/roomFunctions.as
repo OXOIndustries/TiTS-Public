@@ -80,6 +80,8 @@ public function zhengMinesEncounterBonus():Boolean
 			encounters.push(boredJumperAttackProc);
 			encounters.push(boredJumperAttackProc);
 		}
+		
+		if (ratsAvailable() && rand(3) == 0) encounters.push(ratsInTheMineEncounter);
 	}
 	if(encounters.length > 0) 
 	{
@@ -152,6 +154,13 @@ public function zhengFoundryF1EncounterBonus():Boolean
 		encounters.push(encounterPunkSecOp);
 		encounters.push(encounterPunkSecOp);
 		encounters.push(encounterPunkSecOp);
+		if (ratsAvailable())
+		{
+			encounters.push(ratsInTheMineEncounter);
+			encounters.push(ratsInTheMineEncounter);
+			encounters.push(ratsInTheMineEncounter);
+			encounters.push(ratsInTheMineEncounter);
+		}
 		/*encounters.push(boredJumperAttackProc);
 		encounters.push(boredJumperAttackProc);*/
 	}
