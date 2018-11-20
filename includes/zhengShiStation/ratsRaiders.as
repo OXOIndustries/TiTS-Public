@@ -1777,11 +1777,13 @@ public function ratFightVictory():void
 			{
 				output("\n\nThe klepto-rodents flop on their backs with loud gasps, chests heaving. <i>\"Auggghhhh…\"</i> the [rat0.furColor]-furred rodenian groans. <i>\"You're really something for a damn CEO… Well, you won again, all thanks to your money and your privileges! Whatever helps you get out of doing something for others! You greedy crook!\"</i>");
 				if (pc.isBimbo() || pc.isBro()) output("\n\n<i>\"Really? I thought my body alone was thanks to my victory. You're so distracted by it!\"</i> you respond all silly-like, rocking your hips.");
-				if (pc.isNice()) output("You shake your head at them. <i>\"No. Money and technology are one thing, but one against three… there's more to it than that.\"</i>");
-				else if (pc.isMisch()) output("<i>\"Don't be a sore bunch, you might learn something next time!\"</i> you say, kneeling to their level with a smirk.");
-				else output("<i>\"Interesting logic, money somehow enabling me to best three lousy rats…\"</i> you grin, folding your arms over them.");
+				if (pc.isNice()) output("\n\nYou shake your head at them. <i>\"No. Money and technology are one thing, but one against three… there's more to it than that.\"</i>");
+				else if (pc.isMisch()) output("\n\n<i>\"Don't be a sore bunch, you might learn something next time!\"</i> you say, kneeling to their level with a smirk.");
+				else output("\n\n<i>\"Interesting logic, money somehow enabling me to best three lousy rats…\"</i> you grin, folding your arms over them.");
 				output("\n\nShe covers her ears and glowers at you, pouting plainly. The two on either side of her wrap themselves in their tails, shrinking away as if to appear meek and unworthy of your time. How so very precious.");
 			}
+
+			break;
 		// Rat Reputation >=70
 		case RatsRaider.RAT_REP_HIGH:
 			// Rats got sexed recently
