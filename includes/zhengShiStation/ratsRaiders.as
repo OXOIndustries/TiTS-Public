@@ -3287,7 +3287,7 @@ public function ratsLossFinish(sex:Boolean = true, tally:Boolean = true):void
 		IncrementFlag("RATS_LOSS_SEXED");
 	}
 	
-	ratsTallyLoot(rat0);
+	if (tally) ratsTallyLoot(rat0);
 	
 	ratsCleanup();
 	CombatManager.genericLoss();
