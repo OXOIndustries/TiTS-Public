@@ -256,8 +256,7 @@ public function futanariTalkWithPenpen():void
 				addButton(0,"Calm Down",calmDownYouPennySlut);
 				addButton(1,"Tease Her",teasePenny)
 			}
-			else this.addButton(14,"Back",approachGirlfriendPenny);*/
-			this.addButton(14,"Back",approachCrewPenny,true);
+			else this.addButton(14,"Back",approachCrewPenny,true);
 		}
 		//Not yet futa
 		else if (!penny.hasCock())
@@ -284,7 +283,7 @@ public function futanariTalkWithPenpen():void
 				output("\n\nShe’s as horny as an animal in heat, but she hasn’t had any trouble keeping herself under control thus far. Do you suggest she take it again?");
 				this.clearMenu();
 				this.addButton(0,"Give Throbb",pennyToBigPenny);
-				this.addButton(14,"Back",approachGirlfriendPenny);
+				this.addButton(14,"Back",approachCrewPenny,true);
 				if(pc.hasItemByClass(HorseCock)) 
 				{
 					if(CodexManager.entryUnlocked("SynthSheath")) addButton(1,"SynthSheath",givePennyAHossCawk,undefined,"SynthSheath","Give Penny the Xenogen SynthSheath you found on Tarkus. She’d probably love having a horse-cock.\n\nWho needs Throbb when you can be a stallion?");
@@ -305,7 +304,7 @@ public function futanariTalkWithPenpen():void
 					else addButton(1,"Try This",givePennyAHossCawk,undefined,"Try This","Give Penny the horse-cock strap-on you found on Tarkus. You have a hunch it might be more than it seems. You shouldn’t give this to her unless you’re ready for things to get a little out of hand.\n\nIt might also prevent her from getting too into Throbb.");
 				}
 				else addDisabledButton(1,"Locked","Locked","You don’t have the required item for this option.");
-				this.addButton(14,"Back",approachGirlfriendPenny);
+				this.addButton(14,"Back",approachCrewPenny,true);
 			}
 			//Hyper Pre-cumslut Penny
 			else if (flags["PENNY_IS_A_CUMSLUT"] == undefined) {
@@ -329,14 +328,6 @@ public function futanariTalkWithPenpen():void
 					else addButton(2,"Try This",givePennyAHossCawk,undefined,"Try This","Give Penny the horse-cock strap-on you found on Tarkus. Maybe the randy hermaphrodite could use it as a sex toy.");
 				}
 				else addDisabledButton(2,"Locked","Locked","You don’t have the required item for this option.");
-				addButton(14,"Back",approachGirlfriendPenny);
-				*/
-				if(pc.hasItemByClass(HorseCock)) 
-				{
-					if(CodexManager.entryUnlocked("SynthSheath")) addButton(0,"SynthSheath",givePennyAHossCawk,undefined,"SynthSheath","Give Penny the Xenogen SynthSheath you found on Tarkus. She’d probably love having a horse-cock.");
-					else addButton(0,"Try This",givePennyAHossCawk,undefined,"Try This","Give Penny the horse-cock strap-on you found on Tarkus. Maybe the randy hermaphrodite could use it as a sex toy.");
-				}
-				else addDisabledButton(0,"Locked","Locked","You don’t have the required item for this option.");
 				addButton(14,"Back",approachCrewPenny,true);
 			}
 			else 
@@ -354,7 +345,7 @@ public function futanariTalkWithPenpen():void
 					else addButton(0,"Try This",givePennyAHossCawk,undefined,"Try This","Give Penny the horse-cock strap-on you found on Tarkus. You have a hunch it might be more than it seems. You shouldn’t give this to her unless you’re ready for things to get a little out of hand.");
 				}
 				else addDisabledButton(0,"Locked","Locked","You don’t have the required item for this option.");
-				this.addButton(14,"Back",approachGirlfriendPenny);
+				this.addButton(14,"Back",approachCrewPenny,true);
 			}
 		}
 	}
@@ -616,14 +607,14 @@ public function pennyCrewSexMenu():void
 	if(penny.hasCock()) this.addButton(8,"Catch Anal",getAssFuckedByPenny,false,"Catch Anal","Get ass-fucked by Penny.");
 	else addDisabledButton(8,"Catch Anal","Catch Anal","Penny needs a dick to fuck you in the ass.");
 	
-	/*
-	if(flags["PENNY_IS_A_CUMSLUT"] != undefined) this.addButton(9,"Selfsuck",pennySelfSuckCumsluttery,undefined,"Selfsuck","Watch Penny suck herself off.");
+	
+	if(pennyIsCumSlut()) this.addButton(9,"Selfsuck",pennySelfSuckCumsluttery,undefined,"Selfsuck","Watch Penny suck herself off.");
 	else addDisabledButton(9,"Selfsuck","Selfsuck","Penny has to be a futanari cum-slut for this scene.");
-	if(flags["PENNY_IS_A_CUMSLUT"] != undefined && pc.hasCock()) this.addButton(10,"Bukkake",bukkakePenny,undefined,"Bukkake","Cooperatively cover Penny in spunk.");
+	if(pennyIsCumSlut() && pc.hasCock()) this.addButton(10,"Bukkake",bukkakePenny,undefined,"Bukkake","Cooperatively cover Penny in spunk.");
 	else addDisabledButton(10,"Bukkake","Bukkake","This requires Penny to be a futanari cum-slut and for you to have a penis.");
 
-	if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] != undefined && flags["PENNY_IS_A_CUMSLUT"] != undefined) addButton(11, "Invite Flahne", pennyVsFlahneWhoWillOutslutWho,undefined,"Invite Flahne","Invite Flahne over for a threesome with Penny.");
-	else addDisabledButton(11, "Invite Flahne","Invite Flahne","This scene requires Penny to be a cum-slut and Flahne to have been told about it.");*/
+	if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] != undefined && pennyIsCumSlut()) addButton(11, "Invite Flahne", pennyVsFlahneWhoWillOutslutWho,undefined,"Invite Flahne","Invite Flahne over for a threesome with Penny.");
+	else addDisabledButton(11, "Invite Flahne","Invite Flahne","This scene requires Penny to be a cum-slut and Flahne to have been told about it.");
 	this.addButton(14,"Back",approachCrewPenny,true);
 }
 
@@ -1208,5 +1199,5 @@ public function turnPennyIntoACamwhore(discrete:Boolean = false):void
 	pc.lust(10);
 	processTime(10);
 	clearMenu();
-	addButton(0,"Next",approachCrewPenny,true);
+	addButton(0,"Next",crew);
 }
