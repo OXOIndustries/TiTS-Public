@@ -2398,7 +2398,7 @@ public function ratsTeasingACEO():void
 	else output(" You anxiously welcome him, easily stretching your jaw and working your cheek-muscles in anticipation of sucking him deeper.");
 	output("\n\nHis smooth cock glides through your [pc.lipsChaste] in a silken thrust, wearing them like a condom. Fortunately… it tastes kind of nice.");
 	if (pc.libido() >= 66) output(" In fact, it tastes just as great as it smells!");
-	output(" The salty base of pre and layer of sweat soothe your thirst, and you're licking all around that mouse-boner in no time. Rat-pre drips out in an almost unbroken, constant stream, filling your mouth until you're forced to gulp it down");
+	output(" The salty base of pre and layer of sweat moisten your dry taste buds, and you're licking all around that mouse-boner in no time. Rat-pre drips out in an almost unbroken, constant stream, filling your mouth until you're forced to gulp it down");
 	if (pc.libido() >= 66) output(", something you do eagerly");
 	output(". Your body goes from mild to hot, then to fuzzy-numb in the space of three sticky meals. The longer your");
 	if (pc.isBimbo()) output(" cute");
@@ -2413,7 +2413,7 @@ public function ratsTeasingACEO():void
 	if (pc.libido() <= 33) output(" want");
 	else output(" love");
 	output(" to suck cock.");
-	if (pc.hasLongTongue()) output(" Your [pc.tongue] flicks from your maw to wrap around the base of his prick, the tip burrowing into those fat balls resting on your chin, juggling those shiny orbs while licking up all the minutes-old juice collected there.");
+	if (pc.hasLongTongue()) output(" Your [pc.tongue] flicks from your maw to wrap around the base of his prick, the tip burrowing into those fat balls resting on your chin, juggles those virile orbs while licking up all the minutes-old juice collected there.");
 	output("The pirate boy slaps into your gullet like he's using a toy, cockhead slipping further into your throat");
 	if (pc.canDeepthroat())
 	{
@@ -2485,7 +2485,7 @@ public function ratsTeasingACEO():void
 	output("\n\nThe mouse-boy's loose smile makes you " + (pc.libido() <= 33 ? "begrudgingly" : "very") + " happy, the way his tongue sticks out of his taut lips in blissful enjoyment. It's small comfort to drink in his fuck-drunk expression, but a needful distraction from the licks, gropes, and wild twists and turns going on " + (pc.isBiped() ? "behind him" : "around you") + ". Head swimming, your eyes cross in futile attempt to focus on his. Every detail of his rapidly humping prick is emblazoned on your brain");
 	if (pc.hasLongTongue()) output(", and every overstretching tug on your elongated tongue is a masochistic pleasure in its own right");
 	output(".");
-	output("\n\n<i>\"Y-you've got an amazing mouth…\"</i> the freckled thief whimpers, taking full advantage of your " + (pc.canDeepthroat() ? "non-existent" : "suppressed") + " gag reflex. Spittle froths at your hollowed lips as his wet and sloshing nutsack claps into your chin when he gives you a new adam's apple.");
+	output("\n\n<i>\"Y-you've got an amazing mouth…\"</i> the freckled thief whimpers, taking full advantage of your " + (pc.canDeepthroat() ? "non-existent" : "suppressed") + " gag reflex. Spittle froths at your hollowed lips, splattering outward when his sloshing nutsack claps into your chin. Increasingly desperate, he gives you a new adam's apple after each impassioned thrust.");
 	if (pc.canDeepthroat())
 	{
 		output(" <i>\"Oh that's… Hiek!\"</i> he squeaks, your throat squeezing him deeper on its own");
@@ -2496,12 +2496,12 @@ public function ratsTeasingACEO():void
 	else if (pc.hasCock()) output("\n\nThere's a powerfully blunt pressure building in your [pc.cocksLight]. It builds and builds, it doesn't stop. It feels as if some beast is trapped in your loins, struggling to exist at your expense, but it's only all the pre backing up in your tail-clenched cum-veins.");
 
 	output("\n\nTears bead at the edges of your [pc.eyes] while the laughter swells. Your jaw is sorely strained in this position, to say nothing of your neck. Breathing was difficult from the start, and it's only gotten harder thanks to your entire nervous system being wracked by cruel edgings. When your whole body violently shakes at the next denied orgasm, you slip further into a mindless ditch, unable to do anything but gurgle and swallow like a cheap prostitute. You've already accepted that you're just a disposable fuck-toy at this point.");
-	output("\n\nAll you can see of the other two rats are their messy bangs flying when they bow and jerk, servicing each other uncaring for your comfort. A displeasing sound reaches your [pc.ears] when the rodenian leans down and helps herself to your items, digging through your packs in search of wealth even as she " + rat2.mf("rides", "and the horny halfbreed girl ride") + " you like a carnival attraction.");
+	output("\n\nAll you can see of the other two rats are their messy bangs flying when they pivot and jerk, servicing each other uncaring for your comfort. A displeasing sound reaches your [pc.ears] when the rodenian leans down and helps herself to your items, digging through your packs in search of wealth even as she " + rat2.mf("rides", "and the horny halfbreed girl ride") + " you like a carnival attraction.");
 	if (pc.credits > 10000)
 	{
 		output(" <i>\"Oh-ho! Nice! Look at all this!\"</i> she cries, the sight making her move even faster. <i>\"Plenty of money");
 		if (ratsGemCount() > 3) output(", and even a few gems");
-		output("!\"</i> She leans to the side, peering around the rat boy to smugly glare and display your wealth before tossing the empty bag aside. <i>\"Bet you're feeling really loaded now, huh?\"</i>");
+		output("!\"</i> She leans to the side, peering around the facefucking mouse to smugly glare, displaying your wealth before tossing the empty bag aside.  <i>\"Bet you're feeling really loaded now, huh?\"</i>");
 	}
 	else output(" Dissatisfied she can't find anything in only a few seconds, she tosses the pack aside with a grunt. <i>\"Whatever, we'll get to that later.\"</i>");
 
@@ -2545,20 +2545,20 @@ public function ratsTeasingACEO():void
 		if (pc.isTreated()) output(" You can't moo physically, but you do moo mentally!");
 	}
 
-	output("\n\nYour straining voice elevates to desperate yet muted wails. You could have cum so many times by now, but everything has gone " + (pc.libido() <= 33 ? "miserably" : "blissfully") + " numb. The comforting blanket of musk-infused nerves has been ripped away, leaving you a spasmic wreck. As the edges of your vision blur and blacken, the mouse boy falls over your head, tugging your jaw when he lands on all fours with his dick still lodged in your mouth. Your vision is utterly subsumed by his waist, and now it seems you're about to learn what being a true cock-sock is all about.");
+	output("\n\nYour straining voice elevates to desperate yet muted wails. You could have cum so many times by now, but everything has gone " + (pc.libido() <= 33 ? "miserably" : "blissfully") + " numb. The comforting blanket of musk-infused nerves has been ripped away, leaving you a spasmic wreck. As the edges of your vision blur and blacken, the mouse boy falls over your head, tugging your jaw when he lands on all fours with his dick still lodged in your mouth, bowing easily to account for its change in trajectory. Your vision is utterly subsumed by his waist, and now it seems you're about to learn what being a true cock-sock is all about.");
 	output("\n\n<i>\"Oh, damn!\"</i> the rodenian laughs uproariously, <i>\"Yeah, pound [pc.hisHer] face! That'll teach this " + (ratsPCIsKnown() ? "CEO" : "stranger") + " a good lesson!\"</i>");
-	output("\n\nEyes shut, the mouse-boy loses himself to pleasure. Incoherent babbles assail your ears as his entire body assails your [pc.face] helter-skelter. Girlish hips thrust up and down, your nose smacking wetly against his middle; Conquering cock plows your throat balls-deep as his pleasure crests. You can feel and sometimes taste the roiling contents of face-slapping nutsack when it hits your stretched [pc.lips]. The other two disappear as your mind (and skull) are overwhelmed by a furiously pumping pirate.");
+	output("\n\nEyes shut, the mouse-boy loses himself to pleasure. Incoherent babbles assail your ears as his entire body assails your [pc.face]. Girlish hips thrust up and down, your nose smacking wetly against his middle; Conquering cock plows your throat balls-deep as his pleasure crests. You can feel and sometimes taste the roiling contents of face-slapping nutsack when it hits your stretched [pc.lips]. The other two disappear as your mind (and skull) are overwhelmed by a furiously pumping pirate.");
 	output("\n\nYour throat has been utterly painted in pre, and once or twice, a premature rope of cum. Thoroughly claimed and now thoroughly fucked, you suck him down and do everything you can to ravish him with oral affection, desperate");
 	if (pc.libido() <= 33) output(" to breathe again.");
 	else if (pc.libido() <= 66) output(" for a taste of what he's been brewing.");
 	else output(" for every drop of cum in his pent up 'nads.");
-	output("\n\nThe horny mouse's cock head balloons at the most sensitive and battered part of your neck, and finally, orgasm erupts out of him. He shoves himself all the way in before the second rope of mouse-spunk pumps into your gurgling gut. You want to cum just from the rhythmic tensing of his nuts against your chin, to give yourself over to that submissive pleasure, but you can't.");
+	output("\n\nThe horny mouse's cock head balloons at the most sensitive and battered part of your neck, and finally, orgasm erupts out of him. He shoves himself all the way in before the second rope of rat-jizz pumps into your gurgling gut. You want to cum just from the rhythmic tensing of his nuts against your chin, to give yourself over to that submissive pleasure, but you can't.");
 	if (pc.canDeepthroat()) output(" Your neck-nerves spark your body much like a dick in " + (pc.hasVagina() ? "your" : "a") + " pussy would, but it's still <i>not enough</i>!");
 	output("\n\nFat wads and thick ribbons of creamy spooge pour into your stomach unimpeded, surging through his flexing dick. Rhythmic liquid detonation scrambles your brain into understanding only the jostling of his testes. Sexy howls reverberate all around you while your mind fails to cope, unable to send so much as a signal of taste. Your senses are utterly fried, and vision is barely functional. You struggle to answer just a few simple questions:");
 	output("\n\nIs your [pc.belly] bulging with cum?");
 	output("\n\nAre they satisfied?");
 	output("\n\nDid you cum?");
-	output("\n\nEyes rolling back, you spasm in solitude, feeling dirty, feeling used, feeling like an abused slut. The mouse-boy's gradually depleting balls contract against your [pc.lips], churning out load after thick load into your stomach until you finally let go and pass out.");
+	output("\n\nEyes rolling back, you spasm in solitude, feeling dirty and used. The mouse-boy's gradually depleting balls contract against your [pc.lips], churning out load after thick load into your stomach until you finally let go and pass out.");
 	
 	pc.loadInMouth(rat1);
 	pc.orgasm();
