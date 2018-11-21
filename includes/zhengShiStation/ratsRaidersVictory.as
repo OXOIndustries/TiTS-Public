@@ -150,7 +150,10 @@ public function ratsTheReasonWeAreHere(useCock:Boolean):void
 			else output(" Your " + (pc.longestCockLength() < 18 ? "huge" : "mammoth") + " dick is having an obvious effect on her. She squints and adoringly caresses the underside with her paws, smearing you and her with flowing dick-goo.");
 			if (pc.hasCocks()) output(" Your second [pc.cockType] cock throbs distractingly against the brim of her round ear, its twitchiness teasing out enough precum to lather her messy [rat0.hairColor] hair.");
 
-			output("\n\nThe mouse-pirate writhes underneath your [pc.cockNoun], slurping at its glistening shape. Phallic adoration oozes out of her pores like the next wad of salty pre from your [pc.cockHead]. <i>\"It tastes really good… I could just lick it forever…\"</i> she murmurs, her thick tongue squelching noisily against your thickening rod.");
+			output("\n\nThe mouse-pirate writhes underneath your [pc.cockNoun], slurping at its glistening shape. Phallic adoration oozes out of her pores like the next wad of salty pre from your [pc.cockHead].");
+			if (ratsPCIsGood()) output(" <i>\"It tastes really good… I could just lick it forever…\"</i>");
+			else output(" <i>\"I guess it tastes fine… Better than some others…\"</i>");
+			output(" she murmurs, her thick tongue squelching noisily against your thickening rod.");
 			  
 			output("\n\nThe flanking rodents inch closer, planting their dainty mits on your [pc.thighs], completely mesmerized by cock. Beatific eyes gaze enviously at their sexy leader’s sensuous tongue-job, letting your dominant aroma run its course through them.");
 
@@ -2108,7 +2111,7 @@ public function ratsEnoughRatFuckingForNow(rounds:int):void
 			if (ratsPCIsKnown()) output(", [pc.mister] CEO");
 			output(",\"</i> she huffs between fat, adoring licks of your neck and cheek.");
 			if (ratsPCIsGood()) output(" <i>\"You gotta meet our boss as soon as possible. When you get upstairs you're gonna stay with me in my bed for a day. I'll be thinkin' about " + (pc.hasCock() ? "your dick" : "you") + " until then, 'kay?\"</i>");
-			else output(" <i>\"I don't care if you're a stuffy CEO, I hope you win again. You inside me is the best thing ever. But don't tell them that, 'kay?\"</i>");
+			else output(" <i>\"I don't care if you're a " + (ratsPCIsKnown() ? "random [pc.guyGirl]" : "stuffy CEO") + ", I hope you win again. You inside me is the best thing ever. But don't tell them that, 'kay?\"</i>");
 			output("\n\nShe kisses you, stands, and you slap her on thickest part of her ass. The sound wakes the other two, who jump to readiness as if roused from the barracks. Once they're geared up again, the halfbreed girl blows a kiss while her de-facto leader " + (ratsPCIsGood() ? "simpers" : "glowers") + " at you. <i>\"You be careful, okay? Zheng Shi isn't safe unless you're a big dumb fuckbunny. See you later");
 			if (ratsPCIsKnown()) output(", [pc.mister] CEO");
 			output("!\"</i>");

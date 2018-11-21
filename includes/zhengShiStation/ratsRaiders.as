@@ -2260,14 +2260,14 @@ public function ratsLossSex():void
 	var scene:Function;
 	if (flags["RATS_LOSS_SEXED"] == undefined) scene = ratsTeasingACEO;
 	else if (flags["RATS_LOSS_SEXED"] == 1) scene = (pc.isTaur() ? ratsRidingInTheWildWildSpaceStation : ratGangGonnaBangYou);
-	else if (flags["RATS_LOSS_SEXED"] == 2 && ratsPCIsKnown() && !ratsPCIsGood()) scene = ratsTheCumSalesmen;
+	else if (flags["RATS_LOSS_SEXED"] == 2 && ratsPCIsKnown() && !ratsPCIsGood() && pc.hasCock()) scene = ratsTheCumSalesmen;
 	else
 	{
 		var scenes:Array = [ratsTeasingACEO];
 		if (!ratsPCIsGood())
 		{
 			if (pc.isTaur()) scenes.push(ratsRidingInTheWildWildSpaceStation);
-			if (ratsPCIsKnown()) scenes.push(ratsTheCumSalesmen);
+			if (ratsPCIsKnown() && pc.hasCock()) scenes.push(ratsTheCumSalesmen);
 		}
 		if (!pc.isTaur()) scenes.push(ratGangGonnaBangYou);
 		
