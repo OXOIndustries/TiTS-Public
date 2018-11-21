@@ -1184,8 +1184,11 @@ public function ratsRodenianal(cockId:int, rounds:int):void
 	output("\n\nWhen you open your [pc.eyes], you're simply still, and the twinge of fear vanishes. The coy rat is rolling her hips, taking you on a hyper-smooth, spellbinding ride");
 	if (rounds < 2) output(" cushioned by the other " + (rounds == 0 ? "two who shamelessly grope her and themselves via anus-seeking tails" : "rat who shamelessly gropes her and masturbatory-minded fingers" + (rat1.hasStatusEffect("Rat Fucked") ? rat2.mf("himself", "herself") : "himself") + " via an anus-seeking tail and masturbatory-minded fingers"));
 	output(". The eye-crossing pressure morphs into a relaxing tingle that fades when you shake your head, leaving you feeling utterly satisfied.");
-	if (pc.hasVagina()) output(" You realize part of the warmth you feel came from the spine-shivering orgasm evidenced by the streams of [pc.girlCumNoun] flowing down your [pc.legOrLegs]."); 
-	if (rounds < 2) output(" The fruits of your [pc.pussyNoun] are delivered to " + (rounds == 0 ? "hungry mouths by expertly controlled tails." : "a hungry mouth by an expertly controlled tail."));
+	if (pc.hasVagina())
+	{
+		output(" You realize part of the warmth you feel came from the spine-shivering orgasm evidenced by the streams of [pc.girlCumNoun] flowing down your [pc.legOrLegs]."); 
+		if (rounds < 2) output(" The fruits of your [pc.pussyNoun] are delivered to " + (rounds == 0 ? "hungry mouths by expertly controlled tails." : "a hungry mouth by an expertly controlled tail."));
+	}
 
 	output((flags["RATS_POUNDED_RODENIAN"] == undefined ? "\n\nConfused" : "\n\nBefuddled") + ", but no less " + (cockId >= 0 ? "erect" : "horny") + ", your gentle outstroke evokes a lengthy whine from the chubby-eared pirate. The insensate minx mauls her chest, pinching and tugging lust-swollen [rat0.nippleColor] nipples as if to milk herself. Twinkling buds of perspirant leap from her peaks as more roll down and over. She successfully drains her lungs of air in a louder scream. <i>\"Yeahyeahyeah fuck meeeeeeeeeeeee\"</i> she cries, tail tensing and claws digging into the ground.");
 	output("\n\nYour first real thrust into the rodenian fills your mind with lurid images. Her accommodating ass makes it easy for you to settle into a pleasantly moist rhythm");
