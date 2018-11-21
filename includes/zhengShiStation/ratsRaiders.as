@@ -1694,7 +1694,7 @@ public function ratPostFightAdjustments(pcWon:Boolean):RatsRaider
 	//Set rat0's loot as rat0 is the only rat with real loot (the rest might steal the player's)
 	if (pcWon)
 	{
-		if (rand(4) == 0) rat0.inventory.push(new ReaperStunBaton());
+		if (rand(10) == 0) rat0.inventory.push(new ReaperStunBaton());
 		rat0.credits = 699 + rand(551) + rand(551);
 		if (thiefRat && thiefRat.hasStatusEffect("Thieved!")) rat0.credits = Math.floor(rat0.credits*2/3);
 	}
