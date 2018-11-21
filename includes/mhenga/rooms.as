@@ -2106,7 +2106,7 @@ public function initMhengaRooms():void
 
 	rooms["PQUEST_I6"] = new RoomClass(this);
 	rooms["PQUEST_I6"].roomName = "MINING\nOP";
-	rooms["PQUEST_I6"].description = "To the west the cave system opens into a colossal crater so wide that not even the planet's tremendous canopy can completely crowd it out. Jet wash spills out of an autonomous dropship as it comes to a gentle stop in the very center of the area, while three mining trundle around, putting their drills to work directly on the Oxonium deposits.";
+	rooms["PQUEST_I6"].description = "To the west the cave system opens into a colossal crater so wide that not even the planet's tremendous canopy can completely crowd it out. Jet wash spills out of an autonomous dropship as it comes to a gentle stop in the very center of the area, while three mining trundle robots around, putting their drills to work directly on the Oxonium deposits.";
 	rooms["PQUEST_I6"].runOnEnter = finalPennyQuestRoomproc;
 	rooms["PQUEST_I6"].planet = "PLANET: MHEN'GA";
 	rooms["PQUEST_I6"].system = "SYSTEM: ARA ARA";

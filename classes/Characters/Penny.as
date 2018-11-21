@@ -240,7 +240,7 @@
 			this.baseHPResistances.tease.resistanceValue = -33;
 			this.baseHPResistances.drug.resistanceValue = -25;
 			this.createPerk("Multiple Attacks",2,0,0,0,"");
-			this.long = "Penny is not especially tall or especially strong, nor is she particularly well-armed. The big-eared fennec is simply tenacious and skilled. She holds her tonfos with firm grips, a variety of other peacekeeper gadgets strapped around her waist. Her stance is steady and indicative of a long history of martial arts training. A shoulder strap hefts an old-fashioned, powder-fired roomsweeper while tight wrappings struggle to contain the entirety of her heavy bosom, keeping it compressed and out of the way.";
+			this.long = "Penny is not especially tall or especially strong, nor is she particularly well-armed. The big-eared fennec is simply tenacious and skilled. She holds her tonfas with firm grips, a variety of other peacekeeper gadgets strapped around her waist. Her stance is steady and indicative of a long history of martial arts training. A shoulder strap hefts an old-fashioned, powder-fired roomsweeper while tight wrappings struggle to contain the entirety of her heavy bosom, keeping it compressed and out of the way.";
 		}
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
