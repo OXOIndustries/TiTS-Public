@@ -73,14 +73,14 @@ public function showPennyName():void
 
 public function pennyRecruited():Boolean
 { 
-	return (flags["PENNY_CREW_ASKED"] == 4);
+	return (flags["PENNY_CREW_ASKED"] == 4 || flags["PENNY_CUMSLUT_RECRUITED"] != undefined);
 }
 public function pennyIsCrew():Boolean
 { 
 	trace("PENNY CREW OUTPUT: " + (flags["PENNY_CREW_ASKED"] == 4 && flags["PENNY_ONBOARD"] == 1));
 	trace("PENNY CREW ASKED: " + (flags["PENNY_CREW_ASKED"] == 4));
 	trace("PENNY ONBOARD: " + (flags["PENNY_ONBOARD"] == 1));
-	return (flags["PENNY_CREW_ASKED"] == 4 && flags["PENNY_ONBOARD"] == 1);
+	return (flags["PENNY_ONBOARD"] == 1);
 }
 
 public function pennyBustDisplay(nude:Boolean = false):String
@@ -1442,6 +1442,7 @@ public function pennyGirlfriendMenu():void
 	// Tooltip: Set off for the cave full of Oxonium that Penny had told you about.
 	if(flags["PENNY_CREW_ASKED"] == 1) addButton(5,"OxoniumHunt",startPenpenQuest,undefined,"Oxonium Hunt","Help Penny score that Oxonium, pay of a bunch of her debt, and convince her to join your crew.");
 	if(flags["PENNY_CREW_ASKED"] == 3) addButton(5,"Recruit",recruitPennyOfferFinal,undefined,"Recruit","Now that you’ve excavated the cave full of Oxonium, maybe Penny will be more receptive to the possibility of joining your crew?");
+	if(pennyIsCumSlut()) addButton(5,"Recruit",recruitCumslutPenny,undefined,"Recruit As Camwhore","Since Penny's already spending most of her time jacking off, why not join you in the stars and get to indulge 100% of the time?");
 	this.addButton(14,"Back",mainGameMenu);
 }
 
@@ -3407,12 +3408,14 @@ public function pennyCumslutterMenuTalk():void {
 	output("\n\n<i>“Mhmmmmmm?”</i> she responds, even the mere suggestion enough to cause her to drag one hand slowly along her stiffening shaft. <i>“How would you prefer I act" + (pennyIsCrew() ? "":" if other people see me doing this") + "?”</i>");
 	output("\n\nWalking around the desk to stand next to her, you hold her chin up to point her face at yours, and not incidentally keep her mouth away from her moistening [penny.cockHead] before you respond.");
 	output("\n\nWhat do you tell her she should do?");
+	if(flags["PENNY_CUMSLUT_RECRUITED"] != undefined) output(" <b>Actually, since she gave up everything to be a camwhore, it might be best to leave her as-is.</b>");
 	//[Let them join in] [Let them watch] [Hide her actions] --(all of these previous as before)-- [Calm down]
 	clearMenu();
 	if(pennyIsCrew())
 	{
 		addButton(0,"Nevermind",nevermindCumslutPenny,undefined,"Nevermind","Just kidding!");
-		addButton(4,"Calm Down",calmDownPennyBitch4Repeats,undefined,"Calm Down","Talk Penny into not being such a brazen, cum-drinking slut.");
+		if(flags["PENNY_CUMSLUT_RECRUITED"] == undefined) addButton(4,"Calm Down",calmDownPennyBitch4Repeats,undefined,"Calm Down","Talk Penny into not being such a brazen, cum-drinking slut.");
+		else addDisabledButton(4,"Calm Down","Calm Down","Penny <b>needs</b> to make money as a camwhore to keep up on her debt payments. Now that she's given up her old job to live with you, camwhoring is her only option.");
 	}
 	else
 	{
@@ -5630,6 +5633,62 @@ public function theWalkBackToTheShip():void
 	clearMenu();
 	moveTo("SHIP INTERIOR");
 	generateMap();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//+15 hard
+public function recruitCumslutPenny():void
+{
+	clearOutput();
+	showPenny(true);
+	author("Fenoxo");
+	output("Smiling down at the dick-drunk, vulpine cumslut, you posit a question to her: Why jerk off in the junkheap when she could be relaxing on your ship, bathing in jism 100% of the time?");
+	output("\n\nWrinkling her brow, Penny manages to pull away from the magnetic tug of her [penny.cockHead], but only for a moment. Like magic, her fingers are drawn back to perform a slow orbit about the heady, over-indulged organ. <i>“But... my debts and job and...”</i> She gulps, tongue flickering out to harvest a residual fleck of salty flavor from one inky lip. <i>“Uh friends. Flahne and everyone here count on me.”</i>");
+	output("\n\nYou stroke one of your fox-slut’s enormous ears fondly. She whimpers needily, forming a big fat droplet at her apex. It wobbles, glinting in the light. Penny can’t seem to look away. You gently push her into her preferred position and explain, <i>“I could get you another job, Penny. There’s good credits to be made by being a slutty cumdump. Especially good credits when you’re so helplessly prickthirsty that you can’t keep your big, dumb dick out of your mouth.”</i> There’s no need to push any longer, not when she’s pounding her cock into her throat eight inches at a time. <i>“All you have to do is let everyone on the extranet watch.”</i>");
+	output("\n\nHer eyes roll slowly back in her head as she starts to inexorably lose herself in the sensation of swallowing her [penny.cock].");
+	output("\n\n<i>“In fact,”</i> you continue, moving around to stand beside her and whispering directly into her ear, <i>“you </i>want<i> people to see this, don’t you? You want people to see how you’re hooked on drinking your own cum, how you can’t stop putting your dick in your mouth and working it over again, and again, and again.”</i>");
+	output("\n\nPenny’s movements are becoming jerky and erratic, her whole body shuddering as she approaches what is clearly an unstoppable orgasm. Seizing the moment, you grab her fiercely and hiss, <i>“You’re a cumslut, aren’t you? You’re addicted to the taste of your own cum, and don’t care if the whole universe watches you milk yourself.”</i>");
+	output("\n\nShe manages to look up at you, her blushing face and the look of pleading desperation in her eyes conveying her hesitance, but even as she does her dick starts surging involuntarily, and soon burst after burst is splashing against the back of her throat, and all she can do is slurp it down greedily. Her resistance melts as she sinks into it, her eyes sliding closed and her blush fading as all her reservations are overcome by just how <i>good</i> this feels.");
+	output("\n\nSeeing her adjusting, you shift to crouch directly in front of her, watching approvingly as she gulps down her seemingly never-ending load. <i>“Good girl,”</i> you say encouragingly. <i>“Don’t you enjoy putting on a good show like this?”</i>");
+	output("\n\nEven muffled as she is, Penny manages to give out a slightly more concerted moan to attempt to express her approval.");
+	output("\n\nYou grin in response. <i>“Of course you do. So much better than letting your silly little shyness get in the way of enjoying your wonderful cock you went </i>so<i> out of your way to get. But remember...”</i> Without warning you slide three fingers inside her dripping slit, the sudden shock of which causes her cock to bulge with a startlingly intense orgasm, almost forcing it out of her mouth with the sheer volume of cum she produces in that one instant. <i>“Everyone can watch, but only </i>I<i> get to enjoy you.”</i>");
+	output("\n\nThat last emphatic orgasm seems to have wrung most of it out of her, and within moments Penny is left leaning exhausted back in her chair, while her [penny.cock] slides slowly out of her mouth to rest between her breasts. After spending a moment appraising the impressive amount of mess she left on your fingers you casually place them next to her mouth, and reflexively she leans forward and begins to eagerly lick them clean.");
+	output("\n\n<i>“What a good girl,”</i> you coo. <i>“You know what you have to do. Turn in your resignation.”</i>");
+	output("\n\nPenny looks up at you a daze, nodding slowly.");
+	output("\n\n<i>“The U.G.C. will have a new peacekeeper out here in no time.”</i> You smile sadly. <i>“To them, you’re a replaceable cog in their machine.”</i> Grabbing her still-turgid dick, you stroke it slowly. <i>“To me, you’re special. Your my cumslut mate. My dick-drunk fox-toy, and I wouldn’t replace you for all the creds in the world.”</i> You lovingly milk leftover cum-drop into Penny’s fur, giving her exactly the kind of treatment she adores. <i>“Make sure to say goodbye to Flahne too. Wouldn’t want her to worry about you while you’re having the time of your life, would we?”</i>");
+	output("\n\n<i>“Ooh yes, [pc.name]!”</i> Penny cries, pumping her hips, spurting out fresh jism so thick that it wobbles when it impacts her tits. <i>“As soon as you’re done using me, I’ll go buy a camera! I’ll get my things, and I’ll be waiting on your ship.”</i> Gasping with pleasure, she moans, <i>“I’m going to be your big-dicked, live-in camwhore! I’ll fuck you whenever you want and suck on command and make so many creds for us!”</i> The cum thins out the longer she shoots, so much so that the final strands upon her muzzle are near-transparent. <i>“Oh my god, I’m such a <b>whore</b> for you, mate!”</i>");
+	output("\n\n<i>“You are,”</i> you agree, stepping away. <i>“But you’re my whore. You’re going to love this, Penny.”</i>");
+	output("\n\nRubbing excess spunk across her lips, Penny moans, <i>“I already am.”</i>");
+	output("\n\nPenny leaves her office not long after you.");
+
+	pc.addHard(15);
+	flags["PENNY_ONBOARD"] = 1;
+	flags["PENNY_CUMSLUT_RECRUITED"] = 1;
+	flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] = 3;
+	flags["PENNY_HIDING_CUMSLUTTERY"] = undefined;
+	flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] = undefined;
+	flags["PENNY_IS_A_CUMSLUT"] = 1;
+	pc.lust(10);
+	processTime(10);
+	clearMenu();
+	addButton(0,"Next",moveSouth);
+}
+
+//Cumslut Penny hello
+public function cumslutPennyGreeting():void
+{
+	clearOutput();
+	showPenny();
+	author("Fenoxo");
+	output("Penny is waiting for you the moment you step onto your ship. For once, she isn’t defiled by a single droplet of cum. Her [penny.cockNounSimple], enormous as it is, only distends her clothing as much as its flaccid size requires. <i>“Mate! Sorry it took me so long. I had to cum </i>really<i> hard before I could think straight enough to get a camera and say all my goodbyes. Would you believe Flahne said she was </i>jealous<i>?”</i> The fennec flashes a giddy smile. <i>“I found an empty room to stash my stuff in, but I wanted to check with you before I got everything all, you know... cummy.”</i>");
+	output("\n\nThe crotch of her shorts strains forward, then down. It very much looks like Penny has smuggled an anaconda into her trousers.");
+	output("\n\nSmiling at your rampantly oversexual herm, you let her know that she can spend as much time ‘working’ in her room as she wants. Any time, any planet, day or night - she can be masturbating. She could be masturbating right now. You step closer, cupping at a pair of nuts so warm with the effort of brewing more cum that they’re hot to the touch. <i>“It feels like you’re ready to start your new life.”</i>");
+	output("\n\nPenny nods vigorously. Her hips gently rock and grind against your cupped palm, seemingly of their own accord. <i>“Yes. I just wanted to... needed to talk to you like a normal girl for a minute.”</i> She grabs your shoulders for support and moans. <i>“Needed to tell you that I love you, mate.”</i> A slowly spreading damp patch appears at the tip of her oh-so-leaky dick. <i>“And that I’ll never be too busy sucking myself off to make time for you.”</i>");
+	output("\n\nYou pull away and send her on her way with a smack of her ass. <i>“Better get going then. I’ll check up on you later.”</i>");
+	output("\n\nPenny yips, <i>“Yes!”</i>");
+	output("\n\n<b>Penny Inoue is now your camwhore crewmate!</b>");
+	flags["PENNY_CUMSLUT_RECRUITED"] = 2;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
