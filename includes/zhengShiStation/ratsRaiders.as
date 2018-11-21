@@ -1632,14 +1632,22 @@ public function ratsStealRiches(thief:RatsRaider, target:Creature, inFight:Boole
 	//Make sure noone gets minerbot'd
 	if (returnedGems <= 0 && smallestGem && gems < 0)
 	{
-		//Find gem
-		for each (item in target.inventory) if (item is smallestGem) break;
-		item.quantity += 1;
-		smallGemValue -= item.basePrice;
+		var stack:ItemSlotClass;
+		//Find gem in thief's inventory
+		for each (item in thief.inventory) if (item is smallestGem)
+		{
+			--item.quantity;
+			if (item.basePrice >= 10000) bigGemValue -= item.basePrice;
+			else smallGemValue -= item.basePrice;
+			if (item.quantity <= 0) thief.inventory.splice(thief.inventory.indexOf(item), 1);
+		}
 	
-		for (i = target.inventory.length-1; i >= 0; --i) if (item is smallestGem) break;
-		target.inventory[i].quantity -= 1;
-		if (target.inventory[i].quantity <= 0) target.inventory.splice(i,1);
+		//Give back to owner
+		for each (item in target.inventory) if (item is smallestGem && item.quantity < item.stackSize)
+		{
+			++item.quantity;
+			break;
+		}
 	}
 	
 	//Finally clear target's inventory of empty stacks
@@ -2731,7 +2739,7 @@ public function ratGangGonnaBangYou():void
 			if (pc.isLactating()) output(", painting your body a lactic [pc.milkColor] with varied tugs and squeezes");
 			output(".");
 			output("\n\n<i>\"You know, sugar tits, if you didn't pick a fight I'd have accepted these as payment. But then again, I probably wouldn't be so horny right now! And uh, she'd probably get jealous!\"</i> The rodenian smacks him on the back of the head, muttering some insult. <i>\"See what I mean?\"</i>");
-			output("\n\nThe lawless mouse abruptly shoves his lubed prick deep into your shaking bosom. The coat of pre on his maleness coats your melons with dick-drool, making all future thrusts shudderingly luxurious. Audibly groaning, he " + (pc.biggestTitSize() < 10 ? "is able to ram his slender cock all the way to your [pc.lips], the twitching tip demanding oral service." : "is unable to emerge on the other end. He smushes your all-engulfing boobs into his slender shaft, heaving and howling at the pillowy compression."));
+			output("\n\nThe lawless mouse abruptly shoves his lubed prick deep into your shaking bosom. The coat of pre on his maleness smatters your melons with dick-drool, making all future thrusts shudderingly luxurious. Audibly groaning, he " + (pc.biggestTitSize() < 10 ? "is able to ram his slender cock all the way to your [pc.lips], the twitching tip demanding oral service." : "is unable to emerge on the other end. He smushes your all-engulfing boobs into his slender shaft, heaving and howling at the pillowy compression."));
 			if (pc.biggestTitSize() < 10)
 			{
 				output(" You obligingly kiss the oozing cumslit");
