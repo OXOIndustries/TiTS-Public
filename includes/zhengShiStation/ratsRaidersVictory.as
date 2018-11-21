@@ -3145,7 +3145,7 @@ public function ratsWhenInRodenian(cockId:int):void
 			output("\n\n<i>\"I umm… I see what you're looking at, I mean… You're nice and all but please don't tell me to do weird things. A-anyway,");
 			if (flags["RATS_SEXED_EAR"] != undefined) output(" last time felt great so do what you did again");
 			else output("I guess I can let you try that");
-			output("... She gingerly removes her helmet, and both big ears stand at attention without a hint of reticence marring their perfectly round, fuckable shapes. They ebb and flow to her mental stimuli, flaring towards you. <i>\"I like having you to myself anyway, [pc.mister] CEO.\"</i>");
+			output("...\"</i> She gingerly removes her helmet, and both big ears stand at attention without a hint of reticence marring their perfectly round, fuckable shapes. They ebb and flow to her mental stimuli, flaring towards you. <i>\"I like having you to myself anyway, [pc.mister] CEO.\"</i>");
 			break;
 	}
 
@@ -3170,7 +3170,7 @@ public function ratsWhenInRodenian(cockId:int):void
 	{
 		// First time
 		default:
-		case undefined:
+		case -1:
 			if (!ratsPCIsGood()) output("\n\n<i>\"S-so what are you going to do?\"</i>");
 			output("\n\nYou assure her that you don't plan on enslaving her or making her into something she's not");
 			if (ratsPCIsGood()) output(" and it does assuage a lot of her fear. She even flexes her ear just to expose more of that tempting sleeve to you! <i>\"Then, um, I've never done it there before, so do what you want. Just… be <b>mindful</b> of what you're doing, okay?\"</i>\n\nYou promise.");
@@ -3236,7 +3236,7 @@ public function ratsDoRodeniansAsTheyDo(cockId:int):void
 	{
 		//firstNeutral
 		default:
-		case undefined:
+		case -1:
 		case 3: output(" I wouldn't mind showing you what I can do!\"</i>"); break;
 		//wasNice
 		case 0: output(" You made me feel so good last time, wouldn't you just like to cum so much you make my throat smell like you forever? Isn't that fair?\"</i>"); break;
@@ -3266,7 +3266,7 @@ public function ratsDoRodeniansAsTheyDo(cockId:int):void
 	output("\n\nHer cock-obsessed tongue pokes out from beneath her lips, expertly swirling around the tip");
 	if (pc.hasCocks()) output(" while free hands work on your extra " + (pc.cocks.length > 2 ? "dicks" : "dick") + "");
 	output(". She dives deeper, breathing when she can, dutifully fellating you without so much as a light cough. You nearly lose yourself to this wanton pleasure, but thankfully your senses prevail. You grab her head,");
-	if (pc.libido() >= 33) output(" already regretting this, and tousle");
+	if (pc.libido() > 33) output(" already regretting this, and tousle her [rat0.hairColor] hair.");
 	else output(" tousling her [rat0.hairColor] hair.");
 	
 	output("\n\nYou drag the rapacious rat off your dick, pulling against the obstinacy of a phallus-hungry mouse the whole time. Just before the [pc.cockHead " + cockId + "] pops free from her stretched lips, she groans miserably, and it takes even more effort to push her lancing tongue away from the violently twitching crown. You bare your mast to the air of Zheng Shi, a veneer of spittle coating it. <i>\"Aw, I was so close…\"</i> she murmurs, the rapid trembling of her snout bringing you to the orgasmic line.");
@@ -3274,7 +3274,7 @@ public function ratsDoRodeniansAsTheyDo(cockId:int):void
 	{
 		//first
 		default:
-		case undefined: output("\n\nDeciding it's time to finally experience what rodenian ear-cunt is like, y"); break;
+		case -1: output("\n\nDeciding it's time to finally experience what rodenian ear-cunt is like, y"); break;
 		//nice
 		case 0:
 			output(" <i>\"I wanted you to feel good, " + ratsMisterCEO() + "...\"</i>");
@@ -3300,7 +3300,7 @@ public function ratsDoRodeniansAsTheyDo(cockId:int):void
 	{
 		//firstNeutral
 		default:
-		case undefined:
+		case -1:
 		case 3: output(" <i>\"Mmm, go slow, okay?\"</i> she purrs."); break;
 		//nice
 		case 0: output(" <i>\"It makes me feel so safe when you do this…\"</i> she whispers."); break;
@@ -3327,7 +3327,7 @@ public function ratsDoRodeniansAsTheyDo(cockId:int):void
 	output(",\"</i> she mumbles.");
 
 	output("\n\nThe addled mouse rubs her head into your [pc.cocks], instinctually helping you descend that much deeper.");
-	if (pc.hasCocks()) output(" Your other pricks rest on or around her head, moistening her hair with rivulets of precum - they at least cradle her in phallic security. What droplets of lube blaze trails down her fuzzy cheeks mats fur in lewd lines reminiscent of ruined makeup.");
+	if (pc.hasCocks()) output(" Your other " + (pc.cocks.length == 2 ? "prick rests" : "pricks rest") + " on or around her head, moistening her hair with rivulets of precum - they at least cradle her in phallic security. What droplets of lube blaze trails down her fuzzy cheeks mats fur in lewd lines reminiscent of ruined makeup.");
 	output("\n\nPulling out of that sodden hole leads you to stagger, and balance isn't easy to maintain with her cunt-equipped head desperately smushed to your lap. <i>\"Come onnnnn,\"</i> she moans again, pushing you back in. You look down to see her tongue dangling, her eyes rolling back, and the biggest smile on her face. <i>\"I'm gonna rob you if… if this…\"</i> she giggles stupidly. <i>\"I'll totally get your money, " + ratsMisterCEO() + "...\"</i>");
 	output("\n\nBeatitude dominates her face and the pressure she puts on you disappears. Drool runs like a stream down her chin and thin lips. You only just get used to this wickedly perverse position and now she's ready for you to use her any way you'd like. In total control, you pull out and thrust back in, varying tones of voice filling your [pc.ears]; you grind your [pc.base] into the nethermost recesses of her ear-cunt to satisfy your most selfish and transient desires. Her tunnels hollow greedily, fully intent on milking your [pc.cockType " + cockId + "] maleness of all the cum stored away in your");
 	if (pc.balls <= 0) output(" loins.");
@@ -3376,7 +3376,7 @@ public function ratsTenderPsychicSurrender(cockId:int):void
 	output("\n\n<i>\"<b>Nobody else,</b>\"</i> you speak firmly, <i>\"would have the courage to do what you do! Think about what you've got now, what you've done. You have friends, you have people who care about you, and you're all working to help others!\"</i>");
 	output("\n\n<i>\"Yyeahhh! You know um, on Ronasca I never told anyone this- eek!\"</i> she squeaks cutely when cock pumps her again. You tell her to go on, to focus! <i>\"On Ronasca when we shared our latest heist, we gave out a lot of money and I remember this guy was sooo happy, he showed me a picture of his kids. It was soo cooooll… We just robbed a transport in system and made so much money fenc-ING-\"</i> she mewls, licking her lips rapidly; her voice breaks with every hump. <i>\"B-b-ut th-that… mmf so goood… Um, it made me feel like this, what you're doing…\"</i>");
 	output("\n\nIt's almost impossible to not give in to the shameless pleasure going on, the way her cranial pussy is hugging and sucking like a cum-hungry organism with an insatiable appetite. Ardor billows from either cock-mitten, and no matter how hard you work to please her or yourself it just… doesn't… seem to be enough!");
-	output("\n\nDilated [rat0.eyeColor] look up to yours, the rat's smile a palpating light shining on your heart, maybe your soul. She coos girlishly, hugging [pc.legOrLegs], relishing the delicate stroke of your palm against her head. There's an unnatural ease at which you lash her innards with whips of pre and strikes of cockflesh. <i>\"He gave me a hug and I jus' wanted to hug back but we gotta look cool and tough! So… I didn't...\"</i>");
+	output("\n\nDilated [rat0.eyeColor] look up to yours, the rat's smile a palpating light shining on your heart, maybe your soul. She coos girlishly, hugging your [pc.legOrLegs], relishing the delicate stroke of your palm against her head. There's an unnatural ease at which you lash her innards with whips of pre and strikes of cockflesh. <i>\"He gave me a hug and I jus' wanted to hug back but we gotta look cool and tough! So… I didn't...\"</i>");
 	output("\n\nThere's something… not quite right here. Not wrong but… the station around you is dissipating. The other two rats fade into darkness, and when you look down again, the petite mouse is squirming wildly, cumming again... cumming so hard that she's glowing. [rat0.FurColor] fur consumes your vision; you shake your head, the erotic energy dissipating like a lucid dream, but there's some pervasive fuzziness spreading like a tight-fitting uniform over every muscle and bone.");
 	output("\n\nYou feel indescribably relaxed, and in that relaxation you feel your climax waiting just a little more patiently...");
 	output("\n\n<i>\"Hhh… He showed me a picture and I got sad…\"</i>");
@@ -3408,7 +3408,7 @@ public function ratsTenderPsychicSurrender(cockId:int):void
 		output("\n\nIn an effort to reject reality, you grab onto her head one last time, clutching it close to your lap, pounding your [pc.cockNoun] in as deep as you can, now intent on splattering her thoroughly. <i>\"This is your reward for being a good girl,\"</i> you say, voice like a ghost's breath, <i>\"don't let anyone else take this from you.\"</i>");
 	}
 
-	output("\n\nYour fingers dig into the rat girl's fur, leaving prints on her skeleton. Sweat suddenly stings at your eyes, and everything goes white hot with lust. Light flashes in two directions; your emotional being is tugged between realities that you barely have a hold on. You plummet through the gap, tingles of euphoria and niceness  Lewd and wholesome images flash on some overstimulated brainwave. All energy and force is concentrated at your crotch. Unshakable unity is achieved through [pc.cockNoun], and a silent command all but bids you to baptize it.");
+	output("\n\nYour fingers dig into the rat girl's fur, leaving prints on her skeleton. Sweat suddenly stings at your eyes, and everything goes white hot with lust. Light flashes in two directions; your emotional being is tugged between realities that you barely have a hold on. You plummet through the gap, tingles of euphoria and niceness coasting behind. Lewd and wholesome images flash on some overstimulated brainwave. All energy and force is concentrated at your crotch. Unshakable unity is achieved through [pc.cockNoun], and a silent command all but bids you to baptize it.");
 	
 	if (pc.cumQ() < 100)
 	{
