@@ -5298,6 +5298,29 @@ public function finalPennyQuestRoomproc():Boolean
 	output("\n\n<i>“Spot any logos?”</i> Penny growls low in the back of her throat. <i>“I’d love to know which low-life scumcorp thought it would be a good idea to skip out on <b>my</b> planet’s taxes. Last I checked we barely had any. Just enough to keep the town running - mostly off mineral claims like this one.”</i>");
 	output("\n\nOne robot turns away, hauling a small fortune in Oxonium ore to the lander. On its back are streaks of faded enamel where somebody went at it with a power sander, not enough to prove anything in court, but enough for you to recognize edges of a design you’ve seen your father scowl at many times: the enormous bolded 'X' of the MaxCorp logo. <i>“These are MaxCorp mining robots. Dad always said they’d do anything for a credit, but I didn’t expect them to stoop quite this low." + (pc.isBimbo() ? " Lawbreaking is so silly!":"") + "”</i> You duck into hiding before they can spot you. <i>“Older ones though. " + (!pc.isBimbo() ? "Plenty strong but not exactly fast or smart. Probably hauled out of storage for plausible deniability. Blame smugglers with surplus ‘bots if they get caught.":"Not even good looking ones! They probably used them so they could blame some pirates that bought last season’s model. I mean... who wants old robots?") + "”</i>");
 	output("\n\nPenny scowls. <i>“I could call in peacekeeper reinforcements... but this would become a crime scene. The right to the Oxonium claim would go up for government auction, and a small fry like me would never stand a chance.”</i> Her ears lift upright, and her lip curls in a fearsome smile. <i>“Or we could dish out a little frontier justice. These robots are technically trespassing in a sovereign planet. We scrap ‘em, and there’s nothing MaxCorp can do except write them off as a tax deduction. Then we file a claim ourselves, bring in a legal crew - maybe one through your father’s company - and reap a sizable reward.”</i>");
+	
+	//if gold myr rebels relocated
+	if(myrOnMhenga())
+	{
+		output("\n\nIt’s at that exact moment a wailing klaxon sounds. You risk a look back into the crater in time to see a gold myr scout emerging from a tunnel on the other side. She’s got all four of her arms up in the air, but the mechanical rock-maulers advance all the same.");
+		output("\n\n<i>“Whoah! Hey... no need to be hostile. I’m just surveying the area for my queen. Let’s just... ah fuck it.”</i> The golden girl yanks a heavy-caliber burst rifle off her back at levels it at the metal menaces. <i>“Come at me, fuck-faces!”</i>");
+		output("\n\nIf this soldier-myr clears off the robots before you, she could claim the resources for her queen! You suppose you’ll have assist her, if only to prove to Penny that you’re a reliable sort of Rusher.");
+		clearMenu();
+		this.addButton(0, "Attack", startPennyMiningBotFightStuff);
+		return true;
+	}
+	//else
+	else
+	{
+		output("\n\nThat makes sense. Since you haven’t been spotted, you have plenty of time to prepare for the confrontation.");
+		clearMenu();
+		this.addButton(0, "Attack", startPennyMiningBotFightStuff);
+		return false;
+	}
+}
+
+public function startPennyMiningBotFightStuff():void
+{
 	penny.HP(penny.HPMax());
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc, penny);
@@ -5313,25 +5336,8 @@ public function finalPennyQuestRoomproc():Boolean
 	CombatManager.victoryScene(defeatMiningBotsWithPenpen);
 	CombatManager.lossScene(loseToMiningBotsWithPen);
 	CombatManager.displayLocation("MINING BOTS");
-	//if gold myr rebels relocated
-	if(myrOnMhenga())
-	{
-		CombatManager.setFriendlyActors(pc, penny, new Onzia());
-		output("\n\nIt’s at that exact moment a wailing klaxon sounds. You risk a look back into the crater in time to see a gold myr scout emerging from a tunnel on the other side. She’s got all four of her arms up in the air, but the mechanical rock-maulers advance all the same.");
-		output("\n\n<i>“Whoah! Hey... no need to be hostile. I’m just surveying the area for my queen. Let’s just... ah fuck it.”</i> The golden girl yanks a heavy-caliber burst rifle off her back at levels it at the metal menaces. <i>“Come at me, fuck-faces!”</i>");
-		output("\n\nIf this soldier-myr clears off the robots before you, she could claim the resources for her queen! You suppose you’ll have assist her, if only to prove to Penny that you’re a reliable sort of Rusher.");
-		clearMenu();
-		this.addButton(0, "Attack", CombatManager.beginCombat);
-		return true;
-	}
-	//else
-	else
-	{
-		output("\n\nThat makes sense. Since you haven’t been spotted, you have plenty of time to prepare for the confrontation.");
-		clearMenu();
-		this.addButton(0, "Attack", CombatManager.beginCombat);
-		return false;
-	}
+	if(myrOnMhenga()) CombatManager.setFriendlyActors(pc, penny, new Onzia());
+	CombatManager.beginCombat();
 }
 
 //Defeat
