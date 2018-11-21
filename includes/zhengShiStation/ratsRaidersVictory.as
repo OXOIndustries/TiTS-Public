@@ -2929,8 +2929,8 @@ public function ratsTheRideNeverEnds(vagId:int):void
 		output(". Her ribboned appendage slides along the slathering channel through her legs, against your [pc.asshole], worming between your [pc.legs] in a fanciful show");
 		if (pc.hasCock()) output(" that ends around your [pc.cocksLight], which are tied together, twitching in sync with pumping mouse tail");
 		output("."); 
-		output("\n\nShe lies atop your back, paws clasped in the " + (pc.tone < 30 ? "folds of" : "beneath the abs") + " of your [pc.belly], all effort in that molesting tendril. She operates with an implicit desire for you to cum and for herself to cum right there with you. You abandon yourself to their orgasm-compelling efforts, body incandescent with ecstasy.");
-		output("\n\nHer lengthy hair wafts over your straightened back; the coolness of stringy [rat2.hairColor] pitter-pattering across your spine makes you gasp and buck harder into the freckled boy's hips.");
+		output("\n\nShe lies atop your back, paws clasped " + (pc.tone < 30 || pc.bellyRating() > 5 ? "in the folds of" : "beneath the abs") + " of your [pc.belly], all effort in that molesting tendril; Her lengthy hair wafts over your straightened back; the coolness of stringy [rat2.hairColor] pitter-pattering across your spine makes you gasp and buck harder into the freckled boy's hips. She operates with an implicit desire for you to cum and for herself to cum right there with you. You abandon yourself to their orgasm-compelling efforts, body incandescent with ecstasy.");
+		output("\n\n");
 		output("\n\nSex-minded hands and paws roam across your biceps and particularly your scalp");
 		if (pc.hasEmoteEars()) output(", petting the in and out of your [pc.ears] with urgent ministrations");
 		output(". Your right arm, your only free limb, cradles the rat-rogue's head, clutching him against your breast as you hold for dear life. He's maneuvered into a careful enough position that he can thrust all the way through your [pc.pussy " + vagId + "] and hit your womb, splaying his aching legs. The head of his phallus battering against your cervix and the taut scrotum bouncing against the slobbery foldings of your");
