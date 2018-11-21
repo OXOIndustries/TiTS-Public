@@ -2111,7 +2111,7 @@ public function ratsEnoughRatFuckingForNow(rounds:int):void
 			if (ratsPCIsKnown()) output(", [pc.mister] CEO");
 			output(",\"</i> she huffs between fat, adoring licks of your neck and cheek.");
 			if (ratsPCIsGood()) output(" <i>\"You gotta meet our boss as soon as possible. When you get upstairs you're gonna stay with me in my bed for a day! I'll be thinkin' about " + (pc.hasCock() ? "your dick" : "you") + " until you come 'n ravage me real proper, 'kay?\"</i>");
-			else output(" <i>\"I don't care if you're a stuffy CEO, I hope you win again. You inside me is the best thing ever. But don't tell them that, 'kay?\"</i>");
+			else output(" <i>\"I don't care if you're a " + (ratsPCIsKnown() ? "random [pc.guyGirl]" : "stuffy CEO") + ", I hope you win again. You inside me is the best thing ever. But don't tell them that, 'kay?\"</i>");
 			output("\n\nShe kisses you, stands, and you slap her on thickest part of her ass. The sound wakes the other two, who jump to readiness as if roused from the barracks. Once they're geared up again, the halfbreed girl blows a kiss while her de-facto leader " + (ratsPCIsGood() ? "simpers" : "glowers") + " at you. <i>\"You be careful, okay? Zheng Shi isn't safe unless you're a big dumb fuckbunny. See you later");
 			if (ratsPCIsKnown()) output(", [pc.mister] CEO");
 			output("!\"</i>");
