@@ -3156,7 +3156,8 @@ public function calmDownYouPennySlut():void {
 	output("\n\nAmazingly, she actually wilts a little at that. Her masturbation stops as the fennec dreamily says, <i>“Okay, okay, I guess. I’m getting a little out of hand, aren’t I?”</i> You nod. <i>“Good, ‘cause it seems to be keeping you around. I’m going to fuck you so hard as soon as I get caught up on work!”</i> She turns back towards what she was doing while trying to pack her monster dick into her pants. It doesn’t work all that well.");
 	processTime(1);
 	clearMenu();
-	addButton(0,"Next",approachGirlfriendPenny);
+	if(pennyIsCrew()) addButton(0,"Next",approachCrewPenny,true);
+	else addButton(0,"Next",approachGirlfriendPenny);
 }
 
 //HAVE FUN WITH HER:
@@ -3204,7 +3205,7 @@ public function teasePenny():void
 	output("\n\nShe struggles to speak against the constant waves of quivering pleasure running through her, and only eventually manages to through sheer force of will. <i>“Buh-buh! But what about- uhhh! What about other people see-uh! Seeing me?”</i>");
 
 	if(!pennyIsCrew()) output("\n\nShe raises a good point. She works in a public position after all - if she spends almost all of her time with her cock in her mouth people are going to notice. What do you tell her to do when someone walks in on her?");
-	else output("\n\nPennny raises a good point. She lives on your ship after all - if she spends all her time with her cock in her mouth, nobody will get see how badly hooked she is - just how addicted to sucking down her endless, Throbb-augmented loads. The confused prickvixen needs direction. Perhaps camwhoring. If she’s going to be jacking off all day, she might as well work on paying off her debts while she does it.");
+	else output("\n\nPenny raises a good point. She lives on your ship after all - if she spends all her time with her cock in her mouth, nobody will get see how badly hooked she is - just how addicted to sucking down her endless, Throbb-augmented loads. The confused prickvixen needs direction. Perhaps camwhoring. If she’s going to be jacking off all day, she might as well work on paying off her debts while she does it.");
 
 	pc.lust(20+rand(10));
 	
@@ -3401,19 +3402,43 @@ public function pennyCumslutterMenuTalk():void {
 	author("Abe E. Seedy");
 	showPenny(true);
 	//CHANGE CUMSLUT ACTIONS
-	output("Noticing that Penny is barely able to refrain from touching herself even while having a normal conversation with you, you mention to her that perhaps she should indulge herself a little differently when other people are around.");
-	output("\n\n<i>“Mhmmmmmm?”</i> she responds, even the mere suggestion enough to cause her to drag one hand slowly along her stiffening shaft. <i>“How would you prefer I act if other people see me doing this?”</i>");
+	output("Noticing that Penny is barely able to refrain from touching herself even while having a normal conversation with you, you mention to her that perhaps she should indulge herself a little differently" + (pennyIsCrew() ? "":"when other people are around") + ".");
+	output("\n\n<i>“Mhmmmmmm?”</i> she responds, even the mere suggestion enough to cause her to drag one hand slowly along her stiffening shaft. <i>“How would you prefer I act" + (pennyIsCrew() ? "":" if other people see me doing this") + "?”</i>");
 	output("\n\nWalking around the desk to stand next to her, you hold her chin up to point her face at yours, and not incidentally keep her mouth away from her moistening [penny.cockHead] before you respond.");
 	output("\n\nWhat do you tell her she should do?");
 	//[Let them join in] [Let them watch] [Hide her actions] --(all of these previous as before)-- [Calm down]
 	clearMenu();
-	if(flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] == undefined) addButton(0,"Join In",letThemJoinInPennyYouSlut);
-	else addDisabledButton(0,"Join In","Join In","Penny is already doing this.");
-	if(flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] == undefined) addButton(1,"Let Watch",pennyLetThemWatchYouCumSlut);
-	else addDisabledButton(1,"Let Watch","Let Watch","Penny is already doing this.");
-	if(flags["PENNY_HIDING_CUMSLUTTERY"] == undefined) addButton(2,"Hide It",hideYourCumslutteryPennyYouSlut);
-	else addDisabledButton(2,"Hide It","Hide It","Penny is already doing this.");
-	addButton(4,"Calm Down",calmDownPennyBitch4Repeats,undefined,"Calm Down","Talk Penny into not being such a brazen, cum-drinking slut.");
+	if(pennyIsCrew())
+	{
+		addButton(0,"Nevermind",nevermindCumslutPenny,undefined,"Nevermind","Just kidding!");
+		addButton(4,"Calm Down",calmDownPennyBitch4Repeats,undefined,"Calm Down","Talk Penny into not being such a brazen, cum-drinking slut.");
+	}
+	else
+	{
+		if(flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] == undefined) addButton(0,"Join In",letThemJoinInPennyYouSlut);
+		else addDisabledButton(0,"Join In","Join In","Penny is already doing this.");
+		if(flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] == undefined) addButton(1,"Let Watch",pennyLetThemWatchYouCumSlut);
+		else addDisabledButton(1,"Let Watch","Let Watch","Penny is already doing this.");
+		if(flags["PENNY_HIDING_CUMSLUTTERY"] == undefined) addButton(2,"Hide It",hideYourCumslutteryPennyYouSlut);
+		else addDisabledButton(2,"Hide It","Hide It","Penny is already doing this.");
+		addButton(4,"Calm Down",calmDownPennyBitch4Repeats,undefined,"Calm Down","Talk Penny into not being such a brazen, cum-drinking slut.");
+	}
+}
+
+public function nevermindCumslutPenny():void
+{
+	clearOutput();
+	author("Fenoxo");
+	showPenny(true);
+	output("<i>“Nevermind!”</i> you jovially say, pushing Penny halfway down her dick before tugging the gasping, giggling prick-vixen back up. <i>“You keep camwhoring your heart out. It’s fun, isn’t it?”</i>");
+	output("\n\nPenny nods as much as your grip allows. <i>“Y-yeah. They love it when I suck myself deep. I even got a camera script that zooms in when I climax, right on my dick so they can see it pulsate with each load.”</i> Her [penny.cock] swells, forming an enormous droplet of pre at its apex, nestled snugly between Pennythe fox’s fuzzy tits. <i>“And I cum so hard knowing they’re all jacking off, mate. I cum so hard.”</i> She whimpers. <i>“Please... can I suck now? Can I milk out a load for you? Please?”</i>");
+	output("\n\nYou push her back onto her cock, watching her cheeks hollow and her tongue flick out, spreading the syrupy pre across glistening veins and heavy, turgid flesh. The whorish vixen’s eyes flutter closed as she slurps and sucks. <i>“Of course you can suck, and you should. There’s still so much cum in those balls of yours, isn’t  there? So much cum for you to suck and drink, and if you’re going to be the very sluttiest, cum-thirstiest girl on the extranet, you’re going to need to swallow it down until your breath smells as cummy as all your viewer’s dicks added together.”</i>");
+	output("\n\nWave after wave of cum spurts into Penny’s mouth in response, bulging her cheeks. She gurgles in ecstatic bliss and gulps as fast as she can, but there’s too much cum. Rivers of it stream from the corners of her mouth to slide down onto her tits. You pull her back before she chokes herself, watching thick sprays burst upon her pleasure-drunk face and tongue. Gooey ropes cling to her mohawk and weigh it down until it sticks to one of her colossal fennec-morphed ears. The fox revels in it. She rolls out her tongue just to taste the splashes of excess. One handed, she futilely shovels palmfuls of spunk into her mouth, uncaring that her dick’s deluge re-drenches the spot in a single spurt.");
+	output("\n\nWhen she finally finishes, Penny spends several long moments simply breathing deeply, blissfully taking in the scent of sex filling her nostrils. She licks her lips once, then opens her eyes slowly. <i>“Fuck, [pc.name], that gets better every time. I’ve been doing that a </i>lot<i>, but it’s always better when you’re here to really get things going.”</i> She wipes one finger along the worst of it, gathering up the sticky whiteness and slipping it happily inside her mouth. She keeps on like that - leisurely licking at loose strands rather than making an effort to clean herself up properly. It looks like she’s quite happy to leave herself dripping wet, so that she’s visibly marked as a cumslut rather than enjoying the pleasure of cleaning herself off.");
+	processTime(5);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Next",approachCrewPenny,true);
 }
 
 //CALM DOWN
@@ -3429,7 +3454,8 @@ public function calmDownPennyBitch4Repeats():void {
 	flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] = undefined;
 	flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] = undefined;
 	clearMenu();
-	addButton(0,"Next",talkToGirfriendPenny);
+	if(pennyIsCrew()) addButton(0,"Next",approachCrewPenny,true);
+	else addButton(0,"Next",talkToGirfriendPenny);
 }
 
 //--TO ADD TO SEX MENU FOR CUMSLUT PENNY--
@@ -3444,7 +3470,8 @@ public function pennySelfSuckCumsluttery():void {
 	pc.lust(20);
 	processTime(10+rand(10));
 	clearMenu();
-	addButton(0,"Next",move,"SOUTH ESBETH 3");
+	if(pennyIsCrew()) addButton(0,"Next",mainGameMenu);
+	else addButton(0,"Next",move,"SOUTH ESBETH 3");
 }
 
 //BUKKAKE (characters with penis and ability to produce non-zero amounts of cum only)
@@ -3473,12 +3500,13 @@ public function bukkakePenny():void {
 	//LARGE LEVEL OF CUM PRODUCTION
 	else if(pc.cumQ() >= 2000) output(" You cum over and over; a seemingly endless wave of fluid pouring out of you. Penny wriggles beneath it in delight, turning herself from side to side to ensure it covers as much of herself as possible. Between your convulsive aim and her work to spread it around upon herself you manage to coat her entire body, leaving her happily dripping with [pc.cumColor] fluid.");
 	output("\n\nWhen you finally finish, Penny spends several long moments simply breathing deeply, blissfully taking in the scent of sex filling her nostrils. She licks her lips once, then opens her eyes slowly. <i>“Fuck, [pc.name], I have to thank you again for this. I don’t think I ever feel so good as when I’m coated with cum. Especially yours, of course.”</i> She wipes one finger along the worst of it, gathering up the [pc.cumColor] strands and slipping them happily inside her mouth, but makes no effort to clean herself up further. It looks like she’s intending to leave herself visibly marked as a cumslut rather than enjoying the pleasure of cleaning herself off. That said, she’s hardly helpless to enjoy the taste of more cum - with a satisfied moan her head moves forward, filling her muzzle with her own massive cock and thrusting dreamily into herself. You graciously decide to let her keep going, figuring that she’s earned the release.");
-	output("\n\nYou turn to leave while she’s still pleasantly self-absorbed, her eager slurping noises following you as you step out of her office.");
+	output("\n\nYou turn to leave while she’s still pleasantly self-absorbed, her eager slurping noises following you as you step out of her " + (pennyIsCrew() ? "quarters":"office") + ".");
 	//[reduce lust to zero]
 	processTime(10+rand(10));
 	pc.orgasm();
 	clearMenu();
-	addButton(0,"Next",move,"SOUTH ESBETH 3");
+	if(pennyIsCrew()) addButton(0,"Next",mainGameMenu);
+	else addButton(0,"Next",move,"SOUTH ESBETH 3");
 }
 
 public function pennyVsFlahneWhoWillOutslutWho():void
@@ -3498,12 +3526,12 @@ public function pennyVsFlahneWhoWillOutslutWho():void
 	}
 	
 	output("\n\nYou interrupt her floundering by pressing softly on her lips, letting her know delicately but undeniably that now is not the time for her to be talking. <i>“She asked me to put in a word for her with you, did you know that? Can you guess what she wants from you?”</i>");
-	output("\n\nUnbidden and untouched, Penny’s thick shaft has already risen above her desk, reaching up to stand trembling just beneath her chin. Penny’s eyes flick downwards for a moment, going from her cock and back to you questioningly, while you respond with an encouraging nod.");
+	output("\n\nUnbidden and untouched, Penny’s thick shaft has already risen above " + (pennyIsCrew() ? "fluffy middle":"her desk") + ", reaching up to stand trembling just beneath her chin. Penny’s eyes flick downwards for a moment, going from her cock and back to you questioningly, while you respond with an encouraging nod.");
 	output("\n\n<i>“Who are we to deny her access to it, hmm?”</i> you ask teasingly. <i>“Someone wants to suck your cock, and give you a nice thick cock of her own to suck in turn. How could you possibly deny her that?”</i>");
 	output("\n\nAgain, Penny is left whimpering incoherently, unable to tear her eyes away from you, but even so still breathing heavily and filling her nostrils with the scent of her own sex. Rather than waiting for her to control herself, you simply hand her her communicator, pressing it into her palm until she finally understands what’s required.");
 	output("\n\nHurriedly pressing the buttons, Penny only just manages to get herself under control before Flahne responds. You can only barely make out Flahne’s chirpy greeting, and for her part Penny can only just stick to the bare necessities of the conversation.");
 	output("\n\n<i>“I need you!”</i> she all but barks. <i>“You nnneed to come over here right now! No questions asked!");
-	if (flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] != undefined) output("And just go right past the line outside. This is important!")
+	if (flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] != undefined && !pennyIsCrew()) output("And just go right past the line outside. This is important!")
 	output("”</i>");
 
 	output("\n\nIt sounds like Flahne starts to ask a question in response, but Penny cuts her off quickly. <i>“No questions!”</i> she repeats urgently. <i>“Come!”</i>");
@@ -3563,7 +3591,8 @@ public function pennyVsFlahneWhoWillOutslutWho():void
 	if (pc.hasCock()) pc.orgasm();
 	if (pc.hasVagina() && !pc.isTaur()) pc.orgasm();
 	clearMenu();
-	addButton(0,"Next",move,"SOUTH ESBETH 3");
+	if(pennyIsCrew()) addButton(0,"Next",mainGameMenu);
+	else addButton(0,"Next",move,"SOUTH ESBETH 3");
 }
 
 //Penny’s Little Pony
