@@ -514,7 +514,7 @@ public function ratGiveThemMoney():void
 	output("\n\n<b>Will you really give them that much?</b>");
 	
 	addButton(0, "Pay", ratsShutUpAndTakeMyMoney);
-	addButton(0, "Fight", ratStartEncounterFight, 2);
+	addButton(1, "Fight", ratStartEncounterFight, 2);
 }
 
 public function ratsShutUpAndTakeMyMoney():void
