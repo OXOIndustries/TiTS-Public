@@ -1519,7 +1519,7 @@ package classes.GameData
 			if (attacker is PlayerCharacter) output("You sling an array of microgrenades at everything in the area!");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " throw" + (attacker.isPlural ? "" : "s") + " out an array of microgrenades!");
 			
-			var d:int = 10 + (attacker.level * 2.5) + (attacker.intelligence() / 1.5);
+			var d:int = 10 + (attacker.level * 2.5) + (attacker.bimboIntelligence() / 1.5);
 			var damage:TypeCollection = new TypeCollection( { burning: d } );
 			var explosionDodged:int = 0;
 			
@@ -1543,7 +1543,7 @@ package classes.GameData
 			if (attacker is PlayerCharacter) output("You toss a bundle of explosives in the direction of " + target.getCombatName() + "!");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " throw" + (attacker.isPlural ? "" : "s") + " a bundle of explosives in " + possessive(target.getCombatName()) + " direction!");
 			
-			var d:int = 15 + (attacker.level * 4) + attacker.intelligence();
+			var d:int = 15 + (attacker.level * 4) + attacker.bimboIntelligence();
 			var damage:TypeCollection = damageRand(new TypeCollection( { burning: d } ), 15);
 			
 			if (target is Cockvine)
@@ -1640,8 +1640,8 @@ package classes.GameData
 				if (attacker.hasPerk("Fuck Sense")) output("You try to remember how to turn on the lightning-shockey thing you built for your weapon. It’s just like a vibrator, only the electrons move back and forth instead of a wiggly pink fucktoy! Then you remember you painted the button for it bright pink and give it a smack. The sudden ‘<i>kzzzt</i>’ of your weapon electrifying nearly makes you drop it - and in the process take an accidental swing your foe’s way!");
 				else output("You flick the switch on a wrist-mounted powercell, pumping arcs of deadly electricity into your " + attacker.meleeWeapon.longName + ", then try for a quick strike with the newly charged weapon!");
 			}
-			if (attacker is PlayerCharacter) attacker.createStatusEffect("Charged Weapon", Math.ceil(attacker.intelligence() + rand(attacker.level)), 0, 0, 0, false, "Icon_OffUp", (attacker.hasPerk("Fuck Sense") ? "Your weapon is electrified and will deal bonus damage based upon your current inte... intelli... nahhhh, you’re pretty sure it’ll hit harder based on your libido. Fuck fighting. Literally! Wheeeeee~" : "Your weapon is electrified and will deal bonus damage based upon your current intellectual capacity."), true, 0);
-			else attacker.createStatusEffect("Charged Weapon", Math.ceil(attacker.intelligence() + rand(attacker.level)), 0, 0, 0, false, "Icon_OffUp", "Weapon is electrified and will deal bonus damage based upon current intellectual capacity.", true, 0);
+			if (attacker is PlayerCharacter) attacker.createStatusEffect("Charged Weapon", Math.ceil(attacker.bimboIntelligence() + rand(attacker.level)), 0, 0, 0, false, "Icon_OffUp", (attacker.hasPerk("Fuck Sense") ? "Your weapon is electrified and will deal bonus damage based upon your current inte... intelli... nahhhh, you’re pretty sure it’ll hit harder based on your libido. Fuck fighting. Literally! Wheeeeee~" : "Your weapon is electrified and will deal bonus damage based upon your current intellectual capacity."), true, 0);
+			else attacker.createStatusEffect("Charged Weapon", Math.ceil(attacker.bimboIntelligence() + rand(attacker.level)), 0, 0, 0, false, "Icon_OffUp", "Weapon is electrified and will deal bonus damage based upon current intellectual capacity.", true, 0);
 			SingleMeleeAttackImpl(attacker, target, true);
 		}
 		
@@ -1695,7 +1695,7 @@ package classes.GameData
 			damageRand(d, 15);
 			applyDamage(d, attacker, target, "minimal");
 			
-			if (attacker.intelligence() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune"))
+			if (attacker.bimboIntelligence() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune"))
 			{
 				output("\n");
 				if (target is PlayerCharacter) output("<b>You are stunned!</b>");
@@ -1849,7 +1849,7 @@ package classes.GameData
 			else if (target is PlayerCharacter) output(StringUtil.capitalize(attacker.getCombatName(), false) + " attempts to wirelessly hack your shield!");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " attempt" + (attacker.isPlural ? "" : "s") + " to wirelessly hack the shield" + (target.isPlural ? "s" : "") + " protecting " + target.getCombatName() + "!");
 			
-			var d:TypeCollection = damageRand(new TypeCollection( { electric: Math.round(25 + attacker.level * 2.5 + attacker.intelligence() / 1.5) } ), 15);
+			var d:TypeCollection = damageRand(new TypeCollection( { electric: Math.round(25 + attacker.level * 2.5 + attacker.bimboIntelligence() / 1.5) } ), 15);
 			d.addFlag(DamageFlag.ONLY_SHIELD);
 			
 			var dr:DamageResult = calculateDamage(d, attacker, target, "suppress");
@@ -1908,17 +1908,19 @@ package classes.GameData
 				return;
 			}
 			
-			if (rand(20) + 1 + attacker.intelligence() / 2 < target.intelligence() / 2 + 10)
+			var attackIntelligence:Number = attacker.bimboIntelligence();
+			var targetIntelligence:Number = target.bimboIntelligence();
+			if (rand(20) + 1 + attackIntelligence / 2 < targetIntelligence / 2 + 10)
 			{
 				if (attacker is PlayerCharacter)
 				{
 					output("You try to hack " + possessive(target.getCombatName()) + " weapon" + (target.isPlural ? "s" : "") + ", but " + (target.isPlural ? "they’re" : target.getCombatPronoun("heshe") + "’s") + " too smart and too quick!");
-					if (attacker.intelligence() > target.intelligence() - 5) output(".. this time.");
+					if (attackIntelligence > targetIntelligence - 5) output(".. this time.");
 				}
 				else if (target is PlayerCharacter)
 				{
 					output(StringUtil.capitalize(attacker.getCombatName(), false) + " tr" + (attacker.isPlural ? "y" : "ies") + " to hack your weapon, but you’re quick to defend against the remote intrusion.");
-					if (attacker.intelligence() > target.intelligence() - 5) output(".. this time.");
+					if (attackIntelligence > targetIntelligence - 5) output(".. this time.");
 				}
 				else
 				{
@@ -2165,7 +2167,7 @@ package classes.GameData
 			else if (target is PlayerCharacter) output(StringUtil.capitalize(attacker.getCombatName(), false) + " huck" + (attacker.isPlural ? " small devices" : "s a small device") + " in your direction, " + (attacker.isPlural ? "each unleashing explosive blasts just" : "unleashing an explosive blast scant") + " inches from your body!");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " huck" + (attacker.isPlural ? " small devices" : "s a small device") + " in " + possessive(aTarget.getCombatName()) + " direction, " + (attacker.isPlural ? "each unleashing explosive blasts just" : "unleashing an explosive blast scant") + " inches from " + aTarget.getCombatPronoun("hisher") + " form!");
 				
-			var d:int = Math.round(7.5 + attacker.level * 2 + attacker.intelligence() / 2);
+			var d:int = Math.round(7.5 + attacker.level * 2 + attacker.bimboIntelligence() / 2);
 			var totalDamage:DamageResult = new DamageResult();
 			var projectileDodged:int = 0;
 			

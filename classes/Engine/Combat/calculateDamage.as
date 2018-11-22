@@ -110,11 +110,6 @@ package classes.Engine.Combat
 				if (attacker.hasStatusEffect("Charged Weapon"))
 				{
 					var chargeBonus:Number = attacker.bimboIntelligence();
-					if (attacker.hasPerk("Fuck Sense")) 
-					{
-						chargeBonus = attacker.libido();
-						if(chargeBonus > attacker.level * 5) chargeBonus = attacker.level * 5;
-					}
 					baseHPDamage.add(new TypeCollection( { electric: chargeBonus } ));
 				}
 				
