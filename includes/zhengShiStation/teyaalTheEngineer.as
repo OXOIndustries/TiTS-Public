@@ -212,10 +212,10 @@ public function defeatTeyaal():void
 	if(pc.hasCock())
 	{
 		if(pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(0,"Assfuck Her",penisRouter,[assfuckThatScienceCunt,enemy.analCapacity(),true],"Assfuck Her","Everyone knows gryvain have six testes around their assholes. Pounding Teyaal’s ass is gonna make a hell of a mess!");
-		else addDisabledButton(0,"Assfuck Her","Assfuck Her","You'll never fit up her ass!");
+		else addDisabledButton(0,"Assfuck Her","Assfuck Her","You’ll never fit up her ass!");
 
 		if(pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0) addButton(1,"Plow Pussy",penisRouter,[plowDatDraggoScienceSlutsPussy, enemy.vaginalCapacity(0), true],"Plow Pussy","This MILFy dragon-slut has a pussy just begging to get pounded.");
-		else addDisabledButton(1,"Plow Pussy","Plow Pussy","You'll never fit up her puss!");
+		else addDisabledButton(1,"Plow Pussy","Plow Pussy","You’ll never fit up her puss!");
 	}
 	else
 	{

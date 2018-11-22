@@ -261,7 +261,7 @@ public function futanariTalkWithPenpen():void
 			clearMenu();
 			if(flags["PENNY_THROBB_USES"] >= 3 && flags["PENNY_THROBB_USES"] != undefined)
 			{
-				output("\n\nThat said, she’s more than a little pliable with her dick that close to her face, so if you wanted to turn her into an obedient, sex-addicted pet you could probably quite easily work her up into embracing throbb-enhanced horse-dick a little more enthusiastically. She wouldn't be much good for security, but maybe turning her into a camwhore would give her something to do. Teasing her into being more of a orgasm-addicted love pet still wouldn’t exactly be <i>nice</i>, but at least she’d be able to indulge her basest, most licentious urges.");
+				output("\n\nThat said, she’s more than a little pliable with her dick that close to her face, so if you wanted to turn her into an obedient, sex-addicted pet you could probably quite easily work her up into embracing throbb-enhanced horse-dick a little more enthusiastically. She wouldn’t be much good for security, but maybe turning her into a camwhore would give her something to do. Teasing her into being more of a orgasm-addicted love pet still wouldn’t exactly be <i>nice</i>, but at least she’d be able to indulge her basest, most licentious urges.");
 				output("\n\nSo, what do you want to do?");
 				//[Tell her to calm down] [Have fun with her]
 				clearMenu();
@@ -328,7 +328,7 @@ public function futanariTalkWithPenpen():void
 
 				output("\n\nThinking about it for a moment, you realize that Penny probably wouldn’t be able to handle any more of the drug. Her lust seems to be stoked to a high degree already, and giving her more Throbb would certainly lead to her losing her post.");
 
-				output(" That said, she’s very pliable at the moment, so if you wanted to turn her into an obedient, sex-addicted pet you could probably quite easily work her up into embracing her new assets a little more enthusiastically. Chances are she'd be useless as shipboard security, but maybe she could do something else. Maybe she could be a live-in camwhore. Teasing her into being more of a orgasm-addicted exhibition-pet still wouldn’t exactly be <i>nice</i>, but at least she’d be able to pay off her debts while indulging in her basest, most licentious urges.");
+				output(" That said, she’s very pliable at the moment, so if you wanted to turn her into an obedient, sex-addicted pet you could probably quite easily work her up into embracing her new assets a little more enthusiastically. Chances are she’d be useless as shipboard security, but maybe she could do something else. Maybe she could be a live-in camwhore. Teasing her into being more of a orgasm-addicted exhibition-pet still wouldn’t exactly be <i>nice</i>, but at least she’d be able to pay off her debts while indulging in her basest, most licentious urges.");
 				output("\n\nSo, what do you want to do?");
 				//[Tell her to calm down] [Have fun with her]
 				clearMenu();
@@ -928,7 +928,7 @@ public function pennyMorningWakeups():void
 		// end scene (scene: Prelude); increase Lust by 20
 		pc.lust(20);
 		clearMenu();
-		addButton(0,"Wake Up",wakeUpSleepyPen,undefined,"Wake Up","Can't waste time dreaming!");
+		addButton(0,"Wake Up",wakeUpSleepyPen,undefined,"Wake Up","Can’t waste time dreaming!");
 		addButton(1,"Dream On",dreamOnYouSexyPennyFucker,undefined,"Dream On","See where this sexy dream goes...");
 	}
 }
@@ -1113,7 +1113,7 @@ public function fuckSleepyPenny():void
 			if(penny.isSquirter()) output("and every time you rock her clit from one side to the other, she gushes a second time, soaking your [pc.skinFurScales] and dribbling it down into the sheets of your bed");
 			else output("though the slimy secretions dwindle after. Every time you rock her clit from one side to the other, she trickles a little bit more into your [pc.skinFurScales]");
 		}
-		else output("and every time you jerk her erect, stiff cock in time with your pseudo-fucking her pussy, she shoots a shot of her foxy cum into your palm; what you aren’t dexterous enough to catch, sprays onto the cloth of your bed" + (penny.cocks[0].cLength() > 10 ? ". There's a lot that spills into the sheets, impregnating them with its gooey, salty mass":""));
+		else output("and every time you jerk her erect, stiff cock in time with your pseudo-fucking her pussy, she shoots a shot of her foxy cum into your palm; what you aren’t dexterous enough to catch, sprays onto the cloth of your bed" + (penny.cocks[0].cLength() > 10 ? ". There’s a lot that spills into the sheets, impregnating them with its gooey, salty mass":""));
 		output(". <i>“Fffffffff,”</i> she winces through clenched teeth, her breathing coming raggedly through her nose all the while.");
 		output("\n\nYou weren’t too far behind her, and you orgasm right alongside her: feeling her body tense and quake in pleasure brings you over your own edge, and you reflexively clamp your [pc.thighs] down onto Penny’s tail, your [pc.vagina] gushing your [pc.girlCum] along its fluffy, furry length. In some part of your head, you hope you aren’t clenching down on her too hard, but the rest of your head is too preoccupied with the fact that you’re cumming. You feel your juices leak and dribble down your leg, as far down as your knees, before finally dripping onto the sheets as well.");
 	}
@@ -1278,7 +1278,7 @@ public function turnPennyIntoACamwhore(discrete:Boolean = false):void
 	clearOutput();
 	showPenny(true);
 	author("Abe. E. Seedy & Fen");
-	output("<i>“Be a camwhore,”</i> you say simply. <i>“Then everyone in the galaxy can see what a depraved, cum-sucking slut you are. " + (discrete ? "You don’t even have to show your face. You could wear a mask or hood, maybe even set up an id-blurring filter if there’s enough blood left in your brain to figure out how to work a computer.":"Your face could be synonymous with jizz-addicted dick-girl sluts. You wouldn't be able to walk down the street without people seeing you and instantly knowing what you do in your free moments - every single one of them.") + "”</i>");
+	output("<i>“Be a camwhore,”</i> you say simply. <i>“Then everyone in the galaxy can see what a depraved, cum-sucking slut you are. " + (discrete ? "You don’t even have to show your face. You could wear a mask or hood, maybe even set up an id-blurring filter if there’s enough blood left in your brain to figure out how to work a computer.":"Your face could be synonymous with jizz-addicted dick-girl sluts. You wouldn’t be able to walk down the street without people seeing you and instantly knowing what you do in your free moments - every single one of them.") + "”</i>");
 	output("\n\nPenny moans, clearly turned on by the thought of becoming some kind of public slut. The knowledge that thousands could watch her jerk off live, seeing every detail of her [penny.cock] throbbing and jerking and spurting helplessly into her mouth... and they’d be cumming too, because of her. They’d be spilling their own creamy, salty loads all because she dared to be the biggest slut she could be. The vixen gurgles in lust and confusion, shaking once or twice before straining for her [penny.cockHead].");
 	output("\n\nStill making sure you have a strong enough of a grip to keep her away from her cock, you shift one of your hands to scratch lightly against the base of her ears. <i>“What?”</i> you tease her. <i>“Are you too shy for that? Doesn’t the thought of everyone seeing you desperately sucking your own dick turn you on?”</i>");
 	output("\n\n<i>“Muhhmmmm!”</i> she answers, leaving you unsure as to whether she’s struggling to speak further or break free from your grip and resume servicing herself. Finally she manages to make a more coherent response, whimpering, <i>“But... how will they respect m-”</i>");
