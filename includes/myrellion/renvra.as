@@ -929,7 +929,6 @@ public function renvraFullPregnancyEnds(pregSlot:int):void
 		else output(" You futilely rub at your over-sensitive groin, trying to coax some relief from your bare crotch.");
 		output(" The first child’s crown starts pushing out of you, slowly but surely reaching the lips of your pussy. The stretch is incredible,");
 		var tGape:Number;
-		
 		if (pregSlot == 3) tGape = pc.ass.looseness();
 		else tGape = pc.vaginas[pregSlot].looseness();
 		if (tGape < 5) output(" forcing you to push like you’ve never pushed before to squeeze the newborn through the lips of your cunt");
