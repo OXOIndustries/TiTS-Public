@@ -863,8 +863,16 @@ public function seraNurseryCafeteriaApproach():void
 	if(flags["MET_SERA_IN_NURSERY"] == undefined)
 	{
 		babyIdx = 0;
-		babym = (seraNoNameBabies[babyIdx].NumMale > 0);
-		babyName = seraNoNameBabies[babyIdx].Name;
+		if(seraNoNameBabies.length > 0)
+		{
+			babym = (seraNoNameBabies[babyIdx].NumMale > 0);
+			babyName = seraNoNameBabies[babyIdx].Name;
+		}
+		else if(seraBabies.length > 0)
+		{
+			babym = (seraBabies[babyIdx].NumMale > 0);
+			babyName = seraBabies[babyIdx].Name;
+		}
 		
 		output("<i>“So this place is real then,”</i> Sera says without preamble, when you sit down opposite her. She jams another load of pasta into her cheek. <i>“S’good. I’d be killing you right about now ‘f it weren’t.”</i>");
 		output("\n\n<i>“No problems getting in?”</i> The fork clatters on the plate; Sera glowers reptilian hate in the direction of the front desk.");
