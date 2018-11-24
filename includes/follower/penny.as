@@ -326,7 +326,7 @@ public function futanariTalkWithPenpen():void
 				else output("dips into her sheath to play with it");
 				output(". Her womanly folds are almost entirely forgotten as she babbles, <i>“I think I want more, [pc.name].... I mean, I remember not wanting to turn myself into a hyper-dicked freak, but now... I kind of want to see how big it can get. Each time it feels better!”</i> She slurps at her tip as you consider the situation. <i>“Umph! So good! Come on, give me a monster cock! I promise I won’t split you in half with it!”</i>");
 
-				output("\n\nThinking about it for a moment, you realize that Penny probably wouldn’t be able to handle any more of the drug. Her lust seems to be stoked to a high degree already, and giving her more Throbb would certainly lead to her losing her post.");
+				output("\n\nThinking about it for a moment, you realize that Penny probably wouldn’t be able to handle any more of the drug. Her lust seems to be stoked to a high degree already, and giving her more Throbb would certainly lead to her losing her willpower.");
 
 				output(" That said, she’s very pliable at the moment, so if you wanted to turn her into an obedient, sex-addicted pet you could probably quite easily work her up into embracing her new assets a little more enthusiastically. Chances are she’d be useless as shipboard security, but maybe she could do something else. Maybe she could be a live-in camwhore. Teasing her into being more of a orgasm-addicted exhibition-pet still wouldn’t exactly be <i>nice</i>, but at least she’d be able to pay off her debts while indulging in her basest, most licentious urges.");
 				output("\n\nSo, what do you want to do?");
@@ -348,7 +348,7 @@ public function futanariTalkWithPenpen():void
 				if(penny.balls > 0) output("cradles her balls");
 				else output("dips into her sheath to play with it");
 				output(". Her womanly folds are almost entirely forgotten as she babbles, <i>“I think I want more, [pc.name].... I mean, I remember not wanting to turn myself into a hyper-dicked freak, but now... I kind of want to see how big it can get. Each time it feels better!”</i> She slurps at her tip as you consider the situation. <i>“Umph! So good! Come on, give me a monster cock! I promise I won’t split you in half with it!”</i>");
-				output("\n\nPenny will surely lose it if you give her the go ahead to take any more. Her already lustful nature seems to be stoked to a high degree already, and giving her more Throbb would certainly lead to her losing her post. No, she can’t have any more now, and you tell her as much.");
+				output("\n\nPenny will surely lose it if you give her the go ahead to take any more. Her already lustful nature seems to be stoked to a high degree already, and giving her more Throbb would certainly lead to her losing her willpower. No, she can’t have any more now, and you tell her as much.");
 				output("\n\nAmazingly, she actually wilts a little at that. Her masturbation stops as the fennec dreamily says, <i>“Okay, okay, I guess. I’m getting a little out of hand, aren’t I?”</i> You nod. <i>“Good, cause it seems to be keeping you around. I’m going to fuck you so hard as soon as I get caught up on work!”</i> She turns back towards what she was doing while trying to pack her monster dick into her pants. It doesn’t work all that well.");
 				this.clearMenu();
 				if(pc.hasItemByClass(HorseCock)) 
@@ -372,6 +372,7 @@ public function pennyOutfitTalk():void
 	showPenny();
 	author("B");
 	output("You look over what Penny is wearing.");
+	output("\n\n");
 	if(penny.armor is UGCCasualOutfit)
 	{
 		output("She’s wearing a too-small white T-shirt, with sleeves that reach halfway to her elbows; a hem that reaches just beneath her ribs, exposing her midriff; and clings to her DD-cup breasts, leaving nothing to your imagination. Emblazoned on its front is a cutesy cartoon character – what looks like a pink cat-like creature with <i>huge</i> blue eyes, striking a playful pose, standing on top of some words written in a language you don’t immediately understand. For pants, she’s wearing a pair of cut-off jeans that hug tightly to her thighs; they also only reach halfway to her knees, exposing quite a lot of furry leg to the air of the ship");
@@ -393,7 +394,7 @@ public function pennyOutfitTalk():void
 			else if(penny.cocks[0].cLength() < 13) output(", and her pants do little to hide the impressive cock currently sitting flaccid in her sheath, or her big, full, heavy nuts pressing into her thighs");
 			else output(", and her uniform is no match for her impressively, embarrassingly large cock and her churning, heavy balls, even as they are, sitting completely flaccid and soft. If she were erect, you doubt even her sturdy uniform would be able to withstand the sheer kinetic force her dick would be outputting");
 		}
-		output(".\n\nYou’re aware that she packed some civilian clothing} when she joined your crew. You’re sure, if you asked her to change, she’d acquiesce.");
+		output(".\n\nYou’re aware that she packed some civilian clothing when she joined your crew. You’re sure, if you asked her to change, she’d acquiesce.");
 	}
 	clearMenu();
 	addButton(0,"Ask2Change",ask2ChangePenny);
@@ -517,7 +518,7 @@ public function continuePennyChangingNotOfficer(newScreen:Boolean = false):void
 	output(" do nothing but sit and watch.");
 
 	output("\n\n<i>“Here we are,”</i> she muses as she pulls out her civilian clothing, starting with her shorts. Continuing the show, she takes her time putting her two feet into the denim shorts, and when she starts hiking them up, she makes it as much of a struggle as she did getting off her uniform: when the shorts hit the curve of her ass, she has to shake, shimmy, and bounce them up over the swell of her rump.");
-	output("\n\nUnlike her uniform, though, her shorts are much tighter, clinging to her body like a second skin and threatening to burst if she were to split her legs just a little too far" + (penny.hasCock() ? " – or if she even got the hint of an erection":"") + ". She teases her zipper lifting into place, but she struggles a little bit getting the front button of her pants into place, and the rear denim clasp up and over her tail.");
+	output("\n\nUnlike her uniform, though, her shorts are much tighter, clinging to her body like a second skin and threatening to burst if she were to split her legs just a little too far" + (penny.hasCock() ? " – or if she even got the hint of an erection":"") + ". She lifts her zipper into place flirtatiously, but she struggles a little bit getting the front button of her pants into place, and the rear denim clasp up and over her tail.");
 	output("\n\nWith just one last piece left, she bends forward (at the waist, of course), to reach into her suitcase and pull out her top: a plain white T-shirt, with a cutesy cartoon character plastered on the front: a pink cat-like creature, striking a playful pose, and standing on top of a phrase written in a language you don’t immediately understand.");
 	output("\n\nEven from where you’re sitting, you know that the shirt is too small for her, but she slips it on anyway: the hem is stretched taut to conceal her hefty, DD-cup breasts, and it reaches only to her lower ribs. The sleeves aren’t much better, only going down halfway to her elbows, leaving the rest of her arms bare.");
 	output("\n\nFinally, with all that done, she’s back in her civilian clothes, looking just like she did the day she joined your crew. She finishes the ensemble by righting her shirt – which promptly crumples and un-rights itself, mismatched as it is against her body.");
@@ -668,7 +669,7 @@ public function otherCrewPennyTalk():void
 	{
 		author("Fenoxo");
 		output("You ask Penny what her opinion is on the rest of your crew.");
-		output("\n\nA slow smile spreads across her vulpine muzzle. <i>“I think they’re hotties, you " + pc.mf("stud","alpha") + ".”</i> She chews her lip, hands automatically falling into service about the beastial length in her lap. <i>“I think you’re it’s hot as fuck you’re assembling a crack team of sexy fuck-buddies to parade around the universe with. It’s so flattering that I get to be one of them. " + (pc.hasCock() ? "So hot that I get to leave my cuntscent on your dick for them to smell the next time you drop trou for a quickie.":"So hot that I get to leave my cockscent all over you to get them going whenever you stop by someone else’s room for a quickie.") + "”</i>");
+		output("\n\nA slow smile spreads across her vulpine muzzle. <i>“I think they’re hotties, you " + pc.mf("stud","alpha") + ".”</i> She chews her lip, hands automatically falling into service about the beastial length in her lap. <i>“I think it’s hot as fuck that you’re assembling a crack team of sexy fuck-buddies to parade around the universe with. It’s so flattering that I get to be one of them. " + (pc.hasCock() ? "So hot that I get to leave my cuntscent on your dick for them to smell the next time you drop trou for a quickie.":"So hot that I get to leave my cockscent all over you to get them going whenever you stop by someone else’s room for a quickie.") + "”</i>");
 		if(pc.isBimbo()) output("\n\nYou giggle in delight. This slutty fox knows exactly how you think!");
 		else if(pc.isBro()) output("\n\nYou grunt in approval. This slutty fox thinks almost like a Treated girl.");
 		else if(pc.isNice()) output("\n\nYou crack a smile at that.");

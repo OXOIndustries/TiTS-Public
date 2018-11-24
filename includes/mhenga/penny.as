@@ -1198,7 +1198,7 @@ public function talkToPennyAboutSpecies():void {
 	output("\n\nPenny answers, <i>“I met someone that was doing it already, and... she loved it. She even changed her name to Kit after her cat ears grew in. I wound up being pretty good friends with her... great friends actually, and I decided I was going to go for it.”</i> The way she talks, it sounds like her and this cat-girl might have been a little more than friends, but you don’t push the issue. <i>“Unfortunately, I didn’t have a nice inheritance from a rich aunt to pay for my changes. Instead, I took the toughest, best paying posts I could.”</i> Penny growls low in her throat. <i>“It was hell, but I stuck it out. I knew what I wanted, and bit by bit, I saved up the cash for some splices.”</i>");
 	output("\n\nThe fox-girl curls her left hand into a fist. <i>“I had to take out a huge loan for the rest, but I managed to afford what I wanted: a fox transformation, and not just any fox, a fennec fox.”</i>Her ears flit this way and that. <i>“Not to sound all girly or anything, but don’t fennecs just have the cutest ears?!”</i> They swivel your direction. <i>“First my ears moved up and started reshaping. Then, my face started to elongate, and the fur began growing out. It wasn’t long before I wound up with digitigrade legs and footpaws.”</i> Penny snugs her vest a bit more tightly around her chest wrap. <i>“I actually managed to get some breast enhancement included with it. As a flat-chested asian girl, I always wanted a big pair. Given my vocation, I think I went a bit overboard. I gotta keep the girls packed pretty tight if I want to be able to run or fight worth a damn.”</i>");
 	
-	output("\n\nYou’re a little stunned by the information she’s piled onto you, but it seems to have lifted the big-eared vixen’s attitude a bit. <i>“I better get this report filed, [pc.name]. Thanks for listening. It’s nice to get things off your chest every once and a while.”</i> She chuckles at her inadvertant pun" + (!pennyIsCrew() ? " as she turns back to her computer":"") + ".");
+	output("\n\nYou’re a little stunned by the information she’s piled onto you, but it seems to have lifted the big-eared vixen’s attitude a bit. <i>“" + (!pennyIsCrew() ? "I better get this report filed, [pc.name]. ":"") + "Thanks for listening. It’s nice to get things off your chest every once and a while.”</i> She chuckles at her inadvertant pun" + (!pennyIsCrew() ? " as she turns back to her computer":"") + ".");
 	
 	//Pass 30m
 	processTime(30);
@@ -2313,7 +2313,7 @@ public function penniliciousPawjob():void {
 		output(" Her fluffy paw migrates higher to press against [pc.oneCock]");
 		if(!pc.isCrotchExposed()) 
 		{
-			output(" through your [pc.cortchCoverLower]");
+			output(" through your [pc.crotchCoverUnder]");
 		}
 		output(", squeezing it with tantalizing soft pads. You cheerfully answer, <i>“Ohh yeah,”</i> and grind your [pc.hips] up against it.");
 		if(!pc.isCrotchExposed()) output("\n\nStripping out of your equipment,");
@@ -2438,7 +2438,7 @@ public function suckAndLickAtPennyYouDildo(dick:Boolean = true):void {
 		output(".");
 		if(pc.cumQ() >= 1000)
 		{
-			if(!inPennyQuest()) output(" Luckily, there’s a drain to catch the waves of spooge you put out, and you don’t wind up flooding the entire cell.");
+			if(!inPennyQuest()) output(" Luckily, there’s a drain to catch the waves of spooge you put out, and you don’t wind up flooding the entire " + (!pennyIsCrew() ? "cell" : "area") + ".");
 			else output(" Luckily, the floor is sloped, so the waves of spooge you put out are free to flow away.");
 		}
 	}
@@ -2450,7 +2450,7 @@ public function suckAndLickAtPennyYouDildo(dick:Boolean = true):void {
 	{
 		output("\n\nOnce you’ve had your fill, you push the lewd little fox-girl off of you, feeling quite sated and sticky. Penny teases, <i>“Ohhh, mate, you’ve soiled my feet! I need a shower now!”</i> That doesn’t stop her from walking in a way that has her slippery limbs sliding against each other, smearing your leavings higher and higher up her calves on her way to the door. There’s the satisfying click of a lock being disengaged, and Penny scampers away, ");
 		if(penny.hasCock()) output("[penny.cock] flopping comically between her legs, ");
-		output("leaving [pc.cumColor] footprints in her wake. You grab your gear and see your way back out to her office now that you’ve gotten a handle on your baser urges.");
+		output("leaving [pc.cumColor] footprints in her wake. You grab your gear and see your way back out" + (!pennyIsCrew() ? " to her office" : "") + " now that you’ve gotten a handle on your baser urges.");
 		pc.loadInMouth(penny);
 		processTime(34);
 		pc.orgasm();
@@ -2634,7 +2634,7 @@ public function postPennyFrottage():void {
 	output("\n\nPenny’s body looks three times as big after toweling off. She’s a giant puff-ball thanks to the aggressive toweling off you gave her");
 	if(pc.hasHair()) output(", and your [pc.hair] didn’t fare much better");
 	else output(", and her hair didn’t fare much better");
-	output(". Giggling, the bundle of fluff snaps you with her towel before ducking around the corner. You chase after her, towels snapping each other until you’ve dried the rest of the way off and had time to get ready to go. She’s sure to pinch your bottom before flouncing off towards her desk, calling, <i>“I’ll be doing some reports if you need anything! Stay out of trouble, mate!”</i>");
+	output(". Giggling, the bundle of fluff snaps you with her towel before ducking around the corner. You chase after her, towels snapping each other until you’ve dried the rest of the way off and had time to get ready to go. She’s sure to pinch your bottom before flouncing off towards her desk, calling, <i>“I’ll be " + (!pennyIsCrew() ? "doing some reports" : "here") + " if you need anything! Stay out of trouble, mate!”</i>");
 	output("\n\nYou follow after her, glad for her shower facilities.");
 	//Reset lust
 	//Pass 50 minutes.
@@ -3435,7 +3435,7 @@ public function nevermindCumslutPenny():void
 	author("Fenoxo");
 	showPenny(true);
 	output("<i>“Nevermind!”</i> you jovially say, pushing Penny halfway down her dick before tugging the gasping, giggling prick-vixen back up. <i>“You keep camwhoring your heart out. It’s fun, isn’t it?”</i>");
-	output("\n\nPenny nods as much as your grip allows. <i>“Y-yeah. They love it when I suck myself deep. I even got a camera script that zooms in when I climax, right on my dick so they can see it pulsate with each load.”</i> Her [penny.cock] swells, forming an enormous droplet of pre at its apex, nestled snugly between Pennythe fox’s fuzzy tits. <i>“And I cum so hard knowing they’re all jacking off, mate. I cum so hard.”</i> She whimpers. <i>“Please... can I suck now? Can I milk out a load for you? Please?”</i>");
+	output("\n\nPenny nods as much as your grip allows. <i>“Y-yeah. They love it when I suck myself deep. I even got a camera script that zooms in when I climax, right on my dick so they can see it pulsate with each load.”</i> Her [penny.cock] swells, forming an enormous droplet of pre at its apex, nestled snugly between " + (rand(2) == 0 ? "Penny" : "the fox") + "’s fuzzy tits. <i>“And I cum so hard knowing they’re all jacking off, mate. I cum so hard.”</i> She whimpers. <i>“Please... can I suck now? Can I milk out a load for you? Please?”</i>");
 	output("\n\nYou push her back onto her cock, watching her cheeks hollow and her tongue flick out, spreading the syrupy pre across glistening veins and heavy, turgid flesh. The whorish vixen’s eyes flutter closed as she slurps and sucks. <i>“Of course you can suck, and you should. There’s still so much cum in those balls of yours, isn’t there? So much cum for you to suck and drink, and if you’re going to be the very sluttiest, cum-thirstiest girl on the extranet, you’re going to need to swallow it down until your breath smells as cummy as all your viewer’s dicks added together.”</i>");
 	output("\n\nWave after wave of cum spurts into Penny’s mouth in response, bulging her cheeks. She gurgles in ecstatic bliss and gulps as fast as she can, but there’s too much cum. Rivers of it stream from the corners of her mouth to slide down onto her tits. You pull her back before she chokes herself, watching thick sprays burst upon her pleasure-drunk face and tongue. Gooey ropes cling to her mohawk and weigh it down until it sticks to one of her colossal fennec-morphed ears. The fox revels in it. She rolls out her tongue just to taste the splashes of excess. One handed, she futilely shovels palmfuls of spunk into her mouth, uncaring that her dick’s deluge re-drenches the spot in a single spurt.");
 	output("\n\nWhen she finally finishes, Penny spends several long moments simply breathing deeply, blissfully taking in the scent of sex filling her nostrils. She licks her lips once, then opens her eyes slowly. <i>“Fuck, [pc.name], that gets better every time. I’ve been doing that a </i>lot<i>, but it’s always better when you’re here to really get things going.”</i> She wipes one finger along the worst of it, gathering up the sticky whiteness and slipping it happily inside her mouth. She keeps on like that - leisurely licking at loose strands rather than making an effort to clean herself up properly. It looks like she’s quite happy to leave herself dripping wet, so that she’s visibly marked as a cumslut rather than enjoying the pleasure of cleaning herself off.");
@@ -3919,7 +3919,7 @@ public function suckPennyUnderDesk():void
 	else output("<i>“How about I suck you off" + (pennyIsCrew() ? " while you work":"") + "?”</i>");
 	output(" You lick your [pc.lips], thinking of that delicious cock throbbing in her pants, eager to sink itself into a warm, wet hole.");
 
-	output("\n\n<i>“I don’t think I’ll be able to " + (pennyIsCrew() ? "help with security":"work") + " with a pair of lips wrapped around my cock, but I’d love to try,”</i> Penny murrs seductively before standing up, her zipper down and her dick raring to go. She rounds the desk stopping in front of you, poking you with her erection. <i>“But we’re doing this my way.”</i>");
+	output("\n\n<i>“I don’t think I’ll be able to " + (!pennyIsCrew() ? "help with security":"work") + " with a pair of lips wrapped around my cock, but I’d love to try,”</i> Penny murrs seductively before standing up, her zipper down and her dick raring to go. She rounds the desk stopping in front of you, poking you with her erection. <i>“But we’re doing this my way.”</i>");
 	output("\n\nBefore you can react Penny pulls your arms behind your back and with a telltale click, she cuffs you. <i>“");
 	if(penny.cocks[0].cLength() >= 13) 
 	{
@@ -3930,7 +3930,7 @@ public function suckPennyUnderDesk():void
 	}
 	else output("We wouldn’t want our sexy cum-guzzler getting away before I bust a nut into [pc.hisHer] mouth.”</i>");
 	output(" Not giving you time to protest, Penny manhandles you " + (pennyIsCrew() ? "to the ground":"under her desk") + " before sitting down, her [penny.cock] poking at your [pc.lipsChaste]. With your hands cuffed behind your back and a cock in your face, you don’t have much of a choice, not that you would have it any other way.");
-	output("\n\nBefore Penny has a chance to get impatient you take the tip of her member into your mouth, earning an eager moan from Penny. You hear the tapping of her " + (pennyIsCrew() ? "codex above you as she watches the security feeds in an effort to endure your fervent sucking":"keyboard from above you; somehow she managed to start working") + ". You breathe deep before plunging deeper on her cock, not stopping before you’ve reached her ");
+	output("\n\nBefore Penny has a chance to get impatient you take the tip of her member into your mouth, earning an eager moan from Penny. You hear the tapping of her " + (!pennyIsCrew() ? "codex above you as she watches the security feeds in an effort to endure your fervent sucking":"keyboard from above you; somehow she managed to start working") + ". You breathe deep before plunging deeper on her cock, not stopping before you’ve reached her ");
 	if(penny.hasCock(GLOBAL.TYPE_EQUINE)) output("medial ring");
 	else if(penny.hasAKnot()) output("knot");
 	else output("half-way point");
@@ -4010,7 +4010,7 @@ public function yesPennyLetsRP():void
 	output("\n\nOnce she’s naked, she uncuffs you before stepping back to ogle at your body. ");
 	if(!pc.isExposed()) output("You reach down to get your own clothes off, but before you can even touch your own clothes Penny jabs you in the stomach with her nightstick, not so hard it would hurt but strong enough to get your attention. <i>“Did I tell you that you can take off your clothes? You’re not doing anything if I don’t give you permission.”</i> she waves her nightstick menacingly, <i>“turn around, hands against the wall.”</i> after you press your hands against the walls she kicks your legs apart before starting to pull off your clothing. Once you’re naked she pays special attention to your [pc.ass], roughly groping it before giving it a harsh slap.");
 	else output("Penny looks at your naked form with a grin on her muzzle. <i>“A criminal and a pervert to boot, you’re lucky that nudity isn’t illegal here. I’d love to give you a harsher punishment on top of the punishment I’ll be personally dealing.”</i> The way she grins as she speaks sends a shiver down to your [pc.vagOrAss].");
-	output("\n\nClearly hungering for more Penny pushes you into the cell, ordering you to lift your arms as high as you can against the bars. You do as she commands, not wanting her to threaten you with her nightstick again. With your arms up, she cuffs them to the bars, forcing you to keep your arms up.");
+	output("\n\nClearly hungering for more Penny pushes you into " + (!pennyIsCrew() ? "the" : "a") + " cell, ordering you to lift your arms as high as you can against the bars. You do as she commands, not wanting her to threaten you with her nightstick again. With your arms up, she cuffs them to the bars, forcing you to keep your arms up.");
 	output("\n\nPenny grabs " + (pc.legCount > 1 ? "one of your [pc.legs], and lifting it up, makes you struggle to balance":"your wrist and yanks it up, making it difficult to balance") + ". You feel a hard, throbbing length grinding against your [pc.ass]. <i>“I’m going to wreck this so hard,”</i> Penny whispers into your ear while nipping your neck. Before you get to worry about her going in dry, you hear Penny spit and stroke something wet. You’re pretty sure that you know what she’s stroking.");
 	output("\n\nWith all of the preparations, she’s going to do out of the way she presses the tip of her cock against your [pc.asshole]. ");
 	if(pc.analCapacity() < penny.cockVolume(0)) output("You dread for your comparatively small asshole as she’s inches away from invading your back passage. ");
@@ -4096,7 +4096,7 @@ public function yesPennyLetsRP():void
 	if(pc.analCapacity() < penny.cockVolume(0)) output("sore ");
 	output("ass.");
 
-	output("\n\nNot a minute passes before Penny is back; this time her expression is gentle and loving instead of stern and domineering. She unlocks the cell and pulls you into her arms. <i>“I hope I wasn’t too rough with you, my mate.”</i> Her fingers gently trace the bite mark. <i>“Sorry... come on, let’s get a shower.”</i>");
+	output("\n\nNot a minute passes before Penny is back; this time her expression is gentle and loving instead of stern and domineering. She " + (!pennyIsCrew() ? "unlocks" : "enters") + " the cell and pulls you into her arms. <i>“I hope I wasn’t too rough with you, my mate.”</i> Her fingers gently trace the bite mark. <i>“Sorry... come on, let’s get a shower.”</i>");
 	processTime(30);
 	pc.orgasm();
 	pc.loadInAss(penny);

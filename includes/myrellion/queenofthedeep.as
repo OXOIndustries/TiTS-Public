@@ -1136,9 +1136,12 @@ public function queenMorningSickness():void
 	clearOutput();
 	author("Savin");
 	
+	var inShip:Boolean = InShipInterior();
+	var inPublic:Boolean = (InPublicSpace() || rooms[currentLocation].planet.toLowerCase().indexOf("station") != -1 || rooms[currentLocation].hasFlag(GLOBAL.INDOOR));
+	
 	output("A wave of nausea hits you out of nowhere, all but toppling you over. You stumble");
-	if (InShipInterior(pc)) output(" over to your vessel’s restroom");
-	else if (InPublicSpace(pc)) output(" to the nearest bathroom");
+	if (inShip) output(" over to your vessel’s restroom");
+	else if (inPublic) output(" to the nearest bathroom");
 	else output(" to the ground");
 	output(" and puke, retching until your eyes and throat burn.");
 

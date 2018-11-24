@@ -2124,18 +2124,27 @@ public function frostwyrmPregnancyEnds(pregSlot:int, nEggs:int = 0):void
 	var pData:PregnancyData = (pc.pregnancyData[pregSlot] as PregnancyData);
 	var x:int = pregSlot;
 	if (pregSlot == 3) x == -1;
+	var inShip:Boolean = InShipInterior();
+	var inPublic:Boolean = (InPublicSpace() || rooms[currentLocation].planet.toLowerCase().indexOf("station") != -1 || rooms[currentLocation].hasFlag(GLOBAL.INDOOR));
 	
 	output("Just as your thoughts were turning to your rotund and overbearing belly, you feel <i>something</i> in your loins, followed by a rush in your lower stomach. It’s time; the kip’s on its way <i>right now.</i>");
 	
 	//on ship with auto-medbay (commented until one is available)
-	if(InShipInterior() && 9999 == 0)
+	if (inShip && 9999 == 0)
+	{
+		output("\n\nYou head for the automatic medbay, clutching your trembling stomach. Contractions intensify quickly -- by the time the system finishes its evaluation and moves into action, you’re");
+		if (!pc.isNude()) output(" disrobed but");
+		output(" no longer able to speak between breaths.");
+	}
+	//on ship without automatic medbay
+	else if (inShip)
 	{
 		output("\n\nYou reach for the nearest medkit before hurrying to your quarters to set yourself on your bed. You get as comfortable as you can in your hurry,");
 		if(!pc.isNude()) output(" struggle to remove your [pc.lowerGarments], then you");
 		output(" splay your legs and push.");
 	}
 	//in public place
-	else if(InPublicSpace())
+	else if(inPublic)
 	{
 		output("\n\nYou flag down the nearest civilian and tell them the situation, and that you’re in some pretty dire need of medical assistance. You find a safe place to sit down,");
 		if (!pc.isNude()) output(" struggle to remove your [pc.lowerGarments], then you");

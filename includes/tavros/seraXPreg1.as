@@ -584,27 +584,29 @@ public function seraSpawnPregnancyEnds():void
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;
 	var babym:Boolean = (se.value4 == 1);
+	var inShip:Boolean = InShipInterior();
+	var inPublic:Boolean = (InPublicSpace() || rooms[currentLocation].planet.toLowerCase().indexOf("station") != -1 || rooms[currentLocation].hasFlag(GLOBAL.INDOOR));
 	
 	output("Pain in your gut bends you over and fluid spills");
 	if(!pc.isCrotchExposed()) output(" into your [pc.lowerGarment]");
-	else if(InShipInterior()) output(" onto the deck");
+	else if(inShip) output(" onto the deck");
 	else output(" onto the ground");
 	output(". Oh god, the baby is coming...");
 	
 	//on ship with auto-medbay (commented until one is available)
-	if(InShipInterior() && 9999 == 0)
+	if(inShip && 9999 == 0)
 	{
 		output("\n\nYou head for the automatic medbay, clutching your trembling stomach. Contractions intensify quickly -- by the time the system finishes its evaluation and moves into action, you’re");
 		if(!pc.isNude()) output(" disrobed but");
 		output(" no longer able to speak between breaths.");
 	}
 	//on ship without automatic medbay
-	else if(InShipInterior())
+	else if(inShip)
 	{
 		output("\n\nYou grab the nearest medkit and head for your bed, determined to deliver the baby safely. After setting aside your gear, you lie down and begin to breathe in preparation for your labor.");
 	}
 	//in public place
-	else if(InPublicSpace())
+	else if(inPublic)
 	{
 		output("\n\nA passer-by comes over to check on you, and begins to panic when you explain the situation. You default to giving short, simple orders, and your new deputy calms down. Together, you make it to a place where you can get medical aid.");
 	}
@@ -828,6 +830,13 @@ public function seraAtNursery():Boolean
 // Common room blurb
 public function seraNurseryCafeteriaBonus(btnSlot:int = 0):void
 {
+	if(!seraHasKidInNursery())
+	{
+		pc.removeStatusEffect("Sera at Nursery");
+		addDisabledButton(btnSlot, "Sera");
+		return;
+	}
+	
 	output("\n\nSera is parked behind a table on the older kid’s side, in the process of demolishing an evening meal.");
 	if(flags["MET_SERA_IN_NURSERY"] == undefined) output(" It takes you a moment to recognize her - she’s dressed in a shockingly mild jeans and blouse combo. Even her heels look fairly conservative today.");
 	else output(" It never stops being a bit weird to see the demon-morph in a fully lit environment with her business not all the way out there.");
