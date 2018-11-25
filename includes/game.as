@@ -2466,7 +2466,7 @@ public function showerMenu(special:String = "ship"):void
 	if(showerInShip)
 	{
 		output("\n\nNext to the shower is a medicine cabinet with various hygiene products.");
-		if (paigeInTheShower()) output("\n\nThere are a number of stalls in the shower room; the closest one is reserved the ship's captain and the rest of your crew always leaves it open.  That said, one of the other stalls is occupied, and you can hear the gentle singing of your Ausar lover and yoga instructor, Paige, over the running water.\n\n" + (pc.isTaur() ? "As much as the idea of joining her entices you, these showers barely have enough room in them for your gargantuan body as it is; shoving a second person into one of them is asking a lot.  You'll have to pass on sexy shower shenanigans this time." : "You could offer to join her, if you wanted.  Knowing her, she'd let you in.  Or you could just go about your business as usual."));
+		if (paigeInTheShower()) output("\n\nThere are a number of stalls in the shower room; the closest one is reserved the ship's captain and the rest of your crew always leaves it open. That said, one of the other stalls is occupied, and you can hear the gentle singing of your Ausar lover and yoga instructor, Paige, over the running water.\n\n" + (pc.isTaur() ? "As much as the idea of joining her entices you, these showers barely have enough room in them for your gargantuan body as it is; shoving a second person into one of them is asking a lot. You'll have to pass on sexy shower shenanigans this time." : "You could offer to join her, if you wanted. Knowing her, she'd let you in. Or you could just go about your business as usual."));
 	}
 
 	output("\n\nWhat would you like to do?");
