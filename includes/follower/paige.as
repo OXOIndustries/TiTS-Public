@@ -35,6 +35,9 @@ public function yogaToning(arg:Number):void
 	pc.modTone(arg);
 	if(flags["PAIGE_YOGA_DAY"] == undefined || flags["PAIGE_YOGA_DAY"] != days) flags["PAIGE_YOGA_DAY"] = days;
 	soreDebuff(4);
+	//This should do nothing if Paige isn't crew
+	if (!pc.hasStatusEffect("Paige Showering")) pc.createStatusEffect("Paige Showering");
+	pc.setStatusMinutes("Paige Showering", 12 * 60);
 }
 
 public function paigeBlind():Boolean
