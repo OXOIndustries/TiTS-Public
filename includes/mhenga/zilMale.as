@@ -1393,10 +1393,12 @@ public function zilPregnancyBirthing(pregSlot:int = 0, numBabies:int = 2):void
 	var isSmol:Boolean = (!pc.isTaur() && pc.tallness <= 64);
 	var isZil:Boolean = (pc.raceShort() == "zil");
 	var isNude:Boolean = (pc.isNude());
+	var inShip:Boolean = InShipInterior();
+	var inPublic:Boolean = (InPublicSpace() || rooms[currentLocation].planet.toLowerCase().indexOf("station") != -1 || rooms[currentLocation].hasFlag(GLOBAL.INDOOR));
 	
 	output("Pain wracks your gut, bending you over as you protectively place a hand on your [pc.stomach]. That and the fluids spilling onto");
 	if(!isNude) output(" your " + (!pc.isCrotchExposed() ? "[pc.lowerGarments]" : "clothing"));
-	else output(" the " + ((InShipInterior() || InPublicSpace()) ? "ground" : "floor"));
+	else output(" the " + ((inShip || inPublic) ? "ground" : "floor"));
 	output(" are sure signs that your babies are coming.");
 	// mhen’gaWilderness:
 	if(getPlanetName() == "Mhen'ga" && (rooms[currentLocation].hasFlag(GLOBAL.FOREST) || rooms[currentLocation].hasFlag(GLOBAL.JUNGLE)) && rooms[currentLocation].hasFlag(GLOBAL.OUTDOOR))
@@ -1455,7 +1457,7 @@ public function zilPregnancyBirthing(pregSlot:int = 0, numBabies:int = 2):void
 		currentLocation = "JUNGLE EDGE";
 	}
 	// Ship:
-	else if(InShipInterior())
+	else if(inShip)
 	{
 		showBust("");
 		
@@ -1480,7 +1482,7 @@ public function zilPregnancyBirthing(pregSlot:int = 0, numBabies:int = 2):void
 		// Removes the preggomones, puts the PC in their ship, and brings the babies to the nursery.
 	}
 	// Civilization:
-	else if(InPublicSpace())
+	else if(inPublic)
 	{
 		showBust("LEITHAN_MALE");
 		

@@ -1533,31 +1533,33 @@ public function sydianPregnancyEnds():void
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;
 	var babym:Boolean = (se.value4 == 1);
+	var inShip:Boolean = InShipInterior();
+	var inPublic:Boolean = (InPublicSpace() || rooms[currentLocation].planet.toLowerCase().indexOf("station") != -1 || rooms[currentLocation].hasFlag(GLOBAL.INDOOR));
 	
 	output("Pain in your gut bends you over and fluid spills");
 	if (!pc.isCrotchExposed()) output(" into your [pc.lowerGarment]");
-	else if (InShipInterior()) output(" onto the deck");
+	else if (inShip) output(" onto the deck");
 	else output(" onto the ground");
 	output(". Oh god, the baby is coming...");
 
 	//on ship with auto-medbay (commented until one is available)
-	if (InShipInterior() && 9999 == 0)
+	if (inShip && 9999 == 0)
 	{
 		output("\n\nYou head for the automatic medbay, clutching your trembling stomach. Contractions intensify quickly -- by the time the system finishes its evaluation and moves into action, you’re");
 		if (!pc.isNude()) output(" disrobed but");
 		output(" no longer able to speak between breaths.");
 	}
 	//on ship without automatic medbay
-	else if (InShipInterior())
+	else if (inShip)
 	{
 		output("\n\nYou grab the nearest medkit and head for your bed, determined to deliver the baby safely. After setting aside your gear, you lie down and begin to breathe in preparation for your labors.");
 	}
 	//in public place
-	else if (InPublicSpace())
+	else if (inPublic)
 	{
 		output("\n\nA passer-by comes over to check on you, and begins to panic when you explain the situation. You default to giving short, simple orders, and your new deputy calms down. Together, you make it to a place where you can get medical aid.");
 	}
-	else if (InRoomWithFlag(GLOBAL.JUNGLE))
+	else if(InRoomWithFlag(GLOBAL.OUTDOOR))
 	{
 		output("\n\nGroaning at the timing, you shed your [pc.gear] and seat yourself among the inhospitable and non-hospital-able terrain. The wish that you’d stayed somewhere indoors and safe hums through your thoughts like a mosquito, but there’s no help for it -- you’ll have to deliver the baby on your own.");
 	}

@@ -422,6 +422,8 @@ public function bothriocEggnancyEnds(pregSlot:uint, deltaT:uint):void
 	{
 		var c:Child = null;
 		var h:BothriocPregnancyHandler = PregnancyManager.findHandler("BothriocPregnancy") as BothriocPregnancyHandler;
+		var inShip:Boolean = InShipInterior();
+		var inPublic:Boolean = (InPublicSpace() || rooms[currentLocation].planet.toLowerCase().indexOf("station") != -1 || rooms[currentLocation].hasFlag(GLOBAL.INDOOR));
 
 		StatTracking.track("pregnancy/fertile bothrioc eggs", numFertile);
 
@@ -430,7 +432,7 @@ public function bothriocEggnancyEnds(pregSlot:uint, deltaT:uint):void
 			output("A feeling of pressure in your bowels has been gathering for some time now, and you gasp as your back passage spasms and a gush of oil warms your");
 			if (pc.hasLowerGarment()) output(" [pc.lowerUndergarment].");
 			else output(" your inner thighs.");
-			if (InPublicSpace() || InShipInterior() || InRoomWithFlag(GLOBAL.PRIVATE))
+			if (inShip || inPublic || InRoomWithFlag(GLOBAL.PRIVATE))
 			{
 				output(" You waddle as fast as you possibly can to the nearest restroom. You get a few stares, but this is the frontier");
 				// {or close enough dammit");
@@ -443,20 +445,19 @@ public function bothriocEggnancyEnds(pregSlot:uint, deltaT:uint):void
 				output(" There’s nothing for it. You try and find as quiet a spot as possible and, desperately hoping nothing attacks you whilst you’re in this state,");
 				if (pc.hasLowerGarment()) output(" remove your [pc.lowerGarments] and");
 				output(" squat.");
-
+			}
 			output("\n\nYou tense up as the first egg travels down your colon and stretches your [pc.anus] wide.");
 			if (pc.ass.wetness() < 3 && pc.ass.looseness() < 3) output(" Your backside was not designed for this type of task and the sensation is extreme. You bite your lip and can’t help but cry out as the large, violet oval finally comes free in a rush of clear lubricant.");
 			else output(" Your backside is better adapted for doing this than you ever originally could have imagined - buttslut that you have become - but the sensation is still deep. You moan with relief when the bulk of it finally gets past your ring, and it comes free in a rush of clear lubricant.");
 			if (numFertile == 1) output(" Fortunately, that seems to be the only one. The rest must have absorbed into your body. After a few minute’s rest you clean yourself up and retrieve the big, heavy, oil-coated egg.");
 			else output(" You barely have time to draw in a few ragged breaths before the pressure builds again - another hard, smooth oval forcing its way out of your rectum...");
-			}
 		}
 		else
 		{
 			output("A feeling of something dragging downwards in your womb has been gathering for some time now, and you gasp as your pussy suddenly spasms and a gush of oil warms your");
 			if (pc.hasLowerGarment()) output(" [pc.lowerUndergarment].");
 			else output(" your inner thighs.");
-			if (InPublicSpace() || InShipInterior() || InRoomWithFlag(GLOBAL.PRIVATE))
+			if (inShip || inPublic || InRoomWithFlag(GLOBAL.PRIVATE))
 			{
 				output(" You waddle as fast as you possibly can to the nearest restroom. You get a few looks, but this is the frontier;");
 				//" sudden bouts of intestinal distress/

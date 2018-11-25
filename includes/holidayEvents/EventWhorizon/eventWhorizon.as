@@ -385,13 +385,13 @@ private function ewTentacleCageBadEnd():void
 
 	output("\n\nBy the time you arrive at these vaunted cages of hers, the succubus is absolutely dripping.");
 	
-	output("\n\nThe <i>“cages”</i> are just more vines, but they’ve been cultivated into hanging from the sandstone walls of a semi-circular cove in the stone forest. These vines are mostly hard and first, strong enough to support your weight as you’re hoisted into them by the gardener’s planty minions. The vines of the <i>“door”</i> grow in an instant, sealing you in between pulsating bars of green vines.");
+	output("\n\nThe “cages” are just more vines, but they’ve been cultivated into hanging from the sandstone walls of a semi-circular cove in the stone forest. These vines are mostly hard and firm, strong enough to support your weight as you’re hoisted into them by the gardener’s planty minions. The vines of the <i>“door”</i> grow in an instant, sealing you in between pulsating bars of green vines.");
 	
 	output("\n\n<i>“There! Isn’t that so much better?”</i> the gardener coos from outside, letting the vines that imprisoned you wrap around her supple thighs. She barely even reacts when several of them squirm into her pussy and ass, propping her up on their turgid shafts as she reclines into a sitting posture above them.");
 
 	output("\n\n<i>“Don’t worry, sweetheart,”</i> she continues, licking her lips at the sight of your imprisonment. <i>“My babies will take such good care of you from now on. And you’ll feed us with those sweet, sweet juices of yours, too.”</i>");
 	
-	output("\n\nThe question that might have risen to your lips never comes - something else plugs your mouth before you get the chance to speak. The tentacles growing from the ground squirm up the walls, threading between the bars of your vine cage. If a plant could look hungry, these would: their cock-like crowns are swollen with pregnant need, drooling purple goo as the encircle your [pc.legs] and tear your remaining gear away. Your bare [pc.vagOrAss]");
+	output("\n\nThe question that might have risen to your lips never comes - something else plugs your mouth before you get the chance to speak. The tentacles growing from the ground squirm up the walls, threading between the bars of your vine cage. If a plant could look hungry, these would: their cock-like crowns are swollen with pregnant need, drooling purple goo as they encircle your [pc.legs] and tear your remaining gear away. Your bare [pc.vagOrAss]");
 	if (pc.hasCock())
 	{
 		if (pc.cocks.length == 1) output(" and cock are");
@@ -610,7 +610,7 @@ public function EWBondagePalace():void
 	
 	output("\n\nLike the outside of the temple, the interior of the palatial structure seems to be upheld in the arms of oversexed idols, with great big stone breasts and dicks and other, more esoteric sexual arrangements looming overhead. The ground floor, however, is dominated by a long, wine-red carpet that your [pc.feet] sink into the moment you step inside. It naturally draws your eyes inwards, to the center of the wide-open throne chamber.");
 	
-	output("\n\nThere’s a dais at the carpet’s end, on which sits a throne. On the throne sits a woman, one who’s distinctly <i>not</i> one of the demon-like creatures you’ve encountered in this plane. She’s an ausar, that much is evident at a glance: bare, light olive skin hides beneath a thin layer of raven-black fur on her arms and legs, and a thick tail spills out over the arms of the throne. She’s naked, and that nakedness exposes iron muscles rippling under her flesh as she sits up, setting aside a goblet that’s stained with white around its whim.");
+	output("\n\nThere’s a dais at the carpet’s end, on which sits a throne. On the throne sits a woman, one who’s distinctly <i>not</i> one of the demon-like creatures you’ve encountered in this plane. She’s an ausar, that much is evident at a glance: bare, light olive skin hides beneath a thin layer of raven-black fur on her arms and legs, and a thick tail spills out over the arms of the throne. She’s naked, and that nakedness exposes iron muscles rippling under her flesh as she sits up, setting aside a goblet that’s stained with white around its rim.");
 	
 	output("\n\nFiery orange eyes stare up at you. A pair of long, curved horns sprout from the sides of the ausar’s head, like those of a steer, and are bedecked with metal chains and rings. Her coal-black lips curl into a feral snarl, revealing protruding canine fangs. When she finally thrusts up onto her feet, a dozen thick tendrils are dragged out of her body, squirming and flailing before they retreat into the holes cut in the seat of the throne.");
 	
@@ -957,13 +957,13 @@ private function ewDemonSyriRideFace():void
 	
 	output("\n\nSyri’s tits keep leaking, and her tongue keeps fucking deeper, exploring new and more sensitive depths of your [pc.vagOrAss]. Before long, you’re having to choke back moans and gasps, feeling her tongue flicking along your inner flesh. You murmur that she’s doing good - good girl, just like that! Your [pc.hips] grind over her face, rubbing her nose through the crack of your ass while her tongue’s forced ever deeper inside you. You’re not sure if Syri’s actually skilled at oral or just damn desperate to get you off, but her tongue’s moving like a bucking bronco, thrashing and thrusting against your most sensitive places.");
 	
-	output("\n\nYou dig your fingers into the hellhound’s tits and hold on as tight as you can as orgasm erupts through you. Your [pc.legs] and [pc.hips] feel like they’re blazing, aflame with sexual heat as your loins are assaulted by Syri’s tongue. The satanic slut goes stock rigid under you as your hands molest her udders, and milk squirts all over you in creamy geysers. You can some of the lactic discharge on your [pc.tongue], the rest on your");
+	output("\n\nYou dig your fingers into the hellhound’s tits and hold on as tight as you can as orgasm erupts through you. Your [pc.legs] and [pc.hips] feel like they’re blazing, aflame with sexual heat as your loins are assaulted by Syri’s tongue. The satanic slut goes stock rigid under you as your hands molest her udders, and milk squirts all over you in creamy geysers. You catch some of the lactic discharge on your [pc.tongue], the rest on your");
 	if (pc.biggestTitSize() > 1) output(" tits.");
 	else output(" chest.");
 
 	output("\n\nBy the time Syri’s milky eruption has finally calmed down, your own orgasm has passed as well, leaving you panting for breath and feeling numb all over. The hellhound’s not faring much better, simmering in a pool of her own milk and fuckjuices leaking from her twat. Her thighs are a swamp of girlcum");
 	if (pc.hasVagina()) output(" - hers and yours -");
-	output(" and her body is slicked with sweat. She isn’t complaining anymore now,, too exhausted and pleasure-numbed to whinge as you pry yourself off of her and stagger back to your [pc.feet].");
+	output(" and her body is slicked with sweat. She isn’t complaining anymore now, too exhausted and pleasure-numbed to whinge as you pry yourself off of her and stagger back to your [pc.feet].");
 
 	output("\n\nAfter a long moment, the demon queen murmurs, <i>“So what now? You gonna keep doin’ that till the rest of the fuck-hungry sluts here think you’re my "+ pc.mf("king", "queen") +"?”</i>");
 
@@ -1019,7 +1019,7 @@ private function ewDemonSyriPoundPuss():void
 
 	output("\n\n<i>“Good girl,”</i> you praise, lapping up the free-flowing milk from her laden tits. Syri whines and moans under you, all restraint wiped away by your cock and your tongue working in tandem on her oversexed body.");
 	
-	output("\n\nNow that she’s nice and pliant, you decide it’s time to properly put this bitch in her place. You pull yourself off her tits and grab her hips, flipping Syri onto her hands and knees. She grunts and protests, but a few gropes of her breasts and add, and feeling your [pc.cockOrStrapon] twist inside her. The way she cries out, you’re pretty sure she cums - but her pleasure isn’t what you’re interested in. The extra wetness leaking out of her quim is just extra lube, letting you pound her puss hard. The hellhound’s tail swishes heavily, batting against your [pc.face] - when her ass isn’t being slammed forward by your [pc.hips] crashing against it, sending ripples through her supple olive flesh.");
+	output("\n\nNow that she’s nice and pliant, you decide it’s time to properly put this bitch in her place. You pull yourself off her tits and grab her hips, flipping Syri onto her hands and knees. She grunts and protests, but a few gropes of her breasts and ass, and feeling your [pc.cockOrStrapon] twist inside her. The way she cries out, you’re pretty sure she cums - but her pleasure isn’t what you’re interested in. The extra wetness leaking out of her quim is just extra lube, letting you pound her puss hard. The hellhound’s tail swishes heavily, batting against your [pc.face] - when her ass isn’t being slammed forward by your [pc.hips] crashing against it, sending ripples through her supple olive flesh.");
 	
 	output("\n\n<i>“Fuck yes!”</i> the demoness screams. Her claws rake trenches into the stone, her voice barely able to contain her pleasure. She’s putty in your hands, a willing slave to your cock. Syri thrusts back against you, driving your dick deeper and deeper into her hidden depths, taking every inch of");
 	if (pc.hasCock()) output(" man meat");
@@ -1036,7 +1036,7 @@ private function ewDemonSyriPoundPuss():void
 	if (pc.hasCock()) output(" empties your [pc.balls] into her womb");
 	else output(" winds down from its orgasmic simulacrum");
 	output(". Your [pc.chest] heaves with labored breath");
-	if (pc.hasKnot()) output(", and your [pc.knot] throbs, lodged between Syri’s pussylips by your rogue fucking. With a sigh, you rest yourself on the hellhound’s back, content to wait until your bitch-breaker deflates.");
+	if (pc.hasKnot()) output(", and your [pc.knot] throbs, lodged between Syri’s pussylips by your rough fucking. With a sigh, you rest yourself on the hellhound’s back, content to wait until your bitch-breaker deflates.");
 	else output(" as you slide yourself out of her, unleashing a deluge of juices down her thighs. Cum pools between her legs, and milk is dribbling from her teats onto the floor. What a mess!");
 
 	output("\n\nAfter a long moment, the demon queen murmurs, <i>“So what now? You gonna keep doin’ that till the rest of the fuck-hungry sluts here think you’re my "+ pc.mf("king", "queen") +"?”</i>");

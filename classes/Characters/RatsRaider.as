@@ -4,6 +4,7 @@ package classes.Characters
 	import classes.GLOBAL;
 	import classes.ItemSlotClass;
 	import classes.Items.Armor.RattyArmor;
+	import classes.Items.Melee.ReaperStunBaton;
 	import classes.Items.Protection.SalamanderShield;
 	import classes.Items.Accessories.FlashGoggles;
 	import classes.kGAMECLASS;
@@ -44,7 +45,7 @@ package classes.Characters
 		{
 			this.ratVariety = ratVariety;
 		
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 
@@ -55,6 +56,9 @@ package classes.Characters
 			this.buttRatingRaw = 5;
 			
 			this.hairLength = 7;
+			
+			this.meleeWeapon = new ReaperStunBaton();
+			this.meleeWeapon.baseDamage.multiply(0.17);
 			
 			this.earType = GLOBAL.TYPE_MOUSE;
 			this.tailType = GLOBAL.TYPE_MOUSE;
@@ -472,9 +476,7 @@ package classes.Characters
 			else
 			{
 				output(" You're unable to avoid the swing, and the electrified baton slams into your arm, rebounding with shocking effect!");
-				var damage:TypeCollection = meleeDamage();
-				damage.electric.damageValue *= 1.5;
-				applyDamage(damageRand(damage, 25), this, target, "melee");
+				applyDamage(damageRand(meleeDamage(), 25), this, target, "melee");
 			}
 		}
 		// Male and Female Rodent
@@ -482,6 +484,8 @@ package classes.Characters
 		private function tailLash(target:Creature):void
 		{
 			var rats:int = ratCount();
+			var storedBaton:ItemSlotClass = meleeWeapon;
+			meleeWeapon = rangedWeapon;
 			switch (rats)
 			{
 				case 3: output("From your peripheral sight you spot one of the rats darting forward and twisting around, bringing their long, bladed tail to bear!"); break;
@@ -511,6 +515,8 @@ package classes.Characters
 				}
 				applyDamage(damageRand(meleeDamage(),15), this, target, "melee");
 			}
+			
+			meleeWeapon = storedBaton;
 		}
 		
 		// [SPECIALS]

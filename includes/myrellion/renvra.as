@@ -892,11 +892,13 @@ public function renvraFullPregnancyEnds(pregSlot:int):void
 	var pData:PregnancyData = pc.pregnancyData[pregSlot];
 	var cpData:PregnancyData = new PregnancyData();
 	cpData.loadSaveObject(pData.getSaveObject());
+	var inShip:Boolean = InShipInterior();
+	var inPublic:Boolean = (InPublicSpace() || rooms[currentLocation].planet.toLowerCase().indexOf("station") != -1 || rooms[currentLocation].hasFlag(GLOBAL.INDOOR));
 	
 	clearOutput();
 	author("Savin");
 	
-	if (InPublicSpace() || InShipInterior())
+	if (inPublic || inShip)
 	{
 		output("You feel a rumble in your gut, strong enough to make you nearly double over. Oh, God.... ");
 
@@ -905,7 +907,7 @@ public function renvraFullPregnancyEnds(pregSlot:int):void
 		output("\n\nShit!");
 
 		output("\n\nYou");
-		if (!InShipInterior()) output(" grab your Codex and dial an emergency medical alert, summoning an ambulance from the nearest hospital");
+		if (!inShip) output(" grab your Codex and dial an emergency medical alert, summoning an ambulance from the nearest hospital");
 		else 
 		{
 			if (shipLocation == "TAVROS HANGAR") output(" grab your Codex and dial Tavros station’s emergency medical alert, summoning an ambulance from the nearest hospital.");
@@ -929,7 +931,6 @@ public function renvraFullPregnancyEnds(pregSlot:int):void
 		else output(" You futilely rub at your over-sensitive groin, trying to coax some relief from your bare crotch.");
 		output(" The first child’s crown starts pushing out of you, slowly but surely reaching the lips of your pussy. The stretch is incredible,");
 		var tGape:Number;
-		
 		if (pregSlot == 3) tGape = pc.ass.looseness();
 		else tGape = pc.vaginas[pregSlot].looseness();
 		if (tGape < 5) output(" forcing you to push like you’ve never pushed before to squeeze the newborn through the lips of your cunt");
