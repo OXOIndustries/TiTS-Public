@@ -13167,22 +13167,24 @@
 		public function sackDescript(forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
 			if (balls <= 0) return "prostate";
 			var desc: String = "";
+			//fur adjectives
+			if (rand(3) == 0)
+			{
+				if(hasFur()) desc += RandomInCollection(["fluffy","fuzzy","furry","fur-covered"]);
+				else if(hasScales()) desc += RandomInCollection(["scaly","scale-covered","scaled","scale-plated","armored"]);
+				else if(hasChitin()) desc += RandomInCollection(["chitin-armored","chitin-plated","chitinous","armored"]);
+				else if(hasFeathers()) desc += RandomInCollection(["downy","fluffy","feathery"]);
+			}
+			//capacity adjectives
 			if ((adjectives && rand(3) == 0) || forceAdjectives) {
-				if (ballFullness <= 0) desc += "painfully empty ";
-				else if (ballFullness <= 20) desc += "empty ";
-				else if (ballFullness >= 80 && ballFullness < 100) desc += "mostly full ";
-				else if (ballFullness >= 100) {
-					var temp: int = rand(5);
-					if (temp == 0) desc += "full ";
-					else if (temp == 1) desc += "sloshing ";
-					else if (temp == 2) desc += "stuffed ";
-					else if (temp == 3) desc += "bloated ";
-					else desc += "cum-packed ";
+				if(desc != "") desc += ", ";
+				if (ballFullness <= 10) desc += RandomInCollection(["recently emptied","well-drained","nearly empty"]);
+				else if (ballFullness >= 80 && ballFullness < 100) desc += RandomInCollection(["mostly full","nearly full","seed-stocked","spunk-laden","sperm-stocked"]);
+				else if (ballFullness >= 100) desc += RandomInCollection(["painfully full","sloshing","semen-stuffed","cum-bloated","fully engorged","spunk-heavy","tender","seed-weighted"]);
 				}
 			}
-			temp = rand(2);
-			if (temp == 0) desc += "scrotum";
-			if (temp == 1) desc += "sack";
+			if(desc != "") desc +=  ", " + RandomInCollection(["scrotum","sack","pouch"]);
+			else desc += RandomInCollection(["scrotum","sack"]);
 			return desc;
 		}
 		public function cockClit(number: int = 0): String {
