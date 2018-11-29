@@ -39,7 +39,7 @@ package classes.Characters
 		public static const FAIR_MOUSEBOY:int = 4;
 		public static const HALF_BOY:int = 5;
 		
-		public static const RAT_BUSTS:Array = ["RATS_RAIDER_ROD_1", "RATS_RAIDER_MOUSE_1", "RATS_RAIDER_BOY", "RATS_RAIDER_ROD_2", "RATS_RAIDER_MOUSE_2", "RATS_RAIDER_GIRL"];
+		public static const RAT_BUSTS:Array = ["RATS_RAIDER_ROD_1", "RATS_RAIDER_MOUSE_1", "RATS_RAIDER_GIRL", "RATS_RAIDER_ROD_2", "RATS_RAIDER_MOUSE_2", "RATS_RAIDER_BOY"];
 		
 		public function RatsRaider(ratVariety:int = 0)
 		{

@@ -149,14 +149,8 @@ public function zhengFoundryF1EncounterBonus():Boolean
 		encounters.push(encounterPunkSecOp);
 		encounters.push(encounterPunkSecOp);
 		encounters.push(encounterPunkSecOp);
-		encounters.push(encounterPunkSecOp);
-		encounters.push(encounterPunkSecOp);
-		encounters.push(encounterPunkSecOp);
-		encounters.push(encounterPunkSecOp);
-		encounters.push(encounterPunkSecOp);
 		if (ratsAvailable())
 		{
-			encounters.push(ratsInTheMineEncounter);
 			encounters.push(ratsInTheMineEncounter);
 			encounters.push(ratsInTheMineEncounter);
 			encounters.push(ratsInTheMineEncounter);
