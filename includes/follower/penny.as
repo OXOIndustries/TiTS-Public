@@ -628,6 +628,12 @@ public function pennyCrewSexMenu():void
 
 	if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] != undefined && pennyIsCumSlut() && shipLocation == "SHIP HANGAR") addButton(11, "Invite Flahne", pennyVsFlahneWhoWillOutslutWho,undefined,"Invite Flahne","Invite Flahne over for a threesome with Penny.");
 	else addDisabledButton(11, "Invite Flahne","Invite Flahne","This scene requires Penny to be a cum-slut and Flahne to have been told about it.");
+	if(pennyIsCumSlut() && pennyIsCrew()) 
+	{
+		if(pc.hasCock()) addButton(12,"Cam & Jerk",mutualJerkWithPennyCamStuff,undefined,"Cam & Jerk","Get on cam with Penny and jerk off into each other’s mouths for the ExtraNet.");
+		else addDisabledButton(12,"Cam & Jerk","Cam & Jerk","You can't jerk off with Penny if you don't have a dick.");
+	}
+	else addDisabledButton(12,"Cam & Jerk","Cam & Jerk","Since Penny isn't an extranet camwhore, there's not point in doing this.");
 	this.addButton(14,"Back",approachCrewPenny,true);
 }
 
@@ -1619,4 +1625,107 @@ public function mitziPantiesTalk():void
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",approachCrewMitzi,true);
+}
+
+//[C.WhoreJerk]/[MutualJerk]
+//tooltip:Get on cam with Penny and jerk off into each other’s mouths for the ExtraNet.
+//Requires cock and cumslut camwhore Penny.
+public function mutualJerkWithPennyCamStuff():void
+{
+	clearOutput();
+	showPenny(true);
+	author("Wsan");
+	output("<i>“Hey Penny... wanna have some fun on cam?”</i> you ask, indicating her little holocam. <i>“You could even have your prize at the end.”</i> You watch her eyes shoot down to your crotch, burning with naked lust. <i>“Don’tcha want that?”</i>");
+	output("\n\n<i>“I... I want it,”</i> Penny breathes, drooling from the corner of her mouth before wiping it with the back of her hand. <i>“I want it really, really fucking bad!”</i>");
+	output("\n\n<i>“S’what I thought,”</i> you reply, grinning. <i>“Come here, you horny girl. Turn it back on and get nice and central for the camera.”</i>");
+	output("\n\nYou " + (!pc.isCrotchExposed() ? "pull your [pc.lowerGarments] down and ":"") + "lure her over to you with the sight of your [pc.cocks], stiffening under her intense scrutiny. Her own flops between her furred legs before tipping forward, curving upward as she realizes she’s going to get a fat load of cum one way or another. By the time she reaches you, her [penny.cock] is standing stiff and erect, dribbling precum.");
+	output("\n\n<i>“Thaaat’s right,”</i> you murmur, sliding your fingers over your own, stroking the [pc.cockHead]. <i>“Do you jack off a lot, Penny?”</i>");
+	output("\n\n<i>“Uh - yeah,”</i> Penny says distractedly, watching you play with your cock. <i>“A fucking ton. Like... nnh... I never stop.”</i> She reaches between her thighs and begins to rub her shaft up and down, fingers lubricated by the trickles of translucent liquid bubbling from her " + (penny.hasCock(GLOBAL.TYPE_EQUINE) ? "blunted cockhead.":"pointed tip.") + " <i>“There’s just- just so much cum, so... nnngh...”</i>");
+	output("\n\n<i>“Good girl, keep going,”</i> you whisper approvingly, massaging her shoulder with your free hand. <i>“Pump that cock for me, Penny.”</i>");
+	output("\n\n<i>“It feels soooo good,”</i> she moans, rubbing herself harder, watching you with bated breath. <i>“I wanna cum!”</i>");
+	output("\n\n<i>“You can cum,”</i> you tell her, tightening your grip on both her shoulder and your dick. <i>“Nngh... but when you do, do it in my mouth. Then I’ll cum in yours. Deal?”</i>");
+	output("\n\n<i>“D-d-deal,”</i> she pants, sweat rolling down her brow. <i>“Oh fuck, I wanna taste your cum... I’ll be a good little camwhore and wait for you, I promise!”</i>");
+	output("\n\n<i>“I know you will,”</i> you say, smiling. " + (penny.cocks[0].cLength() < 12 ? "<i>“Just keep stroking that slutty erection you’ve got. I wanna </i>taste<i> how much you’ve been edging.”</i>":"<i>“Just keep jacking that massive cock off, camslut. I wanna see how much of that creamy spunk you can shoot in my mouth.”</i>"));
+	output("\n\n<i>“Hhhaah, fuck, fuck,”</i> Penny mutters to herself, looking down at her dick. <i>“Hhhnnh...”</i>");
+	output("\n\nShe begins stroking herself off in a more measured fashion, closing her eyes and raising her hips while she squeezes her dick from base to tip. Glancing at the webcam, you give the viewers a confident smile as you rub up and down your shaft, dropping your gaze to Penny’s hands when you feel the faint hint of orgasm approaching. She’s so pretty like this...");
+	output("\n\n<i>“Are you ready, Penny?”</i> you murmur, shuffling close enough to feel her heat. <i>“Stand up... let it all out in my mouth.”</i>");
+	output("\n\n<i>“Okay,”</i> she gasps, jacking herself off harder as she shakily stands on her bed, her hips jerking and rolling with her frantic activity. <i>“O-okay! Uuuhhh- mmmh-”</i>");
+	output("\n\nYou open your mouth just in time, the first rope of hot cum splattering all across your face as Penny lets out a massive groan of relief. Her thick, heavy followups get closer and closer to your [pc.lips] and [pc.tongue] until she’s furiously masturbating herself right in front of your face, eyes rolling in her head as creamy white spunk splatters against the back of your throat. You’re forced to swallow some just to avoid choking on her seed but catch the majority of the salty jizz across your lolling tongue, letting it wash around your mouth and fill your cheeks while she unloads.");
+	output("\n\n<i>“Oooohhhhhhh fuuuuuck,”</i> Penny groans, staggering back with one last spurt that catches you right across the cheek and leaves you dripping. Your face is covered in wet, glistening cum and you make sure to lean down in front of the camera to give the stream a big, drippy smile before tilting your head upwards and swallowing several times. Sucking down her warm, slick spunk and leaving your mouth empty, you run your tongue over your lips before turning back to her.");
+	output("\n\n<i>“Very good, Penny... do you remember what comes next?”</i> you ask, idly wiping a finger across your face and collecting a trail of her cum to rub on your own dick.");
+	output("\n\n<i>“Yeah,”</i> she moans, collapsing back to her knees. <i>“Come on, [pc.name]! Cum in my mouth! Hose me down with jizz!”</i>");
+	output("\n\nYou’re <i>more</i> than ready to let her have it, having had a hand on your stiff, flexing cock all throughout your oral effort to swallow down her load. It’s dribbling and leaking already as you stand before her, watching her long pink tongue unfurl. She sticks it out and waves it from side to side, gazing fixedly at your [pc.cockHeadBiggest] while you position yourself.");
+	output("\n\n<i>“Fuck...”</i> you grunt, feeling the pleasure rising from below. <i>“Penny..!”</i>");
+	output("\n\nPenny moans in delight as the first rope catches her right across the lips, lightly spattering her fur.");
+	if(pc.cumQ() < 500)
+	{
+		output(" The next coats her face before she tilts her pretty face backwards, opening her mouth wider and getting a delicious cheekful of [pc.cum] followed by the remainder as you squeeze it out. Her fuzzy little head is in the clouds, pupils dilated as she closes her mouth and runs her tongue all through her cheeks to collect every little drop before swallowing. One final, lazy rope of seed shoots from her flagging cock when she drinks it down, a sigh of desire and lust slipping from her cum-coated lips.");
+		output("\n\n<i>“Fuck, [pc.name]... gimme some more sometime,”</i> she says, looking at you with seductively hooded eyes. <i>“I can’t get enough...”</i>");
+		output("\n\n<i>“I’ll bet,”</i> you say, winking" + (!pc.isCrotchExposed() ? " as you re-holster your package":"") + ". <i>“I’ll have to swing by again soon, liven up the stream some.”</i>");
+		output("\n\n<i>“You’re </i>always<i> welcome to, my mate,”</i> she purrs, a sated smile on her face as she waves you goodbye.");
+	}
+	else if(pc.cumQ() < 1000)
+	{
+		output(" Gently tilting her head back and laying your throbbing dick on her outstretched tongue, you groan as she catches the next few ropes with the back of her throat. You finish out by glazing her tongue and insides of her cheeks with [pc.cum], pulling back with a satisfied sigh.");
+		output("\n\n<i>“Ogh,”</i> Penny mumbles, swishing her tongue around her mouth and collecting all of it. <i>“Nnnhmm...”</i>");
+		output("\n\nShe gulps it down and shows you her wide open mouth, wet and glistening. Bending down, you give her fuzzy ears a comforting rub as a reward and pat her on the head.");
+		output("\n\n<i>“Good foxslut,”</i> you tell her.");
+		output("\n\n<i>“Thank you, mate,”</i> she whispers, pupils dilated and tail noisily waving across the sheets. <i>“When will you come back for more?”</i>");
+		output("\n\nShe’s already looking for your next load, eyeing you hungrily. You can’t help but grin at the dedication.");
+		output("\n\n<i>“Soon,”</i> you promise, giving her a wink. <i>“I’ll swing by and liven up the stream a bit next time I feel like it.”</i>");
+		output("\n\n<i>“Good... mmm, I can still taste you,”</i> Penny replies, shivering in lust and licking her lips. <i>“Maybe I’ll go for another round...”</i>");
+		output("\n\n<i>“Have fun,”</i> you say, waving as you exit.");
+	}
+	else if(pc.cumQ() < 2500)
+	{
+		output(" You follow it up with several thick spurts of [pc.cum] from your turgid cock, groaning as Penny tilts her head back to catch all of it in her mouth. She ends up " + (pc.cumQ() < 1800 ? "slightly ":"") + "overwhelmed by it all, gulping and gasping while you shower her in seed, painting her face [pc.cumColor]. You glance down in between strokes to see seed lazily spurting from her own flagging prick, no doubt encouraged by your efforts.");
+		output("\n\n<i>“Oooggh!”</i> Penny mumbles excitedly, reaching down to rub herself. <i>“Mmmm!”</i>");
+		output("\n\nShe half-heartedly jerks some more cum from her half-hard cock while you fill her mouth with yours, her dilated pupils looking up at you with nothing but love. Bending over, you give her a rub behind her big fuzzy ears while you squeeze yourself dry on her lolling tongue.");
+		output("\n\n<i>“Good work, foxslut,”</i> you tell her.");
+		output("\n\n<i>“Stars,”</i> she moans, swallowing a few times before she resumes talking. <i>“You’re amazing, mate... you- you’re gonna come back soon, right? And feed me again?”</i>");
+		output("\n\n<i>“Sure,”</i> you say, winking. <i>“Can’t let my cum-slurping camslut go dry, after all.”</i>");
+		output("\n\n<i>“Oh, thank you,”</i> she whimpers, jacking herself off and thrusting her hips. <i>“Thank you, thank you, thank you...”</i>");
+		output("\n\nLooks like drinking down so much of your spunk’s driven her a little wild. You grin and leave her to her own devices, entertaining the stream watchers. That was fun.");
+	}
+	else if(pc.cumQ() < 10000)
+	{
+		output(" Her eyes go wide moments before her pupils dilate and she groans, a rope of seed shooting from her flagging cock as you begin hosing down her pretty face with spunk. Wild spurts fly from your cocktip, glazing her lolling tongue and luscious lips with [pc.cumColor] icing. She tilts her head back and begins swallowing down every little bit you have to give her, though she’s quickly overwhelmed by your excessive ejaculations and forced to just catch it in her mouth and let it run down her throat at its own pace.");
+		output("\n\nGroaning through grit teeth, you jack yourself all over her heaving breasts before reapplying a coat of paint to her face. It feels so fucking good to empty your throbbing dick on your foxy cumwhore, letting the last remnants drool from the head onto her waiting tongue. She laps it up and gulps it down, watching you with a dopey smile.");
+		output("\n\n<i>“Good girl,”</i> you say, casually rubbing her big fuzzy ears. <i>“You look beautiful like that. Like the perfect little foxslut you were always meant to be.”</i>");
+		output("\n\n<i>“I love you so much, my mate,”</i> Penny whispers, rubbing herself all over again. Beneath her slightly cum-inflated tummy, you can see her cum-slick dick getting hard once more. <i>“Stars, drinking your cum is just... nnngh.”</i>");
+		output("\n\n<i>“So inspiring you have to go again?”</i> you ask, grinning. She can’t even help herself.");
+		output("\n\n<i>“Y-yes... nnh, shit,”</i> she moans, starting to jack herself off more meaningfully. <i>“Please c-come back and jizz in my mouth again, [pc.name]! Please! Soon!”</i>");
+		output("\n\n<i>“Sure,”</i> you say, heading back out the door. <i>“Have fun, Penny.”</i>");
+		output("\n\nYou leave her in front of the camera, panting and sweating with the effort of masturbating. Looks like she’ll be there for a while...");
+	}
+	else if(pc.cumQ() < 25000)
+	{
+		output(" The next shot, though, is so much thicker and heavier that she gasps in surprise before winding up gurgling, pupils dilating as she eagerly gulps down your spunk. She positions herself directly in front of your throbbing dick, breath hot on the tip, and groans in erotic satisfaction when you start to paint the back of her throat [pc.cumColor] with your [pc.cum].");
+		output("\n\nGrunting and gritting your teeth, you let her have everything you’ve got stored up, utterly venting yourself into her cum-dripping mouth and watching it overflow down her front. There’s no way she can keep up with your amazing output, the majority of it squirting into the pooling mass in her cheeks before splashing down her chin and coating her heaving tits. You give her a short break by hosing down her face and tummy with it as well, coating her sloppy fur in spunk until she looks like little more than a condom turned inside out.");
+		output("\n\n<i>“Oooohhhh, stars,”</i> she moans, one hand mauling her dripping tits and the other rubbing her dick. <i>“Mmmm!”</i>");
+		output("\n\nYou raise your cock back to her mouth and she immediately capitulates, sticking her tongue out under the tip and catching a droplet before she chokes back a wet gurgle when another rope splashes against the back of her throat." + (penny.cocks[0].cLength() >= 8 ? " Her tit-groping hand drops to her cock as well as she frenetically starts jacking herself off all over again, swallowing down your bounty of warm sperm while she’s at it.":" She looks inspired by your amazing offering, jacking herself off even harder while she swallows it all down."));
+		output("\n\n<i>“Fuuuck,”</i> you sigh, relieved at last of your burden. You lean down and give Penny a hard scratch between the ears. <i>“Good foxslut.”</i>");
+		output("\n\n<i>“I’m your little foxslut cumdump,”</i> Penny whispers, pumping her dripping dick. It’s covered in your spunk as well as hers, now, her fingers welcoming the extra lubrication. <i>“[pc.name], you gotta come back and pump me full like that again! Please! I’ll slurp down every last drop like a good girl, I promise!”</i>");
+		output("\n\n<i>“Sure, I’ll be back,”</i> you say, grinning. <i>“See you soon, Penny.”</i>");
+		output("\n\n<i>“I love you </i>and<i> your cum,”</i> she pants, watching you leave. <i>“Nnnnn..!”</i>");
+		output("\n\nYou hear her groaning loudly as you walk away, your eager foxgirl camwhore no doubt right on the verge of orgasm. All too happy to swallow down your loads, it seems - you’ll have to visit her some more soon.");
+	}
+	else
+	{
+		output(" Her eyes go wide shortly before you ejaculate all over her face, covering her pretty features in [pc.cumColor] seed. Her wide open mouth is the only place left for you to drain yourself and you do so in spades, [pc.cum] splashing across her outstretched tongue so hard that droplets of it fleck her ears.");
+		output("\n\nAll of a sudden she’s jacking off as hard as you are, gulping down your torrential loads of spunk with manic eagerness. Hardly able to keep up with your outrageously bountiful ejaculations she frantically gulps down everything she can as her stomach fills with roiling spunk, her half-hard cock flexing and stiffening once more as if inspired by your feat of virility. The excess slops down her front, splashing across her heaving, jiggling tits and rock-hard nipples.");
+		output("\n\n<i>“God damn, Penny...”</i> you groan, watching her lovingly debase herself. It’s plain to see she can’t handle just how much spunk you’re giving her but she doesn’t even care, her mouth stubbornly held open and her tongue lashing at her lips while her throat bobs and works to get it all down. You make sure to give her tiny breaks whenever it starts to run away from her, plastering her fur with sticky spunk instead. She’s absolutely drenched with it, her outline vague beneath the warm coating.");
+		output("\n\nPenny doesn’t stop there, though. Briefly lifting a hand to wipe her mouth off, she reopens it to present you with a clear target and you can’t help but grin. She’s insatiable. Cum drips from her snout thanks to the overflow in her mouth and she ignores it, beating herself with increasing pace until you hear a wet, gurgling moan and she cums across the sheets, her seed mixing with your own. Her ejaculation is much less bountiful than yours but apparently every bit as pleasurable, the former officer’s hips jerking and bucking wildly while she cums her brains out.");
+		output("\n\nWhen at last you finish cumming, it doesn’t look like anything in her room is left untouched. Even the red light of the camera is spattered with it, glowing in muted fashion beneath the thin layer of spunk. Penny herself is <i>soaked</i>, her mess of red hair and orange fur dripping with your essence. Knowing her, she’s going to be a wreck for the next day or so while she jacks herself off to the scent of it all over and over.");
+		output("\n\nYou give the camera a wink and affectionately squeeze Penny’s snout, a vague sense of amusement washing through you when it dribbles cum down her chest. You’ve certainly left your mark on her in more ways than one.");
+		output("\n\n<i>“I’m gonna go, Penny,”</i> you tell her. <i>“Thanks for the fun.”</i>");
+		output("\n\nYou’re not sure whether her reply is an orgasmic groan of assent or just the sound of her slurping more cum down, but either way she seems to want to see you again. You might just have to indulge her.");
+	}
+	processTime(25);
+	pc.loadInMouth(penny);
+	penny.loadInMouth(pc);
+	pc.applyCumSoaked();
+	IncrementFlag("PENNY_CAMJERKED");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
