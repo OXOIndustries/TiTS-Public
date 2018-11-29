@@ -13170,10 +13170,19 @@
 			//fur adjectives
 			if (rand(3) == 0)
 			{
+				var ballsackType:int = scrotumType();
+				switch(ballsackType)
+				{
+					case GLOBAL.FLAG_FURRED: desc += RandomInCollection(["fluffy","fuzzy","furry","fur-covered"]); break;
+					case GLOBAL.FLAG_SCALED: desc += RandomInCollection(["scaly","scale-covered","scaled","scale-plated","armored"]); break;
+					case GLOBAL.FLAG_GOOEY: desc += RandomInCollection(["gooey", "slimy", "semi-solid"]);; break;
+				}
+				/*
 				if(hasFur()) desc += RandomInCollection(["fluffy","fuzzy","furry","fur-covered"]);
 				else if(hasScales()) desc += RandomInCollection(["scaly","scale-covered","scaled","scale-plated","armored"]);
 				else if(hasChitin()) desc += RandomInCollection(["chitin-armored","chitin-plated","chitinous","armored"]);
 				else if(hasFeathers()) desc += RandomInCollection(["downy","fluffy","feathery"]);
+				*/
 			}
 			//capacity adjectives
 			if ((adjectives && rand(3) == 0) || forceAdjectives) {
