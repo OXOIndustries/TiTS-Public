@@ -7752,7 +7752,7 @@ public function displayEncounterLog(showID:String = "All"):void
 		if(flags["MET_AZRA"] != undefined)
 		{
 			output2("\n<b>* Azra:</b> Met her");
-			if(!azraRecruited())
+			if(azraRecruited())
 			{
 				output2(", Crew member");
 				if(azraIsCrew()) output2(" (Onboard Ship)");
