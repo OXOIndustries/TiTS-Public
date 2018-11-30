@@ -338,6 +338,7 @@
 		include "../includes/tarkus/theMess.as";
 		include "../includes/tarkus/tessa.as";
 		include "../includes/tarkus/verusha.as";
+		include "../includes/tarkus/zea.as";
 		
 
 		//Third planet
@@ -1700,6 +1701,11 @@
 		public function get amber():Dryad
 		{
 			return chars["DRYAD"];
+		}
+		
+		public function get zea():Zea
+		{
+			return chars["ZEA"];
 		}
 
 		public function testShipCombat():void
