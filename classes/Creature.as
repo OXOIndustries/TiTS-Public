@@ -444,6 +444,12 @@
 		{
 			return "Your [pc.eye] twitches, resisting a change.";
 		}
+		public function get eyeCount():int
+		{
+			if (InCollection(eyeType, GLOBAL.TYPE_ARACHNID)) return 4;
+			if (InCollection(eyeType, GLOBAL.TYPE_XHELARFOG)) return 3;
+			return 2;
+		}
 		//New piercing hotness:
 		public var eyebrowPiercing:ItemSlotClass = new EmptySlot();
 		

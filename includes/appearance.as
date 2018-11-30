@@ -426,6 +426,11 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			if (target == pc) outputRouter(", which fortunately you’ve mastered keeping in check during oral sex.");
 			else outputRouter(".");
 			break;
+		case GLOBAL.TYPE_XHELARFOG:
+			outputRouter((target == pc ? "Your":"[target.Name]'s") + " face has a curious lack of a visible nose");
+			if (target.eyeType == GLOBAL.TYPE_XHELARFOG) outputRouter(", though the thing truly cementing its alien nature is the trio of eyes decorating its upper half");
+			output(".");
+			break;
 	}
 	if(target.hasStatusEffect("Mimbrane Face") && target == pc)
 	{
@@ -609,6 +614,11 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			break;
 		case GLOBAL.TYPE_JANERIA:
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " eyes are solid, featureless orbs of [target.eyeColor], giving " + (target == pc ? "you":"[target.himHer]") + " a thoroughly disturbing visage.");
+			break;
+		case GLOBAL.TYPE_XHELARFOG:
+			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " eyes are a");
+			if (hasMetallicEyes) output(" metallic");
+			output(" shade of [target.eyeColor] with no distinction between sclera and iris. " + (target == pc ? "Your":"[target.HisHer]") + " eyes are a solid [target.eyeColor]. Only the slightly paler shade of your pupil allows people to tell where you’re looking.");
 			break;
 		default:
 			if(hasMetallicEyes) outputRouter(" Metallically glistening " + target.eyeColor + " eyes allow " + (target == pc ? "you":"[target.himHer]") + " to take in " + (target == pc ? "your":"[target.hisHer]") + " surroundings without trouble.");
@@ -1200,6 +1210,10 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				outputRouter(" and as thick as two or three fingers together.  They’re useless for attacking, but they provide decent coverage - and they no doubt add to your imposing visage");
 				if (target.race() == "frostwyrm") outputRouter(" as a Frostwyrm.");
 				else outputRouter(".");
+				break;
+			case GLOBAL.TYPE_XHELARFOG:
+				outputRouter(" Sprouting from " + (target == pc ? "your forehead, you have":"[target.hisHer] forehead, [target.heShe] has") + " an upward pointing, slightly curved set of horns.");
+				if (hornMaterial <= 0 || hornColor == "") output(" " + (target == pc ? "Your":"[target.HisHer]") + " curved horns are [target.skinColor] at their base, but fade into gold at their tips.");
 				break;
 		}
 		if(hornMaterial > 0 && hornColor != "")
@@ -2698,6 +2712,9 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			break;
 		case GLOBAL.TYPE_JANERIA:
 			outputRouter(" Subtle contours and indentations that run all the way down the length of " + (target == pc ? "your":"[target.hisHer]") + " legs make them look as though they were formed from a mass of tentacles woven together. " + (target == pc ? "Your":"[target.HisHer]") + " feet have foregone toes entirely in favor of a smooth, supple boot where the tips of the tentacles appear to join together.");
+			break;
+		case GLOBAL.TYPE_XHELARFOG:
+			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " legs are mostly humanoid in structure, but " + (target == pc ? "Your":"[target.HisHer]") + " feet are distinctly alien with only three toes at their front, and a single toe sprouting from their heel.");
 			break;
 		// Catch all
 		default:

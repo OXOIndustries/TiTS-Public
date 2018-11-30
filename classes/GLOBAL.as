@@ -233,6 +233,7 @@
 		public static const TYPE_SANDWORM:int 								= 83;
 		public static const TYPE_SANDWORM_PARASITE:int 						= 84;
 		public static const TYPE_JANERIA:int								= 85;
+		public static const TYPE_XHELARFOG:int								= 86;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -321,6 +322,7 @@
 			"Sand Worm",
 			"Butt Bug",
 			"Janeria",
+			"Xhelarfog",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
