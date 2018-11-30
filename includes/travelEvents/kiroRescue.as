@@ -65,6 +65,9 @@ public function confirmLeaveKirosShip(destination:String):void
 
 	flags["RESCUE KIRO FROM BLUEBALLS"] = -1;
 	
+	// Let her blow her load for later
+	kiro.orgasm();
+	
 	clearMenu();
 	addButton(0, "Next", flyToWrapper, destination);
 }
@@ -239,6 +242,10 @@ public function kirosShipWails(doOutput:Boolean = true):Boolean
 		
 		return false;
 	}
+	
+	// Fill up dem 'nuki balls
+	kiro.applyBlueBalls();
+	kiro.cumProduced(9001);
 	
 	showKiroBust(true);
 
@@ -913,7 +920,10 @@ public function kirosShipNopeFuckThisShit():void
 	//Resume previous travels.
 	moveTo("SHIP INTERIOR");
 	flags["RESCUE KIRO FROM BLUEBALLS"] = -1;
-
+	
+	// Let her blow her load for later
+	kiro.orgasm();
+	
 	clearMenu();
 	addButton(0, "Next", flyToWrapper, flags["STORED SHIP DESTINATION"]);
 }
