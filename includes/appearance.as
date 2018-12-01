@@ -429,7 +429,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		case GLOBAL.TYPE_XHELARFOG:
 			outputRouter((target == pc ? "Your":"[target.Name]'s") + " face has a curious lack of a visible nose");
 			if (target.eyeType == GLOBAL.TYPE_XHELARFOG) outputRouter(", though the thing truly cementing its alien nature is the trio of eyes decorating its upper half");
-			output(".");
+			outputRouter(".");
 			break;
 	}
 	if(target.hasStatusEffect("Mimbrane Face") && target == pc)
@@ -617,8 +617,8 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			break;
 		case GLOBAL.TYPE_XHELARFOG:
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " eyes are a");
-			if (hasMetallicEyes) output(" metallic");
-			output(" shade of [target.eyeColor] with no distinction between sclera and iris. " + (target == pc ? "Your":"[target.HisHer]") + " eyes are a solid [target.eyeColor]. Only the slightly paler shade of your pupil allows people to tell where you’re looking.");
+			if (hasMetallicEyes) outputRouter(" metallic");
+			outputRouter(" shade of [target.eyeColor] with no distinction between sclera and iris. " + (target == pc ? "Your":"[target.HisHer]") + " eyes are a solid [target.eyeColor]. Only the slightly paler shade of your pupil allows people to tell where you’re looking.");
 			break;
 		default:
 			if(hasMetallicEyes) outputRouter(" Metallically glistening " + target.eyeColor + " eyes allow " + (target == pc ? "you":"[target.himHer]") + " to take in " + (target == pc ? "your":"[target.hisHer]") + " surroundings without trouble.");
@@ -1213,7 +1213,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				break;
 			case GLOBAL.TYPE_XHELARFOG:
 				outputRouter(" Sprouting from " + (target == pc ? "your forehead, you have":"[target.hisHer] forehead, [target.heShe] has") + " an upward pointing, slightly curved set of horns.");
-				if (hornMaterial <= 0 || hornColor == "") output(" " + (target == pc ? "Your":"[target.HisHer]") + " curved horns are [target.skinColor] at their base, but fade into gold at their tips.");
+				if (hornMaterial <= 0 || hornColor == "") outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " curved horns are [target.skinColor] at their base, but fade into gold at their tips.");
 				break;
 		}
 		if(hornMaterial > 0 && hornColor != "")

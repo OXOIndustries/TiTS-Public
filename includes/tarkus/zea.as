@@ -213,8 +213,8 @@ public function zeaRecievesServicesForGoods():void
 	showZea(true);
 	processTime(15+rand(16));
 	
-	var exhibLow = pc.exhibitionism() < 33;
-	var exhibHi = pc.exhibitionism() >= 66;
+	var exhibLow:Boolean = pc.exhibitionism() < 33;
+	var exhibHi:Boolean = pc.exhibitionism() >= 66;
 
 	output("Zea chuckles, shifting so her tail hangs off her seat better for easier access, and you");
 	if (exhibLow) output(" surreptitiously");
@@ -255,8 +255,8 @@ public function zeaPenetrated():void
 	showZea(true);
 	processTime(15+rand(16));
 	
-	var exhibLow = pc.exhibitionism() < 33;
-	var exhibHi = pc.exhibitionism() >= 66;
+	var exhibLow:Boolean = pc.exhibitionism() < 33;
+	var exhibHi:Boolean = pc.exhibitionism() >= 66;
 	
 	output("A predatory grin stretches across Zea’s face and she stands, leaning across the table and raising her tail, before beckoning you to stand. And stand you do, taking the initiative to circle back around the table to stand behind her,");
 	if (!pc.isCrotchExposed()) output(" shrugging off your " + (pc.isCrotchExposedByArmor() ? "lower garments" : "armor") + " and");
