@@ -1,7 +1,7 @@
 package classes.Characters
 {
 	import classes.Creature;
-	import classes.Items.Drinks.RedMyrVenom;
+	import classes.Items.Transformatives.XhelarfogPlus;
 	import classes.kGAMECLASS;
 	
 	public class Zea extends Creature
