@@ -3026,6 +3026,10 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 			eventQueue.push(kaseCrewGreeting);
 		}
 		//Penny follower greeting
+		if(pennyIsCrew())
+		{
+			if(flags["PENNY_CUMSLUT_RECRUITED"] == 1 || flags["PENNY_BIMBO_RECRUITED"] == 1) eventQueue.push(cumslutPennyGreeting);
+		}
 		if(pennyIsCrew() && flags["PENNY_CUMSLUT_RECRUITED"] == 1)
 		{
 			eventQueue.push(cumslutPennyGreeting);

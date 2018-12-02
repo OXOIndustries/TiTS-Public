@@ -1,6 +1,6 @@
 public function pennyCrewSharing():Boolean
 {
-	return ((pennyIsCumSlut() && flags["PENNY_CUMSLUT_OTHER_CREW"] != undefined) || flags["PENNY_OTHER_CREW_TALKED"] != undefined);
+	return ((pennyIsCumSlut() && flags["PENNY_CUMSLUT_OTHER_CREW"] != undefined) || flags["PENNY_OTHER_CREW_TALKED"] != undefined || penny.isBimbo());
 }
 
 public function pennyCrewDesc():String {
@@ -11,19 +11,9 @@ public function pennyCrewDesc():String {
 		buffer += "<b>You got her message, talk to Penny to see how you can <b>turn the tables</b> on Dr. Badger!</b>";
 		//addButton(0,"Penny",turnTheTablesOnBadger);
 	}
-	//Shortcut friend penny if bimboed.
-	else if(flags["PENNY_BADGER_BIMBO"] != undefined)
-	{
-		if(flags["SEEN_BIMBO_PENNY"] == undefined) buffer += "Penny is sitting up straight in her quarters, looking fairly perky and attentive, considering her recent transformation into a hyper-sexed, hermaphroditic bimbo.";
-		else if(hours >= 8 && hours < 17) buffer += "Penny is at her desk looking a little pent-up - and drinking something suspiciously white from her coffee cup.";
-		else buffer += "Penny is slouched with a lazy, half-aware grin on her face. Now that she’s onboard your ship, she has no reason not to indulge herself beneath her desk.";
-		buffer += " She doesn’t seem to notice you, that or she can’t see you past all the cum plastered over her fur.";
-		//addButton(0,"Approach",approachBimboPenny);
-		//return false;
-	}
 	//Girlfriend penny
 	else {
-		if(flags["PENNY_IS_A_CUMSLUT"] != undefined)
+		if(flags["PENNY_IS_A_CUMSLUT"] != undefined || penny.isBimbo())
 		{
 			buffer += "Penny is doubtless masturbating her quarters, putting on a show for the extranet. It seems like every time you walk past her room, you either hear impassioned moaning or pleased-sounding gurgles. Rarely, you hear her babbling a thankful platitude or request for her viewers to bust the biggest, fattest nuts they can.";
 		}
@@ -80,9 +70,9 @@ public function approachCrewPenny(back:Boolean = false):void
 	else
 	{
 		author("Fenoxo");
-		if(pennyIsCumSlut())
+		if(pennyIsCumSlut() || penny.isBimbo())
 		{
-			output("When you enter her chambers, Penny looks at you sidelong just before her cock erupts, blasting a spermy load directly into her gullet. She makes a show of passionately suckling her at her boner, then pulls it out so that the excess can drench her tits. She dreamily opens her mouth to catch the last torrid squirts, then gathers a handful of excess vixen-cream to messily devour. <i>“Ta ta, my lovelies. Cum again soon!”</i>");
+			output("When you enter her chambers, Penny looks at you sidelong just before her cock erupts, blasting a spermy load directly into her gullet. She makes a show of passionately suckling her at her boner, then pulls it out so that the excess can drench her tits. She dreamily opens her mouth to catch the last torrid squirts, then gathers a handful of excess vixen-cream to messily devour. <i>“Ta ta, my lovelies. " + (penny.isBimbo() ? "Like, c":"C") + "um again soon!”</i>");
 			output("\n\nThe spunk-drunk fox-girl giggles and shuts down the broadcast. She turns to face you, casually hefting her pillowy, drenched tits up in order to suck the leftovers out of her fur. She murmurs a greeting through her busy, cum-soaked lips, <i>“Heyyy, [pc.name]. You wanna make your fox-slut cum? Or did you want me to make you cum.”</i> She sighs blissfully. <i>“Fuck! I loooove being your cam-whore pet.”</i> Letting go off one half-cleaned boob, she stalks forward aggressively, dick firming with alarming immediacy. <i>“I love being yours. What can I do for you, mate?”</i>");
 		}
 		else
@@ -113,8 +103,13 @@ public function approachCrewPenny(back:Boolean = false):void
 public function pennyCrewMenu():void
 {
 	clearMenu();
-	addButton(0,"Talk",pennyCrewTalk,undefined,"Talk","Talk to Penny.");
-	if(pc.lust() >= 33) addButton(1,"Sex",pennyCrewSexApproach,undefined,"Sex","Get naughty with your mate.");
+	if(penny.isBimbo()) addButton(0,"Talk",bimboPennyTalk,undefined,"Talk","Talk to Penny.");
+	else addButton(0,"Talk",pennyCrewTalk,undefined,"Talk","Talk to Penny.");
+	if(pc.lust() >= 33) 
+	{
+		if(penny.isBimbo()) addButton(1,"Sex",bimboPennySex,undefined,"Sex","Get naughty with your bimbo.");
+		else addButton(1,"Sex",pennyCrewSexApproach,undefined,"Sex","Get naughty with your mate.");
+	}
 	else addDisabledButton(1,"Sex","Sex","You aren’t turned on enough right now.")
 	addButton(14,"Back",crew);
 }
@@ -1433,9 +1428,6 @@ public function interruptPennyfaps():void
 	processTime(3);
 	pc.lust(5);
 	clearMenu();
-
-if(pc.cockThatFits(penny.vaginalCapacity(0)) >= 0) addButton(0,"Fuck Penny",cockSelect, [fuckPlantHornedPennyWithDick, penny.vaginalCapacity(0),true,0],"Fuck Penny","Stuff your dick into her greedy pussy and give her the relief she so desperately craves.");
-
 	if(pc.cockThatFits(penny.vaginalCapacity(0)) >= 0) addButton(0,"Reacharound",cockSelect,[reachAroundThePennyslut,penny.vaginalCapacity(0), false,0],"Reacharound","Fuck the foxgirl’s pussy and give her a nice reacharound while you do.");
 	else addDisabledButton(0,"Fuck Penny","Fuck Penny","You need a penis that fits inside Penny for this.");
 	addButton(1,"Facefucked",facefuckMitziJerkingPenpen,undefined,"Facefucked","Get a rough faceful of Penny’s hard cock.");

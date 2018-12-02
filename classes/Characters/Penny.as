@@ -19,8 +19,6 @@
 	
 	public class Penny extends Creature
 	{
-		
-		
 		//constructor
 		public function Penny()
 		{
@@ -207,6 +205,11 @@
 		{
 			if(flags["PQUEST_PENNY_PODDED"] != undefined) return true;
 			return super.isSquirter(arg);
+		}
+		override public function isBimbo():Boolean
+		{
+			if(flags["PENNY_BADGER_BIMBO"] != undefined) return true;
+			return super.isBimbo();
 		}
 		public function UpgradeVersion4(dataObject:Object):void
 		{
