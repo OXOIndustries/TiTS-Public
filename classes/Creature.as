@@ -1293,7 +1293,7 @@
 				}
 				return false;
 			}
-			return  (sockType == null && !(cocks[idx].cocksock is EmptySlot))
+			return (sockType == null && !(cocks[idx].cocksock is EmptySlot))
 					|| (sockType != null && (cocks[idx].cocksock is sockType));
 		}
 
@@ -12785,7 +12785,7 @@
 				if (tongueType == GLOBAL.TYPE_MOTHRINE) counter++;
 				if (hasHair() && hairType == GLOBAL.HAIR_TYPE_REGULAR) counter++;
 			}
-			if (eyeType == GLOBAL.TYPE_MOTHRINE) counter++;;
+			if (eyeType == GLOBAL.TYPE_MOTHRINE) counter++;
 			if (earType == GLOBAL.TYPE_MOTHRINE) counter++;
 			if (armType == GLOBAL.TYPE_MOTHRINE) counter++;
 			if (legType == GLOBAL.TYPE_MOTHRINE) counter++;
@@ -13170,10 +13170,19 @@
 			//fur adjectives
 			if (rand(3) == 0)
 			{
+				var ballsackType:int = scrotumType();
+				switch(ballsackType)
+				{
+					case GLOBAL.FLAG_FURRED: desc += RandomInCollection(["fluffy","fuzzy","furry","fur-covered"]); break;
+					case GLOBAL.FLAG_SCALED: desc += RandomInCollection(["scaly","scale-covered","scaled","scale-plated","armored"]); break;
+					case GLOBAL.FLAG_GOOEY: desc += RandomInCollection(["gooey", "slimy", "semi-solid"]); break;
+				}
+				/*
 				if(hasFur()) desc += RandomInCollection(["fluffy","fuzzy","furry","fur-covered"]);
 				else if(hasScales()) desc += RandomInCollection(["scaly","scale-covered","scaled","scale-plated","armored"]);
 				else if(hasChitin()) desc += RandomInCollection(["chitin-armored","chitin-plated","chitinous","armored"]);
 				else if(hasFeathers()) desc += RandomInCollection(["downy","fluffy","feathery"]);
+				*/
 			}
 			//capacity adjectives
 			if ((adjectives && rand(3) == 0) || forceAdjectives) {
@@ -13182,7 +13191,7 @@
 				else if (ballFullness >= 80 && ballFullness < 100) desc += RandomInCollection(["mostly full","nearly full","seed-stocked","spunk-laden","sperm-stocked"]);
 				else if (ballFullness >= 100) desc += RandomInCollection(["painfully full","sloshing","semen-stuffed","cum-bloated","fully engorged","spunk-heavy","tender","seed-weighted"]);
 			}
-			if(desc != "") desc +=  ", " + RandomInCollection(["scrotum","sack","pouch"]);
+			if(desc != "") desc += ", " + RandomInCollection(["scrotum","sack","pouch"]);
 			else desc += RandomInCollection(["scrotum","sack"]);
 			return desc;
 		}
@@ -15658,7 +15667,7 @@
 			if(lust() <= 33) biggestSize--;
 			if(lust() > 66) biggestSize++;
 			if(lust() > 100) biggestSize++;
-			//Double them up.  Wayyyy more fun to describe than size.
+			//Double them up. Wayyyy more fun to describe than size.
 			if (biggestSize <= 1) adjectives.push("moist","dewy","damp","sticky","moist","dewy","damp","sticky","moist","dewy","damp","sticky");
 			else if (biggestSize <= 2) adjectives.push("wet","sweltering","slippery","juicy","slick","slippery","wet","sweltering","slippery","juicy","slick","slippery","wet","sweltering","slippery","juicy","slick","slippery");
 			else if (biggestSize <= 3) adjectives.push("sopping","soaked","drippy","dripping","succulent","oozy","soggy","drenched","sopping","soaked","drippy","dripping","succulent","oozy","soggy","drenched","sopping","soaked","drippy","dripping","succulent","oozy","soggy","drenched");

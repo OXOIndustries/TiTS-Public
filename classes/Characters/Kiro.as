@@ -21,7 +21,7 @@
 	{
 		public function Kiro() 
 		{
-			this._latestVersion = 5;
+			this._latestVersion = 6;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -192,6 +192,7 @@
 			this.ass.loosenessRaw = 1;
 			
 			createPerk("'Nuki Drunk", 0, 0, 0, 0, "");
+			createPerk("'Nuki Nuts", 0, 0, 0, 0, "");
 		}
 		
 		public function UpgradeVersion1(d:Object):void
@@ -222,6 +223,14 @@
 			{
 				if(d.perks[i].storageName == "Nuki Drunk") d.perks[i].storageName = "'Nuki Drunk";
 			}
+			d.perks.sortOn("storageName", Array.CASEINSENSITIVE);
+		}
+		public function UpgradeVersion5(d:Object):void
+		{
+			var se:StorageClass = new StorageClass();
+			se.storageName = "'Nuki Nuts";
+
+			d.perks.push(se.getSaveObject());
 			d.perks.sortOn("storageName", Array.CASEINSENSITIVE);
 		}
 		

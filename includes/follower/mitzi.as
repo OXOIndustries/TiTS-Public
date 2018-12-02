@@ -52,14 +52,15 @@ public function mitziRecruited():Boolean
 public function showMitzi(nude:Boolean = false):void
 {
 	showName("\nMITZI");
-	showBust(mitziBustString(true));
+	showBust(mitziBustString(nude));
 }
 
 public function mitziBustString(nude:Boolean = false):String
 {
 	var dressString:String = "";
 	var dress:ItemSlotClass = mitziCurrentDress();
-	if(dress is MitzisDress || !mitziIsCrew()) dressString = "_PINK_DRESS";
+	if(nude) dressString = "_NUDE";
+	else if(dress is MitzisDress || !mitziIsCrew()) dressString = "_PINK_DRESS";
 	else if(dress is SchoolgirlCostume) dressString = "_SCHOOLGIRL";
 	else if(dress is MitzisYogaBikini) dressString = "_YOGAPANTS";
 	else if(dress is MitzisLibrarianOutfit) dressString = "_LIBRARIAN";
@@ -68,7 +69,6 @@ public function mitziBustString(nude:Boolean = false):String
 	else if(dress is MitziCowFetishCostume) dressString = "_COW";
 	else if(dress is MitziNunFetishCostume) dressString = "_NUN";
 	else dressString = "_PINK_DRESS";
-	if(nude) dressString = "_NUDE";
 	return ("MITZI" + dressString);
 }
 
