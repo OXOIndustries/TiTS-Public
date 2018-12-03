@@ -1390,27 +1390,29 @@ public function riyaSpawnPregnancyEnds():void
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;
 	var babym:Boolean = (se.value4 == 1);
+	var inShip:Boolean = InShipInterior();
+	var inPublic:Boolean = (InPublicSpace() || rooms[currentLocation].planet.toLowerCase().indexOf("station") != -1 || rooms[currentLocation].hasFlag(GLOBAL.INDOOR));
 	
 	output("Pain explodes in your guts and fluid leaks");
 	if(!pc.isCrotchExposed()) output(" into your [pc.lowerGarment]");
-	else if(InShipInterior()) output(" onto the deck");
+	else if(inShip) output(" onto the deck");
 	else output(" onto the ground");
 	output(". Oh god, it’s time...");
 	
 	//on ship with auto-medbay (commented until one is available)
-	if(InShipInterior() && 9999 == 0)
+	if(inShip && 9999 == 0)
 	{
 		output("\n\nStaggering towards the automatic medbay with one hand on your stomach, you order your ship’s computer into action. Your contractions are coming so fast now that by the time you’re");
 		if(!pc.isNude()) output(" naked and");
 		output(" ready to begin, you’re no longer able to speak, instead huffing and whimpering as your body works.");
 	}
 	//on ship without automatic medbay
-	else if(InShipInterior())
+	else if(inShip)
 	{
 		output("\n\nScooping up the nearest medkit, you stagger towards your bed, determined to safely deliver your offspring. Setting your gear down, you lay yourself out and force yourself to breathe as your labor begins.");
 	}
 	//in public place
-	else if(InPublicSpace())
+	else if(inPublic)
 	{
 		output("\n\nFlagging down a peace officer, you hurriedly explain your situation and the deputy nods, training kicking in. They call an emergency medical team in, and within minutes you’re safely inside an ambulance, the officer waving with a happy grin on their face, shouting congratulations to you as the doors close.");
 	}
@@ -1606,6 +1608,13 @@ public function riyaAtNursery():Boolean
 // Common room blurb
 public function riyaNurseryCafeteriaBonus(btnSlot:int = 0):void
 {
+	if(!riyaHasKidInNursery())
+	{
+		pc.removeStatusEffect("Riya at Nursery");
+		addDisabledButton(btnSlot, "Riya");
+		return;
+	}
+	
 	output("\n\nRiya is sitting at one of the tables, most of the way through a full-sized plate of " + RandomInCollection("lamb, curry and salad", "eggs, bacon and toast", "cereal and orange juice") + ". She looks up as you come in, chewing away happily.");
 	if(flags["MET_RIYA_IN_NURSERY"] == undefined) output(" It’s a bit strange to see her wearing something other than her instantly recognizable uniform, but here she is in a pair of baggy, comfy looking tan cargo pants, black boots and a white tee that shows a healthy amount of cleavage.");
 	else output(" You’ve more or less gotten used to the sight of Riya in street clothes, but it’s never going to not be strange seeing her without a watchful glare on her face and a mean glint in her eyes.");

@@ -30,7 +30,7 @@
 			this.description = "a Jumper jumpsuit";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A favorite of the infamous <i>“Jumper”</i> gang, this form-fitting suit of latex-like material is perfect for those who want to win fights and look great doing it. Neon lettering on the thigh declares the wearer’s lawless allegiances with unsubtle glare. Unfortunately the tight clinginess of it does little to help with resisting the more libidinous temptations of the galaxy. Oh well!";
+			this.tooltip = "A favorite of the infamous “Jumper” gang, this form-fitting suit of latex-like material is perfect for those who want to win fights and look great doing it. Neon lettering on the thigh declares the wearer’s lawless allegiances with unsubtle glare. Unfortunately the tight clinginess of it does little to help with resisting the more libidinous temptations of the galaxy. Oh well!";
 
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

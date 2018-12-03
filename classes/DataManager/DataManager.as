@@ -49,8 +49,8 @@
 		}
 	
 		// Define the current version of save games.
-		public static const LATEST_SAVE_VERSION:int = 31;
-		public static const MINIMUM_SAVE_VERSION:int = 30;
+		public static const LATEST_SAVE_VERSION:int = 32;
+		public static const MINIMUM_SAVE_VERSION:int = 32;
 		
 		private var _autoSaveEnabled:Boolean = false;
 		private var _lastManualDataSlot:int = -1;
@@ -104,6 +104,7 @@
 			var sv28:SaveVersionUpgrader28;
 			var sv29:SaveVersionUpgrader29;
 			var sv30:SaveVersionUpgrader30;
+			var sv31:SaveVersionUpgrader31;
 			
 			// I'm putting this fucking thing here for the same reason.
 			var dbgShield:DBGShield;
@@ -888,7 +889,7 @@
 			// Valid file to preview!
 			returnString += slotNumber;
 			returnString += ": <b>" + dataFile.data.saveName + "</b>";
-			returnString += " - <i>" + dataFile.data.saveNotes + "</i>\n";
+			returnString += " - <i>" + (dataFile.data.saveNotes == "" ? "No notes available." : dataFile.data.saveNotes) + "</i>\n";
 			returnString += "\t<b>Days:</b> " + dataFile.data.daysPassed;
 			returnString += " - <b>Time:</b> " + (dataFile.data.currentHours < 10 ? "0" + dataFile.data.currentHours : dataFile.data.currentHours) + ":" + (dataFile.data.currentMinutes < 10 ? "0" + dataFile.data.currentMinutes : dataFile.data.currentMinutes);
 			returnString += " - <b>Gender:</b> " + dataFile.data.playerGender;
@@ -1494,7 +1495,7 @@
 				kGAMECLASS.userInterface.hideNPCStats();
 				kGAMECLASS.userInterface.resetPCStats();
 				kGAMECLASS.userInterface.showPCStats();
-				kGAMECLASS.updatePCStats();
+				kGAMECLASS.updatePCStats(true);
 				kGAMECLASS.output2("\n\nGame loaded from file!");
 				executeGame();
 			}
@@ -1504,6 +1505,10 @@
 				{
 					var ph:Object = new Object();
 					this.loadBaseData(saveBackup, ph);
+				}
+				else if (kGAMECLASS.chars["PC"] != undefined)
+				{
+					kGAMECLASS.chars["PC"].short = "";
 				}
 				
 				kGAMECLASS.output2("Error: Could not load game data.");
@@ -1541,10 +1546,10 @@
 			
 			// Blank entries get cleared notes!
 			if (kGAMECLASS.userInterface.currentPCNotes == null || kGAMECLASS.userInterface.currentPCNotes.length == 0 || kGAMECLASS.userInterface.currentPCNotes == "")
-			{ dataFile.saveNotes = "No notes available."; }
+			{ dataFile.saveNotes = ""; }
 			// Keywords to clear current saved notes! (Also if save notes toggle is disabled)
 			else if (kGAMECLASS.userInterface.currentPCNotes.toLowerCase() == "none" || kGAMECLASS.userInterface.currentPCNotes == "N/A" || kGAMECLASS.gameOptions.saveNotesToggle == false)
-			{ dataFile.saveNotes = "No notes available."; }
+			{ dataFile.saveNotes = ""; }
 			// Save note!
 			else
 			{ dataFile.saveNotes = kGAMECLASS.userInterface.currentPCNotes; }
@@ -1703,6 +1708,10 @@
 					var ph:Object = new Object();
 					this.loadBaseData(saveBackup, ph);
 				}
+				else if (kGAMECLASS.chars["PC"] != undefined)
+				{
+					kGAMECLASS.chars["PC"].short = "";
+				}
 				
 				kGAMECLASS.output2("Error: Could not load game data.");
 				kGAMECLASS.userInterface.mainButtonsOnly();
@@ -1735,7 +1744,7 @@
 			kGAMECLASS.days = obj.daysPassed;
 			kGAMECLASS.hours = obj.currentHours;
 			kGAMECLASS.minutes = obj.currentMinutes;
-			if (obj.saveNotes != "No notes available.") kGAMECLASS.userInterface.currentPCNotes = obj.saveNotes;
+			kGAMECLASS.userInterface.currentPCNotes = obj.saveNotes;
 			
 			// Game data
 			kGAMECLASS.initializeNPCs();
@@ -2040,7 +2049,7 @@
 				
 				var aRef:* = kGAMECLASS.chars;
 				// Some plebshit
-				if (kGAMECLASS.chars["RIVAL"].short == "Jack" || kGAMECLASS.chars["RIVAL"].short == "Jill")
+				if (kGAMECLASS.rival.short == "Jack" || kGAMECLASS.rival.short == "Jill")
 				{
 					kGAMECLASS.flags["RIVALCONFIGURED"] = 1;
 				}
@@ -2049,7 +2058,7 @@
 					kGAMECLASS.flags["RIVALCONFIGURED"] = 2;
 				}
 				
-				if (kGAMECLASS.chars["LANE"].eyeColor != "dark blue" && kGAMECLASS.flags["MET_LANE"] != undefined)
+				if (kGAMECLASS.lane.eyeColor != "dark blue" && kGAMECLASS.flags["MET_LANE"] != undefined)
 				{
 					kGAMECLASS.flags["LANE_BROKEN_INCOMINGSAVE"] = 1;
 				}
@@ -2061,7 +2070,7 @@
 				}
 				
 				// Accidental pregnancy hotfix
-				if(kGAMECLASS.chars["SHEKKA"].isPregnant())
+				if(kGAMECLASS.shekka.isPregnant())
 				{
 					if(kGAMECLASS.eventQueue.indexOf(kGAMECLASS.shekkaPregnancyHotfix) == -1) kGAMECLASS.eventQueue.push(kGAMECLASS.shekkaPregnancyHotfix);
 				}

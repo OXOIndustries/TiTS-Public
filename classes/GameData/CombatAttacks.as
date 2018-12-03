@@ -282,7 +282,7 @@ package classes.GameData
 			ThermalDisruptor.RequiresPerk = "Thermal Disruptor";
 			ThermalDisruptor.DisabledIfEffectedBy = ["Disarmed"];
 			ThermalDisruptor.TooltipTitle = "Thermal Disruptor";
-			ThermalDisruptor.TooltipBody = "Deals a large amount of intelligence-based thermal damage to a single target.";
+			ThermalDisruptor.TooltipBody = "Deals a large amount of intelligence-based, thermal damage to a single target before spreading out to nearby foes.";
 			ThermalDisruptor.Implementor = ThermalDisruptorImpl;
 			ThermalDisruptor.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(ThermalDisruptor);
@@ -294,7 +294,7 @@ package classes.GameData
 			GravidicDisruptor.RequiresPerk = "Gravidic Disruptor";
 			GravidicDisruptor.DisabledIfEffectedBy = ["Disarmed"];
 			GravidicDisruptor.TooltipTitle = "Gravidic Disruptor";
-			GravidicDisruptor.TooltipBody = "Deals a moderate amount of intelligence-based, Unresistable damage to a single target.";
+			GravidicDisruptor.TooltipBody = "Deals a moderate amount of intelligence-based, unresistable damage to a single target before spreading out to nearby foes.";
 			GravidicDisruptor.Implementor = GravidicDisruptorImpl;
 			GravidicDisruptor.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(GravidicDisruptor);
@@ -1519,20 +1519,22 @@ package classes.GameData
 			if (attacker is PlayerCharacter) output("You sling an array of microgrenades at everything in the area!");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " throw" + (attacker.isPlural ? "" : "s") + " out an array of microgrenades!");
 			
-			var d:int = 10 + (attacker.level * 2.5) + (attacker.intelligence() / 1.5);
+			var d:int = 10 + (attacker.level * 2.5) + (attacker.bimboIntelligence() / 1.5);
 			var damage:TypeCollection = new TypeCollection( { burning: d } );
+			var explosionDodged:int = 0;
 			
 			if (target is Cockvine)
 			{
 				kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, true, false, false);
-				//(damageValue:TypeCollection, pluralNades:Boolean = false, usedLauncher:Boolean = false, isLustGas:Boolean = false):void
 			}
 			
 			for (var x:int = 0; x < hGroup.length; x++)
 			{
+				if (hGroup[x].hasPerk("Get Down!") && !hGroup[x].isDefeated()) ++explosionDodged;
 				output("\n" + StringUtil.capitalize(hGroup[x].getCombatName(), false) + " " + (!hGroup[x].isPlural ? "is" : "are") + " caught in the explosion!");
-				applyDamage(damageRand(damage, 15), attacker, hGroup[x], "minimal");
+				applyDamage(damageRand(damage, 15), attacker, hGroup[x], "cluster");
 			}
+			kGAMECLASS.explosionDodgeBlurb(explosionDodged, attacker, target, "cluster");
 		}
 		
 		public static var DetonationCharge:SingleCombatAttack;
@@ -1541,13 +1543,12 @@ package classes.GameData
 			if (attacker is PlayerCharacter) output("You toss a bundle of explosives in the direction of " + target.getCombatName() + "!");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " throw" + (attacker.isPlural ? "" : "s") + " a bundle of explosives in " + possessive(target.getCombatName()) + " direction!");
 			
-			var d:int = 15 + (attacker.level * 4) + attacker.intelligence();
+			var d:int = 15 + (attacker.level * 4) + attacker.bimboIntelligence();
 			var damage:TypeCollection = damageRand(new TypeCollection( { burning: d } ), 15);
 			
 			if (target is Cockvine)
 			{
 				kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, false, false, false);
-				//(damageValue:TypeCollection, pluralNades:Boolean = false, usedLauncher:Boolean = false, isLustGas:Boolean = false):void
 			}
 			
 			applyDamage(damage, attacker, target);
@@ -1631,16 +1632,16 @@ package classes.GameData
 		{
 			if(!(attacker is PlayerCharacter))
 			{
-				if(attacker.isPlural) output(StringUtil.capitalize(attacker.getCombatName(), false) + " toggle wrist-mounted switches to light their weapons up with deadly arcs of electricity before thrusting them out for a quick, inaccurate strike!");
-				else output(StringUtil.capitalize(attacker.getCombatName(), false) + " toggles a wrist-mounted switch to light " + attacker.getCombatPronoun("hisher") + " weapon up with deadly arcs of electricity before thrusting it out for a quick, inaccurate strike!");
+				if(attacker.isPlural) output(StringUtil.capitalize(attacker.getCombatName(), false) + " toggle wrist-mounted switches to light their weapons up with deadly arcs of electricity before thrusting them out for a quick, inaccurate strike!\n");
+				else output(StringUtil.capitalize(attacker.getCombatName(), false) + " toggles a wrist-mounted switch to light " + attacker.getCombatPronoun("hisher") + " weapon up with deadly arcs of electricity before thrusting it out for a quick, inaccurate strike!\n");
 			}
 			else 
 			{
 				if (attacker.hasPerk("Fuck Sense")) output("You try to remember how to turn on the lightning-shockey thing you built for your weapon. It’s just like a vibrator, only the electrons move back and forth instead of a wiggly pink fucktoy! Then you remember you painted the button for it bright pink and give it a smack. The sudden ‘<i>kzzzt</i>’ of your weapon electrifying nearly makes you drop it - and in the process take an accidental swing your foe’s way!");
 				else output("You flick the switch on a wrist-mounted powercell, pumping arcs of deadly electricity into your " + attacker.meleeWeapon.longName + ", then try for a quick strike with the newly charged weapon!");
 			}
-			if (attacker is PlayerCharacter) attacker.createStatusEffect("Charged Weapon", Math.ceil(attacker.intelligence() + rand(attacker.level)), 0, 0, 0, false, "Icon_OffUp", (attacker.hasPerk("Fuck Sense") ? "Your weapon is electrified and will deal bonus damage based upon your current inte... intelli... nahhhh, you’re pretty sure it’ll hit harder based on your libido. Fuck fighting. Literally! Wheeeeee~" : "Your weapon is electrified and will deal bonus damage based upon your current intellectual capacity."), true, 0);
-			else attacker.createStatusEffect("Charged Weapon", Math.ceil(attacker.intelligence() + rand(attacker.level)), 0, 0, 0, false, "Icon_OffUp", "Weapon is electrified and will deal bonus damage based upon current intellectual capacity.", true, 0);
+			if (attacker is PlayerCharacter) attacker.createStatusEffect("Charged Weapon", Math.ceil(attacker.bimboIntelligence() + rand(attacker.level)), 0, 0, 0, false, "Icon_OffUp", (attacker.hasPerk("Fuck Sense") ? "Your weapon is electrified and will deal bonus damage based upon your current inte... intelli... nahhhh, you’re pretty sure it’ll hit harder based on your libido. Fuck fighting. Literally! Wheeeeee~" : "Your weapon is electrified and will deal bonus damage based upon your current intellectual capacity."), true, 0);
+			else attacker.createStatusEffect("Charged Weapon", Math.ceil(attacker.bimboIntelligence() + rand(attacker.level)), 0, 0, 0, false, "Icon_OffUp", "Weapon is electrified and will deal bonus damage based upon current intellectual capacity.", true, 0);
 			SingleMeleeAttackImpl(attacker, target, true);
 		}
 		
@@ -1694,7 +1695,7 @@ package classes.GameData
 			damageRand(d, 15);
 			applyDamage(d, attacker, target, "minimal");
 			
-			if (attacker.intelligence() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune"))
+			if (attacker.bimboIntelligence() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune"))
 			{
 				output("\n");
 				if (target is PlayerCharacter) output("<b>You are stunned!</b>");
@@ -1753,7 +1754,7 @@ package classes.GameData
 			
 			if (CombatManager.multipleEnemies())
 			{
-				output(" The flames surge, licking at your targets compatriots!");
+				output(" The flames surge, licking at your target’s compatriots!");
 			}
 			
 			var targetDamage:int = Math.round(20 + attacker.level * 4 + attacker.bimboIntelligence());
@@ -1771,13 +1772,13 @@ package classes.GameData
 			{
 				if (hGroup[i] != target && !hGroup[i].isDefeated())
 				{
-					totalDamage.addResult(applyDamage(damageRand((target.isPlural == true ? pluralDamage : baseDamage), 15), attacker, hGroup[i], "suppress"));
+					totalDamage.addResult(applyDamage(damageRand((hGroup[i].isPlural == true ? pluralDamage : baseDamage), 15), attacker, hGroup[i], "suppress"));
 				}
 			}
 			
 			outputDamage(totalDamage);
 
-			if(!target.hasStatusEffect("Burning"))
+			if(attacker.hasPerk("Boosted Charges") && !target.hasStatusEffect("Burning") && rand(3) != 0)
 			{
 				applyBurning(target, 2);
 				if (target is PlayerCharacter) output("\n<b>You are on fire!</b>");
@@ -1820,9 +1821,9 @@ package classes.GameData
 			
 			for (var i:int = 0; i < hGroup.length; i++)
 			{
-				if (hGroup[i] != target)
+				if (hGroup[i] != target && !hGroup[i].isDefeated())
 				{
-					totalDamage.addResult(applyDamage(damageRand((target.isPlural == true ? pluralDamage : baseDamage), 15), attacker, hGroup[i], "suppress"));
+					totalDamage.addResult(applyDamage(damageRand((hGroup[i].isPlural == true ? pluralDamage : baseDamage), 15), attacker, hGroup[i], "suppress"));
 				}
 			}
 			
@@ -1848,7 +1849,7 @@ package classes.GameData
 			else if (target is PlayerCharacter) output(StringUtil.capitalize(attacker.getCombatName(), false) + " attempts to wirelessly hack your shield!");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " attempt" + (attacker.isPlural ? "" : "s") + " to wirelessly hack the shield" + (target.isPlural ? "s" : "") + " protecting " + target.getCombatName() + "!");
 			
-			var d:TypeCollection = damageRand(new TypeCollection( { electric: Math.round(25 + attacker.level * 2.5 + attacker.intelligence() / 1.5) } ), 15);
+			var d:TypeCollection = damageRand(new TypeCollection( { electric: Math.round(25 + attacker.level * 2.5 + attacker.bimboIntelligence() / 1.5) } ), 15);
 			d.addFlag(DamageFlag.ONLY_SHIELD);
 			
 			var dr:DamageResult = calculateDamage(d, attacker, target, "suppress");
@@ -1907,17 +1908,19 @@ package classes.GameData
 				return;
 			}
 			
-			if (rand(20) + 1 + attacker.intelligence() / 2 < target.intelligence() / 2 + 10)
+			var attackIntelligence:Number = attacker.bimboIntelligence();
+			var targetIntelligence:Number = target.bimboIntelligence();
+			if (rand(20) + 1 + attackIntelligence / 2 < targetIntelligence / 2 + 10)
 			{
 				if (attacker is PlayerCharacter)
 				{
 					output("You try to hack " + possessive(target.getCombatName()) + " weapon" + (target.isPlural ? "s" : "") + ", but " + (target.isPlural ? "they’re" : target.getCombatPronoun("heshe") + "’s") + " too smart and too quick!");
-					if (attacker.intelligence() > target.intelligence() - 5) output(".. this time.");
+					if (attackIntelligence > targetIntelligence - 5) output(".. this time.");
 				}
 				else if (target is PlayerCharacter)
 				{
 					output(StringUtil.capitalize(attacker.getCombatName(), false) + " tr" + (attacker.isPlural ? "y" : "ies") + " to hack your weapon, but you’re quick to defend against the remote intrusion.");
-					if (attacker.intelligence() > target.intelligence() - 5) output(".. this time.");
+					if (attackIntelligence > targetIntelligence - 5) output(".. this time.");
 				}
 				else
 				{
@@ -2164,8 +2167,9 @@ package classes.GameData
 			else if (target is PlayerCharacter) output(StringUtil.capitalize(attacker.getCombatName(), false) + " huck" + (attacker.isPlural ? " small devices" : "s a small device") + " in your direction, " + (attacker.isPlural ? "each unleashing explosive blasts just" : "unleashing an explosive blast scant") + " inches from your body!");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " huck" + (attacker.isPlural ? " small devices" : "s a small device") + " in " + possessive(aTarget.getCombatName()) + " direction, " + (attacker.isPlural ? "each unleashing explosive blasts just" : "unleashing an explosive blast scant") + " inches from " + aTarget.getCombatPronoun("hisher") + " form!");
 				
-			var d:int = Math.round(7.5 + attacker.level * 2 + attacker.intelligence() / 2);
+			var d:int = Math.round(7.5 + attacker.level * 2 + attacker.bimboIntelligence() / 2);
 			var totalDamage:DamageResult = new DamageResult();
+			var projectileDodged:int = 0;
 			
 			for (var i:int = 0; i < hGroup.length; i++)
 			{
@@ -2174,14 +2178,13 @@ package classes.GameData
 				
 				var damage:TypeCollection = damageRand(new TypeCollection( { kinetic: d, burning: d } ), 15);
 				
-				if (cTarget is Cockvine)
-				{
-					kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, false, false, false);
-				}
+				if (cTarget is Cockvine) kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, false, false, false);
+				if (cTarget.hasPerk("Get Down!")) ++projectileDodged;
 				
-				totalDamage.addResult(applyDamage(damage, attacker, cTarget, "suppress"));
+				totalDamage.addResult(applyDamage(damage, attacker, cTarget, "explosion"));
 			}
 			
+			kGAMECLASS.explosionDodgeBlurb(projectileDodged, attacker, cTarget, "explosion");
 			outputDamage(totalDamage);
 		}
 		
@@ -2202,6 +2205,7 @@ package classes.GameData
 			
 			var d:int = 14 + attacker.level * 2;
 			var totalDamage:DamageResult = new DamageResult();
+			var gasDodged:int = 0;
 			
 			for (var i:int = 0; i < hGroup.length; i++)
 			{
@@ -2211,14 +2215,21 @@ package classes.GameData
 				
 				var damage:TypeCollection = damageRand(new TypeCollection( { drug: d } ), 15);
 				
+				if (cTarget.hasPerk("Get Down!")) ++gasDodged;
 				if (cTarget is Cockvine)
 				{
 					kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, false, false, true);
+				}
+				if(cTarget.hasAirtightSuit())
+				{
+					output("\nThe attack is ineffective against " + ((hGroup.length == 1 || (cTarget is PlayerCharacter)) ? cTarget.getCombatPronoun("hisher") : (cTarget.getCombatName() + "’s")) + " airtight suit" + (((cTarget is PlayerCharacter) || !cTarget.isPlural) ? "" : "s") + "!");
+					continue;
 				}
 				
 				totalDamage.addResult(applyDamage(damage, attacker, cTarget, "suppress"));
 			}
 			
+			kGAMECLASS.explosionDodgeBlurb(gasDodged, attacker, target, "gas");
 			outputDamage(totalDamage);
 		}
 		
@@ -2651,12 +2662,20 @@ package classes.GameData
 			}
 			if(target is NaleenHerm)
 			{
-				target.addStatusValue("Counters Ranged",1,1);
-				target.setStatusValue("Counters Melee",1,0);
-				if(target.statusEffectv1("Counters Ranged") >= 3)
+				if(target.isBlind() || target.isImmobilized())
 				{
-					(target as NaleenHerm).rangedCounter(attacker);
-					return true;
+					target.setStatusValue("Counters Melee",1,0);
+					target.setStatusValue("Counters Ranged",1,0);
+				}
+				else
+				{
+					target.addStatusValue("Counters Ranged",1,1);
+					target.setStatusValue("Counters Melee",1,0);
+					if(target.statusEffectv1("Counters Ranged") >= 3)
+					{
+						(target as NaleenHerm).rangedCounter(attacker);
+						return true;
+					}
 				}
 			}
 			return false;
@@ -2670,12 +2689,20 @@ package classes.GameData
 			}
 			if(target is NaleenHerm)
 			{
-				target.addStatusValue("Counters Melee",1,1);
-				target.setStatusValue("Counters Ranged",1,0);
-				if(target.statusEffectv1("Counters Melee") >= 3)
+				if(target.isBlind() || target.isImmobilized())
 				{
-					(target as NaleenHerm).meleeCounter(attacker);
-					return true;
+					target.setStatusValue("Counters Melee",1,0);
+					target.setStatusValue("Counters Ranged",1,0);
+				}
+				else
+				{
+					target.addStatusValue("Counters Melee",1,1);
+					target.setStatusValue("Counters Ranged",1,0);
+					if(target.statusEffectv1("Counters Melee") >= 3)
+					{
+						(target as NaleenHerm).meleeCounter(attacker);
+						return true;
+					}
 				}
 			}
 			return false;

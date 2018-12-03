@@ -361,24 +361,26 @@ public function lahPregnancyEnds(babyList:Array):void
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;
+	var inShip:Boolean = InShipInterior();
+	var inPublic:Boolean = (InPublicSpace() || rooms[currentLocation].planet.toLowerCase().indexOf("station") != -1 || rooms[currentLocation].hasFlag(GLOBAL.INDOOR));
 	
 	output("Pain in your gut bends you over and fluid spills");
 	if(pc.hasLowerGarment()) output(" into your [pc.lowerUndergarment]");
-	if(InShipInterior()) output(" onto the deck");
+	if(inShip) output(" onto the deck");
 	else output(" onto the ground");
 	output(". Alarm grips you as you feel your cervix dilate. With as much calm as you can muster, you consider the best course of action.");
-	if(InShipInterior())
+	if(inShip)
 	{
 		output("\n\nAs quickly as you can, you waddle into your room, switch the auto-medkit on in the bathroom, carefully place yourself on the bed");
 		if(!pc.isNude()) output(", rip off your [pc.gear]");
 		output(" and spread your [pc.thighs], biological imperative virtually ordering you what to do.");
 	}
-	else if(InPublicSpace()) output("\n\nAs quickly as you can, you waddle into the nearest restroom, grab the medkit drone off the wall (frontier bathrooms are thankfully readily equipped for this sort of thing), lock yourself in a cubicle and spread your [pc.thighs], biological imperative virtually ordering you what to do.");
+	else if(inPublic) output("\n\nAs quickly as you can, you waddle into the nearest restroom, grab the medkit drone off the wall (frontier bathrooms are thankfully readily equipped for this sort of thing), lock yourself in a cubicle and spread your [pc.thighs], biological imperative virtually ordering you what to do.");
 	else if(rooms[currentLocation].hasFlag(GLOBAL.HAZARD)) output("\n\nGroaning at the timing, you shed your [pc.gear] and position yourself the best you can in the inhospitable and non-hospital-able terrain. The wish that you’d stayed somewhere indoors and safe hums through your thoughts like a mosquito, but there’s no helping it now -- you’ll have to deliver on your own.");
 	output("\n\n");
-	if(InShipInterior() || InPublicSpace()) output("The medkit drone monitors your pulse and places a large sheet beneath your thighs, instructing you to bear down rhythmically with soft, wordless beeps. ");
+	if(inShip || inPublic) output("The medkit drone monitors your pulse and places a large sheet beneath your thighs, instructing you to bear down rhythmically with soft, wordless beeps. ");
 	output("Spasms wrack your pregnant body for the next hour, and your mind almost shuts down from the pain, operating on biological autopilot. There’s no relief when the first baby finally emerges via one gigantic clench, wailing heartily, none at all - because you know, from the weight and wriggling in your womb, that that’s simply one of two.");
-	if(InShipInterior() || InPublicSpace()) output(" The drone hovers down, snipping the umbilical cord and cradling the child to one side whilst you grit your teeth and bear down again.");
+	if(inShip || inPublic) output(" The drone hovers down, snipping the umbilical cord and cradling the child to one side whilst you grit your teeth and bear down again.");
 	else output(" You grit your teeth and bear down again.");
 	output("\n\nAt long last, in a sweaty daze of utter exhaustion, you’re looking down at your two, tiny children, curled up in your arms " + (!pc.isLactating() ? "and blinking suspiciously at the world they’ve found themselves in" : "nursing hungrily on your [pc.boobs]") + ". If you didn’t already know from the fact they’re twins, what they are is obvious from their floppy, isosceles ears and short, fluffy tails, twitching spasmodically as they " + (!pc.isLactating() ? "gaze around" : "feed on their mother’s milk") + ". Half-ausar puppies!");
 	if(babyList[0].NumMale + babyList[1].NumMale >= 2) output(" They’re both boys, their facial features a mirror image of each other.");
@@ -2372,7 +2374,7 @@ public function quinnFestivalSexingsDroneAlone(arg:Array):void
 			output("\n\nYou’d pull out and shower her with [pc.cum] this time, demonstrate the virility of the Chosen Drone in the crudest, most glorious way possible... but no, you have a duty here, and it won’t be fulfilled until her womb is utterly packed with your thick, teeming cum. You groan mightily as orgasm overcomes you again, your muscles locking and forcing out great gobbets of [pc.cum], and you make sure every last drop of it is buried deep in Quinn’s pussy.");
 			if(pc.cumQ() >= 1500) output(" You absolutely <i>can</i> do the duty of three sissy zil guys, and since she demanded it you give her it, unloading the entirety of your backed-up reserves into her. She gasps and then cries out in shock as her stomach pouches out with the vast amount your ejaculating into her; you hold her steady, one hand gripping a horn and the other on her shoulder, even as [pc.cumColor] fluid feeds back and squirts out in every direction. You don’t stop until " + (pc.balls >= 2 ? "your [pc.balls]" : "[pc.eachCock]") + " ache and the zil matriarch has her barely-believing hands upon what looks like a third trimester pregnancy.");
 			output(" The woozy, gratified ‘mmm’ you draw from her by the end, as you finally withdraw your dripping cock from her cum-choked hole, is pure poetry.");
-			output("\n\n<i>“Sleep now, my champion,”</i> she whispers, once you’ve collapsed your sweat-streaked form into the welcoming embrace of the furs. You feel the plushness of her breasts press against your [pc.chest], her lithe arms spreading themselves around you. <i>“Regain your strength. You I will require more of you - in the morning.”</i>");
+			output("\n\n<i>“Sleep now, my champion,”</i> she whispers, once you’ve collapsed your sweat-streaked form into the welcoming embrace of the furs. You feel the plushness of her breasts press against your [pc.chest], her lithe arms spreading themselves around you. <i>“Regain your strength. I will require more of you - in the morning.”</i>");
 			output("\n\n");
 			
 			processTime(14);

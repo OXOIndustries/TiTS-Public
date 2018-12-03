@@ -28,6 +28,11 @@ public function zhengShiHangerFloorBonus():Boolean
 		urbolgMeeting();
 		return true;
 	}
+	else if (!pc.hasStatusEffect("Rat Delay") && flags["RATS_ENABLED"] == undefined)
+	{
+		ratsAttemptUrbolgRobbery();
+		return true;
+	}
 	else
 	{
 		if(pc.hasStatusEffect("URBOLG_DISABLED"))
@@ -273,6 +278,7 @@ public function urbolgBadEndV():void
 public function defeatUrbolg():void
 {
 	flags["MET_URBOLG"] = 1;
+	pc.createStatusEffect("Rat Delay"); pc.setStatusMinutes("Rat Delay", 3*24*60);
 	//Lust
 	if(enemy.lust() >= enemy.lustMax())
 	{
@@ -336,8 +342,8 @@ public function urbolgMenu():void
 	else if(flags["URBY_COLLAR_FUN"] != undefined) addButton(5,"Slave Collar",urbyCollarBadEndByWsan,undefined,"Slave Collar","It’s so tempting. You could have it all again if you just put it on... just once more should be fine.");
 	else addButton(5, "Collar", urbyCollarFunByWsan, undefined, "Collar", "There’s a collar sitting out on his workstation. Ask him about it.");
 	
-	if (amberShowTaurEquipButton()) addButton(6, "Taur Equip", amberUrbolgTaurEquipTalk, undefined, "Taur-centric Ship Equipment", "Ask Urbolg about setting up some ‘taur-centric equipment in your ship.");
-	else if(pc.hasKeyItem("Taur-centric Ship Equipment")) addDisabledButton(6,"Taur Equip","Taur-centric Ship Equipment","Taur-centric ship equipment is already installed on your ship!");
+	if (amberShowTaurEquipButton()) addButton(7, "Taur Equip", amberUrbolgTaurEquipTalk, undefined, "Taur-centric Ship Equipment", "Ask Urbolg about setting up some ‘taur-centric equipment in your ship.");
+	else if(pc.hasKeyItem("Taur-centric Ship Equipment")) addDisabledButton(7,"Taur Equip","Taur-centric Ship Equipment","Taur-centric ship equipment is already installed on your ship!");
 
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -752,10 +758,10 @@ public function urbolgSexMenu():void
 	addButton(2,"SuckCock",giveUrbolgBlowies,undefined,"SuckCock","Give the half-pint half-mechanical mechanic some oral service.");
 	if(pc.isTaur())
 	{
-		if(pc.hasVagina()) addButton(3,(flags["URBY_TAUR_FUX"] == undefined ? "TaurFuck" : "TaurFist"),urbyTaurFux,undefined,(flags["URBY_TAUR_FUX"] == undefined ? "TaurFuck" : "TaurFist"),"Have Urbolg take you for a ride.");
-		else addDisabledButton(3,(flags["URBY_TAUR_FUX"] == undefined ? "TaurFuck" : "TaurFist"),(flags["URBY_TAUR_FUX"] == undefined ? "TaurFuck" : "TaurFist"),"You need a vagina for this.");
+		if(pc.hasVagina()) addButton(3,(flags["URBY_TAUR_FUX"] == undefined ? "TaurFuck" : "TaurFist"),urbyTaurFux,undefined,(flags["URBY_TAUR_FUX"] == undefined ? "Taur Fuck" : "Taur Fist"),"Have Urbolg take you for a ride.");
+		else addDisabledButton(3,(flags["URBY_TAUR_FUX"] == undefined ? "TaurFuck" : "TaurFist"),(flags["URBY_TAUR_FUX"] == undefined ? "Taur Fuck" : "Taur Fist"),"You need a vagina for this.");
 	}
-	else addDisabledButton(3,(flags["URBY_TAUR_FUX"] == undefined ? "TaurFuck" : "TaurFist"),(flags["URBY_TAUR_FUX"] == undefined ? "TaurFuck" : "TaurFist"),"You need to be a centaur for this.")
+	else addDisabledButton(3,(flags["URBY_TAUR_FUX"] == undefined ? "TaurFuck" : "TaurFist"),(flags["URBY_TAUR_FUX"] == undefined ? "Taur Fuck" : "Taur Fist"),"You need to be a centaur for this.");
 	if(flags["URBOLG_DOGGYED"] >= 3) addButton(4,"RideHisCock",vaginaRouter,[rideUrbolgsCock,chars["URBOLG"].cockVolume(0),1,0],"Ride His Cock","Ask Urbolg if you can ride his cock.");
 	else addDisabledButton(4,"RideHisCock","Ride His Cock","Maybe if you let Urbolg pound you out and suck his cock a little he’ll be more amicable towards the idea of letting you ride him.");
 	addButton(14,"Leave",leaveUrbolgSexAngerRar);
@@ -846,7 +852,7 @@ public function getDoggyDoggyUrbolg(x:int):void
 	{
 		output(" It’s colored like delicious candy! You’re on your knees immediately, obediently presenting your open mouth and poking your tongue out for his use.");
 		output("\n\n<i>“Aaah.”</i>");
-		output("\n\n<i>“Good [pc.girlBoy]");
+		output("\n\n<i>“Good [pc.girlBoy],”</i>");
 	}
 	else
 	{
@@ -861,8 +867,9 @@ public function getDoggyDoggyUrbolg(x:int):void
 		output("\n\n<i>“");
 		if(flags["URBOLG_DOGGYED"] >= 3) output("Good [pc.girlBoy]");
 		else output("Least ye follow orders");
-		output(",”</i> he mutters, placing a hand on your head and taking the invitation.");
+		output(",”</i>");
 	}
+	output(" he mutters, placing a hand on your head and taking the invitation.");
 	output("\n\nHis tapered tip slides across your tongue and into your mouth without stopping, Urbolg taking the opportunity to hold you in place and thrust into your cheeks. You gladly allow him, curling your [pc.tongue] around as much of his fat cock as you can manage while your cheek bulges with cock. He holds you there for a few seconds while you slobber and slurp all over his dick, your lips sealing around the middle of his cock and sucking as hard as you can manage.");
 	output("\n\nUrbolg grunts in pleasure, pulling back and thrusting deeper into your mouth, the head of his cock kissing your tonsils for a second before he pushes further. Every inch he sinks inside you makes you");
 	if(pc.isHerm()) output(" wetter and harder");
@@ -2230,16 +2237,17 @@ public function urbyTaurFux():void
 	showUrbolg(true);
 	author("Wsan");
 	//After first time, change button to ‘Taurfist’.
+	output("<i>“");
 	if(flags["URBY_TAUR_FUX"] == undefined)
 	{
-		output("<i>Sure you can handle me, Urbolg?”</i> you ask, grinning. <i>“");
-		if(flags["SEXED_URBOLG"] != undefined) output("Though I guess you certainly do have some ‘special’ equipment");
+		output("Sure you can handle me, Urbolg?”</i> you ask, grinning. <i>“");
+		if(flags["SEXED_URBOLG"] != undefined || pc.hasKeyItem("Taur-centric Ship Equipment")) output("Though I guess you certainly do have some ‘special’ equipment");
 		else output("I hope you’ve got some special equipment");
 	}
-	else output("<i>“Up for another tussle onboard my ship, Urbolg? Still got the equipment set up, after all. Seems a shame not to use it");
+	else output("Up for another tussle onboard my ship, Urbolg? Still got the equipment set up, after all. Seems a shame not to use it");
 	output(".”</i>");
 
-	if(flags["URBY_TAUR_FUX"] == undefined)
+	if(flags["URBY_TAUR_FUX"] == undefined && !pc.hasKeyItem("Taur-centric Ship Equipment"))
 	{
 		output("\n\n<i>“Hnnh,”</i> he says, considering something. <i>“Ye know... I’ve got a bunch of tools designed for ‘taurs. I see all manner of idiots coming through here and plenty of their stuff gets left behind. Pair ‘a leithans rolled through and never came back fer it. What say ye help me bring it up to your ship and set it up?”</i>");
 		output("\n\n<i>“Sure,”</i> you say, shrugging. <i>“I’ll take your junk off your hands.”</i>");
@@ -2269,6 +2277,8 @@ public function urbyTaurFux():void
 		else output(" Your [pc.asshole] tightens up, winking in anticipation.");
 		output("\n\nYour stud circles you, checking the tightness of the equipment and ensuring everything is in position before finally wiping his forehead and sighing. <i>“There.”</i>");
 		output("\n\n<i>“So... what are you gonna do first?”</i> you ask him, a little curious to hear what he’ll say.");
+		
+		if(!pc.hasKeyItem("Taur-centric Ship Equipment")) pc.createKeyItem("Taur-centric Ship Equipment", 0, 0, 0, 0, "Equipment to accommodate a taur living on your ship.");
 	}
 	else
 	{

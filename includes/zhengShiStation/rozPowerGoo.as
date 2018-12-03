@@ -681,7 +681,7 @@ public function giveUpToRozBallFilling2():void
 		output("\n\nRoz steps backwards and settles in, the suit thudding closed. The only thing you’re really conscious of is that the direction she’s walking is definitely not the way back to your ship.");
 		processTime(60);
 		clearMenu();
-		addButton(0,"next",giveUpToRozBallFilling3);
+		addButton(0,"Next",giveUpToRozBallFilling3);
 	}
 }
 
@@ -815,7 +815,7 @@ public function rozGetsGoofukked():void
 		clearMenu();
 		addButton(0,"Lips",inflateRozesLips,undefined,"Lips","Inflate Roz’s lips with your helpfully provided biomass.");
 		addButton(1,"Boobs",inflateRozesBoobalages,undefined,"Boobs","Thrust into Roz’s chest and blow her tits up like balloons.");
-		addButton(1,"Butt",inflateRozesBootayhole,undefined,"Butt","Give Roz that retro-celeb look by blowing your load in her ass.");
+		addButton(2,"Butt",inflateRozesBootayhole,undefined,"Butt","Give Roz that retro-celeb look by blowing your load in her ass.");
 	}
 	else
 	{

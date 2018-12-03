@@ -117,7 +117,7 @@ public function approachVerusha(back:Boolean = true):void
 		output("Verusha taps a finger impatiently as you change your mind.");
 		verushaMenu();
 	}
-	else if(pc.tallness > 8*12)
+	else if(pc.tallness > 9*12)
 	{
 		output("Verusha manages to catch your attention, so you walk up to her.");
 		output("\n\nWhen you reach her she slightly nods with disinterest.");
@@ -414,7 +414,7 @@ public function sexWithVerusha():void
 	clearOutput();
 	showVerusha();
 	//[Too tall] (PC height more than eight feet)
-	if(pc.tallness > 8*12)
+	if(pc.tallness > 9*12)
 	{
 		output("She takes one look at you before shooting you down. <i>“Sorry, but I prefer my partners to be shorter than you are. I’ve had tall fucks before and it’s a bother.”</i>");
 		output("\n\n<i>“Go eat some Strawberry Shortcakes or something if you want to fuck. Maybe go take notes from the raskvel; best fuck I’ve ever had.”</i>");

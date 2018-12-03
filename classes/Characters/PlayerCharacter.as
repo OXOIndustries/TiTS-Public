@@ -1161,7 +1161,7 @@ package classes.Characters
 			var deltaShift:uint = 1440 - (GetGameTimestamp() % 1440);
 	
 			for (var i:int = 0; i < totalDays; i++)
-			{ 
+			{
 				var m:String = "Your scalp tingles and you";
 				if (hairLength <= 0)
 				{

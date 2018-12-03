@@ -12,10 +12,16 @@ public function flyToTavros():void
 public function puntToShip():Boolean
 {
 	clearOutput();
-	if(currentLocation == "POESPACE" && flags["POE_A_DISABLED"] == undefined)
+	if(currentLocation == "POESPACE")
 	{
-		landingOnPoeA();
-		return true;
+		var curDate:Date = new Date();
+		var curYear:Number = (curDate.getFullYear());
+		
+		if(flags["POE_A_DISABLED"] == undefined || flags["POE_A_YEAR"] == undefined || flags["POE_A_YEAR"] != curYear)
+		{
+			landingOnPoeA();
+			return true;
+		}
 	}
 	output("You really don’t want to step out into the cold void of space. Maybe you should land somewhere?");
 	moveTo("SHIP INTERIOR");

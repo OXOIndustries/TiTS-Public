@@ -7,6 +7,7 @@
 	import classes.Items.Melee.Fists;
 	import classes.Items.Miscellaneous.*
 	import classes.Items.Guns.PrimitiveBow;
+	import classes.Items.Guns.LaserCarbine;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -130,6 +131,7 @@
 			//No dicks here!
 			this.cocks = new Array();
 			this.createCock();
+			this.cockVirgin = false;
 			this.cocks[0].cLengthRaw = 6;
 			this.cocks[0].cThicknessRatioRaw = 1.75;
 			this.cocks[0].cockColor = "black";
@@ -164,6 +166,7 @@
 			this.milkType = GLOBAL.FLUID_TYPE_HONEY;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
+			this.analVirgin = false;
 			this.ass.wetnessRaw = 0;
 			this.ass.bonusCapacity += 15;
 
@@ -195,6 +198,7 @@
 		
 		override public function get bustDisplay():String
 		{
+			if(hasPerk("Penny Quest AI")) return "ZIL_RED";
 			return "ZIL";
 		}
 		
@@ -205,14 +209,62 @@
 				dataObject.legFlags.push(GLOBAL.FLAG_PLANTIGRADE);
 			}
 		}
-		
+		public function pumpkingIt():void
+		{
+			isUniqueInFight = false;
+			this.rangedWeapon = new LaserCarbine();
+			this.inventory = [];
+		}
+		public function pennyQuestIt():void
+		{
+			this.inventory = [];
+			this.createPerk("Penny Quest AI");
+			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+			this.level = 3;
+			this.HPMod = 5;
+			//this.shield = new JoyCoPremiumShield;
+			this.shield.hasRandomProperties = true;
+			this.shieldDisplayName = "CHITIN";
+			this.shield.shields = 50;
+			this.shields(this.shieldsMax());
+			this.shield.defense = 2;
+			/*this.shield.resistances.kinetic.resistanceValue = 0.0;
+			this.shield.resistances.electric.resistanceValue = 75.0;*/
+			this.physiqueRaw = 10;
+			this.reflexesRaw = 14;
+			this.aimRaw = 7;
+			this.intelligenceRaw = 10;
+			this.willpowerRaw = 13;
+			this.libidoRaw = 60;
+			this.lustRaw = 33;
+
+			this.HP(this.HPMax());
+			this.XPRaw = normalXP();
+			this.credits = 120;
+		}
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);
 			
 			if (target == null) return;
 			
-			if(((HPMax() - HP())/HPMax()) * 200 > rand(100))
+			if(this.rangedWeapon is LaserCarbine)
+			{
+				if(CombatManager.getRoundCount() % 4 == 0) zilHardenSingle();
+				else CombatAttacks.SingleRangedAttackImpl(this, target);
+			}
+			else if(this.hasPerk("Penny Quest AI"))
+			{
+				if(this.HP() < this.HPMax() && rand(5) == 0) zilHardenSingle();
+				//First allied creature
+				else if(this == alliedCreatures[0]) zilHoneyDrip(target);
+				//Second
+				else if(alliedCreatures.length > 1 && this == alliedCreatures[1]) zilPheromoneFan(target);
+				//Third
+				else if(alliedCreatures.length > 2 && this == alliedCreatures[2]) zilCrotchGrind(target);
+				else flurryOfBlows(target);
+			}
+			else if(((HPMax() - HP())/HPMax()) * 200 > rand(100))
 			{
 				if(CombatManager.getRoundCount() % 4 == 0) zilHardenSingle();
 				else if(rand(4) == 0) flurryOfBlows(target);
@@ -230,64 +282,124 @@
 		
 		private function zilCrotchGrind(target:Creature):void
 		{
-			output("Zipping forward, the zil brings his ");
-			if(lust() < 33) output("sensitive");
-			else if(lust() <= 66) output("stiff");
-			else if(lust() <= 75) output("throbbing");
-			else if(lust() <= 85) output("dripping");
-			else output("drooling");
-			output(" dick right into your [pc.face]. The soft shroud of his foreskin rubs hotly against you, peeling back to barely expose the ebony glans that is prodding your forehead.");
-			if(target.hasAirtightSuit())
+			if(this.hasPerk("Penny Quest AI"))
 			{
-				output(" You gasp and stumble away when you see his cock produce an oily streak. Pheromones, no doubt. Fortunately for you, your [pc.armor] is airtight, so any reactions you could have had to it are assuredly blocked.");
+				output("The wasp-man closest to the ground zips forward, bringing his ");
+				if(lust() < 33) output("sensitive");
+				else if(lust() <= 66) output("stiff");
+				else if(lust() <= 75) output("throbbing");
+				else if(lust() <= 85) output("dripping");
+				else output("drooling");
+				output(" dick right into your [pc.face]. The soft shroud of his foreskin rubs hotly against you, peeling back to barely expose the ebony glans that is prodding your forehead.");
+				if(target.hasAirtightSuit()) output(" You pull away, protected by your airtight equipment.");
+				else
+				{
+					output(" You pull away too late, dosed with a heavy load of pheromones.");
+					if(target.lust() <= 33) output(" Uh, wow... you could probably go for another sniff of that.");
+					else if(target.lust() <= 66) output(" Mmmm, he smells so good that you could just drop down to your knees and let him drag it all over.");
+					else if(target.lust() <= 75) output(" Yum! You inhale another deep drag of his diminishing aroma and wonder if it wouldn’t be too bad to give in to him.");
+					else output(" Ungh, why aren’t you letting him fuck your mouth so that you can breathe in more?");
+					applyDamage(damageRand(new TypeCollection( { pheromone: 12 } ), 15), this, target, "minimal");
+				}
 			}
 			else
 			{
-				output(" You gasp and stumble away, not realizing your mistake until the chemical deluge hits your senses.");
-				if(target.lust() <= 33) output(" Uh, wow... you could probably go for another sniff of that.");
-				else if(target.lust() <= 66) output(" Mmmm, he smells so good that you could just drop down to your knees and let him drag it all over.");
-				else if(target.lust() <= 75) output(" Yum! You inhale another deep drag of his diminishing aroma and wonder if it wouldn’t be too bad to give in to him.");
-				else output(" Ungh, why aren’t you letting him fuck your mouth so that you can breathe in more?");
-				if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] == 1) output(" You’ve let him win before and nothing bad came of it, what’s wrong with one more submission?");
-				else if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] == 2) output(" You’ve given into these aliens twice already. Surely the third time is the charm...");
-				else if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] == 3) output(" You’ve let them use you a handful of times. What’s once more?");
-				else if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] != undefined) output(" You’ve given in countless times already, why not live it up?");
-				target.lust(10+target.libido()/10);
+				output("Zipping forward, the zil brings his ");
+				if(lust() < 33) output("sensitive");
+				else if(lust() <= 66) output("stiff");
+				else if(lust() <= 75) output("throbbing");
+				else if(lust() <= 85) output("dripping");
+				else output("drooling");
+				output(" dick right into your [pc.face]. The soft shroud of his foreskin rubs hotly against you, peeling back to barely expose the ebony glans that is prodding your forehead.");
+				if(target.hasAirtightSuit())
+				{
+					output(" You gasp and stumble away when you see his cock produce an oily streak. Pheromones, no doubt. Fortunately for you, your [pc.armor] is airtight, so any reactions you could have had to it are assuredly blocked.");
+				}
+				else
+				{
+					output(" You gasp and stumble away, not realizing your mistake until the chemical deluge hits your senses.");
+					if(target.lust() <= 33) output(" Uh, wow... you could probably go for another sniff of that.");
+					else if(target.lust() <= 66) output(" Mmmm, he smells so good that you could just drop down to your knees and let him drag it all over.");
+					else if(target.lust() <= 75) output(" Yum! You inhale another deep drag of his diminishing aroma and wonder if it wouldn’t be too bad to give in to him.");
+					else output(" Ungh, why aren’t you letting him fuck your mouth so that you can breathe in more?");
+					if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] == 1) output(" You’ve let him win before and nothing bad came of it, what’s wrong with one more submission?");
+					else if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] == 2) output(" You’ve given into these aliens twice already. Surely the third time is the charm...");
+					else if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] == 3) output(" You’ve let them use you a handful of times. What’s once more?");
+					else if(kGAMECLASS.flags["TIMES_LOST_TO_ZIL"] != undefined) output(" You’ve given in countless times already, why not live it up?");
+					applyDamage(damageRand(new TypeCollection( { pheromone: 13 } ), 15), this, target, "minimal");
+				}
 			}
 		}
 		
 		private function zilPheromoneFan(target:Creature):void
 		{
-			output("The zil abruptly begins to fondle his [zil.cock], stimulating the organ as he alters his wingbeats to gust musk-laced air in your direction. He floats up high and flies erratically enough that you doubt you could hit him.");
-			if(target.hasAirtightSuit())
+			if(this.hasPerk("Penny Quest AI"))
 			{
-				output("\n\nLuckily your [pc.armor] is sealed tight, so you are unaffected by it. He grumps at his failed attempt. You definitely came prepared!");
-			}
-			// Moderate toughness check pass
-			else if(target.physique() + rand(20) + 1 > 20) {
-				output(" There’s nothing to do but try and hold your breath!");
-				output("\nHe gets tired long before you do and gives up, but it still leaves a cloud of his delicious aroma floating around you. It’s strong enough to make your pulse quicken.");
-				target.lust(5+target.libido()/20);
-			}
-			else {
-				output(" There’s nothing to do but try and hold your breath!");
-				output("\nEventually, you can hold your breath no longer, and you’re forced to inhale the potent cloud deep into your lungs. Your heart hammers in your chest faster and faster while your [pc.skin] flushes and your lips unconsciously purse.");
-				if(target.lust() < 33) output(" A tingling warmth in your crotch leaves no doubts as to the effectiveness of your alien foe’s ‘attack’.");
-				else if(target.lust() <= 66) output(" The warm, incessantly building heat in your loins is getting hotter and hotter with every breath you take.");
-				else
+				output("Peeling back his foreskin, the second zil alters his wingbeats to gust musk-laced air in your direction.");
+				if(target.hasAirtightSuit()) output(" Luckily your seealed equipment protects you.");
+				else if(target.physique() + rand(20) + 1 > 20)
 				{
-					output(" Your crotch feels so hot that you know you just HAVE to touch it soon. Damn this alien and his ");
-					if(kGAMECLASS.silly) output("stupid ");
-					output("sexy dick-scent!");
+					output(" There’s nothing to do but try and hold your breath!");
+					output("\nHe gets tired long before you and gives up, but the lingering cloud of honeyed pheromones remains in the area, strong enough to quicken your pulse.");
+					applyDamage(damageRand(new TypeCollection( { pheromone: 4 } ), 15), this, target, "minimal");
 				}
-				target.lust(10+target.libido()/10);
+				else 
+				{
+					output(" There’s nothing to do but try and hold your breath!");
+					output("\nEventually, you can hold your breath no longer, and you’re forced to inhale the potent cloud deep into your lungs.");
+					if(target.lust() < 33) output(" A tingling warmth in your crotch leaves no doubts as to the effectiveness of your alien foe’s ‘attack’.");
+					else if(target.lust() <= 66) output(" The warm, incessantly building heat in your loins is getting hotter and hotter with every breath you take.");
+					else
+					{
+						output(" Your crotch feels so hot that you know you just HAVE to touch it soon. Damn this alien and his ");
+						if(kGAMECLASS.silly) output("stupid ");
+						output("sexy dick-scent!");
+					}
+					applyDamage(damageRand(new TypeCollection( { pheromone: 10 } ), 15), this, target, "minimal");
+				}
+			}
+			else
+			{
+				output("The zil abruptly begins to fondle his [zil.cock], stimulating the organ as he alters his wingbeats to gust musk-laced air in your direction. He floats up high and flies erratically enough that you doubt you could hit him.");
+				if(target.hasAirtightSuit())
+				{
+					output("\n\nLuckily your [pc.armor] is sealed tight, so you are unaffected by it. He grumps at his failed attempt. You definitely came prepared!");
+				}
+				// Moderate toughness check pass
+				else if(target.physique() + rand(20) + 1 > 20) {
+					output(" There’s nothing to do but try and hold your breath!");
+					output("\nHe gets tired long before you do and gives up, but it still leaves a cloud of his delicious aroma floating around you. It’s strong enough to make your pulse quicken.");
+					applyDamage(damageRand(new TypeCollection( { pheromone: 7 } ), 15), this, target, "minimal");
+				}
+				else {
+					output(" There’s nothing to do but try and hold your breath!");
+					output("\nEventually, you can hold your breath no longer, and you’re forced to inhale the potent cloud deep into your lungs. Your heart hammers in your chest faster and faster while your [pc.skin] flushes and your lips unconsciously purse.");
+					if(target.lust() < 33) output(" A tingling warmth in your crotch leaves no doubts as to the effectiveness of your alien foe’s ‘attack’.");
+					else if(target.lust() <= 66) output(" The warm, incessantly building heat in your loins is getting hotter and hotter with every breath you take.");
+					else
+					{
+						output(" Your crotch feels so hot that you know you just HAVE to touch it soon. Damn this alien and his ");
+						if(kGAMECLASS.silly) output("stupid ");
+						output("sexy dick-scent!");
+					}
+					applyDamage(damageRand(new TypeCollection( { pheromone: 12 } ), 15), this, target, "minimal");
+				}
 			}
 		}
 		
 		private function zilHoneyDrip(target:Creature):void
 		{
-			output("Zipping high into the air, the Zil begins to jack himself off, stroking his thick, scented dong while amber droplets drip out of his voluptuous dickskin. His pre-cum drips down around you in long strings, some falling across your shoulders, head and face. It smells sweet and floral, like honey, and though it doesn’t seem laced with his pheromones, the lewdness of it all quickens your pulse.");
-			target.lust(5+target.libido()/20);
+			if(this.hasPerk("Penny Quest AI"))
+			{
+				if(CombatManager.getRoundCount() == 1) output("The first zil zips high into the air, beginning to jack himself off, stroking his thick, scented dong while amber droplets drip out of his voluptuous dickskin. His pre-cum drips down around you in long strings, some falling across your shoulders, head and face. It smells sweet and floral, like honey, and though it doesn’t seem laced with his pheromones, the lewdness of it all quickens your pulse.");
+				else if(CombatManager.getRoundCount() == 2) output("From high above, the first zil continues to wring pre-cum from his dick. His flight is unsteady, like the mammoth between his knees is threatening to drag him to the ground. Even though his aim is imperfect, the display is unquestionably erotic.");
+				else output("The pre-milking zil continues to assault you with sweet, drizzling pre no matter what you do.");
+			}
+			else
+			{
+				output("Zipping high into the air, the Zil begins to jack himself off, stroking his thick, scented dong while amber droplets drip out of his voluptuous dickskin. His pre-cum drips down around you in long strings, some falling across your shoulders, head and face. It smells sweet and floral, like honey, and though it doesn’t seem laced with his pheromones, the lewdness of it all quickens your pulse.");
+			}
+			applyDamage(damageRand(new TypeCollection( { tease: 7 } ), 15), this, target, "minimal");
 		}
 		
 		private function flurryOfBlows(target:Creature):void
@@ -364,11 +476,16 @@
 		
 		private function zilHardenSingle():void
 		{
-			output("Closing his onyx eyes, the zil flexes, and you hear quiet, barely audible cracks filling the busy, woodland air. You peer closer and realize that the zil’s carapace seems shinier, and perhaps a bit more formidable... just barely thicker, somehow.");
-	
+			output("Closing his onyx eyes, " + (this.hasPerk("Penny Quest AI") ? "one":"the") + " zil flexes, and you hear quiet, barely audible cracks filling the busy, woodland air. You peer closer and realize that the zil’s carapace seems shinier, and perhaps a bit more formidable... just barely thicker, somehow.");
+			
 			var newRes:Number = (100 - baseHPResistances.kinetic.resistanceValue) / 5;
 			baseHPResistances.kinetic.resistanceValue += newRes;
-			createStatusEffect("Harden", 0, 30, 0, 0, false, "DefenseUp", "Defense against all forms of attack has been increased!", true, 0);
+			if(this.hasPerk("Penny Quest AI")) 
+			{
+				newRes = (100 - this.shield.resistances.kinetic.resistanceValue) / 5;
+				this.shield.resistances.kinetic.resistanceValue += newRes;
+			}
+			if(!this.hasStatusEffect("Harden")) this.createStatusEffect("Harden", 0, 30, 0, 0, false, "DefenseUp", "Defense against all forms of attack has been increased!", true, 0);
 		}
 	}
 }

@@ -46,8 +46,8 @@
 			
 			itemFlags = [];
 			itemFlags.push(GLOBAL.ITEM_FLAG_EXPOSE_CHEST);
-			itemFlags.push(GLOBAL.ITEM_FLAG_EXPOSE_GROIN);
-			itemFlags.push(GLOBAL.ITEM_FLAG_EXPOSE_ASS);
+			//itemFlags.push(GLOBAL.ITEM_FLAG_EXPOSE_GROIN);
+			//itemFlags.push(GLOBAL.ITEM_FLAG_EXPOSE_ASS);
 			
 			this.version = _latestVersion;
 		}

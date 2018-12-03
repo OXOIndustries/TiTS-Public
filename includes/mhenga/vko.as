@@ -172,7 +172,7 @@ public function getDiseaseProbedYo():void
 		buttons.push(["Treat B.Bug", removeParasite, "buttbug", "Treat Butt Bug", "Remove the butt bug parasite."]);
 	}
 	// Cockvine
-	if(pc.hasTailCock() && pc.hasParasiteTail())
+	if(pc.hasParasiteTail() && pc.hasTailCock())
 	{
 		detectedParasites.push("a hydrus constuprula parasitic vine");
 		buttons.push(["Treat C.Vne", removeParasite, "cockvine", "Treat Cockvine", "Remove the cockvine parasite."]);
@@ -181,7 +181,7 @@ public function getDiseaseProbedYo():void
 	if(pc.hasParasiteTail() && pc.hasTailCunt())
 	{
 		detectedParasites.push("a class ‘C’ parasitic snake");
-		buttons.push(["Treat C.Snk", removeParasite, "cuntsnake", "Treat Cunt Snake", "Remove the cuntsnake parasite."]);
+		buttons.push(["Treat C.Snk", removeParasite, "cuntsnake", "Treat Cunt Snake", "Remove the cunt snake parasite."]);
 	}
 	// Mimbranes
 	var mimbranes:int = attachedMimbranes();
@@ -226,7 +226,7 @@ public function getDiseaseProbedYo():void
 	
 	processTime(10+rand(3));
 	
-	if(buttons.length == 0)
+	if(buttons.length <= 0)
 	{
 		approachVKo(false);
 	}

@@ -1706,7 +1706,7 @@ public function getPeggedByFisiI(fromMenu:Boolean = false):void
 	if (pc.hasTail()) {
 		output(" Your [pc.tails] wag");
 		if (pc.tailCount == 1) output("s");
-		output("excitedly back and forth in anticipation.");
+		output(" excitedly back and forth in anticipation.");
 	}
 	output("\n\n<i>“O-oh, wow... Someone’s certainly eager, and I thought it was just me. I’m not that used to taking charge yet...”</i> Fisianna sheepishly laughs, genuinely caught off-guard at your show of submission. <i>“Still... I think it might be best if we, uh... prepped you up first.”</i>");
 	if (pc.hasVagina()) output(" You can hear the neko stop in her tracks before speaking up again. <i>“But um... was there a part you wanted me to specifically focus on for this? I do have a couple of choices here...”</i>");

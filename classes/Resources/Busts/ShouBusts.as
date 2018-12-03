@@ -8,6 +8,10 @@
 	public class ShouBusts 
 	{
 		public function get PREVIEW():Class { return Bust_AMMA; }
+		//public function get SIGNATURE():Class { return SigEmbed; }
+		
+		//[Embed(source = "../../../assets/images/sig/shou.png", mimeType = "image/png")]
+		//public var SigEmbed:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/amma.png", mimeType = "image/png")]
 		public var Bust_AMMA:Class;

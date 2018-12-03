@@ -1260,10 +1260,6 @@ public function frostwyrmVaginalRepeat():void
 	frostwyrm.cuntChange(0, pc.cockVolume(0));
 	
 	output("\n\n<i>I have been robbed of this for many Sky Cycles,</i> she says, craning her neck around to face you with her two right eyes. <i>I understand that taking your position behind me is a titillating act for you. You will spend much of your time there. I have a lifetime’s worth of breeding to act upon. Our clutch will grow magnificent, beyond compare.</i> You grab as much of her scaly booty as you can, then pull back. The feeling of fullness leaves you momentarily, and when you thrust forward, it explosively returns, accentuating the tight, slick feel of being inside your Frostwyrm mate. <i>And if I do not lay this time... we can always try again.</i>");
-	if (flags["FROSTWYRM_INCEST_OPTION"] == 1){
-		if (flags["FROSTWYRM_KIP_COUNT"] == 1) output("\n\nYou feel what can only be described as an intrusion into your psionic link with [frostwyrm.name]. You glance over your shoulder to spy your daughter, trying her best to remain discreet while you mate with your Qim. She already had a raging hard-on, but as soon as she shares your connection, her hips jerk involuntarily, spurting her draconic pre-cum impetuously. Several ideas and suggestions make their way into your mind, unbidden but sporadic, as though they were coming to your daughter and she was doing very level best to keep them from ‘leaking’ over your connection with her.");
-		else if (flags["FROSTWYRM_KIP_COUNT"] >= 2) output("\n\nEvery few seconds, you feel a new psionic connection latch onto the one you have with [frostwyrm.name], and you instinctively know it to be your daughters, each of them trying their best to be discreet about it. They were already each sporting massive, thick erections, but once they share your connection, they don’t resist touching each other, grabbing the nearest sibling’s dick or groping a titty. One of them suggests someone get behind you and start plowing your [pc.vagOrAss] too (although you’re not sure if you were meant to ‘hear’ that); another wants to get beneath their Qim and experience her immensity for themselves. None of them act on it - they respect their Qim and Qal enough to not interrupt their beautiful coupling - but they have no reservations for each other, and soon, tongues are flying into mouths and hands are eagerly exploring bodies.");
-	}
 	if (pc.cockTotal() > 1) {
 		output("\n\nYour [pc.cock 1] flaps in the cold air, stiff but useless. You align it upward; if you’re not going to use it, you’re at least going to keep it warm between your bodies. It shuffles between her scales on every thrust in until it rests against your own [pc.skinFurScales].");
 		output("\n\nUnexpectedly, your [pc.cockHead 1] presses tightly against the sphincter of your Frostwyrm mate on the first push. [frostwyrm.name] tenses immediately, whipping her head around to face you. <i>What are you doing?</i> she asks, ceasing her movement and her psionic grip on your mind. Despite the urgency in her actions, she doesn’t sound mad.");
@@ -1308,10 +1304,6 @@ public function frostwyrmVaginalRepeat():void
 	if (pc.cockTotal() > 1) output(" and your [pc.cock 1]");
 	output(" inside of herself. Upon hilting her, [frostwyrm.name] cranes her neck upward, and she sings your favorite song to you, letting you know how much you’ve pleasured her. Her body convulses, milking you for your every drop.");
 	output("\n\nTimed with the contractions in her pussy, her balls tense against your [pc.legs] and quiver. [frostwyrm.name]’s roar is accentuated by the sound of liquid splashing against something and the sound of flesh against ice, and a thick musk soon floods the room. Though untouched and neglected, she must be cumming out her dick - and if her load is anything like the rest of her, she’s probably cumming a small pond.");
-	if (flags["FROSTWYRM_INCEST_OPTION"] == 1){
-		if (flags["FROSTWYRM_KIP_COUNT"] == 1) output("\n\nYour daughter moans your name and [frostwyrm.name]’s, through muffled fingers clamping over her mouth; you turn and see her, one hand jerking her immense red cock; one fondling her fat balls; and one on each of her tits as she salaciously enjoys the sight of her parents fucking for herself. She inhales sharply, and her cock lunges in her hand, arcing her cum through the air and mingling in the growing pool of her Qim’s.");
-		else if (flags["FROSTWYRM_KIP_COUNT"] >= 2) output("\n\nYour daughters moan wordlessly into the air, though you hear your name and [frostwyrm.name]’s called occasionally. They’ve all huddled together, pressing and prodding and touching and jerking each other, bringing themselves to the same height as their Qim, and they explode simultaneously, doubling the size of [frostwyrm.name]’s cum pool in a hurry. They fantasize about each other, their Qim, and you, their Qal; the fantasies come at you as static images, as though the thoughts come to your kips and they immediately try to think of something else before the idea imprints on you. But still, they can’t help it: some of them wish it was them, and not your Qim, you were mating with.");
-	}
 	output("\n\nThe sensation within your soul overtakes you, threatening to consume you, and you allow it as your own orgasm bursts forth: your [pc.cock] explodes inside of her, and just as the [pc.cum] hits her walls, you feel so many new emotions and sensations: you feel <i>young,</i> you feel <i>complete</i>");
 	if (pc.isBimbo()) output(",</i> and you feel <i>so fucking gooooooood</i>");
 	output(". You feel as though your whole life has been leading up to this moment: to mate with [frostwyrm.name] and douse her fertile eggs with your superior seed, just as she wanted of you.");
@@ -1332,11 +1324,6 @@ public function frostwyrmVaginalRepeat():void
 	output("\n\n<i>I find myself wanting to mate with you, not purely so that I can lay, but for the pleasure and attachment. You are a similar way: you come to me, eager for the pleasures I can impart and excited for the prospect of bringing about my satisfaction. My kind appreciate the pleasures of mating, but... this is unheard of. Another kip would be wonderful, but it is not my goal. It is <b>you</b> I need.</i>");
 	output("\n\nFinally, your [pc.cock] flags; you enjoy the warmth of [frostwyrm.name]’s rear end and the total, righteous sense of fulfillment that covers your body, mind, and soul, but the fact remains that you have so little remaining within you. It was more than just a good nut: you feel as though you’ve really accomplished something. You rest against [frostwyrm.name]’s ass, wrapping your arms around her scaly haunches, to catch your breath.");
 	output("\n\nYou hear [frostwyrm.name]’s throat rumble from across her body, satisfied with your performance – but the warmth within your body does not recede, and you feel her work her now-familiar powers to return the pleasure to your body, and the strength to [pc.eachCock]. <i>It will take more than once to satisfy any of my kind, [pc.name],</i> she says slyly.");
-	if (flags["FROSTWYRM_INCEST_OPTION"] == 1)
-	{
-		if (flags["FROSTWYRM_KIP_COUNT"] == 1) output(" At that, your daughter murmurs in agreement, already ready and horny for another show");
-		else if (flags["FROSTWYRM_KIP_COUNT"] >= 2) output(" At that, your daughters murmur in agreement, already ready and horny for another show");
-	}
 	output(" [frostwyrm.name] shuffles her body backward, making sure your [pc.cock] does not slip from her form as she prepares for another round or nine. <i>You are a capable [pc.race]. Satisfy your mate. She requires more of you and your touch.</i>");
 	
 	processTime(3 * 60);
@@ -1541,11 +1528,6 @@ public function frostwyrmDickRepeat():void
 	if (pc.hasPregnancyOfType("FrostwyrmPregnancy")) output("The kip inside you requires tending to. Repeated coupling will ensure a healthy shell; a satisfied mate will strengthen its bond with its Qim and Qal.</i> She straightens her spine as she awaits your position. <i>To say nothing of the bonds between two satisfied mates.</i>");
 	output("\n\nExcited yourself, you get onto all fours and crawl beneath [frostwyrm.name], face-to-head with her massive cock. It’s easily three feet long with a larger girth than your fist; the skin of her cock is so thick that it hides her pulsing veins and the shaft has several nubs and pricks along the underside of its length. It has a flat, mostly-featureless head, save from a rim of muscle around its glans, reminding you of a tree trunk. A bead of its musky, thick pre beads at the final nub on its very point, slowly drooping down to splash against the icy floor. And it’s getting <i>bigger.</i>");
 	output("\n\n[frostwyrm.name] is quite patient for her part, grumbling wordlessly above you as she waits for you to do her work for her. You turn about, facing away from the red behemoth of a dick, then reach back to grasp it. She remains still, knowing from experience that you need a moment to line yourself up to properly take her. Still, the touch of your hand against her dick excites her: her cock flexes, and a long line of precum sprays across your upturned [pc.ass] and across your back.");
-	if (flags["FROSTWYRM_INCEST_OPTION"] == 1)
-	{
-		if (flags["FROSTWYRM_KIP_COUNT"] == 1) output("Your daughter watches on, in equal parts curiosity, fascination, and jealousy – though she attempts to be discreet with her psionic link to you, you can still tell that she fantasizes herself behind you; herself behind her Qim; and herself in your position. She’s respectfully silent as she watches her Qim and Qal share in one of their most intimate moments, but she doesn’t try to keep her hands from fondling her own balls, her own cock, and her own tits - provided she remains out of eyesight.");
-		else if (flags["FROSTWYRM_KIP_COUNT"] >= 2) output("Your daughters watch on, in equal parts fascination, jealousy, and lust. They each attempt to be discreet with their psionic link to you, and their communication with each other comes out hushed and sporadic, where they admire their Qim’s restraint and patience; leering at your form and technique; and, most commonly, fantasizing themselves in your position, or [frostwyrm.name]’s, or even behind her. They dare each other to take action, but they don’t, and instead remain a respectful distance from you two – but that doesn’t stop them from acting out some of their fantasies with each other.");
-	}
 	output("\n\nYou shuffle your [pc.hips] a bit, aligning yourself with [frostwyrm.name]’s incredible tool. When you push it to the left a bit, it finds its mark:");
 	if(vIdx >= 0) output(" the beady nub finds your [pc.clit " + vIdx + "], and with it, the rest of");
 	output(" your [pc.vagOrAss " + vIdx + "]. You tense at first, unsure if it’ll fit, but you feel [frostwyrm.name] pluck and string at your mind, helping you relax, easing your body for her to play with. Eager and confident, [frostwyrm.name] thrusts forward, burying herself inside you.");
@@ -1593,11 +1575,6 @@ public function frostwyrmDickRepeat():void
 	output("\n\n[frostwyrm.name] sighs and relaxes her front legs, lowering her body while she unloads inside you. You follow suit, taking a similar position, allowing gravity to do its work in drawing the liquid deeper into your body. The contrasting coolness of the ice beneath you and the body heat above you make you dizzy at first, but the electricity flowing through you, emanating from your [pc.vagOrAss " + vIdx + "], makes you feel like a million credits.");
 	output("\n\nYou hum to yourself, laying a cheek against the cool ice beneath you, as you settle in. Knowing [frostwyrm.name], she isn’t satisfied with just one round, and she’s going to be after another one or six before she considers this mating a success.");
 	output("\n\n<i>You suppose correctly, [pc.name],</i> she purrs, rocking her huge haunches back and forth to prepare her footing for another go. <i>I am glad you’ve taken to appreciating our couplings and my kind’s way of mating. We have many more ahead of us.</i>");
-	if (flags["FROSTWYRM_INCEST_OPTION"] == 1)
-	{
-		if (flags["FROSTWYRM_KIP_COUNT"] == 1) output("Your daughter hums in delight, cooling down from the previous round and already gearing up for another, salacious show.");
-		else if (flags["FROSTWYRM_KIP_COUNT"] >= 2) output("Your daughters hum in delight, cooling down from the previous round and already gearing up for another, salacious show.");
-	}
 	output("\n\nWith that, she begins pumping into your abused [pc.vagOrAss " + vIdx + "] once more, filling you to the core with herself. The seed already inside you sloshes about, mixing with itself inside you, as [frostwyrm.name] humps against you. You smile to yourself as the electric, energizing feeling returns to you once again....");
 	
 	processTime(3 * 60);
@@ -1644,11 +1621,6 @@ public function frostwyrmAnalFunTimes():void
 	if (pc.hasPregnancyOfType("FrostwyrmPregnancy")) output("The kip inside you requires tending to. Repeated coupling will ensure a healthy shell; a satisfied mate will strengthen its bond with its Qim and Qal.</i> She straightens her spine as she awaits your position. <i>To say nothing of the bonds between two satisfied mates.</i>");
 	output("\n\nExcited yourself, you get onto all fours and crawl beneath [frostwyrm.name], face-to-head with her massive cock. It’s easily three feet long with a larger girth than your fist; the skin of her cock is so thick that it hides her pulsing veins and the shaft has several nubs and pricks along the underside of its length. It has a flat, mostly-featureless head, save from a rim of muscle around its glans, reminding you of a tree trunk. A bead of its musky, thick pre beads at the final nub on its very point, slowly drooping down to splash against the icy floor. And it’s getting <i>bigger.</i>");
 	output("\n\n[frostwyrm.name] is quite patient for her part, grumbling wordlessly above you as she waits for you to do her work for her. You turn about, facing away from the red behemoth of a dick, then reach back to grasp it. She remains still, knowing from experience that you need a moment to line yourself up to properly take her. Still, the touch of your hand against her dick excites her: her cock flexes, and a long line of precum sprays across your upturned [pc.ass] and across your back.");
-	if (flags["FROSTWYRM_INCEST_OPTION"] == 1)
-	{
-		if (flags["FROSTWYRM_KIP_COUNT"] == 1) output("Your daughter watches on, in equal parts curiosity, fascination, and jealousy – though she attempts to be discreet with her psionic link to you, you can still tell that she fantasizes herself behind you; herself behind her Qim; and herself in your position. She’s respectfully silent as she watches her Qim and Qal share in one of their most intimate moments, but she doesn’t try to keep her hands from fondling her own balls, her own cock, and her own tits - provided she remains out of eyesight.");
-		else if (flags["FROSTWYRM_KIP_COUNT"] >= 2) output("Your daughters watch on, in equal parts fascination, jealousy, and lust. They each attempt to be discreet with their psionic link to you, and their communication with each other comes out hushed and sporadic, where they admire their Qim’s restraint and patience; leering at your form and technique; and, most commonly, fantasizing themselves in your position, or [frostwyrm.name]’s, or even behind her. They dare each other to take action, but they don’t, and instead remain a respectful distance from you two – but that doesn’t stop them from acting out some of their fantasies with each other.");
-	}
 	output("\n\nYou shuffle your [pc.hips] a bit, aligning yourself with [frostwyrm.name]’s incredible tool. When you push it to the left a bit, it finds its mark: its tip, with a urethra nearly the size of its target, finds your [pc.asshole]. You tense at first, unsure if it’ll fit, but you feel [frostwyrm.name] pluck and string at your mind, helping you relax, easing your body for her to play with. Eager and confident, [frostwyrm.name] thrusts forward, burying herself inside you.");
 	output("\n\nYou rest your cheek against the cold, icy floor as you give yourself what your body wanted: more of [frostwyrm.name]’s incredible cock. The breath leaves your lungs as, with practiced patience, she steps forward and fills the gap of your body with herself. There aren’t a lot of cocks in the universe that can satisfy you the way [frostwyrm.name]’s can anymore; right now, with you here, in her lair, underneath her and [pc.ass] up to accept her, you’re okay with that.");
 	output("\n\nWith the help of [frostwyrm.name]’s psionic abilities, you’re able to conform to her size, though it’s nonetheless not without effort. You grunt and bite your bottom lip, almost hard enough to draw blood, as she motions forward ever so slightly; every centimeter feels like a hundred, and you’re eager for every last bit");
@@ -1784,13 +1756,7 @@ public function frostwyrmSteeleIsADirtyGirl():void
 	output("\n\nThere’s an unmistakable tang on her tip as she explores your maw: you can taste yourself on her tongue, and the flavor is getting spread across the roof of your mouth and into your cheeks the longer [frostwyrm.name] stays in. And you’re okay with that: your eyes start to close, and you errantly start to suck on her tongue like a great, big, squishy dick, sucking out the moisture of her tongue for yourself. Before long, you’re beginning to show signs of arousal again, and you’re about ready for another bath.");
 	output("\n\nAs the thought crosses your mind, [frostwyrm.name], almost reluctantly, withdraws her tongue. You gasp for breath, your chest burning for oxygen – you weren’t aware of how starved for it you were until you suddenly had it again. <i>You are clean, my Qal. If we are not careful, we may need to start again.</i>");
 	output("\n\nIn between gasps for air, you tell her that, maybe, you wouldn’t mind having another bath so soon. <i>If that is what you desire, my mate, you need only bid it so.</i>");
-	if (flags["FROSTWYRM_INCEST_OPTION"] == 1){
-		if (flags["FROSTWYRM_KIP_COUNT"] >= 2){
-			output("\n\n[frostwyrm.name] pulls away from you, finally exposing you once more to the air of the lair. Your moist [pc.skinFurScales] cool in the icy air, but your attention is drawn to your daughters: apparently inspired by the show, they’ve taken to giving each other a... rather in-depth bath, similar to what [frostwyrm.name] just gave you. One daughter lies on her back, wings spread, while another straddles the first, her long tongue crooking and curling around heaving breasts and pointed nipples.");
-			output("\n\n<i>Your kind’s methods are rather inspiring, I see,</i> [frostwyrm.name] muses. The daughter on top starts to trail her tongue lower, lathering the daughter on bottom’s stomach. You’re sure they’re going to be there for a while.");
-		}
-	}
-	
+
 	processTime(60);
 	pc.shower();
 	pc.orgasm();
@@ -1879,14 +1845,7 @@ public function frostwyrmAllowMeToReturnTheFavor():void
 	output("\n\nShe stares at you for a moment. A number of whispers fill your head before evaporating all at once – she’s trying to put words to her thoughts, but she’s failing every time. <i>It is nothing short of a miracle that your kind have propagated at all, my Qal,</i> she says sheepishly. <i>It is difficult to believe any two mates would often choose to breed when pleasures like that exist.</i>");
 	output("\n\nYou take that as a compliment. You bring a hand up to your [pc.hair], your arm making thick ripples through the veritable sludge of cum, rubbing at your scalp and inadvertently soaking more cum into your [pc.skinFurScales]. You’re positively covered, head to [pc.feet], front to back, inside and out, in Frostwyrm cum. <i>It appears as though you are in need of another bath, my Qal,</i> [frostwyrm.name] notes, her tone devious and suggestive, and another, fresh wave of lust pouring from her and into you through her psionics.");
 	output("\n\nYou sigh, the distinctive taste of [frostwyrm.name] on your breath. Perhaps you are.");
-	if (flags["FROSTWYRM_INCEST_OPTION"] == 1){
-		if (flags["FROSTWYRM_KIP_COUNT"] >= 2){
-			output("\n\nWhen you pull yourself up, peeling away from the new liquid coating on the floor, you hazily look out to the lair and spy your daughters. Inspired by the act their Qim and Qal had shamelessly put on for them, they’re locked into a tantalizing sixty-nine");
-			if (flags["FROSTWYRM_KIP_COUNT"] >= 9) output(", and others are assembled in a long, circular train");
-			output(", each of them eagerly fucking the mouth of their willing and ready sister, sawing their foot-long dick into the warm, wet maw of their sibling.");
-			output("\n\n<i>I do hope we have not created an... epidemic of sorts,</i> [frostwyrm.name] says amusedly, watching her daughters with some awe and a little bit of jealousy. <i>I should hope they remember to breed with their mates properly when the time comes.</i>");
-		}
-	}
+	
 	
 	pc.orgasm();
 	pc.applyCumSoaked();
@@ -2165,18 +2124,27 @@ public function frostwyrmPregnancyEnds(pregSlot:int, nEggs:int = 0):void
 	var pData:PregnancyData = (pc.pregnancyData[pregSlot] as PregnancyData);
 	var x:int = pregSlot;
 	if (pregSlot == 3) x == -1;
+	var inShip:Boolean = InShipInterior();
+	var inPublic:Boolean = (InPublicSpace() || rooms[currentLocation].planet.toLowerCase().indexOf("station") != -1 || rooms[currentLocation].hasFlag(GLOBAL.INDOOR));
 	
 	output("Just as your thoughts were turning to your rotund and overbearing belly, you feel <i>something</i> in your loins, followed by a rush in your lower stomach. It’s time; the kip’s on its way <i>right now.</i>");
 	
 	//on ship with auto-medbay (commented until one is available)
-	if(InShipInterior() && 9999 == 0)
+	if (inShip && 9999 == 0)
+	{
+		output("\n\nYou head for the automatic medbay, clutching your trembling stomach. Contractions intensify quickly -- by the time the system finishes its evaluation and moves into action, you’re");
+		if (!pc.isNude()) output(" disrobed but");
+		output(" no longer able to speak between breaths.");
+	}
+	//on ship without automatic medbay
+	else if (inShip)
 	{
 		output("\n\nYou reach for the nearest medkit before hurrying to your quarters to set yourself on your bed. You get as comfortable as you can in your hurry,");
 		if(!pc.isNude()) output(" struggle to remove your [pc.lowerGarments], then you");
 		output(" splay your legs and push.");
 	}
 	//in public place
-	else if(InPublicSpace())
+	else if(inPublic)
 	{
 		output("\n\nYou flag down the nearest civilian and tell them the situation, and that you’re in some pretty dire need of medical assistance. You find a safe place to sit down,");
 		if (!pc.isNude()) output(" struggle to remove your [pc.lowerGarments], then you");
@@ -2417,8 +2385,7 @@ public function frostwyrmWowThisReallyTakesAWhile():void
 	processTime((4 * 4 * 7 * 24 * 60) + rand(1440));
 	
 	clearMenu();
-	if (flags["FROSTWYRM_KIP_COUNT"] == undefined) addButton(0, "Next", frostwyrmDoYouWantSumFuk, nKids);
-	else addButton(0, "Next", frostwyrmWhatDidYouChoose, nKids);
+	addButton(0, "Next", frostwyrmWhatDidYouChoose, nKids);
 	
 	frostwyrmMatureYoung();
 }
@@ -2477,54 +2444,8 @@ public function frostwyrmMatureYoung():void
 	if(flags["NYKKE_BORN"] == undefined) flags["NYKKE_BORN"] = GetGameTimestamp(); //set timestamp for eldest daughter Nykke
 }
 
-public function frostwyrmDoYouWantSumFuk(nKids:int = 0):void
-{
-	clearOutput();
-	frostWyrmHeader();
-	author("B");
-	
-	output("Of course, the topic would eventually come to things like sexual health, characteristics, and mating. It’s a bit of a harder topic to go through, not because you shy away from it or anything (it’s an important topic, after all), but because your ");
-	if (nKids != 1) output("daughters don’t clearly take after either you <i>or</i> [frostwyrm.name], and it’s not as easy to broach the topic of mating when you and [frostwyrm.name] are so different.");
-	else output("daughter doesn’t clearly take after either you <i>or</i> [frostwyrm.name], and it’s not as easy to broach the topic of mating when you and [frostwyrm.name] are so different.");
-	output("\n\n[frostwyrm.name], however, has no such reservations; after she scours your mind for the mating habits of your kind, she has an easier time combining your knowledge with hers and explaining it to your offspring. By the end of the lessons, your ");
-	if (nKids != 1) output("daughters repeat everything they’ve been taught back to you, assuring you in their confidence in the subject. Thankfully, that’s one less thing to worry about.");
-	else output("daughter repeats everything she’s been taught back to you, assuring you in her confidence in the subject. Thankfully, that’s one less thing to worry about.");
-	output("\n\nWith that done, [frostwyrm.name] pulls you aside for a moment, away from the prying ears of your offspring. You’re sure she’s blocked your daughter’s budding psionic abilities from intruding in your conversation as well.");
-	output("\n\n<i>My Qal, there is a matter we should discuss,</i> she says simply. You tell her that she has your undivided attention. <i>My kind celebrates an act called ‘inner circle coupling’ between a kip and its Qim and Qal. As I studied your mind for definitions on [pc.race] sexual health, I discovered that your kind and culture involve something similar, but consider it to be a shameful, taboo act.</i>");
-	output("\n\nYou widen your eyes in response. The Frostwyrms commit incest on the regular? <i>You phrase it as though it were a terrible atrocity. My kind do not consider it as such.</i> She arcs her neck lower towards you, levelling her four red eyes with yours. <i>However, I cannot ask you to abandon your culture’s preconceptions in my lair. If you would not like to participate in inner circle coupling with our kips, your clutch will respect your decision.</i>");
-	output("\n\n[frostwyrm.name] is asking you if you’re okay with having sex with your own offspring. Are you?");
-	
-	processTime(5);
-	clearMenu();
-	addButton(0, "Yes", frostwyrmYeahImCoolWithIt, undefined);
-	addButton(1, "No", frostwyrmNahIllPassThanks, undefined);
-}
-public function frostwyrmYeahImCoolWithIt():void
-{
-	clearOutput();
-	frostWyrmHeader();
-	author("B");
-	
-	output("As accommodating as [frostwyrm.name] is offering to be, whatever hangups you have about incest don’t apply when you’re with her and being a part of her culture. As the ancient saying goes: when on Terra, do as the Terrans do. You tell [frostwyrm.name] that you personally don’t have a problem with, as she put it, ‘celebrating inner circle coupling.’");
-	output("\n\n<i>I understand that this would not be an easy thing to admit in your culture,</i> [frostwyrm.name] says, leaning forward to nuzzle at you affectionately. <i>I appreciate you being a part of my own. If you ever reconsider, my Qal, you but need to say so to our kips, and they will respect your decision.</i>");
-	
-	clearMenu();
-	flags["FROSTWYRM_INCEST_OPTION"] = 1;
-	addButton(0, "Next", frostwyrmMainMenu, undefined);
-}
-public function frostwyrmNahIllPassThanks():void
-{
-	clearOutput();
-	frostWyrmHeader();
-	author("B");
-	
-	output("As much as you love [frostwyrm.name] and want to be a part of her culture and traditions, she had it right: you’re having a tough time coming to terms with the fact that having sex with your offspring is something that Frostwyrms do. You tell [frostwyrm.name] as such, and that you don’t believe you have it within you to, as she put it, ‘celebrate’ the act.");
-	output("\n\n<i>I understand, my Qal, and I do not judge you for it. There are many parts of your own cultures that I would not be able to accommodate.</i> She leans forward to nuzzle you affectionately. <i>If you ever reconsider, you but need to say so to our kips, and we will gladly welcome you into our celebrations as Qal.</i>");
-	
-	clearMenu();
-	flags["FROSTWYRM_INCEST_OPTION"] = 0;
-	addButton(0, "Next", frostwyrmMainMenu, undefined);
-}
+
+
 public function frostwyrmWhatDidYouChoose(nKids:int = 0):void
 {
 	clearOutput();
@@ -2534,15 +2455,7 @@ public function frostwyrmWhatDidYouChoose(nKids:int = 0):void
 	output("As before, the topic eventually comes around to the sexual health, mating habits, and characteristics of your kind and of [frostwyrm.name]’s kind. You’ve rehearsed the topic several times over by now, and you now consider yourself something of an expert on the topic, whether it’s about [pc.race] sexuality or Frostwyrm sexuality. Every question your ");
 	if (nKids != 1) output("daughters ask, you reply quickly, simply, and concisely. By the end of the lessons, your daughters repeat everything they’ve been taught back to you, assuring you in their confidence in the subject.");
 	else output("daughter ask, you reply quickly, simply, and concisely. By the end of the lessons, your daughter repeats everything she’s been taught back to you, assuring you in her confidence in the subject.");
-	output("\n\nThere is, of course, one last topic to worry about: the concept of ‘inner circle coupling.’ A part of Frostwyrm culture is that kips stay with their Qim and Qal until they are summoned by the Grand Qim, and until then, every need a kip has is met by them - including their sexual needs.");
-	if (flags["FROSTWYRM_INCEST_OPTION"] == 0){
-		if (nKids != 1) output("\n\nUnfortunately, while you are their Qal, and while you are in [frostwyrm.name]’s shelter, you cannot participate in such a practice, and you ask your daughters to respect that. Though they’re clearly confused by the mixed messages, they nonetheless do as you say, and do not push the subject further.");
-		else output("\n\nUnfortunately, while you are her Qal, and while you are in [frostwyrm.name]’s shelter, you cannot participate in such a practice, and you ask your daughter to respect that. Though she’s clearly confused by the mixed messages, she nonetheless does as you say, and does not push the subject further.");
-	}
-	else{
-		if (nKids != 1) output("You and [frostwyrm.name] are, of course, no exceptions, and you tell your daughters that if and when they have any particular needs that require satisfying, you and [frostwyrm.name] will never be too far away. Your daughters reply positively: whenever they have need of their Qim or Qal, you’ll be there.");
-		else output("You and [frostwyrm.name] are, of course, no exceptions, and you tell your daughter that if and when she has any particular needs that require satisfying, you and [frostwyrm.name] will never be too far away. Your daughter replies positively: whenever she has need of her Qim or Qal, you’ll be there.");
-	}
+	
 	
 	clearMenu();
 	addButton(0, "Next", frostwyrmMainMenu, undefined);
@@ -2609,6 +2522,9 @@ public function frostwyrmBunchaKiddoContent():void
 	
 	frostWyrmlingHeader();
 	
+	//permanently disable sex with kips
+	flags["FROSTWYRM_INCEST_OPTION"] = 0;
+	
 	output("You look to your");
 	if (flags["FROSTWYRM_KIP_COUNT"] != 1) output(" eldest");
 	output(" daughter. She’s curled up against you, her legs entwined around your own [pc.legs] and her arms wrapped around your torso. Her eyes are closed, but you’re aware that she’s wide awake and she’s more than ready and willing to spend some time bonding with her Qal.");
@@ -2619,9 +2535,9 @@ public function frostwyrmBunchaKiddoContent():void
 	clearMenu();
 	addButton(0, "Appearance", frostwyrmlingAppearance, undefined);
 	addButton(1, "Talk", frostwyrmlingTalkMenu, undefined);
-	if (flags["FROSTWYRM_INCEST_OPTION"] != 1) addDisabledButton(2, "Sex", "Sex", "You’ve opted out of participating in ‘inner circle coupling’ with your kips. If you’d like to change your mind, be sure to Talk with your daughter about it.");
-	else if (flags["FROSTWYRM_KIP_COUNT"] < 3) addDisabledButton(2, "Sex", "Sex", "If you’re going to be teaching your daughters about proper mating, it’d be better to have more daughters than you do now.");
-	else addButton(2, "Sex", frostwyrmlingSexMenu, undefined, "Sex", "Indulge in the common Frostwyrm practice of ‘inner circle coupling.’");
+	//if (flags["FROSTWYRM_INCEST_OPTION"] != 1) addDisabledButton(2, "Sex", "Sex", "You’ve opted out of participating in ‘inner circle coupling’ with your kips. If you’d like to change your mind, be sure to Talk with your daughter about it.");
+	//else if (flags["FROSTWYRM_KIP_COUNT"] < 3) addDisabledButton(2, "Sex", "Sex", "If you’re going to be teaching your daughters about proper mating, it’d be better to have more daughters than you do now.");
+	//else addButton(2, "Sex", frostwyrmlingSexMenu, undefined, "Sex", "Indulge in the common Frostwyrm practice of ‘inner circle coupling.’");
 	
 	addButton(14, "Qim", frostwyrmMainMenu, undefined);
 }
@@ -2650,16 +2566,8 @@ public function frostwyrmlingAppearance():void
 	if (flags["FROSTWYRM_KIP_COUNT"] != 1) output(" – each daughter has a different hair color, but your eldest inherited your [baby.hairColor] from birth");
 	output(".");
 	output("\n\nGrowing from her shoulderblades are two massive wings, with a combined wingspan of twenty feet. When they’re folded behind her, they still reach behind her by about three additional feet, and they have a vertical reach of about eight, extending well past her head. Though they’re large and intimidating, she moves with them comfortably enough, and their thick, leathery musculature easily provides more than enough lift to give her flight.");
-	if (flags["FROSTWYRM_INCEST_OPTION"] == 0){
-		output("\n\nYou’re not fond of focusing on your daughter’s sexual endowments beyond their health. All you really need at know at this point is that she has a perfectly healthy set of both male and female genitalia, and you assume that her anus is at the base of her tail, right where it belongs.");
-	}
-	else{
-		output("\n\nBetween her two powerful legs are a pair of testicles, wrapped snuggly in a taut, leathery scrotum. Each nut is about the size of your clenched fist. Above them is a penile vent; unlike with [frostwyrm.name], it bulges rather obviously with the girth of the penis inside it, even when completely unaroused, acting more like a sheath than a vent. When fully aroused, her penis extends by about a foot from her body, with a girth as thick as your forearm. It’s covered from root to crown with pulsing blue veins, and it has several nubs and pricks all along its underside. The tip is flat and mostly featureless, save for a rim of muscle around its glans, reminding you of a tree trunk. At the base of her penis is a thick knot, bloating her already-impressive size all the larger, to properly tie and breed with whoever her partner is.");
-		output("\n\nConcealed behind her testicles is her vagina: the exposed labia are bluish-pink, but it otherwise looks very similar to a vagina of your own kind. It’s appropriately sized for her form, although her body is far more elastic than it appears, and she’s often more lubricated than most other species at all times: with these attributes combined, it can easily take almost any insertion, including from a pure-blooded Frostwyrm, despite them being twice your daughter’s size. Like [frostwyrm.name], she has a clitoris, extending about an inch or two when fully aroused.");
-		output("\n\nThough it’s usually concealed by her tail, she has a large, blue-ringed anus where her tail meets her spine, right where it belongs.");
-		output("\n\nAs you study your daughter’s body, you notice her hands sensually drawing lines up her sides, stopping at her breasts to rub them together and tease at her nipples. <i>You’re not being very sneaky about it, my Qal,</i> she tells you. Her long, flat tongue snakes out, wriggling in your direction. <i>If you wanted an up-close-and-personal look at your daughter’s body, all you had to do was ask.</i>");
-		output("\n\nThe bulge at her penile vent grows larger, the vent itself beginning to yawn as her erection begins to push forward. Maybe she just likes being ‘studied.’");
-	}
+	output("\n\nYou’re not fond of focusing on your daughter’s sexual endowments beyond their health. All you really need at know at this point is that she has a perfectly healthy set of both male and female genitalia, and you assume that her anus is at the base of her tail, right where it belongs.");
+	
 	
 	processTime(5);
 	clearMenu();
@@ -2675,7 +2583,7 @@ public function frostwyrmlingTalkMenu():void
 	addButton(0, "Biology", frostwyrmWhyDoesMommyLookDifferent, undefined);
 	addButton(1, "Technology", frostwyrmShinyShit, undefined);
 	addButton(2, "Traditions", frostwyrmBlessedBeOurSmutlords, undefined);
-	addButton(3, "Incest", frostwyrmIChangeMyMind, undefined);
+	//addButton(3, "Incest", frostwyrmIChangeMyMind, undefined);
 	
 	addButton(14, "Back", frostwyrmBunchaKiddoContent, undefined);
 }
@@ -2701,14 +2609,15 @@ public function frostwyrmWhyDoesMommyLookDifferent():void
 			if (pc.isHerm()) output("You have a penis and a vagina, just like the Qim and I do , so that’s not any different");
 			else if (pc.hasCock()) output("You have a penis, just like the Qim, but you don’t have a vagina");
 			else output("You have a vagina, just like the Qim, but you don’t have a penis");
-			output(" ");
+			output(". ");
 		}
 		if (pc.biggestTitSize() > 0) {
-			output(" You have these meaty things on your chest, just like I do");
+			output("You have these meaty things on your chest, just like I do");
 			if (pc.biggestTitSize() < 6) output(", although they’re smaller than mine");
 			else output(", and they’re bigger than mine");
+			output(", but the Qim doesn’t have any. ");
 		}
-		output("”</i>, but the Qim doesn’t have any. Her face is a lot longer than ours, too, and she doesn’t have these puffy things around our mouths.");
+		output("Her face is a lot longer than ours, too, and she doesn’t have these puffy things around our mouths.”</i>");
 		if (pc.biggestTitSize() > 0 && pc.biggestTitSize() < 6) output("\n\nYou grit your teeth at " + (flags["NYKKE_MET"] == undefined ? "your kip" : "Nykke") + " reminding you that your boobs are smaller than hers, and tell yourself that she meant nothing by it.");
 	}
 	output("\n\nYou respond to most of her questions at once by saying that everyone is born a little different: some people have more than others; some are born taller, or with bigger assets. But you remind her that not always is bigger, better, and that she should judge others by their personality and their merits rather than their physical appearance.");
@@ -2717,32 +2626,12 @@ public function frostwyrmWhyDoesMommyLookDifferent():void
 		output("\n\n<i>“How do you ‘nurse’ young with these? That doesn’t make any sense to me.”</i>");
 		output("\n\nYou reply that she’s asking at a lucky time: you gently grip your boob just beneath the nipple and give it a squeeze. Your [pc.milk] sprays from your [pc.nipple] in thin streams, going every which way.");
 		output("\n\n" + (flags["NYKKE_MET"] == undefined ? "Your kip" : "Nykke") + " gasps in surprise at the sight, then a giddy grin crosses her face. This liquid, called ‘milk,’ is what the young of your kind sustain on until they’re older for other, solid foods.");
-		if (flags["FROSTWYRM_INCEST_OPTION"] == 0) output("\n\n<i>“May I have some?”</i> she asks. You reply that she’s... a little above being breastfed at her age, and you lower your [pc.nipple] away from her. She pouts, but respects your decision.");
-		else{
-			output("\n\n<i>“Like this?”</i> she asks, then leans forward and clamps her lips onto your right nipple. You shudder in surprise as her cheeks compress, suckling the [pc.milkNoun] straight from your breast, and you melt on the spot; this is unsolicited, but the relief you feel from releasing the pent up pressure and weight on your boob is enough to blank your mind momentarily.");
-			output("\n\n" + (flags["NYKKE_MET"] == undefined ? "Your kip" : "Nykke") + " gulps down your [pc.milk] eagerly, humming in ascension as it washes over her tongue and fills her cheeks before swallowing. She uses her hands to gently massage your boob, using her psionic connection with you to learn the best way to handle you and how much pressure to apply. ");
-			if (flags["FROSTWYRM_KIP_COUNT"] == 1) output("\n\nWhen your nipple goes dry, she switches to the other, leaning over your body to stick the other in her mouth.");
-			else output("\n\nWith her psionics, she calls out to her next-eldest sibling, cuddling on your other side, to take your other side and drink your delicious, nurturing [pc.milkNoun]. She doesn’t hesitate and leans over, taking your other nipple into her mouth and suckling gently.");
-			output("\n\nWhen you’re dry, ");
-			if (flags["FROSTWYRM_KIP_COUNT"] == 1) output("she pulls");
-			else output("they pull");
-			output("back, smiling at you while a bit of your [pc.milkColor] [pc.milkNoun] dribbles down the side of ");
-			if (flags["FROSTWYRM_KIP_COUNT"] == 1) output("her mouth");
-			else output("their mouths");
-			output(". <i>“Will I nurse my young like this too?”</i> your eldest asks. You aren’t certain; she hatched from an egg, and normally anything that hatches from eggs don’t have boobs. The only way to find out is if she ever lays with her own mate. <i>“And will I taste as good as you?”</i> Well... that, too, only has one way to find out.");
-		}
+		output("\n\n<i>“May I have some?”</i> she asks. You reply that she’s... a little above being breastfed at her age, and you lower your [pc.nipple] away from her. She pouts, but respects your decision.");
 	}
 	output("\n\n<i>“What about these?”</i> she asks, drawing a finger across her lips, continuing your biology lesson. You tell her that those are her lips: without those, she wouldn’t be able to talk, or open her mouth to eat, or kiss. <i>“What is a ‘kiss?’”</i> she asks, and you demonstrate, leaning forward and putting your [pc.lipsChaste] to hers.");
 	output("\n\n<i>“That felt really good!”</i> she exclaims. You tell her that that is how others of your kind show affection with others. <i>“Can you do that again?”</i> ");
-	if (flags["FROSTWYRM_INCEST_OPTION"] == 0) output("\n\nYou do so, leaning in to give her another quick peck on her lips. She sighs in delight when your [pc.lipsChaste] meet hers once more. <i>“Can you... can we do that again?”</i> she asks, but you stay firm and tell her that that’s enough for now. She pouts, but respects your decision as her Qal.");
-	else{
-		output("\n\nAlthough it’s a request, you feel compelled to obey; your kip’s un-mastered psionic link with you makes you want what she wants, and you do so, putting your lips to hers, a little longer this time. When you move to pull away, she leans in with you, keeping your lips firmly against hers.");
-		output("\n\nWell, you suppose, you’re there until she’s had enough. You keep kissing your kip, your lips moving in time with each other; you breathe through your nostrils, getting a lungful of her scent as she kisses you. As the moments tick by, you’re tempted to open your mouth, but you resist at first – but then you feel compelled to. You know that it’s your kip, sensing your desires through your link and encouraging you to follow through, but as the desire grows, you feel less and less restricted.");
-		output("\n\nAs soon as you open your mouth, it’s invaded by " + (flags["NYKKE_MET"] == undefined ? "your kip" : "Nykke") + "’s tongue, eagerly licking and exploring your maw. You moan as her huge, flat, inhuman tongue draws along your cheeks and across the roof of your mouth; you taste her, and you purse your [pc.lips], suckling on her tongue and twisting your head just slightly. You press your tongue as flat against hers as you can, pushing against her, and she mimics your every action precisely.");
-		output("\n\nWhen you finally pull away, " + (flags["NYKKE_MET"] == undefined ? "your kip" : "Nykke") + "’s sparkling [baby.eyeColor] eyes look into yours: lustful, loving, and a bit impish. Her tongue snakes out of her mouth and licks at her lips exaggeratingly, wriggling just before you.");
-		output("\n\n<i>“I’d love to learn more about biology with you, my Qal,”</i> she says. You feel her psionic influence on you, compelling you to ‘teach’ her. You tell her that you’d love to demonstrate...");
-		output("\n\n... but in a moment. Your kip leans in, resting her head against you, satisfied with your answer and ready for your word.");
-	}
+	output("\n\nYou do so, leaning in to give her another quick peck on her lips. She sighs in delight when your [pc.lipsChaste] meet hers once more. <i>“Can you... can we do that again?”</i> she asks, but you stay firm and tell her that that’s enough for now. She pouts, but respects your decision as her Qal.");
+	
 	
 	processTime(5);
 	clearMenu();
@@ -2769,14 +2658,9 @@ public function frostwyrmShinyShit():void
 	output("\n\n" + (flags["NYKKE_MET"] == undefined ? "Your kip" : "Nykke") + " watches, enraptured. She’s totally taken in by the programming going on in front of her. <i>“What’s going on here?”</i> she asks you innocently, and you explain who Steph is and what her goal is – or, rather, what it’s <i>supposed</i> to be, but more often than not, it always devolves into... exactly what’s happening right now. Her audience tends to prefer it this way.");
 	output("\n\n" + (flags["NYKKE_MET"] == undefined ? "Your kip" : "Nykke") + " probes your mind once again. <i>“You mean there are individuals that enjoy watching others mate for their entertainment?”</i> You answer that yes, that’s about the long and short of it. <i>“Wow.”</i>");
 	output("\n\nShe sits in almost stunned silence for a moment as she watches Steph get absolutely railed by two male, and one female, Zil.");
-	if (flags["FROSTWYRM_INCEST_OPTION"] == 0) {
-		output(" <i>“I wonder if-”</i> she begins, but then stops herself, her eyes flitting towards yours for a split second. <i>“Never mind, it’s not important.”</i>");
-		output("\n\nWhen you switch the programming to something else, she pouts, but ultimately respects your decision as her Qal.");
-	}	
-	else {
-		output(" <i>“I wonder if this is something the rest of the clutch would be interested in. Coupling with one another, not for the pleasure for themselves, but for another to watch. Do you think that’s something that maybe you or our Qim would be interested in, my Qal?”</i>");
-		output("\n\nYou tell her that, if the many thousands of years of history the pornography industry has to fall back on, the answer is almost certainly yes. <i>“Goodness,”</i> she says, her voice shallow. <i>“That’s certainly an idea to keep in mind for later....”</i>");
-	}
+	output(" <i>“I wonder if-”</i> she begins, but then stops herself, her eyes flitting towards yours for a split second. <i>“Never mind, it’s not important.”</i>");
+	output("\n\nWhen you switch the programming to something else, she pouts, but ultimately respects your decision as her Qal.");
+	
 
 	processTime(5);
 	clearMenu();
@@ -2789,7 +2673,6 @@ public function frostwyrmBlessedBeOurSmutlords():void
 	
 	output("You ask " + (flags["NYKKE_MET"] == undefined ? "your kip" : "Nykke") + " what she thinks of the standards and traditions that are upheld here in [frostwyrm.name]’s lair. <i>“I don’t think I understand the question,”</i> she says, so you elaborate, one step at a time: what does she think about mating with you and [frostwyrm.name]?");
 	output("\n\n<i>“It’s the natural way of our kind, of course,”</i> she says matter-of-factly, proud of her learned knowledge of her kind. <i>“We remain with our Qim and Qal to have our every need met until you two are summoned by the Grand Qim. That includes food, shelter, and any needs regarding mating");
-	if (flags["FROSTWYRM_INCEST_OPTION"] == 0) output(". Well - from our Qim, at least");
 	output(".”</i>");
 	output("\n\nYou tell her that you and [frostwyrm.name] aren’t exactly of the same race. <i>“Well, I gathered </i>that<i> much, silly,”</i> she laughs, nuzzling your nose with hers. <i>“I think it’s incredible that the Grand Qim managed to put you two together, despite your differences.”</i>");
 	output("\n\nWhat you mean is that, where you come from, there is no such thing as ‘inner circle coupling,’ and that children – or, kips – from your kind do not mate with their parents, and leave the home once they reach a certain age.");
@@ -2797,533 +2680,22 @@ public function frostwyrmBlessedBeOurSmutlords():void
 	output("\n\nYou appreciate the compliment, but no, not everyone thinks the same way as the Frostwyrms. Everyone has a different approach to mating, but some laws and concerns are universal: society, which is another word to describe the way a civilization thinks and acts, looks down on ‘inner circle coupling’ as a serious crime.");
 	output("\n\n<i>“Is it society that’s wrong, then? Who does it hurt to mate with who you want?”</i> You tell her that that’s a very dangerous line of thinking – she can’t just ‘mate with who she wants.’ Her partner needs to be aware and willing to mate with her, and if they aren’t, that’s an even more serious crime. <i>“It sounds to me like your ‘society’ is a boring, hard place to be. There are a lot of rules to keep in mind.”</i> You don’t budge, and you force your kip to promise that she won’t mate with anyone or anything without their consent. <i>“Okay, fine! I promise.”</i>");
 	output("\n\nWith that squared away, you relax.");
-	
-	if (flags["FROSTWYRM_INCEST_OPTION"] == 0){
-		output("\n\n<i>“Does this mean you aren’t okay with us celebrating our inner circle coupling with our Qim?”</i> she asks, her eyes wide with concern. <i>“I mean, you’re not from our Qim’s kind, and your kind doesn’t like the idea of a parent mating with their child.”</i>");
-		output("\n\nYou tell her that you’ve come to accept that it’s a part of Frostwyrm culture, and you couldn’t ask [frostwyrm.name] to be something she’s not, in her own home, for your sake. You don’t mind if she satiates the sexual needs of your kips, and it’s enough for you to know that she and your kips all respect your decision as their Qal to not participate.");
-		output("\n\n<i>“Okay,”</i> she says, snuggling in closer to you and burying her nose into the crease of your neck affectionately. <i>“I hope I’m as understanding as you are with my own mate, my Qal.”</i>");
-	}
-	
-	else{
-		output("\n\n<i>“Does this mean that you’re not actually okay with mating with us?”</i> she asks, her eyes wide with concern. <i>“I mean, you’re not from our Qim’s kind, and your kind doesn’t like the idea of it.”</i>");
-		output("\n\nYou tell her that you’ve learned to put your preconceptions and concerns aside when you’re with [frostwyrm.name] in her lair. If you had a problem with it, you wouldn’t have agreed to be her mate in the first place. After all, you aren’t in [pc.race] society: nobody in the lair is going to judge anyone else for their choice in mate.");
-	}
-	
+	output("\n\n<i>“Does this mean you aren’t okay with us celebrating our inner circle coupling with our Qim?”</i> she asks, her eyes wide with concern. <i>“I mean, you’re not from our Qim’s kind, and your kind doesn’t like the idea of a parent mating with their child.”</i>");
+	output("\n\nYou tell her that you’ve come to accept that it’s a part of Frostwyrm culture, and you couldn’t ask [frostwyrm.name] to be something she’s not, in her own home, for your sake. You don’t mind if she satiates the sexual needs of your kips, and it’s enough for you to know that she and your kips all respect your decision as their Qal to not participate.");
+	output("\n\n<i>“Okay,”</i> she says, snuggling in closer to you and burying her nose into the crease of your neck affectionately. <i>“I hope I’m as understanding as you are with my own mate, my Qal.”</i>");
 	output("\n\nAnd, that said, it’s not like [pc.race] societies and cultures are all <i>that</i> different from Frostwyrm ideals. For example, your kind enjoys the concept of mating for life. Although, they don’t call it ‘mating,’ even though that’s what you do; they call it ‘marriage.’");
 	output("\n\n<i>“What’s the difference?”</i> she asks, and you tell her that there isn’t really one; it’s just a fancy label that your kind apply to mates to tell others that they aren’t available. <i>“Why would you need a label for that? Shouldn’t their scent markings be enough?”</i> You smile. That’s a kinky thought, but most people try to be as un-smelly as possible.");
 	output("\n\n<i>“So marriage just means that you don’t mate with anyone except your mate?”</i> That’s about the short of it, you confirm.");
-	if (flags["FROSTWYRM_INCEST_OPTION"] == 0){
-		output(" <i>“Does that mean we’re married to our Qim?”</i> Well – suddenly, you’ve gotten yourself in a bit of a situation. You want to tell her that, if she’s married to anyone in the lair, it would be you, but you just said that two married people only mate with their mates. So... in a sense, yes, you suppose, [frostwyrm.name] is married to your kip");
-		if (flags["FROSTWYRM_KIP_COUNT"] >= 2) output(". To all your kips");
-		if (silly) output(". You feel like you’re suddenly starring in a sitcom.");
-		if (flags["FROSTWYRM_KIP_COUNT"] >= 2) output("\n\nUsing her psionics, " + (flags["NYKKE_MET"] == undefined ? "your kip" : "Nykke") + " reaches out to the rest of the clutch, exclaiming that, as far as their Qal’s society is concerned, they’re all married to [frostwyrm.name]! The exclamation is met almost entirely with confusion, but when she explains that it’s a good thing, they all cheer in delight. This is her life now, you guess.");
-	}
-	else{
-		output(" <i>“Does that mean we’re married?”</i> Well – suddenly, you’ve gotten yourself in a bit of a situation. You want to tell her that, if you’re married to anyone in the lair, it would be [frostwyrm.name], but you just said that two married people only mate with their mates. So... in a sense, yes, you suppose, you’re married " + (flags["NYKKE_MET"] == undefined ? "your kip" : "Nykke"));
-		if (flags["FROSTWYRM_KIP_COUNT"] >= 2) output(". To all your kips");
-		if (silly) output(". You feel like you’re suddenly starring in a sitcom.");
-		if (flags["FROSTWYRM_KIP_COUNT"] >= 2) output("\n\nUsing her psionics, " + (flags["NYKKE_MET"] == undefined ? "your kip" : "Nykke") + " reaches out to the rest of the clutch, exclaiming that, as far as their Qal’s society is concerned, they’re all married to you! The exclamation is met almost entirely with confusion, but when she explains that it’s a good thing and it means you’re only allowed to mate with [frostwyrm.name] and the clutch, they all cheer in delight. This is your life now, you guess.");
-		output("\n\n" + (flags["NYKKE_MET"] == undefined ? "Your kip" : "Nykke") + " leans in, her lips puckered and pressed eagerly against yours, excited and overjoyed at the news. <i>“We should celebrate,”</i> she says, her hand trailing down your body and to your [pc.crotch]. You feel her psionics prod at your mind for a moment, searching for an idea on how to ‘celebrate,’ although you’re sure she already has a feeling. <i>“Let’s see... the first thing that newly-wed mates do is....”</i> She licks her lips as her eyes lock onto yours. <i>“Oh, good, the same thing our kind do when they find an aware and willing mate, too.”</i>");
-		output("\n\nYou tell " + (flags["NYKKE_MET"] == undefined ? "your kip" : "Nykke") + " that there’s no rush - you two can enjoy each other the next time you involve yourselves in another celebration of inner circle coupling. Satisfied with your answer, she collapses back onto your side, cuddling platonically, and a little possessively, against you.");
-	}
+	output(" <i>“Does that mean we’re married to our Qim?”</i> Well – suddenly, you’ve gotten yourself in a bit of a situation. You want to tell her that, if she’s married to anyone in the lair, it would be you, but you just said that two married people only mate with their mates. So... in a sense, yes, you suppose, [frostwyrm.name] is married to your kip");
+	if (flags["FROSTWYRM_KIP_COUNT"] >= 2) output(". To all your kips");
+	if (silly) output(". You feel like you’re suddenly starring in a sitcom.");
+	if (flags["FROSTWYRM_KIP_COUNT"] >= 2) output("\n\nUsing her psionics, " + (flags["NYKKE_MET"] == undefined ? "your kip" : "Nykke") + " reaches out to the rest of the clutch, exclaiming that, as far as their Qal’s society is concerned, they’re all married to [frostwyrm.name]! The exclamation is met almost entirely with confusion, but when she explains that it’s a good thing, they all cheer in delight. This is her life now, you guess.");
 	
 	processTime(5);
 	clearMenu();
 	addButton(0, "Next", frostwyrmlingTalkMenu, undefined);
 }
 
-public function frostwyrmIChangeMyMind():void
-{
-	clearOutput();
-	nykkeHeader();
-	
-	output("You nudge at " + (flags["NYKKE_MET"] == undefined ? "your eldest kip" : "Nykke") + ", getting her attention. <i>“Yes, my Qal?”</i> she says attentively, her eyes locking onto yours. You get the feeling that she already knows what you’re going to talk about.");
-	if (flags["FROSTWYRM_INCEST_OPTION"] == 1) output("\n\nYou’re currently choosing to participate in the Frostwyrm tradition of ‘inner circle coupling.’ In other words, you’re consciously choosing to have sex with your kips. Are you going to change your stance on this and opt out?");
-	else output("\n\nYou’re currently choosing not to participate in the Frostwyrn tradition of ‘inner circle coupling.’ In other words, you’re consciously choosing to not have sex with your kips. Are you going to change your stance on this and opt in?");
-	
-	processTime(2);
-	clearMenu();
-	addButton(0, "No", frostwyrmIDontChangeMyMind, undefined);
-	addButton(1, "Yes", frostwyrmYesIDoChangeMyMind, undefined);
-}
-
-public function frostwyrmIDontChangeMyMind():void
-{
-	clearOutput();
-	nykkeHeader();
-	
-	output("You tell " + (flags["NYKKE_MET"] == undefined ? "your kip" : "Nykke") + " that it’s nothing, and for her to never mind herself.");
-	output("\n\n<i>“Okay, my Qal, if you say so,”</i> she says, lowering her head and resuming her platonic snuggling against you.");
-	
-	clearMenu();
-	addButton(0, "Next", frostwyrmlingTalkMenu, undefined);
-}
-public function frostwyrmYesIDoChangeMyMind():void
-{
-	clearOutput();
-	nykkeHeader();
-	
-	if (flags["FROSTWYRM_INCEST_OPTION"] == 0){
-		output("You tell " + (flags["NYKKE_MET"] == undefined ? "your eldest kip" : "Nykke") + " that you’ve changed your mind: it feels inappropriate to be surrounded by Frostwyrms, in a Frostwyrm lair, and not be a part of their traditions. You’d like your family to include you in their future ‘inner circle couplings.’");
-		output("\n\nHer eyes gleam with joy, and her mouth splits into a wide, excited grin - but, then, the corners crook upward slightly, making her look almost devilish and predatory. <i>“I was hoping you’d change your mind, my Qal,”</i> she says lasciviously, her long, flat tongue snaking out to lick at her chops. <i>“I’ll make sure you won’t regret it.”</i>");
-		output("\n\nFrom the way she eyes you like a piece of meat, you’re not sure if you should be worried or aroused.");
-	}
-	else{
-		output("You tell " + (flags["NYKKE_MET"] == undefined ? "your kip" : "Nykke") + " that, as much as you enjoyed participating in the Frostwyrm tradition of ‘inner circle coupling’ up until this point, you think you need a bit of a break from it, and to not include you in the act for the time being.");
-		output("\n\n<i>“Aw,”</i> she pouts, her hand snaking its way up your [pc.chest]. <i>“Can I not convince you to stay, my Qal?”</i> You tell her that you’ve made up your mind, and, with some authority, you tell her to respect the decision of her Qal.");
-		output("\n\n<i>“Alright, then, if you say so.”</i> Her hand stops its questing up your body, and she resumes her platonic snuggling up against you. <i>“Be sure to let me know if you change your mind, of course.”</i>");
-	}
-	
-	clearMenu();
-	if (flags["FROSTWYRM_INCEST_OPTION"] == 0){
-		flags["FROSTWYRM_INCEST_OPTION"] = 1;
-		addButton(0, "Next", frostwyrmlingTalkMenu, undefined);
-	}
-	else{
-		flags["FROSTWYRM_INCEST_OPTION"] = 0;
-		addButton(0, "Next", frostwyrmlingTalkMenu, undefined);
-	}
-}
-public function frostwyrmlingSexMenu():void
-{
-	clearOutput();
-	frostWyrmlingHeader();
-	
-	if (!pc.lust() > 50){
-		output("As you sit, your back to [frostwyrm.name]’s belly and with " + (flags["NYKKE_MET"] == undefined ? "your eldest kip" : "Nykke") + " curled and cuddled up against you, you start to feel a little... randy. Pent-up, even; like you could really go for a good fucking.");
-		if(pc.hasGenitals()) {
-			output(" Y");
-			if (pc.hasCock()) output("our [pc.cock], at first somewhat flaccid and limp, quickly fills with your blood unabated, pointing like a dowsing rod in a desert towards the nearest, warm, wet and willing oasis");
-			if (pc.isHerm()) output(". Not only that, y");
-			if (pc.hasVagina()) output("our [pc.vagina] soaks itself without any provocation; where you were first dry and un-stimulated, you’re now salivating, like a starving woman shown a prime, juicy hot dog: the longer and fatter, the better");
-			output(".");
-		}
-		output("\n\nYou’re snapped out of your sudden, lust-fueled daydreaming by your kip’s hand snaking its way down your [pc.belly], her open palm playing with the [pc.skinFurScales] of your abs before dipping and playing with your [pc.crotch], her fingers toying with what she’s found there. <i>“Come on, my Qal,”</i> she husks into your ear, her tongue lapping at the salt on your neck, <i>“have some fun with your kips.”</i>");
-		output("\n\nYou’ve already agreed to participate in the Frostwyrm traditions, and you consent. Victoriously, she stands up, grabbing you by the wrist, and hauls you away from [frostwyrm.name], exposing you to the lair and the rest of your clutch. <i>“Our Qal is in the mood for playtime, girls!”</i> she shouts as you land among your kips, their strong hands catching and groping you. <i>“Let’s show our Qal how much [pc.hisHer] kips love [pc.himHer]!”</i>");
-	}
-	else{
-		output("As you sit, your back against the soft, pliable scales of [frostwyrm.name]’s belly scales and the warm body of your kip curled up against you, you’re reminded of just how in-the-mood you are right now.");
-		if(pc.hasGenitals()) {
-			output(" Y");
-			if (pc.hasCock()) output("our [pc.cock] is hard as a rock and ready to jump into the first mouth, cooch, or ass, that’s made available to you");
-			if (pc.isHerm()) output(", while y");
-			if (pc.hasVagina()) output("our [pc.vagina] clenches at nothing, imagining it’s casually getting railed by the closest, thick dick or pair of fingers or wriggling tongue it can find");
-			output(".");
-		}
-		output(" You think to yourself that maybe you shouldn’t be having these thoughts so close to your kip – and now that you’ve thought of your kip, you’re thinking of doing those things <i>to</i> your kip.");
-		output("\n\nYou’re startled when " + (flags["NYKKE_MET"] == undefined ? "your kip" : "Nykke") + " grinds her body against you, her huge, F-cup breasts squishing against you, her pebbly-hard nipples pressing against your flesh as she pulls in and lavishes your neck with a long, thick swipe of her tongue. <i>“Our connection may not be as refined as our Qim’s, my Qal,”</i> she whispers, <i>“but with emotions as strong as yours, I can tell that you’re feeling particularly... needy. Just say the word, my Qal, and we can celebrate the union of our clutch with our inner circle coupling.”</i>");
-		output("\n\nYour emotions are feeding into " + (flags["NYKKE_MET"] == undefined ? "your eldest kip" : "Nykke") + ", and they’ll be spilling out into the rest of the clutch unchecked if you don’t do something soon. You’ve already agreed to participate in the tradition of the Frostwyrms - you consent to your kip’s invitation.");
-		output("\n\nAs soon as the words leave you, she stands, her hand on your wrist, and with her surprising Frostwyrm strength, she hauls you up and throws you into your awaiting throng of Frostwyrm hybrids below. <i>“You heard [pc.himHer], girls,”</i> your eldest says, sashaying her hips as she walks towards you, her bulging penile vent and massive testicles swaying with her every step. <i>“[pc.HeShe] wants to spend some quality time with us. We’d better not disappoint our Qal.”</i>");
-	}	
-	
-	clearMenu();
-	processTime(5);
-	if (pc.hasCock()) addButton(0, "Breed Them", frostwyrmlingPitchGangbang, undefined);
-	else addDisabledButton(0, "Breed Them", "Breed Them", "You need a penis for this.");
-	if (pc.hasVagina()) addButton(1, "Get Bred", frostwyrmlingCatchGangbang, undefined);
-	else addDisabledButton(1, "Get Bred", "Get Bred", "You need a vagina for this.");
-	addButton(2, "Bath Time", frostwyrmlingBathing, undefined);
-	addButton(3, "Blow Them", frostwyrmGiveThemABath, undefined);
-	//addButton(14, "Back", frostwyrmBunchaKiddoContent, undefined);
-}
-public function frostwyrmlingCatchGangbang():void
-{
-	clearOutput();
-	frostWyrmlingHeader(true);
-	
-	var vIdx:int = -1;
-	if(pc.hasVagina() && pc.blockedVaginas() == 0){
-		vIdx = pc.findEmptyPregnancySlot(1);
-		if(vIdx < 0) vIdx = rand(pc.totalVaginas());
-	}
-	
-	output("One kip hooks both her arms beneath your armpits, locking you against her, and falls backwards, bringing you both down. You crash to the ice, your fall broken by your huge, muscular offspring, your head landing squarely between her two huge breasts. When she shifts her weight slightly, you feel the bulge of her penile vent and the gentle scraping of her cock’s blunt, flat head, worming its way between your buttcheeks and pressing hotly against your [pc.asshole].");
-	output("\n\nJoining you is " + (flags["NYKKE_MET"] == undefined ? "your eldest kip" : "Nykke") + ", gracefully laying herself atop you, her own mountainous F-cups resting against your [pc.chest]. Her eyes lock onto yours lustfully; she licks her lips before kissing yours, her tongue snaking out and invading your mouth. She hums in delight as she tastes you and your tongue; her hand reaches behind your head to keep you in place until she’s counted each of your teeth several times over.");
-	output("\n\nThe kip beneath you frots against you, her dick growing all the while, inflating slowly against your warm body, driving itself deeper and deeper into the cleavage of your ass. You hear footsteps, and you and " + (flags["NYKKE_MET"] == undefined ? "your eldest" : "Nykke") + " are joined by a third; her tall, muscular legs spread apart and her draconian testicles dangling above you, quivering with seed. She palms gently at her own vent, massaging her cock through her scales as it too grows in length, a drip of pearly pre-cum forming at the tip.");
-	output("\n\n" + (flags["NYKKE_MET"] == undefined ? "Your eldest" : "Nykke"));
-	if (pc.isLactating()) output(" pulls backward, demonstrating her alien biology as her lips go to your [pc.chest], pursing and suckling at your [pc.nipples] to wean out a few mouthfuls of your [pc.milk], all the while her tongue continues to molest yours. After tending to one nipple, she leans to the other, sucking out another few mouthfuls, relieving the tension in your boobs. When she’s finally had her fill, she");
-	output(" leans back, her tongue staying in your mouth as she does; it extends comically far from her, the long, pink appendage shaking and shivering in your mouth and in the air. She pulls out just enough so that her tip can draw a long trace along your [pc.lips], then, suddenly, she withdraws it all with a long, exaggerated slurp, taking care to lick her own lips for effect.");
-	output("\n\n<i>“By the Grand Qim, is mating with you fun, my Qal,”</i> she huffs. She humps her hips forward, her own pink dick already halfway out and her pouty cunt drooling lanes of slime across your [pc.belly]. <i>“I’m kinda jealous, you know. Who wouldn’t love to be underneath a pile of horny dragons whenever they wanted? Nobody in the world but you can have as much Frostwyrm dick as they want, whenever they want it.”</i> She slides backward a bit, until you feel her testicles");
-	if (pc.hasCock()) output(" first hotdog your [pc.cock], and then");
-	output(" rest against your hot, needy [pc.vagina]. She knows exactly what your body needs, and, with her dick already massive and ready, she lines up her shot into you, ready to properly seed her Qal. With her psionics, she reaches out to the horde to truly begin the ceremony: <i>Let’s have some fun, girls!</i>");
-	output("\n\nSuddenly, your body is invaded by the hot, thick, turgid flesh of your kips: the one beneath you thrusts upward, burying herself to the ever-inflating knot of her dick; the one above you bends at the knees and tucks herself into your warmed-up mouth, thrusting deep enough to nudge at your soft palette; and " + (flags["NYKKE_MET"] == undefined ? "your eldest kip" : "Nykke") + " thrusts forward, her dick spearing into you, conforming you around herself. You fit her like a glove, like you were biologically designed for her and her alone, and the ride is only going to get better.");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 5) output(" Your other kips stand in a circle around you four; many of them play with themselves, while the more charitable of your kips assist the others, giving their siblings handjobs and some of them even getting on their knees to fluff their sisters in preparation for their turn.");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 11) output(" Even others, deciding that you’re going to be busy for some time and not wanting to add more to your plate, turn their attention to their Qim, tending to her and prepping her to properly mate her kips as well.");
-	output("\n\nThe kip beneath you, drilling your [pc.ass], is far more gentle and methodical than her sisters; she knows how sensitive and tender a good reaming can make anyone, and takes her time, allowing your body to get used to her girth before pushing forward and forcing you to readjust yourself, especially since she’s double-teaming you with her older sister, pushing your body to its limit. Whereas the kip in your mouth is rather <i>enthusiastic:</i> her hands clamp onto either side of your head and fucks your mouth, not cruelly, but without much finesse or direction or thought for your own pleasure. Her dense balls clap you on the forehead every time she pushes in, and her big dick sometimes drives a little too deep, making you gag until her backswing.");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 4) output("\n\nGentle hands find yours, holding and squeezing them tenderly and lovingly, before they too are replaced with yet more cockflesh, their slimy textures greasing your fingers and their precum jetting from their tips and up your wrists. You gently close your hands, simulating a pocket for them to fuck, and your kips start thrusting into your palms, taking your unspoken invitation gladly.");
-	output("\n\nThe most in-tune with your body, however, is " + (flags["NYKKE_MET"] == undefined ? "your eldest kip" : "Nykke") + ", currently pounding away at your [pc.vagina]. She occasionally grunts, sometimes coming out as a snort, whenever her thick knot presses against your vulva; she doesn’t try to push in deeper or harder, knowing that you’ll have her when you’re ready. She doesn’t take you too hard or soft; she doesn’t go too fast or slow, even if that means moving off-rhythm with her sister pounding your [pc.ass]. Your every subconscious feeling and desire is met with your loving kip; to show your appreciation, you wrap your [pc.legs] around her waist, locking just above her massive, thick tail, and hold her close.");
-	output("\n\n<i>“Yeah, being the Qal of a clutch must be the best,”</i> she says, her voice stuttering with her rocking hips. <i>“It’s just you; the Qim; and all your kips, and every single one of them wants a piece of you all the time. I know I count down the Skylight until I can couple with you again, my Qal.”</i> She then raises her voice: <i>“What do you think, girls? How badly do you want to cum inside your Qal?”</i>");
-	output("\n\nNone of them answer verbally: instead, your mind is assaulted with a cacophony of images and emotions, all related to the same thing. Some images have you on your knees, gratefully taking one kip in your mouth. Some images have you bent forward, your [pc.ass] raised, as another kip fucks your ass without a care in the world for your own pleasure. Some images have your hands and wrists bound to the ice, while another kip jerks herself off above you, painting your body with her seed");
-	if (silly) output(". Some particularly deviant images involve you and one of your kips, dressed in her Sunday best, sitting somewhere warm and secluded, your hands gently grasped together while you watch a far-off sun sink into the horizon");
-	output(". But they each also involve a similar theme: it’s only you and one of them. They all want you to themselves.");
-	
-	var ppFrostwyrmling:PregnancyPlaceholder = getFrostwyrmlingPregContainer();
-	if(vIdx >= 0) pc.cuntChange(vIdx, ppFrostwyrmling.cockVolume(0));
-	pc.buttChange(ppFrostwyrmling.cockVolume(0));
-	
-	output("\n\nBetween the dick in your ass, the cock in your mouth, and the one fucking you properly, claiming your cunt for itself, the sensations build up quickly and your orgasm isn’t far off. But, as it builds, you feel the edge that it needs to cross to give you release back away; no matter how close you get, the tipping point continues to elude you.");
-	output("\n\n<i>It wouldn’t be right to cum before your kips, don’t you think, my Qal?</i> you hear " + (flags["NYKKE_MET"] == undefined ? "your oldest kip" : "Nykke") + " say to your mind. You crane your head just enough to look her in the eye – a bit of a taxing effort, considering the dick in your mouth – and hers are already on yours, narrowed, her lips curling into a sassy smirk. <i>A good Qal would put the needs of the clutch before" + pc.mf ("himself","herself") + ". Don’t you want to be a </i>good<i> [pc.boyGirl] and make sure your kips get what they </i>need<i> before you?</i> ");
-	if (pc.hasCock()) output("She gently palms at your [pc.cock], begging for some attention, <i>any</i> attention, but she doesn’t go any further than that. <i>Be a good enough Qal, and we can look into taking care of this juicy thing for you next time.</i>");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 12){
-		output("\n\nShe looks upward, towards the icy platform that is [frostwyrm.name]’s resting place. You follow her gaze, between your kip’s legs, and see the inverted image of three of your kips tending to their Qim: one on her hands and knees, beneath [frostwyrm.name]’s belly, and the other two fondling her huge balls and guiding her titanic cock into their willing sister. <i>See? [frostwyrm.name] understands. The needs of her kips are what’s important. She’s going to fuck her kip until she cums, and then another one of us is going to replace her until there’s nobody left for [frostwyrm.name] to breed. Don’t you want to be responsible like her?</i>");
-		if (!pc.isBimbo()) output("\n\nYou mentally scold your kip. To her, [frostwyrm.name] is not [frostwyrm.name]; she is the Qim, and she should respect her Qim by referring to her as such.");
-		else output("\n\nYou’re all for a good orgy, and this has been some of the most fun and, like, totally exciting... uh, fun, you’ve ever had. She can call you what she likes - sometimes you even like being called a cheap slut or a dirty whore, and the fact that she’s your kip kinda makes it even hotter - but [frostwyrm.name] deserves to be called what she is, and that is her Qim.");
-		output("<i>Right,</i> she says, the mirth plain in her mental tone, <i>sorry, my Qal.</i>");
-	}
-	output("\n\nAlready, the sensation is torturous: to be so close to release and have release elude you constantly. Like water overflowing a dam, the results are going to be monumental once the dam finally breaks: " + (flags["NYKKE_MET"] == undefined ? "your oldest kip" : "Nykke") + " couldn’t be more lubricated, with the feminine juices you’re coating her blunt dick with , and you’re ready to squirt a fountain as soon as she releases her damnable block on you[if (pc.isHerm()). And, just northward, ");
-	if (pc.hasCock()) output("your [pc.cock] stands tall and hard as diamonds, unappreciated and ignored. You’re at the point where the faintest wisp of your kip’s breath on your skin would set you off, if it weren’t for the block she has on your orgasm");
-	output(". And she knows it: she’s reading your every thought, emotion, and expression, delighting in the control she has over you while her and her sisters have their way.");
-	output("\n\nAs time goes on, your kips grow more and more frantic, allowing their own orgasms to continue unimpeded. The one in your mouth is closest: hot little spurts of precum layer your mouth, and she batters her heavy knot against your [pc.lips] more forcefully than usual. The scales on her balls grow tighter against your forehead, and the testicles themselves begin to flex and pull up against her body. She’s on the verge, and in just another few pumps–");
-	output("\n\nHer hands on your head grow tight, and you flinch as her sharp claws drag slightly against your [pc.skinFurScales], but she retains some control. She doesn’t try to knot your mouth, thankfully");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 4) output(" – if your hands weren’t occupied, you’d lock them behind her knot, to give her all the more stimulation");
-	output(", as her dick begins to flex and bloat along your tongue. So close to her balls, you hear them gurgle as they unload into your throat, feeding you your impromptu dinner.");
-	output("\n\nYour emotions are suddenly flooded with the ease of tension that accompanies an orgasm, and the overstimulation and relief that includes. And when you feel it, you know that the rest of your clutch feels it, too, ushering them all towards their own orgasms.");
-	output("\n\nThe kip you’ve been laying on this whole time, using her as a cushion: her breathing speeds up and deepens, her heart rate accelerating wildly, and her hips driving, battering your poor [pc.asshole] with her knot until it finally gives, locking you to each other. She pulls her lips up to your ear, nibbling on it with just her lips, and grunting wantonly, her breath washing down your chest through her nostrils. Your [pc.belly] tightens suddenly as your body is flooded with draconic semen; you feel every pulse radiate up her cock before it warmly explodes inside you, and it continues without any sign of waning for some time.");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 5) output("\n\nThe rest of your uninitiated clutch watch on, the emotions washing over them and effecting them visibly; the charitable ones giving handjobs and blowjobs have to stop, knowing that they’re all very vulnerable, and too much stimulation would ruin the opportunity they’ve all been waiting for . Precum flows in long, unattended strands, pooling onto the ice and streaming towards your prone form; a mere teaser of what’s to come");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 11) output(". Making things even harder is that [frostwyrm.name] has no such reservations, and the sensation of her orgasm – followed by the orgasm of the kip she’s breeding – overpower all others, mixing into the whirling stew of lustful emotions and incentivizing everyone within the lair to achieve their own.");
-	output("\n\nDespite all that, the one kip that you want to cum the most is the one riding you. Sensing the orgasm of your kips, but unable to reach your own, causes your willpower to bend and fracture; you’re on the verge of tears over how good it <i>does</i> feel, but also, how good it <i>could</i> feel. And " + (flags["NYKKE_MET"] == undefined ? "your oldest kip" : "Nykke") + ", for her part, is struggling to maintain herself: her own thrusting is growing haphazard and haggard, ready to blow, but she’s holding back.");
-	output("\n\n<i>I want you,</i> she states, her [baby.eyeColor] eyes fiercely focused on yours. <i>I want you more than any of my sisters. I want your kips. I want to take you as my mate and breed with you until the Grand Qim calls for us.</i> You figured it’d be difficult to focus on her, considering the emotions raiding your mind and the cum filling your body from both ends, but your focus is unusually undivided on " + (flags["NYKKE_MET"] == undefined ? "your oldest kip" : "Nykke") + ". <i>Tell me that you want me too. You’d have me as your Qim if you weren’t already taken. Tell me about all the kips we’d have together, and I’ll let you cum.</i>");
-	output("\n\nWith your hands figuratively tied, you answer to her demands, and tell her that she’s the strongest, most attractive, and most desirable of all the Frostwyrmlings. You tell her that, in a different world, you’d have submitted to her on a whim, and you’d have enough kips to populate a world. There wouldn’t be a day in your life that you wouldn’t pleasure her and add to your clutch; you’d have her in every hole, every position, every day, to take her every load, and then you’d start again the next day.");
-	output("\n\nYou and " + (flags["NYKKE_MET"] == undefined ? "your oldest kip" : "Nykke") + " orgasm simultaneously as soon as you think the thoughts. With another, herculean push, you’re inexorably tied at the knot with her, and the one place you wanted cum the most is suddenly quenched with a veritable torrent of draconic cum. Her load is second only to [frostwyrm.name]’s");
-	if (pc.cumQ() > 1000) output("and your own");
-	output(": it floods your tunnel and bloats your womb, seeding your parched eggs with herself, and when you can’t handle any more, it all washes back, squirting from the seal between you and her in long rivulets. Your [pc.vagina] clamps down, desperate to hold in every last drop, and failing as it quivers and spasms in orgasm; your juices squirt out with hers, splashing against her tight stomach and abs, adding to the mess. ");
-	if (pc.hasCock()) output("\n\nAnd, to add to the festivities, your [pc.cock] contributes to the growing wet mess that is your cum-bloated body: you’re immediately soaked in yourself from the belly down, your [pc.cum] dripping between your body and you’re kip’s uselessly");
-	if (pc.cumQ() > 1000) output(". It pulls and splashes with every thrust your anal-locked kip makes against you, adding wet slaps to the symphony of wet squelches and moist thrusting");
-	output(".");
-	output("\n\nYou pant through your nose in delighted exhaustion: it was everything you had hoped it would be. You’re full up on delicious, thick cum and you’ve achieved the orgasm you had been hurting after for the past ten minutes. You sigh, the wind bouncing off your kip’s balls and blowing back into your face; she giggles insensately as your breath tickles her.");
-	output("\n\nOne by one, your kips withdraw from you");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 4) output("; although half-conscious, you note that the kips you had been giving handjobs to hadn’t added their own ambrosia to the mix, and their cocks are harder than ever, their knots bloating obscenely at their base");
-	output(". It takes some time before your eldest kip and the kip beneath you grow soft enough to pull out, and when they do, their loads gush back onto them, coating their own crotches with their spent seed.");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 5){
-		output("\n\nOf course, now that they’ve all had <i>their</i> turns, they’re practically shoved aside by your other kips, all rowdy and ready for their own turn with their Qal. The one fucking your throat stands up and moves aside, and soon you’re eye-to-‘eye’ with a hard, pulsing, dry dick, pointed right between your [pc.lips], and a pair of heavy, dense balls rest against your forehead. You’re hardly even aware of the kip beneath you gently shuffling out and being replaced, another big dick frotting your cheeks, ready for its turn inside your [pc.ass].");
-		output("\n\nYou lick your [pc.lips]. A good Qal wouldn’t leave their clutch wanting, after all....");
-	}
-	
-	processTime(3 * 60);
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	if(vIdx >= 0) pc.loadInCunt(ppFrostwyrmling, vIdx);
-	pc.loadInAss(ppFrostwyrmling);
-	pc.loadInMouth(ppFrostwyrmling);
-	pc.applyCumSoaked();
-	
-	clearMenu();
-	addButton(0, "Next", frostwyrmGoodGodImHurtAgain, undefined);
-}
-public function frostwyrmlingPitchGangbang():void
-{
-	clearOutput();
-	frostWyrmlingHeader(true);
-	
-	output("At the mercy of your clutch, you feel their hands roam over your body wantonly, grasping and squeezing at various, fleshy parts of you. Their bodies are covered in tough scales, and the softer parts of their bodies, where they have skin, is still much more resilient than your own. The way that your body stretches slightly and the way the fattier parts of you jiggle when grasped or prodded in just the right way is endlessly amusing and, in some ways, seductive to your kips.");
-	output("\n\nThey demonstrate just how much your body turns them on by leaning in and kissing at you; their lips pucker and press against your vulnerable flesh, then their long, fat tongues snake out to lick and taste the spot they just pressed at before moving on to a different area. Your body reacts differently to every new location, and the message is conveyed through their psionic link with you.");
-	output("\n\nParticularly, when they assault your [pc.nipples] with their questing lips and tongues, the spike in lust sent through their connection doesn’t go unnoticed, and they lather your [pc.chest] with their saliva");
-	if (pc.isLactating()) output("; when they taste your [pc.milk], they home onto it like bees to honey, massaging out every last drop of your nectar for their thirsty mouths");
-	output(". When they kiss at your neck, your response is to lean into it, and they continue. When they fondle at your [pc.crotch], tugging at your [pc.cock] to its full wakefulness – they continue.");
-	output("\n\nYour kips, including " + (flags["NYKKE_MET"] == undefined ? "your eldest" : "Nykke") + ", make their way to their knees, slurping and kissing at your rod, bathing it in a strictly non-platonic way");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 3) output("; at no point are you left alone above the waist, and now that their attention’s been diverted to between your legs, another of your kips lunges forward, burying her tongue in your mouth greedily");
-	output(". Your [pc.cock] was already half-mast when you had started, and now that it’s lodged firmly in the maw of " + (flags["NYKKE_MET"] == undefined ? "your oldest kip" : "Nykke"));
-	if (pc.balls > 0) output(", while two more kips lovingly suckle at your [pc.balls]");
-	else output(", while two more kips lovingly kiss at your thighs and asscheeks");
-	output(", it takes little time and effort to get you truly prepared.");
-	output("\n\nEach of your kips focus their attention on you and your body, and the myriad of ways that it reacts to being pleasured, but " + (flags["NYKKE_MET"] == undefined ? "your eldest kip" : "Nykke") + ", with her mouth full of your cock, focuses her [baby.eyeColor] eyes purely on your own. Your mind is inundated with so many kips providing you with so much lust, it’s difficult to focus on any of them, but " + (flags["NYKKE_MET"] == undefined ? "your eldest kip" : "Nykke") + ", with her psionics being more developed than the rest, stands out like a torch next to a candle. And if her own thoughts and emotions are anything to go by, she’s probably going to fuck you the most today.");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 5)
-		output("\n\nNo part of your body is left alone: you have more than enough attention at your [pc.crotch], but your clutch sees to it that your [pc.chest] is not left to the cold air of the lair");
-		if (pc.hasVagina()) output(", and at least one thoughtful kip of yours shows herself to your rear, tilting her head slightly and slipping her enormous, flat tongue into your [pc.vagina], causing your knees to buckle");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 11) output(". That said, you only have so much ‘surface area’ to cover; seeing that you’re decidedly occupied, some of your kips decide to leave the action, and instead turn to their Qim for their pleasure. After all, [frostwyrm.name] has a perfectly viable pussy of her own to plunder. A Qim’s duty to her clutch is never over");
-	output(".");
-	output("\n\nAt that, she pulls back, pursing her lips at your [pc.cockHead] and giving it an exaggerated kiss before pulling back with a small ‘pop,’ barely audible compared to the slurping her sisters are making on your [pc.skinFurScales]. <i>“Being the Qal of a clutch must be an amazing position,”</i> she says, one hand gently stroking you to keep you hard and steady. <i>“You have such a large clutch, just </i>waiting<i> for you to say the word, and they’d drop everything and spread their legs for you. A good Qal’s life is full of inner-circle coupling. I can’t wait to be the Qal of my own clutch.”</i>");
-	output("\n\nHer eyes stay on yours. <i>Or the Qim,</i> she finishes, licking her lips.");
-	output("\n\nTo your surprise, " + (flags["NYKKE_MET"] == undefined ? "your eldest" : "Nykke") + " doesn’t take you first: instead, she reaches to one of her siblings and taps them on the shoulder. When she has her attention, your eldest pulls her closer, until your [pc.cock] is in front of her sister’s nose. Then, they sloppily kiss, your dick in between them; you feel their tongues slide over your sensitive tool before gliding into the mouth of their sibling.");
-	output("\n\n<i>“You go first,”</i> " + (flags["NYKKE_MET"] == undefined ? "your eldest" : "Nykke") + " tells her sibling with a wink. Overjoyed, your younger kip kisses your cock again, and shuffles forward, on her hands and knees; she lifts her tail high and arches it over her back, revealing her puckered anus and, just beneath that, the real treasure: her soaking wet cunt, lubricated and ready for you to work it over.");
-	output("\n\nOnce your hands rest at the muscled thighs of your kip, you feel a number of emotions come over you, all fed to you from the girl you’re about to mate with. Lust, of course, but there’s also apprehension – she hopes she’s a good fuck, maybe even good enough for her to be your favorite. You feel excitement – you’re her <i>Qal,</i> of all the potential mates! You’re the most perfect, eligible, virile mate she knows, and you’re about to fuck her! And, unexpectedly, you feel jealousy – she wants you to herself, and her sisters are ruining what is supposed to be a perfect moment for her. In fact, when you focus, you feel just a little bit of it from each of them. Not enough to sour the mood, but... enough.");
-	output("\n\nBut, you quickly feel another emotion: impatience, and not just from the girl leaning over. Frustrated by your inaction, another of your girls grips you by the [pc.base], rubbing your [pc.cockHead] first against the ring of her sister’s asshole, rimming the sensitive flesh there with your tool, making you and your kip both believe that this act would end a little differently than you imagined – then, the guiding hand shifts, aligning you against her velvety, wet tunnel, and " + (flags["NYKKE_MET"] == undefined ? "your oldest kip" : "Nykke") + " slaps your ass, causing you to buck forward in surprise, thrusting yourself into her body. Once you’re there, instinct kicks in, and you begin to thrust.");
-	output("\n\nYour kip bends forward more, her shoulders against the ice of the lair, and hisses a long ‘yes’ at finally having her Qal inside her. She bucks back with her strong, imposing legs, her massive, muscled ass clapping against your body with each push; ");
-	if (pc.biggestCockLength() <= 9) output("although her body conforms perfectly to and around yours, you can’t help but feel a bit inadequate: compared to the dicks your kips openly swing around, and especially to [frostwyrm.name], you’re a bit lacking, and you wonder if your kip can tell the difference");
-	if (pc.biggestCockLength() >= 10) output("you and her both grunt in animalistic pleasure whenever you bottom out inside her. She’s tight, wonderfully so, but despite your immensity, at no point does it ever feel uncomfortable, and you don’t sense any discomfort over your psionic link. Her wet, elastic, alien Frostwyrm biology allows her to take any insertion available");
-	if (pc.biggestCockLength() >= 30) output(", even one as astronomically large as your own.");
-	output("\n\nYou feel the fingers of " + (flags["NYKKE_MET"] == undefined ? "your oldest kip" : "Nykke") + " lightly pad their way to your front, tickling and massaging at your [pc.belly] as she rounds around you. Her eyes flit to yours, half-lidded in lust; her other hand is between her legs, brushing past her rock-hard dick and busying themselves with her cunt, playing with her nub and slickening them with her juices. Without any provocation, the hand on your belly goes to her sister’s upraised tail, keeping it in place, and she leans in, drawing her long, pink tongue all the way from the meeting of your [pc.cock] and your kip’s quim, up to her sister’s asshole.");
-	output("\n\nFrom there, you feel a different sensation entirely: another pair of hands, from your third kip, as she grips onto your [pc.hips] from behind. She leans in, her hot breath pouring down your neck, and you feel her own prick hotdog itself between your [pc.ass]. It’s at full mast, but you have the inclination that it’s only going to get bigger – especially when she thrusts forward, burying herself to her scales of her pelvis, into your [pc.asshole]");
-	if (pc.hasVagina()) output(", leaving your poor [pc.vagina] neglected and cold");
-	output(".");
-	
-	pc.cockChange();
-	
-	output("\n\nAnd that’s the rhythm that you settle into for the moment: you fuck her into the ice while " + (flags["NYKKE_MET"] == undefined ? "your oldest kip" : "Nykke") + " stimulates you both, and each time you pull back to thrust again, your third kip pushes deeper into you. ");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 4){
-		output("\n\nAt some point, a fourth kip joins you three, crawling between your [pc.legs] and shoving her sniffling nose up to your [pc.crotch]; when she finds the base of your dick, she starts servicing you there");
-		if (pc.balls > 0) output(", taking your [pc.balls] into her mouth juggling them in there – being extra careful with her jagged teeth, of course");
-		output(". It’s difficult for her to stay in place, considering you thrusting forward and her sister bouncing back, but she’s dexterous, and she doesn’t mind at all. Her Qal’s pleasure is important to her, too.");
-	}
-	output("\n\nYou can tell over your psionic connection that the Frostwyrmling you’re fucking is about to go over; she’s barely cognizant of her surroundings and has immersed herself in the coming avalanche of sensations and emotions that come with every orgasm, and the fact that she’s getting it from her Qal has changed the whole game. The feedback loop caused from your kip’s impending orgasm spurs your own, and the attention you’re getting from your offspring is pushing you towards the edge. With a few more thrusts, your kip breaths sharply, through clenched teeth, and you feel her cum. It’s only right, as the Qal, that you give her the seed that she wants....");
-	output("\n\nYet, it doesn’t happen. You can feel it bubbling inside you, just where your [pc.cock] meets your [pc.balls] – but no matter how many times you thrust; no matter how many times your kip cries into the lair in pleasure as her pussy spasms and milks you; no matter how badly you both want it, your orgasm never happens. You pound into her relentlessly, your primal brain hoping that the motion and the likewise-frantic pounding you’re getting against your prostate would somehow dislodge your orgasm, yet, nothing.");
-	output("\n\n<i>Listen to her squeal,</i> a voice says in your head. You look down; " + (flags["NYKKE_MET"] == undefined ? "your oldest kip" : "Nykke") + " stares back at you, with hungry, devious eyes, her tongue still making lazy strokes between your dick up to her sister’s asshole, collecting the strands of pussy juice that cling to your tool on every backswing. <i>By the Grand Qim, she’s cumming up a storm, isn’t she? She can barely contain herself.</i>");
-	output("\n\nBeneath her body, you see a pearly white pool beginning to form: you’ve pleasured her feminine half so much that her masculine half is jetting strands of cum completely uninhibited. <i>She’d love nothing more than to bear your kips, our Qal,</i> she continues. <i>We all would. You’re the perfect, most ideal mate in the lair; even more than [frostwyrm.name].</i> She leans in and plants a kiss on your pelvis. <i>But I’m a bad kip, my Qal. I want all your cum for myself. If any of us is going to bear your young, it’s going to be me.</i>");
-	output("\n\nApparently agreeing with her older sibling, the kip pounding into your [pc.asshole] thrusts forward a few more times, then unloads; she takes care to not knot you, knowing that you have a busy few hours ahead of you and she doesn’t want to impede you. Still, the feel of her hot, thick cum flooding your bowels and packing up against your prostate is all the more stimulation to spur you forward and achieve your own, long-awaited-at-this-point orgasm. She pulls back, leaving you open and dripping in the cold air, you doubt you’ll remain that way for much longer.");
-	output("\n\nShe barely waits for her younger sister to be finished her quivering orgasm before she grabs her by the ass with both hands, spanking each cheek hard, and practically yanking her off your own straining dick. <i>“My turn!”</i> she announces to the room, taking her sister’s place: rather than lay on her front, she lays on her back, spreading her legs and pulling back her balls to reveal her blue-skinned, sodden pussy.");
-	output("\n\n<i>I want to look you in the eyes,</i> she says as she crooks her finger to you, " + (flags["NYKKE_MET"] == undefined ? "your oldest kip" : "Nykke") + " beckoning you to mate with her. <i>Mate with your Qer of a kip, and punish her by giving her all your kips. Satisfy her, and she’ll let you cum.</i> ");
-	if (pc.hasVagina()) output("\n\nYou feel her long, thick, serpentine tail bend upwards, the thick of it brushing against your [pc.vagina], neglected and cold. <i>Give me the kips I need, and I’ll see to it that I return the favor next time.</i>");
-	if (!pc.isBimbo()) output("\n\nYou’re her parent, and you need to maintain some semblance of control, here. Although you have no intention of denying her, and you fall to your knees to properly position yourself, you chastise her: to her, [frostwyrm.name] is her Qim, and [frostwyrm.name] must be respected and addressed as such.");
-	else output("\n\nYou don’t mind the occasional dirty word - hell, sometimes, you kinda like it when people treat you dirty when you’re getting fucked - but you put your foot down as a good parent and tell your kip that [frostwyrm.name] has been nothing less than perfect, and if your kip really needs to feel powerful and sexy by disrespecting one of her parents, it’s going to be you.");
-	output("\n\n<i>Of course,</i> she grins, rocking her hips upward, <i>my mistake, my Qal.</i>");
-	output("\n\nWith that settled, you don’t have many other options but to give her what she wants: a good, hard dicking from her Qal. You grab her by the undersides of her knees for stability, and you start thrusting as hard as you can, as quickly as you can. You have a primeval need to cum that hasn’t been met, and won’t be met until your kip releases her damned hold on your psyche, and if the only way to get her to release you is to pound her into the ice, then you’re sure as shit going to do it.");
-	output("\n\nYour kip arches her back and raises her hips, her breathing coming out in choked laughs of ecstasy as you claim her cunt for yourself. <i>“Yes!”</i> she shouts, letting the whole clutch know just how supremely you’re pleasuring her. <i>“F-fuck me! Fuck your kip!”</i> Her hands pull at her nipples and her gargantuan wings flex; she doesn’t have much more control over her body than you do yours.");
-	output("\n\nShe gets everything that she wants: her Qal to breed her, and to look you in the eyes while you do it. You’re flooded with a hurricane of emotions: pure lust, and a bit of sexual aggression, but also adoration and even a bit of reverence: to mate with you is the end-goal of every kip in your clutch, but for " + (flags["NYKKE_MET"] == undefined ? "your eldest" : "Nykke") + ", it’s something more; an emotion that burrows deeper than just attraction and lust, and something more than platonic and even romantic love. When you focus your eyes on hers, the rest of the lair seems to fade away, until it’s only you two.");
-	output("\n\n<i>I know you feel it, too,</i> she says to you over your connection. <i>If you weren’t already claimed by the Qim, I’d have you all to myself at the first word.</i> Her thoughts come out shaky and erratic; there’s too many things to focus on, and a steady conversation doesn’t take priority, but she needs to say her words. <i>I’d give you one look, and you’d consent to being my mate. You’d give me more kips than the Qim could ever hope for.</i>");
-	output("\n\nYou don’t respond. <i>Can I let you in on a secret?</i> she asks. Her eyes begin to water, not in sadness, but in the raw pleasure and sexual joy she’s experiencing at the moment. <i>I’d do the same for you. Just one word, and I’d be yours forever. We’re made for each other, my Qal. My body feels so... so hot, when it couples with yours. My pussy feels so</i> right <i>when you’re fucking it. There will never be another, more suitable mate for me than you.</i>");
-	output("\n\nThe words remind you that, in another world, you might have found this whole act abhorrent and disgusting – she’s your kip, for Gods’ sake. But, and this may just be your lust-addled mind not thinking clearly, but, in <i>this</i> world, having been with [frostwyrm.name] so long and having been immersed in the cultures and standards of her kind, and the way your kip’s words come out so truthful and unabated... you can’t help but think that, maybe, if it meant being the best Qal you could, you’d have to talk with [frostwyrm.name] about taking on a second mate.");
-	output("\n\nOf course, your internal thinking comes out loud and clear to " + (flags["NYKKE_MET"] == undefined ? "your eldest kip" : "Nykke") + ". And at the very idea of you seriously considering taking her as a real, legitimate mate, her need to orgasm suddenly materializes from the ether. <i>Give me your seed, my mate!</i> she demands of you, just in time to coincide with her incoming orgasm. <i>Give me a kip of my own!</i>");
-	output("\n\nYou both can’t help but grunt out in carnal bliss as you bring each other to orgasm. Her back arches further; her wet, tight Frostwyrmling cunt grips you as tight as she can, and rhythmic contractions all along your [pc.cock], from your [pc.base] to your [pc.cockhead] suck out all the cum it can from you. And, likewise, her own dick, completely untouched and neglected, pumps her seed into the air; her balls tense and retract slightly as her semen jettisons over her, the white of her cum blending with the white of her scales.");
-	output("\n\nYou acquiesce to her demands, and you cum. Y");
-	if (pc.balls > 0) output("our [pc.balls] pull up tight against your body, and y");
-	output("our [pc.cum] shoots from you, filling your kip’s womb, packing her tight draconic belly with the seed she wanted so badly. ");
-	var cumQ:Number = pc.cumQ();
-	if (cumQ < 300) output("\n\nYou give her the most you can possibly give her; she milks you until you have nothing left in your body to give. She smiles to herself in delight, knowing that her Qal has given her everything she had asked for , and that it need only be a matter of time until she can have another womb-full of your ambrosia");
-	else if (cumQ < 2000) output("\n\nYou pump and you pump; her normally tight, muscular stomach slowly rounds out from your load, and she, like the true champion of the Frostwyrms she has the potential to be, stores your every drop inside her dutifully. She sighs in delight, one hand running over her abs as she feels your warm liquid settle inside her. This will do – for now");
-	else output("\n\nAnd give it you do : your capacity exceeds that of any normal individual and rivals that of the Frostwyrms, and you put your kip’s natural elasticity to the test. And yet, her body is up to the challenge: though her belly rounds out and loses its definition as her womb strains to contain your load, she miraculously does not lose any of it. Not so much as a single drop is surrendered from her demanding, ravenous quim, and, judging from the dopey look on her face, she loves every minute sensation of your seed sloshing around inside her");
-	output(".");
-	output("\n\nYou collapse forward, your head landing in the valley of her enormous F-cup breasts, as you take a moment to recuperate. You feel her hands gently stroke at your head and down your neck as she breathe heavily, your nose filled with the scent of your offspring and the heady musk of sex all around you both");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 11) output(". And, adding to that, you hear [frostwyrm.name] make a few animalistic groans of her own, followed by some squeaks and yelps from one of your kips; you turn your gaze to one side, and you’re greeted with the sight of one of your kips behind [frostwyrm.name], plowing her Qim for all she was worth, and from the way she’s desperately clutching onto [frostwyrm.name]’s wide, sturdy flanks, she’s probably coming to her own ‘conclusion’ right now.");
-	output("\n\nYou aren’t given much time to rest: another pair of strong, sturdy hands grab you by the shoulder and yank you backward, dislodging you from " + (flags["NYKKE_MET"] == undefined ? "your eldest kip" : "Nykke") + ". You’re spun around, and suddenly, a thick tongue is in your mouth, wriggling against yours and pressing against your soft cheeks. A thick, beady cock presses against your [pc.belly] in excitement, but you know that, like your other two kips, this isn’t about her dick");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 5) output(". And, just like you had guessed, yet another of your clutch comes up from behind you, dick in hand, guiding her head in between your cheeks for your welcoming [pc.asshole]");
-	output(".");
-	output("\n\nLooks like your responsibilities as Qal of the clutch aren’t over just yet....");
-	
-	processTime(3 * 60);
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	clearMenu();
-	addButton(0, "Next", frostwyrmGoodGodImHurtAgain, undefined);
-}
-public function frostwyrmlingBathing():void
-{
-	clearOutput();
-	frostWyrmlingHeader(true);
-	
-	output("Your fall is broken by the gentle, yet strong and sturdy, arms of your second-oldest kip, and she eases you to the ground, on your back. She and her sisters all get the same idea at the same time: you look positively <i>filthy</i>. A dirty Qal isn’t a presentable one. You need a bath.");
-	output("\n\n<i>“Looks like our Qal needs a good cleaning, don’t you think, girls?”</i> your eldest kip asks, standing above you. The clutch unanimously agrees: you’re incapable of proper hygiene, so it’s up to your loyal, dutiful kips to get the job done for you. From the corner of your eye, you can see your second-oldest kip lick her lips, with an almost predatory exaggeration.");
-	output("\n\nYour second-oldest kip falls with you, putting you both in a sitting position, with her behind you. Without any invitation or forewarning, she leans forward and begins licking at your neck and shoulders, tasting the salt on your [pc.skinFurScales] and making sure they’re clean as could be. She needs to start somewhere, after all.");
-	output("\n\nHer two siblings, your third- and first-oldest, crawl forward, their hands trailing up your [pc.legs] seductively, and stopping just before your [pc.crotch]; with almost practiced unison, the very tips of their fingers wisp over your pelvis, before landing back on your stomach. <i>“Someone is an awfully dirty [pc.boyGirl], aren’t they?”</i> " + (flags["NYKKE_MET"] == undefined ? "your oldest" : "Nykke") + " asks, her nose against yours while your third-oldest begins working on the other side of your neck. <i>“Let’s get you nice and </i>clean<i>.”</i>");
-	output("\n\nWith one kip at your back and two on either side, you’re surrounded by Frostwyrmlings, each of them laying their long, flat, blunt tongues against your body with the intent to clean you, and with absolutely no ulterior motives at all. Not when you feel their tongues lap at your neck; up to your lower jaw; across both your cheeks; and, not-at-all-subtly, against your [pc.lips]. They lap at them, slyly prying them open, and you relent – and as soon as you do, your mouth is full of Frostwyrmling tongue.");
-	output("\n\nThe one sitting at your back gingerly takes care of your upper arms and shoulder blades");
-	if (pc.hasWings()) output(", where your [pc.wings] root at your back");
-	output(". She recognizes that she’s probably not going to have the most enjoyable parts of the bath, but, like a good kip, she doesn’t complain and happily focuses on your cleanliness.");
-	output("\n\nThe same could not be said for your other two kips: their hands can’t stay off your body, rubbing and caressing gently at your [pc.belly] in wide, slow circles, making their way up to your [pc.chest]. They’ve both dropped the charade for the moment, and when you kiss one kip for a little too long – lost in sucking on her tongue, focused on the mesmerizing texture and elasticity of the appendage, especially when she drives it deep enough to massage at your soft palette – the other vies for your attention, licking your [pc.lips] and intruding on your time with the other.");
-	output("\n\nEventually, they learn to work together, like good sisters should, and you have both of their tongues in your mouth at once. There’s barely enough room in there for them, but that makes it all the hotter: your comparatively diminutive tongue is overwhelmed and dominated by the undulating pair of thicker Frostwyrmling tongues, each dancing with your own and each other, compressing and bloating and sharing each other’s saliva with you and themselves.");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 5) output("While your eldest and third-eldest neglect their duties, two more of your kips kneel next to either side of you, grasping onto your hands. They squeeze your hands lovingly, letting you know that they’re there, before lifting them to their mouths and sucking on your fingers, one at a time, washing one rather thoroughly before moving onto the next. Then, they make their way down your wrists, making sure that your arms are as clean as the rest of you is about to be");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 11) output("\n\nStill more of your kips, equally envious of their Qal for all the attention you’re receiving and envious of their sisters that they are the ones bestowing their Qal with attention, turn and make their way to [frostwyrm.name], to ask her for their own ‘baths.’ Your psionic connection is stronger with [frostwyrm.name] than any of the others, and through it, you feel amusement – followed by contentment as she gets to work, slathering the first kip that approached her with her enormous tongue");
-	output(".");
-	output("\n\nYour two kips assaulting your mouth withdraw – one notably slower than the other – and all three of you gasp for breath. They recover before you do, and they resume their duties with a rabid fervor they didn’t have before: they return to your face, kissing and licking at your cheeks, moistening them again, and they quickly make their way to your collarbone, then to your [pc.chest].");
-	output("\n\n" + (flags["NYKKE_MET"] == undefined ? "Your oldest kip" : "Nykke") + " constrains herself, washing the meat of your chest as thoroughly as she can, while your third-oldest beelines for your [pc.nipple], lathering it thoroughly and sucking it between her lips, delighting in the electric sensations it gives to you and, therefore, to her. She lifts her cute eyes to yours and smiles as she twists her head, her tongue moving in large circles, wetting your areola and stretching her tongue ");
-	if (pc.biggestTitSize() <= 2) output("into the open space between your two nipples");
-	else output("as deep into your cleavage as she can; she even wraps her tongue up and around the circumference of your boob, squeezing it with just her tongue");
-	output(". Her older sister loses her patience and her resolve, and she takes your other [pc.nipple] into her mouth, too.");
-	if (pc.isLactating()) output("\n\nIt doesn’t take much instigating to get your [pc.milk] to flow freely from you and into your thirsty kip’s mouths. They’ve been generally silent the whole time, save for the occasional ascending hum, but once your nourishing [pc.milkNoun] hits their tastebuds, they each ‘mmm!’ in delight, and their actions turn a little more hungry, a little more <i>rabid.</i> They massaging at the fat of your breasts and their lips squeeze just around the areola, pressing out as much squirting [pc.milkNoun] as they can, and their throats work eagerly to consume every drop you have to spare.");
-	if(pc.hasGenitals()) {
-		output("\n\nWhile they both work you over, " + (flags["NYKKE_MET"] == undefined ? "your eldest kip" : "Nykke") + "’s eyes also lock onto yours, and she narrows hers deviously:");
-		if (pc.hasCock()) output(" she shifts her lower body, rotating her hips around, until her body is pointing away from yours. Displaying impressive flexibility, she then lifts her right leg, and brings her foot to your [pc.cock], dexterously and expertly groping and massaging the tight skin of it with the sole of her foot. She tickles and threatens you with the pointed obsidian claws on her toes, but the danger never gets any farther than that, even when her toes splay wide enough to spread over the crown of your cock");
-		if (pc.isHerm()) output(". H");
-		else output(" h");
-		if (pc.hasVagina()) output("er hips shift slightly, hooking her right leg in between your [pc.legs] and crooking her knee against your crotch, pressing her scaly joint up against your [pc.vagina]. She smiles as she grinds it against you, stimulating you; when she rises it a little higher, it bumps up against your [pc.clit], and you jolt in place, the shock electrifying your body. She maintains perfect, rigid control on her body and its motions, and at no point does she apply too little pressure or, heaven forbid, accidentally kneecap you in the cunt; her balance is perfect and pleasurable");
-	}
-	output(".");
-	output("\n\n<i>Look at you, my Qal,</i> she says to you through your psionic connection. You gasp in pleasure: you have ");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 5) output("at least ");
-	output("three tongues all cleaning various parts of your body, and now your kip is commanding your body through dexterous, even inspiring, manipulations of her body. <i>Reduced to a quibbling puddle of happy pleasure over a little bath. Are all " + plural(pc.race()) + " this easy to pleasure?</i>");
-	output("\n\nYou don’t answer, knowing that she isn’t looking for one. She pinches your [pc.nipple] with her lips and pulls back, stretching your breast as she pulls back, and watches it snap into place when she opens her mouth with a quiet ‘pop.’ <i>But then again, a bath isn’t quite as personal as it is with Frostwyrms, is it?</i> she asks you, her " + (pc.tallness < 60 ? "leg" : "foot") + " continuing their motions. <i>Goodness, my Qal, is this making you feel... comfortable?</i> She resumes her bathing your [pc.chest], swiveling her head to get as much flesh as she can in as few passes. <i>Try and hold on, or else you’ll make a bigger mess for us to clean up. And we wouldn’t want that, would we?</i>");
-	output("\n\nThere isn’t much sensory feedback between you and your kips: you’re the one receiving all the pleasure. But your lust is obvious through the simultaneous link you have with each of them, and it’s no secret what they’re accomplishing by ‘bathing’ you. Every little kiss your second-oldest makes on your back, tickling your spine as she runs her flat tongue along it; every little pull the other two make on your chest");
-	if(pc.hasGenitals()) {
-		output("; you’re");
-		if (pc.hasCock()) output(" hard as diamonds");
-		if (pc.isHerm()) output(" and you’re");
-		if (pc.hasVagina()) output(" wet as could be");
-		output(", and you’re all aware of how this bath is going to end");
-	}
-	output(".");
-	output("\n\nTo that end, " + (flags["NYKKE_MET"] == undefined ? "your oldest kip" : "Nykke") + " pulls away from your [pc.chest], apparently having her fill. Her tongue resumes its journey southward, snaking its way down your [pc.belly] and spending some time at your abdominals there. Her younger sister is a little less eager to leave your nipple, but she does so, wrapping around to get at your kidneys before meeting her older sibling just above your belly button.");
-	output("\n\nOn-sync and without any hesitation, they messily kiss in front of you: they press nose-to-nose and they open their mouths, sliding their tongues into each other’s mouths and coiling them into a helix in front of you. They even pull away slightly: their longer tongues give you more of a show, and you see every bud and flex as they twist and suck on each other, treating their long, thick, pink tongues like another, tastier appendage. Then, just as quickly as it started, it ends, and they resume on you, their saliva refreshed.");
-	output("\n\nUnexpectedly, your second-oldest kip stands, her hands hooking beneath your armpits to drag you to your feet. She’s done with most of your back, and it’s time she continued... <i>lower.</i> Your oldest and third-oldest agree: it’s time that their attention shifted to get at your lower body. Once you’re on your [pc.feet], your three kips are on their knees, and they resume as dutifully as ever.");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 5) output("\n\nThe two kips on your arms do not change their position, and they get to work on your [pc.hips] from either side, their hands gingerly gripping onto your calves to keep you still. ");
-	output("\n\nNow unobstructed by the ice, your second-oldest doesn’t waste time or mince actions: her long tongue extends, and she gives you an embellished, fat lick, up your right butt cheek. Her force pushes you forward, and your [pc.hips] are met in front by your other two kips, who both circle around your [pc.crotch]");
-	if(pc.hasGenitals()) {
-		output(", painting a bullseye with their saliva, with your");
-		if (pc.hasCock()) output(" [pc.cock]");
-		if (pc.isHerm()) output(" and your");
-		if (pc.hasVagina()) output(" [pc.vagina]");
-		output(" as the target.");
-		output("\n\nAll three of them strike simultaneously:");
-		if (pc.hasCock()){
-			output(" " + (flags["NYKKE_MET"] == undefined ? "your oldest" : "Nykke") + " devours your [pc.cock] in one hungry lurch, taking you all the way down to your [pc.base], deepthroating you easily and shamelessly. Your third-oldest, left hungry, wraps her lips around your exposed shaft whenever your oldest pulls back, her thick tongue wrapping literal circles around your tool");
-			if (pc.balls > 0) output(", and when your oldest draws back in, she dips lower, lavishing your [pc.sack] with wet love, getting them just as ‘clean’ as your dick");
-			if (pc.hasVagina()) output(". And, making sure that there is no part of you left cold and unclean, your second-oldest presses her nose into the crack of your [pc.ass], her long tongue reaching forward and making thick swaths against your [pc.vagina], cleaning it of all those dirty, feminine juices and making sure it’s spick and span");
-			else output(". And, as exciting as it is to lick the fat of your ass, your second-oldest kip gets the devious idea to clean something <i>else:</i> with two steady hands pulling your cheeks apart, she dives into you, making long, licking swaths against your [pc.asshole], making sure it’s as clean as you’re sure an asshole can be");
-		}
-		if (pc.hasVagina()){
-			if (!pc.hasCock()) output(" your oldest and your third-oldest press their noses to your pelvis and their cheeks together as they share your honeypot, one thick tongue per vulva. Their tongues pierce into you, digging deep into your body to collect every ‘dirty’ drop of your feminine juices and replacing it with something much more wholesome, you’re sure. They alternate their motions, and sometimes, they both try to spear into your cunt at the same time, treating you to a thick double-penetration from their wiggling tongues. Your second-oldest, knowing that your [pc.vagina] is well looked after, spreads your cheeks apart to graciously make similar, long passes against your [pc.asshole], making sure it’s as clean as you’re sure an asshole can be");
-		}
-	}
-	output(".");
-	output("\n\nYour knees buckle and you find it difficult to stand, but your kips collectively steady you, making sure you do not topple. After all, if any part of your freshly-cleaned body hit the ice, they’d need to start again, and that would be <i>terrible.</i> Even still, the way all three of them are going at you, all pretenses dropped and all facades deconstructed, it’s difficult to remain physically sturdy. Your orgasm is approaching in a hurry, and it’s going to be huge.");
-	output("\n\n<i>Tut, tut,</i> " + (flags["NYKKE_MET"] == undefined ? "your oldest kip" : "Nykke") + " says, and, even though you’re ready to blow any second now, there’s something stopping you: the edge that rapidly approached quickly recedes");
-	output(", and no matter how deeply " + (flags["NYKKE_MET"] == undefined ? "your oldest kip" : "Nykke") + " ");
-	if(pc.hasGenitals()) {
-		if (pc.hasCock()){
-			output("deepthroats your [pc.cock] while her younger sister assists");
-			if (pc.hasVagina()) output(", and no matter how deeply your second-oldest fucks your [pc.vagina] with her tongue");
-			else output(", and no matter how deeply your second-oldest fucks your [pc.ass] with her tongue");
-		}
-		if (pc.hasVagina()){
-			if (!pc.isHerm()) output("fucks your [pc.vagina] in time with her younger sister, and no matter how deeply your second-oldest fucks your [pc.ass] with hers");
-		}
-		output(", you’re left precariously on the edge, your orgasm just a hair’s-breadth from you but always out of reach");
-	}
-	output(".");
-	output("\n\n<i>About to cum, my Qal, just from a bath?</i> she asks you, her eyes locked onto yours, her ‘service’ uninterrupted. <i>You should learn to have some self-control. Weak willpower isn’t the sign of a proper Qal! What would [frostwyrm.name] say?</i>");
-	output("\n\nYou meet your kip’s gaze");
-	if (!pc.isBimbo()) output(" and frown. First of all, she is not [frostwyrm.name], not to her; [frostwyrm.name] deserves your kip’s respect, and a respectful kip would refer to her as her Qim. And, second of all, she’d find it <i>exhilarating.</i>");
-	else output(" and tut-tut yourself, putting a finger on her adorable little nose. [frostwyrm.name] thought it was yummy! She thought it was really fun that other kinds got off just by having a good, uh, bath. But, more importantly, she should refer to her Qim as her Qim, and not as [frostwyrm.name]. You kinda like it when your kip doesn’t respect you when things get sexy, but [frostwyrm.name] isn’t the same way.");
-	output("\n\n<i>Right, sorry,</i> she laughs. <i>But, if the Qim really thought that it was a good thing – if</i> she <i>got to taste all of you, then it’s only fair I get it, too.</i>");
-	if(pc.hasGenitals()) {
-		output(" She cranes her head forward, ");
-		if (pc.hasCock()) output("taking you all the way to your root and staying there");
-		if (pc.hasVagina() && !pc.isHerm()) output("shoving her long, fat tongue as deeply into you as she can and twisting it back and forth");
-		output(", her [baby.eyeColor] eyes trained on yours. <i>Feed me, my Qal. Give me your juice! Quench my need for you!</i>");
-		output("\n\nFar be it from you to deny your kip after she asked so nicely. With her blockade removed, you do as she asks: ");
-		if (pc.hasCock()) {
-			output("you grip " + (flags["NYKKE_MET"] == undefined ? "your oldest kip" : "Nykke") + " by the horns on her head and thrust forward – not that you could go any deeper, seeing as she had already taken you as deep as you had – and you gush your load into her throat");
-			if (pc.balls > 0) output(", your third-oldest flexing her tongue in time with your [pc.balls] to eke out as much delicious cum for her sister as she can");
-			output(". Your seed comes out in waves, ");
-			if (pc.cumQ() < 500) output("each wave getting successively weaker but your kips do everything in their power to prolong it as long as they can, to make sure that their oldest sibling is given the treat she had craved. Every time a new blast rockets up from inside you, you pull back and thrust in, coating her throat with yourself, and she loves every little action you make, swallowing easily and demanding more with her tongue");
-			else output("though, with your quantity, it’s difficult to tell when one ends and another begins. Her cheeks balloon with yourself, her tongue swimming in the deluge of semen that occupies her mouth, but she takes it all easily. When she hits her alien-infused limit, she swallows, but only enough to allow more in. Not a drop is spilt from her sealed lips, and she demands more, she <i>challenges you</i> for more, with each new shot. It isn’t until you’re finally spent that, with an elongated series of gulps, she swallows your every precious drop");
-		}
-		if (pc.isHerm()) output("\n\nYour second-oldest, satisfied with her position at your [pc.vagina], lovingly drinks your every feminine drop as it’s gushed and squirted from you; your [pc.femcum] drips down her tongue and into her throat, and she gargles it a bit before swallowing, making less of a show than her older sister but cherishing your every giving just as much");
-		if (pc.hasVagina() && !pc.isHerm()) output(" your [pc.vagina] clenches and squirts, your [pc.femcum] spraying all over your kips’ tongues and pooling in the backs of their throats. Your body shakes with your orgasm, and all three of your kips do nothing to make the ride easier: their tongues writhe inside you, pressing at your sensitive walls and making your every destabilizing quiver rockier and longer. You cum and you cum, dousing both your eldest and third-eldest kip: their seal on you isn’t water-tight, and more than a little bit splashes onto their noses, dripping back their raised heads and down their hair");
-		output(".");
-	}
-	output("\n\nAfter a few moments, you’re spent. No matter how much more your kips play with you and urge you, with their actions and with their psyches, to keep you going, you just don’t have anything left in you to offer. Exhausted, you slump backward, back into the arms of your second-oldest, and you lean against her as you take your seat in front of her.");
-	output("\n\n" + (flags["NYKKE_MET"] == undefined ? "Your oldest kip" : "Nykke") + " wipes her mouth with her arm, smiling like the devious little minx she is. As soon as you crash against your other offspring, she springs her trap. <i>“Look what you’ve done,”</i> she pouts, <i>“you had to go and ruin all that hard work we did to make you clean by getting yourself dirty on the floor.”</i>");
-	if (flags["FROSTWYRM_KIP_COUNT"] <= 5)output("\n\nShe crawls towards you, her tongue languidly licking at her lips, moistening them for the next round. <i>“I suppose we’ll just have to start again, won’t we, girls?”</i>");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 6)output("\n\nShe stands, motioning to her myriad of sisters standing in a circle around you; each of them licking their lips, practically salivating, at their opportunity to give you another once-over. <i>“I suppose we’ll just have to make sure our Qal gets clean again, won’t we, girls?”</i>");
-	
-	processTime(60);
-	pc.shower();
-	pc.orgasm();
-	
-	clearMenu();
-	addButton(0, "Next", frostwyrmGoodGodImHurtAgain, undefined);
-}
-public function frostwyrmGiveThemABath():void
-{
-	clearOutput();
-	frostWyrmlingHeader(true);
-	
-	output("You feel the hands of your amorous kips roam your body once you land between them. They grope and squeeze along your arms and biceps; their fingers draw languid lines along your [pc.belly]; they squeeze and press at your [pc.chest]");
-	if (pc.biggestTitSize() >= 3) output(", groping at your boobs and copping feels in their large palms");
-	output(". They have their way with you, and you – a little disoriented but no less horny – happily let them explore your body and satisfy their curiosity for their Qal.");
-	output("\n\nYou’re joined by " + (flags["NYKKE_MET"] == undefined ? "your oldest kip" : "Nykke") + ", who pushes her way between the crowd, to meet you personally. She gently cups your face, her thumbs caressing the [pc.skinFurScales] there; she smiles lovingly as she appraises you, her eyes forming crescents beneath her rising cheeks. With surprisingly tender movement, she pulls in and presses her mouth to your [pc.lips], giving you a chaste, but no less lewd, kiss.");
-	output("\n\n<i>“Has anyone ever told you how perfect you are as our Qal?”</i> she asks you sweetly, licking her lips. You tell her that that’s a lovely compliment. <i>“And you deserve to hear it, every day. We’re all very lucky to have such a wonderful, attractive Qal, aren’t we, girls?”</i>");
-	output("\n\nThe groping along your body – the hands beginning to dip lower, forming a rim around your waist and two particularly grabby hands cupping your [pc.ass] – does not stop while each of your kips hums in agreement, showering you with compliments over how well-groomed you keep your [pc.skinFurScales] and how exemplary your form is. To them, you are the perfect, most picturesque mate a Frostwyrm or a Frostwyrmling could ask for. <i>“And you’re all ours,”</i> " + (flags["NYKKE_MET"] == undefined ? "your oldest" : "Nykke") + " whispers to you.");
-	output("\n\nYou feel her push at your shoulders, insistently but not forcefully putting you to your knees. When you sink down, you’re level with your kip’s crotches – they’re all at about the same uniform height, and their ‘attributes’ vary only slightly between them. You’re face-to-face with " + (flags["NYKKE_MET"] == undefined ? "your oldest kip" : "Nykke") + "’s bulging genital slit, and her pink, blunt head is already punching through to the surface. Her musk hits you in a single, powerful wave, and you suddenly find it difficult to focus on anything but her dick, and the way that it seems to crawl itself out of her body, inch by inch.");
-	output("\n\nShe grips you by the back of the head, and with a pull and a thrust of her hips, your nose is pressed up against the vent of her crotch, where her cock is pulling out. You gasp in surprise, and your nose is filled with her tang: that raw, primeval, borderline dirty and raunchy musk; that scent that would rewrite any man’s or woman’s priorities and cause their body to react automatically");
-	if(pc.hasGenitals()) {
-		output(", like it is with you and your ");
-		if (pc.hasCock()) output("[pc.cock], going from half-mast to full, and from full to rock-solid");
-		if (pc.isHerm()) output(", and your ");
-		if (pc.hasVagina()) output("[pc.vagina], at first a bit excited and moist, now practically spread on its own and gushing");
-	}
-	output(".");
-	output("\n\nWith your left hand, you press your kip’s dick gently against your cheek, your breathing full and steady, taking in her scent and loving how her tool feels against your cheek as it elongates and inflates. With your right, you feel along her thigh, unsubtly making your way between her strong legs and fondling her ballsack, hefting her heavy left nut and bouncing it in your palm, your mouth watering for all the tasty cum inside. Your tongue slips out–");
-	output("\n\n" + (flags["NYKKE_MET"] == undefined ? "Your oldest kip" : "Nykke") + " pulls away suddenly. <i>“I think I’ll be a good big sister and let someone else go first,”</i> she says, grabbing her third-oldest sister from her right and placing her before you. The dick before you has been replaced with one very similar to it, but slightly less erect, and with a slightly different coloration around the vent. You feel giddy excitement course through your psionic link; your third-oldest clearly wasn’t expecting to go first, and yet, here she is.");
-	output("\n\nBarely able to contain herself, she grabs your head, both her palms against your ears, and she drives her still-inflating dick into your mouth unceremoniously. No windup or warning; your nose painfully mashes against her pelvis and what little erection she currently has barely makes it to your gums, but when you take another deep breath, she’s big enough to make it past your teeth, and with another, she’s already scraping her blunt head against the roof of your mouth.");
-	output("\n\nAs the Qal of the clutch, it’s your job to make sure your kips are provided for in any and every capacity they need. And this one, judging from her excitement and her insensitivity for your comfort, <i>really</i> needs to bust her nuts into your mouth. You accede and hollow your cheeks, sucking on her rod and running your tongue along its thicker underside; your tip plays with the little nubs lined along the shaft, and your spit wets and lubricates it, making her job easier as she pulls back, only to thrust in, deeper this time.");
-	output("\n\nHer heavy, low-hanging nuts clap against your [pc.chest] with every push in, and you really feel the weight she has in them: when she pulls back, her balls seem to ‘drag’ a bit before following her body, sloshing visibly and almost audibly with her load. You don’t put your hands on her waist, since she’s got all the stability she needs and all the control she wants, and instead you run your palms along the smooth texture of her nuts, massaging the sensitive orbs and coaxing the load already bubbling inside them.");
-	output("\n\nYour kip is having the time of your life, sawing herself in and out of your mouth like a horny piston, delighted at the prospect of not only having her dick sucked, but having it sucked by her Qal, of all the potential mates! You draw your eyes up, along her muscular belly and up to her jiggling, heavy boobs, bouncing in time with her each pump. Her eyes are closed in bliss and she has a huge, open-mouthed grin on her face.");
-	output("\n\n<i>“Damn, girl,”</i> " + (flags["NYKKE_MET"] == undefined ? "your oldest" : "Nykke") + " laughs, wrapping her arm around her sister’s shoulders and underneath her folded wings. <i>“You sure are putting a lot of effort into fucking our Qal’s face. Enjoying yourself?”</i>");
-	output("\n\nYour kip can barely respond, but she manages, and to you, not to her sister. <i>“I dunno if it’s just because you’re our Qal, but... I can’t help it! It feels so good!”</i> Her knot has inflated to its full fleshy meatball, and it’s battering your [pc.lips] repeatedly, demanding an entry you refuse to give. <i>“By the Grand Qim, does that make me a bad kip? I’m not doing anything in return for my Qal... but I don’t know if I can stop!”</i>");
-	output("\n\nHer sister reassures her, giving her a gentle kiss on the cheek. <i>“Look at our Qal,”</i> she says, and her sister obeys, her ruby-red eyes set onto yours. <i>“[pc.HeShe] is a good Qal. [pc.HeShe] is exactly where [pc.heShe] wants to be, and do you know why?”</i> Her younger sister shakes her head. <i>“Because [pc.heShe] is providing for [pc.hisHer] clutch this way. A proper Qal would do anything for their kips, and if that means getting on their knees and having their horny kips fuck their face, then that’s exactly what they’ll do.”</i>");
-	output("\n\n" + (flags["NYKKE_MET"] == undefined ? "Your oldest kip" : "Nykke") + "’s words seem to have a visible effect on her sister: her cock lurches in your mouth, and a spurt of pre jets from her, caking the back of your tongue and your tastebuds with her tart, smooth flavor. <i>“Is that right, my Qal?”</i> she asks, her eyes wide and hopeful. Your mouth is full of cock, so you don’t try to answer, but you do nod.");
-	output("\n\nSquealing in delight, your third-oldest starts fucking your face all the harder. Her dick’s swollen to its full, one-foot-long length, and she tries her best to shove every last bit of it into your mouth, including her knot. You start to gag as its flat, blunted head starts battering your throat. <i>“I love you, my Qal!”</i> she shouts, and she doesn’t care who hears it. <i>“I love you, I love you, I–”</i>");
-	output("\n\n<i>“Settle down!”</i> " + (flags["NYKKE_MET"] == undefined ? "your oldest" : "Nykke") + " says good-naturedly. <i>“I said our Qal wants to provide for us; that doesn’t mean you should choke [pc.himHer]! As much as [pc.heShe] may enjoy it, [pc.heShe] still needs to breathe!”</i> Her sister freezes in place, and she notices how your eyes are squinted and watering in effort to contain the force in your mouth. <i>“Why don’t you pull out for now? I have an idea, but I need you to show some restraint.”</i>");
-	output("\n\n" + (flags["NYKKE_MET"] == undefined ? "your oldest" : "Nykke") + " crooks her finger at your second-oldest, motioning for her to approach and take her sister’s place. As she does, she whispers something to the third-in-line; something you can’t make out and is being blocked through your psionic connection. When she pulls back, your third-oldest smiles widely. <i>“That sounds like fun!”</i> she says. <i>“I’ll do it. It’ll be hard, but I’ll do it, if you think our Qal would like it.”</i>");
-	output("\n\n<i>“Please, look at [pc.himHer],”</i> " + (flags["NYKKE_MET"] == undefined ? "your oldest" : "Nykke") + " says. <i>“[pc.HeShe]’d love</i> anything <i>you did for [pc.himHer].”</i>");
-	output("\n\nSatisfied by her answer, your third-oldest steps away, and you’re once again staring straight at a hard dragon dick – this one is dry and in need of some attention, from the way it throbs and pulsates in front of you. A sweet drop of her draconic pre drips from her head and slides down the thick underside, leaving a trail of slime for you to wash away with your tongue.");
-	output("\n\nYou lean in – and you’re stopped by a pair of hands on your forehead. <i>“Um,”</i> your second-oldest says, looking down at you. She chews her lip in apprehension, nervous at being put on the spot like this. This is her Qal, on your hands and knees, ready and willing to do anything she asked. <i>Anything.</i> And yet, the words fall apart before they make it past your kip’s lips.");
-	output("\n\n<i>“Go ahead,”</i> " + (flags["NYKKE_MET"] == undefined ? "your oldest" : "Nykke") + " says lovingly. <i>“[pc.HeShe] won’t say no.”</i>");
-	output("\n\nShe plays with her fingers, her eyes shyly averting. Every part of her body that isn’t covered in scales, including her face and most of her chest, turn beet-red. <i>“Well, I, uh,”</i> she says with trembling lips and faltering words. Without another one, she turns around and bends over, lifting her thick tail out of the way, revealing her beading, dripping cunt, her vulva tinged bluish-pink. Feminine lube drips from her, streaming down the crease of her ballsack and collecting at a single point, dangling beneath her body and dripping to the floor. <i>“This, instead... please?”</i>");
-	output("\n\nIs that all? You express your willingness by wrapping your arms around the flank of your kip’s ass and leaning in, pressing your hungry mouth against her soaking twat. Your tongue lunges forward, twisting and curling as it spears into her, searching for her every nook and cranny and collecting every precious drop of herself on your tongue. You move and flex your [pc.lips], massaging her vulva and providing as much stimulation there as you can.");
-	output("\n\nShe quickly loses balance and falls forward; she catches herself on her hands, and you follow her, leaning forward and pressing your face deeper into the cleft of her draconic ass, your nose poking and teasing at your kip’s nervous asshole. Her massive balls rock and rub against your [pc.chest], upsetting the load inside them and threatening to make her cum bubble up and out of her dick prematurely.");
-	output("\n\n<i>“Th-Thank you!”</i> your kip shouts, bucking herself backward, her tail draping down and along your back to keep you in place. Her whole body shakes in pleasure; when she accidentally twists her ass too far in one direction, she coos, loving the way your nose and your [pc.tongue] feel inside her, and she turns the other way. You yourself are lost in your own world of sinful, incestuous pleasure as you voraciously eat out your kip: you readjust your grip on her flank, your hands pressing against her muscled thighs, to keep yourself nice and buried.");
-	output("\n\nHer actions and bodily reactions are all the thanks you need: her pussy tightens on your tongue whenever you hit a different spot inside her, and your mouth is awash with her juice. She’s so lubricated that her juices quickly begin dripping down your chin, mixing where your [pc.chest] meets her heavy balls, and you have no intention of stopping yet. You crane your head forward, your [pc.tongue] seeking out your kip’s clit, and you make a long lick, all the way from there to her asshole, giving it a kiss before resuming your mission.");
-	output("\n\n" + (flags["NYKKE_MET"] == undefined ? "Your eldest kip" : "Nykke") + " watches with amusement at the way her next-oldest sibling rides your face like a mutt in heat. She idly strokes herself, keeping herself nice and hard and ready for when it’s her turn; her ears perk up with every little gasp and moan her younger sister makes whenever you hit something particularly sensitive. <i>“Feels good, doesn’t it?”</i> she asks, just loud enough for you to hear.");
-	output("\n\n<i>“Yes!”</i> she shouts, then remembers herself and where she is. <i>“Y-Yes,”</i> she repeats, much quieter.");
-	output("\n\n<i>“You should say it louder,”</i> " + (flags["NYKKE_MET"] == undefined ? "your oldest" : "Nykke") + " continues. <i>“This is your </i>Qal<i> we’re talking about. The most virile, the most eligible mate in all the world, and it’s [pc.hisHer] tongue you’re fucking right now. I’m sure [pc.heShe] would love to hear you say how satisfied you are with [pc.himHer].”</i>");
-	output("\n\nShe bites her lip again, unsure about being so... vocal. She wouldn’t want to bother anyone by being too loud. <i>“You don’t need to be so timid, sister,”</i> she continues, kissing her younger sister on the lips gently. <i>“Think about where you are. You’re bent over, presenting yourself to the entire lair, and it’s your Qal, </i>the<i> Qal, that’s answered your call. [pc.HeShe] clearly isn’t nervous about it. And if it’ll help, I’ll even ask for [pc.hisHer] opinion for you.”</i>");
-	output("\n\nYour second-oldest shakes her head, silently begging for her senior to not do it, but her pleas go ignored. <i>“Hey, my Qal,”</i> " + (flags["NYKKE_MET"] == undefined ? "your oldest" : "Nykke") + " calls to you, <i>“do you enjoy eating out your kip?”</i>");
-	output("\n\nYou pull out and say that, yes, you do, and you resume.");
-	output("\n\n<i>“Would you like to hear her say it?”</i>");
-	output("\n\nYou pull out and say that, yes, you would. Before you resume, you drive your wet, soaked tongue against her pulsing asshole for just a moment, just to tease her, before diving back in.");
-	output("\n\n" + (flags["NYKKE_MET"] == undefined ? "Your oldest" : "Nykke") + " barely has the time to form another sentence before your second-oldest <i>really</i> starts fucking your face while screaming to the lair insensate, inarticulate words. She babbles incoherently, her hips humping your face, her ass and her cunt practically trying to swallow you with her forcefully she’s backing against you. The volume your kip can produce surprises everyone in the lair; you weren’t prepared to have a screamer in the family, but, there she is.");
-	output("\n\nThankfully, " + (flags["NYKKE_MET"] == undefined ? "your oldest kip" : "Nykke") + " defuses the noise in a hurry: she leans in and whispers something to her sibling, which causes her to calm down and slow her humping. <i>“Are you sure?”</i> she asks, and her older sister nods. It takes no short amount of willpower, but your second oldest stops frantically fucking your face and even pulls away. <i>“Okay. If you think our Qal would like it.”</i>");
-	output("\n\nYou’re left confused, cold, soaking wet in feminine draconic pussy-juice, and with a sore jaw, kneeling on the ice of the lair. Your eyes find " + (flags["NYKKE_MET"] == undefined ? "your oldest kip" : "Nykke") + "’s: she narrows them and licks her lips, her [baby.eyeColor] eyes trained on your mouth. She steps forward, her rigid cock in her pumping hand, and she approaches you. <i>My turn,</i> she says to you over your psionic link.");
-	output("\n\nAt this point, it’s almost an automatic response when she approaches you: you wrap your arms around her waist, keeping her close, your hands on her toned ass");
-	if (pc.biggestTitSize() >= 4) output(". You nestle yourself forward, nestling your kip’s thick dick warmly between your boobs, right where it belongs");
-	if (pc.isLactating()) output("; the pressure exuded on your [pc.milkNoun]-filled tits causes a bit to squirt out, coating your kip’s legs from the knees and lubing up your hands with your nutritious ichor");
-	output(". She, using her hands, traces the blunt head of her tool around your [pc.lips], coating them with your pre – as if it were a lipstick, you close them and purse them, making sure that every millimeter is thoroughly colored with her pre-cream.");
-	output("\n\n<i>Our session isn’t going to be quite as long, my Qal,</i> she says as she guides herself into your willing maw. She moves with far more expertise and confidence than her sisters: she doesn’t fuck your face so much as she places herself inside it, and she casually pumps against you, at a comfortable pace you can both match. <i>Seeing you go down on your little girls like that – the way you sucked cock like a horny little beast and the way you ate pussy like you were thirsty – it’s all made me... ready.</i>");
-	output("\n\nHands reach out to your shoulders; you look to either side, and you see your second- and third-oldest kips, each of them on either side, their rock-hard dicks pointed right at your face. They trail their hands down your arms, and they direct you to their hot cocks; you let go of " + (flags["NYKKE_MET"] == undefined ? "your oldest-kip" : "Nykke") + "’s ass to wrap your fingers around them, and they start to slowly fuck your hands, the blunt heads beading with precum and ready to blow.");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 5) output("\n\n<i>“Gather ‘round, girls!”</i> your kip heeds, waving to the group watching you debase yourself for the benefit of your offspring. You don’t have a good view of the circle forming around you, but from both corners of your eyes, you see more huge, pink cocks with massive, bloated knots, each of them paired with hands frantically jerking themselves in your general direction. Things will probably get a little sticky by the end of this.");
-	output("\n\n<i>Aren’t you just the perfect Qal in the world,</i> " + (flags["NYKKE_MET"] == undefined ? "your oldest" : "Nykke") + " says, smiling almost proudly down at you. <i>Look at you. On your hands and knees, doing absolutely everything you can to make sure your kips are satisfied. Everything, up to and including getting a couple hot loads all over your face. And you’d love to do everything for your kips, wouldn’t you?</i>");
-	output("\n\nYou’ve been neglecting yourself this entire time, but now that you think about it, she’s right: ");
-	if (pc.hasCock()) output("your [pc.cock] is hard as could be, and, completely without any sort of outside stimulation, you’re twitching and quaking, ready to blow your load all over your kip’s feet");
-	if (pc.isHerm()) output(". And, on top of that, ");
-	if (pc.hasVagina()) output("your [pc.vagina] is soaked through, quivering and leaking like a dam about to burst, and all without any sort of stimulation whatsoever");
-	output(". You’re not sure what is directly responsible for your condition: the degrading act of being little more than a sex toy for your very own kips, or the constant, unending feedback loop of lust being fed to you via your psionic link with your kips, or whether you actually <i>were</i> getting touched and you were just too focused on your position to notice. Or any combination of the above.");
-	output("\n\nThe cock in your mouth begins to bloat, and a spurt of precum hits the back of your throat, a little more forcefully than all the other spurts so far. <i>You’d do this again in a heartbeat, wouldn’t you?</i> she asks you, her own hands on your head once again, trying to keep herself steady. <i>You’d love nothing more than to get on your knees and tend to your kips when they say the word, wouldn’t you?</i> She moans out once, biting her lip as she does so. <i>By the Grand Qim, you’d do it for [frostwyrm.name] too, wouldn’t you? Mmm... the idea of you taking [frostwyrm.name] into your mouth is... fucking </i>hot<i>. She’s so much bigger than all of us!</i>");
-	if (!pc.isBimbo()) output("\n\nAs hot as the entire scenario is, and as horny as you are and as willing as you are to go to your mate and blow her too when you’re done, you have the sense to scold your kip. She can call you what she wants, you don’t mind – but [frostwyrm.name] always is and always will be the Qim to her, and she deserves to be addressed as such");
-	else output("\n\nWow, yeah, that <i>is</i> a good idea! Once you’re done blowing your baby girl and getting a hot facial from the others, maybe [frostwyrm.name] would like to make a deposit to her personal spunk-bank too! But, first things first: as much fun as everyone’s having, your kip needs to remember to not call [frostwyrm.name] anything except the Qim of the clutch. She deserves that");
-	output(". <i>I’m... yeah, I’m sorry, but... you’d do it? You’d go to the Qim and do this to her too?</i>");
-	output("\n\nApparently, the idea is too hot for her to handle, and, with a low groan, she blows her load: her dick inflates in your mouth, and suddenly, your mouth is inundated with draconic semen. She can’t help but fuck your face a bit, leaning back and pushing forward haphazardly, scraping her blunt head across the roof of your mouth as hot, white cream balloons your cheeks. You swallow, but it isn’t enough; you barely make any change in the rising level of cum in your mouth. So you swallow again. And again.");
-	output("\n\nThe release your first kip feels with her orgasm triggers and encourages the orgasm of each of your other kips’: you feel the load travel up the footlong cocks in both your hands, before spraying out with more velocity than you had expected. Each arc travels above your head at first; you adjust your grip, aiming the one in your left at your face, and the one in your right at your [pc.chest]. The feel of them hitting your [pc.skinFurScales] is hot and sexy; your eyes cross, and you almost forget to swallow again.");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 5) output("\n\nThe circle of kips around you join in with their sisters, and suddenly, you’re bathed in flowing ropes of Frostwyrmling cum arcing towards you from all directions. Your [pc.skinFurScales] is painted white in long, gooey lines all along your body; it drips down and soaks into you before, with another grunt from each of your kips, the first line is replaced with a second, and then a third.");
-	output("\n\nDrunk on all the cum covering you and the cum you’re actually drinking, you’re brought to a hands-free orgasm. Y");
-	if (pc.hasCock()) output("our [pc.cock] swells once, and your load shoots from you, flying a small distance before colliding with " + (flags["NYKKE_MET"] == undefined ? "your oldest kip" : "Nykke") + "’s ankles, bathing them in pearly cum. You thrust into nothing, and with each impious rock of your hips, you deposit another load at her feet submissively");
-	if (pc.cumQ() >= 700) output(", until your kip is standing in a veritable pool of your cum. Some strands reach up her legs as high as her knees");
-	if (pc.isHerm()) output(". Not to be outdone, y");
-	if (pc.hasVagina()) output("our [pc.vagina] clenches and spasms, wishing that just one of these beautiful, thick cocks was pounding it rather than your mouth and hands. Your [pc.femcum] adds to the growing mess around you, squirting forcefully onto the ice, and each time you take another thick wad in the mouth or across your [pc.hair], you gyrate your [pc.hips] involuntarily, riding out yet another orgasm.");
-	output("\n\nAll of them combined make for an impressive load for you to handle: your throat works overtime, pressured to compete with the thick loads being forced into it again and again, and your hands have since disappeared beneath a thick layer of white draconic spooge while you jerk off your kips. Yet, you persevere, and you consider it a victory when your three oldest kips have no more cum to spare, and you haven’t passed out or given up.");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 5){
-		output("\n\nOf course, a good Qal’s job is never done. Satiated, " + (flags["NYKKE_MET"] == undefined ? "your oldest kip" : "Nykke") + " withdraws, her spent cock flopping from your mouth and in front of your nose. You give it a loving lick before she steps away – and she’s replaced by another of her sisters, looking for some relief herself.");
-		output("\n\nYou lick your [pc.lips] as she grips it and traces them, just as her oldest sibling had. It wouldn’t be right, as the Qal of the clutch, to leave any of your kips wanting. You open wide....");
-	}
-	
-	var ppFrostwyrmling:PregnancyPlaceholder = getFrostwyrmlingPregContainer();
-	pc.orgasm();
-	pc.applyCumSoaked();
-	pc.loadInMouth(ppFrostwyrmling);
-	processTime(60);
-	
-	clearMenu();
-	addButton(0, "Next", frostwyrmGoodGodImHurtAgain, undefined);
-}
-public function frostwyrmGoodGodImHurtAgain():void
-{
-	clearOutput();
-	frostWyrmlingHeader(true);
-	
-	output("Time is difficult to keep track of in the lair, considering you don’t have a clear view of the sun, but you lose track of it much easier than you had anticipated. It could have been hours, for all you know: your kips are insatiable little goblins sometimes, always thinking up some excuse or another to have their Qal pleasure them. Not that you would ever say no to your darling little girls, of course, but even the strongest, most virile of Qals have their limits (you think).");
-	output("\n\nYou lay in a large mating ball of satisfied dragons, each of them tending to each other, and especially you, now that the ‘festivities’ are over. " + (flags["NYKKE_MET"] == undefined ? "Your oldest kip" : "Nykke") + " has taken her usual spot, cuddled up against you, her arms and legs wrapped around you possessively; you two share a deep, love-filled kiss, a kiss that usually would not be reserved for a parent and their child, while a number of tongues languidly lick at your [pc.skinFurScales].");
-	output("\n\nYou pull away from your kip, just to catch your breath, and you stare into her [baby.eyeColor] eyes lovingly. She returns the expression: her hands caress your cheek, and she leans in, gently nuzzling her nose against you affectionately. You feel another emotion through your psionic link with her – an emotion other than lust, which, it felt like, was the only thing she was feeding you for the past month. An emotion that makes your chest warm and your lips spread into a smile.");
-	output("\n\n<i>I love you, my Qal,</i> she says. Inspired by the message, each of your kips parrot it, saying it one after the other, some of them saying it twice. Each of them cuddle up just a little closer to their siblings, and to you, bringing themselves just a little bit closer to their Qal.");
-	output("\n\nYou give " + (flags["NYKKE_MET"] == undefined ? "your oldest kip" : "Nykke") + " another, quick kiss on the nose, and tell her, and each of them, that you love them, too. Then, you lay your head down – it’s time to recuperate.");
-	
-	processTime(9 * 60);
-	clearMenu();
-	addButton(0, "Next", frostwyrmBunchaKiddoContent, undefined);
-}
 
 public function frostwyrmItsMineAllMine():void
 {

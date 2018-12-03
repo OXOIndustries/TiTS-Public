@@ -1,4 +1,6 @@
-﻿// Butt Bugs: A Tarkus Parasite
+﻿import classes.GameData.Pregnancy.BasePregnancyHandler;
+
+// Butt Bugs: A Tarkus Parasite
 // Created By: Preacher
 // Proofread By: In large part Kirbu, Tori Toritori and RanmaChan, don’t know how much Thaumx, Vento and some anons.
 /*
@@ -979,7 +981,7 @@ public function masturbateButtBugMaleScene(arg:Array):void
 				if(cIdx >= 0 && vIdx >= 0) output(" your phallus" + (pc.cocks.length == 1 ? "" : "es") + " jump up and down in the air and slap against your lower belly. The muscles of your cunt" + (pc.vaginas.length == 1 ? "" : "s") + " clench with every lunge of the insect’s cock, and " + (pc.vaginas.length == 1 ? "its" : "their") + " [pc.girlCumColor] lubrication increases in tandem to the amount of pleasure hitting your nerves.");
 				else if(cIdx >= 0) output(" your cock" + (pc.cocks.length == 1 ? " bobs" : "s bob") + " with the reverberations of the ass-pounding you’re receiving. The underside of the male’s cock bumps your prostate each time he fully hilts himself, which jumpstarts your pre production. In no time at all your shaft" + (pc.cocks.length == 1 ? " has been covered in its" : "s have been covered in their") + " own [pc.cumColor] fluids.");
 				else if(vIdx >= 0) output(" drops of [pc.girlCumColor] drip from the valley of your vaginal lips. While the base of the bug continues to slam against your ass, your inner labia quiver in response to the anal pleasure you’re receiving. The proof of your pleasures puddle below you and occasionally connect you and the floor with strands of [pc.girlcum].");
-				else output(" a sense of warmth spreads from your ass towards to the rest of your body. It’s an indescribable heat,, almost as if a passionate flame has sparked itself within you. It builds and seems to have focussed upon the bare [pc.skinFurScales] of your groin as it becomes a source of pleasure on your mind.");
+				else output(" a sense of warmth spreads from your ass towards to the rest of your body. It’s an indescribable heat, almost as if a passionate flame has sparked itself within you. It builds and seems to have focussed upon the bare [pc.skinFurScales] of your groin as it becomes a source of pleasure on your mind.");
 				output("\n\nThe dildo-like insect’s entry becomes slippery when what feels like his first drops of pre lubricates your anal walls. His climax must be close. A few last powerful thrusts signal his inevitable release until with the very last he fully hilts himself into the flashy tunnel of your anus. Shivers race up your spine as globules of his warm gooey semen squirt into your bowels and set off your own imminent orgasm.");
 				output("\n\nWith barely a second to prepare,");
 				if(cIdx >= 0 && vIdx >= 0) output(" both phallic and vaginal sides of your genitals go into orgasmic overdrive. " + (pc.balls >= 2 ? "Balls drawing tight" : "Prostate clenching hard") + ", your hips buck forward while [pc.cum] flies from your dick" + (pc.cocks.length == 1 ? "" : "s") + ". Meanwhile, the floor below you gets drenched in [pc.girlCum] from the spasms of your vagina" + (pc.vaginas.length == 1 ? "" : "s") + ".");
@@ -1697,12 +1699,22 @@ public function removeButtBug():void
 }
 public function resetButtBugEffects():void
 {
-	if(pc.pregnancyData.length > 3 && InCollection(pc.pregnancyData[3].pregnancyType, typeButtBugPregList))
-	{
-		pc.pregnancyData[3].cleanupPregnancy(pc, 3);
-	}
+	cleanupButtBugPregnancy();
 	pc.removeStatusEffect("Butt Bug Egg Cycle");
 	pc.removeStatusEffect("Butt Bug Message Cooldown");
+}
+public function cleanupButtBugPregnancy():void
+{
+	if(pc.pregnancyData.length > 3)
+	{
+		switch(pc.pregnancyData[3].pregnancyType)
+		{
+			case "ButtBugPregnancy": ButtBugPregnancy.cleanupPregnancy(pc, 3); break;
+			case "ButtBugPregnancy0": ButtBugPregnancy0.cleanupPregnancy(pc, 3); break;
+			case "ButtBugPregnancy1": ButtBugPregnancy1.cleanupPregnancy(pc, 3); break;
+			case "ButtBugPregnancy2": ButtBugPregnancy2.cleanupPregnancy(pc, 3); break;
+		}
+	}
 }
 public function removeButtBugImmunoBooster():void
 {
@@ -1874,7 +1886,7 @@ public function messageButtBugParasitism(deltaT:uint, maxEffectLength:uint, doOu
 
 // Butt Bug pregnancy types
 // normal, overproductive, large
-private var typeButtBugPregList:Array = ["ButtBugPregnancy0", "ButtBugPregnancy1", "ButtBugPregnancy2"];
+private var typeButtBugPregList:Array = ["ButtBugPregnancy", "ButtBugPregnancy0", "ButtBugPregnancy1", "ButtBugPregnancy2"];
 public function loadInButtBug(mother:Creature = null, father:Creature = null):void
 {
 	// No dad
@@ -1916,9 +1928,17 @@ public function loadInButtBug(mother:Creature = null, father:Creature = null):vo
 		mother.addStatusValue("Butt Bug (Female)", 2, 1);
 		father.impregnationType = "";
 	}
+	// Ignore pregnancies that can activate in butts
+	// Otherwise, butt bug will impregnate first
 	else
 	{
-		ppButtBug.impregnationType = "ButtBugPregnancy";
+		var swapIt:Boolean = true;
+		if(father.impregnationType != "")
+		{
+			var pHandler:BasePregnancyHandler = PregnancyManager.findHandler(father.impregnationType);
+			if(pHandler != null && pHandler.canImpregnateButt) swapIt = false;
+		}
+		if(swapIt) ppButtBug.impregnationType = "ButtBugPregnancy";
 	}
 	
 	// Get preg with butt bugs!
@@ -1952,10 +1972,6 @@ public function expelButtBugEgg(eggs:int = 0):void
 	var buttBugF:StorageClass = pc.getStatusEffect("Butt Bug (Female)");
 	var swfVariant:int = ((buttBugF != null) ? buttBugF.value1 : -1);
 	var maxLooseness:Number = 2;
-	if(pc.pregnancyData.length > 3 && InCollection(pc.pregnancyData[3].pregnancyType, typeButtBugPregList))
-	{
-		eggs += pc.pregnancyData[3].pregnancyQuantity;
-	}
 	
 	var cIdx:int = (pc.hasCock() ? rand(pc.cocks.length) : -1);
 	var vIdx:int = (pc.hasVagina() ? rand(pc.vaginas.length) : -1);
@@ -2054,10 +2070,6 @@ public function birthButtBugType0(eggs:int = 0):void
 	var buttBugF:StorageClass = pc.getStatusEffect("Butt Bug (Female)");
 	var swfVariant:int = ((buttBugF != null) ? buttBugF.value1 : -1);
 	var maxLooseness:Number = 2;
-	if(pc.pregnancyData.length > 3 && InCollection(pc.pregnancyData[3].pregnancyType, typeButtBugPregList))
-	{
-		eggs += pc.pregnancyData[3].pregnancyQuantity;
-	}
 	
 	var cIdx:int = (pc.hasCock() ? rand(pc.cocks.length) : -1);
 	var vIdx:int = (pc.hasVagina() ? rand(pc.vaginas.length) : -1);
@@ -2138,10 +2150,6 @@ public function birthButtBugType1(eggs:int = 0):void
 	var buttBugF:StorageClass = pc.getStatusEffect("Butt Bug (Female)");
 	var swfVariant:int = ((buttBugF != null) ? buttBugF.value1 : -1);
 	var maxLooseness:Number = 2;
-	if(pc.pregnancyData.length > 3 && InCollection(pc.pregnancyData[3].pregnancyType, typeButtBugPregList))
-	{
-		eggs += pc.pregnancyData[3].pregnancyQuantity;
-	}
 	
 	var cIdx:int = (pc.hasCock() ? rand(pc.cocks.length) : -1);
 	var vIdx:int = (pc.hasVagina() ? rand(pc.vaginas.length) : -1);
@@ -2259,10 +2267,6 @@ public function birthButtBugType2(eggs:int = 0):void
 	var buttBugF:StorageClass = pc.getStatusEffect("Butt Bug (Female)");
 	var swfVariant:int = ((buttBugF != null) ? buttBugF.value1 : -1);
 	var maxLooseness:Number = 2;
-	if(pc.pregnancyData.length > 3 && InCollection(pc.pregnancyData[3].pregnancyType, typeButtBugPregList))
-	{
-		eggs += pc.pregnancyData[3].pregnancyQuantity;
-	}
 	
 	var cIdx:int = (pc.hasCock() ? rand(pc.cocks.length) : -1);
 	var vIdx:int = (pc.hasVagina() ? rand(pc.vaginas.length) : -1);
@@ -2465,7 +2469,7 @@ public function expelButtBugEggImmobile():void
 	
 	processTime(15);
 	
-	pc.pregnancyData[3].cleanupPregnancy(pc, 3);
+	cleanupButtBugPregnancy();
 	
 	// end overproductive parasite egg cycle and set egg count to 0
 	resetButtBugEggCycle();
@@ -2557,7 +2561,9 @@ public function nurseryHilinaraPetWorm(arg:Array):void
 			processTime(1);
 			
 			// Display buttons [Yes] and [No]
-			addButton(0, "Yes", nurseryHilinaraPetWorm, [1, numButtBugWorm, numButtBugHybrid, gender]);
+			if(pc.isWornOut()) addDisabledButton(0, "Yes", "Yes", "You are too tired to play with it at the moment!");
+			else if(pc.energy() < 10) addDisabledButton(0, "Yes", "Yes", "You do not have enough energy to play with it at the moment!");
+			else addButton(0, "Yes", nurseryHilinaraPetWorm, [1, numButtBugWorm, numButtBugHybrid, gender]);
 			addButton(1, "No", nurseryHilinaraPetWorm, [0, numButtBugWorm, numButtBugHybrid, gender]);
 			break;
 		case 1:

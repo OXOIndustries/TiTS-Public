@@ -156,7 +156,7 @@ public function erraAppearance():void
 	clearOutput();
 	showErra();
 	author("Hugs Alright");
-	output("Erra is a 5\' 9\" ausar girl. Her short, black hair is parted by two rounded wolf-ears that match the color of the fur on her arms, legs, and tail. Her body is ever-so-nicely toned, honed into a capable weapon by plenty of physical activity, and her striking green eyes only serve to bolster her can-do appearance. Her skin is a wonderfully-dark shade of of chocolate, but seems to lighten a bit when compared to her coal-black fur.");
+	output("Erra is a 5\' 9\" ausar girl. Her short, black hair is parted by two rounded wolf-ears that match the color of the fur on her arms, legs, and tail. Her body is ever-so-nicely toned, honed into a capable weapon by plenty of physical activity, and her striking green eyes only serve to bolster her can-do appearance. Her skin is a wonderfully-dark shade of chocolate, but seems to lighten a bit when compared to her coal-black fur.");
 	output("\n\nShe’s dressed casually: jeans and a t-shirt, both hugging her athletic frame, making the dim light of the bar hit her curves and the swell of her C-cups just right. Sitting the way she is, she looks relaxed and just a bit full of herself.");
 	if(erraCollared()) output(" The collar around her neck reads, “<b><i>Erra Aulgharis - Property of [pc.name] Steele</i></b>”");
 	if(flags["ERRA_SEXED"] != undefined) output("\n\nOne pretty pink ausar pussy and a nice, tight tailhole sit between her legs.");

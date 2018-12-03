@@ -65,6 +65,9 @@ public function confirmLeaveKirosShip(destination:String):void
 
 	flags["RESCUE KIRO FROM BLUEBALLS"] = -1;
 	
+	// Let her blow her load for later
+	kiro.orgasm();
+	
 	clearMenu();
 	addButton(0, "Next", flyToWrapper, destination);
 }
@@ -240,6 +243,10 @@ public function kirosShipWails(doOutput:Boolean = true):Boolean
 		return false;
 	}
 	
+	// Fill up dem 'nuki balls
+	kiro.applyBlueBalls();
+	kiro.cumProduced(9001);
+	
 	showKiroBust(true);
 
 	if (doOutput)
@@ -294,7 +301,7 @@ public function kirosShipWails(doOutput:Boolean = true):Boolean
 	{
 		if (flags["RESCUE KIRO TECHSPEC MACHINE FIX"] == undefined)
 		{
-			addButton(4, "Fix Machine", kirosShipfixDaMachine, undefined, "Fix the Machine", "Bring your considerable technical knowhow to bare on the troubled machine.")
+			addButton(4, "Fix Machine", kirosShipfixDaMachine, undefined, "Fix the Machine", "Bring your considerable technical knowhow to bear on the troubled machine.")
 		}
 		else
 		{
@@ -913,7 +920,10 @@ public function kirosShipNopeFuckThisShit():void
 	//Resume previous travels.
 	moveTo("SHIP INTERIOR");
 	flags["RESCUE KIRO FROM BLUEBALLS"] = -1;
-
+	
+	// Let her blow her load for later
+	kiro.orgasm();
+	
 	clearMenu();
 	addButton(0, "Next", flyToWrapper, flags["STORED SHIP DESTINATION"]);
 }

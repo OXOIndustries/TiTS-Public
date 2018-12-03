@@ -11,10 +11,10 @@ public function zhengElevatorF1Bonus():void
 {
 	variableRoomUpdateCheck();
 	//Power Out: 
-	if(flags["ZHENG_SPACEWALKED"] == undefined && flags["ZHENG_SHI_SLAVE_SNUCK"] == undefined) output("However, a big red sign has been hung up off a valve next to the elevator that reads <b>OUT OF ORDER</b>. The console that controls the elevator is powered down, and a couple of pokes doesn’t change that. Looks like the power’s been cut somewhere...");
+	if(flags["ZHENG_SPACEWALKED"] == undefined && flags["ZHENG_SHI_SLAVE_SNUCK"] == undefined) output(" However, a big red sign has been hung up off a valve next to the elevator that reads <b>OUT OF ORDER</b>. The console that controls the elevator is powered down, and a couple of pokes doesn’t change that. Looks like the power’s been cut somewhere...");
 	else 
 	{
-		output("The power has been restored to the elevator, and the console is flashing dimly with control instructions.");
+		output(" The power has been restored to the elevator, and the console is flashing dimly with control instructions.");
 		addButton(5,"Up",move,"ZSF I16");
 	}
 }
@@ -80,6 +80,8 @@ public function zhengMinesEncounterBonus():Boolean
 			encounters.push(boredJumperAttackProc);
 			encounters.push(boredJumperAttackProc);
 		}
+		
+		if (ratsAvailable() && rand(3) == 0) encounters.push(ratsInTheMineEncounter);
 	}
 	if(encounters.length > 0) 
 	{
@@ -143,7 +145,37 @@ public function zhengFoundryF1EncounterBonus():Boolean
 		flags["ZS_FOUNDRY_STEP"] = 0;
 		IncrementFlag("ZS_FOUNDRY_ENCOUNTERS");
 
-		encounters.push(forgehoundEncounter);
+		//encounters.push(forgehoundEncounter);
+		encounters.push(encounterPunkSecOp);
+		encounters.push(encounterPunkSecOp);
+		encounters.push(encounterPunkSecOp);
+		if (ratsAvailable())
+		{
+			encounters.push(ratsInTheMineEncounter);
+			encounters.push(ratsInTheMineEncounter);
+			encounters.push(ratsInTheMineEncounter);
+		}
+		/*encounters.push(boredJumperAttackProc);
+		encounters.push(boredJumperAttackProc);*/
+	}
+	if(encounters.length > 0) 
+	{
+		return encounters[rand(encounters.length)]();
+	}
+	return false;
+}
+
+public function zhengFoundryF2EncounterBonus():Boolean
+{
+	IncrementFlag("ZS_FOUNDRY_STEP");
+	var encounters:Array = [];
+	//First 3 times are gimmes, then increasing odds till step 15 or so.
+	if(flags["ZS_FOUNDRY_STEP"] - 8 > rand(16))
+	{
+		flags["ZS_FOUNDRY_STEP"] = 0;
+		IncrementFlag("ZS_FOUNDRY_ENCOUNTERS");
+
+		//encounters.push(forgehoundEncounter);
 		encounters.push(encounterPunkSecOp);
 		encounters.push(encounterPunkSecOp);
 		encounters.push(encounterPunkSecOp);
@@ -565,13 +597,7 @@ public function landingAtZhengShi():void
 		userInterface.textInput.text = "Password";
 		userInterface.textInput.maxChars = 40;
 		output("\n\n\n");
-		clearMenu();
-		addButton(0,"Submit",submitThePiratePassword);
-		if(metKiro() && roamingKiroAvailable()) addButton(1,"Call Kiro",callAKiroFriend);
-		else addDisabledButton(1,"Locked","Locked","You haven’t met a character you could call in a favor from...");
-		if(paigeIsCrew()) addButton(2,"Call Paige",callAPaigeFriend);
-		else addDisabledButton(2,"Locked","Locked","You need a specific character on your crew for this.");
-		addButton(4,"Run!",fuckThisShit);
+		zhengApproachPasswordOptions();
 	}
 	//Repeat Approach, Post Correct Answer
 	else
@@ -637,15 +663,23 @@ public function firstTimeZhengApproachIV():void
 	output("\n\n\n");
 
 	processTime(2);
+	zhengApproachPasswordOptions();
+}
+
+public function zhengApproachPasswordOptions():void
+{
 	clearMenu();
 	addButton(0,"Submit",submitThePiratePassword);
 	if(metKiro() && roamingKiroAvailable()) addButton(1,"Call Kiro",callAKiroFriend);
 	else addDisabledButton(1,"Locked","Locked","You haven’t met a character you could call in a favor from...");
-	addButton(4,"Run!",fuckThisShit);
+	if(paigeIsCrew()) addButton(2,"Call Paige",callAPaigeFriend);
+	else addDisabledButton(2,"Locked","Locked","You need a specific character on your crew for this.");
+	addButton(14,"Run!",fuckThisShit);
 }
 
 public function callAPaigeFriend():void
 {
+	if(stage.contains(userInterface.textInput)) removeInput();
 	clearOutput();
 	showPaige();
 	author("B");
@@ -656,10 +690,10 @@ public function callAPaigeFriend():void
 	output("\n\nPaige straightens her back and starts to laugh at the question. <i>“That’s easy. Do you still have them on call?”</i> You tell her that you do, as soon as you flip the breaker back on. <i>“Do it. I’ll handle it, sweet thing.”</i>");
 	output("\n\nYou do as she asks, as she steps up to the communicator’s receiver. A few button presses later, power hums back through your ship, and the crackling communication channel snaps back open. <i>“Can you hear me, asshole? Pony up with the password or join the debris field. Your call.”</i>");
 	output("\n\nPaige wets her lips before responding.");
-	output("\n\n<i>“Hey, go fuck yourself, dipshit!”</i> she hollers into the receiver. <i>“The fuck is this, about some ‘password’ horseshit? We got business on the base, so lower your fucking weapons before <i>I<i> tell </i>you<i> what your </i>safeword<i> is!”</i>");
+	output("\n\n<i>“Hey, go fuck yourself, dipshit!”</i> she hollers into the receiver. <i>“The fuck is this, about some ‘password’ horseshit? We got business on the base, so lower your fucking weapons before </i>I<i> tell </i>you<i> what your </i>safeword<i> is!”</i>");
 	output("\n\n<i>“Alright, jeez!”</i> the station controller’s voice says. <i>“Guns are down. We’ll see how long that attitude keeps up, fresh meat.”</i>");
 	output("\n\nTrue to the harbormaster’s word, the target locks from the asteroid release, and you’re free to bring your ship into the bay unmolested.");
-	output("\n\n<i>“That’s the secret, [pc.name],”</i> Paige says as she turns toward the door of the bridge. <i>“Don’t let them push you around. There’s no law or decorum in Zheng Shi; as soon as you show them any weakness, they’ll make you their bitch, so if you enjoy being your own {wo}man, you need to push as hard as they shove.”</i>");
+	output("\n\n<i>“That’s the secret, [pc.name],”</i> Paige says as she turns toward the door of the bridge. <i>“Don’t let them push you around. There’s no law or decorum in Zheng Shi; as soon as you show them any weakness, they’ll make you their bitch, so if you enjoy being your own " + pc.mf("","wo") + "man, you need to push as hard as they shove.”</i>");
 	output("\n\nYou thank Paige for her advice and dismiss her from the bridge as you pass through the force field and into a sweeping hangar bay, big enough for twenty or so large ships - and countless little tramp freighters and scout ships like the old Z14.");
 	output("\n\nNobody’s paying you much mind now that you’re docked. Indeed, you manage to find a relatively isolated spot at the back of the hangar to land. The ship settles with a resounding thud, and you make your way to the airlock. Time to see where your probe’s gotten off to... assuming it’s really here.");
 	flags["ZHENG_SHI_PASSWORDED"] = 1;
@@ -673,9 +707,9 @@ public function callAPaigeFriend():void
 //Fenwrote dis
 public function callAKiroFriend():void
 {
+	if(stage.contains(userInterface.textInput)) removeInput();
 	clearOutput();
 	showKiro();
-	if(stage.contains(userInterface.textInput)) removeInput();
 	output("You stretch out and slap the main breaker, listening to the headset and nearly everything else go dead as you feign a power failure. Hopefully that’ll buy you a few seconds to phone a friend...");
 	output("\n\nThe Codex’s warm light bathes the inside of your now-dark cockpit in its familiar glow as you tap into the system’s surviving comm buoy and make a high-priority holocall to your big-balled ");
 	if(flags["KIRO_BF_TALK"] == 1) output("girlfriend");
@@ -787,6 +821,48 @@ public function prefabDeadEndBonus():Boolean
 	return zhengFoundryF1EncounterBonus();
 }
 
+public function zhengFoundryFloor2ElevatorBonus():Boolean
+{
+
+	if(flags["ZHENG_SHI_FOUNDRY_2F_OPEN"] == undefined) output("The cargo elevator’s door is closed. A piece of malformed of pipe jammed through the works will keep it that way, unless you bother to free it from its bondage and restore access to this hanging pathway.");
+	else output("The cargo elevator’s door is wide-open thanks to you. Without the bent-up pipe holding it shut, you’re free to travel back up here without having scamper up a four story ladder.");
+	output(" Boxes of parts and tools sit stacked nearly by the side in a pile, awaiting their chance to be loaded up and whisked away.");
+	if(flags["ZHENG_SHI_FOUNDRY_2F_OPEN"] == undefined) 
+	{
+		output(" You suppose the pirates forgot about them.");
+		flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
+		addButton(0,"Pull Pipe",freePipeElevator);
+	}
+	else output(" You suppose they'll be waiting here until Peacekeepers show up to drive everyone away.");
+	return false;
+}
+
+public function freePipeElevator():void
+{
+	clearOutput();
+	showName("\nYOINK!");
+	output("With a " + (pc.PQ() >= 50 ? "mighty yank":"exhausting, straining pull") + ", you disloge the pipe and allow the elevator's outer door to swing open. That'll save you some time!");
+	flags["ZHENG_SHI_FOUNDRY_2F_OPEN"] = 1;
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function zhengFoundryScaffoldElevatorBonus():void
+{
+	if(flags["ZHENG_SHI_FOUNDRY_2F_OPEN"] == undefined)
+	{
+		output(" The outer doors are stuck closed. You won't be able to get off on this floor until you find a way to open them. Maybe there's another way onto the scaffolding?");
+		flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
+	}
+}
+
+public function forgeySpaceDooter():Boolean
+{
+	if(flags["FORGEHOUND_WREKT"] != undefined) return false;
+	else return forgehoundEncounter();
+}
+
 //[Investigate]
 public function investageDatMouseMechanicYo():void
 {
@@ -837,7 +913,7 @@ public function ImAPirateLittleRat():void
 	showBust("RODENIAN_MECHANIC");
 	author("Fenoxo");
 	output("You tell her that you’re a pirate.");
-	output("\n\nShe nearly hyperventilates laughing, her diaphragm spasming with the forcefulness of her squeaking delight. <i>“So’s my left tit, but you don’t hear me bandying it about like some kind of title. Everybody ‘round these parts calls themself a pirate. Even the dumbshit dog in the hangar down here.”</i> She snorts. <i>“Yeah, you’re a real big pirate, asshole. Keep sitting on your ass and polishing real pirates’ ships.”</i> A burnt-out servo slams into the ground next to your [pc.foot]. <i>“So, " + pc.mf("Mister","Miss") + " pirate, how are you going to waste my time today?");
+	output("\n\nShe nearly hyperventilates laughing, her diaphragm spasming with the forcefulness of her squeaking delight. <i>“So’s my left tit, but you don’t hear me bandying it about like some kind of title. Everybody ‘round these parts calls themself a pirate. Even the dumbshit dog in the hangar down here.”</i> She snorts. <i>“Yeah, you’re a real big pirate, asshole. Keep sitting on your ass and polishing real pirates’ ships.”</i> A burnt-out servo slams into the ground next to your [pc.foot]. <i>“So, " + pc.mf("Mister","Miss") + " pirate, how are you going to waste my time today?”</i>");
 	flags["MAUS_THINKS_PIRATE"] = 2;
 	processTime(5);
 	rodentTalkTopics();

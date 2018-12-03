@@ -285,6 +285,18 @@ public function configureMails():void
 	
 	//Zephyr going to the nursery to visit kids on the reg
 	MailManager.addMailEntry("zephyr_visiting_the_nursery", zephyrMailAboutNursery, "Got some time off...", "Zephyr", "Zephyr@NewTexas.gov", quickPCTo, quickPCToAddress);
+	
+	//Aina xpac1 preg emails	
+	MailManager.addMailEntry("aina_preg1", ainaPregEmail1, "Hey", "Aina Berkanis", "FreeFilly98@Gerbilmedia.com", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("aina_preg1_again", ainaPregEmail1, "Guess what!", "Aina Berkanis", "FreeFilly98@Gerbilmedia.com", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("aina_preg2", ainaPregEmail2, "Progress!", "Aina Berkanis", "FreeFilly98@Gerbilmedia.com", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("aina_preg3", ainaPregEmail3, "getting bigger", "Aina Berkanis", "FreeFilly98@Gerbilmedia.com", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("aina_preg4", ainaPregEmail4, "Oof", "Aina Berkanis", "FreeFilly98@Gerbilmedia.com", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("aina_preg5", ainaPregEmail5, "almost time", "Aina Berkanis", "FreeFilly98@Gerbilmedia.com", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("aina_preg6", ainaPregEmail6, "Come to the nursery", "Aina Berkanis", "FreeFilly98@Gerbilmedia.com", quickPCTo, quickPCToAddress);
+
+	//Pumpking email from Penpen
+	MailManager.addMailEntry("pumpking_alert", pennyPumpkingEmailText, pennyPumpkingEmailSubject, "Penny Inoue", "Penny_Inoue@UGC.gov", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String

@@ -76,7 +76,7 @@ public function kaneFirstApproach():void
 	addButton(0, "Buzz Off", kaneBuzzOff);
 	addButton(1, "Go On...", kaneGoOnPls);
 	
-	if (flags["PQ_P_BURNED"] == undefined) output("\n\n<i>“So,”</i> he says, in his harsh, well-pronounced tones. <i>“The Word-Wolf has been banished, and we are now at... peace. How wonderful. All thanks to our new star-walker friend’s lovely, wagging tongue.”</i> He smirks, mockery and lust shading his face. <i>“You wonder what else such a talented tongue could do.”</i>");
+	if (flags["PQ_P_BURNED"] == undefined) output("\n\n<i>“So,”</i> he says, in his harsh, well-pronounced tones. <i>“The Word-Wolf has been banished, and we are now at... peace. How wonderful. All thanks to our new star-walker friend’s lovely, wagging tongue.”</i> He smirks, mockery and lust shading his face. <i>“I wonder what else such a talented tongue could do.”</i>");
 	else if (flags["LOST_TO_KANE"] > 0)
 	{
 		output("\n\n<i>“So,”</i> he says, in his harsh, well-pronounced tones. <i>“You did exactly as I demanded. Submitted to our greater truths, then returned to your master’s palace and burned it to the ground.”</i> His brow furrows as he considers you, marshalling his thoughts. <i>“Are all starwalkers so amenable? You fuck them into the dirt once, and then they will do whatever you say?”</i>");

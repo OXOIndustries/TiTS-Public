@@ -19,6 +19,7 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.Engine.Interfaces.AddLogEvent;
 	import classes.Engine.Interfaces.ExtendLogEvent;
 	import classes.Engine.Map.InPublicSpace;
+	import classes.Engine.Map.InRoomWithFlag;
 	import classes.Engine.Map.InShipInterior;
 	
 	public class ZilPregnancyHandler extends BasePregnancyHandler
@@ -68,7 +69,7 @@ package classes.GameData.Pregnancy.Handlers
 						if(kGAMECLASS.crew(true) > 0 && InShipInterior()) ExtendLogEvent(" Some of your crew members even begin asking if you started wearing perfume.");
 						ExtendLogEvent(" You almost feel like lashing out at the prudes sometimes.");
 						ExtendLogEvent("\n\nEventually, the change gets to you enough that you take some time away from your busy adventure to inspect yourself.");
-						ExtendLogEvent(" After " + ((InShipInterior() || InPublicSpace()) ? "getting some privacy" : "finding a nice, secluded area") + ", you");
+						ExtendLogEvent(" After " + ((InShipInterior() || InPublicSpace() || InRoomWithFlag(GLOBAL.INDOOR)) ? "getting some privacy" : "finding a nice, secluded area") + ", you");
 						if(!kGAMECLASS.pc.isNude()) ExtendLogEvent(" strip yourself bare then");
 						ExtendLogEvent(" lift a wrist to your nose and let your own scent fill your nostrils. Sure enough, there’s a smell; it’s very faint, which is probably why you didn’t notice it before, but there’s something familiar about it... musky and sweet. Your mind jumps to thoughts of zil when it registers that scent, those sex-heavy pheromones of theirs.");
 						ExtendLogEvent("\n\nHuh, it must’ve just rubbed off on you the last time you were on Mhen’ga. Maybe it’ll go away if you take a shower.");
@@ -205,7 +206,7 @@ package classes.GameData.Pregnancy.Handlers
 						if(kGAMECLASS.pc.milkRate < 25) kGAMECLASS.pc.milkRate += 5;
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 2, true);
 						AddLogEvent(ParseText("You can’t be more than a month away from giving birth at this point: your [pc.stomach] is distended outward with as much weight and size as you can carry, but still growing by the " + sTime + ". At the same time, your [pc.vagina " + pregSlot + "] is dilated and your young are constantly kicking inside you."), "passive");
-						if(!InPublicSpace()) ExtendLogEvent(" Your instincts are telling you to find somewhere safe to have your children, and you think you better trust them.");
+						if(!InPublicSpace() && !InRoomWithFlag(GLOBAL.INDOOR)) ExtendLogEvent(" Your instincts are telling you to find somewhere safe to have your children, and you think you better trust them.");
 					}, true);
 				}
 				// Progressive changes with no text:

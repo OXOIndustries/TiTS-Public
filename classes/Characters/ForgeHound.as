@@ -6,6 +6,7 @@
 	//import classes.Items.Guns.HammerPistol;
 	import classes.Items.Protection.ReaperArmamentsMarkIIShield;
 	import classes.Items.Miscellaneous.EmptySlot;
+	import classes.Items.Accessories.AimEyepieceMkII;
 	import classes.kGAMECLASS;
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
@@ -183,11 +184,12 @@
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 1;
 
-			//this.inventory.push(new ShockBlade());
+			this.inventory.push(new AimEyepieceMkII());
 			//this.createPerk("Multiple Attacks",1,0,0,0,"");
 			//this.createPerk("Multiple Shots",1,0,0,0,"");
 			//this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			createPerk("Juggernaut",0,0,0,0);
+			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			
 			isUniqueInFight = true;
 			btnTargetText = "Forgehound";

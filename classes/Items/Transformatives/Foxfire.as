@@ -93,8 +93,8 @@ package classes.Items.Transformatives
 			output("\n<b>*</b> Works with most naturally occurring skin types. Warning: effect on metamorphic species is highly unpredictable. Warranty void if used on rahn, galotians, or if skin is heavily altered by another transformative.");
 			output("\n<b>*</b> Applying another dose while already under this product’s effect will produce no additional results.");
 			output("\n<b>*</b> This product’s effects are permanent, but can be easily canceled out with the use of our esteemed bio-cleansing product, Immuno-Booster! You will find one dose enclosed in the product package; alternatively, they are available for purchase at most pharmacies.");
-			output("\n<b>* Warning:</b> while safe for the host, it will likely conflict with any other symbiotic or parasitic lifeforms currently attached to you. If you have any important symbiotes, please refrain from using this product.");
-			output("\n<b>*</b> Documented side effect: Bioluminescence (Disappears after use of Immuno-Booster. If signs of luminescence remains, contact our customer support for assistance.)");
+			output("\n<b>* Warning:</b> While safe for the host, it will likely conflict with any other symbiotic or parasitic lifeforms currently attached to you. If you have any important symbiotes, please refrain from using this product.");
+			output("\n<b>* Documented Side Effect:</b> Bioluminescence (Disappears after use of Immuno-Booster. If signs of luminescence remains, contact our customer support for assistance.)");
 			output("</i>");
 			
 			if (target.hasStatusEffect("Foxfire"))
@@ -294,13 +294,13 @@ package classes.Items.Transformatives
 						options.push(function():*{
 							var newColor:String = colorsMatching(target) ? target.lipColor : "red";
 							
-							AddLogEvent("Your " + target.cockDescript(i) + " throbs suddenly ", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
+							AddLogEvent("Your " + target.cockDescript(i) + " throbs suddenly", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 							
-							if (target.hasCockFlag(GLOBAL.FLAG_SHEATHED, i)) ExtendLogEvent("in it’s sheath");
-							else if (target.hasStatusEffect("Genital Slit")) ExtendLogEvent("in it’s slit");
-							else if (!target.isCrotchExposed()) ExtendLogEvent("beneath your " + target.lowerGarmentDescript());
-							else if(target.legCount == 1) ExtendLogEvent("on your " + target.legs());
-							else ExtendLogEvent("between your " + target.legs());
+							if (target.hasCockFlag(GLOBAL.FLAG_SHEATHED, i)) ExtendLogEvent(" in it’s sheath");
+							else if (target.hasStatusEffect("Genital Slit")) ExtendLogEvent(" in it’s slit");
+							else if (!target.isCrotchExposed()) ExtendLogEvent(" beneath your " + target.lowerGarmentDescript());
+							else if(target.legCount == 1) ExtendLogEvent(" on your " + target.legs());
+							else ExtendLogEvent(" between your " + target.legs());
 							
 							ExtendLogEvent(" and begins to transform, drooling a river of pre from its engorged slit. You double over in a sick twist of pain and pleasure");
 							
@@ -389,7 +389,7 @@ package classes.Items.Transformatives
 					{ // normal case - flats
 						AddLogEvent("A sudden sensation erupts on your chest, as if your nipples had just been flicked during an intense bout of lovemaking. As you reflexively raise your hands to them, you notice that the feeling in fact came from below your nipples. Taking a quick peek", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 						if (target.hasArmor() && !(target.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || target.armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))) ExtendLogEvent(" under your clothes");
-						ExtendLogEvent("to assess the situation, you discover a new " + (target.breastRows[target.breastRows.length - 1].breasts == 2 ? "pair" : "set") + " of nipples standing beneath the ones you previously had!");
+						ExtendLogEvent(" to assess the situation, you discover a new " + (target.breastRows[target.breastRows.length - 1].breasts == 2 ? "pair" : "set") + " of nipples standing beneath the ones you previously had!");
 					}
 					else
 					{ // lactating - A-cups to avoid parser weirdshit
@@ -398,10 +398,10 @@ package classes.Items.Transformatives
 					
 					if (target.bRows() == 1) ExtendLogEvent(" With a second row of breasts, you now sport a more animalistic look.");
 					else if (target.bRows() == 2) ExtendLogEvent(" With a third row of breasts, your front is now starting to feel somewhat tightly-packed.");
-					else ExtendLogEvent(" With a forth row of breasts you are now able to feed a whole litter of kits! You’re not quite sure if this is strange, or just plain hot.");
+					else ExtendLogEvent(" With a fourth row of breasts you are now able to feed a whole litter of kits! You’re not quite sure if this is strange, or just plain hot.");
 					
-					if (minSizeBreasts == 0) ExtendLogEvent(" <b>You now have extra set of nipples!</b>");
-					else ExtendLogEvent(" <b>You now have extra set of breasts!</b>");
+					if (minSizeBreasts == 0) ExtendLogEvent(" <b>You now have an extra set of nipples!</b>");
+					else ExtendLogEvent(" <b>You now have an extra set of breasts!</b>");
 					
 					var newBreastRow:BreastRowClass = new BreastRowClass();
 					newBreastRow.nippleType = target.breastRows[target.breastRows.length - 1].nippleType; // same type as previous row

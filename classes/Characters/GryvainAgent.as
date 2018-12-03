@@ -190,7 +190,7 @@
 			this.vaginas[0].vaginaColor = "blue";
 			
 			//this.createStatusEffect("Disarm Immune");
-			createStatusEffect("Force Fem Gender");
+			createStatusEffect("Force Herm Gender");
 
 			this.inventory.push(new HeavyLaser());
 			

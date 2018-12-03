@@ -200,6 +200,7 @@
 			this.ass.bonusCapacity = 100;
 
 			this.createVagina();
+			this.vaginas[0].hymen = false;
 			this.vaginas[0].wetnessRaw = 3;
 			this.vaginas[0].loosenessRaw = 2;
 			this.vaginas[0].bonusCapacity = 100;
@@ -209,7 +210,6 @@
 			//this.createStatusEffect("Disarm Immune");
 			//createStatusEffect("Force Fem Gender");
 			createPerk("Appearance Enabled");
-
 
 			inventory = [];
 
@@ -241,15 +241,15 @@
 				lipMod = 0;
 				hipRatingRaw = 4;
 				buttRatingRaw = 2;
-				this.breastRows[0].breastRatingRaw = 1;
+				breastRows[0].breastRatingRaw = 1;
 				vaginas = [];
 				createCock();
-				this.cocks[0].cType = GLOBAL.TYPE_SYNTHETIC;
-				this.cocks[0].cockColor = "silver";
-				this.cocks[0].cLengthRaw = 13;
-				this.balls = 2;
-				this.cockVirgin = false;
-				this.vaginalVirgin = true;
+				cocks[0].cType = GLOBAL.TYPE_SYNTHETIC;
+				cocks[0].cockColor = "silver";
+				cocks[0].cLengthRaw = 13;
+				balls = 2;
+				cockVirgin = false;
+				vaginalVirgin = true;
 				this.long = "This stiff-necked kaithrit brandishes a slick-looking plasma rifle in one hand like it’s nothing thanks to his skin-tight layer of augment-weave armor. The flexible metallic suit flexes powerfully with his every movement, unintentionally highlighting his lissom form, bulging groin, and the pert swells of two decidedly feminine A-cups. If he wasn’t a kaithrit, you could easily confuse him a for a female. Of course, he compensates for this with a butch, luminescent mohawk. Large eyes flicker with alertness under a projected holovisor, beamed forth by implants in his temples, and when he shifts position, a short-range antenna wobbles along with his feline ears.\n\nIt’s a sure bet that this mechanized security cat has a grab-bag of other, less-visible cybernetics as well, waiting to spring on you at a moment’s notice.";
 			}
 			//Nothing needs changed :3
@@ -388,7 +388,7 @@
 						else if(this.statusEffectv1("Face Rided") <= 2) output("\n\nYou’re ready for the kaithrit’s juicy, artificially-enhanced snatch to slap into your face, so when those puffy, soaked folds grind into you, you can take a moment to admire the silky texture and incredible slickness. A pussy like that would feel great, even if all you slipped inside was a single finger...");
 						else output("\n\nYou grin as her pretty, cybernetic pussy crashes into your face once more. If only all your fights could be so pleasant. You’ll take a buxom cat-girl humping your face over trading blaster fire any day of the week. At the last second, you stop yourself from grabbing her big, squeezable ass and opening wide. If you started eating her out now... you’d never get away.");
 					}
-					applyDamage(damageRand(new TypeCollection( { tease: 16 } ), 15), target, this,"minimal");
+					applyDamage(damageRand(new TypeCollection( { tease: 16 } ), 15), this, target,"minimal");
 				}
 				//Airtight tease scenes
 				else
@@ -405,7 +405,7 @@
 						else if(this.statusEffectv1("Face Rided") <= 1) output("\n\nHer suit opens up like the petals of a flower to reveal her own feminine folds, just in time for the curvy sex-kitten to plant them hard against your faceplate. <i>“This would be a lot more fun if you took off the helmet, you know.”</i> She gyrates and swivels, filling your vision with nothing but a sea of thickened thighs and wantonly sensual femininity. <i>“I’ve got just the thing for a slut like you...”</i>");
 						else output("\n\nPussy fills your vision once more. You barely tried to dodge. It’s not like she can hurt you like this, with her gleaming, fuckable cunt drawing circles of dribbling fuck-juice on your visor. You lick your lips, just watching her, taking in every detail of that angelic cunt. <i>“Come on out and play...”</i>");
 					}
-					applyDamage(damageRand(new TypeCollection( { tease: 12 } ), 15), target, this,"minimal");
+					applyDamage(damageRand(new TypeCollection( { tease: 12 } ), 15), this, target,"minimal");
 				}				
 				output("\n\nWith a staggeringly powerful jump, your face is free of the SecOp’s genitals once more, though the lingering scent of horny kaithrit lingers, intermingled with the aphrodisiac gas in the air. <i>“Gotta move faster... unless you want me to ride your face into the ground...”</i>");
 				if(!this.hasStatusEffect("Face Rided")) this.createStatusEffect("Face Rided");
@@ -445,7 +445,7 @@
 			}
 			else 
 			{
-				applyDamage(damageRand(new TypeCollection( { burning: 25 } ), 15), target, this,"minimal");
+				applyDamage(damageRand(new TypeCollection( { burning: 25 } ), 15), this, target,"minimal");
 				if(this.aim()/2 + rand(20) + 1 > target.reflexes()/2 + 10 && !target.hasStatusEffect("Burning")) 
 				{
 					output(" <b>You’re lit on fire!</b>");
@@ -458,7 +458,7 @@
 		public function shoulderRockets(target:Creature):void
 		{
 			output("The Cyber Punk closes [enemy.hisHer] eyes and exhales. Like wriggling snakes, the coiled steel over [enemy.hisHer] shoulders parts, and the flesh beneath springs open, revealing a dozens of hidden, miniaturized rockets. They spray out in a wave of fire-spewing streamers - too many to dodge. All you can do is brace for impact!");
-			applyDamage(damageRand(new TypeCollection( { kinetic: 15, burning: 15 } ), 15), target, this,"minimal");
+			applyDamage(damageRand(new TypeCollection( { kinetic: 15, burning: 15 } ), 15), this, target,"minimal");
 		}
 		//Stealth field cancel
 		public function stealthFieldImmune(target:Creature):void

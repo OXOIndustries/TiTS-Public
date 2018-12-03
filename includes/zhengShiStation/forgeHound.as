@@ -1,4 +1,17 @@
 //Corona Lord Forgehound, by Wsan
+
+/* FLAGS:
+FORGEHOUND_ENCOUNTERED 	- times encountered (largely depreciated)
+FORGEHOUND_WREKT		- did you defeat the forgehound?
+FORGEHOUND_APOLIFUCKED 	- pretty self-explanatory.
+FORGEHOUND_INSULTED		- were you an ass to him?
+FORGEHOUND_PEGGED		- did you peg the boi?
+FORGEHOUND_FISTED
+FORGEHOUND_FACEFUCKED
+FORGEHOUND_BUKKAKED
+FORGEHOUND_KERATIN_TALK
+*/
+
 public function showForgehound(nude:Boolean = false):void
 {
 	showName("\nFORGEHOUND");
@@ -390,7 +403,7 @@ public function okayApologySexItIs():void
 		else pc.loadInAss(tempE);
 	}
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",move,rooms[currentLocation].northExit);
 }
 
 //[No]
@@ -424,7 +437,9 @@ public function submitToForgehound():void
 
 		output("\n\n<i>“I see. You just had to come see what the big deal was, huh?”</i> he says, approaching you. <i>“Then you ran into me. Lucky you. I’ve been looking for a fucktoy to have to myself lately.”</i>");
 
-		output("\n\n<i>“You can </i>make<i> me that fucktoy, you big fucking stud,”</i> you breathe, looking up at him with flushed cheeks{clothed: as you shed your last piece of gear}. Your [pc.nipples] stand out on your chest, erect as they can be");
+		output("\n\n<i>“You can </i>make<i> me that fucktoy, you big fucking stud,”</i> you breathe, looking up at him with flushed cheeks");
+		if(!pc.isNude()) output(" as you shed your last piece of gear");
+		output(". Your [pc.nipples] stand out on your chest, erect as they can be");
 		if(pc.canMilkSquirt()) output(" and leaking milk");
 		output(". <i>“Wear me as a fucking sheath, you sexy fucking beast!”</i>");
 
@@ -495,6 +510,7 @@ public function submitToForgehound():void
 //PC wins
 public function defeatForgy():void
 {
+	flags["FORGEHOUND_WREKT"] = 1;
 	author("Wsan");
 	//Win by lust
 	if(enemy.lust() >= enemy.lustMax()) 
@@ -746,7 +762,7 @@ public function assfuckDatHo(x:int):void
 	showForgehound();
 	author("Wsan");
 	output("<i>“Yeah, well, I know what I’m not gonna resist,”</i> you say, smirking. <i>“See, I’ve got a bit of a kink for fucking big, strong, dominant men until they break down and learn their place. And you seem to fit the bill.”</i>");
-	output("\n\n<i>“You- you can’t fuck </i>me<i>,”</i> he says, incredulous. You’ll- you’ll get addicted!”</i>");
+	output("\n\n<i>“You- you can’t fuck </i>me<i>,”</i> he says, incredulous. <i>“You’ll- you’ll get addicted!”</i>");
 	output("\n\n<i>“Yeeeah, that’s not how that works,”</i> you say, already");
 	if(!pc.isCrotchExposed()) output(" removing your [pc.crotchCovers] and");
 	output(" lifting his tail. Sweaty and glistening, his asshole reminds you of a delicious donut, protruding just enough to look like you’re being invited. <i>“Oh, looks like someone left the backdoor open.”</i>");

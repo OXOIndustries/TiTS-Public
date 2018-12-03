@@ -133,8 +133,8 @@ package classes.Items.Transformatives
 			
 			if (!force) addButton(13, "Override", function():* { clearOutput(); routeMenu(target, true); }, null, "Override", "Enable override mode. The system would attempt to execute route without checking its availability.\nWarning: this menu is for authorized personnel only.\nWarning: bypassing of safety protocols is not advised, those functions are called unsafe for a reason.");
 			else {
+				output(" Status scan is bypassed.");
 				addButton(13, "Safe", function():* { clearOutput(); routeMenu(target, false); }, null, "Safe", "Enable safe mode. The system would check route availability before executing it.");
-				output(" status scan is bypassed.");
 			}
 			
 			addButton(14, "Abort", kGAMECLASS.generalInventoryMenu);

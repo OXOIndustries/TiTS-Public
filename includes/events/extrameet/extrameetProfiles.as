@@ -2158,7 +2158,7 @@ public function extrameetDirtyHabitzProfile():void
 {
 	output("The profile picture on your screen is blank.");
 	output("\n\nUsername: DirtyHabitz");
-	output("\nSex:Female");
+	output("\nSex: Female");
 	output("\nAge: 21 Years");
 	output("\nRace: Human+");
 	output("\nPlanet: Tarkus");
@@ -2716,7 +2716,7 @@ public function extrameetPurpleBowtieProfile():void
 {
 	output("The profile picture on your screen is of a fairly attractive Kui-tan with a bright purple bowtie in her hair. The picture is very modest, and you don’t really get a sense of her shape or size.");
 	output("\n\nUsername: PurpleBowtie");
-	output("\nSex:Other");
+	output("\nSex: Other");
 	output("\nAge: 32 Years");
 	output("\nRace: Kui-tan");
 	output("\nPlanet: Myrellion");
@@ -2927,7 +2927,7 @@ public function extrameetScienceRulez41Sex():void
 	output("\n\nThe modded man’s groans become a shaking moan, as you feel his thick horse cock pulse in your tail. The hungry appendage twitches and quivers as Hal’s warm seed pumps into it, the warmth of his jizz taking you by surprise. Your body convulses, and a deep gasping moan escapes your lips. Shuddering, your orgasm ignites in your tail, trailing up its length and making your whole body burn with lascivious pleasure. Hal keeps stroking himself with your tail, milking out his cock for all it’s worth and subjecting you to more of the addicting sensation. After a long moment he stops and releases your tail, his now semi soft member popping out. His cum oozes out of your tailcunt, staining his lap.");
 	output("\n\nHal stuffs himself back into his pants, seemingly not bothered by the mess in the least. <i>“Well. I must say that is a very interesting tail.”</i> He clears his throat and smiles at you.");
 	output("\n\nYou take a few deeps breaths, still shaky from the scientist’s examination. You pull your tail back, the well fed appendage seemingly quite pleased and docile.");
-	output("\n\nThe two of you sit and talk a bit more, mostly about mods and such. After a while, Hal says he needs to go and bids you farewell. <i>“If you’re in the neighborhood look me up. I’d be very curious to see what other unique additions you may stumble onto.”</i> He gives you a lewd smile and stands, walking out of the bar with a wave leaving you on your own.");
+	output("\n\nThe two of you sit and talk a bit more, mostly about mods and such. After a while, Hal says he needs to go and bids you farewell. <i>“If you’re in the neighborhood look me up. I’d be very curious to see what other unique additions you may stumble upon.”</i> He gives you a lewd smile and stands, walking out of the bar with a wave leaving you on your own.");
 	
 	//since cock volume doesn't matter and we just need cum amount, just use MrFox
 	pc.loadInCuntTail(chars["MRFOX"]);

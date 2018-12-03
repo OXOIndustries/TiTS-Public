@@ -45,12 +45,46 @@ public function hollidayOweenAlert():void
 public function flyToPoeAConfirm():void
 {
 	clearOutput();
-	showName("POE A\nCONFIRM?");
-	
-	output("Recalling what you’ve read in the invitation letter, the parties held at this location may have a tendency to get way out of hand, <b>resulting in permanent consequences.</b>");
-	output("\n\nYou should only proceed if you are definitely sure you want to travel here.");
-	
 	clearMenu();
+	
+	if(flags["POE_A_DISABLED"] != undefined)
+	{
+		output("You probably shouldn’t go back to Poe A after your last trip to ‘The Masque’.");
+		
+		if(!isHalloweenish())
+		{
+			showName("OUT OF\nSEASON!");
+			output("\n\n(Otherwise, you might want to wait until it is in-season before deciding to travel back there again.)");
+			output("\n\n");
+			
+			addButton(0, "Next", flyMenu);
+			return;
+		}
+		
+		if(flags["POE_A_YEAR"] != undefined && flags["POE_A_YEAR"] == getRealtimeYear())
+		{
+			showName("BEEN THERE,\nDONE THAT!");
+			output("\n\nBesides, you have already participated in the festivities for this year--it would be pointless to return again!");
+			output("\n\n");
+			
+			addButton(0, "Next", flyMenu);
+			return;
+		}
+		
+		showName("REVISIT\nPOE A?");
+		
+		output("\n\n(Due note that content for Poe A is intended to be experienced as a one-time event. <b>Revisiting this location is non-canon and will be treated as if you have been there for the very first time.</b> Keep that in mind and have a Happy Halloween!)");
+		output("\n\nAre you sure you want to continue?");
+	}
+	else
+	{
+		showName("POE A\nCONFIRM?");
+		
+		output("Recalling what you’ve read in the invitation letter, the parties held at this location may have a tendency to get way out of hand, <b>resulting in permanent consequences.</b>");
+		output("\n\nYou should only proceed if you are definitely sure you want to travel here.");
+	}
+	output("\n\n");
+	
 	addButton(0, "Continue", flyTo, "Poe A", "Fly to Poe A", "I can handle the consequences!");
 	addButton(14, "Nevermind", flyMenu);
 }
@@ -91,8 +125,22 @@ public function holidayoweenPartDues():void
 	clearOutput();
 	showHoliday();
 	author("Adjatha");
+	
+	// Save current year to prevent repeat visits.
+	flags["POE_A_YEAR"] = getRealtimeYear();
+	
+	if(flags["POE_A_DISABLED"] != undefined)
+	{
+		if(flags["POE_A_VISITED"] == undefined) flags["POE_A_VISITED"] = 1;
+		flags["POE_A_VISITED"]++;
+		
+		// 9999 needs some kind of repeat encounter text for meeting Holiday!
+		
+		// return;
+	}
 	//Go ahead and shut this down to prevent having to do it at the tail of every variant.
-	flags["POE_A_DISABLED"] = 1;
+	else flags["POE_A_DISABLED"] = 1;
+	
 	output("As you wander one such backstreet, an illuminated doorway catches your attention. A small, hand-written sign on the outside reads <i>“Holiday Supplies,”</i> and there seems to be a figure moving around in the back room of the otherwise empty store. Figuring it’s worth a shot, you step inside and stride up to the counter, calling out to the owner with a hopeful request. The shadowy figure in the back freezes for a second before slowly, reluctantly coming to the desk. The owner seems to be a young woman, around 6 feet tall, with generous curves and thick, pink hair that frames her angular face like a mane. She has a large number of piercings and a series of elaborate tattoos across her milky skin. Like everyone else on the planet, she’s wearing a costume, dressed in the white and red of a nurse’s uniform, though cut to be more revealing than practical - barely more than a risque swimsuit. Confusingly, she’s also wearing a pair of russet horns and a spaded tail. Maybe she couldn’t decide between a devil and a nurse and just decided to go with both?");
 	output("\n\nShe looks at you with a cautious glare, sizing you up while chewing on her lower lip. Seemingly satisfied, she relaxes and leans across the counter, displaying the ample cleavage her costume seems designed to show off. <i>“Sup?”</i>");
 	output("\n\nA little off-put, you ask her if she’s still got any costumes for sale.");
@@ -113,56 +161,64 @@ public function holidayCostumeMenu():void
 {
 	clearMenu();
 	
-	var btnSlot:int = 0;
-	if(pc.credits >= 1000)
-	{
-		addButton(btnSlot++,"GoblinSuit",goblinCostume,undefined,"Goblin","You could dress up as some kind of fantasy goblin.\n\nPrice: 1000 credits");
-		
-		addButton(btnSlot++,"Helmet",metroidMaskParody,undefined,"Helmet","This helmet looks pretty spacy! Rad!\n\nPrice: 1000 credits");
-		
-		if(!pc.hasGenitals()) addDisabledButton(btnSlot++,"Armor","Armor","Looks like that outfit is for people with genitalia.");
-		else addButton(btnSlot++,"Armor",greenArmor,undefined,"Armor",("There’s a suit of dark green armor on the rack, with a black bodysuit underneath holding the skimpy green plates together. You’re pretty sure it’s modeled after some video game character." + (flags["MET_SYRI"] == undefined ? "" : ".. didn’t you see Syri playing as this chick once?") + " The armor’s probably not real, but it’ll make a decent enough cosplay for a night on the town!\n\nPrice: 1000 credits"));
-		
-		if(pc.isTaur()) addDisabledButton(btnSlot++,"HorseSuit","HorseSuit","It looks like the bottom half of a centaur... though you have a tauric lower half already.");
-		else if(pc.isPregnant()) addDisabledButton(btnSlot++,"HorseSuit","HorseSuit","It looks like the bottom half of a centaur. To avoid complications, you probably shouldn’t wear this while pregnant.");
-		else if(pc.hasGenitals() && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined) addButton(btnSlot++,"HorseSuit",centaurBunsBunsBuns,undefined,"Horse Suit","It looks like the bottom half of a centaur. Must be robotic.\n\nPrice: 1000 credits");
-		else addDisabledButton(btnSlot++,"HorseSuit","HorseSuit","You need to have made it to the second planet (and have genitals) for this choice.");
-
-		//Spider Suit
-		if(pc.isPregnant()) addDisabledButton(btnSlot++,"SpiderSuit","Spider Suit","A warning label mentions that this costume contains substances harmful to pregnant individuals. Damn!");
-		else addButton(btnSlot++,"SpiderSuit",spiderSuitApproach,undefined,"Spider Suit","A forgotten pile of black armor attached to a gray body suit sits crumpled in the corner of the room. You’re not really sure what it is.\n\nPrice: 1000 credits");
-
-		if(pc.isPregnant()) addDisabledButton(btnSlot++,"MetalReptile","Metal Reptile","A warning label mentions that this costume contains substances harmful to pregnant individuals. Damn!");
-		else addButton(btnSlot++,"MetalReptile",metalReptileCostume,undefined,"Metal Reptile","There’s some kind of bodysuit - covered in metallic scales - laying atop one of the boxes. Looks like it could be pretty badass...\n\nPrice: 1000 credits");
-
-		if(pc.hasVagina()) addDisabledButton(btnSlot++,"Hero Garb","Hero Garb","This clothing features a very male cut. It even includes a warning label suggesting that females and hermaphrodites should not wear it. Weird.");
-		else if(pc.isTaur()) addDisabledButton(btnSlot++,"Hero Garb","Hero Garb","Your unconventional body type would never fit into the costume.");
-		else if(!pc.hasCock()) addDisabledButton(btnSlot++,"Hero Garb","Hero Garb","This clothing features a very male cut. You’ll need a phallus to properly fill it out.");
-		else addButton(btnSlot++,"Hero Garb",heroGarbCostume,undefined,"Hero Garb","A forest green pointed hat droops over the head of a mannequin, with a matching green tunic and white tights. A pair of brown leather boots and gauntlets lay strewn across the floor.\n\nPrice: 1000 credits");
-
-		addButton(btnSlot++,"KnottyNurse",becomeANaughtyNurse,undefined,"Knotty Nurse",knottyNurseTooltip());
-		
-		if(CodexManager.entryUnlocked("Cockvines")) addButton(btnSlot++,"GreenBikini",chooseCockvineBikini,undefined,"Green Bikini","What seems to be a green-colored bikini stuffed between the other outfits.\n\nPrice: 1000 credits");
-		else addDisabledButton(btnSlot++,"Locked","Locked","You are not familiar with this yet.");
-	}
-	else
-	{
-		addDisabledButton(btnSlot++,"GoblinSuit","GoblinSuit","You can’t afford this junk. Crap.");
-		addDisabledButton(btnSlot++,"Helmet","Helmet","You can’t afford this junk. Crap.");
-		addDisabledButton(btnSlot++,"Armor","Armor","You can’t afford this junk. Crap.");
-		addDisabledButton(btnSlot++,"HorseSuit","Horse Suit","You can’t afford this junk. Crap.");
-		addDisabledButton(btnSlot++,"Spider Suit","Spider Suit","You can’t afford this junk. Crap.");
-		addDisabledButton(btnSlot++,"MetalReptile","Metal Reptile","You can’t afford this junk. Crap.");
-		addDisabledButton(btnSlot++,"Hero Garb","Hero Garb","You can’t afford this junk. Crap.");
-		addDisabledButton(btnSlot++,"KnottyNurse","Knotty Nurse","You can’t afford this junk. Crap.");
-		if(CodexManager.entryUnlocked("Cockvines")) addDisabledButton(btnSlot++,"GreenBikini","Green Bikini","You can’t afford this junk. Crap.");
-		else addDisabledButton(btnSlot++,"Locked","Locked","You are not familiar with this yet.");
-	}
-	//Poe A - Bondage Kitty
-	if(pc.isTaur()) addDisabledButton(btnSlot++,"Black Cat","Black Cat","This wouldn’t fit your body type.");
-	else addButton(btnSlot++,"Black Cat",selectTheBlackCatCostume,undefined,"Black Cat","A whole crate full of brushed steel briefcases with the picture of a black cat on them. Could be a pretty cute outfit!\n\nPrice: ???");
+	var costumes:Array = [];
 	
-	addButton(14,"Back",holidayMenu);
+	costumes.push(["GoblinSuit", goblinCostume , undefined, "Goblin", "You could dress up as some kind of fantasy goblin.\n\nPrice: 1000 credits", 1000]);
+	
+	costumes.push(["Helmet", metroidMaskParody, undefined, "Helmet", "This helmet looks pretty spacy! Rad!\n\nPrice: 1000 credits", 1000]);
+	
+	if(!pc.hasGenitals()) costumes.push(["Armor", null, undefined, "Armor", "Looks like that outfit is for people with genitalia.", 0]);
+	else costumes.push(["Armor", greenArmor, undefined, "Armor", ("There’s a suit of dark green armor on the rack, with a black bodysuit underneath holding the skimpy green plates together. You’re pretty sure it’s modeled after some video game character." + (flags["MET_SYRI"] == undefined ? "" : ".. didn’t you see Syri playing as this chick once?") + " The armor’s probably not real, but it’ll make a decent enough cosplay for a night on the town!\n\nPrice: 1000 credits"), 1000]);
+	
+	if(pc.isTaur()) costumes.push(["HorseSuit", null, undefined, "Horse Suit", "It looks like the bottom half of a centaur... though you have a tauric lower half already.", 0]);
+	else if(pc.isPregnant()) costumes.push(["HorseSuit", null, undefined, "Horse Suit", "It looks like the bottom half of a centaur. To avoid complications, you probably shouldn’t wear this while pregnant.", 0]);
+	else if(pc.hasGenitals() && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined) costumes.push(["HorseSuit", centaurBunsBunsBuns, undefined, "Horse Suit", "It looks like the bottom half of a centaur. Must be robotic.\n\nPrice: 1000 credits", 1000]);
+	else costumes.push(["HorseSuit", null, undefined, "Horse Suit", "You need to have made it to the second planet (and have genitals) for this choice.", 0]);
+	
+	if(pc.isPregnant()) costumes.push(["SpiderSuit", null, undefined, "Spider Suit", "A warning label mentions that this costume contains substances harmful to pregnant individuals. Damn!", 0]);
+	else costumes.push(["SpiderSuit", spiderSuitApproach, undefined, "Spider Suit", "A forgotten pile of black armor attached to a gray body suit sits crumpled in the corner of the room. You’re not really sure what it is.\n\nPrice: 1000 credits", 1000]);
+	
+	if(pc.isPregnant()) costumes.push(["MetalReptile", null, undefined, "Metal Reptile", "A warning label mentions that this costume contains substances harmful to pregnant individuals. Damn!", 0]);
+	else costumes.push(["MetalReptile", metalReptileCostume, undefined, "Metal Reptile", "There’s some kind of bodysuit - covered in metallic scales - laying atop one of the boxes. Looks like it could be pretty badass...\n\nPrice: 1000 credits", 1000]);
+	
+	if(pc.hasVagina()) costumes.push(["Hero Garb", null, undefined, "Hero Garb", "This clothing features a very male cut. It even includes a warning label suggesting that females and hermaphrodites should not wear it. Weird.", 0]);
+	else if(pc.isTaur()) costumes.push(["Hero Garb", null, undefined, "Hero Garb", "Your unconventional body type would never fit into the costume.", 0]);
+	else if(!pc.hasCock()) costumes.push(["Hero Garb", null, undefined, "Hero Garb", "This clothing features a very male cut. You’ll need a phallus to properly fill it out.", 0]);
+	else costumes.push(["Hero Garb", heroGarbCostume, undefined, "Hero Garb", "A forest green pointed hat droops over the head of a mannequin, with a matching green tunic and white tights. A pair of brown leather boots and gauntlets lay strewn across the floor.\n\nPrice: 1000 credits", 1000]);
+	
+	costumes.push(["KnottyNurse", becomeANaughtyNurse, undefined, "Knotty Nurse", knottyNurseTooltip(), 1000]);
+	
+	if(!CodexManager.entryUnlocked("Cockvines")) costumes.push(["Locked", null, undefined, "Locked", "You are not familiar with this yet.", 0]);
+	else costumes.push(["GreenBikini", chooseCockvineBikini, undefined, "Green Bikini", "What seems to be a green-colored bikini stuffed between the other outfits.\n\nPrice: 1000 credits", 1000]);
+	
+	if(pc.isTaur()) costumes.push(["Black Cat", null, undefined, "Black Cat", "This wouldn’t fit your body type.", 0]);
+	else costumes.push(["Black Cat", selectTheBlackCatCostume, undefined, "Black Cat", "A whole crate full of brushed steel briefcases with the picture of a black cat on them. Could be a pretty cute outfit!\n\nPrice: ???", 0]);
+	
+	var btnSlot:int = 0;
+	var i:int = 0;
+	var offset:int = 5;
+	
+	for(i = 0; i < costumes.length; i++)
+	{
+		if((btnSlot + offset) % 15 == 0) btnSlot += offset;
+		
+		if(btnSlot > 14 && (btnSlot + 1) % 15 == 0)
+		{
+			addButton(btnSlot, "Back", holidayMenu);
+			btnSlot++;
+		}
+		
+		if(costumes[i][1] == null) addDisabledButton(btnSlot, costumes[i][0], costumes[i][3], costumes[i][4]);
+		else if(costumes[i][5] > pc.credits) addDisabledButton(btnSlot, costumes[i][0], costumes[i][3], "You can’t afford this junk. Crap.");
+		else addButton(btnSlot, costumes[i][0], costumes[i][1], costumes[i][2], costumes[i][3], costumes[i][4]);
+		btnSlot++;
+	}
+	if(btnSlot > 14)
+	{
+		while((btnSlot < 59) && ((btnSlot + 1) % 15 != 0)) { btnSlot++; }
+		addButton(btnSlot, "Back", holidayMenu);
+	}
+	addButton(14, "Back", holidayMenu);
 }
 
 //Talk
@@ -621,7 +677,7 @@ public function amazonTFShitApplied():void
 	pc.reflexes(-3);
 	pc.aim(-2);
 	if(pc.tallness+12 <= 84) pc.tallness = 84;
-	else pc.tallness += 12;
+	else if(pc.tallness+12 <= 132) pc.tallness += 12;
 	pc.cumQualityRaw += .2;
 	pc.fertilityRaw += .2;
 	if(pc.breastRows[0].breastRatingRaw < 17 && pc.breastRows[0].breastRatingRaw + 5 > 17) pc.breastRows[0].breastRatingRaw = 17;

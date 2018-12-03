@@ -1153,7 +1153,7 @@ public function offerPussyYouSloot():void
 	if(pc.isTaur()) output("stand");
 	else output("sit");
 	output(" there, your arms bound, you watch Aliss reach to the side and produce what appears to be a silver condom package. The wrapper has an eight-legged horse and the word “Stallionguard” emblazoned on it. <i>“They make them specifically for horsecocks, but we ovir are so similar they’re just perfect for us too,”</i> she says, momentarily rubbing your outer folds to elicit a light moan from you. <i>“I love them... they’re so thin it’s like wearing nothing at all");
-	if(silly) output("-”</i> Stupid sexy Alice! <i>“-");
+	if(silly) output("-”</i> Stupid sexy Aliss! <i>“-");
 	else output(",");
 	output(" and besides that, they help keep the room nice and tidy.”</i> She giggles softly as she opens the packet and produces a translucent condom, which she expertly slips onto her hard shaft.");
 
@@ -1243,7 +1243,7 @@ public function offerAlissYourAss():void
 	if(pc.isTaur()) output(" and across");
 	output(" your body, before ending at your groin. You turn around");
 	if(!pc.isTaur()) output(" and slowly bend over");
-	output(", presenting your [pc.asshole] to the horny oviri.");
+	output(", presenting your [pc.asshole] to the horny ovir.");
 
 	output("\n\n<i>“Ohh, what have we here,”</i> she says, her voice turning husky. <i>“So eager to have your little asshole plugged. But not yet, we’ve got to get you ready first.”</i> You quirk an eyebrow and look to the side, watching Aliss in the mirrors that surround you. She ");
 	if(pc.tallness >= 84) output("leans in");

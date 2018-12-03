@@ -366,7 +366,7 @@ public function hasParasites(pType:String = "all"):Boolean
 	}
 	if(pType == "cockvine" || pType == "tail" || pType == "all")
 	{
-		if (pc.hasTailCock() && pc.hasParasiteTail()) return true;
+		if (pc.hasParasiteTail() && pc.hasTailCock()) return true;
 	}
 	if(pType == "cuntsnake" || pType == "tail" || pType == "all")
 	{
@@ -393,8 +393,8 @@ public function purgeParasites(pType:String = "all"):Boolean
 	if(pType == "cockvine" || pType == "cuntsnake" || pType == "tail" || pType == "all")
 	{
 		if(	pType == "all"
-		||	(pType == "cockvine" && pc.hasTailCock() && pc.hasParasiteTail())
-		||	(pType == "cunt snake" && pc.hasParasiteTail() && pc.hasTailCunt())
+		||	(pType == "cockvine" && pc.hasParasiteTail() && pc.hasTailCock())
+		||	(pType == "cuntsnake" && pc.hasParasiteTail() && pc.hasTailCunt())
 		||	(pType == "tail" && pc.hasParasiteTail())
 		) {
 			pc.removeTails();

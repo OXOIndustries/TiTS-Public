@@ -609,6 +609,7 @@ public function initMhengaRooms():void
 	rooms["DENSE ORANGE 1"].system = "SYSTEM: ARA ARA";
 	rooms["DENSE ORANGE 1"].northExit = "IRONWOODS BEND 2";
 	rooms["DENSE ORANGE 1"].southExit = "DENSE ORANGE 2";
+	//rooms["DENSE ORANGE 1"].eastExit = "PUMPKING_MAIN_GATE";
 	rooms["DENSE ORANGE 1"].addFlag(GLOBAL.OUTDOOR);
 	rooms["DENSE ORANGE 1"].addFlag(GLOBAL.HAZARD);
 	rooms["DENSE ORANGE 1"].addFlag(GLOBAL.FOREST);
@@ -1803,6 +1804,390 @@ public function initMhengaRooms():void
 	rooms["GOLD MYR CHAMBER"].addFlag(GLOBAL.PUBLIC);
 	rooms["GOLD MYR CHAMBER"].addFlag(GLOBAL.NPC);
 	
+	//===============================================
+	//		PUMPKING EVENT ROOMS (By Franks)
+	//===============================================
+	rooms["PUMPKING_MAIN_GATE"] = new RoomClass(this);
+	rooms["PUMPKING_MAIN_GATE"].roomName = "MAIN\nGATE";
+	rooms["PUMPKING_MAIN_GATE"].description = "";
+	rooms["PUMPKING_MAIN_GATE"].runOnEnter = pumpkingMainGateBonus;
+	rooms["PUMPKING_MAIN_GATE"].planet = "PLANET: MHEN'GA";
+	rooms["PUMPKING_MAIN_GATE"].system = "SYSTEM: ARA ARA";
+	rooms["PUMPKING_MAIN_GATE"].eastExit = "PUMPKING_WEST_PASSAGE";
+	rooms["PUMPKING_MAIN_GATE"].westExit = "DENSE ORANGE 1";
+	rooms["PUMPKING_MAIN_GATE"].addFlag(GLOBAL.JUNGLE);
+	rooms["PUMPKING_MAIN_GATE"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["PUMPKING_WEST_PASSAGE"] = new RoomClass(this);
+	rooms["PUMPKING_WEST_PASSAGE"].roomName = "WEST\nPASSAGE";
+	rooms["PUMPKING_WEST_PASSAGE"].description = "";
+	rooms["PUMPKING_WEST_PASSAGE"].runOnEnter = pumpkingPassageBonus;
+	rooms["PUMPKING_WEST_PASSAGE"].planet = "PLANET: MHEN'GA";
+	rooms["PUMPKING_WEST_PASSAGE"].system = "SYSTEM: ARA ARA";
+	rooms["PUMPKING_WEST_PASSAGE"].westExit = "PUMPKING_MAIN_GATE";
+	rooms["PUMPKING_WEST_PASSAGE"].eastExit = "PUMPKING_GREAT_HALL";
+	rooms["PUMPKING_WEST_PASSAGE"].addFlag(GLOBAL.JUNGLE);
+	rooms["PUMPKING_WEST_PASSAGE"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["PUMPKING_GREAT_HALL"] = new RoomClass(this);
+	rooms["PUMPKING_GREAT_HALL"].roomName = "WEST\nPASSAGE";
+	rooms["PUMPKING_GREAT_HALL"].description = "";
+	rooms["PUMPKING_GREAT_HALL"].runOnEnter = pumpkingMainHallBonus;
+	rooms["PUMPKING_GREAT_HALL"].planet = "PLANET: MHEN'GA";
+	rooms["PUMPKING_GREAT_HALL"].system = "SYSTEM: ARA ARA";
+	rooms["PUMPKING_GREAT_HALL"].westExit = "PUMPKING_WEST_PASSAGE";
+	rooms["PUMPKING_GREAT_HALL"].eastExit = "PUMPKING_EAST_PASSAGE";
+	rooms["PUMPKING_GREAT_HALL"].northExit = "PUMPKING_NORTH_PASSAGE";
+	rooms["PUMPKING_GREAT_HALL"].southExit = "PUMPKING_SOUTH_PASSAGE";
+	rooms["PUMPKING_GREAT_HALL"].addFlag(GLOBAL.JUNGLE);
+	rooms["PUMPKING_GREAT_HALL"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["PUMPKING_NORTH_PASSAGE"] = new RoomClass(this);
+	rooms["PUMPKING_NORTH_PASSAGE"].roomName = "NORTH\nPASSAGE";
+	rooms["PUMPKING_NORTH_PASSAGE"].description = "";
+	rooms["PUMPKING_NORTH_PASSAGE"].runOnEnter = pumpkingPassageBonus;
+	rooms["PUMPKING_NORTH_PASSAGE"].planet = "PLANET: MHEN'GA";
+	rooms["PUMPKING_NORTH_PASSAGE"].system = "SYSTEM: ARA ARA";
+	rooms["PUMPKING_NORTH_PASSAGE"].westExit = "";
+	rooms["PUMPKING_NORTH_PASSAGE"].eastExit = "";
+	rooms["PUMPKING_NORTH_PASSAGE"].northExit = "PUMPKING_ARMORY";
+	rooms["PUMPKING_NORTH_PASSAGE"].southExit = "PUMPKING_GREAT_HALL";
+	rooms["PUMPKING_NORTH_PASSAGE"].addFlag(GLOBAL.JUNGLE);
+	rooms["PUMPKING_NORTH_PASSAGE"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["PUMPKING_ARMORY"] = new RoomClass(this);
+	rooms["PUMPKING_ARMORY"].roomName = "\nARMORY";
+	rooms["PUMPKING_ARMORY"].description = "";
+	rooms["PUMPKING_ARMORY"].runOnEnter = pumpkinTrainingRoomArmoryBonus;
+	rooms["PUMPKING_ARMORY"].planet = "PLANET: MHEN'GA";
+	rooms["PUMPKING_ARMORY"].system = "SYSTEM: ARA ARA";
+	rooms["PUMPKING_ARMORY"].westExit = "";
+	rooms["PUMPKING_ARMORY"].eastExit = "";
+	rooms["PUMPKING_ARMORY"].northExit = "";
+	rooms["PUMPKING_ARMORY"].southExit = "PUMPKING_NORTH_PASSAGE";
+	rooms["PUMPKING_ARMORY"].addFlag(GLOBAL.JUNGLE);
+	rooms["PUMPKING_ARMORY"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["PUMPKING_SOUTH_PASSAGE"] = new RoomClass(this);
+	rooms["PUMPKING_SOUTH_PASSAGE"].roomName = "SOUTH\nPASSAGE";
+	rooms["PUMPKING_SOUTH_PASSAGE"].description = "";
+	rooms["PUMPKING_SOUTH_PASSAGE"].runOnEnter = pumpkingPassageBonus;
+	rooms["PUMPKING_SOUTH_PASSAGE"].planet = "PLANET: MHEN'GA";
+	rooms["PUMPKING_SOUTH_PASSAGE"].system = "SYSTEM: ARA ARA";
+	rooms["PUMPKING_SOUTH_PASSAGE"].westExit = "";
+	rooms["PUMPKING_SOUTH_PASSAGE"].eastExit = "";
+	rooms["PUMPKING_SOUTH_PASSAGE"].northExit = "PUMPKING_GREAT_HALL";
+	rooms["PUMPKING_SOUTH_PASSAGE"].southExit = "PUMPKING_DUNGEON";
+	rooms["PUMPKING_SOUTH_PASSAGE"].addFlag(GLOBAL.JUNGLE);
+	rooms["PUMPKING_SOUTH_PASSAGE"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["PUMPKING_DUNGEON"] = new RoomClass(this);
+	rooms["PUMPKING_DUNGEON"].roomName = "\nDUNGEON";
+	rooms["PUMPKING_DUNGEON"].description = "";
+	rooms["PUMPKING_DUNGEON"].runOnEnter = pumpkingDungeonBonus;
+	rooms["PUMPKING_DUNGEON"].planet = "PLANET: MHEN'GA";
+	rooms["PUMPKING_DUNGEON"].system = "SYSTEM: ARA ARA";
+	rooms["PUMPKING_DUNGEON"].westExit = "";
+	rooms["PUMPKING_DUNGEON"].eastExit = "";
+	rooms["PUMPKING_DUNGEON"].northExit = "PUMPKING_SOUTH_PASSAGE";
+	rooms["PUMPKING_DUNGEON"].southExit = "";
+	rooms["PUMPKING_DUNGEON"].addFlag(GLOBAL.JUNGLE);
+	rooms["PUMPKING_DUNGEON"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["PUMPKING_EAST_PASSAGE"] = new RoomClass(this);
+	rooms["PUMPKING_EAST_PASSAGE"].roomName = "EAST\nPASSAGE";
+	rooms["PUMPKING_EAST_PASSAGE"].description = "";
+	rooms["PUMPKING_EAST_PASSAGE"].runOnEnter = pumpkingPassageBonus;
+	rooms["PUMPKING_EAST_PASSAGE"].planet = "PLANET: MHEN'GA";
+	rooms["PUMPKING_EAST_PASSAGE"].system = "SYSTEM: ARA ARA";
+	rooms["PUMPKING_EAST_PASSAGE"].westExit = "PUMPKING_GREAT_HALL";
+	rooms["PUMPKING_EAST_PASSAGE"].eastExit = "PUMPKING_THRONE_ROOM";
+	rooms["PUMPKING_EAST_PASSAGE"].northExit = "";
+	rooms["PUMPKING_EAST_PASSAGE"].southExit = "";
+	rooms["PUMPKING_EAST_PASSAGE"].addFlag(GLOBAL.JUNGLE);
+	rooms["PUMPKING_EAST_PASSAGE"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["PUMPKING_THRONE_ROOM"] = new RoomClass(this);
+	rooms["PUMPKING_THRONE_ROOM"].roomName = "THRONE\nROOM";
+	rooms["PUMPKING_THRONE_ROOM"].description = "";
+	rooms["PUMPKING_THRONE_ROOM"].runOnEnter = pumpkingThroneBonus;
+	rooms["PUMPKING_THRONE_ROOM"].planet = "PLANET: MHEN'GA";
+	rooms["PUMPKING_THRONE_ROOM"].system = "SYSTEM: ARA ARA";
+	rooms["PUMPKING_THRONE_ROOM"].westExit = "PUMPKING_EAST_PASSAGE";
+	rooms["PUMPKING_THRONE_ROOM"].eastExit = "";
+	rooms["PUMPKING_THRONE_ROOM"].northExit = "";
+	rooms["PUMPKING_THRONE_ROOM"].southExit = "";
+	rooms["PUMPKING_THRONE_ROOM"].addFlag(GLOBAL.JUNGLE);
+	rooms["PUMPKING_THRONE_ROOM"].addFlag(GLOBAL.PUBLIC);
+	rooms["PUMPKING_THRONE_ROOM"].addFlag(GLOBAL.OBJECTIVE);
+
+
+	/*======================================
+				PENNY QUEST
+	======================================*/
+	rooms["PENNYQUESTSTANDIN"] = new RoomClass(this);
+	rooms["PENNYQUESTSTANDIN"].roomName = "WESTERN\nJUNGLE";
+	rooms["PENNYQUESTSTANDIN"].description = "";
+	rooms["PENNYQUESTSTANDIN"].runOnEnter = undefined;
+	rooms["PENNYQUESTSTANDIN"].planet = "PLANET: MHEN'GA";
+	rooms["PENNYQUESTSTANDIN"].system = "SYSTEM: ARA ARA";
+	//rooms["PENNYQUESTSTANDIN"].westExit = "EAST ESBETH";
+	//rooms["PENNYQUESTSTANDIN"].addFlag(GLOBAL.INDOOR);
+	//rooms["PENNYQUESTSTANDIN"].addFlag(GLOBAL.MEDICAL);
+	rooms["PENNYQUESTSTANDIN"].addFlag(GLOBAL.HAZARD);
+
+	rooms["PQUEST_U8"] = new RoomClass(this);
+	rooms["PQUEST_U8"].roomName = "CAVE\nENTRANCE";
+	rooms["PQUEST_U8"].description = "With the entrance obscured by a curtain of moss, there’s little light to be found within Mhen’ga’s subterranean depths aside from the flickering sparks of Penny’s weapons. The cave walls glisten in the unreliable illumination due to the inherent moisture in the air, stretching away to the west.";
+	rooms["PQUEST_U8"].runOnEnter = undefined;
+	rooms["PQUEST_U8"].planet = "PLANET: MHEN'GA";
+	rooms["PQUEST_U8"].system = "SYSTEM: ARA ARA";
+	rooms["PQUEST_U8"].westExit = "PQUEST_S8";
+	rooms["PQUEST_U8"].eastExit = "";
+	rooms["PQUEST_U8"].northExit = "";
+	rooms["PQUEST_U8"].southExit = "";
+	rooms["PQUEST_U8"].addFlag(GLOBAL.HAZARD);
+
+	rooms["PQUEST_S8"] = new RoomClass(this);
+	rooms["PQUEST_S8"].roomName = "CAVE\nSPLIT";
+	rooms["PQUEST_S8"].description = "The dank interior of this cave system splits north and south from hear, as well as east back towards where you entered. Penny and a few stunted stalagtites are all you have for company.";
+	rooms["PQUEST_S8"].runOnEnter = undefined;
+	rooms["PQUEST_S8"].planet = "PLANET: MHEN'GA";
+	rooms["PQUEST_S8"].system = "SYSTEM: ARA ARA";
+	rooms["PQUEST_S8"].westExit = "";
+	rooms["PQUEST_S8"].eastExit = "PQUEST_U8";
+	rooms["PQUEST_S8"].northExit = "PQUEST_S6";
+	rooms["PQUEST_S8"].southExit = "PQUEST_S10";
+	rooms["PQUEST_S8"].addFlag(GLOBAL.HAZARD);
+
+	rooms["PQUEST_S10"] = new RoomClass(this);
+	rooms["PQUEST_S10"].roomName = "CAVE\nBEND";
+	rooms["PQUEST_S10"].description = "Twisting around the corner to the west, the cave burrows deeper into Mhen’ga’s fertile soil. There’s a source of illumination a little further in that direction. Perhaps it bears investigating. The cave’s entrance lies north and east.";
+	rooms["PQUEST_S10"].runOnEnter = undefined;
+	rooms["PQUEST_S10"].planet = "PLANET: MHEN'GA";
+	rooms["PQUEST_S10"].system = "SYSTEM: ARA ARA";
+	rooms["PQUEST_S10"].westExit = "PQUEST_Q10";
+	rooms["PQUEST_S10"].eastExit = "";
+	rooms["PQUEST_S10"].northExit = "PQUEST_S8";
+	rooms["PQUEST_S10"].southExit = "";
+	rooms["PQUEST_S10"].addFlag(GLOBAL.HAZARD);
+
+	rooms["PQUEST_Q10"] = new RoomClass(this);
+	rooms["PQUEST_Q10"].roomName = "LIGHT\nSHAFT";
+	rooms["PQUEST_Q10"].description = "A shaft of gloriously bright light shines down from a wide-open hole in the ceiling. Up above, you can spot the leafy green of the jungle canopy and the purple of alien moss, though no way to climb up presents itself, not that there’s any reason to take such a perilous journey. Your goals lie elsewhere - deeper and to the west. You’ll need to turn back.";
+	rooms["PQUEST_Q10"].runOnEnter = undefined;
+	rooms["PQUEST_Q10"].planet = "PLANET: MHEN'GA";
+	rooms["PQUEST_Q10"].system = "SYSTEM: ARA ARA";
+	rooms["PQUEST_Q10"].westExit = "";
+	rooms["PQUEST_Q10"].eastExit = "PQUEST_S10";
+	rooms["PQUEST_Q10"].northExit = "";
+	rooms["PQUEST_Q10"].southExit = "";
+	rooms["PQUEST_Q10"].addFlag(GLOBAL.HAZARD);
+
+	rooms["PQUEST_S6"] = new RoomClass(this);
+	rooms["PQUEST_S6"].roomName = "DANK\nCAVE";
+	rooms["PQUEST_S6"].description = "Glossy brown roots race through the walls, weaving between rocky outcroppings and loamy soil. Without them, you have no doubt this cave would’ve collapsed long ago. It’s almost like the roots themselves are the only thing holding it together, like a sort of organic reinforcement.";
+	rooms["PQUEST_S6"].runOnEnter = undefined;
+	rooms["PQUEST_S6"].planet = "PLANET: MHEN'GA";
+	rooms["PQUEST_S6"].system = "SYSTEM: ARA ARA";
+	rooms["PQUEST_S6"].westExit = "";
+	rooms["PQUEST_S6"].eastExit = "";
+	rooms["PQUEST_S6"].northExit = "PQUEST_S4";
+	rooms["PQUEST_S6"].southExit = "PQUEST_S8";
+	rooms["PQUEST_S6"].addFlag(GLOBAL.HAZARD);
+
+	rooms["PQUEST_S4"] = new RoomClass(this);
+	rooms["PQUEST_S4"].roomName = "CAVE\nBEND";
+	rooms["PQUEST_S4"].description = "This underground tunnel goes a bit windy, flowing west before jerking back north. It’s straighter south, but that’s back the way you came. Droplets of water occassionally splash down from the ceiling, carving small channels in the rock underfoot. You’ll need to move carefully if you don’t want to slip.";
+	rooms["PQUEST_S4"].runOnEnter = undefined;
+	rooms["PQUEST_S4"].planet = "PLANET: MHEN'GA";
+	rooms["PQUEST_S4"].system = "SYSTEM: ARA ARA";
+	rooms["PQUEST_S4"].westExit = "PQUEST_Q4";
+	rooms["PQUEST_S4"].eastExit = "";
+	rooms["PQUEST_S4"].northExit = "";
+	rooms["PQUEST_S4"].southExit = "PQUEST_S6";
+	rooms["PQUEST_S4"].addFlag(GLOBAL.HAZARD);
+
+	rooms["PQUEST_Q4"] = new RoomClass(this);
+	rooms["PQUEST_Q4"].roomName = "CAVE\nBEND";
+	rooms["PQUEST_Q4"].description = "The humid tunnel slopes down to the north and shifts east around tree trunk-sized root. Webs of thin, stringy roots dangle from the ceiling to collect the condensation. You’re forced to brush them aside almost every other step, they grow so thickly, absorbing ambient sound so well that the only thing you can hear are your own movements and the unsubtle crackling of Penny’s tonfas.";
+	rooms["PQUEST_Q4"].runOnEnter = undefined;
+	rooms["PQUEST_Q4"].planet = "PLANET: MHEN'GA";
+	rooms["PQUEST_Q4"].system = "SYSTEM: ARA ARA";
+	rooms["PQUEST_Q4"].westExit = "";
+	rooms["PQUEST_Q4"].eastExit = "PQUEST_S4";
+	rooms["PQUEST_Q4"].northExit = "PQUEST_Q2";
+	rooms["PQUEST_Q4"].southExit = "";
+	rooms["PQUEST_Q4"].addFlag(GLOBAL.HAZARD);
+
+	rooms["PQUEST_Q2"] = new RoomClass(this);
+	rooms["PQUEST_Q2"].roomName = "CAVE\nBEND";
+	rooms["PQUEST_Q2"].description = "The cave slopes deeper to the west, opening up as it goes. The ceilings are higher there and less obscured by roots and moss. Back to the south, the tunnel grows more claustrophobic, with annoying-looking sheets of dangling roots.";
+	rooms["PQUEST_Q2"].runOnEnter = undefined;
+	rooms["PQUEST_Q2"].planet = "PLANET: MHEN'GA";
+	rooms["PQUEST_Q2"].system = "SYSTEM: ARA ARA";
+	rooms["PQUEST_Q2"].westExit = "PQUEST_O2";
+	rooms["PQUEST_Q2"].eastExit = "";
+	rooms["PQUEST_Q2"].northExit = "";
+	rooms["PQUEST_Q2"].southExit = "PQUEST_Q4";
+	rooms["PQUEST_Q2"].addFlag(GLOBAL.HAZARD);
+
+	rooms["PQUEST_O2"] = new RoomClass(this);
+	rooms["PQUEST_O2"].roomName = "VENUS\nZILTRAPS";
+	rooms["PQUEST_O2"].description = "The two venus ziltrap pods remain exactly where you first saw them, rooted to the floor and ceiling by pillar-like growths, their ‘pods’ snugly ensconcing a pair of captive lawbreakers. The creatures themselves don’t pay you much mind, content with the bounty they’ve secured, and aside from the occasional orgasmic squirming of a mind-broken smuggler through the taut green walls of a pod, nothing moves.";
+	rooms["PQUEST_O2"].runOnEnter = podDiscoveryBonus;
+	rooms["PQUEST_O2"].planet = "PLANET: MHEN'GA";
+	rooms["PQUEST_O2"].system = "SYSTEM: ARA ARA";
+	rooms["PQUEST_O2"].westExit = "PQUEST_M2";
+	rooms["PQUEST_O2"].eastExit = "PQUEST_Q2";
+	rooms["PQUEST_O2"].northExit = "";
+	rooms["PQUEST_O2"].southExit = "";
+	rooms["PQUEST_O2"].addFlag(GLOBAL.HAZARD);
+
+	rooms["PQUEST_M2"] = new RoomClass(this);
+	rooms["PQUEST_M2"].roomName = "MORE\nPODS";
+	rooms["PQUEST_M2"].description = "The deeper you push into the cave, the more venus ziltrap pods you see. There’s four in close proximity, all occupied by drugged, ecstatic zil if the honeyed aroma in the air is any indication. Red eyes peek out of one pod to look at you, then vanish back inside with a playful wink. To the east are the two pods with the captured smugglers. To the south, the cave dives deeper, closer to the purported Oxonium stash.";
+	rooms["PQUEST_M2"].runOnEnter = undefined;
+	rooms["PQUEST_M2"].planet = "PLANET: MHEN'GA";
+	rooms["PQUEST_M2"].system = "SYSTEM: ARA ARA";
+	rooms["PQUEST_M2"].westExit = "";
+	rooms["PQUEST_M2"].eastExit = "PQUEST_O2";
+	rooms["PQUEST_M2"].northExit = "";
+	rooms["PQUEST_M2"].southExit = "PQUEST_M4";
+	rooms["PQUEST_M2"].addFlag(GLOBAL.HAZARD);
+
+	rooms["PQUEST_M4"] = new RoomClass(this);
+	rooms["PQUEST_M4"].roomName = "POD\nCORNER";
+	rooms["PQUEST_M4"].description = "The cave itself runs west, deeper underground, and north, back through the occupied pods, but more pressing is the presence of two empty venus ziltraps";
+	rooms["PQUEST_M4"].runOnEnter = pQuestPodCornerFightBonus;
+	rooms["PQUEST_M4"].planet = "PLANET: MHEN'GA";
+	rooms["PQUEST_M4"].system = "SYSTEM: ARA ARA";
+	rooms["PQUEST_M4"].westExit = "PQUEST_K4";
+	rooms["PQUEST_M4"].eastExit = "";
+	rooms["PQUEST_M4"].northExit = "PQUEST_M2";
+	rooms["PQUEST_M4"].southExit = "";
+	rooms["PQUEST_M4"].addFlag(GLOBAL.HAZARD);
+
+	rooms["PQUEST_K4"] = new RoomClass(this);
+	rooms["PQUEST_K4"].roomName = "A FEW\nMORE PODS";
+	rooms["PQUEST_K4"].description = "You stride through a great deal of venus ziltrap pods. These are all occupied with the wriggling forms of mind-broken captives. Occasionally you hear the high pitched moans of a climaxing zil, but a far more familiar sound is the murmuring, pleased coos of the ziltraps themselves. The plant-girls you fought lie to the east. According to Penny’s readings, the Oxonium is west. A small crack in the wall splits north, wafting an awful scent.";
+	rooms["PQUEST_K4"].runOnEnter = undefined;
+	rooms["PQUEST_K4"].planet = "PLANET: MHEN'GA";
+	rooms["PQUEST_K4"].system = "SYSTEM: ARA ARA";
+	rooms["PQUEST_K4"].westExit = "PQUEST_I4";
+	rooms["PQUEST_K4"].eastExit = "PQUEST_M4";
+	rooms["PQUEST_K4"].northExit = "PQUEST_K2";
+	rooms["PQUEST_K4"].southExit = "";
+	rooms["PQUEST_K4"].addFlag(GLOBAL.HAZARD);
+
+	rooms["PQUEST_K2"] = new RoomClass(this);
+	rooms["PQUEST_K2"].roomName = "ROTTEN\nGARBAGE";
+	rooms["PQUEST_K2"].description = "Tossed into this dim, dank corner are the belongings of the many, many captives in the room to the south, almost entirely zil, judging by the fetid honey, centipede-eaten loincloths, and mushroom-covered wood spears. This close to the pile, you have to struggle not to sick up. It would be best to move back south.";
+	rooms["PQUEST_K2"].runOnEnter = undefined;
+	rooms["PQUEST_K2"].planet = "PLANET: MHEN'GA";
+	rooms["PQUEST_K2"].system = "SYSTEM: ARA ARA";
+	rooms["PQUEST_K2"].westExit = "";
+	rooms["PQUEST_K2"].eastExit = "";
+	rooms["PQUEST_K2"].northExit = "";
+	rooms["PQUEST_K2"].southExit = "PQUEST_K4";
+	rooms["PQUEST_K2"].addFlag(GLOBAL.HAZARD);
+
+	rooms["PQUEST_I4"] = new RoomClass(this);
+	rooms["PQUEST_I4"].roomName = "FAT\nZILTRAP POD";
+	rooms["PQUEST_I4"].description = "The grove of venus ziltraps to the east thins out to a single, enormous pod here. Its fleshy green walls are so thick that you can’t make any details of the trapped victim - or victims. Two (or even three) zil could be crammed inside, servicing some plant-woman with all their heart - or perhaps one enormous naleen. You’ll never know.\n\nA dangerous-sounding rumble can be heard to the south.";
+	rooms["PQUEST_I4"].runOnEnter = undefined;
+	rooms["PQUEST_I4"].planet = "PLANET: MHEN'GA";
+	rooms["PQUEST_I4"].system = "SYSTEM: ARA ARA";
+	rooms["PQUEST_I4"].westExit = "";
+	rooms["PQUEST_I4"].eastExit = "PQUEST_K4";
+	rooms["PQUEST_I4"].northExit = "";
+	rooms["PQUEST_I4"].southExit = "PQUEST_I6";
+	rooms["PQUEST_I4"].addFlag(GLOBAL.HAZARD);
+
+	rooms["PQUEST_I6"] = new RoomClass(this);
+	rooms["PQUEST_I6"].roomName = "MINING\nOP";
+	rooms["PQUEST_I6"].description = "To the west the cave system opens into a colossal crater so wide that not even the planet's tremendous canopy can completely crowd it out. Jet wash spills out of an autonomous dropship as it comes to a gentle stop in the very center of the area, while three mining trundle robots around, putting their drills to work directly on the Oxonium deposits.";
+	rooms["PQUEST_I6"].runOnEnter = finalPennyQuestRoomproc;
+	rooms["PQUEST_I6"].planet = "PLANET: MHEN'GA";
+	rooms["PQUEST_I6"].system = "SYSTEM: ARA ARA";
+	rooms["PQUEST_I6"].westExit = "PQUEST_G6";
+	rooms["PQUEST_I6"].eastExit = "";
+	rooms["PQUEST_I6"].northExit = "PQUEST_I4";
+	rooms["PQUEST_I6"].southExit = "";
+	rooms["PQUEST_I6"].addFlag(GLOBAL.HAZARD);
+
+	rooms["PQUEST_G6"] = new RoomClass(this);
+	rooms["PQUEST_G6"].roomName = "\nTEMP";
+	rooms["PQUEST_G6"].description = "";
+	rooms["PQUEST_G6"].runOnEnter = undefined;
+	rooms["PQUEST_G6"].planet = "PLANET: MHEN'GA";
+	rooms["PQUEST_G6"].system = "SYSTEM: ARA ARA";
+	rooms["PQUEST_G6"].westExit = "PQUEST_E6";
+	rooms["PQUEST_G6"].eastExit = "PQUEST_I6";
+	rooms["PQUEST_G6"].northExit = "PQUEST_G4";
+	rooms["PQUEST_G6"].southExit = "PQUEST_G8";
+	rooms["PQUEST_G6"].addFlag(GLOBAL.HAZARD);
+
+	rooms["PQUEST_G4"] = new RoomClass(this);
+	rooms["PQUEST_G4"].roomName = "\nTEMP";
+	rooms["PQUEST_G4"].description = "";
+	rooms["PQUEST_G4"].runOnEnter = undefined;
+	rooms["PQUEST_G4"].planet = "PLANET: MHEN'GA";
+	rooms["PQUEST_G4"].system = "SYSTEM: ARA ARA";
+	rooms["PQUEST_G4"].westExit = "PQUEST_E4";
+	rooms["PQUEST_G4"].eastExit = "";
+	rooms["PQUEST_G4"].northExit = "";
+	rooms["PQUEST_G4"].southExit = "PQUEST_G6";
+	rooms["PQUEST_G4"].addFlag(GLOBAL.HAZARD);
+
+	rooms["PQUEST_E4"] = new RoomClass(this);
+	rooms["PQUEST_E4"].roomName = "\nTEMP";
+	rooms["PQUEST_E4"].description = "";
+	rooms["PQUEST_E4"].runOnEnter = undefined;
+	rooms["PQUEST_E4"].planet = "PLANET: MHEN'GA";
+	rooms["PQUEST_E4"].system = "SYSTEM: ARA ARA";
+	rooms["PQUEST_E4"].westExit = "";
+	rooms["PQUEST_E4"].eastExit = "PQUEST_G4";
+	rooms["PQUEST_E4"].northExit = "";
+	rooms["PQUEST_E4"].southExit = "PQUEST_E6";
+	rooms["PQUEST_E4"].addFlag(GLOBAL.HAZARD);
+
+	rooms["PQUEST_E6"] = new RoomClass(this);
+	rooms["PQUEST_E6"].roomName = "\nTEMP";
+	rooms["PQUEST_E6"].description = "";
+	rooms["PQUEST_E6"].runOnEnter = undefined;
+	rooms["PQUEST_E6"].planet = "PLANET: MHEN'GA";
+	rooms["PQUEST_E6"].system = "SYSTEM: ARA ARA";
+	rooms["PQUEST_E6"].westExit = "";
+	rooms["PQUEST_E6"].eastExit = "PQUEST_G6";
+	rooms["PQUEST_E6"].northExit = "PQUEST_E4";
+	rooms["PQUEST_E6"].southExit = "PQUEST_E8";
+	rooms["PQUEST_E6"].addFlag(GLOBAL.HAZARD);
+
+	rooms["PQUEST_E8"] = new RoomClass(this);
+	rooms["PQUEST_E8"].roomName = "\nTEMP";
+	rooms["PQUEST_E8"].description = "";
+	rooms["PQUEST_E8"].runOnEnter = undefined;
+	rooms["PQUEST_E8"].planet = "PLANET: MHEN'GA";
+	rooms["PQUEST_E8"].system = "SYSTEM: ARA ARA";
+	rooms["PQUEST_E8"].westExit = "";
+	rooms["PQUEST_E8"].eastExit = "PQUEST_G8";
+	rooms["PQUEST_E8"].northExit = "PQUEST_E6";
+	rooms["PQUEST_E8"].southExit = "";
+	rooms["PQUEST_E8"].addFlag(GLOBAL.HAZARD);
+
+	rooms["PQUEST_G8"] = new RoomClass(this);
+	rooms["PQUEST_G8"].roomName = "\nTEMP";
+	rooms["PQUEST_G8"].description = "";
+	rooms["PQUEST_G8"].runOnEnter = undefined;
+	rooms["PQUEST_G8"].planet = "PLANET: MHEN'GA";
+	rooms["PQUEST_G8"].system = "SYSTEM: ARA ARA";
+	rooms["PQUEST_G8"].westExit = "PQUEST_E8";
+	rooms["PQUEST_G8"].eastExit = "";
+	rooms["PQUEST_G8"].northExit = "PQUEST_G6";
+	rooms["PQUEST_G8"].southExit = "";
+	rooms["PQUEST_G8"].addFlag(GLOBAL.HAZARD);
+
 	//I should be banned for this but I'm not combing through all these rooms 1 by 1 and 
 	//ammending their runOnEnter functions and/or adding new ones
 	//Iterates through all the rooms, if the key contains "ESBETH" and it has no runOnEnter and it's outdoor/public

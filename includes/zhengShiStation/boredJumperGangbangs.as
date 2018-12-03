@@ -128,10 +128,9 @@ public function mountHerOrgy():void
 	clearOutput();
 	showJumpyGangbang();
 	output("With a beating heart");
-	if(!pc.isHerm()) output(", ");
 	if(pc.hasCock() && !pc.hasVagina()) output(" and a throbbing penis");
 	else if(pc.hasVagina() && !pc.hasCock()) output(" and a tingling pussy");
-	else output("a throbbing penis and a tingling pussy");
+	else output(", a throbbing penis and a tingling pussy");
 	output(", you [pc.walk] over to and sit near the kneeling laquine servicing the gryvain-human-saeri mix so diligently. You catch your breath at the center of this sexual tsunami, a lump forming in your throat. You’re already drooling! Four raw and ready dicks pollute the air with womb-rippling musk, and the human-gryvain pheromone combo makes all proudly flared manhoods flood their stiff shafts with salty, sticky pre, flowing out as if the room itself is sucking them off.");
 
 	output("\n\nYou take a deep breath and feel the sparks of aerial lust stoke a blaze in your body. It was a smooth inhalation, a simple act... But your exhalation is less so. A ragged, growling breath follows; your body shivers and trembles with the stench of horny, capable breeders subverting its perfunctory purposes. Your eyes almost water as the wavy haze of concentrated libido comes into faint view under the cheap lights, enveloping the mixed phalli on display in a sweet, soupy glow that begs you to touch, stroke, suck, kiss, fuck-");
@@ -656,7 +655,9 @@ public function bunNFlyGangbangu(x:int):void
 		else output("[pc.knot " + y + "]");
 		output(" from slipping in and locking you here for the next half hour")
 	}
-	output(". Pulling free from her, you watch your cum dribble out from the jumper’s brown backside as the slaves collect themselves. The gryvain and redhead scamper off as soon as they can stand, stealing her equipment. The saeri gives you a meek wave and flees in another direction. Taking another breath, you sit up and hurriedly gather your things, paying one last glance to the naked pirate.");
+	output(". Pulling free from her, you watch");
+	if(x >= 0) output(" your cum dribble out from");
+	output(" the jumper’s brown backside as the slaves collect themselves. The gryvain and redhead scamper off as soon as they can stand, stealing her equipment. The saeri gives you a meek wave and flees in another direction. Taking another breath, you sit up and hurriedly gather your things, paying one last glance to the naked pirate.");
 	output("\n\nWhatever her punishment is, going back to her friends naked like that, is a mystery you kind of wish you could see...");
 	processTime(30);
 	pc.orgasm();
@@ -705,11 +706,11 @@ public function redheadfuckiroodidoody(x:int):void
 
 	// Merge
 	output("\n\nYou gingerly push your " + (x >= 0 ? "[pc.cockNounSimple " + x + "]":"techno dong") + " between the jumper’s [enemy.lipColor] mouth and the redhead’s glossy honey hole. It’s hard not to inhale these strangling scents with every heady breath you take, shit, it smells like a ripe zil orgy! A growl-like exhalation later, you hear the redhead squeal, your cock being slathered in a fresh helping of modded cum. Saccharine, amber honey flows over your " + (x >= 0 ? "[pc.cockType " + x + "]":"faux") + " shaft like syrupy glaze, trickling down to the laquine’s wide open mouth.");
-	output("\n\nHer tongue washes your fragrant " + (x < 0 ? "techno ":"") + "dong" + (x >= 0 && y >= 0 ? "s":"") + " like a sponge, absorbing every drop of her treat while lathering you up for the terran’s ready pussy" + (y >= 0 ? " and maybe for her mouth as well":"") + ". <i>“You gonna use " + (y >= 0 ? "that":"those") + " or what, cutie?”</i> The rabbit grins at you, her muzzle mostly obscured by sweaty skin. <i>“Don’t leave me out, c’monnn! Let me taste some more!”</i>");
+	output("\n\nHer tongue washes your fragrant " + (x < 0 ? "techno ":"") + "dong" + (x >= 0 && y >= 0 ? "s":"") + " like a sponge, absorbing every drop of her treat while lathering you up for the terran’s ready pussy" + (y >= 0 ? " and maybe for her mouth as well":"") + ". <i>“You gonna use " + (y >= 0 ? "those":"that") + " or what, cutie?”</i> The rabbit grins at you, her muzzle mostly obscured by sweaty skin. <i>“Don’t leave me out, c’monnn! Let me taste some more!”</i>");
 	if(y < 0) output("\n\nToo bad she’s not your target, no matter how much she begs and smiles.");
 	else if(z >= 0) output("\n\nYeah, you can spare a dick for her.");
 	output(" While you rub your ");
-	output("[pc.cockHeads] against the redhead’s slit, lubing your " + (x >= 0 ? "[pc.cocks]":"hardlight strapon") + " up for penetration, the gryvain shuffles a little angrily to the laquine’s crotch, yanking her legs up and making her ‘eek!’ as her [enemy.cock] is pushed aside and her heavy, fuzzy balls are lifted up. The dragon girl wastes no time ramming her tapered, knotty wyrm cocks into the jumper’s ass and equine pussy both, meeting no resistance thanks to the natural lube of musky rabbit crotch.");
+	output((x >= 0 ? "[pc.cockHeads]" : "dildo") + " against the redhead’s slit, lubing your " + (x >= 0 ? "[pc.cocks]":"hardlight strapon") + " up for penetration, the gryvain shuffles a little angrily to the laquine’s crotch, yanking her legs up and making her ‘eek!’ as her [enemy.cock] is pushed aside and her heavy, fuzzy balls are lifted up. The dragon girl wastes no time ramming her tapered, knotty wyrm cocks into the jumper’s ass and equine pussy both, meeting no resistance thanks to the natural lube of musky rabbit crotch.");
 	output("\n\nYou grin seeing the not-so-bored rabbit’s tongue hanging out of her mouth as she mimes something silly" + (z >= 0 ? ". Well, she wanted a taste too! You quietly slip one right in as you get ready":"") + ".");
 
 	output("\n\n<i>“H-hey... Hurry up!”</i> The scowling girl looks over her shoulder as she wiggles her butt at you, both round ass cheeks jiggling. A light pressure in your crotch makes you wince, the rosy shade on her face distracts you as she takes you to task, pushing her globes back and lancing herself on your " + (x >= 0 ? "[pc.cockNounSimple " + x + "]":"holo cock") + " with a forceful thrust. Her blissful wails echo through the mines; you clench your [pc.hands] around her waist and focus on her, panting madly. Her wonderfully <i>hot</i> pussy hugs your " + (x >= 0 ? "[pc.cock " + x + "]":"glowing dong") + ", thirsty for all the sticky cum you " + (x >= 0 ? "can":"sadly can’t") + " give. Your first few pumps in and out of her silky folds make you feel as though you sit upon a cloud of euphoria" + (pc.balls > 0 ? ", your [pc.sack] wetly slapping her thighs with every deep, uterus-touching thrust":"") + ".");

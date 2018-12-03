@@ -52,9 +52,15 @@ public function mitziRecruited():Boolean
 public function showMitzi(nude:Boolean = false):void
 {
 	showName("\nMITZI");
+	showBust(mitziBustString(nude));
+}
+
+public function mitziBustString(nude:Boolean = false):String
+{
 	var dressString:String = "";
 	var dress:ItemSlotClass = mitziCurrentDress();
-	if(dress is MitzisDress || !mitziIsCrew()) dressString = "_PINK_DRESS";
+	if(nude) dressString = "_NUDE";
+	else if(dress is MitzisDress || !mitziIsCrew()) dressString = "_PINK_DRESS";
 	else if(dress is SchoolgirlCostume) dressString = "_SCHOOLGIRL";
 	else if(dress is MitzisYogaBikini) dressString = "_YOGAPANTS";
 	else if(dress is MitzisLibrarianOutfit) dressString = "_LIBRARIAN";
@@ -63,8 +69,12 @@ public function showMitzi(nude:Boolean = false):void
 	else if(dress is MitziCowFetishCostume) dressString = "_COW";
 	else if(dress is MitziNunFetishCostume) dressString = "_NUN";
 	else dressString = "_PINK_DRESS";
-	if(nude) dressString = "_NUDE";
-	showBust("MITZI" + dressString);
+	return ("MITZI" + dressString);
+}
+
+public function mitziAvailable():Boolean
+{
+	return (!pc.hasStatusEffect("Mitzi Disabled") && !pc.hasStatusEffect("Mitzi_Gushed_Out"));
 }
 
 //Mitzi first appears in the stellar tether dungeon in an empty square.
@@ -698,8 +708,21 @@ public function mitziCrewBonus():String
 {
 	var dress:ItemSlotClass = mitziCurrentDress();
 	var buff:String = "";
+	
+	//SPECIAL MITZI TEXTS:
+	if(pc.hasStatusEffect("Mitzi Disabled")) buff += "\n\nMitzi isn't anywhere to be found." + (amberIsCrew() ? " She's probably up to something with Amber.":"");
+	//Milky Mitzi still recovering
+	else if(pc.hasStatusEffect("Mitzi_Gushed_Out"))
+	{
+		if(rand(2) == 0) buff = "\n\nMitzi is in her bathroom, kneeling in the shower and tugging on her nipples. Soft, emphatic moos can be heard every now and then, accompanied by wet-sounding splats. You put your ear to the door and listen: <i>“Miss Moo is... Miss Moo? Noooo, wrong mooooo. Mmm, milking feels so gooood! [pc.Master] won’t fuck Moo if she doesn’t remember her name... Missy or Mimsy... MOOOO!”</i> You pull away and decide to <b>let her recover from that Gush dose in privacy.</b>";
+		//Repeat recovery
+		else buff = "\n\nMitzi is in her bedroom, milking her prodigious teats and mooing like a barnyard animal. Every now and then you hear an orgasmic screech and a liquid spattering followed by a high-pitched cry of, <i>“[pc.Master] so good to Moooo!”</i> <b>Mitzi still needs to recover from her recent bout with Gush.</b>";
+	}
+	else if(pc.hasStatusEffect("Mitzi_Gush_Thankyou")) buff = "\n\n<b>Mitzi has recovered from that dose of Gush!</b> She may be a little more top-heavy now, but she’d really like to see you.";
+	
+	//NORMAL MITZI TEXTS:
 	//Pink dress
-	if(dress is MitzisDress)
+	else if(dress is MitzisDress)
 	{
 		buff += "\n\nMitzi is brushing her pigtails, clad in the same pink, latex dress she wore when you met her. It seems to enhance her curves rather than hide them, displaying the highlights of her nipples in shimmering neon. At the sight of you, she puts down the brush and puckers her lips, rolling a layer of heavy, purple gloss across them with deliberate slowness.";
 	}
@@ -767,14 +790,7 @@ public function mitziCrewBonus():String
 			buff += ". When she’s not snapping the pictures, she’s inspecting them, applying filters and weeding any unsuitable to for later mailing to her [pc.master].";
 		}
 	}
-	//Milky Mitzi still recovering
-	if(pc.hasStatusEffect("Mitzi_Gushed_Out"))
-	{
-		if(rand(2) == 0) buff = "\n\nMitzi is in her bathroom, kneeling in the shower and tugging on her nipples. Soft, emphatic moos can be heard every now and then, accompanied by wet-sounding splats. You put your ear to the door and listen: <i>“Miss Moo is... Miss Moo? Noooo, wrong mooooo. Mmm, milking feels so gooood! [pc.Master] won’t fuck Moo if she doesn’t remember her name... Missy or Mimsy... MOOOO!”</i> You pull away and decide to <b>let her recover from that Gush dose in privacy.</b>";
-		//Repeat recovery
-		else buff = "\n\nMitzi is in her bedroom, milking her prodigious teats and mooing like a barnyard animal. Every now and then you hear an orgasmic screech and a liquid spattering followed by a high-pitched cry of, <i>“[pc.Master] so good to Moooo!”</i> <b>Mitzi still needs to recover from her recent bout with Gush.</b>";
-	}
-	else if(pc.hasStatusEffect("Mitzi_Gush_Thankyou")) buff = "\n\n<b>Mitzi has recovered from that dose of Gush!</b> She may be a little more top-heavy now, but she’d really like to see you.";
+	
 	return buff;
 }
 
@@ -984,6 +1000,7 @@ public function mitziCrewMenu():void
 		else addDisabledButton(6,"Give Gush","Give Gush","You need some Gush in order to do this.");
 	}
 	addButton(7,"Give Bubble",giveMitziACumBubble,undefined,"Give Cum Bubble","Maybe you could give Mitzi some stored-up cum?");
+	if(flags["PENNY_CAUGHT_MITZI_JERKIN"] != undefined) addButton(8,"AWOL Panty",mitziPantiesTalk,undefined,"AWOL Panties","Ask Mitzi if she’s missing a pair of panties.");
 	addButton(13,"Leave Crew",kickMitziOffCrew,undefined,"Leave Crew","Tell Mitzi that you need to free up some space on the ship.");
 	addButton(14,"Back",crew);
 }
@@ -3007,7 +3024,7 @@ public function mitziTakesItUpTheAssFINALLY(x:int):void
 	output("Mitzi bounces in place, ecstatic at the prospect of getting fucked. As she does that you can’t help but keep your eyes on her bounding bubble butt, so wide that it’s visible from the front. You lick your lips as you start to circle the emerald slut.");
 	output("\n\n<i>“What’cha doing, [pc.Master]?”</i>");
 	output("\n\n<i>“Don’t worry about it. Just look straight ahead and let me work.”</i>");
-	output("\n\nMitzi nods and does as you say, staring straight ahead and trying not remain perfectly still. That leaves you with full access to her bountiful booty. You roughly grab onto her ass, feeling your hands sink into the warm, yielding masses of flesh. Mitzi yelps at your sudden motion, but doesn’t break your command. You keep manhandling her generous globes; pressing into them, bouncing them up and down and side to side, and even giving her a playful bite, just to see if you can get her to choke up.");
+	output("\n\nMitzi nods and does as you say, staring straight ahead and remaining perfectly still, trying not to move. That leaves you with full access to her bountiful booty. You roughly grab onto her ass, feeling your hands sink into the warm, yielding masses of flesh. Mitzi yelps at your sudden motion, but doesn’t break your command. You keep manhandling her generous globes; pressing into them, bouncing them up and down and side to side, and even giving her a playful bite, just to see if you can get her to choke up.");
 	output("\n\nLike the good slut she is she doesn’t move an inch, but your ministrations have obviously had an effect on her. She’s shaking and twitching and babbling under her breath. <i>“M-[pc.Master] loves Mitzi’s booty! Are you g-g-gonna fuck it?”</i> She presses her rear against your hands, trying to force as much of herself into your hands as possible. You give her booty a hearty slap, pushing her back into a neutral posture.");
 	output("\n\n<i>“Of course, but on <b>my</b> time!”</i>");
 	output("\n\nMitzie nods and holds straight as you ");

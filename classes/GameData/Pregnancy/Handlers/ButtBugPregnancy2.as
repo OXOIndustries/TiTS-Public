@@ -119,16 +119,17 @@ package classes.GameData.Pregnancy.Handlers
 			{
 				return function():void
 				{
-					if(c_mother.statusEffectv2("Butt Bug (Female)") > 0) kGAMECLASS.birthButtBugType2(c_mother.pregnancyData[c_pregSlot].pregnancyQuantity);
-					else kGAMECLASS.expelButtBugEgg(c_mother.pregnancyData[c_pregSlot].pregnancyQuantity);
-					ButtBugPregnancy2.cleanupPregnancy(c_mother, c_pregSlot, c_thisPtr);
+					var eggs:int = c_mother.pregnancyData[c_pregSlot].pregnancyQuantity;
+					if(c_mother.statusEffectv2("Butt Bug (Female)") > 0) kGAMECLASS.birthButtBugType2(eggs);
+					else kGAMECLASS.expelButtBugEgg(eggs);
+					ButtBugPregnancy2.cleanupPregnancy(c_mother, c_pregSlot);
 				}
 			})(mother, pregSlot, thisPtr);
 			
 			kGAMECLASS.eventQueue.push(tEventCall);
 		}
 		
-		public static function cleanupPregnancy(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
+		public static function cleanupPregnancy(mother:Creature, pregSlot:int):void
 		{
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
@@ -145,7 +146,7 @@ package classes.GameData.Pregnancy.Handlers
 			
 			kGAMECLASS.trackButtBugEggs(buttBugF, (buttBugF.value2 == 1 ? "type2" : "infertile"), eggs);
 			
-			ButtBugPregnancy2.cleanupPregnancy(mother, pregSlot, this);
+			ButtBugPregnancy2.cleanupPregnancy(mother, pregSlot);
 			return null;
 		}
 	}

@@ -234,7 +234,7 @@ package classes.Items.Transformatives
 					output("\n\nYou look back down at your tits.");
 					if(pc.biggestTitSize() < 1) output(" Even when a flat chest, that seems like the right word for your pecs. They’re like titty seeds, and you just watered them!");
 					else if(pc.biggestTitSize() < 15) output(" Even though they aren’t that big, that feels like the right word for them, right? They’re just young tits, waiting to bloom into big, juicy tittymelons.");
-					else output(" You know that objectively, the must be considered huge tits, but right now, they look almost... too small, like plants that are")
+					else output(" You know that objectively, they must be considered huge tits, but right now, they look almost... too small, like plants that are waiting to be watered and ripen into lusciously massive melon-mammaries.");
 
 					output("\n\nThat tingling warmth is getting worse, making it hard to think of anything else. It’s like a buzz in your boobs");
 					if(pc.biggestTitSize() < 1) output(" - right, boobs is the proper word -");
@@ -242,7 +242,7 @@ package classes.Items.Transformatives
 					output("\n\nIt’s almost impossible to pull your hands away, but you make do, if only so you can better view your burgeoning bosom as it grows.");
 					if(pc.biggestTitSize() < 1) output(" You’re getting real tits now! They’re at least B-cups already");
 					else output(" Your titties are getting pretty big now! They’re a cup size or two bigger already");
-					output(" and swelling larger by the second, visibly pulsing with new growth. Moaning in excitement, you realize that one hand has reached back up to caress a sensitive [pc.nippleNoun]. You don’t try to stop it. How could you when they beg to be touched, tugged, and pinched? How could you do anything but maul your own all-important tits and worship at the altar of your bountiful bust.");
+					output(" and swelling larger by the second, visibly pulsing with new growth. Moaning in excitement, you realize that one hand has reached back up to caress a sensitive [pc.nippleNoun]. You don’t try to stop it. How could you when they beg to be touched, tugged, and pinched? How could you do anything but maul your own all-important tits and worship at the altar of your bountiful bust?");
 					output("\n\nBest of all, the sensations grow hotter and more potent moment by moment. Your chest isn’t just buzzing and throbbing with sensuous delight anymore, it’s demanding your undivided attention, guiding your fingers to press and rub at too-sensitive nipples, demanding your eyes remain locked on the top of an expansive boob-shelf. It’s so beautiful, so perfect, and only growing more alluring by the second. The rest of the world has fallen away behind their curve. Your past lovers? They couldn’t hold a candle next to the magnificence of your own hot, glistening teats.");
 					output("\n\nYour busily tugging fingers grow wet while they work, coated in a thin sheen of [pc.milkColor] from their efforts. You’re lactating already? The thought sends a delicious thrill through your body and, most importantly, your [pc.nipples]. You tug one and focus in on that thought. <b>You’re lactating.</b>");
 

@@ -158,7 +158,11 @@
 			// If we get through the upgrade path and the version is fucked, welp!
 			if (dataObject.version != this._latestVersion)
 			{
-				throw new VersionUpgraderError("Couldn't upgrade the save data for " + dataObject.classInstance);
+				var msg:String = ("Couldn't upgrade the save data for " + dataObject.classInstance);
+				
+				if (dataObject.version > this._latestVersion) msg += " - Object version is " + dataObject.version + " where its latest in-game version is " + this._latestVersion + ". <b>Please use a newer version of the game!</b>";
+				
+				throw new VersionUpgraderError(msg);
 			}
 			
 			// Set a flag that will control a number of the methods used to load data into the class object

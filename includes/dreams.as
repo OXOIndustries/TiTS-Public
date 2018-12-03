@@ -49,7 +49,9 @@ public function dreamChances(inShip:Boolean = false):Boolean
 	}
 	
 	//If you havent dreamed in 20 days, and didnt get a special dream
-	var bDream:Boolean = (days >= flags["DREAM_CD"] + 20 && rand(4) == 0);
+	var dreamCD:Number = 20;
+	if(isHalloweenish()) dreamCD = 10;
+	var bDream:Boolean = (days >= flags["DREAM_CD"] + dreamCD && rand(4) == 0);
 	if(inShip && flags["SLEEP_FAPNEA_ACTIVE"] != undefined)
 	{
 		// Chaste mode
@@ -60,6 +62,45 @@ public function dreamChances(inShip:Boolean = false):Boolean
 	
 	if(!dreamed && bDream)
 	{
+		//Halloween Spoopers
+		if(isHalloweenish())
+		{
+			//Dullahan Spoopy Times
+			if(pc.hasCock()) dreams.push(dullahanSpoops);
+			//Some weird asian cloning monstergirl fuck
+			if(pc.hasGenitals()) dreams.push(linsMonster);
+			//Werewolf and Vampire gaysex
+			if(pc.hasCock() && pc.mf("m","") == "m" && !pc.analVirgin) dreams.push(gothPastelSpookDream);
+			//pumpkin patch fuck
+			if(pc.hasGenitals() && !pc.analVirgin) dreams.push(pumpkinPatchNightmare);
+			//Gardeford's Goblinfuck
+			if(pc.hasCock() && pc.biggestTitSize() >= 5) dreams.push(gardefordsCollegeGoblinSlutTrickOrTreatbang);
+			//Frog's Handsiness
+			dreams.push(handsDreamFromFrogapus);
+			//Witch's kitten
+			if(pc.hasCock() && pc.mf("m","") == "m") dreams.push(witchsKittenScene);
+			//Demon Sera Ship Rape
+			//Requires been intimate with Sera, have crewmembers, have crew Anno, crew Sera, and 4+ crew
+			if(crew(true) >= 4 && annoIsCrew() && seraIsCrew()) dreams.push(demonSeraShipRape);
+			//Oral cummies
+			if(pc.hasStatusEffect("Orally-Filled")) dreams.push(foxxlingsOralCumDream);
+			//Anal Cummies
+			if(pc.hasStatusEffect("Anally-Filled")) dreams.push(analButtCumMonster);
+			//Hello Nurse
+			if(pc.hasGenitals()) dreams.push(halloweenNurseDream);
+			//Anno werewolf
+			if(pc.hasCock() && flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") dreams.push(werewolfLady);
+			//Goblin mad scientist!
+			if(pc.hasCock()) dreams.push(goblinMadScientistDream);
+			//Saurmorian Dream
+			if(CodexManager.entryUnlocked("Saurmorians") && pc.hasGenitals() && !pc.isPregnant()) dreams.push(saurmorianCultDream);
+			//Paige dream!
+			if(paigeIsCrew()) dreams.push(hyperPaigeDream);
+			//Dr. Hyena dream!
+			if(pc.hasGenitals() && flags["SEXED_VERUSHA"] != undefined) dreams.push(spookyHyenaDream);
+			//MistyBirbs witch futa stuff
+			if(pc.hasVagina() && !pc.hasCock()) dreams.push(mistybirbsDream);
+		}
 		if(MailManager.isEntryViewed("lets_fap_unlock"))
 		{
 			dreams.push(angelDreamGo);

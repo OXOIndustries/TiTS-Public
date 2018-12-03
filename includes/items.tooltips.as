@@ -7,6 +7,10 @@ public function altTooltip(itemName:String = "none"):String
 	switch(itemName)
 	{
 		// Perks
+		case "AttackDrone":
+			//tooltip += "one point";
+			tooltip += "three points";
+			break;
 		case "Overcharge":
 			if(pc.hasPerk("Heroic Reserves")) tooltip += "200";
 			else tooltip += "150";
@@ -98,6 +102,15 @@ public function altTooltip(itemName:String = "none"):String
 			if(chars["WULFE"].isBimbo()) tooltip += "A sleek chrome security droid standing on a powerfully-built tauric body and carrying the upper torso of a curvaceous, sexy gynoid with a coating of sun-kissed synth-skin starting at her inhumanly-wide hips, up past a pair of gigantic breasts, and to a whorish face half-hidden under a polysteel visor.";
 			else tooltip += "A sleek chrome security droid standing on a powerfully-built tauric body and carrying the upper torso of a slender, sexy gynoid with a coating of milk-pale synth-skin starting at her broad hips, up past a pair of palmable breasts, and to a chiseled face half-hidden under a polysteel visor.";
 			tooltip += " The Siegwulfe is a high-class personal security and assistant drone meant to accompany affluent individuals like you absolutely everywhere -- from the boardroom to the bedroom.";
+			if(pc.hasPerk("Attack Drone")) tooltip += "\n\n<b>The droid replaces your original attack drone, giving you a battle companion at the expense of losing your drone’s bonus to shields.</b>";
+			break;
+		case "TamWolfDamaged":
+		case "TamWolf":
+		case "TamWolfII":
+			if(itemName == "TamWolfDamaged") tooltip += "Tam-wolf is a badly damaged Fenris-class attack drone you looted from a crazed cat-girl, coincidentally also named Tam. Loyal to a fault, the patched-up cyber-pup follows you around wherever you go -- just equip him in your Accessory slot, and he’ll leap into battle with you. Or fall flat on his face and explode trying to, anyway.";
+			if(itemName == "TamWolf" || itemName == "TamWolfII") tooltip += "Tam-wolf is a state of the art Fenris attack drone you looted from a crazed cat-girl, coincidentally also named Tam. Loyal, intelligent, and alert, you new robotic friend is the closest thing you can get to a real attack dog these days.";
+			if(pc.hasPerk("Attack Drone")) tooltip += " <b>He replaces your original attack drone, giving you a powerful, bitey friend in battle at the expense of losing your drone’s bonus to shields.</b>";
+			if(itemName == "TamWolfII") tooltip += "\n\nTam-wolf’s been upgraded with some military-spec hardware, a definite dark hue to his exterior plating!";
 			break;
 		case "VarmintLeash":
 			tooltip += "This bright pink leash connects you to " + (varmintIsTame() ? "your varmint buddy" : "a tamed varmint") + " through a wireless signal and some high-tech motors in the collar, allowing you to control how far " + (varmintIsTame() ? "your friend" : "it") + " wanders from you, and hold it back if need be, without getting a pesky REAL leash in the way like some kind of neanderthal.";
