@@ -354,6 +354,7 @@
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
 			TYPE_FROSTWYRM,
+			TYPE_XHELARFOG,
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
@@ -383,6 +384,7 @@
 			TYPE_COCKVINE,
 			TYPE_JANERIA,
 			TYPE_FROSTWYRM,
+			TYPE_XHELARFOG,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -569,6 +571,7 @@
 			TYPE_DRYAD,
 			TYPE_SHEEP,
 			TYPE_FROSTWYRM,
+			TYPE_XHELARFOG,
 		];
 		
 		public static const VALID_WING_TYPES:Array = [
@@ -635,6 +638,7 @@
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
 			TYPE_FROSTWYRM,
+			TYPE_XHELARFOG,
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [
