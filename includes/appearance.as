@@ -618,7 +618,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		case GLOBAL.TYPE_XHELARFOG:
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " eyes are a");
 			if (hasMetallicEyes) outputRouter(" metallic");
-			outputRouter(" shade of [target.eyeColor] with no distinction between sclera and iris. " + (target == pc ? "Your":"[target.HisHer]") + " eyes are a solid [target.eyeColor]. Only the slightly paler shade of your pupil allows people to tell where you’re looking.");
+			outputRouter(" shade of [target.eyeColor] with no distinction between sclera and iris. Only the slightly paler shade of " + (target == pc ? "your":"[target.hisHer]") + " pupil allows people to tell where " + (target == pc ? "you're":"[target.heShe]'s") + " looking.");
 			break;
 		default:
 			if(hasMetallicEyes) outputRouter(" Metallically glistening " + target.eyeColor + " eyes allow " + (target == pc ? "you":"[target.himHer]") + " to take in " + (target == pc ? "your":"[target.hisHer]") + " surroundings without trouble.");
