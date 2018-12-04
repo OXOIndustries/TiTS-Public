@@ -18266,11 +18266,8 @@
 		public function cockHeadsNoun():String
 		{
 			if(cocks.length == 1) return cockHead(0).split(" ").pop();
-			else
-			{
-				if(cocksMatch()) return plural(cockHead(0).split(" ").pop());
-				else plural(cockHead(-1).split(" ").pop());
-			}
+			if(cocksMatch()) return plural(cockHead(0).split(" ").pop());
+			return plural(cockHead(-1).split(" ").pop());
 		}
 		public function tailCockHead(): String {
 			if (!hasTailCock()) return "|||<b>ERROR:</b> No tail cock to describe |||";
