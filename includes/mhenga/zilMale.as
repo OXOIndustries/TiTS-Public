@@ -107,7 +107,8 @@ public function winVsZil():void {
 //*Butt Fuck Him
 public function buttfuckDefeatedZil():void {
 	clearOutput();
-	showBust("ZIL");
+	if(enemy.hasPerk("Penny Quest AI")) showBust("ZIL_RED");
+	else showBust("ZIL");
 	showName("MALE\nZIL");
 	if(pc.isNice()) output("Chuckling happily, you tell the zil that you have every intention of playing with him for as long as possible.");
 	else if(pc.isMischievous()) output("Grinning mischievously, you inform the poor zil that you’re going to have quite a bit of fun with him.");
@@ -234,7 +235,8 @@ public function buttfuckDefeatedZil():void {
 //To cumfinity, and beyond!
 public function rideDatZilCawk():void {
 	clearOutput();
-	showBust("ZIL");
+	if(enemy.hasPerk("Penny Quest AI")) showBust("ZIL_RED");
+	else showBust("ZIL");
 	showName("MALE\nZIL");
 	if(pc.isNice()) output("Smiling amiably, you tell him that you plan to take his seed in the most pleasurable way possible.");
 	else if(pc.isMischievous()) output("Smiling roguishly, you tell him that he’s going to have a hard time walking when you finish.");
@@ -384,7 +386,8 @@ public function rideDatZilCawk():void {
 public function giveTheZilAFootjob():void {
 	clearOutput();
 	author("Miesha");
-	showBust("ZIL");
+	if(enemy.hasPerk("Penny Quest AI")) showBust("ZIL_RED");
+	else showBust("ZIL");
 	showName("MALE\nZIL");
 	output("You watch the Zil collapse, exhausted. A delightfully perverted idea comes to mind as you watch the boy pant. <i>“Awh, poor little thing, all tired and burned out are we?”</i> You stroll towards him, your smile growing with every step.");
 	output("\n\nThe Zil, on the ground, tries crawling backwards but ends up hitting the foot of a tree. He looks from side to side, worried as you come to a halt right in front of him. <i>“W-what are you planning?”</i>");
@@ -417,7 +420,8 @@ public function giveTheZilAFootjob():void {
 public function alkahestsForeskinOralPlay():void {
 	clearOutput();
 	author("Alkahest");
-	showBust("ZIL");
+	if(enemy.hasPerk("Penny Quest AI")) showBust("ZIL_RED");
+	else showBust("ZIL");
 	showName("MALE\nZIL");
 	//this is too worshipful to be a plain win scene; if it were a loss or there were an addiction mechanic where you needed to be highly addicted to the zil before you could select it, it would make more sense -Z
 	output("You inhale deeply as the scent of his now freely-flowing honeyed pre suffuses your senses, overriding all things other than the source of that heavenly smell, your body tingling and warming as the powerful pheromones begin to go to work.");
@@ -1279,7 +1283,8 @@ public function theZilPretendToBeHelia():void {
 public function useTailOnZilWhenUWin():void
 {
 	clearOutput();
-	showBust("ZIL");
+	if(enemy.hasPerk("Penny Quest AI")) showBust("ZIL_RED");
+	else showBust("ZIL");
 	showName("MALE\nZIL");
 	author("Frogapus");
 	output("You grin as you flex your supernumerary tail muscles, flexing your tail up to your side. It curls up just under your hand as you look down hungrily at your anthophile opponent. He pushes himself up weakly to his hands, looking up at you with glossy black eyes, and you trace a finger along the finely scaled top of your symbiotic tail.");
@@ -1388,10 +1393,12 @@ public function zilPregnancyBirthing(pregSlot:int = 0, numBabies:int = 2):void
 	var isSmol:Boolean = (!pc.isTaur() && pc.tallness <= 64);
 	var isZil:Boolean = (pc.raceShort() == "zil");
 	var isNude:Boolean = (pc.isNude());
+	var inShip:Boolean = InShipInterior();
+	var inPublic:Boolean = (InPublicSpace() || rooms[currentLocation].planet.toLowerCase().indexOf("station") != -1 || rooms[currentLocation].hasFlag(GLOBAL.INDOOR));
 	
 	output("Pain wracks your gut, bending you over as you protectively place a hand on your [pc.stomach]. That and the fluids spilling onto");
 	if(!isNude) output(" your " + (!pc.isCrotchExposed() ? "[pc.lowerGarments]" : "clothing"));
-	else output(" the " + ((InShipInterior() || InPublicSpace()) ? "ground" : "floor"));
+	else output(" the " + ((inShip || inPublic) ? "ground" : "floor"));
 	output(" are sure signs that your babies are coming.");
 	// mhen’gaWilderness:
 	if(getPlanetName() == "Mhen'ga" && (rooms[currentLocation].hasFlag(GLOBAL.FOREST) || rooms[currentLocation].hasFlag(GLOBAL.JUNGLE)) && rooms[currentLocation].hasFlag(GLOBAL.OUTDOOR))
@@ -1450,7 +1457,7 @@ public function zilPregnancyBirthing(pregSlot:int = 0, numBabies:int = 2):void
 		currentLocation = "JUNGLE EDGE";
 	}
 	// Ship:
-	else if(InShipInterior())
+	else if(inShip)
 	{
 		showBust("");
 		
@@ -1475,7 +1482,7 @@ public function zilPregnancyBirthing(pregSlot:int = 0, numBabies:int = 2):void
 		// Removes the preggomones, puts the PC in their ship, and brings the babies to the nursery.
 	}
 	// Civilization:
-	else if(InPublicSpace())
+	else if(inPublic)
 	{
 		showBust("LEITHAN_MALE");
 		

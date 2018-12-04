@@ -92,6 +92,9 @@ public function brandyVaginal():void
 	output(" as wet and stretchy as the cowgirl’s, it’s easy to work your tool into her, all the way to the hilt,");
 	if (pc.cocks[x].cLength() >= 14) output(" leaving Brandy’s tummy bulging with a pleasing outline of your turgid cock.");
 	else output(" your hips pressed to hers.");
+	
+	pc.cockChange();
+	
 	output("The buxom bovine under you moos with bliss and wiggles under you with your tool sheathed inside her, breath shuddering and labored.");
 	output("\n\nYou smile down at Brandy while she turns beet-red behind her bangs and start to pull your [pc.hips] back, drawing your [pc.cock " + x + "] out of her slit and dragging your cockflesh along her sensitive inner walls. That only has your lover mooing louder as her love tunnel is caressed by your shaft. Then, just as your glans reaches her sopping folds again, you thrust right back into her, spreading her lower lips wide once more and leaving Brandy almost unable to cry out at the sudden, inexorable pleasure. Her back arches high when your [pc.hips] meet hers again, but you don’t stop there, and go to pull back again, then thrust in again, and again, and again.");
 	output("\n\nEventually, your thrusting builds to a vigorous-but-steady rhythm that leaves both of you in pleasurable bliss with your [pc.cockNoun " + x + "] railing Brandy’s pussy and her warm, wet inner walls hugging at your cock. The cowgirl’s massive breasts jiggle and bounce pleasingly with each inward thrust, her tongue lolling with pleasure and strain as she’s fucked silly by your quickening movements. A constant chorus of happy, lust-filled moos constantly fills the air as your love making continues, urging you onward to pleasure Brandy.");

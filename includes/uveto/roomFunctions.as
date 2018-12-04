@@ -28,7 +28,6 @@ public function TundraEncounterBonus():Boolean
 		if(stormguardMaleEncounterAvailabale()) 
 		{
 			choices[choices.length] = stormguardIntro;
-			choices[choices.length] = stormguardIntro;
 		}
 		
 		//Run the event
@@ -63,12 +62,14 @@ public function GlacialRiftEncounterBonus():Boolean
 		choices[choices.length] = encounterAMilodan;
 		choices[choices.length] = encounterAMilodan;
 		choices[choices.length] = encounterAMilodan;
-		//POSSIBLE ENCOUNTERS! KORGI!
-		choices[choices.length] = encounterAKorgonneFemaleHostile;
-		choices[choices.length] = korgMaleEncounter;
+		//very low encounter rate korgs
+		if(rand(2) == 0)
+		{
+			choices[choices.length] = encounterAKorgonneFemaleHostile;
+			choices[choices.length] = korgMaleEncounter;
+		}
 		if(stormguardMaleEncounterAvailabale())
 		{
-			choices[choices.length] = stormguardIntro;
 			choices[choices.length] = stormguardIntro;
 		}
 
@@ -84,6 +85,8 @@ public function GlacialRiftEncounterBonus():Boolean
 		}		
 		if (flags["UVGR_SAVICITE_IDOL"] != undefined)
 		{
+			choices.push(soloFertilityPriestessFight);
+			choices.push(soloFertilityPriestessFight);
 			choices.push(soloFertilityPriestessFight);
 		}
 		//Run the event

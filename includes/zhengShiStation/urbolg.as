@@ -28,6 +28,11 @@ public function zhengShiHangerFloorBonus():Boolean
 		urbolgMeeting();
 		return true;
 	}
+	else if (!pc.hasStatusEffect("Rat Delay") && flags["RATS_ENABLED"] == undefined)
+	{
+		ratsAttemptUrbolgRobbery();
+		return true;
+	}
 	else
 	{
 		if(pc.hasStatusEffect("URBOLG_DISABLED"))
@@ -273,6 +278,7 @@ public function urbolgBadEndV():void
 public function defeatUrbolg():void
 {
 	flags["MET_URBOLG"] = 1;
+	pc.createStatusEffect("Rat Delay"); pc.setStatusMinutes("Rat Delay", 3*24*60);
 	//Lust
 	if(enemy.lust() >= enemy.lustMax())
 	{
@@ -846,7 +852,7 @@ public function getDoggyDoggyUrbolg(x:int):void
 	{
 		output(" It’s colored like delicious candy! You’re on your knees immediately, obediently presenting your open mouth and poking your tongue out for his use.");
 		output("\n\n<i>“Aaah.”</i>");
-		output("\n\n<i>“Good [pc.girlBoy]");
+		output("\n\n<i>“Good [pc.girlBoy],”</i>");
 	}
 	else
 	{
@@ -861,8 +867,9 @@ public function getDoggyDoggyUrbolg(x:int):void
 		output("\n\n<i>“");
 		if(flags["URBOLG_DOGGYED"] >= 3) output("Good [pc.girlBoy]");
 		else output("Least ye follow orders");
-		output(",”</i> he mutters, placing a hand on your head and taking the invitation.");
+		output(",”</i>");
 	}
+	output(" he mutters, placing a hand on your head and taking the invitation.");
 	output("\n\nHis tapered tip slides across your tongue and into your mouth without stopping, Urbolg taking the opportunity to hold you in place and thrust into your cheeks. You gladly allow him, curling your [pc.tongue] around as much of his fat cock as you can manage while your cheek bulges with cock. He holds you there for a few seconds while you slobber and slurp all over his dick, your lips sealing around the middle of his cock and sucking as hard as you can manage.");
 	output("\n\nUrbolg grunts in pleasure, pulling back and thrusting deeper into your mouth, the head of his cock kissing your tonsils for a second before he pushes further. Every inch he sinks inside you makes you");
 	if(pc.isHerm()) output(" wetter and harder");

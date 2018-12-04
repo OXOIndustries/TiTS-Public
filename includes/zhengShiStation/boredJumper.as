@@ -77,6 +77,7 @@ public function boredJumperAttackProc():Boolean
 public function winVsBoredJumper():void
 {
 	flags["BORED_JUMPER_CONSECUTIVE_LOSSES"] = 0;
+	IncrementFlag(flags["BORED_JUMPER_SEXED"]);
 	//HP
 	if(enemy.HP() <= 1)
 	{
@@ -150,6 +151,7 @@ public function leaveTheBoredJumperAfterWinning():void
 {
 	clearOutput();
 	showBoredJumper();
+	flags["BORED_JUMPER_SEXED"]--;
 	output("You wave off the oversexed bunny-slut’s passionate exhortations and turn away.");
 	output("\n\n<i>“Wait! No!”</i> She briefly reaches out for you before giving up and yanking down her zipper. <i>“I wanted to fuck yoooouuuuuu!”</i>");
 	output("\n\nHer moans continue for some time.\n\n");
@@ -2559,9 +2561,6 @@ public function boredJumperHeatSexII():void
 	output("\n\nGosh, she must be in pain from how much blood has flowed to her nethers. She’s so <i>hot</i>, so <i>tasty</i>... The raw musk in her lubricant alone squeezes copious amounts of fem slime from your [pc.vagina]");
 	if(pc.hasCock()) output(", even stimulating your [pc.cocks] to add their own to the air");
 	output(". Your [pc.hips] grind together, your erect [pc.clitNoun] afflicting you with an inch only your hands can tend. You brazenly finger yourself, a task made all to easy by the torrential downpour of syrup oozing from your hot and ready cunt, moaning all over the bunny’s cock you suck so diligently.");
-	
-	output(". Your [pc.hips] grind together, your erect [pc.clit] afflicting you with an itch only your hands can tend. You brazenly finger yourself, a task made all to easy by the torrential downpour of syrup oozing from your hot and ready cunt, moaning all over the bunny’s cock you suck so diligently.");
-	
 	output("\n\n<i>“D-damn...”</i> The laquine grabs your head. <i>“I feel so hard I bet my dick could replace the mining bots down here..! Just what do you think I’m gonna do to you for this?”</i> She half-taunts. In all honesty, you can’t quite tell where her tone of voice is, all that matters is that she’s going to ravish, no, <b>ruin</b> you with her gorgeous [enemy.cock], that she’s going to do her very best to impregnate you with every ounce of cum churning in her fuzzy nuts.");
 	output("\n\nShe yanks you down all the way on her cock so hard that tears form at the edges of your [pc.eyes], but you aren’t in pain. No, you understand, this is where you <i>need</i> to be right now, taking care of this studly specimen, your rightful mate. She uses your mouth like an onahole, and you’re all too happy to reciprocate, squeezing your cheeks around her shaft and lashing her mast with your [pc.tongue]. You coil around her [enemy.cockHead] and suck at her cumslit directly, hoping you’ll get a fresh batch before too long.");
 	output("\n\nFor once, hope was not a step on the road to disappointment, and you moan in whorish glee as her dick throbs in your mouth. Her legs thump against the ground and her balls smack into your chin. One of many climaxes to come is precluded by the hypnotic rhythms of her pounding heart, its beating rapid, working in harmony with the rest of her body. Your eyes shut as you gag on the puddles of virile cum she fires straight into your gurgling gut. If only you could taste it...");

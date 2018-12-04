@@ -5,7 +5,6 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.PregnancyData;
 	import classes.kGAMECLASS;
 	import classes.GameData.StatTracking;
-	import classes.Engine.Map.InPublicSpace;
 	import classes.GLOBAL;
 	import classes.Engine.Interfaces.ParseText;
 	import classes.Engine.Utility.rand;

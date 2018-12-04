@@ -7,10 +7,10 @@ package classes.Resources.Busts
 	public class DocBadgerBusts 
 	{
 		public function get PREVIEW():Class { return Bust_DRBADGER; }
-		public function get SIGNATURE():Class { return SigEmbed; }
+		//public function get SIGNATURE():Class { return SigEmbed; }
 		
-		[Embed(source = "../../../assets/images/npcs/docbadger/HR/sig.png", mimeType = "image/png")]
-		public var SigEmbed:Class;
+		//[Embed(source = "../../../assets/images/sig/datbadger.png", mimeType = "image/png")]
+		//public var SigEmbed:Class;
 		
 		// More assumptions
 		

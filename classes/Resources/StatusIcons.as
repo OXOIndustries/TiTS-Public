@@ -109,6 +109,9 @@ package classes.Resources
 		[Embed(source = "../../assets/icons/statuseffects/mindcontrolled_mindbroke.svg", mimeType = "image/svg")]
 		public static var Icon_MindcontrolledMindbroke:Class;
 		
+		[Embed(source = "../../assets/icons/statuseffects/money.svg", mimeType = "image/svg")]
+		public static var Icon_MoneyBag:Class;
+		
 		[Embed(source = "../../assets/icons/statuseffects/off-down.svg", mimeType = "image/svg")]
 		public static var Icon_OffDown:Class;
 		

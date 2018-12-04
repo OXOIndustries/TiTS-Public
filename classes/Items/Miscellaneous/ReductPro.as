@@ -227,9 +227,9 @@ package classes.Items.Miscellaneous
 			if (pc.hasHorns())
 			{
 				if (pc.horns == 1)
-					addButton(9, StringUtil.capitalize(pc.hornsNoun()), useReductProShrinkHorns, undefined, StringUtil.capitalize(pc.hornsNoun()), "Apply the paste to your [pc.horn].");
+					addButton(9, StringUtil.toDisplayCase(pc.hornsNoun()), useReductProShrinkHorns, undefined, StringUtil.toDisplayCase(pc.hornsNoun()), "Apply the paste to your [pc.horn].");
 				else
-					addButton(9, StringUtil.capitalize(pc.hornsNoun()), useReductProShrinkHorns, undefined, StringUtil.capitalize(pc.hornsNoun()), "Apply the paste to [pc.eachHorn].");
+					addButton(9, StringUtil.toDisplayCase(pc.hornsNoun()), useReductProShrinkHorns, undefined, StringUtil.toDisplayCase(pc.hornsNoun()), "Apply the paste to [pc.eachHorn].");
 			}
 			else
 				kGAMECLASS.addDisabledButton(9, "Horns", "Horns", "You need horns for that!");
@@ -1336,9 +1336,7 @@ package classes.Items.Miscellaneous
 					else
 					{
 						output("As the drug activates, you run your fingers over your very small and rapidly shrinking [pc.hornsNoun]. [EachHorn] diminishes in size until there is nothing left. <b>You have lost your [pc.hornsNoun]!</b>");
-						pc.hornLength = 0;
-						pc.horns = 0;
-						pc.hornType = 0;
+						pc.removeHorns();
 					}
 				}
 				else

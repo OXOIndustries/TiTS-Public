@@ -280,11 +280,15 @@ public function extrameetGetProfiles(num:int):Array
 			if (extrameetProfileStatus("EXTRAMEET_HAWTSHOT") == num) pospro.push("EXTRAMEET_HAWTSHOT");
 			break;
 		case "myrellion":
-			if (extrameetProfileStatus("EXTRAMEET_DOGGE") == num) pospro.push("EXTRAMEET_DOGGE");
-			if (extrameetProfileStatus("EXTRAMEET_DAREGULATOR") == num) pospro.push("EXTRAMEET_DAREGULATOR");
-			if (extrameetProfileStatus("EXTRAMEET_HUNTRESS") == num) pospro.push("EXTRAMEET_HUNTRESS");
-			if (extrameetProfileStatus("EXTRAMEET_MISTRESSVENOM") == num) pospro.push("EXTRAMEET_MISTRESSVENOM");
-			if (extrameetProfileStatus("EXTRAMEET_REBEL23") == num) pospro.push("EXTRAMEET_REBEL23");
+			// Surface not glassed!
+			if (flags["KQ2_MYRELLION_STATE"] == undefined)
+			{
+				if (extrameetProfileStatus("EXTRAMEET_DOGGE") == num) pospro.push("EXTRAMEET_DOGGE");
+				if (extrameetProfileStatus("EXTRAMEET_DAREGULATOR") == num) pospro.push("EXTRAMEET_DAREGULATOR");
+				if (extrameetProfileStatus("EXTRAMEET_HUNTRESS") == num) pospro.push("EXTRAMEET_HUNTRESS");
+				if (extrameetProfileStatus("EXTRAMEET_MISTRESSVENOM") == num) pospro.push("EXTRAMEET_MISTRESSVENOM");
+				if (extrameetProfileStatus("EXTRAMEET_REBEL23") == num) pospro.push("EXTRAMEET_REBEL23");
+			}
 			if (extrameetProfileStatus("EXTRAMEET_SWEETHEART") == num) pospro.push("EXTRAMEET_SWEETHEART");
 			if (extrameetProfileStatus("EXTRAMEET_RDY4PLY") == num) pospro.push("EXTRAMEET_RDY4PLY");
 			if (extrameetProfileStatus("EXTRAMEET_AL") == num) pospro.push("EXTRAMEET_AL");

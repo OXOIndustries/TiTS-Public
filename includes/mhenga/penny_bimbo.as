@@ -27,6 +27,8 @@ public function approachBimboPenny():void
 		
 		flags["SEEN_BIMBO_PENNY"] = 1;
 		processTime(5);
+		bimboPennyMenu();
+		setButtonDisabled(3);
 	}
 	//Repeat
 	else
@@ -40,10 +42,10 @@ public function approachBimboPenny():void
 		}
 		//IF PC HAS APPROACHED PENNY AFTER SHE HAS BEEN BIMBO’D BEFORE AND THE TIME IS BETWEEN 1701 AND 0759
 		else output("Penny is leaning back in her chair, happily relaxing as she finally gets to drain herself fully now that Flahne is here. The office looks surprisingly clean too - between the two of them they must have cleaned up once it got a bit quieter on the night shift. Flahne doesn’t say anything to you as you walk over, she’s a bit busy with Penny’s cock in her mouth, after all, but Penny looks up excitedly. <i>“Hey there [pc.name]! What can I do for ya?</i>");
-	}
-	//Buttons
-	//[Talk][Sex Options][Leave]
-	bimboPennyMenu();
+		//Buttons
+		//[Talk][Sex Options][Leave]
+		bimboPennyMenu();
+	}	
 }
 
 public function bimboPennyMenu():void
@@ -53,6 +55,8 @@ public function bimboPennyMenu():void
 	if(pc.lust() >= 33) addButton(1,"Sex",bimboPennySex);
 	else addDisabledButton(1,"Sex","Sex","You are not quite in the mood for this at the moment.");
 	if(pc.hasItemByClass(IQBGone)) addButton(2,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
+	if(hours >= 8 && hours < 17) addButton(3,"Recruit",recruitBimboPenpen,undefined,"Recruit","Offer Penny a spot on your crew as your own personal on-demand bimbo.");
+	else addDisabledButton(3,"Recruit","Recruit","Penny seems a bit busy with Flahne. It would be better to discuss this between you and Penny.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -115,7 +119,11 @@ public function bimboPennySexMenu():void
 
 	addButton(1,"Get Fucked",getFuckedByBimboPenny,undefined,"Get Fucked","Take advantage of bimbo Penny’s rather sizeable tool.");
 	addButton(2,"Get Oral",getOralFromBimboPenny,undefined,"Get Oral","Have your bimbo slut give you a nice oral servicing");
-	if(hours >= 8 && hours < 17) 
+	if(pennyIsCrew())
+	{
+		addButton(3,"Cum Bath",givePennyACumBath,undefined,"Cum Bath","Penny sure seems very... productive, maybe you could take advantage of that, if you want?");
+	}
+	else if(hours >= 8 && hours < 17) 
 	{
 		addButton(3,"Cum Bath",givePennyACumBath,undefined,"Cum Bath","Penny sure seems very... productive, maybe you could take advantage of that, if you want?");
 		addDisabledButton(4,"Flahne Play","Play With Flahne","Flahne has to be here for this scene, try back later in the day.");
@@ -125,7 +133,8 @@ public function bimboPennySexMenu():void
 		addDisabledButton(3,"Cum Bath","Cum Bath","Come back when Flahne isn’t around so Penny has had more time to build up her production");
 		addButton(4,"Flahne Play",playWithFlahne,undefined,"Play With Flahne","Flahne’s had a lot of time to absorb Penny’s cum, surely that would make for some interesting flavors and opportunities?");
 	}
-	addButton(14,"Back",approachBimboPenny);
+	if(pennyIsCrew()) addButton(14,"Back",approachCrewPenny,true);
+	else addButton(14,"Back",approachBimboPenny);
 }
 
 //FUCK HER
@@ -135,12 +144,12 @@ public function fuckBimboPenny():void
 	showPenny();
 	abeAuthor();
 	output("<i>“Ready for some fun?”</i> you ask");
-	if(!pc.isCrotchExposed()) output(" as you strip off your [pc.gear],");
+	if(!pc.isCrotchExposed()) output(" as you strip off your [pc.crotchCovers],");
 	else output(" as you lift your hips,");
 	output(" exposing your cock as it quickly gets hard.");
 
-	output("\n\n<i>“For sure!”</i> she answers happily, standing up so quickly that she knocks her chair over, making it fall to the ground with a clatter behind her. She doesn’t seem to be put off by that at all, leaning forward over her desk and wiggling her already naked butt with a happy giggle.");
-	if(hours >= 17 || hours < 8) output(" Beneath the desk, Flahne is clearly sad to have Penny taken away from her, but seems to be happy enough to just lie back and digest the cum she’d already received instead of trying to join in.");
+	output("\n\n<i>“For sure!”</i> she answers happily, standing up so quickly that she knocks her chair over, making it fall to the ground with a clatter behind her. She doesn’t seem to be put off by that at all, leaning forward over her " + (pennyIsCrew() ? "bed":"desk") + " and wiggling her already naked butt with a happy giggle.");
+	if(!pennyIsCrew() && (hours >= 17 || hours < 8)) output(" Beneath the desk, Flahne is clearly sad to have Penny taken away from her, but seems to be happy enough to just lie back and digest the cum she’d already received instead of trying to join in.");
 	output(" You take up your position behind her, moving her bushy tail to the side to give yourself access and enjoying the way she shivers with pleasure as you do.");
 	//IF PC IS A BIMBO = 
 	if(pc.isBimbo() && pc.biggestTitSize() >= 5) output("\n\n<i>“Oh holy shit, this is so great,”</i> you gasp, grabbing at her big full booty as you lean forwards over her, your big tits reaching down far enough to brush against the fur of her back. <i>“I didn’t know how much I wanted to share my slutty bimbo-ness and make a nice pet to fuck, but now that I’ve done it... mhmmmm, it’s the </i>best<i>.”</i>");
@@ -151,15 +160,24 @@ public function fuckBimboPenny():void
 	//penny.cuntChange(0, penny.cockVolume(pc.cockThatFits(penny.vaginalCapacity(0))));
 	output("\n\n<i>“Yes! Yes! Yes!”</i> she gasps with each thrust, rocking back into you to heighten the sensations. <i>“I... I need... more!”</i>");
 	output("\n\nReaching down beneath herself, she once again wraps one of her hands around her thick shaft. You’re fucking her hard, but clearly she wants even more, wants to make sure she takes advantage of every part of the body you’ve given her. Pressing her cock up between her swaying tits she starts losing herself, letting go and eagerly embracing the urges and needs you’ve brought out in her. Her canine muzzle kisses at the tip of her cock every time one of your powerful thrusts pushes it towards her, her long tongue mixing drool with her dripping pre-cum.");
-	output("\n\nIt doesn’t take long of this to make her cum, her knees locking forwards against the desk as her hips tremble, her cock spurting again and again all over her face. She’s quickly left with a dripping puddle to happily slather herself with, licking up as much as she can even as more slick whiteness pulses from her churning balls.");
+	output("\n\nIt doesn’t take long of this to make her cum, her knees locking forwards against the " + (pennyIsCrew() ? "bed":"desk") + " as her hips tremble, her cock spurting again and again all over her face. She’s quickly left with a dripping puddle to happily slather herself with, licking up as much as she can even as more slick whiteness pulses from her churning balls.");
 	output("\n\nIt’s a good sight, and you’re not far from cumming yourself, but suddenly notices your body starting to tense up and turns around to look at you, eyes wide. <i>“N- wait!”</i> she gasps urgently. Pulling forwards she drags your cock out of herself, and before you can react she flips over, sliding forwards onto her knees and looking up at you.");
 	output("\n\n<i>“Please,”</i> she begs, <i>“cum on my face. Don’t make me have to walk around all day waiting for all of your yummy cum to drip from my pussy - let me... let... I need, please...”</i>");
 	output("\n\nPenny trails off, too busy drooling and licking her lips now that your stiff cock is right up next to her face. Closing her eyes, she takes one long, deep breath, savoring your scent as it reaches inside her sensitive nose and flips all the right switches in her brain, making her tail wag unthinkingly behind her. Then she opens her eyes again, and when she looks up at you you see that same flash of power and passion she had when you first met her, but now so eagerly and willingly redirected.");
 	output("\n\nShe falls on you, a mess of flailing limbs and her wild, drooling tongue. After a few seconds of confusion she manages to come up with a plan, and, raising herself up slightly, she pushes her tits together with her hands and then slides your [pc.biggestCock] between then.");
 	output("\n\n<i>“Yessss...”</i> she moans happily as she quickly settles into a rhythm. <i>“Yes, fuck me... fuck every part of me, just let- let me have- CUM!”</i>");
 	output("\n\nOn that last word she thrusts herself forwards powerfully, and it’s more than enough to bring you over the edge. You fall against her, hands gripping at her head as you almost fold over, your body far more focussed on filling her request than on things like ‘standing up’. Penny gets her reward though, your cock pulsing as a blast of your [pc.cum] washes over her. She leans back, freeing you from between her tits to better let you coat as much of her as possible. Her tongue chases down several mouthfuls for her to savor, but for the most part she’s happy to just close her eyes and lie back, enjoying the feeling of your cum landing all over her.");
-	output("\n\nShe opens her eyes again when you’re finally done, licking her lips with a smile. <i>“Mmmmm, that feels so right, having my whole body all nice and sticky with your cum and mine. Can I just live like this always? Maybe I should just come with you and be your nice, dripping cumslut assistant that you can have all the aliens you fight fuck when you can’t be bothered fighting them yourself?”</i>");
-	output("\n\nYou’re not sure what to make of that, but she giggles before you can respond. <i>“Nah, don’t worry, I’m just kidding. That’d be fun, but there’s all like, reasons why it’s not likely to happen.”</i> She sighs. <i>“Well, I guess for now I’d better make the most of you when you’re around.”</i>");
+	output("\n\nShe opens her eyes again when you’re finally done, licking her lips with a smile. <i>“Mmmmm, that feels so right, having my whole body all nice and sticky with your cum and mine. ");
+	if(pennyIsCrew())
+	{
+		output("I’m so lucky I can live like this all the time! I get to be your nice, drippy cumslut assistant, always ready to satisfy you... or any randy aliens you bring back. We can all fuck together. Just one, big, cum-drenched bunch of sluts.”</i>");
+		output("\n\nYou smile back, unsure how to respond, but she giggles before you can answer. <i>“Yeah, I know, it’s like... the best. And I meant every word. I’m like, your personal spunk-dump, but I’ll fuck anybody you want, any time.”</i> She sighs happily. <i>“Well, I guess better clean up for my next show! I can’t be a mess all the time!”</i>");
+	}
+	else 
+	{
+		output("Can I just live like this always? Maybe I should just come with you and be your nice, dripping cumslut assistant that you can have all the aliens you fight fuck when you can’t be bothered fighting them yourself?”</i>");
+		output("\n\nYou’re not sure what to make of that, but she giggles before you can respond. <i>“Nah, don’t worry, I’m just kidding. That’d be fun, but there’s all like, reasons why it’s not likely to happen.”</i> She sighs. <i>“Well, I guess for now I’d better make the most of you when you’re around.”</i>");
+	}
 	output("\n\nShe picks her chair up off the ground and sits down, wiping her clawed fingers slowly along her sticky fur and sucking it clean after every swipe. <i>“Let me know when you’re good to go again!”</i> she says in between mouthfuls.");
 	processTime(38);
 	penny.orgasm();
@@ -178,14 +196,14 @@ public function getFuckedByBimboPenny():void
 	abeAuthor();
 	var x:int = -1;
 	if(pc.hasVagina()) x = rand(pc.totalVaginas());
-	output("Smiling, you make your way over to Penny’s desk, saying, <i>“I think it’s time to put that cock of yours to use...”</i>");
+	output("Smiling, you make your way over to Penny" + (!pennyIsCrew() ? "’s desk":"") + ", saying, <i>“I think it’s time to put that cock of yours to use...”</i>");
 	output("\n\nPenny giggles happily in response, springing up from her chair and running over to you. <i>“You bet!”</i> she says simply. <i>“That sounds good to me!”</i>");
-	if(hours >= 17 || hours < 8) output(" Beneath the desk, Flahne is clearly sad to have Penny taken away from her, but seems to be happy enough to just lie back and digest the cum she’d already received instead of trying to join in.");
-
-	output("\n\nYou shed your [pc.gear], leaning forwards and giving Penny a nice view. <i>“Well then, what are you waiting for?”</i>");
-
+	if(!pennyIsCrew() && (hours >= 17 || hours < 8)) output(" Beneath the desk, Flahne is clearly sad to have Penny taken away from her, but seems to be happy enough to just lie back and digest the cum she’d already received instead of trying to join in.");
+	output("\n\nYou ");
+	if(!pc.isCrotchExposed()) output("shed your [pc.gear], leaning forwards and giving");
+	else output("lean forward and give");
+	output(" Penny a nice view. <i>“Well then, what are you waiting for?”</i>");
 	output("\n\nPenny is caught off-guard for a moment, clearly expecting a little more teasing or foreplay, but she’s more than happy to roll with it if you just want something quick and dirty. <i>“Oh! Sorry!”</i> she says, but before you can tell her you were only kidding she grabs you firmly from behind, lining her thick cock up with your [pc.vagOrAss " + x + "]. <i>“You want me to like, go all at it then?”</i>");
-
 	if(pc.isBimbo()) output("\n\n<i>“Psh, yuh. Why else would I have made you into a nice slutty bimbo like me if I didn’t want you to super fuck me a bunch?”</i>");
 	else output("\n\n<i>“Uh, yeah, of course. Why else would I have made you a super horny bimbo slut with a nice big cock if I didn’t want you to fuck me with it?”</i>");
 	output(", you answer, wiggling your rump to drive the point home and hopefully give her all the encouragement she could need.");
@@ -230,8 +248,8 @@ public function getOralFromBimboPenny():void
 	if(pc.isBimbo()) 
 	{
 		output("<i>“I think, like, I </i>super<i> want to try out those nice plump lips of yours,”</i> you say happily, ");
-		if(!pc.isTaur()) output("sitting down on the edge of her desk");
-		else output("resting against the edge of her desk");
+		if(!pc.isTaur()) output("sitting down on the edge of her " + (pennyIsCrew() ? "bed":"desk"));
+		else output("resting against the edge of her " + (pennyIsCrew() ? "bed":"desk"));
 		output(" and leaning in close.");
 	}
 	else
@@ -239,12 +257,12 @@ public function getOralFromBimboPenny():void
 		output("<i>“I think it’s time to put those bimbo lips of yours to use servicing me,”</i> you say in a sultry whisper, ");
 		if(!pc.isTaur()) output("sitting down on");
 		else output("leaning against");
-		output(" the edge of her desk.");
+		output(" the edge of her " + (pennyIsCrew() ? "bed":"desk") + ".");
 	}
 	output("\n\n<i>“Oh yeah?”</i> Penny giggles, <i>“they’re pretty great, aren’t they?”</i>");
 	output("\n\nInstead of answering you just grab her by the head, pulling her in as you ");
-	if(!pc.isTaur()) output("bring your legs up, spinning around on the desk and sweeping aside her terminal until you’re straddling her and her head is level with your crotch.");
-	else output("clambering awkwardly onto the desk and positioning yourself to make sure your crotch is right in front of her face.");
+	if(!pc.isTaur()) output("bring your legs up, spinning around " + (pennyIsCrew() ? "":"on the desk and sweeping aside her terminal ") + "until you’re straddling her and her head is level with your crotch.");
+	else output("clambering awkwardly " + (pennyIsCrew() ? "up":"onto the desk and positioning yourself") + " to make sure your crotch is right in front of her face.");
 
 	output("\n\nPenny doesn’t need any more encouragement than that. She falls forward eagerly, ");
 	//IF PC HAS A COCK = 
@@ -298,13 +316,13 @@ public function getOralFromBimboPenny():void
 		output(" off, sending long slick waves of [pc.cumColor] cum sliding down her fur.");
 	}
 	output(" She cums too, so blissfully happy to have successfully been of service, her thick cock spurting again and again down beneath the desk");
-	if(hours >= 17 || hours < 8) output(" - straight into Flahne’s welcoming mouth");
+	if(!pennyIsCrew() && (hours >= 17 || hours < 8)) output(" - straight into Flahne’s welcoming mouth");
 	output(".");
 	output("\n\nEventually you push Penny back, and she licks her lips happily to savor the last of your flavor as you pull apart.");
-	if(hours >= 8 && hours < 17) 
+	if(pennyIsCrew() || (hours >= 8 && hours < 17))
 	{
 		output(" She smiles at you, but a blush starts to rise in her cheeks, followed by an increasingly distracted look. Before you can ask her what’s wrong she blurts out <i>“sorry, I-!”</i> and dives down at of view.");
-		output("\n\nYou’re confused for a second, but then you hear the sound of her snuffling frenziedly beneath her desk, clearly tracking down all the cum she just spent and licking it up. Eventually she rises back up, the tip of her muzzle stubbornly painted white even as her tongue wraps around her nose again and again to try and clean it all off.");
+		output("\n\nYou’re confused for a second, but then you hear the sound of her snuffling frenziedly" + (pennyIsCrew() ? " on the ground":" beneath her desk") + ", clearly tracking down all the cum she just spent and licking it up. Eventually she rises back up, the tip of her muzzle stubbornly painted white even as her tongue wraps around her nose again and again to try and clean it all off.");
 		output("\n\n<i>“Sorry,”</i> she says softly once she’s finally free to talk again. <i>“I just couldn’t like, sit here while I knew there was such a delicious treat just waiting for me.”</i> She nuzzles up close, snuggling up against your body lovingly. <i>“Plus, it always just tastes better when it’s from something I did with you.”</i>");
 	}
 	output("\n\n<i>“Thanks [pc.name]!”</i> she says perkily, straightening back up as you get off her desk, <i>“I </i>super<i> needed that.”</i>. She bites her lip, pouting a little bit as she adds. <i>“Let- let me know if you want to do anything else, please? I could always go for another round...”</i>");
@@ -323,8 +341,8 @@ public function givePennyACumBath():void
 	clearOutput();
 	showPenny();
 	abeAuthor();
-	output("Looking down at Penny, so cute and pent-up, gives you an idea. <i>“Come with me,”</i> you say simply, grabbing her by the arm and pulling her away from her desk.");
-	output("\n\nShe looks confused, but follows along obediently, only stopping for a second to flick a button that sets turns on an <i>“Out”</i> sign outside and locks the front door. Then with a light-hearted giggle she happily lets you pull her away. To her surprise, you lead her not to a bed, but to a large, empty bath.");
+	output("Looking down at Penny, so cute and pent-up, gives you an idea. <i>“Come with me,”</i> you say simply, grabbing her by the arm and pulling her away from her " + (pennyIsCrew() ? "camera":"desk") + ".");
+	output("\n\nShe looks confused, but follows along obediently, only stopping " + (pennyIsCrew() ? "to swipe the power for her streaming station to “off.”":"for a second to flick a button that sets turns on an <i>“Out”</i> sign outside and locks the front door.") + " Then with a light-hearted giggle, she happily lets you pull her away. To her surprise, " + (pennyIsCrew() ? "you lead her":"you lead her not to a bed, but") + " to a large, empty bath.");
 	output("\n\n<i>“Oh! Do you want to like... fuck in the bath? Or take a bath together?”</i>");
 	if(pc.isBimbo()) output("\n\n<i>“Both!”</i>");
 	else output("\n\n<i>“Something like that...”</i>");
@@ -373,7 +391,7 @@ public function cumBathWithYourCumSlut():void
 	output("You strip down and slide into the bath happily, and Penny moves around to the side to give you room. Pretty quickly she’s on top of you, letting you sink down into the warm, slick cum she’s so thoughtfully provided, while she straddles you with a grin.");
 	output("\n\nYou think she’s about to say something, but instead she just leans forwards, licking her long wet tongue all the way along your chest. You’re not sure if it’s for your benefit or if it’s just because now you’re coated with the cum that she craves, and maybe she isn’t either, but it still results in a definitely good time. She giggles as you grab her around the waist, but she’s so focussed you decide to just leave it at that. Just you and her, enjoying this nice warm bath, while she so eagerly and dedicatedly slides her tongue over every single part of you. It’s surprisingly relaxing.");
 	output("\n\nYou only realize you drifted off after you wake up. Penny’s asleep too, all curled up and cute on top of you. Eventually you realize - you don’t feel that wet anymore. You were expecting to feel at least sticky still, but... it really does seem like she managed to get all of it. Damn. She is definitely good at what she does, thanks to you.");
-	output("\n\nIt’s almost a shame to wake her, but you have places to be and new worlds to discover. She gives you one last kiss as you get up, her tongue still slick with the last of the cum, and then settles back down at her desk with a sigh as you get ready to leave.");
+	output("\n\nIt’s almost a shame to wake her, but you have places to be and new worlds to discover. She gives you one last kiss as you get up, her tongue still slick with the last of the cum, and then settles back down at her " + (pennyIsCrew() ? "bed":"desk") + " with a sigh as you get ready to leave.");
 	processTime(75);
 	restHeal();
 	clearMenu();

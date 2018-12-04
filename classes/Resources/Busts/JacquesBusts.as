@@ -151,34 +151,49 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny.png", mimeType = "image/png")]
 		public var Bust_PENNY:Class;
+		public var Bounds_PENNY:Rectangle = new Rectangle(40,0,121,79);
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_nude.png", mimeType = "image/png")]
 		public var Bust_PENNY_NUDE:Class;
+		public function get Bounds_PENNY_NUDE():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_nude_canine_0.png", mimeType = "image/png")]
 		public var Bust_PENNY_NUDE_VIXEN:Class;
+		public function get Bounds_PENNY_NUDE_VIXEN():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_nude_canine_1.png", mimeType = "image/png")]
 		public var Bust_PENNY_NUDE_VIXEN_1:Class;
+		public function get Bounds_PENNY_NUDE_VIXEN_1():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_nude_canine_2.png", mimeType = "image/png")]
 		public var Bust_PENNY_NUDE_VIXEN_2:Class;
+		public function get Bounds_PENNY_NUDE_VIXEN_2():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_nude_equine_0.png", mimeType = "image/png")]
 		public var Bust_PENNY_NUDE_HORSE:Class;
+		public function get Bounds_PENNY_NUDE_HORSE():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_nude_equine_1.png", mimeType = "image/png")]
 		public var Bust_PENNY_NUDE_HORSE_1:Class;
+		public function get Bounds_PENNY_NUDE_HORSE_1():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_nude_equine_2.png", mimeType = "image/png")]
 		public var Bust_PENNY_NUDE_HORSE_2:Class;
+		public function get Bounds_PENNY_NUDE_HORSE_2():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_bimbo.png", mimeType = "image/png")]
 		public var Bust_PENNY_BIMBO:Class;
+		public function get Bounds_PENNY_BIMBO():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_bimbo_canine_0.png", mimeType = "image/png")]
 		public var Bust_PENNY_BIMBO_VIXEN:Class;
+		public function get Bounds_PENNY_BIMBO_VIXEN():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_bimbo_canine_1.png", mimeType = "image/png")]
 		public var Bust_PENNY_BIMBO_VIXEN_1:Class;
+		public function get Bounds_PENNY_BIMBO_VIXEN_1():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_bimbo_canine_2.png", mimeType = "image/png")]
 		public var Bust_PENNY_BIMBO_VIXEN_2:Class;
+		public function get Bounds_PENNY_BIMBO_VIXEN_2():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_bimbo_equine_0.png", mimeType = "image/png")]
 		public var Bust_PENNY_BIMBO_HORSE:Class;
+		public function get Bounds_PENNY_BIMBO_HORSE():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_bimbo_equine_1.png", mimeType = "image/png")]
 		public var Bust_PENNY_BIMBO_HORSE_1:Class;
+		public function get Bounds_PENNY_BIMBO_HORSE_1():Rectangle { return Bounds_PENNY; }
 		[Embed(source = "../../../assets/images/npcs/jacques00/penny_bimbo_equine_2.png", mimeType = "image/png")]
 		public var Bust_PENNY_BIMBO_HORSE_2:Class;
+		public function get Bounds_PENNY_BIMBO_HORSE_2():Rectangle { return Bounds_PENNY; }
 		
 		[Embed(source = "../../../assets/images/npcs/jacques00/deep_lake_queen.png", mimeType = "image/png")]
 		public var Bust_QUEENOFTHEDEEP:Class;
@@ -553,6 +568,8 @@ package classes.Resources.Busts
 		public var Bust_LOGO_KIHACORP:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/nova_securities.png", mimeType = "image/png")]
 		public var Bust_LOGO_NOVA_SECURITIES:Class;
+		[Embed(source = "../../../assets/images/logos/jacques00/maxcorp.png", mimeType = "image/png")]
+		public var Bust_LOGO_MAXCORP:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/pyrite.png", mimeType = "image/png")]
 		public var Bust_LOGO_PYRITE:Class;
 		[Embed(source = "../../../assets/images/logos/jacques00/reaper.png", mimeType = "image/png")]
@@ -598,6 +615,8 @@ package classes.Resources.Busts
 			public var Full_LOGO_JOYCO:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/kihacorp.png", mimeType = "image/png")]
 			public var Full_LOGO_KIHACORP:Class;
+			[Embed(source = "../../../assets/images/logos/jacques00/hr/maxcorp.png", mimeType = "image/png")]
+			public var Full_LOGO_MAXCORP:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/nova_securities.png", mimeType = "image/png")]
 			public var Full_LOGO_NOVA_SECURITIES:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/pyrite.png", mimeType = "image/png")]
@@ -613,7 +632,7 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/snuggle.png", mimeType = "image/png")]
 			public var Full_LOGO_SNUGGLE:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/steele_tech.png", mimeType = "image/png")]
-			public var Full_LOGO_STEELETECH:Class;
+			public var Full_LOGO_STEELE_TECH:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/tamanicorp.png", mimeType = "image/png")]
 			public var Full_LOGO_TAMANICORP:Class;
 			[Embed(source = "../../../assets/images/logos/jacques00/hr/ugc.png", mimeType = "image/png")]

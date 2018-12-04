@@ -74,7 +74,6 @@
 	import classes.GUI;
 	import classes.Mapper;
 	import classes.StringUtil;
-	import classes.Engine.Map.InPublicSpace;
 	
 	import classes.Engine.checkDate;
 	import classes.Engine.showImage;
@@ -159,6 +158,7 @@
 		include "../includes/follower/paigeHalloweener.as";
 		include "../includes/follower/paigeSex.as";
 		include "../includes/follower/paigeSpar.as";
+		include "../includes/follower/penny.as";
 		include "../includes/follower/pippa.as";
 		include "../includes/follower/ramis.as";
 		include "../includes/follower/shekka.as";
@@ -187,6 +187,7 @@
 		include "../includes/masturbation/magicMilker.as";
 		include "../includes/masturbation/sleepFapnea.as";
 		include "../includes/masturbation/sukMastr.as";
+		include "../includes/masturbation/taurToys.as";
 		include "../includes/rivalEncounters.as";
 		include "../includes/vendingMachine.as";
 		
@@ -425,6 +426,8 @@
 		include "../includes/zhengShiStation/maike.as";
 		include "../includes/zhengShiStation/olympia.as";
 		include "../includes/zhengShiStation/punkSecOp.as";
+		include "../includes/zhengShiStation/ratsRaiders.as";
+		include "../includes/zhengShiStation/ratsRaidersVictory.as";
 		include "../includes/zhengShiStation/rivalEncounter.as";
 		include "../includes/zhengShiStation/rooms.as";
 		include "../includes/zhengShiStation/roomFunctions.as";
@@ -607,7 +610,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.229";
+			version = "0.7.240";
 
 			//temporary nonsense variables.
 			temp = 0;

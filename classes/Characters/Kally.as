@@ -25,6 +25,8 @@
 			cocks[0].addFlag(GLOBAL.FLAG_SHEATHED);
 			cocks[0].flaccidMultiplier = (12/13);
 			
+			createPerk("'Nuki Drunk", 0, 0, 0, 0, "");
+			createPerk("'Nuki Nuts", 0, 0, 0, 0, "");
 			createPerk("Fixed CumQ",4000,0,0,0);
 		}
 		//Gotta reset 'dem balls!'

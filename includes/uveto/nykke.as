@@ -168,6 +168,9 @@ public function nykkeMainMenu(noskip:Boolean = true ):void
 	nykkeHeader();
 	clearMenu();	
 	
+	//permanently disable sex with nykke
+	flags["FROSTWYRM_INCEST_OPTION"] = 0;
+	
 	if (noskip)
 	{
 		output("You excuse yourself from [frostwyrm.name]’s warm embrace and say to Nykke that you’d like to join her privately in the personal dwelling she’s made for herself.");
@@ -185,8 +188,8 @@ public function nykkeMainMenu(noskip:Boolean = true ):void
 	output(" while you’re here. Now that you two have some privacy, what would you like to do?");
 	
 	addButton(0,"Talk",nykkeTalkMenu, undefined,"Talk","Nykke’s proven to be a rather forward-thinking and driven kip. If you were to ask for her opinions on some topics, surely she’d provide some unique insight.");
-	if (flags["FROSTWYRM_INCEST_OPTION"] == 1) addButton(1, "Sex", nykkeSexMenu, undefined, "Sex", "Fulfill your role as Qal and spend some personal, quality time with your Frostwyrmling daughter during a celebratory ‘inner circle coupling’ session.");
-	else addDisabledButton(1,"Sex","Sex","You’ve currently elected to not celebrate the Frostwyrm tradition of ‘inner circle coupling.’ You should Talk with Nykke if you want to change that.");
+	//if (flags["FROSTWYRM_INCEST_OPTION"] == 1) addButton(1, "Sex", nykkeSexMenu, undefined, "Sex", "Fulfill your role as Qal and spend some personal, quality time with your Frostwyrmling daughter during a celebratory ‘inner circle coupling’ session.");
+	//else addDisabledButton(1,"Sex","Sex","You’ve currently elected to not celebrate the Frostwyrm tradition of ‘inner circle coupling.’ You should Talk with Nykke if you want to change that.");
 	addButton(14, "Leave", frostwyrmMainMenu, true);
 }
 //[Talk]
@@ -204,8 +207,8 @@ public function nykkeTalkMenu():void
 	else addDisabledButton(1,"Psionics","Psionics","You’re far less educated about psionics than Nykke would be, and you probably shouldn’t go into this discussion without at least a little bit of forethought from [frostwyrm.name] first.");
 	
 	addButton(2,"Adventuring",nykkeAdventuringTalk, undefined,"Adventuring","You have a life outside of [frostwyrm.name]’s lair – one that’s rather adventurous, especially compared to the domestic life that Nykke has. Maybe she’d like to hear a few stories about your travels.");
-	addButton(3, "Incest", nykkeIncestTalk, undefined, "Incest", "Maybe it’s time you reconsider your stance on ‘inner circle coupling.’");
-	addButton(4,"Black Scales",nykkeBlackScalesTalk, undefined,"Black Scales","Ask Nykke about her unique melanin condition. She clearly doesn’t like talking about it, but maybe, if you help her work through her frustrations with it, she’ll have an easier time accepting herself.");
+	//addButton(3, "Incest", nykkeIncestTalk, undefined, "Incest", "Maybe it’s time you reconsider your stance on ‘inner circle coupling.’");
+	addButton(3,"Black Scales",nykkeBlackScalesTalk, undefined,"Black Scales","Ask Nykke about her unique melanin condition. She clearly doesn’t like talking about it, but maybe, if you help her work through her frustrations with it, she’ll have an easier time accepting herself.");
 	
 	addButton(14, "Back", nykkeMainMenu, false);
 }
@@ -306,10 +309,8 @@ public function nykkeAdventuringTalk():void
 	output("\n\nYou tell Nykke that you aren’t a Frostwyrm");
 	
 	//Placeholder: tf and race check for frostwym does not currently exist
-	//if (pc.isFrostwyrm()) output(", or, at least, you weren’t always, you were born as a " + pc.originalRace + ".");
-	//else output(", you’re a [pc.race].");
-	output(", you’re a [pc.race].");
-	//end placeholder
+	if (nykkeFrostwyrmTF()) output(", or, at least, you weren’t always, you were born as a " + pc.originalRace + ".");
+	else output(", you’re a [pc.race].");
 		
 	output(" You ask her to guess how many of your kind exist. <i>“Hundreds?”</i> she asks, and you tell her there are more. <i>“Thousands?”</i> More than that. Her eyes squint in concentration. <i>“Um....”</i>");	
 	output("\n\nThere are more of your own kind than she might be able to properly envision: a number so large that she might not be able to understand the magnitude of how many exist.");
@@ -423,18 +424,14 @@ public function nykkeBlackScalesTalk():void
 	output("\n\nInstead of finishing the thought, Nykke turns to you, to look into your eyes. <i>“Do you think our Qim ever gets... I don’t know... lonely? That there aren’t others of her pure-blooded kind here?”</i>");
 	output("\n\nYou respond, with all sincerity, that [frostwyrm.name] has never once wanted for company since she took you on as her mate, and she had you as her kip. <i>“Even though we’re not");
 	
-	//Placeholder: tf and race check for frostwym does not currently exist
-	//if (pc.isFrostwyrm()) output(" pure-blooded,");
-	//end placeholder
+	if (nykkeFrostwyrmTF()) output(" pure-blooded,");
 	
 	output(" like her?”</i>");
 	output("\n\n[frostwyrm.name] sometimes likes to remind you that you weren’t her first choice in mate. She had spent much of her life searching for another Frostwyrm like herself, but in all her searching, she couldn’t find one, and she had to ‘settle’ for you.");
 	output("\n\nBut, you continue, she <i>also</i> likes to remind you that she doesn’t regret her choice in the very least. If she could go back in time, and she knew everything she knows now, and she found a pure-blooded Frostwyrm to mate with, she’d choose to mate with you, every single time.");
 	output("\n\nYou tell Nykke that it doesn’t matter to [frostwyrm.name] that you’re different than her; you may not be a");
 	
-	//Placeholder: tf and race check for frostwym does not currently exist
-	//if (pc.isFrostwyrm()) output(" pure-blooded");
-	//end placeholder
+	if (nykkeFrostwyrmTF()) output(" pure-blooded");
 	
 	output(" Frostwyrm, but you’ve given her a beautiful, healthy, strong");	
 	
@@ -447,16 +444,12 @@ public function nykkeBlackScalesTalk():void
 	output("\n\n<i>“Still,”</i> she says forlornly, turning her hands over once in front of her. <i>“I just... I can’t help but feel like I don’t really belong–”</i>");
 	output("\n\nYou cut her off from that destructive way of thinking. You tell Nykke that she is <i>your kip.</i> It doesn’t matter if her scales were white, or black, or green or purple or whatever; you’re not going to let something as small as the tone of her scales get in the way of letting you love your firstborn kip. Her scales may not be white, and you may not be a");
 	
-	//Placeholder: tf and race check for frostwym does not currently exist
-	//if (pc.isFrostwyrm()) output(" pure-blooded");
-	//end placeholder
+	if (nykkeFrostwyrmTF()) output(" pure-blooded");
 	
 	output(" Frostwyrm, but none of that matters to you or to [frostwyrm.name] – [frostwyrm.name] threw ‘standards’ and ‘traditions’ to the wind when she opted to choose you as her mate, and, as far as you’re concerned, you’d much rather have [frostwyrm.name] as your mate and Nykke as your kip as they both are than to have all three of you be ‘normal’ just for the sake of being ‘normal.’");
 	output("\n\nWhat’s important to you and to [frostwyrm.name] is that Nykke is here, and that she is your kip, and that you are her Qal and that [frostwyrm.name] is her Qim. You three are a clutch. If you not being a");
 	
-	//Placeholder: tf and race check for frostwym does not currently exist
-	//if (pc.isFrostwyrm()) output(" pure-blooded");
-	//end placeholder
+	if (nykkeFrostwyrmTF()) output(" pure-blooded");
 	
 	output(" Frostwyrm doesn’t change that, then <i>nothing</i> will.");
 	output("\n\nThe sensation of relief comes through much more clearly, now that you’ve made your love for Nykke and for [frostwyrm.name] as clear as could be to her. You can still sense just a tinge of apprehension, like a tick that refuses to let go, and you’re not certain if you’ll ever be able to get that out of her, but, apart from that, you can tell that Nykke is satisfied with your answer.");
@@ -464,7 +457,7 @@ public function nykkeBlackScalesTalk():void
 
 	processTime(10);
 
-	addDisabledButton(4,"Black Scales","Black Scales","You aren’t sure if Nykke will ever <i>truly</i> be satisfied with the color of her scales... but now she knows that, to you and to [frostwyrm.name], it doesn’t matter what she looks like. You’ll always be her kip.");	
+	addDisabledButton(3,"Black Scales","Black Scales","You aren’t sure if Nykke will ever <i>truly</i> be satisfied with the color of her scales... but now she knows that, to you and to [frostwyrm.name], it doesn’t matter what she looks like. You’ll always be her kip.");	
 }
 //[Sex]
 public function nykkeSexMenu():void
@@ -529,11 +522,8 @@ public function nykkeSexFuckHer():void
 	output(".");
 	output("\n\nYou hum as she has her gentle, attentive way with you: you thrust your [pc.chest] into her hands when she palms at your [pc.nipples], and you lift your [pc.hips] when her curious fingers search towards the small of your back, cupping your [pc.ass]. She’s very thorough, yet impatient; eager, yet inexperienced. She huffs through her nose, somewhat animalistic, knowing what she wants, but her combined Frostwyrm and");
 	
-	//Placeholder: tf and race check for frostwym does not currently exist
-	//if (pc.isFrostwyrm()) output(" " + pc.originalRace);
-	//else output(" [pc.race]");
-	output(" [pc.race]");
-	//end placeholder
+	if (nykkeFrostwyrmTF()) output(" " + pc.originalRace);
+	else output(" [pc.race]");
 	
 	output(" genes confuse her.");
 	output("\n\nYou can read her every confused, addled thought and fantasy as she slowly works to understand your form. She wants to flip you over and to thrust herself into you");
@@ -831,4 +821,9 @@ public function nykkeSexTakeHer(hole:int):void
 	}
 	
 	addButton(0, "Next", nykkeMainMenu, false);	
+}
+public function nykkeFrostwyrmTF():Boolean
+{
+	//once frostwyrm tf is on the game, do the check here
+	return false;	
 }

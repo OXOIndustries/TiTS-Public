@@ -268,8 +268,8 @@ public function weakAssSlutGooFeeding(totalCum:Number):void
 	output("\n\n<i>“Good,”</i> left announces, ");
 	if(pc.hasHair()) output("running fingers of goo through your hair, subdividing herself until it feels like she’s stroking the spaces between the individual strands.");
 	else output("running her fingers across your scalp, subdividing each until it feels like she’s got a thousands fingertips giving you a massage.");
-	output(" <i>“Can give me all the cum.”</i>");
-	output("\n\nRight looks over, suddenly jealous. <i>“He barely has any! I need my nummy cummies!”</i>");
+	output(" <i>“[pc.HeShe] can give me all the cum.”</i>");
+	output("\n\nRight looks over, suddenly jealous. <i>“[pc.HeShe] barely has any! I need my nummy cummies!”</i>");
 	output("\n\n<i>“No! It’s mine!”</i>");
 	output("\n\n<i>“Mine!”</i> The fair features twist into a snarl, and with them, her puss");
 	if(pc.totalVaginas() > 1) output("ies");

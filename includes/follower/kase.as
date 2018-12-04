@@ -245,7 +245,7 @@ public function kaseCrewTalkMenu():void
 	else addDisabledButton(bNum++, "Preferences", "Preferences", "It’d be odd to ask his sexual preferences without having a more intimate relationship.");
 	
 	if (!CodexManager.entryViewed("Kaithrit")) addDisabledButton(bNum++, "TailTouching", "TailTouching", "It’d help to know what Kaithrit tail touching actually is.");
-	else if (pc.raceShort() != "kaithrit") addDisabledButton(bNum++, "TailTouching", "TailTouching", "Tail touching is usually a kaithrit to kaithrit thing"+(silly?" YOU FUCKING RACIST":"")+".");
+	else if (pc.raceShort() != "kaithrit" && pc.originalRace.indexOf("kaithrit") == -1) addDisabledButton(bNum++, "TailTouching", "TailTouching", "Tail touching is usually a kaithrit to kaithrit thing"+(silly?" YOU FUCKING RACIST":"")+".");
 	else if (!pc.hasTailFlag(GLOBAL.FLAG_PREHENSILE) || pc.tailCount < 2) addDisabledButton(bNum++, "TailTouching", "TailTouching", "You don’t have the tails for this tango.");
 	else addButton(bNum, "TailTouching", kaseTailTouch, bNum++, "Tail Touching", "Maybe Kase can teach you a little about Kaithrit tail touching?");
 	

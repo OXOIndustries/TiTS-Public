@@ -127,9 +127,9 @@ public function deglow():void
 	this.userInterface.deglow()
 }
 
-public function updatePCStats():void 
+public function updatePCStats(asInit:Boolean = false):void 
 {
-	if (!inCombat()) userInterface.showPlayerParty([pc]); // Combat will handle this correctly
+	if (!inCombat()) userInterface.showPlayerParty([pc], asInit); // Combat will handle this correctly
 	
 	if ((pc as PlayerCharacter).levelUpAvailable())
 	{

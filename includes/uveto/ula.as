@@ -1684,7 +1684,7 @@ public function ulaPussyFuck():void
 	output("”</i> She kisses you again, more passionately, tongue probing deep to meet your own, and the pillowy breasts, just below, squish against ");
 	if(!pc.hasTits() < 1) output("your chest");
 	else output("yours");
-	output(" in her eagerness. Cerulian nipples tent ");
+	output(" in her eagerness. Cerulean nipples tent ");
 	if(pc.hasFuckableNipples()) output("into your [pc.nipples]");
 	else if(pc.hasDickNipples()) output("spar with your [pc.dickNipples]");
 	else output("against your [pc.nipples]");

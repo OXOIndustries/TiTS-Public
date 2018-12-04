@@ -52,6 +52,7 @@
 		if(sRace.indexOf("'rahn") != -1) sRace = "rahn";
 		if(sRace.indexOf("goblin") != -1) sRace = "gabilani";
 		if(InCollection(sRace, ["raskvel", "rask"])) sRace = "raskvel";
+		if(InCollection(sRace, ["korgonne", "korg"])) sRace = "korgonne";
 		if(sRace.indexOf("pony") != -1) sRace = "pony";
 		
 		if(sRace.indexOf("NOT SET") != -1 || sRace.indexOf("?") != -1) sRace = "";
