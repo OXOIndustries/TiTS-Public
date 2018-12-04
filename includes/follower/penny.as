@@ -45,6 +45,12 @@ public function approachCrewPenny(back:Boolean = false):void
 		if(flags["PENNY_IS_A_CUMSLUT"] != undefined) greetings.push("Penny smiles, languidly fondling her [penny.cockNoun]. <i>“Stars, I love this dick. Thank you so much, [pc.name].”</i> She favors her erection with a long, passionate kiss. <i>“Almost as much as I love you, mate.”</i>");
 		output(RandomInCollection(greetings));
 	}
+	//Badgurquest raygun handoff 
+	else if(flags["BADGER_QUEST_TIMER"] == -1 && !pc.hasKeyItem("Doctor Badger's Bimbo Raygun - Still programmed for use on Penny.")) 
+	{
+		turnTheTablesOnBadger();
+		return;
+	}
 	else if(mitziIsCrew() && penny.hasCock() && pennyCrewSharing() && !pc.hasStatusEffect("PENNY_PANTY_CD") && rand(6) == 0) 
 	{
 		pc.createStatusEffect("PENNY_PANTY_CD");
@@ -110,7 +116,21 @@ public function pennyCrewMenu():void
 		if(penny.isBimbo()) addButton(1,"Sex",bimboPennySex,undefined,"Sex","Get naughty with your bimbo.");
 		else addButton(1,"Sex",pennyCrewSexApproach,undefined,"Sex","Get naughty with your mate.");
 	}
-	else addDisabledButton(1,"Sex","Sex","You aren’t turned on enough right now.")
+	else addDisabledButton(1,"Sex","Sex","You aren’t turned on enough right now.");
+	//Go Whine to Penny that a Mustelide was Mean to You
+	//PC must have encountered Doc Badger, haven’t turned Penny into a useless cumslut
+	//Add [Badger Help] to Penny’s talk menu
+	//Tooltip: That Doctor Badger thought she could get the best of you... time to turn the tables the right way: by bringing the hammer of the LAW down on her.
+	if(flags["DR_BADGER_TURNED_IN"] == undefined && flags["BADGER_QUEST"] == 1)
+	{
+		addButton(5,"BadgerWarn",warnPennyAboutDoctorBadgersNefariousSchemes,undefined,"Warn Her About Dr. Badger","Penny would probably have some opinions about Dr. Badger’s plan. Who knows, maybe she’d be into it, or maybe she’ll have some ideas about how to turn the tables on Dr. Badger instead.");
+		if(flags["NO_ZAP_PENNY"] == undefined) 
+		{
+			if(flags["PENNY_BADGER_WARNED"] == undefined) addButton(6,"Zap Penny",surpriseZapPennyWithBimboRay,undefined,"Zap Penny","This seems like a jerk move, but if nothing else you can be pretty sure she’ll probably enjoy the end result, as will you.");
+			else addButton(6,"Zap Penny",zapPennyAfterWarningHer,undefined,"Zap Penny","Go ahead and zap Penny with the Bimbo Raygun, now that it seems like she approves.");
+		}
+		else addDisabledButton(6,"Zap Penny","Zap Penny","Now that you’ve tipped her off, it’ll be impossible to catch her with her guard down.");
+	}
 	addButton(14,"Back",crew);
 }
 
@@ -1721,3 +1741,7 @@ public function mutualJerkWithPennyCamStuff():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+
+//Badger & Penny stuff:
+	
+	
