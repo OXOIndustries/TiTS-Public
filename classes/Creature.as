@@ -2,7 +2,6 @@
 	import classes.Characters.*;
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
-	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GameData.SingleCombatAttack;
 	import classes.Items.Accessories.*;
 	import classes.Items.Apparel.SavicitePanties;
@@ -32,6 +31,7 @@
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.Util.*;
 	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.inCombat;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Interfaces.*;
 
@@ -1293,7 +1293,7 @@
 				}
 				return false;
 			}
-			return  (sockType == null && !(cocks[idx].cocksock is EmptySlot))
+			return (sockType == null && !(cocks[idx].cocksock is EmptySlot))
 					|| (sockType != null && (cocks[idx].cocksock is sockType));
 		}
 
@@ -2258,6 +2258,9 @@
 				case "cockHeads":
 				case "cockheads":
 					buffer = cockHeads(arg2);
+					break;
+				case "cockHeadsNoun":
+					buffer = cockHeadsNoun();
 					break;
 				case "cockDescript":
 				case "cock":
@@ -12785,7 +12788,7 @@
 				if (tongueType == GLOBAL.TYPE_MOTHRINE) counter++;
 				if (hasHair() && hairType == GLOBAL.HAIR_TYPE_REGULAR) counter++;
 			}
-			if (eyeType == GLOBAL.TYPE_MOTHRINE) counter++;;
+			if (eyeType == GLOBAL.TYPE_MOTHRINE) counter++;
 			if (earType == GLOBAL.TYPE_MOTHRINE) counter++;
 			if (armType == GLOBAL.TYPE_MOTHRINE) counter++;
 			if (legType == GLOBAL.TYPE_MOTHRINE) counter++;
@@ -13170,10 +13173,19 @@
 			//fur adjectives
 			if (rand(3) == 0)
 			{
+				var ballsackType:int = scrotumType();
+				switch(ballsackType)
+				{
+					case GLOBAL.FLAG_FURRED: desc += RandomInCollection(["fluffy","fuzzy","furry","fur-covered"]); break;
+					case GLOBAL.FLAG_SCALED: desc += RandomInCollection(["scaly","scale-covered","scaled","scale-plated","armored"]); break;
+					case GLOBAL.FLAG_GOOEY: desc += RandomInCollection(["gooey", "slimy", "semi-solid"]); break;
+				}
+				/*
 				if(hasFur()) desc += RandomInCollection(["fluffy","fuzzy","furry","fur-covered"]);
 				else if(hasScales()) desc += RandomInCollection(["scaly","scale-covered","scaled","scale-plated","armored"]);
 				else if(hasChitin()) desc += RandomInCollection(["chitin-armored","chitin-plated","chitinous","armored"]);
 				else if(hasFeathers()) desc += RandomInCollection(["downy","fluffy","feathery"]);
+				*/
 			}
 			//capacity adjectives
 			if ((adjectives && rand(3) == 0) || forceAdjectives) {
@@ -13181,9 +13193,8 @@
 				if (ballFullness <= 10) desc += RandomInCollection(["recently emptied","well-drained","nearly empty"]);
 				else if (ballFullness >= 80 && ballFullness < 100) desc += RandomInCollection(["mostly full","nearly full","seed-stocked","spunk-laden","sperm-stocked"]);
 				else if (ballFullness >= 100) desc += RandomInCollection(["painfully full","sloshing","semen-stuffed","cum-bloated","fully engorged","spunk-heavy","tender","seed-weighted"]);
-				}
 			}
-			if(desc != "") desc +=  ", " + RandomInCollection(["scrotum","sack","pouch"]);
+			if(desc != "") desc += ", " + RandomInCollection(["scrotum","sack","pouch"]);
 			else desc += RandomInCollection(["scrotum","sack"]);
 			return desc;
 		}
@@ -15659,7 +15670,7 @@
 			if(lust() <= 33) biggestSize--;
 			if(lust() > 66) biggestSize++;
 			if(lust() > 100) biggestSize++;
-			//Double them up.  Wayyyy more fun to describe than size.
+			//Double them up. Wayyyy more fun to describe than size.
 			if (biggestSize <= 1) adjectives.push("moist","dewy","damp","sticky","moist","dewy","damp","sticky","moist","dewy","damp","sticky");
 			else if (biggestSize <= 2) adjectives.push("wet","sweltering","slippery","juicy","slick","slippery","wet","sweltering","slippery","juicy","slick","slippery","wet","sweltering","slippery","juicy","slick","slippery");
 			else if (biggestSize <= 3) adjectives.push("sopping","soaked","drippy","dripping","succulent","oozy","soggy","drenched","sopping","soaked","drippy","dripping","succulent","oozy","soggy","drenched","sopping","soaked","drippy","dripping","succulent","oozy","soggy","drenched");
@@ -18209,6 +18220,21 @@
 		public function biggestBreastDescript(): String {
 			return (breastDescript(biggestTitRow()));
 		}
+
+		public function cocksMatch():Boolean 
+		{
+			return matchedCocks();
+		}
+		public function matchedCocks():Boolean {
+			//After the first cooch, see if they match against the previous.
+			for(var x:int = 1; x < cocks.length; x++)
+			{
+				//Don't match? NOT MATCHED. GTFO.
+				if(cocks[x].type != cocks[x-1].type) return false;
+			}
+			return true;
+		}
+
 		public function eachCockHead(): String {
 			if (cocks.length == 1) return "your " + cockHead(-1);
 			return "each of your " + plural(cockHead(-1));
@@ -18236,6 +18262,12 @@
 		public function cockHeads(cockNum:Number = 0):String {
 			if(cocks.length == 1) return cockHead(cockNum);
 			return plural(cockHead(cockNum));
+		}
+		public function cockHeadsNoun():String
+		{
+			if(cocks.length == 1) return cockHead(0).split(" ").pop();
+			if(cocksMatch()) return plural(cockHead(0).split(" ").pop());
+				else return plural(cockHead(-1).split(" ").pop());
 		}
 		public function tailCockHead(): String {
 			if (!hasTailCock()) return "|||<b>ERROR:</b> No tail cock to describe |||";
@@ -20679,7 +20711,8 @@
 			updateCumValues(deltaT, doOut);
 			updateMilkValues(deltaT, doOut);
 			
-			shieldsRaw = shieldsMax();
+			// Restore shields outside of combat.
+			if(!inCombat()) shieldsRaw = shieldsMax();
 		}
 		
 		public function updateVaginaStretch(deltaT:uint, doOut:Boolean):void

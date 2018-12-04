@@ -2158,7 +2158,7 @@ public function extrameetDirtyHabitzProfile():void
 {
 	output("The profile picture on your screen is blank.");
 	output("\n\nUsername: DirtyHabitz");
-	output("\nSex:Female");
+	output("\nSex: Female");
 	output("\nAge: 21 Years");
 	output("\nRace: Human+");
 	output("\nPlanet: Tarkus");
@@ -2716,7 +2716,7 @@ public function extrameetPurpleBowtieProfile():void
 {
 	output("The profile picture on your screen is of a fairly attractive Kui-tan with a bright purple bowtie in her hair. The picture is very modest, and you don’t really get a sense of her shape or size.");
 	output("\n\nUsername: PurpleBowtie");
-	output("\nSex:Other");
+	output("\nSex: Other");
 	output("\nAge: 32 Years");
 	output("\nRace: Kui-tan");
 	output("\nPlanet: Myrellion");

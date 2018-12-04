@@ -3966,7 +3966,6 @@ public function shekkaButtfucksYou():void
 		output("\n\n<i>“Maybe,”</i> you concede, kissing her gently on the forehead, so as not to addle her any further. <i>“But we ought to clean up for now.”</i>");
 		output("\n\n<i>“Awww,”</i> Shekka sighs morosely, grinding herself into you. <i>“’Kay I’ll clean up. But then I’m gonna make another mess again, and I’m gonna be thinking about kissing you while I do it.”</i>");
 		output("\n\n<i>“I’m sure you’ll find yourself blessed by an incredibly messy orgasm then - maybe one loud enough to tempt your captain right back into you arms for another bit of engine-room love-making.”</i>");
-
 	}
 	else
 	{
@@ -3985,7 +3984,7 @@ public function shekkaButtfucksYou():void
 	else if(pc.hasVagina()) output("slit" + (pc.totalVaginas() > 1 ? "s":"") + " getting wet once more.");
 	else output("asshole twitch hungrily, a trail of spunk dribbling down your underside.");
 	output(" Now you know how she feels - maybe you’ll have to pay her that visit sooner rather than later.");
-	shekkaSpitAddiction(4);
+	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) shekkaSpitAddiction(4);
 	processTime(35);
 	pc.orgasm();
 	pc.loadInAss(shekka);

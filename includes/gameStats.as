@@ -2621,21 +2621,24 @@ public function displayQuestLog(showID:String = "All"):void
 				sideCount++;
 			}
 			// Penny's Recruitment
-			if(flags["PENNY_CREW_ASKED"] != undefined || flags["PENNY_CUMSLUT_RECRUITED"] != undefined)
+			if(flags["PENNY_CREW_ASKED"] != undefined || flags["PENNY_CUMSLUT_RECRUITED"] != undefined || flags["PENNY_BIMBO_RECRUITED"] != undefined)
 			{
 				output2("\n<b><u>Penny’s Recruitment</u></b>");
 				output2("\n<b>* Status:</b>");
-				switch(flags["PENNY_CREW_ASKED"])
+				if(flags["PENNY_CREW_ASKED"] != undefined)
 				{
-					case -1: output2(" Asked Penny, She refused, <i>Perhaps you should get to know her better?</i>"); break;
-					case 1: output2(" Asked Penny, She accepted"); break;
-					case 2: output2(" Asked Penny, Accepted, <i>Find Oxonium...</i>"); break;
-					case 3: output2(" Asked Penny, Accepted, Found and excavated Oxonium"); break;
-					case 3.5: output2(" Asked Penny, Accepted, Found and excavated Oxonium, Offered recruitment"); break;
-					case 4: output2(" Asked Penny, Accepted, Found and excavated Oxonium, Penny recruited, Completed"); break;
-					default: output2(" <i>In progress...</i>"); break;
+					switch(flags["PENNY_CREW_ASKED"])
+					{
+						case -1: output2(" Asked Penny, She refused, <i>Perhaps you should get to know her better?</i>"); break;
+						case 1: output2(" Asked Penny, She accepted"); break;
+						case 2: output2(" Asked Penny, Accepted, <i>Find Oxonium...</i>"); break;
+						case 3: output2(" Asked Penny, Accepted, Found and excavated Oxonium"); break;
+						case 3.5: output2(" Asked Penny, Accepted, Found and excavated Oxonium, Offered recruitment"); break;
+						case 4: output2(" Asked Penny, Accepted, Found and excavated Oxonium, Penny recruited, Completed"); break;
+						default: output2(" <i>In progress...</i>"); break;
+					}
 				}
-				if(flags["PENNY_CUMSLUT_RECRUITED"] != undefined)
+				else
 				{
 					output2(" Asked Penny, Accepted, Penny recruited, Completed");
 				}

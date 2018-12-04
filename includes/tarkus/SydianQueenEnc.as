@@ -598,7 +598,7 @@ public function fuckTheSydianQueenRedux(x:int):void
 		output("\n\n<i>“Hmm,”</i> purrs your Queen, devouring you with her avid, pupil-less eyes. <i>“Perhaps you fancy yourself my King? Perhaps by displaying your boldness and energy enough, you hope to place yourself next to me. It’s not an entirely distasteful idea...”</i>");
 	}
 	
-	output("”</i> Her tone is one of arch amusement, but there’s plenty of fire in that tan, oval face, and her long feathers ripple and quiver. Her thin tongue extends out of her mouth, dabs along a finger. <i>“");
+	output(" Her tone is one of arch amusement, but there’s plenty of fire in that tan, oval face, and her long feathers ripple and quiver. Her thin tongue extends out of her mouth, dabs along a finger. <i>“");
 	if(!pc.hasVagina() && pc.mf("","f") == "f") output("I favor watching youthful girly boys tussle with one another for my pleasure, personally. And why should I favor you above my own, loyal catamites?”</i> She waves airily at the pink raskvel, who are watching this exchange with baited breath. <i>“I think you are going to have to prove your virility, if you fancy your chances with me.”</i>");
 	else output("How fetchingly bold. But I have a cupboard full of willing toys, as you can clearly see.”</i> She waves airily at the pink raskvel, who are watching this exchange with baited breath. <i>“I think you are going to have to prove you can go the distance, if you fancy your chances with me.”</i>");
 

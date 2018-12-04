@@ -656,7 +656,7 @@ public function postWalkiesHeat2(ppBelle:PregnancyPlaceholder):void
 		output("\n\nIt isn’t long before your master’s ever-expansive hips start to move, fucking you like the bitch in heat you are, her knots spreading your supple entrances with each thrust. <i>The feeling of being bred like this, of having your hungers sated, it all feels so good.</i> You moan as loud as you can with each thrust of Belle’s foot-long cocks, crying out as your inner walls hug at her shafts, eagerly accepting her turgid dicks into your waiting holes.");
 		pc.cuntChange(v,ppBelle.cockVolume(0));
 		pc.buttChange(ppBelle.cockVolume(1));
-		IncrementFlag("SEXED_SAEC");
+		//IncrementFlag("SEXED_SAEC");
 	}
 	//hasCock:
 	if(x >= 0)
@@ -1476,7 +1476,7 @@ public function subTunerExhibRouter():void
 {
 	var options:Array = [subTunerRivalBullshit];
 	if(annoIsCrew()) options.push(subTunerAnnoExhib);
-	if(syriIsCrew()) options.push(syriExhibStuff);
+	if(syriIsCrew() || (syriRecruited() && syriAtFreeezer())) options.push(syriExhibStuff);
 	if(roamingKiroAvailable()) options.push(subTunerKiroExhib);
 	moveTo("UVS B9");
 	options[rand(options.length)]();

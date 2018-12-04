@@ -1353,9 +1353,9 @@ public function zephyrBetLoss(pqResult:Array):void
 			output("\n\n");
 		}
 
-		if (pc.isPregnant() && !pc.hasPregnancyOfType("ZephyrPregnancy"))
+		if (pc.hasWombPregnancy() && !pc.hasPregnancyOfType("ZephyrPregnancy"))
 		{
-			output("\n\n<i>“Pity you don’t have room in there for another litter,”</i> she muses, idly jamming a finger in your [pc.pussy] from behind. <i>“Was thinking about");
+			output("<i>“Pity you don’t have room in there for another litter,”</i> she muses, idly jamming a finger in your [pc.pussy] from behind. <i>“Was thinking about");
 			if (flags["ZEPHYR_FUCKED_PC_PUSSY"] == undefined) output(" starting a family recently");
 			else output(" getting more kids out of you");
 			output(". Oh well, maybe next time.”</i>");
@@ -1364,7 +1364,7 @@ public function zephyrBetLoss(pqResult:Array):void
 		}
 		else if (pc.hasCock() && !pc.hasVagina())
 		{
-			output("\n\n<i>“Pity you haven’t traded that");
+			output("<i>“Pity you haven’t traded that");
 			if (pc.biggestCockLength() <= 3) output(" tiny");
 			else if (pc.biggestCockLength() <= 7) output(" undersized");
 			else if (pc.biggestCockLength() >= 12) output(" oversized");
@@ -1373,7 +1373,7 @@ public function zephyrBetLoss(pqResult:Array):void
 			output("\n\n");
 		}
 		
-		if ((pc.isPregnant() && !pc.hasPregnancyOfType("ZephyrPregnancy")) || !pc.hasVagina())
+		if (!pc.hasVagina() || (pc.hasWombPregnancy() && !pc.hasPregnancyOfType("ZephyrPregnancy")))
 		{
 			output("She all but");
 			if (!pc.isNude()) output(" rips your clothes off and");
@@ -1479,7 +1479,7 @@ public function zephyrBetLoss(pqResult:Array):void
 			clearMenu();
 			addButton(0, "Next", mainGameMenu);
 		}
-		else if (pc.isPregnant() && pc.hasPregnancyOfType("ZephyrPregnancy"))
+		else if (pc.hasWombPregnancy() && pc.hasPregnancyOfType("ZephyrPregnancy"))
 		{
 			output("<i>“Oh?”</i> Zephyr hums, circling you and touching wherever she pleases. Stomach, lower back, ass, stroking your spine... <i>“Guess we’ll be going a little gentler today.”</i>");
 
@@ -1582,7 +1582,7 @@ public function zephyrBetLoss(pqResult:Array):void
 		}
 		// PC has empty primary womb, first time:
 		// I'm assuming "First time we've seen the repeat variant..."
-		else if (!pc.isPregnant() && flags["ZEPHYR_RAWDOGGED_PUSS"] == undefined)
+		else if (!pc.hasWombPregnancy() && flags["ZEPHYR_RAWDOGGED_PUSS"] == undefined)
 		{
 			IncrementFlag("ZEPHYR_RAWDOGGED_PUSS");
 

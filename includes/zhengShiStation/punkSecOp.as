@@ -1692,7 +1692,7 @@ public function tailMilkTheMaleSecOp():void
 	if(enemy.lust() >= enemy.lustMax()) 
 	{
 		output("\n\nThe kaithrit’s eyes widen. <i>“Yes!”</i> He pulls his hands away to better present his chromed cock for your use. <i>“Do it. Fuck me with your tail!”</i>");
-		output("\n\nThe sight of it is enough to stir your passions and the parasite’s lusts together into a single torrent of focused desire. Droplets of lubricant dribble from your [pc.tailCount]. <i>“This is going to feel very, very good.”</i> You not entirely sure if you’re addressing him or your tail, to be brutally honest, but it hardly matters either way.");
+		output("\n\nThe sight of it is enough to stir your passions and the parasite’s lusts together into a single torrent of focused desire. Droplets of lubricant dribble from your [pc.tailCunt]. <i>“This is going to feel very, very good.”</i> You tease, not entirely sure if you’re addressing him or your tail, to be brutally honest, but it hardly matters either way.");
 	}
 	//HP
 	else
