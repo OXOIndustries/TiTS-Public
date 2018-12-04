@@ -232,9 +232,10 @@ public function shukuchiMhengaAmbush():void
 	output("\n\nA pair of fast, clawed hands grip you by the shoulder and neck, an angry bark coming from overhead.");
 	output("\n\n<i>“Gotcha! Whoareyou!!”</i> he growls, trying to wrestle you to the ground!");
 	if(pc.characterClass == GLOBAL.CLASS_MERCENARY) output("\n\nWith your mercenaries instincts alert and ready, you fling your arm and upper body around with a fist at the other end, staggering the ausar back as it hits him right in the cheek!");
-	else if (pc.characterClass == GLOBAL.CLASS_SMUGGLER) output("\n\nWith a little bit of sneaky thinking, you pull your [pc.legs] up so that you pivot on your palms, the sudden fall in posture from the ausar allowing you to springboard him away from you with your [pc.legs]!");
+	else if (pc.characterClass == GLOBAL.CLASS_SMUGGLER) output("\n\nWith a little bit of sneaky thinking, you pull your [pc.legs] up so that you pivot on your palms, the sudden fall in posture from the ausar allowing you to springboard him away from you with your [pc.legOrLegs]!");
 	else if (pc.characterClass == GLOBAL.CLASS_ENGINEER) output("\n\nWith a bit of desperation, you trigger a panic circuit in your codex and swing your arm around to make contact with the ausar! The shock staggers him back, leaving him open!");
-	processTime(0);
+	
+	processTime(1);
 	
 	output("\n\n<b>It’s a fight!</b>");
 	

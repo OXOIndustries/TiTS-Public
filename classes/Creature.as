@@ -2,7 +2,6 @@
 	import classes.Characters.*;
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
-	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GameData.SingleCombatAttack;
 	import classes.Items.Accessories.*;
 	import classes.Items.Apparel.SavicitePanties;
@@ -32,6 +31,7 @@
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.Util.*;
 	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.inCombat;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Interfaces.*;
 
@@ -20711,7 +20711,8 @@
 			updateCumValues(deltaT, doOut);
 			updateMilkValues(deltaT, doOut);
 			
-			shieldsRaw = shieldsMax();
+			// Restore shields outside of combat.
+			if(!inCombat()) shieldsRaw = shieldsMax();
 		}
 		
 		public function updateVaginaStretch(deltaT:uint, doOut:Boolean):void

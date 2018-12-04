@@ -115,7 +115,9 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	//Stinging Bruises & Lash Marks
 	if (target.hasStatusEffect("Stinging Bruises")) target.HP(target.statusEffectv1("Stinging Bruises"));
 	if (target.hasStatusEffect("Lash Marks")) target.HP(target.statusEffectv1("Lash Marks"));
-	processTime(0);
+	
+	// Refresh statbars
+	updatePCStats();
 	
 	//Overall
 	if(target.originalRace == target.race() || target != pc) outputRouter((target == pc ? "You are":"[target.Short] is") + " " + indefiniteArticle(target.originalRace) + ".");
