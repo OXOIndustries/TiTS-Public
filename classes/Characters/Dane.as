@@ -281,16 +281,16 @@
 				else output("diving right into rimming your asshole. The thick intruder feels so wet and lewd that you can't help but offer up hot little pants of encouragement.");
 				output(" Dane's tongue feels amazing.");
 				target.lust(20+rand(10));
-				if(target.lust() >= target.lustMax()) output("\n\nYou start begging him to fuck you, unable to hold back. Withdrawing that wonderful slab of flesh from your crotch, Dane drops you, laughing heartily. <i>\"So be it.\"</i>");
+				if(target.lust() >= target.lustMax()) output("\n\nYou start begging him to fuck you, unable to hold back. Withdrawing that wonderful slab of flesh from your crotch, Dane drops you, laughing heartily. <i>“So be it.”</i>");
 			}
 		}
 		
 		private function daneCrotchSmother(target:Creature):void
 		{
 			output("Dane takes advantage of the grapple to flip you around, suspending you upside down at crotch level. One of his hands pulls open the bottom of his armor to expose his crotch; you can't tell which, he seems like he's all hands from your current position. A hard, red dog-cock is there, sticking out of a narrow slit. Meanwhile his hands roam over your body, busily fondling and rubbing. It feels and smells better than it has any right to.");
-			output("\n\n<i>\"Ready to give in yet? I've got something special to show you.\"</i>");
+			output("\n\n<i>“Ready to give in yet? I've got something special to show you.”</i>");
 			target.lust(5+rand(7));
-			if(target.lust() >= target.lustMax()) output("\n\nYou nod, moaning in overwhelming lust.\n\nDane drops you. <i>\"Good " + target.mfn("boy","girl","pet") + ".\"</i>");
+			if(target.lust() >= target.lustMax()) output("\n\nYou nod, moaning in overwhelming lust.\n\nDane drops you. <i>“Good " + target.mfn("boy","girl","pet") + ".”</i>");
 			target.addStatusValue("Grappled",3,1);
 		}
 		
@@ -298,7 +298,7 @@
 		{
 			output("Charging forward, Dane sheaths his weapons simultaneously. His arms come open, open-palmed and grabbing for you!");
 			//Miss
-			if(combatMiss(this, target)) output("\nYou twist out of the way of his four-armed grapple in the nick of time. The buff Ausar snickers, pulling his weapons once more. <i>\"Speed alone cannot win a fight.\"</i>");
+			if(combatMiss(this, target)) output("\nYou twist out of the way of his four-armed grapple in the nick of time. The buff Ausar snickers, pulling his weapons once more. <i>“Speed alone cannot win a fight.”</i>");
 			//Hit
 			else
 			{
