@@ -643,7 +643,7 @@ public function pennyCrewSexMenu():void
 
 	if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] != undefined && pennyIsCumSlut() && shipLocation == "SHIP HANGAR") addButton(11, "Invite Flahne", pennyVsFlahneWhoWillOutslutWho,undefined,"Invite Flahne","Invite Flahne over for a threesome with Penny.");
 	else addDisabledButton(11, "Invite Flahne","Invite Flahne","This scene requires Penny to be a cum-slut and Flahne to have been told about it.");
-	if(pennyIsCumSlut() && pennyIsCrew()) 
+	if((penny.isBimbo() || pennyIsCumSlut()) && pennyIsCrew()) 
 	{
 		if(pc.hasCock()) addButton(12,"Cam & Jerk",mutualJerkWithPennyCamStuff,undefined,"Cam & Jerk","Get on cam with Penny and jerk off into each other’s mouths for the ExtraNet.");
 		else addDisabledButton(12,"Cam & Jerk","Cam & Jerk","You can’t jerk off with Penny if you don’t have a dick.");

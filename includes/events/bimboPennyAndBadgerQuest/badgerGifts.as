@@ -227,6 +227,8 @@ public function resetDrBadgerBimboTF():void
 public function pennyBimbofy(cockEnlarge:Boolean = false):void
 {
 	flags["PENNY_BADGER_BIMBO"] = 1;
+	flags["PENNY_IS_A_CUMSLUT"] = 1;
+	flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] = 3;
 	penny.breastRows[0].breastRatingRaw += 6;
 	penny.hipRatingRaw += 4;
 	penny.buttRatingRaw += 4;
@@ -613,16 +615,18 @@ public function zapPennyAfterWarningHer():void
 		pc.orgasm();
 	}
 	//Adjust Penny's statblock appropriately?
-	pennyBimbofy();
-	showPenny();
 	if(!pennyIsCumSlut() && pennyIsCrew()) 
 	{
+		pennyBimbofy();
+		showPenny();
 		flags["BADGER_QUEST"] = 2;
 		clearMenu();
 		addButton(0,"Next",pennyPostbimboedCamwhoreTalk);
 	}
 	else
 	{
+		pennyBimbofy();
+		showPenny();
 		flags["BADGER_QUEST"] = 2;
 		//Set flag that PC zapped Penny.
 		clearMenu();
@@ -892,10 +896,10 @@ public function surpriseZapPennyWithBimboRay():void
 	//[in all cases after Penny is bimbo-ified, force the player outside]
 	//Do actual Penny Stat Changes.
 	//flag Penny as bimbofied.
-	pennyBimbofy(cockEnlarge);
-	showPenny();
 	if(!pennyIsCumSlut() && pennyIsCrew()) 
 	{
+		pennyBimbofy(cockEnlarge);
+		showPenny();
 		output(" Of course now that Penny is only good for fucking, she’ll need a job. Maybe she can camwhore while you’re out adventuring?");
 		flags["BADGER_QUEST"] = 2;
 		clearMenu();
@@ -903,6 +907,8 @@ public function surpriseZapPennyWithBimboRay():void
 	}
 	else
 	{
+		pennyBimbofy(cockEnlarge);
+		showPenny();
 		flags["BADGER_QUEST"] = 2;
 		//Set flag that PC zapped Penny.
 		clearMenu();
