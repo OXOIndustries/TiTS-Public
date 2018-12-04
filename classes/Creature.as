@@ -2259,6 +2259,9 @@
 				case "cockheads":
 					buffer = cockHeads(arg2);
 					break;
+				case "cockHeadsNoun":
+					buffer = cockHeadsNoun();
+					break;
 				case "cockDescript":
 				case "cock":
 					buffer = cockDescript(arg2);
@@ -18217,6 +18220,21 @@
 		public function biggestBreastDescript(): String {
 			return (breastDescript(biggestTitRow()));
 		}
+
+		public function cocksMatch():Boolean 
+		{
+			return matchedCocks();
+		}
+		public function matchedCocks():Boolean {
+			//After the first cooch, see if they match against the previous.
+			for(var x:int = 1; x < cocks.length; x++)
+			{
+				//Don't match? NOT MATCHED. GTFO.
+				if(cocks[x].type != cocks[x-1].type) return false;
+			}
+			return true;
+		}
+
 		public function eachCockHead(): String {
 			if (cocks.length == 1) return "your " + cockHead(-1);
 			return "each of your " + plural(cockHead(-1));
@@ -18244,6 +18262,15 @@
 		public function cockHeads(cockNum:Number = 0):String {
 			if(cocks.length == 1) return cockHead(cockNum);
 			return plural(cockHead(cockNum));
+		}
+		public function cockHeadsNoun():String
+		{
+			if(cocks.length == 1) return cockHead(0).split(" ").pop();
+			else
+			{
+				if(cocksMatch()) return plural(cockHead(0).split(" ").pop());
+				else plural(cockHead(-1).split(" ").pop());
+			}
 		}
 		public function tailCockHead(): String {
 			if (!hasTailCock()) return "|||<b>ERROR:</b> No tail cock to describe |||";
