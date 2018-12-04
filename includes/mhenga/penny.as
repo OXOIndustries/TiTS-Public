@@ -124,6 +124,12 @@ public function showPenny(nude:Boolean = false):void
 	showPennyBust(nude);
 }
 
+public function moveOutsidePennysOffice():void
+{
+	if(pennyIsCrew()) mainGameMenu();
+	else move("SOUTH ESBETH 3");
+}
+
 //First Encounter
 //Appended to room description!
 public function pennyRoomDesc():Boolean {
@@ -3362,7 +3368,7 @@ public function useYourCocksOnCumSluttyPenny():void {
 	IncrementFlag("PENNY_CUMSLUT_JOIN_IN");
 	clearMenu();
 	//move to the room outside of Penny’s
-	addButton(0,"Next",move,"SOUTH ESBETH 3");
+	addButton(0,"Next",moveOutsidePennysOffice);
 	//[Add a considerable amount of a-hole points] [reduce lust to zero]
 }
 
@@ -3381,7 +3387,7 @@ public function makeUseOfPennysCumSlutCock():void {
 	IncrementFlag("PENNY_CUMSLUT_JOIN_IN");
 	clearMenu();
 	//move to the room outside of Penny’s
-	addButton(0,"Next",move,"SOUTH ESBETH 3");
+	addButton(0,"Next",moveOutsidePennysOffice);
 	//[Add a considerable amount of a-hole points] [reduce lust to zero]
 }
 
@@ -3401,7 +3407,7 @@ public function findSomeonePublicToHelpPennyCumslut():void {
 	IncrementFlag("PENNY_CUMSLUT_JOIN_IN");
 	clearMenu();
 	//move to the room outside of Penny’s
-	addButton(0,"Next",move,"SOUTH ESBETH 3");
+	addButton(0,"Next",moveOutsidePennysOffice);
 	//[Add a considerable amount of a-hole points] [reduce lust to zero]
 }
 
@@ -3483,7 +3489,7 @@ public function pennySelfSuckCumsluttery():void {
 	processTime(10+rand(10));
 	clearMenu();
 	if(pennyIsCrew()) addButton(0,"Next",mainGameMenu);
-	else addButton(0,"Next",move,"SOUTH ESBETH 3");
+	else addButton(0,"Next",moveOutsidePennysOffice);
 }
 
 //BUKKAKE (characters with penis and ability to produce non-zero amounts of cum only)
@@ -3518,7 +3524,7 @@ public function bukkakePenny():void {
 	pc.orgasm();
 	clearMenu();
 	if(pennyIsCrew()) addButton(0,"Next",mainGameMenu);
-	else addButton(0,"Next",move,"SOUTH ESBETH 3");
+	else addButton(0,"Next",moveOutsidePennysOffice);
 }
 
 public function pennyVsFlahneWhoWillOutslutWho():void
@@ -3604,7 +3610,7 @@ public function pennyVsFlahneWhoWillOutslutWho():void
 	if (pc.hasVagina() && !pc.isTaur()) pc.orgasm();
 	clearMenu();
 	if(pennyIsCrew()) addButton(0,"Next",mainGameMenu);
-	else addButton(0,"Next",move,"SOUTH ESBETH 3");
+	else addButton(0,"Next",moveOutsidePennysOffice);
 }
 
 //Penny’s Little Pony

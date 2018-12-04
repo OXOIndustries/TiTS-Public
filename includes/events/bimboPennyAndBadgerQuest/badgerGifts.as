@@ -630,8 +630,7 @@ public function zapPennyAfterWarningHer():void
 		flags["BADGER_QUEST"] = 2;
 		//Set flag that PC zapped Penny.
 		clearMenu();
-		if(pennyIsCrew()) addButton(0,"Next",move,"SOUTH ESBETH 3");
-		else addButton(0,"Next",mainGameMenu);
+		addButton(0,"Next",moveOutsidePennysOffice);
 	}
 }
 
@@ -914,8 +913,7 @@ public function surpriseZapPennyWithBimboRay():void
 		clearMenu();
 		//Don't worry about special consensual/not consensual flags - if the convo to tell her about it beforehand happened, it counts as consensual. Duh.
 		clearMenu();
-		if(!pennyIsCrew()) addButton(0,"Next",mainGameMenu);
-		else addButton(0,"Next",move,"SOUTH ESBETH 3");
+		addButton(0,"Next",moveOutsidePennysOffice);
 	}
 }
 
