@@ -626,9 +626,9 @@ public function pennyCrewSexMenu():void
 	if(pennyIsCumSlut() && pennyIsCrew()) 
 	{
 		if(pc.hasCock()) addButton(12,"Cam & Jerk",mutualJerkWithPennyCamStuff,undefined,"Cam & Jerk","Get on cam with Penny and jerk off into each other’s mouths for the ExtraNet.");
-		else addDisabledButton(12,"Cam & Jerk","Cam & Jerk","You can't jerk off with Penny if you don't have a dick.");
+		else addDisabledButton(12,"Cam & Jerk","Cam & Jerk","You can’t jerk off with Penny if you don’t have a dick.");
 	}
-	else addDisabledButton(12,"Cam & Jerk","Cam & Jerk","Since Penny isn't an extranet camwhore, there's not point in doing this.");
+	else addDisabledButton(12,"Cam & Jerk","Cam & Jerk","Since Penny isn’t an extranet camwhore, there’s not point in doing this.");
 	this.addButton(14,"Back",approachCrewPenny,true);
 }
 
@@ -682,7 +682,7 @@ public function otherCrewPennyTalk():void
 		pc.lust(10);
 		clearMenu();
 		addButton(0,"Share",shareWithPennySluts);
-		addButton(1,"Don't Share",dontSharePennyLove);
+		addButton(1,"Don’t Share",dontSharePennyLove);
 	}
 }
 
@@ -1342,7 +1342,7 @@ public function walkInOnPennyMitziHuff():void
 	}
 	else output(" with one hand and desperately stroking her clit with the other, grunting in depraved need.");
 	output("\n\nThe most interesting detail, though, is the pair of " + RandomInCollection(["black and white cowskin","hot pink","lacy black","femcum-stained white"]) + " panties she’s holding in her muzzle, deeply inhaling the scent of its owner.");
-	output("\n\n<i>“Ohhhh, starssss, Mitzi-i-i-i,”</i> Penny groans haltingly, thrusting into the air on pure animal instinct. Sweat droplets fly from her flushed body, spattering the sheets of her bed. <i>“Fffnnnggrrgh...  f- fuck...”</i>");
+	output("\n\n<i>“Ohhhh, starssss, Mitzi-i-i-i,”</i> Penny groans haltingly, thrusting into the air on pure animal instinct. Sweat droplets fly from her flushed body, spattering the sheets of her bed. <i>“Fffnnnggrrgh... f- fuck...”</i>");
 	output("\n\nShe stops for a moment and takes the panties out of her mouth, lifting them instead to her noze and taking a sudden, forceful inhale. " + (penny.hasCock(GLOBAL.TYPE_EQUINE) ? "Her cockhead flares immediately and spurts a jet of precum across her face, splattering both her fur and Mitzi’s wet panties.":"Her knot noticeably bulges the moment she does so, precum dripping out of her cockhead like a faucet and spattering her stomach.") + " She flips her shock of red hair back and moans throatily, clearly up to her eyeballs in depraved enjoyment.");
 	output("\n\nShe hasn’t noticed you, too enthralled by the panties clasped tightly in her hands. You could let her finish or announce your presence to see what ensues.");
 	if(flags["PENNY_CAUGHT_MITZI_JERKIN"] == undefined) flags["PENNY_CAUGHT_MITZI_JERKIN"] = 1;

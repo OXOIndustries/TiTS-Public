@@ -3030,10 +3030,6 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 		{
 			if(flags["PENNY_CUMSLUT_RECRUITED"] == 1 || flags["PENNY_BIMBO_RECRUITED"] == 1) eventQueue.push(cumslutPennyGreeting);
 		}
-		if(pennyIsCrew() && flags["PENNY_CUMSLUT_RECRUITED"] == 1)
-		{
-			eventQueue.push(cumslutPennyGreeting);
-		}
 		//Anno/Erra Threesome
 		if((pc.hasCock() || pc.hasHardLightStrapOn()) && annoIsCrew() && flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined && erraAvailableForThreesome() && !pc.hasStatusEffect("Anno-Erra Cooldown") && rand(5) == 0)
 		{
