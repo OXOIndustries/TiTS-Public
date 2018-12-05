@@ -39,27 +39,53 @@ public function testAppearance(arg:String = ""):void
 		clearOutput();
 		output("Who test?");
 		clearMenu();
-		addButton(0,"Azra",testAppearance,"Azra");
-		addButton(1,"Penny",testAppearance,"Penny");
-		addButton(2,"Anno",testAppearance,"Anno");
-		addButton(3,"Syri",testAppearance,"Syri");
-		addButton(4,"Jumper",testAppearance,"Jumper");
-		addButton(5,"Emmy",testAppearance,"Emmy");
-		addButton(6,"Gianna",testAppearance,"Gianna");
-		addButton(7,"Bea",testAppearance,"Bea");
-		addButton(8,"Gene",testAppearance,"Gene");
-		addButton(10,"Abort",mainGameMenu);
+		
+		var npcList:Array = [];
+		//npcList.push(["Button Name", arg]);
+		npcList.push(["Azra", "AZRA"]);
+		npcList.push(["Penny", "PENNY"]);
+		npcList.push(["Anno", "ANNO"]);
+		npcList.push(["Syri", "SYRI"]);
+		npcList.push(["Emmy", "EMMY"]);
+		npcList.push(["Gianna", "GIANNA"]);
+		npcList.push(["Kiro", "KIRO"]);
+		npcList.push(["Bea", "BEA"]);
+		npcList.push(["Gene", "GENE"]);
+		npcList.push(["Jumper", "Jumper"]);
+		
+		var btnSlot:int = -5;
+		var i:int = 0;
+		while (true)
+		{
+			if (i % 10 == 0 && (i < npcList.length || !i))
+			{
+				btnSlot += 5;
+				addButton((btnSlot + 14), "Abort", mainGameMenu);
+			}
+			
+			if (i == npcList.length) break;
+			
+			addButton(btnSlot, npcList[i][0], testAppearance, npcList[i][1]);
+			btnSlot++;
+			i++;
+		}
+		return;
 	}
-	if(arg == "Azra") appearance(azra,testAppearance);
-	if(arg == "Penny") appearance(penny,testAppearance);
-	if(arg == "Anno") appearance(anno,testAppearance);
-	if(arg == "Syri") appearance(chars["SYRI"],testAppearance);
-	if(arg == "Jumper") appearance(new JumperBored(),testAppearance);
-	if(arg == "Emmy") appearance(chars["EMMY"],testAppearance);
-	if(arg == "Gianna") appearance(gianna,testAppearance);
-	if(arg == "Bea") appearance(chars["BEA"],testAppearance);
-	if(arg == "Gene") appearance(chars["GENE"],testAppearance);
-
+	switch(arg)
+	{
+		case "Jumper": appearance(new JumperBored(),testAppearance); break;
+		default:
+			if(chars[arg] != undefined) appearance(chars[arg], testAppearance);
+			else
+			{
+				clearOutput();
+				output("Character with ID: '" + arg + "' does not exist!");
+				clearMenu();
+				addButton(0, "Try Again", testAppearance);
+				addButton(14, "Abort", mainGameMenu);
+			}
+			break;
+	}
 }
 
 public function appearance(forTarget:Creature, backTarget:Function = null):void

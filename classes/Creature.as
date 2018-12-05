@@ -3610,44 +3610,50 @@
 				{
 					//Mimbrane feeding
 					kGAMECLASS.mimbraneFeed("cock");
-					if(balls > 0)
+				}
+				if(balls > 0)
+				{
+					if(hasStatusEffect("Blue Balls", true) && ballFullness < 100)
 					{
-						if(hasStatusEffect("Blue Balls", true) && ballFullness < 100)
-						{
-							AddLogEvent(ParseText("With a satisfied sigh, your [pc.balls] " + (balls <= 1 ? "is" : "are") + " finally relieved of all the pent-up " + (rand(2) == 0 ? "seed" : "[pc.cumNoun]") + "."), "passive", -1);
-							removeStatusEffect("Blue Balls", true);
-						}
-						//'Nuki Ball Reduction
-						if(perkv1("'Nuki Nuts") > 0)
+						if(this is PlayerCharacter) AddLogEvent(ParseText("With a satisfied sigh, your [pc.balls] " + (balls <= 1 ? "is" : "are") + " finally relieved of all the pent-up " + (rand(2) == 0 ? "seed" : "[pc.cumNoun]") + "."), "passive", -1);
+						removeStatusEffect("Blue Balls", true);
+					}
+					//'Nuki Ball Reduction
+					if(perkv1("'Nuki Nuts") > 0)
+					{
+						if(this is PlayerCharacter)
 						{
 							msg = "Your";
 							if(balls == 1) msg += " testicle is back to its";
 							else msg += " balls are back to their";
 							msg += " normal size once more. What an incredible relief!";
 							AddLogEvent(msg, "passive", -1);
-							ballSizeMod -= perkv1("'Nuki Nuts");
-							setPerkValue("'Nuki Nuts",1,0);
 						}
-						kGAMECLASS.nutStatusCleanup();
+						ballSizeMod -= perkv1("'Nuki Nuts");
+						setPerkValue("'Nuki Nuts",1,0);
 					}
-					if(statusEffectv1("Nyrea Eggs") > 0 && hasOvipositor())
+					kGAMECLASS.nutStatusCleanup();
+				}
+				if(statusEffectv1("Nyrea Eggs") > 0 && hasOvipositor())
+				{
+					var nyreaEggs:Number = Math.round((6 + rand(5)) * statusEffectv2("Nyrea Eggs"));
+					if(this is PlayerCharacter)
 					{
-						var nyreaEggs:Number = Math.round((6 + rand(5)) * statusEffectv2("Nyrea Eggs"));
 						if ((statusEffectv1("Nyrea Eggs") - nyreaEggs) < 0) nyreaEggs = statusEffectv1("Nyrea Eggs");
 						msg = "You’ve manage to expel";
 						if(nyreaEggs == 1) msg += " one faux nyrea egg";
 						else msg += " " + num2Text(nyreaEggs) + " faux nyrea eggs";
 						msg += " from your orgasm!";
 						AddLogEvent(msg, "passive", -1);
-						addStatusValue("Nyrea Eggs", 1, -1 * (nyreaEggs));
-						if(statusEffectv1("Nyrea Eggs") < 0) setStatusValue("Nyrea Eggs", 1, 0);
 					}
-					// Priapism timer down
-					if(hasStatusEffect("Priapism"))
-					{
-						addStatusMinutes("Priapism", (-15 * 60));
-						if(getStatusMinutes("Priapism") < 1) setStatusMinutes("Priapism", 1);
-					}
+					addStatusValue("Nyrea Eggs", 1, -1 * (nyreaEggs));
+					if(statusEffectv1("Nyrea Eggs") < 0) setStatusValue("Nyrea Eggs", 1, 0);
+				}
+				// Priapism timer down
+				if(hasStatusEffect("Priapism"))
+				{
+					addStatusMinutes("Priapism", (-15 * 60));
+					if(getStatusMinutes("Priapism") < 1) setStatusMinutes("Priapism", 1);
 				}
 			}
 			if (hasVagina())
@@ -10591,7 +10597,7 @@
 			//trace("AFTER FULLNESS: " + ballFullness);
 			if (ballFullness >= 100) 
 			{
-				if(hasPerk("'Nuki Nuts") && balls > 0)
+				if(hasPerk("'Nuki Nuts") && balls > 0 && this is PlayerCharacter)
 				{
 					//Figure out a % of normal size to add based on %s.
 					var nutChange:Number = (ballFullness/100) - 1;

@@ -1641,12 +1641,26 @@ public function riyaNurseryCafeteriaApproach():void
 	var babyName:String = "???";
 	var i:int = 0;
 	
+	// Count children...
+	var numBabs:int = 0;
+	var numKids:int = 0;
+	for(i = 0; i < riyaBabies.length; i++)
+	{
+		// Show this if there is a Riyaspawn that is under 365 days old
+		if(riyaBabies[i].Years <= 1) numBabs++;
+		// Show if there is a Riyakid over one year old.
+		else if(riyaBabies[i].Years <= 5) numKids++;
+	}
+	
 	// First
 	if(flags["MET_RIYA_IN_NURSERY"] == undefined)
 	{
-		babyIdx = 0;
-		babym = (riyaNoNameBabies[babyIdx].NumMale > 0);
-		babyName = riyaNoNameBabies[babyIdx].Name;
+		if(riyaNoNameBabies.length > 0)
+		{
+			babyIdx = 0;
+			babym = (riyaNoNameBabies[babyIdx].NumMale > 0);
+			babyName = riyaNoNameBabies[babyIdx].Name;
+		}
 		
 		output("<i>“So, you’re pretty decked out up here, huh?”</i> she says immediately, shoveling another bite of food into her mouth. <i>“I kinda figured I’d be supporting you and the brat, to be honest.”</i> Sitting down across from her, you ask if she had any trouble getting in.");
 		output("\n\n<i>“Nah. The robot you have is nice, she got me up here with no issues after she confirmed I’m the father,”</i> she says, licking food off her lips. <i>“So strange, that word. You know this is my first kid?”</i>");
@@ -1659,14 +1673,27 @@ public function riyaNurseryCafeteriaApproach():void
 			else output(" xeno");
 			output(" the chance to improve their bloodline? Besides,”</i> she continues, eyes twinkling as a grin creases her face, <i>“the little tyke came out human. I guess I’ve got some really strong sperm, huh?”</i> she says, leaning over until your noses are brushing each other before continuing in a loud whisper. <i>“That or you’re just such a little bitch that even your eggs are submissive.”</i>");
 		}
-		output("\n\n<i>“Anyway,”</i> she says casually, sitting back in her seat, <i>“what’re we naming our little " + (babym ? "boy" : "girl") + "?”</i>");
 		
 		processTime(2);
 		
 		flags["MET_RIYA_IN_NURSERY"] = 1;
 		
-		// [Enter Name]
-		addButton(0, "Next", nameRiyaSpawn, [babyIdx, babym, babyName, 0]);
+		if(riyaNoNameBabies.length > 0)
+		{
+			output("\n\n<i>“Anyway,”</i> she says casually, sitting back in her seat, <i>“what’re we naming our little " + (babym ? "boy" : "girl") + "?”</i>");
+			
+			// [Enter Name]
+			addButton(0, "Next", nameRiyaSpawn, [babyIdx, babym, babyName, 0]);
+		}
+		else
+		{
+			output("<i>“Anyway, you here for the little one" + ((numBabs + numKids) == 1 ? "" : "s") + ", too?”</i> Riya asks, setting down the tablet she’d been reading from down and standing up, leaving her food for a robotic attendant to clean up.");
+			
+			// [Visit / Play] [Leave]
+			if(numBabs > 0) addButton(0, "Visit", riyaNurseryActions, ["visit"], "Visit", "Visit your child" + ((numBabs + numKids) == 1 ? "" : "ren") + " with Riya.");
+			if(numKids > 0) addButton(1, "Play", riyaNurseryActions, ["play"], "Play", "Play with your progeny with Riya.");
+			addButton(14, "Leave", mainGameMenu);
+		}
 	}
 	// Repeat naming if PC has other kids by Riya, because one wasn’t fucking enough
 	else if(flags["RIYA_NAMED_KID"] != undefined && riyaNoNameBabies.length > 0)
@@ -1694,17 +1721,6 @@ public function riyaNurseryCafeteriaApproach():void
 	// Repeat
 	else
 	{
-		// Count children...
-		var numBabs:int = 0;
-		var numKids:int = 0;
-		for(i = 0; i < riyaBabies.length; i++)
-		{
-			// Show this if there is a Riyaspawn that is under 365 days old
-			if(riyaBabies[i].Years <= 1) numBabs++;
-			// Show if there is a Riyakid over one year old.
-			else if(riyaBabies[i].Years <= 5) numKids++;
-		}
-		
 		if(pc.isPregnant() && pc.bellyRating() >= 10)
 		{
 			output("<i>“Is that one mine, ");
