@@ -833,7 +833,7 @@ public function bedTimeWithPenny():void
 	showPenny(true);
 	author("B");
 	// Continue here if the PC goes to bed anytime between 02:01 and 08:00 while Penny is sharing their bed
-	if(hours >= 2 || hours < 8)
+	if(hours >= 2 && hours < 8)
 	{
 		output("It’s late as hell. You’ve spent too long between rests, and now you’re pulling in at this unholy hour. And the fact that you asked Penny to join you hasn’t left your thoughts; you wonder how comfy she is right now...");
 		output("\n\nWhen you open the door to your bedroom, you see, in the dim light, a body, all hunkered and cozy beneath the covers of your bed. You can’t make out too many details, of course, but the telltale red mohawk and giant, fuzzy fox ears give away who’s in there right away. It seems Penny didn’t feel the need to wait. You <i>had</i> given her permission, after all.");
