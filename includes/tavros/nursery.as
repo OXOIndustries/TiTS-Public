@@ -654,6 +654,12 @@ public function nurserySpecialistRoomMenu():void
 		output("\n\nA" + (numSpecials == 0 ? "" : "nother") +" modular chamber with very thick glass holds your " + (numTentacles == 1 ? "tentacle child" : (num2Text(numTentacles) + " tentacle children")) + ". The chamber itself looks very sturdy and high-tech. You’re told that the viewing glass is a one-way mirror to prevent the beast" + (numTentacles == 1 ? "" : "s") + " from peering back at any unsuspecting passerbys. The inside speakers also emit soothing harmonics to keep " + (numTentacles == 1 ? "it" : "them") + " less agitated. " + (numTentacles == 1 ? "It looks" : "They look") + " quite happy in there.");
 		numSpecials++;
 	}
+	if (ChildManager.ofType(GLOBAL.TYPE_ROEHM))
+	{
+		output("\n\nLike all creatures that need a particular climate to thrive, your roehm children have been given their own special annex. Beyond its glass door you enter a greenhouse-like environment, swelteringly humid with moisture dripping down the walls, with plentiful plant-life dotting the halls and rooms.");
+		specials.push(["Roehm", nurserySpecialistRoehm, undefined, "Roehm Habitat", "Visit your Roehm children."]);
+		numSpecials++;
+	}
 
 	if (numSpecials == 0)
 	{
@@ -2435,4 +2441,36 @@ public function nurseryMilkingRoomFunc():Boolean
 	}
 
 	return false;
+}
+public function nurserySpecialistRoehm():void
+{
+	clearOutput();
+	showName("ROEHM\nHABITAT");
+	author("Nonesuch");	
+
+	var children:Array = ChildManager.getChildrenOfType(GLOBAL.TYPE_ROEHM);
+	var child:Child;
+	var babyCnt:int = 0;
+	var kidCnt:int = 0;
+	if (children != null && children.length > 0)
+	{
+		child = children[0];
+		for (var i:int = 0; i < children.length; i++)
+		{
+			var c:Child = children[i] as Child;
+			if (c.Years < 1) babyCnt += c.Quantity;
+			else kidCnt += c.Quantity;
+		}
+	}	
+	
+	output("What age group will you visit?");
+	
+	processTime(3);
+
+	clearMenu();
+	if (babyCnt > 0) addButton(0, "Babies", quaelleNurserySceneBabies,babyCnt);
+	else addDisabledButton(0, "Babies", "Babies", "You have no Roehm of this age.");
+	if (kidCnt > 0) addButton(1, "Kids", quaelleNurserySceneKids,kidCnt);
+	else addDisabledButton(1, "Kids", "Kids", "You have no Roehm of this age.");
+	addButton(14, "Leave", mainGameMenu);
 }
