@@ -843,7 +843,7 @@ public function quaelleSexFuckPussySmallMore(kok:int=0):void
 	output(" flexing desperately to propel a new hot, [pc.cumVisc] load into her depths. She writhes around you gleefully, powerful muscles kissing your flexing shaft on either side. <i>“Give me everything you have left, my cute, shiversome lover! Don’t stop until you’re completely dry! The feeling of your seed inside of me is so mumberfelt…“</i>");
 		
 	output("\n\nPropelled onwards, you keep pumping into her until you are utterly spent, your [pc.cock " + kok + "] flexing dryly, so that when you part from her easily you almost collapse, so shaky are you. Quaelle turns and sweeps you into her arms with a happy chorus of hums, swaddling you in the endless plushness of her boobs, planting a motherly kiss on your brow.");
-	output("\n\n<i>“Good, trembluous little Steele,”</i> she coos. <i>“[Pc.he] has done so well for me today!”</i>");
+	output("\n\n<i>“Good, trembluous little Steele,”</i> she coos. <i>“[pc.He] has done so well for me today!”</i>");
 	output("\n\nGroin throbbing mightily, you’re happy to let her coddle you, dizzily enjoying the sweet, slimy embrace.");
 	output("\n\n<i>“I think I’ll have a bath now,”</i> she whispers. <i>“You’ll join me, won’t you Steele? Yeesssss. You will.”</i>");
 	
