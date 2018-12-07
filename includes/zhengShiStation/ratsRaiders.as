@@ -63,10 +63,10 @@ public function showRats(ratCount:int = -2, nude:Boolean = false):void
 			case 1: showBust(rat1.bustDisplay+"_NUDE"); break;
 			case 2: showBust(rat2.bustDisplay+"_NUDE"); break;
 			default:
-			case 3: showBust(rat0.bustDisplay+"_NUDE", rat1.bustDisplay+"_NUDE", rat2.bustDisplay+"_NUDE"); break;
+			case 3: showBust(rat0.groupDisplay+"_NUDE"); break;
 			case 4: showBust(rat0.bustDisplay+"_NUDE", rat1.bustDisplay+"_NUDE"); break;
-			case 5: showBust(rat0.bustDisplay+"_NUDE", rat2.bustDisplay+"_NUDE"); break;
-			case 6: showBust(rat1.bustDisplay+"_NUDE", rat2.bustDisplay+"_NUDE"); break;
+			case 5: showBust(rat2.bustDisplay+"_NUDE", rat0.bustDisplay+"_NUDE"); break;
+			case 6: showBust(rat2.bustDisplay+"_NUDE", rat1.bustDisplay+"_NUDE"); break;
 		}
 	}
 	else
@@ -77,10 +77,10 @@ public function showRats(ratCount:int = -2, nude:Boolean = false):void
 			case 1: showBust(rat1.bustDisplay); break;
 			case 2: showBust(rat2.bustDisplay); break;
 			default:
-			case 3: showBust(rat0.bustDisplay, rat1.bustDisplay, rat2.bustDisplay); break;
+			case 3: showBust(rat0.groupDisplay); break;
 			case 4: showBust(rat0.bustDisplay, rat1.bustDisplay); break;
-			case 5: showBust(rat0.bustDisplay, rat2.bustDisplay); break;
-			case 6: showBust(rat1.bustDisplay, rat2.bustDisplay); break;
+			case 5: showBust(rat2.bustDisplay, rat0.bustDisplay); break;
+			case 6: showBust(rat2.bustDisplay, rat1.bustDisplay); break;
 			//Special value for their introduction
 			case -1: showBust("URBOLG", RatsRaider.RAT_BUSTS[0]); showName("\nROBBERY?"); break;
 		}
