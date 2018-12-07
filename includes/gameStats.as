@@ -5019,7 +5019,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					if(varmintIsTame())
 					{
-						output2("\n<b>* Pet Varmint:</b> Crew member");
+						output2("\n<b>* " + (!varmintRenamend() ? "Pet Varmint" : varmintPetName()) + ":</b> Crew member");
 						if(hasVarmintBuddy()) output2(" (Following you)");
 						else
 						{
