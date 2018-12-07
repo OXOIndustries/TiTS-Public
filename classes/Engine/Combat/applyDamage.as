@@ -223,7 +223,7 @@ package classes.Engine.Combat
 		// HP damage, didn't pass through shield
 		else if (damageResult.hpDamage > 0 && damageResult.shieldDamage == 0)
 		{
-			if(displayBonusTexts) output(" The attack connects with " + target.getCombatName() + "!");
+			if(displayBonusTexts) output(" The attack directly impacts " + target.getCombatName() + "!");
 		}
 		
 		//Magic HP Drain shit

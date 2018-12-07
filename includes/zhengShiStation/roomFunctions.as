@@ -149,14 +149,8 @@ public function zhengFoundryF1EncounterBonus():Boolean
 		encounters.push(encounterPunkSecOp);
 		encounters.push(encounterPunkSecOp);
 		encounters.push(encounterPunkSecOp);
-		encounters.push(encounterPunkSecOp);
-		encounters.push(encounterPunkSecOp);
-		encounters.push(encounterPunkSecOp);
-		encounters.push(encounterPunkSecOp);
-		encounters.push(encounterPunkSecOp);
 		if (ratsAvailable())
 		{
-			encounters.push(ratsInTheMineEncounter);
 			encounters.push(ratsInTheMineEncounter);
 			encounters.push(ratsInTheMineEncounter);
 			encounters.push(ratsInTheMineEncounter);
@@ -696,10 +690,10 @@ public function callAPaigeFriend():void
 	output("\n\nPaige straightens her back and starts to laugh at the question. <i>“That’s easy. Do you still have them on call?”</i> You tell her that you do, as soon as you flip the breaker back on. <i>“Do it. I’ll handle it, sweet thing.”</i>");
 	output("\n\nYou do as she asks, as she steps up to the communicator’s receiver. A few button presses later, power hums back through your ship, and the crackling communication channel snaps back open. <i>“Can you hear me, asshole? Pony up with the password or join the debris field. Your call.”</i>");
 	output("\n\nPaige wets her lips before responding.");
-	output("\n\n<i>“Hey, go fuck yourself, dipshit!”</i> she hollers into the receiver. <i>“The fuck is this, about some ‘password’ horseshit? We got business on the base, so lower your fucking weapons before <i>I<i> tell </i>you<i> what your </i>safeword<i> is!”</i>");
+	output("\n\n<i>“Hey, go fuck yourself, dipshit!”</i> she hollers into the receiver. <i>“The fuck is this, about some ‘password’ horseshit? We got business on the base, so lower your fucking weapons before </i>I<i> tell </i>you<i> what your </i>safeword<i> is!”</i>");
 	output("\n\n<i>“Alright, jeez!”</i> the station controller’s voice says. <i>“Guns are down. We’ll see how long that attitude keeps up, fresh meat.”</i>");
 	output("\n\nTrue to the harbormaster’s word, the target locks from the asteroid release, and you’re free to bring your ship into the bay unmolested.");
-	output("\n\n<i>“That’s the secret, [pc.name],”</i> Paige says as she turns toward the door of the bridge. <i>“Don’t let them push you around. There’s no law or decorum in Zheng Shi; as soon as you show them any weakness, they’ll make you their bitch, so if you enjoy being your own {wo}man, you need to push as hard as they shove.”</i>");
+	output("\n\n<i>“That’s the secret, [pc.name],”</i> Paige says as she turns toward the door of the bridge. <i>“Don’t let them push you around. There’s no law or decorum in Zheng Shi; as soon as you show them any weakness, they’ll make you their bitch, so if you enjoy being your own " + pc.mf("","wo") + "man, you need to push as hard as they shove.”</i>");
 	output("\n\nYou thank Paige for her advice and dismiss her from the bridge as you pass through the force field and into a sweeping hangar bay, big enough for twenty or so large ships - and countless little tramp freighters and scout ships like the old Z14.");
 	output("\n\nNobody’s paying you much mind now that you’re docked. Indeed, you manage to find a relatively isolated spot at the back of the hangar to land. The ship settles with a resounding thud, and you make your way to the airlock. Time to see where your probe’s gotten off to... assuming it’s really here.");
 	flags["ZHENG_SHI_PASSWORDED"] = 1;
@@ -919,7 +913,7 @@ public function ImAPirateLittleRat():void
 	showBust("RODENIAN_MECHANIC");
 	author("Fenoxo");
 	output("You tell her that you’re a pirate.");
-	output("\n\nShe nearly hyperventilates laughing, her diaphragm spasming with the forcefulness of her squeaking delight. <i>“So’s my left tit, but you don’t hear me bandying it about like some kind of title. Everybody ‘round these parts calls themself a pirate. Even the dumbshit dog in the hangar down here.”</i> She snorts. <i>“Yeah, you’re a real big pirate, asshole. Keep sitting on your ass and polishing real pirates’ ships.”</i> A burnt-out servo slams into the ground next to your [pc.foot]. <i>“So, " + pc.mf("Mister","Miss") + " pirate, how are you going to waste my time today?");
+	output("\n\nShe nearly hyperventilates laughing, her diaphragm spasming with the forcefulness of her squeaking delight. <i>“So’s my left tit, but you don’t hear me bandying it about like some kind of title. Everybody ‘round these parts calls themself a pirate. Even the dumbshit dog in the hangar down here.”</i> She snorts. <i>“Yeah, you’re a real big pirate, asshole. Keep sitting on your ass and polishing real pirates’ ships.”</i> A burnt-out servo slams into the ground next to your [pc.foot]. <i>“So, " + pc.mf("Mister","Miss") + " pirate, how are you going to waste my time today?”</i>");
 	flags["MAUS_THINKS_PIRATE"] = 2;
 	processTime(5);
 	rodentTalkTopics();

@@ -169,7 +169,7 @@ public function pumpkinSera(btnSlot:int):void
 	author("Bumbling Bee");
 	
 	var plural:Boolean = ChildManager.numOfUniqueType(SeraUniqueChild) > 1;
-	var babies:Array = listSeraBabies();
+	var babies:Array = listBabiesOfParent("SERA");
 	var namedKids:Boolean = (babies[0].Name != "");
 	
 	output("Instead of carving pumpkins, " + (plural ? "Sera and her kids" : (namedKids ? (babies[0].Name + " and Sera") : "Sera and her kid")) + " are chowing down on a giant bag of candy corn. You raise an eyebrow at " + (plural ? "" : "the two of ") + "them. " + (namedKids ? (babies[0].Name + " gives") : "They give") + " you a big grin. <i>“Briget says candy corn is both an inferior corn and candy, but dad is awesome and got " + (plural ? "us" : "me") + " some anyway!”</i> They promptly shove another sticky handful into their mouths.");

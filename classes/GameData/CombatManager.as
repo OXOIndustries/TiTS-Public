@@ -79,6 +79,10 @@ package classes.GameData
 		{
 			combatContainer.addFriendlyActor(newC);
 		}
+		public static function removeFriendlyActor(remC:*):void
+		{
+			combatContainer.removeFriendlyActor(remC);
+		}
 		
 		private static var _hostileActors:Array;
 		public static function setHostileActors(... args):void

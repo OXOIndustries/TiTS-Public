@@ -129,6 +129,8 @@ public function disableExploreEvents():Boolean
 	if (flags["FEDERATION_QUEST"] > 0 && flags["FEDERATION_QUEST_AMBUSH"] != undefined && flags["FEDERATION_QUEST"] < 3) return true;
 	// Syri Quest
 	if (flags["SYRIQUEST_STATE"] >= 4 && flags["SYRIQUEST_STATE"] < 20) return true;
+	// Penny Quest
+	if (flags["PENNY_CREW_ASKED"] == 2) return true;
 
 	return false;
 }
@@ -185,10 +187,11 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	//trace("EventQueue = ", eventQueue);
 	//trace("this.eventQueue = ", this.eventQueue);
 	if(eventQueue.length > 0) {
-		//Do the most recent:
-		eventQueue[0]();
-		//Strip out the most recent:
+		//Bank the most recent for playing, then strip it out in case of recursive bullshit
+		var tempFunc:Function  = eventQueue[0];
 		eventQueue.splice(0,1);
+		//Do the most recent:
+		tempFunc();		
 		return;
 	}
 	
@@ -276,8 +279,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	}
 	else
 	{
-		if(canRest() || canSleep()) addButton(9, "Sleep", sleepMenu);
-		else addDisabledButton(9, "Sleep", "Sleep", "You can’t seem to sleep here at the moment....");
+		addButton(9, "Sleep", sleepMenu);
 	}
 	addButton(14, "Codex", showCodex);
 	
@@ -757,6 +759,7 @@ public const CREW_SHEKKA:int = 15;
 public const CREW_SYRI:int = 16;
 public const CREW_RAMIS:int = 17;
 public const CREW_AMBER:int = 18;
+public const CREW_PENNY:int = 19;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -779,6 +782,7 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	if (shekkaIsCrew()) crewMembers.push(CREW_SHEKKA);
 	if (ramisRecruited()) crewMembers.push(CREW_RAMIS);
 	if (amberRecruited()) crewMembers.push(CREW_AMBER);
+	if (pennyIsCrew()) crewMembers.push(CREW_PENNY);
 
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -883,6 +887,7 @@ public function getCrewOnShip():Array
 	//9999 - not sure what I need to set up for this. Probably just a creature link but none done yet:
 	//if (azraIsCrew()) c.push(azra);
 	//if (paigeIsCrew()) c.push(paige);
+	if (pennyIsCrew()) c.push(penny);
 	if (bessIsCrew()) c.push(bess);
 	if (celiseIsCrew()) c.push(celise);
 	if (reahaIsCrew()) c.push(reaha);
@@ -907,6 +912,7 @@ public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean =
 	if (kiroIsCrew()) crewMembers.push("Kiro");
 	if (gooArmorIsCrew()) crewMembers.push(customName ? chars["GOO"].short : "Goo Armor");
 	if (paigeIsCrew()) crewMembers.push("Paige");
+	if (pennyIsCrew()) crewMembers.push("Penny");
 	if (pippaOnShip()) crewMembers.push("Pippa");
 	if (ramisIsCrew()) crewMembers.push("Ramis");
 	if (reahaIsCrew()) crewMembers.push("Reaha");
@@ -953,6 +959,7 @@ public function getFollowerBustDisplay(followerName:String = ""):String
 		case "Kiro": return kiroBustDisplay(); break;
 		case "Goo Armor": return novaBustDisplay(); break;
 		case "Paige": return getPaigeBustString(); break;
+		case "Penny": return pennyBustDisplay(); break;
 		case "Pippa": return pippaBustDisplay(); break;
 		case "Ramis": return ramisBustDisplay(); break;
 		case "Reaha": return reahaBustDisplay(); break;
@@ -998,6 +1005,7 @@ public function getSleepingPartnerBustDisplay():String
 		case "KASE": return kaseBustDisplay(); break;
 		case "KIRO": return kiroBustDisplay(); break;
 		case "PAIGE": return getPaigeBustString(); break;
+		case "PENNY": return pennyBustDisplay(); break;
 		case "PIPPA": return pippaBustDisplay(); break;
 		case "RAMIS": return ramisBustDisplay(); break;
 		case "REAHA": return reahaBustDisplay(); break;
@@ -1051,6 +1059,7 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		{
 			crewMessages += "\n\n" + amberShipBonusText();
 			if (amberCurrentlyDumbfucked()) addDisabledButton(btnSlot,"Amber","Amber","You’ve decided to leave Amber alone while the effects of the Dumbfuck she took wear off.");
+			else if(pc.hasStatusEffect("Amber Disabled")) addDisabledButton(btnSlot,"Amber","Amber","Amber's busy doing something else right now." + (mitziIsCrew() ? " Probably Mitzi.":""));
 			else addButton(btnSlot, "Amber", amberInTheHold);
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
@@ -1144,6 +1153,7 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		{
 			crewMessages += mitziCrewBonus();
 			if(pc.hasStatusEffect("Mitzi_Gushed_Out")) addDisabledButton(btnSlot,"Mitzi","Mitzi","Maybe let her recover from that Gush, huh?");
+			else if(pc.hasStatusEffect("Mitzi Disabled")) addDisabledButton(btnSlot,"Mitzi","Mitzi","Mitzi's not around at the moment." + (amberIsCrew() ? " She's probably getting into trouble with Amber.":""));
 			else addButton(btnSlot,"Mitzi",approachCrewMitzi);
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
@@ -1155,6 +1165,16 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		{
 			crewMessages += "\n\nPaige mostly keeps to her room when not helping you navigate the starways.";
 			addButton(btnSlot,"Paige",paigeCrewApproach);
+			btnSlot = crewButtonAdjustments(btnSlot);
+		}
+	}
+	if (pennyIsCrew())
+	{
+		count++;
+		if (!counter)
+		{
+			crewMessages += pennyCrewDesc();
+			addButton(btnSlot,"Penny",approachCrewPenny);
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
@@ -1618,6 +1638,10 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 			
 			switch(flags["CREWMEMBER_SLEEP_WITH"])
 			{
+				case "PENNY":
+					bedTimeWithPenny();
+					interrupt = true;
+					break;
 				case "SHEKKA AND ANNO":
 					if (annoIsCrew() && (rand(3) == 0 || (isChristmas() && flags["ANNO_GIFT_WRAPPED"] == undefined)))
 					{
@@ -1753,6 +1777,11 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 		if (flags["KASE_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [kaseCrewWake];
 		if (flags["RAMIS_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [ramisSleepWake];
 		if (flags["PAIGE_WAKEY_FLAGS"] != undefined) wakeEvents = [paigeWakeyWakey];
+		if (pc.hasStatusEffect("PENNY_WAKEUP_CUED"))
+		{
+			pc.removeStatusEffect("PENNY_WAKEUP_CUED");
+			wakeEvents = [pennyMorningWakeups];
+		}
 		
 		if (wakeEvents.length > 0)
 		{
@@ -1997,6 +2026,11 @@ public function insideShipEvents():Boolean
 		ramisCorridorMolesting();
 		return true;
 	}
+	if(amberAvailable() && mitziAvailable() && mitziIsCrew() && amberIsCrew() && amberDumbfuckDoses() >= 3 && flags["MITZI_FAV_DRUG"] != undefined && (flags["MITZI_AMBER_SOAK_LAST"] == undefined || flags["MITZI_AMBER_SOAK_LAST"] + 60*24*3 < GetGameTimestamp()) && rand(10) == 0) 
+	{
+		amberAndMitziFun();
+		return true;
+	}
 
 	return false;
 }
@@ -2076,7 +2110,7 @@ public function flyMenu():void
 		
 		if (isDoingEventWhorizon())
 		{
-			output("<b>Without a way to navigate back through the spatial anomoly, it's probably best you don't try and take off right now...</b>");
+			output("<b>Without a way to navigate back through the spatial anomoly, it’s probably best you don’t try and take off right now...</b>");
 			clearMenu();
 			addButton(14, "Back", mainGameMenu);
 			return;
@@ -2116,14 +2150,14 @@ public function flyMenu():void
 			if(shipLocation != "600") addButton(3, "Myrellion", flyTo, "Myrellion");
 			else addDisabledButton(3, "Myrellion", "Myrellion", "You’re already here.");
 		}
-		else if (flags["KQ2_MYRELLION_STATE"] == 1)
-		{
-			addDisabledButton(3, "Myrellion", "Myrellion", "It would be wise not to visit a planet currently experiencing a heavy nuclear winter...");
-		}
-		else
+		else if (flags["KQ2_MYRELLION_STATE"] != 1)
 		{
 			if (shipLocation != "2I7") addButton(3, "Myrellion", flyTo, "MyrellionDeepCaves");
 			else addDisabledButton(3, "Myrellion", "Myrellion - Deep Caves", "You’re already here.");
+		}
+		else
+		{
+			addDisabledButton(3, "Myrellion", "Myrellion", "It would be wise not to visit a planet currently experiencing a heavy nuclear winter...");
 		}
 	}
 	else addDisabledButton(3, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
@@ -2990,6 +3024,15 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 		if(kaseIsCrew() && flags["KASE_CREW"] == 1)
 		{
 			eventQueue.push(kaseCrewGreeting);
+		}
+		//Penny follower greeting
+		if(pennyIsCrew())
+		{
+			if(flags["PENNY_CUMSLUT_RECRUITED"] == 1 || flags["PENNY_BIMBO_RECRUITED"] == 1) eventQueue.push(cumslutPennyGreeting);
+		}
+		if(pennyIsCrew() && flags["PENNY_CUMSLUT_RECRUITED"] == 1)
+		{
+			eventQueue.push(cumslutPennyGreeting);
 		}
 		//Anno/Erra Threesome
 		if((pc.hasCock() || pc.hasHardLightStrapOn()) && annoIsCrew() && flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined && erraAvailableForThreesome() && !pc.hasStatusEffect("Anno-Erra Cooldown") && rand(5) == 0)
@@ -4018,14 +4061,13 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			flags["SUCCUCOW'D"] = undefined;
 		}
 		//RandyClaws email
-		if(flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] == undefined && flags["CIARAN_MET"] != undefined && isChristmas())
+		if(flags["CIARAN_MET"] != undefined && isChristmas() && (flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] == undefined || flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] != getRealtimeYear()))
 		{
 			resendMail("randy_claws_email");
-			flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] = 1;
+			flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] = getRealtimeYear();
 		}
-		else if(!isChristmas())
+		else if(!isChristmas() && flags["RANDY_CLAWS"] != undefined)
 		{
-			flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] = undefined;
 			flags["RANDY_CLAWS"] = undefined;
 		}
 		

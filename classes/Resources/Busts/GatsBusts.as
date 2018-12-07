@@ -194,8 +194,10 @@
 
 		[Embed(source = "../../../assets/images/npcs/gats/penny.png", mimeType = "image/png")]
 		public var Bust_PENNY:Class;
+		public var Bounds_PENNY:Rectangle = new Rectangle(26,0,90,66);
 		[Embed(source = "../../../assets/images/npcs/gats/Penny_Nude.png", mimeType = "image/png")]
 		public var Bust_PENNY_NUDE:Class;
+		public var Bounds_PENNY_NUDE:Rectangle = new Rectangle(26,0,90,70);
 		public function get Bust_PENNY_NUDE_VIXEN():Class { return Bust_PENNY_NUDE; }
 		public function get Bust_PENNY_NUDE_VIXEN_1():Class { return Bust_PENNY_NUDE; }
 		public function get Bust_PENNY_NUDE_VIXEN_2():Class { return Bust_PENNY_NUDE; }
@@ -324,6 +326,8 @@
 		
 		[Embed(source = "../../../assets/images/npcs/gats/Zil_Male.png", mimeType = "image/png")]
 		public var Bust_ZIL:Class;
+		public var Bounds_ZIL:Rectangle = new Rectangle(14,19,79,92);
+		
 		
 		CONFIG::IMAGEPACK
 		{

@@ -3986,7 +3986,7 @@ public function SSDYSH(args:Array):void
 		else if (pc.cockTotal() >= 2)
 		{
 			output("your [pc.cock 1] with your other. You grunt as she works you over, licking and sucking, playing with your [pc.cock] with her tongue; you bathe her tongue with pre-cum while your second cock shows its adoration by shooting its own into her hair and across her cheek, which she takes without resistance");
-			if(pc.cockTotal() >= 3) output(". The rest of your [pc.cocks] flop about, hard as nails and neglected, their own brands and juices going every which way as your [pc.hips] rock into her mouth]");
+			if(pc.cockTotal() >= 3) output(". The rest of your [pc.cocks] flop about, hard as nails and neglected, their own brands and juices going every which way as your [pc.hips] rock into her mouth");
 			else output(". You’re hard as nails, your [pc.hips] rocking into her mouth], signs of your impending orgasm just on the horizon");
 		}
 		output(".");
@@ -4139,7 +4139,7 @@ public function SSDYE(args:Array):void
 			output(".");
 		}
 		//if (pc.cocks >= 2)
-		if(pc.cockTotal() >= 2) output(" The rest of you not lodged in her mouth shoots your load every which way: across her cheek, over the bridge of her nose, in her hair, across her eyes, and, with some manual handling, down her cleavage. She’s focused primarily on the one in her mouth and does nothing to stem or redirect the flow of your... enthusiasm.]");
+		if(pc.cockTotal() >= 2) output(" The rest of you not lodged in her mouth shoots your load every which way: across her cheek, over the bridge of her nose, in her hair, across her eyes, and, with some manual handling, down her cleavage. She’s focused primarily on the one in her mouth and does nothing to stem or redirect the flow of your... enthusiasm.");
 		//if (pc.hasVagina = true)
 		if(pc.hasVagina()) 
 		{

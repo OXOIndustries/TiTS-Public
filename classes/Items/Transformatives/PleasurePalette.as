@@ -577,9 +577,9 @@
 				}
 			}
 			output("\n\n");
-			if(isParasite) output("After witnessing your parasitic tail" + (target.tailCount == 1 ? "’s" : "s’") + " frenzied eruption, you");
+			if(isParasite) output("After witnessing your parasitic tail" + (target.tailCount == 1 ? "’s" : "s’") + " frenzied eruption, y");
 			else output("Y");
-			output(" are pleased to see that <b>your " + (tailCock ? "[pc.tailCocks]" : "[pc.tailCunts]") + " " + (target.tailCount == 1 ? "has" : "have") + " taken on a fantastic, new " + newColor + " hue!</b>");
+			output("ou are pleased to see that <b>your " + (tailCock ? "[pc.tailCocks]" : "[pc.tailCunts]") + " " + (target.tailCount == 1 ? "has" : "have") + " taken on a fantastic, new " + newColor + " hue!</b>");
 			// non-parasitic:
 			if(!isParasite)
 			{

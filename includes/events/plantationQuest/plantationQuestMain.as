@@ -139,7 +139,7 @@ public function lichensAndIronwoodsAbleDisableLelPlantationQuestWrapper():Boolea
 		}
 	}
 	if(flags["PLANTATION_QUEST"] == 0 && flags["PQUEST_ABLE_TALK_DISABLE"] == undefined) flags["PQUEST_ABLE_TALK_DISABLE"] = 1;
-	return jungleEncounterChances();
+	return jungleEncounterChances(true);
 }
 public function waterFallAggroProc():Boolean
 {
@@ -178,7 +178,7 @@ public function plantationApproachBonusRedux():Boolean
 		else output("The fields look deserted, which is probably not surprising given the time of day.");
 		output(" Rising above the fields to the south-east though a big, white building can be seen, approached by the same wide track you are on. Behind you, to the west, the alien wilderness encroaches, a complete contrast to this pristine, slightly unnerving farmland.");
 		flags["NAV_DISABLED"] = undefined;
-		return jungleEncounterChances();
+		return jungleEncounterChances(true);
 	}
 	//PLANTATION APPROACH
 	else if(flags["PQ_RESOLUTION"] == 2)
@@ -229,7 +229,7 @@ public function plantationApproachBonusRedux():Boolean
 		
 		output(msg);
 		flags["NAV_DISABLED"] = undefined;
-		return jungleEncounterChances();
+		return jungleEncounterChances(true);
 	}
 }
 
@@ -348,7 +348,7 @@ public function tharePlantationFieldsBonusRedux():Boolean
 		if(flags["THARE_MANOR_ENTERED"] == undefined) addButton(0, "Speaker", tharePlantationManorApproach, "speaker");
 		else
 		{
-			if(pc.hasStatusEffect("Thare Manor Visit") > 0) addDisabledButton(0, "Enter", "Enter", "You have already met Professor Darnock for a meal already. Perhaps you can revisit him later?");
+			if(pc.hasStatusEffect("Thare Manor Visit") > 0) addDisabledButton(0, "Enter", "Enter", "You have met Professor Darnock for a meal already. Perhaps you can revisit him later?");
 			else addButton(0, "Enter", tharePlantationManorApproach, "enter");
 		}
 		
@@ -578,7 +578,7 @@ public function babblingBrookBonusUnlockShit():Boolean
 		output("\n\n<b>You could force your way northwards</b>, up the banks of the stream, if you wanted to. You think you can see a break in the ironwoods much further above in that direction.");
 		flags["NAV_DISABLED"] = undefined;
 	}
-	return jungleEncounterChances();
+	return jungleEncounterChances(true);
 }
 
 public function upperBrookBonus():Boolean
@@ -1773,7 +1773,7 @@ public function chieftansCircleBonusFuckery():Boolean
 			output("\n\nThe chieftain’s chair and various bits of crafted material that were once here have been spirited away. The place could have been deserted for years. Presumably Quinn and the rest of her savage clan are still out there somewhere, although you doubt the female zil is still in charge of them after what happened here.");
 			output("\n\nPeople calling a place ill-fated seems a lot less laughable when you’re stood alone somewhere like this. There’s no reason to linger.");
 			//encounter chances!
-			return jungleEncounterChances();
+			return jungleEncounterChances(true);
 		}
 	}
 	return false;

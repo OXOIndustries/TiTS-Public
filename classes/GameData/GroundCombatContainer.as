@@ -521,13 +521,13 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Burning");
 					if (target is PlayerCharacter) output("\n\n<b>At last you manage to stifle the life out of the fire on your " + (target.hasArmor() ? target.armor.longName : "body") + ". The smell of pork hangs in your nose. You try not to think about it.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " manages to stifle the life out of the flames on " + target.getCombatPronoun("hisher") + " " + (target.hasArmor() ? target.armor.longName : "body") + "!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " manage" + (!target.isPlural ? "s" : "") + " to stifle the life out of the flames on " + target.getCombatPronoun("hisher") + " " + (target.hasArmor() ? target.armor.longName : "body") + "!</b>");
 				}
 				//Keep status!
 				else
 				{
 					if (target is PlayerCharacter) output("\n\n<b>You desperately slap at your body, trying to extinguish the flames that have taken to your " + (target.hasArmor() ? target.armor.longName : "person") + " but it stubbornly clings to you, blackening and bubbling everything it touches. It burns!</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " desperately slaps at " + target.getCombatPronoun("hisher") + " body, trying to extinguish the flames licking at " + target.getCombatPronoun("hisher") + " " + (target.hasArmor() ? target.armor.longName : "person") + " but to no avail!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " desperately slap" + (!target.isPlural ? "s" : "") + " at " + target.getCombatPronoun("hisher") + " body, trying to extinguish the flames licking at " + target.getCombatPronoun("hisher") + " " + (target.hasArmor() ? target.armor.longName : "person") + " but to no avail!</b>");
 					applyDamage(new TypeCollection( { burning: target.statusEffectv2("Burning") } ), null, target);
 				}
 			}
@@ -821,7 +821,7 @@ package classes.GameData
 				else
 				{
 					if (target is PlayerCharacter) output("\n\n<b>You’re paralyzed and unable to move!</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is paralyzed and unable to move!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (!target.isPlural ? "is" : "are") + " paralyzed and unable to move!</b>");
 				}
 			}
 	
@@ -837,7 +837,7 @@ package classes.GameData
 				else 
 				{
 					if (target is PlayerCharacter) output("\n\n<b>You are practically invisible thanks to your stealth field generator.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is practically invisible thanks to " + target.getCombatPronoun("hisher") + " stealth field generator.</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (!target.isPlural ? "is" : "are") + " practically invisible thanks to " + target.getCombatPronoun("hisher") + " stealth field generator.</b>");
 				}
 			}
 	
@@ -848,7 +848,7 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Taking Cover");
 					if (target is PlayerCharacter) output("\n\n<b>You are no longer taking cover!</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is no longer taking cover!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (!target.isPlural ? "is" : "are") + " no longer taking cover!</b>");
 				}
 				else 
 				{
@@ -865,7 +865,7 @@ package classes.GameData
 				if(temp > 0) 
 				{
 					if (target is PlayerCharacter) output("\n\n<b>You recover " + temp + " points of shielding.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " recovers " + temp + " points of shielding!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " recover" + (!target.isPlural ? "s" : "") + " " + temp + " points of shielding!</b>");
 					target.shields(temp);
 				}
 				target.energy(10);
@@ -882,7 +882,7 @@ package classes.GameData
 				target.addStatusValue("Used Smuggled Stimulant",1,-1);
 				target.energy(25);
 				if (target is PlayerCharacter) output("\n\n<b>A rush of energy fills you as the smuggled stimulant affects you.</b>");
-				else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is filled with a sudden rush of energy!</b>");
+				else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (!target.isPlural ? "is" : "are") + " filled with a sudden rush of energy!</b>");
 			}
 	
 			if (target.hasStatusEffect("Porno Hacked Drone") && target.hasCombatDrone(true))
@@ -893,7 +893,7 @@ package classes.GameData
 					if(target.statusEffectv1("Porno Hacked Drone") <= 0)
 					{
 						if (target is PlayerCharacter) output("\n\n<b>With a grinding click the porn beaming out of your drone snuffs out, finally getting the better of the hacking routine, and returns to your side.</b>");
-						else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " drone whirrs slightly, the porn beaming from it snuffing out in short order. Having finally managed to expel the rogue instructions hacked into the thing, it returns to its owner’s side.</b>");
+						else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " drone whirrs slightly, the porn beaming from it snuffing out in short order. Having finally managed to expel the rogue instructions hacked into the thing, it returns to its owner" + (!target.isPlural ? "’s" : "s’") + " side.</b>");
 						target.removeStatusEffect("Porno Hacked Drone");
 					}
 					else
@@ -3064,7 +3064,7 @@ package classes.GameData
 					}
 					//Big TiTS!
 					else if(pc.biggestTitSize() >= 4) {
-						if(!pc.isChestExposed()) output("You peel away your [pc.upperGarments] with careful, slow tugs to expose your [pc.fullChest]. Only after you’ve put yourself on display do you look back at your target and truly begin to tease, starting with a knowing wink. Then, you grab hold of your [pc.chest] and cup them to enhance your cleavage, lifting one then the other in a slow, sensuous display. Covering them up is something you do a little a regretfully.");
+						if(!pc.isChestExposed()) output("You peel away your [pc.upperGarments] with careful, slow tugs to expose your [pc.fullChest]. Only after you’ve put yourself on display do you look back at your target and truly begin to tease, starting with a knowing wink. Then, you grab hold of your [pc.chest] and cup them to enhance your cleavage, lifting one then the other in a slow, sensuous display. Covering them up is something you do a little regretfully.");
 						else output("You delicately trace a finger up your [pc.belly] to your exposed cleavage, slowing as it nestles in place. Your motion causes your breasts to gently sway as you explore yourself, and you pause to look at your target. With one hand, you squeeze your left tit, crushing your other hand’s finger into it while you grope yourself. With your erotic display complete, you release yourself and stretch, glad to be uncovered.");
 					}
 					//Petite ones!
@@ -4240,6 +4240,14 @@ package classes.GameData
 			_hostiles.splice(_hostiles.indexOf(remC), 1);
 			showCombatUI();
 		}
+
+		override public function removeFriendlyActor(remC:*):void
+		{
+			if (!(remC is Creature)) throw new Error("Removed actor is not a creature.");
+			
+			_friendlies.splice(_friendlies.indexOf(remC), 1);
+			showCombatUI();
+		}
 		
 		private function makeCharacterUnique(target:Creature, asGroup:String):void
 		{
@@ -4744,7 +4752,7 @@ package classes.GameData
 					{
 						if(_hostiles[i].hasFlightEffects()) _hostiles[i].clearFlightEffects();
 						
-						output("\n\n" + StringUtil.capitalize(_hostiles[i].getCombatName(), false) + " falls to the ground,");
+						output("\n\n" + StringUtil.capitalize(_hostiles[i].getCombatName(), false) + " fall" + (_hostiles[i].isPlural ? "":"s") + " to the ground,");
 						if (_hostiles[i].HP() <= 0) output(" defeated.");
 						else output(" stricken with lust.");
 					}

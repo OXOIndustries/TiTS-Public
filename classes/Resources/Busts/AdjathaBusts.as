@@ -8,10 +8,10 @@ package classes.Resources.Busts
 	public class AdjathaBusts 
 	{
 		public function get PREVIEW():Class { return Bust_AINA; }
-		public function get SIGNATURE():Class { return SigEmbed; }
+		//public function get SIGNATURE():Class { return SigEmbed; }
 		
-		[Embed(source = "../../../assets/images/npcs/adjatha/hr/sig.png", mimeType = "image/png")]
-		public var SigEmbed:Class;
+		//[Embed(source = "../../../assets/images/sig/adjatha.png", mimeType = "image/png")]
+		//public var SigEmbed:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/able.png", mimeType = "image/png")]
 		public var Bust_ABLE:Class;
@@ -254,6 +254,8 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/dryad.png", mimeType = "image/png")]
 		public var Bust_DRYAD:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/dryad_dumbfuck.png", mimeType = "image/png")]
+		public var Bust_DRYAD_DUMBFUCK:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/egg_trainer.png", mimeType = "image/png")]
 		public var Bust_EGG_TRAINER:Class;
@@ -629,8 +631,10 @@ package classes.Resources.Busts
 		public function get Bust_PENNY_NUDE_HORSE_2():Class { return Bust_PENNY_BIMBO_HORSE; }
 		[Embed(source = "../../../assets/images/npcs/adjatha/penny_bimbo_horse.png", mimeType = "image/png")]
 		public var Bust_PENNY_BIMBO_HORSE:Class;
+		public var Bounds_PENNY_BIMBO_HORSE:Rectangle = new Rectangle(55,2,132,70);
 		public function get Bust_PENNY_BIMBO_HORSE_1():Class { return Bust_PENNY_BIMBO_HORSE; }
 		public function get Bust_PENNY_BIMBO_HORSE_2():Class { return Bust_PENNY_BIMBO_HORSE; }
+
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/petr.png", mimeType = "image/png")]
 		public var Bust_PETR:Class;
@@ -739,6 +743,13 @@ package classes.Resources.Busts
 		public var Bust_RATS_RAIDER_GROUP_ONE_NUDE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_group_two_nude.png", mimeType = "image/png")]
 		public var Bust_RATS_RAIDER_GROUP_TWO_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_boy.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_BOY:Class;
+		public var Bounds_RATS_RAIDER_BOY:Rectangle = new Rectangle(34, 26, 108, 95);
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_girl.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_GIRL:Class;
+		public var Bounds_RATS_RAIDER_GIRL:Rectangle = new Rectangle(30, 23, 104, 90);
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/reaha_anusoft.png", mimeType = "image/png")]
 		public var Bust_REAHA_ANUSOFT:Class;
@@ -1216,6 +1227,8 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/dryad.png", mimeType = "image/png")]
 			public var Full_DRYAD:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/dryad_dumbfuck.png", mimeType = "image/png")]
+			public var Full_DRYAD_DUMBFUCK:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/egg_trainer.png", mimeType = "image/png")]
 			public var Full_EGG_TRAINER:Class;
@@ -1642,6 +1655,11 @@ package classes.Resources.Busts
 			public var Full_RASKVEL_GANG:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/raskvel_gang_nude.png", mimeType = "image/png")]
 			public var Full_RASKVEL_GANG_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/rats_raider_boy.png", mimeType = "image/png")]
+			public var Full_RATS_RAIDER_BOY:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/rats_raider_girl.png", mimeType = "image/png")]
+			public var Full_RATS_RAIDER_GIRL:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/reaha_anusoft.png", mimeType = "image/png")]
 			public var Full_REAHA_ANUSOFT:Class;

@@ -3479,7 +3479,7 @@ public function Bess13CodexEntry():void
 	outputCodex("\n\nSince the attachments for the V.I. model are perfectly compatible with the A.I. model, owners of illegal units are still able to repair and upgrade them with impunity.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Environs Typically Inhabited:"));
-	outputCodex("Bess-13 and Bess-14 V.I. units can be found in most hospitals where breeding relief is needed for the general populace. There are a number of private owners, though most people cannot afford the high price of the units. They are also frequently used as decoys on frontier planets with sexually aggressive natives, flora or fauna.");
+	outputCodex("Bess-13 and Ben-14 V.I. units can be found in most hospitals where breeding relief is needed for the general populace. There are a number of private owners, though most people cannot afford the high price of the units. They are also frequently used as decoys on frontier planets with sexually aggressive natives, flora or fauna.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Reproduction:"));
 	outputCodex("Bess-13 and Ben-14 units cannot reproduce unless they are equipped with a special internal gene-splicer (GX) upgrade. When equipped with the GX upgrade they can impregnate or be impregnated by almost every conceivable species in the galaxy.");

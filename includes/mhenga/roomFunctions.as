@@ -246,7 +246,7 @@ public function mhengaTaxiToWaterfall(response:String = ""):void
 		case "buy":
 			showBust("TANIS");
 			
-			output("You hand him a chit, and after a rummage around in the back the leithan returns with a bulky  drone-like device.");
+			output("You hand him a chit, and after a rummage around in the back the leithan returns with a bulky drone-like device.");
 			output("\n\n<i>“Stick it in the ground and press the button on the bottom once you’ve got it where you want it,”</i> Tanis says. <i>“You should be able to summon taxis straight away. We’re that good!”</i>");
 			output("\n\n<b>You have attained a Mhen’ga Comms Relay.</b>");
 			
@@ -302,7 +302,7 @@ public function mhengaTaxiToWaterfall(response:String = ""):void
 	}
 }
 
-public function jungleEncounterChances():Boolean {
+public function jungleEncounterChances(hostileOnly:Boolean = false):Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["JUNGLE_STEP"] == undefined) flags["JUNGLE_STEP"] = 1;
 	else {
@@ -326,7 +326,7 @@ public function jungleEncounterChances():Boolean {
 		flags["JUNGLE_STEP"] = 0;
 		
 		//Build possible encounters
-		if(flags["PUMPKING_COMPLETION"] == 1 && hours >= 23 || hours <= 1) 
+		if(!hostileOnly && flags["PUMPKING_COMPLETION"] == 1 && (hours >= 23 || hours <= 1))
 		{
 			choices.push(encounterPumpkingEvent);
 			choices.push(encounterPumpkingEvent);
@@ -352,7 +352,7 @@ public function jungleEncounterChances():Boolean {
 		choices.push(encounterCuntSnakeOnJungleLand);
 		choices.push(encounterCuntSnakeOnJungleLand);
 		choices.push(frogGirlsEncounter);
-		if(dryadIsActive())
+		if(!hostileOnly && dryadIsActive())
 		{
 			if(rand(3) == 0) choices.push(dryadMeeting);
 			//Fragrant ladies or cum-drenched folks find her more often~
@@ -362,9 +362,9 @@ public function jungleEncounterChances():Boolean {
 				choices.push(dryadMeeting);
 			}
 		}
-		if(!pc.hasStatusEffect("Prai Cooldown") && rand(2) == 0) choices.push(praiFirstEncounter);
-		if(!pc.hasStatusEffect("Yoma Cooldown") && CodexManager.entryUnlocked("Zil") && CodexManager.entryUnlocked("Kerokoras") && rand(2) == 0) choices.push(yomaJungleEncounter);
-		if(flags["FZIL_PREG_TIMER"] >= 80 && pc.hasCock())
+		if(!hostileOnly && !pc.hasStatusEffect("Prai Cooldown") && rand(2) == 0) choices.push(praiFirstEncounter);
+		if(!hostileOnly && !pc.hasStatusEffect("Yoma Cooldown") && CodexManager.entryUnlocked("Zil") && CodexManager.entryUnlocked("Kerokoras") && rand(2) == 0) choices.push(yomaJungleEncounter);
+		if(!hostileOnly && flags["FZIL_PREG_TIMER"] >= 80 && pc.hasCock())
 		{
 			choices.push(fZilPregEncounter);
 			choices.push(fZilPregEncounter);
@@ -378,7 +378,7 @@ public function jungleEncounterChances():Boolean {
 		choices[rand(choices.length)]();
 		return true;
 	}
-	if (tryEncounterMango()) return true;
+	if (!hostileOnly && tryEncounterMango()) return true;
 	
 	return false;
 }
@@ -398,7 +398,7 @@ public function jungleMiddleEncounters():Boolean {
 		flags["JUNGLE_STEP"] = 0;
 		
 		//Build possible encounters
-		if(flags["PUMPKING_COMPLETION"] == 1 && hours >= 23 || hours <= 1) 
+		if(flags["PUMPKING_COMPLETION"] == 1 && (hours >= 23 || hours <= 1) && isHalloweenish()) 
 		{
 			choices.push(encounterPumpkingEvent);
 			choices.push(encounterPumpkingEvent);
@@ -506,7 +506,7 @@ public function jungleDeepEncounters():Boolean {
 		flags["JUNGLE_STEP"] = 0;
 		
 		//Build possible encounters
-		if(flags["PUMPKING_COMPLETION"] == 1 && hours >= 23 || hours <= 1) 
+		if(flags["PUMPKING_COMPLETION"] == 1 && (hours >= 23 || hours <= 1) && isHalloweenish()) 
 		{
 			choices.push(encounterPumpkingEvent);
 			choices.push(encounterPumpkingEvent);
@@ -1008,7 +1008,7 @@ public function pumpkingMainGateBonus():Boolean
 {
 	if(flags["PUMPKING_COMPLETION"] == 3) 
 	{
-		output("As you approach the former Pump-king's castle, you see several very official-looking UGC barricades around every entrance, complete with a few officers on patrol. Seems they’re still picking the place apart, or they just plain don’t want randoms wandering in. You’d better get going before they see you loitering about, on that note.");
+		output("As you approach the former Pump-king’s castle, you see several very official-looking UGC barricades around every entrance, complete with a few officers on patrol. Seems they’re still picking the place apart, or they just plain don’t want randoms wandering in. You’d better get going before they see you loitering about, on that note.");
 		flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
 	}
 	else
@@ -1062,7 +1062,7 @@ public function defeatZilGuards():void
 	else addDisabledButton(0,"Buttfuck","Buttfuck","You’ll need a cock for this!");
 	//*Ride His Cock
 	//To cumfinity, and beyond! REQS CUNT
-	if(pc.hasVagina()) addButton(1,"Ride Him",rideDatZilCawk,undefined,"Ride Him","Take wasp-boy's lovely cock for a ride.");
+	if(pc.hasVagina()) addButton(1,"Ride Him",rideDatZilCawk,undefined,"Ride Him","Take wasp-boy’s lovely cock for a ride.");
 	else addDisabledButton(1,"Ride Him","Ride Him","You must have a vagina to ride this ride.");
 	//*Footjob scene - Req's humanlike feetsies
 	//(By Miesha)
@@ -1072,7 +1072,7 @@ public function defeatZilGuards():void
 	//(By Alkahest) (If this needs to be edited, I will do so. Lemme know your opinion plz)
 	//Requires a decent amount of zil sex, a dick, a pussy, or nippledicks!
 	//Reqs loss suck some.
-	if((pc.hasCock() || pc.hasVagina() || pc.hasNippleCocks()) && flags["TIMES_LOSS_SUCKED_ZIL_MALE"] >= 2) addButton(3,"Oral Play",alkahestsForeskinOralPlay,undefined,"Oral Play","Really get in there and play with a male zil's foreskin-clad cock.");
+	if((pc.hasCock() || pc.hasVagina() || pc.hasNippleCocks()) && flags["TIMES_LOSS_SUCKED_ZIL_MALE"] >= 2) addButton(3,"Oral Play",alkahestsForeskinOralPlay,undefined,"Oral Play","Really get in there and play with a male zil’s foreskin-clad cock.");
 	else addDisabledButton(3,"Oral Play","Oral Play","This scene would only make sense if you’ve had to suck a zil off twice already.... Oh, and you’ll need to have genitals too.");
 	if(pc.hasCuntTail()) addButton(4,"Tail Milk",useTailOnZilWhenUWin,undefined,"Tail Milk","Milk his sugary dick with your parasitic tail.");
 	else addDisabledButton(4,"Tail Milk","Tail Milk","You need a tail-mounted vagina to do this.");
@@ -1106,7 +1106,7 @@ public function pumpkingPassageBonus():Boolean
 	{
 		if(flags["PUMPKINGS_JOHR_DEFEATED"] == undefined)
 		{
-			output(" <b>The eastern doorway is locked. You'll have to find a key to get inside.</b>");
+			output(" <b>The eastern doorway is locked. You’ll have to find a key to get inside.</b>");
 			flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
 		}
 		else if(flags["PUMPKINGS_JOHR_DEFEATED"] == 1)
@@ -1127,14 +1127,14 @@ public function pumpkingMainHallBonus():Boolean
 
 public function pumpkingDungeonBonus():Boolean
 {
-	output("The dungeon is pretty much exactly what you'd expect a dungeon to be; dank and depressing. There are four cells here, each of them… empty? Where is Penny? And why are the locks shaped like pumpkins? What is it with pumpkins in this place?");
+	output("The dungeon is pretty much exactly what you’d expect a dungeon to be; dank and depressing. There are four cells here, each of them... empty? Where is Penny? And why are the locks shaped like pumpkins? What is it with pumpkins in this place?");
 	return false;
 }
 
 public function pumpkingThroneBonus():Boolean
 {
 	//Throne room(Locked until PC beats Johr): 
-	output("The throne room is lined with orange and black banners, zil guards standing at ease up and down the walls. These must be the cream of the first zil warriors to graduate from Johr’s training. They look at you warily as you enter, ready to snap into action but so far not doing so. Meanwhile the Pump-king, sitting on her wooden throne at the far end of the hall, waves you over. It seems she wants to… talk?");
+	output("The throne room is lined with orange and black banners, zil guards standing at ease up and down the walls. These must be the cream of the first zil warriors to graduate from Johr’s training. They look at you warily as you enter, ready to snap into action but so far not doing so. Meanwhile the Pump-king, sitting on her wooden throne at the far end of the hall, waves you over. It seems she wants to... talk?");
 	if(flags["PUMPKING_COMPLETION"] != 3) addButton(0,"Pump-King",pumpkingApproach,undefined,"Pump-King","It seems the pump-king wants to talk, oddly. Maybe you should? Of course, this is likely to end violently no matter what you do, so resting is probably also a valid option.");
 	return false;
 }

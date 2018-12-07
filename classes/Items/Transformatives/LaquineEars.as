@@ -13,6 +13,7 @@ package classes.Items.Transformatives
 	import classes.Engine.Utility.getPlanetName;
 	import classes.Engine.Utility.IncrementFlag;
 	import classes.Engine.Utility.rand;
+	import classes.Engine.Map.InPublicSpace;
 	
 	
 	public class LaquineEars extends ItemSlotClass
@@ -1238,7 +1239,7 @@ package classes.Items.Transformatives
 		{
 			var x:int = pc.biggestCockIndex();
 			var textBuff:String = "";
-			var inPublic:Boolean = kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC);
+			var inPublic:Boolean = InPublicSpace();
 			
 			var choices:Array = [];
 			//Public bonerstuff

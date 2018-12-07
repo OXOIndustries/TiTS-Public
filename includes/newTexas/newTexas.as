@@ -2527,6 +2527,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 }
 public function carrieSoothingShowerDone():void
 {
+	rooms["516"].addFlag(GLOBAL.NPC);
 	if(pc.hasStatusEffect("Cora Showered")) pc.setStatusMinutes("Cora Showered", (72 * 60));
 	else pc.createStatusEffect("Cora Showered", 0, 0, 0, 0, true, "", "", false, (72 * 60));
 	mainGameMenu();
