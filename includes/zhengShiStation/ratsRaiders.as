@@ -63,10 +63,10 @@ public function showRats(ratCount:int = -2, nude:Boolean = false):void
 			case 1: showBust(rat1.bustDisplay+"_NUDE"); break;
 			case 2: showBust(rat2.bustDisplay+"_NUDE"); break;
 			default:
-			case 3: showBust(rat0.bustDisplay+"_NUDE", rat1.bustDisplay+"_NUDE", rat2.bustDisplay+"_NUDE"); break;
+			case 3: showBust(rat0.groupDisplay+"_NUDE"); break;
 			case 4: showBust(rat0.bustDisplay+"_NUDE", rat1.bustDisplay+"_NUDE"); break;
-			case 5: showBust(rat0.bustDisplay+"_NUDE", rat2.bustDisplay+"_NUDE"); break;
-			case 6: showBust(rat1.bustDisplay+"_NUDE", rat2.bustDisplay+"_NUDE"); break;
+			case 5: showBust(rat2.bustDisplay+"_NUDE", rat0.bustDisplay+"_NUDE"); break;
+			case 6: showBust(rat2.bustDisplay+"_NUDE", rat1.bustDisplay+"_NUDE"); break;
 		}
 	}
 	else
@@ -77,12 +77,12 @@ public function showRats(ratCount:int = -2, nude:Boolean = false):void
 			case 1: showBust(rat1.bustDisplay); break;
 			case 2: showBust(rat2.bustDisplay); break;
 			default:
-			case 3: showBust(rat0.bustDisplay, rat1.bustDisplay, rat2.bustDisplay); break;
+			case 3: showBust(rat0.groupDisplay); break;
 			case 4: showBust(rat0.bustDisplay, rat1.bustDisplay); break;
-			case 5: showBust(rat0.bustDisplay, rat2.bustDisplay); break;
-			case 6: showBust(rat1.bustDisplay, rat2.bustDisplay); break;
+			case 5: showBust(rat2.bustDisplay, rat0.bustDisplay); break;
+			case 6: showBust(rat2.bustDisplay, rat1.bustDisplay); break;
 			//Special value for their introduction
-			case -1: showBust("URBOLG", RatsRaider.RAT_BUSTS[0]); showName("\nROBBERY?"); break;
+			case -1: showBust("URBOLG", "RATS_RAIDER_GROUP_ONE", RatsRaider.RAT_BUSTS[5]); showName("\nROBBERY?"); break;
 		}
 	}
 }
@@ -248,7 +248,7 @@ public function ratsAttemptUrbolgRobbery():void
 // For First Time Encounter, use Rat Group 1, with Light-pink Furred Rodenian
 public function ratsInTheMineEncounter():Boolean
 {
-	ratsSetupGroup(rand(2));
+	ratsSetupGroup();
 	clearMenu();
 	clearOutput();
 	processTime(5);
@@ -378,20 +378,27 @@ public function ratsInTheMineEncounter():Boolean
 
 		output(" Hungry eyes linger on your belongings too long. ");
 
-		randomDialogue = [
-			"<i>“You’ll have to pay us in gems or creds if you want to go on. Don’t they say it’s better to give than receive?”</i>",
-			"<i>“Gems or credits are fine, we’re not here to fight. It’s going to a good cause, you know!”</i>",
-			"<i>“Please, think about others worse off than you or us! We’re just trying to help people, not hurt them!”</i>"
-		];
-		if (ratsPCIsGood()) randomDialogue.push("<i>“Gems, credits, or a good scrap. Either way, it only helps us help others!”</i> the rodenian leader proffers. <i>“So what’ll it be, [pc.mister] CEO? Just try us, we’ll prove we mean what we say!”</i>");
-		else if (ratsPCIsKnown()) randomDialogue.push("<i>“You aren’t going anywhere scoundrel! Just pay us and we’ll leave you alone. You don’t need to get your pretty [pc.skinFurScalesNoun] hurt!”</i>");
-		
-		output(RandomInCollection(randomDialogue));
-
-		if (pc.isBimbo() || pc.isBro()) output("\n\n<i>“Sex works just like that!”</i> you announce, shaking your hips and giving them a sweet smile. They scoff at your seduction and level their batons.");
-		else if (ratsPCIsGood()) output("\n\nIndeed, what will it be this time?");
-		else if (ratsPCIsKnown()) output("\n\nDamn that cousin of yours... Well, how are you going to resolve this?");
-		else output("\n\nYeah, right. You’re sure you can think of something to give them... ");
+		if (ratsPCIsGood())
+		{
+			output("<i>“Gems, credits, or a good scrap. Either way, it only helps us help others!”</i> the rodenian leader proffers. <i>“So what’ll it be, [pc.mister] CEO? Just try us, we’ll prove we mean what we say!”</i>");
+			output("\n\nIndeed, what will it be this time?");
+		}
+		else if (ratsPCIsKnown() && rand(4) == 0)
+		{
+			randomDialogue.push("<i>“You aren’t going anywhere scoundrel! Just pay us and we’ll leave you alone. You don’t need to get your pretty [pc.skinFurScalesNoun] hurt!”</i>");
+			output("\n\nDamn that cousin of yours... Well, how are you going to resolve this?");
+		}
+		else
+		{
+			output(RandomInCollection([
+				"<i>“You’ll have to pay us in gems or creds if you want to go on. Don’t they say it’s better to give than receive?”</i>",
+				"<i>“Gems or credits are fine, we’re not here to fight. It’s going to a good cause, you know!”</i>",
+				"<i>“Please, think about others worse off than you or us! We’re just trying to help people, not hurt them!”</i>"
+			]));
+			
+			if (pc.isBimbo() || pc.isBro()) output("\n\n<i>“Sex works just like that!”</i> you announce, shaking your hips and giving them a sweet smile. They scoff at your seduction and level their batons.");
+			else output("\n\nYeah, right. You’re sure you can think of something to give them... ");
+		}
 	}
 
 	showRats(3);
@@ -425,11 +432,12 @@ public function ratButtons(offers:int = 0):void
 		//Milk
 		if (offers & 2) addDisabledButton(4, "Offer Milk", "Offer Milk", "They’re not interested. Well, crap.");
 		// PC must have NORMAL tits. No dicknipples, tentacle nipples, or lipples. There are also lactation types: Cum/GirlCum. These won't fly!
-		else if (InCollection(pc.milkType, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_GIRLCUM)) addDisabledButton(4, "Offer Milk", "Offer Milk", "You’ll need some real lactic flavor to feed them if you want to try this.");
-		else if (pc.skinType == GLOBAL.SKIN_TYPE_GOO) addDisabledButton(4, "Offer Milk", "Offer Milk", " They can’t drink from gooey tits!");
-		else if (!(pc.hasNormalNipples() || pc.hasInvertedNipples())) addDisabledButton(4, "Offer Milk", "Offer Milk", " They’re not going to drink from mutant tits!");
+		else if (InCollection(pc.milkType, GLOBAL.FLUID_TYPE_CUM, GLOBAL.FLUID_TYPE_GIRLCUM)) addDisabledButton(4, "Offer Milk", "Offer Milk", "You'll need some real lactic flavor to feed them if you want to try this.");
+		else if (pc.skinType == GLOBAL.SKIN_TYPE_GOO) addDisabledButton(4, "Offer Milk", "Offer Milk", "You'll need normal nipples to feed them. They can't drink from gooey tits!");
+		else if (!(pc.hasNormalNipples() || pc.hasInvertedNipples())) addDisabledButton(4, "Offer Milk", "Offer Milk", "You'll need normal nipples to feed them. They're not going to drink from mutant tits!");
 		else if (!pc.isLactating()) addDisabledButton(4, "Offer Milk", "Offer Milk", "You need to be lactating to give them a drink.");
-		else addButton(4, "Offer Milk", ratGiveMilk, offers, "Offer Milk", "You’re not feeling up to fighting today, certainly not with breasts this full. See if the mouse-pirates will accept a <i>creamier</i> treasure than they’re used to.");
+		else if (pc.milkFullness < 66) addDisabledButton(4, "Offer Milk", "Offer Milk", "You need to have more milk in the tanks to properly feed three rats.");
+		else addButton(4, "Offer Milk", ratGiveMilk, offers, "Offer Milk", "You're not feeling up to fighting today, certainly not with breasts this full. See if the mouse-pirates will accept a <i>creamier</i> treasure than they're used to.");
 		
 		//Mercy
 		if (ratsPCIsPoor()) addButton(5, "I’m Poor!", ratGiveNothing, undefined, "I’m Poor!", "You have nothing to offer. If they’ve any principles, they won’t attack you!");
@@ -834,11 +842,11 @@ public function ratsContinueService(offers:int):void
 		
 		output("\n\nThe moaning mouse’s hands rest " + (pc.hasHair() ? "in your [pc.hair]" : "on your head") + ". Quicksilver fingers scritch your scalp affectionately and urge you back in");
 		if (pc.hasEmoteEars()) output(", vigorously petting your [pc.ears] as encouragement");
-		output(". You get one hand on the mouse-boy’s delicious sack, swirling his smooth, orange-sized nads between your fingers whilst your left hand goes to work on the [rat2.furColor]-furred rat’s cunny, thumb and index finger strumming her engorged button like a well-tuned lute. Three fingers move in and out... in and out... The rodent squeals like an animal, squirting weakly all over your [pc.arm]. A sugary projectile of tangy-tasting girlcum lathers you well enough to fist a leithan!");
-		output("\n\nShe pants and gasps, little fingers curling, and your depravity-inducing suckles only make those cute grunts louder. You don’t stop. Even though you’re drenched in pussy juice, even though you’re giving the rodent boy one hell of a free blowjob, you don’t let them get any second thoughts. You can’t afford to get robbed now! You move your neck in a small circle, carrying eight inches of orally sealed, pre-spurting cock with you. A handjob almost, but with your mouth!");
-		output("\n\n<i>“Oooaaaha! That’s... Oh you’re too good at this!”</i> the freckled mouse whines. <i>“P-please that’s too much...”</i>");
-		output("\n\nTheir knees shake when their orgasms close in again. <i>“W-wait... I j-just came again, slow down!”</i> the shaky girl wails. <i>“Pleeasssee I’ll cum sooo hard I won’t be able to stand for hours if you do that!”</i>Their knees shake when their orgasms close in again. <i>“W-wait... I j-just came again, slow down!”</i> the shaky girl wails. <i>“Pleeasssee I’ll cum sooo hard I won’t be able to stand for hours if you do that!”</i> Her playful tone suggests otherwise, she’s still thrusting her crotch into your mouth!");
-		output("\n\n" + (pc.isBimbo() || pc.isBro() ? "Slow down? Who do they think you are!?" : "But you don’t.") + " You drag them back and forth over that rapturous edge, in unquestionable control of their arousal.");
+		output(". You get one hand on the mouse-boy's delicious sack, swirling his smooth, orange-sized nads between your fingers whilst your left hand goes to work on the [rat2.furColor]-furred rat's cunny, thumb and index finger strumming her engorged button like a well-tuned lute. Three fingers move in and out… in and out… The rodent squeals like an animal, squirting weakly all over your [pc.arm]. A sugary projectile of tangy-tasting girlcum lathers you well enough to fist a leithan!");
+		output("\n\nShe pants and gasps, little fingers curling, and your depravity-inducing suckles only make those cute grunts louder. You don't stop. Even though you're drenched in pussy juice, even though you're giving the rodent boy one hell of a free blowjob, you don't let them get any second thoughts. You can't afford to get robbed now! You move your neck in a small circle, carrying eight inches of orally sealed, pre-spurting cock with you. A handjob almost, but with your mouth!");
+		output("\n\n<i>\"Oooaaaha! That's… Oh you're too good at this!\"</i> the freckled mouse whines. <i>\"P-please that's too much...\"</i>");
+		output("\n\nTheir knees shake when their orgasms close in again. <i>\"W-wait… I j-just came again, slow down!\"</i> the shaky girl wails. <i>\"Pleeasssee I'll cum sooo hard I won't be able to stand for hours if you do that!\"</i> Her playful tone suggests otherwise, she's still thrusting her crotch into your mouth!");
+		output("\n\n" + (pc.isBimbo() || pc.isBro() ? "Slow down? Who do they think you are!?" : "But you don't.") + " You drag them back and forth over that rapturous edge, in unquestionable control of their arousal.");
 	}
 	// Two Male Rats
 	{
@@ -1782,7 +1790,7 @@ public function ratFightVictory():void
 			if (ratsPCIsKnown()) output(" <i>“More than you expected from a rotten executive, huh?”</i> you simper.");
 			// Rat HP loss
 			if (lastRat.HP() <= 0) output("\n\n<i>“W-wait, please, no, stop! Look, we’re sorry, seriously... wuh... we weren’t trying to hurt you! I swear!”</i> the [rat0.furColor] rodenian extends one arm, the other covering her ears. <i>“Don’t hurt us anymore, sorry, please!”</i>");
-			// Rat Lust Loss	
+			// Rat Lust Loss
 			else output("\n\n<i>“N... No..! Please, don’t! We’re sorry, okay?! S... Ser.. unnff...”</i> the [rat0.furColor] rodenian whines, shrouding her ears. <i>“Seriously! We weren’t trying to hurt you, so leave us alone, please! We’re sorry!”</i>");
 
 			if (pc.isBimbo()) output("\n\n<i>“But you still tried to attack me. That’s fine, now that we’ve settled that, we can get to more important matters!”</i> you sing, already beginning to masturbate.");
@@ -1858,10 +1866,10 @@ public function ratFightVictory():void
 			output("\n\n<i>“Y-yeah... looks like it. But we still did our best!”</i> the halfbreed [rat2.boyGirl] gestures wildly.");
 			output("\n\nThe three start yammering at each other as you walk over, the [rat0.furColor]-furred rodenian meeting your eyes. <i>“To the victor go the spoils and all that, right? Go easy on us, we need to be ready to try you again sooner rather than later!”</i>");
 			if (pc.isBimbo() || pc.isBro()) output("\n\n<i>“Trust me, I’ll </i>always be ready to go.<i>”</i> you beam.");
-			else if (pc.isNice()) output("You stifle a laugh. <i>“I wonder if you have any limits at all.”</i>");
-			else if (pc.isMisch()) output("You chuckle good-naturedly. <i>“So you’re telling me I should stand you up again?”</i>");
-			else output("<i>“I could always use more target practice.”</i>");
-			output("What to do with three raucous rats?");
+			else if (pc.isNice()) output("\n\nYou stifle a laugh. <i>“I wonder if you have any limits at all.”</i>");
+			else if (pc.isMisch()) output("\n\nYou chuckle good-naturedly. <i>“So you’re telling me I should stand you up again?”</i>");
+			else output("\n\n<i>“I could always use more target practice.”</i>");
+			output("\n\nWhat to do with three raucous rats?");
 			break;
 	}
 	
@@ -2500,7 +2508,7 @@ public function ratsTeasingACEO():void
 		{
 			output("\n\nThe [rat0.furColor]-furred slut hops up on your " + (pc.isBiped() ? "[pc.belly]" : "back") + ", pinning your lower half");
 			if (pc.isBiped()) output(" and yanking your [pc.thighs] up");
-			output(". The halfbreed " + rat2.mf("boy moves to your " + (pc.isBiped() ? "front" : "backside") + ", leveling his cock with your drenched nethers", "girl joins her, sitting with her back to ") + (pc.isBiped() ? "the gyrating mouse-boy’s" : "her leader’s") + ". Tails and fingers assault your [pc.pussies] wantonly, bringing you close to orgasm and suddenly stopping. Their laughs make you groan in denial, your protests only pleasing that phallus pistoning in and out of your gullet. Your whole body quakes and thrusts outwards, desperate for that stimulation again");
+			output(". The halfbreed " + rat2.mf("boy moves to your " + (pc.isBiped() ? "front" : "backside") + ", leveling his cock with your drenched nethers ", "girl joins her, sitting with her back to " + (pc.isBiped() ? "the gyrating mouse-boy's" : "her leader's")) + ". Tails and fingers assault your [pc.pussies] wantonly, bringing you close to orgasm and suddenly stopping. Their laughs make you groan in denial, your protests only pleasing that phallus pistoning in and out of your gullet. Your whole body quakes and thrusts outwards, desperate for that stimulation again");
 			if (pc.clitLength >= 1) output(", especially when your oversized [pc.clits] are brushed and jacked like dicks");
 			output(".");
 			output("\n\n<i>“Teasin’ a pussy’s no big deal, unless you’re the kind of slut who gets off sucking dick like you’ve got that ‘under-the-desk’ position at some company. Wouldn’t that be funny?");
@@ -2545,10 +2553,10 @@ public function ratsTeasingACEO():void
 
 	if (rat2.isMale())
 	{
-		output("\n\n<i>“Mmm,”</i> you barely hear the halfbreed boy for the party.");
-		if (pc.thickness < 33) output(" <i>“Small and firm over here, plenty to hold onto!”</i>");
-		else if (pc.thickness < 66) output(" <i>“Love how thick you are down here, so much to rub against...”</i>");
-		output(" <i>“You’ve got such fat thighs, you’re just a big old cow! I don’t think I can cum enough to really paint you...”</i>"); 
+		output("\n\n<i>\"Mmm,\"</i> you barely hear the halfbreed boy for the party.");
+		if (pc.thickness < 33) output(" <i>\"Small and firm over here, plenty to hold onto!\"</i>");
+		else if (pc.thickness < 66) output(" <i>\"Love how thick you are down here, so much to rub against…\"</i>");
+		else output(" <i>\"You've got such fat thighs, you're just a big old cow! I don't think I can cum enough to really paint you...\"</i>");
 		output(" he says breathily, grinding his cock into your [pc.skinFurScalesNoun]");
 		if (pc.hasVagina()) output(" and your exposed genitalia, particularly your [pc.pussy]");
 		output(".");
