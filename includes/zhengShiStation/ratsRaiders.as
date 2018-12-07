@@ -378,20 +378,27 @@ public function ratsInTheMineEncounter():Boolean
 
 		output(" Hungry eyes linger on your belongings too long. ");
 
-		randomDialogue = [
-			"<i>“You’ll have to pay us in gems or creds if you want to go on. Don’t they say it’s better to give than receive?”</i>",
-			"<i>“Gems or credits are fine, we’re not here to fight. It’s going to a good cause, you know!”</i>",
-			"<i>“Please, think about others worse off than you or us! We’re just trying to help people, not hurt them!”</i>"
-		];
-		if (ratsPCIsGood()) randomDialogue.push("<i>“Gems, credits, or a good scrap. Either way, it only helps us help others!”</i> the rodenian leader proffers. <i>“So what’ll it be, [pc.mister] CEO? Just try us, we’ll prove we mean what we say!”</i>");
-		else if (ratsPCIsKnown()) randomDialogue.push("<i>“You aren’t going anywhere scoundrel! Just pay us and we’ll leave you alone. You don’t need to get your pretty [pc.skinFurScalesNoun] hurt!”</i>");
-		
-		output(RandomInCollection(randomDialogue));
-
-		if (pc.isBimbo() || pc.isBro()) output("\n\n<i>“Sex works just like that!”</i> you announce, shaking your hips and giving them a sweet smile. They scoff at your seduction and level their batons.");
-		else if (ratsPCIsGood()) output("\n\nIndeed, what will it be this time?");
-		else if (ratsPCIsKnown()) output("\n\nDamn that cousin of yours... Well, how are you going to resolve this?");
-		else output("\n\nYeah, right. You’re sure you can think of something to give them... ");
+		if (ratsPCIsGood())
+		{
+			output("<i>“Gems, credits, or a good scrap. Either way, it only helps us help others!”</i> the rodenian leader proffers. <i>“So what’ll it be, [pc.mister] CEO? Just try us, we’ll prove we mean what we say!”</i>");
+			output("\n\nIndeed, what will it be this time?");
+		}
+		else if (ratsPCIsKnown() && rand(4) == 0)
+		{
+			randomDialogue.push("<i>“You aren’t going anywhere scoundrel! Just pay us and we’ll leave you alone. You don’t need to get your pretty [pc.skinFurScalesNoun] hurt!”</i>");
+			output("\n\nDamn that cousin of yours... Well, how are you going to resolve this?");
+		}
+		else
+		{
+			output(RandomInCollection([
+				"<i>“You’ll have to pay us in gems or creds if you want to go on. Don’t they say it’s better to give than receive?”</i>",
+				"<i>“Gems or credits are fine, we’re not here to fight. It’s going to a good cause, you know!”</i>",
+				"<i>“Please, think about others worse off than you or us! We’re just trying to help people, not hurt them!”</i>"
+			]));
+			
+			if (pc.isBimbo() || pc.isBro()) output("\n\n<i>“Sex works just like that!”</i> you announce, shaking your hips and giving them a sweet smile. They scoff at your seduction and level their batons.");
+			else output("\n\nYeah, right. You’re sure you can think of something to give them... ");
+		}
 	}
 
 	showRats(3);
@@ -1859,10 +1866,10 @@ public function ratFightVictory():void
 			output("\n\n<i>“Y-yeah... looks like it. But we still did our best!”</i> the halfbreed [rat2.boyGirl] gestures wildly.");
 			output("\n\nThe three start yammering at each other as you walk over, the [rat0.furColor]-furred rodenian meeting your eyes. <i>“To the victor go the spoils and all that, right? Go easy on us, we need to be ready to try you again sooner rather than later!”</i>");
 			if (pc.isBimbo() || pc.isBro()) output("\n\n<i>“Trust me, I’ll </i>always be ready to go.<i>”</i> you beam.");
-			else if (pc.isNice()) output("You stifle a laugh. <i>“I wonder if you have any limits at all.”</i>");
-			else if (pc.isMisch()) output("You chuckle good-naturedly. <i>“So you’re telling me I should stand you up again?”</i>");
-			else output("<i>“I could always use more target practice.”</i>");
-			output("What to do with three raucous rats?");
+			else if (pc.isNice()) output("\n\nYou stifle a laugh. <i>“I wonder if you have any limits at all.”</i>");
+			else if (pc.isMisch()) output("\n\nYou chuckle good-naturedly. <i>“So you’re telling me I should stand you up again?”</i>");
+			else output("\n\n<i>“I could always use more target practice.”</i>");
+			output("\n\nWhat to do with three raucous rats?");
 			break;
 	}
 	
