@@ -82,7 +82,7 @@ public function showRats(ratCount:int = -2, nude:Boolean = false):void
 			case 5: showBust(rat2.bustDisplay, rat0.bustDisplay); break;
 			case 6: showBust(rat2.bustDisplay, rat1.bustDisplay); break;
 			//Special value for their introduction
-			case -1: showBust("URBOLG", RatsRaider.RAT_BUSTS[0]); showName("\nROBBERY?"); break;
+			case -1: showBust("URBOLG", "RATS_RAIDER_GROUP_ONE", RatsRaider.RAT_BUSTS[5]); showName("\nROBBERY?"); break;
 		}
 	}
 }
