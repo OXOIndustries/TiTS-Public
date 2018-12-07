@@ -744,13 +744,6 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_group_two_nude.png", mimeType = "image/png")]
 		public var Bust_RATS_RAIDER_GROUP_TWO_NUDE:Class;
 
-		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_boy.png", mimeType = "image/png")]
-		public var Bust_RATS_RAIDER_BOY:Class;
-		public var Bounds_RATS_RAIDER_BOY:Rectangle = new Rectangle(34, 26, 108, 95);
-		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_girl.png", mimeType = "image/png")]
-		public var Bust_RATS_RAIDER_GIRL:Class;
-		public var Bounds_RATS_RAIDER_GIRL:Rectangle = new Rectangle(30, 23, 104, 90);
-
 		[Embed(source = "../../../assets/images/npcs/adjatha/reaha_anusoft.png", mimeType = "image/png")]
 		public var Bust_REAHA_ANUSOFT:Class;
 		
