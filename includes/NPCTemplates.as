@@ -180,6 +180,7 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "AINA", Aina);
 	prepChar(justUpdate, "DRYAD", Dryad);
 	prepChar(justUpdate, "VARMINTPET", VarmintPet);
+	prepChar(justUpdate, "QUAELLE", Quaelle);
 	
 	
 	// Check all characters have version information set

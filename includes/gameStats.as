@@ -651,6 +651,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "ButtBugPregnancy0": output2(" Butt Bug, Egg" + (pData.pregnancyQuantity == 1 ? "" : "s") + (pc.statusEffectv2("Butt Bug (Female)") == 1 ? ", Fertilized" : "")); break;
 						case "ButtBugPregnancy1": output2(" Butt Bug, Cycling Egg" + (pData.pregnancyQuantity == 1 ? "" : "s") + (pc.statusEffectv2("Butt Bug (Female)") == 1 ? ", Fertilized" : "")); break;
 						case "ButtBugPregnancy2": output2(" Butt Bug, Hybrid Egg" + (pData.pregnancyQuantity == 1 ? "" : "s") + (pc.statusEffectv2("Butt Bug (Female)") == 1 ? ", Fertilized" : "")); break;
+						case "QuaellePregnancy": output2(" Quaelle"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -1128,6 +1129,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Psychic Tentacle Beasts, Total:</b> " + StatTracking.getStat("pregnancy/psychic tentacle beast birthed"));
 				if(StatTracking.getStat("pregnancy/psychic tentacle beast day care") > 0)
 					output2("\n<b>* Births, Psychic Tentacle Beasts @ Daycare:</b> " + StatTracking.getStat("pregnancy/psychic tentacle beast day care"));
+				if(StatTracking.getStat("pregnancy/quaelle births") > 0)
+					output2("\n<b>* Births, Quaelle’s Children:</b> " + StatTracking.getStat("pregnancy/quaelle births"));
 				if(StatTracking.getStat("pregnancy/rahn eggs/birthed") > 0)
 					output2("\n<b>* Births, Rahn Eggs, Total:</b> " + StatTracking.getStat("pregnancy/rahn eggs/birthed"));
 				if(StatTracking.getStat("pregnancy/rahn eggs/day care") > 0)
@@ -1210,6 +1213,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Sired, Ilaria’s Children:</b> " + StatTracking.getStat("pregnancy/ilaria sired"));
 				if(StatTracking.getStat("pregnancy/khorgan sired") > 0)
 					output2("\n<b>* Sired, Khorgan’s Children:</b> " + StatTracking.getStat("pregnancy/khorgan sired"));
+				if(StatTracking.getStat("pregnancy/quaelle sired") > 0)
+					output2("\n<b>* Sired, Quaelle’s Children:</b> " + StatTracking.getStat("pregnancy/quaelle sired"));
 				if(StatTracking.getStat("pregnancy/quinn sired") > 0)
 					output2("\n<b>* Sired, Quinn’s Children:</b> " + StatTracking.getStat("pregnancy/quinn sired"));
 				if(StatTracking.getStat("pregnancy/raskvel sired/total") > 0)
@@ -7980,8 +7985,22 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Reception</u></b>");
 				output2("\n<b>* Quaelle:</b> Met her");
+				if (quaelleIsLover()) output2(", Lovers");
+				if (quaellePregShutdown()) output2(", Sterile");				
+				if (quaelleInSnit()) output2(", In a Snit");
+				if (quaelleHasLeft()) output2(", Has Left");				
 				if(flags["QUAELLE_HUGGED"] != undefined) output2("\n<b>* Quaelle, Times Hugged Her:</b> " + flags["QUAELLE_HUGGED"]);
 				if(flags["QUAELLE_SEXED"] != undefined) output2("\n<b>* Quaelle, Times Sexed:</b> " + flags["QUAELLE_SEXED"]);
+				if(flags["QUAELLE_FUCK_CUNT_FRONT"] != undefined) output2("\n<b>* Quaelle, Times You Fucked Her Front Pussy:</b> " + flags["QUAELLE_FUCK_CUNT_FRONT"]);
+				if(flags["QUAELLE_FUCK_CUNT_BACK"] != undefined) output2("\n<b>* Quaelle, Times You Fucked Her Back Pussy:</b> " + flags["QUAELLE_FUCK_CUNT_BACK"]);
+				if(flags["QUAELLE_FUCK_CUNT_MORE"] != undefined) output2("\n<b>* Quaelle, Times You Went For More:</b> " + flags["QUAELLE_FUCK_CUNT_MORE"]);
+				if(flags["QUAELLE_LICK_CUNT_FRONT"] != undefined) output2("\n<b>* Quaelle, Times You Licked Her Front Pussy:</b> " + flags["QUAELLE_LICK_CUNT_FRONT"]);
+				if(flags["QUAELLE_LICK_CUNT_BACK"] != undefined) output2("\n<b>* Quaelle, Times You Licked Her Back Pussy:</b> " + flags["QUAELLE_LICK_CUNT_BACK"]);
+				if(flags["QUAELLE_LICK_CLIT"] != undefined) output2("\n<b>* Quaelle, Times You Licked Her Pseudo-Clit:</b> " + flags["QUAELLE_LICK_CLIT"]);
+				if(flags["QUAELLE_CATCH_CUNT"] != undefined) output2("\n<b>* Quaelle, Times She Fucked Your Pussy:</b> " + flags["QUAELLE_CATCH_CUNT"]);
+				if(flags["QUAELLE_INCUBATION_TIMER_F"] != undefined) output2("\n<b>* Quaelle, Days Pregnant (Front):</b> " + flags["QUAELLE_INCUBATION_TIMER_F"]);
+				if(flags["QUAELLE_INCUBATION_TIMER_B"] != undefined) output2("\n<b>* Quaelle, Days Pregnant (Back):</b> " + flags["QUAELLE_INCUBATION_TIMER_B"]);
+				if(flags["QUAELLE_TOTAL_KIDS"] != undefined) output2("\n<b>* Quaelle, Total Kids:</b> " + flags["QUAELLE_TOTAL_KIDS"]);
 				variousCount++;
 			}
 		}

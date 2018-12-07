@@ -3658,7 +3658,11 @@ public function variableRoomUpdateCheck():void
 		rooms["LIEVE BUNKER"].addFlag(GLOBAL.NPC);
 		rooms["803"].removeFlag(GLOBAL.OBJECTIVE);
 	}
-
+	
+	//Breedwell
+	if (quaelleSexTimer(1, 6) || quaelleIsImmobile()) rooms["BREEDWELL_QUAELLE_APT"].addFlag(GLOBAL.NPC);
+	else rooms["BREEDWELL_QUAELLE_APT"].removeFlag(GLOBAL.NPC);
+	
 	/* ZHENG SHI */
 
 	if(rooms["ZSM U2"].hasFlag(GLOBAL.NPC) && flags["MAIKE_SLAVES_RELEASED"] != undefined) rooms["ZSM U2"].removeFlag(GLOBAL.NPC);
@@ -3907,7 +3911,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		processQuinnPregEvents(deltaT, doOut, totalDays);
 		processUlaPregEvents(deltaT, doOut, totalDays);
 		processBothriocQuadommeEvents(deltaT, doOut, totalDays);
-		//9999 processQuaellePregEvents(deltaT, doOut, totalDays);
+		processQuaellePregEvents(deltaT, doOut, totalDays);
 	}
 	
 	var totalHours:uint = Math.floor((minutes + deltaT) / 60);

@@ -297,6 +297,9 @@ public function configureMails():void
 
 	//Pumpking email from Penpen
 	MailManager.addMailEntry("pumpking_alert", pennyPumpkingEmailText, pennyPumpkingEmailSubject, "Penny Inoue", "Penny_Inoue@UGC.gov", quickPCTo, quickPCToAddress);
+	
+	//quaelle birth email
+	MailManager.addMailEntry("quaelle_birth", quaelleBirthEmail, "Your Presence is Requested.", "Breedwell Natal Unit", "BreedwellNatalUnit@TamaniCorp.corp", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String
