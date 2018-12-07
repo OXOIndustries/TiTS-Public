@@ -26,6 +26,8 @@ package classes.Characters
 		private static const specialCost:int = 25;
 		private var specialAttacks:Array;
 		
+		public static const ratCapacity = 150;
+		
 		public static const RAT_REP_NONE:int = 0;
 		public static const RAT_REP_LOW:int = 1;
 		public static const RAT_REP_MID:int = 2;
@@ -77,6 +79,8 @@ package classes.Characters
 			this.armor.evasion = 10;
 			this.baseHPResistances.burning.resistanceValue = 75.0;
 			this.baseHPResistances.electric.resistanceValue = 75.0;
+			
+			this.ass.bonusCapacity = ratCapacity - analCapacity();
 			
 			//Set race
 			switch (ratVariety)
@@ -207,6 +211,7 @@ package classes.Characters
 					eyeColor = "red";
 					hairColor = "dirty-blonde";
 					nippleColor = "dark red";
+					lipColor = "black";
 					break;
 				case TAN_MOUSEBOY:
 					tallness = 62;
@@ -234,6 +239,7 @@ package classes.Characters
 					createVagina();
 					vaginas[0].hymen = false;
 					vaginas[0].wetnessRaw = 4;
+					vaginas[0].bonusCapacity = ratCapacity - vaginalCapacity();
 					clitLength = 0.9;
 					
 					break;
