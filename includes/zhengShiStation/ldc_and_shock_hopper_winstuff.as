@@ -312,9 +312,9 @@ public function domTheLDCsAss2(x:int):void
 	// PC taur
 	else
 	{
-		//9999 fix parsers for hardlight
-		output("\n\nYou pull the bitch-boy back and stand again, the bed depressing just to handle all the weight you’re putting on it. The slave girls not preoccupied with the electro-slut anxiously crowd under you, whispering and murmuring that they’ll help you make the most of this. Several pairs of hands roam the pulsating length of your [pc.cocks], tracing the veins on your [pc.cockType " + x + "] shaft while pointing it at the pink-rimmed butthole that’s just aching for a plowing." + (pc.balls > 0 ? " A few pairs of lips end up on your [pc.sack], expertly smooching the roiling contents of your virile pouch and pumping out another few persuasive globs of preseed.":""));
-		output("\n\n<i>“N-no fucking way, you can’t be... You fucking skank! You’ll pay for this one day, you’ll regret-”</i> another slap to his very sore ass silences him. The naked pleasure-girls wipe up his dick-drool" + (x >= 0 ? " and some of yours":"") + ", giddily smearing his pucker under your belly. <i>“F-fuuuuck, this is...!”</i> L.D.C. whines when his anus is audibly stretched and your [pc.cockHead " + x + "] is brought straight to the well-lubed ring.");
+		//fix parsers for hardlight
+		output("\n\nYou pull the bitch-boy back and stand again, the bed depressing just to handle all the weight you’re putting on it. The slave girls not preoccupied with the electro-slut anxiously crowd under you, whispering and murmuring that they’ll help you make the most of this. Several pairs of hands roam the pulsating length of your " + (x < 0 ? "glow-cock":"[pc.cocks]") + ", tracing the " + (x < 0 ? "veins on your [pc.cockType " + x + "]":"artificially rendered veins on your hardlight") + " shaft while pointing it at the pink-rimmed butthole that’s just aching for a plowing." + (pc.balls > 0 ? " A few pairs of lips end up on your [pc.sack], expertly smooching the roiling contents of your virile pouch and pumping out another few persuasive globs of preseed.":""));
+		output("\n\n<i>“N-no fucking way, you can’t be... You fucking skank! You’ll pay for this one day, you’ll regret-”</i> another slap to his very sore ass silences him. The naked pleasure-girls wipe up his dick-drool" + (x >= 0 ? " and some of yours":"") + ", giddily smearing his pucker under your belly. <i>“F-fuuuuck, this is...!”</i> L.D.C. whines when his anus is audibly stretched and your " + (x < 0 ? "projected crown":"[pc.cockHead " + x + "]") + " is brought straight to the well-lubed ring.");
 		output("\n\nThe slaves heft");
 
 	}
@@ -325,7 +325,7 @@ public function domTheLDCsAss2(x:int):void
 	output("weight of your " + (x < 0 ? "holographic ":"") + "cockflesh fall on his ass. It’s the last non-verbal suggestion he’s going to get. " + (!pc.isTaur() ? "You align":"The girls align") + " your crown with his hole and you simultaneously put force to your [pc.hips], pressing the [pc.cockOrStraponHead " + x + "] to the horse-bunny’s tantalizing entrance.");
 	output("\n\nThe force, the intense pressure, and <i>the loudness</i> of his asshole popping nearly makes you cum.");
 	if(x >= 0) pc.cockChange();
-	output("\n\n<i>“Fu... Fuck!!”</i> the bunny boss squeaks, a strand of cum plastering his lips, another ultra-thick cord whirling past his upjerked chin and barely open eyes. Goo-webbed blankets are tugged and nude bodies slide. You burden his distending asshole with more of your raging [pc.cockNoun " + x + "], pumping your [pc.cockOrStraponFull " + x + "] further into his wet cavern until it seems like his entire body tightens around it. The gyrations of your waist press the slick, hard tip into sensitive clusters that have him lurching forward involuntarily, changing the color of his puddled place on the sheets from chalky to milky.");
+	output("\n\n<i>“Fu... Fuck!!”</i> the bunny boss squeaks, a strand of cum plastering his lips, another ultra-thick cord whirling past his upjerked chin and barely open eyes. Goo-webbed blankets are tugged and nude bodies slide. You burden his distending asshole with more of your raging " + (x < 0 ? "faux-cock":"[pc.cockNoun " + x + "]") + ", pumping your [pc.cockOrStraponFull " + x + "] further into his wet cavern until it seems like his entire body tightens around it. The gyrations of your waist press the slick, hard tip into sensitive clusters that have him lurching forward involuntarily, changing the color of his puddled place on the sheets from chalky to milky.");
 	if((x >= 0 && pc.cockTotal() > 2) || (x < 0 && pc.hasCocks())) output(" Your extra shafts slide over his wobbling rump, painting his curves with cock-juice that his fur soaks up like a sponge worth its price.");
 	else if((x >= 0 && pc.cockTotal() > 1) || (x < 0 && pc.hasCock())) output(" Your extra shaft slides over his wobbling rump, painting his curves with cock-juice that his fur soaks up like a sponge worth its price.");
 	output("\n\nCute ‘oohs’ and ‘ahhs’ follow your inaugural movements" + (!pc.isTaur() ? ", the voices raising when you grab the twink-slut’s hips":", the voices raising when you clench your fists and plant your many feet"));
@@ -373,102 +373,250 @@ public function domTheLDCsAss2(x:int):void
 	if(x >= 0) output(" while ejaculate-diluted pre flows freely through your inflating urethra" + (pc.cockTotal() > 1 ? "s":""));
 	output(".");
 	
-output("\n\nHe’s taken his pleasure from others for so long, you can only imagine what it’s like for him to be on the receiving end, having his asshole abused, his prostate sawed in half while he gushes in response. It’s that imagination that propels your rapidly shuddering hips back into kneading him dry.");
-output("\n\nL.D.C.’s palate is showered with cock-drool; cum seeps from his lips between the submissive cries. Your prick glides in and out of his gloving orifice until his anal entrance is just your personal cock-ring. You jackhammer him with the belief that his ass will cling to you, that nobody else will be able to make use of it, and that he’ll secretly love the memory of being your cock-socket. Beneath his body, the boss boy’s massive dick swells to greater tumescence, enough to prop him up through sheer phallic strength. The sultry girls nearby all look to you with quirked eyebrows.");
-output("\n\nHe’s cumming; the flaring of his stallion schlong is ample proof. But something tells you it’s going to be <i>much more than that, given his size</i>. The sadistic slave girl tries to keep him forced down on his own dick, but the need for oxygen beats her weaker grip.");
-output("\n\nLimp-kneed thrusts replace the erstwhile rhythm you had in fucking this butt-boi into his own sheets, the pressure on your [pc.cockOrStrapon] growing with the dragging of his tortured backdoor. You shimmy forward as {you feel one shot of [pc.cum] pulled from your well-massaged nuts / you feel one shot of [pc.cum] pulled from your [pc.cockNoun] / you feel a {drizzle/squirt} of [pc.girlCumNoun] spray from your [pc.vaginaNoun]}. That small orgasm triggers the real one{, spurred on by the hypnotic tensions rhythmically undulating through your extra genitalia from the now-detonating Hopper}.");
-output("\n\nYou hilt your {holo-/[pc.cockType]} club in him and let your body handle it from there. {You’re careful not to slide your [pc.knot] in lest you be stuck here for longer than you’d like.}");
-output("\n\n// PC low cum");
-output("\n\nYour orgasm is nowhere near as virile and powerful as the laquine’s. The ecstasy of release is there, but His balls do more than churn, they <i>pump</i>, and they’re pumping his pool with industrial strength and entirely useless loads of rabbit-jizz that concuss the bulkhead of the ship you’re standing in.");
-output("\n\nThe dribbles and terran-typical ribbons of [pc.cumVisc] [pc.cumNoun] you fill his ass with are nothing compared to the turgid lines of bunny nut {silly: cheerios /else: cream} splashing against the wall, his chin, and whatever the hell else is in the way until he’s practically swimming in his own feracity. L.D.C.’s climax does eke out the most of your load, however, and you’re sure the warmth of your [pc.cumColor] seed is to his liking{, particularly those lines you’ve drawn across his pre-soaked ass}.");
-output("\n\n// PC plenty of cum");
-output("\n\nYour ecstasy-imbued orgasm is only half as mighty as the laquine’s, but it’s enough that you’re right there with him, howling as his girthy nuts churn, no, <i>pump</i> with industrial strength {just beneath yours; testes clench and quiver against one another}. Rabbit-jizz concusses the bulkhead with lurid effect, entirely wasted and impossible for him to handle.");
-output("\n\n[pc.Cum] splashes every nerve cluster inside the bunny-boy’s ass as turgid lines of laquine nut-cream splatter the walls, his chin, and whatever the hell else is in the way until he’s practically swimming in his own feracity. The chattering and cute groans coming out of his mouth only make the filling of his bowels more pleasurable{, to say nothing of the thick lines of [pc.cumNoun] drawing shapes of across his back and ass}.");
-output("\n\n// PC lots of cum");
-output("\n\nWhen the bunny-boy geysers, you do much the same. The strength at which lapine nut-batter concusses the walls and whatever else is in front of his flared horse-dong is the same at which you ecstatically pump him full of [pc.cumVisc] [pc.cumNoun], the sheer volume flowing through your cum-vein prying his anxious ass apart to make room for its capacious inflation.");
-output("\n\nIf you were fucking a pussy, he’d be pregnant ten times over. As it is, you’re giving him a spunk-bump that’s gonna leave a trail of [pc.cumColor] cum that’ll lead you right back to him for round two. {Your extra cock{s} deposit{s} their fat wads and ropes over his back and butt, blanketing him with [pc.race] cum.}");
-output("\n\n// PC monstrous cum");
-output("\n\nThere’s an utterly sublime moment when you cum, when you slip into pure ecstasy. It’s the titanic eruption in your [pc.cock]! It’s earth-quakingly monumental, it’s got the weight of a mountain... and it’s all flooding inside this twink pirate’s bowels. Not one bone in his body isn’t concussed by the undeniable power of your [pc.cumVisc] enthusiasm.");
-output("\n\nYour cum-vein bulges obscenely, not caring on whit for his body’s attempt to reset. What L.D.C’s blasting is impressive, but his laquine load’s almost nothing compared to yours. Your virility fires with the augmented buildup of a railgun and hits hard enough to scar a planet.. After the second oh-so-noticeable pump of your [pc.balls], you’ve splattered your groin with [pc.cumNoun], the [pc.cumVisc] spunk backwashing down your [pc.thighs], your [pc.hips], your [pc.legOrLegs]... gosh, it’s everywhere... it’s even spilling from his mouth and nostrils.");
-output("\n\nAs for your fuckpuppet, he’s got himself a fine cum-bump that’ll be leaking for hours, and that trail will lead anyone straight to him for another round. {Hell, with how thoroughly your extra dick{s} have splattered him, you’ll be able to smell your way back to him!}");
-output("\n\n// PC hardlight cum (Vagina and Neuter)");
-output("\n\nYour feminine orgasm is divine in its own right next to the L.D.C.’s powerfully pumping testicular tubing. {Your cunt{s} grind{s} so tightly around something not there that you’re able to feel the caress of muscle against white-hot vaginal muscle as [pc.girlCum] {dribbles from your deliciously glazed slit{s} / runs in thick streams from your beautifully drenched puss{y/ies} / squirts with convulsing impact} into the waiting mouths of ever-helpful harem sluts.} The mind-bending transmissions of lust from his body to yours riddle you with multiple aftershocks. /neuter: The ever-helpful harem sluts slide tongues and fingers into your own pucker, stroking roughly to get you off, to help you soar higher on that cloud of bliss}.");
-output("\n\n// Merge");
-output("\n\nYou catch your breath in deep gasps and prickling blinks. It almost hurts to swallow in the wake of your overwhelming climax. It’s like every drop of liquid in your body was wrung out by the torrid wave of euphoria you just landed.");
-output("\n\nIt’s exhausting just freeing your [pc.cockOrStrapon] from the slut-boy’s rear, the ring of his ruined asshole {dicksize: slightly agape / gaping like a chasm} in the wake of your assertive lovemaking. {You deposit another few loads of [pc.cumNoun] on his anus in parting}. {Your cunt-tail sends a signal to your brain, one that bids you look back to see its lips caked with the dazed XO’s seed. Good girl.}");
-output("\n\nYou stand and collect your gear, all the while thinking of what you should do now as the lawless echelon slowly rouse. One thing’s for sure: you’ve left that bunny-boy little more than a shuddering lump of {hasDick: [pc.cumNoun]-splattered} coal.");
+	output("\n\nHe’s taken his pleasure from others for so long, you can only imagine what it’s like for him to be on the receiving end, having his asshole abused, his prostate sawed in half while he gushes in response. It’s that imagination that propels your rapidly shuddering hips back into kneading him dry.");
+	output("\n\nL.D.C.’s palate is showered with cock-drool; cum seeps from his lips between the submissive cries. Your prick glides in and out of his gloving orifice until his anal entrance is just your personal cock-ring. You jackhammer him with the belief that his ass will cling to you, that nobody else will be able to make use of it, and that he’ll secretly love the memory of being your cock-socket. Beneath his body, the boss boy’s massive dick swells to greater tumescence, enough to prop him up through sheer phallic strength. The sultry girls nearby all look to you with quirked eyebrows.");
+	output("\n\nHe’s cumming; the flaring of his stallion schlong is ample proof. But something tells you it’s going to be <i>much more than that, given his size</i>. The sadistic slave girl tries to keep him forced down on his own dick, but the need for oxygen beats her weaker grip.");
+	output("\n\nLimp-kneed thrusts replace the erstwhile rhythm you had in fucking this butt-boi into his own sheets, the pressure on your [pc.cockOrStrapon " + x + "] growing with the dragging of his tortured backdoor. You shimmy forward as ");
+	if(pc.balls > 0) output("you feel one shot of [pc.cum] pulled from your well-massaged nut" + (pc.balls > 1 ? "s":""));
+	else if(pc.hasCock()) output("you feel one shot of [pc.cum] pulled from your [pc.cockNoun " + x + "]");
+	else if(pc.hasVagina()) output("you feel a " + (!pc.isSquirter() ? "drizzle":"squirt") + " of [pc.girlCumNoun] spray from your [pc.vaginas]");
+	else output("your [pc.asshole] clench and wring itself in a flash of anticipatory ecstasy");
+	output(". That small orgasm triggers the real one" + (pc.hasCuntTail() || pc.hasCockTail() ? ", spurred on by the hypnotic tensions rhythmically undulating through your extra genitalia from the now-detonating Hopper":"") + ".");
+	output("\n\nYou hilt your " + (x < 0 ? "holo-":"[pc.cockType " + x + "] ") + "club in him and let your body handle it from there." + (x >= 0 && pc.hasKnot(x) ? " You’re careful not to slide your [pc.knot " + x + "] in lest you be stuck here for longer than you’d like.":""));
 
-output("\n\n[Next]");
+	if(x >= 0)
+	{
+		// PC low cum
+		if(pc.cumQ() < 150)
+		{
+			output("\n\nYour orgasm is nowhere near as virile and powerful as the laquine’s. The ecstasy of release is there, but his balls do more than churn, they <i>pump</i>, and they’re pumping his pool with industrial strength and entirely useless loads of rabbit-jizz that concuss the bulkhead of the ship you’re standing in.");
+			output("\n\nThe dribbles and terran-typical ribbons of [pc.cumVisc] [pc.cumNoun] you fill his ass with are nothing compared to the turgid lines of bunny nut " + (silly ? "cheerios":"cream") + " splashing against the wall, his chin, and whatever the hell else is in the way until he’s practically swimming in his own feracity. L.D.C.’s climax does eke out the most of your load, however, and you’re sure the warmth of your [pc.cumColor] seed is to his liking" + (pc.cockTotal() > 1 ? ", particularly those lines you’ve drawn across his pre-soaked ass":"") + ".");
+		}
+		// PC plenty of cum
+		else if(pc.cumQ() < 4000)
+		{
+			output("\n\nYour ecstasy-imbued orgasm is only half as mighty as the laquine’s, but it’s enough that you’re right there with him, howling as his girthy nuts churn, no, <i>pump</i> with industrial strength" + (pc.balls > 0 ? " just beneath yours; testes clench and quiver against one another":"") + ". Rabbit-jizz concusses the bulkhead with lurid effect, entirely wasted and impossible for him to handle.");
+			output("\n\n[pc.Cum] splashes every nerve cluster inside the bunny-boy’s ass as turgid lines of laquine nut-cream splatter the walls, his chin, and whatever the hell else is in the way until he’s practically swimming in his own feracity. The chattering and cute groans coming out of his mouth only make the filling of his bowels more pleasurable" + (pc.cockTotal() > 1 ? ", to say nothing of the thick lines of [pc.cumNoun] drawing shapes of across his back and ass":"") + ".");
+		}
+		// PC lots of cum
+		else if(pc.cumQ() < 25000)
+		{
+			output("\n\nWhen the bunny-boy geysers, you do much the same. The strength at which lapine nut-batter concusses the walls and whatever else is in front of his flared horse-dong is the same at which you ecstatically pump him full of [pc.cumVisc] [pc.cumNoun], the sheer volume flowing through your cum-vein prying his anxious ass apart to make room for its capacious inflation.");
+			output("\n\nIf you were fucking a pussy, he’d be pregnant ten times over. As it is, you’re giving him a spunk-bump that’s gonna leave a trail of [pc.cumColor] cum that’ll lead you right back to him for round two.");
+			if(pc.cockTotal() > 1) output(" Your extra cock" + (pc.cockTotal() > 1 "s deposit their":" deposits its") + " fat wads and ropes over his back and butt, blanketing him with [pc.race] cum.");
+		}
+		// PC monstrous cum
+		else
+		{
+			output("\n\nThere’s an utterly sublime moment when you cum, when you slip into pure ecstasy. It’s the titanic eruption in your [pc.cock " + x + "]! It’s earth-quakingly monumental, it’s got the weight of a mountain... and it’s all flooding inside this twink pirate’s bowels. Not one bone in his body isn’t concussed by the undeniable power of your [pc.cumVisc] enthusiasm.");
+			output("\n\nYour cum-vein bulges obscenely, not caring on whit for his body’s attempt to reset. What L.D.C’s blasting is impressive, but his laquine load’s almost nothing compared to yours. Your virility fires with the augmented buildup of a railgun and hits hard enough to scar a planet.. After the second oh-so-noticeable pump of your [pc.balls], you’ve splattered your groin with [pc.cumNoun], the [pc.cumVisc] spunk backwashing down your [pc.thighs], your [pc.hips], your [pc.legOrLegs]... gosh, it’s everywhere... it’s even spilling from his mouth and nostrils.");
+			output("\n\nAs for your fuckpuppet, he’s got himself a fine cum-bump that’ll be leaking for hours, and that trail will lead anyone straight to him for another round.");
+			if(pc.cockTotal() > 1) output(" Hell, with how thoroughly your extra dick" + (pc.cockTotal() > 2 ? "s have":" has") + " splattered him, you’ll be able to smell your way back to him!");
+		}
+	}
+	// PC hardlight cum (Vagina and Neuter)
+	else
+	{
+		output("\n\nYour feminine orgasm is divine in its own right next to the L.D.C.’s powerfully pumping testicular tubing. ");
+		if(pc.hasVagina())
+		{
+			output("Your cunt" + (pc.totalVaginas() > 1 ? "s grind":" grinds") + " so tightly around something not there that you’re able to feel the caress of muscle against white-hot vaginal muscle as [pc.girlCum] ");
+			if(pc.wettestVaginalWetness() < 3) output("dribbles from your deliciously glazed slit" + (pc.totalVaginas() > 1 ? "s":""));
+			else if(!pc.isSquirter()) output("runs in thick streams from your beautifully drenched puss" + (pc.totalVaginas() == 1 ? "y":"ies"));
+			else output("squirts with convulsing impact");
+			output(" into the waiting mouths of ever-helpful harem sluts. ");
+		}
+		output("The mind-bending transmissions of lust from his body to yours riddle you with multiple aftershocks.");
+		if(!pc.hasVagina()) output(" The ever-helpful harem sluts slide tongues and fingers into your own pucker, stroking roughly to get you off, to help you soar higher on that cloud of bliss.");
+	}
+	// Merge
+	output("\n\nYou catch your breath in deep gasps and prickling blinks. It almost hurts to swallow in the wake of your overwhelming climax. It’s like every drop of liquid in your body was wrung out by the torrid wave of euphoria you just landed.");
+	output("\n\nIt’s exhausting just freeing your [pc.cockOrStrapon " + x + "] from the slut-boy’s rear, the ring of his ruined asshole " + (longii < 12 ? "slightly agape":"gaping like a chasm") + " in the wake of your assertive lovemaking." + (pc.hasVagina() ? " You deposit another few loads of [pc.cumNoun] on his anus in parting.":"") + (pc.hasCuntTail() ? " Your cunt-tail sends a signal to your brain, one that bids you look back to see its lips caked with the dazed XO’s seed. Good girl.":""));
+	output("\n\nYou stand and collect your gear, all the while thinking of what you should do now as the lawless echelon slowly rouse. One thing’s for sure: you’ve left that bunny-boy little more than a shuddering lump of " + (pc.hasCock()) output("[pc.cumNoun]-splattered ":"") + "coal.");
+	output("\n\n");
+	processTime(35);
+	if(pc.hasCuntTail()) feedCuntSnake(enemy);
+	enemy.loadInAss(pc);
+	pc.orgasm();
+	CombatManager.genericVictory();
+}
 
+//[Get Worshiped]
+// Tooltip: Those two bunnies are the ones <i>mostly</i> in charge of Zheng Shi. Get ‘em on their knees and servicing you.
+// Tooltip, no Genitals: You can’t receive real oral service without a dick or pussy!
+// Requires Penis and/or Vagina.
+// Offer the PC a choice between cock and vagina if herm.
+// William
+public function getWorshippedByBuns(var cockUse:Boolean):void
+{
+	clearOutput();
+	author("William");
+	var x:int = 0;
+	if(cockUse) x = pc.biggestCockIndex();
+	if(pc.isAss()) output("You’ve got King Dick and Queen Bitch of Asshole Mountain right there, the shock jumper on her knees and L.D.C. sitting back in comfort. You’ll move on <i>after</i> putting them to work.");
+	else output("L.D.C. and his lieutenant watch you with some resignation, biting their lips as you linger there flushing with arousal. Nope. You can’t resist! You’re putting those two on their knees their faces in your crotch!");
+	output("\n\nBesides, it’s not every day someone gets two pirate bosses on their knees and worshiping their ");
+	if(cockUse) output("[pc.cocks]");
+	else output("[pc.pussies]");
+	output("! Harem girls grope and idly undulate, wondering just what you have planned ");
+	if(!pc.isCrotchExposed()) output("as you shuck your [pc.crotchCovers] and ");
+	//notTaurCock: 
+	if(!pc.isTaur() && cockUse) output("stroke your [pc.cocksLight] ‘til " + (pc.cockTotal() == 1 ? "a wad":"wads") + " of pre bead at the tip" + (pc.cockTotal() > 1 ? "s":""));
+	//notTaurVag:
+	else if(!pc.isTaur()) output((pc.balls > 0 ? "heft your [pc.sack] to ":"") + "brush a [pc.hand] across your [pc.pussyNoun] and [pc.oneClit].");
+	else if(cockUse) output("expose your swelling [pc.cocks]");
+	else output("expose your [pc.pussies]");
+	output(". Your glistening endowment" + (pc.cockTotal() + pc.totalVaginas() > 1 ? "s are":" is") + " attractive enough to earn a few cute ‘oohs’ from the naked audience, though your choice of partners fidget.");
 
+	// PC not taur
+	if(!pc.isTaur())
+	{
+		output("\n\nYou [pc.move] towards the bed and hop up, a terse look boring into the object of your lust. The multiracial slaves lean and slide back as you crawl over to the dark bunny boy and grab him by the legs, dragging him away from his commanding position. <i>“W-what the fuck? Hey, get off me, asshole!”</i> the cock-burdened rabbit whines. His Hopper groans, instinctively (and pitifully) trying to stop you despite her " + (enemy.HP() <= 1 ? "thorough trouncing":"intense arousal") + ".");
+		output("\n\nL.D.C. falls off the mattress and flops to his knees with a grunt. His fat equine dick smacks the floor hard enough to shake the room and make him wince. You grab his LT by her bubblegum mohawk and pull the zap-bunny right next to her debased captain. All the oversexed duo can do is look up and cross their eyes in proximity to your ");
+		if(cockUse) output("pre-coated prick" + (pc.cockTotal() > 1 ? "s":""));
+		else output("juice-drooling slit" + (pc.totalVaginas() > 1 ? "s":""));
+		output(", huffing in a mix of awe and resentment.");
+		output("\n\nYou, for your part, simply relish the idea of two big bad pirates presented like common sluts waiting to be used, nothing to do but inspect your [pc.crotch].");
 
-output("\n\n[Get Worshiped]");
-output("\n\n// Tooltip: Those two bunnies are the ones <i>mostly</i> in charge of Zheng Shi. Get ‘em on their knees and servicing you.");
-output("\n\n// Tooltip, no Genitals: You can’t receive real oral service without a dick or pussy!");
-output("\n\n// Requires Penis and/or Vagina.");
-output("\n\n// Offer the PC a choice between cock and vagina if herm.");
-output("\n\n// William");
-
-output("\n\n{pcHard: You’ve got King Dick and Queen Bitch of Asshole Mountain right there, the shock jumper on her knees and L.D.C. sitting back in comfort. You’ll move on <i>after</i> putting them to work. /else: L.D.C. and his lieutenant watch you with some resignation, biting their lips as you linger there flushing with arousal. Nope. You can’t resist! You’re putting those two on their knees their faces in your crotch!}");
-output("\n\nBesides, it’s not every day someone gets two pirate bosses on their knees and worshiping their {[pc.cocks]/[pc.pussies]}! Harem girls grope and idly undulate, wondering just what you have planned {as you shuck your [pc.gear] {and} /notTaurCock: stroke your [pc.cocksLight] ‘til {a wad / wads} of pre bead at the tip{s} /notTaurVag: {heft your [pc.sack] to} brush a [pc.hand] across your [pc.pussyNoun] and [pc.oneClit]. /taurCock: expose your swelling [pc.cocks] /taurVag: expose your [pc.pussies]}. Your glistening endowment{s} {is/are} attractive enough to earn a few cute ‘oohs’ from the naked audience, though your choice of partners fidget.");
-output("\n\n// PC not taur");
-output("\n\nYou [pc.move] towards the bed and hop up, a terse look boring into the object of your lust. The multiracial slaves lean and slide back as you crawl over to the dark bunny boy and grab him by the legs, dragging him away from his commanding position. <i>“W-what the fuck? Hey, get off me, asshole!”</i> the cock-burdened rabbit whines. His Hopper groans, instinctively (and pitifully) trying to stop you despite her {thorough trouncing / intense arousal}.");
-output("\n\nL.D.C. falls off the mattress and flops to his knees with a grunt. His fat equine dick smacks the floor hard enough to shake the room and make him wince. You grab his LT by her bubblegum mohawk and pull the zap-bunny right next to her debased captain. All the oversexed duo can do is look up and cross their eyes in proximity to your {pre-coated prick{s} / juice-drooling slit{s}}, huffing in a mix of awe and resentment.");
-output("\n\nYou, for your part, simply relish the idea of two big bad pirates presented like common sluts waiting to be used, nothing to do but inspect your [pc.crotch].");
-output("\n\n{bimbo: <i>“Hope, like, you two love {cock/pussy!}”</i> you wink. <i>“Let’s see how good your tongues are!”</i> /bro: <i>“I’ll think about what to do after you get those tongues on my {cock/cunt},”</i> you say, rubbing your {[pc.cockHeadNoun] / [pc.clit]} into their heads. /kind: <i>“Maybe I’ll forgive you... <b>after</b> you treat me with your mouths.”</i> You {stroke yourself to full hardness / spread your vulva} and step closer. /misch: <i>“I’ve got a <b>real hard</b> feeling, and you two are gonna help me with that.”</i> /hard: You slap the Hopper and her disobedient captain, tugging them forward. <i>“Suck. Then maybe I’ll think about letting you go.”</i>");
-output("\n\n// PC taur");
-output("\n\nYou [pc.move] towards the beaten bunny and position yourself {cock: above her, nearly slapping her with your [pc.cocks], dripping with virile passion / in front of her, turning to expose your [pc.pussies], leaking passion and potent musk equally}. <i>“Why don’t you girls do me a favor,”</i> you motion towards L.D.C. and crook your finger. Giggling, they set upon him near instantaneously. The big dicked boy is yanked by his cute little feet and pulled from the bed, his enormous horse-shaft smacking lewdly into the floor with enough force to make him wince and the room shake.");
-output("\n\n<i>“W-what the hell? Girls, get the fuck off me! What do you think you-”</i> the cock-burdened rabbit whines before he is scooched next to his {thoroughly trounced / intensely aroused} LT - right in the path of your exposed and powerfully {throbbing / tingling} genitalia. You fold your arms and {bimbo: giggle airheadedly /else: snort}, stepping {forward / backward} to rub your {[pc.cockNoun] / [pc.pussyNoun]} into their faces and relish the idea of two pirate leaders in such a position.");
-output("\n\n{bimbo: <i>“Alright, you two get to work {down/back} there and, like, put those tongues into it!”</i> /bro: <i>“Good fucktoys use their tongues. I expect the best from the best of the slut-bunny crew.”</i> /kind: <i>“You run a crew of sex-loving rabbits. I expect you both to know how to use your mouths.”</i> /misch: <i>“First, you get me off. When I’m satisfied, I’ll think about letting you go. Until then, give your girls a show to remember!”</i> /hard: <i>“Your pet sluts will appreciate their masters following a few simple instructions I’m sure. {<b>Suck</b>. / <b>Lick</b>.}");
-output("\n\n// Merge");
-output("\n\n// PC cock small");
-output("\n\n<i>“Huh, you get this far and you don’t have much to show for it, do you?”</i> the black rabbit snarks, and a slave girl smacks him on the back of the head, shoving his nose into your modest girth. L.D.C. recoils and shakes his head, <i>“Fine, fuck! Whatever, we’ll do it!”</i>");
-output("\n\n// PC cock big");
-output("\n\n<i>“You can’t seriously expect <i>me</i> to fit that in my-”</i> L.D.C. begins, only to be silenced by a shuffle of your hips and a slap of your dick to his face. The Hopper chews her lip and the collared slaves titter while he shakes his head, <i>“Son of a... Just... Fuck! Fine! We’ll do this, and only once!”</i>");
-output("\n\n// PC cock bigger");
-output("\n\n<i>“You’re joking aren’t you? You want a hugjob? I’m sure I can find a skank with a throat that can handle this, lemme just-”</i> Before he moves another inch {you / a slave} stop{s} him; {you/she} grip{s} the recalcitrant rabbit by his upraised ears and smash your [pc.cockHead] into his face. He will do it. <i>“Damnit, fine, fuck’s sake... Don’t need to be a prick about it!”</i>");
-output("\n\n// PC cock biggest");
-output("\n\n<i>“Fuck me, you really went all in on the drugs didn’t you? You’re more hung than... I’m sure you understand you ain’t fitting that in one of us! Let me see if I can’t get you a-”</i> You respond by hefting your [pc.cockType] obelisk up and letting the hammer fall, putting L.D.C. in his place with a wet smack of cockflesh and cummy pre against his muzzle. There’s no better way to remind the unruly bunny-boy who’s in charge. <i>“Fucking... Ugh, whatever, you’ve made your point, f-fucker!”</i>");
-output("\n\n// PC pussy (for cunnilingus; anything not specifically referenced)");
-output("\n\n<i>“Yeah, I guess it could be worse. Just eat this out huh? {I love [pc.boyGirl]s with chubby cunts.}”</i> L.D.C. remarks, licking his lips at the sight of your wonderfully moist [pc.pussyNoun]. <i>“Should let me put it in. {A [pc.guyGirl] like you? You’d love a good stretch. Mmf, the sounds you’d make! / You may be as loose as a {pcLaquine: broodmother /else: laquine}, but with my size that won’t matter!}”</i> You roll your eyes and usher the pair closer.");
-output("\n\n// PC pussy Feline");
-output("\n\n<i>“Damn, I like that pussy. Kaithrit cunts are just so pretty and suckable... {And I love chubby muffs,}”</i> the bunny-boss swoons, his charade dropping as he inches himself closer to your [pc.pussy]. <i>“This thing’s almost too cute to want to stretch,”</i> he grins. <i>“{</i>Almost<i> / But someone already did that for you}.”</i>");
-output("\n\n// PC pussy Equine");
-output("\n\n<i>“Mmm, I’d never mistake that scent. That ripe and thick smell of horse-pussy! And yours is looking beautiful, beautiful,”</i> L.D.C. compliments, sounding like he’s forgotten what’s going on. He can’t keep his hands away from your swollen and chubby cunt, eager for a taste of the mounting arousal shimmering along your rubbery exterior. <i>“Not a bad flavor at all,”</i> he smacks his lips, <i>“I’ll definitely enjoy this!”</i>");
-output("\n\n// PC pussy Gryvain");
-output("\n\n<i>“Huh... I don’t think I’ve ever tasted dragon-pussy before,”</i> L.D.C. murmurs, tilting his head at your draconic slit. Thin streams of lubricant drool from your [pc.pussyColor] labia, all but begging him to savor the nubby exterior. <i>“Those protrusions, they’re inside and outside your cunt aren’t they? Heard they feel as good as a clit when they’re massaged. This’ll be easy...”</i> He licks his lips, somehow so confident!");
-output("\n\n// PC pussy Suula");
-output("\n\n<i>“No, that’s...”</i> L.D.C. stops and shakes his head. <i>“You’ve got one of those venomous twats, I don’t want that stuff near me!”</i> You move that cilia-lined cunny closer. Soon, he’s not gonna have much of a choice. You can’t wait to see how much of a geyser he is when those stingers get their feelers on him! <i>“S-s-shit... This... Fuck everything...”</i> he grimaces in resignation.");
-output("\n\n// Merge");
-output("\n\n// PC chose cock, not taur");
-output("\n\nUnsurprisingly, the Hopper is the first to leap into action. Her fuzzy paws rest on your [pc.thigh] (almost hugging you) while her mouth slurps at the crown of your [pc.cockBiggest]. Glossy, spit-slick lips stretch around your [pc.cockHeadNoun], the halting suctions against your dilating cumslit more than pleasurable - L.D.C. has a wildly talented cocksucker at his beck and call!");
-output("\n\n// Suula Dick");
-output("\n\nThere’s some concern in that coal-black bun’s eyes the more he follows the sways of the cilia on your venom-phallus; toxin-bearing stingers apply their pleasure-seizing loads to the Hopper’s mouth seconds after she squirms you inside. A waterfall of spit froths and flows down her lapine chin, hardening her needy-looking dick to its fullest. You can see vibratory ripples in her cream-furred nutsack, gumballs of laquine-pre spurting from her twitching tip.");
-output("\n\n// Merge");
-output("\n\nThe horny hare hungrily jerks her head forward, taking your [pc.cock] to the back of her throat in one lewd and lavish motion. {small: With how little you’re packing, it’s no issue for the azure bun to grind her nose into your loins. Your [pc.cockNoun] luxuriates in the full service of her mouth /big: The azure-bun gargles and sputters the more of your girth she tries to inhale, and she only makes it halfway down your [pc.cockNoun] /biggest: Tears well at the corners of her glazing eyes trying to fit even a quarter of your {silly: pounder /else: [pc.cockNoun] in}. One fuzzy, vigorous hand latches onto {your [pc.sack] / your [pc.vaginaNoun] / your [pc.base]} as a thick tongue rolls around your pole. {biggest: She may not be able to suck it all down, but that obedient bun is doing exactly what she needs to.}");
-output("\n\nA slave girl helpfully pushes the Jumper’s big (little) man into action.");
-output("\n\nHis fluttery nose is embedded in your {[pc.sack] / [pc.pussyNoun] / [pc.base]} - L.D.C. gasps for air, drawing his tongue across your overheating loins before coming to rest near the blue-bun’s happily wriggling mouth. Blue bunny-lips stretch and hollow across the inches of your [pc.cockNoun], keeping it shined with spit. Pockets of pooling pre are slurped up by his stubborn mouth, and he he finally brings one of his tiny paws to your [pc.cockNoun] at the {bimboBro: horny /kind: gentle /mischHard: not so gentle} urging of your [pc.hand], accepting his position. {Your extra [pc.cockNoun] throbs demandingly {size: above/atop}, squirting your salty lubricant onto {and into his mouth / his head}.}");
-output("\n\nBoth Jumpers are now in full swing, licking and sucking your [pc.cocksLight] like they’ve discovered a new favorite sweet. Enthusiasm drips like every rope of cummy saliva from their mouths. Your [pc.toes] curl and dig into the deck as the beginnings of euphoria swim throughout your body. Lissome paws wander between your [pc.thighs]{, fondling the {weighty / heavily swinging / sloshing} cum-sack respectfully / teasing out a [pc.clit] from your vaginal hood before rubbing it in smooth circular motions / {teasing the innards of your sheath / ringing the bulge of your breeding bulb / caressing the flat of [pc.skinFurScalesNoun] where phallus meets groin}.}");
-output("\n\n’Candied’ is an appropriate description of the Hopper’s mouth around your [pc.cocks]{, multidick: and especially L.D.C.’s! That little suckling wonder is working magic around your multiple endowments, jerking your rods with innate expertise and honing in on the tenderest places}.");
-output("\n\nAnother so-helpful servant pulls {down the XO’s zipper / tears off what’s left of the XO’s bodysuit}, revealing the vanilla-flavored mounds of her luscious chest which heaves with inattentively whorish moans. More girls move in from behind, trained hands darting for bright, jutting nipples and flaring boners. Those stimulations cause the oral rhythms you enjoy to fall apart into phallus-obsessive frenzy. Bunny ears lilt and energetic muzzles forgo sensuality to slide back and forth, over and around with unrestrained kinetic fervor to savor the tastiest fluids, coaxing out hotter loads from your [pc.cocksLight] {with squeezes to your [pc.balls]}.");
-output("\n\nOne particularly cute kaithrit girl shuffles behind you, purring and nuzzling her warm cheek to your [pc.ass] and working on whatever she can find from there. Her full-body-rumbling on your {taut ballsack / ambrosial slit / [pc.cockType] hardness} feels heavenly.");
-output("\n\nAs pleasing as this scenario is, you’re not totally blind to what’s going on below. The shock-bun’s sizeable slab of herm-cock is nothing compared to the elephantine mast between her lover-boys legs. Every time that lurid tower of laquine meat pulses it grows just a bit bigger, snaking up at an angle that’ll soon overshadow him and be pressing at your own. It’s soon pressed down and aimed between your legs, though its defiant throbs bounce it skyward.");
-output("\n\nMost of the pleasure building comes from the whiskered mouths of the two bunny-pirates polishing your [pc.cocksLight], but the comfort-girls deserve a little recognition too. Warm and tender hands massage your [pc.legOrLegs], focusing on your love handles and [pc.ass]. When your conquests aren’t fondling something, the slaves take over, treating your extremities like they would anyone else’s: with love.");
-output("\n\n// PC cunt tail");
-output("\n\nMental and emotional flashes of parasitical passion indicate that your [pc.cuntTail] senses the feast arrayed before it, and it transmits to your mind its inability to choose from the two magnificent cocks available. You squint and fire off a thought back to it, suggesting that it take from the most meaty source available: the L.D.C. You’re not sure if the response was a ‘thank you’ or ‘with pleasure’, but the cum-seeking organism spreads its drooling alien lips wide around the Jumper boss’ pillar, stretching wider than they ever have before just to secure itself around his flared tip.");
-output("\n\nThrough your nerve-melded relationship, you feel the frictious texture of its attempts to pull in more of that tremendous horsecock, and you already feel the searing pre spurting into its unknowable depths. You almost can’t wait for him to cum, to be privy to that raw detonation of delight. Sure, the Hopper’s got the bigger balls (literally and figuratively), but feeling that dick going off inside... Oh man.");
-output("\n\n// Merge");
-output("\n\nThe slovenly shock-bunny pulls your [pc.cockBiggest] from her mouth, gasping for air and bouncing from the pulses in her own gently stroked dick. She falls into you muzzle-first, face overlapped by your juice-glistening prick{s}, licking the undersides like a voracious slut while pawing {its/their} full length{s} with the adoration and visage of a born cocksleeve. That kind of dedication deserves a reward, and you ensure the underperforming L.D.C. watches as his LT is rewarded with a scritch behind the floppy ears and another mouthful of [pc.cockType] meat. <i>“Maybe I’ll keep this bunny. You’ve got her on a good leash, and she’s good at at lip service.”</i>");
-output("\n\n<i>“F-fuck, no! Don’t be that kind of pr-!”</i> L.D.C. whines, but you merely shove him back into your sweat-caked surface, moaning in mounting bliss as his tongue runs over your crotch all over again.");
-output("\n\nIt’s not just the feel of that thick muscle that has you clenching your [pc.thighs] together, it’s that you can feel his consternation behind it - that little bit of resistance tickles your dominant side, and it makes his hand-smothering balls lurch closer to orgasm. The {silly: ink-ribbun /else: ink-bun} wants to mouth off and act tough, but he also can’t admit he fucking loves being your bitch. You can see that subby side no clearer than when you grab him by his tall ears and rein him in.");
-output("\n\nYou guide the imperious pirate down your girth until he’s kissing her right around your swollen tip{, 2+cocks: the other slaves rubbing your extra dick{s} into their smooth foreheads, making sure these oversexed rabbits are thoroughly lathered in your cascading {herm-}goo}.");
-output("\n\n<i>“Then show me why I shouldn’t,”</i> you say, glowering at the cowed boi and commanding him to <i>“Open wide.”</i>");
-output("\n\nHe grits his teeth, doing as you command seconds later. There’s no time for him to have second thoughts, because you shove your [pc.cockBiggest] right into the jizz-flecked hole{, bigDick: battering his throat just a second later}. The laquine slobbers all over you with his wriggling tongue. Perhaps that squirming flesh is begging you to fuck his face. Perhaps it’s just a desperate and inelegant attempt to get you off before you do that.");
-output("\n\nIt works - you fire off one then two shots of [pc.cumNoun] into his maw, growling to contain the sudden pleasure{, your extra dick{s} shoot{s} a rope {each} over his head, making him look just a bit messier}. You shove back and hammer his mouth, intent on fucking his throat full of the load churning inside.");
-output("\n\nThe pervy hopper stares ruefully {before joining him again, peppering your dripping dong with reverent kisses /multiDick: before taking your extra [pc.cockNoun] between her lips and giving it the blowjob it’s been waiting for}. The black and blue bunch are helpless to attend their own needs, but the slaves are doing that for them. They sit side-by-side, eyes, tongues and lips focused on bringing you to climax. {L.D.C./They} rub{s} circles into your [pc.hips]{, moaning / gargling / choking} as you thrust a few more unrelenting inches into {him/them}. The slut-bun’s cheeks hollow in loud and submissive suckles{, the trained throat of his militant bottom-bitch contrasting well with his virgin neck}.");
-output("\n\nPraise for the cock-burdened bunny’s aggressive fellatio tumbles out of your mouth. He manages to keep his mismatched eyes open the whole time even while his head is on autopilot and focused on tending your [pc.cockBiggest]. You slam into {his/their} face{s} with stunning strength, the helpful harem keeping the libidinous laquine{s} steady so that you might admire your prizes better. Thick and hot air hisses through their lips, making the veins on your [pc.cocksLight] distend. You’re all too happy to reciprocate the energy, now scratching both of their heads as your pace falls apart into wanton glee.");
-output("\n\nThe blue-bun’s eyes cross and seal shut. Her whole body squirms and humps in the throes of orgasm - the herm-boss’s cock has taken full control of her brain. A powerful gout of cum squirts into the air and rains down on a few slaves. That brace of girl-dick is aimed away from you by the slaves who ease out the modded-up loads churning out of her scent-billowing maleness in long gouts of familiar stickiness.");
-output("\n\nL.D.C. isn’t too far behind, but it’s the unique cock-pleasing spasms of his throat that leave it up to galactic forensics to decide who shot first. {The bunny boy is / Both bunnies are} shoved down onto your {[pc.cockNoun] / [pc.cocksLight]} {balls-deep / nearly balls-deep} just before your spunk-tanks begin to drain.");
+		if(pc.isBimbo()) output("\n\n<i>“Hope, like, you two love " + (cockUse ? "cock":"pussy"!) + "”</i> you wink. <i>“Let’s see how good your tongues are!”</i>");
+		else if(pc.isBro()) output("\n\n<i>“I’ll think about what to do after you get those tongues on my " + (cockUse ? "cock":"cunt") + ",”</i> you say, rubbing your " + (cockUse ? "[pc.cockHeadNoun " + x + "]":"[pc.clit]") + " into their heads.");
+		//kind:
+		else if(pc.isNice()) output("\n\n<i>“Maybe I’ll forgive you... <b>after</b> you treat me with your mouths.”</i> You " + (cockUse ? "stroke yourself to full hardness":"spread your vulva") + " and step closer.");
+		//misch:
+		else if(pc.isMischievous()) output("\n\n<i>“I’ve got a <b>real hard</b> feeling, and you two are gonna help me with that.”</i>");
+		else output("\n\nYou slap the Hopper and her disobedient captain, tugging them forward. <i>“Suck. Then maybe I’ll think about letting you go.”</i>");
+	}
+	// PC taur
+	else
+	{
+		output("\n\nYou [pc.move] towards the beaten bunny and position yourself " + (cockUse ? "above her, nearly slapping her with your [pc.cocks], dripping with virile passion":"in front of her, turning to expose your [pc.pussies], leaking passion and potent musk equally") + ". <i>“Why don’t you girls do me a favor,”</i> you motion towards L.D.C. and crook your finger. Giggling, they set upon him near instantaneously. The big dicked boy is yanked by his cute little feet and pulled from the bed, his enormous horse-shaft smacking lewdly into the floor with enough force to make him wince and the room shake.");
+		output("\n\n<i>“W-what the hell? Girls, get the fuck off me! What do you think you-”</i> the cock-burdened rabbit whines before he is scooched next to his " + (enemy.HP() <= 1 ? "thoroughly trounced":"intensely aroused") + " LT - right in the path of your exposed and powerfully " + (cockUse ? "throbbing":"tingling") + " genitalia. You fold your arms and " + (pc.isBimbo() ? "giggle airheadedly":"snort") + ", stepping " + (cockUse ? "forward":"backward") + " to rub your " + (cockUse ? "[pc.cockNoun " + x + "]":"[pc.pussyNoun]") + " into their faces and relish the idea of two pirate leaders in such a position.");
+		output("\n\n");
+		if(pc.isBimbo()) output("<i>“Alright, you two get to work " + (cockUse ? "down":"back") + " there and, like, put those tongues into it!”</i>");
+		else if(pc.isBro()) output("<i>“Good fucktoys use their tongues. I expect the best from the best of the slut-bunny crew.”</i>");
+		else if(pc.isNice()) output("<i>“You run a crew of sex-loving rabbits. I expect you both to know how to use your mouths.”</i>");
+		else if(pc.isMischievous()) output("<i>“First, you get me off. When I’m satisfied, I’ll think about letting you go. Until then, give your girls a show to remember!”</i>");
+		else output("<i>“Your pet sluts will appreciate their masters following a few simple instructions I’m sure. " + (cockUse ? "<b>Suck</b>.":"<b>Lick</b>."));
+	}
+	// Merge
+	// PC cock small
+	var longii:Number = 0;
+	if(cockUse) 
+	{
+		longii = pc.cocks[x].cLength();
+		if(longii < 7) output("\n\n<i>“Huh, you get this far and you don’t have much to show for it, do you?”</i> the black rabbit snarks, and a slave girl smacks him on the back of the head, shoving his nose into your modest girth. L.D.C. recoils and shakes his head, <i>“Fine, fuck! Whatever, we’ll do it!”</i>");
+		// PC cock big
+		else if(longii < 16) output("\n\n<i>“You can’t seriously expect <i>me</i> to fit that in my-”</i> L.D.C. begins, only to be silenced by a shuffle of your hips and a slap of your dick to his face. The Hopper chews her lip and the collared slaves titter while he shakes his head, <i>“Son of a... Just... Fuck! Fine! We’ll do this, and only once!”</i>");
+		// PC cock bigger
+		else if(longii < 22) output("\n\n<i>“You’re joking aren’t you? You want a hugjob? I’m sure I can find a skank with a throat that can handle this, lemme just-”</i> Before he moves another inch " + (!pc.isTaur() ? "you":"a slave") + " stop" + (pc.isTaur() ? "s":"") + " him; " + (!pc.isTaur() ? "you grip":"she grips") + " the recalcitrant rabbit by his upraised ears and smash your [pc.cockHead " + x + "] into his face. He will do it. <i>“Damnit, fine, fuck’s sake... Don’t need to be a prick about it!”</i>");
+		// PC cock biggest
+		else output("\n\n<i>“Fuck me, you really went all in on the drugs didn’t you? You’re more hung than... I’m sure you understand you ain’t fitting that in one of us! Let me see if I can’t get you a-”</i> You respond by hefting your [pc.cockType " + x + "] obelisk up and letting the hammer fall, putting L.D.C. in his place with a wet smack of cockflesh and cummy pre against his muzzle. There’s no better way to remind the unruly bunny-boy who’s in charge. <i>“Fucking... Ugh, whatever, you’ve made your point, f-fucker!”</i>");
+	}
+	// PC pussy 
+	else
+	{
+		// PC pussy Feline
+		if(pc.vaginas[0].type == GLOBAL.TYPE_FELINE) output("\n\n<i>“Damn, I like that pussy. Kaithrit cunts are just so pretty and suckable..." + (pc.vaginalPuffiness(0) >= 1 ? " And I love chubby muffs,":"") + "”</i> the bunny-boss swoons, his charade dropping as he inches himself closer to your [pc.pussy]. <i>“This thing’s almost too cute to want to stretch,”</i> he grins. <i>“" + (pc.vaginas[0].looseness() < 4 ? "</i>Almost<i>":"But someone already did that for you") + ".”</i>");
+		// PC pussy Equine
+		else if(pc.vaginas[0].type == GLOBAL.TYPE_EQUINE) output("\n\n<i>“Mmm, I’d never mistake that scent. That ripe and thick smell of horse-pussy! And yours is looking beautiful, beautiful,”</i> L.D.C. compliments, sounding like he’s forgotten what’s going on. He can’t keep his hands away from your swollen and chubby cunt, eager for a taste of the mounting arousal shimmering along your rubbery exterior. <i>“Not a bad flavor at all,”</i> he smacks his lips, <i>“I’ll definitely enjoy this!”</i>");
+		// PC pussy Gryvain
+		else if(pc.vaginas[0].type == GLOBAL.TYPE_GRYVAIN) output("\n\n<i>“Huh... I don’t think I’ve ever tasted dragon-pussy before,”</i> L.D.C. murmurs, tilting his head at your draconic slit. Thin streams of lubricant drool from your [pc.pussyColor] labia, all but begging him to savor the nubby exterior. <i>“Those protrusions, they’re inside and outside your cunt aren’t they? Heard they feel as good as a clit when they’re massaged. This’ll be easy...”</i> He licks his lips, somehow so confident!");
+		// PC pussy Suula
+		else if(pc.vaginas[0].type == GLOBAL.TYPE_SUULA) output("\n\n<i>“No, that’s...”</i> L.D.C. stops and shakes his head. <i>“You’ve got one of those venomous twats, I don’t want that stuff near me!”</i> You move that cilia-lined cunny closer. Soon, he’s not gonna have much of a choice. You can’t wait to see how much of a geyser he is when those stingers get their feelers on him! <i>“S-s-shit... This... Fuck everything...”</i> he grimaces in resignation.");
+		else
+		{
+			//(for cunnilingus; anything not specifically referenced)
+			output("\n\n<i>“Yeah, I guess it could be worse. Just eat this out huh?" + (pc.puffiestVaginalPuffiness() >= 1 ? " I love [pc.boyGirl]s with chubby cunts.":"") + "”</i> L.D.C. remarks, licking his lips at the sight of your wonderfully moist [pc.pussyNoun]. <i>“Should let me put it in.");
+			if(pc.vaginas[0].looseness() < 3) output(" A [pc.guyGirl] like you? You’d love a good stretch. Mmf, the sounds you’d make!");
+			else output(" You may be as loose as a " + (pc.laquineScore() >= 5 ? "broodmother":"laquine") + ", but with my size that won’t matter!");
+			output("”</i> You roll your eyes and usher the pair closer.");
+		}
+	}
+	// PC chose cock, not taur
+	if(!pc.isTaur() && cockUse)
+	{
+		output("\n\nUnsurprisingly, the Hopper is the first to leap into action. Her fuzzy paws rest on your [pc.thigh] (almost hugging you) while her mouth slurps at the crown of your [pc.cock " + x + "]. Glossy, spit-slick lips stretch around your [pc.cockHeadNoun " + x + "], the halting suctions against your dilating cumslit more than pleasurable - L.D.C. has a wildly talented cocksucker at his beck and call!");
+		// Suula Dick
+		if(pc.cocks[x].cType == GLOBAL.TYPE_SUULA) output("\n\nThere’s some concern in that coal-black bun’s eyes the more he follows the sways of the cilia on your venom-phallus; toxin-bearing stingers apply their pleasure-seizing loads to the Hopper’s mouth seconds after she squirms you inside. A waterfall of spit froths and flows down her lapine chin, hardening her needy-looking dick to its fullest. You can see vibratory ripples in her cream-furred nutsack, gumballs of laquine-pre spurting from her twitching tip.");
+		// Merge
+		output("\n\nThe horny hare hungrily jerks her head forward, taking your [pc.cock] to the back of her throat in one lewd and lavish motion. ");
+		if(longii < 7) output("With how little you’re packing, it’s no issue for the azure bun to grind her nose into your loins. Your [pc.cockNoun " + x + "] luxuriates in the full service of her mouth");
+		else if(longii < 22) output("The azure-bun gargles and sputters the more of your girth she tries to inhale, and she only makes it halfway down your [pc.cockNoun " + x + "]");
+		else output("Tears well at the corners of her glazing eyes trying to fit even a quarter of your " + (silly ? "pounder":"[pc.cockNoun " + x + "]") + " in");
+		output(". One fuzzy, vigorous hand latches onto ");
+		if(pc.balls > 0) output("your [pc.sack]");
+		else if(pc.hasVagina()) output("[pc.oneVagina]");
+		else output("your [pc.base " + x + "]");
+		output(" as a thick tongue rolls around your pole." + (longii >= 22 ? " She may not be able to suck it all down, but that obedient bun is doing exactly what she needs to.":""));
+		output("\n\nA slave girl helpfully pushes the Jumper’s big (little) man into action.");
+		output("\n\nHis fluttery nose is embedded in your ");
+		if(pc.balls > 0 ? "[pc.sack]");
+		else if(pc.hasVagina()) output("[pc.pussyNoun]");
+		else output("[pc.base " + x + "]");
+		output(" - L.D.C. gasps for air, drawing his tongue across your overheating loins before coming to rest near the blue-bun’s happily wriggling mouth. Blue bunny-lips stretch and hollow across the inches of your [pc.cockNoun " + x + "], keeping it shined with spit. Pockets of pooling pre are slurped up by his stubborn mouth, and he he finally brings one of his tiny paws to your [pc.cockNoun " + x + "] at the ");
+		if(pc.isBimbo() || pc.isBro()) output("horny");
+		else if(pc.isNice()) output("gentle");
+		else output("not so gentle");
+		output(" urging of your [pc.hand], accepting his position.");
+		if(pc.cockTotal() > 1) 
+		{
+			var otherDikk:Number = 0;
+			if(otherDikk == x) otherDikk++;
+			output(" Your extra cock throbs demandingly " + (pc.cocks[otherDikk].cLength() < 7 ? "above":"atop") + ", squirting your salty lubricant onto his head.");
+		}
+		output("\n\nBoth Jumpers are now in full swing, licking and sucking your [pc.cocksLight] like they’ve discovered a new favorite sweet. Enthusiasm drips like every rope of cummy saliva from their mouths. Your [pc.toes] curl and dig into the deck as the beginnings of euphoria swim throughout your body. Lissome paws wander between your [pc.thighs]");
+		if(pc.balls > 0)
+		{
+			output(", fondling the ");
+			if(pc.ballDiameter() < 3) output("weighty");
+			else if(pc.ballDiameter() < 5) output("heavily swinging");
+			else output("sloshing");
+			output(" cum-sack respectfully");
+		}
+		else if(pc.hasSheath(x)) output(", teasing the innards of your sheath");
+		else if(pc.hasVagina()) output(", teasing out a [pc.clit] from your vaginal hood before rubbing it in smooth circular motions");
+		else if(pc.hasKnot(x)) output("ringing the bulge of your breeding bulb");
+		else output("caressing the flat of [pc.skinFurScalesNoun] where phallus meets groin");
+		output(".");
+		output("\n\n’Candied’ is an appropriate description of the Hopper’s mouth around your [pc.cocks]" + (pc.cockTotal() > 1 ? " and especially L.D.C.’s! That little suckling wonder is working magic around your multiple endowments, jerking your rods with innate expertise and honing in on the tenderest places":"") + ".");
+		output("\n\nAnother so-helpful servant pulls " + (enemy.lust() < enemy.lustMax() ? "down the XO’s zipper":"tears off what’s left of the XO’s bodysuit") + ", revealing the vanilla-flavored mounds of her luscious chest which heave with inattentively whorish moans. More girls move in from behind, trained hands darting for bright, jutting nipples and flaring boners. Those stimulations cause the oral rhythms you enjoy to fall apart into phallus-obsessive frenzy. Bunny ears lilt and energetic muzzles forgo sensuality to slide back and forth, over and around with unrestrained kinetic fervor to savor the tastiest fluids, coaxing out hotter loads from your [pc.cocksLight]" + (pc.balls > 0 ? " with squeezes to your [pc.balls]":"") + ".");
+		output("\n\nOne particularly cute kaithrit girl shuffles behind you, purring and nuzzling her warm cheek to your [pc.ass] and working on whatever she can find from there. Her full-body-rumbling on your ");
+		if(pc.balls > 0) output("taut ballsack");
+		else if(pc.hasVagina()) output("ambrosial slit");
+		else output("[pc.cockType " + x + "] hardness");
+		output(" feels heavenly.");
+		output("\n\nAs pleasing as this scenario is, you’re not totally blind to what’s going on below. The shock-bun’s sizeable slab of herm-cock is nothing compared to the elephantine mast between her lover-boys legs. Every time that lurid tower of laquine meat pulses it grows just a bit bigger, snaking up at an angle that’ll soon overshadow him and be pressing at your own. It’s soon pressed down and aimed between your legs, though its defiant throbs bounce it skyward.");
+		output("\n\nMost of the pleasure building comes from the whiskered mouths of the two bunny-pirates polishing your [pc.cocksLight], but the comfort-girls deserve a little recognition too. Warm and tender hands massage your [pc.legOrLegs], focusing on your love handles and [pc.ass]. When your conquests aren’t fondling something, the slaves take over, treating your extremities like they would anyone else’s: with love.");
+		// PC cunt tail
+		if(pc.hasCuntTail()) 
+		{
+			output("\n\nMental and emotional flashes of parasitical passion indicate that your [pc.cuntTail] senses the feast arrayed before it, and it transmits to your mind its inability to choose from the two magnificent cocks available. You squint and fire off a thought back to it, suggesting that it take from the most meaty source available: the L.D.C. You’re not sure if the response was a ‘thank you’ or ‘with pleasure’, but the cum-seeking organism spreads its drooling alien lips wide around the Jumper boss’ pillar, stretching wider than they ever have before just to secure itself around his flared tip.");
+			output("\n\nThrough your nerve-melded relationship, you feel the frictious texture of its attempts to pull in more of that tremendous horsecock, and you already feel the searing pre spurting into its unknowable depths. You almost can’t wait for him to cum, to be privy to that raw detonation of delight. Sure, the Hopper’s got the bigger balls (literally and figuratively), but feeling that dick going off inside... Oh man.");
+		}
+		// Merge
+		output("\n\nThe slovenly shock-bunny pulls your [pc.cock " + x + "] from her mouth, gasping for air and bouncing from the pulses in her own gently stroked dick. She falls into you muzzle-first, face overlapped by your juice-glistening prick" + (pc.cockTotal() > 1 ? "s":"") + ", licking the undersides like a voracious slut while pawing " + (pc.cockTotal() == 1 ? "its":"their") + " full length" + (pc.cockTotal() > 1 ? "s":"") + " with the adoration and visage of a born cocksleeve. That kind of dedication deserves a reward, and you ensure the underperforming L.D.C. watches as his LT is rewarded with a scritch behind the floppy ears and another mouthful of [pc.cockType " + x + "] meat. <i>“Maybe I’ll keep this bunny. You’ve got her on a good leash, and she’s good at at lip service.”</i>");
+		output("\n\n<i>“F-fuck, no! Don’t be that kind of pr-!”</i> L.D.C. whines, but you merely shove him back into your sweat-caked surface, moaning in mounting bliss as his tongue runs over your crotch all over again.");
+		output("\n\nIt’s not just the feel of that thick muscle that has you clenching your [pc.thighs] together, it’s that you can feel his consternation behind it - that little bit of resistance tickles your dominant side, and it makes his hand-smothering balls lurch closer to orgasm. The " + (silly ? "ink-ribbun":"ink-bun") + " wants to mouth off and act tough, but he also can’t admit he fucking loves being your bitch. You can see that subby side no clearer than when you grab him by his tall ears and rein him in.");
+		output("\n\nYou guide the imperious pirate down your girth until he’s kissing her right around your swollen tip");
+		if(pc.cockTotal() > 1) output(", the other slaves rubbing your extra dick" + (pc.cockTotal() > 2 ? "s":"") + " into their smooth foreheads, making sure these oversexed rabbits are thoroughly lathered in your cascading " + (pc.isHerm() ? "herm-":"") + "goo");
+		output(".");
+		output("\n\n<i>“Then show me why I shouldn’t,”</i> you say, glowering at the cowed boi and commanding him to <i>“Open wide.”</i>");
+		output("\n\nHe grits his teeth, doing as you command seconds later. There’s no time for him to have second thoughts, because you shove your [pc.cock " + x + "] right into the jizz-flecked hole" + (longii >= 13 ? ", battering his throat just a second later":"") + ". The laquine slobbers all over you with his wriggling tongue. Perhaps that squirming flesh is begging you to fuck his face. Perhaps it’s just a desperate and inelegant attempt to get you off before you do that.");
+		output("\n\nIt works - you fire off one then two shots of [pc.cumNoun] into his maw, growling to contain the sudden pleasure");
+		if(pc.cockTotal() > 1)
+		{
+			output(", your extra dick" + (pc.cockTotal() > 2 ? "s shoot":" shoots") + " a rope " + (pc.cockTotal() > 2 ? "each ":"") + "over his head, making him look just a bit messier");
+		}
+		output(". You shove back and hammer his mouth, intent on fucking his throat full of the load churning inside.");
+		output("\n\nThe pervy hopper stares ruefully " + (pc.cockTotal() == 1 ? "before joining him again, peppering your dripping dong with reverent kisses":"before taking your extra [pc.cockNoun " + x + "] between her lips and giving it the blowjob it’s been waiting for") + ". The black and blue bunch are helpless to attend their own needs, but the slaves are doing that for them. They sit side-by-side, eyes, tongues and lips focused on bringing you to climax. " + (pc.cockTotal() == 1 ? "L.D.C. rubs":"They rub") + " circles into your [pc.hips]");
+		if(longii < 7) output(", moaning");
+		else if(longii < 16) output(", gargling");
+		else output(", choking");
+		output(" as you thrust a few more unrelenting inches into " + (pc.cockTotal() == 1 ? "him":"them") + ". The slut-bun’s cheeks hollow in loud and submissive suckles" + (pc.cockTotal() > 1 ? ", the trained throat of his militant bottom-bitch contrasting well with his virgin neck":"") + ".");
+		output("\n\nPraise for the cock-burdened bunny’s aggressive fellatio tumbles out of your mouth. He manages to keep his mismatched eyes open the whole time even while his head is on autopilot and focused on tending your [pc.cock " + x + "]. You slam into " + (pc.cockTotal() == 1 ? "his face":"their faces") + " with stunning strength, the helpful harem keeping the libidinous laquine" + (pc.cockTotal() > 1 ? "s":"") + " steady so that you might admire your prizes better. Thick and hot air hisses through their lips, making the veins on your [pc.cocksLight] distend. You’re all too happy to reciprocate the energy, now scratching both of their heads as your pace falls apart into wanton glee.");
+		output("\n\nThe blue-bun’s eyes cross and seal shut. Her whole body squirms and humps in the throes of orgasm - the herm-boss’s cock has taken full control of her brain. A powerful gout of cum squirts into the air and rains down on a few slaves. That brace of girl-dick is aimed away from you by the slaves who ease out the modded-up loads churning out of her scent-billowing maleness in long gouts of familiar stickiness.");
+		output("\n\nL.D.C. isn’t too far behind, but it’s the unique cock-pleasing spasms of his throat that leave it up to galactic forensics to decide who shot first. " + (pc.cockTotal() == 1 ? "The bunny boy is":"Both bunnies are") + " shoved down onto your " + (pc.cockTotal() == 1 ? "[pc.cockNoun " + x + "]":"[pc.cocksLight]") + " ");
+		if(pc.balls > 0) output(" {balls-deep / nearly balls-deep} just before your spunk-tanks begin to drain.");
 output("\n\nA torrential ocean of bunny batter fires {between your legs, splattering the kitty-girl behind you and painting a wide cone of the room white with laquine virility / into the depths of your [pc.cuntTail] to places unknown, distending the green-skinned alien with the virile treat it so desired. Until it’s shot right off his dick and left disgustingly obese with rabbit-seed}.");
 output("\n\n// PC low cum");
 output("\n\nAlthough the mouth{s} around your [pc.cocks] suck with the power of a pussy, your [pc.balls] {don’t/doesn’t} have the necessary amounts of [pc.cum] to adequately reward your cocksucker{s}.");
