@@ -11983,6 +11983,7 @@
 			if (janeriaScore() >= 5) race = "janeria";
 			if (gabilaniScore() >= 5) race = "gabilani";
 			if (frogScore() >= 5) race = "kerokoras";
+			if (rodentScore() >= 4) race = "mouse-morph";
 			if (kaithritScore() >= 6) race = "kaithrit";
 			if (felineScore() >= 5 && race != "kaithrit") race = felineRace();
 			if (canineScore() + lupineScore() >= 5 && !InCollection(race, ["ausar", "huskar"])) race = canineRace();
@@ -12968,6 +12969,17 @@
 				if(hasTailFlag(GLOBAL.FLAG_FLUFFY)) counter++;
 			}
 			if (counter > 0 && !hasFur()) counter--;
+			return counter;
+		}
+		public function rodentScore(): int
+		{
+			var counter:int = 0;
+			if(earType == GLOBAL.TYPE_MOUSE) counter+=2;
+			if(faceType == GLOBAL.TYPE_MOUSE) counter++;
+			if(armType == GLOBAL.TYPE_MOUSE) counter++;
+			if(legType == GLOBAL.TYPE_MOUSE) counter++;
+			if(tailType == GLOBAL.TYPE_MOUSE && tailCount > 0) counter++;
+			if (counter > 0 && hasFur()) counter++;
 			return counter;
 		}
 		public function saurmorianScore():Number
