@@ -37,7 +37,7 @@ public function bothriocQuestAvailable():Boolean
 {
 	if(pc.level < 7) return false;
 	
-	return (flags["MET_CHARLES"] != undefined && flags["ARAKEI_TALKED"] != undefined && flags["ARAKEI_TALKED_BOTHRIOC"] != undefined && flags["ARAKEI_TALKED_AMBASSADOR"] != undefined && flags["ARAKEI_TALKED_HISTORY"] != undefined && flags["ARAKEI_TALKED_OTHERBOTHRIOC"] != undefined && flags["DEEP_CAVES_STEP"] != undefined);
+	return (flags["MET_CHARLES"] != undefined && flags["ARAKEI_TALKED"] != undefined && flags["ARAKEI_TALKED_BOTHRIOC"] != undefined && flags["ARAKEI_TALKED_AMBASSADOR"] != undefined && flags["ARAKEI_TALKED_HISTORY"] != undefined && flags["ARAKEI_TALKED_OTHERBOTHRIOC"] != undefined);
 }
 public function bothriocQuestActive():Boolean
 {
