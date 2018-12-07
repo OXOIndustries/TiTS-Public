@@ -40,7 +40,10 @@ public function showBothriocQuadomme():void
 // Quadomme encounter check
 public function tryEncounterBothriocQuadomme():Boolean
 {
-	if(pc.level < 7) return false;
+	if (pc.level < 7) return false;
+	
+	//set quaddomme to appear only when quest is active or completed
+	if (flags["BOTHRIOC_QUEST"] == undefined) return false;
 	
 	var quadommeTrap:Boolean = false;
 	switch(currentLocation)
