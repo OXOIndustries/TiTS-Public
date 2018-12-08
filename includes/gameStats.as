@@ -1325,6 +1325,8 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Laquine:</b> " + prettifyGeneticMarker(pc.laquineScore(), 5, 6));
 		if(CodexManager.entryUnlocked("Mothrine") && pc.mothrineScore() > 0)
 			output2("\n<b>* Mothrine:</b> " + prettifyGeneticMarker(pc.mothrineScore(), 5, 10));
+		if(pc.rodentScore() > 0)
+			output2("\n<b>* Mouse:</b> " + prettifyGeneticMarker(pc.rodentScore(), 4, 7));
 		if(flags["PLANET_3_UNLOCKED"] != undefined)
 		{
 			if(pc.myrScore() > 0) output2("\n<b>* Myr:</b> " + prettifyGeneticMarker(pc.myrScore(), 4, 6));
