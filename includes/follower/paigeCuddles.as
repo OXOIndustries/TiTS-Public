@@ -462,7 +462,7 @@ public function paigeAboutToGetFucked():void
 	{
 		output("\n\nShe finds your [pc.cock]");
 		if (pc.longestCockLength() >= 12) output(", without much effort at all");
-		output("; you’re already leaking [pc.precum], which takes you for a surprise at first: you were so focused on pleasuring Paige that you hardly paid any attention to how solid you are yourself. The skin of your shaft is taut and hot; Paige wraps her fingers around you and gives you several experimental strokes, rising as high as your [pc.cockHead] to swipe at your fresh dollop of pre, as low as your [pc.base]");
+		output("; you’re already leaking precum, which takes you for a surprise at first: you were so focused on pleasuring Paige that you hardly paid any attention to how solid you are yourself. The skin of your shaft is taut and hot; Paige wraps her fingers around you and gives you several experimental strokes, rising as high as your [pc.cockHead] to swipe at your fresh dollop of pre, as low as your [pc.base]");
 		if (pc.balls > 0) output(", giving your [pc.sack] a quick fondle on the way down");
 		output(". And after those first few ‘experimental’ strokes, she really starts fucking you with her hand.");
 	}
