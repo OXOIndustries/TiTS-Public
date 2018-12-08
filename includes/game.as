@@ -2497,13 +2497,23 @@ public function showerMenu(special:String = "ship"):void
 	var showerInShip:Boolean = (special == "ship" && InShipInterior(pc));
 	
 	output("You find yourself in the " + special + "’s shower room.");
-	if(showerInShip) output("\n\nNext to the shower is a medicine cabinet with various hygiene products.");
+	if(showerInShip)
+	{
+		output("\n\nNext to the shower is a medicine cabinet with various hygiene products.");
+		if (paigeInTheShower()) output("\n\nThere are a number of stalls in the shower room; the closest one is reserved the ship's captain and the rest of your crew always leaves it open. That said, one of the other stalls is occupied, and you can hear the gentle singing of your Ausar lover and yoga instructor, Paige, over the running water.\n\n" + (pc.isTaur() ? "As much as the idea of joining her entices you, these showers barely have enough room in them for your gargantuan body as it is; shoving a second person into one of them is asking a lot. You'll have to pass on sexy shower shenanigans this time." : "You could offer to join her, if you wanted. Knowing her, she'd let you in. Or you could just go about your business as usual."));
+	}
+
 	output("\n\nWhat would you like to do?");
 	
 	clearMenu();
 	addButton(0, "Shower", showerOptions, [0, special], "Shower", "Take a shower and wash off any sweat or grime you might have.");
 	if (showerInShip || special == "nursery") addButton(1, "Cabinet", showerOptions, [1, special], "Bathroom Cabinet", "Check your bathroom’s medicine cabinet.");
 	if (showerInShip && pc.lust() >= 33 && crew(true) > 0) addButton(2, "Sex", showerOptions, [2, special], "Sex", "Have some shower sex with a crew member.");
+	if (showerInShip && !pc.isTaur() && paigeInTheShower())
+	{
+		if (pc.isTaur()) addDisabledButton(3, "Paige");
+		else addButton(3, "Paige", paigeDoItInTheShower);
+	}
 	showerDoucheToggleButton(5);
 	addButton(14, "Back", showerExit);
 }
@@ -3648,7 +3658,11 @@ public function variableRoomUpdateCheck():void
 		rooms["LIEVE BUNKER"].addFlag(GLOBAL.NPC);
 		rooms["803"].removeFlag(GLOBAL.OBJECTIVE);
 	}
-
+	
+	//Breedwell
+	if (quaelleSexTimer(1, 6) || quaelleIsImmobile()) rooms["BREEDWELL_QUAELLE_APT"].addFlag(GLOBAL.NPC);
+	else rooms["BREEDWELL_QUAELLE_APT"].removeFlag(GLOBAL.NPC);
+	
 	/* ZHENG SHI */
 
 	if(rooms["ZSM U2"].hasFlag(GLOBAL.NPC) && flags["MAIKE_SLAVES_RELEASED"] != undefined) rooms["ZSM U2"].removeFlag(GLOBAL.NPC);
@@ -3897,7 +3911,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		processQuinnPregEvents(deltaT, doOut, totalDays);
 		processUlaPregEvents(deltaT, doOut, totalDays);
 		processBothriocQuadommeEvents(deltaT, doOut, totalDays);
-		//9999 processQuaellePregEvents(deltaT, doOut, totalDays);
+		processQuaellePregEvents(deltaT, doOut, totalDays);
 	}
 	
 	var totalHours:uint = Math.floor((minutes + deltaT) / 60);

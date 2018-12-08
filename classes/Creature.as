@@ -3548,6 +3548,7 @@
 			removeStatusEffect("Oil Numbed");
 			removeStatusEffect("Oil Aroused");
 			removeStatusEffect("Oil Slicked");
+			removeStatusEffect("Roehm Slimed");
 			if(hasStatusEffect("Painted Penis") || hasStatusEffect("Body Paint"))
 			{
 				if(this is PlayerCharacter) AddLogEvent("Washing yourself has cleaned off any and all paint that had been covering your body.");
@@ -20103,7 +20104,7 @@
 		 */
 		public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
-			throw new Error("Creature combat handler for " + this.short + " has not been overriden!");
+			throw new Error("Creature combat handler for " + short + " has not been overriden!");
 		}
 		
 		/**
@@ -21913,13 +21914,13 @@
 		{
 			var desc:String = "";
 			
-			if(!this.hasStatusEffect("Cum Soaked"))
+			if(!hasStatusEffect("Cum Soaked"))
 			{
 				if(this is PlayerCharacter) desc = "You’re drenched in cum! Anyone can tell at a glance what sort of activities you’ve been engaging in!";
-				else desc = this.capitalA + this.short + " " + (!isPlural ? "is" : "are") + " completely covered in cum!";
-				this.createStatusEffect("Cum Soaked",1,0,0,0,false,"Icon_Splatter",desc,false,0,0xB793C4);
+				else desc = capitalA + short + " " + (!isPlural ? "is" : "are") + " completely covered in cum!";
+				createStatusEffect("Cum Soaked",1,0,0,0,false,"Icon_Splatter",desc,false,0,0xB793C4);
 			}
-			else this.addStatusValue("Cum Soaked",1,1);
+			else addStatusValue("Cum Soaked",1,1);
 			
 			if(this is PlayerCharacter) kGAMECLASS.mimbraneFeed("all");
 		}
@@ -21927,13 +21928,13 @@
 		{
 			var desc:String = "";
 			
-			if(!this.hasStatusEffect("Pussy Drenched"))
+			if(!hasStatusEffect("Pussy Drenched"))
 			{
 				if(this is PlayerCharacter) desc = "You’re drenched in girlcum! Anyone can tell at a glance what sort of activities you’ve been engaging in!";
-				else desc = this.capitalA + this.short + " " + (!isPlural ? "is" : "are") + " completely covered in girlcum!";
-				this.createStatusEffect("Pussy Drenched",1,0,0,0,false,"Icon_Water_Drop",desc,false,0,0xB793C4);
+				else desc = capitalA + short + " " + (!isPlural ? "is" : "are") + " completely covered in girlcum!";
+				createStatusEffect("Pussy Drenched",1,0,0,0,false,"Icon_Water_Drop",desc,false,0,0xB793C4);
 			}
-			else this.addStatusValue("Pussy Drenched",1,1);
+			else addStatusValue("Pussy Drenched",1,1);
 			
 			if(this is PlayerCharacter) kGAMECLASS.mimbraneFeed("all");
 		}
@@ -21945,13 +21946,13 @@
 		{
 			var desc:String = "";
 			
-			if(!this.hasStatusEffect("Milk Bathed"))
+			if(!hasStatusEffect("Milk Bathed"))
 			{
 				if(this is PlayerCharacter) desc = "You’re drenched in breastmilk! Anyone can tell at a glance what sort of activities you’ve been engaging in!";
-				else desc = this.capitalA + this.short + " " + (!isPlural ? "is" : "are") + " completely covered in breastmilk!";
-				this.createStatusEffect("Milk Bathed",1,0,0,0,false,"Icon_Rain_Drops",desc,false,0,0xB793C4);
+				else desc = capitalA + short + " " + (!isPlural ? "is" : "are") + " completely covered in breastmilk!";
+				createStatusEffect("Milk Bathed",1,0,0,0,false,"Icon_Rain_Drops",desc,false,0,0xB793C4);
 			}
-			else this.addStatusValue("Milk Bathed",1,1);
+			else addStatusValue("Milk Bathed",1,1);
 			
 			if(this is PlayerCharacter) kGAMECLASS.mimbraneFeed("all");
 		}
@@ -21960,7 +21961,7 @@
 			var desc:String = "";
 			
 			if(this is PlayerCharacter) desc = "You are unnaturally hard and erect regardless of your arousal level. The added discomfort prevents you from covering up!";
-			else desc = this.capitalA + this.short + " " + (!isPlural ? "is" : "are") + " unnaturally erect regardless of arousal level!";
+			else desc = capitalA + short + " " + (!isPlural ? "is" : "are") + " unnaturally erect regardless of arousal level!";
 			
 			// Priapism
 			// Minimum lust raised to 33 if below :3

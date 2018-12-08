@@ -157,6 +157,7 @@
 		include "../includes/follower/paigeCuddles.as";        
 		include "../includes/follower/paigeHalloweener.as";
 		include "../includes/follower/paigeSex.as";
+		include "../includes/follower/paigeShower.as";
 		include "../includes/follower/paigeSpar.as";
 		include "../includes/follower/penny.as";
 		include "../includes/follower/pippa.as";
@@ -441,6 +442,7 @@
 		// Breedwell
 		include "../includes/breedwell/breedwell.as";
 		include "../includes/breedwell/rooms.as";
+		include "../includes/breedwell/quaelle.as";
 		
 		// GASTIGOTH!
 		include "../includes/gastigoth/gastigoth.as";
