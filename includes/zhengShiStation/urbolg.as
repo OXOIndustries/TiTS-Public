@@ -2444,17 +2444,19 @@ public function rideUrbolgsCock(x:int):void
 	}
 	else
 	{
-		output("\n\nThe pleasure rolls through you time and time again, making you tighten your abdominals with increasing fierceness until you realize that no matter how much you force this, nothing’s going to come out. You let out a low moan as all of the bliss stays internal, your cock shaking and flexing while you suffer a massive dry orgasm. He’s so deep and big inside you that you never had a chance. Urbolg just grins up at you and spanks you again, forcing you to roll your eyes upwards and reflexively tighten up on him.");
+		output("\n\nThe pleasure rolls through you time and time again, making you tighten your abdominals with increasing fierceness until you realize that no matter how much you force this, nothing’s going to come out. You let out a low moan as all of the bliss stays internal");
+		if(pc.hasCock()) output(", your cock shaking and flexing while you suffer a massive dry orgasm");
+		output(". He’s so deep and big inside you that you never had a chance. Urbolg just grins up at you and spanks you again, forcing you to roll your eyes upwards and reflexively tighten up on him.");
 		output("\n\n<i>“Nnnngh! Nnnn- nnnnuuuhh...”</i> you moan.");
 		output("\n\n<i>“Maybe next time, kid,”</i> Urbolg grunts in amusement.");
 	}
-	output("\n\nStill suffering the aftershocks of orgasm but unwilling to give up your mission to make daddy cum, you raise your hips once more." + (x >= 0 ? " You’re so oversensitive after being made to cum that it’s a hell of a struggle, but you’re determined to do it for him":" His giant knot moving around inside you grants the slightest of opportunities for cum to slowly drip from your half-hard cock, bouncing against his stomach with dull splatters. Honestly, you couldn’t care less right now") + ". You just want to make him cum, to hear his groans of pleasure, to feel him shudder and throb inside your" + (x >= 0 ? " dripping, needy cunt":" stretched-taut, squeezing asshole") + ".");
+	output("\n\nStill suffering the aftershocks of orgasm but unwilling to give up your mission to make daddy cum, you raise your hips once more." + (x >= 0 ? " You’re so oversensitive after being made to cum that it’s a hell of a struggle, but you’re determined to do it for him":(" His giant knot moving around inside you " + (pc.hasCock() ? "grants the slightest of opportunities for cum to slowly drip from your half-hard cock, bouncing against his stomach with dull splatters" : "stirs your arousal to the edge as you bounce against his stomach") + ". Honestly, you couldn’t care less right now")) + ". You just want to make him cum, to hear his groans of pleasure, to feel him shudder and throb inside your" + (x >= 0 ? " dripping, needy cunt":" stretched-taut, squeezing asshole") + ".");
 	output("\n\n<i>“Nnn, fuck,”</i> Urbolg curses, grabbing your hips and beginning to bounce you more forcefully. <i>“C’mon, ye little slut!”</i>");
 	output("\n\n<i>“Oh! Oh, daddy!”</i> you half-scream, every bit of your body responding with red-hot lust. <i>“Fuck me! Fuck me! Fuck my little " + (x >= 0 ? "cunt":"asshole") + "!”</i>");
 	output("\n\nUrbolg lets out a breathless groan of release, his arms and legs tensing so hard against you that you can’t resist feeling them up as you arch your back for him. Responding in kind to his obvious pleasure, you feel yourself suffer a second orgasm as he lifts you up and slams you all the way to the hilt of his giant knot" + (pc.hasCock() ? ", the sheer force sending [pc.cum] streaming from your [pc.cockHeadBiggest]":"") + ". You moan like a whore to underline his desperate panting, the man you desire so badly shivering underneath you. <i>Fuck</i>, that feels good...");
 	output("\n\nHolding you in place and spreading your legs with his own, Urbolg strains and grunts while he rides out his orgasm. The sheer eroticism of watching him grit his teeth and squeeze his eyes shut has you halfway to cumming again before he finishes");
 	if(x >= 0) output(", your pussy quivering in utter submission around his brutal knot");
-	else if(x >= 0) output(", your cock" + (pc.cockTotal() > 1 ? "s":"") + " standing upright once more");
+	else if(pc.hasCock()) output(", your cock" + (pc.cockTotal() > 1 ? "s":"") + " standing upright once more");
 	output(". God... maybe you should look into a more permanent arrangement with him.");
 
 	output("\n\nHe finally lets you go, allowing you to collapse forward onto his generous, furred tummy and his muscular chest. Just getting to lie on top of the tough but fluffy man feels like a reward all on its own, your fingers running through the korgonne’s thick fur. You close your eyes to savor the moment before opening them and seeing Urbolg looking up at you with a lazy confidence.");
@@ -2474,14 +2476,14 @@ public function rideUrbolgsCock(x:int):void
 	output("\n\n<i>“Gotta get back to work, kid,”</i> Urbolg says, lifting you up with surprising ease. Your moan as he slips free of your gaping " + (x >= 0 ? "pussy":"ring") + " is loud enough to make his ears flick back. <i>“Don’ worry, ye can come back and get stretched out again any time ye like.”</i>");
 
 	output("\n\n<i>“Yes, daddyyyy,”</i> you moan as he deposits you face-down on your bed and dresses himself. Affording yourself a lusty gaze at his strong back and thick buttcheeks as he fastens his apron, you admire his staunch form. You could spend all <i>day</i> just licking and massaging that, like worshipping at a temple. Just the thought of it makes you shiver in amongst your sheets a little");
-	if(x >= 0) output("arousal heating your body");
-	else output("your cock stiffening to full erection against your mattress");
+	if(x >= 0) output(", arousal heating your body");
+	else if(pc.hasCock()) output(", your cock stiffening to full erection against your mattress");
 	output(".");
 	output("\n\n<i>“Arright. Come get me when ye need some more,”</i> Urbolg says, nodding at you before grinning. <i>“Got a feelin’ it’ll be sooner than later. See ya, kid.”</i>");
 	output("\n\n<i>“Bye, daddy,”</i> you say, waving until you’re alone in your room, thick sperm slowly dripping down your [pc.thighs] as if to mark you as property. If that’s what it takes, you’re <i>more</i> than happy to play the part. Your flexing, aching fuckhole is going to remember this encounter every bit as much as you will, that’s for sure...");
 	currentLocation = "SHIP INTERIOR";
 	processTime(55);
-	if(x >= 0) pc.loadInCunt(chars["URBOLG"],0);
+	if(x >= 0) pc.loadInCunt(chars["URBOLG"],x);
 	else pc.loadInAss(chars["URBOLG"]);
 	IncrementFlag("URBOLG_RIDES");
 	IncrementFlag("SEXED_URBOLG");
