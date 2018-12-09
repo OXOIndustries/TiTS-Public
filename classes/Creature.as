@@ -359,6 +359,16 @@
 				r.burning.damageValue += Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Cooled") / 1440));
 			}
 			
+			if (accessory.hasFlag(GLOBAL.ITEM_FLAG_SHELTER) || armor.hasFlag(GLOBAL.ITEM_FLAG_SHELTER) || shield.hasFlag(GLOBAL.ITEM_FLAG_SHELTER))
+			{
+				r.kinetic.resistanceValue += 60;
+				r.electric.resistanceValue += 60;
+				r.burning.resistanceValue += 60;
+				r.freezing.resistanceValue += 60;
+				r.corrosive.resistanceValue += 60;
+				r.poison.resistanceValue += 60;
+			}
+			
 			//-20% electric, kinetic, +40% lust. maybe rebalance? -lighter
 			if (hasStatusEffect("Tenderized"))
 			{
@@ -5503,7 +5513,7 @@
 			if (hasPerk("Shield Booster")) temp += level * 8;
 			if (hasPerk("Attack Drone") && hasActiveCombatDrone(true, false)) temp += (3 * level);
 			if (hasStatusEffect("Valden-Possessed")) temp *= 1 + AkkadiSecurityRobots.valdenShieldBuffMult;
-
+			
 			//Debuffs!
 			if(hasStatusEffect("Rusted Emitters")) temp = Math.round(temp * 0.75);
 			
