@@ -64,123 +64,26 @@ public function shockHopperEncounter():void
 }
 
 //[Fight!]
-/*
-output("\n\nFight Notes/Text");
-output("\n\nThe shock hopper has massive shields and a good HP pool. She’s outright immune to Electrical damage and her shields have good Energy resist all around. Defeating her by HP should be pretty damn hard, but not impossible. Give her all the Shield tree tech specialist perks, too.");
+//Fight Notes/Text
+//The shock hopper has massive shields and a good HP pool. She’s outright immune to Electrical damage and her shields have good Energy resist all around. Defeating her by HP should be pretty damn hard, but not impossible. Give her all the Shield tree tech specialist perks, too.
 
-output("\n\nOn top of her normal action every round, she blasts the floor with electricity to deal DOT to the PC. This stops only when she blows through her second Lust bar.");
+//On top of her normal action every round, she blasts the floor with electricity to deal DOT to the PC. This stops only when she blows through her second Lust bar.
 
-output("\n\nIf the PC teases her to max, she cums in her suit and bloats it up, reducing her Evasion. If she cums again, her suit ruptures and sprays spunk all over the floor - and everything/one in the room. If she’s lusted out a third time, she finally succumbs.");
+//If the PC teases her to max, she cums in her suit and bloats it up, reducing her Evasion. If she cums again, her suit ruptures and sprays spunk all over the floor - and everything/one in the room. If she’s lusted out a third time, she finally succumbs.
 
-output("\n\nShe only uses Physical attacks when she’s on her first lust bar. She’ll mix it up starting with her second lust bar onwards.");
+//She only uses Physical attacks when she’s on her first lust bar. She’ll mix it up starting with her second lust bar onwards.
 
-output("\n\n//Fight text:");
-output("\n\nYou’re fighting the Shock Hopper!");
-
-output("\n\nThe Jumper’s second-in-command is a statuesque woman, blessed with a killer top-heavy hourglass figure that’s been seriously enhanced by a tight latex bodysuit. The suit’s a dark orange, polished to a shine and bears a tight corset around the midriff that only serves to further emphasize her bare cleavage. There’s very little of her baby-blue fur on display aside from her cheeks and chest, and much of her head is covered by a bright pink mohawk. She’s certainly got a colorful ensemble!");
-
-output("\n\n{Lust stage 2: The Hopper’s got herself a pretty massive bulge in her loins, spent spunk sloshing freely around a throbbing boner. She’s almost ready to pop!");
-output("\n\n{Lust stage 3: The Hopper’s suit has been blown open by her own overmodded sperminess, rupturing the loins and leaving her balls and cock spraying all over. Guess she should have picked a more elastic material!");
-
-output("\n\n{Post first use of lightning cannon:");
-output("\n\nThe buxom bunny has a massive arc gun slung under a shoulder, crackling with electric energy and discharging wildly as she holds down the trigger.}");
+//ShockHopper.as contains all this junk
 
 
 
 
 
-output("\n\nEvery Turn I’m Shockeling");
-output("\n\n//Play at the start of every PC turn while the Hopper’s on her first two Lust bars. Zip zap bitch.");
-
-output("\n\nElectricity crackles around the barrel of the Hopper’s cannon, zapping the floor in random bursts that carry straight to your [pc.feet]!");
-
-output("\n\nLightning Gun");
-output("\n\n//Primary attack. Deals Electrical damage.");
-
-output("\n\n{First time she uses it:");
-output("\n\n<i>“Hit me, babe,”</i> the Hopper laughs, leaning into the bed and opening her mouth. The dark bunny boss-boy pulls a cigar from... somewhere... in the orgy pit on the bed and plants it between his latex-wrapped lieutenant’s lips. She whirls around to you and lets loose with a withering barrage of electrical energy, blasting away with the shock cannon. {Hit: You scream as the lightning courses through you //Miss: You leap back, dodging the worst of it}.");
-
-output("\n\nWhen she’s finished the assault, the Hopper twirls her cannon’s barrel up to her lips and uses the super-heated forks on it to light the cigar. <i>“Alright, <b>now</b> it’s go-time, fucker. Let’s dance!”</i>");
-output("\n\n}");
-
-output("\n\n{Repeat shots:");
-output("\n\nThe Hopper braces her rubber-sheathed feet on the deck and aims her heavy cannon at you. A squeeze of the trigger sends a shocking assault of electrical energy arcing through the air and right for you!  {Hit: You scream as the lightning blasts through your body! //Miss: You leap back, dodging the worst of it.}");
-
-
-output("\n\nDisco Grenade");
-output("\n\n//Causes Blindness for a turn and deals some Laser damage.");
-
-output("\n\n<i>“Glasses, everyone!”</i> the Hopper barks, reaching into her utility belt and whipping out a grey sphere. Her boss and his harem girls all scramble to put on sunglasses before the dickbunny throws it at you. The second it leaves her hand, the ball erupts in a blinding display of pyrotechnics and lasers, scatter-shooting beams of light every which-way!");
-
-output("\n\n{PC blinded: Literally blinding, in this case. You struggle to cover your eyes, but to no avail! <b>You’re blinded by the lights!</b>");
-output("\n\n//PC has blind-proof headgear: Too bad you came well-equipped for this shit. //Else, resisted (Reflexes based): You shield your eyes just in time to avoid the worst of it.}");
-
-output("\n\nSeveral of the laser beams pelt you, sizzling away!");
-
-
-output("\n\nRoundhouse Kick");
-output("\n\n//Deals low Kinetic damage, but has a 1-round Stun chance. Usable once per 5 rounds.");
-
-output("\n\n<i>“Chew on this!”</i> the bunny bitch howls, rushing at you and bouncing off the deck. You watch as she spins mid-air, thrusting out with one of her powerful legs. {Miss: You side-step the kung-fu furry’s kick! //Hit: Ooof! The kick catches you straight in the chest, sending you stumbling back!}");
-
-output("\n\n//Hit, PC fails a Physique check:");
-output("\n\nYou fly backwards with a second kick to the solar plexus, smacking your head on the bulkhead. Stars flash in front of your eyes, leaving you <b>momentarily stunned!</b>");
 
 
 
-output("\n\nBounce Bounce!");
-output("\n\n//Increases her Evasion and status-resist for 3 turns. Usable 1/encounter.");
-
-output("\n\nThe Shock Hopper takes a moment to psyche herself up, bouncing from one powerful leg to the other. She claps her hands when she’s finished, assuming a flowing martial artist’s stance as her lightning gun hangs on its sling, still zapping away. <i>“C’mon, show me what you’ve got!”</i>");
-
-output("\n\n{Silly or Hard PC: <i>“W-what are you doing?”</i> you say, watching her bouncing around.");
-
-output("\n\n<i>“Dance off, bro. Me and you! C’mon, boss-man!”</i>");
-
-output("\n\nThe bunny-boy just snickers and shakes his head.}");
 
 
-output("\n\nStroke It For Daddy!");
-output("\n\n//Basic lust attack. Deals herself a small amount of Lust damage.");
-
-output("\n\nThe Hopper pistons her hips forward, {2nd phase: twirling her dick around within the cum-stuffed confines of her bodysuit //3rd phase: helicoptering her cum-sheened cock in front of you and sending wads of spunk flying everywhere}. The wet sound it makes echoes through the cabin, accompanied by a heady musk.");
-
-
-output("\n\nHarem Cheerleaders!");
-output("\n\n//The LDC and his harem put on a lustful display that deals heavy Lust damage to both PC and Hopper.");
-
-output("\n\n<i>“Woah, this is really heating up, huh?”</i> the bunny-boy laughs, patting the head-giving pup between the ears. <i>“Why don’t you show my favorite cocksleeve what’s waiting for her when she finishes?”</i>");
-
-output("\n\nThe slave girls lounging around him giggle, groping themselves, their master... any cock or tit they can get their hands around. Lips meet, kissing pussies and cumslits with equal aplomb. The Hopper cuts her glance over as the harem-slaves fawn all over each other, and you watch the {bulge in her suit // floppy equine cock hanging out of her ruptured bodysuit} twitch with mounting desire.");
-
-output("\n\nButt Slam");
-output("\n\n//Deals a mix of Kinetic and Lust damage to the PC. Only usable once your Shields are down. Does WAY more Kinetic damage if she’s on her second lust bar (not third, either). If she’s in her third phase, instead deals more Lust damage to you.");
-
-output("\n\nThe Hopper crouches down and springs up in the air, spinning like she’s going to kick you... and instead slams her ass directly into your face! {First phase: Her bodysuit rubs on your [pc.face], giving you a good whiff of her cock and balls before she falls off you! //Second phase: All the cum stuffed into the lower half of her suit makes a potent squelching sound, bathing your [pc.face] in ballstench. //Third phase: The moment her ass impacts you, cum goes spraying out of the rupture in her suit, cascading down your [pc.chest] and butting her free-swinging nuts against your chin.");
-
-
-output("\n\nCombat Event: Bust a Nut (The First Time)");
-output("\n\n//Play when the SH gets to max Lust the first time. Doesn’t consume her turn.");
-
-output("\n\n<i>“Fuuuuck, babe, this {guy/gal}’s hot...”</i> the Hopper groans, biting her lip. Her legs twitch, propelling her a few inches off the deck like a manic... well, bunny.");
-
-output("\n\n<i>“Haha, yeah [pc.heShe] is!”</i> her leader shouts back. <i>“Should I be jealous?”</i>");
-
-output("\n\nThe Hopper whines, bouncing faster. <i>“I don’t... I don’t... can’t...”</i>");
-
-output("\n\nShe gasps, sucking in breath as the massive bulge in her suit throbs. A second later and a fat bulb starts growing inside her suit just over her dick, swelling with a sudden eruption of cum. The black bunny on the bed guffaws, watching his lieutenant cream herself with obvious glee. The front of her suit keeps bulging out as her obviously-modded balls empty themselves inside it, plumping out her belly and thighs until she looks positively fertile.");
-
-output("\n\n<i>“Woo, girl, work that dick!”</i> the boss bunny laughs. <i>“Don’t tear your suit now!”</i>");
-
-output("\n\nCombat Event: Bust a Nut, Bust Your Suit");
-output("\n\n<i>“A-ah God, not again,”</i> the Hopper whines, dropping a hand off her gun barrel to grab her throbbing dick. The cum-swell around her crotch suddenly starts growing, swelling bigger and bigger until the latex material of her bodysuit is discoloring with the stretch...");
-
-output("\n\n... and then <i>pop!</i> it goes, exploding in a shower of thick white that just keeps coming and coming. Her bodysuit looked swollen before, but now you’re shown just how much this modded-up bunny’s balls were capable of producing. The sheer, massive volume of her two orgasms sprays across the deck in a veritable flood, covering it in a sticky sheen of musky white.");
-
-output("\n\n<i>“Fuuuuuck,”</i> the Hopper groans, slumping back against the nearest bulkhead. <i>“Oh, my balls.”</i>");
-
-output("\n\nAs she’s recovering, another arc of lightning shoots from her gun to the floor, only to sputter out as it’s absorbed by the spooge everywhere. Looks like you won’t be dealing with that anymore!");
-*/
 
 //PC Loss: Shock Slave Bad End
 // PC is beaten, fucked (if the hopper busted a nut in her suit), then trained as a shock-slave.
