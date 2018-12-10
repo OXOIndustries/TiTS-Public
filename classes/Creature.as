@@ -359,6 +359,16 @@
 				r.burning.damageValue += Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Cooled") / 1440));
 			}
 			
+			if (accessory.hasFlag(GLOBAL.ITEM_FLAG_SHELTER) || armor.hasFlag(GLOBAL.ITEM_FLAG_SHELTER) || shield.hasFlag(GLOBAL.ITEM_FLAG_SHELTER))
+			{
+				r.kinetic.resistanceValue += 60;
+				r.electric.resistanceValue += 60;
+				r.burning.resistanceValue += 60;
+				r.freezing.resistanceValue += 60;
+				r.corrosive.resistanceValue += 60;
+				r.poison.resistanceValue += 60;
+			}
+			
 			//-20% electric, kinetic, +40% lust. maybe rebalance? -lighter
 			if (hasStatusEffect("Tenderized"))
 			{
@@ -5055,14 +5065,12 @@
 			if (hasPerk("Amazonian Needs")) bonus += 20;
 			if (hasPerk("Black Latex")) bonus += 10;
 			//Doesn't stack for reasons.
-			if (hasPerk("Treated Readiness") && bonus < 33) bonus = 33;
 			if (perkv1("Flower Power") > 0) bonus += perkv2("Flower Power");
 			if (perkv1("Ultra-Exhibitionist") > 0 && isFullyExposed(true)) bonus += (bonus < 23 ? 33 : 10);
 			//Halloween boost
 			if (hasPerk("Face Fucker")) bonus += perkv1("Face Fucker");
 
 			//Temporary Stuff
-			if (hasStatusEffect("Priapism") && bonus < 33) bonus = 33;
 			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
 			if (hasStatusEffect("Aphrodisiac Milk")) bonus += 33;
 			if (hasStatusEffect("Butt Bug (Female)")) bonus += 15;
@@ -5076,15 +5084,17 @@
 			bonus += statusEffectv1("Omega Oil");
 			bonus += statusEffectv2("Fried Cunt Snake");
 
+			//Venom brings minimum up to 35.
+			if (bonus < 20 && hasStatusEffect("Paradise!")) bonus = 20;
+			if (bonus < 20 && hasPerk("Peace of Mind")) bonus = 20;
+			if (bonus < 33 && lowerUndergarment is SavicitePanties) bonus = 33;
+			if (bonus < 33 && hasPerk("Treated Readiness")) bonus = 33;
+			if (bonus < 33 && hasStatusEffect("Priapism")) bonus = 33;
+			if (bonus < 35 && hasStatusEffect("Red Myr Venom")) bonus = 35;
 			if (hasStatusEffect("Lane Detoxing Weakness"))
 			{
 				if (bonus < statusEffectv2("Lane Detoxing Weakness")) bonus = statusEffectv2("Lane Detoxing Weakness");
 			}
-			//Venom brings minimum up to 35.
-			if (bonus < 35 && hasStatusEffect("Red Myr Venom")) bonus = 35;
-			if (bonus < 20 && hasStatusEffect("Paradise!")) bonus = 20;
-			if (bonus < 20 && hasPerk("Peace of Mind")) bonus = 20;
-			if (bonus < 33 && lowerUndergarment is SavicitePanties) bonus = 33;
 			return (0 + bonus);
 		}
 		public function physiqueMax(raw:Boolean = false): Number {
@@ -5503,7 +5513,7 @@
 			if (hasPerk("Shield Booster")) temp += level * 8;
 			if (hasPerk("Attack Drone") && hasActiveCombatDrone(true, false)) temp += (3 * level);
 			if (hasStatusEffect("Valden-Possessed")) temp *= 1 + AkkadiSecurityRobots.valdenShieldBuffMult;
-
+			
 			//Debuffs!
 			if(hasStatusEffect("Rusted Emitters")) temp = Math.round(temp * 0.75);
 			
@@ -10475,8 +10485,8 @@
 			else if (refractoryRate >= 15 && quantity < 20) quantity = 251;
 			else if (refractoryRate >= 20 && quantity < 30) quantity = 1000;
 			else if (refractoryRate >= 30 && quantity < 1500) quantity = 1500;
-			if (hasPerk("Amazonian Virility") && quantity < 300) quantity = 300;
 			if (hasPerk("Treated Readiness") && quantity < 200) quantity = 200;
+			if (hasPerk("Amazonian Virility") && quantity < 300) quantity = 300;
 			if (statusEffectv3("Rut") > quantity) quantity = statusEffectv3("Rut");
 			if (statusEffectv3("Lagonic Rut") > quantity) quantity = statusEffectv3("Lagonic Rut");
 			//OPAL RING BOOOST
@@ -11516,10 +11526,9 @@
 				if (weighting >= 45 && weighting <= 55 || (!ignorePref && hasStatusEffect("Force It Gender"))) return neuter;
 				else if (weighting < 45) return male;
 				return female;
-			} else {
-				if (weighting <= 49) return male;
-				return female;
 			}
+			if (weighting <= 49) return male;
+			return female;
 		}
 		public function mf(male: String, female: String, ignorePref:Boolean = false): String {
 			return mfn(male, female, "", ignorePref);

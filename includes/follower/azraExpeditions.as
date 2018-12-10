@@ -1641,7 +1641,7 @@ public function postPregRaskLicky():void
 	//Bimbo
 	if(pc.isBimbo()) output("\n\nSomebody’s got a boner~!");
 	else output("\n\nYou get the impression she did more than just sample the mushrooms, but don’t see much point in bringing it up, not when you’re this well-fucked.");
-	output("\n\n<i>“Heyyy,”</i> the pregnant raskvel’s voice bursts out of the comms above. <i>“Your pussy tastes way better than raskvel or sydian-cunt. Just let me know that you’re Miss Superpuss if you come back, and I’ll let you right back in.");
+	output("\n\n<i>“Heyyy,”</i> the pregnant raskvel’s voice bursts out of the comms above. <i>“Your pussy tastes way better than raskvel or sydian-cunt. Just let me know that you’re [pc.Miss] Superpuss if you come back, and I’ll let you right back in.");
 	if(flags["RASKDOOR_BROKE"] != undefined || flags["RASKTURRETS_BROKE"] != undefined)
 	{
 		output(".. once I fix the ");

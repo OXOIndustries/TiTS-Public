@@ -98,6 +98,10 @@ public function altTooltip(itemName:String = "none"):String
 			break;
 		
 		// Accessories
+		case "ShelterDrone":
+			tooltip += "A Pyrite-designed drone, created to protect users from extreme weather. When activated, it will project an atmospheric bubble around the user, providing significant protection against environmental hazards. It is not self-powered, however, and will require a portion of your shield’s energy to function.";
+			tooltip += "\n\nSadly, there is no practical area to install weapon systems on this drone. You should probably use it alongside another, more combat-oriented drone.";
+			break;
 		case "Siegwulfe":
 			if(chars["WULFE"].isBimbo()) tooltip += "A sleek chrome security droid standing on a powerfully-built tauric body and carrying the upper torso of a curvaceous, sexy gynoid with a coating of sun-kissed synth-skin starting at her inhumanly-wide hips, up past a pair of gigantic breasts, and to a whorish face half-hidden under a polysteel visor.";
 			else tooltip += "A sleek chrome security droid standing on a powerfully-built tauric body and carrying the upper torso of a slender, sexy gynoid with a coating of milk-pale synth-skin starting at her broad hips, up past a pair of palmable breasts, and to a chiseled face half-hidden under a polysteel visor.";

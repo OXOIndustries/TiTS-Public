@@ -41,8 +41,13 @@ public function knockUpSeraChance(bSex:Boolean = true):Boolean
 		if(canImpregnateSera() && pc.virility() > 0 && chars["SERA"].fertility() > 0)
 		{
 			if(bSex) {
-				flags["SERA_PREGNANCY_TIMER"] = 0;
-				pc.clearRut();
+				var x:Number = ((pc.virility() + chars["SERA"].fertility()) / 2);
+				var score:Number = ((1 - Math.exp(-0.38 * x)) * 10000);
+				if(rand(10000) <= score)
+				{
+					flags["SERA_PREGNANCY_TIMER"] = 0;
+					pc.clearRut();
+				}
 			}
 			return true;
 		}

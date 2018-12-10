@@ -2131,6 +2131,13 @@ public function unequip(item:ItemSlotClass, override:Boolean = false):void
 		return;
 	}
 	
+	// Not enough shield to remove!
+	if((pc.armor.shields < 0 || pc.meleeWeapon.shields < 0 || pc.rangedWeapon.shields < 0 || pc.shield.shields < 0 || pc.accessory.shields < 0 || pc.lowerUndergarment.shields < 0 || pc.upperUndergarment.shields < 0) && ((pc.shieldsMax() - item.shields) < 0))
+	{
+		output("You will not have sufficient shield capacity to handle your other equipment after removing this item. Please unequip the items using up your shields before removing this item!");
+		return;
+	}
+	
 	// Renamed from lootList so I can distinguish old vs new uses
 	var unequippedItems:Array = new Array();
 	
@@ -2204,7 +2211,7 @@ public function equipItem(arg:ItemSlotClass):void {
 		output("No matter how you try, you can’t get a good fit.");
 		if(pc.biggestCockLength() < 12) output(" It doesn’t matter how small your phall" + (pc.cocks.length == 1 ? "us is" : "i are") + ", contact with anything but another warm body is torture.");
 		else output(" Not that you normally could with how you’re hung, but at least your phall" + (pc.cocks.length == 1 ? "us" : "i") + " would pack away with only mild discomfort instead of full-on agony.");
-		output(" So long as you have " + (pc.cocks.length == 1 ? "a priapic erection" : "priapic erections") + ", you won’t be able to wear anything concealing.\n\n");
+		output(" So long as you have " + (pc.cocks.length == 1 ? "a priapic erection" : "priapic erections") + ", you won’t be able to wear anything concealing.");
 		removedItem = arg;
 	}
 	else if(arg is Omnisuit || arg is OmnisuitCollar || arg is StrangeCollar)
@@ -2239,7 +2246,13 @@ public function equipItem(arg:ItemSlotClass):void {
 	// Power armor req
 	else if(!InCollection(arg, [GLOBAL.ARMOR, GLOBAL.CLOTHING]) && arg.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon())
 	{
-		output("You are not strong enough to equip your " + arg.longName + "!\n\n");
+		output("You are not strong enough to equip your " + arg.longName + "!");
+		removedItem = arg;
+	}
+	// Not enough shield to use!
+	else if((arg.shields < 0) && ((pc.shieldsMax() + arg.shields) < 0))
+	{
+		output("You do not have sufficient shield capacity to equip your " + arg.longName + "! Perhaps you should wear a" + (pc.hasShieldGenerator() ? " more powerful" : "") + " shield generator to help power the item?");
 		removedItem = arg;
 	}
 	else
@@ -2248,7 +2261,7 @@ public function equipItem(arg:ItemSlotClass):void {
 		if(pc.armor is Omnisuit && (arg.type == GLOBAL.LOWER_UNDERGARMENT || arg.type == GLOBAL.UPPER_UNDERGARMENT))
 		{
 			//Attempt to put something else on
-			output("The moment the " + arg.longName + " comes in contact with your suit-enclosed form, you realize that this will never work. The new garment grates distractingly on your sensitized nerves. It’s like trying to wear sandpaper after a decade of nothing but the finest silk. Shaking your head, you yank it off in a hurry. You’ll have to ditch the Omnisuit if you’re going to wear anything else with it. Strange that your backpack and other miscellaneous gear don’t generate the same reaction.\n\n");
+			output("The moment the " + arg.longName + " comes in contact with your suit-enclosed form, you realize that this will never work. The new garment grates distractingly on your sensitized nerves. It’s like trying to wear sandpaper after a decade of nothing but the finest silk. Shaking your head, you yank it off in a hurry. You’ll have to ditch the Omnisuit if you’re going to wear anything else with it. Strange that your backpack and other miscellaneous gear don’t generate the same reaction.");
 			//Take the arg off! Ha ha!
 			removedItem = arg;
 		}
@@ -2278,17 +2291,17 @@ public function equipItem(arg:ItemSlotClass):void {
 		{
 			if(pc.hasCombatStatusEffect("Disarmed"))
 			{
-				output(" <b>You are no longer disarmed!</b>");
+				output("\n\n<b>You are no longer disarmed!</b>");
 				pc.removeStatusEffect("Disarmed");
 			}
 			else
 			{
-				output(" <b>Once you get your gear back, this will be equipped.</b>");
+				output("\n\n<b>Once you get your gear back, this will be equipped.</b>");
 			}
 		}
 		if(pc.hasStatusEffect("Gunlock") && arg.type == GLOBAL.RANGED_WEAPON)
 		{
-			output(" <b>Your new ranged weapon doesn’t suffer from the effects of gunlock!</b>");
+			output("\n\n<b>Your new ranged weapon doesn’t suffer from the effects of gunlock!</b>");
 			pc.removeStatusEffect("Gunlock");
 		}
 		//Set the quantity to 1 for the equipping, then set it back to holding - 1 for inventory!
@@ -2335,7 +2348,7 @@ public function equipItem(arg:ItemSlotClass):void {
 			removedItem = pc.upperUndergarment;
 			pc.upperUndergarment = arg;
 		}
-		else output(" <b>AN ERROR HAS OCCURRED: Equipped invalid item type. Item: " + arg.longName + "</b> ");
+		else output("\n\n<b>AN ERROR HAS OCCURRED: Equipped invalid item type. Item: " + arg.longName + "</b> ");
 		
 		if(removedItem.fortification != 0) pc.HP(-1 * removedItem.fortification);
 		if(arg.fortification != 0) pc.HP(arg.fortification);
@@ -2348,7 +2361,6 @@ public function equipItem(arg:ItemSlotClass):void {
 	//If item to loot after!
 	if(removedItem.shortName != "Rock" && removedItem.shortName != "" && removedItem.quantity > 0) 
 	{
-		//output(" ");
 		output("\n\n");
 		// Renamed from lootList so I can distinguish old vs new uses
 		var unequippedItems:Array = new Array();
