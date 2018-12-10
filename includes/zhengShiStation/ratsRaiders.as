@@ -71,19 +71,12 @@ public function showRats(ratCount:int = -2, nude:Boolean = false):void
 	}
 	else
 	{
-		switch (ratCount)
+		if (ratCount == -1)
 		{
-			case 0: showBust(rat0.bustDisplay); break;
-			case 1: showBust(rat1.bustDisplay); break;
-			case 2: showBust(rat2.bustDisplay); break;
-			default:
-			case 3: showBust(rat0.groupDisplay); break;
-			case 4: showBust(rat0.bustDisplay, rat1.bustDisplay); break;
-			case 5: showBust(rat2.bustDisplay, rat0.bustDisplay); break;
-			case 6: showBust(rat2.bustDisplay, rat1.bustDisplay); break;
-			//Special value for their introduction
-			case -1: showBust("URBOLG", "RATS_RAIDER_GROUP_ONE", RatsRaider.RAT_BUSTS[5]); showName("\nROBBERY?"); break;
+			showBust("URBOLG", "RATS_RAIDER_GROUP_ONE");
+			showName("\nROBBERY?");
 		}
+		else showBust(rat0.groupDisplay);
 	}
 }
 
