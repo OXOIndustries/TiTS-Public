@@ -24,6 +24,8 @@
  * RATS_TRIPLE_SERVICED: times seen some variation of TripleService
  * RATS_SEXED_EAR: Ear Sex
  * RATS_LAST_EARSEX_{0/1}: last pick in Ear Sex with rat group {0/1}, 0 - nice, 1 - mean, 2 - slutty, 3 - neutral
+ * RATS_SEXED_EAR_{0/1}: individual tally
+ * RATS_EARMARK_{0/1}: saw earmarked variation at least once
  * RATS_SPANKED: [Punish Them]
  * RATS_HARVESTED: counter for harvest loss scene
  * RATS_GANGBANGED: gangbang loss scene
@@ -1938,7 +1940,7 @@ public function ratsLetThemKeepLoot():void
 	if (!ratsPCIsGood())
 	{
 		output("You inhale so deeply that you look several pounds thinner, then let it go. The exhausted and groaning mouse-pirates look up to you nervously, just in time to see you turn and walk away. You’ll have to make up that loss somehow, but <i>dammit</i> they better appreciate this...");
-		output("\n\nThey watch you go, not sure what to feel besides lucky.");
+		output("\n\nThey watch you go, not sure what to feel besides lucky.\n\n");
 	}
 
 	switch (ratputation())
@@ -1946,7 +1948,7 @@ public function ratsLetThemKeepLoot():void
 		// Rat Rep Low (0-29)
 		default:
 		case RatsRaider.RAT_REP_LOW:
-			output("\n\nThe rat pirates expect you to take your reward from them the way they would have done to you. Perhaps they’re expecting you to have your way with them and force them into a variety of lewd and lascivious acts.");
+			output("The rat pirates expect you to take your reward from them the way they would have done to you. Perhaps they’re expecting you to have your way with them and force them into a variety of lewd and lascivious acts.");
 			if (pc.lust() >= 66) output(" Hell, you really want to do that, too.");
 			output("\n\nBut such things are self-indulgent,");
 			if (!ratsPCIsGood()) output(" and they’re not going to help you work out something diplomatically");
@@ -1959,15 +1961,15 @@ public function ratsLetThemKeepLoot():void
 			break;
 		// Rat Rep Med (30-69)
 		case RatsRaider.RAT_REP_MID:
-			if (pc.isBimbo() || pc.isBro()) output("\n\n<i>“I’m not in the mood, and besides, I just saw a cute bunny walk by over there. See ‘ya, sweeties!”</i>");
-			else output("\n\n<i>“I’m not interested in what you have. Carry on, but know that I’m not going to just give up what I have without a fight.”</i>"); 
+			if (pc.isBimbo() || pc.isBro()) output("<i>“I’m not in the mood, and besides, I just saw a cute bunny walk by over there. See ‘ya, sweeties!”</i>");
+			else output("<i>“I’m not interested in what you have. Carry on, but know that I’m not going to just give up what I have without a fight.”</i>"); 
 			output("\n\nYou store your [pc.weapon], give a " + (pc.isBimbo() ? "stupid" : "light") + " wave, and walk past the prostrate rats.");
 			output("\n\nDoubtless having expected worse, they murmur <i>“Huh?”</i>, blinking several times when you look over your shoulder. They slowly rise to their feet, hopefully as thankful as they are confused. Reticent gasps fade into the background noise, and you hear what you’d like to imagine as grateful chatter. Perhaps this is working?");
 			if (pc.isBimbo() || pc.isBro()) output("\n\nToo bad that rabbit’s gone, though.");
 			break;
 		// Rat Rep High (70-100)
 		case RatsRaider.RAT_REP_HIGH:
-			output("\n\nAfter storing your [pc.weapon], you smirk at the incapacitated thieves and tilt your head, speaking,");
+			output("After storing your [pc.weapon], you smirk at the incapacitated thieves and tilt your head, speaking,");
 			if (pc.isBimbo() || pc.isBro()) output(" breathily, <i>“You know cuties, you’re gonna meet someone who’s gonna hurt you someday if you keep this up! Try to stay out of trouble, ‘kay?”</i>");
 			else output(" softly, <i>“One of these days, you three are going to get seriously hurt. Where will that leave those in need?”</i>");
 			output("\n\nYou turn to leave and the [rat0.furColor] rodenian chirps, <i>“You’re just leaving us alone..? Again?”</i>");
@@ -1976,8 +1978,8 @@ public function ratsLetThemKeepLoot():void
 			break;
 		// Rats Respect PC (goodCEO)
 		case RatsRaider.RAT_REP_GOOD_CEO:
-			if (silly) output("\n\n<i>“Here we bloody are and here we bloody well stay,”</i>");
-			else output("\n\n<i>“Here we are again,”</i>");
+			if (silly) output("<i>“Here we bloody are and here we bloody well stay,”</i>");
+			else output("<i>“Here we are again,”</i>");
 			output(" you chuckle at the rodents looking up to you with a strange mix of eagerness and expectation. <i>“Go on, get out of here,”</i> you tell them, shaking your head.");
 			output("\n\n<i>“Wait!”</i> the thieves shout, jumping to their feet. <i>“Dammit, you’re too nice to let go like that! You’ve done a lot for us, at least take something...”</i>");
 			output("\n\nAll of a sudden the rats hunch forward and <i>pounce</i> as quick as spiders, tails whirling behind them as they each rush toward you. When they collide with you, you feel no hostility in their grips... <i>embraces</i>. Rather than attacking, they simply " + (pc.tallness < 6*12 ? "smother you with tight hugs!" : " hug you tight around your waist!"));
@@ -2951,7 +2953,7 @@ public function ratsAllGangThingsComeToAnEnd(vagId:int):void
 	if (ratsPCIsGood()) showRats(-2, true);
 	else
 	{
-		clearBust();
+		showBust();
 		showName("\nRAT’S RAIDERS?");
 		author((silly ? "Willy Cottonballs" : "William"));
 	}

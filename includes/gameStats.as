@@ -7091,6 +7091,25 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["RATS_HARVESTED"] != undefined) ratSex.push("Was \"Harvested\"");
 						output2(ratSex.join(", "));
 					}
+					if(flags["RATS_SEXED_EAR"] != undefined)
+					{
+						if(flags["RATS_SEXED_EAR_0"] != undefined)
+						{
+							output2("\n<b>* Rat's Raiders, Pink Rodenian Ear Sex Count:</b> " + flags["RATS_SEXED_EAR_0"]);
+							if (flags["RATS_SEXED_EAR_0"] < 5) output2(" (Unknown)");
+							else if (flags["RATS_SEXED_EAR_0"] < 10 || !ratsPCIsGood()) output2(" (Appreciable)");
+							else if (flags["RATS_SEXED_EAR_0"] < 15 || flags["RATS_EARMARK_0"] == undefined) output2(" (Earmarked)");
+							else output2(" (Attached)");
+						}
+						if(flags["RATS_SEXED_EAR_1"] != undefined)
+						{
+							output2("\n<b>* Rat's Raiders, White Rodenian Ear Sex Count:</b> " + flags["RATS_SEXED_EAR_1"]);
+							if (flags["RATS_SEXED_EAR_1"] < 5) output2(" (Unknown)");
+							else if (flags["RATS_SEXED_EAR_1"] < 10 || !ratsPCIsGood()) output2(" (Appreciable)");
+							else if (flags["RATS_SEXED_EAR_1"] < 15 || flags["RATS_EARMARK_1"] == undefined) output2(" (Earmarked)");
+							else output2(" (Attached)");
+						}
+					}
 					if(flags["RAT_BOUNTY_STOLEN"] != undefined)
 					{
 						output2("\n<b>* Rat's Raiders, Bounty Lost:</b> " + flags["RAT_BOUNTY_STOLEN"]);
