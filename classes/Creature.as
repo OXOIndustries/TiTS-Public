@@ -12697,6 +12697,7 @@
 			
 			return s;
 		}
+		public function equineScore(): int { return horseScore(); }
 		public function horseScore(): int
 		{
 			var counter:int = 0;
@@ -13222,7 +13223,7 @@
 				else if (ballFullness >= 80 && ballFullness < 100) desc += RandomInCollection(["mostly full","nearly full","seed-stocked","spunk-laden","sperm-stocked"]);
 				else if (ballFullness >= 100) desc += RandomInCollection(["painfully full","sloshing","semen-stuffed","cum-bloated","fully engorged","spunk-heavy","tender","seed-weighted"]);
 			}
-			if(desc != "") desc += ", " + RandomInCollection(["scrotum","sack","pouch"]);
+			if(desc != "") desc += " " + RandomInCollection(["scrotum","sack","pouch"]);
 			else desc += RandomInCollection(["scrotum","sack"]);
 			return desc;
 		}

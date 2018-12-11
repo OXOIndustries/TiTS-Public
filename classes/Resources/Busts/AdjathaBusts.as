@@ -487,6 +487,9 @@ package classes.Resources.Busts
 		public var Bust_LAH:Class;
 		public var Bounds_LAH:Rectangle = new Rectangle(30, 0, 65, 65);
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/ldc.png", mimeType = "image/png")]
+		public var Bust_LDC:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/lieve.png", mimeType = "image/png")]
 		public var Bust_LIEVE:Class;
 		public var Bounds_LIEVE:Rectangle = new Rectangle(17, 0, 60, 60);
@@ -802,6 +805,11 @@ package classes.Resources.Busts
 		public var Bust_SHELLY_HUGE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/shelly_huge_nude.png", mimeType = "image/png")]
 		public var Bust_SHELLY_HUGE_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/shock_hopper.png", mimeType = "image/png")]
+		public var Bust_SHOCK_HOPPER:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/shock_hopper_nude.png", mimeType = "image/png")]
+		public var Bust_SHOCK_HOPPER_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/double_goo.png", mimeType = "image/png")]
 		public var Bust_SLUTGOO:Class;
@@ -1443,6 +1451,9 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lah.png", mimeType = "image/png")]
 			public var Full_LAH:Class;
 
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ldc.png", mimeType = "image/png")]
+			public var Full_LDC:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lieve.png", mimeType = "image/png")]
 			public var Full_LIEVE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lieve_nude.png", mimeType = "image/png")]
@@ -1704,6 +1715,11 @@ package classes.Resources.Busts
 			public var Full_SHELLY_HUGE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/shelly_huge_nude.png", mimeType = "image/png")]
 			public var Full_SHELLY_HUGE_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/shock_hopper.png", mimeType = "image/png")]
+			public var Full_SHOCK_HOPPER:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/shock_hopper_nude.png", mimeType = "image/png")]
+			public var Full_SHOCK_HOPPER_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/simone.png", mimeType = "image/png")]
 			public var Full_SIMONE:Class;

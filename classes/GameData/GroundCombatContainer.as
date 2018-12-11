@@ -4488,7 +4488,7 @@ package classes.GameData
 					output("\n\n<b>You’ve knocked the resistance out of " + target.getCombatName() + ".</b>");
 				}
 			}
-			else if (target.lust() >= target.lustMax())
+			else if (target.lust() >= target.lustMax() && target.isDefeated())
 			{
 				var dvl:String = target.downedViaLust();
 				if (dvl != null)
@@ -4560,7 +4560,7 @@ package classes.GameData
 			{
 				output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is down and out for the count!</b>");
 			}
-			else if (target.lust() >= target.lustMax())
+			else if (target.lust() >= target.lustMax() && target.isDefeated())
 			{
 				output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + ((target.isPlural == true) ? " are" : " is") + " too turned on to fight.</b>");
 			}

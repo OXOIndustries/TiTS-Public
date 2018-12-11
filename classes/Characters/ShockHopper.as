@@ -17,10 +17,10 @@
 	import classes.Engine.Combat.*;
 	import classes.Engine.Combat.DamageTypes.*;
 	
-	public class JumperBored extends Creature
+	public class ShockHopper extends Creature
 	{
 		//constructor
-		public function JumperBored()
+		public function ShockHopper()
 		{
 			this._latestVersion = 1;
 			this.version = _latestVersion;
@@ -49,31 +49,37 @@
 			this.rangedWeapon.attackNoun = "dart";
 			this.rangedWeapon.hasRandomProperties = true;
 			
-			this.armor.longName = "inky bodysuit";
-			this.armor.defense = 3;
+			this.armor.longName = "orange bodysuit";
+			this.armor.defense = 4;
 			this.armor.hasRandomProperties = true;
 
-			baseHPResistances.burning.damageValue = 40.0;
-			baseHPResistances.electric.damageValue = 40.0;
+			baseHPResistances.electric.damageValue = 100.0;
+			baseHPResistances.burning.damageValue = 33.0;
 			
 			this.shield = new JumperShield();
-			this.shield.shields = 150;
+			this.shield.shields = 600;
 			this.shield.hasRandomProperties = true;
+			this.shield.resistances = new TypeCollection();
+			this.shield.resistances.kinetic.resistanceValue = -25.0;
+			baseHPResistances.electric.damageValue = 33.0;
+			baseHPResistances.burning.damageValue = 33.0;
+			baseHPResistances.corrosive.damageValue = 33.0;
+			baseHPResistances.tease.damageValue = -25.0;
 
-			this.physiqueRaw = 27;
-			this.reflexesRaw = 45;
-			this.aimRaw = 40;
-			this.intelligenceRaw = 23;
-			this.willpowerRaw = 21;
+			this.physiqueRaw = 47;
+			this.reflexesRaw = 44;
+			this.aimRaw = 27;
+			this.intelligenceRaw = 20;
+			this.willpowerRaw = 25;
 			this.libidoRaw = 75;
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 50;
 			
-			this.level = 9;
-			this.XPRaw = normalXP();
-			this.credits = 100;
-			this.HPMod = +40;
+			this.level = 10;
+			this.XPRaw = bossXP();
+			this.credits = 12346;
+			this.HPMod = 350;
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 
@@ -195,11 +201,16 @@
 			this.ass.loosenessRaw = 3;
 			
 			isUniqueInFight = true;
-			btnTargetText = "Jumper";
+			btnTargetText = "ShockHop";
 			//this.impregnationType = "LapinaraPregnancy";
 			kGAMECLASS.zhengShiSSTDChance(this);
 			randomise();
-			this.createPerk("Appearance Enabled");
+			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+
+			this.createPerk("Shield Tweaks");
+			this.createPerk("Enhanced Dampeners");
+			this.createPerk("Shield Regen");
+			this.createPerk("Rapid Recharge");
 			
 			this._isLoading = false;
 		}
@@ -222,23 +233,32 @@
 			this.long = "The Jumper’s second-in-command is a statuesque woman, blessed with a killer top-heavy hourglass figure that’s been seriously enhanced by a tight latex bodysuit. The suit’s a dark orange, polished to a shine and bears a tight corset around the midriff that only serves to further emphasize her bare cleavage. There’s very little of her baby-blue fur on display aside from her cheeks and chest, and much of her head is covered by a bright pink mohawk. She’s certainly got a colorful ensemble!";
 			//Post first use of lightning cannon:
 			if(hasStatusEffect("GunOutBunsOut")) long += "\n\nThe buxom bunny has a massive arc gun slung under a shoulder, crackling with electric energy and discharging wildly as she holds down the trigger.";
-			if(9999) long += "\n\nThe Hopper’s got herself a pretty massive bulge in her loins, spent spunk sloshing freely around a throbbing boner. She’s almost ready to pop!";
-			else if(9999) long += "\n\nThe Hopper’s suit has been blown open by her own overmodded sperminess, rupturing the loins and leaving her balls and cock spraying all over. Guess she should have picked a more elastic material!";
+			if(statusEffectv1("Busted") == 1) long += "\n\nThe Hopper’s got herself a pretty massive bulge in her loins, spent spunk sloshing freely around a throbbing boner. She’s almost ready to pop!";
+			else if(statusEffectv1("Busted") == 2) long += "\n\nThe Hopper’s suit has been blown open by her own overmodded sperminess, rupturing the loins and leaving her balls and cock spraying all over. Guess she should have picked a more elastic material!";
 		}
 		
 		override public function get bustDisplay():String
 		{
 			return "SHOCK_HOPPER";
 		}
+		override public function isDefeated():Boolean
+		{
+			//Once twice busted, as normal
+			if (this.statusEffectv1("Busted") == 2) return super.isDefeated();
+			//Only HP till then.
+			if (HP() <= 0) return true;
+			return false;
+		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
+			updateDesc();
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 
 			//Every Turn I’m Shockeling
 			//Play at the start of every PC turn while the Hopper’s on her first two Lust bars. Zip zap bitch.
-			if(this.hasStatusEffect("GunOutBunsOut"))
+			if(this.hasStatusEffect("GunOutBunsOut") && this.statusEffectv1("Busted") < 2)
 			{
 				output("Electricity crackles around the barrel of the Hopper’s cannon, zapping the floor");
 				if(!target.canFly()) 
@@ -251,11 +271,14 @@
 			}
 
 			//Actual s tuff
-			if(CombatManager.getRoundCount() % 5 == 0) roundhouseKickypoo(target);
+			if(this.lust() >= this.lustMax()) bustANutHoppy(target);
+			else if(!this.hasStatusEffect("GunOutBunsOut")) hopperLightningGunno(target);
+			else if(CombatManager.getRoundCount() % 5 == 0) roundhouseKickypoo(target);
 			else if(CombatManager.getRoundCount() == 6) haremCheerleadersGo(target);
-			else if(!hasStatusEffect("Evasion Boosted") && rand(3) == 0) bounceBoi(target);
+			else if(hasStatusEffect("Busted") && rand(4) == 0) strokeItForDaddy(target);
+			else if(!hasStatusEffect("Evasion Boosted") && rand(4) == 0) bounceBoi(target);
+			else if(target.shields() <= 0 && rand(4) == 0) bootySlamminAttack(target);
 			else if(rand(4) == 0 && this.energy() >= 10 && !target.isBlind()) discoGrenade(target);
-
 			else hopperLightningGunno(target);
 		}
 		//Lightning Gun
@@ -263,7 +286,7 @@
 		public function hopperLightningGunno(target:Creature):void
 		{
 			//First time she uses it:
-			if(this.hasStatusEffect("GunOutBunsOut"))
+			if(!this.hasStatusEffect("GunOutBunsOut"))
 			{
 				output("<i>“Hit me, babe,”</i> the Hopper laughs, leaning into the bed and opening her mouth. The dark bunny boss-boy pulls a cigar from... somewhere... in the orgy pit on the bed and plants it between his latex-wrapped lieutenant’s lips. She whirls around to you and lets loose with a withering barrage of electrical energy, blasting away with the shock cannon.");
 				if(!rangedCombatMiss(this, target))
@@ -289,7 +312,7 @@
 		}
 		//Disco Grenade
 		//Causes Blindness for a turn and deals some Laser damage.
-		public function discoGrenade():void
+		public function discoGrenade(target:Creature):void
 		{
 			this.energy(-10);
 			output("<i>“Glasses, everyone!”</i> the Hopper barks, reaching into her utility belt and whipping out a grey sphere. Her boss and his harem girls all scramble to put on sunglasses before the dickbunny throws it at you. The second it leaves her hand, the ball erupts in a blinding display of pyrotechnics and lasers, scatter-shooting beams of light every which-way!");
@@ -328,7 +351,7 @@
 		public function bounceBoi(target:Creature):void
 		{
 			output("The Shock Hopper takes a moment to psyche herself up, bouncing from one powerful leg to the other. She claps her hands when she’s finished, assuming a flowing martial artist’s stance as her lightning gun hangs on its sling, still zapping away. <i>“C’mon, show me what you’ve got!”</i>");
-			if(silly || target.name == "Ronan" || target.name = "ronan" || target.name = "ronin" || target.name == "Ronin")
+			if(kGAMECLASS.silly || target.short == "Ronan" || target.short == "ronan" || target.short == "ronin" || target.short == "Ronin")
 			{
 				output("\n\n<i>“W-what are you doing?”</i> you say, watching her bouncing around.");
 				output("\n\n<i>“Dance off, bro. Me and you! C’mon, boss-man!”</i>");
@@ -344,10 +367,10 @@
 		public function strokeItForDaddy(target:Creature):void
 		{
 			output("The Hopper pistons her hips forward, ");
-			if(99992nd phase) output("twirling her dick around within the cum-stuffed confines of her bodysuit");
+			if(statusEffectv1("Busted") == 1) output("twirling her dick around within the cum-stuffed confines of her bodysuit");
 			else output("helicoptering her cum-sheened cock in front of you and sending wads of spunk flying everywhere");
 			output(". The wet sound it makes echoes through the cabin, accompanied by a heady musk.");
-			applyDamage(damageRand(new TypeCollection( { tease: 15 } ), 15), this, target, "minimal");
+			applyDamage(damageRand(new TypeCollection( { tease: 8 } ), 15), this, target, "minimal");
 			this.lust(2);
 		}
 		//Harem Cheerleaders!
@@ -357,11 +380,11 @@
 			this.createStatusEffect("Cheered");
 			output("<i>“Woah, this is really heating up, huh?”</i> the bunny-boy laughs, patting the head-giving pup between the ears. <i>“Why don’t you show my favorite cocksleeve what’s waiting for her when she finishes?”</i>");
 			output("\n\nThe slave girls lounging around him giggle, groping themselves, their master... any cock or tit they can get their hands around. Lips meet, kissing pussies and cumslits with equal aplomb. The Hopper cuts her glance over as the harem-slaves fawn all over each other, and you watch the ");
-			if(9999) output("bulge in her suit");
+			if(this.statusEffectv1("Busted") < 2) output("bulge in her suit");
 			else output("floppy equine cock hanging out of her ruptured bodysuit");
 			output(" twitch with mounting desire.");
 			if(target.willpower()/2 + rand(20) + 1 >= 25) output("\n\n<b>You resist the erotic display!</b>");
-			applyDamage(damageRand(new TypeCollection( { tease: 20 } ), 15), this, target, "minimal");
+			applyDamage(damageRand(new TypeCollection( { tease: 10 } ), 15), this, target, "minimal");
 			this.lust(25);
 		}
 		//Butt Slam
@@ -370,51 +393,57 @@
 		{
 			output("The Hopper crouches down and springs up in the air, spinning like she’s going to kick you... and instead ");
 
-			if(!combatMiss(this, target)))
+			if(!combatMiss(this, target))
 			{
+				var damage:TypeCollection = new TypeCollection( { kinetic: 20 } );
+				var teaseDamage:TypeCollection = new TypeCollection( { tease: 8 } );
 				output("slams her ass directly into your face! ");
 				//First phase:
-				if(9999)
+				if(statusEffectv1("Busted") == 0)
 				{
 					output("Her bodysuit rubs on your [pc.face], giving you a good whiff of her cock and balls before she falls off you!");
 				}
 				//Second phase:
-				else if(9999)
+				else if(statusEffectv1("Busted") == 1)
 				{
 					output("All the cum stuffed into the lower half of her suit makes a potent squelching sound, bathing your [pc.face] in ballstench.");
+					damage.add({ kinetic: 15 });
 				}
 				//Third phase:
 				else 
 				{
 					output("The moment her ass impacts you, cum goes spraying out of the rupture in her suit, cascading down your [pc.chest] and butting her free-swinging nuts against your chin.");
+					teaseDamage.add({ tease: 8 });
 				}
+				applyDamage(damageRand(damage, 15), this, target, "minimal");
 				if(target.willpower()/2 + rand(20) + 1 >= 25) output("\n\n<b>You manage to resist the erotic imposition!</b>");
+				else applyDamage(damageRand(teaseDamage, 15), this, target, "minimal");
 			}
 			else output("launches her ass directly at your face! Fortunately, you see it coming just in time to sidestep.");
 		}
-/*
-
-output("\n\nCombat Event: Bust a Nut (The First Time)");
-output("\n\n//Play when the SH gets to max Lust the first time. Doesn’t consume her turn.");
-
-output("\n\n<i>“Fuuuuck, babe, this {guy/gal}’s hot...”</i> the Hopper groans, biting her lip. Her legs twitch, propelling her a few inches off the deck like a manic... well, bunny.");
-
-output("\n\n<i>“Haha, yeah [pc.heShe] is!”</i> her leader shouts back. <i>“Should I be jealous?”</i>");
-
-output("\n\nThe Hopper whines, bouncing faster. <i>“I don’t... I don’t... can’t...”</i>");
-
-output("\n\nShe gasps, sucking in breath as the massive bulge in her suit throbs. A second later and a fat bulb starts growing inside her suit just over her dick, swelling with a sudden eruption of cum. The black bunny on the bed guffaws, watching his lieutenant cream herself with obvious glee. The front of her suit keeps bulging out as her obviously-modded balls empty themselves inside it, plumping out her belly and thighs until she looks positively fertile.");
-
-output("\n\n<i>“Woo, girl, work that dick!”</i> the boss bunny laughs. <i>“Don’t tear your suit now!”</i>");
-
-output("\n\nCombat Event: Bust a Nut, Bust Your Suit");
-output("\n\n<i>“A-ah God, not again,”</i> the Hopper whines, dropping a hand off her gun barrel to grab her throbbing dick. The cum-swell around her crotch suddenly starts growing, swelling bigger and bigger until the latex material of her bodysuit is discoloring with the stretch...");
-
-output("\n\n... and then <i>pop!</i> it goes, exploding in a shower of thick white that just keeps coming and coming. Her bodysuit looked swollen before, but now you’re shown just how much this modded-up bunny’s balls were capable of producing. The sheer, massive volume of her two orgasms sprays across the deck in a veritable flood, covering it in a sticky sheen of musky white.");
-
-output("\n\n<i>“Fuuuuuck,”</i> the Hopper groans, slumping back against the nearest bulkhead. <i>“Oh, my balls.”</i>");
-
-output("\n\nAs she’s recovering, another arc of lightning shoots from her gun to the floor, only to sputter out as it’s absorbed by the spooge everywhere. Looks like you won’t be dealing with that anymore!");
-*/
+		//Combat Event: Bust a Nut (The First Time)
+		//Play when the SH gets to max Lust the first time. Doesn’t consume her turn.
+		public function bustANutHoppy(target:Creature):void
+		{
+			if(!this.hasStatusEffect("Busted"))
+			{
+				this.createStatusEffect("Busted",1);
+				output("<i>“Fuuuuck, babe, this " + target.mf("guy","gal") + "’s hot...”</i> the Hopper groans, biting her lip. Her legs twitch, propelling her a few inches off the deck like a manic... well, bunny.");
+				output("\n\n<i>“Haha, yeah [pc.heShe] is!”</i> her leader shouts back. <i>“Should I be jealous?”</i>");
+				output("\n\nThe Hopper whines, bouncing faster. <i>“I don’t... I don’t... can’t...”</i>");
+				output("\n\nShe gasps, sucking in breath as the massive bulge in her suit throbs. A second later and a fat bulb starts growing inside her suit just over her dick, swelling with a sudden eruption of cum. The black bunny on the bed guffaws, watching his lieutenant cream herself with obvious glee. The front of her suit keeps bulging out as <b>her obviously-modded balls empty themselves</b> inside it, plumping out her belly and thighs until she looks positively fertile.");
+				output("\n\n<i>“Woo, girl, work that dick!”</i> the boss bunny laughs. <i>“Don’t tear your suit now!”</i>");
+			}
+			else
+			{
+				this.addStatusValue("Busted",1,1);
+				//Combat Event: Bust a Nut, Bust Your Suit
+				output("<i>“A-ah God, not again,”</i> the Hopper whines, dropping a hand off her gun barrel to grab her throbbing dick. <b>The cum-swell around her crotch suddenly starts growing</b>, swelling bigger and bigger until the latex material of her bodysuit is discoloring with the stretch...");
+				output("\n\n... and then <i>pop!</i> it goes, exploding in a shower of thick white that just keeps coming and coming. Her bodysuit looked swollen before, but now you’re shown just how much this modded-up bunny’s balls were capable of producing. The sheer, massive volume of her two orgasms sprays across the deck in a veritable flood, covering it in a sticky sheen of musky white.");
+				output("\n\n<i>“Fuuuuuck,”</i> the Hopper groans, slumping back against the nearest bulkhead. <i>“Oh, my balls.”</i>");
+				output("\n\nAs she’s recovering, <b>another arc of lightning shoots from her gun to the floor, only to sputter out as it’s absorbed by the spooge everywhere</b>. Looks like you won’t be dealing with that anymore!");
+			}
+			this.orgasm();
+		}
 	}
 }
