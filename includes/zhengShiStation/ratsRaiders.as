@@ -2425,7 +2425,7 @@ public function ratsTeasingACEO():void
 {
 	clearMenu();
 	clearOutput();
-	showRats();
+	showRats(-2, true);
 	processTime(15);
 	pc.lust(10+pc.libido()/3);
 	
@@ -2612,7 +2612,7 @@ public function ratsDoneTeasing():void
 {
 	clearMenu();
 	clearOutput();
-	showRats();
+	showRats(-2, true);
 	processTime(30+rand(30+3*60+1));
 
 	if (ratsPCIsGood())
