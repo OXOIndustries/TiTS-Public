@@ -2229,7 +2229,7 @@ public function initZhengRooms():void
 
 	rooms["ZSF T22"] = new RoomClass(this);
 	rooms["ZSF T22"].roomName = "NARROW\nCATWALK";
-	rooms["ZSF T22"].description = "This suspended boarding ramp hangs a sharp, 90 degree turn to the east and south from here. The ship itself lies in the former direction, majestic and gleaming, its aerodynamic curves suggesting equal ease among stars or cloudy skies. The other direction leads back to the wider catwalks above Zheng Shi’s foundry.");
+	rooms["ZSF T22"].description = "This suspended boarding ramp hangs a sharp, 90 degree turn to the east and south from here. The ship itself lies in the former direction, majestic and gleaming, its aerodynamic curves suggesting equal ease among stars or cloudy skies. The other direction leads back to the wider catwalks above Zheng Shi’s foundry.";
 	rooms["ZSF T22"].planet = "ZHENG SHI STATION";
 	rooms["ZSF T22"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF T22"].northExit = "";
