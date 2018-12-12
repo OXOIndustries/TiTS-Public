@@ -28,7 +28,7 @@ package classes.Characters
 	{
 		public function PlayerCharacter() 
 		{
-			this._latestVersion = 4;
+			this._latestVersion = 5;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			this._isLoading = false;
@@ -793,6 +793,23 @@ package classes.Characters
 					{
 						d.perks[willIdx].storageName = "Weak Mind";
 						d.perks[willIdx].tooltip = "Intelligence and willpower losses doubled.";
+					}
+				}
+			}
+		}
+		public function UpgradeVersion4(d:Object):void
+		{
+			var i:uint = 0;
+			if (d.perks)
+			{
+				for (i = 0; i < d.perks.length; i++)
+				{
+					if (d.perks[i] && d.perks[i].storageName)
+					{
+						switch(d.perks[i].storageName)
+						{
+							case "Concussive Shot": d.perks[i].tooltip = "[altTooltip ConcussiveShot]"; break;
+						}
 					}
 				}
 			}

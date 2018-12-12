@@ -53,18 +53,19 @@
 			this.armor.defense = 4;
 			this.armor.hasRandomProperties = true;
 
-			baseHPResistances.electric.damageValue = 100.0;
-			baseHPResistances.burning.damageValue = 33.0;
-			
+			this.baseHPResistances.electric.damageValue = 100.0;
+			this.baseHPResistances.burning.damageValue = 33.0;
+			this.baseHPResistances.tease.damageValue = -33.0;
+
 			this.shield = new JumperShield();
 			this.shield.shields = 600;
+			this.shield.defense = 5;
 			this.shield.hasRandomProperties = true;
 			this.shield.resistances = new TypeCollection();
-			this.shield.resistances.kinetic.resistanceValue = -25.0;
-			baseHPResistances.electric.damageValue = 33.0;
-			baseHPResistances.burning.damageValue = 33.0;
-			baseHPResistances.corrosive.damageValue = 33.0;
-			baseHPResistances.tease.damageValue = -25.0;
+			this.shield.resistances.kinetic.resistanceValue = 25.0;
+			this.shield.resistances.electric.damageValue = 50.0;
+			this.shield.resistances.burning.damageValue = 50.0;
+			this.shield.resistances.corrosive.damageValue = 50.0;
 
 			this.physiqueRaw = 47;
 			this.reflexesRaw = 44;
@@ -275,7 +276,7 @@
 			else if(!this.hasStatusEffect("GunOutBunsOut")) hopperLightningGunno(target);
 			else if(CombatManager.getRoundCount() % 5 == 0) roundhouseKickypoo(target);
 			else if(CombatManager.getRoundCount() == 6) haremCheerleadersGo(target);
-			else if(hasStatusEffect("Busted") && rand(4) == 0) strokeItForDaddy(target);
+			else if(statusEffectv1("Busted") <= rand(6)) strokeItForDaddy(target);
 			else if(!hasStatusEffect("Evasion Boosted") && rand(4) == 0) bounceBoi(target);
 			else if(target.shields() <= 0 && rand(4) == 0) bootySlamminAttack(target);
 			else if(rand(4) == 0 && this.energy() >= 10 && !target.isBlind()) discoGrenade(target);

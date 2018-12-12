@@ -11,6 +11,9 @@ public function altTooltip(itemName:String = "none"):String
 			//tooltip += "one point";
 			tooltip += "three points";
 			break;
+		case "ConcussiveShot":
+			tooltip += "Grants the ability to fire explosive-tipped arrows when equipped with a bow in combat. The arrows have a chance to stun for 1 to 2 combat rounds.";
+			break;
 		case "Overcharge":
 			if(pc.hasPerk("Heroic Reserves")) tooltip += "200";
 			else tooltip += "150";
