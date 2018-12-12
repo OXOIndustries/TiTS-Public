@@ -19,6 +19,17 @@
 
 //You can then rape his butt and take the probe anyway.
 
+//==========================================================================================
+//					Flags!
+//==========================================================================================
+//	SHOCK_HOPPER_DEFEATED				-	Didja win?
+//	JUMPER_LEADERSHIP_WINFUCKED			-	Did you fuck the jumpers after defeating them?
+//	JUMPER_LEADERSHIP_LIKED_WINFUCK		-	Did they like what you did to them?
+//	SHOCK_HOPPER_FUCKED					-	Track if you've done naughty with the Shock Hopper
+//	LDC_FUCKED							-	Same for LDC
+//	JUMPER_SLAVES_FREED					-	1 = freed, -1 = left in slavery.
+
+
 public function shockHopperBustString(nude:Boolean = false):String
 {
 	return "SHOCK_HOPPER" + (nude ? "_NUDE":"");
@@ -51,58 +62,58 @@ public function showLDCAndShockHopper(hopperNude:Boolean = false):void
 
 //Boss Fight: The Shock Hopper
 //Play when entering the Captain’s quarters on the Sidewinder. Should not be able to access the Bridge or Hold before then; they’re locked behind the captain’s personal authorization codes.
-public function shockHopperEncounter():void
+public function shockHopperEncounter():Boolean
 {
-	clearOutput();
-	author("Savin");
-	pc.lust(-100);
-	showLDCAndShockHopper();
-	output("The captain’s quarters are unmistakable, set apart from those of the crew and close to the bridge. The hatch is ever-so-slightly ajar, propped open by an empty bottle of elasticizing lube, crushed between the frame and the sliding door. Inside, you hear a whole chorus of girlish laughter and soft moans. Must be a real party going on.");
-	output("\n\nTime to crash it.");
-	output("\n\nYou draw your [pc.weapon] and shoulder the hatch open, charging into a lavishly-adorned harem chamber. A huge heart-shaped bed dominates the far side, laden with nude slave-girls fawning all over a laquine boy lounging at the head - and getting head from a particularly buxom ausar woman who’s straining her mouth around almost two feet of turgid bunny-cock.");
-	output("\n\nThe rabbit-boy starts forward, a scowl building across his coal-black fur. <i>“What’s the big idea?");
-	//PC wearing slave uniform:
-	if(pcHasSlaveOutfit()) output(" I didn’t order more skanks... did I?");
-	//pcLapineEarOrJumperUniform:
-	else if(pc.earType == GLOBAL.TYPE_LAPINE || pc.armor is JumperJumpsuit || pc.armor is JumperJumpsuitSlutty) output(" I didn’t call a meeting and I know I didn’t ask for one of you sweaty sluts.");
-	//pcMouseEarsOrRatArmor:
-	else if(pc.earType == GLOBAL.TYPE_MOUSE || pc.armor is RattyArmor) 
+	if(flags["SHOCK_HOPPER_DEFEATED"] == undefined)
 	{
-		if(pc.earType == GLOBAL.TYPE_MOUSE) output(" Looks like one of his rodents");
-		else output(" Dressed like one of those rats");
-		output("... Bull, only your boss works alone.");
+		clearOutput();
+		author("Savin");
+		showLDCAndShockHopper();
+		output("The captain’s quarters are unmistakable, set apart from those of the crew and close to the bridge. The hatch is ever-so-slightly ajar, propped open by an empty bottle of elasticizing lube, crushed between the frame and the sliding door. Inside, you hear a whole chorus of girlish laughter and soft moans. Must be a real party going on.");
+		output("\n\nTime to crash it.");
+		output("\n\nYou draw your [pc.weapon] and shoulder the hatch open, charging into a lavishly-adorned harem chamber. A huge heart-shaped bed dominates the far side, laden with nude slave-girls fawning all over a laquine boy lounging at the head - and getting head from a particularly buxom ausar woman who’s straining her mouth around almost two feet of turgid bunny-cock.");
+		output("\n\nThe rabbit-boy starts forward, a scowl building across his coal-black fur. <i>“What’s the big idea?");
+		//PC wearing slave uniform:
+		if(pcHasSlaveOutfit()) output(" I didn’t order more skanks... did I?");
+		//pcLapineEarOrJumperUniform:
+		else if(pc.earType == GLOBAL.TYPE_LAPINE || pc.armor is JumperJumpsuit || pc.armor is JumperJumpsuitSlutty) output(" I didn’t call a meeting and I know I didn’t ask for one of you sweaty sluts.");
+		//pcMouseEarsOrRatArmor:
+		else if(pc.earType == GLOBAL.TYPE_MOUSE || pc.armor is RattyArmor) 
+		{
+			if(pc.earType == GLOBAL.TYPE_MOUSE) output(" Looks like one of his rodents");
+			else output(" Dressed like one of those rats");
+			output("... Bull, only your boss works alone.");
+		}
+		//pcSecOpWeaveArmor: 
+		else if(pc.armor is AugmentWeaveArmor) output(" W-what are one of you technophiles doing here... Wait, you don’t have an antenna!");
+		//pcViperSlutwear: 
+		else if(pc.armor is StarViperSlutwear) output(" Oh crap, how did you- wait, you’re not a Viper, and only those snake bitches wear that.");
+		else output(" I don’t remember giving anybody lookin’ like <b>you</b> the keys to the ship!");
+		output(" So who the fuck are you?”</i>");
+		output("\n\nAnother laquine, sitting on the edge of the bed, bounces to her feet. She’s dressed in an orange, skin-tight latex suit that bulges around large breasts and an even more impressive bulge in the crotch, clearly outlining a substantial pair of balls below her huge dicksheath. She yanks a large, two-pronged device off the wall and levels it at you.");
+		//pcLapineEarOrJumperUniform: 
+		if(pc.earType == GLOBAL.TYPE_LAPINE || pc.armor is JumperJumpsuit || pc.armor is JumperJumpsuitSlutty) output("\n\n<i>“[pc.HeShe] isn’t one of mine!”</i>");
+		else output("\n\n<i>“An uninvited guest, babe,”</i>");
+		output(" the woman growls. The weapon in her hand hums with a surge of power as the forks at the barrel crackle with electricity. <i>“Remember those reports of more fights breakin’ out?”</i>");
+		output("\n\n<i>“Nah, too busy fuckin’,”</i> the black-furred boy laughs, pushing the ausar girl down his rod with a firm hand. <i>“Welp! You wandered into the wrong neighborhood, fucker. Take care of [pc.himHer], will ya, beautiful?”</i>");
+		output("\n\nThe suited-up bun rolls her shoulders and grins. <i>“As long as I get to keep [pc.himHer] after!”</i>");
+		output("\n\nYeah, you’ve got something to say about - oh fuck!");
+		output("\n\nYou jump backwards as her lightning gun discharges, sending a solid beam of crackling electricity out that hits the metal deck and arcs across the floor. Every hair you have stands on end as a powerful charge surges through you. Ow ow ow!");
+		processTime(3);
+		var tEnemy:Creature = new ShockHopper();
+		CombatManager.newGroundCombat();
+		CombatManager.setHostileActors(tEnemy);	
+		CombatManager.setFriendlyActors(pc);
+		CombatManager.victoryScene(victoryOverShockyHoppy);
+		CombatManager.lossScene(loseToShockHopper);
+		CombatManager.displayLocation("SHOCK HOPPER");
+		clearMenu();
+		addButton(0,"Next",CombatManager.beginCombat);
+		return true;
 	}
-	//pcSecOpWeaveArmor: 
-	else if(pc.armor is AugmentWeaveArmor) output(" W-what are one of you technophiles doing here... Wait, you don’t have an antenna!");
-	//pcViperSlutwear: 
-	else if(pc.armor is StarViperSlutwear) output(" Oh crap, how did you- wait, you’re not a Viper, and only those snake bitches wear that.");
-	else output(" I don’t remember giving anybody lookin’ like <b>you</b> the keys to the ship!");
-	output(" So who the fuck are you?”</i>");
-	output("\n\nAnother laquine, sitting on the edge of the bed, bounces to her feet. She’s dressed in an orange, skin-tight latex suit that bulges around large breasts and an even more impressive bulge in the crotch, clearly outlining a substantial pair of balls below her huge dicksheath. She yanks a large, two-pronged device off the wall and levels it at you.");
-	//pcLapineEarOrJumperUniform: 
-	if(pc.earType == GLOBAL.TYPE_LAPINE || pc.armor is JumperJumpsuit || pc.armor is JumperJumpsuitSlutty) output("\n\n<i>“[pc.HeShe] isn’t one of mine!”</i>");
-	else output("\n\n<i>“An uninvited guest, babe,”</i>");
-	output(" the woman growls. The weapon in her hand hums with a surge of power as the forks at the barrel crackle with electricity. <i>“Remember those reports of more fights breakin’ out?”</i>");
-	output("\n\n<i>“Nah, too busy fuckin’,”</i> the black-furred boy laughs, pushing the ausar girl down his rod with a firm hand. <i>“Welp! You wandered into the wrong neighborhood, fucker. Take care of [pc.himHer], will ya, beautiful?”</i>");
-	output("\n\nThe suited-up bun rolls her shoulders and grins. <i>“As long as I get to keep [pc.himHer] after!”</i>");
-	output("\n\nYeah, you’ve got something to say about - oh fuck!");
-	output("\n\nYou jump backwards as her lightning gun discharges, sending a solid beam of crackling electricity out that hits the metal deck and arcs across the floor. Every hair you have stands on end as a powerful charge surges through you. Ow ow ow!");
-	processTime(3);
-	var tEnemy:Creature = new ShockHopper();
-	CombatManager.newGroundCombat();
-	CombatManager.setHostileActors(tEnemy);	
-	CombatManager.setFriendlyActors(pc);
-	CombatManager.victoryScene(victoryOverShockyHoppy);
-	CombatManager.lossScene(loseToShockHopper);
-	CombatManager.displayLocation("SHOCK HOPPER");
-	clearMenu();
-	addButton(0,"Next",CombatManager.beginCombat);
-	return;
+	else output("\n\nAfter your fight, the Jumper leadership cleared out.");
+	return false;
 }
-//[Fight!]
-
-
-
 
 //PC Loss: Shock Slave Bad End
 // PC is beaten, fucked (if the hopper busted a nut in her suit), then trained as a shock-slave.
@@ -619,6 +630,7 @@ public function victoryOverShockyHoppy():void
 	showShockHopperAndLDC();
 	showName("\nVICTORY!");
 	author("Savin");
+	flags["SHOCK_HOPPER_DEFEATED"] = 1;
 	
 	output("The latex-clad lieutenant stumbles back against the edge of the heart-shaped bed, panting and gasping from your confrontation. " + (enemy.lust() >= enemy.lustMax() ? "Her chest is heaving under the tattered front of her suit, ripping away the shredded rubber to reveal two full mounds of blue-furred breasts and stiff black nipples.":"She’s gasping for breath, teeth grit against the pain of defeat."));
 	output("\n\n<i>“I can’t... take any more,”</i> the Hopper groans. <i>“H-hey, L.D.C., you gonna help or?”</i>");
@@ -703,7 +715,8 @@ public function leaveThemSluts():void
 	output("You nod again and turn to leave. A few moments after you’ve slipped out of the captain’s quarters, you hear a number of wet footfalls padding out in the corridor, quickly receding away. Well, none of your concern; you turn your attention to the cargo hold and your inheritance.");
 	pc.addHard(5);
 	output("\n\n");
-	//9999 track ending resolution
+	//track ending resolution
+	flags["JUMPER_SLAVES_FREED"] = -1;
 	CombatManager.genericVictory();
 }
 
@@ -721,7 +734,8 @@ public function saveThemSluts():void
 	output("\n\nWhen the slowest of the slaves has left, you back out of the bedroom and close the door behind you. Time to go find your inheritance.");
 	processTime(5);
 	output("\n\n");
-	//9999 track resolution
+	//track resolution
+	flags["JUMPER_SLAVES_FREED"] = 1;
 	CombatManager.genericVictory();
 }
 
@@ -799,7 +813,10 @@ public function fuckTheHopper2(x:int):void
 	pc.orgasm();
 	enemy.loadInCunt(pc,x);
 	output("\n\n");
-	//9999 track resolution, slaves freed.
+	//track resolution, slaves freed.
+	flags["JUMPER_LEADERSHIP_WINFUCKED"] = 1;
+	flags["SHOCK_HOPPER_FUCKED"] = 1;
+	flags["JUMPER_SLAVES_FREED"] = 1;
 	CombatManager.genericVictory();
 }
 
@@ -879,10 +896,16 @@ public function rideHopperSlut2(args:Array):void
 	output("\n\nThe Hopper is blown straight off his cock by the first geyser, plastered on the blankets by a wad of white cream, and then the rest is flooding through her fur in great gouts of steaming seed. Watching that degenerate show is just the last little bit of stimulation to push you over the edge. Your breath catches, loins tightening as your [pc.vagOrAss " + x + "] squeezes hard around the Hopper’s thick dong" + (y >= 0 ? "; your [pc.cock " + y + "] pushes deep before release, busting your nut hard into the dusky bun’s behind. He shudders, still leaking from his own orgasm, limply allowing you to fill him as his lieutenant did to you":"") + ".");
 	output("\n\nThe cascade of spooge, flowing from body to body, lasts for a good long while before you’ve finally taken the whole of the Hopper’s load. When she’s finally finished, you roll heavily off her and onto your side, shivering with pleasure as white cream leaks down your thighs. The two bunnies are two busy humping at each other once you’re gone to pay you any mind as you slowly clean yourself up and grab the slave baton from the Hopper’s sundered uniform. One tap and the harem sluts are free to exact their sexual vengeance on the Jumper leadership while you get ready to go find your inheritance.");
 	processTime(30);
-	//9999 track outcome and slavegrill freeing
+	//track outcome and slavegrill freeing
 	pc.orgasm();
 	if(x >= 0) pc.loadInCunt(enemy,x);
 	else pc.loadInAss();
+
+	flags["JUMPER_LEADERSHIP_WINFUCKED"] = 1;
+	flags["SHOCK_HOPPER_FUCKED"] = 1;
+	flags["LDC_FUCKED"] = 1;
+	flags["JUMPER_SLAVES_FREED"] = -1;
+
 	output("\n\n");
 	CombatManager.genericVictory();
 }
@@ -1106,7 +1129,11 @@ public function domTheLDCsAss2(x:int):void
 	if(pc.hasCuntTail()) feedCuntSnake(enemy);
 	enemy.loadInAss(pc);
 	pc.orgasm();
-	CombatManager.genericVictory();
+	
+	flags["JUMPER_LEADERSHIP_WINFUCKED"] = 1;
+	flags["LDC_FUCKED"] = 1;
+	clearMenu();
+	addButton(0,"Next",postSexShockHopperVictoryEpiloggieDoggie,3);
 }
 
 //[Get Worshiped]
@@ -1332,9 +1359,6 @@ public function getWorshippedByBuns(cockUse:Boolean):void
 		processTime(35);
 		enemy.loadInMouth(pc);
 		pc.orgasm();
-		//9999 track resolution - slaves not freed
-		output("\n\n");
-		CombatManager.genericVictory();
 	}
 	// PC chose vagina, not taur
 	else if(!cockUse && !pc.isTaur())
@@ -1396,7 +1420,7 @@ public function getWorshippedByBuns(cockUse:Boolean):void
 		output("\n\nInstead of letting your hands fall limp, ");
 		if(pc.biggestTitSize() >= 1)
 		{
-			output("you steal touches at your [pc.breasts]" + (pc.canMilkSquirt() ? ", squirting [pc.milk] into the air, all over yourself and your attendants in a perverse, tasy display":""));
+			output("you steal touches at your [pc.breasts]" + (pc.canMilkSquirt() ? ", squirting [pc.milk] into the air, all over yourself and your attendants in a perverse, tasty display":""));
 		}
 		else output("you reach down and help, grasping for an ear or a clit to rub.");
 		output(". Your [pc.pussies] rob" + (pc.totalVaginas() == 1 ? "s":"") + " your entire body of muscle control, trapping " + (!pc.hasVaginas() ? "its":"their") + " invaders in your leaky quim" + (pc.totalVaginas() > 1 ? "s":"") + " and slathering them with new coats of femslime. The moans you’re loosing turn to fevered wails as sweat trickles down your neck in saccharine detail.");
@@ -1413,9 +1437,6 @@ public function getWorshippedByBuns(cockUse:Boolean):void
 		processTime(35);
 		enemy.girlCumInMouth(pc);
 		pc.orgasm();
-		//9999 track what happen
-		output("\n\n");
-		CombatManager.genericVictory();
 	}
 	//[Next]
 	// PC chose cock, taur
@@ -1505,8 +1526,6 @@ public function getWorshippedByBuns(cockUse:Boolean):void
 		if(pc.hasCuntTail()) feedCuntSnake(enemy);
 		pc.orgasm();
 		output("\n\n");
-		//9999 track shit
-		CombatManager.genericVictory();
 	}
 	// PC chose vagina, taur
 	else
@@ -1585,9 +1604,12 @@ public function getWorshippedByBuns(cockUse:Boolean):void
 		enemy.girlCumInMouth(pc);
 		pc.orgasm();
 		output("\n\n");
-		//9999 track outcome
-		CombatManager.genericVictory();
 	}
+	flags["JUMPER_LEADERSHIP_WINFUCKED"] = 1;
+	flags["SHOCK_HOPPER_FUCKED"] = 1;
+	flags["LDC_FUCKED"] = 1;
+	clearMenu();
+	addButton(0,"Next",postSexShockHopperVictoryEpiloggieDoggie,0);
 }
 
 //[Threesome]
@@ -1771,10 +1793,14 @@ public function laquineShockyThreesomes3(x:int):void
 	//output("\n\nWith all said and done, it’s time to decide what you’re going to do next...");
 	output("\n\n");
 	processTime(30);
-	//9999 track what happen
+	//track what happen
+	flags["JUMPER_LEADERSHIP_WINFUCKED"] = 1;
+	flags["SHOCK_HOPPER_FUCKED"] = 1;
+	flags["LDC_FUCKED"] = 1;
 	enemy.loadInAss(pc);
 	pc.orgasm();
-	CombatManager.genericVictory();
+	clearMenu();
+	addButton(0,"Next",postSexShockHopperVictoryEpiloggieDoggie,1);
 }
 
 //[Drain Bunnies]
@@ -2032,6 +2058,63 @@ public function drainBunnies3():void
 	pc.loadInAss();
 	pc.applyCumSoaked();
 	pc.orgasm();
+	flags["JUMPER_LEADERSHIP_WINFUCKED"] = 1;
+	flags["JUMPER_LEADERSHIP_LIKED_WINFUCK"] = 1;
+	flags["SHOCK_HOPPER_FUCKED"] = 1;
+	flags["LDC_FUCKED"] = 1;
+	clearMenu();
+	addButton(0,"Next",postSexShockHopperVictoryEpiloggieDoggie,2);
+}
+
+//[+Post Sex]
+// After all of my sex scenes do these stuffs.
+// William
+// 0 = get worship, 1 = threesome, 2 = drain bun, 3 = dom his booty
+public function postSexShockHopperVictoryEpiloggieDoggie(scene:int = 0):void
+{
+	clearOutput();
+	showLDCAndShockHopper(true);
+	author("William");
+	// After [Dom His Butt]
+	if(scene == 3) output("<i>“F-fucking... Fuck... You!”</i> L.D.C. whimpers, crawling forward with the strangest look on his face. You can’t help but laugh when you take the ship’s codes from him, looking over the remnants of the Hopper’s uniform. A curious button catches your eye, likely the release for their slave’s collars. You <i>could</i> free them before you leave... before the big-balled bunny-bitch is able to collect her thoughts. Besides, they did help you a bit!");
+	// After [Get Worshiped] (any)
+	else if(scene == 0) output("You have no problem relieving L.D.C. of the codes to find your probe, ruffling his hair in the process. The Hopper, incidentally, is also in no position to defy you, should you want to release the slaves from a lifetime of collared servitude. Freeing the harem from their lives as bunny-sluts is a button press away, though you’ll have to make that choice now before she has strength to stand again.");
+	// After [Threesome]
+	else if(scene == 1) output("Naturally, it’s no concern relieving L.D.C. of his meager possessions, such as the codes to obtaining your probe! Something else catches your eye, left behind in the Hopper’s gear: a button. No doubt the release for the slave collars lining the necks of every harem girl on this lovebed. Those bunnies are currently a wreck, but laquines recover fast enough. If you want to free them from their life of submission, then a simple button press is only inches away.");
+	// After [Drain Bunnies]
+	else output("Of course! The probe, you got so distracted you almost forgot to get those codes off that big dicked bunny! " + (pc.isBimbo() ? "<i>Yoink!</i>":"Easy pickins.") + " In the midst of their helpless moaning, you spot a switch against the sheets, a curious button that, when you eye it, you find the eyes of the harem on you. Must be their collar switches. If you hit that button you could free them from their sexy duties, but that big balled bunny babe is already stirring. Gotta think fast!");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Free",freeDemHaremSlootipies,undefined,"Free","Free the harem-girls. They’ll be able to find their own way out, hopefully without getting into further trouble.");
+	addButton(1,"Don't Free",dontFreeThemSlootySloots,undefined,"Don't Free","They’re fine where they are, and you can’t go stirring up more trouble than you already have.");
+}
+
+//[Free]
+// Tooltip: Free the harem-girls. They’ll be able to find their own way out, hopefully without getting into further trouble.
+public function freeDemHaremSlootipies():void
+{
+	clearOutput();
+	showLDCAndShockHopper(true);
+	author("William");
+	output("<i>Tap.</i> The metal rings fit firm to the harem snap off and fall to the sheets or the deck. In confusion they rub their necks, almost in disbelief that they now have the freedom once stolen from them. Scanning their eyes reveals a mix of uncontained joy and a curious bit of reluctance. A deluge of gratitude gives you some comfort as they hurry out of the room, however, some look back to the rising laquine leaders as if they want to stay!");
+	output("\n\n<i>“Ah geez, you know most of them weren’t even ours! As if we needed </i>that<i> on our asses too!”</i> L.D.C. grouses. He shrinks back when you cut a knife-like glare his way. <i>“Whatever, we’ll get out of your way then...”</i>");
+	output("\n\nThe inky bunny hefts his package and waddles out after the Hopper, neither of them looking back to you. Their toe-steps fade into the background, leaving you alone.\n\n");
+	flags["JUMPER_SLAVES_FREED"] = 1;
+	processTime(5);
+	CombatManager.genericVictory();
+}
+
+//[Don’t Free]
+// Tooltip: They’re fine where they are, and you can’t go stirring up more trouble than you already have.
+public function dontFreeThemSlootySloots():void
+{
+	clearOutput();
+	showLDCAndShockHopper(true);
+	author("William");
+	output("You shake your head, simply ordering them all to leave. The black and blue buns finally stand, collecting what little possessions they have from the bed. <i>“Get going...”</i> the Hopper mutters, ushering the slaves out one-by-one with the tatters of her outfit in hand. She scoops up their release switch, looking warily at you as she and L.D.C., hefting his package, waddles out with them.");
+	output("\n\nTheir toe-steps fade into the background, leaving you alone and ready to move on.");
 	output("\n\n");
+	flags["JUMPER_SLAVES_FREED"] = -1;
+	processTime(5);
 	CombatManager.genericVictory();
 }

@@ -3674,6 +3674,13 @@ public function variableRoomUpdateCheck():void
 	if(rooms["ZSF I8"].hasFlag(GLOBAL.NPC) && flags["FORGEHOUND_WREKT"] != undefined) rooms["ZSF I8"].removeFlag(GLOBAL.NPC);
 	else if(!rooms["ZSF I8"].hasFlag(GLOBAL.NPC) && flags["FORGEHOUND_WREKT"] == undefined) rooms["ZSF I8"].addFlag(GLOBAL.NPC);
 
+	//Boss room :3
+	if(flags["SHOCK_HOPPER_DEFEATED"] == undefined && !rooms["ZSF V18"].hasFlag(GLOBAL.NPC)) rooms["ZSF V18"].addFlag(GLOBAL.NPC);
+	else if(flags["SHOCK_HOPPER_DEFEATED"] != undefined && rooms["ZSF V18"].hasFlag(GLOBAL.NPC)) rooms["ZSF V18"].removeFlag(GLOBAL.NPC);
+	//Cargohold
+	if(flags["ZHENG_SHI_PROBED"] == undefined && !rooms["ZSF V14"].hasFlag(GLOBAL.OBJECTIVE)) rooms["ZSF V14"].addFlag(GLOBAL.OBJECTIVE);
+	else if(flags["ZHENG_SHI_PROBED"] != undefined && rooms["ZSF V14"].hasFlag(GLOBAL.OBJECTIVE)) rooms["ZSF V14"].removeFlag(GLOBAL.OBJECTIVE);
+
 	 
 	/* UVETO */
 	
