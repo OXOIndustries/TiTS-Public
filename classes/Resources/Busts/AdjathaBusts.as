@@ -708,44 +708,40 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/raskvel_gang_nude.png", mimeType = "image/png")]
 		public var Bust_RASKVEL_GANG_NUDE:Class;
 		
-		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_rod_1_nude.png", mimeType = "image/png")]
-		public var Bust_RATS_RAIDER_ROD_1:Class;
-		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_rod_2_nude.png", mimeType = "image/png")]
-		public var Bust_RATS_RAIDER_ROD_2:Class;
-		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_rod_1_nude.png", mimeType = "image/png")]
-		public var Bust_RATS_RAIDER_ROD_1_NUDE:Class;
-		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_rod_2_nude.png", mimeType = "image/png")]
-		public var Bust_RATS_RAIDER_ROD_2_NUDE:Class;
-		public var Bounds_RATS_RAIDER_ROD_1:Rectangle = new Rectangle(50, 0, 95, 95);
-		public var Bounds_RATS_RAIDER_ROD_2:Rectangle = Bounds_RATS_RAIDER_ROD_1;
-		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_mouse_1_nude.png", mimeType = "image/png")]
-		public var Bust_RATS_RAIDER_MOUSE_1:Class;
-		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_mouse_2_nude.png", mimeType = "image/png")]
-		public var Bust_RATS_RAIDER_MOUSE_2:Class;
-		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_mouse_1_nude.png", mimeType = "image/png")]
-		public var Bust_RATS_RAIDER_MOUSE_1_NUDE:Class;
-		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_mouse_2_nude.png", mimeType = "image/png")]
-		public var Bust_RATS_RAIDER_MOUSE_2_NUDE:Class;
-		public var Bounds_RATS_RAIDER_MOUSE_1:Rectangle = new Rectangle(75, 0, 80, 80);
-		public var Bounds_RATS_RAIDER_MOUSE_2:Rectangle = Bounds_RATS_RAIDER_MOUSE_1;
-		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_girl_nude.png", mimeType = "image/png")]
-		public var Bust_RATS_RAIDER_GIRL:Class;
-		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_boy_nude.png", mimeType = "image/png")]
-		public var Bust_RATS_RAIDER_BOY:Class;
-		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_girl_nude.png", mimeType = "image/png")]
-		public var Bust_RATS_RAIDER_GIRL_NUDE:Class;
-		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_boy_nude.png", mimeType = "image/png")]
-		public var Bust_RATS_RAIDER_BOY_NUDE:Class;
-		public var Bounds_RATS_RAIDER_GIRL:Rectangle = new Rectangle(35, 0, 100, 100);
-		public var Bounds_RATS_RAIDER_BOY:Rectangle = Bounds_RATS_RAIDER_GIRL;
-		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_group_one_nude.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_group_one.png", mimeType = "image/png")]
 		public var Bust_RATS_RAIDER_GROUP_ONE:Class;
-		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_group_two_nude.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_group_two.png", mimeType = "image/png")]
 		public var Bust_RATS_RAIDER_GROUP_TWO:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_group_one_nude.png", mimeType = "image/png")]
 		public var Bust_RATS_RAIDER_GROUP_ONE_NUDE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_group_two_nude.png", mimeType = "image/png")]
 		public var Bust_RATS_RAIDER_GROUP_TWO_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_rod_1_nude.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_ROD_1_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_rod_2_nude.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_ROD_2_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_mouse_1_nude.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_MOUSE_1_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_mouse_2_nude.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_MOUSE_2_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_girl_nude.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_GIRL_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_boy_nude.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_BOY_NUDE:Class;
+
+		//Headshots for the fight. Don't use as busts. Will look creepy as hell.
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_rod_1.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_ROD_1:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_rod_2.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_ROD_2:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_mouse_1.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_MOUSE_1:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_mouse_2.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_MOUSE_2:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_girl.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_GIRL:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_boy.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_BOY:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/reaha_anusoft.png", mimeType = "image/png")]
 		public var Bust_REAHA_ANUSOFT:Class;
