@@ -2214,8 +2214,8 @@ public function initZhengRooms():void
 	rooms["ZSF V16"].addFlag(GLOBAL.LIFTUP);
 
 	rooms["ZSF T24"] = new RoomClass(this);
-	rooms["ZSF T24"].roomName = "\n";
-	rooms["ZSF T24"].description = "";
+	rooms["ZSF T24"].roomName = "NARROW\nCATWALK";
+	rooms["ZSF T24"].description = "With less supports and thinner handrails, this ship-connected catwalk seems ever so much more dangerous than it’s brethren. It leads north, closer to the ship, and south where it rejoins the wider platform.";
 	rooms["ZSF T24"].planet = "ZHENG SHI STATION";
 	rooms["ZSF T24"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF T24"].northExit = "ZSF T22";
@@ -2228,8 +2228,8 @@ public function initZhengRooms():void
 	rooms["ZSF T24"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF T22"] = new RoomClass(this);
-	rooms["ZSF T22"].roomName = "\n";
-	rooms["ZSF T22"].description = "";
+	rooms["ZSF T22"].roomName = "NARROW\nCATWALK";
+	rooms["ZSF T22"].description = "This suspended boarding ramp hangs a sharp, 90 degree turn to the east and south from here. The ship itself lies in the former direction, majestic and gleaming, its aerodynamic curves suggesting equal ease among stars or cloudy skies. The other direction leads back to the wider catwalks above Zheng Shi’s foundry.");
 	rooms["ZSF T22"].planet = "ZHENG SHI STATION";
 	rooms["ZSF T22"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF T22"].northExit = "";
@@ -2242,8 +2242,8 @@ public function initZhengRooms():void
 	rooms["ZSF T22"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF V22"] = new RoomClass(this);
-	rooms["ZSF V22"].roomName = "\n";
-	rooms["ZSF V22"].description = "";
+	rooms["ZSF V22"].roomName = "SHIP’S\nDOOR";
+	rooms["ZSF V22"].description = "The catwalk terminates at the Sidewinder’s side, buffered by the six inches of rubberized padding, squished tight against the gleaming hull. A squarish seam, roughly eight feet high, provides graciously accommodating entry to the craft, assuming you can work the transparent aluminum touchscreen and card reader to get inside.";
 	rooms["ZSF V22"].planet = "ZHENG SHI STATION";
 	rooms["ZSF V22"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF V22"].northExit = "";
@@ -2255,6 +2255,160 @@ public function initZhengRooms():void
 	rooms["ZSF V22"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF V22"].addFlag(GLOBAL.HAZARD);
 	rooms["ZSF V22"].addFlag(GLOBAL.OBJECTIVE);
+	
+	rooms["ZSF V20"] = new RoomClass(this);
+	rooms["ZSF V20"].roomName = "\nAIRLOCK";
+	rooms["ZSF V20"].description = "";
+	rooms["ZSF V20"].planet = "ZHENG SHI STATION";
+	rooms["ZSF V20"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF V20"].northExit = "";
+	rooms["ZSF V20"].eastExit = "ZSF X20";
+	rooms["ZSF V20"].southExit = "ZSF V22";
+	rooms["ZSF V20"].westExit = "";
+	rooms["ZSF V20"].moveMinutes = 3;
+	//rooms["ZSF V20"].runOnEnter = null;
+	rooms["ZSF V20"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF V20"].addFlag(GLOBAL.HAZARD);
+	
+	rooms["ZSF X20"] = new RoomClass(this);
+	rooms["ZSF X20"].roomName = "ACCESS\nCORRIDOR";
+	rooms["ZSF X20"].description = "";
+	rooms["ZSF X20"].planet = "ZHENG SHI STATION";
+	rooms["ZSF X20"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF X20"].northExit = "ZSF X18";
+	rooms["ZSF X20"].eastExit = "";
+	rooms["ZSF X20"].southExit = "ZSF X22";
+	rooms["ZSF X20"].westExit = "ZSF V20";
+	rooms["ZSF X20"].moveMinutes = 3;
+	//rooms["ZSF X20"].runOnEnter = null;
+	rooms["ZSF X20"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF X20"].addFlag(GLOBAL.HAZARD);
+	
+	rooms["ZSF X22"] = new RoomClass(this);
+	rooms["ZSF X22"].roomName = "ACCESS\nCORRIDOR";
+	rooms["ZSF X22"].description = "";
+	rooms["ZSF X22"].planet = "ZHENG SHI STATION";
+	rooms["ZSF X22"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF X22"].northExit = "ZSF X20";
+	rooms["ZSF X22"].eastExit = "";
+	rooms["ZSF X22"].southExit = "ZSF X24";
+	rooms["ZSF X22"].westExit = "";
+	rooms["ZSF X22"].moveMinutes = 3;
+	//rooms["ZSF X22"].runOnEnter = null;
+	rooms["ZSF X22"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF X22"].addFlag(GLOBAL.HAZARD);
+	
+	rooms["ZSF X24"] = new RoomClass(this);
+	rooms["ZSF X24"].roomName = "THE\nCOCKPIT";
+	rooms["ZSF X24"].description = "";
+	rooms["ZSF X24"].planet = "ZHENG SHI STATION";
+	rooms["ZSF X24"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF X24"].northExit = "ZSF X22";
+	rooms["ZSF X24"].eastExit = "";
+	rooms["ZSF X24"].southExit = "";
+	rooms["ZSF X24"].westExit = "";
+	rooms["ZSF X24"].moveMinutes = 3;
+	//rooms["ZSF X24"].runOnEnter = null;
+	rooms["ZSF X24"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF X24"].addFlag(GLOBAL.HAZARD);
+	
+	rooms["ZSF X18"] = new RoomClass(this);
+	rooms["ZSF X18"].roomName = "THE\nMESS";
+	rooms["ZSF X18"].description = "";
+	rooms["ZSF X18"].planet = "ZHENG SHI STATION";
+	rooms["ZSF X18"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF X18"].northExit = "ZSF X16";
+	rooms["ZSF X18"].eastExit = "";
+	rooms["ZSF X18"].southExit = "ZSF X20";
+	rooms["ZSF X18"].westExit = "ZSF V18";
+	rooms["ZSF X18"].moveMinutes = 3;
+	//rooms["ZSF X18"].runOnEnter = null;
+	rooms["ZSF X18"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF X18"].addFlag(GLOBAL.HAZARD);
+	
+	rooms["ZSF V18"] = new RoomClass(this);
+	rooms["ZSF V18"].roomName = "CAPTAIN'S\nQUARTERS";
+	rooms["ZSF V18"].description = "";
+	rooms["ZSF V18"].planet = "ZHENG SHI STATION";
+	rooms["ZSF V18"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF V18"].northExit = "";
+	rooms["ZSF V18"].eastExit = "ZSF X18";
+	rooms["ZSF V18"].southExit = "";
+	rooms["ZSF V18"].westExit = "";
+	rooms["ZSF V18"].moveMinutes = 3;
+	//rooms["ZSF V18"].runOnEnter = null;
+	rooms["ZSF V18"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF V18"].addFlag(GLOBAL.HAZARD);
+	
+	rooms["ZSF X16"] = new RoomClass(this);
+	rooms["ZSF X16"].roomName = "ACCESS\nCORRIDOR";
+	rooms["ZSF X16"].description = "";
+	rooms["ZSF X16"].planet = "ZHENG SHI STATION";
+	rooms["ZSF X16"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF X16"].northExit = "ZSF X14";
+	rooms["ZSF X16"].eastExit = "";
+	rooms["ZSF X16"].southExit = "ZSF X18";
+	rooms["ZSF X16"].westExit = "";
+	rooms["ZSF X16"].moveMinutes = 3;
+	//rooms["ZSF X16"].runOnEnter = null;
+	rooms["ZSF X16"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF X16"].addFlag(GLOBAL.HAZARD);
+	
+	rooms["ZSF X14"] = new RoomClass(this);
+	rooms["ZSF X14"].roomName = "ACCESS\nCORRIDOR";
+	rooms["ZSF X14"].description = "";
+	rooms["ZSF X14"].planet = "ZHENG SHI STATION";
+	rooms["ZSF X14"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF X14"].northExit = "ZSF X12";
+	rooms["ZSF X14"].eastExit = "";
+	rooms["ZSF X14"].southExit = "ZSF X16";
+	rooms["ZSF X14"].westExit = "ZSF V14";
+	rooms["ZSF X14"].moveMinutes = 3;
+	//rooms["ZSF X14"].runOnEnter = null;
+	rooms["ZSF X14"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF X14"].addFlag(GLOBAL.HAZARD);
+	
+	rooms["ZSF X12"] = new RoomClass(this);
+	rooms["ZSF X12"].roomName = "ACCESS\nCORRIDOR";
+	rooms["ZSF X12"].description = "";
+	rooms["ZSF X12"].planet = "ZHENG SHI STATION";
+	rooms["ZSF X12"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF X12"].northExit = "ZSF X14";
+	rooms["ZSF X12"].eastExit = "";
+	rooms["ZSF X12"].southExit = "";
+	rooms["ZSF X12"].westExit = "ZSF V12";
+	rooms["ZSF X12"].moveMinutes = 3;
+	//rooms["ZSF X12"].runOnEnter = null;
+	rooms["ZSF X12"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF X12"].addFlag(GLOBAL.HAZARD);
+	
+	rooms["ZSF V14"] = new RoomClass(this);
+	rooms["ZSF V14"].roomName = "PORT\nCARGOHOLD";
+	rooms["ZSF V14"].description = "";
+	rooms["ZSF V14"].planet = "ZHENG SHI STATION";
+	rooms["ZSF V14"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF V14"].northExit = "";
+	rooms["ZSF V14"].eastExit = "ZSF X14";
+	rooms["ZSF V14"].southExit = "";
+	rooms["ZSF V14"].westExit = "";
+	rooms["ZSF V14"].moveMinutes = 3;
+	//rooms["ZSF V14"].runOnEnter = null;
+	rooms["ZSF V14"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF V14"].addFlag(GLOBAL.HAZARD);
+	
+	rooms["ZSF V12"] = new RoomClass(this);
+	rooms["ZSF V12"].roomName = "ENGINE\nROOM A";
+	rooms["ZSF V12"].description = "";
+	rooms["ZSF V12"].planet = "ZHENG SHI STATION";
+	rooms["ZSF V12"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF V12"].northExit = "";
+	rooms["ZSF V12"].eastExit = "ZSF X12";
+	rooms["ZSF V12"].southExit = "";
+	rooms["ZSF V12"].westExit = "";
+	rooms["ZSF V12"].moveMinutes = 3;
+	//rooms["ZSF V12"].runOnEnter = null;
+	rooms["ZSF V12"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF V12"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF PLACEHOLDER"] = new RoomClass(this);
 	rooms["ZSF PLACEHOLDER"].roomName = "\n";

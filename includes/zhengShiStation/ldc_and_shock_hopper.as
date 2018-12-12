@@ -57,7 +57,7 @@ public function shockHopperEncounter():void
 	author("Savin");
 	pc.lust(-100);
 	showLDCAndShockHopper();
-	output("The captain’s quarters are unmistakable, set apart from those of the crew and adjacent to the bridge. The hatch is ever-so-slightly ajar, propped open by an empty bottle of elasticizing lube, crushed between the frame and the sliding door. Inside, you hear a whole chorus of girlish laughter and soft moans. Must be a real party going on.");
+	output("The captain’s quarters are unmistakable, set apart from those of the crew and close to the bridge. The hatch is ever-so-slightly ajar, propped open by an empty bottle of elasticizing lube, crushed between the frame and the sliding door. Inside, you hear a whole chorus of girlish laughter and soft moans. Must be a real party going on.");
 	output("\n\nTime to crash it.");
 	output("\n\nYou draw your [pc.weapon] and shoulder the hatch open, charging into a lavishly-adorned harem chamber. A huge heart-shaped bed dominates the far side, laden with nude slave-girls fawning all over a laquine boy lounging at the head - and getting head from a particularly buxom ausar woman who’s straining her mouth around almost two feet of turgid bunny-cock.");
 	output("\n\nThe rabbit-boy starts forward, a scowl building across his coal-black fur. <i>“What’s the big idea?");
@@ -148,14 +148,14 @@ public function loseToShockHopper():void
 	if(pc.lust() >= pc.lustMax()) output(" and slaps your masturbatory hands aside");
 	output(". <i>“Well beautiful, looks like you won yourself a ");
 	var raceName:String = pc.race();
-	if (pc.canineScore() + pc.vulpineScore() >= 5) output("pretty puppy");
-	else if (pc.felineScore() >= 5) output("nice kitty");
+	if (pc.canineScore() + pc.vulpineScore() >= 5 || InCollection(pc.race(),"ausar","half-ausar")) output("pretty puppy");
+	else if (pc.felineScore() >= 5 || InCollection(pc.race(),"kaithrit","half-kaithrit")) output("nice kitty");
 	//pcGryvainOrScaled:
 	else if(pc.hasScales() || pc.gryvainScore() >= 6) output("shiny prize");
 	//pcLaquineRabbit:
 	else if(pc.laquineScore() >= 5) output("new girl");
 	//pcMouseRodenian:
-	if(pc.rodentScore() >= 4) output((pc.tallness < 6 ? "cute runt":"cute rat"));
+	else if(pc.rodentScore() >= 4) output((pc.tallness < 6 ? "cute runt":"cute rat"));
 	//pcLeithanOrHorse:
 	else if(pc.isTaur() || pc.equineScore() >= 4) output("new pony");
 	else if(pc.isNaga() || pc.isGoo()) output("something special");
@@ -245,7 +245,7 @@ public function loseToShockHopper():void
 		output("\n\n<i>“I can only wonder what you’re thinking,”</i> she smirks, smacking a switch on the box with her foot. <i>“But if you’re thinking that I might be an amateur, you’re dead wrong.”</i> The current that flows through and flinches you is... it’s mildly paralyzing, but far less painful than the collar’s jolt. <i>“There’s no difference between you and my girls.”</i> She hits the switch again, though the first clap still echoes in your itching ear. <i>“Why are you here?”</i>");
 		output("\n\nIt takes a while to realize she just asked you a question. <i>“I-I was looking for a probe...”</i> you say, eyes still locked to the collar controls. You’re shuddering a little warmly. <i>“I’m a Rusher-”</i>");
 		output("\n\n<i>“Wrong answer,”</i> she toggles the collar for but a second, and it makes you squeak. <i>“A rusher doesn’t find their way to and through a pirate base, to this room, on dumb fucking luck.”</i> She foot-slaps the box again, and the more pleasant tingle smooths out the aches from before... and makes you wriggle from the overabundance of... niceness. You loose a small, blissful moan, struggling to cope with this dynamic, the need to cum rising inside slowly but surely. <i>“Try again.”</i>");
-		output("\n\n<i>“I’m the [pc.sonDaughter] of Victor Steele...”</i> Your loins feel tight, unpleasantly so{; heavy swelling centers around your [pc.balls], tightening them like a cranked spring dangerously close to snapping}. Your closeness to climax has been funneled down by the electric currents running in your body. <i>“I was looking for his probes to win the company...”</i> You fidget and writhe needily until, gradually, the nerve-melding tingle becomes a coat of satisfaction that leaves you feeling compliant more than ");
+		output("\n\n<i>“I’m the " + (pc.mf("son":"daughter") + " of Victor Steele...”</i> Your loins feel tight, unpleasantly so" + (pc.balls > 1 ? "; heavy swelling centers around your [pc.balls], tightening them like a cranked spring dangerously close to snapping":"") + ". Your closeness to climax has been funneled down by the electric currents running in your body. <i>“I was looking for his probes to win the company...”</i> You fidget and writhe needily until, gradually, the nerve-melding tingle becomes a coat of satisfaction that leaves you feeling compliant more than ");
 		if(pc.isHerm()) output("leaky and juicy");
 		else if(pc.hasVagina()) output("juicy");
 		else if(pc.hasCock()) output("leaky");
@@ -304,7 +304,8 @@ public function loseToShockHopper():void
 		output(", <i>“and ends...”</i> a rough grip, digits digging into tender nerves, <i>“...with me.”</i>");
 		output("\n\nThe energized bunny’s hand strokes your ");
 		if(pc.hasHair()) output("[pc.hair]");
-		else output("head" + (pc.hasEmoteEars() ? ", dominant digits working on and around your [pc.ears]":"") + ". You’d do anything to feel more of this, and not more of whatever the hell that collar did to you, so you do all you can: moan, shiver, and moan some more into her fluffy breast, breathing in more lusty laquine. <i>“Fuck with me, and I’ll make you the breakroom cumdump for our workforce,”</i> she speaks in a disciplining tone with a hint of sexual aggravation, <i>“understand?”</i>");
+		else output("head");
+		output((pc.hasEmoteEars() ? ", dominant digits working on and around your [pc.ears]":"") + ". You’d do anything to feel more of this, and not more of whatever the hell that collar did to you, so you do all you can: moan, shiver, and moan some more into her fluffy breast, breathing in more lusty laquine. <i>“Fuck with me, and I’ll make you the breakroom cumdump for our workforce,”</i> she speaks in a disciplining tone with a hint of sexual aggravation, <i>“understand?”</i>");
 		output("\n\nKnowing that at the flip of a switch she can do something like that to you - or worse - you nod, muttering your compliance.");
 		output("\n\n<i>“You,”</i> she speaks around you, likely to a harem girl. <i>“Bring me the RTZ unit, right here. Now!”</i> she snarls, her greedy hands getting friskier");
 		if(pc.hasGenitals())
@@ -428,7 +429,8 @@ public function moreHopperBadEndStuff():void
 	showShockHopperAndLDC(true);
 	showName("\nDEFEAT");
 	output("You’re lifted into the air by your thighs, your mistress’ dick propping you");
-	if(pc.cockTotal() > 1) output(" and your twitching tool" + (pc.totalCocks() > 1 ? "s":"") + " in the space between. The stim unit drags and you feel more disconnections, throwing the magnetic field out of whack and doing throwing what was left of your sanity into the dumpster to be emptied with the next anxious " + (pc.hasCock() ? "ejaculation":"orgasm") + ". She thrusts against your hips, slamming her wet crotch into your ass, groaning in your ear like some primitive yapping dog.");
+	if(pc.hasCock()) output(" and your twitching tool" + (pc.totalCocks() > 1 ? "s":""));
+	output(" in the space between. The stim unit drags and you feel more disconnections, throwing the magnetic field out of whack and doing throwing what was left of your sanity into the dumpster to be emptied with the next anxious " + (pc.hasCock() ? "ejaculation":"orgasm") + ". She thrusts against your hips, slamming her wet crotch into your ass, groaning in your ear like some primitive yapping dog.");
 	output("\n\nYou’re too fuck-drunk to care, far past the point anything gentle would come close to extinguishing the inferno raging inside, especially now with your system thrown into some indescribable overdrive. All you do in your state is whine. You whine for her to pound you hard with her fat, meaty dick. That big, hard horsecock bouncing like it’s your own looks larger every time your eyes run over it. Thinking about her medial ring leaving marks in you has you producing so much saliva that you gargle on it, letting it waterfall down your [pc.chest] to that pre-coated breeding rod. Being suspended and helpless only makes you cry and squirm; you can’t wait any longer.");
 	output("\n\nWhen the blue-furred bunny deigns to rear back, you inhale through your teeth and feel everything relax for a single moment. A moment that she seizes, charging straight through your [pc.vagOrAss] on powerful hips and dominant desire. ");
 	if(pc.hasVagina()) 
@@ -1766,7 +1768,7 @@ public function laquineShockyThreesomes3(x:int):void
 	output("\n\nShudderingly cold breaths shake your mind of the temptations and wriggle you free of jumper ass. You fall back onto the bed to the " + (pc.cumQ() < 1000 ? "golf claps":"roaring applause") + " of surrounding slaves, feeling tender hands working out the kinks in your very sore limbs. You sputter and crawl off the bed, eager to reclaim your belongings.");
 	output("\n\nA few minutes pass and the mismatched laquines stir to life");
 	if(pc.cumQ() >= 20000) output(", utterly painted in [pc.cumColor] creaminess. They flop off each other, disconnecting like electronic peripherals, burbling and lamely swallowing oxygen.");
-	output("\n\nWith all said and done, it’s time to decide what you’re going to do next...");
+	//output("\n\nWith all said and done, it’s time to decide what you’re going to do next...");
 	output("\n\n");
 	processTime(30);
 	//9999 track what happen
@@ -1907,6 +1909,8 @@ public function drainBunnies(x:int = 0):void
 		pc.loadInMouth(enemy);
 		pc.orgasm();
 	}
+	clearMenu()
+	addButton(0,"Next",drainBunnies2,x);
 }
 
 public function drainBunnies2(x:int):void

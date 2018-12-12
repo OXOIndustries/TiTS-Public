@@ -53,7 +53,7 @@ public function cousinEncounterBonus():Boolean
 	{
 		showRivalAndFeruze();
 		author("Fenoxo");
-		output("Poised at the ship’s door are two figures - closest is the eight-foot tall");
+		output("\n\nPoised at the ship’s door are two figures - closest is the eight-foot tall");
 		if(CodexManager.entryUnlocked("Suulas")) output(" suula with");
 		else output(" creature with angel wings and");
 		output(" the sharp-toothed grin of a true predator. In her shadow, your cousin leers out at you with [rival.hisHer] oh-so-familiar cock-sure smile. <i>“Hello there,”</i> [rival.name] says. Lines of code scroll across the codex in [rival.hisHer] hand, chipping away at the ship’s security. <i>“I should’ve known you’d be here. The air on this station is thick with the stink of low-lifes. Your kind of place.”</i>");
