@@ -11251,7 +11251,7 @@
 					cocks[slot].knotMultiplier = 1;
 					cocks[slot].cockColor = "pink";
 					if(cocks[slot].cLengthRaw < 20) cocks[slot].cLengthRaw = 20;
-					if(cocks[slot].cThicknessRatioRaw < 2) cocks[slot].cThicknessRatioRaw = 2;
+					if(cocks[slot].cThicknessRatioRaw < 1.5) cocks[slot].cThicknessRatioRaw = 1.5;
 					break;
 				case GLOBAL.TYPE_SYNTHETIC:
 					cocks[slot].cockColor = RandomInCollection(["silver", "gray", "black"]);
