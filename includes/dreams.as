@@ -1601,7 +1601,6 @@ public function alexandraDream2No():void
 	output("\n\nShe winks. <i>“My treat.”</i>");
 	output("\n\n--");
 	output("\n\nYou wake up with a start. Memories fragment moments after they form. Syncopated, they fail to coalesce, and soon you’re left alone in your bed, the phantoms of your dream fading into nonexistence. Confused - and in some part aroused - you lay your head back down and try to fall back asleep.");
-	flags["ALEXANDRA_DREAM_LEVEL"] = undefined;
 	//Reset!
 	alexandraResist();
 	clearMenu();
@@ -1964,17 +1963,17 @@ public function alexandraIndulge():void
 public function alexandraResist():void
 {
 	IncrementFlag("ALEXANDRA_RESISTS");
-	if(flags["ALEXANDRA_RESISTS"] >= 3) flags["ALEXANDRA_DISABLED"] = 1;
+	if(flags["ALEXANDRA_RESISTS"] >= 2) flags["ALEXANDRA_DISABLED"] = 1;
 }
 
 public function alexandraDreamsAvailable():Boolean
 {
-	return (flags["ALEXANDRA_DISABLED"] == undefined && pc.mf("m","") == "m" && pc.balls > 1 && pc.hasCock() && CodexManager.entryUnlocked("The Treatment") && !pc.hasStatusEffect("AlexandraCD") && pc.level >= 7);
+	return (flags["ALEXANDRA_DISABLED"] == undefined && pc.mf("m","") == "m" && pc.balls > 1 && pc.hasCock() && CodexManager.entryUnlocked("The Treatment") && !pc.hasStatusEffect("AlexandraCD") && pc.level >= 7 && getPlanetName().toLowerCase() == "new texas");
 }
 public function playAlexandraDream():void
 {
 	pc.createStatusEffect("AlexandraCD");
-	pc.setStatusMinutes("AlexandraCD",24*60*4);
+	pc.setStatusMinutes("AlexandraCD",24*60*2);
 	if(flags["ALEXANDRA_DREAM_LEVEL"] == undefined) alexandraDream1();
 	else if(flags["ALEXANDRA_DREAM_LEVEL"] == 1) alexandraDream2();
 	else if(flags["ALEXANDRA_DREAM_LEVEL"] == 2) alexandraDream3();
