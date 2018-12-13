@@ -47,6 +47,12 @@ public function dreamChances(inShip:Boolean = false):Boolean
 			dreamed = true;
 		}
 	}
+	//Alexandra dreams :3
+	else if(alexandraDreamsAvailable()) 
+	{
+		eventQueue.push(playAlexandraDream);
+		dreamed = true;
+	}
 	
 	//If you havent dreamed in 20 days, and didnt get a special dream
 	var dreamCD:Number = 20;
@@ -1526,7 +1532,7 @@ public function alexandraDream1():void
 	output("\n\nYou blink awake in your bed, sheets stained and balls aching. Were you dreaming?");
 	output("\n\nAh, well. It’s impossible to tell, and with the golden haze of afterglow pulsing through your body, all you really want to do right now is lay back and relax a little bit more. The rest of the day can wait. You just want to feel good.");
 	pc.orgasm();
-	incrementFlag("ALEXANDRA_DREAM_LEVEL");
+	alexandraIndulge();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1544,7 +1550,7 @@ public function alexandraDream2():void
 	author("Carol J.");
 	showName("\nDREAMING...");
 	output("You slide into a dream...\n\n");
-	output("No matter how many times you sit back and appreciate it, the view from the top never gets old. It was one hell of an adventure, scouring the galaxy for your old man’s probes and earning the reins of the company, but...well, <i>“worth it”</i> is an understatement. Fame and fortune are yours now, the kind of vast, limitless wealth that’s more of a concept than an actual number. Even if not everyone in the galaxy knows your name, the movers and shakers do. As your countless <i>“liaisons”</i> with pampered socialites and trillionaire playboys can attest, the moneyed elite are infatuated with their newest member. Whether rich, powerful, or some combination of the two, everyone who matters has their eye on (PC.name) Steele.");
+	output("No matter how many times you sit back and appreciate it, the view from the top never gets old. It was one hell of an adventure, scouring the galaxy for your old man’s probes and earning the reins of the company, but...well, <i>“worth it”</i> is an understatement. Fame and fortune are yours now, the kind of vast, limitless wealth that’s more of a concept than an actual number. Even if not everyone in the galaxy knows your name, the movers and shakers do. As your countless <i>“liaisons”</i> with pampered socialites and trillionaire playboys can attest, the moneyed elite are infatuated with their newest member. Whether rich, powerful, or some combination of the two, everyone who matters has their eye on [pc.name] Steele.");
 	output("\n\nAs it turns out, that’s what ends up being your downfall.");
 	output("\n\n--");
 	output("\n\nIt’s a day like any other when you get that fateful call. Just one little beep in your earpiece as you’re managing the path forward for Steele Industries from your office on the top floor of the monolithic headquarters building. You pause your strategizing for a moment and answer the call.");
@@ -1575,7 +1581,7 @@ public function alexandraDream2():void
 	output("\n\nYou blink. You realize you’re drooling as you stare at Alexandra’s tits, and the embarrassment is enough to shock you out of your daydreams. You’re so sorry, you explain; you don’t know what came over you.");
 	output("\n\nWhen Alexandra smiles, it carries the mischief of someone who looks like they know just a bit more than they’re letting on. <i>“Not a problem, Mr. Steele. If anything, that kind of episode is the sort of thing that shows just how <b>badly</b> you need this. I mean.”</i>");
 	output("\n\nShe sighs ruefully and crosses her arms under her titanic bust, hefting them up to make it easier to stare at them. <i>“Imagine if some breed-happy floozy strutted in here with a chemical cocktail you’d never seen before? Pheromones tickling your hind-brain <b>just</b> right. You’d probably fuck your next heir into her without a second thought. It’s not a strike against you. It’s just the truth.”</i>");
-	output("\n\nShe moves one hand from below her bust to slide you a piece of paper. <i>“It’s not your fault. You’ve worked *so* hard to make sure you didn’t fall prey to the sorts of sluts that take men like you and suck them dry. Here. All you have to do is sign right down here, right on the bottom line, and we’ll make sure that doesn’t happen. You’ll come with me back to the ranch, we’ll get you set up in your little vacation home, and you’ll get to finally let out all that pent-up desire.”</i>");
+	output("\n\nShe moves one hand from below her bust to slide you a piece of paper. <i>“It’s not your fault. You’ve worked <b>so</b> hard to make sure you didn’t fall prey to the sorts of sluts that take men like you and suck them dry. Here. All you have to do is sign right down here, right on the bottom line, and we’ll make sure that doesn’t happen. You’ll come with me back to the ranch, we’ll get you set up in your little vacation home, and you’ll get to finally let out all that pent-up desire.”</i>");
 	output("\n\nThe contract is right in front of you, a pen placed helpfully beside it. Even if your limbs feel like they’re made of cement right now, you’re able to pick up the pen and sign the paper if you want to. <i>And you really, <b>really</b> want to.</i>");
 	output("\n\nDo you?");
 	pc.lust(25);
@@ -1597,7 +1603,7 @@ public function alexandraDream2No():void
 	output("\n\nYou wake up with a start. Memories fragment moments after they form. Syncopated, they fail to coalesce, and soon you’re left alone in your bed, the phantoms of your dream fading into nonexistence. Confused - and in some part aroused - you lay your head back down and try to fall back asleep.");
 	flags["ALEXANDRA_DREAM_LEVEL"] = undefined;
 	//Reset!
-	pc.slowStatGain("willpower",1);
+	alexandraResist();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1642,375 +1648,336 @@ public function alexandraDream2Yes():void
 	output("\n\n<i>You need Alexandra. You’ll always obey Alexandra.</i>");
 	output("\n\n<i>“Now that you’ve gotten the sample of what it’s like to be my mindless plaything,”</i> she purrs, the illusory Alexandra fading away. Along with the rest of your office. <i>“I think it’s time you <b>wake up.</b>”</i>");
 	output("\n\n--");
-	output("\n\nYou blink sleepily awake, stretching luxuriously in your bed. There’s a smile on your lips and a stain on your sheets, but you couldn’t care less about the latter. You just had the most <b>wonderful</b> dream, and even if you can’t *quite* remember the details, you’re sure that you’ll remember the important parts when it comes time to make the decision.");
+	output("\n\nYou blink sleepily awake, stretching luxuriously in your bed. There’s a smile on your lips and a stain on your sheets, but you couldn’t care less about the latter. You just had the most <b>wonderful</b> dream, and even if you can’t <b>quite</b> remember the details, you’re sure that you’ll remember the important parts when it comes time to make the decision.");
 	output("\n\nWhat decision? You’re not sure. It isn’t important right now.");
 	output("\n\nRight now, you just want to find some fertile bitch to <b>breed.</b>");
 	pc.taint(1);
 	pc.lust(25);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
-	incrementFlag("ALEXANDRA_DREAM_LEVEL");
+	alexandraIndulge();
 }
 
-output("\n\n+++");
-output("\n\n(3RD DREAM/BULL ON RANCH)");
-
-output("\n\nThe world behind your eyelids is dark, but only for a moment. It’s not long before your sleep gives way to dreams, and they flicker to life in your mind like film flapping through a projector. You’ve never had a dream like this before, one that starts so jarringly, so suddenly, but...much like the other dreams you’ve had in the past, everything makes just enough sense to your sleeping mind that you don’t question it. And really, that’s the most important part.");
-
-output("\n\nDon’t question anything.");
-
-output("\n\nAnd really, your tired mind doesn’t have to make nearly as many concessions with this dream. You’re not some kind of giant lizard tromping around a miniature city-scape, there are no rocks mumbling trivia questions at you as faces melt from the three watches on your wrist. No, this is all pretty normal stuff. For the kind of life you’ve been living, lately.");
-
-output("\n\nYou’re a bull. A bull living on a ranch.");
-
-output("\n\nIt’s a simple premise, right? Nice and easy to wrap your head around, and you’re really thankful for that. Complicated stuff isn’t your style, awake or asleep, and sometimes it’s nice to just sit back and relax. After all, you’re asleep, right? No sense wasting brainpower on some big, cumbersome dream-narrative. That’s right, all you have to do is accept your role and play it as best you can.");
-
-output("\n\nYou’re a bull. And you’re stupid.");
-
-output("\n\nThe details of your dream-life begin to fill in as you plod from your pen in the <i>“barn”</i> towards the milking machines in the other building. You used to not be a bull, but then you came to New Texas, took the Treatment, and now you’re just another New Texan. Just another big, brutish bull. Your cock got big, your brain got slow, and your balls fattened up with cum again and again.");
-
-output("\n\nYou smile dimly to yourself, walking on autopilot. There’s a collar around your neck, and it doesn’t take but five seconds before you remember how you got that collar, too. Back when you were first feeling the effects of the Treatment changing your body, you’d made the mistake of pumping a wad into some cowgirl’s *juicy* little cunt. Normally that’d be fine, but there was a quirk in your biology and hers.");
-
-output("\n\nYour cock dribbles a musky dollop of precum as you think back to the cumshot that changed your life. The second you fucked your load into Alexandra’s pussy, you remember a pleasure unlike anything you’d felt in your life. Eye-crossing, tongue-lolling, jaw-dropping, the kind of pleasure that makes you go limp and useless whenever you feel it crash down on you in the milking pens. Right as the Treatment had been rerouting your neurons, shortening and redirecting your axial pathways, that pernicious flood of dopamine had criss-crossed your circuits and left you a stupid, horny animal. Most bulls ended up smug, swaggering studs, and make no mistake, you’re a *complete stud.*");
-
-output("\n\nYou also happen to be a pussywhipped fuck-addict, too.");
-
-output("\n\nAt first it was manageable. The Treatment was still changing you, but you weren’t totally changed. You remember thinking about getting back to your ship, but you just couldn’t pull yourself away from that Holliday minx. The first romp with was incredible. The second was impeccable. And the third? Well, that was all it took to seal your fate for good.");
-
-output("\n\nIt was almost like she planned it. Like she’d gotten your prick nice and stiff at just the right time to leave you a cum-dribbling boy-toy. Sometimes you wonder if it was all a giant conspiracy, a trap that you fell into. Fuck if you care, though. It feels incredible to be Alexandra’s cum-pump, and every nut you spunk into one of her <i>“milking”</i> machines just makes you that much stupider. And that much hornier.");
-
-output("\n\nBesides, she’s far from selfish! She provides everything you could ever want! She feeds you, houses you, makes sure you’re nice and clean when she rents you out to breed disobedient bitches... Part of you wonders if it’s a bad thing that she sends you out to turn independent and politically-minded young women into cross-eyed milk-cows, but it’s all nice and simple for the rest of you. Couldn’t be easier:");
-
-output("\n\nSlamfuck the bitch into submission. Let Alexandra talk to her. Give her the Treatment medipen. Even a stupid bull like you can handle that. And then a few days later there’d be a new milk-cow to fuck when you’re bored! Everyone wins, even the policewomen that try to take you away from Alexandra.");
-
-output("\n\nYou’re hard again, and you’re not even in the milking pens. This is gonna be a problem.");
-
-output("\n\nYou wrap your hand around your cock and start to pump. A quick half-orgasm should clear your head enough for you to navigate to...wherever you’re going. But you really wish you had something to fuck your hand *to.* Something like-");
-
-output("\n\nOh, perfect! As soon as you think about it, a video of Alexandra appears before your very eyes. You’d recognize the wobble of her titanic teats anywhere, and that’s pretty fortunate, because the video doesn’t show a single inch of her face. No, staring openly and unabashedly at Alexandra’s rack, you fuck your fist like a drooling idiot.");
-
-output("\n\nThank god she has this automatic masturbation-aid system set up on the ranch. You remember back before you were a bull, back when you’d have to find porn on your own *before* you started stroking yourself. Now all you have to do is wrap your hand around your cock, and a pre-recorded video of Alexandra will pop up and dominate your field of vision. You don’t quite get why the spirals are there, and you never really pay attention to what she’s saying in the video, but that’s not the point, is it?");
-
-output("\n\nYou remember hearing about some other bulls who tried to <i>“clear their heads”</i> by rubbing one out when they weren’t scheduled to fuck or get milked, and you honestly can’t imagine a worse feeling than not being horny. That’s why she talks her bulls to sleep as soon as they empty their balls. No stress, no worries, no thinking.");
-
-output("\n\nYou idly drool a bead of pre from the tip of your bloated bull-cock.");
-
-output("\n\nIt feels amazing. And you’re so thankful that Alexandra took you in after she mindfucked you and turned you into a stupid breeding bull. Honestly, the whole race to find the...probes or whatever. That was so boring. Most of it didn’t even feel good. Not like this. No, here on Alexandra’s ranch, you get to feel good all the time, and whenever you want to feel even better, you can just ask Alexandra to make you even stupider.");
-
-output("\n\nYou aren’t quite sure how she does it - no surprise there - but Alexandra can do this thing with her brain that makes it even harder to think. You’re pretty sure she’s explained the process to you once or twice before, but more or less as a way to rub it in your face just how stupid you’re becoming. Something about persistent dopamine feedback loops and selective oxytocin triggers. You don’t know what big words like those mean anymore. All you know is that when you hear Alexandra’s voice and see her big, heaving tits, you get stiff for her because you love her.");
-
-output("\n\nLove is kind of a complicated emotion, honestly. Maybe it’s more accurate to say that you want her.");
-
-output("\n\nYou drool as you fuck your hand, staring at the screen in front of you. Alexandra’s rack wobbles in front of your glassy eyes, and soon you’re just mindlessly pumping away. You can practically hear her voice in your ear:");
-
-output("\n\n<i>“Good bull. Such a good, stupid bull.”</i>");
-
-output("\n\nWith a grunt, you cum. Before the Treatment - and the modified epipen Alexandra convinced you to take after you signed yourself away to her ranch - the wad of spunk you just pumped from your bloated bullprick would have been an absolutely *magnificent* cumshot. Enough to creampie even the hungriest Venus Pitcher and leave her satisfied for days to come. Now, it’s barely enough to make your cock go half-hard. Your balls start to churn with a fresher load in seconds, and it’s only Alexandra’s careful programming that sends you stumbling towards the milking pens.");
-
-output("\n\nHave to get milked. Have to be a good bull.");
-
-output("\n\nYour tongue is lolling out again by the time you get to the milking pens, cock stiffer than ever and balls bloating up fat with your next orgasm. You’ve been meaning to ask Alexandra about the thing where you can sign up to just be in the milking pens all the time, but whenever you try to talk to her about something, you just end up staring at her rack and masturbating. It’s not a bad problem to have, as far as problems go, but you wish you were one of the lucky bulls in here. The ones who get to cum and cum and cum. Your cock throbs at the thought. Mindlessly pumping away in a fake pussy as you watch video after video of Alexandra’s tits bouncing and wobbling and jiggling.");
-
-output("\n\n*You’d give anything to do that.*");
-
-output("\n\n*You’d give up everything to do that.*");
-
-output("\n\nYeah. You would. You’d abandon your hunt for the probes or whatever if you got to just be a stupid, horny bull and get your cock milked all the time. You smile dimly to yourself. *When you wake up, you’re going to think about doing just that.* But for right now, you have to get your balls drained. Otherwise you’re just going to be pouring off pheromones and sending all the cows into heat. It’s a real problem, and even if the cows are nice to fuck, they make you do so much *work.* Sometimes you just want to let yourself get strapped down, have a suction hose wrap around your cock, and let the pretty spirals spin in your eyes as Alexandra mindfucks you until you pump your wad into the milking machine.");
-
-output("\n\nAnd that’s just what you do. You stumble into your pen, clumsy and brutish and uselessly muscular, and gentle automated hands guide you to your milking bed. The first few times, they had to strap you down. Now your muscles go limp the instant it begins to lean back. Your body knows what comes next just as well as your mind does, and it’s more than happy to cooperate with the automated cock-pumping.");
-
-output("\n\nA screen lowers in front of your face, and - just like every other time you come in to get drained - you get a choice of videos to watch. Something to help you get off as hard as possible as fast as possible. Every porn star in the universe is presented for your perusal, but you grunt out your answer without a moment’s hesitation:");
-
-output("\n\n<i>“Alexandra.”</i>");
-
-output("\n\nYou’re so fucking smart for figuring this out. You don’t know if the other guys know this, but if you choose to watch Alexandra, two *more* screens come down. That’d be good enough already. But you know *another* secret. One that Alexandra *herself* told you. Three screens of her perfect hourglass figure were good, but six is twice that. And all you have to say is");
-
-output("\n\n<i>“I’m a stupid bull for Alexandra.”</i>");
-
-output("\n\nJust like that, three more screens lower in front of your face, and soon you’re assaulted with six simultaneous video feeds at once, each showing your mistress doing...something else. God, she’s so fucking gorgeous. The machine pumping at your cock is definitely helping, but your attention is almost entirely dominated by the sights and sounds of Alexandra.");
-
-output("\n\nAlexandra trying on clothes, squeezing into bras before the hooks snap and the buttons of her blouse pop off uselessly. Alexandra smirking as she presses her tits up against each other, the valley of her cleavage all but inescapable. Alexandra, calm, cool, collected, sexy and in control, wearing a full, figure-hugging business suit as she nudges a truly monstrous bullprick with the tip of her foot. You grunt and groan as she snaps her fingers, and the cock she’s inspecting - attached to some faceless bullstud like you - pumps its load eagerly into the air at her implicit command. You gurgle in pleasure and desire. You want that. *You want to be Alexandra’s mindfucked bullstud. You want to be her mindless cumpump and cum on her command. Nothing turns you on more than being Alexandra’s horny, useless slave.*");
-
-output("\n\nMilk dribbling from her teats. Alexandra smirking as she wrings another load from one of her bullstuds with her fat, heaving tits. You’re so close to cumming. Alexandra instructing you to obey, using her psychic powers to influence you at your most vulnerable, to shape your desires while you hand yourself over to pleasure, to sleep, to dreams. You can almost feel her in your head, *adjusting* you to be more how she *wants* you to be.");
-
-output("\n\nYou - the real you, not the dream you - know you can wake up. And you know that if you don’t, if you stay in the fantasy, if you see it through to the end...you’ll end up changed. But would that be a bad thing? It feels incredible. And it’s not like you’re going to wake up zombified if you let this psychic cowgirl goddess give you a wet dream. Right?");
-
-output("\n\nYou can indulge a little bit more. You can let Alexandra take control. All she wants to do is make you feel good. All she wants is to make you cum so hard your brain turns off for a while.");
-
-output("\n\n(wake up)");
-
-output("\n\nIt’s not worth the risk. You focus, fighting against her influence and shaking off the artificial dream she’s foisted upon you and....");
-
-output("\n\n...sitting up in your bed. Were you dreaming? You shake your head and try to remember what just happened. Something about...");
-
-output("\n\nHm. You can’t quite remember. It must not have been very important.");
-
-output("\n\n(stay asleep)");
-
-output("\n\nYou don’t care what else might happen, because you know Alexandra is going to make you. You want to feel good. You’re a stupid, horny bullstud, and stupid, horny bullstuds get to pump fat wads of cum into the milking machines. You hand yourself over to the dream, and you’re rewarded for it.");
-
-output("\n\nThe dreamscape shifts, rapidfire, an overwhelming deluge of pleasure and fantasies and sights and sounds and sensations. You take a cowgirl from behind, plunging yourself in her tight, wet cunt. You bottom out in her pussy, bellowing with pleasure with each high, keening <i>“moo”</i> she gives.");
-
-output("\n\nYou lay back, boneless and drooling as the milking machine expertly massages and slurps at your cockflesh, glassy-eyed as Alexandra showcases how her machinery works on her latest bullstud to potential investors. It feels incredible to be put on display like this, just a stupid, mindless demonstration of fuckdrunk addiction for all the people who know better than to think with their cocks.");
-
-output("\n\nYou’re collared, chained to a throne. So big. So *strong.* Alexandra presses a single fingertip under your chin and guides you to face her. You salivate at the sight of her ruby-red lips curling up into a smirk. So powerful. And yet so weak. She reaches down to knead your cum-bloated balls, rolling them in the palm of her hand and giving teasing little clenches to make sure your fat, heavy nuts stay nice and backed-up. It makes you easier to control, she reminds you. So easy to control a horny bullstud like you.");
-
-output("\n\nBulls like you don’t know any better, and that’s the problem, really. They don’t know what’s good for them and what they *should* be doing. But that’s why Alexandra is ready to guide you. All you have to do is let her take over. Not just now, even though it’s certainly a start. You have to let her take control *forever.*");
-
-output("\n\nCum.");
-
-output("\n\nYou’re back on the display table, prick twitching and throbbing, orgasm about to crash down on you.");
-
-output("\n\nCum.");
-
-output("\n\nYou’re stumbling after her on the ranch, eyes glued to the fertile swell of her hips as they sway from side to side.");
-
-output("\n\n*Cum.*");
-
-output("\n\nYou’re in her office on New Texas, signing your life away just for the chance to feel one of those *exquisite* cumshots awake instead of just in your dreams.");
-
-output("\n\n*CUM.*");
-
-output("\n\nYou groan, blinking awake as you pump a fat, sloppy load into your sheets. It’s not long before they’re stained white, but even before your orgasm’s over, you’re drifting back to sleep. You were pulled out of your rest by the same irresistible pleasure that’s sucking you right back down into blissful dreams of obedience...");
-
-output("\n\n...and instruction.");
-
-output("\n\n+++");
-output("\n\n(4TH DREAM/BREEDING BULL IN OFFICE)");
-
-output("\n\nYou don’t know why you’re here, but as long as Alexandra’s holding your leash, you don’t have to know. Probably have to fuck some woman. You grin dully to yourself. You like it when you get to fuck the women Alexandra tells you to. Sometimes they try to push you away at first, but they always end up cross-eyed and giggling with a womb full of your cum.");
-
-output("\n\n<i>“I don’t really have an interest in repeating myself, Fiona,”</i> Alexandra says calmly, a hint of a smile playing at her lips. She’s dressed conservatively, but her figure is enough to send any prick stiffening at the sight. <i>“It’s cute that you and your company thought you could wriggle around my *talents* with the hiring criteria you’ve adopted lately, but you’ve made the mistake of underestimating him and overestimating yourself.”</i>");
-
-output("\n\nThe woman sitting across from her at the desk fidgets, looking from Alexandra’s eyes to yours. Then to your cock. <i>“Fiona,”</i> apparently. The boss? The manager? You don’t know. She doesn’t look bad. For an unTreated human, at least. A nice, generous chest. Attractively short blonde hair. Blue eyes. Fair skin. You can’t tell if she’s got a proper hourglass figure, but you don’t really care. Alexandra’s tits are bigger, so that means she’s in charge. The idle thought of Alexandra’s wobbling rack drags your attention back down to her tits, and soon your half-hard prick is at full mast.");
-
-output("\n\n<i>“He’s quite a specimen, isn’t he?”</i> Alexandra brings one delicate hand to the underside of your fuckrod, hefting it up as if she’s examining a particularly interesting mineral sample instead of the fattest, thickest bitchtamer genetic modification can buy. <i>“The Treatment really is something, and all it takes to produce results as impressive as this is a teensy modification to the end formula.”</i>");
-
-output("\n\n<i>“*I’m* used to it.”</i> She lets your cock down, and it sags under its own ponderous weight. <i>“Not just the sight of it. The scent, too. I have to admit, it’s impressive in its own right that you haven’t bent over the desk and presented yourself to him, but it’s really only a matter of time.”</i> Alexandra’s calm. Cool. Collected.");
-
-output("\n\nFiona isn’t. Her pale skin is flushed deep red, and her eyes have been locked on your fuckrod since the moment Alexandra showed it off. She’s biting her lower lip, and you can practically *smell* her cunt leaking. Her chest heaves with every deep breath she takes, and the sight of her tits straining against her blouse makes your cock twitch. Her breath catches in her throat in response.");
-
-output("\n\n<i>“And that’s not even necessarily the problem. One moment of weakness isn’t enough to ruin someone and turn them into a *fuck-drunk sex addict.*”</i> Alexandra enunciates the last four words like she’s cracking a whip. Fiona whimpers, and Alexandra rises from her seat. <i>“Forget going from zero to sixty. This is going from zero to six *thousand.* After all, it’s not unusual for women to visit New Texas and sample the, ah...”</i>");
-
-output("\n\nAlexandra steps around the desk. Behind the woman. <i>“’Local flavors,’ shall we say. Sometimes they can even go back. Sure, a good number end up immigrating permanently, but it’s not the *majority.*”</i> Her hands go to Fiona’s shoulders, and Alexandra leans in to whisper in her ear. <i>“Sometimes one little taste is enough. Just one roll in the hay with a big, buff bull. A fantasy that some overworked office drone needs to get out of their system. One and done.”</i>");
-
-output("\n\n<i>“But *imagine.*”</i> Alexandra’s voice is a low, smoky hiss now. The sound of it - and a few pulses of warmth in the back of your brain - send your cock throbbing fatter and harder with every heartbeat. <i>“Imagine a fuck so *good* and so *hard* that you can’t even remember your *name* after it’s happened. Imagine a bull so *big* and *strong* that you can just go limp and let him do all the work. I’ve seen my bulls pick up girls and fuck them like *toys.* Doesn’t that sound nice? A little break after all the hard work managing imports and exports and all those silly trade regulations.”</i>");
-
-output("\n\nYour prick belches a glob of precum onto the surface of her desk, and Fiona can barely stifle a moan. Scratch that, she can’t. With Alexandra’s hands kneading insistent circles into her shoulders, she’s melting bit by bit.");
-
-output("\n\n<i>“Only. You might want to be careful. Every rose has its thorn, you know? And this one has one *hell* of a *prick.* See.”</i> Alexandra’s using that special voice of hers. The one that’s smooth, a touch lower than normal. The kind she uses when she wants to turn someone’s brain off without using her powers. Sure enough, it starts to work. The woman’s eyelids begin to flag, but her gaze never leaves you bitchtamer. <i>“My boys are *special.* They have a *nasty* little habit of making strong-willed career women into empty-headed *mommies.* The mods I made to the Treatment has a few...side effects. You probably don’t even realize it right now, but...”</i>");
-
-output("\n\nAlexandra chuckles, throaty and luxurious. <i>“The second you caught a whiff of this big, bad bull’s *cock,* you started *ovulating.*”</i>");
-
-output("\n\nFiona gasps softly, but she hardly sounds concerned.");
-
-output("\n\n<i>“One little sniffle of the Alpha male’s musk, and your ovaries got all hot to trot. I give you about five minutes before you’re shaking your ass like an animal begging to be mounted. I’ve seen stronger women than you end up cumming around this bull’s *fuckrod* like a virgin with her first vibe. Then they cum again when he actually fucks his load into them. Then they cum *again* when they feel that little *ping.* Right *here.*”</i>");
-
-output("\n\nAlexandra splays her hand out just below the woman’s navel, and you notice with distant confusion that she’s...pressing her thighs together. What, does she not want to fuck? That’s weird. Whatever.");
-
-output("\n\nIt suddenly feels like a very good idea to jerk yourself off. Your pupils dilate just so as Alexandra’s influence nudges you in the right direction, and soon you’ve wrapped your hand around the bloated length of your shaft and begun to clumsily pump your rod up and down. Pre leaks from the tip in cloudy pearls, splattering on the desk in front of you. Sometimes you wring your prick particularly hard and end up dribbling your pre-seed onto the woman’s blouse directly.");
-
-output("\n\n*That’s a good thing. It’s a very good thing.* You jerk yourself harder. You make sure every stroke ends with a few more droplets staining the woman’s clothes. It isn’t long before the entire room swims with the aroma of your musk. The woman’s nearly swooning from the scent alone, and you note with satisfaction that her mouth’s begun to water as she leers at your big, stiff prick.");
-
-output("\n\nAnd all the while, Alexandra’s whispering in her ear, the naughtiest little shoulder devil a girl could ask for. Most women think that they’re safe because her powers don’t affect them. Lucky for them, they’re wrong. If they were right, you might not get to breed them stupid. You might not get to pump your spunk into their eager little wombs and send them cumming themselves to sleep as your sperm wriggles its way up to their eggs and makes sure they’re well and truly *seeded.*");
-
-output("\n\nAlexandra just needs you to fuck your hand right now, so you’re free to daydream. It’s so easy to sink into fantasies ever since you started letting Alexandra mindfuck you every night. Barely takes a moment before you’re lost in visions of wide-hipped, breedable cow-bitches and milk squirting from plump, full udders. When Alexandra found out you used to be {pc.name} Steel, *the* {pc.name} Steele, she decided your genes were too good to waste.");
-
-output("\n\nSo instead of being strapped down and hooked up to a pump, you ended up becoming Alexandra’s personal bitchbreaker. A mindless drone sculpted into the perfect masculine form so you could seduce and subjugate as many women as she needed you to. And the best part? You get to creampie every bitch you fuck.");
-
-output("\n\nSometimes even more than once. Most of the time your job means that you’re not back home on the ranch, but sometimes everything Alexandra plans on doing goes off without a hitch and she doesn’t need you right away. When that happens, it’s rest and relaxation in your private harem, a bevy of bovine beauties worshiping your bitchtaming prick while you gulp down as much milk as their udders have to offer.");
-
-output("\n\nYou smile to yourself. *You’re so glad you followed Alexandra’s influence through the dreams she gave you and signed your life away at her hidden ranch on New Texas.* Given that most of her bulls just end up as glorified cum-factories, *it’s an honor that you get to serve her so directly,* as her influence reminds you.");
-
-output("\n\nYou’re so lost in the fugue of pleasure that you don’t notice Fiona move until she’s pressed up against you. Panting and mewling with barely-restrained desire, she’s got her tits mashed up against your rock-hard abs...and her hands on your cock, silky smooth skin pumping up and down. She stares up at you dreamily, like you’re her knight in shining armor. Given what Alexandra’s whispering in her ear, you might as well be.");
-
-output("\n\n<i>“No stress. No worries. Just a nice, relaxing vacation. Right? You’re not like those other silly girls, Fiona.”</i> Alexandra lies with a nice, wide smile on her face, and Fiona believes every word. <i>“And you can always leave whenever you want. It’s not like I’d *force* you to stay. You’ll be able to leave whenever you get tired of getting plowed by my big, *strong* bulls.”</i>");
-
-output("\n\nFiona nods, barely aware of her surroundings. The only thing she sees is you, and the only thing you see is her. It’d almost be romantic if your bloated prick wasn’t drooling pre onto her belly. And if you were thinking about anything more than how good it’s going to feel to mindbreak her into another docile cowgirl. She’s so small. Barely any curves. The Treatment will fix that.");
-
-output("\n\n<i>“Here’s what we’re going to do,”</i> Alexandra continues, moving slowly to undo the buttons of Fiona’s blouse. <i>“We’re going to set up a little change in the chain of command here. You know, so no one has to make any *calls* or send you any *messages* while you’re relaxing. No interruptions. And then, just as a little treat from me to you, my bull here is going to fuck you *senseless.* Let’s call it...”</i> Alexandra giggles to herself. <i>“’Proof of conception.’”</i>");
-
-output("\n\nFiona purrs with delight. She presses her now-bare breasts up against your rod, sandwiching the sizable length of your fuckpillar between her tits. She massages the warm softness of her chest around your shaft, but it’s painfully clear that she’s not nearly big enough to titfuck you properly. That’s fine, though. Alexandra doesn’t want you to just fuck their tits. She wants you to spunk in their cunts and make sure they get hooked on being creampied. On being bred.");
-
-output("\n\nYour eyelids sink lower, and you feel the programming she’s drilled into your head begin to take over. It’s so simple. Like going on autopilot and getting a nice, fat cumshot at the end for being a good little slave. *All you have to do is give up. All you have to do is give in.*");
-
-output("\n\n(give up) (get out)");
-
-output("\n\n(get out)");
-
-output("\n\nYou awake with a start, sitting up in your bed. There’s sweat beading on your brow. Even as your heart pounds in your chest, you can’t shake the feeling that you just avoided something...terrible? Wonderful? It’s hard to tell, and it’s even harder to shake the arousal pulsing in the back of your head.");
-
-output("\n\nYou try to push the visions of eager, submissive cowgirls from your mind as you force yourself to sleep. In time, the teasing phantoms fade, but the indistinct memories of pleasure and mindless submission do not.");
-
-output("\n\n(give up)");
-
-output("\n\nYou give up. You give in. It’s so wonderfully simple to surrender to your programming, to just be a bull. To just breed.");
-
-output("\n\nYour hands go to Fiona’s waist, and she squeaks with delight as you lift her up into the air. For someone as Herculean as you, she’s light as a feather, and it’s trivial to bring the hot, wet mound of her sex down to the tip of your cock. Alexandra steps back with a smile, turning away from the two of you as she moves to take a seat at Fiona’s desk.");
-
-output("\n\n<i>“You two enjoy yourselves,”</i> she says, eyes focusing intently on the computer screen Fiona was working at. <i>“And don’t mind me. I’m just going to take care of a few things here so you can focus on getting fucked nice and hard.”</i>");
-
-output("\n\nYou’re almost mechanical when you move, but it seems like Fiona likes it. Maybe she mistakes your indifference for a sort of attractively masculine callousness. Either way, you’re going to have her cumming helplessly around your thick, stiff cock. She squirms and twitches in your hands as you force her down around your rod, and for a moment it seems as if she’s going to protest. She’s tight, sure, but that moment of half-formed resistance melts away as your prick lubes her cunt with another dollop of mind-clouding precum. The scent of it was one thing, but the instant a bitch gets a taste of your seed - precum or no - she’s all but guaranteed to bliss out.");
-
-output("\n\nFiona’s no different. She was pawing at your chest before, batting at it like an affectionate kitten, but now her arms and legs are going limp. Her pupils go wide, and her lips turn up into a vacant smile. The sight makes your cock throb in satisfaction, but you won’t get that rush of pleasure from Alexandra’s instructions until she’s drooling cum from her pussy and gurgling on the ground.");
-
-output("\n\nThat’s what compels you to bring her down even harder, and soon you’ve hilted the entire length of your bitchtamer prick in her cunt. Your hands around her waist give you the perfect grip to piston Fiona up and down on your dick, and soon you’re jerking yourself off with her as a toy. After all, she’s small enough to be a toy compared to you, so why not use her like one?");
-
-output("\n\nSeems like she likes the treatment, too, because she’s cumming rapidfire around your cock. There’s a twitch every now and then around your shaft, and her body’s tensing up in the same syncopated rhythm. Given that she’s never done it with a bull - whether he be one of Alexandra’s stock or just a normally Treated guy - she may as well be a virgin when it comes to stamina. Her eyes have crossed already, and her jaw’s hanging open as you fuck yourself with her.");
-
-output("\n\nEven if you’re not fucking the kind of cowgirls you’d have fawning over you back on the ranch, she’s still tight, she’s still wet, she’s still *hot.* It doesn’t take long before you’re teetering on the edge of orgasm yourself, and what finally pushes you over the edge is...");
-
-output("\n\n*Alexandra. You love to obey Alexandra. Obeying Alexandra makes you cum so hard. You get off because Alexandra wants you to cum hard and cum often.*");
-
-output("\n\nSomeone else might think that Fiona’s the submissive one here, but you’re just as mindless as she is. As you bottom out in her cunt and pump your seed into her womb, the only thought in your mind is that *you’re so lucky Alexandra found you. You’re so lucky you get to cum as hard as this. Most men would do anything to be a horny bull-slave. You’ll do anything to be a horny bull-slave.*");
-
-output("\n\nYou groan, body going limp as the pleasure washes over you. Your prick throbs and bulges with every massive splurt of cum you empty into Fiona’s sex. After a few spurts, the only thing keeping your hot, thick cumshot in her cunt is your bulbous cockhead. It’s packed into her womb, plugged up with your cock, and it won’t be long before she’s been utterly *fertilized.*");
-
-output("\n\n--");
-
-output("\n\nYou blink awake groggily. Where are you? You’re not in bed, even if you- Hold on, are you sitting at your ship’s comm? What’s- Did you just jerk off or something? There’s streaks of cum splattered onto the screen, and your dick is still hard. Were you...sleepsturbating?");
-
-output("\n\nIt isn’t even porn on the screen, though you have no idea how you’d watch porn through shut eyelids. No, the only thing on the screen is a <i>“Message Sent!”</i> indicator.");
-
-output("\n\nYou consider checking your extranet outbox, *but there’s no need to do that. Everything is fine.* When you get right down to it, all you really need to do is *get back to sleep. You’ll know what to do soon.*");
-
-output("\n\nRising from your ship’s comm system, you shrug and make your way back to your quarters. It’s nice and easy to brush aside the nascent concerns that an episode like this would normally raise. In fact, you find yourself wondering more about the *wonderful* dreams you’ve had lately than anything else.");
-
-output("\n\nIf only you could remember them...");
-
-
-output("\n\n+++");
-output("\n\n(FINAL DREAM/BAD END)");
-
-output("\n\nYou lay down and sleep for about eight hours.");
-
-output("\n\n--");
-
-output("\n\nBut when you wake up, there’s this...compulsion. You don’t know quite where it comes from, but you know that it’s important. It’s very important that you open a line of communications to New Texas, and it’s even more important that you make sure the line is secure. Encrypted. Your fingers tap absently - almost clumsily - at the main commline’s keyboard, and soon the numbers in your head translate to numbers on the screen. How you know this line or even what this line is doesn’t really matter. You’re half-hard and drowsy, operating purely on autopilot.");
-
-output("\n\nIt’s such a relief when Alexandra’s face crackles to life on the screen that you can’t help but smile. Why would you do anything *but* smile? The woman who’s gotten her claws in your dreams is finally ready to meet up in person and complete your induction into her legion of slaves.");
-
-output("\n\n<i>“Very good,”</i> she purrs, eyes narrowing as she scrutinizes you from her side. <i>“Who would have known that {pc.name} Steele would have been such an easy catch? Poor thing.”</i> She winks, and her other eye glows pink. You grunt in surprise as your cock begins to stiffen, and a phantom hand begins to stroke it up and down, nice and slow, so luxurious that all you can do is slump back in your seat and let it happen.");
-
-output("\n\nAlexandra says something about a credit transfer and a few agreements to sign. <i>“Nothing you can’t do while you’re relaxing,”</i> she reassures you. Her eyes glow brighter still, and a pair of unseen lips wrap around the bulbous crown of your prick, tongue swirling in circles around the very tip. <i>“All you have to do is authorize the routing number and provide your fingerprint, biometric signature, and a *teensy* sample of your DNA. That’s not too much to ask. Is it?”</i>");
-
-output("\n\nShe smiles cutely, turning side to side in her seat and sending her tits wobbling from left to right in the wake of her fidgeting. You follow her breasts’ motions helplessly, shaking your head in blind, stupid mimicry.");
-
-output("\n\n<i>“Good bull.”</i> Alexandra’s voice is a low, smoky purr, and you realize for the first time that your decisions here might not have all been your own. *The thought of that turns you on. Your dick gets so hard thinking about how she’s manipulated you with her sex appeal and your own mind-clouding arousal. You love how she’s learned your weakness for breeding fertile cowgirls and sucking on their big, fat tits.*");
-
-output("\n\nOr did she *give* you those weaknesses? *It doesn’t matter. You feel so good when she uses her body to control you. You don’t care that she gave you your fetish for being an easily-controlled bull. It feels good, and that’s what matters. You only care about cumming as hard as you can. You only care about feeling good. You’ll do anything to feel good.*");
-
-output("\n\n<i>“Oh? Do you actually *like* it when I seduce you?”</i> Alexandra quirks an eyebrow as you finish typing in the information. Wait. What? Were you saying that out loud? Or is she feigning surprise at another thought *she* gave you? You don’t know. *You don’t care. You just want to cum.*");
-
-output("\n\n<i>“If you want,”</i> she continues, <i>“I can make it feel even *better.*”</i> She presses her arms up against either side of her tits, and you gurgle uselessly as you stare into the bottomless valley of her cleavage. Even better? Is that possible? You’ve spent countless hours stumbling blindly through dreams, utterly controlled, collared by your lust and her expert guidance. How could it get any better than that? Mindlessly cumming and indulging in every pleasure she could possibly offer your sleeping mind.");
-
-output("\n\nBut...*maybe she’s right. Maybe you can be further controlled. Maybe you don’t need to be asleep to dream. All you need to do is let her make a few little changes. All you need to do is hand over control. All of it. Having to think is such a pain. Responsibility is just a burden. It’d be so much easier, feel so much better to just be a mindless animal, awake or asleep.");
-
-output("\n\nYou’re already so weak-minded. You already get off so hard dreaming about being a horny breeding bull. You’d get to feel like that all the time. Every waking moment, every wonderful dream. You’d be a perpetually stiff cum-pump, drooling pre from your thick, stupid fuckrod and emptying your fat, bloated balls whenever and wherever you want. You’d be able to breed cowgirls pregnant. You’d be able to mindlessly fuck your spunk into milking machines. You’d cum every single thought in your silly little head away and just be a happy, stupid bull.*");
-
-output("\n\nYou’ve started to touch yourself without even realizing it, and Alexandra giggles at the sight. <i>“See? Your cock knows what it wants. And you gave up trying to disobey your cock a *lo-o-ong* time ago. If you were ever capable of disobeying it, that is.”</i> She presses her palms to her still-clothed tits, covering the stiff peaks of her nipples. Rubbing them in slow circles. Sending your fuckstick twitching and throbbing in desperate anticipation. Her eyes glow brighter, and you can feel her tits kneading up against either side of your stiff, twitching cock. Soft, pillowy, perfect. *You can just sit back and let her massage her titties around your prick until you cum. It’s all you have to do.*");
-
-output("\n\nBut there’s something more to be done, isn’t there? You’re supposed to be looking for something. Something important. *If it’s that important, though, wouldn’t you remember it without having to think about it?* Or maybe Alexandra is using her influence to make you forget. Maybe you need to fight this. *But why would you ever fight something that feels so good?*");
-
-output("\n\nYou grunt and gurgle in your seat, reaching a hand up to the keyboard and preparing to type...something. But what? It’s on the tip of your tongue, the end goal of your mission, the whole reason you set out and started this grand adventure.");
-
-output("\n\nThe probes! Your father’s legacy! That’s right, you’re *looking for them so Alexandra can take care of-* No, that’s not right, you’re looking for them for...for yourself?");
-
-output("\n\nAlexandra watches you frown from her flickering vantage on the viewport. Her eyes narrow before glowing brighter than ever. <i>“You’re being a bad bull,”</i> she growls, and for a moment, the pleasure throbbing in your cock fades. Your prick begins to wilt, and you whimper in disappointment. Half of you wants to apologize, to promise you’ll be good, that you’ll stop thinking.");
-
-output("\n\nThe other half wants to fight.");
-
-output("\n\n...");
-
-output("\n\nBut maybe you only want to fight so it’s that much better when you lose. Alexandra’s mind is moments away from subsuming yours, and what she’s promising isn’t...entirely unpleasant.");
-
-output("\n\nShe’s willing to make sure you win. That you inherit your father’s legacy and take control of Steele Industries. And she has *considerable* leverage. And what’s she asking for in return? Nothing. Not a single credit. If you want to hand everything over to her once you claim your inheritance, that’s absolutely your decision. She just wants you to make sure that you know what she’s prepared to give you if you do.");
-
-output("\n\n(if you have crew) A seemingly random twitch of your hand hits a seemingly random key on your keyboard. It isn’t until the oppressive drone of electromag locks hits your ears that you realize she just forced you to lock your crewmates in their rooms. To stop them from interrupting? To keep them trapped while she influences them?");
-
-output("\n\nThrough the fugue, though, you realize something important: she hasn’t made you do anything that can’t be undone. Nothing that can’t be solved with another quick press of a button, at least. Not while you’re awake. Dreaming, Alexandra can make you do almost anything at this point. She can make you jerk yourself into a mindless cum pump. She can brainwash you into her bitchtaming bullstud. She can make you sign over everything you own with a smile on your face and a fat, pre-drooling stiffie jutting up from your lap.");
-
-output("\n\nBut when you’re awake...it seems like you have a choice. You can refuse her offer. Or accept it. You can sink deeper. Or you can swim up to the surface.");
-
-output("\n\nIf you want, you can end the call, block the commline, and make sure that she’s never able to contact you again, awake or asleep. You can turn her down for good.");
-
-output("\n\n*Or you can give up. You can let Alexandra take over and be her stupid, horny, thick-dicked bull-slave. You can admit that you’re so, so weak for her powers and her big, bouncy titties. You can finally accept that you’re just a stupid, horny animal that loves to fuck. The kind of weak-willed brute that just wants to bury your cock in something hot, tight, and wet, no matter if it’s a cowgirl or a milking machine.");
-
-output("\n\nYou’ll be her puppet, you’ll win, and your reward will be a harem of breedable cowgirls and a life where you only have to stumble from one cumshot to the next. You’ll help her fuck her enemies into submission and control all the other weak, horny bull breeders. Even the ones who don’t know they’re just fuck-addicted bulls yet.");
-
-output("\n\nAnd the best part is that it’s all your choice. You’re seconds away from signing away your free will and admitting that you’d rather be a mindless drone than a real person with hopes and dreams and choices.");
-
-output("\n\nDo it. Give in. Give up.*");
-
-output("\n\n(Give in) (or not i guess)");
-
-output("\n\n(or not i guess)");
-
-output("\n\nNo. No! You may falter, but you’ll never fail. And if you do, you won’t fail like this! Mustering the last *fragments* of your willpower, you *barely manage to* reach over and *no, don’t* end the communication.");
-
-output("\n\nYou shake your head. It’s as if there’s a weight off your shoulders. Or maybe more accurate to say a fog is clearing from your thoughts. You unlock the magnetically sealed doors and begin the process of safeguarding your ship against Alexandra’s influence. True, blocking out psionics entirely is all but impossible with the resources you have now. Given that you have a direct address for where her influence is coming from, though, you can at least make sure *she* won’t be causing you any problems while you’re looking for your father’s probes.");
-
-output("\n\nYou briefly wonder if it’s safe to stop over at New Texas in the future. The idea that Alexandra would try to mindfuck you in person is a worrying prospect, but...well, if she’s looking for the kind of weak-willed saps that let her walk all over them, you’ve already shown her that you are *not* one of them.");
-
-output("\n\nAs you add her commline number to the list of blocked users, you smile. To paraphrase an old saying, ‘you can lead a bull to water, but you can’t make him drink.’”</i>");
-
-output("\n\n(+5 will/int, maybe? seems like kind of a waste to end it with no benefit/reward for walking away)");
-
-output("\n\n(give in)");
-
-output("\n\nAll the information’s ready to send. All you need to do is hit the button. All you need to do is take that one little step into blissful, mindless, stiff-dicked servitude. All your personal information, your DNA signature, everything Alexandra needs to take control of your life and make you her horny little puppet.");
-
-output("\n\nYou push the key.");
-
-output("\n\nA few seconds later, the world seems to swim before your eyes, and you sink back in your seat, knowing you’ve done the right thing. Your lips turn up in a vacant smile, and you can all but *feel* your thoughts slow to a trickle. That’s right. All you have to do now is enjoy the fantasies she’s injecting into your brain, the delusions you’re all too eager to accept as reality. Your cock twitches in anticipation, and as Alexandra brings your body to its feet, you fall into bliss.");
-
-output("\n\n--");
-
-output("\n\nThe next few days pass by in a blur of sex, pleasure, and indoctrination. Alexandra handles most of the important issues, and your hunt for the probes benefits immensely from the focus she brings to the table. As you drift through daydreams of hot, sopping-wet cunts begging to get stuffed full of cock, you’re occasionally reminded that you’re just a dumb animal who loves to fuck. Just a little voice in the back of your head, a sweet, sibilant whisper that almost seems synchronized with your mind-clearing cumshots. Whenever you pump your wad into the next dream girl Alexandra queues up for you, you get that little tickle in your head, that pleasant reassurance that Alexandra is going to make sure you don’t end up failing for *real.*");
-
-output("\n\nIn fact, when she realizes just how *hard* you get off on giving up and sinking into the depths of depravity, Alexandra seems more than happy to indulge your fetishes. You aren’t just milked like the stupid breeding bull you are deep down, you fall prey to each and every pitfall that could have tempted you on your hunt for the probes.");
-
-output("\n\n--");
-
-output("\n\nYou sneeze, swaying on your feet and watching a gorgeous plant-woman’s breasts bounce up and down. You’re drawn forward, a mindless slave to her titties, stumbling face-first into her enormous floral throne. You’re mesmerized by the sight of verdant vixens, brain reduced to mush as vines pump your cock and wring her next meal from your hopelessly addicted manhood. Nothing more than a spunk tank for the most cunning predator in the jungle.");
-
-output("\n\nYou stagger back, blinking through the fog of intoxicating pheromones that surround you. Aliens hover on bee-like wings, the steady buzz of their flight disrupting your focus whenever you try to stumble to your feet. You’re escorted to a mountaintop village and raped until your mind breaks.");
-
-output("\n\nYou foolishly indulge a malfunctioning robot, and her inhuman skill is so overwhelming that you can’t help but bring her aboard. Nights blend into weeks as you lose yourself between her perfect, artificial thighs. Eventually your addiction brings your quest to a halt, and you end up collecting broken, insatiable sex-bots, a prisoner of your own robotic harem.");
-
-output("\n\nYou collapse to the ground, stricken with lust as you realize that you’d much rather fuck the criminals you came to stop rather than fight them. One of them licks her lips and giggles as she tells you what to say over your commlink, and as soon as the Peacekeepers are assured that you’re handling the bomb defusal on your own, a well-muscled monster of a woman slams her hips down on your lap.");
-
-output("\n\nYou step in where you shouldn’t. You involve yourself in things far beyond the scope of your abilities, and the honey-laden ants are more than happy to take advantage of your weakness. You broker a merciless peace in your mistress’ favor, a <i>“neutral”</i> third party. Your reward is to be used as a toy by any woman who wants to get fucked pregnant by the tool who helped them secure their victory over the now-defanged <i>“crimson menace.”</i> The political balance of an entire planet is now irrevocably skewed, but you find it impossible to care, pinned to the mattress of your new queen’s bed as she uses you to relieve her lust.");
-
-output("\n\n--");
-
-output("\n\nYou groan. You can’t remember when it was exactly that Alexandra found the last probe using your body, but it’s been months at least. Months of neglecting your newly inherited business as Alexandra helms its management instead. A permanent vacation, one where you’re never more than five seconds away from something capable of emptying your balls of any sperm-packed seed you might have. Sometimes she has you fuck one of her girls pregnant, but most of the time she just lets you lay back in bed and fuck the milking machine as you stare at the pretty spirals on your mindwash visor.");
-
-output("\n\nAn imagined chime goes off in your head, and you rise to your feet. You have a cocksleeve to wear when you’re walking around. Alexandra makes sure her bulls always have something keeping their dick nice and hard and their brain nice and soft. Your eyes glaze over as you start reciting Alexandra’s mantras in your head.");
-
-output("\n\nHard cock. Soft mind. Hard cock. Soft mind.");
-
-output("\n\nShe doesn’t have the time to control you directly around the clock. Luckily you’ve proven to be incredibly receptive to her pleasure-based brainwashing techniques. At this point, all it takes is a reminder that your cock is hard to reduce you to a mindless slave.");
-
-output("\n\nAnd sometimes that’s what Alexandra needs. Like right now, for example. It’s around that time when she has you fuck your wad into a few more cowgirls. She called it <i>“insurance”</i> the first time she had you do it, and you start drooling as you think about how she explained it. She has to make sure you’re still in her clutches even if you somehow shake off her control. You never will, of course. It feels too good.");
-
-output("\n\nBut just in case you do, Alexandra’s had you breed so many bastards into her cowgirls that everything you own will end up in her coffers someday. You still remember that first exquisite cumshot, the one that cemented your addiction to pumping your load into bitches, bareback.");
-
-output("\n\nLucky you, she has *two* cowgirls for you to impregnate today, and that means that one of them is going to prime you as the other one fucks you. Your afternoon is a blur of hot, wet cunts and cum-bloated wombs, and even if you can’t remember what they said, you know that you came that much harder thanks to the seductive purr in your ear as one of the cowgirls told you all about how fertile the other one was. How she was ovulating, how you’d been secretly fed virility-enhancing drugs the night before. How there was *no way* she would walk away without twins at *least.*");
-
-output("\n\nAfter that are a few hours reinforcing your new fetishes, ones designed to reel you back in if you try to escape. The goggles go over your eyes, and soon you’re as malleable as clay. You love being manipulated. You crave powerful women, the kind who use their sex appeal to make stupid, horny men make bad decisions. You *love* cowgirls.");
-
-output("\n\nYou’re taken through countless hypothetical scenarios, each of them designed to wriggle into your hindbrain and become subconscious fantasies. They’re the kind of career-ending bad decisions that only happen in the heat of the moment, and you love every second of them. Gold-digging femme fatales tricking you into fucking a baby into them. Flirtatious secretaries coaxing you into letting her suck you off right in plain view of the security cameras. Stumbling drunk into strip clubs and blowing thousands, if not millions on lap dances and the kind of seedy pleasure that happens behind closed doors. Bribes, corruption, seduction.");
-
-output("\n\nYou smile vacantly as you empty your balls into the milking machine.");
-
-output("\n\n--");
-
-output("\n\nYou can’t even recall it anymore, but you used to be more than just a pleasure-addicted orgasm junkie. Now all you care about is that rush of pleasure when you get to cum. Your willpower’s been crushed into dust, and you’re so fucking happy.");
-
-output("\n\nLately Alexandra’s had you help her fine-tune some political ads she’s planning on broadcasting. She’s running for governor of New Texas, and even if Big T may still win this election, it’s only a matter of time before her ads wear away at all the other bulls’ minds.");
-
-output("\n\nYou’re already a brainless bullstud for her titties, but you get off even harder knowing that it helps Alexandra make her ads that much more irresistible. Eventually she has you cumming in under ten seconds, brought to orgasm by the sensuous purr of her voice as she promises a better New Texas... all thanks to a <i>“woman’s touch.”</i> Her tits wobble and bounce on-screen, and your cock pumps out another load in obedient response.");
-
-output("\n\nIn the end, you’re nothing more than a tool, the means to an end, another stepping stone for Alexandra to reach her ambitions. Exactly how you wanted.");
-
+//(3RD DREAM/BULL ON RANCH)
+//Requires dongo longo & masculine pronouns
+//Requires been to NT
+//Requires level 4+
+//Balls
+public function alexandraDream3():void
+{
+	clearOutput();
+	showBust("ALEXANDRA");
+	author("Carol J.");
+	showName("\nDREAMING...");
+	output("The world behind your eyelids is dark, but only for a moment. It’s not long before your sleep gives way to dreams, and they flicker to life in your mind like film flapping through a projector. You’ve never had a dream like this before, one that starts so jarringly, so suddenly, but...much like the other dreams you’ve had in the past, everything makes just enough sense to your sleeping mind that you don’t question it. And really, that’s the most important part.");
+	output("\n\nDon’t question anything.");
+	output("\n\nAnd really, your tired mind doesn’t have to make nearly as many concessions with this dream. You’re not some kind of giant lizard tromping around a miniature city-scape, there are no rocks mumbling trivia questions at you as faces melt from the three watches on your wrist. No, this is all pretty normal stuff. For the kind of life you’ve been living, lately.");
+	output("\n\nYou’re a bull. A bull living on a ranch.");
+	output("\n\nIt’s a simple premise, right? Nice and easy to wrap your head around, and you’re really thankful for that. Complicated stuff isn’t your style, awake or asleep, and sometimes it’s nice to just sit back and relax. After all, you’re asleep, right? No sense wasting brainpower on some big, cumbersome dream-narrative. That’s right, all you have to do is accept your role and play it as best you can.");
+	output("\n\nYou’re a bull. And you’re stupid.");
+	output("\n\nThe details of your dream-life begin to fill in as you plod from your pen in the <i>“barn”</i> towards the milking machines in the other building. You used to not be a bull, but then you came to New Texas, took the Treatment, and now you’re just another New Texan. Just another big, brutish bull. Your cock got big, your brain got slow, and your balls fattened up with cum again and again.");
+	output("\n\nYou smile dimly to yourself, walking on autopilot. There’s a collar around your neck, and it doesn’t take but five seconds before you remember how you got that collar, too. Back when you were first feeling the effects of the Treatment changing your body, you’d made the mistake of pumping a wad into some cowgirl’s <b>juicy</b> little cunt. Normally that’d be fine, but there was a quirk in your biology and hers.");
+	output("\n\nYour cock dribbles a musky dollop of precum as you think back to the cumshot that changed your life. The second you fucked your load into Alexandra’s pussy, you remember a pleasure unlike anything you’d felt in your life. Eye-crossing, tongue-lolling, jaw-dropping, the kind of pleasure that makes you go limp and useless whenever you feel it crash down on you in the milking pens. Right as the Treatment had been rerouting your neurons, shortening and redirecting your axial pathways, that pernicious flood of dopamine had criss-crossed your circuits and left you a stupid, horny animal. Most bulls ended up smug, swaggering studs, and make no mistake, you’re a <b>complete stud.</b>");
+	output("\n\nYou also happen to be a pussywhipped fuck-addict, too.");
+	output("\n\nAt first it was manageable. The Treatment was still changing you, but you weren’t totally changed. You remember thinking about getting back to your ship, but you just couldn’t pull yourself away from that Holliday minx. The first romp with was incredible. The second was impeccable. And the third? Well, that was all it took to seal your fate for good.");
+	output("\n\nIt was almost like she planned it. Like she’d gotten your prick nice and stiff at just the right time to leave you a cum-dribbling boy-toy. Sometimes you wonder if it was all a giant conspiracy, a trap that you fell into. Fuck if you care, though. It feels incredible to be Alexandra’s cum-pump, and every nut you spunk into one of her <i>“milking”</i> machines just makes you that much stupider. And that much hornier.");
+	output("\n\nBesides, she’s far from selfish! She provides everything you could ever want! She feeds you, houses you, makes sure you’re nice and clean when she rents you out to breed disobedient bitches... Part of you wonders if it’s a bad thing that she sends you out to turn independent and politically-minded young women into cross-eyed milk-cows, but it’s all nice and simple for the rest of you. Couldn’t be easier:");
+	output("\n\nSlamfuck the bitch into submission. Let Alexandra talk to her. Give her the Treatment medipen. Even a stupid bull like you can handle that. And then a few days later there’d be a new milk-cow to fuck when you’re bored! Everyone wins, even the policewomen that try to take you away from Alexandra.");
+	output("\n\nYou’re hard again, and you’re not even in the milking pens. This is gonna be a problem.");
+	output("\n\nYou wrap your hand around your cock and start to pump. A quick half-orgasm should clear your head enough for you to navigate to...wherever you’re going. But you really wish you had something to fuck your hand <b>to.</b> Something like-");
+	output("\n\nOh, perfect! As soon as you think about it, a video of Alexandra appears before your very eyes. You’d recognize the wobble of her titanic teats anywhere, and that’s pretty fortunate, because the video doesn’t show a single inch of her face. No, staring openly and unabashedly at Alexandra’s rack, you fuck your fist like a drooling idiot.");
+	output("\n\nThank god she has this automatic masturbation-aid system set up on the ranch. You remember back before you were a bull, back when you’d have to find porn on your own <b>before</b> you started stroking yourself. Now all you have to do is wrap your hand around your cock, and a pre-recorded video of Alexandra will pop up and dominate your field of vision. You don’t quite get why the spirals are there, and you never really pay attention to what she’s saying in the video, but that’s not the point, is it?");
+	output("\n\nYou remember hearing about some other bulls who tried to <i>“clear their heads”</i> by rubbing one out when they weren’t scheduled to fuck or get milked, and you honestly can’t imagine a worse feeling than not being horny. That’s why she talks her bulls to sleep as soon as they empty their balls. No stress, no worries, no thinking.");
+	output("\n\nYou idly drool a bead of pre from the tip of your bloated bull-cock.");
+	output("\n\nIt feels amazing. And you’re so thankful that Alexandra took you in after she mindfucked you and turned you into a stupid breeding bull. Honestly, the whole race to find the...probes or whatever. That was so boring. Most of it didn’t even feel good. Not like this. No, here on Alexandra’s ranch, you get to feel good all the time, and whenever you want to feel even better, you can just ask Alexandra to make you even stupider.");
+	output("\n\nYou aren’t quite sure how she does it - no surprise there - but Alexandra can do this thing with her brain that makes it even harder to think. You’re pretty sure she’s explained the process to you once or twice before, but more or less as a way to rub it in your face just how stupid you’re becoming. Something about persistent dopamine feedback loops and selective oxytocin triggers. You don’t know what big words like those mean anymore. All you know is that when you hear Alexandra’s voice and see her big, heaving tits, you get stiff for her because you love her.");
+	output("\n\nLove is kind of a complicated emotion, honestly. Maybe it’s more accurate to say that you want her.");
+	output("\n\nYou drool as you fuck your hand, staring at the screen in front of you. Alexandra’s rack wobbles in front of your glassy eyes, and soon you’re just mindlessly pumping away. You can practically hear her voice in your ear:");
+	output("\n\n<i>“Good bull. Such a good, stupid bull.”</i>");
+	output("\n\nWith a grunt, you cum. Before the Treatment - and the modified epipen Alexandra convinced you to take after you signed yourself away to her ranch - the wad of spunk you just pumped from your bloated bullprick would have been an absolutely <b>magnificent</b> cumshot. Enough to creampie even the hungriest Venus Pitcher and leave her satisfied for days to come. Now, it’s barely enough to make your cock go half-hard. Your balls start to churn with a fresher load in seconds, and it’s only Alexandra’s careful programming that sends you stumbling towards the milking pens.");
+	output("\n\nHave to get milked. Have to be a good bull.");
+	output("\n\nYour tongue is lolling out again by the time you get to the milking pens, cock stiffer than ever and balls bloating up fat with your next orgasm. You’ve been meaning to ask Alexandra about the thing where you can sign up to just be in the milking pens all the time, but whenever you try to talk to her about something, you just end up staring at her rack and masturbating. It’s not a bad problem to have, as far as problems go, but you wish you were one of the lucky bulls in here. The ones who get to cum and cum and cum. Your cock throbs at the thought. Mindlessly pumping away in a fake pussy as you watch video after video of Alexandra’s tits bouncing and wobbling and jiggling.");
+	output("\n\n<i>You’d give anything to do that.</i>");
+	output("\n\n<i>You’d give up everything to do that.</i>");
+	output("\n\nYeah. You would. You’d abandon your hunt for the probes or whatever if you got to just be a stupid, horny bull and get your cock milked all the time. You smile dimly to yourself. <i>When you wake up, you’re going to think about doing just that.</i> But for right now, you have to get your balls drained. Otherwise you’re just going to be pouring off pheromones and sending all the cows into heat. It’s a real problem, and even if the cows are nice to fuck, they make you do so much <b>work.</b> Sometimes you just want to let yourself get strapped down, have a suction hose wrap around your cock, and let the pretty spirals spin in your eyes as Alexandra mindfucks you until you pump your wad into the milking machine.");
+	output("\n\nAnd that’s just what you do. You stumble into your pen, clumsy and brutish and uselessly muscular, and gentle automated hands guide you to your milking bed. The first few times, they had to strap you down. Now your muscles go limp the instant it begins to lean back. Your body knows what comes next just as well as your mind does, and it’s more than happy to cooperate with the automated cock-pumping.");
+	output("\n\nA screen lowers in front of your face, and - just like every other time you come in to get drained - you get a choice of videos to watch. Something to help you get off as hard as possible as fast as possible. Every porn star in the universe is presented for your perusal, but you grunt out your answer without a moment’s hesitation:");
+	output("\n\n<i>“Alexandra.”</i>");
+	output("\n\nYou’re so fucking smart for figuring this out. You don’t know if the other guys know this, but if you choose to watch Alexandra, two <b>more</b> screens come down. That’d be good enough already. But you know <b>another</b> secret. One that Alexandra <b>herself</b> told you. Three screens of her perfect hourglass figure were good, but six is twice that. And all you have to say is");
+	output("\n\n<i>“I’m a stupid bull for Alexandra.”</i>");
+	output("\n\nJust like that, three more screens lower in front of your face, and soon you’re assaulted with six simultaneous video feeds at once, each showing your mistress doing...something else. God, she’s so fucking gorgeous. The machine pumping at your cock is definitely helping, but your attention is almost entirely dominated by the sights and sounds of Alexandra.");
+	output("\n\nAlexandra trying on clothes, squeezing into bras before the hooks snap and the buttons of her blouse pop off uselessly. Alexandra smirking as she presses her tits up against each other, the valley of her cleavage all but inescapable. Alexandra, calm, cool, collected, sexy and in control, wearing a full, figure-hugging business suit as she nudges a truly monstrous bullprick with the tip of her foot. You grunt and groan as she snaps her fingers, and the cock she’s inspecting - attached to some faceless bullstud like you - pumps its load eagerly into the air at her implicit command. You gurgle in pleasure and desire. You want that. <i>You want to be Alexandra’s mindfucked bullstud. You want to be her mindless cumpump and cum on her command. Nothing turns you on more than being Alexandra’s horny, useless slave.</i>");
+	output("\n\nMilk dribbling from her teats. Alexandra smirking as she wrings another load from one of her bullstuds with her fat, heaving tits. You’re so close to cumming. Alexandra instructing you to obey, using her psychic powers to influence you at your most vulnerable, to shape your desires while you hand yourself over to pleasure, to sleep, to dreams. You can almost feel her in your head, <b>adjusting</b> you to be more how she <b>wants</b> you to be.");
+	output("\n\nYou - the real you, not the dream you - know you can wake up. And you know that if you don’t, if you stay in the fantasy, if you see it through to the end...you’ll end up changed. But would that be a bad thing? It feels incredible. And it’s not like you’re going to wake up zombified if you let this psychic cowgirl goddess give you a wet dream. Right?");
+	output("\n\nYou can indulge a little bit more. You can let Alexandra take control. All she wants to do is make you feel good. All she wants is to make you cum so hard your brain turns off for a while.");
+	pc.lust(120);
+	clearMenu();
+	addButton(0,"Wake Up",wakeUpForAlexandra);
+	addButton(1,"Stay Asleep",stayAsleepForAlexandra);
+}
+
+//(wake up)
+public function wakeUpForAlexandra():void
+{
+	clearOutput();
+	showName("\nAWAKE...");
+	author("Carol J");
+	output("It’s not worth the risk. You focus, fighting against her influence and shaking off the artificial dream she’s foisted upon you and....");
+	output("\n\n...sitting up in your bed. Were you dreaming? You shake your head and try to remember what just happened. Something about...");
+	output("\n\nHm. You can’t quite remember. It must not have been very important.");
+	alexandraResist();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//(stay asleep)
+public function stayAsleepForAlexandra():void
+{
+	clearOutput();
+	showBust("ALEXANDRA");
+	author("Carol J.");
+	showName("\nALEXANDRA");
+	output("You don’t care what else might happen, because you know Alexandra is going to make you. You want to feel good. You’re a stupid, horny bullstud, and stupid, horny bullstuds get to pump fat wads of cum into the milking machines. You hand yourself over to the dream, and you’re rewarded for it.");
+	output("\n\nThe dreamscape shifts, rapidfire, an overwhelming deluge of pleasure and fantasies and sights and sounds and sensations. You take a cowgirl from behind, plunging yourself in her tight, wet cunt. You bottom out in her pussy, bellowing with pleasure with each high, keening <i>“moo”</i> she gives.");
+	output("\n\nYou lay back, boneless and drooling as the milking machine expertly massages and slurps at your cockflesh, glassy-eyed as Alexandra showcases how her machinery works on her latest bullstud to potential investors. It feels incredible to be put on display like this, just a stupid, mindless demonstration of fuckdrunk addiction for all the people who know better than to think with their cocks.");
+	output("\n\nYou’re collared, chained to a throne. So big. So <b>strong.</b> Alexandra presses a single fingertip under your chin and guides you to face her. You salivate at the sight of her ruby-red lips curling up into a smirk. So powerful. And yet so weak. She reaches down to knead your cum-bloated balls, rolling them in the palm of her hand and giving teasing little clenches to make sure your fat, heavy nuts stay nice and backed-up. It makes you easier to control, she reminds you. So easy to control a horny bullstud like you.");
+	output("\n\nBulls like you don’t know any better, and that’s the problem, really. They don’t know what’s good for them and what they <b>should</b> be doing. But that’s why Alexandra is ready to guide you. All you have to do is let her take over. Not just now, even though it’s certainly a start. You have to let her take control <b>forever.</b>");
+	output("\n\nCum.");
+	output("\n\nYou’re back on the display table, prick twitching and throbbing, orgasm about to crash down on you.");
+	output("\n\nCum.");
+	output("\n\nYou’re stumbling after her on the ranch, eyes glued to the fertile swell of her hips as they sway from side to side.");
+	output("\n\n<b>Cum.</b>");
+	output("\n\nYou’re in her office on New Texas, signing your life away just for the chance to feel one of those <b>exquisite</b> cumshots awake instead of just in your dreams.");
+	output("\n\n<b>CUM.</b>");
+	output("\n\nYou groan, blinking awake as you pump a fat, sloppy load into your sheets. It’s not long before they’re stained white, but even before your orgasm’s over, you’re drifting back to sleep. You were pulled out of your rest by the same irresistible pleasure that’s sucking you right back down into blissful dreams of obedience...");
+	output("\n\n...and instruction.");
+	pc.orgasm();
+	pc.taint(1);
+	alexandraIndulge();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//(4TH DREAM/BREEDING BULL IN OFFICE)
+//Requires dongo longo & masculine pronouns
+//Requires been to NT
+//Requires level 4+
+//Balls
+public function alexandraDream4():void
+{
+	clearOutput();
+	showBust("ALEXANDRA");
+	author("Carol J.");
+	showName("\nDREAMING...");
+	output("Something happens during your slumber...\n\n");
+	output("You don’t know why you’re here, but as long as Alexandra’s holding your leash, you don’t have to know. Probably have to fuck some woman. You grin dully to yourself. You like it when you get to fuck the women Alexandra tells you to. Sometimes they try to push you away at first, but they always end up cross-eyed and giggling with a womb full of your cum.");
+	output("\n\n<i>“I don’t really have an interest in repeating myself, Fiona,”</i> Alexandra says calmly, a hint of a smile playing at her lips. She’s dressed conservatively, but her figure is enough to send any prick stiffening at the sight. <i>“It’s cute that you and your company thought you could wriggle around my <b>talents</b> with the hiring criteria you’ve adopted lately, but you’ve made the mistake of underestimating him and overestimating yourself.”</i>");
+	output("\n\nThe woman sitting across from her at the desk fidgets, looking from Alexandra’s eyes to yours. Then to your cock. <i>“Fiona,”</i> apparently. The boss? The manager? You don’t know. She doesn’t look bad. For an unTreated human, at least. A nice, generous chest. Attractively short blonde hair. Blue eyes. Fair skin. You can’t tell if she’s got a proper hourglass figure, but you don’t really care. Alexandra’s tits are bigger, so that means she’s in charge. The idle thought of Alexandra’s wobbling rack drags your attention back down to her tits, and soon your half-hard prick is at full mast.");
+	output("\n\n<i>“He’s quite a specimen, isn’t he?”</i> Alexandra brings one delicate hand to the underside of your fuckrod, hefting it up as if she’s examining a particularly interesting mineral sample instead of the fattest, thickest bitchtamer genetic modification can buy. <i>“The Treatment really is something, and all it takes to produce results as impressive as this is a teensy modification to the end formula.”</i>");
+	output("\n\n<i>“<b>I’m</b> used to it.”</i> She lets your cock down, and it sags under its own ponderous weight. <i>“Not just the sight of it. The scent, too. I have to admit, it’s impressive in its own right that you haven’t bent over the desk and presented yourself to him, but it’s really only a matter of time.”</i> Alexandra’s calm. Cool. Collected.");
+	output("\n\nFiona isn’t. Her pale skin is flushed deep red, and her eyes have been locked on your fuckrod since the moment Alexandra showed it off. She’s biting her lower lip, and you can practically <b>smell</b> her cunt leaking. Her chest heaves with every deep breath she takes, and the sight of her tits straining against her blouse makes your cock twitch. Her breath catches in her throat in response.");
+	output("\n\n<i>“And that’s not even necessarily the problem. One moment of weakness isn’t enough to ruin someone and turn them into a <b>fuck-drunk sex addict.</b>”</i> Alexandra enunciates the last four words like she’s cracking a whip. Fiona whimpers, and Alexandra rises from her seat. <i>“Forget going from zero to sixty. This is going from zero to six <b>thousand.</b> After all, it’s not unusual for women to visit New Texas and sample the, ah...”</i>");
+	output("\n\nAlexandra steps around the desk. Behind the woman. <i>“’Local flavors,’ shall we say. Sometimes they can even go back. Sure, a good number end up immigrating permanently, but it’s not the <b>majority.</b>”</i> Her hands go to Fiona’s shoulders, and Alexandra leans in to whisper in her ear. <i>“Sometimes one little taste is enough. Just one roll in the hay with a big, buff bull. A fantasy that some overworked office drone needs to get out of their system. One and done.”</i>");
+	output("\n\n<i>“But <b>imagine.</b>”</i> Alexandra’s voice is a low, smoky hiss now. The sound of it - and a few pulses of warmth in the back of your brain - send your cock throbbing fatter and harder with every heartbeat. <i>“Imagine a fuck so <b>good</b> and so <b>hard</b> that you can’t even remember your <b>name</b> after it’s happened. Imagine a bull so <b>big</b> and <b>strong</b> that you can just go limp and let him do all the work. I’ve seen my bulls pick up girls and fuck them like <b>toys.</b> Doesn’t that sound nice? A little break after all the hard work managing imports and exports and all those silly trade regulations.”</i>");
+	output("\n\nYour prick belches a glob of precum onto the surface of her desk, and Fiona can barely stifle a moan. Scratch that, she can’t. With Alexandra’s hands kneading insistent circles into her shoulders, she’s melting bit by bit.");
+	output("\n\n<i>“Only. You might want to be careful. Every rose has its thorn, you know? And this one has one <b>hell</b> of a <b>prick.</b> See.”</i> Alexandra’s using that special voice of hers. The one that’s smooth, a touch lower than normal. The kind she uses when she wants to turn someone’s brain off without using her powers. Sure enough, it starts to work. The woman’s eyelids begin to flag, but her gaze never leaves you bitchtamer. <i>“My boys are <b>special.</b> They have a <b>nasty</b> little habit of making strong-willed career women into empty-headed <b>mommies.</b> The mods I made to the Treatment has a few...side effects. You probably don’t even realize it right now, but...”</i>");
+	output("\n\nAlexandra chuckles, throaty and luxurious. <i>“The second you caught a whiff of this big, bad bull’s <b>cock,</b> you started <b>ovulating.</b>”</i>");
+	output("\n\nFiona gasps softly, but she hardly sounds concerned.");
+	output("\n\n<i>“One little sniffle of the Alpha male’s musk, and your ovaries got all hot to trot. I give you about five minutes before you’re shaking your ass like an animal begging to be mounted. I’ve seen stronger women than you end up cumming around this bull’s <b>fuckrod</b> like a virgin with her first vibe. Then they cum again when he actually fucks his load into them. Then they cum <b>again</b> when they feel that little <b>ping.</b> Right <b>here.</b>”</i>");
+	output("\n\nAlexandra splays her hand out just below the woman’s navel, and you notice with distant confusion that she’s...pressing her thighs together. What, does she not want to fuck? That’s weird. Whatever.");
+	output("\n\nIt suddenly feels like a very good idea to jerk yourself off. Your pupils dilate just so as Alexandra’s influence nudges you in the right direction, and soon you’ve wrapped your hand around the bloated length of your shaft and begun to clumsily pump your rod up and down. Pre leaks from the tip in cloudy pearls, splattering on the desk in front of you. Sometimes you wring your prick particularly hard and end up dribbling your pre-seed onto the woman’s blouse directly.");
+	output("\n\n<i>That’s a good thing. It’s a very good thing.</i> You jerk yourself harder. You make sure every stroke ends with a few more droplets staining the woman’s clothes. It isn’t long before the entire room swims with the aroma of your musk. The woman’s nearly swooning from the scent alone, and you note with satisfaction that her mouth’s begun to water as she leers at your big, stiff prick.");
+	output("\n\nAnd all the while, Alexandra’s whispering in her ear, the naughtiest little shoulder devil a girl could ask for. Most women think that they’re safe because her powers don’t affect them. Lucky for them, they’re wrong. If they were right, you might not get to breed them stupid. You might not get to pump your spunk into their eager little wombs and send them cumming themselves to sleep as your sperm wriggles its way up to their eggs and makes sure they’re well and truly <b>seeded.</b>");
+	output("\n\nAlexandra just needs you to fuck your hand right now, so you’re free to daydream. It’s so easy to sink into fantasies ever since you started letting Alexandra mindfuck you every night. Barely takes a moment before you’re lost in visions of wide-hipped, breedable cow-bitches and milk squirting from plump, full udders. When Alexandra found out you used to be [pc.name] Steel, <b>the</b> [pc.name] Steele, she decided your genes were too good to waste.");
+	output("\n\nSo instead of being strapped down and hooked up to a pump, you ended up becoming Alexandra’s personal bitchbreaker. A mindless drone sculpted into the perfect masculine form so you could seduce and subjugate as many women as she needed you to. And the best part? You get to creampie every bitch you fuck.");
+	output("\n\nSometimes even more than once. Most of the time your job means that you’re not back home on the ranch, but sometimes everything Alexandra plans on doing goes off without a hitch and she doesn’t need you right away. When that happens, it’s rest and relaxation in your private harem, a bevy of bovine beauties worshiping your bitchtaming prick while you gulp down as much milk as their udders have to offer.");
+	output("\n\nYou smile to yourself. <i>You’re so glad you followed Alexandra’s influence through the dreams she gave you and signed your life away at her hidden ranch on New Texas.</i> Given that most of her bulls just end up as glorified cum-factories, <i>it’s an honor that you get to serve her so directly,</i> as her influence reminds you.");
+	output("\n\nYou’re so lost in the fugue of pleasure that you don’t notice Fiona move until she’s pressed up against you. Panting and mewling with barely-restrained desire, she’s got her tits mashed up against your rock-hard abs...and her hands on your cock, silky smooth skin pumping up and down. She stares up at you dreamily, like you’re her knight in shining armor. Given what Alexandra’s whispering in her ear, you might as well be.");
+	output("\n\n<i>“No stress. No worries. Just a nice, relaxing vacation. Right? You’re not like those other silly girls, Fiona.”</i> Alexandra lies with a nice, wide smile on her face, and Fiona believes every word. <i>“And you can always leave whenever you want. It’s not like I’d <b>force</b> you to stay. You’ll be able to leave whenever you get tired of getting plowed by my big, <b>strong</b> bulls.”</i>");
+	output("\n\nFiona nods, barely aware of her surroundings. The only thing she sees is you, and the only thing you see is her. It’d almost be romantic if your bloated prick wasn’t drooling pre onto her belly. And if you were thinking about anything more than how good it’s going to feel to mindbreak her into another docile cowgirl. She’s so small. Barely any curves. The Treatment will fix that.");
+	output("\n\n<i>“Here’s what we’re going to do,”</i> Alexandra continues, moving slowly to undo the buttons of Fiona’s blouse. <i>“We’re going to set up a little change in the chain of command here. You know, so no one has to make any <b>calls</b> or send you any <b>messages</b> while you’re relaxing. No interruptions. And then, just as a little treat from me to you, my bull here is going to fuck you <b>senseless.</b> Let’s call it...”</i> Alexandra giggles to herself. <i>“’Proof of conception.’”</i>");
+	output("\n\nFiona purrs with delight. She presses her now-bare breasts up against your rod, sandwiching the sizable length of your fuckpillar between her tits. She massages the warm softness of her chest around your shaft, but it’s painfully clear that she’s not nearly big enough to titfuck you properly. That’s fine, though. Alexandra doesn’t want you to just fuck their tits. She wants you to spunk in their cunts and make sure they get hooked on being creampied. On being bred.");
+	output("\n\nYour eyelids sink lower, and you feel the programming she’s drilled into your head begin to take over. It’s so simple. Like going on autopilot and getting a nice, fat cumshot at the end for being a good little slave. <i>All you have to do is give up. All you have to do is give in.</i>");
+	pc.lust(100);
+	clearMenu();
+	addButton(0,"Give Up",alexandraDream4GiveUp);
+	addButton(1,"Get Out",alexandraDream4GetOut);
+}
+
+//(get out)
+public function alexandraDream4GetOut():void
+{
+	clearOutput();
+	showBust("ALEXANDRA");
+	author("Carol J.");
+	showName("\nAWAKE!");
+	output("You awake with a start, sitting up in your bed. There’s sweat beading on your brow. Even as your heart pounds in your chest, you can’t shake the feeling that you just avoided something...terrible? Wonderful? It’s hard to tell, and it’s even harder to shake the arousal pulsing in the back of your head.");
+	output("\n\nYou try to push the visions of eager, submissive cowgirls from your mind as you force yourself to sleep. In time, the teasing phantoms fade, but the indistinct memories of pleasure and mindless submission do not.");
+	alexandraResist();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//(give up)
+public function alexandraDream4GiveUp():void
+{
+	clearOutput();
+	showBust("ALEXANDRA");
+	author("Carol J.");
+	showName("\nALEXANDRA");
+	output("You give up. You give in. It’s so wonderfully simple to surrender to your programming, to just be a bull. To just breed.");
+	output("\n\nYour hands go to Fiona’s waist, and she squeaks with delight as you lift her up into the air. For someone as Herculean as you, she’s light as a feather, and it’s trivial to bring the hot, wet mound of her sex down to the tip of your cock. Alexandra steps back with a smile, turning away from the two of you as she moves to take a seat at Fiona’s desk.");
+	output("\n\n<i>“You two enjoy yourselves,”</i> she says, eyes focusing intently on the computer screen Fiona was working at. <i>“And don’t mind me. I’m just going to take care of a few things here so you can focus on getting fucked nice and hard.”</i>");
+	output("\n\nYou’re almost mechanical when you move, but it seems like Fiona likes it. Maybe she mistakes your indifference for a sort of attractively masculine callousness. Either way, you’re going to have her cumming helplessly around your thick, stiff cock. She squirms and twitches in your hands as you force her down around your rod, and for a moment it seems as if she’s going to protest. She’s tight, sure, but that moment of half-formed resistance melts away as your prick lubes her cunt with another dollop of mind-clouding precum. The scent of it was one thing, but the instant a bitch gets a taste of your seed - precum or no - she’s all but guaranteed to bliss out.");
+	output("\n\nFiona’s no different. She was pawing at your chest before, batting at it like an affectionate kitten, but now her arms and legs are going limp. Her pupils go wide, and her lips turn up into a vacant smile. The sight makes your cock throb in satisfaction, but you won’t get that rush of pleasure from Alexandra’s instructions until she’s drooling cum from her pussy and gurgling on the ground.");
+	output("\n\nThat’s what compels you to bring her down even harder, and soon you’ve hilted the entire length of your bitchtamer prick in her cunt. Your hands around her waist give you the perfect grip to piston Fiona up and down on your dick, and soon you’re jerking yourself off with her as a toy. After all, she’s small enough to be a toy compared to you, so why not use her like one?");
+	output("\n\nSeems like she likes the treatment, too, because she’s cumming rapidfire around your cock. There’s a twitch every now and then around your shaft, and her body’s tensing up in the same syncopated rhythm. Given that she’s never done it with a bull - whether he be one of Alexandra’s stock or just a normally Treated guy - she may as well be a virgin when it comes to stamina. Her eyes have crossed already, and her jaw’s hanging open as you fuck yourself with her.");
+	output("\n\nEven if you’re not fucking the kind of cowgirls you’d have fawning over you back on the ranch, she’s still tight, she’s still wet, she’s still <b>hot.</b> It doesn’t take long before you’re teetering on the edge of orgasm yourself, and what finally pushes you over the edge is...");
+	output("\n\n<i>Alexandra. You love to obey Alexandra. Obeying Alexandra makes you cum so hard. You get off because Alexandra wants you to cum hard and cum often.</i>");
+	output("\n\nSomeone else might think that Fiona’s the submissive one here, but you’re just as mindless as she is. As you bottom out in her cunt and pump your seed into her womb, the only thought in your mind is that <i>you’re so lucky Alexandra found you. You’re so lucky you get to cum as hard as this. Most men would do anything to be a horny bull-slave. You’ll do anything to be a horny bull-slave.</i>");
+	output("\n\nYou groan, body going limp as the pleasure washes over you. Your prick throbs and bulges with every massive splurt of cum you empty into Fiona’s sex. After a few spurts, the only thing keeping your hot, thick cumshot in her cunt is your bulbous cockhead. It’s packed into her womb, plugged up with your cock, and it won’t be long before she’s been utterly <b>fertilized.</b>");
+	output("\n\n--");
+	output("\n\nYou blink awake groggily. Where are you? You’re not in bed, even if you- Hold on, are you sitting at your ship’s comm? What’s- Did you just jerk off or something? There’s streaks of cum splattered onto the screen, and your dick is still hard. Were you...sleepsturbating?");
+	output("\n\nIt isn’t even porn on the screen, though you have no idea how you’d watch porn through shut eyelids. No, the only thing on the screen is a <i>“Message Sent!”</i> indicator.");
+	output("\n\nYou consider checking your extranet outbox, <i>but there’s no need to do that. Everything is fine.</i> When you get right down to it, all you really need to do is <i>get back to sleep. You’ll know what to do soon.</i>");
+	output("\n\nRising from your ship’s comm system, you shrug and make your way back to your quarters. It’s nice and easy to brush aside the nascent concerns that an episode like this would normally raise. In fact, you find yourself wondering more about the <b>wonderful</b> dreams you’ve had lately than anything else.");
+	output("\n\nIf only you could remember them...");
+	alexandraIndulge();
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//(FINAL DREAM/BAD END)
+//Requires dongo longo & masculine pronouns
+//Requires been to NT
+//Requires level 4+
+//Balls
+public function alexandraDream5():void
+{
+	clearOutput();
+	showBust("ALEXANDRA");
+	author("Carol J.");
+	showName("\nDREAMING...");
+	output("When you wake up, there’s this...compulsion. You don’t know quite where it comes from, but you know that it’s important. It’s very important that you open a line of communications to New Texas, and it’s even more important that you make sure the line is secure. Encrypted. Your fingers tap absently - almost clumsily - at the main commline’s keyboard, and soon the numbers in your head translate to numbers on the screen. How you know this line or even what this line is doesn’t really matter. You’re half-hard and drowsy, operating purely on autopilot.");
+	output("\n\nIt’s such a relief when Alexandra’s face crackles to life on the screen that you can’t help but smile. Why would you do anything <b>but</b> smile? The woman who’s gotten her claws in your dreams is finally ready to meet up in person and complete your induction into her legion of slaves.");
+	output("\n\n<i>“Very good,”</i> she purrs, eyes narrowing as she scrutinizes you from her side. <i>“Who would have known that [pc.name] Steele would have been such an easy catch? Poor thing.”</i> She winks, and her other eye glows pink. You grunt in surprise as your cock begins to stiffen, and a phantom hand begins to stroke it up and down, nice and slow, so luxurious that all you can do is slump back in your seat and let it happen.");
+	output("\n\nAlexandra says something about a credit transfer and a few agreements to sign. <i>“Nothing you can’t do while you’re relaxing,”</i> she reassures you. Her eyes glow brighter still, and a pair of unseen lips wrap around the bulbous crown of your prick, tongue swirling in circles around the very tip. <i>“All you have to do is authorize the routing number and provide your fingerprint, biometric signature, and a <b>teensy</b> sample of your DNA. That’s not too much to ask. Is it?”</i>");
+	output("\n\nShe smiles cutely, turning side to side in her seat and sending her tits wobbling from left to right in the wake of her fidgeting. You follow her breasts’ motions helplessly, shaking your head in blind, stupid mimicry.");
+	output("\n\n<i>“Good bull.”</i> Alexandra’s voice is a low, smoky purr, and you realize for the first time that your decisions here might not have all been your own. <i>The thought of that turns you on. Your dick gets so hard thinking about how she’s manipulated you with her sex appeal and your own mind-clouding arousal. You love how she’s learned your weakness for breeding fertile cowgirls and sucking on their big, fat tits.</i>");
+	output("\n\nOr did she <b>give</b> you those weaknesses? <i>It doesn’t matter. You feel so good when she uses her body to control you. You don’t care that she gave you your fetish for being an easily-controlled bull. It feels good, and that’s what matters. You only care about cumming as hard as you can. You only care about feeling good. You’ll do anything to feel good.</i>");
+	output("\n\n<i>“Oh? Do you actually <b>like</b> it when I seduce you?”</i> Alexandra quirks an eyebrow as you finish typing in the information. Wait. What? Were you saying that out loud? Or is she feigning surprise at another thought <b>she</b> gave you? You don’t know. <i>You don’t care. You just want to cum.</i>");
+	output("\n\n<i>“If you want,”</i> she continues, <i>“I can make it feel even <b>better.</b>”</i> She presses her arms up against either side of her tits, and you gurgle uselessly as you stare into the bottomless valley of her cleavage. Even better? Is that possible? You’ve spent countless hours stumbling blindly through dreams, utterly controlled, collared by your lust and her expert guidance. How could it get any better than that? Mindlessly cumming and indulging in every pleasure she could possibly offer your sleeping mind.");
+	output("\n\nBut...<i>maybe she’s right. Maybe you can be further controlled. Maybe you don’t need to be asleep to dream. All you need to do is let her make a few little changes. All you need to do is hand over control. All of it. Having to think is such a pain. Responsibility is just a burden. It’d be so much easier, feel so much better to just be a mindless animal, awake or asleep.");
+	output("\n\nYou’re already so weak-minded. You already get off so hard dreaming about being a horny breeding bull. You’d get to feel like that all the time. Every waking moment, every wonderful dream. You’d be a perpetually stiff cum-pump, drooling pre from your thick, stupid fuckrod and emptying your fat, bloated balls whenever and wherever you want. You’d be able to breed cowgirls pregnant. You’d be able to mindlessly fuck your spunk into milking machines. You’d cum every single thought in your silly little head away and just be a happy, stupid bull.</i>");
+	output("\n\nYou’ve started to touch yourself without even realizing it, and Alexandra giggles at the sight. <i>“See? Your cock knows what it wants. And you gave up trying to disobey your cock a <b>lo-o-ong</b> time ago. If you were ever capable of disobeying it, that is.”</i> She presses her palms to her still-clothed tits, covering the stiff peaks of her nipples. Rubbing them in slow circles. Sending your fuckstick twitching and throbbing in desperate anticipation. Her eyes glow brighter, and you can feel her tits kneading up against either side of your stiff, twitching cock. Soft, pillowy, perfect. <i>You can just sit back and let her massage her titties around your prick until you cum. It’s all you have to do.</i>");
+	output("\n\nBut there’s something more to be done, isn’t there? You’re supposed to be looking for something. Something important. <i>If it’s that important, though, wouldn’t you remember it without having to think about it?</i> Or maybe Alexandra is using her influence to make you forget. Maybe you need to fight this. <i>But why would you ever fight something that feels so good?</i>");
+	output("\n\nYou grunt and gurgle in your seat, reaching a hand up to the keyboard and preparing to type...something. But what? It’s on the tip of your tongue, the end goal of your mission, the whole reason you set out and started this grand adventure.");
+	output("\n\nThe probes! Your father’s legacy! That’s right, you’re <i>looking for them so Alexandra can take care of-</i> No, that’s not right, you’re looking for them for...for yourself?");
+	output("\n\nAlexandra watches you frown from her flickering vantage on the viewport. Her eyes narrow before glowing brighter than ever. <i>“You’re being a bad bull,”</i> she growls, and for a moment, the pleasure throbbing in your cock fades. Your prick begins to wilt, and you whimper in disappointment. Half of you wants to apologize, to promise you’ll be good, that you’ll stop thinking.");
+	output("\n\nThe other half wants to fight.");
+	output("\n\n...");
+	output("\n\nBut maybe you only want to fight so it’s that much better when you lose. Alexandra’s mind is moments away from subsuming yours, and what she’s promising isn’t...entirely unpleasant.");
+	output("\n\nShe’s willing to make sure you win. That you inherit your father’s legacy and take control of Steele Industries. And she has <b>considerable</b> leverage. And what’s she asking for in return? Nothing. Not a single credit. If you want to hand everything over to her once you claim your inheritance, that’s absolutely your decision. She just wants you to make sure that you know what she’s prepared to give you if you do.");
+	if(crew(true) > 1) output("\n\nA seemingly random twitch of your hand hits a seemingly random key on your keyboard. It isn’t until the oppressive drone of electromag locks hits your ears that you realize she just forced you to lock your crewmates in their rooms. To stop them from interrupting? To keep them trapped while she influences them?");
+	output("\n\nThrough the fugue, though, you realize something important: she hasn’t made you do anything that can’t be undone. Nothing that can’t be solved with another quick press of a button, at least. Not while you’re awake. Dreaming, Alexandra can make you do almost anything at this point. She can make you jerk yourself into a mindless cum pump. She can brainwash you into her bitchtaming bullstud. She can make you sign over everything you own with a smile on your face and a fat, pre-drooling stiffie jutting up from your lap.");
+	output("\n\nBut when you’re awake...it seems like you have a choice. You can refuse her offer. Or accept it. You can sink deeper. Or you can swim up to the surface.");
+	output("\n\nIf you want, you can end the call, block the commline, and make sure that she’s never able to contact you again, awake or asleep. You can turn her down for good.");
+	output("\n\n<i>Or you can give up. You can let Alexandra take over and be her stupid, horny, thick-dicked bull-slave. You can admit that you’re so, so weak for her powers and her big, bouncy titties. You can finally accept that you’re just a stupid, horny animal that loves to fuck. The kind of weak-willed brute that just wants to bury your cock in something hot, tight, and wet, no matter if it’s a cowgirl or a milking machine.");
+	output("\n\nYou’ll be her puppet, you’ll win, and your reward will be a harem of breedable cowgirls and a life where you only have to stumble from one cumshot to the next. You’ll help her fuck her enemies into submission and control all the other weak, horny bull breeders. Even the ones who don’t know they’re just fuck-addicted bulls yet.");
+	output("\n\nAnd the best part is that it’s all your choice. You’re seconds away from signing away your free will and admitting that you’d rather be a mindless drone than a real person with hopes and dreams and choices.");
+	output("\n\nDo it. Give in. Give up.</i>");
+	pc.lust(30);
+	//(Give in) (or not i guess)
+	clearMenu();
+	addButton(0,"Give In",alexandraDream5GiveIn);
+	addButton(1,"Don't",alexandraDream5OrNot);
+}
+
+//(or not i guess)
+public function alexandraDream5OrNot():void
+{
+	clearOutput();
+	showBust("ALEXANDRA");
+	author("Carol J.");
+	showName("\nAWAKE");
+	output("No. No! You may falter, but you’ll never fail. And if you do, you won’t fail like this! Mustering the last <b>fragments</b> of your willpower, you <b>barely manage to</b> reach over and <b>no, don’t</b> end the communication.");
+	output("\n\nYou shake your head. It’s as if there’s a weight off your shoulders. Or maybe more accurate to say a fog is clearing from your thoughts. You unlock the magnetically sealed doors and begin the process of safeguarding your ship against Alexandra’s influence. True, blocking out psionics entirely is all but impossible with the resources you have now. Given that you have a direct address for where her influence is coming from, though, you can at least make sure <b>she</b> won’t be causing you any problems while you’re looking for your father’s probes.");
+	output("\n\nYou briefly wonder if it’s safe to stop over at New Texas in the future. The idea that Alexandra would try to mindfuck you in person is a worrying prospect, but...well, if she’s looking for the kind of weak-willed saps that let her walk all over them, you’ve already shown her that you are <b>not</b> one of them.");
+	output("\n\nAs you add her commline number to the list of blocked users, you smile. To paraphrase an old saying, ‘you can lead a bull to water, but you can’t make him drink.’”</i>");
+	//(+5 will/int, maybe? seems like kind of a waste to end it with no benefit/reward for walking away)
+	pc.slowStatGain("willpower",5);
+	flags["ALEXANDRA_DISABLED"] = 1;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//(give in)
+public function alexandraDream5GiveIn():void
+{
+	clearOutput();
+	showBust("ALEXANDRA");
+	author("Carol J.");
+	showName("\nALEXANDRA");
+	output("All the information’s ready to send. All you need to do is hit the button. All you need to do is take that one little step into blissful, mindless, stiff-dicked servitude. All your personal information, your DNA signature, everything Alexandra needs to take control of your life and make you her horny little puppet.");
+	output("\n\nYou push the key.");
+	output("\n\nA few seconds later, the world seems to swim before your eyes, and you sink back in your seat, knowing you’ve done the right thing. Your lips turn up in a vacant smile, and you can all but <b>feel</b> your thoughts slow to a trickle. That’s right. All you have to do now is enjoy the fantasies she’s injecting into your brain, the delusions you’re all too eager to accept as reality. Your cock twitches in anticipation, and as Alexandra brings your body to its feet, you fall into bliss.");
+	output("\n\n--");
+	output("\n\nThe next few days pass by in a blur of sex, pleasure, and indoctrination. Alexandra handles most of the important issues, and your hunt for the probes benefits immensely from the focus she brings to the table. As you drift through daydreams of hot, sopping-wet cunts begging to get stuffed full of cock, you’re occasionally reminded that you’re just a dumb animal who loves to fuck. Just a little voice in the back of your head, a sweet, sibilant whisper that almost seems synchronized with your mind-clearing cumshots. Whenever you pump your wad into the next dream girl Alexandra queues up for you, you get that little tickle in your head, that pleasant reassurance that Alexandra is going to make sure you don’t end up failing for <b>real.</b>");
+	output("\n\nIn fact, when she realizes just how <b>hard</b> you get off on giving up and sinking into the depths of depravity, Alexandra seems more than happy to indulge your fetishes. You aren’t just milked like the stupid breeding bull you are deep down, you fall prey to each and every pitfall that could have tempted you on your hunt for the probes.");
+	output("\n\n--");
+	output("\n\nYou sneeze, swaying on your feet and watching a gorgeous plant-woman’s breasts bounce up and down. You’re drawn forward, a mindless slave to her titties, stumbling face-first into her enormous floral throne. You’re mesmerized by the sight of verdant vixens, brain reduced to mush as vines pump your cock and wring her next meal from your hopelessly addicted manhood. Nothing more than a spunk tank for the most cunning predator in the jungle.");
+	output("\n\nYou stagger back, blinking through the fog of intoxicating pheromones that surround you. Aliens hover on bee-like wings, the steady buzz of their flight disrupting your focus whenever you try to stumble to your feet. You’re escorted to a mountaintop village and raped until your mind breaks.");
+	output("\n\nYou foolishly indulge a malfunctioning robot, and her inhuman skill is so overwhelming that you can’t help but bring her aboard. Nights blend into weeks as you lose yourself between her perfect, artificial thighs. Eventually your addiction brings your quest to a halt, and you end up collecting broken, insatiable sex-bots, a prisoner of your own robotic harem.");
+	output("\n\nYou collapse to the ground, stricken with lust as you realize that you’d much rather fuck the criminals you came to stop rather than fight them. One of them licks her lips and giggles as she tells you what to say over your commlink, and as soon as the Peacekeepers are assured that you’re handling the bomb defusal on your own, a well-muscled monster of a woman slams her hips down on your lap.");
+	output("\n\nYou step in where you shouldn’t. You involve yourself in things far beyond the scope of your abilities, and the honey-laden ants are more than happy to take advantage of your weakness. You broker a merciless peace in your mistress’ favor, a <i>“neutral”</i> third party. Your reward is to be used as a toy by any woman who wants to get fucked pregnant by the tool who helped them secure their victory over the now-defanged <i>“crimson menace.”</i> The political balance of an entire planet is now irrevocably skewed, but you find it impossible to care, pinned to the mattress of your new queen’s bed as she uses you to relieve her lust.");
+	output("\n\n--");
+	output("\n\nYou groan. You can’t remember when it was exactly that Alexandra found the last probe using your body, but it’s been months at least. Months of neglecting your newly inherited business as Alexandra helms its management instead. A permanent vacation, one where you’re never more than five seconds away from something capable of emptying your balls of any sperm-packed seed you might have. Sometimes she has you fuck one of her girls pregnant, but most of the time she just lets you lay back in bed and fuck the milking machine as you stare at the pretty spirals on your mindwash visor.");
+	output("\n\nAn imagined chime goes off in your head, and you rise to your feet. You have a cocksleeve to wear when you’re walking around. Alexandra makes sure her bulls always have something keeping their dick nice and hard and their brain nice and soft. Your eyes glaze over as you start reciting Alexandra’s mantras in your head.");
+	output("\n\nHard cock. Soft mind. Hard cock. Soft mind.");
+	output("\n\nShe doesn’t have the time to control you directly around the clock. Luckily you’ve proven to be incredibly receptive to her pleasure-based brainwashing techniques. At this point, all it takes is a reminder that your cock is hard to reduce you to a mindless slave.");
+	output("\n\nAnd sometimes that’s what Alexandra needs. Like right now, for example. It’s around that time when she has you fuck your wad into a few more cowgirls. She called it <i>“insurance”</i> the first time she had you do it, and you start drooling as you think about how she explained it. She has to make sure you’re still in her clutches even if you somehow shake off her control. You never will, of course. It feels too good.");
+	output("\n\nBut just in case you do, Alexandra’s had you breed so many bastards into her cowgirls that everything you own will end up in her coffers someday. You still remember that first exquisite cumshot, the one that cemented your addiction to pumping your load into bitches, bareback.");
+	output("\n\nLucky you, she has <b>two</b> cowgirls for you to impregnate today, and that means that one of them is going to prime you as the other one fucks you. Your afternoon is a blur of hot, wet cunts and cum-bloated wombs, and even if you can’t remember what they said, you know that you came that much harder thanks to the seductive purr in your ear as one of the cowgirls told you all about how fertile the other one was. How she was ovulating, how you’d been secretly fed virility-enhancing drugs the night before. How there was <b>no way</b> she would walk away without twins at <b>least.</b>");
+	output("\n\nAfter that are a few hours reinforcing your new fetishes, ones designed to reel you back in if you try to escape. The goggles go over your eyes, and soon you’re as malleable as clay. You love being manipulated. You crave powerful women, the kind who use their sex appeal to make stupid, horny men make bad decisions. You <b>love</b> cowgirls.");
+	output("\n\nYou’re taken through countless hypothetical scenarios, each of them designed to wriggle into your hindbrain and become subconscious fantasies. They’re the kind of career-ending bad decisions that only happen in the heat of the moment, and you love every second of them. Gold-digging femme fatales tricking you into fucking a baby into them. Flirtatious secretaries coaxing you into letting her suck you off right in plain view of the security cameras. Stumbling drunk into strip clubs and blowing thousands, if not millions on lap dances and the kind of seedy pleasure that happens behind closed doors. Bribes, corruption, seduction.");
+	output("\n\nYou smile vacantly as you empty your balls into the milking machine.");
+	output("\n\n--");
+	output("\n\nYou can’t even recall it anymore, but you used to be more than just a pleasure-addicted orgasm junkie. Now all you care about is that rush of pleasure when you get to cum. Your willpower’s been crushed into dust, and you’re so fucking happy.");
+	output("\n\nLately Alexandra’s had you help her fine-tune some political ads she’s planning on broadcasting. She’s running for governor of New Texas, and even if Big T may still win this election, it’s only a matter of time before her ads wear away at all the other bulls’ minds.");
+	output("\n\nYou’re already a brainless bullstud for her titties, but you get off even harder knowing that it helps Alexandra make her ads that much more irresistible. Eventually she has you cumming in under ten seconds, brought to orgasm by the sensuous purr of her voice as she promises a better New Texas... all thanks to a <i>“woman’s touch.”</i> Her tits wobble and bounce on-screen, and your cock pumps out another load in obedient response.");
+	output("\n\nIn the end, you’re nothing more than a tool, the means to an end, another stepping stone for Alexandra to reach her ambitions. Exactly how you wanted.");
+	pc.orgasm();
+	pc.libido(100);
+	pc.taint(100);
+	pc.intelligence(-100);
+	pc.physique(100);
+	pc.willpower(-100);
+	badEnd();
+}
+
+public function alexandraIndulge():void
+{
+	IncrementFlag("ALEXANDRA_DREAM_LEVEL");
+	flags["ALEXANDRA_RESISTS"] = undefined;
+}
+public function alexandraResist():void
+{
+	IncrementFlag("ALEXANDRA_RESISTS");
+	if(flags["ALEXANDRA_RESISTS"] >= 3) flags["ALEXANDRA_DISABLED"] = 1;
+}
+
+public function alexandraDreamsAvailable():Boolean
+{
+	return (flags["ALEXANDRA_DISABLED"] == undefined && pc.mf("m","") == "m" && pc.balls > 1 && pc.hasCock() && CodexManager.entryUnlocked("The Treatment") && !pc.hasStatusEffect("AlexandraCD"));
+}
+public function playAlexandraDream():void
+{
+	pc.createStatusEffect("AlexandraCD");
+	pc.setStatusMinutes("AlexandraCD",24*60*4);
+	if(flags["ALEXANDRA_DREAM_LEVEL"] == undefined) alexandraDream1();
+	else if(flags["ALEXANDRA_DREAM_LEVEL"] == 1) alexandraDream2();
+	else if(flags["ALEXANDRA_DREAM_LEVEL"] == 2) alexandraDream3();
+	else if(flags["ALEXANDRA_DREAM_LEVEL"] == 3) alexandraDream4();
+	else if(flags["ALEXANDRA_DREAM_LEVEL"] == 4) alexandraDream5();
+}
