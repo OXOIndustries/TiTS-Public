@@ -1095,6 +1095,9 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			if (target.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) outputRouter(" practically prehensile");
 			outputRouter(" flesh, capable of extending up to four feet in length when " + (target == pc ? "you let":"[target.heShe] lets") + " it hang down all the way.");
 			break;
+		//Tired of seeing "your mouth contains a tongue."
+		case GLOBAL.TYPE_HUMAN:
+			break;
 		default:
 			if(target.hasTongueFlag(GLOBAL.FLAG_LONG)) outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " mouth contains a lengthy tongue.");
 			else outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " mouth contains " + indefiniteArticle(target.tongueDescript()) + ".");
