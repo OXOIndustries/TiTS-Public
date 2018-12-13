@@ -4548,7 +4548,10 @@
 			return XPRaw;
 		}
 		public function XPMax(): Number {
-			return level * level * level * level * 100;
+			var amount:Number = level * level * level * level * 100;
+			if(level >= 5) amount *= 1.5;
+			if(level >= 8) amount *= 1.5;
+			return Math.round(amount);
 		}
 		//Automatic, consistant XP generator based on level.
 		public function normalXP():Number
