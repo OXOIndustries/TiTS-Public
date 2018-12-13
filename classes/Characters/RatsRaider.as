@@ -7,6 +7,7 @@ package classes.Characters
 	import classes.Items.Melee.ReaperStunBaton;
 	import classes.Items.Protection.SalamanderShield;
 	import classes.Items.Accessories.FlashGoggles;
+	import classes.Items.Transformatives.MousearellaCheese;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -58,6 +59,8 @@ package classes.Characters
 			this.buttRatingRaw = 5;
 			
 			this.hairLength = 7;
+
+			this.inventory = new Array();
 			
 			this.meleeWeapon = new ReaperStunBaton();
 			this.meleeWeapon.baseDamage.multiply(0.17);
@@ -123,6 +126,7 @@ package classes.Characters
 					originalRace = "half-rodenian";
 					short = "Half-Rodenian " + (ratVariety == HALF_BOY ? "Boy" : "Girl");
 					btnTargetText = "H.Roden " + (ratVariety == HALF_BOY ? "Boy" : "Girl");
+					this.inventory.push(new MousearellaCheese());
 					break;
 			}
 			
@@ -343,7 +347,6 @@ package classes.Characters
 			this.XPRaw = this.normalXP();
 			//Loot is handled by ratPostFightAdjustments()
 			this.credits = 0;
-			this.inventory = new Array();
 			
 			createPerk("Appearance Enabled");
 			createPerk("Inhuman Desire", 25);
