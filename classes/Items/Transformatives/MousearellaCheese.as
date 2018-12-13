@@ -245,7 +245,7 @@
 				{
 					if(pc.faceTypeUnlocked(GLOBAL.TYPE_MOUSE))
 					{
-						output(ParseText("\n\nHeat ripples outwards from your [pc.face] as it rearranges itself in a manner that, to an onlooker, would appear utterly unnatural, [pc.skinFurScales] oscillating. After a moment of light-headedness the warmth seems to simply dissipate. Looking into a reflective surface you realize <b>your new face now resembles a Terran mouse's, complete with whiskers.</b>"));
+						output(ParseText("\n\nHeat ripples outwards from your [pc.face] as it rearranges itself in a manner that, to an onlooker, would appear utterly unnatural, [pc.skinFurScales] oscillating. After a moment of light-headedness the warmth seems to simply dissipate. Looking into a reflective surface you realize <b>your new face now resembles a Terran mouse’s, complete with whiskers.</b>"));
 						pc.faceType = GLOBAL.TYPE_MOUSE;
 						pc.faceFlags = [GLOBAL.FLAG_MUZZLED,GLOBAL.FLAG_FURRED];
 						changes++;
@@ -270,7 +270,7 @@
 				}
 				if(changes == 0)
 				{
-					output("\n\nYou wait but nothing seems to happen. Maybe it was a dud?" + (pc.armType == GLOBAL.TYPE_MOUSE && pc.legType == GLOBAL.TYPE_MOUSE && pc.tailType == GLOBAL.TYPE_MOUSE && pc.tailCount > 0 && pc.hasFur() && pc.earType == GLOBAL.TYPE_MOUSE && pc.faceType == GLOBAL.TYPE_MOUSE ? " Or maybe you just can’t become more mouse-like...":""));
+					output("\n\nYou wait but nothing seems to happen. Maybe it was a dud?" + ((pc.armType == GLOBAL.TYPE_MOUSE && pc.legType == GLOBAL.TYPE_MOUSE && pc.tailType == GLOBAL.TYPE_MOUSE && pc.tailCount > 0 && pc.hasFur() && pc.earType == GLOBAL.TYPE_MOUSE && pc.faceType == GLOBAL.TYPE_MOUSE) ? " Or maybe you just can’t become more mouse-like...":""));
 				}
 			}
 			else

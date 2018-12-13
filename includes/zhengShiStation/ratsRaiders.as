@@ -837,10 +837,10 @@ public function ratsContinueService(offers:int):void
 		
 		output("\n\nThe moaning mouse’s hands rest " + (pc.hasHair() ? "in your [pc.hair]" : "on your head") + ". Quicksilver fingers scritch your scalp affectionately and urge you back in");
 		if (pc.hasEmoteEars()) output(", vigorously petting your [pc.ears] as encouragement");
-		output(". You get one hand on the mouse-boy's delicious sack, swirling his smooth, orange-sized nads between your fingers whilst your left hand goes to work on the [rat2.furColor]-furred rat's cunny, thumb and index finger strumming her engorged button like a well-tuned lute. Three fingers move in and out… in and out… The rodent squeals like an animal, squirting weakly all over your [pc.arm]. A sugary projectile of tangy-tasting girlcum lathers you well enough to fist a leithan!");
+		output(". You get one hand on the mouse-boy's delicious sack, swirling his smooth, orange-sized nads between your fingers whilst your left hand goes to work on the [rat2.furColor]-furred rat's cunny, thumb and index finger strumming her engorged button like a well-tuned lute. Three fingers move in and out... in and out... The rodent squeals like an animal, squirting weakly all over your [pc.arm]. A sugary projectile of tangy-tasting girlcum lathers you well enough to fist a leithan!");
 		output("\n\nShe pants and gasps, little fingers curling, and your depravity-inducing suckles only make those cute grunts louder. You don't stop. Even though you're drenched in pussy juice, even though you're giving the rodent boy one hell of a free blowjob, you don't let them get any second thoughts. You can't afford to get robbed now! You move your neck in a small circle, carrying eight inches of orally sealed, pre-spurting cock with you. A handjob almost, but with your mouth!");
-		output("\n\n<i>\"Oooaaaha! That's… Oh you're too good at this!\"</i> the freckled mouse whines. <i>\"P-please that's too much...\"</i>");
-		output("\n\nTheir knees shake when their orgasms close in again. <i>\"W-wait… I j-just came again, slow down!\"</i> the shaky girl wails. <i>\"Pleeasssee I'll cum sooo hard I won't be able to stand for hours if you do that!\"</i> Her playful tone suggests otherwise, she's still thrusting her crotch into your mouth!");
+		output("\n\n<i>“Oooaaaha! That's... Oh you're too good at this!”</i> the freckled mouse whines. <i>“P-please that's too much...”</i>");
+		output("\n\nTheir knees shake when their orgasms close in again. <i>“W-wait... I j-just came again, slow down!”</i> the shaky girl wails. <i>“Pleeasssee I'll cum sooo hard I won't be able to stand for hours if you do that!”</i> Her playful tone suggests otherwise, she's still thrusting her crotch into your mouth!");
 		output("\n\n" + (pc.isBimbo() || pc.isBro() ? "Slow down? Who do they think you are!?" : "But you don't.") + " You drag them back and forth over that rapturous edge, in unquestionable control of their arousal.");
 	}
 	// Two Male Rats
@@ -2548,10 +2548,10 @@ public function ratsTeasingACEO():void
 
 	if (rat2.isMale())
 	{
-		output("\n\n<i>\"Mmm,\"</i> you barely hear the halfbreed boy for the party.");
-		if (pc.thickness < 33) output(" <i>\"Small and firm over here, plenty to hold onto!\"</i>");
-		else if (pc.thickness < 66) output(" <i>\"Love how thick you are down here, so much to rub against…\"</i>");
-		else output(" <i>\"You've got such fat thighs, you're just a big old cow! I don't think I can cum enough to really paint you...\"</i>");
+		output("\n\n<i>“Mmm,”</i> you barely hear the halfbreed boy for the party.");
+		if (pc.thickness < 33) output(" <i>“Small and firm over here, plenty to hold onto!”</i>");
+		else if (pc.thickness < 66) output(" <i>“Love how thick you are down here, so much to rub against...”</i>");
+		else output(" <i>“You've got such fat thighs, you're just a big old cow! I don't think I can cum enough to really paint you...”</i>");
 		output(" he says breathily, grinding his cock into your [pc.skinFurScalesNoun]");
 		if (pc.hasVagina()) output(" and your exposed genitalia, particularly your [pc.pussy]");
 		output(".");

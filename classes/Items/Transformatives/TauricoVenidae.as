@@ -282,7 +282,7 @@ package classes.Items.Transformatives
 						if(pc.cocks[y].cLength() < maxGrowth - 5) pc.cocks[y].cLengthRaw++;
 					}
 					pc.libido(1);
-					output(" Looks like it’s " + num2Text(pc.cocks[y].cLength()) + " inches long!");
+					output(" Looks like it’s " + num2Text(Math.round(pc.cocks[y].cLength())) + " inches long!");
 				}
 			}
 			else output("\n\n" + pc.cockTypeLockedMessage());
@@ -352,8 +352,8 @@ package classes.Items.Transformatives
 			if(target.tallnessUnlocked(target.tallness - 6))
 			{
 				//Shrink, variable from 5' to 6' for females and 5'6 to 6'6 for males
-				output("\n\nWhoa! The room’s spinning, and if you’re not imagining things, getting bigger. You glance around wide-eyed as your body shrinks, watching others suddenly tower over you. You’re shorter now, your center of gravity lower to the ground, increasing your stability and speed. Checking your codex, apparently <b>you’re now " + Math.floor(target.tallness / 12) + " feet");
-				if(target.tallness % 12 != 0) output(" and " + Math.round(target.tallness % 12) + " inches");
+				output("\n\nWhoa! The room’s spinning, and if you’re not imagining things, getting bigger. You glance around wide-eyed as your body shrinks, watching others suddenly tower over you. You’re shorter now, your center of gravity lower to the ground, increasing your stability and speed. Checking your codex, apparently <b>you’re now " + num2Text(Math.round(target.tallness / 12)) + " feet");
+				if(target.tallness % 12 != 0) output(" and " + num2Text(Math.round(target.tallness % 12)) + " inches");
 				output(" tall!</b>");
 
 				target.tallness -= 3 + rand(10);

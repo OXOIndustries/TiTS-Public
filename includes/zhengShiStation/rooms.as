@@ -2327,8 +2327,8 @@ public function initZhengRooms():void
 	//rooms["ZSF X18"].addFlag(GLOBAL.HAZARD);
 	
 	rooms["ZSF V18"] = new RoomClass(this);
-	rooms["ZSF V18"].roomName = "CAPTAIN'S\nQUARTERS";
-	rooms["ZSF V18"].description = "Furnished with a heart-shaped bed and more throw pillows than any one planet should be allowed to contain, the captain’s quarters look more like a harem chamber than a place of rest. Discarded bottles of lube lie everywhere. The trashbin looks halfway overflowed with condoms. A pair of frilly panties hangs framed on the wall along with a signed picture of Nivas Oxonef, indicating the ultrapornstar herself  once wore them. The nightstand is covered with used TamaniCorp gift cards, already scratched off to get at their valuable codes.";
+	rooms["ZSF V18"].roomName = "CAPTAIN’S\nQUARTERS";
+	rooms["ZSF V18"].description = "Furnished with a heart-shaped bed and more throw pillows than any one planet should be allowed to contain, the captain’s quarters look more like a harem chamber than a place of rest. Discarded bottles of lube lie everywhere. The trashbin looks halfway overflowed with condoms. A pair of frilly panties hangs framed on the wall along with a signed picture of Nivas Oxonef, indicating the ultrapornstar herself once wore them. The nightstand is covered with used TamaniCorp gift cards, already scratched off to get at their valuable codes.";
 	rooms["ZSF V18"].planet = "ZHENG SHI STATION";
 	rooms["ZSF V18"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF V18"].northExit = "";

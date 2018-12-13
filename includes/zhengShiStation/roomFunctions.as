@@ -834,7 +834,7 @@ public function zhengFoundryFloor2ElevatorBonus():Boolean
 		flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
 		addButton(0,"Pull Pipe",freePipeElevator);
 	}
-	else output(" You suppose they'll be waiting here until Peacekeepers show up to drive everyone away.");
+	else output(" You suppose they’ll be waiting here until Peacekeepers show up to drive everyone away.");
 	return false;
 }
 
@@ -842,7 +842,7 @@ public function freePipeElevator():void
 {
 	clearOutput();
 	showName("\nYOINK!");
-	output("With a " + (pc.PQ() >= 50 ? "mighty yank":"exhausting, straining pull") + ", you disloge the pipe and allow the elevator's outer door to swing open. That'll save you some time!");
+	output("With a " + (pc.PQ() >= 50 ? "mighty yank":"exhausting, straining pull") + ", you disloge the pipe and allow the elevator’s outer door to swing open. That’ll save you some time!");
 	flags["ZHENG_SHI_FOUNDRY_2F_OPEN"] = 1;
 	processTime(1);
 	clearMenu();
@@ -853,7 +853,7 @@ public function zhengFoundryScaffoldElevatorBonus():void
 {
 	if(flags["ZHENG_SHI_FOUNDRY_2F_OPEN"] == undefined)
 	{
-		output(" The outer doors are stuck closed. You won't be able to get off on this floor until you find a way to open them. Maybe there's another way onto the scaffolding?");
+		output(" The outer doors are stuck closed. You won’t be able to get off on this floor until you find a way to open them. Maybe there’s another way onto the scaffolding?");
 		flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
 	}
 }

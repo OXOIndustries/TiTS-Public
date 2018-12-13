@@ -69,7 +69,7 @@ public function cousinEncounterBonus():Boolean
 	else
 	{
 		if(pc.hasKeyItem("Teyaal’s Key Card")) addButton(6,"North",enterShip);
-		else addDisabledButton(6,"North","North","You'll need some credentials to get past this lock... or some bespoke hacking software paid for by an asshole uncle. Maybe finding the credentials is the better idea.");
+		else addDisabledButton(6,"North","North","You’ll need some credentials to get past this lock... or some bespoke hacking software paid for by an asshole uncle. Maybe finding the credentials is the better idea.");
 	}
 	return false;
 }

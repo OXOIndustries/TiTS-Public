@@ -73,7 +73,7 @@ package classes.GameData.Pregnancy.Handlers
 				else if(i == 13)
 				{
 					addStageProgression(_basePregnancyIncubationTime - ((i + offset + offset2 + offset3) * 24 * 60), function(pregSlot:int):void {
-						AddLogEvent("Whatever’s inside your womb is growing quite rapidly… which is somewhat alarming, because whatever it is also feels big. Already your [pc.belly] is swollen enough for you to stand out as clearly pregnant to others, there’s no way a human baby would have grown to this size in the space of a couple of weeks.\n\nIt doesn’t feel too uncomfortable, though. There’s a strange sort of easy give, a sponginess to your child-to-be. You can push your hand into your baby bulge until it almost disappears without feeling the slightest pain or alarm. It’s a startlingly, thrillingly alien sensation.", "passive");
+						AddLogEvent("Whatever’s inside your womb is growing quite rapidly... which is somewhat alarming, because whatever it is also feels big. Already your [pc.belly] is swollen enough for you to stand out as clearly pregnant to others, there’s no way a human baby would have grown to this size in the space of a couple of weeks.\n\nIt doesn’t feel too uncomfortable, though. There’s a strange sort of easy give, a sponginess to your child-to-be. You can push your hand into your baby bulge until it almost disappears without feeling the slightest pain or alarm. It’s a startlingly, thrillingly alien sensation.", "passive");
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 4, true);
 					}, true);
 				}
@@ -81,7 +81,7 @@ package classes.GameData.Pregnancy.Handlers
 				else if(i == 18)
 				{
 					addStageProgression(_basePregnancyIncubationTime - ((i + offset + offset2 + offset3) * 24 * 60), function(pregSlot:int):void {
-						AddLogEvent("You want to <i>eat</i>. And not just anything. Steamed vegetables, fruit bowls, salads, stuffed vine leaves, vegetarian curries, stews, ratatouilles… saliva forms in your mouth whenever you think of something <i>green</i> and <i>starchy</i> and <i>nutrient rich.</i> Just… someone… lay you out in a kitchen garden with everything ripe in easy reach.\n\nYour mind constantly wanders back to the subject, your swollen, burgeoning belly growling. The thoughts get weirder the hungrier you get. You are almost certain you could eat grass and raw wheat, given the chance.", "passive");
+						AddLogEvent("You want to <i>eat</i>. And not just anything. Steamed vegetables, fruit bowls, salads, stuffed vine leaves, vegetarian curries, stews, ratatouilles... saliva forms in your mouth whenever you think of something <i>green</i> and <i>starchy</i> and <i>nutrient rich.</i> Just... someone... lay you out in a kitchen garden with everything ripe in easy reach.\n\nYour mind constantly wanders back to the subject, your swollen, burgeoning belly growling. The thoughts get weirder the hungrier you get. You are almost certain you could eat grass and raw wheat, given the chance.", "passive");
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 5, true);
 					}, true);
 				}
@@ -102,7 +102,7 @@ package classes.GameData.Pregnancy.Handlers
 				else if(i == 28)
 				{
 					addStageProgression(_basePregnancyIncubationTime - ((i + offset) * 24 * 60), function(pregSlot:int):void {
-						AddLogEvent("You have to take frequent rests, huffing and puffing with the squishy, dense weight of your hugely swollen womb. Your [pc.belly] enters rooms far out in front of you now.\n\nIt feels like a washing machine in very slow motion; the new life packing out your womb turning around itself, not moving restlessly exactly, but… feeling around. Preparing itself. It’s a very odd sensation, the actions of something large and soft and completely boneless.\n\nWhen you close your eyes, you find yourself imagining somewhere nice and safe and warm and wet to have your child. Like a sauna, perhaps. With plenty of moss growing on it, that you could eat. You snort slightly at the thought, hand rubbing over your stuffed baby chamber.", "passive");
+						AddLogEvent("You have to take frequent rests, huffing and puffing with the squishy, dense weight of your hugely swollen womb. Your [pc.belly] enters rooms far out in front of you now.\n\nIt feels like a washing machine in very slow motion; the new life packing out your womb turning around itself, not moving restlessly exactly, but... feeling around. Preparing itself. It’s a very odd sensation, the actions of something large and soft and completely boneless.\n\nWhen you close your eyes, you find yourself imagining somewhere nice and safe and warm and wet to have your child. Like a sauna, perhaps. With plenty of moss growing on it, that you could eat. You snort slightly at the thought, hand rubbing over your stuffed baby chamber.", "passive");
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 7, true);
 						if(kGAMECLASS.pc.milkMultiplier < 25) kGAMECLASS.pc.milkMultiplier = 25;
 						if(kGAMECLASS.pc.milkFullness < 50) kGAMECLASS.pc.milkFullness = 50;

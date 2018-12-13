@@ -154,7 +154,7 @@ public function jadeSpecificStoreSetup():void
 {
 	shopkeep = chars["JADE"];
 	
-	chars["JADE"].keeperBuy = "The console displays a list of Jade's wares, focusing on specific, highly targeted splices.\n";
+	chars["JADE"].keeperBuy = "The console displays a list of Jade’s wares, focusing on specific, highly targeted splices.\n";
 	//List prices and whatnot. Back should go back to Jade's main menu.
 	//Sell Menu
 	chars["JADE"].keeperSell = "Jade tilts her head to the side. <i>“You wanna sell me splices? Well, even if they don’t fit my niche, I can probably turn a profit on them, so why not?”</i> She looks at you inquisitively. <i>“What do you have for me?”</i>\n";
@@ -229,7 +229,7 @@ public function jadeAppearance():void
 
 	output("\n\nThe panda-woman’s thighs continue on about as you would expect on such a woman. They’re powerfully thick but carry more than enough cushion to make her lap an appealing rest stop, if you don’t mind being smothered in her plush softness. Jade’s feet, like her hands, are paw-like in appearance, with short, stubby digits capped by short, retractable claws. Little pads cover the undersides of her fingers and toes to enhance her grip, both as soft as the finest leather. She obviously takes care of herself.");
 
-	output("\n\nAt 6\'3\" tall, she’s well above the galactic average for beings classed as females, but she’s just too damned cuddly to be imposing.");
+	output("\n\nAt 6\' 3\" tall, she’s well above the galactic average for beings classed as females, but she’s just too damned cuddly to be imposing.");
 	clearMenu();
 	addButton(0,"Next",approachJade);
 }
