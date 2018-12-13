@@ -42,6 +42,7 @@ public function zeaIsGreeted():void
 		output("\n\n<b>Codex entry unlocked: Xhelarfog.</b>");
 		output("\n\nYou flush in embarrassment as the ali- the Xhelarfog snaps to attention, looking up at you curiously.");
 		output("\n\nYou hadn’t really noticed before, thanks to their slouched posture and the fact they weren’t facing in your direction, but they have three, golden eyes staring up at you, unblinking.");
+		CodexManager.unlockEntry("Xhelarfog");
 	}
 	output("\n\nThere’s a few tense moments of awkward silence before you manage to get your act together, introducing yourself, and they speak up, tucking away their codex so their work doesn’t distract them.");
 	output("\n\n<i>“Ah! A Steele. [pc.Name] Steele, at that! The boss-to-be - or, well ...Potential boss-to-be. It's a pleasure to make your acquaintance. I am known as Zea.”</i>");
