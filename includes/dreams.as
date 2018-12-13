@@ -48,7 +48,7 @@ public function dreamChances(inShip:Boolean = false):Boolean
 		}
 	}
 	//Alexandra dreams :3
-	else if(alexandraDreamsAvailable()) 
+	else if(alexandraDreamsAvailable() && rand(2) == 0) 
 	{
 		eventQueue.push(playAlexandraDream);
 		dreamed = true;
@@ -1969,7 +1969,7 @@ public function alexandraResist():void
 
 public function alexandraDreamsAvailable():Boolean
 {
-	return (flags["ALEXANDRA_DISABLED"] == undefined && pc.mf("m","") == "m" && pc.balls > 1 && pc.hasCock() && CodexManager.entryUnlocked("The Treatment") && !pc.hasStatusEffect("AlexandraCD"));
+	return (flags["ALEXANDRA_DISABLED"] == undefined && pc.mf("m","") == "m" && pc.balls > 1 && pc.hasCock() && CodexManager.entryUnlocked("The Treatment") && !pc.hasStatusEffect("AlexandraCD") && pc.level >= 7);
 }
 public function playAlexandraDream():void
 {
