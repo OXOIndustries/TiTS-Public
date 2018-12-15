@@ -868,8 +868,18 @@ public function takeAShowerSloot():void
 
 	pc.shower();
 	processTime(10);
+	flags["TTGYM_SHOWERED"] = 1;
 	
-	if(pc.exhibitionism() < 33 || pc.lust() < 33)
+	if (flags["TTGYM_BETSY_VICTORIA_HOME"] != undefined && flags["TTGYM_BETSY_VICTORIA_NEVER"] != 1 && rand(2) == 0)
+	{
+		tentongymShowBetsyVictoria(true);
+		output("\n\nThe hot water washes away your sweat and soreness, and it's a significant improvement over your shipboard shower unit; the improved water pressure alone has you wanting to stay in for longer than necessary. But all good things must end.");
+		output("\n\nRight as you're about to turn the shower off and head out, you hear a familiar voice, and look up to see Betsy and Victoria walking toward you, each with one hand resting on the others' ass.");
+		clearMenu();
+		addButton(0,"Next",showerWithBetsyAndVictoriaApproach);
+		return;	
+	}
+	else if(pc.exhibitionism() < 33 || pc.lust() < 33)
 	{
 		output("\n\nThe hot water washes away your sweat and soreness, and it’s a significant improvement over your shipboard shower unit; the improved water pressure alone has you wanting to stay in for longer than necessary. But all good things must end, and you soon head out and towel yourself off, then get dressed again.");
 		output("\n\nYou needed that.");
@@ -883,7 +893,7 @@ public function takeAShowerSloot():void
 		output("\n\nSliding your foam-covered hands back up, you tweak your [pc.nipples], making yourself gasp. You turn it into a loud exhale, then spin to face the shower, stretching your arms out behind yourself and tilting your head back to let the water wash your [pc.chest] clean.");
 		output("\n\nAfter holding the pose for a good long moment, you get another palmful of body wash, rub it onto both hands, then smack your [pc.ass] hard on both cheeks. You stroke your hands up your sides, then rub your shoulders for a moment, tilting your head back and forth, swaying your [pc.hips] all the while.");
 		// If the PC has no cock, they will get the “no one interested” scene. If the PC has a cock, they’ll get the appropriate pre-Betsy and Victoria scene.
-		if(!pc.hasCock() || pc.hasStatusEffect("Betsy and Victoria CD"))
+		if(!pc.hasCock() || pc.hasStatusEffect("Betsy and Victoria CD") || flags["TTGYM_BETSY_VICTORIA_NEVER"] == 1)
 		{
 			output("\n\nDespite the show you’ve just put on, it seems like nobody wants to play right now. You consider handling yourself right then, but really, what’s the point? If a room full of naked New Texans doesn’t want to get dirty with you, then you might as well get cleaned up and find someone who does.");
 			//[Done] Go to Locker Room and Showers {Remove all [Sweaty]} {Time: 10 minutes} [+40 Lust] [+1% Exhibitionism]}
@@ -892,7 +902,7 @@ public function takeAShowerSloot():void
 		}
 		else
 		{
-			showBust("BETSY_VICTORIA");
+			tentongymShowBetsyVictoria(true);
 			// PC has a cock AND hasn’t met B&V:
 			if(flags["MET_SHOWER_GIRLS"] == undefined) output("\n\nYour show seems to have attracted some attention. As you turn around to wash your [pc.ass] and put your [pc.chest] back on full display, two cowgirls walk up to you, each with a hand on the other’s rear.");
 			// PC has a cock AND has met B&V:
@@ -1575,6 +1585,7 @@ public function simoneWorkoutResults(response:String = ""):void
 					output("\n\nYou lay back on the weight bench and try to catch your breath as the busty cowgirl heads for the showers.");
 				}
 				processTime(20);
+				IncrementFlag("TTGYM_SIMONE_ORAL");
 			}
 			// If PC has one penis
 			else if(pc.cockTotal() == 1)
@@ -1628,6 +1639,7 @@ public function simoneWorkoutResults(response:String = ""):void
 					output("\n\nYou lay back on the weight bench and try to catch your breath as the busty cowgirl heads for the showers.");
 				}
 				processTime(20);
+				IncrementFlag("TTGYM_SIMONE_ORAL");
 			}
 			// If PC has 2+ penises
 			else
@@ -1675,6 +1687,7 @@ public function simoneWorkoutResults(response:String = ""):void
 					output("\n\nYou and Simone towel each other off, and she picks up her top and shorts and throws them over her shoulder. <i>“I need a shower after that,”</i> she says, and lets out a long breath. <i>“I might be in there for an hour or two.”</i> She gives you another grin, this one very satisfied. <i>“Come back and challenge me again sometime, [pc.name],”</i> she says, then lets out a laugh. <i>“But I think I win either way.”</i>");
 				}
 				processTime(20);
+				IncrementFlag("TTGYM_SIMONE_DP_GYM");
 			}
 			
 			if(pc.hasGenitals())
@@ -1727,6 +1740,7 @@ public function simoneWorkoutResults(response:String = ""):void
 			if(!pc.hasGenitals() && flags["SIMONE_TEASED"] == undefined) flags["SIMONE_TEASED"] = true;
 			
 			IncrementFlag("SEXED_SIMONE");
+			IncrementFlag("TTGYM_SIMONE_ORAL_GIVE");
 			StatTracking.track("contests/simone challenge losses");
 			
 			// [Done] Go to Weight Room
@@ -1887,6 +1901,7 @@ public function lolaPoolSex(response:String = ""):void
 			pc.orgasm();
 			
 			IncrementFlag("SEXED_LOLA");
+			IncrementFlag("TTGYM_LOLA_POOL");
 			
 			addButton(0, "Next", mainGameMenu);
 			break;
@@ -1911,11 +1926,13 @@ public function lolaPoolSex(response:String = ""):void
 public function showerWithBetsyAndVictoriaApproach():void
 {
 	clearOutput();
-	author("Slab Bulkhead");
-	showName("BETSY &\nVICTORIA");
-	showBust("BETSY_AND_VICTORIA");
+	tentongymShowBetsyVictoria(true);
 	
-	if(flags["MET_SHOWER_GIRLS"] == undefined)
+	if (flags["TTGYM_BETSY_VICTORIA_HOME"] != undefined)
+	{
+		tentongymBetsyVictoriaGymShowerHomeSexText();
+	}
+	else if(flags["MET_SHOWER_GIRLS"] == undefined)
 	{
 		output("One of the girls is a tanned blue-eyed blonde with a figure so much the New Texas ideal she could have stepped off of a travel brochure, her huge tits almost impossibly perky with pink nipples pointing straight at you. Her hair’s pulled back in low pigtails dangling past her shoulders.");
 		output("\n\nThe other has long black hair with bangs trimmed straight above her eyebrows, and stands taller and a little less curvy, but with quite a bit more tone, clearly no stranger to the gym. She’s also packing eight inches of half-sheathed horsecock, an uncommon sight on the local girls.");
@@ -1947,15 +1964,14 @@ public function showerWithBetsyAndVictoriaApproach():void
 	// [Just Teasing] Go to Sandwich Denial [+40 Lust] {Remove all [Sweaty]} {Time: 10 minutes}
 	clearMenu();
 	addButton(0, "Oh Yeah", showerWithBetsyAndVictoriaSelect);
-	addButton(1, "Just Teasing", showerWithBetsyAndVictoriaTease);
+	if (flags["TTGYM_BETSY_VICTORIA_HOME"] != undefined) addButton(1, "Not Now", tentongymBetsyVictoriaGymShowerNotNow);
+	else addButton(1, "Just Teasing", showerWithBetsyAndVictoriaTease);
 }
 // Sandwich Selection
 public function showerWithBetsyAndVictoriaSelect():void
 {
 	clearOutput();
-	author("Slab Bulkhead");
-	showName("BETSY &\nVICTORIA");
-	showBust("BETSY_AND_VICTORIA");
+	tentongymShowBetsyVictoria(true);
 	
 	if(flags["SHOWER_SANDWICH"] == undefined)
 	{
@@ -1985,9 +2001,7 @@ public function showerWithBetsyAndVictoriaSelect():void
 public function showerWithBetsyAndVictoriaTease():void
 {
 	clearOutput();
-	author("Slab Bulkhead");
-	showName("BETSY &\nVICTORIA");
-	showBust("BETSY_AND_VICTORIA");
+	tentongymShowBetsyVictoria(true);
 	
 	output("You give the two cowgirls a teasing smile, and tell them you just felt like showing off a little. It’s a flattering offer, but you’re not actually looking for sex right now.");
 	output("\n\n<i>“Tease,”</i> Betsy says, and sticks her tongue out at you.");
@@ -2006,9 +2020,7 @@ public function showerWithBetsyAndVictoriaTease():void
 public function showerWithBetsyAndVictoriaScene(response:String = ""):void
 {
 	clearOutput();
-	author("Slab Bulkhead");
-	showName("BETSY &\nVICTORIA");
-	showBust("BETSY_AND_VICTORIA");
+	tentongymShowBetsyVictoria(true);
 	
 	var x:int = -1;
 	
