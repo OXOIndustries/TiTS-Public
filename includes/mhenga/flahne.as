@@ -1371,15 +1371,17 @@ public function flahneTalksAboutCumslutPenny():void
 	// Figure out which variant we're gonna shit out
 
 	// Keep it in your pants Penny!
-	if (flags["PENNY_HIDING_CUMSLUTTERY"] != undefined)
+	if (flags["PENNY_HIDING_CUMSLUTTERY"] != undefined || pennyIsCrew())
 	{
 		output("Flahne looks up at you as you enter with an unusual twinkle in her eyes. <i>“Well, well, well,”</i> she says, <i>“look who it is. You wouldn’t happen to have any idea what’s up with Penny, would you?”</i>");
 		output("\n\nDeciding to play it casual, you shrug and nonchalantly respond that you don’t have any idea what she’s talking about.");
 		output("\n\nFlahne snorts derisively, although her unique physiology means that it sounds more like someone blowing bubbles in reverse. It must have been an expression she picked up from hanging around humans, but it gets her point across despite the oddness of how it sounds.");
-		output("\n\n<i>“Sure you don’t, champ. Don’t get me wrong – I’m not mad, if anything, I’m impressed. I’ve been trying forever to get her to embrace her cocklust, with no results. Then you show up, and all of a sudden I have to knock before I try to see her or there’s a lot of flailing and... spillage.”</i>");
-		output("\n\nYou give her a quizzical look, and her face slides into a lascivious grin. <i>“I don’t exactly have the most noticeable of footsteps, you see?”</i> She indicates what passes for her feet, pressing them softly and silently against the ground to illustrate her point. <i>“I </i>may<i> have caught her off-guard a couple of times.”</i>");
+		output("\n\n<i>“Sure you don’t, champ. Don’t get me wrong – I’m not mad, if anything, I’m impressed. I’ve been trying forever to get her to embrace her cocklust, with no results. Then you show up, and all of a sudden ");
+		if(pennyIsCrew()) output("I can see her sucking dick on my computer at almost any time, day or night.”</i>");
+		else output("I have to knock before I try to see her or there’s a lot of flailing and... spillage.”</i>");
+		output("\n\nYou give her a quizzical look, and her face slides into a lascivious grin. <i>“" + (!pennyIsCrew() ? "I don’t exactly have the most noticeable of footsteps,":"I know my way around the extranet,") + " you see?”</i> She indicates " + (pennyIsCrew() ? "her terminal":"what passes for her feet, pressing them softly and silently against the ground") + " to illustrate her point. <i>“I </i>may<i> have caught " + (pennyIsCrew() ? "her off-guard a couple of times.":"a particularly... effusive session.") + "”</i>");
 		output("\n\nBefore you can start attempting to justify your actions, her smile gets wider, and it becomes clear she’s hardly upset about the changes you’ve made to the local law enforcement.");
-		output("\n\n<i>“We can always do with some more entertainment around here,”</i> she adds, <i>“and I don’t think I’m ever going to get tired of ‘accidentally’ walking in on her. I only wish she’d let me help her out myself – she’s going at it so much lately that just being in the same room as her... the scent of it all is enough to get me drooling. But still she pretends that nothing’s happening. Maybe some day...”</i>");
+		output("\n\n<i>“We can always do with some more entertainment" + (!pennyIsCrew() ? " around here":"") + ",”</i> she adds, <i>“and I don’t think I’m ever going to get tired of ‘accidentally’ " + (pennyIsCrew() ? "clicking back to that tab.":"walking in on her.") + " I only wish she’d let me help her out myself – she’s going at it so much lately that just " + (pennyIsCrew() ? "the thought of ":"") + "being in the same room as her... the scent of it " + (pennyIsCrew() ? "would be":"all is") + " enough to get me drooling. But still she pretends that nothing’s happening" + (pennyIsCrew() ? " when she sends me messages":"") + ". Maybe some day...”</i>");
 		output("\n\nShe trails off for a moment, her gaze drifting upwards and her hand moving unconsciously down below her desk. Before things can go any further you give a polite cough, and she reluctantly brings her attention back to the present.");
 		output("\n\n<i>“Oh, right. Just... promise to put a word in for me when you get a chance, okay? Now, what can I do for you?”</i>");
 	}

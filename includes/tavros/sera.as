@@ -363,9 +363,8 @@ public function seraDebtCheck():Boolean
 		
 		processTime(2);
 		clearMenu();
-		if(seraRecruited()) addButton(0, "Nevermind", approachServantSera);
-		else addButton(0, "Nevermind", seraMenu);
-		addButton(1, "Buy", buyItem);
+		addButton(0, "Buy", buyItem);
+		addButton(14, "Nevermind", shop, shopkeep);
 		return true;
 	}
 	return false;

@@ -550,6 +550,7 @@ public function otherSlavesInTheBase():void
 //Ask about the pirate gangs working on Zheng Shi.
 public function pirateInfoDumpFromArdia():void
 {
+	flags["ARDIA_GOT_INFODUMP"] = 1;
 	clearOutput();
 	showArdia();
 	author("Savin");

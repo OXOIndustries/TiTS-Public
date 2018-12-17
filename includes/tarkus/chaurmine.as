@@ -485,6 +485,8 @@ public function approachTarkusCivilizedChaurmine():void
 
 public function chaurmineMenu(disabledButton:Number = -1):void
 {
+	if(chaurmineOnUveto()) return chaurmineUvetoMenu();
+	
 	clearMenu();
 	if(disabledButton == 0) addDisabledButton(0,"Appearance","Appearance","You just did this.");
 	else addButton(0,"Appearance",chaurmineAppearance,undefined,"Appearance","Take a gander at the buff saurmorian.");
@@ -1056,7 +1058,7 @@ public function intimateCatchChaurmine():void
 	output("xeno-dino cock back so his blunt tip bumps into your [pc.vagOrAss " + x + "].");
 
 	//pc has cock, no vag, no self-lubed ass:
-	if(pc.hasCock() && x == -1 && pc.ass.wetness() > 0)
+	if(pc.hasCock() && x == -1 && pc.ass.wetness() <= 0)
 	{
 		output("\n\nYou tense when you feel his round, fat head against your pucker. He is <i>thick</i>. With no lube. He can’t be going in dry, can he? Before a word can leave your mouth, you flinch as a large hand returns to your still-hard shaft; one confident tug followed by another.");
 		output("\n\n<i>“Need lube,”</i> Chaurmine blurts out, seeing your distress, <i>“Not really something I keep on-hand, ‘cept for now.”</i>");

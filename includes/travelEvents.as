@@ -12,10 +12,20 @@ public function incomingMessage(travelEvent:Function, originalDestination:String
 }
 
 // Wrap the normal flyTo function so we can avoid triggering another travel event this time round.
-public function flyToWrapper(destination:String):void
+public function flyToWrapper(destination:String = "TAVROS HANGAR"):void
 {
 	flags["SUPRESS TRAVEL EVENTS"] = 1;
 	if (flags["STORED SHIP DESTINATION"] != undefined) flags["STORED SHIP DESTINATION"] = undefined;
+	switch(destination)
+	{
+		// Myrellion destination swaps
+		case "600":
+		case "2I7":
+			if (flags["KQ2_MYRELLION_STATE"] == undefined) destination = "600";
+			else if (flags["KQ2_MYRELLION_STATE"] != 1) destination = "2I7";
+			else destination = "TAVROS HANGAR";
+			break;
+	}
 	flyTo(destination);
 }
 

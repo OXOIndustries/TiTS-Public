@@ -274,7 +274,7 @@ public function loseToPaige():void
 		if(pc.cockThatFits(paige.vaginalCapacity(0)) >= 0) addButton(1,"Vaginal",FFLV,undefined,"Vaginal","Put it in her the old-fashioned way. Although this is typical sex between two consenting adults, Paige is on such an adrenaline rush that you should probably expect it to be... challenging.");
 		else addDisabledButton(1,"Vaginal","Vagina","Even though Paige has given you the option, she wouldn’t accept this. You’re way too big for her!");
 	}
-	else addButton(1,"Vaginal",FFLV,undefined,"FFLV","Go with the usual bump-and-grind. Although this is typical sex between two consenting adults, Paige is on such an adrenaline rush that you should probably expect it to be... challenging.");
+	else addButton(1,"Vaginal",FFLV,undefined,"Vaginal","Go with the usual bump-and-grind. Although this is typical sex between two consenting adults, Paige is on such an adrenaline rush that you should probably expect it to be... challenging.");
 	if(flags["PAIGE_ANAL"] != undefined)
 	{
 		if(pc.hasCock())

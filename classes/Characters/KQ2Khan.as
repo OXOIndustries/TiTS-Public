@@ -179,6 +179,8 @@ package classes.Characters
 			
 			createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			createPerk("Inhuman Desire", 100, 0, 0, 0, "");
+			createPerk("'Nuki Drunk", 0, 0, 0, 0, "");
+			createPerk("'Nuki Nuts", 0, 0, 0, 0, "");
 			
 			isUniqueInFight = true;
 			btnTargetText = "Dr Khan";

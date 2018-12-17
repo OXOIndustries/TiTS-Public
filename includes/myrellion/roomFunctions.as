@@ -1106,7 +1106,7 @@ public function goWithTheAntOrgy(voluntary:Boolean = true):void
 		flags["LAST_ANT_ORGY"] = 1;
 		output("Putting up your hands, you agree to go with them. ");
 		if(flags["ANT_ORGY_COUNT"] != undefined) output("After your last visit, another trip to the land of honey and pussy sounds more than welcome.");
-		else output("Surely whatever sort of entertainment they have planned for your [pc.cocks] must be enjoyable. It sounds like you’ll have a whole barracks full of honey-squirting all to yourself.");
+		else output("Surely whatever sort of entertainment they have planned for your [pc.cocks] must be enjoyable. It sounds like you’ll have a whole barracks full of honey-squirting myr all to yourself.");
 		output(" What more could you ask for?");
 		output("\n\n<i>“That’s more like it.”</i> The commander smacks you on the ass with a short, metal rod and bellows, <i>“March!”</i>");
 		output("\n\nJumping from the painful swat, you start marching with them, never straying far from the authoritative alien, lest she decide to lay into you once more. Fortunately, their troop’s barracks isn’t far. A few minutes at a quick pace has you closing in on their barracks - a solid concrete structure designed more for defensibility than aesthetics. The squat doorway is hauled open, and you are lead inside by the golden officer, backed up by the column of grinning soldiers.");

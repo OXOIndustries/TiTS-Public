@@ -233,7 +233,7 @@ package classes.Items.Transformatives
 			if(pc.cockTypeUnlocked(0, GLOBAL.TYPE_EQUINE))
 			{
 				output("\n\nYou feel a sudden rush of arousal building up in [pc.oneCock], blood rushing to pump it full");
-				if(!pc.isCrotchExposed()) output(" as it strains against your [pc.lowerUndergarment]");
+				if(!pc.isCrotchExposed()) output(" as it strains against your [pc.lowerGarment]");
 				output(".");
 
 				var eligible:Array = new Array();
@@ -315,7 +315,7 @@ package classes.Items.Transformatives
 				if(pc.totalVaginas() == 1) output("es");
 				output(" hard all of a sudden, squirting an ungodly amount of pussy-juice ");
 				if(!pc.isCrotchExposed()) output("onto your thighs");
-				else output("onto the inside of your [pc.lowerUnderGarment]");
+				else output("onto the inside of your [pc.lowerGarment]");
 				output(". You almost double over as waves of pleasure crash into your crotch, sending trembling shockwaves all through your body in reaction.");
 				output("\n\nYou cum, hard, drenching yourself in girl-cum. Rather than clamping down more, though, your sex seems to stretch out as it orgasms, growing larger, thicker, darker... by the time it’s done, you feel like you’re rocking ");
 				if(pc.totalVaginas() == 1) output("a doe-cunt");

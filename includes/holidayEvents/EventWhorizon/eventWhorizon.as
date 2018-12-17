@@ -22,12 +22,20 @@ EVENT_WHORIZON_TORMENT_CAGES
 	
 public function isDoingEventWhorizon():Boolean
 {
+	/*
 	// Fix my bumblefuckery
 	if (flags["EVENT_WHORIZON_STATE"] != 2 && flags["EVENT_WHORIZON_STATE"] != undefined && InCollection(shipLocation, "TAVROS HANGAR", "SHIP HANGAR", "201", "600", "2I7", "LZ L50", "500", "POESPACE", "UVS F15", "CANADA1", "K16_DOCK", "BREEDWELL_HANGAR"))
 	{
 		flags["EVENT_WHORIZON_STATE"] = 2;
 	}
+	*/
+	// Maybe a fix for the previous fix?
+	if(flags["EVENT_WHORIZON_STATE"] == 2 && flags["EVENT_WHORIZON_BONDAGE_PALACE"] == undefined && flags["EVENT_WHORIZON_DEMONSYRI_TALK"] == undefined && flags["EVENT_WHORIZON_FUCKED_DEMONSYRI"] == undefined && flags["EVENT_WHORIZON_DEMONSYRI_LOOKAROUND"] == undefined)
+	{
+		flags["EVENT_WHORIZON_STATE"] = undefined;
+	}
 	
+	if (shipLocation != "EW-M23") return false;
 	if (flags["EVENT_WHORIZON_STATE"] == -1) return false;
 	if (flags["EVENT_WHORIZON_STATE"] == undefined) return false;
 	if (flags["EVENT_WHORIZON_STATE"] == 2) return false;
@@ -39,11 +47,11 @@ public function sendEventWhorizonMessage(destination:String = null):void
 	clearOutput();
 	author("Savin");
 
-	output("Of all the different alerts programmed into your ship’s nav computer, <i>“spacial anomaly detected”</i> is one of the ones you never, ever want to see. Black holes and gravitational distortions are pretty much a death sentence in the depths of space.");
+	output("Of all the different alerts programmed into your ship’s nav computer, “spacial anomaly detected” is one of the ones you never, ever want to see. Black holes and gravitational distortions are pretty much a death sentence in the depths of space.");
 	
 	output("\n\nAnd sometimes, you discover as you rush onto the bridge in a panic, it’s a giant pink tear in reality.");
 	
-	output("\n\nYou stare out the forward viewport, watching a luminescent pink field of gas and energy warble a few kilometers ahead of where the computer automatically dropped you out of LightDrive. You’re getting all sorts of radiation readings from the anomaly, and the automated scans are coming up with big, red <i>“inconclusive”</i> readings.");
+	output("\n\nYou stare out the forward viewport, watching a luminescent pink field of gas and energy warble a few kilometers ahead of where the computer automatically dropped you out of LightDrive. You’re getting all sorts of radiation readings from the anomaly, and the automated scans are coming up with big, red “inconclusive” readings.");
 	
 	output("\n\n<i>“What the hell is that?”</i> you wonder aloud, swinging into the captain’s seat. The pink field isn’t moving or growing, thankfully, but it is certainly discharging. It’s a very long but narrow oval, probably less than half a kilometer wide, and according to what readings you <b>are</b> getting, the anomaly is basically two dimensional.");
 	
@@ -55,7 +63,7 @@ public function sendEventWhorizonMessage(destination:String = null):void
 	
 	if (destination == null)
 	{
-		destination = "Tavros";
+		destination = "TAVROS HANGAR";
 	}
 
 	clearMenu();
@@ -110,9 +118,9 @@ public function ewEventOver():void
 		flags["STORED_SHIP_DESTINATION"] = undefined;
 	}
 	
-	if (flags["STORED SHIP DESTINATION"] == "TAVROS HANGAR" || flags["STORED SHIP DESTINATION"] == undefined)
+	if (flags["STORED SHIP DESTINATION"] == undefined)
 	{
-		flags["STORED SHIP DESTINATION"] = "Tavros";
+		flags["STORED SHIP DESTINATION"] = "TAVROS HANGAR";
 	}
 	
 	flags["EVENT_WHORIZON_STATE"] = 2;
@@ -208,7 +216,7 @@ public function EWTentacleGardenFight():void
 	CombatManager.victoryScene(ewTentacleGardenVictory);
 	CombatManager.lossScene(ewTentacleGardenLoss);
 	CombatManager.encounterTextGenerator(function():String {
-		var m:String = "You're surrounded on all sides by wriggling green vines, mercilessly whipping and grabbing at you. A wall of pink pussy-flowers box you in, sucking at your [pc.legs] if you stray out of the center of the garden. The tentacles grab at your [pc.arms], trying to restrain you -- and the cockhead-shaped tips at their ends make it abundantly clear what will happen if they succeed!";
+		var m:String = "You’re surrounded on all sides by wriggling green vines, mercilessly whipping and grabbing at you. A wall of pink pussy-flowers box you in, sucking at your [pc.legOrLegs] if you stray out of the center of the garden. The tentacles grab at your [pc.arms], trying to restrain you -- and the cockhead-shaped tips at their ends make it abundantly clear what will happen if they succeed!";
 		return m;
 	});
 	
@@ -300,7 +308,7 @@ private function ewTentacleGardenMerge(isVictory:Boolean):void
 	}
 
 	clearMenu();
-	addButton(0, "Okay", ewTentacleCageBadEnd, undefined, "Okay", "Now that she's <i>asking</i>, some tentacle fun might be... well, fun!");
+	addButton(0, "Okay", ewTentacleCageBadEnd, undefined, "Okay", "Now that she’s <i>asking</i>, some tentacle fun might be... well, fun!");
 	addButton(1, "Nope", ewTentacleGardenMergeNo, undefined, "Noped", "Uh... no?");
 }
 
@@ -330,7 +338,7 @@ private function ewTentacleGardenMergeNo():void
 	CombatManager.victoryScene(ewTentacleGardenerVictory);
 	CombatManager.lossScene(ewTentacleCageBadEnd);
 	CombatManager.encounterTextGenerator(function():String {
-		var m:String = "She's a tall, statuesque woman... if the statuary you're looking at has grossly exaggerated sexual attributes: an impossibly thin waistline but mareish hips, huge breasts decorated with golden chains, and demonic claws and horns. Black-and-green hair swirls around her as she moves, dancing around the garden with a feline grace that seems outright impossible considering the sheer weight of ass, hips, and titties she's carrying -- yet she makes her assets look feather-light. And predatory smile is drawn across her jade lips, and coal-black eyes betray a deep, fathomless hunger as she circles you.";
+		var m:String = "She’s a tall, statuesque woman... if the statuary you’re looking at has grossly exaggerated sexual attributes: an impossibly thin waistline but mareish hips, huge breasts decorated with golden chains, and demonic claws and horns. Black-and-green hair swirls around her as she moves, dancing around the garden with a feline grace that seems outright impossible considering the sheer weight of ass, hips, and titties she’s carrying -- yet she makes her assets look feather-light. And predatory smile is drawn across her jade lips, and coal-black eyes betray a deep, fathomless hunger as she circles you.";
 		return m;
 	});
 	
@@ -377,13 +385,13 @@ private function ewTentacleCageBadEnd():void
 
 	output("\n\nBy the time you arrive at these vaunted cages of hers, the succubus is absolutely dripping.");
 	
-	output("\n\nThe <i>“cages”</i> are just more vines, but they’ve been cultivated into hanging from the sandstone walls of a semi-circular cove in the stone forest. These vines are mostly hard and first, strong enough to support your weight as you’re hoisted into them by the gardener’s planty minions. The vines of the <i>“door”</i> grow in an instant, sealing you in between pulsating bars of green vines.");
+	output("\n\nThe “cages” are just more vines, but they’ve been cultivated into hanging from the sandstone walls of a semi-circular cove in the stone forest. These vines are mostly hard and firm, strong enough to support your weight as you’re hoisted into them by the gardener’s planty minions. The vines of the <i>“door”</i> grow in an instant, sealing you in between pulsating bars of green vines.");
 	
 	output("\n\n<i>“There! Isn’t that so much better?”</i> the gardener coos from outside, letting the vines that imprisoned you wrap around her supple thighs. She barely even reacts when several of them squirm into her pussy and ass, propping her up on their turgid shafts as she reclines into a sitting posture above them.");
 
 	output("\n\n<i>“Don’t worry, sweetheart,”</i> she continues, licking her lips at the sight of your imprisonment. <i>“My babies will take such good care of you from now on. And you’ll feed us with those sweet, sweet juices of yours, too.”</i>");
 	
-	output("\n\nThe question that might have risen to your lips never comes - something else plugs your mouth before you get the chance to speak. The tentacles growing from the ground squirm up the walls, threading between the bars of your vine cage. If a plant could look hungry, these would: their cock-like crowns are swollen with pregnant need, drooling purple goo as the encircle your [pc.legs] and tear your remaining gear away. Your bare [pc.vagOrAss]");
+	output("\n\nThe question that might have risen to your lips never comes - something else plugs your mouth before you get the chance to speak. The tentacles growing from the ground squirm up the walls, threading between the bars of your vine cage. If a plant could look hungry, these would: their cock-like crowns are swollen with pregnant need, drooling purple goo as they encircle your [pc.legs] and tear your remaining gear away. Your bare [pc.vagOrAss]");
 	if (pc.hasCock())
 	{
 		if (pc.cocks.length == 1) output(" and cock are");
@@ -450,7 +458,7 @@ public function EWTormentCagesFight():void
 	//[Help] [Leave]
 
 	clearMenu();
-	addButton(0, "Help", EWTormentCagesHelp, undefined, "Help Him", "You can't just leave a fellow Rusher to this sexual torment. Get in there and help!");
+	addButton(0, "Help", EWTormentCagesHelp, undefined, "Help Him", "You can’t just leave a fellow Rusher to this sexual torment. Get in there and help!");
 	addButton(1, "Leave", EWTormentCagesLeave, undefined, "Leave Him", "Back off and leave the poor Rusher to his fate.");
 }
 
@@ -525,7 +533,7 @@ private function EWDemonicCaptorsFight():void
 	
 	output("\n\nYou shout to the sky, demanding to know what’s going on, but no answer is forthcoming. The sky clears a few seconds later, leaving you alone with the ausar in the cage. When you recover, you’re able to make your way up to the fuck-cages and start yanking the vines down and away, pulling the ausar free from the tentacle bondage.");
 	
-	output("\n\nIt’s a dickgirl, that much is obvious at first glance, with a smallish red rocket and balls hanging out from the tattered ruins of a pair of jeans. There’s nothing left of her shirt, leaving a pair of fairly hefty tits jutting out from a cum-soaked black vest hanging off her slender shoulders. You can see a patch on the jacket’s shoulder - the logo’s the same as the Confederate Scout Authority, where <i>“Galactic Confederacy”</i> should be written, you instead see <i>“Federation of Allied Planets”</i> in big, bold letters. Must be a cheap knockoff... right?");
+	output("\n\nIt’s a dickgirl, that much is obvious at first glance, with a smallish red rocket and balls hanging out from the tattered ruins of a pair of jeans. There’s nothing left of her shirt, leaving a pair of fairly hefty tits jutting out from a cum-soaked black vest hanging off her slender shoulders. You can see a patch on the jacket’s shoulder - the logo’s the same as the Confederate Scout Authority, where “Galactic Confederacy” should be written, you instead see “Federation of Allied Planets” in big, bold letters. Must be a cheap knockoff... right?");
 	
 	output("\n\nPurple plant-spooge is smeared all over her dark olive skin and drools from the corners of her mouth as she sputters and coughs.");
 	
@@ -602,7 +610,7 @@ public function EWBondagePalace():void
 	
 	output("\n\nLike the outside of the temple, the interior of the palatial structure seems to be upheld in the arms of oversexed idols, with great big stone breasts and dicks and other, more esoteric sexual arrangements looming overhead. The ground floor, however, is dominated by a long, wine-red carpet that your [pc.feet] sink into the moment you step inside. It naturally draws your eyes inwards, to the center of the wide-open throne chamber.");
 	
-	output("\n\nThere’s a dais at the carpet’s end, on which sits a throne. On the throne sits a woman, one who’s distinctly <i>not</i> one of the demon-like creatures you’ve encountered in this plane. She’s an ausar, that much is evident at a glance: bare, light olive skin hides beneath a thin layer of raven-black fur on her arms and legs, and a thick tail spills out over the arms of the throne. She’s naked, and that nakedness exposes iron muscles rippling under her flesh as she sits up, setting aside a goblet that’s stained with white around its whim.");
+	output("\n\nThere’s a dais at the carpet’s end, on which sits a throne. On the throne sits a woman, one who’s distinctly <i>not</i> one of the demon-like creatures you’ve encountered in this plane. She’s an ausar, that much is evident at a glance: bare, light olive skin hides beneath a thin layer of raven-black fur on her arms and legs, and a thick tail spills out over the arms of the throne. She’s naked, and that nakedness exposes iron muscles rippling under her flesh as she sits up, setting aside a goblet that’s stained with white around its rim.");
 	
 	output("\n\nFiery orange eyes stare up at you. A pair of long, curved horns sprout from the sides of the ausar’s head, like those of a steer, and are bedecked with metal chains and rings. Her coal-black lips curl into a feral snarl, revealing protruding canine fangs. When she finally thrusts up onto her feet, a dozen thick tendrils are dragged out of her body, squirming and flailing before they retreat into the holes cut in the seat of the throne.");
 	
@@ -632,6 +640,8 @@ public function EWBondagePalace():void
 	output("\n\nDoesn’t look like she’s going to leave you much choice...");
 
 	processTime(5+rand(2));
+	
+	flags["EVENT_WHORIZON_BONDAGE_PALACE"] = 1;
 
 	var h:DemonSyri = new DemonSyri();
 
@@ -643,7 +653,7 @@ public function EWBondagePalace():void
 	CombatManager.victoryScene(ewDemonSyriVictory);
 	CombatManager.lossScene(ewDemonSyriLoss);
 	CombatManager.encounterTextGenerator(function():String {
-		var m:String = "She's a towering mound of muscular ausar meat: more than eight feet tall, olive-skin glistening with sweat and fuck-juices, black fur on her arms and legs bristling. Her thick tail slaps heavily on the stone floor with every step, swaying with overt enjoyment of your battle. Her eyes are a fiery, almost glowing orange, burning with rage and lust. The horns that grow from her head stick out to the sides like a prize bull's, adorned with chains and rings. Syri's fangs are long and sharp, catching the waning light from outside as she circles you, and her claws ball into brawler's fists in preparation for her attacks.";
+		var m:String = "She’s a towering mound of muscular ausar meat: more than eight feet tall, olive-skin glistening with sweat and fuck-juices, black fur on her arms and legs bristling. Her thick tail slaps heavily on the stone floor with every step, swaying with overt enjoyment of your battle. Her eyes are a fiery, almost glowing orange, burning with rage and lust. The horns that grow from her head stick out to the sides like a prize bull’s, adorned with chains and rings. Syri’s fangs are long and sharp, catching the waning light from outside as she circles you, and her claws ball into brawler’s fists in preparation for her attacks.";
 		return m;
 	});
 	
@@ -683,7 +693,7 @@ private function ewDemonSyriPostCombatMenu():void
 	if (flags["EVENT_WHORIZON_FUCKED_DEMONSYRI"] == undefined) addButton(1, "Fuck", ewDemonSyriFuck, undefined, "Fuck", "Claim your reward from the oversexed demon queen’s body.");
 	else addDisabledButton(1, "Fuck");
 	
-	if (flags["EVENT_WHORIZON_DEMONSYRI_LOOKAROUND"] == undefined) addButton(2, "Look Around", ewDemonSyriLookAround, undefined, "Look Around", "See if there's any way you might be able to get out of here...");
+	if (flags["EVENT_WHORIZON_DEMONSYRI_LOOKAROUND"] == undefined) addButton(2, "Look Around", ewDemonSyriLookAround, undefined, "Look Around", "See if there’s any way you might be able to get out of here...");
 	else addDisabledButton(2, "Look Around");
 	
 	if (flags["EVENT_WHORIZON_DEMONSYRI_LOOKAROUND"] != undefined) addButton(14, "Leave", ewDemonSyriLeave, undefined, "Leave", "Use the data from the computer crate to get the hell out of this pocket plane.");
@@ -719,7 +729,7 @@ private function ewDemonSyriLeave():void
 	//[Okay] [Come With]
 	clearMenu();
 	addButton(0, "Okay", ewDemonSyriOkay, undefined, "Okay", "Sure thing, demon lady.");
-	addButton(1, "Come With", ewDemonSyriComeWith, undefined, "Come With", "Take the big demon-dog with you back to reality. She'll have to find her own way home, though... wherever that is.");
+	addButton(1, "Come With", ewDemonSyriComeWith, undefined, "Come With", "Take the big demon-dog with you back to reality. She’ll have to find her own way home, though... wherever that is.");
 }
 
 private function ewDemonSyriComeWith():void
@@ -947,13 +957,13 @@ private function ewDemonSyriRideFace():void
 	
 	output("\n\nSyri’s tits keep leaking, and her tongue keeps fucking deeper, exploring new and more sensitive depths of your [pc.vagOrAss]. Before long, you’re having to choke back moans and gasps, feeling her tongue flicking along your inner flesh. You murmur that she’s doing good - good girl, just like that! Your [pc.hips] grind over her face, rubbing her nose through the crack of your ass while her tongue’s forced ever deeper inside you. You’re not sure if Syri’s actually skilled at oral or just damn desperate to get you off, but her tongue’s moving like a bucking bronco, thrashing and thrusting against your most sensitive places.");
 	
-	output("\n\nYou dig your fingers into the hellhound’s tits and hold on as tight as you can as orgasm erupts through you. Your [pc.legs] and [pc.hips] feel like they’re blazing, aflame with sexual heat as your loins are assaulted by Syri’s tongue. The satanic slut goes stock rigid under you as your hands molest her udders, and milk squirts all over you in creamy geysers. You can some of the lactic discharge on your [pc.tongue], the rest on your");
+	output("\n\nYou dig your fingers into the hellhound’s tits and hold on as tight as you can as orgasm erupts through you. Your [pc.legs] and [pc.hips] feel like they’re blazing, aflame with sexual heat as your loins are assaulted by Syri’s tongue. The satanic slut goes stock rigid under you as your hands molest her udders, and milk squirts all over you in creamy geysers. You catch some of the lactic discharge on your [pc.tongue], the rest on your");
 	if (pc.biggestTitSize() > 1) output(" tits.");
 	else output(" chest.");
 
 	output("\n\nBy the time Syri’s milky eruption has finally calmed down, your own orgasm has passed as well, leaving you panting for breath and feeling numb all over. The hellhound’s not faring much better, simmering in a pool of her own milk and fuckjuices leaking from her twat. Her thighs are a swamp of girlcum");
 	if (pc.hasVagina()) output(" - hers and yours -");
-	output(" and her body is slicked with sweat. She isn’t complaining anymore now,, too exhausted and pleasure-numbed to whinge as you pry yourself off of her and stagger back to your [pc.feet].");
+	output(" and her body is slicked with sweat. She isn’t complaining anymore now, too exhausted and pleasure-numbed to whinge as you pry yourself off of her and stagger back to your [pc.feet].");
 
 	output("\n\nAfter a long moment, the demon queen murmurs, <i>“So what now? You gonna keep doin’ that till the rest of the fuck-hungry sluts here think you’re my "+ pc.mf("king", "queen") +"?”</i>");
 
@@ -1009,9 +1019,9 @@ private function ewDemonSyriPoundPuss():void
 
 	output("\n\n<i>“Good girl,”</i> you praise, lapping up the free-flowing milk from her laden tits. Syri whines and moans under you, all restraint wiped away by your cock and your tongue working in tandem on her oversexed body.");
 	
-	output("\n\nNow that she’s nice and pliant, you decide it’s time to properly put this bitch in her place. You pull yourself off her tits and grab her hips, flipping Syri onto her hands and knees. She grunts and protests, but a few gropes of her breasts and add, and feeling your [pc.cockOrStrapon] twist inside her. The way she cries out, you’re pretty sure she cums - but her pleasure isn’t what you’re interested in. The extra wetness leaking out of her quim is just extra lube, letting you pound her puss hard. The hellhound’s tail swishes heavily, batting against your [pc.face] - when her ass isn’t being slammed forward by your [pc.hips] crashing against it, sending ripples through her supple olive flesh.");
+	output("\n\nNow that she’s nice and pliant, you decide it’s time to properly put this bitch in her place. You pull yourself off her tits and grab her hips, flipping Syri onto her hands and knees. She grunts and protests, but a few gropes of her breasts and ass, and feeling your [pc.cockOrStrapon] twist inside her. The way she cries out, you’re pretty sure she cums - but her pleasure isn’t what you’re interested in. The extra wetness leaking out of her quim is just extra lube, letting you pound her puss hard. The hellhound’s tail swishes heavily, batting against your [pc.face] - when her ass isn’t being slammed forward by your [pc.hips] crashing against it, sending ripples through her supple olive flesh.");
 	
-	output("\n\n<i>“Fuck yes!”</i> the demoness screams. Her claws rake trenches into the stone, her voice barely able to contain her pleasure. She’s putty in your hands, a willing slave to your cock. Syris thrusts back against you, driving your dick deeper and deeper into her hidden depths, taking every inch of");
+	output("\n\n<i>“Fuck yes!”</i> the demoness screams. Her claws rake trenches into the stone, her voice barely able to contain her pleasure. She’s putty in your hands, a willing slave to your cock. Syri thrusts back against you, driving your dick deeper and deeper into her hidden depths, taking every inch of");
 	if (pc.hasCock()) output(" man meat");
 	else output(" hardlight shaft");
 	output(" with desperate glee. <i>“Fuck me fuck me <b>fuck me!</b>”</i>");
@@ -1026,13 +1036,14 @@ private function ewDemonSyriPoundPuss():void
 	if (pc.hasCock()) output(" empties your [pc.balls] into her womb");
 	else output(" winds down from its orgasmic simulacrum");
 	output(". Your [pc.chest] heaves with labored breath");
-	if (pc.hasKnot()) output(", and your [pc.knot] throbs, lodged between Syri’s pussylips by your rogue fucking. With a sigh, you rest yourself on the hellhound’s back, content to wait until your bitch-breaker deflates.");
+	if (pc.hasKnot()) output(", and your [pc.knot] throbs, lodged between Syri’s pussylips by your rough fucking. With a sigh, you rest yourself on the hellhound’s back, content to wait until your bitch-breaker deflates.");
 	else output(" as you slide yourself out of her, unleashing a deluge of juices down her thighs. Cum pools between her legs, and milk is dribbling from her teats onto the floor. What a mess!");
 
 	output("\n\nAfter a long moment, the demon queen murmurs, <i>“So what now? You gonna keep doin’ that till the rest of the fuck-hungry sluts here think you’re my "+ pc.mf("king", "queen") +"?”</i>");
 
 	output("\n\nIt’s a tempting offer...");
 
+	processTime(15+rand(10));
 	pc.orgasm();
 
 	flags["EVENT_WHORIZON_FUCKED_DEMONSYRI"] = 1;
@@ -1103,6 +1114,7 @@ private function ewDemonSyriTalkArrival():void
 
 	flags["EVENT_WHORIZON_DEMONSYRI_TALK"] = 2;
 
+	processTime(2);
 	ewDemonSyriPostCombatMenu();
 }
 

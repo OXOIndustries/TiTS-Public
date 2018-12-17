@@ -462,7 +462,12 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Length, Erect:</b> " + prettifyLength(pc.cLength(x)));
 					output2("\n<b>* Thickness:</b> " + prettifyLength(pc.cThickness(x)));
 					output2("\n<b>* Thickness, Ratio Modifier:</b> " + Math.round(pc.cocks[x].cThicknessRatio()*1000)/10 + " %");
-					if(pc.hasKnot(x)) output2("\n<b>* Knot Thickness:</b> " + prettifyLength(pc.knotThickness(x)));
+					output2("\n<b>* Girth:</b> " + prettifyLength(pc.cGirth(x)));
+					if(pc.hasKnot(x))
+					{
+						output2("\n<b>* Knot Thickness:</b> " + prettifyLength(pc.knotThickness(x)));
+						output2("\n<b>* Knot Girth:</b> " + prettifyLength(pc.knotGirth(x)));
+					}
 					if(pc.cockVolume(x, false) != pc.cockVolume(x))
 					{
 						output2("\n<b>* Volume, Physical:</b> " + prettifyVolume(pc.cockVolume(x, false)));
@@ -745,10 +750,14 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.level < pc.levelMax() && pc.XPRaw < pc.XPMax()) output2(", <i>" + (pc.XPMax() - pc.XPRaw) + " XP to next Level</i>");
 		output2("\n<b>* Credits:</b> " + pc.credits);
 		output2("\n<b><u>Active Stats</u></b>");
-		output2("\n<b>* " + StringUtil.capitalize(pc.shieldDisplayName) + ":</b> " + Math.round((pc.shieldsRaw/pc.shieldsMax()) * 100) + " %, " + "0/" + pc.shieldsRaw + "/" + pc.shieldsMax());
+		output2("\n<b>* " + StringUtil.capitalize(pc.shieldDisplayName) + ":</b> " + pc.shieldsQ() + " %, " + "0/" + pc.shields() + "/" + pc.shieldsMax());
+		if(pc.hasShields() && !pc.hasShieldGenerator(true)) output2(", <i>No active shield generator equipped!</i>");
 		output2("\n<b>* HP:</b> " + pc.HPQ() + " %, " + "0/" + pc.HP() + "/" + pc.HPMax());
-		output2("\n<b>* Lust:</b> " + Math.round((pc.lust()/pc.lustMax()) * 100) + " %, " + pc.lustMin() + "/" + pc.lust() + "/" + pc.lustMax());
-		output2("\n<b>* Energy:</b> " + Math.round((pc.energy()/pc.energyMax()) * 100) + " %, " + pc.energyMin() + "/" + pc.energy() + "/" + pc.energyMax());
+		if(pc.HPMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.HPMod, 3)) + ")");
+		output2("\n<b>* Lust:</b> " + pc.lustQ() + " %, " + pc.lustMin() + "/" + pc.lust() + "/" + pc.lustMax());
+		if(pc.lustMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.lustMod, 3)) + ")");
+		output2("\n<b>* Energy:</b> " + pc.energyQ() + " %, " + pc.energyMin() + "/" + pc.energy() + "/" + pc.energyMax());
+		if(pc.energyMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.energyMod, 3)) + ")");
 		output2("\n<b><u>Passive Stats</u></b>");
 		output2("\n<b>* Physique:</b> " + pc.PQ() + " %, " + "0/" + pc.physique() + "/" + pc.physiqueMax());
 		if(pc.physiqueMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.physiqueMod, 3)) + ")");
@@ -2398,6 +2407,22 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["ZHENG_SHI_PASSWORDED"] >= 1) output2(" Access granted");
 				else output2(" <i>Unknown</i>, Access denied");
 			}
+			if(flags["FERUZE_ZHENG_OUTCOME"] != undefined)
+			{
+				// Rival
+				output2("\n<b>* [rival.name]:</b> Seen");
+				// Feruze
+				output2("\n<b>* Feruze:</b> Seen");
+				switch(flags["FERUZE_ZHENG_OUTCOME"])
+				{
+					case -2: output2(", Lost to her face-sitting on you in combat"); break;
+					case -1: output2(", Lost to her in combat"); break;
+					case 1: output2(", Defeated her"); break;
+				}
+				if(flags["FERUZE_SEXED"] != undefined) output2("\n<b>* Feruze, Times Sexed:</b> " + flags["FERUZE_SEXED"]);
+				if(flags["FERUZE_CAME_INSIDE"] != undefined) output2("\n<b>* Feruze, Times You Came Inside Her:</b> " + flags["FERUZE_CAME_INSIDE"]);
+				if(flags["FERUZE_BIG_DICK_TITFUCKED"] != undefined) output2("\n<b>* Feruze, Times Titfucked:</b> " + flags["FERUZE_BIG_DICK_TITFUCKED"]);
+			}
 			
 			mainCount++;
 		}
@@ -2595,6 +2620,34 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2(" <i>In progress...</i>");
 				sideCount++;
 			}
+			// Penny's Recruitment
+			if(flags["PENNY_CREW_ASKED"] != undefined || flags["PENNY_CUMSLUT_RECRUITED"] != undefined)
+			{
+				output2("\n<b><u>Penny’s Recruitment</u></b>");
+				output2("\n<b>* Status:</b>");
+				switch(flags["PENNY_CREW_ASKED"])
+				{
+					case -1: output2(" Asked Penny, She refused, <i>Perhaps you should get to know her better?</i>"); break;
+					case 1: output2(" Asked Penny, She accepted"); break;
+					case 2: output2(" Asked Penny, Accepted, <i>Find Oxonium...</i>"); break;
+					case 3: output2(" Asked Penny, Accepted, Found and excavated Oxonium"); break;
+					case 3.5: output2(" Asked Penny, Accepted, Found and excavated Oxonium, Offered recruitment"); break;
+					case 4: output2(" Asked Penny, Accepted, Found and excavated Oxonium, Penny recruited, Completed"); break;
+					default: output2(" <i>In progress...</i>"); break;
+				}
+				if(flags["PENNY_CUMSLUT_RECRUITED"] != undefined)
+				{
+					output2(" Asked Penny, Accepted, Penny recruited, Completed");
+				}
+				if(flags["PQUEST_ZILTRAP_RESULTS"] != undefined || flags["PQUEST_PENNY_PODDED"] != undefined)
+				{
+					output2("\n<b>* Ziltraps:</b> Seen them");
+					if(flags["PQUEST_PENNY_PODDED"] != undefined) output2(", They trapped Penny");
+					if(flags["PQUEST_ZILTRAP_RESULTS"] == 1) output2(", Defeated them by health");
+					if(flags["PQUEST_ZILTRAP_RESULTS"] == 2) output2(", Defeated them by lust");
+				}
+				sideCount++;
+			}
 			// Penny's Zil Problem
 			if(flags["MET_PENNY"] != undefined)
 			{
@@ -2738,6 +2791,31 @@ public function displayQuestLog(showID:String = "All"):void
 					}
 				}
 				
+				sideCount++;
+			}
+			// Pump-King
+			if(flags["PUMPKING_COMPLETION"] != undefined || MailManager.isEntryViewed("pumpking_alert"))
+			{
+				output2("\n<b><u>The Pump-King</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(flags["PUMPKING_COMPLETION"] == undefined) output2(" <i>Return to Penny...</i>");
+				else
+				{
+					switch(flags["PUMPKING_COMPLETION"])
+					{
+						case -1: output2(" Refused to look for Penny, Failed"); break;
+						case 1: output2(" Accepted to look for Penny, <i>Find the Pump-king...</i>"); break;
+						case 2: output2(" Accepted, Seen ‘Pump-king’, <i>Find the hideout to save Penny...</i>"); break;
+						case 3: output2(" Accepted, Found and defeated the ‘Pump-king’, Penny returned, Completed"); break;
+					}
+				}
+				if(flags["PUMPKING_COMPLETION"] != undefined) output2("\n<b>* Lana:</b> Met her");
+				if(flags["PUMPKINGS_JOHR_DEFEATED"] != undefined) output2("\n<b>* Johr:</b> Defeated him in combat");
+				if(flags["PUMPKING_COMPLETION"] >= 2)
+				{
+					output2("\n<b>* ‘" + (flags["PUMPKING_COMPLETION"] < 3 ? "Pump-king" : "Amelia") + "’:</b> Met her");
+					if(flags["PUMPKING_FUCKED"] != undefined) output2(", Sexed her");
+				}
 				sideCount++;
 			}
 			// Pyrite Satellite Recovery
@@ -4104,6 +4182,38 @@ public function displayQuestLog(showID:String = "All"):void
 		output2("\n\n" + blockHeader("Miscellaneous", false));
 		var otherCount:int = 0;
 		
+		// Event Whorizon
+		if(flags["EVENT_WHORIZON_STATE"] != undefined)
+		{
+			output2("\n<b><u>Event Whorizon</u></b>");
+			output2("\n<b>* Status:</b>");
+			if(flags["EVENT_WHORIZON_STATE"] == -1) output2(" Avoided the anomaly");
+			else
+			{
+				output2(" Entered the anomaly");
+				if(flags["EVENT_WHORIZON_STATE"] >= 2) output2(", Investigated, Completed");
+				else output2(", <i>Investigating...</i>");
+			}
+			if(flags["EVENT_WHORIZON_TENTACLE_GARDEN"] != undefined)
+			{
+				if(flags["EVENT_WHORIZON_TENTACLE_GARDEN"] <= -1) output2("\n<b>* Tentacle Garden, Monster:</b> Lost against it in combat");
+				if(flags["EVENT_WHORIZON_TENTACLE_GARDEN"] >= 1) output2("\n<b>* Tentacle Garden, Monster:</b> Defeated it");
+				if(flags["EVENT_WHORIZON_TENTACLE_GARDEN"] >= 2) output2("\n<b>* Tentacle Garden, Gardener:</b> Defeated her");
+			}
+			if(flags["EVENT_WHORIZON_TORMENT_CAGES"] != undefined)
+			{
+				output2("\n<b>* Torment Cages:</b>");
+				if(flags["EVENT_WHORIZON_TORMENT_CAGES"] == -1) output2(" Left rusher");
+				if(flags["EVENT_WHORIZON_TORMENT_CAGES"] == 1) output2(" Saved rusher");
+			}
+			if(flags["EVENT_WHORIZON_FUCK_PRISON"] != undefined) output2("\n<b>* The Fuck Prison, Succubus:</b> Met her");
+			if(flags["EVENT_WHORIZON_BONDAGE_PALACE"] != undefined || flags["EVENT_WHORIZON_DEMONSYRI_TALK"] != undefined || flags["EVENT_WHORIZON_FUCKED_DEMONSYRI"] != undefined || flags["EVENT_WHORIZON_DEMONSYRI_LOOKAROUND"] != undefined)
+			{
+				output2("\n<b>* The Bondage Palace, Demon Queen Syri:</b> Met her");
+				if(flags["EVENT_WHORIZON_FUCKED_DEMONSYRI"] != undefined) output2(", Sexed her");
+			}
+			otherCount++;
+		}
 		// Puppyslutmas
 		if(flags["PUPPYSLUTMAS_2014"] != undefined)
 		{
@@ -4475,6 +4585,16 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SERA_TAILED"] != undefined) output2("\n<b>* Sera, Times She Fucked Your Parasitic Tail Cock:</b> " + flags["SERA_TAILED"]);
 					if(flags["SERA_INCH_STEALING_SEX"] > 0) output2("\n<b>* Sera, Times She Absorbed Your Length:</b> " + flags["SERA_INCH_STEALING_SEX"]);
 					if(flags["SERA_INCH_STEALING_HELP"] > 0) output2("\n<b>* Sera, Times You Untangled Her Tail Cock:</b> " + flags["SERA_INCH_STEALING_HELP"]);
+					if(flags["SERA_BITCHENING_PUNISH_SPANK"] > 0) output2("\n<b>* Sera, Punish, Times You Spanked Her:</b> " + flags["SERA_BITCHENING_PUNISH_SPANK"]);
+					if(flags["SERA_BITCHENING_PUNISH_RATION"] > 0) output2("\n<b>* Sera, Punish, Times You Fed Her Cum:</b> " + flags["SERA_BITCHENING_PUNISH_RATION"]);
+					if(flags["SERA_BITCHENING_PUNISH_WALKIES"] > 0) output2("\n<b>* Sera, Punish, Times You Took Her Walkies:</b> " + flags["SERA_BITCHENING_PUNISH_WALKIES"]);
+					if(flags["SERA_BITCHENING_TEASE_DENY"] > 0) output2("\n<b>* Sera, Times You Teased Her But Didn't Let Her Finish:</b> " + flags["SERA_BITCHENING_TEASE_DENY"]);
+					if(flags["SERA_BITCHENING_TEASE_RELEASE"] > 0) output2("\n<b>* Sera, Times You Teased Her and Let Her Finish:</b> " + flags["SERA_BITCHENING_TEASE_RELEASE"]);
+					if(flags["SERA_BITCHENING_BUTTFUCK"] > 0) output2("\n<b>* Sera, Times You Fucked Her Ass:</b> " + flags["SERA_BITCHENING_BUTTFUCK"]);
+					if(flags["SERA_BITCHENING_TITTYFUCK"] > 0) output2("\n<b>* Sera, Times You Titty Fucked Her:</b> " + flags["SERA_BITCHENING_TITTYFUCK"]);
+					if(flags["SERA_BITCHENING_DP"] > 0) output2("\n<b>* Sera, Times You DP'd Her Pussy and Ass:</b> " + flags["SERA_BITCHENING_DP"]);
+					if(flags["SERA_WAKEUP_SEX"] > 0) output2("\n<b>* Sera, Times She Woke You Up With Sex:</b> " + flags["SERA_WAKEUP_SEX"]);
+					if(flags["SERA_MADE_LOVE"] > 0) output2("\n<b>* Sera, Times You Made Tender Love to Her:</b> " + flags["SERA_MADE_LOVE"]);
 				}
 				//if(pc.hasStatusEffect("Sera Credit Debt")) output2("\n<b>* Sera, Credit Debt:</b> " + pc.statusEffectv1("Sera Credit Debt") + " credits");
 				variousCount++;
@@ -5320,7 +5440,11 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Erika:</b> Met her");
 					if(flags["ERIKA_SEEN_NAKED"] != undefined) output2(", Seen her naked");
 					if(flags["ERIKA_GIVEN_ANUSOFT"] != undefined) output2(", Gave her Anusoft");
-					if(flags["ERIKA_SEXED"] != undefined) output2("\n<b>* Erika, Times Sexed:</b> " + flags["ERIKA_SEXED"]);
+					if(flags["ERIKA_SEXED"] != undefined)
+					{
+						output2("\n<b>* Erika, Sexual Organs:</b> " + listCharGenitals("ERIKA"));
+						output2("\n<b>* Erika, Times Sexed:</b> " + flags["ERIKA_SEXED"]);
+					}
 				}
 				//Tetra & Mica The Zil Twins
 				if(flags["ZILTWINS_MET"] != undefined)
@@ -5368,23 +5492,29 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b><u>U.G.C. Peacekeepers Office</u></b>");
 				output2("\n<b>* Penny:</b> Met her");
 				if(flags["PENNY_BADGER_BIMBO"] != undefined) output2(", Bimbofied");
+				if(pennyRecruited())
+				{
+					output2(", Crew member");
+					if(pennyIsCrew()) output2(" (Onboard Ship)");
+				}
 				if(flags["PENNY_IS_A_CUMSLUT"] != undefined)
 				{
+					output2("\n<b>* Penny, Visible Libido:</b>");
 					if(flags["PENNY_HIDING_CUMSLUTTERY"] != undefined)
 					{
-						output2(", Hiding her");
+						output2(" Hiding her");
 						if(flags["SEEN_PENNY_HIDE_CUMSLUTTERY"] != undefined) output2(" obvious");
 						output2(" cum-sluttery");
 					}
 					if(flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] != undefined)
 					{
-						output2(", Allowing others to watch her");
+						output2(" Allowing others to watch her");
 						if(flags["PENNY_BEEN_IN_WATCH_CUMSLUT_MODE_AND_BLOWN_IN_FRONT_OF_PC"] != undefined) output2(" exhibitionist");
 						output2(" cum-sluttery");
 					}
 					if(flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] != undefined)
 					{
-						output2(", Having others join in sexing her as a");
+						output2(" Having others join in sexing her as a");
 						if(flags["SEEN_PENNY_BE_A_GANGBANG_SLUT"] != undefined) output2(" gangbanged");
 						output2(" cum-slut");
 					}
@@ -6906,7 +7036,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
-			if(flags["TOOK_FEDORA"] == 1 || flags["SNAKEBYTE_LOOTED"] == 1 || flags["FORGEHOUND_ENCOUNTERED"] != undefined || flags["MET_SECOP_MALE"] != undefined || flags["MET_SECOP_FEMALE"] != undefined)
+			if(flags["TOOK_FEDORA"] == 1 || flags["SNAKEBYTE_LOOTED"] == 1 || flags["FORGEHOUND_ENCOUNTERED"] != undefined || flags["MET_SECOP_MALE"] != undefined || flags["MET_SECOP_FEMALE"] != undefined || flags["RATS_ENABLED"] != undefined)
 			{
 				output2("\n<b><u>Foundry</u></b>");
 				// Items looted
@@ -6928,6 +7058,161 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_SECOP_MALE"] != undefined) output2("\n<b>* Male Punk Security Operative, Times Encountered:</b> " + flags["MET_SECOP_MALE"]);
 				if(flags["MET_SECOP_FEMALE"] != undefined) output2("\n<b>* Female Punk Security Operative, Times Encountered:</b> " + flags["MET_SECOP_FEMALE"]);
 				variousCount++;
+				// Rat's Raiders
+				if(flags["RATS_ENABLED"] != undefined)
+				{
+					output2("\n<b>* Rat's Raiders:</b> Tried to rob Urbolg");
+					if(flags["RATCOUNTERS"] != undefined) output2(", Encountered");
+					if(flags["RATS_RIDDEN"] != undefined) output2(", Used as a horse");
+					if(ratsPCIsKnown()) output2("\n<b>* Rat's Raiders, Attitude:</b> " + (ratsReadyToBefriend() ? "Accepting" : ["", "Dirty", "Subdued", "Yielding", "Befriended"][ratputation()]) + " (" + flags["RATPUTATION"] + ")");
+					if(flags["RATS_OFFERED_SERVICE"] != undefined)
+					{
+						output2("\n* <b>Rat's Raiders, Offered Oral:</b> Attempted " + flags["RATS_OFFERED_SERVICE"] + " times");
+						if(flags["RAT_SERVICED"] != undefined) output2(", Succeded " + flags["RAT_SERVICED"] + " times");
+					}
+					if(flags["RATS_OFFERED_MILK"] != undefined)
+					{
+						output2("\n* <b>Rat's Raiders, Offered Milk:</b> Attempted " + flags["RATS_OFFERED_MILK"] + " times");
+						if(flags["RAT_MILKED"] != undefined) output2(", Succeded " + flags["RAT_MILKED"] + " times");
+					}
+					if(flags["RATS_SEXED"] != undefined)
+					{
+						output2("\n<b>* Rat's Raiders, Times Sexed:</b> " + flags["RATS_SEXED"]);
+						output2("\n<b>* Rat's Raiders, Sex Acts Done</b>: ");
+						var ratSex:Array = new Array();
+						if(flags["RATS_TRIPLE_SERVICED"] != undefined) ratSex.push("Triple Blowjob");
+						if(flags["RATS_POUNDED"] != undefined) ratSex.push("Doggystyle");
+						if(flags["RATS_WINRIDDEN"] != undefined) ratSex.push("Riding");
+						if(flags["RATS_SEXED_EAR"] != undefined) ratSex.push("Ear Sex");
+						if(flags["RATS_SPANKED"] != undefined) ratSex.push("Spanking");
+						if(flags["RATS_LOSS_SEXED"] != undefined) ratSex.push("Was Teased");
+						if(flags["RATS_GANGBANGED"] != undefined) ratSex.push("Gangbang");
+						if(flags["RATS_RIDDEN"] != undefined) ratSex.push("Was Abandoned With Jumper");
+						if(flags["RATS_HARVESTED"] != undefined) ratSex.push("Was \"Harvested\"");
+						output2(ratSex.join(", "));
+					}
+					if(flags["RAT_BOUNTY_STOLEN"] != undefined)
+					{
+						output2("\n<b>* Rat's Raiders, Bounty Lost:</b> " + flags["RAT_BOUNTY_STOLEN"]);
+						if(silly)
+						{
+							output2(" (With that, you could have");
+							var ratItems:Array = new Array();
+							if(flags["RAT_BOUNTY_STOLEN"] >= 7000000)
+							{
+								ratItems.push(" paid a therapist to determine how you lost this much money to three rodents over and over");
+								ratItems.push(" bought some drugs that would help you understand how the rats took this much money");
+							}
+							else if(flags["RAT_BOUNTY_STOLEN"] >= 5000000)
+							{
+								ratItems.push(" taken over Tavros and then... THE UNIVERSE!");
+								ratItems.push(" bought a series of concept art jpegs depicting ships in a virtual space-sim game");
+								ratItems.push(" conquered earth with a genetically identical army of clones");
+								ratItems.push(" bought some drugs that would help you understand how the rats took this much money");
+							}
+							else if(flags["RAT_BOUNTY_STOLEN"] >= 2600000)
+							{
+								ratItems.push(" bought an entire planet - well... maybe not");
+								ratItems.push(" paid for your nursery staff");
+								ratItems.push(" moved the raskvel broodmother off Tarkus");
+								ratItems.push(" started your own line of unnecessary social media-enabled devices and services");
+								ratItems.push(" bought some drugs that would help you understand how the rats took this much money");
+							}
+							else if(flags["RAT_BOUNTY_STOLEN"] >= 2100000)
+							{
+								ratItems.push(" bought an indie game development studio - only to lose it all again (Darn!)");
+								ratItems.push(" bought a PC monitor that displays 69-hertz");
+								ratItems.push(" bought some drugs that would help you understand how the rats took this much money");
+							}
+							else if(flags["RAT_BOUNTY_STOLEN"] >= 1600000)
+							{
+								ratItems.push(" bought a private army");
+								ratItems.push(" bought a fleet of ships to begin a trade empire");
+								ratItems.push(" bought some drugs that would help you understand how the rats took this much money");
+							}
+							else if(flags["RAT_BOUNTY_STOLEN"] >= 1300000)
+							{
+								ratItems.push(" bought your own luxury cruise liner");
+								ratItems.push(" bought a private island somewhere nice");
+								ratItems.push(" bought a new company");
+								ratItems.push(" bought some drugs that would help you understand how the rats took this much money");
+							}
+							else if(flags["RAT_BOUNTY_STOLEN"] >= 690000)
+							{
+								ratItems.push(" gotten more storage on your ship");
+								ratItems.push(" bought a sex bot with more sex scenes");
+								ratItems.push(" bought a new game plus mode");
+								ratItems.push(" bought some drugs that would help you understand how the rats took this much money");
+							}
+							else if(flags["RAT_BOUNTY_STOLEN"] >= 500000)
+							{
+								ratItems.push(" opened a TiTS-Coin Mining Station and made back all this money if the bubble didn't pop");
+								ratItems.push(" bought a new pair of eyes");
+							}
+							else if(flags["RAT_BOUNTY_STOLEN"] >= 240000)
+							{
+								ratItems.push(" bought one of Spacegate's 60-terabyte SSDs");
+								ratItems.push(" invested in your own small business with health benefits for a few employees");
+							}
+							else if(flags["RAT_BOUNTY_STOLEN"] >= 120000)
+							{
+								ratItems.push(" bought a brand new space ship");
+								ratItems.push(" paid off your mortgage");
+								ratItems.push(" bought a lot of emotes in Team Fortress 2");
+							}
+							else if(flags["RAT_BOUNTY_STOLEN"] >= 60000)
+							{
+								ratItems.push(" bought some shiny trinkets");
+								ratItems.push(" bought a musician's contract");
+								ratItems.push(" paid for two months of TiTS development");
+								ratItems.push(" bought Hand So back");
+								ratItems.push(" bought a brand new Casstech Z14");
+							}
+							else if(flags["RAT_BOUNTY_STOLEN"] >= 30000)
+							{
+								ratItems.push(" bought a bodyguard");
+								ratItems.push(" bought someone to keep you from losing this much money");
+							}
+							else if(flags["RAT_BOUNTY_STOLEN"] >= 15000)
+							{
+								ratItems.push(" bought a single outfit");
+								ratItems.push(" bought a brand new car");
+								ratItems.push(" bought a used Casstech Z14");
+							}
+							else if(flags["RAT_BOUNTY_STOLEN"] >= 6000)
+							{
+								ratItems.push(" bought a prostitute's contract");
+								ratItems.push(" bought the latest designer TFs");
+								ratItems.push(" bought a brand new SCV");
+								ratItems.push(" bought a lot of gift cards for ungrateful family members");
+								ratItems.push(" bought a new cousin");
+							}
+							else if(flags["RAT_BOUNTY_STOLEN"] >= 3000)
+							{
+								ratItems.push(" bought some Ausar Treats");
+								ratItems.push(" bought some DracoGuard");
+								ratItems.push(" bought a robo-arm");
+							}
+							else if(flags["RAT_BOUNTY_STOLEN"] >= 400)
+							{
+								if(pc.hasHair()) ratItems.push(" gotten a haircut");
+								ratItems.push(" bought some sterilex");
+								if(pc.hasCock()) ratItems.push(" bought a Condensol pill");
+								else if(pc.hasVagina()) ratItems.push(" bought a Mighty Tight pill");
+								ratItems.push(" bought a supply of Easy Fit cream");
+							}
+							else if(flags["RAT_BOUNTY_STOLEN"] >= 10)
+							{
+								ratItems.push(" bought a beer");
+								ratItems.push(" bought a sandwich");
+							}
+							if(ratItems.length == 0) output2(" bought... nothing? <i>How did you do this?</i>)");
+							else if(flags["RAT_BOUNTY_STOLEN"] >= 10000000) output2(" have completed the game by hiring every merc on the frontier to bring you the probes and deal with your cousin)");
+							else if(flags["RAT_BOUNTY_STOLEN"] >= 20000000) output2("... you could have just not lost this much money, you know?)");
+							else output2(RandomInCollection(ratItems) + ")");
+						}
+					}
+				}
 			}
 			if(flags["MET_OLYMPIA"] != undefined)
 			{
@@ -7735,7 +8020,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			output2("\n<b>* Dane:</b> Met him");
 			if(flags["FOUGHT_DANE_ON_MHENGA"] != undefined) output2(", Fought him on Mhen’ga");
 			if(flags["FREED_DANE_FROM_TAIVRA"] != undefined) output2(", Freed him on Myrellion");
-			if(9999 == 0)
+			if(daneRecruited())
 			{
 				output2(", Crew member");
 				if(daneIsCrew()) output2(" (Onboard Ship)");
@@ -7752,7 +8037,7 @@ public function displayEncounterLog(showID:String = "All"):void
 		if(flags["MET_AZRA"] != undefined)
 		{
 			output2("\n<b>* Azra:</b> Met her");
-			if(!azraRecruited())
+			if(azraRecruited())
 			{
 				output2(", Crew member");
 				if(azraIsCrew()) output2(" (Onboard Ship)");
@@ -7877,7 +8162,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			output2("\n<b>* Kiro:</b>");
 			if(flags["KIRO_DISABLED_MINUTES"] > 0) output2(" Away");
 			else output2(" Active");
-			if(9999 == 0)
+			if(kiroRecruited())
 			{
 				output2(", Crew member");
 				if(kiroIsCrew()) output2(" (Onboard Ship)");
@@ -8019,8 +8304,8 @@ public function displayEncounterLog(showID:String = "All"):void
 		if(flags["MET_KARA"] != undefined)
 		{
 			output2("\n<b>* Shade:</b> Met her");
-			if(flags["SHADE_IS_YER_SIS"] != undefined) output2(", She is your sister");
-			else if(flags["TOLD_SHADE_SHES_YER_SIS"] != undefined) output2(", " + (flags["TOLD_SHADE_SHES_YER_SIS"] < 0 ? "She’s secretly" : "Told her she’s") + " your sister");
+			if(flags["SHADE_IS_YER_SIS"] != undefined) output2(", She is your step-sister");
+			else if(flags["TOLD_SHADE_SHES_YER_SIS"] != undefined) output2(", " + (flags["TOLD_SHADE_SHES_YER_SIS"] < 0 ? "She’s secretly" : "Told her she’s") + " your step-sister");
 			if(shadeIsLover()) output2(", She is your lover");
 			if(flags["KQ2_SHADE_DEAD"] != undefined || flags["SHADE_DISABLED"] == 1) output2(", Inactive");
 			else if(flags["SHADE_IS_HOSTILE"] != undefined) output2(", She is hostile, <i>Whereabouts unknown</i>");

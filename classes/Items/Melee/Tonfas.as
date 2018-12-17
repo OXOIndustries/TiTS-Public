@@ -38,9 +38,10 @@ package classes.Items.Melee
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.basePrice = 150;
-			this.attack = 0;
+			this.attack = 5;
 			
 			baseDamage.kinetic.damageValue = 4;
+			baseDamage.electric.damageValue = 6;
 			baseDamage.addFlag(DamageFlag.CRUSHING);
 			
 			this.defense = 0;
@@ -48,7 +49,7 @@ package classes.Items.Melee
 			this.shields = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
-			this.evasion = 0;
+			this.evasion = 3;
 			this.fortification = 0;
 			
 			this.version = this._latestVersion;

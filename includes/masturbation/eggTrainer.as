@@ -1192,11 +1192,13 @@ public function ovalastingPregnancyEnds(pregSlot:int, pregEggs:int, totalEggs:in
 	author("Nonesuch");
 	
 	var bigEgg:Boolean = (pc.statusEffectv1("Ovalasting Big Egg " + pregSlot) > 0);
+	var inShip:Boolean = InShipInterior();
+	var inPublic:Boolean = (InPublicSpace() || rooms[currentLocation].planet.toLowerCase().indexOf("station") != -1 || rooms[currentLocation].hasFlag(GLOBAL.INDOOR));
 	
 	output("There’s a rumbling in your [pc.belly], followed by a distinct pulling, liquefying sensation. The eggs in your Ovalasted " + (pregSlot == 3 ? "ass" : "pussy") + " are coming!");
 	output("\n\nIn a slight panic, you waddle");
-	if(InShipInterior()) output(" to your bedroom");
-	else if(InPublicSpace()) output(" to a nearby bathroom");
+	if(inShip) output(" to your bedroom");
+	else if(inPublic) output(" to a nearby bathroom");
 	else output(" to a secluded spot");
 	output(". Biological imperative makes you squat and, as the feeling intensifies dramatically, bear down mightily with your hips. Sweat standing out on your brow, you cry out as the first egg stretches your " + (pregSlot == 3 ? "sphincter" : "pussy lips") + " wide.");
 	if(bigEgg) output(" Oh fucking Void, it’s so big! What were you thinking, letting them absorb so much cum? Lube gushes liberally around it, and you scream as the sheer pressure from the egg-train above forces it through, pushing you straight into delirious orgasm, the pulses of pleasure seizing up your " + (pregSlot == 3 ? "colon" : "twat") + " only making the grapefruit-sized ovals come faster. And that was just the first...");
@@ -1217,8 +1219,8 @@ public function ovalastingPregnancyEnds(pregSlot:int, pregEggs:int, totalEggs:in
 	if(flags["OVALASTING_EGGS_SOLD"] == undefined) output("What are you going to do with them? Presumably the egg trainer machine doesn’t need them. Perhaps if you cleaned them up, you could try and sell them to someone...?");
 	else output(" Once you’ve cleaned them up, they should fetch a nice price. Or you could sit your [pc.ass] down on them, keep them nice and warm...? You push that deep, enticing vaguery away.");
 	output("\n\nYou");
-	if(InShipInterior()) output(" wash them in the bathroom");
-	else if(InPublicSpace()) output(" wash them in the sink");
+	if(inShip) output(" wash them in the bathroom");
+	else if(inPublic) output(" wash them in the sink");
 	else output(" rub them off as best you can");
 	output(" before cleaning yourself up. Now that the overwhelming sensation of birthing has faded, you realize there’s still a small, warm glow emanating from your gut - the original Ovalasting egg, still lodged within your " + (pregSlot == 3 ? "ass" : "womb") + ", awaiting another bath of fertile fluids to kick-start the whole process again. You shiver slightly at the thought as you continue what you were doing. Slowly. You’re going to be walking rather gingerly for a little while.");
 	
@@ -1242,11 +1244,13 @@ public function ovalastingPrematureBirth():void
 	var pregSlot:int = pc.statusEffectv1("Ovalasting Early Clutch Timer");
 	if(pregSlot == 3) kGAMECLASS.pc.removeStatusEffect("Anally-Filled");
 	else kGAMECLASS.pc.removeStatusEffect("Vaginally-Filled");
+	var inShip:Boolean = InShipInterior();
+	var inPublic:Boolean = (InPublicSpace() || rooms[currentLocation].planet.toLowerCase().indexOf("station") != -1 || rooms[currentLocation].hasFlag(GLOBAL.INDOOR));
 	
 	output("There’s a rumbling in your [pc.belly], followed by a distinct pulling, liquefying sensation. The egg lodged in your [pc.pussy " + pregSlot + "] is coming out!");
 	output("\n\nIn a slight panic, you waddle");
-	if(InShipInterior()) output(" to your bedroom");
-	else if(InPublicSpace()) output(" to a nearby bathroom");
+	if(inShip) output(" to your bedroom");
+	else if(inPublic) output(" to a nearby bathroom");
 	else output(" to a secluded spot");
 	output(". Biological imperative makes you squat and, as the feeling intensifies dramatically, bear down with your hips. You huff and grunt as your lips are spread wide by the smooth oval, arousal peaking as it planes over your [pc.clit] - and then it’s gone, slipping out of you and landing on the floor with a wet clack.");
 	output("\n\nYou frown as you pick it up. Is that supposed to happen?");

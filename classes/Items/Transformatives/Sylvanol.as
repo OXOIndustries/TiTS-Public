@@ -246,7 +246,9 @@
 			var pc:Creature = args[0];
 			var tarColor:String = args[1];
 			output("\n\nYou feel a tingle like the medipen is going to change your skin, but suddenly it concentrates into just a few places. You watch in amazement as " + tarColor + " markings begin to flow across your [pc.skinFurScalesNoun] like a liquid paint, covering every inch of your body in the intricate tattoos. The lines stand out clear as day thanks to their glow, forming a beautiful contrast with your [pc.skinFurScales]. <b>You now have " + tarColor + " body markings!</b>");
-			pc.createStatusEffect("Vanae Markings");
+			//pc.createStatusEffect("Vanae Markings");
+			var patternType:int = 0;
+			pc.createStatusEffect("Body Markings", patternType, 0, 0, 0);
 			pc.skinAccent = tarColor;
 		}
 		public function fuckinShadowHairTF(pc:Creature):void

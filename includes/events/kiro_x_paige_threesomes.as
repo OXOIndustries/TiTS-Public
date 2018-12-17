@@ -1110,7 +1110,7 @@ public function PKTSPEHO(args:Array):void
 	output("\n\nPaige hums in ascension, her kicking legs shifting along your head again and another warm gush of her liquid coats your tongue. <i>“You heard the woman, [pc.name],”</i> Kiro announces as she shifts herself to the side, clambering off the bed again. You glance up, and you see her huge, black horsecock stand so erect that it nestles itself in between Kiro’s heavy boobs; it drips with its own spurting pre and with Paige’s spittle. <i>“Paige wants to be taken for a ride.”</i>");
 
 	if(!pc.hasCock()) output("\n\nYou eye that monster of a dick, and your [pc.thighs] clench at the fantasy of having Kiro drive it into you; to impale you so deeply that you’d hang from her dick like a condom. Your eyes cross at the idea of being filled like one.");
-	else output("You idly wonder to yourself how you’re going to keep busy when Kiro’s stuffing Paige’s box with her dick. Your own [pc.cock] lurches at some ideas, including maybe swapping positions and fucking her mouth, but you’re too lust-addled to decide on any one idea.");
+	else output("\n\nYou idly wonder to yourself how you’re going to keep busy when Kiro’s stuffing Paige’s box with her dick. Your own [pc.cock] lurches at some ideas, including maybe swapping positions and fucking her mouth, but you’re too lust-addled to decide on any one idea.");
 
 	output("\n\n<i>“You’re welcome to come with,”</i> Kiro invites, placing a hand on your shoulder. <i>“");
 	if(!pc.hasCock()) output("This doesn’t have to be a two-woman show.");

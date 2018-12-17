@@ -378,9 +378,9 @@ public function defeatDaKorgiShit():void
 	}
 	else addDisabledButton(5,"Sit On Her","Sit On Her","You need to be a centaur with a vagina or a centaur with balls and a penis for this.");
 	
-	if(eligibleForKorgiHumiliation()) addButton(6,"CockMockery",korgonneHardlightPussyStuffsStuffStuffings,undefined,"Cock Mockery","Your [pc.cockBiggest] is nothing to scoff at. Use it instead.");
-	else if(pc.hasHardLightEquipped() && pc.hasKeyItem("Hardlight Strap-on Upgrades")) addButton(6,"HardlightFuck",korgonneHardlightPussyStuffsStuffStuffings,undefined,"Hardlight Punishment","See if your hardlight sextoy can satisfy this insatiable puppy slut.");
-	else if(pc.hasCock()) addDisabledButton(6,"CockMockery","Cock Mockery","Your [pc.cockBiggest] is not nearly thick enough for this.");
+	if(eligibleForKorgiHumiliation()) addButton(6,"CockMockery",korgonneHardlightPussyStuffsStuffStuffings,true,"Cock Mockery","Your [pc.cockBiggest] is nothing to scoff at. Use it instead.");
+	else if(pc.hasHardLightEquipped() && pc.hasKeyItem("Hardlight Strap-on Upgrades")) addButton(6,"HardlightFuck",korgonneHardlightPussyStuffsStuffStuffings,false,"Hardlight Punishment","See if your hardlight sextoy can satisfy this insatiable puppy slut.");
+	else if(pc.hasCock()) addDisabledButton(6,"CockMockery","Cock Mockery","Your [pc.cockBiggest] is not nearly thick enough for this. You are definitely too big.");
 	else if(!pc.hasHardLightEquipped()) addDisabledButton(6,"HardlightFuck","Hardlight Punishment","You need hardlight-enabled underwear for this.");
 	else if(!pc.hasKeyItem("Hardlight Strap-on Upgrades")) addDisabledButton(6,"HardlightFuck","Hardlight Punishment","You need hardlight-enabled underwear for this - <b>with the upgrade that enables you to change the size.</b>.");
 
@@ -949,7 +949,7 @@ public function loseToKorgonneWithABigDickAfterGivingHerBigDickFetish2():void
 
 public function eligibleForKorgiHumiliation():Boolean
 {
-	return (pc.hasCock() && pc.biggestCockThickness() >= 2.7);
+	return (pc.hasCock() && pc.biggestCockThickness() < 2.7);
 }
 
 //hardlight overclock versus giant korgonne pussy [tbd title]
@@ -960,7 +960,7 @@ public function eligibleForKorgiHumiliation():Boolean
 //tooltip: See if your hardlight sextoy can satisfy this insatiable puppy slut.
 //disabled tooltip, no hardlight: You need hardlight-enabled underwear for this.
 //disabled tooltip, has a cock above minimum size: Your [pc.cockBiggest] is nothing to scoff at -- just use that instead.
-public function korgonneHardlightPussyStuffsStuffStuffings():void
+public function korgonneHardlightPussyStuffsStuffStuffings(korgiHumiliation:Boolean = false):void
 {
 	clearOutput();
 	author("Zeikfried");
@@ -970,7 +970,7 @@ public function korgonneHardlightPussyStuffsStuffStuffings():void
 	var buttfux:Boolean = (pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) 
 	//intro for small cocks
 	//coder to define 'small' based on korgonne capacity
-	if(eligibleForKorgiHumiliation())
+	if(korgiHumiliation)
 	{
 		output("You ");
 		if(!pc.isCrotchExposedByArmor()) output("begin to strip your [pc.armor]");

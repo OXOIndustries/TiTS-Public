@@ -363,10 +363,10 @@ public function buskySexNavigation(activeTopic:Function = undefined): void {
 	
 	if(activeTopic == buskySexChestWorship) addDisabledButton(1, "ChestWorship", "Chest Worship", "You just did that.");
 	addButton(1, "ChestWorship", buskySexChestWorship, new Undershirt(), "Chest Worship", "Worship the chest of the muscular adonis.");
-		
+	
 	if(!pc.hasCock() || buskyGetLargestBlowableCockIndex() == -1) addDisabledButton(2, "Get Blown", "Get Blown", "Requires a cock with girth under 10 inches and length under 36 inches.");
 	else addButton(2, "Get Blown", buskySexGetBlown, undefined, "Get Blown", "Get the bull to blow you.");
-		
+	
 	if (!pc.hasCock()) addDisabledButton(3, "Anal Pitch", "Anal Pitch", "You’ll need a real cock to take him for a ride.");
 	else if(pc.hasCock() && pc.smallestCockVolume() > chars["BUSKY"].analCapacity()) addDisabledButton(3, "Anal Pitch", "Anal Pitch", "You’re too big for him.");
 	else addButton(3, "Anal Pitch", buskySexAnalPitch, undefined, "Anal Pitch", "See if Busky’s up for a ride from behind.");
@@ -386,7 +386,7 @@ public function buskyGetLargestBlowableCockIndex():int {
 	while (counter > 0) {
 		counter--;
 		//check for cock with girth under 10 and length under 36
-		if (pc.cocks[counter].thickness() * Math.PI < 10 && pc.cocks[counter].cLength() < 36) {
+		if (pc.cocks[counter].girth() < 10 && pc.cocks[counter].cLength() < 36) {
 			//save index of first found cock, when none saved yet
 			if (largestCockIndex == -1) largestCockIndex = counter;
 			//check if current cock is longer than saved index cock

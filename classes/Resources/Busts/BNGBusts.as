@@ -7,10 +7,10 @@ package classes.Resources.Busts
 	public class BNGBusts
 	{
 		public function get PREVIEW():Class { return Bust_NEVRIE; }
-		public function get SIGNATURE():Class { return SigEmbed; }
+		//public function get SIGNATURE():Class { return SigEmbed; }
 		
-		[Embed(source = "../../../assets/images/npcs/bng/HR/sig.png", mimeType = "image/png")]
-		public var SigEmbed:Class;
+		//[Embed(source = "../../../assets/images/sig/bng.png", mimeType = "image/png")]
+		//public var SigEmbed:Class;
 
 		[Embed(source = "../../../assets/images/npcs/bng/nevrie.png", mimeType = "image/png")]
 		public var Bust_NEVRIE:Class;

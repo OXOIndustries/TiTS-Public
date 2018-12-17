@@ -3781,6 +3781,7 @@ public function look4Lund():void
 
 	var lundipoo:PregnancyPlaceholder = lundCumPlaceholder();
 	output("You’ll check his room first; the hold is a big place and you might as well start with the most likely location.");
+	output("\n\n");
 
 	//PC broken:
 	if(lundDommingPC()) output("Heading down the winding hallway a tad apprehensively, you begin to wonder if you should really be doing this. He’s <i>your</i> master, the one in charge, your owner. Even so, the curiosity burning within you overpowers the desire to not pry into your master’s life. You have to know what he does in his spare time, though now that you’re thinking about it properly he’s probably out hunting. That is what he does for the tribe, after all.");
