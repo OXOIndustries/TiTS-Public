@@ -2234,10 +2234,11 @@ public function flyTo(arg:String):void
 {
 	generateMapForLocation("SHIP INTERIOR");
 	
-	if (flags["SUPRESS TRAVEL EVENTS"] == 1)
-	{
-		flags["SUPRESS TRAVEL EVENTS"] = 0;
-	}
+	//No travel events on first zheng visit.
+	if(flags["ZHENG_SHI_PASSWORDED"] == undefined && arg == "ZhengShi") flags["SUPRESS TRAVEL EVENTS"] = 1;
+	//Otherwise clear suppress flag.
+	else if (flags["SUPRESS TRAVEL EVENTS"] == 1) flags["SUPRESS TRAVEL EVENTS"] = 0;
+	
 	else if(!InCollection(arg, ["Poe A", "karaQuest2"]))
 	{
 		//Eggshit Override!
