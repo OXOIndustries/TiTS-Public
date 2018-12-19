@@ -396,6 +396,7 @@ public function reportRiyaIfYouWant():void
 	output("\n\n<i>“I really am sorry, Steele. I wish there was more I could do. I can promise you that everything you’ve just told me stays between us, though,”</i> she says, taking a deep breath and removing her nails from her desk, giving you a perfect view of the deep furrows her claws have left in the wood. She sighs, poking at them with her index finger. <i>“Now, if you have any </i>other<i> comments, questions or concerns, I’ll do everything I can to help you.”</i> Her ears are still pinned back against her skull as she says this, you note.");
 	processTime(15);
 	flags["RIYA_REPORTED"] = 1;
+	flags["MET_GRENCE"] = 1;
 	clearMenu();
 	//[Snap](+5 points towards ‘Hard’ personality)((Tooltip: Give the fluffy Commander a piece of your mind. Kind of a dick move, considering that she seems every bit as angry as you do.))
 	addButton(0,"Snap",snapAtRiyasComm,undefined,"Snap","Give the fluffy Commander a piece of your mind. Kind of a dick move, considering that she seems every bit as angry as you do.");
@@ -1018,6 +1019,7 @@ public function riyaQuestProc():void
 	//PC has reported Riya: 
 	if(flags["RIYA_REPORTED"] != undefined) output("with Commander Grence at her side");
 	else output("with an ausar woman wearing the rank of a U.G.C. Commander, her golden fur practically shining in the station’s overhead lights. Her name-badge says ‘Grence’.");
+	flags["MET_GRENCE"] = 1;
 	output(" They’re both sporting deadly serious faces, Riya leaning down to exchange mostly inaudible whispers with the blonde ausar as they pass you. You manage to overhear something about an asteroid field and pirates, but nothing else. Is something happening? Whatever it is, it sounds dangerous.");
 
 	clearMenu();
