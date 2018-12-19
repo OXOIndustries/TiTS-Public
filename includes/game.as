@@ -4043,14 +4043,6 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			if(flags["SYRI_VIDEO_DELAY_TIMER"] == undefined) flags["SYRI_VIDEO_DELAY_TIMER"] = GetGameTimestamp();
 			else if(nextTimestamp >= (flags["SYRI_VIDEO_DELAY_TIMER"] + (60*24*3))) goMailGet("syri_video", (flags["SYRI_VIDEO_DELAY_TIMER"] + (60*24*3)));
 		}
-		//Shade Holiday shit
-		if(isChristmas() && flags["SHADE_ON_UVETO"] >= 3)
-		{
-			if (!MailManager.isEntryUnlocked("shade_xmas_invite"))
-			{
-				if(shadeIsHome() && (shadeIsLover() || shadeIsSiblings())) goMailGet("shade_xmas_invite");
-			}
-		}
 		//Prai email stuff
 		if (flags["PRAI_EMAIL_NUMBER"] != undefined && flags["PRAI_EMAIL_STAMP"] != undefined && nextTimestamp >= (flags["PRAI_EMAIL_STAMP"] + (60*10)))
 		{
@@ -4077,6 +4069,20 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		else if (!isHalloweenish() && flags["SUCCUCOW'D"] != undefined)
 		{
 			flags["SUCCUCOW'D"] = undefined;
+		}
+		//Christmas Stuff j-j-j-jam it in!
+		if(isChristmas())
+		{
+			//Riya xmas stuff.
+			if(flags["MET_RIYA"] == undefined && flags["RIYA_PARTIED_YEAR"] == undefined && !MailManager.isEntryUnlocked("riya_party_invite")) goMailGet("riya_party_invite");
+			//Shade Holiday shit
+			if(flags["SHADE_ON_UVETO"] >= 3)
+			{
+				if (!MailManager.isEntryUnlocked("shade_xmas_invite"))
+				{
+					if(shadeIsHome() && (shadeIsLover() || shadeIsSiblings())) goMailGet("shade_xmas_invite");
+				}
+			}
 		}
 		//RandyClaws email
 		if(flags["CIARAN_MET"] != undefined && isChristmas() && (flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] == undefined || flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] != getRealtimeYear()))
