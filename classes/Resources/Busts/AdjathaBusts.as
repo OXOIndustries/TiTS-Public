@@ -620,6 +620,13 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/nymfoe.png", mimeType = "image/png")]
 		public var Bust_NYMFOE:Class;
 		public var Bounds_NYMFOE:Rectangle = new Rectangle(35, 0, 70, 70);
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/olympia.png", mimeType = "image/png")]
+		public var Bust_OLYMPIA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/olympia_steele.png", mimeType = "image/png")]
+		public var Bust_OLYMPIA_STEELE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/olympia_nude.png", mimeType = "image/png")]
+		public var Bust_OLYMPIA_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/ovir_dancer.png", mimeType = "image/png")]
 		public var Bust_OVIR_DANCER:Class;
@@ -917,6 +924,11 @@ package classes.Resources.Busts
 		public var Bust_TESSA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/tessa_nude.png", mimeType = "image/png")]
 		public var Bust_TESSA_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/teyaal.png", mimeType = "image/png")]
+		public var Bust_TEYAAL:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/teyaal_nude.png", mimeType = "image/png")]
+		public var Bust_TEYAAL_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/tivf.png", mimeType = "image/png")]
 		public var Bust_TIVF:Class;
@@ -1573,6 +1585,13 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nymfoe.png", mimeType = "image/png")]
 			public var Full_NYMFOE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/olympia.png", mimeType = "image/png")]
+			public var Full_OLYMPIA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/olympia_steele.png", mimeType = "image/png")]
+			public var Full_OLYMPIA_STEELE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/olympia_nude.png", mimeType = "image/png")]
+			public var Full_OLYMPIA_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ovir_dancer.png", mimeType = "image/png")]
 			public var Full_OVIR_DANCER:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ovir_dancer_nude.png", mimeType = "image/png")]
@@ -1825,6 +1844,11 @@ package classes.Resources.Busts
 			public var Full_TESSA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tessa_nude.png", mimeType = "image/png")]
 			public var Full_TESSA_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/teyaal.png", mimeType = "image/png")]
+			public var Full_TEYAAL:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/teyaal_nude.png", mimeType = "image/png")]
+			public var Full_TEYAAL_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tivf.png", mimeType = "image/png")]
 			public var Full_TIVF:Class;
