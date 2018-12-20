@@ -107,6 +107,11 @@ public function dreamChances(inShip:Boolean = false):Boolean
 			//MistyBirbs witch futa stuff
 			if(pc.hasVagina() && !pc.hasCock()) dreams.push(mistybirbsDream);
 		}
+		//Christmas Funzles!
+		if(isChristmas())
+		{
+			dreams.push(carolJChristmasElfDreamyWeamy);
+		}
 		if(MailManager.isEntryViewed("lets_fap_unlock"))
 		{
 			dreams.push(angelDreamGo);
