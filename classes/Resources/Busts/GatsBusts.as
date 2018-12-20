@@ -64,6 +64,13 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Colenso.png", mimeType = "image/png")]
 		public var Bust_COLENSO:Class;
 
+		/* UNUSED FEMALE BUST COUNTERPOINT TO COLENSO:
+		[Embed(source = "../../../assets/images/npcs/gats/goblin.png", mimeType = "image/png")]
+		public var Bust_GOBLIN:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/goblin_nude.png", mimeType = "image/png")]
+		public var Bust_GOBLIN_NUDE:Class;
+		*/
+
 		[Embed(source = "../../../assets/images/npcs/gats/Cunt_Snake.png", mimeType = "image/png")]
 		public var Bust_CUNTSNAKE:Class;
 
@@ -336,6 +343,13 @@
 			[Embed(source = "../../../assets/images/npcs/gats/hr/cameron_nude.png", mimeType = "image/png")]
 			public var Full_CAMERON_NUDE:Class;
 			
+			/* UNUSED FEMALE BUST COUNTERPOINT TO COLENSO:
+			[Embed(source = "../../../assets/images/npcs/gats/hr/goblin.png", mimeType = "image/png")]
+			public var Full_GOBLIN:Class;
+			[Embed(source = "../../../assets/images/npcs/gats/hr/goblin_nude.png", mimeType = "image/png")]
+			public var Full_GOBLIN_NUDE:Class;
+			*/
+
 			[Embed(source = "../../../assets/images/npcs/gats/hr/ehstraffe.png", mimeType = "image/png")]
 			public var Full_EHSTRAFFE:Class;
 
