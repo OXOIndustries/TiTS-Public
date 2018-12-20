@@ -4074,7 +4074,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		if(isChristmas())
 		{
 			//Riya xmas stuff.
-			if(flags["MET_RIYA"] == undefined && flags["RIYA_PARTIED_YEAR"] == undefined && !MailManager.isEntryUnlocked("riya_party_invite")) goMailGet("riya_party_invite");
+			if(flags["MET_RIYA"] == undefined && flags["RIYA_PARTIED_YEAR"] == undefined && !MailManager.isEntryUnlocked("riya_party_invite") && rand(5) == 0 && days % 3 == 0) goMailGet("riya_party_invite");
 			//Shade Holiday shit
 			if(flags["SHADE_ON_UVETO"] >= 3)
 			{
@@ -4082,6 +4082,11 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 				{
 					if(shadeIsHome() && (shadeIsLover() || shadeIsSiblings())) goMailGet("shade_xmas_invite");
 				}
+			}
+			//Embry holiday shit!
+			if(flags["EMBRY_TREATMENTS"] == 3 && rand(5) == 0 && days % 5 == 0)
+			{
+				if(!MailManager.isEntryUnlocked("emrby_xxxmas_invite") && flags["SEXED_EMBRY"] != undefined) goMailGet("emrby_xxxmas_invite");
 			}
 		}
 		//RandyClaws email

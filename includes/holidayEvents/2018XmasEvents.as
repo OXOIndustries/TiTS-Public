@@ -1,4 +1,4 @@
-﻿//                                 By Franks
+﻿//                               By Franks
 
 //PC gets accidentally invited to UGC Christmas party
 //Gets to watch Riya and Grence get shitfaced and bang
@@ -155,7 +155,7 @@ public function stayAtPartyWhileGrenceAndRiyaBone():void
 	author("Franks");
 	output("It’s a pretty fun party. You spend some time watching the girls wrestling in the chocolate pool lose their tops, give up on the wrestling contest and start trading swigs of a bottle of vodka and making out (much to the dismay of everyone except for one Thraggen man who bet they’d start making out midway through the fight and just may have set the whole thing up). Then you make your way over to the gaming corner, where you win a few hundred credits in a Call of Valor tournament, only to lose it playing darts... which is completely the fault of whatever was in that punch, of course.");
 	output("\n\nIt’s a great time, and everyone is friendly... but you can’t shake the feeling you’re missing something. A feeling that’s confirmed when you see " + (flags["MET_RIYA"] != undefined ? "Riya":"the big human woman who was making an ass of herself earlier") + " and ‘Santa Grence’ stumbling out of one of the side hallways dripping with sweat, their clothes and hair disheveled and leaning heavily on each other. It’s pretty obvious what they were up to. And you missed it. Damn it all...");
-	output("\n\nOn your way out, you spot something lying in a trashbin, something that doesn’t look like it belongs there... is that a horse dildo? ... It is. It even has a set of balls. You pluck it out, noting thankfully that it has avoided getting anything nasty on it.");
+	output("\n\nOn your way out, you spot something lying in a trashbin, something that doesn’t look like it belongs there... is that a horse dildo?... It is. It even has a set of balls. You pluck it out, noting thankfully that it has avoided getting anything nasty on it.");
 	output("\n\nWell, at least you had a good time at the party. And this free dildo looks pretty fuckin’ sweet too. You’ll have to check it out later...");
 
 	//PC gains ‘Drunk’
@@ -165,4 +165,356 @@ public function stayAtPartyWhileGrenceAndRiyaBone():void
 	currentLocation = "TAVROS LIFT";
 	quickLoot(new HorseCock());
 	//PC gains x1 Horse-cock
+}
+
+
+/*First Frost with Embry
+Contains: Lots of adorkable cuteness, cookies, and cuddles
+(Also snowballing and oral sex)
+By Frogapus
+
+Encounter begins with email.
+
+Email only triggers with 3a or 3b level of affection with Embry, Player must have initiated a sex scene with her before.
+
+Email Invite
+From: SpacePrincess@bibliotech
+*/
+
+public function embryXmasInvite():String
+{
+	return ParseText("Hi, [pc.name]!\n\nIt’s [embry.name], back on Myrellion! I hope you’re having a blast on your space adventures-I can’t wait to hear all about them!\n\nIn fact, maybe don’t wait? If you’d like to stop by for a visit, I have a surprise for you! =3\n\nThe next time you’re on Myrellion, drop by the Golden Peak-I’m sure you remember the way to my apartment. You can stop by and we can catch up.\n\nHope to see you soon!\n\t[embry.name]");
+}
+
+//Bar Redirect
+public function embryBarRedirect2018Xmas():void
+{
+	clearOutput();
+	showName("\nWAITRESS");
+	author("Frogapus");
+	output("You walk into the bar, glancing around, but don’t see [embry.name].");
+	output("\n\nAn ausar waitress bustles by, then glances at you. <i>“Oh hey, are you Steele?”</i> she stops short, balancing a tray of empty glasses on one arm. <i>“If you’re looking for [embry.name], she’s off today. You should probably head to her place.”</i>");
+	flags["EMBRY_XMAS_2018_VISIT_PROC"] = -1;
+	processTime(2);
+	clearMenu();
+	addButton(0,"Apartment",visitEmbrysApartment,undefined,"Head to [embry.Name]’s Apartment","You head out of the Golden Peak and toward [embry.name]’s apartment.");
+	//Just here to drink
+	addButton(1,"Just Drink",mainGameMenu,undefined,"Just Here to Drink","You shrug and make your way into the bar.");
+}
+
+//The Apartment
+public function visitEmbrysApartment():void
+{
+	clearOutput();
+	showEmbry();
+	author("Frogapus");
+	output("You make your way to [embry.name]’s apartment and shiver slightly. It’s definitely colder on Myrellion this time of year. When you get to [embry.name]’s apartment, you knock. After a few moments without an answer, you try the door, surprised as it opens, unlocked.");
+	output("\n\nYou enter [embry.name]’s apartment and are greeting with a radically different sight than before. You blink in surprise, trying to sort the sights and sounds. Patterns of frost appear to be sprayed onto the walls, while a small vid display is propped up on a pile of books, displaying a crackling fireplace. The floor is strewn with blue and white confetti, and folksy music plays from a small, battered speaker. It also looks like someone’s propped up a... tumbleweed in the corner and decorated it with paper snowflakes. One side of the room appears to have been converted into a makeshift kitchen, crowded with several bowls, bottles, and utensils. On the floor near the door, a small metal box proclaims itself to be a <i>“Heat-o-matic.”</i>");
+	output("\n\n[embry.name] has her back to you, stirring a very large mixing bowl and singing along to the violin-based music, naked, save for a white-and-red apron tied snugly around her.");
+	output("\n\n<i>“Thoughts of your smiiiiiiiiiiiile,”</i> croons [embry.name] as she glances at a small display propped up on a table, <i>“that run in my miiiiiiiiiiind ...”</i> As she mixes her bowl, her hips sway in gentle counterpoint, swaying her bare butt from side to side. Her pink-furred tail curves up behind her, gently bobbing to her rhythm.");
+	output("\n\n<i>“Are priceless treasure!”</i> she twirls, her toes nimbly pirouetting her across the cabin of the ship. Too late, you realize that the simii girl has her eyes closed, and she’s on a collision course with you.");
+
+	//Player Reflexes < 15 and Physique <15
+	if(pc.PQ() < 50 && pc.RQ() < 50) 
+	{
+		output("\n\n<i>“And a goldmine,”</i> she sings, spinning towards you.");
+		output("\n\n<i>“[embry.name]!”</i> you shout in warning, too late. The monkey girl’s blue eyes open wide in shock, and she throws her hands up, her mixing bowl flying through the air as she smacks into you.");
+		output("\n\nYou tumble into a heap, your [pc.butt] smacking painfully into the floor, with [embry.name] on top of you. You wheeze from the impact, taking a moment to catch your breath, covered in monkey girl and some kind of pale, thick sludge.");
+		output("\n\nBefore you can get words out, [embry.name] has hopped up on her hands and knees, her hands a blur as she frantically wipes the sludge off of you, babbling rapid-fire apologies. She’s spattered with some of it, as well as a few streaks of flour on her cheeks and neck.");
+		output("\n\n<i>“Oh my gosh, [pc.name], I’m so so sorry, I didn’t mean to do that, please don’t think that I did, I was just in the middle of baking, and I didn’t know when you were coming and I didn’t think you’d be right there, that’s just when the twirl comes in the song, and oh my gosh most of it’s on you, so at least it’s not that huge a mess, not that it’s not bad that I got it all over you, but I’m still really really sorry, and I-”</i>");
+		output("\n\nYou cut her off with a quick assurance, and help the monkey girl to clean up as she explains herself.");
+	}
+	//Player Reflexes < 15 and Physique >15
+	else if(pc.RQ() < 50)
+	{
+		output("\n\n<i>“And a goldmine,”</i> she sings, spinning towards you.");
+		output("\n\n<i>“[embry.name]!”</i> you shout in warning, too late. The monkey girl’s blue eyes open wide in shock, and she throws her hands up, her mixing bowl flying through the air as she smacks into you.");
+		output("\n\nYou stand firm as she collides, keeping both yourself and the simii upright as her bowl spatters up over her face.");
+		output("\n\n<i>“Ack! Pfft!”</i> she sputters, her face covered in a thick, pasty sludge.");
+		output("\n\nYou take the bowl from her as she lifts up the front of her apron, wiping her face clean.");
+		output("\n\n<i>“Oh no! Oh my gosh, [pc.name]! Did I get any on you! Are you okay?”</i>");
+		output("\n\nOnce you assure her that you’re alright, the monkey girl explains herself.");
+	}
+	//Player Reflexes > 15
+	else
+	{
+		output("\n\nYou manage to deftly step out of the way, letting [embry.name] finish her twirl.");
+		output("\n\n<i>“And a goldmine!”</i> she sings.");
+		output("\n\nAs her spin slows, you slip behind her, wrapping your arms around her waist.");
+		output("\n\n<i>“Ohmigosh!”</i> she yelps, nearly dropping the mixing bowl, instead spattering some up on her cheek. <i>“[Pc.name]! I didn’t know you’d come back yet!”</i> You feel her bare butt squish against you as she relaxes.");
+		output("\n\nYou let her go, and help her wipe the spatter of thick goo from her face as she explains.");
+	}
+	output("\n\n<i>“Back on Omorii, we had a winter tradition. When the first dusting of snow hit the plains, we’d all bake cookies. And, well, Myrellion doesn’t really get snow, but it has been getting colder, so I thought it might be nice to bake a few cookies,”</i> she says, squirming a bit as she explains.");
+	output("\n\nJust cookies? Not that you mind the simii’s company, but that sounds like an odd thing to summon someone across the stars for. You mention this to [embry.name] and she blushes, looking down.");
+	output("\n\n<i>“I mean, it’s First Frost-when we make cookies with, you know... loved ones,”</i> she mumbles. <i>“Plus songs and getting warm in front of the fire, and just... spending time together,”</i> she adds quickly. She looks up, her blue eyes wide as she continues, speeding up, <i>“of course, if you don’t want to, that’s totally okay-I don’t want to force you or anything. Oh my gosh, did I trick you into coming here? I absolutely didn’t mean to. I mean, I wore just the apron, because I thought it’d be cute, but it wasn’t meant as any sort of entrapment or anything skeezy like that. I’m so sorry! Please don’t think I was trying to-”</i>");
+	output("\n\nIt’s clear that she’s going to keep going unless you cut her off. You should probably also let know if you’d like to stay for baking cookies.");
+	processTime(14);
+	clearMenu();
+	addButton(0,"BakeCookies",bakeCookiesWithEmbizzle);
+	addButton(4,"Leave",leaveHolidayEmbry);
+}
+
+//Leave
+public function leaveHolidayEmbry():void
+{
+	clearOutput();
+	showEmbry();
+	author("Frogapus");
+	flags["EMBRY_XMAS_2018_VISIT_PROC"] = -2;
+	output("You’re not really interested in baking cookies with [embry.name] and tell her so.");
+	output("\n\nThe simii’s shoulders drop and she looks at her feet. <i>“Oh, right. That makes sense,”</i> she says. <i>“I’m sorry. I understand. I know you have things to do,”</i> she mumbles.");
+	output("\n\nYou nod and head out, leaving [embry.name] in her apartment.");
+	clearMenu();
+	addButton(0,"Next",move,"609");
+}
+
+//Bake Cookies
+public function bakeCookiesWithEmbizzle():void
+{
+	clearOutput();
+	showEmbry();
+	author("Frogapus");
+	output("You tell [embry.name] that you’d love to bake cookies with her.");
+	output("\n\n<i>“Ohmigosh, yay!”</i> she squeaks, clapping her hands together. The pink girl hops up into the air, the front of her apron flapping up, and for a brief moment, " + (embry.hasCock() ? "you get a glimpse of her petite cock under the frilly apron.":"you get a flash of the smooth curve of her mound beneath."));
+	output("\n\nShe catches your eye, blushes, immediately covering the front of her apron. <i>“Oops! Oh gosh, I’m sorry! I didn’t mean to flash you like that-I mean, it’s not like I don’t want you to-in that I, um, oh gosh...”</i> she trails off, her cheeks turning as pink as her cotton-candy fur.");
+	output("\n\nIt’s true that you weren’t really expecting her in just an apron, and ask her about it.");
+	output("\n\n<i>“W-w-well,”</i> she stammers, her fingers toying with the edges of her apron. <i>“I thought that m-maybe you might want to possible do some sorta otherstuffatthesametime...”</i> the last part of the sentence comes out in a jumble, but you catch the gist of it and raise your eyebrows.");
+	output("\n\n<i>“I... might have just finished a novel that kinda had a sort of a scene where two people get up to domestic-type stuff and do </i>other<i> stuff in the middle of it and... if you wanted to... we could maybe?”</i> Her cheeks are bright red at this point, and her gaze firmly fixed on her toes.");
+	output("\n\nYou smile at the mumbling simii in front of you and ask what she has in mind.");
+	output("\n\nShe blinks at the floor, then looks up at you, her tail curling and uncurling in excitement. <i>“Oh! Well, um, you know it doesn’t </i>have<i> to be that sort of thing. If you want to just maybe have some cocoa and cuddle up, that would be fine. And I was getting some snowball cookies started, and I know there’s a sexy-type-sort-of-thing with the same name that could maybe be kinda fun-only if you’re interested, I mean. And, uh, well, I haven’t seen you for a while, so if you want to just do something kinda naughty, we could maybe try that out, m-maybe with my mouth-I read about something kind festive that could be fun...”</i>");
+	output("\n\nThat’s quite a menu she’s laid out for you.");
+
+	processTime(10);
+	pc.lust(5);
+	clearMenu();
+	addButton(0,"Cocoa&Cuddle",cocoaAndEmbryCuddles);
+	addButton(1,"Snowball",snowBallinWithEmbry);
+	addButton(2,"CandyOral",candyCaneOral);
+	addButton(4,"Leave",leaveEmrbyHoliday2018);
+}
+
+//Cocoa and Cuddles
+//Snowball (and) Cookies (only available if PC has a cock)
+//Candy Cane Oral (PC must have cock or vagina)
+//Leave
+
+//Leave
+public function leaveEmrbyHoliday2018():void
+{
+	clearOutput();
+	showEmbry();
+	author("Frogapus");
+	flags["EMBRY_XMAS_2018_VISIT_PROC"] = -3;
+	output("You tell her that you’re not really feeling anything of those things, and that you really should head out.");
+	output("\n\n<i>“Oh, well... I understand,”</i> she says, her shoulders drooping.");
+	output("\n\nYou exchange farewells and head out, leaving [embry.name] in her apartment.");
+	processTime(3);
+	clearMenu();
+	addButton(0,"Next",move,"609");
+}
+
+//Snowball Cookies
+public function snowBallinWithEmbry():void
+{
+	clearOutput();
+	showEmbry();
+	author("Frogapus");
+	flags["EMBRY_XMAS_2018_VISIT_PROC"] = 1;
+	output("You tell her that you’re interested in snowball cookies.");
+	output("\n\n<i>“Oh yay!”</i> she chirps, and immediately twirls around to the small folding table. <i>“I, um, think there’s still enough batter for them, and I r-rented a small heat-o-matic for baking them. I just, um, need some help shaping them and putting them on the pan, if that’s okay.”</i>");
+	output("\n\nYou decide that you’re probably a little too clothed for sexy baking, catching sight of a spare apron draped over a pile of books. You begin stripping off your equipment as [embry.name] busies herself at her makeshift cooking table.");
+	output("\n\nShe plants her hands awkwardly on the desk, and turns her head back to you, her naked, [embry.butt] perked out towards you. <i>“Would you like to help me... shape my cookies?”</i>");
+	output("\n\nYou tilt your head in confusion, then snort reflexively. It was clear that she was trying to be seductive, but between the awkwardness of the line, and [embry.name]’s inexperience in seduction, it definitely came off more than a little goofy.");
+	output("\n\nShe looks crestfallen at your reaction, but before the simii girl can respond, you slide up behind her, wrapping your arms around her slim waist and nuzzling against her neck.");
+	output("\n\n<i>“Was I... oh... mmm, [Pc.name] ....”</i> she murmurs, her slight body shivering softly against yours.");
+	output("\n\nYou nibble softly against her earlobe, and a sweet sigh slips from her lips. You spend a few minutes nibbling and teasing her, your hands running up the front of her apron, cupping her [embry.breasts]. You stiffen under your apron, pressing through it against [embry.name]’s perky butt and are rewarded with another breathy sigh from the simii." + (embry.hasCock() ? " You look down over her shoulder and catch sight of her own apron tenting up with her cute little erection.":""));
+	output("\n\n[embry.name] seems to have been reduced to a taut, shivering mess, so you decide to pull back a bit. The simii girl <i>says</i> she wanted to make cookies, after all, and she’d currently in no state to do so.");
+	output("\n\nIt takes her a minute or two to form words again, and when she does, they’re still a little jumbled. <i>“Hhhahhh... oh, [pc.name], th-that was just... so... wow ...”</i>");
+	output("\n\nOnce she can re-order her words properly, she starts walking you through shaping the cookies and placing them on the pan. The task is simple enough, and you remain behind [embry.name], reaching around her to roll the lumpy dough, and occasionally giving her a quick nibble.");
+	output("\n\nIt takes slightly longer than it probably should to make the cookies, but neither you nor [embry.name] is complaining. Cheerful, folksy music plays in the background, and the faux-frost on the walls twinkles in the firelight from the vid display.");
+	output("\n\nAmidst giggles, moans, and breathy sighs, [embry.name] pops the cookies in the oven, while you sit on the edge of her small bed, your legs spread wide.");
+	output("\n\n<i>“It’ll be a few minutes,”</i> [embry.name] says, biting her lip.");
+	output("\n\nWith a smile, you wonder aloud how you’ll pass the time.");
+	output("\n\n<i>“Well, since I’m, um, already pre-heated, you can... um ...”</i> she stops, wrinkling her nose.");
+	output("\n\nYou try to hold in a " + pc.mf("chuckle","giggle") + ", but it’s clear that she reads it on your face. <i>“Oh my gosh, shush!”</i> she squeaks. <i>“This is a l-lot harder than it looks,”</i> she pouts, stomping her foot indignantly.");
+	output("\n\nYou grin and reassure her, pulling her in close to you, your fingers running from her temples down behind her ears, tracing their way through her pink hair. She moans softly, catching one of your hands with both of hers, and cupping it against her cheek. Eyes half-closed, she nuzzles against it, her breath warm against your wrist.");
+	output("\n\nThe background music is a slow violin piece, and you both unconsciously follow it with long, measures of touch against each other’s skin. Her fingers running down your sides, your palms caressing up the small of her back. A brush of her " + (embry.hasCock() ? "stiffening cock against your thigh,":"moist mound against your thigh,") + " and an answering strum of your fingers across her lips.");
+	output("\n\nShe peppers a warm trail of kisses down your front and across your thigh as you run your fingers through her hair, tracing each forefinger along the edges of her ears.");
+	output("\n\n<i>“Oh, [pc.name],”</i> she breathes, <i>“what are you doing to me?”</i>");
+	output("\n\nAnd the music plays.");
+	output("\n\nWhen her warm lips press a kiss against your cock, you groan, leaning back. The kiss is followed by a nuzzle at the base of your shaft, then a few licks from a tentative tongue. You look down, and [embry.name]’s looking up at you, your dick draped across her sweet face. <i>“Is-is it okay so far?”</i> she asks hesitantly.");
+	output("\n\nYou nod, taken a bit speechless by the sight of so much sweet lewdness at once.");
+	output("\n\n<i>“Yay,”</i> she murmurs. [embry.name] tilts her head back, pressing her lips to the base of your shaft, and slowly kisses her way up the underside. You breathe heavier with each soft, sucking kiss. By the time she gets to your tip, you’ve already got a sizable dollop of precum balanced atop it. [embry.name] draws back her head, biting her lip, then looks questioningly up at you, her hips wiggling beneath her.");
+	output("\n\nYou nod in breathless anticipation, and she ever so slowly dips her tongue against your pre. Her lips follow, pressing an enveloping kiss around your cockhead. She sucks it down partway, then pulls back up, sliding her mouth up and down your tip a handful of times, her hands wrapped around the base, as if she were slurping up a melting popsicle. You groan as she pulls her mouth off your dick, dropping beneath it to return to a happy, hungry kisses.");
+	output("\n\nIt goes this way for a while in the small apartment, the cluttered space filled with holiday decorations, the smell of baking cookies filling the air, and [embry.name] giving your dick a slow, lazy tonguebath. She’s a little clumsy, and every so often, she looks up at you for approval, but that just adds to the slow, measured pace. With each slurp of your cockhead, you get closer to cumming, but she pulls back each time, leaving your dick throbbing beneath the monkey girl’s kisses.");
+	output("\n\nYou’re breathing heavier and heavier and your dick twitches with each kiss from [embry.name]. You can feel your climax cumming, and you moan this to her.");
+	output("\n\nShe yelps and plants her lips firmly over the tip of your dick, her dexterous hands stroking its base.");
+
+	//Low-to-Normal cum
+	if(pc.cumQ() < 100)
+	{
+		output("\n\nYou groan, letting loose a jet of cum into [embry.name]’s mouth. She squeaks, bobbing her head up and down, her cheeks puffing out with your load.");
+	}
+	//Large amounts of cum
+	else
+	{
+		output("\n\nYou groan, letting loose jet after jet of cum into [embry.name]’s mouth. She sputters, her cheeks instantly puffing out, and the rest of it spurting out around her mouth and across her face.");
+	}
+	output("\n\nShe looks questioningly up at you, her mouth full of your cum, and you remember what she said about snowballs.");
+	output("\n\n<b>Do you want [embry.name] to snowball you?</b>");
+	processTime(15);
+	embry.loadInMouth(pc);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Yes",yesSnowballEmbry);
+	addButton(1,"No",noSnowballEmbry);
+}
+
+//Yes.
+public function yesSnowballEmbry():void
+{
+	clearOutput();
+	showEmbry(true);
+	author("Frogapus");
+	output("You nod, and she clambers up the bed, perched on all fours above you, then leans down, pressing her cum-smeared lips to yours. You meet her halfway, your mouth open as her lips part. Together, you share a cum-filled kiss. One of you (you’re a little too addled to tell) starts moaning first, quickly followed by the other, as your tongues intertwine, the [cum.flavor] taste of your climax filling your mouths.");
+	output("\n\nYou pull back, breaking the kiss, and she gulps, licking her lips. You follow suit, gazing up at the surprisingly naughty little monkey on top of you. She blushes immediately under your gaze, dropping her eyes and biting her lip.");
+	output("\n\n<i>“W-was that okay?”</i> she asks.");
+	output("\n\nYou tilt her head back up and give her another kiss in assurance.");
+	processTime(5);
+	pc.loadInMouth(pc);
+	snowballEmbryOutro();
+}
+
+//No.
+public function noSnowballEmbry():void
+{
+	clearOutput();
+	showEmbry(true);
+	author("Frogapus");
+	output("You shake your head, and she gulps down your load, blushing under your gaze.");
+	output("\n\n<i>“W-was that okay?”</i> she asks.");
+	output("\n\nYou grin and pat her head in reassurance.");
+	snowballEmbryOutro()
+}
+
+public function snowballEmbryOutro():void
+{
+	output("\n\nA brief chime from the small oven interrupts your reverie.");
+	output("\n\n<i>“The cookies!”</i> yelps [embry.name], springing up and grabbing a pair of pink, shark-shaped oven mitts.");
+	output("\n\nShe pulls a pan of lightly-browned cookies out of the oven and begins fanning them. As the cookies cool, [embry.name] walks you through the finishing touches, filling a bowl with powdered sugar and spices. When you’re done, you take turns rolling the warm cookies around in the dusting, turning them into small, white balls before stacking them on a plate.");
+	output("\n\n<i>“Snowballs!”</i> she chirps proudly, holding the plate up in triumph.");
+	output("\n\nYou burst out laughing. The pink-hair monkey-girl’s apron is akew, and is still wearing her shark oven mitts. Powdered sugar streaks most of her naked body, and there’s still a smear of cum on her cheek.");
+	output("\n\nHer mouth drops open in shock, but this time, she catches a glimpse of herself in her room mirror, and starts giggling herself. She sets the cookies down as you both explode into peals of laughter.");
+	output("\n\nWhen the laughter passes, you spend the next hour together, feeding each other cookies and chatting.");
+	output("\n\nAs the conversation winds down and one after the other, the cookies disappear, [embry.name] leans in close and nuzzles against your neck.");
+	output("\n\n<i>“I’m so happy you came by, [pc.name]. Thank you,”</i> she says. <i>“I miss you when you’re not around.”</i>");
+	output("\n\nYou lean down and kiss her gently, bringing that familiar blush to her cheeks.");
+	output("\n\n<i>“Happy First Frost, [embry.name],”</i> you say.");
+	output("\n\n<i>“Happy First Frost, [pc.name],”</i> she answers, practically glowing.");
+	output("\n\nAfter a bit more time dozing in happy cuddles, you bid [embry.name] a fond farewell and head off to your ship.");
+	processTime(25);
+	clearMenu();
+	addButton(0,"Next",move,"SHIP INTERIOR");
+}
+
+//Candy Cane Oral
+public function candyCaneOral():void
+{
+	clearOutput();
+	showEmbry(true);
+	author("Frogapus");
+	flags["EMBRY_XMAS_2018_VISIT_PROC"] = 2;
+	output("You tell [embry.name] that you’re not much for baking, but you’d enjoy doing something festive and naughty with her.");
+	output("\n\nEmbry blushes and smiles, her eyes unable to meet yours. <i>“Yay! Let me just get these cookies in the oven, and you can get comfortable over there.”</i> Her tone is casual, but her tail is curling and uncurling excitedly.");
+	output("\n\nYou undress, lying down on Embry’s bed, your eyes scanning the cluttered room as she busies herself in her makeshift kitchen.");
+	output("\n\nYou eyes land on a small, battered book lying propped open next to the bed. You pick it up and give it a look over. The cover features a swarthy bull man embracing a scantily-dressed kui-tan in what looks like an antique kitchen. The title reads, <i>A Recipe for Love</i>. [embry.name] hums to herself, setting dough on a pan as you flip through the book. Each chapter of the steamy romance begins with a different recipe. It’s one part cookbook, and three parts smut, and you’re pretty sure where [embry.name] got the idea for this encounter.");
+	output("\n\n<i>“Eep!”</i> squeaks [embry.name]. You glance up to see her looking at you with her hands clapped to her cheeks. <i>“I’m sorry. That’s the book wh-where I got the idea from. Um, please put it down so you don’t spoil the surprise, please?”</i>");
+	output("\n\nFor [embry.name], that was a surprisingly forceful request. You close the book and set it aside. [embry.name] looks at you, her hands folded behind her back as she gently wiggles from side to side.");
+	output("\n\n<i>“Now, um, if you w-wouldn’t mind, would you please close your eyes? And-and keep them closed?”</i> she asks.");
+	output("\n\nYou acquiesce, closing your eyes. You hear the soft, folksy music filling the room, the rattle of bottles and [embry.name] prepares her surprise, and the barest hint of cookies beginning to bake. [embry.name]’s comforter is thick beneath you, and you feel the softness of her pillows behind you.");
+	output("\n\nThere’s a sudden clinking, and a strong smell of peppermint fills the room. You turn your head this way and that, taking it in.");
+	output("\n\n<i>“No peeking!”</i> [embry.name] reminds you, and you settle back against the bed.");
+
+	//If PC has cock
+	if(pc.hasCock())
+	{
+		output("\n\nYou feel the weight of her settling down at the foot of the bed, and a soft kiss on your dick.");
+		output("\n\nYou moan in surprise, then yelp at the sudden rush of cold in the same spot, as if someone had just brushed an ice cube against your dick. You open your eyes and glance down at [embry.name], crouched between your legs. She smiles up at you, her lips glimmering with red-and-white striped-lipstick.");
+		output("\n\n<i>“It’s called, um, Peppermint Kiss,”</i> she explains, looking nervous. <i>“The book said how to make it, and, um, I wanted to try it out because it looked really easy, and I know I should have asked, but I kind of wanted it to be a surprise. I hope that’s okay,”</i> she chatters.");
+		output("\n\nYou nod and pat her head in approval. She purrs, nuzzling her head against your hand, her tail curling up in a tight, happy spiral.");
+		output("\n\nShe leans down to kiss your shaft again, and you lean back, enjoying the warmth of her lips, then yelping softly at the pleasant chill that follows. <i>“D-does it feel good?”</i> asks [embry.name]. You answer with a grin.");
+		output("\n\nShe smiles back, her painted lips gleaming in the orange glow of her apartment lights. She bobs her head down, planting another burst of warm, then cold against your length. You groan and lean back-you could get used to this.");
+		output("\n\nShe paints your dick with her fluttering kisses, and peck after peck, you stiffen, until your dick stands at attention in front of her face. She looks up at you from behind it, bites her lip, then nervously draw her tongue up the full length of your dick. Her lower lip trails behind it, painting a line of warmth then cold up your cock.");
+		output("\n\nYou gasp-you’re not sure how much more of this you can handle. You can already feel your dick twitching from the stimulation. [embry.name] looks up at you, a look of concern plastered over her face, but as your breathing slows to moans of pleasure, she smiles and wiggles her rump happily.");
+		output("\n\nShe licks her way up your cock a few more times, her tongue and lips tracing stripes of tingling pleasure up and down your shaft. You can feel pre starting to push its way up your dick, beading at your tip.");
+		output("\n\nAt long last, [embry.name] presses her painted lips to the tip of your dick. You groan loudly, feeling the hot warmth of her mouth and a rush of cold at the same time.");
+		output("\n\nYou’re sure that you can’t last long under the avalanche of sensation, and the quick, furtive bobs of the monkey girl’s head ensures it. Her gentle mouth sucks softly at your cockhead as her lips slide up and down around it, massaging with minty cold and hungry warmth. The lipstick is smudging a bit too, or maybe it’s drool, running in cool rivulets down to the base of your dick.");
+		output("\n\nAfter only a few minutes of this, you feel your climax building, and your hands slide to the back of Embry’s head, nudging her further and further down until you finally explode. You pump your load into [embry.name]’s mouth, as she squeaks, swallowing as much of it as she can.");
+		//Low-to-normal cum
+		if(pc.cumQ() < 100) output("\n\nWhen you finally finish, she gasps and pulls her head up, a beautiful mess. Her pink hair is mussed, her cheeks flushed, and her face a mess of red-and-white lipstick smears, drool, and your cum.");
+		//Ridiculous Cum
+		else output("\n\nThere’s no way for her to take all of your cum as you fire load after load into her mouth. She pulls back, and the remainder of your load jets across her face. She coughs, looking down at the cum dripping down her front and pouts. She’s a picture of adorable lewdness, her pink hair mussed, her cheeks flushed, her smeared red-and-white lipstick barely visible under a dripping layer of fresh spooge.");
+	}
+	//If PC has no cock, but has vagina
+	else if(pc.hasVagina())
+	{
+		output("\n\nYou feel the weight of her settling down at the foot of the bed, and a soft kiss just above your pussy.");
+		output("\n\nYou moan in surprise, then yelp at the sudden rush of cold in the same spot, as if someone had just brushed an ice cube against you. You open your eyes and glance down at [embry.name], crouched between your legs. She smiles up at you, her lips glimmering with red-and-white striped-lipstick.");
+		output("\n\n<i>“It’s called, um, Peppermint Kiss,”</i> she explains, looking nervous. <i>“The book said how to make it, and, um, I wanted to try it out because it looked really easy, and I know I should have asked, but I kind of wanted it to be a surprise. I hope that’s okay,”</i> she chatters.");
+		output("\n\nYou nod and pat her head in approval. She purrs, nuzzling her head against your hand, her tail curling up in a tight, happy spiral.");
+		output("\n\nShe leans down to kiss you again, lower this time, her lips pressed against the top of your slit, and you lean back, enjoying the warmth of her lips, then yelping softly at the pleasant chill that follows. <i>“D-does it feel good?”</i> asks [embry.name]. You answer with a grin.");
+		output("\n\nShe smiles back, her painted lips gleaming in the orange glow of her apartment lights. She bobs her head down, planting another burst of warm, then cold down the curve of your vagina. You groan and lean back-you could get used to this.");
+		output("\n\nHer nimble fingers spread you slightly, and she paints kisses along your lips, and peck after peck, you goan, your pussy moistening against her striped lip. She lifts her head and looks up at you, biting her lip nervously, then spreads you a little wider before lapping her tongue up one side of your inner fold then the other. Her lower lip trails behind her exploring tongue, a chilling wave behind it.");
+		output("\n\nYou struggle to keep your breathing regular-but you’re not sure how much more of this you can handle. When she plants a kiss on your swelling clit, you yelp, overwhelmed by the intensity of warm-then-cold. [embry.name] looks up at you, a look of concern plastered over her face, but as your breathing slows to moans of pleasure, she smiles and wiggles her rump happily.");
+		output("\n\nShe slowly begins eating you out. She’s a little clumsy, but the lipstick is doing more than its share of the work. Between her kisses, the warm lapping of her tongue, and the period rush of the lipstick, you’re not sure how much longer your can hold out. Despite the cold of the lipstick, your body is heating up, and you can already feel a happy glow building.");
+		output("\n\nYou’re sure that you can’t last long under the avalanche of sensation, and the slim finger of the monkey sliding up into you confirms it. Her gentle mouth sucks softly at your clit, her lips pressed against your labia, coupling minty cold and hungry warmth. The lipstick is smudging a bit too, or maybe it’s drool, running in cool rivulets down your mound.");
+		output("\n\nAfter only a few minutes of this, you feel your climax building, and your hands slide to the back of Embry’s head, nudging her closer and closer against you until you finally explode. You wrap your [pc.thighs] around the monkey girl’s head, and spurt against [embry.name]’s mouth, as she squeaks, getting a face full of your ladyjuices. You ride out your climax as long as possible, and [embry.name] ever accommodating, keeps licking and sucking until you finally fall back.");
+		output("\n\nEmbry gasps, thin lines of your juices running from her smudged lips down to your pussy. Her lipstick is smeared across both flushed cheeks, her pink hair is mussed, and she looks a little dazed, the picture of wanton cuteness.");
+	}
+	output("\n\nA brief chime from the small oven interrupts your reverie.");
+	output("\n\n<i>“The cookies!”</i> yelps Embry, springing up and grabbing a pair of pink, shark-shaped oven mitts.");
+	output("\n\nShe pulls a pan of lightly-browned cookies out of the oven and begins fanning them, the pink-furred tail picking up a small tin and dumping white powder into another bowl. As you catch your breath on the bed, she bustles in her makeshift kitchen.");
+	output("\n\n<i>“Snowballs!”</i> she chirps, walking a tray piled high with little white balls.");
+	output("\n\nYou burst out laughing. The pink-hair monkey-girl’s apron is akew, she’s wearing pink, shark-themed oven mitts. Powdered sugar streaks most of her naked body, and despite some attempt to clean herself up, there’s still a smear of cum on her cheek.");
+	output("\n\nShe pouts briefly, but you reassure her and pull her onto the bed with you. You spend the next hour or so together, curled up on her bed, feeding each other cookies and chatting.");
+	output("\n\nAs the conversation winds down and one after the other, the cookies disappear, [embry.name] leans in close and nuzzles against your neck.");
+	output("\n\n<i>“I’m so happy you came by, [pc.name]. Thank you,”</i> she says. <i>“I miss you when you’re not around.”</i>");
+	output("\n\nYou lean down and kiss her gently, bringing that familiar blush to her cheeks.");
+	output("\n\n<i>“Happy First Frost, [embry.name],”</i> you say.");
+	output("\n\n<i>“Happy First Frost, [pc.name],”</i> she says, smiling and hugging you softly.");
+	output("\n\nAfter a bit more time dozing in happy afterglow, you bid [embry.name] a fond farewell and head off to your ship.");
+	processTime(90);
+	if(pc.hasCock()) embry.loadInMouth(pc);
+	else embry.girlCumInMouth(pc);
+	clearMenu();
+	addButton(0,"Next",move,"SHIP INTERIOR");
+}
+
+//Cocoa and cuddles
+public function cocoaAndEmbryCuddles():void
+{
+	clearOutput();
+	showEmbry(true);
+	author("Frogapus");
+	flags["EMBRY_XMAS_2018_VISIT_PROC"] = 3;
+	output("You mention that you’re not really in the mood for anything naughty, but you’d love to curl up with some cocoa and her.");
+	output("\n\nShe bounces excitedly, <i>“That sounds perfect, [pc.name]!”</i> She immediately twirls around to the small folding table. <i>“I, um, think there’s still enough batter for the cookies, and I r-rented a small heat-o-matic for baking them. I’ll um, work on them if you can get the cocoa started.”</i>");
+	output("\n\nYou spend the next half hour with [embry.name], heating up milk and adding chunks of chocolate to it. As you work, cheerful, folksy music plays in the background, and the faux-frost on the walls twinkles in the firelight from a vid display.");
+	output("\n\nOnce she pops the cookies in the oven, [embry.name] cozies up against you in front of the heat-o-matic, adding ingredient after ingredient to the saucepan of thick, bubbling chocolate and whisking them together. You’re a little unsure about the dash of red pepper, she adds, but [embry.name] is surprisingly insistent about it.");
+	output("\n\n<i>“Um, it’s how we make it on Omorii,”</i> she explains. <i>“It makes sure the heat gets all the way down into your bones.”</i>");
+	output("\n\nMyrellion legitimately seems to be chilly this time of year, and even through the apartment walls, you swear you can feel it creeping in. You decide to trust [embry.name]’s expertise on it.");
+	output("\n\nShe pours the chocolate out of the saucepan into two mismatched mugs, handing you the one that proclaims that you <i>“Went Ape on Primus X!”</i> while she curls her fingers around one that establishes that it’s owner was the <i>“Galaxy’s Best Simian.”</i> Her tail curls around her to drop a cinnamon stick in each of your mugs before you walk towards her bed together.");
+	output("\n\nThe next few hours are spent sipping cocoa under a heavy blanket, chatting about small things and large. You fill her in on the adventures you’ve had since you last saw her, as she listens with wide-eyes and breathless excitement. You listen in awe as she talks a bit about growing up on her home planet, leaving out her homelife, but talking about the endless, open prairies of Omorii, and riding across them.");
+	output("\n\nYou break briefly as the heat-o-matic chimes, and you both emerge from the blanket to retrieve them from the oven as give them a dusting of powdered sugar. You laugh at the silliness that is [embry.name]’s pink, shark-shaped oven mitts, while she insists that they’re very cool.");
+	output("\n\nYou return to the blanket and spend another hour or so there, munching cookies and chatting the time away. The mugs of cocoa spent, you end up with [embry.name] curled against your chest, your fingers running through her hair as she nuzzles against your neck, making happily little sighs.");
+	output("\n\n<i>“I’m so happy you came, [pc.name]. Thank you,”</i> she says, squeezing against you. <i>“I miss you when you’re not around.”</i>");
+	output("\n\nYou lean down and kiss her gently, bringing that familiar blush to her cheeks.");
+	output("\n\n<i>“Happy First Frost, [embry.name],”</i> you say.");
+	output("\n\n<i>“Happy First Frost, [pc.name],”</i> she replies, her smile practically glowing.");
+	output("\n\nAfter a bit more time cuddling, you bid [embry.name] a fond farewell and head off to your ship.");
+	processTime(135);
+	restHeal();
+	pc.lust(15);
+	clearMenu();
+	addButton(0,"Next",move,"SHIP INTERIOR");
 }
