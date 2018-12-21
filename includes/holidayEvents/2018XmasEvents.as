@@ -624,3 +624,445 @@ public function carolJChristmasElfDreamyWeamy3():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+
+//Rat's Raiders Christmas Cheer
+//It's the season of giving, and it's always better to give than to receive!
+//by William
+
+
+/*Summary
+Player must be known as the CEO by Rat's Raiders, must have read the Rodenian Codex, and must have used [Be Nice] at least five times.
+Player must be docked on Zheng Shi and must trigger this event (a fairly average chance) by entering their ship during the seasonal period.
+EVENT CANNOT PROC WITHOUT A PENIS OR VAGINA. Also uh, taurs can't do this. RIP.*/
+
+//Add to Zheng Shi 'Hangar Bay'
+// When PC tries to enter the ship, have a 1/6 chance to trigger the event during the seasonal period.
+// Load armored group busts
+public function ratsRaidingXXXmas2018ByWill():void
+{
+	clearOutput();
+	showBust("RATS_RAIDER_GROUP_ONE","RATS_RAIDER_GROUP_TWO");
+	showName("\nRATS!");
+	author("William");
+	output("Day in and day out... entering your ship is the same as always. A few taps on the key panel, a sterile mechanical chirp, and you’re back on board. Except for today. You’re only able to take one step through the welcoming seam of your vessel’s hull. Before the sound of [pc.footOrFeet] against metal terminates another catches you off guard. <i>“Heeeey waaaaaiiit!”</i> a girlish voice surges up the ramp.");
+	output("\n\nYou turn around, reaching instinctively for your [pc.weapon] when you see not one and not three, but six of the mouse-eared pirates standing at the bottom of your ship, heaving, panting, and nervously glancing. The pink-furred Rodenian stands at the front, hefting a large red sack over her shoulder. <i>“H-hold on, wait!”</i> she calls again when your [pc.arm] hovers near the door control. <i>“");
+	//ratRepLowMedHigh:
+	if(!ratsPCIsGood()) output("We’re not here to mess with you or anything! Hear us out, okay?");
+	else output("Umm, we’re not here to fight, [pc.mister] CEO! Please hear us out.");
+	output("”</i>");
+	output("\n\nA relieved huff follows when you fold your arms expectantly.");
+
+	// Rat Rep Low-Med-High
+	if(!ratsPCIsGood())
+	{
+		output("\n\n<i>“Look, we’re trying to do something for this ‘seasonal’ thing we saw on a video and the boss won’t let us use the hideout.”</i> She rolls her shoulders, grunting under the weight of her material burdens. <i>“Nobody else on this station is... umm, nobody else around here’s as cool as you,”</i> she whispers, expressions mixed between determined and bashful. <i>“You were um, a bit nice... and there’s nowhere else we can do this. Can we please set up on your ship? We brought you something too!”</i>");
+		output("\n\nShe begs you with her green eyes. The halfbreed rats with fuzzy arms and legs lean forward, wiggling their hips - the girl her chest. Like them, the two caramel-eyed mouse boys are also staring up at you puppyishly. Almost looks like they’re about to squeak! You notice that they don’t have their batons on their waists, making the realization that Urbolg could show up at any second and they’d be helpless. You could shut the door in their faces or let them in and see where it goes.");
+	}
+	// Rats Respect PC (goodCEO)
+	else
+	{
+		output("\n\n<i>“We were watching an old ‘seasonal’ video we found in the hideout and we wanted to do something we saw in it. But Mikky won’t let us use the hideout!”</i> The rodenian chews her lip. <i>“You’ve been really nice to us, and we have nowhere else to set up. Will you let us use your ship for it? W-we’re not here to take anything. In fact we- ach,”</i> she grunts, hefting the heavy bag again, <i>“we brought some stuff for you! Please, [pc.mister] CEO?”</i>");
+		output("\n\nHer five friends hop in place, leaning forward cutely, wiggling their hips and tails whilst squeaking quietly. They’re definitely hopeful, but not nearly as much as the green-eyed rodenian. The mouse-pirates hold their little balled hands close to their chests, needy looks shining on their faces. You note that they don’t have their batons on them, and then also note that Urbolg isn’t around at the moment. Were he to show up, they’d be in a bit of a pickle... You could shut the door in their faces or let them in and see where it goes.");
+	}
+	// Merge
+	processTime(10);
+	clearMenu();
+	addButton(0,"Close Door",closeTheDoorOnRatmas,undefined,"Close Door",(!ratsPCIsGood() ? "No way. They may not be armed, but there’s still six of them. Forget this!":"While they’re not armed, you’re not letting them on your ship."));
+	addButton(1,"Let Them In",letRatmasIntoYourHeart,undefined,"Let Them In","Whatever’s going on, you can at least trust they won’t pick a fight. Let them rats on board!");
+}
+
+//[Close Door]
+// Tooltip: {ratRepLowMedHigh: No way. They may not be armed, but there’s still six of them. Forget this! /goodCEO: While they’re not armed, you’re not letting them on your ship.}
+public function closeTheDoorOnRatmas():void
+{
+	clearOutput();
+	showBust("RATS_RAIDER_GROUP_ONE","RATS_RAIDER_GROUP_TWO");
+	showName("\nRATS!");
+	author("William");
+	// Rat Rep Low, Med, High
+	if(!ratsPCIsGood())
+	{
+		output("Not happening. You punch the button and slam the airlock in their face. You barely hear the muffled contempt for the frustrated stomping. There’s a bang against your door, probably something thrown, and then there’s a gunshot and a scramble. Looks like Urbolg isn’t happy to see them either.");
+	}
+	// Rats Respect PC (goodCEO)
+	else
+	{
+		output("\n\nYou’ve spent a while in their company but you’re not keen on letting them have access to your ship. " + ("9999pcHasn’tBefriendedMikhail" == "9999pcHasn’tBefriendedMikhail" ? "You’ve yet to meet their boss, too. Until then, you’ve got to turn them down.":"It pains you to turn them down, being on good terms with their boss, but you’re not feeling up to whatever they may have planned.") + " You shake your head, telling them to go. Regret builds when their cries and groans hit your ears. The little thieves shuffle off in genuine defeat, looking sincerely crestfallen. The wound starts to close when you hit the door button.");
+	}
+	flags["RATMAS_2018"] = -1;
+	processTime(4);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Let Them In]
+// Tooltip: Whatever’s going on, you can at least trust they won’t pick a fight. Let them rats on board!
+// Keep Armored Busts
+public function letRatmasIntoYourHeart():void
+{
+	clearOutput();
+	showBust("RATS_RAIDER_GROUP_ONE","RATS_RAIDER_GROUP_TWO");
+	showName("\nRATS!");
+	author("William");
+	if(!ratsPCIsGood()) output("Alright. What’s the worst that could happen?");
+	else output("You’re not sure if their uncontained eagerness helped sway your decision making, but it’s cute.");
+	output(" Tilting your head, they freeze up when you open your mouth. Funny. They squeal when you jab your thumb into the ship. <i>“Ohh! Thank you! Alright, c’mon,”</i> the blonde and purple-haired rat girl scampers up, tailed by her partners. Good thing you decided fast: Urbolg’s back at work down there.");
+	output("\n\nThe mischief enters your cargo bay and you punch the door button while they find an empty corner to set down at. The pink rat girl falls over, totally exhausted by the weight of whatever it was she was carrying around. From the heavy sound of it, you may have been too! <i>“Finally... Okay, okay, first things first!”</i> she presses herself back up with a <i>’hmph’</i>, fidgeting with her armor. The heaviest pieces come clattering off of her body, and everyone else’s, leaving them in fraying undersuits that barely contain their small and bulgy(!) extremities. <i>“Oomph, better!”</i> the white-furred rat shakes, but the boys are all shivering.");
+	output("\n\n<i>“Little cold in here...”</i>");
+	output("\n\n<i>“Relax, Jean!”</i> the pink rat pinches the tan-skinned mouse’s ear. <i>“You’ll warm right up when we find the kitchen! Uh,”</i> she gives you a pouty lip, <i>“you do have a kitchen right?”</i>");
+	output("\n\nYou fold your arms again, one eyebrow arched at the two half-rats mingling too quietly. <i>“");
+	if(pc.isBimbo()) output("I think you cuties owe me an explanation!");
+	else if(pc.isBro()) output("Time for an explanation.");
+	else if(pc.isNice()) output("First, you tell me why you’re here.");
+	else if(pc.isMischievous()) output("Explain yourselves, unless you want me to kick you right back out.");
+	else output("What are you up to?");
+	output("”</i>");
+	output("\n\n<i>“Yeah Ffion. You wouldn’t even tell me what you were carrying around; you were all ‘ohh we gotta do this now!’”</i> the white rat slaps the pink rat - Ffion - with her tail.");
+	output("\n\n<i>“Chiara... You’re always hanging around Cless, of course you’re not around when we’re making plans!”</i>");
+	output("\n\n<i>“Making schemes,”</i> you blurt.");
+	output("\n\nFfion glowers at you, one finger furiously waggling. <i>“I’m not tellin’! It’s supposed to be a surprise, like birthday parties!”</i> she says, entirely too flustered.");
+	output("\n\n<i>“Ummm, that’s not what we saw in the video,”</i> the other freckled mouse boy smirks. <i>“[pc.Mister] CEO, she’s been hyper all day. should have seen her face when " + (!ratsPCIsGood() ? "the boss":"Mikhail") + " said no... she’s been planning for a few days.”</i>");
+	output("\n\n<i>“Ohh don’t worry about it, [pc.mister] CEO!”</i> the half-rat girl says, her sultry eyes on you and her arms around her ample breasts. <i>“Don’t spoil it Rian,”</i> she pokes his cheek playfully. <i>“Ffion’s been up and down about this for days, let her have her fun! ‘Sides, we wouldn’t be here if she was wrong about you, [pc.mister] CEO!”</i>");
+	output("\n\n" + (!ratsPCIsGood() ? "Ffion’s brow furrows and her snout molds into the most annoyed frown you’ve seen on any of the mice. She looks at you briefly then turns away almost embarrassedly.":"Ffion looks positively bashful when you look at her again, but she’s quick to shake the effect.") + " <i>“Alright, seriously, do you have a kitchen? We need uh, to make some stuff! There’s a lot of prep work and we can’t waste time, okay!?”</i>");
+	output("\n\nYou roll your eyes, asking what’s in the bag.");
+	output("\n\n<i>“Stuff!”</i> she slings back, hopping in place. <i>“You’ve got an eating room right?”</i> You inhale, but the half-rat boy laughs, causing a chain reaction of amusement.");
+	output("\n\n<i>“Come on, it’ll be worth it! Promise!”</i> You sigh and nod, the bunch jumping in place and squeaking affirmatively. You give them directions, but you’ll be keeping an eye on them. <i>“Thanks, [pc.mister] CEO! You won’t regret this!”</i> they clamor, diving down and digging through their bag for aforementioned ‘stuff’. The way they position themselves keeps you from seeing what exactly it is they’re getting, but some familiar items pop out, particularly a smaller bag filled with... something doughy?");
+	output("\n\n<i>“Alright!”</i> Ffion boasts, <i>“let’s go Rian, Jean! We can make the snacks and you guys can set the room up!”</i> You ask the others if she can be trusted to cook, and they all laugh at her. <i>“Of course I can! S-Screw you guys, just get to work before we get called back or something!”</i>");
+	output("\n\nA resounding ‘fiiine’ bounces off the walls. Chiara and the halfbreed rats take several small boxes and parts - including electronics - one way and the mouse boys follow after Ffion to the kitchen the other way. Well, you let them on board, now you have to find out what’s going on the old fashioned way: supervision.");
+
+	processTime(15);
+	clearMenu();
+	addButton(0,"Ship Hub",shipHubRatmas,undefined,"Ship Hub","What are they setting up?");
+	addButton(1,"Galley",galleyRatmas2018,undefined,"Galley","What are they making?");
+}
+//[Ship Hub] [Galley]
+//Shipboard Mischief
+// Coming from [Let Them In]; different events depending on which was chosen first and second.
+// PC must see both events [Ship Hub] and [Kitchen]. After seeing both events, player is checked for lactation, then offered two sex routes for having a dick and/or vagina.
+// Proper ending will be [Shipboard Snuggles]
+
+
+//[Ship Hub]
+// Tooltip: What are they setting up?
+// Load nude busts: rats_raider_rod_2 | rats_raider_boy | rats_raider_girl
+public function shipHubRatmas():void
+{
+	clearOutput();
+	showBust("RATS_RAIDER_ROD_2_NUDE","RATS_RAIDER_BOY_NUDE","RATS_RAIDER_GIRL_NUDE");
+	showName("SHIP\nHUB");
+	author("William");
+
+	// First Choice
+	if(flags["RATMAS_2018"] == undefined)
+	{
+		output("You follow the white-furred rat and the half-rodenian duo to your ship’s lounge. They drop their things and pull off the tattery scraps of cloth they wear to your immediate twinge of arousal. <i>“What?”</i> Chiara raises an eyebrow. <i>“This stuff just gets in the way. Don’t worry, we’ll clean it up later!”</i>");
+		output("\n\n<i>“Yeah! It makes my fur itch too! The armor’s <b>so heavy</b> and I jus’ wanna be naked when I’m cozyin’ up somewhere!”</i> the white and green-haired girl hops, tail swishing amid the others. <i>“C’monnn, let’s get started, I’m feeling great!”</i> she says, her perky tits flopping between excited movements.");
+		output("\n\nChiara knocks her on the back of the head, realigning her goals. <i>“Claes. You and Cless get on the lights, I’ll take care of Ffion’s little tree.”</i> She pries open a box with her nail, staring at the table in the center of the room. <i>“Perfect place. Don’t worry, [pc.mister] CEO, we’ve got this.”</i>");
+		output("\n\nThe halfbreeds drop down, tearing open their boxes and pulling out a mishmash of cabling topped with tiny bulbs. At the ends of the wires are some rather primitive interfaces that you hope, for their sake anyway, are compatible with your ship’s grid. The black-furred boy casually darts across the room, laying down the mesh of lights along the wall in arch-like patterns. Looks like they’ve adjusted to the temperature by now." + (pc.isBimbo() ? " Gosh, his balls look really full. How can he be so focused!?":""));
+		output("\n\nClaes, on the other hand, is having a devil of a time getting lights across the top of the room and above the doorways. <i>“Nng! Nn...!”</i> She hops and hops, but she’s just too small to make the distance. The nude rat’s taken aback when you slip behind her, [pc.hands] falling to her curvy waist and lifting her up. " + (pc.PQ() < 50 ? "It’s a bit of a strain, but she weighs almost nothing.":"It’s no problem for someone of your strength. She’s as light as a feather!") + " Your nose is struck by the pent-up pheromones between her creamy thighs, and when those furry limbs spread the crystalline glint of moisture is all too visible. <i>“Oohh! Thanks, [pc.mister] CEO!”</i> she chirps, laying the next breadth on an outset fixture before you let her go.");
+		output("\n\nMuch like her surprisingly well-focused cohorts, the rodenian at the center meticulously tends a fake leafed tree that looks like it’s been dug out of some condemned attic. You can smell some sort of cleaning product, but the fine layer of dust along its base doesn’t escape your notice. She unruffles the branches and wraps a cord of lights around it, hanging a few finishing ornaments - gems like picardine and satyrite.");
+		output("\n\n<i>“Awesome!”</i> the half-rats high-five, helping throw up some more ornaments around the room. It all looks suspiciously snug in here now, and they’ve yet to try the lights. A silly red and white cloth is draped over the otherwise plain table, and the little tree is placed at the center. You’re particularly impressed by their efficiency.");
+		output("\n\n<i>“[pc.Mister] C-E-Ooo,”</i> Chiara hums. <i>“It’ll jus’ be a bit longer! You gotta let us get things really ready! No peeking, ok? Sorry " + (pc.tallness > 5*12+8 ? "big ":"") + "[pc.guyGirl], Ffion wanted it this way!”</i>");
+		output("\n\nYou shrug your shoulders, trying ");
+		if(pc.hasCock()) output("not to add to your erection" + (pc.hasCocks() ? "s":""));
+		else output("cream yourself");
+		output(" at the sight of her casually wobbling breasts. You hardly make good on that effort on your way to the kitchen.");
+	}
+	// Second Choice
+	else
+	{
+		output("<i>Jingle jingle!</i> You quirk an eyebrow when you step into the lounge, eyes assaulted by garish decorations along the walls and a multitude of small, colorful lights. Is that a dog knitting? They’ve thoroughly transformed your lounge into something decidedly comfy. It’s homely, it’s nice.");
+		output("\n\n<i>“Cless, fix that light, it’s dangling too much! And Claes, come here, I need...”</i> <b>Thwack</b> goes a wibbly cable on her nose. <i>“Ouch!”</i> The black and white furred rats jump where they’re needed, giggling and mingling affectionately.");
+		output("\n\nChiara and Claes look inquisitively over a potted plant at the center of the table - a small, fake tree wearing lights and ornaments of picardine and satyrite. Seems they can’t get it to turn on.");
+		output("\n\n<i>“Ow!”</i> Cless cries - the dark-skinned boy tripped, dragging some lights down with a loud <i>thud.</i>");
+		output("\n\n<i>“Watch your tail next time, silly!”</i> Claes laughs, not even bothering to turn. You finally understand what the sound was: <i>they’ve all attached bells to their tail tips.</i>");
+		output("\n\n<i>“It wasn’t my fault, it was the bell’s!”</i> he whines, fixing the damage.");
+		output("\n\n<i>“Shush!”</i> Chiara snaps, tugging on a knotted cord. <i>“Dammit, I can’t... get...”</i> Her muscles strain. <i>“Claes get...”</i> <b>Snap!</b> <i>“Yeowch!!”</i> the two girls shake their hands out, but the job is done. <i>“There we go, now turn it on... Yes!”</i>");
+		output("\n\nThe tree lights up, and it’s by far the most attractive piece in the room. The light glistening through the rough-cut stones is gorgeous in its own way. Quite frankly, you’ve felt nothing but comfort being here, watching them have their fun, growing excited the closer you get to whatever it is they must have planned.");
+		output("\n\nYou can also smell it. A rich texture flows past your nose: cookies. Prepared with every topping or insert you could imagine.");
+		output("\n\n<i>“We’re back!”</i> Ffion squeals, hurriedly setting a plate <i>stacked</i> with over two dozen cookies on the table. All of the pi-rats huddle around, looking for stools or anything to sit on, cooing ‘oohs’ and ‘ahhs’ delightfully.");
+		output("\n\n<i>“[pc.Mister] CEOooohh, there’s your spot!”</i> the pink rat points to the last seat. What they’re sitting on is either too big or too small, so most of your guests end up standing or kneeling in their seats. Nothing left to do but take yours.");
+	}
+	processTime(20);
+	pc.lust(10);
+	ratmasRouting(1);
+}
+
+//[Next]
+//[Galley]
+// Tooltip: What are they making?
+// Load nude busts: rats_raider_rod_1 | rats_raider_mouse_1 | rats_raider_mouse_2
+public function galleyRatmas2018():void
+{
+	clearOutput();
+	showBust("RATS_RAIDER_ROD_1_NUDE","RATS_RAIDER_MOUSE_1_NUDE","RATS_RAIDER_MOUSE2_NUDE");
+	showName("\nGALLEY");
+	author("William");
+	// First Choice
+	if(flags["RATMAS_2018"] == undefined)
+	{
+		output("You follow Ffion and her doting boys to the kitchen, watching curiously as they discard the thin undergarments covering their bodies in the corridor. <i>“Don’t worry, [pc.mister] CEO! We’ll get that cleaned up later, but it’s time to start getting cozy!”</i> the pink rat declares despite her shameless nudity. You find yourself much too distracted by the boys’ exposed manhoods and her pert, swaying chest on your way to the kitchen.");
+		output("\n\n<i>“You’ve got an oven, right?”</i> the rat girl floats around, looking through the facilities in your modest galley. The mice dive through shelves and cupboards, knocking aside pots and pans, kicking up a few clouds of dust in a loud clamor. <i>“We gotta make these cookies so we can do this right!”</i>");
+		output("\n\nSo that’s what she’s been carrying around. You point her in the right direction - your equipment’s not state of the art, but it’ll do. <i>“Great!”</i> she squeaks, breasts flopping wildly the more she hops up and down. The quiet, focused mouse boys to her left and right break into their own packs, and begin working the dough from hers onto the large and prepared platter. They must have practiced this in advance!");
+		output("\n\nIt doesn’t keep you from asking what exactly she’s up to. <i>“No, no!”</i> Ffion’s tail does a full three-sixty swirl. <i>“It can’t be spoiled, [pc.mister] CEO! It’s gonna be awesome, but we’ve gotta work fast!”</i> The dough is handled not professionally, but lovingly. The three mice are humming together, filling that sizeable tray with ready-to-bake treats and mixing chocolate and other flavors into them at an efficient pace. Honestly it’s kind of heartwarming, though you’re not sure if that’s just the heat of the oven sliding over their food and you by proxy.");
+		output("\n\n<i>“A little turn here...”</i> Ffion fiddles with the dial after slamming the oven door shut. <i>“There! Only a few more minutes- haayes!”</i> she gleams. <i>“Now, no spoiling the treat.”</i> Really, you’re spoiled by her bare tits. <i>“You go and make sure those dummies have the room ready, then we’ll have the cookies and then we’ll have fun!”</i>");
+		output("\n\nHer excitement is palpable");
+		if(pc.hasCock()) output(", much like the swelling of your [pc.cocksLight]");
+		else output("the growing arousal in your [pc.pussies]");
+		output(". You sigh, catching the poised, placid smiles of her chocolate-covered friends before heading to the lounge. The squeaks in the background are kinda cute, though.");
+	}
+	// Second Choice
+	else
+	{
+		output("First you hear the squeaks, then you see the discarded clothes... and then you smell what’s cookin’. Entering the kitchen you nearly forget that you’ve given a bunch of mice access to your ship, finding yourself subdued by an awfully rich, thick smell and, of course, the sight of three exposed rats.");
+		output("\n\n<i>“Rian, stop it, that’s not-”</i> Ffion stammers, finally noticing you enter. <i>“Oh, [pc.mister] CEO! Don’t try to eat any yet, you can’t be spoiled!”</i> she shakes her butt, tail swishing cutely near the others. The mouse-boys busily plate their beautifully made treats, stacking over two dozen cookies onto the biggest plate they could find.");
+		output("\n\nConsidering how things have gone so far, you’re not keen on spoiling yourself to her great relief. You’re still not convinced letting them on was the best idea, but you can’t deny you want to see where this goes. They bid you to follow them from the messy galley room, and back to the lounge you go.");
+	}
+	// Merge
+	output("\n\n<i>“Thanks for this, [pc.mister] CEO! And now, we get to have some fun!”</i> Ffion says, her tail caressing your ankle while you head down the corridor with the other two boys. Fun sounds good" + (pc.isBimbo() ? ", particularly with those two cum-swollen balls jiggling and jostling on the balanced movements":"") + "!");
+	output("\n\n<i>Jingle jingle!</i> Before you even enter the lounge you can hear the tolling of bells. You see them attached to the tails of the other rats who’ve prepared the room. Multicolored lights and garish seasonal decorations garnish your walls, yet it all feels... very nice. They’ve thoroughly transformed your lounge into a comfy, homely place and set a table with whatever they could find to pass as a seat or chair.");
+	output("\n\nAll that’s left is for them to set the cookies down. Cute ‘oohs’ and ‘ahhs’ at the sight and smell of those well-baked snacks fill your ears. They all take their seats, the pink rat pointing to yours. <i>“There you go, [pc.mister] CEO!”</i> Nothing left to do but take it.");
+
+	processTime(20);
+	pc.lust(10);
+	ratmasRouting(2);
+}
+
+//1 = first option done, 2 = second option, 3 = cumplete :3
+public function ratmasRouting(arg:int = 1):void
+{
+	if(flags["RATMAS_2018"] == undefined) flags["RATMAS_2018"] = arg;
+	else flags["RATMAS_2018"] = 3;
+	if(flags["RATMAS_2018"] == 1) setButtonDisabled(0);
+	else if(flags["RATMAS_2018"] == 2) setButtonDisabled(1);
+	else
+	{
+		clearMenu();
+		addButton(0,"Next",ratmas2018TheBeginningOfTheLoooood);
+	}
+}
+
+//Shipboard Ratsmas
+// PC can offer to breastfeed rats if lactating
+// PC must have genitals to begin an orgy.
+// Load nude busts rat_group1_nude and rat_group2_nude
+public function ratmas2018TheBeginningOfTheLoooood():void
+{
+	clearOutput();
+	showBust("RATS_RAIDER_GROUP_ONE_NUDE","RATS_RAIDER_GROUP_TWO_NUDE");
+	showName("ALL\nTOGETHER");
+	author("William");
+	output("<i>“It’s just like the video, hehe!”</i> Ffion laughs, eyes darting all over - to the cookies, to her friends, and of course to linger on you. <i>“" + (!ratsPCIsGood()? "The boss":"Mikky") + " has all these old videos he lets us watch and we found this one really far back, and I really loved it! Terrans call it ‘Christmas’! Humans like to give away stuff on holidays. You guys remember Ronasca right?”</i>");
+	output("\n\nThe other rats make affirmative noises, Chiara in particular. <i>“Oh, that’s what got you so fired up? Thinking about our last share?”</i>");
+	output("\n\n<i>“Yeah! And we haven’t been able to do <b>anything</b> for months bein’ stuck on this stupid station!”</i> she whines. <i>“" + (!ratsPCIsGood() ? "That is, until you came by, [pc.mister] CEO!":"But then we met you, [pc.mister] CEO, and you’re the best thing that’s happened to us!") + " And I... I uh, you’re like the only person we could have asked to do this. We took all this stuff from the hideout. We collect stuff, ‘ya know!”</i>");
+	output("\n\nYou nod, wearing a dopey smile as she leans over the table. <i>“Christmas is all about givin’ gifts and having fun, ‘n there’s nothing we like more! So before we do the gifts, let’s eat!”</i>");
+	output("\n\n<i>“About time!”</i> Claes chirps, the first one to snatch a cookie, followed by Cless, Rian, and Jean. Chiara and Ffion both wait until you take one - a classic chocolate chip cookie.");
+	output("\n\nYou can see the sugar glistening on its crumbly form. The dark chips have melted splendidly, and while you hold it at an angle that pyroclastic flow of deliciousness is already sagging to one side. It comes apart easily in your hand, strands of cocoa-colored goodness tapering and peeling apart in the confectionery gap. Biting into it is heavenly. Your face flushes while your brain tries to cope with its divine heat and flavor. The pink rodenian sitting across from you takes great delight in your reaction, her buckteeth sinking into her lower lip, holding back a happy squeak.");
+	output("\n\nAll her care and gratitude went into making this treat for you and her friends. This... this is what a get together is all about. Unquestionably, <i>it’s fucking amazing.</i> Jean and Rian, the freckled boys to your right, are letting their bashful poise collapse in enjoyment.");
+	output("\n\nHappiness ignites all around. The effect is the same for every one of them, and they’re not shying away from saying as much. <i>“Ohhh, it’s been so long since we made anything different!”</i>");
+	output("\n\n<i>“Geez, you went all in... where did you get this stuff, Ffion?”</i> Chiara asks, wiping her lip.");
+	output("\n\nThe pink girl blushes right through her fur, offering no answer. The eating continues, every flake of crust melting away the second it lands on grateful tongues. You try another, one with caramel drizzled atop it. It somehow tastes even better. No matter how many you eat, there seems to be no end.");
+	if(!pc.isLactating()) output(" If only you had some <b>milk to wash it all down with...</b>");
+	else if(!InCollection(pc.milkType,[GLOBAL.FLUID_TYPE_MILK,GLOBAL.FLUID_TYPE_CHOCOLATE_MILK,GLOBAL.FLUID_TYPE_STRAWBERRY_MILK,GLOBAL.FLUID_TYPE_LEITHAN_MILK])) output( "<b>If only you had regular milk... you could have <b>washed it down with some milk!</b>");
+	// PC not lactating
+	if(!pc.isLactating() || pc.hasFuckableNipples() || pc.milkQ() < 300)
+	{
+		output("\n\nThe room volume softens to a chorus of mingling, your dish-eared guests talking about old jobs and the memories they had while doing them. Some part of you admires their conversation about helping others, though. Past the pirate exterior <i>(and all the other behavior you’ve endured...)</i> they are certainly true to their word.");
+		output("\n\n<i>“Remember when we were on Midas? We found that hidden Pyrite warehouse and made off with our biggest haul that year!”</i> Cless pipes up after another munch.");
+		output("\n\n<i>“Yeah! Chiara made that a lot easier. She really knows how to charm people when she wants,”</i> Jean quips, though Rian looks a little perturbed.");
+		output("\n\n<i>“I-it was a little too dangerous...”</i> he murmurs, looking down. <i>“Chiara could have had her... you know... her gland used against her.”</i>");
+		output("\n\n<i>“Awww, why you gotta go spoilin’ the moment?”</i> the white rat frowns. <i>“I was wearin’ my gear! They weren’t gonna earfuck me into their puppet; everyone else was right behind me!”</i> She huffs and smiles, looking rather coy. <i>“I see you need your gift early.”</i>");
+		output("\n\nShe dives under the table in the blink of an eye. The fair-skinned boy yelps and finds that lusty rodenian in his lap, licking at his flaccid dong. <i>“Heyyy, you can’t leave me out!”</i> Cless pouts, following after her to do who knows what. Everything falls apart - you can’t see Claes either.");
+		output("\n\nOh.");
+		output("\n\nThe blue-eyed rat’s crawling between your legs. An impish simper rumbles up her throat as she presses her nose into your crotch" + (!pc.isCrotchExposed() ? " and fidgets with your [pc.crotchCovers]":"") + ". Guess they want to have a little fun before bed.");
+		processTime(25);
+		pc.lust(25);
+	}
+	// PC lactating (MUST HAVE Normal or Inverted Nipples NOTHING ELSE! Also, Gooey/Cum/Girlcum cannot be the PC’s lactation)
+	else
+	{
+		output("\n\nWait... <b>You can’t have cookies without milk!</b> And your [pc.breasts] are <i>sloshing!</i> The effect hadn’t been so pronounced before... but oh man you can’t resist smiling. You feel so <i>hot</i> and content, full of love to give! These mice aren’t your enemies here. Malice doesn’t exist in this room, only tacit appreciation. Your guests stop what they’re doing when you " + (!pc.isChestExposed() ? "uncover your chest and ":"") + "bare your milk-filled boobs to them.");
+		if(pc.isBimbo()) output(" <i>“Mmm, I bet you’re all kind of thirsty after that!”</i> you purr.");
+		else if(pc.isBro()) output(" <i>“We’re missing something,”</i> you murmur.");
+		else if(pc.isNice()) output(" <i>“I have a gift of my own,”</i> you smile.");
+		else if(pc.isMischievous()) output(" <i>“You guys forgot something. I didn’t,”</i> you grin.");
+		else output(" <i>“Luckily I came prepared, too,”</i> you smirk.”</i>");
+
+		output("\n\nYou curl two fingers around one [pc.nipple], [pc.milkColor] beads bubbling out. There’s a relieving of pressure that makes you coo, but the mice are totally mesmerized. You urge them to hurry before you spill any more.");
+		output("\n\n<i>“No way! You can’t waste that, [pc.mister] CEO!”</i> Jean, the tan-skinned boy scrambles over, nearly tripping over himself to be the first. Of course you welcome him into your embrace, draping your right arm around him and your left around the half-rat girl. Faces red as tomatoes, they inhale through their noses and clamp down on your teats right away, " + (pc.hasInvertedNipples() ? "front teeth pressing into the tops":"tongues swishing around the peaks to dig out the milk dripping buds") + ". <i>“Umhh, it’s so warm!”</i>");
+		output("\n\nHis comments only make the others fidget harder!");
+		output("\n\nThey’re both so forceful that wincing is natural. But you let it go, content to run your [pc.hands] through their hair and flick at their big round ears. Unbroken streams of [pc.milk] flow into their mouths, and the gulps and suckles are as eager as the squeaks muffled beneath the [pc.milkVisc] streams. <i>“Ohh please hurry, I wanna drink too!”</i> Cless whines, waiting impatiently behind his opposite. Rian and Chiara have also lined up, though, curiously, Ffion is waiting across the table. You wink at her, motioning with your head that she should get over here.");
+		output("\n\nYou can feel the tiny crumbles and remnants of chocolate in Jean’s mouth dotting the sides of his gleeful tongue. Oral muscles press out greater loads of [pc.raceShort]-cream, almost too much - it dribbles down the edges of their upquirked smiles. After four more swallows, you reluctantly usher them aside to let the next two in line have a taste. Cless and Rian, wearing honeyed smiles, take their place under your arms, tenderly cupping the undersides of your milk-tanks and coaxing out their share of [pc.milkNoun].");
+		output("\n\n'Squish', 'Lick', 'Tsk', the rats give you the milking you need one [pc.milkFlavor]-flavored suckle at a time, but Ffion is still so very shy. You can’t fathom why, but her white-furred friend pushes her into it. The boys’ hollowed cheeks have drained a lot, but there’s still just a little too much weighing you down, and those last reserves belong in rodenian bellies.");
+		output("\n\n<i>“Ummm, if it’s okay...”</i> the pink rat squirms, prompting others to laugh at her with slightly distended bellies and mouthfuls of fattening food. Bubbly burps and loud munches indicate no lack of fulfillment, but there’s a familiar smell in the air that triggers your libido. Chiara squeaks when you give her a good rub between the ears, but Ffion shivers and moans when you align her parched lips with your [pc.milkyNipple]. <i>“I uh, it’s better to give for us, though...”</i>");
+		output("\n\n<i>“Receiving is fine, too,”</i> you remind her, pushing your breast past her mousey teeth in an act of assertive . She writhes with something more like lustful need when a gout of [pc.milkNoun] puffs out her snout. The drag of her buck tooth against your jutting teat is also unfathomably pleasurable. You try not to make it obvious, but you’re giving her the hardest scritching out of all of the bunch.");
+		output("\n\n<i>Slurrrp.<i> The red and green eyed rodenians mewl softly against your [pc.skinFurScales], sending ripples through pliant titflesh. Your moans are encouraged, and your eyes begin to roll back from a lactic-induced mini-orgasm. " + (!pc.isCrotchExposed() ? "Even through your clothes, y":"Y") + "ou can’t hide how horny you are anymore. " + (!pc.isCrotchExposed() ? "Fluid sloughs inside your [pc.crotchCoverUnder] as t":"T") + "he last stubborn drops are pulled from your glands." + (pc.milkType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK ? "  Geez, now you’re missing something else to go with all this hot cocoa: marshmallows!!":""));
+		output("\n\nThe two rodenians disentangle, though Ffion stays close. Unblinking moist eyes stay focused on yours. You glance sideways, feeling fuzzy, like you’re in some half-fugue state, and spot Claes on all fours pressing her wrinkling nose close to your crotch. The three boys can’t hide the smell of their musk either: pre drips from their fully erect cocks. Looks like they want to have a little fun before bed.");
+		processTime(25);
+		pc.lust(25);
+		pc.milked();
+	}
+	clearMenu();
+	//[Fuck Claes] [Lap Ride] [No Sex]
+	if(pc.cockThatFits(150) >= 0) addButton(0,"Fuck Claes",cockSelect,[fuckClaesWivDickeriDoo,150,false,0],"Fuck Claes","The rat slut wants your dick. Why deny her?");
+	else addDisabledButton(0,"Fuck Claes","Fuck Claes","You need a penis that would fit inside the rat slut for that.");
+	if(pc.hasVagina()) addButton(1,"Lap Ride",lapRide2018VagStuff,undefined,"Lap Ride","She can lick you, but Jean can join in too.");
+	else addDisabledButton(1,"Lap Ride","Lap Ride","You need a vagina for this.");
+}
+
+//[Fuck Claes]
+// Tooltip: The rat slut wants your dick. Why deny her?
+// NEED DICK
+public function fuckClaesWivDickeriDoo(x:int):void
+{
+	clearOutput();
+	showName("\nCLAES");
+	showBust("RATS_RAIDER_GIRL_NUDE");
+	author("William");
+	output("No sense in holding back then. Sniffles only " + (pc.isCrotchExposed() ? "add to the throb of your [pc.cocksLight]":"tighten the bulge you’re working to release") + ". Claes drapes your [pc.cock " + x + "] over her face, stroking your swelling urethra with her lips and nose until a fattening wad of precum sags and drips from the tip. It falls right into her throat, and wordlessly, she inhales your [pc.cockHead " + x + "] and jams it against her hollowing cheek. Her buckteeth drag smoothly across the top while her tail weaves around and squeezes the [pc.base " + x + "]" + (pc.hasKnot(x) ? ", tyrannizing your knot to greater swelling":"") + ". <i>“Mmhhhh soooo goood,”</i> she giggles, smiling around the tip.");
+	output("\n\nYou grip her by the ear and grunt, thrusting just a bit deeper until you’re batting against her tonsil. Cuntjuice puddles between her legs while her fuzzy hands ");
+	if(pc.balls > 0) output("help brew a greater load of [pc.cumNoun] in your [pc.sack]");
+	else if(pc.hasVagina()) output("slither for your [pc.vaginaNoun], smearing femjuice along your [pc.cockType " + x + "] shaft");
+	else output("jack the inches of [pc.cockType " + x + "] flesh her mouth isn’t busy with");
+	output(". The she-rat is caught off guard when you grip her head on either side and thrust in, taking out your built-up lust on her plush lips and unresistant throat.");
+	output("\n\nHappy moans rumble through your girth" + (pc.cockTotal() > 2 ? ", your extra [pc.cocksLight] flopping across her ears and brow":"") + ". Preseed squirts into her throat, moistening that well-trained neck for a few more vicious thrusts. You’re not aiming to face fuck her into stupidity, only getting ready to flop the mischievous thief on the table and rail her cunt right in front of her friends. <i>Whap-whap;</i> your hips slam against her face, your [pc.cockNoun " + x + "] slotting " + (pc.balls > 0 ? "balls-":"") + "deep" + (pc.balls > 0 && pc.ballDiameter() >= 2 ? ", slapping those cum-taut orbs off her chin too":"") + ".");
+	output("\n\nClaes sputters when you pull out, thrusting spastically against her cheek. <i>“That’s a start,”</i> you grunt, grabbing her under the arms and throwing her on the table. Chiara has her boys well in hand, sucking and jerking the three of them like a pornstar. Shit, that almost makes you blow over the half-rat’s crotch! <i>“C’monnn [pc.mister] CEO! Look at how hot and big my pussy is! Big ‘ol clit for you to fuck right into m-Hie-KK!”</i>");
+	output("\n\nShe squeaks when you ram into that sopping wet crease, spraying her squirting juices in a dewy corona. You lean down far enough for her to wrap her arms around your neck and her ribboned tail around your waist, bucking your hips so hard that the table rattles and cookies crumble. <i>“Yes! [pc.Mister] CEO! I love iiitt, make sure to hit my clitty!”</i> she screams, finally wrapping her legs around you when the little tree falls over too.");
+	pc.cockChange();
+	output("\n\nIt occurs to you that there may have been something in those cookies for this occasion, but then you also remind yourself these rats don’t get laid enough. Good thing you’re here to take care of this one! She draws you into a kiss, encouraging you to play with her sweat-dripping teats.");
+	output("\n\nThe hot and steamy vice of her puffy pink pussy squeezes around your rock-hard [pc.cockNoun " + x + "], all the nerves you’re pounding returning the effect in kind. Slavering cunny walls suck you deeper, shortening your intervals and the amount of dick that’s outside of her needy canal at any given time. The boys nearby squeal in orgasm, firing off ropes of cum that land near you when their cocksucker can’t catch it.");
+	output("\n\nBut your [pc.eyes] are on Claes, only her right now. Ffion crawls behind you, gripping your [pc.ass] and teasing whatever she can in your rapid thrusts. Following a clench in your [pc.balls] the orgasmically squirming rat-bitch gets what she wants: the first ");
+	if(pc.cumQ() > 100)
+	{
+		if(pc.cumQ() < 1000) output("powerful ");
+		else output("titanic ");
+	}
+	output("rope of [pc.cum]. You hilt her in a painfully awkward position" + (pc.balls > 1 ? ", Ffion’s paws kneading out your successive cumshots, dutifully handling your contracting nuts":"") + ". [pc.CumColor] spooge drips from her gushy crease" + (pc.cockTotal() > 2 ? " and shoots from your extra [pc.cocksLight] onto her chest and face":"") + ".");
+	output("\n\n<i>“M-me too, [pc.mister] CEO...”</i> Ffion whispers. You’ve " + (pc.cumQ() < 100 ? "barely filled":"packed") + " Claes’ womb" + (pc.cumQ() >= 25000 ? " to the breaking point":"") + " and those words excite your cum-smattered rod for the prospect of round two. You whip around, obscuring the small rat beneath your dick. <i>“Ohh...”</i> she hums, kissing the [pc.cockHead " + x + "] and turning to the side, tilting her head to the right and presenting you with her eargina.");
+	output("\n\nPre and cunt-slime fall in ropes, singing the flesh of her ear just before you aim down and thrust. <i>“Ahhh!”</i> she screams, tongue falling from her mouth immediately as you descend into her alien depths. An all-consuming lust burrows into your head while your [pc.cockNoun " + x + "] seeks the depraved limit of her unique biology. Cranial pussy hugs tighter than any normal twat, making the friction of your rhythmic pumps oh-so pleasurable.");
+	output("\n\nFfion cranes upwards, grinding your dick against her skull with the change of position" + (pc.balls > 0 ? ", eager to lap at your [pc.sack]":"") + ". She gives you total control of her body, of her mind, but all you can do is grunt and groan, satisfying your desires with the joys of rodenian earcunt. Her sleek tunnels hollow greedily, squelching with all the slickness you’ve dumped into her.");
+	output("\n\nLusty squeaks and firm little thigh hugs, for some reason, gradually darken your vision. Some mental force asserts itself on your mind, and you find yourself in some place out of a TV show or book. A positive winter wonderland surrounds you and your pink-furred earslut, snowflakes falling around lavishly wrapped gifts and colorfully decorated trees. When you look down and thrust again, a twinge in your mind bids you to cum.");
+	output("\n\nAnd this time, when you burst, you are robbed of your senses. You are given a modicum of time to feel your [pc.cum] flowing to her boob-wombs, splattering back against you on slowing gyrations. Cacophonous orgasm rages around you - not just your voice. One powerful throb more, and you’re gone like the shooting star in that bright night sky.");
+	processTime(30);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",shippyBoardSnugglies);
+}
+
+//[Lap Ride]
+// Tooltip: She can lick you, but Jean can join in too.
+// NEED PUSS
+public function lapRide2018VagStuff():void
+{
+	clearOutput();
+	showBust("RATS_RAIDER_GIRL_NUDE");
+	showName("LAP\nRIDE");
+	author("William");
+	output("The tan and freckled mouse-boy looks left out. Sure, Chiara could tend to him, but you and Claes can help make his night something special. You tap the half-rat girl’s head and stand, sauntering over to the needy mouse-boi. <i>“[pc.Mister] CEO...”</i> He shuffles, looking away nervously with bright red cheeks. All it takes is one caress of your [pc.hand] and he eases up, spreading his legs and giving you room to sit!");
+	output("\n\nYou turn around and press against his lap, putting weight on his fat balls and squeezing his cock into your butt-cleavage. You take your seat" + (pc.legCount > 1 ? ", squishing his alluring cock between your [pc.thighs]":", nestling his cock deep between the cheeks of your [pc.ass]") + ". <i>“O-oh... T-that feels really good, [pc.mister] CEO!”</i> he stammers cutely, ears twitching. You guide his hands to your " + (pc.biggestTitSize() >= 1 ? "[pc.breasts]":"[pc.pussies]") + ", giggling when he takes the cue" + (pc.isLactating() && pc.biggestTitSize() >= 1 ? ", squirting [pc.milkNoun] onto Claes’ hair with insistent rubs":"") + ".");
+	output("\n\nClaes sets herself down in front of you again, eager to ");
+	if(pc.hasCock()) output("wrap her lips around your [pc.cockNounBiggest]");
+	else output("tongue over [pc.eachPussy]");
+	output(". That fleshy spear rings " + (pc.hasCock() ? "[pc.cockHeadBiggest]":"[pc.oneClit]") + " lovingly, gliding up and down your ");
+	if(!pc.hasCock())
+	{
+		if(pc.vaginalPuffiness(0) > 0) output("puffy ");
+		output("vulva");
+	}
+	else output("rigid rod" + (pc.hasCocks() ? "s":""));
+	if(pc.balls > 0) output(", wriggling into your nutsack and inhaling your ballmusk");
+	output(".");
+	output("\n\nJean’s hot tip balloons into greater arousal " + (pc.legCount > 1 ? "between your smothering [pc.legsNoun]":"in the depths of your [pc.ass]") + ". He can’t hump or move; that’s your job. The mouse toy’s job is to sit there and let you buck into his pelvis and play with his delightfully warm dick. Mouse-pre bubbles and splatters on every up and down gyration, sprays on each swivel - his musky heat spreads across your lower body. On his lap you rock yourself in a slow, sensual clockwise motion, steadying your [pc.arm] around his neck");
+	if(pc.legCount > 1) output(" while your [pc.pussyNoun] " + (!pc.isSquirter() ? "gently coats his shaft with [pc.girlCumNoun]":"sprays [pc.girlCumNoun] against his broad shaft"));
+	output(". Stars does he feel so hard! His boner could ram through steel. His twitching tool is a perfect example of why big dicks aren’t always better!");
+	output("\n\n" + (pc.legCount > 1 ? "When Claes isn’t sucking your clitty and spreading your pussy for her tongue, she’s nuzzling what little cock emerges between your [pc.thighs] and peppering those sensitive nerves with plenty of spit-flecked kisses, being rewarded with stomach-filling batches of boyjizz for her troubles. It only betters her treatment of you!":"When you buck into Jean’s lap and smush his cock to his belly, you thrust back against Claes’ invading tongue, bringing her nearer to your womb and untouched nerves of pussyflesh. Pre smears your ass while girljuice smears a rat slut’s face."));
+	output("\n\nTo your left, Chiara swaps cocks like a star, sucking Cless and Rian off in equal measure and pumping whichever tender, slick shaft isn’t between her plush lips. Her work earns her a creamy reward right from the two of them. Where’s yours...?");
+	output("\n\n<i>“I-I’m...”</i> Jean whimpers, and you can feel his balls contracting under your sensual weight. One rope, two ropes of mouse-jizz fly through the air, landing on you " + (pc.legCount > 1 ? "and Claes ":"") + "together. You push back into his lap just a bit harder, making sure those rhythmically clenching nuts are churning out as much as possible. His cute squeaks and moans have you cumming too, creaming your cunt-kisser’s face" + (pc.legCount > 1 ? " and his mast":"") + ".");
+	if(pc.hasCock()) output(" Your [pc.cocksLight] dribble" + (pc.cockTotal() == 1 ? "s":"") + " out a few loads that only shine your prick" + (pc.hasCocks() ? "s":"") + " with [pc.cumColor] spooge.");
+	output("\n\nOne orgasm isn’t going to cut it, but before you can react, Ffion suddenly seats herself on your lap. The stool you’re sitting on falls away and you both collapse on his sprawled form, sandwiching his cum-sensitive cock between your crotches. <i>“[pc.Mister] CEO, me too, okay..?”</i> she murmurs, <i>“please use me too...!”</i> The pink rat pushes you down until your heads are close to the freckled boy’s. Jean’s hands squirm for your [pc.chest] while the pink rat locks her lips to yours.");
+	output("\n\nFfion’s hands clasp around your wrists, guiding them to her ears and shoving them through the smooth, frictionless interior until your fingers are swallowed up by her cranial pussies. Almost immediately some mental force numbs your body and you lose sight of her. Not that it mattered with that short, hungry snout grinding against your [pc.face]. She groans into your mouth and writhes with some deep-set need to ravish you and be ravished back.");
+	output("\n\nAnd so you do. You flex your fingers in those depraved canals, doing whatever you think is most pleasurable to tease her pussies into convulsions of wanton pleasure. The effluence on your hand makes your passage through her wet tunnels easier, and soon you’ve lost your wrists into the heavenly vice of rodenian earcunt.");
+	output("\n\nYou can feel Jean humping for dear life under your combined weight. Your rat isn’t even kissing back, you’re just sucking on her tongue. She has no control that matters aside from voicing her pleasure through your skull. Who even knows what Claes is doing, but if you understand her well enough, she’s got her nose impaled in either of your holes.");
+	output("\n\nSome sort of whiplash assails your mind, and all of a sudden you find yourself in some sort of place right out of a TV show or book. You’re lying in the snow of a winter wonderland, surrounding by falling snowflakes, lavishly wrapped gifts, and colorfully decorated trees topped with gorgeous stars - and Ffion right on top of you, making out with you. It’s almost too hard to keep up with her once-hidden hunger for more...");
+	output("\n\nYou’re cumming, and it’s more powerful than you feel it should be, given this position. You squirt");
+	if(pc.hasCock()) output(", and your [pc.cocks] spurt" + (pc.cockTotal() == 1 ? "s":""));
+	output(". You’re suddenly robbed of sense in this cacophonous orgasm. Voices not your own ring out in a chorus of debauchery - you’re all cumming and screaming, and it’s all any of you need to do. One powerful clench of your vaginal muscles more, and you’re gone like the shooting star in that bright night sky.");
+	processTime(30);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",shippyBoardSnugglies);
+}
+
+//Shipboard Snuggles
+// PC is given gifts at the end, random amounts of credits and gems.
+// PC is given Claes’ Panties (Key Item!) if they are friends with the rats (goodCEO)
+public function shippyBoardSnugglies():void
+{
+	clearOutput();
+	showBust("RATS_RAIDER_GROUP_ONE_NUDE","RATS_RAIDER_GROUP_TWO_NUDE");
+	showName("\nSNUGGLES");
+	author("William");
+	output("You’re floating in an endless sky. It should be cold, but there’s no such discomfort. You’re sailing through puffy white clouds, the sun at your back, and you fly over a blanketed land. It’s peaceful. More peaceful than most places you’ve been. If you could conjure up this kind of fantasy at any time, you’d probably get better sleep. It’s easy to dive in and out of the atmosphere above a snow-blanketed land of tranquility.");
+	output("\n\nBut when you turn to face the sun, your eyes open in the real world.");
+
+	output("\n\nYou gasp and breathe, coming to on your bed. When you blink twice, you find all six rats curled up with extra blankets on your mattress, snuggled up on you, each other, or on each other. You swallow, exhale, and look to your left. Ffion hugs your left [pc.arm] tight, head cradled against your neck. Quiet snoozes overlay the background hum of Zheng Shi. You wish this didn’t have to end.");
+	output("\n\n<b>Schwing, Schwing! Schwing, Schwing!</b>");
+	output("\n\n<i>“Baaaahhh!”</i> Chiara shoots up. <i>“Aww... already?”</i> she groggily complains, diving for a pile of stuff in your bedroom corner and silencing that frustrating mechanical chime. <i>“Everyone up! Boss needs us! Crap, and I wanted to take a shower first. Quickly now, quick!”</i>");
+	output("\n\nEveryone jumps from your bed and blankets fly everywhere. You don’t mind though, because your rodenian lover isn’t ready to go just yet either. You turn to face her; a small smile on her lips is barely hidden by her teeth. There’s a simper followed by a jingle - her tail swerves around. When she angles that prehensile tendril above your heads she flicks her eyes meaningfully towards it. As do you.");
+	output("\n\nA few fake leaves, small red berries, and two tiny bells make up a strange evergreen accoutrement on her tail. " + (pc.IQ() < 20 ? "You don’t know what that is, and struggle to understand her meaning.":"It’s... <b>Mistletoe</b>. And you’re under it."));
+	output("\n\nWhen you look back down, her snout is extended, her lips are puckered and her eyes are closed" + (pc.IQ() < 20 ? " like she’s waiting for a kiss":", and she’s waiting for that kiss") + ".");
+	processTime(60);
+	restHeal();
+	clearMenu();
+	addButton(0,"Do It",doItKissDat2018RatMouf);
+	addButton(1,"Don't",dontSmooch2018Rats);
+}
+
+//[Do It]
+public function doItKissDat2018RatMouf():void
+{
+	clearOutput();
+	showName("\nSMOOCH");
+	showBust("RATS_RAIDER_ROD_1_NUDE");
+	author("William");
+	output("You happily press your face into hers, giving her that kiss she so badly wants. For a few precious seconds your tongues intertwine, curling tastefully as your wet lips slide and smack against each other. Praises from the others only add to this somehow. It’s not a long kiss, but it’s long enough. She kisses your nose then your cheek, a gleaming smile reflecting in your [pc.eyes].");
+	output("\n\nWhen she stands, they all gather at your door. <i>“Sorry, [pc.mister] CEO, we gotta go! We cleaned up for you last night, and your gifts are under your pillow! See ‘ya!”</i>");
+	processTime(5);
+	flags["RATMAS_2018"] = 2;
+	pc.lust(3);
+	clearMenu();
+	addButton(0,"Next",epilogueRats2018cribmass);
+}
+
+public function dontSmooch2018Rats():void
+{
+	clearOutput();
+	showName("SMOOCH\nFREE ZONE");
+	showBust("RATS_RAIDER_ROD_1_NUDE");
+	author("William");
+	output("You shake your head, and Ffion looks more than a little disappointed. With a long huff, she disentangles and gathers herself with the other five at your door. <i>“Sorry, [pc.mister] CEO, we gotta run. We cleaned up last night, and your gifts are under your pillow! See ‘ya!”</i>");
+	// Merge
+	flags["RATMAS_2018"] = 1;
+	processTime(5);
+	pc.lust(3);
+	clearMenu();
+	addButton(0,"Next",epilogueRats2018cribmass);
+}
+
+public function epilogueRats2018cribmass():void
+{
+	clearOutput();
+	showName("MERRY\nCHRISTMAS!");
+	author("William");
+	output("After the troupe frantically sprint back home (hopefully they don’t get klepto), you sit up and look under your pillow as instructed. " + (!ratsPCIsGood() ? "Only one box is there, small, but it feels heavy.":"There’s two boxes, small, one heavy and one light") + ". You open " + (!ratsPCIsGood() ? "it":"the first") + ", finding an assortment of credits and shiny baubles. Aww.");
+	if(ratsPCIsGood()) 
+	{
+		output("\n\nAs for the second... It’s not even closed correctly. When you tilt it, a feathery pair of silky white panties with green, ribbony side ties falls out along with a hastily scrawled note. <b>Love, Claes!</b> You gulp, then take a whiff of that colorful lingerie. They’re clean, but that faint pheromone signature is definitely hers. Nice.");
+		pc.createKeyItem("Panties - Claes's - Silky white panties with green ribbon ties.");
+		output("\n\n(<b>Gained Key Item: Panties - Claes’s</b>.)");
+	}
+	output("\n\nCurious that a bunch of pirates would want to celebrate a holiday, but damn if it wasn’t worth it. The cookies, the sex... wonder what’s in store for next year?");
+	output("\n\n<b>You gain 8008 Credits!</b>");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
