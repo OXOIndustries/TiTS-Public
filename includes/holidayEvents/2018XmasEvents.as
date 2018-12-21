@@ -241,7 +241,7 @@ public function visitEmbrysApartment():void
 		output("\n\nYou manage to deftly step out of the way, letting [embry.name] finish her twirl.");
 		output("\n\n<i>“And a goldmine!”</i> she sings.");
 		output("\n\nAs her spin slows, you slip behind her, wrapping your arms around her waist.");
-		output("\n\n<i>“Ohmigosh!”</i> she yelps, nearly dropping the mixing bowl, instead spattering some up on her cheek. <i>“[Pc.name]! I didn’t know you’d come back yet!”</i> You feel her bare butt squish against you as she relaxes.");
+		output("\n\n<i>“Ohmigosh!”</i> she yelps, nearly dropping the mixing bowl, instead spattering some up on her cheek. <i>“[pc.name]! I didn’t know you’d come back yet!”</i> You feel her bare butt squish against you as she relaxes.");
 		output("\n\nYou let her go, and help her wipe the spatter of thick goo from her face as she explains.");
 	}
 	output("\n\n<i>“Back on Omorii, we had a winter tradition. When the first dusting of snow hit the plains, we’d all bake cookies. And, well, Myrellion doesn’t really get snow, but it has been getting colder, so I thought it might be nice to bake a few cookies,”</i> she says, squirming a bit as she explains.");
@@ -326,7 +326,7 @@ public function snowBallinWithEmbry():void
 	output("\n\nShe plants her hands awkwardly on the desk, and turns her head back to you, her naked, [embry.butt] perked out towards you. <i>“Would you like to help me... shape my cookies?”</i>");
 	output("\n\nYou tilt your head in confusion, then snort reflexively. It was clear that she was trying to be seductive, but between the awkwardness of the line, and [embry.name]’s inexperience in seduction, it definitely came off more than a little goofy.");
 	output("\n\nShe looks crestfallen at your reaction, but before the simii girl can respond, you slide up behind her, wrapping your arms around her slim waist and nuzzling against her neck.");
-	output("\n\n<i>“Was I... oh... mmm, [Pc.name] ....”</i> she murmurs, her slight body shivering softly against yours.");
+	output("\n\n<i>“Was I... oh... mmm, [pc.name] ....”</i> she murmurs, her slight body shivering softly against yours.");
 	output("\n\nYou nibble softly against her earlobe, and a sweet sigh slips from her lips. You spend a few minutes nibbling and teasing her, your hands running up the front of her apron, cupping her [embry.breasts]. You stiffen under your apron, pressing through it against [embry.name]’s perky butt and are rewarded with another breathy sigh from the simii." + (embry.hasCock() ? " You look down over her shoulder and catch sight of her own apron tenting up with her cute little erection.":""));
 	output("\n\n[embry.name] seems to have been reduced to a taut, shivering mess, so you decide to pull back a bit. The simii girl <i>says</i> she wanted to make cookies, after all, and she’d currently in no state to do so.");
 	output("\n\nIt takes her a minute or two to form words again, and when she does, they’re still a little jumbled. <i>“Hhhahhh... oh, [pc.name], th-that was just... so... wow ...”</i>");
