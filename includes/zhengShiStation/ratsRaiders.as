@@ -131,7 +131,6 @@ public function ratputation(increase:int = 0, goodCEO:Boolean = false):int
 
 public function ratsPCIsGood():Boolean
 {
-	return true;
 	return ratputation() == RatsRaider.RAT_REP_GOOD_CEO;
 }
 
