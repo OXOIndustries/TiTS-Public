@@ -365,6 +365,7 @@ public function statisticsScreen(showID:String = "All"):void
 						else output2("\n<b>* Nipple, Length:</b> " + prettifyLength(pc.nippleLength(x)));
 						if(pc.breastRows[x].breasts != 1) output2(" each");
 					}
+					output2("\n<b>* Areola:</b> " + " " + StringUtil.toDisplayCase(pc.nippleFlagDescript()));
 					output2("\n<b>* Areola, Size:</b> " + prettifyLength(pc.nippleWidth(x)));
 					if(pc.breastRows[x].breasts != 1) output2(" each");
 					if(pc.breastRows.length != 1)
