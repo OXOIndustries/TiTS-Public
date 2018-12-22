@@ -741,7 +741,7 @@ package classes.GameData
 			boostedCharges.classLimit = GLOBAL.CLASS_ENGINEER;
 			boostedCharges.levelLimit = 10;
 			boostedCharges.perkName = "Boosted Charges";
-			boostedCharges.perkDescription = "Enhances your gravidic and thermal charges’ damage, and also provides secondary effects. Gravidic charge leaves a lingering field that reduces all kinetic damage dealt for three rounds. Thermal charge has a chance of lighting your foes on fire.";
+			boostedCharges.perkDescription = "Enhances your gravidic and thermal disruptors’ damage, and also provides secondary effects. Gravidic Disruptor leaves a lingering field that reduces all kinetic damage dealt for three rounds. Thermal Disruptor has a chance of lighting your foes on fire.";
 			insertPerkData(boostedCharges);
 
 			//2. Linked Emitters: While your shields are up, you gain a bonus 5% Critical chance with all energy weapons.*/

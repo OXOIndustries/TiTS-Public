@@ -9802,6 +9802,10 @@
 			if(hasStatusEffect("Flushed")) addStatusMinutes("Flushed",arg);
 			if(hasStatusEffect("Fuck Fever")) addStatusMinutes("Fuck Fever",arg);
 		}
+		public function canHeat():Boolean
+		{
+			return (hasVagina() && fertility() > 0);
+		}
 		public function inHeat():Boolean
 		{
 			return hasStatusEffect("Heat");
@@ -9813,6 +9817,10 @@
 				if(statusEffectv1("Heat") >= 10) return true;
 			}
 			return false;
+		}
+		public function canRut():Boolean
+		{
+			return (hasCock() && virility() > 0);
 		}
 		public function inRut():Boolean
 		{
