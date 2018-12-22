@@ -3161,13 +3161,14 @@ public function boobStuff(forTarget:Creature = null):void
 			if(target.nipplesPerBreast == 1) outputRouter(num2Text(target.nipplesPerBreast) + " " + int(target.nippleLength(0)*10)/10 + "-inch " + target.nippleDescript(0) + " each.");
 			else outputRouter(num2Text(target.nipplesPerBreast) + " " + int(target.nippleLength(0)*10)/10 + "-inch " + plural(target.nippleDescript(0)) + " each.");
 			//Dicknipples mention areolae desc later.
-			if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_DICK) outputRouter(" The areolae are " + target.nippleColor + ".");
-			else outputRouter(" The " + target.areolaSizeDescript() + " areolae are " + target.nippleColor + ".");
+			if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_DICK) outputRouter(" The " + areolaeDescript() + " are " + target.nippleColor + ".");
+			else outputRouter(" The " + target.areolaeDescript() + " are " + target.nippleColor + ".");
 			if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
 			{
 				//New J-Cup hotness
-				outputRouter(" With a lusty thought and a bit of focus, " + (target == pc ? "you":"[target.heShe]") + " can make " + num2Text(Math.round(target.nippleLength(0) * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind " + (target == pc ? "your":"[target.hisHer]") + " normal-looking, " + target.areolaSizeDescript() + ", areolae.");
-				//OLD: outputRouter(" With a lusty thought and a bit of focus, you can make " + num2Text(Math.round(target.nippleLength(0) * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind your normal-looking areolae.");
+				outputRouter(" With a lusty thought and a bit of focus, " + (target == pc ? "you":"[target.heShe]") + " can make " + num2Text(Math.round(target.nippleLength(0) * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind " + (target == pc ? "your":"[target.hisHer]") + " " + target.
+				eDescript() + ".");
+				//OLD: outputRouter(" With a lusty thought and a bit of focus, you can make " + num2Text(Math.round(target.nippleLength(0) * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind your " + target.areolaeDescript() + ".");
 			}
 		}
 		//Inverted type
@@ -3178,17 +3179,17 @@ public function boobStuff(forTarget:Creature = null):void
 			switch(target.breastRows[0].nippleType)
 			{
 				case GLOBAL.NIPPLE_TYPE_FUCKABLE:
-					outputRouter(" The " + target.areolaSizeDescript() + " areolae are " + target.nippleColor + ".");
+					outputRouter(" The " + target.areolaeDescript() + " are " + target.nippleColor + ".");
 					outputRouter(" While " + (target == pc ? "you":"[target.heShe]") + " may appear to have inverted nipples, " + (target == pc ? "your":"[target.hisHer]") + " chest actually houses wet, slippery secrets. A finger or cock could easily slip inside " + (target == pc ? "you":"[target.himHer]") + " to give and get as much pleasure as any crotch-couched cunt.");
 					break;
 				case GLOBAL.NIPPLE_TYPE_LIPPLES:
 					outputRouter(" The plump, " + target.areolaSizeDescript() + ", " + target.nippleColor + " lips that " + (target == pc ? "you have":"[target.heShe] has") + " in place of areolae could easily be parted to allow something stiff and hard inside " + (target == pc ? "your":"[target.hisHer]") + " sensitive chest-based passages.");
 					break;
 				case GLOBAL.NIPPLE_TYPE_FLAT:
-					outputRouter(" There isn’t any actual nub to " + (target == pc ? "your":"[target.hisHer]") + " nipples - just flat, " + target.areolaSizeDescript() + ", " + target.nippleColor + " areolae.");
+					outputRouter(" There isn’t any actual nub to " + (target == pc ? "your":"[target.hisHer]") + " nipples - just " + target.nippleColor + ", "  + target.areolaeDescript() + ".");
 					break;
 				case GLOBAL.NIPPLE_TYPE_INVERTED:
-					outputRouter(" The " + target.areolaSizeDescript() + " areolae are " + target.nippleColor + ".");
+					outputRouter(" The " + target.areolaeDescript() + " are " + target.nippleColor + ".");
 					outputRouter(" When " + (target == pc ? "you’re":"[target.heShe]’s") + " aroused enough, " + (target == pc ? "your":"[target.hisHer]") + " " + int(target.nippleLength(0)*10)/10 + "-inch nipples pop out, ready for action.");
 					break;
 				case GLOBAL.NIPPLE_TYPE_TENTACLED:
@@ -3306,7 +3307,7 @@ public function boobStuff(forTarget:Creature = null):void
 					else outputRouter("each.");
 				}
 				if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_DICK) {
-					outputRouter(" " + (target == pc ? "You":"[target.HeShe]") + " can make " + num2Text(Math.round(target.nippleLength(temp) * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind the normal-looking areolae.");
+					outputRouter(" " + (target == pc ? "You":"[target.HeShe]") + " can make " + num2Text(Math.round(target.nippleLength(temp) * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind the " + target.areolaeDescript() + ".");
 				}		
 			}
 			//Inverted type
@@ -3332,7 +3333,7 @@ public function boobStuff(forTarget:Creature = null):void
 						outputRouter(" Plump lips cap them off in place of nipples.");
 						break;
 					case GLOBAL.NIPPLE_TYPE_FLAT:
-						outputRouter(" There isn’t any actual nub to the nipples - just flat areolae.");
+						outputRouter(" There isn’t any actual nub to the nipples - just " + areolaeDescript() + ".");
 						break;
 					case GLOBAL.NIPPLE_TYPE_INVERTED:
 						outputRouter(" When you’re aroused enough, the nubs pop out, ready to play.");
