@@ -1,6 +1,6 @@
 public function outsideCarbonado():Boolean
 {
-	output(" Finally, to the west, is a combination clothing-store-come-spa. The window rather cheerily offers a cozy experience for potential patrons to warm themselves within after having experienced the bitter chill of the moons surface.");
+	output(" Finally, to the west, is a combination clothing-store-come-spa. The window rather cheerily offers a cozy experience for potential patrons to warm themselves within after having experienced the bitter chill of the moon’s surface.");
 
 	if (!carbonadoActiveHours())
 	{
@@ -129,7 +129,14 @@ public function uvetoCarbonadoMenu():void
 		{
 			if(flags["CFS_HOLIDAY_SHOPPING"] == undefined && (!pc.isTaur() || pc.hasItemByClass(HeatBelt)) && (pc.totalVaginas() > pc.blockedVaginas() || pc.hasCock()))
 			{
+				pc.createStatusEffect("GWEN_XMAS_CD");
+				pc.setStatusMinutes("GWEN_XMAS_CD",60*84);
 				cfsHolidayShopping();
+				return;
+			}
+			if(pc.hasGenitals() && !pc.hasStatusEffect("GWEN_XMAS_CD") && flags["GWEIMEER_XMAS_2018"] == undefined) 
+			{
+				gardefordsGwenmas2018();
 				return;
 			}
 		}
