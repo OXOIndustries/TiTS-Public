@@ -114,7 +114,6 @@ public function ratsGemCount(target:Creature = null):int
 			gems += item.quantity;
 	return gems;
 }
-	
 public function ratputation(increase:int = 0, goodCEO:Boolean = false):int
 {
 	if (flags["RATPUTATION"] == undefined) return RatsRaider.RAT_REP_NONE;

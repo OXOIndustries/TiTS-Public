@@ -863,7 +863,7 @@ public function ratmas2018TheBeginningOfTheLoooood():void
 	output("\n\n<i>“Geez, you went all in... where did you get this stuff, Ffion?”</i> Chiara asks, wiping her lip.");
 	output("\n\nThe pink girl blushes right through her fur, offering no answer. The eating continues, every flake of crust melting away the second it lands on grateful tongues. You try another, one with caramel drizzled atop it. It somehow tastes even better. No matter how many you eat, there seems to be no end.");
 	if(!pc.isLactating()) output(" If only you had some <b>milk to wash it all down with...</b>");
-	else if(!InCollection(pc.milkType,[GLOBAL.FLUID_TYPE_MILK,GLOBAL.FLUID_TYPE_CHOCOLATE_MILK,GLOBAL.FLUID_TYPE_STRAWBERRY_MILK,GLOBAL.FLUID_TYPE_LEITHAN_MILK])) output( "<b>If only you had regular milk... you could have <b>washed it down with some milk!</b>");
+	else if(!InCollection(pc.milkType,[GLOBAL.FLUID_TYPE_MILK,GLOBAL.FLUID_TYPE_CHOCOLATE_MILK,GLOBAL.FLUID_TYPE_STRAWBERRY_MILK,GLOBAL.FLUID_TYPE_LEITHAN_MILK])) output( "<b>If only you had regular milk</b>... you could have <b>washed it down with some milk!</b>");
 	// PC not lactating
 	if(!pc.isLactating() || pc.hasFuckableNipples() || pc.milkQ() < 300)
 	{
@@ -1205,9 +1205,9 @@ public function gardefordsGwenmas2018():void
 		output("\n\nThe only saving grace you have is Eimear’s increasing efforts. She ramps up her game to match the puazi’s near mindless fucklust. When she tires of tonguefucking alone, she retrieves the dropped dildo, putting it to good use and switching her oral attention to the small of her lovers tail, licking between its base and her asshole as she pounds the synthetic fuckstick in and out. Gwen grows sloppier as she turns into a quivering mess, but it’s too late for you to hold on any longer.");
 		output("\n\n<i>“That’s good. Cum, you’ve earned it.”</i> Part of you knows Eimear’s command is meant for her girlfriend, but that doesn’t stop you from complying. You comply like a good slut. The brain numbing pleasure of sweet release floods through your body, Echoing in your [pc.vagina] and bouncing back out the front in a blissful moan of your very own. Gwen, sandwiched between your [pc.thighs] and the powerful thrusts of her lovers dildo, shudders silently with her own delights.");
 		output("\n\n");
-		var wetties:Number = pc.wettestVaginalWetness();
-		if(wetties < 2) output("Your insides clamp down on the dextrous tongue intruding within you, locking it in place while you ride out the throes of orgasm.");
-		else if(wetties < 4) output("Your insides clamp down on the prurient puazi’s dextrous tongue, and hot femcum coats the oral organ, dripping slowly down till it reaches her chin.");
+		var wetties2:Number = pc.wettestVaginalWetness();
+		if(wetties2 < 2) output("Your insides clamp down on the dextrous tongue intruding within you, locking it in place while you ride out the throes of orgasm.");
+		else if(wetties2 < 4) output("Your insides clamp down on the prurient puazi’s dextrous tongue, and hot femcum coats the oral organ, dripping slowly down till it reaches her chin.");
 		else if(pc.girlCumQ() < 2000) output("The prurient puazi gets a facefull of hot [pc.girlCum] as your insides lock tightly around her tongue. You can hear your cum splash onto her face, dripping down onto the floor to join the already sizeable pools of love juices.");
 		else output("The prurient puazi sputters as your hot [pc.girlCum] gushes over her face. Steaming splashes of love juice wash over her and spatter onto the soaked carpet.");
 		output(" A sigh escapes your lips, and you pull in fresh air to replace the breath you’d been holding through your orgasm. You want to spin and face Gwen, but your legs don’t seem to be responding, and you seem to be on the floor. For now you content yourself to lie back and relax against the couch.");
