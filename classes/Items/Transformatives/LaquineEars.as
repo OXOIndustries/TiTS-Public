@@ -1697,7 +1697,7 @@ package classes.Items.Transformatives
 			//(Hueg Boobers) Loose a cup size down to G.
 			if(select == 9)
 			{
-				textBuff += ParseText("Your [pc.chest] isn’t quite as wobbly. You feel around, discovering that <b>");
+				textBuff += ParseText("Your [pc.chest] aren’t quite as wobbly. You feel around, discovering that <b>");
 				if(pc.bRows() == 1) textBuff += "you now fit";
 				else textBuff += "your biggest tits have shrunk down to";
 				
