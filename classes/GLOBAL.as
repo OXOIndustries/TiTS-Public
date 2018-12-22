@@ -80,6 +80,8 @@
 		public static const FLAG_TONGUE:int									= 45;
 		public static const FLAG_FRECKLED:int                               = 46;
 		public static const FLAG_PLUGGED:int                   	            = 47;
+		public static const FLAG_HEART_SHAPED:int			    = 48;
+		public static const FLAG_STAR_SHAPED:int			    = 49;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -130,6 +132,8 @@
 			"Tongued",
 			"Freckled",
 			"Plugged",
+			"Heart-Shaped",
+			"Star-Shaped",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -748,6 +752,12 @@
 			NIPPLE_TYPE_FLAT,
 			NIPPLE_TYPE_INVERTED,
 			NIPPLE_TYPE_TENTACLED,
+		];
+		
+		public static const VALID_NIPPLE_FLAGS:Array = [
+			FLAG_PUMPED,
+			FLAG_HEART_SHAPED,
+			FLAG_STAR_SHAPED,
 		];
 				
 		//CUM & MILK TYPES
