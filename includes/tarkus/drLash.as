@@ -390,13 +390,14 @@ public function purgeParasites(pType:String = "all"):Boolean
 			parasites = true;
 		}
 	}
-	if(pType == "cockvine" || pType == "cuntsnake" || pType == "tail" || pType == "all")
+	if(	(pType == "all")
+	||	(pType == "cockvine" && pc.hasTailCock())
+	||	(pType == "cuntsnake" && pc.hasTailCunt())
+	||	(pType == "tail")
+	)
 	{
-		if(	pType == "all"
-		||	(pType == "cockvine" && pc.hasParasiteTail() && pc.hasTailCock())
-		||	(pType == "cuntsnake" && pc.hasParasiteTail() && pc.hasTailCunt())
-		||	(pType == "tail" && pc.hasParasiteTail())
-		) {
+		if(pc.hasParasiteTail())
+		{
 			pc.removeTails();
 			parasites = true;
 		}
@@ -468,10 +469,12 @@ public function lashTreatment2(treatment:String):void
 		else output(" is");
 		output(" gone!");
 		pc.removeVaginas();
+		pc.resetGirlCumProduction();
 	}	
 	else if(treatment == "neutering")
 	{
-		pc.balls = 0;
+		pc.removeBalls();
+		pc.resetCumProduction();
 	}
 	else if(treatment == "phallus pruning")
 	{
@@ -479,7 +482,8 @@ public function lashTreatment2(treatment:String):void
 		if(pc.totalCocks() == 1 && pc.balls > 0)
 		{
 			output("and your [pc.balls] are");
-			pc.balls = 0;
+			pc.removeBalls();
+			pc.resetCumProduction();
 		}
 		else output("is");
 		output(" gone!");
@@ -491,7 +495,8 @@ public function lashTreatment2(treatment:String):void
 		if(pc.balls > 0) 
 		{
 			output(" along with your sack");
-			pc.balls = 0;
+			pc.removeBalls();
+			pc.resetCumProduction();
 		}
 		output("!");
 		pc.removeCocks();
@@ -503,7 +508,9 @@ public function lashTreatment2(treatment:String):void
 		output(" are totally gone!");
 		pc.removeCocks();
 		pc.removeVaginas();
-		pc.balls = 0;
+		pc.removeBalls();
+		pc.resetCumProduction();
+		pc.resetGirlCumProduction();
 		//Trim down to 1 row.
 		while(pc.bRows() > 1)
 		{

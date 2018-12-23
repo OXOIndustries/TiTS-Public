@@ -1455,6 +1455,32 @@
 			balls = 0;
 			removeStatusEffect("Mimbrane Balls");
 		}
+		public function removeBalls(): void
+		{
+			balls = 0;
+			resetBallSize();
+		}
+		public function resetBallSize(): void
+		{
+			// Revert ball size to default value.
+			ballSizeRaw = 1;
+			ballSizeMod = 1;
+		}
+		public function resetCumProduction(): void
+		{
+			// Revert cum production values to default.
+			ballFullness = 50;
+			ballEfficiency = 3;
+			refractoryRate = 1;
+			cumMultiplierRaw = 1;
+			cumMultiplierMod = 0;
+		}
+		public function resetGirlCumProduction(): void
+		{
+			// Revert cum production values to default.
+			girlCumMultiplierRaw = 1;
+			girlCumMultiplierMod = 0;
+		}
 		
 		public function scrotumType(): int
 		{
