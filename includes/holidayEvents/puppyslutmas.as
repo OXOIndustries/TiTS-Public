@@ -527,10 +527,8 @@ public function puppyslutmasMeetAnno():void
 	
 	if (annoIsCrew())
 	{
-		output("\n\n<i>“So,”</i> Anno says, turning to you with a less than amused look. <i>“That’s what we went to Mhen’ga for.”</i>");
-	
-		output("\n\n<i>“Oh. Yeah. I was wondering where you’d gone off to,”</i> you chuckle, realizing that you haven’t seen Anno since you left the jungle world.");
-	
+		output("\n\n<i>“So,”</i> Anno says, turning to you with a less than amused look. <i>“That’s what we went to Uveto for.”</i>");
+		output("\n\n<i>“Oh. Yeah. I was wondering where you’d gone off to,”</i> you chuckle, realizing that you haven’t seen Anno since you left the frozen moon.");
 		output("\n\nShe huffs. <i>“Lucky for me, my </i>other<i> " + (haveFuckedAnno() ? "lover" : "girlfriend") + " was in the neighborhood, and offered me a ride to the family reunion. You know, the one you decided not to take me to.”</i>");
 	}
 	else
@@ -538,9 +536,7 @@ public function puppyslutmasMeetAnno():void
 		if (haveFuckedAnno())
 		{
 			output("\n\nSuddenly, Anno seems to notice your presence, and her eyes light up. <i>“Hey, babe! What’re you... wait, you’re with Syri!? That’s unexpected.”</i>");
-		
 			output("\n\nSyri blinks. <i>“You two, uh... you two know each other, huh? That’s cool,”</i> she says, sounding more intrigued than enthused.");
-		
 			output("\n\n<i>“Yeah!”</i> Anno says, hooking her arm through yours, pinning you between two fluffy ausar girls.");
 		}
 		else
@@ -549,13 +545,11 @@ public function puppyslutmasMeetAnno():void
 			if (flags["MET_ANNO"] == undefined)
 			{
 				output(" <i>“Anyway, this is my date for the night: [pc.name] Steele,”</i> she says, urging you forward to meet her sister. <i>“Don’t you work for " + pc.mf("his", "her") + " company?”</i>");
-			
 				output("\n\n<i>“Yeah, that’s right,”</i> Anno says with a smile. <i>“Good to meet you, [pc.name].”</i>");
 			}
 			else
 			{
 				output("\n\n<i>“Hey again, boss,”</i> Anno says, turning to you. <i>“So... I see you’ve met my sister here. That’s... that’s a coincidence, right there.”</i>");
-			
 				output("\n\n<i>“Yeah, so, you two know each other,”</i> Syri says awkwardly. <i>“That’s cool. Saves time on introductions, I guess.”</i>");
 			}
 		}
@@ -563,7 +557,7 @@ public function puppyslutmasMeetAnno():void
 	
 	output("\n\nAfter a moment, Anno steps back and grabs her red-headed date, pulling the other girl over to you and Syri. <i>“Sis, you remember Kaede, right? You met her-”</i>");
 	
-	output("\n\n<i>“I remember,”</i> Syri says, stepping up to the half-auser girl and giving her a friendly hug. Kaede smiles and hugs the bigger ausar back, her auburn tail flicking happily.");
+	output("\n\n<i>“Oh, I remember,”</i> Syri says wolfishly, stepping up to the half-ausar girl and giving her a fierce hug -- and grabbing Kaede’s ass in both hands. Kaede squirms and hugs the bigger ausar back, her auburn tail flicking happily.");
 	
 	output("\n\nWhen she’s released from the hug, Kaede turns to you and offers her hand. <i>“");
 	if (flags["ANNOxKAEDE_INTRODUCED"] != undefined) output("Hey again, [pc.name]. Good to see you.”</i>");
@@ -1320,16 +1314,9 @@ public function puppyslutmasDornasArrive():void
 	if (pPartner() == "Syri")
 	{
 		output("<i>“My, what a catch, Syri,”</i> Mrs. Dorna laughs, giving her daughter a look. <i>“Who ever would have thought you would have landed yourself a billionaire?”</i>");
-		if(syriRecruited())
-		{
-			output("\n\n<i>“Um... uh,”</i> Syri stutters, blushing furiously. <i>“It’s... it was just a coincidence, that’s all!”</i>");
-			output("\n\nMr. Dorna rolls his eyes and ruffles the hair between Syri’s ears. <i>“We know, sweetheart.”</i>");
-		}
-		else
-		{
-			output("\n\n<i>“We’re not... I mean... uh,”</i> Syri stutters, blushing furiously. <i>“It’s... it’s not like that! I just-”</i>");
-			output("\n\nMr. Dorna rolls his eyes and ruffles the hair between Syri’s ears. <i>“We know, sweetheart.”</i>");
-		}
+		if(syriRecruited()) output("\n\n<i>“We’re not... I mean we are, but... uh,”</i> Syri stutters, blushing furiously. <i>“It’s... it’s not a super big deal, we just-”</i>");
+		else output("\n\n<i>“We’re not... I mean... uh,”</i> Syri stutters, blushing furiously. <i>“It’s... it’s not like that! I just-”</i>");
+		output("\n\nMr. Dorna rolls his eyes and ruffles the hair between Syri’s ears. <i>“We know, sweetheart.”</i>");
 	}
 	else
 	{
