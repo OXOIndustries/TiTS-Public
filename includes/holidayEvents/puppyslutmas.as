@@ -1319,18 +1319,22 @@ public function puppyslutmasDornasArrive():void
 	output("\n\n");
 	if (pPartner() == "Syri")
 	{
-		output("<i>“My, what a catch, Syri”</i> Mrs. Dorna laughs, giving her daughter a look. <i>“Who ever would have thought you would have landed yourself a billionaire?”</i>");
-	
-		output("\n\n<i>“We’re not... I mean... uh,”</i> Syri stutters, blushing furiously. <i>“It’s... it’s not like that! I just-”</i>");
-	
-		output("\n\nMr. Dorna rolls his eyes and ruffles the hair between Syri’s ears. <i>“We know, sweetheart.”</i>");
+		output("<i>“My, what a catch, Syri,”</i> Mrs. Dorna laughs, giving her daughter a look. <i>“Who ever would have thought you would have landed yourself a billionaire?”</i>");
+		if(syriRecruited())
+		{
+			output("\n\n<i>“Um... uh,”</i> Syri stutters, blushing furiously. <i>“It’s... it was just a coincidence, that’s all!”</i>");
+			output("\n\nMr. Dorna rolls his eyes and ruffles the hair between Syri’s ears. <i>“We know, sweetheart.”</i>");
+		}
+		else
+		{
+			output("\n\n<i>“We’re not... I mean... uh,”</i> Syri stutters, blushing furiously. <i>“It’s... it’s not like that! I just-”</i>");
+			output("\n\nMr. Dorna rolls his eyes and ruffles the hair between Syri’s ears. <i>“We know, sweetheart.”</i>");
+		}
 	}
 	else
 	{
 		output("<i>“Is that so?”</i> Mrs. Dorna says, looking between you and Anno with concern. <i>“Anno, darling, weren’t you only recently...”</i>");
-	
 		output("\n\n<i>“Uh. Yeah. But, uh, look, it’s... I mean, listen, it’s not like that,”</i> she stumbles, cheeks reddening. <i>“Look, I moved on, and [pc.name] isn’t-”</i>");
-	
 		output("\n\nMr. Dorna rolls his eyes and ruffles the hair between Anno’s ears. <i>“We know, sweetheart.”</i>");
 	}
 	

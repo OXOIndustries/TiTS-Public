@@ -393,9 +393,15 @@ package classes.Items.Transformatives
 				}
 				// Has skin
 				// Skin gains “smooth” flag
-				if(changes < changeLimit && target.skinType == GLOBAL.SKIN_TYPE_SKIN && !target.hasSkinFlag(GLOBAL.FLAG_SMOOTH) && rand(3) == 0)
+				if(changes < changeLimit && !target.hasSkinFlag(GLOBAL.FLAG_SMOOTH) && rand(3) == 0)
 				{
-					output("\n\nAs the mod-laced cream does its work on your body, you feel goosebumps dancing up and down your skin; in which you eagerly touch and marvel at the sensation of your body hairs falling out with any lumps, creases, or folds <b>now made into youthfully smooth skin</b>.");
+					output("\n\nAs the mod-laced cream does its work on your body, you feel goosebumps dancing up and down your skin;");
+					if(target.hasFur()) output(" which feels a lot more youthful all of a sudden as each strand of [pc.skinFurScalesNounSimple] becomes soft and silky to the touch. <b>You now have smooth fur.</b>");
+					else if(target.hasFeathers()) output(" which feels a lot more youthful all of a sudden as each of your [pc.skinFurScalesNounSimple] become a lot more soft and downy to the touch. <b>You now have smooth feathers.</b>");
+					else if(target.hasScales()) output(" which feels a lot more youthful both underneath your [pc.skinFurScalesNounSimple] and the scales themselves becoming quite sleek to the touch. <b>You now have smooth scales.</b>");
+					else if(target.hasChitin()) output(" which feels a lot more youthful both underneath your [pc.skinFurScalesNounSimple] and the chitin plates themselves becoming quite sleek to the touch. <b>You now have smooth chitin.</b>");
+					else if(target.hasGooSkin()) output(" which feels a lot more youthful all of a sudden--tight and wrinkle-less. <b>Your gooey surface is now a lot smoother than usual.</b>");
+					else output(" in which you eagerly touch and marvel at the sensation of your body hairs falling out with any lumps, creases, or folds <b>now made into youthfully smooth skin</b>.");
 					
 					target.addSkinFlag(GLOBAL.FLAG_SMOOTH);
 					

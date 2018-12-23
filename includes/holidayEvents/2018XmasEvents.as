@@ -1,4 +1,4 @@
-﻿//                               By Franks
+﻿// By Franks
 
 //PC gets accidentally invited to UGC Christmas party
 //Gets to watch Riya and Grence get shitfaced and bang
@@ -376,7 +376,7 @@ public function yesSnowballEmbry():void
 	clearOutput();
 	showEmbry(true);
 	author("Frogapus");
-	output("You nod, and she clambers up the bed, perched on all fours above you, then leans down, pressing her cum-smeared lips to yours. You meet her halfway, your mouth open as her lips part. Together, you share a cum-filled kiss. One of you (you’re a little too addled to tell) starts moaning first, quickly followed by the other, as your tongues intertwine, the [cum.flavor] taste of your climax filling your mouths.");
+	output("You nod, and she clambers up the bed, perched on all fours above you, then leans down, pressing her cum-smeared lips to yours. You meet her halfway, your mouth open as her lips part. Together, you share a cum-filled kiss. One of you (you’re a little too addled to tell) starts moaning first, quickly followed by the other, as your tongues intertwine, the [pc.cumFlavor] taste of your climax filling your mouths.");
 	output("\n\nYou pull back, breaking the kiss, and she gulps, licking her lips. You follow suit, gazing up at the surprisingly naughty little monkey on top of you. She blushes immediately under your gaze, dropping her eyes and biting her lip.");
 	output("\n\n<i>“W-was that okay?”</i> she asks.");
 	output("\n\nYou tilt her head back up and give her another kiss in assurance.");
@@ -893,10 +893,10 @@ public function ratmas2018TheBeginningOfTheLoooood():void
 		output("\n\nHis comments only make the others fidget harder!");
 		output("\n\nThey’re both so forceful that wincing is natural. But you let it go, content to run your [pc.hands] through their hair and flick at their big round ears. Unbroken streams of [pc.milk] flow into their mouths, and the gulps and suckles are as eager as the squeaks muffled beneath the [pc.milkVisc] streams. <i>“Ohh please hurry, I wanna drink too!”</i> Cless whines, waiting impatiently behind his opposite. Rian and Chiara have also lined up, though, curiously, Ffion is waiting across the table. You wink at her, motioning with your head that she should get over here.");
 		output("\n\nYou can feel the tiny crumbles and remnants of chocolate in Jean’s mouth dotting the sides of his gleeful tongue. Oral muscles press out greater loads of [pc.raceShort]-cream, almost too much - it dribbles down the edges of their upquirked smiles. After four more swallows, you reluctantly usher them aside to let the next two in line have a taste. Cless and Rian, wearing honeyed smiles, take their place under your arms, tenderly cupping the undersides of your milk-tanks and coaxing out their share of [pc.milkNoun].");
-		output("\n\n'Squish', 'Lick', 'Tsk', the rats give you the milking you need one [pc.milkFlavor]-flavored suckle at a time, but Ffion is still so very shy. You can’t fathom why, but her white-furred friend pushes her into it. The boys’ hollowed cheeks have drained a lot, but there’s still just a little too much weighing you down, and those last reserves belong in rodenian bellies.");
+		output("\n\n‘Squish’, ‘Lick’, ‘Tsk’, the rats give you the milking you need one [pc.milkFlavor]-flavored suckle at a time, but Ffion is still so very shy. You can’t fathom why, but her white-furred friend pushes her into it. The boys’ hollowed cheeks have drained a lot, but there’s still just a little too much weighing you down, and those last reserves belong in rodenian bellies.");
 		output("\n\n<i>“Ummm, if it’s okay...”</i> the pink rat squirms, prompting others to laugh at her with slightly distended bellies and mouthfuls of fattening food. Bubbly burps and loud munches indicate no lack of fulfillment, but there’s a familiar smell in the air that triggers your libido. Chiara squeaks when you give her a good rub between the ears, but Ffion shivers and moans when you align her parched lips with your [pc.milkyNipple]. <i>“I uh, it’s better to give for us, though...”</i>");
 		output("\n\n<i>“Receiving is fine, too,”</i> you remind her, pushing your breast past her mousey teeth in an act of assertive . She writhes with something more like lustful need when a gout of [pc.milkNoun] puffs out her snout. The drag of her buck tooth against your jutting teat is also unfathomably pleasurable. You try not to make it obvious, but you’re giving her the hardest scritching out of all of the bunch.");
-		output("\n\n<i>Slurrrp.</i> The red and green eyed rodenians mewl softly against your [pc.skinFurScales], sending ripples through pliant titflesh. Your moans are encouraged, and your eyes begin to roll back from a lactic-induced mini-orgasm. " + (!pc.isCrotchExposed() ? "Even through your clothes, y":"Y") + "ou can’t hide how horny you are anymore. " + (!pc.isCrotchExposed() ? "Fluid sloughs inside your [pc.crotchCoverUnder] as t":"T") + "he last stubborn drops are pulled from your glands." + (pc.milkType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK ? "  Geez, now you’re missing something else to go with all this hot cocoa: marshmallows!!":""));
+		output("\n\n<i>Slurrrp.</i> The red and green eyed rodenians mewl softly against your [pc.skinFurScales], sending ripples through pliant titflesh. Your moans are encouraged, and your eyes begin to roll back from a lactic-induced mini-orgasm. " + (!pc.isCrotchExposed() ? "Even through your clothes, y":"Y") + "ou can’t hide how horny you are anymore. " + (!pc.isCrotchExposed() ? "Fluid sloughs inside your [pc.crotchCoverUnder] as t":"T") + "he last stubborn drops are pulled from your glands." + (pc.milkType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK ? " Geez, now you’re missing something else to go with all this hot cocoa: marshmallows!!":""));
 		output("\n\nThe two rodenians disentangle, though Ffion stays close. Unblinking moist eyes stay focused on yours. You glance sideways, feeling fuzzy, like you’re in some half-fugue state, and spot Claes on all fours pressing her wrinkling nose close to your crotch. The three boys can’t hide the smell of their musk either: pre drips from their fully erect cocks. Looks like they want to have a little fun before bed.");
 		processTime(25);
 		pc.lust(25);
@@ -1015,7 +1015,7 @@ public function shippyBoardSnugglies():void
 	restHeal();
 	clearMenu();
 	addButton(0,"Do It",doItKissDat2018RatMouf);
-	addButton(1,"Don't",dontSmooch2018Rats);
+	addButton(1,"Don’t",dontSmooch2018Rats);
 }
 
 //[Do It]
@@ -1063,6 +1063,7 @@ public function epilogueRats2018cribmass():void
 	}
 	output("\n\nCurious that a bunch of pirates would want to celebrate a holiday, but damn if it wasn’t worth it. The cookies, the sex... wonder what’s in store for next year?");
 	output("\n\n<b>You gain 8008 Credits!</b>");
+	pc.credits += 8008;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
