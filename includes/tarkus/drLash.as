@@ -437,7 +437,7 @@ public function lashTreatment2(treatment:String):void
 		pc.breastRows[0].breastRatingLactationMod = 0;
 		pc.milkFullness = 0;
 		pc.milkMultiplier = 0;
-		//Clear out honeypot bonuses	
+		//Clear out honeypot bonuses
 		pc.breastRows[0].breastRatingHoneypotMod = 0;
 		
 		if(pc.breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_FLAT) pc.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
@@ -458,7 +458,11 @@ public function lashTreatment2(treatment:String):void
 	}
 	else if(treatment == "vagina replacement")
 	{
-		if(pc.totalVaginas() == 1) output("Your vagina is gone!");
+		if(pc.totalVaginas() == 1)
+		{
+			output("Your vagina is gone!");
+			pc.resetGirlCumProduction();
+		}
 		else output("A vagina is gone!");
 		pc.removeVagina(rand(pc.totalVaginas()),1);
 	}
@@ -496,10 +500,10 @@ public function lashTreatment2(treatment:String):void
 		{
 			output(" along with your sack");
 			pc.removeBalls();
-			pc.resetCumProduction();
 		}
 		output("!");
 		pc.removeCocks();
+		pc.resetCumProduction();
 	}
 	else if(treatment == "pure purge")
 	{
@@ -522,7 +526,7 @@ public function lashTreatment2(treatment:String):void
 		pc.breastRows[0].breastRatingLactationMod = 0;
 		pc.milkFullness = 0;
 		pc.milkMultiplier = 0;
-		//Clear out honeypot bonuses	
+		//Clear out honeypot bonuses
 		pc.breastRows[0].breastRatingHoneypotMod = 0;
 		
 		if(pc.breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_FLAT) pc.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
