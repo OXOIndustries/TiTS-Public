@@ -27,7 +27,7 @@ Doesnt mind playing up the "hapless damsel" trope and then 180ing into wanton po
 
 /*
 	FLAGS:
-	FERUZE_ZHENG_OUTCOME	- 1=won, -1=lost, -2=special pusslost
+	FERUZE_ZHENG_OUTCOME	- 1=won, 2=rats won for you, -1=lost, -2=special pusslost
 	FERUZE_SEXED 			- times lewded Feruze total
 	FERUZE_CAME_INSIDE		- times had sex scenes cumming inside her.
 */
@@ -64,6 +64,7 @@ public function cousinEncounterBonus():Boolean
 		clearMenu();
 		addButton(0,"Fight",fightFeruze);
 		addButton(1,"Leave",leaveCuzAndFeruze);
+		if(ratputation() == RatsRaider.RAT_REP_GOOD_CEO) addButton(2,"???",questionQuestionQuestionRATS);
 		return true;
 	}
 	else
@@ -72,6 +73,46 @@ public function cousinEncounterBonus():Boolean
 		else addDisabledButton(6,"North","North","You’ll need some credentials to get past this lock... or some bespoke hacking software paid for by an asshole uncle. Maybe finding the credentials is the better idea.");
 	}
 	return false;
+}
+
+//[ ??? ]
+// No Tooltip
+// This option appears if 'Rat's Raiders' enemies [Rat Thieves] are befriended.
+// Counts as winning the fight, but Feruze isn't sexed. Is an option so that people can fight and get Suula sex.
+// Use both Group 1 and Group 2 _armored busts for this. Yes, all six of them.
+public function questionQuestionQuestionRATS():void
+{
+	clearOutput();
+	author("William");
+	showRivalAndFeruze();
+	output("[rival.name] looks irritable, glancing to the ship then back to you, one eye squint and the other shut. You open your mouth only to be cut off. <i>“Feruze, my upstart relative, in all [pc.hisHer] vacant-eyed lowliness, is perhaps planning something. Do keep [pc.himHer] entertained while I get this over with. [pc.HeShe] had [pc.hisHer] chance to leave well enough alone.”</i> [rival.name]’s head whips back once more, condemnation spilling out. <i>“And, leave [pc.himHer] alive if you must be rough. I’d like to savor my victory.”</i>");
+	output("\n\nThe shark-toothed mercenary smiles widely, stepping between you, your cousin, and your destination. She tilts her head, idly saying, <i>“Aw, do you really think I’d kill someone that cute and fuckable?”</i> Her tail whips around, striking the railing hard enough to send pieces of it twirling into the forge, banging off something far below. Her augmented eyes focus on you, the light shining behind them as intense as the furnaces below.");
+	output("\n\n<i>“Alright cutie-pie, last chance to back out!”</i> the hulking bodyguard chimes, feathery wings spreading with her broad battle posture. <i>“Don’t keep a girl waiting.”</i>");
+	output("\n\nYour cousin sneers, turning back to the ship...");
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",questionQuestionQuestionRATS2);
+}
+
+public function questionQuestionQuestionRATS2():void
+{
+	clearOutput();
+	author("William");
+	showBust("RATS_RAIDER_GROUP_ONE","RATS_RAIDER_GROUP_TWO");
+	output("<i>“Oh no you don’t, villain!”</i> there’s a yell that catches you all of guard, and then a shock of lightning where [rival.name] stands. Two prongs bounce off with a near-blinding spark, barely missing your relative’s codex; a flurry of footfalls has you spinning to catch sight of... Well, damn... You can’t say you were expecting this. The sound of a stun-gun’s spooled wires reeling in only helps remind you that those mice are back.");
+	output("\n\n[rival.name] steps back, securing [rival.himHer]self in Feruze’s shadow as you see the rest of the mouse-eared pirates stomp up, standing to your sides and leveling their sparking batons upward, arcs reflecting in their eyes. Sandwiched between six rats you can’t really do anything but fold your arms and stare your rival down with the biggest smile on your face. <i>“You told our boss a lie! How could you be so cruel as to mislead us, to tell us to go after someone who’s nice?”</i> the rodenian with pink fur bellows. <i>“But [pc.name] told us everything. You’re a criminal! A fiend! You’ll pay for that, and everything else!”</i>");
+	output("\n\nFeruze bites her lip, scanning the arrangement of well-armed rogues standing before them. <i>“Uhh, boss... There’s seven of them now, you might wanna-”</i>");
+	output("\n\n<i>“Fuck’s sake, of course I can see that!”</i> [rival.name] snaps, scrambling to holster [rival.hisHer] device. <i>“Next thing you’ll admonish me for is thinking that a gang of vermin louts would be enough to slow my worthless cousin down!”</i>");
+	output("\n\n<i>“Not so worthless when [pc.heShe] can make friends out of [pc.hisHer] enemies...”</i> the suula snarks.");
+	output("\n\n<i>“You-”</i> [rival.name] growls, <i>“you and I are going to have a long chat about your pay.”</i> [rival.heShe] scowls back to you and your tamed mischief. <i>“This isn’t over, not by a long shot, dear [pc.name]. I anticipated Feruze being bested, but you’ve outdone yourself this time. By all means, get the probe, but rest assured the coordinates are as good as mine!”</i>");
+	output("\n\nThe two of them leap over the railing, Feruze’s angelic wings spreading and carrying her to safety next to the blue-white booster trail of your cousin’s belt.");
+	output("\n\n<i>“Hey!”</i> the half-rodenian leans over the railing, nearly tumbling until her tail is yanked by another. <i>“We know this station better than you! You can’t get away from us!”</i>");
+	output("\n\nAs quick as they came, five of the six rats all dash off after your cousin, tapping your waist or wrists with their tails lovingly as they go. The pink-furred rodenian smirks, <i>“We uh... we followed you when we saw you coming up here. Most people aren’t allowed near that ship, so we were worried. Anyway, stay safe okay?”</i> " + (pc.tallness > 5*12+8 ? " She hops up to give you a kiss on the cheek":" She plants kiss on your cheek") + " before hurrying after her friends.");
+	output("\n\n<i>Worth the effort,</i> you think.");
+	processTime(10);
+	flags["FERUZE_ZHENG_OUTCOME"] = 2;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //[Leave]

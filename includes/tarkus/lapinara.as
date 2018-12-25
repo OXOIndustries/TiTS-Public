@@ -1066,7 +1066,8 @@ public function lapiPregEndCheck(mother:Creature, pregSlot:int, deltaTime:int = 
 	if(mother.pregnancyIncubationBonusMotherRaw < lapiTrain()) mother.pregnancyIncubationBonusMotherRaw++;
 	
 	//Give Deep Lapinara Heat Status Effect
-	if(!mother.inHeat()) mother.createStatusEffect("Heat", 10, 35, 25, 5, false, "LustUp", "", false, 28800, 0xB793C4);
+	if(mother.fertility() <= 0) { /* Nada! */ }
+	else if(!mother.inHeat()) mother.createStatusEffect("Heat", 10, 35, 25, 5, false, "LustUp", "", false, 28800, 0xB793C4);
 	else if(!mother.inDeepHeat())
 	{
 		mother.setStatusValue("Heat", 1, 10);

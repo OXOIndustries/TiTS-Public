@@ -1455,6 +1455,32 @@
 			balls = 0;
 			removeStatusEffect("Mimbrane Balls");
 		}
+		public function removeBalls(): void
+		{
+			balls = 0;
+			resetBallSize();
+		}
+		public function resetBallSize(): void
+		{
+			// Revert ball size to default value.
+			ballSizeRaw = 1;
+			ballSizeMod = 1;
+		}
+		public function resetCumProduction(): void
+		{
+			// Revert cum production values to default.
+			ballFullness = 50;
+			ballEfficiency = 3;
+			refractoryRate = 1;
+			cumMultiplierRaw = 1;
+			cumMultiplierMod = 0;
+		}
+		public function resetGirlCumProduction(): void
+		{
+			// Revert cum production values to default.
+			girlCumMultiplierRaw = 1;
+			girlCumMultiplierMod = 0;
+		}
 		
 		public function scrotumType(): int
 		{
@@ -9802,6 +9828,10 @@
 			if(hasStatusEffect("Flushed")) addStatusMinutes("Flushed",arg);
 			if(hasStatusEffect("Fuck Fever")) addStatusMinutes("Fuck Fever",arg);
 		}
+		public function canHeat():Boolean
+		{
+			return (hasVagina() && fertility() > 0);
+		}
 		public function inHeat():Boolean
 		{
 			return hasStatusEffect("Heat");
@@ -9813,6 +9843,10 @@
 				if(statusEffectv1("Heat") >= 10) return true;
 			}
 			return false;
+		}
+		public function canRut():Boolean
+		{
+			return (hasCock() && virility() > 0);
 		}
 		public function inRut():Boolean
 		{

@@ -856,7 +856,7 @@ public function worshipMajasBitchBreakingBoner():void
 	pc.setStatusMinutes("MAJA_FUCK_RECOVERY",60);
 	//(pass 30m)(shop closed for 1 hour, trying to enter gives “looks like Maja hasn’t recovered yet”)(small chance(10%?) to put pc in heat)
 	//heat chance?
-	if(pc.hasVagina() && !pc.isFullyWombPregnant() && !pc.inHeat() && rand(5) == 0)
+	if(pc.hasVagina() && !pc.isFullyWombPregnant() && pc.fertility() > 0 && !pc.inHeat() && rand(5) == 0)
 	{
 		// Heat effects
 		// v1 - fertility boon

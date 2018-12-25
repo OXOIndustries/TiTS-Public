@@ -114,7 +114,6 @@ public function ratsGemCount(target:Creature = null):int
 			gems += item.quantity;
 	return gems;
 }
-	
 public function ratputation(increase:int = 0, goodCEO:Boolean = false):int
 {
 	if (flags["RATPUTATION"] == undefined) return RatsRaider.RAT_REP_NONE;
@@ -881,7 +880,7 @@ public function ratsContinueService(offers:int):void
 		else if (flags["RAT_SERVICED"] != undefined) output(" such knowledge not so hard to pick up on after last time!");
 		else output(".");
 		
-		output("\n\nAn innocent tug" + (pc.hasHair() ? "on your [pc.hair]" : "") + " brings you to the [rat2.furColor]-limbed rogue, who whimpers in anticipation of your skillful affections. He cries out at your heavenly touch, when your [pc.tongue] travels down the underside of his smooth, girthy cock, lapping up every translucent pearl of sweat and pre on the way. You smile up to him, swabbing the oval glans lovingly.");
+		output("\n\nAn innocent tug " + (pc.hasHair() ? "on your [pc.hair]" : "") + " brings you to the [rat2.furColor]-limbed rogue, who whimpers in anticipation of your skillful affections. He cries out at your heavenly touch, when your [pc.tongue] travels down the underside of his smooth, girthy cock, lapping up every translucent pearl of sweat and pre on the way. You smile up to him, swabbing the oval glans lovingly.");
 		
 		output("\n\nHis sprightly hand rubs at your head");
 		if (pc.hasEmoteEars() || pc.hairLength > 3)
@@ -911,7 +910,7 @@ public function ratsWilliamWantedANextButtonHere():void
 	output("\n\nKneeled behind the mischief, the [rat0.furColor]-furred rodenian watches the action unfold forlornly. She roughly squeezes the jutting nipples on her chest, one of her chubby ears leaking some crystalline goo from a tilted angle.");
 	if (CodexManager.entryViewed("Rodenians")) output(" Being a rodenian, she doesn’t have a pussy between her legs. That doesn’t mean she should be sitting this out!");
 	else output(" There’s no reason she should be sitting this out!");
-	output("You call out, <i>“Hey, c’mere, I can help you too!”</i>");
+	output("\n\nYou call out, <i>“Hey, c’mere, I can help you too!”</i>");
 	output("\n\n<i>“I don’t have a pussy " + (twoFemales ? "though! I mean, not like hers!" : "there, though!") + "”</i> she shoots back in frustration. " + (CodexManager.entryViewed("Rodenians") ? "True," : "Whatever,") + " but she has a big butt, and presumably (hopefully) an asshole right between those big, furry cheeks! You reply that " + (pc.hasLongTongue() ? "you have an amazing tongue," : "you have plenty of fingers,") + " she won’t be disappointed. Hope brightens her once dim [rat0.eyeColor] eyes, and it bids her to stand and stagger over. ");
 	output("\n\nLow whimpers keep you well alert to her approach during your dominant service. The shivers and sweat make it clear the earlier bravado has fled her, leaving her a boiling, fur-coated vessel of unslaked lust. She’s just waiting for someone to pry her apart and make her a sodden slut.");
 	if (pc.libido() > 33) output("\n\nWould that they could always be so honest with themselves!");
@@ -1114,8 +1113,8 @@ public function ratsWilliamWantedANextButtonHere():void
 			output("\n\nThe two mouse-boys stand side by side now, their cocks draped over your [pc.face], vying for a place on your mouth’s rolling welcome mat. Their throbbing pricks, begging to be abused, overshadow your [pc.eyes] and rest between them on your nose. The closeness of the petite pirate’s manhoods makes your eyes cross from the rich scents hazing the air, and the clear juices coating those pleasure-pulsing shafts is quick to mask your pores.");
 			output("\n\nCock drool gives your slutty countenance a specific kind of makeover. You vibrate your tongue against the underside of their fleshy crowns, nuzzling their magnificent girths with your musk-marked cheeks. It’s not the head-swimming pheromones in the air that has you gasping, it’s the affection rubs to your head");
 			if (pc.hasEmoteEars()) output(" and [pc.ears]");
-			if (pc.hasTail()) output(". Your [pc.tails] wag, too! It’s always nice to be praised");
-			else output(".");
+			if (pc.hasTail()) output(". Your [pc.tails] wag" + (pc.tailCount > 1 ? "s":"") + ", too! It’s always nice to be praised");
+			output(".");
 			
 			output("You let them take turns sinking into your mouth, flattening your [pc.tongue] and pressing down your hot, hot throat.");
 			if (pc.canDeepthroat())

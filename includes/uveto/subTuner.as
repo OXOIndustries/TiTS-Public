@@ -3362,7 +3362,7 @@ public function bettingAtTheTaurRaces(bet:Number):void
 		output("You tap your Codex a few times and transfer your chosen amount of credits over to the cashier who nods when she receives your payment.");
 		output("\n\n<i>“Alright, " + pc.mf("sir","ma’am") + ",”</i> the alien girl says, flipping the counter-mounted holo-pad off, <i>“You can head to our stadium seating up the stairs here and watch the race. When it’s concluded you can return here.”</i>");
 		if(pc.isAss()) output("\n\nYou nod");
-		else output("thank the woman");
+		else output("\n\nYou thank the woman");
 		output(" and make your way towards the stairs, climbing the steps until your eyes are greeted by the huge, open arena of the U7 racing stadium. It won’t be long before the race starts, so you skip finding a seat and lean yourself against a guardrail to get a closer look at the action.");
 		output("\n\nBefore too long cheering and clapping fills the air when as the race begins. The buzzer sounds and the tauric racers shoot from their gates like bullets, jockeys riding underneath. They maneuver the turns of the track like veteran racers, and the riders beneath seem to be enjoying being along for the ride.");
 		output("\n\nYou keep your eyes fixed on the mass of contestants as they round corners and reach the finish line. Your grip tightens with anticipation as your number starts to pull ahead of the pack, gaining a lead until you’re practically screaming and cheering loud enough for the whole stadium to hear. Sure enough, they cross the finish line first with a cry of victory from you, and the rest of the crowd that bet on them.");

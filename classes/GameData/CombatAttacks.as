@@ -1156,7 +1156,7 @@ package classes.GameData
 		
 		public static function TamedVarmintAttack(attacker:Creature, target:Creature):void
 		{
-			if (attacker is PlayerCharacter) output("Your pet varmint hoots and hisses at " + target.getCombatName() + ",");
+			if (attacker is PlayerCharacter) output(kGAMECLASS.varmintPetName("Your pet") + " hoots and hisses at " + target.getCombatName() + ",");
 			else output(attacker.getCombatName() + "’s pet varmint hoots and hisses at you,");
 			if (attacker.isGrappled()) output(" pacing about defensively near " + (attacker is PlayerCharacter ? "you" : attacker.getCombatPronoun("himher")));
 			else output(" standing protectively in front of " + (attacker is PlayerCharacter ? "you" : attacker.getCombatPronoun("himher")));

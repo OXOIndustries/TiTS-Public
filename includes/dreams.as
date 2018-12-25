@@ -110,7 +110,7 @@ public function dreamChances(inShip:Boolean = false):Boolean
 		//Christmas Funzles!
 		if(isChristmas())
 		{
-			dreams.push(carolJChristmasElfDreamyWeamy);
+			if(pc.isAss()) dreams.push(carolJChristmasElfDreamyWeamy);
 		}
 		if(MailManager.isEntryViewed("lets_fap_unlock"))
 		{

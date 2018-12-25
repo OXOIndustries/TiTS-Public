@@ -710,7 +710,7 @@ public function mitziCrewBonus():String
 	var buff:String = "";
 	
 	//SPECIAL MITZI TEXTS:
-	if(pc.hasStatusEffect("Mitzi Disabled")) buff += "\n\nMitzi isn't anywhere to be found." + (amberIsCrew() ? " She's probably up to something with Amber.":"");
+	if(pc.hasStatusEffect("Mitzi Disabled")) buff += "\n\nMitzi isn’t anywhere to be found." + (amberIsCrew() ? " She’s probably up to something with Amber.":"");
 	//Milky Mitzi still recovering
 	else if(pc.hasStatusEffect("Mitzi_Gushed_Out"))
 	{
@@ -2391,8 +2391,9 @@ public function mitziPussyControl():void
 		pc.lust(25);
 		//[Breeder Cunt] [Dumb Cunt] [Lesbo Cunt]
 		clearMenu();
+		if(pc.fertility() > 0) addButton(0,"Breeder Cunt",breederCunt);
+		else addDisabledButton(0,"Breeder Cunt","Breeder Cunt","You’re not fertile enough tto think about this!");
 		addButton(1,"Lesbo Cunt",mitziLesboCuntnosis);
-		addButton(0,"Breeder Cunt",breederCunt);
 		if(!pc.isBimbo()) addButton(2,"Dumb Cunt",mitziMakesYouABimbo);
 		else addDisabledButton(2,"Dumb Cunt","Dumb Cunt","You’re as much of a dumb, jizz-sucking cunt as possible!");
 	}
