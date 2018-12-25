@@ -1,6 +1,7 @@
 //import classes.Characters.MiningRobot;
 import classes.Items.Miscellaneous.MaikesKeycard;
 import classes.Items.Transformatives.SnakeByte;
+import classes.Items.Armor.JumperSpacesuit;
 
 public function zhengCoordinatesUnlocked():Boolean
 {
@@ -436,14 +437,14 @@ public function maikesOfficeBonus():Boolean
 		addButton(1,"Bypass",bypassMaikesRoomieroomHackerman,undefined,"Bypass","Embrace your inner Hackerman.");
 		return true;
 	}
-	else if(flags["MET_TIVF"] == undefined)
-	{
-		tivfGreeting();
-		return true;
-	}
 	//Hasn't freed slaves:
-	if(flags["MAIKE_SLAVES_RELEASED"] != undefined)
+	if(flags["MAIKE_SLAVES_RELEASED"] == undefined)
 	{
+		if(flags["MET_TIVF"] == undefined)
+		{
+			tivfGreeting();
+			return true;
+		}
 		output("\n\nTivf is lounging on the bed, and perks up at your approach.");
 		//[Tivf]
 		//Go talk to the zil boy slave.
@@ -833,7 +834,7 @@ public function zhengFoundryFloor2ElevatorBonus():Boolean
 		flags["NAV_DISABLED"] = NAV_EAST_DISABLE;
 		addButton(0,"Pull Pipe",freePipeElevator);
 	}
-	else output(" You suppose they'll be waiting here until Peacekeepers show up to drive everyone away.");
+	else output(" You suppose they’ll be waiting here until Peacekeepers show up to drive everyone away.");
 	return false;
 }
 
@@ -841,7 +842,7 @@ public function freePipeElevator():void
 {
 	clearOutput();
 	showName("\nYOINK!");
-	output("With a " + (pc.PQ() >= 50 ? "mighty yank":"exhausting, straining pull") + ", you disloge the pipe and allow the elevator's outer door to swing open. That'll save you some time!");
+	output("With a " + (pc.PQ() >= 50 ? "mighty yank":"exhausting, straining pull") + ", you disloge the pipe and allow the elevator’s outer door to swing open. That’ll save you some time!");
 	flags["ZHENG_SHI_FOUNDRY_2F_OPEN"] = 1;
 	processTime(1);
 	clearMenu();
@@ -852,7 +853,7 @@ public function zhengFoundryScaffoldElevatorBonus():void
 {
 	if(flags["ZHENG_SHI_FOUNDRY_2F_OPEN"] == undefined)
 	{
-		output(" The outer doors are stuck closed. You won't be able to get off on this floor until you find a way to open them. Maybe there's another way onto the scaffolding?");
+		output(" The outer doors are stuck closed. You won’t be able to get off on this floor until you find a way to open them. Maybe there’s another way onto the scaffolding?");
 		flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
 	}
 }
@@ -1091,4 +1092,132 @@ public function leaveTheMouse():void
 	output("\n\n<i>“Yeah, try not to die to badly. If they send me down to clean up the mess, I’m going to be </i>pissed<i>.”</i>");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function leaveDisShitOverwrite():void
+{
+	addButton(11,"Exit Ship",move,"ZSF V22");
+}
+
+public function enterShip():void
+{
+	clearOutput();
+	author("Fenoxo");
+	output("With your stolen credentials, unlocking the airlock is a breeze.");
+	clearMenu();
+	addButton(0,"Next",move,"ZSF V20")
+}
+
+public function sidewinderCargohold():void
+{
+	//5th galomax dose, probe, jumper vacuum suit:
+	//First time:
+	if(flags["SIDEWINDER_CARGOHOLD"] == undefined)
+	{
+		output("You tap in the access code, and the door pops open. You flick the lights on and step in, taking a quick glance around.\n\n");
+		flags["SIDEWINDER_CARGOHOLD"] = 1;
+	}
+	//Merge
+	output("A high vaulted ceiling confirms that you’ve entered the Sidewinder’s cargohold (one of them, anyway). Still, it isn’t quite as roomy as you would expect from such a large vessel - only a little bigger than your old Casstech’s. The engines don’t just look big from the outside: they take up the majority of the ship’s volume. Even now, you can feel the idle thrum of its enormous power plants churning in a low-power state, ready to launch you past a peacekeeper blockade like a ballistic missile.");
+	//Probe uncollected
+	if(flags["ZHENG_SHI_PROBED"] == undefined)
+	{
+		output("\n\nTucked into the corner is your father’s probe. It’s scuffed to all hell and scored from laser blasts where someone used it for target practice. They keypad is intact, though. It flickers to life when you approach, and when you make contact, <b>a new set of coordinates download onto your Codex.</b>");
+		output("\n\nEat that, [rival.name]!");
+		output("\n\nSteeletech salvage won’t be able to retrieve the probe from here, so you’ll have to leave it for the time being.");
+		flags["ZHENG_SHI_PROBED"] = 1;
+	}
+	//Probe collected
+	else
+	{
+		output("\n\nThe probe is right where you left it: propped in the corner and pockmarked by dozens of laser blasts from its time with careless pirate crews. <b>You already have the coordinates, so it has nothing more to offer you.</b>");
+	}
+	//Merge
+	output("\n\nAside from your probe, the hold is full of spare parts for various systems onboard the Sidewinder. Cables, tools, and racks of armor plate patches are organized neatly against the back wall.");
+	//Jumper suit - no new PG:
+	if(flags["ZHENG_SHI_JUMPERSPACESUIT"] == undefined) 
+	{
+		output(" A singular vacuum suit in the Jumper’s signature style hangs from a hook on the wall.");
+		addButton(0,"J.Spacesuit",takeZhengShiJumperSpacesuit);
+	}
+	//Galomax not collected
+	if(flags["ZHENG_SHI_GALOMAX"] == undefined)
+	{
+		output(" Lastly, you spot an expensive looking case on a fold-out table. It’s labelled as Galomax.");
+		addButton(1,"Galomax",takeZhengShiGalomax);
+	}
+	//Galo or jumper suit here no new PG.
+	if(flags["ZHENG_SHI_JUMPERSPACESUIT"] == undefined || flags["ZHENG_SHI_GALOMAX"] == undefined)
+	{
+		output(" Nobody could stop you from claiming an extra trophy");
+		if(flags["ZHENG_SHI_JUMPERSPACESUIT"] == undefined && flags["ZHENG_SHI_GALOMAX"] == undefined) output(" or two");
+		output("!");
+	}
+	return;
+}
+
+public function takeZhengShiGalomax():void
+{
+	clearOutput();
+	showName("\nYOINK!");
+	quickLoot(new GaloMax());
+	flags["ZHENG_SHI_GALOMAX"] = 1;
+}
+
+public function takeZhengShiJumperSpacesuit():void
+{
+	clearOutput();
+	showName("\nYOINK!");
+	quickLoot(new JumperSpacesuit());
+	flags["ZHENG_SHI_JUMPERSPACESUIT"] = 1;
+}
+
+public function accessCorridorX14Bonus():void
+{
+	output("One of the walls is missing a panel, allowing you a glimpse at the maze of pipes and wires that keep this marvel of lawless engineering running. You briefly trace their path until you come upon some crude graffiti. <i>“Kilroy was here.”</i> is written above a stylized depiction of a cock and balls, complete with a ring of curly hairs. Cute.");
+	output("\n\nA wide door to the west offers access to one of the Sidewinder’s cargoholds, mirrored on the east with an additional <i>“Out of Order”</i> sign. ");
+	if(flags["SHOCK_HOPPER_DEFEATED"] == undefined) 
+	{
+		output("<b>The security terminal alongside indicates you’ll need an access code to get inside. Shit!</b> ");
+		flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
+	}
+	output("The access corridor travels north toward aft end of the ship and south toward the cockpit.");
+}
+
+public function x22BonusRoomFuncInZhengiShiiiii():void
+{
+	output("While most ships have empty corridors that only differ in how they’re lit or how well worn they’ve become over the years, the Sidewinder’s occupants have clearly taken to decorating it in their own, truly unique style. This particular section houses a cat-eared mannequin ");
+	if(flags["ZHENG_SHI_LATEX_BRAD"] == undefined || flags["ZHENG_SHI_LATEX_THONGD"] == undefined)
+	{
+		output("dressed in ");
+		if(flags["ZHENG_SHI_LATEX_BRAD"] == undefined) 
+		{
+			addButton(0,"Take Bra",takeZhengBra);
+			output("a leather bra");
+		}
+		if(flags["ZHENG_SHI_LATEX_BRAD"] == undefined && flags["ZHENG_SHI_LATEX_THONGD"] == undefined) output(" and ");
+		if(flags["ZHENG_SHI_LATEX_THONGD"] == undefined) 
+		{
+			addButton(1,"Take Panty",takeZhengThong);
+			output("leather panties");
+		}
+	}
+	else output("that’s completely nude, thanks to your kleptomania");
+	output(". Its proportions fall on the extreme end of the busty scale, well-endowed up top even by the skewed scale of female kaithrit. They must have made the feet from solid lead to keep it from tipping over under its own chesty weight.\n\nThe doorway to the cockpit signals the end of this hallway, just to the south. The rest of the ship lies north.");
+}
+
+public function takeZhengBra():void
+{
+	clearOutput();
+	showName("\nYOINK!");
+	quickLoot(new LeatherBra());
+	flags["ZHENG_SHI_LATEX_BRAD"] = 1;
+}
+
+public function takeZhengThong():void
+{
+	clearOutput();
+	showName("\nYOINK!");
+	quickLoot(new LeatherPanties());
+	flags["ZHENG_SHI_LATEX_THONGD"] = 1;
 }

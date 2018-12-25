@@ -94,7 +94,7 @@ public function approachJade():void {
 		else output("\n\nSomehow, you manage. <i>“The name’s [pc.name].”</i>");
 
 		//Merge
-		output("\n\n<i>“Great! This is my little shop, so if you can’t find what you need, I can probably order it in for you. I specialize in furry splices, of course,”</i> she says as she shakes your hand. <i>“Would you believe I used to be an Orchan? I didn’t even have hair back then, let alone fur! I’m living proof of the effectiveness of my products,”</i> Jade explains with a note of pride in her voice. She whispers, <i>“I didn’t have tits either.”</i> as she brings up a holo-console for you to browse her wares with. <i>“Let me know if you need anything.”</i>");
+		output("\n\n<i>“Great! This is my little shop, so if you can’t find what you need, I can probably order it in for you. I specialize in furry splices, of course,”</i> she says as she shakes your hand. <i>“Would you believe I used to be an Orchan? I didn’t even have hair back then, let alone fur! I’m living proof of the effectiveness of my products,”</i> Jade explains with a note of pride in her voice. She whispers, <i>“I didn’t have tits either.”</i> as she brings up a holo-console for you to browse her wares with. <i>“Let me know if you need anything. Oh, and bear in mind we have two inventories - the traditional genetic splices and more... erotic choices, for the transformation enthusiast.”</i>");
 		//[Buy][Sell][Talk][Appearance]
 	}
 	//Repeat Approach
@@ -110,12 +110,14 @@ public function approachJade():void {
 	
 	//[Buy][Sell][Talk][Appearance]
 	clearMenu();
-	addButton(0,"Buy",buyItem);
-	addButton(1,"Sell",sellItem);
-	addButton(2,"Talk",talkToJade);
-	addButton(3,"Appearance",jadeAppearance);
-	if(pc.lust() >= 33 && flags["TALKED_WITH_JADE_ABOUT_HER_TITS"] == 1) addButton(4,"Sex",jadeSexMenu);
-	else addDisabledButton(4,"Sex");
+	addButton(0,"Buy",buyItem,undefined,"Buy","Buy some animal-themed transformation items.");
+	addButton(1,"Buy(Erotic)",jadeAdvancedStoreSetup,undefined,"Buy","Buy some highly erotic transformations that may be unpredictably smutty - or otherwise very involved.");
+	addButton(2,"Buy(Specific)",jadeSpecificStoreSetup,undefined,"Buy","Buy a gene-splice for a specific effect.")
+	addButton(3,"Sell",sellItem);
+	addButton(4,"Talk",talkToJade);
+	addButton(6,"Appearance",jadeAppearance);
+	if(pc.lust() >= 33 && flags["TALKED_WITH_JADE_ABOUT_HER_TITS"] == 1) addButton(5,"Sex",jadeSexMenu);
+	else addDisabledButton(5,"Sex");
 	addButton(14,"Back",mainGameMenu);
 }
 public function jadeStoreSetup():void 
@@ -132,33 +134,13 @@ public function jadeStoreSetup():void
 	
 	//Inventory sorta alphabetically, because I'm a boss.
 	chars["JADE"].inventory.push(new AusarTreats());
-	if(pc.level >= 2)
-	{
-		chars["JADE"].inventory.push(new AmberSeed());
-	}
-	if(pc.level >= 3)
-	{
-		chars["JADE"].inventory.push(new Catnip());
-	}
 	chars["JADE"].inventory.push(new CaninePoppers());
 	chars["JADE"].inventory.push(new DracoGuard());
-	if(pc.level >= 4)
-	{
-		chars["JADE"].inventory.push(new Foxfire());
-	}
-	chars["JADE"].inventory.push(new Furball());
-	chars["JADE"].inventory.push(new HorsePill());
-	chars["JADE"].inventory.push(new KnotAProblem());
-	chars["JADE"].inventory.push(new LaquineEars());
 	chars["JADE"].inventory.push(new SheepTF());
-	chars["JADE"].inventory.push(new NukiCookies());
+	chars["JADE"].inventory.push(new MousearellaCheese());
 	chars["JADE"].inventory.push(new OvirAce());
 	chars["JADE"].inventory.push(new OvirPositive());
-	chars["JADE"].inventory.push(new Pandaneen());
-	chars["JADE"].inventory.push(new PandaPro());
 	chars["JADE"].inventory.push(new PupperPoppers());
-	chars["JADE"].inventory.push(new RedPandaneen());
-	chars["JADE"].inventory.push(new RedPandaPro());
 	chars["JADE"].inventory.push(new SharkBites());
 	chars["JADE"].inventory.push(new Swineapple());
 	//Nice, neat inventory complete :3
@@ -167,6 +149,58 @@ public function jadeStoreSetup():void
 	//lootScreen = mainGameMenu;
 	//useItemFunction = mainGameMenu;
 }
+
+public function jadeSpecificStoreSetup():void
+{
+	shopkeep = chars["JADE"];
+	
+	chars["JADE"].keeperBuy = "The console displays a list of Jade’s wares, focusing on specific, highly targeted splices.\n";
+	//List prices and whatnot. Back should go back to Jade's main menu.
+	//Sell Menu
+	chars["JADE"].keeperSell = "Jade tilts her head to the side. <i>“You wanna sell me splices? Well, even if they don’t fit my niche, I can probably turn a profit on them, so why not?”</i> She looks at you inquisitively. <i>“What do you have for me?”</i>\n";
+	chars["JADE"].keeperGreeting = "Jade extends her arm, gesturing towards the rest of her shop. <i>“See anything I can help you with?”</i>\n";
+	
+	chars["JADE"].inventory = new Array();
+	
+	chars["JADE"].inventory.push(new KnotAProblem());
+	chars["JADE"].inventory.push(new Furball());
+	
+	buyItem();
+}
+
+public function jadeAdvancedStoreSetup():void
+{
+	shopkeep = chars["JADE"];
+	
+	chars["JADE"].keeperBuy = "Jade taps a few keys to bring you into the more... adult-oriented portion of her stock. Included is a long warning about unexpected, erotic side effects, increased libido, and unexpected occurrences of heat and/or rut.\n\n<b>These are the gene splices for the user who wants slow and sometimes unpredictable transformations that are full of sexual effects.</b>\n";
+	//List prices and whatnot. Back should go back to Jade's main menu.
+	//Sell Menu
+	chars["JADE"].keeperSell = "Jade tilts her head to the side. <i>“You wanna sell me splices? Well, even if they don’t fit my niche, I can probably turn a profit on them, so why not?”</i> She looks at you inquisitively. <i>“What do you have for me?”</i>\n";
+	chars["JADE"].keeperGreeting = "Jade extends her arm, gesturing towards the rest of her shop. <i>“See anything I can help you with?”</i>\n";
+	
+	chars["JADE"].inventory = new Array();
+	if(pc.level >= 2)
+	{
+		chars["JADE"].inventory.push(new AmberSeed());
+	}
+	if(pc.level >= 3)
+	{
+		chars["JADE"].inventory.push(new Catnip());
+	}
+	if(pc.level >= 4)
+	{
+		chars["JADE"].inventory.push(new Foxfire());
+	}
+	chars["JADE"].inventory.push(new HorsePill());
+	chars["JADE"].inventory.push(new LaquineEars());
+	chars["JADE"].inventory.push(new NukiCookies());
+	chars["JADE"].inventory.push(new Pandaneen());
+	chars["JADE"].inventory.push(new PandaPro());
+	chars["JADE"].inventory.push(new RedPandaPro());
+	buyItem();
+}
+
+
 public function getAmberSeed():void 
 {
 	output("\n\n");
@@ -195,7 +229,7 @@ public function jadeAppearance():void
 
 	output("\n\nThe panda-woman’s thighs continue on about as you would expect on such a woman. They’re powerfully thick but carry more than enough cushion to make her lap an appealing rest stop, if you don’t mind being smothered in her plush softness. Jade’s feet, like her hands, are paw-like in appearance, with short, stubby digits capped by short, retractable claws. Little pads cover the undersides of her fingers and toes to enhance her grip, both as soft as the finest leather. She obviously takes care of herself.");
 
-	output("\n\nAt 6\'3\" tall, she’s well above the galactic average for beings classed as females, but she’s just too damned cuddly to be imposing.");
+	output("\n\nAt 6\' 3\" tall, she’s well above the galactic average for beings classed as females, but she’s just too damned cuddly to be imposing.");
 	clearMenu();
 	addButton(0,"Next",approachJade);
 }

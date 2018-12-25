@@ -237,6 +237,20 @@ public function sellSomethingToXanthe():void
 }
 public function xantheShopInitialization():void
 {
+	if(pc.level >= 7)
+	{
+		if(!chars["XANTHE"].hasItemByClass(DaedalusThreads)) chars["XANTHE"].inventory.push(new DaedalusThreads());
+		if(!chars["XANTHE"].hasItemByClass(EmpusaThreads)) chars["XANTHE"].inventory.push(new EmpusaThreads());
+		if(!chars["XANTHE"].hasItemByClass(NemeanThreads)) chars["XANTHE"].inventory.push(new NemeanThreads());
+		if(!chars["XANTHE"].hasItemByClass(StrixThreads)) chars["XANTHE"].inventory.push(new StrixThreads());
+	}
+	else
+	{
+		chars["XANTHE"].destroyItemByClass(DaedalusThreads, -1);
+		chars["XANTHE"].destroyItemByClass(EmpusaThreads, -1);
+		chars["XANTHE"].destroyItemByClass(NemeanThreads, -1);
+		chars["XANTHE"].destroyItemByClass(StrixThreads, -1);
+	}
 	shopkeep = chars["XANTHE"];
 	itemScreen = mainGameMenu;
 	lootScreen = mainGameMenu;

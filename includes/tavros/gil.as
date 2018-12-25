@@ -15,7 +15,8 @@ public function showGil(nude:Boolean = false):void
 {
 	var nudeS:String = "";
 	if(nude) nudeS = "_NUDE";
-	showBust("GIL" + nudeS);
+	var earS:String = (!gilCanineEars() ? "_WORGEARS":"");
+	showBust("GIL" + earS + nudeS);
 	showName("\nGIL");
 }
 
@@ -198,7 +199,6 @@ public function gilWorgEyes():Boolean
 public function giveDoggoADoggoTreat():void
 {
 	clearOutput();
-	showGil();
 	author("Lashcharge");
 	pc.destroyItemByClass(PupperPoppers);
 	//1st snausage tf:
@@ -311,6 +311,7 @@ public function giveDoggoADoggoTreat():void
 	}
 	processTime(4);
 	IncrementFlag("GIL_DOSES");
+	showGil();
 	clearMenu();
 	//[Credits] “Ask him to pay in cash.” //Leads to Sell section.
 	addButton(0,"Credits",getCashForDoggo,undefined,"Credits","Ask him to pay in cash.");

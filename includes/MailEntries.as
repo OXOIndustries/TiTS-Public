@@ -244,6 +244,8 @@ public function configureMails():void
 	MailManager.addMailEntry("breedwell_unlock", breedwellEmailText, "The Breedwell Incubation Centre Needs YOU.", "TamaniCorp", "Marketing@TamaniCorp.corp", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("succucow_email", succucowEmailText, "Check out this weird cabin? Cash reward.", "Ciaran Eildean", "Warden_Eildean@NewTexas.gov", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("randy_claws_email", clawsEmailText, "Merry Christmas!", "New Texas Department of Wildlife", "NT_DoW@NewTexas.gov", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("riya_party_invite", riyaXmasPartyInviteText, "Christmas Party Invitation", "Commander Lorna Grence", "Lorna_Grence@UGC.gov", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("emrby_xxxmas_invite", embryXmasInvite, "Come Visit!", "Embry", "SpacePrincess@bibliotech.com", quickPCTo, quickPCToAddress);
 	
 	//extrameet 	
 	MailManager.addMailEntry("extrameet_invite_email", extrameetInviteText, "Meet local singles on your planet today!", "ExtraMeet Team", "Consumer_Outreach@ExtraMeet.com", quickPCTo, quickPCToAddress);
@@ -297,6 +299,9 @@ public function configureMails():void
 
 	//Pumpking email from Penpen
 	MailManager.addMailEntry("pumpking_alert", pennyPumpkingEmailText, pennyPumpkingEmailSubject, "Penny Inoue", "Penny_Inoue@UGC.gov", quickPCTo, quickPCToAddress);
+	
+	//quaelle birth email
+	MailManager.addMailEntry("quaelle_birth", quaelleBirthEmail, "Your Presence is Requested.", "Breedwell Natal Unit", "BreedwellNatalUnit@TamaniCorp.corp", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String

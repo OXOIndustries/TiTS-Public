@@ -656,7 +656,7 @@ public function postWalkiesHeat2(ppBelle:PregnancyPlaceholder):void
 		output("\n\nIt isn’t long before your master’s ever-expansive hips start to move, fucking you like the bitch in heat you are, her knots spreading your supple entrances with each thrust. <i>The feeling of being bred like this, of having your hungers sated, it all feels so good.</i> You moan as loud as you can with each thrust of Belle’s foot-long cocks, crying out as your inner walls hug at her shafts, eagerly accepting her turgid dicks into your waiting holes.");
 		pc.cuntChange(v,ppBelle.cockVolume(0));
 		pc.buttChange(ppBelle.cockVolume(1));
-		IncrementFlag("SEXED_SAEC");
+		//IncrementFlag("SEXED_SAEC");
 	}
 	//hasCock:
 	if(x >= 0)
@@ -1476,7 +1476,7 @@ public function subTunerExhibRouter():void
 {
 	var options:Array = [subTunerRivalBullshit];
 	if(annoIsCrew()) options.push(subTunerAnnoExhib);
-	if(syriIsCrew()) options.push(syriExhibStuff);
+	if(syriIsCrew() || (syriRecruited() && syriAtFreeezer())) options.push(syriExhibStuff);
 	if(roamingKiroAvailable()) options.push(subTunerKiroExhib);
 	moveTo("UVS B9");
 	options[rand(options.length)]();
@@ -3362,7 +3362,7 @@ public function bettingAtTheTaurRaces(bet:Number):void
 		output("You tap your Codex a few times and transfer your chosen amount of credits over to the cashier who nods when she receives your payment.");
 		output("\n\n<i>“Alright, " + pc.mf("sir","ma’am") + ",”</i> the alien girl says, flipping the counter-mounted holo-pad off, <i>“You can head to our stadium seating up the stairs here and watch the race. When it’s concluded you can return here.”</i>");
 		if(pc.isAss()) output("\n\nYou nod");
-		else output("thank the woman");
+		else output("\n\nYou thank the woman");
 		output(" and make your way towards the stairs, climbing the steps until your eyes are greeted by the huge, open arena of the U7 racing stadium. It won’t be long before the race starts, so you skip finding a seat and lean yourself against a guardrail to get a closer look at the action.");
 		output("\n\nBefore too long cheering and clapping fills the air when as the race begins. The buzzer sounds and the tauric racers shoot from their gates like bullets, jockeys riding underneath. They maneuver the turns of the track like veteran racers, and the riders beneath seem to be enjoying being along for the ride.");
 		output("\n\nYou keep your eyes fixed on the mass of contestants as they round corners and reach the finish line. Your grip tightens with anticipation as your number starts to pull ahead of the pack, gaining a lead until you’re practically screaming and cheering loud enough for the whole stadium to hear. Sure enough, they cross the finish line first with a cry of victory from you, and the rest of the crowd that bet on them.");

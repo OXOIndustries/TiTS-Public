@@ -48,8 +48,17 @@ public function liftMove(destination:String):void
 	output("Your stomach drops as the lift kicks into gear. The gentle, steady thrum of powerful machinery fills the metallic tube as you are brought to your destination, slowly decelerating when you arrive.");
 	move(destination,false);
 	showLocationName();
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	if(destination == "GAME OVER")
+	{
+		showName("\nPARTY");
+		clearMenu();
+		addButton(0,"Next",party2018RiyaEntrance);
+	}
+	else
+	{
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 }
 
 public function hangarFloors(bonus:Boolean = false):Array 
@@ -59,6 +68,7 @@ public function hangarFloors(bonus:Boolean = false):Array
 	floors.push(["Merchant", liftMove, "LIFT: MERCHANT DECK", "Merchant Deck", "the merchant deck"]);
 	floors.push(["Res. Deck", liftMove, "LIFT: RESIDENTIAL DECK", "Residential Deck", "the residential deck"]);
 	floors.push(["Nursery", liftMove, "NURSERYELEVATOR", "Nursery Deck", "the nursery deck"]);
+	if(MailManager.isEntryUnlocked("riya_party_invite") && flags["RIYA_PARTIED_YEAR"] == undefined) floors.push(["Party", liftMove, "GAME OVER", "Party, Deck 4", "the U.G.C. garrison party"]);
 	if(bonus)
 	{
 		if(flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"] == 2)

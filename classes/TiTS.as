@@ -123,6 +123,8 @@
 		include "../includes/StubbedFunctions.as";
 
 		//Holiday shit
+		include "../includes/holidayEvents/2018XmasEvents.as";
+		include "../includes/holidayEvents/2018Krissy.as";
 		include "../includes/holidayEvents/candyRahn.as";
 		include "../includes/holidayEvents/chupacabro.as";
 		include "../includes/holidayEvents/freedomBeef.as";
@@ -157,6 +159,7 @@
 		include "../includes/follower/paigeCuddles.as";        
 		include "../includes/follower/paigeHalloweener.as";
 		include "../includes/follower/paigeSex.as";
+		include "../includes/follower/paigeShower.as";
 		include "../includes/follower/paigeSpar.as";
 		include "../includes/follower/penny.as";
 		include "../includes/follower/pippa.as";
@@ -423,6 +426,7 @@
 		include "../includes/zhengShiStation/boredJumperExpanded.as";
 		include "../includes/zhengShiStation/boredJumperGangbangs.as";
 		include "../includes/zhengShiStation/forgehound.as";
+		include "../includes/zhengShiStation/ldc_and_shock_hopper.as";
 		include "../includes/zhengShiStation/maike.as";
 		include "../includes/zhengShiStation/olympia.as";
 		include "../includes/zhengShiStation/punkSecOp.as";
@@ -441,6 +445,7 @@
 		// Breedwell
 		include "../includes/breedwell/breedwell.as";
 		include "../includes/breedwell/rooms.as";
+		include "../includes/breedwell/quaelle.as";
 		
 		// GASTIGOTH!
 		include "../includes/gastigoth/gastigoth.as";
@@ -610,7 +615,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.240";
+			version = "0.7.250";
 
 			//temporary nonsense variables.
 			temp = 0;

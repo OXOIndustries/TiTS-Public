@@ -2,7 +2,7 @@ import classes.RoomClass;
 
 public function canadiaUnlocked():Boolean
 {
-	return (flags["CANADA_UNLOCKED"] == 1 || MailManager.isEntryViewed("kirodatemeet") || MailManager.isEntryViewed("del_moved") || MailManager.isEntryViewed("del_moved_light") || MailManager.isEntryViewed("ushamee_meet"));
+	return (flags["CANADA_UNLOCKED"] == 1 || MailManager.isEntryViewed("kirodatemeet") || MailManager.isEntryViewed("del_moved") || MailManager.isEntryViewed("del_moved_light") || MailManager.isEntryViewed("ushamee_meet") || (flags["KRISSY_INTRO_RESULT"] != undefined && flags["KRISSY_INTRO_RESULT"] != -1));
 }
 
 public function flyToCanadia():void

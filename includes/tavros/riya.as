@@ -396,6 +396,7 @@ public function reportRiyaIfYouWant():void
 	output("\n\n<i>“I really am sorry, Steele. I wish there was more I could do. I can promise you that everything you’ve just told me stays between us, though,”</i> she says, taking a deep breath and removing her nails from her desk, giving you a perfect view of the deep furrows her claws have left in the wood. She sighs, poking at them with her index finger. <i>“Now, if you have any </i>other<i> comments, questions or concerns, I’ll do everything I can to help you.”</i> Her ears are still pinned back against her skull as she says this, you note.");
 	processTime(15);
 	flags["RIYA_REPORTED"] = 1;
+	flags["MET_GRENCE"] = 1;
 	clearMenu();
 	//[Snap](+5 points towards ‘Hard’ personality)((Tooltip: Give the fluffy Commander a piece of your mind. Kind of a dick move, considering that she seems every bit as angry as you do.))
 	addButton(0,"Snap",snapAtRiyasComm,undefined,"Snap","Give the fluffy Commander a piece of your mind. Kind of a dick move, considering that she seems every bit as angry as you do.");
@@ -1018,6 +1019,7 @@ public function riyaQuestProc():void
 	//PC has reported Riya: 
 	if(flags["RIYA_REPORTED"] != undefined) output("with Commander Grence at her side");
 	else output("with an ausar woman wearing the rank of a U.G.C. Commander, her golden fur practically shining in the station’s overhead lights. Her name-badge says ‘Grence’.");
+	flags["MET_GRENCE"] = 1;
 	output(" They’re both sporting deadly serious faces, Riya leaning down to exchange mostly inaudible whispers with the blonde ausar as they pass you. You manage to overhear something about an asteroid field and pirates, but nothing else. Is something happening? Whatever it is, it sounds dangerous.");
 
 	clearMenu();
@@ -1641,12 +1643,26 @@ public function riyaNurseryCafeteriaApproach():void
 	var babyName:String = "???";
 	var i:int = 0;
 	
+	// Count children...
+	var numBabs:int = 0;
+	var numKids:int = 0;
+	for(i = 0; i < riyaBabies.length; i++)
+	{
+		// Show this if there is a Riyaspawn that is under 365 days old
+		if(riyaBabies[i].Years <= 1) numBabs++;
+		// Show if there is a Riyakid over one year old.
+		else if(riyaBabies[i].Years <= 5) numKids++;
+	}
+	
 	// First
 	if(flags["MET_RIYA_IN_NURSERY"] == undefined)
 	{
-		babyIdx = 0;
-		babym = (riyaNoNameBabies[babyIdx].NumMale > 0);
-		babyName = riyaNoNameBabies[babyIdx].Name;
+		if(riyaNoNameBabies.length > 0)
+		{
+			babyIdx = 0;
+			babym = (riyaNoNameBabies[babyIdx].NumMale > 0);
+			babyName = riyaNoNameBabies[babyIdx].Name;
+		}
 		
 		output("<i>“So, you’re pretty decked out up here, huh?”</i> she says immediately, shoveling another bite of food into her mouth. <i>“I kinda figured I’d be supporting you and the brat, to be honest.”</i> Sitting down across from her, you ask if she had any trouble getting in.");
 		output("\n\n<i>“Nah. The robot you have is nice, she got me up here with no issues after she confirmed I’m the father,”</i> she says, licking food off her lips. <i>“So strange, that word. You know this is my first kid?”</i>");
@@ -1659,14 +1675,27 @@ public function riyaNurseryCafeteriaApproach():void
 			else output(" xeno");
 			output(" the chance to improve their bloodline? Besides,”</i> she continues, eyes twinkling as a grin creases her face, <i>“the little tyke came out human. I guess I’ve got some really strong sperm, huh?”</i> she says, leaning over until your noses are brushing each other before continuing in a loud whisper. <i>“That or you’re just such a little bitch that even your eggs are submissive.”</i>");
 		}
-		output("\n\n<i>“Anyway,”</i> she says casually, sitting back in her seat, <i>“what’re we naming our little " + (babym ? "boy" : "girl") + "?”</i>");
 		
 		processTime(2);
 		
 		flags["MET_RIYA_IN_NURSERY"] = 1;
 		
-		// [Enter Name]
-		addButton(0, "Next", nameRiyaSpawn, [babyIdx, babym, babyName, 0]);
+		if(riyaNoNameBabies.length > 0)
+		{
+			output("\n\n<i>“Anyway,”</i> she says casually, sitting back in her seat, <i>“what’re we naming our little " + (babym ? "boy" : "girl") + "?”</i>");
+			
+			// [Enter Name]
+			addButton(0, "Next", nameRiyaSpawn, [babyIdx, babym, babyName, 0]);
+		}
+		else
+		{
+			output("<i>“Anyway, you here for the little one" + ((numBabs + numKids) == 1 ? "" : "s") + ", too?”</i> Riya asks, setting down the tablet she’d been reading from down and standing up, leaving her food for a robotic attendant to clean up.");
+			
+			// [Visit / Play] [Leave]
+			if(numBabs > 0) addButton(0, "Visit", riyaNurseryActions, ["visit"], "Visit", "Visit your child" + ((numBabs + numKids) == 1 ? "" : "ren") + " with Riya.");
+			if(numKids > 0) addButton(1, "Play", riyaNurseryActions, ["play"], "Play", "Play with your progeny with Riya.");
+			addButton(14, "Leave", mainGameMenu);
+		}
 	}
 	// Repeat naming if PC has other kids by Riya, because one wasn’t fucking enough
 	else if(flags["RIYA_NAMED_KID"] != undefined && riyaNoNameBabies.length > 0)
@@ -1694,17 +1723,6 @@ public function riyaNurseryCafeteriaApproach():void
 	// Repeat
 	else
 	{
-		// Count children...
-		var numBabs:int = 0;
-		var numKids:int = 0;
-		for(i = 0; i < riyaBabies.length; i++)
-		{
-			// Show this if there is a Riyaspawn that is under 365 days old
-			if(riyaBabies[i].Years <= 1) numBabs++;
-			// Show if there is a Riyakid over one year old.
-			else if(riyaBabies[i].Years <= 5) numKids++;
-		}
-		
 		if(pc.isPregnant() && pc.bellyRating() >= 10)
 		{
 			output("<i>“Is that one mine, ");

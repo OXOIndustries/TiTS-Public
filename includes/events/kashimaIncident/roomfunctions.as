@@ -322,7 +322,7 @@ public function kiP16TakeSword():void
 	
 	lootScreen = kiP16TakeSwordCheck;
 	flags["KI_TAKEN_SWORD"] = 1;
-	flags["SUPRESS_COMBAT"] = 1;
+	flags["SUPPRESS_COMBAT"] = 1;
 	itemCollect([new VampBlade()]);
 }
 

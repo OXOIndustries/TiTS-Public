@@ -651,6 +651,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "ButtBugPregnancy0": output2(" Butt Bug, Egg" + (pData.pregnancyQuantity == 1 ? "" : "s") + (pc.statusEffectv2("Butt Bug (Female)") == 1 ? ", Fertilized" : "")); break;
 						case "ButtBugPregnancy1": output2(" Butt Bug, Cycling Egg" + (pData.pregnancyQuantity == 1 ? "" : "s") + (pc.statusEffectv2("Butt Bug (Female)") == 1 ? ", Fertilized" : "")); break;
 						case "ButtBugPregnancy2": output2(" Butt Bug, Hybrid Egg" + (pData.pregnancyQuantity == 1 ? "" : "s") + (pc.statusEffectv2("Butt Bug (Female)") == 1 ? ", Fertilized" : "")); break;
+						case "QuaellePregnancy": output2(" Quaelle"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -1128,6 +1129,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Psychic Tentacle Beasts, Total:</b> " + StatTracking.getStat("pregnancy/psychic tentacle beast birthed"));
 				if(StatTracking.getStat("pregnancy/psychic tentacle beast day care") > 0)
 					output2("\n<b>* Births, Psychic Tentacle Beasts @ Daycare:</b> " + StatTracking.getStat("pregnancy/psychic tentacle beast day care"));
+				if(StatTracking.getStat("pregnancy/quaelle births") > 0)
+					output2("\n<b>* Births, Quaelle’s Children:</b> " + StatTracking.getStat("pregnancy/quaelle births"));
 				if(StatTracking.getStat("pregnancy/rahn eggs/birthed") > 0)
 					output2("\n<b>* Births, Rahn Eggs, Total:</b> " + StatTracking.getStat("pregnancy/rahn eggs/birthed"));
 				if(StatTracking.getStat("pregnancy/rahn eggs/day care") > 0)
@@ -1210,6 +1213,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Sired, Ilaria’s Children:</b> " + StatTracking.getStat("pregnancy/ilaria sired"));
 				if(StatTracking.getStat("pregnancy/khorgan sired") > 0)
 					output2("\n<b>* Sired, Khorgan’s Children:</b> " + StatTracking.getStat("pregnancy/khorgan sired"));
+				if(StatTracking.getStat("pregnancy/quaelle sired") > 0)
+					output2("\n<b>* Sired, Quaelle’s Children:</b> " + StatTracking.getStat("pregnancy/quaelle sired"));
 				if(StatTracking.getStat("pregnancy/quinn sired") > 0)
 					output2("\n<b>* Sired, Quinn’s Children:</b> " + StatTracking.getStat("pregnancy/quinn sired"));
 				if(StatTracking.getStat("pregnancy/raskvel sired/total") > 0)
@@ -1320,6 +1325,8 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Laquine:</b> " + prettifyGeneticMarker(pc.laquineScore(), 5, 6));
 		if(CodexManager.entryUnlocked("Mothrine") && pc.mothrineScore() > 0)
 			output2("\n<b>* Mothrine:</b> " + prettifyGeneticMarker(pc.mothrineScore(), 5, 10));
+		if(pc.rodentScore() > 0)
+			output2("\n<b>* Mouse:</b> " + prettifyGeneticMarker(pc.rodentScore(), 4, 7));
 		if(flags["PLANET_3_UNLOCKED"] != undefined)
 		{
 			if(pc.myrScore() > 0) output2("\n<b>* Myr:</b> " + prettifyGeneticMarker(pc.myrScore(), 4, 6));
@@ -2621,21 +2628,24 @@ public function displayQuestLog(showID:String = "All"):void
 				sideCount++;
 			}
 			// Penny's Recruitment
-			if(flags["PENNY_CREW_ASKED"] != undefined || flags["PENNY_CUMSLUT_RECRUITED"] != undefined)
+			if(flags["PENNY_CREW_ASKED"] != undefined || flags["PENNY_CUMSLUT_RECRUITED"] != undefined || flags["PENNY_BIMBO_RECRUITED"] != undefined)
 			{
 				output2("\n<b><u>Penny’s Recruitment</u></b>");
 				output2("\n<b>* Status:</b>");
-				switch(flags["PENNY_CREW_ASKED"])
+				if(flags["PENNY_CREW_ASKED"] != undefined)
 				{
-					case -1: output2(" Asked Penny, She refused, <i>Perhaps you should get to know her better?</i>"); break;
-					case 1: output2(" Asked Penny, She accepted"); break;
-					case 2: output2(" Asked Penny, Accepted, <i>Find Oxonium...</i>"); break;
-					case 3: output2(" Asked Penny, Accepted, Found and excavated Oxonium"); break;
-					case 3.5: output2(" Asked Penny, Accepted, Found and excavated Oxonium, Offered recruitment"); break;
-					case 4: output2(" Asked Penny, Accepted, Found and excavated Oxonium, Penny recruited, Completed"); break;
-					default: output2(" <i>In progress...</i>"); break;
+					switch(flags["PENNY_CREW_ASKED"])
+					{
+						case -1: output2(" Asked Penny, She refused, <i>Perhaps you should get to know her better?</i>"); break;
+						case 1: output2(" Asked Penny, She accepted"); break;
+						case 2: output2(" Asked Penny, Accepted, <i>Find Oxonium...</i>"); break;
+						case 3: output2(" Asked Penny, Accepted, Found and excavated Oxonium"); break;
+						case 3.5: output2(" Asked Penny, Accepted, Found and excavated Oxonium, Offered recruitment"); break;
+						case 4: output2(" Asked Penny, Accepted, Found and excavated Oxonium, Penny recruited, Completed"); break;
+						default: output2(" <i>In progress...</i>"); break;
+					}
 				}
-				if(flags["PENNY_CUMSLUT_RECRUITED"] != undefined)
+				else
 				{
 					output2(" Asked Penny, Accepted, Penny recruited, Completed");
 				}
@@ -5011,7 +5021,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					if(varmintIsTame())
 					{
-						output2("\n<b>* Pet Varmint:</b> Crew member");
+						output2("\n<b>* " + (!varmintRenamend() ? "Pet Varmint" : varmintPetName()) + ":</b> Crew member");
 						if(hasVarmintBuddy()) output2(" (Following you)");
 						else
 						{
@@ -7091,6 +7101,25 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["RATS_HARVESTED"] != undefined) ratSex.push("Was \"Harvested\"");
 						output2(ratSex.join(", "));
 					}
+					if(flags["RATS_SEXED_EAR"] != undefined)
+					{
+						if(flags["RATS_SEXED_EAR_0"] != undefined)
+						{
+							output2("\n<b>* Rat's Raiders, Pink Rodenian Ear Sex Count:</b> " + flags["RATS_SEXED_EAR_0"]);
+							if (flags["RATS_SEXED_EAR_0"] < 5) output2(" (Unknown)");
+							else if (flags["RATS_SEXED_EAR_0"] < 10 || !ratsPCIsGood()) output2(" (Appreciable)");
+							else if (flags["RATS_SEXED_EAR_0"] < 15 || flags["RATS_EARMARK_0"] == undefined) output2(" (Earmarked)");
+							else output2(" (Attached)");
+						}
+						if(flags["RATS_SEXED_EAR_1"] != undefined)
+						{
+							output2("\n<b>* Rat's Raiders, White Rodenian Ear Sex Count:</b> " + flags["RATS_SEXED_EAR_1"]);
+							if (flags["RATS_SEXED_EAR_1"] < 5) output2(" (Unknown)");
+							else if (flags["RATS_SEXED_EAR_1"] < 10 || !ratsPCIsGood()) output2(" (Appreciable)");
+							else if (flags["RATS_SEXED_EAR_1"] < 15 || flags["RATS_EARMARK_1"] == undefined) output2(" (Earmarked)");
+							else output2(" (Attached)");
+						}
+					}
 					if(flags["RAT_BOUNTY_STOLEN"] != undefined)
 					{
 						output2("\n<b>* Rat's Raiders, Bounty Lost:</b> " + flags["RAT_BOUNTY_STOLEN"]);
@@ -7977,8 +8006,22 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Reception</u></b>");
 				output2("\n<b>* Quaelle:</b> Met her");
+				if (quaelleIsLover()) output2(", Lovers");
+				if (quaellePregShutdown()) output2(", Sterile");				
+				if (quaelleInSnit()) output2(", In a Snit");
+				if (quaelleHasLeft()) output2(", Has Left");				
 				if(flags["QUAELLE_HUGGED"] != undefined) output2("\n<b>* Quaelle, Times Hugged Her:</b> " + flags["QUAELLE_HUGGED"]);
 				if(flags["QUAELLE_SEXED"] != undefined) output2("\n<b>* Quaelle, Times Sexed:</b> " + flags["QUAELLE_SEXED"]);
+				if(flags["QUAELLE_FUCK_CUNT_FRONT"] != undefined) output2("\n<b>* Quaelle, Times You Fucked Her Front Pussy:</b> " + flags["QUAELLE_FUCK_CUNT_FRONT"]);
+				if(flags["QUAELLE_FUCK_CUNT_BACK"] != undefined) output2("\n<b>* Quaelle, Times You Fucked Her Back Pussy:</b> " + flags["QUAELLE_FUCK_CUNT_BACK"]);
+				if(flags["QUAELLE_FUCK_CUNT_MORE"] != undefined) output2("\n<b>* Quaelle, Times You Went For More:</b> " + flags["QUAELLE_FUCK_CUNT_MORE"]);
+				if(flags["QUAELLE_LICK_CUNT_FRONT"] != undefined) output2("\n<b>* Quaelle, Times You Licked Her Front Pussy:</b> " + flags["QUAELLE_LICK_CUNT_FRONT"]);
+				if(flags["QUAELLE_LICK_CUNT_BACK"] != undefined) output2("\n<b>* Quaelle, Times You Licked Her Back Pussy:</b> " + flags["QUAELLE_LICK_CUNT_BACK"]);
+				if(flags["QUAELLE_LICK_CLIT"] != undefined) output2("\n<b>* Quaelle, Times You Licked Her Pseudo-Clit:</b> " + flags["QUAELLE_LICK_CLIT"]);
+				if(flags["QUAELLE_CATCH_CUNT"] != undefined) output2("\n<b>* Quaelle, Times She Fucked Your Pussy:</b> " + flags["QUAELLE_CATCH_CUNT"]);
+				if(flags["QUAELLE_INCUBATION_TIMER_F"] != undefined) output2("\n<b>* Quaelle, Days Pregnant (Front):</b> " + flags["QUAELLE_INCUBATION_TIMER_F"]);
+				if(flags["QUAELLE_INCUBATION_TIMER_B"] != undefined) output2("\n<b>* Quaelle, Days Pregnant (Back):</b> " + flags["QUAELLE_INCUBATION_TIMER_B"]);
+				if(flags["QUAELLE_TOTAL_KIDS"] != undefined) output2("\n<b>* Quaelle, Total Kids:</b> " + flags["QUAELLE_TOTAL_KIDS"]);
 				variousCount++;
 			}
 		}

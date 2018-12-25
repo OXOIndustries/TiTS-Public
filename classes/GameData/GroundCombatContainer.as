@@ -752,7 +752,7 @@ package classes.GameData
 				{
 					if(target.hasStatusEffect("Don't Get Up"))
 					{
-						if(target is PlayerCharacter) output("\n\n<b>Since you chose not to do anything, you don't see the point in hopping up.</b>");
+						if(target is PlayerCharacter) output("\n\n<b>Since you chose not to do anything, you don’t see the point in hopping up.</b>");
 						target.removeStatusEffect("Don't Get Up");
 					}
 					else
@@ -1652,7 +1652,7 @@ package classes.GameData
 				{
 					if( _hostiles[0].hasStatusEffect("GPrep"))
 					{
-						output(" It's better to bide your time until he throws that deadly projectile.");
+						output(" It’s better to bide your time until he throws that deadly projectile.");
 						(_hostiles[0] as Johr).createStatusEffect("Pumpkin Dodge");
 					}
 				}
@@ -2242,12 +2242,12 @@ package classes.GameData
 						{
 							output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. Shooting the bothrioc atop you a winning smile, you wriggle your way out from under them back between their legs, squirming out of your bindings as you take to your feet.");
 						}
-						else if (hasEnemyOfClass(RatsRaider)) output("You take a deep breath and focus. You aren't breaking through on raw physique, so you wait for an opening. Liquid movements too graceful for even the rats to catch have your arms free in short order; you push the rodent on your face up then push against the ground, sliding out by the limber strength of your [pc.leg] muscles, contorting and twisting to stand and gain some distance all at once. Your motions were so precise that the merry " + (RatsRaider.ratCount() == 2 ? "duo" : "trio") + " are left confused and nervous. You can't help but crack a smile.");
+						else if (hasEnemyOfClass(RatsRaider)) output("You take a deep breath and focus. You aren’t breaking through on raw physique, so you wait for an opening. Liquid movements too graceful for even the rats to catch have your arms free in short order; you push the rodent on your face up then push against the ground, sliding out by the limber strength of your [pc.leg] muscles, contorting and twisting to stand and gain some distance all at once. Your motions were so precise that the merry " + (RatsRaider.ratCount() == 2 ? "duo" : "trio") + " are left confused and nervous. You can’t help but crack a smile.");
 						else output("You display a remarkable amount of flexibility as you twist and writhe to freedom.");
 						if(panicJack)
 						{
 							output(" The [pc.cumNoun] you squirt helps a little too.");
-							if (RatsRaider.ratCount()) output(" <i>\"Eugh, gross!!\"</i> one rodent whines. Their disgust is as apparent as their loosened hold on you!");
+							if (RatsRaider.ratCount()) output(" <i>“Eugh, gross!!!”</i> one rodent whines. Their disgust is as apparent as their loosened hold on you!");
 							pc.lust(-10);
 						}
 						target.removeStatusEffect("Grappled");
@@ -2309,7 +2309,7 @@ package classes.GameData
 						if(panicJack)
 						{
 							output(" The [pc.cumNoun] you squirt helps a little too.");
-							if (RatsRaider.ratCount()) output(" <i>\"Eugh, gross!!\"</i> one rodent whines. Their disgust is as apparent as their loosened hold on you!");
+							if (RatsRaider.ratCount()) output(" <i>“Eugh, gross!!!”</i> one rodent whines. Their disgust is as apparent as their loosened hold on you!");
 							pc.lust(-10);
 						}
 						target.removeStatusEffect("Grappled");
@@ -4474,7 +4474,7 @@ package classes.GameData
 					output("\n\n<b>You’ve knocked the resistance out of " + target.getCombatName() + ".</b>");
 				}
 			}
-			else if (target.lust() >= target.lustMax())
+			else if (target.lust() >= target.lustMax() && target.isDefeated())
 			{
 				var dvl:String = target.downedViaLust();
 				if (dvl != null)
@@ -4546,7 +4546,7 @@ package classes.GameData
 			{
 				output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is down and out for the count!</b>");
 			}
-			else if (target.lust() >= target.lustMax())
+			else if (target.lust() >= target.lustMax() && target.isDefeated())
 			{
 				output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + ((target.isPlural == true) ? " are" : " is") + " too turned on to fight.</b>");
 			}
@@ -4589,7 +4589,7 @@ package classes.GameData
 				if(pc.isGrappled()) output("You’re trapped in the enemy’s grip to do much");
 				else if(pc.hasStatusEffect("Stunned")) output("You’ve been stunned by the enemy and can’t do much");
 				else if(pc.hasStatusEffect("Paralyzed")) output("You’ve been paralyzed by the enemy and can’t do much");
-				else if(hasEnemyOfClass(RatsRaider)) output("You're fighting the " + (kGAMECLASS.silly ? "Ratlaws" : "Rat Thieves") + ", members of the gang 'Rat's Raiders'");
+				else if(hasEnemyOfClass(RatsRaider)) output("You’re fighting the " + (kGAMECLASS.silly ? "Ratlaws" : "Rat Thieves") + ", members of the gang ‘Rat’s Raiders’");
 				else
 				{
 					output("You perch behind cover wherever you can find it,");

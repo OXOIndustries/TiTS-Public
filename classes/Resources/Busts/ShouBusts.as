@@ -287,6 +287,15 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/gianna_large.png", mimeType = "image/png")]
 		public var Bust_GIANNA_LARGE_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/gil.png", mimeType = "image/png")]
+		public var Bust_GIL:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/gil_nude.png", mimeType = "image/png")]
+		public var Bust_GIL_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/gil_worgears.png", mimeType = "image/png")]
+		public var Bust_GIL_WORGEARS:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/gil_worgears_nude.png", mimeType = "image/png")]
+		public var Bust_GIL_WORGEARS_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/goocubator.png", mimeType = "image/png")]
 		public var Bust_GOOCUBATOR:Class;
 
@@ -972,6 +981,15 @@
 			public var Full_GIANNA_MEDIUM_NUDE:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/gianna_large.png", mimeType = "image/png")]
 			public var Full_GIANNA_LARGE_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/gil.png", mimeType = "image/png")]
+			public var Full_GIL:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/gil_nude.png", mimeType = "image/png")]
+			public var Full_GIL_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/gil_worgears.png", mimeType = "image/png")]
+			public var Full_GIL_WORGEARS:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/gil_worgears_nude.png", mimeType = "image/png")]
+			public var Full_GIL_WORGEARS_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/goocubator.png", mimeType = "image/png")]
 			public var Full_GOOCUBATOR:Class;

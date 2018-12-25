@@ -563,9 +563,24 @@ public function takeSilicone():void
 
 /* How to Train Your Pet Varmint */
 
+public function varmintRenamend():Boolean
+{
+	return (chars["VARMINTPET"].short != "varmint");
+}
+public function varmintPetName(article:String = ""):String
+{
+	if (!varmintRenamend()) return ((article != "" ? (article + " ") : "") + "varmint");
+	return chars["VARMINTPET"].short;
+}
+
 public function varmintPetBustDisplay():String
 {
 	return "VARMINT";
+}
+public function varmintPetHeader():void
+{
+	showBust(varmintPetBustDisplay());
+	showName("\n" + varmintPetName().toUpperCase());
 }
 
 // Varmint event check
@@ -637,7 +652,7 @@ public function varmintOnShipBonus(btnSlot:int = 0):String
 	// Tame Varmint:
 	else if(varmintIsTame())
 	{
-		bonusText += "\n\nYour pet varmint is";
+		bonusText += "\n\nYour pet varmint " + (!varmintRenamend() ? "" : (varmintPetName() + " ")) + "is";
 		if(pc.hasStatusEffect("Varmint Leashed")) bonusText += " sitting happily in your quarters, swishing its tail and watching you as you wander about. Whenever you get close, its spikes flare up and it makes a high-pitched, trilling hoot at you.";
 		else bonusText += " roaming freely around your quarters. It spots you as it wanders, happily hooting and trilling when you get near.";
 		// if bimbo:
@@ -648,7 +663,7 @@ public function varmintOnShipBonus(btnSlot:int = 0):String
 		}
 		else btnText = "Check up on the critter.";
 		
-		addButton(btnSlot, "Varmint", approachPetVarmint, true, "Varmint Companion", btnText);
+		addButton(btnSlot, (!varmintRenamend() ? "Varmint" : varmintPetName()), approachPetVarmint, true, (!varmintRenamend() ? "Varmint Companion" : varmintPetName()), btnText);
 	}
 	return bonusText;
 }
@@ -821,8 +836,7 @@ public function approachPetVarmint(introText:Boolean = false):void
 {
 	clearOutput();
 	author("Savin");
-	showBust(varmintPetBustDisplay());
-	showName("\nVARMINT");
+	varmintPetHeader();
 	clearMenu();
 	//When approaching Varmint.
 	if(introText)
@@ -832,24 +846,24 @@ public function approachPetVarmint(introText:Boolean = false):void
 			output("You walk towards your New Texan friend. Recognizing you, the critter eagerly jumps up and down, its spiky, whip-like tail wagging behind it.");
 			if(pc.isBimbo()) output("\n\n<i>“Hey there, cutie-booty!”</i> you coo.");
 			else if(pc.isNice()) output("\n\n<i>“Hey there, buddy!”</i> you encourage.");
-			else output("\n\n<i>“Hey there, runt!”</i> you tease.");
+			else output("\n\n<i>“Hey there, " + (!varmintRenamend() ? "runt" : varmintPetName()) + "!”</i> you tease.");
 			output("\n\nThe varmint responds with a purring hoot, obediently waiting on you.");
 		}
 		else
 		{
-			output("You walk over to where your varmint is");
+			output("You walk over to where " + varmintPetName("your") + " is");
 			if(pc.hasStatusEffect("Varmint Leashed")) output(" sitting");
 			else output(" roaming");
 			output(". It looks up, cocking its angular, plated head to the side with curiosity. After a moment, its long tongue lolls out the side of its mouth and it starts huffing.");
 		}
 		processTime(2);
 	}
-	else output("The varmint patiently awaits your action.");
+	else output(varmintPetName("The") + " patiently awaits your action.");
 	
 	if(!pc.hasStatusEffect("Varmint Leashed") && !pc.hasStatusEffect("Varmint Unleashed Cooldown")) output(" It looks overly curious and paces around the deck. Is it a good idea to let it wander about so freely?");
 	
 	// [Pet] [Leash / Unleash] [Leave]
-	addButton(0, "Pet", doVarmintPlayTime, "pet", "Pet", "Give the varmint a pet.");
+	addButton(0, "Pet", doVarmintPlayTime, "pet", "Pet", "Give " + varmintPetName("the") + " a pet.");
 	if(!hasVarmintLeash())
 	{
 		addDisabledButton(1, "Leash", "Leash", "You’ll need to have a leash and collar in order to try this.");
@@ -861,35 +875,100 @@ public function approachPetVarmint(introText:Boolean = false):void
 		if(!pc.hasStatusEffect("Varmint Leashed"))
 		{
 			// Let it wander for an hour or so before being able to put it back.
-			if(pc.getStatusMinutes("Varmint Unleashed Cooldown") > (1440 - 60)) addDisabledButton(1, "Leash", "Leash", "It seems to enjoy the freedom too much. Perhaps you should wait a bit before activating the leash.");
-			else addButton(1, "Leash", doVarmintPlayTime, "leash", "Leash", "Put your varmint on a leash.");
+			if(pc.getStatusMinutes("Varmint Unleashed Cooldown") > (1440 - 60)) addDisabledButton(1, "Leash", "Leash", ((!varmintRenamend() ? "It" : varmintPetName()) + " seems to enjoy the freedom too much. Perhaps you should wait a bit before activating the leash."));
+			else addButton(1, "Leash", doVarmintPlayTime, "leash", "Leash", "Put " + varmintPetName("your") + " on a leash.");
 		}
-		else addButton(1, "Unleash", doVarmintPlayTime, "unleash", "Unleash", "Take your varmint off its leash and let it wander around the ship.");
+		else addButton(1, "Unleash", doVarmintPlayTime, "unleash", "Unleash", ("Take " + varmintPetName("your") + " off its leash and let it wander around the ship."));
 		addDisabledButton(2, "Buy Leash", "Buy Leash", "You already own a leash so you don’t need to buy another. However, if you ever lose the one you have, you know where to buy a replacement.\n\n<b>50 Credits</b>");
 	}
+
+	if (varmintRenamend()) addDisabledButton(5, "Name It", "Name Varmint", ("Too late to change the name, " + varmintPetName() + " already got used to it."));
+	else if(!pc.hasStatusEffect("Varmint Leashed")) addDisabledButton(5, "Name It", "Name Varmint", "You need to leash the varmint before you can give it a name.");
+	else addButton(5, "Name It", nameTheVarmint, undefined, "Name Varmint", "Give your varmint a name.");
+
 	addButton(14, "Leave", doVarmintPlayTime, "leave");
 	return;
+}
+
+public function nameTheVarmint():void
+{
+	clearOutput();
+	author("Stygs");
+	varmintPetHeader();
+	clearMenu();
+
+	output("Now that the varmint is used to living with you on your " + PCShipModel() + ", it might be a good time to finally decide upon a name for it. After all, you can't keep calling it just 'varmint' forever, that's just rude!");
+	output("\n\nWhat do you want to call your New Texan pet from now on?");
+	
+	if(stage.contains(this.userInterface.textInput)) 
+	this.removeInput();
+	this.displayInput();
+	output("\n\n\n");
+
+	clearMenu();
+	addButton(0, "Next", varmintNamingConventions, nameTheVarmint);
+	addButton(14, "Back", function():void {
+		removeInput();
+		approachPetVarmint();
+	}, undefined, "Back", "Best to think about this some more.");
+}
+
+public function varmintNamingConventions(retFunc:Function = null):void
+{
+	if(userInterface.textInput.text == "") {
+		retFunc();
+		output("<b>You must input a name.</b>");
+		return;
+	}
+	
+	// Illegal characters check. Just in case...
+	if(hasIllegalInput(userInterface.textInput.text)) {
+		retFunc();
+		output("<b>To prevent complications, please avoid using code in the name.</b>");
+		return;
+	}
+	if(userInterface.textInput.length > 12) {
+		retFunc();
+		output("<b>Please select a name no more than twelve characters long.</b>");
+		return;
+	}
+	chars["VARMINTPET"].short = userInterface.textInput.text;
+	chars["VARMINTPET"].a = "";
+	chars["VARMINTPET"].capitalA = "";
+
+	clearOutput();
+	author("Stygs");
+
+	output("<i>“I think I am going to call you " + varmintPetName() + " from now on, what do you think about that?”</i> you say, smiling at the big blue varmint next to you.");
+	output("\n\nYour alien puppy stares at you for a moment before suddenly emitting a soft hooting sound, thumping its hefty tail on the ground. Looks like it's happy with the name you selected.");
+	output("\n\n<i>“Well, I guess it's settled then.”</i>");
+	output("\n\n<b>Your varmint is now named " + varmintPetName() + "!</b>");
+
+	if(stage.contains(this.userInterface.textInput)) 
+	this.removeInput();
+	varmintPetHeader();
+	clearMenu();
+	addButton(0,"Next",approachPetVarmint);
 }
 
 public function doVarmintPlayTime(response:String = "none"):void
 {
 	clearOutput();
 	author("Savin");
-	showBust(varmintPetBustDisplay());
-	showName("\nVARMINT");
+	varmintPetHeader();
 	clearMenu();
 	
 	if(response == "pet")
 	{
 		if(pc.isBimbo())
 		{
-			output("Aww, what a pretty space-puppy! You get down on the ground with your big blue cutie and give it a scritch under the chin, earning an adorable hoot and a tail-wiggle from it. <i>“Good boy!”</i> you cheer, moving your fingers a little faster and moving them all over its shiny smooth head-plate. The varmint gurgles and nuzzles against your hands, slamming its tail heavily against the deck and bulkheads.");
+			output("Aww, what a pretty space-puppy! You get down on the ground with your big blue cutie and give it a scritch under the chin, earning an adorable hoot and a tail-wiggle from it. <i>“Good boy!”</i> you cheer, moving your fingers a little faster and moving them all over its shiny smooth head-plate. " + varmintPetName("The") + " gurgles and nuzzles against your hands, slamming its tail heavily against the deck and bulkheads.");
 			output("\n\nIt doesn’t take long for the happy space-puppy to roll into its back, paws in the air and spikes splaying out all around it, showing its spiny-plated belly. You scoop the critter down and give it a big hug, starting to scratch all over. It gurgles and hoots and paws at the air, wriggling like a big ol’ noodle while you play with it.");
-			output("\n\nEventually, you decide you got other stuff to do. And stuff. So you give your varmint a pet on the haunch and let it go. It hops up on its hindlegs and gives you a great big lick on the face before you can leave.");
+			output("\n\nEventually, you decide you got other stuff to do. And stuff. So you give " + varmintPetName("your") + " a pet on the haunch and let it go. It hops up on its hindlegs and gives you a great big lick on the face before you can leave.");
 		}
 		else
 		{
-			output("You reach down and give your varmint an affectionate scritch between the, uh, spiky ear-holes. Its enormous tail swishes heavily against a bulkhead, hammering it like a bag of rocks, and it emits a soft hooting sound. You guess that means it likes it?");
+			output("You reach down and give " + varmintPetName("your") + " an affectionate scritch between the, uh, spiky ear-holes. Its enormous tail swishes heavily against a bulkhead, hammering it like a bag of rocks, and it emits a soft hooting sound. You guess that means it likes it?");
 			output("\n\nAfter a couple moments, the huge beast flops onto its side, yawning and pawing at you, the deck, and its own curling tail. Taking the hint, you reach down and start scratching its... very rough, plated, spiky belly. It’s not exactly comfortable to pet, but your blue buddy seems to like it until your hand gets too sore to keep going. When you stop, it gives a defeated huff and curls up to take a nap.");
 			output("\n\n");
 		}
@@ -898,7 +977,7 @@ public function doVarmintPlayTime(response:String = "none"):void
 	}
 	else if(response == "leash")
 	{
-		output("You go over to where the varmint’s sitting, thumping its massive tail on your deck. It hoots quietly as you approach, swishing its tail a little faster. It doesn’t stop you as you hook its collar and leash around its tree-trunk neck, though its spikes rise a bit as you lock it in place. The great big beasty takes a big, huffing breath as you activate its leash and stands up, sauntering over to stand at your side. Looks like it’s ready to go! ");
+		output("You go over to where " + (!varmintRenamend() ? "the varmint’s" : (varmintPetName() + " is")) + " sitting, thumping its massive tail on your deck. It hoots quietly as you approach, swishing its tail a little faster. It doesn’t stop you as you hook its collar and leash around its tree-trunk neck, though its spikes rise a bit as you lock it in place. The great big beasty takes a big, huffing breath as you activate its leash and stands up, sauntering over to stand at your side. Looks like it’s ready to go! ");
 		if(pc.isBimbo()) output("\n\nYou lean down and give it plenty of pets and kisses. What a good alien-puppy!");
 		output("\n\n<b>The varmint is now leashed");
 		if(flags["NATALIE_TAMES_VARMINT"] == undefined) output(" and will be prevented from leaving your ship");
@@ -909,7 +988,7 @@ public function doVarmintPlayTime(response:String = "none"):void
 	}
 	else if(response == "unleash")
 	{
-		output("You crouch down and unclip your leash from the great big blue varmint’s neck, giving it a pat on the haunch and sending it on its way. It makes a happy hooting sound and bounds down the corridor as fast as it can, ready to burn off some excess energy.");
+		output("You crouch down and unclip your leash from the great big blue varmint’s neck, giving it a pat on the haunch and sending it on its way. " + (!varmintRenamend() ? "It" : varmintPetName()) + " makes a happy hooting sound and bounds down the corridor as fast as it can, ready to burn off some excess energy.");
 		// if Anno/Reaha on crew:
 		if(reahaIsCrew() || annoIsCrew())
 		{
@@ -919,7 +998,7 @@ public function doVarmintPlayTime(response:String = "none"):void
 			else output(" Reaha’s");
 			output(" quarters.");
 		}
-		output("\n\n<b>The varmint is now unleashed.");
+		output("\n\n<b>" + varmintPetName("The") + " is now unleashed.");
 		if(flags["NATALIE_TAMES_VARMINT"] != undefined) output(" " + (rand(2) == 0 ? "Thanks to Natalie" : "Fortunately") + ", the bond between you two is so strong that you don’t need to worry about it wandering off any time soon.");
 		else output(" Even though it is tamed, there may be a chance that it will wander off by itself if left alone for too long!");
 		output("</b>");
@@ -929,7 +1008,7 @@ public function doVarmintPlayTime(response:String = "none"):void
 	}
 	else if(response == "leave")
 	{
-		output("You give the varmint a pat on the head and leave it to its own devices for a bit.");
+		output("You give " + varmintPetName("the") + " a pat on the head and leave it to its own devices for a bit.");
 		processTime(1);
 	}
 	addButton(0, "Next", crew);
@@ -996,6 +1075,9 @@ public function varmintDisappears():void
 	
 	processTime(32);
 	flags["VARMINT_IS_CREW"] = undefined;
+	chars["VARMINTPET"].short = "varmint";
+	chars["VARMINTPET"].a = "the ";
+	chars["VARMINTPET"].capitalA = "The ";
 	
 	addButton(0, "Next", mainGameMenu);
 }

@@ -1485,24 +1485,37 @@ public function sylvieSexMenu():void
 		else addDisabledButton(2,"TakeVaginal","Take Vaginal","You need a vagina for this.");
 		//Requires 10" of dick: FuckHerPuss
 		var x:int = pc.cockThatFits(sylvieCuntSize());
-		if(pc.hasCock() && pc.cockVolume(x) >= 50) addButton(3,"FuckHerPuss",penisRouter,[fuckDickedSylviesPussah,sylvieCuntSize(),false,50],"FuckHerPuss","Just because she has a dick doesn’t mean she can’t take one...");
-		else if(pc.hasCock()) addDisabledButton(3,"FuckHerPuss","FuckHerPuss","Your penis isn’t appropriately sized for her.");
-		else addDisabledButton(3,"FuckHerPuss","FuckHerPuss","You need a penis for this.");
-		if(pc.hasCock())
+		if(pc.hasCock() && pc.cockVolume(x) >= 50)
 		{
-			if(pc.biggestCockLength() >= 12) addButton(4,"TittyBlow",tittyBlow,undefined,"Titty Blow","Get your dick wet in Sylvie’s drizzling pussy, then stuff it between her tits until you’re blowing a load down her throat.");
-			else addDisabledButton(4,"TittyBlow","TittyBlow","Your penis is too short to truly enjoy the expanse of cleavage that Sylvie offers. Come back when your largest member is 12 inches or longer.");
+			addButton(3,"FuckHerPuss",penisRouter,[fuckDickedSylviesPussah,sylvieCuntSize(),false,50],"FuckHerPuss","Just because she has a dick doesn’t mean she can’t take one...");
+			if(pc.isTaur()) addButton(4,"Mount Pussy",taurPussyMountWsanIsMyHero,undefined,"Mount Pussy","Mount her the way that ‘taurs were meant to be mounted - by another ‘taur.");
+			else addDisabledButton(4,"Mount Pussy","Mount Pussy","You need to be some type of centaur-like creature for this.");
 		}
-		else addDisabledButton(4,"TittyBlow","Titty Blow","You need a penis 12 inches or longer to titfuck her massive mammaries.");
-		if(pc.hasVagina())
+		else if(pc.hasCock()) 
 		{
-			addButton(5,"SpankNGrind",spankyGrindyWimyFunSchlicks,false,"Spank ‘N Grind","Spank her and grind on her slit and clit until you mutually orgasm.");
-			addButton(6,"Cuffs&Tongue",cuffsAndTongueFromNonesuchyDuchy,false,"Cuffs & Tongue","Get cuffed up and force-fed dripping deer cunt.");
+			addDisabledButton(3,"FuckHerPuss","FuckHerPuss","Your penis isn’t appropriately sized for her.");
+			addDisabledButton(4,"Mount Pussy","Mount Pussy","Your penis isn’t appropriately sized for her (and on top of that, this scene is for centaur-like characters only).");
 		}
 		else 
 		{
-			addDisabledButton(5,"SpankNGrind","Spank ‘N Grind","You need a vagina in order to do all this.");
-			addDisabledButton(6,"Cuffs&Tongue","Cuffs & Tongue","You need a vagina in order to experience this forceful scene!");
+			addDisabledButton(3,"FuckHerPuss","FuckHerPuss","You need a penis for this.");
+			addDisabledButton(4,"Mount Pussy","Mount Pussy","You need a penis for this (and on top of that, this scene is for centaur-like characters only).");
+		}		
+		if(pc.hasCock())
+		{
+			if(pc.biggestCockLength() >= 12) addButton(5,"TittyBlow",tittyBlow,undefined,"Titty Blow","Get your dick wet in Sylvie’s drizzling pussy, then stuff it between her tits until you’re blowing a load down her throat.");
+			else addDisabledButton(5,"TittyBlow","TittyBlow","Your penis is too short to truly enjoy the expanse of cleavage that Sylvie offers. Come back when your largest member is 12 inches or longer.");
+		}
+		else addDisabledButton(5,"TittyBlow","Titty Blow","You need a penis 12 inches or longer to titfuck her massive mammaries.");
+		if(pc.hasVagina())
+		{
+			addButton(6,"SpankNGrind",spankyGrindyWimyFunSchlicks,false,"Spank ‘N Grind","Spank her and grind on her slit and clit until you mutually orgasm.");
+			addButton(7,"Cuffs&Tongue",cuffsAndTongueFromNonesuchyDuchy,false,"Cuffs & Tongue","Get cuffed up and force-fed dripping deer cunt.");
+		}
+		else 
+		{
+			addDisabledButton(6,"SpankNGrind","Spank ‘N Grind","You need a vagina in order to do all this.");
+			addDisabledButton(7,"Cuffs&Tongue","Cuffs & Tongue","You need a vagina in order to experience this forceful scene!");
 		}
 	}
 	else
