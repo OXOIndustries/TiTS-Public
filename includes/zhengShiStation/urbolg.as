@@ -1682,12 +1682,14 @@ public function giveUrbolgBlowies():void
 		output("?”</i>");
 	}
 	output("\n\n<i>“Aye, a’reckon I can spare some time for ye,”</i> Urbolg nods, dropping a wrench onto a nearby crate. <i>“Not in my workspace, mind. Be better to teach you with some space, and ‘sides,”</i> he says, eyeing you meaningfully, <i>“yer gonna need somewhere comfortable to lay.”</i>");
-	if(pc.isBimbo()) output("\n\n<i>“Let’s go play in my ship then,”</i> you say, clapping your hands together and smiling as you head towards your ship. <i>“I can’t wait");
-	else output("<i>“Oh, not keen to take me over a crate?”</i> you say over your shoulder, already [pc.walking] towards your ship. <i>“I thought worse of you");
+	output("\n\n<i>“");
+	if(pc.isBimbo()) output("Let’s go play in my ship then,”</i> you say, clapping your hands together and smiling as you head towards your ship. <i>“I can’t wait");
+	else output("Oh, not keen to take me over a crate?”</i> you say over your shoulder, already [pc.walking] towards your ship. <i>“I thought worse of you");
 	output("!”</i>");
 
-	if(pc.isBimbo()) output("\n\n<i>“Hnh,”</i> Urbolg grunts, walking up the ramp behind you. <i>“Nice view");
-	else output("<i>“Aye, no doubt,”</i> he says, grinning up at you from down the ramp. <i>“But the workplace is fer </i>work<i>, [pc.girlBoy]. Can’t have ye dirtying it up");
+	output("\n\n<i>“");
+	if(pc.isBimbo()) output("Hnh,”</i> Urbolg grunts, walking up the ramp behind you. <i>“Nice view");
+	else output("Aye, no doubt,”</i> he says, grinning up at you from down the ramp. <i>“But the workplace is fer </i>work<i>, [pc.girlBoy]. Can’t have ye dirtying it up");
 	output(".”</i>");
 
 	output("\n\n<i>“Good to know even pirates have their standards,”</i> you murmur, approaching your room.");
@@ -1945,7 +1947,7 @@ public function putOnUrbysCollar():void
 	output("\n\nHe pounds you harder and harder, grunting and gripping you so hard your");
 	if(pc.isTaur()) output(" haunches");
 	else output(" hips");
-	output(" are going to have marks left when he’s done. Your face is mushed up against the crates" + (pc.hasCock() ? ", your stomach pressed against the cum you left there earlier":"") +  ", and it feels <i>so fucking good</i>. You want him to manhandle you more, to <i>dominate</i> you, to leave nothing in your head but thoughts of pleasing him.");
+	output(" are going to have marks left when he’s done. Your face is mushed up against the crates" + (pc.hasCock() ? ", your stomach pressed against the cum you left there earlier":"") + ", and it feels <i>so fucking good</i>. You want him to manhandle you more, to <i>dominate</i> you, to leave nothing in your head but thoughts of pleasing him.");
 	output("\n\n<i>“Gonna cum, bitch,”</i> Urbolg grunts, slapping your ass and pumping you hard enough to drive you into the crates a little with every push. <i>“Whaddye say?”</i>");
 
 	output("\n\n<i>“Fuck me ");

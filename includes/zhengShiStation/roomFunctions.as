@@ -437,14 +437,14 @@ public function maikesOfficeBonus():Boolean
 		addButton(1,"Bypass",bypassMaikesRoomieroomHackerman,undefined,"Bypass","Embrace your inner Hackerman.");
 		return true;
 	}
-	else if(flags["MET_TIVF"] == undefined)
-	{
-		tivfGreeting();
-		return true;
-	}
 	//Hasn't freed slaves:
-	if(flags["MAIKE_SLAVES_RELEASED"] != undefined)
+	if(flags["MAIKE_SLAVES_RELEASED"] == undefined)
 	{
+		if(flags["MET_TIVF"] == undefined)
+		{
+			tivfGreeting();
+			return true;
+		}
 		output("\n\nTivf is lounging on the bed, and perks up at your approach.");
 		//[Tivf]
 		//Go talk to the zil boy slave.

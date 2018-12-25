@@ -5434,6 +5434,7 @@ public function defeatMiningBotsWithPenpen():void
 		output("\n\nYou kiss her back.");
 		output("\n\nMission accomplished.\n\n");
 		processTime(30);
+		pc.credits += 30000;
 		CombatManager.genericVictory();
 		eventQueue.push(rideHomeWithPen);
 	}
@@ -5476,6 +5477,7 @@ public function OnziaWrapUp():void
 	output("\n\nThe grinning vixen has never been sexier.\n\n");
 	flags["ONZIA_GOT_PQUEST_LOOT"] = 1;
 	processTime(25);
+	pc.credits += 20000;
 	CombatManager.genericVictory();
 	eventQueue.push(rideHomeWithPen);
 }

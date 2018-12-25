@@ -451,7 +451,7 @@ package classes.Items.Transformatives
 			//Refractory to 4x human
 			if(pc.refractoryRate < 4 && pc.hasCock() && !pc.hasStatusEffect("Blue Balls")) choices.push(5);
 			if(pc.hasCock() && pc.balls > 1 && pc.ballDiameter() >= 5 && pc.maxCum() < 30000) choices.push(6);
-			if(pc.hasCock() && !pc.inRut() && pc.biggestCockLength() >= 10) choices.push(7);
+			if(pc.hasCock() && pc.virility() > 0 && !pc.inRut() && pc.biggestCockLength() >= 10) choices.push(7);
 			if(pc.hasVagina())
 			{
 				for(i = 0; i < pc.totalVaginas(); i++)
@@ -465,7 +465,7 @@ package classes.Items.Transformatives
 			if(pc.fertility() < 5 && pc.hasVagina() && pc.isSquirter()) choices.push(10);
 			//10x preggo speed
 			if(pc.pregnancyIncubationBonusMotherRaw < 10 && pc.hasVagina()) choices.push(11);
-			if(!pc.isFullyWombPregnant() && pc.hasVagina()) choices.push(12);
+			if(pc.hasVagina() && !pc.isFullyWombPregnant() && pc.fertility() > 0) choices.push(12);
 			if(pc.tailCount > 0 && pc.tailType != GLOBAL.TYPE_LAPINE) 
 			{
 				choices.push(13);
@@ -1274,7 +1274,7 @@ package classes.Items.Transformatives
 			//(Vagicite) Awkward, random wetness with obvious pheromonal smell. Exhibition gains!
 			if(pc.hasVagina()) choices.push(6);
 			//(Vag && noheat && !preggos) Heat status for 1 week or till preggers. Temporary fertileboost.
-			if(!pc.inHeat() && !pc.isFullyWombPregnant() && pc.hasVagina() && pc.fertility() > 0) choices.push(7);
+			if(pc.hasVagina() && !pc.isFullyWombPregnant() && pc.fertility() > 0 && !pc.inHeat()) choices.push(7);
 			//BonusCapacity Gainz.
 			var cunts:Array = [];
 			for(x = 0; x < pc.totalVaginas(); x++)
