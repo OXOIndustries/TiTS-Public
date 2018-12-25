@@ -2239,6 +2239,9 @@ public function flyTo(arg:String):void
 	//Otherwise clear suppress flag.
 	else if (flags["SUPRESS TRAVEL EVENTS"] == 1) flags["SUPRESS TRAVEL EVENTS"] = 0;
 	
+	//Clear room encounter step counters :3 Nice Fen making it so your first step on a new planet isn't combat :3
+	resetStepCounters();
+
 	else if(!InCollection(arg, ["Poe A", "karaQuest2"]))
 	{
 		//Eggshit Override!

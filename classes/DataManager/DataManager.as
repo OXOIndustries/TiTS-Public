@@ -2027,6 +2027,8 @@
 			
 			// *throws up in mouth a little*
 			kGAMECLASS.variableRoomUpdateCheck();
+			// *Here I got this for u geddy, plz no kill
+			kGAMECLASS.resetStepCounters();
 			
 			// Trigger an attempt to update display font size
 			kGAMECLASS.refreshFontSize();
