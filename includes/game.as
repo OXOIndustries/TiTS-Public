@@ -3052,7 +3052,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 			eventQueue.push(shekkaAndAnnoNerdOff);
 		}
 		if((pc.cockThatFits(150) >= 0 || pc.hasVagina()) && CodexManager.entryViewed("Rodenians") && flags["RATPUTATION"] != undefined && flags["RATPUTATION"] >= 50 && !pc.isTaur() && isChristmas() && flags["RATMAS_2018"] == undefined && rand(4) == 0 && shipLocation == "ZS L50") eventQueue.push(ratsRaidingXXXmas2018ByWill);
-		if(flags["KRISSY_YEAR"] != getRealtimeYear() && pc.hasGenitals() && shipLocation != "CANADA1" && isChristmas())
+		if(flags["KRISSY_YEAR"] != getRealtimeYear() && pc.hasGenitals() && shipLocation != "CANADA1" && isChristmas() && rand(10) == 0)
 		{
 			eventQueue.push(encounterKrissy);
 		}
