@@ -496,13 +496,10 @@ public function lashTreatment2(treatment:String):void
 	else if(treatment == "priaprism purge")
 	{
 		output("[pc.EachCock] has vanished");
-		if(pc.balls > 0) 
-		{
-			output(" along with your sack");
-			pc.removeBalls();
-		}
+		if(pc.balls > 0) output(" along with your sack");
 		output("!");
 		pc.removeCocks();
+		pc.removeBalls();
 		pc.resetCumProduction();
 	}
 	else if(treatment == "pure purge")
