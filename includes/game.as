@@ -2233,15 +2233,14 @@ public function flyMenu():void
 public function flyTo(arg:String):void
 {
 	generateMapForLocation("SHIP INTERIOR");
-	
+	//Clear room encounter step counters :3 Nice Fen making it so your first step on a new planet isn't combat :3
+	resetStepCounters();
+
 	//No travel events on first zheng visit.
 	if(flags["ZHENG_SHI_PASSWORDED"] == undefined && arg == "ZhengShi") flags["SUPRESS TRAVEL EVENTS"] = 1;
 	//Otherwise clear suppress flag.
 	else if (flags["SUPRESS TRAVEL EVENTS"] == 1) flags["SUPRESS TRAVEL EVENTS"] = 0;
 	
-	//Clear room encounter step counters :3 Nice Fen making it so your first step on a new planet isn't combat :3
-	resetStepCounters();
-
 	else if(!InCollection(arg, ["Poe A", "karaQuest2"]))
 	{
 		//Eggshit Override!
