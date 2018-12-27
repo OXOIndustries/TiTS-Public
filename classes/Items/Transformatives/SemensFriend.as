@@ -227,8 +227,8 @@
 							
 							if(target.ballSizeUnlocked(newBallSize))
 							{
-								if(target.balls == 1) msg += "You crow as your testicle grows yet bigger, the size of your prestigious sperm-factory matching the density of packed heat you feel within it.";
-								else msg += "You crow as your balls grow yet bigger, the size of your prestigious sperm-factories matching the density of packed heat you feel within them.";
+								if(target.balls == 1) msg += " You crow as your testicle grows yet bigger, the size of your prestigious sperm-factory matching the density of packed heat you feel within it.";
+								else msg += " You crow as your balls grow yet bigger, the size of your prestigious sperm-factories matching the density of packed heat you feel within them.";
 								
 								target.ballSizeRaw = newBallSize;
 							}

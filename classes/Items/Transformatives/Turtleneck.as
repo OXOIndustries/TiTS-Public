@@ -135,7 +135,7 @@ package classes.Items.Transformatives
 			output("\n\n");
 			if(!target.cocks[i].hasFlag(GLOBAL.FLAG_FORESKINNED) && rand(2) == 0) foreskinTF([target, i]);
 			else if(!target.cocks[i].hasFlag(GLOBAL.FLAG_SHEATHED)) sheathTF([target, i]);
-			else if(target.cocks[i].cLengthRaw < 20 && rand(2) == 0) cockLenghtTF([target, i]);
+			else if(target.cocks[i].cLengthRaw < 20 && rand(2) == 0) cockLengthTF([target, i]);
 			else if(target.cocks[i].cThicknessRatioRaw < 2) cockThickTF([target, i]);
 			else dudTF([target, i]);
 		}
@@ -158,7 +158,7 @@ package classes.Items.Transformatives
 			var i:int = arg[1];
 
 			//Target penis gains a foreskin flag if lacks one. 
-			output("The gray microsurgeons begin to move, positing themselves in circular lines that run around your shaft, starting and ending at where a frenulum should be. You can barely feel these tiny machines crawling all over your [pc.skinColor] skin as it begins to bulge out, their pinching reworking it into a more desirable form. These circular lines begin to pull at the skin, stretching it with them as they climb all together towards the frenulum, leaving behind a ringed bump that will soon become your foreskin. Once that’s done, the machines race back to their original spots, making more circular lines across your lenght and pull at the skin yet again. Their ascent curls that small bump of loose skin around your shaft into a thin sleeve, all of it firmly attached to a frenulum that goes all the way up to your [pc.cockHead " + i + "].");
+			output("The gray microsurgeons begin to move, positing themselves in circular lines that run around your shaft, starting and ending at where a frenulum should be. You can barely feel these tiny machines crawling all over your [pc.skinColor] skin as it begins to bulge out, their pinching reworking it into a more desirable form. These circular lines begin to pull at the skin, stretching it with them as they climb all together towards the frenulum, leaving behind a ringed bump that will soon become your foreskin. Once that’s done, the machines race back to their original spots, making more circular lines across your length and pull at the skin yet again. Their ascent curls that small bump of loose skin around your shaft into a thin sleeve, all of it firmly attached to a frenulum that goes all the way up to your [pc.cockHead " + i + "].");
 			output("\n\nAfter another itchy minute, they finish their work leaving you to admire the slackened foreskin that folds around your [pc.cockHead " + i + "]. The gray glitter gathers on the tip of the loose flesh and massages it into an elastic ridged band that’s delightfully tight. You can see the machines slither inside and work on your cock-head, their prickles becoming increasingly more painful, or rather it looks like you are becoming much more sensitive than before.");
 			output("\n\nEventually, the prickling stops and you can’t feel anything else going on with your cock, so you assume the transformation must’ve run its course. You begin to rub your length and explore the gliding action that your new foreskin offers. When you pull it all the way down you rediscover your [pc.cockHead " + i + "], now in a more vibrant and glistening [pc.cockColor], as the machines flake off from it. You admire how the foreskin bunches up over your tip every time you pull it all the way up and shove two fingers within, swirling them around your cockhead as pre-cum gurgles from your cum-slit. The tight band can be stretched pretty wide, sending enjoyable shivers of pleasure running across your spine as you test it with your fingers. You pull your pre-cum slicked fingers from within and the band quickly snaps back into place.");
 			output("\n\nPulling the skin all the way down you find yourself overwhelmed by the tight and sensitive band massaging your shaft. Using the skin as the cock sleeve it is, you polish your spear, slowly building yourself into an intense orgasm. You fall to your knees from pleasure and use one hand for support while the other feverishly beats your [pc.cock " + i + "]. Soon you feel your seed rising through your cumvein, so you pull the foreskin over your [pc.cockHead " + i + "] and pinch it closed. It quickly fills with your [pc.cum], ballooning it as you bask in your afterglow. You let it go and the skin rolls back, dripping its [pc.cumFlavor] contents on the floor. <b>Your [pc.cock " + i + "] now has a foreskin!</b>");
@@ -199,7 +199,7 @@ package classes.Items.Transformatives
 			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
 		}
 		
-		private function cockLenghtTF(arg:Array):void
+		private function cockLengthTF(arg:Array):void
 		{
 			var target:Creature = arg[0];
 			var i:int = arg[1];

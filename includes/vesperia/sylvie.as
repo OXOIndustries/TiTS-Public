@@ -2050,7 +2050,7 @@ public function fuckyTittyBlowblow2():void
 	//More than 10k
 	if(cumQ > 10000) output("\n\nThe policegirl must think the mess is getting out of hand, because she steps back to slide your [pc.cockHead " + x + "] back inside her tunnel, capturing wave after wave of virile bliss.");
 	//More than 20k - no new PG.
-	if(cumQ > 20000) output("Liquid burbles can be heard through her middle as you expand it, lending the big woman a pregnant appearance.");
+	if(cumQ > 20000) output(" Liquid burbles can be heard through her middle as you expand it, lending the big woman a pregnant appearance.");
 	//More than 30k - no new PG.
 	if(cumQ > 30000) 
 	{
@@ -2513,7 +2513,7 @@ public function redMyrSylvieFunz():void
 	output(" When you attempt to join them you feel the drunken moose-taur’s grip tighten around your shoulders.");
 
 	output("\n\n<i>“Noooooo. Don’ leave... More lick. I need you to lick more,”</i> she slurs, planting a sloppy smooch on your forehead and pulling you into her cleavage. Even incapacitated by aphrodisiac venom, her strength is far beyond the average woman. You resign yourself to the situation, what the hell. It’s not like you weren’t coming right back. The drunken pecks continue to dot your head, so you turn up to meet one, pushing back up and into her exposed mouth with your [pc.tongue].");
-	output("\n\nBetween your saliva, her sweat, and the natural humidity in the baths, Sylvie is sopping wet from head to hoof and oozing with enough heat to form your own personal sauna. It’s hard to breath in the sweltering warmth, and harder to find traction on her slick skin. None of that matters to you; every inconvenience is driven from your mind by the sweet softness of her lips against yours.");
+	output("\n\nBetween your saliva, her sweat, and the natural humidity in the baths, Sylvie is sopping wet from head to hoof and oozing with enough heat to form your own personal sauna. It’s hard to breathe in the sweltering warmth, and harder to find traction on her slick skin. None of that matters to you; every inconvenience is driven from your mind by the sweet softness of her lips against yours.");
 	output("\n\nFaintly twitching muscle alerts you to an oncoming orgasm before Sylvie can register what’s going on. This one feels much bigger than the barrage of smaller spasms that have come before it, and you make as inconspicuous an effort as possible to maneuver the moose-taur police-woman’s hands into a better position.");
 	if(silly) output(" An early obituary reading <i>“crushed to death by moose in the throes of lust”</i> is not on your desired list of accomplishments.");
 	else output(" A hug is one thing, a guillotine is another.");

@@ -1079,7 +1079,7 @@ public function goHomeFromRiyaQuest():void
 //If PC selects ‘Stay’
 public function stayForQuest():void
 {
-	moveTo("GAME OVER");
+	moveTo("RIYAQUEST");
 	
 	clearOutput();
 	showName("PIRATE\nBASE");

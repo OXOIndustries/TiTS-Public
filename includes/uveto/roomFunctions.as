@@ -500,7 +500,7 @@ public function tryApplyUvetoColdDamage(timeExposed:Number):Boolean
 			if (damageResult.totalDamage > 0) outputDamage(damageResult);
 			//output("\n\n");
 			
-			generateMapForLocation("GAME OVER");
+			generateMapForLocation("UVETO WILDERNESS");
 			
 			clearMenu();
 			addButton(0, "Next", uvetoFallToColdDamage);

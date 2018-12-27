@@ -1809,7 +1809,7 @@ public function initZhengRooms():void
 
 	rooms["ZSF Z6"] = new RoomClass(this);
 	rooms["ZSF Z6"].roomName = "SCAFFOLD\nLADDER";
-	rooms["ZSF Z6"].description = "You stand at the corner of of an enormous, suspended scaffold. One fork trails west along a bank of colossal engines. The other follows south along the bottom of the craft’s fuselage. The ladder itself, bolted into the northern wall, descends through plumes of smoke and air thick with the tang of aerosolized metals, back to the foundry that produced this triumph of lawless engineering.";
+	rooms["ZSF Z6"].description = "You stand at the corner of an enormous, suspended scaffold. One fork trails west along a bank of colossal engines. The other follows south along the bottom of the craft’s fuselage. The ladder itself, bolted into the northern wall, descends through plumes of smoke and air thick with the tang of aerosolized metals, back to the foundry that produced this triumph of lawless engineering.";
 	rooms["ZSF Z6"].planet = "ZHENG SHI STATION";
 	rooms["ZSF Z6"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF Z6"].northExit = "";

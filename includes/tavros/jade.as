@@ -196,6 +196,7 @@ public function jadeAdvancedStoreSetup():void
 	chars["JADE"].inventory.push(new NukiCookies());
 	chars["JADE"].inventory.push(new Pandaneen());
 	chars["JADE"].inventory.push(new PandaPro());
+	chars["JADE"].inventory.push(new RedPandaneen());
 	chars["JADE"].inventory.push(new RedPandaPro());
 	buyItem();
 }

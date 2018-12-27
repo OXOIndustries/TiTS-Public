@@ -435,7 +435,7 @@ public function ratsKneelingForService():void
 			else if (pc.cumQ() < 500) output("\n\nTheir rough, pumping hands jerk out a veritable deluge from your spunk-tanks, and they each get refreshing mouthfuls of hot, [pc.cumVisc] [pc.cumNoun] right from the source. The bulging of your urethras and the impression of their sucking lips on it doubles your virile output. Searing hot ropes pour down pirate gullets, filling out their toned bellies nicely." + (pc.balls > 0 ? "Your [pc.balls] bounce in the mouse-boy’s hands, and he makes sure that no drop is left inside." : ""));
 			else output("\n\nYou cum and you cum... Your thick, unending spurts of [pc.cumVisc] [pc.cumNoun] are to be envied. You fill the rodenian’s mouths to the brim with [pc.cumColor] seed, delighting in their frantic gulpings until your copious deposits spill out from their lips with nowhere else to go");
 			if (pc.hasAKnot()) output(", even around your [pc.knots]");
-			output(". A jet of of seed-filled fluid spills from the rat girl’s nose, and the mouse-boy does his damndest to catch it all " + (pc.balls > 0 ? "while helping your [pc.balls] churn out the rest." : "."));
+			output(". A jet of seed-filled fluid spills from the rat girl’s nose, and the mouse-boy does his damndest to catch it all " + (pc.balls > 0 ? "while helping your [pc.balls] churn out the rest." : "."));
 
 			output("\n\n" + (pc.hasAKnot() ? "When your [pc.knots] deflate, y" : "Y") + "ou tug your [pc.cocksLight] from the rat’s hungry maws, watching them sputter but immediately clean and spitshine your masts with airy purrs, even kissing each other to share your [pc.cumVisc] leftovers. Despite having cum next to you, they’re still fired up!");
 			break;
@@ -715,7 +715,7 @@ public function ratsTailsAndOralAndFuckNamingFucntions():void
 	output(" from here.");
 
 	output("\n\nSlumping " + (pc.hasBreasts() ? "in your [pc.breasts]" : "on your [pc.chest]") + ", the [rat0.furColor]-furred outlaw pants worse than an exhausted dog, her mouth wide open and her breaths thicker than steam belching from the station’s forges. You withdraw your hands and look over to see the other two rats peeling away from your numb but satisfied crotch, certain they had to hold you down in your final, vigorous climax. The rodenian stirs quickly, shaking her head and regarding you like she hadn’t even gasped delirious."); 
-	output("\n\nThe diligent bunch clean the the evidence of your tryst away; the rodenian’s tail swims to the front of her face for her to suck, cleaning herself of your [pc.girlCumColor] [pc.girlCumNoun].");
+	output("\n\nThe diligent bunch clean the evidence of your tryst away; the rodenian’s tail swims to the front of her face for her to suck, cleaning herself of your [pc.girlCumColor] [pc.girlCumNoun].");
 
 	ratsGirlCumComments();
 
@@ -770,7 +770,7 @@ public function ratsMouthsOnlyFinalPusstination():void
 	}
 	else output(" She smoothly caresses your [pc.chest], nuzzling her cheeks against your [pc.skinFurScales], licking your [pc.nipples] with long, sensual rubs.");
 
-	output("\n\nA heavenly pace is maintained beneath the two of you: The brunts of tails, the tips of fingers, and two <i>very</i> passionate tongues simultaneously worship and desecrate your splayed feminine altar. You don’t remember the last time you <i>haven’t</i> cum. Those kinds of thoughts drown in the the arousal you’re both submerged in.");
+	output("\n\nA heavenly pace is maintained beneath the two of you: The brunts of tails, the tips of fingers, and two <i>very</i> passionate tongues simultaneously worship and desecrate your splayed feminine altar. You don’t remember the last time you <i>haven’t</i> cum. Those kinds of thoughts drown in the arousal you’re both submerged in.");
 	output("\n\nThreading the mouse-alien’s hair between your fingers is an easy and heartwarming gesture; you tease her special ears and pull her back into a kiss -- her tail immediately wraps around both of you, squeezing your bodies tighter together. ");
 
 	output("\n\nYou lock your [pc.lipsChaste] with her purring mouth");
@@ -785,7 +785,7 @@ public function ratsMouthsOnlyFinalPusstination():void
 	if (pc.hasCock()) output(" Your [pc.cocks] ooze all over themselves in the aftermath of your feminine climax."); output(" Rodenian-juice pours from the slant rat-thief’s ears, giving her cheeks a good shine before it spills onto you from her limp chin and neck. The smell of four scintillating orgasms wafts into the air - you can almost taste each flavor in your tranquilized state.");
 
 	output("\n\nSlumping " + (pc.hasBreasts() ? "in your [pc.breasts" : "on your [pc.chest]") + ", the [rat0.furColor]-furred outlaw pants worse than an exhausted dog, her mouth wide open and her breaths thicker than steam belching from the station’s forges. You rub her head and look over to see the other two rats peeling away from your numb crotch, certain they had to hold you down in your final, vigorous climax. The rodenian stirs quickly, shaking her head and regarding you like she hadn’t even gasped delirious."); 
-	output("\n\nThe diligent thieves clean the the evidence of your tryst away; the rodenian’s tail swims to the front of her face for her to suck, cleaning herself of your [pc.girlCumColor] [pc.girlCumNoun].");
+	output("\n\nThe diligent thieves clean the evidence of your tryst away; the rodenian’s tail swims to the front of her face for her to suck, cleaning herself of your [pc.girlCumColor] [pc.girlCumNoun].");
 		
 	ratsGirlCumComments();
 	

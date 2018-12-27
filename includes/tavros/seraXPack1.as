@@ -1001,7 +1001,7 @@ public function seraInchStealingAintEasy(intro:Boolean = false):void
 	output(" portion of the knot falls free.");
 	
 	output("\n\nBefore you can even take a moment to celebrate, her tailcock finds its way to your [pc.lips] with unerring accuracy. At its insistent push you submissively open your mouth to it, which provokes a sigh of pleasure from your mistress. The tailcock quickly finds its rhythm as it fucks your face");
-	if(pc.lipRating() >= 4) output(" and slurps noisily through the pillowy seal of of your [pc.lips]");
+	if(pc.lipRating() >= 4) output(" and slurps noisily through the pillowy seal of your [pc.lips]");
 	output(". You figure there’s nothing to be done about your predicament right now but soldier on.");
 	
 	output("\n\nUntangling a knot of this magnitude is difficult and delicate work, the sort that can really hurt your fingers if the material is rough. Untangling a knot that is both writhing and fucking your face is a different matter altogether. Every time you think you have the knot figured out, it’ll collapse in a way which shows you’re wrong, or your mistress will just barely tickle your gag reflex. Ultimately you resort to the tried and true method, running your fingers along the end of it until you spot where it emerges from the knot. Slowly and steadily you thread her tail through it, which doesn’t diminish her thrusting in any way.");

@@ -1615,7 +1615,7 @@ package classes.Items.Transformatives
 			{
 				textBuff += "You catch a whiff of a familiar smell... like pussy. Rich, fertile, hormonal pussy.";
 				if(inPublic) textBuff += " You cast your eyes around to look for the source. Perhaps a sly woman is having a little play with a hidden vibrator. That or there’s a soaking wet minx looking for dick around the corner.";
-				else textBuff += "You briefly cast your eyes around, suspecting an ambush from some horny alien. Perhaps there is some plant life that smells just like vaginal secretions?";
+				else textBuff += " You briefly cast your eyes around, suspecting an ambush from some horny alien. Perhaps there is some plant life that smells just like vaginal secretions?";
 				textBuff += " No, wait. You’re the one that smells like sex. You’re the one with a ";
 				if(pc.wettestVaginalWetness() >= 4) textBuff += "drooling";
 				else if(pc.wettestVaginalWetness() >= 3) textBuff += "sopping";
@@ -1960,7 +1960,7 @@ package classes.Items.Transformatives
 				clearOutput();
 				kGAMECLASS.showName("NEEDY\nLAQUINE");
 			}
-			textBuff += "One of your ears perks as you swear the hear the low bass sound of a boisterous male singing a traveling song. It fades as quickly as it appears, only to resurface a minute later, louder and closer. The tune is slow and pleasant, but you can only pick a few words from the sonorous drone.";
+			textBuff += "One of your ears perks as you swear you hear the low bass sound of a boisterous male singing a traveling song. It fades as quickly as it appears, only to resurface a minute later, louder and closer. The tune is slow and pleasant, but you can only pick a few words from the sonorous drone.";
 			textBuff += "\n\n<i>“...my sweet laquine lass ... tease me with that candied ass ... wetter’n ocean breeze blowin’ in.... bed her like breeding season...”</i>";
 			if(pc.laquineScore() >= 5) textBuff += "\n\nLaquine lass? Is he singing about you?";
 

@@ -849,7 +849,7 @@ public function zhengFoundryFloor2ElevatorBonus():Boolean
 
 	if(flags["ZHENG_SHI_FOUNDRY_2F_OPEN"] == undefined) output("The cargo elevator’s door is closed. A piece of malformed of pipe jammed through the works will keep it that way, unless you bother to free it from its bondage and restore access to this hanging pathway.");
 	else output("The cargo elevator’s door is wide-open thanks to you. Without the bent-up pipe holding it shut, you’re free to travel back up here without having scamper up a four story ladder.");
-	output(" Boxes of parts and tools sit stacked nearly by the side in a pile, awaiting their chance to be loaded up and whisked away.");
+	output(" Boxes of parts and tools sit stacked neatly by the side in a pile, awaiting their chance to be loaded up and whisked away.");
 	if(flags["ZHENG_SHI_FOUNDRY_2F_OPEN"] == undefined) 
 	{
 		output(" You suppose the pirates forgot about them.");
@@ -1144,7 +1144,7 @@ public function sidewinderCargohold():void
 	//Probe uncollected
 	if(flags["ZHENG_SHI_PROBED"] == undefined)
 	{
-		output("\n\nTucked into the corner is your father’s probe. It’s scuffed to all hell and scored from laser blasts where someone used it for target practice. They keypad is intact, though. It flickers to life when you approach, and when you make contact, <b>a new set of coordinates download onto your Codex.</b>");
+		output("\n\nTucked into the corner is your father’s probe. It’s scuffed to all hell and scored from laser blasts where someone used it for target practice. The keypad is intact, though. It flickers to life when you approach, and when you make contact, <b>a new set of coordinates download onto your Codex.</b>");
 		output("\n\nEat that, [rival.name]!");
 		output("\n\nSteeletech salvage won’t be able to retrieve the probe from here, so you’ll have to leave it for the time being.");
 		flags["ZHENG_SHI_PROBED"] = 1;

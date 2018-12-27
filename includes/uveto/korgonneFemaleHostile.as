@@ -382,7 +382,7 @@ public function defeatDaKorgiShit():void
 	else if(pc.hasHardLightEquipped() && pc.hasKeyItem("Hardlight Strap-on Upgrades")) addButton(6,"HardlightFuck",korgonneHardlightPussyStuffsStuffStuffings,false,"Hardlight Punishment","See if your hardlight sextoy can satisfy this insatiable puppy slut.");
 	else if(pc.hasCock()) addDisabledButton(6,"CockMockery","Cock Mockery","Your [pc.cockBiggest] is not nearly thick enough for this. You are definitely too big.");
 	else if(!pc.hasHardLightEquipped()) addDisabledButton(6,"HardlightFuck","Hardlight Punishment","You need hardlight-enabled underwear for this.");
-	else if(!pc.hasKeyItem("Hardlight Strap-on Upgrades")) addDisabledButton(6,"HardlightFuck","Hardlight Punishment","You need hardlight-enabled underwear for this - <b>with the upgrade that enables you to change the size.</b>.");
+	else if(!pc.hasKeyItem("Hardlight Strap-on Upgrades")) addDisabledButton(6,"HardlightFuck","Hardlight Punishment","You need hardlight-enabled underwear for this - <b>with the upgrade that enables you to change the size</b>.");
 
 	addButton(14,"Leave",defeatDaKorgiLeave);
 }

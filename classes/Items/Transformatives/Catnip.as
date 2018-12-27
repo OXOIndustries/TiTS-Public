@@ -550,7 +550,7 @@ package classes.Items.Transformatives
 				output("\n\nAn unpleasant twinge of nerves brings your attention to your nipples.");
 				if(!target.isChestExposed())
 					output(" You quickly undress to investigate...");
-				output(" They go numb as a slick goo engulfs them. A few tingles replace the feeling, and you reflexively wipe the gunk away to reveal that your nipples are gone, but you find what looks pinched holes in their place. Momentary panic subsides when a bit of rubbing has them poking out. <b>Your nipples are now inverted!</b>");
+				output(" They go numb as a slick goo engulfs them. A few tingles replace the feeling, and you reflexively wipe the gunk away to reveal that your nipples are gone, but you find what look like pinched holes in their place. Momentary panic subsides when a bit of rubbing has them poking out. <b>Your nipples are now inverted!</b>");
 				if(nipLocked) output(" At least, part of them are.");
 				changes++;
 			}
@@ -828,7 +828,6 @@ package classes.Items.Transformatives
 						target.addTailFlag(GLOBAL.FLAG_SHEATHED);
 						output(" The tip of your tail feels strange. After some probing, you’ve found your tail genitalia still present, but totally unnoticeable when not aroused.");
 						if(target.hasParasiteTail()) output(" And much less prone to act by itself as well.");
-						output(".");
 					}
 					
 					kGAMECLASS.flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
@@ -1050,7 +1049,7 @@ package classes.Items.Transformatives
 				
 				output("\n\nYour forelegs aren’t just legs - while not exactly prehensile, your toes are quite long and nimble, providing you with a fair portion of manual-like dexterity.");
 				output("\n\nThat part of your body between pairs of your legs is not overly long, so you can sit on your butt comfortably while ‘standing’ on your forelegs.");
-				if (target.hasTail() && target.hasTailFlag(GLOBAL.FLAG_LONG)) output("You can’t help but smile seeing your [pc.tails] instinctively wrapping your forelegs in adorably animalistic fashion while in such position.");
+				if (target.hasTail() && target.hasTailFlag(GLOBAL.FLAG_LONG)) output(" You can’t help but smile seeing your [pc.tails] instinctively wrapping your forelegs in adorably animalistic fashion while in such position.");
 				output("\n\nThe joint point of your humanoid and tauric parts is very flexible, as well as your spine generally - you can effortlessly reach any part of your body... And not just with your hands, by the way.");
 				changes++;
 				

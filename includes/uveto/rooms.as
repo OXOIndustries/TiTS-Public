@@ -766,6 +766,16 @@ public function initUvetoRooms():void
 
 	/** UVETO ICE PLAINS ------------------------------------------------------------ */
 	/** ----------------------------------------------------------------------------- */
+	rooms["UVETO WILDERNESS"] = new RoomClass(this);
+	rooms["UVETO WILDERNESS"].roomName = "";
+	rooms["UVETO WILDERNESS"].description = "";
+	rooms["UVETO WILDERNESS"].planet = "PLANET: UVETO VII";
+	rooms["UVETO WILDERNESS"].system = "SYSTEM: SIRETTA";
+	rooms["UVETO WILDERNESS"].moveMinutes = 1;
+	rooms["UVETO WILDERNESS"].runOnEnter = undefined;
+	rooms["UVETO WILDERNESS"].addFlag(GLOBAL.OUTDOOR);
+	rooms["UVETO WILDERNESS"].addFlag(GLOBAL.HAZARD);
+	
 	rooms["UVIP D38"] = new RoomClass(this);
 	rooms["UVIP D38"].roomName = "CLEARED\nICE PATH";
 	rooms["UVIP D38"].description = "A wide path has been cleared in the accumulated snow and ice outside the Irestead gates, packed down by the constant traffic of heavy treaded vehicles and bundled up huskar. It opens up rapidly to the east, letting out into the wide and seemingly endless fields of feathery snow. The plains stretch off into the eastern horizon, any end lost to the vast distance.";

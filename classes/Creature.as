@@ -20543,6 +20543,7 @@
 
 		public function canCumCascade(): Boolean 
 		{
+			if(balls > 0) return false;
 			if(!hasPerk("'Nuki Nuts")) return false;
 			if(hasStatusEffect("Cum Cascade Suppressant")) return false;
 			if(hasPerk("Cum Cascade")) return true;
@@ -20551,6 +20552,8 @@
 		}
 		public function cumCascade(amount:Number, fluid:int = GLOBAL.FLUID_TYPE_CUM, timePassed:int = 0): void 
 		{
+			if(balls <= 0) return;
+			
 			// Give Cum Cascade effect
 			if (!hasStatusEffect("Cum Cascade"))
 			{

@@ -116,7 +116,7 @@ public function initTavrosRooms():void
 	rooms["MERCHANT'S THOROUGHFARE2"].planet = "TAVROS STATION";
 	rooms["MERCHANT'S THOROUGHFARE2"].system = "SYSTEM: KALAS";
 	rooms["MERCHANT'S THOROUGHFARE2"].westExit = "LIFT: MERCHANT DECK";
-	rooms["MERCHANT'S THOROUGHFARE2"].northExit = "MERCHANT'S THOROUGHFARE";
+	rooms["MERCHANT'S THOROUGHFARE2"].northExit = "MERCHANT’S THOROUGHFARE";
 	rooms["MERCHANT'S THOROUGHFARE2"].southExit = "9018";
 	rooms["MERCHANT'S THOROUGHFARE2"].eastExit = "";
 	rooms["MERCHANT'S THOROUGHFARE2"].moveMinutes = 2;
@@ -1195,4 +1195,23 @@ public function initTavrosRooms():void
 	rooms["RAMISBAR"].addFlag(GLOBAL.INDOOR);
 	rooms["RAMISBAR"].addFlag(GLOBAL.PRIVATE);
 	rooms["RAMISBAR"].addFlag(GLOBAL.NPC);
+	
+	// Riya locations
+	rooms["RIYAQUEST"] = new RoomClass(this);
+	rooms["RIYAQUEST"].roomName = "PIRATE\nBASE";
+	rooms["RIYAQUEST"].description = "";
+	rooms["RIYAQUEST"].planet = "TAVROS STATION";
+	rooms["RIYAQUEST"].system = "SYSTEM: KALAS";
+	rooms["RIYAQUEST"].moveMinutes = 1;
+	rooms["RIYAQUEST"].runOnEnter = undefined;
+	rooms["RIYAQUEST"].addFlag(GLOBAL.INDOOR);
+	
+	rooms["RIYAPARTY"] = new RoomClass(this);
+	rooms["RIYAPARTY"].roomName = "\nDECK 4";
+	rooms["RIYAPARTY"].description = "";
+	rooms["RIYAPARTY"].planet = "TAVROS STATION";
+	rooms["RIYAPARTY"].system = "SYSTEM: KALAS";
+	rooms["RIYAPARTY"].moveMinutes = 2;
+	rooms["RIYAPARTY"].runOnEnter = undefined;
+	rooms["RIYAPARTY"].addFlag(GLOBAL.INDOOR);
 }
