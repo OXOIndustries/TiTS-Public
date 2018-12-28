@@ -7251,6 +7251,24 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["OLYMPIA_SEXED"] != undefined) output2("\n<b>* Olympia, Times Sexed:</b> " + flags["OLYMPIA_SEXED"]);
 				variousCount++;
 			}
+			if(flags["SHOCK_HOPPER_DEFEATED"] != undefined)
+			{
+				output2("\n<b><u>Captain’s Quarters</u></b>");
+				if(flags["JUMPER_LEADERSHIP_WINFUCKED"] != undefined)
+				{
+					output2("\n<b>* Jumper Leadership:</b> Won leadership through sex");
+					if(flags["JUMPER_LEADERSHIP_LIKED_WINFUCK"] != undefined) output2(", They liked it");
+				}
+				// The DCL
+				output2("\n<b>* The L.D.C.:</b> Met him");
+				if(flags["LDC_FUCKED"] != undefined) output2(", Sexed him");
+				// Fight Bunny
+				output2("\n<b>* Shock Hopper:</b> Met her");
+				if(flags["SHOCK_HOPPER_FUCKED"] != undefined) output2(", Sexed her");
+				// Slaves
+				if(flags["JUMPER_SLAVES_FREED"] != undefined) output2("\n<b>* Slaves:</b> " + (flags["JUMPER_SLAVES_FREED"] == 1 ? "Freed" : "Ignored"));
+				variousCount++;
+			}
 		}
 		
 		if(showID == "Uveto" || showID == "All")

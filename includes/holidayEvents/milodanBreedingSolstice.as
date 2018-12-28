@@ -92,7 +92,7 @@ public function moreMilodanSolstice():void
 	else output("[pc.vaginas]");
 	output(". Time loses meaning as you wander through the sexual miasma, and before you know it, it’s the dead of night and you find yourself at the foot of a massive tent.");
 	//move location somewhur cheaty - store OG location for movement back?
-	currentLocation = "MYRNAS CAVE";
+	currentLocation = "UVETO WILDERNESS";
 	generateMap();
 	output("\n\n<i>“Ah, the gathering has just begun!”</i> One of the more venerated-looking women yells. The rest of the group cheers and rushes inside, dragging you along with them.");
 
@@ -213,7 +213,7 @@ public function celebrateSeasonsBreedings():void
 
 	if(pc.cumQ() < 8000) 
 	{
-		output("\n\nYou erupt inside her, pumping out far more than you ever thought you could. [pc.cum] spills out of you in waves that make your previous orgasms look like trickles. By the time you’re done she has a noticeable cum belly that she rubs with reverence.");
+		output("\n\nYou erupt inside her, pumping out far more than you ever thought you could. [pc.Cum] spills out of you in waves that make your previous orgasms look like trickles. By the time you’re done she has a noticeable cum belly that she rubs with reverence.");
 		output("\n\n<i>“T-thank y-you...”</i> She stammers before passing out.");
 	}
 	else if(pc.cumQ() < 40000)
@@ -337,7 +337,7 @@ public function guysBreedingSolstice():void
 	output("\n\nYour mouth gapes open in awe, and a thought is breaking through the fog of your inebriated mind that this might not be the best idea. One of the men decides to take advantage of you state, however, and pours some kind of herbal tea down your throat. You barely get it all down before he gives you something else to choke on. He facefucks you in ernest, slamming his balls against your chin as he jackhammers you.");
 	output("\n\n<i>“That should <b>really</b> help the swimmers take to you. Just a little reward for being so accommodating.”</i>");
 	output("\n\nThe other two take that as the signal to start. They ram into you at the same time, hilting themselves as deep as your body will allow. It should feel at least weird to have this much meat in you, but you’re in heaven! Whatever he gave you has turned you numb to just about every sensation other than raw pleasure. That doesn’t stop your hands from working two of the other men though, that’s just instinct. That still leaves one man out in the cold though.");
-	output("\n\nYou feel your insides stirring too. Your womb feels like it’s on fire, unnaturally hungry to be constantly full, and raring to go when it’s not. <b>Your fertility has been super-charged</b>");
+	output("\n\nYou feel your insides stirring too. Your womb feels like it’s on fire, unnaturally hungry to be constantly full, and raring to go when it’s not. <b>Your fertility has been super-charged!</b>");
 	
 	var numVag:int = pc.totalVaginas();
 	//multi-puss:
