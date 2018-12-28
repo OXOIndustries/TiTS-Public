@@ -20543,7 +20543,7 @@
 
 		public function canCumCascade(): Boolean 
 		{
-			if(balls > 0) return false;
+			if(balls <= 0) return false;
 			if(!hasPerk("'Nuki Nuts")) return false;
 			if(hasStatusEffect("Cum Cascade Suppressant")) return false;
 			if(hasPerk("Cum Cascade")) return true;
