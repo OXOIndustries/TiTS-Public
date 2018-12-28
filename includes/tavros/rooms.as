@@ -116,7 +116,7 @@ public function initTavrosRooms():void
 	rooms["MERCHANT'S THOROUGHFARE2"].planet = "TAVROS STATION";
 	rooms["MERCHANT'S THOROUGHFARE2"].system = "SYSTEM: KALAS";
 	rooms["MERCHANT'S THOROUGHFARE2"].westExit = "LIFT: MERCHANT DECK";
-	rooms["MERCHANT'S THOROUGHFARE2"].northExit = "MERCHANT’S THOROUGHFARE";
+	rooms["MERCHANT'S THOROUGHFARE2"].northExit = "MERCHANT'S THOROUGHFARE";
 	rooms["MERCHANT'S THOROUGHFARE2"].southExit = "9018";
 	rooms["MERCHANT'S THOROUGHFARE2"].eastExit = "";
 	rooms["MERCHANT'S THOROUGHFARE2"].moveMinutes = 2;
