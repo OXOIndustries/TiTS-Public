@@ -162,16 +162,21 @@ public function stayAtPartyWhileGrenceAndRiyaBone():void
 	author("Franks");
 	output("It’s a pretty fun party. You spend some time watching the girls wrestling in the chocolate pool lose their tops, give up on the wrestling contest and start trading swigs of a bottle of vodka and making out (much to the dismay of everyone except for one Thraggen man who bet they’d start making out midway through the fight and just may have set the whole thing up). Then you make your way over to the gaming corner, where you win a few hundred credits in a Call of Valor tournament, only to lose it playing darts... which is completely the fault of whatever was in that punch, of course.");
 	output("\n\nIt’s a great time, and everyone is friendly... but you can’t shake the feeling you’re missing something. A feeling that’s confirmed when you see " + (flags["MET_RIYA"] != undefined ? "Riya":"the big human woman who was making an ass of herself earlier") + " and ‘Santa Grence’ stumbling out of one of the side hallways dripping with sweat, their clothes and hair disheveled and leaning heavily on each other. It’s pretty obvious what they were up to. And you missed it. Damn it all...");
-	output("\n\nOn your way out, you spot something lying in a trashbin, something that doesn’t look like it belongs there... is that a horse dildo?... It is. It even has a set of balls. You pluck it out, noting thankfully that it has avoided getting anything nasty on it.");
-	output("\n\nWell, at least you had a good time at the party. And this free dildo looks pretty fuckin’ sweet too. You’ll have to check it out later...");
+	//PC gains x1 Horse-cock
+	if(synthSheathAvailable())
+	{
+		output("\n\nOn your way out, you spot something lying in a trashbin, something that doesn’t look like it belongs there... is that a horse dildo?... It is. It even has a set of balls. You pluck it out, noting thankfully that it has avoided getting anything nasty on it.");
+		output("\n\nWell, at least you had a good time at the party. And this free dildo looks pretty fuckin’ sweet too. You’ll have to check it out later...");
+		IncrementFlag("SYNTHSHEATH_TWO_FOUND");
+		quickLoot(new HorseCock());
+	}
+	else output("\n\nWell, at least you had a good time at the party.");
 
 	//PC gains ‘Drunk’
 	pc.imbibeAlcohol(100);
 	processTime(60);
 	output("\n\n");
 	currentLocation = "TAVROS LIFT";
-	quickLoot(new HorseCock());
-	//PC gains x1 Horse-cock
 }
 
 
