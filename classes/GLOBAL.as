@@ -754,7 +754,7 @@
 			NIPPLE_TYPE_TENTACLED,
 		];
 		
-		public static const VALID_NIPPLE_FLAGS:Array = [
+		public static const VALID_AREOLA_FLAGS:Array = [
 			FLAG_PUMPED,
 			FLAG_HEART_SHAPED,
 			FLAG_STAR_SHAPED,
