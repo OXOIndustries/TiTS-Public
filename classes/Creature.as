@@ -1618,13 +1618,13 @@
 			if(biggestTitSize() < 1) return "Your [pc.chest] throbs and pulses but does not change. The unnatural sensations fade as quickly as they came.";
 			return "Your [pc.chest] throb and pulse but do not change. The unnatural sensations fade as quickly as they came.";
 		}
-		public function nippleFlagUnlocked(bRowIndex:int, newNippleFlag:Number):Boolean
+		public function areolaFlagUnlocked(bRowIndex:int, newNippleFlag:Number):Boolean
 		{
 			if (hasLipples() || !nippleTypeUnlocked(0,0)) return false;
 			return true;
 		}
 
-		public function nippleFlagLockedMessage():String
+		public function areolaFlagLockedMessage():String
 		{
 			return "Your [pc.nipples] throb and pulse but do not change. The unnatural sensations fade as quickly as they came.";
 		}
@@ -14250,8 +14250,8 @@
 		
 		public function hasSymbolAreola():Boolean
 		{
-			if (breastRows[0].hasFlag(GLOBAL.FLAG_HEART_SHAPED)) return true;
-			else if (breastRows[0].hasFlag(GLOBAL.NIPPLE_FLAG_STAR_SHAPED)) return true;
+			if (breastRows[0].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) return true;
+			else if (breastRows[0].hasAreolaFlag(GLOBAL.NIPPLE_FLAG_STAR_SHAPED)) return true;
 			else return false;
 		}
 		public function areolaDescript():String
@@ -14269,12 +14269,12 @@
 			adjectives.push(areolaSizeDescript());
 
 			//Flag descriptions
-			if (breastRows[0].hasFlag(GLOBAL.FLAG_PUMPED)) adjectives.push("puffy");
-			if (breastRows[0].hasFlag(GLOBAL.FLAG_HEART_SHAPED)) adjectives.push("heart-shaped");
-			if (breastRows[0].hasFlag(GLOBAL.FLAG_STAR_SHAPED)) adjectives.push("star-shaped");
+			if (breastRows[0].hasAreolaFlag(GLOBAL.FLAG_PUMPED)) adjectives.push("puffy");
+			if (breastRows[0].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) adjectives.push("heart-shaped");
+			if (breastRows[0].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED)) adjectives.push("star-shaped");
 
 			//If a player has a flag, they probably want to see stuff
-			if (breastRows[0].nippleFlags.length > 0) adjectiveMin++;
+			if (breastRows[0].areolaFlags.length > 0) adjectiveMin++;
 
 			//Select a random number of adjectives within limits
 			i = rand(adjectives.length + 1);
@@ -14300,20 +14300,20 @@
 		{
 			return (areolaDescript() + "e");
 		}
-		public function nippleFlagDescript():String
+		public function areolaFlagDescript():String
 		{
 			var list:Array = new Array();
 			var description:String = "";
 
 			//Flag non-shape descriptions
-			if (breastRows[0].hasFlag(GLOBAL.FLAG_PUMPED)) list.push("puffy");
+			if (breastRows[0].hasAreolaFlag(GLOBAL.FLAG_PUMPED)) list.push("puffy");
 
 			//Default areola shape
 			if (!hasSymbolAreola()) list.push("circular");
 
 			//Others
-			if (breastRows[0].hasFlag(GLOBAL.FLAG_HEART_SHAPED)) list.push("heart-shaped");
-			if (breastRows[0].hasFlag(GLOBAL.FLAG_STAR_SHAPED)) list.push("star-shaped");
+			if (breastRows[0].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) list.push("heart-shaped");
+			if (breastRows[0].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED)) list.push("star-shaped");
 
 			//Build list with punctuation
 			while (list.length > 0)
