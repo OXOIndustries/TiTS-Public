@@ -14251,7 +14251,7 @@
 		public function hasSymbolAreola():Boolean
 		{
 			if (breastRows[0].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) return true;
-			else if (breastRows[0].hasAreolaFlag(GLOBAL.NIPPLE_FLAG_STAR_SHAPED)) return true;
+			else if (breastRows[0].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED)) return true;
 			else return false;
 		}
 		public function areolaDescript():String
