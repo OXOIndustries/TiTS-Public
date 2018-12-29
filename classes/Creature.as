@@ -14309,7 +14309,7 @@
 			if (breastRows[0].hasAreolaFlag(GLOBAL.FLAG_PUMPED)) list.push("puffy");
 
 			//Default areola shape
-			if (!hasSymbolAreola()) list.push("circular");
+			if (!hasSymbolAreola()) list.push("round");
 
 			//Others
 			if (breastRows[0].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) list.push("heart-shaped");
