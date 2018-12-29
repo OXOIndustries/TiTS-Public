@@ -74,7 +74,7 @@ package classes.Items.Transformatives
 				output("The medipen has a number of symbol shaped buttons on it.")
 				
 				//Puffy
-				if (target.breastRows[0].hasFlag(GLOBAL.FLAG_PUMPED))
+				if (target.breastRows[0].hasAreolaFlag(GLOBAL.FLAG_PUMPED))
 				{
 					addDisabledButton(buttons++,"Puffy","Puffy","Your areolae are already puffy.");
 				}
@@ -83,7 +83,7 @@ package classes.Items.Transformatives
 					addButton(buttons++, "Puffy", changeThemBoobHats, [GLOBAL.FLAG_PUMPED, target], "Puffy", "Makes your areolae puffy.");
 				}
 				//Depuff
-				if (!target.breastRows[0].hasFlag(GLOBAL.FLAG_PUMPED))
+				if (!target.breastRows[0].hasAreolaFlag(GLOBAL.FLAG_PUMPED))
 				{
 					addDisabledButton(buttons++,"Flat","Flat","Your areolae are already flat.");
 				}
@@ -92,18 +92,18 @@ package classes.Items.Transformatives
 					addButton(buttons++, "Flat", changeThemBoobHats, [-1, target], "Flat", "Makes your areolae flat.");
 				}
 				
-				//Circles
-				if (!target.breastRows[0].hasFlag(GLOBAL.FLAG_HEART_SHAPED) && !target.breastRows[0].hasFlag(GLOBAL.FLAG_STAR_SHAPED))
+				//Round
+				if (!target.hasSymbolAreola())
 				{
-					addDisabledButton(buttons++,"Circles","Circles","Your areolae are already shaped like circles.");
+					addDisabledButton(buttons++,"Round","Round","Your areolae are already round.");
 				}
 				else
 				{
-					addButton(buttons++, "Circles", changeThemBoobHats, [0, target], "Circles", "Changes the shape of your areolae to circles.");
+					addButton(buttons++, "Round", changeThemBoobHats, [0, target], "Round", "Changes the shape of your areolae to be round.");
 				}
 			
 				//Heart shaped areola
-				if (target.breastRows[0].hasFlag(GLOBAL.FLAG_HEART_SHAPED)) 
+				if (target.breastRows[0].hasAreolaFlag(GLOBAL.FLAG_HEART_SHAPED)) 
 				{
 					addDisabledButton(buttons++,"Hearts","Hearts","Your areolae are already shaped like hearts.");
 				}
@@ -113,7 +113,7 @@ package classes.Items.Transformatives
 				}
 			
 				//Star shaped areola
-				if (target.breastRows[0].hasFlag(GLOBAL.FLAG_STAR_SHAPED))
+				if (target.breastRows[0].hasAreolaFlag(GLOBAL.FLAG_STAR_SHAPED))
 				{
 					addDisabledButton(buttons++,"Stars","Stars","Your areolae are already shaped like stars.");
 				}
@@ -142,7 +142,7 @@ package classes.Items.Transformatives
 			author("Somebody Else");
 			
 			//Nipple flags locked: no changes
-			if (!target.nippleFlagUnlocked(0, 0))
+			if (!target.areolaFlagUnlocked(0, 0))
 			{
 				output("You feel a brief tingling in your areolae, but nothing else happens. What a waste.");
 				clearMenu(); 
@@ -168,7 +168,7 @@ package classes.Items.Transformatives
 					output(" The sensations diffuse evenly throughout your areolae, increasing the amount of tissue to reach your desired shape. <b>Your areolae are now puffy!</b>");
 					for(i = 0; i < target.breastRows.length; i++)
 					{
-						target.breastRows[i].addFlag(GLOBAL.FLAG_PUMPED); 
+						target.breastRows[i].addAreolaFlag(GLOBAL.FLAG_PUMPED); 
 					}
 					break;
 				//Unpuff
@@ -176,33 +176,33 @@ package classes.Items.Transformatives
 					output(" The sensations diffuse evenly throughout your areolae, increasing the amount of tissue to reach your desired shape.<b>Your areolae are no longer puffy.</b>");
 					for(i = 0; i < target.breastRows.length; i++)
 					{
-						target.breastRows[i].delFlag(GLOBAL.FLAG_PUMPED); 
+						target.breastRows[i].delAreolaFlag(GLOBAL.FLAG_PUMPED); 
 					}
 					break;
-				//Circles
+				//Round
 				case 0:
-					output(" The sensations focus themselves around the edges of your areolae, reshaping the outline into a much more exciting shape. <b>Your areolae are now circles!</b>");
+					output(" The sensations focus themselves around the edges of your areolae, reshaping the outline into a much more exciting shape. <b>Your areolae are now round!</b>");
 					for(i = 0; i < target.breastRows.length; i++)
 					{
 						target.breastRows[i].delAreolaShapeFlags(); 
 					}
 					break;
 				//Hearts
-				case GLOBAL.NIPPLE_FLAG_HEART_AREOLA:
+				case GLOBAL.FLAG_HEART_SHAPED:
 					output(" The sensations focus themselves around the edges of your areolae, reshaping the outline into a much more exciting shape. <b>Your areolae are now hearts!</b>");
 					for(i = 0; i < target.breastRows.length; i++)
 					{
 						target.breastRows[i].delAreolaShapeFlags();
-						target.breastRows[i].addFlag(GLOBAL.FLAG_HEART_SHAPED);
+						target.breastRows[i].addAreolaFlag(GLOBAL.FLAG_HEART_SHAPED);
 					}
 					break;
 				//Stars
-				case GLOBAL.NIPPLE_FLAG_STAR_AREOLA:
+				case GLOBAL.FLAG_STAR_SHAPED:
 					output(" The sensations focus themselves around the edges of your areolae, reshaping the outline into a much more exciting shape. <b>Your areolae are now stars!</b>");
 					for(i = 0; i < target.breastRows.length; i++)
 					{
 						target.breastRows[i].delAreolaShapeFlags();
-						target.breastRows[i].addFlag(GLOBAL.FLAG_STAR_SHAPED);
+						target.breastRows[i].addAreolaFlag(GLOBAL.FLAG_STAR_SHAPED);
 					}
 					break;
 			}
