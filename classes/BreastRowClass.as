@@ -64,32 +64,32 @@
 		
 		//FLAG CHECKIN!
 		public function hasAreolaFlag(arg:int):Boolean {
-			for(var x:int = 0; x < nippleFlags.length;x++) {
-				if(arg == nippleFlags[x]) return true;
+			for(var x:int = 0; x < areolaFlags.length;x++) {
+				if(arg == areolaFlags[x]) return true;
 			}
 			return false;
 		}
 		public function addAreolaFlag(arg:int):void {
-			if(!hasFlag(arg)) nippleFlags[nippleFlags.length] = arg;
+			if(!hasAreolaFlag(arg)) areolaFlags[areolaFlags.length] = arg;
 			else trace("Attempted to add flag " + arg + " to nipples of type " + nippleType + ".");
 		}
 		public function delAreolaFlag(arg:int):void
 		{
 			//Find and destroy it.
-			for(var x:int = 0; x < nippleFlags.length;x++) {
-				if(arg == nippleFlags[x]) nippleFlags.splice(x,1);
+			for(var x:int = 0; x < areolaFlags.length;x++) {
+				if(arg == areolaFlags[x]) areolaFlags.splice(x,1);
 			}
 		}
 		public function delAreolaShapeFlags():void
 		{
 			//Find and destroy it.
-			for(var x:int = 0; x < nippleFlags.length;x++) {
-				if (nippleFlags[x] == GLOBAL.FLAG_HEART_SHAPED) nippleFlags.splice(x, 1);
-				if (nippleFlags[x] == GLOBAL.FLAG_STAR_SHAPED) nippleFlags.splice(x, 1);
+			for(var x:int = 0; x < areolaFlags.length;x++) {
+				if (areolaFlags[x] == GLOBAL.FLAG_HEART_SHAPED) areolaFlags.splice(x, 1);
+				if (areolaFlags[x] == GLOBAL.FLAG_STAR_SHAPED) areolaFlags.splice(x, 1);
 			}
 		}
 		public function clearAreolaFlags():void {
-			nippleFlags = new Array();
+			areolaFlags = new Array();
 		}
 	}
 }
