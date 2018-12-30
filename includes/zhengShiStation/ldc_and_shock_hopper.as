@@ -15,7 +15,7 @@
 //The LDC
 //A black Laquine fuckboi with a *huge* dick. More twink than trap. He’s not at all physically imposing, setting aside his massive endowment. He’s technically the leader of the Jumpers now, because he fucked the Hopper into submission and keeps her (relatively) pacified with the power of hard dickings. He’s the definition of power-bottom.
 
-//He doesn’t fight you, per se; when you defeat the Hopper he says <i>“Well, I can’t beat that!”</i> and surrenders the probe if you won’t rape his butt.
+//He doesn’t fight you, per se; when you defeat the Hopper he says “Well, I can’t beat that!” and surrenders the probe if you won’t rape his butt.
 
 //You can then rape his butt and take the probe anyway.
 
@@ -904,7 +904,7 @@ public function rideHopperSlut2(args:Array):void
 	flags["JUMPER_LEADERSHIP_WINFUCKED"] = 1;
 	flags["SHOCK_HOPPER_FUCKED"] = 1;
 	flags["LDC_FUCKED"] = 1;
-	flags["JUMPER_SLAVES_FREED"] = -1;
+	flags["JUMPER_SLAVES_FREED"] = 1;
 
 	output("\n\n");
 	CombatManager.genericVictory();

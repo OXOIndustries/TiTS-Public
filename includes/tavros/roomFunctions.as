@@ -61,7 +61,7 @@ public function hangarFloors(bonus:Boolean = false):Array
 	floors.push(["Nursery", liftMove, "NURSERYELEVATOR", "Nursery Deck", "the nursery deck"]);
 	if(bonus)
 	{
-		if(MailManager.isEntryUnlocked("riya_party_invite") && flags["RIYA_PARTIED_YEAR"] == undefined) floors.push(["Party", riyaPartyLiftGo, undefined, "Party, Deck 4", "the U.G.C. garrison party"]);
+		if(MailManager.isEntryViewed("riya_party_invite") && flags["RIYA_PARTIED_YEAR"] == undefined) floors.push(["Party", riyaPartyLiftGo, undefined, "Party, Deck 4", "the U.G.C. garrison party"]);
 		if(flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"] == 2)
 			floors.push(["Deck 92", saendraX1LiftGo, undefined, "Deck 92", "Deck 92"]);
 	}

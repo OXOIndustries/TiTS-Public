@@ -710,7 +710,9 @@ public function showPerksList(filter:String = ""):void
 	
 	var desc:Boolean = (flags["PERKS_DESC_OFF"] ? false : true);
 	var hasDesc:Boolean = false;
-	var perkList:Array = (pc as PlayerCharacter).perks;
+	var chara:Creature = (pc as PlayerCharacter);
+	chara.sortPerks();
+	var perkList:Array = chara.perks;
 	
 	if (perkList.length == 0) output2("<i>No available character perks have been acquired.</i>");
 	

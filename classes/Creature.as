@@ -20543,7 +20543,7 @@
 
 		public function canCumCascade(): Boolean 
 		{
-			if(balls > 0) return false;
+			if(balls <= 0) return false;
 			if(!hasPerk("'Nuki Nuts")) return false;
 			if(hasStatusEffect("Cum Cascade Suppressant")) return false;
 			if(hasPerk("Cum Cascade")) return true;
@@ -21437,7 +21437,7 @@
 								if(hasCock()) infertileMsg += " virility";
 							}
 							else infertileMsg += " fertility and virility should you ever have the genitals for them";
-							infertileMsg += ". <b>Your ability to potentionally create life has been restored!</b>";
+							infertileMsg += ". <b>Your ability to potentially create life has been restored!</b>";
 							AddLogEvent(infertileMsg, "passive", maxEffectLength);
 						}
 						break;

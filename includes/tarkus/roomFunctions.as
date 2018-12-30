@@ -151,7 +151,9 @@ public function bonusTubeSteak():Boolean
 
 public function synthSheathMax():int
 {
-	return 4;
+	var horseCocksTotal:int = 4;
+	if(flags["RIYA_PARTIED_YEAR"] != undefined) horseCocksTotal++;
+	return horseCocksTotal;
 }
 
 public function synthSheathsOwned():int
