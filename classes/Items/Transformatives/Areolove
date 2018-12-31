@@ -73,6 +73,25 @@ package classes.Items.Transformatives
 				else addButton(14, "Back", areoloveCancel, target);
 				output("The medipen has a number of symbol shaped buttons on it.")
 				
+				//Increase Size
+				if (target.nipplewidthratio >= 5)
+				{
+					addDisabledButton(buttons++, "Increase", "Increase Size" , "Your areolae are already as large as this transformative can make them.");
+				}
+				else
+				{
+					addButton(buttons++, "Increase", changeThemBoobHats, [-2, target], "Increase Size", "Increases the size of your areola.");
+				}
+				//Decrease Size
+				if (target.nipplewidthratio <= 0.5)
+				{
+					addDisabledButton(buttons++, "Decrease", "Decrease Size" , "Your areolae are already as small as this transformative can make them.");
+				}
+				else
+				{
+					addButton(buttons++, "Decrease", changeThemBoobHats, [-3, target], "Decrease Size", "Decreases the size of your areola.");
+				}
+				
 				//Puffy
 				if (target.breastRows[0].hasAreolaFlag(GLOBAL.FLAG_PUMPED))
 				{
@@ -163,6 +182,18 @@ package classes.Items.Transformatives
 			//Selection dependent stuff
 			switch (selection)
 			{
+				//Increase size
+				case -2:
+					output(" The sensations focus themselves around the edges of your areolae as they slowly grow. <b>Your areolae are now larger!</b>");
+					target.nippleWidthRatio += 0.5;
+					if (target.nippleWidthRatio > 5) target.nippleWidthRatio = 5;
+					break;
+				//Decrease size
+				case -3:
+					output(" The sensations focus themselves around the edges of your areolae as they slowly contract <b>Your areolae are now smaller!</b>");
+					target.nippleWidthRatio -= 0.5;
+					if (target.nippleWidthRatio < 0.5) target.nippleWidthRatio = 0.5;
+					break;
 				//Puff
 				case GLOBAL.FLAG_PUMPED:
 					output(" The sensations diffuse evenly throughout your areolae, increasing the amount of tissue to reach your desired shape. <b>Your areolae are now puffy!</b>");
