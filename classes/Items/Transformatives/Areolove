@@ -190,7 +190,7 @@ package classes.Items.Transformatives
 					break;
 				//Decrease size
 				case -3:
-					output(" The sensations focus themselves around the edges of your areolae as they slowly contract <b>Your areolae are now smaller!</b>");
+					output(" The sensations focus themselves around the edges of your areolae as they slowly contract. <b>Your areolae are now smaller!</b>");
 					target.nippleWidthRatio -= 0.5;
 					if (target.nippleWidthRatio < 0.5) target.nippleWidthRatio = 0.5;
 					break;
