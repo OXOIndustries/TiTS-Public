@@ -2112,7 +2112,7 @@ public function flyMenu():void
 		
 		if (isDoingEventWhorizon())
 		{
-			output("<b>Without a way to navigate back through the spatial anomoly, it’s probably best you don’t try and take off right now...</b>");
+			output("<b>Without a way to navigate back through the spatial anomaly, it’s probably best you don’t try and take off right now...</b>");
 			clearMenu();
 			addButton(14, "Back", mainGameMenu);
 			return;

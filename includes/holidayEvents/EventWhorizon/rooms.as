@@ -1,6 +1,6 @@
 public function eventWhorizonInitRooms():void
 {
-	var planetName:String = "SPATIAL ANOMOLY";
+	var planetName:String = "SPATIAL ANOMALY";
 	var systemName:String = "UNKNOWN SPACE";
 
 	rooms["EW-M23"] = new RoomClass(this);
