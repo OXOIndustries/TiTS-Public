@@ -187,6 +187,11 @@ package classes.Characters
 			
 			this._isLoading = false;
 		}
+		//Gotta reset 'dem balls!'
+		override public function orgasm(): void {
+			super.orgasm();
+			ballSizeRaw = 1.5;
+		}
 		
 		override public function get bustDisplay():String
 		{

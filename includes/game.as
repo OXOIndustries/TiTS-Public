@@ -710,7 +710,9 @@ public function showPerksList(filter:String = ""):void
 	
 	var desc:Boolean = (flags["PERKS_DESC_OFF"] ? false : true);
 	var hasDesc:Boolean = false;
-	var perkList:Array = (pc as PlayerCharacter).perks;
+	var chara:Creature = (pc as PlayerCharacter);
+	chara.sortPerks();
+	var perkList:Array = chara.perks;
 	
 	if (perkList.length == 0) output2("<i>No available character perks have been acquired.</i>");
 	
@@ -2233,11 +2235,14 @@ public function flyMenu():void
 public function flyTo(arg:String):void
 {
 	generateMapForLocation("SHIP INTERIOR");
+	//Clear room encounter step counters :3 Nice Fen making it so your first step on a new planet isn't combat :3
+	resetStepCounters();
+
+	//No travel events on first zheng visit.
+	if(flags["ZHENG_SHI_PASSWORDED"] == undefined && arg == "ZhengShi") flags["SUPRESS TRAVEL EVENTS"] = 1;
+	//Otherwise clear suppress flag.
+	else if (flags["SUPRESS TRAVEL EVENTS"] == 1) flags["SUPRESS TRAVEL EVENTS"] = 0;
 	
-	if (flags["SUPRESS TRAVEL EVENTS"] == 1)
-	{
-		flags["SUPRESS TRAVEL EVENTS"] = 0;
-	}
 	else if(!InCollection(arg, ["Poe A", "karaQuest2"]))
 	{
 		//Eggshit Override!
@@ -2497,13 +2502,23 @@ public function showerMenu(special:String = "ship"):void
 	var showerInShip:Boolean = (special == "ship" && InShipInterior(pc));
 	
 	output("You find yourself in the " + special + "’s shower room.");
-	if(showerInShip) output("\n\nNext to the shower is a medicine cabinet with various hygiene products.");
+	if(showerInShip)
+	{
+		output("\n\nNext to the shower is a medicine cabinet with various hygiene products.");
+		if (paigeInTheShower()) output("\n\nThere are a number of stalls in the shower room; the closest one is reserved the ship's captain and the rest of your crew always leaves it open. That said, one of the other stalls is occupied, and you can hear the gentle singing of your Ausar lover and yoga instructor, Paige, over the running water.\n\n" + (pc.isTaur() ? "As much as the idea of joining her entices you, these showers barely have enough room in them for your gargantuan body as it is; shoving a second person into one of them is asking a lot. You'll have to pass on sexy shower shenanigans this time." : "You could offer to join her, if you wanted. Knowing her, she'd let you in. Or you could just go about your business as usual."));
+	}
+
 	output("\n\nWhat would you like to do?");
 	
 	clearMenu();
 	addButton(0, "Shower", showerOptions, [0, special], "Shower", "Take a shower and wash off any sweat or grime you might have.");
 	if (showerInShip || special == "nursery") addButton(1, "Cabinet", showerOptions, [1, special], "Bathroom Cabinet", "Check your bathroom’s medicine cabinet.");
 	if (showerInShip && pc.lust() >= 33 && crew(true) > 0) addButton(2, "Sex", showerOptions, [2, special], "Sex", "Have some shower sex with a crew member.");
+	if (showerInShip && !pc.isTaur() && paigeInTheShower())
+	{
+		if (pc.isTaur()) addDisabledButton(3, "Paige");
+		else addButton(3, "Paige", paigeDoItInTheShower);
+	}
 	showerDoucheToggleButton(5);
 	addButton(14, "Back", showerExit);
 }
@@ -3030,10 +3045,6 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 		{
 			if(flags["PENNY_CUMSLUT_RECRUITED"] == 1 || flags["PENNY_BIMBO_RECRUITED"] == 1) eventQueue.push(cumslutPennyGreeting);
 		}
-		if(pennyIsCrew() && flags["PENNY_CUMSLUT_RECRUITED"] == 1)
-		{
-			eventQueue.push(cumslutPennyGreeting);
-		}
 		//Anno/Erra Threesome
 		if((pc.hasCock() || pc.hasHardLightStrapOn()) && annoIsCrew() && flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined && erraAvailableForThreesome() && !pc.hasStatusEffect("Anno-Erra Cooldown") && rand(5) == 0)
 		{
@@ -3043,6 +3054,11 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 		if(pc.hasGenitals() && annoIsCrew() && shekkaIsCrew() && flags["SHEKKA_ANNO_NERDOFF"] == undefined && rand(4) == 0)
 		{
 			eventQueue.push(shekkaAndAnnoNerdOff);
+		}
+		if((pc.cockThatFits(150) >= 0 || pc.hasVagina()) && CodexManager.entryViewed("Rodenians") && flags["RATPUTATION"] != undefined && flags["RATPUTATION"] >= 50 && !pc.isTaur() && isChristmas() && flags["RATMAS_2018"] == undefined && rand(4) == 0 && shipLocation == "ZS L50") eventQueue.push(ratsRaidingXXXmas2018ByWill);
+		if(flags["KRISSY_YEAR"] != getRealtimeYear() && pc.hasGenitals() && shipLocation != "CANADA1" && isChristmas() && rand(10) == 0)
+		{
+			eventQueue.push(encounterKrissy);
 		}
 	}
 	
@@ -3652,7 +3668,11 @@ public function variableRoomUpdateCheck():void
 		rooms["LIEVE BUNKER"].addFlag(GLOBAL.NPC);
 		rooms["803"].removeFlag(GLOBAL.OBJECTIVE);
 	}
-
+	
+	//Breedwell
+	if (quaelleSexTimer(1, 6) || quaelleIsImmobile()) rooms["BREEDWELL_QUAELLE_APT"].addFlag(GLOBAL.NPC);
+	else rooms["BREEDWELL_QUAELLE_APT"].removeFlag(GLOBAL.NPC);
+	
 	/* ZHENG SHI */
 
 	if(rooms["ZSM U2"].hasFlag(GLOBAL.NPC) && flags["MAIKE_SLAVES_RELEASED"] != undefined) rooms["ZSM U2"].removeFlag(GLOBAL.NPC);
@@ -3663,6 +3683,13 @@ public function variableRoomUpdateCheck():void
 
 	if(rooms["ZSF I8"].hasFlag(GLOBAL.NPC) && flags["FORGEHOUND_WREKT"] != undefined) rooms["ZSF I8"].removeFlag(GLOBAL.NPC);
 	else if(!rooms["ZSF I8"].hasFlag(GLOBAL.NPC) && flags["FORGEHOUND_WREKT"] == undefined) rooms["ZSF I8"].addFlag(GLOBAL.NPC);
+
+	//Boss room :3
+	if(flags["SHOCK_HOPPER_DEFEATED"] == undefined && !rooms["ZSF V18"].hasFlag(GLOBAL.NPC)) rooms["ZSF V18"].addFlag(GLOBAL.NPC);
+	else if(flags["SHOCK_HOPPER_DEFEATED"] != undefined && rooms["ZSF V18"].hasFlag(GLOBAL.NPC)) rooms["ZSF V18"].removeFlag(GLOBAL.NPC);
+	//Cargohold
+	if(flags["ZHENG_SHI_PROBED"] == undefined && !rooms["ZSF V14"].hasFlag(GLOBAL.OBJECTIVE)) rooms["ZSF V14"].addFlag(GLOBAL.OBJECTIVE);
+	else if(flags["ZHENG_SHI_PROBED"] != undefined && rooms["ZSF V14"].hasFlag(GLOBAL.OBJECTIVE)) rooms["ZSF V14"].removeFlag(GLOBAL.OBJECTIVE);
 
 	 
 	/* UVETO */
@@ -3901,7 +3928,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		processQuinnPregEvents(deltaT, doOut, totalDays);
 		processUlaPregEvents(deltaT, doOut, totalDays);
 		processBothriocQuadommeEvents(deltaT, doOut, totalDays);
-		//9999 processQuaellePregEvents(deltaT, doOut, totalDays);
+		processQuaellePregEvents(deltaT, doOut, totalDays);
 	}
 	
 	var totalHours:uint = Math.floor((minutes + deltaT) / 60);
@@ -4025,14 +4052,6 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			if(flags["SYRI_VIDEO_DELAY_TIMER"] == undefined) flags["SYRI_VIDEO_DELAY_TIMER"] = GetGameTimestamp();
 			else if(nextTimestamp >= (flags["SYRI_VIDEO_DELAY_TIMER"] + (60*24*3))) goMailGet("syri_video", (flags["SYRI_VIDEO_DELAY_TIMER"] + (60*24*3)));
 		}
-		//Shade Holiday shit
-		if(isChristmas() && flags["SHADE_ON_UVETO"] >= 3)
-		{
-			if (!MailManager.isEntryUnlocked("shade_xmas_invite"))
-			{
-				if(shadeIsHome() && (shadeIsLover() || shadeIsSiblings())) goMailGet("shade_xmas_invite");
-			}
-		}
 		//Prai email stuff
 		if (flags["PRAI_EMAIL_NUMBER"] != undefined && flags["PRAI_EMAIL_STAMP"] != undefined && nextTimestamp >= (flags["PRAI_EMAIL_STAMP"] + (60*10)))
 		{
@@ -4059,6 +4078,25 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		else if (!isHalloweenish() && flags["SUCCUCOW'D"] != undefined)
 		{
 			flags["SUCCUCOW'D"] = undefined;
+		}
+		//Christmas Stuff j-j-j-jam it in!
+		if(isChristmas())
+		{
+			//Riya xmas stuff.
+			if(flags["MET_RIYA"] != undefined && flags["RIYA_PARTIED_YEAR"] == undefined && !MailManager.isEntryUnlocked("riya_party_invite") && rand(5) == 0 && days % 3 == 0) goMailGet("riya_party_invite");
+			//Shade Holiday shit
+			if(flags["SHADE_ON_UVETO"] >= 3)
+			{
+				if (!MailManager.isEntryUnlocked("shade_xmas_invite"))
+				{
+					if(shadeIsHome() && (shadeIsLover() || shadeIsSiblings())) goMailGet("shade_xmas_invite");
+				}
+			}
+			//Embry holiday shit!
+			if(flags["EMBRY_TREATMENTS"] == 3 && rand(5) == 0 && days % 5 == 0)
+			{
+				if(!MailManager.isEntryUnlocked("emrby_xxxmas_invite") && flags["SEXED_EMBRY"] != undefined) goMailGet("emrby_xxxmas_invite");
+			}
 		}
 		//RandyClaws email
 		if(flags["CIARAN_MET"] != undefined && isChristmas() && (flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] == undefined || flags["RANDY_CLAWS_EMAIL_THIS_YEAR"] != getRealtimeYear()))

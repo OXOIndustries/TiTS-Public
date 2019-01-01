@@ -21,6 +21,7 @@
 	import classes.GameData.Pregnancy.Handlers.OvalastingEggPregnancy;
 	import classes.GameData.Pregnancy.Handlers.OviliumEggPregnancy;
 	import classes.GameData.Pregnancy.Handlers.PsychicTentacles;
+	import classes.GameData.Pregnancy.Handlers.QuaellePregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.QueenOfTheDeepPregnancy;
 	import classes.GameData.Pregnancy.Handlers.RaskvelPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.RenvraEggPregnancy;
@@ -54,6 +55,7 @@
 			PregnancyManager.insertNewHandler(new KorgonnePregnancyHandler());
 			PregnancyManager.insertNewHandler(new MilodanPregnancyHandler());
 			PregnancyManager.insertNewHandler(new NyreaHuntressPregnancy());
+			PregnancyManager.insertNewHandler(new QuaellePregnancyHandler());
 			PregnancyManager.insertNewHandler(new QueenOfTheDeepPregnancy());
 			PregnancyManager.insertNewHandler(new RoyalEggPregnancy());
 			PregnancyManager.insertNewHandler(new OvalastingEggPregnancy());

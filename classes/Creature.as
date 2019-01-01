@@ -2,7 +2,6 @@
 	import classes.Characters.*;
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
-	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GameData.SingleCombatAttack;
 	import classes.Items.Accessories.*;
 	import classes.Items.Apparel.SavicitePanties;
@@ -32,6 +31,7 @@
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.Util.*;
 	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.inCombat;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Interfaces.*;
 
@@ -357,6 +357,16 @@
 			if (hasStatusEffect("Oil Cooled"))
 			{
 				r.burning.damageValue += Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Cooled") / 1440));
+			}
+			
+			if (accessory.hasFlag(GLOBAL.ITEM_FLAG_SHELTER) || armor.hasFlag(GLOBAL.ITEM_FLAG_SHELTER) || shield.hasFlag(GLOBAL.ITEM_FLAG_SHELTER))
+			{
+				r.kinetic.resistanceValue += 60;
+				r.electric.resistanceValue += 60;
+				r.burning.resistanceValue += 60;
+				r.freezing.resistanceValue += 60;
+				r.corrosive.resistanceValue += 60;
+				r.poison.resistanceValue += 60;
 			}
 			
 			//-20% electric, kinetic, +40% lust. maybe rebalance? -lighter
@@ -1445,6 +1455,32 @@
 			balls = 0;
 			removeStatusEffect("Mimbrane Balls");
 		}
+		public function removeBalls(): void
+		{
+			balls = 0;
+			resetBallSize();
+		}
+		public function resetBallSize(): void
+		{
+			// Revert ball size to default value.
+			ballSizeRaw = 1;
+			ballSizeMod = 1;
+		}
+		public function resetCumProduction(): void
+		{
+			// Revert cum production values to default.
+			ballFullness = 50;
+			ballEfficiency = 3;
+			refractoryRate = 1;
+			cumMultiplierRaw = 1;
+			cumMultiplierMod = 0;
+		}
+		public function resetGirlCumProduction(): void
+		{
+			// Revert cum production values to default.
+			girlCumMultiplierRaw = 1;
+			girlCumMultiplierMod = 0;
+		}
 		
 		public function scrotumType(): int
 		{
@@ -2258,6 +2294,9 @@
 				case "cockHeads":
 				case "cockheads":
 					buffer = cockHeads(arg2);
+					break;
+				case "cockHeadsNoun":
+					buffer = cockHeadsNoun();
 					break;
 				case "cockDescript":
 				case "cock":
@@ -3545,6 +3584,7 @@
 			removeStatusEffect("Oil Numbed");
 			removeStatusEffect("Oil Aroused");
 			removeStatusEffect("Oil Slicked");
+			removeStatusEffect("Roehm Slimed");
 			if(hasStatusEffect("Painted Penis") || hasStatusEffect("Body Paint"))
 			{
 				if(this is PlayerCharacter) AddLogEvent("Washing yourself has cleaned off any and all paint that had been covering your body.");
@@ -3607,44 +3647,50 @@
 				{
 					//Mimbrane feeding
 					kGAMECLASS.mimbraneFeed("cock");
-					if(balls > 0)
+				}
+				if(balls > 0)
+				{
+					if(hasStatusEffect("Blue Balls", true) && ballFullness < 100)
 					{
-						if(hasStatusEffect("Blue Balls", true) && ballFullness < 100)
-						{
-							AddLogEvent(ParseText("With a satisfied sigh, your [pc.balls] " + (balls <= 1 ? "is" : "are") + " finally relieved of all the pent-up " + (rand(2) == 0 ? "seed" : "[pc.cumNoun]") + "."), "passive", -1);
-							removeStatusEffect("Blue Balls", true);
-						}
-						//'Nuki Ball Reduction
-						if(perkv1("'Nuki Nuts") > 0)
+						if(this is PlayerCharacter) AddLogEvent(ParseText("With a satisfied sigh, your [pc.balls] " + (balls <= 1 ? "is" : "are") + " finally relieved of all the pent-up " + (rand(2) == 0 ? "seed" : "[pc.cumNoun]") + "."), "passive", -1);
+						removeStatusEffect("Blue Balls", true);
+					}
+					//'Nuki Ball Reduction
+					if(perkv1("'Nuki Nuts") > 0)
+					{
+						if(this is PlayerCharacter)
 						{
 							msg = "Your";
 							if(balls == 1) msg += " testicle is back to its";
 							else msg += " balls are back to their";
 							msg += " normal size once more. What an incredible relief!";
 							AddLogEvent(msg, "passive", -1);
-							ballSizeMod -= perkv1("'Nuki Nuts");
-							setPerkValue("'Nuki Nuts",1,0);
 						}
-						kGAMECLASS.nutStatusCleanup();
+						ballSizeMod -= perkv1("'Nuki Nuts");
+						setPerkValue("'Nuki Nuts",1,0);
 					}
-					if(statusEffectv1("Nyrea Eggs") > 0 && hasOvipositor())
+					kGAMECLASS.nutStatusCleanup();
+				}
+				if(statusEffectv1("Nyrea Eggs") > 0 && hasOvipositor())
+				{
+					var nyreaEggs:Number = Math.round((6 + rand(5)) * statusEffectv2("Nyrea Eggs"));
+					if(this is PlayerCharacter)
 					{
-						var nyreaEggs:Number = Math.round((6 + rand(5)) * statusEffectv2("Nyrea Eggs"));
 						if ((statusEffectv1("Nyrea Eggs") - nyreaEggs) < 0) nyreaEggs = statusEffectv1("Nyrea Eggs");
 						msg = "You’ve manage to expel";
 						if(nyreaEggs == 1) msg += " one faux nyrea egg";
 						else msg += " " + num2Text(nyreaEggs) + " faux nyrea eggs";
 						msg += " from your orgasm!";
 						AddLogEvent(msg, "passive", -1);
-						addStatusValue("Nyrea Eggs", 1, -1 * (nyreaEggs));
-						if(statusEffectv1("Nyrea Eggs") < 0) setStatusValue("Nyrea Eggs", 1, 0);
 					}
-					// Priapism timer down
-					if(hasStatusEffect("Priapism"))
-					{
-						addStatusMinutes("Priapism", (-15 * 60));
-						if(getStatusMinutes("Priapism") < 1) setStatusMinutes("Priapism", 1);
-					}
+					addStatusValue("Nyrea Eggs", 1, -1 * (nyreaEggs));
+					if(statusEffectv1("Nyrea Eggs") < 0) setStatusValue("Nyrea Eggs", 1, 0);
+				}
+				// Priapism timer down
+				if(hasStatusEffect("Priapism"))
+				{
+					addStatusMinutes("Priapism", (-15 * 60));
+					if(getStatusMinutes("Priapism") < 1) setStatusMinutes("Priapism", 1);
 				}
 			}
 			if (hasVagina())
@@ -4528,7 +4574,10 @@
 			return XPRaw;
 		}
 		public function XPMax(): Number {
-			return level * level * level * level * 100;
+			var amount:Number = level * level * level * level * 100;
+			if(level >= 5) amount *= 1.5;
+			if(level >= 8) amount *= 1.5;
+			return Math.round(amount);
 		}
 		//Automatic, consistant XP generator based on level.
 		public function normalXP():Number
@@ -5045,14 +5094,12 @@
 			if (hasPerk("Amazonian Needs")) bonus += 20;
 			if (hasPerk("Black Latex")) bonus += 10;
 			//Doesn't stack for reasons.
-			if (hasPerk("Treated Readiness") && bonus < 33) bonus = 33;
 			if (perkv1("Flower Power") > 0) bonus += perkv2("Flower Power");
 			if (perkv1("Ultra-Exhibitionist") > 0 && isFullyExposed(true)) bonus += (bonus < 23 ? 33 : 10);
 			//Halloween boost
 			if (hasPerk("Face Fucker")) bonus += perkv1("Face Fucker");
 
 			//Temporary Stuff
-			if (hasStatusEffect("Priapism") && bonus < 33) bonus = 33;
 			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
 			if (hasStatusEffect("Aphrodisiac Milk")) bonus += 33;
 			if (hasStatusEffect("Butt Bug (Female)")) bonus += 15;
@@ -5066,15 +5113,17 @@
 			bonus += statusEffectv1("Omega Oil");
 			bonus += statusEffectv2("Fried Cunt Snake");
 
+			//Venom brings minimum up to 35.
+			if (bonus < 20 && hasStatusEffect("Paradise!")) bonus = 20;
+			if (bonus < 20 && hasPerk("Peace of Mind")) bonus = 20;
+			if (bonus < 33 && lowerUndergarment is SavicitePanties) bonus = 33;
+			if (bonus < 33 && hasPerk("Treated Readiness")) bonus = 33;
+			if (bonus < 33 && hasStatusEffect("Priapism")) bonus = 33;
+			if (bonus < 35 && hasStatusEffect("Red Myr Venom")) bonus = 35;
 			if (hasStatusEffect("Lane Detoxing Weakness"))
 			{
 				if (bonus < statusEffectv2("Lane Detoxing Weakness")) bonus = statusEffectv2("Lane Detoxing Weakness");
 			}
-			//Venom brings minimum up to 35.
-			if (bonus < 35 && hasStatusEffect("Red Myr Venom")) bonus = 35;
-			if (bonus < 20 && hasStatusEffect("Paradise!")) bonus = 20;
-			if (bonus < 20 && hasPerk("Peace of Mind")) bonus = 20;
-			if (bonus < 33 && lowerUndergarment is SavicitePanties) bonus = 33;
 			return (0 + bonus);
 		}
 		public function physiqueMax(raw:Boolean = false): Number {
@@ -5493,7 +5542,7 @@
 			if (hasPerk("Shield Booster")) temp += level * 8;
 			if (hasPerk("Attack Drone") && hasActiveCombatDrone(true, false)) temp += (3 * level);
 			if (hasStatusEffect("Valden-Possessed")) temp *= 1 + AkkadiSecurityRobots.valdenShieldBuffMult;
-
+			
 			//Debuffs!
 			if(hasStatusEffect("Rusted Emitters")) temp = Math.round(temp * 0.75);
 			
@@ -9779,6 +9828,10 @@
 			if(hasStatusEffect("Flushed")) addStatusMinutes("Flushed",arg);
 			if(hasStatusEffect("Fuck Fever")) addStatusMinutes("Fuck Fever",arg);
 		}
+		public function canHeat():Boolean
+		{
+			return (hasVagina() && fertility() > 0);
+		}
 		public function inHeat():Boolean
 		{
 			return hasStatusEffect("Heat");
@@ -9790,6 +9843,10 @@
 				if(statusEffectv1("Heat") >= 10) return true;
 			}
 			return false;
+		}
+		public function canRut():Boolean
+		{
+			return (hasCock() && virility() > 0);
 		}
 		public function inRut():Boolean
 		{
@@ -10465,8 +10522,8 @@
 			else if (refractoryRate >= 15 && quantity < 20) quantity = 251;
 			else if (refractoryRate >= 20 && quantity < 30) quantity = 1000;
 			else if (refractoryRate >= 30 && quantity < 1500) quantity = 1500;
-			if (hasPerk("Amazonian Virility") && quantity < 300) quantity = 300;
 			if (hasPerk("Treated Readiness") && quantity < 200) quantity = 200;
+			if (hasPerk("Amazonian Virility") && quantity < 300) quantity = 300;
 			if (statusEffectv3("Rut") > quantity) quantity = statusEffectv3("Rut");
 			if (statusEffectv3("Lagonic Rut") > quantity) quantity = statusEffectv3("Lagonic Rut");
 			//OPAL RING BOOOST
@@ -10588,7 +10645,7 @@
 			//trace("AFTER FULLNESS: " + ballFullness);
 			if (ballFullness >= 100) 
 			{
-				if(hasPerk("'Nuki Nuts") && balls > 0)
+				if(hasPerk("'Nuki Nuts") && balls > 0 && this is PlayerCharacter)
 				{
 					//Figure out a % of normal size to add based on %s.
 					var nutChange:Number = (ballFullness/100) - 1;
@@ -11228,7 +11285,7 @@
 					cocks[slot].knotMultiplier = 1;
 					cocks[slot].cockColor = "pink";
 					if(cocks[slot].cLengthRaw < 20) cocks[slot].cLengthRaw = 20;
-					if(cocks[slot].cThicknessRatioRaw < 2) cocks[slot].cThicknessRatioRaw = 2;
+					if(cocks[slot].cThicknessRatioRaw < 1.5) cocks[slot].cThicknessRatioRaw = 1.5;
 					break;
 				case GLOBAL.TYPE_SYNTHETIC:
 					cocks[slot].cockColor = RandomInCollection(["silver", "gray", "black"]);
@@ -11506,10 +11563,9 @@
 				if (weighting >= 45 && weighting <= 55 || (!ignorePref && hasStatusEffect("Force It Gender"))) return neuter;
 				else if (weighting < 45) return male;
 				return female;
-			} else {
-				if (weighting <= 49) return male;
-				return female;
 			}
+			if (weighting <= 49) return male;
+			return female;
 		}
 		public function mf(male: String, female: String, ignorePref:Boolean = false): String {
 			return mfn(male, female, "", ignorePref);
@@ -11974,6 +12030,7 @@
 			if (janeriaScore() >= 5) race = "janeria";
 			if (gabilaniScore() >= 5) race = "gabilani";
 			if (frogScore() >= 5) race = "kerokoras";
+			if (rodentScore() >= 4) race = "mouse-morph";
 			if (kaithritScore() >= 6) race = "kaithrit";
 			if (felineScore() >= 5 && race != "kaithrit") race = felineRace();
 			if (canineScore() + lupineScore() >= 5 && !InCollection(race, ["ausar", "huskar"])) race = canineRace();
@@ -12677,6 +12734,7 @@
 			
 			return s;
 		}
+		public function equineScore(): int { return horseScore(); }
 		public function horseScore(): int
 		{
 			var counter:int = 0;
@@ -12961,6 +13019,17 @@
 			if (counter > 0 && !hasFur()) counter--;
 			return counter;
 		}
+		public function rodentScore(): int
+		{
+			var counter:int = 0;
+			if(earType == GLOBAL.TYPE_MOUSE) counter+=2;
+			if(faceType == GLOBAL.TYPE_MOUSE) counter++;
+			if(armType == GLOBAL.TYPE_MOUSE) counter++;
+			if(legType == GLOBAL.TYPE_MOUSE) counter++;
+			if(tailType == GLOBAL.TYPE_MOUSE && tailCount > 0) counter++;
+			if (counter > 0 && hasFur()) counter++;
+			return counter;
+		}
 		public function saurmorianScore():Number
 		{
 			var score:Number = 0;
@@ -13191,7 +13260,7 @@
 				else if (ballFullness >= 80 && ballFullness < 100) desc += RandomInCollection(["mostly full","nearly full","seed-stocked","spunk-laden","sperm-stocked"]);
 				else if (ballFullness >= 100) desc += RandomInCollection(["painfully full","sloshing","semen-stuffed","cum-bloated","fully engorged","spunk-heavy","tender","seed-weighted"]);
 			}
-			if(desc != "") desc += ", " + RandomInCollection(["scrotum","sack","pouch"]);
+			if(desc != "") desc += " " + RandomInCollection(["scrotum","sack","pouch"]);
 			else desc += RandomInCollection(["scrotum","sack"]);
 			return desc;
 		}
@@ -18217,6 +18286,21 @@
 		public function biggestBreastDescript(): String {
 			return (breastDescript(biggestTitRow()));
 		}
+
+		public function cocksMatch():Boolean 
+		{
+			return matchedCocks();
+		}
+		public function matchedCocks():Boolean {
+			//After the first cooch, see if they match against the previous.
+			for(var x:int = 1; x < cocks.length; x++)
+			{
+				//Don't match? NOT MATCHED. GTFO.
+				if(cocks[x].type != cocks[x-1].type) return false;
+			}
+			return true;
+		}
+
 		public function eachCockHead(): String {
 			if (cocks.length == 1) return "your " + cockHead(-1);
 			return "each of your " + plural(cockHead(-1));
@@ -18244,6 +18328,12 @@
 		public function cockHeads(cockNum:Number = 0):String {
 			if(cocks.length == 1) return cockHead(cockNum);
 			return plural(cockHead(cockNum));
+		}
+		public function cockHeadsNoun():String
+		{
+			if(cocks.length == 1) return cockHead(0).split(" ").pop();
+			if(cocksMatch()) return plural(cockHead(0).split(" ").pop());
+				else return plural(cockHead(-1).split(" ").pop());
 		}
 		public function tailCockHead(): String {
 			if (!hasTailCock()) return "|||<b>ERROR:</b> No tail cock to describe |||";
@@ -20061,7 +20151,7 @@
 		 */
 		public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
-			throw new Error("Creature combat handler for " + this.short + " has not been overriden!");
+			throw new Error("Creature combat handler for " + short + " has not been overriden!");
 		}
 		
 		/**
@@ -20453,6 +20543,7 @@
 
 		public function canCumCascade(): Boolean 
 		{
+			if(balls <= 0) return false;
 			if(!hasPerk("'Nuki Nuts")) return false;
 			if(hasStatusEffect("Cum Cascade Suppressant")) return false;
 			if(hasPerk("Cum Cascade")) return true;
@@ -20461,6 +20552,8 @@
 		}
 		public function cumCascade(amount:Number, fluid:int = GLOBAL.FLUID_TYPE_CUM, timePassed:int = 0): void 
 		{
+			if(balls <= 0) return;
+			
 			// Give Cum Cascade effect
 			if (!hasStatusEffect("Cum Cascade"))
 			{
@@ -20687,7 +20780,8 @@
 			updateCumValues(deltaT, doOut);
 			updateMilkValues(deltaT, doOut);
 			
-			shieldsRaw = shieldsMax();
+			// Restore shields outside of combat.
+			if(!inCombat()) shieldsRaw = shieldsMax();
 		}
 		
 		public function updateVaginaStretch(deltaT:uint, doOut:Boolean):void
@@ -21343,7 +21437,7 @@
 								if(hasCock()) infertileMsg += " virility";
 							}
 							else infertileMsg += " fertility and virility should you ever have the genitals for them";
-							infertileMsg += ". <b>Your ability to potentionally create life has been restored!</b>";
+							infertileMsg += ". <b>Your ability to potentially create life has been restored!</b>";
 							AddLogEvent(infertileMsg, "passive", maxEffectLength);
 						}
 						break;
@@ -21870,13 +21964,13 @@
 		{
 			var desc:String = "";
 			
-			if(!this.hasStatusEffect("Cum Soaked"))
+			if(!hasStatusEffect("Cum Soaked"))
 			{
 				if(this is PlayerCharacter) desc = "You’re drenched in cum! Anyone can tell at a glance what sort of activities you’ve been engaging in!";
-				else desc = this.capitalA + this.short + " " + (!isPlural ? "is" : "are") + " completely covered in cum!";
-				this.createStatusEffect("Cum Soaked",1,0,0,0,false,"Icon_Splatter",desc,false,0,0xB793C4);
+				else desc = capitalA + short + " " + (!isPlural ? "is" : "are") + " completely covered in cum!";
+				createStatusEffect("Cum Soaked",1,0,0,0,false,"Icon_Splatter",desc,false,0,0xB793C4);
 			}
-			else this.addStatusValue("Cum Soaked",1,1);
+			else addStatusValue("Cum Soaked",1,1);
 			
 			if(this is PlayerCharacter) kGAMECLASS.mimbraneFeed("all");
 		}
@@ -21884,13 +21978,13 @@
 		{
 			var desc:String = "";
 			
-			if(!this.hasStatusEffect("Pussy Drenched"))
+			if(!hasStatusEffect("Pussy Drenched"))
 			{
 				if(this is PlayerCharacter) desc = "You’re drenched in girlcum! Anyone can tell at a glance what sort of activities you’ve been engaging in!";
-				else desc = this.capitalA + this.short + " " + (!isPlural ? "is" : "are") + " completely covered in girlcum!";
-				this.createStatusEffect("Pussy Drenched",1,0,0,0,false,"Icon_Water_Drop",desc,false,0,0xB793C4);
+				else desc = capitalA + short + " " + (!isPlural ? "is" : "are") + " completely covered in girlcum!";
+				createStatusEffect("Pussy Drenched",1,0,0,0,false,"Icon_Water_Drop",desc,false,0,0xB793C4);
 			}
-			else this.addStatusValue("Pussy Drenched",1,1);
+			else addStatusValue("Pussy Drenched",1,1);
 			
 			if(this is PlayerCharacter) kGAMECLASS.mimbraneFeed("all");
 		}
@@ -21902,13 +21996,13 @@
 		{
 			var desc:String = "";
 			
-			if(!this.hasStatusEffect("Milk Bathed"))
+			if(!hasStatusEffect("Milk Bathed"))
 			{
 				if(this is PlayerCharacter) desc = "You’re drenched in breastmilk! Anyone can tell at a glance what sort of activities you’ve been engaging in!";
-				else desc = this.capitalA + this.short + " " + (!isPlural ? "is" : "are") + " completely covered in breastmilk!";
-				this.createStatusEffect("Milk Bathed",1,0,0,0,false,"Icon_Rain_Drops",desc,false,0,0xB793C4);
+				else desc = capitalA + short + " " + (!isPlural ? "is" : "are") + " completely covered in breastmilk!";
+				createStatusEffect("Milk Bathed",1,0,0,0,false,"Icon_Rain_Drops",desc,false,0,0xB793C4);
 			}
-			else this.addStatusValue("Milk Bathed",1,1);
+			else addStatusValue("Milk Bathed",1,1);
 			
 			if(this is PlayerCharacter) kGAMECLASS.mimbraneFeed("all");
 		}
@@ -21917,7 +22011,7 @@
 			var desc:String = "";
 			
 			if(this is PlayerCharacter) desc = "You are unnaturally hard and erect regardless of your arousal level. The added discomfort prevents you from covering up!";
-			else desc = this.capitalA + this.short + " " + (!isPlural ? "is" : "are") + " unnaturally erect regardless of arousal level!";
+			else desc = capitalA + short + " " + (!isPlural ? "is" : "are") + " unnaturally erect regardless of arousal level!";
 			
 			// Priapism
 			// Minimum lust raised to 33 if below :3

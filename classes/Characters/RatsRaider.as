@@ -7,6 +7,7 @@ package classes.Characters
 	import classes.Items.Melee.ReaperStunBaton;
 	import classes.Items.Protection.SalamanderShield;
 	import classes.Items.Accessories.FlashGoggles;
+	import classes.Items.Transformatives.MousearellaCheese;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -25,6 +26,8 @@ package classes.Characters
 		public var ratVariety:int;
 		private static const specialCost:int = 25;
 		private var specialAttacks:Array;
+		
+		public static const ratCapacity:int = 150;
 		
 		public static const RAT_REP_NONE:int = 0;
 		public static const RAT_REP_LOW:int = 1;
@@ -56,6 +59,8 @@ package classes.Characters
 			this.buttRatingRaw = 5;
 			
 			this.hairLength = 7;
+
+			this.inventory = new Array();
 			
 			this.meleeWeapon = new ReaperStunBaton();
 			this.meleeWeapon.baseDamage.multiply(0.17);
@@ -77,6 +82,8 @@ package classes.Characters
 			this.armor.evasion = 10;
 			this.baseHPResistances.burning.resistanceValue = 75.0;
 			this.baseHPResistances.electric.resistanceValue = 75.0;
+			
+			this.ass.bonusCapacity = ratCapacity - analCapacity();
 			
 			//Set race
 			switch (ratVariety)
@@ -119,6 +126,7 @@ package classes.Characters
 					originalRace = "half-rodenian";
 					short = "Half-Rodenian " + (ratVariety == HALF_BOY ? "Boy" : "Girl");
 					btnTargetText = "H.Roden " + (ratVariety == HALF_BOY ? "Boy" : "Girl");
+					this.inventory.push(new MousearellaCheese());
 					break;
 			}
 			
@@ -207,6 +215,7 @@ package classes.Characters
 					eyeColor = "red";
 					hairColor = "dirty-blonde";
 					nippleColor = "dark red";
+					lipColor = "black";
 					break;
 				case TAN_MOUSEBOY:
 					tallness = 62;
@@ -234,6 +243,7 @@ package classes.Characters
 					createVagina();
 					vaginas[0].hymen = false;
 					vaginas[0].wetnessRaw = 4;
+					vaginas[0].bonusCapacity = ratCapacity - vaginalCapacity();
 					clitLength = 0.9;
 					
 					break;
@@ -337,7 +347,6 @@ package classes.Characters
 			this.XPRaw = this.normalXP();
 			//Loot is handled by ratPostFightAdjustments()
 			this.credits = 0;
-			this.inventory = new Array();
 			
 			createPerk("Appearance Enabled");
 			createPerk("Inhuman Desire", 25);
@@ -353,6 +362,11 @@ package classes.Characters
 		override public function get bustDisplay():String
 		{
 			return RAT_BUSTS[ratVariety];
+		}
+		
+		public function get groupDisplay():String
+		{
+			return "RATS_RAIDER_GROUP_" + (Math.floor(ratVariety/3) == 0 ? "ONE" : "TWO");
 		}
 		
 		public function isLeaderRat():Boolean
@@ -450,15 +464,15 @@ package classes.Characters
 			var randomDialogue:Array = new Array();
 			switch(kGAMECLASS.ratputation())
 			{
-				case RAT_REP_GOOD_CEO: randomDialogue.push("Haha, this is fun, [pc.mister] CEO!", "You're open, [pc.mister] CEO!", "Can you dodge this, [pc.mister] CEO?", "Be careful, [pc.mister] CEO!", "Thanks for the opening, [pc.mister] CEO!"); break;
-				case RAT_REP_HIGH: randomDialogue.push("Leave it to me!", "I won't go easy on you!");
-				case RAT_REP_MID: randomDialogue.push("You're not getting away, fiend!", "I won't miss, you monster!", "You can't run, you snake!");
-				case RAT_REP_LOW: randomDialogue.push("Here I come, [pc.mister] CEO!", "You're mine, [pc.mister] CEO!");
-				default: randomDialogue.push("Think fast!", "All at once!", "You'll regret this!");
+				case RAT_REP_GOOD_CEO: randomDialogue.push("Haha, this is fun, [pc.mister] CEO!", "You’re open, [pc.mister] CEO!", "Can you dodge this, [pc.mister] CEO?", "Be careful, [pc.mister] CEO!", "Thanks for the opening, [pc.mister] CEO!"); break;
+				case RAT_REP_HIGH: randomDialogue.push("Leave it to me!", "I won’t go easy on you!");
+				case RAT_REP_MID: randomDialogue.push("You’re not getting away, fiend!", "I won’t miss, you monster!", "You can’t run, you snake!");
+				case RAT_REP_LOW: randomDialogue.push("Here I come, [pc.mister] CEO!", "You’re mine, [pc.mister] CEO!");
+				default: randomDialogue.push("Think fast!", "All at once!", "You’ll regret this!");
 			}
 			if (kGAMECLASS.silly) randomDialogue.push("Look-see, man-thing!", "All will see, man-thing!");
 			
-			output("<i>\"" + RandomInCollection(randomDialogue) + "\"</i> " + (rats > 1 ? "A" : "The") + " mouse-eared pirate hops forward, swinging " + mf("his", "her") + " stun stick at you.");
+			output("<i>“" + RandomInCollection(randomDialogue) + "”</i> " + (rats > 1 ? "A" : "The") + " mouse-eared pirate hops forward, swinging " + mf("his", "her") + " stun stick at you.");
 			// Miss
 			if (combatMiss(this, target) || blindMiss(this, target, true))
 			{
@@ -468,14 +482,14 @@ package classes.Characters
 					output(", nearly hitting");
 					if (rats > 2) output(" one of their advancing friends!");
 					else output(" their advancing friend!");
-					output(" <i>\"Watch it, you idiot!\"</i> comes a flustered shout");
+					output(" <i>“Watch it, you idiot!”</i> comes a flustered shout");
 					output(".");
 				}
 			}
 			// Hit
 			else
 			{
-				output(" You're unable to avoid the swing, and the electrified baton slams into your arm, rebounding with shocking effect!");
+				output(" You’re unable to avoid the swing, and the electrified baton slams into your arm, rebounding with shocking effect!");
 				applyDamage(damageRand(meleeDamage(), 25), this, target, "melee");
 			}
 		}
@@ -497,7 +511,7 @@ package classes.Characters
 			// Miss
 			if (combatMiss(this, target) || blindMiss(this, target, true))
 			{
-				output(" You jerk backwards and catch the whirling tail just before it connects! <i>\"G-get off me!\"</i> the chubby-eared rodent stammers before you");
+				output(" You jerk backwards and catch the whirling tail just before it connects! <i>“G-get off me!”</i> the chubby-eared rodent stammers before you");
 				if (target.hasLegs()) output(" boot " + mf("him", "her") + " square in the ass");
 				else output(" shove " + mf("him", "her") + " away");
 				if (rats > 1) output(" and back to " + mf("his", "her") + " their friends");
@@ -509,8 +523,8 @@ package classes.Characters
 				output(" The lethal tendril weaves too fast for you to dodge or duck, and the weaponized tip lashes your arm!");
 				if (rand(4) == 0 && target.shields() <= 0)
 				{
-					if (kGAMECLASS.silly) output(" <i>Stinking rat-vole rodent piece of trash!</i> <b>You're bleeding</b>!");
-					else output(" The damn rat struck too well, and as a result blood rushes from your wound - <b>you're bleeding!</b>");
+					if (kGAMECLASS.silly) output(" <i>Stinking rat-vole rodent piece of trash!</i> <b>You’re bleeding</b>!");
+					else output(" The damn rat struck too well, and as a result blood rushes from your wound - <b>you’re bleeding!</b>");
 					CombatAttacks.applyBleed(target);
 				}
 				applyDamage(damageRand(meleeDamage(),15), this, target, "melee");
@@ -529,17 +543,17 @@ package classes.Characters
 			
 			if (ratCount(false, "f") > 1)
 			{
-				output("One of the taller rats charges at you, dodging your deflective punch. <i>\"");
-				if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO && rand(2) == 0) output("I'll make this quick!");
-				else output("You're only making this harder!!");
-				output("\"</i> he declares, rearing back for a powerful headbutt!");
+				output("One of the taller rats charges at you, dodging your deflective punch. <i>“");
+				if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO && rand(2) == 0) output("I’ll make this quick!");
+				else output("You’re only making this harder!!");
+				output("”</i> he declares, rearing back for a powerful headbutt!");
 			}
 			else
 			{
-				output("<i>\"");
+				output("<i>“");
 				if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO && rand(2) == 0) output("Try not to pass out!");
 				else output("You brought this on yourself!");
-				output("\"</i> The rat boy charges at you, parries your deflective punch, and rears back for a powerful headbutt!");
+				output("”</i> The rat boy charges at you, parries your deflective punch, and rears back for a powerful headbutt!");
 			}
 			// Miss
 			if (combatMiss(this, target) || blindMiss(this, target, true))
@@ -551,19 +565,19 @@ package classes.Characters
 			// Hit
 			else
 			{
-				output(" The freckled pirate's armored head collides with yours, a loud <i>SMACK</i> booming like thunder!");
+				output(" The freckled pirate’s armored head collides with yours, a loud <i>SMACK</i> booming like thunder!");
 				if (physique() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stun Immune"))
 				{
-					output(" Stars explode in your eyes and you stumble back with a pained grunt, unable to act! <i>\"Now's our chance! Get [pc.himHer]\"</i> one rat triumphantly yells!");
+					output(" Stars explode in your eyes and you stumble back with a pained grunt, unable to act! <i>“Now’s our chance! Get [pc.himHer]”</i> one rat triumphantly yells!");
 					CombatAttacks.applyStun(target);
 				}
 				else
 				{
-					output(" <i>\"Alright");
-					if (ratCount(false) > 1) output(", let's ge-");
-					output("!\"</i> the bold rat fist pumps, but you're not out! Your concussed sight clears as you glower and groan warningly at the cocksure bandit. He scampers back");
+					output(" <i>“Alright");
+					if (ratCount(false) > 1) output(", let’s ge-");
+					output("!”</i> the bold rat fist pumps, but you’re not out! Your concussed sight clears as you glower and groan warningly at the cocksure bandit. He scampers back");
 					if (ratCount(false) > 1) output(" to the safety of numbers");
-					output(". Shit, that's the kind of bruise that someone will easily notice...");
+					output(". Shit, that’s the kind of bruise that someone will easily notice...");
 				}
 				applyDamage(damageRand(new TypeCollection({kinetic: physique()/2 + level}), 15), this, target, "headbutt");
 			}
@@ -582,13 +596,13 @@ package classes.Characters
 			if (combatMiss(this, target, attack(true)+10) || blindMiss(this, target, true))
 			{
 				output(" Unable to dodge back, you instead <i>jump</i> over the vicious swing. Before the rodent can try again, you kick his wrist and force him back in a dizzying twirl. He growls and half-cries in pain,");
-				if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO) output(" <i>\"That hurt, [pc.mister] CEO!\"</i> before shaking his arm and assuming an aggressive stance! That's the point!");
-				else output(" <i>\"Ow! You'll pay for that!\"</i> before shaking his arm and assuming an aggressive stance! Yeah, sure!");
+				if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO) output(" <i>“That hurt, [pc.mister] CEO!”</i> before shaking his arm and assuming an aggressive stance! That’s the point!");
+				else output(" <i>“Ow! You’ll pay for that!”</i> before shaking his arm and assuming an aggressive stance! Yeah, sure!");
 			}
 			// Hit
 			else
 			{
-				output(" You try to hop back, but the rat's stun baton bounces off your " + (target.hasLegs() ? "crus" : "limb") + " with a nerve-numbing bang; smoke billows from the electrifying impact. You yelp and fall to the ground, head banging on the floor with starry-eyed results. The only thing keeping you conscious is the infuriating laughter...");
+				output(" You try to hop back, but the rat’s stun baton bounces off your " + (target.hasLegs() ? "crus" : "limb") + " with a nerve-numbing bang; smoke billows from the electrifying impact. You yelp and fall to the ground, head banging on the floor with starry-eyed results. The only thing keeping you conscious is the infuriating laughter...");
 				CombatAttacks.applyTrip(target);
 			}
 		}
@@ -600,7 +614,7 @@ package classes.Characters
 			energy(-specialCost);
 			target.createStatusEffect("Rat Special'd");
 
-			if (ratCount(false) > 1) output("<i>\"Eyes shut!\"</i> a lithe rodent girl orders, two metal canisters rolling towards you on gunmetal rims. You only manage a gasp as your eyes twitch in fight-or-flight.");
+			if (ratCount(false) > 1) output("<i>“Eyes shut!”</i> a lithe rodent girl orders, two metal canisters rolling towards you on gunmetal rims. You only manage a gasp as your eyes twitch in fight-or-flight.");
 			else output("The lithe rodent girl eyes you intently and tosses out two metal canisters, covering her eyes with an arm and hunkering down as the cylindrical concussers roll towards you on thick metal rims.");
 			
 			if (target.accessory is FlashGoggles) output(" Thanks to your special eyewear, all you need do is cover your [pc.ears], avoiding the worst of that pitiful attempt to subdue you!");
@@ -609,7 +623,7 @@ package classes.Characters
 			// Hit
 			else
 			{
-				output("\n\nThe grenades go off and this plane of existence turns blank white, filled with flecks of starry color and a distressing sightlessness. Your [pc.ears] flex instinctively, but you can't hear anything save for a painful ringing. Hollow bellows boom in your quavering eardrums, filling you with a palpable sense of dread.");
+				output("\n\nThe grenades go off and this plane of existence turns blank white, filled with flecks of starry color and a distressing sightlessness. Your [pc.ears] flex instinctively, but you can’t hear anything save for a painful ringing. Hollow bellows boom in your quavering eardrums, filling you with a palpable sense of dread.");
 				CombatAttacks.applyBlind(target, 3);
 			}
 		}
@@ -645,10 +659,10 @@ package classes.Characters
 					else
 					{
 						output(" and even to all fours. When the current stops, the darts are reeled back in by a smug rat.");
-						if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO) output(" <i>\"Gotcha. [pc.Mister] CEO!");
-						else output(" <i>\"That's a better look for you.");
+						if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO) output(" <i>“Gotcha. [pc.Mister] CEO!");
+						else output(" <i>“That’s a better look for you.");
 						if (ratCount(false) > 1) output(" Now, get [pc.himHer]!");
-						output("\"</i>");
+						output("”</i>");
 						CombatAttacks.applyStun(target, 5);
 					}
 				}
@@ -661,7 +675,10 @@ package classes.Characters
 			shields(shieldsMax()/2);
 			createStatusEffect("Rat Boost Used");
 			kGAMECLASS.setTarget(this);
-			output("[target.Short] jumps back and digs through [target.hisHer] belongings, pulling out a small battery and plugging it into [target.hisHer] belt. Once the energy cell is drained it's tossed aside, leaving [target.himHer] with a replenished barrier! (<b>S: +<span class='shield'>" + Math.floor(shieldsMax()/2) + "</span></b>)");
+			output("[target.Short] jumps back and digs through [target.hisHer] belongings, pulling out a small battery and plugging it into [target.hisHer] belt. Once the energy cell is drained it’s tossed aside, leaving [target.himHer] with a replenished barrier!");
+			var damageResult:DamageResult = new DamageResult();
+			damageResult.shieldDamage = (-1 * Math.floor(shieldsMax()/2));
+			outputDamage(damageResult);
 		}
 		private function revive(target:Creature):void
 		{
@@ -676,7 +693,10 @@ package classes.Characters
 			
 			output("Kneeling next to " + (ratCount(false) == 1 ? "a" : "the") + " knocked out rat, " + (ratCount(false) == 1 ? "the" : "a") + " mousey pirate flips [target.himHer] over, pinning [target.himHer] to stop the struggling.");
 
-			output("\n\n<i>\"Hold still, hold still!\"</i> beckons the mouse " + mf("boy", "girl") + " clambering over " + mf("his", "her") + " fallen friend. " + mf("He", "She") + " produces a large needle filled with orange liquid and jams it in the writhing outlaw's neck. A loud gasp precedes a frantic pawing; the once fallen rat stands and gathers [target.hisHer] gear after a brief conniption fit, ready to face you down again! (<b>H: <span class='hp'>" + Math.floor(target.HPMax()*0.75) + "</span></b>)");
+			output("\n\n<i>“Hold still, hold still!”</i> beckons the mouse " + mf("boy", "girl") + " clambering over " + mf("his", "her") + " fallen friend. " + mf("He", "She") + " produces a large needle filled with orange liquid and jams it in the writhing outlaw’s neck. A loud gasp precedes a frantic pawing; the once fallen rat stands and gathers [target.hisHer] gear after a brief conniption fit, ready to face you down again!");
+			var damageResult:DamageResult = new DamageResult();
+			damageResult.hpDamage = (-1 * Math.floor(target.HPMax()*0.75));
+			outputDamage(damageResult);
 			
 			output("\n\nCrap!");
 		}
@@ -690,14 +710,14 @@ package classes.Characters
 			var sameRats:int = 0
 			var loost:int;
 			var otherRat:RatsRaider;
-			var lustOutput:String = "";
+			var lustOutput:Array = [];
 			for each (var rat:Creature in CombatManager.getHostileActors())
 			{
 				if (!(rat is RatsRaider) || rat == this) continue;
 				otherRat = rat as RatsRaider;
 				loost = Math.min(10+rand(11), rat.lustMax() - rat.lust());
 				rat.lust(loost);
-				lustOutput += " (<b>L: -<span class='lust'>" + loost + "</span></b>)";
+				lustOutput.push(loost);
 				if (rat.mf("a","b") == mf("a","b")) ++sameRats;
 				++rats;
 			}
@@ -706,7 +726,7 @@ package classes.Characters
 			{
 				if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO && rand(3) == 0)
 				{
-					output("<i>\"Ohhh… Oh, come on…\"</i> " + (sameRats == 0 ? "the": "a") + " sexy rat girl whines. She falls heavily to one knee, fondling her perky tits, tending the nubby attention-seeking erections through her undersuit. <i>\"If you wanted to fuck you could have...\"</i> The lustful mouse-pirate moans like a needy whore, squirming on the spot and touching herself much more brazenly");
+					output("<i>“Ohhh... Oh, come on...”</i> " + (sameRats == 0 ? "the": "a") + " sexy rat girl whines. She falls heavily to one knee, fondling her perky tits, tending the nubby attention-seeking erections through her undersuit. <i>“If you wanted to fuck you could have...”</i> The lustful mouse-pirate moans like a needy whore, squirming on the spot and touching herself much more brazenly");
 					if (rats > 0)
 					{
 						output(" as the other");
@@ -717,27 +737,27 @@ package classes.Characters
 				}
 				else if (kGAMECLASS.ratputation() > RAT_REP_NONE && rand(3) == 0)
 				{
-					output("<i>\"Wuh…\"</i> " + (sameRats == 0 ? "the" : "a") + " female rat grunts and heaves. She falls to one knee holding her chest, grinding an arm against her own tits. <i>\"You… Is this what you learned from all the sluts under your desk!? Sc... <b>Screw you!</b>\"</i> she rasps, smacking her fist into the ground and standing. You opt not to tell her that she's still grinding her thighs together.");
+					output("<i>“Wuh...”</i> " + (sameRats == 0 ? "the" : "a") + " female rat grunts and heaves. She falls to one knee holding her chest, grinding an arm against her own tits. <i>“You... Is this what you learned from all the sluts under your desk!? Sc... <b>Screw you!</b>”</i> she rasps, smacking her fist into the ground and standing. You opt not to tell her that she’s still grinding her thighs together.");
 					if (rats > 0) output(" The " + (rats == 1 ? "other is" : "others are") + " getting pretty turned on despite her irascible defiance.");
 				
 				}
 				else if (rand(2) == 0)
 				{
-					output("<i>\"Ughh..! Y-you slut! Why… unnhhh… why are you acting like a slave in a fight!?\"</i> " + (rats > 0 ? "a" : "the") + " furry mouse wails, aching from pent up lust. She strokes herself brazenly and scrapes at her crotch, desperately looking for entrance and relief");
-					if (rats > 0) output(" as the other" + (rats > 1 ? "s eye hump" : " rodent eye humps") + " her. You can tell " + (rats > 1 ? "they're" : otherRat.mf("he's", "she's")) + " enjoying the show");
+					output("<i>“Ughh..! Y-you slut! Why... unnhhh... why are you acting like a slave in a fight!?”</i> " + (rats > 0 ? "a" : "the") + " furry mouse wails, aching from pent up lust. She strokes herself brazenly and scrapes at her crotch, desperately looking for entrance and relief");
+					if (rats > 0) output(" as the other" + (rats > 1 ? "s eye hump" : " rodent eye humps") + " her. You can tell " + (rats > 1 ? "they’re" : otherRat.mf("he’s", "she’s")) + " enjoying the show");
 					output(".");
 				}
 				else
 				{
-					output("<i>\"W-what the hell are you doing? Wasn't this supposed to be a fight!? You… uhnnn…! YOU BIMBO!!\"</i> the mouse girl cries and gasps, pawing frantically at her crotch. Unable to focus on both the fight and self-service, she growls in a surly tone.");
-					if (rats > 0) output(" The other" + (rats > 1 ? "s are" : " rodent is") + " distracted by her moaning, but you can tell " + (rats > 1 ? "they're" : otherRat.mf("he's", "she's")) + " secretly enjoying the struggle to touch oneself.");
+					output("<i>“W-what the hell are you doing? Wasn’t this supposed to be a fight!? You... uhnnn...! YOU BIMBO!!”</i> the mouse girl cries and gasps, pawing frantically at her crotch. Unable to focus on both the fight and self-service, she growls in a surly tone.");
+					if (rats > 0) output(" The other" + (rats > 1 ? "s are" : " rodent is") + " distracted by her moaning, but you can tell " + (rats > 1 ? "they’re" : otherRat.mf("he’s", "she’s")) + " secretly enjoying the struggle to touch oneself.");
 				}
 			}
 			else
 			{
 				if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO && rand(3) == 0)
 				{
-					output("<i>\"Hey, why are we fighting if you're… just doing that…\"</i> " + (sameRats == 0 ? "the" : "a") + " mouse-boy's voice trails off. He collapses to his knees, grinding his bosomy thighs together, stroking his uncomfortable erection through his undersuit. <i>\"Aah, my clothes… Uhhmmm,\"</i> he moans, <i>\"you're so sexy…\"</i> He drops his baton, temporarily giving himself to excess");
+					output("<i>“Hey, why are we fighting if you’re... just doing that...”</i> " + (sameRats == 0 ? "the" : "a") + " mouse-boy’s voice trails off. He collapses to his knees, grinding his bosomy thighs together, stroking his uncomfortable erection through his undersuit. <i>“Aah, my clothes... Uhhmmm,”</i> he moans, <i>“you’re so sexy...”</i> He drops his baton, temporarily giving himself to excess");
 					if (rats > 0)
 					{
 						output(" as the other");
@@ -748,35 +768,40 @@ package classes.Characters
 				}
 				else if (kGAMECLASS.ratputation() > RAT_REP_NONE && rand(3) == 0)
 				{
-					output("<i>\"Did… What… What is this…\"</i>" + (sameRats == 0 ? "the" : "a") + " rodent boy whines, hunching over with both hands on his junk. He tends a large erection through his undersuit, pressed painfully against his armor, making him rub his legs together. <i>\"F-for someone so evil you're so sexy-\"</i> he hums");
-					if (rats == 0) output(" only to shout and resume his stance, looking no less turned on. He's still got some fight in him!");
+					output("<i>“Did... What... What is this...”</i>" + (sameRats == 0 ? "the" : "a") + " rodent boy whines, hunching over with both hands on his junk. He tends a large erection through his undersuit, pressed painfully against his armor, making him rub his legs together. <i>“F-for someone so evil you’re so sexy-”</i> he hums");
+					if (rats == 0) output(" only to shout and resume his stance, looking no less turned on. He’s still got some fight in him!");
 					else output(", only to get a smack on the side of the head by another rat.");
 				}
 				else if (rand(2) == 0)
 				{
-					output("<i>\"No… I'm… You s...s…!!\"</i> " + (sameRats == 0 ? "The" : "A") + " mouse-eared pirate staggers back and forth, loud breaths accompanying his every stomp. <i>\"M-my clothes are… Uhm…\"</i> With his balance eroding and his dick pressing against his armor, he struggles to relieve himself. Unfortunately, he can't focus on you and getting under his clothes at the same time. He scowls cutely when exchanging glances between your smirking face and his aching boner.");
+					output("<i>“No... I’m... You s...s...!!”</i> " + (sameRats == 0 ? "The" : "A") + " mouse-eared pirate staggers back and forth, loud breaths accompanying his every stomp. <i>“M-my clothes are... Uhm...”</i> With his balance eroding and his dick pressing against his armor, he struggles to relieve himself. Unfortunately, he can’t focus on you and getting under his clothes at the same time. He scowls cutely when exchanging glances between your smirking face and his aching boner.");
 					if (rats > 0) output(" The others watch him, getting equally turned on by the attempts at self-service.");
 				}
 				else
 				{
-					output("<i>\"Ah… haa..! My clothes..!\"</i> " + (sameRats == 0 ? "The" : "A") + " mouse boy stumbles to and fro, thick and heavy breaths behind every planted foot. <i>\"It's too much…\"</i> His teeth grit and he rubs his hand over his crotch where his tenting manhood must be. Unfortunately for him, he can't give himself the relief he needs through his armor while also concentrating on the fight. He scowls, glancing at you and his clenching legs");
+					output("<i>“Ah... haa..! My clothes..!”</i> " + (sameRats == 0 ? "The" : "A") + " mouse boy stumbles to and fro, thick and heavy breaths behind every planted foot. <i>“It’s too much...”</i> His teeth grit and he rubs his hand over his crotch where his tenting manhood must be. Unfortunately for him, he can’t give himself the relief he needs through his armor while also concentrating on the fight. He scowls, glancing at you and his clenching legs");
 					if (rats > 0) output(" as the others watch him nervously, getting turned on by the attempts at self-servicing");
 					output(".");
 				}
 			}
 			
-			output(lustOutput);
+			for(var i:int = 0; i < lustOutput.length; i++)
+			{
+				var damageResult:DamageResult = new DamageResult();
+				damageResult.lustDamage = (-1 * lustOutput[i]);
+				outputDamage(damageResult);
+			}
 		}
 		
 		//MADNESS AWAITS ALL WHO DARE READ THE FOLLOWING CODE
 		private function ratpileStart(target:Creature):void
 		{
-			var dialog:Array = ["Our prize awaits!", "Now you're in for it!", "All you had to do was pay up!", "Come on, [pc.he]'s open!"];
-			if (kGAMECLASS.silly) dialog.push("No-no, mustn't let [pc.himHer] get away!");
-			if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO) dialog.push("Ha-ha! [pc.Mister] CEO, you know what's coming!");
+			var dialog:Array = ["Our prize awaits!", "Now you’re in for it!", "All you had to do was pay up!", "Come on, [pc.he]’s open!"];
+			if (kGAMECLASS.silly) dialog.push("No-no, mustn’t let [pc.himHer] get away!");
+			if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO) dialog.push("Ha-ha! [pc.Mister] CEO, you know what’s coming!");
 			else if (kGAMECLASS.ratputation() != RAT_REP_NONE) dialog.push("Ha! The corporate stooge is out of [pc.hisHer] element! Now, now, take all of it!");
 
-			output("<i>\"" + RandomInCollection(dialog) + "\"</i> yells one of the raiders, and you feel " + num2Text(ratCount()) + " bodies smash into you. Unable to resist, you are tackled to the floor. You flail defiant, madly struggling against their quick-fingered hands and constricting tails as they crawl upon and pin you. If you don't shake your stupor, <b>who knows what they're going to do</b>!");
+			output("<i>“" + RandomInCollection(dialog) + "”</i> yells one of the raiders, and you feel " + num2Text(ratCount()) + " bodies smash into you. Unable to resist, you are tackled to the floor. You flail defiant, madly struggling against their quick-fingered hands and constricting tails as they crawl upon and pin you. If you don’t shake your stupor, <b>who knows what they’re going to do</b>!");
 
 			target.removeStatusEffect("Stunned");
 			CombatAttacks.applyGrapple(target, 65);
@@ -814,8 +839,8 @@ package classes.Characters
 				else output("Your grip on your [pc.weapon] loosens in the fight against the firm arms and heavy legs on your biceps");
 				output("; shaking the exuberant mouse off your face is already proving to be difficult. The thought of getting to your valuables excites them beyond belief - they laugh triumphantly as their sticky fingers dig through your exposed inventory in search of wealth, mineral or digital, feeling you up in the ecstatic process.");
 
-				if (ratCount() == 2) output("\n\nWhilst one saucer-eared thief probes your vulnerable belongings, the other plants [target.hisHer] crotch on your neck, blinding you under [target.hisHer] round butt, your protests muffled beneath [target.hisHer] plump thighs. The rapacious rat can't help but grope you in between countering your fleeting moments of limp resistance, forcing you to groan into indistinct nether regions with a mix of lust and pain.");
-				else output("\n\nTwo mouse pirates pin you down painfully, one sitting atop your groin and the other above your chin. Your face-sitter's damp and quivering butt drags over your face, led by roaming hands and followed by happy chitters. No matter how hard you thrash, it's all limp resistance to them, and worse, they can't help but steal gropes at your body. You writhe feebly under their combined bodyweight, getting hit back and turned on in equal measure.");
+				if (ratCount() == 2) output("\n\nWhilst one saucer-eared thief probes your vulnerable belongings, the other plants [target.hisHer] crotch on your neck, blinding you under [target.hisHer] round butt, your protests muffled beneath [target.hisHer] plump thighs. The rapacious rat can’t help but grope you in between countering your fleeting moments of limp resistance, forcing you to groan into indistinct nether regions with a mix of lust and pain.");
+				else output("\n\nTwo mouse pirates pin you down painfully, one sitting atop your groin and the other above your chin. Your face-sitter’s damp and quivering butt drags over your face, led by roaming hands and followed by happy chitters. No matter how hard you thrash, it’s all limp resistance to them, and worse, they can’t help but steal gropes at your body. You writhe feebly under their combined bodyweight, getting hit back and turned on in equal measure.");
 				
 				dmg.kinetic.damageValue = 65;
 			}
@@ -825,19 +850,19 @@ package classes.Characters
 				if (ratCount() == 2)
 				{
 					output("When your struggles die down for but a moment, you feel the rat locking your noggin lean over and scoop up your [pc.meleeWeapon], and - equally distressing - hear the second rascal scrounging for your [pc.rangedWeapon].");
-					if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO) output(" <i>\"Looks like you're in some trouble, [pc.mister] CEO!\"</i>");
-					else output(" <i>\"Just give up, and we'll make this easy on you!\"</i>");
-					output(" one says as your weapons are tossed in separate directions. If you manage to break free, you're gonna have to get your gear back, <b>as you've been disarmed!</b>");
+					if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO) output(" <i>“Looks like you’re in some trouble, [pc.mister] CEO!”</i>");
+					else output(" <i>“Just give up, and we’ll make this easy on you!”</i>");
+					output(" one says as your weapons are tossed in separate directions. If you manage to break free, you’re gonna have to get your gear back, <b>as you’ve been disarmed!</b>");
 					output("\n\nThey quickly resume their search. Lewd moans are coaxed from you as a pair of dainty, adept paws travel down your sides. Pretentious laughs ring in your [pc.ears], fueling the indignant fire burning inside that makes every bounce and pushback stronger.");
 				}
 				else
 				{
-					if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO) output("<i>\"Oops! Can't let you do that, [pc.mister] CEO!\"</i>");
-					else output("<i>\"Enough!\"</i>");
-					output(" one rat stomps on your wrist, your weapon slipping from your grasp. You cry out, though the wail is suppressed below your head-locking assailant's backside. You feel your [pc.meleeWeapon] and [pc.rangedWeapon] pulled from your limp fingers.");
-					if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO) output(" <i>\"Looks like you're in some trouble now, huh [pc.mister] CEO?\"</i>");
-					else output(" <i>\"You should give up while you have the chance, you don't have to get hurt!\"</i>");
-					output(" a female voice titters as your weapons are flung in two directions. If you manage to break free you're gonna have to get your gear back, <b>as you have been disarmed!</b>");
+					if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO) output("<i>“Oops! Can’t let you do that, [pc.mister] CEO!”</i>");
+					else output("<i>“Enough!”</i>");
+					output(" one rat stomps on your wrist, your weapon slipping from your grasp. You cry out, though the wail is suppressed below your head-locking assailant’s backside. You feel your [pc.meleeWeapon] and [pc.rangedWeapon] pulled from your limp fingers.");
+					if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO) output(" <i>“Looks like you’re in some trouble now, huh [pc.mister] CEO?”</i>");
+					else output(" <i>“You should give up while you have the chance, you don’t have to get hurt!”</i>");
+					output(" a female voice titters as your weapons are flung in two directions. If you manage to break free you’re gonna have to get your gear back, <b>as you have been disarmed!</b>");
 					output("\n\nYou push back desperately against the hands holding you down, still defiling the sanctity of your precious inventory and of your body too. Dainty, adept paws skip and jump across your [pc.skinFurScalesNoun], searching for plunder while pillaging your body. Strength gradually stokes the indignant fire inside, fueled by the pretentious laughter ringing in your [pc.ears].");
 				}
 				CombatAttacks.applyDisarm(target, 2, true);
@@ -849,8 +874,8 @@ package classes.Characters
 				if (!thief) return;
 				kGAMECLASS.setTarget(thief);
 
-				if (ratCount() == 2) output("<i>\"Bingo, jackpot, score! This is it!\"</i> you hear. There's a universal pause that dilates your [pc.eyes]. Even through the " + (skinType == GLOBAL.SKIN_TYPE_FUR ? "fuzzy" : "smooth") + " butt on your face you know exactly the reason for their caterwauling: you feel a pouch yanked off your waist. <i>\"Here we go, here we go, this is perfect!\"</i> the mouse [target.boyGirl] exclaims. Your heart sinks hearing the pack open, its contents spilling out. <i>\"");
-				else output("<i>\"Here, here! I have it! Wealth and treasure in spades, surely a payday!\"</i> Comes an exuberant cry of utter victory. There's a universal pause when your [pc.eyes] widen, and even blinded by butt you know exactly the reason for their caterwauling: they yank a pouch from your waist and rip it open with delighted squeals, oohs, and ahhs. The contents spill out, those sounds so very audible compared to everything else. <i>\"");
+				if (ratCount() == 2) output("<i>“Bingo, jackpot, score! This is it!”</i> you hear. There’s a universal pause that dilates your [pc.eyes]. Even through the " + (skinType == GLOBAL.SKIN_TYPE_FUR ? "fuzzy" : "smooth") + " butt on your face you know exactly the reason for their caterwauling: you feel a pouch yanked off your waist. <i>“Here we go, here we go, this is perfect!”</i> the mouse [target.boyGirl] exclaims. Your heart sinks hearing the pack open, its contents spilling out. <i>“");
+				else output("<i>“Here, here! I have it! Wealth and treasure in spades, surely a payday!”</i> Comes an exuberant cry of utter victory. There’s a universal pause when your [pc.eyes] widen, and even blinded by butt you know exactly the reason for their caterwauling: they yank a pouch from your waist and rip it open with delighted squeals, oohs, and ahhs. The contents spill out, those sounds so very audible compared to everything else. <i>“");
 
 				if (thief.hasStatusEffect("Plunder over Pillage!"))
 				{
@@ -859,17 +884,17 @@ package classes.Characters
 					{
 						if (thief.statusEffectv2("Plunder over Pillage!") > 5000) ratReactions.push("Plenty of gems for us to sell, our best payday in months!");
 						if (thief.statusEffectv3("Plunder over Pillage!") > 0) ratReactions.push("A valuable gem for us to sell, fortune favors us!");
-						ratReactions.push("Wow, [pc.heShe]'s loaded! Quick, take what you can!");
+						ratReactions.push("Wow, [pc.heShe]’s loaded! Quick, take what you can!");
 					}
 					else
 					{
-						if (thief.statusEffectv2("Plunder over Pillage!") > 5000) ratReactions.push("Waha! Look, valuable gems! We'll make so much selling this!");
+						if (thief.statusEffectv2("Plunder over Pillage!") > 5000) ratReactions.push("Waha! Look, valuable gems! We’ll make so much selling this!");
 						if (thief.statusEffectv3("Plunder over Pillage!") > 0) ratReactions.push("A valuable gem for us to sell, fortune favors us!");
 						ratReactions.push("Wow, so much money, look-look! Quick, take everything you can!");
 					}
-					output(RandomInCollection(ratReactions) + "\"</i>");
+					output(RandomInCollection(ratReactions) + "”</i>");
 					
-					output("\n\nAn infuriating 'ha-ha!' escapes the cocksure thief's mouth as they");
+					output("\n\nAn infuriating ‘ha-ha!’ escapes the cocksure thief’s mouth as they");
 					if (thief.statusEffectv2("Plunder over Pillage!") > 5000)
 					{
 						if (thief.credits > 0) output(" pool your gems and some chits into one");
@@ -886,7 +911,7 @@ package classes.Characters
 				}
 				else
 				{
-					output("W-what!? Nothing? Then why didn't you say anything!?\"</i>");
+					output("W-what!? Nothing? Then why didn’t you say anything!?”</i>");
 					target.createStatusEffect("BreakRatpile");
 				}
 			}
@@ -898,9 +923,9 @@ package classes.Characters
 			//This kills the grapple
 			if (target.hasStatusEffect("BreakRatpile"))
 			{
-				output("\n\nThe raiders scramble from your body, giving you a chance to breathe and collect yourself. They regard you resentfully, grumbling that you had nothing for them to 'earn'.");
-				if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO) output(" <i>\"Hey, come on, we wouldn't have done this if you said something!\"</i>");
-				else output(" <i>\"You're still going to pay for our time!\"</i>");
+				output("\n\nThe raiders scramble from your body, giving you a chance to breathe and collect yourself. They regard you resentfully, grumbling that you had nothing for them to ‘earn’.");
+				if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO) output(" <i>“Hey, come on, we wouldn’t have done this if you said something!”</i>");
+				else output(" <i>“You’re still going to pay for our time!”</i>");
 				target.removeStatusEffect("Grappled");
 				target.removeStatusEffect("BreakRatpile");
 				return;
@@ -937,8 +962,8 @@ package classes.Characters
 				if (fallenRats + hornyRats < target.statusEffectv3("Grappled"))
 				{
 					kGAMECLASS.setTarget(getLeaderRat());
-					if (fallenRats == 1) output("<i>\"Stop whining, hey, we're winning! What's up with that?!\"</i> one rat squeals. At least it'll be a bit easier to break free!");
-					else ("<i>\"Hey, how can... Crap!\"</i> one rat squeals, leaping off while eyeing [target.hisHer] friends nervously.");
+					if (fallenRats == 1) output("<i>“Stop whining, hey, we’re winning! What’s up with that?!”</i> one rat squeals. At least it’ll be a bit easier to break free!");
+					else ("<i>“Hey, how can... Crap!”</i> one rat squeals, leaping off while eyeing [target.hisHer] friends nervously.");
 				}
 			}
 			
@@ -947,21 +972,21 @@ package classes.Characters
 				// If all rats (two or three) max out their lust during ratpile, somehow. Lol sure.
 				if (hornyRats + fallenRats >= target.statusEffectv3("Grappled"))
 				{
-					output("\n\nThe laughs die down into reactionary moans, and those moans aren't of pain. The " + (hornyRats == 1 ? "body atop you slides" : num2Text(hornyRats) + " bodies atop you slide") + " off, thudding to the ground amidst a cacophany of pleasurable squeaks. It's so bizarre that you can't help but shake your head. You hurriedly check yourself for damages, monetary or physical, before turning your attentions to the bandits now debilitatingly aroused...");
+					output("\n\nThe laughs die down into reactionary moans, and those moans aren’t of pain. The " + (hornyRats == 1 ? "body atop you slides" : num2Text(hornyRats) + " bodies atop you slide") + " off, thudding to the ground amidst a cacophany of pleasurable squeaks. It’s so bizarre that you can’t help but shake your head. You hurriedly check yourself for damages, monetary or physical, before turning your attentions to the bandits now debilitatingly aroused...");
 					target.createStatusEffect("Rats Lusted Themselves");
 				}
 				// If three rats, two get lustified
-				else if (hornyRats == 2) output("\n\nLike Atlas setting the world down, relief wrings the pain from your body when two rats, for whatever reason, slip off your body. Inundated by blissful squeals and squeaks, the one over your face scampers away, leaving you to rise, check yourself, and figure out just what happened. <i>\"H-how are you two like this!?\"</i> the one rat asks, the other two bandits flush with all-consuming lust masturbating furiously. You scratch your head before getting back into the fight!");
+				else if (hornyRats == 2) output("\n\nLike Atlas setting the world down, relief wrings the pain from your body when two rats, for whatever reason, slip off your body. Inundated by blissful squeals and squeaks, the one over your face scampers away, leaving you to rise, check yourself, and figure out just what happened. <i>“H-how are you two like this!?”</i> the one rat asks, the other two bandits flush with all-consuming lust masturbating furiously. You scratch your head before getting back into the fight!");
 				//Three rats, one rat gets turned on during this (Dogpile continues)
-				else if (target.statusEffectv3("Grappled") - fallenRats == 3) output("\n\nA noticeable burden is relieved from your body, though you can't understand why. <i>\"H-hey, are you really? Hey we're so close, what are you doing!?\"</i> By the sounds of it, whoever just bailed is close to something themselves...");
+				else if (target.statusEffectv3("Grappled") - fallenRats == 3) output("\n\nA noticeable burden is relieved from your body, though you can’t understand why. <i>“H-hey, are you really? Hey we’re so close, what are you doing!?”</i> By the sounds of it, whoever just bailed is close to something themselves...");
 				// Two rats, one rat gets turned on during Dogpile (Dogpile Ends, need 2 rats)
-				else output("\n\nAs quick as the pressure came, one rat, for whatever reason, gives up the counter-resistance and flops off your prone form. The last remaining rat shouts, <i>\"Hey, what are... You can't be serious!\"</i> You see just why it happened: " + hornyRat.mf("he", "she") + " is masturbating like a rabid animal.");
+				else output("\n\nAs quick as the pressure came, one rat, for whatever reason, gives up the counter-resistance and flops off your prone form. The last remaining rat shouts, <i>“Hey, what are... You can’t be serious!”</i> You see just why it happened: " + hornyRat.mf("he", "she") + " is masturbating like a rabid animal.");
 			}
 				
 			//rat comes back
 			if (recoveredRat && hornyRats + fallenRats < target.statusEffectv3("Grappled"))
 			{
-				output("\n\n<i>\"Oh, decided to wake up huh?\"</i> you hear, and then feel another weight press on you. Another pair of grabby hands roams over you, signaling the assault of the third rat previously out of whack. <i>\"Now let's find that treasure!\"</i>");
+				output("\n\n<i>“Oh, decided to wake up huh?”</i> you hear, and then feel another weight press on you. Another pair of grabby hands roams over you, signaling the assault of the third rat previously out of whack. <i>“Now let’s find that treasure!”</i>");
 			}
 			
 			//Update rat count
@@ -971,17 +996,17 @@ package classes.Characters
 			else if (ratCount() < 2) target.removeStatusEffect("Grappled");
 			else if (target.statusEffectv4("Grappled") >= 3)
 			{
-				output("\n\nThey scramble away from you, impishly tittering as they get some distance. You hastily rise to your [pc.footOrFeet], facing them down.. You hastily rise to your [pc.footOrFeet], facing them down once again as if that hadn't occurred.");
+				output("\n\nThey scramble away from you, impishly tittering as they get some distance. You hastily rise to your [pc.footOrFeet], facing them down.. You hastily rise to your [pc.footOrFeet], facing them down once again as if that hadn’t occurred.");
 				if (getThiefRat()) 
 				{
-					output(" A tell-tale sack is draped over one rat's shoulder. Just the sight of the wobbling bag fills you with anger. It tells you <i>exactly</i> who needs a foot up their ass.");
-					output("\n\n<i>\"Are you still going to fight us? We'll call it even, just walk away!\"</i> one calls.");
-					if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO) output(" <i>\"Think you can take it back? You really don't want to walk away now?\"</i> Fuck that! No way you're walking away, not without your stuff!");
-					else if (kGAMECLASS.ratputation() > RAT_REP_NONE) output(" <i>\"Besides, you had this coming, you crook! It's time you pay for the damage you've caused!\"</i> Fuck that! And fuck the lies your cousin has spread, too!");
+					output(" A tell-tale sack is draped over one rat’s shoulder. Just the sight of the wobbling bag fills you with anger. It tells you <i>exactly</i> who needs a foot up their ass.");
+					output("\n\n<i>“Are you still going to fight us? We’ll call it even, just walk away!”</i> one calls.");
+					if (kGAMECLASS.ratputation() == RAT_REP_GOOD_CEO) output(" <i>“Think you can take it back? You really don’t want to walk away now?”</i> Fuck that! No way you’re walking away, not without your stuff!");
+					else if (kGAMECLASS.ratputation() > RAT_REP_NONE) output(" <i>“Besides, you had this coming, you crook! It’s time you pay for the damage you’ve caused!”</i> Fuck that! And fuck the lies your cousin has spread, too!");
 				}
 				else 
 				{
-					output("\n\n<i>\"Are you still going to fight us? We'll call it even, just walk away!\"</i> one calls.");
+					output("\n\n<i>“Are you still going to fight us? We’ll call it even, just walk away!”</i> one calls.");
 				}
 				
 				target.removeStatusEffect("Grappled");
@@ -1016,16 +1041,16 @@ package classes.Characters
 				case 0:
 					output("Hesitantly looking around");
 					if (friendRat != null) output(" and exchanging knowing looks with " + mf("his", "her") + (friendRats > 1 ? " friends" : " friend"));
-					output(", the thieving sack-rat glances over " + mf("his", "her") + " shoulder. She steps back, but with lightning reflexes you " + target.rangedWeapon.attackVerb + " your [pc.rangedWeapon] at their feet. <b>Looks like " + mf("he", "she") + "'s trying to make off with <i>your</i> stuff! Better take " + mf("him", "her") + " down fast before they get an opening!</b>");
+					output(", the thieving sack-rat glances over " + mf("his", "her") + " shoulder. She steps back, but with lightning reflexes you " + target.rangedWeapon.attackVerb + " your [pc.rangedWeapon] at their feet. <b>Looks like " + mf("he", "she") + "’s trying to make off with <i>your</i> stuff! Better take " + mf("him", "her") + " down fast before they get an opening!</b>");
 					break;
 				case 1:
-					output("The rat " + mf("boy", "girl") + " carrying the loot-laden pack gains hops back and you snap off another shot at their feet. " + mf("He", "She") + " hops again and yelps, looking at you with sweat beading on " + mf("his", "her") + " face. <b>That rat's about to dart. If you don't want to lose your hard-earned cash, you've got to make the next attack count!</b>");
+					output("The rat " + mf("boy", "girl") + " carrying the loot-laden pack gains hops back and you snap off another shot at their feet. " + mf("He", "She") + " hops again and yelps, looking at you with sweat beading on " + mf("his", "her") + " face. <b>That rat’s about to dart. If you don’t want to lose your hard-earned cash, you’ve got to make the next attack count!</b>");
 					break;
 				case 2:
-					if (friendRat != null) output("<i>\"Go, " + (friendRats > 1 ? "we've" : "I've") + " got this! We'll catch you later!\"</i> " + (friendRats > 1 ? "another" : "the other") + " rat shouts, jumping to guard " + friendRat.mf("his", "her") + " friend. ");
+					if (friendRat != null) output("<i>“Go, " + (friendRats > 1 ? "we’ve" : "I’ve") + " got this! We’ll catch you later!”</i> " + (friendRats > 1 ? "another" : "the other") + " rat shouts, jumping to guard " + friendRat.mf("his", "her") + " friend. ");
 					output("You dash for the sack-rat, shooting and swinging manically");
 					if (ratCount(false) > 1) output(" around the body-blocking runt");
-					output(". " + mf("He", "She") + " proves too quick, however, hopping and slinking away. <i>\"It's mine now, mine, mine!\"</i> The thief cackles infuriatingly, dodging your shots and disappearing into darkness. <i>Damn it!</i>");
+					output(". " + mf("He", "She") + " proves too quick, however, hopping and slinking away. <i>“It’s mine now, mine, mine!”</i> The thief cackles infuriatingly, dodging your shots and disappearing into darkness. <i>Damn it!</i>");
 					break;
 			}
 			addStatusValue("Plunder over Pillage!",1,1);
@@ -1052,7 +1077,7 @@ package classes.Characters
 			if (noTallbois || hornyRats >= 2 || rand(3) != 0) return;
 			
 			kGAMECLASS.setTarget(getLeaderRat(false));
-			if (ratCount(false) > 1) output("\n\nYour sheer height and imposing stature fuels a fire burning in the rodents. Whether that fire is the ubiquitous desire for victory or a financially grand delusion you're not sure. But one thing's certain: their steely determination is pushing their lust out, and they only seem to get riled up the longer things go on...");
+			if (ratCount(false) > 1) output("\n\nYour sheer height and imposing stature fuels a fire burning in the rodents. Whether that fire is the ubiquitous desire for victory or a financially grand delusion you’re not sure. But one thing’s certain: their steely determination is pushing their lust out, and they only seem to get riled up the longer things go on...");
 			else output("\n\nEven though you tower over the hunching rodent, your looming frame only fuels a fire burning in [target.hisHer] belly. That fire is certainly burning away whatever lust may eating at the edge of [target.hisHer] mind, and [target.heShe] is becoming dangerously riled...");
 			
 			var lustLoss:int;
@@ -1061,7 +1086,11 @@ package classes.Characters
 				if (rat.isDefeated() || !(rat is RatsRaider)) continue;
 				lustLoss = Math.min(15, rat.lust());
 				rat.lust(-lustLoss);
-				if (lustLoss > 0) output(" (<b>L: +<span class='lust'>" + lustLoss + "</span></b>)");
+				if (lustLoss > 0) {
+					var damageResult:DamageResult = new DamageResult();
+					damageResult.lustDamage = (-1 * lustLoss);
+					outputDamage(damageResult);
+				}
 			}
 			//Show lust loss
 			CombatManager.showCombatUI();

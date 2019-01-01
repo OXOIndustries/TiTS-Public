@@ -132,7 +132,8 @@ public function encounterBothriocQuadomme():void
 	
 	var bMelee:Boolean = (pc.hasMeleeWeapon() && (pc.meleeWeapon.baseDamage.burning.damageValue > 0 || pc.meleeWeapon.baseDamage.corrosive.damageValue > 0));
 	var bRanged:Boolean = (pc.hasRangedWeapon() && (pc.rangedWeapon.baseDamage.burning.damageValue > 0 || pc.rangedWeapon.baseDamage.corrosive.damageValue > 0));
-	var success:Boolean = ( bMelee || bRanged || (pc.physique() + (rand(60) - 39) > 30) );
+	var bPerk:Boolean = (pc.hasPerk("Escape Artist"));
+	var success:Boolean = ( bMelee || bRanged || bPerk || (pc.physique() + (rand(60) - 39) > 30) );
 	
 	// First
 	if(flags["BOTHRIOC_QUADOMME_ENCOUNTERED"] == undefined)

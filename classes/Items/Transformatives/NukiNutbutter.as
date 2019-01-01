@@ -151,13 +151,13 @@
 					// Cum Cascade Extra!
 					if(!target.hasPerk("Cum Cascade") && target.statusEffectv1("Orally-Filled") >= 500 && InCollection(target.statusEffectv3("Orally-Filled"), GLOBAL.VALID_CUM_TYPES))
 					{
-						var isKuiTan:Boolean = (target.nukiScore() >= 3);
+						var isKuiTan:Boolean = (target.originalRace.indexOf("kui-tan") != -1 || target.nukiScore() >= 3);
 						
 						output("\n\nSuddenly, a warm tingle hits your gut. There is a strange reaction with your nanomachines as you feel something within your [pc.balls] being rewired... It must be all the cum you’ve previously ingested combined with your " + (isKuiTan ? "natural" : "enhanced") + " kui-tan trait.");
 						if(!isKuiTan) output(" Perhaps your body is adapting to a kui-tan’s natural ability to produce more [pc.cumNoun]?");
 						output("\n\nYour codex beeps and you flip it into view to verify. It looks like the more intense side effects of having ‘Nuki Nuts are just setting in");
 						if(isKuiTan) output(" -- or at least being more obvious than you can remember");
-						output(". You should be careful of where you are when you decide to swallow semen from now on... unless you want to find yourself in a comprising position with overly bloated balls!");
+						output(". You should be careful of where you are when you decide to swallow semen from now on... unless you want to find yourself in a compromising position with overly bloated balls!");
 						if(isKuiTan) output(" Although, being a kui-tan you already know this... right?");
 						
 						output("\n\n(<b>Perk Gained: Cum Cascade</b> - Orally ingesting semen will now put your ‘Nuki Nuts into overdrive, causing you to produce extra seed relative to how much semen you have in your belly. Beware of immobilization!)");

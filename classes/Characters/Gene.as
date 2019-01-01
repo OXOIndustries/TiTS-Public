@@ -19,12 +19,14 @@
 		//constructor
 		public function Gene()
 		{
-			this._latestVersion = 1;
-			this.version = _latestVersion;
-			this._neverSerialize = true;
+			_latestVersion = 1;
+			version = _latestVersion;
+			_neverSerialize = true;
 			
-			this.short = "Gene";
+			short = "Gene";
 			originalRace = "fanfir";
+			a = "";
+			capitalA = "";
 			
 			keeperBuy = "";
 			keeperSell = "";
@@ -39,18 +41,18 @@
 			inventory.push(new Turtleneck());
 			inventory.push(new TauricoVenidae());
 			
-			this.typesBought = [];
+			typesBought = [];
 			
-			this.sellMarkup = .9;
-			this.buyMarkdown = .5;
+			sellMarkup = .9;
+			buyMarkdown = .5;
 
-			this.femininity = 0;
-			this.createCock();
-			this.cocks[0].cLengthRaw = 15;
-			this.balls = 2;
-			this.ballSizeRaw = 14;
-			this.cumMultiplierRaw = 30;
-			this.ballEfficiency = 90;
+			femininity = 0;
+			createCock();
+			cocks[0].cLengthRaw = 15;
+			balls = 2;
+			ballSizeRaw = 14;
+			cumMultiplierRaw = 30;
+			ballEfficiency = 90;
 		}
 		
 		override public function onLeaveBuyMenu():void

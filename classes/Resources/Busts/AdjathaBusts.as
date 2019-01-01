@@ -487,6 +487,9 @@ package classes.Resources.Busts
 		public var Bust_LAH:Class;
 		public var Bounds_LAH:Rectangle = new Rectangle(30, 0, 65, 65);
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/ldc.png", mimeType = "image/png")]
+		public var Bust_LDC:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/lieve.png", mimeType = "image/png")]
 		public var Bust_LIEVE:Class;
 		public var Bounds_LIEVE:Rectangle = new Rectangle(17, 0, 60, 60);
@@ -617,6 +620,13 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/nymfoe.png", mimeType = "image/png")]
 		public var Bust_NYMFOE:Class;
 		public var Bounds_NYMFOE:Rectangle = new Rectangle(35, 0, 70, 70);
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/olympia.png", mimeType = "image/png")]
+		public var Bust_OLYMPIA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/olympia_steele.png", mimeType = "image/png")]
+		public var Bust_OLYMPIA_STEELE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/olympia_nude.png", mimeType = "image/png")]
+		public var Bust_OLYMPIA_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/ovir_dancer.png", mimeType = "image/png")]
 		public var Bust_OVIR_DANCER:Class;
@@ -704,13 +714,41 @@ package classes.Resources.Busts
 		public var Bust_RASKVEL_GANG:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/raskvel_gang_nude.png", mimeType = "image/png")]
 		public var Bust_RASKVEL_GANG_NUDE:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_group_one.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_GROUP_ONE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_group_two.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_GROUP_TWO:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_group_one_nude.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_GROUP_ONE_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_group_two_nude.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_GROUP_TWO_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_rod_1_nude.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_ROD_1_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_rod_2_nude.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_ROD_2_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_mouse_1_nude.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_MOUSE_1_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_mouse_2_nude.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_MOUSE_2_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_girl_nude.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_GIRL_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_boy_nude.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_BOY_NUDE:Class;
 
-		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_boy.png", mimeType = "image/png")]
-		public var Bust_RATS_RAIDER_BOY:Class;
-		public var Bounds_RATS_RAIDER_BOY:Rectangle = new Rectangle(34, 26, 108, 95);
+		//Headshots for the fight. Don't use as busts. Will look creepy as hell.
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_rod_1.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_ROD_1:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_rod_2.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_ROD_2:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_mouse_1.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_MOUSE_1:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_mouse_2.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_MOUSE_2:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_girl.png", mimeType = "image/png")]
 		public var Bust_RATS_RAIDER_GIRL:Class;
-		public var Bounds_RATS_RAIDER_GIRL:Rectangle = new Rectangle(30, 23, 104, 90);
+		[Embed(source = "../../../assets/images/npcs/adjatha/rats_raider_boy.png", mimeType = "image/png")]
+		public var Bust_RATS_RAIDER_BOY:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/reaha_anusoft.png", mimeType = "image/png")]
 		public var Bust_REAHA_ANUSOFT:Class;
@@ -770,6 +808,11 @@ package classes.Resources.Busts
 		public var Bust_SHELLY_HUGE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/shelly_huge_nude.png", mimeType = "image/png")]
 		public var Bust_SHELLY_HUGE_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/shock_hopper.png", mimeType = "image/png")]
+		public var Bust_SHOCK_HOPPER:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/shock_hopper_nude.png", mimeType = "image/png")]
+		public var Bust_SHOCK_HOPPER_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/double_goo.png", mimeType = "image/png")]
 		public var Bust_SLUTGOO:Class;
@@ -881,6 +924,11 @@ package classes.Resources.Busts
 		public var Bust_TESSA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/tessa_nude.png", mimeType = "image/png")]
 		public var Bust_TESSA_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/teyaal.png", mimeType = "image/png")]
+		public var Bust_TEYAAL:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/teyaal_nude.png", mimeType = "image/png")]
+		public var Bust_TEYAAL_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/tivf.png", mimeType = "image/png")]
 		public var Bust_TIVF:Class;
@@ -1411,6 +1459,9 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lah.png", mimeType = "image/png")]
 			public var Full_LAH:Class;
 
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ldc.png", mimeType = "image/png")]
+			public var Full_LDC:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lieve.png", mimeType = "image/png")]
 			public var Full_LIEVE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lieve_nude.png", mimeType = "image/png")]
@@ -1534,6 +1585,13 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nymfoe.png", mimeType = "image/png")]
 			public var Full_NYMFOE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/olympia.png", mimeType = "image/png")]
+			public var Full_OLYMPIA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/olympia_steele.png", mimeType = "image/png")]
+			public var Full_OLYMPIA_STEELE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/olympia_nude.png", mimeType = "image/png")]
+			public var Full_OLYMPIA_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ovir_dancer.png", mimeType = "image/png")]
 			public var Full_OVIR_DANCER:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ovir_dancer_nude.png", mimeType = "image/png")]
@@ -1673,6 +1731,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/shelly_huge_nude.png", mimeType = "image/png")]
 			public var Full_SHELLY_HUGE_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/shock_hopper.png", mimeType = "image/png")]
+			public var Full_SHOCK_HOPPER:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/shock_hopper_nude.png", mimeType = "image/png")]
+			public var Full_SHOCK_HOPPER_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/simone.png", mimeType = "image/png")]
 			public var Full_SIMONE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/simone_nude.png", mimeType = "image/png")]
@@ -1781,6 +1844,11 @@ package classes.Resources.Busts
 			public var Full_TESSA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tessa_nude.png", mimeType = "image/png")]
 			public var Full_TESSA_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/teyaal.png", mimeType = "image/png")]
+			public var Full_TEYAAL:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/teyaal_nude.png", mimeType = "image/png")]
+			public var Full_TEYAAL_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tivf.png", mimeType = "image/png")]
 			public var Full_TIVF:Class;

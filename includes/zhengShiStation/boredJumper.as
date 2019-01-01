@@ -137,7 +137,8 @@ public function winVsBoredJumper():void
 	
 	if(pc.hasVagina()) 
 	{
-		if(pc.hasItemByClass(BreedersBliss,2)) addButton(8,"Heat Sex",heatSexLaquineJumper,undefined,"Heat Sex","It’s as hot as any layer of Hell already, but you could really cook that bun until every sense but sex in her billowing brain melts away...");
+		if(pc.fertility() <= 0) addDisabledButton(8,"Heat Sex","Heat Sex","You are not fertile enough to think about that!");
+		else if(pc.hasItemByClass(BreedersBliss,2)) addButton(8,"Heat Sex",heatSexLaquineJumper,undefined,"Heat Sex","It’s as hot as any layer of Hell already, but you could really cook that bun until every sense but sex in her billowing brain melts away...");
 		else if(pc.inHeat() && pc.hasItemByClass(BreedersBliss,1)) addButton(8,"Heat Sex",heatSexLaquineJumper,undefined,"Heat Sex","It’s as hot as any layer of Hell already, but you could really cook that bun until every sense but sex in her billowing brain melts away...");
 		else addDisabledButton(8,"Heat Sex","Heat Sex","You’ll need some ‘breeding inducers’ to get ruined with the lusty laquine. " + (pc.inHeat() ? "One":"Two") + " Breeder’s Bliss ought to do...");
 	}
@@ -1535,7 +1536,7 @@ public function facePussyFuckJumper():void
 	//Merge
 	output("\n\nLike a centaur barreling out of a racetrack’s gates, the lusty pirate lunges forward with every muscle in her entire body. Those powerful lapine legs launch her with catapult-strength, driving her face-first into your [pc.vagina] with sufficient force to pin you into the wall. Her nose deflects off [pc.oneClit], sliding south and in even as the hungry tongue worms around the southern portions of your femininity, seeking out leaking [pc.girlCum] and sweat with unnerring accuracy.");
 
-	output("\n\nYou push back, but your fingers just slip through the the laquine’s soaking fur. A spray of salty droplets sizzles on the stone behind. Changing tactics, you grab hold of her ears, one in each fist, squeezing out dribbles of sweat in the process, but this time, you don’t lose your hold. You wrench her muzzle backward, revealing frenzied eyes and a muzzle caked in your [pc.girlCumColor] [pc.girlCumNoun]. She strains against your grip twice before giving up and stretching out her tongue, subserviently licking.");
+	output("\n\nYou push back, but your fingers just slip through the laquine’s soaking fur. A spray of salty droplets sizzles on the stone behind. Changing tactics, you grab hold of her ears, one in each fist, squeezing out dribbles of sweat in the process, but this time, you don’t lose your hold. You wrench her muzzle backward, revealing frenzied eyes and a muzzle caked in your [pc.girlCumColor] [pc.girlCumNoun]. She strains against your grip twice before giving up and stretching out her tongue, subserviently licking.");
 	output("\n\n<i>“Better,”</i> you coo, pulling away from the too hot stone. <i>“Not so hard.”</i> Relaxing slightly, you let an inch of her furry ears slide through your fingers - enough for her lips to kiss your hungry folds.");
 	output("\n\nThis is more like it. Tentative licks and kisses are exactly what you need, not brutal face-fucking... at least, not to start. You don’t release her, however. The troublesome slut-bun hasn’t earned that luxury, not after how she started. Her tongue is yours to command, and her face with it. You firmly guide her mouth around your exterior, then tip her head back for another taste of her lips on [pc.oneClit].");
 	processTime(20);

@@ -240,7 +240,8 @@ public function akanequestImARebelMofo():void
 	output("\n\nYou can only murmur a few words, too winded to string a thought out. You’ve still got your limbs: with a desperate shake, you try to free your hands.");
 	output("\n\n<i>“Hang on, hang on. I guess if you’re still moving, you’re still shooting, as much as it pains me,”</i> growls Akane as she undoes your bonds. You’re barely on your feet when Cheo shoves your [pc.weapon] into your hands.");
 	output("\n\n<i>“Here, just try to take her down! We’ll thin the numbers,”</i> he growls. You nod and ready yourself to face the smoke-covered tower that is Petra.");
-	processTime(0);
+	
+	processTime(3);
 	
 	akanequestConfigureFight(true);
 }

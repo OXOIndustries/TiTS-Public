@@ -552,7 +552,7 @@ public function takeOverTheGangbang():void
 	pc.lust(15);
 	clearMenu();
 
-	addButton(0,"Bun’n’Fly",cockSelect,[bunNFlyGangbangu,enemy.vaginalCapacity(0),true,0],"Bun’n’Fly","Fuck the jumper reverse cowgirl and let the saeri go at her pussy while the gryvain & redhead tend to each other.");
+	addButton(0,"Bun’n’Fly",cockSelect,[bunNFlyGangbangu,enemy.vaginalCapacity(0),true,0],"Bun’ n’ Fly","Fuck the jumper reverse cowgirl and let the saeri go at her pussy while the gryvain & redhead tend to each other.");
 	addButton(1,"Redhead",cockSelect,[redheadfuckiroodidoody,enemy.vaginalCapacity(0),true,0],"Redhead","Get the jumper on her back and sit the sexy redhead on her face, then fuck her.");
 }
 
@@ -625,7 +625,7 @@ public function bunNFlyGangbangu(x:int):void
 	//pcOneCock/Hardlight:
 	if(y < 0) output("The equine pussy spreading around the saeri’s cock eases his entrance and soon you feel his cock massaging yours in her pre-painted butt. When you pump your hips through her, the butterfly withdraws, and together you maintain a heavenly rhythm.");
 	//pcMultiCock:
-	else output("When you pump your hips through her, the butterfly withdraws, and you maintain a heavenly rhythm. His twilight cock and your [pc.cockNounSimple " + x + "] mutually massage as they stretch her tunnel wide, even grinding against your first dick spurting [pc.cumColor] precum all through her vice-like ass.");
+	else output("When you pump your hips through her, the butterfly withdraws, and you maintain a heavenly rhythm. His twilight cock and your " + (x < 0 ? "dildo" : "[pc.cockNounSimple " + x + "]") + " mutually massage as they stretch her tunnel wide, even grinding against your first dick spurting [pc.cumColor] precum all through her vice-like ass.");
 
 	output("\n\nThe rabbit falls back, slipping an arm around the back of your head and drawing you into a cum-scented kiss, one jerking hand still working her hefty boner. As your tongues wrestle in a sloppy, disorganized manner, the gryvain hefts the redhead up above the both of you, their fragrant, oozing pussies raining love and honey down on you. The laquine licks what she can off your face with the salty sweat as the human girl is speared on two matching wyrm cocks, musk and pheromones both billowing out from her slick holes. They hold each other tightly, the dusky girl’s legs wrapped around the jade dragon’s waist and the emerald gryvain’s scaly mits clutching a curvaceous derriere.");
 

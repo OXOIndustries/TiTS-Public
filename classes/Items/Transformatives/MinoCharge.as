@@ -746,7 +746,7 @@ package classes.Items.Transformatives
 				
 				if (target.hasCock()) 
 				{
-					output("You look down after a few moments, drawn from your thoughts by the");
+					output(" You look down after a few moments, drawn from your thoughts by the");
 					// cock 12 inches or more:
 					if (target.biggestCockLength() >= 12) output(" massive");
 					output(" bulge ");

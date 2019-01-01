@@ -107,7 +107,7 @@
 				}
 				// Anus has the Pumped flag, bonusCapacity is less than 100:
 				// Increase bonusCapacity.
-				else if(pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && pc.ass.bonusCapacity < 500)
+				else if(pc.ass.hasFlag(GLOBAL.FLAG_PUMPED) && pc.ass.bonusCapacity < 500)
 				{
 					kGAMECLASS.output("\n\nYou shiver as your [pc.asshole] softens further, getting even more stretchy but, you note with a touch of disappointment, no bigger. It looks like even modern medical science can’t make your pucker any plumper than it already is, but it can certainly make it even better at taking bigger cocks.");
 					

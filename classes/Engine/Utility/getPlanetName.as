@@ -11,8 +11,8 @@
 	public function getPlanetName(sID:String = ""):String
 	{
 		var pName:String = "NONE";
-		if (sID != "") pName = kGAMECLASS.rooms[sID].planet;
-		else pName = kGAMECLASS.rooms[(InShipInterior() ? kGAMECLASS.shipLocation : kGAMECLASS.currentLocation)].planet;
+		if (sID == "") sID = (InShipInterior() ? kGAMECLASS.shipLocation : kGAMECLASS.currentLocation);
+		if(kGAMECLASS.rooms[sID].planet.length) pName = kGAMECLASS.rooms[sID].planet;
 		
 		if (pName.indexOf(":") != -1) pName = pName.split(": ")[1];
 		

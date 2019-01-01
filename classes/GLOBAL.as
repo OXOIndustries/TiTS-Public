@@ -233,6 +233,7 @@
 		public static const TYPE_SANDWORM:int 								= 83;
 		public static const TYPE_SANDWORM_PARASITE:int 						= 84;
 		public static const TYPE_JANERIA:int								= 85;
+		public static const TYPE_ROEHM:int									= 86;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -321,6 +322,7 @@
 			"Sand Worm",
 			"Butt Bug",
 			"Janeria",
+			"Roehm",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -1002,6 +1004,8 @@
 			TYPE_EQUINE,
 			TYPE_LEITHAN,
 			TYPE_BEE,
+			TYPE_DEER,
+			TYPE_VULPINE,
 			TYPE_SYNTHETIC,
 			TYPE_LAPINARA,
 			TYPE_VANAE,
@@ -1068,6 +1072,7 @@
 		public static const WATERFALL:int								= 29;
 		public static const SPIDER_WEB:int								= 30;
 		public static const LOW_GRAVITY:int								= 31;
+		public static const NURSERY:int									= 32; //used to mark all rooms in tavros nursery
 		
 		// Temp flag alias whilst the asset gets introduced
 		public static const LIFT:int = OBJECTIVE;
@@ -1178,6 +1183,7 @@
 		public static const ITEM_FLAG_PIERCING_CHAINS:int 				= 31; //Piercings of the "chain" type.
 		public static const ITEM_FLAG_NO_REMOVE:int 					= 32; //Worn items that the PC cannot remove by themself.
 		public static const ITEM_FLAG_SMALL_DICK_ONLY:int               = 33; //Cocksock can only be equipped by smol
+		public static const ITEM_FLAG_SHELTER:int						= 34; // For items that regulate environmental effects.
 
 		
 		public static const ITEM_FLAG_NAMES:Array = [
@@ -1215,6 +1221,7 @@
 			"Chained",
 			"Permanent",
 			"Requires Small Cock",
+			"Shelter",
 		];
 		
 		/**

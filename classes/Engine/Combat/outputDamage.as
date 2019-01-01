@@ -12,7 +12,7 @@ package classes.Engine.Combat
 	 */
 	public function outputDamage(damageResult:DamageResult):void
 	{
-		if (damageResult.shieldDamage <= 0 && damageResult.hpDamage <= 0 && damageResult.lustDamage <= 0) return;
+		if (damageResult.shieldDamage == 0 && damageResult.hpDamage == 0 && damageResult.lustDamage == 0) return;
 		
 		var combine:Boolean = kGAMECLASS.gameOptions.combineDamageValueOutput;
 		var colour:Boolean = kGAMECLASS.gameOptions.colourDamageValueOutput;
@@ -22,36 +22,42 @@ package classes.Engine.Combat
 		//var numDisplayed:int = 0;
 		//var numDigits:int = 0;
 		
-		if (damageResult.shieldDamage > 0 || damageResult.hpDamage > 0 || (damageResult.lustDamage > 0 || damageResult.lustResisted == true))
+		if (damageResult.shieldDamage != 0 || damageResult.hpDamage != 0 || (damageResult.lustDamage != 0 || damageResult.lustResisted == true))
 		{
 			if (!combine)
 			{
 				tMsg += "(<b>";
-				if (damageResult.shieldDamage > 0)
+				if (damageResult.shieldDamage != 0)
 				{
 					//numDisplayed++;
 					//numDigits += Math.log(damageResult.shieldDamage) + 1;
 					
-					if (colour) tMsg += "S: -<span class='shield'>" + Math.round(damageResult.shieldDamage) + "</span>";
-					else tMsg += "S: -" + Math.round(damageResult.shieldDamage);
-					if (damageResult.hpDamage > 0 || damageResult.lustDamage > 0) tMsg += ", ";
+					tMsg += "S: " + (damageResult.shieldDamage > 0 ? "-" : "+");
+					if (colour) tMsg += "<span class='shield'>";
+					tMsg += Math.abs(Math.round(damageResult.shieldDamage));
+					if (colour) tMsg += "</span>";
+					if (damageResult.hpDamage != 0 || (damageResult.lustDamage != 0 || damageResult.lustResisted == true)) tMsg += ", ";
 				}
-				if (damageResult.hpDamage > 0)
+				if (damageResult.hpDamage != 0)
 				{
 					//numDisplayed++;
 					//numDigits += Math.log(damageResult.hpDamage) + 1;
 					
-					if (colour) tMsg += "H: -<span class='hp'>" + Math.round(damageResult.hpDamage) + "</span>";
-					else tMsg += "H: -" + Math.round(damageResult.hpDamage);
-					if (damageResult.lustDamage > 0) tMsg += ", ";
+					tMsg += "H: " + (damageResult.hpDamage > 0 ? "-" : "+");
+					if (colour) tMsg += "<span class='hp'>";
+					tMsg += Math.abs(Math.round(damageResult.hpDamage));
+					if (colour) tMsg += "</span>";
+					if (damageResult.lustDamage != 0 || damageResult.lustResisted == true) tMsg += ", ";
 				}
-				if (damageResult.lustDamage > 0 || damageResult.lustResisted == true)
+				if (damageResult.lustDamage != 0 || damageResult.lustResisted == true)
 				{
 					//numDisplayed++;
 					//numDigits += Math.log(damageResult.lustDamage) + 1;
 					
-					if (colour) tMsg += "L: -<span class='lust'>" + Math.round(damageResult.lustDamage) + "</span>";
-					else tMsg += "L: -" + Math.round(damageResult.lustDamage);
+					tMsg += "L: " + (damageResult.lustDamage < 0 ? "-" : "+");
+					if (colour) tMsg += "<span class='lust'>";
+					tMsg += Math.abs(Math.round(damageResult.lustDamage));
+					if (colour) tMsg += "</span>";
 				}
 				tMsg += "</b>)";
 			}

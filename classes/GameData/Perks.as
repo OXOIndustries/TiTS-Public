@@ -548,7 +548,7 @@ package classes.GameData
 			overcharge.classLimit = GLOBAL.CLASS_ENGINEER;
 			overcharge.levelLimit = 3;
 			overcharge.perkName = "Overcharge";
-			overcharge.perkDescription = "Grants the ability to perform a single ranged attack for [altTooltip Overcharge]% normal damage. If the target’s shields have been depleted, the shot may stun the target. Requires an energy weapon.";
+			overcharge.perkDescription = "Grants the ability to perform a single ranged attack for [altTooltip Overcharge]% normal damage. Higher intelligence will increase the chances to stun the target with the shot. Requires an energy weapon.";
 			insertPerkData(overcharge);
 			
 			/*
@@ -741,7 +741,7 @@ package classes.GameData
 			boostedCharges.classLimit = GLOBAL.CLASS_ENGINEER;
 			boostedCharges.levelLimit = 10;
 			boostedCharges.perkName = "Boosted Charges";
-			boostedCharges.perkDescription = "Enhances your gravidic and thermal charges’ damage, and also provides secondary effects. Gravidic charge leaves a lingering field that reduces all kinetic damage dealt for three rounds. Thermal charge has a chance of lighting your foes on fire.";
+			boostedCharges.perkDescription = "Enhances your gravidic and thermal disruptors’ damage, and also provides secondary effects. Gravidic Disruptor leaves a lingering field that reduces all kinetic damage dealt for three rounds. Thermal Disruptor has a chance of lighting your foes on fire.";
 			insertPerkData(boostedCharges);
 
 			//2. Linked Emitters: While your shields are up, you gain a bonus 5% Critical chance with all energy weapons.*/

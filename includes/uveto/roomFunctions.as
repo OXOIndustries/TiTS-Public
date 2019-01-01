@@ -500,7 +500,7 @@ public function tryApplyUvetoColdDamage(timeExposed:Number):Boolean
 			if (damageResult.totalDamage > 0) outputDamage(damageResult);
 			//output("\n\n");
 			
-			generateMapForLocation("GAME OVER");
+			generateMapForLocation("UVETO WILDERNESS");
 			
 			clearMenu();
 			addButton(0, "Next", uvetoFallToColdDamage);
@@ -594,7 +594,8 @@ public function uvetoSearchAbandonedCamp():void
 	
 	lootScreen = uvetoAbandonedCampLootCheck;
 	flags["UVIP_J46_SEARCHED"] = 1;
-	flags["SUPPRESS_COMBAT"] = 1;
+	//Effectively suppress combat for a bit :3
+	flags["TUNDRA_STEP"] = 0;
 	itemCollect([new LeithaCharm()]);
 }
 
