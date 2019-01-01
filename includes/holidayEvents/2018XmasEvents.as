@@ -117,7 +117,7 @@ public function followRiyaPartyStuff():void
 public function riyaGrenceFuckaboo():void
 {
 	clearOutput();
-	showBust("RIYA","GRENCE");
+	showBust("RIYA_NUDE","GRENCE_NUDE");
 	showName("RIYA\n& GRENCE");
 	author("Franks");
 	output("Riya looks... intrigued, and tempted. If you had to guess, you’d say it’s been a while since someone has stepped to her like this, at least in an intimate setting... she’s clearly considering it, but Lorna doesn’t seem to be in a patient mood just this moment. She steadies herself, undoes her belt, and looks at the other officer coolly as she speaks. <i>“On your knees and get over here.”</i>");
