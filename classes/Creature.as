@@ -1372,6 +1372,13 @@
 
 		//balls
 		public var balls: Number = 0;
+		public function hasBalls(minBalls:Number = 0):Boolean
+		{
+			// Minimum number of testicles, like checking for plural (2 or more).
+			if(minBalls > 0) return (balls >= minBalls);
+			// At least one testicle.
+			return (balls > 0);
+		}
 		public function ballsUnlocked(newBalls:Number):Boolean
 		{
 			if (newBalls == 0 && hasStatusEffect("Mimbrane Balls")) return false;
@@ -10302,8 +10309,9 @@
 			//Milk multiplier is over 100... slow gro.
 			if(amount > 0)
 			{
-				if(milkMultiplier < 110) milkMultiplier += (amount/5);
-				else if(milkMultiplier < 125) milkMultiplier += (amount/10);
+				if(milkMultiplier < 110) milkMultiplier += (amount/2);
+				else if(milkMultiplier < 125) milkMultiplier += (amount/5);
+				else milkMultiplier += (amount/10);
 			}
 			//Queue threshold notes!
 			if(originalMultiplier < 30 && milkMultiplier >= 30) createStatusEffect("Pending Gain MilkMultiplier Note: 30");

@@ -1362,7 +1362,7 @@ public function taurTFs(arg:int = 1):void
 	pc.removeVaginas();
 	pc.removeStatusEffect("Genital Slit");
 	pc.removeStatusEffect("Uniball");
-	pc.balls = 0;
+	pc.removeBalls();
 	pc.ballSizeRaw = 3.4;
 	//Tallness boost to 6' if below.
 	if(pc.tallness < 72) pc.tallness = 72;
@@ -1991,7 +1991,7 @@ public function spiderCostumeOutro():void
 	pc.addTongueFlag(GLOBAL.FLAG_LONG);
 	pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
 	//No testes
-	pc.balls = 0;
+	pc.removeBalls();
 	//Set up new spidergina.
 	if(!pc.hasVagina()) pc.createVagina();
 	pc.vaginas[0].type = GLOBAL.TYPE_ARACHNID;
@@ -2220,7 +2220,7 @@ public function saurmorianVaginaBoi():void
 	if(pc.elasticity < 5) pc.elasticity = 5;
 	//remove any additional vaginas, and all cocks}
 	pc.removeCocks();
-	pc.balls = 0;
+	pc.removeBalls();
 
 	processTime(3);
 	clearMenu();

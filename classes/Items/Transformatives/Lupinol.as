@@ -316,7 +316,7 @@
 			}
 			// No genitals, gain canine cock with sheath and balls:
 			if(select == 11) {
-				if(target.createVaginaUnlocked(1))
+				if(target.createCockUnlocked(1))
 				{
 					makeBlack = (rand(4) == 0);
 					
