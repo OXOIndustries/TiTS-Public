@@ -20058,7 +20058,7 @@
 						weightFluid = fluidWeight((cumQ() * 0.5), cumType);
 						if(hasPerk("Potent") && hasPerk("Breed Hungry")) weightFluid *= 0.5;
 						else if(hasPerk("Potent") || hasPerk("Breed Hungry")) weightFluid *= 0.75;
-						if(hasStatusEffect("Nyrea Eggs")) weightFluid += (0.125 * statusEffectv1("Nyrea Eggs"));
+						if(hasOvipositor() && hasStatusEffect("Nyrea Eggs")) weightFluid += (0.0125 * statusEffectv1("Nyrea Eggs"));
 						if(partNum > 0 && partNum <= num) weightFluid = (weightFluid / num);
 						weightTesticle += weightFluid;
 					}
