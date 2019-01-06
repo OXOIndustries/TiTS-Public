@@ -457,6 +457,7 @@ public function maikesOfficeBonus():Boolean
 		if(pc.hasKeyItem("Maike’s Keycard") || pc.hasItemByClass(MaikesKeycard)) addButton(0,"Use Card",useMaikesCard,undefined,"Use Card","You already have the overseer’s access card. Go ahead and use it.");
 		else addDisabledButton(0,"Use Card","Use Card","You’d need the overseer’s card for that!");
 		addButton(1,"Bypass",bypassMaikesRoomieroomHackerman,undefined,"Bypass","Embrace your inner Hackerman.");
+		addButton(14,"Leave",mainGameMenu);
 		return true;
 	}
 	//Hasn't freed slaves:
