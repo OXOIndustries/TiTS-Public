@@ -4030,7 +4030,7 @@ public function initUvetoRoomsII():void
 	rooms["FROSTWYRM LAIR"].moveMinutes = 1;
 	rooms["FROSTWYRM LAIR"].northExit = "";
 	rooms["FROSTWYRM LAIR"].eastExit = "";
-	rooms["FROSTWYRM LAIR"].southExit = "";
+	rooms["FROSTWYRM LAIR"].southExit = "FROSTWYRM LAIR OUTSIDE";
 	rooms["FROSTWYRM LAIR"].westExit = "";
 	rooms["FROSTWYRM LAIR"].outExit = "";
 	rooms["FROSTWYRM LAIR"].outText = "Down";
@@ -4038,6 +4038,23 @@ public function initUvetoRoomsII():void
 	rooms["FROSTWYRM LAIR"].inText = "Up";
 	rooms["FROSTWYRM LAIR"].addFlag(GLOBAL.INDOOR);
 	rooms["FROSTWYRM LAIR"].addFlag(GLOBAL.PRIVATE);
+
+	rooms["FROSTWYRM LAIR OUTSIDE"] = new RoomClass(this);
+	rooms["FROSTWYRM LAIR OUTSIDE"].roomName = "FROSTWYRM\nLAIR";
+	rooms["FROSTWYRM LAIR OUTSIDE"].description = "";
+	rooms["FROSTWYRM LAIR OUTSIDE"].planet = "PLANET: UVETO VII";
+	rooms["FROSTWYRM LAIR OUTSIDE"].system = "SYSTEM: SIRETTA";
+	rooms["FROSTWYRM LAIR OUTSIDE"].moveMinutes = 1;
+	rooms["FROSTWYRM LAIR OUTSIDE"].northExit = "FROSTWYRM LAIR";
+	rooms["FROSTWYRM LAIR OUTSIDE"].eastExit = "";
+	rooms["FROSTWYRM LAIR OUTSIDE"].southExit = "";
+	rooms["FROSTWYRM LAIR OUTSIDE"].westExit = "";
+	rooms["FROSTWYRM LAIR OUTSIDE"].outExit = "";
+	rooms["FROSTWYRM LAIR OUTSIDE"].outText = "Down";
+	rooms["FROSTWYRM LAIR OUTSIDE"].inExit = "";
+	rooms["FROSTWYRM LAIR OUTSIDE"].inText = "Up";
+	rooms["FROSTWYRM LAIR OUTSIDE"].addFlag(GLOBAL.OUTDOOR);
+	rooms["FROSTWYRM LAIR OUTSIDE"].addFlag(GLOBAL.HAZARD);
 
 	rooms["WILLOWS ROOM"] = new RoomClass(this);
 	rooms["WILLOWS ROOM"].roomName = "WILLOW’S\nAPARTMENT";

@@ -547,10 +547,20 @@ public function frostwyrmPickMeUpBaby():void
 	output("\n\nShe rights herself with practiced grace before landing, two sets of feet at a time, coming to a complete stop in front of you. <i>It is good to see you again, my Qal,</i> she says affectionately; she cranes her long neck down to you and nuzzles her nose against your body, her nostrils huffing warm air onto your body.");
 	output("\n\nYou don’t waste much time before asking her to take you back to her lair. <i>Of course,</i> she replies gladly, lowering her body to the ice so that you can climb onto her. <i>I look forward to you warming my lair once more.</i>");
 	
+	// Allow Xmas events once a year
+	var currDate:Date = new Date();
+	var enableXMas:Boolean = false;
+	if (isChristmas()) {
+		if (flags["FROSTWYRM_XMAS"] == undefined || (flags["FROSTWYRM_XMAS"] != undefined && flags["FROSTWYRM_XMAS"] < currDate.fullYear))
+		enableXMas = true;
+	}
+	//debug!
+	enableXMas = true;
+	
 	processTime(5);
 	clearMenu();
 	if (flags["NYKKE_MET"] == undefined && nykkeIsMature()) addButton(0, "Next", nykkeIntro01, undefined);
-	else addButton(0, "Next", frostwyrmHomeAtLast, undefined);
+	else addButton(0, "Next", (enableXMas ? frostwyrmXMas : frostwyrmHomeAtLast), undefined);
 }
 public function frostyReadyToBang():void
 {
@@ -801,28 +811,7 @@ public function frostwyrmHomeAtLast():void
 	else */
 	frostwyrmMainMenu(false);
 }
-/*public function frostwyrmSheHatchedWithoutYou():void
-{
-	clearOutput();
-	frostWyrmHeader();
-	author("B");
-	
-	output("When you familiarize yourself with the lair, you’re greeted by a rambunctious little face that you’ve never seen before. It bears scales with the same designs and colorations as [frostwyrm.name], but it walks on two legs and has four arms, with a skeletal and muscular structure similar to your own. And when you feel a light pressure on the back of your mind, you recognize the method of communication as psionics, but it’s different: untrained and unfocused, but somehow familiar.");
-	output("\n\nIt doesn’t take you long to realize that you’re standing eye-to-eye with your first offspring! Living, breathing proof that Frostwyrms can crossbreed with your species! Your heart skips a beat as you study your child and your child studies you, the two of you familiarizing yourselves with each other and imprinting on one-another as parent and child.");
-	output("\n\n<i>Our kip is healthy and strong,</i> [frostwyrm.name] says as she interrupts your time together, nuzzling your kip first, and then you. <i>She is curious, too; she has taken after me in choosing the female pronouns of your species, and she already has a sense of identity about her.</i>");
-	output("\n\nShe’s too young yet to communicate with you in a way you’d understand; you hear what sound like chimes in your mind that have no beginning or end. [frostwyrm.name] tells you that your daughter is trying, but she doesn’t yet have the same grasp on psionics as her Qim does.");
-	output("\n\n[frostwyrm.name] tells your daughter to give her Qim and Qal their space for a moment, and she relents, bounding off to a corner of the lair. When you and [frostwyrm.name] have your privacy, [frostwyrm.name] regards you for a moment before continuing.");
-	output("\n\n<i>I am in the midst of teaching our kip the ways of my kind: of how to hunt, fly, and communicate as I do. She is already learned and hungers yet for greater knowledge; the knowledge of her Qal and her [pc.race] heritage.</i> You respond that you’d love to teach her more about her Qal’s side of the family tree.");
-	output("\n\n<i>And yet, there is a matter we must discuss, my Qal,</i> [frostwyrm.name] cautions. You tell her that she has your undivided attention. <i>My kind celebrates an act called ‘inner circle coupling’ between a kip and its Qim and Qal. As I communicated to you earlier about our kips’ successful hatching, I studied your mind for definitions on [pc.race] sexual health, and I discovered that your kind and culture involve something similar, but consider it to be a shameful, taboo act.</i>");
-	output("\n\nYou widen your eyes in response. The Frostwyrms commit incest on the regular? <i>You phrase it as though it were a terrible atrocity. My kind do not consider it as such.</i> She arcs her neck lower towards you, levelling her four red eyes with yours. <i>However, I cannot ask you to abandon your culture’s preconceptions in my lair. If you would not like to participate in inner circle coupling with our kips, your clutch will respect your decision.</i>");
-	output("\n\n[frostwyrm.name] is asking you if you’re okay with having sex with your own offspring. Are you?");
-	
-	processTime(5);
-	clearMenu();
-	addButton(0, "Yes", frostwyrmYeahImCoolWithIt, undefined);
-	addButton(1, "No", frostwyrmNahIllPassThanks, undefined);
-}
-*/
+
 public function frostwyrmMainMenu(bOutput:Boolean = true):void
 {
 	if(bOutput)
@@ -2535,10 +2524,7 @@ public function frostwyrmBunchaKiddoContent():void
 	clearMenu();
 	addButton(0, "Appearance", frostwyrmlingAppearance, undefined);
 	addButton(1, "Talk", frostwyrmlingTalkMenu, undefined);
-	//if (flags["FROSTWYRM_INCEST_OPTION"] != 1) addDisabledButton(2, "Sex", "Sex", "You’ve opted out of participating in ‘inner circle coupling’ with your kips. If you’d like to change your mind, be sure to Talk with your daughter about it.");
-	//else if (flags["FROSTWYRM_KIP_COUNT"] < 3) addDisabledButton(2, "Sex", "Sex", "If you’re going to be teaching your daughters about proper mating, it’d be better to have more daughters than you do now.");
-	//else addButton(2, "Sex", frostwyrmlingSexMenu, undefined, "Sex", "Indulge in the common Frostwyrm practice of ‘inner circle coupling.’");
-	
+
 	addButton(14, "Qim", frostwyrmMainMenu, undefined);
 }
 
@@ -2784,27 +2770,431 @@ public function frostwyrmItsMineAllMine3():void
 	}
 	else output(", swelling the ranks of your draconian family all the while . Your ranks are too innumerable to count, and you have no eye on your family from your throne on Irestead - whether your kips have found mates of their own and begun their own lineages, who’s to say, but if they have, you have no doubt that by now, your Frostwyrmling hybrids are among the most populated species on Uveto, if they aren’t already the most populated.");
 	output("\n\nOnce you had taken complete control of Uveto and the Frostwyrm population began to boom (albeit through hybrids), you quickly found other, surviving individual purebred Frostwyrms – you had found more of [frostwyrm.name]’s kind. [frostwyrm.name] was overjoyed, of course, but she showed no interest in any of her kind, sexually or emotionally. How could she? She had the greatest Qal in history as a mate, and her every emotional and sexual need was fulfilled by her loyal clutch. She was devoted to you and to the clutch, body and soul, until the end of time.");
-	output("\n\nToday, you’re sitting on your favorite chair");
-	if (flags["FROSTWYRM_INCEST_OPTION"] == 1){
-		output("– your eldest daughter’s lap, her thick Frostwyrmling cock repeatedly and eagerly plowing into your welcoming [pc.ass], her knot bulging against your cheeks, demanding entry into your body to properly seed your bowels for the thousandth-or-more time. Between your legs is your eldest granddaughter – the first, living proof of successful inner circle coupling – lovingly tending to your ");
-		if (pc.hasCock()) output("[pc.cock], slurping your length between her young lips and lathering your rod with her thick, draconian tongue");
-		if (pc.isHerm()) output(". Underneath her is one of your original kips, lapping at your ");
-		if (pc.hasVagina()) output("[pc.vagina], twisting her fat tongue and drilling it deeply into your wet tunnel, eager for every drop of your feminine arousal for herself");
-		output(". Y");
-		if (pc.hasVagina()) output("our belly is rotund with the obvious signs of a month-long pregnancy, which, with the Frostwyrms, means you’ll be expecting in another three");
-		if (pc.isHerm()) output(". And, as further proof to your seemingly endless virility, y");
-		if (pc.hasCock()) output("our eldest daughter’s full belly bulges against you with every bounce, proof of your historic achievement with her. Perhaps, one day, you’ll achieve another milestone with your granddaughter");
-		output(".");
-	}
-	else output(": what was once the Irestead lead director’s chair, which was surprisingly regal and fancy for who everyone was assumed was a mere scientist. You had relocated it to the lower floor of the station, so that you could be closer to [frostwyrm.name] and your numerous, doting daughters at all times. You had the station remodeled slightly to allow for [frostwyrm.name] to comfortably enter and leave the lowest floor, and since then, you’ve rarely left Irestead for anything - save for when you, as Qal of the clutch, want to spend some quality, personal time with your Qim.");
-	output("\n\nOne of your kips approaches you, holding out a hologram of the latest in the universe’s news and happenings. It’s important that your kingdom maintains connections to the outside universe - in fact, you’re scheduled to leave for New Texas in a few days to discuss a possible embassy exchange. ");
-	if (flags["FROSTWYRM_INCEST_OPTION"] == 1) output("You casually take the hologram while your eldest daughter grunts, and with a push, her massive cock slips into you, tying you completely to her.");
+	output("\n\nToday, you’re sitting on your favorite chair: what was once the Irestead lead director’s chair, which was surprisingly regal and fancy for who everyone was assumed was a mere scientist. You had relocated it to the lower floor of the station, so that you could be closer to [frostwyrm.name] and your numerous, doting daughters at all times. You had the station remodeled slightly to allow for [frostwyrm.name] to comfortably enter and leave the lowest floor, and since then, you’ve rarely left Irestead for anything - save for when you, as Qal of the clutch, want to spend some quality, personal time with your Qim.");
+	output("\n\nOne of your kips approaches you, holding out a hologram of the latest in the universe’s news and happenings. It’s important that your kingdom maintains connections to the outside universe1in fact, you’re scheduled to leave for New Texas in a few days to discuss a possible embassy exchange. ");
 	output("\n\nThe first thing you flip to is an email you had received from your cousin. Since " + rival.mf ("Jack","Jill") + " had assumed position as CEO of Steele Tech, the company’s slowly begun to tank, and at the rate " + rival.mf ("he","she") + "’s going, " + rival.mf ("he","she") + "’s worried that the company will only last another year or two. Word had reached " + rival.mf ("him","her") + " that you had established a... rather successful government on Uveto, and " + rival.mf ("he","she") + " was wondering if you two could work something out.");
 	output("\n\nYou aren’t a cruel cousin; perhaps you’ll answer " + rival.mf ("him","her") + " and invite " + rival.mf ("him","her") + " to join you on Uveto as your left-hand " + rival.mf ("","wo") + "man - or, perhaps, as a member of the clutch, and all the privileges and amenities that includes.");
-	if (flags["FROSTWYRM_INCEST_OPTION"] == 1) output("\n\nAs your Frostwyrmling daughter’s cum fills your body, her rock-hard cock unloading into you again and again, seeding the ass of the Grand Qal of Uveto and making your [pc.belly] bloat with her load... y");
-	else output("\n\nThat said, you’ve got a good thing going on here in Uveto, with your loving, draconic mate at your side and surrounded at all times by your hybrid offspring, as the new Grand Qal of Uveto. Y");
-	output("ou couldn’t honestly care less about the company. You’ve created a new legacy for your offspring to follow.");
+	output("\n\nThat said, you’ve got a good thing going on here in Uveto, with your loving, draconic mate at your side and surrounded at all times by your hybrid offspring, as the new Grand Qal of Uveto. You couldn’t honestly care less about the company. You’ve created a new legacy for your offspring to follow.");
 	
 	badEnd("THE END");
 }
 
+//Frosty Xmas Xpak
+public function frostwyrmXMas():void
+{
+	clearOutput();
+	frostWyrmHeader();
+	author("B");
+
+	output("You enter [frostwyrm.name]’s lair once more. Used to her unspoken instruction, you begin to strip naked; it’s her lair, and she demands that her Qal be as she is when in her territory at all times. You’ve gotten into the habit of checking your Codex one last time, to see for any last-minute messages or anything, before putting it down and joining your Qim");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
+		output(" and your child");
+		if (flags["FROSTWYRM_KIP_COUNT"] > 1) output("ren");
+	}
+	output(" deeper inside.");
+	output("\n\nYour eyes gloss over the solar date – it’s nearly the winter solstice back on Terra. Which means... it’s time for the holidays! You glance at [frostwyrm.name] as she circles her raised platform of ice, and you hesitate. You’d like to introduce the concept to your mate");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
+		output(" and your kip");
+		if (flags["FROSTWYRM_KIP_COUNT"] > 1) output("s");
+	}
+	output(", but you’re not quite certain how to go about it. You doubt Frostwyrms have a similar annual tradition. You doubt Frostwyrms have an ‘annual’ anything.");
+	output("\n\n<i>Come to me, my Qal,</i> [frostwyrm.name] implores you, and you’re compelled to respond. You put down your Codex and make your way to ");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) output("your oldest daughter; she takes her hand in yours and walks you to ");
+	output("[frostwyrm.name], and you nestle yourself in between her front two legs, against her beating heart.");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) output(" Your oldest daughter crawls in with you, snuggling herself nice and cozy against both her parents, her six limbs wrapping gently around your body.");
+	output("\n\nA low rumbling emanates from her chest, where you’re pressed against, as she enjoys the contentment of being with her Qal in her lair. <i>What troubles you?</i> she asks, shuffling her legs a bit to nudge you closer to her. <i>Speak your mind to me. As ever, your mate is here for you.</i>");
+	output("\n\nAt her insistence, you say that it isn’t anything upsetting or concerning. <i>I am relieved to hear that,</i> she says, in an expectant, yet loving, tone – the sort of tone that sounds like she’s enamored with the sound of your voice and just wants to hear more.");
+	output("\n\nYou tell her that, at around this time of the Sky Cycle, your kind has a tradition that you all celebrate. What you call it and how you celebrate it are different depending on the individual and their culture, but they all have similar themes: it’s a time that emphasizes togetherness; joy and merriment; and family. It’s a time when families get together and enjoy each other’s company.");
+	output("\n\n<i>Is that not what we do all Sky Cycle?</i> she asks, and you respond that it is – but what you two share is, in a word, atypical of your kind. Families in your species don’t always stay together until their parents pass away, and everyone in a ‘clutch’ makes a conscious effort to gather together during this time of the Sky Cycle.");
+	output("\n\nYou ask [frostwyrm.name] ");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
+		output("and your daughter");
+		if (flags["FROSTWYRM_KIP_COUNT"] > 1) output("s, all huddled around you two");
+	}
+	output(" if "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "they" : "she") +" would like to try being a part of a [pc.race] tradition. This sort of event only comes across once every Sky Cycle for your kind, and it’s a very significant part of your culture – it would mean a lot to you if "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "they" : "she") +" said yes.");
+	output("\n\nYou hoped that "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "they" : "she") +" would say yes, of course, but the response your "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "clutch" : "mate") +" gave you was a little more enthusiastic than you had expected. <i>You have been a wonderful Qal and an ideal mate to me, [pc.name],</i> [frostwyrm.name] says warmly as her long neck cranes towards you, her huge face nuzzling lovingly against your body. <i>It would be my privilege to participate in your culture.</i> ");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined)
+	{
+		output(" Like ");
+		if (flags["FROSTWYRM_KIP_COUNT"] > 1) output("their Qim, each of your daughters are");
+		else output("her Qim, your daughter is");
+		output(" overjoyed and excited at the idea of being a part of your traditions; you’ve taught " + (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "them" : "her") + " so much about them, and this is the first time that " + (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "they" : "she") + " can really be a part of the experience.");
+		if (flags["FROSTWYRM_KIP_COUNT"] > 1) output(" They crowd and huddle around you and [frostwyrm.name], eager to learn how to be a part of your life.");
+	}
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) output("\n\nYour clutch is ready, as ever, our Qal,</i> [frostwyrm.name] says. You feel the eager, excited eyes of your clutch on you, ready for your first instruction.");
+	else output("\n\n<i>Your mate is ready, as ever, my Qal,</i> [frostwyrm.name] says, her ruby-red eyes on yours.");
+	output(" <i>What would you have us do?</i>");	
+
+	moveTo("FROSTWYRM LAIR", true);
+	removeUvetoCold();
+	processTime(60);
+	var currDate:Date = new Date();
+	flags["FROSTWYRM_XMAS"] = currDate.fullYear;
+	flags["FROSTWYRM_XMAS_EVENTS"] = 0;
+	clearMenu();
+	addButton(0,"Snowmen!",frostwyrmXMasSnowmen,undefined,"Snowmen!","There’s nothing quite like the company of a snowman made with someone you love!");
+	addButton(1,"SnowAngels!",frostwyrmXMasSnowAngels,undefined,"SnowAngels!","The lair’s already got an angel in it, but maybe she’d enjoy making some more in the snow.");
+	addButton(2,"GiftGiving!",frostwyrmXMasGiftGiving,undefined,"GiftGiving!","[frostwyrm.name] has already given you the greatest gift of them all – but maybe she’ll get creative.");
+	addButton(3,"Caroling!",frostwyrmXMasCaroling,undefined,"Caroling!","Song is one of the languages of the universe. You’re sure [frostwyrm.name] has a wonderful singing voice!");
+	addDisabledButton(4,"Decorate!","Decorate!","You should leave this for later!");
+}
+public function frostwyrmXMasLeaveCave():void
+{
+	if (currentLocation == "FROSTWYRM LAIR") {
+		output("You and your " + (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "clutch" : "mate") +" make your way out of the lair (after you put your effects back on first, of course) and onto the surface of the little island that houses it. ");
+		moveTo("FROSTWYRM LAIR OUTSIDE");
+	}
+}
+public function frostwyrmXMasDecorateButton():void
+{
+
+	IncrementFlag("FROSTWYRM_XMAS_EVENTS");
+	if (flags["FROSTWYRM_XMAS_EVENTS"] >= 4) {
+		output("\n\nNow that she mentions it, you’ve gone through the whole list. There’s really only one thing left to do.");
+		addButton(4,"Decorate!",frostwyrmXMasDecorate,undefined,"Decorate!","It wouldn’t be the holidays without spending time to gussy up the place with a bunch of tacky colors!  You may not have a tree or a menorah on hand, but you <i>do</i> have something in mind....");
+	}
+}
+public function frostwyrmXMasSnowmen():void
+{
+	clearOutput();
+	frostWyrmHeader();
+	author("B");
+
+	output("There’s one thing you and your kind liked to do during times like these. Here on Uveto, snow and ice is everywhere and it’s something that everyone, including its natives like the Frostwyrms, take for granted; but where you come from, snow is something that only happens during very specific times of the Sky Cycle. You and your kind have learned to make the most out of the little window you’re given to do fun stuff with it.");
+	output("\n\n");
+	frostwyrmXMasLeaveCave();
+	output("The surface is covered in snow that go a little ways up your [pc.legs] – there’s easily enough snow here to make a snowman. You bring your hands to the snow and start packing a bit of it into a ball, talking through your actions to your mate");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
+		output(" and your daughter");
+		if (flags["FROSTWYRM_KIP_COUNT"] > 1) output("s");
+	}
+	output(", who "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "watch" : "watches") +" you intently, hanging on your every word so "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "they" : "she") +" can mimic you when you’re done.");
+	output("\n\nFirst, you start with a little ball of snow; big enough that you can hold in your hands. Then, when you’ve got a snowball in your hand, you roll it along the ground, so that it collects more snow and it gets larger. You demonstrate, and before your "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "clutch" : "mate") +"’s eyes, the little ball of snow you had started with does indeed grow larger and larger the more it rolls around.");
+	output("\n\n<i>I had no idea the Wet Dust could do this,</i> [frostwyrm.name] admits, her nose practically pressed against the snowball as it grows larger and larger. <i>My kind had never interacted with it this way.</i> Inspired, she lays flat on her belly, her front two forelegs extended as she tries to cobble together enough snow to get started.");
+	output("\n\nShe has a bit of trouble with it; the claws on her forelegs aren’t nearly flexible enough to meld the snow in the way she wants. With broad strokes, she can bring together high mounds of snow, but she can’t pack it together in order to get her snowman started. She grunts in frustration");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
+		output(", especially as she jealously eyes the large snowballs her kip");
+		if (flags["FROSTWYRM_KIP_COUNT"] > 1) output("s");
+		output(" had made before her");
+	}
+	output(", until you");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
+		output("and your daughter");
+		if (flags["FROSTWYRM_KIP_COUNT"] > 1) output("s");
+	}
+	output(" pack a snowball tight enough for her to get started.");
+	output("\n\n[frostwyrm.name] ");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
+		output("and your daughter");
+		if (flags["FROSTWYRM_KIP_COUNT"] > 1) output("s");
+	}
+	output(" roll the snow around in delight – this alone is enough to keep "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "them" : "her") +" entertained");
+	if (flags["FROSTWYRM_KIP_COUNT"] > 1) output(", and your daughters quickly get themselves carried away, getting into a competition over who can make the larger snowball");
+	output(". After "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "their" : "her") +" first snowball is large enough, you tell "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "them" : "her") +" that you need to make two more, and, ideally, you want to build them to be just a little smaller than the ball before it.");
+	output("\n\nAs before, you help [frostwyrm.name] with her next two snowballs before you get started, and before long, you each have three snowballs to your name. The next part is a little trickier: you need to stack them, one on top of the other, going from largest to smallest, from the bottom-up.");
+	if (silly) output("\n\nYou struggle a little bit to lift your snowballs – you might have made them a little heavier than you thought – but you manage");
+	else output("\n\nIt’s a pretty simple task for you");
+	output(", and you now have a little snowy statuette to work with. ");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
+		if (flags["FROSTWYRM_KIP_COUNT"] > 1) output("Your daughters have accomplished their task as well, and they step back, comparing their work to yours to make sure they have it right. ");
+		else output("Your daughter has accomplished her task as well, and she steps back, comparing her work to yours to make sure she has it right. ");
+	}
+	output("[frostwyrm.name]’s snowballs, though, are... to scale. They’re <i>way</i> too massive for you to lift.");
+	output("\n\n<i>Give me a moment,</i> [frostwyrm.name] says determinedly, her eyes narrowing as she scrutinizes the puzzle she had made for herself. She opens her massive jaw and considers biting into them, but reconsiders; she wraps her long neck around one to try and lift that way, but she couldn’t get halfway around the ball.");
+	output("\n\nAfter a moment, she turns to one side and jams the tip of her wing underneath one heavy orb; with a grunt and a flex of her powerful wing, she manages to lift it up, where it then rolls onto her back, until she gets into position and rolls it back off. The third ball is much harder, since her snowman is so tall, but, with determination and no grace, she manages to make herself a bonafide, if absolutely massive, snowman.");
+	output("\n\nYou "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "and your clutch all " : "") +"congratulate [frostwyrm.name] for her effort – it looks amazing! [frostwyrm.name] steps back, eyeing her own work appreciatively: her snowballs are a bit misshapen and crooked, but, from the way her body shuffles protectively around it, she’s quite proud of her work. <i>Indeed, that was exhilarating! I have created a Snowing Man!</i> she says joyfully.");
+	output("\n\nBut that’s not all. Here’s the best part: you get to decorate the snowman. You start digging into the snow, looking for the rocky surface of Uveto, and you find it: the island is covered in smooth, black pebbles, frozen together in clumps of three and four, underneath the ice. You break them apart and put two on the topmost snowball – now he has eyes!");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
+		output("\n\nInspired, your "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "daughters follow" : "daughter follows") +" suit, digging into the snow with instinctual finesse until "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "they hit" : "she hits") +" the rocky bottom you sought. "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "They come" : "She comes") +" back up with half a dozen rocks in each hand, and "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "they get" : "she gets") +" to work. ")
+		if (flags["FROSTWYRM_KIP_COUNT"] > 1) {
+			output("Your daughters have varying ideas when it comes to making snowmen, and they’re careful to try and not mimic each other, since their snowman is personal to them. One daughter gives her snowman a great, big, rocky grin; another leaves the front undressed but decorates the backside in patterns");
+			if (flags["FROSTWYRM_KIP_COUNT"] >= 10) {
+				output("; one of your lascivious daughters impishly makes two, slightly-smaller snowballs and promptly shoves them onto the middle one, giving her snow‘man’ a rather impressive set of knockers");
+				if (silly) output(", complete with innie nipples with some further crafting");
+			}
+			if (flags["FROSTWYRM_KIP_COUNT"] >= 20) output("; one of your daughters, apparently exceptionally skilled, begins sloughing away snow in wide swaths and reapplying it very specifically, giving it detailed musculature and facial features");
+			output(". They begin sharing ideas and adding or changing them just slightly – and they each have the widest of smiles, loving the bonding time they’re sharing with each other.");
+		}
+		else output("She starts with doing exactly as you had done by putting two rocks where the eyes would be. Then, she puts in several more, in a line going straight down the middle snowball. Then, out of ideas, she drills small holes into the snowman’s body with her claws, digging the stones in deep so that only the tips remain – she gave her snowman scales, like her own body !");
+	}
+	output("\n\n[frostwyrm.name] concentrates on her snowman, unsure of how to go about personalizing it. She twists her head from side to side, trying to imagine how it would look with any number of changes or accessories. Then, suddenly, she’s struck with inspiration, and disappears into the lair for a moment.");
+	output("\n\nWhen she returns, she has two large icicles, pulled from the roof of her lair, in her mouth. She drops one, then carefully aligns the sharp end of the other against the side of her middle snowball, tilted upwards, and drives it in. Satisfied that it’ll remain in place, she picks up the other and does the same thing on the other side.");
+	output("\n\n<i>My Snowing Man has been completed,</i> [frostwyrm.name] announces proudly, stepping back and sitting on her haunches to appreciate her work. You take your position beside her to properly enjoy it: massive, craggy, misshapen and crooked, and aside from the icicle arms, it’s completely bare. You tell her that it’s absolutely beautiful.");
+	output("\n\nYou feel her probe your mind, likely for the definition of the word ‘beautiful.’ <i>I should hope so, my mate,</i> she says, craning her neck down to nuzzle you. <i>It is modeled after you.</i> You look at her towering behemoth of a snowman again. Frostwyrms don’t have arms.");
+	output("\n\nYou wrap one arm around her scaly leg, holding yourself close to her, as you both bask in the glow of a completed creative project; one that you "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "and your clutch " : "") +"completed together. With the constant subzero temperatures of Uveto, your snowmen will survive for as long as the weather is decent. You wonder if you should give your own snowman some wings or something, to return the notion.");
+	output("\n\n<i>What other activities does your kind’s tradition include, my Qal?</i> [frostwyrm.name] asks.");
+
+	addDisabledButton(0, "Snowmen!", "Snowmen!", "You already did this.");
+	frostwyrmXMasDecorateButton();
+}
+public function frostwyrmXMasSnowAngels():void
+{
+	clearOutput();
+	frostWyrmHeader();
+	author("B");
+
+	output("You look up at [frostwyrm.name] as the idea of snow angels crosses your mind. You have no doubt that she’d love to give it a try, if for no other reason than to be a part of your life, but you just can’t wrap your head around how it could possibly look in the snow. There is, of course, only one way to know for sure.");
+	output("\n\n");
+	frostwyrmXMasLeaveCave();
+	output("The snow is so deep that moving your arms and [pc.legs] to push enough snow out of the way to make an angel sounds like it’d be a little trying, but that’ll only make the finished product all the better to see. You tell [frostwyrm.name]");
+		if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
+		output(" and your daughter");
+		if (flags["FROSTWYRM_KIP_COUNT"] > 1) output("s");
+	}
+	output(" to watch you and do as you do.");
+	output("\n\nWith their eyes on you, you spread your arms and fall backward, your body making a thick ‘floomf’ noise as you immediately sink into the snow. It’s as cold as you expected it to be, so you don’t waste any time and start flapping your arms and "+ (pc.isNaga() ? "thrashing your [pc.legs] rhythmically to mimic the motion and" : "[pc.legs]") +" to push all the snow to either side.");
+	output("\n\nIt’s really that simple! When you’re done and you’ve cleared away the snow with your limbs until you’re swiping at nothing, you stand back up to admire your work. [frostwyrm.name]");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
+		output(" and your daughter");
+		if (flags["FROSTWYRM_KIP_COUNT"] > 1) output("s");
+	}
+	output(" gather"+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "" : "s") +" around curiously, wondering just what you’ve done, and you explain that, in cultures like yours, the silhouette that you’ve made in the snow is reminiscent of what you call an ‘angel.’");
+	output("\n\n<i>What is that?</i> asks [frostwyrm.name], and you tell her that, well, to make a long story short, an ‘angel’ is someone that represents goodness in the world. They’re generally depicted with wings and they usually wear a long, thin fabric called a ‘robe’ that covers them from the neck down. The divots that you made with your arms look like large, billowy wings"+ (pc.hasWings() ? " (no matter how true to life they might not be)" : "") +", and the kicking with your [pc.legs] made it look like it’s wearing a robe that covers it down to the ankles.");
+	output("\n\n");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) output("Your "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "daughters see" : "daughter sees") +" the resemblance with some scrutiny; "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "they" : "she") +" can’t quite picture what a ‘robe’ looks like, but "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "they understand" : "she understands") +" the wings well enough. ");
+	output("[frostwyrm.name], try as she might, just can’t wrap her head around how the silhouette is supposed to look: the creature you’ve drawn in the snow has no ‘arms’ or even legs, and it has no weight or body to it. Her imagination draws nothing as she tries again and again to see it, from different angles. You offer to make another one. <i>More examples would not assist me, though I appreciate the offer, my Qal,</i> she says, her eyes narrowing on the pit in the snow. <i>I will deduce this with what you’ve provided me now.</i>");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
+		if (flags["FROSTWYRM_KIP_COUNT"] == 1) output("\n\nYour daughter, meanwhile, has already taken to making herself a small cadre of snow angels: as soon as she’s wrapped her head around the concept, she finds a blank spot in the snow, spreads her arms and wings, and falls backward with a giggle, the snow billowing up and around her when she flops into it. Where she puts her next angel is usually pretty random – with the exception of three in particular, aligned in such a way that their wings overlap just slightly.");
+		else output("\n\nYour daughters are quick to follow up on your example once they understand it, and they race each other to see who can make the most angels in the snow as they can. They begin to skimp on the robe and the wings in order to make more of them faster than their " + (flags["FROSTWYRM_KIP_COUNT"] > 2 ? "siblings" : "sibling") +", until they’re doing little more than just flopping into the snow and making Frostwyrmling-shaped pits. For what it’s worth, they’re laughing and enjoying the activity with each other; so, you decide, who are you to say what makes a proper angel? As far as you care, you’re surrounded by them right now.");
+	}
+	output("\n\nThe moments tick by as [frostwyrm.name] scrutinizes your angel. You’re on the verge of telling her that you can do something else – you’re worried that the snow angel might be souring her mood – when, suddenly, she looks up and scours the island for an untainted bit of snow, large enough for her. When she finds one, she turns to one side, folds her wings against her body, and tips over, rolling across the snow until she’s on her back.");
+	output("\n\nHer motions are similar to a... well, to a giant lizard that’s fallen onto its back. [frostwyrm.name] writhes her spine back and forth, twisting her body and flapping her wings in her attempt to mimic your actions earlier. The snow crunches underneath her weight, and the air vibrates every time her bodily thrusting lifts her off the ground. You stay clear of her; her wings and her thrashing tail are larger than she might realize.");
+	output("\n\nThe snow sticks to her body in clumps as she moves. To her credit, she’s moving consistently: her movements aren’t random or chaotic, as hard as it might be to believe at first glance. Her wings slice evenly into the thin snow and her legs make consistent swinging motions in front of her, rounding out whatever silhouette she’s making. ");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) output("Your "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "daughters take their" : "daughter takes her") +" place beside you, well clear of "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "their" : "her") +" Qim, just as curious as to what she’s doing.");
+	output("\n\nAfter an exciting few moments, [frostwyrm.name] stops and rolls back onto her legs, stepping away from her newly-christened snow angel. She lifts her long neck to get a better view of her creation, and when she does, she begins making the contented, rumbling, throaty purr that she did before. <i>My Snowing Angel had come out better than I had imagined,</i> she says to you "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "and her clutch " : "") +"proudly.");
+	output("\n\nIt’s difficult to make out any particular shape in the snow from your angle – it just looks like a giant, flattened bit of snow (not that you’d ever say that to her). Still, from what you can tell, some parts of her angel appear rather specific, particularly around the wings and tail.");
+	output("\n\n<i>‘Angels’ represent what is good in our world, correct?</i> [frostwyrm.name] asks you, and you confirm. <i>My kind do not have ‘angels,’ but we</i> do <i>have the Grand Qim.</i> [frostwyrm.name] makes a wide circle around her creation, until she gets to the wings. <i>These are the Grand Qim’s wide, spectacular wings; large enough, as the stories go, to blot out the Orb and protect the kips from a raging storm.</i>");
+	output("\n\nShe rounds around to the front, where her head was. <i>The Grand Qim’s breath was warm enough to bring an end to the Evercold and foster forth the next generation.</i> She continues on, towards the tail. <i>The Grand Qim’s tail, so say the stories, was large enough to wrap around the world; with a beat of the wings, the Grand Qim could carry the lair, and the world, anywhere.</i>");
+	output("\n\nYou ask if that’s what the Grand Qim is doing right now; the head, wings, and tail are detailed enough, but the center of the silhouette is a giant, flat picture. <i>Either that, or the Grand Qim is... particularly fertile and will lay an excessive clutch,</i> [frostwyrm.name] says, her lungs heaving in a crude mimicry of laughter. <i>I would not disbelieve either theory.</i>");
+	output("\n\nYou take your position beside [frostwyrm.name], admiring her work in the snow. From the way she was moving about earlier, you hadn’t expected that she had such an artistic interpretation in mind for something as simple as a snow angel.");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
+		output(" Your "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "daughters all admire" : "daughter admires") +" the picture as well, standing clear of the snow angel to take in its imagery without disturbing the effort "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "their" : "her") +" Qim had put into creating it.");
+		if (flags["FROSTWYRM_KIP_COUNT"] > 1) output(" They chat amongst themselves, admiring some of the finer details and how learned their Qim is about the legends and stories of their kind; you even catch one of them saying how envious they were of [frostwyrm.name]’s artistic skill.");
+	}
+	output("\n\n<i>What other activities does your kind’s tradition include, my Qal?</i> [frostwyrm.name] asks.");
+
+	addDisabledButton(1, "SnowAngels!", "SnowAngels!", "You already did this.");
+	frostwyrmXMasDecorateButton();
+}
+public function frostwyrmXMasGiftGiving():void
+{
+	clearOutput();
+	frostWyrmHeader();
+	author("B");
+
+	output("One of the ways your kind celebrates togetherness and bonds between friends and family is through gifts. Usually something material, although what’s most important is the thought that goes into the gift, and that could be anything at all. Something that tells the recipient that they’re on the giver’s mind and that they’ve put some thought into their wants and needs.");
+	output("\n\n");
+	frostwyrmXMasLeaveCave();
+	output("Immediately, though, you’re at a loss as to what you give to [frostwyrm.name] – she’s a Frostwyrm. You can think of a few wants and needs that she has, but ");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) output("you’ve already given her what she wants. Sure, you two could ‘make’ some more, and you’ll have a ton of fun doing it, but you think ‘more kips’ would be a lazy, uninitiated gift to give her");
+	else output("you’re working on one of them right now, and it’s not something that’s going to be ‘done’ in time for the holidays");
+	output(". What sort of gifts would Frostwyrms appreciate, and can you even make one from this island? Food, baths, and sex are the obvious choices....");
+	output("\n\nWhile you mull the decision over, you fill [frostwyrm.name] on the tradition of gift-giving between individuals during these times, and you explain what usually goes into the thought process of getting a gift for another. <i>This is a simple matter, my mate,</i> she says unsubtly. <i>The greatest gift you could give your Qim is additional kips to further our lineage.</i> You answer that, yes, that was one of the first thoughts you had, but procreation is something that you two do regardless of the time of year. This is an opportunity for you both to show your appreciation in a way you otherwise wouldn’t.");
+	output("\n\n[frostwyrm.name] bends her head downward contemplatively. <i>Perhaps you are right. Every moment together with you is itself a gift, my Qal, yet I fear that our moments would lose their luster as they become routine.</i> Her four red eyes lock onto yours attentively. <i>What would you desire of your Qim in this occasion, my Qal?</i>");
+	output("\n\nTelling her what you want would ruin the surprise, though – and the message. The point of the gift is that you’re supposed to be paying enough attention to the recipient that they don’t <i>need</i> to tell you what they want, and that you should just <i>know.</i> For that reason, you aren’t going to ask her what she wants, either.");
+	output("\n\nHer breath comes out as a low, thoughtful growl. <i>This may prove difficult,</i> she says. That’s the spirit!");
+	output("\n\nYou ask [frostwyrm.name] if she wouldn’t mind giving you a lift to Irestead, along the coast where you two usually meet. It’s a long flight, but the time will give you both the opportunity to think on what it is you can get each other. She agrees, and in a moment, you and [frostwyrm.name] take to the sky");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
+		if (flags["FROSTWYRM_KIP_COUNT"] == 1) output(", your daughter flying alongside you both");
+		else {
+			output("your daughters taking their place on either side of their Qim in the air");
+			if (flags["FROSTWYRM_KIP_COUNT"] > 5) output(", flying in a tight V behind her");
+		}
+	}
+	output(", on your way to Irestead.");
+	output("\n\nYou promised to call out to her within, uh... well before Light’s Fall, whether or not your trip is successful. When you hit the mainland, you go your separate ways. The flight lasted an hour, and you still don’t have the first idea what to get her. But, you’ll have an easier time thinking about it when you’re in your own element, or so you tell yourself.");
+	output("\n\nThere aren’t a lot of material goods or stores to buy things from in Irestead. It’s a weather station that doubles as a landing point for interplanetary visitors; there are weather-measuring instruments and lots of alcohol, but nothing a Frostwyrm would be interested in. Although, to be fair to yourself, you’re sure [frostwyrm.name]’s never had any alcohol – you don’t know if she wouldn’t like it. And you’re sure an inebriated Frostwyrm would be a sight to see.");
+	output("\n\nThat said, Irestead is much more festive than you had expected, coming into it. The local scientists and explorers are taking whatever time they can off their busy schedules to celebrate their own holidays, including putting up decorations. You even catch a whiff of some baked goods coming from their mess hall. It’s as good a place to start, you figure.");
+	output("\n\nYou’re greeted with the sight of enough baked cookies and cakes to give everyone on the station at least one of each. You ask the baker, a stout and jolly man, if he could spare enough to feed a Frostwyrm" + (flags["FROSTWYRM_KIP_COUNT"] != undefined ? " and its family" : "" ) +", you were given a fairly curt ‘no’ – the dough is used in too many different pastries to possibly spare that many. But, you’re instead given three large packs of frosting: red, green, and white. There aren’t nearly enough uses for them and they’re going to go bad well before the holidays are over, so you’re welcome to them. It’s, uh, a start, you suppose.");
+	output("\n\nYou wander Irestead aimlessly, wracking your mind for something that [frostwyrm.name] would enjoy, and you doubt three big packs of food flavoring is really going to cut it. You glance out the windows to the frozen expanse of Uveto and try to think of something she, as a Frostwyrm, might appreciate, but every time you think of something, you just remind yourself that there’s nothing out there that she can’t just get herself.");
+	output("\n\nAs time grows short, you start exploring the more practical shops of Uveto, and you happen to come across a thermal jacket, on the rack for a modest price. It’s lined with fur and it doesn’t look thick enough to provide a lot of protection in the coldest of colds, but it would nonetheless provide <i>something</i>. [frostwyrm.name] doesn’t have any fur at all and she’s out there, bearing Uveto’s climate with just her scales. Maybe she’d appreciate something a little warm?");
+	output("\n\nThe jacket was on a holiday sale" + (pc.credits < 264 ? ", thank the Gods" : "" ) +", and you have your gift to [frostwyrm.name]. Naturally, the whole thing isn’t going to fit a Frostwyrm, so you make some modifications – namely, once you’re out of the store and somewhere relatively private, you rip off the sleeves. Now, your gift is ready.");
+	output("\n\nThe trek back to the Uveto coast is long and cold, but you’re fuelled by your excitement at meeting [frostwyrm.name] again and giving her the gift you’ve picked out. You call to her and say that you’re ready to return. <i>At once, my Qal,</i> she replies, and in another moment, she’s by your side and you’re on your way back.");
+	output("\n\nYou notice that her scales appear slightly different – a little bluer in shade, across most of her body. Normally, she’s rather resilient to the cold, but it appears now that her body’s been slightly frosted over.");
+	output("\n\n<i>Were you successful in your search, my mate?</i> [frostwyrm.name] asks you as she flies back. You tell her that you... think you did, but you can’t be certain that she’ll appreciate it. <i>As you taught me, it is not the gift that is essential. It is the intention behind it. I trust that my Qal has only the best of intentions in mind.</i>");
+	output("\n\nThe flight back is chilly and long");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) output(", made warmer by your clutch keeping you company the entire way");
+	output(". The entire flight, you feel what seems to be apprehension from [frostwyrm.name]; if you had to guess, she’s just as concerned and nervous that you’ll enjoy whatever gift she had picked out for you. The suspense is usually one of the harder parts of the holidays.");
+	output("\n\nAfter another hour, [frostwyrm.name]’s lair appears on the horizon, and you make a graceful landing back onto the snow of the island. <i>Is this when we present each other our gifts?</i> [frostwyrm.name] asks you, her body shuffling to block you from the entrance of the lair.");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) output(" Your "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "daughters move" : "daughter moves") +" with her, attempting to nonchalantly prevent your eyes from peeping at something in the lair’s direction. They aren’t being especially subtle about it, but you play along for now.");
+	output("\n\nYou respond affirmatively, and you reach for your gift to her: a torn thermal jacket, and its two sleeves. [frostwyrm.name] studies them curiously: flimsy fabrics that would barely fit around her leg, much less her entire body, but you respond that that’s the idea. Unfortunately, Irestead had lots to offer for kinds and individuals like yours, but not a lot to provide for Frostwyrms, so you had to get a little creative.");
+	output("\n\nYou ask [frostwyrm.name] to bend her neck down so that you can get to her horns, and she does so. You explain that you can’t really survive in the cold the same way she can, and that you need help to keep warm in the colder climates. Then, you thought, your Qim probably didn’t enjoy the cold all that much, so maybe – just maybe – she would appreciate trying to keep warm. To that end, you slip the sleeves over her horns, and once those are in place, you wrap the body of the jacket around her foremost left leg and zip it up, giving her a warm, fluffy cufflink.");
+	output("\n\n[frostwyrm.name] regards the jacket zipped up against her, studying it with two red eyes, then turning her head to see it with the other two. You realize that it isn’t much, and it’s not going to keep most of her warm.");
+	output("\n\n<i>[pc.name],</i> she begins, placing her foot in the snow and watching the jacket protect her from the snow, <i>I... I had never considered that there could be methods to prevent the elements from coating my form. Every journey into the Evercold was a tasking, unforgiving event that no one individual of my kind ever enjoyed.</i> She steps forward, her long tongue snaking out and giving you a warm, loving lick across most of your body. <i>I can only hope my gift to you is half as considerate, my mate and my Qal.</i>");
+	if (flags["FROSTWYRM_KIP_COUNT"] >= 10) {
+		output("\n\n[frostwyrm.name] looks over her flank, communicating with your daughters to retrieve the gift they had made for their Qal. Eager, they disappear into the lair, and only a moment later, they return with their gift to you: a set of scales, woven to link together, the suit a slightly darker shade of blue than [frostwyrm.name]’s body. It’s about tailored to the size of your torso.");
+		output("\n\n<i>We, as your clutch, understand that you have responsibilities to your culture that do not include us. There are times when your kind must summon you away from us, and to the dangers of the world around us.</i> Your oldest daughter lays the small sheet of Frostwyrm scales along both her hands, presenting it to you as a gift. The sheet consists of two layers: the top layer is covered with smaller scales, interlinked with each other inseparably, and the lower layer includes a single, massive scale underneath. <i>Your clutch and I have woven this small protective layer for you, our Qal. ");
+		if (pc.hasScales()) output("Though your body has its own protection, it is not of the same temperament as my kind.");
+		else output("As your own body is unprotected and exposed, this will provide you with the protection of my kind.");
+		output(" Our intent is to protect our Qal, no matter the distance – and to remind you of your clutch, wherever you go.</i>");
+	}
+	else {
+		output("\n\n[frostwyrm.name] turns on the spot, her tail digging through the snow until she feels it clank against something she had hidden in it. Using her claws, she unearths it and presents it to you: one of her scales, a slightly deeper shade of blue than the rest of her. Her one scale is about the size of your torso, and it’s hard as rocks, if not harder.");
+		output("\n\n<i>I understand that, as you are not of my kind, you have other responsibilities and demands that your culture makes of you. You cannot spend all your time with your clutch, as much as I desire it so.</i> She nudges her scale to you, pressing it into your hands. <i>This scale of mine has been tempered in the cold, heavy waters beneath the ocean’s surface. It is stronger and more resilient than my natural form. ");
+		if (pc.hasScales()) output("You have fine scales of your own, my Qal, but they do not have the same temperament or provide the same defense as my own.");
+		else output("You do not possess scales of your own, my Qal; your body is frail and exposed to the world.");
+		output(" My intent is to give you a part of myself so that you may protect yourself from the dangers of the world.</i>");
+	}
+	output("\n\nYou humbly take the " + (flags["FROSTWYRM_KIP_COUNT"] >= 10 ? "suit of scales" : "scale") +" into your arms. It’s lightweight; totally opaque; and you can already tell it’s sturdy as could possibly be. You run your hand along the surface, " + (flags["FROSTWYRM_KIP_COUNT"] >= 10 ? "your fingers tickling along all the interlocking scales, making them each clink against each other" : "running your fingers along the smoothness of [frostwyrm.name]’s scale") +". Your "+ (flags["FROSTWYRM_KIP_COUNT"] >= 10 ? "clutch" : "Qim") +" had done this... for you. To make sure you’d always have something to remind you of "+ (flags["FROSTWYRM_KIP_COUNT"] >= 10 ? "them" : "her") +".");
+	output("\n\nYou tell [frostwyrm.name] that it’s easily one of the most thoughtful gifts you had ever received. She’s right: it’s dangerous out there, adventuring in the world. There are a lot of things that could hurt you, and sometimes, you can get a little homesick when you’re away from the lair for too long. With this, you’ll have the power of the Frostwyrms on your side. You won’t have any reason to fear anything with this as your armor.");
+	output("\n\n<i>It is a privilege to hear you say those words, my Qal,</i> [frostwyrm.name] says, craning her long neck down to nuzzle against you.");
+	output("\n\n<i>What other activities does your kind’s tradition include, my Qal?</i> [frostwyrm.name] asks.");
+
+// end scene (scene: Give Gifts); if this is the last option chosen, display a button labeled [=Decorate!=]. Else, display the previous menu and remove the [=GiftGiving!=] button; increase time by three hours; if the PC has nine kips or less, add Frostwyrm Breastplate to their inventory; if the PC has ten kips or more, add Frostwyrm Chainmail to their inventory.
+// I couldn’t find anything on the armor that’s available to the PC if they kill the Frostwyrm and harvest its scales instead of sparing it, so I don’t have a base to balance the gifts the Frostwyrm on (and I always get laughed at when I try to do game balancing with my content). Ideally, the armor you get for killing the Frostwyrm is the best reward you can get, then the Chainmail is worse, and the Breastplate is worse than that.
+	addDisabledButton(2, "GiftGiving!", "GiftGiving!", "You already did this.");
+	frostwyrmXMasDecorateButton();
+}
+public function frostwyrmXMasCaroling():void
+{
+	clearOutput();
+	frostWyrmHeader();
+	author("B");
+
+	output("A common but uncommonly-practiced event that goes on during the holiday seasons is caroling – going around your neighborhood and singing to your neighbors in order to spread the cheer. [frostwyrm.name] doesn’t make very many noises at all, but you’re curious if she and her kind knows how to sing, and if she knows any songs.");
+	output("\n\n");
+	frostwyrmXMasLeaveCave();
+	output("You pass the idea onto her, and she hesitates on her response. <i>My kind typically communicate via the mind, but we must know the individual we are communicating with first. And to do this, we must find each other, and this is most easily accomplished by calling to the winds.</i>");
+
+	output("\n\nSo, she knows how to sing? <i>That is not the word that we use to describe it, but, yes. What you call ‘singing’ is similar in concept to how my kind introduce each other.</i> Perfect! You ask her if she’d be willing to share any songs that she know. ");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) output("Your "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "daughters agree" : "daughter agrees") +" encouragingly, wanting to hear their Qim teach them how to sing. ")
+	output("<i>You may find yourself disappointed, my Qal.</i> You assure her that you would <i>never</i> be disappointed in anything she does or says.");
+	output("\n\nInspired by your words, [frostwyrm.name] looks to the horizon. Your island is surrounded on all sides by the vast Uveto ocean; you"+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "and your clutch" : "") +"are the only one{s} within miles and miles to hear her. <i>As you wish,</i> she says. She paces a bit and shuffles on the spot, unsure and apprehensive – is she nervous about singing in front of you?");
+	output("\n\n[frostwyrm.name] takes a deep breath (a much deeper one than you could make!), and from her throat vibrates a constant, baritone hum that reverberates out into the water. Her throat visibly flexes as her voice shifts and makes different notes. It’s a lyric-less song, of course, and it doesn’t follow any sort of pentameter that you’ve ever heard before, but there is nonetheless a certain rhythm to it; the way her highs blend with other highs before sinking to lows and starting again.");
+	output("\n\nIt doesn’t sound at all like you had expected a dragon’s song to sound. Worst-case, you had expected something grating and off-key; best-case, you had expected something kind of whiny and shrill. Her ‘voice’ is very deep, matching her size and stature, and it hits just the right resonance to relax your body and tickle you in the chest. Your body leans subconsciously towards [frostwyrm.name] and your ears perk whenever she hits a new high-note. You find yourself... not <i>entranced,</i> per se, but intrigued by [frostwyrm.name] and the song that she’s singing. If you weren’t already deeply acquainted with her, you’d have sought her out with your ears leading the way.");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
+		if (flags["FROSTWYRM_KIP_COUNT"] > 1) output("\n\nYour daughters are uniformly still, which is unusual for them, enthralled as they are to their Qim’s song. They take their seats at [frostwyrm.name]’s haunches, their bodies rocking in gentle waves back and forth in time with the rhythms of their Qim’s breathing. Whatever the song is, it may be appealing to their Frostwyrm genetics, enticing them to sit still and listen.");
+		else output("\n\nYour daughter is likewise enthralled by [frostwyrm.name]’s song, but doesn’t hesitate to introduce herself into her Qim’s space and sits herself at [frostwyrm.name]’s haunches, her body gently swaying back and forth to the tune of her Qim’s breathing and rhythms. Her eyes close and her body is otherwise still; the song may be reaching to her on some instinctual level, appealing to her Frostwyrm genetics.");
+	}
+	output("\n\nThe minutes tick by, and eventually, [frostwyrm.name]’s song ends, and your body is gently let off the cloud it’s been put on. You ask [frostwyrm.name] what she had just sang. <i>In terms you understand, it is what your kind would call a ‘lullaby.’ It is a song a Qim or Qal sing to each other, or to their clutch, particularly during times of plenty.</i>");
+	output("\n\nYou ask her if the song means anything. <i>I do not understand the question,</i> she says, and you clarify: you ask if there are any definitions to the noises she just made. Songs by your kind usually have words, or ‘lyrics,’ that accompany the music. <i>No, there is no ‘definition’ to what I had just done. My kind communicate via emotion, [pc.name], not by words, and our songs are no different.</i>");
+	output("\n\nYou suppose that makes sense. Frostwyrms don’t speak like you do , after all. <i>It is your turn,</i> [frostwyrm.name] says, craning her long neck towards you to playfully nudge you with her nose. <i>I have fulfilled my role in the tradition of your kind. You must now do the same.</i> ");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) output("Your "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "daughters leap to their" : "daughter leaps to her") +" feet, eager to hear what song you have to sing. "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "They each begin" : "She begins") +" to badger you, telling you that it wouldn’t be fair to leave it up the Qim to do all the work. ");
+	output("Looks like you don’t have much of a say in the matter.");
+	output("\n\nYou don’t know a ton of holiday songs off the top of your head, so you default to something you learned back when you were a child. It’s a song about ");
+	if (silly) output("borderline unrequited love, sung by a male performer, espousing the virtues of being a good lover and insisting that he’s above the others by pouring out his feelings. To further the point, he makes a bunch of promises about his loyalty and dependability, and halfway through the song he starts singing about how he knows his love feels the same way. You don’t know if you’d call it a festive holiday song, but it was nonetheless fairly popular back in the day.");
+	else if (pc.isNice()) output("decorating the halls with a number of shiny baubles and piles of minty plants to spruce up the home; something about putting on happy clothing (you never really understood that part; you just knew the words); and urging others through the lyrics to join in through the song and start again. It’s a staple holiday song, at least.");
+	else if (pc.isMischievous()) output("sneaking downstairs during the height of the holiday season, to hopefully get a head-start on opening some presents, before catching your own mother kissing a larger man that you didn’t recognize. The song included something about a white beard, and your mother being unusually hands-y with the whole encounter. It’s... well, it was the first thing that came to mind.");
+	else output("one of your older relatives getting really drunk and then getting mauled to death by a reindeer. It’s a pretty sobering song about... a lot of life lessons, really: know what your limit is; don’t forget your medication; don’t try to walk through a blizzard while three sheets to the wind; just to name a few. It’s a pretty festive sounding song, and its rhythm really stuck with you, but you never understood why it was a holiday song.");
+	output("\n\nYour song doesn’t have quite the same effect on [frostwyrm.name] as hers did on you");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
+		output(", although your performance inspired your "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "daughters" : "daughter") +" to pick up dance along with you; "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "their" : "her") +" body motion and language matching yours, ");
+		if (silly) output("most of "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "their" : "hrt") +" motion in the knees and ankles while "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "their" : "her") +" hands ball into fists, "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "their" : "her") +" shoulders shimmying in time with the lyrics");
+		else if (pc.isNice()) output("twirling around you and grabbing "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "each other" : "you") +" by the hands for a spin{ before switching partners}");
+		else if (pc.isMischievous()) output("grabbing "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "each other" : "you") +" by the hips and sometimes leaning in to mimic the actions your lyrics described");
+		else output("bumping "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "each other" : "you") +" hip-to-hip but otherwise dancing rather off-tune to the song");
+	}
+	output(". Though [frostwyrm.name]’s body doesn’t have a lot of motion as she listens along, you can tell from the way her eyes watch your every move and her stillness that she’s listening rather intently to the lyrics.");
+	output("\n\n<i>This is a traditional song of yours?</i> she asks, and you confirm. <i>I wonder if your songs could truly capture emotion the way my kind can. From the way you move and the way your voice alternates, I can tell that the power of song can be rather... intoxicating for your kind. Perhaps one day I will learn.</i>");
+	output("\n\nYou ask her if she thinks your language’s songs have a chance of instilling the same emotions in their audience as hers does. <i>That would be a matter of who is performing, my Qal,</i> she answers simply, her big nose nuzzling up against you once more, making her message as clear as she can without being overt.");
+	output("\n\n<i>What other activities does your kind’s tradition include, my Qal?</i> [frostwyrm.name] asks.");
+
+	addDisabledButton(3, "Caroling!", "Caroling!", "You already did this.");
+	frostwyrmXMasDecorateButton();
+}
+public function frostwyrmXMasDecorate():void
+{
+	moveTo("FROSTWYRM LAIR");
+	removeUvetoCold();
+
+	clearOutput();
+	frostWyrmHeader();
+	author("B");
+
+	output("The holidays wouldn’t be complete without one last thing. They’re always accompanied by a ton of decorating, whether it’s the house or some symbol. But you’re at a bit of a loss – you look around the island for a moment and notice how it’s completely, absolutely bare. Aside from the snow, there isn’t so much as an icicle for you to decorate, and even if there was, what would you decorate it with?");
+	output("\n\nYou tap your chin in thought as you wonder. Thinking about it logically, you don’t have a lot of tools on hand, and the only things on the island to decorate are–");
+	output("\n\nStruck with inspiration, you ask [frostwyrm.name] "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "and your clutch" : "") +"to join you back inside the lair. <i>Are there no more activities in your traditions, [pc.name]?</i> asks [frostwyrm.name]. You tell her that there is exactly one left, and you say that she’s probably going to enjoy it quite a bit, but you’d prefer to be inside to do it. [frostwyrm.name] acquiesces, and you "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "and your clutch " : "") +"make your way back into the lair.");
+	output("\n\nYou, of course, strip naked as soon as you’re inside, but you keep your things closer by than usual. Your mate makes her way to the raised platform that is her bedding, and you approach, eying her sultrily. You tell her that there are actually two more activities, but one of them isn’t exactly ‘official.’ It’s to... commiserate your affection with your loved ones. Usually, that only means ‘platonically,’ but definitions can often be a fickle thing.");
+	output("\n\n[frostwyrm.name] understands your meaning and lays on her side, her rear two legs spread, giving you unrestricted access to her genitalia. Her heavy testicles rest against the inside of her scaly thigh, one heavy nut spilling over the other. She isn’t currently aroused, but judging from the way her lust is feeding into you, that’s going to change in a hurry.");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
+		output("Your " + (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "daughters" : "daughter") +", understand what’s about to happen between " + (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "their" : "her") +" Qim and " + (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "their" : "her") +" Qal, eagerly " + (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "take their spot around" : "takes her spot beside") +" you, excited for the festivities. Eager hands dip between " + (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "other’s" : "her") +" legs, rousing " + (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "themselves" : "herself") +" to action.");
+	}
+	output("\n\n<i>I would never dismiss an opportunity to couple with you, my Qal,</i> she says, <i>but if I may ask, is our mating truly a part of your kind’s traditions?</i> Like you said, the holidays are about togetherness and appreciating your time with your loved ones, and how you do that is up to you. But if she’s specifically asking about the fact that you said you had ‘two’ activities to do, that part is a surprise and it’ll come in just a moment.");
+	output("\n\nSatisfied and curious, [frostwyrm.name] relaxes, and you place your hands on the soft, grey scales of her underbelly, travelling them southward down her body until they brush against the ridges of her penile vent. It bulges and throbs with her heartbeat excitedly, but it’s not yet open. You get to work on fixing that.");
+	output("\n\nYou keep two fingers against her vent, massaging their way into the opening, while your other hand keeps going, tickling along where her perineum would be to her scaly sack. The texture of her scales markedly changes, feeling almost like skin with how fine the scales blend and connect with each other. They’re pulled taut, and your hands rub over them, trailing over the circumference of one massive nut, into the valley between them, and up the other, admiring how delicate the scales feel and how virile her body is.");
+	output("\n\nThe hand in her vent has wormed two fingers into her body; your fingers are deluged in some kind of protective slime, and the heat inside her is scalding and tight as a vice, the sensation resembling something quite different from a penile vent. You thrust your fingers into her, pulling at her as you do so to widen the gap and usher out the true prize within. Not that it needs much encouragement: your ministrations against her body have her heart beating faster, and you can feel each pulse reverberate along her loins. It isn’t long until you feel something stiff and hot push back against your fingers.");
+	output("\n\nYour eyes scan up her body, along her heaving belly and up her neck. She’s watching you, her four red eyes entranced on what your body is doing to hers. For the benefit of your audience, you withdraw your fingers and bring them to your mouth, sucking the slime off them – a bit tangier and earthier than you’re used to, but if sex and masculinity as concepts had a taste, this would be it. The taste causes your [pc.crotch] to alight, kicking your sex drive into overtime, and you know that the sensation is feeding back into [frostwyrm.name], expediting her own arousal.");
+	output("\n\nYou lean in and put your [pc.lips] to her now-flexible vent, driving your [pc.tongue] in and tasting her directly. Your tongue doesn’t go very far before driving headlong into the flat tip of [frostwyrm.name]’s enormous, fat cock; a cock that’s growing all the more fatter and enormous with every pulse, until it pushes back, thrusting your tongue back into your mouth and slowly pushing your [pc.lips] away from [frostwyrm.name]’s crotch.");
+	output("\n\nOnce it’s exposed far enough to wrap your hand around, you do so, lightly jerking [frostwyrm.name]’s erection awake. When it’s far enough out to wrap two hands around, you do so, sharing the radiant heat between your palms. ");
+	if (pc.biggestTitSize() >= 4) output("When you work it even further out than that, you lean forward, wrapping your [pc.chest] around her length, along its girth into your cleavage and encouraging [frostwyrm.name] to fuck them this way. ")
+	output("Your efforts have the effect that you had hoped for: it isn’t much longer until [frostwyrm.name] is at her full, delicious mast, her towering three-foot erection pulsing angrily, her load churning inside her and demanding release into a willing hole.");
+	output("\n\n[frostwyrm.name] sighs, long and low, as you work her over, her haunches instinctually bucking against your body. Your oral game changes from light sucking to licking and kissing along the parts you know to be more sensitive than others, particularly around the rim of her glans, but you never forget to make sure that her shaft is well-cared for");
+	if (pc.biggestTitSize() < 4) output("; when it grows too boisterous for just your hands, you press your whole body to the shaft, giving it a handjob with your entire self.");
+	else output(".");
+	output("\n\nThe minutes of delicious foreplay tick on, without much deviancy from your routine, but you and [frostwyrm.name] both are appreciating the time together, to put it mildly.");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
+		if (flags["FROSTWYRM_KIP_COUNT"] == 1) output(" Your daughter watches on the sidelines, her own turgid erection pointed in your direction. She jerks it lightly, eking out precum to lube her hands with . Her own testicles bounce in time to nothing, ready to jet her semen onto the icy floor of the lair whenever her Qim is ready.");
+		else output(" Your daughters stand in an open circle around the spectacle of their Qim and their Qal coupling; their eyes watch you and your every action, and you catch the occasional wish that it was them, and not [frostwyrm.name], that you’re enthusiastically blowing. They don’t touch each other, and instead let their " + (flags["FROSTWYRM_KIP_COUNT"] > 2 ? "siblings" : "sibling") +" give them all the fondles they need. They’re all close, but they restrain themselves, waiting to climax with their Qim.");
+	}
+	output(" When you feel that [frostwyrm.name] is as erect as she could possibly be, you withdraw, to admire your work.");
+	output("\n\n[frostwyrm.name] eyes you curiously, wondering to herself why you have stopped and what you intend to do next. Gleefully, you tell her that <i>this</i> is what you had in mind for the final activity in your kind’s traditions. You return to your affects, which aren’t far from the bedding like they usually are, and you withdraw the three packets of food flavoring that you had obtained in Irestead.");
+	output("\n\nYou tell [frostwyrm.name] that one of the true staples of the tradition is decorating. You don’t have enough material to decorate the lair, and you don’t have any symbols or objects to put any tinsel on or anything, but the next best thing is staring at you, throbbing and excited, in the face. Besides, making cute pastries is all a part of the fun. You have all the frosting you need, and you’ll be getting the batter in just a minute.");
+	output("\n\nYou have three packets: red, green, and white. How will you apply them to your canvas?");
+
+	clearMenu();
+	addButton(0,"Green&White",frostwyrmXMasClimax,"green");
+	addButton(1,"Red&White",frostwyrmXMasClimax,"red");
+}
+public function frostwyrmXMasClimax(color:String):void
+{
+	clearOutput();
+	frostWyrmHeader();
+	author("B");
+	
+	output("You reach for the white pack. You already have a couple ideas on how to use it, but you hesitate on the green and red packs. Thinking for a moment, you come to a decision, and reach for the "+ color +" pack.");
+	output("\n\nYou look at the pink, pulsing spire of flesh before you and you visualize your creation in your mind. ");
+	if (color == "green") output("It’d be mostly green, from root to crown, with the occasional, wavy, horizontal lines of white. You’re hoping to make it look like a tree, and the white lines are accumulated snow on the tree’s layering branches. It wouldn’t end in a point, like the trees do , but hopefully the image would come through easily enough.");
+	else output("It’d be diagonal lines of red and white, going all the way down. You’re hoping to make it resemble a candy cane; the only thought you have is how thick you should make the lines. You’re sure whatever decision you make, it’s hardly going to come out with the familiar peppermint flavor of an actual candy cane, but you’re sure it’ll be delicious all the same.");
+	output("\n\nYou get to work, opening the packs. You dip your fingers into the "+ color +" back first, and get started.");
+	output("\n\nYou start at the base and make ");
+	if (color == "green") output("wide swaths of green flavoring all around, front to back, and give the rod a gentle tug as you do so, for fun. [frostwyrm.name]’s haunches thrust forward at your touch, and she shivers, unfamiliar with the sensation of having the material on her sensitive bits. When the white, snowy line is finished, you dip back into the green bag and start again.");
+	else output("a wide, diagonal swath of red, going around the circumference of her spire, and taking every opportunity you can to give her a gentle squeeze. [frostwyrm.name]’s haunches thrust forward at your touch, and she shivers, close to her orgasm and unfamiliar with the sensation of having such a material on her sensitive bits.");
+	output("\n\nYou take your time. ");
+	if (color == "green") output("Your work isn’t exactly meticulous, or a science, but it <i> is </i> taking a little longer than you thought it would.");
+	else output("You get four, thick, rotating lines of red on four sides of her big dick, allowing you to finally start it all over with white.");
+	output(" [frostwyrm.name] grunts occasionally, and a large bead of her draconic precum bloats her dick and splashes onto the ice, a signal of how close she is. It only inspires you to continue your casual pace; whether [frostwyrm.name] finishes before you do , you’re enjoying your bonding time with your mate.");
+	output("\n\nAfter some more time, you finally finish your artistic task. [frostwyrm.name] is almost shaking with pleasure, doing her level best to keep from erupting prematurely, and your ticklish fingers and pleasurable hands aren’t exactly helping. You lean back, to appreciate your work: her cock is ");
+	if (color == "green") output("coated in darker lines of green that slowly fade to white, before abruptly turning green again and starting over. It keeps going, all the way to the rim of her tip; it ends perfectly, with her rim lined with white. It’s not exactly a perfect tree, but it’s recognizable enough – and you’re sure it’s about to be the most delicious plant you’ve ever tasted.");
+	else output("lined with diagonal alternating lines of red and white, going all the way from base to tip. The lines are crooked; the colors bleed and blend into each other all the way down; some lines are thicker in parts than others; but, nobody would be able to look at it and say that it at least resembles a candy cane. Now, to find out if it tastes as good as one...");
+	output("\n\nYou lean back in, one hand carefully palming the sensitive head of [frostwyrm.name]’s dick to keep it steady, and you press your [pc.tongue] against the base, lapping at the flavoring you had just laid down. [frostwyrm.name] bucks forward, practically animalistic, as she feels you on her body; her rod bloats once more, and a particularly heady wad of precum audibly splashes against the ice.");
+	output("\n\nYou work your way down, cleaning [frostwyrm.name] of the mess you’ve made of her. The taste of "+ (color == "red" ? "pepper" : "") +"mint thoroughly coats your tongue");
+	if (color == "green") output("; it may not be a real tree, but the minty taste reminds you well enough of your nostalgic holiday treats");
+	else output("; it may not be a real candy cane, but that peppermint flavor is unmistakable");
+	output(". But as nostalgic as the flavor is, you’re about ready to taste something else.");
+	output("\n\nIt’s a long journey, and [frostwyrm.name]’s restraint and control is incredible the entire time, but you complete your arduous task of cleaning your Qim, from root to crown. What’s before you is a slightly discolored cock, in desperate need of release, throbbing and quivering in pleasure with a pair of massive, scaly balls, bunching against her body, broiling with draconic semen to dump into the first hole that wants it. You start earnestly jerking [frostwyrm.name]’s monstrous dick, your tongue licking along the blunt head, your hungry mouth ready for her load.");
+	output("\n\n[frostwyrm.name] reads your emotions loud and clear; upon your unspoken desire, she relaxes her control on her loins, and almost immediately, her thick load comes barreling up her cock. Her veins pop in concentrated effort and her tool bloats almost obscenely as her cum visibly travels down it; you barely have time to brace when it sprays from her with enough force to push you backward slightly, but notenough to knock you off-balance.");
+	output("\n\nYou re-adjust yourself and continue your baptizing, lowering your head and directing [frostwyrm.name]’s cannon of a cock to douse your [pc.hair] and have her seed drip down your back. You lean backward, offering your neck, and it pulses another round against your neck, her cum dribbling down your [pc.chest] and down to your [pc.belly]. Her every wave of cum ripples underneath your hands as it comes to you. Of course, with every other load, you open your mouth, catching a mouthful of her thick cream for you to gargle before swallowing.");
+	output("\n\n[frostwyrm.name]’s haunches thrust impiously through the whole thing, her turgid dick bloating and pumping again and again, depositing a large load, even by Frostwyrm standards. By the time her cum comes out as meek dribbles (and even those are rather thick, at least compared to most non - Frostwyrms), [frostwyrm.name] pants in contended exhaustion, her lungs heaving and nostrils flaring. You lean back, your [pc.skinFurScales] absolutely caked in her slimy load; your hands splash onto the icy floor and your [pc.belly] churns uncomfortably, heavy with the load inside it. You bring your fingers to your mouth and give them a suck, and you can just barely make out the residual taste of "+ (color == "red" ? "pepper" : "") +"mint.");
+
+	clearMenu();
+	addButton(0,"Next",frostwyrmXMasEnding,undefined);
+}
+public function frostwyrmXMasEnding():void
+{
+	clearOutput();
+	frostWyrmHeader();
+	author("B");
+
+	output("Satisfied at a job well done, you curl yourself up against [frostwyrm.name]. You’re a wet, sticky mess"+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? " " : ", and your belly is stuffed – just like a proper holiday dinner !") +" – but you’re content.");
+	output("\n\n[frostwyrm.name] shifts her massive body, curling it around you, until you’re surrounded: her massive belly behind you, her giant heart still beating a mile a minute; her legs on either side of you, curling up and against you; and her huge head, directly in front of you. Her cock, now completely spent, slowly begins receding into her body. <i>Is this an activity in your kind’s traditions as well?</i> [frostwyrm.name] asks, somewhat jokingly.");
+	output("\n\nYou answer that wrapping yourself in something warm, sharing your body heat with someone, you love, and sitting in front of something warm, is all a part of the season’s activities, if not the holidays. So, yes. <i>Good. I am familiar with this activity.</i>");
+	output("\n\nShe begins to purr, her throaty vibrations reverberating through you. You sit in otherwise-silence, basking in the afterglow of a holiday well-celebrated.");
+	output("\n\nInspired by that thought, you break the silence to thank [frostwyrm.name]");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
+		output(" and your " + (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "daughters" : "daughter") +". They didn’t <i>have</i> to do anything, but they went with it, because they");
+	}
+	else output(". She didn’t <i>have</i> to do anything, but she went with it, because she");
+	output(" wanted to be a part of your life and traditions. Today was a very active, special day for you, and you’ll never forget it.");
+	output("\n\n");
+	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) output("The symphonic purr of your clutch reverberating through the lair rises. ");
+	output("Your mate leans forward, her huge face nuzzling warmly against you. <i>You are my mate, [pc.name]. I would fly to the ends of the world and back for you. You need not have gotten me any gifts; being a part of your life, as you are a part of mine, is the greatest gift I could have been bestowed.</i>");
+	output("\n\nYou lay one arm across her muzzle and give her a gentle kiss on the tip of her flaring nose. "+ (silly ? "“Same.”" :"You couldn’t have said it better."));
+
+	clearMenu();
+	addButton(0,"Happy",frostwyrmMainMenu,true,"Happy Holidays!","Happy");
+	addButton(1,"Holidays!",frostwyrmMainMenu,true,"Happy Holidays!","Holidays!");
+	
+	addButton(10,"Debug 1",frostwyrmHomeAtLast);
+	addButton(11,"Debug 2",frostwyrmMainMenu,true);
+	addButton(12,"Debug 3",frostwyrmMainMenu,false);
+}
