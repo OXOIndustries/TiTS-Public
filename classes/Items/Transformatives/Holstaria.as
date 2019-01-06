@@ -456,7 +456,7 @@
 					if(!target.hasCock() && target.balls > 0)
 					{
 						output(" Including the disappearance of your [pc.sack]...");
-						target.balls = 0;
+						target.removeBalls();
 					}
 					
 					// New pussy:

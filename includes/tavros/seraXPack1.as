@@ -864,7 +864,7 @@ public function seraInchStealing(response:String = ""):void
 			{
 				//Cock removed, clit increase by 1, libido increase by 1
 				pc.removeCock(cockIndex, 1);
-				pc.balls = 0;
+				pc.removeBalls();
 				pc.clitLength += 1;
 				if(pc.hasPerk("Hung")) pc.clitLength += 1;
 				pc.slowStatGain("libido", 1);
@@ -904,7 +904,7 @@ public function seraInchStealing(response:String = ""):void
 				
 				//Cock removed, vagina added, auto- lost hymen and gaping
 				pc.removeCocks();
-				pc.balls = 0;
+				pc.removeBalls();
 				pc.createVagina();
 				pc.vaginas[0].clits = 1;
 				pc.clitLength = biggestLength * 0.25;

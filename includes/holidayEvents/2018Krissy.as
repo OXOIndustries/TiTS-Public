@@ -89,7 +89,7 @@ public function sureLetsTakeARideDeerbutt():void
 	clearOutput();
 	showKrissy();
 	author("Fenoxo");
-	output("<i>“Sure.”</i> You wave her onto the ship. <i>“" + (canadiaUnlocked() ? "I’ve been there before. It won’t be a problem.":"I’ll need those coordinates if we want to get there in one piece.") + " This way.”</i> You ascend the boarding ramp yourself and lead her toward the cockpit to start the launch sequence.");
+	output("<i>“Sure.”</i> You wave her onto the ship. <i>“" + (canadiaUnlocked() ? ("I’ve " + (flags["CANADA_UNLOCKED"] >= 2 ? "been there before" : "already got the coordinates") + ". It won’t be a problem.") : "I’ll need those coordinates if we want to get there in one piece.") + " This way.”</i> You ascend the boarding ramp yourself and lead her toward the cockpit to start the launch sequence.");
 	output("\n\n<i>“I’m Krissy,”</i> the deer-woman announces. <i>“Figured you should know my name.”</i> She smiles winningly as she jingles on behind you.");
 	output("\n\n<i>“");
 	if(pc.isBimbo()) output("Such a pretty name! I’m like, [pc.name]. We’re gonna be bestest buds!");
@@ -100,6 +100,7 @@ public function sureLetsTakeARideDeerbutt():void
 	output("\n\n<i>“Yep.”</i> You grin over your shoulder. <i>“You like her?”</i>");
 	output("\n\nThe deer-woman giggles gleefully. <i>“She’s beautiful.”</i> Her eyes flicking from the ship back to you. <i>“Both my saviors are.”</i>");
 	processTime(5);
+	flags["MET_KRISSY"] = 1;
 	clearMenu();
 	addButton(0,"Next",sureLetsTakeARideDeerbutt2);
 }
@@ -124,8 +125,8 @@ public function sureLetsTakeARideDeerbutt2():void
 	clearMenu();
 	if(pc.cockThatFits(250) >= 0 || pc.hasHardLightEquipped()) addButton(0,"Wrap&Fuck",cockSelect,[krissyWrapUpByThird,250,true,0],"Wrap & Fuck","Wrap her up like a present and give her a gift of your own.");
 	else addDisabledButton(0,"Wrap&Fuck","Wrap&Fuck","Requires a cock that fits <b>or</b> a hardlight strapon.");
-	if(pc.hasVagina()) addButton(1,"Search4Cock",getBanguByKrissy,undefined,"Search4Cock","Surely she's packing a surprise under her skirt for you to unwrap - right?");
-	else addDisabledButton(1,"Search4Cock","Search4Cock","You need a vagina for this.");
+	if(pc.hasVagina()) addButton(1,"Search4Cock",getBanguByKrissy,undefined,"Search For Cock","Surely she’s packing a surprise under her skirt for you to unwrap - right?");
+	else addDisabledButton(1,"Search4Cock","Search For Cock","You need a vagina for this.");
 	addButton(2,"Tits.",gushyGushSantaShit,undefined,"Tits.","Krissy has a beautiful rack. Get in on that.");
 	addButton(4,"No Thanks",noThanksKrissyButt);
 }
@@ -171,6 +172,7 @@ public function getBanguByKrissy():void
 	output("\n\nYou lick your lips, knowing that this firming rod is going to slide inside you before long, wondering how big it will get. You stroke the deer-girl’s hair comfortingly, your other hand firm on her ass.");
 	output("\n\nKrissy snaps back to sudden awareness, hand pumping madly. Globules of pre-cum fling from the developing tool as it adds an inch to its length. She kisses you suddenly, breaking away just as fast. <i>“This is a dick.”</i> She jacks herself with firm, fast strokes. Her cock is soaked, and her cunt drips like a sieve. <i>“This is <b>my</b> dick.”</i> She kisses you again, too impassioned for technique. It’s artless and thrusting. Her tongue burrows deep, leaving you nearly as breathless as she when you’re given the opportunity to inhale once more. <i>“Gonna fuck you with my dick.”</i> Sixteen inches of pulsating, expanding reindeer meat slaps against your [pc.belly]. <i>“Gonna fuck you raw.”</i> She growls, pushing you back in the seat.");
 	processTime(20);
+	CodexManager.unlockEntry("Throbb");
 	clearMenu();
 	addButton(0,"Next",getDickedByKrissy2);
 }
@@ -344,6 +346,7 @@ public function gushyGushSantaShit():void
 	output(" You can’t see it happening. You can only feel - can only revel in feeling the deer-woman’s heartbeat through her enormous rack while she rewards you a toe-curling climax for your trouble. With your other senses robbed by Krissy’s glorious tits, every sensuous touch and clench and dribble feels one thousand times more acute.");
 	output("\n\nYou black out for a moment.");
 	processTime(40);
+	CodexManager.unlockEntry("Gush");
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
 	pp.createPerk("Fixed MilkQ", 20000, 0, 0, 0);
 	pc.milkInMouth(pp);

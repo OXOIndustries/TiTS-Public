@@ -3389,9 +3389,9 @@ public function ratcounterTextGenerator():String
 	{
 		if (!(enemy is RatsRaider)) continue;
 		//Get leader rat, replace if another is fit for duty
-		if (rat == null || rat.isDefeated() || rat.isImmobilized()) rat = enemy as RatsRaider;
+		if (rat == null || rat.isDefeated() || rat.isImmobilized()) rat = (enemy as RatsRaider);
 		//Get downed rat, 50% chance to switch so it's not always the first rat that gets picked
-		if (enemy.isDefeated() && (downedRat == null || rand(2) == 0)) downedRat = enemy as RatsRaider;
+		if (enemy.isDefeated() && (downedRat == null || rand(2) == 0)) downedRat = (enemy as RatsRaider);
 		if (!enemy.isDefeated()) ++totalRats;
 	}
 	
@@ -3426,7 +3426,7 @@ public function ratcounterTextGenerator():String
 
 			encText += "\n\n" + RandomInCollection(randomDialogue);
 
-			encText += "\n\nThey keep you on edge, faking you out by pretending to swing or shoot. When one does this, another smacks the wall with their shock baton: the zaps and cascading sparks make the hairs on your body stand every time. In those split seconds, you see them stare hungrily at your bags and pouches, coveting the wealth they believe is contained within."
+			encText += "\n\nThey keep you on edge, faking you out by pretending to swing or shoot. When one does this, another smacks the wall with their shock baton: the zaps and cascading sparks make the hairs on your body stand every time. In those split seconds, you see them stare hungrily at your bags and pouches, coveting the wealth they believe is contained within.";
 			
 			if (pc.hasStatusEffect("Grappled")) encText = "The hands and paws and feet keeping you splayed and vulnerable are pushing back strong against all resistance. The bandits on your face and body work fast when you’re not pushing back.";
 			
@@ -3442,12 +3442,12 @@ public function ratcounterTextGenerator():String
 			else
 			{
 				if (ratsPCIsKnown()) randomDialogue.push(
-					"<i>“Y... You’ve got some fight for some big business punk!”</i> one of the duo stammers, planting " + rat.mf("his", "her") + " feet.",
-					"<i>“You’ll pay for hurting " + downedRat.mf("him", "her") + ", you slimeball CEO!”</i> snarls the " + (rat == rat0 ? "fuzzy rodenian" : (rat == rat1 ? "freckled boy" : "fuzzy-limbed [rat2.bopGirl]."))
+					("<i>“Y... You’ve got some fight for some big business punk!”</i> one of the duo stammers, planting " + rat.mf("his", "her") + " feet."),
+					("<i>“You’ll pay for hurting " + downedRat.mf("him", "her") + ", you slimeball CEO!”</i> snarls the " + (rat == rat0 ? "fuzzy rodenian" : (rat == rat1 ? "freckled boy" : "fuzzy-limbed [rat2.bopGirl].")))
 				);
 				randomDialogue.push(
-					"<i>“Dammit... Y-y-you’re not gonna get away with this!”</i> one of them shouts at you, though it sounds more pitiful than threatening.",
-					"<i>“Damn you, why couldn’t you have just paid!?”</i> one shouts, smacking " + rat.mf("his", "her") + " baton against the ground."
+					("<i>“Dammit... Y-y-you’re not gonna get away with this!”</i> one of them shouts at you, though it sounds more pitiful than threatening."),
+					("<i>“Damn you, why couldn’t you have just paid!?”</i> one shouts, smacking " + rat.mf("his", "her") + " baton against the ground.")
 				);
 			}
 			
@@ -3462,8 +3462,9 @@ public function ratcounterTextGenerator():String
 			encText += "One little mouse remains standing, regarding you with abject terror. In " + rat.mf("his", "her") + " eyes, you can see the desire to flee burning in one iris and camaraderie flickering in the other. " + rat.mf("He", "She") + " cries out with every swing when you approach.";
 
 			if (ratsPCIsGood()) randomDialogue.push(
-				"<i>“I’m still standing! I’ll give it my all, just you wait!”</i> " + rat.mf("he", "she") + " shouts!",
-				"<i>“[pc.Mister] CEO, I won’t go down without a fight!”</i> the last rat declares.");
+				("<i>“I’m still standing! I’ll give it my all, just you wait!”</i> " + rat.mf("he", "she") + " shouts!"),
+				("<i>“[pc.Mister] CEO, I won’t go down without a fight!”</i> the last rat declares.")
+			);
 			else 
 			{
 				if (ratsPCIsKnown()) randomDialogue.push("<i>“Greedy to the end, you can’t help but hurt those who don’t have anything, you crook! Cheater! It comes natural for you put others down, doesn’t it!?”</i> the remaining rodent scoffs.");

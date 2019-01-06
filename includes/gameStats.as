@@ -8275,6 +8275,22 @@ public function displayEncounterLog(showID:String = "All"):void
 			}
 			roamCount++;
 		}
+		// Krissy
+		if(flags["KRISSY_INTRO_RESULT"] != undefined)
+		{
+			if(flags["MET_KRISSY"] != undefined || flags["KRISSY_INTRO_RESULT"] >= 0)
+			{
+				output2("\n<b>* Krissy:</b> Met her, Gave her ride to Canadia Station");
+				switch(flags["KRISSY_INTRO_RESULT"])
+				{
+					case 1: output2(", Sexed her with Throbb"); break;
+					case 2: output2(", Sexed her with Gush"); break;
+					case 3: output2(", Sexed her with bondage play"); break;
+				}
+			}
+			else output2("\n<b>* Reindeer Girl:</b> Met her, Ignored her request, <i>Whereabouts unknown</i>");
+			roamCount++;
+		}
 		// Milly
 		if(flags["MHENGA_PROBE_CASH_GOT"] != undefined)
 		{

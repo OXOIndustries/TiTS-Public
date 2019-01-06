@@ -83,7 +83,7 @@ public function approachMabbs():void
 			output("supply your own.");
 		}
 		//Merge 2 intro forks
-		output("\n\n<i>“Mabbs.”</i> She stretches. <i>“Don’t worry. I didn’t lose my last name. You just don’t get to get it. Get it?”</i> There’s a sharp undercurrent to her playful banner.");
+		output("\n\n<i>“Mabbs.”</i> She stretches. <i>“Don’t worry. I didn’t lose my last name. You just don’t get to get it. Get it?”</i> There’s a sharp undercurrent to her playful banter.");
 		output("\n\n");
 		if(pc.IQ() < 40) output("You’re trying to catch up to her fast-paced, staccato ramblings when she plows on.");
 		else output("<i>“Got it,”</i> you answer with a quick nod.");
