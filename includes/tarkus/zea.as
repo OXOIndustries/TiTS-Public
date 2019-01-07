@@ -10,18 +10,22 @@ public function showZea(nekkid:Boolean = false, au:Boolean = true):void
 	if (au) author("GothPastel");
 }
 
-public function seatingZea():void
+//returns true if Zea is present
+public function seatingZea(btnSlot:int):Boolean
 {
+	if (hours < 12 || hours > 13) return false;
 	if (flags["MET_ZEA"] == undefined)
 	{
 		output("\n\nThere’s a " + (CodexManager.entryUnlocked("Xhelarfog") ? "Xhelarfog" : "strange looking alien with opalescent skin and golden scales") + " tapping away at some sort of codex in the far corner, barely paying attention to the meal they’ve been served. They’re wearing some sort of armband, and when you look closer, you recognize the SteeleTech logo.");
-		addButton(1, "Alien", zeaIsGreeted);
+		addButton(btnSlot, "Alien", zeaIsGreeted);
 	}
 	else
 	{
 		output("\n\nZea’s sat in the far corner as always, seemingly lost in her work.");
-		addButton(1, "Zea", zeaApproach, true);
+		addButton(btnSlot, "Zea", zeaApproach, true);
 	}
+	
+	return true;
 }
 
 public function zeaIsGreeted():void
