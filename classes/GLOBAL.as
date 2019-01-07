@@ -80,6 +80,7 @@
 		public static const FLAG_TONGUE:int									= 45;
 		public static const FLAG_FRECKLED:int                               = 46;
 		public static const FLAG_PLUGGED:int                   	            = 47;
+		public static const FLAG_SCALED_PRETTY:int                          = 48;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -130,6 +131,7 @@
 			"Tongued",
 			"Freckled",
 			"Plugged",
+			"Partially Scaled",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -140,6 +142,7 @@
 			FLAG_SQUISHY,
 			FLAG_LUBRICATED,
 			FLAG_ABSORBENT,
+			FLAG_SCALED_PRETTY,
 		];
 		
 		//TYPES
@@ -706,6 +709,7 @@
 		public static const SKIN_TYPE_LATEX:int                                  = 6;
 		public static const SKIN_TYPE_PLANT:int                                  = 7;
 		public static const SKIN_TYPE_BARK:int                                   = 8;
+		public static const SKIN_TYPE_GEL:int                                    = 9;
 		
 		public static const SKIN_TYPE_NAMES:Array = [
 			"Skin",
@@ -717,6 +721,7 @@
 			"Latex",
 			"Plant",
 			"Bark",
+			"Gel",
 		];
 		
 		//NIPPLETYPES

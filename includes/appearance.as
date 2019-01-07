@@ -428,7 +428,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			break;
 		case GLOBAL.TYPE_XHELARFOG:
 			outputRouter((target == pc ? "Your":"[target.Name]'s") + " face has a curious lack of a visible nose");
-			if (target.eyeType == GLOBAL.TYPE_XHELARFOG) outputRouter(", though the thing truly cementing its alien nature is the trio of eyes decorating its upper half");
+			if (target.eyeCount == 3) outputRouter(", though the thing truly cementing its alien nature is the trio of eyes decorating its upper half");
 			outputRouter(".");
 			break;
 	}
@@ -1277,6 +1277,12 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			break;
 		case GLOBAL.SKIN_TYPE_BARK:
 			outputRouter(", covered in a layer of " + target.skinFurScales(true, true));
+			break;
+		case GLOBAL.SKIN_TYPE_GEL:
+			outputRouter(", covered by skin that is actually somewhat gelatinous, easily springing back against any force applied to it, and sealing over wounds in seconds. " + (target==pc?"Your":"[target.HisHer]") + " semi-gelatinous skin is slightly sticky to the touch");
+			if(target==pc) outputRouter(", and you know that it can increase this tenfold should you need to climb something");
+			outputRouter(". ");
+			if(target.hasSkinFlag(GLOBAL.FLAG_SCALED_PRETTY)) outputRouter((target==pc?"You have":"[target.HeShe] has") + " rough [target.scaleColor] scales across " + (target==pc?"your":"[target.hisHer]") + " abdomen in a corset-like pattern");
 			break;
 		default:
 			if(target.skinType == GLOBAL.SKIN_TYPE_LATEX || target.hasStatusEffect("Rubber Wrapped"))
@@ -2344,6 +2350,10 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		case GLOBAL.TYPE_FROSTWYRM:
 			outputRouter(" " + (target.tailCount == 1 ? "A long, flexible reptilian tail extends":"Long, flexible reptilian tails extend") + " from " + (target == pc ? "your":"[target.hisHer]") + " back. " + (target.tailCount == 1 ? "The":"On each, the") + " whole surface is covered in rough [target.scaleColor] scales, particularly along the top where they form a long row of spikes and at its tip, where they congregate into a blunt ball, best used for smashing things if " + (target == pc ? "you":"[target.heShe]") + " needed.");
 			break;
+		case GLOBAL.TYPE_XHELARFOG:
+			outputRouter(" " + (target==pc?"Your":"[target.HisHer]") + (target.tailCount==1?" tail is":" tails are") + " fairly short and stubby, thicker at the base.");
+			if (target.hasTailFlag(GLOBAL.FLAG_SCALED)) outputRouter(" The overside is covered with [target.scaleColor] scale.");
+			break;
 	}
 	//Tail cunts
 	if(target.hasTailCunt() && target.tailType != GLOBAL.TYPE_CUNTSNAKE)
@@ -2714,7 +2724,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			outputRouter(" Subtle contours and indentations that run all the way down the length of " + (target == pc ? "your":"[target.hisHer]") + " legs make them look as though they were formed from a mass of tentacles woven together. " + (target == pc ? "Your":"[target.HisHer]") + " feet have foregone toes entirely in favor of a smooth, supple boot where the tips of the tentacles appear to join together.");
 			break;
 		case GLOBAL.TYPE_XHELARFOG:
-			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " legs are mostly humanoid in structure, but " + (target == pc ? "Your":"[target.HisHer]") + " feet are distinctly alien with only three toes at their front, and a single toe sprouting from their heel.");
+			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " legs are mostly humanoid in structure, but " + (target == pc ? "your":"[target.hisHer]") + " feet are distinctly alien with only three toes at their front, and a single toe sprouting from their heel.");
 			break;
 		// Catch all
 		default:
