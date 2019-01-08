@@ -20229,9 +20229,12 @@
 			return attack.EnergyCost;
 		}
 		
-		public function untypedDroneDamage():Number
+		public function untypedDroneDamage(calc:String = ""):Number
 		{
-			var dmg:Number = 1 + level + rand(Math.round((2 + level) / 2));
+			var dmg:Number = 1 + level;
+			var dmgMod:Number = (calc == "min" ? 0 : Math.round((2 + level) / 2));
+			if(calc == "") dmg += rand(dmgMod);
+			if(calc == "max") dmg += (dmgMod - 1);
 			var bonus:Number = 0;
 			
 			if(hasPerk("Attack Drone") && hasActiveCombatDrone(true, true)) bonus += level;
@@ -20240,9 +20243,9 @@
 			return dmg + bonus;
 		}
 		
-		public function droneDamage():TypeCollection
+		public function droneDamage(calc:String = ""):TypeCollection
 		{
-			var d:Number = untypedDroneDamage();
+			var d:Number = untypedDroneDamage(calc);
 			return new TypeCollection( { electric: d } );
 		}
 		public function hasTamWolf():Boolean

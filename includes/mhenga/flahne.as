@@ -198,6 +198,9 @@ public function talkToFlahne():void {
 	else output("seems genuinely excited to talk to you again");
 	output(". <i>“So, what did you want to talk about, " + pc.mf("Mister","Miss") + " Steele? God, I love that name. It sounds so... firm.”</i> She blushes and continues, <i>“Sorry, maybe I ought to stick to calling you cutie, since you are... what did you want to talk about?”</i>");
 	processTime(1);
+	talkToFlahneMenu();
+}
+public function talkToFlahneMenu():void {
 	clearMenu();
 	addButton(0,"Her Race",talkToFlahneAboutHerRace);
 	if(flags["TALKED_ABOUT_FLAHNES_RACE"] == 1) addButton(1,"Her Subrace",flahnesSubRace);
@@ -208,7 +211,7 @@ public function talkToFlahne():void {
 	else if(flags["PQ_RESOLUTION"] != undefined) addDisabledButton(4,"There is no peace with the Zil, and nothing to talk about.");
 	else if(pc.level < 6) addDisabledButton(4,"Zil","Zil","Something else has to happen for this... something that you probably ought to be level six for.");
 	else addDisabledButton(4,"Zil","Zil","Relations will the zil would need to be more peaceful for this. Perhaps something involving Thare Plantation...");
-	addButton(14,"Back",mainGameMenu);
+	addButton(14,"Back",flahneMenu);
 }
 
 //[Zil?]
@@ -273,8 +276,9 @@ public function talkToFlahneAboutHerRace():void {
 		}
 	}
 	processTime(10);
-	clearMenu();
-	addButton(0,"Next",talkToFlahne);
+	//clearMenu();
+	//addButton(0,"Next",talkToFlahne);
+	talkToFlahneMenu();
 }
 //[Let it Out] [Keep In] Redirects to followups for Ovipositor discussion.
 //Ovipositor Out
@@ -285,8 +289,9 @@ public function pushDatOvipositorOut():void {
 	output("Flahne sighs rather comfortably after noticing that the room is empty and flips back her skirt to show you the big, chubby girl-boner she’s grown. <i>“Our ovipositors are my favorite part about us. I even grew mine to be extra big, so there’d be more to stroke. I guess all the sweets I eat have made it so that my cum and lubricants are as sweet as candy. That’s another good reason for making it big right there.”</i> Flahne traces a finger across the top of it, sighing and shuddering from the pleasure with such enthusiasm that ripples run from her thick thighs all the way to her enormous tits. A dollop of whitish cream forms atop the wobbling prick’s peak, and she scoops it up on her finger, swallowing it before you can react. She smooths her skirt back into place a moment later, accompanied by a full-body orange blush.");
 	output("\n\n<i>“Not much more to tell, really. We grow up quick, so if I were to " + pc.rawmf("have you father some children","have you bear my children") + ", they’d be able to care for themselves in short order.”</i> Flahne says with one last smile, <i>“I’m glad you take interest in me for more than just the sex. It’s refreshing.”</i>");
 	processTime(1);
-	clearMenu();
-	addButton(0,"Next",talkToFlahne);
+	//clearMenu();
+	//addButton(0,"Next",talkToFlahne);
+	talkToFlahneMenu();
 }
 
 //Ovipositor In
@@ -298,8 +303,9 @@ public function ovipositorInFlahne():void {
 	output("\n\nThe amber gel-woman jiggles her breasts to help change the topic. <i>“Let’s see, what else... oh, we grow up pretty quick, comparatively, so if you ever wanted kids, we aren’t much work to raise.”</i> Flahne smiles happily. <i>“It’s nice to have someone get to know you instead of expecting you to immediately get naked, ya know?”</i>");
 	//Unlocks ovipositor talk and subrace talk
 	processTime(1);
-	clearMenu();
-	addButton(0,"Next",talkToFlahne);
+	//clearMenu();
+	//addButton(0,"Next",talkToFlahne);
+	talkToFlahneMenu();
 }
 
 //Her Subrace
@@ -315,8 +321,9 @@ public function flahnesSubRace():void {
 	output("\n\n<i>“I guess that’s it,”</i> she says at last, <i>“but I’d be happy to talk about my people as much as you like.”</i>");
 	//Pass 10 minutes.
 	processTime(10);
-	clearMenu();
-	addButton(0,"Next",talkToFlahne);
+	//clearMenu();
+	//addButton(0,"Next",talkToFlahne);
+	talkToFlahneMenu();
 }
 
 //Her Ovipositor
@@ -326,7 +333,6 @@ public function flahnesOvipositor():void {
 	output("You mention her ovipositor, ");
 	if(!flahneDickOut()) output("<b>currently hidden.</b>");
 	else output("<b>currently dangling free whenever the mood strikes her.</b>");
-	
 	output("\n\n<i>“Well, what do you want to know about it?”</i> Flahne asks ");
 	if(!flahneDickOut()) output("curiously");
 	else output("coyly");
@@ -337,7 +343,7 @@ public function flahnesOvipositor():void {
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) addButton(1,"Put It Away",keepDatOvipositorIn);
 	else addButton(1,"Let It Out",popOviOut);
 	addButton(0,"About It",aboutDatOvipositorOut);
-	addButton(14,"Back",talkToFlahne);
+	addButton(14,"Back",talkToFlahneMenu);
 }
 
 //Keep Ovipositor In
@@ -366,8 +372,9 @@ public function dontWatchOvipositorGoAway():void {
 	//pass 10 minutes.
 	processTime(10);
 	//Display talk menu
-	clearMenu();
-	addButton(0,"Next",talkToFlahne);
+	//clearMenu();
+	//addButton(0,"Next",talkToFlahne);
+	talkToFlahneMenu();
 }
 //Watch Ovi Go Away
 public function watchFlahne():void {
@@ -423,7 +430,7 @@ public function aboutDatOvipositorOut():void {
 	output("\n\nFlahne harrumphs at your lack of response. <i>“Okay, okay. I told you earlier that we lay eggs through them, but that’s not all they’re good for. When we orgasm or give birth, lots of whitish lubricants come out with it, like what you might call cum.”</i> Flahne smiles again. <i>“I kind of like to call it cum, too, even though mine is as sweet as candy.”</i>");
 	output("\n\n<i>“Why is that?”</i> you ask.");
 	output("\n\nPlopping her sucker back into her mouth, the gel-woman explains in between licks, <i>“Well, when we have too much mass, we secrete it as sexual fluids. It’s kind of useful - if one of us is eating really well, we can share the nutrition with our friends that way. I eat so much candy that I’m pretty much filled to the brim with sugary goodness, even though we don’t really use it for anything.”</i> Flahne tilts her head to the side and whispers one last bit, <i>“Since it tastes so good and I like my ovipositor so much, I usually eat it right up, which is why I’m so much more voluptuous than most rahn.”</i>");
-	output("\n\nYour sugared companion continues. <i>“ I’m all for accepting people for who they are, but I understand how it’s possible to like everything about a person except for one thing. That’s why I don’t mind keeping it tucked away for cute " + pc.mfn("boys","girls","people") + " like you, if you want. In a nutshell, most of us just use it for laying eggs, but it makes a pretty damned good stand-in for a cock. I’ve never had any complaints from any of the ladies brave enough to sit in my lap, anyway.”</i>");
+	output("\n\nYour sugared companion continues. <i>“I’m all for accepting people for who they are, but I understand how it’s possible to like everything about a person except for one thing. That’s why I don’t mind keeping it tucked away for cute " + pc.mfn("boys","girls","people") + " like you, if you want. In a nutshell, most of us just use it for laying eggs, but it makes a pretty damned good stand-in for a cock. I’ve never had any complaints from any of the ladies brave enough to sit in my lap, anyway.”</i>");
 	output("\n\nShe must see the look on your face, because she colors orangish and quietly says, <i>“Well, a few walked kind of funny and were rather sore... still, they didn’t complain! Not seriously, anyway.”</i> Flahne twirls her lollipop in her mouth as she racks her brain - or whatever rahn use to think - for more information. <i>“I nearly forgot! Some of us grow them above our clits, and some of us grow them from our clits. Mine grows out of my clit, so it’s extra sensitive!”</i> she proudly declares.");
 	
 	output("\n\nWell, that explains why she’s so enamored of it.");
@@ -470,8 +477,9 @@ public function theLocals():void {
 	output("\n\nThe gluttonous gel doesn’t seem that sure of the last point. <i>“Not much else to say about it, really. Anything else I can help you with, " + pc.mf("Mister","Miss") + " Steele?”</i>");
 	//10 minutes, back to talk menu
 	processTime(10);
-	clearMenu();
-	addButton(0,"Next",talkToFlahne);
+	//clearMenu();
+	//addButton(0,"Next",talkToFlahne);
+	talkToFlahneMenu();
 }
 
 //Sex Menu

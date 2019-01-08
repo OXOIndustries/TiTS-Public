@@ -394,7 +394,7 @@ package classes.GameData
 			StealthFieldGenerator.DisabledIfEffectedBy = ["Stealth Field Generator"];
 			StealthFieldGenerator.Implementor = StealthFieldGeneratorImpl;
 			StealthFieldGenerator.TooltipTitle = "Stealth Field Generator";
-			StealthFieldGenerator.TooltipBody = "Creates a stealth field that greatly increases your evasion for a few turns.";
+			StealthFieldGenerator.TooltipBody = "Creates a stealth field that greatly increases your evasion by 80% for a few turns.";
 			StealthFieldGenerator.RequiresTarget = false;
 			StealthFieldGenerator.SetAttackTypeFlags(SingleCombatAttack.ATF_SPECIAL);
 			a.push(StealthFieldGenerator);
@@ -2143,7 +2143,7 @@ package classes.GameData
 				rounds = 4;
 			}
 			
-			attacker.createStatusEffect("Stealth Field Generator", rounds, 0, 0, 0, false, "DefenseUp", "Provides a massive bonus to evasion chances!", true, 0);
+			attacker.createStatusEffect("Stealth Field Generator", rounds, 0, 0, 0, false, "DefenseUp", "Provides a massive 80% bonus to evasion chances!", true, 0);
 		}
 		
 		public static var Grenade:SingleCombatAttack;

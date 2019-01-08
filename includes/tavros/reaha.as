@@ -119,7 +119,7 @@ public function approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYeste
 	}
 
 	if (shipLocation == "500") addButton(6, "Boot Reaha", reahaBootOffShip, undefined, "Boot Reaha", "Kick Reaha off the ship. Dropping her off on the homeworld might not be in her best interest, but hey. She’s your property, anyway.");
-	else addButton(6, "Boot Reaha", reahaBootOffShip, undefined, "Boot Reaha", "Kick Reaha off the ship. You can send her to hang out on Tavros Station");
+	else addButton(6, "Boot Reaha", reahaBootOffShip, undefined, "Boot Reaha", "Kick Reaha off the ship. You can send her to hang out on Tavros Station.");
 
 	addButton(10,"Appearance",reahaFollowerAppearance);
 	addButton(14,"Back",crew);

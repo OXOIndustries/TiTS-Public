@@ -269,7 +269,7 @@ public function getDatGobboDick(x:int):void
 	author("Nonesuch");
 	output("You ignore the female gabilani; you fancy something more substantial, and " + (enemy.hasStatusEffect("Gabilani_Fucking") ? "that big fleshy, knobbly rod the male has got standing on end, seemingly just ready for you to hop on and ride silly, looks perfect.":"that thick, fleshy bulge you can see in the male’s jumpsuit, far bigger than his diminutive profile would suggest, looks perfect."));
 
-	if(pc.isAss() || pc.isAmazon()) output("\n\n<i>“Step aside, slut,”</i> you order, eyes boring into the nicely-built male. <i>“I’m gonna show you how to treat your man.”</i>");
+	if(pc.isAss() || pc.isAmazon(false)) output("\n\n<i>“Step aside, slut,”</i> you order, eyes boring into the nicely-built male. <i>“I’m gonna show you how to treat your man.”</i>");
 	else if(pc.isBimbo()) output("<i>“It’s whoopee time!”</i> you burble, bouncing across to the nicely-built male. <i>“You can watch if you like, k babes? K.”</i>");
 	else output("You don’t bother wasting words, simply let your carnal intentions known by moving past the plump female, [pc.eyes] boring into the male.");
 

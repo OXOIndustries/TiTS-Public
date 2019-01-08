@@ -95,7 +95,7 @@ package classes.GameData
 			riposte.classLimit = GLOBAL.CLASS_MERCENARY;
 			riposte.levelLimit = 4;
 			riposte.perkName = "Riposte";
-			riposte.perkDescription = "Grants increased evasion after any melee attack made for the remainder of the combat round.";
+			riposte.perkDescription = "Grants +15% evasion after any melee attack made for the remainder of the combat round.";
 			insertPerkData(riposte);
 			
 			var takeCover:PerkData = new PerkData();
@@ -327,7 +327,7 @@ package classes.GameData
 			sfGen.classLimit = GLOBAL.CLASS_SMUGGLER;
 			sfGen.levelLimit = 4;
 			sfGen.perkName = "Stealth Field Generator";
-			sfGen.perkDescription = "Grants the ability to massively increase evasion chance for two combat rounds.";
+			sfGen.perkDescription = "Grants the ability to massively increase evasion chance by 80% for two combat rounds.";
 			insertPerkData(sfGen);
 			
 			var disarmS:PerkData = new PerkData();
@@ -488,7 +488,7 @@ package classes.GameData
 			cloakAndDagger.levelLimit = 10;
 			cloakAndDagger.autoGained = true;
 			cloakAndDagger.perkName = "Cloak and Dagger";
-			cloakAndDagger.perkDescription = "Gain a small bonus to evasion for one turn after landing a basic attack hit (melee or ranged).";
+			cloakAndDagger.perkDescription = "Grants +5% evasion for one turn after landing a basic attack hit (melee or ranged).";
 			insertPerkData(cloakAndDagger);
 
 			//1. Can Opener: When you score a critical hit with a melee weapon, or strike a blinded or stunned target with one, you have a chance of Sundering the target's armor, which reduces its Defense for several rounds. //(physique vs reflexes. Standard “+10” type difficulty check)
