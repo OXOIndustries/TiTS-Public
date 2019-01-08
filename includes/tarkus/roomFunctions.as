@@ -377,6 +377,9 @@ public function grabARubbahTube():void
 
 public function messSeatingBonus():Boolean
 {
+	btnSlot = 0;
 	edanRoomDesc();
+	btnSlot++;
+	if (seatingZea(btnSlot)) btnSlot++;
 	return false;
 }
