@@ -46,14 +46,21 @@ public function reahaIsCrew():Boolean
 public function reahaAtBeths():Boolean
 {
 	if(flags["REAHA_BOOTED"] != undefined) return false;
-	if (flags["REAHA_IS_CREW"] == 2) return true;
+	if(flags["REAHA_IS_CREW"] == 2) return true;
 	return false;
 }
 
 public function reahaAtNewTexas():Boolean
 {
 	if(flags["REAHA_BOOTED"] != undefined) return false;
-	if (flags["REAHA_IS_CREW"] == 3) return true;
+	if(flags["REAHA_IS_CREW"] == 3) return true;
+	return false;
+}
+
+public function reahaAtNursery():Boolean
+{
+	if(flags["REAHA_BOOTED"] != undefined) return false;
+	if(flags["REAHA_IS_CREW"] == 4) return true;
 	return false;
 }
 

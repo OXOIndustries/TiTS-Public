@@ -3186,17 +3186,13 @@ public function variableRoomUpdateCheck():void
 		else rooms["ANON'S BOARD HALL"].removeFlag(GLOBAL.OBJECTIVE);
 	}
 	//Nursery
-	if (flags["BRIGET_MET"] == undefined || (hours >= 7 && hours <= 16))
-	{
-		rooms["NURSERYE14"].addFlag(GLOBAL.NPC);
-		rooms["NURSERYG8"].removeFlag(GLOBAL.NPC);
-	}
-	else
-	{
-		rooms["NURSERYE14"].removeFlag(GLOBAL.NPC);
-		rooms["NURSERYG8"].addFlag(GLOBAL.NPC);
-	}
-	if(seraAtNursery() || riyaAtNursery()) rooms["NURSERYG12"].addFlag(GLOBAL.NPC);
+	if (flags["BRIGET_MET"] == undefined || (hours >= 7 && hours <= 16)) rooms["NURSERYG8"].removeFlag(GLOBAL.NPC);
+	else rooms["NURSERYG8"].addFlag(GLOBAL.NPC);
+	if(npcInNurseryFoyer()) rooms["NURSERYE14"].addFlag(GLOBAL.NPC);
+	else rooms["NURSERYE14"].removeFlag(GLOBAL.NPC);
+	if(npcInNurseryCommonArea()) rooms["NURSERYE12"].addFlag(GLOBAL.NPC);
+	else rooms["NURSERYE12"].removeFlag(GLOBAL.NPC);
+	if(npcInNurseryCafeteria()) rooms["NURSERYG12"].addFlag(GLOBAL.NPC);
 	else rooms["NURSERYG12"].removeFlag(GLOBAL.NPC);
 	
 	if((hours < 4 || hours >= 12) && !pc.hasStatusEffect("Liamme Disabled")) 

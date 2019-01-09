@@ -4515,7 +4515,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						output2(", Crew member");
 						// Reaha Expansion
 						if(reahaIsCrew()) output2(" (Onboard Ship)");
-						else if(flags["REAHA_IS_CREW"] == 2) output2(" (At Tavros Station)");
+						else if(flags["REAHA_IS_CREW"] == 2 || flags["REAHA_IS_CREW"] == 4) output2(" (At Tavros Station)");
 						else if(flags["REAHA_IS_CREW"] == 3) output2(" (At New Texas)");
 						if(flags["REAHA_PAY_Q"] == 1) output2("\n<b>* Reaha, Credit Debt:</b> <i>Ready to pay!</i>");
 						if(flags["REAHA_PC_PAY"] != undefined) output2("\n<b>* Reaha, Credit Debt, Paid:</b> " + flags["REAHA_PC_PAY"] + " credits");

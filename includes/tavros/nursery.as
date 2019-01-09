@@ -65,11 +65,6 @@ public function yammiAtNursery():Boolean
 	return false;
 }
 
-public function reahaAtNursery():Boolean
-{
-	return false;
-}
-
 public function zilCallgirlAtNursery():Boolean
 {
 	if (flags["ZIL_CALLGIRL_AT_NURSERY"] == 1) return true;
@@ -86,6 +81,24 @@ public function zilCallgirlAtNursery():Boolean
 public function visitedNursery():Boolean
 {
 	if (flags["BRIGET_MET"] != undefined || flags["NURSERY_VISITED"] != undefined || flags["USED_NURSERY_COMPUTER"] != undefined) return true;
+	return false;
+}
+
+public function npcInNurseryFoyer():Boolean
+{
+	if(reahaAtNurseryFoyer()) return true;
+	return (flags["BRIGET_MET"] == undefined || (hours >= 7 && hours <= 16));
+}
+public function npcInNurseryCafeteria():Boolean
+{
+	if(seraAtNursery()) return true;
+	if(riyaAtNursery()) return true;
+	if(reahaAtNurseryCafeteria()) return true;
+	return false;
+}
+public function npcInNurseryCommonArea():Boolean
+{
+	if(zephAtNursery()) return true;
 	return false;
 }
 
@@ -113,24 +126,28 @@ public function nurseryFoyerFunc():Boolean
 	else if (numChildren == 1) output(" your child.");
 	else output(" your children.");
 
+	var btnSlot:int = 0;
+	
 	if (flags["BRIGET_MET"] == undefined)
 	{
 		output("\n\nA pallid-skinned woman in a suit-jacket and skirt is standing behind a desk, consulting a Codex couched under her arm. She doesn’t appear to have noticed you yet.");
 		
-		addButton(0, "Woman", nurseryMeetBriget);
+		addButton(btnSlot++, "Woman", nurseryMeetBriget);
 	}
 	else if (hours >= 7 && hours <= 16)
 	{
 		output("\n\nBriget is busily typing away behind the welcome desk. Seeing you standing around, your nurse-droid favors you with a matronly smile and slows the pace of her work invitingly, making herself look more available for you.");
-		addButton(0, "Briget", nurseryApproachBriget);
+		addButton(btnSlot++, "Briget", nurseryApproachBriget);
 	}
 
-	addButton(1, "NurseryComp.", nurseryComputer, undefined, "Nursery Status Computer", "The holoterminal in the nursery is set up to monitor and summarize the status "+ (numChildren == 0 ? "of your potential children" : (numChildren == 1 ? "of your child" : "of all your children")) +", letting you stay up-to-date with a push of a button.");
+	addButton(btnSlot++, "NurseryComp.", nurseryComputer, undefined, "Nursery Status Computer", "The holoterminal in the nursery is set up to monitor and summarize the status "+ (numChildren == 0 ? "of your potential children" : (numChildren == 1 ? "of your child" : "of all your children")) +", letting you stay up-to-date with a push of a button.");
+	
+	if(reahaAtNurseryFoyer()) reahaNurseryFoyerBonus(btnSlot++);
 
 	if(ChildManager.numChildrenAtNursery() < 1 && flags["ELLIE_PREG_TIMER"] < 70 && flags["ELLIE_AT_NURSERY"] != undefined)
 	{
 		output("\n\nYou find Ellie milling about in the reception area, clearly deep in thought as she mumbles to herself.");
-		addButton(2, "Ellie", ellieAtNurseryPreHatch, undefined, "", "");
+		addButton(btnSlot++, "Ellie", ellieAtNurseryPreHatch, undefined, "", "");
 	}
 
 	if(flags["NURSERY_VISITED"] == undefined) flags["NURSERY_VISITED"] =1;
@@ -525,6 +542,7 @@ public function nurseryCafeteriaFunc():Boolean
 	else pc.removeStatusEffect("Sera at Nursery");
 	if(riyaAtNursery()) riyaNurseryCafeteriaBonus(btnSlot++);
 	else pc.removeStatusEffect("Riya at Nursery");
+	if(reahaAtNurseryCafeteria()) reahaNurseryCafeteriaBonus(btnSlot++);
 	
 	return false;
 }
