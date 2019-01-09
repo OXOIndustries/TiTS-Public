@@ -48,7 +48,7 @@ package classes.Characters
 		{
 			this.ratVariety = ratVariety;
 		
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 
@@ -204,7 +204,7 @@ package classes.Characters
 					tallness = 58;
 					skinTone = "peach";
 					furColor = "light pink";
-					eyeColor = "bright green";
+					eyeColor = "green";
 					hairColor = "blonde and purple";
 					nippleColor = "light pink";
 					break;
@@ -253,7 +253,7 @@ package classes.Characters
 					skinTone = "chocolate";
 					furColor = "black";
 					eyeColor = "violet";
-					hairColor = "light brown";
+					hairColor = "blonde";
 					
 					hipRatingRaw = 9;
 					buttRatingRaw = 8;
