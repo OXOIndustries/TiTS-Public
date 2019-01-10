@@ -298,7 +298,7 @@ public function ratsInTheMineEncounter():Boolean
 		else output("\n\nYou cast your gaze down and a probing hand stops, fingers outstretched towards you belt. Scowling, you smack the rat’s arm away and step back, drawing your [pc.weapon] and meeting their eyes. <i>“Was already thinking of helping you get some rest in the infirmary, rat.”</i>");
 
 		output("\n\nThe [rat1.hairColor]-haired and freckled mouse-boy shakes his hands and clears his throat. <i>“We’re not here to hurt you or anyone else, but we are here to help others!”</i> he says piously, gesturing so wildly you can see the kindlings of sincerity in his [rat1.eyeColor] eyes.");
-		output("\n\nThe [rat2.furColor]-furred half-rodenian steps forward follows up, <i>“So come on, we’ll let you go if you do us a favor,”</i> [rat2.heShe] raises a finger, <i>“just give us some money or gems! If you’re carrying a lot, there’s no reason you can’t share with others! So many out there need help, you know?”</i>");
+		output("\n\nThe [rat2.furColor]-furred half-rodenian steps forward and follows up, <i>“So come on, we’ll let you go if you do us a favor,”</i> [rat2.heShe] raises a finger, <i>“just give us some money or gems! If you’re carrying a lot, there’s no reason you can’t share with others! So many out there need help, you know?”</i>");
 		
 		if (flags["ARDIA_GOT_INFODUMP"] != undefined) output("\n\nBased on what " + (addictedToArdia() ? "your alpha" : "Ardia") + " told you before, these mice are little more than petty thieves... And they’re giving you a hearty dose of their altruism.");
 	
