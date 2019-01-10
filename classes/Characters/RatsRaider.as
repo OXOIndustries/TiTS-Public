@@ -224,7 +224,7 @@ package classes.Characters
 					hairColor = "black";
 					break;
 				case FAIR_MOUSEBOY:
-					tallness = 66;
+					tallness = 61;
 					skinTone = "fair";
 					eyeColor = "brown";
 					hairColor = "light brown";
@@ -248,7 +248,7 @@ package classes.Characters
 					
 					break;
 				case HALF_BOY:
-					tallness = 65;
+					tallness = 60;
 					femininity = 40;
 					skinTone = "chocolate";
 					furColor = "black";

@@ -229,7 +229,7 @@ public function ratsAttemptUrbolgRobbery():void
 		output("\n\nUrbolg glowers " + (pc.tallness >= 5 ? "up" : "down") + " at you with a scrutinizing expression, perhaps none too pleased that you look like one of them. For your part, you continue to look coy");
 		if (pc.earType == GLOBAL.TYPE_MOUSE || pc.tailType == GLOBAL.TYPE_MOUSE)
 		{
-			output(" while your mousey ");
+			output(" while your mousey");
 			if (pc.earType == GLOBAL.TYPE_MOUSE)
 			{
 				if (pc.tailType == GLOBAL.TYPE_MOUSE) output(" ears and " + (pc.hasTails() ? "tails" : "tail") + " wobble");
@@ -2211,7 +2211,7 @@ public function ratFightLoss():void
 		output("\n\nWhen they open up the first of your packs, they scoff. They undo everything else helter-skelter, desperate to find even one chit. Their expectations leave them befuddled as they slowly but surely realize you’re carrying nothing of value. Everything on your person is ripped open, this or that tossed to the ground in disgust. The figurative moth flies from your empty wallet, and their curses turn to whines and petulant fits.");
 		output("\n\nAll because they can find nothing worth taking.");
 		output("\n\nWith frustrated growls, they shove you on your back.");
-		if (pc.HP() <= 0) output(" The rodenian jabs you in the neck with a hypostim of some sort. Arousal courses through your veins, turning your face red, but also knitting the wounds you accrued during the fight. (<b>H: +<span class='hp'>" + heal + "</span></b>)" + (lust > 0 ? " (<b>L: -<span class='lust'>" + lust + "</span></b>)" : ""));
+		if (pc.HP() <= 0) output(" The rodenian jabs you in the neck with a hypostim of some sort. Arousal courses through your veins, turning your face red, but also knitting the wounds you accrued during the fight. (<b>H: +<span class='hp'>" + heal + "</span></b>)" + (lust > 0 ? " (<b>L: +<span class='lust'>" + lust + "</span></b>)" : ""));
 		output("\n\nThey scamper off shouting, <i>“You shouldn’t have picked a fight if you didn’t have anything! Weirdo!”</i> until their footfalls fade into the background thrums. Guess that could have gone worse...");
 	}
 	// PC isn't poor
@@ -2228,7 +2228,7 @@ public function ratFightLoss():void
 			output("\n\nWhile two rats heft their take and get ready to go, the rodenian hops up to you with a weird vial in hand. She jabs you in the neck with a blue juice of some sort before you can react. <i>“Don’t worry, it’s a resuscitation stim! You’ll get all turned on but it beats bleeding out!”</i>");
 			output("\n\nYou rub your neck, already feeling better... but also feeling a bit turned on.");
 			output("\n\nSatisfied, delighted, <i>excited</i> beyond belief, the rambunctious rodents release you and bound down the passage, the jingling of their loot - your hard-earned wealth - making the hyper-present scorch of humiliation burn all the more painfully...");
-			output(" (<b>H: +<span class='hp'>" + heal + "</span></b>)" + (lust > 0 ? " (<b>L: -<span class='lust'>" + lust + "</span></b>)" : ""));
+			output(" (<b>H: +<span class='hp'>" + heal + "</span></b>)" + (lust > 0 ? " (<b>L: +<span class='lust'>" + lust + "</span></b>)" : ""));
 		}
 	}
 
