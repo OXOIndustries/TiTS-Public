@@ -554,8 +554,6 @@ public function frostwyrmPickMeUpBaby():void
 		if (flags["FROSTWYRM_XMAS"] == undefined || (flags["FROSTWYRM_XMAS"] != undefined && flags["FROSTWYRM_XMAS"] < currDate.fullYear))
 		enableXMas = true;
 	}
-	//debug!
-	enableXMas = true;
 	
 	processTime(5);
 	clearMenu();
@@ -2779,7 +2777,11 @@ public function frostwyrmItsMineAllMine3():void
 	badEnd("THE END");
 }
 
-//Frosty Xmas Xpak
+// Frosty Xmas Xpak
+// Writen by B!
+// https://docs.google.com/document/d/1YN72OHgu_eSIvU0tZ5ZiqBsrR8McOWtGI7DuWq0p2-Q/edit
+// Coded by Stygs
+// Jan 2019
 public function frostwyrmXMas():void
 {
 	clearOutput();
@@ -2825,34 +2827,35 @@ public function frostwyrmXMas():void
 	else output("\n\n<i>Your mate is ready, as ever, my Qal,</i> [frostwyrm.name] says, her ruby-red eyes on yours.");
 	output(" <i>What would you have us do?</i>");	
 
-	moveTo("FROSTWYRM LAIR", true);
+	moveTo("FROSTWYRM LAIR");
 	removeUvetoCold();
 	processTime(60);
-	var currDate:Date = new Date();
-	flags["FROSTWYRM_XMAS"] = currDate.fullYear;
-	flags["FROSTWYRM_XMAS_EVENTS"] = 0;
-	clearMenu();
-	addButton(0,"Snowmen!",frostwyrmXMasSnowmen,undefined,"Snowmen!","There’s nothing quite like the company of a snowman made with someone you love!");
-	addButton(1,"SnowAngels!",frostwyrmXMasSnowAngels,undefined,"SnowAngels!","The lair’s already got an angel in it, but maybe she’d enjoy making some more in the snow.");
-	addButton(2,"GiftGiving!",frostwyrmXMasGiftGiving,undefined,"GiftGiving!","[frostwyrm.name] has already given you the greatest gift of them all – but maybe she’ll get creative.");
-	addButton(3,"Caroling!",frostwyrmXMasCaroling,undefined,"Caroling!","Song is one of the languages of the universe. You’re sure [frostwyrm.name] has a wonderful singing voice!");
-	addDisabledButton(4,"Decorate!","Decorate!","You should leave this for later!");
+	frostwyrmXMasMenu();
 }
 public function frostwyrmXMasLeaveCave():void
 {
 	if (currentLocation == "FROSTWYRM LAIR") {
 		output("You and your " + (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "clutch" : "mate") +" make your way out of the lair (after you put your effects back on first, of course) and onto the surface of the little island that houses it. ");
 		moveTo("FROSTWYRM LAIR OUTSIDE");
+		processTime(20);
 	}
 }
-public function frostwyrmXMasDecorateButton():void
+public function frostwyrmXMasMenu():void
 {
-
-	IncrementFlag("FROSTWYRM_XMAS_EVENTS");
-	if (flags["FROSTWYRM_XMAS_EVENTS"] >= 4) {
+	clearMenu();
+	if (flags["FROSTWYRM_XMAS_SNOWMEN"] == 1) addDisabledButton(0, "Snowmen!", "Snowmen!", "You already did this.");
+	else addButton(0,"Snowmen!",frostwyrmXMasSnowmen,undefined,"Snowmen!","There’s nothing quite like the company of a snowman made with someone you love!");
+	if (flags["FROSTWYRM_XMAS_SNOWANGELS"] == 1) addDisabledButton(1, "SnowAngels!", "SnowAngels!", "You already did this.");
+	else addButton(1,"SnowAngels!",frostwyrmXMasSnowAngels,undefined,"SnowAngels!","The lair’s already got an angel in it, but maybe she’d enjoy making some more in the snow.");
+	if (flags["FROSTWYRM_XMAS_GIFTGIVING"] == 1) addDisabledButton(2, "GiftGiving!", "GiftGiving!", "You already did this.");
+	else addButton(2,"GiftGiving!",frostwyrmXMasGiftGiving,undefined,"GiftGiving!","[frostwyrm.name] has already given you the greatest gift of them all – but maybe she’ll get creative.");
+	if (flags["FROSTWYRM_XMAS_CAROLING"] == 1) addDisabledButton(3, "Caroling!", "Caroling!", "You already did this.");
+	else addButton(3,"Caroling!",frostwyrmXMasCaroling,undefined,"Caroling!","Song is one of the languages of the universe. You’re sure [frostwyrm.name] has a wonderful singing voice!");
+	if (flags["FROSTWYRM_XMAS_SNOWMEN"] == 1 && flags["FROSTWYRM_XMAS_SNOWANGELS"] == 1 && flags["FROSTWYRM_XMAS_GIFTGIVING"] == 1 && flags["FROSTWYRM_XMAS_CAROLING"] == 1 ) {
 		output("\n\nNow that she mentions it, you’ve gone through the whole list. There’s really only one thing left to do.");
 		addButton(4,"Decorate!",frostwyrmXMasDecorate,undefined,"Decorate!","It wouldn’t be the holidays without spending time to gussy up the place with a bunch of tacky colors!  You may not have a tree or a menorah on hand, but you <i>do</i> have something in mind....");
 	}
+	else addDisabledButton(4,"Decorate!","Decorate!","You should leave this for later!");
 }
 public function frostwyrmXMasSnowmen():void
 {
@@ -2924,8 +2927,9 @@ public function frostwyrmXMasSnowmen():void
 	output("\n\nYou wrap one arm around her scaly leg, holding yourself close to her, as you both bask in the glow of a completed creative project; one that you "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "and your clutch " : "") +"completed together. With the constant subzero temperatures of Uveto, your snowmen will survive for as long as the weather is decent. You wonder if you should give your own snowman some wings or something, to return the notion.");
 	output("\n\n<i>What other activities does your kind’s tradition include, my Qal?</i> [frostwyrm.name] asks.");
 
-	addDisabledButton(0, "Snowmen!", "Snowmen!", "You already did this.");
-	frostwyrmXMasDecorateButton();
+	flags["FROSTWYRM_XMAS_SNOWMEN"] = 1;
+	processTime(20);
+	frostwyrmXMasMenu();
 }
 public function frostwyrmXMasSnowAngels():void
 {
@@ -2973,8 +2977,9 @@ public function frostwyrmXMasSnowAngels():void
 	}
 	output("\n\n<i>What other activities does your kind’s tradition include, my Qal?</i> [frostwyrm.name] asks.");
 
-	addDisabledButton(1, "SnowAngels!", "SnowAngels!", "You already did this.");
-	frostwyrmXMasDecorateButton();
+	flags["FROSTWYRM_XMAS_SNOWANGELS"] = 1;
+	processTime(20);
+	frostwyrmXMasMenu();
 }
 public function frostwyrmXMasGiftGiving():void
 {
@@ -3005,7 +3010,7 @@ public function frostwyrmXMasGiftGiving():void
 	output("\n\nYou promised to call out to her within, uh... well before Light’s Fall, whether or not your trip is successful. When you hit the mainland, you go your separate ways. The flight lasted an hour, and you still don’t have the first idea what to get her. But, you’ll have an easier time thinking about it when you’re in your own element, or so you tell yourself.");
 	output("\n\nThere aren’t a lot of material goods or stores to buy things from in Irestead. It’s a weather station that doubles as a landing point for interplanetary visitors; there are weather-measuring instruments and lots of alcohol, but nothing a Frostwyrm would be interested in. Although, to be fair to yourself, you’re sure [frostwyrm.name]’s never had any alcohol – you don’t know if she wouldn’t like it. And you’re sure an inebriated Frostwyrm would be a sight to see.");
 	output("\n\nThat said, Irestead is much more festive than you had expected, coming into it. The local scientists and explorers are taking whatever time they can off their busy schedules to celebrate their own holidays, including putting up decorations. You even catch a whiff of some baked goods coming from their mess hall. It’s as good a place to start, you figure.");
-	output("\n\nYou’re greeted with the sight of enough baked cookies and cakes to give everyone on the station at least one of each. You ask the baker, a stout and jolly man, if he could spare enough to feed a Frostwyrm" + (flags["FROSTWYRM_KIP_COUNT"] != undefined ? " and its family" : "" ) +", you were given a fairly curt ‘no’ – the dough is used in too many different pastries to possibly spare that many. But, you’re instead given three large packs of frosting: red, green, and white. There aren’t nearly enough uses for them and they’re going to go bad well before the holidays are over, so you’re welcome to them. It’s, uh, a start, you suppose.");
+	output("\n\nYou’re greeted with the sight of enough baked cookies and cakes to give everyone on the station at least one of each. You ask the baker, a stout and jolly man, if he could spare enough to feed a Frostwyrm"+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? " and its family" : "" ) +", you were given a fairly curt ‘no’ – the dough is used in too many different pastries to possibly spare that many. But, you’re instead given three large packs of frosting: red, green, and white. There aren’t nearly enough uses for them and they’re going to go bad well before the holidays are over, so you’re welcome to them. It’s, uh, a start, you suppose.");
 	output("\n\nYou wander Irestead aimlessly, wracking your mind for something that [frostwyrm.name] would enjoy, and you doubt three big packs of food flavoring is really going to cut it. You glance out the windows to the frozen expanse of Uveto and try to think of something she, as a Frostwyrm, might appreciate, but every time you think of something, you just remind yourself that there’s nothing out there that she can’t just get herself.");
 	output("\n\nAs time grows short, you start exploring the more practical shops of Uveto, and you happen to come across a thermal jacket, on the rack for a modest price. It’s lined with fur and it doesn’t look thick enough to provide a lot of protection in the coldest of colds, but it would nonetheless provide <i>something</i>. [frostwyrm.name] doesn’t have any fur at all and she’s out there, bearing Uveto’s climate with just her scales. Maybe she’d appreciate something a little warm?");
 	output("\n\nThe jacket was on a holiday sale" + (pc.credits < 264 ? ", thank the Gods" : "" ) +", and you have your gift to [frostwyrm.name]. Naturally, the whole thing isn’t going to fit a Frostwyrm, so you make some modifications – namely, once you’re out of the store and somewhere relatively private, you rip off the sleeves. Now, your gift is ready.");
@@ -3040,10 +3045,16 @@ public function frostwyrmXMasGiftGiving():void
 	output("\n\n<i>It is a privilege to hear you say those words, my Qal,</i> [frostwyrm.name] says, craning her long neck down to nuzzle against you.");
 	output("\n\n<i>What other activities does your kind’s tradition include, my Qal?</i> [frostwyrm.name] asks.");
 
-// end scene (scene: Give Gifts); if this is the last option chosen, display a button labeled [=Decorate!=]. Else, display the previous menu and remove the [=GiftGiving!=] button; increase time by three hours; if the PC has nine kips or less, add Frostwyrm Breastplate to their inventory; if the PC has ten kips or more, add Frostwyrm Chainmail to their inventory.
-// I couldn’t find anything on the armor that’s available to the PC if they kill the Frostwyrm and harvest its scales instead of sparing it, so I don’t have a base to balance the gifts the Frostwyrm on (and I always get laughed at when I try to do game balancing with my content). Ideally, the armor you get for killing the Frostwyrm is the best reward you can get, then the Chainmail is worse, and the Breastplate is worse than that.
-	addDisabledButton(2, "GiftGiving!", "GiftGiving!", "You already did this.");
-	frostwyrmXMasDecorateButton();
+	processTime(180);
+	frostwyrmXMasMenu();
+
+	if (flags["FROSTWYRM_XMAS_GIFTGIVING"] != 1) {
+		output("\n\n");
+		if (flags["FROSTWYRM_KIP_COUNT"] >= 10) quickLoot(new FrostscaleArmor());
+		else quickLoot(new FrostscalePlate());
+		eventQueue.push(frostwyrmXMasGiftGiving);
+		flags["FROSTWYRM_XMAS_GIFTGIVING"] = 1;
+	}
 }
 public function frostwyrmXMasCaroling():void
 {
@@ -3059,7 +3070,7 @@ public function frostwyrmXMasCaroling():void
 	output("\n\nSo, she knows how to sing? <i>That is not the word that we use to describe it, but, yes. What you call ‘singing’ is similar in concept to how my kind introduce each other.</i> Perfect! You ask her if she’d be willing to share any songs that she know. ");
 	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) output("Your "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "daughters agree" : "daughter agrees") +" encouragingly, wanting to hear their Qim teach them how to sing. ")
 	output("<i>You may find yourself disappointed, my Qal.</i> You assure her that you would <i>never</i> be disappointed in anything she does or says.");
-	output("\n\nInspired by your words, [frostwyrm.name] looks to the horizon. Your island is surrounded on all sides by the vast Uveto ocean; you"+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "and your clutch" : "") +"are the only one{s} within miles and miles to hear her. <i>As you wish,</i> she says. She paces a bit and shuffles on the spot, unsure and apprehensive – is she nervous about singing in front of you?");
+	output("\n\nInspired by your words, [frostwyrm.name] looks to the horizon. Your island is surrounded on all sides by the vast Uveto ocean; you "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "and your clutch " : "") +"are the only "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "ones " : "one") +" within miles and miles to hear her. <i>As you wish,</i> she says. She paces a bit and shuffles on the spot, unsure and apprehensive – is she nervous about singing in front of you?");
 	output("\n\n[frostwyrm.name] takes a deep breath (a much deeper one than you could make!), and from her throat vibrates a constant, baritone hum that reverberates out into the water. Her throat visibly flexes as her voice shifts and makes different notes. It’s a lyric-less song, of course, and it doesn’t follow any sort of pentameter that you’ve ever heard before, but there is nonetheless a certain rhythm to it; the way her highs blend with other highs before sinking to lows and starting again.");
 	output("\n\nIt doesn’t sound at all like you had expected a dragon’s song to sound. Worst-case, you had expected something grating and off-key; best-case, you had expected something kind of whiny and shrill. Her ‘voice’ is very deep, matching her size and stature, and it hits just the right resonance to relax your body and tickle you in the chest. Your body leans subconsciously towards [frostwyrm.name] and your ears perk whenever she hits a new high-note. You find yourself... not <i>entranced,</i> per se, but intrigued by [frostwyrm.name] and the song that she’s singing. If you weren’t already deeply acquainted with her, you’d have sought her out with your ears leading the way.");
 	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
@@ -3089,8 +3100,9 @@ public function frostwyrmXMasCaroling():void
 	output("\n\nYou ask her if she thinks your language’s songs have a chance of instilling the same emotions in their audience as hers does. <i>That would be a matter of who is performing, my Qal,</i> she answers simply, her big nose nuzzling up against you once more, making her message as clear as she can without being overt.");
 	output("\n\n<i>What other activities does your kind’s tradition include, my Qal?</i> [frostwyrm.name] asks.");
 
-	addDisabledButton(3, "Caroling!", "Caroling!", "You already did this.");
-	frostwyrmXMasDecorateButton();
+	flags["FROSTWYRM_XMAS_CAROLING"] = 1;
+	processTime(20);
+	frostwyrmXMasMenu();
 }
 public function frostwyrmXMasDecorate():void
 {
@@ -3131,6 +3143,7 @@ public function frostwyrmXMasDecorate():void
 	output("\n\nYou tell [frostwyrm.name] that one of the true staples of the tradition is decorating. You don’t have enough material to decorate the lair, and you don’t have any symbols or objects to put any tinsel on or anything, but the next best thing is staring at you, throbbing and excited, in the face. Besides, making cute pastries is all a part of the fun. You have all the frosting you need, and you’ll be getting the batter in just a minute.");
 	output("\n\nYou have three packets: red, green, and white. How will you apply them to your canvas?");
 
+	processTime(20);
 	clearMenu();
 	addButton(0,"Green&White",frostwyrmXMasClimax,"green");
 	addButton(1,"Red&White",frostwyrmXMasClimax,"red");
@@ -3166,6 +3179,7 @@ public function frostwyrmXMasClimax(color:String):void
 	output("\n\nYou re-adjust yourself and continue your baptizing, lowering your head and directing [frostwyrm.name]’s cannon of a cock to douse your [pc.hair] and have her seed drip down your back. You lean backward, offering your neck, and it pulses another round against your neck, her cum dribbling down your [pc.chest] and down to your [pc.belly]. Her every wave of cum ripples underneath your hands as it comes to you. Of course, with every other load, you open your mouth, catching a mouthful of her thick cream for you to gargle before swallowing.");
 	output("\n\n[frostwyrm.name]’s haunches thrust impiously through the whole thing, her turgid dick bloating and pumping again and again, depositing a large load, even by Frostwyrm standards. By the time her cum comes out as meek dribbles (and even those are rather thick, at least compared to most non - Frostwyrms), [frostwyrm.name] pants in contended exhaustion, her lungs heaving and nostrils flaring. You lean back, your [pc.skinFurScales] absolutely caked in her slimy load; your hands splash onto the icy floor and your [pc.belly] churns uncomfortably, heavy with the load inside it. You bring your fingers to your mouth and give them a suck, and you can just barely make out the residual taste of "+ (color == "red" ? "pepper" : "") +"mint.");
 
+	processTime(20);
 	clearMenu();
 	addButton(0,"Next",frostwyrmXMasEnding,undefined);
 }
@@ -3188,13 +3202,21 @@ public function frostwyrmXMasEnding():void
 	output("\n\n");
 	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) output("The symphonic purr of your clutch reverberating through the lair rises. ");
 	output("Your mate leans forward, her huge face nuzzling warmly against you. <i>You are my mate, [pc.name]. I would fly to the ends of the world and back for you. You need not have gotten me any gifts; being a part of your life, as you are a part of mine, is the greatest gift I could have been bestowed.</i>");
-	output("\n\nYou lay one arm across her muzzle and give her a gentle kiss on the tip of her flaring nose. "+ (silly ? "“Same.”" :"You couldn’t have said it better."));
+	output("\n\nYou lay one arm across her muzzle and give her a gentle kiss on the tip of her flaring nose. "+ (silly ? "<i>“Same.”</i>" :"You couldn’t have said it better."));
 
-	clearMenu();
-	addButton(0,"Happy",frostwyrmMainMenu,true,"Happy Holidays!","Happy");
-	addButton(1,"Holidays!",frostwyrmMainMenu,true,"Happy Holidays!","Holidays!");
+	processTime(5);
+	pc.lust(50);
 	
-	addButton(10,"Debug 1",frostwyrmHomeAtLast);
-	addButton(11,"Debug 2",frostwyrmMainMenu,true);
-	addButton(12,"Debug 3",frostwyrmMainMenu,false);
+	var currDate:Date = new Date();
+	flags["FROSTWYRM_XMAS"] = currDate.fullYear;
+	flags["FROSTWYRM_XMAS_SNOWMEN"] = 0;
+	flags["FROSTWYRM_XMAS_SNOWANGELS"] = 0;
+	flags["FROSTWYRM_XMAS_GIFTGIVING"] = 0;
+	flags["FROSTWYRM_XMAS_CAROLING"] = 0;
+	
+	//B! wanted two buttons, so two buttons it is.
+	var ttBody:String = "Now that you have shown [frostwyrm.name] "+ (flags["FROSTWYRM_KIP_COUNT"] != undefined ? "and your kips " : "" ) +"your holiday traditions, it is time for you to get back to adventuring."
+	clearMenu();
+	addButton(0,"Happy",frostwyrmMainMenu,true,"Happy Holidays!",ttBody);
+	addButton(1,"Holidays!",frostwyrmMainMenu,true,"Happy Holidays!",ttBody);
 }
