@@ -1018,6 +1018,8 @@ public function ramisLetsShagRouter():void
 			
 			if (possibleScenes.length > 0) addButton(0, "Next", RandomInCollection(possibleScenes));
 			else addButton(0, "Next", mainGameMenu);
+			
+			if (ramisTimesOrallySexedHer() >= 2 && pc.smallestCockLength() <= 4) addButton(4, "Lick Job?", ramisLickJob, undefined, "Lick Job?", "Request a blow job from the kitty hulk.");
 		}
 		else
 		{
@@ -1037,8 +1039,7 @@ public function ramisLetsShagRouter():void
 			}
 			
 			addButton(0, "Doggie", ramisCatsAndDoggystyle, false, "Doggie", "Do the big kitty from behind.");
-			addButton(1, "Face Sit", ramisFaceSittingJackOff, undefined, "Face Sitting", "Have the amazon sit on your face.");
-			if (ramisTimesOrallySexedHer() >= 2 && pc.smallestCockLength() <= 4) addButton(2, "Lick Job?", ramisLickJob, undefined, "Lick Job?", "Request a blow job from the kitty hulk.");
+			//addButton(1, "Blowjob", nope, false);
 		}
 	}
 }
@@ -2671,7 +2672,6 @@ public function ramisLapSitJackOff():void
 	output("\n\n<i>“Bloody hell, I love doing this. This littel thing belongs me, really, doesn’t it? It’s my toy, ‘n I get to wind it up... ‘n choose when to let it go. Maken you twitch’n squeak is better’n anee stuffed toy.”</i> She snuggles into you, boobs shifting against your head. <i>“So have you been a good girlee boy then? Do you really deserve me sitten my littel toy on the ground and seein’ how far it goes?”</i>");
 	output("\n\nRound and round, that warm, smooth ring of pressure goes...");
 	
-	processTime(16);
 	pc.maxOutLust();
 	
 	if(pc.hasStatusEffect("Blue Balls"))
@@ -2703,7 +2703,7 @@ public function ramisLapSitJackOff():void
 		output("\n\nIt’s not something you’ll be thinking about any time soon - your groin feels like a dried up sponge. You crab-walk off towards your room in search of a clean-up and a drink of water.");
 		if(cumQ >= 1000 && celiseIsCrew()) output(" Celise will take care of what you’ve left behind, you’re sure.");
 		
-		processTime(7);
+		processTime(23);
 		
 		pc.orgasm();
 		
@@ -2725,7 +2725,7 @@ public function ramisLapSitJackOff():void
 		output("\n\n<i>“I do say so!”</i> Her hand trails up your [pc.chest], claws gently scraping you as she brushes you off her lap. <i>“You put that bell back on your bell, sweetheart. If you knock on for me, and you’re still wearen it... well, we’ll see, won’t we? Good boyos get the best cummies.”</i>");
 		output("\n\nShe laughs as she swaggers off, tails flicking, unbearably, ravishingly uncaring. After a few moments, you tie the silk tie of the bell back onto your still needily erect prick. It does, inescapably, look very cute.");
 		
-		processTime(5);
+		processTime(21);
 		
 		// +Lust, gives PC blue balls status, Ramis [sex] GO for six hours
 		pc.applyBlueBalls();
@@ -2775,7 +2775,7 @@ public function ramisFaceSittingJackOffScene(args:Array):void
 			pc.lust(15);
 			pc.girlCumInMouth(ppRamis);
 			
-			addButton(0, "Next", ramisFaceSittingJackOffScene, [page, cIdx, cLength, ppRamis]);
+			addButton(0, "Next", ramisFaceSittingJackOffScene, [1, cIdx, cLength, ppRamis]);
 			break;
 		case 1:
 			output("She pushes forward suddenly, the oozing fruit of her sex smushing you in the face, pushing you back onto the floor in a muddle. [pc.chest] heaving, you gaze upwards as the kaithrit purposefully stands astride you, turning around and then kneeling about your shoulders, her gently dripping pussy descending towards your face as she fumbles with your " + (pc.isCrotchExposed() ? "[pc.groin]" : "[pc.lowerGarments]") + ".");
@@ -2828,7 +2828,7 @@ public function ramisFaceSittingJackOffScene(args:Array):void
 			// ++Lust
 			pc.maxOutLust();
 			
-			addButton(0, "Next", ramisFaceSittingJackOffScene, [page, cIdx, cLength, ppRamis]);
+			addButton(0, "Next", ramisFaceSittingJackOffScene, [2, cIdx, cLength, ppRamis]);
 			break;
 		case 2:
 			output("She lifts a buttock and gazes down at your flushed, lube-coated face fondly, still stroking you slowly. You gaze back, mouth open, pupils dilated, hypnotized by the intense heat and tender pressure stuck in your [pc.cockNoun " + cIdx + "], imprisoned by her strong, warm fingers. You are desperate to cum, relieve that juicy, pent-up arousal... but, even without the rules of this little encounter expressly stated, you can’t. Something about servicing the big, female kaithrit ingrains something into you, it seems. Pheromones in her juices? The size of her? Your subservient position? Whatever it is, you know you have to wait for her instruction to let that liquid, pent-up heat go.");
