@@ -128,6 +128,19 @@ public function getRamisPregContainer():PregnancyPlaceholder
 	if (flags["RAMIS_STRETCHED"] != undefined) ppRamis.vaginas[0].bonusCapacity += flags["RAMIS_STRETCHED"];
 	return ppRamis;
 }
+public function ramisTimesSexed():Number
+{
+	var sexed:int = 0;
+	if(flags["RAMIS_SEXED"] != undefined) sexed += flags["RAMIS_SEXED"];
+	if(flags["RAMIS_SEXED_SHIP"] != undefined) sexed += flags["RAMIS_SEXED_SHIP"];
+	return sexed;
+}
+public function ramisTimesOrallySexedHer():Number
+{
+	var sexed:int = 0;
+	if(flags["RAMIS_SEXED_FACESIT"] != undefined) sexed += flags["RAMIS_SEXED_FACESIT"];
+	return sexed;
+}
 
 // Appearance
 public function ramisAppearance(btnSlot:int = 0):void
@@ -138,7 +151,7 @@ public function ramisAppearance(btnSlot:int = 0):void
 	
 	output("The seven foot, two-inch tall, brown-skinned, honey-haired obelisk of taut muscle and generous feminine curves that calls itself Ramis is a kaithrit, and is definitely one of the more generously sized examples of her race. Beneath her tight jeans, each of her big, brawny buttocks is the size of a basketball, and her dark tank top and sports bra do not disguise her wide, round D-cups. Ropy muscle trembles restlessly in her bare, washboard midriff and arms. Bursting out of the seat of her jeans are her twin tails, the same color as her pointed ears: tawny, with a paintbrush-like dappling of black.");
 	output("\n\nIn keeping with the rest of her, her eyes are a deep yellow. Her hair is pulled back into a ponytail, which combines with her high, proud cheekbones to give her a rather daunting profile at first glance; however, a full, expressive mouth that provides her with a huge, winning smile softens things considerably. Behind that, she has a voice and set of lungs that could be used to deafen people two planets away. She overall gives the impression of a boisterous late summer party looming ponderously into view.");
-	if(flags["RAMIS_SEXED"] != undefined) output("\n\nBetween her legs you know that, just like the rest of her, she’s pure female kaithrit - a single, fluffed, large but vice-like pussy is to be found there, and she has a single pink anus between her tight buttcheeks right where it belongs.");
+	if(ramisTimesSexed() > 0) output("\n\nBetween her legs you know that, just like the rest of her, she’s pure female kaithrit - a single, fluffed, large but vice-like pussy is to be found there, and she has a single pink anus between her tight buttcheeks right where it belongs.");
 	
 	addDisabledButton(btnSlot, "Appearance");
 }
@@ -488,6 +501,16 @@ public function ramisDrink(response:String = "drink"):void
 	}
 }
 
+public function ramisArmWrestleWinRatio(physique:Number = 0):int
+{
+	var winRatio:int = 4;
+	if(physique <= 40)	winRatio++; // PC Physique < 41%: 0 chance PC wins
+	if(physique > 40)	winRatio--; // 79% > PC Physique > 40%: ¼ chance PC wins
+	if(physique > 80)	winRatio--; // 89% > PC Physique > 80%: ½ PC wins
+	if(physique > 90)	winRatio--; // PC Physique > 90% : ¾ chance PC wins
+	
+	return winRatio;
+}
 public function ramisFlirt(response:String = "flirt"):void
 {
 	clearOutput();
@@ -521,11 +544,7 @@ public function ramisFlirt(response:String = "flirt"):void
 			output("\n\n<i>“Ready for this, boyo?”</i> she purrs, tails flicking back and forth in anticipation.");
 			
 			var physique:Number = pc.PQ();
-			var winRatio:int = 4;
-			if(physique <= 40)	winRatio++; // PC Physique < 41%: 0 chance PC wins
-			if(physique > 40)	winRatio--; // 79% > PC Physique > 40%: ¼ chance PC wins
-			if(physique > 80)	winRatio--; // 89% > PC Physique > 80%: ½ PC wins
-			if(physique > 90)	winRatio--; // PC Physique > 90% : ¾ chance PC wins
+			var winRatio:int = ramisArmWrestleWinRatio(physique);
 			
 			// PC wins
 			if(winRatio < 4 && rand(winRatio) == 0)

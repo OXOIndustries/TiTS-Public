@@ -5671,7 +5671,8 @@ public function theWalkBackToTheShip():void
 	output("\n\nBefore she does, though, she, with a hefty swing, tosses her suitcase onto the open bed. With both her hands free, she steps toward you and wraps them around you, embracing you nearly as tightly as she did the day before.");
 	output("\n\n<i>“I’m looking forward to seeing what trouble you and I can get into, my mate,”</i> she whispers, and closes her statement with a soft kiss against your [pc.lipsChaste]. <i>“The universe isn’t ready for us.”</i>");
 	output("\n\nWith that, she disappears into her quarters, to settle herself in.");
-	output("\n\n<b>Penny Inoue is now a crewmate!</b>");
+	
+	output("\n\n(<b>Penny Inoue has joined your crew!</b>)");
 	penny.armor = new UGCCasualOutfit();
 	flags["PENNY_CREW_ASKED"] = 4;
 	flags["PENNY_ONBOARD"] = 1;
@@ -5706,7 +5707,8 @@ public function recruitCumslutPenny():void
 	output("\n\n<i>“You are,”</i> you agree, stepping away. <i>“But you’re my whore. You’re going to love this, Penny.”</i>");
 	output("\n\nRubbing excess spunk across her lips, Penny moans, <i>“I already am.”</i>");
 	output("\n\nPenny leaves her office not long after you.");
-
+	
+	output("\n\n(<b>Penny has joined your crew!</b>)");
 	pc.addHard(15);
 	flags["PENNY_ONBOARD"] = 1;
 	flags["PENNY_CUMSLUT_RECRUITED"] = 1;
@@ -5832,6 +5834,8 @@ public function camwhoreItUpBimboPenny():void
 	output("\n\nYou gently explain to her that she should say goodbye to Flahne, and let her know she’s leaving to be your personal camwhore. The town will get a new cop, and Penny will get to make the entire universe orgasm along with her.");
 	output("\n\nThat does the trick. The fox’s eyes light up as she sinks a few more inches down, slurping ecstatically.");
 	output("\n\n<b>Penny’s going to be your personal cum-dump crew-mate (and camwhore)!</b>");
+	
+	output("\n\n(<b>Penny has joined your crew!</b>)");
 	//move PC south. Orgasm if has dick. +15 lust if not.
 	pc.addHard(5);
 	flags["PENNY_ONBOARD"] = 1;

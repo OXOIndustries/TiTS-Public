@@ -4423,9 +4423,13 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(StatTracking.getStat("contests/ramis arm wrestle losses") + StatTracking.getStat("contests/ramis arm wrestle wins") > 0) output2("\n<b>* Ramis, Arm Wrestling Contest, Win/Loss Ratio:</b> " + StatTracking.getStat("contests/ramis arm wrestle wins") + "/" + StatTracking.getStat("contests/ramis arm wrestle losses") + ", of " + (StatTracking.getStat("contests/ramis arm wrestle losses") + StatTracking.getStat("contests/ramis arm wrestle wins")) + " games");
 					if(flags["RAMIS_TIMES_DRINK"] != undefined) output2("\n<b>* Ramis, Times Had Drinks with Her:</b> " + flags["RAMIS_TIMES_DRINK"]);
 					if(flags["RAMIS_TIMES_BENDER"] != undefined) output2("\n<b>* Ramis, Times Had a Hangover with Her:</b> " + flags["RAMIS_TIMES_BENDER"]);
-					if(flags["RAMIS_SEXED"] != undefined) output2("\n<b>* Ramis, Times Sexed:</b> " + flags["RAMIS_SEXED"]);
+					if(ramisTimesSexed() > 0) output2("\n<b>* Ramis, Times Sexed:</b> " + ramisTimesSexed());
 					if(flags["RAMIS_SEXED_MAN"] != undefined) output2("\n<b>* Ramis, Times Fucked Her as a Man:</b> " + flags["RAMIS_SEXED_MAN"]);
 					if(flags["RAMIS_SEXED_TRAP"] != undefined) output2("\n<b>* Ramis, Times Fucked Her as a Trap:</b> " + flags["RAMIS_SEXED_TRAP"]);
+					if(flags["RAMIS_SEXED_STRAP"] != undefined) output2("\n<b>* Ramis, Times Fucked Her With Hardlight Strap-On:</b> " + flags["RAMIS_SEXED_STRAP"]);
+					if(flags["RAMIS_SEXED_FACESIT"] != undefined) output2("\n<b>* Ramis, Times She’s Given You a Handjob While Sitting On Your Face:</b> " + flags["RAMIS_SEXED_FACESIT"]);
+					if(flags["RAMIS_SEXED_LAPSIT"] != undefined) output2("\n<b>* Ramis, Times She’s Given You a Handjob On Her Lap:</b> " + flags["RAMIS_SEXED_LAPSIT"]);
+					if(flags["RAMIS_SEXED_LICKJOB"] != undefined) output2("\n<b>* Ramis, Times She Sucked Your Tiny Dick:</b> " + flags["RAMIS_SEXED_LICKJOB"]);
 				}
 				// Sellesy
 				if(flags["SEEN_SELLESY"] != undefined)

@@ -2379,7 +2379,9 @@ public function firstTimePaigeCrewHiHi():void
 		}
 		// Merge here
 		output("\n\nShe claps her hands together, straightening her stance and taking a more professional demeanor. <i>“Now then, Captain Steele,”</i> she says, standing straight, trying to look stern and disciplined but her goofy smile and wagging tail give her away. <i>“Where are my quarters? I have some things I need to be setting up.”</i>");
-		output("\n\n<b>Paige is now a crewmate!</b>");
+		
+		output("\n\n(<b>Paige has joined your crew!</b>)");
+		
 	}
 	// Continue here if the PC has no other crew
 	else
@@ -2394,8 +2396,8 @@ public function firstTimePaigeCrewHiHi():void
 		output("\n\n<i>“Well... I’ve been on worse ships,”</i> she giggles. <i>“It’s certainly spacious enough; I have a few ideas on how to manage my own quarters to keep up my yoga with Iddi. And we don’t seem to be using the cargo hold for a lot. Maybe I can turn it into a gym or something.”</i> She turns to you, smiling giddily. <i>“With your permission, of course, Captain Steele.”</i>");
 		output("\n\nCaptain Steele. You kind of like the sound of that. <i>“I already know where I’m setting up,”</i> she continues, standing at attention, trying to look stern and disciplined but her goofy smile and wagging tail give her away. <i>“Permission to start making myself at home. " + pc.mf("Sir","Ma’am") + "?”</i>");
 		output("\n\nYou ask Paige if this is going to be a regular thing between you two. <i>“Nah,”</i> she laughs, relaxing and stepping away from you, towards the quarters she’d already picked out for herself.");
-
-		output("\n\n<b>Paige is now a crewmate!</b>");
+		
+		output("\n\n(<b>Paige has joined your crew!</b>)");
 	}
 	//[=Next=]
 	// end scene (scene: Welcoming)
