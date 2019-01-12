@@ -127,12 +127,12 @@ public function verushaMyrBathTime():void
 	output("\n\nYou spend the next few minutes drying each other off before getting clothed again. Stepping outside, Verusha speaks up, <i>\"I'll be back on Tarkus in a couple of days if you want to fuck some more.\"</i>");
 	output("\n\nThat definitely sounds like a good idea.");
 	
-	pc.orgasm();
-	flags["BATHED_VERUSHA"] = 1;
-	IncrementFlag("SEXED_VERUSHA");
-	
 	generateMapForLocation("831");
 	verushaWasInMyrellion();
+	flags["BATHED_VERUSHA"] = 2;
+	IncrementFlag("SEXED_VERUSHA");
+	pc.orgasm();
+	
 	
 	addButton(0, "Next", function():void
 	{
