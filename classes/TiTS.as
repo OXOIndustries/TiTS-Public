@@ -415,6 +415,7 @@
 		include "../includes/myrellion/thollum.as";
 		include "../includes/myrellion/tradingPost.as";
 		include "../includes/myrellion/venomAddiction.as";
+		include "../includes/myrellion/verushaBath.as";
 		include "../includes/myrellion/vi.as";
 		include "../includes/myrellion/wetraxxel.as";
 		include "../includes/myrellion/xanthe.as";
