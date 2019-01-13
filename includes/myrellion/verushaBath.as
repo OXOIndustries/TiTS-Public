@@ -22,6 +22,7 @@ public function verushaWasInMyrellion():void
 public function verushaMyrBonus():Boolean
 {
 	if (!pc.hasGenitals()) return false;
+	else if (!pc.hasLegs()) return false;
 	else if (rand(100) != 0) return false;
 	else if (pc.tallness > 9*12) return false;
 	else if (flags["BATHED_VERUSHA"] != undefined) return false;
@@ -101,7 +102,7 @@ public function verushaMyrBathTime():void
 	processTime(15+rand(46));
 	
 	output("<i>\"Sounds good,\"</i> you tell her.");
-	output("\n\nVerusha is more talkative than usual. She still doesn't really talk about herself but she shares some info on employers and jobs she's had recently. You're surprised at how many of her employers talk openly about the job when she's around{; you'll make sure not to make the same mistake if you're ever in that position}.");
+	output("\n\nVerusha is more talkative than usual. She still doesn't really talk about herself but she shares some info on employers and jobs she's had recently. You're surprised at how many of her employers talk openly about the job when she's around.");
 	output("\n\nSoon you get to the bath house. Verusha opens the door for you. <i>\"Bitches first,\"</i> she chuckles.");
 	output("\n\nYou roll your eyes and step inside.");
 	output("\n\nThe gold matron at the desk turns as you approach her. <i>\"A private bath for two,\"</i> Verusha says, handing some federation silver to the matron.");
@@ -121,7 +122,7 @@ public function verushaMyrBathTime():void
 	output("\n\nYou're surprised at how good Verusha is at oral. For someone who doesn't care about someone else's pleasure, she pretty good at pleasuring others. You're getting closer to your own orgasm with each passing second. At this rate, you're going to cum soon.");
 
 	if (pc.hasCock()) output("\n\nYou gasp as one of Verusha's fingers suddenly penetrate your asshole up to her knuckle. Her finger wiggles around your behind, seeking that cum button hidden inside your ass that'll melt you with pleasure. When she finds said pleasure spot, she gives it a thorough one-finger massage, casually kneading it. That's enough to make you bust your nut straight down her throat. She keeps swallowing your [pc.cumNoun] without stopping" + (pc.cumQ() > 200 ? " until suddenly she pulls your [pc.cock] out of her throat and aims your extra surges to your side." : "."));
-	else output("\n\nYour breath catches in your throat as you feel a pinching sensation on your clit; your [pc.girlCum] {soaks into/splatters over} her muzzle. She laps at your pussy, making sure that there's nothing left.");
+	else output("\n\nYour breath catches in your throat as you feel a pinching sensation on your clit; your [pc.girlCum] " + (pc.isSquirter() ? "splatters over" : "soaks into") + " her muzzle. She laps at your pussy, making sure that there's nothing left.");
 
 	output(" Verusha licks her chops. <i>\"Don't think this will become a regularity; next time you're going to be the one sucking my dick.\"</i> A playful yet possessive growl follows.");
 	output("\n\nYou spend the next few minutes drying each other off before getting clothed again. Stepping outside, Verusha speaks up, <i>\"I'll be back on Tarkus in a couple of days if you want to fuck some more.\"</i>");
@@ -132,6 +133,7 @@ public function verushaMyrBathTime():void
 	flags["BATHED_VERUSHA"] = 2;
 	IncrementFlag("SEXED_VERUSHA");
 	pc.orgasm();
+	pc.shower();
 	
 	
 	addButton(0, "Next", function():void
