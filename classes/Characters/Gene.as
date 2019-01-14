@@ -11,6 +11,7 @@
 	import classes.Items.Transformatives.Circumscriber;
 	import classes.Items.Transformatives.Turtleneck;
 	import classes.Items.Transformatives.TauricoVenidae;
+	import classes.Items.Transformatives.Reptilum;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	
@@ -19,7 +20,7 @@
 		//constructor
 		public function Gene()
 		{
-			_latestVersion = 1;
+			_latestVersion = 2;
 			version = _latestVersion;
 			_neverSerialize = true;
 			
@@ -40,6 +41,7 @@
 			inventory.push(new Circumscriber());
 			inventory.push(new Turtleneck());
 			inventory.push(new TauricoVenidae());
+			inventory.push(new Reptilum());
 			
 			typesBought = [];
 			
@@ -53,6 +55,11 @@
 			ballSizeRaw = 14;
 			cumMultiplierRaw = 30;
 			ballEfficiency = 90;
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.inventory.push(new Reptilum().getSaveObject());
 		}
 		
 		override public function onLeaveBuyMenu():void
