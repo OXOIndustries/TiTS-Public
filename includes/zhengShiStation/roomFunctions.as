@@ -54,15 +54,42 @@ public function slavesuitRoomOfZhengShiMines():Boolean
 
 public function takeZhengShiJumpsuit():void
 {
-	clearOutput();
+	lootScreen = takeZhengShiJumpsuitCheck;
 	flags["ZHENG_SHI_JUMPSUITED"] = 1;
-	quickLoot(new Slavesuit());
+	itemCollect([new Slavesuit()]);
 }
+public function takeZhengShiJumpsuitCheck():void
+{
+	if (pc.armor is Slavesuit || pc.hasItemByClass(Slavesuit))
+	{
+		mainGameMenu();
+		return;
+	}
+	clearOutput();
+	output("You put the suit back where you found it.");
+	flags["ZHENG_SHI_JUMPSUITED"] = undefined;
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
 public function takeZhengShiSpacesuit():void
 {
-	clearOutput();
+	lootScreen = takeZhengShiSpacesuitCheck;
 	flags["ZHENG_SPACESUIT_TAKEN"] = 1;
-	quickLoot(new SpacesuitIncomplete())
+	itemCollect([new SpacesuitIncomplete()]);
+}
+public function takeZhengShiSpacesuitCheck():void
+{
+	if (pc.armor is SpacesuitIncomplete || pc.hasItemByClass(SpacesuitIncomplete))
+	{
+		mainGameMenu();
+		return;
+	}
+	clearOutput();
+	output("You put the spacesuit back where you found it.");
+	flags["ZHENG_SPACESUIT_TAKEN"] = undefined;
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function zhengMinesSpaceBonus():Boolean
