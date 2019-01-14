@@ -641,6 +641,9 @@ public function ratGiveThemShinyRocks():void
 	ratsStealRiches(rat0, pc, false, gemsToTake);
 	
 	flags["RAT_GOT_GEMS"] = 1;
+
+	pc.createStatusEffect("Rats Paid Off");
+	pc.setStatusMinutes("Rats Paid Off", 4*60);
 	
 	ratsFinish();
 }
