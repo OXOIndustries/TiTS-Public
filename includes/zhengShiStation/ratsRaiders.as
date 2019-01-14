@@ -85,6 +85,7 @@ public function showRats(ratCount:int = -2, nude:Boolean = false):void
 public function ratsAvailable():Boolean
 {
 	if (flags["RATS_ENABLED"] != 1) return false;
+	if (pc.hasStatusEffect("Rats Paid Off")) return false;
 	if (pc.hasStatusEffect("Rats Gossip Time")) return false;
 	return true;
 }
@@ -543,6 +544,8 @@ public function ratsShutUpAndTakeMyMoney():void
 		output("\n\nJust out of ear shot, you hear the little bandits laughing triumphantly.");
 	}
 
+	pc.createStatusEffect("Rats Paid Off");
+	pc.setStatusMinutes("Rats Paid Off", 4*60);
 	pc.credits -= rat0.credits;
 	ratsFinish();
 }
