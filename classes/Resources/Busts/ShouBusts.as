@@ -480,6 +480,9 @@
 		public var Bust_MILODANMALE_NUDE:Class;
 		public function get Bounds_MILODANMALE_NUDE():Rectangle { return Bounds_MILODANMALE; }
 
+		public function get Bust_MILO_INFILTRATOR():Class { return Bust_MILODANMALE; }
+		public function get Bust_MILO_INFILTRATOR_NUDE():Class { return Bust_MILODANMALE_NUDE; }
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr_spores.png", mimeType = "image/png")]
 		public var Bust_MYR_INFECTED_FEMALE:Class;
 		/*ALT [Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr.png", mimeType = "image/png")]
@@ -670,6 +673,9 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/black_void_grunt.png", mimeType = "image/png")]
 		public var Bust_VOIDPIRATE:Class;
 		public var Bounds_VOIDPIRATE:Rectangle = new Rectangle(27, 0, 64, 64);
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/warLion.png", mimeType = "image/png")]
+		public var Bust_WAR_LION:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/wetra_hound.png", mimeType = "image/png")]
 		public var Bust_WETRAHOUND:Class;

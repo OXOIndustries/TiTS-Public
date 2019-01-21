@@ -275,6 +275,7 @@ public function ulaMenu():void
 	addButton(0,"Appearance",ulaAppearance);
 	addButton(1,"Talk",ulaTalk);
 	addButton(2,"Sex",ulaSexApproach);
+	addButton(4,"WARGII TEST",startWargiiQuestOnEnterUlaRoom,undefined,"WARG'II TEST","<b>WARNING:</b> This is a test of in-development content. Saving after playing this could leave data behind that could result in bugs, incorrect tracking of quest decisions, or unplayability. Be careful, and save first!\n\nThanks,\n\tFenoxo");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -1157,6 +1158,7 @@ public function firstTimeKorgHoldMeeting():void
 {
 	clearOutput();
 	showName("KORG\nMEETING");
+	showBust("KORG_CHIEFTAIN");
 	currentLocation = "KORGII R10";
 	generateMap();
 	output("The guards hustle you through winding tunnels and up a spiral staircase hewn from solid stone. In stark contrast to the frigid exterior, it’s nearly as warm as a sauna inside Korg’ii Hold. By the time you climb to the next level, you’re ");
@@ -1191,6 +1193,11 @@ public function firstTimeKorgHoldMeeting():void
 
 public function ulaRoomBonusFunc():Boolean
 {	
+	if(flags["WARGII_SETUP"] == 1 && flags["WARGII_PROGRESS"] == undefined && ulaPregBelly() == 0)
+	{
+		startWargiiQuestOnEnterUlaRoom();
+		return true;
+	}
 	//20% chance and Ula has kids older than 7 days
 	if(rand(5) == 0 && (flags["ULA_BIRTH_TIMER"] > 7 || flags["ULA_TOTAL_KIDS"] > 4))
 	{

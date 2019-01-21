@@ -131,6 +131,8 @@ public function disableExploreEvents():Boolean
 	if (flags["SYRIQUEST_STATE"] >= 4 && flags["SYRIQUEST_STATE"] < 20) return true;
 	// Penny Quest
 	if (flags["PENNY_CREW_ASKED"] == 2) return true;
+	// Korgii Quest
+	if (flags["WARGII_PROGRESS"] == 2) return true;
 
 	return false;
 }

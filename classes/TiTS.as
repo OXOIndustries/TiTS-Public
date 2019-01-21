@@ -199,6 +199,11 @@
 		include "../includes/events/atha_lets_fapper.as";
 		include "../includes/events/bimboPennyAndBadgerQuest/badgerGifts.as";
 		include "../includes/events/erra.as";
+		include "../includes/events/extrameet/extrameet.as";
+		include "../includes/events/extrameet/extrameetProfiles.as";
+		include "../includes/events/federationQuest/federationQuest.as";
+		include "../includes/events/federationQuest/rooms.as";
+		include "../includes/events/federationQuest/roomFunctions.as";
 		include "../includes/events/kattomOsgood.as";
 		include "../includes/events/kiroCrewQuest/buttslutinator.as";
 		include "../includes/events/kiroCrewQuest/omnisuitExtras.as";
@@ -207,11 +212,12 @@
 		include "../includes/events/pyriteSatelliteRecovery.as";
 		include "../includes/events/steph_on_demand.as";
 		include "../includes/events/tentacle_psychic_hatchling.as";
-		include "../includes/events/federationQuest/federationQuest.as";
-		include "../includes/events/federationQuest/rooms.as";
-		include "../includes/events/federationQuest/roomFunctions.as";
-		include "../includes/events/extrameet/extrameet.as";
-		include "../includes/events/extrameet/extrameetProfiles.as";
+		include "../includes/events/wargiiHold/milodanInfiltrator.as";
+		include "../includes/events/wargiiHold/milodanWarLion.as";
+		include "../includes/events/wargiiHold/nenneCaptiveStuff.as";
+		include "../includes/events/wargiiHold/wargiiHold.as";
+		include "../includes/events/wargiiHold/rooms.as";
+
 		
 		// Travel Events
 		include "../includes/travelEvents.as";

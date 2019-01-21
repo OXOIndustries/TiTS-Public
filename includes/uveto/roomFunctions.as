@@ -1608,8 +1608,15 @@ public function korgiiHoldInteriorExitBonus():void
 
 public function enterKorgHold():void
 {
+	/*9999WARGII QUEST INTERRUPT!
+	if(korgiTranslateProgress() >= 60 && flags["WARGII_SETUP"] == undefined && flags["ENTERED_KORGI_HOLD"] != undefined && pc.level >= 9 && ulaPregBelly() == 0)
+	{
+		currentLocation = "KORGII B12";
+		generateMap();
+		wargiiHoldProcOhShiiiiit();
+		return;
+	}*/
 	clearOutput();
-
 	showName("OPEN\nDOGGIE-DOOR");
 	output("<i>“Welcoming, friend!”</i> comes an answering voice.");
 	output("\n\nA sharp-sounding crack echoes through the snow-covered countryside as the glittering rock shifts inward. Rotating slowly, it rolls behind the wall, revealing the ");
