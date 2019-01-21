@@ -2613,6 +2613,7 @@ public function mitziBimbosYouEpilogue():void
 		{
 			output("\n\n(<b>Gained Perk: Ditz Speech</b> - You will now sound like a total bimbo in scenes that support it.)");
 			pc.createPerk("Ditz Speech",0,0,0,0,"Alters dialog in certain scenes.");
+			flags["MITZI_BIMBOED_PC"] = 1;
 		}
 		//Gain weak willed
 		if(!pc.hasPerk("Weak Mind"))

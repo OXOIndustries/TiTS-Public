@@ -295,6 +295,7 @@ public function wargiiBadEnds():void
 	var enemiess:Array = CombatManager.getHostileActors();
 	while(enemiess.length > 1) CombatManager.removeHostileActor(enemiess[1]);
 	clearOutput();
+	clearMenu();
 	//Cocky Stuff
 	if(pc.hasCock() && (!pc.hasVagina() || rand(2) == 0))
 	{
@@ -347,6 +348,8 @@ public function wargiiBadEnds():void
 		pc.aim(-20);
 		pc.HPMod = 2500;
 		pc.HP(2500);
+		processTime(42);
+		addButton(0,"Next",maleBreederWargiiBadEnd2);
 	}
 	else
 	{
@@ -367,7 +370,6 @@ public function wargiiBadEnds():void
 			output("\n\n<i>“You’ll do,”</i> he says gruffly, followed by another, softer, shove at your side, flipping you back over and onto your front. He tests the knots keeping your limbs in place by yanking at your limbs to see if they’ll come undone. Your body screams in pain at the treatment, but every time you try and cry out in pain, you feel a sharp ‘thwap!’ against your head, and the instruction to keep quiet is not lost on you. But when even that is too much effort, he withdraws a second rope and wraps it around your head and mouth. In some perverse way, it’s a thankful reprieve when he gags you. That way, your shouts of pain are too muffled to bother him....");
 			output("\n\nWhen you’re adequately bound, the Milodan hefts you" + (pc.tallness >= 72 ? ", with some effort,":"") + " onto his shoulder and begins marching you to somewhere else in the hold.");
 			processTime(35);
-			clearMenu();
 			addButton(0,"Next",bsFemaleFeelbadWargiiBadEnd2);
 		}
 		else
@@ -394,7 +396,6 @@ public function wargiiBadEnds():void
 			processTime(30);
 			pc.lust(100);
 			processTime(35);
-			clearMenu();
 			addButton(0,"Next",bsFemaleFeelbadWargiiBadEndForLustyThots2);
 		}
 	}
