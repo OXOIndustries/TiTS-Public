@@ -1232,7 +1232,7 @@ public function ratsRodenianal(cockId:int, rounds:int):void
 	{
 		//First choice
 		case 0:
-			output("\n\nThe other rat’s revelries break you from your momentary trance as they climax next to you, brought to air-polluting orgasm by milking tails. White hot cum spurts from the mouse-boy’s cock, " + rat2.mf("and the half-rodenian boy to your left groans as his balls churn out a sad load that puddles beneath his healthy body", "and the halfbreed girl to your left squirts once, then twice, howling in satisfaction as a prehensile dildo wriggles free of her gushing gash") + ". You find yourself wound up in rat tail again, the sex-coated tips working around your crotch");
+			output("\n\nThe other rat’s revelries break you from your momentary trance as they climax next to you, brought to orgasm by milking tails. White hot cum spurts from the mouse-boy’s cock, " + rat2.mf("and the half-rodenian boy to your left groans as his balls churn out a sad load that puddles beneath his healthy body", "and the halfbreed girl to your left squirts once, then twice, howling in satisfaction as a prehensile dildo wriggles free of her gushing gash") + ". You find yourself wound up in rat tail again, the sex-coated tips working around your crotch");
 			if (pc.balls > 0) output(", kneading your [pc.balls]");
 			output(" and teasing their leader’s spread hole.");
 			break;
