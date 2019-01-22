@@ -271,10 +271,10 @@ public function dontSmoochMiloBoysThatsGross(x:int):void
 		output("\n\nYou don’t let him get away. You keep him there, held firmly in your lap, while you vent everything you have to give him. You did promise that you’d both be empty by the end after all, though looking down at him now after tossing his unconscious form back on the ground like a rag you suppose that was a lie - he’s not going to be empty for a <i>long</i> time. Your jizz fountains from both ends, the milodan lying on his side with his arms around his insanely ballooned tummy while he coughs up seed");
 	}
 	output(".");
-	infiltratorDoneButtfuck();
 	processTime(5);
 	enemy.loadInAss(pc);
 	pc.orgasm();
+	infiltratorDoneButtfuck();
 }
 
 //merge kiss/dont here
