@@ -71,12 +71,12 @@ public function initWargiiRooms():void
 	rooms["WARGII F8"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII F8"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII F8"].addFlag(GLOBAL.HAZARD);
-	rooms["WARGII F8"].addFlag(GLOBAL.NPC);
+	//rooms["WARGII F8"].addFlag(GLOBAL.NPC);
 	rooms["WARGII F8"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII H8"] = new RoomClass(this);
 	rooms["WARGII H8"].roomName = "NORTH\nTUNNEL";
-	rooms["WARGII H8"].description = "Another doorway to the north marks the location of one of the many korgonne dwellings you’ve seen thus far. This one’s knob has been smashed off in a fit of violence. No other entrances present themselves, leaving only the paths to the east and west.";
+	rooms["WARGII H8"].description = "Another doorway to the north marks the location of one of the many korgonne dwellings you’ve seen thus far. This one’s knob has been smashed off in a fit of violence. No other entrances present themselves, leaving only the paths to the east - the western half of the tunnel is plugged with a barricade of heavy stone and sharpened metal scrap. <b>If you want at the northwest stairwell, you'll have to come at it from another angle.</b>";
 	rooms["WARGII H8"].planet = "PLANET: UVETO VII";
 	rooms["WARGII H8"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII H8"].moveMinutes = 2;
@@ -87,7 +87,7 @@ public function initWargiiRooms():void
 	rooms["WARGII H8"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII H8"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII H8"].addFlag(GLOBAL.HAZARD);
-	rooms["WARGII H8"].runOnEnter = wargiiEncounterStuff;
+	rooms["WARGII H8"].runOnEnter = wargiiH8Bonus;
 
 	rooms["WARGII J8"] = new RoomClass(this);
 	rooms["WARGII J8"].roomName = "NORTHWEST\nTUNNEL";
@@ -106,7 +106,7 @@ public function initWargiiRooms():void
 
 	rooms["WARGII J10"] = new RoomClass(this);
 	rooms["WARGII J10"].roomName = "WEST\nTUNNEL";
-	rooms["WARGII J10"].description = "Dwellings lie to the east and west. One of them even has an intact door. The other has been ransacked, its innards spilled across the tunnel floor. Two spears are snapped in half between them. One of them is charred and flecked with red hot embers, and sizzling divot in the wall gives evidence to a battle at this locale. The tunnel continues north and south.";
+	rooms["WARGII J10"].description = "Dwellings lie to the east and west. One of them even has an intact door. The other has been ransacked, its innards spilled across the tunnel floor. Two spears are snapped in half between them. One of them is charred and flecked with red hot embers, and sizzling divot in the wall gives evidence to a battle at this locale.\n\nThe tunnel continues south, but the way north is obstructed by a barricade of heavy stone and sharpened metal scraps. <b>If you want to use the stairwell beyond, you'll need to find another way!</b>";
 	rooms["WARGII J10"].planet = "PLANET: UVETO VII";
 	rooms["WARGII J10"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII J10"].moveMinutes = 2;
@@ -117,7 +117,7 @@ public function initWargiiRooms():void
 	rooms["WARGII J10"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII J10"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII J10"].addFlag(GLOBAL.HAZARD);
-	rooms["WARGII J10"].runOnEnter = wargiiEncounterStuff;
+	rooms["WARGII J10"].runOnEnter = wargiiJ10Bonus;
 
 	rooms["WARGII J12"] = new RoomClass(this);
 	rooms["WARGII J12"].roomName = "WEST\nTUNNEL";
@@ -230,7 +230,7 @@ public function initWargiiRooms():void
 
 	rooms["WARGII J6"] = new RoomClass(this);
 	rooms["WARGII J6"].roomName = "NORTHWEST\nSTAIRS";
-	rooms["WARGII J6"].description = "The polished stone of the walls is speckled with so many bits of raw savicite that the entire chamber is bathed in reflected green light. The stairs themselves are narrow in here, pressed in by particularly solid stone on either side. You can journey up into the top layers of Korg’ii Hold, down into the warm depths, or south back to the main floor.";
+	rooms["WARGII J6"].description = "The polished stone of the walls is speckled with so many bits of raw savicite that the entire chamber is bathed in reflected green light. The stairs themselves are narrow in here, pressed in by particularly solid stone on either side. You can journey up into the top layers of Korg’ii Hold or down into the warm depths.\n\n<b>You cannot exit the stairwell here. There is a massive barricade of stone and sharpened metal plugging up the passage.</b>";
 	rooms["WARGII J6"].planet = "PLANET: UVETO VII";
 	rooms["WARGII J6"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII J6"].moveMinutes = 2;
@@ -245,7 +245,7 @@ public function initWargiiRooms():void
 	rooms["WARGII J6"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII J6"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII J6"].addFlag(GLOBAL.HAZARD);
-	rooms["WARGII J6"].runOnEnter = wargiiEncounterStuff;
+	rooms["WARGII J6"].runOnEnter = wargiiJ6Bonus;
 
 	rooms["WARGII J16"] = new RoomClass(this);
 	rooms["WARGII J16"].roomName = "SOUTHWEST\nSTAIRWELL";
@@ -310,7 +310,7 @@ public function initWargiiRooms():void
 
 	rooms["WARGII V14"] = new RoomClass(this);
 	rooms["WARGII V14"].roomName = "EAST\nTUNNEL";
-	rooms["WARGII V14"].description = "The corridors of Korg’ii Hold’s second level are narrow than the first, less suitable for large amounts of foot traffic and more easily defended. However no amount of defenses could prepare them for a massive surprise attack from a force that's several whole technological generations ahead. The tunnel continues in similar fashion north.\n\nA staircase to the south offers passage back to the first floor.";
+	rooms["WARGII V14"].description = "The corridors of Korg’ii Hold’s second level are narrow than the first, less suitable for large amounts of foot traffic and more easily defended. However no amount of defenses could prepare them for a massive surprise attack from a force that’s several whole technological generations ahead. The tunnel continues in similar fashion north.\n\nA staircase to the south offers passage back to the first floor.";
 	rooms["WARGII V14"].planet = "PLANET: UVETO VII";
 	rooms["WARGII V14"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII V14"].moveMinutes = 2;
@@ -348,7 +348,7 @@ public function initWargiiRooms():void
 
 	rooms["WARGII V10"] = new RoomClass(this);
 	rooms["WARGII V10"].roomName = "EAST\nTUNNEL";
-	rooms["WARGII V10"].description = "Recesses in the walls provide numerous ambush points along the passage, while the tunnel’s natural narrowness prevents more than one or two people from squeezing through at a time. The denizens of Korg'ii Hold exploited both of these to the best of their abilities. Small holes in the wall reveal the presence of hidden ambush chambers, though a charred hall in the wall has exposed the secret armory beyond, now ablaze. A T-intersection to the south offers passage to the west. A short distance to the north is a staircase.";
+	rooms["WARGII V10"].description = "Recesses in the walls provide numerous ambush points along the passage, while the tunnel’s natural narrowness prevents more than one or two people from squeezing through at a time. The denizens of Korg’ii Hold exploited both of these to the best of their abilities. Small holes in the wall reveal the presence of hidden ambush chambers, though a charred hall in the wall has exposed the secret armory beyond, now ablaze. A T-intersection to the south offers passage to the west. A short distance to the north is a staircase.";
 	rooms["WARGII V10"].planet = "PLANET: UVETO VII";
 	rooms["WARGII V10"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII V10"].moveMinutes = 2;
@@ -452,7 +452,7 @@ public function initWargiiRooms():void
 	rooms["WARGII P6"].eastExit = "";
 	rooms["WARGII P6"].southExit = "WARGII P8";
 	rooms["WARGII P6"].westExit = "";
-	//rooms["WARGII P6"].outExit = "WARGII J6";
+	rooms["WARGII P6"].outExit = "WARGII J6";
 	rooms["WARGII P6"].outText = "Down";
 	rooms["WARGII P6"].inExit = "";
 	rooms["WARGII P6"].inText = "Up";
@@ -482,7 +482,7 @@ public function initWargiiRooms():void
 	
 	rooms["WARGII P10"] = new RoomClass(this);
 	rooms["WARGII P10"].roomName = "DEFENSIVE\nPASSAGE";
-	rooms["WARGII P10"].description = "Furious To the south, you can spy a T-intersection that branches off to the east. A spiral staircase caps off the tunnel to the north. Likewise, a second staircase offers passage to the upper and lower reaches of Korg’ii Hold alike.";
+	rooms["WARGII P10"].description = "To the south, you can spy a T-intersection that branches off to the east. A spiral staircase caps off the tunnel to the north. Likewise, a second staircase offers passage to the upper and lower reaches of Korg’ii Hold alike.";
 	rooms["WARGII P10"].planet = "PLANET: UVETO VII";
 	rooms["WARGII P10"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII P10"].moveMinutes = 2;
@@ -642,7 +642,7 @@ public function initWargiiRooms():void
 
 	rooms["WARGII R30"] = new RoomClass(this);
 	rooms["WARGII R30"].roomName = "B1 SOUTHWEST\nSTAIRWELL";
-	rooms["WARGII R30"].description = "A hunter gives you a wary look on his way up the stairs, carrying a pack stuffed with provisions. He’s dressed for the cold, doubtless on his way out of the hold. There’s no way he would be wearing such thick garments down here otherwise; the air is too hot and humid. You wipe your brow and look to the staircase. It stretches further up and down into the hold. The tunnel north opens up prodigiously, though it bends away to prevent you from seeing too much.";
+	rooms["WARGII R30"].description = "A pack sits on the steps, abandoned. Its flap is open, and the contents are mostly gone, save for some rations that had a bite taken out of them before being thrown against the wall. You wipe your brow and look to the staircase. It’s warm and humid here, the heat wafting up from below. The tunnel north opens up prodigiously, though it bends away to prevent you from seeing too much. Still, signs of battle linger even here.";
 	rooms["WARGII R30"].planet = "PLANET: UVETO VII";
 	rooms["WARGII R30"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII R30"].moveMinutes = 2;
@@ -657,11 +657,11 @@ public function initWargiiRooms():void
 	rooms["WARGII R30"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII R30"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII R30"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII R30"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII R30"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII R28"] = new RoomClass(this);
 	rooms["WARGII R28"].roomName = "WARM\nTUNNEL";
-	rooms["WARGII R28"].description = "No wonder the korgonne are so comfortable strutting around their hold in the nude. It’s quite toasty down here beneath the surface of Uveto. You stand at the west side of a long east-west tunnel. A stairwell to the south provides access to the upper levels. There’s an archway a little ways to the east, leading into a large chamber.";
+	rooms["WARGII R28"].description = "It is positively balmy down here. No wonder the korgonne are so comfortable wandering around in the nude - and the milodans sweating so prodigiously. You stand at the west side of a long, east-west tunnel. A stairwell to the south provides access to the upper levels. There’s an archway a little ways to the east, leading into a large chamber.";
 	rooms["WARGII R28"].planet = "PLANET: UVETO VII";
 	rooms["WARGII R28"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII R28"].moveMinutes = 2;
@@ -676,11 +676,11 @@ public function initWargiiRooms():void
 	rooms["WARGII R28"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII R28"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII R28"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII R28"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII R28"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII T28"] = new RoomClass(this);
 	rooms["WARGII T28"].roomName = "WARM\nTUNNEL";
-	rooms["WARGII T28"].description = "This wide-open tunnel is so much bigger than most of Korg’ii Hold’s passageways. You can see the reason why: through an archway to the north lies what must be the hold’s primary storeroom. Plenty of boxes and hide-wrapped bundles can be seen, though you’ll need to walk in for a closer look at any of it. The tunnel in which you stand stretches east and west toward two of Korg’ii Hold’s many stone-carved staircases.";
+	rooms["WARGII T28"].description = "This wide-open tunnel is so much bigger than most of Korg’ii Hold’s passageways. You can see the reason why: through an archway to the north lies what must be the hold’s mostly pillaged storeroom. Plenty of boxes have been smashed open. Hide-wrapped bundles are gutted like fresh kills, spilling their prizes onto the floor. You’ll need to walk in for a closer look at any of it, but it looks like the best items have already been pilfered. The tunnel in which you stand stretches east and west toward two of Korg’ii Hold’s many stone-carved staircases.";
 	rooms["WARGII T28"].planet = "PLANET: UVETO VII";
 	rooms["WARGII T28"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII T28"].moveMinutes = 2;
@@ -695,11 +695,11 @@ public function initWargiiRooms():void
 	rooms["WARGII T28"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII T28"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII T28"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII T28"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII T28"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII V28"] = new RoomClass(this);
 	rooms["WARGII V28"].roomName = "WARM\nTUNNEL";
-	rooms["WARGII V28"].description = "Down in the belly of Korg’ii Hold, the air is warmer, and the korgonne even more likely to be naked than elsewhere in the hold. Sure, the odd hunter strides by, carrying a bundle to or from a nearby storeroom, but the everyday citizens you spot on your journey are unanimously nude, save for jewelry. This particular passage stretches east-west through the hold toward a pair of staircases. Midway to the west, there’s an archway on the north wall, leading to a stockroom of some kind.";
+	rooms["WARGII V28"].description = "Down in the belly of Korg’ii Hold, the air is warmer, and the scent of battle and sweat is thick in the air. Dribbles of stale cum on the floor mark where some battlefield stress relief occurred. A broken rifle lies a few feet away, notched by the ‘v’-shaped cut of a heavy korgonne axe. This particular passage stretches east-west through the hold toward a pair of staircases. Midway to the west, there’s an archway on the north wall, leading to a stockroom of some kind.";
 	rooms["WARGII V28"].planet = "PLANET: UVETO VII";
 	rooms["WARGII V28"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII V28"].moveMinutes = 2;
@@ -714,11 +714,11 @@ public function initWargiiRooms():void
 	rooms["WARGII V28"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII V28"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII V28"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII V28"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII V28"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII X28"] = new RoomClass(this);
 	rooms["WARGII X28"].roomName = "WARM\nTUNNEL";
-	rooms["WARGII X28"].description = "This balmy, wide tunnel stretches away to the west. In the distance you spot some kind of archway on the north wall, but little else save for the bouncy bodies of passing korgonne. One of Korg’ii Hold’s many stairwells has an opening to the south, if you’d like to journey to a different level.";
+	rooms["WARGII X28"].description = "This balmy, wide tunnel stretches away to the west. In the distance you spot some kind of archway on the north wall, but little else save for the omnipresent smoky haze and distant, fighting figures. One of Korg’ii Hold’s many stairwells has an opening to the south, if you’d like to journey to a different level.";
 	rooms["WARGII X28"].planet = "PLANET: UVETO VII";
 	rooms["WARGII X28"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII X28"].moveMinutes = 2;
@@ -733,11 +733,11 @@ public function initWargiiRooms():void
 	rooms["WARGII X28"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII X28"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII X28"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII X28"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII X28"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII X30"] = new RoomClass(this);
 	rooms["WARGII X30"].roomName = "B1 SOUTHEAST\nSTAIRWELL";
-	rooms["WARGII X30"].description = "Intricately worked metal inlays follow these stairs as they go deeper and higher into the hold. The artwork seems reflective of the destinations, with the pathway up flanked by depictions of various korgonne at rest in cuddly abodes. Meanwhile, the way down is filled with patterns of embedded gemstones and aquamarine gaps indicative of fishing holes. An opening to the north of this landing provides access to a rather large tunnel.";
+	rooms["WARGII X30"].description = "Intricately worked metal inlays follow these stairs as they go deeper and higher into the hold. The artwork seems reflective of the destinations, with the pathway up flanked by depictions of various korgonne at rest in cuddly abodes. Meanwhile, the way down was once filled with patterns of embedded gemstones, but many have already been pried free from the steps. An opening to the north of this landing provides access to a rather large tunnel.";
 	rooms["WARGII X30"].planet = "PLANET: UVETO VII";
 	rooms["WARGII X30"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII X30"].moveMinutes = 2;
@@ -752,11 +752,11 @@ public function initWargiiRooms():void
 	rooms["WARGII X30"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII X30"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII X30"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII X30"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII X30"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII T26"] = new RoomClass(this);
 	rooms["WARGII T26"].roomName = "SOUTHWEST\nSTOREROOM";
-	rooms["WARGII T26"].description = "To call Korg’ii Hold’s storeroom massive would be an understatement. The vaulted ceiling stretches up at least twenty or thirty feet. High enough for even the largest of core races to comfortably stand and then some. Boxes and fur-wrapped bundles are stacked in neat piles every few paces, ostensibly organized by the incomprehensible carvings on the floor that surround them. You estimate a stockpile like this could provide sustenance for the tribe for at least a year, assuming a decent portion of the stockpile is preserved food.\n\nA faint red glow emanates from the west, and gusts of hot air billow out from that direction, heating the room well enough to make Irestead seem positively chilly.";
+	rooms["WARGII T26"].description = "To call Korg’ii Hold’s storeroom massive would be an understatement. The vaulted ceiling stretches up at least twenty or thirty feet - high enough for even the largest milodans to stand upright. You even see one darting around a corner, cradling a stolen box of who-knows-what under one arm. A room like this could supply the hold with a year’s worth of sustenance, assuming it wasn’t currently in the midst of being rapaciously plundered.\n\nA faint red glow emanates from the west, and gusts of hot air billow out from that direction, heating the room well enough to make Irestead seem positively chilly.";
 	rooms["WARGII T26"].planet = "PLANET: UVETO VII";
 	rooms["WARGII T26"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII T26"].moveMinutes = 2;
@@ -771,11 +771,11 @@ public function initWargiiRooms():void
 	rooms["WARGII T26"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII T26"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII T26"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII T26"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII T26"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII T24"] = new RoomClass(this);
 	rooms["WARGII T24"].roomName = "NORTHWEST\nSTOREROOM";
-	rooms["WARGII T24"].description = "Spears and other primitive weapons are piled into metal racks in this part of the storeroom. Most fighting styles are represented by this armory - from swords to hammers to the oddly shaped bow. There’s even one pile of assorted stolen technology, though a cold-eyed guard watches over it impassively. His lip curls threateningly when you get too close. You suppose the scarceness of more refined technology makes the korgonne a little more cautious about who gets access to it.\n\nA comically small doorway stands on the west wall, hanging halfway open. Alien runes above it designate the place as something called “Earthshapers,” likely the village blacksmith.";
+	rooms["WARGII T24"].description = "A burning rack of spears and other primitive weapons marks where the milodan invaders discovered one of Korg’ii Hold’s weapon stockpiles. The flames burn high, and the weapons themselves rendered into charred coals. Another rack sits nearby, untouched. This one is empty, and the unconscious guard lying facedown next to it suggests that this place once housed more valuable, technological devices. They're all gone now.\n\nA comically small doorway stands on the west wall, hanging halfway open. Alien runes above it designate the place as something called “Earthshapers,” likely the village blacksmith.";
 	rooms["WARGII T24"].planet = "PLANET: UVETO VII";
 	rooms["WARGII T24"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII T24"].moveMinutes = 2;
@@ -790,11 +790,11 @@ public function initWargiiRooms():void
 	rooms["WARGII T24"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII T24"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII T24"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII T24"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII T24"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII R24"] = new RoomClass(this);
 	rooms["WARGII R24"].roomName = "\nEARTHSHAPERS";
-	rooms["WARGII R24"].description = "";
+	rooms["WARGII R24"].description = "The inside of the blacksmith’s shop is the definition of rustic. The walls are made of worn, uneven stone, with only small, bone sconces bearing dim torches to break it up. The floors are more polished, but are still notably worn and gritty, with only a few scattered pelts to keep walking on it from being painful. The store is separated into at least two chambers; the one you’re in, which is largely empty, sans a set of training dummies and a few sets of weapons and armor put on display, and what you can only assume is the forge, separated from the front room by a solid wall with a small door and a serving window.\n\nThe blacksmith herself is nowhere to be found.";
 	rooms["WARGII R24"].planet = "PLANET: UVETO VII";
 	rooms["WARGII R24"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII R24"].moveMinutes = 2;
@@ -809,12 +809,12 @@ public function initWargiiRooms():void
 	rooms["WARGII R24"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII R24"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII R24"].addFlag(GLOBAL.HAZARD);
-	rooms["WARGII R24"].addFlag(GLOBAL.COMMERCE);
-	rooms["WARGII R24"].runOnEnter = tuuvaBlacksmithShopBonus;
+	//rooms["WARGII R24"].addFlag(GLOBAL.COMMERCE);
+	rooms["WARGII R24"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII V24"] = new RoomClass(this);
 	rooms["WARGII V24"].roomName = "NORTHEAST\nSTOREROOM";
-	rooms["WARGII V24"].description = "Spending time inside this storeroom is a nice break from the otherwise claustrophobic interior of the rest of the hold. The ceiling is at least twenty or thirty feet high. For a moment, you wonder how the diminutive korgonne managed to hollow out this chamber. The mental image of a tower of craftsmen stacked upon each other’s shoulders, stumbling around while trying to chisel out the ceiling nearly sends you into a fit of giggles.\n\nA wide archway to the north provides access to a roomy access tunnel. The storeroom itself continues on for quite a ways to the south and the west. With all the piled up boxes, Korg’ii Hold could supply itself for some time in the event of a siege or famine.";
+	rooms["WARGII V24"].description = "Spending time inside this storeroom would be a nice break from the otherwise claustrophobic interior of the rest of the hold - if it wasn’t the site of a raging battle. For a moment, you wonder how the diminutive korgonne managed to hollow out this chamber, then you pull yourself back to the present to focus on forcing your way through the melee. The hold isn’t lost. Not yet.\n\nA wide archway to the north provides access to a roomy access tunnel. The storeroom itself continues on for quite a ways to the south and the west.";
 	rooms["WARGII V24"].planet = "PLANET: UVETO VII";
 	rooms["WARGII V24"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII V24"].moveMinutes = 2;
@@ -829,11 +829,12 @@ public function initWargiiRooms():void
 	rooms["WARGII V24"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII V24"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII V24"].addFlag(GLOBAL.HAZARD);
+	rooms["WARGII V24"].runOnEnter = wargiiEncounterStuff;
 	
 	//rooms["WARGII PLACEHOLDIE"].runOnEnter = korgiD12Bonus;
 	rooms["WARGII V26"] = new RoomClass(this);
 	rooms["WARGII V26"].roomName = "SOUTHEAST\nSTOREROOM";
-	rooms["WARGII V26"].description = "A whiff of salt and fish wafts by your nostrils as you stride through this part of the storeroom, and looking closely at the nearby bundles, you realize why. Dried, salted meat is stockpiled in abundance, flanked by small piles of herbs. A smaller pile of what you assume to be land-based meat rests nearby, wrapped in half-transparent cloth. Turning around, you realize that similar arrangements of stored food are all over. Korg’ii Hold could feed its citizens for months, if not years. The storeroom continues north and west.";
+	rooms["WARGII V26"].description = "A whiff of salt and fish wafts by your nostrils as you stride through this part of the storeroom, and looking closely at the nearby bundles, you realize why. Dried, salted meat is stockpiled in abundance, flanked by small piles of herbs. The milodans haven’t bothered to pillage here yet - that or they figure they’ll have ample time to consume this seafood spread as part of a victory feast. The storeroom continues north and west.";
 	rooms["WARGII V26"].planet = "PLANET: UVETO VII";
 	rooms["WARGII V26"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII V26"].moveMinutes = 2;
@@ -848,11 +849,11 @@ public function initWargiiRooms():void
 	rooms["WARGII V26"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII V26"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII V26"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII V26"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII V26"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII X20"] = new RoomClass(this);
 	rooms["WARGII X20"].roomName = "B1 NORTHEAST\nSTAIRWELL";
-	rooms["WARGII X20"].description = "This perfectly carved stairwell is zebra-striped with purplish striations, both in the wall and the steps themselves. The air down here is warm, and it feels like it would get even warmer further down. You can exit south into a wide tunnel or travel up back to the main floor of Korg’ii Hold.";
+	rooms["WARGII X20"].description = "A collapsed segment of tunnel above halves this otherwise flawless staircase’s usefulness. Zebra-striped with purplish striations in the walls and steps themselves, it burrows artfully deeper into the hold. You can exit south into a wide tunnel or climb down into the even warmer passages below.";
 	rooms["WARGII X20"].planet = "PLANET: UVETO VII";
 	rooms["WARGII X20"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII X20"].moveMinutes = 2;
@@ -867,11 +868,11 @@ public function initWargiiRooms():void
 	rooms["WARGII X20"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII X20"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII X20"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII X20"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII X20"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII X22"] = new RoomClass(this);
 	rooms["WARGII X22"].roomName = "LARGE\nTUNNEL";
-	rooms["WARGII X22"].description = "This tunnel is taller and wider than those higher up in the hold, easily eight or nine feet high and just as wide across. It would seem the tribe took care to carve out a broad thoroughfare, which makes sense considering you can see a storeroom entrance a little ways to the west. An archway in the wall to north provides access to a colorful staircase, if you’d like to journey elsewhere into the hold.";
+	rooms["WARGII X22"].description = "This tunnel is taller and wider than those higher up in the hold, easily eight or nine feet high and just as wide across. It would seem the tribe took care to carve out a broad thoroughfare, which makes sense considering you can see a storeroom entrance a little ways to the west. Of course only made things easier for the milodan invaders. Even now, you can see their tall forms gleefully pillaging Korg’ii Hold’s stores. An archway in the wall to north provides access to a colorful staircase, if you’d like to journey elsewhere into the hold.";
 	rooms["WARGII X22"].planet = "PLANET: UVETO VII";
 	rooms["WARGII X22"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII X22"].moveMinutes = 2;
@@ -886,11 +887,11 @@ public function initWargiiRooms():void
 	rooms["WARGII X22"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII X22"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII X22"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII X22"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII X22"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII V22"] = new RoomClass(this);
 	rooms["WARGII V22"].roomName = "LARGE\nTUNNEL";
-	rooms["WARGII V22"].description = "You can easily swerve around the many busy korgonne thanks to the tunnel’s spacious dimensions. Most are coming or going through an aperture in the southern wall. The enormous opening reveals an even more enormous storeroom, filled with all manner stockpiled goods. The tunnel itself leads away to the east and west, toward staircases at either end.";
+	rooms["WARGII V22"].description = "You can easily swerve around the fallen korgonne thanks to the tunnel’s spacious dimensions. Most are unconscious, but there are plenty masturbating as well, addled by potent aphrodisiac darts or rough milodan breedings. The enormous opening to the south reveals an even more enormous storeroom, its order spun into chaos as the milodan invaders set to pillaging. The tunnel itself leads away to the east and west, toward staircases at either end.";
 	rooms["WARGII V22"].planet = "PLANET: UVETO VII";
 	rooms["WARGII V22"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII V22"].moveMinutes = 2;
@@ -905,11 +906,11 @@ public function initWargiiRooms():void
 	rooms["WARGII V22"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII V22"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII V22"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII V22"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII V22"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII T22"] = new RoomClass(this);
 	rooms["WARGII T22"].roomName = "LARGE\nTUNNEL";
-	rooms["WARGII T22"].description = "The walls here are pitted in places, the holes filled with glass to transform flaws into reflective art. You can spy where korgonne miners made the decision to chisel valuable minerals out of the wall, and the subsequent attempts to improve the look with skillful craftsmanship. This large tunnel leads east and west toward stairwells at each end. An entrance to a storeroom lies a little ways east.";
+	rooms["WARGII T22"].description = "The walls here are pitted in places, the holes filled with glass to transform flaws into reflective art. Of course, some of the pits are more recent. Blackened pockmarks show where core weapons have defaced the korgonne’s simple beauty. You can spy where the short-statured miners made the decision to chisel valuable minerals out of the wall, and the subsequent attempts to improve the look with skillful craftsmanship. This large tunnel leads east and west toward stairwells at each end. An entrance to a storeroom lies a little ways east.";
 	rooms["WARGII T22"].planet = "PLANET: UVETO VII";
 	rooms["WARGII T22"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII T22"].moveMinutes = 2;
@@ -924,11 +925,11 @@ public function initWargiiRooms():void
 	rooms["WARGII T22"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII T22"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII T22"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII T22"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII T22"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII R22"] = new RoomClass(this);
 	rooms["WARGII R22"].roomName = "LARGE\nTUNNEL";
-	rooms["WARGII R22"].description = "Warm air lazily blows through this large tunnel on its way to the stairwell to the north. Korg’ii Hold’s natural geothermal heat must make living here quite comfortable for the many, many nude korgonne that prowl its halls. You’re glad for the extra room the size of this tunnel affords as you do your best to maintain your personal space in the well-used tunnel. It would seem the only path leads east, unless you want to head north, back into the staircase.";
+	rooms["WARGII R22"].description = "Warm air lazily blows through this large tunnel on its way to the stairwell to the north. Korg’ii Hold’s natural geothermal heat must make living here quite comfortable for the natives - and a living hell for the armored invaders. You’re glad for the extra room the size of this tunnel affords as you do your best to maintain your personal space in the well-used tunnel.\n\n<b>Dozens of obvious yet overlapping trip mines block the path north to the stairwell. You'll have to find another way!</b>";
 	rooms["WARGII R22"].planet = "PLANET: UVETO VII";
 	rooms["WARGII R22"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII R22"].moveMinutes = 2;
@@ -943,11 +944,11 @@ public function initWargiiRooms():void
 	rooms["WARGII R22"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII R22"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII R22"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII R22"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII R22"].runOnEnter = wargiiR22Bonus;
 
 	rooms["WARGII R20"] = new RoomClass(this);
 	rooms["WARGII R20"].roomName = "B1 NORTHWEST\nSTAIRWELL";
-	rooms["WARGII R20"].description = "Raw Savicite speckles the stairs and walls, bathing the entire area in a lovely green glow. A male sits against a particularly concentrated spot, apparently taking a break and looking down in disbelief at the erection jutting out of his sheath. He clearly doesn’t quite comprehend the effects of Savicite radiation. You’d best move on if you don’t want similarly affected. The stairs themselves are a little on the narrow size - perfect for small korgonne feet. You can climb up, back to the hold’s ground floor, or journey deeper, into the depths.";
+	rooms["WARGII R20"].description = "Raw Savicite speckles the stairs and walls, bathing the entire area in a lovely green glow. Cum-stains are everywhere. The korgonne may be somewhat inoculated to Savicite's arousing effects, but the milodan are not. Unconscious korgonne men and women alike doze in a cum-covered pile, discarded like used tissues. You’d best move on if you don’t want to be similarly affected. The stairs themselves are a little on the narrow size - perfect for small korgonne feet. You can climb up or back down to the hold’s ground floor.\n\nThe southern exit is blocked - not by rubble or a barricade but dozens of obvious trip-mines. You dare not disturb them and risk blowing this whole area to kingdom come.";
 	rooms["WARGII R20"].planet = "PLANET: UVETO VII";
 	rooms["WARGII R20"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII R20"].moveMinutes = 2;
@@ -962,7 +963,7 @@ public function initWargiiRooms():void
 	rooms["WARGII R20"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII R20"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII R20"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII R20"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII R20"].runOnEnter = wargiiR20Bonus;
 
 	/*===============================================
 	|   BASEMENT LEVEL 2 - B2 						|
@@ -970,7 +971,7 @@ public function initWargiiRooms():void
 
 	rooms["WARGII R43"] = new RoomClass(this);
 	rooms["WARGII R43"].roomName = "B2 SOUTHWEST\nSTAIRWELL";
-	rooms["WARGII R43"].description = "This deep into the hold, the stonework is a little rougher, a little less polished, yet still more refined than what you might encounter in your average terran park. It’s hotter here than higher up. Many korgonne are openly panting as they move about. Others have fur slicked by sweat or water they’ve poured onto themselves. A rough-hewn tunnel lies north.";
+	rooms["WARGII R43"].description = "This deep into the hold, the stonework is a little rougher, a little less polished, yet still more refined than what you might encounter in your average terran park. It’s hotter here than higher up. Puddles of sweat dot the ground, probably left by hulking milodans unprepared for the heat. A rough-hewn tunnel lies north.";
 	rooms["WARGII R43"].planet = "PLANET: UVETO VII";
 	rooms["WARGII R43"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII R43"].moveMinutes = 2;
@@ -985,7 +986,7 @@ public function initWargiiRooms():void
 	rooms["WARGII R43"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII R43"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII R43"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII R43"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII R43"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII R41"] = new RoomClass(this);
 	rooms["WARGII R41"].roomName = "ROUGH-HEWN\nTUNNEL";
@@ -1004,7 +1005,7 @@ public function initWargiiRooms():void
 	rooms["WARGII R41"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII R41"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII R41"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII R41"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII R41"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII T41"] = new RoomClass(this);
 	rooms["WARGII T41"].roomName = "ROUGH-HEWN\nTUNNEL";
@@ -1023,7 +1024,7 @@ public function initWargiiRooms():void
 	rooms["WARGII T41"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII T41"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII T41"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII T41"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII T41"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII T39"] = new RoomClass(this);
 	rooms["WARGII T39"].roomName = "TAMED\nTAMELINGS";
@@ -1043,7 +1044,7 @@ public function initWargiiRooms():void
 	//rooms["WARGII T39"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII T39"].addFlag(GLOBAL.HAZARD);
 	rooms["WARGII T39"].addFlag(GLOBAL.COMMERCE);
-	rooms["WARGII T39"].runOnEnter = tamedTamelingsBonus;
+	rooms["WARGII T39"].runOnEnter = tamedTamelingsWarBonus;
 
 	rooms["WARGII R39"] = new RoomClass(this);
 	rooms["WARGII R39"].roomName = "GEOTHERMAL\nRENT";
@@ -1063,7 +1064,7 @@ public function initWargiiRooms():void
 	//rooms["WARGII R39"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII R39"].addFlag(GLOBAL.HAZARD);
 	rooms["WARGII R39"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII R39"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII R39"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII X43"] = new RoomClass(this);
 	rooms["WARGII X43"].roomName = "B2 SOUTHEAST\nSTAIRWELL";
@@ -1082,7 +1083,7 @@ public function initWargiiRooms():void
 	rooms["WARGII X43"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII X43"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII X43"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII X43"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII X43"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII X41"] = new RoomClass(this);
 	rooms["WARGII X41"].roomName = "ROUGH-HEWN\nTUNNEL";
@@ -1101,7 +1102,7 @@ public function initWargiiRooms():void
 	rooms["WARGII X41"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII X41"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII X41"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII X41"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII X41"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII V41"] = new RoomClass(this);
 	rooms["WARGII V41"].roomName = "ROUGH-HEWN\nTUNNEL";
@@ -1120,7 +1121,7 @@ public function initWargiiRooms():void
 	rooms["WARGII V41"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII V41"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII V41"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII V41"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII V41"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII V39"] = new RoomClass(this);
 	rooms["WARGII V39"].roomName = "\nSTABLES";
@@ -1139,11 +1140,11 @@ public function initWargiiRooms():void
 	rooms["WARGII V39"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII V39"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII V39"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII V39"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII V39"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII V37"] = new RoomClass(this);
 	rooms["WARGII V37"].roomName = "\nSTABLES";
-	rooms["WARGII V37"].description = "Many larger beasts occupy these stables. Six-legged bear-like creatures with jagged horns jutting from their heads mill about in large pens. Small beasts, though plenty large enough to ride sit in fenced-in alcoves. Metal-handled shovels lie stacked against the far wall as you come to a dead end. The curving tunnel to the south provides an exit, should you need to escape from a rampaging animal.";
+	rooms["WARGII V37"].description = "";
 	rooms["WARGII V37"].planet = "PLANET: UVETO VII";
 	rooms["WARGII V37"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII V37"].moveMinutes = 2;
@@ -1158,7 +1159,7 @@ public function initWargiiRooms():void
 	rooms["WARGII V37"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII V37"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII V37"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII V37"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII V37"].runOnEnter = wargiiBeastCagesBonus;
 
 	rooms["WARGII T37"] = new RoomClass(this);
 	rooms["WARGII T37"].roomName = "REINFORCED\nTUNNEL";
@@ -1177,7 +1178,7 @@ public function initWargiiRooms():void
 	rooms["WARGII T37"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII T37"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII T37"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII T37"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII T37"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII T35"] = new RoomClass(this);
 	rooms["WARGII T35"].roomName = "GLASSY\nTUNNEL";
@@ -1196,7 +1197,7 @@ public function initWargiiRooms():void
 	rooms["WARGII T35"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII T35"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII T35"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII T35"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII T35"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII R35"] = new RoomClass(this);
 	rooms["WARGII R35"].roomName = "GLASSY\nTUNNEL";
@@ -1215,7 +1216,7 @@ public function initWargiiRooms():void
 	rooms["WARGII R35"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII R35"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII R35"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII R35"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII R35"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII R33"] = new RoomClass(this);
 	rooms["WARGII R33"].roomName = "B2 NORTHWEST\nSTAIRWELL";
@@ -1234,30 +1235,11 @@ public function initWargiiRooms():void
 	rooms["WARGII R33"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII R33"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII R33"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII R33"].runOnEnter = korgiD12Bonus;
-
-	rooms["WARGII X33"] = new RoomClass(this);
-	rooms["WARGII X33"].roomName = "GLASSY\nTUNNEL";
-	rooms["WARGII X33"].description = "";
-	rooms["WARGII X33"].planet = "PLANET: UVETO VII";
-	rooms["WARGII X33"].system = "SYSTEM: SIRETTA";
-	rooms["WARGII X33"].moveMinutes = 2;
-	rooms["WARGII X33"].northExit = "";
-	rooms["WARGII X33"].eastExit = "";
-	rooms["WARGII X33"].southExit = "";
-	rooms["WARGII X33"].westExit = "";
-	rooms["WARGII X33"].outExit = "";
-	rooms["WARGII X33"].outText = "Down";
-	rooms["WARGII X33"].inExit = "";
-	rooms["WARGII X33"].inText = "Up";
-	rooms["WARGII X33"].addFlag(GLOBAL.INDOOR);
-	//rooms["WARGII X33"].addFlag(GLOBAL.PUBLIC);
-	rooms["WARGII X33"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII X33"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII R33"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII X35"] = new RoomClass(this);
 	rooms["WARGII X35"].roomName = "GLASSY\nTUNNEL";
-	rooms["WARGII X35"].description = "A pair of korgonne pups scamper by on the inky, volcanic floor, pressing their noses to the glass-like wall to admire their reflections. One pulls out a chalky rock, about to make his mark, when a scowling guard shoos them both off. You can duck into a stairwell’s landing through an opening on the north or follow this reflective passage to its conclusion, westward."
+	rooms["WARGII X35"].description = "The inky, volcanic stone floor was polished to a near mirror finish before the battle spread to this part of the hold. Now it is scratched by blades and claws, then scuffed by spiked boots. You can duck into a stairwell’s landing through an opening on the north or follow this reflective passage to its conclusion, westward."
 	rooms["WARGII X35"].planet = "PLANET: UVETO VII";
 	rooms["WARGII X35"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII X35"].moveMinutes = 2;
@@ -1272,11 +1254,11 @@ public function initWargiiRooms():void
 	rooms["WARGII X35"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII X35"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII X35"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII X35"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII X35"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII V35"] = new RoomClass(this);
 	rooms["WARGII V35"].roomName = "GLASSY\nTUNNEL";
-	rooms["WARGII V35"].description = "You’re surprised that the few korgonne at this level don’t go slipping and sliding past on the smooth, glossy floor. They’re quite adept at navigating on the otherwise treacherous surface, either through long practice or the surprising amount of grip offered by their paw-pads. For a half-second, you consider skating around in a pair of socks.";
+	rooms["WARGII V35"].description = "You’re surprised that you haven't stumbled upon a milodan with a broken leg yet. This floor is treacherously slick, though the korgonne seem to have no problems navigating it. For a half-second, you consider skating around in socks.";
 	rooms["WARGII V35"].planet = "PLANET: UVETO VII";
 	rooms["WARGII V35"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII V35"].moveMinutes = 2;
@@ -1291,11 +1273,11 @@ public function initWargiiRooms():void
 	rooms["WARGII V35"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII V35"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII V35"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII V35"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII V35"].runOnEnter = wargiiEncounterStuff;
 
 	rooms["WARGII X33"] = new RoomClass(this);
 	rooms["WARGII X33"].roomName = "B2 NORTHEAST\nSTAIRWELL";
-	rooms["WARGII X33"].description = "Marbled purple veins run through the underlying stone of this hand-carved staircase. This low into the hold, foot traffic is at a minimum. The occasional miner strides by with a pick on her way deeper into the pillar, but of the native korgonne seem to prefer the more moderate temperatures above.";
+	rooms["WARGII X33"].description = "Marbled purple veins run through the underlying stone of this hand-carved staircase. This low into the hold, foot traffic is at a minimum, though hints of battle are everywhere. Sweat, blood, and cum all make appearances on the floor. You can climb back up or travel south onto a glassy corridor.";
 	rooms["WARGII X33"].planet = "PLANET: UVETO VII";
 	rooms["WARGII X33"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII X33"].moveMinutes = 2;
@@ -1310,5 +1292,5 @@ public function initWargiiRooms():void
 	rooms["WARGII X33"].addFlag(GLOBAL.INDOOR);
 	//rooms["WARGII X33"].addFlag(GLOBAL.PUBLIC);
 	rooms["WARGII X33"].addFlag(GLOBAL.HAZARD);
-	//rooms["WARGII X33"].runOnEnter = korgiD12Bonus;
+	rooms["WARGII X33"].runOnEnter = wargiiEncounterStuff;
 }

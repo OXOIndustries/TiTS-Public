@@ -15,6 +15,8 @@
 	import classes.Items.Guns.LaserPistol;
 	import classes.Items.Protection.BasicShield;
 	import classes.Items.Miscellaneous.EmptySlot;
+	import classes.Items.Recovery.HealingPoultice;
+	import classes.Items.Recovery.PyriteIssuedStim;
 	import classes.Engine.Interfaces.output;
 	import classes.Engine.Combat.*;
 	import classes.Util.RandomInCollection;
@@ -210,9 +212,10 @@
 			btnTargetText = "Milodan";
 			
 			createPerk("Juggernaut",0,0,0,0);
-			this.createStatusEffect("Disarm Immune");
+			//this.createStatusEffect("Disarm Immune");
 
 			kGAMECLASS.uvetoSSTDChance(this);
+			randomise();
 			this._isLoading = false;
 		}
 		
@@ -230,6 +233,9 @@
 		private function randomise():void 
 		{
 			sexualPreferences.setRandomPrefs(4 + rand(3));
+			if(rand(10) == 0) {}
+			else if(rand(3) <= 1) this.inventory.push(new HealingPoultice());
+			else this.inventory.push(new PyriteIssuedStim());
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
@@ -242,8 +248,9 @@
 			var rangedDoom:Boolean = this.hasStatusEffect("vergeOMeleeDoom");
 			var anyDoom:Boolean = (meleeDoom || rangedDoom);
 
+			if(this.hasStatusEffect("Disarmed")) disarmedBoxing(target);
 			//Final attacks 5ever
-			if(anyDoom || this.hasStatusEffect("grenadosDISABLED"))
+			else if(anyDoom || this.hasStatusEffect("grenadosDISABLED"))
 			{
 				if(meleeDoom) vergeOfDeathNoGunno(target);
 				else if(rangedDoom) vergeOfDeath(target);
@@ -262,6 +269,16 @@
 				selected(target);
 			}
 			longDescUpdate();
+		}
+		public function disarmedBoxing(target:Creature):void
+		{
+			var d:TypeCollection = new TypeCollection( { kinetic: 1 } ); 
+			d.add(physique() / 2);
+			output("Annoyed by his lack of weaponry, the milodan lunges forward to claw at you with both hands!");
+			if(combatMiss(this, target)) output("\nYou dodge!");
+			else applyDamage(d, this, target, "minimal");
+			if(combatMiss(this, target)) output("\nYou dodge!");
+			else applyDamage(d, this, target, "minimal");
 		}
 		//WARGII LIONS!
 		public function overhandStrike(target:Creature):void

@@ -277,6 +277,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	else if(!rooms[currentLocation].hasFlag(GLOBAL.BED))
 	{
 		if(canRest()) addButton(9, "Rest", restMenu);
+		else if(flags["WARGII_PROGRESS"] == 2) addDisabledButton(2,"Rest","Rest","There's no place to rest in a pitched battle!");
 		else addDisabledButton(9, "Rest", "Rest", "You can’t seem to rest or wait here at the moment....");
 	}
 	else
@@ -1391,7 +1392,8 @@ public function isNight():Boolean
 
 public function canRest():Boolean
 {
-	return true;
+	return (flags["WARGII_PROGRESS"] != 2);
+	//return true;
 }
 public function canSleep():Boolean
 {

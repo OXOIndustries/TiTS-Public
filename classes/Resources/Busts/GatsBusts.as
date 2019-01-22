@@ -170,6 +170,7 @@
 		public var Bust_KORGONNE_FEMALE2:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/korgonne_female_barbarian_nude.png", mimeType = "image/png")]
 		public var Bust_KORGONNE_FEMALE_NUDE:Class;
+		public function get Bust_KORG_DOSED():Class { return Bust_KORGONNE_FEMALE_NUDE; }
 
 		[Embed(source = "../../../assets/images/npcs/gats/mabbs_headphones.png", mimeType = "image/png")]
 		public var Bust_MABBS:Class;

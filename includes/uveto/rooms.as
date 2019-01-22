@@ -3844,7 +3844,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII V37"] = new RoomClass(this);
 	rooms["KORGII V37"].roomName = "\nSTABLES";
-	rooms["KORGII V37"].description = "Many larger beasts occupy these stables. Six-legged bear-like creatures with jagged horns jutting from their heads mill about in large pens. Small beasts, though plenty large enough to ride sit in fenced-in alcoves. Metal-handled shovels lie stacked against the far wall as you come to a dead end. The curving tunnel to the south provides an exit, should you need to escape from a rampaging animal.";
+	rooms["KORGII V37"].description = "Many larger beasts occupy these stables. Six-legged bear-like creatures with jagged horns jutting from their heads mill about in large pens. Smaller beasts, though plenty large enough to ride sit in fenced-in alcoves. Metal-handled shovels lie stacked against the far wall as you come to a dead end. The curving tunnel to the south provides an exit, should you need to escape from a rampaging animal.";
 	rooms["KORGII V37"].planet = "PLANET: UVETO VII";
 	rooms["KORGII V37"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII V37"].moveMinutes = 2;
@@ -3931,24 +3931,6 @@ public function initUvetoRoomsII():void
 	rooms["KORGII R33"].addFlag(GLOBAL.INDOOR);
 	rooms["KORGII R33"].addFlag(GLOBAL.PUBLIC);
 	//rooms["KORGII R33"].runOnEnter = korgiD12Bonus;
-
-	rooms["KORGII X33"] = new RoomClass(this);
-	rooms["KORGII X33"].roomName = "GLASSY\nTUNNEL";
-	rooms["KORGII X33"].description = "";
-	rooms["KORGII X33"].planet = "PLANET: UVETO VII";
-	rooms["KORGII X33"].system = "SYSTEM: SIRETTA";
-	rooms["KORGII X33"].moveMinutes = 2;
-	rooms["KORGII X33"].northExit = "";
-	rooms["KORGII X33"].eastExit = "";
-	rooms["KORGII X33"].southExit = "";
-	rooms["KORGII X33"].westExit = "";
-	rooms["KORGII X33"].outExit = "";
-	rooms["KORGII X33"].outText = "Down";
-	rooms["KORGII X33"].inExit = "";
-	rooms["KORGII X33"].inText = "Up";
-	rooms["KORGII X33"].addFlag(GLOBAL.INDOOR);
-	rooms["KORGII X33"].addFlag(GLOBAL.PUBLIC);
-	//rooms["KORGII X33"].runOnEnter = korgiD12Bonus;
 
 	rooms["KORGII X35"] = new RoomClass(this);
 	rooms["KORGII X35"].roomName = "GLASSY\nTUNNEL";

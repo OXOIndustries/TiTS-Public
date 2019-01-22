@@ -1,3 +1,5 @@
+import classes.Items.Recovery.PyriteIssuedStim;
+
 //flags["WARGII_PROGRESS"]
 //		-2 = rejected, AND the timer expired.
 //		-1 = rejected. RIP.
@@ -25,12 +27,40 @@ public function wargiiEncounterStuff():Boolean
 		//Actual encounters:
 		choices[choices.length] = warLionFightGoooo;
 		choices[choices.length] = milodanInfiltratorEncounter;
+		if(!pc.hasStatusEffect("FDruggedKorgTimer")) choices.push(helpDruggedKorgonne);
 		
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
 	}
+	//No enemy encounter, chance of finding healiedoos
+	else if(flags["TUNDRA_STEP"] >= 2 && flags["TUNDRA_STEP"] < 4)
+	{
+		if(pc.HP()/pc.HPMax() < 0.5 && rand(3) == 0 && !pc.hasItemByClass(HealingPoultice)) 
+		{
+			getAHealyItemInWargii(true);
+			return true;
+		}
+		else if(pc.energy()/pc.energyMax() < 0.5 && rand(3) == 0 && !pc.hasItemByClass(PyriteIssuedStim))
+		{
+			getAHealyItemInWargii(false);
+			return true;
+		}
+	}
+	//Bonus flavor stuff
+	if(rand(2) == 0)
+	{
+		output("\n\n" + RandomInCollection(["You hear a scream from somewhere in the distance.","A denser pocket of smoke causes you to cough softly.","A tuft of fur floats by, dislodged in a scrap.","A pair of voices lift in faint, orgasmic cries as far away combatants satisfy the lusts their struggles have sparked in each other.","Dust falls from the ceiling as the dull thud of an explosion rumbles through the hold.","Quiet pops of faraway gunfire startle you, then stop as abruptly as they started.","A feather-lined dart crunches under your [pc.foot]. A few others diligently hang onto the wall, trying to dispense their payloads into solid stone. You’ll have to be careful not to step on any of the needles...","A small pile of shell casings rests against the wall, wafting hints of their acrid propellant into the air.","An unconscious korgonne male sleeps flat on his back - and naked. He’s covered from head to toe in pussy juice and cum... and judging by the state of his hyper-swollen knot and seed-dribbling cock-head, he’s not going to be any good for anything but fucking for a long time... assuming anyone could even rouse him. It looks like there’s a tranq dart still stuck in his neck. Poor guy.","An unconscious korgonne woman lies on the floor with cum streaming from a very packed pussy. She snores audibly, tranquilized by the dart in her neck.","You spot a laser weapon’s battery-mag resting on the floor, completely emptied.","An empty magazine with a jagged crack through the side sits on the ground, discarded. Looking closer, you can see the korgonne spearpoint wedged into it.","Someone tossed out a spent stimpen... and an emptied vial of Throbb. You try not to think about what would necessitate such a combination as you kick them out of your way.","The high-pitched keen of an energy weapon discharging at maximum power carries surprisingly well through the hold’s stonework. You almost wish it didn’t.","Distant war-cries and the clang of metal on metal keep you on your toes.","The faint, staccato ‘thump’ of a flash-bang going off reminds you that the battle is still raging.","A feline howl of displeasure echoes to you, bringing a smile to your [pc.lipsNoun]."]));
+	}
 	return false;
+}
+
+public function getAHealyItemInWargii(HP:Boolean = true):void
+{
+	output("\n\n");
+	if(!HP) quickLoot(new PyriteIssuedStim());
+	else quickLoot(new HealingPoultice());
+	flags["TUNDRA_STEP"] = 3;
 }
 
 //Ula can not be visibly preggo
@@ -76,6 +106,49 @@ public function tempWargiiEnd():Boolean
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 	return true;
+}
+public function wargiiH8Bonus():Boolean
+{
+	flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
+	return wargiiEncounterStuff();
+}
+
+public function wargiiJ10Bonus():Boolean
+{
+	flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
+	return wargiiEncounterStuff();
+}
+
+public function wargiiR20Bonus():Boolean
+{
+	flags["NAV_DISABLED"] = NAV_SOUTH_DISABLE;
+	return wargiiEncounterStuff();
+}
+
+public function wargiiR22Bonus():Boolean
+{
+	flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
+	return wargiiEncounterStuff();
+}
+
+public function wargiiJ6Bonus():Boolean
+{
+	flags["NAV_DISABLED"] = NAV_SOUTH_DISABLE;
+	return wargiiEncounterStuff();
+}
+
+public function tamedTamelingsWarBonus():Boolean
+{
+	if(9999 == 9999) output("Various bags and crates of animal feed are littered along the back wall to feed the creatures further into the shop. Carts, leashes, and reins hang from the walls in abundance, but without anyone to mind the shop, you’re left with nothing to do but admire the supplies.");
+	else output("Various bags and crates of animal feed are littered along the back wall to feed the creatures further into the shop - except those same creatures have been unleashed into the hold. Maja must have made it back to let them out. Perhaps you’ll have some beastly allies in the fights to follow?");
+	return wargiiEncounterStuff();
+}
+public function wargiiBeastCagesBonus():Boolean
+{
+	if(9999 == 9999) output("Many larger beasts occupy these stables. Six-legged bear-like creatures with jagged horns jutting from their heads mill about in large pens. Smaller beasts, though plenty large enough to ride sit in fenced-in alcoves.");
+	else output("The larger beasts have all been turned loose. Cage doors swing wide open. The only evidence of the six-legged bear-like creatures that once lived here are copious, unshoveled piles of dung.");
+	output(" Metal-handled shovels lie stacked against the far wall as you come to a dead end. The curving tunnel to the south provides an exit, should you need to escape an angry milodan.");
+	return wargiiEncounterStuff();
 }
 
 //[Don’t]

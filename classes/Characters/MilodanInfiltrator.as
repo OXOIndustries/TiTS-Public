@@ -15,6 +15,8 @@
 	import classes.Items.Guns.LaserPistol;
 	import classes.Items.Protection.BasicShield;
 	import classes.Items.Miscellaneous.EmptySlot;
+	import classes.Items.Recovery.HealingPoultice;
+	import classes.Items.Recovery.PyriteIssuedStim;
 	import classes.Engine.Interfaces.output;
 	import classes.Engine.Combat.*;
 	import classes.Util.RandomInCollection;
@@ -209,10 +211,11 @@
 			isUniqueInFight = true;
 			btnTargetText = "Milodan";
 			
-			createPerk("Juggernaut",0,0,0,0);
-			this.createStatusEffect("Disarm Immune");
+			//createPerk("Juggernaut",0,0,0,0);
+			//this.createStatusEffect("Disarm Immune");
 
 			kGAMECLASS.uvetoSSTDChance(this);
+			randomise();
 			this._isLoading = false;
 		}
 		
@@ -231,6 +234,9 @@
 		private function randomise():void 
 		{
 			sexualPreferences.setRandomPrefs(4 + rand(3));
+			if(rand(10) == 0) {}
+			else if(rand(3) == 0) this.inventory.push(new HealingPoultice());
+			else this.inventory.push(new PyriteIssuedStim());
 		}
 		public function swapGuns():void
 		{
@@ -264,8 +270,8 @@
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			var attackChoices:Array = new Array();
-
-			if(this.HP()/this.HPMax() < .33) 
+			if(this.hasStatusEffect("Disarmed")) disarmedBoxing(target);
+			else if(this.HP()/this.HPMax() < .33) 
 			{
 				if(this.hasStatusEffect("SeenKnife")) dyingPuppoBoi(target);
 				else nowThisIsAKnoif(target);
@@ -275,6 +281,16 @@
 			else if(rand(2) == 0) pistolSpray(target);
 			else riflepistolswappy(target);
 			longDescUpdate();
+		}
+		public function disarmedBoxing(target:Creature):void
+		{
+			var d:TypeCollection = new TypeCollection( { kinetic: 1 } ); 
+			d.add(physique() / 2);
+			output("Annoyed by his lack of weaponry, the milodan lunges forward to claw at you with both hands!");
+			if(combatMiss(this, target) || combatMiss(this, target)) output("\nYou dodge!");
+			else applyDamage(d, this, target, "minimal");
+			if(combatMiss(this, target) || combatMiss(this, target)) output("\nYou dodge!");
+			else applyDamage(d, this, target, "minimal");
 		}
 		//Attacks
 		//One
