@@ -454,6 +454,9 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			if (target == pc) outputRouter(", which fortunately you’ve mastered keeping in check during oral sex.");
 			else outputRouter(".");
 			break;
+		case GLOBAL.TYPE_SAURMORIAN:
+			outputRouter((target == pc ? "You have":"[target.Name] has") + " the face of a saurmorian, with [target.skinFurScalesColor] metal scales that encase " + (target == pc ? "your":"[target.hisHer]") + " jaw, and run along the top of " + (target == pc ? "your":"[target.hisHer]") + " reptilian snout and down the back of " + (target == pc ? "your":"[target.hisHer]") + " neck. The sides of " + (target == pc ? "your":"[target.hisHer]") + " muzzle aren't as densely covered, and show hints of a [target.skinColor] hide beneath. " + (target == pc ? "Your":"[target.HisHer]") + " smile, meanwhile, contains a mouthful of sharp teeth.");
+			break;
 	}
 	if(target.hasStatusEffect("Mimbrane Face") && target == pc)
 	{
@@ -637,6 +640,9 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			break;
 		case GLOBAL.TYPE_JANERIA:
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " eyes are solid, featureless orbs of [target.eyeColor], giving " + (target == pc ? "you":"[target.himHer]") + " a thoroughly disturbing visage.");
+			break;
+		case GLOBAL.TYPE_SAURMORIAN:
+			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " eyes are [target.eyeColor] orbs, each with a vertically slitted pupil set in a very slim iris that almost blends with the surrounding sclera.");
 			break;
 		default:
 			if(hasMetallicEyes) outputRouter(" Metallically glistening " + target.eyeColor + " eyes allow " + (target == pc ? "you":"[target.himHer]") + " to take in " + (target == pc ? "your":"[target.hisHer]") + " surroundings without trouble.");
@@ -833,6 +839,9 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			case GLOBAL.TYPE_FROSTWYRM:
 				outputRouter(" A trio of sharp, fin-like scales adorn either side of " + (target == pc ? "your":"[target.hisHer]") + " head, looking almost like exotic headphones and concealing " + (target == pc ? "your":"[target.hisHer]") + " ears within their protective armor.");
 				break;
+			case GLOBAL.TYPE_SAURMORIAN:
+				outputRouter(" A pair of small openings on the sides of " + (target == pc ? "your":"[target.hisHer]") + " head, each partially obscured by a protective scale, serve as " + (target == pc ? "your":"[target.hisHer]") + " ears.");
+				break;
 			default:
 				outputRouter(" There is nothing notable to mention about " + (target == pc ? "your":"[target.hisHer]") + " ears.");
 				break;
@@ -880,6 +889,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				else outputRouter(" tufts of feathers");
 				outputRouter(" which act as auricles are quite noticeable.");
 				break;
+			case GLOBAL.TYPE_SAURMORIAN:
 			case GLOBAL.TYPE_LIZAN:
 				outputRouter(" The " + target.hairDescript(true,true) + " atop " + (target == pc ? "your":"[target.hisHer]") + " head makes it nigh-impossible to notice the two small rounded openings that are " + (target == pc ? "your":"[target.hisHer]") + " ears.");
 				break;
@@ -1231,6 +1241,12 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				outputRouter(" and as thick as two or three fingers together.  They’re useless for attacking, but they provide decent coverage - and they no doubt add to your imposing visage");
 				if (target.race() == "frostwyrm") outputRouter(" as a Frostwyrm.");
 				else outputRouter(".");
+				break;
+			case GLOBAL.TYPE_SAURMORIAN:
+				outputRouter("A pair of dense, metal horns, roughly [pc.hornLength] inches long, curve up and along the back of " + (target == pc ? "your":"[target.hisHer]") + " skull");
+				if (target.hornLength >= 18) outputRouter(" and over " + (target == pc ? "your":"[target.hisHer]") + " head before twisting upwards at the brow");
+				if (target.horns == 3) outputRouter(". At the tip of " + (target == pc ? "your":"[target.hisHer]") + " [target.face], just above " + (target == pc ? "your":"[target.hisHer]") + " nose, sits a third, shorter horn");
+				outputRouter(". They have a rather intimidating presence, as if reminiscent of a more savage time.");
 				break;
 		}
 		if(hornMaterial > 0 && hornColor != "")
@@ -1754,6 +1770,9 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			break;
 		case GLOBAL.TYPE_FROSTWYRM:
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " forearms are covered in rough [target.scaleColor] scales that give them a serrated appearance, while " + (target == pc ? "your":"[target.hisHer]") + " fingers are slim and dextrous. Long, sharp talons have replaced " + (target == pc ? "your":"[target.hisHer]") + " nails, able to give someone a nasty scratch.");
+			break;
+		case GLOBAL.TYPE_SAURMORIAN:
+			outputRouter(" The scales on " + (target == pc ? "your":"[target.hisHer]") + " hands act as claws, as they extend into sharp points beyond " + (target == pc ? "your":"[target.hisHer]") + " fingertips, and " + (target == pc ? "your":"[target.hisHer]") + " arms are covered in scales up to the shoulders.");
 			break;
 		// Catch all
 		default:
@@ -2361,6 +2380,12 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		case GLOBAL.TYPE_FROSTWYRM:
 			outputRouter(" " + (target.tailCount == 1 ? "A long, flexible reptilian tail extends":"Long, flexible reptilian tails extend") + " from " + (target == pc ? "your":"[target.hisHer]") + " back. " + (target.tailCount == 1 ? "The":"On each, the") + " whole surface is covered in rough [target.scaleColor] scales, particularly along the top where they form a long row of spikes and at its tip, where they congregate into a blunt ball, best used for smashing things if " + (target == pc ? "you":"[target.heShe]") + " needed.");
 			break;
+		case GLOBAL.TYPE_SAURMORIAN:
+			outputRouter(" " + (target.tailCount == 1 ? "A [pc.tail] sits" : "[pc.Tails] sit") + " just above your [pc.ass], covered from base to tip in [target.skinFurScalesColor] metal scales.");
+			if (target.hasTailFlag(GLOBAL.FLAG_SHORT)) outputRouter(" Though quite short, and very plump, " + (target == pc ? "you still use":"[target.heShe] still uses") + (target.tailCount == 1 ? "it" : "them") + " for some semblance of balance - " + (target.isBimbo() || target.exhibitionism() > 50 ? "the extra looks drawn to each bounce with every step is just a bonus." : "even if every step causes an eye-catching bounce and waggle."));
+			else if (target.hasTailFlag(GLOBAL.FLAG_LONG)) outputRouter(" It sways in time with " + (target == pc ? "your":"[target.hisHer]") + " steps, helping " + (target == pc ? "you":"[target.himHer]") + " maintain balance.");
+			outputRouter(" The soft underside reveals a [target.skinColor] hide.");
+			break;
 	}
 	//Tail cunts
 	if(target.hasTailCunt() && target.tailType != GLOBAL.TYPE_CUNTSNAKE)
@@ -2734,6 +2759,9 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			break;
 		case GLOBAL.TYPE_JANERIA:
 			outputRouter(" Subtle contours and indentations that run all the way down the length of " + (target == pc ? "your":"[target.hisHer]") + " legs make them look as though they were formed from a mass of tentacles woven together. " + (target == pc ? "Your":"[target.HisHer]") + " feet have foregone toes entirely in favor of a smooth, supple boot where the tips of the tentacles appear to join together.");
+			break;
+		case GLOBAL.TYPE_SAURMORIAN:
+			outputRouter("Two human-like legs grow down from " + (target == pc ? "your":"[target.hisHer]") + " [pc.hips], encased in [target.skinFurScalesColor] scales - though " + (target == pc ? "your":"[target.hisHer]") + " inner thighs are bare, revealing [target.skinColor] hide. " + (target == pc ? "Your":"[target.HisHer]") + " feet are tipped with four toes, each with scales growing further into sharp points in place of claws. A small, vestigial scale-claw sits at " + (target == pc ? "your":"[target.hisHer]") + " heel, as if to assist with balance.");
 			break;
 		// Catch all
 		default:
@@ -4122,10 +4150,15 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 			}
 			outputRouter(". The diamond-shaped tip with a cumslit hidden along the underside makes it resemble the tentacle of some aquatic creature.");
 			break;
+		case GLOBAL.TYPE_SAURMORIAN:
+			outputRouter(" The saurmorian phallus is ringed with thick, fattened ridge-like protrusions along its length, starting from the base and up the shaft until just below the");
+			if (target.cocks[x].hasFlag(GLOBAL.FLAG_BLUNT)) outputRouter(" blunted");
+			outputRouter(" tip.");
+			break;
 	}
 	
 	//Nubby or Ribbed
-	if((target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY) && !InCollection(target.cocks[x].cType, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_FROSTWYRM)) || target.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED))
+	if((target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY) && !InCollection(target.cocks[x].cType, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_FROSTWYRM)) || (target.cocks[x].hasFlag(GLOBAL.FLAG_RIBBED) && !InCollection(target.cocks[x].cType, GLOBAL.TYPE_SAURMORIAN)))
 	{
 		outputRouter(" It is");
 		if(target.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY)) outputRouter(" covered in nub-like protrusions, spread out evenly across the shaft");
@@ -4154,7 +4187,7 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 		else outputRouter(" The ‘head’ of " + (target == pc ? "your":"[target.hisHer]") + " shaft widens quite noticeably, the better to stimulate " + (target == pc ? "your":"[target.hisHer]") + " partners.");
 	}
 	//"Blunt" head - for non-flared flat-tops
-	else if(target.cocks[x].hasFlag(GLOBAL.FLAG_BLUNT) && target.cocks[x].cType != GLOBAL.TYPE_FROSTWYRM)
+	else if(target.cocks[x].hasFlag(GLOBAL.FLAG_BLUNT) && !InCollection(target.cocks[x].cType, GLOBAL.TYPE_FROSTWYRM, GLOBAL.TYPE_SAURMORIAN))
 	{
 		outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " shaft ends in a blunted tip");
 		if(target.cocks[x].cType == GLOBAL.TYPE_EQUINE) outputRouter(" similar to a terran horse’s");
@@ -4374,6 +4407,10 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 		case GLOBAL.TYPE_FROSTWYRM:
 			outputRouter((eachOne ? "\nThe entire length of each":" The entire length of "+(target == pc?"your":"[target.hisHer]")) + " cunt is filled with folds that put a human woman’s to shame in their depth and quantity, catching even the smallest bit of texture on a dick and refusing to let go. Dozens of small but powerful muscles ensure " + (target == pc ? "your":"[target.hisHer]") + " fold-filled " + (eachOne ? "snatches":"snatch") + " can exert its grip on any dick no matter the size, while a few tweaks to the shape and position of " + (target == pc ? "your":"[target.hisHer]") + " " + (target.hasVaginas() || target.vaginas[0].clits > 1 ? "clits":"clit") + " ensure " + (target == pc ? "you're":"[target.heShe]'s") + " optimized for being taken from behind.");
 			break;
+		case GLOBAL.TYPE_SAURMORIAN:
+			outputRouter((eachOne ? "\nTheir lips" : " The lips") + " are quite plump, and always have a smooth and glossy sheen to them.");
+			if (target.vaginas[x].hasFlag(GLOBAL.FLAG_RIBBED)) outputRouter(" The walls inside "+(target == pc?"your":"[target.hisHer]") + " vagina, meanwhile, are lined with soft, sensitive ribbing from entrance to womb.");
+			break;
 		//Attack of the mouthginas!
 		case GLOBAL.TYPE_MOUTHGINA:
 			var mouthSize:String = "plump, bee stung";
@@ -4410,7 +4447,7 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 		if(!eachOne) outputRouter(" The lips and insides are covered in numerous nub-like protrusions.");
 		else outputRouter(" Their lips and insides are covered in numerous nub-like protrusions.");
 	}
-	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_RIBBED))
+	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_RIBBED) && target.vaginas[x].type != GLOBAL.TYPE_SAURMORIAN)
 	{
 		if(!eachOne) outputRouter(" The insides are lined with rib-like protrusions, soft and rounded enough to massage any insertion.");
 		else outputRouter(" Their insides are lined with rib-like protrusions, soft and rounded enough to massage any insertion.");

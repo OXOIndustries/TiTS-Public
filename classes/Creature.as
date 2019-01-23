@@ -2842,6 +2842,9 @@
 				case "legsOrLeg":
 					buffer = legOrLegs();
 					break;
+				case "legOrLegsNoun":
+					buffer = (legCount == 1 ? legNoun() : legsNoun());
+					break;
 				case "legFurScales":
 					buffer = legFurScales();
 					break;
@@ -5978,7 +5981,7 @@
 		public function hasFlatEars(): Boolean
 		{
 			// For ear types that are mostly flat, hidden or inset, like reptile/bird ears.
-			if(InCollection(earType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_FROG, GLOBAL.TYPE_OVIR, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_DAYNAR, GLOBAL.TYPE_MOTHRINE)) return true;
+			if(InCollection(earType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_FROG, GLOBAL.TYPE_OVIR, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_DAYNAR, GLOBAL.TYPE_MOTHRINE, GLOBAL.TYPE_SAURMORIAN)) return true;
 			return false;
 		}
 		public function hasNonScritchEars(): Boolean
@@ -6031,6 +6034,7 @@
 					if(sRace.indexOf("kaithrit") != -1) adjectives.push("kaithrit");
 					if(!nonFurrySkin) adjectives.push("furry");
 					break;
+				case GLOBAL.TYPE_SAURMORIAN:
 				case GLOBAL.TYPE_LIZAN:
 					adjectives = ["reptilian", "small", "circular"];
 					break;
@@ -7095,6 +7099,7 @@
 					case GLOBAL.TYPE_SIMII: adjectives.push("simian", "monkey-like"); break;
 					case GLOBAL.TYPE_GOAT: adjectives.push("caprine", "goat-like"); break;
 					case GLOBAL.TYPE_MOTHRINE: adjectives.push("mothrine", "alien", "insectoid", "insect-like"); break;
+					case GLOBAL.TYPE_SAURMORIAN: adjectives.push("armored", "gilded", "plated", "reptile-like", "reptilian");
 				}
 				if (hasFaceFlag(GLOBAL.FLAG_ANGULAR)) adjectives.push("angular");
 				if (hasFaceFlag(GLOBAL.FLAG_LONG)) adjectives.push("long");
@@ -7292,6 +7297,9 @@
 				case GLOBAL.TYPE_SIMII:
 					adjectives = ["simii", "simian", "monkey", "monkey-like"];
 					break;
+				case GLOBAL.TYPE_SAURMORIAN:
+					adjectives = ["armored", "gilded", "plated"];
+					break;
 			}
 			// Flags
 			if (hasTailCock())
@@ -7472,6 +7480,7 @@
 			if (hasArmFlag(GLOBAL.FLAG_LUBRICATED)) adjective.push("moist", "slippery", "slick");
 			if (armType == GLOBAL.TYPE_LAPINE && hasArmFlag(GLOBAL.FLAG_THICK)) adjective.push("big");
 			if (armType == GLOBAL.TYPE_SIREN) adjective.push("harpy-like");
+			if (armType == GLOBAL.TYPE_SAURMORIAN && hasArmFlag(GLOBAL.FLAG_SCALED)) adjective.push("armored", "gilded", "plated");
 			// Build
 			if ((forceAdjective || rand(2) == 0) && adjective.length > 0) output += RandomInCollection(adjective);
 			// Noun
@@ -7542,7 +7551,7 @@
 		}
 		public function hasClawedHands(): Boolean {
 			if(armType == GLOBAL.TYPE_AVIAN && hasArmFlag(GLOBAL.FLAG_PAWS)) return true;
-			return InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_FROSTWYRM);
+			return InCollection(armType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_BADGER, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_FROSTWYRM, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_SAURMORIAN);
 		}
 		public function hasPaddedHands(): Boolean {
 			if (hasArmFlag(GLOBAL.FLAG_PAWS)) return true;
@@ -7627,6 +7636,7 @@
 						case GLOBAL.TYPE_SIMII: adjectives = ["simii", "simian", "simiiforme", "monkey-like"]; break;
 						case GLOBAL.TYPE_MOTHRINE: adjectives = ["slender", "svelte", "graceful", "insect-like", "carapace-covered"]; break;
 						case GLOBAL.TYPE_MOUSE: adjectives = ["mouse-like", "agile", "mousey", "limber"]; break;
+						case GLOBAL.TYPE_SAURMORIAN: adjectives = ["armored", "gilded", "plated", "reptile-like", "reptilian"]; break;
 					}
 				}
 				//ADJECTIVE!
@@ -7831,7 +7841,7 @@
 		}
 		public function hasToeClaws():Boolean
 		{
-			if(hasToes() && InCollection(legType, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_FROSTWYRM)) return true;
+			if(hasToes() && InCollection(legType, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_FROSTWYRM, GLOBAL.TYPE_SAURMORIAN)) return true;
 			return false;
 		}
 		public function kneesDescript(): String 
@@ -10791,7 +10801,7 @@
 				if (cocks[index].cType == type) return index;
 			}
 			trace("creature.findFirstOfcType ERROR - searched for cType: " + type + " and could not find it.");
-			return 0;
+			return -1;
 		}
 		//How many cocks?
 		//Expanded to use an argument and replace horseCocks(), dogCocks(), etc.
@@ -11060,6 +11070,11 @@
 					vaginas[slot].clits = 1;
 					vaginas[slot].vaginaColor = "purple";
 					break;
+				case GLOBAL.TYPE_LIZAN:
+					vaginas[slot].clits = 1;
+					vaginas[slot].vaginaColor = (hasScales() ? scaleColor : "purple");
+					if (vaginas[slot].bonusCapacity < 100) vaginas[slot].bonusCapacity = 100;
+					break;
 				case GLOBAL.TYPE_LEITHAN:
 					vaginas[slot].clits = 1;
 					vaginas[slot].vaginaColor = "black";
@@ -11165,6 +11180,10 @@
 					vaginas[slot].wetnessRaw = 2;
 					vaginas[slot].loosenessRaw = 3;
 					break;
+				case GLOBAL.TYPE_SAURMORIAN:
+					inflateVagina(slot);
+					vaginas[slot].addFlag(GLOBAL.FLAG_RIBBED);
+					break;
 			}
 		}
 		//Change cock type
@@ -11221,6 +11240,11 @@
 					cocks[slot].cockColor = "purple";
 					cocks[slot].knotMultiplier = 1;
 					cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
+					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+					break;
+				case GLOBAL.TYPE_LIZAN:
+					cocks[slot].cockColor = "purple";
+					cocks[slot].knotMultiplier = 1;
 					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 					break;
 				case GLOBAL.TYPE_KUITAN:
@@ -11387,6 +11411,14 @@
 					cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
 					cocks[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
 					cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
+					break;
+				case GLOBAL.TYPE_SAURMORIAN:
+					cocks[slot].cockColor = (findFirstOfcType(GLOBAL.TYPE_SAURMORIAN) < 0 ? RandomInCollection("black", "dark blue", "dark red", "purple") : cocks[findFirstOfcType(GLOBAL.TYPE_SAURMORIAN)].cockColor);
+					if(cocks[slot].cLengthRaw < 5) cocks[slot].cLengthRaw = 8;
+					if(cocks[slot].cThicknessRatioRaw < 0.833) cocks[slot].cLengthRaw = 1.125;
+					cocks[slot].addFlag(GLOBAL.FLAG_BLUNT);
+					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
+					cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
 					break;
 			}
 		}
@@ -11716,6 +11748,7 @@
 			else if(raceSimple == "mothrine") shiftCock(arg, GLOBAL.TYPE_MOTHRINE);
 			else if(raceSimple == "janeria") shiftCock(arg, GLOBAL.TYPE_JANERIA);
 			else if(raceSimple == "frostwyrm") shiftCock(arg, GLOBAL.TYPE_FROSTWYRM);
+			else if(raceSimple == "saurmorian") shiftCock(arg, GLOBAL.TYPE_SAURMORIAN);
 			else if(InCollection(raceSimple, ["sionach", "siel"]))
 			{
 				shiftCock(arg, GLOBAL.TYPE_INHUMAN);
@@ -11758,6 +11791,7 @@
 			else if(raceSimple == "lapinara") shiftVagina(arg, GLOBAL.TYPE_LAPINARA);
 			else if(raceSimple == "canine") shiftVagina(arg, GLOBAL.TYPE_CANINE);
 			else if(raceSimple == "frostwyrm") shiftVagina(arg, GLOBAL.TYPE_FROSTWYRM);
+			else if(raceSimple == "saurmorian") shiftVagina(arg, GLOBAL.TYPE_SAURMORIAN);
 			//Janeria don't use their own vagina type
 			else if(raceSimple == "janeria")
 			{
@@ -13034,31 +13068,34 @@
 		{
 			var score:Number = 0;
 			if(hasScales() && (hasSkinFlag(GLOBAL.FLAG_SMOOTH) || hasSkinFlag(GLOBAL.FLAG_THICK)) && scaleColor == "silver") score += 2;
-			if(armType == GLOBAL.TYPE_LEITHAN && hasPartScales("arm")) 
+			if(InCollection(armType, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_SAURMORIAN) && hasPartScales("arm")) 
 			{
-				if(legCount > 1 && legType == GLOBAL.TYPE_GRYVAIN && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) score++;
+				if(legCount > 1 && InCollection(legType, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_SAURMORIAN) && hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) score++;
 			}
-			if(earType == GLOBAL.TYPE_LIZAN) score++;
+			if(InCollection(earType, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_SAURMORIAN)) score++;
+			if(faceType == GLOBAL.TYPE_SAURMORIAN && hasMuzzle())
+			{
+				if(tailType == GLOBAL.TYPE_SAURMORIAN && hasTailFlag(GLOBAL.FLAG_SCALED)) score += 2;
+			}
 			if(faceType == GLOBAL.TYPE_LIZAN && hasMuzzle())
 			{
 				if(tailType == GLOBAL.TYPE_LIZAN && hasTailFlag(GLOBAL.FLAG_LONG) && hasTailFlag(GLOBAL.FLAG_SCALED)) score++;
 			}
-			if(eyeType == GLOBAL.TYPE_NAGA) score++;
-			if(hasTongueFlag(GLOBAL.FLAG_LONG) && tongueType == GLOBAL.TYPE_CANINE) score++;
-			if(score >= 4 && hasCock())
+			if(InCollection(eyeType, GLOBAL.TYPE_NAGA, GLOBAL.TYPE_SAURMORIAN)) score++;
+			if(/*hasTongueFlag(GLOBAL.FLAG_LONG) && */hasTongueFlag(GLOBAL.FLAG_SQUISHY) && tongueType == GLOBAL.TYPE_CANINE) score++;
+			if(score >= 6 && cockTotal() == 1)
 			{
-				if(cocks[0].cType == GLOBAL.TYPE_SAURIAN && hasSheath(0)) score++;
+				if(InCollection(cocks[0].cType, GLOBAL.TYPE_SAURIAN, GLOBAL.TYPE_SAURMORIAN) && hasSheath(0) && hasCockFlag(0, GLOBAL.FLAG_RIBBED)) score++;
 			}
-			if(score >= 4 && hasVagina())
+			if(score >= 6 && vaginaTotal() == 1)
 			{
-				if(vaginas[0].hasFlag(GLOBAL.FLAG_RIBBED) && (vaginas[0].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[0].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))) score++;
+				if(vaginas[0].hasFlag(GLOBAL.FLAG_RIBBED) && (vaginas[0].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[0].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) && vaginas[0].type == GLOBAL.TYPE_SAURMORIAN) score++;
 			}
-			if(!hasMuzzle()) score--;
-			if(!faceType == GLOBAL.TYPE_LIZAN) score--;
+			if (!InCollection(faceType, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_SAURMORIAN)) score -= 2;
 			if(hasHair()) score--;
-			if(antennae > 0) score--;
+			if(antennae > 0) score -= 2;
 			if(hasFur()) score-= 2;
-			if(hasCock() && hasKnot(0)) score--;
+			if(hasAKnot()) score--;
 			return score;
 		}
 		public function sharkScore(): int
@@ -14906,6 +14943,7 @@
 				else if (type == GLOBAL.TYPE_SWINE) desc += "swine ";
 				else if (type == GLOBAL.TYPE_MOUTHGINA) desc += "mouth-like ";
 				else if (type == GLOBAL.TYPE_KORGONNE) desc += "korgonne ";
+				else if (type == GLOBAL.TYPE_SAURMORIAN) desc += "saurmorian ";
 				else desc += "alien ";
 				var plainPussies:Array = ["vagina", "pussy"];
 				if(isBimbo()) plainPussies.push("cunt");
@@ -15083,6 +15121,11 @@
 					}
 				else
 						desc += RandomInCollection(["mouthgina","mouthgina","mouth-pussy","mouth-gina","mouth-muff", "maw"]);
+				}
+				else if (type == GLOBAL.TYPE_SAURMORIAN)
+				{
+					if (!simple) desc += RandomInCollection("glossy ", "bestial ", "savage ", "saurmorian ");
+					desc += RandomInCollection(["vagina", "pussy", "pussy", "pussy", "pussy","pussy","pussy", "cunt", "cunt", "cunt", "cunt", "slit", "slit", "twat", "gash", "cunny", "honeypot", "snatch"]);
 				}
 				else
 				{
@@ -16212,6 +16255,9 @@
 					break;
 				case GLOBAL.TYPE_MOTHRINE:
 					collection = ["mothrine", "insectile", "alien", "curved"];
+					break;
+				case GLOBAL.TYPE_SAURMORIAN:
+					collection = ["dinosaur", "bestial", "savage", "saurmorian"];
 					break;
 				default:
 					trace("Fallback cock shape used in cockShape() for type: " + GLOBAL.TYPE_NAMES[cock.cType]);
@@ -19735,6 +19781,7 @@
 		public function hornColor():String 
 		{
 			var sColor:String = "";
+			if(hornType == GLOBAL.TYPE_SAURMORIAN) sColor = "silver";
 			if(hasStatusEffect("Horn Style")) sColor = getStatusTooltip("Horn Style");
 			
 			return (sColor != "" ? sColor : "naturally-colored");
