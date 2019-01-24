@@ -10158,34 +10158,46 @@
 			//Great. Now figure out how much fullness that adds.
 			var fullnessDelta:Number = mLsGained / milkCapacity() * 100;
 			
-			//75% fullness notification
-			if(milkFullness < 75 && milkFullness + fullnessDelta >= 75) createStatusEffect("Pending Gain Milk Note: 75");
-			//100% notification!
-			if(milkFullness < 100 && milkFullness + fullnessDelta >= 100) createStatusEffect("Pending Gain Milk Note: 100");
+			milkFullnessAdd(fullnessDelta);
+			
+			//trace("Breast milk produced: " + mLsGained + ", Fullness: " + milkFullness + " Total mLs Held: " + milkQ(99) + ", Max mLs: " + milkCapacity() + " Delta: " + fullnessDelta);
+			return mLsGained;
+		}
+		public function milkFullnessAdd(fullnessDelta:Number = 0, bNote:Boolean = true): Number
+		{
+			// No change
+			if(fullnessDelta == 0) return milkFullness;
+			// Negative delta means milked!
+			if(fullnessDelta < 0) return milked(Math.abs(fullnessDelta), false);
+			
+			if(bNote && this is PlayerCharacter)
+			{
+				//75% fullness notification
+				if(milkFullness < 75 && (milkFullness + fullnessDelta >= 75)) createStatusEffect("Pending Gain Milk Note: 75");
+				//100% notification!
+				if(milkFullness < 100 && (milkFullness + fullnessDelta >= 100)) createStatusEffect("Pending Gain Milk Note: 100");
+			}
 
 			//If we're going above 100.
 			if(fullnessDelta + milkFullness > 100)
 			{
-				//Vanae milk just caps at 100.
-				if(InCollection(milkType, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK)) milkFullness = 100;
-				else
+				//If we start below 100, do that normally first
+				if(milkFullness < 100)
 				{
-					//If we start below 100, do that normally first
-					if(milkFullness < 100)
-					{
-						var subHundredFullness:Number = 100 - milkFullness;
-						milkFullness = 100;
-						fullnessDelta -= subHundredFullness;
-					}
-					//150%
-					if(milkFullness < 150 && milkFullness + fullnessDelta/2 >= 150) createStatusEffect("Pending Gain Milk Note: 150");
-					//200%
-					if(milkFullness < 200 && milkFullness + fullnessDelta/2 >= 200) createStatusEffect("Pending Gain Milk Note: 200");
-					//Grow at half rate since we're over 100
-					milkFullness += fullnessDelta/2;
+					var subHundredFullness:Number = 100 - milkFullness;
+					milkFullness = 100;
+					fullnessDelta -= subHundredFullness;
 				}
+				if(bNote && this is PlayerCharacter)
+				{
+					//150%
+					if(milkFullness < 150 && (milkFullness + (fullnessDelta/2) >= 150)) createStatusEffect("Pending Gain Milk Note: 150");
+					//200%
+					if(milkFullness < 200 && (milkFullness + (fullnessDelta/2) >= 200)) createStatusEffect("Pending Gain Milk Note: 200");
+				}
+				//Grow at half rate since we're over 100
+				milkFullness += (fullnessDelta/2);
 			}
-
 			//Not going above 100? Just add it
 			else milkFullness += fullnessDelta;
 
@@ -10195,8 +10207,23 @@
 				//trace("ERROR: Flash sucks dicks at math and somehow got a negative milk fullness.");
 				milkFullness = milkFullnessMin();
 			}
-			//trace("Breast milk produced: " + mLsGained + ", Fullness: " + milkFullness + " Total mLs Held: " + milkQ(99) + ", Max mLs: " + milkCapacity() + " Delta: " + fullnessDelta);
-			return mLsGained;
+			
+			return milkFullness;
+		}
+		public function milkFillToCapacity(fullnessDelta:Number = 0, fullnessMax:Number = 100, bNote:Boolean = true): Number
+		{
+			// fullnessDelta is the fullness percentage to be added.
+			// fullnessMax is the maximum capacity to fill to if addition is under.
+			// If wrong parameters.
+			if(fullnessMax <= 0) return milkFullnessAdd(fullnessMax, bNote);
+			if(fullnessDelta <= 0 || fullnessDelta >= fullnessMax) return milkFullnessAdd(fullnessMax, bNote);
+			
+			// Set minimum first.
+			if(milkFullness < milkFullnessMin()) milkFullness = milkFullnessMin();
+			
+			if((milkFullness + fullnessDelta) <= fullnessMax) fullnessDelta = (fullnessMax - milkFullness);
+			
+			return milkFullnessAdd(fullnessDelta, bNote);
 		}
 		public function milkCapacity(arg:int = -1):Number
 		{
@@ -10288,7 +10315,7 @@
 				}
 			}
 		}
-		public function boostLactation(amount:Number = 1):void
+		public function boostLactation(amount:Number = 1, bNote:Boolean = true):void
 		{
 			//Record this for tracking change
 			var originalMultiplier:Number = milkMultiplier;
@@ -10314,16 +10341,19 @@
 				else milkMultiplier += (amount/10);
 			}
 			//Queue threshold notes!
-			if(originalMultiplier < 30 && milkMultiplier >= 30) createStatusEffect("Pending Gain MilkMultiplier Note: 30");
-			if(originalMultiplier < 40 && milkMultiplier >= 40) createStatusEffect("Pending Gain MilkMultiplier Note: 40");
-			if(originalMultiplier < 50 && milkMultiplier >= 50) createStatusEffect("Pending Gain MilkMultiplier Note: 50");
-			if(originalMultiplier < 60 && milkMultiplier >= 60) createStatusEffect("Pending Gain MilkMultiplier Note: 60");
-			if(originalMultiplier < 70 && milkMultiplier >= 70) createStatusEffect("Pending Gain MilkMultiplier Note: 70");
-			if(originalMultiplier < 80 && milkMultiplier >= 80) createStatusEffect("Pending Gain MilkMultiplier Note: 80");
-			if(originalMultiplier < 90 && milkMultiplier >= 90) createStatusEffect("Pending Gain MilkMultiplier Note: 90");
-			if(originalMultiplier < 100 && milkMultiplier >= 100) createStatusEffect("Pending Gain MilkMultiplier Note: 100");
-			if(originalMultiplier < 110 && milkMultiplier >= 110) createStatusEffect("Pending Gain MilkMultiplier Note: 110");
-			if(originalMultiplier < 125 && milkMultiplier >= 125) createStatusEffect("Pending Gain MilkMultiplier Note: 125");
+			if(bNote && this is PlayerCharacter)
+			{
+				if(originalMultiplier < 30 && milkMultiplier >= 30) createStatusEffect("Pending Gain MilkMultiplier Note: 30");
+				if(originalMultiplier < 40 && milkMultiplier >= 40) createStatusEffect("Pending Gain MilkMultiplier Note: 40");
+				if(originalMultiplier < 50 && milkMultiplier >= 50) createStatusEffect("Pending Gain MilkMultiplier Note: 50");
+				if(originalMultiplier < 60 && milkMultiplier >= 60) createStatusEffect("Pending Gain MilkMultiplier Note: 60");
+				if(originalMultiplier < 70 && milkMultiplier >= 70) createStatusEffect("Pending Gain MilkMultiplier Note: 70");
+				if(originalMultiplier < 80 && milkMultiplier >= 80) createStatusEffect("Pending Gain MilkMultiplier Note: 80");
+				if(originalMultiplier < 90 && milkMultiplier >= 90) createStatusEffect("Pending Gain MilkMultiplier Note: 90");
+				if(originalMultiplier < 100 && milkMultiplier >= 100) createStatusEffect("Pending Gain MilkMultiplier Note: 100");
+				if(originalMultiplier < 110 && milkMultiplier >= 110) createStatusEffect("Pending Gain MilkMultiplier Note: 110");
+				if(originalMultiplier < 125 && milkMultiplier >= 125) createStatusEffect("Pending Gain MilkMultiplier Note: 125");
+			}
 		}
 		//PC has been milked for "amount" fullness.
 		public function milked(amount:Number = 50, mLs:Boolean = false):Number
@@ -10363,6 +10393,8 @@
 		public function milkFullnessMax(): Number
 		{
 			var bonus:int = 0;
+			// Vanae milk just caps at 100.
+			if(InCollection(milkType, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK)) return 100 + bonus;
 			return 200 + bonus;
 		}
 		public function setBoobSwelling():void
