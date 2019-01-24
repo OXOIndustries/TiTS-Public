@@ -644,6 +644,13 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		case GLOBAL.TYPE_SAURMORIAN:
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " eyes are [target.eyeColor] orbs, each with a vertically slitted pupil set in a very slim iris that almost blends with the surrounding sclera.");
 			break;
+		case GLOBAL.TYPE_LIZAN:
+			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " eyes are reptilian; black slits set within [target.eyeColor] orbs.");
+			if (hasMetallicEyes) outputRouter(" They gleam brightly in the light, clear enough for you to see your face in them when you look" + (target == pc ? "." : " in the mirror."));
+			else if (hasGemstoneEyes) outputRouter(" They seem to glow in the light, shimmering like jewels.");
+			else if (target.eyeColor == "black") outputRouter(" They look unsettling, their many shades of black crawling together the longer you look at them.");
+			outputRouter(" An off-" + target.eyeColor.split(" ").pop() + " line at the sides betray the presence of a second set of eyelids.");
+			break;
 		default:
 			if(hasMetallicEyes) outputRouter(" Metallically glistening " + target.eyeColor + " eyes allow " + (target == pc ? "you":"[target.himHer]") + " to take in " + (target == pc ? "your":"[target.hisHer]") + " surroundings without trouble.");
 			else if(hasGemstoneEyes) outputRouter(" Like jewels, shimmering " + target.eyeColor + " eyes allow " + (target == pc ? "you":"[target.himHer]") + " to take in " + (target == pc ? "your":"[target.hisHer]") + " surroundings without trouble.");
@@ -1773,6 +1780,11 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			break;
 		case GLOBAL.TYPE_SAURMORIAN:
 			outputRouter(" The scales on " + (target == pc ? "your":"[target.hisHer]") + " hands act as claws, as they extend into sharp points beyond " + (target == pc ? "your":"[target.hisHer]") + " fingertips, and " + (target == pc ? "your":"[target.hisHer]") + " arms are covered in scales up to the shoulders.");
+			break;
+		case GLOBAL.TYPE_LIZAN:
+			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " arms appear relatively normal, though");
+			if (target.hasArmFlag(GLOBAL.FLAG_SCALED) && !target.hasScales()) outputRouter(" they are covered with scales up to the shoulder and");
+			outputRouter(" your fingers are tipped with claws instead of fingernails.");
 			break;
 		// Catch all
 		default:
@@ -4052,8 +4064,9 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 			outputRouter(" " + target.cockColor(x) + ", slightly wavy in shape, and tapers to a point when erect.");
 			break;
 		//Snake cock flavor
+		case GLOBAL.TYPE_LIZAN:
 		case GLOBAL.TYPE_SNAKE:
-			if(InCollection(target.originalRace, ["snake", "naga", "naleen", "leithan", "half-leithan"])) outputRouter(" It’s a deep, iridescent " + target.cocks[x].cockColor + " in color. The shaft is patterned with multiple bulbous bumps to stimulate potential partners, and the whole of its length is glossy and smooth.");
+			if(InCollection(target.originalRace, ["snake", "naga", "naleen", "leithan", "half-leithan", "reptile-morph"])) outputRouter(" It’s a deep, iridescent " + target.cocks[x].cockColor + " in color. The shaft is patterned with multiple bulbous bumps to stimulate potential partners, and the whole of its length is glossy and smooth.");
 			else outputRouter(" It’s a deep, iridescent " + target.cocks[x].cockColor + " in color. Unlike " + indefiniteArticle(target.originalRace) + " penis, the shaft is patterned with multiple bulbous bumps to stimulate potential partners, and the whole of its length is glossy and smooth.");
 			break;
 		//Anemone cock flavor
@@ -4311,6 +4324,7 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 			}
 			break;
 		//Naleen flavor
+		case GLOBAL.TYPE_LIZAN:
 		case GLOBAL.TYPE_NAGA:
 			if(!eachOne) outputRouter(" The exterior lips are subtle and narrow, making " + (target == pc ? "your":"[target.hisHer]") + " lengthy entrance a little more discrete.");
 			else outputRouter("\nEach vagina’s exterior lips are subtle and narrow, making " + (target == pc ? "your":"[target.hisHer]") + " lengthy entrances a little more discrete.");
