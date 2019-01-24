@@ -1250,7 +1250,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				else outputRouter(".");
 				break;
 			case GLOBAL.TYPE_SAURMORIAN:
-				outputRouter("A pair of dense, metal horns, roughly [pc.hornLength] inches long, curve up and along the back of " + (target == pc ? "your":"[target.hisHer]") + " skull");
+				outputRouter("A pair of dense, metal horns, roughly [target.hornLength] inches long, curve up and along the back of " + (target == pc ? "your":"[target.hisHer]") + " skull");
 				if (target.hornLength >= 18) outputRouter(" and over " + (target == pc ? "your":"[target.hisHer]") + " head before twisting upwards at the brow");
 				if (target.horns == 3) outputRouter(". At the tip of " + (target == pc ? "your":"[target.hisHer]") + " [target.face], just above " + (target == pc ? "your":"[target.hisHer]") + " nose, sits a third, shorter horn");
 				outputRouter(". They have a rather intimidating presence, as if reminiscent of a more savage time.");
@@ -1784,7 +1784,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		case GLOBAL.TYPE_LIZAN:
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " arms appear relatively normal, though");
 			if (target.hasArmFlag(GLOBAL.FLAG_SCALED) && !target.hasScales()) outputRouter(" they are covered with scales up to the shoulder and");
-			outputRouter(" your fingers are tipped with claws instead of fingernails.");
+			outputRouter(" " + (target == pc ? "your":"[target.hisHer]") + " fingers are tipped with claws instead of fingernails.");
 			break;
 		// Catch all
 		default:
@@ -2393,7 +2393,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			outputRouter(" " + (target.tailCount == 1 ? "A long, flexible reptilian tail extends":"Long, flexible reptilian tails extend") + " from " + (target == pc ? "your":"[target.hisHer]") + " back. " + (target.tailCount == 1 ? "The":"On each, the") + " whole surface is covered in rough [target.scaleColor] scales, particularly along the top where they form a long row of spikes and at its tip, where they congregate into a blunt ball, best used for smashing things if " + (target == pc ? "you":"[target.heShe]") + " needed.");
 			break;
 		case GLOBAL.TYPE_SAURMORIAN:
-			outputRouter(" " + (target.tailCount == 1 ? "A [pc.tail] sits" : "[pc.Tails] sit") + " just above your [pc.ass], covered from base to tip in [target.skinFurScalesColor] metal scales.");
+			outputRouter(" " + (target.tailCount == 1 ? "A [target.tail] sits" : "[target.Tails] sit") + " just above your [target.ass], covered from base to tip in [target.skinFurScalesColor] metal scales.");
 			if (target.hasTailFlag(GLOBAL.FLAG_SHORT)) outputRouter(" Though quite short, and very plump, " + (target == pc ? "you still use":"[target.heShe] still uses") + (target.tailCount == 1 ? "it" : "them") + " for some semblance of balance - " + (target.isBimbo() || target.exhibitionism() > 50 ? "the extra looks drawn to each bounce with every step is just a bonus." : "even if every step causes an eye-catching bounce and waggle."));
 			else if (target.hasTailFlag(GLOBAL.FLAG_LONG)) outputRouter(" It sways in time with " + (target == pc ? "your":"[target.hisHer]") + " steps, helping " + (target == pc ? "you":"[target.himHer]") + " maintain balance.");
 			outputRouter(" The soft underside reveals a [target.skinColor] hide.");
@@ -2773,7 +2773,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			outputRouter(" Subtle contours and indentations that run all the way down the length of " + (target == pc ? "your":"[target.hisHer]") + " legs make them look as though they were formed from a mass of tentacles woven together. " + (target == pc ? "Your":"[target.HisHer]") + " feet have foregone toes entirely in favor of a smooth, supple boot where the tips of the tentacles appear to join together.");
 			break;
 		case GLOBAL.TYPE_SAURMORIAN:
-			outputRouter("Two human-like legs grow down from " + (target == pc ? "your":"[target.hisHer]") + " [pc.hips], encased in [target.skinFurScalesColor] scales - though " + (target == pc ? "your":"[target.hisHer]") + " inner thighs are bare, revealing [target.skinColor] hide. " + (target == pc ? "Your":"[target.HisHer]") + " feet are tipped with four toes, each with scales growing further into sharp points in place of claws. A small, vestigial scale-claw sits at " + (target == pc ? "your":"[target.hisHer]") + " heel, as if to assist with balance.");
+			outputRouter("Two human-like legs grow down from " + (target == pc ? "your":"[target.hisHer]") + " [target.hips], encased in [target.skinFurScalesColor] scales - though " + (target == pc ? "your":"[target.hisHer]") + " inner thighs are bare, revealing [target.skinColor] hide. " + (target == pc ? "Your":"[target.HisHer]") + " feet are tipped with four toes, each with scales growing further into sharp points in place of claws. A small, vestigial scale-claw sits at " + (target == pc ? "your":"[target.hisHer]") + " heel, as if to assist with balance.");
 			break;
 		// Catch all
 		default:
