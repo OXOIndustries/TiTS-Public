@@ -11745,6 +11745,7 @@
 			else if(raceSimple == "janeria") shiftCock(arg, GLOBAL.TYPE_JANERIA);
 			else if(raceSimple == "frostwyrm") shiftCock(arg, GLOBAL.TYPE_FROSTWYRM);
 			else if(raceSimple == "saurmorian") shiftCock(arg, GLOBAL.TYPE_SAURMORIAN);
+			else if(raceSimple == "reptile") shiftCock(arg, GLOBAL.TYPE_NAGA);
 			else if(InCollection(raceSimple, ["sionach", "siel"]))
 			{
 				shiftCock(arg, GLOBAL.TYPE_INHUMAN);
@@ -11788,6 +11789,7 @@
 			else if(raceSimple == "canine") shiftVagina(arg, GLOBAL.TYPE_CANINE);
 			else if(raceSimple == "frostwyrm") shiftVagina(arg, GLOBAL.TYPE_FROSTWYRM);
 			else if(raceSimple == "saurmorian") shiftVagina(arg, GLOBAL.TYPE_SAURMORIAN);
+			else if(raceSimple == "reptile") shiftVagina(arg, GLOBAL.TYPE_LIZAN);
 			//Janeria don't use their own vagina type
 			else if(raceSimple == "janeria")
 			{
