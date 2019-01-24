@@ -11236,15 +11236,11 @@
 					cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
 					cocks[slot].addFlag(GLOBAL.FLAG_FORESKINNED);
 					break;
+				case GLOBAL.TYPE_LIZAN:
 				case GLOBAL.TYPE_NAGA:
 					cocks[slot].cockColor = "purple";
 					cocks[slot].knotMultiplier = 1;
 					cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
-					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
-					break;
-				case GLOBAL.TYPE_LIZAN:
-					cocks[slot].cockColor = "purple";
-					cocks[slot].knotMultiplier = 1;
 					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 					break;
 				case GLOBAL.TYPE_KUITAN:
@@ -12088,6 +12084,7 @@
 			if (sheepScore() >= 5) race = sheepRace();
 			if (plantScore() >= 5) race = plantRace();
 			if (laquineScore() >= 5) race = "laquine";
+			if (lizanScore() >= 7) race = "reptile-morph";
 			if (saurmorianScore() >= 6) race = "saurmorian";
 			// Human-morphs
 			if (race == "human" && cowScore() >= 4) race = mfn("cow-boy", "cow-girl", "hucow");
@@ -12177,6 +12174,14 @@
 						break;
 					case "mothrine":
 						sRaceShort = "moth";
+						break;
+					case "reptile":
+						sRaceShort = "lizard";
+						break;
+					case "saurmorian":
+						if (rand(10) == 0 && kGAMECLASS.silly) sRaceShort = "space heater";
+						else if (rand(2) == 0) sRaceShort = "dino";
+						else sRaceShort = "lizard";
 						break;
 				}
 			}
@@ -12855,6 +12860,30 @@
 			if (armType == GLOBAL.TYPE_LAPINE) counter++;
 			if (counter > 0 && hasFur()) counter++;
 			if (!hasCock(GLOBAL.TYPE_EQUINE) && !hasVaginaType(GLOBAL.TYPE_EQUINE) && counter > 0) counter = 0;
+			return counter;
+		}
+		public function lizanScore():int
+		{
+			var counter:int = 0;
+			if (hasFlatEars()) counter++;
+			if (earType == GLOBAL.TYPE_LIZAN) counter++;
+			if (faceType == GLOBAL.TYPE_LIZAN) counter++;
+			else if (tongueType == GLOBAL.TYPE_OVIR || hasMuzzle()) counter++;
+			if (skinType == GLOBAL.SKIN_TYPE_SCALES) counter++;
+			else counter -= 2;
+			if (hasArmFlag(GLOBAL.FLAG_SCALED)) counter++;
+			if (armType == GLOBAL.TYPE_LIZAN) counter++;
+			if (hasLegFlag(GLOBAL.FLAG_SCALED)) counter++;
+			if (legType == GLOBAL.TYPE_LIZAN) counter++;
+			if (eyeType == GLOBAL.TYPE_LIZAN) counter++;
+			if (hasTail() && tailType == GLOBAL.TYPE_LIZAN) counter++;
+			if (counter >= 6 && hasCock(GLOBAL.TYPE_NAGA)) counter++;
+			if (counter >= 6 && hasVaginaType(GLOBAL.TYPE_LIZAN)) counter++;
+			if (hasPerk("Oviposition")) counter++;
+			if (biggestTitSize() > 2) counter--;
+			if (hasHair() || hasBeard()) counter--;
+			if (legCount != 2 && !isNaga()) counter -= 2;
+			if (!hasTail()) counter -= 2;
 			return counter;
 		}
 		public function lupineScore(): int {
@@ -16378,6 +16407,7 @@
 							desc += RandomInCollection(["simii-dick","simii-cock","member","member","phallus","prick","tool","shaft"]);
 							break;
 						case GLOBAL.TYPE_SAURIAN:
+						case GLOBAL.TYPE_SAURMORIAN:
 							//adjectives.push("dinosaur", "saurian");
 							desc += RandomInCollection(["dino-cock","reptile-cock","dinosaur-cock","dino-dick","reptile-dick","dinosaur-prick","dinosaur-tool","member","cock"]);
 							break;
@@ -16511,6 +16541,10 @@
 						case GLOBAL.TYPE_SAURIAN:
 							//adjectives.push("dinosaur", "saurian");
 							desc += RandomInCollection(["dinosaur cock","saurian cock","reptilian cock","prehistoric dino-cock","dinosaur dick","saurian shaft","dinosaur dick","reptilian member","saurian member","saurian tool","saurian prick","dinosaur prick","prehistoric dino-dick"]);
+							break;
+						case GLOBAL.TYPE_SAURMORIAN:
+							//adjectives.push("dinosaur", "saurian");
+							desc += RandomInCollection(["dinosaur cock","saurmorian cock","reptilian cock","dino-cock","dinosaur dick","saurmorian shaft","dinosaur dick","reptilian member","saurmorian member","saurmorian tool","saurmorian prick","dinosaur prick","dino-dick"]);
 							break;
 						case GLOBAL.TYPE_SYNTHETIC:
 							//adjectives.push("metallic", "synthetic", "mechanical", "robotic", "sleek");
