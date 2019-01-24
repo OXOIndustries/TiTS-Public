@@ -654,7 +654,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	}
 	
 	//Hair
-	var nonFurrySkin:Boolean = InCollection(target.skinType, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_LATEX);
+	var nonFurrySkin:Boolean = (InCollection(target.skinType, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_LATEX) || target.hasPerk("Black Latex"));
 	var isFloppyEars:Boolean = (InCollection(target.earType, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE) && (target.RQ() < 50 || target.AQ() < 50 || target.earLength >= target.tallness/2));
 	
 	//if bald

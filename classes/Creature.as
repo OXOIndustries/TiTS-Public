@@ -6000,7 +6000,7 @@
 			var nouns:Array = ["ear"];
 			var description:String = "";
 			var sRace:String = "";
-			var nonFurrySkin:Boolean = InCollection(skinType, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_LATEX);
+			var nonFurrySkin:Boolean = (InCollection(skinType, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_LATEX) || hasPerk("Black Latex"));
 			
 			switch (earType)
 			{
@@ -6138,6 +6138,7 @@
 			}
 			if (hasLongEars()) adjectives.push(num2Text(Math.round(earLength)) + "-inch long");
 			if (skinType == GLOBAL.SKIN_TYPE_GOO && rand(5) == 0) adjectives.push("gooey", "slimy", "slick");
+			if (hasPerk("Black Latex") && rand(4) == 0) adjectives.push("rubber", "latex", "latex");
 			//Pick an adjective about 75% of the time
 			if (rand(4) < 3 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
 			//Pick a noun.
@@ -14345,7 +14346,6 @@
 		}
 		public function hairDescript(forceLength: Boolean = false, forceColor: Boolean = false): String {
 			var descript: String = "";
-			var descripted: Number = 0;
 			//Bald folks get one-off quick description
 			if (hairLength <= 0) {
 				if (hasFur()) {
@@ -14370,152 +14370,149 @@
 				descript += "head";
 				return descript;
 			}
-			//25% odds of adjectives
-			if ((forceLength || rand(4) == 0) && !InCollection(hairStyle, ["afro", "mohawk", "spikes"])) {
-				if (hairLength < 1) {
-					if (rand(2) == 0) descript += "close-cropped";
-					else descript += "trim";
-				}
-				else if (hairLength < 3) descript += "short";
-				else if (hairLength < 6) {
-					if (rand(2) == 0 || InCollection(hairType, GLOBAL.HAIR_TYPE_TENTACLES, GLOBAL.HAIR_TYPE_PLANT))
-					{
-						if(hairLength <= 4 && rand(2) == 0) descript += "ear-length";
-						else descript += "medium-length";
-					}
-					else descript += "shaggy";
-				}
-				else if (hairLength < 10) {
-					if (rand(2) == 0) descript += "moderately long";
-					else if(hairLength < 8) descript += "neck-length";
-					else descript += "shoulder-length";
-				}
-				else if (hairLength < 16) {
-					descript += RandomInCollection(["long","lengthy"]);
-				}
-				//Relativistic hair
-				else if (hairLength < tallness / 2.5) {
-					descript += RandomInCollection(["very long", "back-length"]);
-				}
-				else if (hairLength < tallness / 1.6) {
-					if(rand(3) == 0) descript += "cascading";
-					else if(hairLength < tallness / 1.7) descript += "ass-length";
-					else descript += "thigh-length";
-				}
-				else if (hairLength < tallness / 1.3) 
+			
+			// Length
+			if((forceLength || rand(4) == 0) && !InCollection(hairStyle, ["afro", "mohawk", "spikes"]))
+			{
+				var adjLength:String = hairLengthDescript();
+				if (adjLength != "")
 				{
-					if(rand(2) == 0 && hasKnees()) descript += "knee-length"; 
-					else descript += "delightfully long";
+					if(descript != "") descript += ", ";
+					descript += adjLength;
 				}
-				else if(hairLength < tallness) {
-					if(rand(2) == 0 && hasKnees())
-					{
-						if(hairLength < tallness - 1) descript += "calf-length";
-						else descript += "ankle-length";
-					}
-					else descript += "exquisitely long";
-				}
-				else {
-					descript += RandomInCollection(["floor-length", "obscenely long", "floor-dragging"]);
-				}
-				descripted++;
 			}
-			// COLORS
-			if (forceColor || rand(2) == 0) {
-				if (descripted > 0) descript += ", ";
+			
+			// Shape
+			var adjShape:Array = [];
+			if (rand(4) == 0)
+			{
+				if (hasStatusEffect("frizzy hair")) adjShape.push("frizzy");
+			}
+			if (adjShape.length > 0)
+			{
+				if(descript != "") descript += ", ";
+				descript += RandomInCollection(adjShape);
+			}
+			
+			// Color
+			if (forceColor || rand(2) == 0)
+			{
+				if (descript != "") descript += ", ";
+				if (hairType == GLOBAL.HAIR_TYPE_TRANSPARENT && hairColor.indexOf("transparent") == -1) descript += "transparent";
 				descript += hairColor;
-				descripted++;
 			}
-			//Latex!
-			if (rand(2) == 0 && descripted <= 1 && hasStatusEffect("Latex Hair"))
+			
+			// Materials
+			var adjMaterial:Array = [];
+			var sMaterial:String = "";
+			if (rand(2) == 0) {
+				if (hasStatusEffect("Latex Hair")) adjMaterial.push("latex");
+			}
+			if (adjMaterial.length > 0) sMaterial = RandomInCollection(adjMaterial);
+			
+			// Nouns
+			if (descript != "") descript += " ";
+			// Mane special stuff.
+			if (hasPerk("Mane") && hairLength > 3 && rand(2) == 0)
 			{
-				if(descripted > 0) descript += ", ";
-				descript += "latex";
-				descripted++;
-			}
-			if (rand(4) == 0 && descripted <= 1 && hasStatusEffect("frizzy hair"))
-			{
-				if(descripted > 0) descript += ", ";
-				descript += "frizzy";
-				descripted++;
-			}
-			//Mane special stuff.
-			if (hasPerk("Mane") && hairLength > 3 && rand(2) == 0) {
-				//Oddball shit
-				if (rand(2) == 0 && descripted < 2) {
-					if (hairType == GLOBAL.HAIR_TYPE_TRANSPARENT) {
-						if (descripted > 0) descript += ", ";
-						descript += "transparent";
-						descripted++;
-					}
-				}
-				if (descripted > 0) descript += " ";
 				descript += "mane";
-				if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += " of feathers";
-				if (hairType == GLOBAL.HAIR_TYPE_QUILLS) descript += " of quills";
-				if (hairType == GLOBAL.HAIR_TYPE_GOO)
+				if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += " of" + (sMaterial != "" ? (" " + sMaterial) : "") + " feathers";
+				else if (hairType == GLOBAL.HAIR_TYPE_QUILLS) descript += " of" + (sMaterial != "" ? (" " + sMaterial) : "") + " quills";
+				else if (hairType == GLOBAL.HAIR_TYPE_GOO)
 				{
 					descript += " of goo";
+					if (sMaterial != "") descript += "ey " + sMaterial;
 					if (hairStyle == "tentacle") descript += "-tentacles";
+					else if (sMaterial != "") descript += " hair";
 				}
-				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += " of tentacles";
-				if (hairType == GLOBAL.HAIR_TYPE_PLANT) descript += " of leaves";
+				else if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += " of" + (sMaterial != "" ? (" " + sMaterial) : "") + " tentacles";
+				else if (hairType == GLOBAL.HAIR_TYPE_PLANT) descript += " of" + (sMaterial != "" ? (" " + sMaterial) : "") + " leaves";
+				else if (sMaterial != "") descript += " of " + sMaterial + " hair";
 			}
 			//Not manes
-			else {
-				//Oddball shit
-				if (rand(2) == 0 && descripted < 2) {
-					if (hairType == GLOBAL.HAIR_TYPE_TRANSPARENT) {
-						if (descripted > 0) descript += ", ";
-						descript += "transparent";
-						descripted++;
-					} else if (hairType == GLOBAL.HAIR_TYPE_GOO) {
-						if (descripted > 0) descript += ", ";
-						descript += "gooey";
-						descripted++;
-					}
-				}
-				if (descripted > 0) descript += " ";
+			else
+			{
+				var nouns:Array = [];
 				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle")
 				{
-					if (hairType == GLOBAL.HAIR_TYPE_GOO && descript.indexOf("goo") == -1) descript += "gooey ";
-					descript += "tentacle-hair";
+					nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "tentacle-hair");
 				}
 				else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) 
 				{
-					if(rand(2) == 0) descript += "plumage";
-					else descript += "feather-hair";
+					nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "plumage");
+					nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "feather-hair");
 				}
 				else if (hairType == GLOBAL.HAIR_TYPE_QUILLS && rand(2) == 0)
 				{
-					if(rand(2) == 0) descript += "spiny-hair";
-					else descript += "quill-hair";
+					nouns.push("spiny-" + (sMaterial != "" ? (sMaterial + " ") : "") + "hair");
+					nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "quill-hair");
 				}
 				else if (hairType == GLOBAL.HAIR_TYPE_PLANT)
 				{
-					if(rand(2) == 0) descript += "garden";
-					else descript += "leaf-hair";
+					nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "garden");
+					nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "leaf-hair");
 				}
 				else 
 				{
-					if(hairStyle == "ponytail") descript += "ponytail";
-					else if(hairStyle.indexOf("pigtail") != -1) descript += "pigtailed hair";
-					else if(hairStyle == "curls") descript += "curled hair";
-					else if(hairStyle.indexOf("curls") != -1) descript += "curly hair";
-					else if(hairStyle == "braided") descript += "braid";
-					else if(hairStyle.indexOf(" braid") != -1 || hairStyle.indexOf("plait") != -1) descript += "braided hair";
-					else if(hairStyle == "afro") descript += "afro";
-					else if(hairStyle == "mohawk") descript += "mohawk";
-					else if(hairStyle == "spikes") descript += "spiked hair";
-					else if(hairStyle.indexOf("slick") != -1 || hairStyle.indexOf("wave") != -1) descript += "smooth hair";
-					else if(hairStyle.indexOf("layer") != -1) descript += "layered hair";
-					else if(hairStyle == "side part") descript += "side-parted hair";
-					else if(hairStyle.indexOf(" part") != -1) descript += "parted hair";
-					else if(hairStyle.indexOf("chignon") != -1) descript += "pinned-up hair";
-					else if(hairStyle == "twintails") descript += "twintailed hair";
-					else descript += "hair";
+					if(hairStyle == "ponytail") nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "ponytail");
+					else if(hairStyle.indexOf("pigtail") != -1) nouns.push("pigtailed" + (sMaterial != "" ? (" " + sMaterial) : "") + " hair");
+					else if(hairStyle == "curls") nouns.push("curled" + (sMaterial != "" ? (" " + sMaterial) : "") + " hair");
+					else if(hairStyle.indexOf("curls") != -1) nouns.push("curly" + (sMaterial != "" ? (" " + sMaterial) : "") + " hair");
+					else if(hairStyle == "braided") nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "braid");
+					else if(hairStyle.indexOf(" braid") != -1 || hairStyle.indexOf("plait") != -1) nouns.push("braided" + (sMaterial != "" ? (" " + sMaterial) : "") + " hair");
+					else if(hairStyle == "afro") nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "afro");
+					else if(hairStyle == "mohawk") nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "mohawk");
+					else if(hairStyle == "spikes") nouns.push("spiked" + (sMaterial != "" ? (" " + sMaterial) : "") + " hair");
+					else if(hairStyle.indexOf("slick") != -1 || hairStyle.indexOf("wave") != -1) nouns.push("smooth" + (sMaterial != "" ? (" " + sMaterial) : "") + " hair");
+					else if(hairStyle.indexOf("layer") != -1) nouns.push("" + (sMaterial != "layered" ? (" " + sMaterial) : "") + " hair");
+					else if(hairStyle == "side part") nouns.push("side-parted" + (sMaterial != "" ? (" " + sMaterial) : "") + " hair");
+					else if(hairStyle.indexOf(" part") != -1) nouns.push("parted" + (sMaterial != "" ? (" " + sMaterial) : "") + " hair");
+					else if(hairStyle.indexOf("chignon") != -1) nouns.push("pinned-up" + (sMaterial != "" ? (" " + sMaterial) : "") + " hair");
+					else if(hairStyle == "twintails") nouns.push("twintailed" + (sMaterial != "" ? (" " + sMaterial) : "") + " hair");
+					else nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "hair");
+				}
+				descript += RandomInCollection(nouns);
+			}
+			return descript;
+		}
+		public function hairLengthDescript(): String {
+			var descript: String = "";
+			var adjLength:Array = [];
+			
+			if (hairLength < 1) adjLength.push("close-cropped", "trim");
+			else if (hairLength < 3) adjLength.push("short");
+			else if (hairLength < 6) {
+				adjLength.push("medium-length");
+				if(hairLength <= 4) adjLength.push("ear-length");
+				if(!InCollection(hairType, GLOBAL.HAIR_TYPE_TENTACLES, GLOBAL.HAIR_TYPE_PLANT)) adjLength.push("shaggy");
+			}
+			else if (hairLength < 10) {
+				adjLength.push("moderately long");
+				if(hairLength < 8) adjLength.push("neck-length");
+				else adjLength.push("shoulder-length");
+			}
+			else if (hairLength < 16) adjLength.push("long","lengthy");
+			else if (hairLength < tallness / 2.5) adjLength.push("very long", "back-length");
+			else if (hairLength < tallness / 1.6) {
+				adjLength.push("cascading");
+				if(hairLength < tallness / 1.7) adjLength.push("ass-length");
+				else adjLength.push("thigh-length");
+			}
+			else if (hairLength < tallness / 1.3) {
+				adjLength.push("delightfully long");
+				if(hasKnees()) adjLength.push("knee-length");
+			}
+			else if(hairLength < tallness) {
+				adjLength.push("exquisitely long");
+				if(hasKnees())
+				{
+					if(hairLength < tallness - 1) adjLength.push("calf-length");
+					else adjLength.push("ankle-length");
 				}
 			}
+			else adjLength.push("floor-length", "obscenely long", "floor-dragging");
+			
+			if (adjLength.length > 0) descript += RandomInCollection(adjLength);
 			return descript;
 		}
 		public function hairNoun():String
@@ -14569,7 +14566,6 @@
 		}
 		public function hairsDescript(forceLength: Boolean = false, forceColor: Boolean = false): String {
 			var descript: String = "";
-			var descripted: Number = 0;
 			//Bald folks get one-off quick description
 			if (hairLength <= 0) {
 				if (hasFur()) {
@@ -14594,98 +14590,71 @@
 				descript += "head";
 				return descript;
 			}
-			//50% odds of adjectives
-			if (forceLength || rand(2) == 0) {
-				if (hairLength < 1) {
-					if (rand(2) == 0) descript += "close-cropped";
-					else descript += "trim";
-				} else if (hairLength < 3) descript += "short";
-				else if (hairLength < 6) {
-					if(rand(2) == 0 || InCollection(hairType, GLOBAL.HAIR_TYPE_TENTACLES, GLOBAL.HAIR_TYPE_PLANT))
-					{
-						if(hairLength <= 4 && rand(2) == 0) descript += "ear-length";
-						else descript += "medium-length";
-					}
-					else descript += "shaggy";
-				}
-				else if (hairLength < 10) {
-					if (rand(2) == 0) descript += "moderately long";
-					else if(hairLength < 8) descript += "neck-length";
-					else descript += "shoulder-length";
-				}
-				else if (hairLength < 16) {
-					descript += RandomInCollection(["long","lengthy"]);
-				}
-				//Relativistic hair
-				else if (hairLength < tallness / 2.5) {
-					descript += RandomInCollection(["very long", "back-length"]);
-				}
-				else if (hairLength < tallness / 1.6) {
-					if(rand(3) == 0) descript += "cascading";
-					else if(hairLength < tallness / 1.7) descript += "ass-length";
-					else descript += "thigh-length";
-				}
-				else if (hairLength < tallness / 1.3) 
-				{
-					if(rand(2) == 0 && hasKnees()) descript += "knee-length"; 
-					else descript += "delightfully long";
-				}
-				else if(hairLength < tallness) {
-					if(rand(2) == 0 && hasKnees())
-					{
-						if(hairLength < tallness - 1) descript += "calf-length";
-						else descript += "ankle-length";
-					}
-					else descript += "exquisitely long";
-				}
-				else {
-					descript += RandomInCollection(["floor-length", "obscenely long", "floor-dragging"]);
-				}
-				descripted++;
-			}
-			// COLORS
-			if (forceColor || rand(2) == 0) {
-				if (descripted > 0) descript += ", ";
-				descript += hairColor;
-				descripted++;
-			}
-			//Latex!
-			if (rand(2) == 0 && descripted <= 1 && hasStatusEffect("Latex Hair"))
+			
+			// Length
+			if((forceLength || rand(4) == 0) && !InCollection(hairStyle, ["afro", "mohawk", "spikes"]))
 			{
-				if(descripted > 0) descript += ", ";
-				descript += "latex";
-				descripted++;
-			}
-			//Oddball shit
-			if (rand(2) == 0 && descripted < 2) {
-				if (hairType == GLOBAL.HAIR_TYPE_TRANSPARENT) {
-					if (descripted > 0) descript += ", ";
-					descript += "transparent";
-					descripted++;
+				var adjLength:String = hairLengthDescript();
+				if (adjLength != "")
+				{
+					if(descript != "") descript += ", ";
+					descript += adjLength;
 				}
 			}
-			if (descripted > 0) descript += " ";
-			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle") descript += "tentacles";
-			else if (hairType == GLOBAL.HAIR_TYPE_PLANT) descript += "leaves";
-			else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += "feathers";
-			else if (hairType == GLOBAL.HAIR_TYPE_QUILLS && rand(2) == 0) descript += "quills";
+			
+			// Shape
+			var adjShape:Array = [];
+			if (rand(4) == 0)
+			{
+				if (hasStatusEffect("frizzy hair")) adjShape.push("frizzy");
+			}
+			if (adjShape.length > 0)
+			{
+				if(descript != "") descript += ", ";
+				descript += RandomInCollection(adjShape);
+			}
+			
+			// Color
+			if (forceColor || rand(2) == 0)
+			{
+				if (descript != "") descript += ", ";
+				if (hairType == GLOBAL.HAIR_TYPE_TRANSPARENT && hairColor.indexOf("transparent") == -1) descript += "transparent";
+				descript += hairColor;
+			}
+			
+			// Materials
+			var adjMaterial:Array = [];
+			var sMaterial:String = "";
+			if (rand(2) == 0) {
+				if (hasStatusEffect("Latex Hair")) adjMaterial.push("latex");
+			}
+			if (adjMaterial.length > 0) sMaterial = RandomInCollection(adjMaterial);
+			
+			// Nouns
+			var nouns:Array = [];
+			if (descript != "") descript += " ";
+			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle") nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "tentacles");
+			else if (hairType == GLOBAL.HAIR_TYPE_PLANT) nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "leaves");
+			else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "feathers");
+			else if (hairType == GLOBAL.HAIR_TYPE_QUILLS && rand(2) == 0) nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "quills");
 			else 
 			{
-				if(hairStyle == "ponytail") descript += "ponytail-bound locks";
-				else if(hairStyle.indexOf("pigtail") != -1) descript += "pigtails";
-				else if(hairStyle.indexOf("curls") != -1) descript += "curls";
-				else if(hairStyle == "braided" || hairStyle.indexOf(" braid") != -1 || hairStyle.indexOf("plait") != -1) descript += "braid-bound locks";
-				else if(hairStyle == "afro") descript += "afro-puffed locks";
-				else if(hairStyle == "mohawk") descript += "mohawk-shaped locks";
-				else if(hairStyle == "spikes") descript += "spiky locks";
-				else if(hairStyle.indexOf("slick") != -1 || hairStyle.indexOf("wave") != -1) descript += "smooth locks";
-				else if(hairStyle.indexOf("layer") != -1) descript += "layered locks";
-				else if(hairStyle == "side part") descript += "side-parted locks";
-				else if(hairStyle.indexOf(" part") != -1) descript += "parted locks";
-				else if(hairStyle.indexOf("chignon") != -1) descript += "pinned-up locks";
-				else if(hairStyle == "twintails") descript += "twintails";
-				else descript += "locks";
+				if(hairStyle == "ponytail") nouns.push("ponytail-bound" + (sMaterial != "" ? (" " + sMaterial) : "") + " locks");
+				else if(hairStyle.indexOf("pigtail") != -1) nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "pigtails");
+				else if(hairStyle.indexOf("curls") != -1) nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "curls");
+				else if(hairStyle == "braided" || hairStyle.indexOf(" braid") != -1 || hairStyle.indexOf("plait") != -1) nouns.push("braid-bound" + (sMaterial != "" ? (" " + sMaterial) : "") + " locks");
+				else if(hairStyle == "afro") nouns.push("afro-puffed" + (sMaterial != "" ? (" " + sMaterial) : "") + " locks");
+				else if(hairStyle == "mohawk") nouns.push("mohawk-shaped" + (sMaterial != "" ? (" " + sMaterial) : "") + " locks");
+				else if(hairStyle == "spikes") nouns.push("spiky" + (sMaterial != "" ? (" " + sMaterial) : "") + " locks");
+				else if(hairStyle.indexOf("slick") != -1 || hairStyle.indexOf("wave") != -1) nouns.push("smooth" + (sMaterial != "" ? (" " + sMaterial) : "") + " locks");
+				else if(hairStyle.indexOf("layer") != -1) nouns.push("layered" + (sMaterial != "" ? (" " + sMaterial) : "") + " locks");
+				else if(hairStyle == "side part") nouns.push("side-parted" + (sMaterial != "" ? (" " + sMaterial) : "") + " locks");
+				else if(hairStyle.indexOf(" part") != -1) nouns.push("parted" + (sMaterial != "" ? (" " + sMaterial) : "") + " locks");
+				else if(hairStyle.indexOf("chignon") != -1) nouns.push("pinned-up" + (sMaterial != "" ? (" " + sMaterial) : "") + " locks");
+				else if(hairStyle == "twintails") nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "twintails");
+				else descript += nouns.push((sMaterial != "" ? (sMaterial + " ") : "") + "locks");
 			}
+			descript += RandomInCollection(nouns);
 			if (hairType == GLOBAL.HAIR_TYPE_GOO && rand(2) == 0) descript += " of goo";
 			return descript;
 		}
