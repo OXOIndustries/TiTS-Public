@@ -204,12 +204,12 @@
 		
 		public function UpgradeVersion1(dataObject:Object):void
 		{
-			this.eyeType =
-			this.faceType =
-			this.earType =
-			this.armType =
-			this.legType =
-			this.tailType
+			this.eyeType = GLOBAL.TYPE_SAURMORIAN;
+			this.faceType = GLOBAL.TYPE_SAURMORIAN;
+			this.earType = GLOBAL.TYPE_SAURMORIAN;
+			this.armType = GLOBAL.TYPE_SAURMORIAN;
+			this.legType = GLOBAL.TYPE_SAURMORIAN;
+			this.tailType = GLOBAL.TYPE_SAURMORIAN;
 			this.cocks[0].cType = GLOBAL.TYPE_SAURMORIAN;
 
 			this.createPerk("Appearance Enabled");
