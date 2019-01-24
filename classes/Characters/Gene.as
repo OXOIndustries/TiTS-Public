@@ -41,7 +41,8 @@
 			inventory.push(new Circumscriber());
 			inventory.push(new Turtleneck());
 			inventory.push(new TauricoVenidae());
-			inventory.push(new Reptilum());
+			//Uncomment for reptilum
+			//inventory.push(new Reptilum());
 			
 			typesBought = [];
 			
@@ -57,10 +58,11 @@
 			ballEfficiency = 90;
 		}
 		
-		public function UpgradeVersion1(dataObject:Object):void
+		//Uncomment for reptilum
+		/*public function UpgradeVersion1(dataObject:Object):void
 		{
 			dataObject.inventory.push(new Reptilum().getSaveObject());
-		}
+		}*/
 		
 		override public function onLeaveBuyMenu():void
 		{
