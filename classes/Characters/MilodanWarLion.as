@@ -1,6 +1,7 @@
 ﻿package classes.Characters
 {
 	import classes.Creature;
+	import classes.Characters.PlayerCharacter;
 	import classes.GameData.SingleCombatAttack;
 	import classes.GLOBAL;
 	import classes.StorageClass;
@@ -252,6 +253,8 @@
 			//Final attacks 5ever
 			else if(anyDoom || this.hasStatusEffect("grenadosDISABLED"))
 			{
+				//Only ever hits PC
+				target = kGAMECLASS.pc;
 				if(meleeDoom) vergeOfDeathNoGunno(target);
 				else if(rangedDoom) vergeOfDeath(target);
 				else if(rand(2) == 0) vergeOfDeath(target);
@@ -288,15 +291,21 @@
 			//PC strong and has melee weapon:
 			if(!(target.meleeWeapon is EmptySlot) && target.physique()/2 + rand(20) + 1 >= this.physique()/2 + 10) 
 			{
-				output(" You barely manage to block it with your [pc.meleeWeapon], forcing him to take a step back and revealing the fact he’s already bringing his gun to bear with a snarl.");
+				if(target is PlayerCharacter) output(" You barely manage to block it with your [pc.meleeWeapon], forcing him to take a step back and revealing the fact he’s already bringing his gun to bear with a snarl.");
+				else output(" " + StringUtil.toTitleCase(getCombatName()) + " barely manages to block it with " + target.mf("his","her") + " " + target.meleeWeapon.longName + ", forcing him to take a step back and revealing the fact that the he's already bringing his gun to bear with a snarl.");
 				d.multiply(0.5);
 			}
 			else if(combatMiss(this, target)) 
 			{
-				output(" You tumble out of the way of his up-close strike, but he’s already bringing his gun to bear with a snarl!");
+				if(target is PlayerCharacter) output(" You tumble out of the way of his up-close strike, but he’s already bringing his gun to bear with a snarl!");
+				else output(" " + StringUtil.toTitleCase(getCombatName()) + " barely manages to tumble out of the way of his up-close strike, but he's already bringing the gun to bear with a snarl!");
 				d.multiply(0.5);
 			}
-			else output(" You’re forced to take a step back and in the time it takes you, the milodan brings his gun to bear with a snarling grin!");
+			else 
+			{
+				if(target is PlayerCharacter) output(" You’re forced to take a step back and in the time it takes you, the milodan brings his gun to bear with a snarling grin!");
+				else output(" " + StringUtil.toTitleCase(getCombatName()) + " is forced to take a step back, and in the time it takes, the milodan brings his gun to bear with a snarling grin!");
+			}
 			//take half damage from the energy rifle spraydown if you blocked the sword
 			damageRand(d, 15);
 			applyDamage(d, this, target, "minimal");
@@ -305,18 +314,27 @@
 		public function milopup2Attack(target:Creature):void
 		{
 			var d:TypeCollection = this.rangedDamage();
-			output("Dashing forward, the milodan sweeps his energy sword from side to side, forcing you to parry or step back! He doesn’t let up, his swings seemingly gaining strength");
+			output("Dashing forward, the milodan sweeps his energy sword from side to side, forcing ");
+			if(target is PlayerCharacter) output("you");
+			else output(target.getCombatName());
+			output(" to parry or step back! He doesn’t let up, his swings seemingly gaining strength");
 
 			if(combatMiss(this, target))
 			{
-				output(". Waiting until the exact right moment, you deflect his sword and punch him in the jaw so hard his snout snaps shut, sending him stumbling back a few steps. <b>Countered!</b>");
-				d = target.meleeDamage();
-				damageRand(d, 15);
-				applyDamage(d, target, this, "minimal");
+				if(target is PlayerCharacter) 
+				{
+					output(". Waiting until the exact right moment, you deflect his sword and punch him in the jaw so hard his snout snaps shut, sending him stumbling back a few steps. <b>Countered!</b>");
+					d = target.meleeDamage();
+					damageRand(d, 15);
+					applyDamage(d, target, this, "minimal");
+				}
+				else output(". Waiting until the exact right moment, " + target.getCombatName() + " rolls through his leg, sending him stumbling.");
 			}
 			else 
 			{
-				output(" until, finally, he jumps backwards and lets loose a devastating hail of automatic fire!");
+				output(" until, finally, he jumps backwards and lets loose a devastating hail of automatic fire");
+				if(!(target is PlayerCharacter)) output(" at " + target.getCombatName());
+				output("!");
 				damageRand(d, 15);
 				d.multiply(2);
 				applyDamage(d, this, target, "minimal");
@@ -325,7 +343,10 @@
 		//Three
 		public function miloPup3Atk(target:Creature):void
 		{
-			output("Keeping his distance, the milodan leaps back and drops to one knee, bracing himself to fire his energy rifle! A storm of rounds screams past you, destroying almost everything in the vicinity!");
+			output("Keeping his distance, the milodan leaps back and drops to one knee, bracing himself to fire his energy rifle! A storm of rounds screams past ");
+			if(target is PlayerCharacter) output("you");
+			else output(target.getCombatName());
+			output(", destroying almost everything in the vicinity!");
 			for (var i:int = 0; i < 3; i++)
 			{
 				output("\n");
@@ -335,7 +356,10 @@
 		//Four
 		public function miloNumbah4(target:Creature):void
 		{
-			output("Holding his sword out guardedly, the milodan reaches under his backpack and produces a grenade with the pin already pulled! He tosses it in your direction and raises his gun, firing into the explosion!");
+			output("Holding his sword out guardedly, the milodan reaches under his backpack and produces a grenade with the pin already pulled! He tosses it in ");
+			if(target is PlayerCharacter) output("your");
+			else output(possessive(target.getCombatName()));
+			output(" direction!");
 			//chance to stun
 			applyDamage(damageRand(new TypeCollection( { burning: 40 } ), 15), this, target, "minimal");
 			if(!this.hasStatusEffect("grenados")) this.createStatusEffect("grenados");
@@ -343,10 +367,14 @@
 		//Five {Low hp}
 		public function lowHPCatdoggo(target:Creature):void
 		{
-			output("Getting increasingly desperate to beat you, the milodan pulls the entire bandolier of grenades off his back and hurls them in your direction, partially catching himself in the blast!");
+			output("Getting increasingly desperate to beat you, the milodan pulls the entire bandolier of grenades off his back and hurls them in ");
+			if(target is PlayerCharacter) output("your");
+			else output(possessive(target.getCombatName()));
+			output(" direction, partially catching himself in the blast!");
 			//deal dmg to both, chance to stun
 			//chance to stun
-			output("\nYou:")
+			if(target is PlayerCharacter) output("\nYou:")
+			else output("\n" + target.getCombatName() + ":");
 			applyDamage(damageRand(new TypeCollection( { burning: 50 } ), 15), this, target, "minimal");
 			output(" Him:");
 			applyDamage(damageRand(new TypeCollection( { burning: 35 } ), 15), target, this, "minimal");

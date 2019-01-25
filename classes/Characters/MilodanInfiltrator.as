@@ -1,6 +1,7 @@
 ﻿package classes.Characters
 {
 	import classes.Creature;
+	import classes.Characters.PlayerCharacter;
 	import classes.GameData.SingleCombatAttack;
 	import classes.GLOBAL;
 	import classes.StorageClass;
@@ -273,6 +274,8 @@
 			if(this.hasStatusEffect("Disarmed")) disarmedBoxing(target);
 			else if(this.HP()/this.HPMax() < .33) 
 			{
+				//Always hit PC with this shit.
+				target = kGAMECLASS.pc;
 				if(this.hasStatusEffect("SeenKnife")) dyingPuppoBoi(target);
 				else nowThisIsAKnoif(target);
 			}
@@ -286,18 +289,32 @@
 		{
 			var d:TypeCollection = new TypeCollection( { kinetic: 1 } ); 
 			d.add(physique() / 2);
-			output("Annoyed by his lack of weaponry, the milodan lunges forward to claw at you with both hands!");
-			if(combatMiss(this, target) || combatMiss(this, target)) output("\nYou dodge!");
-			else applyDamage(d, this, target, "minimal");
-			if(combatMiss(this, target) || combatMiss(this, target)) output("\nYou dodge!");
-			else applyDamage(d, this, target, "minimal");
+			output("Annoyed by his lack of weaponry, the milodan lunges forward to claw at ");
+			if(target is PlayerCharacter) output("you");
+			else output(target.getCombatName());
+			output(" with both hands!");
+			for(var i:int = 0; i < 2; i++)
+			{
+				if(combatMiss(this, target) || combatMiss(this, target)) 
+				{
+					if(target is PlayerCharacter) output("\nYou dodge!");
+					else output("\n" + target.getCombatName() + " dodges!");
+				}
+				else applyDamage(d, this, target, "minimal");
+			}
 		}
 		//Attacks
 		//One
 		public function pistolFakeOutShootRifle(target:Creature):void
 		{
-			output("The milodan fires a couple of shots from his pistol haphazardly, using the space created to jump back and slam another round back in his rifle. You close the gap, but not before he fires!");
-			if(rangedCombatMiss(this, target)) output("\nYou dodge!");
+			output("The milodan fires a couple of shots from his pistol haphazardly, using the space created to jump back and slam another round back in his rifle. You close the gap, but not before he fires");
+			if(!(target is PlayerCharacter)) output(" at " + target.getCombatName());
+			output("!");
+			if(rangedCombatMiss(this, target)) 
+			{
+				if(!(target is PlayerCharacter)) output("\n" + target.getCombatName() + " dodges!");
+				else output("\nYou dodge!");
+			}
 			else 
 			{
 				swapGuns();
@@ -308,7 +325,9 @@
 		//Two
 		public function pistolSpray(target:Creature):void
 		{
-			output("The milodan seemingly spots an opportunity, opening fire with his automatic pistol!");
+			output("The milodan seemingly spots an opportunity, opening fire with his automatic pistol");
+			if(!(target is PlayerCharacter)) output(" at " + target.getCombatName());
+			output("!");
 			for (var i:int = 0; i < 2; i++)
 			{
 				output("\n");
@@ -318,11 +337,21 @@
 		//Three
 		public function riflepistolswappy(target:Creature):void
 		{
-			output("Jumping towards you, the milodan swings his heavy rifle at you! Grunting ");
-			if(target.physique()/2 + rand(20) + 1 >= this.physique()/2 + 10) output("as you block it, you manage to avoid his hidden counterattack with the autopistol, twisting his arm so the shots go astray");
+			output("Jumping towards you, the milodan swings his heavy rifle at ");
+			if(!(target is PlayerCharacter)) output(target.getCombatName());
+			else output("you");
+			output("! Grunting ");
+			if(target.physique()/2 + rand(20) + 1 >= this.physique()/2 + 10) 
+			{
+				if(!(target is PlayerCharacter)) output("as " + target.mf("he","she") + " blocks it, " + target.getCombatName() + " manages to avoid his hidden counterattack with the autopistol, twisting the milodan's arm so the shots go astray.");
+				else output("as you block it, you manage to avoid his hidden counterattack with the autopistol, twisting his arm so the shots go astray.");
+			}
 			else 
 			{
-				output("from the impact, you don’t see him bringing the autopistol to bear until it’s too late!");
+				output("from the impact, ");
+				if(!(target is PlayerCharacter)) outut(target.getCombatName() + " doesn't");
+				else output("you don’t");
+				output(" see him bringing the autopistol to bear until it’s too late!");
 				for (var i:int = 0; i < 3; i++)
 				{
 					output("\n");
@@ -335,10 +364,16 @@
 		{
 			this.energy(-20);
 			output("The milodan suddenly reaches for a pouch on his waist, thumbing the detonator on a flashbang and tossing it into the air!");
-			if(target.reflexes()/2 + rand(20) + 1 >= this.aim()/2 + 10) output(" Thinking quickly, you raise your arm to your downcast eyes. By watching the positioning of his feet, you not only manage to avoid the brunt of the blindness but even counterattack!");
+			if(target.reflexes()/2 + rand(20) + 1 >= this.aim()/2 + 10) 
+			{
+				if(target is PlayerCharacter) output(" Thinking quickly, you raise your arm to your downcast eyes. By watching the positioning of his feet, you manage to avoid the brunt of the blindness!");
+				else output(" Thinking quickly, " + target.getCombatName() + " raises " + target.mf("his","her") + " arm. By watching the positioning of the milodan's feet, " + target.mf("he","she") + " manages to avoid becoming blinded.");
 			else 
 			{
-				output(" Blindsided by the maneuver and blinded as a consequence, you’re unable to mount a counterattack as he brings the heavy rifle to bear!");
+				output(" Blindsided by the maneuver and blinded as a consequence, ");
+				if(target is PlayerCharacter) output("you’re");
+				else output(target.getCombatName() + " is");
+				output(" unable to mount a counterattack as he brings the heavy rifle to bear!");
 				CombatAttacks.applyBlind(target, 1);
 				output("\n");
 				swapGuns();
