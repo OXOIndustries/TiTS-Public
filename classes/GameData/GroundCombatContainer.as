@@ -528,7 +528,9 @@ package classes.GameData
 				{
 					if (target is PlayerCharacter) output("\n\n<b>You desperately slap at your body, trying to extinguish the flames that have taken to your " + (target.hasArmor() ? target.armor.longName : "person") + " but it stubbornly clings to you, blackening and bubbling everything it touches. It burns!</b>");
 					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " desperately slap" + (!target.isPlural ? "s" : "") + " at " + target.getCombatPronoun("hisher") + " body, trying to extinguish the flames licking at " + target.getCombatPronoun("hisher") + " " + (target.hasArmor() ? target.armor.longName : "person") + " but to no avail!</b>");
-					applyDamage(new TypeCollection( { burning: target.statusEffectv2("Burning") } ), null, target);
+					var burnyBoiDamage:DamageResult = new DamageResult();
+					burnyBoiDamage.addResult(applyDamage(new TypeCollection( { burning: target.statusEffectv2("Burning") } ), null, target));
+					outputDamage(burnyBoiDamage);
 				}
 			}
 			
@@ -552,7 +554,9 @@ package classes.GameData
 					target.removeStatusEffect("Burn");
 				}
 				
-				applyDamage(new TypeCollection( { burning: burnValue } ), null, target);
+				var burnyBoyDamage:DamageResult = new DamageResult();
+				burnyBoyDamage.addResult(applyDamage(new TypeCollection( { burning: burnValue } ), null, target));
+				outputDamage(burnyBoyDamage);
 			}
 			
 			//Does v1 lust damage every turn. V2 is turn counter (negative = infinite)!
@@ -614,7 +618,9 @@ package classes.GameData
 				{
 					amount += 4 + rand(6);
 				}
-				applyDamage(new TypeCollection( { tease: amount } ), target, target);
+				var vibeDamage:DamageResult = new DamageResult();
+				vibeDamage.addResult(applyDamage(new TypeCollection( { tease: amount } ), target, target));
+				outputDamage(vibeDamage);
 			}
 
 			//Does v1 lust damage every turn. V2 is turn counter (negative = infinite)!
@@ -691,7 +697,10 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Poison");
 				}
-				applyDamage(damageRand(new TypeCollection( { poison: target.statusEffectv1("Poison") * target.statusEffectv3("Poison") } ), 15), null, target);
+				var poisonDamage:DamageResult = new DamageResult();
+				poisonDamage.addResult(applyDamage(damageRand(new TypeCollection( { poison: target.statusEffectv1("Poison") * target.statusEffectv3("Poison") } ), 15), null, target));
+				outputDamage(poisonDamage);
+
 				target.energy(-5);
 			}
 			if (target.hasStatusEffect("Bleeding"))
@@ -706,7 +715,9 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Bleeding");
 				}
-				applyDamage(damageRand(new TypeCollection( { kinetic: target.statusEffectv1("Bleeding") * target.statusEffectv3("Bleeding") } ), 15), null, target);
+				var bleedDamage:DamageResult = new DamageResult();
+				bleedDamage.addResult(applyDamage(damageRand(new TypeCollection( { kinetic: target.statusEffectv1("Bleeding") * target.statusEffectv3("Bleeding") } ), 15), null, target));
+				outputDamage(bleedDamage);
 			}
 		
 			if (target.hasStatusEffect("Staggered"))
