@@ -22,6 +22,7 @@
 	import classes.Engine.Combat.*;
 	import classes.Util.RandomInCollection;
 	import classes.StringUtil;
+	import classes.Engine.Utility.possessive;
 	
 	public class MilodanWarLion extends Creature
 	{

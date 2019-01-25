@@ -22,6 +22,7 @@
 	import classes.Engine.Combat.*;
 	import classes.Util.RandomInCollection;
 	import classes.StringUtil;
+	import classes.Engine.Utility.possessive;
 	
 	public class MilodanInfiltrator extends Creature
 	{
@@ -349,7 +350,7 @@
 			else 
 			{
 				output("from the impact, ");
-				if(!(target is PlayerCharacter)) outut(target.getCombatName() + " doesn't");
+				if(!(target is PlayerCharacter)) output(target.getCombatName() + " doesn't");
 				else output("you don’t");
 				output(" see him bringing the autopistol to bear until it’s too late!");
 				for (var i:int = 0; i < 3; i++)
@@ -368,6 +369,7 @@
 			{
 				if(target is PlayerCharacter) output(" Thinking quickly, you raise your arm to your downcast eyes. By watching the positioning of his feet, you manage to avoid the brunt of the blindness!");
 				else output(" Thinking quickly, " + target.getCombatName() + " raises " + target.mf("his","her") + " arm. By watching the positioning of the milodan's feet, " + target.mf("he","she") + " manages to avoid becoming blinded.");
+			}
 			else 
 			{
 				output(" Blindsided by the maneuver and blinded as a consequence, ");

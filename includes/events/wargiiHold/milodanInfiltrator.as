@@ -72,22 +72,34 @@ public function takeDownAnInfiltratorKitty():void
 {
 	if(enemy.HP() <= 1) output("Defeated, the milodan crumples to the ground facedown, battered under your relentless assault. You approach him with care, wary of a sneaky surprise attack, but by the time you’re standing next to him you’ve relaxed. This guy is out like a light, or very close to it. He groans when you tap him with your foot, at least.");
 	else output("The milodan falls to his knees, a bulge showing through his infiltration suit, but he can’t do anything with it; he’s too sluggish and hypnotized by your form, dazed but never breaking eye contact as his mouth hangs open. He must be so needy and pent-up what with all the stims he probably has going. Unafraid, you approach him, his weapons having been discarded in favour of rubbing himself through his suit.");
-	output("\n\nYou effortlessly strip him out of his clothes, undoing his suit’s back and pushing him down on the ground, wresting him free of his constrained, form-fitting bodywear. Oh - he’s actually rather lithe and muscular, the body of a swimmer, and his face isn’t bad either. The way he’s " + (enemy.HP() <= 1 ? "glaring at you reproachfully":"looking up at you needily") + " is nice, too. His cock isn’t overly large for his species, but looks extremely hard. It might be fun to pay him back a little for attacking you...");
+	output("\n\nYou effortlessly strip him out of his clothes, undoing his suit’s back and pushing him down on the ground, wresting him free of his constrained, form-fitting bodywear. Oh - he’s actually rather lithe and muscular, the body of a swimmer, and his face isn’t bad either. The way he’s " + (enemy.HP() <= 1 ? "glaring at you reproachfully":"looking up at you needily") + " is nice, too. His cock isn’t overly large for his species, but looks extremely hard. It might be fun to pay him back a little for attacking you...\n\n");
 	//[Fuck ass] [Rimjob] [Oral] [Docking]
 	processTime(3);
 	clearMenu();
-	if(pc.hasCock())
+	if(pc.lust() >= 33)
 	{
-		if(pc.cockThatFits(1000) >= 0) addButton(0,"Fuck Ass",penisRouter,[fuckInfiltratorAss,1000,false,0],"Fuck Ass","Fuck this milodan’s ass good and hard.");
-		else addDisabledButton(0,"Fuck Ass","Fuck Ass","You’re too well-endowed for this.");
+		if(pc.hasCock())
+		{
+			if(pc.cockThatFits(1000) >= 0) addButton(0,"Fuck Ass",penisRouter,[fuckInfiltratorAss,1000,false,0],"Fuck Ass","Fuck this milodan’s ass good and hard.");
+			else addDisabledButton(0,"Fuck Ass","Fuck Ass","You’re too well-endowed for this.");
+		}
+		else addDisabledButton(0,"Fuck Ass","Fuck Ass","You need a penis for this.");
+		if(pc.hasCock()) addButton(1,"Get Rimjob",rimJobInfiltrator,undefined,"Get Rimjob","Make the milodan eat your ass.");
+		else addDisabledButton(1,"Get Rimjob","Get Rimjob","You need a penis for this.");
+		addButton(2,"Oral",getOralFromInfilBoi,undefined,"Oral","Put him to work on servicing your [pc.crotch] with his mouth.");
+		if(pc.biggestCockVolume() >= 1000) addButton(3,"Docking",dockingSeasonBiiiiyaaatch,undefined,"Docking","Force the milodan to pump his load into your dick.");
+		else if(pc.hasCock()) addDisabledButton(3,"Docking","Docking","You aren't big enough to take his dick inside your dick.");
+		else addDisabledButton(3,"Docking","Docking","You need a really big dick for this." + (silly ? " Absolutely YUGE!":""));
 	}
-	else addDisabledButton(0,"Fuck Ass","Fuck Ass","You need a penis for this.");
-	if(pc.hasCock()) addButton(1,"Get Rimjob",rimJobInfiltrator,undefined,"Get Rimjob","Make the milodan eat your ass.");
-	else addDisabledButton(1,"Get Rimjob","Get Rimjob","You need a penis for this.");
-	addButton(2,"Oral",getOralFromInfilBoi,undefined,"Oral","Put him to work on servicing your [pc.crotch] with his mouth.");
-	if(pc.biggestCockVolume() >= 1000) addButton(3,"Docking",dockingSeasonBiiiiyaaatch,undefined,"Docking","Force the milodan to pump his load into your dick.");
-	else if(pc.hasCock()) addDisabledButton(3,"Docking","Docking","You aren't big enough to take his dick inside your dick.");
-	else addDisabledButton(3,"Docking","Docking","You need a really big dick for this." + (silly ? " Absolutely YUGE!":""));
+	else
+	{
+		addDisabledButton(0,"Fuck Ass","Fuck Ass","You aren't aroused enough.");
+		addDisabledButton(1,"Get Rimjob","Get Rimjob","You aren't aroused enough.");
+		addDisabledButton(2,"Oral","Oral","You aren't aroused enough.");
+		addDisabledButton(3,"Docking","Docking","You aren't aroused enough.");
+	}
+	captiveRescueButton(5);
+	addButton(14,"Leave",CombatManager.genericVictory);
 }
 
 //[Fuck ass]

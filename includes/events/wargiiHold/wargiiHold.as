@@ -27,6 +27,7 @@ public function wargiiEncounterStuff():Boolean
 		//Actual encounters:
 		choices[choices.length] = warLionFightGoooo;
 		choices[choices.length] = milodanInfiltratorEncounter;
+		choices.push(encounterMiloTemptress);
 		if(!pc.hasStatusEffect("FDruggedKorgTimer")) choices.push(helpDruggedKorgonne);
 		
 		//Run the event

@@ -569,7 +569,9 @@ package classes.GameData
 				{
 					if (target is PlayerCharacter) output("\n\n<b>The aphrodisiac in your bloodstream continues to excite your body!</b>");
 					else output("\n\n<b>The aphrodisiac in " + possessive(target.getCombatName()) + " bloodstream continues to excite " + target.getCombatPronoun("himher") + "!</b>");
-					applyDamage(new TypeCollection( { drug: target.statusEffectv1("Aphro") } ), null, target);
+					var totalDamage:DamageResult = new DamageResult();
+					totalDamage.addResult(applyDamage(new TypeCollection( { drug: target.statusEffectv1("Aphro") } ), null, target));
+					outputDamage(totalDamage);
 				}
 			}
 			//"Toxic Trickery"
@@ -628,7 +630,9 @@ package classes.GameData
 				{
 					if (target is PlayerCharacter) output("\n\n<b>The cloud of aphrodisiac continues to excite your body!</b>");
 					else output("\n\n<b>The cloud of aphrodisiac continues to linger around " + target.getCombatName() + "!</b>");
-					applyDamage(new TypeCollection( { drug: target.statusEffectv1("Aphro Gas") } ), target, target);
+					var aphroGasDamage:DamageResult = new DamageResult();
+					aphroGasDamage.addResult(applyDamage(new TypeCollection( { drug: target.statusEffectv1("Aphro Gas") } ), target, target));
+					outputDamage(aphroGasDamage);
 				}
 			}
 			

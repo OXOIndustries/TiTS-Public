@@ -46,6 +46,9 @@ public function captiveRescueButton(arg:Number):void
 		case 3:
 			addButton(arg,"Rescue",saveLund);
 			break;
+		case 4:
+			addButton(arg,"Rescue",rescueTuuvaBlurb);
+			break;
 		default:
 			break;
 	}
@@ -69,6 +72,10 @@ public function wargiiFightWinRouting():void
 			case 3:
 				clearMenu();
 				addButton(0,"Next",saveLund);
+				break;
+			case 4:
+				clearMenu();
+				addButton(0,"Next",rescueTuuvaBlurb);
 				break;
 			default:
 				CombatManager.genericVictory();
@@ -96,6 +103,7 @@ public function randomKorgSavingProcChances():void
 			case 3:
 				addBust("LUND");
 				output("\n\nBehind your foe is the stunned form of " + (flags["MET_LUND"] == undefined ? "a short, male korgonne":"Lund") + ". He's bruised and battered, but alive. Uncertain wobbles plague his steps; perhaps he's recently suffered a blow to the head. <b>If you defeat [enemy.himHer], you can free him from whatever depravity the savage [enemy.manWoman] intends!</b>");
+				break;
 			default:
 				break;
 		}
@@ -112,6 +120,7 @@ public function korgCaptives():Array
 	//if(flags["WARGII_NENNE_SAVED"] == undefined) counter++;
 	if(flags["WARGII_HEIDRUN_SAVED"] == undefined) captives.push(["Heidrun"]);
 	if(flags["WARGII_LUND_SAVED"] == undefined) captives.push(["Lund"]);
+	//if(flags["WARGII_TUUVA_SAVED"] == undefined) captives.push(["Tuuva"]);
 	return captives;
 }
 public function pickAKorgCaptiveNumber():Number

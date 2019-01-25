@@ -167,24 +167,34 @@ public function winVsWaryLiono():void
 	output("\n\n<i>“Yeah, probably not happening,”</i> you inform him, rolling him back.\n\n");
 	processTime(3);
 	clearMenu();
-	if(pc.hasCock())
+	if(pc.lust() >= 33)
 	{
-		if(pc.cockThatFits(1000) >= 0) addButton(0,"Face Fuck",penisRouter,[faceFuckYonderMiloBoi,1000,false,0],"Face Fuck","Ram [pc.oneCock] down his throat until you’re satisfied.");
-		else addDisabledButton(0,"Face Fuck","Face Fuck","You’re too well-endowed for this.");
-		if(pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(2,"Fuck Ass",penisRouter,[fuckBigBoiMiloBooty,enemy.analCapacity(),false,0],"Fuck Ass","Fuck his ass.");
-		else addDisabledButton(2,"Fuck Ass","Fuck Ass","You’re too well-endowed to fuck his ass!");
+		if(pc.hasCock())
+		{
+			if(pc.cockThatFits(1000) >= 0) addButton(0,"Face Fuck",penisRouter,[faceFuckYonderMiloBoi,1000,false,0],"Face Fuck","Ram [pc.oneCock] down his throat until you’re satisfied.");
+			else addDisabledButton(0,"Face Fuck","Face Fuck","You’re too well-endowed for this.");
+			if(pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(2,"Fuck Ass",penisRouter,[fuckBigBoiMiloBooty,enemy.analCapacity(),false,0],"Fuck Ass","Fuck his ass.");
+			else addDisabledButton(2,"Fuck Ass","Fuck Ass","You’re too well-endowed to fuck his ass!");
+		}
+		else 
+		{
+			addDisabledButton(0,"Face Fuck","Face Fuck","You need a penis for this.");
+			addDisabledButton(2,"Fuck Ass","Fuck Ass","You need a penis for this.");
+		}
+		if(pc.hasVagina()) addButton(1,"Ride Face",rideDatBoisFace,undefined,"Ride Face","Plant your pussy on his face and ride him until he satisfies you.");
+		else addDisabledButton(1,"Ride Face","Ride Face","You need a vagina for this.");
+		addButton(3,"Ride Cock",vaginaRouter,[rideDaWarlionCawwwwk,enemy.cockVolume(0),1,0,false],"Ride Cock","Ride this big boys dick anally" + (pc.hasVagina() ? " or vaginally":"") + ".");
+		addButton(4,"Suck Cock",suckThatMiloCock,undefined,"Suck Cock","Suck the war-lion’s cock.");
 	}
-	else 
+	else
 	{
-		addDisabledButton(0,"Face Fuck","Face Fuck","You need a penis for this.");
-		addDisabledButton(2,"Fuck Ass","Fuck Ass","You need a penis for this.");
+		addDisabledButton(0,"Face Fuck","Face Fuck","You aren't turned-on enough.");
+		addDisabledButton(1,"Ride Face","Ride Face","You aren't turned-on enough.");
+		addDisabledButton(2,"Fuck Ass","Fuck Ass","You aren't turned-on enough.");
+		addDisabledButton(3,"Ride Cock","Ride Cock","You aren't turned-on enough.");
+		addDisabledButton(4,"Suck Cock","Suck Cock","You aren't turned-on enough.");
 	}
-	if(pc.hasVagina()) addButton(1,"Ride Face",rideDatBoisFace,undefined,"Ride Face","Plant your pussy on his face and ride him until he satisfies you.");
-	else addDisabledButton(1,"Ride Face","Ride Face","You need a vagina for this.");
-	addButton(3,"Ride Cock",vaginaRouter,[rideDaWarlionCawwwwk,enemy.cockVolume(0),1,0,false],"Ride Cock","Ride this big boys dick anally" + (pc.hasVagina() ? " or vaginally":"") + ".");
-	addButton(4,"Suck Cock",suckThatMiloCock,undefined,"Suck Cock","Suck the war-lion’s cock.");
 	captiveRescueButton(5);
-	
 	addButton(14,"Leave",CombatManager.genericVictory);
 }
 

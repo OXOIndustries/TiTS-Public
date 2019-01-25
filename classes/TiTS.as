@@ -214,6 +214,7 @@
 		include "../includes/events/tentacle_psychic_hatchling.as";
 		include "../includes/events/wargiiHold/druggedKorg.as";
 		include "../includes/events/wargiiHold/milodanInfiltrator.as";
+		include "../includes/events/wargiiHold/milodanTemptress.as";
 		include "../includes/events/wargiiHold/milodanWarLion.as";
 		include "../includes/events/wargiiHold/nenneCaptiveStuff.as";
 		include "../includes/events/wargiiHold/wargiiHold.as";
@@ -622,7 +623,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.253";
+			version = "0.7.254";
 
 			//temporary nonsense variables.
 			temp = 0;
