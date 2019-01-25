@@ -99,7 +99,8 @@ public function takeDownAnInfiltratorKitty():void
 		addDisabledButton(3,"Docking","Docking","You aren't aroused enough.");
 	}
 	captiveRescueButton(5);
-	addButton(14,"Leave",CombatManager.genericVictory);
+	if(fightHasCaptive()) addDisabledButton(14,"Leave","Leave","You can't leave the captive behind!");
+	else addButton(14,"Leave",CombatManager.genericVictory);
 }
 
 //[Fuck ass]

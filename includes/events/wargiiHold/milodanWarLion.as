@@ -195,7 +195,8 @@ public function winVsWaryLiono():void
 		addDisabledButton(4,"Suck Cock","Suck Cock","You aren't turned-on enough.");
 	}
 	captiveRescueButton(5);
-	addButton(14,"Leave",CombatManager.genericVictory);
+	if(fightHasCaptive()) addDisabledButton(14,"Leave","Leave","You can't leave the captive behind!");
+	else addButton(14,"Leave",CombatManager.genericVictory);
 }
 
 //[Fuck face]
