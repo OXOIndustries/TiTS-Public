@@ -321,3 +321,28 @@ public function randomBarnEventFunc():Boolean
 	}
 	return retVal;
 }
+public function newTexasEncounterChances():Boolean {
+	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
+	IncrementFlag("NEW_TEXAS_STEP");
+	
+	var choices:Array = new Array();	
+	
+	//10% chance one of these procs when at least 20 steps taken
+	if (rand(10) == 0 && flags["NEW_TEXAS_STEP"] >= 20)
+	{
+		if (tentongymCanEncounterLola()) choices.push(tentongymEncounterLola);
+		if (tentongymCanEncounterSimone()) choices.push(tentongymEncounterSimone);
+		if (tentongymCanEncounterBetsyVictoria()) choices.push(tentongymEncounterBetsyVictoria);
+		if (tentongymCanEncounterLolaSimone()) choices.push(tentongymEncounterLolaSimone);
+	}
+	
+	if (choices.length > 0) 
+	{
+		flags["NEW_TEXAS_STEP"] = 0;
+		//Run the event
+		choices[rand(choices.length)]();		
+		return true;
+	}
+	
+	return false;
+}

@@ -5328,11 +5328,34 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Betsy and Victoria:</b> Met them");
 					if(flags["SHOWER_SANDWICH"] != undefined) output2("\n<b>* Betsy and Victoria, Times Had Shower Sex With:</b> " + flags["SHOWER_SANDWICH"]);
+					if(flags["TTGYM_BETSY_VICTORIA_SEXSWING"] != undefined) output2("\n<b>* Betsy and Victoria, Times Had Sex Using The Sex Swing:</b> " + flags["TTGYM_BETSY_VICTORIA_SEXSWING"]);
 				}
 				if(flags["MET_LOLA"] != undefined)
 				{
 					output2("\n<b>* Lola:</b> Met her");
 					if(flags["SEXED_LOLA"] != undefined) output2("\n<b>* Lola, Times Sexed:</b> " + flags["SEXED_LOLA"]);
+					if(flags["TTGYM_LOLA_POOL"] != undefined) output2("\n<b>* Lola, Times You Fucked Her Pussy (Pool):</b> " + flags["TTGYM_LOLA_POOL"]);
+					if(flags["TTGYM_LOLA_PUSSY"] != undefined) output2("\n<b>* Lola, Times You Fucked Her Pussy (Home):</b> " + flags["TTGYM_LOLA_PUSSY"]);
+					if(flags["TTGYM_LOLA_ANAL"] != undefined) output2("\n<b>* Lola, Times You Fucked Her Ass:</b> " + flags["TTGYM_LOLA_ANAL"]);
+					if(flags["TTGYM_LOLA_HOTDOG"] != undefined) output2("\n<b>* Lola, Times You Hotdogged Her Ass:</b> " + flags["TTGYM_LOLA_HOTDOG"]);
+					if(flags["TTGYM_LOLA_CUDDLE"] != undefined) output2("\n<b>* Lola, Times You Cuddled With Her:</b> " + flags["TTGYM_LOLA_CUDDLE"]);
+				}
+				if (flags["TTGYM_LOLA_SIMONE_HOME"] != undefined)
+				{
+					output2("\n<b>* Lola & Simone, Times You Had a Threesome:</b> " + flags["TTGYM_LOLA_SIMONE_HOME"]);
+					if(flags["TTGYM_LOLA_SIMONE_S_FIN"] != undefined) output2("\n<b>* Lola & Simone, Times You Fingered Simone:</b> " + flags["TTGYM_LOLA_SIMONE_S_FIN"]);
+					if(flags["TTGYM_LOLA_SIMONE_L_CUN"] != undefined) output2("\n<b>* Lola & Simone, Times You Licked Lola's Pussy:</b> " + flags["TTGYM_LOLA_SIMONE_L_CUN"]);
+					if(flags["TTGYM_LOLA_SIMONE_L_PUSSY"] != undefined) output2("\n<b>* Lola & Simone, Times You Fucked Lola's Pussy:</b> " + flags["TTGYM_LOLA_SIMONE_L_PUSSY"]);
+					if(flags["TTGYM_LOLA_SIMONE_S_PUSSY"] != undefined) output2("\n<b>* Lola & Simone, Times You Fucked Simone's Pussy:</b> " + flags["TTGYM_LOLA_SIMONE_S_PUSSY"]);
+					if(flags["TTGYM_LOLA_SIMONE_L_ASS"] != undefined) output2("\n<b>* Lola & Simone, Times You Fucked Lola's Ass:</b> " + flags["TTGYM_LOLA_SIMONE_L_ASS"]);
+					if(flags["TTGYM_LOLA_SIMONE_S_ASS"] != undefined) output2("\n<b>* Lola & Simone, Times You Fucked Simone's Ass:</b> " + flags["TTGYM_LOLA_SIMONE_S_ASS"]);
+					if(flags["TTGYM_LOLA_SIMONE_COCK_SFAL"] != undefined) output2("\n<b>* Lola & Simone, Times Simone Gave You a BJ:</b> " + flags["TTGYM_LOLA_SIMONE_COCK_SFAL"]);
+					if(flags["TTGYM_LOLA_SIMONE_DP"] != undefined) output2("\n<b>* Lola & Simone, Times You DP'd Both Of Them:</b> " + flags["TTGYM_LOLA_SIMONE_DP"]);
+					if(flags["TTGYM_LOLA_SIMONE_DBL_RIDE"] != undefined) output2("\n<b>* Lola & Simone, Times They Double Rode You:</b> " + flags["TTGYM_LOLA_SIMONE_DBL_RIDE"]);
+					if(flags["TTGYM_LOLA_SIMONE_DBL_BJ"] != undefined) output2("\n<b>* Lola & Simone, Times They Gave You Double BJ :</b> " + flags["TTGYM_LOLA_SIMONE_DBL_BJ"]);
+					if(flags["TTGYM_LOLA_SIMONE_PUSSY_LCUN"] != undefined) output2("\n<b>* Lola & Simone, Times Lola Licked Your Pussy:</b> " + flags["TTGYM_LOLA_SIMONE_PUSSY_LCUN"]);
+					if(flags["TTGYM_LOLA_SIMONE_PUSSY_SCUN"] != undefined) output2("\n<b>* Lola & Simone, Times Simone Licked Your Pussy:</b> " + flags["TTGYM_LOLA_SIMONE_PUSSY_SCUN"]);					
+					if(flags["TTGYM_LOLA_SIMONE_PUSSY_HL"] != undefined) output2("\n<b>* Lola & Simone, Times Simone Fucked You With a Hardlight:</b> " + flags["TTGYM_LOLA_SIMONE_PUSSY_HL"]);
 				}
 				if(flags["MET_MIRRIN"] != undefined)
 				{
@@ -5345,7 +5368,13 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Simone:</b> Met her");
 					if(StatTracking.getStat("contests/simone challenge losses") + StatTracking.getStat("contests/simone challenge wins") > 0) output2("\n<b>* Simone, Weight Lift Challenge, Win/Loss Ratio:</b> " + StatTracking.getStat("contests/simone challenge wins") + "/" + StatTracking.getStat("contests/simone challenge losses") + ", of " + (StatTracking.getStat("contests/simone challenge losses") + StatTracking.getStat("contests/simone challenge wins")) + " games");
-					if(flags["SEXED_SIMONE"] != undefined) output2("\n<b>* Simone, Times Sexed:</b> " + flags["SEXED_SIMONE"]);
+					if (flags["SEXED_SIMONE"] != undefined) output2("\n<b>* Simone, Times Sexed:</b> " + flags["SEXED_SIMONE"]);
+					if(flags["TTGYM_SIMONE_ORAL_GIVE"] != undefined && flags["TTGYM_SIMONE_ORAL_GIVE"] > 0) output2("\n<b>* Simone, Times You Gave Her Oral:</b> " + flags["TTGYM_SIMONE_ORAL_GIVE"]);
+					if(flags["TTGYM_SIMONE_ORAL"] != undefined && flags["TTGYM_SIMONE_ORAL"] > 0) output2("\n<b>* Simone, Times She Gave You Oral:</b> " + flags["TTGYM_SIMONE_ORAL"]);
+					if(flags["TTGYM_SIMONE_DP_GYM"] != undefined && flags["TTGYM_SIMONE_DP_GYM"] > 0) output2("\n<b>* Simone, Times You DP'd Her (Gym):</b> " + flags["TTGYM_SIMONE_DP_GYM"]);
+					if(flags["TTGYM_SIMONE_DP_HOME"] != undefined) output2("\n<b>* Simone, Times You DP'd Her (Home):</b> " + flags["TTGYM_SIMONE_DP_HOME"]);
+					if(flags["TTGYM_SIMONE_FUCKED_PUSSY"] != undefined) output2("\n<b>* Simone, Times You Fucked Her Pussy:</b> " + flags["TTGYM_SIMONE_FUCKED_PUSSY"]);
+					if(flags["TTGYM_SIMONE_MUTUAL_FAP"] != undefined) output2("\n<b>* Simone, Times You Dildoed Eachother:</b> " + flags["TTGYM_SIMONE_MUTUAL_FAP"]);
 				}
 				if(flags["WATCHED_LEE"] != undefined && flags["WATCHED_NICO"] != undefined) output2("\n<b>* Lee and Nico:</b> Watched them fuck");
 				variousCount++;
