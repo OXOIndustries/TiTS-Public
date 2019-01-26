@@ -449,7 +449,7 @@ public function ratButtons(offers:int = 0):void
 		else if (pc.skinType == GLOBAL.SKIN_TYPE_GOO) addDisabledButton(4, "Offer Milk", "Offer Milk", "You'll need normal nipples to feed them. They can't drink from gooey tits!");
 		else if (!(pc.hasNormalNipples() || pc.hasInvertedNipples())) addDisabledButton(4, "Offer Milk", "Offer Milk", "You'll need normal nipples to feed them. They're not going to drink from mutant tits!");
 		else if (!pc.isLactating()) addDisabledButton(4, "Offer Milk", "Offer Milk", "You need to be lactating to give them a drink.");
-		else if (pc.milkFullness < 66) addDisabledButton(4, "Offer Milk", "Offer Milk", "You need to have more milk in the tanks to properly feed three rats.");
+		else if (pc.milkFullness < 40) addDisabledButton(4, "Offer Milk", "Offer Milk", "You need to have more milk in the tanks to properly feed three rats.");
 		else addButton(4, "Offer Milk", ratGiveMilk, offers, "Offer Milk", "You're not feeling up to fighting today, certainly not with breasts this full. See if the mouse-pirates will accept a <i>creamier</i> treasure than they're used to.");
 		
 		//Mercy
@@ -1500,7 +1500,7 @@ public function ratsContinueMilk(offers:int):void
 
 	output("\n\nIt’s almost impossible to ride the waves of your pleasure comfortably. Their soft, little lips and the smooth suctions on your teats drag you close to another before you drift off to an exhausted nap.");
 	
-	pc.milked();
+	pc.milked(40);
 	pc.orgasm();
 	if (pc.cumQ() > 100) pc.applyCumSoaked();
 

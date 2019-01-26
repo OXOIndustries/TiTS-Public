@@ -1394,8 +1394,10 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Raskvel:</b> " + prettifyGeneticMarker(pc.raskvelScore(), 6, 8));
 		if(pc.redPandaScore() > 0)
 			output2("\n<b>* Red Panda:</b> " + prettifyGeneticMarker(pc.redPandaScore(), 4, 8));
+		if(pc.lizanScore() > 0)
+			output2("\n<b>* Reptile:</b> " + prettifyGeneticMarker(pc.lizanScore(), 7, 13));
 		if(CodexManager.entryUnlocked("Saurmorians") && pc.saurmorianScore() > 0)
-			output2("\n<b>* Saurmorian:</b> " + prettifyGeneticMarker(pc.saurmorianScore(), 6, 9));
+			output2("\n<b>* Saurmorian:</b> " + prettifyGeneticMarker(pc.saurmorianScore(), 6, 11));
 		if(pc.sharkScore() > 0)
 			output2("\n<b>* Shark:</b> " + prettifyGeneticMarker(pc.sharkScore(), 5, 12));
 		if(pc.sheepScore() > 0)
