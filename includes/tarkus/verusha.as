@@ -74,6 +74,7 @@ public function verushaAppearance():void
 
 public function verushaBonusFunc(butt:Number):Boolean
 {
+	if (flags["VERUSHA_APPEAR_DISABLE_TILL"] != undefined && flags["VERUSHA_APPEAR_DISABLE_TILL"] > GetGameTimestamp()) return false;
 	//[Hyena] (Scene description before talking to her)
 	if(flags["MET_VERUSHA"] == undefined)
 	{
