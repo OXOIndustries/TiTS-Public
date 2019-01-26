@@ -368,25 +368,27 @@ public function annoSleepToggleOff():void
 }
 
 public function annoSleepSexyTimes():void
-{
-	clearOutput();
-	annoFollowerHeader();
+{	
+	//25% chance to get dream sleep with instead of regular one if you qualify
+	if (pc.hasGenitals() && pc.hasTits() && !pc.isTaur() && !annoIsHuskar() && rand(4) == 0) annoBedtimeBoobDream();
+	else
+	{
+		clearOutput();
+		annoFollowerHeader();
+		output("Anno slips into your quarters just as you’re getting ready to hit the hay. She lets her bathrobe slip down from over her sheer nightie and onto the floor. She slides under the covers and props herself up on an elbow, watching you");
+		if (!pc.isNude()) output(" undress");
+		else output(" put the last of your [pc.gear]");
+		output(" away with interest until you join her.");
 
-	output("Anno slips into your quarters just as you’re getting ready to hit the hay. She lets her bathrobe slip down from over her sheer nightie and onto the floor. She slides under the covers and props herself up on an elbow, watching you");
-	if (!pc.isNude()) output(" undress");
-	else output(" put the last of your [pc.gear]");
-	output(" away with interest until you join her.");
+		output("\n\n<i>“Hey,”</i> she murmurs as you climb into bed beside her. ");
 
-	output("\n\n<i>“Hey,”</i> she murmurs as you climb into bed beside her. ");
-
-	output("\n\n<i>“Hey");
-	if (pc.isMischievous()) output(" yourself");
-	output(",”</i> you answer, slipping an arm around Anno’s shoulders and pulling her close. Her tail wiggles happily as she snuggles up, head resting on your [pc.chest]. You softly stroke your lover’s perky ears and long, silky smooth hair as she nuzzles up to you, settling in after a few playful minutes.");
-
+		output("\n\n<i>“Hey");
+		if (pc.isMischievous()) output(" yourself");
+		output(",”</i> you answer, slipping an arm around Anno’s shoulders and pulling her close. Her tail wiggles happily as she snuggles up, head resting on your [pc.chest]. You softly stroke your lover’s perky ears and long, silky smooth hair as she nuzzles up to you, settling in after a few playful minutes.");
+		
+		processTime(3);
+	}
 	flags["ANNO_SLEEPWITH_DOMORNING"] = 1;
-
-	processTime(3);
-
 	clearMenu();
 	sleep(false);
 }
@@ -5300,4 +5302,58 @@ public function goodbyeBestAnno():void
 	processTime(3);
 	pc.lust(5);
 	annoFollowerSexMenu();
+}
+public function annoBedtimeBoobDream():void
+{
+	clearOutput();
+	annoFollowerHeader(true);
+	author("TW-Luna");
+	
+	var kok:int = pc.cockTotal();
+	var vag:int = pc.vaginaTotal();
+	
+	output("Steam rushes out around you as you [pc.walk] into your personal cabin from the bathroom.");
+	output("\n\n<i>“Nothing like a hot shower before bed,”</i> you say to yourself while dabbing off the last bit of water on your [pc.skinFurScalesNoun] with a towel. [pc.Walking] towards the bed, you hear a click from the cabin door as Anno slips into your room. Instead of slipping off her robe and sliding into bed, like she usually does, she drops her covering to reveal that she isn’t wearing her usual babydoll and is instead completely naked.");
+	output("\n\nFlashing you a set of bedroom eyes you couldn’t refuse if you wanted to, she whispers with a grin, <i>“Up for a little something extra tonight?”</i>");
+	output("\n\nA smirk and crooked finger is all your ausar lover needs from you before she giddily closes the distance between the both of you, throwing her arms around your neck and locking you in a kiss. Her tongue probes your mouth, searching for your own, her luscious DDs pressed against your own [pc.breasts]. You can’t help but give her tongue a gentle suck as your hands snake their way down to her");
+	output(" pert");	
+	output(" ass. She moans into your mouth as you give it a squeeze. When you begin to slide your hands up her sides and towards her pillowy tits, she gently bites on your lower lip and pushes you away, letting your lip slip from between her teeth.");
+	
+	output("\n\nShe moves an arm’s length away from you, leaving a single finger touching between your breasts. <i>“You wait right here. I want to show you just how wet you make me, babe.”</i>");
+	output("\n\nWith that, she turns and pads towards your bed, her tail swishing to and fro in the few steps between you and the bed. Bending over, she climbs onto the bed on all fours, her mouthwatering ass on display for you. She’s pulled her tail down over her needy cunt, but the scent of her lust is thick in the air.");
+	output("\n\nHolding her tail in place, you see her lower her shoulders towards the bed and reach back under herself with a hand. A moan escaping her is your only indication that she’s reached her nether lips, with the fluffy white obstruction still in the way. Your own hands have begun to roam and caress your body.");
+	if (pc.biggestTitSize() >= 5) output("\n\nOne of your hands comes to cup a [pc.breast], giving its [pc.nipple] a pinch, which causes you to suck air through your teeth.");
+	else output("\n\nOne of your hands comes to cup an unusually pillowy breast, giving its [pc.nipple] a pinch, which causes you to suck air through your teeth.");	
+	
+	output("\n\nAnno finally pulls her tail away to show you one of her fingers already buried inside her quim with her thumb rubbing her pleasure bud.");
+	output("\n\nDrawing her finger back out with a longing sigh, she rolls over, exposing everything to you now.  She’s now able to see the want in your eyes and it only seems to make her wetter. Biting her lower lip and throwing her head back, she takes her breast in a hand while bringing the other back down to her drooling vagina. With the first hand she begins caressing and kneading, showing special attention to her rock-hard nipple, and with her second she runs her fingers over her clit and folds. She slides two fingers in this time, reaching for all of her favorite places.");
+	
+	if (kok > 0 && vag > 0)
+	{
+		output("\n\nThis show is making your [pc.cocks] ache to be touched, a little bead of pre forming at the tip");
+		if (kok > 1) output("s");
+		output(" while your own [pc.vaginas] beg");
+		if (vag == 1) output("s");
+		output(" to be played with, a bead of feminine need beginning to trickle down your [pc.thigh].");
+	}
+	else if (kok > 0)
+	{
+		output("\n\nThis show is making your [pc.cocks] ache to be touched, a little bead of pre forming at the tip");
+		if (pc.cockTotal() > 1) output("s");
+	}
+	else if (vag > 0)
+	{
+		output("\n\nThis show is making your own [pc.vaginas] beg to be played with, a bead of feminine need beginning to trickle down your [pc.thigh].");
+	}
+	
+	if (pc.biggestTitSize() > 5) output("\n\nYou take a hand and begin sliding it down your [pc.belly] to fulfill that need when a thought worms its way to the forefront of your mind: that your breasts are feeling especially small tonight. Anno’s moans have nearly completely faded out, sounding as if they’re from further and further away. You also begin to notice a gentle tapping on the side of your [pc.leg].");
+	else if (pc.biggestTitSize() < 5) output("\n\nYou take a hand and begin sliding it down your [pc.belly] to fulfill that need when a thought worms its way to the forefront of your mind: that your breasts are feeling strangely large tonight. Anno’s moans have nearly completely faded out, sounding as if they’re from further and further away. You also begin to notice a gentle tapping on the side of your [pc.leg].");
+	else output("\n\nYou take a hand and begin sliding it down your [pc.belly] to fulfill that need when you begin to notice a tapping sensation on your right leg. Anno’s moans have nearly completely faded out, sounding as if they’re from further and further away, the gentle patting continuing on your [pc.leg].");
+		
+	output("\n\n<i>What is…</i>");
+	output("\n\nAs you begin to look down to see what is causing the odd sensation, your mind swirls and consciousness comes flooding back into you. With a sharp intake, you awaken to find yourself laying on your side in bed. In the dark of your cabin, your sleep filled eyes make out a head full of snow-white hair on the pillow in front of you.");
+	output("\n\nA pleasurable sigh from the lover you're spooning snaps your sleep addled mind to attention, bringing you to two quick realizations: that Anno’s fluffy tail was causing the offending sensation, gently tapping your [pc.leg] over and over, and that your hand isn't holding your own breast.  <i>“Good morning, boss,”</i> she whispers, as she slides her furred digits over your own. <i>“I can think of all kinds of places to use this hand, but how about after a few more hours of sleep?”</i> She says, yawning.");
+	output("\n\nYou wouldn't mind a bit more sleep yourself, and figure you and Anno can have some fun when you both get up. Relinquishing you lover’s breast, you wrap your arm around her stomach and pull her tight against you. You settle your head back into your pillow, thinking of all the things you and Anno can get up to tomorrow. Your mind swims with the possibilities as sleep once again overtakes you.");
+	
+	pc.lust(30);
 }
