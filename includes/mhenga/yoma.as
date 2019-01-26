@@ -51,7 +51,7 @@ public function yomaFirstMeeting():void
 	author("GothPastel");
 
 	if (pc.hasStatusEffect("Yoma Sex Disabled")) pc.removeStatusEffect("Yoma Sex Disabled");
- 	pc.createStatusEffect("Yoma Cooldown", 0, 0, 0, 0, true, "", "", false, 24 * 60);
+ 	pc.createStatusEffect("Yoma Cooldown", 0, 0, 0, 0, true, "", "", false, 6 * 60);
 	if (flags["YOMA_MET"] == undefined) {
 		output("You’re making your way through the jungle when you hear a crack behind you. Whipping around suddenly, you see a figure, too far away to make out in perfect detail but not far over five feet tall, slowly lifting their foot back off of a snapped twig. It’s definitely not a native, you realise - unless you’ve somehow missed a species with big fennec fox ears and tails.");
 		output("\n\n<i>“Damn it,”</i> they - no, he, that’s a distinctly rich, masculine voice - say, <i>“I really must ask master for less clumsy feet.”</i>");
