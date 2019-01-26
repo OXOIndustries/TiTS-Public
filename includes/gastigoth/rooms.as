@@ -29,7 +29,7 @@ public function initGastigothRooms():void
 
 	rooms["K16_DOCK"] = new RoomClass(this);
 	rooms["K16_DOCK"].roomName = "K16\nDOCK";
-	rooms["K16_DOCK"].description = "Your ship is currently parked at the end of a short docking umbilical, connecting you to a sterile grey corridor that runs into the station. Your berth is one of many visible from the umbilical windows, all connected to different parts of the station. Supposedly, your berth is reserved for special guests - guess you’re important.";
+	rooms["K16_DOCK"].description = "";
 	rooms["K16_DOCK"].planet = "GASTIGOTH STATION";
 	rooms["K16_DOCK"].system = "SYSTEM: SKALANI";
 	rooms["K16_DOCK"].westExit = "I16_SECURITY_CHECKPOINT";
@@ -54,7 +54,7 @@ public function initGastigothRooms():void
 
 	rooms["I14_CORRIDOR"] = new RoomClass(this);
 	rooms["I14_CORRIDOR"].roomName = "I14\nCORRIDOR";
-	rooms["I14_CORRIDOR"].description = "The corridor here connects the docking tether back the way you first came in with two other corridors, both clearly labelled in several languages: to the north, Command & Control. Westward, the Lobby. Of course, south is back to Security. The bulkheads in every direction are otherwise sterile, grey, and bristling with gun turrets. Uniformly, though, there’s a tiny potted tree every thirty feet or so - the only life in this place, aside from your armed companion.\n\nCommander Brandt follows a pace behind you in locked step, her arms folded behind her back and her face implacable as ever.";
+	rooms["I14_CORRIDOR"].description = "";
 	rooms["I14_CORRIDOR"].planet = "GASTIGOTH STATION";
 	rooms["I14_CORRIDOR"].system = "SYSTEM: SKALANI";
 	rooms["I14_CORRIDOR"].southExit = "I16_SECURITY_CHECKPOINT";
