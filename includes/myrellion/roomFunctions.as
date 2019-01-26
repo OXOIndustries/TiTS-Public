@@ -490,6 +490,7 @@ public function kressiaGateBonus():Boolean
 public function kressiaBasicBonusBitches():Boolean
 {
 	if(sluttyMcSlutOralBonus()) return true;
+	else if (verushaMyrBonus()) return true;
 	return false;
 }
 
