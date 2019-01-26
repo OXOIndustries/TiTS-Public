@@ -554,6 +554,10 @@ package classes.Resources.Busts
 		public var Bust_MILODAN_PRIESTESS:Class;
 		public var Bounds_MILODAN_PRIESTESS:Rectangle = new Rectangle(60, 3, 65, 63);
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/milo_temptress_nude.png", mimeType = "image/png")]
+		public var Bust_MILO_TEMPTRESS_NUDE:Class;
+		public function get Bust_MILO_TEMPTRESS():Class { return Bust_MILO_TEMPTRESS_NUDE; }
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/mirian.png", mimeType = "image/png")]
 		public var Bust_MIRIAN:Class;
 		public var Bounds_MIRIAN:Rectangle = new Rectangle(92, 0, 70, 70);
