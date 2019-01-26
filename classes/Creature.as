@@ -454,6 +454,12 @@
 		{
 			return "Your [pc.eye] twitches, resisting a change.";
 		}
+		public function get eyeCount():int
+		{
+			if (InCollection(eyeType, GLOBAL.TYPE_ARACHNID)) return 4;
+			if (InCollection(eyeType, GLOBAL.TYPE_XHELARFOG)) return 3;
+			return 2;
+		}
 		//New piercing hotness:
 		public var eyebrowPiercing:ItemSlotClass = new EmptySlot();
 		
@@ -6879,6 +6885,11 @@
 						if (skinType == GLOBAL.SKIN_TYPE_BARK && !skin) adjectives.push(RandomInCollection(["hard","knotted","rigid","wooden","wooden"]));
 						else adjectives.push(RandomInCollection(["smooth","plant-like","glossy","verdant","crisp","lush","verdurous"]));
 					}
+					if (skinType == GLOBAL.SKIN_TYPE_GEL)
+					{
+						if (hasSkinFlag(GLOBAL.FLAG_SCALED_PRETTY)) adjectives.push(RandomInCollection(scaleColor+" scaled", "glimmering"));
+						adjectives.push(RandomInCollection("slightly sticky", "smooth", "spring", "gelatinous"));
+					}
 					if (hasSkinFlag(GLOBAL.FLAG_SMOOTH)) adjectives.push("smooth");
 					if (hasSkinFlag(GLOBAL.FLAG_THICK) || (!skin && hasFur() && perkv1("Wooly") >= 1)) adjectives.push("thick");
 					if (hasSkinFlag(GLOBAL.FLAG_STICKY)) adjectives.push("sticky");
@@ -6967,6 +6978,7 @@
 			||	perkv1("Regal Mane") == GLOBAL.FLAG_SCALED
 			||	statusEffectv1("Wing Style") == GLOBAL.FLAG_SCALED
 			||	statusEffectv1("Special Scrotum") == GLOBAL.FLAG_SCALED
+			||	hasSkinFlag(GLOBAL.FLAG_SCALED_PRETTY)
 			)) return true;
 			if(part == "arm") return hasArmFlag(GLOBAL.FLAG_SCALED);
 			if(part == "leg") return hasLegFlag(GLOBAL.FLAG_SCALED);
@@ -7064,6 +7076,13 @@
 				if(skinType == GLOBAL.SKIN_TYPE_BARK && !skin) output += RandomInCollection(["armor","bark","skin","skin"]);
 				else output += RandomInCollection(["skin","skin","epidermis","plant skin","nymph skin"]);
 			}
+			else if (skinType == GLOBAL.SKIN_TYPE_GEL)
+			{
+				temp = rand(10);
+				if (appearance) output += "gel";
+				else if (temp <= 7) output += "skin";
+				else output += "membrane";
+			}
 			return output;
 		}
 		public function skin(forceTone: Boolean = false, forceAdjective: Boolean = false, appearance:Boolean = false): String {
@@ -7103,6 +7122,7 @@
 					case GLOBAL.TYPE_SIMII: adjectives.push("simian", "monkey-like"); break;
 					case GLOBAL.TYPE_GOAT: adjectives.push("caprine", "goat-like"); break;
 					case GLOBAL.TYPE_MOTHRINE: adjectives.push("mothrine", "alien", "insectoid", "insect-like"); break;
+					case GLOBAL.TYPE_XHELARFOG: adjectives.push("noseless", "alien", "inhuman"); break;
 				}
 				if (hasFaceFlag(GLOBAL.FLAG_ANGULAR)) adjectives.push("angular");
 				if (hasFaceFlag(GLOBAL.FLAG_LONG)) adjectives.push("long");
@@ -7300,6 +7320,11 @@
 				case GLOBAL.TYPE_SIMII:
 					adjectives = ["simii", "simian", "monkey", "monkey-like"];
 					break;
+				case GLOBAL.TYPE_XHELARFOG:
+					adjectives = ["chunky", "stumpy"];
+					if (hasTailFlag(GLOBAL.FLAG_SCALED)) adjectives.push("scale topped");
+					break;
+
 			}
 			// Flags
 			if (hasTailCock())
@@ -7635,6 +7660,7 @@
 						case GLOBAL.TYPE_SIMII: adjectives = ["simii", "simian", "simiiforme", "monkey-like"]; break;
 						case GLOBAL.TYPE_MOTHRINE: adjectives = ["slender", "svelte", "graceful", "insect-like", "carapace-covered"]; break;
 						case GLOBAL.TYPE_MOUSE: adjectives = ["mouse-like", "agile", "mousey", "limber"]; break;
+						case GLOBAL.TYPE_XHELARFOG: adjectives = ["mostly humanoid"]; break;
 					}
 				}
 				//ADJECTIVE!
@@ -7718,6 +7744,7 @@
 					case GLOBAL.TYPE_GOAT: adjectives = ["goat", "goat-like", "caprine", "bestial"]; break;
 					case GLOBAL.TYPE_SIMII: adjectives = ["simian", "ape-like", "dexterous"]; break;
 					case GLOBAL.TYPE_MOTHRINE: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
+					case GLOBAL.TYPE_XHELARFOG: adjectives = ["anisodactyl", "four toed", "alien"]; break;
 				}
 			}
 			//ADJECTIVE!
@@ -12109,6 +12136,7 @@
 			// Naga-morphs
 			if (isNaga()) race = nagaRace();
 			// Slime-morphs
+			if (xhelScore() >= 6) race = "xhelarfog";
 			if (gooScore() >= 6) race = "goo-morph";
 			if (gooScore() >= 8) race = "galotian";
 			// MLP-morphs
@@ -13217,6 +13245,25 @@
 			if (counter > 0 && hasVagina() && vaginaTotal(GLOBAL.TYPE_CANINE) + vaginaTotal(GLOBAL.TYPE_VULPINE) == vaginaTotal()) counter++;
 			if (breastRows.length > 1 && counter > 0) counter++;
 			if (hasFur() && counter > 0) counter++;
+			return counter;
+		}
+		public function xhelScore(): int
+		{
+			var counter: int = 0;
+			if (eyeType == GLOBAL.TYPE_XHELARFOG) counter++;
+			if (eyeCount == 3) counter++;
+			else counter--;
+			if (tailType == GLOBAL.TYPE_XHELARFOG) counter++;
+			if (hornType == GLOBAL.TYPE_XHELARFOG) counter++;
+			if (hasHorns()) counter++;
+			if (legType == GLOBAL.TYPE_XHELARFOG) counter++;
+			if (faceType == GLOBAL.TYPE_XHELARFOG) counter++;
+			if (skinType == GLOBAL.SKIN_TYPE_GEL) counter++;
+			if (earType == GLOBAL.TYPE_SYLVAN && counter > 4) counter++;
+			else counter -= 2;
+			if (hasBreasts()) counter--;
+			if (hasHair()) counter--;
+			if (tallness > 5*12+5) counter--;
 			return counter;
 		}
 		public function zilScore(): int
@@ -19669,6 +19716,9 @@
 				if (rand(3) == 0 && descripted < 2) {
 					switch (hornType)
 					{
+						case GLOBAL.TYPE_XHELARFOG:
+							types.push(hornColor+" gradated", "curved together");
+							break;
 						case GLOBAL.TYPE_FROSTWYRM:
 						case GLOBAL.TYPE_DRACONIC:
 							types.push("draconic");

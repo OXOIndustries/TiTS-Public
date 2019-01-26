@@ -80,6 +80,7 @@
 		public static const FLAG_TONGUE:int									= 45;
 		public static const FLAG_FRECKLED:int                               = 46;
 		public static const FLAG_PLUGGED:int                   	            = 47;
+		public static const FLAG_SCALED_PRETTY:int                          = 48;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -130,6 +131,7 @@
 			"Tongued",
 			"Freckled",
 			"Plugged",
+			"Partially Scaled",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -140,6 +142,7 @@
 			FLAG_SQUISHY,
 			FLAG_LUBRICATED,
 			FLAG_ABSORBENT,
+			FLAG_SCALED_PRETTY,
 		];
 		
 		//TYPES
@@ -234,6 +237,7 @@
 		public static const TYPE_SANDWORM_PARASITE:int 						= 84;
 		public static const TYPE_JANERIA:int								= 85;
 		public static const TYPE_ROEHM:int									= 86;
+		public static const TYPE_XHELARFOG:int								= 87;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -323,6 +327,7 @@
 			"Butt Bug",
 			"Janeria",
 			"Roehm",
+			"Xhelarfog",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -354,6 +359,7 @@
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
 			TYPE_FROSTWYRM,
+			TYPE_XHELARFOG,
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
@@ -383,6 +389,7 @@
 			TYPE_COCKVINE,
 			TYPE_JANERIA,
 			TYPE_FROSTWYRM,
+			TYPE_XHELARFOG,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -570,6 +577,7 @@
 			TYPE_DRYAD,
 			TYPE_SHEEP,
 			TYPE_FROSTWYRM,
+			TYPE_XHELARFOG,
 		];
 		
 		public static const VALID_WING_TYPES:Array = [
@@ -636,6 +644,7 @@
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
 			TYPE_FROSTWYRM,
+			TYPE_XHELARFOG,
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [
@@ -703,6 +712,7 @@
 		public static const SKIN_TYPE_LATEX:int                                  = 6;
 		public static const SKIN_TYPE_PLANT:int                                  = 7;
 		public static const SKIN_TYPE_BARK:int                                   = 8;
+		public static const SKIN_TYPE_GEL:int                                    = 9;
 		
 		public static const SKIN_TYPE_NAMES:Array = [
 			"Skin",
@@ -714,6 +724,7 @@
 			"Latex",
 			"Plant",
 			"Bark",
+			"Gel",
 		];
 		
 		//NIPPLETYPES

@@ -1414,6 +1414,8 @@ public function statisticsScreen(showID:String = "All"):void
 			if(pc.kitsuneScore() > 0 && pc.tailCount > 1)
 				output2("\n<b>* Kitsune:</b> " + prettifyGeneticMarker(pc.kitsuneScore(), 4, 8));
 		}
+		if (CodexManager.entryUnlocked("Xhelarfog") && pc.xhelScore() > 0)
+			output2("\n<b>* Xhelarfog:</b> " + prettifyGeneticMarker(pc.xhelScore(), 6, 9));
 		if(CodexManager.entryUnlocked("Zil") && pc.zilScore() > 0)
 			output2("\n<b>* Zil:</b> " + prettifyGeneticMarker(pc.zilScore(), 6, 10));
 		/* pls add cyborg stuff :(
