@@ -4,8 +4,22 @@ public function newTexasRoadFirstTime():Boolean
 {
 	if(!pc.hasStatusEffect("Disarmed")) 
 	{
-		customsFucksYourShitUp();
-		return true;
+		//Hasn't agreed to disarm yet
+		if (flags["NEW_TEXAN_CUSTOMS_MET"] == undefined)
+		{
+			customsFucksYourShitUp();
+			return true;
+		}
+		//Repeat encounters
+		else
+		{
+			flags["CHECKED_GEAR_AT_OGGY"] = (pc.hasEquippedWeapon() ? 1 : 0);
+			pc.takeMeleeWeapon();
+			pc.takeRangedWeapon();
+			pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You’ve checked all forms of weaponry at New Texas’ customs.",false,0,0xFF0000);
+			processTime(1);
+			output("You check your gear with Ogram and step out onto New Texas.\n\n");
+		}
 	}
 	//First time:
 	if(flags["SEEN_TEXAS_SURFACE"] == undefined)
@@ -19,6 +33,22 @@ public function newTexasRoadFirstTime():Boolean
 		output("You recognize this spot on the dusty country road. It’s where you got your first real look at New Texas’ so-called pastoral paradise. The whole place is built up in the style of old terran farms. The hangar is designed to resemble a gigantic barn, despite its contents being made of gleaming metal instead of flesh. Off to the northeast is a fancy ranch house, replete with a fenced-in porch, rocking chairs, and a dazzlingly white coat of paint. In other directions are fenced off fields.");
 	}
 
+	return false;
+}
+
+//Rearms the PC automatically
+public function autoRearmNewTexas():Boolean
+{
+	if (pc.hasStatusEffect("Disarmed"))
+	{
+		returnAllItems(true);
+		pc.removeStatusEffect("Disarmed");
+		flags["CHECKED_GEAR_AT_OGGY"] = undefined;
+		output("You reclaim your gear from Ogram and continue on your way.\n\n");
+		processTime(1);
+	}
+	//Room descriptive text
+	output("Naturally, next to the space dock you have the cargo deck. Here, crates full of offworld goods and local produce are going back and forth on conveyer belts, overseen by several bull-men in overalls and caps. Most of the out-going produce is labeled “milk,” packaged in huge, temperature-controlled barrels. To the north, a small office has been set off from the rest of the barn with a big, friendly sign over the door labeled “Customs”. Your ship is parked back to the east.");
 	return false;
 }
 

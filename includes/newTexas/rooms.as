@@ -27,8 +27,8 @@ public function initNewTexasRooms():void
 
 	rooms["501"] = new RoomClass(this);
 	rooms["501"].roomName = "CARGO\nTHOROUGHFARE";
-	rooms["501"].description = "Naturally, next to the space dock you have the cargo deck. Here, crates full of offworld goods and local produce are going back and forth on conveyer belts, overseen by several bull-men in overalls and caps. Most of the out-going produce is labeled “milk,” packaged in huge, temperature-controlled barrels. To the north, a small office has been set off from the rest of the barn with a big, friendly sign over the door labeled “Customs”. Your ship is parked back to the east.";
-	rooms["501"].runOnEnter = undefined;
+	rooms["501"].description = "";
+	rooms["501"].runOnEnter = autoRearmNewTexas;
 	rooms["501"].eastExit = "500";
 	rooms["501"].northExit = "TEXAS CUSTOMS";
 	rooms["501"].moveMinutes = 2;
