@@ -10,6 +10,7 @@
 	import classes.Items.Transformatives.Hornucopia;
 	import classes.Items.Transformatives.Nepeta;
 	import classes.Items.Transformatives.SirensBounty;
+	import classes.Items.Transformatives.OrefishShard;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	
@@ -18,7 +19,7 @@
 		//constructor
 		public function Nevrie()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
@@ -36,6 +37,7 @@
 			inventory.push(new Nepeta());
 			inventory.push(new NukiCookies());
 			inventory.push(new SirensBounty());
+			inventory.push(new OrefishShard());
 			
 			this.typesBought = [];
 			
@@ -43,6 +45,11 @@
 			this.buyMarkdown = .5;
 
 			this.femininity = 85;
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.inventory.push(new OrefishShard().getSaveObject());
 		}
 		
 		override public function onLeaveBuyMenu():void

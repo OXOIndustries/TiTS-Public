@@ -81,6 +81,57 @@
 		public static const FLAG_FRECKLED:int                               = 46;
 		public static const FLAG_PLUGGED:int                   	            = 47;
 		public static const FLAG_SCALED_PRETTY:int                          = 48;
+		public static const FLAG_SHORT:int									= 49;
+		
+		public static const FLAG_NAMES:Array = [
+			"OFFSET -- INVALID",
+			"Long",
+			"Prehensile",
+			"Lubricated",
+			"Fluffy",
+			"Squishy",
+			"Smooth",
+			"Tapered",
+			"Flared",
+			"Knotted",
+			"Blunt",
+			"Aphrodisiac",
+			"Sticky",
+			"Thick",
+			"Muzzled",
+			"Angular",
+			"Plantigrade",
+			"Digitgrade",
+			"Tendril",
+			"Amorphous",
+			"Furred",
+			"Scaled",
+			"Hooves",
+			"Paws",
+			"Heels",
+			"Ovipositor",
+			"Sheathed",
+			"Tailcock",
+			"Stinger Base",
+			"Stinger Tip",
+			"Nubby",
+			"Foreskinned",
+			"Hollow",
+			"Ribbed",
+			"Chitinous",
+			"Feathered",
+			"Double Headed",
+			"Gooey",
+			"Spiked",
+			"Absorbent",
+			"Slightly Pumped",
+			"Fully Pumped",
+			"Tailcunt",
+			"Beaked",
+			"Corkscrewed",
+			"Tongued",
+			"Freckled",
+			"Plugged",
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -132,6 +183,7 @@
 			"Freckled",
 			"Plugged",
 			"Partially Scaled",
+			"Short",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -238,6 +290,7 @@
 		public static const TYPE_JANERIA:int								= 85;
 		public static const TYPE_ROEHM:int									= 86;
 		public static const TYPE_XHELARFOG:int								= 87;
+		public static const TYPE_SAURMORIAN:int								= 88;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -328,6 +381,7 @@
 			"Janeria",
 			"Roehm",
 			"Xhelarfog",
+			"Saurmorian",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -360,6 +414,7 @@
 			TYPE_REDPANDA,
 			TYPE_FROSTWYRM,
 			TYPE_XHELARFOG,
+			TYPE_SAURMORIAN,
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
@@ -390,6 +445,7 @@
 			TYPE_JANERIA,
 			TYPE_FROSTWYRM,
 			TYPE_XHELARFOG,
+			TYPE_SAURMORIAN,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -457,6 +513,7 @@
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
 			TYPE_FROSTWYRM,
+			TYPE_SAURMORIAN,
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -482,6 +539,7 @@
 			TYPE_LUPINE,
 			TYPE_REDPANDA,
 			TYPE_FROSTWYRM,
+			TYPE_SAURMORIAN,
 		];
 
 		public static const VALID_ARM_FLAGS:Array = [
@@ -535,6 +593,7 @@
 			TYPE_MOUSE,
 			TYPE_JANERIA,
 			TYPE_FROSTWYRM,
+			TYPE_SAURMORIAN,
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -578,6 +637,7 @@
 			TYPE_SHEEP,
 			TYPE_FROSTWYRM,
 			TYPE_XHELARFOG,
+			TYPE_SAURMORIAN,
 		];
 		
 		public static const VALID_WING_TYPES:Array = [
@@ -645,6 +705,7 @@
 			TYPE_REDPANDA,
 			TYPE_FROSTWYRM,
 			TYPE_XHELARFOG,
+			TYPE_SAURMORIAN,
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [
@@ -670,6 +731,7 @@
 			FLAG_STICKY,
 			FLAG_TAPERED,
 			FLAG_CORKSCREWED,
+			FLAG_SHORT,
 		];
 		
 		public static const TAIL_GENITAL_NONE:int 	= 0;
@@ -985,6 +1047,7 @@
 			TYPE_SWINE,
 			TYPE_FROSTWYRM,
 			TYPE_JANERIA,
+			TYPE_SAURMORIAN,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
@@ -1032,6 +1095,7 @@
 			TYPE_SWINE,
 			TYPE_MOUTHGINA,
 			TYPE_FROSTWYRM,
+			TYPE_SAURMORIAN,
 		];
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas
@@ -1047,7 +1111,8 @@
 			FLAG_PUMPED,
 			FLAG_CORKSCREWED,
 			FLAG_TONGUE,
-			FLAG_PLUGGED
+			FLAG_PLUGGED,
+			FLAG_RIBBED,
 		];
 		
 		//ROOM FLAGS

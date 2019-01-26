@@ -2092,23 +2092,23 @@ public function saurmorianTimes2():void
 		pc.hipRatingRaw = 4;
 		pc.buttRatingRaw = 4;
 		pc.hairLength = 0;
-		pc.hornType = GLOBAL.TYPE_DRACONIC;
+		pc.hornType = GLOBAL.TYPE_SAURMORIAN;
 		pc.horns = 4;
 		pc.hornLength = 18;
 		pc.skinFlags = [GLOBAL.FLAG_THICK];
 		pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
 		pc.scaleColor = "silver";
-		pc.earType = GLOBAL.TYPE_LIZAN;
-		pc.eyeType = GLOBAL.TYPE_NAGA;
+		pc.earType = GLOBAL.TYPE_SAURMORIAN;
+		pc.eyeType = GLOBAL.TYPE_SAURMORIAN;
 		pc.tongueType = GLOBAL.TYPE_CANINE;
 		pc.tongueFlags = [GLOBAL.FLAG_LONG,GLOBAL.FLAG_SQUISHY];
-		pc.armType = GLOBAL.TYPE_LEITHAN;
+		pc.armType = GLOBAL.TYPE_SAURMORIAN;
 		pc.armFlags = [GLOBAL.FLAG_SCALED];
-		pc.faceType = GLOBAL.TYPE_LIZAN;
+		pc.faceType = GLOBAL.TYPE_SAURMORIAN;
 		pc.faceFlags = [GLOBAL.FLAG_MUZZLED];
-		pc.legType = GLOBAL.TYPE_GRYVAIN;
+		pc.legType = GLOBAL.TYPE_SAURMORIAN;
 		pc.legFlags = [GLOBAL.FLAG_PLANTIGRADE,GLOBAL.FLAG_SCALED];
-		pc.tailType = GLOBAL.TYPE_LIZAN;
+		pc.tailType = GLOBAL.TYPE_SAURMORIAN;
 		pc.tailCount = 1;
 		pc.tailFlags = [GLOBAL.FLAG_THICK,GLOBAL.FLAG_SCALED,GLOBAL.FLAG_LONG];
 		//pc gains Igneous Heart perk
@@ -2127,22 +2127,22 @@ public function saurmorianTimes2():void
 		pc.hipRatingRaw = 4;
 		pc.buttRatingRaw = 4;
 		pc.hairLength = 0;
-		pc.hornType = GLOBAL.TYPE_DRACONIC;
+		pc.hornType = GLOBAL.TYPE_SAURMORIAN;
 		pc.horns = 4;
 		pc.hornLength = 12;
 		pc.skinFlags = [GLOBAL.FLAG_SMOOTH];
 		pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
 		pc.scaleColor = "silver";
-		pc.earType = GLOBAL.TYPE_LIZAN;
+		pc.earType = GLOBAL.TYPE_SAURMORIAN;
 		pc.tongueType = GLOBAL.TYPE_CANINE;
 		pc.tongueFlags = [GLOBAL.FLAG_LONG,GLOBAL.FLAG_SQUISHY];
-		pc.armType = GLOBAL.TYPE_LEITHAN;
+		pc.armType = GLOBAL.TYPE_SAURMORIAN;
 		pc.armFlags = [GLOBAL.FLAG_SCALED,GLOBAL.FLAG_SMOOTH];
-		pc.faceType = GLOBAL.TYPE_LIZAN;
+		pc.faceType = GLOBAL.TYPE_SAURMORIAN;
 		pc.faceFlags = [GLOBAL.FLAG_MUZZLED,GLOBAL.FLAG_SMOOTH];
-		pc.legType = GLOBAL.TYPE_GRYVAIN;
+		pc.legType = GLOBAL.TYPE_SAURMORIAN;
 		pc.legFlags = [GLOBAL.FLAG_PLANTIGRADE,GLOBAL.FLAG_SCALED,GLOBAL.FLAG_SMOOTH];
-		pc.tailType = GLOBAL.TYPE_LIZAN;
+		pc.tailType = GLOBAL.TYPE_SAURMORIAN;
 		pc.tailCount = 1;
 		pc.tailFlags = [GLOBAL.FLAG_SMOOTH,GLOBAL.FLAG_SCALED,GLOBAL.FLAG_LONG];
 		//pc gains Flexible perk
@@ -2180,7 +2180,7 @@ public function saurmorianCockBoi():void
 	pc.cocks = [];
 	pc.createCock();
 	(pc.cocks[0] as CockClass).cockColor = RandomInCollection(["dark red","dark blue","purple","black"]);
-	(pc.cocks[0] as CockClass).cType = GLOBAL.TYPE_SAURIAN;
+	(pc.cocks[0] as CockClass).cType = GLOBAL.TYPE_SAURMORIAN;
 	(pc.cocks[0] as CockClass).cLengthRaw = 10;
 	(pc.cocks[0] as CockClass).cThicknessRatioRaw = 1.5;
 	(pc.cocks[0] as CockClass).cockFlags = [GLOBAL.FLAG_BLUNT,GLOBAL.FLAG_SHEATHED,GLOBAL.FLAG_RIBBED];
@@ -2210,7 +2210,7 @@ public function saurmorianVaginaBoi():void
 	pc.createVagina();
 	(pc.vaginas[0] as VaginaClass).vaginaColor = pc.skinTone;
 	(pc.vaginas[0] as VaginaClass).clits = 1;
-	(pc.vaginas[0] as VaginaClass).type = GLOBAL.TYPE_HUMAN;
+	(pc.vaginas[0] as VaginaClass).type = GLOBAL.TYPE_SAURMORIAN;
 	(pc.vaginas[0] as VaginaClass).loosenessRaw = 0;
 	(pc.vaginas[0] as VaginaClass).wetnessRaw = 4;
 	(pc.vaginas[0] as VaginaClass).vagooFlags = [GLOBAL.FLAG_RIBBED,GLOBAL.FLAG_PUMPED]; //slightly pumped if not already, or fully if already slightly pumped
