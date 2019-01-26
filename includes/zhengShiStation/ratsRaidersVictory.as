@@ -49,7 +49,7 @@ public function ratsTheReasonWeAreHere(useCock:Boolean):void
 		}
 	}
 
-	output("\n\nLewd images crash upon your heat-addled mind like a tsunami of raw lust. The hormonal weight on your brain, the thick lump in your throat, and the quickened rate of your heart narrate to the outlaws an erotic short story. " + (useCock ? "The musky threads of pre dribbling from your [pc.cockHeads] " + (pc.hasCock() ? "draws" : "draw") + " out ‘fin’ on the last page." : "The cords of aromatic slime drooling from [pc.eachVagina] " + (pc.hasVagina() ? "draws" : "draw") + " out ‘fin’ on the last page.") + " Judging by the cover, they know how this story ends without the need to open the book. But you’re going to make them anyway.");
+	output("\n\nLewd images crash upon your heat-addled mind like a tsunami of raw lust. The hormonal weight on your brain, the thick lump in your throat, and the quickened rate of your heart narrate to the outlaws an erotic short story. " + (useCock ? "The musky " + (pc.hasCocks() ? "threads" : "thread") + " of pre dribbling from your [pc.cockHeads] " + (pc.hasCocks() ? "draw" : "draws") + " out ‘fin’ on the last page." : "The " + (pc.hasVaginas() ? "cords" : "cord") + " of aromatic slime drooling from [pc.eachVagina] " + (pc.hasVaginas() ? "draw" : "draws") + " out ‘fin’ on the last page.") + " Judging by the cover, they know how this story ends without the need to open the book. But you’re going to make them anyway.");
 
 	if (pc.isBimbo()) output("\n\n<i>“Now, helmets off, get undressed and come here! If you want some treasure, I’ve got it riiiiight here!”</i> you beckon," + (useCock ? " helicoptering your [pc.cocksLight]." : (pc.balls > 0 ? " moving your [pc.sack] aside and" : "") + " fingering your [pc.pussies] idly."));
 	else if (pc.isBro()) output("\n\n<i>“Get those helmets off and come get a real treasure,”</i> you grunt, running your hands over your " + (useCock ? (pc.balls > 0 ? "[pc.balls]." : "[pc.cocksLight].") : "[pc.pussies]" + (pc.balls > 0 ? " after lifting your [pc.sack]." : ".")));
@@ -78,7 +78,7 @@ public function ratsTheReasonWeAreHere(useCock:Boolean):void
 				break;
 		}
 	}
-	output(" pull off the fastenings of their matte-black armor, letting it to the ground. The thin layer of a grimy dark undersuit they wear for comfort, tattered and coming apart at the seams, is exposed. Any amount of rough fucking would definitely tear those suits apart even further. The" + rat2.mf(" rat", " two rat") + " girl’s breasts, despite being ample and well-rounded C-cups, are so barely contained that even the slightest movement looks like it’ll leave " + rat2.mf("her", "them") + " very exposed.");
+	output(" pull off the fastenings of their matte-black armor, letting it fall to the ground. The thin layer of a grimy dark undersuit they wear for comfort, tattered and coming apart at the seams, is exposed. Any amount of rough fucking would definitely tear those suits apart even further. The" + rat2.mf(" rat", " two rat") + " girl’s breasts, despite being ample and well-rounded C-cups, are so barely contained that even the slightest movement looks like it’ll leave " + rat2.mf("her", "them") + " very exposed.");
 	
 	output("\n\nThey each let out a deep sigh, glad to have the weight of their gear off their shoulders for a bit... and in that motion, hard nipples do rip through clothes, followed by " + rat2.mf("a pair", "pairs of") + " squeezable tits. The snapping of cheap fabric precludes embarrassed moans and squeals. It’s " + (flags["RATS_TRIPLE_SERVICED"] == undefined ? "certainly" : "always") + " entertaining that your presents unwrap themselves!");
 
@@ -97,14 +97,14 @@ public function ratsTheReasonWeAreHere(useCock:Boolean):void
 			else output(" You scowl and plant your [pc.feet]. <i>“Make it up to me. Suck " + (pc.hasCocks() ? "them" : "it") + ".”</i>");
 			
 			output("\n\nIncredulously, the rats titter at your order. <i>“Bet you’re a big [pc.boyGirl] back there,”</i> the [rat0.furColor] rodenian grins. <i>“We’re not about to back down!”</i> Good for them? You sigh and aim your thumb that-a-way, your [pc.cocks] in dire need of attention so close to " + (pc.hasCocks() ? "their" : "its") + " full girth. They brush your [pc.skinFurScalesNoun] with their tails as they crawl in, peppering your sensitive underbelly with pilfering caresses.");
-			output("\n\nFeet stamp when a lusty shudder courses through your body. You spread your [pc.legs] into a position of horniness and expectation. The quietly yammering tro sit around your [pc.cocksLight], already groping and exploring your nearly rock solid lengths. Gumballs of pre are smeared across your [pc.cockType] length, the first time, and the second they’re slurped up. The only indication of their pace, their presence even, is how quickly their tails thresh in peripheral vision.");
+			output("\n\nFeet stamp when a lusty shudder courses through your body. You spread your [pc.legs] into a position of horniness and expectation. The quietly yammering trio sit around your [pc.cocksLight], already groping and exploring your nearly rock solid lengths. Gumballs of pre are smeared across your [pc.cockType " + pc.biggestCockIndex() + "] length, the first time, and the second they’re slurped up. The only indication of their pace, their presence even, is how quickly their tails thresh in peripheral vision.");
 
-			if (pc.longestCockLength() < 13) output("\n\n<i>“Hah, that’s a little small for a horse, don’t you think?”</i> comes a somewhat muffled voice. A denigrating finger beneath your [pc.cockHead] rubs the distance between crown and base. It’s a halting sensation leaving you panting for more. <i>“Aww, look at that! I bet you could even fuck one of us with that!”</i> You’re not sure whether that was an insult or compliment...");
-			else if (pc.longestCockLength() < 18) output("\n\n<i>“Eeeeeh...”</i> you hear the muffled marvelings of the little rats below you. <i>“What else should we have expected..?”</i> they murmur. Three fingers rub the underside of your [pc.cockHead], <i>“Bet those damn rabbits would be jealous. That’s good enough for me!”</i>");
-			if (pc.longestCockLength() < 24) output("\n\n<i>“Aaahh... Look at this stupidly huge dick!”</i> the rodenian grouses, but there’s a certain determination in her voice, muffled as it is down there. You feel six hands struggle to connect index finger to thumb around the sheer mass of [pc.cockType] meat you’re packing. <i>“Okay, let’s show this silly " + (ratsPCIsKnown() ? "CEO" : "[pc.boyGirl]") + " what we’re made of!”</i>");
+			if (pc.longestCockLength() < 13) output("\n\n<i>“Hah, that’s a little small for a horse, don’t you think?”</i> comes a somewhat muffled voice. A denigrating finger beneath your [pc.cockHeadBiggest] rubs the distance between crown and base. It’s a halting sensation leaving you panting for more. <i>“Aww, look at that! I bet you could even fuck one of us with that!”</i> You’re not sure whether that was an insult or compliment...");
+			else if (pc.longestCockLength() < 18) output("\n\n<i>“Eeeeeh...”</i> you hear the muffled marvelings of the little rats below you. <i>“What else should we have expected..?”</i> they murmur. Three fingers rub the underside of your [pc.cockHeadBiggest], <i>“Bet those damn rabbits would be jealous. That’s good enough for me!”</i>");
+			if (pc.longestCockLength() < 24) output("\n\n<i>“Aaahh... Look at this stupidly huge dick!”</i> the rodenian grouses, but there’s a certain determination in her voice, muffled as it is down there. You feel six hands struggle to connect index finger to thumb around the sheer mass of [pc.cockTypeBiggest] meat you’re packing. <i>“Okay, let’s show this silly " + (ratsPCIsKnown() ? "CEO" : "[pc.boyGirl]") + " what we’re made of!”</i>");
 			else output("\n\nThe gaggle of pirates under your ‘tauric half laugh like a family at the dinner table, rubbing and groping all over the absolutely ridiculous size of your [pc.cockBiggest]. <i>“How do you even carry this thing around?”</i> one yells out to you. You feel them struggling to even grip your mountainous girth with hands alone, having to jerk you with their entire bodies. <i>“All of this just for us? Bet you’re gonna regret that!”</i> a girlish voice rings.");
 
-			output("\n\n<i>“Time to take you down a peg!”</i> they declare, and six dainty mits grab all around your [pc.cockHead]. You grunt and just about cum on the spot; twenty-four fingers pave their own individual routes up and down your [pc.cockBiggest], and three equally long tongues trail cock-drool in in their wake. <i>“At least [pc.heShe] tastes good...”</i>");
+			output("\n\n<i>“Time to take you down a peg!”</i> they declare, and six dainty mits grab all around your [pc.cockHeadBiggest]. You grunt and just about cum on the spot; twenty-four fingers pave their own individual routes up and down your [pc.cockBiggest], and three equally long tongues trail cock-drool in in their wake. <i>“At least [pc.heShe] tastes good...”</i>");
 
 			output("\n\nYou clench your fists and grit your teeth, shuffling about uncomfortably. It doesn’t end there: you soon feel three satiny lips press against the underside of your outmatched boner, blazing down the delineation of your rubbery urethra. <i>“Haha, look how hard [pc.heShe]’s bouncing, already so close to cumming!”</i> Their voices, further muffled by aerosolizing libido, are a <i>wonderful</i> vibration against your girth too.");
 
@@ -145,12 +145,12 @@ public function ratsTheReasonWeAreHere(useCock:Boolean):void
 			else if (pc.longestCockLength() < 18) output("\n\n<i>“You’re bigger than those damn rabbits...”</i> They marvel at the size of your erect [pc.cocksLight], then flash you toothy grins. <i>“Guess this is just another challenge to overcome!”</i>");
 			else output("\n\n<i>“W-what’s with this monstrous dick? You some throbb addict?!”</i> The rats express a mixture of fear and awe, but finally settle on a decidedly determined tone, <i>“We’re not gonna lose to such a big dumb cock!”</i>");
 
-			output("\n\nSwallowing, she leans up and licks at your [pc.cockHead], and she does it well - her [rat0.lipColor], cushiony lips, hugging her extended tongue, press against the underside of your cock as she trails the tip abreadth the delineation of your urethra, soft moans vibrating your girth exquisitely. She pulls back to more closely inspect your hotly pulsing " + (pc.hasCocks() ? "masculinity" : "masculinities") + ", humming a low sibilance of pleasure before getting back to it.");
+			output("\n\nSwallowing, she leans up and licks at your [pc.cockHeadBiggest], and she does it well - her [rat0.lipColor], cushiony lips, hugging her extended tongue, press against the underside of your cock as she trails the tip abreadth the delineation of your urethra, soft moans vibrating your girth exquisitely. She pulls back to more closely inspect your hotly pulsing " + (pc.hasCocks() ? "masculinity" : "masculinities") + ", humming a low sibilance of pleasure before getting back to it.");
 			if (pc.longestCockLength() < 13) output(" Your " + (pc.longestCockLength() < 6 ? "small" : "ample") + " size is to her liking, and she lets you know by rocking her mouth back and forth in the places that make you moan the loudest.");
 			else output(" Your " + (pc.longestCockLength() < 18 ? "huge" : "mammoth") + " dick is having an obvious effect on her. She squints and adoringly caresses the underside with her paws, smearing you and her with flowing dick-goo.");
-			if (pc.hasCocks()) output(" Your second [pc.cockType] cock throbs distractingly against the brim of her round ear, its twitchiness teasing out enough precum to lather her messy [rat0.hairColor] hair.");
+			if (pc.hasCocks()) output(" Your second [pc.cockType " + pc.biggestCockIndex2() + "] cock throbs distractingly against the brim of her round ear, its twitchiness teasing out enough precum to lather her messy [rat0.hairColor] hair.");
 
-			output("\n\nThe mouse-pirate writhes underneath your [pc.cockNoun], slurping at its glistening shape. Phallic adoration oozes out of her pores like the next wad of salty pre from your [pc.cockHead].");
+			output("\n\nThe mouse-pirate writhes underneath your [pc.cockNounBiggest], slurping at its glistening shape. Phallic adoration oozes out of her pores like the next wad of salty pre from your [pc.cockHeadBiggest].");
 			if (ratsPCIsGood()) output(" <i>“It tastes really good... I could just lick it forever...”</i>");
 			else output(" <i>“I guess it tastes fine... Better than some others...”</i>");
 			output(" she murmurs, her thick tongue squelching noisily against your thickening rod.");
@@ -167,11 +167,11 @@ public function ratsTheReasonWeAreHere(useCock:Boolean):void
 			else if (pc.hasVagina()) output(" service your [pc.pussy], rubbing her moist mouth against your drizzling slit until " + (pc.wettestVaginalWetness() < 4 ? "strands of femslime" : "torrents of girljuice") + " are coating her chin in a fine sheen of you");
 			else output(" suck on your [pc.base], swishing her tongue where cock meets groin.");
 
-			output("\n\nHer friends, dominated by your musk, join in, the half-rat [rat2.boyGirl] nuzzling against " + (pc.hasCocks() ? "your extra [pc.cockNoun], mimicking the [rat0.furColor]-furred slut’s tongue action on your lonelier member" : "the [rat0.furColor]-furred slut to lick up and down your [pc.cock]") + " while [rat2.hisHer] obedient fuzzy hand");
+			output("\n\nHer friends, dominated by your musk, join in, the half-rat [rat2.boyGirl] nuzzling against " + (pc.hasCocks() ? "your extra [pc.cockNoun " + pc.biggestCockIndex2() + "], mimicking the [rat0.furColor]-furred slut’s tongue action on your lonelier member" : "the [rat0.furColor]-furred slut to lick up and down your [pc.cockBiggest]") + " while [rat2.hisHer] obedient fuzzy hand");
 			if (pc.balls > 0) output(" tenderly grips and gently fondles your [pc.balls].");
 			else if (pc.hasVagina()) output(" rubs against [pc.oneClit].");
 			else output(" jerks the [pc.base].");
-			output(" The mouse-boy to your right " + (pc.cocks.length > 2 ? "takes your third [pc.cockType] boner in hand, pressing his smooth lips to the [pc.cockHead], tonguing it lovingly." : "presses his sweaty nose to your spit-dripping mast.")); 
+			output(" The mouse-boy to your right " + (pc.cocks.length > 2 ? "takes your third [pc.cockType " + pc.biggestCockIndex3() + "] boner in hand, pressing his smooth lips to the [pc.cockHead " + pc.biggestCockIndex3() + "], tonguing it lovingly." : "presses his sweaty nose to your spit-dripping mast.")); 
 			if (pc.cocks.length > 3) output(" Your extra " + (pc.cocks.length == 4 ? "dong flops" : "dongs flop") + " ineffective over their heads, drooling bounties of pre atop their heads.");
 		}
 		// PC not taur, vagina
@@ -186,7 +186,7 @@ public function ratsTheReasonWeAreHere(useCock:Boolean):void
 			else if (pc.isNice()) output("<i>“Good boy,”</i>");
 			else if (pc.isMisch()) output("<i>“Love the eagerness,”</i>");
 			else output("<i>“Not bad...”</i>");
-			output(" you " + (pc.isBimbo() ? "sing" : "murmur") + ", swabbing his mouth with your [pc.girlCumFlavor] flavor. The freckled outlaw lets you do that and more, simply happy to be worth a taste of your freshest lust.");
+			output(" you " + (pc.isBimbo() ? "sing" : "murmur") + ", swabbing his mouth with your [pc.girlCumFlavor] girljizz. The freckled outlaw lets you do that and more, simply happy to be worth a taste of your freshest lust.");
 			
 			output("\n\nNot to be left out, the other two thrust their faces into your groin with lusty yelps, " + (pc.vaginas.length < 3 ? "fighting for more space on your [pc.pussies]. Their dueling tongues only add to the aggressive pleasure." : "each pressing their noses to your wet cunts and capping clits, drawing their rough tongues against the honeyed openings of your labial folds."));
 			if (pc.balls > 0)
@@ -228,7 +228,7 @@ public function ratsCumComments():void
 			output("\n\n<i>“Oohhhh... this taste is so gooood! So sweet and delicious!”</i> the rats squeal in happiness, almost fighting for the [pc.cumColor], [pc.cumVisc] trickles of [pc.cumNoun] on your spent [pc.cocksLight]. They even start licking it off each other! The gratified trio chatter and murmur happily as they drink up every savory drop, leaving you polished and their bellies full.");
 			break;
 		case GLOBAL.FLUID_TYPE_CHOCOLATE_CUM:
-			output("\n\n<i>“So thick, you’ve got awesome cum! I didn’t know you could get a mod like this!”</i> the mice slather you with praises. Your [pc.cumVisc], [pc.cumColor] seed drips off their faces - and your [pc.cockHeadNoun] - in thick, globule-like treacles. <i>“It’s so sweet and tasty! I hope there’ll be more!”</i> they say in unison, licking each other clean.");
+			output("\n\n<i>“So thick, you’ve got awesome cum! I didn’t know you could get a mod like this!”</i> the mice slather you with praises. Your [pc.cumVisc], [pc.cumColor] seed drips off their faces - and your [pc.cockHeadNoun " + pc.biggestCockIndex() + "] - in thick, globule-like treacles. <i>“It’s so sweet and tasty! I hope there’ll be more!”</i> they say in unison, licking each other clean.");
 			break;
 		case GLOBAL.FLUID_TYPE_FRUIT_CUM:
 			output("\n\n<i>“What is this... Your cum tastes like fruits! Berries! This is... so good!”</i> the excited trio lick up your [pc.cumVisc] [pc.cumNoun] with zealous desire. <i>“Haven’t had anything that tasted like this in so long... thank you...”</i> one murmurs, the others expressing similar thoughts.");
@@ -283,7 +283,7 @@ public function ratsKneelingForService():void
 	var catPC:Boolean = pc.catDog("a", "b", true) == "a";
 	
 	output("<i>“You’re going to have to work a lot harder than that,”</i> you smirk, folding your arms" + (pc.hasBreasts() ? " under your [pc.breasts]." : ".")); 
-	output("\n\nThe rodenian girl squeaks affirmatively, leaning back to kiss the head of your [pc.cockBiggest], stretching her lips over its shape. The suction on your cum-vein is eye-crossingly sublime. Your motions flag as you throb mightily against her face, unable to resist thrusting into her pursing lips. Her sinfully warm cheeks hollow around your [pc.cockHeadNoun], and you feel her thirsty tongue lapping up the abundant dollops of musky pre.");
+	output("\n\nThe rodenian girl squeaks affirmatively, leaning back to kiss the head of your [pc.cockBiggest], stretching her lips over its shape. The suction on your cum-vein is eye-crossingly sublime. Your motions flag as you throb mightily against her face, unable to resist thrusting into her pursing lips. Her sinfully warm cheeks hollow around your [pc.cockHeadNoun " + pc.biggestCockIndex() + "], and you feel her thirsty tongue lapping up the abundant dollops of musky pre.");
 	if (pc.hasACockFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output(" You don’t hold back either, letting the tentacles lining your alien cock sting the petty crook’s mouth. You can <i>feel</i> her spit waterfall over your rod just before draining past her lips.");
 	
 	switch (pc.cocks.length)
@@ -292,12 +292,12 @@ public function ratsKneelingForService():void
 			output("\n\nThe other rats squeeze in on either side, peppering submissive, slave-like kisses up and down your [pc.cockNoun], keeping it polished and clean of pooling sweat. <i>“Too bad you don’t have two...”</i> the halfbreed [rat2.boyGirl] quips, smiling at you when your [pc.cockType] dick rubs against [rat2.hisHer] cheek. <i>“Make sure you cum lots, okay?”</i>");
 			break;
 		case 2:
-			output("\n\nYour second [pc.cockNoun] is already well entrenched in the half-rodenian [rat2.boyGirl]’s hot mouth; you tremble when you feel those velvety cheeks hollow out and squeeze your prodigious [pc.cockType] prick adoringly. <i>“Mmm, you’re well equipped for one lover, aren’t ‘ya?”</i> the mouse-[rat2.boyGirl] simpers. <i>“Wonder how good this would feel if you had three?”</i>");
+			output("\n\nYour second [pc.cockNoun " + pc.biggestCockIndex2() + "] is already well entrenched in the half-rodenian [rat2.boyGirl]’s hot mouth; you tremble when you feel those velvety cheeks hollow out and squeeze your prodigious [pc.cockType " + pc.biggestCockIndex2() + "] prick adoringly. <i>“Mmm, you’re well equipped for one lover, aren’t ‘ya?”</i> the mouse-[rat2.boyGirl] simpers. <i>“Wonder how good this would feel if you had three?”</i>");
 			output("\n\nYou’re wondering that yourself now...");
 			break;
 		case 3:
 		default:
-			output("\n\nAll of your [pc.cocks] are soon swallowed up by the thieving trio, and three obedient heads bob and suck on your dicks like it’s their favorite pastime. You’re certain that you thrumming erections are their new favorite lollipops! In their multi-colored eyes, all gazing upwards into your own, you see only a desire to please");
+			output("\n\nAll of your [pc.cocks] are soon swallowed up by the thieving trio, and three obedient heads bob and suck on your dicks like it’s their favorite pastime. You’re certain that your thrumming erections are their new favorite lollipops! In their multi-colored eyes, all gazing upwards into your own, you see only a desire to please");
 			if (ratputation() <= RatsRaider.RAT_REP_LOW) output(", though it’s tempered by a bit of stubbornness");
 			output(".");
 			if (pc.cocks.length > 3) output(" Their paws stay just as busy as their tongues and lips, jerking your extra, flopping pricks and coating themselves in your scintillating slime.");
@@ -317,15 +317,15 @@ public function ratsKneelingForService():void
 		if (pc.ballSize() < 8) output(" weighty");
 		else if (pc.ballSize() < 16) output(" heavily sagging");
 		else output(" tremendous");
-		output(" nutsack wobble back and forth makes your jostling maleness a too-tempting target. Smooth and furry fingers noticeably combine their efforts to coax an even larger orgasm from you, caressing the underside of your swelling spunk-tanks. Those virile orbs are claimed as possessively as your [pc.cocksLight], each rodent taking turns smothering their faces into your ‘nads, breathing deep of your ball-musk while massaging them imploringly with tongue and cheek. Their efforts are certainly not in vain: the more they play with your scrotum, the fatter they feel with a heavier load of [pc.cumNoun].");
+		output(" nutsack wobble back and forth makes your jostling maleness a too-tempting target. Smooth and furry fingers noticeably combine their efforts to coax an even larger orgasm from you, caressing the underside of your swelling spunk-tanks. Those virile orbs are claimed as possessively as your [pc.cocksLight], each rodent taking turns smothering their faces into your ‘nads, breathing deep of your ball-musk while massaging them imploringly with tongue and cheek. Their efforts are certainly not in vain: the more they play with your scrotum, the fatter it feels with a heavier load of [pc.cumNoun].");
 	}
 
-	if (catPC && pc.hasTail()) output("\n\nYour [pc.tails] swirl around, the fuzzy " + (pc.hasTails() ? "tips" : "tip") + " caressing their scalps in appreciative circles. You can’t help but think how fitting a position this is: you, a [pc.race], catching three mice and getting them to service you. It’s enough to make you purr!");
+	if (catPC && pc.hasTail()) output("\n\nYour [pc.tails] swirl around, the fuzzy " + (pc.hasTails() ? "tips" : "tip") + " caressing their scalps in appreciative circles. You can’t help but think how fitting a position this is: you, a [pc.raceShort], catching three mice and getting them to service you. It’s enough to make you purr!");
 
 	switch (pc.cocks.length)
 	{
 		case 1:
-			output("\n\nThe [rat0.furColor] rat takes your [pc.cock] to the back of her mouth, " + (pc.biggestCockVolume() < 9999 ? "mewling quietly as it massages her tonsil" : "not choking at all when she spears her neck with [pc.cockType] meat") + ". Incredibly, she slides it all the way into her throat without so much as a clench! Guess she has no gag reflex! You rock your hips experimentally, testing the moistened tunnel, and she doesn’t cough but once. However, the others whine impatiently that they cannot please you, so you pull back enough to expose a serviceable amount of cockflesh.");
+			output("\n\nThe [rat0.furColor] rat takes your [pc.cockBiggest] to the back of her mouth, " + (pc.biggestCockVolume() < 50 ? "mewling quietly as it massages her tonsil" : "not choking at all when she spears her neck with [pc.cockType " + pc.biggestCockIndex() + "] meat") + ". Incredibly, she slides it all the way into her throat without so much as a clench! Guess she has no gag reflex! You rock your hips experimentally, testing the moistened tunnel, and she doesn’t cough but once. However, the others whine impatiently that they cannot please you, so you pull back enough to expose a serviceable amount of cockflesh.");
 			break;
 		case 2:
 			output("\n\nYou feel both of your [pc.cocks] eased deeper into the pirate’s gushing maws, soon bulging against the fronts of their necks -- the mouse-boy redoubles his efforts, licking and kissing your slotted members");
@@ -361,7 +361,7 @@ public function ratsKneelingForService():void
 	output("\n\nA moment of thought later, you snap your fingers and order them around into more suitable positions. The rodenian girl and the mouse-boy " + (pc.hasLegs() ? "lay on their fronts atop your [pc.legOrLegs]" : "remain kneeled in front of your [pc.legOrLegs]") + ", jerking and licking beneath the " + (pc.hasCocks() ? "shadows" : "shadow") + " of your virile " + (pc.hasCocks() ? "towers." : "tower.") + rat2.mf(" The [rat2.furColor]-furred halfbreed boy shuffles into position. Before he can take off his crotch wear, you tear apart the fabric to reveal his bulging length just as he slides underneath your left [pc.arm]. You tease his throbbing member as he returns to yours", " The [rat2.furColor]-limbed half-rat girl slides underneath your left [pc.arm], letting you yank her stained tights off - her yelps are fucking adorable. You waste no time shoving every finger into her honeyed snatch. Her pussy easily inhales you to the knuckle thanks to how much she loves sucking your dick."));
 	
 	output("\n\nPerfect! Now for something a little different. You declare a challenge whilst " + rat2.mf("jerking", "fingering") + " your little rat: <i>who will cum first?</i> It’s highly amusing to watch them act more frantically than before.");
-	output("\n\n" + (flags["RATS_TRIPLE_SERVICED"] == undefined ? "<i>“You may haff beaten ush in a fight but you’ll not lasht long with ush!”</i>" : "<i>“You know how thish is gonna end, right?”</i>") + " the rodenian grins and glares with a mouthful of [pc.cockNoun]. Water streams down her eyes " + (pc.hasCocks() ? "and the others." : ".") + " Nothing left to do but enjoy it. A contented sigh drifts from your [pc.lipsChaste], observed by colorful and half-lidded eyes.");
+	output("\n\n" + (flags["RATS_TRIPLE_SERVICED"] == undefined ? "<i>“You may haff beaten ush in a fight but you’ll not lasht long with ush!”</i>" : "<i>“You know how thish is gonna end, right?”</i>") + " the rodenian grins and glares with a mouthful of [pc.cockBiggestNoun]. Water streams down her eyes " + (pc.hasCocks() ? "and the others." : ".") + " Nothing left to do but enjoy it. A contented sigh drifts from your [pc.lipsChaste], observed by colorful and half-lidded eyes.");
 	output("\n\nThree silky smooth mouths sweetly suckle at your [pc.cocks] from every angle, kissing, sucking, blowing, squeezing, tail squeezing all so rhythmically... You begin to drift off on a cloudy pillow, daring to close your eyes from the pleasure. You almost forgot, right away no less, that you made it a little game to them."); 
 	output("\n\nBut damn... how can you care? Three lush, satiny, glossy lips, rubbing up and down, left and right, tonguing and kissing your magnificent member, the voices behind those eager mouths goading and boasting, each demanding, telling, <i>begging</i> you to cum. <i>“Hey!”</i> they all shout, bringing you back to reality. <i>“You can’t pass out yet" + (ratsPCIsKnown() ? ", [pc.mister] CEO!”</i>" : "!”</i>"));
 	
@@ -369,11 +369,11 @@ public function ratsKneelingForService():void
 	if (pc.balls > 0) output(" Your freshly cleaned balls jiggle back and forth in the active hands of your cocksuckers. They play with your sack like a cat plays with yarn, caressing and licking to coax out its tasty contents.");
 	output(" Just <i>feeling</i> the mouths of those covetous rodents tending to your maleness");
 	if (pc.balls > 0) output(" and the contractions of your oh-so-tight balls");
-	output(" is a relaxation you just aren’t willing to move on from yet."); 
+	output(" is a relaxation you aren't willing to move on from yet."); 
 	
-	output("\n\nMaybe forever? The tongues around your [pc.cockHead] work diligently to earn your [pc.cumVisc] bounty, sending arcs of pleasure through your loins and spine. The fingers around your [pc.base] stroke cunningly in ways that are sure to milk you dry. The enchanting caresses on your [pc.thighs] are... who would want to wake up from this?");
+	output("\n\nMaybe forever? The tongues around your [pc.cockHeadBiggest] work diligently to earn your [pc.cumVisc] bounty, sending arcs of pleasure through your loins and spine. The fingers around your [pc.base] stroke cunningly in ways that are sure to milk you dry. The enchanting caresses on your [pc.thighs] are... who would want to wake up from this?");
 	output("\n\nWhen your [pc.eyes] do reluctantly open, you behold only the cheery-looking rodents, scarfing down all the fat loads of pre and cockmeat you have.");
-	if (pc.balls > 0) output(" They’re pulling up your [pc.sack], licking and cleaning it with utmost care, not letting your [pc.cocksLight] go unattended in any way as they gladly take on the roles of ball-sluts.");
+	if (pc.balls > 0) output(" They're pulling up your [pc.sack], polishing it with fat and caring licks, not letting your [pc.cocksLight] go unattended in any way as they gladly take on the roles of ball-sluts.");
 	var yugeKnot:Boolean = false;
 	for (var i:int = 0; i < pc.cocks.length; ++i) if (pc.hasKnot(i) && pc.knotThickness(i) > 10) yugeKnot = true;
 	if (pc.hasAKnot()) output(" Your [pc.knots] aren’t left out either, and those " + (yugeKnot ? "obscenely" : "monstrously") + " inflated " + (pc.totalKnots() > 1 ? "orbs" : "orb") + " of breeding flesh swell angrily the closer climax comes.");
@@ -383,7 +383,7 @@ public function ratsKneelingForService():void
 	
 	if (pc.isBimbo() || pc.isBro()) output("\n\n<i>“Soon! You’ll all be getting your [pc.cumFlavor] treat <b>real</b> soon, don’t worry!”</i>");
 	else output("\n\n<i>“Almost, I’m just deciding who’s getting the most of it.”</i>");
-	output(" You push your rod back into the [rat0.furColor] rat’s face, and you could swear by the sound she doesn’t mind if you get rough at all. Her throat now adjusted to your size, she’s fully prepared to suck you off from [pc.cockHead] to [pc.base] without the tiniest of struggles. Gliding in and out of her wet fuck-hole is an effortless task, and one that’s bringing you nearer to sweet release.");
+	output(" You push your rod back into the [rat0.furColor] rat’s face, and you could swear by the sound she doesn’t mind if you get rough at all. Her throat now adjusted to your size, she’s fully prepared to suck you off from [pc.cockHeadBiggest] to [pc.base " + pc.biggestCockIndex() + "] without the tiniest of struggles. Gliding in and out of her wet fuck-hole is an effortless task, and one that’s bringing you nearer to sweet release.");
 
 	switch (pc.cocks.length)
 	{
@@ -415,7 +415,7 @@ public function ratsKneelingForService():void
 			output("\n\nThe first ropes of [pc.cum] fly up and land on their heads, soaking into their hair. Before anymore is wasted, the rodenian girl denies her friends the taste of your flavorful seed, hilting herself on your numbing phallus.");
 			if (pc.hasAKnot()) output(" Well that’s a bit rude... and fortunately, your knot agrees. With your last bit of strength, you ram your cum-corking flesh into her mouth just as it spreads out to its fullest, making sure the little jaw-locked spunk-bandit gets everything she wants.");
 			
-			if (pc.cumQ() < 100) output("\n\nYour [pc.balls] " + (pc.balls < 2 ? "works" : "work") + " hard to give the rodent her ill-gotten reward. Her spasming throat eases out long, thick cords of [pc.cumNoun], though you can tell she’s a bit disappointed by the output. The tongues and fingers on your [pc.cock] {and [pc.sack]}, however, help urge out every last drop of seed, making sure that at least one of their number acquires the most of your [pc.cumVisc] bounty.");
+			if (pc.cumQ() < 100) output("\n\nYour [pc.balls] " + (pc.balls < 2 ? "works" : "work") + " hard to give the rodent her ill-gotten reward. Her spasming throat eases out long, thick cords of [pc.cumNoun], though you can tell she’s a bit disappointed by the output. The tongues and fingers on your [pc.cock]" + (pc.balls > 0 ? " and [pc.sack]" : "") + ", however, help urge out every last drop of seed, making sure that at least one of their number acquires the most of your [pc.cumVisc] bounty.");
 			else if (pc.cumQ() < 500) output("\n\nYour [pc.balls] " + (pc.balls < 2 ? "strains and tenses" : "strain and tense") + (pc.balls > 0 ?", jostling in the hands of the other rats" : "") + " as thick loads of [pc.cumVisc] [pc.cumNoun] are pumped into the rodenian’s thirsty gullet, the visible lumps traveling down her gut-pipe. As if their tongues are high quality sex toys, the other two viciously slather your " + (pc.balls > 1 ? "[pc.sack] and [pc.cockNoun]" : "[pc.cockNoun]") + " with encouraging rubs, making sure the cum flows until the spunk-tanks are empty.");
 			else output("\n\nThe volume of your load is making the rat thief regret her spunk stealing ways. Maybe. You can’t really tell with your eyes so blurry, but you can see her pretty neck bulge out with fat loads of seed. Endless, thick spurts of [pc.cum] clog her throat, traveling slowly down into her fast distending belly. She can’t swallow enough, and it soon rises up to trickles out from her lips" + (pc.hasAKnot() ? " around your knot" : "") + " and through her nostrils. What she loses on her matting face is licked up by the others.");
 			
@@ -445,7 +445,7 @@ public function ratsKneelingForService():void
 		default:
 			output("\n\nWhen all three of your [pc.cocks] are swallowed up by the trio of deepthroating rodents, your eyes roll back and a pink-hued miasma of lust draws you into its embrace, a wrap of arms not unlike the wrapping of slutty lips around your tumescent pricks. Your [pc.balls] " + (pc.balls < 2 ? "tenses" : "tense") + "... you grunt... shudder... grunt again... and the next thick heartbeats in your chest feed these rats every drop of [pc.cumVisc] treasure" + (pc.balls > 0 ? " right from your lust-fattened cum-sack." : ".")); 
 			output("\n\nThree mouse-like noses press into your groin");
-			if (pc.hasAKnot()) output(" the eagerness in effect making you buck your [pc.knots] into their mouths. They’ll get everything they want, alright!");
+			if (pc.hasAKnot()) output(", the eagerness in effect making you buck your [pc.knots] into their mouths. They’ll get everything they want, alright!");
 			else output(".");
 			output(" All you can really make out as cum " + (pc.cumQ() >= 100 ? "flows" : "surges") + " are the coiling tongues around your pulsating prongs.");
 			
@@ -565,7 +565,7 @@ public function ratsThreeMiceEatOutTwoLegs():void
 	else output("<i>“You’re not even trying. Do you prefer cock more? Get your fingers in there, and give each other some room!”</i>");
 	output(" The outlaw’s grumblings are little more than moans that rattle your groin in such a way that they can legally be considered vibrators.");
 	output("\n\nTheir urgent enthusiasm catches you off guard.");
-	output("\n\nFirst comes cunt-contracting kisses, gentle and exploratory. Those tender touches elicit a cute gasp from you. The rats snerk; you feel three thick tongues - spears, rather - impale " + (pc.hasVaginas() ? "one" : "your") + " [pc.vagina] all at once," + (pc.hasLegs() ? "and you spread your [pc.legOrLegs] just to give them the space they need" : "and you thrust your crotch out further just to give them room to operate") + ". Twitching noses vanish into your bare twat, your labia, your [pc.vaginaColor] tunnel, their frenzied licks and suckles robbing you of muscle control.");
+	output("\n\nFirst come cunt-contracting kisses, gentle and exploratory. Those tender touches elicit a cute gasp from you. The rats snerk; you feel three thick muscles impale " + (pc.hasVaginas() ? "one" : "your") + " [pc.vagina] all at once," + (pc.hasLegs() ? "and you spread your [pc.legOrLegs] just to give them the space they need" : "and you thrust your crotch out further just to give them room to operate") + ". Twitching noses vanish into your bare twat, your labia, your [pc.vaginaColor] tunnel, their frenzied licks and suckles robbing you of muscle control.");
 	output("\n\n" + (pc.hasHymen() ? "There’s a twinge of halting shock when they unanimously discover your hymen." : "Their long tongues reach far enough to caress the nerves closest to your womb.") + " The mind-bending sensation of their deep exploration makes you gasp and recoil amidst a faint cackle among the gaggle of pirates. Their manhandling of your [pc.pussyNoun] leaves you speechless.");
 
 	if (pc.hasHymen()) output("\n\n<i>“Doohh-hooo, a virgin! A silly virrrrginnn!”</i> they laugh, but not out of spite. <i>“Are you afraid we’re going to steal that, " + (ratsPCIsKnown() ? "[pc.mister] CEO? That’d be the greatest robbery of all time!" : "stranger?") + "”</i> the [rat0.furColor] mouse grins widely, then folds her arms cheekily. <i>“But, we’re not those types of thieves, ‘less you really want to give your first time up that easy!”</i>\n\nWell that’s... reassuring...");
@@ -578,7 +578,7 @@ public function ratsThreeMiceEatOutTwoLegs():void
 	if (pc.hasPlumpPussy() || pc.hasVaginaType(GLOBAL.TYPE_EQUINE)) output("\n\nYour pussy-sluts struggle with the very chubby folds of vagina available to them. Vibratory squeals and incautious rubs wring out warm juice from your [pc.pussyNoun]. Supple " + (pc.hasVaginas() ? "mounds" : "mound") + " absorb ruthless faces before they can get to your deliciously wet interior. It amuses you to no end watching them struggle with your rubbery exterior, clearly not used to servicing someone with plenty to lick.");
 
 	output("\n\n" + (pc.isSquirter() ? "A sparkling stream of [pc.girlCumNoun] oozes out - is pressed out - from your gash by captivated slit servants" : "You squirt more than a few times, plastering your dutiful muff munchers with [pc.girlCum]") + ". The mix of excited bandits, now wearing aromatic smears and tangy sheens of you, keep licking even as you try to catch your breath, doing exactly as you asked. Their fingers dive in all the way");
-	if (pc.hasVagina()) output(", and not just in one [pc.pussy] either");
+	if (pc.hasVaginas()) output(", and not just in one [pc.pussy] either");
 	output(". From sultry strokes to erotic, circular rubs onto [pc.oneClit], they are determined to wear you out, but also determined to get fresher and fresher tastes from your deepest regions.");
 
 	// PC big clits
@@ -605,7 +605,7 @@ public function ratsThreeMiceEatOutTwoLegs():void
 	else if (pc.clitLength >= 1) output(" two");
 	else output(" one");
 	output("? We’re just getting started" + (pc.tallness >= 6*12 ? ", big [pc.boyGirl]!" : "!") + "”</i> The smug pirates let your knees vanish out from under you.");
-	output("\n\nBut you don’t collapse painfully. They wrap you in their arms and bring you down slowly, letting their tails guide you into a comfortable position. The half-rodenian [rat2.boyGirl] shuffles to your left, the freckled mouse-boy shuffles to your right, idling under your [pc.arms]. The [rat0.furColor]-furred rodenian herself stays " + (pc.hasLegs() ? "right between your spread [pc.legOrLegs]" : "right in front of you") + ", her [rat0.eyeColor] eyes dilated with hunger for pussy and her lips flecked with ropes of [pc.girlCumNoun].");
+	output("\n\nBut you don’t collapse painfully. They wrap you in their arms and bring you down slowly, letting their tails guide you into a comfortable position. The half-rodenian [rat2.boyGirl] shuffles to your left and the freckled mouse-boy shuffles to your right, idling under your [pc.arms]. The [rat0.furColor]-furred rodenian herself stays " + (pc.hasLegs() ? "right between your spread [pc.legOrLegs]" : "right in front of you") + ", her [rat0.eyeColor] eyes dilated with hunger for pussy and her lips flecked with ropes of [pc.girlCumNoun].");
 	output("\n\nYour cheeks burn brighter red in this position, wholly at their mercy. They dial the pace back, softly licking up and down your [pc.legOrLegs], caressing the supplest parts of your [pc.skinFurScales].");
 
 	if (catPC) output("\n\n<i>“I love the irony in this, three mice petting a " + (pc.tallness > 6 ? "big" : "little") + " kitty,”</i> the halfbreed [rat2.boyGirl] croons. <i>“Heh heh, you’re just like any other cat, all you need is a good rub-”</i> that’s what [rat2.heShe] does between your legs, watching your reaction, <i>“and you’re just lyin’ back for us!”</i>\n\nYou’re lucid enough to keep a playful hand away from your things at least.");
@@ -617,18 +617,18 @@ public function ratsThreeMiceEatOutTwoLegs():void
 	output("\n\nYou find yourself unable to focus on one area of pleasure over the other, not with three voracious tongues blazing trails up and down [pc.eachVagina] again, and not with");
 	switch (pc.vaginas.length)
 	{
-		case 1: output(" two hands spreading your sensitive, [pc.girlCumFlavor]-scented snatch for four sets of fingers to invade."); break;
+		case 1: output(" two hands spreading your sensitive, [pc.girlCumFlavor] snatch for four sets of fingers to invade."); break;
 		case 2: output(" so many pairs of hands spreading and exploring your sensitive, [pc.girlCumNoun]-scented snatches."); break;
 		case 3:
 		default: output(" your [pc.girlCumNoun]-scented pussies being spread, teased, and orally cleaned all at once."); break;
 	}
 	
-	output("\n\nRat-like fangs roll your [pc.oneClit] between upper and lower - another head takes its place. Whilst they service you, the outlaws service themselves, fingering and jerking themselves but making sure their heads stay in the game: sucking and nibbling your [pc.clits], never forgetting to share.");
+	output("\n\nRat-like fangs roll [pc.oneClit] between upper and lower - another head takes its place. Whilst they service you, the outlaws service each other, fingering and jerking themselves but making sure their heads stay in the game: sucking and nibbling your [pc.clits], never forgetting to share.");
 	if (pc.balls > 0) output(" It’s another laugh when you see your [pc.sack] lifted up and out of the way, the weighty " + (pc.balls > 1 ? "orbs" : "orb") + " sympathetically teased while being being worn like a hat.");
 	output("\n\nEven though you’re little more than a prisoner to pleasure, you at least make sure to reward them. <i>“Good rats get headpats,”</i> you say tacitly, ruffling their messy heads of hair. They squeal against your touch, eagerly accepting that frictious reward.");
-	output("\n\nYou cum again, shivering so much that they have to pin you down as you ride out the next cascade of pleasure. By the sounds you can make out, they’re <i>enjoying</i> it! Every time they’re painted in your next batch of hot [pc.girlCumColor] juices, they laugh in unison, then shower you with compliments and praises! <i>“Good [pc.boyGirl]!”</i> the rodenian purrs; <i>“Bet that felt nice!”</i> the other two smirk lopsidedly at you.");
+	output("\n\nYou cum again, shivering so much that they have to pin you down as you ride out the next cascade of pleasure. By the sounds you can make out, they’re <i>enjoying</i> it! Every time they're painted in your next batch of hot, [pc.girlCumColor] juices, they laugh in unison, then shower you with compliments and praises! <i>“Good [pc.boyGirl]!”</i> the rodenian purrs; <i>“Bet that felt nice!”</i> the other two smirk lopsidedly at you.");
 	
-	output("\n\nBut they aren’t slowing down this time. When things around you blur to blissful imperceptibility, you’re able to focus on the 24 fingers and 6 thumbs acting stridently between your [pc.thighs]. You’ve become so hypersensitive, so very aware of each beading ball of lubricant trailing down your [pc.skinFurScalesColor] mound. Every ardent touch is a sensual caress to the cluster of pretty, girlish nerves now laid bare, sensitive strings that are tugged but often stroked; played like " + (silly ? "a damn fiddle" : "a violin") + "...");
+	output("\n\nBut they aren't slowing down anymore. When things around you blur to blissful imperceptibility, you're able to focus on the 24 fingers and 6 thumbs acting stridently between your [pc.thighs]. You’ve become so hypersensitive, so very aware of each beading ball of lubricant trailing down your [pc.skinFurScalesColor] mound. Every ardent touch is a sensual caress to the cluster of pretty, girlish nerves now laid bare, sensitive strings that are tugged but often stroked; played like " + (silly ? "a damn fiddle" : "a violin") + "...");
 	output("\n\n<i>“Hey, stop moving so much! Damn, [pc.boyGirl]!”</i> the half-rodenian [rat2.boyGirl] shouts. <i>“You silly slut!”</i>"); 
 	output("\n\nOne pair of fingers dances along your most vulnerable muscles, ticklish, but instead of laughing you can only shake. An energetic hand drags its fingers over your " + (pc.hasVaginas() ? "slits" : "slit") + ", up and down, slow, fast, faster, and slow again, spreading it to allow another’s hand in to play along your spasming walls. A third, rough hand rubs all around your [pc.clits], traveling past your [pc.pussy] to tease your [pc.asshole]. In between these torturous fondlings are enthusiastic licks, rough and laugh-trembling tongues forage in your bitter swamp. Your entire crotch thrusts up, bucking all the rats in the process, and inadvertently shoving their probing digits deeper.");
 	output("\n\n<i>“Hey, sit still! How many times do I have to say it!?”</i> the rodenian barks, <i>“We’re just getting to the good part!”</i> Wait, that... that wasn’t it!? As if to answer your half-rational muse, you involuntarily thrust upward again, screaming and falling to your back, muscles locking and spasming in the aftermath of another spine-tingling climax.");
@@ -779,10 +779,11 @@ public function ratsMouthsOnlyFinalPusstination():void
 	if (pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED) || pc.hasPerk("Myr Venom")) output(" You lace your tongue with venomous lust and rinse her mouth thoroughly, reveling in the cute moans that follow.");
 	output(" Both hands then fall to her majestically smooth, sweat-damp ass, palming circles in her delectable, furry globes. She looses a muffled squeal into your mouth when you squeeze and caress the base of her tailbone, making those adorable constrictions around your torso all the better.");
 
-	output("\n\n<i>“Wait, h-hold on...”</i> she stops you, reaching for your [pc.hands]. She gently grips them and guides you to her ears, forcing your fingers into her aural cunts. Her [rat0.eyeColor] eyes roll back almost immediately and a faraway look dominates her face. The satiny walls of her twin orifices wetten and squeeze harder the tighter you go. You’re not sure how deep they are, but the pressure and temperature is fantastic, to say nothing of the blissfully vacant expression meeting yours.");
+	output("\n\n<i>“Wait, h-hold on...”</i> she stops you, reaching for your [pc.hands]. She gently grips them and guides you to her ears, forcing your fingers into her aural cunts. Her [rat0.eyeColor] eyes roll back almost immediately and a faraway look dominates her face. The satiny walls of her twin orifices wetten and squeeze harder the further you go. You're not sure how deep they are, but the pressure and temperature are fantastic, to say nothing of the blissfully vacant expression meeting yours.");
 	output("\n\nAs best you can in this position, you hug your mouse tight, crushing her against your body and strenuously stroking her innards. You lie back and cum one last time, letting the whole of Zheng Shi dissolve as the four of you cry out in simultaneous climax.");
-	output("\n\nThe two moaning faces at your crotch are fast coated in the largest spatter of [pc.girlCum] you’ve put out. Their tails withdraw from your groin dripping with [pc.girlCumVisc] [pc.girlCumNoun].");
-	if (pc.hasCock()) output(" Your [pc.cocks] ooze all over themselves in the aftermath of your feminine climax."); output(" Rodenian-juice pours from the slant rat-thief’s ears, giving her cheeks a good shine before it spills onto you from her limp chin and neck. The smell of four scintillating orgasms wafts into the air - you can almost taste each flavor in your tranquilized state.");
+	output("\n\nThe two moaning faces at your crotch are fast coated in the largest spatter of [pc.girlCum] you've put out. Their tails withdraw from your groin dripping with [pc.girlCumVisc] [pc.girlCumNoun], flinging beads of the stuff when they flex.");
+	if (pc.hasCock()) output(" Your [pc.cocks] ooze all over themselves in the aftermath of your feminine climax, like dessert past the main course.");
+	output(" Rodenian-juice pours from the slant rat-thief's ears, giving her cheeks a good shine before it spills onto you from her limp chin and neck. The smell of four scintillating orgasms wafts into the air - you can almost taste each flavor in your tranquilized state.");
 
 	output("\n\nSlumping " + (pc.hasBreasts() ? "in your [pc.breasts" : "on your [pc.chest]") + ", the [rat0.furColor]-furred outlaw pants worse than an exhausted dog, her mouth wide open and her breaths thicker than steam belching from the station’s forges. You rub her head and look over to see the other two rats peeling away from your numb crotch, certain they had to hold you down in your final, vigorous climax. The rodenian stirs quickly, shaking her head and regarding you like she hadn’t even gasped delirious."); 
 	output("\n\nThe diligent thieves clean the evidence of your tryst away; the rodenian’s tail swims to the front of her face for her to suck, cleaning herself of your [pc.girlCumColor] [pc.girlCumNoun].");
@@ -820,7 +821,7 @@ public function ratsHandlingTaurcock():void
 	else output("<i>“Start with the tip, and make it good,”</i> you grunt.");
 	
 	output("\n\nRight away, you get exactly what you asked for. You’re not sure where fur and skin begins and tongue ends as your [pc.cockHeads] are gripped, rubbed, squeezed, and sucked from multiple sides. It’s not long before you can feel a warm coating of lube smeared across the surface of your [pc.cocksLight].");
-	output("\n\nMouse mits play erotically along vast stretches of sensitive [pc.cockType] cockflesh. Lips kiss and tongues lick your musky member, polishing your " + (pc.hasCocks() ? "poles" : "pole") + " as pre spurts out in huge, tasty globs, usually into a mouth but sometimes on the faces of others. Between the quibblings you feel two tongues lap almost abusively at your " + (pc.hasCocks() ? "cumslits" : "cumslit") + ", your urethras obliging them with a steady stream of the salty treat they so badly want.");
+	output("\n\nMouse mits play erotically along vast stretches of sensitive [pc.cockType " + pc.biggestCockIndex() + "] cockflesh. Lips kiss and tongues lick your musky member, polishing your " + (pc.hasCocks() ? "poles" : "pole") + " as pre spurts out in huge, tasty globs, usually into a mouth but sometimes on the faces of others. Between the quibblings you feel two tongues lap almost abusively at your " + (pc.hasCocks() ? "cumslits" : "cumslit") + ", your urethras obliging them with a steady stream of the salty treat they so badly want.");
 	output("\n\n<i>“Hey, don’t steal it all!”</i> you hear one shout."); 
 	output("\n\n<i>“Shut up!”</i> the sharp-voiced rat girl barks."); 
 	
@@ -834,7 +835,7 @@ public function ratsHandlingTaurcock():void
 	output("\n\nYou grin, " + (pc.isBimbo() || pc.isBro() || pc.isMisch() ? "<i>“Maybe I’ll just forget what balance is, then!”</i>" : "<i>“I think you’re underestimating how close I am...”</i>"));
 	output("\n\n<i>“We’ll see about that!”</i> Their sweaty efforts redouble. Your [pc.cocks] " + (pc.hasCocks() ? "are" : "is") + " jerked every which direction, the tip finding itself at one mouth then another, varying degrees of warmth cooking [pc.eachCockHead]. Robber’s hands grip around your " + (pc.hasCocks() ? "urethras" : "urethra") + ", staunching the flow of pre. You let out a long, stinging sigh, your pleasured grunts and groans interrupting the flow of oxygen.");
 	
-	if (pc.balls > 0) output("\n\nTails smack against your wobbling ballsack like a friendly clap on the ass. The intrusion of wiggling fingers soon tells you that your nuts have are being checked and inspected by oh-so-possessive hands. The load of [pc.cumNoun] you’re mixing right now churns up faster with the help of admiring attentions. What feel like mouse-ears brush against your orgasmic pouch, and from the sounds (and feeling in your [pc.cockHeadNoun]), they must be getting what they want: thicker, more freely leaking globs of pre.");
+	if (pc.balls > 0) output("\n\nTails smack against your wobbling ballsack like a friendly clap on the ass. The intrusion of wiggling fingers soon tells you that your nuts have are being checked and inspected by oh-so-possessive hands. The load of [pc.cumNoun] you’re mixing right now churns up faster with the help of admiring attentions. What feel like mouse-ears brush against your orgasmic pouch, and from the sounds (and feeling in your [pc.cockHeadNoun " + pc.biggestCockIndex() + "]), they must be getting what they want: thicker, more freely leaking globs of pre.");
 	
 	output("\n\nThe first involuntary thrust into your outlaw onahole is weak, and most people would have stopped themselves after such a lapse.");
 	output("\n\n...But seeing as how they’re not complaining, you let yourself fall into that bliss. Their blunted nails are just as good as a ribbed cunt, the mix of fur and skin, matted and dry, around your [pc.cocksLight] is positively divine, as is the constant feeling of it being bared to the warm air over and over. Tails that seemed harmful are just another layer of sexual stimulation, like medial rings that squeeze inwards. You can’t fuck 	them in any hole, but when united these rats are all <i>themselves</i> a hole to fuck!");
@@ -843,7 +844,7 @@ public function ratsHandlingTaurcock():void
 	output("\n\n<i>“Are you gonna do this or what?”</i> you hear. Well, if all you need to do is thrust, then that’s just what you’re going to do!");
 	
 	output("\n\nYou swivel back and push forward again, feeling the strange shape made of undulating outlaws rhythmically bob in tune with your frustrated pump. You do it again, and this time you hear a bunch of yelps followed by a cacophony of squeaky moans and backbiting insults directed at each other."); 
-	output("\n\nYou silence them with another impassioned thrust and spread your [pc.legOrLegs]. It’s like they’re all <i>hugging</i> you down there, but you’re not <i>quite</i> sure, are they using their entire bodies for this? What you are sure of, however, is that those pneumatically grinding tongues haven’t stopped, nor have those wheeling fingers. Your movements are primitive compared to the exquisite writhings against your [pc.cockType] prick; where your girth goes, the pleasure follows."); 
+	output("\n\nYou silence them with another impassioned thrust and spread your [pc.legOrLegs]. It’s like they’re all <i>hugging</i> you down there, but you’re not <i>quite</i> sure, are they using their entire bodies for this? What you are sure of, however, is that those pneumatically grinding tongues haven’t stopped, nor have those wheeling fingers. Your movements are primitive compared to the exquisite writhings against your [pc.cockType " + pc.biggestCockIndex() + "] prick; where your girth goes, the pleasure follows."); 
 	output("\n\nOr in this case, the pleasure is jostled about");
 	if (pc.balls > 0) output(" like your heavy [pc.balls], being kneaded by a tail and two hands");
 	output(".");
@@ -1051,7 +1052,7 @@ public function ratsFuckThemOneRatAtATime():void
 {
 	clearMenu();
 	clearOutput();
-	showRats();
+	showRats(-2, true);
 	processTime(5);
 	
 	if (pc.isBimbo()) output("<i>“Alright cutie, come here!”</i> you smile happily.");
@@ -1163,7 +1164,7 @@ public function ratsRodenianal(cockId:int, rounds:int):void
 			break;
 	}
 
-	output("\n\nYour finger dips into her canyon and swirls around her sphincter -- sliding in is easy thanks to the accrued sweat. The throbbing tip of your tool hovers so close to plugging her, a pleasant rush of warmth flows through your loins every passing second.");
+	output("\n\nOne [pc.finger] dips into her canyon and swirls around her sphincter -- sliding in is easy thanks to the accrued sweat. The throbbing tip of your tool hovers so close to plugging her, a pleasant rush of warmth flows through your loins every passing second.");
 	output("\n\nYou push two fingers in, spreading your rodenian wider just inches away from your [pc.cockOrStraponHead " + cockId + "]. Suddenly, the rat-slut pushes back, spearing herself on your straining " + (cockId < 0 ? "holo-phallus" : "phallus") + " and smushing her ass into your pheromone drenched belly");
 	if (pc.hasFur()) output(" fur");
 	else if (pc.hasScales()) output(" scales");
@@ -1174,12 +1175,13 @@ public function ratsRodenianal(cockId:int, rounds:int):void
 	pc.cockChange();
 	
 	output("\n\n<i>“Ohhh, bet you weren’t ready for that, " + ratsMisterCEO() + "!”</i> she moans, the constrictions of her tail matched with those of her tightening rectum.");
+	output("\n\n");
 	if (flags["RATS_POUNDED_RODENIAN"] == undefined) output("You tacitly admit you weren’t. <i>“A thousand credits s-s-says you won’t be able to handle me!”</i> she giggles. You’ll definitely see about that.");
 	else output("<i>“Oh, but I was. I know how much you rats like it in the ass,”</i> you reply, chuckling with her.\n\n<i>“Well then don’t waste any time!”</i> she exclaims.");
 	output("\n\nYour [pc.cockOrStraponHead " + cockId + "] brushes against her innermost walls. A pervasive heat envelops your whole body, not just your [pc.cockOrStrapon " + cockId + "]. Every light jerk, every powerful pulse, every relaxed, idle motion stokes a fire in every nerve of your body all at once. You haven’t even started railing this mouse-bitch and you feel like you’ve been fucking her for... <i>hours</i>. Although you’re buried in her butt, a compelling buzz in the back of your mind makes you perceive this as the raunchiest sex imaginable. A slow thrust is somehow five rapid pumps.");
 	output("\n\nIt’d be unnerving if it wasn’t so erotic.");
 	
-	output("\n\nWhen you blink, that once benign fantasy becomes <i>exquisitely</i> real in the darkness of your eyelids. Her [rat0.furColor] fur seems to glow <i>brighter</i> in your sightlessness, and your vision is overwhelmed by the shape of her figure against an inky, sexual void. Droplets of cum, girlcum, lube, all the effluent you can imagine rain down around you. Sound fades into a murky dissonance, replaced by the lurid impacts of [pc.race] crotch against rodenian assflesh, driving in and pumping out with reckless abandon.");
+	output("\n\nWhen you blink, that once benign fantasy becomes <i>exquisitely</i> real in the darkness of your eyelids. Her [rat0.furColor] fur seems to glow <i>brighter</i> in your sightlessness, and your vision is overwhelmed by the shape of her figure against an inky, sexual void. Droplets of cum, girlcum, lube, all the effluent you can imagine rain down around you. Sound fades into a murky dissonance, replaced by the lurid impacts of [pc.raceShort] crotch against rodenian assflesh, driving in and pumping out with reckless abandon.");
 	output("\n\nHallucinations that <i>feel</i> and <i>look</i> like the real thing..."); 
 	output("\n\nNext to you, the same rat-girl stands stark naked, smiling sweetly at you. Her face twists when your groins slaps into her, but her expression is full of love - for you, and for what you’re doing. Wherever you turn your head, the mesmerizing glow of her radiant fur is there. Every twitch in your eye is steadied when [rat0.eyeColor], dizzying eyes meeting yours, bond with yours... <i>Become yours.</i>");
 
@@ -1192,7 +1194,7 @@ public function ratsRodenianal(cockId:int, rounds:int):void
 		if (rounds < 2) output(" The fruits of your [pc.pussyNoun] are delivered to " + (rounds == 0 ? "hungry mouths by expertly controlled tails." : "a hungry mouth by an expertly controlled tail."));
 	}
 
-	output("\n\n" + (flags["RATS_POUNDED_RODENIAN"] == undefined ? "Confused" : "Befuddled") + ", but no less " + (cockId >= 0 ? "erect" : "horny") + ", your gentle outstroke evokes a lengthy whine from the chubby-eared pirate. The insensate minx mauls her chest, pinching and tugging lust-swollen [rat0.nippleColor] nipples as if to milk herself. Twinkling buds of perspirant leap from her peaks as more roll down and over. She successfully drains her lungs of air in a louder scream. <i>“Yeahyeahyeah fuck meeeeeeeeeeeee”</i> she cries, tail tensing and claws digging into the ground.");
+	output("\n\n" + (flags["RATS_POUNDED_RODENIAN"] == undefined ? "Confused" : "Befuddled") + ", but no less " + (cockId >= 0 ? "erect" : "horny") + ", your gentle outstroke evokes a lengthy whine from the chubby-eared pirate. The insensate minx mauls her chest, pinching and tugging [rat0.nippleColor], lust-swollen nipples as if to milk herself. Twinkling buds of perspirant leap from her peaks as more roll down and over. She successfully drains her lungs of air in a louder scream. <i>“Yeahyeahyeah fuck meeeeeeeeeeeee”</i> she cries, tail tensing and claws digging into the ground.");
 	output("\n\nYour first real thrust into the rodenian fills your mind with lurid images. Her accommodating ass makes it easy for you to settle into a pleasantly moist rhythm");
 	if (cockId >= 0 && pc.cocks[cockId].volume() > 150) output(", even for your " + (pc.cocks[cockId].volume() < 300 ? "immense" : "monstrous") + " size");
 	output(".");
@@ -1202,13 +1204,13 @@ public function ratsRodenianal(cockId:int, rounds:int):void
 	// PC has pussy
 	if (pc.hasVagina())
 	{
-		output("\n\nThe rodenian’s tail");
-		if (rounds < 2) output(" (and those of her friend’s)");
-		output(" dip between your [pc.thighs], caressing the delicate clusters of muscles therein. Coarse tendrils frot against your [pc.pussies], threading your glazed pussylips like its a runway. Your [pc.clits] receive equal attention in the form of loving prods");
+		output("\n\nThe rodenian's tail");
+		if (rounds < 2) output(" (and those of her friends)");
+		output(" dip between your [pc.thighs], caressing the delicate clusters of muscles therein. Coarse tendrils frot against your [pc.pussies], threading your glazed pussylips like its a runway. Your [pc.clits] " + (pc.totalClits() == 1 ? "receives" : "receive") + " equal attention in the form of loving prods");
 		if (pc.clitLength >= 1) output(", though the size of your ultra-sensitive clitoral nub" + (pc.totalClits() == 1 ? " serves as a fine ledge for " : "s serve as fine ledges for ") + (rounds >= 2 ? "it" : "them") + " to wrap around");
 		output(". You moan from the brutishness, wrenching under the wild assault.");
-		if (rounds >= 2) output("It winds in and out on either side, lubricating its entire length in your juice");
-		else output("They take turns going in and out, their paces uneven. You feel as if you’re riding a wooden horse with every thrust...");
+		if (rounds >= 2) output(" It winds in and out on either side, lubricating its entire length in your juice.");
+		else output(" They take turns going in and out, their paces uneven. You feel as if you’re riding a wooden horse with every thrust...");
 	}
 
 	output("\n\nYou ream her, faster, faster, and faster still");
@@ -1223,7 +1225,7 @@ public function ratsRodenianal(cockId:int, rounds:int):void
 	output("\n\n<i>“I feel sooo good");
 	if (ratsPCIsKnown()) output(", [pc.mister] CEO");
 	output("...”</i> she murmurs, though what is a whisper to others is a thought beamed directly to your brain. <i>“I be... bet you think... that... umf,”</i> she cranes her head, looking at you from the front and certainly every other angle. There’s an afterimage in her eyes that captures and cages concentration, <i>“that you won. Haaaa you didn’t!”</i>");
-	output("\n\nYour synapses are overwhelmed by her angelic signature, making you one with her in this very moment. It’s not a powerful effect by any means, you think you could even dispel it as easily as a lucid dream... but why would you do that? Why wouldn’t you take hold of her delicious curves, surrender yourself to the bliss with her?");
+	output("\n\nSynapses overwhelmed by her angelic signature, you become one with her in this very moment. It's not a powerful effect by any means, you think you could even dispel it as easily as a lucid dream… but why would you do that? Why wouldn't you take hold of her delicious curves, surrender yourself to the bliss with her?");
 	if (flags["RATS_POUNDED_RODENIAN"] == undefined) output("\n\nYou’re now certain that something is not as it seems with this rodenian. You’re");
 	else output("\n\nSomething isn’t quite as it seems with this rodenian, though you’re still");
 	output(" not sure if that’s intentional. Besides, it feels much too good to put a stop to!");
@@ -1243,16 +1245,13 @@ public function ratsRodenianal(cockId:int, rounds:int):void
 			break;
 	}
 	
-	output("\n\n<i>“H-here, w-wait...”</i> your anal-puppet looks back to you. Eyes half rolling back, she grabs one of your hands and guides it to her ear. The bandit keeps her head still as your fingers, no, your entire knuckle slips into her aural canal. <i>“Ohhhh yessss oh that’ssssssssssssshhhh-”</i> she moans herself hoarse, tongue tumbling out past her big front teeth."); 
+	output("\n\n<i>“H-here, w-wait...”</i> Your anal-puppet looks back to you, eyes half rolling back. She grabs one of your hands and guides it to her ear. The bandit keeps her head still as your fingers, no, your entire knuckle slips into her aural canal. <i>“Ohhhh yessss oh that’ssssssssssssshhhh-”</i> she moans herself hoarse, tongue tumbling out past her big front teeth."); 
 	output("\n\nHer ear-gina squeezes and slathers your hand in its uniquely alien way, undulating inward just like any other pussy would on what it hopes is a cum-bearing visitor. When you plunge deep inside its smooth and frictionless tunnel, your wrist is held in place by her contracting head-cunt. The strangeness of that and her mental effect makes your whole body into an erogenous zone.");
-	output("\n\nHer ears, her butt, they’re simply pleasure-passages that have no end. The further you sink into her, the closer you feel to her on a level that you just can’t define...");
+	output("\n\nThe rat's ears, her butt, they're simply pleasure-passages that have no end. The further you sink into her, the closer you feel to her on a level that you just can't define…");
 	
-	output("\n\nYou rise up, steadying her shoulder with your other hand and pressing her closer to the ground by proxy. Her stretched ass is easily hammered, spreading more and more with every balls deep thrust. You shift again just a bit, wrapping a");
-	var armDesc:String = pc.armDescript();
-	if (InCollection(armDesc.charAt(0), "a", "e", "i", "o", "u")) output("n");
-	output(" " + armDesc + " around her chest, hugging her boobs (and her of course) close as you fist her ear and pump your [pc.cockOrStrapon " + cockId + "] into her moistened butt-pussy. Breathlessly, you submit to the carnal aura coaxing your brain to one action: pounding this sopping mouse into the dirt.");
+	output("\n\nRising up, you steady her shoulder with your other hand and pressing her closer to the ground by proxy. Her stretched ass is easily hammered, spreading more and more with every balls deep thrust. You shift again just a bit, wrapping " + indefiniteArticle(pc.armDescript()) + " around her chest, hugging her boobs (and her of course) close as you fist her ear and pump your [pc.cock] into her moistened butt-pussy. Breathlessly, you submit to the carnal aura coaxing your brain to one action: pounding this sopping mouse into the dirt.");
 	
-	output("\n\nThe rodenian’s charming glow strengthens, and with it the soothing effect it has on you. You rail the mesmerizing rat with unparalleled speed - each thrust is multiplied by the minutes that have passed, the tightness of her colon lending to the painful swell you feel in your " + (pc.hasCock() ? "[pc.cocksLight]" : "[pc.cockOrStrapon]") + ". You snuggle closer, breathing in her perfume-like scent" + (pc.hasBreasts() ? ", grinding your [pc.breasts] into the contours of her back" : "your [pc.chest] contouring to the curves of her back") + "; you jerk your hand in any direction within her slathering ear-cunt, doing your damndest to satisfy her cum-gushing hearing tunnel while diaphragm-rending squeaks spiral down your [pc.ear].");
+	output("\n\nThe rodenian's charming glow strengthens, and with it the soothing effect it has on you. You rail the mesmerizing rat with unparalleled speed - each thrust is multiplied by the minutes that have passed, the tightness of her colon lending to the painful swell you feel in your " + (pc.hasCock() ? "[pc.cocksLight]" : "[pc.cockOrStrapon]") + ". You snuggle closer, breathing in her perfume-like scent" + (pc.hasBreasts() ? ", grinding your [pc.breasts] into the contours of her back" : ", your [pc.chest] contouring to the curves of her back") + "; you jerk your hand in any direction within her slathering ear-cunt, doing your damndest to satisfy her cum-gushing fuck-tunnel while diaphragm-rending squeaks spiral down your [pc.ear].");
 	output("\n\nEvery breath you take is strangely clear and cool, but not cold enough to dull your insatiable lust for more of her. Fucking her ass becomes less of a sexual desire and more of a neurological need. You submerge yourself in the erotic sensations arcing between your horny neurons, trying your best to meet the [rat0.eyeColor] eyes of the [rat0.furColor] buttslut on the end of your distended " + (cockId >= 0 ? "[pc.cockType] " : "holo-") + "tumescence. You dive straight into her, nuzzling her head with yours, pushing your [pc.cockOrStrapon " + cockId + "] all the way in as you fall into your arousal now boiling over");
 	if (pc.hasKnot(cockId)) output(", careful to avoid knotting her");
 	output(".");
@@ -1325,13 +1324,13 @@ public function ratsWeMustGoDeeperIntoRodenianButt(args:Array):void
 	output("\n\n<i>“Ah! You’re not-”</i> You hammer her balls deep, forcing a yelp up her throat that mingles with a prolonged grunt. Muscles ache and beg for rest, but your mind yearns for that heavenly contact again. Regardless of what the body wants, the heart and soul wish to intertwine with that what made it feel so good. The friction of your outstroke is a little painful on your [pc.cockOrStrapon], but what you want comes right away.");
 
 	output("\n\n<i>“");
-	if (ratsPCIsKnown()) output("[pc.Mister] CEO], ");
+	if (ratsPCIsKnown()) output("[pc.Mister] CEO, ");
 	output("I-I don’t think I can...”</i>");
-	output("\n\nYou can. [pc.CockOrStrapon] glides in and out of her wrinkled ring, fucking out the creases");
-	if (cockId != -1) output(" and gliding through the residual [pc.cumNoun] drying there. Your internal plumbing gets to work lubing your [pc.cockOrStrapon " + cockId + "] again, knowing it has an arduous journey ahead of it");
+	output("\n\nYou can. Your prong glides in and out of her wrinkled ring, fucking out the creases");
+	if (cockId != -1) output(" and gliding through the residual [pc.cumNoun] drying there. Your internal plumbing gets to work lubing your [pc.cock " + cockId + "] again, knowing it has an arduous journey ahead of it");
 	output(". Using spit");
 	if (pc.hasVagina()) output(" and some pussy-drool");
-	output(" is a necessity to get comfortable in there again, and before long it’s like you hadn’t cum nor left her");
+	output(" is a necessity to get comfortable in there again, and before long it's like you hadn't cum nor left her");
 	if (pc.inRut()) output(", something you thank your bout of rut for");
 	output(".");
 
@@ -1348,7 +1347,7 @@ public function ratsWeMustGoDeeperIntoRodenianButt(args:Array):void
 	output("\n\nA restless gasp forces open your mouth and you grip tighter, too many images douse your thoughts with more of her being. There’s a kiss on your cheek, a tail clenching around your midsection, and there’s the acute knowledge that what you’re doing is more pleasurable than physically possible. You can only want more of this, that’s all you want to devote yourself to.");
 	
 	output("\n\nIt’s not long before you cum again.");
-	if (pc.isHerm()) output(" [pc.Cum] flows in higher quantities than before, swelling your [pc.cockNoun " + cockId + "] to settle in her butt with all the breeder’s authority; your [pc.pussies] are also driven to " + (pc.isSquirter() ? "squirt" : "sprinkle") + " [pc.girlCumNoun], though that effect is a distant thunder to your masculine release.");
+	if (pc.isHerm()) output(" [pc.Cum] flows in higher quantities than before, swelling your [pc.cockNoun " + cockId + "] to settle in her butt with all the breeder’s authority; your [pc.pussies] " + (pc.hasVaginas() ? "are" : "is") + " also driven to " + (pc.isSquirter() ? "squirt" : "sprinkle") + " [pc.girlCumNoun], though that effect is a distant thunder to your masculine release.");
 	else if (pc.hasVagina()) output(" [pc.GirlCum] " + (pc.isSquirter() ? "squirts like an erotic missile" : "sprinkles ecstatically") + " from your [pc.pussyNoun].");
 	else if (pc.hasCock()) output(" A torrid wave of [pc.cum] impregnates the rodenian’s loins with the absolute authority of a capable breeder. [pc.CumVisc] seed flows painlessly and effortlessly, seemingly without end.");
 	else output(" There’s an equalization of pressure, and it’s so very calming.");
@@ -1387,8 +1386,8 @@ public function ratsBoyStealsCockIntoHisButt(cockId:int, rounds:int):void
 	output("\n\nFaced with his reticence, you tenderly rub his soft cheeks together, chuckling when his fully erect cock twitches in response. He shuffles shyly, an accompanying needy arch bringing him nearer to your [pc.cockOrStrapon] and his impending butt-stuffing. You assure him that you will go slow");
 	if (ratVirgin) output(" and let him get used to it");
 	output(". Those few words greatly assuage his fear, and he nods.");
-	output("\n\nYou lower yourself to where his plump balls sag against the underside of his " + (rounds < 2 ? "tail-wrapped" : "unattended") + " erection, dragging your [pc.tongue] from taut nutsack to hesitant hole. You giggle when he squeaks; you start laughing as you ring his sphincter with the tip of your organ and eventually slip it past. <i>“Oh!”</i> he arches back, the muscular spasm leaving you behind. <i>“That was..!”</i> A rope of cum shoots from his cock on to the ground.");
-	output("\n\nThere’s a certain fresh yet much too salty taste to his skin, and his manhood too. There’s ample liquid delight to smear around his ring, to even out all the creases in his supple skin. His lower half vibrates like his body is fizzing, and it’s impossible to ignore the way his balls clench and cock swells. <i>“Y-you really know what you’re doing, " + ratsMisterCEO() + "...”</i>");
+	output("\n\nYou lower yourself to where his chubby balls sag against the underside of his " + (rounds < 2 ? "tail-wrapped" : "unattended") + " erection, dragging your [pc.tongue] from taut nutsack to hesitant hole. You giggle when he squeaks; you start laughing as you ring his sphincter with the tip of your organ and eventually slip it past. <i>“Oh!”</i> he arches back, the muscular spasm leaving you behind. <i>“That was..!”</i> A rope of cum shoots from his cock on to the ground.");
+	output("\n\nThere's a certain fresh yet much too salty taste to his skin, and his manhood too. There's ample liquid delight to smear around his ring, to even out all the creases in his supple skin. His lower half vibrates like his body is fizzing, and it's impossible to ignore the way his cock swells and his balls clench. <i>“Y-you really know what you’re doing, " + ratsMisterCEO() + "...”</i>");
 	
 	if (ratVirgin) output("\n\nYou bring your [pc.cockOrStraponHead " + cockId + "] to his butthole, clenching and widening rhythmically. You give him a distracting handjob, the squeaky-voiced reaction letting you slip the tip of your " + (cockId >= 0 ? "dick" : "holo-dick") + " inside, aided by the sweat on his rump and the pre sputtering out of your cumslit.");
 	else output("\n\nThe freckled pirate’s colon looks accommodating enough that you could skewer him in one go, but you promised to be less of a prick than that. You jerk his cock twice and slip through in the confusion, your entrance made better thanks to the sweat on his rump and the pre dribbling from your cumslit.");
@@ -1396,7 +1395,7 @@ public function ratsBoyStealsCockIntoHisButt(cockId:int, rounds:int):void
 	pc.cockChange();
 	rat1.buttChange((cockId < 0 ? 100 : pc.cocks[cockId].volume()));
 	
-	output("\n\nHis fingers and toes curl instantly, a mix of some pain and a lot of pleasure. The outlaw’s lips purse and whine; he pushes himself back into you, the rapid beat of his heart bouncing his ample cock up and down beneath his plump legs. The speared-rat’s moans die down when his body adapts to your");
+	output("\n\nHis fingers and toes curl instantly, a mix of some pain and a lot of pleasure. The outlaw's lips purse and whine; he pushes himself back into you, the rapid beat of his heart bouncing his ample cock up and down beneath his girly legs. The speared mouse's moans die down when his body adapts to your");
 	if (cockId == -1) output(" hardlight");
 	else if (pc.cocks[cockId].thickness() > 5) output(" oversized");
 	else output(" girthy");
@@ -1420,7 +1419,7 @@ public function ratsBoyStealsCockIntoHisButt(cockId:int, rounds:int):void
 	if (cockId >= 0 && pc.cocks[cockId].cLength() > 6) output(", still having length to spare as you bottom out in his asshole");
 	output(".");
 	if (pc.cocks.length > 2) output(" Your multiple unholstered cocks have nowhere else to be, but they still slap against the wannabe rogue’s petite butt and your legs, trailing cords of sticky [pc.cumColor] pre as they sway.");
-	output("\n\nYour thick and heavy outstroke from the pirate boy’s butt is a firm, squelching slide. A cry of pleasure erupts from his mouth; you heave back until the tip is just barely inside, pressing your fingers skin and pushing again. Plugging him takes all your effort now, as the moistness of his body has your [pc.hands] sliding off.");
+	output("\n\nYour thick and heavy outstroke from the pirate boy’s butt is a firm, squelching slide. A cry of pleasure erupts from his mouth; you heave back until the tip is just barely inside, pressing your fingers into his skin and pushing again. Plugging him takes all your effort now, as the moistness of his body has your [pc.hands] sliding off.");
 
 	if (cockId >= 0 && pc.cocks[cockId].cType == GLOBAL.TYPE_SIREN) output("\n\nControlling your venomous cilia is too much of a burden at this point, and it’s not fair to keep that kind of good feeling out of action. Stingers slap the mouse-boy’s vulnerable walls and force their loads of aphrodisiac upon him. There’s a razor-sharp inhalation on his part, and when he glances astonished at you, saliva rains down his chin. Gotta love that instant effect.");
 
@@ -1437,14 +1436,14 @@ public function ratsBoyStealsCockIntoHisButt(cockId:int, rounds:int):void
 		// Second choice
 		case 1: 
 			var maleRat:Boolean = rat0.hasStatusEffect("Rat Fucked") && rat2.isMale();
-			output("\n\nThe " + (rat0.hasStatusEffect("Rat Fucked") ? "rodenian girl" : "half-rodenian [rat2.boyGirl]") + " to your left struggles to stay upright. Your partner’s tail unravels from you to tend " + (maleRat ? "him" : "her") + ". A little sexual camaraderie goes a long way, and " + (maleRat ? "he" : "she") + " squeals hoarse as another wave of ecstasy overwrites their train of thought, " + (maleRat ? "another sympathetic jet of mouse cum splattering the ground." : "streams of girlspooge splattering the ground."));
+			output("\n\nThe " + (rat0.hasStatusEffect("Rat Fucked") ? "rodenian girl" : "half-rodenian [rat2.boyGirl]") + " to your left struggles to stay upright. Your partner’s tail unravels from you to tend " + (maleRat ? "him" : "her") + ". A little sexual camaraderie goes a long way, and " + (maleRat ? "he" : "she") + " squeals hoarse as another wave of ecstasy overwrites [rat2.hisHer] train of thought, " + (maleRat ? "another sympathetic jet of mouse cum splattering the ground." : "streams of girlspooge splattering the ground."));
 			break;
 	}
 
 	output("\n\nBottomed out and digging in, his glistening hole has almost stretched comfortably to your shape. You roll your hips and take him on a ride: <i>“Oaah!”</i> he twists, wriggling in your grasp and baying to your rhythmic motions against his rectal nerves. <i>“That felt good..! I-I uh, that really did-”</i> You push his head down to quiet him into a hum of satisfaction, pinching his rodent ears");
 	if (pc.hasTailFlag(GLOBAL.FLAG_PREHENSILE)) output(" and teasing his lonely dong with your [pc.tail], chuckling when you feel another cum-rope churn out");
 	output(".");
-	output("\n\nYou reach down and grab his prick, fingers trailing up the side before jumping to his salty spunk bunkers, the flesh of his ‘nads spilling between your fingers as you coax out yet another ribbon of boymusk. The stimulation makes your boy-toy drop to his spit-shined chin, ass all the way up in the air to better help you plumb his depths - his fall tugs you along, the turgid shift of pleasure slamming you both into the next system.");
+	output("\n\nReaching down and grabbing his prick, your [pc.fingers] trail up the side before jumping to his salty spunk bunkers, the flesh of his 'nads spilling between your fingers as you coax out yet another ribbon of boymusk. The stimulation makes your mischievous toy drop to his spit-shined chin, ass all the way up in the air to better help you plumb his depths - his fall tugs you along, the turgid shift of pleasure slamming you both into the next star system.");
 	
 	output("\n\nHe articulates most of his incoherent euphoria by rocking his body, but it’s up in the air if he’s actually doing that and it’s not some autopilot powered by pulsing pleasure. Obedient hips gyrate in tune with your increasingly powerful thrusts");
 	if (cockId >= 0) output(", so much pre spurting inside that it spills out around your [pc.base " + cockId + "]");
@@ -1574,11 +1573,7 @@ public function ratsOhNoImStuckInMouseBoy(args:Array):void
 	}
 	output(". His tail, once flailing in excitement, falls limp the closer another orgasm approaches. You share in his climax only so much. While his hanging prick recklessly blasts out a proper pool to bathe in, you’re marking his ass with your [pc.cumNoun]-scent. The corners of your mouth quirk up at the idea. A mouse-boy no better than a puppy when he sees or thinks about your bitch-" + (cockId >= 0 && pc.hasKnot(cockId) ? "breaker" : "boner") + ".");
 	if (rounds < 2) output("\n\nIt only leaves the other " + (rounds == 0 ? "rats" : "rat") + " to look on in dismay, realizing that your attentions end with him.");
-
-	output("\n\nA");
-	var armDesc:String = pc.armDescript();
-	if (InCollection(armDesc.charAt(0), "a", "e", "i", "o", "u")) output("n");
-	output(" " + armDesc + " around his collarbone and a hand scritching behind his ears, you finally feel your next brisk orgasm approach. With gusto you ream him just a bit faster, finding your voice only to spend that air on a keening cry of excess release. You squeeze his ears, stroking slowly.");
+	output("\n\n" + StringUtil.capitalize(indefiniteArticle(pc.armDescript())) + " around his collarbone and a hand scritching behind his ears, you finally feel your next brisk orgasm approach. With gusto you ream him just a bit faster, finding your voice only to spend that air on a keening cry of excess release. You squeeze his ears, stroking slowly.");
 	if (pc.isHerm()) output(" There’s a burst of [pc.cumVisc] finality, a relieving sign you haven’t missed this orgasm. You and he both cum and cum and cum, though the " + (pc.isSquirter() ? "squirting of" : "creaming inside") + " your [pc.vaginas] is just as pleasurable.");
 	else if (pc.hasVagina()) output(" Your [pc.vaginas] tense up and " + (pc.isSquirter() ? "squirt in fiery bolts" : "spray in euphoric flashes") + " of pleasure, adding your scent to the air while the freckled pirate squirms out the last, thickest loads of boy-jizz.");
 	else if (pc.hasCock()) output(" A detonation of [pc.cumVisc] finality crackles in your hormonally-dizzied mind. [pc.Cum] spurts and spurts into the mouse-boy’s rear while boy-jizz fires out in long, thin ropes to the ground between his thighs.");
@@ -1614,7 +1609,7 @@ public function ratsFuckedRightInThePussy(cockId:int, rounds:int):void
 
 	output("\n\nThe fuzzy-limbed rat regards you with a sultry as hell look while you explore her easily-parted folds with your [pc.cockOrStraponHead " + cockId + "]. Her wetness would put most ausar to shame. As it stands, it’s making the prospect of brutally fucking her less a concern and more an unsubtle desire.");
 	output("\n\n<i>“About time, " + ratsMisterCEO() + "! Hey, I don’t care what you’ve got, just shove it right in my pussy, I’m so turned on I could fuck myself with my baton! Heyyyy,”</i> she shamelessly grinds her sopping scent-box into you now, pushing your " + (cockId >= 0 ? "[pc.cocksLight]" : "holocock") + " down and slathering the topside of your " + (cockId < 0 ? "techno-girth" : "[pc.cockType " + cockId + "] girth") + " with aromatic rat-slime. What doesn’t get you ready to " + (cockId >= 0 ? "breed" : "pound") + " her drips from her mouthwateringly curvy buttflesh." + (cockId2 >= 0 ? "<i>“You’ve got two dicks, " + ratsMisterCEO() + "... Gimme! You can’t understand how badly I want that!”</i>" : "<i>“Show me just what " + (ratsPCIsKnown() ? "a CEO can do!”</i>" : "you’ve got, stranger!”</i>")));
-	output("\n\nThe slut wants you to rush, " + (pc.libido() > 33 ? "and boy do you kind of want to now" : "but you’ll go at your own pace") + ". You slap her on the ass - which only seems to make her more inconsolable - and shove your crotch against hers, one hand busy between the collision of half-rodenian derriere and [pc.race] [pc.skinFurScalesNoun].");
+	output("\n\nThe slut wants you to rush, " + (pc.libido() > 33 ? "and boy do you kind of want to now" : "but you’ll go at your own pace") + ". You slap her on the ass - which only seems to make her more inconsolable - and shove your crotch against hers, one hand busy between the collision of half-rodenian derriere and [pc.raceShort] [pc.skinFurScalesNoun].");
 	output("\n\nThumb and index finger cinch the oversized bud of her clit together, fine details present in the silky texture of your lubricated digits. Girlishly undignified wails of " + (cockId >= 0 ? "pre-provoking pleasure" : "pleasure-provoking volume") + " are received clearly by your [pc.ears] after firm tweaks to that labial distension. <i>“Aawww! Yeeeeesss!! Yes Yes!”</i> she squeals, her cute tail smacking dumbly against your [pc.belly], the ribbon-adorned tip poking at your thrumming equipment.");
 	output("\n\n<i>“You want this that badly, huh?”</i> you ask, rubbing your [pc.cockOrStraponHead " + cockId + "] against her juice-streaming pussy. Her ripe pheromones give you an undiluted taste of the warmth suffusing her petite body through smell alone");
 	if (cockId >= 0) output(", and it gives your [pc.cocks] the signal they’re always waiting for");
@@ -1830,25 +1825,25 @@ public function ratsFuckASlutBoy(cockId:int, rounds:int):void
 		case 2: output("Barely afloat, his thighs thumping together, the [rat2.skinColor]-skinned half-rat boy squeals when you grip his ass, giving his throbbing tumescence a quick jerk. At your stimulations, a thin line of cum is expelled from his clenching balls. He falls chin-first to the ground, raggedly whimpering <i>“I can’t... O-oh please b-b-be gentle, I’ve cum twice...”</i> as you pull him back up."); break;
 	}
 
-	output("\n\nThe [rat2.hairColor]-haired halfbreed rocks his hips, glancing coyly");
-	if (rounds == 2) output(" and shivering out exhaustion with the sweat");
-	output(". There’s a positively slutty look writ upon his flushed face, but you can’t quite put your finger on it...");
+	output("\n\nRocking his hips, the [rat2.hairColor]-haired halfbreed glances coyly");
+	if (rounds == 2) output(" and shivers out exhaustion with the sweat");
+	output(". There's a positively slutty look writ upon his flushed face, but you can't quite put your finger on it...");
 	output("\n\nHe bares his teeth to you in a gleaming, snarky grin, perhaps daring you to thrust your [pc.cockOrStraponFull " + cockId + "] forward. His mischievous tail weaves around your body like a serpent, going from your [pc.arms] to your [pc.legOrLegs] before settling around your [pc.belly]. He dares to pull on you, nearly drawing you into his slick pucker. You recoil and grip him hard enough that he whimpers.");
-	output("\n\n<i>“What, nervous about something " + ratsMisterCEO() + "?”</i> he snerks. <i>“I’m not like him, you know!”</i> he jabs a look to the freckled mouse-boy. <i>“Or are you afraid you can’t handle this?”</i> he taunts, slapping his butt at you. <i>“Hurry up!”</i> he chides, snickering the whole time.");
+	output("\n\n<i>“What, nervous about something, " + ratsMisterCEO() + "?”</i> he snerks. <i>“I’m not like him, you know!”</i> He jabs a look to the freckled mouse-boy. <i>“Or are you afraid you can’t handle this?”</i> he taunts, slapping his butt at you. <i>“Hurry up!”</i> he chides, snickering the whole time.");
 	output("\n\nYou remind him he’ll get it when you’re ready, not the other way around - your [pc.cockOrStrapon " + cockId + "] glides through his [rat2.skinColor] valley and over the border of silken fur and moist skin. A displeased cry bursts from hips lips; he pushes his thick butt into your crotch, squirming his cock, balls, and breathing sphincter into the underside of your " + (cockId >= 0 ? "bulging urethra" : "holodong") + ". <i>“Come on... we don’t get to have much fun around here, why do you have to bully me...”</i>");
 	output("\n\nUndoubtedly the smarmy bandit enjoys this, but you need to set a ground rule.");
 	
 	output("\n\nSoftly moaning, you lean forward, rolling your [pc.hips] in tune with his. Your [pc.hand] wraps around his needily twitching cock, and you press his tender balls into the sides of his modest girth while whispering in his quivering ear:");
 	if (pc.isBimbo()) output(" <i>“Hun, you gotta be patient. You gotta <i>want</i> this!”</i>");
 	else if (pc.isBro()) output(" <i>“You’ll be spreading soon, boy-toy, but only when you’re truly for it.”</i>");
-	else if (pc.isNice()) output("<i>“You can’t rush good things. I won’t start until I know you’re ready.”</i>");
-	else if (pc.isMisch()) output("<i>“Don’t sweat it, we’re going to get to the good part soon enough, but you’re kinda lagging behind.”</i>");
-	else output("<i>“It’s not bullying, it’s disciplining.”</i>");
+	else if (pc.isNice()) output(" <i>“You can’t rush good things. I won’t start until I know you’re ready.”</i>");
+	else if (pc.isMisch()) output(" <i>“Don’t sweat it, we’re going to get to the good part soon enough, but you’re kinda lagging behind.”</i>");
+	else output(" <i>“It’s not bullying, it’s disciplining.”</i>");
 
 	output("\n\nYour fingers glide through his messy hair, scritching at the sensitive base of his round ears, the obvious weak spot to any animal-eared individual! He whines in your grasp, waves of pleasure jolting through his scalp and down through his spine. The rat boy whimpers ceaselessly, but begs you for more.");
 	if (cockId >= 0) output(" Pre spurts from your [pc.cocksLight] the more his spasms bounce your member.");
 	output("\n\nThe already lust-swollen tip grows an inch or two bigger, hardening in your callous palm.");
-	if (pc.hasVagina()) output(" The more you knead his full cum-tanks, the more your [pc.pussies] " + (pc.hasVaginas() ? "strains." : "strain."));
+	if (pc.hasVagina()) output(" The more you knead his full cum-tanks, the more your [pc.pussies] " + (pc.hasVaginas() ? "strain." : "strains."));
 	output(" A jet of rat-spunk fires off between his legs, and a wail of displeasure follows his pitiful orgasm that fast fades into a dribbly white mess. <i>“L-look, I really want it, okay? I do, I do! Please, can’t you see I’m ready?”</i>");
 
 	output("\n\nYou can see it just fine. Smirking, you wipe up a rope of halfbreed spunk and thrust your finger into his ass without warning, the walls fast encasing your digit in its warm, cavernous embrace, smearing that warm cream into his walls. A keening and very pleasured cry breaks out, <i>“Oh fuck! Yeaaah! That’s it! That’s what I wanted!”</i> he shouts, fists balling and constricting tail squeezing ever tighter. Yep, he’s ready.");
@@ -1895,7 +1890,7 @@ public function ratsFuckASlutBoy(cockId:int, rounds:int):void
 			break;
 	}
 
-	output("\n\nYour rhythm impels the horny half-rat to greater volume. Not willing to sit back and take it, nor merely cooperate, the roguish boi digs in, jerking himself with one hand and keeping himself upright with the other. You let one [pc.hand] join his, teasing the crown of his sticky tumescence, but the majority of the work is handled by his furiously jerking wrist. He moves with a blur, focused on controlling his orgasm while you climb nearer to yours with each and every powerful lunge.");
+	output("\n\nYour rhythm impels the horny half-rat to greater volume. Not willing to sit back and take it, nor merely cooperate, the roguish boi digs in, jerking himself with one hand and keeping upright with the other. You let one [pc.hand] join his, teasing the crown of his sticky tumescence, but the majority of the work is handled by his furiously jerking wrist. He moves with a blur, focused on controlling his orgasm while you climb nearer to yours with each powerful, hungry lunge.");
 	output("\n\n<i>“Fuck yes... Gah... I’m just a slut!”</i> he cracks, giggling uncontrollably. He looks back to you with ever-failing strength in the face of his arousal, losing himself to the pleasure of his pounded prostate. His smile fills you with pride. <i>“Oh-oh, oh...”</i> he moans, <i>“d-d-damn, it feels so good... You really know how to work, " + ratsMisterCEO() + "...”</i> he says. <i>“Think you can make me cum so hard I won’t be standing for a while? Been awhile since that, too.”</i>");
 	output("\n\nOf course you can.");
 	if (cockId >= 0 && pc.cocks[cockId].volume() >= rat2.analCapacity()*3/4) output(" Your impressive endowment is already stretching him to the point he’ll be begging for just your cock in the future!");
@@ -1905,7 +1900,7 @@ public function ratsFuckASlutBoy(cockId:int, rounds:int):void
 	output(". You wrap both [pc.arms] under his, clasping to his neck and front.");
 	if (pc.hasLongTongue()) output(" Your long tongue wheels around his sweat-dotted cheek by the tip, entering his accepting mouth.");
 	output(" Nuzzled into his neck, breathing in the alien aroma of a horny mouse, you sense the control fading from your limbs. For however stronger your thrusts become, the slower your " + (cockId < 0 ? "faux-cock" : "[pc.cock " + cockId + "]") + " plumbs his constraining depths.");
-	if (pc.balls > 0) output(" Your [pc.balls] " + (pc.balls > 1 ? "clenches" : "clench") + " at the feeling, and you know it won’t be long before you cum.");
+	if (pc.balls > 0) output(" Your [pc.balls] " + (pc.balls > 1 ? "clench" : "clenches") + " at the feeling, and you know it won’t be long before you cum.");
 	
 	output("\n\nYou whisper lewdly into his rounded ear, feeling his swinging balls impact with");
 	if (pc.balls > 0) output(" yours");
@@ -1921,7 +1916,7 @@ public function ratsFuckASlutBoy(cockId:int, rounds:int):void
 	output("\n\nThe distinction is readily apparent. In that rapturous moment of all-consuming euphoria, you press your crotch as tightly as possible to his");
 	if (pc.hasAKnot()) output(", careful to leave your " + (pc.totalKnots() > 1 ? "knots" : "knot") + " outside");
 	output(". He writhes in your grasp, using what little self-control he has to churn out his loads. Cum begins to spurt from his uncorked dick. The rhythmic contractions in his lower body push you over the edge - he takes your hands and squeezes his tail, holding tight to you when you join him.");
-	if (pc.hasVagina()) output(" Your [pc.pussies] herald the onset of eye-blurring contractions, " + (pc.isSquirter() ? "squirting" : "spraying") + " all along the floor.");
+	if (pc.hasVagina()) output(" Your [pc.pussies] " + (pc.hasVaginas() ? "herald" : "heralds") + " the onset of eye-blurring contractions, " + (pc.isSquirter() ? "squirting" : "spraying") + " all along the floor.");
 	output("\n\nClaiming a boy has never felt so fucking good.");
 	
 	if (cockId < 0) output("\n\nGripping your plate-eared rascal, you feel the shock of orgasm smash your nervous system to atoms, you cry out from every erotic sensation " + (pc.hasVagina() ? "forcing your [pc.pussies] to clamp down, rivers of [pc.girlCum] flooding your connected legs" : "rewriting the receptors of your body to feel only pleasure") + ". Your violent tremors outdo his. Riding the waves was one thing, but lying on top of him makes the comedown simply phenomenal.");
@@ -1937,8 +1932,8 @@ public function ratsFuckASlutBoy(cockId:int, rounds:int):void
 	}
 	else
 	{
-		output("\n\nYou’re not sure what the boi is expecting from you, but you’re sure that he’s pleasantly surprised by his bulking belly. [pc.CumVisc] [pc.cumNoun] pries apart his asshole, your cum-tube filling with an unmatched volume of virility, hosing his innards with the molten-hot spunk he’s been craving. Heart and cock unite, pulsing in sync as you rock back and forth, the amount of jism you’re outputting beginning to spill out around your [pc.cockColor " + cockId + "] pillar.");
-		if (pc.hasCocks()) output(" Making sure he looks claimed, your unholstered [pc.cocksLight] twitch violently with every eruption of [pc.cum], his ass, his back, and his legs all being drowned in your spunk.");
+		output("\n\nYou're not sure what the boi is expecting from you, but you're sure that he's pleasantly surprised by his bulking belly. [pc.CumVisc] [pc.cumNoun] pries apart his asshole, your cum-tube filling with an unmatched volume of virility, hosing his innards with the molten-hot spunk he's been craving. Heart and cock unite, pulsing in sync as you rock back and forth, the amount of jism you're outputting beginning to spill out around your [pc.cockColor " + cockId + "] pillar.");
+		if (pc.hasCocks()) output(" Making sure he looks claimed, your unholstered [pc.cocksLight] twitch violently with every eruption of [pc.cum], his ass, his back, and his legs all being drowned in [pc.cumColor] sperminess.");
 	}
 
 	output("\n\nExhausted by the encounter, the half-rat slumps and crashes into a puddle of his own making. You lie on top of him for a few seconds, breathing into his ear, whispering a few sweet nothings before rising. You withdraw your [pc.cockOrStrapon " + cockId + "] from his loose bum");
@@ -1989,21 +1984,21 @@ public function ratsKeepPlayingFaccaratBoy(args:Array):void
 	output(", hissing through your teeth waiting for the pressure to equalize downstairs.");
 	if (pc.isLactating()) output(" [pc.Milk] sprinkles out onto his back. <i>“Ah, so warm...”</i>");
 	output(" You draw your hand back to his head, planting it firmly between his ears and in the knotty locks of [rat2.hairColor] hair he has, telling him to get ready.");
-	if (pc.hasVagina()) output(" The longer you wait, the more your [pc.pussies] drip.");
+	if (pc.hasVagina()) output(" The longer you wait, the more your [pc.pussies] " + (pc.hasVaginas() ? "drip." : "drips."));
 	output("\n\nThe rodent’s rectal ring widens on every thrust");
-	if (cockId < 0 || pc.cocks[cockId].cLength () < 13) output(", and you add enough weight to your [pc.hips] to go balls-deep");
-	output(". You’re fucking him as deep as " + (cockId < 0 || pc.cocks[cockId].cLength () < 13 ? "possible" : "deep as your admittedly monstrous length can go") + ". Husky yelps of delight bounce off the walls and probably reach others on the station. You briefly wonder if others might show up and join the orgy - it’s almost like he wants that to happen.");
+	if (cockId < 0 || pc.cocks[cockId].volume() < rat2.analCapacity()/2) output(", and you add enough weight to your [pc.hips] to go balls-deep");
+	output(". You’re fucking him as deep as " + (cockId < 0 || pc.cocks[cockId].volume() < rat2.analCapacity() ? "possible" : "your admittedly monstrous length can go") + ". Husky yelps of delight bounce off the walls and probably reach others on the station. You briefly wonder if others might show up and join the orgy - it's almost like he wants that to happen.");
 	
-	output("\n\nTaking him by his wrists, you plow the little bandit, uninterested in a slow, tentative pace. The slaps of flesh against flesh are all you care to hear, and the blossoming orgasm down below. You can’t identify the smells in the air, and you’ve no time to figure out much past the fact it smells like salt, sweat, and sex. Thief’s ass cushions aggressive collisions, but not nearly as well as that gifted rodenian’s might.");
-	output("\n\nSweat " + (cockId < 0 ? "runs" : "and cum run") + " down his ass in thick rivulets, making it impossible to hold on now. It doesn’t hinder you at all - while searching for another handhold you press him into the ground, forcing the limp rat to go prone while you hump his spine as much as you rearrange his innards. His squirming is utterly stilled below your body weight, and his anus can’t hope to stretch back around your invading " + (cockId < 0 ? "holo-dick." : "dick."));
+	output("\n\nTaking him by his wrists, you plow the little bandit, uninterested in a slow, tentative pace. The slaps of [pc.skinFurScalesNoun] against flesh are all you care to hear, and the blossoming orgasm down below. You can't identify the smells in the air, and you've no time to figure out much past the fact it smells like salt, sweat, and sex. Thief's ass cushions aggressive collisions, but not nearly as well as that gifted rodenian's might.");
+	output("\n\nSweat " + (cockId < 0 ? "runs" : "and cum run") + " down his ass in thick rivulets, making it impossible to hold on now. It doesn't hinder you at all. While searching for another handhold you press him into the ground, forcing the limp rat to go prone while you hump his spine as much as you rearrange his innards. His squirming is utterly stilled below your body weight, and his anus can't hope to stretch back around your invading " + (cockId < 0 ? "holo-dick." : "dick."));
 	output("\n\nGirly hips in the air, the mouse-runt’s hands are on autopilot, protecting his junk from the abrasions of the floor while also jacking in constant, aching motions. Your [pc.cockOrStrapon " + cockId + "] has absolutely no difficulty gliding through his well-lubed and loosened ass, squeezing into entirely different or far deeper butt-nerves. Panting like a dog you cradle his head, deliriously running a hand down his glutes to his ass, his cock, whatever you can do to help him climax, because you’re about to be carried away by your own.");
 	output("\n\n");
-	if (pc.isLactating()) output("Your [pc.milkyNipples] smear [pc.milkNoun] into the rodent’s back, so hard and warm that they first scratch with the rigidity of their erection and soothe with the warm of their [pc.milkVisc] filling. ");
+	if (pc.isLactating()) output("Your [pc.milkyNipples] smear [pc.milkNoun] into the rodent's back, so stiff that they first scratch with the rigidity of their erection and soothe with the warmth of their [pc.milkVisc] filling. ");
 	output("A minor orgasm shatters your sense of coherency.");
 	output("\n\nThe same can be said for him.");
 
-	if (pc.isHerm()) output("\n\nYou " + (pc.cumQ() < 500 ? "singe" : "bloat") + " his belly with another hearty deposit of [pc.cum], urethra squishing outwards to help stretch him out just another inch or two. While your next messy load fills his guts, your [pc.pussies] " + (pc.isSquirter() ? "squirt [pc.girlCum] in searing arrows" : "sprinkle [pc.girlCum] in hot flashes") + " of mind-numbing effluence.");
-	else if (pc.hasVagina()) output("\n\nThe hardlight strapon bombards your loins with another nerve-exciting payload. [pc.EachVagina] clench around phantom penetrations and " + (pc.isSquirter() ? "squirt [pc.girlCumNoun] in searing arrows" : "spray [pc.girlCumNoun] in hot flashes") + " against the ground.");
+	if (pc.isHerm()) output("\n\nYou " + (pc.cumQ() < 500 ? "singe" : "bloat") + " his belly with another hearty deposit of [pc.cum], urethra squishing outwards to help stretch him out just another inch or two. While your next messy load fills his guts, your [pc.pussies] " + (pc.isSquirter() ? (pc.hasVaginas() ? "squirt" : "squirts") + " [pc.girlCum] in searing arrows" : (pc.hasVaginas() ? "sprinkle" : "sprinkles") + " [pc.girlCum] in hot flashes") + " of mind-numbing effluence.");
+	else if (pc.hasVagina()) output("\n\nThe hardlight strapon bombards your loins with another nerve-exciting payload. [pc.EachVagina] " + (pc.hasVaginas() ? "clench" : "clenches") + " around phantom penetrations and " + (pc.isSquirter() ? "squirt [pc.girlCumNoun] in searing arrows" : "spray [pc.girlCumNoun] in hot flashes") + " against the ground.");
 	else if (pc.hasCock()) output("\n\nThe little thief’s stomach " + (pc.cumQ() < 500 ? "is singed" : "bloats") + " with a fresh deposit of [pc.cum]. The stretching of your squishy spunk-tube helps spread him a little wider.");
 	else output("\n\nYour brain is forced to restructure to handle the sensory bombardment, and the stress on your nervous system equalizes.");
 	output("\n\nSputtering like a hose, the [rat2.furColor]-furred outlaw slumps, tongue hanging from his slack face. After that, he <i>has</i> to be permanently stretched. At the very least, it’ll be a long time for this hole to tighten up naturally.");
@@ -2069,7 +2064,7 @@ public function ratsEnoughRatFuckingForNow(rounds:int):void
 			output("\n\nYou give them a little wave as you head on, their quiet moans fading into the background.");
 			break;
 		case 4:
-			output("Your [pc.skinFurScales] are just as sensitive in your sleep, if not more, than when you’re horny. You don’t know when or how you passed out, but those thoughts washed away on currents of sanity-eroding euphoria. You fucked a rat girl, a petty thief, and were gifted with something inexplicably wonderful for it. When your [pc.eyes] flutter apart and the quiet background thrums of Zheng Shi at work return, you find yourself lying behind that [rat0.furColor] mouse");
+			output("Your body's just as sensitive in your sleep, if not more, than when you're horny. You don't know when or how you passed out, but those thoughts washed away on currents of sanity-eroding euphoria. You fucked a rat girl, a petty thief, and were gifted with something inexplicably wonderful for it. When your [pc.eyes] flutter apart and the quiet background thrums of Zheng Shi at work return, you find yourself lying behind that [rat0.furColor] mouse");
 			if (pc.isNaga()) output(", and she’s coiled up in your [pc.leg] for safety");
 			output(".");
 			output("\n\nBreathing has also never felt so easy. After taking stock of your situation, you find the other two rats snoozing incapacitated. You run a [pc.hand] through the rodenian’s [rat0.hairColor] hair to wake her, already unraveling from the tryst. Her wobbly ears flare while she scrabbles to her feet, shaking her head and looking fiercely satisfied.");
@@ -2110,7 +2105,7 @@ public function ratsEnoughRatFuckingForNow(rounds:int):void
 			if (ratsPCIsKnown()) output(", [pc.mister] CEO");
 			output(",”</i> she huffs between fat, adoring licks of your neck and cheek.");
 			if (ratsPCIsGood()) output(" <i>“You gotta meet our boss as soon as possible. When you get upstairs you’re gonna stay with me in my bed for a day! I’ll be thinkin’ about " + (pc.hasCock() ? "your dick" : "you") + " until you come ‘n ravage me real proper, ‘kay?”</i>");
-			else output(" <i>“I don’t care if you’re a " + (ratsPCIsKnown() ? "random [pc.guyGirl]" : "stuffy CEO") + ", I hope you win again. You inside me is the best thing ever. But don’t tell them that, ‘kay?”</i>");
+			else output(" <i>“I don’t care if you’re a " + (ratsPCIsKnown() ? "stuffy CEO" : "random [pc.guyGirl]") + ", I hope you win again. You inside me is the best thing ever. But don’t tell them that, ‘kay?”</i>");
 			output("\n\nShe kisses you, stands, and you slap her on thickest part of her ass. The sound wakes the other two, who jump to readiness as if roused from the barracks. Once they’re geared up again, the halfbreed girl blows a kiss while her de-facto leader " + (ratsPCIsGood() ? "simpers" : "glowers") + " at you. <i>“You be careful, okay? Zheng Shi isn’t safe unless you’re a big dumb fuckbunny. See you later");
 			if (ratsPCIsKnown()) output(", [pc.mister] CEO");
 			output("!”</i>");
@@ -2178,7 +2173,8 @@ public function ratsOnRatsForVoraciousFucks():void
 	if (rat2.isFemale()) output(" and mouse-cunt");
 	output(". You lap at the half-rodenian’s " + rat2.mf("butt", "pussy") + " and finger the other two. The tower of crime wobbles back and forth as legs and clawed toes curl and frequently vie for comfortable space. " + rat2.mf(" Cocks strain against discarded suit and boyflesh; the mouse-boy jerks himself beneath his friends, though the halfbreed boy has no such luxury. He relies on the energy surrounding him to handle his pleasure now.", "The mouse-boy whimpers, jerking himself beneath his friends. "));
 	output("\n\nYou knead one pair of cheeks, slap the other, and hump the third; arousal builds, reaching another purple-hued level. Your [pc.cocks], polished like spears, thrust between thigh, leg, crotch, whatever gap in this cake needs filling.");
-	if (pc.hasLongTongue()) output(" Your [pc.tongue] is all over the " + rat2.mf("three", "four") + " presented holes, slobbering like a dog in heat. Often times the length twitches against your dicks.} Hips thrust back into your [pc.face], " + rat2.mf("smearing sweat and some pre.", "smearing sweat, pre, and some pussyjuice."))
+	if (pc.hasLongTongue()) output(" Your [pc.tongue] is all over the " + rat2.mf("three", "four") + " presented holes, slobbering like a dog in heat. Often times the length twitches against your dicks.");
+	output(" Hips thrust back into your [pc.face], " + rat2.mf("smearing sweat and some pre.", "smearing sweat, pre, and some pussyjuice."))
 	output("\n\nStrained moans squeeze past dry lips, breathy whispers and murmurs follow. Held horizontally by each other’s cushioning bodies, the rats try to hold themselves steady. The crisp scent in the air finalizes your self-lubrication.");
 	output("\n\nThere’s no better time to start.");
 
@@ -2195,15 +2191,15 @@ public function ratsRatsRatsStackedStackedStacked():void
 	var vagFuck:Boolean = rat2.isFemale() && pc.cocks.length > 3;
 
 	output("You take a deep breath and start manhandling your [pc.multiCocks]. You’re so hard that moving them around applies obscene amounts of pressure to your groin, like they’re firmly set pipes. Not only that, they’re uncooperative. The closer you get to penetrating one of the rats, the faster your heart beats and the more they throb away from the booty you aim to plunder. Gulping, you ignore the squirming tails brushing their ribboned tips around your prickflesh, and press the rodenian girl down. Needy mice arch up or down to help you get an angle, but it’s not going to get any easier from here.");
-	output("\n\nYou bow your [pc.legOrLegs] and direct your first [pc.cockNoun] to the [rat1.skinColor]-skinned boy’s butt, the [pc.cockHeadNoun] spreading his softest flesh. Your cumslit dribbles enough slick preseed into his supple entrance that you can tell your prostate is on overdrive, too.");
+	output("\n\nBowing your [pc.legOrLegs], you direct your first [pc.cockNoun] to the [rat1.skinColor]-skinned boy's butt, the [pc.cockHeadNoun] spreading his softest flesh. Your cumslit dribbles enough slick preseed into his supple entrance that you can tell your prostate is on overdrive, too.");
 	output("\n\nHolding that position, you swivel your [pc.hip] up and level your other cocks with the remaining " + (vagFuck ? "three" : "two") + " holes. <i>“F-fuck, I can’t wait, c’monnnnn”</i> the half-rat [rat2.boyGirl] whines. <i>“I’m gonna cum before you even start!!”</i>");
-	output("\n\nYou mischievously squeeze " + rat2.mf("the pair of balls", "the fat clit") + " poking out at you from the center of the rat pile before moving " + (vagFuck ? "one dick" : "two dicks") + " closer. Cock-drool runs like rain all over their backsides. Lust boils away the edges of your vision, leaving narrow strips of orgiastic color. It takes a lot of self control not to cum, to not even think about what you’re about to do long enough to start fucking. The pulses of spurting [pc.cumColor] dickjuice upset your balance");
-	if (pc.balls > 0) output(", the jiggling and jostling of your [pc.sack] against your pulsating mouse-breakers disrupts your concentration to an extreme fault");
+	output("\n\nYou mischievously squeeze the " + rat2.mf("pair of balls", "fat clit") + " poking out at you from the center of the rat pile before moving " + (vagFuck ? "one dick" : "two dicks") + " closer. Cock-drool runs like rain all over their backsides. Lust boils away the edges of your vision, leaving narrow strips of orgiastic color. It takes a lot of self control not to cum, to not even think about what you're about to do long enough to start fucking. The pulses of spurting [pc.cumColor] dickjuice upset your balance");
+	if (pc.balls > 0) output(", the jiggling and jostling of your [pc.sack] against your throbbing mouse-breakers disrupts your concentration to an extreme fault");
 	output(".");
 
 	output("\n\n");
-	if (pc.hasVagina()) output("Your [pc.pussies] make a habit of assailing your rationality as " + (pc.wettestVaginalWetness() < 3 ? "thin streams of fem-drool run down your [pc.thighs]." : "rivers of girljuice pour into an imaginary bucket underfoot."));
-	output("Finally, you inch your third dick up to the rodenian’s loose asshole, her tail shooting up and around your shoulders. The other two can’t see you from their positions, but she can, and she watches you <i>intently</i>. <i>“You gonna do it or what, " + ratsMisterCEO() + "?”</i> she snerks. <i>“Or you just gonna cum all over us and call it quits?”</i>");
+	if (pc.hasVagina()) output("Your [pc.pussies] " + (pc.hasVaginas() ? "make" : "makes") + " a habit of assailing your rationality as " + (pc.wettestVaginalWetness() < 3 ? "thin streams of fem-drool run down your [pc.thighs]." : "rivers of girljuice pour into an imaginary bucket underfoot."));
+	output(" Finally, you inch your third dick up to the rodenian’s loose asshole, her tail shooting up and around your shoulders. The other two can’t see you from their positions, but she can, and she watches you <i>intently</i>. <i>“You gonna do it or what, " + ratsMisterCEO() + "?”</i> she snerks. <i>“Or you just gonna cum all over us and call it quits?”</i>");
 	output("\n\nHer spiteful, raspy purrs bounce your members. The squeezes around your [pc.belly] help balance you. The promise of penetration contrasted against the harassment of their hypnotic hips... Fuck... Here goes nothing...");
 	output("\n\nInhaling, <i>shivering</i>, you grip your lowermost [pc.cockNoun] and bite your lip. You push your lube-glistening rod forward. Your [pc.cockHeadNoun] coaxes the mouse-boy’s sphincter open. The lacquered tip, aided by buckets of glide-slime, powers through his ring with a wet pop. It doesn’t take long for your girth to spread him wide.");
 	output("\n\nLow moans overtake the air waves, ");
@@ -2215,7 +2211,7 @@ public function ratsRatsRatsStackedStackedStacked():void
 		rat1.buttChange(pc.cocks[1].volume());
 	}
 	else output("<i>“Ah, that was... That was easy...”</i>"); 
-	output("\n\nYour " + (vagFuck ? "next dick" : "your centered cocks") + " spearing the half-rodenian [rat2.boyGirl], " + (vagFuck ? "claiming her pussy and ass in sync" : "claiming " + rat2.mf("his tail", "her pussy")) + ". Shuddering, blissed out, and nearly there, your teeth chatter between loud grunts. Ramming your [pc.cockNoun] into the [rat0.furColor] rat’s butt is the final act of this prelude.");
+	output("\n\nYour " + (vagFuck ? "your centered cocks" : "next dick") + " spearing the half-rodenian [rat2.boyGirl], " + (vagFuck ? "claiming her pussy and ass in sync" : "claiming " + rat2.mf("his tail", "her pussy")) + ". Shuddering, blissed out, and nearly there, your teeth chatter between loud grunts. Ramming your [pc.cockNoun] into the [rat0.furColor] rat’s butt is the final act of this prelude.");
 	
 	pc.cockChange();
 
@@ -2232,37 +2228,38 @@ public function ratsRatsRatsStackedStackedStacked():void
 	{
 		output("\n\nThat thrust pushed you deeper into all of them at once. Feelings that were never meant to be experienced by mortal life trigger a nuclear reaction in your hormones. The collective friction of three butts");
 		if (vagFuck) output(" and a tight, clenching pussy");
-		output(" is in no way describable, least of all by you: the incoherent babbles fleeing your slavering mouth have the trio extending their sympathies. Innate functions such as remembering to stand, being able to see and hear, to recognize and interact with reality around you are either no longer applicable or fast getting to that point. The unanimous contractions you trigger in the wide-eared bandits shunts the breathing world away, leaving you desperate for more.");
+		output(" are in no way describable, least of all by you: the incoherent babbles fleeing your slavering mouth have the trio extending their sympathies. Innate functions such as remembering to stand, being able to see and hear, to recognize and interact with reality around you are either no longer applicable or fast getting to that point. The unanimous contractions you trigger in the wide-eared bandits shunts the breathing world away, leaving you desperate for more.");
 	}
 	
 	output("\n\nIt takes... It takes more than a moment to adapt. Monumental effort is required to control your lusts, and what you spend on that takes away from other overstressed bodily functions. Their holes tighten around your thickened brace of manmeat so much that pre backs up inside your cocks, sloughing inside. Frustrated that they have nowhere else to go, those prostate puddles take their anger out on you by fighting against their searing prison, pushing outwardly from your poor crotch and scaling the pressure by a few mathematical magnitudes.");
-	output("\n\nIt’s nothing short of oppression.");
+	output("\n\nIt’s nothing short of penile oppression.");
 	if (silly) output(" It’s all in the numbers. Number one, that’s terror. Number two, that’s terror.");
 	output("\n\nYou slump " + (pc.tallness < 5*12 ? "face-first into the mouse-alien’s ass" : "down on to the rodenian’s back") + ", gargling like some mental patient. Spittle froths at your [pc.lipsChaste] and you nearly bite the [pc.tongue] wildly slapping in your mouth. Your pants devolve into hoarse whines by the time you’re able to take another step inside. The brain and the body can adapt");
 	if (pc.lustQ() > 75) output(", and fortunately it’s getting closer faster than anyone else might experience.");
 	else output(", but it sure as hell isn’t adapting fast enough.");
-	output("\n\n<i>“G-gahhh!!”</i> one squeals. <i>“T-this is... Not being able to move make this so much harder!”</i> the half-rat whimpers. They may not be able to move, but you can. <i>“T-there’s no way this is going to work!”</i> the mouse-boy cries. <i>“This won’t woooaackk-”</i>");
+	output("\n\n<i>“G-gahhh!!”</i> one squeals. <i>“T-this is… Not being able to move make this so much harder!”</i> the half-rat whimpers. They may not be able to move, but you can.");
+	output("\n\n<i>“T-there’s no way this is going to work!”</i> the mouse-boy cries. <i>“This won’t woooaackk-”</i>");
 	output("\n\nYou didn’t shove all this cock in just to stop now! It’s going to work, it has to!");
-	output("\n\nSteam billows from your flaring nostrils, a sign of the effort it takes just to hold your ground. The musk billowing through the air doesn’t help much past lurching you into the next thrust, deep as you possibly can., their bodies tightening around you again. Pre-seed plummets through the six-rippling-cheeked channel of smooth and fuzzy derriere, flooding the area you’re in. It has to equalize, somewhere, somehow...! <i>Fuck!!</i>");
+	output("\n\nSteam billows from your flaring nostrils, a sign of the effort it takes just to hold your ground. The musk billowing through the air doesn’t help much past lurching you into the next thrust, deep as you possibly can, their bodies tightening around you again. Pre-seed plummets through the six-rippling-cheeked channel of smooth and fuzzy derriere, flooding the area you’re in. It has to equalize, somewhere, somehow...! <i>Fuck!!</i>");
 	output("\n\n<i>“G-guys... We need to... We need-!!”</i> the [rat0.furColor] rodenian husks, <i>“...TO CALM DOWN! If we just sit here cumming our brains out we’re not gonna get anywhere!”</i>");
 	output("\n\n<i>“Y-y-y-eah... Oh stars, it feels so good as is... It’s too hard to-”</i>");
 	output("\n\n<i>“Yes, I know, <b>IT’S FUCKING HARD!</b>”</i> she barks, fists slamming into the half-rat’s sides with tiny wet smacks. <i>“Y-yooooou <i>ughh</i> know what else was hard? Snatching those expensive dildos from that Tamani courier! I wish we kept them, because those would have been good practice in the off-chance some " + (ratsPCIsKnown() ? "stranger" : "CEO") + " came stomping around to stick [pc.hisHer] huge dicks in us!”</i>");
 	output("\n\n<i>“B-but I can’t feel my legs, how is this going to feel good at all!?”</i> the mouse-boy timidly asks, more like a girly cry.");
 	output("\n\n<i>“Well if you... if youahhhhhhhHAAA”</i> she growls at the raking of your overindulging boners. <i>“Ugh! If you’d STOP CRYING- and STOP- worrying about the size then we might actually get this over with!");
-	if (ratsPCIsGood()) output(" N-not that I want it over with quickly, [pc.mister] CEO!”</i> she glances at you cutely.");
+	if (ratsPCIsGood()) output(" N-not that I want it over with quickly, [pc.mister] CEO!”</i> she corrects, glancing at you cutely.");
 	else output("”</i>");
-	output("\n\nIncredibly, their quibbling eases the fluid-blocking compression on your [pc.multiCocks], your plumbing finally having a chance to push out the obstructed flow. The bathtubs of dick-slime finally pumping into three rat’s nests the back and forth easier, easier, and fuuuuck now this is getting somewhere. The mood changes for the better, and you feel like you’re getting a grip on everything!");
+	output("\n\nIncredibly, their quibbling eases the fluid-blocking compression on your [pc.multiCocks], your plumbing finally having a chance to push out the obstructed flow. The bathtubs of dick-slime finally pumping into three rat's nests makes the back and forth easier, easier, and fuuuuck now this is getting somewhere. The mood changes for the better, and you feel like you're getting a grip on everything!");
 	output("\n\nYou’re certainly getting a grip on rodenian ass. It doesn’t matter if it’s the [rat0.hairColor] rat’s, the half-rat’s... You just need to hold on, because this ride is about to start.");
 	output("\n\nUnthinkingly, you withdraw until [pc.eachCockHead] are just barely inside your conquests, reveling in the hellishly frictious stroke of [pc.cockHead] against capacitous colon, then push back in. When you exhale, your body is again overwhelmed, but not to the previous extent. Focusing on other concepts and not on claiming " + (vagFuck ? "four" : "three") + " glory-holes is what made it so hard. Your [pc.multiCocks] feel ten times as sensitive. Now that you think in emotions and images, all you feel is pure bliss.");
-	output("\n\n<i>“Mmmhh... Love that...”</i> the rodenian coos. <i>“Now that’s somethin’!”</i> she writhes on your mast, squealing when you reorganize her pelvis into to a proper cock-mitten.");
+	output("\n\n<i>“Mmmhh... Love that...”</i> the rodenian coos. <i>“Now that’s somethin’!”</i> She writhes on your mast, squealing when you reorganize her pelvis into a proper cock-mitten.");
 	output("\n\n<i>“Oh, me too!”</i> the halfbreed [rat2.boyGirl] calls, a long moan flowing over [rat2.hisHer] lips. <i>“It’s not like normal sex either, I can feel it in you too!”</i>");
 	output("\n\nAnd the bottom boi? <i>“It’s kind of strange, but not uncomfortable. It’s really warm...”</i> he whispers, still clutching and rubbing his prick.");
 	output("\n\nThe lurid amount of " + (pc.hasVagina() ? "herm-" : "dick-") + "lube moistening the thieves’ nethers has you pistoning back and forth in no time. The pirate skyscraper rocks like a ship at sea. You dare not waste your energy on speaking, you just focus on humping and moaning. Those two things you do <i>extremely well</i>. Your [pc.multiCocks] squelch loudly against swampy skin and fur. [pc.Hips] haul in rapid succession, tugging and yanking with barely consistent gyration.");
-	output("\n\nThe pounding of your heart, felt in every holstered cock, is spread throughout the rat’s backsides. The greatest pleasure is most certainly felt on the outstroke, what with the translucent waterfall channeling between their cracks, parted by the presence of thrumming dick. Thickening streams of effluent runoff find their own way on the ground, growing larger each time you pull out.");
+	output("\n\nIn your holstered cocks you feel the drum beats of your heart, those vibrations spreading throughout the rat's backsides. The greatest pleasure is most certainly felt on the outstroke, what with the translucent waterfall channeling between their cracks, parted by the presence of thrumming dick. Thickening streams of effluent runoff find their own way on the ground, puddles growing larger each time you pull out.");
 	output("\n\nCoarse tails course around your torso, your [pc.arms], and even your [pc.thighs]. It’s not much of a surprise that the rats are so horny they’re adding to the strength of your thrusts. Now when your hips ram into theirs, the whole stack is in some danger of collapsing. Better not let them think they’re in control!");
 	if (pc.isNaga()) output(" You finally muster up the lower body strength to help steady the stacked sluts using your [pc.leg]. The mouse-boy sounds the most appreciative of that!");
 	
-	if (rat2.isFemale()) output("\n\nYou feel out the half-rat girl’s pussy, circling for her lacquered gumball obscured by phallic muscle; there’s a cock-compressing shock that quakes the pile when you tweak that pleasure-bud at the hood of her cunt. Pinching that fem-buzzer between thumb and index finger, wriggling your hand like a welcome vibrator. <i>“Ackkkggahaaa!”</i> she screams, her tail falling limp from your body like stretched rope.");
+	if (rat2.isFemale()) output("\n\nYou feel out the half-rat girl's pussy, circling for the lacquered gumball obscured by phallic muscle; there's a cock-compressing shock that quakes the pile when you tweak that pleasure-bud at the hood of her cunt. Target locked, you pinch that fem-buzzer between thumb and index finger, wriggling your hand like a military-grade vibrator. <i>“Ackkkggahaaa!”</i> she screams, her tail falling limp from your body like stretched rope.");
 	else output("\n\nObscured beneath your enviable girths is the halfbreed boy’s balls. You cup one nut then the other before squeezing that taut rat-sack. From all the jostling in his weighty nuts you can tell he just spurted out another load of jizz! <i>“Gggaaah!”</i> he squeaks, grunting appreciatively as off-white goop oozes out the cock nestled between his belly and the mouse-boy’s back; his tail falls limp from your body like stretched rope.");
 	
 	output("\n\nThese rats are not going to be walking straight for the rest of the day. You doubt the trail of preseed leading back to their treasure troves’ll prevent any petty purloining in the future. Maybe you’ll find them sooner rather than later when you need to empty your [pc.balls] later?");
@@ -2273,8 +2270,8 @@ public function ratsRatsRatsStackedStackedStacked():void
 	else if (pc.cocks.length > (rat2.isFemale() ? 4 : 3)) output(" That extra useless fuck-pole slides between layered ass and thigh in its inconsiderate adventure.");
 	output(" Moving faster is a process of inches, too fast and you’ll cum, and too slow you’ll be back to where you were: getting crushed by uncontrolled lust.");
 	output("\n\nThe breaths you take are so thick that the inner conflagration can’t be totally ignored on your cloudy climb to the top of bliss mountain. Painfully hot air hounds your ragged intakes; you pet the rats by the bases of their tails, and even catch one tip in your mouth as it swims by, sucking on its tip to its owner’s fuck-crazed satisfaction. To be honest, you’ve completely forgotten the recency that led to this. The flawless skin rubbing against your violently throbbing pricks is all you’re glad to feel and know.");
-	output("\n\nThe ruinous pleasure felt through your " + (vagFuck ? "four" : "three") + " slotted cocks is still not something you can get a handle on. Very rarely does it feel like sex, it’s more like you’ve been slotted up to a series of milking machines made for those with too much action downstairs.. The orgasms you trigger in the now insensate gaggle of rats treat your cocks to hellishly varied pressures that clamp down on your members, intent on harvesting your loinfruits.");
-	if (pc.balls > 0) output(" The mini-climaxes either forcibly suck or gently coax the " + (pc.ballSize() < 8 ? "wobbling" : "tremendously weighty") + (pc.balls > 1 ? "nuts" : "nut") + " in your ballsack to offer up greater loads of pre and seed. They’re so tight" + (pc.ballSize() < 8 ? "" : " and heavy") + " that the batch you’re brewing seems like expulsion’ll cause a permanent deleterious effect on your sanity when you cum."); 
+	output("\n\nThe ruinous pleasure felt throughout your " + (vagFuck ? "four" : "three") + " slotted cocks is still not something you can get a handle on. Very rarely does it feel like sex, it's more like you've been slotted up to a series of milking machines made for those with too much action downstairs. The orgasms you trigger in the now insensate gaggle of rats treat your cocks to hellishly varied pressures that clamp down on your members, intent on harvesting your loinfruits.");
+	if (pc.balls > 0) output(" The mini-climaxes either forcibly suck or gently coax the " + (pc.ballSize() < 8 ? "wobbling" : "tremendously weighty") + (pc.balls > 1 ? "nuts" : "nut") + " in your ballsack to offer up greater loads of pre and seed. They're so tight" + (pc.ballSize() < 8 ? "" : " and heavy") + " that the batch you're brewing seems like expulsion'll cause a permanent deleterious effect on your sanity when you blow."); 
 	output("\n\nThere’s not an ounce of space you haven’t mapped in the quieted trio. The gentle rocking back and forth casually elevates you to the point where nearly all control is lost. " + (vagFuck ? "As the half-rat’s pussy creams your cock once again, y" : "Y") + "ou realize that you <i>need to cum</i>.");
 	output("\n\nThat need has become more than a biological function. It’s become an all-encompassing desire. You’ve held it off for long enough, you’ve fucked these rats senseless - and yourself too. It’s the last step to claiming them, and ruining them for anyone else. You abandon rationality as you thump noisily into their bodies. Heads hang, tongues loll, eyes have rolled back, and the only thing coming from them now are moans of dull bliss. Are they ready? But, can you say you are, too?");
 	output("\n\nIt’s time to find out.");
@@ -2341,9 +2338,9 @@ public function ratsIWannaGetOffOnMrMousesWildRide(vagId:int):void
 	// PC herm
 	if (pc.isHerm())
 	{
-		output("Tails and ears flex in tune with your firing synapses. [pc.EachCock] " + (pc.hasCocks() ? "throb" : "throbs") + " and [pc.eachVagina] " + (pc.hasVaginas() ? "tingle" : "tingles") + " in defiance of each other, femininity and masculinity vie for control of your decision making");
+		output("Tails and ears flex in tune with your firing synapses. [pc.EachCock] " + (pc.hasCocks() ? "throb" : "throbs") + " and [pc.eachVagina] " + (pc.hasVaginas() ? "tingle" : "tingles") + " in defiance of each other. Femininity and masculinity vie for control of your decision making");
 		if (pc.isCrotchGarbed()) output(" by making a mess of your [pc.crotchCover]");
-		output(". There’re holes to plow and cocks to take. But you know what you want out of these rats. There’s only one way they can apologize for trying to mug you.");
+		output(". There're holes to plow and cocks to take... but you know what you want out of these rats. There's only one way they can apologize for trying to mug you.");
 	}
 	// PC vagina 
 	else if (pc.hasVagina())
@@ -2371,7 +2368,7 @@ public function ratsIWannaGetOffOnMrMousesWildRide(vagId:int):void
 	if (pc.isBimbo() || pc.isBro()) output(" sultry smile spreading across");
 	else if (pc.isNice()) output(" very warm smile cresting");
 	else output(" predatory grin widening on");
-	output("your [pc.face].");
+	output(" your [pc.face].");
 
 	if (pc.isBimbo())
 	{
@@ -2412,7 +2409,7 @@ public function ratsIWannaGetOffOnMrMousesWildRide(vagId:int):void
 	}
 
 	output("\n\n<i>“W-wait a sec, what about " + rat2.mf("me", "us") + "!?”</i> the sharp accented rodenian whines. " + (ratsPCIsGood() ? "<i>“C-come on, [pc.mister] CEO, you can’t just leave " + rat2.mf("me", "us") + " out! F-fine, whatever, I don’t care if you like it or not " + rat2.mf("I’m", "we’re") + " not just gonna stand still!”</i>" : "<i>“You can’t just leave " + rat2.mf("me", "us") + " out of this, why do" + rat2.mf(" they", "es he") + " get the attention?”</i>"));
-	output("\n\nYou weren’t planning on that, but before you can speak your mind, she " + rat2.mf("has", "and the halfbreed girl have") + " also hopped up and begun fidgeting with " + rat2.mf("her", "their") + " gear. It’s kind of adorable, actually. Meanwhile, the modded mouse has already gotten his armor off, hard to miss with how noisy the act was. He goes to unwrap himself from an inky undersuit, but the fabric around his crotch splits and his eager manhood thrusts through the crotch with a loud snap of fabric");
+	output("\n\nYou weren’t planning on that, but before you can speak your mind, she " + rat2.mf("has", "and the halfbreed girl have") + " also hopped up and begun fidgeting with " + rat2.mf("her", "their") + " gear. It’s kind of adorable, actually. Meanwhile, the modded mouse has already gotten his armor off, hard to miss with how noisy the act was. He goes to unwrap himself from an inky undersuit, but the fabric around his crotch splits and his eager manhood thrusts through the cloth with a loud snap of fabric");
 	if (rat2.isMale()) output(", the other rat-boy suffering similarly");
 	output(".");
 	output("\n\nYelping embarrassed, he hurriedly shucks the rest before more damage is done to the worn out attire, and soon his cock, his balls, and his sweaty frame are laid bare. The boy-thief’s bobbing manhood, 8-inches long, beads with pre the longer he stares at you");
@@ -2441,7 +2438,7 @@ public function ratsIWannaGetOffOnMrMousesWildRide(vagId:int):void
 	// PC low libido <=33
 	if (pc.libido() <= 33) output("\n\nNo better way to start then gently asserting yourself: you grip " + rat2.mf("their thrumming shafts", "his thrumming shaft") + ", exploring the goods with tentative flicks and pumps. Fingers dance around the " + rat2.mf("rings of their fleshy crowns", "ring of his fleshy crown") + ", tips vibrating against the frenulum" + rat2.mf("s. They squeak", ". He squeaks") + " in adulation, hands balling into fists just above " + rat2.mf("plump waists", "his plump waist") + ". Gumballs of rat-pre churn out of " + rat2.mf("their", "his") + " ample " + rat2.mf("cocks", "cock") + ". First you taste it, then you smear it over " + rat2.mf("their shafts", "his shaft") + ". The hefty balls hanging full and ripe beneath " + rat2.mf("them", "it") + " are coated too, making sure " + rat2.mf("their", "his") + " loins are wet, warm, and very, <i>very</i> ready.");
 	// PC medium libido 34-66
-	else if (pc.libido() <= 66) output("\n\nSmirking, you [pc.move] over to the nude " + rat2.mf("rats", "rat") + " and wrap your hands around " + rat2.mf("their", "his") + " delightfully warm prick" + rat2.mf("s. They squeak", ". He sqeuaks") + " at the eagerness of your waggling wrists. Sonorous moans break out, happy with this pace. Your palms now smeared with pre, you catch a wad of the translucent goo and bring it to your [pc.lipsChaste], licking it up and cooing at its salty base. There’s a heave in your groin, and you involuntarily thrust out towards them. You can’t wait any longer; your " + rat2.mf("rats are", "rat is") + " right there waiting to be ridden.");
+	else if (pc.libido() <= 66) output("\n\nSmirking, you wrap your hands around " + rat2.mf("their", "his") + " delightfully warm prick" + rat2.mf("s. They squeak", ". He squeaks") + " at the eagerness of your waggling wrists. Sonorous moans break out, happy with this pace. Your palms now smeared with pre, you catch a wad of the translucent goo and bring it to your [pc.lipsChaste], licking it up and cooing at its salty base. There’s a heave in your groin, and you involuntarily thrust out towards " + rat2.mf("them", "him") + ". You can’t wait any longer; your " + rat2.mf("rats are", "rat is") + " right there waiting to be ridden.");
 	// PC high libido >=67
 	else
 	{
@@ -2455,8 +2452,8 @@ public function ratsIWannaGetOffOnMrMousesWildRide(vagId:int):void
 	output("\n\nHe’s not big, but he’s not too small either. Every throb of passion down there fills you with an intense and decidedly primitive warmth. Holding him like this, leading him on with the promise of taking you... It just makes you feel so shameless as you moan");
 	if (pc.hasCock()) output(", and it makes your [pc.cocksLight] drool a puddle on his body");
 	output(".");
-	output("\n\nAfter " + (pc.hasVagina() ? "your [pc.pussyNoun] has had its fun kissing cum-vein" : "you’ve had your fun asserting") + " you lift your body up and take his aching phallus in hand. Just holding that firmly erect mouse-member is powerful. You feel more appreciative of his shape, his length, how slippery it is, how hot it is. Bliss radiates from it in a tangible heat");
-	if (pc.hasVagina()) output(", mixing with the powerful heat billowing from your [pc.pussyNoun]");
+	output("\n\nAfter " + (pc.hasVagina() ? "your [pc.pussyNoun] has had its fun kissing cum-vein" : "you’ve had your fun asserting") + ", you lift your body up and take his aching phallus in hand. Just holding that firmly erect mouse-member is a pleasure. You feel more appreciative of his shape, his length, how slippery it is, how stiff it is. Bliss radiates from it in a tangible heat");
+	if (pc.hasVagina()) output(", mixing with the powerful air billowing from your [pc.pussyNoun]");
 	output(".");
 
 	// Two male rats
@@ -2545,12 +2542,12 @@ public function ratsTheRideNeverEnds(vagId:int):void
 	showRats((rat2.isMale() ? 6 : 1), true);
 	processTime(40);
 	
-	output("What starts out as a quiet gasp escalates to a breathy moan from the horny mouse-toy. His powerfully hard dick quickly familiarizes itself with your spasming " + (vagId >= 0 ? "cunt" : "butt") + " in little time, splitting you with its glorious presence.");
-	output("\n\nVelety fuzziness rockets up your spine as " + ((vagId < 0 ? pc.ass.looseness() : pc.vaginas[vagId].looseness()) < 3 ? "the tightness of your pocket provokes a deep groan" : "he moans reactively to the ease of passage through your accommodating tunnel") + ". Every claimed inch of rat-phallus dumps another load of hormones your addled mind. Husky voices join in erotic chorus; the iron veins on his dick spread cushiony vaginal muscles into their shapes. Inner walls squeeze conquering terran cock deeper, goading the invader into cumming straight away.");
+	output("What starts out as a quiet gasp escalates to a breathy moan from the horny mouse-toy. His powerfully hard dick familiarizes itself with your spasming " + (vagId >= 0 ? "cunt" : "butt") + " in little time, splitting you with its glorious presence.");
+	output("\n\nVelvety fuzziness rockets up your spine as " + ((vagId < 0 ? pc.ass.looseness() : pc.vaginas[vagId].looseness()) < 3 ? "the tightness of your pocket provokes a deep groan" : "he moans reactively to the ease of passage through your accommodating tunnel") + ". Every claimed inch of rat-phallus dumps another load of hormones on your addled mind. Husky voices join in erotic chorus; the iron veins on his dick spread cushiony vaginal muscles into their shapes. Inner walls squeeze conquering terran cock deeper, goading the invader into cumming straight away.");
 	output("\n\nFlexible hands grip your [pc.hips], the voice behind them growling from the effort it takes not to blow a thick load. Hilted and wholly immersed in you, the underside of his cocktip pulses " + (vagId >= 0 ? "against your G-spot" : "against your most sensitive nerves") + ", and any thought other than getting plowed is shoved away by its insistent vibrations. The dirty pirate-boy rolls his waist to free his pinned tail and rob you of some muscular control.");
 	output("\n\nWhich is fine, because that prehensile passenger still wraps you in itself, helping keep you steady while showing respect for your wants.");
 	if (pc.hasTail()) output(" Your [pc.tails] " + (pc.hasTails() ? "begin" : "begins") + " to wag in mutual happiness, and it even receives a few love-taps from his!");
-	output("\n\nYou are only partially aware of your body’s subtle tempo during these satiny moments, acting of its own accord to please its scrappy mate while you relish each other. Your nails rake across his chest after a powerful spike of joy, the scrapes making your lawless lover squeak adorably. The flesh squirming around inside tickles tickles your body with an addictive pleasure -- it makes you realize how empty you were before he was there, and it makes your eyes flutter at the fullness he will soon provide.");
+	output("\n\nYou are only partially aware of your body's subtle tempo during these satiny moments, acting of its own accord to please its scrappy mate while you relish each other. Your nails rake across his chest after a powerful spike of joy, the scrapes making your lawless lover squeak adorably. The pulsing flesh squirming around inside tickles your body with an addictive pleasure... it makes you realize how empty you were before he was there, and it makes your eyes flutter at the fullness he will soon provide.");
 	output("\n\nThe mouse-boy stares up at you, needful affection swimming in his [rat1.eyeColor] eyes. When you stop squinting, you are hopelessly swept away by the raw sincerity twinkling there. His genuine look melts your thrumming heart in much the same way your " + (vagId >= 0 ? "[pc.vagina " + vagId + "]" : "[pc.asshole]") + " melts with pleasure");
 	if (vagId >= 0 || pc.ass.wetness() > 0) output(", slathering his prick with another silken stream of " + (vagId >= 0 ? "girlspooge." : "lube.") + (ratsPCIsGood() ? "Everything he does is so worshipful that you find it hard to believe they treated you like a dirty bureaucrat not too long ago." : "After knocking the klepto out of them, their real selves are laid bare, and you secretly hope this lasts longer than your encounter here."));
 	output("\n\n<i>“W-whenever you’re ready,");
@@ -2593,8 +2590,8 @@ public function ratsTheRideNeverEnds(vagId:int):void
 			else output("\n\nWere you really fighting them?");
 		}
 
-		output("\n\nYou bounce up and down on the terran boy’s crotch, rising slowly and falling fast, smashing into his pelvis with progressively stronger bucks of the hip. The [rat2.furColor]-furred half-rat struggles to keep his twitching dong buried between your stubborn rump, groaning and sometimes wailing with every sexual dive.");
-		if (pc.hasPlumpAsshole()) output(" It’s not just his prick that’s squeaking against flesh, it’s your 	inflated asshole, too. The fat ring of anal entrance has the texture of a pocket pussy, and while it’s not trying to suck his cock inside it makes his hotdogging one to savor.");
+		output("\n\nBouncing up and down on the terran boy's crotch is your body's only purpose. Rising slowly and falling fast, you smash into his pelvis with progressively stronger bucks of the hip. The [rat2.furColor]-furred half-rat struggles to keep his twitching dong buried between your stubborn rump, groaning and sometimes wailing with every sexual dive.");
+		if (pc.hasPlumpAsshole()) output(" It's not just his prick that's squeaking against flesh, it's your inflated asshole, too. The fat ring of anal entrance has the texture of a pocket pussy, and while it's not trying to suck his cock inside it makes his hotdogging one to savor.");
 		output("\n\nYour [pc.hands] fall to your sweetheart’s waist in support of your hammering crotch. When you see the outline of his cock against your abdomen on the next liquid-splattering crash, a content smile brightens your shuddering features.");
 	
 		if (pc.hasBreasts())
@@ -2610,9 +2607,9 @@ public function ratsTheRideNeverEnds(vagId:int):void
 			output(". The other two squeak affectionately before joining in; three hands plant on " + (pc.bRows() > 1 ? "each pair of your [pc.fullChest]" : "your [pc.breasts]") + ", pushing up, down, wherever they feel like!");
 		}
 
-		output("\n\nThe [rat0.furColor] rodent kneels next to you, sliding your left arm between her breast with a coy grin. Nimble fingers dart for the [pc.clit]");
+		output("\n\nThe [rat0.furColor] rodent kneels next to you, sliding your left arm between her breasts with a coy grin. Nimble fingers dart for [pc.oneClit]");
 		if (pc.totalClits() > 1) output(" and the others beside it");
-		output(". Your vision shifts into a dimension of white lust, and your [pc.pussies] " + (pc.isSquirter() ? "cream" : "squirt violently") + " against rodent belly. <i>“Ooh that’s awesome, you came already!”</i> she exclaims, licking your [pc.girlCumNoun] off one finger. <i>“Nice, warm and tasty! Let’s see how many more times you cum, " + ratsMisterCEO() + "!”</i>");
+		output(". Your vision shifts into a dimension of white lust, and your [pc.pussies] " + (pc.isSquirter() ? (pc.hasVaginas() ? "cream" : "creams") : (pc.hasVaginas() ? "squirt" : "squirts") + " violently") + " against rodent belly. <i>“Ooh that’s awesome, you came already!”</i> she exclaims, licking your [pc.girlCumNoun] off one finger. <i>“Nice, warm and tasty! Let’s see how many more times you cum, " + ratsMisterCEO() + "!”</i>");
 		
 		if (pc.hasCock())
 		{
@@ -2626,7 +2623,7 @@ public function ratsTheRideNeverEnds(vagId:int):void
 	
 		output("\n\nYou fall forward another inch, those energetic molestations becoming yet wilder, wresting motor function from you and running into the sloppy sunset with it. You could assert yourself, but you’re having too much fun in this drunk-like trance of wandering between three paths on an intersection, unsure of which road to walk. You crane your head, winking at the [rat2.furColor]-limbed rat behind you who happily fucks your ass cheeks.");
 		
-		output("\n\nYou slow your vertical oscillations to lean forward, spreading your smeared ass to reveal the " + (pc.ass.looseness() < 3 ? "tight" : "loose") + " pucker just above your claimed cunt.");
+		output("\n\nThere's an idea. You slow your vertical oscillations to lean forward, spreading your smeared ass to reveal the " + (pc.ass.looseness() < 3 ? "tight" : "loose") + " pucker just above your claimed cunt.");
 		if (pc.isBimbo()) output(" <i>“Here you go! Put it right in, nice ass for a nice rat!”</i> you squeal" + (pc.hairLength > 3 ? ", your [pc.hairs] flopping over your face." : "."));
 		else if (pc.isBro()) output(" <i>“Your turn, go ahead, and show me what you can do,”</i> you grunt, eyes barely open.");
 		else if (pc.isNice()) output(" <i>“Go on, I can’t wait to see what you can do...”</i> you wink good-naturedly, one finger on the cusp of insertion.");
@@ -2634,7 +2631,7 @@ public function ratsTheRideNeverEnds(vagId:int):void
 		else output(" <i>“Hurry up, or forget about it,”</i> you murmur impatiently.");
 
 		output("\n\n<i>“No problem!”</i> the rat boy exclaims");
-		if (pc.hasTail()) output(", gripping your furiously wagging [pc.tails]");
+		if (pc.hasTail()) output(", gripping your furiously wagging " + (pc.hasTails() ? "tails" : "tail"));
 		output(". <i>“If this is what you want, " + ratsMisterCEO() + ", then I won’t hold back!”</i>");
 		if (pc.libido() >= 33) output(" You brace yourself. His dribbling cock, backed by firm, constant pressure wiggles itself into position. You wonder if he’s going to thrust in all at once or take it slow.");
 		else if (pc.libido() >= 66) output(" You push back into him, cooing as you squash that cock between your pheromonally drenched " + (pc.isHerm() ? "hermhood" : (pc.isMale() ? "manhood" : "femininity")) + " and his soft abs. In a surprising, distinct show of dominance, he slaps your ass and realigns himself.");
@@ -2649,39 +2646,39 @@ public function ratsTheRideNeverEnds(vagId:int):void
 		output("\n\nNew levels of wetness are reached in your rectum, the [rat2.eyeColor]-eyed trap jerks his waist against yours, fucking the top and both sides of your colon while spurting copious amounts of warm pre. It’s the only way he can maintain some self-control while you bounce against the bottom-boy and take him along for the ride. You’re left swooning at the fuzzy-limbed rat’s cute, straining groans when you complete another cycle. Every rub of cockflesh against unstruck veins brushes an anticipatory feather over your heart, making you wonder if those gurgling balls are about to unload in your guts.");
 		output("\n\n<i>“Make room!”</i> the rodenian declares, mounting and smothering the mouse-boy’s face with her ass and leveling her head to yours. The pirate’s hands stroke your cheeks");
 		if (pc.hasHair()) output(" and thread your [pc.hair]");
-		output(", bringing your face up to hers. She plants a tingling kiss on your lips, her tongue forcing its way in to meet yours. There’s almost no technique to this, because as soon as she locked lips she went into a frenzy. Alert eyes spin full circuits, unfocused from lust. likely due to the airless licks around her butthole. The rat-slut’s already cumming, and when she flicks her neck to dance deeper in your mouth, strings of alien-juice wick from her ears.");
+		output(", bringing your face up to hers. She plants a tingling kiss on your lips, her tongue forcing its way in to meet yours. There’s almost no technique to this, because as soon as she locked lips she went into a frenzy. Alert eyes spin full circuits, unfocused from lust, likely due to the airless licks around her butthole. The rat-slut's already cumming, and when she flicks her neck to dance deeper in your mouth, strings of alien-juice wick from her ears.");
 		
 		if (pc.hasPerk("Myr Venom") || pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("\n\nMore likely, however, her orgasmic state is a result of your venom injection. Your aphro-saliva rinses her palate thoroughly, and now she reaches a new level of kiss-craze that most romanticists can only fantasize about.");
 
-		output("\n\nYou don’t know where to grip like this, not with two mouse-dicks sliding in and out of your [pc.vaginaNoun " + vagId + "] and [pc.asshole] in consistent, euphoria-fueled beats. Your bliss is fueled by the combined love of three rats and stoked by the studly twisting of crotches and cock-swiveling hips. Their heartbeats vibrate the deepest parts of your overheating body. This pleasure is felt nowhere more keenly than your crotch, and it’s a numbing presence that makes itself more familiar with every pivot.");
-		output("\n\nYour arousal boils over, cum leaks from the rodenian’s glistening ear-ginas in greater amounts. The moans desynchronize and grow ever more incoherent and forceful. Your tongue is extracted from your mouth by the slurping and suckling mouse-slut");
+		output("\n\nGripping on to anything is impossible with two mouse-dicks sliding in and out of your [pc.vaginaNoun " + vagId + "] and [pc.asshole] in consistent, euphoria-fueled beats. Your bliss is enabled by the combined love of three rats and stoked by the studly twisting of crotches and cock-swiveling hips. Their heartbeats vibrate the deepest parts of your overheating body. This pleasure is felt nowhere more keenly than your crotch, and it's a numbing presence that makes itself more familiar with every gyration.");
+		output("\n\nYour arousal boils over, cum leaks from the rodenian's glistening ear-ginas in greater amounts. The moans desynchronize and grow ever more incoherent and forceful. Your tongue is extracted from your mouth by the slurping and suckling mouse-slut");
 		if (pc.hasBreasts())
 		{
 			output(", whose hands have not left your [pc.nipples]");
 			if (pc.hasCock()) output(" or [pc.cockNoun]");
 			output(" alone");
 		}
-		output(". You’re not sure whose hands are on your [pc.clits]. Only one thing seems correct: you are experiencing nothing less than complete sexual anarchy.");
-		output("\n\nThe four of you sway to each other’s current; the thrusting accelerates, your eyes roll back, her eyes roll back, and the keening cry of ratgasm delivers you to yours. Both mouse pirates abruptly hilt and blast, their overfull cum factories bouncing against the top and bottom of your rear end in proximity to orgasm.");
-		output("\n\nTheir bodies tense and relax in sequence, and the sloshing you feel through the skin of their nutsacks is the last notice you get. Spurts and ropes of molten-hot cum paint your innards with an off-white goo, flooding your [pc.pussyNoun " + vagId + "] and your colon. To your surprise, they don’t cum just a bit, they fill you so much that it begins to pour out the sides of your well-used holes. Your cervix dilates in preparation to receive his virility, as if kneeling before the honeyed dick your undulating cunny was fixated on. Every drop of his balls is welcomed right into your feminine core.");
-		output("\n\nThe heat carves new pathways on your brain that weren’t there before. All you can do is whimper and hold tight to those who’ve pleased your heart and soul so utterly.");
+		output(". You're not sure whose hands are on your [pc.clits]. Only one thing seems correct: you are experiencing nothing less than complete sexual anarchy.");
+		output("\n\nThe four of you sway to each other's current; the thrusting accelerates, your eyes roll back, her eyes roll back, and the keening cry of ratgasm delivers you to yours. Both mouse pirates abruptly hilt and blast, their overfull cum factories bouncing against the top and bottom of your rear end in fluctuating nearness to orgasm.");
+		output("\n\nTheir bodies tense and relax in sequence, and the sloshing you feel through the skin of their rhythmically contracting ballsacks is the last notice you get. Spurts streams and ropes of molten-hot cum paint your innards with off-white goo, flooding your [pc.pussyNoun " + vagId + "] and your colon. To your surprise, they don't cum just a bit, they fill you so much that it begins to pour out the sides of your well-used holes.");
+		output("\n\nYour supplicating cervix dilates in preparation to receive such unmistakably potent virility, as if it's kneeling before its honeyed conqueror. Every drop of your bottom's balls is welcomed into your core, coaxed out by your undulating cunny, and for a brief, hormonal moment, you almost hope he gives you children, that he claims you so utterly you belong to him. That thought, and the heat, carve new pathways on your brain that weren't there before. All you can do is whimper and hold tight to those who've pleased your heart and soul so utterly.");
 	
 		if (pc.isHerm())
 		{
 			output("\n\nPressure swells in your loins, in your [pc.base], in your [pc.pussies]. Fingers strum your [pc.clits]");
 			if (pc.balls > 0) output(" and [pc.balls]");
-			output(" in an ocean of slicky-slick need; your " + (pc.hasVaginas() ? "cunts" : "cunt") + " deliver a hot " + (pc.isSquirter() ? "splattering projectile of [pc.girlCum]" : "stream of [pc.girlCum]") + " to its arouser. Your [pc.cocksLight] twitch and bounce, the tips rubbing against the alien’s belly, slowly shooting jet after jet of [pc.cum] into her ropy abdomen.");
-			if (pc.cumQ() >= 500) output(" So much [pc.cumNoun] fires off that the mouse-boy’s stomach is utterly obscured by the ridiculous puddle of [pc.cumColor] herm-goo that cascades in musky webs down his glutes.");
-			output("\n\nThey don’t stop thrusting until you and they are dry.");
+			output(" in an ocean of slicky-slick need; your " + (pc.hasVaginas() ? "cunts" : "cunt") + " deliver a hot " + (pc.isSquirter() ? "splattering projectile of [pc.girlCum]" : "stream of [pc.girlCum]") + " to its arouser. Your [pc.cocksLight] twitch and bounce, the tips rubbing against the alien's belly, slowly shooting jet after jet of [pc.cum] into her ropy abdomen.");
+			if (pc.cumQ() >= 500) output(" So much [pc.cumNoun] fires off that the mouse-boy's stomach is utterly obscured by the ridiculous puddle of [pc.cumColor] herm-goo that cascades in musky webs down his glutes.");
+			output("\n\nThey don't stop thrusting until you and they are dry.");
 		}
 		else
 		{
-			output("\n\nYour [pc.pussy " + vagId + "] seals the mouse-boy’s cock, the cum-spewing tip in kissing distance of your gagging womb. The vibratory teases force you to groan wantonly into the frenching rodenian’s mouth. Your fingers wheel and flail while your [pc.thighs] quake in the grasp of your dutiful lovers. " + (pc.isSquirter() ? "Lance-like squirts of" : "Streams of") + " [pc.girlCum] anoint the rats in your pheromonal signature. Every flex of your unresponsive tendons conjures up another wave of girlspooge, the [pc.girlCumVisc] fluids from your climaxing form.");
-			output("\n\nThey don’t stop thrusting until you and they are completely dry.");
+			output("\n\nYour [pc.pussy " + vagId + "] seals the mouse-boy's cock, the cum-spewing tip in kissing distance of your gagging womb. The vibratory teases force you to groan wantonly into the frenching rodenian's mouth. Your fingers wheel and flail while your [pc.thighs] quake in the grasp of your dutiful lovers. " + (pc.isSquirter() ? "Lance-like squirts of" : "Streams of") + " [pc.girlCum] anoint the rats in your pheromonal signature. Every flex of your unresponsive tendons conjures up another wave of girlspooge, the [pc.girlCumVisc] fluids draining from your climaxing form.");
+			output("\n\nThey don't stop thrusting until you and they are completely dry.");
 		}
 
 		output("\n\nHips squirm and spasm to force out the last of their backed up spunk; the halfbreed slumps over your backside while you fall forward and to the side, the rodenian girl tumbles off in an orgasmic stupor.");
-		output("\n\nThe mouse boy gasps for air, ropes of sweat and spit trickling down his cheeks. He weakly turns and reaches around your neck, hugging you with tight insistence, humming and nuzzling against your [pc.face] and [pc.chest]. <i>“T-that was really fun. You felt so good...!”</i> he whispers in that adoring voice of his. <i>“I’m glad you felt so good");
+		output("\n\nGasping for air, cords of sweat and spit trickle down the spent mouse-boy's cheeks. He weakly turns and reaches around your neck, hugging you with tight insistence, humming and nuzzling against your [pc.face] and [pc.chest]. <i>“T-that was really fun. You felt so good...!”</i> he whispers in that adoring voice of his. <i>“I’m glad you felt so good");
 		if (ratsPCIsKnown()) output(", [pc.mister] CEO");
 		output("...”</i> he says, finally succumbing to exhaustion.");
 		output("\n\nThe [rat2.skinColor]-skinned half-rat pulls out, alabaster seed leaking in his wake. He slumps to his knees and crawls over to your back, resting his exhausted head behind yours and becoming the other spoon. The rodenian also finds her place as close to you as possible, until the four of you are lying there in the richly textured aftermath of passionate sex.");
@@ -2689,7 +2686,7 @@ public function ratsTheRideNeverEnds(vagId:int):void
 	// PC chose anal, two male rats
 	else if (rat2.isMale())
 	{
-		output("\n\nThe modded thief’s innocent yet grimy face contorts in a variety of pleasurable ways: broad smiles and laughs, teeth gritting groans... He is so utterly precious that keeping him balls deep in your [pc.asshole] for the duration of the sex would be quite relaxing, but it wouldn’t be enough to cum. The salty-sweat scent in the air puts a certain feeling in " + (pc.hasVagina() ? "your [pc.pussies], a unique pressure that forces them to secrete more juice on his crotch." : "your loins, a unique pressure that makes every shift extremely pleasurable."));
+		output("\n\nThe modded thief’s innocent yet grimy face contorts in a variety of pleasurable ways: broad smiles and laughs, teeth gritting groans... He is so utterly precious that keeping him balls deep in your [pc.asshole] for the duration of the sex would be quite relaxing, but it wouldn’t be enough to cum. The salty-sweat scent in the air puts a certain feeling in " + (pc.hasVagina() ? "your [pc.pussies], a unique pressure that forces " + (pc.hasVaginas() ? "them" : "it") + " to secrete more juice on his crotch." : "your loins, a unique pressure that makes every shift extremely pleasurable."));
 		output("\n\nYou lean back and rise on the ligaments of your [pc.legOrLegs], hands on his plush thighs for support. The world as you perceive it dulls in an instant when the swollen crown of his maleness pulses pleasantly against your abdominal walls. Your head arches back");
 		if (pc.hairLength > 3) output(", [pc.hair] noodling over your face");
 		output(", and you cry out when the next layer of sweat thrusts from your pores, leaving behind a cool vivaciousness. To your rear, the [rat2.furColor]-limbed halfbreed boy takes firm hold of your [pc.ass], sinking his cock into the valley of your derriere proper.");
@@ -2723,14 +2720,14 @@ public function ratsTheRideNeverEnds(vagId:int):void
 			else output(" spurt");
 			output(" of cock-drool from your [pc.cocksLight]");
 		}
-		output(". The amount of squelching rat-pre spurting inside leaks out on every slow rise, and when you smash back into his hips, the rectal shockwave flings strings of sticky juice through the air. Your uncooperative hips " + (pc.hipRating() > 15 ? "pleasure" : "engulf") + " the half-rat boy’s phallus regardless of input, and all he can do is struggle to hold on.");
-		output("\n\nEvery gyration of your hip brings the mouse-boy’s exploring cock-tip to a new pleasure center, accelerating your bounce between the zones of lust and edging you rapidly to the precipice of release. When you get there, you’re already seeing stars");
+		output(". The amount of rat-pre squirting and squelching inside leaks out on every slow rise, and when you smash back into his hips, the rectal shockwave flings strings of sticky juice through the air. Your uncooperative hips " + (pc.hipRating() > 15 ? "pleasure" : "engulf") + " the half-rat boy’s phallus regardless of input, and all he can do is struggle to hold on.");
+		output("\n\nEvery gyration of your hip brings the mouse-boy’s exploring cock-tip to a new pleasure center, accelerating your bounce between the zones of lust and edging you rapidly to the precipice of release. When you get there, you're already seeing stars");
 		if (pc.totalClits() > 0) output(" shooting with the throbs in [pc.oneClit]");
 		output(". [pc.SkinFurScales] squeaks against rodent-flesh,");
 		if (pc.hasFur()) output(" matting");
 		else if (pc.hasScales()) output(" polishing");
 		else output(" shining");
-		output(" with eflluent.");
+		output(" with eflluence.");
 		if (pc.hasPlumpAsshole()) output(" It’s not just rat-prick that’s squeaking against your squirming crotch, it’s your inflated asshole too. The fat ring of anal entrance makes his hotdogging as pleasurable as the inside of a pocket pussy.");
 		
 		if (pc.hasCock() && pc.balls > 0)
@@ -2743,6 +2740,7 @@ public function ratsTheRideNeverEnds(vagId:int):void
 		}
 		if (pc.hasVagina())
 		{
+			output("\n\n");
 			if (pc.hasCock()) output("His fingers, with some stretching,");
 			else output("With some stretching, the mouse boy’s fingers");
 			output(" reach");
@@ -2777,7 +2775,7 @@ public function ratsTheRideNeverEnds(vagId:int):void
 			if (pc.hasVagina()) output(" and your [pc.pussyNoun] getting wetter");
 			output(" in this placitude. Less to worry about makes it much easier to relax, after all!");
 		}
-		output("\n\nYou find yourself dipping into a fuck-drunk state. You almost forget that there’s a poor mouse behind you with only an ass to hump and no hole to snuggle into. You crane your head, wink at the [rat2.furColor]-limbed boy, and stop. You spread your smeared ass cheeks, the cock inside violently pulsing around your spread hole, and smile at him. The raw hedonism of the act you’re about to propose makes your whole body shudder in simultaneous fear, excitement, and arousal.");
+		output("\n\nYou find yourself dipping into a fuck-drunk state, almost forgetting that there's a poor mouse behind you with only an ass to hump and no hole to snuggle into.  You crane your head, wink at the [rat2.furColor]-limbed boy, and stop to spread your smeared ass cheeks. The cock inside violently pulses on the edges of your spread hole. The raw hedonism of the act you're about to propose makes your whole body shudder in a mixture of fear, excitement, and arousal.");
 		
 		if (pc.isBimbo()) output("\n\n<i>“Why don’t you go ahead and... get in there? You can both fuck my ass!”</i> you squeal, your lips sore from the smile you wear.");
 		else if (pc.isBro()) output("\n\n<i>“You too, get in there,”</i> you grunt, eyes barely open.");
@@ -2794,17 +2792,17 @@ public function ratsTheRideNeverEnds(vagId:int):void
 		// PC buttslut
 		if (pc.hasPerk("Buttslut"))
 		{
-			output("\n\nYour bottom boy withdraws, and they both align their cocks with your asshole. <i>“Now, together,”</i> the trappy outlaw instructs. Their slender pricks glide cautiously towards your");
+			output("\n\nWithdrawing and realigning, they both move together. <i>“Slowly, now,”</i> the trappy outlaw instructs. Their slender pricks glide cautiously towards your");
 			if (pc.hasPlumpAsshole()) output(" inflated");
-			output(" anus, and you almost buck your hips impatiently. The moment their glans touch your wrinkly ring, your eyes roll back. Anal-pleasure subsumes your nerves when they spread your sphincter in unison; your butt stretches beautifully, the aching of your ass, the firing of every muscle, your body’s desperate attempt to seal again, fuck, it’s AWESOME! You just about cum from the effect, and your whole body vibrates amazingly, nearly making them cum! Could they just fill you with cum already!?");
+			output(" anus, and you almost buck your hips impatiently. The moment their glans touch your ring, your eyes roll back. Anal pleasure subsumes your nerves when they spread your sphincter in unison; your butt stretches beautifully. The aching of your ass, the straining of every muscle, your body's desperate attempt to suck those cocks in, fuck, it's AWESOME! You just about cum from the effect, and your whole body pulses amazingly, nearly making them cum! Could they just fill you with cum already!?");
 		}
 		// PC not buttslut
 		else
 		{
 			output("\n\nYour bottom boy withdraws. Both cocks come together, aligned with your asshole. <i>“Now, slowly,”</i> the trappy outlaw instructs. Twin slender cocks glide towards your");
 			if (pc.hasPlumpAsshole()) output(" inflated");
-			output(" anus. It makes you wince, then squint, when you feel both of them stretching your poor ass just a bit further. If they were any bigger, it’d hurt like hell, but it... actually feels kind of nice, all the sweat and pre making it a ‘so far, so good’ deal.");
-			output("\n\nAnd then their girth gets in there. That changes your perspective immediately, and you understandably wail. " + (pc.ass.looseness() < 3 ? "If you weren’t loose before, you are now, and it’s going to last! Your body undergoes its own mini-earthquake as it frantically tries to accommodate the two mice." : "Even though you were already loose, this sensation is far different than what you expected, and puts you on the brink of orgasm. The effect it has on you is inexpressibly mind-blowing."));
+			output(" anus. It makes you wince, then squint, when you feel both of them stretching your poor ass just a bit further. If they were any bigger, it'd hurt like hell, but it… actually feels kind of nice, all the sweat and pre making it a 'so far, so good' deal. ");
+			output("\n\nAnd then their girth begins to spread you <i>wide</i>. Your perspective changes immediately, and you understandably wail. " + (pc.ass.looseness() < 3 ? "If you weren't loose before, you are now, and it's going to last! Your body undergoes its own mini-earthquake as it frantically tries to accommodate the two mice." : "Even though you were already loose, this sensation is far different than what you expected, and puts you on the brink of orgasm. The effect it has on you is inexpressibly mind-blowing."));
 		}
 		
 		pc.buttChange(rat1.biggestCockVolume() + rat2.biggestCockVolume());
@@ -2817,13 +2815,13 @@ public function ratsTheRideNeverEnds(vagId:int):void
 
 		if (pc.hasPerk("Myr Venom") || pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("\n\nThe moment her tongue dances energetically across your palate, she gets a full taste of your aphro-saliva. A gout of it forces its way past her lips to thoroughly rinse her gums in chemical arousal. Her mind explodes, entering into a kiss-based frenzy, slobbering all over your [pc.face] in search for more of that addictive treat.");
 
-		output("\n\nIt doesn’t do much to distract you from the joy of being stuffed by two cocks in one hole. The outlaw’s diameters are just delectable enough for it to work, and they even have space to move! Their movements are more like saws that pry you even further open, but because their musky cocks are grinding against each other like that, they hit the previously unreached parts of your butt. Reasoning pours out your [pc.ears] like crystalline slime spills from the horny rodenian’s when her neck flicks. Your [pc.arms] fall limp, palms weakly pushing back against the mouse-boy’s belly.");
-		output("\n\nAs they worked together in the fight, the rat boys work together in coitus. Their matching members travel inwards and outwards in long, undeniably addicting strokes. Flows of preseed splatter against every possible inch of your too-sensitive walls. Their full, squeezable ‘nads press suggestively against the fat of your ass, noticeably jostling, keeping you on edge and always bracing for the first shot of robber’s spunk roiling in those sloshing sacks.");
+		output("\n\nIt doesn’t do much to distract you from the joy of being stuffed by two cocks in one hole. The outlaw's slender diameters allow them space to move; their movements are more like saws that pry you even further open, but because their musky cocks are grinding against each other like that, they hit the previously unreached parts of your butt. Reasoning pours out your [pc.ears] like crystalline slime spills from the horny rodenian's when her neck flicks. Your [pc.arms] fall limp, palms weakly pushing back against the mouse-boy's belly.");
+		output("\n\nAs they worked together in the fight, the rat boys work together in coitus. Their matching members travel inwards and outwards in long, undeniably addictive strokes. Flows of preseed splatter against every possible inch of your too-sensitive walls. Their full, squeezable 'nads press suggestively against the fat of your ass, noticeably jostling, keeping you on edge and always bracing for the first shot of robber's spunk roiling in those sloshing sacks.");
 		output("\n\nThat relishing kiss is broken and you’re pushed down, dully moaning when brought closer to the mouse-alien’s tits. You don’t need to vocalize your pleasure in this: driven by instinct you suckle from her pointed nipples, although she bears no milk. One of her ecstatic paws runs circles on your scalp");
 		if (pc.hasEmoteEars()) output(", focused on your delicate [pc.ears]");
 		output(", and the other dives into her ear-pussy.");
 		if (pc.hasTail()) output(" The only " + (pc.hasTails() ? "parts" : "part") + " of your body able to move with anything resembling strength now " + (pc.hasTails() ? "are" : "is") + " your pheromone-spraying [pc.tails].");
-		output("\n\nAll you can comprehend are rapturous cries as your partners come ever so much closer to stuffing your ass full of rat jizz. You cum, though it’s minor you can’t tell from where while preoccupied with those pebbly [rat0.nippleColor] teats. Tails wind around your waist like restraining rope to halt the frame-rattling quakes, and to keep you steady for their accelerating motions.");
+		output("\n\nAll you can comprehend are rapturous cries as your partners come ever so much closer to stuffing your ass full of rat jizz. You cum, though it's minor, and you can't tell from where while preoccupied with those pebbly [rat0.nippleColor] teats. Tails wind around your waist like restraining rope to halt the frame-rattling quakes, and to keep you steady for their accelerating motions.");
 		output("\n\nTaken for the ride of your life, nothing but pleasure dominates your mind; saliva drips in elongated teardrops from your hanging tongue. Hips swivel and gyrate to better plumb your colon, searching out untapped pockets of pleasure. Hairs raise with every ticklishly lewd whisper the rodenian squeaks into your blissed-out skull. The mouse boys, having cried themselves hoarse from what must be incomprehensible pressure on their pricks, lose their once controlled pace and slam into your [pc.asshole] with reckless abandon.");
 		output("\n\nSomething scintillating hits you, something torrid sloughs inside... They’re cumming.");
 		output("\n\nYou’re not sure who came first, but when the first searing rope of mouse-spooge paints your asshole, another follows, and then another. The first sensation was a dull indicator, but the next pull your stubborn levers. You gasp shrill as your bum is filled and stretched apart by inflating urethras. You can feel their hefty balls against your ass");
@@ -2832,14 +2830,14 @@ public function ratsTheRideNeverEnds(vagId:int):void
 	
 		if (pc.isHerm())
 		{
-			output("\n\nLeft unattended, you’re forced to [pc.EachCock] and [pc.eachVagina] spurt and " + (pc.isSquirter() ? "squirt" : "spray") + " [pc.cum] and [pc.girlCum] in");
+			output("\n\n[pc.EachCock] and [pc.eachVagina] spurt and " + (pc.isSquirter() ? "squirt" : "spray") + " [pc.cum] and [pc.girlCum] in");
 			if (pc.cumQ() < 100) output(" middling");
 			else if (pc.cumQ() < 500) output(" great");
 			else output(" monstrous");
 			output(" amounts, drenching yourself and the rats in the way only a");
 			if (pc.cumQ() >= 500) output(" gifted");
 			output(" hermaphrodite could. The painful tensing in your cock, and the rhythmic tingles in your pussy and womb force their way to the front of your mind, making sure you add your fluids to the tryst one way or the other.");
-			if (pc.cumQ() >= 500) output(" All the [pc.cumNoun] surging against the rodenian’s abdomen pools on to the mouse-boy’s gut, cascading down his waist in [pc.cumVisc] webs.");
+			if (pc.cumQ() >= 500) output(" All the [pc.cumNoun] surging against the rodenian's abdomen pools on to the mouse-boy's gut, cascading down his waist in [pc.cumVisc] webs.");
 		}
 		else if (pc.hasVagina())
 		{
@@ -2862,7 +2860,7 @@ public function ratsTheRideNeverEnds(vagId:int):void
 		}
 
 		output("\n\nThe half-rat boy whines and pulls out first, the last of his cum firing off on your ass cheeks. He falls to his knees in exhaustion, panting, still cumming, emptying his balls like a good boy. The rodenian girl in front of you tumbles off with half-lidded eyes. Tails slip from your waist like rope no longer taut. You collapse to the side, your lawless lover hyperventilating as his pulsing cock dribbles out the rest of his climax, emptiness finally arresting the flow.");
-		output("\n\nThe first move is made by the meek little boy you all rode into the ground: he turns over and reaches out for you, arms wrapping around neck, tired face nuzzling into your [pc.fullChest]. <i>“T-that was really good... thank you so much...”</i> he whispers before his [rat1.eyeColor] eyes seal.");
+		output("\n\nThe first move is made by the meek little boy you all rode into the ground: he turns over and reaches out for you, arms wrapping around your neck, tired face nuzzling into your [pc.fullChest]. <i>“T-that was really good... thank you so much...”</i> he whispers before his [rat1.eyeColor] eyes seal.");
 		output("\n\nYou weave an arm around his head too, the others crawling to join in the aftersex cuddles. You and they spend the next few minutes together completely winded, but in utter bliss.");
 	}
 	else if (vagId >= 0)
@@ -2873,12 +2871,12 @@ public function ratsTheRideNeverEnds(vagId:int):void
 		output(". Her playful giggles are a sensory caress straight to your heart. Her simultaneously loving and adorable tone of voice threatens to steal the show!");
 		output("\n\nThe effect of it is no less impressive, she knows just how to please the feminine form: the facial tics when a spike of pleasure nails the both of you are magazine-worthy. Your bottom boy’s dirty face makes the cutest expressions!");
 		if (pc.isBimbo() || pc.isBro() || pc.libido() > 66) output(" You kinda wanna take a pic of that for ‘relief’ efforts later!");
-		output("\n\nThere’s a distinct thrill, too, of turning the puppy-eyed mouse boy into your personal fuckpuppet, because even the smallest tremble in his body manages to reach every muscle in yours, coaxing you into atmospheric levels of pleasure. Availing yourself of the round-eared mouse’s cock, all you can do is moan in a voice of exquisite satisfaction.");
+		output("\n\nThere's a distinct thrill, too, of turning the puppy-eyed mouse boy into your personal fuckpuppet, because even the smallest tremble in his body manages to reach every muscle in yours, coaxing you into atmospheric levels of pleasure. Availing yourself of the round-eared raider's cock, all you can do is moan in a voice of exquisite satisfaction.");
 		output("\n\n<i>“Um, I hope it’s not too small for you,”</i> he murmurs, looking away shyly. <i>“T-there’s a lot bigger on the station...”</i>");
 
 		if (pc.isBimbo()) output("\n\n<i>“What!? No way! It feels great, and it’s about to get even better!”</i> you all but shout in support, poking his cheek. No dick is too small to please!");
 		else if (pc.isBro()) output("\n\n<i>“Don’t think that, because it’s about to get even better,”</i> you pat his chest.");
-		else if (pc.isNice()) output("\n\n<i>“No, not at all,”</i> you smile, heart fluttering from the bashful poise on his face, <i>“you are a perfect fit.”</i>");
+		else if (pc.isNice()) output("\n\n<i>“No, not at all,”</i> you smile, heart fluttering from the bashful poise on his face. <i>“You are a perfect fit.”</i>");
 		else if (pc.isMisch()) output("\n\n<i>“Yeah, I can’t believe I’m riding a silly small boy, why do that when I can find a rabbit or two to fuck me instead?”</i> you grin, but he does look a bit perturbed. Your face softens and you caress his cheek, <i>“No, you’re doing great. Now it’s time for you to do better!”</i>");
 		else output("\n\n<i>“Would I be doing this if you were? Don’t worry about stupid things and just accept this,”</i> you flash him a thin smile.");
 
@@ -2929,17 +2927,17 @@ public function ratsTheRideNeverEnds(vagId:int):void
 		if (pc.hasCock()) output(" that ends around your [pc.cocksLight], which are tied together, twitching in sync with pumping mouse tail");
 		output("."); 
 		output("\n\nShe lies atop your back, paws clasped " + (pc.tone < 30 || pc.bellyRating() > 5 ? "in the folds of" : "beneath the abs") + " of your [pc.belly], all effort in that molesting tendril. Her lengthy hair wafts over your straightened back; the coolness of stringy [rat2.hairColor] pitter-pattering across your spine makes you gasp and buck harder into the freckled boy’s hips. She operates with an implicit desire for you to cum and for herself to cum right there with you. You abandon yourself to their orgasm-compelling efforts, body incandescent with ecstasy.");
-		output("\n\n");
 		output("\n\nSex-minded hands and paws roam across your biceps and particularly your scalp");
 		if (pc.hasEmoteEars()) output(", petting the in and out of your [pc.ears] with urgent ministrations");
-		output(". Your right arm, your only free limb, cradles the rat-rogue’s head, clutching him against your breast as you hold for dear life. He’s maneuvered into a careful enough position that he can thrust all the way through your [pc.pussy " + vagId + "] and hit your womb, splaying his aching legs. The head of his phallus battering against your cervix and the taut scrotum bouncing against the slobbery foldings of your");
+		output(". Your right arm, your only free limb, clutches the rat-rogue's head, smushing him against your breast as you hold for dear life. He's maneuvered into a careful enough position that he can thrust all the way through your [pc.pussy " + vagId + "] and hit your womb, splaying his aching legs. The head of his phallus battering against your cervix and the taut scrotum bouncing against the slobbery foldings of your");
 		if (pc.hasPlumpPussy() || pc.hasVaginaType(GLOBAL.TYPE_EQUINE)) output(" puffy");
 		output(" mons elevate you to a higher plane of pleasure, allowing you to soar through heavenly euphoria on wings of spirited bliss, cradled by three");
 		if (silly) output(" outlaw");
 		output(" stars.");
 		output("\n\nThe first one to yowl is the rodent on your back, followed by the delighted squealing of the self-fingering rodent to your left. Their tails tighten around your waist and their voices clamor all at once, <i>“P-please cum!”</i>");
 		output("\n\nThat magnificent cock that’s strummed every vaginal nerve grows fatter when his thrusting slows. His hands dip to your sides, pushing your [pc.ass] down and slapping his cumslit a centimeter into your cervix: the first shot of virility rams into the over-aroused clusters of nerves at your contracting core.");
-		output("\n\nEyes cross, eyes shut. Nothing is experienced but the fine detail of rhythmically clenching cunt. The sudden growth of his blunt hardness as it swells with cum is just another mind-scrubbing detail in cacophonous and tempestuous climax. In the space of three spunk-shots, you already feel a few months pregnant. He rubs all along your [pc.skinFurScalesNoun] to the maximum limit of his arms, easing out your [pc.girlCumVisc] contributions. Your mouth falls open, and your [pc.pussies] happily " + (pc.hasVaginas() ? "pulse and " + (pc.isSquirter() ? "squirt" : "cream") : "pulses and " + (pc.isSquirter() ? "squirts" : "creams")) + " him in explosive finality.");
+		output("\n\nEyes cross, eyes shut. Nothing is experienced but the fine detail of rhythmically clenching cunt. The sudden growth of his blunt hardness as it swells with cum is just another mind-scrubbing detail in cacophonous and tempestuous climax. In the space of three spunk-shots, you already feel a few months pregnant. The heat of his seed forces its way into your womanly core, painting your most sacred place white; another rope, two shots, three… it's undeniably wonderful...");
+		output("\n\nHe rubs all along your [pc.skinFurScalesNoun] to the maximum limit of his arms, easing out your [pc.girlCumVisc] contributions. Your mouth falls open, and your [pc.pussies] happily " + (pc.hasVaginas() ? "pulse and " + (pc.isSquirter() ? "squirt" : "cream") : "pulses and " + (pc.isSquirter() ? "squirts" : "creams")) + " him in explosive finality.");
 		output("\n\nThe biological function of cumming is the only one that works now, and you’re doing that like a star. You didn’t think you could ever get this wet, nor did you think you could ever put out this much [pc.girlCum].");
 
 		if (pc.hasCock()) output("\n\nYour [pc.cocks], confined to a musky lair at the center of the orgy are able to dump the contents of your [pc.balls] between your [pc.belly] and the mouse boy’s thanks to the pumping rat tail around " + (pc.hasCocks() ? "them" : "it") + ". The smell of [pc.cum] joins the aerosolized miasma of your tryst soon after.");
@@ -2973,7 +2971,7 @@ public function ratsTheRideNeverEnds(vagId:int):void
 		output("\n\nKnowing just where the <i>real</i> pleasure is, your body makes sure his swollen tip gets there on every pelvis-busting fall. [pc.Asshole] squelches against modest rigidity, pre and sweat pouring out of your stretched hole in obscene volumes; your voices much the same way.");
 		if (pc.isHerm()) output(" Your [pc.cocksLight] and your [pc.pussies] tighten and relax after every tremulous insertion, oozing just a bit more of their hot payloads in a collapsing tempo.");
 		else if (pc.hasVagina()) output(" Your [pc.pussyNoun] clenches and relaxes after every wanton impact, more and more juice drizzling out begging his dick to elope with it.");
-		else if (pc.hasCock()) output(" Every thunderous impact of [pc.race] ass against rat-crotch makes your [pc.cocksLight] bounce up, slapping against your midriff and rebounding back to his, spurting musky pre in large quantities.");
+		else if (pc.hasCock()) output(" Every thunderous impact of [pc.raceShort] ass against rat-crotch makes your [pc.cocksLight] bounce up, slapping against your midriff and rebounding back to his, spurting musky pre in large quantities.");
 		output("\n\n<i>“Ohh, you’re just a big ‘ol buttslut huh?”</i> the rodenian girl laughs, closing in on you and smushing your [pc.arm] between her breasts. <i>“Thought only I could hit those notes.”</i>");
 		if (pc.hasPerk("Buttslut"))output(" That’s cute, but you’re just getting started! She has no idea what you can take and how much you love it!");
 		else output(" You’re not a buttslut, but if it’d put her to shame you might consider it...");
@@ -2985,7 +2983,7 @@ public function ratsTheRideNeverEnds(vagId:int):void
 		// PC breasts
 		if (pc.hasBreasts())
 		{
-			output("\n\nThe two rat girls catch you off guard when you’re straighten your back. The half-rat’s arms snake beneath yours, joining the rodenian girl’s on your " + (pc.biggestTitSize() < 5 ? "perky globes" : "mountainous melons") + ". The two of them just about cackle when they drop everything else to take possesion of your [pc.breasts], the touch of titflesh making them groan with compulsive need. They rub towards your [pc.nipples] with more force than care, only interested in making you cry out");
+			output("\n\nThe two rat girls catch you off guard when you're straighten your back. The half-rat's arms snake beneath yours, joining the rodenian girl's on your " + (pc.biggestTitSize() < 5 ? "perky globes" : "tremendous mounds") + ". The two of them just about cackle when they drop everything else to take possesion of your [pc.breasts], the touch of titflesh making them groan with compulsive need. They rub towards your [pc.nipples] with more force than care, only interested in making you cry out");
 			if (pc.isLactating()) output(" with the [pc.milkNoun] that sprinkles from your tits");
 			output(". You gleefully shove your chest forward, exposing your [pc.fullChest] to further abuse.");
 		}
@@ -3005,7 +3003,7 @@ public function ratsTheRideNeverEnds(vagId:int):void
 		output("\n\n<i>“D-dammit...”</i> the rodenian girl sputters, feeling a tongue against her butt. <i>“H-hurry up and cummmm alreadyyyyy...”</i> she mewls into your maw.");
 		output("\n\nTails lash in search of anything on your quavering frame, the heat radiating from their bodies coming close to suffocating you. <i>“P-please, I wanna cum together...”</i> the half-rat moans in your [pc.ear].");
 
-		output("\n\nIn the hopes of accomplishing that, decorated tail gyrates and swivels with purpose. The tip of her prehensile molester slithers through her own scent-soaked nethers, pushing against her gushing slit and threading your thigh gap in a fanciful show.");
+		output("\n\nIn the hopes of accomplishing that, her decorated tail gyrates and swivels with purpose. The tip of her prehensile molester slithers through her own scent-soaked nethers, pushing against her gushing slit and threading your thigh gap in a fanciful show.");
 		if (pc.isHerm()) output(" She wraps around your [pc.cocks], clinching them together and grinding against your [pc.clits] with the spare skin.");
 		else if (pc.hasVagina()) output(" She grinds the flat of it into your [pc.pussyNoun], using the tip to assault your [pc.clits].");
 		else if (pc.hasCock()) output(" She wraps around your [pc.cocks], clinching them together and pumping slowly.");
@@ -3014,14 +3012,14 @@ public function ratsTheRideNeverEnds(vagId:int):void
 		if (pc.hasEmoteEars()) output(" Your [pc.ears] receive no end of bullyish scritches, the inside and outside bathed in hot breaths.");
 		output(" Your scalp is massaged, your cheeks are stroked, your nerves are kicked into overdrive spurred on by restless groping. You’re not sure how many times you’ve climaxed on the way to the big one, but the increasing incoherency among the trio tell you that they’re reaching their limit.");
 		output("\n\nAs are you.");
-		output("\n\nStrength rapidly fading, you clutch the rodenian girl and pull her into you, deepening the kiss and thwumping her slack butt into the mouse-boy’s face. Sore legs splay beneath you, and despite all the bodyweight that deliciously hard cock thrusts into your furthest recesses, growing harder as the humping slows. Brain destabilized, you’e unable to concentrate on rat tongue, rat cock, or rat tail, and then it has a fourth concern.");
-		output("\n\n<i>“H-here, I need this...”</i> the rodenian husks, but you can’t really see what she’s doing. You feel her guiding your [pc.hand], and then the entire end of your arm drawn into something very moist and very warm. You feel frictionless walls seal around your wrist, a sloughing feeling of sticky goo spreading across your [pc.skinFurScalesNoun]. It’s an alien feeling, but it’s not uncomfortable, nor is it painful.");
+		output("\n\nStrength rapidly fading, you clutch the rodenian girl and pull her into you, deepening the kiss and thwumping her slack butt into the mouse-boy's face. Sore legs splay beneath you, and despite all the bodyweight that deliciously hard cock thrusts into your furthest recesses, growing harder as the humping slows. Brain destabilized, you're unable to concentrate on rat tongue, rat cock, or rat tail, and then it has a fourth concern.");
+		output("\n\n<i>“H-here, I need this...”</i> the rodenian husks, but you can't really see what she's doing. You feel her guiding your [pc.hand], and then the entire end of your arm is drawn into a vice very moist and very warm vice. You feel frictionless walls seal around your wrist, a sloughing feeling of sticky goo spreading across your [pc.skinFurScalesNoun]. It's an alien feeling, but it's not uncomfortable, nor is it painful.");
 		output("\n\nInstead, it’s indescribably pleasant.");
 		output("\n\nThe rat-boy underneath has squirmed into an entirely new position, able to fuck you with wild abandon, the tip of his cock claiming uncharted territory in the seas of pre pooled in your anal stretches. Daggers and nails of pleasure rake your very soul, and you cry out for more in delirious need. Every thrust splatters effluent out and simultaneously pumps fresher, hotter loads back in.");
 		output("\n\nThe trio yowl. The battering of your innards, the work of a tail, the jaw-encompassing tongue you suckle, and those undulating constrictions around your hand...");
 		output("\n\nAn unfettered squeal of delight spirals down your [pc.ears]. The rodent on your back howls in rapturous climax, the sloppy self-servicing becoming more apparent as projectile squirts of horny mouse slather the ground in her scent. Their voices all ring out just before you’re struck from every direction by the raw heave of orgasm: <i>“Please, cum!”</i>");
 		output("\n\nYou do. They do. The rigid dick that’s conquered every inch of your anal interior hilts and balloons. The first rope of rat spunk isn’t felt at all, like it was merely giving your nerves a handshake to introduce the second which hits even harder. You gasp, shudder, and scream, head arching back. You’re so debilitatingly aroused that your spine bends painfully with every thick shot of mouse-spunk against your searing clusters.");
-		output("\n\nYou see where your hand is, too, inside the rodenian’s ear-gina, ample amounts of shining alien cum spilling from the rims of her carnal canals while her head tilts. She glazes your arm in a fine sheen of fragrant girl slime, a fucked-silly expression worth a score of ten-out-of-ten bare on her snout. The biological function of cumming is the only that works now, and they make sure you perform like a porn star, doing everything they can to coax a riotous conclusion down there.");
+		output("\n\nYou see where your hand is, too: inside the rodenian's ear-gina. Ample amounts of shining alien cum spill from the rims of her carnal canals while her head tilts. She glazes your arm in a fine sheen of fragrant girl slime, a fucked-silly expression worth a score of ten-out-of-ten bare on her snout. The biological function of cumming is the only that works now, and they make sure you perform like a porn star, doing everything they can to coax a riotous conclusion down there.");
 		
 		if (pc.isHerm())
 		{
@@ -3072,7 +3070,7 @@ public function ratsEndOfTheRide(vagId:int):void
 	output("There’s an almost oppressing heat when you come to, you sense it long before your eyes open. You blink slowly, everything coming into focus, including the stained face of the mouse you took on a ride. Still fast asleep in a nap, his quiet breathing makes you long for more amicable relations. But alas, they’ll still be coming after your wallet again, so you simply enjoy this moment while it lasts.");
 	output("\n\nThe tails stir before the bodies do, prehensile antennas thrusting into the air as the rodenian half of the group jump up, groaning, stretching, cracking their knuckles. <i>“Wakey, wakey!”</i> the furry [rat0.furColor] mouse claps.");
 	output("\n\nMurmuring in discontent, the freckled mouse-boy begrudgingly pries his [rat1.eyeColor] eyes apart, eyelashes disentangling like snapping cobwebs. He looks at you mournfully, but eventually smiles, pushing forward just a bit to peck you on the lips. When he rises, so do you.");
-	output("\n\nYou watch them all get dressed, intimately aware of the seepage in your" + (vagId < 0 ? "ass" : (rat2.isMale() ? "pussy and ass" : "pussy")) + ". The rodenian girl stares pointedly, a smirk on her face.");
+	output("\n\nYou watch them all get dressed, intimately aware of the seepage in your " + (vagId < 0 ? "ass" : (rat2.isMale() ? "pussy and ass" : "pussy")) + ". The rodenian girl stares pointedly, a smirk on her face.");
 
 	switch (ratputation())
 	{
@@ -3165,8 +3163,8 @@ public function ratsWhenInRodenian(cockId:int):void
 	if (pc.hasKnot()) output(" your knot");
 	output(" against her skull, maybe her brain, you pause and revel in that tingling emotion.");
 	if (flags["RATS_SEXED_EAR"] != undefined) output(" It’s not the first time you’ve done this, but there’s this unrelenting thrill about the whole thing that keeps you firmly erect and dripping.");
-	output("\n\nShe grins at your building arousal, little paws slinking into her ears. Lithe arms are swallowed up like a cock in a cowgirl’s throat, and just a few seconds after, you see her face twist into an obscenely lewd expression. The sight is enough for [pc.cumColor]-hot preseed " + (pc.cumQ() < 500 ? "to slough in your nethers" : "spurt from your [pc.cockHeadNoun " + cockId + "]") + ". She pulls her arms out and shakes her head, looking far more turned on and a little air-headed at that.");
-	if (!ratsPCIsGood()) output(" Maybe she was hoping you’d cum from the sight.");
+	output("\n\nShe grins at your building arousal, little paws slinking into her ears. Lithe arms are swallowed up like a cock in a cowgirl's throat, and just a few seconds after, you see her face twist into an obscenely lewd expression. The sight is enough for [pc.cumColor]-hot preseed to " + (pc.cumQ() < 500 ? "slough in your nethers" : "spurt from your [pc.cockHeadNoun " + cockId + "]") + ". She pulls her arms out and shakes her head, looking far more turned on and a little air-headed at that.");
+	if (!ratsPCIsGood()) output(" Maybe she was hoping you'd cum from the sight.");
 	if (pc.isCrotchGarbed()) output("\n\nArousal threatening to peak, you toss your [pc.crotchCover] aside too, letting your raging " + (pc.hasCocks() ? "boners" : "boner") + " spring free and dribble just like one.");
 	
 	switch (ratsLastEarSex())
@@ -3259,11 +3257,11 @@ public function ratsDoRodeniansAsTheyDo(cockId:int):void
 			break;
 	}
 
-	output("\n\nYou stroke her ear, grunting, trying hard " + (pc.isBimbo() || pc.isBro() ? "to save your lusts for the main event" : "to be fair with her and to get what you want") + ". <i>“Okayyyyyy, but I’m still gonna get you ready first,”</i> she simpers; her sensual voice suddenly lilts: <i>“If you blow the second you put it in I’ll fucking kill you, so you better appreciate this, " + ratsMisterCEO() + "!”</i> You nod furiously, and she drops the act, resuming her enjoyment of your [pc.cocks].");
+	output("\n\nStroking her ear and grunting is all you manage, trying hard " + (pc.isBimbo() || pc.isBro() ? "to save your lusts for the main event" : "to be fair with her and to get what you want") + ". <i>“Okayyyyyy, but I’m still gonna get you ready first,”</i> she simpers; her sensual voice suddenly lilts: <i>“If you blow the second you put it in I’ll fucking kill you, so you better appreciate this, " + ratsMisterCEO() + "!”</i> You nod furiously, and she drops the act, resuming her enjoyment of your [pc.cocks].");
 	output("\n\nYou’re all too happy to placate, to let her luxuriate in intimate proximity to your throbbing, pre-shined " + (pc.hasCocks() ? "manhoods." : "manhood."));
 	if (flags["RATS_SEXED_EAR"] != undefined) output(" It’s not like she’ll be that way for long!");
 	output(" The angle from where you stand and her own coquettish tilts give you ample view of her inner ear-ginas, already wettening at the prospect of squeezing a dick tight - your dick.");
-	output("\n\nYour boner is handled with care and gulped down with relative ease");
+	output("\n\nShe handles your boner with care and gulps it down with relative ease");
 	if (pc.cocks[cockId].volume() >= 100) output(", an impressive display of oral ability considering your size");
 	output(". [rat0.EyeColor] eyes look up to you around your");
 	if (InCollection(pc.cocks[cockId].cType, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_FROSTWYRM, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_EQUINE)) output(" bestial");
@@ -3274,7 +3272,7 @@ public function ratsDoRodeniansAsTheyDo(cockId:int):void
 	if (pc.libido() > 33) output(" already regretting this, and tousle her [rat0.hairColor] hair.");
 	else output(" tousling her [rat0.hairColor] hair.");
 	
-	output("\n\nYou drag the rapacious rat off your dick, pulling against the obstinacy of a phallus-hungry mouse the whole time. Just before the [pc.cockHead " + cockId + "] pops free from her stretched lips, she groans miserably, and it takes even more effort to push her lancing tongue away from the violently twitching crown. You bare your mast to the air of Zheng Shi, a veneer of spittle coating it. <i>“Aw, I was so close...”</i> she murmurs, the rapid trembling of her snout bringing you to the orgasmic line.");
+	output("\n\nDragging the rapacious, obstinate rat off your dick is a hard thing to do. Just before the [pc.cockHead " + cockId + "] pops free from her stretched lips, she groans miserably, and it takes even more effort to push her lancing tongue away from the violently twitching crown. You bare your mast to the air of Zheng Shi, a veneer of spittle coating it. <i>“Aw, I was so close...”</i> she murmurs, the rapid trembling of her snout bringing you to the orgasmic line.");
 	switch (ratsLastEarSex())
 	{
 		//first
@@ -3319,10 +3317,10 @@ public function ratsDoRodeniansAsTheyDo(cockId:int):void
 	output("\n\nYou buck your hips gently, pushing the tip past her hearing tunnel. Your thumping heartbeat bounces your dick into her sensitized walls, giving the horny thief an idea of what to expect when you really start drilling her. You descend deeper, deeper...");
 	output("\n\nAnd then, you feel it.");
 	output("\n\nVaginal muscles squeeze down around your [pc.cock " + cockId + "], gushes of rodent-cream excitedly slathering your [pc.cockType " + cockId + "] implement as it penetrates her inviting ear-cunt, going even deeper into her skull. So many thoughts rush through your mind, the outright exoticness of this making you question your ideas of sex before. You just stuck it in a rat girl’s ear");
-	if (flags["RATS_SEXED_EAR"] == undefined) output(" again");
+	if (flags["RATS_SEXED_EAR"] != undefined) output(" again");
 	output("... and it feels fucking incredible. Warm, smooth tightness swaddles you in the embrace of this lovely creature, almost making you forget what else you can do from here.");
 	output("\n\nThe carnal volumes at which you voice your blissful gratification are drowned out by her’s; you clash with your desire to rut her head, to skullfuck her into a sexual stupor that she’ll never wake up from. This position gives you such absolute power over your partner, and recalling what you’ve read about these mice, it gives you so much more than that.");
-	output("\n\nIrregardless of that, you " + (flags["RATS_SEXED_EAR"] == undefined ? "begin to understand the raw sensuality of rodenian mating" : "appreciate the raw sensuality of rodenian mating, glad to have her trust") + ". You could stand there forever thinking about the raw emotion and physicality of what you’re doing. Most of the galaxy spends its time spreading legs, engaging in sexual congress face to face.");
+	output("\n\nIrregardless, you " + (flags["RATS_SEXED_EAR"] == undefined ? "begin to understand the raw sensuality of rodenian mating" : "appreciate the raw sensuality of rodenian mating, glad to have her trust") + ". You could stand there forever thinking about the raw emotion and physicality of what you're doing. Most of the galaxy spends its time spreading legs, engaging in sexual congress face to face.");
 	output("\n\nBut with this rat... She places all her trust in you, and you, in turn, have the power to vindicate that. The ideas surrounding this act are just as powerful as the vice you’ve entered.");
 	
 	output("\n\nYou bottom out, though you’re not sure if you can go further or you’ve hit the depraved limit.");
@@ -3503,7 +3501,7 @@ public function ratsBeingTrained(cockId:int):void
 
 		if (pc.balls > 0)
 		{
-			output("\n\nSumptuous ballflesh spreads against sensitive lips, the virile orbs inside poked and prodded by erect nipples. For but a moment she lets her your [pc.cockNoun " + cockId + "] fall from the ache-soothing embrace of her breast to bury her twitching nose in your [pc.sack]. The mouse licks up, down, all the way around each nut in your pouch, groaning into your freshly cleaned balls with need, pre spurting in greater quantities on her hair. Whatever you’re brewing up is noticeably thickened by obedience, and the roiling contents jostle your");
+			output("\n\nSumptuous ballflesh spreads against sensitive lips, the virile orbs inside poked and prodded by erect nipples. For but a moment she lets your [pc.cockNoun " + cockId + "] fall from the ache-soothing embrace of her breast to bury her twitching nose in your [pc.sack]. The mouse licks up, down, all the way around each nut in your pouch, groaning into your freshly cleaned balls with need, pre spurting in greater quantities on her hair. Whatever you’re brewing up is noticeably thickened by obedience, and the roiling contents jostle your");
 			if (pc.hasFur()) output(" fuzzy");
 			else if (pc.hasScales()) output(" scaly");
 			output(" maleness against her snout.");
@@ -3515,7 +3513,7 @@ public function ratsBeingTrained(cockId:int):void
 		output("\n\nAll you can do is clutch her head tight in both worlds. <i>“You’ve earned your reward,”</i> you whisper.");
 	}
 	
-	output("\n\nYour gyrations are a manifestation of your superior position over the rodenian girl. The strength and ferocity at which you rail her head, the stings in your eyes and the detail of sweat dripping down your skull is nothing compared to the pleasure rewriting her common sense, and by proxy yours. You concentrate all your strength in your [pc.hips], lewd images blazing across the back of your eyelids. When she feels ashamed or inadequate, you reassure her with another brain squelching thrust.");
+	output("\n\nThe strength and ferocity at which you rail her head, the stings in your eyes and the detail of sweat dripping down your skull is nothing compared to the pleasure rewriting her common sense, and by proxy yours. Your gyrations are a manifestation of your superior position over the rodenian girl. You concentrate all your strength in your [pc.hips], lewd images blazing across the back of your eyelids. When she feels ashamed or inadequate, you reassure her with another brain squelching thrust.");
 	output("\n\nYou tell her she’s a good girl, a very good slut, that you’ll take care of her needs whenever she wants if she’ll present herself. You tell her that she’ll always be your slut, and that if she behaves this is what she has to look forward to. A searing wave of girlcum splatters over your cock again, more potent in scent than all before it. Not only does it wash away the pain, it’s enough to make you cum, too.");
 	
 	if (pc.cumQ() < 100)
@@ -3551,7 +3549,7 @@ public function ratsPsychicHypnoSluttify(cockId:int):void
 	showRats(0, true);
 	processTime(30);
 
-	output("<i>“You’re doing awesome!”</i> you blurt, bip dopey smile on your face. Her head twists upwards, acidically pleasurable vaginal muscles squirming around your [pc.cock]. She jerks her head in the direction of your crotch, desperately licking at your");
+	output("<i>“You’re doing awesome!”</i> you blurt, big dopey smile on your face. Her head twists upwards, acidically pleasurable vaginal muscles squirming around your [pc.cock]. She jerks her head in the direction of your crotch, desperately licking at your");
 	if (pc.balls > 0) output(" [pc.balls]");
 	else if (pc.hasVagina()) output(" [pc.pussy]");
 	else output(" [pc.knot]");
@@ -3563,7 +3561,7 @@ public function ratsPsychicHypnoSluttify(cockId:int):void
 	output("\n\n<i>“I like helping ooootherrrssss!”</i> she whines, head bouncing back and forth between your [pc.arm] and groin. Although your thrusts have become even more awkward, her entire body rattles, leaving no doubt to her enjoyment of this. Delightfully hot ribbons of rodent nympho-cream baste your [pc.cockNoun " + cockId + "] and fingers; the naughty mouse coos ever more lewdly when you rail her sweet spots. <i>“I like taking things that others don’t need, I wanna make others happy!”</i>");
 	output("\n\n<i>“See, I was right!”</i> you gasp, [pc.cockHeadNoun " + cockId + "] smacking against her brain-washing gland, the torrents of bliss and euphoria glazing her [rat0.eyeColor] eyes as you look down at her from your dominant position. <i>“You’re just fooling yourself... Or m-maybe you’re being fooled! You don’t need to steal and give to others just to make them happy! Look at what you’re doing now, trying so hard to make me happy, licking, sucking, and giggling just waiting for my cum!”</i>");
 	output("\n\n<i>“Cummmm?”</i> she drools, blissfully licking her surely-sensitive lips. The pirate girl nods, subconsciously applying more pressure to your overwhelmed shaft.");
-	output("\n\nYou flail in white hot lust when her ear-cunt clamps down and twists your [pc.cockType " + cockId + "] manhood, screaming <i>“Yes!”</i> Bulging veins indent the walls of her swampy interior, pulsing at your nearness to being forcibly milked. <i>“You want to help others, I get that, but the way you’re going about it- The way...”</i> your voice trails off in a pant, and you start moaning with her in wanton enjoyment."); 
+	output("\n\nYou flail in white hot lust when her ear-cunt clamps down and twists your [pc.cockType " + cockId + "] manhood, screaming <i>“Yes!”</i> Bulging veins indent the walls of her swampy interior, pulsing at your nearness to being forcibly milked. <i>“You want to help others, I get that, but the way you're going about it- The way...”</i> Your voice trails off in a pant, and you start moaning with her in wanton enjoyment."); 
 	output("\n\nIt feels wrong to push away what makes you feel so good, but you’re onto something here! <i>“You can help others just by getting horny when they drop their pants, you can help even better by giving them orgasms, nothing makes someone’s day or night like a good slut!”</i>");
 	output("\n\nThe horny rat’s big teeth dig into her thin lips, a chittering purr rumbles up her throat to vibrate your thoroughly slimed cock. You focus on making her just a bit more impressionable with intensifying head-banging.");
 	if (pc.isBimbo() || pc.isBro()) output(" After all, she can’t truly accept the lovely slut that she is if she’s not paying attention! If you can’t show her what true pleasure is, and how that makes everyone happy, then you’re not [pc.name] Steele!");
@@ -3617,7 +3615,7 @@ public function ratsPsychicHypnoSluttify(cockId:int):void
 	}
 
 	output("\n\nWhen you finally calm down and open your eyes again, you’re sitting on Zheng Shi. Eventually you realize that you can hear the distant thunders of construction and mining between the bellows. You look down to see the overfucked rat fast asleep in your lap, heaving and snoozing, the other two rats also knocked out by their " + (pc.isBimbo() || pc.isBro() ? "own libidos" : "intense masturbations") + ". You stroke her hair, whispering sweet nothings");
-	if (pc.hasLegs()) output(" while wrapping her in the rhythmically hugging embrace of your [pc.leg]");
+	if (pc.isNaga()) output(" while wrapping her in the rhythmically hugging embrace of your [pc.leg]");
 	output(".\n\nYou aren’t going to leave her in this position. She needs to rest, and so do you.");
 	
 	pc.orgasm();
@@ -3629,7 +3627,7 @@ public function ratsImTooVanillaForThisHypnoShit(cockId:int):void
 {
 	clearMenu();
 	clearOutput();
-	showRats();
+	showRats(0, true);
 	processTime(5);
 
 	output("<i>“Yes, you’re doing okay,”</i> you whisper, fingers trailing on the edge of her ear between your slow pumps. You haven’t hit her hedonary gland that hard... yet.");

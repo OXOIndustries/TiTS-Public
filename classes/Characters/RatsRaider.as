@@ -48,7 +48,7 @@ package classes.Characters
 		{
 			this.ratVariety = ratVariety;
 		
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 
@@ -204,7 +204,7 @@ package classes.Characters
 					tallness = 58;
 					skinTone = "peach";
 					furColor = "light pink";
-					eyeColor = "bright green";
+					eyeColor = "green";
 					hairColor = "blonde and purple";
 					nippleColor = "light pink";
 					break;
@@ -224,7 +224,7 @@ package classes.Characters
 					hairColor = "black";
 					break;
 				case FAIR_MOUSEBOY:
-					tallness = 66;
+					tallness = 61;
 					skinTone = "fair";
 					eyeColor = "brown";
 					hairColor = "light brown";
@@ -248,12 +248,12 @@ package classes.Characters
 					
 					break;
 				case HALF_BOY:
-					tallness = 65;
+					tallness = 60;
 					femininity = 40;
 					skinTone = "chocolate";
 					furColor = "black";
 					eyeColor = "violet";
-					hairColor = "light brown";
+					hairColor = "blonde";
 					
 					hipRatingRaw = 9;
 					buttRatingRaw = 8;
