@@ -2255,6 +2255,7 @@ public function kellyHyperPlayAwwwYiss():void
 	
 	clearOutput();
 	showKelly(true);
+	showBust("KELLY_HYPER_NUDE");
 	author("Quiet Browser & LD");
 	//1st time
 	if(flags["KELLY_HYPERPLAY_COUNT"] == undefined || flags["KELLY_HYPERPLAY_COUNT"] == 0)
@@ -2391,6 +2392,7 @@ public function keepGoingWithFuckingHyperModeKelly():void
 
 	clearOutput();
 	showKelly(true);
+	showBust("KELLY_HYPER_NUDE");
 	author("Quiet Browser & LD");
 	output("Your hands remain right where they are, locked onto her hips for support. Let her tend to her own maleness; you’re more interested in her female parts. With this in mind, you start to thrust even harder than before, your fur-covered lover grunting in effort as she matches you thrust for thrust, moaning her pleasure for all to hear.");
 
@@ -2491,6 +2493,7 @@ public function addAHandjobToKellyHyperFuckPlay():void
 	var y:int = -1;
 	//If you got two dicks, check to see if one will fit elsewhere
 	if(pc.cockTotal() > 1) y = pc.cockThatFits2(chars["KELLY"].vaginalCapacity());
+	showBust("KELLY_HYPER_NUDE");
 
 	clearOutput();
 	showKelly(true);
@@ -2551,6 +2554,7 @@ public function kellyHyperPlayEpilogue(hugeLoad:Boolean = false):void
 	if(pc.cockTotal() > 1) y = pc.cockThatFits2(chars["KELLY"].vaginalCapacity());
 	clearOutput();
 	showKelly(true);
+	showBust("KELLY_HYPER_NUDE");
 	author("Quiet Browser & LD");
 	output("With a contented groan, Kelly allows herself to sink to her now-soaked bedding, instinctively shifting to her side");
 	if(hugeLoad) output(", allowing her great belly to slosh and wobble to a stillness");
