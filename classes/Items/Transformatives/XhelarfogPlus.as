@@ -169,14 +169,14 @@ package classes.Items.Transformatives
 		
 		private function eyeTypeChange(target:Creature):Boolean
 		{
-			if (target.eyeCount > 3)
+			if (target.eyeCount() > 3)
 			{
 				output("\n\nYour eyes feel uncomfortable all of a sudden, a strange, squeezing feeling, and before long you find yourself forced to close your eyes.");
 				output("\n\nBy the time you’ve forced them open again, you realize that you feel distinctly… less than before. In fact, <b>you’ve only got three eyes!</b>");
 				output("\n\nThe third is situated right in the center of your forehead, and about the same size as the others, so it’s not <i>quite</i> typical Xhelarfog configuration, but you’re one step closer.");
 				output("\n\nThere is now no distinguishable difference between your sclera and iris, both flooded with [pc.eyeColor]. Even your pupils have changed, appearing to be a slightly paler shade of the same color.");
 			}
-			else if (target.eyeCount < 3)
+			else if (target.eyeCount() < 3)
 			{
 				output("\n\nYou’d describe the feeling you suddenly start to experience as a migraine, but it’s far too centralized to be one.");
 				output("\n\nYou do have to sit down though, pushing your hands against your head in the hopes th-\n\nOw!");

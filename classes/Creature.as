@@ -454,7 +454,7 @@
 		{
 			return "Your [pc.eye] twitches, resisting a change.";
 		}
-		public function get eyeCount():int
+		public function eyeCount():int
 		{
 			if (InCollection(eyeType, GLOBAL.TYPE_ARACHNID)) return 4;
 			if (InCollection(eyeType, GLOBAL.TYPE_XHELARFOG)) return 3;
