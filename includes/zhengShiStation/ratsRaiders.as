@@ -563,7 +563,7 @@ public function ratsShutUpAndTakeMyMoney():void
 	}
 
 	pc.createStatusEffect("Rats Paid Off");
-	pc.setStatusMinutes("Rats Paid Off", 4*60);
+	pc.setStatusMinutes("Rats Paid Off", 96*60);
 	pc.credits -= rat0.credits;
 	ratsFinish();
 }
@@ -661,7 +661,7 @@ public function ratGiveThemShinyRocks():void
 	flags["RAT_GOT_GEMS"] = 1;
 
 	pc.createStatusEffect("Rats Paid Off");
-	pc.setStatusMinutes("Rats Paid Off", 4*60);
+	pc.setStatusMinutes("Rats Paid Off", 96*60);
 	
 	ratsFinish();
 }
