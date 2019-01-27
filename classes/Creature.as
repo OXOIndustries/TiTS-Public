@@ -13319,7 +13319,7 @@
 		{
 			var counter: int = 0;
 			if (eyeType == GLOBAL.TYPE_XHELARFOG) counter++;
-			if (eyeCount == 3) counter++;
+			if (eyeCount() == 3) counter++;
 			else counter--;
 			if (tailType == GLOBAL.TYPE_XHELARFOG) counter++;
 			if (hornType == GLOBAL.TYPE_XHELARFOG) counter++;
