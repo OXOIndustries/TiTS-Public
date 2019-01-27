@@ -3929,9 +3929,9 @@ public function annoKaseBarEvent():void
 	showName("ANNO &\nKASE");
 	author("HugsAlright");
 
-	output("Walking towards the snowy pup, you notice she's not alone, but is sitting next to another one of you crewmates, Kase.");
-	output("\n\nThe catboy isn't dressed nearly as casually as his canine friend, making it seem like his decision to join Anno must have been a spontaneous one. Nonetheless, they both are sipping their own brightly coloured drinks. Judging by the amount of empty glasses by Anno and the single, half empty drink her kaithrit subordinate has, Kase isn't much of a drinker. Still, they both smile and laugh happily with each other, and what's more, it doesn't seem like your ausar companion is even flirting with the catboy, keeping a distance that has Kase looking very comfortable, despite his usual nervousness around Anno.");
-	output("\n\nThe whole thing is quite cute, and you figure you'll let the two enjoy each other's company.");
+	output("Walking towards the snowy pup, you notice she’s not alone, but is sitting next to another one of you crewmates, Kase.");
+	output("\n\nThe catboy isn’t dressed nearly as casually as his canine friend, making it seem like his decision to join Anno must have been a spontaneous one. Nonetheless, they both are sipping their own brightly coloured drinks. Judging by the amount of empty glasses by Anno and the single, half empty drink her kaithrit subordinate has, Kase isn’t much of a drinker. Still, they both smile and laugh happily with each other, and what’s more, it doesn’t seem like your ausar companion is even flirting with the catboy, keeping a distance that has Kase looking very comfortable, despite his usual nervousness around Anno.");
+	output("\n\nThe whole thing is quite cute, and you figure you’ll let the two enjoy each other’s company.");
 
 	processTime(5);
 	clearMenu();
@@ -5350,10 +5350,10 @@ public function annoBedtimeBoobDream():void
 	else if (pc.biggestTitSize() < 5) output("\n\nYou take a hand and begin sliding it down your [pc.belly] to fulfill that need when a thought worms its way to the forefront of your mind: that your breasts are feeling strangely large tonight. Anno’s moans have nearly completely faded out, sounding as if they’re from further and further away. You also begin to notice a gentle tapping on the side of your [pc.leg].");
 	else output("\n\nYou take a hand and begin sliding it down your [pc.belly] to fulfill that need when you begin to notice a tapping sensation on your right leg. Anno’s moans have nearly completely faded out, sounding as if they’re from further and further away, the gentle patting continuing on your [pc.leg].");
 		
-	output("\n\n<i>What is…</i>");
+	output("\n\n<i>What is...</i>");
 	output("\n\nAs you begin to look down to see what is causing the odd sensation, your mind swirls and consciousness comes flooding back into you. With a sharp intake, you awaken to find yourself laying on your side in bed. In the dark of your cabin, your sleep filled eyes make out a head full of snow-white hair on the pillow in front of you.");
-	output("\n\nA pleasurable sigh from the lover you're spooning snaps your sleep addled mind to attention, bringing you to two quick realizations: that Anno’s fluffy tail was causing the offending sensation, gently tapping your [pc.leg] over and over, and that your hand isn't holding your own breast.  <i>“Good morning, boss,”</i> she whispers, as she slides her furred digits over your own. <i>“I can think of all kinds of places to use this hand, but how about after a few more hours of sleep?”</i> She says, yawning.");
-	output("\n\nYou wouldn't mind a bit more sleep yourself, and figure you and Anno can have some fun when you both get up. Relinquishing you lover’s breast, you wrap your arm around her stomach and pull her tight against you. You settle your head back into your pillow, thinking of all the things you and Anno can get up to tomorrow. Your mind swims with the possibilities as sleep once again overtakes you.");
+	output("\n\nA pleasurable sigh from the lover you’re spooning snaps your sleep addled mind to attention, bringing you to two quick realizations: that Anno’s fluffy tail was causing the offending sensation, gently tapping your [pc.leg] over and over, and that your hand isn’t holding your own breast.  <i>“Good morning, boss,”</i> she whispers, as she slides her furred digits over your own. <i>“I can think of all kinds of places to use this hand, but how about after a few more hours of sleep?”</i> She says, yawning.");
+	output("\n\nYou wouldn’t mind a bit more sleep yourself, and figure you and Anno can have some fun when you both get up. Relinquishing you lover’s breast, you wrap your arm around her stomach and pull her tight against you. You settle your head back into your pillow, thinking of all the things you and Anno can get up to tomorrow. Your mind swims with the possibilities as sleep once again overtakes you.");
 	
 	pc.lust(30);
 }

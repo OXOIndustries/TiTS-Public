@@ -3699,7 +3699,7 @@ public function laneSmallCock():void
 	else output(" gently, massaging your flat chest with her thick flesh.");	
 	output(" Her hips draw backward slightly, and you can feel the heat of her sex wash over your [pc.cock " + kok + "], teasing you and promising you that, if you’re a good [pc.boyGirl], you’ll get to feel more than that in just a moment.");	
 	
-	output("\n\n<i>“Teach me about [pc.race] biology,”</i> she asks, her finger twirling lazy circles around your collarbone as her hips draw forward, leaving a slimy trail of her feminine lube up your [pc.stomach] before she eases herself back down. She sighs in delight as she pleasures herself on your body, and from teasing you. <i>“Tell me what a ‘clitoris’ is, in your own words. I don’t have one myself, so….”</i>");
+	output("\n\n<i>“Teach me about [pc.race] biology,”</i> she asks, her finger twirling lazy circles around your collarbone as her hips draw forward, leaving a slimy trail of her feminine lube up your [pc.stomach] before she eases herself back down. She sighs in delight as she pleasures herself on your body, and from teasing you. <i>“Tell me what a ‘clitoris’ is, in your own words. I don’t have one myself, so....”</i>");
 	output("\n\nYou fight the urge to touch your mistress, as she did not give you permission, and you don’t dare ask for it out of turn. It’s difficult to focus, but, you explain to your mistress that a ‘clitoris’ is something that the women of your species have: it’s externally located on the ‘top’ of a vagina, where it protrudes a bit, especially when they’re aroused.");
 	if (pc.hasClit()) output(" Speaking from experience, while they’re lots of fun and highly pleasurable to play with, they’re extremely sensitive – it’s easy to over-stimulate them if you’re not careful.");
 	else output(" You don’t have one yourself, but you’re told that they can be very sensitive – so much so that, as fun as they can be, you also need to be careful not to over-stimulate them.");
@@ -3732,7 +3732,7 @@ public function laneSmallCockAnswer(args:Array):void
 	{
 		output(" a rather large clit.  You’re awfully small as far as men go, and your tiny dick feels about as sensitive as a clit");
 		if (pc.hasClit()) output(", or so you’re led to believe");
-		output(". You’re too underequipped to call yourself a ‘man’ in any capacity, so… you must have a large clit.");
+		output(". You’re too underequipped to call yourself a ‘man’ in any capacity, so... you must have a large clit.");
 	}
 	else output(" a tiny, wanting penis. What little masculinity you have won’t allow yourself to call it a clitoris, but the facts are clear as can be: your dick is below-average, and there’s no use trying to argue that. And, all told, you’re fine with that.  You’re fine with what you have, as long as it gets the job done.");
 	
@@ -3757,7 +3757,7 @@ public function laneSmallCockAnswer(args:Array):void
 	if (pc.balls > 0)
 	{
 	  if (pc.ballDiameter() >= 3) output(" Maybe you’ll surprise her, given how disproportionately large your [pc.balls] are.");
-	  else if (pc.ballDiameter() <= 2) output(" Not that she’s expecting much, given how… proportional your equipment is.");
+	  else if (pc.ballDiameter() <= 2) output(" Not that she’s expecting much, given how... proportional your equipment is.");
 	}
 	else output(" Not that she has any reason to believe you’ll give her any.");
 	
