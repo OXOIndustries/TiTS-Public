@@ -1638,12 +1638,12 @@ public function xhelarfogCodexEntry():void
 {
 	clearOutputCodex();
 	outputCodex(header("Xhelarfog"));
-	outputCodex("<b>Name</b>: Xhelarfog (singular and plural)");
-	outputCodex("\n<b>Sexes</b>: Male, female, occasional occurrence of sexless individuals.");
-	outputCodex("\n<b>Height</b>: Usually smaller than humans - 4’0” to 5’6”");
-	outputCodex("\n<b>Weight</b>: 55-110 lbs (25-50kg), not accounting for scale weight.");
+	outputCodex("<b>Name (Singular & Plural):</b> Xhelarfog");
+	outputCodex("\n<b>Sexes:</b> Male, female, occasional occurrence of sexless individuals.");
+	outputCodex("\n<b>Height:</b> Usually smaller than humans - 4\' 0\" to 5\' 6\"");
+	outputCodex("\n<b>Weight:</b> 55-110 lbs (25-50 kg), not accounting for scale weight.");
 	outputCodex("\n\n");
-	outputCodex(blockHeader("Body composition (Flesh)"));
+	outputCodex(blockHeader("Body Composition (Flesh)"));
 	outputCodex("While perhaps not obvious at a first glance, Xhelarfog are a semi-gelatinous species. Though they do not possess the remarkable shape changing powers of a galotian, they are certainly capable of sealing shut and quickly healing any wounds they attain, and their boneless bodies are easily able to contort through small openings and survive much greater falls than other races.");
 	outputCodex("Xhelarfog have, at present, only been observed to possess opalescent, pale skin.");
 	outputCodex("\n\nTheir flesh is known to be rather sticky - a feature known to let them cling, gecko-like, to walls - though they are able to secrete a substance that prevents their exterior ‘skin’ from adhering itself to anything they touch. It should, therefore, be noted that it is extremely unwise to attempt to penetrate anything but the sexual organs or mouth of any individual, unless you have a fetish for awkward medical appointments - as separating oneself from them is known to be quite the ordeal.");
@@ -1651,7 +1651,7 @@ public function xhelarfogCodexEntry():void
 	outputCodex(blockHeader("Body Composition (Scales)"));
 	outputCodex("Due to the gold-rich environment of the Xhelarfog home planet, individuals end up taking in a great amount in their diet. Rather than excrete this as waste, it has been observed that they instead organise it into clumps, which then rise to the surface of their flesh in formations that appear like, and are often referred to as rough, uneven scales.");
 	outputCodex("\n\nThis is thought to be an unusual defense mechanism, as this process never really stops - the eldest observed Xhelarfog have been known to be almost completely covered in these ‘scales’, saving only the palms of their hands and feet, the underside of their tails and the horn-like protrusions on their head.");
-	outputCodex("\n\nIt is theorised that should a metal other than gold occur in greater proportions than it in an individual's diet from infancy, they would instead develop scales of this metal - but no testing has been done due to the more recent discovery of the race.");
+	outputCodex("\n\nIt is theorised that should a metal other than gold occur in greater proportions than it in an individual’s diet from infancy, they would instead develop scales of this metal - but no testing has been done due to the more recent discovery of the race.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Eyes"));
 	outputCodex("Breaking away from the humanoid norm of two, or at least an equal number of eyes, Xhelarfog possess three - one central eye providing most of their vision, and two smaller eyes beneath it allowing for superior peripheral vision. All three of the eyes are golden by the time an individual reaches adulthood due to high concentrations of gold entering them, to no known detrimental effect.");

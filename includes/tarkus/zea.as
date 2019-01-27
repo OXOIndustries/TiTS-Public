@@ -49,8 +49,8 @@ public function zeaIsGreeted():void
 		CodexManager.unlockEntry("Xhelarfog");
 	}
 	output("\n\nThere’s a few tense moments of awkward silence before you manage to get your act together, introducing yourself, and they speak up, tucking away their codex so their work doesn’t distract them.");
-	output("\n\n<i>“Ah! A Steele. [pc.Name] Steele, at that! The boss-to-be - or, well ...Potential boss-to-be. It's a pleasure to make your acquaintance. I am known as Zea.”</i>");
-	output("\n\nZea’s speech has some… Odd affectations when it comes to titles, but they’re perfectly understandable.");
+	output("\n\n<i>“Ah! A Steele. [pc.name] Steele, at that! The boss-to-be - or, well ...Potential boss-to-be. It’s a pleasure to make your acquaintance. I am known as Zea.”</i>");
+	output("\n\nZea’s speech has some... Odd affectations when it comes to titles, but they’re perfectly understandable.");
 	output("\n\nYou pull up a seat across from them, asking what exactly they meant by <i>potential</i>.");
 	output("\n\n<i>“I don’t know what boss-that-was - Victor - planned to make you go through before taking the company, but I’m sure it was a bad idea. You, your cousin-twins, your uncle, any half-siblings we don’t even know about? All of them are potential bosses-to-be - and that’s just relatives that have a realistic stake in the Steele collective-name.”</i>");
 	output("\n\nThey don’t look particularly concerned at that.");
@@ -78,7 +78,7 @@ public function zeaApproach(greet:Boolean = false):void
 	clearOutput();
 	showZea();
 	
-	if (greet) output("You pull up a chair across from Zea, stifling a grin as she jolts to attention, distracted once again by her work.\n\n<i>“[pc.Name] Steele! To what do I owe this meeting?”</i>");
+	if (greet) output("You pull up a chair across from Zea, stifling a grin as she jolts to attention, distracted once again by her work.\n\n<i>“[pc.name] Steele! To what do I owe this meeting?”</i>");
 	else output("Zea looks across the table at you, occasionally taking a bite of her meal as she waits for you to speak up.");
 	
 	zeaButtons();
@@ -122,7 +122,7 @@ public function zeappearance():void
 	showZea(flags["ZEA_DISCOUNT"] != undefined);
 	
 	output("Zea is a Xhelarfog, and as such she has three golden eyes: one large, central one, with two smaller ones below it.");
-	output("\n\nShe’s about 4’8” by your best guess, quite short by galactic standards.");
+	output("\n\nShe’s about 4\' 8\" by your best guess, quite short by galactic standards.");
 	output("\n\nHer face has a curious lack of a nose, presumably meaning she can’t smell, and when she speaks you catch a glimpse of sharp, predatory teeth. Her horns, erupting from the center of her forehead, are the same opalescent white as the rest of her slightly sticky skin, but fade into a golden shade at their tips.");
 	output("\n\nShe has the typical scale pattern of an adult of her species - corset-like over her abdomen, with the top half of her tail likewise protected by scales of gold. The only tell of her age is that she’s begun to develop yet more rough scales on her legs, but as you’re not sure of how fast these grow in, or even what the average Xhelarfog lifespan is; you can only surmise the basic fact that she’s clearly above the legal age.");
 	output("\n\nSeeing as she wears no clothes aside from a cloth band around one arm bearing the SteeleTech logo, you can clearly see that she has gone without modification to her chest - having no breasts or even nipples to speak of - and her groin is as bare as is true of all unmodded individuals of her species.");
@@ -143,8 +143,8 @@ public function zeaChat():void
 	processTime(5);
 	
 	output("You ask her about her job, and why she’s here rather than across the street at the SteeleTech branch.");
-	output("\n\n<i>“I’m what you’d call a delivery woman. Mostly runs to various SteeleTech shops like the one across the road, delivering merchandise for people like Anno to stock - though why <i>she’s</i> been relegated to the nowhere place this is I don’t know… Of course, I am having something of a… What’s your word? The break-from-work one?”</i> She trails off.");
-	output("\n\nShe’s on vacation… On Tarkus of all places?");
+	output("\n\n<i>“I’m what you’d call a delivery woman. Mostly runs to various SteeleTech shops like the one across the road, delivering merchandise for people like Anno to stock - though why <i>she’s</i> been relegated to the nowhere place this is I don’t know... Of course, I am having something of a... What’s your word? The break-from-work one?”</i> She trails off.");
+	output("\n\nShe’s on vacation... On Tarkus of all places?");
 	output("\n\n<i>“Mhmm. Scrap heap this big, this full of metal? It kind of reminds me of home. Less gold, of course.”</i>");
 	output("\n\nStrange, but you suppose you can’t judge. But is that really all she’s doing here?");
 	output("\n\n<i>“I get surplus now and then on my runs. Stuff vendors aren’t interested in selling, or don’t have enough space on their shelves for.”</i>");
@@ -170,14 +170,14 @@ public function zeaGimmeDiscounts():void
 	if (zea.sellMarkup < 1)
 	{
 		output("You open your mouth to speak, and are immediately interrupted with a finger over your mouth.");
-		output("\n\n<i>“[pc.Name] Steele! You’ve not even spent the last one!”</i>");
+		output("\n\n<i>“[pc.name] Steele! You’ve not even spent the last one!”</i>");
 		output("\n\nYou flush, apologizing as soon as the finger’s removed. You guess you can’t slip the wool over her eyes that easily.");
 		return zeaButtons(3);
 	}
 
 	output("You know you’re already getting below average rates as the future CEO of SteeleTech, but you can’t help but ask if there’s any way for you to earn a future discount.");
 	output("\n\nZea laughs, clearly noticing the slight edge of the Steele family charm in your voice, but relents as you don’t budge on it.");
-	output("\n\n<i>“I do suppose that there’s… Something you can help me with. Get down on the floor behind me and eat me out. 25% off the next purchase.”</i>");
+	output("\n\n<i>“I do suppose that there’s... Something you can help me with. Get down on the floor behind me and eat me out. 25% off the next purchase.”</i>");
 	output("\n\nSo, do you want to?");
 
 	addButton(0, "Hell Yeah", zeaRecievesServicesForGoods);
@@ -237,12 +237,12 @@ public function zeaRecievesServicesForGoods():void
 	output("\n\nNobody seeks to interrupt you, even as Zea lets out a loud string of expletives as you plunge your tongue as far as you can into her wet entrance");
 	if (pc.hasLongTongue()) output(", far enough in that you can caress the cervix-like barrier at the end of her passage");
 	output(".");
-	output("\n\nIt won't take long, you note, before she cums - and your frenetic masturbation doubles its pace, determined to orgasm alongside her.");
+	output("\n\nIt won’t take long, you note, before she cums - and your frenetic masturbation doubles its pace, determined to orgasm alongside her.");
 	output("\n\nYou’re right - it doesn’t take much longer at all. One well timed drag of your tongue from clit to clit finishes her off in a wet explosion that coats your face in her fluids. You lean back, panting, and it only takes a few more " + (pc.hasVagina() || !pc.hasCock() ? "thrusts" : "strokes") + " of your fingers to finish yourself off");
 	if (pc.hasCock() || pc.isSquirter()) output(", coating " + (pc.isCrotchExposed() ? "the floor beneath you" : (pc.isCrotchExposedByLowerUndergarment() ? "your armor" : "your lower garments")) + " in your own");
 	output(".");
 	output("\n\nZea slumps in her seat, and you clamber back up to shaky legs, taking your seat again as you clean yourself off.");
-	output("\n\nHer voice is shaky when she finally speaks. <i>“Ah… That’ll do nicely, [pc.Name] Steele. Feel free to make good on that discount whenever you’d like.”</i>");
+	output("\n\nHer voice is shaky when she finally speaks. <i>“Ah... That’ll do nicely, [pc.name] Steele. Feel free to make good on that discount whenever you’d like.”</i>");
 	output("\n\nHonestly, you’d almost forgotten about it.");
 
 	flags["ZEA_DISCOUNT"] = 1;
