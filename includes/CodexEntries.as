@@ -1638,12 +1638,12 @@ public function xhelarfogCodexEntry():void
 {
 	clearOutputCodex();
 	outputCodex(header("Xhelarfog"));
-	outputCodex("<b>Name</b>: Xhelarfog (singular and plural)");
-	outputCodex("\n<b>Sexes</b>: Male, female, occasional occurrence of sexless individuals.");
-	outputCodex("\n<b>Height</b>: Usually smaller than humans - 4’0” to 5’6”");
-	outputCodex("\n<b>Weight</b>: 55-110 lbs (25-50kg), not accounting for scale weight.");
+	outputCodex("<b>Name (Singular & Plural):</b> Xhelarfog");
+	outputCodex("\n<b>Sexes:</b> Male, female, occasional occurrence of sexless individuals.");
+	outputCodex("\n<b>Height:</b> Usually smaller than humans - 4\' 0\" to 5\' 6\"");
+	outputCodex("\n<b>Weight:</b> 55-110 lbs (25-50 kg), not accounting for scale weight.");
 	outputCodex("\n\n");
-	outputCodex(blockHeader("Body composition (Flesh)"));
+	outputCodex(blockHeader("Body Composition (Flesh)"));
 	outputCodex("While perhaps not obvious at a first glance, Xhelarfog are a semi-gelatinous species. Though they do not possess the remarkable shape changing powers of a galotian, they are certainly capable of sealing shut and quickly healing any wounds they attain, and their boneless bodies are easily able to contort through small openings and survive much greater falls than other races.");
 	outputCodex("Xhelarfog have, at present, only been observed to possess opalescent, pale skin.");
 	outputCodex("\n\nTheir flesh is known to be rather sticky - a feature known to let them cling, gecko-like, to walls - though they are able to secrete a substance that prevents their exterior ‘skin’ from adhering itself to anything they touch. It should, therefore, be noted that it is extremely unwise to attempt to penetrate anything but the sexual organs or mouth of any individual, unless you have a fetish for awkward medical appointments - as separating oneself from them is known to be quite the ordeal.");
