@@ -1497,7 +1497,7 @@ public function simoneWorkoutResults(response:String = ""):void
 	clearOutput();
 	author("Slab Bulkhead");
 	showName("\nSIMONE");
-	showBust("SIMONE_NUDE");
+	showBust("SIMONE_HALF_NUDE");
 	clearMenu();
 	
 	// Create Simone
@@ -1759,7 +1759,7 @@ public function lolaPoolApproach():void
 	clearOutput();
 	author("Slab Bulkhead");
 	showName("\nLOLA");
-	showBust("LOLA");
+	showBust("LOLA_NUDE");
 	clearMenu();
 	
 	if(flags["MET_LOLA"] == undefined)
@@ -1835,7 +1835,7 @@ public function lolaPoolSex(response:String = ""):void
 	clearOutput();
 	author("Slab Bulkhead");
 	showName("\nLOLA");
-	showBust("LOLA");
+	showBust("LOLA_NUDE");
 	clearMenu();
 	
 	switch(response)

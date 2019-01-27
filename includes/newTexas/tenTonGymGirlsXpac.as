@@ -107,9 +107,6 @@ public function tentongymCanEncounterLolaSimone():Boolean
 }
 public function tentongymShowLola(nude:Boolean = false):void
 {
-	//currently no named nude bust so set false
-	nude = false;
-	//
 	showName("\nLOLA");
 	if(!nude) showBust("LOLA");
 	else showBust("LOLA_NUDE");	
@@ -118,9 +115,6 @@ public function tentongymShowLola(nude:Boolean = false):void
 }
 public function tentongymShowSimone(nude:Boolean = false):void
 {
-	//currently no named nude bust so set false
-	nude = false;
-	//
 	showName("\nSIMONE");
 	if(!nude) showBust("SIMONE");
 	else showBust("SIMONE_NUDE");	
@@ -129,9 +123,6 @@ public function tentongymShowSimone(nude:Boolean = false):void
 }
 public function tentongymShowBetsyVictoria(nude:Boolean = false):void
 {
-	//currently no named nude bust so set false
-	nude = false;
-	//
 	showName("BETSY &\nVICTORIA");
 	if(!nude) showBust("BETSY_AND_VICTORIA");
 	else showBust("BETSY_AND_VICTORIA_NUDE");	
