@@ -175,7 +175,7 @@ public function kallyBonusRoomTexts():Boolean
 	if(MailManager.isEntryUnlocked("del_moved")) delBonus(1);
 	else if(MailManager.isEntryUnlocked("del_moved_light")) shittyDelBonus(1);
 	//Special Kiro bar event!
-	if(flags["KALLY_FAP_2_KIRO"] != undefined && roamingKiroAvailable() && kiroKallyThreesomes() == 0 && rand(5) == 0)
+	if(flags["KALLY_FAP_2_KIRO"] != undefined && flags["KIRO_PHONE_EVENT"] != undefined && roamingKiroAvailable() && kiroKallyThreesomes() == 0 && rand(5) == 0)
 	{
 		output("\n\nKiro was here... She left to use the bathroom,");
 		if(timesGloryholesUsed() > 0 || timesGloryholesWorked() > 0) output(" probably to dump a discrete load in the gloryholes,");
@@ -3360,7 +3360,7 @@ public function sendKirosNudesToKally2():void
 	clearOutput();
 	showKallyAndKiro();
 	output("Kiro emerges from the bathroom, with nicely drained balls, and a confident swagger in her step. A frown clouds her face when she sees her comm sitting unattended on the table, like she can’t believe she just left it sitting out. She shakes her head and sits down, grabbing the petite device in one paw and thumbing through her new messages.");
-	output("\n\nHer gasp is loud enough to draw the attention of every patron in the room, and if that wasn’t bad enough, her recently emptied dick is quite visibly pushing out of its sheath, making it quite clear just what kind of missive the lusty raccoon-girl received. She whimpers and looks to bar, to her sister Kally, then back at the phone.");
+	output("\n\nHer gasp is loud enough to draw the attention of every patron in the room, and if that wasn’t bad enough, her recently emptied dick is quite visibly pushing out of its sheath, making it quite clear just what kind of missive the lusty raccoon-girl received. She whimpers and looks to the bar, to her sister Kally, then back at the phone.");
 	output("\n\nKally winks, and Kiro looks like she’s ready to faint. A few seconds later, she winks back, as if she totally meant to send her sibling more than a dozen pictures of her own throbbing hardness. Her dick throbs mightily beneath her dress. If she’s not careful, it’ll rip right through.");
 	output("\n\nSomewhere beneath two sets of brown-furred cheeks, you’re sure epic blushes are brewing.");
 	if(kiroKallyThreesomeUnlockPoints() >= 3) output(" They’re definitely ready for a threesome. You just need something to push them into actual action.");
