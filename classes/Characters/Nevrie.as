@@ -19,7 +19,7 @@
 		//constructor
 		public function Nevrie()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 1;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
@@ -45,11 +45,6 @@
 			this.buyMarkdown = .5;
 
 			this.femininity = 85;
-		}
-		
-		public function UpgradeVersion1(dataObject:Object):void
-		{
-			dataObject.inventory.push(new OrefishShard().getSaveObject());
 		}
 		
 		override public function onLeaveBuyMenu():void

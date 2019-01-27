@@ -20,7 +20,7 @@
 		//constructor
 		public function Gene()
 		{
-			_latestVersion = 2;
+			_latestVersion = 1;
 			version = _latestVersion;
 			_neverSerialize = true;
 			

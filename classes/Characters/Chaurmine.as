@@ -17,7 +17,7 @@
 		//constructor
 		public function Chaurmine()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 1;
 			this.version = this._latestVersion;
 			this._neverSerialize = true;
 			
@@ -200,19 +200,6 @@
 			btnTargetText = "Chaurmine";
 			setDefaultSexualPreferences();
 			_isLoading = false;
-		}
-		
-		public function UpgradeVersion1(dataObject:Object):void
-		{
-			this.eyeType = GLOBAL.TYPE_SAURMORIAN;
-			this.faceType = GLOBAL.TYPE_SAURMORIAN;
-			this.earType = GLOBAL.TYPE_SAURMORIAN;
-			this.armType = GLOBAL.TYPE_SAURMORIAN;
-			this.legType = GLOBAL.TYPE_SAURMORIAN;
-			this.tailType = GLOBAL.TYPE_SAURMORIAN;
-			this.cocks[0].cType = GLOBAL.TYPE_SAURMORIAN;
-
-			this.createPerk("Appearance Enabled");
 		}
 		
 		override public function get bustDisplay():String
