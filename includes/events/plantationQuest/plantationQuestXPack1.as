@@ -1645,7 +1645,7 @@ public function quinnFestivalPart2(arg:Array):void
 			// Remove all gear, add Champion Assegai/Champion Short Bow, as in the Lah fight
 			var bow:Boolean = (response == "fight bow");
 			
-			showBust(quinnBustDisplay(), "ZIL_CHAMP_SPEAR", "ZIL_CHAMP_BOW", "ZIL_CHAMP_SPEAR");
+			showBust(quinnBustDisplay(), "ZIL_CHAMPS");
 			showName("VIRILE\nCOMBAT!");
 			
 			output("<i>“The starwalker champion has staked his claim.”</i> Quinn’s cool tones ring out over the assembly as you pick your chosen weapon, test it a few times. <i>“[pc.He] would be the father of my child, forge the future of our tribe, solely by way of [pc.his] own flesh.”</i> ");
@@ -1664,7 +1664,7 @@ public function quinnFestivalPart2(arg:Array):void
 			quinnFestivalPrepFight(bow);
 			break;
 		case "ball next":
-			showBust(quinnBustDisplay(), "ZIL_CHAMP_SPEAR", "ZIL_CHAMP_BOW", "ZIL_CHAMP_SPEAR");
+			showBust(quinnBustDisplay(), "ZIL_CHAMPS");
 			showName("VIRILE\nCOMBAT");
 			
 			// ++Lust
@@ -1874,7 +1874,7 @@ public function quinnFestivalFightLose(response:String = "intro"):void
 			userInterface.leftBarDefaults();
 			generateMap();
 			
-			showBust("ZIL_CHAMP_SPEAR", "ZIL_CHAMP_BOW", "ZIL_CHAMP_SPEAR");
+			showBust("ZIL_CHAMPS");
 			showName("DEFEAT:\nZIL TRIO");
 			
 			var zilDrones:Array = CombatManager.getHostileActors();
@@ -1938,7 +1938,7 @@ public function quinnFestivalFightWin():void
 	generateMap();
 	
 	clearOutput();
-	showBust("ZIL_CHAMP_SPEAR", "ZIL_CHAMP_BOW", "ZIL_CHAMP_SPEAR");
+	showBust("ZIL_CHAMPS");
 	showName("VICTORY:\nZIL TRIO");
 	author("Nonesuch");
 	
@@ -2019,7 +2019,7 @@ public function quinnFestivalSexingsOneSausage(arg:Array):void
 	switch(page)
 	{
 		case 0:
-			showBust(quinnBustDisplay(true), "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showBust(quinnBustDisplay(true), "ZIL_CHAMPS_NUDE");
 			showName("\nQUINN");
 			
 			cIdx = pc.cockThatFits(zilDrones[1].analCapacity());
@@ -2061,7 +2061,7 @@ public function quinnFestivalSexingsOneSausage(arg:Array):void
 			addButton(0, "Next", quinnFestivalSexingsOneSausage, [1, cIdx, vIdx, zilDrones]);
 			break;
 		case 1:
-			showBust(quinnBustDisplay(true), "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showBust(quinnBustDisplay(true), "ZIL_CHAMPS_NUDE");
 			showName("\nQUINN");
 			
 			cIdx = pc.cockThatFits(quinnAnalCapacity());
@@ -2095,7 +2095,7 @@ public function quinnFestivalSexingsOneSausage(arg:Array):void
 			addButton(0, "Next", quinnFestivalSexingsOneSausage, [2, cIdx, vIdx, zilDrones]);
 			break;
 		case 2:
-			showBust(quinnBustDisplay(true), "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showBust(quinnBustDisplay(true), "ZIL_CHAMPS_NUDE");
 			showName("\nQUINN");
 			
 			output("It’s only after many sweaty, lusty hours frollicking with the four zil, rutting and licking and mashing their delightfully sweet organs into and onto your own in every combination you care to think of, that you get your chance. You are Quinn’s most treasured champion, after all, and the first shall come last.");
@@ -2173,7 +2173,7 @@ public function quinnFestivalSexingsPairOfQueens(arg:Array):void
 	switch(page)
 	{
 		case 0:
-			showBust(quinnBustDisplay(true), "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showBust(quinnBustDisplay(true), "ZIL_CHAMPS_NUDE");
 			showName("\nQUINN");
 			
 			if(pc.hasCock())
@@ -2210,7 +2210,7 @@ public function quinnFestivalSexingsPairOfQueens(arg:Array):void
 			addButton(0, "Next", quinnFestivalSexingsPairOfQueens, [1, cIdx, vIdx, zilDrones]);
 			break;
 		case 1:
-			showBust(quinnBustDisplay(true), "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showBust(quinnBustDisplay(true), "ZIL_CHAMPS_NUDE");
 			showName("\nQUINN");
 			
 			output("The boys are too excited to pace themselves. The one at your back judders into you, hard, athletic hips slapping a frenetic rhythm against your [pc.ass] as the other takes a firm grip of your head and thrusts his hard sweet meat past your [pc.lips], slathering a steady drip of honey-pre across your tongue and inner cheeks, filling your head with oozing, summery delight. Your [pc.vagina " + vIdx + "] is being filled and rubbed at a startling rhythm, digging in to that particular spot again and again, and you’re quickly forced to orgasm, your over-stimulated body clenching itself up and letting go brilliantly repeatedly, fingers digging into the soft furs beneath you and emitting muffled squeals of delight as your [pc.vagina " + vIdx + "] " + (!pc.isSquirter() ? "dribbles" : "spurts") + " [pc.femcum] in a wet, glorious rush.");
@@ -2240,7 +2240,7 @@ public function quinnFestivalSexingsPairOfQueens(arg:Array):void
 			addButton(0, "Next", quinnFestivalSexingsPairOfQueens, [2, cIdx, vIdx, zilDrones]);
 			break;
 		case 2:
-			showBust(quinnBustDisplay(true), "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showBust(quinnBustDisplay(true), "ZIL_CHAMPS_NUDE");
 			showName("\nQUINN");
 			
 			output("It’s only after many sweaty, lusty hours frollicking with the four zil, rutting and licking and mashing their delightfully sweet organs into and onto your own in every combination you care to think of, things simmer down to a slow burn. The archer twink clasps your [pc.chest], his fat, stubby cock stretching the sensitive ring of your [pc.anus]; the one below has you sat on his sturdy, longer length, wedged deep within your [pc.vagina " + vIdx + "]. They fuck you slowly but surely now, little jerks and rises of their hips, their energies almost spent but driven on by a determination to use every inch of the intoxicating alien queen, their fuck truncheons pressing into each other through your tender walls sending little jolts of pleasure up your spine and making [pc.eachVagina] shiver and course with [pc.femcum].");
