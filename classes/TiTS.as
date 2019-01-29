@@ -216,6 +216,7 @@
 		// Travel Events
 		include "../includes/travelEvents.as";
 		include "../includes/travelEvents/fallOfThePhoenix.as";
+		include "../includes/travelEvents/kimber.as";
 		include "../includes/travelEvents/kiro.as";
 		include "../includes/travelEvents/kiroRescue.as";
 		include "../includes/travelEvents/shizuya.as";

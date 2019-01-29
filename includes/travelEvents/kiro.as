@@ -24,6 +24,8 @@ public function roamingBarEncounter(button:int = 0):void
 		)
 		&&	annoIsCrew() && !pc.hasStatusEffect("Anno Bar Busy") && rand(2) == 0) NPCs.push(annoRandoBarBonus);
 		if(flags["ERRA_HEARTBROKEN"] == undefined) NPCs.push(erraBarText);
+		//Cow - chance changes depending on location and is handled in scienceCowAvailable()
+		if(scienceCowAvailable()) NPCs.push(drinkingScienceCowBonus);
 		//Pick available NPC, run setup func
 		if(NPCs.length > 0)
 		{
