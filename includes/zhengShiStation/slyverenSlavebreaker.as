@@ -394,6 +394,7 @@ public function suckledIntoSubmissionLost():void
 	}
 	//Merge
 	output("\n\n<i>That’s better isn’t it?</i>");
+	if(enemy.lipColor == "glossy black") showImage("SlavebreakerBJ");
 	output("\n\nYou sigh in agreement, feeling oh so much better now. All those concerns you had seem so far away. Maybe it’s her venom, but it seems very much like the plush lips on your dick are massaging your cares and worries away, one at a time. Everything is so warm and aroused, so slack and hot with need that it’s easier to slump back and watch the snake-girl’s " + (enemy.eyeColor == "gold" ? "golden":"pink") + " eyes while she slurps, leaking more of... of that feel-good venom into you.");
 	output("\n\nOf course you feel better!");
 	output("\n\nThe slyveren pops up and licks her lips. They glisten with copious spit and the promise of more cock-enchanting attention, though her fangs are nowhere to be seen. Your brow wrinkles in confusion, then pleasure when you realize-");
@@ -1609,6 +1610,7 @@ public function faceFuckThatSlyveren():void
 			else output("\n\n<i>“Oh, I can hardly wait,”</i> the slyveren giggles, her eyes inspecting every inch of your enlarged cock. <i>“I want to suck your cum int- mmmgrfbl!”</i>");
 		}
 		output("\n\n<i>“Theeere you go,”</i> you mutter, meeting her gaze and grinning as her eyelids lower, giving her a sultry expression. You can even feel the corners of her lips upturning at your treatment of her. <i>“A slut like you needs to be treated right. You wanna swallow it all down, right?”</i>");
+		if(enemy.lipColor == "glossy black") showImage("SlavebreakerBJ");
 		output("\n\n<i>“Mmmngh,”</i> she moans dreamily into your cock as it slips into her throat. You can feel it tightening around you as she swallows, desperate to get it all inside her. <i>“Mmph, gllb...”</i>");
 		output("\n\n<i>“So eager,”</i> you say, running your hand down her head. <i>“You want it all upfront, huh?”</i>");
 		output("\n\nIt was a rhetorical question but the slavebreaker slut nods anyway, her eyes gleaming as she looks up at you. You can feel her tongue wrapping around your cock, encompassing it on all sides as she works her long, warm muscle for your benefit.");

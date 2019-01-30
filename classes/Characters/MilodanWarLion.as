@@ -45,7 +45,7 @@
 			this.meleeWeapon.attackVerb = "swing";
 			this.meleeWeapon.attackNoun = "sizzling slice";
 			this.meleeWeapon.attack = 12;
-			this.meleeWeapon.baseDamage.kinetic.damageValue = 7;
+			this.meleeWeapon.baseDamage.burning.damageValue = 6;
 			this.meleeWeapon.baseDamage.electric.damageValue = 10;
 			this.meleeWeapon.hasRandomProperties = true;
 

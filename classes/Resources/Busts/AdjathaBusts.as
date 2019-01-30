@@ -1487,7 +1487,7 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/krissy.png", mimeType = "image/png")]
 			public var Full_KRISSY:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/krissy_nude.pngs", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/krissy_nude.png", mimeType = "image/png")]
 			public var Full_KRISSY_NUDE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/krissy_nude_gush.png", mimeType = "image/png")]
 			public var Full_KRISSY_NUDE_GUSH:Class;
@@ -1570,6 +1570,10 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/priestess.png", mimeType = "image/png")]
 			public var Full_MILODAN_PRIESTESS:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/milo_temptress_nude.png", mimeType = "image/png")]
+			public var Full_MILO_TEMPTRESS_NUDE:Class;
+			public function get Full_MILO_TEMPTRESS():Class { return Full_MILO_TEMPTRESS_NUDE; }
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mirian.png", mimeType = "image/png")]
 			public var Full_MIRIAN:Class;

@@ -1011,6 +1011,7 @@ public function erraCuddleScenes2():void
 	//firstTime:
 	if(flags["ERRA_CUDDLED"] == undefined)
 	{
+		showImage("ErraAfterCuddlePanties");
 		output("\n\nAs you’re making yourself ready for your journeys and Erra’s making herself decent, the former-puppy calls out, <i>“Hey, [pc.name], I think you forgot your panties.”</i>");
 		output("\n\nBefore you have a chance to reply, or consider if you are missing any panties, a wadded up ball of purple fabric hits you.");
 		if(pc.reflexes() >= 10) output(" Managing to catch the soft, violet sphere, you cock an eyebrow and unravel the matrix of lacy fabrics.");
@@ -1022,6 +1023,7 @@ public function erraCuddleScenes2():void
 		pc.createKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")
 		output("\n\n(<b>Gained Key Item: Panties - Erra’s</b>.)");
 	}
+	else showImage("ErraAfterCuddle");
 	output("\n\nOnce you’re both decent, you walk back into the ship’s Atrium, Dee’s robotic voice ringing in your ears before you can even get a foot out the airlock. <i>“Leaving, [pc.name]? I-”</i>");
 	output("\n\nThe AI is suddenly cut off by her captain: <i>“Dee I swear! I’ll-”</i>");
 	output("\n\nErra is interrupted in turn by her artificial co-pilot, <i>“Don’t worry, Captain, I’ll let you </i>enjoy the moment<i>.”</i>");

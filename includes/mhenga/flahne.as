@@ -881,7 +881,6 @@ public function flahneMunchesBoxesMetalBawkses():void {
 public function flahneDeskMunchies():void {
 	clearOutput();
 	showFlahne(true);
-	showImage("FlahneUnderDesk");
 	output("Saying nothing, you advance on the endowed woman. Before she can get out of her chair, you pull it away from the desk, leaning over and resting your own hands on her damp armrests to pin the secretary in her seat.");
 	output("\n\n<i>“Getting a good look?”</i> she teases. The buxom gel pushes her chest even farther, ");
 	if(!pc.canMilkSquirt()) {
@@ -891,7 +890,10 @@ public function flahneDeskMunchies():void {
 	else output("touching your [pc.chest] with her nipples as fluid begins to leak from them, turning her shirt translucent");
 	output(". Keeping your plan in mind, you slip a hand up to touch her areolae, distracting her as you slowly turn the chair around until you’re between your quivering lover and the desk. Your arms draw back, pulling the chair forward and its occupant into you, and you savor the closeness of your lover as it drives her bouncy melons into your [pc.skinFurScales].");
 	
-	output("\n\nCrouching, you slide under the desk, then pull the secretary’s legs in after you, concealing your presence. <i>“[pc.name], what in the hell are you doing?”</i> she asks, clearly perplexed by your hide-and-seek. Instead of replying, you push her knees apart and slip two fingers into her wet snatch, leaning in to slide your tongue ");
+	output("\n\n");
+	if(!flahneDickOut()) showImage("FlahneUnderDesk");
+	else showImage("FlahneUnderDeskFuta");
+	output("Crouching, you slide under the desk, then pull the secretary’s legs in after you, concealing your presence. <i>“[pc.name], what in the hell are you doing?”</i> she asks, clearly perplexed by your hide-and-seek. Instead of replying, you push her knees apart and slip two fingers into her wet snatch, leaning in to slide your tongue ");
 	if(!flahneDickOut()) output("over her erect clit");
 	else output("halfway up her erect, dribbling ovipositor");
 	output(". <i>“Woah, hold up!”</i> the woman gasps. <i>“Someone might come in! Let me go so I can lock the doors!”</i>");
@@ -1159,8 +1161,10 @@ public function fuckAndSuckWithFlahne():void {
 	output("<i>“I know something fun,”</i> you tease, sliding a finger down Flahne’s straining cleavage. <i>“But you should probably lock the doors unless you don’t mind more people joining in.”</i>");
 	
 	output("\n\nFlahne colors a bit as her hand slides between her breasts to cup yours. <i>“Oh nooo, that would be awful. I’m a one-" + pc.mf("man","woman") + " rahn, through and through,”</i> she giggles, answering in a sing-song voice that drips with insincerity. She pulls your finger free and licks it salaciously, then releases you and steps over to the door. With a click, she locks each one via the panel, and then returns to you. <i>“I’m all yours, you greedy " + pc.mf("boy","girl") + ".”</i>");
-
-	output("\n\nYou reach around the wonderfully soft gel secretary rubbing against you and grasp her plushy butt with both hands. Her ovipositor pokes your stomach as you gently lift her to sit on her desk. The translucent amber shaft oozes slightly at the tip, letting you know that it’s ready and raring to go. You don’t really feel like making use of the magnificent member yourself, but an interesting idea stirs on your mind. You ");
+	output("\n\n");
+	
+	showImage("FlahneRecliningFuta");
+	output("You reach around the wonderfully soft gel secretary rubbing against you and grasp her plushy butt with both hands. Her ovipositor pokes your stomach as you gently lift her to sit on her desk. The translucent amber shaft oozes slightly at the tip, letting you know that it’s ready and raring to go. You don’t really feel like making use of the magnificent member yourself, but an interesting idea stirs on your mind. You ");
 	if(!pc.isNude()) output("strip out of your [pc.gear], revealing [pc.oneCock] and grinning at the prone beauty.");
 	else output("slide your hands sensually down your body, rubbing [pc.oneCock] till it hardens nicely.");
 	
@@ -1463,7 +1467,9 @@ public function flahneEatOutSwapMeatPussiesYouKnowWhatIMean():void
 	if(pc.isTaur()) output("your humanoid half down ");
 	output("to nestle yourself between her meaty legs, close enough to smell the sugary musk wafting up from the slit of Flahne’s sex. You’d almost think the curvaceous gel-girl was <i>made</i> of sweets!");
 
-	output("\n\nEager to see if Flahne’s pussy tastes as good as it smells, you");
+	output("\n\n");
+	if(flags["FLAHNE_LIKE_OVIPOSITOR"] == 1) showImage("UpCloseFlahnePuss");
+	output("Eager to see if Flahne’s pussy tastes as good as it smells, you");
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] == 1) output(" lift the meaty shaft out of the way and");
 	output(" flick your [pc.tongue] out along one of her outer lips, running it from the bottom of her twat to the hood of her clit. The taste is intoxicating, like the sweetest, sugariest candy you’ve ever eaten in the form of a molten liquid that’s the perfect balance between sticky and creamy. You eat it up, letting the sweet stuff spur you on to licking deeper and faster into the giggling rahn’s cunt.");
 

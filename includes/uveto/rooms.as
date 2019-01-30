@@ -619,7 +619,7 @@ public function initUvetoRooms():void
 	rooms["UVI P40"].runOnEnter = uvetoMaglevStation;
 	rooms["UVI P40"].addFlag(GLOBAL.INDOOR);
 	rooms["UVI P40"].addFlag(GLOBAL.PUBLIC);
-	rooms["UVI P40"].addFlag(GLOBAL.TAXI); // 9999 TRAIN?
+	rooms["UVI P40"].addFlag(GLOBAL.TAXI);
 
 	rooms["UVI N32"] = new RoomClass(this);
 	rooms["UVI N32"].roomName = "MEAD\nSTREET";

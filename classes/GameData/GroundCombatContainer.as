@@ -59,7 +59,7 @@ package classes.GameData
 			// ^ PRAETORIAN => PRAETORIAN x3
 			// ^ TAIVRADANE => TAIVRA, DANE
 			
-			var overrides:Array = ["ZILPACK", "PRAETORIAN", "TAIVRADANE", "TAMTURRETS"];
+			var overrides:Array = ["ZILPACK", "PRAETORIAN", "TAIVRADANE", "TAMTURRETS","MILO_TEMPTRESS","MILO_INFILTRATOR","WAR_LION"];
 			var bustIdx:String = (_hostiles[0] as Creature).bustDisplay;
 			
 			if (InCollection(bustIdx, overrides))
@@ -71,8 +71,19 @@ package classes.GameData
 					case "PRAETORIAN": kGAMECLASS.showBust("PRAETORIAN", "PRAETORIAN", "PRAETORIAN"); break;
 					case "TAIVRADANE": kGAMECLASS.showBust("TAIVRA", "DANE"); break;
 					case "TAMTURRETS": kGAMECLASS.showBust("TAMTAM", "TAMWOLF"); break;
+					case "WAR_LION":
+					case "MILO_TEMPTRESS":
+					case "MILO_INFILTRATOR": 
+						if((_hostiles[0] as Creature).hasStatusEffect("Has Captive"))
+						{
+							if((_hostiles[0] as Creature).statusEffectv1("Has Captive") == 1) kGAMECLASS.showBust(
+								bustIdx,"NENNE");
+							else if((_hostiles[0] as Creature).statusEffectv1("Has Captive") == 2) kGAMECLASS.showBust(bustIdx,"HEIDRUN");
+							else if((_hostiles[0] as Creature).statusEffectv1("Has Captive") == 3) kGAMECLASS.showBust(bustIdx,"LUND");
+							else if((_hostiles[0] as Creature).statusEffectv1("Has Captive") == 4) kGAMECLASS.showBust(bustIdx,kGAMECLASS.tuuvaBustString());
+						}
+						break;
 				}
-				
 				return;
 			}
 			

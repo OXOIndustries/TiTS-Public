@@ -14,7 +14,7 @@ public function encounterMiloTemptress():void
 {
 	showMiloTemptress();
 	author("QuestyRobo");
-	if(flags["MET_MILO_TEMPTRESS"] == undefined)
+	if(flags["MET_MILO_TEMPTRESS"] == undefined && flags["WARGII_TUUVA_SAVED"] == undefined)
 	{
 		addBust(tuuvaBustString());
 		output("As you’re walking through the hold, you hear faint footsteps in the distance. You duck behind a nearby rock and get ready to ambush whoever comes by, only to hear a thud and a loudly cursing female’s voice.");

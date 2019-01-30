@@ -216,7 +216,7 @@
 		include "../includes/events/wargiiHold/milodanInfiltrator.as";
 		include "../includes/events/wargiiHold/milodanTemptress.as";
 		include "../includes/events/wargiiHold/milodanWarLion.as";
-		include "../includes/events/wargiiHold/nenneCaptiveStuff.as";
+		include "../includes/events/wargiiHold/captiveStuff.as";
 		include "../includes/events/wargiiHold/wargiiHold.as";
 		include "../includes/events/wargiiHold/rooms.as";
 

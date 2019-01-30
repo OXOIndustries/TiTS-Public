@@ -100,7 +100,7 @@ public function takeDownAnInfiltratorKitty():void
 	}
 	captiveRescueButton(5);
 	if(fightHasCaptive()) addDisabledButton(14,"Leave","Leave","You can't leave the captive behind!");
-	else addButton(14,"Leave",CombatManager.genericVictory);
+	else addButton(14,"Leave",wargiiLeaveCombatEnd);
 }
 
 //[Fuck ass]

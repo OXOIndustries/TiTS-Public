@@ -580,7 +580,10 @@ public function fuckFeruzesPussy2(x:int):void
 	output("\n\nThe giggling, moaning shark-girl looks to be close herself. Every impact on her well-fucked pussy causes her to chirp in delight and roll her eyes half-way back. When you pinch her nipples, they stay up there a bit longer, and her mouth opens from the a spike of intense pleasure. Before long, she’s not even looking at you, just crying out and squeezing around your [pc.cock " + x + "]");
 	if(pc.hasCockTail() && pc.hasParasiteTail()) output(" and tail");
 	output(" like your own personal, shark-girl-shaped fuck-toy.");
-	output("\n\nFeruze’s eyelids close, and her forehead wrinkles in sudden concentration. She whimpers once, quiet and almost pained-sounding. Then she cums. A hoarse scream tears its way out of her throat while her cunt scissors tight on your [pc.cock " + x + "], muscles rippling wildly, trying to coax you into cumming right along with her.");
+	output("\n\n");
+	if(pc.cocks[x].cType == GLOBAL.TYPE_EQUINE) showImage("feruzePussyFuckHorse");
+	else showImage("feruzePussyFuck");
+	output("Feruze’s eyelids close, and her forehead wrinkles in sudden concentration. She whimpers once, quiet and almost pained-sounding. Then she cums. A hoarse scream tears its way out of her throat while her cunt scissors tight on your [pc.cock " + x + "], muscles rippling wildly, trying to coax you into cumming right along with her.");
 	if(pc.cocks[x].cLength() > 14) output(" Her cervix all but vanishes, yawning so wide that your next thrust pops your [pc.cockHead " + x + "] inside with casual ease.");
 	output(" The shark-woman’s nipples puff up even more, the tips growing rock hard. Her fingers spasm wildly against the deck as she stares straight up in complete confusion, as if she can’t possible contain both the strength of her orgasm and her own psyche at the same time." + (pc.isBimbo() ? " She’d make a great bimbo!":""));
 	output("\n\nThere’s no room for anything but climax.");

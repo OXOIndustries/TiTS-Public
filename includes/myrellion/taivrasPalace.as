@@ -3728,7 +3728,9 @@ public function showPrincess():void
 public function princessBonus():Boolean
 {
 	showPrincess();
-	output("\n\nThe nyrean princess, wearing a crown of citrine embedded into her head-spikes, lounges amongst the males, holding a pair of them against her breasts while another two bob up and down along an eight-inch, flaring shaft.");
+	output("\n\n");
+	showImage("PrincessIntro");
+	output("The nyrean princess, wearing a crown of citrine embedded into her head-spikes, lounges amongst the males, holding a pair of them against her breasts while another two bob up and down along an eight-inch, flaring shaft.");
 	output("\n\nAt the sight of you, she pushes the topmost set away, leaving the busy bottoms to continue orally polishing her rod. <i>“How dare you intrude upon the royal harem!”</i> She releases a gooey wad into a suckling mouth, seemingly unperturbed by her own irritation. With a haughty huff, she gazes at you with lust-lidded eyes. <i>“Unless you’ve come to join the harem. Is that it, star-walker? I suppose you are cute enough to hold a few eggs...”</i>");
 	output("\n\nYou didn’t come here for that, but that wouldn’t be such a bad end to your adventures. Do you join her harem or resist?");
 	clearMenu();

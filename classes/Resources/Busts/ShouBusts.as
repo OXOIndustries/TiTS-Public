@@ -667,6 +667,9 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ushamee_nude_preg.png", mimeType = "image/png")]
 		public var Bust_USHAMEE_NUDE_PREG:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/uveto_taxi_vendor.png", mimeType = "image/png")]
+		public var Bust_UVETO_TAXI_VENDOR:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/valeria.png", mimeType = "image/png")]
 		public var Bust_VALERIA:Class;
 
@@ -674,8 +677,10 @@
 		public var Bust_VOIDPIRATE:Class;
 		public var Bounds_VOIDPIRATE:Rectangle = new Rectangle(27, 0, 64, 64);
 
-		[Embed(source = "../../../assets/images/npcs/shou_puppy/warLion.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/warlion.png", mimeType = "image/png")]
 		public var Bust_WAR_LION:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/warlion_nude.png", mimeType = "image/png")]
+		public var Bust_WAR_LION_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/wetra_hound.png", mimeType = "image/png")]
 		public var Bust_WETRAHOUND:Class;
@@ -713,6 +718,13 @@
 		public var Bust_ZEPHYR:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/zephyr_nude.png", mimeType = "image/png")]
 		public var Bust_ZEPHYR_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/gryvain_orgy_girl.png", mimeType = "image/png")]
+		public var Bust_GRYVAIN_ORGY_GIRL:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/saeri_orgy_girl.png", mimeType = "image/png")]
+		public var Bust_SAERI_ORGY_GIRL:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/human_orgy_girl.png", mimeType = "image/png")]
+		public var Bust_HUMAN_ORGY_GIRL:Class;
 
 		CONFIG::IMAGEPACK
 		{
@@ -1342,11 +1354,19 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ushamee_nude_preg.png", mimeType = "image/png")]
 			public var Full_USHAMEE_NUDE_PREG:Class;
 
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/uveto_taxi_vendor.png", mimeType = "image/png")]
+			public var Full_UVETO_TAXI_VENDOR:Class;
+
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/valeria.png", mimeType = "image/png")]
 			public var Full_VALERIA:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/black_void_grunt.png", mimeType = "image/png")]
 			public var Full_VOIDPIRATE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/warlion.png", mimeType = "image/png")]
+			public var Full_WAR_LION:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/warlion_nude.png", mimeType = "image/png")]
+			public var Full_WAR_LION_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/wetra_hound.png", mimeType = "image/png")]
 			public var Full_WETRAHOUND:Class;
@@ -1384,6 +1404,13 @@
 			public var Full_ZAALT_ALT:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/zaalt_nude.png", mimeType = "image/png")]
 			public var Full_ZAALT_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/gryvain_orgy_girl.png", mimeType = "image/png")]
+			public var Full_GRYVAIN_ORGY_GIRL:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/saeri_orgy_girl.png", mimeType = "image/png")]
+			public var Full_SAERI_ORGY_GIRL:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/human_orgy_girl.png", mimeType = "image/png")]
+			public var Full_HUMAN_ORGY_GIRL:Class;
 		}
 	}
 

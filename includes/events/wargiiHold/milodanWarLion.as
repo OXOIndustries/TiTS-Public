@@ -18,8 +18,8 @@ public function warLionFightGoooo():void
 	output(". The figure jumps back, lightning on his feet, and you get your first good look at him.");
 
 	output("\n\nIt’s a gigantic milodan, adorned head to foot in Pyrite Industries riot/combat gear. The parts of him that aren’t covered you can see are bulging with muscle - little wonder that they gave this guy the gear he’s holding, he must be one of the only ones who could carry it. In one hand he’s carrying some kind of tri-barreled energy rifle with an overhand grip, still spinning after its recent ammunition expenditure. You can see it’s attached to a backpack the milodan is wearing.");
-	output("\n\nIn his other hand, he’s wielding a sword that looks to have energy shimmering around its edge. As you watch, he holds a trigger and it begins to crackle, sending sparks hissing into the air! Without warning, he launches himself forward straight at you!");
-	output("\n\nIt’s a fight!");
+	output("\n\nIn his other hand, he’s wielding an energy sword that looks to have electricity shimmering around its edge. As you watch, he holds a trigger and it begins to crackle, sending sparks hissing into the air! Without warning, he launches himself forward straight at you!");
+	output("\n\n<b>It’s a fight!</b>");
 	startWarLionFight();
 }
 
@@ -196,7 +196,7 @@ public function winVsWaryLiono():void
 	}
 	captiveRescueButton(5);
 	if(fightHasCaptive()) addDisabledButton(14,"Leave","Leave","You can't leave the captive behind!");
-	else addButton(14,"Leave",CombatManager.genericVictory);
+	else addButton(14,"Leave",wargiiLeaveCombatEnd);
 }
 
 //[Fuck face]

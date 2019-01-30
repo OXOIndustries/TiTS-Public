@@ -704,7 +704,9 @@ public function verushaHeatSex():void
 	output("\n\n<i>“Yes, yes, YES!”</i> you scream out loud, unable to contain yourself any longer. Every second she’s rubbing her tip against your pussy lips is agony. With every breath you take you can smell her pre; it’s like ambrosia to your fuzzy mind.");
 	output("\n\nWith a cocky grin she sinks her weighty cock inside you with a slow thrust, spreading your pussy around her girth. <i>“Damn, I love bitches in heat.”</i>");
 	pc.cuntChange(x,verushaCockVolume());
-	output("\n\nYou moan deeply in the pure bliss of having her inside you. It feels so good having her tapered length inside your cunt, but it is a mere distraction to what you truly desire: her hot cum filling up your womb.");
+	output("\n\n");
+	showImage("VerushaFuck");
+	output("You moan deeply in the pure bliss of having her inside you. It feels so good having her tapered length inside your cunt, but it is a mere distraction to what you truly desire: her hot cum filling up your womb.");
 	output("\n\nBut working for it makes it all the better. Well, she’s the one really working for it, a point she all too happy to punctuate by burying herself balls-deep again before withdrawing and repeating it all over again.");
 	output("\n\nShe brings one hand to your mouth, pulling it open. She bends down and starts to sloppily make out with you while ");
 	if(pc.biggestTitSize() > 1) output("groping your [pc.breasts]");
@@ -778,7 +780,9 @@ public function verushaOralScene():void
 	output("\n\n<i>“I think you should put those pretty lips of yours to good use. As in wrapping them around my cock.”</i> She sits back, spreading her legs to give you full view and access to her crotch.");
 	output("\n\nThe narrow tip of her canine dick is slightly poking from her sheath, beckoning you towards it. Seems that she lost her erection in the time that it took her to decide what to do. You crawl towards her on your hands and knees, plopping your ass between her legs.");
 	output("\n\nYou give her tip a kiss before licking the sensitive flesh inside her sheath, earning a shudder from Verusha and inches of dick flesh pouring into your mouth for your effort. You rub her sheath, encouraging more of her member out from her sheath, working over her balls with your other hand.");
-	output("\n\nWhen she’s fully out of her sheath and throbbing impatiently, she pushes some breathing room between you and her dick.");
+	output("\n\n");
+	showImage("VerushaBJ");
+	output("When she’s fully out of her sheath and throbbing impatiently, she pushes some breathing room between you and her dick.");
 	output("\n\n<i>“Just saying to wrap your lips around my cock is just enough, is it? Yeah, you seem like the kind of [pc.boyGirl] that sucks cock for fun.”</i> She slaps you in the face a couple of times with her erect length.");
 	output("\n\nYou catch her tapered head into your mouth on a down swing, quickly enveloping multiple inches of her dick with your [pc.lips].");
 	output("\n\nBefore you can swallow more of her prick she yanks it away, out of your reach.");

@@ -21,8 +21,9 @@ public function showJumpyGangbang():void
 	else if(enemy.hasCock(GLOBAL.TYPE_FELINE)) busts.push("BORED_JUMPER_FELINE_NUDE");
 	else if(enemy.hasCock(GLOBAL.TYPE_CANINE)) busts.push("BORED_JUMPER_CANINE_NUDE");
 	else busts.push("BORED_JUMPER_TERRAN_NUDE");
+	if(rand(2) == 0) busts.push("SAERI_ORGY_GIRL");
+	else busts.push("HUMAN_ORGY_GIRL");
 	busts.push("GRYVAIN_ORGY_GIRL");
-	busts.push("SAERI_ORGY_GIRL");
 	busts.sort(randomizeBusts);
 	showBust(busts[0],busts[1],busts[2]);
 	

@@ -1091,7 +1091,11 @@ public function uvetoMaglevStation():Boolean
 		syriQuestInitialEncounter();
 		return true;
 	}
-	else addButton(0, "Transit", useUvetoTransportMenu);
+	else 
+	{
+		showBust("UVETO_TAXI_VENDOR");
+		addButton(0, "Transit", useUvetoTransportMenu);
+	}
 	return false;
 }
 		

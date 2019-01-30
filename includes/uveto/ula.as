@@ -358,7 +358,9 @@ public function ulaSexApproach():void
 		if(!korgiTranslate()) output("Want love-mate bond.");
 		else output("I want that loving, mated bond.");
 		output("”</i>");
-		output("\n\nYou swoon when she breaks away, breathing hard. The near-naked native prances to nearby bin, retrieving a dildo. She drags and back and forth across her steamy slit, watching you all the while. A slow smile spreads across her features. <i>“");
+		output("\n\n");
+		showImage("UlaDildo");
+		output("You swoon when she breaks away, breathing hard. The near-naked native prances to nearby bin, retrieving a dildo. She drags and back and forth across her steamy slit, watching you all the while. A slow smile spreads across her features. <i>“");
 		if(!korgiTranslate()) output("Go on. Tell what want.");
 		else output("Go on. Tell me what you want.");
 		output("”</i> Her pussy drips. <i>“");
@@ -1269,7 +1271,9 @@ public function ulaRoomBonusFunc():Boolean
 public function ulaFirstTimeRemeet():void
 {
 	showUla(true);
-	output("\n\nThe familiar form of the korgonne you saved is sprawled out on a cushy-looking bed, naked save for oodles of jangling jewelry and a fat, glossy dildo rammed between her legs. Lips parted mid-moan, she squeaks at your sudden intrusion and rolls ass-over-head over the bed to fall heavily on the floor. <i>“You!”</i> Her tail wiggles happily in the air as she climbs back up onto her mattress.");
+	output("\n\n");
+	showImage("UlaDildo");
+	output("The familiar form of the korgonne you saved is sprawled out on a cushy-looking bed, naked save for oodles of jangling jewelry and a fat, glossy dildo rammed between her legs. Lips parted mid-moan, she squeaks at your sudden intrusion and rolls ass-over-head over the bed to fall heavily on the floor. <i>“You!”</i> Her tail wiggles happily in the air as she climbs back up onto her mattress.");
 	output("\n\nYou note the dildo is still firmly clutched in her paw, dripping wet.");
 	output("\n\n<i>“You come visit!”</i> Springing off her mattress, the excited ball of fluff and fuck tumbles into you");
 	if(pc.tallness < 70) output(", tackling you to the ground");

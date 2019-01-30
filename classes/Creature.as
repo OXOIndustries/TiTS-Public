@@ -13717,18 +13717,18 @@
 			
 			if (hips <= 1) {
 				if (thickness > 70) {
-					adjectives.push("tiny ");
+					adjectives.push("slim ");
 					adjectives.push("narrow ");
 					if (firm < 30) adjectives.push("boyish ");
 				}
 				//Normal
 				else if (thickness >= 30) {
 					if (firm < 30) adjectives.push("boyish ");
-					adjectives.push("tiny ");
+					adjectives.push("slim ");
 				}
 				//Uberthin
 				else {
-					adjectives.push("tiny ");
+					adjectives.push("slim ");
 					adjectives.push("narrow ");
 					if (firm < 30) adjectives.push("boyish ");
 				}
