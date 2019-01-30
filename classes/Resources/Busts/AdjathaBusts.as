@@ -1038,6 +1038,15 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/callgirl_pregnant_cum.png", mimeType = "image/png")]
 		public var Bust_ZIL_CALLGIRL_PREG_CUM:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/pollen_dancers.png", mimeType = "image/png")]
+		public var Bust_ZIL_CHAMPS:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/pollen_dancers_nude.png", mimeType = "image/png")]
+		public var Bust_ZIL_CHAMPS_NUDE:Class;
+		public function get Bust_ZIL_CHAMP_BOW():Class { return Bust_ZIL_CHAMPS; }
+		public function get Bust_ZIL_CHAMP_SPEAR():Class { return Bust_ZIL_CHAMPS; }
+		public var Bounds_ZIL_CHAMP_BOW:Rectangle = new Rectangle(18, 4, 70, 65);
+		public var Bounds_ZIL_CHAMP_SPEAR:Rectangle = new Rectangle(90, 0, 70, 65);
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/hornet.png", mimeType = "image/png")]
 		public var Bust_ZIL_HORNET:Class;
 		public var Bounds_ZIL_HORNET:Rectangle = new Rectangle(0, 10, 70, 70);
@@ -1987,6 +1996,13 @@ package classes.Resources.Busts
 			public var Full_ZIL_CALLGIRL_PREG:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/callgirl_pregnant_cum.png", mimeType = "image/png")]
 			public var Full_ZIL_CALLGIRL_PREG_CUM:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/pollen_dancers.png", mimeType = "image/png")]
+			public var Full_ZIL_CHAMPS:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/pollen_dancers_nude.png", mimeType = "image/png")]
+			public var Full_ZIL_CHAMPS_NUDE:Class;
+			public function get Full_ZIL_CHAMP_BOW():Class { return Full_ZIL_CHAMPS; }
+			public function get Full_ZIL_CHAMP_SPEAR():Class { return Full_ZIL_CHAMPS; }
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/hornet.png", mimeType = "image/png")]
 			public var Full_ZIL_HORNET:Class;

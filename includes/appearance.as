@@ -456,7 +456,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			break;
 		case GLOBAL.TYPE_XHELARFOG:
 			outputRouter((target == pc ? "Your":"[target.Name]'s") + " face has a curious lack of a visible nose");
-			if (target.eyeCount == 3) outputRouter(", though the thing truly cementing its alien nature is the trio of eyes decorating its upper half");
+			if (target.eyeCount() == 3) outputRouter(", though the thing truly cementing its alien nature is the trio of eyes decorating its upper half");
 			outputRouter(".");
 			break;
 		case GLOBAL.TYPE_SAURMORIAN:

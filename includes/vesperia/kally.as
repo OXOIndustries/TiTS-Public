@@ -175,7 +175,7 @@ public function kallyBonusRoomTexts():Boolean
 	if(MailManager.isEntryUnlocked("del_moved")) delBonus(1);
 	else if(MailManager.isEntryUnlocked("del_moved_light")) shittyDelBonus(1);
 	//Special Kiro bar event!
-	if(flags["KALLY_FAP_2_KIRO"] != undefined && flags["KIRO_PHONE_EVENT"] != undefined && roamingKiroAvailable() && kiroKallyThreesomes() == 0 && rand(5) == 0)
+	if(flags["KALLY_FAP_2_KIRO"] != undefined && flags["KIRO_PHONE_EVENT"] == undefined && roamingKiroAvailable() && kiroKallyThreesomes() == 0 && rand(5) == 0)
 	{
 		output("\n\nKiro was here... She left to use the bathroom,");
 		if(timesGloryholesUsed() > 0 || timesGloryholesWorked() > 0) output(" probably to dump a discrete load in the gloryholes,");
