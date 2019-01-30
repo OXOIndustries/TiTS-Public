@@ -200,6 +200,7 @@
 		include "../includes/events/bimboPennyAndBadgerQuest/badgerGifts.as";
 		include "../includes/events/erra.as";
 		include "../includes/events/kattomOsgood.as";
+		include "../includes/events/kimber.as";
 		include "../includes/events/kiroCrewQuest/buttslutinator.as";
 		include "../includes/events/kiroCrewQuest/omnisuitExtras.as";
 		include "../includes/events/kiroCrewQuest/orgasmender.as";
@@ -216,7 +217,6 @@
 		// Travel Events
 		include "../includes/travelEvents.as";
 		include "../includes/travelEvents/fallOfThePhoenix.as";
-		include "../includes/travelEvents/kimber.as";
 		include "../includes/travelEvents/kiro.as";
 		include "../includes/travelEvents/kiroRescue.as";
 		include "../includes/travelEvents/shizuya.as";

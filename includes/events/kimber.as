@@ -18,6 +18,7 @@ public function showKimber(nood:Boolean = false, auth:Boolean = true):void
 
 public function scienceCowAvailable():Boolean
 {
+	if (flags["LANDED_ON_TEXAS"] == undefined || flags["MET_FLAHNE"] == undefined) return false;
 	if (pc.hasStatusEffect("Kimber Bating")) return false;
 	//75% to show up on tavros
 	if (currentLocation == "ANON'S BAR AND BOARD") return rand(4) != 0;
