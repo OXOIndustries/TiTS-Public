@@ -3,6 +3,10 @@
  * KIMBER_SEXED: also duh
  * KIMBER_TALKED_HERSELF: it's the duh hat trick
  * KIMBER_TALKED_WORK: [Her Work]
+ * KIMBER_SEXABLE: [Sex] menu shows up now
+ * KIMBER_{MIRROR/TYING/PEGGING}_UNLOCKED: these make sex scenes available
+ * KIMBER_{CANDY/RUSKVEL/RATION/UTHRA/SKY}_GIVEN: the return of duh
+ * KIMBER_REJECTED_PARASITE: This should be one if the pc had mimbranes *the last time* they tried to sex the cow
 */
 
 public function showKimber(nood:Boolean = false, auth:Boolean = true):void
@@ -14,6 +18,7 @@ public function showKimber(nood:Boolean = false, auth:Boolean = true):void
 
 public function scienceCowAvailable():Boolean
 {
+	if (pc.hasStatusEffect("Kimber Bating")) return false;
 	//75% to show up on tavros
 	if (currentLocation == "ANON'S BAR AND BOARD") return rand(4) != 0;
 	if (flags["MET_KIMBER"] == undefined) return false;
@@ -106,7 +111,7 @@ public function kimberMenu(firstEncounter:Boolean = false):void
 		kimberTalkMenu();
 	});
 	addButton(2, "Flirt", kimberFlirtWithTheCow);
-	if (flags["KIMBER_SEXABLE"] != undefined) addButton(3, "Sex", (flags["KIMBER_SEXED"] == undefined ? kimberTouchTheCow : kimberDoHerNow));
+	if (flags["KIMBER_SEXABLE"] == 1) kimberSexButton(3);
 	if (flags["KIMBER_TALKED_WORK"] != undefined) addButton(4, "Give Items", function ():void
 	{
 		clearMenu();
@@ -123,16 +128,24 @@ public function kimberMenu(firstEncounter:Boolean = false):void
 			if (!pc.hasItemByClass(story.item)) continue;
 			else if (flags[story.flag] != undefined) continue;
 			else addButton(btnSlot++, story.label, story.func);
+		addButton(14, "Never Mind", kimberMenu);
 	});
+
 	addButton(14, "Goodbye", function ():void
 	{
 		clearMenu();
 		clearOutput();
 		showKimber();
 		if (firstEncounter) output("You tell Kimber that it was nice to meet her, and that maybe you'll see her around. She nods and says \"<i>Likewise, Steele,</i>\", then takes her datapad out and starts reading it again.");
-		else output("You tell Kimber that you need to get back to what you're doing. She smiles and says, \"All right, then. I'll see you again sometime, [pc.name],</i>\" and pulls out her datapad again.");
+		else output("You tell Kimber that you need to get back to what you're doing. She smiles and says, \"<i>All right, then. I'll see you again sometime, [pc.name],</i>\" and pulls out her datapad again.");
 		addButton(0, "Next", mainGameMenu);
 	});
+}
+
+public function kimberSexButton(btnSlot:int = 1):void
+{
+	if (flags["KIMBER_REJECTED_PARASITE"] != undefined) addDisabledButton(btnSlot, "Sex");
+	else addButton(btnSlot, "Sex", (flags["KIMBER_SEXED"] == undefined ? kimberTouchTheCow : kimberDoHerNow));
 }
 
 public function kimberLookAtTheCow():void
@@ -305,6 +318,8 @@ public function kimberInTheJungle():void
 		output("\n\nYou nod, and tell her you'll be careful. Now seems like a good time to change the subject.");
 	}
 	
+	flags["KIMBER_TALKED_MHENGA"] = 1;
+	
 	kimberTalkMenu(3);
 }
 
@@ -434,11 +449,11 @@ public function kimberGiveZil():void
 
 public function kimberStoryMenu(lastStory:Function = null):void
 {
-	var stories:Array = [	{label: "Uthra Sap", func: kimberUthraStory, flag: "KIMBER_UTHRA_GIVEN"}, 
-							{label: "Rock Candy", func: kimberNyreaStory, flag: "KIMBER_CANDY_GIVEN"}, 
-							{label: "Ruskvel", func: kimberRaskvelStory, flag: "KIMBER_RUSKVEL_GIVEN"}, 
-							{label: "Sky Sap", func: kimberVanaeStory, flag: "KIMBER_SKY_GIVEN"}, 
-							{label: "Zil Ration", func: kimberZilStory, flag: "KIMBER_RATION_GIVEN"}];
+	var stories:Array = [	{label: "Hiking", func: kimberUthraStory, flag: "KIMBER_UTHRA_GIVEN"}, 
+							{label: "Delivery", func: kimberNyreaStory, flag: "KIMBER_CANDY_GIVEN"}, 
+							{label: "Kaithrit", func: kimberRaskvelStory, flag: "KIMBER_RUSKVEL_GIVEN"}, 
+							{label: "Ausar", func: kimberVanaeStory, flag: "KIMBER_SKY_GIVEN"}, 
+							{label: "Competition", func: kimberZilStory, flag: "KIMBER_RATION_GIVEN"}];
 	var btnSlot:int = 0;
 	for each (var story:Object in stories)
 		if (flags[story.flag] == undefined) continue;
@@ -453,6 +468,7 @@ public function kimberUthraStory():void
 	clearOutput();
 	showKimber();
 	processTime(5 + rand(11));
+	pc.lust(5+rand(int(0.31*pc.libido())));
 	
 	output("\"<i>I don't know how much time you've spent back on New Texas,</i>\" Kimber begins, \"<i>but outside the towns, it's one of the most beautiful places I've ever been. Rolling fields, deep forests in some of the farther-away parts, all that sort of thing.</i>\" She gets a wistful look on her face, and smiles at you. \"<i>That's not what most people think about when home comes up, but it's always had more to it than people know.</i>\"");
 	output("\n\nIt does seem like an interesting place, even if there are a few key reasons most people have heard of it. But it didn't seem like what you saw was aimed at getting people out into nature.");
@@ -485,6 +501,7 @@ public function kimberNyreaStory():void
 	clearOutput();
 	showKimber();
 	processTime(10 + rand(16));
+	pc.lust(5+rand(int(0.31*pc.libido())));
 	
 	output("\"<i>Now, you might have noticed I can get a little competitive,</i>\" Kimber says. She grins as you agree. \"<i>I'm not real sure where I get it. Might have come from growing up back home, lots of us girls betting we'd grow the biggest boobs or hips or whatever we wanted when we got Treated.</i>\" She glances down at her expansive chest. \"<i>Believe it or not, I grew these and still only came in second among the girls my age.</i>\"");
 	output("\n\nFrom what you've seen of New Texas, you do in fact believe that.");
@@ -516,6 +533,7 @@ public function kimberRaskvelStory():void
 	clearOutput();
 	showKimber();
 	processTime(5 + rand(6));
+	pc.lust(5+rand(int(0.31*pc.libido())));
 	
 	output("\"<i>So this is back on the planet that was mostly ocean, remember me telling you about that?</i>\" Kimber begins. You nod. \"<i>As it turns out, there were a few small islands, but they were a few days' flight out, and not much big enough for more than a ship and a tent. So they couldn't send too many people out on to go find new stuff.</i>\"");
 	output("\n\nFrom the small smile on Kimber's face, you can guess where this story's going, but you gesture for her to continue.");
@@ -552,6 +570,7 @@ public function kimberVanaeStory():void
 	clearOutput();
 	showKimber();
 	processTime(10 + rand(16));
+	pc.lust(5+rand(int(0.31*pc.libido())));
 	
 	output("\"<i>So, there was this ausar guy I worked with, back when I first started at Xenogen,</i>\" Kimber begins. \"<i>Real nice fella, one of those high-energy types, you know, the kind that's always up and raring to go first thing in the morning without any coffee?</i>\" She chuckles, and sips her beer. \"<i>He was….</i>\" She gets a thoughtful look on her face for a moment. \"<i>He worked a level above me, between me and the higher-ups. That's the best way I can put it without spending half an hour going on about corporate structure.</i>\"");
 	output("\n\nYou nod. You've dealt enough with that sort of thing as part of Steele Tech to know how complicated it can get.");
@@ -590,6 +609,7 @@ public function kimberZilStory():void
 	clearOutput();
 	showKimber();
 	processTime(10 + rand(11));
+	pc.lust(5+rand(int(0.31*pc.libido())));
 	
 	output("\"<i>So this was back when I was younger, after I'd only been Treated for maybe two weeks,</i>\" Kimber says. \"<i>I was still getting used to everything, not sure if I was really through with changing, wondering if my tits were actually done growing or not.</i>\" She winks at you. \"<i>It's one of those things we talk about, when we're going through it. Those of us who ain't just sitting there all blissed-out at the new sensations, I mean.");
 	if (pc.isTreated()) output(" You remember what it was like, so you get it, right?");
@@ -620,7 +640,7 @@ public function kimberZilStory():void
 		output("\n\nShe holds her hands about three feet apart. \"<i>The shower wasn't much wider than this, so we really had to cram ourselves in there. We both stripped, I started the water, and damn if he didn't have a great dick. Not so big as I was thinking, what with how much the rest of him grew when he got Treated, but he knew how to use it. He kind of had to hold me up against the wall while he shoved it in, and when I figured out I had enough room to put my legs around him…</i>\" Kimber bites at her lower lip, her eyes half-closed at the memory.");
 		output("\n\n\"<i>I held him in there, too,</i>\" she says after a moment. \"<i>We were squeezed into the shower so tight, when I had my legs around him he couldn't get out. So after he blew his first load, I just kept grinding on him until he got hard again. Didn't take too long, never does with the Treated ones. But we went three rounds in the shower before the boss came in and told us to finish up and get back to work.</i>\"");
 		output("\n\nNot bad, not bad at all. And her boss wasn't mad at them for having sex while they were working?");
-		output("\n\nKimber laughs. \"<i>You kidding? If people got in trouble for that back home, we'd have the worst employment rate in the whole damn galaxy….</i>\"");
+		output("\n\nKimber laughs. \"<i>You kidding? If people got in trouble for that back home, we'd have the worst employment rate in the whole damn galaxy…</i>\"");
 	}
 
 	kimberStoryMenu(kimberZilStory);
@@ -628,8 +648,170 @@ public function kimberZilStory():void
 
 public function kimberFlirtWithTheCow():void
 {
+	clearMenu();
+	clearOutput();
+	showKimber();
+	processTime(1+rand(2));
 
+	if (hasVisibleMimbranes() || pc.hasParasiteTail())
+	{
+		output("You lean in close and ask Kimber if it's true what you've heard about New Texas girls, what the Treatment does to them and all that.");
+		output("\n\nKimber holds up one hand between you two, a clear 'stop' gesture if you've ever seen one. \"<i>Hold it right there, Steele,</i>\" she says, a stern look on her face, then points at you. \"<i>You think you're getting anywhere near me with that on you, you've got another thing coming.</i>\"");
+		if (hasVisibleMimbranes())
+		{
+			output("\n\nBefore you can ask what the problem is, Kimber spits, \"<i>How many of those damn mimbranes have you got on you? I know where they like to latch on, so how many do you have where I can't see them?</i>\"");
+			if (flags["KIMBER_TALKED_MHENGA"] == undefined) output("\n\nYou tell Kimber you're not sure what the issue is. Sure, some people might think the mimbranes are a little odd, but they're no stranger than a lot of what's out there. \n\nKimber takes a deep breath, and looks away for a moment. \"<i>I don't like to talk about it much,</i>\" she says, her voice low, \"<i>but I had a real bad experience back on Mhen'ga. A couple of those damn things hooked onto me, nearly got me killed.</i>\" She fixes her gaze on you, clearly upset. \"<i>I'm not getting near you with those things on you. You want to go for a tumble, you get rid of every single one, and maybe we'll talk.</i>\"");
+			else output("\n\nThat's right. Kimber had some serious trouble with mimbranes back on Mhen'ga. She might have been too polite to mention yours at the time, but she clearly draws the line at flirting with someone they're attached to.\n\n\"<i>I told you what happened, [pc.name], so I don't know why you'd think I'd be up for a tumble,</i>\" Kimber says, \"<i>not with those things on you. Get rid of them and maybe we can talk.</i>\"");
+		}
+		else
+		{
+			output("\n\nYou realize she's pointing at your " + (pc.hasParasiteTailCock() ? "[pc.cockTail]" : "[pc.cuntTail]") + ". What's wrong with that?");
+			if (flags["KIMBER_TALKED_MHENGA"] == undefined) output("\n\nKimber looks away for a moment. \"<i>I don't like to talk about it much,</i>\" she says, her voice low, \"<i>but I had a real bad experience back on Mhen'ga. They've got mimbranes there, these parasites like giant thirsty pieces of cloth. Couple of them hooked onto me, nearly got me killed.</i>\" She fixes her gaze on you, clearly upset. \"<i>I'm not taking my chances with anything like that, I don't care how good the rest of you looks. You want to get anywhere near my bed, you lose that thing and we'll talk.</i>\"");
+			else output("\n\nShe scowls at you, easily the angriest you've ever seen her. \"<i>Really? I told you what happened to me on Mhen'ga, and you're asking me what's wrong with that? Those damned mimbranes almost killed me.</i>\" She folds her arms over her chest and huffs. \"<i>I'm not taking my chances with anything like that, I don't care how good the rest of you looks. You want to get anywhere near my bed, you lose that thing and we'll talk.</i>\"");
+		}
+		
+		flags["KIMBER_REJECTED_PARASITE"] = 1;
+		
+		kimberMenu();
+		addDisabledButton(2, "Flirt");
+	}
+	else if (flags["KIMBER_REJECTED_PARASITE"] != undefined)
+	{
+		output("You lean in and get about two words into what you think will be a good line to use on Kimber, before she holds up her hand in a clear 'stop' gesture.");
+		output("\n\n\"<i>Hold it right there, Steele,</i>\" Kimber says, a stern look on her face. \"<i>I told you, you're not getting anywhere near me with one of those… </i>things<i> on you. Now, I don't see one, but if you want to do this, you've got to prove that you're clean.</i>\" She glances at your crotch. \"<i>I know where they latch on first. So drop trou or we ain't going anywhere.</i>\"");
+		if (pc.exhibitionism() < 10) output("\n\nWhat? She wants you to expose yourself in public, just to prove you don't have a parasite? That seems kind of harsh, but judging by the look on Kimber's face, she's not going back on this. You look around quickly to make sure nobody's watching, then shuffle aside your [pc.lowerGarments] to expose your [pc.crotch] She gestures for you to turn around, so you do the same to bare your [pc.ass], poking it out as quickly as you can.");
+		else if (pc.exhibitionism() < 33) output("\n\nSo that's what she wants? Exposing yourself in public might not be an everyday thing for you, but it's nothing you haven't done before. A little thrill runs up your spine as you tug at your [pc.lowerGarments], exposing your [pc.crotch] and [pc.ass] to Kimber. You take a little bit longer to give her a look than you need to, in case someone else wants a peek.");
+		else output("\n\nWithout a second thought, you yank down your [pc.lowerGarments], exposing your [pc.crotch] and [pc.ass] to Kimber, along with the rest of the bar. You fold your arms over your [pc.chest], and give her a look. If she wants to turn this into some kind of stripping game, you're all for it.");
+
+		if (attachedMimbranes() > 0)
+		{
+			output("\n\nKimber gives you a scowl that could burn a hole through your ship. \"<i>Seriously, Steele? You think I wouldn't notice the second time? How stupid do you think I am?</i>\" She downs more of her beer, like she's trying to drink away what she just saw. \"<i>Keep that thing covered and don't try this again until it's gone, you hear me?</i>\"");
+			kimberMenu();
+			addDisabledButton(2, "Flirt");
+		}
+		else
+		{
+			output("\n\nKimber gives your [pc.crotch] and [pc.ass] a careful look, then smirks at you. \"<i>Good to see you got that thing taken off, [pc.name].</i>\" She grins, then leans forward, pressing her enormous boobs against your [pc.chest]. \"<i>Now, where were we?</i>\"");
+			pc.lust(5+pc.libido()/5);
+
+			flags["KIMBER_REJECTED_PARASITE"] = undefined;
+
+			kimberSexButton(0);
+			addButton(14, "Never Mind", kimberWasJustBeingFlirtedWith);
+		}
+	}
+	else
+	{
+		pc.lust(5+pc.libido()/5);
+
+		if (flags["KIMBER_SEXED"] == undefined)
+		{
+			output("You lean in close and ask Kimber if it's true what you've heard about New Texas girls, what the Treatment does to them and all that.");
+			output("\n\nKimber gives you a coy look. \"<i>Oh, so you've heard things about us?</i>\" She gives you a long look up and down, not even trying to hide that she's checking you out. When her eyes meet yours, she's smirking. \"<i>Care to share?</i>\"");
+			output("\n\nYou've heard New Texas girls can take you for a ride like no one else in the galaxy, for starters. Kimber chuckles, then sets down her beer and turns to face you.");
+			output("\n\n\"<i>That one's true,</i>\" she says. \"<i>But I ain't like most other girls from back home.</i>\" She folds her arms under her boobs, pushing them up beneath her labcoat. The button holding her coat together looks to be having trouble staying closed. \"<i>You want to go for a ride, I'm on top. You think you can handle your [pc.hips] getting plowed into the mattress, then we can talk.</i>\"");
+		}
+		else
+		{
+			output("You lean in close and ask Kimber if she's good for going for another ride, assuming she's recovered from the last one.");
+			output("\n\nKimber laughs, but it's a friendly laugh, and the smirk she gives you is a familiar one. \"<i>Oh, really, [pc.name]? You think I'm the one needs to recover?</i>\" She raises her dark eyebrows. \"<i>Funny how I remember you being the one gasping for air at the end last time.</i>\"");
+			output("\n\nYou remind her that you were both pretty exhausted, and that she didn't seem to mind at all. You definitely didn't hear any complaints.");
+			output("\n\n\"<i>Oh, no complaints at all, don't get me wrong,</i>\" she says, still laughing a little. She folds her arms under her boobs, pushing them up beneath her labcoat. The button holding her coat together looks to be having trouble staying closed. \"<i>Don't mind me, I like the verbal foreplay. But if you think you can handle another good ride and don't have to walk too much tomorrow, say the word.</i>\"");
+		}
+
+		flags["KIMBER_SEXABLE"] = 1;
+		
+		addButton(0, "Flirt Harder", kimberTheFlirtIsNotEnough);
+		kimberSexButton(1);
+		addButton(14, "Never Mind", kimberWasJustBeingFlirtedWith);
+	}
 }
+
+public function kimberTheFlirtIsNotEnough():void
+{
+	clearMenu();
+	clearOutput();
+	showKimber();
+	processTime(1+rand(2));
+	pc.lust(5+pc.libido()/5);
+	
+	if (flags["KIMBER_SEXED"] == undefined)
+	{
+		output("You tell Kimber that she seems pretty sure she'll be able to handle you. You're not so sure.");
+		output("\n\n\"<i>Oh, you don't need to worry about that,</i>\" she says, and flicks her tongue out at the corner of her lips. \"<i>You just need to worry about making sure you can keep it up long enough so I get what I want, and I'll take good care of you.</i>\"");
+		if (!pc.isCrotchExposed()) output("\n\nShe pauses, a considering look on her face. \"<i>Or if you don't have a dick down there, I've got a hardlight you can borrow. I'm not picky about that kind of thing.</i>\"");
+		else if (pc.hasCock()) output("\n\nShe looks down at your exposed [pc.crotch]. \"<i>Looks like you've got what I'm looking for, but the real question is whether what you've got can handle me.</i>\"");
+		else output("\n\nShe looks down at your exposed [pc.crotch]. \"<i>Long as you don't mind using a hardlight. I've got one if you don't.</i>\"");
+		output("\n\nYou laugh a little, and tell her she's got nothing to worry about. Legends of New Texas girls or no, you think you've got a good shot at wearing her out before you even get tired.");
+		output("\n\n\"<i>I've heard that before,</i>\" Kimber says, drawling it out a little. She pushes her arms up more beneath her boobs, hoisting them nearly up to her chin. The coat's button is barely holding itself in place, and you can almost see the strings straining. \"<i>But I've had too many who got their hands on these, and they... well, they couldn't keep it together.</i>\" She waggles her eyebrows at you. \"<i>You up for showing me you're better than that?</i>\"");
+	}
+	else
+	{
+		output("You tell Kimber you're not worried about whether you can handle another ride, but whether she can. Now that you know what she likes, you could wear her out even faster.");
+		output("\n\n\"<i>Hah!</i>\" Kimber laughs, and grins at you. \"<i>You can try.</i>\" She pauses, a considering look on her face. \"<i>Now that I think about it, please do try. I haven't properly broken in the bed on my ship yet, and by that I mean I haven't managed to actually break the thing.</i>\" She leans toward you. \"<i>But I've got moves you ain't seen yet, Steele.</i>\"");
+		output("\n\nYou could say the same, you tell her. And since she knows you can last as long as you need to, maybe it's time you both started showing each other what you can really do.");
+		output("\n\n\"<i>Maybe it is,</i>\" Kimber says, drawling it out a little. She pushes her arms up more beneath her boobs, hoisting them nearly up to her chin. The coat's button is barely holding itself in place, and you can almost see the strings straining. \"<i>Or maybe you're just talking me up, thinking pretty words are going to get you somewhere when we both know where this is going.</i>\" She waggles her eyebrows at you. \"<i>You up for another round, you come with me and you prove it, you hear?</i>\"");
+	}
+
+	addButton(0, "Flirt Hardest", kimberYouOnlyFlirtThrice)
+	kimberSexButton(1);
+	addButton(14, "Never Mind", kimberWasJustBeingFlirtedWith);
+}
+
+public function kimberYouOnlyFlirtThrice():void
+{
+	clearMenu();
+	clearOutput();
+	showKimber();
+	processTime(1+rand(2));
+	pc.lust(5+pc.libido()/5);
+	
+	output("You tell Kimber that she better be sure she's ready for what she's getting into, as you can show her things you've learned in your travels across the galaxy that there's no way they even knew about on New Texas.");
+	output("\n\nKimber gives a loud, hearty laugh, enough to make her chest bounce. The strain on her labcoat pops off the one button holding it closed, sending the button flying across the bar. The button bounces off a wall and lands in the half-full glass of an ausar man who's fallen asleep at his table.");
+	output("\n\nThis only makes Kimber laugh harder, and once she's recovered, she leans forward and presses her enormous chest against your [pc.chest]. \"<i>Okay, [pc.name],</i>\" she says, \"<i>do you want to go back to my ship and fuck? Much as I like the teasing talk, I think we've done enough dancing around this for now.</i>\"");
+
+	kimberSexButton(0);
+	addButton(14, "Never Mind", kimberWasJustBeingFlirtedWith, true);
+}
+
+public function kimberWasJustBeingFlirtedWith(srsFlirting:Boolean = false):void
+{
+	clearMenu();
+	clearOutput();
+	showKimber();
+	processTime(1);
+
+	if (srsFlirting)
+	{
+		output("You tell Kimber that you're just flirting for the fun of it, and that you don't feel like having sex with her right now.");
+		output("\n\nKimber's smile slowly fades, and she pulls away from you, her brows furrowed together. \"<i>Really, Steele? Really?</i>\" She pulls her coat together over her chest, and tries to use a different button to hold it together. She only manages to get a button closed below her breasts, making it look like she's putting herself on display.");
+		output("\n\n\"<i>Get a girl all riled up,</i>\" she mutters, \"<i>and then nothing?</i>\" She looks you in the eye. \"<i>That's damn disappointing.</i>\"");
+		output("\n\nBefore you can say anything else, Kimber steps away from the bar, then turns to face you again. \"<i>Now if you'll excuse me, I've got to go handle things myself, since you got me all going and hung me out to dry.</i>\" She pauses. \"<i>And I need to sew on a new button. Again.</i>\"");
+		output("\n\nShe walks out of the bar, leaving you alone. Maybe that wasn't the nicest thing to do.");
+		pc.createStatusEffect("Kimber Bating");
+		pc.setStatusMinutes("Kimber Bating", 60);
+		refreshRoamingBarEncounter();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	else if (flags["KIMBER_SEXED"] == undefined)
+	{
+		output("You tell Kimber that you're just flirting for the fun of it, and don't really mean anything by it. She looks disappointed, but not upset.");
+		output("\n\n\"<i>Well, damn, [pc.name],</i>\" she says. \"<i>That's not something I hear often. And I was starting to think I wasn't doing too good, what with you not taking me up on it.</i>\" She laughs a little, then smiles at you. \"<i>But I don't mind too much. There's something kind of fun about dancing around it instead of stepping on its toes, you know?</i>\"");
+		output("\n\nThat's not a bad way to put it. And sometimes it is fun just to flirt.");
+		output("\n\n\"<i>And besides,</i>\" Kimber says, \"<i>it's kind of nice to have someone to just talk to, flirting or no.</i>\" She chuckles. \"<i>I'm good with being friends with or without benefits.</i>\"");
+	}
+	else
+	{
+		output("You tell Kimber that you're just flirting for the fun of it, and aren't looking for another ride right now. She laughs out loud, dropping her arms and making her boobs shake and strain against her coat.");
+		output("\n\n\"<i>I knew it!</i>\" She leans back against the bar, looking supremely smug, and downs more of her beer. \"<i>Knew I'd worn you out, Steele.</i>\" She nudges you with one elbow. \"<i>You had trouble walking lately? Been to see a V-Ko to get your hips realigned?</i>\"");
+		output("\n\nIt's not like that, you tell her, but it doesn't look like she believes you. Then, she smiles.");
+		output("\n\n\"<i>I get it, I'm just teasing you,</i>\" she says, then leans closer to you, like she's telling a secret. \"<i>Believe it or not, I also have times when I'm not looking to get laid.</i>\" She winks. \"<i>Not that you couldn't change my mind, but it happens. So we're good.</i>\"");
+	}
+
+	kimberMenu();
+}
+
 public function kimberTouchTheCow():void
 {
 
