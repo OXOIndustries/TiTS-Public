@@ -3967,25 +3967,25 @@
 		
 		public function isChestVisible(tight:Boolean = false): Boolean
 		{
-			if(armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))
+			if(armor is EmptySlot || wornItemIsTransparent(armor) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))
 			{
-				return (upperUndergarment is EmptySlot || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST));
+				return (upperUndergarment is EmptySlot || wornItemIsTransparent(upperUndergarment) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST));
 			}
 			return isChestExposed(tight);
 		}
 		public function isCrotchVisible(tight:Boolean = false): Boolean
 		{
-			if(armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN))
+			if(armor is EmptySlot || wornItemIsTransparent(armor) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN))
 			{
-				return (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN));
+				return (lowerUndergarment is EmptySlot || wornItemIsTransparent(lowerUndergarment) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN));
 			}
 			return isCrotchExposed(tight);
 		}
 		public function isAssVisible(tight:Boolean = false):Boolean
 		{
-			if(armor is EmptySlot || armor.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
+			if(armor is EmptySlot || wornItemIsTransparent(armor) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || armor.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
 			{
-				return (lowerUndergarment is EmptySlot || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS));
+				return (lowerUndergarment is EmptySlot || wornItemIsTransparent(lowerUndergarment) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) || lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS));
 			}
 			return isAssExposed(tight);
 		}
@@ -5596,8 +5596,10 @@
 			
 			var bonus: int = item.sexiness;
 			
+			//Stretchy Gabilani Panties
+			if (item.hasFlag(GLOBAL.ITEM_FLAG_STRETCHY)) bonus += stretchBonusSexiness(item);
 			// Transparent sexiness adjustments
-			if(item.sexiness > 0 && item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT))
+			if(item.sexiness > 0 && wornItemIsTransparent(item))
 			{
 				var tmod:int = 1;
 				switch(item.type)
@@ -5620,6 +5622,24 @@
 			}
 			
 			return bonus;
+		}
+		public function stretchBonusSexiness(item:*): Number
+		{
+			var bigness:int = 0;
+			if (item == lowerUndergarment) bigness = Math.max(hipRating(), buttRating());
+			else if (item == upperUndergarment) bigness = biggestTitSize();
+			else bigness = Math.max(hipRating(), buttRating(), biggestTitSize());
+			if (bigness < 5) return 0;
+			else if (bigness < 10) return 1;
+			else if (bigness < 15) return 2;
+			else if (bigness < 20) return 3;
+			else return 4;
+		}
+		public function wornItemIsTransparent(item:*): Boolean
+		{
+			if (item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT)) return true;
+			if (stretchBonusSexiness(item) >= 3) return true;
+			return false;
 		}
 		public function critBonus(melee: Boolean = true): Number {
 			var temp: int = 5;
