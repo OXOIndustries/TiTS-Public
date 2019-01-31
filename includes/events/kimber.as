@@ -1087,11 +1087,11 @@ public function kimberDoHerNow():void
 	else addDisabledButton(3, "Mirror Sex");
 	if (flags["KIMBER_CANDY_GIVEN"] != undefined) addButton(4, "Mutual Mast");
 	else addDisabledButton(4, "Mutual Mast");
-	if (flags["KIMBER_RUSKVEL_GIVEN"] != undefined) addButton(5, "Get Tied Down", kimberGetsYouTiedUpWithoutWork);
+	if (flags["KIMBER_RUSKVEL_GIVEN"] != undefined) addButton(5, "Get Tied Down", penisRouter, [kimberGetsYouTiedUpWithoutWork]);
 	else addDisabledButton(5, "Get Tied Down");
 	if (flags["KIMBER_SKY_GIVEN"] != undefined) addButton(6, "Pegging", kimberTakesYouDownToPeg);
 	else addDisabledButton(6, "Pegging");
-	if (flags["KIMBER_RATION_GIVEN"] != undefined) addButton(7, "Shower Sex");
+	if (flags["KIMBER_RATION_GIVEN"] != undefined) addButton(7, "Shower Sex", penisRouter, [kimberTheCleanScientist]);
 	else addDisabledButton(7, "Shower Sex");
 	//[On Top] {only appears if previously offered but not taken, disappears after being taken}
 
@@ -1555,20 +1555,99 @@ public function kimberGetsYouTiedUpWithoutWork(cockIdx:int):void
 
 	addButton(0, "Next", kimberGoHomePostSex);
 }
-/*
-public function kimberTakesYouForARide(cockIdx:int):void
+
+public function kimberTheCleanScientist(cockIdx:int):void
 {
 	clearMenu();
 	clearOutput();
 	showKimber(true);
 	processTime(45+rand(31));
 
+	output("You tell Kimber you'd like to bang her in the shower, like her friend back in New Texas did. She gives you a long look up and down, then smirks. \"<i>The shower in this thing ain't too big, [pc.name]. You sure you're up for squeezing in there with me?</i>\"");
+	output("\n\nYes, yes you are. Kimber laughs, then grabs your hand and tugs you into the bathroom.");
+	output("\n\nShe's definitely made the ship her home, and the bathroom's no exception. Towels hang from hooks on the walls or lie in piles on the floor, and you spot several of Kimber's enormous bras hanging from from another hook. The rest of the room is taken up by a small toilet and the cylindrical shower, and the mirror over the single sink is small and marked with lipstick kisses.");
+
+	if (pc.hasCock())
+	{
+		output("\n\nKimber gently takes hold of your [pc.cock " + cockIdx + "] and leads you to the shower. She slides open the door on with her free hand, and tugs you into the circular shower. The inside smells like shampoo and Kimber's own scent, and your [pc.cock " + cockIdx + "] stiffens further in her hand as the aroma hits you. It's pretty clear this shower's a big part of Kimber's sex life.");
+		output("\n\nIt's a tight squeeze with you and Kimber both in the shower, and your [pc.ass] gets pressed against the clear plastic as she turns to the faucets and starts the water. Hot streams pour down from above, and Kimber turns to you, pressing her huge boobs against your [pc.chest] as water flows down over her shoulders and yours.");
+		output("\n\nKimber slips her tongue into your mouth as she kisses you, and you reach around and take hold of her bouncy ass, getting a slippery grip on her soft flesh. She presses harder against you, your [pc.cock " + cockIdx + "] growing harder against her thighs. Her hands trace over your back, rubbing at you as the water courses down, the heat from her body outpacing the shower's own.");
+		output("\n\nAfter a moment, Kimber pulls away, and nudges your [pc.hips] with her own, pushing you against the shower wall again. She turns her back on you, then takes hold of your cock and slips it between her round buttcheeks, rubbing her wet ass against your length as you grow still harder. Her tail rubs against your [pc.chest], sliding in to settle between your [pc.breasts].");
+		output("\n\n\"<i>Can't do a proper titfuck in such a small place,</i>\" Kimber says, looking at you over her shoulder. \"<i>Though I know a couple girls from back home who could do just as good a job with their asses.</i>\"");
+		output("\n\nFrom what you've seen of New Texas, you believe it. It only takes a few more strokes between Kimber's cheeks for you to be fully hard, and you slap your [pc.cock " + cockIdx + "] against her ass to let her know you're ready. She laughs, and turns to face you once more.");
+		output("\n\nKimber raises her arms above her head, letting the water trail down her glistening body, rivulets running across and around her enormous boobs, dripping off her hard pink nipples, and tracing over every one of her curves. From the smile on her face, she knows exactly how good she looks posing like that.");
+		output("\n\nShe plants a hand on your shoulder, then raises one thigh to lay atop your [pc.hip], and says, \"<i>Okay, Steele. Help me up. Only one right way to fuck in a shower this small.</i>\" She smirks. \"<i>Hope you don't mind having your hands on my ass the whole time.</i>\"");
+		output("\n\nThere's lots of places on her you'd like to put your hands right now, but she's got a point. You reach around and lift up Kimber by her ass as she braces herself against you. It takes some fumbling, but she gets her legs around you, and slowly lowers her dripping pussy onto your [pc.cock " + cockIdx + "].");
+		output("\n\nThe heat of the shower seems to permeate Kimber's body, and she's warmer than ever as she slides herself down on you.");
+		if (pc.cocks[cockIdx].thickness() >= 3) output(" Your [pc.cockHead " + cockIdx + "] spreads her wide as your girthy dong pushes into her.");
+		if (pc.cocks[cockIdx].cLength() < 20) output(" She lets out a long, low moan as she hits home, taking your dong all the way up into her in one slow push, until her pussy lips kiss your [pc.sheath " + cockIdx + "].");
+		else output(" As long as you are, it takes her a little time to fit all of your dong inside her, and she starts to moan as her pussy pulls more and more of you in, until her lips kiss your [pc.sheath " + cockIdx + "]. \"<i>Fuck</i>\" she gasps. \"<i>Feels… a lot deeper going in like this.</i>\"");
+		output(" You grunt and lean back, nearly overwhelmed by the sensation of having all of her pressed down on you like that.");
+		output("\n\nKimber breathes deep atop you, and slowly starts to grind her hips against yours. Water splashes over you both, dripping down your limbs and hers. With her tits pressed against your [pc.chest], water pools in her cleavage, splashing out as she pushes herself against you.");
+		output("\n\nYou tighten your grip on Kimber's ass and thrust into her, pushing as much as you can while making sure you stay upright. She pushes back, slamming your [pc.ass] into the shower wall again, then grabs onto your shoulders and grinds hard, her pussy squeezing your entire length.");
+		output("\n\nYour moan is lost to the roar of the shower, but you can feel Kimber's breath against your neck as she picks up her pace, the wet squishing sounds from the water splashing over both your crotches rising above the rest of the noise. It feels like she's trying to pull you deeper and deeper into her, and you steady yourself and thrust harder, giving her all that you have.");
+		output("\n\n\"<i>Right there,</i>\" Kimber moans in your ear. She leans back a little, her weight shifting just enough on your [pc.cock " + cockIdx + "] to drive it in even deeper, and she gasps. \"<i>Right there's good too!</i>\"");
+		output("\n\nYou grin, watching the water play over her as she leans back just enough to pull up one of her huge boobs. Kimber hefts it up so her nipple's pointing upright, sending a waterfall down you both as her cleavage separates. She leans forward again and suckles herself, her lips playing against the pink peak. As she moans again, you get an idea.");
+		output("\n\nYou lean in and lick at her pink areola, then flick the tip of your tongue at her nipple as her lips pull away. She makes a surprised noise, but keeps at it, and the two of you kiss and lick at her nipple, sharing it as you fuck.");
+		output("\n\nKimber's grinding against you picks up speed again, and you adjust your grip on her just enough, then let your fingers slide in toward the center of her ass. One finger slips in and brushes against her asshole, and she squeaks, then nods at you, her lips never leaving her nipple.");
+		output("\n\nYou slide one finger into her little asshole, and Kimber lets out a moan, raising her head. She gasps, \"<i>Fuck! Yes!</i>\" You wrap your lips around her nipple and tug at it, making her cry out again, and she leans into you, driving your back and [pc.ass] hard against the shower wall.");
+		output("\n\nIt's all you can do to hold on and make sure you don't drop her as Kimber yells above you, her cunt clenching hard around your [pc.cock " + cockIdx + "] and driving you onward toward orgasm. From the sound and feel of it, she's not far off herself, and you pump harder into her, unable to tell if it's water or Kimber's girlcum sliding down your [pc.thighs].");
+		output("\n\nRight as Kimber sounds like she's about to come, you wiggle your finger in her asshole. She squeaks and screams out as her pussy squeezes your dong hard, her whole body shaking, her moans loud enough to drown out the shower. Kimber sags against you, but her hips never stop, and the pressure on your [pc.cock " + cockIdx + "] soon drives you over the edge.");
+		output("\n\nYou hold tight to Kimber's ass as you come, [pc.cum] shooting into her tight cunt, your [pc.hips] hammering against her and sending water flying everywhere.");
+		if (pc.cumQ() >= 10000) output(" The torrent of [pc.cum] you pour into her makes her belly swell against yours for a moment, then gushes out, pouring down your [pc.thighs] and hers to pool on the shower floor, more than enough to back up the drain until your stream finally stops.");
+		output(" Your [pc.cum] makes her belly swell against yours for a moment, then splashes out of her in a rush, splattering down over your [pc.thighs] and hers, dripping down to mingle with the water pouring down the drain.");
+		output(" Breathing hard, you manage to keep hold of Kimber until the two of you stop thrusting, and she lets out a long breath.");
+		output("\n\n\"<i>Okay,</i>\" Kimber gasps. \"<i>I think you can let me down now.</i>\" She lowers one leg to the floor, then the other, and slowly steps away as you let her go, your [pc.cock " + cockIdx + "] flopping out of her to trail a last stream of [pc.cum] onto the shower floor.");
+		output("\n\nKimber raises both arms above herself again, stretching as the water pours down over her. She shakes herself once, sending water flying, then gives you a grin. \"<i>Damn good time, [pc.name], though you make me wish I could get a bigger shower installed in here. Not that I mind the squeeze, but still.</i>\"");
+		output("\n\nYou tell her you think you two managed to make it work without too much trouble.");
+		output("\n\n\"<i>Oh, yeah,</i>\" she says slowly, then grabs a washcloth and some shower gel. \"<i>And we don't have to stop to clean off.</i>\"");
+		output("\n\nYou and Kimber wash each other off, taking longer than you really need to. Kimber doesn't seem to want to leave the hot water anytime soon, and it does feel good to have someone else scrub you clean.");
+		output("\n\nOnce you're both done, you dry each other off, and Kimber dons her fluffy robe while you gather your things. \"<i>Any time you want to do that again, Steele, you just let me know,</i>\" Kimber says. \"<i>I think you and I could get really good at that.</i>\"");
+		output("\n\nYou tell Kimber that you will, then bid her goodbye and head back to your ship.");
+	}
+	else
+	{
+		output("\n\nKimber grabs her hardlight thong from where it hangs on the shower door handle, and hands it to you. \"<i>Good thing this fucker's waterproof,</i>\" Kimber says with a chuckle as you pull it on.");
+		output("\n\nYou turn on the hardlight, and once the glowing horsecock springs to life, Kimber gently takes hold of it and leads you to the shower. She slides open the door on with her free hand, and tugs you into the circular shower. The inside smells like shampoo and Kimber's own scent, and you feel [pc.eachVagina] growing wetter as the aroma hits you. It's pretty clear this shower's a big part of Kimber's sex life.");
+		output("\n\nIt's a tight squeeze with you and Kimber both in the shower, and your [pc.ass] gets pressed against the clear plastic as she turns to the faucets and starts the water. Hot streams pour down from above, and Kimber turns to you, pressing her huge boobs against your [pc.chest] as water flows down over her shoulders and yours.");
+		output("\n\nKimber slips her tongue into your mouth as she kisses you, and you reach around and take hold of her bouncy ass, getting a slippery grip on her soft flesh. She presses harder against you, grinding the hardlight against her thighs and making its base rub against [pc.oneVagina]. Her hands trace over your back, rubbing at you as the water courses down, the heat from her body outpacing the shower's own.");
+		output("\n\nAfter a moment, Kimber pulls away, and nudges your [pc.hips] with her own, pushing you against the shower wall again. She turns her back on you, then takes hold of the hardlight horsecock and slips it between her round buttcheeks, rubbing her wet ass against its length as you grow still wetter. Her tail rubs against your [pc.chest], sliding in to settle between your [pc.breasts].");
+		output("\n\n\"<i>I know I don't need to do this with the hardlight, but it's kind of fun,</i>\" Kimber says, giving you a wink over her shoulder. \"<i>Though I know a couple girls from back home who could do just as good a job with their asses.</i>\"");
+		output("\n\nFrom what you've seen of New Texas, you believe it. After a few more strokes between Kimber's cheeks, the pressure from the hardlight has you more than ready to go, and you slap the red dong against her ass to let her know you're ready. She laughs, and turns to face you once more.");
+		output("\n\nKimber raises her arms above her head, letting the water trail down her glistening body, rivulets running across and around her enormous boobs, dripping off her hard pink nipples, and tracing over every one of her curves. From the smile on her face, she knows exactly how good she looks posing like that.");
+		output("\n\nShe plants a hand on your shoulder, then raises one thigh to lay atop your [pc.hip], and says, \"<i>Okay, Steele. Help me up. Only one right way to fuck in a shower this small.</i>\" She smirks. \"<i>Hope you don't mind having your hands on my ass the whole time.</i>\"");
+		output("\n\nThere's lots of places on her you'd like to put your hands right now, but she's got a point. You reach around and lift up Kimber by her ass as she braces herself against you. It takes some fumbling, but she gets her legs around you, and slowly lowers her dripping pussy onto the glowing horsecock.");
+		output("\n\nThe heat of the shower seems to permeate Kimber's body, and she's warmer than ever against you as she slides herself down. She lets out a long, low moan as she hits home, taking the hardlight all the way up into her in one slow push, until her pussy lips kiss its base. You grunt and lean back, nearly overwhelmed by the sensation of having all of her pressed down on [pc.oneVagina] like that.");
+		output("\n\nKimber breathes deep atop you, and slowly starts to grind her hips against yours. Water splashes over you both, dripping down your limbs and hers. With her tits pressed against your [pc.chest], water pools in her cleavage, splashing out as she pushes herself against you.");
+		output("\n\nYou tighten your grip on Kimber's ass and thrust into her, pushing as much as you can while making sure you stay upright. She pushes back, slamming your [pc.ass] into the shower wall again, then grabs onto your shoulders and grinds hard, her pussy pushing the hardlight against you, the sensation on [pc.oneVagina] making you shiver.");
+		output("\n\nYour moan is lost to the roar of the shower, but you can feel Kimber's breath against your neck as she picks up her pace, the wet squishing sounds from the water splashing over both your crotches rising above the rest of the noise. It feels like she's trying to pull the hardlight deeper and deeper into her, and you steady yourself and thrust harder, giving her all that you can.");
+		output("\n\n\"<i>Right there,</i>\" Kimber moans in your ear. She leans back a little, her weight shifting just enough on the horsecock to drive it in even deeper, and you both gasp. \"<i>Right there's good too!</i>\"");
+		output("\n\nYou grin, watching the water play over her as she leans back just enough to pull up one of her huge boobs. Kimber hefts it up so her nipple's pointing upright, sending a waterfall down you both as her cleavage separates. She leans forward again and suckles herself, her lips playing against the pink peak. As she moans again, you get an idea.");
+		output("\n\nYou lean in and lick at her pink areola, then flick the tip of your tongue at her nipple as her lips pull away. She makes a surprised noise, but keeps at it, and the two of you kiss and lick at her nipple, sharing it as you fuck.");
+		output("\n\nKimber's grinding against you picks up speed again, and you adjust your grip on her just enough, then let your fingers slide in toward the center of her ass. One finger slips in and brushes against her asshole, and she squeaks, then nods at you, her lips never leaving her nipple.");
+		output("\n\nYou slide one finger into her little asshole, and Kimber lets out a moan, raising her head. She gasps, \"<i>Fuck! Yes!</i>\" You wrap your lips around her nipple and tug at it, making her cry out again, and she leans into you, driving your back and [pc.ass] hard against the shower wall.");
+		output("\n\nIt's all you can do to hold on and make sure you don't drop her as Kimber yells above you, her wet cunt pushing the dildo hard against [pc.oneVagina] and driving you onward toward orgasm. From the sound and feel of it, she's not far off herself, and you pump harder into her, unable to tell if it's water or Kimber's girlcum sliding down your [pc.thighs].");
+		output("\n\nRight as Kimber sounds like she's about to come, you wiggle your finger in her asshole. She squeaks and screams out as her thighs clench around your [pc.hips], her whole body shaking, her moans loud enough to drown out the shower. Kimber sags against you, but her hips never stop, and the pressure on [pc.oneVagina] soon drives you over the edge.");
+		output("\n\nYou hold tight to Kimber's ass as you come, your whole body shaking, your [pc.hips] hammering against her and sending water flying everywhere.");
+		if (pc.wettestVaginalWetness() > 4) output(" Your [pc.girlcum] splatters down over your [pc.thighs] and hers, dripping down to mingle with the water pouring down the drain.");
+		output(" Breathing hard, you manage to keep hold of Kimber until the two of you stop thrusting, and she lets out a long breath.");
+		output("\n\n\"<i>Okay,</i>\" Kimber gasps. \"<i>I think you can let me down now.</i>\" She lowers one leg to the floor, then the other, and slowly steps away as you let her go, the still-stiff horsecock popping out of her with a wet sound. You turn off the hardlight, then pull the soaked thong off and sling it over the shower door's handle.");
+		output("\n\nKimber raises both arms above herself again, stretching as the water pours down over her. She shakes herself once, sending water flying, then gives you a grin. \"<i>Damn good time, [pc.name], though you make me wish I could get a bigger shower installed in here. Not that I mind the squeeze, but still.</i>\"");
+		output("\n\nYou tell her you think you two managed to make it work without too much trouble.");
+		output("\n\n\"<i>Oh, yeah,</i>\" she says slowly, then grabs a washcloth and some shower gel. \"<i>And we don't have to stop to clean off.</i>\"");
+		output("\n\nYou and Kimber wash each other off, taking longer than you really need to. Kimber doesn't seem to want to leave the hot water anytime soon, and it does feel good to have someone else scrub you clean.");
+		output("\n\nOnce you're both done, you dry each other off, and Kimber dons her fluffy robe while you gather your things. \"<i>Any time you want to do that again, Steele, you just let me know,</i>\" Kimber says. \"<i>I think you and I could get really good at that.</i>\"");
+		output("\n\nYou tell Kimber that you will, then bid her goodbye and head back to your ship.");
+	}
+
 	pc.orgasm();
+	pc.shower();
 	kimberWearOutPC();
 	IncrementFlag("KIMBER_SEXED");
 
 	addButton(0, "Next", kimberGoHomePostSex);
 }
+/*
 public function kimberTakesYouForARide(cockIdx:int):void
 {
 	clearMenu();
