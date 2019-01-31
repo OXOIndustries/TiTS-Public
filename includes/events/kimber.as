@@ -1083,7 +1083,7 @@ public function kimberDoHerNow():void
 		else if (pc.hasVagina()) vaginaRouter([kimberOralVagina]);
 	});
 	addButton(2, "Anal", penisRouter, [kimberSomethingSomethingAnalIDKMan]);
-	if (flags["KIMBER_UTHRA_GIVEN"] != undefined) addButton(3, "Mirror Sex");
+	if (flags["KIMBER_UTHRA_GIVEN"] != undefined) addButton(3, "Mirror Sex", penisRouter, [kimberSexeSrebmik]);
 	else addDisabledButton(3, "Mirror Sex");
 	if (flags["KIMBER_CANDY_GIVEN"] != undefined) addButton(4, "Mutual Mast");
 	else addDisabledButton(4, "Mutual Mast");
@@ -1647,8 +1647,84 @@ public function kimberTheCleanScientist(cockIdx:int):void
 
 	addButton(0, "Next", kimberGoHomePostSex);
 }
+
+public function kimberSexeSrebmik(cockIdx:int):void
+{
+	clearMenu();
+	clearOutput();
+	showKimber(true);
+	processTime(45+rand(31));
+
+	output("You tell Kimber that you want to fuck her in front of a mirror, like she does with her friend back on New Texas. Kimber's eyebrows rise, and she glances over her shoulder to the mirror hanging on her wall.");
+	output("\n\n\"<i>Well, what do you know, [pc.name],</i>\" she says, drawling it out a little as she turns back to you. \"<i>Funny you should ask, when I've got a mirror right here.</i>\" She grins");
+	if (!pc.hasCock()) output(", then says \"<i>One second,</i>\" and ducks into her bathroom to grab her hardlight thong. She drops it next to the bed");
+	output(", then leads you over to her bed and kneels on it, and motions for you to join her.");
+	output("\n\nYou climb onto the bed and get on your knees behind Kimber, then reach around her as she leans back against your [pc.chest]. Her tail gets caught between you two, the tuft on the end coming to rest between your [pc.breasts]. You watch in the mirror as she runs her hands down your [pc.thighs], and you trace your hands up her sides in return, stroking her soft skin and slowly making your way to her enormous tits.");
+	output("\n\n\"<i>Aah,</i>\" Kimber breathes as your fingertips reach the sides of her boobs, and you slow down as much as you can, both of you watching your movements in the mirror. Her blush spreads down her face and across her cleavage as your hands make their way across her breasts, her eyes locked on the mirror.");
+	output("\n\nWhen your fingers reach her thick nipples, you pull Kimber closer, squishing her boobs against her and making her cleavage reach nearly up to her chin. She grinds her round rear against your [pc.crotch], but never looks away from the mirror, even when you move in to kiss the side of her neck.");
+	output("\n\nKimber moans, and leans harder back against you, the heat from her body spreading across your [pc.skinFurScales]. She's breathing faster now, and you tweak her nipples between your fingers, making her gasp. Her hands join yours on her tits, stroking along the sides. In the mirror, you see a trail of girlcum slowly drip down one of Kimber's thighs.");
+	output("\n\nIf that's not an invitation, you don't know what is. You release one of Kimber's nipples, and slide your hand down her middle, watching in the mirror. Right as you're about to reach the cleft between her legs, she grabs your hand and puts it back on her boob.");
+	output("\n\n\"<i>Just keep doing what you're doing,</i>\" Kimber breathes, and reaches between her own legs. \"<i>I got this.</i>\"");
+	output("\n\nYou do as she says, working a nipple with one hand and stroking over as much of her tit as you can with the other, and watch the mirror as she slides two fingers into her pussy. Kimber moans and pushes her ass harder against you, rubbing it on your [pc.crotch]. You groan into her small cow-ear, and squeeze her boobs harder, watching her blush spread all the way down to her nipples.");
+	output("\n\nKimber lets out a gasp, then works her cunt furiously for a moment before stopping herself. \"<i>I told you how much I love this,</i>\" she says, pulling out her sticky fingers. \"<i>Would be way too easy for me to keep at it until I come, and I ain't gonna leave you out to dry.</i>\" She licks off one of her fingers, then holds the other up to you.");
+	output("\n\nYou suck Kimber's girlcum off of her finger, making her giggle, and she gives you a wink. \"<i>I know I'm ready for this,</i>\" she says, then reaches back and down to fondle your [pc.crotch]. \"<i>Feels like you are too.</i>\"");
+	if (pc.hasCock())
+	{
+		output("\n\nDamn right. Your [pc.cock " + cockIdx + "] is hard and ready from all of Kimber's grinding against it. You drop it between her cheeks and thrust a little, to make sure she knows you're set, and she laughs.");
+		output("\n\n\"<i>Well, then,</i>\" Kimber says, then leans forward and plants her hands on the bed, raising her booty and presenting her wet, pink pussy to you. Her eyes lock on the mirror again as she says, \"<i>Slide on in, Steele.</i>\"");
+		output("\n\nYou line up your [pc.cockHead " + cockIdx + "] with her dripping lips and look to the mirror, then take hold of Kimber's hips slowly slide yourself into her.");
+		if (pc.cocks[cockIdx].cLength() >= 20) output(" As long as your dong is, you have to lean back a little to get started, and you give it an extra push as you slide in your last few inches.");
+		output(" Her slick pussy feels different from this angle, and her eyes open wide as you penetrate her");
+		if (pc.cocks[cockIdx].thickness() >= 3) output(", her lips spreading wide as well around your considerable girth");
+		output(". Kimber moans, then shoves her ass against your [pc.hips], making sure you don't stop until you're all the way in, her lips wrapping around your [pc.sheath " + cockIdx + "].");
+		output("\n\n\"<i>Fuck,</i>\" Kimber gasps, her warm, wet passage squeezing hard around your length. She picks up the pace quickly, and her boobs start to bounce forward and back, her girlcum splashing onto your [pc.thighs] with every thrust.");
+		output("\n\nShe did say she was really into this, and it shows. Her eyes are fixed on the mirror, watching herself and you, and you take a firmer hold on her hips, matching her rhythm as you thrust into her. You can see your own [pc.chest] and [pc.belly] above her in the mirror, her tail still resting against you, and you fuck her harder to watch yourself move more, like you're in the middle of the world's best workout.");
+		output("\n\nKimber cries out and loses her rhythm for a second, sliding forward on your [pc.cock " + cockIdx + "] until your head's almost out of her. She meets your eyes in the mirror, and hammers herself back against you, her ass slapping into your [pc.hips] nearly hard enough to throw you backward off the bed. You grunt, and Kimber laughs, so you give her ass a good, hard smack.");
+		output("\n\nShe yelps, and her pussy clenches around your [pc.cock " + cockIdx + "], so you spank her again, then once more, leaving red marks on her bouncing butt. Kimber plants her hands on her bed and pounds back against you, her boobs swinging forward to slap against her arms, her pussy making wet sounds with every thrust.");
+		output("\n\nYou look from the mirror to her and back again, watching her from two angles at once, getting the best views of her tits and her ass and all of her. She meets your eyes in the mirror, then leans forward again, pulling you halfway out. You shove yourself forward as she pushes back, making you both cry out, slamming into each other hard enough to make the bed shake. This time, Kimber keeps her ass close to you, making your thrusts short and quick.");
+		output("\n\nShe's breathing hard now, her face and tits flushed red. You lean forward, sliding your hands up her sides, and take hold of her swinging boobs. Kimber moans as the angle of your thrust changes, and she raises her head as you squeeze her tits, her eyes meeting yours in the mirror.");
+		output("\n\n\"<i>Harder,</i>\" Kimber gasps.");
+		output("\n\nYou tilt your [pc.hips] and really mount her, driving your [pc.cock " + cockIdx + "] down into her with all your might. The change in sensation is amazing, and you hold off, not ready to come yet but not far from it. Kimber yells \"<i>Fuck!</i>\" and her eyes squeeze closed for a second, but she forces them open, her mouth hanging open as she pants.");
+		output("\n\nKimber presses her back hard against your [pc.chest], then lets out a long, low moan. Her pussy tightens around your [pc.cock " + cockIdx + "], and as your eyes meet in the mirror, neither of you can hold back any longer.");
+		output("\n\nYou and Kimber come at the same time, her girlcum splattering against your [pc.crotch], her nipples hard as rocks between your fingers. Your [pc.cock " + cockIdx + "] spurts streams of [pc.cum] deep inside her cunt, your length twitching with every last thrust.");
+		if (pc.cumQ() >= 10000) output(" Your [pc.cock " + cockIdx + "] empties itself into her, a seemingly endless stream, until her belly swells enough to hang low and more [pc.cum] floods out, soaking her thighs and yours and splattering across her entire bed.");
+		else if (pc.cumQ() >= 6000) output(" Shot after shot of [pc.cum] fires off into her, and her belly swells a little, until your fluid leaks out of her and spills down her thighs and yours.");
+		output("\n\nIt takes a moment for you and Kimber to pull your sweaty selves apart, but you slide out of her and fall back on your [pc.ass], your [pc.cock " + cockIdx + "] slowly wilting as you try to catch your breath. Kimber slumps over onto her side, also breathing hard, her boobs flopping against each other.");
+	}
+	else
+	{
+		output("\n\nDamn right. All of Kimber's grinding got [pc.eachVagina] wet and ready, and you reach down to grab her hardlight thong and pull it on. You activate the glowing horsecock, then drop it between her cheeks and thrust a little, to make sure she knows you're set, and she laughs.");
+		output("\n\n\"<i>Well, then,</i>\" Kimber says, then leans forward and plants her hands on the bed, raising her booty and presenting her wet, pink pussy to you. Her eyes lock on the mirror again as she says, \"<i>Slide on in, Steele.</i>\"");
+		output("\n\nYou line up the hardlight's glowing, flat head with her dripping lips and look to the mirror, then take hold of Kimber's hips slowly slide yourself into her. Pushing into her slick pussy is different from this angle, and her eyes open wide as you penetrate her. Kimber moans, then shoves her ass against your [pc.hips], making sure you don't stop until you're all the way in, her lips wrapping around the red sheath until the dildo's base grinds against [pc.oneVagina].");
+		output("\n\n\"<i>Fuck,</i>\" Kimber gasps, her pussy pulling on the hardlight like she's trying to yank it right off of you. She picks up the pace quickly, and her boobs start to bounce forward and back, her girlcum splashing onto your [pc.thighs] with every thrust.");
+		output("\n\nShe did say she was really into this, and it shows. Her eyes are fixed on the mirror, watching herself and you, and you take a firmer hold on her hips, matching her rhythm as you thrust into her. You can see your own [pc.chest] and [pc.belly] above her in the mirror, her tail still resting against you, and you fuck her harder to watch yourself move more, like you're in the middle of the world's best workout.");
+		output("\n\nKimber cries out and loses her rhythm for a second, sliding forward on the hardlight horsecock until the head's almost out of her. She meets your eyes in the mirror, and hammers herself back against you, her ass slapping into your [pc.hips] nearly hard enough to throw you backward off the bed. You moan at the sudden pressure on [pc.oneVagina], and Kimber laughs, so you give her ass a good, hard smack.");
+		output("\n\nShe yelps, so you spank her again, then once more, leaving red marks on her bouncing butt. Kimber plants her hands on her bed and pounds back against you, her boobs swinging forward to slap against her arms, her pussy making wet sounds with every thrust. The rubbing against [pc.oneVagina] picks up, making you breathe faster.");
+		output("\n\nYou look from the mirror to her and back again, watching her from two angles at once, getting the best views of her tits and her ass and all of her. She meets your eyes in the mirror, then leans forward again, pulling you halfway out. You shove yourself forward as she pushes back, making you both cry out, slamming into each other hard enough to make the bed shake. This time, Kimber keeps her ass close to you, making your thrusts short and quick.");
+		output("\n\nShe's breathing hard now, her face and tits flushed red. You lean forward, sliding your hands up her sides, and take hold of her swinging boobs. Kimber moans as the angle of your thrust changes, and she raises her head as you squeeze her tits, her eyes meeting yours in the mirror.");
+		output("\n\n\"<i>Harder,</i>\" Kimber gasps.");
+		output("\n\nYou tilt your [pc.hips] and really mount her, driving the dildo down into her with all your might. The change in sensation against [pc.oneVagina] is amazing, and you hold off, not ready to come yet but not far from it. Kimber yells \"<i>Fuck!</i>\" and her eyes squeeze closed for a second, but she forces them open, her mouth hanging open as she pants.");
+		output("\n\nKimber presses her back hard against your [pc.chest], then lets out a long, low moan. You keep up your frantic pounding with the hardlight, and as your eyes meet hers in the mirror, neither of you can hold back any longer.");
+		output("\n\nYou and Kimber come at the same time, her girlcum splattering against your [pc.crotch], her nipples hard as rocks between your fingers. You feel [pc.EachVagina] quiver as the orgasm takes you, and your [pc.hips] thrust and shake as you ride it out.");
+		if (pc.wettestVaginalWetness() > 4) output(" [pc.Girlcum] floods down your [pc.thighs], dripping down to make a mess of Kimber's bed.");
+		output("\n\nIt takes a moment for you and Kimber to pull your sweaty selves apart, but you slide out of her and fall back on your [pc.ass], then turn off the hardlight horsecock as you try to catch your breath. Kimber slumps over onto her side, also breathing hard, her boobs flopping against each other.");
+	}
+	output("\n\n\"<i>Fuck, that's good,</i>\" Kimber breathes, and rolls over onto her back, then raises her head to look at you. \"<i>I swear,</i>\" she says with a laugh, \"<i>getting that mirror in here cost me more than I want to admit, but it's worth it every time.</i>\"");
+	output("\n\nThat was pretty intense, you have to agree, and you can see why she likes it so much.");
+	output("\n\n\"<i>Oh yeah.</i>\" Kimber sits up, then wipes at her forehead and turns to you. \"<i>Your hips still working okay, or do I have to carry you to the shower?</i>\"");
+	output("\n\nYou do manage to stand up, and the two of you shower off together. Kimber asks you to clean her off from behind, maybe looking to make the whole thing last a little longer, and you give her boobs a good and thorough washing with her pressed against you.");
+	output("\n\nOnce you're done, Kimber pulls on her fluffy robe while you gather your things. \"<i>Well, we didn't break the bed with that one, so we can go for another round of that anytime you want,</i>\" she says with a smile. \"<i>Come back and do that again with me sometime, [pc.name].</i>\"");
+	output("\n\nYou tell her that sounds like a great idea, then head back to your ship.");
+
+	pc.orgasm();
+	pc.shower();
+	kimberWearOutPC();
+	IncrementFlag("KIMBER_SEXED");
+
+	addButton(0, "Next", kimberGoHomePostSex);
+}
 /*
-public function kimberTakesYouForARide(cockIdx:int):void
+public function kimberSexeSrebmik(cockIdx:int):void
 {
 	clearMenu();
 	clearOutput();
@@ -1656,9 +1732,24 @@ public function kimberTakesYouForARide(cockIdx:int):void
 	processTime(45+rand(31));
 
 	pc.orgasm();
+	pc.shower();
 	kimberWearOutPC();
 	IncrementFlag("KIMBER_SEXED");
 
 	addButton(0, "Next", kimberGoHomePostSex);
 }
-*/
+
+public function kimberSexeSrebmik(cockIdx:int):void
+{
+	clearMenu();
+	clearOutput();
+	showKimber(true);
+	processTime(45+rand(31));
+
+	pc.orgasm();
+	pc.shower();
+	kimberWearOutPC();
+	IncrementFlag("KIMBER_SEXED");
+
+	addButton(0, "Next", kimberGoHomePostSex);
+}*/
