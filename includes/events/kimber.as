@@ -154,7 +154,7 @@ public function kimberMenu(firstEncounter:Boolean = false):void
 		addDisabledButton(2, "Flirt");
 		if (flags["KIMBER_REJECTED_PARASITE"] == undefined) kimberSexButton(3);
 	}
-	if (flags["KIMBER_TALKED_WORK"] != undefined) addButton(4, "Give Items", function ():void
+	if (flags["KIMBER_TALKED_WORK"] != undefined && flags["KIMBER_GAVE_ALL_ITEMS"] == undefined) addButton(4, "Give Items", function ():void
 	{
 		clearMenu();
 		clearOutput();
@@ -510,6 +510,8 @@ public function kimberStoryMenu(lastStory:Function = null):void
 		clearMenu();
 		addButton(0, "Next", kimberOpenQuest);
 	}
+	//If all stories are available, disable [Give Item]
+	if (btnSlot >= 5) flags["KIMBER_GAVE_ALL_ITEMS"] = 1;
 }
 
 public function kimberUthraStory():void
