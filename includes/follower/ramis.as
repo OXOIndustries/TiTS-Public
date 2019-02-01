@@ -1585,7 +1585,7 @@ public function ramisShowerRimFirst():void
 	output("\n\nShe squeals loud enough to make the shower door vibrate as you push your [pc.tongue] beyond her wet buttocks and begin to lap at her asshole, aiming to soften it so you can penetrate inside. Her immediate reaction is to tighten up hard, but as you continue, your nose firmly embedded in the crack of her ass, your licking has the effect you’re looking for and her sphincter opens up, allowing you to spear into her warm, clenching interior.");
 	output("\n\n<i>“Ummm... that’s not what I wanted,”</i> says Ramis, from somewhere. She clenches up a bit, almost painfully so, on the tip of your [pc.tongue]. <i>“But since you’re there, I suppose you... may as well keep doin’ that...”</i>");
 	output("\n\nYou worship her asshole, hands wrapped around her thighs and face embedded in the crack of her big, brawny rump so that you can lick at her tunnel deep, occasionally withdrawing so you can circle the opened entrance. After a few more slightly shocked moments the kaithrit begins to shampoo her hair, her hums and coos getting ever more approving.");
-	output("\n\n<i>“And you <i>like</i> doin’ that, do you, knickers?”</i> You answer her with a happy, muffled ‘mmm’. <i>“Wow. Well, it ent as good as a nice pussy lick, but...”</i> She emits a long ‘ahh’, ending in a purr deep in her throat, as you fill her backside with soft, limber muscle.");
+	output("\n\n<i>“And you </i>like<i> doin’ that, do you, knickers?”</i> You answer her with a happy, muffled ‘mmm’. <i>“Wow. Well, it ent as good as a nice pussy lick, but...”</i> She emits a long ‘ahh’, ending in a purr deep in her throat, as you fill her backside with soft, limber muscle.");
 	if (pc.hasLongTongue()) output(" With a tongue your size, you can <i>really</i> fill it.");
 	output(" <i>“...it’s pretty nice feelin’. I think we’ll keep on doin’ it,”</i> she concludes, in a lusty, wicked tone that makes your heart flutter again. Shower foam cascades down onto you as she rinses her hair.");
 
@@ -2674,10 +2674,10 @@ public function ramisLapSitJackOff():void
 	
 	pc.maxOutLust();
 	
+	var cumQ:Number = pc.cumQ();
+	
 	if(pc.hasStatusEffect("Blue Balls"))
 	{
-		var cumQ:Number = pc.cumQ();
-		
 		output("\n\nThe pressure in your [pc.balls] is too much... you’ve waited so long and yes, yes, you <i>are</i> a good [pc.boy]. You orgasm with a gasping moan, lurching in Ramis’s lap as you");
 		if(cumQ < 1000) output(" squirt [pc.cum] in a little shower");
 		else output(" spurt [pc.cum] in a foot-long rope, so much cannoned out of your little dick it’s almost painful");
@@ -2699,39 +2699,36 @@ public function ramisLapSitJackOff():void
 		if(cumQ >= 1000) output(" Even if [pc.he] is so messy,”</i> she tuts, examining the state of her jeans and the floor, soaked in your effluent. It really is a remarkable amount for such a small prick to produce.");
 		else output("”</i>");
 		output("\n\nShe shoos you out of her lap and leaves you with a pat on the [pc.ass] and a lusty laugh.");
-		output("\n\n<i>“You put your bell back on, ‘n remember me while you wear it. I’ll get you off whenever you like.... If you’re a good captain. ‘n I decide you deserve it.”</i>");
+		output("\n\n<i>“You put your bell back on, ‘n remember me while you wear it. I’ll get you off whenever you like.... If you’re a good captain. ‘N I decide you deserve it.”</i>");
 		output("\n\nIt’s not something you’ll be thinking about any time soon - your groin feels like a dried up sponge. You crab-walk off towards your room in search of a clean-up and a drink of water.");
 		if(cumQ >= 1000 && celiseIsCrew()) output(" Celise will take care of what you’ve left behind, you’re sure.");
-		
-		processTime(23);
-		
-		pc.orgasm();
-		
-		IncrementFlag("RAMIS_SEXED_SHIP");
-		IncrementFlag("RAMIS_SEXED_LAPSIT");
 	}
 	else
 	{
-		output("\n\nYour [pc.chest] heaves as your [pc.cock " + cIdx + "] throbs in-between Ramis’s fingers. Orgasm is so close... it would taste so sweet, for your [pc.thighs] to spasm and for you to lose yourself in blissful release... but <i>do</i> you deserve it? High on the sensual intensity racking your body, that question gnaws at you. Does a little dick sissy like you, in fact, more deserve to be locked back into your silky bell strap, unreleased and pent up?");
-		output("\n\nYou try and push down on those thoughts, concentrate on that wonderful orgasm that’s just out of reach. But something about this slutty situation you’ve been cornered into - being jerked by the big, aggressive female, her lovingly taunting words in your ear - gives them strength, makes them masochistically alluring.");
-		output("\n\nWorst of all is that Ramis seems to know what’s going through your head. Her coiling fingers slow and soften, nothing more than the gentlest of touches, screwing delicately around your [pc.knot " + cIdx + "].");
-		output("\n\n<i>“You know... I don’t think you <i>do</i> deserve it, boyo,”</i> she coos, sweet poison dripping into your ear. Round and round her finger goes, on your short, fat prick. <i>“I think you’re better off bein’ put back in your box.”</i>");
-		output("\n\nNo! You do deserve release! You want above all else for her to send you over the edge... don’t you? You turn your head and wordlessly beg her to go faster with your desperate [pc.eyes]. They meet an expression of coy, merciless playfulness, the expression of a feline with a mouse between her paws.");
-		output("\n\n<i>“Taken time out from keepen your arsenal bang in order to wank you off,”</i> she sighs. The tips of her fingers drift upwards, a tender beckoning gesture along the frenulum which keeps you agonizingly on edge. <i>“Aren’t I good to you?”</i>");
-		output("\n\n<i>“Yes...”</i> you manage to force past your dry lips. <i>“Please...”</i> you trail off, mouth open, as she strokes you like one might a cat’s chin, the ecstatic pressure that makes your [pc.groin] feel like a barrel bursting at the seams. She keeps you like that for seconds, an eternity, lost in a reverie of agonised pleasure, your cockslit dilated and wet, almost over the edge of a spectacular orgasm... and then Ramis withdraws her hand and squeezes your [pc.thigh] briskly.");
-		output("\n\n<i>“Naw,”</i> she declares with a husky giggle. <i>“I don’t think you really need to spunk right now. The ship needs a girlee boy captain who’s sharp’n full of beans, not lazen in a chair with their eyes rolled. And rationen it out keeps you properly grateful for when you get it... right?”</i>");
-		output("\n\nYou stare first at the kaithrit’s smirking expression, and then down at your burningly erect [pc.cockNoun " + cIdx + "]. You could possibly <i>order</i> her to continue. More pragmatically, you could agree to her maliciousness, and then go off and jack yourself silly to your heart’s content. But... a shamefully large part of you reacts with slutty, masochistic delight to Ramis’s words. A large part of you loves being teased by her, loves letting a cruel feline dictate when your toy-like cock is allowed release.");
+		output("\n\nYour [pc.chest] heaves as your [pc.cock " + cIdx + "] throbs in-between Ramis’s fingers. Your body is practically working on auto-pilot, you’re that pent up and delirious with the promise of orgasm from that hand, that beautiful, coaxing hand that’s going to make your tiny dick so happy. Ramis’s coiling fingers slow and quicken, tighten and soften around your [pc.knot " + cIdx + "], driving that wonderful, hot pressure up and up...");
+		output("\n\n<i>“You like that, sissy boyo?”</i> the oversized cat girl croons, swivelling her fingers round and round your burning [pc.cockNoun " + cIdx + "]. <i>“Well, hang on. I wanna get you, right on the edge. I want to listen to you twitch and moan a littel more...”</i> Her hand suddenly stops and clamps up painfully hard around it.");
+		output("\n\nNo! Your cock crimps up, but your [pc.cum] is already on its way, too pent up to be denied. It bubbles out of your dilated [pc.cockHead " + cIdx + "] in a " + (cumQ < 1000 ? "coursing drool" : "heavy stream") + ", unaccompanied by the release that had hovered just out of reach. Your orgasm is ruined!");
+		output("\n\n<i>“Oh shit,”</i> says Ramis, whisking her hand away as [pc.cum] drips down it. <i>“Did you spunk anyway, boyo?”</i> She laughs, embarrassed. <i>“I didn’t mean to do that. I only wanted to play with you a littel more.”</i>");
+		output("\n\n<i>“You can’t control yourself, can you?”</i> she teases, regaining her composure a moment later. You groan lowly as she envelopes your leaking [pc.cockNoun " + cIdx + "] in her hand again, a warm, pleasurable prison that rubs at your tender, liquid sex intently. <i>“Just the feelen of my hand is enough to make you cum your brains out. What a tender, naughty little sissy you are!”</i>");
+		output("\n\nShe actually bounces you a bit on her lap as she slowly masturbates you, [pc.cum] pulsing freely out of your tender prick like a loose faucet. It’s a bizarre sensation, as if someone really were milking you for your seed... except it’s " + (cumQ < 1000 ? "dripping" : "spilling") + " all over your [pc.thighs], uncared for. You turn to look at her, and meet an expression of coy, merciless playfulness, the expression of a feline with a mouse between her paws.");
+		output("\n\n<i>“You’ve ruined my fun,”</i> the kaithrit pronounces primly. Pat, flick, stroke, flick goes her hand on your poor, abused cock. You close your eyes, adrift on a sea of shame and erotic sensation, allowing her words to pour into your [pc.ears]. <i>“‘N maybe this is what you deserve, y’know? Getten all your spunk drained out’ve you without ackshually getten release. I let you eat my muff");
+		if(flags["RAMIS_SEXED_RIM"] != undefined) output(" and my arse");
+		output(" ‘n then I do this for you, anymore’n that a tiny dick sissy would get spoiled, wouldn’t they?”</i>");
+		output("\n\nShe plays with you, squeezes your short shaft briskly, working out that long, lazy ooze of [pc.cum] until " + (pc.balls >= 2 ? "your [pc.balls] are achingly dry" : "you are achingly spent") + ". Even then, she doesn’t let you go; you moan as she keeps wringing you, ascertaining you really have leaked your whole load all over [pc.thighs].");
+		output("\n\n<i>“All done? Good,”</i> she says briskly, wiping her hand on your [pc.chest]. <i>“‘N look! Your littel soldier is still stiff as a twig. So you can go back to captainen eager’n full of beans! Exackly the way things should be.”</i>");
+		output("\n\nYou stare first at the kaithrit’s smirking expression, and then down at your burningly erect [pc.cockNoun " + cIdx + "]. You could possibly <i>order</i> her not to do that to you again. But... a shamefully large part of you reacts with slutty, masochistic delight to Ramis’s words. A large part of you loves being teased by her, loves letting a cruel feline dictate how your toy-like cock gets used and abused.");
 		output("\n\n<i>“If... if you say so,”</i> you mumble, your [pc.skin] burning with embarrassment and frustrated lust.");
 		output("\n\n<i>“I do say so!”</i> Her hand trails up your [pc.chest], claws gently scraping you as she brushes you off her lap. <i>“You put that bell back on your bell, sweetheart. If you knock on for me, and you’re still wearen it... well, we’ll see, won’t we? Good boyos get the best cummies.”</i>");
-		output("\n\nShe laughs as she swaggers off, tails flicking, unbearably, ravishingly uncaring. After a few moments, you tie the silk tie of the bell back onto your still needily erect prick. It does, inescapably, look very cute.");
-		
-		processTime(21);
-		
-		// +Lust, gives PC blue balls status, Ramis [sex] GO for six hours
-		pc.applyBlueBalls();
-		ramisDisableSexMinutes(6 * 60);
+		output("\n\nShe laughs as she swaggers off, tails flicking, unbearably, ravishingly uncaring. After a few moments, you tie the silk tie of the bell back onto your aching but erect prick. It does, inescapably, look very cute.");
 	}
 	output("\n\n");
+	
+	processTime(23);
+	
+	pc.orgasm();
+	
+	IncrementFlag("RAMIS_SEXED_SHIP");
+	IncrementFlag("RAMIS_SEXED_LAPSIT");
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
