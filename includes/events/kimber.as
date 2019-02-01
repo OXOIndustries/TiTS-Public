@@ -32,6 +32,7 @@ public function kimberWearOutPC():void
 public function scienceCowAvailable():Boolean
 {
 	if (flags["LANDED_ON_TEXAS"] == undefined || flags["MET_FLAHNE"] == undefined) return false;
+	if (flags["KIMBER_QUEST"] == 0) return false;
 	if (pc.hasStatusEffect("Kimber Bating")) return false;
 	if (currentLocation == "BURT'S MAIN HALL") return false;
 	//75% to show up on tavros
@@ -89,7 +90,27 @@ public function kimberIsDrinkingAgain():void
 
 	flags["KIMBER_FLIRTED_WITH"] = undefined;
 	
-	if (currentLocation == "BUCKING BRONCO")
+	if (flags["KIMBER_QUEST"]%4 == 1)
+	{
+		clearMenu();
+
+		output("You stride up to Kimber and, as she turns to face you, you hold out the Xenogen sample canister. Her eyes open wide, and she nearly drops her beer in her rush to put it down. As soon as her hands are free, she throws herself at you in a huge hug, shoving your hand aside as her huge chest crushes against your [pc.chest]. She gives you a long, tight squeeze, clearly glad to see you, and when she pulls away, she's grinning wider than you've ever seen.");
+		output("\n\n\"<i>[pc.name]! You made it back! And you got my sample! Oh, I can't believe this… I didn't see you for so long, I was starting to worry!</i>\"");
+		output("\n\nShe takes the sample from you, and holds the canister up to the light for a moment before sliding it into a pocket inside her labcoat. \"<i>So, what was it like?</i>\" she asks, her eyes still wide. \"<i>Tell me everything!</i>\"");
+		output("\n\nYou tell her about your trip across Tarkus, finding the daer worm's lair, fighting through the wormlings to the giant worm itself, and finally, fighting it off and killing it.");
+		if (pc.isNice()) output(" You keep it truthful, as it does seem like kind of a shame that you had to kill it. But there didn't seem to be any other way to get a sample.");
+		else if (pc.isMisch()) output(" You embellish the story a little. She went through all that buildup, the least you can do is give her a good hunting tale in return.");
+		else output(" You make yourself sound as much of a badass as possible, especially when it came to beating the hell out of the worm and tearing a sample off the corpse. You think she looks impressed.");
+		output("\n\n\"<i>That's a hell of a thing,</i>\" Kimber says. \"<i>And I am so glad you got out of there okay. I was worried about you, y'know.</i>\" She grins at you. \"<i>But thank you, so much. I don't know if we'll get anything out of this, but soon as we do, I'll let you know. If I can talk about it, I mean. Might be classified.</i>\"");
+		if (flags["KIMBER_SEXED"] == undefined) output("\n\nShe leans toward you, and looks like she's not sure if she should say something or not. \"<i>And I've been thinking,</i>\" she says, \"<i>since you've done me such a big favor, I might have a little something I can do for you too.</i>\"");
+		else output("\n\nShe leans toward you, her smile turning into a smirk as she rubs her hip against your [pc.hip]. \"<i>And since you've done me such a big favor, I think I've got something I can do for you too.</i>\"");
+
+		flags["KIMBER_QUEST"] += 1;
+		
+		addButton(0, "Next", kimberTopOffer);
+		return;
+	}
+	else if (currentLocation == "BUCKING BRONCO")
 	{
 		output("\"<i>Hey there, [pc.name]!</i>\" Kimber calls out as you approach her, waving you over. \"<i>Well, this is a surprise! I didn't think I'd see you here.</i>\" She grins. \"<i>I'd ask if you're in New Texas for business or pleasure, but something tells me it ain't business.</i>\"");
 		output("\n\nHer accent sounds a little thicker and she seems more relaxed, making you wonder if she's had a few beers already or if she's just happy to be home. You ask if she's here for work, or if she got some time off.");
@@ -184,6 +205,7 @@ public function kimberLookAtTheCow():void
 public function kimberTalkMenu(lastTopic:int = -1):void
 {
 	clearMenu();
+	//Why? Because I don't feel like writing addDisabledButton 5 times
 	var topics:Array = [{label:"Herself", func:kimberSpeaksAboutAScienceCow}]
 	if (flags["KIMBER_TALKED_HERSELF"] != undefined) topics.push(	{label:"Her Work", func:kimberHasAJob},
 																	{label:"Problems", func:kimberHasProblems});
@@ -197,6 +219,7 @@ public function kimberTalkMenu(lastTopic:int = -1):void
 		output("You tell Kimber that you'd like to hear one of her stories again.");
 		kimberStoryMenu();
 	}});
+	if (flags["KIMBER_OFFER"] != undefined && flags["KIMBER_QUEST"] == undefined) addButton(9, "Special Job", kimberJobOffer);
 
 	for (var i:int = 0; i < topics.length; ++i)
 		if (i == lastTopic) addDisabledButton(i, topics[i].label);
@@ -480,8 +503,13 @@ public function kimberStoryMenu(lastStory:Function = null):void
 		if (flags[story.flag] == undefined) continue;
 		else if (lastStory == story.func) addDisabledButton(btnSlot++, story.label);
 		else addButton(btnSlot++, story.label, story.func);
-
 	addButton(14, "Never Mind", kimberTalkMenu);
+	//if fourth item unlocked but quest hasn't been given, [Next]
+	if (btnSlot >= 4 && flags["KIMBER_QUEST"] == undefined)
+	{
+		clearMenu();
+		addButton(0, "Next", kimberOpenQuest);
+	}
 }
 
 public function kimberUthraStory():void
@@ -1822,6 +1850,36 @@ public function kimberShowOffYourStuff(genIdx:int, useCock:Boolean):void
 	IncrementFlag("KIMBER_SEXED");
 
 	addButton(0, "Next", kimberGoHomePostSex);
+}
+
+public function kimberTopOffer():void
+{
+	clearOutput();
+	showKimber();
+	processTime(3);
+
+	if (flags["KIMBER_SEXED"] == undefined)
+	{
+		output("\"<i>Now,</i>\" Kimber begins, \"<i>I know we've been just fine as friends. And if you don't want to change that, I'm good with it, so don't worry there.</i>\" She pats her labcoat where she put away the sample container. \"<i>But you risked your life to help me, and I'm thinking a risk like that should get a reward.</i>\"");
+		output("\n\nYou tell her to go on, though you can guess where this is going.");
+		output("\n\n\"<i>When it comes to sex, I'm real particular about one thing,</i>\" she says. \"<i>I'm on top. If I don't ride, I'm not interested. You get me?</i>\" She pauses, and you nod. \"<i>But I'm giving you a one-shot offer. You can come on back to my ship with me, get on top and plow me into my mattress. If you want.</i>\"");
+		output("\n\n\She leans back, blushing and looking kind of nervous. \"<i>That's not the kind of thing I'd normally say to someone I'm not, y'know, already fucking,</i>\" she says. \"<i>And I won't get mad if you say no. But if you ever want it, you just say the word.</i>\" She gives you a wink. \"<i>One time only, though. If I don't wear you out too much and you want to keep at it, I'm riding you.</i>\"");
+
+		//Note: [Right Now] should be available regardless of Steele's current lust.
+
+		//{Add [On Top] to Sex menu}
+		//[Right Now] [Text: Tell Kimber right now sounds good.] Go to On Top First Time
+		//[Maybe Later] [Text: Tell Kimber you appreciate the offer, but you're not up for it right now.] Go to Menu under Following Encounters
+	}
+	else
+	{
+		output("\"<i>You risked your life to help me,</i>\" Kimber says, turning to press her chest against you. \"<i>Risk like that deserves some kind of reward, don't you think?</i>\"");
+		output("\n\nYou can guess where this is going, but you agree, that definitely sounds like you deserve a reward.");
+		output("\n\n\"<i>So I've got a one-time offer for you, [pc.name].</i>\" Kimber leans in close and whispers in your ear. \"<i>Take me back to my ship, throw me on the bed and plow me right through the mattress.</i>\"");
+		output("\n\nShe leans back, a silly grin on her face. Before you can say anything, she says, \"<i>You know me, this ain't the sort of thing I'd offer to just anyone. And it's a one-shot deal, whenever you want it. Just say the word.</i>\" She smirks. \"<i>If you think you're up to making it worth my while.</i>\"");
+	}
+
+	kimberMenu();
 }
 /*
 public function kimberSexeSrebmik(cockIdx:int):void

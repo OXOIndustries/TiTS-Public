@@ -1,9 +1,3 @@
-//kimberquest flag:
-//0 - heard
-//1 - killed worm
-//2 - returned to kimber
-//+4 - looted pantsu
-
 public function kimberCaveBonus():Boolean
 {
 	addButton(0, "Leave", function ():void
@@ -17,12 +11,14 @@ public function kimberCaveBonus():Boolean
 public function kimberQuestBonus():Boolean
 {
 	var worms:Array = new Array();
-	if (rand(3) == 0) worms.push(new ZilMale());
 	if (rand(4) == 0) worms.push(new ZilMale());
 	if (rand(5) == 0) worms.push(new ZilMale());
-	if (worms.length > 0)
+	if (rand(6) == 0) worms.push(new ZilMale());
+	if (worms.length > 0 && flags["KIMBER_QUEST"]%4 != 2)
 	{
 		clearMenu();
+		showBust("WORMLING");
+		showName("\nWORMLINGS!");
 		if (worms.length == 1) output("\n\nA daer wormling skitters into the tunnel, drawn by the sound of your approach. It rears up on its back legs, waving half a dozen claws into the air, and snaps its jaws at you. It's clearly not letting you go unchallenged – you'll have to fight!");
 		else output("\n\nA small group of daer wormlings skitter into the tunnel, drawn by the sound of your approach. They rear up on their hind legs, waving their curving claws into the air, and snap their jaws at you. They're clearly not letting you go unchallenged – you'll have to fight!");
 		CombatManager.newGroundCombat();
@@ -30,7 +26,7 @@ public function kimberQuestBonus():Boolean
 		CombatManager.setHostileActors(worms);
 		CombatManager.displayLocation((worms.length == 1 ? "WORMLING" : "WORMLINGS"));
 		CombatManager.victoryScene(kimberQuestPlaceholder);
-		CombatManager.lossScene(kimberQuestPlaceholder);
+		CombatManager.lossScene(kimberQuestWormLoss);
 		addButton(0, "Fight!", CombatManager.beginCombat);
 		return true;
 	}
@@ -57,13 +53,15 @@ public function kimberWormBonus():Boolean
 		if (flags["KIMBER_WORM_BEING_FOUGHT"] == undefined)
 		{
 			clearMenu();
+			showBust("DAERWORM");
+			showName("THE\nDAER WORM!");
 			output("\n\nAn enormous serpentine creature lies curled up against the crack in the stone, and it stirs as you enter the room. The thing's body is easily three feet across, and covered in overlapping plates of brown and black chitin. The head looks like something out of a nightmare: wide and heavily plated, with a tremendous underbite and yellowed teeth jutting up from a jaw that looks strong enough to crush bone with a single bite. Dozens of legs unfold from the creature's body as it rises, each one tipped with a claw sharp enough to dig through stone.\n\nFour glassy black eyes fix on you as the creature turns to face you, and its jaw cracks open wide. This is the daer worm, and it's not happy to see you.");
 			CombatManager.newGroundCombat();
 			CombatManager.setFriendlyActors(pc);
 			CombatManager.setHostileActors(new ZilMale());
-			CombatManager.displayLocation("THE DAER WORM");
-			CombatManager.victoryScene(kimberQuestPlaceholder);
-			CombatManager.lossScene(kimberQuestPlaceholder);
+			CombatManager.displayLocation("DAER WORM");
+			CombatManager.victoryScene(kimberQuestDeadWorm);
+			CombatManager.lossScene(kimberQuestDaerWormLoss);
 			flags["KIMBER_WORM_BEING_FOUGHT"] = 1;
 			addButton(0, "Fight!", CombatManager.beginCombat);
 			return true;
@@ -91,7 +89,7 @@ public function kimberPantiesBonus():Boolean
 		flags["KIMBER_QUEST"] += 4;
 		output("You hold your breath and search through the rotting bodies. Most of what you find is broken armor and torn clothing, a few battered weapons, and a broken Xenogen sample container, but nothing of real value. Then, when you flip over one of the gabilani bodies, you find a battered metal box about the size of your Codex.");
 		output("\n\nThe box looks like the daer worm chewed on it, but it's still closed and locked. The lock is small enough that a quick hit from your [pc.meleeWeapon] breaks it, and you pop open the box.");
-		output("\n\nInside, you find a handful of credit chits totaling forty-two hundred credits and a small package wrapped in colorful paper. You unwrap the package, and find it contains a single pair of panties made out of some kind of stretchy material, which grows more sheer the farther you stretch it. Judging by how wide gabilani hips can get, it seems like the panties were made for one of them.");
+		output("\n\nInside, you find a handful of credit chits totaling forty-two hundred credits and a small package wrapped in colorful paper. You unwrap the package, and find it contains a single pair of panties made out of some kind of stretchy material, which grows more sheer the farther you stretch it. Judging by how wide gabilani hips can get, it seems like the panties were made for one of them.\n\n");
 		pc.credits += 4200;
 		quickLoot(new GabilaniPanties());
 	}, undefined, "Search", "Might as well see if there's anything in here worth taking.");
