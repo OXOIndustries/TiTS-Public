@@ -11,21 +11,21 @@ public function kimberCaveBonus():Boolean
 public function kimberQuestBonus():Boolean
 {
 	var worms:Array = new Array();
-	if (rand(4) == 0) worms.push(new ZilMale());
 	if (rand(5) == 0) worms.push(new ZilMale());
 	if (rand(6) == 0) worms.push(new ZilMale());
+	if (rand(7) == 0) worms.push(new ZilMale());
 	if (worms.length > 0 && flags["KIMBER_QUEST"]%4 != 2)
 	{
 		clearMenu();
 		showBust("WORMLING");
-		showName((worms.length == 1 ? "WORMLING!" : "WORMLINGS!"));
+		showName((worms.length == 1 ? "\nWORMLING!" : "\nWORMLINGS!"));
 		if (worms.length == 1) output("\n\nA daer wormling skitters into the tunnel, drawn by the sound of your approach. It rears up on its back legs, waving half a dozen claws into the air, and snaps its jaws at you. It's clearly not letting you go unchallenged – you'll have to fight!");
 		else output("\n\nA small group of daer wormlings skitter into the tunnel, drawn by the sound of your approach. They rear up on their hind legs, waving their curving claws into the air, and snap their jaws at you. They're clearly not letting you go unchallenged – you'll have to fight!");
 		CombatManager.newGroundCombat();
 		CombatManager.setFriendlyActors(pc);
 		CombatManager.setHostileActors(worms);
 		CombatManager.displayLocation((worms.length == 1 ? "WORMLING" : "WORMLINGS"));
-		CombatManager.victoryScene(kimberQuestPlaceholder);
+		CombatManager.victoryScene(kimberQuestDeadWormling);
 		CombatManager.lossScene(kimberQuestWormLoss);
 		addButton(0, "Fight!", CombatManager.beginCombat);
 		return true;

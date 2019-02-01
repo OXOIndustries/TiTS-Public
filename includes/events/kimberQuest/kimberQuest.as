@@ -6,11 +6,6 @@
 //+4 - looted pantsu
 //kimberoffer: job offered
 
-public function kimberQuestPlaceholder():void
-{
-	CombatManager.genericLoss();
-}
-
 public function kimberQuestWormLoss():void
 {
 	clearOutput();
@@ -28,13 +23,20 @@ public function kimberQuestWormLoss():void
 	badEnd();
 
 }
+public function kimberQuestDeadWormling():void
+{
+	clearOutput();
+	showBust("WORMLING");
+	showName("\nWORMLING");
+	output("Your attack sends the wormling tumbling back, and it lets out a pained hiss as it crumples to the cavern floor. Its body seizes up, shaking, and its clawed legs grow stiff. After a quivering moment, the wormling curls up around itself and goes still. It's dead.");
+	CombatManager.genericVictory();
+}
 public function kimberQuestDaerWormLoss():void
 {
 	clearOutput();
 	output("You stumble to the ground, too wounded to keep fighting. The daer worm darts forward, faster than a creature that large should be able to move. Its wedge-shaped head slams into you, sending you to the floor.\n\nThe creature's jaw cracks open wide, showing row after row of sharp, jagged teeth. The last thing you see is the daer worm's maw darting toward your head, and the last thing you feel is those teeth snapping shut around your neck.");
 	badEnd();
 }
-
 public function kimberQuestDeadWorm():void
 {
 	clearOutput();
