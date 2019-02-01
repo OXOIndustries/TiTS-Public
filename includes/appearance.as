@@ -455,12 +455,12 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			else outputRouter(".");
 			break;
 		case GLOBAL.TYPE_XHELARFOG:
-			outputRouter((target == pc ? "Your":"[target.Name]'s") + " face has a curious lack of a visible nose");
+			outputRouter((target == pc ? "Your":"[target.Name]’s") + " face has a curious lack of a visible nose");
 			if (target.eyeCount() == 3) outputRouter(", though the thing truly cementing its alien nature is the trio of eyes decorating its upper half");
 			outputRouter(".");
 			break;
 		case GLOBAL.TYPE_SAURMORIAN:
-			outputRouter((target == pc ? "You have":"[target.Name] has") + " the face of a saurmorian, with [target.skinFurScalesColor] metal scales that encase " + (target == pc ? "your":"[target.hisHer]") + " jaw, and run along the top of " + (target == pc ? "your":"[target.hisHer]") + " reptilian snout and down the back of " + (target == pc ? "your":"[target.hisHer]") + " neck. The sides of " + (target == pc ? "your":"[target.hisHer]") + " muzzle aren't as densely covered, and show hints of a [target.skinColor] hide beneath. " + (target == pc ? "Your":"[target.HisHer]") + " smile, meanwhile, contains a mouthful of sharp teeth.");
+			outputRouter((target == pc ? "You have":"[target.Name] has") + " the face of a saurmorian, with [target.skinFurScalesColor] metal scales that encase " + (target == pc ? "your":"[target.hisHer]") + " jaw, and run along the top of " + (target == pc ? "your":"[target.hisHer]") + " reptilian snout and down the back of " + (target == pc ? "your":"[target.hisHer]") + " neck. The sides of " + (target == pc ? "your":"[target.hisHer]") + " muzzle aren’t as densely covered, and show hints of a [target.skinColor] hide beneath. " + (target == pc ? "Your":"[target.HisHer]") + " smile, meanwhile, contains a mouthful of sharp teeth.");
 			break;
 	}
 	if(target.hasStatusEffect("Mimbrane Face") && target == pc)
@@ -649,7 +649,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		case GLOBAL.TYPE_XHELARFOG:
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " eyes are a");
 			if (hasMetallicEyes) outputRouter(" metallic");
-			outputRouter(" shade of [target.eyeColor] with no distinction between sclera and iris. Only the slightly paler shade of " + (target == pc ? "your":"[target.hisHer]") + " pupil allows people to tell where " + (target == pc ? "you're":"[target.heShe]'s") + " looking.");
+			outputRouter(" shade of [target.eyeColor] with no distinction between sclera and iris. Only the slightly paler shade of " + (target == pc ? "your":"[target.hisHer]") + " pupil allows people to tell where " + (target == pc ? "you’re":"[target.heShe]’s") + " looking.");
 			break;
 		case GLOBAL.TYPE_SAURMORIAN:
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " eyes are [target.eyeColor] orbs, each with a vertically slitted pupil set in a very slim iris that almost blends with the surrounding sclera.");
@@ -1151,10 +1151,10 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		{
 			//Demonic horns
 			case GLOBAL.TYPE_DEMONIC:
-				if(target.horns <= 2) outputRouter(" A " + (target.hornLength <= 2 ? "small pair of" : ("pair of " + num2Text(target.hornLength) + "-inch long")) + " pointed horns has broken through the " + target.skin() + " on " + (target == pc ? "your":"[target.hisHer]") + " forehead, proclaiming some demonic taint to any who see them.");
-				else if(target.horns <= 4) outputRouter(" A quartet of " + (target.hornLength <= 4 ? "prominent" : (num2Text(target.hornLength) + "-inch long")) + " horns has broken through " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin() + ". The back pair are longer, and curve back along " + (target == pc ? "your":"[target.hisHer]") + " head. The front pair protrude forward demonically.");
-				else if(target.horns <= 6) outputRouter(" Six horns have sprouted through " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin() + ", the back two pairs curve backwards over " + (target == pc ? "your":"[target.hisHer]") + " head and down towards " + (target == pc ? "your":"[target.hisHer]") + " neck, while the front two horns stand " + (target.hornLength < 8 ? "almost eight" : num2Text(target.hornLength)) + " inches long upwards and a little forward.");
-				else outputRouter(" A large number of thick demonic horns sprout through " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin() + ", each pair sprouting behind the ones before. The front jut forwards nearly " + num2Text(target.hornLength) + " inches while the rest curve back over " + (target == pc ? "your":"[target.hisHer]") + " head, some of the points ending just below " + (target == pc ? "your":"[target.hisHer]") + " ears. " + (target == pc ? "You estimate you have":"[target.HeShe] estimates [target.heShe] has") + " a total of " + num2Text(target.horns) + " horns.");
+				if(target.horns <= 2) outputRouter(" A " + (target.hornLength <= 2 ? "small pair of" : ("pair of " + num2Text(int(target.hornLength)) + "-inch long")) + " pointed horns has broken through the " + target.skin() + " on " + (target == pc ? "your":"[target.hisHer]") + " forehead, proclaiming some demonic taint to any who see them.");
+				else if(target.horns <= 4) outputRouter(" A quartet of " + (target.hornLength <= 4 ? "prominent" : (num2Text(int(target.hornLength)) + "-inch long")) + " horns has broken through " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin() + ". The back pair are longer, and curve back along " + (target == pc ? "your":"[target.hisHer]") + " head. The front pair protrude forward demonically.");
+				else if(target.horns <= 6) outputRouter(" Six horns have sprouted through " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin() + ", the back two pairs curve backwards over " + (target == pc ? "your":"[target.hisHer]") + " head and down towards " + (target == pc ? "your":"[target.hisHer]") + " neck, while the front two horns stand " + (target.hornLength < 8 ? "almost eight" : num2Text(int(target.hornLength))) + " inches long upwards and a little forward.");
+				else outputRouter(" A large number of thick demonic horns sprout through " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin() + ", each pair sprouting behind the ones before. The front jut forwards nearly " + num2Text(int(target.hornLength)) + " inches while the rest curve back over " + (target == pc ? "your":"[target.hisHer]") + " head, some of the points ending just below " + (target == pc ? "your":"[target.hisHer]") + " ears. " + (target == pc ? "You estimate you have":"[target.HeShe] estimates [target.heShe] has") + " a total of " + num2Text(target.horns) + " horns.");
 				break;
 			//Minotaur horns
 			case GLOBAL.TYPE_BOVINE:
@@ -1264,7 +1264,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				if (hornMaterial <= 0 || hornColor == "") outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " curved horns are [target.skinColor] at their base, but fade into gold at their tips.");
 				break;
 			case GLOBAL.TYPE_SAURMORIAN:
-				outputRouter("A pair of dense, metal horns, roughly [target.hornLength] inches long, curve up and along the back of " + (target == pc ? "your":"[target.hisHer]") + " skull");
+				outputRouter(" A pair of dense, metal horns, roughly " + num2Text(int(target.hornLength)) + " inches long, curve up and along the back of " + (target == pc ? "your":"[target.hisHer]") + " skull");
 				if (target.hornLength >= 18) outputRouter(" and over " + (target == pc ? "your":"[target.hisHer]") + " head before twisting upwards at the brow");
 				if (target.horns == 3) outputRouter(". At the tip of " + (target == pc ? "your":"[target.hisHer]") + " [target.face], just above " + (target == pc ? "your":"[target.hisHer]") + " nose, sits a third, shorter horn");
 				outputRouter(". They have a rather intimidating presence, as if reminiscent of a more savage time.");
@@ -4446,7 +4446,7 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 			break;
 		//Cold Fly Lizard flavor:
 		case GLOBAL.TYPE_FROSTWYRM:
-			outputRouter((eachOne ? "\nThe entire length of each":" The entire length of "+(target == pc?"your":"[target.hisHer]")) + " cunt is filled with folds that put a human woman’s to shame in their depth and quantity, catching even the smallest bit of texture on a dick and refusing to let go. Dozens of small but powerful muscles ensure " + (target == pc ? "your":"[target.hisHer]") + " fold-filled " + (eachOne ? "snatches":"snatch") + " can exert its grip on any dick no matter the size, while a few tweaks to the shape and position of " + (target == pc ? "your":"[target.hisHer]") + " " + (target.hasVaginas() || target.vaginas[0].clits > 1 ? "clits":"clit") + " ensure " + (target == pc ? "you're":"[target.heShe]'s") + " optimized for being taken from behind.");
+			outputRouter((eachOne ? "\nThe entire length of each":" The entire length of "+(target == pc?"your":"[target.hisHer]")) + " cunt is filled with folds that put a human woman’s to shame in their depth and quantity, catching even the smallest bit of texture on a dick and refusing to let go. Dozens of small but powerful muscles ensure " + (target == pc ? "your":"[target.hisHer]") + " fold-filled " + (eachOne ? "snatches":"snatch") + " can exert its grip on any dick no matter the size, while a few tweaks to the shape and position of " + (target == pc ? "your":"[target.hisHer]") + " " + (target.hasVaginas() || target.vaginas[0].clits > 1 ? "clits":"clit") + " ensure " + (target == pc ? "you’re":"[target.heShe]’s") + " optimized for being taken from behind.");
 			break;
 		case GLOBAL.TYPE_SAURMORIAN:
 			outputRouter((eachOne ? "\nTheir lips" : " The lips") + " are quite plump, and always have a smooth and glossy sheen to them.");

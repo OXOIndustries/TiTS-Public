@@ -443,10 +443,10 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/kelly.png", mimeType = "image/png")]
 		public var Bust_KELLY:Class;
-		[Embed(source = "../../../assets/images/npcs/adjatha/kelly_hyper_nude.png", mimeType = "image/png")]
-		public var Bust_KELLY_HYPER_NUDE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/kelly_nude.png", mimeType = "image/png")]
 		public var Bust_KELLY_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/kelly_hyper_nude.png", mimeType = "image/png")]
+		public var Bust_KELLY_HYPER_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/kiro.png", mimeType = "image/png")]
 		public var Bust_KIRO:Class;
@@ -1425,10 +1425,10 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kelly.png", mimeType = "image/png")]
 			public var Full_KELLY:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kelly_hyper_nude.png", mimeType = "image/png")]
-			public var Full_KELLY_HYPER_NUDE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kelly_nude.png", mimeType = "image/png")]
 			public var Full_KELLY_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kelly_hyper_nude.png", mimeType = "image/png")]
+			public var Full_KELLY_HYPER_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kase_pyrite_hurt.png", mimeType = "image/png")]
 			public var Full_KASE:Class;

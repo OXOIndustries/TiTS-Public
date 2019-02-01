@@ -29,7 +29,7 @@ package classes.Items.Transformatives
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "a brightly packaged bottle of murky liquid labeled 'Reptilum'";
+			description = "a brightly packaged bottle of murky liquid labeled ‘Reptilum’";
 			tooltip = "This package contains a bottle of murky, gray liquid, all but hidden by layers of brightly colored packaging and gaudy decals. Originally created during an early rush for settlers acclimating onto a tropical planet, this transformative has undergone many iterations through the generations. Consuming the contents of the bottle should grant a sleek, reptilian form.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
@@ -71,7 +71,7 @@ package classes.Items.Transformatives
 				if (target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SCALES) && target.scaleColorUnlocked(target.skinTone)) validTFs.push(function (target:Creature):void
 				{
 					output("\n\nYour entire body begins to numb, all sensation of touch is quickly replaced by a queasiness far more violent than the buzz of a usual transformation.");
-					if (target.hasFur()) output(" As you try to regain your bearings, your fur begins to fall out in clumps until your skin lies hairless" + (target.hasHair() || target.hasBeard() ? "… mostly." : "."));
+					if (target.hasFur()) output(" As you try to regain your bearings, your fur begins to fall out in clumps until your skin lies hairless" + (target.hasHair() || target.hasBeard() ? "... mostly." : "."));
 					else if (target.hasFeathers()) output(" As you try to regain your bearings, your plumage begins to shudder as your feathers fall out in clumps.");
 					output(" You pat down your body as you try to understand the change, knock away sections of molted skin, revealing an unspoiled hide of [pc.skinColor] scales beneath. <b>Your body is now covered in [pc.skinColor] scales!</b>");
 					
@@ -90,7 +90,7 @@ package classes.Items.Transformatives
 				{
 					output("\n\nWithout warning, your mind is suddenly assaulted by the violent throbs of a skull-splitting headache. Moaning softly, you bring your hands up to vainly try and ward some portion of the pain. What you find is your skull shifting, popping and cracking as your face reforms under your fingers. Your face writhes");
 					if (!target.hasFaceFlag(GLOBAL.FLAG_LONG) || !target.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) output(" and stretches outwards");
-					output(" as your face shifts into a new, vaguely triangular shape. For a moment, you’re almost glad for the headache, as it distorts the pounding ache of your reshaping skull. As suddenly as it came, the distress fades, body and mind. Using your Codex's camera, you inspect <b>your toothy, reptilian visage.</b>");
+					output(" as your face shifts into a new, vaguely triangular shape. For a moment, you’re almost glad for the headache, as it distorts the pounding ache of your reshaping skull. As suddenly as it came, the distress fades, body and mind. Using your Codex’s camera, you inspect <b>your toothy, reptilian visage.</b>");
 					
 					target.faceType = GLOBAL.TYPE_LIZAN;
 					target.clearFaceFlags();
@@ -106,7 +106,7 @@ package classes.Items.Transformatives
 			{
 				if (target.eyeTypeUnlocked(GLOBAL.TYPE_LIZAN)) validTFs.push(function (target:Creature):void
 				{
-					output("\n\nThe world seems to shift before you as everything around you distorts into pulses of color and shadow. You blink a few times, the distortion fading with each heartbeat until your vision is clear. Things look different than they did a minute ago. Everything looks slightly clearer than it used to be, but subtly tinged with... with... It's almost like a new color, one you had never noticed until now. You bring out your Codex’s camera, <b>revealing your new reptilian eyes</b>: [pc.eyeColor] spheres with cat-like slits (and slight infrared, it would seem). While examining your newly reptilian gaze, you notice a new set of eyelids: transparent membranes that allow you to blink without closing your eyes. Neat!");
+					output("\n\nThe world seems to shift before you as everything around you distorts into pulses of color and shadow. You blink a few times, the distortion fading with each heartbeat until your vision is clear. Things look different than they did a minute ago. Everything looks slightly clearer than it used to be, but subtly tinged with... with... It’s almost like a new color, one you had never noticed until now. You bring out your Codex’s camera, <b>revealing your new reptilian eyes</b>: [pc.eyeColor] spheres with cat-like slits (and slight infrared, it would seem). While examining your newly reptilian gaze, you notice a new set of eyelids: transparent membranes that allow you to blink without closing your eyes. Neat!");
 					
 					target.eyeType = GLOBAL.TYPE_LIZAN;
 				});
@@ -186,7 +186,7 @@ package classes.Items.Transformatives
 			{
 				if (target.legTypeUnlocked(GLOBAL.TYPE_LIZAN) && target.legFlagsUnlocked(GLOBAL.FLAG_PAWS) && target.legFlagsUnlocked(GLOBAL.FLAG_SCALED)) validTFs.push(function (target:Creature):void
 				{
-					output("\n\nYour [pc.legs] are stricken by stabbing pains as their skeletal arrangement begins to shift and reshuffle. You manage to get off your [pc.feet] before you suffer an unseemly fall, turning your attention to your shifting [pc.legsNoun]. The changes are over almost as quickly as they come, <b>leaving you with distinctly reptilian looking legs.</b>  Your new feet have three toes, tipped with sharp looking claws, and a smaller toe-claw in back for better grip.");
+					output("\n\nYour [pc.legs] are stricken by stabbing pains as their skeletal arrangement begins to shift and reshuffle. You manage to get off your [pc.feet] before you suffer an unseemly fall, turning your attention to your shifting [pc.legsNoun]. The changes are over almost as quickly as they come, <b>leaving you with distinctly reptilian looking legs.</b> Your new feet have three toes, tipped with sharp looking claws, and a smaller toe-claw in back for better grip.");
 					
 					target.legType = GLOBAL.TYPE_LIZAN;
 					var wasPlanty:Boolean = target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE);
@@ -206,7 +206,7 @@ package classes.Items.Transformatives
 			{
 				if (target.legFlagsUnlocked(GLOBAL.FLAG_DIGITIGRADE) && target.legFlagsUnlocked(GLOBAL.FLAG_PLANTIGRADE)) validTFs.push(function (target:Creature):void
 				{
-					output("\n\nYour [pc.legs] are stricken by stabbing pains as their skeletal arrangement begins to shift and reshuffle. You manage to get off your feet before you suffer an unseemly fall, turning your attention to your shifting legs. The tips of your feet widen, bones growing and shifting until the pads of your feet can bear your full weight. The changes aren't limited to your feet, the skeletal structure of your legs have now <b>shifted into a digitigrade arrangement</b>.");
+					output("\n\nYour [pc.legs] are stricken by stabbing pains as their skeletal arrangement begins to shift and reshuffle. You manage to get off your feet before you suffer an unseemly fall, turning your attention to your shifting legs. The tips of your feet widen, bones growing and shifting until the pads of your feet can bear your full weight. The changes aren’t limited to your feet, the skeletal structure of your legs have now <b>shifted into a digitigrade arrangement</b>.");
 					
 					target.removeLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 					target.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
@@ -261,7 +261,7 @@ package classes.Items.Transformatives
 			{
 				if ((target.hasTongueFlag(GLOBAL.FLAG_LONG) || target.tongueFlagsUnlocked(GLOBAL.FLAG_LONG)) && (target.hasTongueFlag(GLOBAL.FLAG_PREHENSILE) || target.tongueFlagsUnlocked(GLOBAL.FLAG_PREHENSILE))) validTFs.push(function (target:Creature):void
 				{
-					output("\n\nA strange savory taste beings to cover your tongue. You absently drool a bit, tongue lolling out of your mouth. When the strange sensation subsides, you try to retract your tongue back into your mouth - only to find much, much more tongue than you can remember. After a moment of inspection, <b>it seems your tongue is now around a foot long! And prehensile as well…</b>  Your mind is already filled with ideas of how to use this in the bedroom.");
+					output("\n\nA strange savory taste beings to cover your tongue. You absently drool a bit, tongue lolling out of your mouth. When the strange sensation subsides, you try to retract your tongue back into your mouth - only to find much, much more tongue than you can remember. After a moment of inspection, <b>it seems your tongue is now around a foot long! And prehensile as well...</b> Your mind is already filled with ideas of how to use this in the bedroom.");
 					
 					target.addTongueFlag(GLOBAL.FLAG_LONG);
 					target.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
@@ -291,7 +291,7 @@ package classes.Items.Transformatives
 						output("\n\nA dull throbbing forms above your ass, as if something under the skin is trying to get out");
 						if (!target.isAssExposed())
 						{
-							output(". With a hunch of what's about to happen, you quickly remove your");
+							output(". With a hunch of what’s about to happen, you quickly remove your");
 							if (target.hasArmor() && !target.isAssExposedByArmor())
 							{
 								output(" [pc.armor]");
@@ -306,7 +306,7 @@ package classes.Items.Transformatives
 					else
 					{
 						output("\n\nYour tail begins to throb, suffused with a dull ache that grows with every heartbeat, before suddenly going numb.");
-						if (!target.isAssExposed()) output(" With a hunch of what's about to happen, you quickly remove your [pc.assCovers].");
+						if (!target.isAssExposed()) output(" With a hunch of what’s about to happen, you quickly remove your [pc.assCovers].");
 						output(" Your tail shudders, mutating into a thick limb. You cautiously inspect your altered appendage as feeling begins to flow back into it, bearing witness as " + target.scaleColor + " scales begin to spread over the limb.");
 					}
 					output(" <b>You now have a reptilian tail!</b>");
@@ -345,7 +345,7 @@ package classes.Items.Transformatives
 			{
 				if (target.tailFlagsUnlocked(GLOBAL.FLAG_LONG)) validTFs.push(function (target:Creature):void
 				{
-					output("\n\nYour tail begins to feel strange, much of it feeling vaguely inflamed. As you turn to inspect your tail, you notice that it appears to be stretching before your eyes. The bizarre swelling and stretching continues, until your tail is almost twice as long as it was previously… <b>Your tail is now long!</b>");
+					output("\n\nYour tail begins to feel strange, much of it feeling vaguely inflamed. As you turn to inspect your tail, you notice that it appears to be stretching before your eyes. The bizarre swelling and stretching continues, until your tail is almost twice as long as it was previously... <b>Your tail is now long!</b>");
 					
 					target.addTailFlag(GLOBAL.FLAG_LONG);
 				});
@@ -358,7 +358,7 @@ package classes.Items.Transformatives
 			{
 				if (target.wingTypeUnlocked(GLOBAL.TYPE_HUMAN)) validTFs.push(function (target:Creature):void
 				{
-					output("\n\nYour [pc.wings] suddenly go numb, all sensation fading in the blink of an eye. As you reach behind, trying to discern the fate of your [pc.wings], you notice that they’re… dissolving. Before your eyes your [pc.wings] turn to dust, falling away until your back is covered by naught but an unbroken hide of [pc.skinFurScales]. <b>Your have lost your wings!</b>");
+					output("\n\nYour [pc.wings] suddenly go numb, all sensation fading in the blink of an eye. As you reach behind, trying to discern the fate of your [pc.wings], you notice that they’re... dissolving. Before your eyes your [pc.wings] turn to dust, falling away until your back is covered by naught but an unbroken hide of [pc.skinFurScales]. <b>Your have lost your wings!</b>");
 					
 					target.removeWings();
 				});
@@ -404,7 +404,7 @@ package classes.Items.Transformatives
 			{
 				if (target.ballSizeUnlocked(target.ballSize()-1) && target.ballSizeRaw > 1) validTFs.push(function (target:Creature):void
 				{
-					output("\n\nDiscomfort pulses through your [pc.sack], jerking your hand down by instinct. By the time your hands " + (target.isCrotchExposed() || kGAMECLASS.flags["REPTILUM_MOVED_CLOTHES"] != undefined ? "reach it" : "reach under your [pc.crotchCover]") + ", the discomfort has faded, leaving behind a hollow feeling. Fondling your sack, you find it emptier than it used to be… <b>It seems your testicles have shrunk!</b>");
+					output("\n\nDiscomfort pulses through your [pc.sack], jerking your hand down by instinct. By the time your hands " + (target.isCrotchExposed() || kGAMECLASS.flags["REPTILUM_MOVED_CLOTHES"] != undefined ? "reach it" : "reach under your [pc.crotchCover]") + ", the discomfort has faded, leaving behind a hollow feeling. Fondling your sack, you find it emptier than it used to be... <b>It seems your testicles have shrunk!</b>");
 					
 					target.ballSize(-1);
 				}); 
@@ -491,7 +491,7 @@ package classes.Items.Transformatives
 						else if (target.hasCock()) output((target.hasStatusEffect("Genital Slit") ? " under your other slit" : " hidden behind your [pc.cock]"));
 						output(".");
 					}
-					output(" Sticking a finger in, you’re pleased to see that your altered lips are far more elastic than they look… You also find your " + (target.vaginas[cuntIdx].clits > 1 ? "clits" : "clit") + ", hidden just inside your slit. </b>Your vagina is now reptilian!</b>");
+					output(" Sticking a finger in, you’re pleased to see that your altered lips are far more elastic than they look... You also find your " + (target.vaginas[cuntIdx].clits > 1 ? "clits" : "clit") + ", hidden just inside your slit. </b>Your vagina is now reptilian!</b>");
 					
 					var oldClits:int = target.vaginas[cuntIdx].clits;
 					target.shiftVagina(cuntIdx, GLOBAL.TYPE_LIZAN);
@@ -510,7 +510,7 @@ package classes.Items.Transformatives
 			// Increase ass elasticity by 0.5, up to 2. Increase lust up to 40%
 			if (target.elasticity < 2) validTFs.push(function (target:Creature):void
 			{
-				output("\n\nYour [pc.asshole] feels strange for a second, tingling from a transformative surge that fades as quickly as it appears. Nothing feels different… but you’re strangely confident that your [pc.asshole] could now take larger insirtions than it could before. Perhaps you should test this theory out, if nothing else than to get rid of the soft tingling still resonating in your ass.");
+				output("\n\nYour [pc.asshole] feels strange for a second, tingling from a transformative surge that fades as quickly as it appears. Nothing feels different... but you’re strangely confident that your [pc.asshole] could now take larger insirtions than it could before. Perhaps you should test this theory out, if nothing else than to get rid of the soft tingling still resonating in your ass.");
 				
 				target.elasticity += Math.max(0, Math.min(2-target.elasticity, 0.5));
 				target.lust(Math.max(0, target.lustMax()*4/10-target.lust()));
@@ -567,7 +567,7 @@ package classes.Items.Transformatives
 			if (!target.hasPerk("Oviposition") && target.fertility() > 0 && target.hasPregnancyOfType("OviliumEggPregnancy") && target.lizanScore() >= 6) validTFs.push(function (target:Creature):void
 			{
 				// not exactly fitting - you are already egg-pregnant here and know it
-				output("\n\nYour codex beeps for attention, the noise almost distracting you from a shudder of change flowing through your insides. Tapping the screen a few times, your codex informs you that…  you are now oviparous? Realization hits you: the Ovilium! <b>It looks like your " + (target.hasVaginas() ? "wombs" : "womb") + " will be producing unfertilized eggs when left unoccupied.</b>\n\n<b>Perk Gained: Oviposition </b>");
+				output("\n\nYour codex beeps for attention, the noise almost distracting you from a shudder of change flowing through your insides. Tapping the screen a few times, your codex informs you that... you are now oviparous? Realization hits you: the Ovilium! <b>It looks like your " + (target.hasVaginas() ? "wombs" : "womb") + " will be producing unfertilized eggs when left unoccupied.</b>\n\n<b>(Perk Gained: Oviposition)</b>");
 
 				// oviposition perk: v1 - times acted, v4 - last known pregnancy to prevent permapreg
 				target.createPerk("Oviposition", 0, 0, 0, kGAMECLASS.GetGameTimestamp(), "Causes you to regularly lay eggs when not otherwise pregnant.");
@@ -576,7 +576,7 @@ package classes.Items.Transformatives
 			
 			if (validTFs.length <= 0 || tfs <= 0)
 			{
-				output("\n\nA brief wave of discomfort flows through you, before fading away. You wait patiently, only to realize after a minute that no changes are coming. Seems like that dose was a dud…");
+				output("\n\nA brief wave of discomfort flows through you, before fading away. You wait patiently, only to realize after a minute that no changes are coming. Seems like that dose was a dud...");
 				return false;
 			}
 

@@ -69,6 +69,7 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/cheshire/Kelly.png", mimeType = "image/png")]
 		public var Bust_KELLY:Class;
 		public function get Bust_KELLY_NUDE():Class { return Bust_KELLY; }
+		public function get Bust_KELLY_HYPER_NUDE():Class { return Bust_KELLY; }
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/Lapinara.png", mimeType = "image/png")]
 		public var Bust_LAPINARA:Class;
@@ -215,6 +216,7 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/Kelly.png", mimeType = "image/png")]
 			public var Full_KELLY:Class;
 			public function get Full_KELLY_NUDE():Class { return Full_KELLY; }
+			public function get Full_KELLY_HYPER_NUDE():Class { return Full_KELLY; }
 
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/Lapinara.png", mimeType = "image/png")]
 			public var Full_LAPINARA:Class;

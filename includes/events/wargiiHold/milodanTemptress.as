@@ -23,7 +23,7 @@ public function encounterMiloTemptress():void
 		output("\n\nIt’s " + (flags["MET_TUUVA"] != undefined ? "Tuuva":"another korgonne, a fairly small one at that") + ": not just leashed, but bound in a near-full-body gimp suit, covered in small clear domes full of bubbling pink liquid.");
 		output("\n\n<i>“Looks like you need some more incentive!”</i> The milodan presses a button on her... codex? It causes " + (flags["MET_TUUVA"] != undefined ? "Tuuva":"the bound korg") + " to cry out against her gag, and the pink liquid bubbles even harder as it drains into her. Her [tuuva.cock] grows painfully hard as she helplessly orgasms on the spot. Time to intervene.");
 		output("\n\n<i>“Let her go!”</i> you yell as you step out into the open, [pc.weapon] drawn.");
-		output("\n\nShe looks taken aback at first, but quickly develops a huge grin as she wraps herself around " + (flags["MET_TUUVA"] != undefined ? "Tuuva":"the korg") + ". <i>“Look runt, " + (flags["MET_TUUVA"] != undefined ? "it’s your outsider friend!":"it's another slut for you to mount") + "”</i> She presses her hand against the back of " + (flags["MET_TUUVA"] != undefined ? "Tuuva’s":"the drooling mutt's") + " neck and with a light slap and a mechanical hiss, the gimp suit falls right off. <i>“Let’s go say hi!”</i> " + (flags["MET_TUUVA"] != undefined ? "Tuuva":"The tiny pup") + " looks at you with wide, unblinking eyes, and an erection that could pierce a cruiser hull. Whatever drugs the cat-bitch gave her have put her completely out of it; hopefully not permanently!");
+		output("\n\nShe looks taken aback at first, but quickly develops a huge grin as she wraps herself around " + (flags["MET_TUUVA"] != undefined ? "Tuuva":"the korg") + ". <i>“Look runt, " + (flags["MET_TUUVA"] != undefined ? "it’s your outsider friend!":"it’s another slut for you to mount") + "”</i> She presses her hand against the back of " + (flags["MET_TUUVA"] != undefined ? "Tuuva’s":"the drooling mutt’s") + " neck and with a light slap and a mechanical hiss, the gimp suit falls right off. <i>“Let’s go say hi!”</i> " + (flags["MET_TUUVA"] != undefined ? "Tuuva":"The tiny pup") + " looks at you with wide, unblinking eyes, and an erection that could pierce a cruiser hull. Whatever drugs the cat-bitch gave her have put her completely out of it; hopefully not permanently!");
 		output("\n\nYou raise your [pc.weapon] against the milodan slut, determined to ");
 		if(flags["MET_TUUVA"] != undefined)
 		{
@@ -32,7 +32,7 @@ public function encounterMiloTemptress():void
 			else output("lover");
 			output(" back.");
 		}
-		else output("free another prisoner from the enemy's clutches.");
+		else output("free another prisoner from the enemy’s clutches.");
 		startTemptressFight(true);
 		enemy.createStatusEffect("Has Captive",4);
 	}
@@ -40,7 +40,7 @@ public function encounterMiloTemptress():void
 	else
 	{
 		output("\n\nYour [pc.ears] twitch as you hear a voice off in the distance. It <i>could</i> be friendly, but at this point you know it’s better to be safe than sorry. The voice comes closer and closer as you duck behind a nearby wall. The melodic tone of another slave-catching Temptress is near enough to make the hairs on your neck stand. You try and sneak away before she realizes you’re there, only to jump when a small dart sticks itself in the ground in front of you.");
-		output("\n\n<i>“Going somewhere, darling? And here I had so many plans for you. Come, stay  a while. I promise I’ll make you enjoy it!”</i> The Temptress cracks her whip and struts toward you. No choice now, you’ve got to put this seductive slut in her place!.");
+		output("\n\n<i>“Going somewhere, darling? And here I had so many plans for you. Come, stay a while. I promise I’ll make you enjoy it!”</i> The Temptress cracks her whip and struts toward you. No choice now, you’ve got to put this seductive slut in her place!.");
 		startTemptressFight();
 	}
 	IncrementFlag("MET_MILO_TEMPTRESS");
@@ -113,17 +113,17 @@ public function defeatThisMiloSlut():void
 	addButton(0,"Sit on Face",sitOnTemptingKittyFace,undefined,"Sit on Face","The rubberized feline considers herself a domme. See how she likes servicing <i>her</i> betters.");
 	//[PussPound] Take the bitch, cat, thing right on down to poundtown! /Requires a dick
 	if(pc.cockThatFits(capacity) >= 0) addButton(1,"PussyPound",penisRouter,[chooChooPussyPlowing,capacity,false,0],"Pussy Pound","Take the bitch, cat, thing right on down to poundtown!");
-	else if(pc.hasCock()) addDisabledButton(1,"PussyPound","PussyPound","You're too big to fit inside her.");
+	else if(pc.hasCock()) addDisabledButton(1,"PussyPound","Pussy Pound","You’re too big to fit inside her.");
 	else addDisabledButton(1,"PussyPound","Pussy Pound","You need a penis for this.");
 
 	//[Tuuva-Tag] Help Tuuva take revenge on the Temptress. /Available when Tuuva is present (first fight and if she shows up as a helper).
 	if(enemy.statusEffectv1("Has Captive") == 4)
 	{
-		if((pc.hasCock() && pc.cockThatFits(capacity) >= 0) || pc.hasVagina()) addButton(2,"Tuuva3Some",tuuvaTagTeamScene,undefined,"Tuuva Tag-Team Threesome","");
-		else if(pc.hasCock()) addDisabledButton(2,"Tuuva3Some","Tuuva3Some","You're too big to fit this scene.");
-		else addDisabledButton(2,"Tuuva3Some","Tuuva3Some","You need genitals for this.");
+		if((pc.hasCock() && pc.cockThatFits(capacity) >= 0) || pc.hasVagina()) addButton(2,"Tuuva3Some",tuuvaTagTeamScene,undefined,"Tuuva Tag-Team Threesome","Help Tuuva take revenge on the Temptress.");
+		else if(pc.hasCock()) addDisabledButton(2,"Tuuva3Some","Tuuva Tag-Team Threesome","You’re too big to fit this scene.");
+		else addDisabledButton(2,"Tuuva3Some","Tuuva Tag-Team Threesome","You need genitals for this.");
 	}
-	else addDisabledButton(2,"Tuuva3Some","Tuuva3Some","Tuuva isn't here right now.");
+	else addDisabledButton(2,"Tuuva3Some","Tuuva Tag-Team Threesome","Tuuva isn’t here right now.");
 	//[Leave] You’ve got more important things to do.
 	captiveRescueButton(5);
 	addButton(14,"Leave",leaveBehindDatKorgoTemptress);
@@ -842,7 +842,7 @@ public function chooChooPussyPlowing(x:int):void
 		}
 		pc.cockChange();
 		output("\n\nYou plant your [pc.footOrFeet] on the ground and start railing the double-stuffed dominatrix with all you’ve got. Her holes squeeze down hard on you, and at this point you’re not sure if it’s to slow you down or speed you up. The bucking bitch tries to talk but everything just comes out as a stammering, moaning mess. Her body shakes and buckles under your assault, barely able to keep herself held up. That doesn’t stop you though. You keep up the attack, plowing her until she loses her balance and falls on her face.");
-		output("\n\nYou lean down and wrap yourself around her, grabbing her huge, bouncy tits and putting your mouth up to her neck. She grows quieter, yet more intense at your closeness. The newly-submissive minx starts mewling and writhing like a bitch in heat. Her body heat starts cranking up like a furnace, both inside and out. You  bite down on her neck on instinct, realizing just how eager to be filled she is.");
+		output("\n\nYou lean down and wrap yourself around her, grabbing her huge, bouncy tits and putting your mouth up to her neck. She grows quieter, yet more intense at your closeness. The newly-submissive minx starts mewling and writhing like a bitch in heat. Her body heat starts cranking up like a furnace, both inside and out. You bite down on her neck on instinct, realizing just how eager to be filled she is.");
 		output("\n\n<i>“Y-you beast! I’ve never been bred like this before. I-I’m going into heat! Give me strong kits! So many kits!”</i>");
 		output("\n\nHer words grasp you by the [pc.balls] tight and make you only want to do her harder. Your groin starts to feel sore as you mash your pelvis into hers like an overclocked fuck-machine. All the while you feel her drugged cunt juice flood all over your crotch, " + (pc.balls > 0 ? "soaking your sack and ":"") + "running down your [pc.legOrLegs] in small streams. The powerful, induced lust had slipped from your mind, becoming just another part of the rut. You feel like your groin is on fire, from both the drugs and the never-ceasing friction. It blossoms into a strange feeling, like the individual nerves themselves are alight with energy.");
 		output("\n\nYour lower half and hers merge into a single mass of pleasure, throbbing and mashing into itself as it grows hotter and hotter. You move up from her neck and start to make out with her, utterly lost with her.");

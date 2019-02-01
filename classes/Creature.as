@@ -456,8 +456,8 @@
 		}
 		public function eyeCount():int
 		{
-			if (InCollection(eyeType, GLOBAL.TYPE_ARACHNID)) return 4;
-			if (InCollection(eyeType, GLOBAL.TYPE_XHELARFOG)) return 3;
+			if (InCollection(eyeType, [GLOBAL.TYPE_ARACHNID])) return 4;
+			if (InCollection(eyeType, [GLOBAL.TYPE_XHELARFOG])) return 3;
 			return 2;
 		}
 		//New piercing hotness:

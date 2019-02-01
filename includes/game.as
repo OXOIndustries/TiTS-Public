@@ -277,7 +277,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	else if(!rooms[currentLocation].hasFlag(GLOBAL.BED))
 	{
 		if(canRest()) addButton(9, "Rest", restMenu);
-		else if(flags["WARGII_PROGRESS"] == 2) addDisabledButton(2,"Rest","Rest","There's no place to rest in a pitched battle!");
+		else if(flags["WARGII_PROGRESS"] == 2) addDisabledButton(2,"Rest","Rest","There’s no place to rest in a pitched battle!");
 		else addDisabledButton(9, "Rest", "Rest", "You can’t seem to rest or wait here at the moment....");
 	}
 	else
@@ -1064,7 +1064,7 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		{
 			crewMessages += "\n\n" + amberShipBonusText();
 			if (amberCurrentlyDumbfucked()) addDisabledButton(btnSlot,"Amber","Amber","You’ve decided to leave Amber alone while the effects of the Dumbfuck she took wear off.");
-			else if(pc.hasStatusEffect("Amber Disabled")) addDisabledButton(btnSlot,"Amber","Amber","Amber's busy doing something else right now." + (mitziIsCrew() ? " Probably Mitzi.":""));
+			else if(pc.hasStatusEffect("Amber Disabled")) addDisabledButton(btnSlot,"Amber","Amber","Amber’s busy doing something else right now." + (mitziIsCrew() ? " Probably Mitzi.":""));
 			else addButton(btnSlot, "Amber", amberInTheHold);
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
@@ -1158,7 +1158,7 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		{
 			crewMessages += mitziCrewBonus();
 			if(pc.hasStatusEffect("Mitzi_Gushed_Out")) addDisabledButton(btnSlot,"Mitzi","Mitzi","Maybe let her recover from that Gush, huh?");
-			else if(pc.hasStatusEffect("Mitzi Disabled")) addDisabledButton(btnSlot,"Mitzi","Mitzi","Mitzi's not around at the moment." + (amberIsCrew() ? " She's probably getting into trouble with Amber.":""));
+			else if(pc.hasStatusEffect("Mitzi Disabled")) addDisabledButton(btnSlot,"Mitzi","Mitzi","Mitzi’s not around at the moment." + (amberIsCrew() ? " She’s probably getting into trouble with Amber.":""));
 			else addButton(btnSlot,"Mitzi",approachCrewMitzi);
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
@@ -2509,7 +2509,7 @@ public function showerMenu(special:String = "ship"):void
 	if(showerInShip)
 	{
 		output("\n\nNext to the shower is a medicine cabinet with various hygiene products.");
-		if (paigeInTheShower()) output("\n\nThere are a number of stalls in the shower room; the closest one is reserved the ship's captain and the rest of your crew always leaves it open. That said, one of the other stalls is occupied, and you can hear the gentle singing of your Ausar lover and yoga instructor, Paige, over the running water.\n\n" + (pc.isTaur() ? "As much as the idea of joining her entices you, these showers barely have enough room in them for your gargantuan body as it is; shoving a second person into one of them is asking a lot. You'll have to pass on sexy shower shenanigans this time." : "You could offer to join her, if you wanted. Knowing her, she'd let you in. Or you could just go about your business as usual."));
+		if (paigeInTheShower()) output("\n\nThere are a number of stalls in the shower room; the closest one is reserved the ship’s captain and the rest of your crew always leaves it open. That said, one of the other stalls is occupied, and you can hear the gentle singing of your Ausar lover and yoga instructor, Paige, over the running water.\n\n" + (pc.isTaur() ? "As much as the idea of joining her entices you, these showers barely have enough room in them for your gargantuan body as it is; shoving a second person into one of them is asking a lot. You’ll have to pass on sexy shower shenanigans this time." : "You could offer to join her, if you wanted. Knowing her, she’d let you in. Or you could just go about your business as usual."));
 	}
 
 	output("\n\nWhat would you like to do?");

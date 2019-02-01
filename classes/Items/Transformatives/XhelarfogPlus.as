@@ -47,7 +47,7 @@ package classes.Items.Transformatives
 			kGAMECLASS.clearOutput();
 			if (!(target is PlayerCharacter))
 			{
-				output("<b>You're not supposed to be able to see this. Please report.</b>");
+				output("<b>You’re not supposed to be able to see this. Please report.</b>");
 				return false;
 			}
 			author("GothPastel");
@@ -58,7 +58,7 @@ package classes.Items.Transformatives
 			//PC has witnessed the skin type change scene before, and is in a hostile area
 			if (kGAMECLASS.flags["XHELPLUS_SKIN_CHANGE"] != undefined && inDanger)
 			{
-				output("You look at the bar in your hand, considering chowing down, but you quickly recall… That previous experience. You don’t want to risk getting carted off by some opportunistic native, and so you pop it back into your pocket. Maybe later.");
+				output("You look at the bar in your hand, considering chowing down, but you quickly recall... That previous experience. You don’t want to risk getting carted off by some opportunistic native, and so you pop it back into your pocket. Maybe later.");
 				return false;
 			}
 			else
@@ -172,7 +172,7 @@ package classes.Items.Transformatives
 			if (target.eyeCount() > 3)
 			{
 				output("\n\nYour eyes feel uncomfortable all of a sudden, a strange, squeezing feeling, and before long you find yourself forced to close your eyes.");
-				output("\n\nBy the time you’ve forced them open again, you realize that you feel distinctly… less than before. In fact, <b>you’ve only got three eyes!</b>");
+				output("\n\nBy the time you’ve forced them open again, you realize that you feel distinctly... less than before. In fact, <b>you’ve only got three eyes!</b>");
 				output("\n\nThe third is situated right in the center of your forehead, and about the same size as the others, so it’s not <i>quite</i> typical Xhelarfog configuration, but you’re one step closer.");
 				output("\n\nThere is now no distinguishable difference between your sclera and iris, both flooded with [pc.eyeColor]. Even your pupils have changed, appearing to be a slightly paler shade of the same color.");
 			}
@@ -374,7 +374,7 @@ package classes.Items.Transformatives
 		private function scaleColorChange(target:Creature):Boolean
 		{
 			output("\n\nYour skin itches for a moment, and you look down, quickly catching a glance of your scales. A new color is washing over them, and soon you’re left with <b>golden scales!</b>");
-			output("\n\nYour codex confirms that unlike true Xhelarfog, your scales aren’t <i>actually</i> made of gold, so you won't have to worry about people trying to chip them off for easy credits.");
+			output("\n\nYour codex confirms that unlike true Xhelarfog, your scales aren’t <i>actually</i> made of gold, so you won’t have to worry about people trying to chip them off for easy credits.");
 			
 			target.scaleColor = "gold";
 			
@@ -396,7 +396,7 @@ package classes.Items.Transformatives
 			else if (target.legCount == 2)
 			{
 				output("\n\nYour legs tingle strangely, and you sit down, ready to wait out whatever happens without falling over.");
-				if (target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output("  They seem to be (somewhat painfully) stretching and straightening themselves into a plantigrade configuration.");
+				if (target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output(" They seem to be (somewhat painfully) stretching and straightening themselves into a plantigrade configuration.");
 				output(" The tingling soon moves down to your feet, and you watch as three of your toes lengthen out, becoming flexible and nimble as the other two shrink, vanishing back into the main boy of your feet. Your heel too, seems to tingle, and before you know it, you’ve grown an additional, back mounted toe. Weird!");
 				output("\n\n...You’re going to need new shoes.");
 				if (kGAMECLASS.silly) output(" Though now that you think about it, it’s never really been confirmed if any of your outfits include shoes to begin with. You don’t have a slot for them or anything. Void, what is this madness?!");
@@ -460,7 +460,7 @@ package classes.Items.Transformatives
 				output("\n\nYou open your eyes, groggy. Wait, where are you?");
 				output("\n\n" + (kGAMECLASS.flags["MET_XHELPLUS_ELIJAH"] == undefined ? "An androgynous half-ausar in a SteeleTech jumpsuit" : "Elijah") + " is standing over you, looking significantly concerned.");
 				output("\n\nYou ask what happened, looking around you and spotting your ship a scant few metres away.");
-				output("\n\n<i>“I, ah, I found you passed out. Judging by your, uh… Um... Kinda... Gooey? Yeah, gooey! Uh, your skin - I’m guessing bad reaction to the Xhelarfog drug? We’re working on it, I am so, so sorry!");
+				output("\n\n<i>“I, ah, I found you passed out. Judging by your, uh... Um... Kinda... Gooey? Yeah, gooey! Uh, your skin - I’m guessing bad reaction to the Xhelarfog drug? We’re working on it, I am so, so sorry!");
 				if (kGAMECLASS.flags["MET_XHELPLUS_ELIJAH"] != undefined) output(" ...Again.");
 				output("”</i> They chatter away, stumbling over pretty much every other word. It’s");
 				if (target.isBimbo()) output(" like, super cute!");

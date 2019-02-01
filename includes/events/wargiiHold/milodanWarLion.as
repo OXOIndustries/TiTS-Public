@@ -44,7 +44,7 @@ public function loseToWarLion():void
 	showWarLion();
 	author("Wsan");
 
-	output("On your knees and panting in exhaustion, you struggle to climb back on your feet, but it’s all for naught. The war lion hauls you off your feet and smacks you straight in the face, sending you flying backwards and landing in a " + (!pc.isTaur() ? "balled-up heap":"tangle of limbs, tauric and otherwise") + ". It’s not a very graceful defeat, to say the least. Before you know it the milodan is on top of you, " + (!pc.isCrotchExposed() && !pc.isChestExposed() ? "ripping your [pc.clothes] from your body and ":"") + "getting a good look at your naked form. Panting hard after the fight and covered in sweat, the" + (pc.tallness < 8*12 ? " much larger":"") +  " man very clearly likes what he sees if the tent he’s pitching in his fatigues are any indication.");
+	output("On your knees and panting in exhaustion, you struggle to climb back on your feet, but it’s all for naught. The war lion hauls you off your feet and smacks you straight in the face, sending you flying backwards and landing in a " + (!pc.isTaur() ? "balled-up heap":"tangle of limbs, tauric and otherwise") + ". It’s not a very graceful defeat, to say the least. Before you know it the milodan is on top of you, " + (!pc.isCrotchExposed() && !pc.isChestExposed() ? "ripping your [pc.clothes] from your body and ":"") + "getting a good look at your naked form. Panting hard after the fight and covered in sweat, the" + (pc.tallness < 8*12 ? " much larger":"") + " man very clearly likes what he sees if the tent he’s pitching in his fatigues are any indication.");
 	if(!pc.hasGenitals())
 	{
 		output("\n\nAlthough he does pause, and after a moment of consideration, produces a vial of glowing blue liquid. He wastes no time in jabbing it directly into your crotch, but somehow it doesn’t hurt. There’s a sense of impact, sure. You’re aware of a strange warmth, then in a in single, powerful contraction, a powerful ache bursts forth from your body.\n\n<b>You grew a cock!</b> It wobbles with its own weight, drooling out masculine slickness.");
@@ -188,14 +188,14 @@ public function winVsWaryLiono():void
 	}
 	else
 	{
-		addDisabledButton(0,"Face Fuck","Face Fuck","You aren't turned-on enough.");
-		addDisabledButton(1,"Ride Face","Ride Face","You aren't turned-on enough.");
-		addDisabledButton(2,"Fuck Ass","Fuck Ass","You aren't turned-on enough.");
-		addDisabledButton(3,"Ride Cock","Ride Cock","You aren't turned-on enough.");
-		addDisabledButton(4,"Suck Cock","Suck Cock","You aren't turned-on enough.");
+		addDisabledButton(0,"Face Fuck","Face Fuck","You aren’t turned-on enough.");
+		addDisabledButton(1,"Ride Face","Ride Face","You aren’t turned-on enough.");
+		addDisabledButton(2,"Fuck Ass","Fuck Ass","You aren’t turned-on enough.");
+		addDisabledButton(3,"Ride Cock","Ride Cock","You aren’t turned-on enough.");
+		addDisabledButton(4,"Suck Cock","Suck Cock","You aren’t turned-on enough.");
 	}
 	captiveRescueButton(5);
-	if(fightHasCaptive()) addDisabledButton(14,"Leave","Leave","You can't leave the captive behind!");
+	if(fightHasCaptive()) addDisabledButton(14,"Leave","Leave","You can’t leave the captive behind!");
 	else addButton(14,"Leave",wargiiLeaveCombatEnd);
 }
 

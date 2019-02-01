@@ -76,7 +76,7 @@ public function initWargiiRooms():void
 
 	rooms["WARGII H8"] = new RoomClass(this);
 	rooms["WARGII H8"].roomName = "NORTH\nTUNNEL";
-	rooms["WARGII H8"].description = "Another doorway to the north marks the location of one of the many korgonne dwellings you’ve seen thus far. This one’s knob has been smashed off in a fit of violence. No other entrances present themselves, leaving only the paths to the east - the western half of the tunnel is plugged with a barricade of heavy stone and sharpened metal scrap. <b>If you want at the northwest stairwell, you'll have to come at it from another angle.</b>";
+	rooms["WARGII H8"].description = "Another doorway to the north marks the location of one of the many korgonne dwellings you’ve seen thus far. This one’s knob has been smashed off in a fit of violence. No other entrances present themselves, leaving only the paths to the east - the western half of the tunnel is plugged with a barricade of heavy stone and sharpened metal scrap. <b>If you want at the northwest stairwell, you’ll have to come at it from another angle.</b>";
 	rooms["WARGII H8"].planet = "PLANET: UVETO VII";
 	rooms["WARGII H8"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII H8"].moveMinutes = 2;
@@ -106,7 +106,7 @@ public function initWargiiRooms():void
 
 	rooms["WARGII J10"] = new RoomClass(this);
 	rooms["WARGII J10"].roomName = "WEST\nTUNNEL";
-	rooms["WARGII J10"].description = "Dwellings lie to the east and west. One of them even has an intact door. The other has been ransacked, its innards spilled across the tunnel floor. Two spears are snapped in half between them. One of them is charred and flecked with red hot embers, and sizzling divot in the wall gives evidence to a battle at this locale.\n\nThe tunnel continues south, but the way north is obstructed by a barricade of heavy stone and sharpened metal scraps. <b>If you want to use the stairwell beyond, you'll need to find another way!</b>";
+	rooms["WARGII J10"].description = "Dwellings lie to the east and west. One of them even has an intact door. The other has been ransacked, its innards spilled across the tunnel floor. Two spears are snapped in half between them. One of them is charred and flecked with red hot embers, and sizzling divot in the wall gives evidence to a battle at this locale.\n\nThe tunnel continues south, but the way north is obstructed by a barricade of heavy stone and sharpened metal scraps. <b>If you want to use the stairwell beyond, you’ll need to find another way!</b>";
 	rooms["WARGII J10"].planet = "PLANET: UVETO VII";
 	rooms["WARGII J10"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII J10"].moveMinutes = 2;
@@ -775,7 +775,7 @@ public function initWargiiRooms():void
 
 	rooms["WARGII T24"] = new RoomClass(this);
 	rooms["WARGII T24"].roomName = "NORTHWEST\nSTOREROOM";
-	rooms["WARGII T24"].description = "A burning rack of spears and other primitive weapons marks where the milodan invaders discovered one of Korg’ii Hold’s weapon stockpiles. The flames burn high, and the weapons themselves rendered into charred coals. Another rack sits nearby, untouched. This one is empty, and the unconscious guard lying facedown next to it suggests that this place once housed more valuable, technological devices. They're all gone now.\n\nA comically small doorway stands on the west wall, hanging halfway open. Alien runes above it designate the place as something called “Earthshapers,” likely the village blacksmith.";
+	rooms["WARGII T24"].description = "A burning rack of spears and other primitive weapons marks where the milodan invaders discovered one of Korg’ii Hold’s weapon stockpiles. The flames burn high, and the weapons themselves rendered into charred coals. Another rack sits nearby, untouched. This one is empty, and the unconscious guard lying facedown next to it suggests that this place once housed more valuable, technological devices. They’re all gone now.\n\nA comically small doorway stands on the west wall, hanging halfway open. Alien runes above it designate the place as something called “Earthshapers,” likely the village blacksmith.";
 	rooms["WARGII T24"].planet = "PLANET: UVETO VII";
 	rooms["WARGII T24"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII T24"].moveMinutes = 2;
@@ -929,7 +929,7 @@ public function initWargiiRooms():void
 
 	rooms["WARGII R22"] = new RoomClass(this);
 	rooms["WARGII R22"].roomName = "LARGE\nTUNNEL";
-	rooms["WARGII R22"].description = "Warm air lazily blows through this large tunnel on its way to the stairwell to the north. Korg’ii Hold’s natural geothermal heat must make living here quite comfortable for the natives - and a living hell for the armored invaders. You’re glad for the extra room the size of this tunnel affords as you do your best to maintain your personal space in the well-used tunnel.\n\n<b>Dozens of obvious yet overlapping trip mines block the path north to the stairwell. You'll have to find another way!</b>";
+	rooms["WARGII R22"].description = "Warm air lazily blows through this large tunnel on its way to the stairwell to the north. Korg’ii Hold’s natural geothermal heat must make living here quite comfortable for the natives - and a living hell for the armored invaders. You’re glad for the extra room the size of this tunnel affords as you do your best to maintain your personal space in the well-used tunnel.\n\n<b>Dozens of obvious yet overlapping trip mines block the path north to the stairwell. You’ll have to find another way!</b>";
 	rooms["WARGII R22"].planet = "PLANET: UVETO VII";
 	rooms["WARGII R22"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII R22"].moveMinutes = 2;
@@ -948,7 +948,7 @@ public function initWargiiRooms():void
 
 	rooms["WARGII R20"] = new RoomClass(this);
 	rooms["WARGII R20"].roomName = "B1 NORTHWEST\nSTAIRWELL";
-	rooms["WARGII R20"].description = "Raw Savicite speckles the stairs and walls, bathing the entire area in a lovely green glow. Cum-stains are everywhere. The korgonne may be somewhat inoculated to Savicite's arousing effects, but the milodan are not. Unconscious korgonne men and women alike doze in a cum-covered pile, discarded like used tissues. You’d best move on if you don’t want to be similarly affected. The stairs themselves are a little on the narrow size - perfect for small korgonne feet. You can climb up or back down to the hold’s ground floor.\n\nThe southern exit is blocked - not by rubble or a barricade but dozens of obvious trip-mines. You dare not disturb them and risk blowing this whole area to kingdom come.";
+	rooms["WARGII R20"].description = "Raw Savicite speckles the stairs and walls, bathing the entire area in a lovely green glow. Cum-stains are everywhere. The korgonne may be somewhat inoculated to Savicite’s arousing effects, but the milodan are not. Unconscious korgonne men and women alike doze in a cum-covered pile, discarded like used tissues. You’d best move on if you don’t want to be similarly affected. The stairs themselves are a little on the narrow size - perfect for small korgonne feet. You can climb up or back down to the hold’s ground floor.\n\nThe southern exit is blocked - not by rubble or a barricade but dozens of obvious trip-mines. You dare not disturb them and risk blowing this whole area to kingdom come.";
 	rooms["WARGII R20"].planet = "PLANET: UVETO VII";
 	rooms["WARGII R20"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII R20"].moveMinutes = 2;
@@ -1258,7 +1258,7 @@ public function initWargiiRooms():void
 
 	rooms["WARGII V35"] = new RoomClass(this);
 	rooms["WARGII V35"].roomName = "GLASSY\nTUNNEL";
-	rooms["WARGII V35"].description = "You’re surprised that you haven't stumbled upon a milodan with a broken leg yet. This floor is treacherously slick, though the korgonne seem to have no problems navigating it. For a half-second, you consider skating around in socks.";
+	rooms["WARGII V35"].description = "You’re surprised that you haven’t stumbled upon a milodan with a broken leg yet. This floor is treacherously slick, though the korgonne seem to have no problems navigating it. For a half-second, you consider skating around in socks.";
 	rooms["WARGII V35"].planet = "PLANET: UVETO VII";
 	rooms["WARGII V35"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII V35"].moveMinutes = 2;
