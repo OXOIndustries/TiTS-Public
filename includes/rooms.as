@@ -39,6 +39,7 @@ public function buildRooms():void
 	syriQuestInitRooms();
 	initGreatMajinRooms();
 	eventWhorizonInitRooms();
+	initKimberRooms();
 	
 	mapper = new Mapper(rooms);
 }
