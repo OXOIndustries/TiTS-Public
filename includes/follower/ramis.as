@@ -2676,7 +2676,7 @@ public function ramisLapSitJackOff():void
 	
 	var cumQ:Number = pc.cumQ();
 	
-	if(pc.hasStatusEffect("Blue Balls"))
+	if(!pc.hasStatusEffect("Blue Balls"))
 	{
 		output("\n\nThe pressure in your [pc.balls] is too much... you’ve waited so long and yes, yes, you <i>are</i> a good [pc.boy]. You orgasm with a gasping moan, lurching in Ramis’s lap as you");
 		if(cumQ < 1000) output(" squirt [pc.cum] in a little shower");
