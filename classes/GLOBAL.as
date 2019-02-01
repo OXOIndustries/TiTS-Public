@@ -1223,6 +1223,7 @@
 			"Permanent",
 			"Requires Small Cock",
 			"Shelter",
+			"Stretchable",
 		];
 		
 		/**

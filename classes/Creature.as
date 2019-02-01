@@ -5597,7 +5597,7 @@
 			var bonus: int = item.sexiness;
 			
 			//Stretchy Gabilani Panties
-			if (item.hasFlag(GLOBAL.ITEM_FLAG_STRETCHY)) bonus += stretchBonusSexiness(item);
+			bonus += stretchBonusSexiness(item);
 			// Transparent sexiness adjustments
 			if(item.sexiness > 0 && wornItemIsTransparent(item))
 			{
@@ -5625,6 +5625,7 @@
 		}
 		public function stretchBonusSexiness(item:*): Number
 		{
+			if (!item.hasFlag(GLOBAL.ITEM_FLAG_STRETCHY)) return 0;
 			var bigness:int = 0;
 			if (item == lowerUndergarment) bigness = Math.max(hipRating(), buttRating());
 			else if (item == upperUndergarment) bigness = biggestTitSize();
