@@ -3556,10 +3556,12 @@ public function crotchStuff(forTarget:Creature = null):void
 		if(target.cockTotal() == 1) {
 			outputRouter("" + (target == pc ? "Your":"[target.HisHer]") + " " + target.simpleCockNoun(0) + " is " + Math.floor(10*target.cocks[0].cLength())/10 + " inches long and ");
 			if(Math.floor(10*target.cocks[0].thickness())/10 < 2) {
-				if(Math.floor(10*target.cocks[0].thickness())/10 == 1) outputRouter(int(10*target.cocks[0].thickness())/10 + " inch thick.");
-				else outputRouter(Math.round(10*target.cocks[0].thickness())/10 + " inches across.");
+				if(Math.floor(10*target.cocks[0].thickness())/10 == 1) outputRouter(int(10*target.cocks[0].thickness())/10 + " inch thick");
+				else outputRouter(Math.round(10*target.cocks[0].thickness())/10 + " inches across");
 			}
-			else outputRouter(num2Text(Math.round(10*target.cocks[0].thickness())/10) + " inches across.");
+			else outputRouter(num2Text(Math.round(10*target.cocks[0].thickness())/10) + " inches across");
+			if(target.cocks[0].flaccidMultiplier != 1 && target.lust() < 100) outputRouter(" when fully erect");
+			outputRouter(".");
 			dickBonusForAppearance(forTarget, 0);
 			//Dickbonus clears target at the end. Bring it back.
 			if(forTarget != null) setTarget(forTarget);
@@ -3581,39 +3583,47 @@ public function crotchStuff(forTarget:Creature = null):void
 					outputRouter(target.simpleCockNoun(temp));
 					outputRouter(" is ");
 					outputRouter(int(10*target.cocks[temp].cLength())/10 + " inches long and ");
-					if(Math.floor(target.cocks[temp].thickness()) >= 2) outputRouter(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches wide.");
+					if(Math.floor(target.cocks[temp].thickness()) >= 2) outputRouter(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches wide");
 					else {
-						if(target.cocks[temp].thickness() == 1) outputRouter("one inch wide.");
-						else outputRouter(Math.round(target.cocks[temp].thickness()*10)/10 + " inches wide.");
+						if(target.cocks[temp].thickness() == 1) outputRouter("one inch wide");
+						else outputRouter(Math.round(target.cocks[temp].thickness()*10)/10 + " inches wide");
 					}
+					if(target.cocks[temp].flaccidMultiplier != 1 && target.lust() < 100) outputRouter(" when fully erect");
+					outputRouter(".");
 				}
 				if(rando == 1) {
 					outputRouter("\n" + (target == pc ? "Your":"[target.HisHer]") + " " + num2Ordinal(temp + 1) + " ");
 					outputRouter(target.simpleCockNoun(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
-					if(Math.floor(target.cocks[temp].thickness()) >= 2) outputRouter(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick.");
+					if(Math.floor(target.cocks[temp].thickness()) >= 2) outputRouter(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick");
 					else {
-						if(target.cocks[temp].thickness() == 1) outputRouter("one-inch thick.");
-						else outputRouter(Math.round(target.cocks[temp].thickness()*10)/10 + " inches thick.");
+						if(target.cocks[temp].thickness() == 1) outputRouter("one-inch thick");
+						else outputRouter(Math.round(target.cocks[temp].thickness()*10)/10 + " inches thick");
 					}
+					if(target.cocks[temp].flaccidMultiplier != 1 && target.lust() < 100) outputRouter(" when fully erect");
+					outputRouter(".");
 				}
 				if(rando == 2) {
 					outputRouter("\nThe " + num2Ordinal(temp + 1) + " ");
 					outputRouter(target.simpleCockNoun(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
-					if(Math.floor(target.cocks[temp].thickness()) >= 2) outputRouter(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick.");
+					if(Math.floor(target.cocks[temp].thickness()) >= 2) outputRouter(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick");
 					else {
-						if(target.cocks[temp].thickness() == 1) outputRouter("one-inch thick.");
-						else outputRouter(Math.round(target.cocks[temp].thickness()*10)/10 + " inches thick.");
+						if(target.cocks[temp].thickness() == 1) outputRouter("one-inch thick");
+						else outputRouter(Math.round(target.cocks[temp].thickness()*10)/10 + " inches thick");
 					}
+					if(target.cocks[temp].flaccidMultiplier != 1 && target.lust() < 100) outputRouter(" when fully erect");
+					outputRouter(".");
 				}
 				if(rando == 3) {
 					if(temp > 0) outputRouter("\n" + (target == pc ? "Your":"[target.HisHer]") + " next ");
 					else outputRouter("\n" + (target == pc ? "Your":"[target.HisHer]") + " first ");
 					outputRouter(target.simpleCockNoun(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
-					if(Math.floor(target.cocks[temp].thickness()) >= 2) outputRouter(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches in diameter.");
+					if(Math.floor(target.cocks[temp].thickness()) >= 2) outputRouter(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches in diameter");
 					else {
-						if(Math.round(target.cocks[temp].thickness()*10)/10 == 1) outputRouter("one inch in diameter.");
-						else outputRouter(Math.round(target.cocks[temp].thickness()*10)/10 + " inches in diameter.");
+						if(Math.round(target.cocks[temp].thickness()*10)/10 == 1) outputRouter("one inch in diameter");
+						else outputRouter(Math.round(target.cocks[temp].thickness()*10)/10 + " inches in diameter");
 					}
+					if(target.cocks[temp].flaccidMultiplier != 1 && target.lust() < 100) outputRouter(" when fully erect");
+					outputRouter(".");
 				}
 				dickBonusForAppearance(forTarget, temp);
 				//Dickbonus clears target at the end. Bring it back.
