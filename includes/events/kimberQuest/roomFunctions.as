@@ -10,10 +10,11 @@ public function kimberCaveBonus():Boolean
 
 public function kimberQuestBonus():Boolean
 {
+	author("Slab Bulkhead");
 	var worms:Array = new Array();
-	if (rand(5) == 0) worms.push(new ZilMale());
-	if (rand(6) == 0) worms.push(new ZilMale());
-	if (rand(7) == 0) worms.push(new ZilMale());
+	if (rand(5) == 0) worms.push(new DaerWormling());
+	if (rand(6) == 0) worms.push(new DaerWormling());
+	if (rand(7) == 0) worms.push(new DaerWormling());
 	if (worms.length > 0 && flags["KIMBER_QUEST"]%4 != 2)
 	{
 		clearMenu();
@@ -23,8 +24,10 @@ public function kimberQuestBonus():Boolean
 		else output("\n\nA small group of daer wormlings skitter into the tunnel, drawn by the sound of your approach. They rear up on their hind legs, waving their curving claws into the air, and snap their jaws at you. They're clearly not letting you go unchallenged – you'll have to fight!");
 		CombatManager.newGroundCombat();
 		CombatManager.setFriendlyActors(pc);
+		if (worms.length == 1) worms[0].isUniqueInFight = true;
 		CombatManager.setHostileActors(worms);
 		CombatManager.displayLocation((worms.length == 1 ? "WORMLING" : "WORMLINGS"));
+		CombatManager.encounterTextGenerator(wormlingTextGenerator);
 		CombatManager.victoryScene(kimberQuestDeadWormling);
 		CombatManager.lossScene(kimberQuestWormLoss);
 		addButton(0, "Fight!", CombatManager.beginCombat);
@@ -33,8 +36,16 @@ public function kimberQuestBonus():Boolean
 	return false;
 }
 
+public function wormlingTextGenerator():String
+{
+	author("Slab Bulkhead");
+	if (CombatManager.enemiesAlive() == 1) return "The daer wormling is about two feet long. Its body is covered with reddish-brown chitin, and it has dozens of spindly, clawed legs. Its head is wedge-shaped, with tiny spikes running in ridges down the sides, and a wide, toothy maw. Four beady black eyes fix on you from above the head's spikes. It's clearly hostile, and skitters back and forth as it looks for an opening.";
+	else return "The daer wormlings are each about two feet long. Their bodies are covered with reddish-brown chitin, and they have dozens of spindly, clawed legs. Their heads are wedge-shaped, with tiny spikes running in ridges down the sides, and wide, toothy maws. Their beady black eyes fix on you from above their heads' spikes. They're clearly hostile, and skitter back and forth as they look for an opening.";
+}
+
 public function kimberPoolBonus():Boolean
 {
+	author("Slab Bulkhead");
 	addButton(0, "Drink Water", function ():void
 	{
 		clearMenu();
@@ -48,6 +59,7 @@ public function kimberPoolBonus():Boolean
 
 public function kimberWormBonus():Boolean
 {
+	author("Slab Bulkhead");
 	if (flags["KIMBER_QUEST"] == 0)
 	{
 		if (flags["KIMBER_WORM_BEING_FOUGHT"] == undefined)
@@ -82,6 +94,7 @@ public function kimberWormBonus():Boolean
 
 public function kimberPantiesBonus():Boolean
 {
+	author("Slab Bulkhead");
 	if (flags["KIMBER_QUEST"] < 4) addButton(0, "Search", function ():void
 	{
 		clearMenu();

@@ -21,14 +21,13 @@ public function kimberQuestWormLoss():void
 		output("\n\nThe creature's jaw cracks open wide, showing more teeth than anyone should ever need. The last thing you see is the daer worm's maw darting toward your head, and the last thing you feel is its teeth snapping shut around your neck.");
 	}
 	badEnd();
-
 }
 public function kimberQuestDeadWormling():void
 {
 	clearOutput();
 	showBust("WORMLING");
 	showName("\nWORMLING");
-	output("Your attack sends the wormling tumbling back, and it lets out a pained hiss as it crumples to the cavern floor. Its body seizes up, shaking, and its clawed legs grow stiff. After a quivering moment, the wormling curls up around itself and goes still. It's dead.");
+	output("Your attack sends the wormling tumbling back, and it lets out a pained hiss as it crumples to the cavern floor. Its body seizes up, shaking, and its clawed legs grow stiff. After a quivering moment, the wormling curls up around itself and goes still. It's dead.\n\n");
 	CombatManager.genericVictory();
 }
 public function kimberQuestDaerWormLoss():void
