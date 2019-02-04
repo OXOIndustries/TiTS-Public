@@ -2517,11 +2517,12 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			if(target.legCount == 1)
 			{
 				// Gel tail
-				if(target.hasLegFlag(GLOBAL.FLAG_PREHENSILE)) outputRouter(" In place of legs " + (target == pc ? "you have":"[target.heShe] has") + " a semi-solid, gel-like lower body, shaped into a prehensile mass that bends and twists as " + (target == pc ? "you move":"[target.heShe] moves") + ".");
+				if(target.hasLegFlag(GLOBAL.FLAG_PREHENSILE)) outputRouter(" In place of legs, " + (target == pc ? "you have":"[target.heShe] has") + " a semi-solid, gel-like lower body, shaped into a prehensile mass that bends and twists as " + (target == pc ? "you move":"[target.heShe] moves") + ".");
+				else if(target.hasLegFlag(GLOBAL.FLAG_TENDRIL)) outputRouter(" In place of legs, " + (target == pc ? "you have":"[target.heShe] has") + " a semi-solid, gel-like lower body, shaped into a tendril-like mass that wriggles about as " + (target == pc ? "you move":"[target.heShe] moves") + ".");
 				// Goo moound
 				else
 				{
-					outputRouter(" In place of legs " + (target == pc ? "you have":"[target.heShe] has") + " a shifting amorphous blob. Thankfully, it’s quite easy " + (target == pc ? "to propel your":"for [target.himHer] to propel [target.himHer]") + "self around on.");
+					outputRouter(" In place of legs, " + (target == pc ? "you have":"[target.heShe] has") + " a shifting amorphous blob. Thankfully, it’s quite easy " + (target == pc ? "to propel your":"for [target.himHer] to propel [target.himHer]") + "self around on.");
 					if(target.hasArmor()) outputRouter(" The lowest portions of " + (target == pc ? "your":"[target.hisHer]") + " " + target.armor.longName + " float around inside " + (target == pc ? "you":"[target.himHer]") + ", bringing " + (target == pc ? "you":"[target.himHer]") + " no discomfort.");
 				}
 			}
@@ -2530,7 +2531,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				// Goo mound
 				if(target.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))
 				{
-					outputRouter(" In place of legs " + (target == pc ? "you have":"[target.heShe] has") + " a shifting, amorphous blob. It splits apart just beneath " + (target == pc ? "your":"[target.hisHer]") + "");
+					outputRouter(" In place of legs, " + (target == pc ? "you have":"[target.heShe] has") + " a shifting, amorphous blob. It splits apart just beneath " + (target == pc ? "your":"[target.hisHer]") + "");
 					if(target.hasGenitals()) outputRouter(" genitals");
 					else outputRouter(" “crotch”");
 					outputRouter(" into " + num2Text(target.legCount) + " semi-solid limbs.");
@@ -4564,17 +4565,22 @@ public function selectTentacleLegsPref():void
 	addGhostButton(0, "Normal", setTentacleLegsPref, undefined, "Normal Form", "Support yourself on a writhing mass of tentacles.");
 	addGhostButton(1, "Legs", setTentacleLegsPref, undefined, "Legs Form", "Form your tentacles into two legs.");
 	
-	if(!pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))
+	if(!pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && pc.legCount == 2)
 	{
 		outputRouter("<b>Legs</b>.");
 		outputRouter("\n\nYour lower tentacles are wound up together, acting as a facsimile of two normal legs.");
 		addDisabledGhostButton(1, "Legs", "Legs Form", "Your tentacles are already formed into legs.");
 	}
-	else
+	else if(pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && pc.legCount == 1)
 	{
 		outputRouter("<b>Normal</b>.");
 		outputRouter("\n\nYour lower tentacles are an ever-shifting, writhing mass.");
 		addDisabledGhostButton(0, "Normal", "Normal Form", "Your lower tentacles are already a shapeless mass of tentacles.");
+	}
+	else
+	{
+		outputRouter("<b>Custom</b>.");
+		outputRouter("\n\nYou can revert the changes to your lower tentacles if you so choose.");
 	}
 	
 	addGhostButton(14, "Back", backToAppearance, pc);

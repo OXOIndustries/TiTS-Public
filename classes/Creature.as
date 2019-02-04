@@ -928,6 +928,15 @@
 			else if (genitalSpot == 3 && isDrider()) return 3;
 			return genitalSpot;
 		}
+		public function resetGenitalLocation(): Number
+		{
+			if(isDrider()) genitalSpot = 3;
+			else if(isTaur()) genitalSpot = 2;
+			else if(isNaga()) genitalSpot = 1;
+			else genitalSpot = 0;
+			
+			return genitalSpot;
+		}
 
 		public var tailType: Number = 0;
 		public function tailTypeUnlocked(newTailType:Number):Boolean
@@ -7155,7 +7164,7 @@
 		}
 		public function isNaga(): Boolean {
 			if (legCount == 1 && InCollection(legType, [GLOBAL.TYPE_NAGA, GLOBAL.TYPE_SHARK])) return true;
-			if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_PREHENSILE)) return true;
+			if (legType == GLOBAL.TYPE_GOOEY && (hasLegFlag(GLOBAL.FLAG_PREHENSILE) || hasLegFlag(GLOBAL.FLAG_TENDRIL))) return true;
 			return false;
 		}
 		public function isTaur(): Boolean {
