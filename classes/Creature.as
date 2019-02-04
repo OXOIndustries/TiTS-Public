@@ -15720,20 +15720,20 @@
 			return matchedVaginas();
 		}
 		public function matchedVaginas():Boolean {
-				//After the first cooch, see if they match against the previous.
+			//After the first cooch, see if they match against the previous.
 			for(var x:int = 1; x < vaginas.length; x++)
+			{
+				//Don't match? NOT MATCHED. GTFO.
+				if(vaginas[x].type != vaginas[x-1].type) return false;
+				//Flag check
+				if(vaginas[x].vagooFlags.length == vaginas[x-1].vagooFlags.length)
 				{
-					//Don't match? NOT MATCHED. GTFO.
-					if(vaginas[x].type != vaginas[x-1].type) return false;
-					//Flag check
-					if(vaginas[x].vagooFlags.length == vaginas[x-1].vagooFlags.length)
+					for(var i:int = 0; i < vaginas[x].vagooFlags.length; i++)
 					{
-						for(var i:int = 0; i < vaginas[x].vagooFlags.length; i++)
-						{
-							if(!vaginas[x-1].hasFlag(vaginas[x].vagooFlags[i])) return false;
-						}
+						if(!vaginas[x-1].hasFlag(vaginas[x].vagooFlags[i])) return false;
 					}
 				}
+			}
 			return true;
 		}
 		public function wombsDescript():String
@@ -18439,11 +18439,11 @@
 			return matchedCocks();
 		}
 		public function matchedCocks():Boolean {
-			//After the first cooch, see if they match against the previous.
+			//After the first cock, see if they match against the previous.
 			for(var x:int = 1; x < cocks.length; x++)
 			{
 				//Don't match? NOT MATCHED. GTFO.
-				if(cocks[x].type != cocks[x-1].type) return false;
+				if(cocks[x].cType != cocks[x-1].cType) return false;
 			}
 			return true;
 		}
@@ -18480,7 +18480,7 @@
 		{
 			if(cocks.length == 1) return cockHead(0).split(" ").pop();
 			if(cocksMatch()) return plural(cockHead(0).split(" ").pop());
-				else return plural(cockHead(-1).split(" ").pop());
+			return plural(cockHead(-1).split(" ").pop());
 		}
 		public function tailCockHead(): String {
 			if (!hasTailCock()) return "|||<b>ERROR:</b> No tail cock to describe |||";

@@ -300,8 +300,10 @@ public function bakeCookiesWithEmbizzle():void
 	pc.lust(5);
 	clearMenu();
 	addButton(0,"Cocoa&Cuddle",cocoaAndEmbryCuddles);
-	addButton(1,"Snowball",snowBallinWithEmbry);
-	addButton(2,"CandyOral",candyCaneOral);
+	if(pc.hasCock()) addButton(1,"Snowball",snowBallinWithEmbry);
+	else addDisabledButton(1,"Snowball","Snowball (and) Cookies","You need a penis for this!");
+	if(pc.hasCock() || pc.hasVagina()) addButton(2,"CandyOral",candyCaneOral);
+	else addDisabledButton(2,"CandyOral","Candy Cane Oral","You need a penis or vagina for this!");
 	addButton(4,"Leave",leaveEmrbyHoliday2018);
 }
 
