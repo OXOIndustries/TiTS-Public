@@ -1016,7 +1016,9 @@ public function jumperDogGangsPet3():void
 	output("\n\nYour mistress’ day comes to an end, and you’re tugged back to the cramped living quarters. Heckled by the officers and mooks who’ve taken up here tonight, other laquines and weirder figures sneer and jeer at your passing. Whatever, they’re just jealous of your owner! You’re pulled into the cramped room again, panting like mad. The leash falls to the ground near you as the moaning laquine grumbles and stretches. She flops to her bubbly butt against the wall, the stresses of the day falling off her like an unclasped cloak.");
 	output("\n\nSeeing her obvious need, you move your wriggling, spunk-stained form closer to her. You’ve been waiting for her all day, and now she’s all alone with you. She’s got the perfect opportunity to reward you for doing such a good job, she hadn’t used you but once today! The huge bulge in her crotch is threatening to burst through the latex itself. It looks like it could damage the zipper irreparably! You coo and moan watching her come undone, luxuriating in her steam. Your eyes widen in unfettered glee as the [enemy.cockHead] of her foot long [enemy.cockNounSimple] lunges out. You lick your [pc.lips] seeing her moist, fuzzy sack swell out at the bottom, [pc.eyes] firmly locked on her dick.");
 	output("\n\nShe extends her hand out to you, saying, <i>“Come heeere!”</i>");
-	output("\n\nMotioning you forward, the laquine spins you around and sits your [pc.ass] on her bouncy lap, barely containing herself from fucking you into the floor. Her [enemy.cock] nestles between your cheeks, spurting pre all over your back {and your [pc.tails]} while she hotdogs you.");
+	output("\n\nMotioning you forward, the laquine spins you around and sits your [pc.ass] on her bouncy lap, barely containing herself from fucking you into the floor. Her [enemy.cock] nestles between your cheeks, spurting pre all over your back");
+	if (pc.hasTail()) output(" and your [pc.tails]");
+	output(" while she hotdogs you.");
 
 	// PC has no vagina
 	if(!pc.hasVagina()) 
