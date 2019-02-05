@@ -89,6 +89,12 @@ package classes.Resources
 			[Embed(source = "../../assets/images/imagepack/kiro/nazuu_kiro_milker_finish.jpg", mimeType = "image/jpg")]
 			public static const KiroMilkerNazuu:Class;
 			
+			//KORG DOSED
+			[Embed(source = "../../assets/images/imagepack/korg_generic/korg_dosed.png", mimeType = "image/png")]
+			public static const KorgDosed:Class;
+			[Embed(source = "../../assets/images/imagepack/korg_generic/korg_dosed_dicked.png", mimeType = "image/png")]
+			public static const KorgDosedDicked:Class;
+
 			//Lieve
 			[Embed(source = "../../assets/images/imagepack/lieve/maniacpaint_lieve.png", mimeType = "image/png")]
 			public static const LieveAgainstWall:Class;

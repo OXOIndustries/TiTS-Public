@@ -570,9 +570,10 @@ package classes.Resources.Busts
 		public var Bust_MILODAN_PRIESTESS:Class;
 		public var Bounds_MILODAN_PRIESTESS:Rectangle = new Rectangle(60, 3, 65, 63);
 
-		[Embed(source = "../../../assets/images/npcs/adjatha/milo_temptress_nude.png", mimeType = "image/png")]
+		[Embed(source = "../../../assets/images/npcs/adjatha/temptress.png", mimeType = "image/png")]
+		public var Bust_MILO_TEMPTRESS:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/temptress_nude.png", mimeType = "image/png")]
 		public var Bust_MILO_TEMPTRESS_NUDE:Class;
-		public function get Bust_MILO_TEMPTRESS():Class { return Bust_MILO_TEMPTRESS_NUDE; }
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/mirian.png", mimeType = "image/png")]
 		public var Bust_MIRIAN:Class;
@@ -1580,9 +1581,10 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/priestess.png", mimeType = "image/png")]
 			public var Full_MILODAN_PRIESTESS:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/milo_temptress_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/temptress.png", mimeType = "image/png")]
+			public var Full_MILO_TEMPTRESS:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/temptress_nude.png", mimeType = "image/png")]
 			public var Full_MILO_TEMPTRESS_NUDE:Class;
-			public function get Full_MILO_TEMPTRESS():Class { return Full_MILO_TEMPTRESS_NUDE; }
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mirian.png", mimeType = "image/png")]
 			public var Full_MIRIAN:Class;
