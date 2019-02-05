@@ -70,7 +70,7 @@ public function kimberWormBonus():Boolean
 			output("\n\nAn enormous serpentine creature lies curled up against the crack in the stone, and it stirs as you enter the room. The thing's body is easily three feet across, and covered in overlapping plates of brown and black chitin. The head looks like something out of a nightmare: wide and heavily plated, with a tremendous underbite and yellowed teeth jutting up from a jaw that looks strong enough to crush bone with a single bite. Dozens of legs unfold from the creature's body as it rises, each one tipped with a claw sharp enough to dig through stone.\n\nFour glassy black eyes fix on you as the creature turns to face you, and its jaw cracks open wide. This is the daer worm, and it's not happy to see you.");
 			CombatManager.newGroundCombat();
 			CombatManager.setFriendlyActors(pc);
-			CombatManager.setHostileActors(new ZilMale());
+			CombatManager.setHostileActors(new DaerWorm());
 			CombatManager.displayLocation("DAER WORM");
 			CombatManager.victoryScene(kimberQuestDeadWorm);
 			CombatManager.lossScene(kimberQuestDaerWormLoss);
