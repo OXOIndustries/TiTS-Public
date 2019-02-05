@@ -32,7 +32,7 @@ public function helpDruggedKorgonne():void
 	processTime(3);
 	clearMenu();
 	if(pc.cockThatFits(800) >= 0) addButton(0,"DickDown",cockSelect,[dickThatKorgDownMan,800,true,0],"DickDown","Fuck the wound-up girl hard enough to satisfy her.");
-	else if(pc.hasCock()) addDisabledButton(0,"DickDown","DickDown","You're too big for her pussy.");
+	else if(pc.hasCock()) addDisabledButton(0,"DickDown","DickDown","You’re too big for her pussy.");
 	else addDisabledButton(0,"DickDown","DickDown","You need a penis for this.");
 	if(pc.hasCock())
 	{
@@ -80,7 +80,7 @@ public function dickThatKorgDownMan(x:int):void
 	else output("<i>“So... good feeling...”</i> she moans quietly, her head falling back on the ground. <i>“Full and warm... th-kyu...”</i>");
 
 	output("\n\nHer voice fades to a mumble as she just about falls asleep, then suddenly springs up from the ground with her eyes wide.");
-	output("\n\n<i>“" + (!korgiTranslate() ? "Almost forgot! Here! Alien take thing. Heal good!":"Oh! I almost forgot. Here, take this. It'll heal your injuries.") + "”</i> she says, grabbing a poultice from what appears to be a part of her scattered belongings strewn about the area. <i>“" + (!korgiTranslate() ? "Feel better. Okay, sleep now.":"Feel better, okay? I... sleep now.") + "”</i>");
+	output("\n\n<i>“" + (!korgiTranslate() ? "Almost forgot! Here! Alien take thing. Heal good!":"Oh! I almost forgot. Here, take this. It’ll heal your injuries.") + "”</i> she says, grabbing a poultice from what appears to be a part of her scattered belongings strewn about the area. <i>“" + (!korgiTranslate() ? "Feel better. Okay, sleep now.":"Feel better, okay? I... sleep now.") + "”</i>");
 	output("\n\nWith that she literally passes out before she’s even hit the ground with a soft <i>whump</i>, tongue poking out from her muzzle. You put what little of her clothes you can find over her. Leaving the korgonne girl in the relative safety behind you, you move on.\n\n");
 	processTime(35);
 	pc.orgasm();
@@ -101,7 +101,7 @@ public function hyperdiiiiick(x:int = 0):void
 	author("Wsan");
 	output("<i>“Okay,”</i> you say, grinning" + (!pc.isCrotchExposed() ? " as you remove your [pc.crotchCovers]":"") + ". <i>“Try not to be </i>too<i> shocked.”</i>");
 
-	output("\n\n" + (silly ? "<i>“Wwwwwoooow! Dat’s a lotta cock!”</i> she cries, clapping her hands to her little muzzle.":"<i>“Oh! Oh!”</i> she cries excitedly, planting her hands on your [pc.cockHead " + x + "].") + " <i>“" + (!korgiTranslate() ? "Alien so big and strong":"You're so big and strong") + "!”</i>");
+	output("\n\n" + (silly ? "<i>“Wwwwwoooow! Dat’s a lotta cock!”</i> she cries, clapping her hands to her little muzzle.":"<i>“Oh! Oh!”</i> she cries excitedly, planting her hands on your [pc.cockHead " + x + "].") + " <i>“" + (!korgiTranslate() ? "Alien so big and strong":"You’re so big and strong") + "!”</i>");
 	output("\n\nYour [pc.cock " + x + "] lies before her, stiffly erect and hard as a rock. A cocky grin finds its way onto your face as the korgonne, overcome with lust and curiosity, rubs and paws at your massive cock. Titanic as it is, it’s clear she’s never seen anything like this in her life. Leaning forward, you pop the question.");
 	output("\n\n<i>“So... want to try taking this inside you?”</i> you ask.");
 
@@ -146,7 +146,7 @@ public function hyperdiiiiick(x:int = 0):void
 	output(" from deeper inside. The term <i>“well-used”</i> comes to mind immediately, though you suspect this girl in particular will recover like a champion.");
 	output("\n\n<i>“So... good feeling...”</i> she moans quietly, her head falling back on the ground. <i>“Full and warm... th-kyu...”</i>");
 	output("\n\nHer voice fades to a mumble as she just about falls asleep, then suddenly springs up from the ground with her eyes wide.");
-	output("\n\n<i>“" + (!korgiTranslate() ? "Almost forgot! Here! Alien take thing. Heal good!":"Oh! I almost forgot. Here, take this. It'll heal your injuries.") + "”</i> she says, grabbing a poultice from what appears to be a part of her scattered belongings strewn about the area. <i>“" + (!korgiTranslate() ? "Feel better. Okay, sleep now.":"Feel better, okay? I... sleep now.") + "”</i>");
+	output("\n\n<i>“" + (!korgiTranslate() ? "Almost forgot! Here! Alien take thing. Heal good!":"Oh! I almost forgot. Here, take this. It’ll heal your injuries.") + "”</i> she says, grabbing a poultice from what appears to be a part of her scattered belongings strewn about the area. <i>“" + (!korgiTranslate() ? "Feel better. Okay, sleep now.":"Feel better, okay? I... sleep now.") + "”</i>");
 	output("\n\nWith that she literally passes out before she’s even hit the ground with a soft <i>whump</i>, tongue poking out from her muzzle. You put what little of her clothes you can find over her. Leaving the korgonne girl in the relative safety behind you, you move on.\n\n");
 	processTime(35);
 	pc.orgasm();
@@ -166,7 +166,7 @@ public function sixtyNineKorg():void
 	output("<i>“Alright,”</i> you say soothingly, pushing her down on the ground with a gentle hand. <i>“How about we both have some fun here?”</i>");
 	output("\n\n<i>“Yes!”</i> she cries excitedly, wriggling underneath you as you reposition yourself above her. ");
 	if(!pc.isCrotchExposed()) output("She tugs your [pc.crotchCovers] off in a second. ");
-	if(pc.isHerm()) output("<i>“" + (!korgiTranslate() ? "Alien has both! Jealous...":"You have both?! I'm jealous.") + "”</i>");
+	if(pc.isHerm()) output("<i>“" + (!korgiTranslate() ? "Alien has both! Jealous...":"You have both?! I’m jealous.") + "”</i>");
 	else if(pc.hasCock()) 
 	{
 		if(!korgiTranslate()) output("<i>“Oh! Alien " + (pc.biggestCockLength() > 11 ? "<b>big</b> ":"") + "cock!”</i>");
@@ -210,7 +210,7 @@ public function sixtyNineKorg():void
 	output("\n\nBy the time you’re done, you’re <i>done</i>. You separate from her with a great gasp, rolling over onto your back and panting, your [pc.chest] heaving with the effort. Aftershocks of pleasure still run through you, forcing you to arch your back until you find yourself sitting once more. Alongside you lies the korgonne, spreadeagled and looking about ready to drift off to sleep, finally satisfied.");
 	output("\n\n<i>“So... good feeling...”</i> she moans quietly, her head falling back on the ground. <i>“So warm... th-kyu...”</i>");
 	output("\n\nHer voice fades to a mumble as she just about falls asleep, then suddenly springs up from the ground with her eyes wide.");
-	output("\n\n<i>“" + (!korgiTranslate() ? "Almost forgot! Here! Alien take thing. Heal good!":"Oh! I almost forgot. Here, take this. It'll heal your injuries.") + "”</i> she says, grabbing a poultice from what appears to be a part of her scattered belongings strewn about the area. <i>“" + (!korgiTranslate() ? "Feel better. Okay, sleep now.":"Feel better, okay? I... sleep now.") + "”</i>");
+	output("\n\n<i>“" + (!korgiTranslate() ? "Almost forgot! Here! Alien take thing. Heal good!":"Oh! I almost forgot. Here, take this. It’ll heal your injuries.") + "”</i> she says, grabbing a poultice from what appears to be a part of her scattered belongings strewn about the area. <i>“" + (!korgiTranslate() ? "Feel better. Okay, sleep now.":"Feel better, okay? I... sleep now.") + "”</i>");
 	output("\n\nWith that she literally passes out before she’s even hit the ground with a soft <i>whump</i>, tongue poking out from her muzzle. You put what little of her clothes you can find over her. Leaving the korgonne girl in the relative safety behind you, you move on.\n\n");
 	processTime(35);
 	pc.orgasm();

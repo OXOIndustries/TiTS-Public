@@ -455,12 +455,12 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			else outputRouter(".");
 			break;
 		case GLOBAL.TYPE_XHELARFOG:
-			outputRouter((target == pc ? "Your":"[target.Name]'s") + " face has a curious lack of a visible nose");
+			outputRouter((target == pc ? "Your":"[target.Name]’s") + " face has a curious lack of a visible nose");
 			if (target.eyeCount() == 3) outputRouter(", though the thing truly cementing its alien nature is the trio of eyes decorating its upper half");
 			outputRouter(".");
 			break;
 		case GLOBAL.TYPE_SAURMORIAN:
-			outputRouter((target == pc ? "You have":"[target.Name] has") + " the face of a saurmorian, with [target.skinFurScalesColor] metal scales that encase " + (target == pc ? "your":"[target.hisHer]") + " jaw, and run along the top of " + (target == pc ? "your":"[target.hisHer]") + " reptilian snout and down the back of " + (target == pc ? "your":"[target.hisHer]") + " neck. The sides of " + (target == pc ? "your":"[target.hisHer]") + " muzzle aren't as densely covered, and show hints of a [target.skinColor] hide beneath. " + (target == pc ? "Your":"[target.HisHer]") + " smile, meanwhile, contains a mouthful of sharp teeth.");
+			outputRouter((target == pc ? "You have":"[target.Name] has") + " the face of a saurmorian, with [target.skinFurScalesColor] metal scales that encase " + (target == pc ? "your":"[target.hisHer]") + " jaw, and run along the top of " + (target == pc ? "your":"[target.hisHer]") + " reptilian snout and down the back of " + (target == pc ? "your":"[target.hisHer]") + " neck. The sides of " + (target == pc ? "your":"[target.hisHer]") + " muzzle aren’t as densely covered, and show hints of a [target.skinColor] hide beneath. " + (target == pc ? "Your":"[target.HisHer]") + " smile, meanwhile, contains a mouthful of sharp teeth.");
 			break;
 	}
 	if(target.hasStatusEffect("Mimbrane Face") && target == pc)
@@ -649,7 +649,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		case GLOBAL.TYPE_XHELARFOG:
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " eyes are a");
 			if (hasMetallicEyes) outputRouter(" metallic");
-			outputRouter(" shade of [target.eyeColor] with no distinction between sclera and iris. Only the slightly paler shade of " + (target == pc ? "your":"[target.hisHer]") + " pupil allows people to tell where " + (target == pc ? "you're":"[target.heShe]'s") + " looking.");
+			outputRouter(" shade of [target.eyeColor] with no distinction between sclera and iris. Only the slightly paler shade of " + (target == pc ? "your":"[target.hisHer]") + " pupil allows people to tell where " + (target == pc ? "you’re":"[target.heShe]’s") + " looking.");
 			break;
 		case GLOBAL.TYPE_SAURMORIAN:
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " eyes are [target.eyeColor] orbs, each with a vertically slitted pupil set in a very slim iris that almost blends with the surrounding sclera.");
@@ -1151,10 +1151,10 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		{
 			//Demonic horns
 			case GLOBAL.TYPE_DEMONIC:
-				if(target.horns <= 2) outputRouter(" A " + (target.hornLength <= 2 ? "small pair of" : ("pair of " + num2Text(target.hornLength) + "-inch long")) + " pointed horns has broken through the " + target.skin() + " on " + (target == pc ? "your":"[target.hisHer]") + " forehead, proclaiming some demonic taint to any who see them.");
-				else if(target.horns <= 4) outputRouter(" A quartet of " + (target.hornLength <= 4 ? "prominent" : (num2Text(target.hornLength) + "-inch long")) + " horns has broken through " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin() + ". The back pair are longer, and curve back along " + (target == pc ? "your":"[target.hisHer]") + " head. The front pair protrude forward demonically.");
-				else if(target.horns <= 6) outputRouter(" Six horns have sprouted through " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin() + ", the back two pairs curve backwards over " + (target == pc ? "your":"[target.hisHer]") + " head and down towards " + (target == pc ? "your":"[target.hisHer]") + " neck, while the front two horns stand " + (target.hornLength < 8 ? "almost eight" : num2Text(target.hornLength)) + " inches long upwards and a little forward.");
-				else outputRouter(" A large number of thick demonic horns sprout through " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin() + ", each pair sprouting behind the ones before. The front jut forwards nearly " + num2Text(target.hornLength) + " inches while the rest curve back over " + (target == pc ? "your":"[target.hisHer]") + " head, some of the points ending just below " + (target == pc ? "your":"[target.hisHer]") + " ears. " + (target == pc ? "You estimate you have":"[target.HeShe] estimates [target.heShe] has") + " a total of " + num2Text(target.horns) + " horns.");
+				if(target.horns <= 2) outputRouter(" A " + (target.hornLength <= 2 ? "small pair of" : ("pair of " + num2Text(int(target.hornLength)) + "-inch long")) + " pointed horns has broken through the " + target.skin() + " on " + (target == pc ? "your":"[target.hisHer]") + " forehead, proclaiming some demonic taint to any who see them.");
+				else if(target.horns <= 4) outputRouter(" A quartet of " + (target.hornLength <= 4 ? "prominent" : (num2Text(int(target.hornLength)) + "-inch long")) + " horns has broken through " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin() + ". The back pair are longer, and curve back along " + (target == pc ? "your":"[target.hisHer]") + " head. The front pair protrude forward demonically.");
+				else if(target.horns <= 6) outputRouter(" Six horns have sprouted through " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin() + ", the back two pairs curve backwards over " + (target == pc ? "your":"[target.hisHer]") + " head and down towards " + (target == pc ? "your":"[target.hisHer]") + " neck, while the front two horns stand " + (target.hornLength < 8 ? "almost eight" : num2Text(int(target.hornLength))) + " inches long upwards and a little forward.");
+				else outputRouter(" A large number of thick demonic horns sprout through " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin() + ", each pair sprouting behind the ones before. The front jut forwards nearly " + num2Text(int(target.hornLength)) + " inches while the rest curve back over " + (target == pc ? "your":"[target.hisHer]") + " head, some of the points ending just below " + (target == pc ? "your":"[target.hisHer]") + " ears. " + (target == pc ? "You estimate you have":"[target.HeShe] estimates [target.heShe] has") + " a total of " + num2Text(target.horns) + " horns.");
 				break;
 			//Minotaur horns
 			case GLOBAL.TYPE_BOVINE:
@@ -1264,7 +1264,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				if (hornMaterial <= 0 || hornColor == "") outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " curved horns are [target.skinColor] at their base, but fade into gold at their tips.");
 				break;
 			case GLOBAL.TYPE_SAURMORIAN:
-				outputRouter("A pair of dense, metal horns, roughly [target.hornLength] inches long, curve up and along the back of " + (target == pc ? "your":"[target.hisHer]") + " skull");
+				outputRouter(" A pair of dense, metal horns, roughly " + num2Text(int(target.hornLength)) + " inches long, curve up and along the back of " + (target == pc ? "your":"[target.hisHer]") + " skull");
 				if (target.hornLength >= 18) outputRouter(" and over " + (target == pc ? "your":"[target.hisHer]") + " head before twisting upwards at the brow");
 				if (target.horns == 3) outputRouter(". At the tip of " + (target == pc ? "your":"[target.hisHer]") + " [target.face], just above " + (target == pc ? "your":"[target.hisHer]") + " nose, sits a third, shorter horn");
 				outputRouter(". They have a rather intimidating presence, as if reminiscent of a more savage time.");
@@ -2517,11 +2517,12 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			if(target.legCount == 1)
 			{
 				// Gel tail
-				if(target.hasLegFlag(GLOBAL.FLAG_PREHENSILE)) outputRouter(" In place of legs " + (target == pc ? "you have":"[target.heShe] has") + " a semi-solid, gel-like lower body, shaped into a prehensile mass that bends and twists as " + (target == pc ? "you move":"[target.heShe] moves") + ".");
+				if(target.hasLegFlag(GLOBAL.FLAG_PREHENSILE)) outputRouter(" In place of legs, " + (target == pc ? "you have":"[target.heShe] has") + " a semi-solid, gel-like lower body, shaped into a prehensile mass that bends and twists as " + (target == pc ? "you move":"[target.heShe] moves") + ".");
+				else if(target.hasLegFlag(GLOBAL.FLAG_TENDRIL)) outputRouter(" In place of legs, " + (target == pc ? "you have":"[target.heShe] has") + " a semi-solid, gel-like lower body, shaped into a tendril-like mass that wriggles about as " + (target == pc ? "you move":"[target.heShe] moves") + ".");
 				// Goo moound
 				else
 				{
-					outputRouter(" In place of legs " + (target == pc ? "you have":"[target.heShe] has") + " a shifting amorphous blob. Thankfully, it’s quite easy " + (target == pc ? "to propel your":"for [target.himHer] to propel [target.himHer]") + "self around on.");
+					outputRouter(" In place of legs, " + (target == pc ? "you have":"[target.heShe] has") + " a shifting amorphous blob. Thankfully, it’s quite easy " + (target == pc ? "to propel your":"for [target.himHer] to propel [target.himHer]") + "self around on.");
 					if(target.hasArmor()) outputRouter(" The lowest portions of " + (target == pc ? "your":"[target.hisHer]") + " " + target.armor.longName + " float around inside " + (target == pc ? "you":"[target.himHer]") + ", bringing " + (target == pc ? "you":"[target.himHer]") + " no discomfort.");
 				}
 			}
@@ -2530,7 +2531,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				// Goo mound
 				if(target.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))
 				{
-					outputRouter(" In place of legs " + (target == pc ? "you have":"[target.heShe] has") + " a shifting, amorphous blob. It splits apart just beneath " + (target == pc ? "your":"[target.hisHer]") + "");
+					outputRouter(" In place of legs, " + (target == pc ? "you have":"[target.heShe] has") + " a shifting, amorphous blob. It splits apart just beneath " + (target == pc ? "your":"[target.hisHer]") + "");
 					if(target.hasGenitals()) outputRouter(" genitals");
 					else outputRouter(" “crotch”");
 					outputRouter(" into " + num2Text(target.legCount) + " semi-solid limbs.");
@@ -3556,10 +3557,12 @@ public function crotchStuff(forTarget:Creature = null):void
 		if(target.cockTotal() == 1) {
 			outputRouter("" + (target == pc ? "Your":"[target.HisHer]") + " " + target.simpleCockNoun(0) + " is " + Math.floor(10*target.cocks[0].cLength())/10 + " inches long and ");
 			if(Math.floor(10*target.cocks[0].thickness())/10 < 2) {
-				if(Math.floor(10*target.cocks[0].thickness())/10 == 1) outputRouter(int(10*target.cocks[0].thickness())/10 + " inch thick.");
-				else outputRouter(Math.round(10*target.cocks[0].thickness())/10 + " inches across.");
+				if(Math.floor(10*target.cocks[0].thickness())/10 == 1) outputRouter(int(10*target.cocks[0].thickness())/10 + " inch thick");
+				else outputRouter(Math.round(10*target.cocks[0].thickness())/10 + " inches across");
 			}
-			else outputRouter(num2Text(Math.round(10*target.cocks[0].thickness())/10) + " inches across.");
+			else outputRouter(num2Text(Math.round(10*target.cocks[0].thickness())/10) + " inches across");
+			if(target.cocks[0].flaccidMultiplier != 1 && target.lust() < 100) outputRouter(" when fully erect");
+			outputRouter(".");
 			dickBonusForAppearance(forTarget, 0);
 			//Dickbonus clears target at the end. Bring it back.
 			if(forTarget != null) setTarget(forTarget);
@@ -3581,39 +3584,47 @@ public function crotchStuff(forTarget:Creature = null):void
 					outputRouter(target.simpleCockNoun(temp));
 					outputRouter(" is ");
 					outputRouter(int(10*target.cocks[temp].cLength())/10 + " inches long and ");
-					if(Math.floor(target.cocks[temp].thickness()) >= 2) outputRouter(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches wide.");
+					if(Math.floor(target.cocks[temp].thickness()) >= 2) outputRouter(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches wide");
 					else {
-						if(target.cocks[temp].thickness() == 1) outputRouter("one inch wide.");
-						else outputRouter(Math.round(target.cocks[temp].thickness()*10)/10 + " inches wide.");
+						if(target.cocks[temp].thickness() == 1) outputRouter("one inch wide");
+						else outputRouter(Math.round(target.cocks[temp].thickness()*10)/10 + " inches wide");
 					}
+					if(target.cocks[temp].flaccidMultiplier != 1 && target.lust() < 100) outputRouter(" when fully erect");
+					outputRouter(".");
 				}
 				if(rando == 1) {
 					outputRouter("\n" + (target == pc ? "Your":"[target.HisHer]") + " " + num2Ordinal(temp + 1) + " ");
 					outputRouter(target.simpleCockNoun(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
-					if(Math.floor(target.cocks[temp].thickness()) >= 2) outputRouter(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick.");
+					if(Math.floor(target.cocks[temp].thickness()) >= 2) outputRouter(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick");
 					else {
-						if(target.cocks[temp].thickness() == 1) outputRouter("one-inch thick.");
-						else outputRouter(Math.round(target.cocks[temp].thickness()*10)/10 + " inches thick.");
+						if(target.cocks[temp].thickness() == 1) outputRouter("one-inch thick");
+						else outputRouter(Math.round(target.cocks[temp].thickness()*10)/10 + " inches thick");
 					}
+					if(target.cocks[temp].flaccidMultiplier != 1 && target.lust() < 100) outputRouter(" when fully erect");
+					outputRouter(".");
 				}
 				if(rando == 2) {
 					outputRouter("\nThe " + num2Ordinal(temp + 1) + " ");
 					outputRouter(target.simpleCockNoun(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
-					if(Math.floor(target.cocks[temp].thickness()) >= 2) outputRouter(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick.");
+					if(Math.floor(target.cocks[temp].thickness()) >= 2) outputRouter(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick");
 					else {
-						if(target.cocks[temp].thickness() == 1) outputRouter("one-inch thick.");
-						else outputRouter(Math.round(target.cocks[temp].thickness()*10)/10 + " inches thick.");
+						if(target.cocks[temp].thickness() == 1) outputRouter("one-inch thick");
+						else outputRouter(Math.round(target.cocks[temp].thickness()*10)/10 + " inches thick");
 					}
+					if(target.cocks[temp].flaccidMultiplier != 1 && target.lust() < 100) outputRouter(" when fully erect");
+					outputRouter(".");
 				}
 				if(rando == 3) {
 					if(temp > 0) outputRouter("\n" + (target == pc ? "Your":"[target.HisHer]") + " next ");
 					else outputRouter("\n" + (target == pc ? "Your":"[target.HisHer]") + " first ");
 					outputRouter(target.simpleCockNoun(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
-					if(Math.floor(target.cocks[temp].thickness()) >= 2) outputRouter(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches in diameter.");
+					if(Math.floor(target.cocks[temp].thickness()) >= 2) outputRouter(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches in diameter");
 					else {
-						if(Math.round(target.cocks[temp].thickness()*10)/10 == 1) outputRouter("one inch in diameter.");
-						else outputRouter(Math.round(target.cocks[temp].thickness()*10)/10 + " inches in diameter.");
+						if(Math.round(target.cocks[temp].thickness()*10)/10 == 1) outputRouter("one inch in diameter");
+						else outputRouter(Math.round(target.cocks[temp].thickness()*10)/10 + " inches in diameter");
 					}
+					if(target.cocks[temp].flaccidMultiplier != 1 && target.lust() < 100) outputRouter(" when fully erect");
+					outputRouter(".");
 				}
 				dickBonusForAppearance(forTarget, temp);
 				//Dickbonus clears target at the end. Bring it back.
@@ -4446,7 +4457,7 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 			break;
 		//Cold Fly Lizard flavor:
 		case GLOBAL.TYPE_FROSTWYRM:
-			outputRouter((eachOne ? "\nThe entire length of each":" The entire length of "+(target == pc?"your":"[target.hisHer]")) + " cunt is filled with folds that put a human woman’s to shame in their depth and quantity, catching even the smallest bit of texture on a dick and refusing to let go. Dozens of small but powerful muscles ensure " + (target == pc ? "your":"[target.hisHer]") + " fold-filled " + (eachOne ? "snatches":"snatch") + " can exert its grip on any dick no matter the size, while a few tweaks to the shape and position of " + (target == pc ? "your":"[target.hisHer]") + " " + (target.hasVaginas() || target.vaginas[0].clits > 1 ? "clits":"clit") + " ensure " + (target == pc ? "you're":"[target.heShe]'s") + " optimized for being taken from behind.");
+			outputRouter((eachOne ? "\nThe entire length of each":" The entire length of "+(target == pc?"your":"[target.hisHer]")) + " cunt is filled with folds that put a human woman’s to shame in their depth and quantity, catching even the smallest bit of texture on a dick and refusing to let go. Dozens of small but powerful muscles ensure " + (target == pc ? "your":"[target.hisHer]") + " fold-filled " + (eachOne ? "snatches":"snatch") + " can exert its grip on any dick no matter the size, while a few tweaks to the shape and position of " + (target == pc ? "your":"[target.hisHer]") + " " + (target.hasVaginas() || target.vaginas[0].clits > 1 ? "clits":"clit") + " ensure " + (target == pc ? "you’re":"[target.heShe]’s") + " optimized for being taken from behind.");
 			break;
 		case GLOBAL.TYPE_SAURMORIAN:
 			outputRouter((eachOne ? "\nTheir lips" : " The lips") + " are quite plump, and always have a smooth and glossy sheen to them.");
@@ -4554,17 +4565,22 @@ public function selectTentacleLegsPref():void
 	addGhostButton(0, "Normal", setTentacleLegsPref, undefined, "Normal Form", "Support yourself on a writhing mass of tentacles.");
 	addGhostButton(1, "Legs", setTentacleLegsPref, undefined, "Legs Form", "Form your tentacles into two legs.");
 	
-	if(!pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS))
+	if(!pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && pc.legCount == 2)
 	{
 		outputRouter("<b>Legs</b>.");
 		outputRouter("\n\nYour lower tentacles are wound up together, acting as a facsimile of two normal legs.");
 		addDisabledGhostButton(1, "Legs", "Legs Form", "Your tentacles are already formed into legs.");
 	}
-	else
+	else if(pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && pc.legCount == 1)
 	{
 		outputRouter("<b>Normal</b>.");
 		outputRouter("\n\nYour lower tentacles are an ever-shifting, writhing mass.");
 		addDisabledGhostButton(0, "Normal", "Normal Form", "Your lower tentacles are already a shapeless mass of tentacles.");
+	}
+	else
+	{
+		outputRouter("<b>Custom</b>.");
+		outputRouter("\n\nYou can revert the changes to your lower tentacles if you so choose.");
 	}
 	
 	addGhostButton(14, "Back", backToAppearance, pc);

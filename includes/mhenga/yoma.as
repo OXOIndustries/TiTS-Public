@@ -362,54 +362,57 @@ public function yomaInitiateFight():void
 	CombatManager.setFriendlyActors(pc);
 	CombatManager.setHostileActors(attackingEnemy);
 
-	if (attackingEnemy.short == "huntress vanae") {
-		IncrementFlag("MET_VANAE_HUNTRESS");
-	//	CodexManager.unlockEntry("Vanae");
-		CombatManager.victoryScene(vanaePCVictory);
-		CombatManager.lossScene(vanaeHuntressPCDefeat);
-		CombatManager.displayLocation("HUNTRESS");
-	}
-	else if (attackingEnemy.short == "maiden vanae") {
-		IncrementFlag("MET_VANAE_MAIDEN");
-	//	CodexManager.unlockEntry("Vanae");
-		CombatManager.victoryScene(vanaePCVictory);
-		CombatManager.lossScene(vanaeMaidenPCDefeat);
-		CombatManager.displayLocation("MAIDEN");
-	}
-	else if (attackingEnemy.short == "female zil") {
-		IncrementFlag("TIMES_MET_FEMZIL");
-	//	CodexManager.unlockEntry("Zil");
-		CombatManager.victoryScene(defeatHostileZil);
-		CombatManager.lossScene(girlZilLossRouter);
-		CombatManager.displayLocation("FEMALE ZIL");
-	}
-	else if (attackingEnemy.short == "zil male") {
-		IncrementFlag("ENCOUNTERED_ZIL");
-	//	CodexManager.unlockEntry("Zil");
-		CombatManager.victoryScene(winVsZil);
-		CombatManager.lossScene(zilLossRouter);
-		CombatManager.displayLocation("MALE ZIL");
-	}
-	else if (attackingEnemy.short == "kerokoras") {
-		IncrementFlag("MET_KEROKORAS");
-	//	CodexManager.unlockEntry("Kerokoras");
-		CombatManager.victoryScene(victoryAgainstTheFrogs);
-		CombatManager.lossScene(loseAgainstTheFrogs);
-		CombatManager.displayLocation("KEROKORAS");
-	}
-	else if (attackingEnemy.short == "naleen") {
-		IncrementFlag("TIMES_MET_NALEEN");
-	//	CodexManager.unlockEntry("Naleen");
-		CombatManager.victoryScene(beatDatCatNaga);
-		CombatManager.lossScene(pcLosesToNaleenLiekABitch);
-		CombatManager.displayLocation("NALEEN");
-	}
-	else if (attackingEnemy.short == "naleen male") {
-		IncrementFlag("TIMES_MET_MALE_NALEEN");
-	//	CodexManager.unlockEntry("Naleen");
-		CombatManager.victoryScene(defeatAMaleNaleen);
-		CombatManager.lossScene(loseToDudeleenRouter);
-		CombatManager.displayLocation("NALEEN MALE");
+	switch(attackingEnemy.short)
+	{
+		case "huntress vanae":
+			IncrementFlag("MET_VANAE_HUNTRESS");
+			//CodexManager.unlockEntry("Vanae");
+			CombatManager.victoryScene(vanaePCVictory);
+			CombatManager.lossScene(vanaeHuntressPCDefeat);
+			CombatManager.displayLocation("HUNTRESS");
+			break;
+		case "maiden vanae":
+			IncrementFlag("MET_VANAE_MAIDEN");
+			//CodexManager.unlockEntry("Vanae");
+			CombatManager.victoryScene(vanaePCVictory);
+			CombatManager.lossScene(vanaeMaidenPCDefeat);
+			CombatManager.displayLocation("MAIDEN");
+			break;
+		case "female zil":
+			IncrementFlag("TIMES_MET_FEMZIL");
+			//CodexManager.unlockEntry("Zil");
+			CombatManager.victoryScene(defeatHostileZil);
+			CombatManager.lossScene(girlZilLossRouter);
+			CombatManager.displayLocation("FEMALE ZIL");
+			break;
+		case "zil male":
+			IncrementFlag("ENCOUNTERED_ZIL");
+			//CodexManager.unlockEntry("Zil");
+			CombatManager.victoryScene(winVsZil);
+			CombatManager.lossScene(zilLossRouter);
+			CombatManager.displayLocation("MALE ZIL");
+			break;
+		case "kerokoras":
+			IncrementFlag("MET_KEROKORAS");
+			//CodexManager.unlockEntry("Kerokoras");
+			CombatManager.victoryScene(victoryAgainstTheFrogs);
+			CombatManager.lossScene(loseAgainstTheFrogs);
+			CombatManager.displayLocation("KEROKORAS");
+			break;
+		case "naleen":
+			IncrementFlag("TIMES_MET_NALEEN");
+			//CodexManager.unlockEntry("Naleen");
+			CombatManager.victoryScene(beatDatCatNaga);
+			CombatManager.lossScene(pcLosesToNaleenLiekABitch);
+			CombatManager.displayLocation("NALEEN");
+			break;
+		case "naleen male":
+			IncrementFlag("TIMES_MET_MALE_NALEEN");
+			//CodexManager.unlockEntry("Naleen");
+			CombatManager.victoryScene(defeatAMaleNaleen);
+			CombatManager.lossScene(loseToDudeleenRouter);
+			CombatManager.displayLocation("NALEEN MALE");
+			break;
 	}
 
 	clearMenu();

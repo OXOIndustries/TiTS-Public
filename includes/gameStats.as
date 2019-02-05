@@ -160,6 +160,7 @@ public function statisticsScreen(showID:String = "All"):void
 		output2(" " + GLOBAL.TYPE_NAMES[pc.earType]);
 		if(pc.earsPierced != 0) output2("\n<b>* Ear Piercing:</b> " + pc.earsPierced + " " + StringUtil.toDisplayCase(pc.earsPShort));
 		output2("\n<b>* Eyes:</b>");
+		if(pc.eyeCount() > 0) output2(" " + pc.eyeCount() + ",");
 		if(pc.eyeColor != "") output2(" " + StringUtil.toDisplayCase(pc.eyeColor) + ",");
 		output2(" " + GLOBAL.TYPE_NAMES[pc.eyeType]);
 		if(pc.eyebrowPierced != 0) output2("\n<b>* Eyebrow Piercing:</b> " + pc.eyebrowPierced + " " + StringUtil.toDisplayCase(pc.eyebrowPShort));
@@ -4647,11 +4648,11 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SERA_BITCHENING_PUNISH_SPANK"] > 0) output2("\n<b>* Sera, Punish, Times You Spanked Her:</b> " + flags["SERA_BITCHENING_PUNISH_SPANK"]);
 					if(flags["SERA_BITCHENING_PUNISH_RATION"] > 0) output2("\n<b>* Sera, Punish, Times You Fed Her Cum:</b> " + flags["SERA_BITCHENING_PUNISH_RATION"]);
 					if(flags["SERA_BITCHENING_PUNISH_WALKIES"] > 0) output2("\n<b>* Sera, Punish, Times You Took Her Walkies:</b> " + flags["SERA_BITCHENING_PUNISH_WALKIES"]);
-					if(flags["SERA_BITCHENING_TEASE_DENY"] > 0) output2("\n<b>* Sera, Times You Teased Her But Didn't Let Her Finish:</b> " + flags["SERA_BITCHENING_TEASE_DENY"]);
+					if(flags["SERA_BITCHENING_TEASE_DENY"] > 0) output2("\n<b>* Sera, Times You Teased Her But Didn’t Let Her Finish:</b> " + flags["SERA_BITCHENING_TEASE_DENY"]);
 					if(flags["SERA_BITCHENING_TEASE_RELEASE"] > 0) output2("\n<b>* Sera, Times You Teased Her and Let Her Finish:</b> " + flags["SERA_BITCHENING_TEASE_RELEASE"]);
 					if(flags["SERA_BITCHENING_BUTTFUCK"] > 0) output2("\n<b>* Sera, Times You Fucked Her Ass:</b> " + flags["SERA_BITCHENING_BUTTFUCK"]);
 					if(flags["SERA_BITCHENING_TITTYFUCK"] > 0) output2("\n<b>* Sera, Times You Titty Fucked Her:</b> " + flags["SERA_BITCHENING_TITTYFUCK"]);
-					if(flags["SERA_BITCHENING_DP"] > 0) output2("\n<b>* Sera, Times You DP'd Her Pussy and Ass:</b> " + flags["SERA_BITCHENING_DP"]);
+					if(flags["SERA_BITCHENING_DP"] > 0) output2("\n<b>* Sera, Times You DP’d Her Pussy and Ass:</b> " + flags["SERA_BITCHENING_DP"]);
 					if(flags["SERA_WAKEUP_SEX"] > 0) output2("\n<b>* Sera, Times She Woke You Up With Sex:</b> " + flags["SERA_WAKEUP_SEX"]);
 					if(flags["SERA_MADE_LOVE"] > 0) output2("\n<b>* Sera, Times You Made Tender Love to Her:</b> " + flags["SERA_MADE_LOVE"]);
 				}
@@ -5348,13 +5349,13 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Lola & Simone, Times You Had a Threesome:</b> " + flags["TTGYM_LOLA_SIMONE_HOME"]);
 					if(flags["TTGYM_LOLA_SIMONE_S_FIN"] != undefined) output2("\n<b>* Lola & Simone, Times You Fingered Simone:</b> " + flags["TTGYM_LOLA_SIMONE_S_FIN"]);
-					if(flags["TTGYM_LOLA_SIMONE_L_CUN"] != undefined) output2("\n<b>* Lola & Simone, Times You Licked Lola's Pussy:</b> " + flags["TTGYM_LOLA_SIMONE_L_CUN"]);
-					if(flags["TTGYM_LOLA_SIMONE_L_PUSSY"] != undefined) output2("\n<b>* Lola & Simone, Times You Fucked Lola's Pussy:</b> " + flags["TTGYM_LOLA_SIMONE_L_PUSSY"]);
-					if(flags["TTGYM_LOLA_SIMONE_S_PUSSY"] != undefined) output2("\n<b>* Lola & Simone, Times You Fucked Simone's Pussy:</b> " + flags["TTGYM_LOLA_SIMONE_S_PUSSY"]);
-					if(flags["TTGYM_LOLA_SIMONE_L_ASS"] != undefined) output2("\n<b>* Lola & Simone, Times You Fucked Lola's Ass:</b> " + flags["TTGYM_LOLA_SIMONE_L_ASS"]);
-					if(flags["TTGYM_LOLA_SIMONE_S_ASS"] != undefined) output2("\n<b>* Lola & Simone, Times You Fucked Simone's Ass:</b> " + flags["TTGYM_LOLA_SIMONE_S_ASS"]);
+					if(flags["TTGYM_LOLA_SIMONE_L_CUN"] != undefined) output2("\n<b>* Lola & Simone, Times You Licked Lola’s Pussy:</b> " + flags["TTGYM_LOLA_SIMONE_L_CUN"]);
+					if(flags["TTGYM_LOLA_SIMONE_L_PUSSY"] != undefined) output2("\n<b>* Lola & Simone, Times You Fucked Lola’s Pussy:</b> " + flags["TTGYM_LOLA_SIMONE_L_PUSSY"]);
+					if(flags["TTGYM_LOLA_SIMONE_S_PUSSY"] != undefined) output2("\n<b>* Lola & Simone, Times You Fucked Simone’s Pussy:</b> " + flags["TTGYM_LOLA_SIMONE_S_PUSSY"]);
+					if(flags["TTGYM_LOLA_SIMONE_L_ASS"] != undefined) output2("\n<b>* Lola & Simone, Times You Fucked Lola’s Ass:</b> " + flags["TTGYM_LOLA_SIMONE_L_ASS"]);
+					if(flags["TTGYM_LOLA_SIMONE_S_ASS"] != undefined) output2("\n<b>* Lola & Simone, Times You Fucked Simone’s Ass:</b> " + flags["TTGYM_LOLA_SIMONE_S_ASS"]);
 					if(flags["TTGYM_LOLA_SIMONE_COCK_SFAL"] != undefined) output2("\n<b>* Lola & Simone, Times Simone Gave You a BJ:</b> " + flags["TTGYM_LOLA_SIMONE_COCK_SFAL"]);
-					if(flags["TTGYM_LOLA_SIMONE_DP"] != undefined) output2("\n<b>* Lola & Simone, Times You DP'd Both Of Them:</b> " + flags["TTGYM_LOLA_SIMONE_DP"]);
+					if(flags["TTGYM_LOLA_SIMONE_DP"] != undefined) output2("\n<b>* Lola & Simone, Times You DP’d Both Of Them:</b> " + flags["TTGYM_LOLA_SIMONE_DP"]);
 					if(flags["TTGYM_LOLA_SIMONE_DBL_RIDE"] != undefined) output2("\n<b>* Lola & Simone, Times They Double Rode You:</b> " + flags["TTGYM_LOLA_SIMONE_DBL_RIDE"]);
 					if(flags["TTGYM_LOLA_SIMONE_DBL_BJ"] != undefined) output2("\n<b>* Lola & Simone, Times They Gave You Double BJ :</b> " + flags["TTGYM_LOLA_SIMONE_DBL_BJ"]);
 					if(flags["TTGYM_LOLA_SIMONE_PUSSY_LCUN"] != undefined) output2("\n<b>* Lola & Simone, Times Lola Licked Your Pussy:</b> " + flags["TTGYM_LOLA_SIMONE_PUSSY_LCUN"]);
@@ -5375,8 +5376,8 @@ public function displayEncounterLog(showID:String = "All"):void
 					if (flags["SEXED_SIMONE"] != undefined) output2("\n<b>* Simone, Times Sexed:</b> " + flags["SEXED_SIMONE"]);
 					if(flags["TTGYM_SIMONE_ORAL_GIVE"] != undefined && flags["TTGYM_SIMONE_ORAL_GIVE"] > 0) output2("\n<b>* Simone, Times You Gave Her Oral:</b> " + flags["TTGYM_SIMONE_ORAL_GIVE"]);
 					if(flags["TTGYM_SIMONE_ORAL"] != undefined && flags["TTGYM_SIMONE_ORAL"] > 0) output2("\n<b>* Simone, Times She Gave You Oral:</b> " + flags["TTGYM_SIMONE_ORAL"]);
-					if(flags["TTGYM_SIMONE_DP_GYM"] != undefined && flags["TTGYM_SIMONE_DP_GYM"] > 0) output2("\n<b>* Simone, Times You DP'd Her (Gym):</b> " + flags["TTGYM_SIMONE_DP_GYM"]);
-					if(flags["TTGYM_SIMONE_DP_HOME"] != undefined) output2("\n<b>* Simone, Times You DP'd Her (Home):</b> " + flags["TTGYM_SIMONE_DP_HOME"]);
+					if(flags["TTGYM_SIMONE_DP_GYM"] != undefined && flags["TTGYM_SIMONE_DP_GYM"] > 0) output2("\n<b>* Simone, Times You DP’d Her (Gym):</b> " + flags["TTGYM_SIMONE_DP_GYM"]);
+					if(flags["TTGYM_SIMONE_DP_HOME"] != undefined) output2("\n<b>* Simone, Times You DP’d Her (Home):</b> " + flags["TTGYM_SIMONE_DP_HOME"]);
 					if(flags["TTGYM_SIMONE_FUCKED_PUSSY"] != undefined) output2("\n<b>* Simone, Times You Fucked Her Pussy:</b> " + flags["TTGYM_SIMONE_FUCKED_PUSSY"]);
 					if(flags["TTGYM_SIMONE_MUTUAL_FAP"] != undefined) output2("\n<b>* Simone, Times You Dildoed Eachother:</b> " + flags["TTGYM_SIMONE_MUTUAL_FAP"]);
 				}
@@ -7149,24 +7150,24 @@ public function displayEncounterLog(showID:String = "All"):void
 				// Rat's Raiders
 				if(flags["RATS_ENABLED"] != undefined)
 				{
-					output2("\n<b>* Rat's Raiders:</b> Tried to rob Urbolg");
+					output2("\n<b>* Rat’s Raiders:</b> Tried to rob Urbolg");
 					if(flags["RATCOUNTERS"] != undefined) output2(", Encountered");
 					if(flags["RATS_RIDDEN"] != undefined) output2(", Used as a horse");
-					if(ratsPCIsKnown()) output2("\n<b>* Rat's Raiders, Attitude:</b> " + (ratsReadyToBefriend() ? "Accepting" : ["", "Dirty", "Subdued", "Yielding", "Befriended"][ratputation()]) + " (" + flags["RATPUTATION"] + ")");
+					if(ratsPCIsKnown()) output2("\n<b>* Rat’s Raiders, Attitude:</b> " + (ratsReadyToBefriend() ? "Accepting" : ["", "Dirty", "Subdued", "Yielding", "Befriended"][ratputation()]) + " (" + flags["RATPUTATION"] + ")");
 					if(flags["RATS_OFFERED_SERVICE"] != undefined)
 					{
-						output2("\n* <b>Rat's Raiders, Offered Oral:</b> Attempted " + flags["RATS_OFFERED_SERVICE"] + " times");
+						output2("\n* <b>Rat’s Raiders, Offered Oral:</b> Attempted " + flags["RATS_OFFERED_SERVICE"] + " times");
 						if(flags["RAT_SERVICED"] != undefined) output2(", Succeded " + flags["RAT_SERVICED"] + " times");
 					}
 					if(flags["RATS_OFFERED_MILK"] != undefined)
 					{
-						output2("\n* <b>Rat's Raiders, Offered Milk:</b> Attempted " + flags["RATS_OFFERED_MILK"] + " times");
+						output2("\n* <b>Rat’s Raiders, Offered Milk:</b> Attempted " + flags["RATS_OFFERED_MILK"] + " times");
 						if(flags["RAT_MILKED"] != undefined) output2(", Succeded " + flags["RAT_MILKED"] + " times");
 					}
 					if(flags["RATS_SEXED"] != undefined)
 					{
-						output2("\n<b>* Rat's Raiders, Times Sexed:</b> " + flags["RATS_SEXED"]);
-						output2("\n<b>* Rat's Raiders, Sex Acts Done</b>: ");
+						output2("\n<b>* Rat’s Raiders, Times Sexed:</b> " + flags["RATS_SEXED"]);
+						output2("\n<b>* Rat’s Raiders, Sex Acts Done</b>: ");
 						var ratSex:Array = new Array();
 						if(flags["RATS_TRIPLE_SERVICED"] != undefined) ratSex.push("Triple Blowjob");
 						if(flags["RATS_POUNDED"] != undefined) ratSex.push("Doggystyle");
@@ -7183,7 +7184,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					{
 						if(flags["RATS_SEXED_EAR_0"] != undefined)
 						{
-							output2("\n<b>* Rat's Raiders, Pink Rodenian Ear Sex Count:</b> " + flags["RATS_SEXED_EAR_0"]);
+							output2("\n<b>* Rat’s Raiders, Pink Rodenian Ear Sex Count:</b> " + flags["RATS_SEXED_EAR_0"]);
 							if (flags["RATS_SEXED_EAR_0"] < 5) output2(" (Unknown)");
 							else if (flags["RATS_SEXED_EAR_0"] < 10 || !ratsPCIsGood()) output2(" (Appreciable)");
 							else if (flags["RATS_SEXED_EAR_0"] < 15 || flags["RATS_EARMARK_0"] == undefined) output2(" (Earmarked)");
@@ -7191,7 +7192,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						}
 						if(flags["RATS_SEXED_EAR_1"] != undefined)
 						{
-							output2("\n<b>* Rat's Raiders, White Rodenian Ear Sex Count:</b> " + flags["RATS_SEXED_EAR_1"]);
+							output2("\n<b>* Rat’s Raiders, White Rodenian Ear Sex Count:</b> " + flags["RATS_SEXED_EAR_1"]);
 							if (flags["RATS_SEXED_EAR_1"] < 5) output2(" (Unknown)");
 							else if (flags["RATS_SEXED_EAR_1"] < 10 || !ratsPCIsGood()) output2(" (Appreciable)");
 							else if (flags["RATS_SEXED_EAR_1"] < 15 || flags["RATS_EARMARK_1"] == undefined) output2(" (Earmarked)");
@@ -7200,7 +7201,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					}
 					if(flags["RAT_BOUNTY_STOLEN"] != undefined)
 					{
-						output2("\n<b>* Rat's Raiders, Bounty Lost:</b> " + flags["RAT_BOUNTY_STOLEN"]);
+						output2("\n<b>* Rat’s Raiders, Bounty Lost:</b> " + flags["RAT_BOUNTY_STOLEN"]);
 						if(silly)
 						{
 							output2(" (With that, you could have");
@@ -7253,12 +7254,12 @@ public function displayEncounterLog(showID:String = "All"):void
 							}
 							else if(flags["RAT_BOUNTY_STOLEN"] >= 500000)
 							{
-								ratItems.push(" opened a TiTS-Coin Mining Station and made back all this money if the bubble didn't pop");
+								ratItems.push(" opened a TiTS-Coin Mining Station and made back all this money if the bubble didn’t pop");
 								ratItems.push(" bought a new pair of eyes");
 							}
 							else if(flags["RAT_BOUNTY_STOLEN"] >= 240000)
 							{
-								ratItems.push(" bought one of Spacegate's 60-terabyte SSDs");
+								ratItems.push(" bought one of Spacegate’s 60-terabyte SSDs");
 								ratItems.push(" invested in your own small business with health benefits for a few employees");
 							}
 							else if(flags["RAT_BOUNTY_STOLEN"] >= 120000)
@@ -7270,7 +7271,7 @@ public function displayEncounterLog(showID:String = "All"):void
 							else if(flags["RAT_BOUNTY_STOLEN"] >= 60000)
 							{
 								ratItems.push(" bought some shiny trinkets");
-								ratItems.push(" bought a musician's contract");
+								ratItems.push(" bought a musician’s contract");
 								ratItems.push(" paid for two months of TiTS development");
 								ratItems.push(" bought Hand So back");
 								ratItems.push(" bought a brand new Casstech Z14");
@@ -7288,7 +7289,7 @@ public function displayEncounterLog(showID:String = "All"):void
 							}
 							else if(flags["RAT_BOUNTY_STOLEN"] >= 6000)
 							{
-								ratItems.push(" bought a prostitute's contract");
+								ratItems.push(" bought a prostitute’s contract");
 								ratItems.push(" bought the latest designer TFs");
 								ratItems.push(" bought a brand new SCV");
 								ratItems.push(" bought a lot of gift cards for ungrateful family members");

@@ -88,18 +88,18 @@ public function takeDownAnInfiltratorKitty():void
 		else addDisabledButton(1,"Get Rimjob","Get Rimjob","You need a penis for this.");
 		addButton(2,"Oral",getOralFromInfilBoi,undefined,"Oral","Put him to work on servicing your [pc.crotch] with his mouth.");
 		if(pc.biggestCockVolume() >= 1000) addButton(3,"Docking",dockingSeasonBiiiiyaaatch,undefined,"Docking","Force the milodan to pump his load into your dick.");
-		else if(pc.hasCock()) addDisabledButton(3,"Docking","Docking","You aren't big enough to take his dick inside your dick.");
+		else if(pc.hasCock()) addDisabledButton(3,"Docking","Docking","You aren’t big enough to take his dick inside your dick.");
 		else addDisabledButton(3,"Docking","Docking","You need a really big dick for this." + (silly ? " Absolutely YUGE!":""));
 	}
 	else
 	{
-		addDisabledButton(0,"Fuck Ass","Fuck Ass","You aren't aroused enough.");
-		addDisabledButton(1,"Get Rimjob","Get Rimjob","You aren't aroused enough.");
-		addDisabledButton(2,"Oral","Oral","You aren't aroused enough.");
-		addDisabledButton(3,"Docking","Docking","You aren't aroused enough.");
+		addDisabledButton(0,"Fuck Ass","Fuck Ass","You aren’t aroused enough.");
+		addDisabledButton(1,"Get Rimjob","Get Rimjob","You aren’t aroused enough.");
+		addDisabledButton(2,"Oral","Oral","You aren’t aroused enough.");
+		addDisabledButton(3,"Docking","Docking","You aren’t aroused enough.");
 	}
 	captiveRescueButton(5);
-	if(fightHasCaptive()) addDisabledButton(14,"Leave","Leave","You can't leave the captive behind!");
+	if(fightHasCaptive()) addDisabledButton(14,"Leave","Leave","You can’t leave the captive behind!");
 	else addButton(14,"Leave",wargiiLeaveCombatEnd);
 }
 
@@ -210,7 +210,7 @@ public function fuckInfiltratorAss(x:int):void
 		enemy.lust(100);
 		clearMenu();
 		addButton(0,"Kiss",kissDatKittyCat,x);
-		addButton(1,"Don't",dontSmoochMiloBoysThatsGross,x);
+		addButton(1,"Don’t",dontSmoochMiloBoysThatsGross,x);
 	}
 }
 
@@ -319,7 +319,7 @@ public function rimJobInfiltrator():void
 	pc.lust(25);
 	clearMenu();
 	addButton(0,"Jerk Him",jerkDatKittykaaaat);
-	addButton(1,"Don't",nojerkies4KittyBois);
+	addButton(1,"Don’t",nojerkies4KittyBois);
 }
 
 public function jerkDatKittykaaaat():void

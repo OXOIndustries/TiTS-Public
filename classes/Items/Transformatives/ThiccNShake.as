@@ -186,7 +186,7 @@ package classes.Items.Transformatives
 			if(phase >= 1 && target.statusEffectv3("Thicc&Shake") == 0)
 			{
 				// Queue overdose scene!
-				var chance:int = Math.max((5 - doses), 5);
+				var chance:int = Math.min(Math.max((5 - doses), 1), 5);
 				if(phase >= 3 && (doses >= 5 || rand(chance) == 0 || (target.hipRatingRaw >= 20 && target.buttRatingRaw >= 20)) && !kGAMECLASS.disableExploreEvents())
 				{
 					msg += "\n\nYour Codex beeps, <i>“<b>Warning:</b> The stimulation of the Thicc&Shake nanomachines <b>will</b> cause unknown side effects!”</i>";

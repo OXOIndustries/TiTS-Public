@@ -205,7 +205,7 @@ package classes.Items.Transformatives
 					changes++;
 				}
 				// Change skin color
-				// [pc.skinFurScaleColor] not blue-and-striped, red-and-striped, green-and-striped, purple-and-striped, gold-and-striped or silver-and-striped: Change skin color to one of colors
+				// [pc.skinFurScalesColor] not blue-and-striped, red-and-striped, green-and-striped, purple-and-striped, gold-and-striped or silver-and-striped: Change skin color to one of colors
 				var suulaScaleColors:Array = ["blue", "red", "green", "purple", "gold", "silver"];
 				// Options: blue-and-striped, red-and-striped, green-and-striped, purple-and-striped, gold-and-striped or silver-and-striped
 				if(changes < changeLimit && pc.skinType == GLOBAL.SKIN_TYPE_SCALES && (InCollection(pc.scaleColor, suulaScaleColors) || !pc.hasAccentMarkings()) && rand(5) == 0)
@@ -229,7 +229,7 @@ package classes.Items.Transformatives
 					else if(design == 3) output(" blotch pattern across your belly and chest");
 					output("!</b> You’re definitely getting closer to become an alluring, sharky suula.");
 					
-					// Note: change is applied[pc.skinFurScaleColor]
+					// Note: change is applied[pc.skinFurScalesColor]
 					pc.skinTone = newScaleColor;
 					pc.scaleColor = newScaleColor;
 					pc.createStatusEffect("Body Markings", design, 0, 0, 0);

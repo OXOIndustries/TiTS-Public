@@ -385,8 +385,8 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			}
 			else
 			{
-				ExtendLogEvent("\n\n(<b>Perk Upgraded: Inhuman Desire</b> - Your maximum lust is increased by 10.)");
-				pc.addPerkValue("Inhuman Desire",1,10);
+				ExtendLogEvent("\n\n(<b>Perk Upgraded: Inhuman Desire</b> - Your maximum lust is increased by 20.)");
+				pc.addPerkValue("Inhuman Desire",1,20);
 				pc.setPerkTooltip("Inhuman Desire","Increases maximum lust by " + pc.perkv1("Inhuman Desire") + ".");
 			}
 			pc.lust(13);
