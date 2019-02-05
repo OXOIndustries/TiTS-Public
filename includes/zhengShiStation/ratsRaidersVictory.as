@@ -3044,7 +3044,7 @@ public function ratsTheRideNeverEnds(vagId:int):void
 				else if (pc.cumQ() < 500) output(" thick");
 				else output(" monstrous");
 			}
-			output(" ropes of [pc.cumVisc] [pc.cumnoun] surging up from your [pc.balls] to leave their mark on fuzzy rat belly, to collect in a pool on an outlaw boy’s stomach.");	
+			output(" ropes of [pc.cumVisc] [pc.cumNoun] surging up from your [pc.balls] to leave their mark on fuzzy rat belly, to collect in a pool on an outlaw boy’s stomach.");	
 			if (pc.cumQ() >= 2000) output(" The amount of jizz gushing from your " + (pc.hasCocks() ? "urethras" : "urethra") + " is seemingly constant and never-ending; you fountain them and yourself, spreading a far-reaching puddle of effluence indicative of supreme masculine release.");
 		}
 
