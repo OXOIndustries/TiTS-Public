@@ -25,6 +25,7 @@ public function helpDruggedKorgonne():void
 		pc.setStatusMinutes("FDruggedKorgTimer",75);
 	}
 	author("Wsan");
+	showImage("KorgDosed");
 	output("As you approach, she rolls up into a sitting position and stretches her arms out towards you, eyes wide and needy. She looks perfectly uninjured but the smell of desire rises off her like a fine mist, the thick scent of sexual pheromones wrapping around your brain as if it were a velvet blanket.");
 	output("\n\n<i>“" + (!korgiTranslate() ? "Stupid </i>catdog<i> jab me with needle":"The stupid milodan jabbed me with a needle") + ",”</i> she moans as you give her a comforting hug, which she seems to appreciate a lot, wrapping her fluffy arms around your back for a tight embrace. <i>“" + (!korgiTranslate() ? "Please... alien help":"Please... can you help") + "?”</i>");
 	output("\n\nIt seems like a milodan jabbed her with an aphrodisiac. Luckily, you know exactly how to take care of this.");
@@ -54,7 +55,9 @@ public function dickThatKorgDownMan(x:int):void
 	showBust("KORG_DOSED");
 	author("Wsan");
 	output("<i>“Alright,”</i> you say, separating from the hug and grinning" + (!pc.isCrotchExposed() ? " as you remove your [pc.crotchCovers]":"") + ". <i>“Lay back and spread those legs, cutie.”</i>");
-	output("\n\n<i>“Yes yes yes yes,”</i> she pants, flopping onto her back and putting her furred legs in the air before slowly laying them to the sides. <i>“" + (korgiTranslate() ? "Hurry! Take me!":"Alien hurry! Take!") + "”</i>");
+	output("\n\n");
+	showImage("KorgDosedDicked");
+	output("<i>“Yes yes yes yes,”</i> she pants, flopping onto her back and putting her furred legs in the air before slowly laying them to the sides. <i>“" + (korgiTranslate() ? "Hurry! Take me!":"Alien hurry! Take!") + "”</i>");
 	output("\n\nIt’s not as though you were in any doubt but damn, she is <i>ready</i>. Between her powerful thighs is one extremely wet, hot pink slit that’s just barely open. Her lips are inflamed with ardor, each of them red and slightly swollen in need, pressing together as she clenches her vaginal muscles, translucent nectar dribbling from between them. The korgonne watches you expectantly, hands on her legs holding them apart for you.");
 	output("\n\nNo sense in disappointing her. You thrust your [pc.cockOrHardlight " + x + "] right into her dripping cunt and slide all the way ");
 	var cSize:Number = 9;

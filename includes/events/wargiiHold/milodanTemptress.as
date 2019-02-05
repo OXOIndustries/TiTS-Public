@@ -143,6 +143,7 @@ public function leaveBehindDatKorgoTemptress():void
 		output("\n\nYou just nod and head on your way, letting the two hatefuck in peace.\n\n");
 		enemy.removeStatusEffect("Has Captive");
 		flags["WARGII_TUUVA_SAVED"] = 1;
+		IncrementFlag("WARGII_FIGHTS_WON");
 		CombatManager.genericVictory();
 		return;
 	}
@@ -756,6 +757,7 @@ public function rescueTuuvaBlurb():void
 	output("\n\n");
 	CombatManager.genericVictory();
 	flags["WARGII_TUUVA_SAVED"] = 1;
+	IncrementFlag("WARGII_FIGHTS_WON");
 }
 
 //Tuuva repeat:

@@ -55,6 +55,7 @@ public function captiveRescueButton(arg:Number):void
 }
 public function wargiiFightWinRouting():void
 {
+	trace("SCORE: " + wargiiScore());
 	if(!fightHasCaptive()) 
 	{
 		if(CombatManager.hasFriendlyOfClass(Tuuva)) {
@@ -62,6 +63,7 @@ public function wargiiFightWinRouting():void
 			addButton(0,"Next",tuuvaAssistCombatOutro);
 		}
 		else CombatManager.genericVictory();
+		IncrementFlag("WARGII_FIGHTS_WON");
 	}
 	else
 	{
@@ -147,13 +149,18 @@ public function tuuvaAssistCombatOutro():void
 	output("\n\nTuuva runs off, continuing her fight elsewhere.\n\n");
 	pc.createStatusEffect("Tuuva Combat CD");
 	pc.setStatusMinutes("Tuuva Combat CD",15);
+	IncrementFlag("WARGII_FIGHTS_WON");
 	CombatManager.genericVictory();
 }
 
 public function wargiiLeaveCombatEnd():void
 {
 	if(CombatManager.hasFriendlyOfClass(Tuuva)) tuuvaAssistCombatOutro();
-	else CombatManager.genericVictory();
+	else 
+	{
+		IncrementFlag("WARGII_FIGHTS_WON");
+		CombatManager.genericVictory();
+	}
 }
 
 public function korgCaptivesRemaining():Number
@@ -200,6 +207,7 @@ public function saveHeidrun():void
 	flags["WARGII_HEIDRUN_SAVED"] = 1;
 	output("\n\n");
 	CombatManager.genericVictory();
+	IncrementFlag("WARGII_FIGHTS_WON");
 }
 
 public function saveLund():void
@@ -212,6 +220,7 @@ public function saveLund():void
 	flags["WARGII_LUND_SAVED"] = 1;
 	output("\n\n");
 	CombatManager.genericVictory();
+	IncrementFlag("WARGII_FIGHTS_WON");
 }
 
 // post-battle text for Nenne
@@ -243,4 +252,5 @@ public function saveNenne():void
 	output("\n\n");
 	flags["WARGII_NENNE_SAVED"] = 1;
 	CombatManager.genericVictory();
+	IncrementFlag("WARGII_FIGHTS_WON");
 }

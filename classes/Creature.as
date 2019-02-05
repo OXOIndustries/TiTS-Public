@@ -18434,7 +18434,7 @@
 			for(var x:int = 1; x < cocks.length; x++)
 			{
 				//Don't match? NOT MATCHED. GTFO.
-				if(cocks[x].type != cocks[x-1].type) return false;
+				if(cocks[x].cType != cocks[x-1].cType) return false;
 			}
 			return true;
 		}

@@ -614,7 +614,7 @@ public function initWargiiRooms():void
 	//rooms["WARGII T10"].addFlag(GLOBAL.HAZARD);
 	rooms["WARGII T10"].addFlag(GLOBAL.BED);
 	rooms["WARGII T10"].addFlag(GLOBAL.NPC);
-	rooms["WARGII T10"].runOnEnter = tempWargiiEnd;
+	rooms["WARGII T10"].runOnEnter = encounterWarAlpha;
 
 	rooms["WARGII T14"] = new RoomClass(this);
 	rooms["WARGII T14"].roomName = "ULA’S\nCHAMBERS";

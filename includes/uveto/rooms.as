@@ -2730,12 +2730,12 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII B14"] = new RoomClass(this);
 	rooms["KORGII B14"].roomName = "SPARKLING\nHOLES";
-	rooms["KORGII B14"].description = "Hundreds of holes mar the glossy surface of a sparkling wall of savicite and aluminum ore to the west.";
+	rooms["KORGII B14"].description = "";
 	rooms["KORGII B14"].planet = "PLANET: UVETO VII";
 	rooms["KORGII B14"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII B14"].southExit = "UVIP J10";
 	rooms["KORGII B14"].moveMinutes = 6;
-	rooms["KORGII B14"].addFlag(GLOBAL.ICYTUNDRA);
+	//rooms["KORGII B14"].addFlag(GLOBAL.ICYTUNDRA);
 	//rooms["KORGII B14"].addFlag(GLOBAL.HAZARD);
 	rooms["KORGII B14"].runOnEnter = korgiiHoldExteriorBonus;
 

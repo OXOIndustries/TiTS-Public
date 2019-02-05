@@ -35,6 +35,7 @@ package classes.GameData
 	import classes.Util.InCollection;
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.UIComponents.UIStyleSettings;
+	import classes.Engine.Utility.IncrementFlag;
 	
 	public class GroundCombatContainer extends CombatContainer 
 	{		
@@ -1819,6 +1820,8 @@ package classes.GameData
 			if (kGAMECLASS.debug)
 			{
 				output("You escape on wings of debug!");
+				//Track fleeing for Wargii Hold
+				if(kGAMECLASS.flags["WARGII_PROGRESS"] == 2) IncrementFlag("WARGII_FIGHTS_RAN");
 				CombatManager.abortCombat();
 				return;
 			}
@@ -1979,6 +1982,8 @@ package classes.GameData
 				}
 				else output("You manage to leave the fight behind you.")
 				kGAMECLASS.processTime(8);
+				//Track fleeing for Wargii Hold
+				if(kGAMECLASS.flags["WARGII_PROGRESS"] == 2) IncrementFlag("WARGII_FIGHTS_RAN");
 				
 				CombatManager.abortCombat();
 				return;
@@ -4080,7 +4085,7 @@ package classes.GameData
 						{
 							var msg:String = "";
 							msg = "<b>" + t_enemy.capitalA + t_enemy.short;
-							if(CombatManager.multipleEnemies()) msg += " are";
+							if(t_enemy.isPlural) msg += " are";
 							else msg += " is";
 							msg += " too turned on to fight.</b>\n\n";
 							output(msg);

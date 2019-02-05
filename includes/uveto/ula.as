@@ -275,7 +275,7 @@ public function ulaMenu():void
 	addButton(0,"Appearance",ulaAppearance);
 	addButton(1,"Talk",ulaTalk);
 	addButton(2,"Sex",ulaSexApproach);
-	addButton(4,"WARGII TEST",startWargiiQuestOnEnterUlaRoom,undefined,"WARG'II TEST","<b>WARNING:</b> This is a test of in-development content. Saving after playing this could leave data behind that could result in bugs, incorrect tracking of quest decisions, or unplayability. Be careful, and save first!\n\nThanks,\n\tFenoxo");
+	//addButton(4,"WARGII TEST",startWargiiQuestOnEnterUlaRoom,undefined,"WARG'II TEST","<b>WARNING:</b> This is a test of in-development content. Saving after playing this could leave data behind that could result in bugs, incorrect tracking of quest decisions, or unplayability. Be careful, and save first!\n\nThanks,\n\tFenoxo");
 	addButton(14,"Leave",mainGameMenu);
 }
 

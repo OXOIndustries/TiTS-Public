@@ -6,12 +6,22 @@ import classes.Items.Recovery.PyriteIssuedStim;
 //		undefined = nonstart
 //		1 = given door greeting message
 //		2 = inside the hold, fightahn
+//		3 = you winned!
+//
+//WARGII_MILO_SOLUTION	
+//		0 = mercy (let them out)
+//		1 = harsh (enslave)
+//		2 = middle (1 year prison)
 //
 //flags["WARGII_DOOM_TIMER"]
-//		Set a timestamp to use for determining if the hold is fucked.
+//		1 = turned Ula down.
+//		2 = been to the elevator since turning Ula down - WARGII_PROGRESS flips from -1 to -2 next time you return
 //
-//flags["WARGII_NENNE_SAVED"] = 1;
-//		1 = saved Nenne
+//flags["WARGII_NENNE_SAVED"]
+//flags["WARGII_TUUVA_SAVED"]
+//flags["WARGII_HEIDRUN_SAVED"] 
+//flags["WARGII_LUND_SAVED"]
+//		1 = saved character
 
 public function wargiiEncounterStuff():Boolean
 {
@@ -93,21 +103,22 @@ public function startWargiiQuestOnEnterUlaRoom():void
 	addButton(1,"Don't",dontWargiiStuff);
 }
 
-public function tempWargiiEnd():Boolean
+//Wargii Score
+public function wargiiScore():Number
 {
-	clearOutput();
-	author("Fenoxo");
-	output("(Coder's Note: That's all for now... check back soon!)");
-	flags["WARGII_NENNE_SAVED"] = undefined;
-	flags["WARGII_DOOM_TIMER"] = undefined;
-	flags["WARGII_PROGRESS"] = undefined;
-	flags["WARGII_SETUP"] = undefined;
-	flags["WARGII_ULA_PROMISED"] = undefined;
-	currentLocation = "SHIP INTERIOR";
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
-	return true;
+	var score:Number = 0;
+	if(flags["WARGII_NENNE_SAVED"] != undefined) score += 10;
+	if(flags["WARGII_TUUVA_SAVED"] != undefined) score += 10;
+	if(flags["WARGII_HEIDRUN_SAVED"] != undefined) score += 10;
+	if(flags["WARGII_LUND_SAVED"] != undefined) score += 10;
+
+	if(flags["WARGII_FIGHTS_RAN"] != undefined) score -= flags["WARGII_FIGHTS_RAN"] * 5;
+	if(flags["WARGII_FIGHTS_WON"] != undefined) score += flags["WARGII_FIGHTS_WON"] * 3;
+	if(score > 100) score = 100;
+	if(score < 0) score = 0;
+	return score;
 }
+
 public function wargiiH8Bonus():Boolean
 {
 	flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
@@ -183,17 +194,9 @@ public function dubbleNopeWargii():void
 	pc.addHard(5);
 	//reject stuff
 	flags["WARGII_PROGRESS"] = -1;
-	flags["WARGII_DOOM_TIMER"] = GetGameTimestamp();
-	clearMenu();
-	addButton(0,"Next",tempWargiiEnd);
-}
-
-//Upon returning after the hold has been lost:
-//9999enable later
-public function holdGotFucked():Boolean
-{
-	output("\n\nThe entrance to Korg’ii Hold, with all its many secret, whistling holes, is gone. A sturdy metal edifice has been plunked down in its place. Geddanium-reinforced armor renders it impervious to small-arms fire, and the muzzles of a dozen remote-control anti-tank weapons dismantle any ideas you have about breaking in as soundly as the hull of a T-3400 battle tank. The korgonne clearly aren’t in charge any longer. Some other force or entity has claimed the hold. <b>Perhaps you should’ve helped out Ula.</b>\n\nNow there’s nothing you can do but stare angrily at the Pyrite Industries logo stamped on a gun barrel.");
-	return false;
+	flags["WARGII_DOOM_TIMER"] = 1;
+	clearMenu(); //9999 make sure this proper triggers THE END OF TIMES.
+	addButton(0,"Next",mainGameMenu);
 }
 
 //[Help]
@@ -238,7 +241,7 @@ public function wargiiAmbushles():void
 	clearOutput();
 	//showchiefandmilos
 	showName("\nAMBUSH");
-	showBust("","KORG_CHIEFTAIN","9999");
+	showBust("WAR_ALPHA","KORG_CHIEFTAIN","WAR_LION");
 	output("You are not prepared for the arrival of the Milodans. Neither is Ula’s father.");
 	output("\n\nThe saber-cats appear at the crest of the ridge with snarling grins and full sets of modern military equipment - including body armor. A score of the up-armed milos leap from the cliff to an apparent demise only for the blue-tinged exhausts of their jetpacks to grant them a graceful landing in snow below. In their hands are military-grade weapons of every shape and size: heavy missile launchers, railguns, lasers, and even a multitude of grenades. Fizzing shields are apparent around them, as are the trademarked stamps of Pyrite Heavy Industries logos.");
 	output("\n\nUh oh.");
@@ -257,7 +260,7 @@ public function warnTheHoldAboutZeAmbush():void
 	clearOutput();
 	showName("WARN\nTHE HOLD");
 	//milo images
-	showBust("9999milo");
+	showBust("MILODANMALE","MILODANMALE");
 	output("You retreat for the hold before the growing army of felines discover you. The haunting sight of two bodyguards falling to explosive blasts haunts your frenzied run back. Thoughts of cowardice chase you more effectively than any foe, at war with the pragmatic knowledge that you could not have change the outcome in the slightest. Still, defeat of any kind carries its own unique sting.");
 	output("\n\nThe rumble of whining engines and the bass hum of antigravity repulsors interrupt your thoughts. A flat-bottomed transport craft wooshes past you to the north. It holds more milodans than you saw back at the ambush - at least forty - and Ula’s father lies near the front, cuffed and unconscious. A double-barreled gun on the back houses a grinning milo in thick goggles. Artillery like that could punch a hole straight through the hold’s wall - or obliterate the door outright.");
 	output("\n\nAnother transport follows. There’s an army of the crude cat-men, and they’re buzzing straight to Korg’ii Hold.");
@@ -272,13 +275,13 @@ public function warnTheHoldAboutZeAmbush():void
 public function saveTheChiefo():void
 {
 	clearOutput();
-	//9999 show fightin' milos
+	showBust("MILODANMALE","MILODANMALE");
 	output("With a roar of challenge, you crest the hill you concealed yourself behind and rush for the assembled milodans. Puffs of snow splash behind you, churned by your impelling fury.");
 	output("\n\nThe long-toothed cats barely react to your presence. Two of the Chieftan’s guards fall to explosive charges while the ring of advancing barbarians closes in, stun-rods in hand. At their leader’s direction, two of the least-equipped warriors break off to intercept you. Apparently you aren’t worth the presence of heavier weaponry.");
 	output("\n\nNevertheless, you’ll have to fight!");
 	processTime(4);
 	clearMenu();
-	//Fight two normal milos at once. 9999
+	//Fight two normal milos at once.
 	//Win, normal scene choices for male milos
 	//Loss: die
 	var tEnemy:MilodanMale = new MilodanMale();
@@ -329,7 +332,7 @@ public function leaveDemBitchesToDooooom():void
 {
 	clearOutput();
 	output("Well... you tried. You don’t know how the korgonne could possibly defeat a force like that, but you hope they manage.");
-	//9999 dump into snowarea
+	//dump into snowarea
 	flags["WARGII_PROGRESS"] = -2;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -429,12 +432,12 @@ public function wargiiBadEnds():void
 	{
 		author("B");
 		showName("\nCAPTIVE");
-		showBust("MILO9999");
+		showBust("MILODANMALE");
 		// Continue here if the PC loses to a Milodan via HP
 		if(pc.lust() < 33 && pc.libido() < 50 && flags["WARGII_BADEND_FUCKED"] == undefined)
 		{
 			//output("Your stance is wobbly and shaken; you lose your balance and fall to one knee, too injured to stand upright. You try and keep your eyes on your opponent, but that one weakness was all they needed; you feel a sharp, blunt sting against the back of your head, and then... nothing.");
-			output("When you awake, " + (currentLocation == "UVGR G8" ? "you’re in a warm, windowless room you don’t recognize":"you’re exactly where you were before you lost the fight") + ", but there’s nobody around you. The Milodan warrior is gone" + (9999 == 0 ? ", as is the Korgonne captive they were hauling off":"") + ". Your body aches and cries in pain whenever you try to move, but even when you do, you realize that your wrists are bound behind your back" + (!pc.isNaga() ? ", and your ankles to each other":", and your [pc.leg] up against your spine") + ". You’ve also been stripped of your belongings, including your weapons" + (!pc.isNude() ? " and armor":"") + ".");
+			output("When you awake, " + (currentLocation == "UVGR G8" ? "you’re in a warm, windowless room you don’t recognize":"you’re exactly where you were before you lost the fight") + ", but there’s nobody around you. The Milodan warrior is gone" + (fightHasCaptive() ? ", as is the Korgonne captive they were hauling off":"") + ". Your body aches and cries in pain whenever you try to move, but even when you do, you realize that your wrists are bound behind your back" + (!pc.isNaga() ? ", and your ankles to each other":", and your [pc.leg] up against your spine") + ". You’ve also been stripped of your belongings, including your weapons" + (!pc.isNude() ? " and armor":"") + ".");
 			output("\n\nWhat shakes you awake is the stomping of heavy, armored boots coming in your direction. You flinch with each one and gasp when a pair of Milodan feet enter your vision. You don’t muster the strength or the courage to lift your head up.");
 			output("\n\nSo he does it for you: a rough, forceful paw slaps you on the forehead, then grips you on your scalp, as he tips your head back. You wince in pain as your neck creaks through your injuries; you hiss through clenched teeth as you’re forced to look your assailant in the eye. From your angle, you make out his thick, sturdy form, pressing against his armor, and your eyes fall onto his own calm-but-stern gaze.");
 			output("\n\nHe kneels down to you, and his other paw crassly grips you by your jaw. He turns your head from side to side, and he tuts at your imperfections and bruises. You feel vulnerable and violated: this beast and his kin have defeated you, and now you’re on your bound as he inspects you the way you would a package of ground beef.");
@@ -450,7 +453,7 @@ public function wargiiBadEnds():void
 		{
 			//Continue here if the PC loses to a Milodan via lust
 			//output("\n\n{Your stance is wobbly and shaken - not because you’re wounded or you’re too exhausted to keep going, but because you’re just so horny. The Milodan in front of you look so delicious in their armor, and you can smell their overbearing musk from where you are. You close your eyes as you imagine you spending time with the warriors some other way, when you feel a blunt, stinging pain at the back of your head.}");
-			output("When you awake, you’re " + (currentLocation != "UVGR G8" ? "exactly where you were before you lost the fight":"back in the hold proper") + ", but there’s nobody around you. The Milodan warrior is gone" + (9999 == 0 ? ", as is the Korgonne captive they were hauling off":"") + ". You have a bit of a bump on your head, but otherwise, you’re fine – and <i>ragingly</i> horny. Although you’ve been stripped of your possessions, your limbs are unbound and free; apparently, the Milodan warrior you were facing off with did not consider you a threat." + ((pc.lust() >= pc.lustMax() || flags["WARGII_BADEND_FUCKED"] != undefined) ? " It probably had something to do with how you succumbed to your baser desires in the fight.":""));
+			output("When you awake, you’re " + (currentLocation != "UVGR G8" ? "exactly where you were before you lost the fight":"back in the hold proper") + ", but there’s nobody around you. The Milodan warrior is gone" + (fightHasCaptive() ? ", as is the Korgonne captive they were hauling off":"") + ". You have a bit of a bump on your head, but otherwise, you’re fine – and <i>ragingly</i> horny. Although you’ve been stripped of your possessions, your limbs are unbound and free; apparently, the Milodan warrior you were facing off with did not consider you a threat." + ((pc.lust() >= pc.lustMax() || flags["WARGII_BADEND_FUCKED"] != undefined) ? " It probably had something to do with how you succumbed to your baser desires in the fight.":""));
 			pc.lust(200);
 			if(currentLocation == "UVGR G8")
 			{
@@ -480,7 +483,7 @@ public function bsFemaleFeelbadWargiiBadEndForLustyThots2():void
 	clearOutput();
 	author("B");
 	showName("\nCAPTIVE");
-	showBust("MILO9999");
+	showBust("MILODANMALE_NUDE");
 	output("You’re led to the lowest level of the hold. You’re taken to a room where a number of the other korgonne are tied up and being held, but you’re led past them, deeper into the basement; the sound of the other whimpering korgonne and the general noise of conflict above you start to drown out with how deep into the ground you’re going.");
 	output("\n\nYour final destination is some sort of room you haven’t seen before, and is unoccupied, but has another milodan warrior, just as towering and sexy, standing near it. Your milodan lead and the guard converse for a moment; you don’t understand their language, but after a few sentences, things get a bit heated, until the standing guard gives up and walks away. As he does, he gives you a judgmental, evaluating eye.");
 	output("\n\nYou’re led into the room. It’s dark, too dark to see too deeply into it, but it’s warm and you don’t feel the dirt on your hands" + (pc.hasKnees() ? " and knees":"") + " as you crawl through it.");
@@ -504,7 +507,7 @@ public function bsFemaleFeelbadWargiiBadEndForLustyThots3():void
 	clearOutput();
 	author("B");
 	showName("\nCAPTIVE");
-	showBust("MILO9999");
+	showBust("MILODANMALE_NUDE");
 	output("It’s been three years since the subjugation of the Korg’ii hold. Or... you think. It could very well have been much longer. Time flies when you’re enjoying yourself as much as you have.");
 	output("\n\nEver since the night of their insurgence, you, and the rest of the Korgonne woman, have had the predictable job of being a pleasure puppet and breeding slave for your new Milodan masters. Well, in your case, the words ‘puppet’ and ‘slave’ might be a little inappropriate: you have never once resisted when a female grabs you by " + (pc.hasHair() ? "the hair":"the back of your head") + " and shoves you face-first into their crotch, or when a male knocks you over, in the middle of a crowded room, to mount you right then and there. You’ve been languid and receptive and <i>very</i> willing the entire time. And to make things easier for everyone, you’re absolutely <i>riddled</i> with Savicite piercings all over your body: in your [pc.ears]; your [pc.nipples]; your [pc.lips]; and anywhere they couldn’t pierce, they decorated with hoops and bracelets. You’re always horny, just the way you like it.");
 	output("\n\nYou learn to recognize some of the males as they approach you. Some of them display their dominance and comfort with you and your compliance by treating you roughly: they yank at your body and push you around and stick their dicks in orifices before you have a chance to brace yourself. Some of them are benevolent masters, treating you like a person rather than a rag; they don’t fuck you so much as mate with you, and they show their compassion by holding you, and kissing you, and going down on you to ensure your own orgasm." + (pc.hasCock() ? " Some of them would even give you a reach-around for your otherwise-totally-neglected [pc.cocks] as they pounded you. ":"") + "You’re open and willing to all of it... but, you decide, it’s okay to have preferences.");
@@ -538,7 +541,7 @@ public function bsFemaleFeelbadWargiiBadEnd2():void
 	clearOutput();
 	author("B");
 	showName("\nCAPTURED");
-	showBust("MILO9999");
+	showBust("MILODANMALE_NUDE");
 
 	output("You’re taken to an area at the bottom of the hold, where a number of Korgonne are tied up and being held. Your [pc.legOrLegs] " + (pc.legCount == 1 ? "is":"are") + " untied from your wrists" + (pc.legCount > 1 ? ", but themselves not from each other":"") + ", so you still couldn’t hope to run or fight, even if you had the strength. You all have the same afraid, beaten, exhausted expression: some of you are strong enough to keep from crying, while others don’t try to hide how afraid they are. And, you notice, all the Korgonne are women – they must be keeping the men in some other room. If they’re keeping them at all.");
 	output("\n\nYou’re kept down there for a few hours. The number of Korgonne with you pile up over time as the Milodan continue to sack the hold and capture its residents. Although there’s no door to your room, it’s guarded at all times by two Milodan huntsmen, each of them armed and armored with Pyrite Industries tech. The general noise of conflict – shots firing, metal clashing, warriors shouting, and occasionally the wet splash of something – floods into the room unimpeded the whole time, and every time you hear the footsteps of a Milodan warrior approaching, everyone in the room freezes in hesitation at what might come next, or who might be joining you.");
@@ -560,7 +563,7 @@ public function bsFemaleFeelbadWargiiBadEnd3():void
 	clearOutput();
 	author("B");
 	showName("\nCAPTURED");
-	showBust("MILO9999");
+	showBust("MILODANMALE_NUDE");
 	output("It’s been three years since then. Or... you think it has. Although you’ve since been given permission to wander the hold as you like, you rarely ever see the light of day, and timekeeping has been a bit of a challenge.");
 	output("\n\nEver since the night of their insurgence, you, and the rest of the korgonne women, have had the predictable job of being a pleasure puppet and breeding slave for your new milodan masters. The first few nights were the hardest: after the ‘war,’ all the milodan males were so hyped up from the combat, and there were so many more of them than there were Korgonne females (and yourself), that it was a solid two or three days of nonstop fucking.");
 	var miloboi:MilodanMale = new MilodanMale();
