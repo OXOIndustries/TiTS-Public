@@ -262,11 +262,11 @@ package classes.Items.Transformatives
 							target.vaginas[i].wetness--;
 							if (target.vaginas[i].wetness < 0) target.vaginas[i].wetness == 0;
 						}
-						if (target.elasticity > 1)
-						{
-							target.elasticity--;
-							if (target.elasticity < 1) target.elasticity == 1;
-						}
+					}
+					if (target.elasticity > 1)
+					{
+						target.elasticity--;
+						if (target.elasticity < 1) target.elasticity == 1;
 					}
 					changes++;
 				}
