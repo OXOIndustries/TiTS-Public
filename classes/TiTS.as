@@ -216,6 +216,7 @@
 		include "../includes/events/wargiiHold/milodanInfiltrator.as";
 		include "../includes/events/wargiiHold/milodanTemptress.as";
 		include "../includes/events/wargiiHold/milodanWarLion.as";
+		include "../includes/events/wargiiHold/milodanWarAlphaAndEpilogue.as";
 		include "../includes/events/wargiiHold/captiveStuff.as";
 		include "../includes/events/wargiiHold/wargiiHold.as";
 		include "../includes/events/wargiiHold/rooms.as";
@@ -626,7 +627,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.257";
+			version = "0.7.258";
 
 			//temporary nonsense variables.
 			temp = 0;
