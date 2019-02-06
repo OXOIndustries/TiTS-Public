@@ -506,7 +506,7 @@ public function kimberStoryMenu(lastStory:Function = null):void
 		else addButton(btnSlot++, story.label, story.func);
 	addButton(14, "Never Mind", kimberTalkMenu);
 	//if fourth item unlocked but quest hasn't been given, [Next]
-	if (btnSlot >= 4 && flags["KIMBER_QUEST"] == undefined)
+	if (btnSlot >= 4 && flags["KIMBER_OFFER"] == undefined)
 	{
 		clearMenu();
 		addButton(0, "Next", kimberOpenQuest);
