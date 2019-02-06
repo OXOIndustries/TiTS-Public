@@ -1,5 +1,6 @@
 package classes.Characters
 {
+	import classes.GLOBAL;
 	import classes.Creature;
 	import classes.Items.Melee.Fists;
 	import classes.Items.Protection.BasicShield;
@@ -63,26 +64,28 @@ package classes.Characters
 			this.lustRaw = 0;
 			this.isLustImmune = true;
 		
+			this.characterClass = GLOBAL.CLASS_MERCENARY;
 			this.level = 5;
 			this.XPRaw = bossXP();
 			this.credits = 0;
-			this.HPMod = 0;
+			this.HPMod = 50;
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 			
 			this.isUniqueInFight = true;
 		}
-		
 		override public function get bustDisplay():String
 		{
 			return "DAERWORM";
 		}
 
+		private var lastBite:int = 0;
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = hostileCreatures[0];
 			
-			if (CombatManager.getRoundCount()%3 + rand(2) > 1) return bite(target);
+			var rounds:int = CombatManager.getRoundCount();
+			if (rounds-lastBite + rand(2) > 2) return bite(target, rounds);
 			return claw(target);
 		}
 		
@@ -99,8 +102,9 @@ package classes.Characters
 			else output("You quickly step back to avoid the attack.");
 		}
 		
-		private function bite(target:Creature):void
+		private function bite(target:Creature, rounds:int):void
 		{
+			lastBite = rounds;
 			output("The daer worm rears its body up, nearly to the cavern ceiling, and thrusts its head forward, the giant maw snapping at you. ");
 			if (!combatMiss(this, target) && !blindMiss(this, target, true))
 			{
