@@ -1851,6 +1851,9 @@ package classes.GameData
 			// Endowment penalty
 			if(pc.hasStatusEffect("Egregiously Endowed")) difficulty++;
 
+			// Worm status
+			if(pc.hasStatusEffect("Hobbled")) difficulty += pc.statusEffectv1("Hobbled");
+
 			//Raise difficulty for having awkwardly huge genitalia/boobs sometime!
 			if(pc.energy() < (Math.round(pc.energyMax()/3)))
 			{

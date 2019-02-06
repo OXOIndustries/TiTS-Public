@@ -1286,6 +1286,11 @@ package classes.GameData
 			target.setStatusValue("Burning", 2, threshold);
 			if(tooltip != "") target.setStatusTooltip("Burning", tooltip);
 		}
+		public static function applyBurrow(target:Creature, tooltip:String = ""):void
+		{
+			target.createStatusEffect("Burrowed",0,0,0,0,false,"Icon_DefUp",StringUtil.capitalize(target.uniqueName) + (target.isPlural  ? " have " : " has") + " burrowed beneath the ground. You can see some faint trembling through the dirt, but there's no other sign of it.",true);
+			if(tooltip != "") target.setStatusTooltip("Burrowed", tooltip);
+		}
 		public static function applyDisarm(target:Creature, turns:int = 4, apply:Boolean = false, tooltip:String = ""):void
 		{
 			target.createStatusEffect("Disarmed", 4, 0, 0, 0, false, "Blocked", "Cannot use normal melee or ranged attacks!", true, 0, 0xFF0000);
@@ -1306,6 +1311,12 @@ package classes.GameData
 			if(apply) target.setStatusValue("Grappled", 2, chance);
 			else target.addStatusValue("Grappled", 2, chance);
 			if(tooltip != "") target.setStatusTooltip("Grappled", tooltip);
+		}
+		public static function applyHobble(target:Creature, intensity:int = 1, apply:Boolean = false):void
+		{
+			target.createStatusEffect("Hobbled",0,0,0,0,true,"","",true);
+			if(apply) target.setStatusValue("Hobbled", 1, intensity);
+			else target.addStatusValue("Hobbled",1 , intensity);
 		}
 		public static function applyLustStun(target:Creature, turns:int = 2, apply:Boolean = false, tooltip:String = ""):void
 		{
