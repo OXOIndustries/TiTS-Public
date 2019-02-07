@@ -65,8 +65,9 @@ public function helpOutDosedMaleKorg():void
 		if(pc.hasVagina()) addButton(1,"Get Licked",getOralFromDoggo,undefined,"Get Licked","Put his mouth to work.");
 		else addDisabledButton(1,"Get Licked","Get Licked","You should probably have a penis for this.");
 	}
-	//addButton(1,"Frot & Fuck",,undefined,"Frot & Fuck","");
-	//addButton(2,"Get Fucked",,undefined,"Get Fucked","");
+	if(pc.hasCock()) addButton(2,"Frot&Fuck",frotAndFuck,undefined,"Frot & Fuck","Rub dicks with the helpless hound. Maybe pound his butt while you’re at it.");
+	else addDisabledButton(2,"Frot&Fuck","Frot & Fuck","You need a dick for this.");
+	addButton(3,"Get Fucked",vaginaRouter,[getFuckedByKorgo,150,1,0,false],"Get Fucked","He’s pent up and needs a place to put all that cum. Why not in you?");
 }
 
 //[Oral]
@@ -289,7 +290,7 @@ public function getDeepthroughted(x:int):void
 		output(".");
 		if(pc.hasCocks()) output(" Your extra endowment" + (pc.totalCocks() > 2 ? "s mark":" marks") + " him in a musky [pc.cumColor] deposit of seed in gratitude, shooting out so much that you leave behind a huge reminder of your tryst.");
 	}
-	// PC lots of cum (6000-9999mL / add-on, no new PG)
+	// PC lots of cum (6000-10000mL / add-on, no new PG)
 	else if(pc.cumQ() < 10000)
 	{
 		output("\n\nYour groaning eruptions stretch the poor pup’s neck wide, every drop of your virile [pc.cumNoun] surging into his belly. The handsome hound gags and chokes, thrashing in the midst of his own orgasm and the air-locking flow of [pc.cumVisc] seed rushing back up around your rod and beyond his lips. [pc.CumFlavor] spunk dribbles down his chin like fresh spit and spills from his nose onto the top of your [pc.base " + x + "] as his abdominals disappear into a rounding cum-gut. His own orgasm ended long ago, ");
@@ -484,215 +485,444 @@ public function sixtyNineKorgoborgo(args:Array):void
 	quickLoot(poulties);
 }
 
-/*
 //[Frot & Fuck]
 // Tooltip: Rub dicks with the helpless hound. Maybe pound his butt while you’re at it.
 // Tooltip: You need a dick for this.
 // Requires Dick. No taurs or neuters.
 // Can fuck him if not too big.
-public function frotAndFuck(x:int):void
+public function frotAndFuck():void
 {
 	clearOutput();
 	showDosedKorgMale();
 	author("William");
+	var x:int = pc.biggestCockIndex();
+
 	output("Grinning, you tap his head, ");
 	//notExposed:
 	if(!pc.isCrotchExposed()) output("drawing his attention to the bulge in your [pc.crotchCoverUnder]. You pull them down, letting your [pc.cocks] pulse in the warm air");
 	else output("drawing his gaze to your [pc.cocks], pulse in the warm air");
 	output(". You grunt as you start to stroke your [pc.cocks] into raw readiness, captivating him with ");
-	{your smaller member{s}/your well-hung dick{s}/your monumental erection{s}} {and the [pc.balls] attached underneath {it/them}}. <i>“Mmm,”</i> you moan, sitting down and sliding his loincloth aside. {bimbo: <i>“This is the best way to share heat!”</i> you sing. /bro: <i>“I’ve got just the thing for you,”</i> you nod. /kind: <i>“This’ll do nicely, just follow my lead.”</i> You wink. /misch: <i>“Sit tight and watch. I’ll get ‘ya cooled off with me.”</i> /hard: <i>“If this isn’t your idea of fun then too bad,”</i> you glower at him.}");
-output("\n\nThe korgonne’s white braid flips over his shoulder when he lurches into you. He squirms helplessly against your [pc.cockType] pressure, taking hold of his cock and jerking without a second thought. You slap his hands away and plant your [pc.cocks] in their place. Hisses of pleasure whistle through your teeth and his, the sensitive spots beneath [pc.eachCockHead] enjoying the squeaky phallic amore.");
-output("\n\nTen inches of tapered korg-dick audibly rebound off your [pc.cockNoun], getting it harder and hotter for the bit of fun to come. Sticky precipitations develop at the summit of his and yours. Even this is enough to get him interested. He seems totally entranced by what’s going on - his tail is wagging dopily, and there’s a vacant lust in his eyes. {small: Inversely, a mixed rush of excitement and shame blows through you, manifesting as the brightest blush your [pc.face] can wear. <i>You’re not as big as him.</i> Your [pc.cockBiggest] is an inferior thing to his. You’re not sure if it’s the embarrassment that makes squirming against him so satisfying, or just how sensitive it is. /big: It’s hard not to be amused by the fact your [pc.cockBiggest] is larger than his. They bounce and sway against each other, making you both arch back with throaty, needy groans. //hyper: It’s fundamentally impossible not to smirk and laugh a bit. The blue doggie-dong attached to him is totally obscured by your own. Your cock grows so large that it keeps you pinned in place; it’s a [pc.cockColor] pillar of superlative maleness that could grapple his, show it how inferior it is. They wiggle playfully against one another, tickling you both to greater stiffness with heat and friction.} {balls: You heft your [pc.balls], encouraging him to do the same, eventually exchanging fondles of admiration. In his carnal dizziness, sinking his fingers into your {smooth/fluffy/scaly/chitiny/gooey} cumsack seems to be a captivation he can’t shake.}");
-output("\n\n<i>“{Strange heat-share... joyful soft-wet! / It’s a strange position, but the soft wetness is wonderful!}”</i> he barks out, visibly shuddering from the sensation. Tough fingers dig into your [pc.cockBiggestNoun], jerking up and down while you sway inwards and outwards, doing the same for him. The longer your [pc.hand] remains on his musky, leaking cock, the more he squirts It bulges in your hand, growing bigger.");
-output("\n\nHis knot has also inflated to such a width that the girth of his manhood is shamed by it. The veins there bloat the most, looking close to popping. The breeding bulb looks like it’s about to explode. His green eyes roll back when you caress its spherical shape, delighting in its unique texture. Your pup’s hips lurch upwards against your shaft and a tiny rope of cum fires out, {slapping across your [pc.chest] /hyper: plastering the underside of your inhumanly swollen dong}. Tongue lolling, he at least finds the sense to return the affection to your [pc.base]{, squeezing your [pc.knots] with the same amount of delicate respect}.");
-output("\n\n{readKorgCodex: Really, it makes sense that he’s so eager for any kind of sexual relief. If you were so pent-up that your knot had to act as excess storage for your cum, you’d accept any amount of depravity to vent that pressure.}");
-output("\n\nRolling your [pc.hips], you squirm against him in earnest, jerking each other off, {small: smiling embarrassedly /else: grinning goofily}. His muzzle broadens into a pleased and toothy countenance. For a moment, you wonder if he’s laughing under his breath. {multiCock: Being the accommodating hound he is, he finally lifts his other hand to tend your spare cock{s}, jerking them until they’re drooling as much as the one against his.}");
-output("\n\nThe slender canine rubs all that emerges from your cumslit{s} down your shaft{s}, shining them in accumulating moisture. Sometimes he can’t even keep up with it, but by now you’re leaking so much that it rolls down under its own weight. He’s happy to try and catch it all, and because of his lust-inundated faculties, you’re feeling harder, firmer, much more eager... and you start moving a lot faster.");
-output("\n\nA change in position would be ideal, but you could revel in this for a few moments longer. He bites into his lower lip when you reach over, {smallMed: grabbing both greased poles and jerking them in all cardinal directions like you’re piloting a ship, or are in the middle of an undisciplined dance. Whatever, the pleasure is real. /hyper: leaning you totem towards his face and burying his dick into the [pc.base]. You’d need to wrap a cock your size in a body to control its reckless fervor. It’s like an amazon crushing the waistbone of her weaker partner. You’re just grinding and leaking and grinding some more, pounding squishily against it.}");
-output("\n\n// Breasts and Lactation");
-output("\n\nHe reaches across to your [pc.breasts]{, sliding past your [pc.chestCover]} {filling/and fills} his hand with one boob, rolling it in a circle before pinching the [pc.nippleColor] teat capping it. One of your hands finds its way there too, undoing your solid, phallus-on-phallus balance for a second. {lactate: A thin stream of [pc.milkColor] [pc.milkNoun] shoots out of the double-squeezed tit, splashing your oh-so-hard dicks with a dash of [pc.milkVisc] warmth.}");
-output("\n\n// PC Dicknipple");
-output("\n\nConfusion and awe shine plainly in his alien eyes when your [pc.dickNipples] rouse thanks to the attention. You couldn’t hope to hold them back from this obscene session. Your nubs transform into rigid rods that destroy his concept of biology. They jut powerfully, aligning perfectly with his shocked eyes for seconds before throbbing and bouncing disoriented. What you’re doing is so tame compared to sex and you’ve gotten this hard from the prospect of cumming all over each other!");
-output("\n\nHe gingerly reaches for one, pumping it a few times before tracing the junction where smooth chest meets firm nipple-cock, galvanizing you with mammarian pleasure. He moves back to pumping it, wearing faces of gradual dismay and interest when it begins to leak precious pearls of tit-jizz. All this does for you is make you moan in delight as he becomes more comfortable with it, stroking your salacious organ with innate expertise.");
-output("\n\n// PC Lipples/Nipplecunts etc");
-output("\n\nAll the insistent pressing parts your [pc.nipple], and his thumb sinks into the wet {suck-/cunt-}hole. Your back arches in reaction, drawing the claw-tipped digit into the knuckle {and bathing it in a blast of [pc.milk]}. His eyes widen and he recoils in shock, though that yank only undulates reflexively. Your eyes cross and you lose grip in your fingers, squealing and shuddering, begging him to take advantage of your plush, mammarian tunnels.");
-output("\n\nHe stares at you for a split second, his concept of biology obliterated when his probing thumb is welcomed back into the velvety embrace of your modded tit. He watches your face the whole time for pangs and flares of joy, inching closer to give the other some much-needed attention.");
-output("\n\n// Merge");
-output("\n\nScooting forward, the howling hound {biped: scythes your legs in his /mono: wraps his legs around your [pc.hips]}, jerkily working his muscled thighs to hump and hump at your [pc.cockBiggest]. All he can manage now are whimpers. His hands are splayed behind him, balancing him for the phallic tribadism going on in the gap between your bellies. It’s almost like sex now, if the imaginary figure you were stuffing was invisible and not just a figment of fuck-drunk fantasy.");
-output("\n\n// PC small or medium dick");
-output("\n\nHe slams forward, reaching an arm under yours and tugging you into it. He’s been moaning huskily the whole time. Saliva rains in thick strings from his jaw, adding extra layers of lubrication to the action below. Your heart is beating like crazy and [pc.eachCock] {is/are} feeling more like {a jackhammer/jackhammers} than blood-hardened breeding tools. You slam forward, hard enough to push him back, beginning to realize there is some merit to the idea.");
-output("\n\nHe’s much too lost to pleasure, evident by the way his cock is gushing out musky satisfaction next to yours. There’s no way he could resist you planting his butt on your lap and spearing it. Sure, you could stay just like this. It feels great! But it could always feel better...");
-output("\n\n// PC hyper dick (automatically go to [Keep Frotting] scene, can’t pound his butt this big)");
-output("\n\nPerhaps it’s the drug that brings him closer to your [pc.cockBiggest]. There’s something about the way he continues to paw at its seemingly endless expanses of flesh that fattens it with greater desire; it surges forward stronger and stronger, finally throwing him back. Thick arcs of cum fly up, hanging in the air, and fall onto your urethral bulge. When a few droplets slip into your pricklips you bounce forward and bury him under the mast, no longer in control of your lust.");
-output("\n\nIt was bound to go down like this. What else is a dick this big good for, than being worshiped by a lesser male? To be ravished with attention from all sources until its erupting geyser-like jets of virile spunk? It doesn’t care where the pressure comes from. It doesn’t care what makes its abnormal veins swell. It just wants to leak and cum. And that’s what you’re about to give it.");
+	if(pc.cocks[x].cLength() < 8) output("your smaller member" + (pc.hasCocks() ? "s":""));
+	else if(pc.cocks[x].cLength() < 20) output("your well-hung dick" + (pc.hasCocks() ? "s":""));
+	else output("your monumental erection" + (pc.hasCocks() ? "s":""));
+	if(pc.balls > 0) output(" and the [pc.balls] attached underneath " + (!pc.hasCocks() ? "it":"them"));
+	output(". <i>“Mmm,”</i> you moan, sitting down and sliding his loincloth aside. ");
+	if(pc.isBimbo()) output("<i>“This is the best way to share heat!”</i> you sing.");
+	else if(pc.isBro()) output("<i>“I’ve got just the thing for you,”</i> you nod.");
+	else if(pc.isNice()) output("<i>“This’ll do nicely, just follow my lead.”</i> You wink.");
+	else if(pc.isMischievous()) output("<i>“Sit tight and watch. I’ll get ‘ya cooled off with me.”</i>");
+	else output("<i>“If this isn’t your idea of fun then too bad,”</i> you glower at him.");
 
-output("\n\n([Next] //if Hyper) [Fuck His Butt] [Keep Frotting]");
+	output("\n\nThe korgonne’s white braid flips over his shoulder when he lurches into you. He squirms helplessly against your [pc.cockType " + x + "] pressure, taking hold of his cock and jerking without a second thought. You slap his hands away and plant your [pc.cocks] in their place. Hisses of pleasure whistle through your teeth and his, the sensitive spots beneath [pc.eachCockHead] enjoying the squeaky phallic amore.");
+	output("\n\nTen inches of tapered korg-dick audibly rebound off your [pc.cockNoun " + x + "], getting it harder and hotter for the bit of fun to come. Sticky precipitations develop at the summit of his and yours. Even this is enough to get him interested. He seems totally entranced by what’s going on - his tail is wagging dopily, and there’s a vacant lust in his eyes. ");
+	if(pc.cocks[x].cLength() < 8) output("Inversely, a mixed rush of excitement and shame blows through you, manifesting as the brightest blush your [pc.face] can wear. <i>You’re not as big as him.</i> Your [pc.cock " + x + "] is an inferior thing to his. You’re not sure if it’s the embarrassment that makes squirming against him so satisfying, or just how sensitive it is.");
+	else if(pc.cocks[x].cLength() < 20) output("It’s hard not to be amused by the fact your [pc.cock " + x + "] is larger than his. They bounce and sway against each other, making you both arch back with throaty, needy groans.");
+	else output("It’s fundamentally impossible not to smirk and laugh a bit. The blue doggie-dong attached to him is totally obscured by your own. Your cock grows so large that it keeps you pinned in place; it’s a [pc.cockColor " + x + "] pillar of superlative maleness that could grapple his, show it how inferior it is. They wiggle playfully against one another, tickling you both to greater stiffness with heat and friction.");
+	if(pc.balls > 0) 
+	{
+		output(" You heft your [pc.balls], encouraging him to do the same, eventually exchanging fondles of admiration. In his carnal dizziness, sinking his fingers into your ");
+		if(pc.hasFur()) output("fluffy");
+		else if(pc.hasScales()) output("scaly");
+		else if(pc.hasChitin()) output("chitiny");
+		else if(pc.isGoo()) output("gooey");
+		else output("smooth");
+		output(" cumsack seems to be a captivation he can’t shake.");
+	}
+	output("\n\n<i>“" + (!korgiTranslate() ? "Strange heat-share... joyful soft-wet!":"It’s a strange position, but the soft wetness is wonderful!") + "”</i> he barks out, visibly shuddering from the sensation. Tough fingers dig into your [pc.cockNoun " + x + "], jerking up and down while you sway inwards and outwards, doing the same for him. The longer your [pc.hand] remains on his musky, leaking cock, the more he squirts It bulges in your hand, growing bigger.");
+	output("\n\nHis knot has also inflated to such a width that the girth of his manhood is shamed by it. The veins there bloat the most, looking close to popping. The breeding bulb looks like it’s about to explode. His green eyes roll back when you caress its spherical shape, delighting in its unique texture. Your pup’s hips lurch upwards against your shaft and a tiny rope of cum fires out, " + (pc.cocks[x].cLength() < 8 ? "slapping across your [pc.chest]":"plastering the underside of your inhumanly swollen dong") + ". Tongue lolling, he at least finds the sense to return the affection to your [pc.base " + x + "]" + (pc.hasKnot(x) ? ", squeezing your [pc.knots] with the same amount of delicate respect":"") + ".");
+	if(CodexManager.entryViewed("Korgonne")) output("\n\nReally, it makes sense that he’s so eager for any kind of sexual relief. If you were so pent-up that your knot had to act as excess storage for your cum, you’d accept any amount of depravity to vent that pressure.");
+	output("\n\nRolling your [pc.hips], you squirm against him in earnest, jerking each other off, ");
+	if(pc.cocks[x].cLength() < 8) output("smiling embarrassedly");
+	else output("grinning goofily");
+	output(". His muzzle broadens into a pleased and toothy countenance. For a moment, you wonder if he’s laughing under his breath.");
+	if(pc.hasCocks()) output(" Being the accommodating hound he is, he finally lifts his other hand to tend your spare cock" + (pc.cockTotal() > 2 ? "s":"") + ", jerking " + (pc.cockTotal() == 2 ? "it":"them") + " until they’re drooling as much as the one against his.");
+	output("\n\nThe slender canine rubs all that emerges from your cumslit" + (pc.hasCocks() ? "s":"") + " down your shaft" + (pc.hasCocks() ? "s":"") + ", shining them in accumulating moisture. Sometimes he can’t even keep up with it, but by now you’re leaking so much that it rolls down under its own weight. He’s happy to try and catch it all, and because of his lust-inundated faculties, you’re feeling harder, firmer, much more eager... and you start moving a lot faster.");
+	output("\n\nA change in position would be ideal, but you could revel in this for a few moments longer. He bites into his lower lip when you reach over, ");
+	if(pc.cocks[x].cLength() < 20) output("grabbing both greased poles and jerking them in all cardinal directions like you’re piloting a ship, or are in the middle of an undisciplined dance. Whatever, the pleasure is real.");
+	else output("leaning you totem towards his face and burying his dick into the [pc.base " + x + "]. You’d need to wrap a cock your size in a body to control its reckless fervor. It’s like an amazon crushing the waistbone of her weaker partner. You’re just grinding and leaking and grinding some more, pounding squishily against it.");//hyper
+	// Breasts and Lactation
+	if(pc.biggestTitSize() >= 1) output("\n\nHe reaches across to your [pc.breasts]" + (!pc.isChestExposed() ? ", sliding past your [pc.chestCover]":"") + " and fills his hand with one boob, rolling it in a circle before pinching the [pc.nippleColor] teat capping it. One of your hands finds its way there too, undoing your solid, phallus-on-phallus balance for a second." + (pc.isLactating() ? " A thin stream of [pc.milkColor] [pc.milkNoun] shoots out of the double-squeezed tit, splashing your oh-so-hard dicks with a dash of [pc.milkVisc] warmth.":""));
+	// PC Dicknipple
+	if(pc.hasDickNipples()) 
+	{
+		output("\n\nConfusion and awe shine plainly in his alien eyes when your [pc.dickNipples] rouse thanks to the attention. You couldn’t hope to hold them back from this obscene session. Your nubs transform into rigid rods that destroy his concept of biology. They jut powerfully, aligning perfectly with his shocked eyes for seconds before throbbing and bouncing disoriented. What you’re doing is so tame compared to sex and you’ve gotten this hard from the prospect of cumming all over each other!");
+		output("\n\nHe gingerly reaches for one, pumping it a few times before tracing the junction where smooth chest meets firm nipple-cock, galvanizing you with mammarian pleasure. He moves back to pumping it, wearing faces of gradual dismay and interest when it begins to leak precious pearls of tit-jizz. All this does for you is make you moan in delight as he becomes more comfortable with it, stroking your salacious organ with innate expertise.");
+	}
+	// PC Lipples/Nipplecunts etc
+	if(pc.hasFuckableNipples()) 
+	{
+		output("\n\nAll the insistent pressing parts your [pc.nipple], and his thumb sinks into the wet " + (pc.hasLipples() ? "suck-":"cunt-") + "hole. Your back arches in reaction, drawing the claw-tipped digit into the knuckle" + (pc.canMilkSquirt() ? " and bathing it in a blast of [pc.milk]":"") + ". His eyes widen and he recoils in shock, though that yank only undulates reflexively. Your eyes cross and you lose grip in your fingers, squealing and shuddering, begging him to take advantage of your plush, mammarian tunnels.");
+		output("\n\nHe stares at you for a split second, his concept of biology obliterated when his probing thumb is welcomed back into the velvety embrace of your modded tit. He watches your face the whole time for pangs and flares of joy, inching closer to give the other some much-needed attention.");
+	}
+	// Merge
+	output("\n\nScooting forward, the howling hound ");
+	if(pc.legCount > 1) output("scythes your legs in his");
+	else output("wraps his legs around your [pc.hips]");
+	output(", jerkily working his muscled thighs to hump and hump at your [pc.cock " + x + "]. All he can manage now are whimpers. His hands are splayed behind him, balancing him for the phallic tribadism going on in the gap between your bellies. It’s almost like sex now, if the imaginary figure you were stuffing was invisible and not just a figment of fuck-drunk fantasy.");
 
-output("\n\n[Fuck His Butt]");
-output("\n\n// Tooltip: Turn him around and fuck his butt.");
-output("\n\n// PC is offered this option if dick isn’t hyper.");
+	// PC small or medium dick
+	if(pc.cocks[x].cLength() < 20) 
+	{
+		output("\n\nHe slams forward, reaching an arm under yours and tugging you into it. He’s been moaning huskily the whole time. Saliva rains in thick strings from his jaw, adding extra layers of lubrication to the action below. Your heart is beating like crazy and [pc.eachCock] is feeling more like a jackhammer than blood-hardened breeding tool. You slam forward, hard enough to push him back, beginning to realize there is some merit to the idea.");
+		output("\n\nHe’s much too lost to pleasure, evident by the way his cock is gushing out musky satisfaction next to yours. There’s no way he could resist you planting his butt on your lap and spearing it. Sure, you could stay just like this. It feels great! But it could always feel better...");
+	}
+	// PC hyper dick (automatically go to [Keep Frotting] scene, can’t pound his butt this big)
+	else
+	{
+		output("\n\nPerhaps it’s the drug that brings him closer to your [pc.cock " + x + "]. There’s something about the way he continues to paw at its seemingly endless expanses of flesh that fattens it with greater desire; it surges forward stronger and stronger, finally throwing him back. Thick arcs of cum fly up, hanging in the air, and fall onto your urethral bulge. When a few droplets slip into your pricklips you bounce forward and bury him under the mast, no longer in control of your lust.");
+		output("\n\nIt was bound to go down like this. What else is a dick this big good for, than being worshiped by a lesser male? To be ravished with attention from all sources until its erupting geyser-like jets of virile spunk? It doesn’t care where the pressure comes from. It doesn’t care what makes its abnormal veins swell. It just wants to leak and cum. And that’s what you’re about to give it.");
+	}
+	//([Next] //if Hyper) [Fuck His Butt] [Keep Frotting]
+	processTime(10);
+	pc.lust(100);
+	clearMenu();
+	if(pc.cocks[x].cLength() >= 20) addButton(0,"Next",keepuFrottuWang,x);
+	else
+	{
+		if(pc.cockThatFits(1000) >= 0) addButton(0,"Fuck His Butt",penisRouter,[fuckDatKorgosButt,700,false,0],"Fuck His Butt","Turn him around and fuck his butt.");
+		else addDisabledButton(0,"Fuck His Butt","Fuck His Butt","You're too big for this.");
+		addButton(1,"Keep Frotting",keepuFrottuWang,x,"Keep Frotting","Shower each other in jizz.");
+	}
+}
 
-output("\n\nCaught unawares, the korg only gives a grunt of confusion when you grab his shoulders and twist him around. The chiseled canine slumps forward, his muscle-stacked butt clenching in the suddenness of lost pleasure. Lifting and pulling him back is an trivial effort, and your slimed cock easily lubricates the cleft of his backside, additional wads of pre oozing out to slicken his entrance. <i>“The other way wasn’t good enough,”</i> you chuckle. <i>“Just go with it.”</i>");
-output("\n\nHe’s not listening. Really, the only thing on his mind is cumming, and that’s what his fingers are trying to enable. You wipe your [pc.cockHead] across his asshole a few times before bucking forward, wasting no time and giving him none to adjust. Loud yelps and pleasured moans tear through his throat while your cock-tip languishes in the warm security of his cavern. You slide him down your shaft a few more inches, moistening his innards with more and more [pc.cumColor] pre, so much that it leaks back around.");
-output("\n\nStill stretching to your size, and still moaning to the tiniest pleasure-throbs, you drive into him all the way, placing a hand on his thigh to give a reassuring squeeze. Lava-like warmth spreads through your [pc.hips] and to the rest of you. His sphincter tightens around you, and the fresh smell of spunk hits your nostrils. Wet splatters of wasted seed bid you to look around - he’s clenched around his knot. He’s cumming already.");
-output("\n\nGuess he couldn’t hold back. Then you can’t stay passive either!");
-output("\n\nThe dosed-up korgonne looses a howl of delight when you slap your [pc.base] to his asscheeks, hammering home in a consistent yet somewhat awkward rhythm. You reach a [pc.hand] around to his belly and us the other to fondle his sack or cock, whichever it feels like. Even though he started cumming a little early, you know it’s not the entire load. He’s only just started the process of releasing it. Knowing you have a few precious seconds of enjoying the alien-pup’s hole, you savor the slide of your [pc.cock] through the frictious skin of his ring.");
-output("\n\nHe falls backwards into your shoulder, hyperventilating, his feet practically vibrating now. When he twitches, it sends a ripple inward like a communicative quiver. Pendulous up and down humps have his cock jacked by hand and yours squelching in the embrace of well-lubed korg-butt. With how easy it is for him to relax and pleasure you in return, you surmise that he mustn’t be a stranger to taking as well as giving.");
-output("\n\nCarefully, you lower your hands to his waist and interlock them, your knuckles rubbing against his tip on the rise and fall. You feverishly hump, feeling the steady trickle of dick-goo turn into a stream. The powerful need to orgasm wells up inside, budding at your core and blossoming through your limbs. It drives you to squeeze his belly, to grunt out praise for him, and to squeeze around his cock one last time.");
-output("\n\nYou try to hit every angle, searching for his cum-dispenser. You listen carefully to the notes in his blissed out voice until you strike his prostate on the most strenuous thrust. That’s where you aim from here. Loud <i>plat plat</i> noises sound when puddles of spooge form to the front of him. The sounds he’s making now could stir you to full mast later. As it is, they’re bringing you to the edge of full-body orgasm.");
-output("\n\nBoiling fluid surges up through you on the final thrust when you hilt your handsome hound. The korgonne’s voice moans into a climaxing roar of pleasure. It’s the voice of someone who is getting everything they want, who is happy with their place. {pcKnot: His final act is to reach down and squeeze your [pc.knot], perhaps expecting it works like his. It doesn’t lead to premature ejaculation, but it does speed along what’s already coming.}");
-output("\n\n// PC low cum (<=500mL)");
-output("\n\nYour [pc.cum] spurts out in short, thin ropes of superheated fluid. It’s nothing to write home about, but the spasms they cause when painting his butt are. Animalistic warmth spreads through the both of you while it quickly reduces to a dribbly goo that sloughs inside and stays inside, swished and swashed around by the twitching of your [pc.cockNoun]. {multiCock: [pc.CumColor] ropes of relief lasso across your partner’s face from your unslotted cock{s}.}");
-output("\n\n// PC oodles of cum (501-2999mL)");
-output("\n\n[pc.Cum], hot as magma, bulges through your cum-vein, rushing to fill the space its offered. You gently thrust your [pc.cockNoun] in and out, easing your load into his joy-inundated interior, plastering his walls and giving him an extra inch of gape when the column passes through your dilated urethra. His belly unfirms from your thick and unsedate climax, losing a bit of defined muscle as it rounds out to handle your load. {His body’s not doing too well at that either. Your extra dick{s} pump{s} out so much that it whirls into the air and rains down on his head.}");
-output("\n\n// PC plenty of cum (3000-5999mL)");
-output("\n\nEvery muscle in his body locks when your [pc.cock] swells with a urethral-bulging load of [pc.cum], depositing it right into his asshole and flooding him with [pc.cumColor] release. Bubbly-hot jizz washes throughout his interior and leaks back out. His abdominals disappear into a rounding gut, his body expanding in the only way possible to handle the volume of your fierce, keening orgasm. {Your extra dick{s} pump{s} out giant wads of gunk that batter against the ceiling and drip down, if they don’t just fall like [pc.cumVisc] bullets on his head.}");
-output("\n\n// PC lots of cum (6000-9999mL)");
-output("\n\nThe korgonne thrashes when you cum, the first pillar of [pc.cum] shooting into his gut with such force that he reacts as if struck by lightning. His arms flail outward and his legs bounce about like he’s a carelessly handled ragdoll. The fluffy cum-receptacle can do naught but moan, helpless to do anything but accept the muscle-erasing belly he’s becoming the bearer of. All the liquid weight you pour into him sags him downward, easily shaming his own orgasm. {Fat lines of [pc.cumNoun] fly into the air from your unholstered [pc.cocksLight], easily shattering against the ceiling and reversing momentum, raining in a [pc.cumVisc] shower on your fucktoy.}");
-output("\n\n// PC inhuman cum (>10000mL)");
-output("\n\nIn a gaspless moment, you can’t be blamed for screaming when your [pc.cock] erupts. Nor can he. A torrent of [pc.cum] powerful enough to launch into space breaks apart into a thousand droplets on the ‘ceiling’ above your [pc.cockHead], followed by another, and another. His whole body seizes and thrashes, falling limp in your [pc.arms] while you flood his interior with so much cum that it backwashes. You’re not even sure if the pup was able to cum at any point, having no sense to realize that his belly is rounding out beautifully with the sheer volume you’re pumping into him.");
-output("\n\nYou shudder as the bubbly-hot spooge washes back out around your [pc.base], coating your groin in [pc.cumColor] release. But you’re far from done. It’s easy to sympathize with him. He doesn’t look like he’s going to be doing any fighting in this position and... wait.");
-output("\n\nHe coughs, and a wad of [pc.cumNoun] launches from his maw, splattering next to the meager puddles of his own making. You shoot and shoot, and that repeats only once before you finally slump in the most amazing relief. {He’s not going to be washing off any time soon either. Your extra [pc.cocksLight] {has/have} output a gunk-tsunami that’s despoiled the corridor just as much as him with its ruddy runoff.}");
-output("\n\n// Merge");
-output("\n\nThe burden off your shoulders, you pull free of his sphincter{, a [pc.cumVisc] deluge following your spent prick}. The drugged dogman flops to the side{, cumVLotsInhuman: a column of stuff spurting obscenely from his barren bum}, huffing contentedly. You’re the first to find strength to stand, gathering your things.");
-output("\n\nIt takes him a little longer to get up than you though, but when he does, he’s all smiles, even with a rather sharp looking spear in his hand. <i>“{Thanking alien heat-share. Bettering feels now. Can fight! / Thank you for sharing heat, alien. I feel better than ever, enough to fight again!}”</i> he pounds his chest {while his big belly wobbles}, gathering up his belongings and presenting you with a well-wrapped poultice. <i>“For troubles,”</i> he smiles, tail wagging when you accept the medicine. He {runs/waddles} off before you can even consider responding.");
-output("\n\nNo reason to stick around now.");
-output("\n\n[Keep Frotting]");
-output("\n\n// Tooltip: Shower each other in jizz.");
-output("\n\n// PC is offered this option if dick isn’t hyper.");
-output("\n\n// PC is automatically brought to this if Hyper, via Next.");
+//[Fuck His Butt]
+// Tooltip: Turn him around and fuck his butt.
+// PC is offered this option if dick isn’t hyper.
+public function fuckDatKorgosButt(x:int):void
+{
+	clearOutput();
+	showDosedKorgMale();
+	author("William");
 
-output("\n\n// PC small/medium dick variant");
-output("\n\nIt <i>can</i> feel better.");
-output("\n\nYou shimmy up from your sitting position and lean forward like you’re fucking him missionary. He naturally reclines, no strength to assert back if he wanted. Your [pc.cock] stays planted on his{, and the {rest/other} inhabit the nooks and crannies of his matted fur}. He growls in equal parts relief and arousal, perhaps glad he doesn’t have to work so hard for the release your presence promises. <i>“Just sit back, then,”</i> you grunt, hiking his legs over your shoulders, <i>“...and let it happen.”</i>");
-output("\n\nThe swampy feeling of dribbling so much fluid onto him is nearly orgasmic. Letting all that liquid pressure puddle out onto him produces a satisfaction that strengthens the buzz of dominant service in the back of your mind. On each thrust now your prejizz is able to reach other parts of his body, curtaining him fully in a glistening sheen of [pc.cumColor] goo.");
-output("\n\nRubbing urethras so fervently has dilated your internal plumbing as well as a tight pussy or ass could. It’s just waiting for the cum to justify its state now. It’s ready to enjoy dousing him in it. Your mind can only come up with all sorts of images that show him painted in [pc.cum], all returning the same opinion: <i>it’s going to be hot.</i>");
-output("\n\nSlick and slimed fur catches your [pc.cocksLight] when you thrust too far and his puppy-prick rockets back up, standing like a defiant statue, waiting to be put back in its place. You do so, holding your tools together, responding eagerly to the subconscious desire to rut his price like some unfinished pocket pussy. {You grab {your other dick/all your dicks} together, bundling them together for the hungriest of your frenzied poundings, watching his ebony lips strain into an outspread O.}");
-output("\n\nHe lurches upwards in perfect sync with your forward swings, smashing into the stone below on the reverse. Drool rains from his cheeks and chin preceded by husky moans. You make sure to grind [pc.eachCockHead] against his {and your [pc.knots] to his}, maximizing his volume and enjoyment. Puddles of liquid musk are gushing out below, trickling in an unbroken cord.");
-output("\n\nFeverishly humping his crotch, you force your [pc.hips] into his like you’re trying to crater his pelvis. The overly-sensitive korg-man seems to purr now, copious lubricants trailing down his spongy fur. His nails curl into the rock at the same moment his spunk-hole visibly parts. It’s no surprise you turn your wild gropes to that too, palming over the urethral opening with roughness that makes him flail.");
-output("\n\nEventual lazy blinks warn you of his impending climax. He reaches for his knot, but just doesn’t have the strength in his saliva-slathered biceps to do anything with it. When you look into his unfocused green eyes, you can see only one thing: begging. He tries again to reach his knot, curling a thumb and finger around it, but falls to your heaving humps.");
-output("\n\nHe’s gotta cum. There’s no other way to discern this. Luckily, you’re right there with him. Your motions flag to more deliberate, thunderous strikes of [pc.raceShort] on korgonne{, hard enough for your [pc.sack] to bounce off his with tiny pangs of pain}. Audible slaps of body against body control the local air space. His tongue begins to loll, hanging from his steaming maw.");
-output("\n\nYou take firm hold of his dick and smush it into yours, fingers sliding down to the knot. When you squeeze it, you’re caught off guard by a veritable lance of cum squirting out with the twitch in his sloshing nutsack. The torrid wave arcs majestically through the air, breaking apart on and near the unconscious milodan just a few feet away. His screeching voice accomplishes the same for you... with a little languid caress of his paw to your [pc.base].");
-output("\n\n// PC low cum (<=500mL)");
-output("\n\nYour [pc.cocks] spurt out every drop of [pc.cum] you’ve got to give. It’s not much, and it’s certainly not as much as his. Gouts of [pc.cumVisc] seed paint his cheeks, his neck, and his pecs. It’s enough to paint his fur with a few highlights of erotic relief while the remainder of his dribbles out into his crotch.");
-output("\n\n// PC oodles of cum (501-2999mL)");
-output("\n\nHe can’t throw his arms up to block the thick wave of sperminess aimed at his chiseled frame. [pc.CumVisc] columns of spooge fire off from [pc.eachCock], sizzling in their travel through the crisp air towards their landing zone. From head to belly you paint him in a fresh layer of sloppy [pc.cumNoun], giving him a [pc.cumColor] set of highlights to enhance his coat of fur while you’re at it.");
-output("\n\n// PC plenty of cum (>=3000mL)");
-output("\n\nHis head jerks back when your [pc.cocks] hose him down with room-flooding amounts of [pc.cum]. It catches you both by surprise, and absorbs the runoff of his orgasm where it lands, creating a multi-colored pool on the stone and on the canvas of his torso. All the excess semen that his fur doesn’t absorb gives him a nice, deep pool of [pc.cumVisc] spunk to bathe in. But you don’t stop there. What would be a dribble for others is still gouts for you... gouts that batter his face and make a sloppier mess.");
-output("\n\n// Merge");
-output("\n\nFalling back in relief, you sigh airily, a line of [pc.cumNoun] falling from your swollen spunkslit to the floor before you stand on shaky legs. The korg-man rolls over and growls in pleasure, sounding fiercely satisfied. He stands and collects a spear from near the unconscious milodan, laughing that the fallen invader is stained in light of your heat sharing.");
-output("\n\n<i>“{Thankings to alien. All I needed more-know. Safe-stay! / Thank you, alien. I needed that more than you know. Stay safe!}”</i> he says, not caring at all that he looks like he’s spent a day working in the scummiest skank-hole you can imagine.");
-output("\n\nOnce you’ve gotten your things together, you get back to the task at hand.");
-output("\n\n// PC hyper dick variant");
-output("\n\nBreathing hard, you spring forward, fucking his entire body and making a mockery of his maleness with your {#-inches of/monstrous} length. With little else to do, his legs shoot up and wrap around the biggest shaft of a cock rippling with joy. Your mind gives up on abstractism, common sense, anything that’s taking up your mental capacity better used for all the pleasure produced by the worship of an overwhelmingly turgid [pc.cockNoun].");
-output("\n\nSandwiched between heated rock and delightfully hot dick, the korg man twists around your totem pole like a ritual dancer. His fluffy hugjob has your [pc.balls] working overtime, coaxed and persuaded to give out the largest pre-gumballs {it/they} can develop. {normalHyper: When those gigantic pearls emerge from your cumslit, they sag under their enormous weight and puddle in his mouth /hyperHyperSluttery: Tremendous pearls of pre, like mini stellar objects, dribble down your shaft and drip into his maw with obscene splashes}, forcing him to take enormous gulps of liquid musk. Your cock-drool spreads your signature through his body, accelerating the swiveling of his limbs. Brazen moans tickle the underside of your [pc.cockHeadBiggest] and muscly thighs massage most of its length with great verve.");
-output("\n\n[pc.CockBiggest] saws the korgonne in half while he lavishes it with oral attention. Erratic flexes and strains along your gigantic phallus inevitably lead to your dilating urethra stretching wider and your cumvein swelling with as much pre as the average terran can output cum. {Your ‘nads are swinging back and forth with such heavy motions that you can’t imagine how much [pc.cumNoun] you might shoot off now.}");
-output("\n\nLike an animal clinging to a branch, the gruff dog-man latches on to your phallic obelisk, beckoning you to speed up. You plunge through the cocksleeve that is his entire body with long, languid thrusts of your [pc.hips]. Jaw slackening, your tongue hangs from your mouth, pooling saliva that nearly makes you choke on the backstroke. Carnal sensations too much for your mind to take lock your muscles; your oral organ bounces and flings spittle on every pleasure-spiking thrust.");
-output("\n\nHis failing grips shift to squeeze your tip and [pc.base] possessively. You can’t tell what’s a finger and what’s the drag of a tongue anymore. If he wanted, he could probably tongue-fuck your urethra, stuff it with his tongue until all your pre backs up and hoses him down, floods this corridor. If he did that, you could probably ruin this invasion - and the hold, really - by filling it with [pc.cum].");
-output("\n\nHe’s a good enough cock-slut to make it happen.");
-output("\n\nPrecum is streaming down the stony corridor anyway, and he’s bathing in several inches of it. Just dribbling in dick-goo and lurching back and forth is a strange kind of pleasure, but one that’s got you whining over the top of his voice. So coated in your own juices, you can’t even feel his cock anymore beneath the warm numbness{, beenToNewTexas: beneath the thick layer of pre that’d have the entirety of New Texas lining up for a taste}.");
-output("\n\nBlunt-clawed fingers dig into your rigid veins, mapping the blood-filled schema of your colossal cock. The tiny blockages create pockets of pressure that relieve in widely different ways. The result is always the same though: you fall further and further apart, little more than a [pc.raceShort] controlled by a string. A big string: your [pc.cock]. It’s all that matters.");
-output("\n\nSavage cries echo down the corridor; you haul forwards and backwards, ripping your throat apart with all the air stored away in your lungs. Thunderous thrusts and quick yanks gush [pc.cumColor] goo that puddles and sparkles in what light there is, nicely complimenting what sloshes in on the next pump. Shudders interrupt your once consistent rhythm. You’re close to begging him to move faster, thinking it’s not enough to give you the release you crave...");
-output("\n\n...But he knows exactly what you both need.");
-output("\n\nHis now ponderous pace smothers and strains your [pc.cock] until it changes color. It throws your head back, dilating your [pc.eyes] to the size of dinner plates. Your mind focuses on the pleasure only a gifted hypersexual could know. Fully-soaked fur strokes noisily across the tenderest spots, and now you’re spurting thick gobs of pre. Glazed muscles tighten when they rub you in the opposite direction of your thrusts, smashing into a tighter vice.");
-output("\n\nYou can feel it now. Dizziness gives up the assault only to be replaced by ecstasy. You moan in mindless bliss as your {tendons burn /goo: body burns} from the reaming. You don’t care. <i>It’s coming.</i> You drill home, hard enough to feel your pre-pumping organ{s} preparing to pour out its lusts, to leave a mark befitting its size and shape. One last time and you slam in so hard his feet kick into your gut{ and your weighty sack rams into his crotch}. All the pressure releases at that dick-swelling moment, and the familiar wetness and tightness of orgasm saturates your soul in that reflexive impulse to ejaculate.");
-output("\n\n// low cum (<=500mL)");
-output("\n\nYou climax, but it’s pathetic. {silly: No offense, but that’s just silly! How can you have such big hot dick and only be able to trickle seed?} Compared to all the pre you’ve dribbled, [pc.cumVisc] [pc.cumNoun] drips from your leaky pipe, puddling weakly and washing away down the rivers of inferior liquids. Still, the korgonne cums at the same time, drowning out your [pc.cumColor] load at the top of his convulsing peak.");
-output("\n\n// oodles of cum (501-3999mL)");
-output("\n\n[pc.Cum] spurts out directly onto the korgonne’s head. He can move, but you can’t, and he uses that privilege to catch your [pc.cumVisc] orgasm in different places. A particularly fat line paints his elongated snout. The most of it ends up on his tongue, and when he swallows he spasms beneath your cock, squirting creamy white puppy-seed all over himself. And the underside of your bursting rod.");
-output("\n\n// plenty of cum (4000-9999mL)");
-output("\n\nThe hapless hound couldn’t have asked for a better partner. You share your heat in long, heavy ropes that spatter down the hallway. The [pc.cumNoun] splatters can be heard from the other end. When you get your dick under control, the rest burst out across his face and drown him in a pool of [pc.cumVisc] [pc.cumColor] spooge. His ecstatic scream is muffled by the waves of spooge spraying in nearly unbroken streams from your rod, pooling around him, pooling on him, flowing from the declinations of his [pc.cumNoun]-basted form.");
-output("\n\n// inhuman cum (>10000mL, add-on to plenty)");
-output("\n\nYou’re still climaxing. You’ve gone from spraying fuckjuice to just blasting it in geyser-like eruptions. He sprawls in the sloughing puddle building up around his body. The source is your dick. It comes from your straining urethra, it rains from the ceiling like ambrosia from the korgonne deity. He tries to gulp down the [pc.cumFlavor] jism that lands in his hoarsened mouth. You fall backwards, and the last massive pulses completely web him in your outpourings. If you didn’t know better, you would think this is some monstrous experiment gone wrong.");
-output("\n\nBut really, it’s just a funny-talking dog cocooned in spunk.");
-output("\n\n// Merge");
-output("\n\nSatisfied, you let your [pc.cocks] go flaccid, making ready to move on. The sexy korg-man looks up to you after wiping the spooge from his eyes. <i>“{Perfect helpings... Safe-staying, alien... / It was perfect... stay safe alien...}”</i> he groans, content to stew there in your sex-scent. <i>“Take medicine,”</i> he points to one of his scattered belongings, singling out a well-wrapped poultice.");
-output("\n\nFine by you.");
+	output("Caught unawares, the korg only gives a grunt of confusion when you grab his shoulders and twist him around. The chiseled canine slumps forward, his muscle-stacked butt clenching in the suddenness of lost pleasure. Lifting and pulling him back is an trivial effort, and your slimed cock easily lubricates the cleft of his backside, additional wads of pre oozing out to slicken his entrance. <i>“The other way wasn’t good enough,”</i> you chuckle. <i>“Just go with it.”</i>");
+	output("\n\nHe’s not listening. Really, the only thing on his mind is cumming, and that’s what his fingers are trying to enable. You wipe your [pc.cockHead " + x + "] across his asshole a few times before bucking forward, wasting no time and giving him none to adjust. Loud yelps and pleasured moans tear through his throat while your cock-tip languishes in the warm security of his cavern. You slide him down your shaft a few more inches, moistening his innards with more and more [pc.cumColor] pre, so much that it leaks back around.");
+	output("\n\nStill stretching to your size, and still moaning to the tiniest pleasure-throbs, you drive into him all the way, placing a hand on his thigh to give a reassuring squeeze. Lava-like warmth spreads through your [pc.hips] and to the rest of you. His sphincter tightens around you, and the fresh smell of spunk hits your nostrils. Wet splatters of wasted seed bid you to look around - he’s clenched around his knot. He’s cumming already.");
+	output("\n\nGuess he couldn’t hold back. Then you can’t stay passive either!");
+	output("\n\nThe dosed-up korgonne looses a howl of delight when you slap your [pc.base " + x + "] to his asscheeks, hammering home in a consistent yet somewhat awkward rhythm. You reach a [pc.hand] around to his belly and us the other to fondle his sack or cock, whichever it feels like. Even though he started cumming a little early, you know it’s not the entire load. He’s only just started the process of releasing it. Knowing you have a few precious seconds of enjoying the alien-pup’s hole, you savor the slide of your [pc.cock " + x + "] through the frictious skin of his ring.");
+	pc.cockChange();
+	output("\n\nHe falls backwards into your shoulder, hyperventilating, his feet practically vibrating now. When he twitches, it sends a ripple inward like a communicative quiver. Pendulous up and down humps have his cock jacked by hand and yours squelching in the embrace of well-lubed korg-butt. With how easy it is for him to relax and pleasure you in return, you surmise that he mustn’t be a stranger to taking as well as giving.");
+	output("\n\nCarefully, you lower your hands to his waist and interlock them, your knuckles rubbing against his tip on the rise and fall. You feverishly hump, feeling the steady trickle of dick-goo turn into a stream. The powerful need to orgasm wells up inside, budding at your core and blossoming through your limbs. It drives you to squeeze his belly, to grunt out praise for him, and to squeeze around his cock one last time.");
+	output("\n\nYou try to hit every angle, searching for his cum-dispenser. You listen carefully to the notes in his blissed out voice until you strike his prostate on the most strenuous thrust. That’s where you aim from here. Loud <i>plat plat</i> noises sound when puddles of spooge form to the front of him. The sounds he’s making now could stir you to full mast later. As it is, they’re bringing you to the edge of full-body orgasm.");
+	output("\n\nBoiling fluid surges up through you on the final thrust when you hilt your handsome hound. The korgonne’s voice moans into a climaxing roar of pleasure. It’s the voice of someone who is getting everything they want, who is happy with their place." + (pc.hasKnot(x) ? " His final act is to reach down and squeeze your [pc.knot " + x + "], perhaps expecting it works like his. It doesn’t lead to premature ejaculation, but it does speed along what’s already coming.":""));
+	// PC low cum (<=500mL)
+	if(pc.cumQ() < 500)
+	{
+		output("\n\nYour [pc.cum] spurts out in short, thin ropes of superheated fluid. It’s nothing to write home about, but the spasms they cause when painting his butt are. Animalistic warmth spreads through the both of you while it quickly reduces to a dribbly goo that sloughs inside and stays inside, swished and swashed around by the twitching of your [pc.cockNoun " + x + "].");
+		if(pc.hasCocks())
+		{
+			output(" [pc.CumColor] ropes of relief lasso across your partner’s face from your unslotted cock" + (pc.cockTotal() > 2 ? "s":"") + ".");
+		}
+	}
+	// PC oodles of cum (501-2999mL)
+	else if(pc.cumQ() < 3000) 
+	{
+		output("\n\n[pc.Cum], hot as magma, bulges through your cum-vein, rushing to fill the space its offered. You gently thrust your [pc.cockNoun " + x + "] in and out, easing your load into his joy-inundated interior, plastering his walls and giving him an extra inch of gape when the column passes through your dilated urethra. His belly unfirms from your thick and unsedate climax, losing a bit of defined muscle as it rounds out to handle your load.");
+		if(pc.hasCocks()) output(" His body’s not doing too well at that either. Your extra dick" + (pc.cockTotal() > 2 ? "s pump":" pumps") + " out so much that it whirls into the air and rains down on his head.");
+	}
+	// PC plenty of cum (3000-5999mL)
+	else if(pc.cumQ() < 6000)
+	{
+		output("\n\nEvery muscle in his body locks when your [pc.cock " + x + "] swells with a urethral-bulging load of [pc.cum], depositing it right into his asshole and flooding him with [pc.cumColor] release. Bubbly-hot jizz washes throughout his interior and leaks back out. His abdominals disappear into a rounding gut, his body expanding in the only way possible to handle the volume of your fierce, keening orgasm.");
+		if(pc.hasCocks()) output(" Your extra dick" + (pc.hasCocks() ? "s pump":" pumps") + " out giant wads of gunk that batter against the ceiling and drip down, if they don’t just fall like [pc.cumVisc] bullets on his head.");
+	}
+	// PC lots of cum (6000-10000mL)
+	else if(pc.cumQ() < 10000)
+	{
+		output("\n\nThe korgonne thrashes when you cum, the first pillar of [pc.cum] shooting into his gut with such force that he reacts as if struck by lightning. His arms flail outward and his legs bounce about like he’s a carelessly handled ragdoll. The fluffy cum-receptacle can do naught but moan, helpless to do anything but accept the muscle-erasing belly he’s becoming the bearer of. All the liquid weight you pour into him sags him downward, easily shaming his own orgasm.");
+		if(pc.hasCocks()) output(" Fat lines of [pc.cumNoun] fly into the air from your unholstered [pc.cocksLight], easily shattering against the ceiling and reversing momentum, raining in a [pc.cumVisc] shower on your fucktoy.");
+	}
+	// PC inhuman cum (>10000mL)
+	else
+	{
+		output("\n\nIn a gaspless moment, you can’t be blamed for screaming when your [pc.cock " + x + "] erupts. Nor can he. A torrent of [pc.cum] powerful enough to launch into space breaks apart into a thousand droplets on the ‘ceiling’ above your [pc.cockHead " + x + "], followed by another, and another. His whole body seizes and thrashes, falling limp in your [pc.arms] while you flood his interior with so much cum that it backwashes. You’re not even sure if the pup was able to cum at any point, having no sense to realize that his belly is rounding out beautifully with the sheer volume you’re pumping into him.");
+		output("\n\nYou shudder as the bubbly-hot spooge washes back out around your [pc.base " + x + "], coating your groin in [pc.cumColor] release. But you’re far from done. It’s easy to sympathize with him. He doesn’t look like he’s going to be doing any fighting in this position and... wait.");
+		output("\n\nHe coughs, and a wad of [pc.cumNoun] launches from his maw, splattering next to the meager puddles of his own making. You shoot and shoot, and that repeats only once before you finally slump in the most amazing relief.");
+		if(pc.hasCocks()) output(" He’s not going to be washing off any time soon either. Your extra [pc.cocksLight] " + (!pc.hasCocks() ? "has":"have") + " output a gunk-tsunami that’s despoiled the corridor just as much as him with its ruddy runoff.");
+	}
+	// Merge
+	output("\n\nThe burden off your shoulders, you pull free of his sphincter" + (pc.cumQ() >= 3000 ? ", a [pc.cumVisc] deluge following your spent prick":"") + ". The drugged dogman flops to the side" + (pc.cumQ() >= 10000 ? ", a column of stuff spurting obscenely from his barren bum":"") + ", huffing contentedly. You’re the first to find strength to stand, gathering your things.");
+	output("\n\nIt takes him a little longer to get up than you though, but when he does, he’s all smiles, even with a rather sharp looking spear in his hand. <i>“" + (!korgiTranslate() ? "Thanking alien heat-share. Bettering feels now. Can fight!":"Thank you for sharing heat, alien. I feel better than ever, enough to fight again!") + "”</i> he pounds his chest" + (pc.cumQ() >= 6000 ? " while his big belly wobbles":"") + ", gathering up his belongings and presenting you with a well-wrapped poultice. <i>“For troubles,”</i> he smiles, tail wagging when you accept the medicine. He " + (pc.cumQ() < 6000 ? "runs":"waddles") + " off before you can even consider responding.");
+	output("\n\nNo reason to stick around now.\n\n");
+	processTime(15);
+	pc.orgasm();
+	var poulties:HealingPoultice = new HealingPoultice();
+	poulties.quantity = 2;
+	quickLoot(poulties);
+}
 
+//[Keep Frotting]
+// Tooltip: Shower each other in jizz.
+// PC is offered this option if dick isn’t hyper.
+// PC is automatically brought to this if Hyper, via Next.
+public function keepuFrottuWang(x:int):void
+{
+	clearOutput();
+	showDosedKorgMale();
+	author("William");
+	// PC small/medium dick variant
+	if(pc.cocks[x].cLength() < 20)
+	{
+		output("It <i>can</i> feel better.");
+		output("\n\nYou shimmy up from your sitting position and lean forward like you’re fucking him missionary. He naturally reclines, no strength to assert back if he wanted. Your [pc.cock] stays planted on his");
+		if(pc.hasCocks()) output(", and the " + (pc.cockTotal() > 2 ? "rest":"other") + " inhabit the nooks and crannies of his matted fur");
+		output(". He growls in equal parts relief and arousal, perhaps glad he doesn’t have to work so hard for the release your presence promises. <i>“Just sit back, then,”</i> you grunt, hiking his legs over your shoulders, <i>“...and let it happen.”</i>");
+		output("\n\nThe swampy feeling of dribbling so much fluid onto him is nearly orgasmic. Letting all that liquid pressure puddle out onto him produces a satisfaction that strengthens the buzz of dominant service in the back of your mind. On each thrust now your prejizz is able to reach other parts of his body, curtaining him fully in a glistening sheen of [pc.cumColor] goo.");
+		output("\n\nRubbing urethras so fervently has dilated your internal plumbing as well as a tight pussy or ass could. It’s just waiting for the cum to justify its state now. It’s ready to enjoy dousing him in it. Your mind can only come up with all sorts of images that show him painted in [pc.cum], all returning the same opinion: <i>it’s going to be hot.</i>");
+		output("\n\nSlick and slimed fur catches your [pc.cocksLight] when you thrust too far and his puppy-prick rockets back up, standing like a defiant statue, waiting to be put back in its place. You do so, holding your tools together, responding eagerly to the subconscious desire to rut his price like some unfinished pocket pussy.");
+		if(pc.hasCocks()) output(" You grab " + (pc.cockTotal() == 2 ? "your other dick":"all your dicks") + " together, bundling them together for the hungriest of your frenzied poundings, watching his ebony lips strain into an outspread O.");
+		output("\n\nHe lurches upwards in perfect sync with your forward swings, smashing into the stone below on the reverse. Drool rains from his cheeks and chin preceded by husky moans. You make sure to grind [pc.eachCockHead] against his" + (pc.hasKnot(x) ? " and your [pc.knots] to his":"") + ", maximizing his volume and enjoyment. Puddles of liquid musk are gushing out below, trickling in an unbroken cord.");
+		output("\n\nFeverishly humping his crotch, you force your [pc.hips] into his like you’re trying to crater his pelvis. The overly-sensitive korg-man seems to purr now, copious lubricants trailing down his spongy fur. His nails curl into the rock at the same moment his spunk-hole visibly parts. It’s no surprise you turn your wild gropes to that too, palming over the urethral opening with roughness that makes him flail.");
+		output("\n\nEventual lazy blinks warn you of his impending climax. He reaches for his knot, but just doesn’t have the strength in his saliva-slathered biceps to do anything with it. When you look into his unfocused green eyes, you can see only one thing: begging. He tries again to reach his knot, curling a thumb and finger around it, but falls to your heaving humps.");
+		output("\n\nHe’s gotta cum. There’s no other way to discern this. Luckily, you’re right there with him. Your motions flag to more deliberate, thunderous strikes of [pc.raceShort] on korgonne" + (pc.balls > 0 ? ", hard enough for your [pc.sack] to bounce off his with tiny pangs of pain":"") + ". Audible slaps of body against body control the local air space. His tongue begins to loll, hanging from his steaming maw.");
+		output("\n\nYou take firm hold of his dick and smush it into yours, fingers sliding down to the knot. When you squeeze it, you’re caught off guard by a veritable lance of cum squirting out with the twitch in his sloshing nutsack. The torrid wave arcs majestically through the air, breaking apart on and near the unconscious milodan just a few feet away. His screeching voice accomplishes the same for you... with a little languid caress of his paw to your [pc.base].");
+		// PC low cum (<=500mL)
+		if(pc.cumQ() <= 500)
+		{
+			output("\n\nYour [pc.cocks] spurt out every drop of [pc.cum] you’ve got to give. It’s not much, and it’s certainly not as much as his. Gouts of [pc.cumVisc] seed paint his cheeks, his neck, and his pecs. It’s enough to paint his fur with a few highlights of erotic relief while the remainder of his dribbles out into his crotch.");
+		}
+		// PC oodles of cum (501-2999mL)
+		else if(pc.cumQ() < 3000)
+		{
+			output("\n\nHe can’t throw his arms up to block the thick wave of sperminess aimed at his chiseled frame. [pc.CumVisc] columns of spooge fire off from [pc.eachCock], sizzling in their travel through the crisp air towards their landing zone. From head to belly you paint him in a fresh layer of sloppy [pc.cumNoun], giving him a [pc.cumColor] set of highlights to enhance his coat of fur while you’re at it.");
+		}
+		// PC plenty of cum (>=3000mL)
+		else output("\n\nHis head jerks back when your [pc.cocks] hose him down with room-flooding amounts of [pc.cum]. It catches you both by surprise, and absorbs the runoff of his orgasm where it lands, creating a multi-colored pool on the stone and on the canvas of his torso. All the excess semen that his fur doesn’t absorb gives him a nice, deep pool of [pc.cumVisc] spunk to bathe in. But you don’t stop there. What would be a dribble for others is still gouts for you... gouts that batter his face and make a sloppier mess.");
+		// Merge
+		output("\n\nFalling back in relief, you sigh airily, a line of [pc.cumNoun] falling from your swollen spunkslit to the floor before you stand on shaky legs. The korg-man rolls over and growls in pleasure, sounding fiercely satisfied. He stands and collects a spear from near the unconscious milodan, laughing that the fallen invader is stained in light of your heat sharing.");
+		output("\n\n<i>“" + !(korgiTranslate() ? "Thankings to alien. All I needed more-know. Safe-stay!":"Thank you, alien. I needed that more than you know. Stay safe!") + "”</i> he says, not caring at all that he looks like he’s spent a day working in the scummiest skank-hole you can imagine.");
+		output("\n\nOnce you’ve gotten your things together, you get back to the task at hand.");
+	}
+	// PC hyper dick variant
+	else
+	{
+		output("\n\nBreathing hard, you spring forward, fucking his entire body and making a mockery of his maleness with your ");
+		if(pc.cocks[x].cLength() < 36) output(num2Text(pc.cocks[x].cLength()) + "-inches of");
+		else output("monstrous");
+		output(" length. With little else to do, his legs shoot up and wrap around the biggest shaft of a cock rippling with joy. Your mind gives up on abstractism, common sense, anything that’s taking up your mental capacity better used for all the pleasure produced by the worship of an overwhelmingly turgid [pc.cockNoun].");
+		output("\n\nSandwiched between heated rock and delightfully hot dick, the korg man twists around your totem pole like a ritual dancer. His fluffy hugjob has your [pc.balls] working overtime, coaxed and persuaded to give out the largest pre-gumballs " + (pc.balls == 1 ? "it":"they") + " can develop.");
+		if(pc.cocks[x].cLength() < 36) output(" When those gigantic pearls emerge from your cumslit, they sag under their enormous weight and puddle in his mouth");
+		else output(" Tremendous pearls of pre, like mini stellar objects, dribble down your shaft and drip into his maw with obscene splashes");
+		output(", forcing him to take enormous gulps of liquid musk. Your cock-drool spreads your signature through his body, accelerating the swiveling of his limbs. Brazen moans tickle the underside of your [pc.cockHeadBiggest] and muscly thighs massage most of its length with great verve.");
+		output("\n\n[pc.CockBiggest] saws the korgonne in half while he lavishes it with oral attention. Erratic flexes and strains along your gigantic phallus inevitably lead to your dilating urethra stretching wider and your cumvein swelling with as much pre as the average terran can output cum." + (pc.balls > 1 ? " Your ‘nads are swinging back and forth with such heavy motions that you can’t imagine how much [pc.cumNoun] you might shoot off now.":""));
+		output("\n\nLike an animal clinging to a branch, the gruff dog-man latches on to your phallic obelisk, beckoning you to speed up. You plunge through the cocksleeve that is his entire body with long, languid thrusts of your [pc.hips]. Jaw slackening, your tongue hangs from your mouth, pooling saliva that nearly makes you choke on the backstroke. Carnal sensations too much for your mind to take lock your muscles; your oral organ bounces and flings spittle on every pleasure-spiking thrust.");
+		output("\n\nHis failing grips shift to squeeze your tip and [pc.base] possessively. You can’t tell what’s a finger and what’s the drag of a tongue anymore. If he wanted, he could probably tongue-fuck your urethra, stuff it with his tongue until all your pre backs up and hoses him down, floods this corridor. If he did that, you could probably ruin this invasion - and the hold, really - by filling it with [pc.cum].");
+		output("\n\nHe’s a good enough cock-slut to make it happen.");
+		output("\n\nPrecum is streaming down the stony corridor anyway, and he’s bathing in several inches of it. Just dribbling in dick-goo and lurching back and forth is a strange kind of pleasure, but one that’s got you whining over the top of his voice. So coated in your own juices, you can’t even feel his cock anymore beneath the warm numbness");
+		if(flags["LANDED_ON_TEXAS"] != undefined) output(" beneath the thick layer of pre that’d have the entirety of New Texas lining up for a taste");
+		output(".");
+		output("\n\nBlunt-clawed fingers dig into your rigid veins, mapping the blood-filled schema of your colossal cock. The tiny blockages create pockets of pressure that relieve in widely different ways. The result is always the same though: you fall further and further apart, little more than a [pc.raceShort] controlled by a string. A big string: your [pc.cock]. It’s all that matters.");
+		output("\n\nSavage cries echo down the corridor; you haul forwards and backwards, ripping your throat apart with all the air stored away in your lungs. Thunderous thrusts and quick yanks gush [pc.cumColor] goo that puddles and sparkles in what light there is, nicely complimenting what sloshes in on the next pump. Shudders interrupt your once consistent rhythm. You’re close to begging him to move faster, thinking it’s not enough to give you the release you crave...");
+		output("\n\n...But he knows exactly what you both need.");
+		output("\n\nHis now ponderous pace smothers and strains your [pc.cock] until it changes color. It throws your head back, dilating your [pc.eyes] to the size of dinner plates. Your mind focuses on the pleasure only a gifted hypersexual could know. Fully-soaked fur strokes noisily across the tenderest spots, and now you’re spurting thick gobs of pre. Glazed muscles tighten when they rub you in the opposite direction of your thrusts, smashing into a tighter vice.");
+		output("\n\nYou can feel it now. Dizziness gives up the assault only to be replaced by ecstasy. You moan in mindless bliss as your " + (!pc.isGoo() ? "tendons burn":"body burns") + " from the reaming. You don’t care. <i>It’s coming.</i> You drill home, hard enough to feel your pre-pumping organ" + (pc.hasCocks() ? "s":"") + " preparing to pour out its lusts, to leave a mark befitting its size and shape. One last time and you slam in so hard his feet kick into your gut" + (pc.balls > 0 && pc.ballDiameter() >= 2.5 ? " and your weighty sack rams into his crotch":"") + ". All the pressure releases at that dick-swelling moment, and the familiar wetness and tightness of orgasm saturates your soul in that reflexive impulse to ejaculate.");
+		// low cum (<=500mL)
+		if(pc.cumQ() <= 500)
+		{
+			output("\n\nYou climax, but it’s pathetic. " + (silly ? "No offense, but that’s just silly! How can you have such big hot dick and only be able to trickle seed? ":"") + "Compared to all the pre you’ve dribbled, [pc.cumVisc] [pc.cumNoun] drips from your leaky pipe, puddling weakly and washing away down the rivers of inferior liquids. Still, the korgonne cums at the same time, drowning out your [pc.cumColor] load at the top of his convulsing peak.");
+		}
+		// oodles of cum (501-3999mL)
+		else if(pc.cumQ() < 4000)
+		{
+			output("\n\n[pc.Cum] spurts out directly onto the korgonne’s head. He can move, but you can’t, and he uses that privilege to catch your [pc.cumVisc] orgasm in different places. A particularly fat line paints his elongated snout. The most of it ends up on his tongue, and when he swallows he spasms beneath your cock, squirting creamy white puppy-seed all over himself. And the underside of your bursting rod.");
+		}
+		// plenty of cum (4000-10000mL)
+		else if(pc.cumQ() < 10000) output("\n\nThe hapless hound couldn’t have asked for a better partner. You share your heat in long, heavy ropes that spatter down the hallway. The [pc.cumNoun] splatters can be heard from the other end. When you get your dick under control, the rest burst out across his face and drown him in a pool of [pc.cumVisc] [pc.cumColor] spooge. His ecstatic scream is muffled by the waves of spooge spraying in nearly unbroken streams from your rod, pooling around him, pooling on him, flowing from the declinations of his [pc.cumNoun]-basted form.");
+		// inhuman cum (>10000mL, add-on to plenty)
+		if(pc.cumQ() >= 10000)
+		{
+			output("\n\nYou’re still climaxing. You’ve gone from spraying fuckjuice to just blasting it in geyser-like eruptions. He sprawls in the sloughing puddle building up around his body. The source is your dick. It comes from your straining urethra, it rains from the ceiling like ambrosia from the korgonne deity. He tries to gulp down the [pc.cumFlavor] jism that lands in his hoarsened mouth. You fall backwards, and the last massive pulses completely web him in your outpourings. If you didn’t know better, you would think this is some monstrous experiment gone wrong.");
+			output("\n\nBut really, it’s just a funny-talking dog cocooned in spunk.");
+		}
+		// Merge
+		output("\n\nSatisfied, you let your [pc.cocks] go flaccid, making ready to move on. The sexy korg-man looks up to you after wiping the spooge from his eyes. <i>“" + (!korgiTranslate() ? "Perfect helpings... Safe-staying, alien...":"It was perfect... stay safe alien...") + "”</i> he groans, content to stew there in your sex-scent. <i>“Take medicine,”</i> he points to one of his scattered belongings, singling out a well-wrapped poultice.");
+		output("\n\nFine by you.\n\n");
+	}
+	processTime(12);
+	pc.orgasm();
+	var poulties:HealingPoultice = new HealingPoultice();
+	poulties.quantity = 2;
+	quickLoot(poulties);
+}
 
-output("\n\n[Get Fucked]");
-output("\n\n// Tooltip: He’s pent up and needs a place to put all that cum. Why not in you?");
-output("\n\n// If PC has both, then the player chooses between Vag or Ass.");
-output("\n\n// Taurs and Neuters allowed.");
-output("\n\n// Can impregnate the PC if doing vaginal - slot it into Generic Korg Pregnancy.");
-output("\n\n// If PC is in heat, automatically go with Vagina.");
+//[Get Fucked]
+// Tooltip: He’s pent up and needs a place to put all that cum. Why not in you?
+// If PC has both, then the player chooses between Vag or Ass.
+// Taurs and Neuters allowed.
+// Can impregnate the PC if doing vaginal - slot it into Generic Korg Pregnancy.
+// If PC is in heat, automatically go with Vagina.
+public function getFuckedByKorgo(x:int):void
+{
+	clearOutput();
+	showDosedKorgMale();
+	author("William");
+	// PC not in heat
+	if(!pc.inHeat()) output("There’s no better way to share heat. A lot of things are rushing through you right now, but the primary thoughts all come from what you see when you shifted his loinwear aside. A pent-up korgonne, a sexy, handsome, fluffy specimen of his race all to yourself, made ready by his previous scrap with one of the invaders. He stares up at you imploringly, a tiny smile crossing his muzzle when " + (!pc.isCrotchExposed() ? "you throw off your equipment and":"you") + " plant a hand to your " + (x >= 0 ? "[pc.pussy " + x + "]":"[pc.asshole]") + ".");
+	// PC in heat
+	else 
+	{
+		output("He wants to share heat? Then he asked the right person. You’re <b>in heat,</b> and a young, virile korgonne is waiting right there for you, made ready by a nefarious drug-dart, backed up with so much cum you’ll bear multiple kids in his image. Answering his call for help is something you do with profound ease. You don’t care that your biology is overwriting everything else. Your brain reminds you every second how good of an idea it is to let him fuck you, to pump you full of kids, to extinguish your infernal need with every single sperm in his body right now.");
+		output("\n\nThere’s absolutely no chance you won’t conceive.");
+	}
+	// Merge
+	// PC bimbo
+	if(pc.isBimbo()) output("\n\n<i>“Let’s get that taken care of all proper-like!”</i> you rock your hips, eyes dilating with hunger. You gaze longingly at his dick, feeling your heartbeat match the throbs of pre oozing out of the tip. <i>“Come ‘n give me all of it,”</i> you moan" + (pc.biggestTitSize() >= 1 ? ", cupping your [pc.breasts] together in a gleefully whorish display":"") + ". After a little tease, you hop to the nearest wall and playfully slapping your [pc.ass]" + (pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG) ? ", your [pc.tails] fluttering happily":"") + ": <i>“Right here!”</i>");
+	// PC bro
+	else if(pc.isBro()) output("\n\n<i>“It’ll be good for the both of us. Come on, up, and make it quick,”</i> you say with a muscly flourish, walking over to the nearest wall" + (pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG) ? ", [pc.tails] wagging as you go":"") + ".");
+	// PC kind
+	else if(pc.isNice()) 
+	{
+		output("\n\n<i>“I’m here to help. I think I can spare a few minutes for you, big boy,”</i> you say, smiling cutely, ushering him to the nearest wall");
+		if(pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output(" while your [pc.tails] happily wag" + (pc.tailCount == 1 ? "s":""));
+		output(".");
+	}
+	// PC misch
+	else if(pc.isMischievous()) 
+	{
+		output("\n\n<i>“Alright, you better fuck as good as you look, otherwise I might regret helping you out,”</i> you wink, crooking a finger and beckoning him to the nearest wall");
+		if(pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output("while your [pc.tails] wag" + (pc.tailCount == 1 ? "s":"") + " expecting only the best");
+		output(".");
+	}
+	// PC hard
+	else output("\n\n<i>“Don’t keep me waiting then,”</i> you grunt, being rather blunt in the way you beckon him to the nearest wall" + (pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG) ? ", unable to keep your [pc.tails] from wagging in anticipation":"") + ". <i>“And don’t make me regret it.”</i>");
+	// Merge
+	output("\n\nLooking over your shoulder, you see the korgonne man staring wide-eyed at your [pc.ass]. For a second, you think he gulps at the presentation. He finally finds the sense to stop masturbating when his view is dominated by [pc.raceShort] butt, sagging forward and crawling in your direction with a slight whimper.");
+	if(!pc.isCrotchExposed() && !pc.isAssExposed()) output(" You wiggle a finger under your [pc.crotchCoverUnder] and slide the protective material down halfway, baring your [pc.vagOrAss " + x + "] to the crisp air with a teasing shake.");
+	else output(" You run a [pc.hand] " + (!pc.isTaur() ? "over your ass ":"") + "towards your [pc.vagOrAss " + x + "], teasingly shaking your rump.");
+	output("\n\nYour partner’s tongue lolls in supplication, almost unbelieving that you’ve offered yourself up just like that. It takes a backwards nudge to get him going, though. When you smother his face with your glistening derriere you wince from temperature contrast, using your body to tell him <i>“Hurry up!”</i> in the most informal way possible.");
+	output("\n\nStoked by your physicality he pushes you back into the wall until your cheek is pressed to the stone. You’re filled with wondrous warmth when you feel his tongue crawling " + (pc.hasVagina() ? "down your crack towards your [pc.pussies]":"up your crack towards your [pc.asshole]") + ". His aggressions and savage desires pour out uninhibited, manifesting as feverish licks and rough gropes from ass to thigh, and you find that you’re braced for those and not just comfort.");
+	// Using Vagina
+	if(x >= 0)
+	{
+		output("\n\nHis tongue swims through your [pc.vaginaColor " + x + "] crease, soaking your " + (pc.vaginalPuffiness(x) > 0 ? "chubby ":"") + "delta in more spit than girly juice, clearly obsessed with the [pc.girlCumFlavor] scent of [pc.raceShort]. The way his oral organ undulates against your netherlips, coaxing out your [pc.clits] and parting your shimmery folds portends an encounter to remember. He licks and he licks, practically mopping your pussy with his facial fur.");
+		output("\n\nIt’s at that moment you feel his nose ‘boop’ off [pc.oneClit], following up with a suckling lick that trails thickly to the center of your feminine entrance. First his tongue slithers inside, its narrow, flat shape perfect for that slit-servicing purpose. Muffled whimpers vibrate through your freshly cleaned muff, coming back up your throat when you feel part of his elongated face slipping inside for a taste of your silken walls.");
+		output("\n\nYour partner is rewarded with a fresh rain of [pc.girlCumNoun] when a mini orgasm steals your muscle control away. That’s fine, because he’s holding you up. ‘Course, when you fall into him, that just makes you cum all over again when his upper jaw glides into your plush passage. Little more than a blissful wreck, there’s something unmistakably arousing about all this.");
+		// Suula or Aphro Pussy
+		if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("\n\nOn the next particularly penetrative oral thrust, the tawny pup is stung by your venom-bearing cilia. Tiny tendrils sting the full length of his tongue and some of his face, flushing his restraint in a tide of chemical lust. He must have turned crimson that instant, because everything got hotter down there. You can’t even begin to imagine the effect two different types of arousing drug will have on his system.");
+		// Merge
+		output("\n\nUnder all of his animalism and feral desire, he is still in total control of you and your pleasure, and you can’t imagine something hotter than that right now.");
+	}
+	// Using Ass
+	else
+	{
+		output("\n\nHis tongue swirls your [pc.asshole]" + (pc.analPuffiness() >= 2 ? ", caressing the obscenely inflated flesh in a half-trance state":"") + ", wettening your taint with warm spit. Dappling sweat is sucked up in his lusty haze" + (pc.isHerm() ? ",  and there are moments he falls towards your [pc.vagina " + x + "], only for you to remind him of what he’s allowed to have":"") + ". The korg-man’s paws spread your ass cheeks wider, exposing your once-hidden sphincter to the air and further abuse.");
+		output("\n\nBefore you can snap about the frozen feeling on your butthole, he envelops your backside with his whole mouth, raking his tongue up and down the narrow, winking entrance. Smooth canine tongue slows from rampagingly fast to slow and flicking, always flourishing at the end of his up-and-down pressures. On the next gulp of what you presume is the sweat he " + (pc.hasFur() ? "sucked from your fur":"slurped from your [pc.skinFurScales]") + ", dizziness assaults you the moment his tongue glides through unopposed.");
+		output("\n\nYou cry out in pure, wanton need, wriggling uncontrollably against his probing flesh, circling the fringes of your chute. Spittle leaks from your cavern as the seconds tick by, parted by dusky lips and throaty groans. You almost cum, but he stops just before you do. You’re left a quivering wreck steadied only by the wall and his body - the realization that he is in full control of you and your pleasure is an unmistakably arousing one...");
+	}
+	// Merge
+	output("\n\n");
+	if(pc.libido() < 33) output("Somehow, the alien dog’s lusts have unlocked a wilder side in you. If he wanted to make you his mate, you’d be hard pressed to resist your urges.");
+	else if(pc.libido() < 66) output("You merely offered relief, and he’s given his all for your pleasure in return. You feel like you could cum on the spot if he looked at you hard enough, or if you thought long enough about how much of a beast he’ll be like when he ruts you.");
+	else output("Excitement flows through you like lifeblood. His lusts have turned you into the most willing cumdump. Offering help is great, but to think that you’re about to be the the target of his bestial affections is making you cum again and again. If he can treat you like this with his tongue...!");
+	output("\n\nInspired by your reactions, and your increasing clamor for more, the " + (x >= 0 ? "cunt-kissing":"butt-loving") + " pup focuses on other parts of your body.");
+	// PC butt <=5 (add-on, no new pg)
+	if(pc.buttRating() <= 5) output(" His tongue paths over your petite rump, clapping his hands off the " + (pc.tone < 5 ? "soft":"muscled") + " cheeks in alternating spanks. Your firm tush offers no eye candy in return, only tiny ripples. Although you don’t have an appreciable jiggle, he delights in the sounds you make when he squeezes and adores it. <i>“" + (!korgiTranslate() ? "Alien small-rear... Pleasant.":"You’re small, alien... It’s pleasant, in a way.") + "”</i>");
+	// PC butt 6-12 (add-on, no new pg)
+	else if(pc.buttRating() <= 12) output(" Your jiggling tush captivates him when he leaves your [pc.vagOrAss " + x + "] alone, and you almost whine when he pulls out to enjoy the wobble after he claps his hands to your hand-filling [pc.skinFurScalesNoun]. Awed heaves warm your quaking moons with puffs of worshipful air. While you want his tongue back on your [pc.vagOrAss " + x + "], you hope that he’s enjoying everything about your shapely bottom. <i>“" + (!korgiTranslate() ? "Alien butt is bounty. Perfect mate-partner.":"Your butt is a bounty on its own, alien. You’d be someone’s ideal mate...") + "”</i>");
+	// PC butt >=13 (add-on, no new pg)
+	else
+	{
+		output(" <i>“" + (!korgiTranslate() ? "Alien is... Wondrous-big...":"Alien... you’re wonderfully big...") + "”</i> the korgonne husks, slapping at your [pc.ass] with wild abandon. He doesn’t just tongue over your [pc.skinFurScales], he gropes it, he plays with it, he watches all the fat on your ass wobble enticingly. His fingers leave imprints that lash the rest of your body with a feeling of possession. He loses his face into your deliciously smothering jiggle. Ripples fan out past your waist while breathy pants of joy warm your [pc.asshole].");
+		output("\n\nHis love and worship for your [pc.ass] nicely compliments your arousal to this point, and you’re perfectly happy to let him enjoy it. It’s not often you get to experience the kind of ecstatic kneading a true appreciator of callipygian luxury can provide. Overwhelming praise for your form crashes up his throat until he’s repeating himself. <i>He loves your butt.</i>");
+		output("\n\nYou hope he likes fucking it, too.");
+	}
+	// Merge
+	output("\n\nThe hungry hound’s tongue dips back into your rear cleft, bringing its heavenly heat back to your [pc.vagOrAss " + x + "]. Your [pc.hips], firmly in his strong grasp, stubbornly resist being held down. Despite his hold you still sink further down, an instinctual urge to place yourself lower than him" + (x >= 0 ? ", to look like the ready breeding partner you are":"") + ". He drinks in loads of [pc.raceShort]-flavored sweat, intensifying his thirst with each swallow.");
+	// PC not in heat
+	if(!pc.inHeat()) output("\n\nHe’s got you nice and pliant, and you can’t wait any longer. You cry out for him to take you then and there before you go mad from unsated arousal. Bubbling over with bliss, you smile and shake your butt just a little harder in four directions, begging with your [pc.eyes] and pursed [pc.lipColor] lips.");
+	// PC heat
+	else output("\n\nYou can tell your fertile pheromones are having a strong effect on him. Your [pc.legOrLegs] are trembling in his paws, shaking with the desire to bear children. They don’t react in pleasure, only havoc, disdain. You need his cock, and you need it now. Crying out in pure, delirious want you beg him to fuck you, to shove his cock so far in that his knot breaks you apart, and then he can fuck your knot in while he delivers all that seed straight to your womb. <i></b>Your ovaries need to be drowned in cum!</b></i>");
+	// Merge
+	output("\n\nYou shriek in joy, hyperventilating when he stands and presses his crotch into your rear, rubbing the head of his pre-glazed cock to your [pc.vagOrAss " + x + "].");
+	// PC not Taur, PC Height <=5’2 (add-on, no new pg)
+	if(!pc.isTaur() && pc.tallness <= 5*12+2) 
+	{
+		output(" The way he dominates your small form with the entirety of his rough-hewn body fills you with ecstasy. ");
+		if(pc.biggestTitSize() >= 1) output("He grabs " + (pc.totalBreasts() == 2 ? "both of":"a set of your") + " [pc.breasts], grunting approvingly. ");
+		output("On some primal level you feel safe, secure, and <i>claimed.</i> Wrapped in his arms you aren’t going anywhere. You wouldn’t want to anyway, not when your furry mate keeps you warmly docile underneath his powerful physique. Mounted on you, he only has one goal in mind: to " + (x < 0 ? "fill your [pc.asshole]":"breed your [pc.pussy " + x + "]") + "." + (pc.hasTailFlag(GLOBAL.FLAG_LONG) ? " You coil your tail around his waist, bringing him a little closer to do just that.":""));
+	}
+	// PC not Taur, PC Height >=5’3 (add-on, no new pg)
+	else if(!pc.isTaur()) 
+	{
+		output(" Your korgonne lover imposes himself on you in an ecstatically thrilling way, enveloping as much of your body as he can with his rough-hewn musculature. ");
+		if(pc.biggestTitSize() >= 1) output("He grabs " + (pc.totalBreasts() == 2 ? "both of":"a set of") + " [pc.breasts], growling approvingly. ");
+		output("You wiggle back into him, putting a [pc.hand] over his paw and rubbing at his tensed knuckles. He’s got you pinned against the wall and his cock pointed at your [pc.vagOrAss " + x + "]. You could get out if you wriggled hard enough, but shirking the protection of his dominant embrace is not something that crosses your mind for even a second." + (pc.hasTailFlag(GLOBAL.FLAG_LONG) ? " Instead, you wrap your [pc.tails] around his waist and pull him closer.":""));
+	}
+	// PC taur
+	else output(" Rough paws grip the sides of your [pc.ass] and force you down slightly. The korgonne aligns himself with your [pc.vagOrAss " + x + "], growling when you buck upwards from the touch of his cock to your " + (x >= 0 ? "slit":"sphincter") + ". The anticipation of this dosed up and lusty beastman fucking you the way you need to be is killer. Passive moments lead you to attempt insertion on your own, but all you get is a slap on the ass and a gruff bark telling you to hold still. Being manhandled like this only makes you crazier, because it makes him crazier. Fuck, could he just start!?");
+	// Merge
+	output("\n\nAfter " + (x >= 0 ? "shining himself in your accumulated juices":"smearing his prick with copious pre") + ", the korgonne humps against your body, grunting at the nadir of his whimpering thrusts. You look " + (!pc.isTaur() ? "down":"back") + " to see his green eyes incandescent with arousal. When you feel his furry nutsack calp against your nethers you let out a tiny squeak, body shaking in another small orgasm. He languishes in the warmth for only a moment longer, rearing back - your fingers dig into the rock, a reflex one inevitably gets when they’re about to be " + (x < 0 ? "anally":"vaginally") + " hammered.");
+	output("\n\nThere’s absolutely nothing gentle about the way he howls and rams into you");
+	var looseness = pc.ass.looseness();
+	if(x >= 0) looseness = pc.looseness(x);
+	if(looseness < 3) output(", fighting against the tightness of your [pc.vagOrAss " + x + "] on his way. Even with how well prepared you were beforehand, there was a spike of pain when he lanced you down to his knot");
+	else output(", finding purchase in the welcoming embrace of your well-fucked [pc.vagOrAss " + x + "]. You accept him readily enough, but there’s a spike of pain when he smacks his knot into you");
+	output(". Eager heartbeats pound against the walls that squeeze him tight as your vision adjusts to his unrestrained aggression.");
 
-output("\n\n// PC not in heat");
-output("\n\nThere’s no better way to share heat. A lot of things are rushing through you right now, but the primary thoughts all come from what you see when you shifted his loinwear aside. A pent-up korgonne, a sexy, handsome, fluffy specimen of his race all to yourself, made ready by his previous scrap with one of the invaders. He stares up at you imploringly, a tiny smile crossing his muzzle when {you throw off your [pc.armor] and/you} plant a hand to your {[pc.pussy]/[pc.asshole]}.");
-output("\n\n// PC in heat");
-output("\n\nHe wants to share heat? Then he asked the right person. You’re <b>in heat,</b> and a young, virile korgonne is waiting right there for you, made ready by a nefarious drug-dart, backed up with so much cum you’ll bear multiple kids in his image. Answering his call for help is something you do with profound ease. You don’t care that your biology is overwriting everything else. Your brain reminds you every second how good of an idea it is to let him fuck you, to pump you full of kids, to extinguish your infernal need with every single sperm in his body right now.");
-output("\n\nThere’s absolutely no chance you won’t conceive.");
-output("\n\n// Merge");
-output("\n\n// PC bimbo");
-output("\n\n<i>“Let’s get that taken care of all proper-like!”</i> you rock your hips, eyes dilating with hunger. You gaze longingly at his dick, feeling your heartbeat match the throbs of pre oozing out of the tip. <i>“Come ‘n give me all of it,”</i> you moan{, cupping your [pc.breasts] together in a gleefully whorish display}. After a little tease, you hop to the nearest wall and playfully slapping your [pc.ass]{, your [pc.tails] fluttering happily}: <i>“Right here!”</i>");
-output("\n\n// PC bro");
-output("\n\n<i>“It’ll be good for the both of us. Come on, up, and make it quick,”</i> you say with a muscly flourish, walking over to the nearest wall{, [pc.tails] wagging as you go}.");
-output("\n\n// PC kind");
-output("\n\n<i>“I’m here to help. I think I can spare a few minutes for you, big boy,”</i> you say, smiling cutely, ushering him to the nearest wall {while your [pc.tails] happily wag{s}}.");
-output("\n\n// PC misch");
-output("\n\n<i>“Alright, you better fuck as good as you look, otherwise I might regret helping you out,”</i> you wink, crooking a finger and beckoning him to the nearest wall {while your [pc.tails] wag{s} expecting only the best}.");
-output("\n\n// PC hard");
-output("\n\n<i>“Don’t keep me waiting then,”</i> you grunt, being rather blunt in the way you beckon him to the nearest wall{, unable to keep your [pc.tails] from wagging in anticipation}. <i>“And don’t make me regret it.”</i>");
-output("\n\n// Merge");
-output("\n\nLooking over your shoulder, you see the korgonne man staring wide-eyed at your [pc.ass]. For a second, you think he gulps at the presentation. He finally finds the sense to stop masturbating when his view is dominated by [pc.raceShort] butt, sagging forward and crawling in your direction with a slight whimper. {notExposed: You wiggle a finger under your [pc.lowerUndergarment] and slide the protective material down halfway, baring your [pc.vagOrAss] to the crisp air with a teasing shake. /exposed: You run a [pc.hand] {notTaur: over your ass} towards your [pc.vagOrAss], teasingly shaking your rump.}");
-output("\n\nYour partner’s tongue lolls in supplication, almost unbelieving that you’ve offered yourself up just like that. It takes a backwards nudge to get him going, though. When you smother his face with your glistening derriere you wince from temperature contrast, using your body to tell him <i>“Hurry up!”</i> in the most informal way possible.");
-output("\n\nStoked by your physicality he pushes you back into the wall until your cheek is pressed to the stone. You’re filled with wondrous warmth when you feel his tongue crawling {vag: down your crack towards your [pc.pussies] /ass: up your crack towards your [pc.asshole}. His aggressions and savage desires pour out uninhibited, manifesting as feverish licks and rough gropes from ass to thigh, and you find that you’re braced for those and not just comfort.");
-output("\n\n// Using Vagina");
-output("\n\nHis tongue swims through your [pc.vaginaColor] crease, soaking your {chubby} delta in more spit than girly juice, clearly obsessed with the [pc.girlCumFlavor] scent of [pc.raceShort]. The way his oral organ undulates against your netherlips, coaxing out your [pc.clits] and parting your shimmery folds portends an encounter to remember. He licks and he licks, practically mopping your pussy with his facial fur.");
-output("\n\nIt’s at that moment you feel his nose ‘boop’ off [pc.oneClit], following up with a suckling lick that trails thickly to the center of your feminine entrance. First his tongue slithers inside, its narrow, flat shape perfect for that slit-servicing purpose. Muffled whimpers vibrate through your freshly cleaned muff, coming back up your throat when you feel part of his elongated face slipping inside for a taste of your silken walls.");
-output("\n\nYour partner is rewarded with a fresh rain of [pc.girlCumNoun] when a mini orgasm steals your muscle control away. That’s fine, because he’s holding you up. ‘Course, when you fall into him, that just makes you cum all over again when his upper jaw glides into your plush passage. Little more than a blissful wreck, there’s something unmistakably arousing about all this.");
-output("\n\n// Suula or Aphro Pussy");
-output("\n\nOn the next particularly penetrative oral thrust, the tawny pup is stung by your venom-bearing cilia. Tiny tendrils sting the full length of his tongue and some of his face, flushing his restraint in a tide of chemical lust. He must have turned crimson that instant, because everything got hotter down there. You can’t even begin to imagine the effect two different types of arousing drug will have on his system.");
-output("\n\n// Merge");
-output("\n\nUnder all of his animalism and feral desire, he is still in total control of you and your pleasure, and you can’t imagine something hotter than that right now.");
-output("\n\n// Using Ass");
-output("\n\nHis tongue swirls your [pc.asshole]{, caressing the obscenely inflated flesh in a half-trance state}, wettening your taint with warm spit. Dappling sweat is sucked up in his lusty haze{, herm: and there are moments he falls towards your [pc.vagina], only for you to remind him of what he’s allowed to have}. The korg-man’s paws spread your ass cheeks wider, exposing your once-hidden sphincter to the air and further abuse.");
-output("\n\nBefore you can snap about the frozen feeling on your butthole, he envelops your backside with his whole mouth, raking his tongue up and down the narrow, winking entrance. Smooth canine tongue slows from rampagingly fast to slow and flicking, always flourishing at the end of his up-and-down pressures. On the next gulp of what you presume is the sweat he {fur: sucked from your fur /else: slurped from your [pc.skinFurScales]}, dizziness assaults you the moment his tongue glides through unopposed.");
-output("\n\nYou cry out in pure, wanton need, wriggling uncontrollably against his probing flesh, circling the fringes of your chute. Spittle leaks from your cavern as the seconds tick by, parted by dusky lips and throaty groans. You almost cum, but he stops just before you do. You’re left a quivering wreck steadied only by the wall and his body - the realization that he is in full control of you and your pleasure is an unmistakably arousing one...");
-output("\n\n// Merge");
-output("\n\n{libidoLow: Somehow, the alien dog’s lusts have unlocked a wilder side in you. If he wanted to make you his mate, you’d be hard pressed to resist your urges. /med: You merely offered relief, and he’s given his all for your pleasure in return. You feel like you could cum on the spot if he looked at you hard enough, or if you thought long enough about how much of a beast he’ll be like when he ruts you. /high: Excitement flows through you like lifeblood. His lusts have turned you into the most willing cumdump. Offering help is great, but to think that you’re about to be the the target of his bestial affections is making you cum again and again. If he can treat you like this with his tongue...!}");
-output("\n\nInspired by your reactions, and your increasing clamor for more, the {cunt-kissing/butt-loving} pup focuses on other parts of your body.");
-output("\n\n// PC butt <=5 (add-on, no new pg)");
-output("\n\nHis tongue paths over your petite rump, clapping his hands off the {soft/muscled} cheeks in alternating spanks. Your firm tush offers no eye candy in return, only tiny ripples. Although you don’t have an appreciable jiggle, he delights in the sounds you make when he squeezes and adores it. <i>“{Alien small-rear... Pleasant. / You’re small, alien... It’s pleasant, in a way.}”</i>");
-output("\n\n// PC butt 6-12 (add-on, no new pg)");
-output("\n\nYour jiggling tush captivates him when he leaves your [pc.vagOrAss] alone, and you almost whine when he pulls out to enjoy the wobble after he claps his hands to your hand-filling [pc.skinFurScalesNoun]. Awed heaves warm your quaking moons with puffs of worshipful air. While you want his tongue back on your [pc.vagOrAss], you hope that he’s enjoying everything about your shapely bottom. <i>“{Alien butt is bounty. Perfect mate-partner. / Your butt is a bounty on its own, alien. You’d be someone’s ideal mate...}”</i>");
-output("\n\n// PC butt >=13 (add-on, no new pg)");
-output("\n\n<i>“{Alien is... Wondrous-big... / Alien... you’re wonderfully big...”</i>} the korgonne husks, slapping at your [pc.ass] with wild abandon. He doesn’t just tongue over your [pc.skinFurScales], he gropes it, he plays with it, he watches all the fat on your ass wobble enticingly. His fingers leave imprints that lash the rest of your body with a feeling of possession. He loses his face into your deliciously smothering jiggle. Ripples fan out past your waist while breathy pants of joy warm your [pc.asshole].");
-output("\n\nHis love and worship for your [pc.ass] nicely compliments your arousal to this point, and you’re perfectly happy to let him enjoy it. It’s not often you get to experience the kind of ecstatic kneading a true appreciator of callipygian luxury can provide. Overwhelming praise for your form crashes up his throat until he’s repeating himself. <i>He loves your butt.</i>");
-output("\n\nYou hope he likes fucking it, too.");
-output("\n\n// Merge");
-output("\n\nThe hungry hound’s tongue dips back into your rear cleft, bringing its heavenly heat back to your [pc.vagOrAss]. Your [pc.hips], firmly in his strong grasp, stubbornly resist being held down. Despite his hold you still sink further down, an instinctual urge to place yourself lower than him{, useVag: to look like the ready breeding partner you are}. He drinks in loads of [pc.raceShort]-flavored sweat, intensifying his thirst with each swallow.");
-output("\n\n// PC not in heat");
-output("\n\nHe’s got you nice and pliant, and you can’t wait any longer. You cry out for him to take you then and there before you go mad from unsated arousal. Bubbling over with bliss, you smile and shake your butt just a little harder in four directions, begging with your [pc.eyes] and pursed [pc.lipColor] lips.");
-output("\n\n// PC heat");
-output("\n\nYou can tell your fertile pheromones are having a strong effect on him. Your [pc.legOrLegs] are trembling in his paws, shaking with the desire to bear children. They don’t react in pleasure, only havoc, disdain. You need his cock, and you need it now. Crying out in pure, delirious want you beg him to fuck you, to shove his cock so far in that his knot breaks you apart, and then he can fuck your knot in while he delivers all that seed straight to your womb. <i></b>Your ovaries need to be drowned in cum!</b></i>");
-output("\n\n// Merge");
-output("\n\nYou shriek in joy, hyperventilating when he stands and presses his crotch into your rear, rubbing the head of his pre-glazed cock to your [pc.vagOrAss].");
-output("\n\n// PC not Taur, PC Height <=5’2 (add-on, no new pg)");
-output("\n\nThe way he dominates your small form with the entirety of his rough-hewn body fills you with ecstasy. {He grabs {both of/a set of your} [pc.breasts], grunting approvingly.} On some primal level you feel safe, secure, and <i>claimed.</i> Wrapped in his arms you aren’t going anywhere. You wouldn’t want to anyway, not when your furry mate keeps you warmly docile underneath his powerful physique. Mounted on you, he only has one goal in mind: to {fill your [pc.asshole]/breed your [pc.pussy]}. {pcPrehensileOrLongTail: You coil your tail around his waist, bringing him a little closer to do just that.}");
-output("\n\n// PC not Taur, PC Height >=5’3 (add-on, no new pg)");
-output("\n\nYour korgonne lover imposes himself on you in an ecstatically thrilling way, enveloping as much of your body as he can with his rough-hewn musculature. {He grabs {both of/a set of} [pc.breasts], growling approvingly.} You wiggle back into him, putting a [pc.hand] over his paw and rubbing at his tensed knuckles. He’s got you pinned against the wall and his cock pointed at your [pc.vagOrAss]. You could get out if you wriggled hard enough, but shirking the protection of his dominant embrace is not something that crosses your mind for even a second. {pcPrehensileOrLongTail: Instead, you wrap your [pc.tails] around his waist and pull him closer.}");
-output("\n\n// PC taur");
-output("\n\nRough paws grip the sides of your [pc.ass] and force you down slightly. The korgonne aligns himself with your [pc.vagOrAss], growling when you buck upwards from the touch of his cock to your {slit/sphincter}. The anticipation of this dosed up and lusty beastman fucking you the way you need to be is killer. Passive moments lead you to attempt insertion on your own, but all you get is a slap on the ass and a gruff bark telling you to hold still. Being manhandled like this only makes you crazier, because it makes him crazier. Fuck, could he just start!?");
-output("\n\n// Merge");
-output("\n\nAfter {vag: shining himself in your accumulated juices /ass: smearing his prick with copious pre}, the korgonne humps against your body, grunting at the nadir of his whimpering thrusts. You look {down /taur: back} to see his green eyes incandescent with arousal. When you feel his furry nutsack calp against your nethers you let out a tiny squeak, body shaking in another small orgasm. He languishes in the warmth for only a moment longer, rearing back - your fingers dig into the rock, a reflex one inevitably gets when they’re about to be {anally/vaginally} hammered.");
-output("\n\nThere’s absolutely nothing gentle about the way he howls and rams into you{, looseness: fighting against the tightness of your [pc.vagOrAss] on his way. Even with how well prepared you were beforehand, there was a spike of pain when he lanced you down to his knot / finding purchase in the welcoming embrace of your well-fucked [pc.vagOrAss]. You accept him readily enough, but there’s a spike of pain when he smacks his knot into you}. Eager heartbeats pound against the walls that squeeze him tight as your vision adjusts to his unrestrained aggression.");
-output("\n\nOnce he lets you adjust to his puppy-prick, he takes you to the pound. He heaves and growls, clutching you tight. His animalistic dick rails you in long, rapid beats, pulling out to its thin head and launching back inside on burly hips. You can’t be blamed for how broken up your voice is by his feral fucking. Your voice reduces on every impact, climbing back up only to be muffled again{, all while he squeezes out a fresh stream of [pc.milk] from your boobflesh}.");
-output("\n\nYou can feel every twitch and throb {inside your flexing [pc.pussyNoun], your walls parting like a sea for his veiny lance / within your deepest recesses, his tip battering against new surfaces each time{, coming so close to your prostate}}. Feverish humps bring you to the tell-tale crescendoing of orgasm{, herm: [pc.eachCock] and [pc.eachPussy] spurting out mixed, gushy loads //, vag: [pc.eachPussy] adding more and more [pc.girlCumVisc] lubrication to the action //, cock: [pc.eachCock] helplessly flopping and squirting tiny ropes of [pc.cumNoun]}.");
-output("\n\nThe satin-soft embrace of your [pc.vagOrAss] is something he intends to enjoy to its fullest. Through his cock you can feel the crazy beating of his heart. Every time he drills home you feel his softball-sized knot slapping insistently at your {spread [pc.vaginaColor] walls/[pc.asshole]}, perhaps trying to drive itself inside. You hope for it.");
-output("\n\nYou try for it. He yelps back at you when you squeeze him tight, rocking your hips slightly against his ass-locked lap. <i>“T-Think you can get it in t-there?”</i> you stammer.");
-output("\n\nLurching forward, still held tight {in his meaty arms /taur: by his iron-grip}, you push back and wiggle again, starting to miss his rampant pace. Husky moans tear through his throat while he does the same, grinding his bitch-breeder against your hole, trying to spread you that much wider so he can fuck it into you. {Your [pc.breasts] wobble from all the pressure.}");
-output("\n\nAs if struck by lightning your whole face twists in agonized ecstasy, a tiny pop swirling through your [pc.ears] for one brief moment. <i>He succeeded.</i> Spittle falls from your mouth in long strings, and all of a sudden his rock-hard fingers dig harder into your [pc.skinFurScalesNoun]. He pulls out, and your powerful sense of fullness abates... only to return in the next second when he plows into you, knot included. The raw sensations don’t end there: you’re seeing fireworks and exploding stars when ropes of cum squirt into your innards, {plastering your [pc.girlCumNoun]-flooded interior / squelching past your {engulfing} ring of anal flesh}.");
-output("\n\nHungry for [pc.raceShort]-{cunt/ass}, the korg enters a berserk state, frantically fucking you from orgasm to orgasm. All you can do in your state is moan, cum, repeat. Cushiony skin parts for his magnificent member. His seed-stuffed sack bounces and sloshes against your well-fucked hole. You both clench up and tighten, you especially when you feel a heavy twitch in his cumsack.");
-output("\n\nAll of a sudden he grabs you by the {notTaur: the shoulders, pulling you away from the wall and forcing you down on your knees, his knot still inside you, still spurting small amounts of spunk into your [pc.vagOrAss]. He forces your head to the ground and your ass into the air, asserting himself on you without hesitation {by grabbing {a [pc.tail]/your [pc.tails]} /taur: the rear, forcing you down on your knees and mounting your backside without hesitation. His knot still lodged inside, still spurting tiny amounts of spunk into your [pc.vagOrAss], he prepares to fuck you like never before}.");
-output("\n\nOverwhelmed by your masculine partner’s ferociousness, {you clutch the paws gripping your [pc.chest] /taur: you clutch the wall pushing back against your [pc.face]}. He pumps so deeply that you can feel his sheath crinkle up around your {slit/crease}. It makes him moan so loudly, too, like fluid trickles out and gets into the space between it and his cock. Your moist [pc.lipColor] lips stretch into an O of delight. You’re in a bliss-filled ditch being fucked by an ideal mate, feeling the pleasure rise and crest.");
-output("\n\nIt’s all about his pleasure now. His pleasure is your pleasure. Your brain is totally occupied with thinking about how great it’ll be when he cums, how perfect a situation you’ll be in when he knots you {vag: and breeds you}. It feels great. Better than great... divine. Completely lost to excess, he shows no mercy when he handles you now, and you don’t want him to anyway. {longEars: In fact, when he shifts to grip your [pc.ears] and tug your head back, you’re all smiles.}");
-output("\n\nHe misses out on the beginning your climax. It isn’t until your voice reaches its highest pitch and slowly dies down that you melt into his unbreakable grasp and clamp down around his cock on its final thrust. Your whole body shakes hard and you slump forward. He falls onto your back and, burrowed down to his pricksheath, and cums. The first thick rope to hit your {colon/cervix} shatters your thoughts to pieces. The horny korg’s second viscous rope makes you feel lightheaded.");
-output("\n\nClimax rushes down your spine; you would thrash and explode if he wasn’t latched onto you like the dutiful mate he is. Spittle froths in your mouth while your {herm: [pc.cocks] helplessly balloons and burst{s} {thin streams/thick cords/torrential waves} of [pc.cumNoun] that paint the floor under your belly, followed by {oozing strings/wet splurts} of [pc.girlCumNoun] //vag: [pc.pussies] plump and {ooze feather-light lines/force out loin-soaking squirts} of [pc.girlCum] //cock: [pc.cocks] balloon, twitch, and erupt with {thin streams/thick cords/torrential waves} of floor-painting orgasm, drawing lewd art with [pc.cum] //neuter: whole body vibrates outward from the center in a blissfully warm sensation of release}.");
-output("\n\nThe once-bloated knot deflates inside you, venting its pressure straight into your {intestines/womb} while still maintaining enough girth to lock his crotch to yours, to seal it all inside in a most depraved position. You’re too fuck-drunk to care, and your eyes nearly roll back while you spasm. His slowly-emptying cum-factory eases you through the afterglow with its rhythmic pulses and twinges.");
-output("\n\n{womb: Your womb accepts every drop of his torrid virility. Goo splatters your insides, sliding down to your ovaries. The arms bear hugging you right now make the sensation all the more better. /colon: Your belly swells a bit with the sheer volume of his locked-in load. Warm goo sloughs through your interior, and you bet the arms bear hugging you right now are helping guide its passage.}");
-output("\n\nA warm hand rubs over your head{, threading your [pc.hair] between its fingers}. {The soft skin behind your [pc.ears] is ravished with attention by his needle-tipped fingers.} The momentary adoration helps you pass the minutes until his knot deflates enough to pull out, a few sticky lines of korg-spunk connecting his tip to your slightly gaped hole. He lets you down gently, crawling over to plant a wet kiss on your [pc.face].");
-output("\n\n<i>“{Wonderful-shares, alien. Thankings for all time. Safe-staying, please...”</i> / Our bonding was wonderful, alien. You have my thanks for all time. Stay safe, please...}”</i> he whispers, kissing you on the lips and then the [pc.ear] before standing.");
-output("\n\nHe collects a spear and re-dresses what little he has, gathering his scattered belongings before nodding at you. By your side he places a medicinal pack, herbs tied together by gauze. <i>“For troubles,”</i> he says gruffly, hurrying off afterwards. When you can finally stand, a little cum leaks out while you gather your things and do the same. Hopefully he’ll stay safe, too...");
+	if(x >= 0) pc.cuntChange(x,new KorgonneMale().cockVolume(0));
+	else pc.buttChange(new KorgonneMale().cockVolume(0));
 
-*/
+	output("\n\nOnce he lets you adjust to his puppy-prick, he takes you to the pound. He heaves and growls, clutching you tight. His animalistic dick rails you in long, rapid beats, pulling out to its thin head and launching back inside on burly hips. You can’t be blamed for how broken up your voice is by his feral fucking. Your voice reduces on every impact, climbing back up only to be muffled again" + (pc.biggestTitSize() >= 1 && pc.isLactating() ? ", all while he squeezes out a fresh stream of [pc.milk] from your boobflesh":"") + ".");
+	output("\n\nYou can feel every twitch and throb ");
+	if(x >= 0) output("inside your flexing [pc.pussyNoun " + x + "], your walls parting like a sea for his veiny lance");
+	else output("within your deepest recesses, his tip battering against new surfaces each time" + (pc.hasCock() ? ", coming so close to your prostate":""));
+	output(". Feverish humps bring you to the tell-tale crescendoing of orgasm");
+	if(pc.isHerm()) output(", [pc.eachCock] and [pc.eachPussy] spurting out mixed, gushy loads");
+	else if(pc.hasVagina()) output(", [pc.eachPussy] adding more and more [pc.girlCumVisc] lubrication to the action");
+	else if(pc.hasCock()) output(", [pc.eachCock] helplessly flopping and squirting tiny ropes of [pc.cumNoun]");
+	output(".");
+	output("\n\nThe satin-soft embrace of your [pc.vagOrAss " + x + "] is something he intends to enjoy to its fullest. Through his cock you can feel the crazy beating of his heart. Every time he drills home you feel his softball-sized knot slapping insistently at your " + (x >= 0 ? "spread [pc.vaginaColor " + x + "] walls":"[pc.asshole]") + ", perhaps trying to drive itself inside. You hope for it.");
+	output("\n\nYou try for it. He yelps back at you when you squeeze him tight, rocking your hips slightly against his ass-locked lap. <i>“T-Think you can get it in t-there?”</i> you stammer.");
+	output("\n\nLurching forward, still held tight " + (!pc.isTaur() ? "in his meaty arms":"by his iron-grip") + ", you push back and wiggle again, starting to miss his rampant pace. Husky moans tear through his throat while he does the same, grinding his bitch-breeder against your hole, trying to spread you that much wider so he can fuck it into you." + (pc.biggestTitSize() >= 1 ? " Your [pc.breasts] wobble from all the pressure.":""));
+	output("\n\nAs if struck by lightning your whole face twists in agonized ecstasy, a tiny pop swirling through your [pc.ears] for one brief moment. <i>He succeeded.</i> Spittle falls from your mouth in long strings, and all of a sudden his rock-hard fingers dig harder into your [pc.skinFurScalesNoun]. He pulls out, and your powerful sense of fullness abates... only to return in the next second when he plows into you, knot included. The raw sensations don’t end there: you’re seeing fireworks and exploding stars when ropes of cum squirt into your innards,");
+	if(x >= 0) output(" plastering your [pc.girlCumNoun]-flooded interior");
+	else output(" squelching past your " + (pc.analPuffiness() > 0 ? "engulfing ":"") + "ring of anal flesh");
+	output(".");
+	output("\n\nHungry for " + (x >= 0 ? "cunt":"ass") + ", the korg enters a berserk state, frantically fucking you from orgasm to orgasm. All you can do in your state is moan, cum, repeat. Cushiony skin parts for his magnificent member. His seed-stuffed sack bounces and sloshes against your well-fucked hole. You both clench up and tighten, you especially when you feel a heavy twitch in his cumsack.");
+	output("\n\nAll of a sudden he grabs you by the ");
+	if(!pc.isTaur()) 
+	{
+		output("shoulders, pulling you away from the wall and forcing you down on your knees, his knot still inside you, still spurting small amounts of spunk into your [pc.vagOrAss " + x + "]. He forces your head to the ground and your ass into the air, asserting himself on you without hesitation");
+		if(pc.tailCount > 0) output(" by grabbing " + (pc.tailCount > 1 ? "a [pc.tail]":"your [pc.tail]"));
+		output(".");
+	}
+	else output("rear, forcing you down on your knees and mounting your backside without hesitation. His knot still lodged inside, still spurting tiny amounts of spunk into your [pc.vagOrAss " + x + "], he prepares to fuck you like never before.");
+	output("\n\nOverwhelmed by your masculine partner’s ferociousness, " + (!pc.isTaur() ? "you clutch the paws gripping your [pc.chest]":"you clutch the wall pushing back against your [pc.face]") + ". He pumps so deeply that you can feel his sheath crinkle up around your " + (x >= 0 ? "slit":"crease") + ". It makes him moan so loudly, too, like fluid trickles out and gets into the space between it and his cock. Your moist [pc.lipColor] lips stretch into an 'O' of delight. You’re in a bliss-filled ditch being fucked by an ideal mate, feeling the pleasure rise and crest.");
+	output("\n\nIt’s all about his pleasure now. His pleasure is your pleasure. Your brain is totally occupied with thinking about how great it’ll be when he cums, how perfect a situation you’ll be in when he knots you {vag: and breeds you}. It feels great. Better than great... divine. Completely lost to excess, he shows no mercy when he handles you now, and you don’t want him to anyway." + (pc.hasLongEars() ? " In fact, when he shifts to grip your [pc.ears] and tug your head back, you’re all smiles.":""));
+	output("\n\nHe misses out on the beginning your climax. It isn’t until your voice reaches its highest pitch and slowly dies down that you melt into his unbreakable grasp and clamp down around his cock on its final thrust. Your whole body shakes hard and you slump forward. He falls onto your back and, burrowed down to his pricksheath, and cums. The first thick rope to hit your " + (x < 0 ? "colon":"cervix") + " shatters your thoughts to pieces. The horny korg’s second viscous rope makes you feel lightheaded.");
+	output("\n\nClimax rushes down your spine; you would thrash and explode if he wasn’t latched onto you like the dutiful mate he is. Spittle froths in your mouth while your ");
+	if(pc.isHerm()) 
+	{
+		output("[pc.cocks] helplessly balloons and burst" + (pc.cockTotal() == 1 ? "s":""));
+		if(pc.cumQ()< 50) output(" thin streams");
+		else if(pc.cumQ() < 1000) output("thick cords");
+		else output("torrential waves");
+		output(" of [pc.cumNoun] that paint the floor under your belly, followed by " + (!pc.isSquirter() ? "oozing strings":"wet splurts") + " of [pc.girlCumNoun]");
+	}
+	else if(pc.hasVagina())
+	{
+		output("[pc.pussies] plump and " + (!pc.isSquirter() ? "ooze feather-light lines":"force out loin-soaking squirts") + " of [pc.girlCum]");
+	}
+	else if(pc.hasCock())
+	{
+		output("[pc.cocks] balloon, twitch, and erupt with ");
+		if(pc.cumQ() < 50) output("thin streams");
+		else if(pc.cumQ() < 1000) output("thick cords");
+		else output("torrential waves");
+		output(" of floor-painting orgasm, drawing lewd art with [pc.cum]");
+	}
+	else output("whole body vibrates outward from the center in a blissfully warm sensation of release");
+	output(".");
+	output("\n\nThe once-bloated knot deflates inside you, venting its pressure straight into your " + (x < 0 ? "intestines":"womb") + " while still maintaining enough girth to lock his crotch to yours, to seal it all inside in a most depraved position. You’re too fuck-drunk to care, and your eyes nearly roll back while you spasm. His slowly-emptying cum-factory eases you through the afterglow with its rhythmic pulses and twinges.");
+	output("\n\n" + (x >= 0 ? "Your womb accepts every drop of his torrid virility. Goo splatters your insides, sliding down to your ovaries. The arms bear hugging you right now make the sensation all the more better.":"Your belly swells a bit with the sheer volume of his locked-in load. Warm goo sloughs through your interior, and you bet the arms bear hugging you right now are helping guide its passage."));
+	output("\n\nA warm hand rubs over your head" + (pc.hasHair() ? ", threading your [pc.hair] between its fingers":"") + ". " + (pc.hasEmoteEars() ? "The soft skin behind your [pc.ears] is ravished with attention by his needle-tipped fingers. ":"") + "The momentary adoration helps you pass the minutes until his knot deflates enough to pull out, a few sticky lines of korg-spunk connecting his tip to your slightly gaped hole. He lets you down gently, crawling over to plant a wet kiss on your [pc.face].");
+	output("\n\n<i>“" + (!korgiTranslate() ? "Wonderful-shares, alien. Thankings for all time. Safe-staying, please...”</i>":"Our bonding was wonderful, alien. You have my thanks for all time. Stay safe, please...") + "”</i> he whispers, kissing you on the lips and then the [pc.ear] before standing.");
+	output("\n\nHe collects a spear and re-dresses what little he has, gathering his scattered belongings before nodding at you. By your side he places a medicinal pack, herbs tied together by gauze. <i>“For troubles,”</i> he says gruffly, hurrying off afterwards. When you can finally stand, a little cum leaks out while you gather your things and do the same. Hopefully he’ll stay safe, too...");
+	output("\n\n");
+	if(x >= 0) pc.loadInCunt(new KorgonneMale(),x);
+	else pc.loadInAss(new KorgonneMale());
+	processTime(12);
+	pc.orgasm();
+	var poulties:HealingPoultice = new HealingPoultice();
+	poulties.quantity = 2;
+	quickLoot(poulties);
+}
