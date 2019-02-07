@@ -852,7 +852,7 @@ public function getFuckedByKorgo(x:int):void
 	// Merge
 	output("\n\nAfter " + (x >= 0 ? "shining himself in your accumulated juices":"smearing his prick with copious pre") + ", the korgonne humps against your body, grunting at the nadir of his whimpering thrusts. You look " + (!pc.isTaur() ? "down":"back") + " to see his green eyes incandescent with arousal. When you feel his furry nutsack calp against your nethers you let out a tiny squeak, body shaking in another small orgasm. He languishes in the warmth for only a moment longer, rearing back - your fingers dig into the rock, a reflex one inevitably gets when they’re about to be " + (x < 0 ? "anally":"vaginally") + " hammered.");
 	output("\n\nThere’s absolutely nothing gentle about the way he howls and rams into you");
-	var looseness = pc.ass.looseness();
+	var looseness:Number = pc.ass.looseness();
 	if(x >= 0) looseness = pc.looseness(x);
 	if(looseness < 3) output(", fighting against the tightness of your [pc.vagOrAss " + x + "] on his way. Even with how well prepared you were beforehand, there was a spike of pain when he lanced you down to his knot");
 	else output(", finding purchase in the welcoming embrace of your well-fucked [pc.vagOrAss " + x + "]. You accept him readily enough, but there’s a spike of pain when he smacks his knot into you");
