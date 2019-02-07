@@ -3469,10 +3469,11 @@ public function ratcounterTextGenerator():String
 			);
 			else
 			{
-				if (ratsPCIsKnown()) randomDialogue.push(
-					("<i>“Y... You’ve got some fight for some big business punk!”</i> one of the duo stammers, planting " + rat.mf("his", "her") + " feet."),
-					("<i>“You’ll pay for hurting " + downedRat.mf("him", "her") + ", you slimeball CEO!”</i> snarls the " + (rat == rat0 ? "fuzzy rodenian" : (rat == rat1 ? "freckled boy" : "fuzzy-limbed [rat2.bopGirl].")))
-				);
+				if (ratsPCIsKnown())
+				{
+					randomDialogue.push("<i>“Y... You’ve got some fight for some big business punk!”</i> one of the duo stammers, planting " + rat.mf("his", "her") + " feet.")
+					if (downedRat) randomDialogue.push("<i>“You’ll pay for hurting " + downedRat.mf("him", "her") + ", you slimeball CEO!”</i> snarls the " + (rat == rat0 ? "fuzzy rodenian" : (rat == rat1 ? "freckled boy" : "fuzzy-limbed [rat2.boyGirl].")));
+				};
 				randomDialogue.push(
 					("<i>“Dammit... Y-y-you’re not gonna get away with this!”</i> one of them shouts at you, though it sounds more pitiful than threatening."),
 					("<i>“Damn you, why couldn’t you have just paid!?”</i> one shouts, smacking " + rat.mf("his", "her") + " baton against the ground.")
