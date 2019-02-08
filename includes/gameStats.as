@@ -3881,6 +3881,42 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				sideCount++;
 			}
+			if(flags["WARGII_PROGRESS"] != undefined || flags["WARGII_SETUP"] != undefined)
+			{
+				output2("\n<b><u>Warg’ii Hold</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(flags["WARGII_PROGRESS"] != undefined)
+				{
+					output2(" Talked to Ula");
+					if(flags["WARGII_PROGRESS"] <= -1) output2(", Refused to help");
+					if(flags["WARGII_ULA_PROMISED"] != undefined) output2(", Agreed to help");
+					if(flags["WARGII_PROGRESS"] <= -2) output2(", Korg’ii Hold overthrown, Failed");
+					else if(flags["WARGII_PROGRESS"] >= 3)
+					{
+						output2(", Saved Korg’ii Hold");
+						if(flags["WARGII_MILO_SOLUTION"] != undefined)
+						{
+							switch(flags["WARGII_MILO_SOLUTION"])
+							{
+								case 0: output2(", Released milodan"); break;
+								case 1: output2(", Enslaved milodan"); break;
+								case 2: output2(", Temporarily imprisoned milodan"); break;
+							}
+						}
+						output2(", Completed");
+					}
+					else if(flags["WARGII_PROGRESS"] == 2) output2(", <i>In progress...</i>");
+					output2("\n<b>* Influence:</b> " + wargiiScore() + " %");
+					if(flags["WARGII_FIGHTS_RAN"] != undefined) output2("\n<b>* Combat, Retreats, Total:</b> " + flags["WARGII_FIGHTS_RAN"]);
+					if(flags["WARGII_FIGHTS_WON"] != undefined) output2("\n<b>* Combat, Victories, Total:</b> " + flags["WARGII_FIGHTS_WON"]);
+					if(flags["WARGII_HEIDRUN_SAVED"] != undefined) output2("\n<b>* " + (flags["MET_HEIDRUN"] == undefined ? "Korgonne Merchant" : "Heidrun") + ":</b> Saved Her");
+					if(flags["WARGII_NENNE_SAVED"] != undefined) output2("\n<b>* Nenne:</b> Saved Her");
+					if(flags["WARGII_LUND_SAVED"] != undefined) output2("\n<b>* " + (flags["MET_LUND"] == undefined ? "Male Korgonne" : "Lund") + ":</b> Saved Him");
+					if(flags["WARGII_TUUVA_SAVED"] != undefined) output2("\n<b>* " + (flags["MET_TUUVA"] == undefined ? "Korgonne Blacksmith" : "Tuuva") + ":</b> Saved Her");
+				}
+				else output2("<i>Talk to Ula!</i>");
+				sideCount++;
+			}
 		}
 		
 		if(showID == "Canadia" || showID == "All")

@@ -20,7 +20,7 @@ public function dosedKorgiMaleEncounter():void
 	clearMenu();
 	addButton(0,"Help",helpOutDosedMaleKorg,undefined,"Help","The poor pup’s all fired up and too shy to show it. You can think of a few ways to help him get over it.");
 
-	addButton(1,"Don't Help",dontHelpThatKorgo,undefined,"Don't Help","You can’t get caught up fucking at random in a pitched battle!");;
+	addButton(1,"Don’t Help",dontHelpThatKorgo,undefined,"Don’t Help","You can’t get caught up fucking at random in a pitched battle!");;
 }
 
 //[Don’t Help]
@@ -180,7 +180,7 @@ public function getOralFromDoggo(useCock:Boolean = false):void
 		else if(pc.vaginas[x].wetness() < 5) output("beautifully soaked");
 		else output("wonderfully drenched");
 		output(" slit, admiring its gentle curves and shimmery lips.");
-		if(pc.vaginalPuffiness(x) >= 1) output("  The fat, rubbery folds of your cunt dominate him with winking sparkles along their tempting ridges.");
+		if(pc.vaginalPuffiness(x) >= 1) output(" The fat, rubbery folds of your cunt dominate him with winking sparkles along their tempting ridges.");
 		output("\n\n<i>“Go ahead, big boy!”</i> you simper, ruffling the white hair on his head. <i>“All for you, go for it!”</i> His muzzle shoots open as wide as his jaw will allow, and he devours [pc.onePussy] almost. His wide, flat tongue bowls over your bare twat, hungrily slurping up all the caked-on girly juice. Hissing nasal breaths tickle your mons and make you squeak; make you hope your [pc.girlCumFlavor] girlmusk will stoke his ardor before long.");
 		output("\n\nFaint groans and lewd-sounding kisses from below " + (pc.balls > 0 ? "your brow-mounted ballsack ":"") + "make it clear the addled korg-man appreciates his place below you. Heavy airs wash over your exterior, rabid need building inside him. His neck bobs back and forth, only as much as your grip will allow, and he licks left, right, left, right, lashing your gash from north to south. Desperate licks part your cuntlips for the first time, and thanks to his desire for sweaty, supple pussy, you begin to share in his wild need. Praise for his cunnilingual expertise flows from your mouth in babbles incoherent.");
 		output("\n\nWhile his tongue spreads your clenching canal wider, shooting bolts of frenetic pleasure throughout your edging body, his wet nose bounces off your [pc.clit]. It wasn’t just a lubed up deflection, it was an aching <i>thump</i> you felt in your heart. It happens again. You realize that he’s not content with merely licking, he’s wedging his face deeper into you. That’s when you skyrocket through the atmosphere, propelled by vaginally-induced bliss.");
@@ -460,7 +460,7 @@ public function sixtyNineKorgoborgo(args:Array):void
 	// PC Used Vagina
 	else
 	{
-		output("\n\nEventually, you lazily blink, feeling your [pc.pussies] contract. Your partner’s firmness draws out a violent reaction from your body, while gentler gropes and clit-tweaking motions make you whimper through the funneling spooge overlaying your belly acids. Your stomach balloons with his seed, and your [pc.pussyNoun " + x + "] puffs out bright red, gasping like your wanton 'O' lips. Stars shoot across your narrow bands of vision, eliminating color and reality as [pc.girlCum] " + (!pc.isSquirter() ? "oozes out in thin streams, expedited by that unfailing tongue":"lances against his tonsil and uvula in powerfully loosed squirts") + ".");
+		output("\n\nEventually, you lazily blink, feeling your [pc.pussies] contract. Your partner’s firmness draws out a violent reaction from your body, while gentler gropes and clit-tweaking motions make you whimper through the funneling spooge overlaying your belly acids. Your stomach balloons with his seed, and your [pc.pussyNoun " + x + "] puffs out bright red, gasping like your wanton ‘O’ lips. Stars shoot across your narrow bands of vision, eliminating color and reality as [pc.girlCum] " + (!pc.isSquirter() ? "oozes out in thin streams, expedited by that unfailing tongue":"lances against his tonsil and uvula in powerfully loosed squirts") + ".");
 		output("\n\nFeminine release dominates your mind, slowly massaging you through gradual expressions of receding euphoria. You’re completely surrounded by his soft fur, warming you better than the ambient temperature, sliding easily against your [pc.skinFurScales] since it’s been moistened with sweat and jism. You twist back and forth, grinding it all out.");
 		if(pc.hasCock()) 
 		{
@@ -580,7 +580,7 @@ public function frotAndFuck():void
 	else
 	{
 		if(pc.cockThatFits(1000) >= 0) addButton(0,"Fuck His Butt",penisRouter,[fuckDatKorgosButt,700,false,0],"Fuck His Butt","Turn him around and fuck his butt.");
-		else addDisabledButton(0,"Fuck His Butt","Fuck His Butt","You're too big for this.");
+		else addDisabledButton(0,"Fuck His Butt","Fuck His Butt","You’re too big for this.");
 		addButton(1,"Keep Frotting",keepuFrottuWang,x,"Keep Frotting","Shower each other in jizz.");
 	}
 }
@@ -804,7 +804,7 @@ public function getFuckedByKorgo(x:int):void
 	// Using Ass
 	else
 	{
-		output("\n\nHis tongue swirls your [pc.asshole]" + (pc.analPuffiness() >= 2 ? ", caressing the obscenely inflated flesh in a half-trance state":"") + ", wettening your taint with warm spit. Dappling sweat is sucked up in his lusty haze" + (pc.isHerm() ? ",  and there are moments he falls towards your [pc.vagina " + x + "], only for you to remind him of what he’s allowed to have":"") + ". The korg-man’s paws spread your ass cheeks wider, exposing your once-hidden sphincter to the air and further abuse.");
+		output("\n\nHis tongue swirls your [pc.asshole]" + (pc.analPuffiness() >= 2 ? ", caressing the obscenely inflated flesh in a half-trance state":"") + ", wettening your taint with warm spit. Dappling sweat is sucked up in his lusty haze" + (pc.isHerm() ? ", and there are moments he falls towards your [pc.vagina " + x + "], only for you to remind him of what he’s allowed to have":"") + ". The korg-man’s paws spread your ass cheeks wider, exposing your once-hidden sphincter to the air and further abuse.");
 		output("\n\nBefore you can snap about the frozen feeling on your butthole, he envelops your backside with his whole mouth, raking his tongue up and down the narrow, winking entrance. Smooth canine tongue slows from rampagingly fast to slow and flicking, always flourishing at the end of his up-and-down pressures. On the next gulp of what you presume is the sweat he " + (pc.hasFur() ? "sucked from your fur":"slurped from your [pc.skinFurScales]") + ", dizziness assaults you the moment his tongue glides through unopposed.");
 		output("\n\nYou cry out in pure, wanton need, wriggling uncontrollably against his probing flesh, circling the fringes of your chute. Spittle leaks from your cavern as the seconds tick by, parted by dusky lips and throaty groans. You almost cum, but he stops just before you do. You’re left a quivering wreck steadied only by the wall and his body - the realization that he is in full control of you and your pleasure is an unmistakably arousing one...");
 	}
@@ -833,14 +833,14 @@ public function getFuckedByKorgo(x:int):void
 	else output("\n\nYou can tell your fertile pheromones are having a strong effect on him. Your [pc.legOrLegs] are trembling in his paws, shaking with the desire to bear children. They don’t react in pleasure, only havoc, disdain. You need his cock, and you need it now. Crying out in pure, delirious want you beg him to fuck you, to shove his cock so far in that his knot breaks you apart, and then he can fuck your knot in while he delivers all that seed straight to your womb. <i></b>Your ovaries need to be drowned in cum!</b></i>");
 	// Merge
 	output("\n\nYou shriek in joy, hyperventilating when he stands and presses his crotch into your rear, rubbing the head of his pre-glazed cock to your [pc.vagOrAss " + x + "].");
-	// PC not Taur, PC Height <=5’2 (add-on, no new pg)
+	// PC not Taur, PC Height <=5' 2" (add-on, no new pg)
 	if(!pc.isTaur() && pc.tallness <= 5*12+2) 
 	{
 		output(" The way he dominates your small form with the entirety of his rough-hewn body fills you with ecstasy. ");
 		if(pc.biggestTitSize() >= 1) output("He grabs " + (pc.totalBreasts() == 2 ? "both of":"a set of your") + " [pc.breasts], grunting approvingly. ");
 		output("On some primal level you feel safe, secure, and <i>claimed.</i> Wrapped in his arms you aren’t going anywhere. You wouldn’t want to anyway, not when your furry mate keeps you warmly docile underneath his powerful physique. Mounted on you, he only has one goal in mind: to " + (x < 0 ? "fill your [pc.asshole]":"breed your [pc.pussy " + x + "]") + "." + (pc.hasTailFlag(GLOBAL.FLAG_LONG) ? " You coil your tail around his waist, bringing him a little closer to do just that.":""));
 	}
-	// PC not Taur, PC Height >=5’3 (add-on, no new pg)
+	// PC not Taur, PC Height >=5' 3" (add-on, no new pg)
 	else if(!pc.isTaur()) 
 	{
 		output(" Your korgonne lover imposes himself on you in an ecstatically thrilling way, enveloping as much of your body as he can with his rough-hewn musculature. ");
@@ -886,7 +886,7 @@ public function getFuckedByKorgo(x:int):void
 		output(".");
 	}
 	else output("rear, forcing you down on your knees and mounting your backside without hesitation. His knot still lodged inside, still spurting tiny amounts of spunk into your [pc.vagOrAss " + x + "], he prepares to fuck you like never before.");
-	output("\n\nOverwhelmed by your masculine partner’s ferociousness, " + (!pc.isTaur() ? "you clutch the paws gripping your [pc.chest]":"you clutch the wall pushing back against your [pc.face]") + ". He pumps so deeply that you can feel his sheath crinkle up around your " + (x >= 0 ? "slit":"crease") + ". It makes him moan so loudly, too, like fluid trickles out and gets into the space between it and his cock. Your moist [pc.lipColor] lips stretch into an 'O' of delight. You’re in a bliss-filled ditch being fucked by an ideal mate, feeling the pleasure rise and crest.");
+	output("\n\nOverwhelmed by your masculine partner’s ferociousness, " + (!pc.isTaur() ? "you clutch the paws gripping your [pc.chest]":"you clutch the wall pushing back against your [pc.face]") + ". He pumps so deeply that you can feel his sheath crinkle up around your " + (x >= 0 ? "slit":"crease") + ". It makes him moan so loudly, too, like fluid trickles out and gets into the space between it and his cock. Your moist [pc.lipColor] lips stretch into an ‘O’ of delight. You’re in a bliss-filled ditch being fucked by an ideal mate, feeling the pleasure rise and crest.");
 	output("\n\nIt’s all about his pleasure now. His pleasure is your pleasure. Your brain is totally occupied with thinking about how great it’ll be when he cums, how perfect a situation you’ll be in when he knots you {vag: and breeds you}. It feels great. Better than great... divine. Completely lost to excess, he shows no mercy when he handles you now, and you don’t want him to anyway." + (pc.hasLongEars() ? " In fact, when he shifts to grip your [pc.ears] and tug your head back, you’re all smiles.":""));
 	output("\n\nHe misses out on the beginning your climax. It isn’t until your voice reaches its highest pitch and slowly dies down that you melt into his unbreakable grasp and clamp down around his cock on its final thrust. Your whole body shakes hard and you slump forward. He falls onto your back and, burrowed down to his pricksheath, and cums. The first thick rope to hit your " + (x < 0 ? "colon":"cervix") + " shatters your thoughts to pieces. The horny korg’s second viscous rope makes you feel lightheaded.");
 	output("\n\nClimax rushes down your spine; you would thrash and explode if he wasn’t latched onto you like the dutiful mate he is. Spittle froths in your mouth while your ");

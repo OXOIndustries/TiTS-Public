@@ -97,6 +97,7 @@ public function startWargiiQuestOnEnterUlaRoom():void
 	showUla();
 	author("Fenoxo");
 	flags["WARGII_SETUP"] = undefined;
+	flags["WARGII_PROGRESS"] = 1;
 	output("<i>“[pc.name]! " + (korgiTranslate() ? "I’m so relieved!":"Such relief!") + "”</i> Ula rushes forward, sweeping you up in a big hug. <i>“" + (!korgiTranslate() ? "No time for warm shares!":"No time for cuddling!") + "”</i> She pushes you back to arms length and stares " + (pc.tallness >= 5*12+5 ? "up ":"") + "at you with big green eyes. <i>“" + (!korgiTranslate() ? "Clan Chief peace-meeting with milodan tribe, but Ula not trusting. Thinking catdog trap. Not first time they try, but he old now. Am much stalling, but father much tired of wait. Can [pc.name] follow and make with safe?":"The Clan Chief is going to a peace summit with a milodan tribe, but I don’t trust them. The whole thing reeks of a trap. This isn’t the first time they’ve tried, but he’s old now, and he won’t wait any longer - no matter how I stall. Can you follow and keep him safe?") + "”</i>");
 	processTime(3);
 	clearMenu();
@@ -416,7 +417,7 @@ public function wargiiBadEnds():void
 		else output("tide");
 		output(" of sperminess.");
 
-		output("\n\nThey don’t even give you time to rest! In seconds you feel their overheating bodies clambering all over you; Their massive breasts feel like plush, pre-heated pillows; their fat little pussies drag across your bare [pc.skinFurScales], feeling almost like hot irons. The boiling pussy-juice of ragingly horny korg'ii science-slaves drools over you in a wonderfully arousing shower.");
+		output("\n\nThey don’t even give you time to rest! In seconds you feel their overheating bodies clambering all over you; Their massive breasts feel like plush, pre-heated pillows; their fat little pussies drag across your bare [pc.skinFurScales], feeling almost like hot irons. The boiling pussy-juice of ragingly horny korg’ii science-slaves drools over you in a wonderfully arousing shower.");
 
 		output("\n\nThey waste no time in seizing" + (pc.hasCocks() ? " each of":"") + " your still raging-hard [pc.cocks] and ride " + (!pc.hasCocks() ? "it":"them") + " down to the base. The rest make do with the rest of your body, planting their fat pussies and fatter asses on your face. You start eating them out with the eagerness of a starving animal, enough so that, by the time you blow your load in one" + (pc.hasCocks() ? " set of":"") + " sluts, you’ve primed at least three more with a series of oral-induced orgasms.");
 		output("\n\nYou lie there on the ground, smothered in pumped-up bitches all looking for a dose of your seeming endless, freshly enhanced love juice, and you’re more than happy to deliver. When you’re done giving them one round of [pc.cum], stuffing them so full that their bellies already look weighed down with a full litter, they almost immediately come back for seconds, and thirds, and stars know how many more times. Every orgasm seems to be even larger than the last as the constant stimulation seems to have triggered something in the drug she gave you. Your body expands massively, and your virility even more so. Your mind has long since broken, leaving nothing but pure animal instinct.");

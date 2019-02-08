@@ -759,6 +759,12 @@ public function masturbateMenu(roundTwo:Boolean = false):void
 	// If we got back a null array from the listing functor, it should have created the button for us.
 	if (faps == null)
 	{
+		// Just in case!
+		if(!hasButton(14))
+		{
+			output("<b>You do not have any available masturbation actions at the moment.</b>");
+			addButton(14, "Back", mainGameMenu);
+		}
 		return;
 	}
 	

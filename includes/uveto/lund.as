@@ -1,6 +1,6 @@
 //Name: Lund
 //Personality: Fluffy with a Napoleon complex. Wants to dominantly dick down bigger aliens
-//Physical: 5’4”</i>, muscled, ottermode. 10”</i> doggy cock with a fat knot. Fluffy tail. Pale blue fur like the Shoubust. Penis colour like the Shoubust too because it looks like a tasty lolly. Facial expression probably not like the Shoubust; he’s not very friendly to outsiders.
+//Physical: 5' 4", muscled, ottermode. 10”</i> doggy cock with a fat knot. Fluffy tail. Pale blue fur like the Shoubust. Penis colour like the Shoubust too because it looks like a tasty lolly. Facial expression probably not like the Shoubust; he’s not very friendly to outsiders.
 
 //Sex scenes
 //Get doggied

@@ -1392,8 +1392,8 @@ public function isNight():Boolean
 
 public function canRest():Boolean
 {
-	return (flags["WARGII_PROGRESS"] != 2);
-	//return true;
+	if(flags["WARGII_PROGRESS"] == 2) return false;
+	return true;
 }
 public function canSleep():Boolean
 {
