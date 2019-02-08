@@ -3649,44 +3649,47 @@ public function crotchStuff(forTarget:Creature = null):void
 		var ballsackType:int = target.scrotumType();
 		var ballsackColor:String = target.scrotumColor();
 		
+		var ballSize:Number = target.ballSize();
+		var giantBalls:Boolean = (target.ballDiameter() >= (target.tallness/2));
+		
 		var sBallsackDesc:String = "";
 		switch(ballsackType)
 		{
 			case GLOBAL.FLAG_FURRED:
 				if(target.hasStatusEffect("Uniball")) sBallsackDesc += "" + (target == pc ? "Your":"[target.HisHer]") + " fuzzy " + target.sackDescript(true,true) + " hugs " + (target == pc ? "your":"[target.hisHer]") + " " + sTesticleDesc + " tightly against " + (target == pc ? "your":"[target.hisHer]") + " body.";
-				else if(target.cockTotal() == 0) sBallsackDesc += "A fuzzy " + target.sackDescript(true,true) + " filled with " + sTesticleDesc + " swings low under where a penis would normally grow.";
-				else sBallsackDesc += "A fuzzy " + target.sackDescript(true,true) + " filled with " + sTesticleDesc + " swings low under " + (target == pc ? "your":"[target.hisHer]") + " " + target.multiCockDescript() + ".";
+				else if(target.cockTotal() == 0) sBallsackDesc += "A fuzzy " + target.sackDescript(true,true) + " filled with " + sTesticleDesc + " " + (giantBalls ? "drags" : "swings") + " low under where a penis would normally grow.";
+				else sBallsackDesc += "A fuzzy " + target.sackDescript(true,true) + " filled with " + sTesticleDesc + " " + (giantBalls ? "drags" : "swings") + " low under " + (target == pc ? "your":"[target.hisHer]") + " " + target.multiCockDescript() + ".";
 				if(target.hasStatusEffect("Special Scrotum")) sBallsackDesc += " Covered in plush, " + (ballsackColor != "" ? ballsackColor : target.furColor) + " fluff makes it absolutely squeezable!";
 				break;
 			case GLOBAL.FLAG_SCALED:
 				if(target.hasStatusEffect("Uniball")) sBallsackDesc += "" + (target == pc ? "Your":"[target.HisHer]") + " scaly " + target.sackDescript(true,true) + " hugs " + (target == pc ? "your":"[target.hisHer]") + " " + sTesticleDesc + " tightly against " + (target == pc ? "your":"[target.hisHer]") + " body.";
-				else if(target.cockTotal() == 0) sBallsackDesc += "A scaly " + target.sackDescript(true,true) + " filled with " + sTesticleDesc + " swings low under where a penis would normally grow.";
-				else sBallsackDesc += "A scaly " + target.sackDescript(true,true) + " filled with " + sTesticleDesc + " swings low under " + (target == pc ? "your":"[target.hisHer]") + " " + target.multiCockDescript() + ".";
+				else if(target.cockTotal() == 0) sBallsackDesc += "A scaly " + target.sackDescript(true,true) + " filled with " + sTesticleDesc + " " + (giantBalls ? "drags" : "swings") + " low under where a penis would normally grow.";
+				else sBallsackDesc += "A scaly " + target.sackDescript(true,true) + " filled with " + sTesticleDesc + " " + (giantBalls ? "drags" : "swings") + " low under " + (target == pc ? "your":"[target.hisHer]") + " " + target.multiCockDescript() + ".";
 				if(target.hasStatusEffect("Special Scrotum")) sBallsackDesc += " Covered in sleek, " + (ballsackColor != "" ? ballsackColor : target.scaleColor) + " scales makes it smooth to the touch.";
 				break;
 			case GLOBAL.FLAG_GOOEY:
 				if(target.hasStatusEffect("Uniball")) sBallsackDesc += "" + (target == pc ? "Your":"[target.HisHer]") + " " + target.sackDescript(true,true) + " clings tightly to " + (target == pc ? "your":"[target.hisHer]") + " groin, dripping ooze and holding " + sTesticleDesc + " snugly against " + (target == pc ? "you":"[target.himHer]") + ".";
-				else if(target.cockTotal() == 0) sBallsackDesc += "An oozing, semi-solid sack with " + sTesticleDesc + " swings heavily under where a penis would normally grow.";
-				else sBallsackDesc += "An oozing, semi-solid sack with " + sTesticleDesc + " swings heavily beneath " + (target == pc ? "your":"[target.hisHer]") + " " + target.multiCockDescript() + ".";
+				else if(target.cockTotal() == 0) sBallsackDesc += "An oozing, semi-solid sack with " + sTesticleDesc + " " + (giantBalls ? "drags" : "swings") + " heavily under where a penis would normally grow.";
+				else sBallsackDesc += "An oozing, semi-solid sack with " + sTesticleDesc + " " + (giantBalls ? "drags" : "swings") + " heavily beneath " + (target == pc ? "your":"[target.hisHer]") + " " + target.multiCockDescript() + ".";
 				if(target.hasStatusEffect("Special Scrotum")) sBallsackDesc += " Its gelatinous, " + (ballsackColor != "" ? ballsackColor : target.skinTone) + " mass can allow it to jiggle and flop with ease.";
 				break;
 			default:
 				if(target.hasStatusEffect("Uniball")) sBallsackDesc += "" + (target == pc ? "Your":"[target.HisHer]") + " " + target.sackDescript(true,true) + " clings tightly to " + (target == pc ? "your":"[target.hisHer]") + " groin, holding " + (target == pc ? "your":"[target.hisHer]") + " " + sTesticleDesc + " snugly against " + (target == pc ? "you":"[target.himHer]") + ".";
-				else if(target.cockTotal() == 0) sBallsackDesc += StringUtil.capitalize(indefiniteArticle(target.sackDescript(true,true))) + " with " + sTesticleDesc + " swings heavily under where a penis would normally grow.";
-				else sBallsackDesc += StringUtil.capitalize(indefiniteArticle(target.sackDescript(true,true))) + " with " + sTesticleDesc + " swings heavily beneath " + (target == pc ? "your":"[target.hisHer]") + " " + target.multiCockDescript() + ".";
+				else if(target.cockTotal() == 0) sBallsackDesc += StringUtil.capitalize(indefiniteArticle(target.sackDescript(true,true))) + " with " + sTesticleDesc + " " + (giantBalls ? "drags" : "swings") + " heavily under where a penis would normally grow.";
+				else sBallsackDesc += StringUtil.capitalize(indefiniteArticle(target.sackDescript(true,true))) + " with " + sTesticleDesc + " " + (giantBalls ? "drags" : "swings") + " heavily beneath " + (target == pc ? "your":"[target.hisHer]") + " " + target.multiCockDescript() + ".";
 				if(target.hasStatusEffect("Special Scrotum")) sBallsackDesc += " It is covered in smooth " + (ballsackColor != "" ? ballsackColor : target.skinTone) + " skin, allowing anyone to see it blush whenever " + (target == pc ? "you’re":"[target.heShe]’s") + " aroused.";
 				break;
 		}
 		//Does it mention the dick at the end of the sentence? If so, dont use pronoun here:
 		if(target.hasCock() && !target.hasStatusEffect("Uniball"))
 		{
-			if(target.balls == 1) sBallsackDesc += " You estimate the testicle to be about " + num2Text(Math.round(target.ballSize())) + " ";
-			else sBallsackDesc += " You estimate each testicle to be about " + num2Text(Math.round(target.ballSize())) + " ";
+			if(target.balls == 1) sBallsackDesc += " You estimate the testicle to be about " + num2Text(Math.round(ballSize)) + " ";
+			else sBallsackDesc += " You estimate each testicle to be about " + num2Text(Math.round(ballSize)) + " ";
 		}
 		//No dick mention? Great! Pronouns deployed!
-		else if(target.balls == 1) sBallsackDesc += " You estimate it to be about " + num2Text(Math.round(target.ballSize())) + " ";
-		else sBallsackDesc += " You estimate each of them to be about " + num2Text(Math.round(target.ballSize())) + " ";
-		if(Math.round(target.ballSize()) == 1) sBallsackDesc += "inch";
+		else if(target.balls == 1) sBallsackDesc += " You estimate it to be about " + num2Text(Math.round(ballSize)) + " ";
+		else sBallsackDesc += " You estimate each of them to be about " + num2Text(Math.round(ballSize)) + " ";
+		if(Math.round(ballSize) == 1) sBallsackDesc += "inch";
 		else sBallsackDesc += "inches";
 		var ballDisplayDiameter:Number = Math.round(target.ballDiameter()*10)/10;
 		sBallsackDesc += " around and " + ballDisplayDiameter + (ballDisplayDiameter != 1 ? " inches" : " inch") + " across.";
