@@ -1721,7 +1721,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 				case "RAMIS":
 					if (ramisIsCrew() && !ramisOutDrinking() && !looksFemaleToRamis() && !pc.isTaur())
 					{
-						ramisSleep();
+						interrupt = ramisSleep();
 					}
 					break;
 				// No partner selected.

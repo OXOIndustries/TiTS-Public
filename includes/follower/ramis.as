@@ -1665,10 +1665,14 @@ public function ramisSleepInvite():void
 	ramisSleepButton(4);
 }
 
-public function ramisSleep():void
+public function ramisSleep():Boolean
 {
 	//Panties hook
-	if (ramisOnTop() && ramisPantyCaught()) return ramisPantiesEncounter("caught");
+	if (ramisOnTop() && ramisPantyCaught())
+	{
+		ramisPantiesEncounter("caught");
+		return true;
+	}
 	
 	author("Nonesuch");
 	showRamis();
@@ -1690,6 +1694,9 @@ public function ramisSleep():void
 
 	output("\n\n<i>“Love me a " + ramisfmt("sweet, frilly", "big, hunky", "sweet, frilly") + " bed-warmer,”</i> she purrs, clinching you into her warm, ripped flesh happily. <i>“Beats a hot water bottle any day of the week.”</i> ");
 	output("\n\nYou find sleep before she does, happily drifting off in the well-padded crook of her arm.");
+	output("\n\n");
+	
+	return false;
 }
 
 public function ramisSleepWake():void
@@ -3148,14 +3155,14 @@ public function ramisPantiesEncounter(response:String = "intro"):void
 			output("\n\n...Maybe it would have been better if she <i>had</i> torn your dick off.");
 			output("\n\n");
 			
+			processTime(1);
+			
 			// Ramis set to DoneWithYou
 			flags["RAMIS_SEX_DISABLED"] = 2;
 			flags["RAMIS_PANTIES"] = -1;
 			if(flags["CREWMEMBER_SLEEP_WITH"] == "RAMIS") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
 			
-			processTime(1);
-			
-			addButton(0, "Next", mainGameMenu);
+			addButton(0, "Next", sleep);
 			break;
 		case "boyo yes":
 			cIdx = pc.smallestCockIndex();
@@ -3182,7 +3189,7 @@ public function ramisPantiesEncounter(response:String = "intro"):void
 			pc.applyBlueBalls();
 			pc.XP(500);
 			
-			addButton(0, "Next", mainGameMenu);
+			addButton(0, "Next", sleep);
 			break;
 	}
 }
