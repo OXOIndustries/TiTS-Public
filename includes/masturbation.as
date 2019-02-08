@@ -2399,7 +2399,7 @@ public function futaBabePantyfapsRouter():void
 		}
 		if(pc.hasKeyItem("Panties - Ramis's - Black, tight-fit, frictionless undies."))
 		{
-			addButton(button,"Ramis’s",futaBabePantyfaps,"Ramis","Ramis’s Panties","Use Ramis’s tight, black panties to masturbate with.");
+			addButton(button,"Ramis’s",jackOffWithLadyPantiesYouSicko,"Ramis","Ramis’s Panties","Use Ramis’s tight, black panties to masturbate with.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink."))

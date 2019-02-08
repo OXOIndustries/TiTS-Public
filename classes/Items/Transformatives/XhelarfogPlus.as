@@ -205,8 +205,8 @@ package classes.Items.Transformatives
 		{
 			output("\n\nThe prickling flares up again suddenly, but fades just as fast, and as it does so does the pigmentation of your skin. At first, it seems to settle into a bleak white, but as you shift, color seems to ripple through it. <b>Your skin is now white and opalescent colored.</b>");
 			
+			if (target.skinTone == target.nippleColor && target.nippleColorUnlocked("white")) target.nippleColor = "white";
 			target.skinTone = "opalescent white";
-			if (target.skinTone == target.nippleColor && target.nippleColorUnlocked("opalescent white")) target.nippleColor = "white";
 			
 			return true;
 		}
