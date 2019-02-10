@@ -6,7 +6,7 @@
  * KIMBER_FLIRTED_WITH: Did [Flirt] with her this time. Reset to undefined on approach.
  * KIMBER_{CANDY/RUSKVEL/RATION/UTHRA/SKY}_GIVEN: the return of duh
  * KIMBER_REJECTED_PARASITE: This should be one if the pc had mimbranes the last time they tried to sex the cow
- * KIMBER_ON_TOP: 0 offered, 1 taken.
+ * KIMBER_ON_TOP: 0 offered, 1 taken. - not used anymore, now handled my KIMBER_QUEST
 */
 
 public function showKimber(nood:* = false, auth:Boolean = true):void
@@ -986,7 +986,9 @@ public function kimberTouchTheCow():void
 		output("\n\nKimber leans forward, pushing her tits against your hands as her hips swivel faster. Her pussy squeezes your [pc.cockBiggest], the soft walls stroking your shaft, all your length and head wrapped up in that tight slickness. You shift your hands and rub her nipples with your thumbs, flicking the pink peaks back and forth in time with your thrusts, your fingers squeezing the soft masses.");
 		output("\n\nShe tilts her head back and moans, and clamps her hands over yours, squeezing and stroking her boobs right along with you. The motion of her hips speeds up again as you thrust into her, her thighs slapping against yours, her girlcum drooling out with every movement.");
 		output("\n\n\"<i>Oh, </i>fuck<i> yes,</i>\" Kimber moans, her eyes squeezed shut tight. You roll her hard nipples between your fingers, switching between that and small pinches as Kimber moves from grinding on you to straight-out thrusting herself down on your [pc.cockBiggest], her mouth hanging open. Her pussy squeezes you tighter with every thrust, and you force yourself to hold back. The ride's clearly not over yet, and for all she talked about wearing you out, you still want to prove her wrong.");
-		output("\n\nShe moans again, and shoves herself forward, slamming her hands down on either side of you and shoving her boobs at your face. You keep your hands in place, letting her tits slap against them as you keep working her nipples. Her hips hammer against yours over and over, your [pc.cockBiggest] sliding partway out of her with each thrust only to ram deep into her every time she slides down. {If Steele has horsecock:She clearly knows how to ride a horsecock right, pulling herself up to the median ring every time and sliding right back down, so she gets that extra stretch with every thrust. }Her eyes are open wide now, and she's gasping hard, her face and chest both flushed red.");
+		output("\n\nShe moans again, and shoves herself forward, slamming her hands down on either side of you and shoving her boobs at your face. You keep your hands in place, letting her tits slap against them as you keep working her nipples. Her hips hammer against yours over and over, your [pc.cockBiggest] sliding partway out of her with each thrust only to ram deep into her every time she slides down.");
+		if (pc.cocks[pc.biggestCockIndex].cType == GLOBAL.TYPE_EQUINE) output(" She clearly knows how to ride a horsecock right, pulling herself up to the median ring every time and sliding right back down, so she gets that extra stretch with every thrust.");
+		output(" Her eyes are open wide now, and she's gasping hard, her face and chest both flushed red.");
 		output("\n\nBracing yourself as best you can, you thrust harder, keeping pace with her. She gasps and rears back, then grabs hold of your hands and forces them down to the bed, holding you down as she tries to fuck you right through the mattress. Her tits crush against your [pc.chest], then rise and crash into your face as Kimber moans again. You lick at the soft flesh, hoping to catch a nipple, but Kimber's boobs are bouncing too much for you to get a hold of anything.");
 		output("\n\n\"<i>Fuck!</i>\" Kimber shouts along with your thrusts. \"<i>Fu-u-u-u-ck, ahhh....</i>\" Her tongue lolls out of her mouth for a moment, and her pussy clenches down hard on your [pc.cockBiggest]. She's close, you can tell, and it's all you can to do hold on and not blow it before she comes.");
 		output("\n\nShe leans back on one thrust, her cunt coming down hard and squeezing your [pc.biggestSheath], then lets go of your hands, throws herself forward, and makes her boobs land on your [pc.chest]. \"<i>Grab my ass,</i>\" she gasps. \"<i>I know, tits, but grab my ass and go harder, I'm gonna come!</i>\"");
@@ -1113,7 +1115,7 @@ public function kimberDoHerNow():void
 
 	output("\n\n\"<i>So, [pc.name],</i>\" Kimber whispers in your ear. \"<i>Now that you've got me like this, what're you feeling up for?</i>\"");
 
-	addButton(0, "Get Ridden", penisRouter, [kimberTakesYouForARide]);
+	addButton(0, "Get Ridden", penisRouter, [kimberTakesYouForARide, pc.biggestCockVolume() + 1]);
 
 	addButton(1, "Oral", function ():void
 	{
@@ -1121,15 +1123,15 @@ public function kimberDoHerNow():void
 		{
 			clearMenu();
 			clearOutput();
-			addButton(0, "Use Penis", penisRouter, [kimberOralCock]);
+			addButton(0, "Use Penis", penisRouter, [kimberOralCock, pc.biggestCockVolume() + 1]);
 			addButton(1, "Use Vagina", vaginaRouter, [kimberOralVagina]);
 		}
-		else if (pc.hasCock()) penisRouter([kimberOralCock]);
+		else if (pc.hasCock()) penisRouter([kimberOralCock, pc.biggestCockVolume() + 1]);
 		else if (pc.hasVagina()) vaginaRouter([kimberOralVagina]);
 	});
 
-	addButton(2, "Anal", penisRouter, [kimberSomethingSomethingAnalIDKMan]);
-	if (flags["KIMBER_UTHRA_GIVEN"] != undefined) addButton(3, "Mirror Sex", penisRouter, [kimberSexeSrebmik]);
+	addButton(2, "Anal", penisRouter, [kimberSomethingSomethingAnalIDKMan, pc.biggestCockVolume() + 1]);
+	if (flags["KIMBER_UTHRA_GIVEN"] != undefined) addButton(3, "Mirror Sex", penisRouter, [kimberSexeSrebmik, pc.biggestCockVolume() + 1]);
 	else addDisabledButton(3, "Mirror Sex");
 
 	if (flags["KIMBER_CANDY_GIVEN"] != undefined) addButton(4, "Mutual Mast", function ():void
@@ -1138,21 +1140,21 @@ public function kimberDoHerNow():void
 		{
 			clearMenu();
 			clearOutput();
-			addButton(0, "Use Penis", penisRouter, [kimberShowCock]);
+			addButton(0, "Use Penis", penisRouter, [kimberShowCock, pc.biggestCockVolume() + 1]);
 			addButton(1, "Use Vagina", vaginaRouter, [kimberShowVagina]);
 		}
-		else if (pc.hasCock()) penisRouter([kimberShowCock]);
+		else if (pc.hasCock()) penisRouter([kimberShowCock, pc.biggestCockVolume() + 1]);
 		else if (pc.hasVagina()) vaginaRouter([kimberShowVagina]);
 	});
 	else addDisabledButton(4, "Mutual Mast");
 
-	if (flags["KIMBER_RUSKVEL_GIVEN"] != undefined) addButton(5, "Get Tied Down", penisRouter, [kimberGetsYouTiedUpWithoutWork]);
+	if (flags["KIMBER_RUSKVEL_GIVEN"] != undefined) addButton(5, "Get Tied Down", penisRouter, [kimberGetsYouTiedUpWithoutWork, pc.biggestCockVolume() + 1]);
 	else addDisabledButton(5, "Get Tied Down");
 	if (flags["KIMBER_SKY_GIVEN"] != undefined) addButton(6, "Pegging", kimberTakesYouDownToPeg);
 	else addDisabledButton(6, "Pegging");
-	if (flags["KIMBER_RATION_GIVEN"] != undefined) addButton(7, "Shower Sex", penisRouter, [kimberTheCleanScientist]);
+	if (flags["KIMBER_RATION_GIVEN"] != undefined) addButton(7, "Shower Sex", penisRouter, [kimberTheCleanScientist, pc.biggestCockVolume() + 1]);
 	else addDisabledButton(7, "Shower Sex");
-	if (flags["KIMBER_ON_TOP"] == 0) addButton(9, "On Top", penisRouter, [kimberOnTopLater]);
+	if (flags["KIMBER_QUEST"] == 2) addButton(9, "On Top", penisRouter, [kimberOnTopLater, pc.biggestCockVolume() + 1]);
 	//Unlike the item listings, sex options that aren't available should be greyed out but visible, so if people see something they want to do, they'll try to figure out how to unlock that scene. [On Top] is an exception, and should not be visible unless it's available.
 }
 
@@ -1179,7 +1181,7 @@ public function kimberTakesYouForARide(cockIdx:int):void
 		output("\n\nSlowly, Kimber brings her gleaming pussy down onto your [pc.cock " + cockIdx + "].");
 		if (pc.cocks[cockIdx].thickness() >= 3) output(" It's still a tight squeeze, and her breath catches as she slides her way down your wide shaft.");
 		if (pc.cocks[cockIdx].cType == GLOBAL.TYPE_EQUINE) output(" As her lips squeeze over the ring at your cock's middle, she moans out, \"<i>Oh, that's the stuff.</i>\"");
-		output(" She lowers herself atop you, her pussy slipping around your [pc.cock " + cockIdx + "] like it was made to hold you, tight but flexible around your length. Kimber keeps her descent slow and controlled, her shapely thighs lowering to rest against your [pc.thighs] as her cunt swallows up your [pc.cock " + cockIdx + "] and comes to rest atop your [pc.sheath " + cockIdx + "].");
+		output(" She lowers herself atop you, her pussy slipping around your [pc.cock " + cockIdx + "] like it was made to hold you, tight but flexible around your length. Kimber keeps her descent slow and controlled, her shapely thighs lowering to rest against your [pc.thighs] as her cunt swallows up your [pc.cock " + cockIdx + "] and comes to rest atop your [pc.sheathOrBase " + cockIdx + "].");
 		pc.cockChange();
 		output("\n\n\"<i>Ooooh....</i>\" Kimber moans, rocking back and forth a little, like she's getting used to the feeling of you inside her.");
 		if (pc.cocks[cockIdx].cLength() >= 20) output(" \"<i>Fuck, that's deep,</i>\" she whispers. \"<i>Ain't everyone who can fill me up like that.</i>\"");
@@ -1193,7 +1195,7 @@ public function kimberTakesYouForARide(cockIdx:int):void
 		output(" Her eyes are open wide now, and she's gasping hard, her face and chest both flushed red.");
 		output("\n\nBracing yourself as best you can, you thrust harder, keeping pace with her. She gasps and rears back, then grabs hold of your hands and forces them down to the bed, holding you down as she tries to fuck you right through the mattress. Her tits crush against your [pc.chest], then rise and crash into your face as Kimber moans again. You lick at the soft flesh, hoping to catch a nipple, but Kimber's boobs are bouncing too much for you to get a hold of anything.");
 		output("\n\n\"<i>Fuck!</i>\" Kimber shouts along with your thrusts. \"<i>Fu-u-u-u-ck, ahhh....</i>\" Her tongue lolls out of her mouth for a moment, and her pussy clenches down hard on your [pc.cock " + cockIdx + "]. She's close, you can tell, and it's all you can to do hold on and not blow it before she comes.");
-		output("\n\nShe leans back on one thrust, her cunt coming down hard and squeezing your [pc.sheath " + cockIdx + "], then lets go of your hands, throws herself forward, and makes her boobs land on your [pc.chest]. \"<i>Grab my ass,</i>\" she gasps. \"<i>I know, tits, but grab my ass and go harder, I'm gonna come!</i>\"");
+		output("\n\nShe leans back on one thrust, her cunt coming down hard and squeezing your [pc.sheathOrBase " + cockIdx + "], then lets go of your hands, throws herself forward, and makes her boobs land on your [pc.chest]. \"<i>Grab my ass,</i>\" she gasps. \"<i>I know, tits, but grab my ass and go harder, I'm gonna come!</i>\"");
 		output("\n\nThere's no way to say no to that. You whip your arms around and grab two handfuls of Kimber's round ass, making her yelp. She moans, her face inches from yours, as you thrust into her as hard and deep as you can. Her whole body goes tense, and she cries out as the orgasm hits her, that last squeeze from her cunt pushing you right over the edge.");
 		output("\n\nYour orgasm feels like it hits your entire body, and your [pc.cock " + cockIdx + "] spasms within her, [pc.cum] shooting out in squirt after squirt, bathing her insides as you let out a long, loud groan.");
 		if (pc.cumQ() >= 10000) output(" The torrent from your cock flows like a river, and you gush out enough to make Kimber's belly swell against your [pc.belly]. Your cum shoots out of her, spewing across your [pc.legs] and hers, flooding over the lower half of the mattress and dripping down to the floor.");
@@ -1281,7 +1283,7 @@ public function kimberGivesYouACowlick(genIdx:int, useCock:Boolean):void
 
 	if (useCock)
 	{
-		output("\n\nKimber leans down and plants a kiss right on your [pc.cockHead " + genIdx + "]. She keeps the kiss going as your [pc.cock " + genIdx + "] swells, her lips wrapping around the head as it expands into her mouth. She runs her tongue in circles around your dong's head, sliding it farther into her mouth each time, until she's licking and sucking her way down your [pc.sheath " + genIdx + "].");
+		output("\n\nKimber leans down and plants a kiss right on your [pc.cockHead " + genIdx + "]. She keeps the kiss going as your [pc.cock " + genIdx + "] swells, her lips wrapping around the head as it expands into her mouth. She runs her tongue in circles around your dong's head, sliding it farther into her mouth each time, until she's licking and sucking her way down your [pc.sheathOrBase " + genIdx + "].");
 		output("\n\nYou slide your hands behind your head and prop it up, watching Kimber at work. She meets your eyes and smirks around your dick, then slowly pulls back, only to lean forward and lick all the way down to your dick's base, until your entire length is hard and wet.");
 		if (pc.cocks[genIdx].cLength() <= 7)
 		{
@@ -1355,7 +1357,7 @@ public function kimberSomethingSomethingAnalIDKMan(cockIdx:int):void
 	{
 		output("\n\nKimber steps into her bathroom, and returns a moment later with a bottle of lube that has a happy cowgirl's face on the label. \"<i>Sit yourself on down,</i>\" she says, \"<i>and let's get this started.</i>\"");
 		output("\n\nYou sit down on the edge of Kimber's bed, and she kneels on the floor in front of you. Your [pc.cock " + cockIdx + "] is already halfway hard, and Kimber gives it a kiss on the [pc.cockHead " + cockIdx + "], then grins up at you as your dick continues to rise. She squirts some of the lube on one hand, then rubs it between her palms, and strokes her hands up and down your shaft. Her slick touch is enough to make your [pc.cock " + cockIdx + "] surge the rest of the way up; she clearly knows exactly how to stroke you.");
-		output("\n\nEager to return the favor, you reach forward and slide your hands over Kimber's expansive chest, running your fingertips across her soft skin and getting a small gasp out of her as you start to rub her nipples. A blush spreads across her face and trails down her neck, her breathing quickening as you do your best to stroke over every inch of her massive tits. Her hands continue their work, rubbing you all the way down to your [pc.sheath " + cockIdx + "] and up to your head, slow and steady until you're as stiff as you're going to get, all lubed up and ready for her.");
+		output("\n\nEager to return the favor, you reach forward and slide your hands over Kimber's expansive chest, running your fingertips across her soft skin and getting a small gasp out of her as you start to rub her nipples. A blush spreads across her face and trails down her neck, her breathing quickening as you do your best to stroke over every inch of her massive tits. Her hands continue their work, rubbing you all the way down to your [pc.sheathOrBase " + cockIdx + "] and up to your head, slow and steady until you're as stiff as you're going to get, all lubed up and ready for her.");
 		output("\n\nKimber runs her tongue over her upper lip as she looks as you, her face still flushed from the attention you're giving her boobs. \"<i>Looks like you're good to go,</i>\" she says");
 		if (pc.cocks[cockIdx].cLength() >= 14) output(", then adds, \"<i>I'm not sure if I can take all of this, but I'm damn sure going to try.</i>\" She gives you a grin that makes you think she's set on making that happen");
 		output(". \"<i>Just let me do a little...</i>\"");
@@ -1367,7 +1369,7 @@ public function kimberSomethingSomethingAnalIDKMan(cockIdx:int):void
 		output("\n\n\"<i>Fuck,</i>\" she breathes.");
 		if (pc.cocks[cockIdx].thickness() >= 2.5) output(" \"<i>That's... that's thicker than my hardlight, that's for damn sure...</i>\"");
 		output(" Kimber slides down farther, planting her hands to either side of you on the bed and pressing her ass down toward your lap. You let out a grunt as her ass swallows up more of your [pc.cock " + cockIdx + "], squeezing you tighter as she works her way down.");
-		output("\n\nFinally, Kimber's ass comes to rest against your [pc.thighs], her hole encircling your [pc.sheath " + cockIdx + "], gleaming with lube.");
+		output("\n\nFinally, Kimber's ass comes to rest against your [pc.thighs], her hole encircling your [pc.sheathOrBase " + cockIdx + "], gleaming with lube.");
 		if (pc.cocks[cockIdx].cLength() >= 14) output(" Looks like you were right; she was set on taking in the whole thing. And she did it.");
 		output(" She's breathing hard, and your [pc.cock " + cockIdx + "] throbs within her, clenched tight inside her ass. You give her a slow, gentle thrust, just a little, and she moans again.");
 		output("\n\n\"<i>Aah... always feels different,</i>\" Kimber gasps out, \"<i>with a real dick in there, instead of just my hardlight.</i>\" She laughs a little, though her breath catches as your slow thrusting continues. \"<i>Ain't everyone who goes for this back home. Most of the boys there, all about the pussy, and the tits...</i>\"");
@@ -1382,7 +1384,7 @@ public function kimberSomethingSomethingAnalIDKMan(cockIdx:int):void
 		output("\n\n\"<i>Come here,</i>\" she moans, spreading her arms and reaching toward you. \"<i>I want – </i>aah!<i> – I want you to–</i>\"");
 		output("\n\nYou sit up, and Kimber wraps her legs around your lower back, her arms going around your shoulders and pressing your head to her chest. Her ass tightens around your cock, and she shoves herself against you, her legs squeezing as she forces you as deep into her as you can go. The wetness from her dripping pussy trails down to her asshole, mixing with the lube.");
 		output("\n\n\"<i>Harder,</i>\" Kimber moans, pressing your face into her heaving cleavage. \"<i>I'm gonna... ahhhh...</i>\"");
-		output("\n\nThe squeezing along your entire length is almost too much for you to take. You plant your feet again and thrust as hard as you can, and Kimber lets out a yell, her legs tightening around your back as her asshole keeps up its long, hot squeeze on your [pc.sheath " + cockIdx + "]. You pull back a little, just enough to get your head out of her cleavage, and see her eyes squeezed shut, her face red. She cries out again, her arms and legs going tense around you as her orgasm hits.");
+		output("\n\nThe squeezing along your entire length is almost too much for you to take. You plant your feet again and thrust as hard as you can, and Kimber lets out a yell, her legs tightening around your back as her asshole keeps up its long, hot squeeze on your [pc.sheathOrBase " + cockIdx + "]. You pull back a little, just enough to get your head out of her cleavage, and see her eyes squeezed shut, her face red. She cries out again, her arms and legs going tense around you as her orgasm hits.");
 		output("\n\nThe squeeze on your [pc.cock " + cockIdx + "] as she comes is more than you can take. You cry out as you come, your cock twitching within her as [pc.cum] shoots through it and splatters into her ass.");
 		if (pc.cumQ() >= 6000) output(" Kimber's ass has no hope of containing the sheer amount of [pc.cum] you make, and jets of it shoot out from around your cock, splattering out to cover the mattress and spill across the floor.");
 		else if (pc.cumQ() >= 3000) output(" Your [pc.cum] keeps flowing as you empty yourself out into her. After only a moment, [pc.cum] splatters out around your dick, spilling across your [pc.thighs] and hers.");
@@ -1641,8 +1643,8 @@ public function kimberTheCleanScientist(cockIdx:int):void
 		output("\n\nThere's lots of places on her you'd like to put your hands right now, but she's got a point. You reach around and lift up Kimber by her ass as she braces herself against you. It takes some fumbling, but she gets her legs around you, and slowly lowers her dripping pussy onto your [pc.cock " + cockIdx + "].");
 		output("\n\nThe heat of the shower seems to permeate Kimber's body, and she's warmer than ever as she slides herself down on you.");
 		if (pc.cocks[cockIdx].thickness() >= 3) output(" Your [pc.cockHead " + cockIdx + "] spreads her wide as your girthy dong pushes into her.");
-		if (pc.cocks[cockIdx].cLength() < 20) output(" She lets out a long, low moan as she hits home, taking your dong all the way up into her in one slow push, until her pussy lips kiss your [pc.sheath " + cockIdx + "].");
-		else output(" As long as you are, it takes her a little time to fit all of your dong inside her, and she starts to moan as her pussy pulls more and more of you in, until her lips kiss your [pc.sheath " + cockIdx + "]. \"<i>Fuck</i>\" she gasps. \"<i>Feels... a lot deeper going in like this.</i>\"");
+		if (pc.cocks[cockIdx].cLength() < 20) output(" She lets out a long, low moan as she hits home, taking your dong all the way up into her in one slow push, until her pussy lips kiss your [pc.sheathOrBase " + cockIdx + "].");
+		else output(" As long as you are, it takes her a little time to fit all of your dong inside her, and she starts to moan as her pussy pulls more and more of you in, until her lips kiss your [pc.sheathOrBase " + cockIdx + "]. \"<i>Fuck</i>\" she gasps. \"<i>Feels... a lot deeper going in like this.</i>\"");
 		output(" You grunt and lean back, nearly overwhelmed by the sensation of having all of her pressed down on you like that.");
 		pc.cockChange();
 		output("\n\nKimber breathes deep atop you, and slowly starts to grind her hips against yours. Water splashes over you both, dripping down your limbs and hers. With her tits pressed against your [pc.chest], water pools in her cleavage, splashing out as she pushes herself against you.");
@@ -1732,7 +1734,7 @@ public function kimberSexeSrebmik(cockIdx:int):void
 		if (pc.cocks[cockIdx].cLength() >= 20) output(" As long as your dong is, you have to lean back a little to get started, and you give it an extra push as you slide in your last few inches.");
 		output(" Her slick pussy feels different from this angle, and her eyes open wide as you penetrate her");
 		if (pc.cocks[cockIdx].thickness() >= 3) output(", her lips spreading wide as well around your considerable girth");
-		output(". Kimber moans, then shoves her ass against your [pc.hips], making sure you don't stop until you're all the way in, her lips wrapping around your [pc.sheath " + cockIdx + "].");
+		output(". Kimber moans, then shoves her ass against your [pc.hips], making sure you don't stop until you're all the way in, her lips wrapping around your [pc.sheathOrBase " + cockIdx + "].");
 		pc.cockChange();
 		output("\n\n\"<i>Fuck,</i>\" Kimber gasps, her warm, wet passage squeezing hard around your length. She picks up the pace quickly, and her boobs start to bounce forward and back, her girlcum splashing onto your [pc.thighs] with every thrust.");
 		output("\n\nShe did say she was really into this, and it shows. Her eyes are fixed on the mirror, watching herself and you, and you take a firmer hold on her hips, matching her rhythm as you thrust into her. You can see your own [pc.chest] and [pc.belly] above her in the mirror, her tail still resting against you, and you fuck her harder to watch yourself move more, like you're in the middle of the world's best workout.");
@@ -1803,12 +1805,12 @@ public function kimberShowOffYourStuff(genIdx:int, useCock:Boolean):void
 		if (pc.cocks[genIdx].cLength() >= 20) output(" \"<i>Need both hands for that thing, don't you?</i>\"");
 		output(" Her fingers tighten around her hard nipple, her hand squeezing one giant tit against herself while the other one rests heavily against her chest.");
 		if (pc.cocks[genIdx].thickness() >= 3) output(" \"<i>Though I'm kind of surprised you can get your whole hand around that...</i>\"");
-		output("\n\nYou stroke along your [pc.cock " + genIdx + "]'s entire length, and both your own touch and the sight of Kimber playing with herself in front of you drive you to full hardness. You stick with a slow pace, a good solid grip from your [pc.sheath " + genIdx + "] to [pc.cockHead " + genIdx + "], staring at Kimber's tits and twat as you rub yourself. It would be easy to speed it up and cum all over her as fast as you could, but better to make this last.");
+		output("\n\nYou stroke along your [pc.cock " + genIdx + "]'s entire length, and both your own touch and the sight of Kimber playing with herself in front of you drive you to full hardness. You stick with a slow pace, a good solid grip from your [pc.sheathOrBase " + genIdx + "] to [pc.cockHead " + genIdx + "], staring at Kimber's tits and twat as you rub yourself. It would be easy to speed it up and cum all over her as fast as you could, but better to make this last.");
 		output("\n\nKimber pushes two fingers between her lubed-up lips, and lets out a long moan, her digits digging into her soft pussy. Her girlcum drips down her fingers onto the bedsheets, the first few drops of a steady stream. She's breathing harder now, and you stroke yourself a little bit faster to keep up.");
 		output("\n\nWith her other hand, Kimber hefts up her bulging tit and stuffs her pink nipple into her mouth, sucking on it. She closes her eyes for a moment, indulging in herself, but opens them again a moment later to focus on your cock again. Her pace increases once more, two fingers digging deeper into her cunt, her other fingers stroking to either side of her pussy.");
 		if (pc.balls > 0) output("\n\nYou give [pc.cockHead " + genIdx + "] a good squeeze, and cup your [pc.balls] with your other hand, stroking your fingers over your [pc.sack], moaning softly at the dual sensation.");
 		else if (pc.hasVagina()) output("\n\nYou give [pc.cockHead " + genIdx + "] a good squeeze, and stroke [pc.vagina " + genIdx + "] with your other hand, moaning softly at the dual sensation.");
-		else output("\n\nYou give [pc.cockHead " + genIdx + "] a good squeeze, and wrap your other hand around [pc.sheath " + genIdx + "], moaning softly at the dual sensation.");
+		else output("\n\nYou give [pc.cockHead " + genIdx + "] a good squeeze, and wrap your other hand around [pc.sheathOrBase " + genIdx + "], moaning softly at the dual sensation.");
 		output(" With both hands busy, you increase your pace, just enough to feel the very start of the inevitable drive toward orgasm. You start breathing harder, but keep your motions steady, so you don't outpace Kimber.");
 		output("\n\nKimber's blush covers her entire chest by now, and she's working furiously at her pussy, her fingers sliding in and out with ease, wet sounds filling the room. She sucks away at her nipple, her tongue and teeth turning the peak red and swollen. She's moaning with every motion of her hand, her expression half-dazed.");
 		output("\n\nShe's close, you can tell, and you're not far off yourself. But you hold back, going just a little faster, fighting back the urge to explode.");
@@ -1820,7 +1822,7 @@ public function kimberShowOffYourStuff(genIdx:int, useCock:Boolean):void
 		output(" After a moment, she grins, then licks off one of her fingers. \"<i>But if you ain't done yet, that means...</i>\"");
 		output("\n\nKimber leans forward and presses her still-sticky finger to your [pc.lips], and you suck off her girlcum, running your tongue around her finger as you do. She giggles, then props herself up on both hands, her face so close you can feel her breath on your neck.");
 		output("\n\n\"<i>Come for me, [pc.name],</i>\" Kimber whispers. \"<i>I want to feel it.</i>\" Her tongue flicks out, and she licks along the edge of your [pc.ear]. \"<i>Come all over my tits. Do it.</i>\"");
-		output("\n\nYour [pc.cock " + genIdx + "] gives a single hard throb, and you know there's no way you can hold on much longer. You stroke faster, hands pulling your length from [pc.sheath " + genIdx + "] to [pc.cockHead " + genIdx + "], and you can feel your [pc.cum] surging inside you, begging to be released.");
+		output("\n\nYour [pc.cock " + genIdx + "] gives a single hard throb, and you know there's no way you can hold on much longer. You stroke faster, hands pulling your length from [pc.sheathOrBase " + genIdx + "] to [pc.cockHead " + genIdx + "], and you can feel your [pc.cum] surging inside you, begging to be released.");
 		output("\n\nKimber leans down just enough to bump her tits against your [pc.cock " + genIdx + "], and she sways foward and back, giving you a light-touch titfuck as you fight back the inevitable explosion. She moves a little faster, her soft flesh rubbing against you as she whispers in your ear for you to come. You gasp, and your prick twitches once, right as Kimber leans back to catch your load.");
 		output("\n\nYour entire body shudders as the orgasm hits you hard, your hands working furiously at your [pc.cock " + genIdx + "] as you keep stroking. [pc.Cum] squirts from your [pc.cockHead " + genIdx + "], hanging in the air for a second before it splatters across Kimber's enormous boobs.");
 		if (pc.cumQ() < 3000) output(" You don't make enough to cover her globes, but Kimber gives you a grin, then picks up one giant tit and licks your [pc.cum] from it, closing her eyes and moaning quietly at the taste.");
@@ -1886,12 +1888,6 @@ public function kimberTopOffer():void
 		output("\n\nYou tell her to go on, though you can guess where this is going.");
 		output("\n\n\"<i>When it comes to sex, I'm real particular about one thing,</i>\" she says. \"<i>I'm on top. If I don't ride, I'm not interested. You get me?</i>\" She pauses, and you nod. \"<i>But I'm giving you a one-shot offer. You can come on back to my ship with me, get on top and plow me into my mattress. If you want.</i>\"");
 		output("\n\n\She leans back, blushing and looking kind of nervous. \"<i>That's not the kind of thing I'd normally say to someone I'm not, y'know, already fucking,</i>\" she says. \"<i>And I won't get mad if you say no. But if you ever want it, you just say the word.</i>\" She gives you a wink. \"<i>One time only, though. If I don't wear you out too much and you want to keep at it, I'm riding you.</i>\"");
-
-		flags["KIMBER_ON_TOP"] = 0;
-		if (pc.hasGenitals()) addButton(0, "Right Now", kimberFirstTimeOnTop, undefined, "Right Now", "Tell Kimber right now sounds good");
-		else addDisabledButton(0, "Right Now", "Right Now", "Sorry, you need genitals for this one.");
-		addButton(1, "Maybe Later", kimberMenu, undefined, "Maybe Later", "Tell Kimber you appreciate the offer, but you're not up for it right now.");
-		return;
 	}
 	else
 	{
@@ -1901,7 +1897,9 @@ public function kimberTopOffer():void
 		output("\n\nShe leans back, a silly grin on her face. Before you can say anything, she says, \"<i>You know me, this ain't the sort of thing I'd offer to just anyone. And it's a one-shot deal, whenever you want it. Just say the word.</i>\" She smirks. \"<i>If you think you're up to making it worth my while.</i>\"");
 	}
 
-	kimberMenu();
+	if (pc.hasGenitals()) addButton(0, "Right Now", kimberFirstTimeOnTop, undefined, "Right Now", "Tell Kimber right now sounds good");
+	else addDisabledButton(0, "Right Now", "Right Now", "Sorry, you need genitals for this one.");
+	addButton(1, "Maybe Later", kimberMenu, undefined, "Maybe Later", "Tell Kimber you appreciate the offer, but you're not up for it right now.");
 }
 
 public function kimberFirstTimeOnTop():void
@@ -2108,7 +2106,7 @@ public function kimberFirstTimeOnTop():void
 	pc.shower();
 	kimberWearOutPC();
 	IncrementFlag("KIMBER_SEXED");
-	flags["KIMBER_ON_TOP"] = 1;
+	flags["KIMBER_QUEST"] = 3;
 
 	addButton(0, "Next", kimberGoHomePostSex);
 }
@@ -2196,7 +2194,7 @@ public function kimberOnTopLater(cockIdx:int):void
 	pc.shower();
 	kimberWearOutPC();
 	IncrementFlag("KIMBER_SEXED");
-	flags["KIMBER_ON_TOP"] = 1;
+	flags["KIMBER_QUEST"] = 3;
 
 	addButton(0, "Next", kimberGoHomePostSex);
 }
