@@ -1210,6 +1210,7 @@
 		public static const ITEM_FLAG_NO_REMOVE:int 					= 32; //Worn items that the PC cannot remove by themself.
 		public static const ITEM_FLAG_SMALL_DICK_ONLY:int               = 33; //Cocksock can only be equipped by smol
 		public static const ITEM_FLAG_SHELTER:int						= 34; // For items that regulate environmental effects.
+		public static const ITEM_FLAG_STRETCHY:int						= 35; // Increases sexiness buff if related body part is big. Doubles as Transparent flag at 20+;
 
 		
 		public static const ITEM_FLAG_NAMES:Array = [
@@ -1248,6 +1249,7 @@
 			"Permanent",
 			"Requires Small Cock",
 			"Shelter",
+			"Stretchable",
 		];
 		
 		/**

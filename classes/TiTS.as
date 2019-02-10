@@ -205,6 +205,10 @@
 		include "../includes/events/federationQuest/rooms.as";
 		include "../includes/events/federationQuest/roomFunctions.as";
 		include "../includes/events/kattomOsgood.as";
+		include "../includes/events/kimber.as";
+		include "../includes/events/kimberQuest/rooms.as";
+		include "../includes/events/kimberQuest/roomFunctions.as";
+		include "../includes/events/kimberQuest/kimberQuest.as";
 		include "../includes/events/kiroCrewQuest/buttslutinator.as";
 		include "../includes/events/kiroCrewQuest/omnisuitExtras.as";
 		include "../includes/events/kiroCrewQuest/orgasmender.as";
