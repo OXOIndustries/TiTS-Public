@@ -91,7 +91,7 @@ public function kimberIsDrinkingAgain():void
 
 	flags["KIMBER_FLIRTED_WITH"] = undefined;
 	
-	if (flags["KIMBER_QUEST"]%4 == 1)
+	if (flags["KIMBER_QUEST"] != undefined && flags["KIMBER_QUEST"]%4 == 1)
 	{
 		clearMenu();
 
@@ -106,7 +106,7 @@ public function kimberIsDrinkingAgain():void
 		if (flags["KIMBER_SEXED"] == undefined) output("\n\nShe leans toward you, and looks like she’s not sure if she should say something or not. <i>“And I’ve been thinking,”</i> she says, <i>“since you’ve done me such a big favor, I might have a little something I can do for you too.”</i>");
 		else output("\n\nShe leans toward you, her smile turning into a smirk as she rubs her hip against your [pc.hip]. <i>“And since you’ve done me such a big favor, I think I’ve got something I can do for you too.”</i>");
 
-		flags["KIMBER_QUEST"] += 1;
+		if(flags["KIMBER_QUEST"] != undefined) flags["KIMBER_QUEST"] += 1;
 		
 		addButton(0, "Next", kimberTopOffer);
 		return;
@@ -388,8 +388,7 @@ public function kimberGiveUthra():void
 
 	flags["KIMBER_UTHRA_GIVEN"] = 1;
 	flags["KIMBER_STORIES_UNLOCKED"] = 1;
-	for (var i:int = pc.inventory.length-1; i >= 0; i--) if (pc.inventory[i] is UthraSap) break;
-	itemConsume(pc.inventory[i]);
+	pc.destroyItemByClass(UthraSap);
 
 	addButton(0, "Next", kimberUthraStory);
 }
@@ -415,8 +414,7 @@ public function kimberGiveNyrea():void
 
 	flags["KIMBER_CANDY_GIVEN"] = 1;
 	flags["KIMBER_STORIES_UNLOCKED"] = 1;
-	for (var i:int = pc.inventory.length-1; i >= 0; i--) if (pc.inventory[i] is NyreanCandy) break;
-	itemConsume(pc.inventory[i]);
+	pc.destroyItemByClass(NyreanCandy);
 
 	addButton(0, "Next", kimberNyreaStory);
 }
@@ -441,8 +439,7 @@ public function kimberGiveRaskvel():void
 
 	flags["KIMBER_RUSKVEL_GIVEN"] = 1;
 	flags["KIMBER_STORIES_UNLOCKED"] = 1;
-	for (var i:int = pc.inventory.length-1; i >= 0; i--) if (pc.inventory[i] is Ruskvel) break;
-	itemConsume(pc.inventory[i]);
+	pc.destroyItemByClass(Ruskvel);
 
 	addButton(0, "Next", kimberRaskvelStory);
 }
@@ -465,8 +462,7 @@ public function kimberGiveVanae():void
 
 	flags["KIMBER_SKY_GIVEN"] = 1;
 	flags["KIMBER_STORIES_UNLOCKED"] = 1;
-	for (var i:int = pc.inventory.length-1; i >= 0; i--) if (pc.inventory[i] is SkySap) break;
-	itemConsume(pc.inventory[i]);
+	pc.destroyItemByClass(SkySap);
 
 	addButton(0, "Next", kimberVanaeStory);
 }
@@ -488,8 +484,7 @@ public function kimberGiveZil():void
 
 	flags["KIMBER_RATION_GIVEN"] = 1;
 	flags["KIMBER_STORIES_UNLOCKED"] = 1;
-	for (var i:int = pc.inventory.length-1; i >= 0; i--) if (pc.inventory[i] is ZilRation) break;
-	itemConsume(pc.inventory[i]);
+	pc.destroyItemByClass(ZilRation);
 
 	addButton(0, "Next", kimberZilStory);
 }

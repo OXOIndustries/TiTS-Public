@@ -350,6 +350,16 @@ public function rustScytheGladeEncounters():Boolean {
 	return false;
 }
 
+public function tarkusMetalRavineBonus():Boolean
+{
+	var btnSlot:int = 0;
+	
+	if(cockBoxDiscoveryBlurb(btnSlot)) btnSlot++;
+	if(kimberQuestWormBonus(btnSlot)) btnSlot++;
+	
+	return rustRidgesEncounters();
+}
+
 //Yes:
 public function grabARubbahTube():void
 {

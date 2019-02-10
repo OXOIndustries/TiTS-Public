@@ -3282,25 +3282,25 @@
 		{
 			if (arg == null || inventory.length == 0 || amount == 0) return;
 			
-			var i:int = 0;
+			var i:int = (inventory.length - 1);
 			
 			// Remove all!
 			if (amount < 0)
 			{
-				while (i < inventory.length)
+				while (i >= 0)
 				{
 					if (inventory[i] is arg)
 					{
 						inventory[i].quantity = 0;
 						inventory.splice(i, 1);
 					}
-					else i++;
+					i--;
 				}
 			}
 			// Normal
 			else
 			{
-				while (amount > 0 && i < inventory.length)
+				while (amount > 0 && i >= 0)
 				{
 					//Item in the slot?
 					if (inventory[i] is arg)
@@ -3312,10 +3312,8 @@
 						{
 							inventory.splice(i, 1);
 						}
-						//else i++;
-						else return;
 					}
-					else i++;
+					i--;
 				}
 				if(amount > 0) output("<b>ERROR - Inventory item quantity needed: " + amount + "!</b>");
 			}

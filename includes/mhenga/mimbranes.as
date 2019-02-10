@@ -269,12 +269,17 @@ public function hasFeedableMimbranes():Boolean
 
 public function hasVisibleMimbranes():Boolean
 {
-	//Improve this later plox
-	if (pc.hasStatusEffect("Mimbrane Hand Left") || pc.hasStatusEffect("Mimbrane Hand Right") || pc.hasStatusEffect("Mimbrane Foot Left") || pc.hasStatusEffect("Mimbrane Foot Right") || pc.hasStatusEffect("Mimbrane Face")) return true;
-	if (pc.hasStatusEffect("Mimbrane Boobs") && target.isChestExposed()) return true;
-	if (pc.hasStatusEffect("Mimbrane Cock") && !pc.hasStatusEffect("Genital Slit") && pc.isCrotchExposed()) return true;
-	if ((pc.hasStatusEffect("Mimbrane Balls") || pc.hasStatusEffect("Mimbrane Pussy")) && pc.isCrotchExposed()) return true;
-	if (pc.hasStatusEffect("Mimbrane Ass") && target.isAssExposed()) return true;
+	if (pc.hasStatusEffect("Mimbrane Face")) return true;
+	if (pc.hasAirtightSuit()) return false;
+	if (pc.hasStatusEffect("Mimbrane Hand Left") || pc.hasStatusEffect("Mimbrane Hand Right") || pc.hasStatusEffect("Mimbrane Foot Left") || pc.hasStatusEffect("Mimbrane Foot Right")) return true;
+	if (pc.isChestExposed() && pc.hasStatusEffect("Mimbrane Boobs")) return true;
+	if (pc.isCrotchExposed())
+	{
+		if (pc.hasStatusEffect("Mimbrane Cock") && !pc.hasStatusEffect("Genital Slit")) return true;
+		if (pc.hasStatusEffect("Mimbrane Balls")) return true;
+		if (pc.hasStatusEffect("Mimbrane Pussy")) return true;
+	}
+	if (pc.isAssExposed() && pc.hasStatusEffect("Mimbrane Ass")) return true;
 	return false;
 }
 

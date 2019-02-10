@@ -3237,6 +3237,19 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				sideCount++;
 			}
+			// Kimber Quest
+			if(flags["KIMBER_QUEST"] != undefined || flags["KIMBER_OFFER"] != undefined)
+			{
+				output2("\n<b><u>Kimber Expedition</u></b>");
+				output2("\n<b>* Status:</b> Offered");
+				if(flags["KIMBER_QUEST"] == -1) output2(", Tarkus destroyed, Unable to start");
+				if(flags["KIMBER_QUEST"] == 0) output2(", Accepted, <i>Find daer worm!</i>");
+				if(flags["KIMBER_QUEST"] == 1) output2(", Accepted, Found and defeated daer worm, <i>Return to Kimber!</i>");
+				if(flags["KIMBER_QUEST"] >= 2) output2(", Accepted, Found and defeated daer worm, Reported to Kimber");
+				if(flags["KIMBER_QUEST"] >= 3) output2(", Completed");
+				if(flags["KIMBER_QUEST"] >= 4) output2(", Rewarded with Kimber’s panties");
+				sideCount++;
+			}
 		}
 		
 		if(showID == "Myrellion" || showID == "All")
@@ -8330,6 +8343,23 @@ public function displayEncounterLog(showID:String = "All"):void
 			
 			output2("\n<b>* " + kattomName + ":</b> " + (flags["MET_KATTOM"] == undefined ? "Seen" : "Met") + " him");
 			if(flags["KATTOM_LOCATION"] != undefined && rooms[flags["KATTOM_LOCATION"]].hasFlag(GLOBAL.HAZARD)) output2("\n<b>* " + kattomName + ", Last Known Location:</b> " + getPlanetName(flags["KATTOM_LOCATION"]) + " for " + prettifyMinutes(GetGameTimestamp() - flags["KATTOM_MOVE_CD"]));
+			roamCount++;
+		}
+		// Kimber
+		if(flags["MET_KIMBER"] != undefined)
+		{
+			output2("\n<b>* Kimber:</b> Met her");
+			if(flags["KIMBER_FLIRTED_WITH"] != undefined) output2(", Flirted with her");
+			if(flags["KIMBER_REJECTED_PARASITE"] != undefined) output2(", She rejected your parasites");
+			var kimberItems:Array = [];
+			if(flags["KIMBER_UTHRA_GIVEN"] != undefined) kimberItems.push("Uthra Sap");
+			if(flags["KIMBER_CANDY_GIVEN"] != undefined) kimberItems.push("Nyrean Candy");
+			if(flags["KIMBER_RUSKVEL_GIVEN"] != undefined) kimberItems.push("Ruskvel");
+			if(flags["KIMBER_SKY_GIVEN"] != undefined) kimberItems.push("SkySap");
+			if(flags["KIMBER_RATION_GIVEN"] != undefined) kimberItems.push("Zil Ration");
+			if(kimberItems.length > 0) output2("\n<b>* Kimber, Items Given:</b> " + CompressToList(kimberItems, false));
+			if(flags["KIMBER_SEXED"] > 0) output2("\n<b>* Kimber, Times Sexed:</b> " + flags["KIMBER_SEXED"]);
+			if(flags["KIMBER_ON_TOP"] == 1) output2(", She topped you");
 			roamCount++;
 		}
 		// Kirobutts!

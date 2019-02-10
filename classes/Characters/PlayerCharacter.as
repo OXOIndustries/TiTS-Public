@@ -387,25 +387,25 @@ package classes.Characters
 		{
 			if (ref == null || ShipStorageInventory.length == 0 || amount == 0) return;
 			
-			var i:int = 0;
+			var i:int = (ShipStorageInventory.length - 1);
 			
 			// Remove all!
 			if (amount < 0)
 			{
-				while (i < ShipStorageInventory.length)
+				while (i >= 0)
 				{
 					if (ShipStorageInventory[i] is ref)
 					{
 						ShipStorageInventory[i].quantity = 0;
 						ShipStorageInventory.splice(i, 1);
 					}
-					else i++;
+					i--;
 				}
 			}
 			// Normal
 			else
 			{
-				while (amount > 0 && i < ShipStorageInventory.length)
+				while (amount > 0 && i >= 0)
 				{
 					//Item in the slot?
 					if (ShipStorageInventory[i] is ref)
@@ -417,10 +417,8 @@ package classes.Characters
 						{
 							ShipStorageInventory.splice(i, 1);
 						}
-						//else i++;
-						else return;
 					}
-					else i++;
+					i--;
 				}
 				if(amount > 0) output("<b>ERROR - Ship inventory item quantity needed: " + amount + "!</b>");
 			}

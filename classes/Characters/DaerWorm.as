@@ -117,15 +117,14 @@ package classes.Characters
 				else
 				{
 					output("Its jaws catch hold of you, but you squirm away, taking a ragged wound but keeping it from getting hold of you. ");
-					if (target.hasStatusEffect("Bleeding")) output("<b>You're bleeding more now.</b> ");
+					if (target.hasStatusEffect("Bleeding")) output("<b>You’re bleeding more now.</b> ");
 					else output("<b>You are now bleeding.</b> ");
 					outputDamage(damage);
 					output("\n\nThe worm pulls back with a guttural snarl, ready for another attack.");
 					CombatAttacks.applyBleed(target, 1, 2+rand(2), 8);
 				}
 			}
-			else output("You duck to one side, and the worm's jaws snap shut on empty air.");
+			else output("You duck to one side, and the worm’s jaws snap shut on empty air.");
 		}
 	}
 }
-    
