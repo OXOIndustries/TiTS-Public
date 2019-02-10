@@ -992,15 +992,15 @@ public function kimberTouchTheCow():void
 		output("\n\nShe leans back on one thrust, her cunt coming down hard and squeezing your [pc.biggestSheath], then lets go of your hands, throws herself forward, and makes her boobs land on your [pc.chest]. <i>“Grab my ass,”</i> she gasps. <i>“I know, tits, but grab my ass and go harder, I’m gonna come!”</i>");
 		output("\n\nThere’s no way to say no to that. You whip your arms around and grab two handfuls of Kimber’s round ass, making her yelp. She moans, her face inches from yours, as you thrust into her as hard and deep as you can. Her whole body goes tense, and she cries out as the orgasm hits her, that last squeeze from her cunt pushing you right over the edge.");
 		output("\n\nYour orgasm feels like it hits your entire body, and your [pc.cockBiggest] spasms within her, [pc.cum] shooting out in squirt after squirt, bathing her insides as you let out a long, loud groan.");
-		
-		if (pc.cumQ() >= 10000) output(" The torrent from your cock flows like a river, and you gush out enough to make Kimber’s belly swell against your [pc.belly]. Your cum shoots out of her, spewing across your [pc.legs] and hers, flooding over the lower half of the mattress and dripping down to the floor.");
-		else if (pc.cumQ() >= 6000) output(" You keep gushing, spewing out [pc.cum] until you feel Kimber’s belly swelling against your [pc.belly]. A few long streams pour out of her pussy, staining your [pc.thighs] and hers.");
+		var cumQ:Number = pc.cumQ();
+		if (cumQ >= 10000) output(" The torrent from your cock flows like a river, and you gush out enough to make Kimber’s belly swell against your [pc.belly]. Your cum shoots out of her, spewing across your [pc.legs] and hers, flooding over the lower half of the mattress and dripping down to the floor.");
+		else if (cumQ >= 6000) output(" You keep gushing, spewing out [pc.cum] until you feel Kimber’s belly swelling against your [pc.belly]. A few long streams pour out of her pussy, staining your [pc.thighs] and hers.");
 		output(" You collapse beneath Kimber as soon as it’s over, out of breath and sweating.");
 		output("\n\nKimber, limp and moaning above you, isn’t much better off. Her hair’s plastered to her forehead with sweat, and her pale skin is completely flushed, making it look like she just ran a marathon. Her eyes are half-closed, and she has a huge grin on her face. <i>“Damn,”</i> she breathes, drawing out the word. <i>“You fuck like a New Texas native.”</i> She giggles. <i>“And trust me, that’s a huge compliment, coming from one.”</i> She takes a deep breath, then hoists herself off of you, her sweaty boobs sticking to you for a moment as she pulls away.");
-		if (pc.cumQ() >= 6000)
+		if (cumQ >= 6000)
 		{
 			output("\n\nKimber looks down at the mess you made of her thighs, and pats the slight swelling of her belly. <i>“And you cum like the boys back home too,”</i> she says with a laugh.");
-			if (pc.cumQ() >= 10000)
+			if (cumQ >= 10000)
 			{
 				output(" She then looks at the sheer amount of cum you spewed out. <i>“Wow,”</i> she adds. <i>“That’s impressive. Never been so glad to have the cleaning tech on this ship.”</i>");
 				if (pc.balls <= 0) output(" She gives you a curious look. <i>“Where the hell were you keeping all that?”</i>");
@@ -1197,15 +1197,15 @@ public function kimberTakesYouForARide(cockIdx:int):void
 		output("\n\nShe leans back on one thrust, her cunt coming down hard and squeezing your [pc.sheath " + cockIdx + "], then lets go of your hands, throws herself forward, and makes her boobs land on your [pc.chest]. <i>“Grab my ass,”</i> she gasps. <i>“I know, tits, but grab my ass and go harder, I’m gonna come!”</i>");
 		output("\n\nThere’s no way to say no to that. You whip your arms around and grab two handfuls of Kimber’s round ass, making her yelp. She moans, her face inches from yours, as you thrust into her as hard and deep as you can. Her whole body goes tense, and she cries out as the orgasm hits her, that last squeeze from her cunt pushing you right over the edge.");
 		output("\n\nYour orgasm feels like it hits your entire body, and your [pc.cock " + cockIdx + "] spasms within her, [pc.cum] shooting out in squirt after squirt, bathing her insides as you let out a long, loud groan.");
-		if (pc.cumQ() >= 10000) output(" The torrent from your cock flows like a river, and you gush out enough to make Kimber’s belly swell against your [pc.belly]. Your cum shoots out of her, spewing across your [pc.legs] and hers, flooding over the lower half of the mattress and dripping down to the floor.");
-		else if (pc.cumQ() >= 6000) output(" You keep gushing, spewing out [pc.cum] until you feel Kimber’s belly swelling against your [pc.belly]. A few long streams pour out of her pussy, staining your [pc.thighs] and hers.");
+		var cumQ:Number = pc.cumQ();
+		if (cumQ >= 10000) output(" The torrent from your cock flows like a river, and you gush out enough to make Kimber’s belly swell against your [pc.belly]. Your cum shoots out of her, spewing across your [pc.legs] and hers, flooding over the lower half of the mattress and dripping down to the floor.");
+		else if (cumQ >= 6000) output(" You keep gushing, spewing out [pc.cum] until you feel Kimber’s belly swelling against your [pc.belly]. A few long streams pour out of her pussy, staining your [pc.thighs] and hers.");
 		output(" You collapse beneath Kimber as soon as it’s over, out of breath and sweating.");
 		output("\n\nKimber, limp and moaning above you, isn’t much better off. Her hair’s plastered to her forehead with sweat, and her pale skin is completely flushed, making it look like she just ran a marathon. Her eyes are half-closed, and she has a huge grin on her face. <i>“Damn,”</i> she breathes, drawing out the word. <i>“You still fuck like a New Texas native.”</i> She giggles. <i>“And trust me, that’s a huge compliment, coming from one.”</i> She takes a deep breath, then hoists herself off of you, her sweaty boobs sticking to you for a moment as she pulls away.");
-
-		if (pc.cumQ() >= 6000)
+		if (cumQ >= 6000)
 		{
 			output("\n\nKimber looks down at the mess you made of her thighs, and pats the slight swelling of her belly. <i>“And you cum like the boys back home too,”</i> she says with a laugh.");
-			if (pc.cumQ() >= 10000)
+			if (cumQ >= 10000)
 			{
 				output(" She then looks at the sheer amount of cum you spewed out. <i>“Wow,</i> she adds. <i>“That’s impressive. Never been so glad to have the cleaning tech on this ship.”</i>");
 				if (pc.balls <= 0) output(" She gives you a curious look. <i>“I still don’t know where the hell you keep all that.”</i>");
@@ -1304,13 +1304,14 @@ public function kimberGivesYouACowlick(genIdx:int, useCock:Boolean):void
 		}		
 		output("\n\nThe sensation of Kimber’s tongue whipping around your [pc.cockHead " + genIdx + "] and the friction of her tits on your length becomes too much for you to handle. You moan out that you’re going to come, and Kimber switches from swirling to sucking, like she wants to make sure she gets every drop of cum out of you before you even start. She gives you one last good hard squeeze as she sucks, and you cry out as the orgasm hits you.");
 		output("\n\n[pc.Cum] bursts out of you and into Kimber’s mouth, making her moan, and you shudder as she keeps on sucking.");
-		if (pc.cumQ() < 3000) output(" She swallows down every squirt, and once you’re done, she raises her head from her cleavage, licks her lips and gives you a very satisfied smile.");
-		else if (pc.cumQ() < 6000) output(" She swallows your first few squirts, but you’ve got more than she can handle. Kimber raises her head as you keep shooting [pc.cum], and it arcs into the air, falling down to spatter across her face and tits.");
+		var cumQ:Number = pc.cumQ();
+		if (cumQ < 3000) output(" She swallows down every squirt, and once you’re done, she raises her head from her cleavage, licks her lips and gives you a very satisfied smile.");
+		else if (cumQ < 6000) output(" She swallows your first few squirts, but you’ve got more than she can handle. Kimber raises her head as you keep shooting [pc.cum], and it arcs into the air, falling down to spatter across her face and tits.");
 		else output(" She swallows your first few squirts, but it doesn’t take long before it’s more than she can handle. Kimber rears back as your [pc.cock " + genIdx + "] fires off shot after shot from between her tits, spewing out enough to cover both her face and her enormous globes, and sending the excess dripping down to spill across her bed and down to the floor.");
 		output(" You lay back, breathing hard and feeling utterly drained.");
 		output("\n\n<i>“Damn, Steele,”</i> Kimber says. <i>“Not that I doubted, but it’s always good to know I’ve still got it.”</i>");
-		if (pc.cumQ() >= 10000) output(" If Steele makes ridiculous amounts of cum: She wipes your cum from her face, then looks down at her soaked tits and the mess you’ve made of the bed and the floor. <i>“And if I can make you cum that much,”</i> she says with a smirk, <i>“I’m doing better than I thought.”</i>");
-		else if (pc.cumQ() >= 6000) output(" She wipes your cum from her face and licks off her fingers, then leans forward and cleans off her tits with her tongue, leaning over to both sides to make sure she gets every drop. <i>“Especially when you show me just how much you liked that.”</i> She chuckles.");
+		if (cumQ >= 10000) output(" If Steele makes ridiculous amounts of cum: She wipes your cum from her face, then looks down at her soaked tits and the mess you’ve made of the bed and the floor. <i>“And if I can make you cum that much,”</i> she says with a smirk, <i>“I’m doing better than I thought.”</i>");
+		else if (cumQ >= 6000) output(" She wipes your cum from her face and licks off her fingers, then leans forward and cleans off her tits with her tongue, leaning over to both sides to make sure she gets every drop. <i>“Especially when you show me just how much you liked that.”</i> She chuckles.");
 		output(" She slowly gets to her feet, then holds out a hand to you. <i>“Shower?”</i>");
 		output("\n\nNo way you could say no to that. You and Kimber squeeze into her shower for another quick clean-up, and towel each other off afterward. She gives your [pc.cock " + genIdx + "] a thorough buffing as she dries you off, and you ask if she’s looking for another round.");
 	}
@@ -1385,8 +1386,9 @@ public function kimberSomethingSomethingAnalIDKMan(cockIdx:int):void
 		output("\n\n<i>“Harder,”</i> Kimber moans, pressing your face into her heaving cleavage. <i>“I’m gonna... ahhhh...”</i>");
 		output("\n\nThe squeezing along your entire length is almost too much for you to take. You plant your feet again and thrust as hard as you can, and Kimber lets out a yell, her legs tightening around your back as her asshole keeps up its long, hot squeeze on your [pc.sheath " + cockIdx + "]. You pull back a little, just enough to get your head out of her cleavage, and see her eyes squeezed shut, her face red. She cries out again, her arms and legs going tense around you as her orgasm hits.");
 		output("\n\nThe squeeze on your [pc.cock " + cockIdx + "] as she comes is more than you can take. You cry out as you come, your cock twitching within her as [pc.cum] shoots through it and splatters into her ass.");
-		if (pc.cumQ() >= 6000) output(" Kimber’s ass has no hope of containing the sheer amount of [pc.cum] you make, and jets of it shoot out from around your cock, splattering out to cover the mattress and spill across the floor.");
-		else if (pc.cumQ() >= 3000) output(" Your [pc.cum] keeps flowing as you empty yourself out into her. After only a moment, [pc.cum] splatters out around your dick, spilling across your [pc.thighs] and hers.");
+		var cumQ:Number = pc.cumQ();
+		if (cumQ >= 6000) output(" Kimber’s ass has no hope of containing the sheer amount of [pc.cum] you make, and jets of it shoot out from around your cock, splattering out to cover the mattress and spill across the floor.");
+		else if (cumQ >= 3000) output(" Your [pc.cum] keeps flowing as you empty yourself out into her. After only a moment, [pc.cum] splatters out around your dick, spilling across your [pc.thighs] and hers.");
 		output(" You look at Kimber as the exhaustion hits you, and her half-lidded expression tells you all you need to know. You wore her out just as much as she did you.");
 		output("\n\nKimber makes a few attempts at saying something before giving up, and she slowly pulls herself off of your [pc.cock " + cockIdx + "], then rolls over onto her back, her tits billowing out over her chest. <i>“Fuck,”</i> she whispers, breathing hard. <i>“I swear, I won’t be walking right for a week after that,”</i> she says, then gives you a tired grin. <i>“Worth it!”</i>");
 	}
@@ -1474,9 +1476,10 @@ public function kimberTakesYouDownToPeg():void
 	output("\n\nA few moments of fondling from Kimber’s skilled hands, along with the tingling horsecock’s continued pounding in your ass, is all you need to drive you over the edge. You cry out as the orgasm hits you, your entire ass radiating pleasure.");
 	if (pc.hasCock())
 	{
+		var cumQ:Number = pc.cumQ();
 		output(" [pc.Cum] spurts from your [pc.cocks], spraying across Kimber’s pillows");
-		if (pc.cumQ() >= 10000) output(", all over the wall, and across the entire bed, turning it into a swamp");
-		else if (pc.cumQ() >= 6000) output(" and all over the wall, leaving it to drip down to the sheets");
+		if (cumQ >= 10000) output(", all over the wall, and across the entire bed, turning it into a swamp");
+		else if (cumQ >= 6000) output(" and all over the wall, leaving it to drip down to the sheets");
 		output(".");
 	}
 	if (pc.hasVagina())
@@ -1541,8 +1544,9 @@ public function kimberGetsYouTiedUpWithoutWork(cockIdx:int):void
 		output("\n\n<i>“Fuck!”</i> Kimber shouts as her pussy squeezes hard on your [pc.cock " + cockIdx + "] one last time. <i>“Yes!”</i> Any other words are lost in a babbling cry as she comes, her girlcum spilling out around your [pc.cock " + cockIdx + "] and dripping down your legs.");
 		output("\n\nWith that, you can’t hold back any longer, and you thrust up into her as hard as you can. Her pounding hasn’t slowed at all, and it only takes you a few more deep strokes before it’s too much for you to take.");
 		output("\n\nYour [pc.cock " + cockIdx + "] twitches within her as you yell, and [pc.cum] gushes into her as your orgasm hits.");
-		if (pc.cumQ() >= 10000) output(" The geyser from your dong keeps going and going, and [pc.cum] splatters out of Kimber’s tight pussy to flow over her legs, your [pc.legs], and the entire lower half of her bed, dripping down to the floor.");
-		else if (pc.cumQ() >= 6000) output(" You fire off stream after stream into her, making her belly swell against you. A few trickles escape her pussy’s tight grasp, trickling down to join her girlcum on both your thighs.");
+		var cumQ:Number = pc.cumQ();
+		if (cumQ >= 10000) output(" The geyser from your dong keeps going and going, and [pc.cum] splatters out of Kimber’s tight pussy to flow over her legs, your [pc.legs], and the entire lower half of her bed, dripping down to the floor.");
+		else if (cumQ >= 6000) output(" You fire off stream after stream into her, making her belly swell against you. A few trickles escape her pussy’s tight grasp, trickling down to join her girlcum on both your thighs.");
 		output(" It feels like you’ve been fucking for hours, and you try to catch your breath...");
 		output("\n\nOnly to realize that Kimber’s still riding you hard and showing no signs of stopping. Her eyes are halfway closed, a look of utter orgasmic bliss on her face, but her hips move on their own, clearly intent on getting another orgasm out of you.");
 		if (pc.isTreated() || pc.libido() >= 30)
@@ -1745,8 +1749,9 @@ public function kimberSexeSrebmik(cockIdx:int):void
 		output("\n\nYou tilt your [pc.hips] and really mount her, driving your [pc.cock " + cockIdx + "] down into her with all your might. The change in sensation is amazing, and you hold off, not ready to come yet but not far from it. Kimber yells <i>“Fuck!”</i> and her eyes squeeze closed for a second, but she forces them open, her mouth hanging open as she pants.");
 		output("\n\nKimber presses her back hard against your [pc.chest], then lets out a long, low moan. Her pussy tightens around your [pc.cock " + cockIdx + "], and as your eyes meet in the mirror, neither of you can hold back any longer.");
 		output("\n\nYou and Kimber come at the same time, her girlcum splattering against your [pc.crotch], her nipples hard as rocks between your fingers. Your [pc.cock " + cockIdx + "] spurts streams of [pc.cum] deep inside her cunt, your length twitching with every last thrust.");
-		if (pc.cumQ() >= 10000) output(" Your [pc.cock " + cockIdx + "] empties itself into her, a seemingly endless stream, until her belly swells enough to hang low and more [pc.cum] floods out, soaking her thighs and yours and splattering across her entire bed.");
-		else if (pc.cumQ() >= 6000) output(" Shot after shot of [pc.cum] fires off into her, and her belly swells a little, until your fluid leaks out of her and spills down her thighs and yours.");
+		var cumQ:Number = pc.cumQ();
+		if (cumQ >= 10000) output(" Your [pc.cock " + cockIdx + "] empties itself into her, a seemingly endless stream, until her belly swells enough to hang low and more [pc.cum] floods out, soaking her thighs and yours and splattering across her entire bed.");
+		else if (cumQ >= 6000) output(" Shot after shot of [pc.cum] fires off into her, and her belly swells a little, until your fluid leaks out of her and spills down her thighs and yours.");
 		output("\n\nIt takes a moment for you and Kimber to pull your sweaty selves apart, but you slide out of her and fall back on your [pc.ass], your [pc.cock " + cockIdx + "] slowly wilting as you try to catch your breath. Kimber slumps over onto her side, also breathing hard, her boobs flopping against each other.");
 	}
 	else
@@ -1824,8 +1829,9 @@ public function kimberShowOffYourStuff(genIdx:int, useCock:Boolean):void
 		output("\n\nYour [pc.cock " + genIdx + "] gives a single hard throb, and you know there’s no way you can hold on much longer. You stroke faster, hands pulling your length from [pc.sheath " + genIdx + "] to [pc.cockHead " + genIdx + "], and you can feel your [pc.cum] surging inside you, begging to be released.");
 		output("\n\nKimber leans down just enough to bump her tits against your [pc.cock " + genIdx + "], and she sways foward and back, giving you a light-touch titfuck as you fight back the inevitable explosion. She moves a little faster, her soft flesh rubbing against you as she whispers in your ear for you to come. You gasp, and your prick twitches once, right as Kimber leans back to catch your load.");
 		output("\n\nYour entire body shudders as the orgasm hits you hard, your hands working furiously at your [pc.cock " + genIdx + "] as you keep stroking. [pc.Cum] squirts from your [pc.cockHead " + genIdx + "], hanging in the air for a second before it splatters across Kimber’s enormous boobs.");
-		if (pc.cumQ() < 3000) output(" You don’t make enough to cover her globes, but Kimber gives you a grin, then picks up one giant tit and licks your [pc.cum] from it, closing her eyes and moaning quietly at the taste.");
-		else if (pc.cumQ() < 6000) output(" Your first squirt isn’t enough to cover Kimber’s globes, but the second and third do the job. By the time you’re done, Kimber’s boobs are dripping with your [pc.cum], with more trickling down her cleavage to pool between her thighs. She dips her finger into it and licks it off, moaning quietly at the taste.");
+		var cumQ:Number = pc.cumQ();
+		if (cumQ < 3000) output(" You don’t make enough to cover her globes, but Kimber gives you a grin, then picks up one giant tit and licks your [pc.cum] from it, closing her eyes and moaning quietly at the taste.");
+		else if (cumQ < 6000) output(" Your first squirt isn’t enough to cover Kimber’s globes, but the second and third do the job. By the time you’re done, Kimber’s boobs are dripping with your [pc.cum], with more trickling down her cleavage to pool between her thighs. She dips her finger into it and licks it off, moaning quietly at the taste.");
 		else output(" Your first squirt alone is enough to cover Kimber’s globes, and she has just enough time to look impressed before your second squirt floods all over her face. Your [pc.cock " + genIdx + "] keeps on going, hosing her down until she’s entirely painted [pc.cumColor], your [pc.cum] dripping down her to pool on her bedsheets. She wipes it off of her face, laughing, then licks her hands off and moans quietly at the taste.");
 		output(" You flop back onto her bed, breathing hard, your [pc.cock " + genIdx + "] rubbed raw and slowly wilting.");
 		output("\n\n<i>“Much as I’d like to lick this all off of me,”</i> Kimber says, laughing a little, <i>“I know we both need a shower after that.”</i> She slowly stands, legs a little shaky, and helps you up and into the shower.");
@@ -2065,8 +2071,9 @@ public function kimberFirstTimeOnTop():void
 		output(", her depths squeezing you tight.");
 		output("\n\nFinally, right as you can’t possibly hold on any longer, Kimber’s cunt clenches down hard on your [pc.cockBiggest], and you go over the edge as she arches her back and cries out loud enough to echo. A new splash of Kimber’s girlcum splatters across your [pc.crotch], and your [pc.cockBiggest] explodes as you orgasm.");
 		output("\n\nYou come hard into Kimber’s depths, [pc.cum] shooting out of you so hard it feels like it should throw you backward across the room.");
-		if (pc.cumQ() >= 10000) output(" Your [pc.cockBiggest] fires off into her and will not stop, and her belly bulges out for a moment before your [pc.cum] floods back out of her, soaking your [pc.crotch] and your legs as well as hers before spilling down onto the floor.");
-		else if (pc.cumQ() >= 6000) output(" Your [pc.cockBiggest] fires off again and again, and Kimber’s belly bulges a little before [pc.cumColor] streams spurt from her pussy, covering your [pc.crotch] as they shoot out.");
+		var cumQ:Number = pc.cumQ();
+		if (cumQ >= 10000) output(" Your [pc.cockBiggest] fires off into her and will not stop, and her belly bulges out for a moment before your [pc.cum] floods back out of her, soaking your [pc.crotch] and your legs as well as hers before spilling down onto the floor.");
+		else if (cumQ >= 6000) output(" Your [pc.cockBiggest] fires off again and again, and Kimber’s belly bulges a little before [pc.cumColor] streams spurt from her pussy, covering your [pc.crotch] as they shoot out.");
 		output(" Both you and Kimber gasp hard as your orgasms subside, and you collapse atop her, your [pc.cockBiggest] sliding out of her as you do.");
 		output("\n\nNeither of you can speak right away, but Kimber eventually breathes, <i>“Fuck, [pc.name],”</i> and looks at you with glazed eyes. <i>“You didn’t tell me you were that good. If I’d known you could make me come that hard on top of me, I’d have dragged you back here and rode you ragged long ago.”</i>");
 		output("\n\nShe gives you a nudge, and you roll off of her. Kimber promptly rolls over on top of you, sweat and [pc.cum] and all, and gives you another long kiss, then sits up a little, her boobs still against your [pc.chest]. <i>“Anytime you want to come back here for a ride, you just let me know, you hear?”</i>");
@@ -2088,12 +2095,13 @@ public function kimberFirstTimeOnTop():void
 		output("\n\nKimber shoves her tongue into your mouth as her legs wrap around your [pc.hips]. You push your [pc.tongue] against hers as you thrust harder into her, the bed shaking beneath you both as your hardlight horsecock hammers into her again and again. Kimber moans, and sucks your [pc.tongue] into her mouth, holding your [pc.lipsChaste] locked against hers until you both start running out of breath.");
 		output("\n\nYou pull away, gasping along with her, still thrusting with everything you’ve got. Kimber’s pink flush has spread all the way down her giant boobs, which wobble and slap against each other with every movement, the sound of her own flesh smacking against itself filling the room.");
 		output("\n\nAfter a few more thrusts, you push yourself up with both arms, and Kimber drops her hand from your [pc.hair] to the small of your back. She stares up at you, eyes half-glazed, mouth open as she gasps. You feel an orgasm building within you, and force yourself to hold back, willing yourself to not come yet since there’s no way you can slow down now.");
-		if (pc.wettestVaginalWetness() > 4) output(" [pc.Girlcum] is already dripping down between your [pc.thighs], so you know you’re not far off.");
+		var wettestVaginalWetness:Number = pc.wettestVaginalWetness();
+		if (wettestVaginalWetness > 4) output(" [pc.Girlcum] is already dripping down between your [pc.thighs], so you know you’re not far off.");
 		output("\n\nKimber’s heels bang together on your [pc.thighs], and she takes hold of your [pc.ass] with both hands, giving you a good hard squeeze. <i>“Keep going,”</i> she gasps, <i>“I’m almost...”</i>");
 		output("\n\nHearing that from her, the urge to orgasm grows stronger within you. It’s a race now, to try to make her come before you can’t hold back anymore, and you can’t tell who’s going to win. You bear down hard and pump faster, your [pc.hips] a blur as you pound yourself as deep into her as you can get. Kimber’s girlcum is spread all over your [pc.thighs], more dripping out with every thrust.");
 		output("\n\nFinally, right as you can’t possibly hold on any longer, Kimber’s hands clench hard on your [pc.ass], and you go over the edge as she arches her back and cries out loud enough to echo. A new splash of Kimber’s girlcum splatters across your [pc.crotch], and [pc.oneVagina] twitches and quivers as you orgasm.");
 		output("\n\nYou whole body shakes as you pound the hardlight hard into Kimber’s depths one last time.");
-		if (pc.wettestVaginalWetness() > 4) output(" Your [pc.girlcum] splatters out around the hardlight, leaving long trails across Kimber’s thighs.");
+		if (wettestVaginalWetness > 4) output(" Your [pc.girlcum] splatters out around the hardlight, leaving long trails across Kimber’s thighs.");
 		output(" Both you and Kimber gasp hard as your orgasms subside, and you collapse atop her, the dildo sliding out of her as you do.");
 		output("\n\nNeither of you can speak right away, but Kimber eventually breathes, <i>“Fuck, [pc.name],”</i> and looks at you with glazed eyes. <i>“You didn’t tell me you were that good. If I’d known you could make me come that hard on top of me, I’d have dragged you back here and rode you ragged long ago.”</i>");
 		output("\n\nShe gives you a nudge, and you roll off of her. Kimber promptly rolls over on top of you, sweat and [pc.girlcum] and all, and gives you another long kiss, then sits up a little, her boobs still against your [pc.chest]. <i>“Anytime you want to come back here for a ride, you just let me know, you hear?”</i>");
@@ -2153,8 +2161,9 @@ public function kimberOnTopLater(cockIdx:int):void
 		output(", her depths squeezing you tight.");
 		output("\n\nFinally, right as you can’t possibly hold on any longer, Kimber’s cunt clenches down hard on your [pc.cock " + cockIdx + "], and you go over the edge as she arches her back and cries out loud enough to echo. A new splash of Kimber’s girlcum splatters across your [pc.crotch], and your [pc.cock " + cockIdx + "] explodes as you orgasm.");
 		output("\n\nYou come hard into Kimber’s depths, [pc.cum] shooting out of you so hard it feels like it should throw you backward across the room.");
-		if (pc.cumQ() >= 10000) output(" Your [pc.cock " + cockIdx + "] fires off into her and will not stop, and her belly bulges out for a moment before your [pc.cum] floods back out of her, soaking your [pc.crotch] and your legs as well as hers before spilling down onto the floor.");
-		else if (pc.cumQ() >= 6000) output(" Your [pc.cock " + cockIdx + "] fires off again and again, and Kimber’s belly bulges a little before [pc.cumColor] streams spurt from her pussy, covering your [pc.crotch] as they shoot out.");
+		var cumQ:Number = pc.cumQ();
+		if (cumQ >= 10000) output(" Your [pc.cock " + cockIdx + "] fires off into her and will not stop, and her belly bulges out for a moment before your [pc.cum] floods back out of her, soaking your [pc.crotch] and your legs as well as hers before spilling down onto the floor.");
+		else if (cumQ >= 6000) output(" Your [pc.cock " + cockIdx + "] fires off again and again, and Kimber’s belly bulges a little before [pc.cumColor] streams spurt from her pussy, covering your [pc.crotch] as they shoot out.");
 		output(" Both you and Kimber gasp hard as your orgasms subside, and you collapse atop her, your [pc.cock " + cockIdx + "] sliding out of her as you do.");
 		output("\n\nNeither of you can speak right away, but Kimber eventually breathes, <i>“Fuck, [pc.name],”</i> and looks at you with glazed eyes. <i>“I know you’re good, but I didn’t know you were that good. I can count on one hand how many people made me come like that when they were on top of me. And you’re the only one who’s not from back home.”</i>");
 		output("\n\nShe gives you a nudge, and you roll off of her. Kimber promptly rolls over on top of you, sweat and [pc.cum] and all, and gives you another long kiss, then sits up a little, her boobs still against your [pc.chest]. <i>“I was wondering a little if this would be worth it, but clearly I had nothing to worry about, y’know?”</i>");
@@ -2176,12 +2185,13 @@ public function kimberOnTopLater(cockIdx:int):void
 		output("\n\nKimber shoves her tongue into your mouth as her legs wrap around your [pc.hips]. You push your [pc.tongue] against hers as you thrust harder into her, the bed shaking beneath you both as your hardlight horsecock hammers into her again and again. Kimber moans, and sucks your [pc.tongue] into her mouth, holding your [pc.lipsChaste] locked against hers until you both start running out of breath.");
 		output("\n\nYou pull away, gasping along with her, still thrusting with everything you’ve got. Kimber’s pink flush has spread all the way down her giant boobs, which wobble and slap against each other with every movement, the sound of her own flesh smacking against itself filling the room.");
 		output("\n\nAfter a few more thrusts, you push yourself up with both arms, and Kimber drops her hand from your [pc.hair] to the small of your back. She stares up at you, eyes half-glazed, mouth open as she gasps. You feel an orgasm building within you, and force yourself to hold back, willing yourself to not come yet since there’s no way you can slow down now.");
-		if (pc.wettestVaginalWetness() > 4) output(" [pc.Girlcum] is already dripping down between your [pc.thighs], so you know you’re not far off.");
+		var wettestVaginalWetness:Number = pc.wettestVaginalWetness();
+		if (wettestVaginalWetness > 4) output(" [pc.Girlcum] is already dripping down between your [pc.thighs], so you know you’re not far off.");
 		output("\n\nKimber’s heels bang together on your [pc.thighs], and she takes hold of your [pc.ass] with both hands, giving you a good hard squeeze. <i>“Keep going,”</i> she gasps, <i>“I’m almost...”</i>");
 		output("\n\nHearing that from her, the urge to orgasm grows stronger within you. It’s a race now, to try to make her come before you can’t hold back anymore, and you can’t tell who’s going to win. You bear down hard and pump faster, your [pc.hips] a blur as you pound yourself as deep into her as you can get. Kimber’s girlcum is spread all over your [pc.thighs], more dripping out with every thrust.");
 		output("\n\nFinally, right as you can’t possibly hold on any longer, Kimber’s hands clench hard on your [pc.ass], and you go over the edge as she arches her back and cries out loud enough to echo. A new splash of Kimber’s girlcum splatters across your [pc.crotch], and [pc.oneVagina] twitches and quivers as you orgasm.");
 		output("\n\nYou whole body shakes as you pound the hardlight hard into Kimber’s depths one last time.");
-		if (pc.wettestVaginalWetness() > 4) output(" Your [pc.girlcum] splatters out around the hardlight, leaving long trails across Kimber’s thighs.");
+		if (wettestVaginalWetness > 4) output(" Your [pc.girlcum] splatters out around the hardlight, leaving long trails across Kimber’s thighs.");
 		output(" Both you and Kimber gasp hard as your orgasms subside, and you collapse atop her, the dildo sliding out of her as you do.");
 		output("\n\nNeither of you can speak right away, but Kimber eventually breathes, <i>“Fuck, [pc.name],”</i> and looks at you with glazed eyes. <i>“I know you’re good, but I didn’t know you were that good. I can count on one hand how many people made me come like that when they were on top of me. And you’re the only one who’s not from back home.”</i>");
 		output("\n\nShe gives you a nudge, and you roll off of her. Kimber promptly rolls over on top of you, sweat and [pc.girlcum] and all, and gives you another long kiss, then sits up a little, her boobs still against your [pc.chest]. <i>“I was wondering a little if this would be worth it, but clearly I had nothing to worry about, y’know?”</i>");
