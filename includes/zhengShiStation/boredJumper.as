@@ -470,8 +470,7 @@ public function sweatBunHyperCockDock4(x:int):void
 			pc.ballSizeRaw += 0.25;
 		}
 	}
-	if(!pc.hasStatusEffect("Blue Balls")) pc.createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
-	pc.ballFullness >= 100;
+	pc.applyBlueBalls();
 	output("\n\n");
 	IncrementFlag("JUMPER_DOCKED");
 	CombatManager.genericLoss();
