@@ -1124,10 +1124,10 @@ public function kimberDoHerNow():void
 			clearMenu();
 			clearOutput();
 			addButton(0, "Use Penis", penisRouter, [kimberOralCock, pc.biggestCockVolume() + 1, false]);
-			addButton(1, "Use Vagina", vaginaRouter, [kimberOralVagina]);
+			addButton(1, "Use Vagina", vaginaRouter, [kimberOralVagina, 0, 0, 0, false]);
 		}
 		else if (pc.hasCock()) penisRouter([kimberOralCock, pc.biggestCockVolume() + 1, false]);
-		else if (pc.hasVagina()) vaginaRouter([kimberOralVagina]);
+		else if (pc.hasVagina()) vaginaRouter([kimberOralVagina, 0, 0, 0, false]);
 	});
 
 	addButton(2, "Anal", penisRouter, [kimberSomethingSomethingAnalIDKMan, pc.biggestCockVolume() + 1, false]);
@@ -1141,10 +1141,10 @@ public function kimberDoHerNow():void
 			clearMenu();
 			clearOutput();
 			addButton(0, "Use Penis", penisRouter, [kimberShowCock, pc.biggestCockVolume() + 1, false]);
-			addButton(1, "Use Vagina", vaginaRouter, [kimberShowVagina]);
+			addButton(1, "Use Vagina", vaginaRouter, [kimberShowVagina, 0, 0, 0, false]);
 		}
 		else if (pc.hasCock()) penisRouter([kimberShowCock, pc.biggestCockVolume() + 1, false]);
-		else if (pc.hasVagina()) vaginaRouter([kimberShowVagina]);
+		else if (pc.hasVagina()) vaginaRouter([kimberShowVagina, 0, 0, 0, false]);
 	});
 	else addDisabledButton(4, "Mutual Mast");
 
