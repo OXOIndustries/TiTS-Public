@@ -1085,14 +1085,14 @@ public function mitziSexMenu():void
 	{
 		addButton(1,"Get Licked",getLickedByMitzi);
 		addButton(3,"Cuntnosis",mitziPussyControl,undefined,"Cuntnosis","Ask Mitzi to please your pussy and let her use some of her drugs to do a little too good of a job.\n\n<b>Contains Mind Control content.</b>\n<b>Known to cause slight amounts of taint. Check your Codex for details.</b>");
-		if(inCollection(getPlanetName().toLowerCase(),["tarkus","new texas","myrellion","canadia station"]) && pc.isBimbo() && pc.hasVagina() && pcc.biggestTitSize() >= 1) addButton(6,"Publicc Fun",publicMitziFun,undefined,"Public Fun","Throw your clothes to the wind and go to get gangbanged with Mitzi.");
+		if(InCollection(getPlanetName().toLowerCase(),["tarkus","new texas","myrellion","canadia station"]) && pc.isBimbo() && pc.hasVagina() && pc.biggestTitSize() >= 1) addButton(6,"Publicc Fun",publicMitziFun,undefined,"Public Fun","Throw your clothes to the wind and go to get gangbanged with Mitzi.");
 		else addDisabledButton(6,"Public Fun","Public Fun","For going out to have some fun with Mitzi you'll need to have a pussy, tits, to be on a planet where that's legal, and have a bubbly attitude towards life.");
 	}
 	else 
 	{
 		addDisabledButton(1,"Get Licked","Get Licked","You need a vagina for this.");
 		addDisabledButton(3,"Cuntnosis","Cuntnosis","You need to have a vagina in order to engage in this.");
-		else addDisabledButton(6,"Public Fun","Public Fun","For going out to have some fun with Mitzi you'll need to have a pussy, tits, to be on a planet where that's legal, and have a bubbly attitude towards life.");
+		addDisabledButton(6,"Public Fun","Public Fun","For going out to have some fun with Mitzi you'll need to have a pussy, tits, to be on a planet where that's legal, and have a bubbly attitude towards life.");
 	}
 
 	if(flags["MITZI_FAV_DRUG"] != undefined)
@@ -3290,6 +3290,7 @@ public function mitziPublicFun3():void
 	clearOutput();
 	showMitzi(true);
 	author("Doots");
+	var race:Number = 0;
 	output("The two of you are covered in cum from head to toe. Your stomachs are bloated with the seed of countless partners whose names you don’t even know. The last person in line grunts and adds his baby batter to the few gallons already sloshing inside you.");
 	pc.applyCumSoaked();
 	output("\n\nYou both collapse to the floor, you leaning against the hardwood and Mitzi leaning against you. Looking over the bar, you notice that there’s still someone with their attention on you.");
@@ -3299,7 +3300,7 @@ public function mitziPublicFun3():void
 		output("\n\nIt’s Kiro! And her balls are considerably swollen. Either she just arrived or she wanted the both of you for herself. She stands up and walks over to the two of you, her balls inches away from the ground.");
 		output("\n\n<i>“It was fun watching you sluts get gangbanged, but you two also got me worked up, and I think you’re just the pair to take care of it.”</i> She’s not lying. Her equine member is rock hard and leaking pre like a broken tap.");
 	}
-	else
+	else if(rand(2) == 0)
 	{
 		race = 1;
 		output("\n\nAn amazonian kaithrit looks at the two of you with a predatory glint in her eyes. She strides up to the bar with her dripping kitty-cock swaying hypnotically.");
@@ -3426,8 +3427,8 @@ public function mitziTailCocks():void
 	//More tooltip: Do as many of your on-board harem as possible.
 	processTime(10);
 	clearMenu();
-	addButton(0,"Mitzi",);
-	addButton(1,"More",);
+	addButton(0,"Mitzi",justMitziTentabang);
+	//addButton(1,"More",);
 }
 
 //Just Mitzi
