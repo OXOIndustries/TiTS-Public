@@ -3345,7 +3345,7 @@ public function betRaceOnUveto():void
 	if(pc.credits >= 10000) addButton(2,"10,000",bettingAtTheTaurRaces,10000,"10,000 Credits","Bet 10,000 credits.");
 	else addDisabledButton(2,"10,000","10,000","You don’t have the cash to make that bet.");
 	//[Nevermind]
-	addButton(3,"Nevermind",neverMindTaurStadium);
+	addButton(3,"Never Mind",neverMindTaurStadium);
 }
 
 //Choosing any of these will trigger an INT check based on the bet chosen. Lower-priced bets have a higher success rate, while the higher-priced ones have a much lower success rate. These chances are multiplied by the PC’s intelligence. Bimbo PCs automatically have a 50/50 success chance. Winning a bet doubles payment.
@@ -3401,7 +3401,7 @@ public function neverMindTaurStadium():void
 {
 	clearOutput();
 	author("HugsAlright");
-	showName("\nNEVERMIND.");
+	showName("\nNEVER MIND.");
 	output("You take a look down at your credit balance and ponder your chances for a moment before telling the cashier that you’ve changed your mind.");
 	output("\n\n<i>“Oh, that’s alright,”</i> she says, flipping off the holo-pad as you go to put away your Codex, <i>“If you ever do feel like you’d want to place a bet, U7 is always open!”</i>");
 

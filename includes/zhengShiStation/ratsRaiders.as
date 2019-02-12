@@ -2342,7 +2342,7 @@ public function ratsLossSex():void
 				output("\n\n<i>“Gotcha, [pc.mister] CEO...”</i> the coy rodenian murmurs, exhaling over your [pc.face]");
 				if (!pc.isTaur()) output(" and rubbing her knee into your crotch");
 				output(". Those [rat0.eyeColor] eyes stay honed on yours the whole time. <i>“You’re such a slut! But you’ve got... some moves... that others around here don’t, I guess. We don’t normally fall for this, and we don’t screw around all that much. But you?”</i> Her tongue dips into your midriff, traveling up over your [pc.chest] to your [pc.lipsChaste]. <i>“You’re all ours, in more ways than one...”</i>");
-				output("\n\nThe [rat2.furColor]-limbed halfbreed [rat2.boyGirl] purrs in your [pc.ear], breathing over the delicate base, thin fingers scritching the backside. <i>“[pc.Mister] CEO, we don’t get to have sex a lot, and uhhh, you lost and all. B-besides, you’re just so hot, and we need this. Please understand, and uh... nevermind, just let me see your butt!”</i> [rat2.heShe] whines, squirming [rat2.hisHer]" + rat2.mf("pre-oozing cock", "soaking pussy") + " against your [pc.arm].");
+				output("\n\nThe [rat2.furColor]-limbed halfbreed [rat2.boyGirl] purrs in your [pc.ear], breathing over the delicate base, thin fingers scritching the backside. <i>“[pc.Mister] CEO, we don’t get to have sex a lot, and uhhh, you lost and all. B-besides, you’re just so hot, and we need this. Please understand, and uh... never mind, just let me see your butt!”</i> [rat2.heShe] whines, squirming [rat2.hisHer]" + rat2.mf("pre-oozing cock", "soaking pussy") + " against your [pc.arm].");
 				output("\n\nThe mouse-boy bites his lower lip, humping your curves with darting [rat1.eyeColor] eyes.");
 				break;
 		}
@@ -2764,7 +2764,7 @@ public function ratGangGonnaBangYou():void
 			output("\n\nThe halfbreed’s warm breath washes over your sensitive [pc.skinFurScalesNoun]. Rat ears quaver with every impatient suckle, and lips seal into greedy kisses all along your pliant breastflesh.");
 			if (pc.biggestTitSize() < 8) output(" <i>“Oh, these are so big... You’ve got just the right size, not too small, not too big. I’m gonna have so much fun with these!”</i>");
 			else if (pc.biggestTitSize() < 16) output(" <i>“These are incredible! I wouldn’t need for anything else if I could handle these fat cow tits all day!”</i>");
-			else output(" <i>“How do you even get around with boobs like these, " + ratsMisterCEO() + "? Nevermind, I’m just gonna fuck them the way they need to be!”</i>");
+			else output(" <i>“How do you even get around with boobs like these, " + ratsMisterCEO() + "? Never mind, I’m just gonna fuck them the way they need to be!”</i>");
 			output("\n\nThe swells of your chest obscure the settling rat’s thighs. You can no longer see your freckled lover hammering your [pc.vagOrAss], that view is now occupied by a tit worshiping rodent. Nonetheless, your heart flutters seeing how happy your [pc.fullChest] makes him. A brighter blush spreads through your cheeks when he leans in for one last kiss to the right areola. Fond paws palm and knead your bouncing cleavage, inching his pre-squirting prominence closer to those spit-shined sugarmounds");
 			if (pc.isLactating()) output(", painting your body a lactic [pc.milkColor] with varied tugs and squeezes");
 			output(".");

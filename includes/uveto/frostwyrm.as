@@ -2394,7 +2394,7 @@ public function frostwyrmIncubateEggs():void
 	clearMenu();
 	if(pc.hasPregnancy()) addDisabledButton(0, "4 Months...", "Progress 4 Months...", "You cannot do this while currently pregnant!");
 	else addButton(0, "4 Months...", frostwyrmHolyCrapYoureStillWaiting);
-	addButton(1, "Nevermind", frostwyrmMainMenu, undefined);
+	addButton(1, "Never Mind", frostwyrmMainMenu, undefined);
 }
 
 public function frostwyrmRaiseHatchlings():void
@@ -2410,7 +2410,7 @@ public function frostwyrmRaiseHatchlings():void
 	clearMenu();
 	if(pc.hasPregnancy()) addDisabledButton(0, "4 Months...", "Progress 4 Months...", "You cannot do this while currently pregnant!");
 	else addButton(0, "4 Months...", frostwyrmWowThisReallyTakesAWhile, undefined);
-	addButton(1, "Nevermind", frostwyrmMainMenu, undefined);
+	addButton(1, "Never Mind", frostwyrmMainMenu, undefined);
 }
 
 // Hatches all incubating eggs.

@@ -1156,7 +1156,7 @@ public function askPaigeAbootHerself2(arg:Number = -1):void
 		addButton(1,"Family",askPaigeAbootHerself2,1,"Family","Ask Paige about her father, her mother, and her younger brother.");
 		addButton(2,"Blindness",askPaigeAbootHerself2,2,"Blindness","Ask Paige about the challenges her blindness have had on her life, and how her helper robot Iddi has alleviated them.");
 		addButton(3,"Piracy",askPaigeAbootHerself2,3,"Piracy","Ask Paige about her piratical life with her brother and Kiro, as well as how she received her injury.");
-		addButton(4,"Nevermind",backToPaigeMenu,undefined,"Nevermind","Then again, maybe not?");
+		addButton(4,"Never Mind",backToPaigeMenu,undefined,"Never Mind","Then again, maybe not?");
 	}
 }
 

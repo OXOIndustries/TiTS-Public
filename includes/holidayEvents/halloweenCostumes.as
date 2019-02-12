@@ -86,7 +86,7 @@ public function flyToPoeAConfirm():void
 	output("\n\n");
 	
 	addButton(0, "Continue", flyTo, "Poe A", "Fly to Poe A", "I can handle the consequences!");
-	addButton(14, "Nevermind", flyMenu);
+	addButton(14, "Never Mind", flyMenu);
 }
 public function flyToPoeA():void
 {

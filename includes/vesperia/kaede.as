@@ -863,7 +863,7 @@ public function timeRunsOutForKaede():void
 	{
 		output("\n\nHer explanation triggers a memory, and you spend a moment staring at her, brow furrowed, trying to think of exactly what. Then it comes to you: that A.I. you encountered in the base on Myrellion!");
 		output("\n\n<i>“I don’t suppose this has anything to do with the Black Void?”</i> you whisper, careful to keep anyone nearby from hearing.");
-		output("\n\nKaede’s eyes go wide, and her tail stiffens behind her. <i>“H-how did you know? Nevermind, yeah, you’re right: they were one of the pirate groups. I think they might have made Athena, or somebody stole her from them anyway. That’s one of the reasons I’ve been keeping my head down on the frontier lately, trying to be real hard to find. I’m just surprised they haven’t come after me yet. Maybe I got away in the clear, who knows.”</i>");
+		output("\n\nKaede’s eyes go wide, and her tail stiffens behind her. <i>“H-how did you know? Never mind, yeah, you’re right: they were one of the pirate groups. I think they might have made Athena, or somebody stole her from them anyway. That’s one of the reasons I’ve been keeping my head down on the frontier lately, trying to be real hard to find. I’m just surprised they haven’t come after me yet. Maybe I got away in the clear, who knows.”</i>");
 		output("\n\nShe chuckles nervously again, wiping her brow with the sleeve of her leather jacket. <i>“A-anyway, I should, uh, I should go. See you around, [pc.name].”</i>");
 		output("\n\nShe hops up and plants a kiss on your cheek, slipping around you and out the door before you can say another word.");
 		output("\n\nGuess she doesn’t wanna talk about it...");

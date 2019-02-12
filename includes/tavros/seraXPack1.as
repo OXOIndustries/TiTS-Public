@@ -242,7 +242,7 @@ public function letSeraFuckYouXXXpac(response:String = "no"):void
 				clearMenu();
 				addButton(0, "Yes Shrink", letSeraFuckYouXXXpac, "yes shrink", "Accept", "Allow Sera to shrink your [pc.cock " + cockIndex + "].");
 				addButton(1, "Got It", letSeraFuckYouXXXpac, "don't show me", "Refuse", "Tell her you’ve got this covered.");
-				addButton(2, "Nevermind", seraInchStealing, "nevermind", "Nevermind", "Actually, you’d rather not at this time....");
+				addButton(2, "Never Mind", seraInchStealing, "nevermind", "Never Mind", "Actually, you’d rather not at this time....");
 				if(seraIsMistress()) addDisabledButton(3, "Don’t Care", "Not Interested", "You really don’t have the power to tell her off now that you’re committed to her being your Mistress.");
 				else if(pc.WQ() >= 50) addButton(3, "Don’t Care", letSeraFuckYouXXXpac, "not interested", "Not Interested", "Tell her you are not putting up with her attitude anymore.");
 				else addDisabledButton(3, "Don’t Care", "Not Interested", "You really don’t have the willpower to tell her off....");
@@ -486,7 +486,7 @@ public function seraInchStealingIntro(response:String = ""):void
 		processTime(2);
 		clearMenu();
 		addButton(0, "Yes", letSeraFuckYouXXXpac, "yes shrink", "Yes", "Allow Sera to alter your [pc.cock " + cockIndex + "].");
-		addButton(1, "Nevermind", seraInchStealing, "nevermind", "Nevermind", "Actually, you’d rather do something else....");
+		addButton(1, "Never Mind", seraInchStealing, "nevermind", "Never Mind", "Actually, you’d rather do something else....");
 		return;
 	}
 	

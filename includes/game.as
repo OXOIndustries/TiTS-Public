@@ -2719,7 +2719,7 @@ public function shipShowerFapButtons(showerSex:int = 0):void
 	{
 		showerSex = shipShowerFaps(true);
 	}
-	addButton(showerSex, "Nevermind", shipShowerFappening, "Nevermind", "Nevermind", "On second thought...");
+	addButton(showerSex, "Never Mind", shipShowerFappening, "Nevermind", "Never Mind", "On second thought...");
 }
 public function showerCabinet(arg:Array):void
 {
@@ -3953,6 +3953,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	bellySizeUpdates(deltaT);
 	nutSwellUpdates(deltaT);
 	immobilizedUpdate(false, deltaT);
+	clothingSizeUpdates(deltaT);
 
 	//Queue up dumbfuck procs
 	if(pc.hasStatusEffect("Dumbfuck")) processDumbfuckEvents();

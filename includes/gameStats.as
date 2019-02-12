@@ -3171,6 +3171,19 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				sideCount++;
 			}
+			// Kimber Quest
+			if(flags["KIMBER_QUEST"] != undefined || flags["KIMBER_OFFER"] != undefined)
+			{
+				output2("\n<b><u>Kimber’s Expedition</u></b>");
+				output2("\n<b>* Status:</b> Offered");
+				if(flags["KIMBER_QUEST"] == -1) output2(", Tarkus destroyed, Unable to start");
+				if(flags["KIMBER_QUEST"] == 0) output2(", Accepted, <i>Find daer worm!</i>");
+				if(flags["KIMBER_QUEST"] == 1) output2(", Accepted, Found and defeated daer worm, <i>Return to Kimber!</i>");
+				if(flags["KIMBER_QUEST"] >= 2) output2(", Accepted, Found and defeated daer worm, Reported to Kimber");
+				if(flags["KIMBER_QUEST"] >= 3) output2(", Completed");
+				if(flags["KIMBER_QUEST"] >= 4) output2("\n<b>* Gabilani Panties:</b> Taken");
+				sideCount++;
+			}
 			// Lane's Illegal Activity
 			if(flags["MET_LANE"] != undefined)
 			{
@@ -3220,7 +3233,7 @@ public function displayQuestLog(showID:String = "All"):void
 							if(pc.hasStatusEffect("Shekka_Cure_CD")) output2(", Funded, <i>Creating cure...</i>");
 							else output2(", Funded, Cure ready, <i>Give Shekka a visit!</i>");
 						}
-						if(flags["SHEKKA_ISSUES"] >= 7) output2("Funded, Cure obtained, Completed");
+						if(flags["SHEKKA_ISSUES"] >= 7) output2(", Funded, Cure obtained, Completed");
 						if(flags["SHEKKA_PROJECT_FUNDED"] != undefined) output2("\n<b>* Research Phase:</b> " + flags["SHEKKA_PROJECT_FUNDED"]);
 						if(flags["SHEKKA_ISSUES"] < 5)
 						{
@@ -3235,19 +3248,6 @@ public function displayQuestLog(showID:String = "All"):void
 						}
 					}
 				}
-				sideCount++;
-			}
-			// Kimber Quest
-			if(flags["KIMBER_QUEST"] != undefined || flags["KIMBER_OFFER"] != undefined)
-			{
-				output2("\n<b><u>Kimber Expedition</u></b>");
-				output2("\n<b>* Status:</b> Offered");
-				if(flags["KIMBER_QUEST"] == -1) output2(", Tarkus destroyed, Unable to start");
-				if(flags["KIMBER_QUEST"] == 0) output2(", Accepted, <i>Find daer worm!</i>");
-				if(flags["KIMBER_QUEST"] == 1) output2(", Accepted, Found and defeated daer worm, <i>Return to Kimber!</i>");
-				if(flags["KIMBER_QUEST"] >= 2) output2(", Accepted, Found and defeated daer worm, Reported to Kimber");
-				if(flags["KIMBER_QUEST"] >= 3) output2(", Completed");
-				if(flags["KIMBER_QUEST"] >= 4) output2(", Rewarded with Kimber’s panties");
 				sideCount++;
 			}
 		}

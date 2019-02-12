@@ -5259,7 +5259,7 @@ public function unhuskarizeAnno():void
 	output("\n\nShe places the baggie between you with an exaggerated huff. <i>“So what’s it gonna be? Thickness for life, or back to normal?”</i>");
 	processTime(4);
 	clearMenu();
-	addButton(0,"Nevermind",neverMindAnnoStayFat,undefined,"Nevermind","If that’s the way it’s gonna be, you’ll stick with husky Anno.");
+	addButton(0,"Never Mind",neverMindAnnoStayFat,undefined,"Never Mind","If that’s the way it’s gonna be, you’ll stick with husky Anno.");
 	addButton(1,"Confirm",goodbyeBestAnno,undefined,"Confirm","");
 }
 
@@ -5271,7 +5271,7 @@ public function neverMindAnnoStayFat():void
 	clearOutput();
 	showAnno();
 	author("Savin");
-	output("After a moment’s consideration, you shake your head and tell Anno to nevermind. If you have to choose permanently, you’ll stick with a huskar over a normal ausar.");
+	output("After a moment’s consideration, you shake your head and tell Anno to never mind. If you have to choose permanently, you’ll stick with a huskar over a normal ausar.");
 	output("\n\n<i>“Hey, I’m normal,”</i> Anno chides, scooping the ausar treats back into her desk. <i>“But I’m glad you can still stomach me like this. Had me worried there, boss... like I said, I’m really liking this whole huskar thing. I look damn good with a little extra heft, hmm?”</i>");
 	output("\n\nYou have to admit, she does. Though you might not think her current form is <i>perfect</i>, but between the two choices, you’re more than satisfied with your lover just as she is.");
 	processTime(3);

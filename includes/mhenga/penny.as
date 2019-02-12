@@ -289,7 +289,7 @@ public function fuckTheZilForPennyBecauseYouAreADumbStupidSlut():void {
 	this.clearMenu();
 	this.addButton(0,"Explain",explainWhyYoureAHugeSlut);
 	this.addButton(1,"FlirtItOff",flirtySlutPCsTellPennyFlirts);
-	this.addButton(14,"Nevermind",askPennyIfSheNeedsHelp);
+	this.addButton(14,"Never Mind",askPennyIfSheNeedsHelp);
 }
 
 //[Explain]
@@ -1773,7 +1773,7 @@ public function growADickPenny():void {
 	output("\n\nPenny gives you a doubtful look, but she reaches into her desk all the same, coming out with a vial full of cyan fluid so transparent you can barely identify the color. She twists it between her fingers, looking meaningfully at it as she works up her courage. <i>“This stuff is going to give me a dick, likely forever. My genome is so hacked up by the fennec splicing that most transformation won’t even take anymore - part of the downsides of going as cheap as I did on it. So if I grow this dick, it’ll be hard as hell to get rid of, and maybe the only thing about me we can transform. Are you sure you want me to be your foxy little futanari girlfriend?”</i>");
 	//[Grow It] [Nevermind] - back to talk menu.
 	this.addButton(0,"Grow It",pennySproutsAWeiner);
-	this.addButton(1,"Nevermind",stayAGirlYouBitch);
+	this.addButton(1,"Never Mind",stayAGirlYouBitch);
 }
 //Penny Grows Her Dick NOW!
 public function pennySproutsAWeiner():void {
@@ -3445,7 +3445,7 @@ public function pennyCumslutterMenuTalk():void {
 	clearMenu();
 	if(pennyIsCrew())
 	{
-		addButton(0,"Nevermind",nevermindCumslutPenny,undefined,"Nevermind","Just kidding!");
+		addButton(0,"Never Mind",nevermindCumslutPenny,undefined,"Never Mind","Just kidding!");
 		if(flags["PENNY_CUMSLUT_RECRUITED"] == undefined) addButton(4,"Calm Down",calmDownPennyBitch4Repeats,undefined,"Calm Down","Talk Penny into not being such a brazen, cum-drinking slut.");
 		else addDisabledButton(4,"Calm Down","Calm Down","Penny <b>needs</b> to make money as a camwhore to keep up on her debt payments. Now that she’s given up her old job to live with you, camwhoring is her only option.");
 	}
@@ -3466,7 +3466,7 @@ public function nevermindCumslutPenny():void
 	clearOutput();
 	author("Fenoxo");
 	showPenny(true);
-	output("<i>“Nevermind!”</i> you jovially say, pushing Penny halfway down her dick before tugging the gasping, giggling prick-vixen back up. <i>“You keep camwhoring your heart out. It’s fun, isn’t it?”</i>");
+	output("<i>“Never mind!”</i> you jovially say, pushing Penny halfway down her dick before tugging the gasping, giggling prick-vixen back up. <i>“You keep camwhoring your heart out. It’s fun, isn’t it?”</i>");
 	output("\n\nPenny nods as much as your grip allows. <i>“Y-yeah. They love it when I suck myself deep. I even got a camera script that zooms in when I climax, right on my dick so they can see it pulsate with each load.”</i> Her [penny.cock] swells, forming an enormous droplet of pre at its apex, nestled snugly between " + (rand(2) == 0 ? "Penny" : "the fox") + "’s fuzzy tits. <i>“And I cum so hard knowing they’re all jacking off, mate. I cum so hard.”</i> She whimpers. <i>“Please... can I suck now? Can I milk out a load for you? Please?”</i>");
 	output("\n\n");
 	if(penny.hasCock(GLOBAL.TYPE_EQUINE)) showImage("PennyEquineAutofellate");
@@ -5806,7 +5806,7 @@ public function recruitBimboPenpen():void
 	pc.lust(4);
 	clearMenu();
 	addButton(0,"Cam",camwhoreItUpBimboPenny,undefined,"Cam","Convine Penny to become a camwhore to pay for her debts.")
-	addButton(1,"Nevermind",nevermindBimboCumPennyNoCamwhore,undefined,"Nevermind","Drop the topic for now. No need to push it.");
+	addButton(1,"Never Mind",nevermindBimboCumPennyNoCamwhore,undefined,"Never Mind","Drop the topic for now. No need to push it.");
 }
 
 //[Nevermind]

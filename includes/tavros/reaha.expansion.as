@@ -1525,7 +1525,7 @@ public function reahaBootOffShip():void
 
 		//[Nevermind] [Go to Tavros] [New Texas]
 		clearMenu();
-		addButton(0, "Nevermind", reahaBootOffShipNevermind);
+		addButton(0, "Never Mind", reahaBootOffShipNevermind);
 		if (pc.credits >= 50) addButton(1, "Go2Tavros", reahaBootOffShipGo2Tavros, undefined, "Go to Tavros", ("Tell Reaha to go to Tavros Station. " + (!reahaCanGoToNursery() ? "She’ll probably go hang out at Beth’s again, knowing her." : "Since the Nursery’s opened up, you can probably send her there...") + "\n\nCosts 50 Credits."));
 		else addDisabledButton(1, "Go2Tavros", "Go to Tavros", "You’d need to afford for Reaha’s transport to Tavros....\n\nCosts 50 Credits.");
 		if (9999 == 0) addButton(2, "New Texas", reahaBootOffShipNewTexas, undefined, "Stay on New Texas", "Tell Reaha she’s stuck here on New Texas, damned be the consequences.");
@@ -1558,7 +1558,7 @@ public function reahaBootOffShipNevermind():void
 	clearOutput();
 	reahaHeader();
 
-	output("<i>“Nevermind, then,”</i> you shrug. <i>“You can stay, for now.”</i>");
+	output("<i>“Never mind, then,”</i> you shrug. <i>“You can stay, for now.”</i>");
 	
 	output("\n\nReaha sighs with relief and hops up into your arms. <i>“Thankyouthankyou thankyou,”</i> she babbles, squeezing you tight. You almost think she’s on the verge of tears when she says, <i>“I don’t want to leave...”</i> ");
 	
