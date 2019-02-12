@@ -3927,22 +3927,23 @@ public function kiroKallyDoubleMilkingThreesome3():void
 		output("<i>“On your marks...”</i> You squeeze the sisters’ asses. <i>“Get set...”</i> You rub your thumb across the soft flesh, pressing closer and closer to their assholes. <i>“GO!”</i> You graze their dusky rosebuds with a fingertip.");
 	}
 	//Merge
-	output("\n\nBoth sisters thrust forward, right on cue, burying their lengths into their chosen dick-milkers. Twin sighs of contentment fill the air. A second later, they transform into moans when the machine turns on, rhythmically whirring. Wet slurps can be heard coming from the nuki-girls’ crotches, slow and gentle at first. You can see their horse-cocks pulsating to the tempo of the vacuum suction, expanding and contracting. For every cycle, they look a little thicker.");
-
+	output("\n\nBoth sisters thrust forward, right on cue, burying their lengths into their chosen dick-milkers. Twin sighs of contentment fill the air. A second later, they transform into moans when the machine turns on, rhythmically whirring. Wet slurps can be heard coming from the nuki-girls’ crotches, slow and gentle at first. You can see their horse-cocks pulsating to the tempo of the vacuum suction, expanding and contracting. For every cycle, they look a little thicker.\n\n");
+	//Commissioned by Questyrobo, drawn by Dsan.
+	showImage("KiroKallyTeamMilk");
 	//First Time
 	if(flags["SISTER_MILK_ACT"] == undefined)
 	{
-		output("\n\nKally’s legs wobble dangerously, but you’re there to catch her under the elbows. The poor thing isn’t used to feeling so much so fast, or to having so much more blood in her dick than in her brain. Her tongue lolls and her hips thrust, bucking wildly, sending the hard plastic tube holding her dick flailing in a circle. You lift her higher, and your cock slides perfectly between her asscheeks, pressing on her spasming sphincter. The sudden onslaught of pressure seems to lend her strength. Kally sucks in a deep lungful of air, and with a whimper of delight, straightens her knees. At the same time, she leans forward, presenting you with easier access to her asshole.");
+		output("Kally’s legs wobble dangerously, but you’re there to catch her under the elbows. The poor thing isn’t used to feeling so much so fast, or to having so much more blood in her dick than in her brain. Her tongue lolls and her hips thrust, bucking wildly, sending the hard plastic tube holding her dick flailing in a circle. You lift her higher, and your cock slides perfectly between her asscheeks, pressing on her spasming sphincter. The sudden onslaught of pressure seems to lend her strength. Kally sucks in a deep lungful of air, and with a whimper of delight, straightens her knees. At the same time, she leans forward, presenting you with easier access to her asshole.");
 	}
 	//Second Time
 	else if(flags["SISTER_MILK_ACT"] == 1)
 	{
-		output("\n\nKally’s legs wobble, but not so dangerously as before. She braces herself against the machine’s central column, half-burying her face in a hologram of four milk-spraying tits, tail lifted so high it nearly brushes the ceiling. Her dick dangles down, jumping with each slurping suck from the pump, but more important is the sight of her pussy, framed by cushy thighs already matted with moisture from the leaky organ. You rub against her lips to gather a thick coating of lubricant, then shift up to press against her spasming sphincter. Kally’s whole body shivers, and with a whimper of delight, she bends lower to better present herself for the taking.");
+		output("Kally’s legs wobble, but not so dangerously as before. She braces herself against the machine’s central column, half-burying her face in a hologram of four milk-spraying tits, tail lifted so high it nearly brushes the ceiling. Her dick dangles down, jumping with each slurping suck from the pump, but more important is the sight of her pussy, framed by cushy thighs already matted with moisture from the leaky organ. You rub against her lips to gather a thick coating of lubricant, then shift up to press against her spasming sphincter. Kally’s whole body shivers, and with a whimper of delight, she bends lower to better present herself for the taking.");
 	}
 	//Third+
 	else
 	{
-		output("\n\nKally handles herself like a pro: no knee-knocking loss of control, no overly whorish moans. She does spread her legs, adopting a stance that gives you a lovely view of her delightfully lubricated cunt and tube-bound cock. The latter jumps fiercely with every burst of suction, while the former drizzles all over your encroaching dick. You slide forward, rubbing your [pc.cockHead " + x + "] deep between her sloshing balls before you deign to lift it up to its true target: Kally’s spasming anal ring. She moans and bends lower on contact, lifting her tail up high. It may as well be a gigantic arrow pointing at her pucker, demanding that you fuck it long and deep.");
+		output("Kally handles herself like a pro: no knee-knocking loss of control, no overly whorish moans. She does spread her legs, adopting a stance that gives you a lovely view of her delightfully lubricated cunt and tube-bound cock. The latter jumps fiercely with every burst of suction, while the former drizzles all over your encroaching dick. You slide forward, rubbing your [pc.cockHead " + x + "] deep between her sloshing balls before you deign to lift it up to its true target: Kally’s spasming anal ring. She moans and bends lower on contact, lifting her tail up high. It may as well be a gigantic arrow pointing at her pucker, demanding that you fuck it long and deep.");
 	}
 	//Merge
 	output("\n\nSliding into Kally proves easier than expected, likely owing to some training in her private time.");

@@ -170,10 +170,10 @@ public function miloBossManWinsFite():void
 		output("\n\nYour hands dive " + (!pc.isCrotchExposed() ? "under your [pc.crotchCoverUnder] and ":"") + "into your crotch" + (!pc.hasGenitals() ? ", curling around to press at your [pc.asshole]":"") + ".");
 		output("\n\n<i>“Oh, you wanted this pussy?”</i> The milodan smirks at you. <i>“Too bad.”</i> He carefully pushes forward, guiding his nub-lined tip directly into Ula’s drug-swollen cunt. The first few inches sink in like she’s made of half-melted butter before he’s forced to pause, moaning in delirious pleasure. <i>“Yesss,”</i> the war-alpha purrs, taking a moment to master himself. <i>“Buncha chubby broodmares, your whole race.”</i> He savagely thrusts the remaining nine inches of hard, alien cock deep into Ula’s sapphire snatch, clapping his balls into her ass with authority. <i>“And you’re mine!”</i>");
 		output("\n\n<i>“Mmmhuh!”</i>");
-		output("\n\nIt’s the first cogent thing Ula’s said.");
+		output("\n\nIt’s the first cogent thing Ula’s said.\n\n");
 		//Image here?
-		showImage("UlaMiloFucked9998");
-		output("\n\n<i>“");
+		showImage("UlaWarAlphaSex");
+		output("<i>“");
 		output((korgiTranslate() ? "Knock me up":"Give warms! Warms pups!") + "!”</i> Ula throws her head back and screams in delight, thighs shaking. The trickles of girlcum sliding down her fluffy asscheeks thicken into coursing streams. <i>“Ooooh! Oh! " + (korgiTranslate() ? "So goood!":"Good warms!") + "”</i>");
 		output("\n\nThe milodan draws back, knot audibly popping out of the korg’s elastic cunt and slams home once more. He fucks the korg princess hard. Ula’s body, made soft by biology and a life light in manual labor, jiggles all over. Her tits bounce and slosh around with the promise of how much milk they’re going to be filled with. Her ass ripples with the promise of how much bigger it’ll be after her first litter. Her tongue flops out of her maw in absolute bliss, already subservient to the MIlodan’s will. After a fuck like this, you just know she’s going to be licking his balls clean and loving every second of it...");
 		output("\n\nYou whimper and masturbate. The force of the fucking actually splatters Ula’s increasingly well-used pussy-juice across your face, and it just makes it that much hotter.");
