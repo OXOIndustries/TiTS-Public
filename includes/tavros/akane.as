@@ -1439,9 +1439,8 @@ public function akaneOPIsASlowRideFoghat(usingDick:CockClass):void
 	pc.lust(pc.lustMax());
 	pc.applyPussyDrenched();
 	
-	if (false /*applicable*/)
-		pc.createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
-			
+	if (usingDick) pc.applyBlueBalls();
+	
 	if (flags["AKANE_TIMES_RIDDEN"] == undefined)
 	{
 		output("<i>“Hmm, not in the mood to do painplay right now... how about something nicer, [pc.name]?”</i> she smirks, her thumb running " + (pc.isBald() ? "across" : "through") + " your [pc.hair]. You get the feeling that she means to be genuine, especially with her slower, considered movements.");
