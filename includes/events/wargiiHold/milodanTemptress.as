@@ -433,7 +433,7 @@ public function sitOnTemptingKittyFace2():void
 			output("\n\nKneading her heavenly boobs you rise and fall, plunging balls deep into her throat and struggling not to unload. Your [pc.cockType " + dick + "] shaft has little difficulty conquering her clenching muscles and flattening out their decadent ridges.");
 			if(pc.balls > 0) output(" Her nose ends up buried in your ball" + (pc.balls > 1 ? "s":"") + "; the soft, vulnerable skin engraves your unique signature on her animal brain.");
 			//suulaOrAphroDick:
-			if(pc.cocks[x].cType == GLOBAL.TYPE_SUULA || pc.cocks[x].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) 
+			if(pc.cocks[dick].cType == GLOBAL.TYPE_SUULA || pc.cocks[dick].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) 
 			{
 				output(" The tendrils lining your alien mast ");
 				if(pc.hasVagina() && (pc.vaginas[0].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED) || pc.vaginas[0].type == GLOBAL.TYPE_SUULA)) output("further ");
