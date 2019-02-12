@@ -1117,46 +1117,73 @@ public function kimberDoHerNowMenu():void
 {
 	clearMenu();
 	
-	addButton(0, "Get Ridden", penisRouter, [kimberTakesYouForARide,99999,false,0]);
+	if (!pc.hasCock()) addDisabledButton(0, "Get Ridden", "Get Ridden", "You need a penis for this!");
+	else addButton(0, "Get Ridden", penisRouter, [kimberTakesYouForARide,99999,false,0]);
 
-	addButton(1, "Oral", function ():void
+	if (!pc.hasGenitals()) addDisabledButton(1, "Oral", "Oral", "You need genitals for this!");
+	else addButton(1, "Oral", function ():void
 	{
 		if (pc.isHerm())
 		{
 			clearMenu();
-			clearOutput();
 			addButton(0, "Use Penis", penisRouter, [kimberOralCock,99999,false,0]);
 			addButton(1, "Use Vagina", vaginaRouter, [kimberOralVagina,0,0,0,false]);
+			addButton(14, "Back", kimberDoHerNowMenu);
 		}
 		else if (pc.hasCock()) penisRouter([kimberOralCock,99999,false,0]);
 		else if (pc.hasVagina()) vaginaRouter([kimberOralVagina,0,0,0,false]);
 	});
 
-	addButton(2, "Anal", penisRouter, [kimberSomethingSomethingAnalIDKMan]);
-	if (flags["KIMBER_UTHRA_GIVEN"] != undefined) addButton(3, "Mirror Sex", penisRouter, [kimberSexeSrebmik]);
+	if (!pc.hasCock()) addDisabledButton(2, "Anal", "Anal", "You need a penis for this!");
+	else addButton(2, "Anal", penisRouter, [kimberSomethingSomethingAnalIDKMan,99999,false,0]);
+	
+	if (flags["KIMBER_UTHRA_GIVEN"] != undefined)
+	{
+		if (!pc.hasCock()) addDisabledButton(3, "Mirror Sex", "Mirror Sex", "You need a penis for this!");
+		else addButton(3, "Mirror Sex", penisRouter, [kimberSexeSrebmik,99999,false,0]);
+	}
 	else addDisabledButton(3, "Mirror Sex");
 
-	if (flags["KIMBER_CANDY_GIVEN"] != undefined) addButton(4, "Mutual Mast", function ():void
+	if (flags["KIMBER_CANDY_GIVEN"] != undefined)
 	{
-		if (pc.isHerm())
+		if (!pc.hasGenitals()) addDisabledButton(4, "Mutual Mast", "Mutual Mast", "You need genitals for this!");
+		else addButton(4, "Mutual Mast", function ():void
 		{
-			clearMenu();
-			addButton(0, "Use Penis", penisRouter, [kimberShowCock,99999,false,0]);
-			addButton(1, "Use Vagina", vaginaRouter, [kimberShowVagina,0,0,0,false]);
-			addButton(14, "Back", kimberDoHerNowMenu);
-		}
-		else if (pc.hasCock()) penisRouter([kimberShowCock,99999,false,0]);
-		else if (pc.hasVagina()) vaginaRouter([kimberShowVagina,0,0,0,false]);
-	});
+			if (pc.isHerm())
+			{
+				clearMenu();
+				addButton(0, "Use Penis", penisRouter, [kimberShowCock,99999,false,0]);
+				addButton(1, "Use Vagina", vaginaRouter, [kimberShowVagina,0,0,0,false]);
+				addButton(14, "Back", kimberDoHerNowMenu);
+			}
+			else if (pc.hasCock()) penisRouter([kimberShowCock,99999,false,0]);
+			else if (pc.hasVagina()) vaginaRouter([kimberShowVagina,0,0,0,false]);
+		});
+	}
 	else addDisabledButton(4, "Mutual Mast");
 
-	if (flags["KIMBER_RUSKVEL_GIVEN"] != undefined) addButton(5, "Get Tied Down", penisRouter, [kimberGetsYouTiedUpWithoutWork,99999,false,0]);
+	if (flags["KIMBER_RUSKVEL_GIVEN"] != undefined)
+	{
+		if (!pc.hasCock()) addDisabledButton(5, "Get Tied Down", "Get Tied Down", "You need a penis for this!");
+		else addButton(5, "Get Tied Down", penisRouter, [kimberGetsYouTiedUpWithoutWork,99999,false,0]);
+	}
 	else addDisabledButton(5, "Get Tied Down");
+	
 	if (flags["KIMBER_SKY_GIVEN"] != undefined) addButton(6, "Pegging", kimberTakesYouDownToPeg);
 	else addDisabledButton(6, "Pegging");
-	if (flags["KIMBER_RATION_GIVEN"] != undefined) addButton(7, "Shower Sex", penisRouter, [kimberTheCleanScientist,99999,false,0]);
+	
+	if (flags["KIMBER_RATION_GIVEN"] != undefined)
+	{
+		if (!pc.hasCock()) addDisabledButton(7, "Shower Sex", "Shower Sex", "You need a penis for this!");
+		else addButton(7, "Shower Sex", penisRouter, [kimberTheCleanScientist,99999,false,0]);
+	}
 	else addDisabledButton(7, "Shower Sex");
-	if (flags["KIMBER_ON_TOP"] == 0) addButton(9, "On Top", penisRouter, [kimberOnTopLater,99999,false,0]);
+	
+	if (flags["KIMBER_ON_TOP"] == 0)
+	{
+		if (!pc.hasCock()) addDisabledButton(9, "On Top", "On Top", "You need a penis for this!");
+		else addButton(9, "On Top", penisRouter, [kimberOnTopLater,99999,false,0]);
+	}
 	//Unlike the item listings, sex options that aren't available should be greyed out but visible, so if people see something they want to do, they'll try to figure out how to unlock that scene. [On Top] is an exception, and should not be visible unless it's available.
 }
 
