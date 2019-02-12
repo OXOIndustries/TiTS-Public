@@ -1499,7 +1499,7 @@ public function stretchBonusSexiness(target:Creature, item:ItemSlotClass, equipO
 					// More sexy
 					if(oldSexiness < newSexiness)
 					{
-						msg += "The pliant fabric of your " + item.longName + " stretches, <b>";
+						msg += "The pliant material of your " + item.longName + " stretches, <b>";
 						if(transparencyBonus > 0 && bonus >= transparencyBonus && !wasTransparent) msg += "becoming transparent and ";
 						msg += "improving the clothing’s sexiness level!</b>";
 					}
