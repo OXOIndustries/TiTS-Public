@@ -133,7 +133,7 @@ public function flirtWithGeoff():void {
 		output("\n\n<i>“Sure!”</i> beams Geoff. <i>“Whenever you have a free afternoon, come around. I’ve got to get used to guys watching me dismantle engines and guns and stuff, right?”</i>");
 
 		addButton(0, "Flirt More", flirtMoreWithGeoff);
-		addButton(1, "Nevermind", buyFromGeoff);
+		addButton(1, "Never Mind", buyFromGeoff);
 		return;
 	}
 	

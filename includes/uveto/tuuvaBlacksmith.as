@@ -679,7 +679,7 @@ public function tuuvaScavenging():void
 	}
 	else
 	{
-		output(", uh, nevermind, ");
+		output(", uh, never mind, ");
 		if(!korgiTranslate()) output("no important");
 		else output("it’s not important");
 		output(".");

@@ -1119,7 +1119,7 @@ public function reactWellToFutaLaquine():void
 	output("\n\nThe short, stacked alien can barely control herself. Her leg is thumping the floor like wild, and it looks like it’s everything she can do to keep from grabbing you by the ");
 	if(pc.horns > 1 && pc.hornLength >= 2) output("horns");
 	else output("head");
-	output(" and humping your face, nevermind latex layer between.");
+	output(" and humping your face, never mind latex layer between.");
 	output("\n\nYou do the only sane thing you can in such a situation - you pull the suit to the side and fish out Nayna’s cock, bunching the shining onyx suit up alongside her leg to let her balls and vagina breathe too.");
 	output("\n\nNothing could prepare you for how absolutely, torrentially wet the hermaphrodite’s crotch is. The thick tube of her cock glistens with sweat and a smidge of pre. Her thighs and balls are slicked down with her cunt’s lubricious leakage. To say she smells like sex would be an understatement. Nayna’s crotch is a one-woman orgy of aromas, from the tangy scent of her pussy to the rich musk her cock exudes, hanging around her sheath in a thick cloud.");
 	output("\n\nLetting go of the pink, fleshy horsecock, you grab hold of her thighs and pull her close, allowing the turgid member to slap down across your nose when you nuzzle in close. Her balls are swollen, so torrid with unspent seed that they may as well be overloaded spunk-reactors. ");

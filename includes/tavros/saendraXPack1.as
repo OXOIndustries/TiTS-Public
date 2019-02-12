@@ -565,7 +565,7 @@ public function sx1CallgirlMenu():void
 	if (pc.credits >= 500) addButton(1, "Job", sx1CallgirlOfferJob, undefined, "Offer Job", "Offer the Callgirl 500 credits to distract the guards.");
 	else addDisabledButton(1, "Job", "Offer Job", "You don’t have enough credits to offer the Callgirl!");
 
-	addButton(2, "Nevermind", sx1CallgirlNevermind);
+	addButton(2, "Never Mind", sx1CallgirlNevermind);
 }
 
 public function sx1CallgirlNevermind():void
@@ -1667,7 +1667,7 @@ public function zilCallgirlSexMenu(isFreebie:Boolean = false):void
 		addButton(2, "Get Honey", zilCallGirlSuckleHoney, undefined, "Suckle Honey", "Your hands on the waspy girl’s breast gives you an idea...");
 	}
 
-	addButton(14, "Nevermind", zilCallGirlCall, [false, isFreebie], "Nevermind", "Maybe this was a bad idea.");
+	addButton(14, "Never Mind", zilCallGirlCall, [false, isFreebie], "Never Mind", "Maybe this was a bad idea.");
 }
 
 public function zilCallgirlStopWhoringTooltip():String

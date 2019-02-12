@@ -3711,7 +3711,7 @@ public function ratsMindfuckDone(scene:int):void
 	{
 		switch (scene)
 		{
-			case 0: output("\n\n<i>“I... I really wish... If you want to do that again... Nevermind. I hope Mikky likes you, then maybe we don’t have to fight anymore...”</i>"); break;
+			case 0: output("\n\n<i>“I... I really wish... If you want to do that again... Never mind. I hope Mikky likes you, then maybe we don’t have to fight anymore...”</i>"); break;
 			case 1: output("\n\n<i>“[pc.Master] CEO... Hehe, I like that. You make me feel so safe and secure. I don’t mind being your little um, rat slut.”</i>"); break;
 			case 2: output("\n\n<i>“Ohhh you really know how to fuck, don’tcha [pc.mister] CEO... You lemme know whenever you’re feelin’ horny!”</i>"); break;
 			case 3: output("\n\n<i>“[pc.Mister] CEO, thanks for the sex. I really enjoyed it. If you wanna do it again though, you gotta win! And umm, please don’t tell anyone we did that, ‘kay?”</i>"); break;

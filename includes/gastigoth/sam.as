@@ -90,7 +90,7 @@ public function samsPrisonRoom(impregnate:Boolean = false):void
 	if(pc.hasHardLightEquipped()) addButton(1,"Use Strap-on",samPrisonStuff,[false, false],"Use Strap-on","Give her an approximation of what she wants. A hardlight dick is still a dick, right?");
 	else addDisabledButton(1,"Use Strap-on","Use Strap-on","You don’t have a strap-on to use!");
 
-	addButton(14,"Nevermind",backOuttaPrisonVisit);
+	addButton(14,"Never Mind",backOuttaPrisonVisit);
 }
 
 public function samPrisonStuff(args:Array):void

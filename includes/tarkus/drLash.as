@@ -683,7 +683,7 @@ public function flirtWithDrLash():void
 	processTime(1);
 	clearMenu();
 	addButton(0,"Keep Flirtin’",keepFlirtingWithLash);
-	addButton(1,"Nevermind",walkUpToDocLashAgain);
+	addButton(1,"Never Mind",walkUpToDocLashAgain);
 }
 
 //Keep Flirting

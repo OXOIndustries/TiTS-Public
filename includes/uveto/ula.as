@@ -2122,7 +2122,7 @@ public function centaurServiceForUla(x:int):void
 		sheetsoak = true;
 		pc.applyCumSoaked();
 		output(" High-pressure [pc.cumColor] cascades out around you before long. A creature Ula’s size simply isn’t made to contain the ludicrous amounts of semen a being like you can produce. ");
-		if(ulaPregBelly() < 1) output("Nevertheless, your body does its best to absolutely bathe her eggs in it, nevermind that most of it is left to impregnate her sheets.");
+		if(ulaPregBelly() < 1) output("Nevertheless, your body does its best to absolutely bathe her eggs in it, never mind that most of it is left to impregnate her sheets.");
 		else output("Nevertheless, your body its absolute best to ensure that the sheets are just as pregnant as the woman being fucked atop them.");
 	}
 	tryKnockUpUla();

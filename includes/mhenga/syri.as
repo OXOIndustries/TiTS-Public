@@ -291,7 +291,7 @@ public function pcBeatsSyriWhenSexBet():void {
 	//[HL Frot&Fuck] Put your hardlight-equipped [pc.lowerUndergarment] to use on all of Syri's good bits.
 	if(pc.hasHardLightEquipped()) addButton(3,"HL Frot&Fuck",goddamnIAmSoTiredOfThisVanillaAssPuppyGirlSex,undefined,"HL Frot&Fuck","Put your hardlight-equipped [pc.lowerUndergarment] to use on all of Syri’s good bits.");
 	else addDisabledButton(3,"HL Frot&Fuck","HL Frot&Fuck","You need panties equipped with a hardlight dildo for this.");
-	addButton(4,"Nevermind",nevermindSyri,undefined,"Uh, Never mind","On second thought, you’ll pass on claiming your winnings this time.");
+	addButton(4,"Never Mind",nevermindSyri,undefined,"Uh, Never Mind","On second thought, you’ll pass on claiming your winnings this time.");
 }
 
 public function nevermindSyri():void
@@ -1448,7 +1448,7 @@ public function dontGoAwayYouKnotCunt():void {
 	if(pc.isMischievous()) output(" <i>“Takes one to know one!”</i>");
 	//[Sex options, sans Blow Her]
 	syriSexMenu(false);
-	addButton(14,"Nevermind",sureUseMyShowerAndClogTheDrainWithDogHair);
+	addButton(14,"Never Mind",sureUseMyShowerAndClogTheDrainWithDogHair);
 }
 
 //Me Too

@@ -198,7 +198,7 @@ public function lahPrisonRoom():void
 		addDisabledButton(2, "PowerBottom", "Power Bottom", "You need a vagina for this!");
 	}
 	
-	addButton(14, "Nevermind", backOuttaPrisonVisit);
+	addButton(14, "Never Mind", backOuttaPrisonVisit);
 }
 public function lahPrisonRoomAsk():void
 {

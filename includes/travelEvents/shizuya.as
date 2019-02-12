@@ -315,7 +315,7 @@ public function shizzyIntroductionPartZero(destination:String):void
 		else output(" You’re certainly not well-versed enough in this kind of thing to really know what they’re for, but it looks way too expensive for a bunch of bounty hunters.");
 		output(" Then again, they’ve already shown that they have some access to some pretty beefy hardware.");
 		output("\n\n<i>“Hey, do you know how to fix this heap up?”</i>");
-		if (canFix) output("\n\nYou explain that you’ve never <i>really</i> gotten too deep into how to fix it up, but you could...\n\n<i>“Ugh, nevermind, don’t have time to teach a noobie.”</i>" + (pc.isAss() ? " Little cunt." : ""));
+		if (canFix) output("\n\nYou explain that you’ve never <i>really</i> gotten too deep into how to fix it up, but you could...\n\n<i>“Ugh, never mind, don’t have time to teach a noobie.”</i>" + (pc.isAss() ? " Little cunt." : ""));
 		else output("\n\nYou tell her that you have no fucking clue.\n\n<i>“Figures.”</i> She rolls her eyes.\n\n");
 		if (pc.tallness < 5 * 12 + 2) output("You hear a soft squealing from behind her, and see Shizuya staring at you, delightedly.\n\n<i>“Soooooooo cute!”</i> She whispers under her breath. The little cowgirl goes red on hearing that. ");
 		output("She hoists her toolbox and goes into your ship.");

@@ -330,58 +330,58 @@ public function actuallyPierceYourself(args:Array):void
 		case "lip":
 			oldItem = pc.lipPiercing.makeCopy();
 			pc.lipPiercing = item.makeCopy();
-			pc.lipPiercing.onEquip(pc);
+			pc.lipPiercing.onEquip(pc, true);
 			break;
 		case "ears":
 			oldItem = pc.earPiercing.makeCopy();
 			pc.earPiercing = item.makeCopy();
-			pc.earPiercing.onEquip(pc);
+			pc.earPiercing.onEquip(pc, true);
 			break;
 		case "brows":
 			oldItem = pc.eyebrowPiercing.makeCopy();
 			pc.eyebrowPiercing = item.makeCopy();
-			pc.eyebrowPiercing.onEquip(pc);
+			pc.eyebrowPiercing.onEquip(pc, true);
 			break;
 		case "nose":
 			oldItem = pc.nosePiercing.makeCopy();
 			pc.nosePiercing = item.makeCopy();
-			pc.nosePiercing.onEquip(pc);
+			pc.nosePiercing.onEquip(pc, true);
 			break;
 		case "tongue":
 			oldItem = pc.tonguePiercing.makeCopy();
 			pc.tonguePiercing = item.makeCopy();
-			pc.tonguePiercing.onEquip(pc);
+			pc.tonguePiercing.onEquip(pc, true);
 			break;
 		case "nipples":
 			oldItem = pc.breastRows[x].piercing.makeCopy();
 			pc.breastRows[x].piercing = item.makeCopy();
-			pc.breastRows[x].piercing.onEquip(pc);
+			pc.breastRows[x].piercing.onEquip(pc, true);
 			break;
 		case "belly":
 			oldItem = pc.bellyPiercing.makeCopy();
 			pc.bellyPiercing = item.makeCopy();
-			pc.bellyPiercing.onEquip(pc);
+			pc.bellyPiercing.onEquip(pc, true);
 			break;
 		case "cock":
 			oldItem = pc.cocks[x].piercing.makeCopy();
 			pc.cocks[x].piercing = item.makeCopy();
-			pc.cocks[x].piercing.onEquip(pc);
+			pc.cocks[x].piercing.onEquip(pc, true);
 			break;
 		case "vagina":
 			oldItem = pc.vaginas[x].piercing.makeCopy();
 			pc.vaginas[x].piercing = item.makeCopy();
-			pc.vaginas[x].piercing.onEquip(pc);
+			pc.vaginas[x].piercing.onEquip(pc, true);
 			break;
 		case "clit":
 		case "clits":
 			oldItem = pc.vaginas[x].clitPiercing.makeCopy();
 			pc.vaginas[x].clitPiercing = item.makeCopy();
-			pc.vaginas[x].clitPiercing.onEquip(pc);
+			pc.vaginas[x].clitPiercing.onEquip(pc, true);
 			break;
 		default:
 			oldItem = pc.lipPiercing.makeCopy();
 			pc.lipPiercing = item.makeCopy();
-			pc.lipPiercing.onEquip(pc);
+			pc.lipPiercing.onEquip(pc, true);
 			break;
 	}
 	//Remove the old item and store for looting!
@@ -487,12 +487,12 @@ public function actuallyWearCocksock(args:Array):void
 	{
 		oldItem = pc.cocks[cIdx].cocksock.makeCopy();
 		
-		if(!(oldItem is EmptySlot)) output("You remove " + oldItem.description + " to make room for the new cock-wear. ");
+		if(!(oldItem is EmptySlot)) output("You remove " + oldItem.description + " to make room for the new cock-wear.");
 		if (item is SilkyCockBell) output("You clip the collar of silk around your [pc.cock " + cIdx + "]. It could’ve been made for your prick, and the bell swings beneath it freely. Jingle! Just wearing the thing makes you fill with submissive heat, swelling up beneath the smooth material, and you find that you are constantly sporting a tiny, chubby semi-erection whilst wearing it.");
 		else output("You give your [pc.cock " + cIdx + "] a few strokes to get it ready, then dress it. Your [pc.cockNoun " + cIdx + "] is now wearing " + item.description + "!");
 		
 		pc.cocks[cIdx].cocksock = item.makeCopy();
-		pc.cocks[cIdx].cocksock.onEquip(pc);
+		pc.cocks[cIdx].cocksock.onEquip(pc, true);
 
 		pc.inventory.splice(pc.inventory.indexOf(item), 1);
 	}

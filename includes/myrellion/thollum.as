@@ -1727,7 +1727,7 @@ public function yarastaSexApproach():void
 		//’Continue’ tooltip: Follow through and fuck the myr woman. She looks like she’s going to want to take charge, though.
 		clearMenu();
 		addButton(0,"Continue",yarastaPicks,undefined,"Continue","Follow through and fuck the myr woman. She looks like she’s going to want to take charge, though.");
-		addButton(1,"Nevermind",nevermindYarastaIDontWantSex);
+		addButton(1,"Never Mind",nevermindYarastaIDontWantSex);
 	}
 	//repeat
 	else
@@ -1833,7 +1833,7 @@ public function nevermindYarastaIDontWantSex():void
 {
 	clearOutput();
 	showYarasta();
-	output("<i>“Nevermind,”</i> you say.");
+	output("<i>“Never mind,”</i> you say.");
 	output("\n\nYarasta looks highly annoyed, but recovers. <i>“Whatever. Did you need something else?”</i>");
 	processTime(1);
 	//present main Yarasta menu buttons
@@ -1852,7 +1852,7 @@ public function yarastaPicks():void
 		output("<i>“Uh... actually, why don’t you pick?”</i>");
 	}
 	//(nice)
-	else if(pc.isNice()) output("<i>“Actually, nevermind. You pick.”</i>");
+	else if(pc.isNice()) output("<i>“Actually, never mind. You pick.”</i>");
 	else output("<i>“I changed my mind. You do all the work.”</i>");
 	output("\n\nThe prefect looks absolutely ravenous. <i>“Don’t mind if I do...”</i>");
 	
