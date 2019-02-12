@@ -255,7 +255,7 @@ public function useUvetoBeaconMenu():void
 	addButton(0, "Irestead", uvetoTaxiShitGooo, "UVI P40");
 	if(flags["UVIP_R10_PROBE_ACTIVE"] == undefined) addDisabledButton(1, "Probe");
 	else addButton(1, "Probe", uvetoTaxiShitGooo, "UVIP R10");
-	if(hours >= 5 && hours < 19) addButton(14, "Nevermind", krymMenu);
+	if(hours >= 5 && hours < 19) addButton(14, "Never Mind", krymMenu);
 	else addButton(14, "Back", mainGameMenu);
 }
 

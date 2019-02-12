@@ -5619,8 +5619,6 @@
 			
 			var bonus: int = item.sexiness;
 			
-			//Stretchy Gabilani Panties
-			bonus += stretchBonusSexiness(item);
 			// Transparent sexiness adjustments
 			if(item.sexiness > 0 && wornItemIsTransparent(item))
 			{
@@ -5646,24 +5644,9 @@
 			
 			return bonus;
 		}
-		public function stretchBonusSexiness(item:*): Number
-		{
-			if (!item.hasFlag(GLOBAL.ITEM_FLAG_STRETCHY)) return 0;
-			var bigness:int = 0;
-			if (item == lowerUndergarment) bigness = Math.max(hipRating(), buttRating());
-			else if (item == upperUndergarment) bigness = biggestTitSize();
-			else bigness = Math.max(hipRating(), buttRating(), biggestTitSize());
-			if (bigness < 5) return 0;
-			else if (bigness < 10) return 1;
-			else if (bigness < 15) return 2;
-			else if (bigness < 20) return 3;
-			else return 4;
-		}
 		public function wornItemIsTransparent(item:*): Boolean
 		{
-			if (item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT)) return true;
-			if (stretchBonusSexiness(item) >= 3) return true;
-			return false;
+			return (item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT));
 		}
 		public function critBonus(melee: Boolean = true): Number {
 			var temp: int = 5;

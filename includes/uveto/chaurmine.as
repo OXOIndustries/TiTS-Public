@@ -543,7 +543,7 @@ public function chaurmineUvetoUsTalk():void
 		//[Love?] Do you confess your mutual love to Chaurmine? // Go to Love
 		addButton(0,"Love?",tellChaurmineYouLoveHim,undefined,"Love?","Do you confess your mutual love to Chaurmine?");
 		//[Nevermind] Haha, nah. Just like always. Friends forever. // Go to Friends
-		addButton(1,"Nevermind",nevermindSlootyButtslut,undefined,"Nevermind","Haha, nah. Just like always. Friends forever.");
+		addButton(1,"Never Mind",nevermindSlootyButtslut,undefined,"Never Mind","Haha, nah. Just like always. Friends forever.");
 	}
 	//Love
 	else

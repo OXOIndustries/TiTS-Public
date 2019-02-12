@@ -319,7 +319,7 @@ public function hanaTalkRescue():void
 	clearOutput();
 	showHana();
 
-	output("Come to think of it, who - or what - brought you back to the meadhall in the first place? You’re rather thankful to avoid the whole, you know, freezing to death on some random snowball of a world schtick. And the recuperation, but nevermind that.");
+	output("Come to think of it, who - or what - brought you back to the meadhall in the first place? You’re rather thankful to avoid the whole, you know, freezing to death on some random snowball of a world schtick. And the recuperation, but never mind that.");
 	
 	output("\n\nHana’s prickly demeanor shatters with your follow up quip as she barks a laugh, lips turning upwards in a wry smile that just <i>screams</i> “you cheeky git.” Still, she doesn’t respond immediately, leaning back to glance around the rather voluminous bar, ostentatiously to point someone out to you - and coming up empty, it seems. Oh well.");
 	

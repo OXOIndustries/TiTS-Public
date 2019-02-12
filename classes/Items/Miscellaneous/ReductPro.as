@@ -234,7 +234,7 @@ package classes.Items.Miscellaneous
 			else
 				kGAMECLASS.addDisabledButton(9, "Horns", "Horns", "You need horns for that!");
 			// 14 - Back
-			addButton(14, "Back", menuReductProQuit, undefined, "Nevermind", "Put the container back in your inventory.");
+			addButton(14, "Back", menuReductProQuit, undefined, "Never Mind", "Put the container back in your inventory.");
 			
 			return;
 		}
@@ -269,7 +269,7 @@ package classes.Items.Miscellaneous
 					addButton(x, String("Row " + (x + 1)), useReductProShrinkBreasts, x);
 				}
 			}
-			addButton(14, "Back", menuReductProOptions, true, "Nevermind", "Choose something else...");
+			addButton(14, "Back", menuReductProOptions, true, "Never Mind", "Choose something else...");
 			return;
 		}
 		
@@ -470,7 +470,7 @@ package classes.Items.Miscellaneous
 					addButton(x, String("Row " + (x + 1)), useReductProShrinkNipples, x);
 				}
 			}
-			addButton(14, "Back", menuReductProOptions, true, "Nevermind", "Choose something else...");
+			addButton(14, "Back", menuReductProOptions, true, "Never Mind", "Choose something else...");
 			
 			return;
 		}*/
@@ -729,7 +729,7 @@ package classes.Items.Miscellaneous
 					addButton(x, String("Cock " + (x + 1)), useReductProShrinkCock, x);
 				}
 			}
-			addButton(14, "Back", menuReductProOptions, true, "Nevermind", "Choose something else...");
+			addButton(14, "Back", menuReductProOptions, true, "Never Mind", "Choose something else...");
 			return;
 		}
 		//fen redux continue here

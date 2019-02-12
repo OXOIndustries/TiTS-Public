@@ -115,7 +115,7 @@ public function whiteWomanTessa():void
 		else output("<i>“Who exactly are you calling a kid?”</i>");
 
 		//Merge
-		output("\n\nThe woman turns her head slightly, regarding you again for the first time since her initial look. Dark black slits in her red orbs shift around slowly taking you in. <i>“Ah. My mistake. I thought you were... Nevermind... Just keep walking please " + pc.mf("Mr.", "Ms.") + " Steele, I’m not interested.”</i>");
+		output("\n\nThe woman turns her head slightly, regarding you again for the first time since her initial look. Dark black slits in her red orbs shift around slowly taking you in. <i>“Ah. My mistake. I thought you were... Never mind... Just keep walking please " + pc.mf("Mr.", "Ms.") + " Steele, I’m not interested.”</i>");
 		output("\n\nSensing a marginally lighter tone after her mistake, you turn back on the Steele charm for another quick pass. Maybe she’ll be more receptive now that the ice is broken? "); 
 
 		//Nice
@@ -544,7 +544,7 @@ public function didYouJustAssumeTessaGender():void
 		output("\n\nYou can’t help but ask how being an ovir raised by humans went.");
  		output("\n\n<i>“I was... Different. It was a human colony. Tiny really, everybody knew everybody sort of tiny. Sure, we had an ausar here and there, but I was the only ovir. My mother made all my clothes because of that.”</i> She gives her tail a bit wiggle, then chuckles. <i>“I was treated like a human most of the time, but not always. Some kids were... Not kind to me. But you know kids, right? They’re little assholes. Didn’t stop little ol’ me from crying myself to sleep some nights.”</i>");
 		output("\n\n<i>“That must have been hard for you.”</i> You watch the ovir’s eyes stare off into nothing, knowing she’s thinking back to those days.");
-		output("\n\n<i>“It was fine. It was childhood. Kids are jerks, but they grow out of it. One of the boys who was mean to me...”</i> She pauses a moment and smirks; her tail starting to start to wag a bit. After a quick second she catches herself and her tail stops. <i>“Nevermind....”</i> In a quick motion she downs her drink and taps on the glass. <i>“Get me another, will ya? I’m way too sober to talk about this crap.”</i>");
+		output("\n\n<i>“It was fine. It was childhood. Kids are jerks, but they grow out of it. One of the boys who was mean to me...”</i> She pauses a moment and smirks; her tail starting to start to wag a bit. After a quick second she catches herself and her tail stops. <i>“Never mind....”</i> In a quick motion she downs her drink and taps on the glass. <i>“Get me another, will ya? I’m way too sober to talk about this crap.”</i>");
 		output("\n\nYou shake your head and ");
 		//PC isn't a bum
 		if(pc.credits >= 10)
@@ -980,7 +980,7 @@ public function tessaPCNeeds():void
 	output("\n\nYou shake your head, you’re not letting the ovir get off that easy. <i>“Deal’s a deal and you promised.”</i> She lets out a groan and rolls her eyes at that. You ask if that’s going to be a problem for her, she seems oddly tense even for her.");
 	output("\n\n<i>“What? Fuck no. I’m fine.”</i> Tessa straightens herself out and composes herself. <i>“I’m just getting some déjà-fucking-vu.”</i>");
 	output("\n\nYou ask her what she means by that and the white ovir seems to go a shade more pale. You both know she slipped up.");
-	output("\n\n<i>“Nevermind.”</i> She takes a deep breath then gives you a lusty smile. <i>“I’m just a little flustered is all. Thinking about how good you’re going to taste.”</i> She takes a step closer to you, her puffy lips glistening. <i>“So don’t worry yourself. Let me show you what I can do.”</i>");
+	output("\n\n<i>“Never mind.”</i> She takes a deep breath then gives you a lusty smile. <i>“I’m just a little flustered is all. Thinking about how good you’re going to taste.”</i> She takes a step closer to you, her puffy lips glistening. <i>“So don’t worry yourself. Let me show you what I can do.”</i>");
 	output("\n\nYou decide to remember this slip up for later, but you’re not about to look a gift horse in the mouth. Not when that mouth can do other things.");
 
 	//Unlocks Blowjob and Get Eaten Options

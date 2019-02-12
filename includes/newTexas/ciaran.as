@@ -347,7 +347,7 @@ public function ciaranTalkJokes():void
 		case 1: output("Did you hear about the restaurant on the asteroid? Great food, no atmosphere."); break;
 		case 2: output("What do you call a fake noodle? An impasta."); break;
 		case 3: output("How many apples grow on a tree? All of them."); break;
-		case 4: output("Want to hear a joke about paper? Nevermind, it’s tearable."); break;
+		case 4: output("Want to hear a joke about paper? Never mind, it’s tearable."); break;
 		case 5: output("I just watched a program about beavers. It was the best dam program I’ve ever seen."); break;
 		case 6: output("Why did the coffee file a police report? It got mugged."); break;
 		case 7: output("How does a penguin build it’s house? Igloos it together."); break;
@@ -358,7 +358,7 @@ public function ciaranTalkJokes():void
 		case 12: output("Why don’t skeletons ever go trick or treating? Because they have no body to go with."); break;
 		case 13: output("What did the buffalo say to his son when he left for college? Bison!"); break;
 		case 14: output("What do you call an elephant that doesn’t matter? An irrelephant."); break;
-		case 15: output("Want to hear a joke about construction? Nevermind, I’m still working on it."); break;
+		case 15: output("Want to hear a joke about construction? Never mind, I’m still working on it."); break;
 		case 16: output("I bought a pair of shoes from a drug dealer once. I don’t know what she laced them with, but I was tripping all day."); break;
 		case 17: output("Why couldn’t the bicycle stand up by itself? It was two tired."); break;
 		case 18: output("What did the grape do when he got stepped on? He let out a little wine."); break;

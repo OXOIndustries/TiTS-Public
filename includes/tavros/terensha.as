@@ -1080,7 +1080,7 @@ public function askAboutRensSuit():void
 	clearMenu();
 	if(pc.credits >= 10) addButton(0, "Okay", tellMeYourStoryRen,undefined, "Okay", "That’s a cheap price for what promises to be an interesting story. Why not?\n\nCosts 10 Credits.");
 	else addDisabledButton(0, "Okay", "Okay", "That’s a cheap price... but it’s not one you can afford.\n\nCosts 10 Credits.");
-	addButton(1,"Nevermind", jkNevermindRen);
+	addButton(1,"Never Mind", jkNevermindRen);
 }
 
 public function jkNevermindRen():void

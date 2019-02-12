@@ -773,7 +773,7 @@ public function suckledIntoSubmissionFinal2():void
 
 	if(stolenCreds > 0) output(", minus a few credits");
 	output("! The slavebreaker must have assumed you’d be slumbering for quite some time after such a thorough draining.");
-	output("\n\nFortunately, you recover faster than the average slave, and the venom has had plenty of time to work its way out of your system. You can go back to pursuing your own goals, not wallowing in drug-fueled slave-conditioning. Nevermind the sudden boner{s} you just got. You’re fine. There’s no lingering urges at all. So long as you don’t lose to more slavebreakers, you’ll be fine.");
+	output("\n\nFortunately, you recover faster than the average slave, and the venom has had plenty of time to work its way out of your system. You can go back to pursuing your own goals, not wallowing in drug-fueled slave-conditioning. Never mind the sudden boner" + (pc.cocks.length == 1 ? "" : "s") + " you just got. You’re fine. There’s no lingering urges at all. So long as you don’t lose to more slavebreakers, you’ll be fine.");
 	processTime(120);
 	restHeal();
 	putInOffice();

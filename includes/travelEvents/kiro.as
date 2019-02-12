@@ -846,7 +846,7 @@ public function kiroDrankinConterst():void
 	clearMenu();
 	addButton(0,"Play Fair",drinkingContestGo,false,"Play Fair","Play it fair. Rely on your iron liver to see you through.");
 	addButton(1,"Cheat",drinkingContestGo,true,"Cheat","All’s fair in love and war, particularly when 24 hours of it are on the line.");
-	addButton(2,"Nevermind",kiroMenu);
+	addButton(2,"Never Mind",kiroMenu);
 }
 
 public function drinkContestScore(arg:Creature):Number

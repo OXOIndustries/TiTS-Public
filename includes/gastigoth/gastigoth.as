@@ -1158,7 +1158,7 @@ public function sexHaverTerminalTime(fromBack:Boolean = false):void
 	}
 	*/
 	
-	addButton(14,"Nevermind",mainGameMenu);
+	addButton(14,"Never Mind",mainGameMenu);
 }
 
 public function prisonerStatline(prisonerName:String):void
@@ -1303,7 +1303,7 @@ public function prisonerTimes(prisonerName:String):void
 public function backOuttaPrisonVisit():void
 {
 	clearOutput();
-	showName("\nNEVERMIND");
+	showName("\nNEVER MIND");
 	output("You wave the prisoner away and leave. This just isn’t going to work out. The prison is quick to refund your money. Maybe a different prisoner will be more to your tastes?");
 	pc.credits += 1000;
 	clearMenu();
@@ -1373,7 +1373,7 @@ public function tamtamStuffGo(impregnate:Boolean = false):void
 	//If PC has a dick bigger than Kaska’s:
 	if(x >= 0 && pc.cockVolume(x) > (chars["KASKA"].cockVolume(0) * 1.5))
 	{
-		output("\n\n<i>“Oh, god... so big...”</i> she moans, bracing against the table as you put more and more cock into her. <i>“Mmmm, how did you get so THICK? Nevermind, just keep doing it. Oh, that’s it... just like that...”</i>");
+		output("\n\n<i>“Oh, god... so big...”</i> she moans, bracing against the table as you put more and more cock into her. <i>“Mmmm, how did you get so THICK? Never mind, just keep doing it. Oh, that’s it... just like that...”</i>");
 		output("\n\nShe purrs contentedly as you slowly fuck yourself into her, stretching her pussy out until she’s begging for respite. Tam’s belly is bulging with the sheer size of it, but that doesn’t deter her for a second. Man, kaithrit are built to take ‘em!");
 		output("\n\n<i>“Mmm, somebody’s been getting into the Throbb, huh? I looooove it,”</i> she moans, back arching as you start to slide the shaft out of her. <i>“You’re being so gentle though... oh, when’re you gonna get to the rough stuff, huh? I wanna see what you can do!”</i>");
 	}
@@ -1618,5 +1618,5 @@ public function kaskaSlammer():void
 		addDisabledButton(0,"Dick Fuck","Dick Fuck","You are not aroused enough for this act.");
 		addDisabledButton(1,"Cunnilingus","Cunnilingus","You are not aroused enough for this act.");
 	}
-	addButton(14,"Nevermind",backOuttaPrisonVisit);
+	addButton(14,"Never Mind",backOuttaPrisonVisit);
 }
