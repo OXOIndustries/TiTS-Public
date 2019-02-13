@@ -1141,17 +1141,16 @@ public function kimberDoHerNowMenu():void
 	if (flags["KIMBER_CANDY_GIVEN"] != undefined)
 	{
 		if (!pc.hasGenitals()) addDisabledButton(4, "Mutual Mast", "Mutual Mast", "You need genitals for this!");
-		else addButton(4, "Mutual Mast", function ():void
+		else
 		{
-			clearMenu();
-			clearOutput();
-			addButton(0, "Use Penis", penisRouter, [kimberShowCock, pc.biggestCockVolume() + 1, false]);
-			addButton(1, "Use Vagina", vaginaRouter, [kimberShowVagina, 0, 0, 0, false]);
+			addButton(4, "Mutual Mast", function():void {
+				clearMenu();
+				clearOutput();
+				addButton(0, "Use Penis", penisRouter, [kimberShowCock, pc.biggestCockVolume() + 1, false]);
+				addButton(1, "Use Vagina", vaginaRouter, [kimberShowVagina, 0, 0, 0, false]);
+			});
 		}
-		else if (pc.hasCock()) penisRouter([kimberShowCock, pc.biggestCockVolume() + 1, false]);
-		else if (pc.hasVagina()) vaginaRouter([kimberShowVagina, 0, 0, 0, false]);
-	});
-	else addDisabledButton(4, "Mutual Mast");
+	}
 
 	if (flags["KIMBER_RUSKVEL_GIVEN"] != undefined) addButton(5, "Get Tied Down", penisRouter, [kimberGetsYouTiedUpWithoutWork, pc.biggestCockVolume() + 1, false]);
 	else addDisabledButton(5, "Get Tied Down");
@@ -2214,4 +2213,4 @@ public function kimberOnTopLater(cockIdx:int):void
 	flags["KIMBER_QUEST"] += 1;
 
 	addButton(0, "Next", kimberGoHomePostSex);
-}
+}
