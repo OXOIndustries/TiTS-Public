@@ -682,7 +682,7 @@ public function mitziPCDropOutfit(arg:Array):void
 	if(!destroy)
 	{
 		output("<i>“You want this back already?”</i> Mitzi asks, holding up the chosen outfit. <i>“Like, I was totally going to wear this, like... sometime...”</i>");
-		output("\n\nMitzi puts the outfit on an extra hangar and hands it over. <i>“Okay, but Mitzi hopes you'll dress your little slut-goblin up again!”</i>");
+		output("\n\nMitzi puts the outfit on an extra hangar and hands it over. <i>“Okay, but Mitzi hopes you’ll dress your little slut-goblin up again!”</i>");
 		output("\n\n");
 		
 		itemCollect([item]);
@@ -1086,13 +1086,13 @@ public function mitziSexMenu():void
 		addButton(1,"Get Licked",getLickedByMitzi);
 		addButton(3,"Cuntnosis",mitziPussyControl,undefined,"Cuntnosis","Ask Mitzi to please your pussy and let her use some of her drugs to do a little too good of a job.\n\n<b>Contains Mind Control content.</b>\n<b>Known to cause slight amounts of taint. Check your Codex for details.</b>");
 		if(InCollection(getPlanetName().toLowerCase(),["tarkus","new texas","myrellion","canadia station"]) && pc.isBimbo() && pc.hasVagina() && pc.biggestTitSize() >= 1) addButton(6,"Publicc Fun",publicMitziFun,undefined,"Public Fun","Throw your clothes to the wind and go to get gangbanged with Mitzi.");
-		else addDisabledButton(6,"Public Fun","Public Fun","For going out to have some fun with Mitzi you'll need to have a pussy, tits, to be on a planet where that's legal, and have a bubbly attitude towards life.");
+		else addDisabledButton(6,"Public Fun","Public Fun","For going out to have some fun with Mitzi you’ll need to have a pussy, tits, to be on a planet where that’s legal, and have a bubbly attitude towards life.");
 	}
 	else 
 	{
 		addDisabledButton(1,"Get Licked","Get Licked","You need a vagina for this.");
 		addDisabledButton(3,"Cuntnosis","Cuntnosis","You need to have a vagina in order to engage in this.");
-		addDisabledButton(6,"Public Fun","Public Fun","For going out to have some fun with Mitzi you'll need to have a pussy, tits, to be on a planet where that's legal, and have a bubbly attitude towards life.");
+		addDisabledButton(6,"Public Fun","Public Fun","For going out to have some fun with Mitzi you’ll need to have a pussy, tits, to be on a planet where that’s legal, and have a bubbly attitude towards life.");
 	}
 
 	if(flags["MITZI_FAV_DRUG"] != undefined)
@@ -3213,10 +3213,10 @@ public function mitziPublicFun2():void
 	output("\n\nAs the next person gets their hands on your ass, you look to your side to check how Mitzi is doing. ");
 	if(rand(2) == 0)
 	{
-		output("The slutty gabilani is standing under a taur, jacking off the  impressive equine length with the eagerness you’d expect from her.");
+		output("The slutty gabilani is standing under a taur, jacking off the impressive equine length with the eagerness you’d expect from her.");
 		output("\n\nThere’s no way that she can fit the massive head of the horse-member into her mouth, but that doesn’t stop her from doing her best to please it. She’s stretching her mouth as wide as she can and licking the tip in lengthy lavishing drags of her long tongue.");
 		race = rand(2);
-		output("\n\nThe taur’s member pulsates in Mitzi’s hands as she wraps her tongue around it, just like a snake would do to its prey. The taur grunts and stomps " +  (race == 0 ? "his":"her") + " hooves as " + (race == 0 ? "he":"she") + " gets closer to orgasm. Cum sprays from Mitzi’s nose as her partner pumps cum down the green cocksleeve’s throat. Her stomach begins to swell under the weight of her partner’s cum even though a lot of the jizz ends up on the floor.");
+		output("\n\nThe taur’s member pulsates in Mitzi’s hands as she wraps her tongue around it, just like a snake would do to its prey. The taur grunts and stomps " + (race == 0 ? "his":"her") + " hooves as " + (race == 0 ? "he":"she") + " gets closer to orgasm. Cum sprays from Mitzi’s nose as her partner pumps cum down the green cocksleeve’s throat. Her stomach begins to swell under the weight of her partner’s cum even though a lot of the jizz ends up on the floor.");
 	}
 	else
 	{
@@ -3342,7 +3342,7 @@ public function mitziPublicFun3():void
 	output("\n\nHer scent is truly intoxicating. You wonder how you’ll live without it. Suddenly ");
 	if(race == 0) output("Kiro’s");
 	else if(race == 1) output("the thraggen’s");
-	else  output("the kaithrit’s");
+	else output("the kaithrit’s");
 	output(" cock slides into your open mouth. Your eyes bulge in surprise but soon you’re happily gurgling around her cock. Mitzi sloppily licks the ");
 	if(race == 0) output("horse meat");
 	else if(race == 1) output("cat cock");
@@ -3362,9 +3362,9 @@ public function mitziPublicFun3():void
 	if(pc.isSquirter()) output("[pc.GirlCum] jets out of your [pc.pussy], soaking the bar in your feminine fluids.");
 	else output("The barkeep’s side of the counter had survived until now. Your juices run down your ass and down to the floor.");
 
-	output("\n\nAs good as her cock tastes, you do still need air so you drunkenly tap her ass. Taking the hint, " + (race == 0 ? "Kiro":"she") + " withdraws and inserts her cock back into Mitzi. Your previous ball worship is nothing compared to the whorish make-out session you engage in with her " + (race == 0  ? "fuzzy ":"") + "sack. You lick every inch that you can get your tongue on and suck on them hard enough to leave a hickey on a normal person.");
+	output("\n\nAs good as her cock tastes, you do still need air so you drunkenly tap her ass. Taking the hint, " + (race == 0 ? "Kiro":"she") + " withdraws and inserts her cock back into Mitzi. Your previous ball worship is nothing compared to the whorish make-out session you engage in with her " + (race == 0 ? "fuzzy ":"") + "sack. You lick every inch that you can get your tongue on and suck on them hard enough to leave a hickey on a normal person.");
 	output("\n\n<i>“You sluts ready for a big helping of cum?”</i> she grunts moments before cumming down Mitzi’s throat. Her eyes bulge, and cum shoots out her nose and mouth. Her stomach bloats even more under the heavy assault of ");
-	if(race == 0)  output("kui-tan");
+	if(race == 0) output("kui-tan");
 	else if(race == 1) output("kaithrit");
 	else output("thraggen");
 	output(" jizz. Not wanting to leave you out, ");
@@ -3415,15 +3415,15 @@ public function mitziTentaCocks():void
 	clearOutput();
 	showMitzi(true);
 	author("Nonesuch");
-	var tCount = pc.wingCount + pc.cockTotal(GLOBAL.TYPE_TENTACLE);
+	var tCount:int = (pc.wingCount + pc.cockTotal(GLOBAL.TYPE_TENTACLE));
 	output("Just being in Mitzi’s presence is an uncomfortably sensual experience. Everything the gabilani does, her every bouncing step and cooing simper, is aimed at drawing your eye to her luscious, soft curves, to her wet lips, to a body crafted for one purpose. Your mind instinctively wanders onto libidinal backroads once your eyes are there... ever more filthy and overgrown the further down them you travel. It’s that which makes the cock tentacles on your back swell; hot, ravening desire giving them license to inflate, reach outwards, remind you of their fibrous, burning potential.");
 	output("\n\n<i>“What’s on your mind, [pc.Master]?”</i> the gabilani asks coyly, heart-shaped pupils flicking up to one of your tentacles bobbing slowly in the air behind you, giving her an obscene wave. <i>“Ooooh. Are you thinking of a particularly naughty way of fucking Mitzi?”</i>");
 	output("\n\nShe’s over to you before you can say anything, and once her hot hand is wrapped around that tentacle, coiling it lovingly up and down, coaxing more and more pressure and oozing urge into it, there’s no stopping any of what happens next.");
-	output("\n\n<i>“Look at these lovely things,”</i> she coos. You murmur as she reaches out and plants a kiss on the head of another, all the while continuing to rub the one in her hand, up and down, up and down. <i>“So thick and tasty and <i>vigorous</i>. They aren’t let loose to have fun anywhere near enough, are they? Poor things! Oh, they deserve to be rammed deep in Mitzi’s holes! ");
+	output("\n\n<i>“Look at these lovely things,”</i> she coos. You murmur as she reaches out and plants a kiss on the head of another, all the while continuing to rub the one in her hand, up and down, up and down. <i>“So thick and tasty and </i>vigorous<i>. They aren’t let loose to have fun anywhere near enough, are they? Poor things! Oh, they deserve to be rammed deep in Mitzi’s holes! ");
 	//If five or less tentacle dicks total and/or no other applicable crew available: 
 	if(tCount <= 5) output("Wouldn’t you like to do that, [pc.Master]?”</i> She blinks up at you solemnly, one tentacle in each hand now. <i>“Wrap me up in cock and make me take it in every hole? Do it to me that way til all I can think about is how good it is to be your tentacle-worshipping bitch?”</i> Out comes her long, slathering tongue, tracing a long, wet, path of pleasure up one of those veiny, prehensile tools, coaxing a dribble of pre out of the tip.");
-	else output("Wouldn’t you like to do that, [pc.Master]?”</i> Her tone turns hushed, conspiratorial and excited as more of your tentacles reach towards her, batting their blunt heads against her soft flesh, drawn like beggars to a feast. <i>“Or maybe you want more. Look at how many of them you have, [pc.Master]! We should bring <i>all</i> of your sluts in here, so that they can <i>all</i> enjoy your lovely, writhey, thickness!”</i> She laughs bashfully, one prehensile cock in each hand, stroking and pulling them. You open your mouth to the bliss of it. <i>“Mitzi got too greedy, looking at all these dicks. She wasn’t thinking about what would be most awesome for [pc.master] and the rest of [pc.his] toys! You should punish her by trussing her up and have her take it into every hole, make her into your tentacle-worshipping bitch.”</i>");
-	//{merge}
+	else output("Wouldn’t you like to do that, [pc.Master]?”</i> Her tone turns hushed, conspiratorial and excited as more of your tentacles reach towards her, batting their blunt heads against her soft flesh, drawn like beggars to a feast. <i>“Or maybe you want more. Look at how many of them you have, [pc.Master]! We should bring </i>all<i> of your sluts in here, so that they can </i>all<i> enjoy your lovely, writhey, thickness!”</i> She laughs bashfully, one prehensile cock in each hand, stroking and pulling them. You open your mouth to the bliss of it. <i>“Mitzi got too greedy, looking at all these dicks. She wasn’t thinking about what would be most awesome for [pc.Master] and the rest of [pc.his] toys! You should punish her by trussing her up and have her take it into every hole, make her into your tentacle-worshipping bitch.”</i>");
+	// {merge}
 	output("\n\nThat’s the other thing about Mitzi. She doesn’t just inspire fucking: she seizes that inspiration and runs with it. Truly, the perfect sex slave.");
 	//If else display choice: [Mitzi] [More]
 	//Mitzi tooltip: Make Mitzi airtight with your ravening tentacle dicks.
@@ -3432,7 +3432,7 @@ public function mitziTentaCocks():void
 	clearMenu();
 	addButton(0,"Mitzi",justMitziTentabang,undefined,"Mitzi","Make Mitzi airtight with your ravening tentacle dicks.");
 	if(celiseIsCrew()) addButton(1,"More",mitziAndMoreTentaNightmareScene,undefined,"More","Do as many of your on-board harem as possible.");
-	else addDisabledButton(1,"More","More","You'll at least need Celise around for this.");
+	else addDisabledButton(1,"More","More","You’ll at least need Celise around for this.");
 }
 
 //Just Mitzi
@@ -3441,18 +3441,18 @@ public function justMitziTentabang():void
 	clearOutput();
 	showMitzi(true);
 	author("Nonesuch");
-	var tCount = pc.wingCount + pc.cockTotal(GLOBAL.TYPE_TENTACLE);
+	var tCount:int = (pc.wingCount + pc.cockTotal(GLOBAL.TYPE_TENTACLE));
 	var x:int = pc.cockThatFits(mitzi.analCapacity());
 	output("You keep your eyes silently trained on Mitzi’s face, let her see the hungry intent on your features as you flex, feeling for yourself how you can reach your nest of back-tentacles this way and that, grabbing, gripping and seeking with ropey, feverish strength. She has time to inhale excitedly before you rip the ones in her hands away and hook them underneath the fatness of her thighs. Another slithers its way around her neck, then with one hard heave you’ve got the gabilani face up in the air, heaving her towards your bed.");
-	output("\n\nAs feral as you are with lust - " +  num2Text(tCount) + " cocks filled with leaden arousal all clamouring for a wet, warm hole to claim - you try and do this as carefully as you can. You rarely use your prehensile pricks in this manner, and Mitzi is surprisingly heavy for a squat little thing who looks like she’s made of pillows. And she doesn’t make it easy for you, air-pedalling with glee, squealing, laughing and writhing against your fibrous grip, boobs jiggling merrily.");
+	output("\n\nAs feral as you are with lust - " + num2Text(tCount) + " cocks filled with leaden arousal all clamouring for a wet, warm hole to claim - you try and do this as carefully as you can. You rarely use your prehensile pricks in this manner, and Mitzi is surprisingly heavy for a squat little thing who looks like she’s made of pillows. And she doesn’t make it easy for you, air-pedalling with glee, squealing, laughing and writhing against your fibrous grip, boobs jiggling merrily.");
 	output("\n\nBut your tentacles are strong, and act with a graceful alien instinct to breed that is disquieting. Your mind is itchy with their desire and responsiveness, your nerve endings twitching in uncanny ways to balance Mitzi on the bed, digging their grasp into the wonderful softness of her thighs to draw them open, exposing the parting folds of her plump, wet, ever-ready cunt.");
 	output("\n\n<i>“Oooh,”</i> she simpers, dilated hearts fastened on the end of the one coiled around her neck. She reaches and gives it a teasing little lick. <i>“My new best friends. I hope they aren’t too rough with me...”</i>");
 	output("\n\nFor a while you simply tease her, enjoying the tactile splendour of your gabilani slave by dragging the sensitive, bulging ends of your tentacles across her smooth, green flesh: sliding over her protuberant nipples, pushing through the deep valley of her behind, caressing her face and tracing her lips, leaving shiny trails of musky pre wherever they travel.");
 	output("\n\nShe sighs, wriggling against your prehensile limbs, then moans as you draw one back and swish it backwards and forwards over the silkiness of her pussy, tormenting her sodden clit and folds. You coil another prick around one of her melon-like breasts as you do it, giving it a hard squeeze" + (!mitzi.canLactate() ? ".":", eliciting a squirt of milk into the air."));
-	output("\n\n<i>“Oh [pc.master],”</i> she whines, gazing at you pleadingly as she frustratedly thrusts her pinned thighs towards you, trying to penetrate herself. <i>“Please give that to Mitzi!”</i> She paws at her boobs, squeezing her nipples hard, intensifying her arousal at the same time as crudely egging you on. You frown. Twitching those strange nerve endings reaching out of your back, you curl two tentacles around her elbows and yank her arms away, rendering her helpless at the same time as forcing " + (!mitzi.canLactate() ? "her sizeable tits":"those gigantic, milk-swollen tits you’ve given her") + " outwards. <i>Much</i> better.");
+	output("\n\n<i>“Oh [pc.Master],”</i> she whines, gazing at you pleadingly as she frustratedly thrusts her pinned thighs towards you, trying to penetrate herself. <i>“Please give that to Mitzi!”</i> She paws at her boobs, squeezing her nipples hard, intensifying her arousal at the same time as crudely egging you on. You frown. Twitching those strange nerve endings reaching out of your back, you curl two tentacles around her elbows and yank her arms away, rendering her helpless at the same time as forcing " + (!mitzi.canLactate() ? "her sizeable tits":"those gigantic, milk-swollen tits you’ve given her") + " outwards. <i>Much</i> better.");
 	output("\n\nShe squeals with delight, flexing at the strait-jacket of cock you’ve wrapped her in, delighting in her own helplessness as you finally let the one pressed against her pussy off the leash, thrusting its head beyond its entrance and into the smooth, fervid wetness beyond. You groan, heat rushing to your brow; you always forget what a wonderful cunt she has, plump softness giving way to gloving, clutching wet silk, beckoning more and more of your prehensile prick into her. It makes you want to fuck her all the more, makes you almost drool and instantaneously harden when you catch a sight of it, a tainted, addictive cocksleeve. You grit your teeth and thrust yourself into it hard, your other tentacles reflexively tightening their grip around her.");
 	pc.cockChange();
-	output("\n\n<i>“Oooooh!”</i> the gabilani bimbo wails, short legs kicking gleefully into the air. <i>“Yes, like that [pc.master], like th-!”</i>");
+	output("\n\n<i>“Oooooh!”</i> the gabilani bimbo wails, short legs kicking gleefully into the air. <i>“Yes, like that [pc.Master], like th-!”</i>");
 	output("\n\nThey’re left to their own impulses now, your thicket of long alien growths swollen taut with their own lusts and urges, and the one nearest to her mouth takes full advantage, silencing her cries by thrusting its smooth head beyond her full, glossy lips into the welcoming warm wetness beyond. She gulps and tenses up for an instant, then her ingrained slut instincts take over, hollowing her cheeks around the hard, prehensile cock, sucking on it powerfully, her lips forming a glossy seal around the tender, inflamed flesh.");
 	output("\n\nYour pulse is pounding in your head as you lean forward, hands closing on her ankles as you ");
 	if(x >= 0) output("push your [pc.cock " + x + "]");
@@ -3479,10 +3479,10 @@ public function mitziTentapalooza2():void
 	clearOutput();
 	showMitzi(true);
 	author("Nonesuch");
-	var tCount = pc.wingCount + pc.cockTotal(GLOBAL.TYPE_TENTACLE);
+	var tCount:int = (pc.wingCount + pc.cockTotal(GLOBAL.TYPE_TENTACLE));
 	var x:int = pc.cockThatFits(mitzi.analCapacity());
 	output("Your vine-cock makes a wet ‘pop’ noise as it exits Mitzi’s throat. She keeps her glossy pink cock-pillows on it tight as it slides out of her mouth, ensuring every last drop is suckled off.");
-	output("\n\n<i>“Mmm,”</i> she sighs, gazing up at you in soft, sex-baked joy. <i>“[pc.Master] knows <i>exactly</i> how to treat Mitzi.”</i>");
+	output("\n\n<i>“Mmm,”</i> she sighs, gazing up at you in soft, sex-baked joy. <i>“[pc.Master] knows </i>exactly<i> how to treat Mitzi.”</i>");
 	output("\n\nAlthough your pricks have slipped out of your [pc.cumVisc]-choked holes, you still have her held in their obscene, prehensile grip, still gently tightening and softening your hold on her limbs. You play with your little fuck-pet, enjoying the wonderful softness of her tits, finding the nub of her clit and teasing it until she squeals, feeling the barely-abated arousal continue to thrum through you, animating your restless tentacles.");
 	output("\n\n<i>“You’re not done yet are you, [pc.Master]?”</i> the cum-dripping gabilani whispers. She flexes against her ropey, musky bonds, gazing up at you pleadingly. <i>“No... you’re going to bloat Mitzi with yummy cum from those wonderful... thick... beasts...”</i> this last comes at as an utterly wanton, broken moan, a sound which galvanizes you like a shot of adrenaline straight to the heart.");
 	output("\n\nWith lithe coils and flexes, you flip her over, dangling her soft weight in the air by the wrists and thighs, her " + (!mitzi.canLactate() ? "large":"huge, milk-dripping") + " breasts dangling down to the sheets. You admire the round, fat hills of her ass, sinking your fingers into it as you send one of your tentacles slowly slithering up her frame like a creeper, drifting over a protuberant nipple, coiling around her neck and finally presenting its oozing blunt head to her mouth.");
@@ -3500,14 +3500,16 @@ public function justMitziTentabang3():void
 	clearMenu();
 	showMitzi(true);
 	author("Nonesuch");
-	var tCount = pc.wingCount + pc.cockTotal(GLOBAL.TYPE_TENTACLE);
+	var tCount:int = (pc.wingCount + pc.cockTotal(GLOBAL.TYPE_TENTACLE));
 	var x:int = pc.cockThatFits(mitzi.analCapacity());
 	output("You don’t know how many times Mitzi orgasms - she does so to the slightest stimulation anyway - but the way her cunt and colon clench up around you, spurting femcum and lubricant around your girth, the way she writhes and wobbles around you, eventually drive your tentacles back into overdrive, constricting and thrashing with feral abandon.");
 	output("\n\nSavage sounds are driven from your throat as you cum again, harder this time, [pc.cum] surging up those long, long prehensile members of yours into the gabilani’s delicious holes in juicy, decadent blasts." + (tCount > 6 ? " Your unused tentacles whip around wildly like out-of-control hoses, spraying the entire room in your [pc.cumFlavor] seed.":"") + " Mitzi groans with delight, her body reflexively tightening up around your thrusting cocks, greedily drinking deep of your [pc.cumVisc] cum until her bowels, womb and belly are utterly swollen with it, her holes drooling it outward in great, fat gobbets.");
 	output("\n\nThe squat bimbo luxuriates in it when you loosen your grip on her wrists and thighs, your tentacles wilting into aching, gratified retreat, lowering her onto the bed and slithering slowly away. She caresses her swollen body, fingers drifting through the slicks of cum left on her flawless green flesh, splaying her thick thighs for you so you can admire your handiwork: her pussy and asshole both gaped wide open, [pc.cumColor] cum oozing thickly from them.");
 	output("\n\n<i>“Mmm,”</i> she sighs, heart pupils throbbing happily away at you as she raises her fingers to her plump lips and sucks them clean. <i>“That was soooooo good, [pc.Master]. So much cum for Mitzi... she can barely move!”</i>");
 	output("\n\nShe demonstrates this by rolling on the bed, her tits and swollen belly quivering as they hit the sheets, her short legs virtually the same length as the latter.");
-	output("\n\n<i>“You’ll do it to Mitzi again soon, won’t you?”</i> she purrs. <i>“Let those tentacles of yours loose on her again? Hold her and fuck her and fill her with cum until it’s all she can think about?”</i> Facing you, she opens her mouth, closes her eyes and lets her long, wet tongue flop out adoringly, fingering her erect nipples as she does so{, milk squirting this way and that}.");
+	output("\n\n<i>“You’ll do it to Mitzi again soon, won’t you?”</i> she purrs. <i>“Let those tentacles of yours loose on her again? Hold her and fuck her and fill her with cum until it’s all she can think about?”</i> Facing you, she opens her mouth, closes her eyes and lets her long, wet tongue flop out adoringly, fingering her erect nipples as she does so");
+	if(mitzi.canLactate()) output(", milk squirting this way and that");
+	output(".");
 	output("\n\nVoid... damn. [pc.EachCock] throbs painfully to the sight of that, and your tentacles start thickening again until, with an effort, you summon thoughts of snow, mathematics, your father’s face. Fucking Mitzi is always a delight, but doing it only ever makes you want to do it more.");
 	pc.orgasm();
 	pc.slowStatGain("libido",2);
@@ -3571,7 +3573,7 @@ public function moreWithJustCelise2():void
 	showBust(mitziBustString(true),celiseBustDisplay());
 	author("Nonesuch");
 	showName("MITZI\n& CELISE");
-	var tCount = pc.wingCount + pc.cockTotal(GLOBAL.TYPE_TENTACLE);
+	var tCount:int = (pc.wingCount + pc.cockTotal(GLOBAL.TYPE_TENTACLE));
 	output("You cum - you think. Once the heat in your tentacles reaches boiling point and it’s spurting gratuitously into the girls’ wet, thirsty holes it just becomes a stream, a constant orgasm that throbs up all " + num2Text(tCount) + " of your prehensile dicks, the ones not shoved deep into Mitzi and Celise spraying [pc.cum] all over them, you and the room. You groan in delight, one hand " + (pc.hasCock() ? "jerking your [pc.cock]":"deep in your [pc.vagina]") + ", the other grasping one of Mitzi’s tits, " + (!mitzi.canLactate() ? "squeezing the lovely softness there":"kneading the pressured liquid there and spraying even more sexual fluids all over the place") + ", the nexus to a network of obscene, drooling pleasure.");
 	output("\n\nWhen you come down enough to regain some sense of yourself, it’s to find both of your concubines pillowing their soft. [pc.cum]-painted weight against your sides, their pouty lips stretched around the head of a tender, throbbing dick-vine each, coaxing out the last of your [pc.cumVisc]-seed. You groan raggedly as Celise kneads you intently, dragging another streamer of your seed into her mouth.");
 	output("\n\n<i>“Mmm,”</i> she sighs, smacking her lips and looking up at you dopily. " + (pc.cumQ() < 25000 ? "She’s definitely bulkier than she was, stuffed with cum that she’s already metabolizing into fresh goo.":"She’s about twice the size she was in she came in her, belly and tits bulging, utterly stuffed with your cum. She’s going to be metabolizing that into fresh goo for days!") + " <i>“That was looooovely, [pc.Master]. ");
@@ -3583,7 +3585,7 @@ public function moreWithJustCelise2():void
 	if(pc.libido() < 70) pc.libido(1);
 	celise.loadInMouth(pc);
 	mitzi.loadInMouth(pc);
-	IncrementFlag("MITZI_CELISE_TENTAFUCK")
+	IncrementFlag("MITZI_CELISE_TENTAFUCK");
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -3599,12 +3601,12 @@ public function mitziAndCeliseAndReaha():void
 	output("Celise doesn’t need to open the door to your quarters: your pet goo simply exudes herself around the cracks, forming into a somewhat confused, green, booby mass at the foot of your bed.");
 	output("\n\n<i>“You wanted to see me, [pc.Master]?”</i> she bubbles, staring at you railing the gabilani encased in your writhing morass of cock tentacles. <i>“You seem... uh... busy.”</i>");
 	output("\n\nYou return her stare greedily, lingering on her large, pert boobs and wet, pouting lips. Galotians are simple creatures at heart, and all you have to do is send two phallus vines writhing through the air towards her, stroke their blunt, pre-beading ends against the goo that constitutes her mouth and the cleft of her ass, for her to understand.");
-	output("\n\n<i>“Ohh,”</i> she simpers, hungry eyes locking onto the one lingering near her mouth. You shudder in delight as she bestows a long, slurping lick on its sensitive end. <i>“" + (flags["MITZI_CELISE_TENTAFUCK"] == undefined ? "I didn’t know you’d grown these, [pc.master]! They look tasty!":"Are we doing snakey fucky time again? You’re so wild when you’re like this, [pc.master]! So juicy!") + "”</i>");
+	output("\n\n<i>“Ohh,”</i> she simpers, hungry eyes locking onto the one lingering near her mouth. You shudder in delight as she bestows a long, slurping lick on its sensitive end. <i>“" + (flags["MITZI_CELISE_TENTAFUCK"] == undefined ? "I didn’t know you’d grown these, [pc.Master]! They look tasty!":"Are we doing snakey fucky time again? You’re so wild when you’re like this, [pc.Master]! So juicy!") + "”</i>");
 	output("\n\nUnable to hold back any longer, you push the tentacle into her mouth, muffling her burbling and replacing it with the sloppy, energetic sounds of a goo girl milking a thick, dripping cock for all it is worth. The other curls around the hill of a gooey buttock, squeezing it, herding her onto your bed so you can really reach into her deep, thrusting into her tight, unresisting throat at the same time as the one wrapped around her butt finds her pussy and slips inside, stretching it wide as heavenly sensation courses down its long, throbbing length.");
 	output("\n\nYou’re almost lost in the decadent rhythm of spitroasting Celise, at the same time as you fuck the silky wringer of Mitzi’s pussy, when the door hisses open and Reaha steps in.");
 	pc.cockChange();
-	output("\n\n<i>“You pinged me, St- oh!”</i> The cow girl starts, mouth agape at the scene in front of her. You can see her blush from here as she ducks her head, laughing in embarrassment. <i>“Oh man. That’s so <i>gross.</i>”</i>");
-	output("\n\n<i>“I got [pc.Master]’s tentacles out and once we got going we thought of you, moo-friend!”</i> cries Mitzi happily, little waves of motion carried up her soft body with every thrust of the prehensile dick she’s impaled on. She rolls her eyes up, lets her long tongue flop outwards, lets Reaha see exactly how much she’s enjoying it. <i>“Mmm... come closer. [pc.master]’s got plenty more for you!”</i>");
+	output("\n\n<i>“You pinged me, St- oh!”</i> The cow girl starts, mouth agape at the scene in front of her. You can see her blush from here as she ducks her head, laughing in embarrassment. <i>“Oh man. That’s so </i>gross<i>.”</i>");
+	output("\n\n<i>“I got [pc.Master]’s tentacles out and once we got going we thought of you, moo-friend!”</i> cries Mitzi happily, little waves of motion carried up her soft body with every thrust of the prehensile dick she’s impaled on. She rolls her eyes up, lets her long tongue flop outwards, lets Reaha see exactly how much she’s enjoying it. <i>“Mmm... come closer. [pc.Master]’s got plenty more for you!”</i>");
 	processTime(15);
 	pc.lust(33);
 	clearMenu();
@@ -3617,14 +3619,14 @@ public function mitziAndCeliseAndReaha2():void
 	showBust(mitziBustString(true),reahaBustDisplay(true),celiseBustDisplay());
 	showName("\nTENTA-BANG");
 	author("Nonesuch");
-	var tCount = pc.wingCount + pc.cockTotal(GLOBAL.TYPE_TENTACLE);
+	var tCount:int = (pc.wingCount + pc.cockTotal(GLOBAL.TYPE_TENTACLE));
 	output("It’s not going to take much to get the subby, curvy, over-sensitive little moo to drop her inhibitions, you know. She obeys Mitzi’s instruction with a timid little twist of her face, stepping uncertainly forward until you can reach out with two more vine dicks, lay their smooth, beading heads on the plumpness of her breast and thigh. She sighs, closing her eyes as you bump one over a wide nipple, circling back and forth until it’s moist and erect, as you send the other curling around her wide, fat hip and bury it between her cleft.");
 	output("\n\nAs you suspected - her loose, well-used pussy is already slick, wet to the sight of what you’re doing to Mitzi and Celise, widening as you use the lithe cock-limb to play with her, flicking at her clit, brushing over her entrance, growing more and more hungry for it with every second.");
 	output("\n\n<i>“Ooh,”</i> she sighs. Face flush, she clambers onto the bed and grasps the thick tentacle brushing at her nipples, giggling a bit as she experimentally pumps it, making you groan lowly in response. <i>“These are, um, kinda fun, aren’t they?”</i>");
 	output("\n\nLaughing eyes on you, she aims it downward, feeding it through the cleft of her huge, milky tits. What a <i>good</i> girl. Mitzi and Celise squeal and huff respectively as you pump into them harder, invigorated as Reaha squeezes her breasts together, providing that lucky tentacle with a long, warm, soft sleeve of flesh to fuck.");
 	output("\n\nYou pull her into a rough kiss, molding your [pc.lips] and [pc.tongue] around hers as intense sensation pulses down your obscene menagerie of cocks, oiling Celise and Mitzi’s stretched tunnels with plentiful, oozing pre. You exhale into her mouth as, with some effort, you pull the tentacle playing with Reaha’s muff away, direct the femcum-lubricated appendage further up, exploring the generous crevice of the cow-whore’s ass. In your bestial, ravening state of mind, you’re in the mood for a new treat, a new flavor... and anyway, it’s such a delight to make her squeal.");
 	output("\n\n<i>“Ohh!”</i> she cries out, breaking from your passionate snog when you push the blunt head of your prehensile dick against the delightful suppleness of her anus. <i>“Not tha-at. It’s sensitiiiive!”</i> Reaha wails, as you spear into the black star, sheerest lust pulsing back up your appendage as you sample her tight innards, sawing into her in tandem with the cock thrusting between the pillowy sponge of her boobs." + (tCount > 6 ? " You send another ravenous tentacle writhing between her thighs, coiling and flicking at her moist pussy, teasing her with penetration, enveloping her senses in pleasure as you penetrate her ass deep.":""));
-	output("\n\n<i>“You like that, don’t you silly?”</i> says Mitzi wickedly. She’s fingering her breasts as she watches, " + (mitzi.canLactate() ? "instigating little spurts of milk here and there, ":"") + "suspended in mid-air as you pummel her pussy all the while. She rolls her eyes, drooling as she orgasms richly, that incredible network of muscles inside her squeezing silkily around your cock, forcing a little gout of [pc.cum] into her. <i>“Ohhh, you love that! You love [pc.master] giving you a nice, hard ass-fucking!”</i>");
+	output("\n\n<i>“You like that, don’t you silly?”</i> says Mitzi wickedly. She’s fingering her breasts as she watches, " + (mitzi.canLactate() ? "instigating little spurts of milk here and there, ":"") + "suspended in mid-air as you pummel her pussy all the while. She rolls her eyes, drooling as she orgasms richly, that incredible network of muscles inside her squeezing silkily around your cock, forcing a little gout of [pc.cum] into her. <i>“Ohhh, you love that! You love [pc.Master] giving you a nice, hard ass-fucking!”</i>");
 	output("\n\n<i>“Moooooooo,”</i> moans Reaha, on her hands and knees, big round butt in the air as you ream her tight black hole deep, the wonderful squeeze and texture of it driving you to titanic heights of lust. You thrust the prehensile cock using her tits even further up, plugging that wet, plush mouth of hers. She closes her eyes and lavishes it with licks and kisses, squeezing her breasts together all the while, deep now in submissive, tentacle-servicing lust.");
 	output("\n\nThe sensation of filling so many holes at once - surrounded by soft, gorgeous flesh that squeals and moans and coos and slurps to your every movement - throbs up your appendages, inhuman amounts of stimulation. It works the whole lot of them into an even greater frenzy, thrashing this way and that; they’re out of control now, fed by their own insatiable desires, though you can still feel everything that they do, rapturously pleasurable.");
 	output("\n\nYour shaking hands descend to your groin, and almost mindlessly you " + (pc.hasCock() ? "jack your [pc.cock]":"schlick your [pc.vagina]") + ", mesmerized by the sensation of piledriving one cock into Mitzi, whilst two others coil and thrust into the warm, gooey depths of Celise, and " + (tCount > 6 ? "two others busy themselves with Reaha":"three others make Reaha airtight") + ". The wild vibrations work their way into them, and their wet cries and moans bounce off the walls, femcum drooling then spraying around their stuffed, stretched cunts, orgasming repeatedly to getting fucked witless by your bestial anatomy.");
@@ -3640,17 +3642,17 @@ public function mitziAndCeliseAndReaha3():void
 	showBust(mitziBustString(true),reahaBustDisplay(true),celiseBustDisplay());
 	showName("\nTENTA-BANG");
 	author("Nonesuch");
-	var tCount = pc.wingCount + pc.cockTotal(GLOBAL.TYPE_TENTACLE);
+	var tCount:int = (pc.wingCount + pc.cockTotal(GLOBAL.TYPE_TENTACLE));
 	output("You cum - you think. Once the heat in your tentacles reaches boiling point and it’s spurting gratuitously into the girls’ wet, thirsty holes it just becomes a stream, a constant orgasm that throbs up all " + num2Text(tCount) + " of your prehensile dicks, the ones not shoved deep into Mitzi, Reaha and Celise spraying [pc.cum] all over them, you and the room. You groan in delight, one hand " + (pc.hasCock() ? "jerking your [pc.cock]":"deep in your [pc.vagina]") + ", the other grasping one of Mitzi’s tits, " + (!mitzi.canLactate() ? "squeezing the lovely softness there":"kneading the pressured liquid there and spraying even more sexual fluids all over the place") + ", the nexus to a network of obscene, drooling pleasure.");
 	output("\n\nWhen you come down enough to regain some sense of yourself, it’s to find both of your concubines pillowing their soft. [pc.cum]-painted weight against your sides, their pouty lips stretched around the head of a tender, throbbing dick-vine each, coaxing out the last of your [pc.cumVisc]-seed. You groan raggedly as Celise kneads you intently, dragging another streamer of your seed into her mouth.");
 	output("\n\n<i>“Mmm,”</i> she sighs, smacking her lips and looking up at you dopily. ");
 	if(pc.cumQ() < 25000) output("The galotian definitely bulkier than she was, stuffed with cum that she’s already metabolizing into fresh goo.");
 	else output("She’s about twice the size she was in she came in her, belly and tits bulging, utterly stuffed with your cum. She’s going to be metabolizing that into fresh goo for days!");
-	output(" <i>“That was looooovely, [pc.master]. ");
+	output(" <i>“That was looooovely, [pc.Master]. ");
 	if(flags["GIGACELISE"] == 1) output("Were you inspired?”</i> She titters as she wiggles her own tentacular appendages at you. <i>“");
 	output("Are you done for now?”</i> She sighs, gratified, as she looks up at the forest of wilted, drooling cocks around her, and then slumps her cum-swollen bulk to the floor. <i>“I guess I’ll, um... I’ll...”</i> she’s already slipping into a comatose state before she’s entirely gooped onto the floor.");
 	output("\n\n<i>“Why do you love fucking my ass so much?”</i> Reaha asks, dilated pupils turning up to you. <i>“It’s gross.”</i> She waves an exasperated hand at the prehensile dicks oozing the last of their [pc.cumFlavor] loads onto her pale skin and red hair. <i>“<b>You’re</b> gross.”</i> She smiles shyly, rolling over, the vastness of her boobs swaying, thoroughly fucked. <i>“...I like it.”</i>");
-	output("\n\n<i>“You should " + ((!seraIsCrew() || seraObedience() < 80) ? "buy more sluts":"get more sluts in on the action") + ", [pc.master],”</i> Mitzi whispers up at you, heart pupils flashing, stroking her own pet tentacle adoringly. <i>“I mean - if you want to horde these lovely cocks all for Mitzi, I’d be fine with that. Mmm, I would <b>love</b> that. But... don’t you want to fuck more? Stuff a whole room full of slaves with your tentacles? Cream a dozen holes at once?”</i> The cum-soaked, mind-broken gabilani drifts off, mouth open, carried away by this wonderful thought.");
+	output("\n\n<i>“You should " + ((!seraIsCrew() || seraObedience() < 80) ? "buy more sluts":"get more sluts in on the action") + ", [pc.Master],”</i> Mitzi whispers up at you, heart pupils flashing, stroking her own pet tentacle adoringly. <i>“I mean - if you want to horde these lovely cocks all for Mitzi, I’d be fine with that. Mmm, I would <b>love</b> that. But... don’t you want to fuck more? Stuff a whole room full of slaves with your tentacles? Cream a dozen holes at once?”</i> The cum-soaked, mind-broken gabilani drifts off, mouth open, carried away by this wonderful thought.");
 	output("\n\nYou shudder, remembering the height of your libidinal rampage, that sensation of completely losing control of your writhing mass of tentacles. You felt so helpless, so mindless... so wonderful. You pensively consider your sex-soiled room and dozing, cum-soaked concubines, your many dicks throbbing, reluctantly turning your mind to the clear-up operation." + (pc.cumQ() >= 25 ? " You aren’t even going to be able to rely on your pet hoover, you stuffed her so full.":""));
 	processTime(35);
 	if(pc.libido() < 70) pc.libido(1);
@@ -3660,7 +3662,7 @@ public function mitziAndCeliseAndReaha3():void
 	mitzi.loadInMouth(pc);
 	reaha.loadInAss(pc);
 	IncrementFlag("MITZI_CELISE_TENTAFUCK2");
-	IncrementFlag("MITZI_CELISE_TENTAFUCK");
+	//IncrementFlag("MITZI_CELISE_TENTAFUCK");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3696,7 +3698,7 @@ public function celiseReahaAndSeraMitziTentacular2():void
 	showName("\nTENTA-BANG");
 	author("Nonesuch");
 	showBust(mitziBustString(true),seraBustDisplay(true),reahaBustDisplay(true),celiseBustDisplay());
-	var tCount = pc.cockTotal(GLOBAL.TYPE_TENTACLE) + pc.wingCount;
+	var tCount:int = (pc.cockTotal(GLOBAL.TYPE_TENTACLE) + pc.wingCount);
 	output("It’s a hell of a scene for the final participant to come in and behold. She stands there, hand on hip and almost blank-faced, yellow, reptilian eyes taking in the moaning Mitzi in mid-air, Celise pushed against one [pc.thigh] and Reaha the other, all of them mired in the coiling, writhing mass of thick, seed-swollen cocks emanating from your back.");
 	if(flags["MITZI_SERA_TENTASOME"] == undefined) output("\n\n<i>“Huh,”</i> says Sera. <i>“I always wondered if you ever used those things.”</i>");
 	else output("\n\n<i>“You really can’t help yourself, can you?”</i> says Sera, with an arch, knowing raise of her eyebrow. <i>“You love it. You love being a disgusting, out-of-control beast.”</i>");
@@ -3708,8 +3710,12 @@ public function celiseReahaAndSeraMitziTentacular2():void
 	output("\n\n<i>“You know,”</i> she purrs, planting her soft round butt down on your [pc.thighs], spade tail flicking against your [pc.feet], <i>“I once thought about modding myself some dick tentacles. Decided against it. There’s lots of stuff on the extranet warning that growing too many makes them get...out of hand. If you get too stimulated.”</i>");
 	output("\n\nThe way she’s rubbing the one in her hand... you growl animalistically, and shoot another drooling, ready vine-dick at her. She catches that one, too. Holding two now, swelling and throbbing impatiently in her grasp, Sera grins at you toothily, fluorescent eyes alive with glee.");
 	output("\n\n<i>“You haven’t gotten too stimulated, have you?”</i> she asks. You are powerless to stop her, indeed your [pc.thighs] rise automatically to meet her, as she ");
-	var x:int = pc.cockThatFits(sera.vaginalCapacity(0));
-	if(x >= 0) output("takes hold of your [pc.cock] and positions it against her mound, slowly pushing it inside her tight, long pussy.");
+	var cIdx:int = pc.cockThatFits(sera.vaginalCapacity(0));
+	if(cIdx >= 0)
+	{
+		output("takes hold of your [pc.cock " + cIdx + "] and positions it against her mound, slowly pushing it inside her tight, long pussy.");
+		pc.cockChange();
+	}
 	else if(sera.hasCock() && pc.hasVagina()) 
 	{
 		output("takes hold of her own cock and positions it against your [pc.vagina], making your innards cry out with fresh pleasure as she sinks herself in, filling you up.");
@@ -3719,12 +3725,12 @@ public function celiseReahaAndSeraMitziTentacular2():void
 	output(" <i>“[pc.Master]?”</i>");
 
 	output("\n\nThe succubus ");
-	if(x < 0 && sera.hasCock() && pc.hasVagina()) output("fucks you firmly with her foot long dick");
+	if(cIdx < 0 && sera.hasCock() && pc.hasVagina()) output("fucks you firmly with her foot long dick");
 	else output("rides you briskly");
 	output(", holding your [pc.chest] to her own soft, inhumanly pert breasts, as all the while your tentacles pump themselves wildly into Celise, Mitzi and Reaha. They are totally beyond your control now; they fuck whichever hole that takes their fancy with feral vigor, their shuddering, slithering virility driving the three of them wild, their shouts and squeals and soft, writhing forms only driving your carnality to maddening heights.");
 	output("\n\nYou orgasm, a wave of [pc.cum] riding up those long, ropey forms and pounding into pussies, mouths and butts with ecstatic abandon... and the tentacles just go right on fucking them wildly, spraying [pc.cumVisc], [pc.cumColor] everywhere. You whine as Sera’s claws bite into your shoulders, pain to go along with the monstrous pleasure.");
-	output("\n\n<i>“Aww, poor [pc.master],”</i> she sneers, ");
-	if(x >= 0) output("wringing your [pc.cock]");
+	output("\n\n<i>“Aww, poor [pc.Master],”</i> she sneers, ");
+	if(cIdx >= 0) output("wringing your [pc.cock " + cIdx + "]");
 	else if(pc.hasVagina() && sera.hasCock()) 
 	{
 		output("thrusting exuberantly into your [pc.vagina]");
@@ -3738,20 +3744,20 @@ public function celiseReahaAndSeraMitziTentacular2():void
 	if(tCount >= 9) 
 	{
 		output("\n\nDimly, you feel another of your rebellious, snake-like members worm its way beneath your quivering form; you know what it’s about, and you couldn’t stop it even if you wanted to. Sera laughs throatily when she sees, and tips you onto your back with a violent shove of her boobies, allowing the thing easy access to your ");
-		if(x < 0 && sera.hasCock() && pc.hasVagina())
+		if(cIdx < 0 && sera.hasCock() && pc.hasVagina())
 		{
 			output("[pc.asshole].");
 		}
 		else output("[pc.vagOrAss].");
 		output("\n\nYou moan around your gobstopper with unfettered desire as the thing thrusts its blunt, slick head into you, easily parting your " + (!pc.hasVagina() ? "asshole":"lips") + " and filling you with another hot, undulating cock intent on using every inch of you. More! More! <b>They</b> want <b>more!</b>");
 		//make sure Sera's not using it too
-		if(x < 0 && sera.hasCock() && pc.hasVagina()) pc.buttChange(90);
+		if(cIdx < 0 && sera.hasCock() && pc.hasVagina()) pc.buttChange(90);
 		else if(pc.hasVagina()) pc.cuntChange(0,90);
 		else pc.buttChange(90);
 	}
 	output("\n\n<i>“Yeah,”</i> snarls Sera, ");
-	if(x < 0 && pc.hasVagina() && sera.hasCock()) output("digging into your [pc.vagina] vociferously with her own thick, hot member, soft hips clapping against yours");
-	else output("clenching down and jerking your " + (x >= 0 ? "[pc.cock]":"prehensile dick") + " viciously hard in her demonic twat");
+	if(cIdx < 0 && pc.hasVagina() && sera.hasCock()) output("digging into your [pc.vagina] vociferously with her own thick, hot member, soft hips clapping against yours");
+	else output("clenching down and jerking your " + (cIdx >= 0 ? ("[pc.cock " + cIdx + "]"):"prehensile dick") + " viciously hard in her demonic twat");
 	output(", color high in her cheeks now. <i>“You love that, don’t you? You’re just as much a slave as we are! And you know what you’ve got to do.”</i>");
 	output("\n\nYou close your eyes. An orgasm is coming, a multiple one, a quadruple, quintuple, sextuple one, and you wonder if it might not just send you insane with pleasure, blot out all rational thought for good. Sera’s croon washes into your ears as you feel the pressure trembling upwards.");
 	output("\n\n<i>“You’re gonna find that fortune of yours, and you’re gonna use it to build yourself a vault, stocked with food and water to last the rest of your life - and all of these sluts, and more besides. And porn, and drugs, and toys like you can’t even imagine. And you’re going to spend all day every day fucking, prisoner to those lovely tentacles that make you feel so good, a room of horny, needy slaves only ever enough to keep you satiated for a few minutes. I’ll rotate ‘em, keep ‘em in line, look after you, don’t worry - because I’ll be recording the whole thing! Think of the viewing figures! I’ll be a fucking millionaire.”</i>");
@@ -3760,7 +3766,7 @@ public function celiseReahaAndSeraMitziTentacular2():void
 	mitzi.loadInMouth(pc);
 	reaha.loadInAss(pc);
 	celise.loadInMouth(pc);
-	if(x >= 0) sera.loadInCunt(pc,0);
+	if(cIdx >= 0) sera.loadInCunt(pc,0);
 	else if(pc.hasVagina() && sera.hasCock()) 
 	{
 		pc.loadInCunt(sera,0);
@@ -3768,10 +3774,10 @@ public function celiseReahaAndSeraMitziTentacular2():void
 	else if(pc.hasVagina()) pc.loadInCunt(pc,0);
 	else pc.loadInAss(pc);
 	clearMenu();
-	addButton(0,"Next",tooManyTentacles,x);
+	addButton(0,"Next",tooManyTentacles,cIdx);
 }
 
-public function tooManyTentacles(x:int):void
+public function tooManyTentacles(cIdx:int):void
 {
 	clearOutput();
 	showName("\nTENTA-BANG");
@@ -3780,7 +3786,7 @@ public function tooManyTentacles(x:int):void
 	//Reset lust, +4 hours
 	output("You come to very slowly. Your unconsciousness was shot through with pulsing lust and flickering sensation, and you get the impression that the festivities continued long after you were rendered insensate, your horny harem coaxing your irrepressible nest of dick tentacles on to ravish them all the more... so that even when asleep you were trapped in a dreamscape of alien lust. They now lie all around you, Mitzi, Celise and Reaha dozing peacefully, copious amounts of [pc.cum] oozing thickly from between their legs.");
 	output("\n\nSera is lying beside you face-on, gently stroking one of your limp, oozing tentacles and cooing gently. It really <i>is</i> her treasured pet. You exhale raggedly as the whole wretched lot of them throb at the same time, feebly rising then sagging again. Fuck, you ache.");
-	output("\n\n<i>“Aww. You feeling a little rough, [pc.Master]?”</i> the [sera.skinColor]-skinned succubus asks softly, eyes half-lidded. A memory comes back to you, of " (x >= 0 ? "how wonderfully tight her pussy felt":"how wonderful her cock felt inside of you") + ", and you close your eyes as another hard, dry ache washes outwards. She places a soft, loving kiss on the dome of her pet tentacle, lasciviously licking away the dripping semen.");
+	output("\n\n<i>“Aww. You feeling a little rough, [pc.Master]?”</i> the [sera.skinColor]-skinned succubus asks softly, eyes half-lidded. A memory comes back to you, of " + (cIdx >= 0 ? "how wonderfully tight her pussy felt":"how wonderful her cock felt inside of you") + ", and you close your eyes as another hard, dry ache washes outwards. She places a soft, loving kiss on the dome of her pet tentacle, lasciviously licking away the dripping semen.");
 	output("\n\n<i>“Well, don’t worry,”</i> she says, displaying her teeth to you. <i>“You know I’ll look after you, right? Always.”</i>");
 	output("\n\nYou watch her leave, butt gently bouncing, tail swishing. ");
 	if(flags["MITZI_SERA_TENTASOME"] == undefined) 
@@ -3798,7 +3804,7 @@ public function tooManyTentacles(x:int):void
 	mitzi.loadInMouth(pc);
 	reaha.loadInAss(pc);
 	celise.loadInMouth(pc);
-	if(x >= 0) sera.loadInCunt(pc,0);
+	if(cIdx >= 0) sera.loadInCunt(pc,0);
 	else if(pc.hasVagina() && sera.hasCock()) 
 	{
 		pc.loadInCunt(sera,0);

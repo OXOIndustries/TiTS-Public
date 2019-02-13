@@ -767,18 +767,18 @@ public function talkToZephyrMenu():void
 
 	var hasTalkedBets:Boolean = flags["ZEPHYR_TALKED_BETS"] != undefined;
 
-	/*
 	if (!pc.hasCock() && !pc.hasHardLightStrapOn())
 	{
 		if (!hasTalkedBets) addDisabledButton(2, "Bets", "Bets", "You need either a cock or hardlight to hand...");
 		else addDisabledButton(2, "ButtBets", "ButtBets", "You need either a cock or hardlight to hand...");
 	}
-	*/
+	/*
 	if (!pc.hasCock())
 	{
 		if (!hasTalkedBets) addDisabledButton(2, "Bets", "Bets", "You need a cock to hand...");
 		else addDisabledButton(2, "ButtBets", "ButtBets", "You need a cock to hand...");
 	}
+	*/
 	else if (!pc.hasItemByClass(Throbb))
 	{
 		if (!hasTalkedBets) addDisabledButton(2, "Bets", "Bets", "You need some Throbb to tempt Zephyr...");

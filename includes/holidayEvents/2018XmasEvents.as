@@ -4,7 +4,7 @@
 //Gets to watch Riya and Grence get shitfaced and bang
 //Ain’t no partie like a UGC partie cause’ a UGC partie don’t stop
 
-//{PC receives email around Christmas, no level requirement}From: Commander Lorna Grence<Lorna_Grence@UGC.gov>
+// {PC receives email around Christmas, no level requirement}From: Commander Lorna Grence<Lorna_Grence@UGC.gov>
 //To: [pc.name] Steele<[pc.email]@SteeleTech.corp>
 //Subject: Christmas Party Invitation
 

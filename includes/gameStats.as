@@ -8461,6 +8461,9 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["MITZI_CUNTLICKED_PC"] != undefined) output2("\n<b>* Mitzi, Times She Licked Your Vagina:</b> " + flags["MITZI_CUNTLICKED_PC"]);
 			if(flags["MITZI_TITFUCKED"] != undefined) output2("\n<b>* Mitzi, Times Slowly Tit-Fucked Her:</b> " + flags["MITZI_TITFUCKED"]);
 			if(flags["MITZI_CUNTNOSIS"] != undefined) output2("\n<b>* Mitzi, Times Sexed with Cuntnosis:</b> " + flags["MITZI_CUNTNOSIS"]);
+			if(flags["MITZI_CELISE_TENTAFUCK"] != undefined) output2("\n<b>* Mitzi, Times Had Tentacle Sex with Celise:</b> " + flags["MITZI_CELISE_TENTAFUCK"]);
+			if(flags["MITZI_CELISE_TENTAFUCK2"] != undefined) output2("\n<b>* Mitzi, Times Had Tentacle Sex with Celise and Reaha:</b> " + flags["MITZI_CELISE_TENTAFUCK2"]);
+			if(flags["MITZI_SERA_TENTASOME"] != undefined) output2("\n<b>* Mitzi, Times Had Tentacle Sex with Celise, Reaha and Sera:</b> " + flags["MITZI_SERA_TENTASOME"]);
 			roamCount++;
 		}
 		// BisonButts
