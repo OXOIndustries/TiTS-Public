@@ -1017,7 +1017,7 @@ public function wargiiRewardTTSqzrs():void
 	output("You enter Nenne’s shop. But, to your mild surprise, she isn’t tending the front, like she normally does during the open hours. You presume she must be having a rest in the back, where her living space is.");
 	output("\n\nYou hear voices coming from deeper into the little nook that is her home. You have the decency to make yourself known before you barge in – she doesn’t have a door to knock, so you open-hand slap the hard, stony wall a few times, and you call Nenne’s name. The voices stop, and you hear the patter of paws against the rock floor, and soon, Nenne joins you in the shop.");
 	output("\n\n<i>“[pc.name]!”</i> she chitters, lunging at you and wrapping her arms around your ");
-	if(pc.tallness >= 6*12) output("[pc.waist]");
+	if(pc.tallness >= 6*12) output("waist");
 	else if(pc.tallness >= 5*12+6) output("[pc.chest]");
 	else output("shoulders");
 	output(". She squeezes you tightly and rubs her cheek against you affectionately, excited and happy to see the Hold’s champion back in her store. Her tail is wagging a mile a minute behind herself, whipping her thick rear from side to side with it.");
