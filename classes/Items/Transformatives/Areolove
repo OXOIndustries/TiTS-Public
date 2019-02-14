@@ -36,7 +36,7 @@ package classes.Items.Transformatives
 			//Longass shit, not sure what used for yet.
 			this.description = "a medipen loaded with Areolove";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A low-grade transformative, Areolove will change the shape of the user's areolae. Buttons with various shape line up across the length of the medipen, featuring many ways to stylize your nipples. There's a small disclaimer stating that this product might not work on unusual nipple types.";
+			this.tooltip = "A low-grade transformative, Areolove will change the shape or size of the user's areolae. Buttons with various shapes line up across the length of the medipen, featuring many ways to stylize your nipples. There's a small disclaimer stating that this product might not work on unusual nipple types.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
