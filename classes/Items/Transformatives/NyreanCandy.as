@@ -510,7 +510,7 @@
 						target.addStatusValue("Nyrea Eggs", 2, 0.5);
 					}
 					// Get perk
-					else
+					else if(!target.hasPerk("Nyrea Eggs"))
 					{
 						output(" way much more than normal. Your egg factories are working in overtime until you are incredibly bloated with eggs! While you don’t feel more active than previous, something tells you that this sudden boost was a sign that your body has accepted the fate of being a nyrean egg factory...");
 						
@@ -519,6 +519,10 @@
 						
 						output("\n\n(<b>Perk Gained: Nyrea Eggs</b> - Your body permanently produces nyrea eggs regardless of your genes.)");
 						target.createPerk("Nyrea Eggs", 0, 0, 0, 0, "Your body naturally produces nyrea eggs.");
+					}
+					else
+					{
+						nyreaEggs = (10 + rand(11));
 					}
 					
 					target.addStatusValue("Nyrea Eggs", 1, nyreaEggs);

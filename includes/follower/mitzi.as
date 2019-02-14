@@ -3856,7 +3856,7 @@ public function takeTheHitMitzi():void
 	author("Fenoxo");
 	output("Instead of dodging, you take the hit square on your chest" + (!pc.isChestExposed() ? ", even going so far as to open your [pc.chestCover] to ensure that her fun little addition will get to deliver its tainted payload":"") + ". There’s no pain, not really. The medipen’s built-in anesthetic does its job - that or the stinging impact masks whatever microscopic irritation the payload could possibly deliver.");
 	//notes:
-	//"Cupid’s Kiss”</i> drug
+	//"Cupid’s Kiss" drug
 	//Lovey-dovey drug. Enhanced tactile response. Reduced orgasm threshold (quick cums), and faster refractory.
 	//+30% tease damage taken
 	//+300% rare drop chance.
@@ -3866,7 +3866,7 @@ public function takeTheHitMitzi():void
 	else if(pc.tallness < 6*12) output("into a [pc.belly]-squeezing hug");
 	else output("around your [pc.leg]");
 	output(". <i>“Cause the dart had a seeeecreeeet! Mitzi snuck some Cupid’s Kiss in there, cause it’s like... the-themat... uhm. It matches the holiday!”</i>");
-	output("\n\nPlacing your hand on the adorable little fuck-slut’s head (right between her ponytails), you push her back so you can look her in the face. You know something like this was going to happen, but maybe you can get the sweetly smiling goblin to clue you in on just what her little surprise is going to do besides some sort of vague <i>“love-love.”</i> Working your jaw for a second, you" + (pc.tallness >= 5*12 ? " lean down to her eye level":"") + " and open your mouth to say something when you’re distracted by the striking, heart-shaped patterns in Mitzi’s eyes.");
+	output("\n\nPlacing your hand on the adorable little fuck-slut’s head (right between her ponytails), you push her back so you can look her in the face. You know something like this was going to happen, but maybe you can get the sweetly smiling goblin to clue you in on just what her little surprise is going to do besides some sort of vague “love-love.” Working your jaw for a second, you" + (pc.tallness >= 5*12 ? " lean down to her eye level":"") + " and open your mouth to say something when you’re distracted by the striking, heart-shaped patterns in Mitzi’s eyes.");
 	output("\n\nYou’ve seen her eyes lots of times before (usually when she’s on her knees), so you’re had plenty of time to acclimate yourself to their cosmetically-pleasing shape. Yet... this close, there’s something almost spellbindingly beautiful about gazing into her eyes - the windows to the soul - and being presented with the near-universal shape for affection and intimacy. Mitzi’s smile grows the longer you stare at her, but there’s no reason to look anywhere else. You have a question for her, so you may as well continue to gaze longing...");
 	output("\n\n<i>“What’s that stuff gonna do to me?”</i> There! With that said, you can lean a little closer admire her flawless emerald skin, the button shape of her cute little nose, and the expansive, shining curves of her curling lips.");
 	output("\n\nMitzi grabs the back of your head and pulls you into a searingly hot kiss. Her pillowy lips part on contact, and yours come along for the ride, unresisting when she guides you into full-on, open-mouth french. Her tongue wiggles and writhes against your own. She shifts and twists to suckle on your lower lip before widening her maw to once more orally entangle you, nearly tying your [pc.tongue] in a knot around her own.");
@@ -3891,7 +3891,7 @@ public function mitziVDayFun2():void
 	clearOutput();
 	showMitzi(true);
 	author("Fenoxo");
-	output("You tumble into the bed with Mitzi in your arms. You can deal with the side effects later. If <i>“Cupid’s Kiss”</i> has some sort of nefarious come-down, there’s nothing you can do about it now. You might as well keep playing with the goblin-girl’s luscious tits, stroking and petting her. She’s just so void-damned <b>soft</b>. Mitzi was made to be held, and touch, and... well, fucked. She’s never presented herself as anything else. The squishy little goblin may utterly sex-addicted in all the best and worst ways, but she’s always been honest about.");
+	output("You tumble into the bed with Mitzi in your arms. You can deal with the side effects later. If “Cupid’s Kiss” has some sort of nefarious come-down, there’s nothing you can do about it now. You might as well keep playing with the goblin-girl’s luscious tits, stroking and petting her. She’s just so void-damned <b>soft</b>. Mitzi was made to be held, and touch, and... well, fucked. She’s never presented herself as anything else. The squishy little goblin may utterly sex-addicted in all the best and worst ways, but she’s always been honest about.");
 	output("\n\nIn a way, you admire that about her.");
 	output("\n\n<i>“What’s [pc.Master] thinking?”</i> Mitzi moans, leaning up to kiss your chin. Her hand slides across your [pc.belly] toward your crotch without quite touching down, fluttering and caressing your inner thighs until you feel ");
 	if(pc.hasCock()) output("harder than a capital ship’s armor plating");
@@ -3907,7 +3907,7 @@ public function mitziVDayFun2():void
 	else output("sinking into " + (pc.hasVaginas() ? "one":"your") + " slit");
 	output(". She leans back to stare at you, captivating your gaze in her wide, earnest eyes. They shine, a little watery with emotion. <i>“Because Mitzi’s been thinking all day about how much she loves you, [pc.Master]. She’s been strumming her dumb, horny cunt thinking about how you saved her, and took her onboard, and put up with her being a broken nympho-slut.”</i> She tilts her head and bats those lengthy eyelashes of hers up and down a few times to blink away newly forming tears. <i>“Mitzi loves you.”</i>");
 	output("\n\nYou answer without conscious thought: <i>“I love you too, Mitzi.”</i> There’s no need to examine it or consider your response in the slightest. <i>“" + (silly ? "You’re my favorite little cock-socket on this citadel.":"You’re the best little fuck-slut I could ever hope for.") + " You’re loyal and even though you’ve been through a lot, you’re always trying to help me out, and...”</i> You gasp in sudden sexual pleasure. ");
-	if(pc.hasCock()) output("Mitzi fingers are happily stroking your prick with long, gentle strokes, her thumb sliding back and forth against the frenulum whenever she nears the tip. <i>“...You give the best fucking handjobs!”</i>");
+	if(pc.hasCock()) output("Mitzi’s fingers are happily stroking your prick with long, gentle strokes, her thumb sliding back and forth against the frenulum whenever she nears the tip. <i>“...You give the best fucking handjobs!”</i>");
 	else output("Mitzi’s fingers are dancing happily around your clitoral hood in a way that’s making it difficult to string words together. <i>“...You know just how to finger a pussy!”</i>");
 
 	output("\n\n<i>“Oh!”</i> Mitzi blushes in vibrant pleasure, but she never stops seeing to yours. <i>“Thank you, [pc.Master]!”</i> She leans up to kiss you once more, this time in a gentler embrace. It’s all warmth and salivating slickness, the plush pillows of Mitzi’s lips electric against your skin. For once, you’re kissing not out of sexual passion but out of near-romantic ardor, and the pure delight of it all is enough to make your " + (pc.hasCock() ? "[pc.cock] throb harder in your petite lover’s grip":"[pc.vagina] clench in a tighter grip around your petite lover’s fingers") + ". <i>“Mitzi loves you so much, [pc.Master].”</i> She nuzzles into your neck. <i>“That’s why she did this. She wanted you to know... and she wanted to know if [pc.Master]... if [pc.Master] loved her too.”</i>");
@@ -3949,7 +3949,7 @@ public function mitziVDayFun4():void
 	author("Fenoxo");
 	output("You wake up next to a sleeping, sex-soaked goblin with a sense of... positivity? Well-being? It’s hard to describe, but when you look down at her, you’re nearly instantly spellbound by the glorious curvature of her breasts. A few minutes pass by while you stare at them, but you eventually muster the strength to pull yourself away. <b>Cupid’s Kiss is still in your system.</b> You’re going to be so much easier to tease until it wears off, but it’s also sort of nice in its own way. <b>You feel lucky</b> to have experienced it.");
 	processTime(45);
-	if(!pc.hasStatusEffect("Cupid’s Kiss")) pc.createStatusEffect("Cupid’s Kiss",1,0,0,0,false,"Icon_DrugVial","You’re feeling more affectionate that you otherwise would, no doubt the result of Mitzi's drug.\n\nTake +30% more tease damage.\n+200% XP\n+300% rare drop chance.",false,0,0xB793C4);
+	if(!pc.hasStatusEffect("Cupid’s Kiss")) pc.createStatusEffect("Cupid’s Kiss",1,0,0,0,false,"Icon_DrugVial","You’re feeling more affectionate that you otherwise would, no doubt the result of Mitzi’s drug.\n\nTake +30% more tease damage.\n+200% XP\n+300% rare drop chance.",false,0,0xB793C4);
 	pc.setStatusMinutes("Cupid’s Kiss",60*24*31);
 	IncrementFlag("MITZI_VDAYS");
 	clearMenu();
