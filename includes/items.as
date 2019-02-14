@@ -2357,6 +2357,15 @@ public function equipItem(arg:ItemSlotClass):void {
 		
 		removedItem.onRemove(pc, true);
 		arg.onEquip(pc, true);
+		
+		// Special post-onEquip events
+		var postMsg:String = "";
+		if(arg.hasFlag(GLOBAL.ITEM_FLAG_STRETCHY))
+		{
+			if(postMsg != "") postMsg += "\n\n";
+			postMsg += stretchBonusSexiness(pc, arg, true, true);
+		}
+		if(postMsg != "") output("\n\n" + postMsg);
 	}
 	
 	//If item to loot after!

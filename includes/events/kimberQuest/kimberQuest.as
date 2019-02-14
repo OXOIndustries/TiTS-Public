@@ -3,6 +3,7 @@
 //0 - heard
 //1 - killed worm
 //2 - returned to kimber
+//3 - did kimber on top
 //+4 - looted pantsu
 //kimberoffer: job offered
 
