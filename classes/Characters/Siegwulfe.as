@@ -3,7 +3,9 @@
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.kGAMECLASS;
+	import classes.Items.Miscellaneous.Ovilium;
 	import classes.Items.Protection.ReaperArmamentsMarkIShield;
+	
 	
 	public class Siegwulfe extends Creature
 	{
@@ -125,6 +127,51 @@
 			createPerk("Mega Milk", 0, 0, 0 ,0 , "");
 		}
 		
+		public function configDom():void
+		{
+			if (!isBimbo()) configBimbo();
+			if (!hasCock())
+			{
+				createCock(25);
+				shiftCock(0, GLOBAL.TYPE_CANINE);
+			}
+			createPerk("Fixed CumQ", 2500); //Ball stats? No, fuck da police.
+		}
+		
+		//Removes 10 ovilium from eggDonorInv, set it to null if no ovilium should be removed
+		public function configEggs(eggDonorInv:Array = null):void
+		{
+			if (eggDonorInv && !kGAMECLASS.infiniteItems())
+			{
+				var i:int = eggDonorInv.length;
+				var eggs:int = 10;
+				//No need to stop if eggs is 0 because then it'll just remove no eggs which is fine
+				while (0<--i)
+				{
+					//Not ovilium, no good
+					if (!(eggDonorInv[i] is Ovilium)) continue;
+					if (eggDonorInv[i].quantity > eggs) eggDonorInv[i].quantity -= eggs;
+					else
+					{
+						eggs -= eggDonorInv[i].quantity;
+						eggDonorInv[i].quantity = 0;
+					}
+					if (eggDonorInv[i].quantity == 0) eggDonorInv.splice(i,1);
+				}
+			}
+			this.impregnationType = "SiegwulfeEggnancy";
+		}
+		
+		public function isDom():Boolean
+		{
+			return hasCock();
+		}
+		
+		public function isEggWulfe():Boolean
+		{
+			return impregnationType == "SiegwulfeEggnancy";
+		}
+		
 		override public function get bustDisplay():String
 		{
 			var bustName:String = "SIEGWULFE";
@@ -132,6 +179,17 @@
 			if(isBimbo()) bustName += "_BIMBO";
 			
 			return bustName;
+		}
+		
+		override public function getDescription(arg:String, arg2:*):String
+		{
+			var lower:String = arg.substr(0, 1).toLowerCase() + arg.substr(1, arg.length);
+			if (lower == "pcname")
+			{
+				var caps:Boolean = arg.substr(0, 1) == 'P';
+				return (caps ? "Bitch" : "bitch");
+			}
+			else return super.getDescription(arg, arg2);
 		}
 	}
 }
