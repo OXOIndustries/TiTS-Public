@@ -1983,6 +1983,12 @@ public function insideShipEvents():Boolean
 		mitziFirstShipApproach();
 		return true;
 	}
+	//Mitzi Vday stuff!
+	if(isValentines() && flags["MITZI_VDAY_LAST_YEAR_ENCOUNTERED"] != getRealtimeYear() && mitziIsCrew() && pc.hasGenitals())
+	{
+		mitziVDayFun();
+		return true;
+	}
 	// Puppyslutmas hook :D
 	if (annoIsCrew() && annoPuppyslutmasEntry())
 	{

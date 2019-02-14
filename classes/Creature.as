@@ -4615,6 +4615,7 @@
 		public function autoXPRando(arg:Number):Number
 		{
 			var multi:Number = (85 + rand(31))/100;
+			if(kGAMECLASS.pc.hasStatusEffect("Cupid’s Kiss")) multi *= 2;
 			return Math.round(arg * multi);
 		}
 		//HP
