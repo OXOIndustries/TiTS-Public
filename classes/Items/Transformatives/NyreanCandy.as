@@ -507,10 +507,10 @@
 						output(" Odd. You pat yourself, feeling a little bloated and much more productive. <b>Your nyrean egg production has increased.</b>");
 						
 						nyreaEggs = (80 + rand(21));
-						target.addStatusValue("Nyrea Eggs", 2, 0.5);
+						target.addStatusValue("Nyrea Eggs", 2, 0.2);
 					}
 					// Get perk
-					else if(!target.hasPerk("Nyrea Eggs"))
+					else if(!target.hasPerk("Nyrea Eggs") && rand(5) == 0)
 					{
 						output(" way much more than normal. Your egg factories are working in overtime until you are incredibly bloated with eggs! While you don’t feel more active than previous, something tells you that this sudden boost was a sign that your body has accepted the fate of being a nyrean egg factory...");
 						

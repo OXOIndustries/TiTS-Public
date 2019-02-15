@@ -471,6 +471,7 @@
 				if(pc.hasHair() && pc.hasPerk("Mane") && changes < changeLimit && rand(3) == 0)
 				{
 					kGAMECLASS.output("\n\nYou feel the hairline on the back of your neck receding to something more in line with the back of your head. <b>You no longer have a mane.</b>");
+					kGAMECLASS.output("\n\n(<b>Perk Lost: Mane</b>)");
 					changes++;
 					pc.removePerk("Mane");
 				}
@@ -496,6 +497,7 @@
 				if(pc.hasPerk("Regal Mane") && changes < changeLimit && rand(3) == 0)
 				{
 					kGAMECLASS.output("\n\nA tingling sensation suddenly rushes through the base of your mane. Like a pile of dying weeds, it quickly droops down and falls off your shoulders. When the feeling subsides, your shoulders seem a bit lighter around the collar. <b>You no longer have a royal-looking mane around your neck.</b>");
+					kGAMECLASS.output("\n\n(<b>Perk Lost: Regal Mane</b>)");
 					changes++;
 					pc.removePerk("Regal Mane");
 				}
@@ -503,8 +505,24 @@
 				if (pc.hasPerk("Hollow Bones") && changes < changeLimit && rand(3) == 0)
 				{ // racialPerkUpdateCheck: removal of Icy Veins perk with the loss of fluffy fur (fork on still having fur but not fluffy flag?).
 					kGAMECLASS.output("\n\nYou feel somewhat heavy and clumsy as your bones turn solid again, losing their hollow avian structure.");
+					kGAMECLASS.output("\n\n(<b>Perk Lost: Hollow Bones</b>)");
 					changes++;
 					pc.removePerk("Hollow Bones");
+				}
+				
+				if (pc.hasPerk("Nyrea Eggs") && changes < changeLimit && rand(3) == 0)
+				{
+					kGAMECLASS.output("\n\nYou are interrupted by a shifting in your insides as a bubbling sensation fills your loins, and then... nothing. Strangely, you feel as if something has changed. Double-checking your codex, you find that your [pc.cumNoun] is no longer capable of producing eggs");
+					if(pc.fertility() > 0) kGAMECLASS.output(" as it once had");
+					if(pc.hasStatusEffect("Nyrea Eggs"))
+					{
+						kGAMECLASS.output("... at least not permanently so");
+						pc.setStatusValue("Nyrea Eggs", 4, 0);
+					}
+					kGAMECLASS.output(".");
+					kGAMECLASS.output("\n\n(<b>Perk Lost: Nyrea Eggs</b>)");
+					pc.removePerk("Nyrea Eggs");
+					changes++;
 				}
 				
 				//Lose "Special Scrotum" Effect:

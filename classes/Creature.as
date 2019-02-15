@@ -11490,8 +11490,8 @@
 					break;
 				case GLOBAL.TYPE_SAURMORIAN:
 					cocks[slot].cockColor = (findFirstOfcType(GLOBAL.TYPE_SAURMORIAN) < 0 ? RandomInCollection("black", "dark blue", "dark red", "purple") : cocks[findFirstOfcType(GLOBAL.TYPE_SAURMORIAN)].cockColor);
-					if(cocks[slot].cLengthRaw < 5) cocks[slot].cLengthRaw = 8;
-					if(cocks[slot].cThicknessRatioRaw < 0.833) cocks[slot].cLengthRaw = 1.125;
+					if(cocks[slot].cLengthRaw < 5) cocks[slot].cLengthRaw = (hasPerk("Hung") ? 10 : (hasPerk("Mini") ? 6 : 8));
+					if(cocks[slot].cThicknessRatioRaw < 0.833) cocks[slot].cThicknessRatioRaw = 1.125;
 					cocks[slot].addFlag(GLOBAL.FLAG_BLUNT);
 					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
 					cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
