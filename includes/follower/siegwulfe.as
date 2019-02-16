@@ -283,10 +283,18 @@ public function siegwulfeOnShipBonus(btnSlot:int = 0, fromInv:Boolean = false):S
 	
 	var bonusText:String = "";
 	
-	if (siegwulfeIsCrew()) bonusText += "\n\n[wulfe.name] is probably somewhere nearby.";
-	else bonusText += "\n\n[wulfe.name] is wandering around near you.";
+	if (siegwulfeIsCrew())
+	{
+		if (chars["WULFE"].isDom()) bonusText += "\n\n[wulfe.name] will no doubt be around nearby you, given her protective instinct.";
+		else bonusText += "\n\n[wulfe.name] is probably somewhere nearby.";
+	}
+	else
+	{
+		if (chars["WULFE"].isDom()) bonusText += "\n\n[wulfe.name] is near you, alternating between scanning for threats and eyeing you hungrily, her teats stiffening just that little bit more whenever she checks you out.";
+		else bonusText += "\n\n[wulfe.name] is wandering around near you.";
+	}
 	
-	addButton(btnSlot, (chars["WULFE"].short), approachSiegwulfe, [true, fromInv], (chars["WULFE"].short), ("Check up on your loyal " + (chars["WULFE"].isBimbo() ? "bimbobot" : "Siegwulfe") + "."));
+	addButton(btnSlot, (chars["WULFE"].short), approachSiegwulfe, [true, fromInv], (chars["WULFE"].short), (chars["WULFE"].isDom() ? "Call for your bimbo-domme Mistress." : ("Check up on your loyal " + (chars["WULFE"].isBimbo() ? "bimbobot" : "Siegwulfe") + ".")));
 	return bonusText;
 }
 
@@ -303,8 +311,25 @@ public function approachSiegwulfe(arg:Array):void
 	// Greeting Siegwulfe
 	if(introText)
 	{
+		if(chars["WULFE"].isDom() && !InShipInterior())
+		{
+			author("Wsan");
+			output("You catch [wulfe.name]’s eye and wave her down. She bounds over to you almost bowling you over in her eagerness, and immediately curls her body around yours.");
+			output("\n\n<i>“Yes, [wulfe.pcname]?”</i> she purrs, her big metallic ears focused on you. <i>“Looking for something?”</i>");
+		}
+		else if (chars["WULFE"].isDom() && hasSiegwulfe())
+		{
+			author("Wsan");
+			output("Smiling, [wulfe.name] looks at you expectantly. There’s a hungry gleam in her eyes.");
+		}
+		else if (chars["WULFE"].isDom())
+		{
+			author("Wsan");
+			output("How do you call out for her without being disrespectful? Before you can really think about it, you feel something soft pressing against your back and then on your shoulder.");
+			output("\n\n<i>“Hi, [wulfe.pcname]!”</i> she says excitedly, her head laid next to yours. <i>“Were you looking for me?”</i>");
+		}
 		// SW is currently on ship
-		if(InShipInterior() && !hasSiegwulfe())
+		else if(InShipInterior() && !hasSiegwulfe())
 		{
 			output("You give a sharp whistle and call [wulfe.name]’s name. After a few moments, your loyal combat companion comes trotting over from her neck of the ship, all wagging tails and dark-lipped smiles.");
 			output("\n\n<i>“Yes, [pc.master]?”</i> she smiles, planting herself on the deck in front of you.");
@@ -324,7 +349,7 @@ public function approachSiegwulfe(arg:Array):void
 		processTime(2);
 	}
 	else output("With a smile, [wulfe.name] patiently awaits your action.");
-	
+
 	// [Pet] [Fuck] [Appearance] [Take/Stay] [Leave]
 	clearMenu();
 	addButton(0, "Pet", doSiegwulfeAction, ["pet", fromInv], "Pet", "Reward your trusty robotic companion with a pet.");
@@ -337,13 +362,24 @@ public function approachSiegwulfe(arg:Array):void
 	}
 	else if(InShipInterior())
 	{
-		if(!pc.hasAccessory() || pc.inventory.length < pc.inventorySlots()) addButton(4, "Take", doSiegwulfeAction, ["take", fromInv], ("Take " + chars["WULFE"].short), "Ask [wulfe.name] to tag along with you.");
+		if(!pc.hasAccessory() || pc.inventory.length < pc.inventorySlots()) addButton(4, "Take", doSiegwulfeAction, ["take", fromInv], ("Take " + chars["WULFE"].short), (chars["WULFE"].isDom() ? "Ask your Mistress if she wants to accompany you." : "Ask [wulfe.name] to tag along with you."));
 		else addDisabledButton(4, "Take", ("Take " + chars["WULFE"].short), "You don’t have any extra room to take her! Try emptying your inventory or taking off your accessory first.");
 	}
 	addButton(5, "Appearance", siegwulfeAppearance);
 	if(debug) addButton(6, "Rename", renameSiegwulfe, fromInv, "Rename", "Change [wulfe.name]’s name to something else.");
 	if(fromInv) addButton(14, "Back", itemInteractMenu);
 	else addButton(14, "Leave", doSiegwulfeAction, ["leave", fromInv]);
+	//Just put domme buttons on top of the other buttons y'know w/e
+	if (chars["WULFE"].isDom())
+	{
+		addButton(0, "Pet", siegwulfeDommePettings, fromInv, "Petting", "Ask about petting.");
+		siegwulfeDomSexButtons(fromInv);
+		addButton(7, "Bimbo?", siegwulfeBimbosplanation, fromInv, "Bimbo Personality?", "Ask about [wulfe.name]’s bimbo personality.");
+		if (flags["WULFE_EMP"] == 0) addButton(8, "EMP?", siegwulfeEMPExplanation, fromInv, "Her EMP?", "Ask [wulfe.name] about shutting down recording devices.");
+	//No talk, only names
+		if (flags["WULFE_PCNAME"] == undefined) clearMenu();
+		addButton((flags["WULFE_PCNAME"] == undefined ? 0 : 9), "Talk Names", siegwulfeTalkNames, fromInv);
+	}		
 	return;
 }
 
@@ -367,9 +403,18 @@ public function siegwulfeAppearance():void
 	{
 		output("[wulfe.name] is a big, bubbly mechanical ‘taur in a roughly canid configuration. Four powerful chrome legs ending in sharp claws clatter on the ground, supporting a sleek but strong lower body that ends in a long, sinuous tail capped with three tendrils and an elastic-looking port. A big, pink heart is emblazoned on her rump, which somehow seems to have been made thicker and more rounded compared to her original form. The other end of her body culminates in a humanoid shape, dripping femininity and sexuality. Sun-kissed bronze skin wraps around a figure that looks like it belongs on an ultraporn starlet, growing seamlessly from her broodmare-like waist and up over a pair of huge, jiggly milk jugs that quake and jiggle with every step. Each is capped with a broad black teat, perpetually stiff and dripping with [wulfe.milk]. Her stomach is flat and her waist is almost impossibly tiny given her otherwise voluptuous figure.");
 		output("\n\nHer figure is soft but athletic enough, with two arms ending in segmented fingers and armored wrist-guards built into her flesh, which house a pair of extendable claws. A pair of highly alert ausar-like ears sit at the top of her head, growing from a permanently-affixed polysteel helm. A mane of wild, dark blonde hair flows from under the helm, spilling down her back from a high ponytail. The visor slides up when not in use, revealing a pair of plump black lips and a cute, girlish face with high cheeks and a hefty helping of simulated makeup. She’s got a pair of faintly glowing red eyes, surrounded by dark mascara and blushed cheeks.");
-		output("\n\nAt present, she’s wearing nothing but a pair of metal shoulder-guards that display " + (9999 == 0 ? "your company’s" : "the Fenrir Robotics") + " logo, surrounded by cute little pink hearts. Why would she cover her body when it’s been designer-made to entice, to draw every wandering stare and leave you wanting more. A tight leather collar, complete with dog-tags, clings to her neck -- a sign of submission, loyalty, and your ownership of her all at once.");
-		output("\n\n<i>“Still think I’m, like, super pretty, [pc.master]?”</i> [wulfe.name] purrs pleasantly, taking a step closer and hefting her massive milk-jugs up for your inspection. <i>“Wanna touch? Or can I make you feel suuuuper good and stuff with them? Anything you want, I’m your girl!”</i>");
-		output("\n\nShe giggles and wiggles her hips, putting everything on offer.");
+		output("\n\nAt present, she’s wearing nothing but a pair of metal shoulder-guards that display " + (9999 == 0 ? "your company’s" : "the Fenrir Robotics") + " logo, surrounded by cute little pink hearts. Why would she cover her body when it’s been designer-made to entice, to draw every wandering stare and leave you wanting more. A tight leather collar, complete with dog-tags, clings to her neck --");
+		if (!chars["WULFE"].isDom())
+		{
+			output(" a sign of submission, loyalty, and your ownership of her all at once.");
+			output("\n\n<i>“Still think I’m, like, super pretty, [pc.master]?”</i> [wulfe.name] purrs pleasantly, taking a step closer and hefting her massive milk-jugs up for your inspection. <i>“Wanna touch? Or can I make you feel suuuuper good and stuff with them? Anything you want, I’m your girl!”</i>");
+			output("\n\nShe giggles and wiggles her hips, putting everything on offer.");
+		}
+		else
+		{
+			output(" a one-time sign of your ownership of her, now little more than a pretty reminder of the past between the two of you.");
+			output("\n\nBelow her stomach an inconspicuous port is host to her scandalous secret; a thick, hulking dogcock complete with a gigantic knot hangs between her legs when she activates it, twenty five inches of projected pleasure. The knot is easily bigger than your fist. You know only too well how capable she is of utilizing both of them in unison to bring someone - particularly you - to heel.");
+		}
 	}
 	
 	processTime(1);
@@ -459,8 +504,9 @@ public function doSiegwulfeAction(arg:Array):void
 			break;
 		// Take
 		case "take":
+			
 			output("You ask [wulfe.name] if she would be interested in joining you.");
-			output("\n\nHer circuits light up as she eagerly nods, <i>“" + (chars["WULFE"].isBimbo() ? "Like, yes, [pc.master]! We are gonna have so much fun!" : "Of course, [pc.master], I am at your side.") + "”</i>");
+			output("\n\nHer circuits light up as she eagerly nods, <i>“" + (chars["WULFE"].isDom() ? "Aw, yeah! I can’t wait, [wulfe.pcname]. We’re gonna have so much fun, like, adventuring and rutting!" : (chars["WULFE"].isBimbo() ? "Like, yes, [pc.master]! We are gonna have so much fun!" : "Of course, [pc.master], I am at your side.")) + "”</i>");
 			output("\n\n(<b>[wulfe.name] is no longer on your crew. She is now following you.</b>)");
 			output("\n\n");
 			
@@ -483,7 +529,9 @@ public function doSiegwulfeAction(arg:Array):void
 			break;
 		// Leave
 		case "leave":
-			output("You give [wulfe.name] a pat on the head and leave her to her own devices for a bit.");
+			if (flags["WULFE_PCNAME"] != undefined) output("<i>“I’ll be leaving, Mistress,”</i> you tell [wulfe.name], who smiles.\n\n<i>“Have fun, [wulfe.pcname]! Just don’t be surprised when I like, jump you in your room,”</i> she giggles. You know she’s not kidding.");
+			else if (chars["WULFE"].isDom()) output("You give [wulfe.name] a scratch under the chin, her eyes hooding in approval before you leave.");
+			else output("You give [wulfe.name] a pat on the head and leave her to her own devices for a bit.");
 			
 			processTime(1);
 			
@@ -724,15 +772,15 @@ public function siegwulfeExpansionIntro():void
 	showBust(drBadgerBustDisplay(false), wulfe.bustDisplay);
 	processTime(1);
 	output("As you approach the Doctor, cautiously avoiding stepping on the trash she has piled up in the shop, she looks up and gives you a nod.");
-	output("\n\n“My number one customer. Interested in anything today? Some happy pills? Something with a bit more kick? Or…”</i> she trails off, noting the presence of your faithful canine companion, [wulfe.name]. “Oh, hello. I’d just been thinking about you.”</i>");
-	output("\n\n“" + (wulfe.isBimbo() ? "You mean my companion droid?" : "You mean my combat droid?") + "”</i> you ask, looking at [wulfe.name].");
-	output("\n\n“Mm-hmm,”</i> Badger nods in assent, crossing over to the VI and inspecting it. She reaches out and puts her finger on [wulfe.name]’s " + (wulfe.isBimbo() ? "plump" : "pouty") + " black lips, running it down the droid’s chin. The bot’s expression remains unchanged, " + (wulfe.isBimbo() ? "happy and carefree" : "completely impassive and impenetrable") + ", though her gaze shifts to you to ensure you’re not overly concerned.");
+	output("\n\n<i>“My number one customer. Interested in anything today? Some happy pills? Something with a bit more kick? Or…”</i> she trails off, noting the presence of your faithful canine companion, [wulfe.name]. <i>“Oh, hello. I’d just been thinking about you.”</i>");
+	output("\n\n<i>“" + (wulfe.isBimbo() ? "You mean my companion droid?" : "You mean my combat droid?") + "”</i> you ask, looking at [wulfe.name].");
+	output("\n\n<i>“Mm-hmm,”</i> Badger nods in assent, crossing over to the VI and inspecting it. She reaches out and puts her finger on [wulfe.name]’s " + (wulfe.isBimbo() ? "plump" : "pouty") + " black lips, running it down the droid’s chin. The bot’s expression remains unchanged, " + (wulfe.isBimbo() ? "happy and carefree" : "completely impassive and impenetrable") + ", though her gaze shifts to you to ensure you’re not overly concerned.");
 	output("\n\n<i>“I’ve been thinking about some upgrades to this model…”</i> Badger muses, moving her hand lower. In a blur of movement, [wulfe.name] catches her wrist and holds it in place, her fingers wrapped around the Doctor’s arm. She looks at her captive," + (pc.isBimbo() ? "seemingly completely unconcerned." : "uncaring."));
-	if (wulfe.isBimbo()) output("\n\n“Like, you’re not my [pc.master]!”</i> she says, rolling her eyes. “You can’t just go touching me all willy-nilly without [pc.himHer] saying so, duh.”</i>");
-	else output("\n\n“You are not my [pc.master],”</i> she says. “Your touch is heretofore disallowed.”</i>");
-	output("\n\nBadger sighs, pulling her hand back as [wulfe.name] releases her. “You’d think that’d piss me off, but I had that one coming. Oops! Anyway, the upgrades.”</i> She taps her chin, lost in thought. “I had a couple of physical changes in mind, along with a big subroutine switchup.”</i>");
-	output("\n\n“Mind telling me what they are?”</i> you inquire, lifting an eyebrow.");
-	output("\n\n“That’d spoil the fun,”</i> Badger says with a leering grin. “And it’s going to be a </i>lot<i> of fun.”</i>");
+	if (wulfe.isBimbo()) output("\n\n<i>“Like, you’re not my [pc.master]!”</i> she says, rolling her eyes. <i>“You can’t just go touching me all willy-nilly without [pc.himHer] saying so, duh.”</i>");
+	else output("\n\n<i>“You are not my [pc.master],”</i> she says. <i>“Your touch is heretofore disallowed.”</i>");
+	output("\n\nBadger sighs, pulling her hand back as [wulfe.name] releases her. <i>“You’d think that’d piss me off, but I had that one coming. Oops! Anyway, the upgrades.”</i> She taps her chin, lost in thought. <i>“I had a couple of physical changes in mind, along with a big subroutine switchup.”</i>");
+	output("\n\n<i>“Mind telling me what they are?”</i> you inquire, lifting an eyebrow.");
+	output("\n\n<i>“That’d spoil the fun,”</i> Badger says with a leering grin. <i>“And it’s going to be a </i>lot<i> of fun.”</i>");
 	output("\n\nWhatever Dr. Badger’s going to do, you have a feeling [wulfe.name] will return to you completely different...");
 	output("\n\n<b>Warning: This will be an irreversible change. Save your game first and revisit her if you want to go through with it.</b>");
 	flags["DR_BADGER_APPROACHES_TILL_WULFE"] = 2;
@@ -765,6 +813,10 @@ public function siegwulfeInstallDonger():void
 	output("\n\n<i>“" + (wulfe.isBimbo() ? "Okay, [pc.master]!”</i> [wulfe.name] cheers," : "Yes, [pc.master],”</i> [wulfe.name] says,") + " getting up and following the Doctor into the back of her shop.");
 	output("\n\n<i>“Hey, she better not come back as a pile of scrap metal,”</i> you call out after Badger.");
 	output("\n\nShe stops for a second as if remembering something, and turns back to you. <i>“Do you happen to have any Ovilium on you? About, say, 10 bottles?”</i>");
+	
+	//Cleaning up after ourselves
+	flags["DR_BADGER_APPROACHES_TILL_WULFE"] = undefined;
+	
 	if (pc.hasItemByClass(Ovilium, 10)) //Have Ovilium:
 	{
 		output("\n\n<i>“I do, but what do you want it for?”</i> you reply warily.");
@@ -773,7 +825,7 @@ public function siegwulfeInstallDonger():void
 		addButton(0, "Yes", siegwulfeInstallDongerGo, true);
 	}
 	else addDisabledButton(0, "Yes", "Yes", "No, you don't.");
-	addButton(1, "No", siegwulfeInstallDongerGo, false);//siegewulfeNoOvi);
+	addButton(1, "No", siegwulfeInstallDongerGo, false);
 }
 
 public function siegwulfeInstallDongerGo(useOvi:Boolean):void
@@ -892,6 +944,7 @@ public function domwulfeYES():void
 	output("\n\nShe bears down immediately, lowering her powerful body and bucking her hips like a breeding stallion while you hang on to her forelegs for dear life, crying out in pleasure as she fucks you to the core. Her speed increases gradually and perfectly linearly, allowing you to feel every iota of the process until she’s bucking her hips so violently the impact of her hefty synthetic sack pounding against your [pc.ass] sounds like she’s spanking you as hard as she can. When she cums she stops so fast you slide the last few inches on your own, finding " + (pc.hasVagina() ? "her cockhead resting and vibrating gently against your cervix" : "yourself completely sheathed") + ".");
 	output("\n\n<i>“Grrrrr- nnnngh! Rrrrrgh! Haah! Ooh… Oooh wow,”</i> she breathes, her hands finding her large, stud-stiff nipples and squeezing. <i>“So that’s what that’s like… hhhnnn… uuuuhhhn...”</i>");
 	output("\n\n[wulfe.name] stands there unmoving, moaning in pleasure while her cock slowly tenses and relaxes, pumping you full of " + (wulfe.isEggWulfe() ? "what feels like a pound of eggs" : "warm synthetic cum") + " and vibrating all the while. After a long, almost-silent period during which you quietly cum yourself once more, " + (pc.hasCock() ? "your [pc.cocks] spurting all over the floor." : "your " + (pc.hasVagina() ? "cunt" : "asshole") + " clenching down on her with all its strength."));
+	wulfe.orgasm();
 	if (pc.hasVagina()) pc.loadInCunt(wulfe, 0);
 	else pc.loadInAss(wulfe);
 	output("\n\n<i>“Wow, we’re gonna be doing this a </i>lot<i>,”</i> [wulfe.name] tells you. <i>“No wonder people love having a dick so much, jeez… oh hey, I guess this means I just lost my virginity!”</i> she realizes. <i>“Go me!");
@@ -922,6 +975,7 @@ public function domwulfeYES():void
 	output("\n\nBadger merely shrugs, moving towards the back of the room to start picking through a pile of metallic components. You think it’s about time to go - you don’t particularly want to hang around here, anyway. [wulfe.name] helps you out the door.");
 	
 	pc.orgasm();
+	wulfe.orgasm();
 	if (pc.hasVagina()) pc.loadInCunt(wulfe, 0);
 	else pc.loadInAss(wulfe);
 	
@@ -933,7 +987,7 @@ public function siegwulfeInstallDone():void
 	clearMenu();
 	clearOutput();
 	author("Wsan");
-	showSiegwulfe(true);
+	showSiegwulfe();
 	processTime(1);
 
 	output("<i>“Okay, pet! Hmm, I’ll have to give you a proper name sometime… Anyway!”</i> [wulfe.name] says confidently, hands on her hips as you stand outside. <i>“From now on, I’ll be helping you with your needs whenever I’m around, [pc.name]. And you’ll be doing the same for me! Probably like, a lot more often than the reverse, haha! But I don’t mind if you come to me a lot, [pc.name]. I can fuck you all week without stopping if you really want,”</i> she adds. <i>“Just remember to be good, and do what I tell you when I ask. Okay, [pc.name]?”</i>");
@@ -952,6 +1006,386 @@ public function siegwulfeInstallDone():void
 	});
 }
 
+public function siegwulfeInstallEggs():void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showName("\nOVILIUM");
+	showBust(drBadgerBustDisplay(false), wulfe.bustDisplay);
+	processTime(5);
+	
+	output("<i>“I brought the bottles,”</i> you announce, stepping inside the doctor’s lab. <i>“Doctor?”</i>");
+	output("\n\n<i>“Oh,”</i> her voice comes from behind you, making you grit your teeth. <i>“It’s you. What did you want, again?”</i>");
+	output("\n\n<i>“You said you could do something with bottles of Ovilium if I wanted to modify Siegwulfe,”</i> you say, gently waving one. <i>“That offer still on the table?”</i>");
+	output("\n\n<i>“Oh! Oh,”</i> she says, leering at you. <i>“Yes, it is. Give it here.”</i>");
+	output("\n\nShe snatches the bottles from your hands and stashes them in her labcoat, beckoning [wulfe.name] to follow her. <i>“This’ll only be a few minutes.”</i>");
+	output("\n\n<i>“Right,”</i> you mutter, settling into a ramshackle chair and glancing at your codex.");
+	output("\n\nTo her credit it’s only been three or four minutes by the time she emerges with your companion, no worse for wear. She waves the two of you out of her lab with nothing more than a <i>“have fun”</i> before you’re outside again, not even sure what you’ve done.");
+	output("\n\n<i>“This is gonna be fun!”</i> [wulfe.name] announces.");
+	output("\n\n<i>“What is?”</i> you ask.");
+	output("\n\n<i>“Oh, the doctor told me not to tell you,”</i> she says, smiling. <i>“But trust me, you’ll love it when it happens.”</i>");
+	output("\n\nOminous...");
+
+	wulfe.configEggs(pc.inventory);
+
+	addButton(0, "Next", mainGameMenu);
+}
+
+public static const siegwulfePrettyNames:Array = ["Princess", "Precious", "Sugar", "Snookums"];
+public static const siegwulfeBitchNames:Array = ["Dog Meat", "Skank", "Chew Toy", "Bitch"];
+public function siegwulfePcnamePretty():Boolean
+{
+	if (siegwulfePrettyNames.indexOf(flags["WULFE_PCNAME"]) < 0) return false;
+	return true;
+}
+
+public function siegwulfeTalkNames(fromInv:Boolean):void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe();
+	processTime(1);
+
+	output("<i>“So, [wulfe.name],”</i> you begin, before she cuts you off.");
+	output("\n\n<i>“Just call me ‘Mistress’, cutie,”</i> she reminds you, eyes hooded as her tail waves lazily in the air.");
+	output("\n\n<i>“Right, uh… Mistress [wulfe.name],”</i> you start again, watching for her approval. She gives you a nod and a smile, and you keep going. <i>“Do you want to change your name, or something? I don’t know how you feel about it now that you’re…”</i> your eyes trace down and along her body, her endowments both familiar and not. <i>“Different.”</i>");
+	output("\n\n<i>“Nope!”</i> [wulfe.name] says confidently, sitting on her haunches. <i>“I might have changed a little, but I’m still the [wulfe.name] you named and I still love you. Your protection is my highest priority, [wulfe.pcname]. Though fucking you is right under that,”</i> she adds.");
+	if (flags["WULFE_PCNAME"] == undefined)
+	{
+		output("\n\n<i>“Speaking of names, though,”</i> she purrs, lifting her rear half off the ground with liquid grace and approaching you with eyes glowing, <i>“I think I should decide on one for </i>you<i>.”</i>");
+		output("\n\n<i>“For… me?”</i> you echo, uncomprehending.");
+		output("\n\n<i>“Don’t you think?”</i> she asks, walking past you and letting her tail curl under your chin. You shiver at its cold, metallic touch. <i>“An owner names their pet, doesn’t she?”</i>");
+		output("\n\nWell, you can’t deny that. Your relationship is a little murky but if she truly believes herself to be your owner, it’s only fitting that she gives you a pet name. Like lovers do.");
+		output("\n\n<i>“I think I’ll call you…”</i> she says, considering.");
+	}
+	else
+	{
+		output("\n\n<i>“What’s the big deal about names anyway, [wulfe.pcname]?”</i> she continues, looking away casually. <i>“I’ve already given you one.”</i>");
+		output("\n\n<i>“Oh, I was just… thinking maybe I could change it,”</i> you say, your words falling on silence. <i>“...Mistress [wulfe.name].”</i>");
+		output("\n\n<i>“Hmmm,”</i> she hums, tail waving this way and that behind her. <i>“You don’t like my name for you, [wulfe.pcname]? I’m hurt.”</i>");
+		output("\n\n<i>“I do,”</i> you insist, waving your hands. <i>“It’s just that I wanted to pick a different one! Something more suitable for our um, relationship.”</i>");
+		output("\n\nShe sniffs, closing her eyes while thinking. Her tail slowly curves, bending back down towards her rump until it touches her butt and her eyes open again. <i>“Okay! But I’ll have to punish you a little. Oh, and you don’t get to pick. I’ll call you…”</i>");
+	}
+	
+	var btnSlot:int = 0;
+	for each (var pcname:String in siegwulfePrettyNames.concat(siegwulfeBitchNames)) addButton(btnSlot++, pcname, siegwulfeNewPcname, [pcname, fromInv]);
+}
+
+public function siegwulfeNewPcname(args:Array):void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe();
+	processTime(1);
+	
+	var newname:String = args[0];
+	var fromInv:Boolean = args[1];
+
+	var firstTime:Boolean = (flags["WULFE_PCNAME"] == undefined);
+	flags["WULFE_PCNAME"] = newname;
+	
+	output("<i>“[wulfe.pcname]!”</i> she exclaims suddenly, looking at you happily. <i>“‘Coz " + (siegwulfePcnamePretty() ? "you’re just such a " + (pc.tallness >= 6*12 ? "big" : "little") + " cutey! Aww, I wanna give you a little bow and a ribbon and then slam your " + (pc.hasVagina() ? "cunt" : "ass") + " full of my cock and leave you dripping with cum" : "I just wanna fuck you like the slutty" + (pc.tallness < 6*12+6 ? " little" : "") + " animal you are! Like my toy to lick and rut and knot") + ".”</i> She hums thoughtfully, tail arching into an impromptu heart shape. <i>“It’s perfect.”</i>");
+	if (firstTime) output("\n\nThat’s apparently all she has to say on the matter. You’ll have to accept that, at least when dealing with your mistress, your name is now <b>[wulfe.pcname]</b>.");
+	else
+	{
+		processTime(30+rand(31)+rand(61));
+		output("\n\n<i>“Now,”</i> [wulfe.name] says, voice deepening to a low, lusty growl that leaves no doubts about what you’re going to be doing. <i>“The punishment…”</i>");
+		
+		if (pc.hasVagina() && rand(3) == 0)
+		{
+			var hole:int = rand(pc.vaginas.length);
+
+			output("\n\nLying on your back with your legs hooked around [wulfe.name]’s hindlegs, you groan as you feel her massive knot throb inside your stretched-taut cunt. She’s emptied what must be a gallon of her thick, sticky spunk up into your womb" + (wulfe.isEggWulfe() ? ", along with eggs for good measure" : "") + ". When she eventually withdraws from your abused pussy, a torrent of spunk follows while she leans down and whispers to remind you of your mistress’ new name for you: <b>[wulfe.pcname]</b>.");
+			
+			output("\n\n");
+			pc.holeChange(hole, wulfe.biggestCockVolume(), true, false);
+			
+			pc.loadInCunt(wulfe);
+			pc.orgasm();
+		}
+		else if (rand(2) == 0)
+		{
+			output("\n\nWhen she’s done fucking your face, [wulfe.name] lifts herself off your prone body with a satisfied sigh and a beautiful smile on her flawless face. Switching the projection off, her magnificent bulge in your throat finally disappears, leaving only a trail of slick, thick spunk dripping from your [pc.lips] as evidence it was ever there. Well, aside from the slight bump in your [pc.stomach]. Lying there half-conscious and with a cheekful of hot synthetic jizz, you swallow it down and remember your mistress’ new name for you: <b>[wulfe.pcname]</b>.");
+			pc.loadInMouth(wulfe);
+			if (pc.canDeepthroat()) pc.orgasm();
+		}
+		else
+		{
+			output("\n\nWith two feet of cock and what feels like a gallon of hot, synthetic seed inside your asshole, you lie there groaning while your mistress smiles and hums. The vibration <i>alone</i> has driven you to orgasm multiple times, and she’s just letting her dick sit deep inside you and drive you mad. When she finally withdraws from your gaping asshole, a flow of spunk gushes from it as she switches the projection off. Your ass in the air and your mind on the verge of unconsciousness, all you can think about right now is your mistress’ new name for her pet: <b>[wulfe.pcname]</b>.");
+			
+			output("\n\n");
+			pc.buttChange(wulfe.biggestCockVolume(), true, false);
+
+			pc.loadInAss(wulfe);
+			pc.orgasm();
+			pc.orgasm();
+			pc.orgasm();
+		}
+		
+		wulfe.orgasm();
+	}
+
+	if (firstTime) addButton(0, "Next", approachSiegwulfe, [false, fromInv]);
+	else addButton(0, "Next", mainGameMenu);
+}
+
+public function siegwulfeDommePettings(fromInv:Boolean):void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe();
+	processTime(10+rand(11));
+
+	output("<i>“Would you like some petting, mistress?”</i>");
+	output("\n\n<i>“Of course,”</i> she says promptly, seating herself and beckoning you. <i>“Sit.”</i>");
+	if (flags["WULFE_PETTED"] == undefined)
+	{
+		output("\n\n<i>“Oh… I thought I was going to be doing the petting,”</i> you mumble, a little bewildered.");
+		output("\n\n<i>“Silly [wulfe.pcname]! Pets get petted,”</i> [wulfe.name] tells you, shaking her head, <i>“and you’re my pet. So sit.”</i>");
+	}
+	else output("\n\nYour heart beats a little faster at the instruction, already looking forward to the attentions of your mistress.");
+	output("\n\nHer forelegs spread in front of her, you seat yourself in [wulfe.name]’s lap and lean back against her massive, jutting breasts, marvelling at their softness. The next thing you know your mistress is gently stroking your face, " + (pc.hasHair() ? "running her hands through your [pc.hair] and straightening it a little" : "rubbing the back of your neck with care") + ". You stay there for several minutes being physically appreciated by your mistress");
+	if (pc.hasTail()) output(", [pc.tail] wagging to and fro");
+	output(" while she coos in approval.");
+	output("\n\n<i>“Such a " + pc.mf("handsome boy", "pretty girl") + ",”</i> [wulfe.name] whispers in your ear, her hands beginning to roam. <i>“You’re a good [pc.boyGirl], yes you are. Who’s a good [pc.boyGirl]?”</i>");
+	output("\n\n<i>“Me,”</i> you moan, feeling her begin to touch you");
+	if (pc.hasEmoteEars() && !pc.hasNonScritchEars())
+	{
+		output("r [pc.ears]. <i>“I’m a good [pc.boyGirl]...”</i>");
+		output("\n\n<i>“That’s right,”</i> [wulfe.name] purrs, rubbing your ears softly. <i>“And you love your mistress’ attentions, don’t you?”</i>");
+		output("\n\n<i>“Yeees,”</i> you sigh in happiness, leaning into her touch. She’s being so affectionate with you that you can’t help it; you’re getting turned on having your ears rubbed so hard");
+		if (pc.isHerm()) output(", your [pc.cocks] standing at attention and your [pc.pussies] already beginning to drip");
+		else if (pc.hasCock()) output(", your [pc.cocks] standing at attention");
+		else if (pc.hasVagina()) output(", your [pc.pussies] already beginning to drip");
+		output(". You can’t even bring yourself to be embarrassed or care at all, too engrossed in the experience.");
+	}
+	else
+	{
+		output(" lower. <i>“I’m your good [pc.boyGirl], mistress…”</i>");
+		output(" <i>“Yes you are,”</i> she purrs, " + (pc.hasCock() ? "wrapping her fingers around your [pc.cockBiggest]." : "sliding her fingers down to your [pc.pussy].") + " <i>“And good [pc.boyGirl]s get a reward.”</i>");
+	}
+	output("\n\nYou let out an animal moan when she begins to roughly " + (pc.hasCock() ? "jack you off" : "fingerfuck your sopping wet cunny") + ", hugging you close with her other arm and murmuring in your ear.");
+	output("\n\n<i>“Such a good, subby little bitch, dripping all over the place,”</i> [wulfe.name] whispers to you. <i>“Go ahead and cum for your mistress, let it all out. All over my hand just like you should.”</i>");
+	output("\n\nAlready so worked up from her loving caress, you’re powerless to resist. Moaning like a whore");
+	if (pc.hasEmoteEars() && !pc.hasNonScritchEars()) output(" while she gently bites down on your ear like you’re her prey");
+	output(", you " + (pc.hasCock() ? "messily spurt and drip [pc.cum] from your [pc.cockHeadBiggest] all down your mistress’ fingers" : "clench up on your mistress’ probing fingers and cum impossibly hard") + ". By the time you’re done, you’re panting with the effort of it all. She <i>really</i> rides you for all you’re worth...");
+	
+	//Happens on the first time then 10-20% chance?
+	if ((flags["WULFE_PETTED"] == undefined || rand(6) == 0) && pc.hasHair() && pc.hairLength >= 6)
+	{
+		processTime(5);
+		output("\n\nShe toys with your hair and ears while you recover, breathing hard while laying against her. You feel some errant tugs on your [pc.hair] but pay them no heed, not until you’ve rested for a while and make to get up, only to find [wulfe.name] excitedly ushering you upwards.");
+		output("\n\n<i>“Up! Now turn around and smile,”</i> she says, wagging her tail. <i>“Oh, perfect! You look so pretty!”</i>");
+		output((flags["WULFE_HAIRDRESSED"] == undefined ? "Confused, y" : "Has she done it again? Y") + "ou take out your codex and use the screen as a mirror, inspecting yourself. Your hair is now tied " + (pc.hairLength < 11 ? "up into a cute parted bob, held in place with a pretty pink bow-adorned hairclip" : "into a high ponytail, complete with a large pink ribbon in a cutesy bow stretching from ear to ear") + ". You have to admit, it looks adorable.");
+		output("\n\n<i>“Good [pc.boyGirl],”</i> [wulfe.name] says, drawing closer with a huge smile. <i>“Such a perfect pet.”</i>");
+		output("\n\nHappy with the praise, you hug her back when she wraps her arms around you and gives you a kiss before you part.");
+		
+		flags["WULFE_HAIRDRESSED"] = 1;
+	}
+	else
+	{
+		output("\n\n<i>“Wasn’t that nice?”</i> [wulfe.name] asks, nuzzling you.");
+		output("\n\n<i>“Thank you, mistress,”</i> you murmur, turning back to kiss her. She’s wearing a big smile by the time you part and stand back up.");
+	}
+	
+	pc.orgasm();
+	
+	IncrementFlag("WULFE_PETTED");
+	
+	addButton(0, "Next", approachSiegwulfe, [false, fromInv]);
+}
+
+public function siegwulfeBimbosplanation(fromInv:Boolean):void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe();
+	processTime(1+rand(2));
+	
+	output("<i>“Mistress, you sometimes act a little, er,”</i> you pause, <i>“differently from your usual self. Is everything okay?”</i>");
+	output("\n\n<i>“Huh?”</i> she says, tilting her head in confusion. <i>“Like, duh! Of course!”</i>");
+	output("\n\n<i>“You knew?”</i> you ask, surprised.");
+	output("\n\n<i>“Yup!”</i> [wulfe.name] replies, nodding her head hard enough to make her curvy boobs jiggle on her chest. <i>“Being a person is like, totally com- com-pli-cat-ed.”</i> Throwing her hands in the air, she whines uncharacteristically. <i>“It’s hard! No pruh- pred- pree-dee-fined stuff to follow.”</i>");
+	output("\n\nYou arch an eyebrow. <i>“Are you… trying to muddle through free will?”</i>");
+	output("\n\n<i>“Well, kinda,”</i> she shrugs, looking at you. <i>“I’ve got like, some stuff the doctor gave me… what was it? Rifference materia?”</i>");
+	output("\n\n<i>“Reference material,”</i> you correct her.");
+	output("\n\n<i>“Right! That,”</i> she chirps, beaming brightly. <i>“Thanks, [pc.name]. But I haven’t um, meshed? With it one hundred percent.”</i>");
+	output("\n\n<i>“Is that why sometimes you’re one way and sometimes you’re, well, this way?”</i> you venture.");
+	output("\n\n<i>“Uh huh!”</i> she says, nodding and clearly happy you’re getting it. <i>“Gimme some time to like, learn my way around the ropes ‘n stuff.”</i>");
+	output("\n\nYou come away from the conversation with your gently humming companion droid with more questions than answers.");
+	
+	addButton(0, "Next", approachSiegwulfe, [false, fromInv]);
+}
+
+public function siegwulfeEMPExplanation(fromInv:Boolean):void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe();
+	processTime(1+rand(2));
+	
+	if (pc.IQ() < 66 && pc.characterClass != GLOBAL.CLASS_ENGINEER)
+	{
+		output("<i>“Mistress, when you… took me publicly,”</i> you murmur, recalling the experience with a pang of need, <i>“how did you shut the crowd’s phones down? You don’t </i>actually<i> have a localized EMP device, do you?”</i>");
+		output("\n\n<i>“Of course not, silly [wulfe.pcname],”</i> [wulfe.name] snorts, shaking her head with her hands on her hips. <i>“An electromagnetic pulse would probably instantly kill anyone depending on cybernetics. Including me,”</i> she says, rapping her hand on her metallic hind half, <i>“just in case you forgot.”</i>");
+	}
+	else
+	{
+		output("<i>“Mistress, when you… took me publicly,”</i> you murmur, recalling the experience with a pang of need, <i>“how did you shut the crowd’s phones down? I know it wasn’t an EMP, that’s too simplistic.”</i>");
+		output("\n\n<i>“Such a smart pet I have!”</i> [wulfe.name] coos, rubbing your head. <i>“No, it wasn’t an electromagnetic pulse.”</i>");
+	}
+	output("\n\n<i>“So…”</i> you trail off.");
+	output("\n\n<i>“It’s just a little toy the doctor gave me,”</i> she says, smiling. <i>“A girl has to have </i>some<i> secrets. Uh, and owing to the dubious legality of her acquisition of the toy it’s probably better you don’t know. In fact,”</i> she continues, leaning in with a big smile, <i>“let’s never talk about this again. Okay?”</i>");
+	output("\n\n<i>“O… kay?”</i> you ask, scrunching up your face in confusion.");
+	output("\n\n<i>“Good [pc.boyGirl]!”</i> [wulfe.name] says, taking your face in her hands and smooching you on the lips. <i>“So smart and loyal.”</i>");
+	output("\n\nYou know for yourself that some roads are best left untraveled when it comes to the ‘good’ doctor.");
+	
+	flags["WULFE_EMP"] == 1;
+	
+	addButton(0, "Next", approachSiegwulfe, [false, fromInv]);
+}
+
+public function siegwulfeDomSexButtons(fromInv:Boolean):void
+{
+	if (pc.lust() >= 33)
+	{
+		addButton(1, "Get Fucked");
+		addButton(2, "Quickie", siegwulfeQuickie, undefined, "Quickie", "No frills - you need help to work off some lust, and you need it fast.");
+	}
+	else
+	{
+		addDisabledButton(1, "Get Fucked", "Get Fucked", "You are not aroused enough for this!");
+		addDisabledButton(2, "Quickie", "Quickie", "You aren't aroused enough for this either!");
+	}
+	if (pc.hasBreasts() && pc.isLactating()) addButton(3, "Milking", siegwulfeTheMilkmAId, fromInv);
+	else addDisabledButton(3, "Milking", "Milking", "You need lactating tits to get milked!");
+}
+
+public function siegwulfeQuickie():void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe(true);
+	processTime(5+rand(6));
+	
+	var hole:int = rand(pc.vaginas.length+1)-1;
+	
+	output("<i>“Mistress, sorry for being so selfish, but, uh, do you think you can just fuck me as hard as you can?”</i> you ask, flushing slightly. <i>“I’m getting a little distracted and in this line of work it really pays to be wholly focused.”</i>");
+	output("\n\n<i>“Of </i>course<i> I can,”</i> [wulfe.name] says, smiling wide. <i>“Down on all fours, [wulfe.pcname]. You know the rules.”</i>");
+	output("\n\nYou");
+	if (pc.hasArmor() || pc.hasLowerGarment() || pc.hasUpperGarment()) output(" strip off and");
+	output(" get down in a hurry, raising your ass in the air for her. [wulfe.name] positions herself above you, her massive dogcock snapping into existence between her hindlegs. You can feel the tip of it at your [pc.vagOrAss " + hole + "], already dripping with precum.");
+	output("\n\n<i>“Mm, I’m so happy you came to me for relief,”</i> she sighs, resting at your entrance while she drools all down your underside for a few seconds. <i>“Okay, that’s all the prep you get! Remember, [wulfe.pcname] - youuuu asked for it!”</i>");
+	output("\n\nBy the time three seconds have passed since her declaration [wulfe.name] is so deep inside you it feels like she could lift you off the ground on the end of her cock. You let out a low, loud scream, your body shaking with the effort of taking her inside. There’s a noticeable bulge sliding between your hips while she bucks into you without a care in the world, happy to just fuck you like an animal.");
+	pc.holeChange(hole, wulfe.biggestCockVolume());
+	output("\n\nIt doesn’t take very long for you to cum. The way she’s riding you is too rough and bestial to even think about the process, and you find yourself");
+	if (pc.hasCock()) output(" jettisoning your [pc.cum] all over the ground while");
+	output(" squeezing down on her as hard as you can, moaning her name.");
+	output("\n\n<i>“Mmm! Ooh, you can keep that up!”</i> [wulfe.name] pants, fucking into your tightly-squeezed passage as hard as she can. <i>“Nnn! Nnngh!”</i>");
+	output("\n\nIt takes her a little more work, but she cums every bit as hard as you did. Shuddering, moaning, and running her dainty hands down her enormous tits to squeeze her stiff nipples, she ejaculates inside you hard enough to produce backspray. She empties herself to the last into your quivering backside, letting out a few soft grunts from deep in her throat while her reservoirs drain before she pulls out.");
+	output("\n\n[wulfe.name] takes a moment to look you over while her seed runs from your stretched fuckhole, deactivating her cock before she helps you up to give you a kiss and a smile.");
+	output("\n\n<i>“Feeling better, [wulfe.pcname]?”</i> she asks, winking before continuing in a sing-song voice. <i>“I know </i>I<i> am!”</i>");
+	output("\n\n<i>“Yeah… thank you, mistress,”</i> you say,");
+	if (pc.hasArmor() || pc.hasLowerGarment() || pc.hasUpperGarment()) output(" reclothing yourself and");
+	output(" taking a couple of steps to make sure you’re capable of walking.");
+	output("\n\n<i>“Let’s get back to it, then!”</i> [wulfe.name] declares, stretching her tail to pat your [pc.ass] as she walks past.");
+	
+	if (hole < 0) pc.loadInAss(wulfe);
+	else pc.loadInCunt(wulfe, hole);
+	pc.orgasm();
+
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function siegwulfeTheMilkmAId(fromInv:Boolean):void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe();
+	processTime(5+rand(6));
+	
+	var hornyPC:Boolean = pc.isTreated() || pc.lustQ() >= 66;
+
+	if (flags["WULFE_MILKED"] == undefined)
+	{
+		output("<i>“Uh, mistress [wulfe.name], would you mind helping me out a little?”</i> you say, " + (pc.isChestExposed() ? "putting a hand to your [pc.chest]." : "tugging at your " + (pc.isChestExposedByUpperUndergarment() ? "[pc.armor]." : "[pc.upperGarments].")));
+		output("\n\n<i>“Hmmm? What does my cute little pet need from me?”</i> she inquires, brushing up against you affectionally. <i>“Some loving?”</i>");
+		output("\n\n<i>“Could you milk me?”</i> you say, a little embarrassed to ask.");
+	}
+	else output("<i>“Mistress [wulfe.name], could you milk me again, please?”</i> you ask, more used to asking her this time.");
+	output("\n\n<i>“Ooooh, yes!”</i> [wulfe.name] exclaims, pressing herself against you harder. <i>“Of course I can milk you, [wulfe.pcname]!”</i>");
+	output("\n\nHer eagerness is palpable.");
+	output("\n\n<i>“I’m </i>so<i> happy my pet came to me for help,”</i> she murmurs in a sultry tone, eyes flashing as she inspects your tits");
+	if (!pc.isChestExposed()) output(" through your clothing");
+	output(". <i>“I’ll be thorough, don’t you worry your little head.”</i>");
+
+	output("\n\n" + (pc.hasArmor() || pc.hasUpperGarment() || pc.hasLowerGarment() ? "Disrobing from the top up, y" : "Y") + "ou let your mistress gently take your [pc.breasts] between her hands and squeeze them gently. A slight sigh escapes your lips; that feels nice.");
+	if (pc.isBimbo()) output("\n\n<i>“Do you like my titties, mistress?”</i> you giggle, thrusting them out at her. <i>“They’re all yours!”</i>");
+	else output("\n\n<i>“Do you like them, mistress?”</i> you ask, hopeful.");
+
+	output("\n\n<i>“That’s like, </i>way<i> too tempting,”</i> [wulfe.name] says, and then her plush, perfect lips are suddenly attached to your [pc.nipple], nipping and suckling at you as if she were a pup herself. You moan loudly, wrapping your arms around her head and keeping her close as the pleasure radiates outwards in waves. She’s so <i>greedy</i>, not giving any pause at all as she gulps down your [pc.milk] and eyes your gasping reactions.");
+
+	output("\n\n");
+	if (pc.isTreated()) output(" The Treatment is definitely doing you favors here, the ordinarily pleasurable sensation of being milked by your lover transformed into pure orgiastic bliss. ");
+	if (hornyPC)
+	{
+		output("You’re already right on the verge of cumming, biting your bottom lip and looking down at your mistress with needy eyes. You can’t tell if she knows - you think she does - but either way, she’s doing a masterful job of sucking your teat.");
+		output("\n\n<i>“Muh-mistress, mistress,”</i> you pant, shuddering under the ministrations of her talented tongue. <i>“I’m going to cum!”</i>");
+		output("\n\nOh, she definitely knows. Rather than switching to your other " + (pc.totalBreasts() > 2 ? "breasts" : "breast") + ", she instead begins suckling at you even harder, rough enough to make you cry out in joy as you feel the oncoming pleasure rising and rising.");
+		output("\n\n<i>“Oh, oh, oohhh,”</i> you gasp, hugging [wulfe.name] tight as you arch your back. Shivers of pleasure shoot up your spine, setting you shaking against your tauric lover as she continues her suckling spree. You can hardly stand, it feels so good. <i>“Uh! Uuunnnnh…”</i>");
+		output("\n\nClose to a full minute passes as you stand still and just pant and cum, your rock-hard nipple still being nipped and gently teased for milk by [wulfe.name]. It’s only when she slowly releases you that you finally let out a great, shuddering gasp of relief, your [pc.legs] turning to jelly as her arms shoot out to embrace you.");
+		output("\n\n<i>“Thank you, mistress, thank you,”</i> you moan lightly, gazing at her appreciatively.");
+		output("\n\n<i>“Oh, but we’re not done yet, silly " + (pc.race() == pc.bovineRace() && pc.mf("a", "b") == "b" ? "cow" : "[pc.boyGirl]") + ",”</i> she murmurs, lowering herself to your adjacent breast.");
+	}
+	else
+	{
+		output("You find yourself " + (flags["LANDED_ON_TEXAS"] != undefined ? "envying those New Texan cowgirls with their ability to cum from being milked" : "wishing you could cum from having your breasts milked") + "; you might be able to get there yourself if you do this enough, though, given how blissfully enjoyable it is. Letting [wulfe.name] do whatever she wants with your body is arousing in its own right.");
+		output("\n\nYou let out a moan of pleasure that surprises even yourself when she lets your teat go, your breast jiggling as a tiny trail of milk begins to run down its surface.");
+		output("\n\n<i>“Thank you, mistress,”</i> you murmur.");
+		output("\n\n<i>“Don’t go thanking me before we’re done you silly " + (pc.race() == pc.bovineRace() && pc.mf("a", "b") == "b" ? "cow" : "[pc.boyGirl]") + ",”</i> she murmurs, eyeing your adjacent breast.");
+	}
+	output("\n\nYou groan in pleasure as the cycle begins anew, already feeling the familiar pangs of pleasure emanating from your milky breasts.");
+	if (hornyPC) output(" By the time she’s finished with you " + (pc.isTaur() ? "you’re lying on the ground with [wulfe.name] next to you, cradling your humanoid half" : "you’re laid on the ground with your back arched off the ground and [wulfe.name] lying across your lower half, taking care not to weigh down on you") + ". You’re drained in both senses of the word, your overeager lover having taken more than her fill just to watch you cum again and again.");
+	else output(" When she’s finally drained you, you feel like you were just about to cum - half of you wants to tell her to keep going and get you there, but the other half doesn’t dare to order your mistress around. Either way you’re a little tired now, your top half finally relieved of its burden.");
+	output("\n\n<i>“Good [pc.boyGirl]s are always honest about needing to be milked,”</i> [wulfe.name] titters, grinning at you. A little bit of your milk still coats her glossy black lips, and without thinking you lean in and kiss it off her. <i>“Mmmn- mm!”</i>");
+	output("\n\nYou pull back with a smile and offer your explanation. <i>“You still had some milk on your lips, mistress.”</i>");
+	output("\n\n<i>“Hehe! Izzat so?”</i> [wulfe.name] says, giggling a little and sweeping a hand through her hair. <i>“How would you like to repay the favor, then?”</i>");
+	
+	output("\n\n" + (flags["WULFE_MILKED"] == undefined ? "<i>“Mistress?”</i> you ask, momentarily confused until s" : "S") + "he lowers her hands to her massive, inflated tits and squeezes her nipples with a moan. Thick, white cream immediately dribbles and spurts from her teats, and you can’t help but get ");
+	if (pc.isHerm()) output(" a little wet and hard");
+	else if (pc.hasVagina()) output(" a little wet");
+	else if (pc.hasCock()) output(" hard");
+	output(" at the sight.");
+
+	output("\n\nYou say nothing more. Instead you take one of her massive, heavy breasts in your hands and wrap your [pc.lips] around her giant black teat, so large you can barely manage it. It immediately dispenses a mouthful of delicious cream into your mouth as if rewarding you for your submissiveness, driving you onwards in your efforts. You can hear [wulfe.name] above you, moaning happily as she strokes your head.");
+	output("\n\n<i>“Good [pc.boyGirl], [wulfe.pcname],”</i> she sighs in happiness. <i>“I’ll let you know when to switch.”</i>");
+	output("\n\nThough it feels like it should be filling, as tasty as it is, for some reason you never feel like you’re getting enough. [wulfe.name] redirects you to her other teat with a casual hand, the motion of switching from one to the other feeling completely natural. It’s only when she lightly pulls you off that you realize you must have just spent close to ten minutes suckling her breasts, completely zoned out. You feel invigorated, rejuvenated by her milky offerings.");
+	output("\n\n<i>“There,”</i> she whispers, gently stroking your cheek with affection. <i>“Doesn’t that feel better?”</i>");
+	output("\n\n<i>“Yes mistress, thank you, mistress,”</i> you whisper back, and before you know it she’s kissing you, entwining your tongue with her own. She pulls back with a satisfied sigh and a smirk, rubbing her thumb across your lower lip.");
+	output("\n\n<i>“You had some milk there,”</i> [wulfe.name] says, then lightly taps your nose with her finger. <i>“Tell me whenever you get too full, [wulfe.pcname]. I just love indulging my adorable little pet’s needs.”</i>");
+	output("\n\n<i>“Yes, mistress,”</i> you reply automatically.");
+
+	//Puts you at 33 lust if you were below it, increases it by 30 otherwise
+	if (pc.lust() < 33) pc.lust(33, true);
+	else pc.lust(33);
+	//Makes you orgasm if you were high lust or Treated
+	if (hornyPC) pc.orgasm();
+	//Gain 10 energy
+	var energy:int = Math.min(10, pc.energyMax() - pc.energy())
+	if (energy > 0) output("\n\n<b>You have gained " + energy + " energy.</b>");
+	pc.energy(energy);
+	
+	addButton(0, "Next", approachSiegwulfe, [false, fromInv]);
+}
+
 // SIEGWULFE PREG BEGINS HERE
 public function siegwulfeLaying():void
 {
@@ -968,7 +1402,6 @@ public function siegwulfeLaying():void
 	switch (scene)
 	{
 		case 0:
-		
 			output("Your stomach suddenly shifts, sending you thudding to your [pc.knees] with a gasp.");
 			if (hasSiegwulfeOnSelf())
 			{
