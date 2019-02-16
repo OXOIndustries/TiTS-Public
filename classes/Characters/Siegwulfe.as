@@ -187,5 +187,44 @@
 			else if (kGAMECLASS.flags["WULFE_PCNAME"] == undefined) return kGAMECLASS.pc.nameDisplay();
 			else return kGAMECLASS.flags["WULFE_PCNAME"];
 		}
+		
+		override public function lust(amount:Number = 0, apply:Boolean = false):Number
+		{
+			// do what regular lust does
+			var lust:Number = super.lust();
+			var lustDif:Number = super.lust(amount, apply) - lust;
+
+			// Too soon to queue scene? Do nothing.
+			if (!isDom() || kGAMECLASS.pc.hasStatusEffect("Wulfe Lust Cooldown")) return lust;
+
+			// WULFE_LUST_STAGE: 0 -> hasn't said a thing, 1 -> did 10-32 scene, 2 -> did 33-74 scene, 3 -> did 75-89 scene
+			if (kGAMECLASS.flags["WULFE_LUST_STAGE"] == undefined) kGAMECLASS.flags["WULFE_LUST_STAGE"] = 0;
+
+			var queuedScene:Boolean = true;
+			// "Might be good if every scene is done at least once (or at least the 75-89 scene)
+			// so she doesn’t suddenly spring the rut scene on you? Not hugely bothered about this though."
+			if (lust >= 90)
+			{
+				if (kGAMECLASS.flags["WULFE_LUST_STAGE"] == 3) kGAMECLASS.eventQueue.push(kGAMECLASS.siegwulfeStalking);
+				else kGAMECLASS.eventQueue.push(kGAMECLASS.siegwulfeIsHorny);
+			}
+			// Poisson distribution, lambda = 1 horny bimbo scene/30 lust. If k == 0 happens, no scene.
+			// Rut scene gets to skip this check and forces siegwulfeIsHorny if it needs to.
+			else if (100*Math.exp(-lustDif/30) > rand(100)) queuedScene = false;
+			// Other scenes
+			else if (lust >= 75 && kGAMECLASS.flags["WULFE_LUST_STAGE"] < 3) kGAMECLASS.eventQueue.push(kGAMECLASS.siegwulfeIsHorny);
+			else if (lust >= 33 && kGAMECLASS.flags["WULFE_LUST_STAGE"] < 2) kGAMECLASS.eventQueue.push(kGAMECLASS.siegwulfeInterest);
+			else if (lust >= 10 && kGAMECLASS.flags["WULFE_LUST_STAGE"] < 1) kGAMECLASS.eventQueue.push(kGAMECLASS.siegwulfeCheckup);
+			else queuedScene = false;
+			
+			// At least 30 min pass between scenes
+			if (queuedScene)
+			{
+				kGAMECLASS.pc.createStatusEffect("Wulfe Lust Cooldown");
+				kGAMECLASS.pc.setStatusMinutes("Wulfe Lust Cooldown", 30);
+			}
+			
+			return lust;
+		}
 	}
 }
