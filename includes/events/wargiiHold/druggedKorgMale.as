@@ -84,7 +84,7 @@ public function getOralFromDoggo(useCock:Boolean = false):void
 	author("William");
 	output("<i>“Sure,”</i> you start" + (!pc.isCrotchExposed() ? ", pulling down your equipment":"") + ". He’s immediately enthralled by ");
 	if(pc.isHerm()) output("your [pc.cocks] and [pc.vaginas]");
-	else if(pc.hasVaginas()) output("your [pc.vaginas]");
+	else if(pc.hasVagina()) output("your [pc.vaginas]");
 	else output("your [pc.cocks]");
 	output(", to the point his tongue falls from his mouth in surprise reverence. It’s only when you ");
 	if(useCock) output("point to [pc.oneCock]");
@@ -804,7 +804,7 @@ public function getFuckedByKorgo(x:int):void
 	// Using Ass
 	else
 	{
-		output("\n\nHis tongue swirls your [pc.asshole]" + (pc.analPuffiness() >= 2 ? ", caressing the obscenely inflated flesh in a half-trance state":"") + ", wettening your taint with warm spit. Dappling sweat is sucked up in his lusty haze" + (pc.isHerm() ? ", and there are moments he falls towards your [pc.vagina " + x + "], only for you to remind him of what he’s allowed to have":"") + ". The korg-man’s paws spread your ass cheeks wider, exposing your once-hidden sphincter to the air and further abuse.");
+		output("\n\nHis tongue swirls your [pc.asshole]" + (pc.analPuffiness() >= 2 ? ", caressing the obscenely inflated flesh in a half-trance state":"") + ", wettening your taint with warm spit. Dappling sweat is sucked up in his lusty haze" + (pc.isHerm() ? ", and there are moments he falls towards your [pc.vagina " + rand(pc.vaginas.length) + "], only for you to remind him of what he’s allowed to have":"") + ". The korg-man’s paws spread your ass cheeks wider, exposing your once-hidden sphincter to the air and further abuse.");
 		output("\n\nBefore you can snap about the frozen feeling on your butthole, he envelops your backside with his whole mouth, raking his tongue up and down the narrow, winking entrance. Smooth canine tongue slows from rampagingly fast to slow and flicking, always flourishing at the end of his up-and-down pressures. On the next gulp of what you presume is the sweat he " + (pc.hasFur() ? "sucked from your fur":"slurped from your [pc.skinFurScales]") + ", dizziness assaults you the moment his tongue glides through unopposed.");
 		output("\n\nYou cry out in pure, wanton need, wriggling uncontrollably against his probing flesh, circling the fringes of your chute. Spittle leaks from your cavern as the seconds tick by, parted by dusky lips and throaty groans. You almost cum, but he stops just before you do. You’re left a quivering wreck steadied only by the wall and his body - the realization that he is in full control of you and your pleasure is an unmistakably arousing one...");
 	}
