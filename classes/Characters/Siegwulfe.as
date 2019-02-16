@@ -183,13 +183,9 @@
 		
 		override public function getDescription(arg:String, arg2:*):String
 		{
-			var lower:String = arg.substr(0, 1).toLowerCase() + arg.substr(1, arg.length);
-			if (lower == "pcname")
-			{
-				var caps:Boolean = arg.substr(0, 1) == 'P';
-				return (caps ? "Bitch" : "bitch");
-			}
-			else return super.getDescription(arg, arg2);
+			if (arg != "pcname") return super.getDescription(arg, arg2);
+			else if (kGAMECLASS.flags["WULFE_PCNAME"] == undefined) return kGAMECLASS.pc.nameDisplay();
+			else return kGAMECLASS.flags["WULFE_PCNAME"];
 		}
 	}
 }
