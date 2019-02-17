@@ -1016,6 +1016,9 @@ package classes.Resources.Busts
 		public var Bust_VI_LARGE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/vi_large_nude.png", mimeType = "image/png")]
 		public var Bust_VI_LARGE_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/war_alpha_nude.png", mimeType = "image/png")]
+		public var Bust_WAR_ALPHA_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/xotchi.png", mimeType = "image/png")]
 		public var Bust_XOTCHI:Class;
@@ -1976,6 +1979,9 @@ package classes.Resources.Busts
 			public var Full_VI_LARGE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vi_large_nude.png", mimeType = "image/png")]
 			public var Full_VI_LARGE_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/war_alpha_nude.png", mimeType = "image/png")]
+			public var Full_WAR_ALPHA_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/xotchi.png", mimeType = "image/png")]
 			public var Full_XOTCHI:Class;
