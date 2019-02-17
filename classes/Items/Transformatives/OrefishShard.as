@@ -557,11 +557,8 @@ package classes.Items.Transformatives
 					output("\n\nIt’s not until you’re left panting, cooling down from the breathtaking ordeal, that you dimly start to realize something is off.\n\nTaking a closer look, you notice your labia are still quite plump, even while your arousal recedes; they also look incredibly glossy and smooth. Upon stirring your fingers within your honeypot, you feel odd bulges lining it within - your cunt is ribbed!\n\nChecking in with your Codex confirms it; <b>you’ve got a saurmorian vagina!</b>");
 					
 					var puffedVag:Boolean = target.vaginas[tfCuntIdx].hasFlag(GLOBAL.FLAG_PUMPED);
-					target.vaginas[tfCuntIdx].type = GLOBAL.TYPE_SAURMORIAN;
-					target.vaginas[tfCuntIdx].clearFlags();
-					target.inflateVagina(tfCuntIdx);
+					target.shiftVagina(tfCuntIdx, GLOBAL.TYPE_SAURMORIAN);
 					if (puffedVag) target.inflateVagina(tfCuntIdx);
-					target.vaginas[tfCuntIdx].addFlag(GLOBAL.FLAG_RIBBED);
 				});
 				else lockedChanges.push(target.vaginaTypeLockedMessage);
 			}
@@ -631,13 +628,7 @@ package classes.Items.Transformatives
 					target.cocks[tfCockIdx].cockColor = newColor;
 					output("\n\nOnce you’re able to uncross your eyes, you look down at your prick; Thick, fattened ridges ring its [pc.cockColor] length - giving it a ribbed appearance - from the sheath to just under the blunt, almost equine head. And just like that, <b>your cock has become that of a saurmorian!</b>");
 
-					target.cocks[tfCockIdx].cType = GLOBAL.TYPE_SAURMORIAN;
-					if (target.cocks[tfCockIdx].cLength < 5) target.cocks[tfCockIdx].cLength = (target.hasPerk("Hung") ? 10 : (target.hasPerk("Mini") ? 6 : 8));
-					if (target.cocks[tfCockIdx].cThicknessRatioRaw < 0.833) target.cocks[tfCockIdx].cThicknessRatioRaw = 1.125;
-					target.cocks[tfCockIdx].clearFlags();
-					target.cocks[tfCockIdx].addFlag(GLOBAL.FLAG_BLUNT);
-					target.cocks[tfCockIdx].addFlag(GLOBAL.FLAG_RIBBED);
-					target.cocks[tfCockIdx].addFlag(GLOBAL.FLAG_SHEATHED);
+					target.shiftCock(tfCockIdx, GLOBAL.TYPE_SAURMORIAN);
 					//pc orgasms, and becomes cum soaked
 					target.orgasm();
 					target.applyCumSoaked();

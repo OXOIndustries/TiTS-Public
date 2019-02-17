@@ -1017,8 +1017,8 @@ package classes.Characters
 					if(legCount > 1) m += ParseText(" between the [pc.legs]");
 					else m += "... down there";
 					m += ". Moisture seems to be dripping everywhere, transforming your puss";
-					if(totalVaginas() == 1) m += "y into a slipperier, gooier version of itself. <b>Your entire vagina has become semi-solid, like the rest of your crotch.";
-					else m += "ies into slipperier, gooier versions of themselves. <b>All of your vaginas are now semi-solid, goo-cunts, just like the rest of your crotch.";
+					if(totalVaginas() == 1) m += "y into a slipperier, gooier version of itself. <b>Your entire vagina has become semi-solid, like the rest of your crotch.</b>";
+					else m += "ies into slipperier, gooier versions of themselves. <b>All of your vaginas are now semi-solid, goo-cunts, just like the rest of your crotch.</b>";
 					
 					AddLogEvent(m, "passive", deltaT);
 				}
