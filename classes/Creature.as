@@ -5587,7 +5587,12 @@
 			// she grants a bonus to Sexiness equal to the same
 			if (accessory is SiegwulfeItem)
 			{
-				if(this is PlayerCharacter && !kGAMECLASS.chars["WULFE"].isBimbo()) { /* Nada! */ }
+				if(this is PlayerCharacter && !kGAMECLASS.chars["WULFE"].isBimbo())
+				{
+					//While equipped, bimbo-dom siegwulfe will add a bonus to both evasion and sexiness equal to 8% of intelligence that Steele has.
+					if (kGAMECLASS.chars["WULFE"].isDom()) temp += Math.round(bimboIntelligence() * 0.08);
+					else { /* Nada! */ }
+				}
 				else temp += Math.round(bimboIntelligence() * 0.1);
 			}
 			/*Sweaty penalties!
@@ -5693,7 +5698,12 @@
 			// Evasion bonus equal to 10% of your Intelligence
 			if (accessory is SiegwulfeItem)
 			{
-				if(this is PlayerCharacter && kGAMECLASS.chars["WULFE"].isBimbo()) { /* Nada! */ }
+				if(this is PlayerCharacter && kGAMECLASS.chars["WULFE"].isBimbo())
+				{
+					//While equipped, bimbo-dom siegwulfe will add a bonus to both evasion and sexiness equal to 8% of intelligence that Steele has.
+					if (kGAMECLASS.chars["WULFE"].isDom()) temp += Math.round(bimboIntelligence() * 0.08);
+					else { /* Nada! */ }
+				}
 				else temp += Math.round(bimboIntelligence() * 0.1);
 			}
 			if (hasPerk("Agility")) {
