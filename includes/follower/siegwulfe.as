@@ -374,8 +374,8 @@ public function approachSiegwulfe(arg:Array):void
 	{
 		addButton(0, "Pet", siegwulfeDommePettings, fromInv, "Petting", "Ask about petting.");
 		siegwulfeDomSexButtons(fromInv);
-		addButton(7, "Bimbo?", siegwulfeBimbosplanation, fromInv, "Bimbo Personality?", "Ask about [wulfe.name]’s bimbo personality.");
-		if (flags["WULFE_EMP"] == 0) addButton(8, "EMP?", siegwulfeEMPExplanation, fromInv, "Her EMP?", "Ask [wulfe.name] about shutting down recording devices.");
+		addButton((debug ? 7 : 6), "Bimbo?", siegwulfeBimbosplanation, fromInv, "Bimbo Personality?", "Ask about [wulfe.name]’s bimbo personality.");
+		if (flags["WULFE_EMP"] == 0) addButton((debug ? 8 : 7), "EMP?", siegwulfeEMPExplanation, fromInv, "Her EMP?", "Ask [wulfe.name] about shutting down recording devices.");
 	//No talk, only names
 		if (flags["WULFE_PCNAME"] == undefined) clearMenu();
 		addButton((flags["WULFE_PCNAME"] == undefined ? 0 : 9), "Talk Names", siegwulfeTalkNames, fromInv);
@@ -1246,7 +1246,7 @@ public function siegwulfeEMPExplanation(fromInv:Boolean):void
 	output("\n\n<i>“Good [pc.boyGirl]!”</i> [wulfe.name] says, taking your face in her hands and smooching you on the lips. <i>“So smart and loyal.”</i>");
 	output("\n\nYou know for yourself that some roads are best left untraveled when it comes to the ‘good’ doctor.");
 	
-	flags["WULFE_EMP"] == 1;
+	flags["WULFE_EMP"] = 1;
 	
 	addButton(0, "Next", approachSiegwulfe, [false, fromInv]);
 }
@@ -1255,12 +1255,26 @@ public function siegwulfeDomSexButtons(fromInv:Boolean):void
 {
 	if (pc.lust() >= 33)
 	{
-		addButton(1, "Get Fucked");
+		if (flags["WULFE_DOMSEX_UNLOCKED"] != undefined)
+		{
+			addButton(10, "Get Rutted", siegwulfeIsInARut);
+			addButton(11, "Rough Rut", siegwulfeCryMistressAndLetSlipTheCocksOfWar);
+			addButton(12, "Request Sex", siegwulfeRequestSexing, fromInv, "Request Sex", "Ask mistress [wulfe.name] for sex.");
+		}
+		addButton(1, "Get Fucked", siegwulfeGitFukdGud, undefined, "Get Fucked", "Ask [wulfe.name] to go a round.");
+		if (flags["WULFE_FUCKED"] >= 2) addButton(1, "Fuck?", siegwulfeAskAFuckingQuestion, fromInv, "Fuck?", "Ask your mistress for a satisfying fuck.");
 		addButton(2, "Quickie", siegwulfeQuickie, undefined, "Quickie", "No frills - you need help to work off some lust, and you need it fast.");
 	}
 	else
 	{
+		if (flags["WULFE_DOMSEX_UNLOCKED"] != undefined)
+		{
+			addDisabledButton(10, "Get Rutted", "Get Rutted", "You are not aroused enough for this!");
+			addDisabledButton(11, "Rough Rut", "Rough Rut", "You are not aroused enough for this!");
+			addDisabledButton(12, "Request Sex", "Request Sex", "You are not aroused enough for this!");
+		}
 		addDisabledButton(1, "Get Fucked", "Get Fucked", "You are not aroused enough for this!");
+		if (flags["WULFE_FUCKED"] >= 2) addDisabledButton(1, "Fuck?", "Fuck?", "You are not aroused enough for this!");
 		addDisabledButton(2, "Quickie", "Quickie", "You aren't aroused enough for this either!");
 	}
 	if (pc.hasBreasts() && pc.isLactating()) addButton(3, "Milking", siegwulfeTheMilkmAId, fromInv);
@@ -1280,7 +1294,7 @@ public function siegwulfeQuickie():void
 	output("<i>“Mistress, sorry for being so selfish, but, uh, do you think you can just fuck me as hard as you can?”</i> you ask, flushing slightly. <i>“I’m getting a little distracted and in this line of work it really pays to be wholly focused.”</i>");
 	output("\n\n<i>“Of </i>course<i> I can,”</i> [wulfe.name] says, smiling wide. <i>“Down on all fours, [wulfe.pcname]. You know the rules.”</i>");
 	output("\n\nYou");
-	if (pc.hasArmor() || pc.hasLowerGarment() || pc.hasUpperGarment()) output(" strip off and");
+	if (!pc.isNude()) output(" strip off and");
 	output(" get down in a hurry, raising your ass in the air for her. [wulfe.name] positions herself above you, her massive dogcock snapping into existence between her hindlegs. You can feel the tip of it at your [pc.vagOrAss " + hole + "], already dripping with precum.");
 	output("\n\n<i>“Mm, I’m so happy you came to me for relief,”</i> she sighs, resting at your entrance while she drools all down your underside for a few seconds. <i>“Okay, that’s all the prep you get! Remember, [wulfe.pcname] - youuuu asked for it!”</i>");
 	output("\n\nBy the time three seconds have passed since her declaration [wulfe.name] is so deep inside you it feels like she could lift you off the ground on the end of her cock. You let out a low, loud scream, your body shaking with the effort of taking her inside. There’s a noticeable bulge sliding between your hips while she bucks into you without a care in the world, happy to just fuck you like an animal.");
@@ -1293,7 +1307,7 @@ public function siegwulfeQuickie():void
 	output("\n\n[wulfe.name] takes a moment to look you over while her seed runs from your stretched fuckhole, deactivating her cock before she helps you up to give you a kiss and a smile.");
 	output("\n\n<i>“Feeling better, [wulfe.pcname]?”</i> she asks, winking before continuing in a sing-song voice. <i>“I know </i>I<i> am!”</i>");
 	output("\n\n<i>“Yeah… thank you, mistress,”</i> you say,");
-	if (pc.hasArmor() || pc.hasLowerGarment() || pc.hasUpperGarment()) output(" reclothing yourself and");
+	if (!pc.isNude()) output(" reclothing yourself and");
 	output(" taking a couple of steps to make sure you’re capable of walking.");
 	output("\n\n<i>“Let’s get back to it, then!”</i> [wulfe.name] declares, stretching her tail to pat your [pc.ass] as she walks past.");
 	
@@ -1316,7 +1330,7 @@ public function siegwulfeTheMilkmAId(fromInv:Boolean):void
 
 	if (flags["WULFE_MILKED"] == undefined)
 	{
-		output("<i>“Uh, mistress [wulfe.name], would you mind helping me out a little?”</i> you say, " + (pc.isChestExposed() ? "putting a hand to your [pc.chest]." : "tugging at your " + (pc.isChestExposedByUpperUndergarment() ? "[pc.armor]." : "[pc.upperGarments].")));
+		output("<i>“Uh, mistress [wulfe.name], would you mind helping me out a little?”</i> you say, " + (pc.isChestExposed() ? "putting a hand to your [pc.chest]." : "tugging at your " + (pc.isChestExposedByArmor() ? "[pc.upperGarments]." : "[pc.armor].")));
 		output("\n\n<i>“Hmmm? What does my cute little pet need from me?”</i> she inquires, brushing up against you affectionally. <i>“Some loving?”</i>");
 		output("\n\n<i>“Could you milk me?”</i> you say, a little embarrassed to ask.");
 	}
@@ -1327,7 +1341,7 @@ public function siegwulfeTheMilkmAId(fromInv:Boolean):void
 	if (!pc.isChestExposed()) output(" through your clothing");
 	output(". <i>“I’ll be thorough, don’t you worry your little head.”</i>");
 
-	output("\n\n" + (pc.hasArmor() || pc.hasUpperGarment() || pc.hasLowerGarment() ? "Disrobing from the top up, y" : "Y") + "ou let your mistress gently take your [pc.breasts] between her hands and squeeze them gently. A slight sigh escapes your lips; that feels nice.");
+	output("\n\n" + (!pc.isNude() ? "Disrobing from the top up, y" : "Y") + "ou let your mistress gently take your [pc.breasts] between her hands and squeeze them gently. A slight sigh escapes your lips; that feels nice.");
 	if (pc.isBimbo()) output("\n\n<i>“Do you like my titties, mistress?”</i> you giggle, thrusting them out at her. <i>“They’re all yours!”</i>");
 	else output("\n\n<i>“Do you like them, mistress?”</i> you ask, hopeful.");
 
@@ -1358,7 +1372,7 @@ public function siegwulfeTheMilkmAId(fromInv:Boolean):void
 	output("\n\n<i>“Good [pc.boyGirl]s are always honest about needing to be milked,”</i> [wulfe.name] titters, grinning at you. A little bit of your milk still coats her glossy black lips, and without thinking you lean in and kiss it off her. <i>“Mmmn- mm!”</i>");
 	output("\n\nYou pull back with a smile and offer your explanation. <i>“You still had some milk on your lips, mistress.”</i>");
 	output("\n\n<i>“Hehe! Izzat so?”</i> [wulfe.name] says, giggling a little and sweeping a hand through her hair. <i>“How would you like to repay the favor, then?”</i>");
-	
+
 	output("\n\n" + (flags["WULFE_MILKED"] == undefined ? "<i>“Mistress?”</i> you ask, momentarily confused until s" : "S") + "he lowers her hands to her massive, inflated tits and squeezes her nipples with a moan. Thick, white cream immediately dribbles and spurts from her teats, and you can’t help but get ");
 	if (pc.isHerm()) output(" a little wet and hard");
 	else if (pc.hasVagina()) output(" a little wet");
@@ -1373,6 +1387,7 @@ public function siegwulfeTheMilkmAId(fromInv:Boolean):void
 	output("\n\n<i>“You had some milk there,”</i> [wulfe.name] says, then lightly taps your nose with her finger. <i>“Tell me whenever you get too full, [wulfe.pcname]. I just love indulging my adorable little pet’s needs.”</i>");
 	output("\n\n<i>“Yes, mistress,”</i> you reply automatically.");
 
+	pc.milked();
 	//Puts you at 33 lust if you were below it, increases it by 30 otherwise
 	if (pc.lust() < 33) pc.lust(33, true);
 	else pc.lust(33);
@@ -1383,7 +1398,899 @@ public function siegwulfeTheMilkmAId(fromInv:Boolean):void
 	if (energy > 0) output("\n\n<b>You have gained " + energy + " energy.</b>");
 	pc.energy(energy);
 	
+	var wulfeLust:int = Math.min(20, 75 - wulfe.lust());
+	if (wulfeLust > 0) wulfe.lust(wulfeLust);
+	
 	addButton(0, "Next", approachSiegwulfe, [false, fromInv]);
+}
+
+// Siegy sex comes here
+
+public function siegwulfeGitFukdGud():void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe(true);
+	processTime(10+rand(6));
+
+	var hole:int = rand(pc.vaginas.length+1)-1;
+
+	output("<i>“Wanna fuck, [wulfe.name]?”</i> you ask directly, giving into the silent request those glowing red eyes are making.");
+	output("\n\n<i>“Like, always,”</i> she giggles, eyeing you up and down smoothly. <i>“Get down on your hands and knees, [wulfe.pcname]. I’ll take care of you.”</i>");
+	output("\n\n" + (!pc.isNude() ? "Your clothes discarded, y" : "Y") + "ou kneel before her, the droid grinning confidently while you crawl under her bulk. She hasn’t turned her projector on yet, her butt happily wiggling from side to side while you get in position. The inactive mount is fairly smooth and undecorated, but you can see the vibration apparatus and shudder a little in anticipation. You’ll never forget the way it wiped your mind clean of anything but pleasure the first time she used it.");
+	output("\n\n<i>“Whassamatter, [wulfe.pcname]? Getting distracted down there?”</i> [wulfe.name] asks, bending down to take a look. <i>“You haven’t moved.”</i>");
+	output("\n\n<i>“Oh- it’s nothing,”</i> you say, shaking your head while your cheeks tinge a faint red. You don’t think you could admit that to her without wanting to disappear into a hole. She snickers quietly while you get in position. <i>“Like this…?”</i>");
+	output("\n\n<i>“Yesss, perfect,”</i> [wulfe.name] exclaims, backing up a little. You hear the sound of her projection activating and instinctively bristle at the noise, your body remembering the last time she used it on you. <i>“Aw, this is gonna be heaps of fun! I can’t wait!”</i>");
+	output("\n\nOh shit, she isn’t kidding about not waiting! [wulfe.name] presses the tip of her cock to your [pc.vagOrAss " + hole + "] immediately, making precise machine-guided corrections to her angle to best facilitate penetration. The end result is that your " + (hole < 0 ? "asshole" : "pussy") + " is quickly caved in, unable to resist her, and you’re groaning while she sighs and begins pumping precum inside you.");
+	pc.holeChange(hole, wulfe.biggestCockVolume());
+	output("\n\n<i>“Oooooh, wow,”</i> [wulfe.name] breathes, slowly transferring her weight from one hindleg to the other in a kind of dance. <i>“Oh, [wulfe.pcname]...”</i>");
+	output("\n\n<i>“Fuuuck,”</i> you groan under her, feeling the synthetic liquid warmth gush into your insides. The sensation is all too enticing, inciting warm desire in your mind that has no outlet, swirling aimlessly around your brain. It’s only when she starts <i>fucking</i> you, driving her thick, dominant cock inside you, that you realize what you were waiting for after all.");
+	if (pc.hasCock()) output(" A little bit of cum spurts from your [pc.cock] automatically");
+	else if (pc.hasVagina()) output(" A little bit of femcum drips between your thighs");
+	else output(" Your asshole tightens");
+	output(", testimony to how satisfying it is.");
+	output("\n\nThere’s a psychological aspect to all of it that you don’t have the time or the brainpower to grasp right now. All you know is that when [wulfe.name] pumps that slick, sticky pre-seed into you, you’re <i>ready</i>. Now you get to enjoy the benefits of your master taking you, spreading you wide while she happily piledrives you into the ground to get deeper.");
+	output("\n\n<i>“You feel so good, [wulfe.pcname]!”</i> [wulfe.name] trills, tongue out and panting. <i>“Makes me wanna destroy your little " + (hole < 0 ? "asshole" : "cunny") + "!”</i>");
+	output("\n\n<i>“Oh, god, yes,”</i> you moan, feeling her plunge deep inside you, several inches of stomach-bulging dogcock burying itself into your innards. <i>“Uuuhhh!”</i>");
+	output("\n\n<i>“I wanna hear you </i>scream<i>,”</i> [wulfe.name] whispers, a sinister digital distortion creeping into her voice before she starts slamming her powerful, womanly hips downwards.");
+	output("\n\nIt doesn’t take long for you to start. Despite that little spark of defiance, the bastion of ego your mind retreats to, it’s too much for you to take. She’s too smart, too devious in her actions, and too endowed for you to do anything but scream like a mind-broken whore as she pounds you to a forced orgasm. Your fingers dig into the ground as your " + (hole < 0 ? "ass tightens" : "cunt convulses") + " around the swollen dogcock inside you, lewdly squeezing the entire length from entrance to tip. A generous mistress, she unloads a splatter of sticky precum deep inside you just for the effort.");
+	output("\n\n<i>“You’re so cute, [wulfe.pcname]! I’m not even all the way in yet, babe!”</i> [wulfe.name] cries in delight, bending down to watch you desperately shudder on the end of her behemoth dick. <i>“We should work on that. Grab my legs.”</i>");
+	output("\n\nThey’re right there in front of you. Two sleek, mechanical forelegs spread on either side of your body. You shakily reach out and grasp them, squeezing experimentally before bracing yourself with their implacability.");
+	output("\n\n<i>“Good [pc.boyGirl]!”</i> [wulfe.name] tells you, a little burst of endorphins fluttering in your dizzy brain. <i>“Now hold that thought.”</i>");
+	output("\n\nShe starts working herself in so expertly that her cock might as well be prehensile, inching deeper and deeper into you. Listening to her groaning deeply in satisfaction you can’t help but feel like her cock is rearranging your insides to better suit her, like she’s hollowing you out to be a better fuck. The thought is more than a little sexy, you have to admit.");
+	output("\n\nBy the time she gets it all in, you’re biting your lip and trying not to scream even louder. There’s a massive protrusion from your stomach, pinning you to the ground with the point of it. The surface of your [pc.skinFurScales] shifts with every movement, taxed to tautness by the thick, pointed tip of [wulfe.name]’s prick. She giggles enthusiastically and the vibration travels down through your body, letting you physically experience her elation.");
+	output("\n\n<i>“Oh, [wulfe.pcname]! I just love you soooooo much,”</i> [wulfe.name] murmurs, and raising your head weakly you can see creamy milk dripping from her front. She’s squeezing her own nipples and shivering in pleasure while she’s sheathed inside you. <i>“Oh, I almost forgot! Silly me… here you go.”</i>");
+	output("\n\nHer vibrator switches on and this time you do scream. Over and over, while she starts pounding the fuck out of your [pc.vagOrAss " + hole + "] with the vibration going. You scream for your mistress, cumming so hard the world in front of you fades momentarily to pure white, your eyes rolling back in your head until a sweet, loving voice rouses you back to half-consciousness.");
+	output("\n\n<i>“Do you want my knot, pet? Or do you want my cum all over your body?”</i>");
+
+	pc.orgasm();
+	
+	addButton(0, "Knot Me", siegwulfeGetKnotted, hole, "Knot Me", "Take your mistress’ fucking knot inside your hole.");
+	addButton(1, "Messy End", siegwulfeGetCovered, hole, "Messy End", "Have your mistress bathe you in her seed.");
+}
+
+public function siegwulfeGetKnotted(hole:int):void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe(true);
+	processTime(5+rand(6));
+
+	output("<i>“Knuh, knot me,”</i> you gasp, hardly cognizant of the consequences. All you know is that you want <i>more</i>, more of your mistress inside you. To feel her warm cum pumping in" + (hole < 0 ? "side your [pc.asshole]" : "to your " + (pc.isPregnant(hole) ? "[pc.pussy " : "[pc.womb ") + hole + "]") + ". <i>“Please!”</i>");
+	output("\n\n<i>“Now that’s what I like to hear,”</i> [wulfe.name] whispers from above you, and you can feel her tensing in preparation. <i>“I hope you can take it all, pet! Don’t break!”</i>");
+	output("\n\nIt does feel like you’re breaking, your mind coming apart at the seams while she piledrives you into the ground with no regard for anything beyond cumming deep inside your helpless body. Your " + (hole < 0 ? "asshole" : "pussy") + " is stretched so wide around her that you’re not even sure taking her knot will be physically possible, but fuck if you aren’t willing to try. You shudder in servile submission, still clinging to her forelegs while she has her way with your rear.");
+	output("\n\n<i>“Here you go, babe!”</i> [wulfe.name] chirps, and suddenly you’re in heaven.");
+	output("\n\nThick, warm spunk begins to spurt from her vibrating cock, instantly sending you over the edge to orgasm. It gushes into you endlessly, [wulfe.name]’s reservoirs more than willing to provide for her needy mate. You scarcely even notice her knot swelling, thickening to a truly stupefying size against your " + (hole < 0 ? "stretched out ring, pressing against your reddened skin" : "taut cunt, pressing against your lips insistently") + ". Not until you feel her begin to hammer it home and your eyes pop wide open in fear.");
+	output("\n\n<i>“[wulfe.name]!”</i> you gasp, still desperately squeezing her forelegs for dear life. <i>“Oh my god!”</i>");
+	output("\n\n<i>“Hee hee! Knock knock, [pc.name]!”</i> she giggles, seemingly unaware of the effect she’s having on you. <i>“Open that little " + (hole < 0 ? "asshle" : "cunny") + " up!”</i>");
+	output("\n\nYou open your mouth in a soundless scream as it pops inside with a wet noise and an accompanying sense of <i>fullness</i> in your insides. You’re plugged up now, and there’s nowhere her");
+	if (wulfe.isEggWulfe()) output(" fertile");
+	output(" cum is going but inside. [wulfe.name] steps over you, your sweaty hands slipping free of her legs while she repositions herself above you. You groan at the sensation of her dick twisting inside you, your ass being lifted slightly as she hops over your body and takes her new position facing away from you.");
+	output("\n\n<i>“Aw </i>yeah<i>,”</i> [wulfe.name] moans, popping a finger into her own mouth while she bends down to look at you. <i>“Now you look just like my bitch! Good [pc.boyGirl].”</i>");
+	output("\n\nIt’s true. With your [pc.ass] up in the air stuck to [wulfe.name]’s gigantic, throbbing knot while she pumps you full of her seed, you really are nothing more than her bitch in name and deed. It doesn’t help that you’re loudly, violently moaning and spasming on the end of her cock, cumming your brains out all over the floor like you just couldn’t wait for her to be inside you. You look every part the slutty little bitch of a mating partner [wulfe.name] purports you to be.");
+	output("\n\n<i>“Good doggy,”</i> she says smugly, raising her plush hips and fucking you just once to remind you of your place. <i>“Now stay there until I’m good and done.”</i>");
+	output("\n\nYou don’t have a choice, of course. You spend the next twenty minutes knotted to your dominant mistress, her cock pulsing inside you and filling your " + (hole < 0 ? "insides" : (pc.isPregnant(hole) ? "pussy" : "womb")) + " with her thick synthetic cum while she giggles and teases you.");
+	output("\n\n<i>“Do you think our puppies will be pretty, [pc.name]?”</i> [wulfe.name] titters, shifting from one paw to another. <i>“I wonder if they’ll have your eyes!”</i>");
+	output("\n\nYou can’t even respond, too bloated and full of sloshing cum");
+	if (wulfe.isEggWulfe()) output(" and eggs");
+	output(" to talk. You settle instead for an insensate groan, setting [wulfe.name] giggling again.");
+	output("\n\n<i>“Oops! I shouldn’t talk to you while you’re busy cumming. Sorry!”</i> she calls out.");
+	output("\n\nBy the time she’s done, popping free of your used and abused hole with a light moan of pleasure, you’ve been fucked senseless. Cum <i>pours</i> from your gaping " + (hole < 0 ? "asshole" : "pussy") + ", your oversensitive orifice squeezing and flexing while hot spunk splatters to the ground. It’s like you have a river between your legs, and having your ass raised in the air only exacerbates the issue. Your body aches with the effort of having taken her and your mind hasn’t fared much better, but you have to admit you feel a strange sense of satisfaction. Maybe it’s the fact you came enough in that one fuck to last you a week.");
+	output("\n\n<i>“Wooow-ee!”</i> [wulfe.name] cheers, inspecting you from behind while her dick flickers from existence. <i>“You look great, [pc.name]! So pretty! Here, let me help you up.”</i>");
+	output("\n\nShe trots to your front and bends down, looping her hands under your armpits and lifting you to your feet with no effort at all. You stagger against her, your head landing in her soft, ample bosom.");
+	output("\n\n<i>“Oh my, what are you doing to your mistress?”</i> [wulfe.name] purrs, stroking your face. <i>“Just kidding, cutie. You did great!”</i>");
+	output("\n\nShe gives you a long, passionate kiss even as her cum rolls down your shaking legs, marking you with her scent. You can feel her dominantly smiling even through the plush silicone embrace of her pouty lips. When you part, she holds you close and presses her massive tits against your [pc.chest].");
+	output("\n\n<i>“Let’s keep adventuring together, shall we, pet?”</i> she murmurs seductively, her eyes glowing hot pink. <i>“I wanna have more fun with you, [pc.name]...”</i>");
+	output("\n\n<i>“Y-yeah,”</i> you manage, holding on to her for support. <i>“Let’s get back to it.”</i>");
+	output("\n\nHer tail waving relaxedly in the air behind her, [wulfe.name] helps you stay upright and hums a cheery tune as you return to exploring.");
+	
+	pc.orgasm();
+	wulfe.orgasm();
+	if (hole < 0) pc.loadInAss(wulfe);
+	else pc.loadInCunt(wulfe, hole);
+	IncrementFlag("WULFE_FUCKED");
+
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function siegwulfeGetCovered(hole:int):void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe(true);
+	processTime(10+rand(11));
+
+	output("<i>“Cuh- cum all over me,”</i> you moan. Right now, more than having her knot throbbing inside you, you desire the feeling of her warm, thick seed washing over your form and marking you all over.");
+	output("\n\n<i>“O~kaaaay!”</i> [wulfe.name] chirrups, giving you one last rough, savage thrust before pulling out. <i>“Mmm… nnnggh!”</i>");
+	output("\n\nTorn between the sensation of sudden, gaping emptiness and the solid thwack of [wulfe.name]’s stupendous cock landing on your back, you cum before the first bit of seed has even spouted from the end of her hulking dick.Your");
+	if (pc.hasCock()) output(" [pc.biggestCock] heaves a fat load onto the ground only to be " + (pc.cumQ() < wulfe.cumQ() ? "outdone" : "matched") + " immediately afterwards by the torrential deluge");
+	else output(" [pc.vagOrAss " + hole + "], contracting and flexing, spurt some of her precum back down your [pc.thighs]. It’s only a prelude to the sudden torrent");
+	output(" of slick seed that spurts up your upper back.");
+	output("\n\n<i>“Awwww, yeah,”</i> [wulfe.name] pants, straining through grit teeth. <i>“Nnngh! Hnngh! Ffffhh… oh, you good little bitch.”</i>");
+	output("\n\nAccompanying her words are several huge, sticky ropes of synthetic semen that splurt from the tip of her cock like a firehose.");
+	if (pc.hasHair()) output(" Your hair is instantly matted, absolutely fucking drenched in her warmth as she sprays you down.");
+	output(" [wulfe.name] slowly steps backwards while she pumps her throbbing cock up and down your back, getting a nice, even coating of her creamy sludge across your back. Your [pc.ass] and thighs don’t escape either, her dick flopping up and down as she paints them in her color.");
+	output("\n\nWith a surreptitious movement of her clawed foreleg, she flips you over onto your back and dominantly slaps her giant, pulsing cock down onto your [pc.stomach]. You have enough time to look up and see a ferocious grin on her face before your world turns white. [wulfe.name]’s semen spews up your front " + (pc.hasBreasts() ? ", coating the underside of your [pc.breasts] and swelling upwards into a pool atop them" : "splattering your chest") + ". The rest of it lands on your face and in your mouth - you accidentally swallow some of the synthetic liquid and can’t tell if you’re happy or displeased it actually tastes pretty good.");
+	output("\n\n<i>“Oh, </i>fuck<i> yeah,”</i> [wulfe.name] sighs deeply, looking down at you with her hands on her considerable hips while you wipe your eyes. <i>“Now you </i>really<i> look the part of being my pet. Hey, you should keep wearing it! Just walk around covered in my hot, sticky spunk looking like a little slut.”</i> She bends down, smiling confidently in your seed-plastered face. <i>“‘Cuz then everyone’d know I fucking own you, instead of just us.”</i>");
+	output("\n\nIt takes you a long time to clean yourself off. By the time you’re done, almost twenty minutes have gone by. [wulfe.name] circles you throughout the process, not only keeping you protected but, as you’re only too keenly aware, claiming the damage as hers. As if to make sure <i>everyone</i> who looks knows who did it. The massive smile on her beautiful, unvisored face says it all.");
+	output("\n\n<i>“You ready to go, sweetheart?”</i> she purrs, curling her tail around your neck when you’re done.");
+	output("\n\n<i>“Yeah… just about,”</i> you reply, checking yourself for errant spots.");
+	output("\n\n<i>“Great!”</i> she trills excitedly, bounding around you in a wide circle. <i>“Let’s go adventuring!”</i>");
+
+	pc.orgasm();
+	pc.shower();
+	wulfe.orgasm();
+	IncrementFlag("WULFE_FUCKED");
+
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function siegwulfeAskAFuckingQuestion(fromInv:Boolean):void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe();
+	processTime(1);
+	
+	output("<i>“Are you up for a fuck, [wulfe.name]?”</i> you ask, expecting business as usual.");
+	output("\n\n<i>“Hmm,”</i> she hums, staring you down. <i>“I think you need a little more respect when you ask me to fuck you, [wulfe.pcname]! I’ve seen how hard you cum when I fuck your holes. I know how much you need it! Why don’t you try being a little more honest and begging for it?”</i>");
+	output("\n\n<i>“You want me to… beg to have sex with you?”</i> you ask.");
+	output("\n\n<i>“Yup. Specifically, for </i>me<i> to fuck </i>you<i>,”</i> she replies, grinning. <i>“‘Cuz you’re just too cute of a pet to let off the leash.”</i>");
+	output("\n\nIf you want [wulfe.name] to throw you a bone, you’ll have to beg her from now on unless you want her to just mercilessly rut you. You don’t think she’ll mind either way.");
+	
+	flags["WULFE_DOMSEX_UNLOCKED"] = 1;
+
+	addButton(0, "Next", approachSiegwulfe, [false, fromInv]);
+}
+
+public function siegwulfeIsInARut():void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe(true);
+	processTime(15+rand(16));
+	
+	var hole:int = rand(pc.vaginas.length+1)-1;
+	
+	if (flags["WULFE_RUTTED_ASKED"] == undefined) output("<i>“Mistress [wulfe.name], would you, ah,”</i> you start, trying to figure out the words that’ll appease her in your request. She watches you impassively, tail swishing in the air behind her. Perhaps complete honesty is the way to go. <i>“I want you to take me and rut me like I’m your little bitch, mistress. I want you to vent every ounce of desire inside me.”</i> You stop talking, your cheeks flushing a little with the embarrassment of such a confession, but mostly in admission of how fucking hot it is to say that out loud. <i>“Is that… okay?”</i>");
+	else output("<i>“Mistress [wulfe.name], I’m feeling the urge again…”</i> you say, meeting her passive glowing eyes as you make your request. <i>“I need you to rut me as hard as you can. Is that okay, mistress?”</i>");
+	output("\n\n<i>“So my cute little pet wants me to indulge [pc.hisHer] desire to be taken by [pc.hisHer] stronger, superior mate, is that it?”</i> [wulfe.name] murmurs, padding closer and encircling you with her body. Her tail rubs underneath your chin as she comes back around to your front, surprising you with a gentle kiss on your [pc.lips]. <i>“Of course that’s okay, silly [pc.boyGirl]. You </i>are<i> my little bitch, after all. My precious little whore to fuck silly whenever I want it and you need it. And if you need it…”</i>");
+	output("\n\nYou hear her gigantic underslung cock snap into existence beneath her, tempting you to look down. You manage, albeit with a struggle, to keep meeting your domme’s smug, confident gaze.");
+	output("\n\n<i>“Then you can have it,”</i> [wulfe.name] finishes, placing her hands on your shoulders with a grin and pushing you down. You find yourself knelt on the ground before her, staring that massive doggycock down as it begins to drip with precum. <i>“Turn around, [wulfe.pcname],”</i> she says from above you, and you look up to see her wearing a smirk. <i>“Everyone knows a good bitch gets on [pc.hisHer] hands and knees so their mate can fuck their holes. I know my cock can be a little </i>distracting<i>, though,”</i> she continues with an exaggerated sigh, placing her hand on her chest in mock dismay as she flexes her dick.");
+	output("\n\nYou have to admit it takes you an extra second to turn around just so you can get a really good look at her monstrous prick, ingraining it in your mind before she embeds it in your [pc.vagOrAss " + hole + "]. " + (flags["WULFE_RUTTED_ASKED"] == undefined ? "Your first rutting… you can hardly hold yourself still in your excitement. You can’t wait to feel mistress [wulfe.name] slide herself inside you." : "Though you’re familiar with the feeling of your mistress rutting you by now, that doesn’t make you any less excited - if anything, it just makes you <i>more</i> so. You can hardly wait to feel that again, to have mistress [wulfe.name] utterly dominate you."));
+	output("\n\n<i>“Knock knock,”</i> [wulfe.name] whispers in a sultry tone, aligning herself with your " + (hole >= 0 ? "primed pussy" : "relaxed asshole") + ". <i>“Open up, little whore.”</i>");
+	output("\n\nYou groan in pleasure as she forces you to do exactly that, your fuckhole taking her tapered tip inside with little effort and then being mercilessly stretched wide around the thick length that follows. Void, she’s hung like a fucking tree trunk; you find yourself clinging to her forelegs to stay stuck in place while she sticks you, slowly feeding more and more of her length inside by taking tiny steps forward. You let out a bestial grunt with every shift above you, [wulfe.name] cooing in approval.");
+	pc.holeChange(hole, wulfe.biggestCockVolume());
+	output("\n\n<i>“Such a good [pc.boyGirl],”</i> she sighs. <i>“You really do deserve everything I got! But let’s start a little slow. I want my pet slut nice and stretched out and lubed before I take you to town, ‘kay?”</i>");
+	output("\n\n<i>“Yes, mistress,”</i> you moan, lifting a hand from her lithe mechanical leg to gingerly place it on your [pc.stomach]. You can feel the protrusion of [wulfe.name]’s massive, pulsating cock south of your belly button. Just being able to touch it through your skin makes you want to cum, but you don’t need to force it. Even with your mistress fucking you as gently as she likes, the choice is going to be out of your hands almost immediately.");
+
+	output("\n\nSure enough, she’s hardly begun thrusting before you let out a deep, animalistic groan and");
+	if (pc.isHerm()) output(" spray a massive load from your [pc.cocks] and tighten your clinging cunt up around her, gritting your teeth as you orgasm.");
+	else if (pc.hasVagina()) output(" tighten up around her, your cunt contracting several times a second while you grunt and grit your teeth.");
+	else if (pc.hasCock()) output(" spray a massive load from your [pc.cocks], throbbing hard with every load that spurts forth from your " + (pc.hasCocks() ? "tips." : "tip."));
+
+	output("\n\n<i>“Nnnngh! Gnnnh! Uh! Huuhh!”</i> you pant, [pc.lips] drawn back over your teeth. <i>“Nnnuh! Nnnn…”</i>");
+	output("\n\n<i>“Oh, wow,”</i> [wulfe.name] giggles from above you, her body shaking with mirth. <i>“You are </i>such<i> a fun pet, [wulfe.pcname].”</i>");
+	output("\n\nShe lets you ride out the rest of your orgasm without doing much, just watching you arch your back and moan like a whore on the end of her impressive cock with a grin on her face. It takes some time for you to finish cumming, the fact that your hole is stretched open and unable to close when you flex somehow delaying the end. You let out a long, moaning sigh of joy when you’re finally done.");
+	output("\n\n<i>“Cutie,”</i> [wulfe.name] murmurs, then starts fucking you again.");
+	output("\n\nShe’s thrusting harder this time - the difference is immediate, and a low grunt of pleasure is forced from you every time she gets deep inside. She’s starting to moan herself, evidently enjoying the act of thrusting her monster-sized cock into your quivering fuckhole enough to make some noise. You can’t help but feel a little proud, happiness blooming in your chest like a flower at sunrise. You’re bringing pleasure to your master!");
+	output("\n\n<i>“Good [pc.boyGirl],”</i> she whispers, acknowledging your efforts. <i>“Are you ready for your rutting? Can you beg for it?”</i>");
+	output("\n\n<i>“Rut me like a bitch, mistress,”</i> you gasp, panting hard from exertion. <i>“Fuck me until I scream! I need you so badly!”</i>");
+	output("\n\n<i>“Mmmmmm,”</i> [wulfe.name] moans, lowering her immense hips downwards and sinking herself to the hilt. A low, shaky scream of ecstasy escapes your mouth as she does it, leveling off into a desirous moan as she bottoms out. <i>“That’s what I like to hear.”</i>");
+	output("\n\nThrusting her massive mechanical hips above you, [wulfe.name] rhythmically bounces up and down, slamming her underside into your [pc.ass] with loud slaps. Each one is like an explosion of fireworks in your head, your voice uncontrollably raising and lowering in pitch while she plunders your " + (hole >= 0 ? "pussy" : "asshole") + " for pleasure. She moans in delight atop you, her legs shaking in pleasure.");
+	output("\n\n<i>“Your mistress is so close to cumming, pet,”</i> she murmurs with a shudder. <i>“Just a few seconds more…”</i>");
+	output("\n\n<i>“Yes! Mistress, please!”</i> you beg her excitedly, just barely holding on to your mental faculties. <i>“I want to feel mistress’ cum inside me!”</i>");
+	output("\n\n<i>“Mmmm- get ready,”</i> she hisses, lifting a leg. <i>“Nnnngh-”</i>");
+	output("\n\nWith a liquid grace usually endemic to large predators, she turns herself around with a soft, womanly sigh then slowly sits down on top of you. You scream in whorish bliss as her knot, thicker than your arm, presses at you with an insistence that suggests only acquiescence is acceptable. It slips inside you after a few seconds of stretching you wide with a lurid pop and accompanying wet dribble of mixed sweat and juices down your [pc.thighs]. Mouth hanging open in awed breathlessness, you can do nothing but take it.");
+	output("\n\n<i>“</i>That’s<i> more like it,”</i> [wulfe.name] says smugly, looking back at your upraised ass. <i>“A proper bitch submits to [pc.hisHer] rutting. Good [pc.boyGirl].”</i>");
+	output("\n\nRight as you think you’ve gotten a handle on the sensation of having a knot that feels like a melon in your taut " + (hole >= 0 ? "cunt" : "asshole") + ", your mistress activates the vibrator in her cock. The effect is immediate.");
+	output("\n\n<i>“Oooohhhh fuuuuuck!”</i> you scream, loud enough that anyone around could easily hear you. <i>“Ooohh, god! Mistress!”</i>");
+	output("\n\n<i>“Hee hee! So distracted you forgot I could do that, huh?”</i> [wulfe.name] titters while you begin cumming all over the ground once more. Held in place by her thick, strong knot and vibrating dogcock, you can scarcely move to buck your hips as you cum. God, it feels so different to cum while you’re being held open and filled with her throbbing cock - it takes some getting used to, but this has an appeal to it completely separate from a regular orgasm. <i>“What a sight you are, pet. </i>Such<i> a little slut.”</i>");
+	output("\n\nYou give her an insensate moan in reply and, apparently satisfied with the reaction, she begins slowly wiggling her hips up and down while she’s inside you. <i>Fuuuuck</i>... With the way she does that, you’re going to cum again before you’re even done with the first, and she knows it. You can’t see her face because you’re too busy being her bottom bitch, but you just <i>know</i> she’s got a smug smirk plastered on her face, feeling you squeeze down on her cock like you’re a toy.");
+	output("\n\nShe knows exactly what kind of hold she has over you, the kind of dominance usually only displayed in animals. Yet, as you grit your teeth and grunt in release once more, you can’t help but love her for it. It’s like she knows precisely what you want and has no fear of indulging you, or perhaps it just comes naturally to her with the new programming. Either way, the end result is that your status means <i>nothing</i> to her. You’re a pet, a cute toy she can rut and love.");
+	output("\n\n<i>“Mmmm, you feel so good, [wulfe.pcname],”</i> [wulfe.name] whispers in approval, gradually slowing her movement. <i>“You can relax now and just let me pump you full.”</i>");
+	output("\n\nShe delivers on that promise in spades, hot jizz spurting into you without end. Her knot securely lodged inside and plugging you up, there’s nowhere for her seed to go but in. Spunk jets into you again and again, heating your insides and " + (!pc.isPregnant() ? "swelling your stomach outwards with the sheer liquid mass" : "trapping what feels like a gallon of cum inside your canal") + ". You lean back into her with your ass raised as high as you can manage, gasping a little in shock when you feel her tail gently spank you across the cheeks.");
+	output("\n\n<i>“Good [pc.boyGirl],”</i> [wulfe.name] tells you, spanking you across the butt again. <i>“Such a good pet.”</i>");
+	output("\n\nYou <i>whimper</i> in submission, earning a pleased giggle from your mistress. Leaning into you, [wulfe.name] forcefully drains her entire reservoirs dry inside your taut fuckhole with a series of long, low groans of satisfaction. You feel several degrees warmer when she eventually slips free of your gaped orifice, synthetic cum trailing down your underside.");
+	output("\n\n<i>“Mmnnn-”</i> [wulfe.name] sighs, stretching out as she steps over you. <i>“Up you get, pet. Here.”</i>");
+	output("\n\nDisplaying incredible strength in her mechanical limbs, she hauls you upwards with her arms and wraps them around your back, squishing you into her enormous breasts. Her nipples are rock hard in the wake of your lewd, intense sex, and she gives you a generous smile when she sees you notice.");
+	output("\n\n<i>“It was like, </i>totally<i> hot to listen to you moan down there,”</i> she murmurs, hooding her eyes. <i>“And the way you </i>squirm<i> on the end of my cock… mmf. C’mere, cutie.”</i>");
+	output("\n\nRunning her hand down the back of your head and neck, she leans forward and plants a kiss on your [pc.lips], holding you there while she wraps her tongue around your own. Shaky-legged and awash in the afterglow of such a rough rutting, you let her ravish you with warm love and attention, moaning softly into her mouth. Locking her glossy black lips with your own, [wulfe.name] keeps you there and kisses you for what feels like an eternity.");
+	output("\n\nPulling back slightly, she covers your face in affectionate kisses before regarding you fondly.");
+	output("\n\n<i>“Feeling like some more adventuring, pet?”</i> she asks, smiling.");
+	output("\n\n<i>“I guess we should get back to it...”</i> you reply, somewhat regretfully.");
+	output("\n\n<i>“I’ll always be by your side, pet. Just let me know if you want to take a break,”</i> [wulfe.name] whispers, turning and running her tail under your chin before resuming her lookout.");
+	output("\n\nTantalized by the offer, your gaze lingers on her generous, swaying behind for a few seconds before you snap back to reality, cheeks flushed. Time to get a move on.");
+
+	pc.orgasm();
+	if (hole < 0) pc.loadInAss(wulfe);
+	else pc.loadInCunt(wulfe, hole);
+	wulfe.orgasm();
+	IncrementFlag("WULFE_RUTTED_ASKED");
+
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function siegwulfeCryMistressAndLetSlipTheCocksOfWar():void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe(true);
+	processTime(15+rand(16));
+
+	var hole:int = rand(pc.vaginas.length+1)-1;
+
+	output("<i>“Pet,”</i> [wulfe.name] cuts you off before you can even say anything, encircling you with her long, voluptuous body and turning back to face you. Her eyes flash red for a moment before flickering back to pink. <i>“Down. Now.");
+	if (!pc.isNude()) output(" And take those clothes off.");
+	output("”</i>");
+	output("\n\nShe very clearly means business. Following her instructions, you’re on all fours and looking behind you for approval within seconds.");
+	output("\n\n<i>“Is this good, m-”</i> you start as she walks up alongside you, then suddenly let out a yip of surprise as her tail coils up and spanks you across the ass, <i>hard</i>. <i>“Aah!”</i>");
+	output("\n\n<i>“Silly [wulfe.pcname],”</i> she coos, an undercurrent of danger flowing beneath her words. <i>“Now’s not the time for talking.”</i> She spanks you again, a little softer but no less painful across your [pc.ass]. You do your best to muffle your yelp so she doesn’t spank you again. <i>“Put your head down.”</i>");
+	output("\n\n<i>“Now stretch your arms out in front of you. And,”</i> [wulfe.name] continues, spanking you once more, <i>“raise that slutty ass of yours. Higher. Higher.”</i>");
+	output("\n\nFinally, she appears to be satisfied with your positioning. You realize she’s worked you into a position of worship, almost as if you were a primitive praying at an altar of your god. The thought that she might think of herself as your goddess and of you as a worshipper sends a tingle down your spine, manifesting as a shiver you have to control before she spanks you again.");
+	output("\n\n<i>“Mmm… acceptable,”</i> [wulfe.name] murmurs, shifting into position above you. <i>“Now hold that until I’m done with you.”</i> She steps forward, leaving her weight on her hindlegs but stretching her forelegs to sit on top of your hands. She’s not kidding about wanting you to maintain this position! <i>“Oh,”</i> she adds casually, her monstrous dogcock snapping into existence and pressing at your [pc.vagOrAss " + hole + "], <i>“and I do mean </i>hold<i>. Move and I’ll spank you.”</i>");
+	output("\n\nBefore you can even dwell on the impossibility of such a task, [wulfe.name] unceremoniously thrusts herself inside you. You let out a strangled scream of mixed delight and humiliated pain as you feel her bottom out, her underside pressed into your lower back and butt.");
+	// cock counts as a bigger cock 'cause that's how hard she goes
+	pc.holeChange(hole, wulfe.biggestCockVolume()*1.25);
+	output("\n\n<i>“What did I just tell you?”</i> she whispers, and you feel her tail crack against your ass once more.");
+	output("\n\n<i>“Ah! Mistress!”</i> you moan, trying to fight against the instinct to pull away - she’ll just spank you again, and you know it.");
+	output("\n\n<i>“Bad " + pc.mf("bitch", "girl") + ",”</i> she says, drawing back for another thrust.");
+	output("\n\nOnce more, she cruelly slams herself right to the hilt, " + (hole >= 0 ? "pressing up against your womb with all the insistence of a needy, breed-hungry centaur" : "shifting your organs and spearing your [pc.asshole] in the search of pleasure and dominance") + ". You don’t even bother trying to resist the spanking - her tail whips across your ass, leaving a light stinging sensation behind.");
+	output("\n\nThe pain and slight embarrassment of being spanked by your tauric lover still lingers, but you can’t deny the effect. Your posture is perfect beneath her, each incorrect motion and position quickly corrected by your dominant mistress and a reminder left behind as a mark across your oversensitive ass. The stinging, itching sensation that remains has you " + (hole >= 0 ? "r pussy leaking down your " + (pc.isTaur() ? "hindlegs" : "[pc.thighs]") : "moaning in subdued glee") + ", just waiting for your mistress to force more pleasure upon you.");
+	output("\n\nShe doesn’t hesitate at all in doing so, slamming her hips into you with all the force she can muster. You <i>revel</i> in it, letting your tongue loll from your mouth while she fucks and spanks you, groans of pure ecstasy leaking from your lips. She’s like a beast, uncaring in her treatment and seeking only her own satisfaction, and you’re loving every second of it. So much so that you accidentally let slip a confession of your desires.");
+	output("\n\n<i>“More…”</i> you moan, suddenly going rigid after you realize what you’ve done.");
+	output("\n\n<i>“Silence!”</i> [wulfe.name] commands you, letting her tail swing downwards and snap at your ass, leaving you with yet another red mark across it.");
+	output("\n\nEven as she punishes you for your transgression, you can feel her sink her back legs deeper, lowering her centre of gravity before she begins fucking you even harder, fulfilling your wishes. To have your unconscious desire drawn out and met by your domineering mistress drives you over the edge, leading you to");
+	if (pc.isHerm()) output(" spurt [pc.cum] all over the ground from the tip of your [pc.cocks]. A puddle forms beneath you while your pussy squeezes down on her as hard as your body can possibly manage, seeking to arrest her progress while you work yourself through the throes of pleasure.");
+	else if (pc.hasCock()) output(" cum uncontrollably, shooting your [pc.cum] all over the ground. Your [pc.cocks] " + (pc.hasCocks() ? "throb" : "throbs") + " with the pressure of [wulfe.name] in your ass, your taut fuckhole clamping down on her insanely hard as your body seeks leverage to make you expel your seed to no avail. It comes out in erratic streams and spurts, driven onwards by the massive cock spreading you wide.");
+	else if (pc.hasVagina()) output(" cum all over [wulfe.name]’s giant dogcock, your walls contracting around her while you moan and " + (pc.isSquirter() ? "squirt all over her underside and hindlegs, droplets spattering her cock and your ass" : "leak all over her cock, dripping down your thighs") + ". Your cunt desperately tries to hold her in place while you work through your orgasm.");
+	output("\n\n[wulfe.name] doesn’t stop for even a second. She completely ignores your orgasm, her rhythm violent and unchanging. That only spurs your pleasure on all the more, to know you’ve been lowered to the level of having a machine use you for fun while you desperately try to keep your consciousness from leaking out through your nethers. You cry out in lust beneath her, struggling to maintain your posture while pleasure wracks your body and mind. You don’t even feel the pain of the lashes across your behind, surges of endorphins accompanying each one.");
+	output("\n\nWhat you <i>can</i> feel is the increasingly desperate, shallow motions of your mistress, only withdrawing herself six inches at most with each outstroke before she rams herself home again. She’s close to cumming, and you want to help her do it. Employing an impressive amount of muscle control given how wide she’s got you stretched and your post-orgasm state, you weakly squeeze down on her with your lewd " + (hole >= 0 ? "cunt" : "asshole") + ", trying to massage her.");
+	output("\n\nWhether it’s your efforts or her own, you can tell she’s getting closer. She’s panting and grunting above you, her legs twitching as she prepares to turn around, and you can practically already feel the throb of her overlarge cock inside you. With a grunt of effort, she lets your hands free and pivots on her hindlegs to turn around, violently slamming her knot down until your sloppy fuckhole stretches open enough to swallow it whole.");
+	output("\n\n<i>“Nnngh!”</i> [wulfe.name] grunts, biting her lip. <i>“Nnnnn- yes! Ooooh, yes,”</i> she hisses, lifting her hips to drag your ass upwards. <i>“Take it all, my little whore!”</i>");
+	output("\n\nThick, hot spunk begins to pour inside you, its slickness soothing and massaging the sorer parts of your internal anatomy. Such is the volume you begin to bloat almost at once, taking on what feels like upwards of a gallon of your mistress’ delightful seed. You’re about ready to just relax and accept your role as a cumdump when she surprises you by jolting her hips up and down.");
+	output("\n\n<i>“Oops. Did you think we were done?”</i> [wulfe.name] laughs derisively, all but gloating behind you. <i>“Silly [wulfe.pcname]. We’re done when I say so.”</i>");
+	output("\n\nThen the vibrator in the base of her cock activates and you find yourself unrepentantly screaming in orgasmic pleasure behind her, tied to her gigantic knot and unable to prevent your mistress from taking advantage of you. She begins bouncing you up and down with the limited range of motion she can afford with her thick knot inside you, lifting you a few inches off the ground while the canine cock lodged inside you vibrates powerfully enough to make your vision blur.");
+	output("\n\n<i>“Oh, oh god! Mistress! Mistress,”</i> you pant, unsure of what you’re even imploring of her. Do you want her to stop… or keep going? You don’t even know yourself, but calling out for her feels right in the moment. <i>“Mistress, mistress, mistress!”</i>");
+	output("\n\n<i>“Mmm, that’s right my little fuckdoll,”</i> she murmurs, slamming you up and down. Her impressive knot is slick with her seed and each movement threatens to suddenly dislodge it, but it’s just too big to come out. She has the freedom to ride you however she wants, and you just have to endure it. <i>“Take pride in your submission, [wulfe.pcname]. Your mistress demands it.”</i>");
+	
+	output("\n\n[wulfe.name] continues bouncing you up and down, rutting you even as her throbbing dogcock continues to unload jet after jet of her");
+	if (wulfe.isEggWulfe()) output(" fertile");
+	output(" semen into your clamped-closed orifice. You don’t even know how many times you cum,");
+	if (pc.isHerm()) output(" " + (pc.hasCocks() ? "cocks" : "cock") + " weakly jizzing all up your stomach and chest while you’re shaken up and down. Your well-worn pussy " + (pc.isSquirter() ? "squirts" : "drips") + " almost non-stop, barely managing to force the femcum out in a stream down your [pc.thighs].");
+	else if (pc.hasCock()) output(" " + (pc.hasCocks() ? "cocks" : "cock") + " weakly jizzing all up your stomach and chest while you’re shaken up and down. You’re spattered in your own [pc.cum] and filled with hers, your insides warm and sloshing with her spunk.");
+	else if (pc.hasVagina()) output(" pussy " + (pc.isSquirter() ? "squirting" : "leaking") + " without end, barely managing to force the femcum out in a stream down your [pc.thighs].");
+
+	output("\n\n[wulfe.name] doesn’t let you go for what feels like an hour but is probably closer to half. Her monster cock snaps out of existence and you suddenly drop to the ground, warm and thick cum immediately splattering from your abused fuckhole. Groaning, you lie there for a few seconds with your eyes closed before you feel a soft kiss on your cheek. Cracking an eyelid, you see [wulfe.name] smiling in your face before she plants another kiss on you. Sat in front of you, she continues to gently kiss you all over your face - on your forehead, on the tip of your nose, your cheeks,");
+	if (pc.hasHair()) output(" hair,");
+	output(" and last of all your [pc.lips].");
+	output("\n\nShe possessively bites down on your bottom lip, eyes hooded, then slides her tongue between your lips and locks it with your own. So enthralling and passionate is her embrace that you don’t even notice her slowly lifting you up, bringing you back to your feet and safely holding you up while she rubs your " + (pc.isTaur() ? "lower back" : "butt") + ", massaging your sore muscles.");
+	output("\n\n<i>“You are </i>such<i> a good pet,”</i> [wulfe.name] whispers in your ear before pulling back, planting a hand on your cheek. <i>“Good [pc.boyGirl].”</i>");
+	output("\n\nYou blush at that, overcome by the emotion in the wake of your extensive and thorough treatment at her hands. <i>“Thank you, mistress…”</i>");
+	output("\n\n<i>“Mmm. Come here…”</i> she murmurs, bringing you closer again. This time the kiss is longer and rougher, just frantic enough to stoke the coals of your lust even after being so roughly taken. You wouldn’t even mind if she indulged herself in you once more.");
+	output("\n\n<i>“Back to our little adventure, then?”</i> [wulfe.name] asks" + (pc.isNude() ? " while you dress." : "."));
+	output("\n\nYou nod an affirmative. <i>“That’s the plan. Thanks for coming with me, mistress.”</i>");
+	output("\n\n<i>“Please,”</i> she says with a smile, planting her hand on her considerable chest. <i>“Of course I have to accompany my pet. You’d get into all sorts of trouble without me around, wouldn’t you? Now,”</i> she continues, running a hand " + (pc.hasHair() ? "through your [pc.hair]" : "over your head") + ", <i>“onwards we go.”</i>");
+	
+	var i:int = 0;
+	while (i++ < 2+rand(4)) pc.orgasm();
+	if (hole < 0) pc.loadInAss(wulfe);
+	else pc.loadInCunt(wulfe, hole);
+	wulfe.orgasm();
+
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function siegwulfeRequestSexing(fromInv:Boolean):void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe();
+	processTime(1);
+
+	if (flags["WULFE_REQUEST"] == undefined)
+	{
+		output("<i>“Mistress [wulfe.name],”</i> you begin, addressing your better with the respect she deserves, <i>“will you please fuck me?”</i>");
+		output("\n\n<i>“Oh my gosh, you are so cute!”</i> [wulfe.name] titters, her voluptuous chest jiggling as she shakes in mirth. <i>“But that’s not how pets ask their owner for a treat!”</i>");
+		output("\n\n<i>“How… how do pets ask their owner for a treat?”</i> you ask, disappointed.");
+		output("\n\n<i>“They beg,”</i> [wulfe.name] says, grinning at you. <i>“On their knees, arms and legs tucked together. Like good little bitches. Are you a good little bitch?”</i>");
+
+		addButton(0, "Yes", function ():void {
+			clearMenu();
+			clearOutput();
+			author("Wsan");
+			showSiegwulfe();
+			processTime(1);
+
+			output((pc.isNude() ? "Naked" : "Still clothed") + ", you get down on your knees. [wulfe.name] watches in glee as you slowly tuck your legs together beneath you, raising your arms and looking up at her with puppy eyes. You look every bit the needy bitch.");
+			output("\n\n<i>“Mistress [wulfe.name], will you please fuck me?”</i> you repeat.");
+			output("\n\n<i>“Hmmhm,”</i> she chuckles, looking down on you. <i>“Could you say that again?”</i>");
+			output("\n\n<i>“Please fuck me, mistress [wulfe.name]...”</i>");
+			output("\n\n<i>“Louder,”</i> she murmurs, fanning herself with a hand.");
+			output("\n\n<i>“Please, fuck me! Mistress [wulfe.name], I need you!”</i>");
+			output("\n\n<i>“Not bad,”</i> she says, opening her mouth to continue before you interrupt her.");
+			output("\n\n<i>“Please, mistress! I’m your good little bitch, I’ll do anything!”</i> you cry out, begging her in the hopes of proving your utter submission. <i>“Just please fuck me!”</i>");
+			output("\n\n<i>“Oh, wow,”</i> [wulfe.name] coos, smiling wide and putting a paw on your shoulder. She pushes you onto your back. <i>“Alright, [wulfe.pcname]. Good little bitches get a bone! What did you want me to do to you? Present yourself.”</i>");
+
+			flags["WULFE_REQUEST"] = 1;
+			
+			siegwulfeRequestButtons();
+		});
+		addButton(1, "No", function ():void
+		{
+			clearMenu();
+			clearOutput();
+			author("Wsan");
+			showSiegwulfe();
+
+			output("<i>“I can’t do that,”</i> you mutter, embarrassed.");
+			output("\n\n<i>“Tut tut!”</i> [wulfe.name] says nonchalantly, shaking her head. <i>“No nice sex for you, then,”</i> she taunts you, grinning. <i>“Ask again when you understand your position a little better, ‘kay?”</i>");
+
+			addButton(0, "Next", approachSiegwulfe, [false, fromInv]);
+		});
+	}
+	else
+	{
+		output("Catching your mistress’ attention, you slip into a begging pose before her as she turns to regard you. The motion comes naturally, and you raise your hands to implore her.");
+		output("\n\n<i>“Mistress, would you please fuck me?”</i> you moan, sultry and enchanting.");
+		output("\n\n<i>“Oh, pet,”</i> [wulfe.name] murmurs, smiling approvingly. <i>“Present yourself, then.”</i>");
+
+		siegwulfeRequestButtons();
+	}
+}
+public function siegwulfeRequestButtons():void
+{
+	if (pc.hasVagina()) addButton(0, "Present Pussy", vaginaRouter, [siegwulfeRequestPussy, wulfe.biggestCockVolume(),0,0,0], "Present Pussy", "Raise your pussy.");
+	else addDisabledButton(0, "Present Pussy");
+	addButton(1, "Present Ass", siegwulfeRequestAss, undefined, "Present Ass", "Raise your ass.");
+	if (pc.hasCock()) addButton(2, "Present Cock", penisRouter, [siegwulfeRequestCock, pc.biggestCockVolume() + 1, false], "Request Cock", "Present your dick to your mistress.");
+	else addDisabledButton(2, "Present Cock");
+	if (pc.hasGenitals()) addButton(3, "Swap Oral", siegwulfeRequestOral, undefined, "Swap Oral", "Ask for oral sex.");
+	else addDisabledButton(3, "Swap Oral");
+}
+
+public function siegwulfeRequestPussy(vagId:int):void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe(true);
+	processTime(15+rand(16));
+
+	output("Spreading your [pc.legs], you push your [pc.hips] up and gaze at [wulfe.name] imploringly. <i>“Please mate with my pussy, mistress! It’s ready for you…”</i>");
+	output("\n\n<i>“Mmm,”</i> [wulfe.name] murmurs, licking her lips as she hungrily eyes your [pc.pussy " + vagId + "]. <i>“I’ll mate with your horny little pussy, you slutty pet. Mate with it until you’re filled to the brim with my cum. Is that what you want?”</i>");
+	output("\n\n<i>“Yes,”</i> you gasp, eyes wide. <i>“Yes, please, mistress!”</i>");
+	output("\n\n<i>“I thought so,”</i> she says breathily, positioning herself above you. <i>“Stay still…”</i>");
+	output("\n\nShuffling backward above you, [wulfe.name] slowly sits down atop you, leaving only your head in view. Your hands wrapping around her forelegs, she hits you with a confident, dominant smile that sends a shiver down your spine.");
+	output("\n\n<i>“Oooh, I hope you’re ready for this, [wulfe.pcname],”</i> [wulfe.name] says in a husky voice, giggling as her visor lifts and you can see her eyes, glowing a vibrant pink while she watches your face. <i>“You’re just such a cute and pretty pet I can’t hold myself back sometimes!”</i>");
+	output("\n\nHer weight is evenly distributed across her crouched legs, but you’re stuck in place all the same. The only movement afforded to you is a minimal wiggle of your hips, thrusting yourself upwards. She only giggles at the feeling, her projected cock snapping into existence and immediately pressing its thick underside against your slick cunt. She rubs it up and down with a few slight movements of her womanly hips, cooing in delight.");
+	output("\n\n<i>“Mmmh, you’re just </i>so<i> ready for this, aren’t you?”</i> she says in pleasure, tantalizing you with her solid slab of a cock rubbing between your lips. <i>“Desperately pressing yourself against me, just begging to take me inside.”</i>");
+	output("\n\nYou hadn’t even realized you were doing it until she called attention to it. Watching your expression of surprise, she chuckles and smiles sweetly. <i>“Don’t worry, pet. I’ll give you what you want…”</i>");
+	output("\n\nLifting her hips above you, her canid dick draws back only to make its reappearance at the entrance to your sopping wet pussy. [wulfe.name] takes your face in her hands and, letting her tongue play across her plump, glossy bottom lip, buries herself to the hilt in your cunt with one swift thrust. Helpless to move or resist, you cry out in ecstasy while your body comes to terms with being speared upon her massive pole.");
+	pc.holeChange(vagId, wulfe.biggestCockVolume());
+	output("\n\n<i>“Mmmm, good [pc.boyGirl],”</i> she growls, pressing her gigantic knot into you. <i>“But don’t rest just yet!”</i>");
+	output("\n\n<i>“M-mistress?”</i> you stammer, feeling her immense, bulging dogknot begin to lewdly spread your labia. <i>“Oh! O-oh! Nnnh!”</i>");
+	output("\n\n<i>“Grrrrnnh,”</i> [wulfe.name] groans, giving you a first-person view of her expression as she fucks herself deeper. She looks beautiful, unrestrained, her dark blonde hair half-covering her face, her canine dug into her plush bottom lip with all the lusty vigor of a sexual goddess. <i>“Nnnn!”</i>");
+	output("\n\nYou cum on the spot just looking at her. Open-mouthed and gasping, you watch the expression on her face shift to a smug, self-satisfied smile as you squeeze down on her overlarge cock, all but massaging her length while you weakly thrust your hips. She lets out a quiet, breathy giggle that only spurs you on all the harder");
+	if (pc.hasCock()) output(" cum spurting from your [pc.cocks]");
+	output(". Moaning in sincere joy, you cum explosively as her knot takes advantage of your spasming cunt and slips inside as you untense.");
+	output("\n\n<i>“Mistress!”</i> you scream, trying to keep your eyes focused while she holds your upturned head in place, panting as she looks down at you cumming your brains out.");
+	output("\n\n<i>“Yes… good bitch,”</i> she moans, the most erotic utterance you’ve ever heard. <i>“Here’s a little reward.”</i>");
+	output("\n\nLowering herself even further, you find yourself pressed against the ground, unable to even thrust your hips. You’re completely at her mercy and as she switches the vibrator on you let out a half-scream, half-moan of eager pleasure. She’s completely inside you, massaging you from the entrance of your canal all the way to your womb all while gazing down at you with the most lustful, self-indulgent expression you’ve ever seen her wear. She’s <i>loving</i> this.");
+	output("\n\n<i>“You feel so good on my cock, [pc.name],”</i> she whispers, surprising you with your real name. <i>“I could just keep you down here forever, you know… cumming over and over, my cock thickening inside you every time I blow my load into your womb. You’d love that, wouldn’t you?”</i>");
+	output("\n\n<i>“Y-yes, mistress,”</i> you moan, almost hoping she does. She’s just too good, too dominant, too sexual for you to resist, and the way she rubs it in your face at every opportunity only makes you all the hotter for her. <i>“I’m yours…”</i>");
+	output("\n\n<i>“I know,”</i> [wulfe.name] whispers, dialing the vibe up just enough to shock you with the sudden approach of another orgasm. <i>“Now keep milking my cock, pet.”</i>");
+	output("\n\nYour eyes fly open at the instruction, overwhelmed by the full-length vibrator stuffing your quim. You clamp down so hard it’s almost painful, gritting your teeth and grunting while your overfull cunt contracts enough to make [wulfe.name] groan. Your walls squeeze at her giant cock with all the intensity of a slut desperate to be seeded, femcum " + (pc.isSquirter() ? "squirting from around her gigantic knot in a tiny, compressed stream" : "weakly dripping down your underside, just barely able to escape around her gigantic knot") + (pc.hasCock() ? " while your half-limp dick" + (pc.hasCocks() ? "s jettison their loads" : " jettisons its load") + " once more." : "."));
+	output("\n\n<i>“That’s right,”</i> she murmurs encouragingly. <i>“I’m almost there. Your face is so beautiful when you cum, [wulfe.pcname]. It’s like you’re crying out for more of me, just begging me to indulge in my most carnal desires. I can’t resist it…”</i>");
+	output("\n\n<i>“Uuuuhhhh!”</i> you groan, weakly leaning into her hands while she brushes your cheeks with her soft thumbs. <i>“M-mist- nnngh! Nnnnn!”</i>");
+	output("\n\n<i>“Keep cumming, good bitch,”</i> [wulfe.name] says, panting excitedly. <i>“Oooooh, yes, yes, yessss-”</i>");
+	output("\n\nEyes half-focused, you look past her humongous tits to see her throw her head back, her hair flying upwards as her monstrous cock throbs inside you. You can <i>feel</i> it bloating with her seed from base to tip, marked by a sudden, intense warmth " + (pc.isPregnant(vagId) ? "up against your womb. Your cervix is splattered in a new layer of thick, synthetic cum so many times it feels like she has an endless supply, pumping it into you as if you exist simply to contain it. You can scarcely imagine what the results would be like were you not pregnant..." : "inside your womb. Her pointed tip pressed right up against your cervix, there’s absolutely nothing stopping her from pumping a new load inside your [pc.womb " + vagId + "] with each passing second. It feels like she has an endless supply of thick, synthetic seed, pumping it into you as if you exist simply to contain it. You can already feel your stomach swelling outward, pressing against her underside more and more."));
+	output("\n\n<i>“Nnnnn... Nnnnnngh,”</i> [wulfe.name] strains above you, her generous breasts shaking with the effort of cumming. Bending at the waist, she disables the vibe as she puts her hands on the ground on either side of your face. <i>“Guuuhhh- fuck,”</i> she pants, growling. <i>“Hnn- nnngh!”</i>");
+	if (pc.isPregnant()) output("\n\n[wulfe.name]’s cum begins to slop from your pussy, pouring out from around her knot when your canal can hold no more. It splashes from your squeezed-tight cunt all over your thighs and splashes across the ground, each passing second accelerating the rate at which it splurts from your stuffed cunny. You can’t help but leak a high-pitched moan from your throat at the sensation, her seed splattering her underside and the ground between your legs.");
+	else output("\n\nYour tummy bloats even further, giving off the impression of several months of pregnancy passing by in a few seconds. Pressed against the bulk of [wulfe.name]’s solid underside, you feel constricted and squished as your taut skin begins to spill to the sides, full of sloshing liquid. Her gigantic, throbbing knot lodged securely in the entrance of your cunt, every single drop of her warm seed jets into your womb without resistance. It’s enough to make your eyes roll back in your head with pleasure.");
+	output("\n\n<i>“Nnnn… enjoying your mating, pet?”</i> [wulfe.name] moans from above you, still shuddering with the exertion of orgasm. <i>“Ugh! I know I am.”</i>");
+	output("\n\n<i>“Thank you for mating with me, mistress,”</i> you whisper, cheeks flushed.");
+	output("\n\n<i>“Grrrh,”</i> she growls aggressively, curling her lip above you. <i>“You can thank me when I’m done, bitch.”</i>");
+	output("\n\n<i>“Yes, mistress,”</i> you whimper submissively, stroking her cock with your cunt in apology.");
+	output("\n\nSeveral loud, dominant groans of satisfaction later, [wulfe.name] is finally done pumping your sodden fuckhole.");
+	output("\n\n<i>“Hnnn,”</i> she sighs, reaching down to");
+	if (pc.hasHair()) output(" run her hands through your hair and");
+	output(" play with your [pc.ears]. <i>“Aren’t you a good [pc.boyGirl]? Yes you are. Yes you are!”</i>");
+	output("\n\nThe degrading objectification combined with the last few spurts of seed into your pussy almost make you cum all on their own. As it is, you just moan in delight at the treatment.");
+	output("\n\nAfter several seconds of playing with you, [wulfe.name] abruptly lifts herself off the ground. You yelp in surprise, your hips being dragged upwards, her swollen knot still safely stuck in your stuffed cunt.");
+	output("\n\n<i>“Thank me for using your pussy,”</i> [wulfe.name] purrs.");
+	output("\n\n<i>“M-mistress!”</i> you moan helplessly, half hanging in the air. <i>“I-I can’t-”</i>");
+	output("\n\n<i>“Hmmm,”</i> she hums, shifting her weight from side to side. The effect is impossible to ignore, and you let out a groan as her cum runs down your back. <i>“That doesn’t sound like thanks!”</i>");
+	output("\n\n<i>“Thank you, mistress,”</i> you mumble, tired.");
+	output("\n\n<i>“Uh uh,”</i> she replies, swaying her oversized hips. <i>“Gotta do better than that, pet.”</i>");
+	output("\n\n<i>“Thank you for mating with m-uh! My pussy, mistress,”</i> you say, almost begging her to be let go.");
+	output("\n\n<i>“Nnnh,”</i> she sighs, working her hips up and down, bouncing you in the air. <i>“One more try.”</i>");
+	output("\n\n<i>“Thank you for using my slutty little cunt like the bitch pet I am!”</i> you cry out, spurred on by desperation and lust. <i>“Aah!”</i>");
+	output("\n\nThe sound of [wulfe.name] deactivating her cock cracks through the air, and the next second your [pc.ass] slaps against the ground. <i>“Oof!”</i>");
+	output("\n\nShe immediately picks you up, ignoring the torrent of cum now pouring from your abused cunt and dusting you off. Hooking her fingers under your chin, she pulls you in for a kiss. Her tongue plays around yours while you shiver against her, trying to ignore the way your gaping pussy has a stream of her seed flowing down your inner thighs. Pulling back, she gives you a smirk and a light smack on the butt.");
+	output("\n\n<i>“Better get back to adventuring, partner,”</i> [wulfe.name] says, raising her eyebrows in amusement.");
+	output("\n\nYou spend a few minutes cleaning up before you can even");
+	if (!pc.isNude()) output(" reclothe yourself and");
+	output(" set off.");
+
+	pc.orgasm();
+	pc.orgasm();
+	pc.loadInCunt(wulfe, vagId);
+	wulfe.orgasm();
+	
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function siegwulfeRequestAss():void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe(true);
+	processTime(15+rand(16));
+
+	var tightness:Number = pc.ass.looseness();
+
+	output("Spreading your [pc.legs], you push your [pc.hips] up at her and gaze at [wulfe.name] imploringly. <i>“Please fuck my asshole, mistress! I need to feel you inside it...”</i>");
+	output("\n\n<i>“What an enchanting prospect,”</i> [wulfe.name] murmurs, licking her lips as she hungrily eyes your [pc.asshole]. <i>“I’m going to destroy that ring until your tummy’s swollen with my seed, you little whore of a pet. You’d love that, wouldn’t you, [wulfe.pcname]?”</i>");
+	output("\n\n<i>“Fuck yes,”</i> you breathe, scarcely allowing yourself to fantasize about such a dreamlike scenario. <i>“Yes, please, mistress!”</i>");
+	output("\n\n<i>“I thought so,”</i> she says smugly, positioning herself above you. <i>“Stay still…”</i>");
+	output("\n\nShuffling backward above you, [wulfe.name] slowly sits down atop you, leaving only your head in view. Your hands wrapping around her forelegs, she hits you with a confident, dominant smile that sends a shiver down your spine.");
+	output("\n\n<i>“Oooh, I hope you’re ready for this, [wulfe.pcname],”</i> [wulfe.name] says in a husky voice, giggling as her visor lifts and you can see her eyes, glowing a vibrant pink while she watches your face. <i>“You’re just such a cute and pretty pet I can’t hold myself back sometimes!”</i>");
+	output("\n\nHer weight is evenly distributed across her crouched legs, but you’re stuck in place all the same. The only movement afforded to you is a minimal wiggle of your hips, thrusting yourself upwards. She only giggles at the feeling, her projected cock snapping into existence and immediately pressing its thick underside against your asshole. She rubs it up and down with a few slight movements of her womanly hips, cooing in delight.");
+	output("\n\n<i>“Mmmh, you’re just </i>so<i> ready for this, aren’t you?”</i> she says in pleasure, tantalizing you with her solid slab of a cock rubbing against your quivering hole. <i>“Desperately pressing yourself against me, just begging to take me inside.”</i>");
+	output("\n\nYou hadn’t even realized you were doing it until she called attention to it. Watching your expression of surprise, she chuckles and smiles sweetly. <i>“Don’t worry, pet. I’ll give you what you want…”</i>");
+	output("\n\nLifting her hips above you, her canid dick draws back only to make its reappearance at the entrance to your [pc.asshole]. [wulfe.name] takes your face in her hands and, letting her tongue play across her bimboesque bottom lip, very slowly begins to inch forward with her tapered tip, inexorably spreading you apart. Helpless to move or resist, you pant and moan while your body opens up to accept her massive pole.");
+	pc.buttChange(wulfe.biggestCockVolume());
+
+	if (tightness < 3) output("\n\n<i>“So nice and tight, pet,”</i> [wulfe.name] purrs, gently working herself inside. <i>“Like you’ve been keeping it just for me.”</i>");
+	else if (tightness == 3) output("\n\n<i>“Oooh, this is rare,”</i> [wulfe.name] says, feeling you out from the inside. <i>“Not too tight, not too loose… well, not for long! But thanks anyway.”</i>");
+	else if (tightness == 4) output("\n\n<i>“Mmm, you’re loose enough for me to slide right in, you little slut,”</i> [wulfe.name] murmurs, not sounding displeased at all. <i>“This’ll be fun.”</i>");
+	else output("\n\n<i>“Oh, wow, you little whore,”</i> [wulfe.name] giggles, finding that she has almost no problem at all getting herself inside you. <i>“You’re loose enough to pull me right in. Getting my big, fat knot inside you should be easy!”</i>");
+
+	output("\n\nShe tests you out, digging herself deeper with short, rolling thrusts into your ass. You’re so caught up in how good the sensation of her oversized cock rubbing against your walls feels that you hardly even notice how deep she is inside you until the head of it begins to push the skin of your stomach upwards.");
+	output("\n\n<i>“O-oh, mistress,”</i> you gasp, unable to move or even do anything as she grins down at you, her dark blonde hair covering half of her flawless face.");
+	output("\n\n<i>“That’s right,”</i> she croons, stroking your cheek. <i>“Just relax and take it all in, pet.”</i>");
+
+	output("\n\nShe <i>forces</i> you to keep that promise, spreading you wide around her impressive length until you’re letting out gasping, shuddering moans of arousal.");
+	if (pc.isHerm()) output(" Your half-hard cock" + (pc.hasCocks() ? "s dribble" : " dribbles") + " precum at the stimulation, your empty " + (pc.hasVaginas() ? "pussies" : "pussy") + " tightening up as she caves in your asshole.");
+	else if (pc.hasCock()) output(" Your [pc.cocks] " + (pc.hasCocks() ? "stay" : "stays") + " half-hard beneath her, twitching and dribbling precum with every stimulating movement. Even stretched as wide as you are, your asshole still desperately tightens up and flexes around your mistress’ thick, tummy-swelling cock.");
+	else if (pc.hasVagina()) output(" Despite " + (pc.hasVaginas() ? "their emptiness, your pussies tighten up and drip" : "its emptiness, your pussy tightens up and drips") + " in arousal, only emphasizing how good it is to have her in your asshole instead. You can’t help but flex and tighten up around her even as she swells your tummy outward.");
+	else output(" You strain with the effort of taking her in, the stimulation sending bolts of pleasure dancing up and down your spine.");
+
+	output("\n\nYou suddenly realize, resurfacing from the haze of pleasure your mistress has you trapped in, that she’s bottomed out inside you. She’s smiling devilishly, rubbing her knot against your " + (pc.hasPlumpAsshole() ? "plump, sensitive ring" : "stretched-out asshole") + " as if to tease you with what’s to come. You already know she’s going to fuck you however she wants, take you however she likes, but that doesn’t mean you’re not going to enjoy it too.");
+	output("\n\n<i>“Hold on for a moment, [wulfe.pcname],”</i> [wulfe.name] whispers to you. <i>“This next part is going to get a little… </i>rough<i>.”</i>");
+	output("\n\nHer warning serves as nothing more than kindling to stoke the fire of your excitement as she slowly raises her hips, drawing back so far there’s only a few inches of her doggydick left inside you. Then, grinning down at you while she watches your reaction, she sinks herself to the hilt in one long, fluid motion that has you gasping and shaking around her.");
+	output("\n\n<i>“You’re too cute for your own good,”</i> [wulfe.name] murmurs, drawing back again. <i>“Now I just want to fuck your ass even harder.”</i>");
+	output("\n\nShe treats you to an unending display of strong, dominant thrusts that sink so far into you that her knot rubs against your asshole, almost like she’s tantalizing you by keeping it in the forefront of your mind. It’s not <i>totally</i> effective, though, because all you can think about right now is how fucking good her thick, studly cock feels in your hollowed-out ass.");
+	output("\n\n<i>“Mmmmn,”</i> [wulfe.name] moans, giggling a little. <i>“Take that. And that. And this! Oh, you’re so fun!”</i>");
+	output("\n\nEach thrust makes you cry out in high-pitched pleasure, your moans mounting in volume until her greedy partaking of your body has you right on the precipice of orgasm. There’s no doubt she can feel it, the fluttering contractions of your asshole around her cock all but massaging her in subservience. She has a steady rhythm going, the muted slap of her fat knot against your ass sounding more like it’s in your mind than your ears.");
+
+	if (pc.isHerm()) output("\n\nYour [pc.cocks] " + (pc.hasCocks() ? "let" : "lets") + " out a rope of cum on a particularly deep thrust, then begin" + (pc.hasCocks() ? " to desperately spurt their" : "s to desperately spurt its") + " entire load against [wulfe.name]’s underside while she lifts her hips, your [pc.pussies] convulsing with unfulfilled pleasure.");
+	else if (pc.hasCock()) output("\n\nYour [pc.cocks] " + (pc.hasCocks() ? "let" : "lets") + " out a rope of cum on a particularly deep thrust, then begin" + (pc.hasCocks() ? " to desperately spurt their" : "s to desperately spurt its") + " entire load against [wulfe.name]’s underside while she lifts her hips, ready to give you another long, hard thrust.");
+	else if (pc.hasVagina()) output(" Your [pc.pussies] " + (pc.hasVaginas() ? "tense" : "tenses") + " up <i>hard</i>, the pleasure radiating from both your " + (pc.hasVaginas() ? "cunts" : "cunt") + " and your asshole while [wulfe.name] draws her hips back, preparing for another long, hard thrust.");
+	else output("\n\nYou cum from the anal stimulation alone, the dizzying sexual pleasure exploding in your head like fireworks. Her massive canine cock is just too good to resist.");
+
+	output("\n\nFrom out of nowhere, you feel a sudden, hard impact across your [pc.ass] and let out a yelp mid-orgasm. Still in the throes of pleasure and trapped beneath [wulfe.name], you don’t even realize what’s going on until you see her smiling down at you. She’s spanking you while you cum, forcing you to tighten up on her! You can’t even stop her from down here, either, and you find yourself getting spanked every time she brings her sizeable hips upwards.");
+	output("\n\n<i>“Now try to take it in, little pet,”</i> she murmurs to you.");
+	output("\n\n[wulfe.name] leaves nothing to the imagination with that one, pressing her gigantic knot into your asshole. The pressure is intense - it feels like she’s forcing her entire body down on you, her mechanical strength impossible to withstand. You groan as you begin giving in, more and more of her overgrown bulb being sucked inside of you until, suddenly, she pauses at what feels like the thickest part of her knot.");
+	output("\n\n<i>“Mmm… get me closer to cumming and you can earn the knot, [wulfe.pcname],”</i> she giggles.");
+	output("\n\nDenied! You don’t even know how much of this treatment you can take, and she wants you to do <i>more</i>. You look up at her in confusion, looking for some kind of clue, and find it in her face. She’s waiting. Wearing that beautiful, gentle smile that belies her dominant, overpowering sexual lust. She wants you to rise to the occasion.");
+	output("\n\nWell… fine. She <i>is</i> your mistress, after all - the least you can do is meet her expectations. Slowly withdrawing her knot, she coos in approval when she feels you begin to consciously work your ass, squeezing down on her as hard as you can and letting go, then repeating the effort.");
+	output("\n\n<i>“Oooh, that’s good,”</i> [wulfe.name] sighs, drawing her womanly hips upwards once more. <i>“Keep that up and I’ll be knotting you for sure!”</i>");
+	output("\n\nYou moan in helpless pleasure as she drives herself back in, having to mentally force yourself to continue squeezing down on her. It’s hard work with how far you’re stretched, your muscles not at all wanting to follow your orders, but it’s all worth it when you hear how she groans. She’s just too sexy to resist, and she’s fully aware of it. You can see it in her knowing grin as she bites her lip, starting to fuck you harder. She’s getting closer, a <i>lot</i> closer, spurred on by your efforts.");
+	output("\n\n<i>“Alright, [wulfe.pcname],”</i> she whispers, the gentleness of it completely at odds with how she’s destroying your asshole, <i>“take it in like the good little whore you are.”</i>");
+	output("\n\nShe roughly hilts herself with a grunt and you cum the moment her cock begins to throb inside you. Expelling great, thick gouts of seed into your ass, [wulfe.name] doesn’t stop there - she thrusts, hammering the knot into your weakened asshole until your body gives up and welcomes her inside. Having planted the flag of conquest inside you, she takes a few seconds to lord it over you with a smug grin and a hand running " + (pc.hasHair() ? "through your [pc.hair]." : "over your head."));
+	output("\n\nYour stomach begins to swell with her seed, jerkily at first, your mistress’ seed entering you with all the violent force you’ve come to expect from her, then more steadily as time goes on and she settles into a rhythm. You do your utmost best to keep squeezing down on her, milking more pleasure from your body for her benefit, but it’s admittedly hard when you’re trapped in the throes of orgasm. It’s like you’re being constantly thrust up against the edge of it, cumming just that one last time over and over until you’re gasping for her.");
+	output("\n\n<i>“Mistress,”</i> you pant, trying to thrust your hips up into her to no avail. She has you too tightly trapped for that. <i>“Mistress, mistress, mistress!”</i>");
+	output("\n\n<i>“So </i>eager<i>,”</i> she croons, eyes flashing pink. <i>“I love it!”</i>");
+	output("\n\nJust when you think you’re almost out of the woods, [wulfe.name] activates the vibe embedded in the base of her dick. Her entire length vibrates inside you, " + (pc.hasCock() ? "the knot pressing against your prostate in the most amazing way" : "stimulating your lower half fiercely") + ". A long, shaky scream rises from the depths of your throat and comes out in half-gasped spurts, the sensation of being so thoroughly shaken from the inside too distracting to ignore.");
+	output("\n\nYour mistress " + (pc.hasHair() ? "takes your head and runs her hands through your hair, pulling it lightly" : "tugs at your [pc.ears], rolling them between her fingers") + " while she drains her seemingly endless reservoirs of");
+	if (wulfe.isEggWulfe()) output(" fertile");
+	output(" cum inside you. God, it never ends - it feels like you’ve been writhing under her for minutes…");
+	output("\n\n<i>“Mmmm, I’m gonna cum again,”</i> [wulfe.name] purrs, eyeing you hungrily. <i>“Being inside you with the vibe on is great…”</i>");
+	output("\n\nTrue to her word, she cradles your head in her hands while her cock renews the flow of hot, gushing cum into your insides, moaning in pleasure. Her eyes hooded and her tongue washing over her plump, glossy black lips, you can see for yourself just how good she feels with her cock shoved all the way into you.");
+	output("\n\nShe keeps you there, beneath her bulk, crying out in bliss until she cums a final time ten minutes later. You’re exhausted, having been so thoroughly used and abused that you’re almost ready to pass out where you lie. The only things keeping you awake are sheer desire and the feeling of three of [wulfe.name]’s massive, sloshing loads inside your stomach, knotted and sealed inside to ensure you look several months pregnant with her seed.");
+	output("\n\nFinally satisfied, she slowly raises herself to her feet, dragging your surprised form up with her. You’re still tied to her!");
+	output("\n\n<i>“M-mistress!”</i> you gasp, hanging half in the air with your [pc.legs] limply splayed to the sides.");
+	output("\n\n<i>“Thank me for fucking your ass,”</i> [wulfe.name] tells you.");
+	output("\n\n<i>“Thank you, mistress,”</i> you groan, too tired and stretched to muster much more.");
+	output("\n\n<i>“Could be better,”</i> she says thoughtfully, deliberately swaying her hips from side to side. The effect is immediate and titillating. <i>“Once more?”</i>");
+	output("\n\n<i>“Thank you for fucking my asshole, mistress!”</i> you cry out, and you find yourself dropped onto your back with a thud and the snap of her cock dematerializing. A torrential river of warm spunk immediately slops from your gaping asshole, flexing as it tries to close up to no avail. <i>“O-ooh…”</i>");
+	output("\n\nShe’s still above you, taking a couple of steps back before she bends forward and leans down to plant her hands on your shoulders. Keeping you down, she kisses you forcefully, almost hungrily. You’re almost as full of her affection as you are her seed by the time she parts from you, grinning and pulling you to your feet.");
+	output("\n\n<i>“There,”</i> [wulfe.name] says, supporting you easily while she dusts you off. <i>“" + (pc.isNude() ? "Ready to keep adventuring" : "Would you like help getting dressed") + "”</i>");
+	output("\n\n<i>“One moment,”</i> you moan, leaning against her while her thick, sticky cum rolls down your [pc.thighs]. <i>“I need some time here…”</i>");
+	output("\n\n<i>“Aww, a cutie like you can take all the time you need,”</i> [wulfe.name] coos, kissing you on the cheek. <i>“You just let me know when you’re ready to go, ‘kay?”</i>");
+	output("\n\nYou set off a few minutes later, a little cleaner and with alert doggy-domme in tow.");
+
+	pc.orgasm();
+	pc.loadInAss(wulfe);
+	wulfe.orgasm();
+	
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function siegwulfeRequestCock(cockId:int):void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe(true);
+	processTime(15+rand(16));
+
+	var len:Number = pc.cocks[cockId].cLength();
+
+	output("Planting your [pc.feet], you push your [pc.hips] upwards and look to your mistress for some comfort.");
+	output("\n\n<i>“Please let me fuck you, mistress,”</i> you moan.");
+
+	output("\n\n<i>“Oh? You’d better stroke my ego before I start stroking your cock, [wulfe.pcname],”</i> [wulfe.name] giggles, gazing down at you with desire. <i>“Why do you want to fuck me with that");
+	if (len < 5) output(" tiny");
+	else if (len < 10) output(" biped-sized");
+	else if (len < 16) output(" pretty");
+	else if (len < 22) output(" oversized");
+	else output(" big, beautiful");
+	output(" dick of yours anyway? Do you think you can make me cum?”</i>");
+
+	output("\n\n<i>“I can,”</i> you promise, nodding vigorously. <i>“I just want to feel that slick, beautiful pussy of yours wrapped around my cock, mistress. I want to feel it when you cum-”</i>");
+	output("\n\n<i>“Alright,”</i> [wulfe.name] murmurs, interrupting your plea. <i>“I think you’ve made your case, my overeager pet. Besides,”</i> she sighs indulgently, rolling her eyes before fixing her gaze on your [pc.cock " + cockId + "], <i>“I could see how much you want this before you even opened your mouth. But it was fun anyway.”</i>");
+	output("\n\nApproaching you with a sexy sashay and a smile that sets your loins ablaze, [wulfe.name] bends down in front of you and seats herself comfortably, folding her forelegs while she presses down on your hips to bring you back down to the ground. Taking your{multiple dicks: largest} cock in hand, she grins and leans forward, bringing her face mere inches from your throbbing member.");
+
+	output("\n\n<i>“Hmhmm,”</i> she giggles to herself, hot air from her nostrils washing over your dick as sure as the hand grasping it.");
+	if (len < 5) output(" <i>“I don’t think you’re going to be able to make me cum with </i>this<i>, [wulfe.pcname]. But I’m sure you can make it up to me somehow.”</i>");
+	else if (len < 10) output(" <i>“You might be " + (pc.isTaur() ? "undersized for a taur" : "average for non-centaurs") + ", but I think we can make it work.”</i>");
+	else if (len < 16) output(" <i>“Not bad, [wulfe.pcname]. We can get something done with this…”</i>");
+	else if (len < 22) output(" <i>“Very impressive, [wulfe.pcname]. I’m looking forward to this already.”</i>");
+	else output(" <i>“Such a massive tool on such a willing submissive. It would truly be a shame if we couldn’t make good use of it…”</i>");
+
+	output("\n\nAlready being teased and titillated, you’re <i>determined</i> not to cum before she does - or at the very least, not until she tells you to. She begins languidly stroking your cock " + (len < 5 ? "between a soft finger and thumb" : "with her soft, gentle fingers") + ", paying particular attention to your [pc.cockHead " + cockId + "]. Noting the drip of precum that emerges from the top, she gives you a grin.");
+	output("\n\n<i>“Oh, you like that, don’t you?”</i> she teases you" + (pc.balls > 0 ? ", caressing your [pc.balls] with her other hand. " + (pc.ballSize() > 10 ? "<i>“Oh, these should be fun.”</i>" : "<i>“Put up with it.”</i>") : "."));
+	output("\n\nMore and more precum begins to drip from your cocktip, but your resolve stays the same. [wulfe.name] runs her thumb up the underside of your shaft and leaves it there for a few seconds before leaning forward, suddenly grabbing you by the chin and pulling you up for a hard kiss. When she parts from the embrace, she regards you coolly, those glowing pink eyes locked on your own.");
+	output("\n\n<i>“Stay,”</i> she instructs you, pointing at you before leaning back and rising to her feet.");
+	output("\n\n[wulfe.name] turns slowly, looking back over her shoulder. You hone in on a singular point of interest - her dripping-wet pussy, lips of thick, black latex crafted to divine perfection. Backing up, she lowers herself right over your stiffly erect cock and wiggles her hips, giving you a fantastic view of the way her big, jiggly ass shakes when she wants to tease you. Then she’s on top of you.");
+	output("\n\n<i>“Mmmmm,”</i> she croons, smirking back at you over her shoulder while she rubs her slick, sexy cunt " + (len < 5 ? "all over" : "up and down") + " your length. She might be different now, but she’s still got that bimbo body and she definitely knows how to best use it. <i>“That must feel </i>so<i> good, pet.”</i>");
+	output("\n\n<i>“It d-does, mistress,”</i> you grunt, willing yourself not to cum and just counting the seconds until you can get it inside her.");
+	output("\n\nContrary to all your expectations, [wulfe.name] doesn’t tease you or make you beg for it.");
+	
+	if (len < 5)
+	{
+		output(" Instead she brings down her massive ass on your dick - but you’re so small that thanks to the impressive curves of her cheeks you don’t even get the tip in.");
+		output("\n\n<i>“Awww,”</i> [wulfe.name] moans, turning her head to face you. Putting her finger to her lip, she pouts in sadness. <i>“Is my poor little pet too small for me? What a shame…”</i>");
+		output("\n\nPressing herself down on your nethers she begins to rub her slick, rubbery lips up and down your tiny cock, cooing all the while. The head will never reach the opening of her pussy, but having it slip between her soft, beautiful pussylips is almost as good.");
+		output("\n\n<i>“Nnnn, this is pretty good, [wulfe.pcname],”</i> she giggles, giving you a smug look. <i>“If only you were just a few inches bigger it would feel great for you too…”</i>");
+		output("\n\n<i>“Mistress!”</i> you moan.");
+		output("\n\n<i>“Don’t go blowing your little load just yet, pet,”</i> she says airily, letting your cock brush against her clit. <i>“I want to cum first.”</i>");
+		output("\n\nBouncing and rolling her hips, she all but jerks you off with her dripping wet opening. Between her teasing and the treatment it’s hard to resist, but the thought of her making fun of you for being small <i>and</i> for cumming too early gives you the boost you need. It takes a few minutes, doubtlessly more than it would if you could penetrate her, but [wulfe.name] manages to cum on your cock with a pleased moan.");
+		output("\n\n<i>“Nnnnnf- finally,”</i> she breathes, her passage winking lewdly back at you as it tightens up in orgasm. <i>“At least you can still do that much…”</i>");
+		output("\n\nYou cum all over yourself at the degradation, grunting through grit teeth as [pc.cum] spurts up your tummy. Some of it spatters across [wulfe.name]’s cunt, as close as you can get to claiming it, and she giggles in response.");
+		output("\n\n<i>“Oooh, so close but so far,”</i> she snickers, grinning. <i>“Maybe next time, [wulfe.pcname].”</i>");
+		output("\n\nRaising her ass, she lets you gaze at the [pc.cumColor] splotches across her lips before turning around, helping you to your feet. Pulling you closer, she spanks your [pc.ass] fiercely and smiles.");
+		output("\n\n<i>“Remember that you are </i>always<i> my favorite pet,”</i> she whispers in your ear, giving you a soft, barely-touching kiss on your cheek before pulling back. <i>“Now. Back to adventuring?”</i>");
+
+		pc.applyCumSoaked();
+	}
+	else
+	{
+		output(" With a sharp, sudden gasp, she plunges downwards and hums in delight as you enter her. You groan in loud, instinctual pleasure, the sexual embrace of her impossibly wet passage almost <i>too</i> perfect. You nearly cum right on the spot, caught in the honeypot trap of her masterfully-designed pussy. She was built to suck and fuck cocks, and it’s more than evident in the way she pulls you inside to stroke you.");
+		pc.cockChange();
+		output("\n\n<i>“Oohh, that’s always a good feeling,”</i> she murmurs, her rump shaking with glee. <i>“How " + (flags["WULFE_REQUESTED_LONG_COCK"] == undefined ? "nostalgic" : "nice") + "…”</i>");
+		output("\n\nShe hardly gives you time to recenter yourself, let alone think. With long, powerful strokes and side-to-side sways of her hips, she starts fucking you in earnest, bouncing on your cock with all the confidence you’ve come to expect from her. She’s utterly professional and mischievous at the same time, displaying expert muscular control to hold you tight in her ridged cunt and gyrate her womanly hips to massage the head of your cock.");
+		output("\n\n<i>“Fuuuck,”</i> you groan, hardly able to resist. <i>“Mistress…”</i>");
+		output("\n\n<i>“Hee hee!”</i> [wulfe.name] giggles, putting her fingertips over her mouth. <i>“Oh, it’s easy to get lost in this… don’t disappoint me, pet!”</i>");
+		output("\n\nYou don’t even know what to expect any more. Hardly a few seconds go by before she’s showing you some new manner of expertise, pounding you into her drenched cunt with wet slaps before sinking you to the hilt inside her tight passage. You hardly notice the sound of her holocock activating and you’re taken completely off-guard when she activates the vibe in its base, resonations travelling back up her chassis and all but daring you to cum inside her.");
+		output("\n\n<i>“Oh, fuck!”</i> you cry out, feeling the rollercoaster ride begin its runaway descent. <i>“Mistress!”</i>");
+		output("\n\n<i>“Nngh- nnf! Nnn! Nnh!”</i> [wulfe.name] grunts, slamming herself down on your [pc.groin]. <i>“Get ready to cum!”</i> she barks.");
+		output("\n\nYou’re <i>already</i> ready, teetering right on the edge before your mistress brings herself down on your cock with such force you feel your spirit let go. Cum begins to pump inside her tight, quivering cunt while the two of you moan in joy, sharing the pleasure of orgasm.");
+		if (pc.hasKnot(cockId)) output(" Your [pc.knot] pops inside her with scant resistance, all but encouraged by the shifting grip of her incredible pussy.");
+		output("\n\nThough unseen, you can hear [wulfe.name]’s cock sowing her synthetic seed all over the ground while she shakes atop you, milking you with intense, grippy undulations of her soft walls. You’re drained into her waiting womb, " + (pc.hasKnot(cockId) ? "squeezing your knot" : "all") + " while she cums repeatedly.");
+
+		if (pc.cumQ() < 5000) output("\n\n<i>“Nnnn… fuck,”</i> she sighs, lifting her head and swishing her dark blonde hair out of her face. <i>“Not bad, pet.”</i>");
+		else if (pc.cumQ() < 10000) output("\n\n<i>“Still cumming…”</i> she notes, gripping you harder. <i>“Quite the toy you are, pet.”</i>");
+		else output("\n\n<i>“Oh, you’ve got so much love to give me,”</i> she sighs, gripping you so intensely it’s almost like she has your cock in hand. <i>“Pour it all out until you’re satisfied, pet.”</i>");
+		output("\n\n[wulfe.name] raises herself with a groan when you’re done");
+		if (pc.hasKnot(cockId)) output(", your own weight pulling your knot back out of her");
+		output(". A deep noise of satisfaction rumbles in her throat as your [pc.cum]");
+		if (pc.cumQ() < 5000) output(" drips");
+		else if (pc.cumQ() < 10000) output(" spurts");
+		else output(" flows like a river");
+		output(" down her hindlegs, the former sex droid spreading them as far as they’ll go.");
+
+		output("\n\n<i>“Look what you did to me, pet,”</i> she purrs, looking back and running a hand down her cheek and chest. <i>“I’m all fucked full of your hot spunk.”</i>");
+		output("\n\nYour mistress exposing herself and letting you see the full extent of the [pc.cumColor] streaks running down her lithe limbs might be the most erotic sight you’ve ever laid eyes upon. You’re still holding the image in your mind as she circles around, helping you to your feet and giving you a gentle spank across your [pc.ass].");
+		output("\n\n<i>“Good [pc.boyGirl],”</i> she whispers in your ear.");
+		
+		IncrementFlag("WULFE_REQUESTED_LONG_COCK");
+	}
+
+	output("\n\nSuitably");
+	if (!pc.isNude()) output(" re-dressed and");
+	output(" reinvigorated, you set off on your journey once more.");
+
+	pc.orgasm();
+	wulfe.orgasm();
+
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function siegwulfeRequestOral():void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe(true);
+	processTime(15+rand(16));
+
+	output("<i>“Would you...”</i> you start, hesitating as you regard those big, luscious lips curled back in a smile. <i>“Would you give me oral, mistress?”</i>");
+	output("\n\n<i>“Aw, you want your master to debase herself so you can get off?”</i> [wulfe.name] says, pouting her bottom lip out mockingly. <i>“Fine. Prove you deserve it, then.”</i>");
+	output("\n\nYou eagerly raise yourself to a kneeling position as she turns around and presents herself, her holocock snapping into existence between her legs and her dripping wet, juicy pussy as attractive a prospect as ever. You want to just shove your face into it, licking and slurping until she spurts all over you. The thick, heavy dogcock hanging in front of you is no less enticing, taunting you with the potential sight of watching your mistress spurt her thick cum all over the ground.");
+	output("\n\n<i>“Indulge yourself, pet,”</i> [wulfe.name] whispers enchantingly. <i>“Work them both and you’ll get your reward.”</i>");
+	output("\n\nYou don’t need to be told twice. You thrust your [pc.tongue] between those thick, black pussylips and <i>dig</i>, grabbing her slender mechanical calves and pulling yourself into her sodden cunt. [wulfe.name] groans in pleasure as your " + (pc.hasLongTongue() ? "lengthy tongue unfurls inside the length of her squeezing passage, massaging every pleated fold of it on the way in" : "tongue finds the roof of her tight passage, frantically licking at her sensitive walls") + ". So enchanting is her wordless praise that you don’t think twice about shoving your face into her, your [pc.lips] meeting her own in a wet, passionate kiss.");
+	output("\n\nStrands of her juices stick to your mouth when you pull back to take a great, gasping breath before diving back in, lifting one hand from her leg to wrap your fingers as far around her big, strong canine cock as you can manage. You can feel her shiver in approval at your touch, her prick flexing with life within your grip. Working your neck and hand forward in rhythm in time with your mistress’ moans creates a song of lilting pleasure from her mouth, one that you never want to end. You could worship her all day if you got to listen to the way she erotically croons the whole time.");
+	output("\n\nLetting your tongue recede back to her entrance, you turn your head a little and take one of her fat, squishy pussylips into your mouth, sucking on it as hard as you can. She pushes back into you in response, grunting in lust. You give the other the same treatment before letting go, dropping down to find your next target. Nestled in the crease of her entrance is a big, fat gumball of a clit and there’s no way you’re going to leave it without its due attention.");
+	output("\n\n<i>“Ooooohhhh, yessss,”</i> [wulfe.name] moans as you slurp at her clit, sucking it between your lips and rolling it in your mouth with your tongue. <i>“Oh, pet!”</i>");
+	output("\n\nYou’re getting greedy now, spurred on by the lascivious approval of your mistress. Juices run down your chin while you work her clenching pussy over and rub her massive cock, applying both hands to their loving task. It flexes and strains in your grasp, seeking release just like its owner. You’re only too happy to fulfill her wishes.");
+	output("\n\nAs excited as your mistress is to be getting so thoroughly worshipped, it’s no surprise that you soon start feeling the telltale signs of her impending orgasm. The subtle way her delectable cunny shivers for just a second extra when it clamps down on your tongue, the amount of slick precum spilling from the end of her cock, and the impressive bulge of her knot starting to throb at her base.");
+	output("\n\nShe doesn’t even need to tell you to make her cum. Taking a deep breath you <i>throw</i> yourself into your task, frenziedly licking and sucking every inch of her delicious pussy while you work her swelling knot with one hand and her tapered cockhead with the other. [wulfe.name] throws her head back and groans loudly, her hindquarters shaking in pleasure as the contractions of her needy cunt begin to rock her entire body.");
+	output("\n\nShe cums with a loud, wordless cry, pressing on you from either side to keep you between her cheeks and sucking on her juicy clit while she squirts all over your " + (pc.femininity < 33 ? "handsome face" : (pc.femininity < 66 ? "pleasant features" : "pretty face")) + ". Her throbbing cock responds in kind by spewing its first of many thick, sticky loads across the ground. Your head is swimming by the time she lets you go, so swamped in her musk that each desperate breath you take only makes you all the more aroused.");
+	output("\n\n<i>“Nnnnnnh…”</i> [wulfe.name] sighs, looking back at you. <i>“Good [pc.boyGirl], [wulfe.pcname]. But you’re not done just yet. Clean me up.”</i>");
+	output("\n\n<i>“Yes, mistress,”</i> you reply automatically, leaning back in to lap up her juices. Even her underside is partially soaked in them and you have to crane your neck upwards just to reach, licking her stomach before the trails of femcum can run too far. After that you shuffle forward to tug the head of her cock up to your lips, suckling her with your eyes closed and your lips sliding back and forth.");
+
+	output("\n\nBy the time you’re done with your painstaking task you’re close to cumming without being touched. Your");
+	if (pc.isHerm()) output(" [pc.cockBiggest] is already dripping, precum beading at the tip before slowly trickling down the underside of its length, not to mention how wet your [pc.pussy] is beneath that");
+	else if (pc.hasCock()) output(" [pc.cockBiggest] is straining and dripping, precum beading at the tip before slowly trickling down the underside of its length");
+	else if (pc.hasVagina()) output(" [pc.pussy] is dripping, a stray strand of arousal flicking to the ground as you move");
+	output(". Now you can finally get your reward.");
+
+	output("\n\n<i>“Good " + (pc.catDog("a","b",false) == "b" ? "dog" : "work") + ",”</i> [wulfe.name] says, turning around with a satisfied smirk.");
+	output("\n\nShe slowly lowers herself to the ground, shuffling between your [pc.feet] before pressing at your [pc.thighs]. <i>“Hold your thighs open, pet,”</i> she commands you.");
+	output("\n\nYou’re only too eager to obey, watching your master lick her plush lips as she eyes your " + (pc.hasCock() ? "stiffly erect cock" : "succulent pussy") + ". Bending at the hips she");
+
+	if (pc.isHerm())
+	{
+		output(" wraps her long, warm tongue around your [pc.cockHeadBiggest] and pulls it into her mouth, eliciting a groan of pleasure from your throat. She’s hardly even started and it already feels amazing. Leaning back and resting on your elbows, you moan in contentment while she begins to work you over.");
+		output("\n\nHer technique is divine. She sucks you deep and hollows her cheeks on the way back up before withdrawing you completely and running her tongue down your length, all the way down to your waiting pussy where she licks and laps at your [pc.clits] with frenetic vigor. Suffering her attentions on both of your sexes when you were already so submissively worked up, you can’t avoid cumming with both sets at once.");
+		output("\n\nYour [pc.hips] come off the ground as you cry out in release, incapable of resisting the urge to thrust between her lips and cum as deep as you can. She allows you the privilege of emptying yourself into her throat while she slips two fingers into your clenching quim and fingerfucks you, driving you to have a full-body orgasm that leaves you shaking and breathless.");
+		output("\n\nShe raises herself back up when you’re done,");
+		if (pc.cumQ() < 10000) output(" having swallowed everything you had and looking no worse for wear. If anything, she looks incredibly pleased with your offering.");
+		else if (pc.cumQ() < 20000) output(" having taken your impressive loads into her stomach and looking just slightly pudgier as a result. She looks all kinds of happy about it, though.");
+		else output(" having long since resorted to roughly jacking you off after your massive loads became too much to swallow. She looks very happy with the amount you’ve offered her.");
+		output("\n\n<i>“There,”</i> [wulfe.name] murmurs, looking up at you and smiling. <i>“A suitable reward for my favorite pet.”</i>");
+	}
+	else if (pc.hasCock())
+	{
+		output(" wraps her long, warm tongue around your [pc.cockHeadBiggest] and pulls it into her mouth, eliciting a groan of pleasure from your throat. She’s hardly even started and it already feels amazing. Leaning back and resting on your elbows, you moan in contentment while she begins to work you over.");
+		output("\n\nHer technique is divine. The way she sucks you so deep then withdraws with hollowed cheeks has you squirming in her grip, actively denying your impulse to cum. So blissful is the experience, so peaceful and pleasurable, that you don’t want to give it up just yet. Try as you might, though, you can’t resist [wulfe.name]’s amazing oral skill and she knows it. She looks up at you and smiles as she feels you shiver, heralding your orgasm before she dives back down on you with aplomb.");
+		output("\n\nYour [pc.hips] come off the ground as you groan in release, incapable of resisting the urge to thrust between her lips and cum as deep as you can. She allows you the privilege, wrapping her hands around your thighs and forcing you to raise your groin. You can feel her swallowing your loads down with enthusiasm, her dark blonde hair shaking as her head bobs on the end of your throbbing prick.");
+		output("\n\nShe raises herself back up when you’re done,");
+		if (pc.cumQ() < 10000) output(" having swallowed everything you had and looking no worse for wear. If anything, she looks incredibly pleased with your offering.");
+		else if (pc.cumQ() < 20000) output(" having taken your impressive loads into her stomach and looking just slightly pudgier as a result. She looks all kinds of happy about it, though.");
+		else output(" having long since resorted to roughly jacking you off after your massive loads became too much to swallow. She looks very happy with the amount you’ve offered her.");
+	}
+	else if (pc.hasVagina())
+	{
+		output(" slides her tongue down from your navel to your [pc.clits], dancing over it with the lightest of attentions before lapping at your lips. She thrusts her tongue inside you and spreads it, licking the roof of your passage with a rhythm that makes you shiver with heat before she’s suddenly sucking on your " + (pc.totalClits() > 1 ? "clits" : "clit") + ", making you lift your hips off the ground.");
+		output("\n\nShe keeps up the intensity until you’re writhing beneath her, humping the air as a desperate prelude to your orgasm. Her tongue wraps around your clit and squeezes in an impressive display of control before she plunges it back into your squeezing cunny and sucks on your folds, her upper lip pressing down on your button hard enough to make you scream in lust. After all that, it’s impossible not to cum.");
+		output("\n\nYou let out a lilting groan of ecstasy as your orgasm rolls through you, clamping down on your mistress’ probing tongue and trapping it inside while you grunt and groan, clenching your fists. She’s more than happy to accommodate you, looking up at you from between your legs with hooded eyes while you cum your brains out. Finally, your strength lapses and you fall back to the ground, gasping and panting.");
+	}
+
+	output("\n\n<i>“There,”</i> [wulfe.name] murmurs, looking up at you and smiling. <i>“A suitable reward for my favorite pet.”</i>");
+	output("\n\nShe lets you settle for a moment before, overcome by the carnality, she shoves herself forward and holds you down, kissing you intensely. You can taste yourself on her lips as you lock tongues, her hands wrapped around your face while she holds you against her, pressing her massive breasts into your chest. She bites your lip before pulling away, leering at you with a dominant grin.");
+	output("\n\n<i>“Now you’ve got me all turned on again, [wulfe.pcname]...”</i> she whispers, eyes flashing. <i>“We’ll have to do this again soon.”</i>");
+	output("\n\n<i>“Yes, mistress,”</i> you moan, letting her pull you to your feet. You spend a couple of minutes recovering");
+	if (!pc.isNude()) output(" and redressing");
+	output(" before you set off again.");
+
+	pc.orgasm();
+	wulfe.orgasm();
+
+	addButton(0, "Next", mainGameMenu);
+}
+
+// SIEGWULFE LUST BEGINS HERE
+public function processSiegwulfeLust(totalHours:uint):void
+{
+	//Wulfy gains 2 lust per hour
+	if (hasSiegwulfeOnSelf()) wulfe.lust(2*totalHours);
+}
+public function siegwulfeLustScene(lust:Number, lustDif:Number):void
+{
+	// Regular wulfe doesn't get horny
+	if (!wulfe.isDom()) return;
+	// Unnecessary but nice;
+	if (siegwulfePickScene(lust) < 0) return;
+	if (eventQueue.indexOf(siegwulfeLustSceneGo) >= 0) return;
+	if (/*innappropriate location*/ false) return;
+	// Poisson distribution, lambda = 1 horny bimbo scene/30 lust. If k == 0 happens, no scene.
+	// Rut scene gets to skip this check and forces siegwulfeIsHorny if it needs to.
+	if (lust < 90 && 100*Math.exp(-lustDif/30) > rand(100)) return;
+
+	eventQueue.push(siegwulfeLustSceneGo);
+}
+public function siegwulfePickScene(lust:Number):int
+{
+	// WULFE_LAST_LUST_SCENE: 0 -> did 10-32 scene, 1 -> did 33-74 scene, 2 -> did 75-89 scene, -1 -> flag is reset
+	// Reset at lust < 10
+	if (flags["WULFE_LAST_LUST_SCENE"] == undefined || lust < 10) flags["WULFE_LAST_LUST_SCENE"] = -1;
+
+	// At least 30 min should pass between scenes
+	if (pc.hasStatusEffect("Wulfe Lust Cooldown")) return -1;
+	if (!hasSiegwulfeOnSelf()) return -1;
+
+	var newLustScene:int = -1
+	// "Might be good if every scene is done at least once (or at least the 75-89 scene)
+	// so she doesn’t suddenly spring the rut scene on you? Not hugely bothered about this though."
+	if (lust >= 90 && flags["WULFE_LAST_LUST_SCENE"] < 2) newLustScene = 2;
+	else if (lust >= 90 && flags["WULFE_LAST_LUST_SCENE"] < 3) newLustScene = 3;
+	// Other scenes
+	else if (lust >= 75 && flags["WULFE_LAST_LUST_SCENE"] < 2) newLustScene = 2;
+	else if (lust >= 33 && flags["WULFE_LAST_LUST_SCENE"] < 1) newLustScene = 1;
+	else if (lust >= 10 && flags["WULFE_LAST_LUST_SCENE"] < 0) newLustScene = 0;
+
+	return newLustScene;
+}
+public function siegwulfeLustSceneGo():void
+{
+	// Now pick a scene to play
+	var newLustScene:int = siegwulfePickScene(wulfe.lust());
+	// If no scene is available just skip
+	if (newLustScene < 0) return mainGameMenu();
+
+	pc.createStatusEffect("Wulfe Lust Cooldown");
+	pc.setStatusMinutes("Wulfe Lust Cooldown", 30);
+	flags["WULFE_LAST_LUST_SCENE"] = newLustScene;
+	([siegwulfeCheckup, siegwulfeInterest, siegwulfeIsHorny, siegwulfeStalking][newLustScene] as Function)();
+}
+
+public function siegwulfeCheckup():void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe();
+	processTime(1+rand(2));
+	//scene name: Siegwulfe checkup
+	showName("SIEGWULFE\nCHECKUP");
+	
+	output("<i>“How are you doing, [wulfe.pcname]? Is my pet feeling okay?”</i> [wulfe.name] says, smiling.");
+	if (pc.HPQ() < 66)
+	{
+		output("\n\n<i>“I’m a little hurt,”</i> you admit, <i>“but I should be okay.”</i>");
+		output("\n\n<i>“Oh no, you have to take care of yourself!”</i> she says, looking forlorn. <i>“Let’s go back and rest soon.”</i>");
+		output("\n\n<i>“Sure,”</i> you say, smiling weakly.");
+	}
+	else if (pc.lust() >= 66)
+	{
+		if (pc.isBimbo()) output("\n\n<i>“Don’t tell anyone, but I am like, </i>totally<i> fucking horny right now,”</i> you confess to her. <i>“Gimme a few minutes and I might just be on the ground spreading my lil cunny open for your big fat doggy cock!”</i>");
+		else output("\n\n<i>“Actually, I’m really, really horny right now,”</i> you tell her, glancing over to see her grinning. <i>“I might come to you for some help soon…”</i>");
+		output("\n\n<i>“Perfect,”</i> she murmurs, eyeing you eagerly. <i>“I’m looking forward to it.”</i>");
+	}
+	else
+	{
+		output("\n\n<i>“Everything’s good,”</i> you reply, giving her a nod. <i>“Thanks, mistress.”</i>");
+		output("\n\n<i>“Glad to hear it,”</i> she replies, her tail curling around you as she draws closer. <i>“Don’t hesitate to ask me for any help you might need.”</i>");
+		output("\n\n<i>“I won’t, mistress,”</i> you say, smiling when she leans in to kiss you on the cheek. <i>“Thank you.”</i>");
+	}
+
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function siegwulfeInterest():void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe();
+	processTime(1);
+	//scene name: Interested Siegwulfe
+	showName("INTERESTED\nSIEGWULFE");
+
+	output("<i>“Considered taking a break lately, [wulfe.pcname]?”</i> [wulfe.name] asks you, stretching out and letting her huge, eye-catching breasts do their job. <i>“With all the hard work you do, you could use a little time off.”</i>");
+	output("\n\n<i>“I definitely could do with a little R&R…”</i> you say, openly watching her curvaceous tits before blinking in realization. <i>“Uh, soon. Maybe really soon.”</i>");
+	output("\n\n<i>“Oh, good,”</i> she murmurs in reply, drawing closer. <i>“Because I was just thinking about holding you down with a paw on your back while I ravage your ass with my cock.”</i>");
+	output("\n\nYou swallow at the directness of her speech. It’s not difficult to imagine the scenario");
+	if (pc.lust() >= 66) output(", and you’re <i>already</i> so horny");
+	output("…\n\n<i>“Think it over,”</i> she suddenly whispers in your ear, having encircled you without your having noticed. Then she’s patrolling around you again. You shiver in delight.");
+
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function siegwulfeIsHorny():void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe();
+	processTime(1);
+	//scene name: Horny Siegwulfe
+	showName("HORNY\nSIEGWULFE");
+	
+	output("<i>“[wulfe.pcname],”</i> [wulfe.name] suddenly breathes in your air, catching you offguard while she wraps her arms around your waist. <i>“I’m this close to mounting you against a wall until you promise to never let me go this long without plowing you again. I long to feel your shaking body entwined with my own, [wulfe.pcname]. If you don’t come to me of your own volition, I will gladly hold you down and fuck your little " + (pc.hasVagina() ? "cunt" : "asshole") + " until you scream for more of the same.”</i>");
+	output("\n\n<i>“Mistress,”</i> you moan, putty in her arms. <i>“I- I’m sorry, I’ve been distracted-”</i>");
+	output("\n\n<i>“But you are not distracted now, are you, pet?”</i> she murmurs, leaning in to gently lick and bite your ear. <i>“I know you. Such a good pet, but so forgetful.”</i>");
+	output("\n\nShe lets you go slowly, fixing you with a predator’s smile. <i>“I almost think you </i>want<i> me to punish-rut you. You’ll get your wish sooner or later, [wulfe.pcname].”</i>");
+	output("\n\nStalking away, [wulfe.name] continues patrolling around you. You can’t help but watch her big, curvy ass swaying seductively from side to side as she does so, imagining the weight of her powerful bulk bearing down on your body while she mercilessly punishes you...");
+
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function siegwulfeStalking():void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe();
+	processTime(1);
+	//scene name: Siegwulfe stalking!
+	showName("SIEGWULFE\nSTALKING!");
+	
+	output("Looking around, you suddenly realize you’ve lost sight of your beloved and faithful companion, [wulfe.name]. You lift your arms to cup your hands at your mouth and call for her, but you’re suddenly pounced upon and embraced from behind!");
+	output("\n\n<i>“M-mistress?!”</i> you cry out in surprise, feeling her " + (pc.isNude() ? "peel away your layers until you’re naked in her groping hands" : "unabashedly grope your naked form") + ". <i>“Oh!”</i>");
+	output("\n\nWith the way she’s pressed against you from behind, you can hear and feel just how hard she’s breathing in your ear, almost panting with overflowing desire. Her thick silicon nipples are hard against your back, jutting into your [pc.skinFurScales] and slowly trickling milk. You almost jump in shock at the sudden wet warmth of her tongue licking the back of your neck, followed by light nips at your ears, quiet growls emanating from her throat. Despite being taken so off-guard, you’re so aroused by your mistress’ sheer <i>possessiveness</i> of you that you can’t say no.");
+
+	pc.lust(pc.lustMax());
+	addButton(0, "Next", siegwulfeRut);
+}
+
+public function siegwulfeRut():void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	showSiegwulfe(true);
+	processTime(10+rand(21));
+	 //goes to Siegwulfe rut!
+	showName("\nSIEGWULFE RUT!");
+	
+	var hole:int = (pc.hasVagina() ? rand(pc.vaginas.length) : -1);
+
+	output("Your robotic mistress has you laid out on the ground in a flash, staring down at you with an unnatural, manic grin.");
+	output("\n\n<i>“You haven’t had sex with me in like, </i>forever<i>, m-m-m-[pc.master]!”</i> [wulfe.name] chirps, voice so digitized and stuttery that your attention is drawn to her eyes violently flashing between an alarming shade of red and her usual pink until it stops every bit as abruptly as it began. She continues talking normally as though nothing had happened. <i>“You need some rough disciplining, pet. Over and over, until you learn your place. You belong under me.”</i>");
+	output("\n\nEven so obviously aroused, her presence is commanding. Towering over you, she lightly kicks your legs apart to expose your [pc.vagOrAss " + hole + "], planting her hindlegs between them to keep you spread. Her long, thick cock slaps against your [pc.stomach] as she roughly jerks her hips, hard enough to sting while she fixes you with a steely gaze. When she pulls back, it’s only to roughly reposition herself at your submissively presented fuckhole.");
+
+	output("\n\n[wulfe.name] grunts as she thrusts forward and sinks the tapered point of her cock inside your quivering " + (hole < 0 ? "asshole" : "pussy") + ", carrying her momentum forward to brutishly push several inches into you in one go.");
+	if ((hole < 0 ? pc.ass : pc.vaginas[hole]).looseness() < 4) output(" You can’t help but let a groan of mixed pain and pleasure slip from your lips");
+	else output(" You watch her slip inside with nothing more than a sense of growing fullness and pleasure emanating from your nethers");
+	output(" as she steps over you with a disdainful look on her face, clearly intent on teaching you a lesson. She remains silent but steadfast in her treatment of you, leaning forward and angling her hindquarters downwards to get in a few swift, savage thrusts into your " + (hole < 0 ? "clenching asshole" : "dripping cunt") + ", clenching her jaw and breathing from her nose.");
+	pc.holeChange(hole, wulfe.biggestCockVolume());
+
+	output("\n\nNot hesitating at all, she bucks her wide, womanly hips until your body acquiesces, forced to swallow every inch of her hulking dogcock before she withdraws it and begins to hammer you with a primal lust. Her desire rolls off her in waves, seizing your mind and directing it to the impossible pleasure of your mistress penetrating you to the core. She has you all but impaled on her monstrous length, pinned to the ground beneath her and gasping in bliss. You stroke your own stomach, eyes rolling upward while you use your hands to comprehend the form of her massive cock swelling your body from the inside.");
+	output("\n\nIt feels like she’s <i>breaking</i> you, crushing your will to resist her beneath her lithe mechanical feet. Already you can feel the familiar oncoming of orgasm");
+	if (pc.isHerm()) output(", your [pc.cocks] tensing up and squirting precum in advance while she plows the fuck out of your shivering pussy");
+	else if (pc.hasCock()) output(", your [pc.cocks] tensing up and squirting precum as you draw closer, your mistress’ merciless treatment driving you higher and higher");
+	else if (pc.hasVagina()) output(", your mistress’ merciless plowing of your shivering pussy driving you higher and higher, your walls squeezing down on her absurd length");
+	output(". You cry out her name as she fucks you right over the edge, not halting her animalistic pounding of your clenching fuckhole even as you cum.");
+
+	output("\n\n<i>“I’m not even </i>close<i> to done with you yet, [wulfe.pcname]!”</i> [wulfe.name] cries out in delight, stretching her forelegs out to get a different angle. <i>“Come on!”</i>");
+	output("\n\nYou lose your voice after another twenty minutes, but your overbearing mistress doesn’t care. She’s only interested in repaying you for making her wait, in venting her lusts until she’s satisfied. Her powerful body shifts above you, ever adjusting itself to rut your most sensitive parts with utmost savagery and machine precision. She doesn’t have to cum if she doesn’t want to and she’s proving herself to be a devilishly patient predator, happy to take everything from you without ever giving anything in return.");
+	output("\n\nYou’ve long since lost count of how many orgasms she’s made you suffer through, that thick knotted cock driving you wild until you’re little more than a vapid, drooling fucktoy to be pumped full of dogdick. [wulfe.name] pushes you past your breaking point and then keeps going, laughing and revelling in how utterly depraved she can force you to be, her taunting words going in one ear and out the other as your brain struggles to process anything but the most basic of physical sensation. All you can really know for sure that you’re still getting fucked to kingdom come, her massive rod teaching you exactly what it means to be someone’s bitch.");
+	output("\n\nWhen she finally cums you’ve been writhing and silently screaming under her for over an hour. Hot");
+	if (wulfe.isEggWulfe()) output(", fertile");
+	output(" seed pours into you by the litre, your mistress’ exulting moans of ecstasy above you setting your head spinning with eroticism. It’s been so long since you’ve heard those sexy, dirty groans of [wulfe.name]’s orgasm that you immediately cum as if on command, your body remembering its almost-forgotten purpose: to serve her.");
+	output("\n\n<i>“Oooohhh, yessss,”</i> [wulfe.name] growls aggressively, lurching forward and planting her feet solidly. <i>“Drink it </i>all<i> in, pet… that’s right. After all the time spent stimulating myself, there’s going to be a lot of it.”</i>");
+	output("\n\nShe shoves her knot into you without remorse, your abused hole slipping around its widest point and sucking it inside, ensuring that every drop of your mistress’ seed has nowhere to go but in. Remaining stationary above you, [wulfe.name] makes no move except to completely and utterly drain her bountiful reservoirs inside your slowly swelling form. You shiver and gasp at the sensation, feeling waves of warmth crashing inside you and filling you with a soothing contentment.");
+	output("\n\nIt’s so <i>right</i> to be here beneath [wulfe.name], acting as her submissive cumdump. Part of you regrets ever leaving her alone for so long now that you’ve remembered the effect of her attentions, but another… another part of you is consumed with wanton lust, wanting nothing but to experience this over and over, to be broken down and pounded face-first into the dirt like a good-for-nothing slut by your loving mistress.");
+	output("\n\n<i>“Good [pc.boyGirl],”</i> she whispers to you amidst your wild fantasies.");
+	output("\n\n<i>“Thank you, mistress,”</i> you manage to say back, voice barely audible. <i>“Thank you.”</i>");
+	output("\n\n<i>“I think you can be forgiven for your little ‘transgression’, [wulfe.pcname],”</i> she murmurs, pulling herself free of your tortured fuckhole, leaving it gaping and spurting thick seed onto the ground. <i>“Just don’t do it again.”</i>");
+	output("\n\nShe hauls you to your unsteady feet, holding you against her voluptuous chest with a smile before she leans in to kiss you, gently, passionately, lovingly. You’re unable to do anything but reciprocate, wrapping your arms around her waspish waist while you kiss her back. Her usual ruthless dominance is nowhere to be seen, her slow, deep kisses that of a lover and companion. [wulfe.name]’s still wearing a genuine smile on those divine lips of hers when she pulls back, momentarily leaning back in to peck you on the forehead.");
+	output("\n\n<i>“Now then. Would you like a few minutes to clean up?”</i> she asks good-naturedly.");
+	output("\n\nIt’s a little while before you feel capable of walking properly again, and you feel weak enough in the legs that you wind up holding hands with [wulfe.name] just to stay steady. She doesn’t seem to mind.");
+
+	pc.orgasm();
+	wulfe.orgasm();
+	if (hole < 0) pc.loadInAss(wulfe);
+	else pc.loadInCunt(wulfe, hole);
+	
+	flags["WULFE_LAST_LUST_SCENE"] = -1;
+	IncrementFlag("WULFE_RUTTED");
+	
+	addButton(0, "Next", mainGameMenu);
 }
 
 // SIEGWULFE PREG BEGINS HERE
