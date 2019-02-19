@@ -64,6 +64,11 @@ public function wargiiEncounterStuff():Boolean
 	{
 		output("\n\n" + RandomInCollection(["You hear a scream from somewhere in the distance.","A denser pocket of smoke causes you to cough softly.","A tuft of fur floats by, dislodged in a scrap.","A pair of voices lift in faint, orgasmic cries as far away combatants satisfy the lusts their struggles have sparked in each other.","Dust falls from the ceiling as the dull thud of an explosion rumbles through the hold.","Quiet pops of faraway gunfire startle you, then stop as abruptly as they started.","A feather-lined dart crunches under your [pc.foot]. A few others diligently hang onto the wall, trying to dispense their payloads into solid stone. You’ll have to be careful not to step on any of the needles...","A small pile of shell casings rests against the wall, wafting hints of their acrid propellant into the air.","An unconscious korgonne male sleeps flat on his back - and naked. He’s covered from head to toe in pussy juice and cum... and judging by the state of his hyper-swollen knot and seed-dribbling cock-head, he’s not going to be any good for anything but fucking for a long time... assuming anyone could even rouse him. It looks like there’s a tranq dart still stuck in his neck. Poor guy.","An unconscious korgonne woman lies on the floor with cum streaming from a very packed pussy. She snores audibly, tranquilized by the dart in her neck.","You spot a laser weapon’s battery-mag resting on the floor, completely emptied.","An empty magazine with a jagged crack through the side sits on the ground, discarded. Looking closer, you can see the korgonne spearpoint wedged into it.","Someone tossed out a spent stimpen... and an emptied vial of Throbb. You try not to think about what would necessitate such a combination as you kick them out of your way.","The high-pitched keen of an energy weapon discharging at maximum power carries surprisingly well through the hold’s stonework. You almost wish it didn’t.","Distant war-cries and the clang of metal on metal keep you on your toes.","The faint, staccato ‘thump’ of a flash-bang going off reminds you that the battle is still raging.","A feline howl of displeasure echoes to you, bringing a smile to your [pc.lipsChaste]."]));
 	}
+	else if(rand(10) == 0 && flags["WARGII_MAJA_SAVED"] == 2)
+	{
+		//possible encounter from then on
+		output("\n\nYou run into a cluster of korgonne with a kor’diiak. A group of milodan are tied up along the wall, relieved of their weaponry. The korgonne bristle as they see you, toting their captors weapons haphazardly, but quickly point in the direction of the throne room as they see who you are. You give the group a curt nod and head off. Happy to have avoided an unneeded confrontation.");
+	}
 	return false;
 }
 
@@ -113,6 +118,8 @@ public function wargiiScore():Number
 	if(flags["WARGII_TUUVA_SAVED"] != undefined) score += 10;
 	if(flags["WARGII_HEIDRUN_SAVED"] != undefined) score += 10;
 	if(flags["WARGII_LUND_SAVED"] != undefined) score += 10;
+	if(flags["WARGII_MAJA_SAVED"] != undefined) score += 10;
+	if(flags["WARGII_MAJA_SAVED"] == 2) score += 5;
 
 	if(flags["WARGII_FIGHTS_RAN"] != undefined) score -= flags["WARGII_FIGHTS_RAN"] * 5;
 	if(flags["WARGII_FIGHTS_WON"] != undefined) score += flags["WARGII_FIGHTS_WON"] * 3;
@@ -153,13 +160,18 @@ public function wargiiJ6Bonus():Boolean
 
 public function tamedTamelingsWarBonus():Boolean
 {
-	if(9999 == 9999) output("Various bags and crates of animal feed are littered along the back wall to feed the creatures further into the shop. Carts, leashes, and reins hang from the walls in abundance, but without anyone to mind the shop, you’re left with nothing to do but admire the supplies.");
-	else output("Various bags and crates of animal feed are littered along the back wall to feed the creatures further into the shop - except those same creatures have been unleashed into the hold. Maja must have made it back to let them out. Perhaps you’ll have some beastly allies in the fights to follow?");
+	if(flags["WARGII_MAJA_SAVED"] != 2) output("Various bags and crates of animal feed are littered along the back wall to feed the creatures further into the shop. Carts, leashes, and reins hang from the walls in abundance, but without anyone to mind the shop, you’re left with nothing to do but admire the supplies.");
+	else output("Various bags and crates of animal feed are littered along the back wall to feed the creatures further into the shop - except those same creatures have been unleashed into the hold.");
+	if(flags["WARGII_MAJA_SAVED"] == 1)
+	{
+		majaTamelingFreething();
+		return true;
+	}
 	return wargiiEncounterStuff();
 }
 public function wargiiBeastCagesBonus():Boolean
 {
-	if(9999 == 9999) output("Many larger beasts occupy these stables. Six-legged bear-like creatures with jagged horns jutting from their heads mill about in large pens. Smaller beasts, though plenty large enough to ride sit in fenced-in alcoves.");
+	if(flags["WARGII_MAJA_SAVED"] != 2) output("Many larger beasts occupy these stables. Six-legged bear-like creatures with jagged horns jutting from their heads mill about in large pens. Smaller beasts, though plenty large enough to ride sit in fenced-in alcoves.");
 	else output("The larger beasts have all been turned loose. Cage doors swing wide open. The only evidence of the six-legged bear-like creatures that once lived here are copious, unshoveled piles of dung.");
 	output(" Metal-handled shovels lie stacked against the far wall as you come to a dead end. The curving tunnel to the south provides an exit, should you need to escape an angry milodan.");
 	return wargiiEncounterStuff();
@@ -197,7 +209,7 @@ public function dubbleNopeWargii():void
 	//reject stuff
 	flags["WARGII_PROGRESS"] = -1;
 	flags["WARGII_DOOM_TIMER"] = 1;
-	clearMenu(); //9999 make sure this proper triggers THE END OF TIMES.
+	clearMenu(); //make sure this proper triggers THE END OF TIMES.
 	addButton(0,"Next",mainGameMenu);
 }
 
