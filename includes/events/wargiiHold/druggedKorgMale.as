@@ -887,7 +887,12 @@ public function getFuckedByKorgo(x:int):void
 	}
 	else output("rear, forcing you down on your knees and mounting your backside without hesitation. His knot still lodged inside, still spurting tiny amounts of spunk into your [pc.vagOrAss " + x + "], he prepares to fuck you like never before.");
 	output("\n\nOverwhelmed by your masculine partner’s ferociousness, " + (!pc.isTaur() ? "you clutch the paws gripping your [pc.chest]":"you clutch the wall pushing back against your [pc.face]") + ". He pumps so deeply that you can feel his sheath crinkle up around your " + (x >= 0 ? "slit":"crease") + ". It makes him moan so loudly, too, like fluid trickles out and gets into the space between it and his cock. Your moist [pc.lipColor] lips stretch into an ‘O’ of delight. You’re in a bliss-filled ditch being fucked by an ideal mate, feeling the pleasure rise and crest.");
-	output("\n\nIt’s all about his pleasure now. His pleasure is your pleasure. Your brain is totally occupied with thinking about how great it’ll be when he cums, how perfect a situation you’ll be in when he knots you {vag: and breeds you}. It feels great. Better than great... divine. Completely lost to excess, he shows no mercy when he handles you now, and you don’t want him to anyway." + (pc.hasLongEars() ? " In fact, when he shifts to grip your [pc.ears] and tug your head back, you’re all smiles.":""));
+	output("\n\nIt’s all about his pleasure now. His pleasure is your pleasure. Your brain is totally occupied with thinking about how great it’ll be when he cums, how perfect a situation you’ll be in when he knots you");
+	if(x >= 0)
+	{
+		output("and breeds you");
+	}
+	output(". It feels great. Better than great... divine. Completely lost to excess, he shows no mercy when he handles you now, and you don’t want him to anyway." + (pc.hasLongEars() ? " In fact, when he shifts to grip your [pc.ears] and tug your head back, you’re all smiles.":""));
 	output("\n\nHe misses out on the beginning your climax. It isn’t until your voice reaches its highest pitch and slowly dies down that you melt into his unbreakable grasp and clamp down around his cock on its final thrust. Your whole body shakes hard and you slump forward. He falls onto your back and, burrowed down to his pricksheath, and cums. The first thick rope to hit your " + (x < 0 ? "colon":"cervix") + " shatters your thoughts to pieces. The horny korg’s second viscous rope makes you feel lightheaded.");
 	output("\n\nClimax rushes down your spine; you would thrash and explode if he wasn’t latched onto you like the dutiful mate he is. Spittle froths in your mouth while your ");
 	if(pc.isHerm()) 
