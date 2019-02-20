@@ -67,6 +67,7 @@ package classes.Items.Treasures
 				kGAMECLASS.output("You snap the helmet onto the incomplete spacesuit to make an airtight garment capable of protecting you from the harsh vacuum of space.");
 				target.destroyItemByClass(SpacesuitIncomplete);
 				target.destroyItemByClass(SpacesuitHelmet);
+				kGAMECLASS.output("\n\n");
 				kGAMECLASS.quickLoot(new SpacesuitComplete());
 				return true;
 			}

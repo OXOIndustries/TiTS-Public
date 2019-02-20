@@ -237,6 +237,20 @@ public function sellSomethingToXanthe():void
 }
 public function xantheShopInitialization():void
 {
+	if(pc.level >= 7)
+	{
+		if(!chars["XANTHE"].hasItemByClass(DaedalusThreads)) chars["XANTHE"].inventory.push(new DaedalusThreads());
+		if(!chars["XANTHE"].hasItemByClass(EmpusaThreads)) chars["XANTHE"].inventory.push(new EmpusaThreads());
+		if(!chars["XANTHE"].hasItemByClass(NemeanThreads)) chars["XANTHE"].inventory.push(new NemeanThreads());
+		if(!chars["XANTHE"].hasItemByClass(StrixThreads)) chars["XANTHE"].inventory.push(new StrixThreads());
+	}
+	else
+	{
+		chars["XANTHE"].destroyItemByClass(DaedalusThreads, -1);
+		chars["XANTHE"].destroyItemByClass(EmpusaThreads, -1);
+		chars["XANTHE"].destroyItemByClass(NemeanThreads, -1);
+		chars["XANTHE"].destroyItemByClass(StrixThreads, -1);
+	}
 	shopkeep = chars["XANTHE"];
 	itemScreen = mainGameMenu;
 	lootScreen = mainGameMenu;
@@ -2446,7 +2460,7 @@ this.type = GLOBAL.UPPER_UNDERGARMENT;
 this.shortName = "Furry Bra";
 this.longName = "furry bra";
 this.description = "furry bra";
-this.tooltip = " A furry bra made of of fake animal hide. It gives a very tribal "cave girl" look when worn. Good for showing off your primal side.";
+this.tooltip = " A furry bra made of fake animal hide. It gives a very tribal "cave girl" look when worn. Good for showing off your primal side.";
 this.basePrice = 700;
 this.attack = 0;
 this.damage = 0;
@@ -2880,7 +2894,7 @@ this.type = GLOBAL.LOWER_UNDERGARMENT;
 this.shortName = "Furry Panties";
 this.longName = "furry panties";
 this.description = "A pair of furry panties";
-this.tooltip = "A pair of panties made of of fake animal hide. They give a very tribal "cave girl" look when worn. Good for showing off your primal side.";
+this.tooltip = "A pair of panties made of fake animal hide. They give a very tribal "cave girl" look when worn. Good for showing off your primal side.";
 this.basePrice = 700;
 this.attack = 0;
 this.damage = 0;

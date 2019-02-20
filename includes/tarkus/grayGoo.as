@@ -643,7 +643,7 @@ public function gooGooEnvelopsCunts():void
 	else output(" female sex is laid victim");
 	output(" to some unseen force, but the sensation is spot-on sucking, licking and even a little nipping. The gooey storyteller is losing her words, but she fights on. It’s too soon for her to drop the act.");
 	output("\n\n<i>“P-Pardon me. The knight’s a pro at this. His wife is just falling to pieces! ‘Just fuck me already!’ she shouts. The housewife is anxious for a hot slab of husband deep in her cooch. But he ignores her, his mouth attempting to pick up the pace. She shoves him off.”</i>");
-	output("\n\nThe oral barrage halts, giving your battered senes a moment to breath.");
+	output("\n\nThe oral barrage halts, giving your battered senes a moment to breathe.");
 	output("\n\n<i>“‘What’s wrong with you?’ the wife shouts. Her knight hesitates. There’s a look of shame in his face.”</i>");
 	output("\n\n<i>“‘M’lady... I was cursed during my journey,’ he responds, a look of sadness in his face. Before his wife can ask, he drops his trousers to reveal this massive horse cock of his.”</i>");
 	output("\n\nOh fuck.");

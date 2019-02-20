@@ -126,9 +126,11 @@ public function maikeRestOverride():void
 	clearOutput();
 	output("Since the overseer isn’t around, her quarters seem like a perfectly safe place to catch your breath. You saunter over to her huge bed and help yourself to its many pillows and silken sheets.");
 	//if slaves freed:
-	if(flags["MAIKE_SLAVES_RELEASED"] == 1)
+	if(flags["MAIKE_SLAVES_RELEASED"] != undefined || flags["MET_TIVF"] == undefined)
 	{
-		output("\n\nYou quickly fall asleep, confident that nobody’s going to bother you after all the chaos you’ve unleashed to keep the pirates busy...");
+		output("\n\nYou quickly fall asleep");
+		if(flags["MAIKE_SLAVES_RELEASED"] == 1) output(", confident that nobody’s going to bother you after all the chaos you’ve unleashed to keep the pirates busy");
+		output("...");
 		
 		clearMenu();
 		addButton(0,"Next",tivfSleepTime,7*60);

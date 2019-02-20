@@ -677,12 +677,12 @@ public function mitziPCDropOutfit(arg:Array):void
 	var destroy:Boolean = arg[1];
 	
 	clearOutput();
-	author("Jacques00");
+	author("Jacques00 & Fen");
 	
 	if(!destroy)
 	{
-		output("<i>“You want this back already?”</i> Mitzi asks, holding up the chosen outfit. <i>“Like, I was totally going to try this out sometime...”</i>");
-		output("\n\nMitzi puts the outfit on an extra hangar and hands it over. <i>“Don’t make me regret returning this to you, okay?”</i>");
+		output("<i>“You want this back already?”</i> Mitzi asks, holding up the chosen outfit. <i>“Like, I was totally going to wear this, like... sometime...”</i>");
+		output("\n\nMitzi puts the outfit on an extra hangar and hands it over. <i>“Okay, but Mitzi hopes you'll dress your little slut-goblin up again!”</i>");
 		output("\n\n");
 		
 		itemCollect([item]);
@@ -690,8 +690,8 @@ public function mitziPCDropOutfit(arg:Array):void
 	}
 	else
 	{
-		output("<i>“Aw... such a shame to throw something so sexy away...”</i> Mitzi says, holding up the outfit as her large eyes glisten in the light.");
-		output("\n\nThe goblin girl sadly flattens out the piece and drops it into the trash chute. <i>“At least my wardrobe is a little less cramped now.”</i>");
+		output("<i>“Aw... you must really hate this one, huh?”</i> Mitzi says, holding up the outfit as her large eyes glisten in the light.");
+		output("\n\nThe goblin girl sadly flattens out the piece and drops it into the trash chute. <i>“So like... you must really wanna see Mitzi slutted up in the other stuff!”</i>");
 		
 		output("\n\n<b>Mitzi removed " + item.description + " from her wardrobe.<\b>");
 		mitzi.destroyItemByReference(item);
@@ -710,7 +710,7 @@ public function mitziCrewBonus():String
 	var buff:String = "";
 	
 	//SPECIAL MITZI TEXTS:
-	if(pc.hasStatusEffect("Mitzi Disabled")) buff += "\n\nMitzi isn't anywhere to be found." + (amberIsCrew() ? " She's probably up to something with Amber.":"");
+	if(pc.hasStatusEffect("Mitzi Disabled")) buff += "\n\nMitzi isn’t anywhere to be found." + (amberIsCrew() ? " She’s probably up to something with Amber.":"");
 	//Milky Mitzi still recovering
 	else if(pc.hasStatusEffect("Mitzi_Gushed_Out"))
 	{
@@ -1745,6 +1745,7 @@ public function mitziMilkTitfuckII():void
 {
 	clearOutput();
 	showMitzi(true);
+	showImage("MitziAhegaoLick");
 	output("Satisfied at last, you extricate your milky cock from Mitzi’s milk-dribbling tits and look down at the soaked goblin. <i>“Are you alright?”</i>");
 	output("\n\nHer chest is heaving like she’s out of breath, and her legs are absolutely soaked in pussy juice. More concerning is that her nipples are still drooling milk, her hands still there to coax it out. Mitzi’s vacant stare pivots your way. <i>“Miss Moo uh... feels real good.”</i> She licks up a little more milk. <i>“Want more milk-fucks, but milk getting slow!”</i> Sure enough, you note that the milk-flow has receded somewhat. <i>“[pc.Master] make Moo milky again later?”</i>");
 	output("\n\nYou promise that you will, but it’s probably best to wait a bit for now.");
@@ -2096,7 +2097,7 @@ public function getLickedByMitzi():void
 	output("\n\nThe little greenskin tart worshipfully licks and kisses her way up your body, inching closer and closer to the nexus of your sexuality. You grin down at her and run your hands over her head, your fingers threading through her purple hair as you guide her closer and closer. Just another inch, so close you can feel her breath against your [pc.vagina]. You bite your lower lip in anticipation as you pull her in the final distance and press her pillowy lips against your nethers.");
 	output("\n\nThe simple contact of flesh is the final straw for the barely restrained goblin, her lips seal against your cunt in a lewd kiss, her tongue lashing out to lick along your oozing entrance before darting inside like a serpentine tentacle. The sudden penetration brings a moan of pleasure to your lips as your nerves light up with delicious fire. You grip your playmate’s head tighter and pull her against your crotch. The goblin’s lips mash against your cunt, her tongue making love to the horny hole as her hands clutch at your hips. She delves deep within you, her writhing tongue slithering back and forth, sliding incessantly against every surface it can get at.");
 	output("\n\nEager to please you, Mitzi lets out a whorish moan, her plump lips pressing harder against your entrance as she plunges her tongue into your body, thrusting the thick oral tentacle like a rutting lover. The tip teases your cervix, ticking the entrance to your womb at the apex of each deep, ecstatic plunge. Your legs quiver under the pressure of your sexual need. Your lips part in throaty moan; your own tongue darts out to lick your parched lips as you hold your little lover against you, forcing her to please your feminine sex.");
-	output("\n\nMitzi might as well be a creature born of sapphic desire. She doesn’t show any sign of needing to breath or talk. It’s like her whole world is composed of vaginas, clits, and the fluids within. Her single mindedness is reflected in the motions of her unholy tongue, prowling around every sensitive fold to press on the most sensitive nerves, channeling your ");
+	output("\n\nMitzi might as well be a creature born of sapphic desire. She doesn’t show any sign of needing to breathe or talk. It’s like her whole world is composed of vaginas, clits, and the fluids within. Her single mindedness is reflected in the motions of her unholy tongue, prowling around every sensitive fold to press on the most sensitive nerves, channeling your ");
 	if(pc.vaginas[0].wetness() >= 4) output("copious ");
 	output("lubrication down the crease in the middle of pussy-pleaser to collect in her mouth.");
 	output("\n\nShe swallows noisily, making sure you can hear the sound of her gulp.");
@@ -2241,11 +2242,13 @@ public function mitziSlowTitfuck():void
 	output(", on the cusp of firing everywhere. Mitzi’s licking her lips and tugging on her ardor-distended nipples, her jaw open so that you can admire the ridiculously plushness of her lower lip and just how good it would look coated in a layer of virile love.");
 	output("\n\n<i>“Mmmm,”</i> the green slut moans. Gingerly, she extends that same wet digit in your direction. It smells heavily of feminine arousal. At some point, she must have found time to rub it around inside her gushing box. Slowly - too slowly - she presses her soft fingertip against the underside of your [pc.cockHead " + x + "]. <i>“You’re ready, finally. I could take you over the edge just by blowing on you, couldn’t I?”</i>");
 	output("\n\nGods, she’s right. Your eyes roll back as you nod, the feeling of a single digit against your pulsating shaft taking you to the teetering edge of explosive orgasm.");
+	showImage("mitziTitfuckMessy");
 	output("\n\nMitzi husks, <i>“Good. Now let Mitzi give it to you.”</i> She drags her fingertip down your flexing urethra, closer and closer to where the cum is bubbling within you, setting off explosions of heat and lust within your mind. A yawning, infinite abyss of ejaculation and relief stares back at you, and can do naught but fall into it. Powerful contractions wrack your body, increasing your desire and pleasure exponentially. You couldn’t stop yourself if you wanted to.");
 	output("\n\nGiggling, Mitzi slips you right back into her dick-slicked tits, wrapping one arm around them to pin your [pc.cockHead " + x + "] deep inside, buried in so much boob that your ");
 	if(pc.legCount > 1) output("[pc.legs] nearly give out");
 	else output("[pc.leg] nearly gives out");
 	output(" from the wondrous sensation. Her other hand briefly reaches down, then diverts upward to fondle a nipple, the feeling of grinding her weeping slit against her own foot enough to bring her off unaided.");
+	
 	output("\n\nJizz bubbles out of your [pc.cock " + x + "] in fits and starts, turning the slippery cleavage into a sordid swamp. Bubbles of the white stuff spurt up out the top while runnels of spunk gild the goblin’s middle, pooling in her belly-button. Your [pc.hips] jerk and spasm, forcing you to hump her on instinct, breeding her boobs like a [pc.manWoman] possessed, equal parts amazed and determined to fill them to overflowing.");
 
 	//High cum!
@@ -2293,6 +2296,7 @@ public function quickieTittyGobbotitfuck():void
 	output(" exposed to her purple-painted lips and drooling tongue. She gobbles [pc.oneCock] up in a hurry, easily wrapping her spit-soaked tongue around its circumference while her cheeks hollow from her near-constant sucking.");
 	output("\n\nYou tremble a little bit. You didn’t expect she’d have your [pc.cocks] so hard so fast, and you certainly didn’t expect she’d have your hips quivering and ready to thrust.");
 	output("\n\nMitzi moves to the next stage of her tittyfuck while you’re still trying to come to grips with the way her tongue curls and presses on the sensitive spot below your [pc.cockHead " + x + "]. She expertly drags her jugs down, bouncing them off your crotch in order to slide them back up without a second of downtime. Fuck, this greenskin knows how to make a [pc.guyGirl] blow [pc.hisHer] load!");
+	showImage("MitziAhegaoLick");
 	output("\n\nYou can feel the pleasure spasms in your gut starting already, and she’s only been touching your [pc.cocks] for thirty seconds or so! Mitzi mischievously meets your gaze and works her breasts faster, wetly slapping them against your [pc.hips] to a regularly building rhythm. By the time you begin to twitch and moan, her voluptuous tits are a blur of green around your [pc.cocks], but when you start to erupt, she slows to match the orgasmic throbs running through your body, milking you for every drop.");
 	var cumQ:Number = pc.cumQ();
 	//Low cum
@@ -2391,8 +2395,9 @@ public function mitziPussyControl():void
 		pc.lust(25);
 		//[Breeder Cunt] [Dumb Cunt] [Lesbo Cunt]
 		clearMenu();
+		if(pc.fertility() > 0) addButton(0,"Breeder Cunt",breederCunt);
+		else addDisabledButton(0,"Breeder Cunt","Breeder Cunt","You’re not fertile enough tto think about this!");
 		addButton(1,"Lesbo Cunt",mitziLesboCuntnosis);
-		addButton(0,"Breeder Cunt",breederCunt);
 		if(!pc.isBimbo()) addButton(2,"Dumb Cunt",mitziMakesYouABimbo);
 		else addDisabledButton(2,"Dumb Cunt","Dumb Cunt","You’re as much of a dumb, jizz-sucking cunt as possible!");
 	}
@@ -2612,6 +2617,7 @@ public function mitziBimbosYouEpilogue():void
 		{
 			output("\n\n(<b>Gained Perk: Ditz Speech</b> - You will now sound like a total bimbo in scenes that support it.)");
 			pc.createPerk("Ditz Speech",0,0,0,0,"Alters dialog in certain scenes.");
+			flags["MITZI_BIMBOED_PC"] = 1;
 		}
 		//Gain weak willed
 		if(!pc.hasPerk("Weak Mind"))

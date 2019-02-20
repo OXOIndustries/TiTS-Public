@@ -95,10 +95,8 @@
 						kGAMECLASS.output("Ignoring the directions about not using it with a dick that’s too small, you gulp down the Condensol, and immediately regret it as you feel an intense pain in [pc.cockShortest]. You hurriedly check your groin and watch helplessly as your member shrinks and shrinks until it vanishes entirely");
 						if(pc.cockTotal() == 1 && pc.balls > 0) 
 						{
-							pc.ballSizeRaw = 3;
-							pc.balls = 0;
-							pc.cumMultiplierRaw = 2;
-							pc.ballEfficiency = 4;
+							pc.removeBalls();
+							pc.resetCumProduction();
 							kGAMECLASS.output(", taking your [pc.balls] with it");
 						}
 						kGAMECLASS.output(". At least the moment it disappears brings a blessed relief to the pain.");

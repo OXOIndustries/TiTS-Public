@@ -184,7 +184,8 @@ public function securityCheckpointBonus():void
 //PC tries to move into the station without being Disarmed:
 public function intoStationDisarmCheck():Boolean
 {
-	if(!pc.hasStatusEffect("Disarmed"))
+	if(!pc.hasStatusEffect("Disarmed") && flags["MET_BRANDT"] == undefined)
+	//Without talking to Brandt
 	{
 		clearOutput();
 		author("Savin");
@@ -198,26 +199,36 @@ public function intoStationDisarmCheck():Boolean
 		addButton(0,"Next",mainGameMenu);
 		return true;
 	}
+	//After talking to Brandt
+	else if (!pc.hasStatusEffect("Disarmed"))
+	{
+		pc.takeMeleeWeapon();
+		pc.takeRangedWeapon();
+		pc.createStatusEffect("Disarmed", 4, 0, 0, 0, false, "Blocked", "You’ve checked all forms of weaponry at Gastigoth’s security checkpoint.", false, 0, 0xFF0000);
+		output("You check your gear with Brandt and continue into the station.\n\n");
+		processTime(5);
+	}
+	
+	if (flags["MET_BRANDT"] != undefined)
+	{
+		//Descriptive text for the room
+		output("The corridor here connects the docking tether back the way you first came in with two other corridors, both clearly labelled in several languages: to the north, Command & Control. Westward, the Lobby. Of course, south is back to Security. The bulkheads in every direction are otherwise sterile, grey, and bristling with gun turrets. Uniformly, though, there’s a tiny potted tree every thirty feet or so - the only life in this place, aside from your armed companion.\n\nCommander Brandt follows a pace behind you in locked step, her arms folded behind her back and her face implacable as ever.");
+		return false;
+	}
 	return false;
 }
 
 //PC tries to move off station while Disarmed:
 public function leaveStationDisarmCheck():Boolean
 {
-	if(pc.hasStatusEffect("Disarmed"))
+	if (pc.hasStatusEffect("Disarmed"))
 	{
-		clearOutput();
-		showBrandt();
-		author("Savin");
-		showName("FORGET\nSOMETHING?");
-		output("<i>“Captain Steele!”</i> Brandt calls after you, causing you to turn. <i>“Unless you’re making an unexpected donation to the station’s arsenal, perhaps you would like to take back your possessions?”</i>");
-		output("\n\nWhoopsie.");
-		moveTo("I16_SECURITY_CHECKPOINT");
-		processTime(1);
-		clearMenu();
-		addButton(0,"Next",mainGameMenu);
-		return true;
+		returnAllItems(true);
+		pc.removeStatusEffect("Disarmed");
+		output("You reclaim your gear from Brandt and proceed back to your ship.\n\n");
+		processTime(5);
 	}
+	output("Your ship is currently parked at the end of a short docking umbilical, connecting you to a sterile grey corridor that runs into the station. Your berth is one of many visible from the umbilical windows, all connected to different parts of the station. Supposedly, your berth is reserved for special guests - guess you’re important.");
 	return false;
 }
 
@@ -804,7 +815,7 @@ public function finishInsideHelia(x:int):void
 	showBrandt(true);
 	author("Savin");
 
-	output("You saunter forward, running your hands up along the full, firm cheeks of of her ass and pulling them apart. The pink slit between her legs peeks out, beckoning you with slimy winks and the alluring scent of feminine arousal. You plant your [pc.cockHead " + x + "] right in the cleft between her quim’s plush lips, rubbing it against her throbbing clit.");
+	output("You saunter forward, running your hands up along the full, firm cheeks of her ass and pulling them apart. The pink slit between her legs peeks out, beckoning you with slimy winks and the alluring scent of feminine arousal. You plant your [pc.cockHead " + x + "] right in the cleft between her quim’s plush lips, rubbing it against her throbbing clit.");
 	output("\n\n<i>“Don’t tease,”</i> Hélla chides, pushing her hips back and taking your [pc.cock " + x + "] to the first inch. <i>“This is for you, after all...”</i>");
 	output("\n\nYou sigh, more from pleasure than consternation, as Hélla’s sex envelops your dick. You mirror her push after a moment, thrusting into the sultry slit until your lover’s moaning, arching her back and pulling you in again with her tail. With her tail curled around your waist, pinning you against her butt, there’s nothing you can do but use your hips to piston back and forth, letting your lover’s ever-fierce grip milk you. It only takes a few moments of this treatment to draw you back to the edge, and then over it with a sharp grunt of pleasure. [pc.Cum] shoots deep, thick rivulets filling Hélla’s twat ");
 	if(pc.cumQ() >= 1500) output("until her stomach puffs out and globs of it run down her thighs, splattering on the deck below you.");

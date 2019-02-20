@@ -303,7 +303,7 @@ public function stickDickThroughGloryhole(arg:int):void
 			output("\n\n<i>“");
 			if(flags["DEERTAUR_GLORYHOLED"] != undefined) output("Yes, but u");
 			else output("U");
-			output("se your mouth more,”</i> you answer, starting to breath heavily. <i>“And loosen your grip a little.");
+			output("se your mouth more,”</i> you answer, starting to breathe heavily. <i>“And loosen your grip a little.");
 			if(pc.isBimbo()) output(" You gotta like, really love on that cock.");
 			output("”</i>");
 			if(flags["DEERTAUR_GLORYHOLED"] != undefined) output(" You’re starting to think she likes squeezing, perhaps to see how big she can make you swell?");

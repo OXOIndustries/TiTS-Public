@@ -1146,7 +1146,8 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	showSera();
 	output("You nod your assent to the demon-morphed mistress’s demand, which earns you a small grin from her blue-sheened lips.");
 	//If PC “cat” score > 3 and “dog” score < 4
-	if(pc.earType == GLOBAL.TYPE_FELINE || pc.catDog("nyan", "bork") == "nyan" || (pc.felineScore() > 3 && pc.canineScore() < 4))
+	var isCat:Boolean = (pc.earType == GLOBAL.TYPE_FELINE || pc.catDog("nyan", "bork") == "nyan" || (pc.felineScore() > 3 && pc.canineScore() < 4));
+	if(isCat)
 	{
 		author("Nonesuch & Savin");
 		output(" <i>“Then prove it. Meow, little pussy.”</i> You hesitate a moment, not sure if she’s being serious, and her slim smile fades into a sneer. <i>“I said MEOW, slut.”</i>");
@@ -1166,7 +1167,7 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	// Default
 	else
 	{
-		output(" <i>“Then prove it. Bark, little " + pc.catDog("doggy", "bitch", false) + ".”</i> You hesitate a moment, not sure if she’s being serious, and her slim smile fades into a sneer. <i>“I said BARK, slut.”</i>");
+		output(" <i>“Then prove it. Bark, little " + pc.mf("doggy", "bitch") + ".”</i> You hesitate a moment, not sure if she’s being serious, and her slim smile fades into a sneer. <i>“I said BARK, slut.”</i>");
 		
 		//if first-time:
 		if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == 0)
@@ -1243,7 +1244,7 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 		else output("turned on");
 		output(" by the syrupy texture of your spunk. You spend a few long seconds polishing the horn of her stiletto to a fine shine, making sure not to swallow, before rising up to your [pc.knees] and wrapping your lips around her rock-hard demon wang, sucking her cock right back up and slathering it with your spunky lube. She gives a little moan of satisfaction as you fellate her, doubly so when your tongue starts spreading your thick cream across her length, but after a few moments, points an accusing finger to the tiny lake of sperm still splattered across the deck.");
 		output("\n\n<i>“Don’t think I was letting you off THAT easy, meat. Drink up,”</i> she says, pushing you off her cock and down to the floor. With an obedient whimper, you all but put your nose in it, lapping up your hot, sticky seed and delivering it back to your mistress’s cock, coating her from tip to base in a sheen of semen. She gives you an approving smile as you go down for seconds, spending a good minute cleaning her deck with your tongue until it sparkles.");
-		output("\n\n<i>“Gooood doggy,”</i> she coos as you take her dick to the hilt, coating it with as much spunky, salivating lube as you can muster, trying to make things easier on yourself later.");
+		output("\n\n<i>“Gooood " + (!isCat ? "doggy" : "kitty") + ",”</i> she coos as you take her dick to the hilt, coating it with as much spunky, salivating lube as you can muster, trying to make things easier on yourself later.");
 		//End PC cock Variant
 		pc.loadInMouth(chars["PC"]);
 	}

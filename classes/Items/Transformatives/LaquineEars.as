@@ -451,7 +451,7 @@ package classes.Items.Transformatives
 			//Refractory to 4x human
 			if(pc.refractoryRate < 4 && pc.hasCock() && !pc.hasStatusEffect("Blue Balls")) choices.push(5);
 			if(pc.hasCock() && pc.balls > 1 && pc.ballDiameter() >= 5 && pc.maxCum() < 30000) choices.push(6);
-			if(pc.hasCock() && !pc.inRut() && pc.biggestCockLength() >= 10) choices.push(7);
+			if(pc.hasCock() && pc.virility() > 0 && !pc.inRut() && pc.biggestCockLength() >= 10) choices.push(7);
 			if(pc.hasVagina())
 			{
 				for(i = 0; i < pc.totalVaginas(); i++)
@@ -465,7 +465,7 @@ package classes.Items.Transformatives
 			if(pc.fertility() < 5 && pc.hasVagina() && pc.isSquirter()) choices.push(10);
 			//10x preggo speed
 			if(pc.pregnancyIncubationBonusMotherRaw < 10 && pc.hasVagina()) choices.push(11);
-			if(!pc.isFullyWombPregnant() && pc.hasVagina()) choices.push(12);
+			if(pc.hasVagina() && !pc.isFullyWombPregnant() && pc.fertility() > 0) choices.push(12);
 			if(pc.tailCount > 0 && pc.tailType != GLOBAL.TYPE_LAPINE) 
 			{
 				choices.push(13);
@@ -1274,7 +1274,7 @@ package classes.Items.Transformatives
 			//(Vagicite) Awkward, random wetness with obvious pheromonal smell. Exhibition gains!
 			if(pc.hasVagina()) choices.push(6);
 			//(Vag && noheat && !preggos) Heat status for 1 week or till preggers. Temporary fertileboost.
-			if(!pc.inHeat() && !pc.isFullyWombPregnant() && pc.hasVagina() && pc.fertility() > 0) choices.push(7);
+			if(pc.hasVagina() && !pc.isFullyWombPregnant() && pc.fertility() > 0 && !pc.inHeat()) choices.push(7);
 			//BonusCapacity Gainz.
 			var cunts:Array = [];
 			for(x = 0; x < pc.totalVaginas(); x++)
@@ -1615,7 +1615,7 @@ package classes.Items.Transformatives
 			{
 				textBuff += "You catch a whiff of a familiar smell... like pussy. Rich, fertile, hormonal pussy.";
 				if(inPublic) textBuff += " You cast your eyes around to look for the source. Perhaps a sly woman is having a little play with a hidden vibrator. That or there’s a soaking wet minx looking for dick around the corner.";
-				else textBuff += "You briefly cast your eyes around, suspecting an ambush from some horny alien. Perhaps there is some plant life that smells just like vaginal secretions?";
+				else textBuff += " You briefly cast your eyes around, suspecting an ambush from some horny alien. Perhaps there is some plant life that smells just like vaginal secretions?";
 				textBuff += " No, wait. You’re the one that smells like sex. You’re the one with a ";
 				if(pc.wettestVaginalWetness() >= 4) textBuff += "drooling";
 				else if(pc.wettestVaginalWetness() >= 3) textBuff += "sopping";
@@ -1697,7 +1697,7 @@ package classes.Items.Transformatives
 			//(Hueg Boobers) Loose a cup size down to G.
 			if(select == 9)
 			{
-				textBuff += ParseText("Your [pc.chest] isn’t quite as wobbly. You feel around, discovering that <b>");
+				textBuff += ParseText("Your [pc.chest] aren’t quite as wobbly. You feel around, discovering that <b>");
 				if(pc.bRows() == 1) textBuff += "you now fit";
 				else textBuff += "your biggest tits have shrunk down to";
 				
@@ -1960,7 +1960,7 @@ package classes.Items.Transformatives
 				clearOutput();
 				kGAMECLASS.showName("NEEDY\nLAQUINE");
 			}
-			textBuff += "One of your ears perks as you swear the hear the low bass sound of a boisterous male singing a traveling song. It fades as quickly as it appears, only to resurface a minute later, louder and closer. The tune is slow and pleasant, but you can only pick a few words from the sonorous drone.";
+			textBuff += "One of your ears perks as you swear you hear the low bass sound of a boisterous male singing a traveling song. It fades as quickly as it appears, only to resurface a minute later, louder and closer. The tune is slow and pleasant, but you can only pick a few words from the sonorous drone.";
 			textBuff += "\n\n<i>“...my sweet laquine lass ... tease me with that candied ass ... wetter’n ocean breeze blowin’ in.... bed her like breeding season...”</i>";
 			if(pc.laquineScore() >= 5) textBuff += "\n\nLaquine lass? Is he singing about you?";
 

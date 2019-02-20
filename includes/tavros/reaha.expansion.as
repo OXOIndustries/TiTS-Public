@@ -1504,21 +1504,19 @@ public function reahaBootOffShip():void
 {
 	clearOutput();
 	reahaHeader();
-
+	
+	output("<i>“Hey, Reaha,”</i> you say, stepping over towards your bovine slave,");
+	if (pc.isNice()) output(" <i>“Look, I need to make room on the ship. Need to leave you here for a while, alright?”</i>");
+	else if (pc.isMischievous())
+	{
+		output(" <i>“Guess what?”</i>");
+		output("\n\n<i>“What?”</i> she says, blinking at you.");
+		output("\n\n<i>“You’re off the crew! Get out!”</i>");
+	}
+	else output(" <i>“Pack your bags. You’re not staying here.”</i>");
+	
 	if (shipLocation == "500")
 	{
-		output("<i>“Hey, Reaha,”</i> you say, stepping over towards your bovine slave,");
-		if (pc.isNice()) output(" <i>“Look, I need to make room on the ship. Need to leave you here for a while, alright?”</i>");
-		else if (pc.isMischievous())
-		{
-			output(" <i>“Guess what?”</i>");
-		
-			output("\n\n<i>“What?”</i> she says, blinking at you.");
-		
-			output("\n\n<i>“You’re off the crew! Get out!”</i>");
-		}
-		else output("<i>“Pack your bags. You’re not staying here.”</i>");
-		
 		output("\n\nReaha stares at you for a second, her big blue eyes growing wide. <i>“Wh-what...”</i> she mumbles. <i>“You can’t leave me here! I don’t belong here, they’ll make me take the Treatment or... or my mother will find me! Pleasepleaseplease don’t leave me, I’ll be a good cow I promise.”</i>");
 		
 		output("\n\nReaha’s sudden and uncharacteristic passion takes you off guard. She clearly doesn’t want to stay on New Texas...");
@@ -1528,26 +1526,12 @@ public function reahaBootOffShip():void
 		//[Nevermind] [Go to Tavros] [New Texas]
 		clearMenu();
 		addButton(0, "Nevermind", reahaBootOffShipNevermind);
-		//if (pc.credits >= 50) {applies to tavros-kickoff}
-		addButton(1, "Go2Tavros", reahaBootOffShipGo2Tavros, undefined, "Go to Tavros", "Tell Reaha to go to Tavros Station. She’ll probably go hang out at Beth’s again, knowing her.");
-		//else addDisabledButton(1, "Go2Tavros", "Go to Tavros", "You’d need to afford for Reaha’s transport to Tavros....")
+		if (pc.credits >= 50) addButton(1, "Go2Tavros", reahaBootOffShipGo2Tavros, undefined, "Go to Tavros", ("Tell Reaha to go to Tavros Station. " + (!reahaCanGoToNursery() ? "She’ll probably go hang out at Beth’s again, knowing her." : "Since the Nursery’s opened up, you can probably send her there...") + "\n\nCosts 50 Credits."));
+		else addDisabledButton(1, "Go2Tavros", "Go to Tavros", "You’d need to afford for Reaha’s transport to Tavros....\n\nCosts 50 Credits.");
 		if (9999 == 0) addButton(2, "New Texas", reahaBootOffShipNewTexas, undefined, "Stay on New Texas", "Tell Reaha she’s stuck here on New Texas, damned be the consequences.");
 	}
 	else
 	{
-		flags["REAHA_IS_CREW"] = 2;
-		output("<i>“Hey, Reaha,”</i> you say, stepping over towards your bovine slave,");
-		if (pc.isNice()) output(" <i>“Look, I need to make room on the ship. Need to leave you here for a while, alright?”</i>");
-		else if (pc.isMischievous())
-		{
-			output(" <i>“Guess what?”</i>");
-		
-			output("\n\n<i>“What?”</i> she says, blinking at you.");
-		
-			output("\n\n<i>“You’re off the crew! Get out!”</i>");
-		}
-		else output(" <i>“Pack your bags. You’re not staying here.”</i>");
-		
 		output("\n\nReaha’s expectant smile fades, but she nods with understanding. <i>“Alright, if that’s what you want. I’ll");
 		if (shipLocation == "TAVROS HANGAR") output(" wait for you here on Tavros");
 		else output(" catch a cab to Tavros and wait for you");
@@ -1561,8 +1545,10 @@ public function reahaBootOffShip():void
 		output(", stopping just long enough to say goodbye before she goes.");
 		
 		output("\n\n(<b>Reaha is no longer on your crew. You can find her again in Tavros Station.</b>)");
-
+		
 		processTime(15);
+		flags["REAHA_IS_CREW"] = (!reahaCanGoToNursery() ? 2 : 4);
+		
 		addNextButton(mainGameMenu);
 	}
 }
@@ -1591,7 +1577,7 @@ public function reahaBootOffShipGo2Tavros():void
 
 	pc.credits -= 50;
 
-	flags["REAHA_IS_CREW"] = 2;
+	flags["REAHA_IS_CREW"] = (!reahaCanGoToNursery() ? 2 : 4);
 
 	output("<i>“Alright, alright, I’ll get you a taxi to Tavros,”</i> you say, patting Reaha on the head. <i>“You don’t have to stay on New Texas.”</i>");
 	
@@ -1647,7 +1633,7 @@ public function reahaBackAtBeths():void
 	//[Rejoin Crew] [Leave]
 	clearMenu();
 	addButton(0, "Rejoin Crew", reahaBackAtBethsRejoin);
-	addButton(1, "Leave", mainGameMenu);
+	addButton(14, "Leave", mainGameMenu);
 }
 
 public function reahaBackAtBethsRejoin():void
@@ -1668,3 +1654,4 @@ public function reahaBackAtBethsRejoin():void
 
 	addNextButton(mainGameMenu);
 }
+

@@ -85,7 +85,7 @@ package classes.Items.Miscellaneous
 				}
 				else
 				{
-					if (target.milkFullness <= 50) target.milkFullness = 75;
+					target.milkFillToCapacity(25, 75, false);
 					output("There’s a sense of pressure inside your [pc.breasts] as a small amount of [pc.milkNoun] escapes from the tips of your [pc.nipples]. <b>You’ve started lactating, albeit slowly.</b>");
 				}
 			}

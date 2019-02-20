@@ -245,7 +245,8 @@ public function kirosShipWails(doOutput:Boolean = true):Boolean
 	
 	// Fill up dem 'nuki balls
 	kiro.applyBlueBalls();
-	kiro.cumProduced(9001);
+	//kiro.cumProduced(9001);
+	kiro.ballSizeRaw += 300;
 	
 	showKiroBust(true);
 

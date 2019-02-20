@@ -818,7 +818,7 @@ public function myrVenomChaurmineFun():void
 
 	output("\n\nThe first powerful blast virtually floods your uterus, basting your fallopian tubes, and continues to spout the titan’s virile seed. Gurgling and gagging, your hands scrape and claw at Chaurmine’s teeth as you cum <i>hard</i>, your writhing and contorting causing your expanding middle to jiggle and wobble. With every voluminous blast, your belly expands further and further until, with a whimper, you can’t take any more; the excess reptile goo dripping and leaking around his outrageously wide cock, more seems to enter you than exit - eventually bursting and streaming out with every additional drop of cum. Your sight starts to waver, seeing vague spots while the edges of your vision darken.");
 
-	output("\n\nSuddenly, the pressure on your throat is removed, and the cock spearing you pulled out with the most scandalous and obscene slurp. You cough and sputter as you struggle to breath, spittle coating your [pc.lipsChaste] and chin, and bring a hand to your neck - wincing as you feel what are clearly punctures from the fucker’s teeth. Speaking of, where is that-");
+	output("\n\nSuddenly, the pressure on your throat is removed, and the cock spearing you pulled out with the most scandalous and obscene slurp. You cough and sputter as you struggle to breathe, spittle coating your [pc.lipsChaste] and chin, and bring a hand to your neck - wincing as you feel what are clearly punctures from the fucker’s teeth. Speaking of, where is that-");
 
 	output("\n\n<i>“Get up,”</i> Chaurmine rumbles from above. Oh, your [pc.eyes] were shut. <i>“I said </i>Get. Up.<i> Steele.”</i>");
 

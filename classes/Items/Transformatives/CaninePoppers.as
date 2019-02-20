@@ -175,7 +175,7 @@ package classes.Items.Transformatives
 
 					if(pc.vaginaTypeUnlocked(x, GLOBAL.TYPE_CANINE))
 					{
-						output("\n\nAn unexpected heat erupts in your [pc.vagina " + x + "] followed by a overwhelming wave of arousal. You move your hand ");
+						output("\n\nAn unexpected heat erupts in your [pc.vagina " + x + "] followed by an overwhelming wave of arousal. You move your hand ");
 						//PC is garbed:
 						if(!pc.isCrotchExposed()) output("into your [pc.lowerGarment]");
 						else if(pc.legCount > 1) output("between your [pc.legs]");
@@ -332,9 +332,9 @@ package classes.Items.Transformatives
 							output("\n\nYour [pc.legs] feel stiff and weak, throwing you off balance and forcing you to ");
 							if(pc.hasKnees()) output("your knees");
 							else output("the ground");
-							output(". You roll onto your back, and agonizing pain consumes your lower half. The bones in your legs creak as they undergo a major transformation. It starts from your thighs, slowly descending across your legs, ");
+							output(". You roll onto your back, and agonizing pain consumes your lower half. The bones in your legs creak as they undergo a major transformation. It starts from your thighs, slowly descending across your legs,");
 							if(!pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output(" your toes lengthening while your heel moves upwards, reforming your legs into a digitigrade shape. The pain moves lower and lower");
-							else output("the pain moving lower");
+							else output(" the pain moving lower");
 							if(!pc.hasLegFlag(GLOBAL.FLAG_PAWS)) output(" until it reaches your [pc.feet]. They twist into a pair of canine paws with claws on their toes and pads on their soles");
 							else output(" applying some changes here and there, molding your legs into a more canine shape");
 							output(". ");

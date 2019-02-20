@@ -2255,6 +2255,7 @@ public function kellyHyperPlayAwwwYiss():void
 	
 	clearOutput();
 	showKelly(true);
+	showBust("KELLY_HYPER_NUDE");
 	author("Quiet Browser & LD");
 	//1st time
 	if(flags["KELLY_HYPERPLAY_COUNT"] == undefined || flags["KELLY_HYPERPLAY_COUNT"] == 0)
@@ -2391,6 +2392,7 @@ public function keepGoingWithFuckingHyperModeKelly():void
 
 	clearOutput();
 	showKelly(true);
+	showBust("KELLY_HYPER_NUDE");
 	author("Quiet Browser & LD");
 	output("Your hands remain right where they are, locked onto her hips for support. Let her tend to her own maleness; you’re more interested in her female parts. With this in mind, you start to thrust even harder than before, your fur-covered lover grunting in effort as she matches you thrust for thrust, moaning her pleasure for all to hear.");
 
@@ -2491,6 +2493,7 @@ public function addAHandjobToKellyHyperFuckPlay():void
 	var y:int = -1;
 	//If you got two dicks, check to see if one will fit elsewhere
 	if(pc.cockTotal() > 1) y = pc.cockThatFits2(chars["KELLY"].vaginalCapacity());
+	showBust("KELLY_HYPER_NUDE");
 
 	clearOutput();
 	showKelly(true);
@@ -2551,6 +2554,7 @@ public function kellyHyperPlayEpilogue(hugeLoad:Boolean = false):void
 	if(pc.cockTotal() > 1) y = pc.cockThatFits2(chars["KELLY"].vaginalCapacity());
 	clearOutput();
 	showKelly(true);
+	showBust("KELLY_HYPER_NUDE");
 	author("Quiet Browser & LD");
 	output("With a contented groan, Kelly allows herself to sink to her now-soaked bedding, instinctively shifting to her side");
 	if(hugeLoad) output(", allowing her great belly to slosh and wobble to a stillness");
@@ -4252,7 +4256,9 @@ public function getDPedByKelly():void
 			output("cock, pumping it with clumsy enthusiasm, stroking up and down with fast, jerky motions.");
 		}
 		output("\n\nYou can feel yourself getting close to the edge. Just a little longer and you’ll be able to cum. But you won’t be alone for this ride. You want Kelly to cum too, so you decide to up the ante. With all your might you will both your [pc.vagina " + x + "] and your [pc.asshole] to clamp down on Kelly’s intruding members, doubling your own pleasure as well as hers.");
-		output("\n\nA wordless wail of pleasure ripples up the laquine’s throat, her eyes screwing themselves closed and her head throwing itself back in warning as you push her over the edge. Inside of you, you can feel her shafts expanding, their heads flaring out to anchor themselves inside of your guts and womb. Kelly’s shafts bulge - you can feel the swollen flesh pushing out your inner walls - as the first two shots of her honey rush up from her clenching quad-sack and erupt inside of you, glazing the interior of your stomach and your womb in one single burst. Your [pc.belly] practically explodes outwards, almost hitting the laquine in the face as it swells rounder and fuller. Kelly shifts you desperately in her arms to keep hold of you, gladly nuzzling your expanding gut even as she keeps pouring honey inside of it, making it swell by the second. Knowing that it is inevitable that you will push her off-balance and make her fall, she spins the two of you around so that when it happens, she will land upon the bed behind her with you atop her.");
+		output("\n\n");
+		showImage("KellyDP");
+		output("A wordless wail of pleasure ripples up the laquine’s throat, her eyes screwing themselves closed and her head throwing itself back in warning as you push her over the edge. Inside of you, you can feel her shafts expanding, their heads flaring out to anchor themselves inside of your guts and womb. Kelly’s shafts bulge - you can feel the swollen flesh pushing out your inner walls - as the first two shots of her honey rush up from her clenching quad-sack and erupt inside of you, glazing the interior of your stomach and your womb in one single burst. Your [pc.belly] practically explodes outwards, almost hitting the laquine in the face as it swells rounder and fuller. Kelly shifts you desperately in her arms to keep hold of you, gladly nuzzling your expanding gut even as she keeps pouring honey inside of it, making it swell by the second. Knowing that it is inevitable that you will push her off-balance and make her fall, she spins the two of you around so that when it happens, she will land upon the bed behind her with you atop her.");
 		output("\n\nMolten heat boils through your insides, the titanic influx of warm, sweet, gooey honey overwhelming your last resistance. With a cry of ecstasy, your fingers gripping Kelly’s shoulders hard, you cum yourself, your cunt drenching her slick loins with your female juices.");
 		if(pc.hasCock())
 		{

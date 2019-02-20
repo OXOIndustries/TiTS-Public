@@ -49,8 +49,8 @@
 		}
 	
 		// Define the current version of save games.
-		public static const LATEST_SAVE_VERSION:int = 32;
-		public static const MINIMUM_SAVE_VERSION:int = 32;
+		public static const LATEST_SAVE_VERSION:int = 33;
+		public static const MINIMUM_SAVE_VERSION:int = 33;
 		
 		private var _autoSaveEnabled:Boolean = false;
 		private var _lastManualDataSlot:int = -1;
@@ -105,6 +105,7 @@
 			var sv29:SaveVersionUpgrader29;
 			var sv30:SaveVersionUpgrader30;
 			var sv31:SaveVersionUpgrader31;
+			var sv32:SaveVersionUpgrader32;
 			
 			// I'm putting this fucking thing here for the same reason.
 			var dbgShield:DBGShield;
@@ -2027,6 +2028,8 @@
 			
 			// *throws up in mouth a little*
 			kGAMECLASS.variableRoomUpdateCheck();
+			// *Here I got this for u geddy, plz no kill
+			kGAMECLASS.resetStepCounters();
 			
 			// Trigger an attempt to update display font size
 			kGAMECLASS.refreshFontSize();

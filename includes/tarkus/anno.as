@@ -222,7 +222,7 @@ public function firstTimeAnnoTalks():void
 public function soAboutDatDiscountSlut():void
 {
 	shopkeep = chars["ANNO"];
-	chars["ANNO"].keeperBuy = "<i>“So, about that discount...”</i>\n\n<i>“Of course. Right this way, " + pc.mf("Mr.","Ms") + " Steele,”</i> Anno says, guiding you to the register.\n";
+	chars["ANNO"].keeperBuy = "<i>“So, about that discount...”</i>\n\n<i>“Of course. Right this way, " + pc.mf("Mr.","Ms.") + " Steele,”</i> Anno says, guiding you to the register.\n";
 	//[Shop Menu Here]
 	buyItem();
 }
@@ -1030,13 +1030,13 @@ public function anyoneSpecial():void
 	addButton(0,"Threeway",threeWayAnno,undefined,"Threeway","Ask her if she’s up for threeways sometime.");
 	//[Leave] [Threeway?] If NotSex'd & PC is girl: [Into Girls?] PC is shemale/futa: [Into Dickgirls?]
 	//If NotSex'd & PC is girl: [Into Girls?]
-	if(pc.isFemale() && pc.mf("he","she") == "she" && annoSexed() == 0)
+	if(pc.isFemale() && pc.isFeminine() && annoSexed() == 0)
 	{
 		//[Into Girls?]
 		addButton(1,"Into Girls?",intoGirlsAnno,undefined,"Into Girls?","Ask her if she’s into girls.");
 	}
 	//PC is shemale/futa: [Into Dickgirls?]
-	else if(pc.hasCock() && pc.mf("he","she") == "she" && annoSexed() == 0)
+	else if(pc.hasCock() && pc.isFeminine() && annoSexed() == 0)
 	{
 		//[Into Dickgirls?]
 		addButton(2,"Into D-Girls?",intoDickgirlsAnno,undefined,"Into Dickgirls?","Ask her if she’s into dickgirls.");

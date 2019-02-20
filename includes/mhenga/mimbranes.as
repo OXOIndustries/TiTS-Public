@@ -267,6 +267,17 @@ public function hasFeedableMimbranes():Boolean
 	return false;
 }
 
+public function hasVisibleMimbranes():Boolean
+{
+	//Improve this later plox
+	if (pc.hasStatusEffect("Mimbrane Hand Left") || pc.hasStatusEffect("Mimbrane Hand Right") || pc.hasStatusEffect("Mimbrane Foot Left") || pc.hasStatusEffect("Mimbrane Foot Right") || pc.hasStatusEffect("Mimbrane Face")) return true;
+	if (pc.hasStatusEffect("Mimbrane Boobs") && target.isChestExposed()) return true;
+	if (pc.hasStatusEffect("Mimbrane Cock") && !pc.hasStatusEffect("Genital Slit") && pc.isCrotchExposed()) return true;
+	if ((pc.hasStatusEffect("Mimbrane Balls") || pc.hasStatusEffect("Mimbrane Pussy")) && pc.isCrotchExposed()) return true;
+	if (pc.hasStatusEffect("Mimbrane Ass") && target.isAssExposed()) return true;
+	return false;
+}
+
 public function logAllEffects(old:Object = null):Object
 {
 	if (old == null)
