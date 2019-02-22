@@ -1396,7 +1396,7 @@ package classes.Characters
 						removePerk("'Nuki Nuts");
 					}
 				}
-				else if(perkv2("'Nuki Nuts") == 1 && balls <= 0)
+				else if(/*perkv2("'Nuki Nuts") == 1 && */balls <= 0)
 				{
 					AddLogEvent("A strange sensation hits your nethers that forces you to wobble a little... Checking your status on your codex, it seems that removing your ballsack has also made the signature testicle-expanding tanuki mod vanish as well!\n\n(<b>Perk Lost: ‘Nuki Nuts</b> - You have no nuts to expand!)", "passive", deltaT);
 					removePerk("'Nuki Nuts");

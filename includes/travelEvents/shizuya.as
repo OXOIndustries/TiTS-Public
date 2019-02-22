@@ -2107,6 +2107,9 @@ public function shizzyOneStickDoesTheTrick(dick:int):void
 		if (pc.cocks[dick].cLength() < 14) output(" Your [pc.cock " + dick + "] is already so enveloped by her astronomical ass that it feels like you’re being guided in and out of the world’s tightest pussy. Her skin is so smooth that you don’t even need lube!");
 		else if (pc.cocks[dick].cLength() < 20) output(" Your tip just barely peeks out the other side of her titan-sized tush, but that only helps emphasize the strangling heat the rest of your shaft is feeling. But that feeling is fleeting as her movements submerge your [pc.cockHead " + dick + "] in bubbly, gratuitously sized flesh.");
 		else output(" Even her massive ass can’t contain your beastly [pc.cockNounSimple " + dick + "]. Of course, that doesn’t stop her from shining and squeezing every inch of your pole, combined with her super smooth skin, her assjob feels more like the world’s tightest titfuck.");
+		
+		pc.cockChange();
+		
 		output("\n\nYou almost feel like she’s trying to squeeze the [pc.cum] right out of you. Your rod feels almost painfully bloated from the constant, squeezing pressure, like you’re trapped in a malfunctioning pump. You feel your [pc.balls] tightening up, getting close to unloading their payload. Before you can get too close to the edge, she lets go. Her ass almost turns to jelly in an instant.");
 		output("\n\nYour prick pops free with such suddenness that you nearly fall backward. You catch yourself and stare daggers at her, to which she only continues to smile. You give her a few hard slaps while you calm down from her assault. She moans and purrs, getting louder each time you bring your hand down on her grandiose globes.");
 		output("\n\n<i>“Yeeees! Spank me! Punish me! I’m such a naughty kitty! Are you gonna pound this bad little pussy? Are you gonna make me squeal and squirt until I’ve learned my lesson?!”</i>");
@@ -2125,6 +2128,9 @@ public function shizzyOneStickDoesTheTrick(dick:int):void
 		if (pc.cocks[dick].cLength() < 14) output(" Your [pc.cock " + dick + "] is consumed by the vast, fleshy waves of her oceanic ass. Your rod feels like it’s in a roiling bowl of smolderingly hot jelly, jostled around by her swaying ministrations.");
 		else if (pc.cocks[dick].cLength() < 20) output(" Your [pc.cock " + dick + "] is <i>just</i> long enough to peek out the other end of her titanic tush, not that that’s necessarily a good thing. The cold air, or at least as cold as it can get between your writing bodies, blows across your [pc.cockHead " + dick + "], the contrast only emphasizing the smoldering, fleshy heat that envelops your shaft. The pleasure only gets worse as she starts jostling her booty around your member, making you feel like your dick is in a tumbler full of bubbling hot jelly.");
 		else output(" Your [pc.cock " + dick + "] is long enough that even her mountainous ass can’t fully contain it. That doesn’t mean you’re out of the woods, however. Your breath gets knocked out of you as you feel her slam her ass, and your cock, against your underside. You groan out as you feel her start to jerk her booty up and down, giving you the tightest assjob you’ve ever had, as well as massaging your undercarriage with overwhelming amounts of sinfully smooth, unnaturally hot skin.");
+		
+		pc.cockChange();
+		
 		output(" You almost feel like she’s trying to squeeze the [pc.cum] right out of you. Your rod feels almost painfully bloated from the constant, squeezing pressure, like you’re trapped in a malfunctioning pump. You feel your [pc.balls] tightening up, getting close to unloading their payload. Just when you think she’s going to make you waste your load on her ass, it practically turns to jelly, and she lets go of your cock, making you stagger off of her in surprise.");
 		output("\n\nYou take a moment to collect yourself before looking back at her with an irritated expression. She’s still giving you that look, but now she’s added a massive smile to it.");
 		output("\n\n<i>“Oh, poor horsey. Was little kitty mean to you? Maybe she deserves some punishment.”</i> On that, she raises her ass toward you and gives her fat cheek a swift slap. Is she really asking for a spanking? This chick’s more kinky than you thought.");
@@ -2149,7 +2155,7 @@ public function shizzyOneStickDoesTheTrick(dick:int):void
 		output("\n\nYou slip inside her with ease, her internal muscles clamping down to fit a perfect mold of your cock. Despite the tightness of her hole, it’s still easy to move your [pc.cock " + dick + "] in until you bottom out.");
 		output("\n\n<i>“Get nice and comfy, cap, and don’t try and hold back on me!”</i>");
 	}
-	output("\n\nWith how riled up her pheromones have gotten you, it’s not like you could have held back anyway! You rear back until nothing is left in her but your [pc.cockHead " + dick + "]. You sit there for a second, letting her purring body massage your tip, before ramming yourself back in. As you ram in and out of her, you can truly appreciate how welcoming her hole is. Her luscious outer lips wrap each probing inch of your member in velvet softness as they saw in and out of her, ending in a soft, loving <i>“kiss”</i> to your [pc.sheath " + dick + "] every time you bottom out. Her tunnel is just as luxurious as her outer lips. It feels plush and sensual no matter how hard she clamps down on you.");
+	output("\n\nWith how riled up her pheromones have gotten you, it’s not like you could have held back anyway! You rear back until nothing is left in her but your [pc.cockHead " + dick + "]. You sit there for a second, letting her purring body massage your tip, before ramming yourself back in. As you ram in and out of her, you can truly appreciate how welcoming her hole is. Her luscious outer lips wrap each probing inch of your member in velvet softness as they saw in and out of her, ending in a soft, loving “kiss” to your [pc.sheath " + dick + "] every time you bottom out. Her tunnel is just as luxurious as her outer lips. It feels plush and sensual no matter how hard she clamps down on you.");
 	output("\n\nYou feel like royalty! Your dick is caressed in the galaxy’s softest, wettest, warmest velvet, and you savor every second! She seems to be enjoying it just as much. Every time you bottom out is accompanied by shamelessly loud moans from Shizuya. Her body convulses in pleasure, her vaginal walls rippling along your length from her end to end orgasms. Her arms have given out, leaving her face planted in the moat that her spasming cocks have turned her bed into.");
 	output("\n\nShe’s cumming her brains out already, her quads visibly pulsing as they work overtime to mix together drums of her" + (silly ? " herm chowder" : " baby juice") + " to expel out of her twin shafts. Her urethras strain and bulge obscenely as endless, gigantic pulses of white jizz fire out of her in increasingly high pressure streams. Her luxurious pussy strangles your [pc.cock " + dick + "] like a vice, almost completely stopping your movements. You bring your hand down again, slamming into her tender assflesh with all the might you can muster.");
 	output("\n\nShe groans out loud and cums again, squeezing you even harder! At this point it feels more like you stuck your dick in a malfunctioning pump than a pussy. Your cock feels harder than you thought was possible, and you feel like you need to pull out before she rips your [pc.cockNoun " + dick + "] right off of you! Thankfully she seems to have gotten the hint from your slap, and after a moment you feel her muscles starting to work. The tightness becomes much less overbearing and more focused, rippling inward to guide you back into rhythm. You gladly take the opportunity, and immediately renew your thrusts, finding that her rippling, velvet cunt is guiding you in and out.");
@@ -2219,7 +2225,7 @@ public function shizzyTwoDicksForThoseThatFit(dicks:Array):void
 	
 	output("\n\nYou’re nearing the edge when she suddenly sits up and pushes her dicks into yours, carelessly slapping the two hot bundles together.");
 	output("\n\n<i>“Wha-what are you doing!?”</i>");
-	output("\n\n<i>“Just makin’ sure you’re as ready for this as I am”</i>");
+	output("\n\n<i>“Just makin’ sure you’re as ready for this as I am.”</i>");
 	output("\n\n<i>“What?”</i> You stop when a fresh blast of pheromones hits your nostrils. The thick fog settles on your brain, causing you to grow cross-eyed for a second as your [pc.cocks] engorge beyond reason.");
 	output("\n\nYou snap out of your stupor to see Shizuya on her back, legs spread, her cock and balls lifted out of the way of her snatch. Unable to take anymore you pounce onto her and line up your [pc.cock " + x + "] with her puffy pussy, and your [pc.cock " + y + "] with her ass.");
 
@@ -2234,7 +2240,9 @@ public function shizzyTwoDicksForThoseThatFit(dicks:Array):void
 		output(" Your [pc.cock " + y + "], however, is having a hell of a time getting into her asshole. You batter your tip against her backdoor, but feel it barely budge. You almost want to call it off, but a lusty, desperate voice rings out from Shizuya.");
 		output("\n\n<i>“Nonononono! I want it, I want all of you inside me! J-just keep goin’.”</i> If she insists. You keep slamming in, feeling her hole start to give more and more as you work it. ");
 	}
-
+	
+	pc.cockChange();
+	
 	output("As soon as she gives out, though, you’re met with a feeling of bliss and confusion. Your cocks are in completely different worlds, one of moist velvet squeezes, and the other of clenching tightness. Thankfully she seems to have lubed up her ass beforehand.");
 	output("\n\n<i>“G-g-good gir-girls never leave home with-with... OH... without lubing up.”</i>");
 	output("\n\nYou’re glad she did, because there’s no way you could hold yourself back! You thrust into her with wild abandon");
@@ -2584,6 +2592,18 @@ public function shizzyTwoAndTwoAlwaysMakesFun():void
 	output(" She squeezes out a huge glob into her hand, jerking it onto her cocks one at a time.");
 	output("\n\nShe groans as a strong jet of pre shoots out over your [pc.belly], an act which only turns you on more, if that were even possible. When she’s fully lubed up, she hoists you back up and plants her tips back against your holes. She hammers against them like two battering rams sieging a castle gate. She steadily ups the force and tempo before giving one final shove to break down the last of your resistance and make room for her titanic girth.");
 	output("\n\nShe shoves her lengths half way in on the first thrust, breaking the last vestiges of thought not devoted to your cock-lust. Empty Void, there’s so much! She’s not even moving yet and you feel completely overwhelmed. Your stomach bulges with the sheer amount of cockmeat lodged inside you, and you can actually make out the outline of her medial ring and head in your gut. You’re laying there, writhing, panting, moaning, barely able to process the sensations assaulting you. Meanwhile she’s just sitting there, taunting you with that huge grin and her unmoving hips, but you can tell she’s just as riled up as you.");
+	
+	if(pc.hasVaginas())
+	{
+		pc.cuntChange(0, chars["SHIZUYA"].cockVolume(0));
+		pc.cuntChange(1, chars["SHIZUYA"].cockVolume(1));
+	}
+	else
+	{
+		pc.cuntChange(0, chars["SHIZUYA"].cockVolume(0));
+		pc.buttChange(chars["SHIZUYA"].cockVolume(1));
+	}
+	
 	output("\n\nHer eyes are glassy and unfocused, her breaths are getting deeper and deeper, and her whole body spasms every few seconds. You’re about to tell her to hurry up, but just as you open your mouth she yells out and pushes herself as far as she can into you. You scream out in ecstasy, caught completely off guard, every cell in your body screaming along with you.");
 	output("\n\nShe doesn’t let up, either. She yanks herself out and forces herself back in just as quick as you feel her exit. She’s not even trying to hold back, rutting you like a wild animal at the height of its rut. And you love it! The thick pheromone soup you’re lying in, combined with how well she’s overloading your senses, have reduced you to a drooling, horny animal who can think of nothing but breeding with the virile beast you’ve found yourself with.");
 	if (pc.hasCock()) output(" Even in her state she still gives you some courtesy, taking a hand away from hoisting you up to jerk off your [pc.cock], giving it the same frantic treatment she’s giving the rest of you.");
@@ -2605,8 +2625,21 @@ public function shizzyTwoAndTwoAlwaysMakesFun():void
 	output(" Your body jolts back to life at the sensation, experiencing an orgasm so powerful that your vision starts going white. You start bouncing on her cocks as her second blast overfills you and starts to flow out, creating a small pool at your [pc.feet].");
 	output("\n\nYour second wind hit you like a freight train, and you find yourself taking charge, demanding more cum even as her orgasm pumps you to looking like you’re about to give birth to triplets.");
 	output("\n\nYou ride her until her legs give out and she drops to her back. She’s more than happy to just let you work, reaching up and grabbing your [pc.breasts] to spur you on.");
+	
+	if(pc.hasVaginas())
+	{
+		pc.loadInCunt(chars["SHIZUYA"], 0);
+		pc.loadInCunt(chars["SHIZUYA"], 1);
+	}
+	else
+	{
+		pc.loadInCunt(chars["SHIZUYA"], 0);
+		pc.loadInAss(chars["SHIZUYA"]);
+	}
+	pc.orgasm();
+	
 	output("\n\nTime becomes meaningless as you fuck. Minutes fade into hours, who knows, hours might even fade into days. Your mind only knows the rut of the situation, how to fuck and be bred over and over again. You don’t know when you finally pass out, but at some point your vision goes dark for some time, and you wake up slumped over her, limply.");
-		
+	
 	addButton(0, "Next", shizzyPostSex);
 }
 
@@ -2630,7 +2663,7 @@ public function shizzyImNotATurkey(mode:int = -1):void
 	var can:Array = shizzyQualifyForDBLSTFF();
 	var vag:int = pc.cuntThatFits(2*chars["SHIZUYA"].biggestCockVolume());
 	var anal:Boolean = (mode == 2);
-		
+	
 	//If GroundCombatContainer can do it...
 	if (flags["TIMES_BUTT_TEASED"] == undefined) flags["TIMES_BUTT_TEASED"] = 0;
 	if (flags["TIMES_HIPS_TEASED"] == undefined) flags["TIMES_HIPS_TEASED"] = 0;
@@ -2820,6 +2853,10 @@ public function shizzyStuffingCommence(anal:Boolean):void
 	if (flags["SHIZZY_STUFFED"] == undefined) output("\n\n<i>“I guess we’re too deep into this to not go all the way. Let’s just ease into it.”</i>");
 	else output("\n\n<i>“Just a bit longer now; gotta ease you in before we get to the main event.”</i>");
 	output(" She seems determined to keep this agonizing pace for a while longer, but you’re not in any position to dictate otherwise; a nice, slow fuck to savor this is probably for the best anyway. She bites down gently on the base of your neck as she begins to saw her flares inside you.");
+	
+	if (anal) pc.buttChange((chars["SHIZUYA"].cockVolume(0) + chars["SHIZUYA"].cockVolume(1)));
+	else pc.cuntChange(vag, (chars["SHIZUYA"].cockVolume(0) + chars["SHIZUYA"].cockVolume(1)));
+	
 	output("\n\nShe starts purring too, and with her size and the way she’s wrapped so tightly around you, it’s almost like being in a massage chair that’s also fucking your " + (anal ? "[pc.ass]" : "[pc.vagina " + vag + "]") + " with ungodly thick cocks... that are also vibrating. It’s less powerful than her upper body, but with how stirred up and sensitive you are, it’s more than enough to push you over the edge again, and you cream yourself submissively.");
 	output("\n\nShe spends the next few minutes sawing her first few inches in and out of you, advancing by mere millimeters with each time she pushes back in. Despite her shallow thrusts, you feel like several people are bottoming out inside you with each one. She’s so fucking thick! Her flares must be almost seven inches across by this point, so thick that no amount of lube could give them enough space to occupy the same point inside you. By the time she crams almost six inches in you, her heads have been forced apart, one much farther in you than its brother. The loss of sync creates two distinct points of friction, rather than the monolith of sensation from before.");
 	output("\n\nSuddenly you feel yourself being hoisted up as Shizuya drags you up onto her lap, impaling you on just over a foot of horsecock. Her arms grasp your [pc.ass] as she begins lifting you before slamming you down on her meat. You yell out in confused pleasure, fourteen inches of double thick animal dick stuffed in your " + (anal ? "gut." : "tunnel.") + " She holds you there for a second, letting you get used to her, while increasing the intensity of her purring in order to keep you stimulated. You cum all over her,");
@@ -2850,8 +2887,8 @@ public function shizzyStuffingCommence(anal:Boolean):void
 	
 	pc.orgasm();
 	if (anal) pc.loadInAss(chars["SHIZUYA"]);
-	else pc.loadInCunt(chars["SHIZUYA"]);
-		
+	else pc.loadInCunt(chars["SHIZUYA"], vag);
+	
 	addButton(0, "Next", shizzyPostRoughSex, 240);
 }
 

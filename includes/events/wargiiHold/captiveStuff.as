@@ -137,7 +137,7 @@ public function randomKorgSavingProcChances():void
 				break;
 		}
 	}
-	else if(!enemy.hasStatusEffect("Has Captive") && flags["WARGII_TUUVA_SAVED"] != undefined && rand(3) == 0 && !pc.hasStatusEffect("Tuuva Combat CD")) 
+	else if(!enemy.hasStatusEffect("Has Captive") && flags["WARGII_TUUVA_SAVED"] != undefined && !pc.hasStatusEffect("Tuuva Combat CD") && rand(3) == 0) 
 	{
 		tuuvaJoinsTheBattle();
 	}
@@ -296,7 +296,16 @@ public function rescueMaja():void
 	author("Gardeford");
 	showName((flags["MET_MAJA"] != undefined ? "SAVING\nMAJA":"SAVE\nA KORG"));
 	author("Fenoxo");
-	output("You rush to Maja’s side as the milodan collapses, Cutting away her restraints and pulling the gag from her mouth. She works her jaw for a few seconds, massaging her cheeks before jumping into a sudden hug.");
+	output("You rush to " + (flags["MET_MAJA"] != undefined ? "the korgonne" : "Maja") + "’s side as the milodan collapses, Cutting away her restraints and pulling the gag from her mouth. She works her jaw for a few seconds, massaging her cheeks before jumping into a sudden hug.");
+	if(flags["MET_MAJA"] == undefined)
+	{
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Stranger savings! M-Maja name Maja!");
+		else output("You’ve come to save me! My name’s Maja!");
+		output("”</i> The korgonne muffles into you.");
+		output("\n\n<i>“[pc.fullName],”</i> you respond.");
+		flags["MET_MAJA"] = 1;
+	}
 	output("\n\n<i>“" + (!korgiTranslate() ? "Many thankings! Maja thought milodan would carry her off for good,":"Thank you! I thought I was done for,") + "”</i> She says, clinging to you while she talks. She lets you go in short order, brushing herself off and adjusting her top. A shadow of worry still coats her features, and she glances off in the direction of the bottom floors.");
 	output("\n\n<i>“" + (!korgiTranslate() ? "The animals! Animals still downstairs! Steele help? Maja need helpings, not safe to check alone. Get captured again,":"The animals! My animals are still trapped downstairs! Can you help me check on them? I’ll just get captured again if I go alone,") + "”</i> she begs, her tail giving a few subdued shakes as she looks back and forth through the halls.");
 	output("\n\n<i>“");
@@ -306,8 +315,7 @@ public function rescueMaja():void
 	else output("I’ll be out a mount if they do anything down there, so count me in,");
 	output("”</i> you reply, glancing around to regain your bearings. Maja scoots off in the direction of the stairs, hugging the walls and moving so carefully that her paws hardly make a sound on the cavern floor. You can hear fighting going on all around you, with explosions reverberating through the open passages at odd intervals. Hopefully they aren’t able to fully collapse any tunnels before you find whoever’s in charge.");
 	output("\n\nYour would be guide ducks off before you can see what path she’s taking, leaving you to fight your way through the milodan attackers. Some of those animals might be a good help in the close quarters fighting of the tunnels, if you can make it down there.");
-	if(flags["MET_MAJA"] == undefined) output("\n\n<b>You saved a korgonne!</b>");
-	else output("\n\n<b>You saved Heidrun!</b>");
+	output("\n\n<b>You saved Maja!</b>");
 	flags["WARGII_MAJA_SAVED"] = 1;
 	flags["TUNDRA_STEP"] = 0;
 	output("\n\n");

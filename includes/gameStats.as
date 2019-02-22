@@ -3927,6 +3927,11 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["WARGII_NENNE_SAVED"] != undefined) output2("\n<b>* Nenne:</b> Saved Her");
 					if(flags["WARGII_LUND_SAVED"] != undefined) output2("\n<b>* " + (flags["MET_LUND"] == undefined ? "Male Korgonne" : "Lund") + ":</b> Saved Him");
 					if(flags["WARGII_TUUVA_SAVED"] != undefined) output2("\n<b>* " + (flags["MET_TUUVA"] == undefined ? "Korgonne Blacksmith" : "Tuuva") + ":</b> Saved Her");
+					if(flags["WARGII_MAJA_SAVED"] != undefined)
+					{
+						output2("\n<b>* " + (flags["MET_MAJA"] == undefined ? "Korgonne Beast Tamer" : "Maja") + ":</b> Saved Her");
+						if(flags["WARGII_MAJA_SAVED"] >= 2) output2(", Saved her animals");
+					}
 				}
 				else output2("<i>Talk to Ula!</i>");
 				sideCount++;

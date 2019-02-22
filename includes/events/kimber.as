@@ -305,7 +305,7 @@ public function kimberHasProblems():void
 
 	output("You ask Kimber about some of the problems she’s had at the places she’s worked. It sounded like there were things about the way people treated her that made her unhappy.");
 	output("\n\nShe glances away for a moment. <i>“I did say something about that, didn’t I,”</i> she says. Kimber lets out a breath, and looks at you. <i>“I don’t like to complain too much, and I know you’re not here for me to whine about my issues. But it’s something that gets to me, know what I mean?”</i> She downs more of her beer, then sets it on the bar and frowns. <i>“You said you’ve been to New Texas. Tell me, what do you think people are like there?”</i>");
-	output("You tell her the impression you got of her home. People were generally friendly and open, both in a hospitable way and in a sexual way. She points a finger at you when you get to that second point.");
+	output("\n\nYou tell her the impression you got of her home. People were generally friendly and open, both in a hospitable way and in a sexual way. She points a finger at you when you get to that second point.");
 	output("\n\n<i>“That’s the thing, [pc.name],”</i> she says. <i>“That’s exactly the thing. Now, I ain’t ashamed to be from New Texas. I know my history, I know the people who landed there needed to make sure they made plenty of babies so they didn’t die off, and that’s the only reason the planet’s got people living on it. That’s the only reason I’m here talking to you right now.”</i> She raises her dark brows at you. <i>“But that don’t mean the only thing I think about is fucking, or that I’ll hop on any dick that someone shakes in my direction.”</i>");
 	output("\n\nBefore you can say anything more, she leans back with a sigh and says, <i>“And yes, that actually happened. Third day on my first job, I’m doing my work and trying to get it all done right, because I’m new and I want to make a good impression. And this jackass walks over to my desk and just pulls his pecker out.”</i>");
 	output("\n\nThat sounds a little extreme. You ask her what she did next.");
@@ -317,7 +317,7 @@ public function kimberHasProblems():void
 	if (flags["KIMBER_SEXED"]) output("As you well know.”</i> She smirks at you. <i>“");
 	output("It’s a damn good time, usually. And it ain’t like I’ve ever had trouble finding someone to ride when I’m feeling up for it. But I get so damned tired of people thinking that’s all I’m about and that I’ll drop whatever I’m doing and jump on them. Or worse, thinking I’ll just lie down and take whatever they want to give me.”</i>");
 	output("\n\nYou can see how that would be a problem. Your dad had the reputation of being an ‘anything that moves’ kind of guy, and while that was something he earned, you tell Kimber you can understand how people having that sort of expectation for her could be hard to deal with.");
-	output("\n\n<i>“It can be,”</i> she says. <i>“And it happens all the time! Every job I’ve had,whenever we got someone new, nine times out of ten they came to me looking for an easy fuck by the end of their first week. Just last month, I had a woman come to me and ask if I’d do a threesome with her and her husband for his birthday.”</i> Kimber scowls as she drinks again. <i>“I told her to fuck off. I’m not some gift she can give.”</i>");
+	output("\n\n<i>“It can be,”</i> she says. <i>“And it happens all the time! Every job I’ve had, whenever we got someone new, nine times out of ten they came to me looking for an easy fuck by the end of their first week. Just last month, I had a woman come to me and ask if I’d do a threesome with her and her husband for his birthday.”</i> Kimber scowls as she drinks again. <i>“I told her to fuck off. I’m not some gift she can give.”</i>");
 	output("\n\nYou’re starting to see why Kimber was glad to be working out among the planet rushers, instead of in a place where people treat her like that. But doesn’t she get the same thing wherever she goes?");
 	output("\n\n<i>“Yeah, but it’s different out here,”</i> she says. <i>“I don’t even mind someone trying to pick me up because they see I’m from New Texas, shows they know quality. But I can’t always get away from people at work, and I’ve heard plenty of stupid rumors people passed around after I told them no. At least at a bar, I can tell someone no and they take off, or I can call the bouncer on them if they don’t. That’s easier than hearing someone say ‘moo’ just loud enough for me to hear when I walk past them, or dealing with the jackass who’s got a new boob joke for me every time he passes by my lab station.”</i>");
 	output("\n\nAfter a moment, she shakes her head. <i>“Don’t get me wrong, [pc.name]. I love what I do, and Xenogen’s a good place to work. The people I work with every day, they’re good folks and I know they respect me. I know they don’t think of me as some brainless fuck-toy. But it feels like every time someone who doesn’t know me comes through, they get to thinking that since I’m from New Texas and therefore Treated, I’ve got nothing on my mind but sex. It’s just one of those little things that feels bigger every time it happens.”</i>");
@@ -428,7 +428,7 @@ public function kimberGiveRaskvel():void
 
 	output("You hand the greasy, foil-wrapped chunk of dough and who knows what else to Kimber. She winces a little as she takes it from you, and squints at it, her expression unsure.");
 	output("\n\n<i>“What </i>is<i> this?”</i> she asks. <i>“And do I even want to know where you got it, or from what?”</i>");
-	output("\n\nYou tell her that it’s ruskvel, from the raskvel of Tavros. It’s something they eat, but you thought it might be worth checking out.");
+	output("\n\nYou tell her that it’s ruskvel, from the raskvel of Tarkus. It’s something they eat, but you thought it might be worth checking out.");
 	output("\n\nKimber sets the ruskvel on the bar and pulls out her datapad, fiddles with it for a moment, then points a small optical scanner at the sample. The datapad’s screen lights up after a few seconds, and Kimber’s eyes open wide.");
 	output("\n\n<i>“Wow,”</i> she breathes. <i>“I did not expect that. This thing’s got more weird bio stuff going on in it than some swamps.”</i> She glances at you. <i>“’Weird bio stuff’ is a scientific term, I swear.”</i>");
 	output("\n\nYou ask her what her datapad is showing, since it’s clearly getting something from the ruskvel.");
@@ -672,7 +672,7 @@ public function kimberZilStory():void
 	output("\n\nShe grins. <i>“He looks me in the eye and says, ‘Wanna bet?’”</i>");
 	output("\n\nNo surprise he’d make it a challenge, especially if he felt like he could lift anything with his new muscles. Did she take the bet?");
 	output("\n\n<i>“You’re damn right I did. Started off with just hauling faster, wager was a handjob. Fingers for me, you get the idea. When I beat him with the first set, he raised the stakes to oral, and when he beat me on that, I raised it again, oral to two orgasms. And the whole time, we’re hauling stuff fast as we can, trying like all hell to beat the other to the end.”</i>");
-	output("And how did it end?");
+	output("\n\nAnd how did it end?");
 	if (flags["KIMBER_SEXED"] == undefined) output("\n\nKimber gives you another wink. <i>“He cheated. We went down to the last box, and right as I picked it up, he grabbed me around the waist and hefted me up on his shoulder, and carried me to where we were stowing everything. We both said we won, but as sweaty as we were by then, fucking in the storeroom shower seemed like the best way to settle it.”</i>\n\nShe’s right; that does sound like they both won.");
 	else
 	{
@@ -1117,49 +1117,72 @@ public function kimberDoHerNowMenu():void
 	clearMenu();
 	
 	if (!pc.hasCock()) addDisabledButton(0, "Get Ridden", "Get Ridden", "You need a penis for this!");
-	else addButton(0, "Get Ridden", penisRouter, [kimberTakesYouForARide,99999,false,0]);
+	else addButton(0, "Get Ridden", penisRouter, [kimberTakesYouForARide, pc.biggestCockVolume() + 1, false]);
 
-	addButton(0, "Get Ridden", penisRouter, [kimberTakesYouForARide, pc.biggestCockVolume() + 1, false]);
-
-	addButton(1, "Oral", function ():void
+	if (!pc.hasGenitals()) addDisabledButton(1, "Oral", "Oral", "You need genitals for this!");
+	else addButton(1, "Oral", function ():void
 	{
 		if (pc.isHerm())
 		{
 			clearMenu();
-			clearOutput();
 			addButton(0, "Use Penis", penisRouter, [kimberOralCock, pc.biggestCockVolume() + 1, false]);
 			addButton(1, "Use Vagina", vaginaRouter, [kimberOralVagina, 0, 0, 0, false]);
+			addButton(14, "Back", kimberDoHerNowMenu);
 		}
 		else if (pc.hasCock()) penisRouter([kimberOralCock, pc.biggestCockVolume() + 1, false]);
 		else if (pc.hasVagina()) vaginaRouter([kimberOralVagina, 0, 0, 0, false]);
 	});
 
-	addButton(2, "Anal", penisRouter, [kimberSomethingSomethingAnalIDKMan, pc.biggestCockVolume() + 1, false]);
-	if (flags["KIMBER_UTHRA_GIVEN"] != undefined) addButton(3, "Mirror Sex", penisRouter, [kimberSexeSrebmik, pc.biggestCockVolume() + 1, false]);
+	if (!pc.hasCock()) addDisabledButton(2, "Anal", "Anal", "You need a penis for this!");
+	else addButton(2, "Anal", penisRouter, [kimberSomethingSomethingAnalIDKMan, pc.biggestCockVolume() + 1, false]);
+	
+	if (flags["KIMBER_UTHRA_GIVEN"] != undefined)
+	{
+		if (!pc.hasCock()) addDisabledButton(3, "Mirror Sex", "Mirror Sex", "You need a penis for this!");
+		else addButton(3, "Mirror Sex", penisRouter, [kimberSexeSrebmik, pc.biggestCockVolume() + 1, false]);
+	}
 	else addDisabledButton(3, "Mirror Sex");
 
 	if (flags["KIMBER_CANDY_GIVEN"] != undefined)
 	{
-		if (!pc.hasGenitals()) addDisabledButton(4, "Mutual Mast", "Mutual Mast", "You need genitals for this!");
-		else
+		if (!pc.hasGenitals()) addDisabledButton(4, "Mutual Mast", "Mutual Masturbation", "You need genitals for this!");
+		else addButton(4, "Mutual Mast", function():void
 		{
-			addButton(4, "Mutual Mast", function():void {
+			if (pc.isHerm())
+			{
 				clearMenu();
-				clearOutput();
 				addButton(0, "Use Penis", penisRouter, [kimberShowCock, pc.biggestCockVolume() + 1, false]);
 				addButton(1, "Use Vagina", vaginaRouter, [kimberShowVagina, 0, 0, 0, false]);
-			});
-		}
+				addButton(14, "Back", kimberDoHerNowMenu);
+			}
+			else if (pc.hasCock()) penisRouter([kimberShowCock, pc.biggestCockVolume() + 1, false]);
+			else if (pc.hasVagina()) vaginaRouter([kimberShowVagina, 0, 0, 0, false]);
+		});
 	}
+	else addDisabledButton(4, "Mutual Mast");
 
-	if (flags["KIMBER_RUSKVEL_GIVEN"] != undefined) addButton(5, "Get Tied Down", penisRouter, [kimberGetsYouTiedUpWithoutWork, pc.biggestCockVolume() + 1, false]);
+	if (flags["KIMBER_RUSKVEL_GIVEN"] != undefined)
+	{
+		if (!pc.hasCock()) addDisabledButton(5, "Get Tied Down", "Get Tied Down", "You need a penis for this!");
+		else addButton(5, "Get Tied Down", penisRouter, [kimberGetsYouTiedUpWithoutWork, pc.biggestCockVolume() + 1, false]);
+	}
 	else addDisabledButton(5, "Get Tied Down");
 	
 	if (flags["KIMBER_SKY_GIVEN"] != undefined) addButton(6, "Pegging", kimberTakesYouDownToPeg);
 	else addDisabledButton(6, "Pegging");
-	if (flags["KIMBER_RATION_GIVEN"] != undefined) addButton(7, "Shower Sex", penisRouter, [kimberTheCleanScientist, pc.biggestCockVolume() + 1, false]);
+	
+	if (flags["KIMBER_RATION_GIVEN"] != undefined)
+	{
+		if (!pc.hasCock()) addDisabledButton(7, "Shower Sex", "Shower Sex", "You need a penis for this!");
+		else addButton(7, "Shower Sex", penisRouter, [kimberTheCleanScientist, pc.biggestCockVolume() + 1, false]);
+	}
 	else addDisabledButton(7, "Shower Sex");
-	if (flags["KIMBER_QUEST"]%4 == 2) addButton(9, "On Top", penisRouter, [kimberOnTopLater, pc.biggestCockVolume() + 1, false]);
+	
+	if (flags["KIMBER_QUEST"]%4 == 2)
+	{
+		if (!pc.hasCock()) addDisabledButton(9, "On Top", "On Top", "You need a penis for this!");
+		else addButton(9, "On Top", penisRouter, [kimberOnTopLater, pc.biggestCockVolume() + 1, false]);
+	}
 	//Unlike the item listings, sex options that aren't available should be greyed out but visible, so if people see something they want to do, they'll try to figure out how to unlock that scene. [On Top] is an exception, and should not be visible unless it's available.
 }
 
@@ -2213,4 +2236,4 @@ public function kimberOnTopLater(cockIdx:int):void
 	flags["KIMBER_QUEST"] += 1;
 
 	addButton(0, "Next", kimberGoHomePostSex);
-}
+}

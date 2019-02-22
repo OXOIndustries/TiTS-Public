@@ -67,6 +67,17 @@ public function defeatThisMiloSlut():void
 {
 	showMiloTemptress(true);
 	author("QuestyRobo");
+	
+	var tuuvaTag:Boolean = false;
+	if(flags["WARGII_TUUVA_SAVED"] != undefined)
+	{
+		var allies:Array = CombatManager.getFriendlyActors().slice(1);
+		for(var i = 0; i < allies.length; i++)
+		{
+			if(allies[i] is Tuuva) tuuvaTag = true;
+		}
+	}
+	
 	if(enemy.lust() >= enemy.lustMax())
 	{
 		output("The Temptress falls to the ground, too overcome with lust to keep fighting you. She paws at herself, clumsily trying to undo her zippers so she can receive <i>any</i> sort of stimulating contact. A sense of pride wells up inside you as you watch the once-domineering kitty-bitch completely lose herself to your display. She writhes on the ground, twisting and turning as she feels herself up all over.");
@@ -96,8 +107,10 @@ public function defeatThisMiloSlut():void
 			flags["MET_TUUVA"] = 1;
 		}
 		output("\n\nNow, what are you going to do with the Temptress?");
+		
+		tuuvaTag = true;
 	}
-	else if(9999 == 0) //Tuuva, repeat:
+	else if(tuuvaTag) //Tuuva, repeat:
 	{
 		output("\n\nTuuva glares at the defeated Temptress in equal parts rage and arousal. Even if it’s not the same one that caught her, she’s similar enough that it sets Tuuva off.");
 		output("\n\n<i>“");
@@ -117,7 +130,7 @@ public function defeatThisMiloSlut():void
 	else addDisabledButton(1,"PussyPound","Pussy Pound","You need a penis for this.");
 
 	//[Tuuva-Tag] Help Tuuva take revenge on the Temptress. /Available when Tuuva is present (first fight and if she shows up as a helper).
-	if(enemy.statusEffectv1("Has Captive") == 4)
+	if(tuuvaTag)
 	{
 		if((pc.hasCock() && pc.cockThatFits(capacity) >= 0) || pc.hasVagina()) addButton(2,"Tuuva3Some",tuuvaTagTeamScene,undefined,"Tuuva Tag-Team Threesome","Help Tuuva take revenge on the Temptress.");
 		else if(pc.hasCock()) addDisabledButton(2,"Tuuva3Some","Tuuva Tag-Team Threesome","You’re too big to fit this scene.");
