@@ -375,6 +375,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	
 	// Append any extra messages:
 	priapismBlurbs();
+	siegwulfeLeashBlurbs();
 	
 	// Show the minimap too!
 	userInterface.showMinimap();

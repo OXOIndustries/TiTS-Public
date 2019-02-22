@@ -162,11 +162,6 @@
 			this.impregnationType = "SiegwulfeEggnancy";
 		}
 		
-		public function isDom():Boolean
-		{
-			return hasCock();
-		}
-		
 		public function isEggWulfe():Boolean
 		{
 			return impregnationType == "SiegwulfeEggnancy";

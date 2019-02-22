@@ -158,7 +158,7 @@ public function drBadgerBonusShit():Boolean
 		
 		// Repeat vists
 		if(flags["DR_BADGER_TURNED_IN"] == undefined) addButton(0,"Dr.Badger",repeatBadgerApproach,undefined,"Dr. Badger","Check in with the curvy, bimbo badger.");
-		if (wulfe.isDom() && !wulfe.isEggWulfe())
+		if (siegwulfeIsDom() && !wulfe.isEggWulfe())
 		{
 			if (pc.hasItemByClass(Ovilium, 10)) addButton(1, "Ovilium", siegwulfeInstallEggs, undefined, "Give Ovilium", "Give Badger the bottles of Ovilium she needs.");
 			else addDisabledButton(1, "Ovilium", "Give Ovilium", "You need 10 bottles of Ovilium and to have [wulfe.name] with you for this.");
@@ -175,7 +175,7 @@ public function repeatBadgerApproach():void
 	showDrBadger();
 	author("Abe E. Seedy");
 	//Siegwulfe with PC
-	if (hasSiegwulfeOnSelf() && (flags["DR_BADGER_APPROACHES_TILL_WULFE"] == undefined || flags["DR_BADGER_APPROACHES_TILL_WULFE"]-- <= 0) && !wulfe.isDom())
+	if (hasSiegwulfeOnSelf() && (flags["DR_BADGER_APPROACHES_TILL_WULFE"] == undefined || flags["DR_BADGER_APPROACHES_TILL_WULFE"]-- <= 0) && !siegwulfeIsDom())
 	{
 		return siegwulfeExpansionIntro();
 	}
