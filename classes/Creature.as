@@ -2261,6 +2261,9 @@
 				case "knotOrSheath":
 					buffer = knotOrSheath(arg2);
 					break;
+				case "knotBallsHilt":
+					buffer = knotBallsHilt(arg2);
+					break;
 				case "multiCockDescript":
 				case "multiCocks":
 					buffer = multiCockDescript();
@@ -2506,6 +2509,12 @@
 					break;
 				case "ballNoun":
 					buffer = ballNoun(false);
+					break;
+				case "ballsNounSimple":
+					buffer = ballsNounSimple();
+					break;
+				case "ballNounSimple":
+					buffer = ballsNounSimple(true);
 					break;
 				case "ball":
 					buffer = ballsDescript();
@@ -13555,11 +13564,11 @@
 				else desc += num2Text(balls) + " ";
 			}
 			//Not in appearance screen? Okay
-			else if (!hasStatusEffect("Uniball") && rand(5) == 0 && !forceSingular) {
+			else if (!hasStatusEffect("Uniball") && balls != 2 && rand(5) == 0 && !forceSingular) {
 				if (balls == 1) {
 					desc += RandomInCollection(["single ", "solitary ", "lone "]);
 				}
-				else if (balls == 2) {
+				else if (balls == 2) { //This one is basically cut but leaving here unless I change my mind.
 					desc += RandomInCollection(["pair of ", "two ", "two "]);
 				}
 				else if (balls == 3) {
@@ -13628,6 +13637,7 @@
 		}
 		public function ballNoun(asPlural:Boolean = true):String
 		{
+			if (balls == 0) return "prostate";
 			var rando:int = 0;
 			var desc:String = "";
 			rando = rand(11);
@@ -13640,9 +13650,23 @@
 			}
 			else if (rando <= 7) desc += "gonad";
 			else desc += "nut";
-			if (asPlural && balls != 1) desc = plural(desc);
+			if (asPlural && balls > 1) desc = plural(desc);
 			return desc;
 		}
+		public function ballsNounSimple(forceSingle:Boolean = false): String
+		{
+			if(balls < 1) return "prostate";
+			if(forceSingle || balls == 1) return RandomInCollection(["ball","ball","ball","nut"]);
+			else return RandomInCollection(["balls","balls","balls","nuts"]);
+		}
+		//[pc.knotBallsHilt] 4 Dubsan senpai
+		public function knotBallsHilt(x:int = 0):String
+		{
+			if(hasCock() && hasKnot(x)) return "knot";
+			else if(balls > 0) return ballsNounSimple();
+			else return "hilt";
+		}
+
 		public function assholeDescript(simple:Boolean = false): String {
 			var desc: String = "";
 			var rando: Number = 0;
