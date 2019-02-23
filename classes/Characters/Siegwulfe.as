@@ -188,6 +188,9 @@
 			// do what regular lust does
 			var oldLust:Number = super.lust();
 			var newLust:Number = super.lust(amount, apply);
+			
+			// Lust caps at 100 but siegwulfeLustScene should acknowledge attempted lust increases
+			if (!apply) newLust = oldLust + amount;
 
 			kGAMECLASS.siegwulfeLustScene(newLust, newLust-oldLust);
 
