@@ -1691,7 +1691,7 @@ public function siegwulfeCryMistressAndLetSlipTheCocksOfWar():void
 	output("\n\n<i>“More…”</i> you moan, suddenly going rigid after you realize what you’ve done.");
 	output("\n\n<i>“Silence!”</i> [wulfe.name] commands you, letting her tail swing downwards and snap at your ass, leaving you with yet another red mark across it.");
 	output("\n\nEven as she punishes you for your transgression, you can feel her sink her back legs deeper, lowering her centre of gravity before she begins fucking you even harder, fulfilling your wishes. To have your unconscious desire drawn out and met by your domineering mistress drives you over the edge");
-	if (pc.hasGenitals(", leading you to");
+	if (pc.hasGenitals()) output(", leading you to");
 	else output(".");
 	if (pc.isHerm()) output(" spurt [pc.cum] all over the ground from the tip of your [pc.cocks]. A puddle forms beneath you while your pussy squeezes down on her as hard as your body can possibly manage, seeking to arrest her progress while you work yourself through the throes of pleasure.");
 	else if (pc.hasCock()) output(" cum uncontrollably, shooting your [pc.cum] all over the ground. Your [pc.cocks] " + (pc.hasCocks() ? "throb" : "throbs") + " with the pressure of [wulfe.name] in your ass, your taut fuckhole clamping down on her insanely hard as your body seeks leverage to make you expel your seed to no avail. It comes out in erratic streams and spurts, driven onwards by the massive cock spreading you wide.");
