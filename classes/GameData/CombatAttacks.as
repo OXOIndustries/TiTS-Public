@@ -1109,7 +1109,7 @@ package classes.GameData
 			
 			if(attacker is PlayerCharacter)
 			{
-				if(kGAMECLASS.chars["WULFE"].isDom())
+				if(kGAMECLASS.siegwulfeIsDom())
 				{
 					// Bimbo-dom siegwulfe will switch between lust attacks and regular attacks to match which type of damage she thinks you’re trying to deal.
 					// More lust than dmg
