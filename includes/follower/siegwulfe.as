@@ -2411,7 +2411,7 @@ public function siegwulfeLustScene(lust:Number, lustDif:Number):void
 	if (eventQueue.indexOf(siegwulfeLustSceneGo) >= 0) return;
 
 	// Siegy gets antsy once lust hits 100
-	if (lust >= 100) lustDif *= 2.5;
+	if (lust >= 100) lustDif *= 4;
 
 	// Poisson distribution, lambda = 1 horny bimbo scene/30 lust. If k == 0 happens, no scene.
 	// 50+ first time leash tease scene gets to skip this check.
