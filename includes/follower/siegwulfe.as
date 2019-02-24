@@ -2329,10 +2329,10 @@ public function siegwulfePublicFuckGo():void
 	}
 
 	//Not on Zheng Shi, Uveto, or someplace without tech:
-	if (true /* 9999 */)
+	if (InRoomWithPhones())
 	{
 		output("\n\n<i>“Why isn’t my fucking phone working?”</i> you hear someone mutter. Looking up, you can see [wulfe.name] waving her tail behind her relaxedly… it seems like she might know something about it, but now’s not the time.");
-		flags["WULFE_EMP"] = 0;
+		if (flags["WULFE_EMP"] == undefined) flags["WULFE_EMP"] = 0;
 	}
 	output("\n\n<i>“Now beg,”</i> she says primly. <i>“Beg me to pound your asshole, slut.”</i>");
 	output("\n\nWith");
@@ -2411,12 +2411,12 @@ public function siegwulfeLustScene(lust:Number, lustDif:Number):void
 	if (eventQueue.indexOf(siegwulfeLustSceneGo) >= 0) return;
 
 	// Siegy gets antsy once lust hits 100
-	if (lust >= 100) lustDif *= 4;
+	if (lust >= 100) lustDif *= 5;
 
-	// Poisson distribution, lambda = 1 horny bimbo scene/30 lust. If k == 0 happens, no scene.
+	// Poisson distribution, lambda = 1 horny bimbo scene/30 lust. Ups to per 20 lust if leashed. If k == 0 happens, no scene.
 	// 50+ first time leash tease scene gets to skip this check.
 	if (lust >= 50 && flags["WULFE_LEASH_TEASE"] == undefined && hasSiegwulfeLeashOn()) eventQueue.push(siegwulfeLustSceneGo);
-	else if (100*Math.exp(-lustDif/30) > rand(100)) return;
+	else if (100*Math.exp(-lustDif/(hasSiegwulfeLeashOn() ? 20 : 30)) > rand(100)) return;
 	else eventQueue.push(siegwulfeLustSceneGo);
 }
 public function siegwulfePickScene(lust:Number):int
@@ -2435,7 +2435,7 @@ public function siegwulfePickScene(lust:Number):int
 	// "Might be good if every scene is done at least once (or at least the 75-89 scene)
 	// so she doesn’t suddenly spring the rut scene on you? Not hugely bothered about this though."
 	if (lust >= 90 && flags["WULFE_LAST_LUST_SCENE"] < 2) newLustScene = 2;
-	else if (lust >= 90 && flags["WULFE_LAST_LUST_SCENE"] < 3 && !InRoomWithFlag(GLOBAL.FAPPING_ILLEGAL)) newLustScene = 3;
+	else if (lust >= 90 && flags["WULFE_LAST_LUST_SCENE"] < 3 && !InRoomWithFlag(GLOBAL.FAPPING_ILLEGAL) && !InRoomWithFlag(GLOBAL.HAZARD) && !InRoomWithFlag(GLOBAL.ICYTUNDRA) && !InRoomWithFlag(GLOBAL.FROZENTUNDRA)) newLustScene = 3;
 	// Other scenes
 	else if (lust >= 75 && flags["WULFE_LAST_LUST_SCENE"] < 2) newLustScene = 2;
 	else if (lust >= 33 && flags["WULFE_LAST_LUST_SCENE"] < 1) newLustScene = 1;
