@@ -27,7 +27,7 @@ package classes.Engine.Map
 		if (room.hasFlag(GLOBAL.LOW_TECH)) return false;
 		if (room.planet == "ZHENG SHI STATION") return false;
 		if (room.planet == "GASTIGOTH STATION") return false;
-		if (room.planet == "PLANET: MYRELLION") return false;
+		if (room.planet == "PLANET: MYRELLION" && tLoc.substr(0,1) != "6") return false;
         if (tLoc.substr(0, Math.min(tLoc.length, 6)) == "KORGII") return false;
         if (tLoc.substr(0, Math.min(tLoc.length, 6)) == "WARGII") return false;
 
