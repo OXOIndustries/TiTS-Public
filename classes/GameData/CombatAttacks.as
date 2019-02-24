@@ -1113,7 +1113,7 @@ package classes.GameData
 				{
 					// Bimbo-dom siegwulfe will switch between lust attacks and regular attacks to match which type of damage she thinks you’re trying to deal.
 					// More lust than dmg
-					if (!target.isLustImmune && target.HPQ() >= 100 - target.lustQ())
+					if (!target.isLustImmune && (100*(target.HP()+target.shields()) / (target.HPMax()+target.shieldsMax())) >= 100 - target.lustQ())
 					{
 						if (rand(3) == 0) output("[wulfe.name] pushes her chest out, smirking while she runs her hands over her gigantic, jutting breasts and moans. <i>“Look at what you’re missing out on…”</i>");
 						else if (rand(2) == 0) output("[wulfe.name] turns and lowers her front half, spreading her hindlegs while her holocock snaps into existence, tantalizing the enemy with her impressive assets. She wiggles her massive centaur ass from side to side, smirking with confidence.");
@@ -1129,8 +1129,8 @@ package classes.GameData
 					else
 					{
 						if (rand(3) == 0) output("[wulfe.name] jumps into the fray, slashing with her extendable claws!");
-						else if (rand(2) == 0) output("\n\n[wulfe.name] spins around and kicks at the opponent with her powerful hindlegs!");
-						else output("\n\n[wulfe.name] rears up and kicks at the opponent with her clawed forelegs!");
+						else if (rand(2) == 0) output("[wulfe.name] spins around and kicks at the opponent with her powerful hindlegs!");
+						else output("[wulfe.name] rears up and kicks at the opponent with her clawed forelegs!");
 
 						// Scales dmg with PC level.
 						dmg = new TypeCollection( { kinetic: d * 0.9 }, DamageFlag.PENETRATING);
