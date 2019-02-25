@@ -2203,7 +2203,7 @@ public function initZhengRooms():void
 	rooms["ZSF V16"].eastExit = "";
 	rooms["ZSF V16"].southExit = "";
 	rooms["ZSF V16"].westExit = "ZSF T16";
-	rooms["ZSF V16"].inExit = "";
+	rooms["ZSF V16"].inExit = "ZSR L33";
 	rooms["ZSF V16"].inText = "Up";
 	rooms["ZSF V16"].outExit = "ZSF I16";
 	rooms["ZSF V16"].outText = "Down";
@@ -2410,18 +2410,351 @@ public function initZhengRooms():void
 	rooms["ZSF V12"].addFlag(GLOBAL.INDOOR);
 	//rooms["ZSF V12"].addFlag(GLOBAL.HAZARD);
 
-	rooms["ZSF PLACEHOLDER"] = new RoomClass(this);
-	rooms["ZSF PLACEHOLDER"].roomName = "\n";
-	rooms["ZSF PLACEHOLDER"].description = "";
-	rooms["ZSF PLACEHOLDER"].planet = "ZHENG SHI STATION";
-	rooms["ZSF PLACEHOLDER"].system = "SYSTEM: HERISIOD";
-	rooms["ZSF PLACEHOLDER"].northExit = "";
-	rooms["ZSF PLACEHOLDER"].eastExit = "";
-	rooms["ZSF PLACEHOLDER"].southExit = "";
-	rooms["ZSF PLACEHOLDER"].westExit = "";
-	rooms["ZSF PLACEHOLDER"].moveMinutes = 3;
-	//rooms["ZSF PLACEHOLDER"].runOnEnter = null;
-	rooms["ZSF PLACEHOLDER"].addFlag(GLOBAL.INDOOR);
-	rooms["ZSF PLACEHOLDER"].addFlag(GLOBAL.HAZARD);
+	/*===============*/
+	/* RECREATION LEVEL */
+	/* RECREATION LEVEL */
+	/* RECREATION LEVEL */
+	/* RECREATION LEVEL */
+	/*===============*/
+	
+	rooms["ZSR L33"] = new RoomClass(this);
+	rooms["ZSR L33"].roomName = "CARGO\nELEVATOR";
+	rooms["ZSR L33"].description = "";
+	rooms["ZSR L33"].planet = "ZHENG SHI STATION";
+	rooms["ZSR L33"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR L33"].northExit = "ZSR L31";
+	rooms["ZSR L33"].eastExit = "ZSR N33";
+	rooms["ZSR L33"].southExit = "ZSR L35";
+	rooms["ZSR L33"].westExit = "ZSR J33";
+	rooms["ZSR L33"].inExit = "";
+	rooms["ZSR L33"].inText = "Up";
+	rooms["ZSR L33"].outExit = "ZSF V16";
+	rooms["ZSR L33"].outText = "Down";
+	rooms["ZSR L33"].moveMinutes = 3;
+	rooms["ZSR L33"].runOnEnter = enterRecreationDeck;
+	rooms["ZSR L33"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR L33"].addFlag(GLOBAL.LIFTUP);
+
+	rooms["ZSR N33"] = new RoomClass(this);
+	rooms["ZSR N33"].roomName = "RECREATION\nDECK";
+	rooms["ZSR N33"].description = "";
+	rooms["ZSR N33"].planet = "ZHENG SHI STATION";
+	rooms["ZSR N33"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR N33"].northExit = "";
+	rooms["ZSR N33"].eastExit = "ZSR P33";
+	rooms["ZSR N33"].southExit = "";
+	rooms["ZSR N33"].westExit = "ZSR L33";
+	rooms["ZSR N33"].moveMinutes = 3;
+	//rooms["ZSR N33"].runOnEnter = null;
+	rooms["ZSR N33"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR N33"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSR P33"] = new RoomClass(this);
+	rooms["ZSR P33"].roomName = "RECREATION\nDECK";
+	rooms["ZSR P33"].description = "";
+	rooms["ZSR P33"].planet = "ZHENG SHI STATION";
+	rooms["ZSR P33"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR P33"].northExit = "";
+	rooms["ZSR P33"].eastExit = "ZSR R33";
+	rooms["ZSR P33"].southExit = "";
+	rooms["ZSR P33"].westExit = "ZSR N33";
+	rooms["ZSR P33"].moveMinutes = 3;
+	//rooms["ZSR P33"].runOnEnter = null;
+	rooms["ZSR P33"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR P33"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSR R33"] = new RoomClass(this);
+	rooms["ZSR R33"].roomName = "RECREATION\nDECK";
+	rooms["ZSR R33"].description = "";
+	rooms["ZSR R33"].planet = "ZHENG SHI STATION";
+	rooms["ZSR R33"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR R33"].northExit = "";
+	rooms["ZSR R33"].eastExit = "ZSR T33";
+	rooms["ZSR R33"].southExit = "";
+	rooms["ZSR R33"].westExit = "ZSR P33";
+	rooms["ZSR R33"].moveMinutes = 3;
+	//rooms["ZSR R33"].runOnEnter = null;
+	rooms["ZSR R33"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR R33"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSR T33"] = new RoomClass(this);
+	rooms["ZSR T33"].roomName = "RECREATION\nDECK";
+	rooms["ZSR T33"].description = "";
+	rooms["ZSR T33"].planet = "ZHENG SHI STATION";
+	rooms["ZSR T33"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR T33"].northExit = "";
+	rooms["ZSR T33"].eastExit = "ZSR D33";
+	rooms["ZSR T33"].southExit = "";
+	rooms["ZSR T33"].westExit = "ZSR R33";
+	rooms["ZSR T33"].moveMinutes = 3;
+	//rooms["ZSR T33"].runOnEnter = null;
+	rooms["ZSR T33"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR T33"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSR N23"] = new RoomClass(this);
+	rooms["ZSR N23"].roomName = "APEX\nRING";
+	rooms["ZSR N23"].description = "";
+	rooms["ZSR N23"].planet = "ZHENG SHI STATION";
+	rooms["ZSR N23"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR N23"].northExit = "ZSR N41";
+	rooms["ZSR N23"].eastExit = "";
+	rooms["ZSR N23"].southExit = "ZSR N25";
+	rooms["ZSR N23"].westExit = "";
+	rooms["ZSR N23"].moveMinutes = 3;
+	//rooms["ZSR N23"].runOnEnter = null;
+	rooms["ZSR N23"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR N23"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSR N25"] = new RoomClass(this);
+	rooms["ZSR N25"].roomName = "APEX\nRING";
+	rooms["ZSR N25"].description = "";
+	rooms["ZSR N25"].planet = "ZHENG SHI STATION";
+	rooms["ZSR N25"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR N25"].northExit = "ZSR N23";
+	rooms["ZSR N25"].eastExit = "";
+	rooms["ZSR N25"].southExit = "";
+	rooms["ZSR N25"].westExit = "ZSR L25";
+	rooms["ZSR N25"].moveMinutes = 3;
+	//rooms["ZSR N25"].runOnEnter = null;
+	rooms["ZSR N25"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR N25"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSR L25"] = new RoomClass(this);
+	rooms["ZSR L25"].roomName = "APEX\nRING";
+	rooms["ZSR L25"].description = "";
+	rooms["ZSR L25"].planet = "ZHENG SHI STATION";
+	rooms["ZSR L25"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR L25"].northExit = "";
+	rooms["ZSR L25"].eastExit = "ZSR N25";
+	rooms["ZSR L25"].southExit = "ZSR L27";
+	rooms["ZSR L25"].westExit = "ZSR J25";
+	rooms["ZSR L25"].moveMinutes = 3;
+	//rooms["ZSR L25"].runOnEnter = null;
+	rooms["ZSR L25"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR L25"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSR J25"] = new RoomClass(this);
+	rooms["ZSR J25"].roomName = "APEX\nRING";
+	rooms["ZSR J25"].description = "";
+	rooms["ZSR J25"].planet = "ZHENG SHI STATION";
+	rooms["ZSR J25"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR J25"].northExit = "ZSR J23";
+	rooms["ZSR J25"].eastExit = "ZSR L25";
+	rooms["ZSR J25"].southExit = "";
+	rooms["ZSR J25"].westExit = "";
+	rooms["ZSR J25"].moveMinutes = 3;
+	//rooms["ZSR J25"].runOnEnter = null;
+	rooms["ZSR J25"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR J25"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSR J23"] = new RoomClass(this);
+	rooms["ZSR J23"].roomName = "APEX\nRING";
+	rooms["ZSR J23"].description = "";
+	rooms["ZSR J23"].planet = "ZHENG SHI STATION";
+	rooms["ZSR J23"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR J23"].northExit = "ZSR J41";
+	rooms["ZSR J23"].eastExit = "";
+	rooms["ZSR J23"].southExit = "ZSR J25";
+	rooms["ZSR J23"].westExit = "";
+	rooms["ZSR J23"].moveMinutes = 3;
+	//rooms["ZSR J23"].runOnEnter = null;
+	rooms["ZSR J23"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR J23"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSR J41"] = new RoomClass(this);
+	rooms["ZSR J41"].roomName = "APEX\nRING";
+	rooms["ZSR J41"].description = "";
+	rooms["ZSR J41"].planet = "ZHENG SHI STATION";
+	rooms["ZSR J41"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR J41"].northExit = "";
+	rooms["ZSR J41"].eastExit = "ZSR L41";
+	rooms["ZSR J41"].southExit = "ZSR J23";
+	rooms["ZSR J41"].westExit = "";
+	rooms["ZSR J41"].moveMinutes = 3;
+	//rooms["ZSR J41"].runOnEnter = null;
+	rooms["ZSR J41"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR J41"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSR L41"] = new RoomClass(this);
+	rooms["ZSR L41"].roomName = "APEX\nRING";
+	rooms["ZSR L41"].description = "";
+	rooms["ZSR L41"].planet = "ZHENG SHI STATION";
+	rooms["ZSR L41"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR L41"].northExit = "ZSR L39";
+	rooms["ZSR L41"].eastExit = "ZSR N41";
+	rooms["ZSR L41"].southExit = "";
+	rooms["ZSR L41"].westExit = "ZSR J41";
+	rooms["ZSR L41"].moveMinutes = 3;
+	//rooms["ZSR L41"].runOnEnter = null;
+	rooms["ZSR L41"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR L41"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSR N41"] = new RoomClass(this);
+	rooms["ZSR N41"].roomName = "APEX\nRING";
+	rooms["ZSR N41"].description = "";
+	rooms["ZSR N41"].planet = "ZHENG SHI STATION";
+	rooms["ZSR N41"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR N41"].northExit = "";
+	rooms["ZSR N41"].eastExit = "";
+	rooms["ZSR N41"].southExit = "ZSR N23";
+	rooms["ZSR N41"].westExit = "ZSR L41";
+	rooms["ZSR N41"].moveMinutes = 3;
+	//rooms["ZSR N41"].runOnEnter = null;
+	rooms["ZSR N41"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR N41"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSR J33"] = new RoomClass(this);
+	rooms["ZSR J33"].roomName = "RECREATION\nDECK";
+	rooms["ZSR J33"].description = "";
+	rooms["ZSR J33"].planet = "ZHENG SHI STATION";
+	rooms["ZSR J33"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR J33"].northExit = "";
+	rooms["ZSR J33"].eastExit = "ZSR L33";
+	rooms["ZSR J33"].southExit = "";
+	rooms["ZSR J33"].westExit = "ZSR H33";
+	rooms["ZSR J33"].moveMinutes = 3;
+	//rooms["ZSR J33"].runOnEnter = null;
+	rooms["ZSR J33"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR J33"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSR H33"] = new RoomClass(this);
+	rooms["ZSR H33"].roomName = "RECREATION\nDECK";
+	rooms["ZSR H33"].description = "";
+	rooms["ZSR H33"].planet = "ZHENG SHI STATION";
+	rooms["ZSR H33"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR H33"].northExit = "";
+	rooms["ZSR H33"].eastExit = "ZSR J33";
+	rooms["ZSR H33"].southExit = "";
+	rooms["ZSR H33"].westExit = "ZSR F33";
+	rooms["ZSR H33"].moveMinutes = 3;
+	//rooms["ZSR H33"].runOnEnter = null;
+	rooms["ZSR H33"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR H33"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSR F33"] = new RoomClass(this);
+	rooms["ZSR F33"].roomName = "RECREATION\nDECK";
+	rooms["ZSR F33"].description = "";
+	rooms["ZSR F33"].planet = "ZHENG SHI STATION";
+	rooms["ZSR F33"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR F33"].northExit = "";
+	rooms["ZSR F33"].eastExit = "ZSR H33";
+	rooms["ZSR F33"].southExit = "";
+	rooms["ZSR F33"].westExit = "ZSR D33";
+	rooms["ZSR F33"].moveMinutes = 3;
+	//rooms["ZSR F33"].runOnEnter = null;
+	rooms["ZSR F33"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR F33"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSR D33"] = new RoomClass(this);
+	rooms["ZSR D33"].roomName = "RECREATION\nDECK";
+	rooms["ZSR D33"].description = "";
+	rooms["ZSR D33"].planet = "ZHENG SHI STATION";
+	rooms["ZSR D33"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR D33"].northExit = "";
+	rooms["ZSR D33"].eastExit = "ZSR F33";
+	rooms["ZSR D33"].southExit = "";
+	rooms["ZSR D33"].westExit = "ZSR T33";
+	rooms["ZSR D33"].moveMinutes = 3;
+	//rooms["ZSR D33"].runOnEnter = null;
+	rooms["ZSR D33"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR D33"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSR L31"] = new RoomClass(this);
+	rooms["ZSR L31"].roomName = "GOLDEN\nTRAIL";
+	rooms["ZSR L31"].description = "Underfoot, the path glitters with a luminescent golden glow, broadcast from finely woven, almost invisible circuits. It reflects off a graffiti-covered security barrier to the west. From behind it, you can hear hooting and the clinking of casino chips. Bells ding out a discordant ";
+	rooms["ZSR L31"].planet = "ZHENG SHI STATION";
+	rooms["ZSR L31"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR L31"].northExit = "ZSR L29";
+	rooms["ZSR L31"].eastExit = "";
+	rooms["ZSR L31"].southExit = "ZSR L33";
+	rooms["ZSR L31"].westExit = "";
+	rooms["ZSR L31"].moveMinutes = 3;
+	//rooms["ZSR L31"].runOnEnter = null;
+	rooms["ZSR L31"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR L31"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSR L29"] = new RoomClass(this);
+	rooms["ZSR L29"].roomName = "GOLDEN\nTRAIL";
+	rooms["ZSR L29"].description = ""; // Talk about floor. Hardlight wall to west. Roped off with velvet to the east.
+	rooms["ZSR L29"].planet = "ZHENG SHI STATION";
+	rooms["ZSR L29"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR L29"].northExit = "ZSR L27";
+	rooms["ZSR L29"].eastExit = "";
+	rooms["ZSR L29"].southExit = "ZSR L31";
+	rooms["ZSR L29"].westExit = "";
+	rooms["ZSR L29"].moveMinutes = 3;
+	//rooms["ZSR L29"].runOnEnter = null;
+	rooms["ZSR L29"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR L29"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSR L27"] = new RoomClass(this);
+	rooms["ZSR L27"].roomName = "GOLDEN\nTRAIL";
+	rooms["ZSR L27"].description = ""; //Empty bottles next to wall. 
+	rooms["ZSR L27"].planet = "ZHENG SHI STATION";
+	rooms["ZSR L27"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR L27"].northExit = "ZSR L25";
+	rooms["ZSR L27"].eastExit = "";
+	rooms["ZSR L27"].southExit = "ZSR L29";
+	rooms["ZSR L27"].westExit = "";
+	rooms["ZSR L27"].moveMinutes = 3;
+	//rooms["ZSR L27"].runOnEnter = null;
+	rooms["ZSR L27"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR L27"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSR L35"] = new RoomClass(this);
+	rooms["ZSR L35"].roomName = "RECREATION\nDECK";
+	rooms["ZSR L35"].description = "";
+	rooms["ZSR L35"].planet = "ZHENG SHI STATION";
+	rooms["ZSR L35"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR L35"].northExit = "ZSR L33";
+	rooms["ZSR L35"].eastExit = "";
+	rooms["ZSR L35"].southExit = "ZSR L37";
+	rooms["ZSR L35"].westExit = "";
+	rooms["ZSR L35"].moveMinutes = 3;
+	//rooms["ZSR L35"].runOnEnter = null;
+	rooms["ZSR L35"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR L35"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSR L37"] = new RoomClass(this);
+	rooms["ZSR L37"].roomName = "RECREATION\nDECK";
+	rooms["ZSR L37"].description = "";
+	rooms["ZSR L37"].planet = "ZHENG SHI STATION";
+	rooms["ZSR L37"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR L37"].northExit = "ZSR L35";
+	rooms["ZSR L37"].eastExit = "";
+	rooms["ZSR L37"].southExit = "ZSR L39";
+	rooms["ZSR L37"].westExit = "";
+	rooms["ZSR L37"].moveMinutes = 3;
+	//rooms["ZSR L37"].runOnEnter = null;
+	rooms["ZSR L37"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR L37"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSR L39"] = new RoomClass(this);
+	rooms["ZSR L39"].roomName = "RECREATION\nDECK";
+	rooms["ZSR L39"].description = "";
+	rooms["ZSR L39"].planet = "ZHENG SHI STATION";
+	rooms["ZSR L39"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR L39"].northExit = "ZSR L37";
+	rooms["ZSR L39"].eastExit = "";
+	rooms["ZSR L39"].southExit = "ZSR L41";
+	rooms["ZSR L39"].westExit = "";
+	rooms["ZSR L39"].moveMinutes = 3;
+	//rooms["ZSR L39"].runOnEnter = null;
+	rooms["ZSR L39"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR L39"].addFlag(GLOBAL.HAZARD);
+	
+	rooms["ZSR PLACEHOLDER"] = new RoomClass(this);
+	rooms["ZSR PLACEHOLDER"].roomName = "\n";
+	rooms["ZSR PLACEHOLDER"].description = "";
+	rooms["ZSR PLACEHOLDER"].planet = "ZHENG SHI STATION";
+	rooms["ZSR PLACEHOLDER"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR PLACEHOLDER"].northExit = "";
+	rooms["ZSR PLACEHOLDER"].eastExit = "";
+	rooms["ZSR PLACEHOLDER"].southExit = "";
+	rooms["ZSR PLACEHOLDER"].westExit = "";
+	rooms["ZSR PLACEHOLDER"].moveMinutes = 3;
+	//rooms["ZSR PLACEHOLDER"].runOnEnter = null;
+	rooms["ZSR PLACEHOLDER"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR PLACEHOLDER"].addFlag(GLOBAL.HAZARD);
 
 }

@@ -1271,3 +1271,38 @@ public function takeZhengThong():void
 	quickLoot(new LeatherPanties());
 	flags["ZHENG_SHI_LATEX_THONGD"] = 1;
 }
+
+public function enterRecreationDeck():Boolean
+{
+	//if not allowed
+	if(flags["SHOCK_HOPPER_DEFEATED"] == undefined) 
+	{
+		output("While the elevator obediently takes you to your destination, the doors stubbornly refuse to open no matter how fervently you jab at the console’s control buttons. It keeps flashing something about an unresolved security breach and recreation being temporarily suspended.\n\nMaybe you can come back here later, once the proverbial heat has died down.");
+		flags["ZHENG_REC_BLOCKED"] = 1;
+		clearMenu();
+		addButton(7,"Down",move,rooms[currentLocation].outExit);
+		return true;
+	}
+	//first time
+	else if(flags["ZHENG_REC_VISITED"] == undefined)
+	{
+		flags["ZHENG_REC_VISITED"] = 1;
+		//If tried before
+		if(flags["ZHENG_REC_BLOCKED"] == 1) 
+		{
+			output("This time, you notice, there’s no software lock on the door controls. It would seem the Shock Hopper and L.D.C. gave up on pursuing you and let their crews go back to ‘recreation.’ As for what kinds of recreation they partake in... well, you’re about to find out.\n\n");
+			//One time only, then clear it out.
+			flags["ZHENG_REC_BLOCKED"] = undefined;
+		}
+		output("Once the elevator’s doors grind and rattle aside, you’re blasted with a cacophony of noise and light the likes of which never expected to see beyond the digitized walls of a virtual reality simulation. It’s overwhelming, even to a hardened explorer like yourself. Everywhere you look there are blinking lights, gleaming hardlight barriers, and acts of debauchery wanton enough to shock a purer soul into unconsciousness.");
+		output("\n\nYou blink and look again, determined to take in this new locale.");
+		output("\n\nThis time, you're prepared to puzzle out the deck’s unique geography: that of a hollow sphere. The shape allows you to see everything at once: shops, kiosks, pirates, scantily clad slaves, and even the glitz and glam of an packed casino. Looking up is a dizzying experience made all the more nauseating by the floating forms of dancing slaves, pirouetting in zero G around the center of the elevator shaft. All bound with gleaming, silvery collars, they are without a doubt the most attractive creatures you've seen on this entire station, chosen for their task on the sole basis of peerless bone structure and flawless skin. One favors you with a wink and a sensuously blown kiss.\n\nYou half-heartedly wave back but turn your attention aside, determined to get a feel for this place before indulging in its basest forms of entertainment.");
+		output("\n\nYou aren’t sure what history lead to the creation of this place - whether the pirates built it, or indeed, if they found it amongst the planet’s rubble, but you are sure that they’ve done a decent job of organizing the mind-boggling topography. Colorized paths drill through the chaotic mess of hedonistic pleasure-seeking and pure, unregulated capitalism. A gleaming golden trail climbs straight up the wall that your Codex’s compass has chosen to designate as ‘north,’ mirrored by a crimson path to the south. Both come together at the apex of the chamber, forming a tight ring around the elevator shaft. Meanwhile, a long green alley winds east and west, reaching for the deck’s equator without quite reaching it. Where it meets with the gaudier routes, it slides beneath into the caustic glow of simulated neon projections and dangerously dark corners only to emerge on the other side, brighter for the contrast.");
+		output("\n\nYou’d best watch yourself. While the crowds of pirates range from amicable-looking to indifferent, it’s best to remember that these are all wanted men (and women) - every last one of them.");
+	}
+	else
+	{
+		output("The elevator doors hang open, exposing the interior to the glaring cacophony that is Zheng Shi’s recreation deck. The familiar colored paths stretch on in the four cardinal directions - or what your Codex approximates as them. Should you want to return to the rest of the station, it’s simple as stepping inside and pressing the down arrow.");
+	}
+	return false;
+}

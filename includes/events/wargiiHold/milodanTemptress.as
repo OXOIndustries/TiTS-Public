@@ -72,7 +72,7 @@ public function defeatThisMiloSlut():void
 	if(flags["WARGII_TUUVA_SAVED"] != undefined)
 	{
 		var allies:Array = CombatManager.getFriendlyActors().slice(1);
-		for(var i = 0; i < allies.length; i++)
+		for(var i:int = 0; i < allies.length; i++)
 		{
 			if(allies[i] is Tuuva) tuuvaTag = true;
 		}
