@@ -2205,7 +2205,7 @@ public function dollmakerSetup():void
 	//normal
 	if(!pc.isBimbo())
 	{
-		output("\n\nA harsh, unfriendly buzz comes from the machine as its electric voice hisses at you. <i>“Fuck-slut levels unsatisfactory. Initiating reconstruction protocols. Do not resist, Whore: you will be Dolled.”</i> Frankly, you’re not comfortable with how this machine used the word <i>“doll,”</i> and you’d just as soon not find out what exactly that involves. The limbs around you lift a strange array of tools and pincers as it attempts to grab you!");
+		output("\n\nA harsh, unfriendly buzz comes from the machine as its electric voice hisses at you. <i>“Fuck-slut levels unsatisfactory. Initiating reconstruction protocols. Do not resist, Whore: you will be Dolled.”</i> Frankly, you’re not comfortable with how this machine used the word “doll,” and you’d just as soon not find out what exactly that involves. The limbs around you lift a strange array of tools and pincers as it attempts to grab you!");
 		//Go to Battle
 		clearMenu();
 		addButton(0,"Next",fightTheDollmaker);
@@ -2841,16 +2841,16 @@ public function drBadgerLookAroundLab():void
 		author("Kirorororo");
 		
 		output("You walk on past Doctor Badger, she only stops you for a second to say, <i>“Have fun in there...”</i> ambiguously. After that, you’re free to enter.");
-		output("\n\n<i>“No worries, Miss Badger!”</i> You exclaim. Into the deeper parts of her lair you go.");
+		output("\n\n<i>“No worries, Miss Badger!”</i> you exclaim. Into the deeper parts of her lair you go.");
 	}
 	else
 	{
 		author("Natetheman223");
 		
 		output("You’re about to walk past Doctor Badger to get a full look around, but she stops you with an arm, nearly clotheslining you.");
-		output("\n\n<i>“What are you doing?”</i> She asks, looking over at you with discontent.");
-		output("\n\n<i>“Just looking around. Don’t mind me.”</i> You say.");
-		output("\n\n<i>“You know what’ll happen if you break anything, right?”</i> She states, which sounds more like a threat. You’re smart enough to know it would be rapid bimbofication, so you nod calmly. She brings her arm down to let you pass.");
+		output("\n\n<i>“What are you doing?”</i> she asks, looking over at you with discontent.");
+		output("\n\n<i>“Just looking around. Don’t mind me,”</i> you say.");
+		output("\n\n<i>“You know what’ll happen if you break anything, right?”</i> she states, which sounds more like a threat. You’re smart enough to know it would be rapid bimbofication, so you nod calmly. She brings her arm down to let you pass.");
 		output("\n\nYou walk on through to the deeper parts of her lair.");
 	}
 	output("\n\n");
@@ -2998,7 +2998,7 @@ public function drBadgerLabNymFoe(response:String = "menu"):void
 			
 			output("You reach into your inventory, taking out the salvaged chip. You pause for a second, reflecting on the undeniable fact that she’ll try to pump you full of silicone as soon as she’s up. You take a towel on the floor, which you immediately find out is a cumrag, as it stains your hand with the thick substance (ew), and eventually manage to wrap it around Nym-Foe’s visual processors (or eyes). Next, you pull out the connector linking her to the silicone tank.");
 			output("\n\nFinally, you place Nym-Foe’s metallic braid to the side as you place the chip back into the slot at the back of her head. A quiet whirring is heard as she awakens, speaking out loud with a buzz as it adjusts itself, <i>“Does someone need medical assistance?”</i> Her injector tail goes crazy, spurring around as she wakes up. Since she isn’t alimented properly, the small amount of silicone left in her tail shoots out with a weak intensity before splattering on the ground, making a gooey mess. <i>“It seems I have an issue with my medicine storage unit. Please reconnect me so that I may provide treatment. It also appears my visual sensors are defective.”</i>");
-			if(silly) output("\n\n<i>“Shhh... It’ll all be over soon.”</i> You whisper into Nym-Foe’s ears, your hands wrapped tightly around her neck.");
+			if(silly) output("\n\n<i>“Shhh... It’ll all be over soon,”</i> you whisper into Nym-Foe’s ears, your hands wrapped tightly around her neck.");
 			output("\n\nNym-Foe attempts to raise up a few times, but you keep her pinned down. After a few seconds, she buzzes out, <i>“ERROR FOUND WHEN ATTEMPTING FUNCTION ‘STAND’. ENTERING STATIONARY SHUTDOWN DUE TO SEVERAL SIMULTANEOUS ERRORS.”</i> And with that, the lights behind the rag dim down, definitely from her visual processors shutting off.");
 			output("\n\n<b>It seems Nym-Foe is fixed. You could unbind her at any time to let her awaken, or even connect her to the silicone tank if you wanted to fight her again.</b>");
 			output("\n\n");
@@ -3025,9 +3025,9 @@ public function drBadgerLabNymFoe(response:String = "menu"):void
 			showNymFoe();
 			
 			output("You look down at the robot. She can’t be THAT broken, right? You crouch down near her, tapping her on the head. Her eyes light up almost instantly, making you reel your hand back.");
-			if(silly) output(" <i>“Surprise cupcake! I’m alive!”</i> She says, with a highly saturated voice making you jump (and incidentally hurting your [pc.ears]).");
+			if(silly) output(" <i>“Surprise cupcake! I’m alive!”</i> she says, with a highly saturated voice making you jump (and incidentally hurting your [pc.ears]).");
 			output(" The battered robot starts to stand up, making you notice her several concave dents. It’s almost... sad.");
-			output("\n\n<i>“Are you in need of medical assistance?”</i> She asks, looking at you. You take a step back while she smiles innocently, her tail starting to wave. You quickly shake your head, then look at the dents on her body again. What’s the easiest way to remove them... suction, perhaps?");
+			output("\n\n<i>“Are you in need of medical assistance?”</i> she asks, looking at you. You take a step back while she smiles innocently, her tail starting to wave. You quickly shake your head, then look at the dents on her body again. What’s the easiest way to remove them... suction, perhaps?");
 			output("\n\nYou pick up a " + (!silly ? "plunger" : "dildo") + " from the floor, planting the base on one of her indents. It sticks, and you pull back. The dent pops out, leaving the artificial skin smooth. You do this to a few more damaged areas before she speaks again, asking, <i>“It seems you are fixing me. Shall I enter shutdown for the time being until further notice?”</i> You nod quickly.");
 			output("\n\nShe sits down and lays spread eagle before her eyes shut off, letting you pop out more dents. You eventually get all of them. Surely you should still be careful, in case she suddenly decides you should get a quick and easy plastic filling. You pull the silicone tube from her back. You take a towel on the floor, which you immediately find out is a cumrag, as it stains your hand with the thick substance (ew), and eventually manage to wrap it around Nym-Foe’s visual processors (or eyes)... You move her metallic hair before looking around in her artificial cranium. Yep, everything’s there...");
 			output("\n\nYou drag her to the wall, sitting her up against it like she once was.");
@@ -3045,11 +3045,11 @@ public function drBadgerLabNymFoe(response:String = "menu"):void
 		case "badger fix":
 			showDrBadger();
 			
-			output("You approach Badger with a question. <i>“So... your robots...”</i> You start.");
-			output("\n\n<i>“Great, aren’t they? Programmed them myself, " + (silly ? "in C++" : "for the most fun results") + ".”</i> She says, smiling.");
-			output("\n\n<i>“I suppose,”</i> you start again, <i>“I, hum... wanted to see if it would be possible to fix one of them. The one that thinks I should be full of silicone, Nym-Foe, to be precise.”</i> You admit. <i>“The thing is, she needs a new VI chip to work.”</i>");
+			output("You approach Badger with a question. <i>“So... your robots...”</i> you start.");
+			output("\n\n<i>“Great, aren’t they? Programmed them myself, " + (silly ? "in C++" : "for the most fun results") + ",”</i> she says, smiling.");
+			output("\n\n<i>“I suppose,”</i> you start again, <i>“I, hum... wanted to see if it would be possible to fix one of them. The one that thinks I should be full of silicone, Nym-Foe, to be precise,”</i> you admit. <i>“The thing is, she needs a new VI chip to work.”</i>");
 			output("\n\nBadger turns her attention to you, away from what looks like a pile of never-ending junk. <i>“Oh, you want to help me? You see, I don’t have stuff to make another chip at the moment. Say, if you’ve got some free time, you could take apart some of those sexbots and get their chips. I’m not sure how many I need to make a custom one for Nym-Foe. Probably... six or so.”</i>");
-			output("\n\n<i>“Six? Can’t you just use one and reprogram it?”</i> You ask.");
+			output("\n\n<i>“Six? Can’t you just use one and reprogram it?”</i> you ask.");
 			output("\n\n<i>“I only need a part of each chip. Nym-Foe’s a... special case. Made with love. And lots of silicone.”</i> She smiles and shrugs. <i>“Anyway, I don’t exactly NEED her fixed at the moment, but I’d be happy to have her up and running again. Now shoo. Go get those chips.”</i>");
 			output("\n\n");
 			
@@ -3067,7 +3067,7 @@ public function drBadgerLabNymFoe(response:String = "menu"):void
 			output("You access your inventory before pulling out six chips that you salvaged from sexbots, offering them up to Badger. She looks to your [pc.hand], observing the small pieces before lifting her goggles. She picks them up from your hands, one by one, looking at them closely before finally switching her attention back to you.");
 			output("\n\n<i>“Well, well, is someone eager to spend time with Nym-Foe?”</i> Badger asks, bringing the chips over to a desk, clearing it quickly before dropping the pieces down.");
 			output("\n\n<i>“Regardless, just sit tight and I’ll cook something up in a jiffy. Then you can head down and pop it in.”</i> You find the nearest flat surface that isn’t crowded by sex toys, and plant your [pc.ass] down onto it. You sit around for a few minutes, boredly twiddling your thumbs while Badger does her thing.");
-			output("\n\n<i>“And that oughta do it!”</i> She says. You pop up at her success, standing and heading toward her. She holds up a chip, colored light pink and octagonal in shape, unlike the blue and squared sexbot chips. You’re about to take it, but she places a furred palm against your forehead, stopping you clean. <i>“Now, don’t break her this time, y’hear? She’s a nice girl who only thinks everyone deserves a free gift.”</i>");
+			output("\n\n<i>“And that oughta do it!”</i> she says. You pop up at her success, standing and heading toward her. She holds up a chip, colored light pink and octagonal in shape, unlike the blue and squared sexbot chips. You’re about to take it, but she places a furred palm against your forehead, stopping you clean. <i>“Now, don’t break her this time, y’hear? She’s a nice girl who only thinks everyone deserves a free gift.”</i>");
 			if(pc.isNice()) output(" You slowly pull your head back before nodding gently.");
 			else if(pc.isAss()) output(" You take her forearm and push it away.");
 			else output(" You pull your head back, looking at her for a few seconds with a ‘really’ expression on your face.");
@@ -3087,18 +3087,18 @@ public function drBadgerLabNymFoe(response:String = "menu"):void
 			showNymFoe();
 			
 			output("You reach down to Nym-Foe, unwrapping the rag on her eyes before plugging in the tube to her back. Her body plumps up with silicone, and she starts to stand, looking at you with a lighthearted smile. <i>“Thank you for unbinding me. What service do you require?”</i> She has a loving tone. Her tail begins to wave in front of you, stealing your attention away from her other movements.");
-			if(!pc.isBimbo()) output("\n\n<i>“Actually...”</i> You start to admit. <i>“I’d like you to upgrade me as you feel necessary. I’m your willing patient and you know best for me.”</i> You smile a little, your heart racing while you look up at the nursedroid.");
-			else output("\n\n<i>“Could you, like, give me perfect silicone curves? I’m totes cool with being all blown up and stuff, I would love having some huge boobies.”</i> You say, smiling while looking at the nursedroid.");
-			output("\n\n<i>“Oh dearie, that’s all you had to say. Please, undress and find a place to sit.”</i> She explains. You strip off your [pc.gear] before finding the nearest padded surface. Nym-Foe sits next to you, smiling and placing her arm around your shoulder. She pulls you somewhat close while her tail sneaks up to you.");
-			output("\n\n" + (!pc.isBimbo() ? "<i>“Please be gentle...”</i> You say quietly." : "<i>“Don’t hold back, I want the biggest titties you can give me...”</i> You say excitedly.") + " The needle slowly pierces the [pc.skin] of your [pc.hip] painlessly. You hold your breath while thick bulges of silicone pass through the nurse’s tail, entering your body with no resistance. ");
+			if(!pc.isBimbo()) output("\n\n<i>“Actually...”</i> you start to admit. <i>“I’d like you to upgrade me as you feel necessary. I’m your willing patient and you know best for me.”</i> You smile a little, your heart racing while you look up at the nursedroid.");
+			else output("\n\n<i>“Could you, like, give me perfect silicone curves? I’m totes cool with being all blown up and stuff, I would love having some huge boobies,”</i> you say, smiling while looking at the nursedroid.");
+			output("\n\n<i>“Oh dearie, that’s all you had to say. Please, undress and find a place to sit,”</i> she explains. You strip off your [pc.gear] before finding the nearest padded surface. Nym-Foe sits next to you, smiling and placing her arm around your shoulder. She pulls you somewhat close while her tail sneaks up to you.");
+			output("\n\n" + (!pc.isBimbo() ? "<i>“Please be gentle...”</i> you say quietly." : "<i>“Don’t hold back, I want the biggest titties you can give me...”</i> you say excitedly.") + " The needle slowly pierces the [pc.skin] of your [pc.hip] painlessly. You hold your breath while thick bulges of silicone pass through the nurse’s tail, entering your body with no resistance. ");
 			output("\n\nHeat radiates from the injection site, right in your [pc.hips]. The semi solid goop slides through your body effortlessly to settle in your [pc.thighs] and [pc.hips]. Soon enough, they’re starting to swell. Since you aren’t exactly struggling, the nurse sees no reason to stop. You sigh gently, enjoying this peculiar feeling of growth.");
-			if(pc.isBimbo()) output("\n\n<i>“More! More please, Miss Nym-Foe!”</i> You giddily say, grabbing the closest boob of the happy nurseroid. She happily obliges, rubbing your shoulder gently while more bulges of silicone enter you. You smile while you gently wiggle your hips, loving how wide they feel.");
+			if(pc.isBimbo()) output("\n\n<i>“More! More please, Miss Nym-Foe!”</i> you giddily say, grabbing the closest boob of the happy nurseroid. She happily obliges, rubbing your shoulder gently while more bulges of silicone enter you. You smile while you gently wiggle your hips, loving how wide they feel.");
 			output("\n\nIt doesn’t exactly stop there, either. The plastic fluid passes across you to deposit itself into your [pc.ass], allowing your cheeks to inflate like bubbles. Really, really big bubbles. Slowly, your butt expands so much that you raise in your seat. It continues for just over a minute before your cheeks are full.");
-			if(pc.isBimbo()) output("\n\n<i>“Oh, oh! Can I get a way bigger ass?”</i> You beg quickly, putting your face near the nurse’s. <i>“Please?”</i> You add, making your best sad puppy face. The alabaster nurse only responds by putting more pressure into her tail, plumping you up faster. You giggle at the feeling, reaching down to give your booty a squeeze.");
+			if(pc.isBimbo()) output("\n\n<i>“Oh, oh! Can I get a way bigger ass?”</i> you beg quickly, putting your face near the nurse’s. <i>“Please?”</i> you add, making your best sad puppy face. The alabaster nurse only responds by putting more pressure into her tail, plumping you up faster. You giggle at the feeling, reaching down to give your booty a squeeze.");
 			output("\n\nThe next place that the bio-silicone travels to is exactly where you’d expect: your [pc.chest]. You feel weight increasing on your [pc.boobs], and looking down at them explains why. Light blue veins quickly become visible across them as they grow and inflate from the inside. They feel... heavy. After all, you <i>are</i> blowing through probably a cup size every several seconds. You gently place your hands under them, hefting them while they become fuller and more juicy. No one would mind fake boobs that look this good anyway.");
-			if(pc.isBimbo()) output("\n\nBut, you could always get more! <i>“Nurse! Nurse! Can you make my boobies really, REALLY big, too?”</i> You ask with enthusiasm, grabbing your nipples and pinching them slightly. Nym-Foe smiles and lets out an artificial breath. She seems pleased at such a willing patient, and makes sure to overfill your boobs with the implants. You smile as you lift them and jiggle them around in your hands.");
+			if(pc.isBimbo()) output("\n\nBut, you could always get more! <i>“Nurse! Nurse! Can you make my boobies really, REALLY big, too?”</i> you ask with enthusiasm, grabbing your nipples and pinching them slightly. Nym-Foe smiles and lets out an artificial breath. She seems pleased at such a willing patient, and makes sure to overfill your boobs with the implants. You smile as you lift them and jiggle them around in your hands.");
 			output("\n\nThe last place the silicone travels to is your [pc.lips]. You let your mouth hang open somewhat as your oral entrance becomes bigger and thicker. Your lips just keep swelling, and you smile slightly at the feeling. They must be so sexy. You can almost see them at the bottom of your vision, bulged outwards and wobbling lightly. You smile and lean into the nursedroid.");
-			if(pc.isBimbo()) output("\n\n<i>“Can you make my lips really big, too?”</i> You whisper, puckering them at the nurse. Suddenly, you feel your lips getting even larger with the silicone. The nurse is so nice!");
+			if(pc.isBimbo()) output("\n\n<i>“Can you make my lips really big, too?”</i> you whisper, puckering them at the nurse. Suddenly, you feel your lips getting even larger with the silicone. The nurse is so nice!");
 			output("\n\nShe turns slightly to face you, her tail slowly pulling out of you, not even leaving a wound. She offers you one of her leaking nipples, squeezing it lightly between two gloved fingers. You slowly pull it into your mouth, between your expanded lips, sucking down the questionable juice. It must be some sort of sedative because you’re feeling tired, but it can’t be just that, because you also begin to feel your nipples leaking");
 			if(pc.isLactating()) output(" more than usual");
 			output(".");
@@ -3125,10 +3125,10 @@ public function drBadgerLabNymFoe(response:String = "menu"):void
 			pc.milkStorageMultiplier++;
 			
 			output("You wake up some time later, now laying down with your head in Nym-Foe’s lap. You slowly sit up, a strange taste stuck in the back of your throat. Nym-Foe looks at you with a friendly smile. You smile back, your [pc.lips] practically wobbling just from the slight movement.");
-			output("\n\n<i>“Your treatment is finished, but don’t let that stop you from having another.”</i> She says, smiling.");
+			output("\n\n<i>“Your treatment is finished, but don’t let that stop you from having another.”</i> she says, smiling.");
 			if(flags["NYM-FOE_SILICONE_BOOSTS"] == undefined) output(" She pulls a lollipop from her mountains of boobage, handing it to you. <i>“That’s for being such a good patient.”</i> She closes her eyes and makes a little cutesy pose with her head before standing up.");
-			output("\n\n<i>“Hey...”</i> You start as you begin to stand up. <i>“Can I put you back against the wall? So, y’know, I’ll know where to find you if I want another treatment?”</i> You ask, struggling into your [pc.gear]. Your new assets make it quite difficult. Porn stars would be jealous... or laughing.");
-			output("\n\n<i>“Sure!”</i> She says. You rest her back against the wall in her usual position, and disconnect her from the silicone tank, as well as carefully wrap the rag over her eyes again. You give her a little kiss on the forehead as a thank you for her free gift. Her eyes slowly shut off.");
+			output("\n\n<i>“Hey...”</i> you start as you begin to stand up. <i>“Can I put you back against the wall? So, y’know, I’ll know where to find you if I want another treatment?”</i> you ask, struggling into your [pc.gear]. Your new assets make it quite difficult. Porn stars would be jealous... or laughing.");
+			output("\n\n<i>“Sure!”</i> she says. You rest her back against the wall in her usual position, and disconnect her from the silicone tank, as well as carefully wrap the rag over her eyes again. You give her a little kiss on the forehead as a thank you for her free gift. Her eyes slowly shut off.");
 			output("\n\nYou take a moment to look down at yourself. She didn’t hold back with the silicone, as shown by your almost doll-like structure. You can see your [pc.lips] at the bottom of your vision, which wobble with every tiny movement. Down a bit farther, your [pc.boobs] are quite massive now, and leaking with [pc.milk]. They must be at least [pc.breastCupSize " + pc.biggestTitRow() + "]. You’re not sure whether most of the weight in them is plastic or [pc.milk]. Regardless, you look down further. Your [pc.thighs] and [pc.hips] are much thicker, as is your [pc.ass]. You give your rear end a light smack, and it wobbles like crazy.");
 			output("\n\nWell, if you feel like removing any of the silicone, you could use the tank and suck it all out. Otherwise... you can expect a lot more wobble in your step, and every other movement you perform.");
 			output("\n\n");
@@ -3237,11 +3237,11 @@ If you still have any parts left, you could try to reinsert them. It could save 
 
 The good samaritan in you tells you to fix Badger’s toys that you broke, even if they’re going to be used for... probably something that a normal person would question. The only other thing that crosses your mind is ‘let’s just get this over with’.
 
-You speak up to catch the doctor’s attention. <i>“Hey, Badger. I noticed the Doll Maker is still broken down there. Did you want it fixed?”</i> You ask neutrally. This is a pretty morally ambiguous situation, you feel it’s a better idea not to show emotion here.
+You speak up to catch the doctor’s attention. <i>“Hey, Badger. I noticed the Doll Maker is still broken down there. Did you want it fixed?”</i> you ask neutrally. This is a pretty morally ambiguous situation, you feel it’s a better idea not to show emotion here.
 
 <i>“Actually, yes, [pc.name]. Would you be a <i>Doll</i> and fix it?”</i> Badger jokes, then becoming a little more serious. <i>“I can fix most of it by myself, but didn’t you take some of the important parts when you were done with it? The syringe of IQ-B-GONE, the brainmelt lamp, the mindwash visor, and/or the gun?”</i>
 
-<i>“I’m not sure, maybe?”</i> You say, shrugging lightly.
+<i>“I’m not sure, maybe?”</i> you say, shrugging lightly.
 
 <i>“Regardless, I need to get back there and fix the other parts that you broke. Thanks for that, by the way.”</i> Badger says, turning to you from the pile of junk. <i>“Eh, let’s just head back now and have a look. Then we’ll see what errands you can do for me.”</i>
 
@@ -3267,7 +3267,7 @@ You reluctantly head to the back of the lab with Badger. You pass Nym-Foe and th
 
 <i>“Well, now we know what we need before I can get this bad boy going again. It’s been boring not being able to bimbofy my patients with it. I’ve had to use other methods.”</i> Badger explains before leading you back to the front of her lab.
 
-<i>“So I just need those pieces?”</i> You ask.
+<i>“So I just need those pieces?”</i> you ask.
 
 <i>“Yes. But you can’t exactly just buy them, so maybe if you ask nicely, I’ll tell you what I need to rebuild them.”</i>
 
@@ -3279,7 +3279,7 @@ You reluctantly head to the back of the lab with Badger. You pass Nym-Foe and th
 
 {Syringe
 
-<i>“So how would I go about getting some IQ-B-GONE?”</i> You ask. <i>“It’s pretty serious stuff, I wouldn’t be surprised if I needed a million ingredients to-”</i> You stop talking as Badger holds out a green syringe and hands it to you.
+<i>“So how would I go about getting some IQ-B-GONE?”</i> you ask. <i>“It’s pretty serious stuff, I wouldn’t be surprised if I needed a million ingredients to-”</i> You stop talking as Badger holds out a green syringe and hands it to you.
 
 <i>“Luckily for you, I have plenty of this stuff. Give it to the police and I’ll torture you. I’ll skip the bimbofication part and just hurt you.”</i> Badger says almost scarily. You take a step back while holding the syringe before Badger starts talking again. <i>“Nah, I’m just fucking with you. But I would definitely turn you into the dumbest bimbo ever. Don’t. Get. Involved. With. The. Police.”</i>
 
@@ -3291,7 +3291,7 @@ Point taken.
 
 {Lamp
 
-<i>“So how would we go about making a new brainmelt lamp?”</i> You ask plainly.
+<i>“So how would we go about making a new brainmelt lamp?”</i> you ask plainly.
 
 <i>“Well, y’see, I need the parts from some sort of electro gun. I already have the part that reduces brain cell count, I just need the part that distributes that power.”</i>
 }
@@ -3732,7 +3732,7 @@ public function drBadgerSiliconeTankBimboGoCrazy(response:String = "intro"):void
 			nymFoeMaxInjection(60, 60, 190, 20);
 			
 			output("You wake up to Doctor Badger grabbing your flesh and testing its bounciness, the arousal seems to have awaken you.");
-			output("\n\nShe sees she has your attention, <i>“Well, well, honey. You used up a lot of silicone, I had to tear your hand away from the button before it got impossible to reach,”</i> you’re not sure if she’s annoyed or proud of you judging by her tone. <i>“Why would anyone press the ‘blow’ button again instead of just letting it go? You did this on purpose, didn’t you?”</i> She asks.");
+			output("\n\nShe sees she has your attention, <i>“Well, well, honey. You used up a lot of silicone, I had to tear your hand away from the button before it got impossible to reach,”</i> you’re not sure if she’s annoyed or proud of you judging by her tone. <i>“Why would anyone press the ‘blow’ button again instead of just letting it go? You did this on purpose, didn’t you?”</i> she asks.");
 			output("\n\nYou didn’t mean to do it, but you didn’t regret any second of it either, you would do it again in a heartb- in a sec- like, you would do it again. You nod.");
 			output("\n\nBadger sighs, tsk-ing a few times. <i>“Well, I’ve got to cover the price of all that silicone now, don’t I?”</i> You feel guilty, looking down, slightly ashamed. <i>“I have a great idea darling, why don’t I help you get to the front and you can try out those new lips, I’m sure with the tips you’ll pay me back in no time right?”</i> You nod vigorously, your lips wobbling a little before settling into a smile. Maybe you could start to repay Doctor Badger right now?");
 			output("\n\n");
