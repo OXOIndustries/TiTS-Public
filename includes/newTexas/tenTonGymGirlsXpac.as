@@ -1,5 +1,3 @@
-/* 
-
 /**
 	 * ...
 	 * @author DrunkZombie
@@ -265,9 +263,11 @@ public function tentongymLolaHome():void
 	processTime(30);
 	pc.lust(30);
 	
-	clearMenu();	
-	addButton(0, "Like Before", penisRouter, [tentongymLolaLikeBefore, chars["LOLA"].vaginalCapacity(0), true, 0]);
-	if (pc.cockThatFits(chars["LOLA"].analCapacity()) >= 0 || pc.hasHardLightEquipped()) addButton(1, "In the Butt", penisRouter, [tentongymLolaInTheButt, chars["LOLA"].analCapacity(), true, 0]);
+	clearMenu();
+	var strapon:Boolean = false;
+	if (pc.hasVagina()) strapon = true;
+	addButton(0, "Like Before", penisRouter, [tentongymLolaLikeBefore, chars["LOLA"].vaginalCapacity(0), strapon, 0]);
+	if (pc.cockThatFits(chars["LOLA"].analCapacity()) >= 0 || pc.hasHardLightEquipped()) addButton(1, "In the Butt", penisRouter, [tentongymLolaInTheButt, chars["LOLA"].analCapacity(), strapon, 0]);
 	else addDisabledButton(1, "In the Butt", "In the Butt", "You need a cock small enough for this!");
 }
 public function tentongymLolaNope():void
@@ -348,8 +348,10 @@ public function tentongymLolaLikeBefore(kok:int=0):void
 	
 	processTime(10 + rand(10));
 	clearMenu();
-	addButton(0, "Hotdog", penisRouter, [tentongymLolaLikeBeforeHotdog, chars["LOLA"].vaginalCapacity(0), true, 0]);
-	addButton(1, "From Behind", penisRouter, [tentongymLolaLikeBeforeFromBehind, chars["LOLA"].vaginalCapacity(0), true, 0]);
+	var strapon:Boolean = false;
+	if (pc.hasVagina()) strapon = true;
+	addButton(0, "Hotdog", penisRouter, [tentongymLolaLikeBeforeHotdog, chars["LOLA"].vaginalCapacity(0), strapon, 0]);
+	addButton(1, "From Behind", penisRouter, [tentongymLolaLikeBeforeFromBehind, chars["LOLA"].vaginalCapacity(0), strapon, 0]);
 	
 }
 
@@ -619,8 +621,10 @@ public function tentongymLolaInTheButt(kok:int=0):void
 	
 	processTime(10 + rand(10));
 	clearMenu();
-	addButton(0, "On Top", penisRouter, [tentongymLolaInTheButtOnTop, chars["LOLA"].analCapacity(), true, 0],"On Top","Let Lola take you for a ride.");
-	addButton(1, "From Behind", penisRouter, [tentongymLolaInTheButtFromBehind, chars["LOLA"].analCapacity(), true, 0],"From Behind","Turn Lola over and go at her from behind.");
+	var strapon:Boolean = false;
+	if (pc.hasVagina()) strapon = true;
+	addButton(0, "On Top", penisRouter, [tentongymLolaInTheButtOnTop, chars["LOLA"].analCapacity(), strapon, 0],"On Top","Let Lola take you for a ride.");
+	addButton(1, "From Behind", penisRouter, [tentongymLolaInTheButtFromBehind, chars["LOLA"].analCapacity(), strapon, 0],"From Behind","Turn Lola over and go at her from behind.");
 }
 public function tentongymLolaInTheButtOnTop(kok:int=0):void
 {
