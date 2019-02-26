@@ -324,7 +324,7 @@
 			if(select == 9) {
 				if(target.earTypeUnlocked(GLOBAL.TYPE_BOVINE))
 				{
-					output("\n\nYour ears migrate to the sides of your head and stretch like warm putty, moulding into <b>a pair of floppy cow ears</b>. A thin layer of fur soon completes the look.");
+					output("\n\nYour ears migrate to the sides of your head and stretch like warm putty, molding into <b>a pair of floppy cow ears</b>. A thin layer of fur soon completes the look.");
 					
 					target.earType = GLOBAL.TYPE_BOVINE;
 				}
@@ -456,7 +456,7 @@
 					if(!target.hasCock() && target.balls > 0)
 					{
 						output(" Including the disappearance of your [pc.sack]...");
-						target.balls = 0;
+						target.removeBalls();
 					}
 					
 					// New pussy:

@@ -88,7 +88,7 @@ package classes.Items.Miscellaneous
 					target.removeStatusEffect("Lactaid Milk Tank Uses");
 					output("There’s a sense of pressure inside your [pc.breasts] as a small amount of [pc.milkNoun] escapes from the tips of your [pc.nipples]. <b>You’ve started lactating, albeit slowly.</b>");
 					if (target.milkRate < 25) target.milkRate = 25;
-					if (target.milkFullness < 50) target.milkFullness = 75;
+					target.milkFillToCapacity(25, 75, false);
 				}
 			}
 			else if (target.milkStorageMultiplier < 10)

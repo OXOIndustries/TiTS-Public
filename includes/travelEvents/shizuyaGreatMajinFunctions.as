@@ -45,10 +45,16 @@ public function majinUpdate(force:Boolean, forceship:Boolean = false):void
 	var room:String;
 	var newplanet:String;
 	var newsystem:String;
+	var movementChance:int;
+	var publicHangars:Array = publicHangars();
+
 	//Ship flies
 	if (forceship || ((flags["MAJIN_LAST_FLIGHT"] == undefined || flags["MAJIN_LAST_FLIGHT"] < days) && !majinPlayerOnBoard()))
 	{
-		if ((rand(9) == 0) || forceship) majinLocation(shipLocation);
+		movementChance = rand(5);
+		// 40% chance to move to PC, 40% to move to a random planet, 20% to fuck off into space
+		if (movementChance == 0 || movementChance == 1 || forceship) majinLocation(shipLocation);
+		else if (movementChance == 2 || movementChance == 3) majinLocation(RandomInCollection(publicHangars));
 		else majinLocation(null);
 		flags["MAJIN_LAST_FLIGHT"] = days;
 	}

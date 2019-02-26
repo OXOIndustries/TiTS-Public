@@ -76,11 +76,11 @@ package classes.Items.Miscellaneous
 
 			output("\n\nYou take a deep breath to steady yourself before plunging the needle down. There’s a slight pressure on your chest, but no real pain to speak of - that’s good, at least. You press the tab down half way, injecting yourself with a surge of specialist nanomachines that quickly go right where they need to. You pull the needle out, move to the other side of your chest, and repeat the process with the remainder of the medipen’s contents.");
 
-			if (target.isLactating() && target.milkType == GLOBAL.FLUID_TYPE_MILK && (target.milkStorageMultiplier < 4 || target.milkFullness < 100))
+			if (target.isLactating() && target.milkType == GLOBAL.FLUID_TYPE_MILK && (target.milkStorageMultiplier < 4 || target.milkFullness < target.milkFullnessMax()))
 			{
 				//Fill to capacity. Increase max milk capacity. 
 				output("\n\nWith that done, you toss the pen aside and grope at your milky tits, waiting for the lactation aid to take effect. The microbots announce their success in the most bombastic way possible - after a few moments, your chest clenches as a squirt of [pc.milk] shoots out of your [pc.nipples], splattering all over you!");
-				target.milkFullness = 100;
+				//target.milkFullness = 100;
 
 				if (target.milkStorageMultiplier < 4)
 				{
@@ -99,7 +99,7 @@ package classes.Items.Miscellaneous
 
 				output("\n\nThankfully, the squirts come to a stop after a few moments. You don’t feel empty, either, despite how much [pc.milk] you splashed yourself with. A few experimental squeezes do indeed draw out a few more drops - but not the same kind as you’re used to. It looks like <b>you’re lactating normal, human milk now!</b>");
 				target.milkType = GLOBAL.FLUID_TYPE_MILK;
-				target.milkFullness = 100;
+				//target.milkFullness = 100;
 			}
 			else if (!target.isLactating())
 			{
@@ -107,7 +107,7 @@ package classes.Items.Miscellaneous
 				{
 					target.milkMultiplier = 75;
 				}
-				target.milkFullness = 100;
+				//target.milkFullness = 100;
 				target.lust(25);
 
 				//Start lactation. +Lust.
@@ -118,8 +118,11 @@ package classes.Items.Miscellaneous
 			else
 			{
 				output("\n\nA few moments after you’ve injected yourself, you feel a clenching in your [pc.chest], followed by a stretching sensation that leaves you groaning. After a few moments, you glance down at your [pc.nipples] and see that they’re beading with [pc.milk]. You giggle to yourself as your tits squirt and fill up again, swelling to their full capacity!");
-				target.milkFullness = 100;
+				//target.milkFullness = 100;
 			}
+			
+			// Filling to capacity
+			target.milkFillToCapacity(25, 100, false);
 
 			return false;
 		}

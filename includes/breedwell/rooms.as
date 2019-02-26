@@ -48,7 +48,7 @@ public function initBreedwellRooms():void
 	rooms["BREEDWELL_RECEPTION"].description = "";
 	rooms["BREEDWELL_RECEPTION"].planet = "BREEDWELL CENTRE";
 	rooms["BREEDWELL_RECEPTION"].system = "SYSTEM: WISTRAL";
-	//rooms["BREEDWELL_RECEPTION"].northExit = "";
+	rooms["BREEDWELL_RECEPTION"].northExit = "BREEDWELL_QUAELLE_APT";
 	rooms["BREEDWELL_RECEPTION"].eastExit = "BREEDWELL_DONATION";
 	rooms["BREEDWELL_RECEPTION"].southExit = "BREEDWELL_LOUNGE";
 	rooms["BREEDWELL_RECEPTION"].westExit = "BREEDWELL_HANGAR";
@@ -67,7 +67,7 @@ public function initBreedwellRooms():void
 	rooms["BREEDWELL_LOUNGE"].northExit = "BREEDWELL_RECEPTION";
 	//rooms["BREEDWELL_LOUNGE"].eastExit = "";
 	//rooms["BREEDWELL_LOUNGE"].southExit = "";
-	//rooms["BREEDWELL_LOUNGE"].westExit = "";
+	rooms["BREEDWELL_LOUNGE"].westExit = "BREEDWELL_NATAL_UNIT";
 	rooms["BREEDWELL_LOUNGE"].moveMinutes = 1;
 	rooms["BREEDWELL_LOUNGE"].runOnEnter = breedwellLoungeBonus;
 	rooms["BREEDWELL_LOUNGE"].addFlag(GLOBAL.INDOOR);
@@ -87,5 +87,36 @@ public function initBreedwellRooms():void
 	rooms["BREEDWELL_DONATION"].runOnEnter = breedwellDonationBonus;
 	rooms["BREEDWELL_DONATION"].addFlag(GLOBAL.INDOOR);
 	rooms["BREEDWELL_DONATION"].addFlag(GLOBAL.PUBLIC);
+	
+	/* Breedwell Quaelle's apartment*/
+	rooms["BREEDWELL_QUAELLE_APT"] = new RoomClass(this);
+	rooms["BREEDWELL_QUAELLE_APT"].roomName = "QUAELLE'S\nAPARTMENT";
+	rooms["BREEDWELL_QUAELLE_APT"].description = "";
+	rooms["BREEDWELL_QUAELLE_APT"].planet = "BREEDWELL CENTRE";
+	rooms["BREEDWELL_QUAELLE_APT"].system = "SYSTEM: WISTRAL";
+	//rooms["BREEDWELL_QUAELLE_APT"].northExit = "";
+	//rooms["BREEDWELL_QUAELLE_APT"].eastExit = "";
+	//rooms["BREEDWELL_QUAELLE_APT"].westExit = "";
+	rooms["BREEDWELL_QUAELLE_APT"].southExit = "BREEDWELL_RECEPTION";
+	rooms["BREEDWELL_QUAELLE_APT"].moveMinutes = 1;
+	rooms["BREEDWELL_QUAELLE_APT"].runOnEnter = breedwellQuaelleAptBonus;
+	rooms["BREEDWELL_QUAELLE_APT"].addFlag(GLOBAL.INDOOR);
+	rooms["BREEDWELL_QUAELLE_APT"].addFlag(GLOBAL.PRIVATE);
+	
+	/* Breedwell Natal Unit*/
+	rooms["BREEDWELL_NATAL_UNIT"] = new RoomClass(this);
+	rooms["BREEDWELL_NATAL_UNIT"].roomName = "NATAL\nUNIT";
+	rooms["BREEDWELL_NATAL_UNIT"].description = "";
+	rooms["BREEDWELL_NATAL_UNIT"].planet = "BREEDWELL CENTRE";
+	rooms["BREEDWELL_NATAL_UNIT"].system = "SYSTEM: WISTRAL";
+	//rooms["BREEDWELL_NATAL_UNIT"].northExit = "";
+	rooms["BREEDWELL_NATAL_UNIT"].eastExit = "BREEDWELL_LOUNGE";
+	//rooms["BREEDWELL_NATAL_UNIT"].westExit = "";
+	//rooms["BREEDWELL_NATAL_UNIT"].southExit = "";
+	rooms["BREEDWELL_NATAL_UNIT"].moveMinutes = 1;
+	rooms["BREEDWELL_NATAL_UNIT"].runOnEnter = breedwellNatalUnitBonus;
+	rooms["BREEDWELL_NATAL_UNIT"].addFlag(GLOBAL.INDOOR);
+	rooms["BREEDWELL_NATAL_UNIT"].addFlag(GLOBAL.PUBLIC);
+
 }
 

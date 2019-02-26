@@ -275,6 +275,7 @@ public function ulaMenu():void
 	addButton(0,"Appearance",ulaAppearance);
 	addButton(1,"Talk",ulaTalk);
 	addButton(2,"Sex",ulaSexApproach);
+	//addButton(4,"WARGII TEST",startWargiiQuestOnEnterUlaRoom,undefined,"WARG'II TEST","<b>WARNING:</b> This is a test of in-development content. Saving after playing this could leave data behind that could result in bugs, incorrect tracking of quest decisions, or unplayability. Be careful, and save first!\n\nThanks,\n\tFenoxo");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -357,7 +358,9 @@ public function ulaSexApproach():void
 		if(!korgiTranslate()) output("Want love-mate bond.");
 		else output("I want that loving, mated bond.");
 		output("”</i>");
-		output("\n\nYou swoon when she breaks away, breathing hard. The near-naked native prances to nearby bin, retrieving a dildo. She drags and back and forth across her steamy slit, watching you all the while. A slow smile spreads across her features. <i>“");
+		output("\n\n");
+		showImage("UlaDildo");
+		output("You swoon when she breaks away, breathing hard. The near-naked native prances to nearby bin, retrieving a dildo. She drags and back and forth across her steamy slit, watching you all the while. A slow smile spreads across her features. <i>“");
 		if(!korgiTranslate()) output("Go on. Tell what want.");
 		else output("Go on. Tell me what you want.");
 		output("”</i> Her pussy drips. <i>“");
@@ -1157,6 +1160,7 @@ public function firstTimeKorgHoldMeeting():void
 {
 	clearOutput();
 	showName("KORG\nMEETING");
+	showBust("KORG_CHIEFTAIN");
 	currentLocation = "KORGII R10";
 	generateMap();
 	output("The guards hustle you through winding tunnels and up a spiral staircase hewn from solid stone. In stark contrast to the frigid exterior, it’s nearly as warm as a sauna inside Korg’ii Hold. By the time you climb to the next level, you’re ");
@@ -1191,6 +1195,11 @@ public function firstTimeKorgHoldMeeting():void
 
 public function ulaRoomBonusFunc():Boolean
 {	
+	if(flags["WARGII_SETUP"] == 1 && flags["WARGII_PROGRESS"] == undefined && ulaPregBelly() == 0)
+	{
+		startWargiiQuestOnEnterUlaRoom();
+		return true;
+	}
 	//20% chance and Ula has kids older than 7 days
 	if(rand(5) == 0 && (flags["ULA_BIRTH_TIMER"] > 7 || flags["ULA_TOTAL_KIDS"] > 4))
 	{
@@ -1262,7 +1271,9 @@ public function ulaRoomBonusFunc():Boolean
 public function ulaFirstTimeRemeet():void
 {
 	showUla(true);
-	output("\n\nThe familiar form of the korgonne you saved is sprawled out on a cushy-looking bed, naked save for oodles of jangling jewelry and a fat, glossy dildo rammed between her legs. Lips parted mid-moan, she squeaks at your sudden intrusion and rolls ass-over-head over the bed to fall heavily on the floor. <i>“You!”</i> Her tail wiggles happily in the air as she climbs back up onto her mattress.");
+	output("\n\n");
+	showImage("UlaDildo");
+	output("The familiar form of the korgonne you saved is sprawled out on a cushy-looking bed, naked save for oodles of jangling jewelry and a fat, glossy dildo rammed between her legs. Lips parted mid-moan, she squeaks at your sudden intrusion and rolls ass-over-head over the bed to fall heavily on the floor. <i>“You!”</i> Her tail wiggles happily in the air as she climbs back up onto her mattress.");
 	output("\n\nYou note the dildo is still firmly clutched in her paw, dripping wet.");
 	output("\n\n<i>“You come visit!”</i> Springing off her mattress, the excited ball of fluff and fuck tumbles into you");
 	if(pc.tallness < 70) output(", tackling you to the ground");

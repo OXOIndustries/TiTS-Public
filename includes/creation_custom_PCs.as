@@ -738,6 +738,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			if(!TF) break;
 			pc.femininity = 50;
 			pc.removeCocks();
+			pc.removeBalls();
 			pc.removeVaginas();
 			bonusTexts = "You’ve always been a neuter. Life’s easier that way.";
 			break;

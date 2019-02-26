@@ -1287,7 +1287,10 @@ public function shekkaCrewBendoverFuck(x:int):void
 	output("Although it’s far smaller than the one in her warehouse, you flip Shekka around and nudge her towards the bench. <i>“Go ahead and work on... whatever that piece of my ship is. Just let me do all the work.”</i> Your fingers trace up her spine to her neck where a small, hidden clasp resides. Shekka shivers in anticipation once you find it. You artfully twist your thumb and index finger, releasing the catch and revealing her jumpsuit’s seam. The fabric parts slowly, opening just enough to let her pale crimson flesh peek through, the light sparkling off glossy scales as they’re exposed. <i>“Well? I’m waiting. I want to see maximum satisfaction here.”</i>");
 	output("\n\nShekka, usually sassy and quick to react, looks at you uncertainly. Her tail swishes back and forth nervously, but she does as you ask, plucking up some (frankly expensive looking) parts from all over her workbench into a small pile before you. A moment later, her confident smile returns. She presses her large rump back against you, curling her tail around your side so as not to interfere with the soft, sensuous press of her buttocks against your package. With just an earnest flex, her cheeks squeeze your [pc.cocks] harder.");
 	output("\n\nOhhh, that feels nice. Blood surges to your genitals, and your breath shortens as your heartbeats accelerate. Grunting softly, you grab hold of her slowly releasing suit by its edges and tug, baring her shoulders in an instant. The edge of the fabric catches on her nipples, revealing the soft, eggplant-colored areolae a second before the tips of her nipples pop out over the edge. From there, it’s easy to peel the obstructing garment down past Shekka’s bare belly to her hips. The fit is much tighter there, and the press of her expansive ass against your [pc.cocks] makes choosing between continuing to grind against her or getting her out of her clothes an agonizingly difficult decision.");
-	output("\n\n<i>“What’s the matter?”</i> Shekka wonders, applying some ED-80 to a particularly tight fixture to loosen the screws. <i>“Having a little trouble with unwrapping me?”</i>");
+	output("\n\n");
+	if(shekka.hasCock(GLOBAL.TYPE_EQUINE)) showImage("ShekkaBentOverFuta");
+	else showImage("ShekkaBentOver");
+	output("<i>“What’s the matter?”</i> Shekka wonders, applying some ED-80 to a particularly tight fixture to loosen the screws. <i>“Having a little trouble with unwrapping me?”</i>");
 	if(pc.hasCock() || pc.hasVagina()) 
 	{
 		output(" She brings her tail up");
@@ -1497,7 +1500,10 @@ public function shekkaCrewFutaBendoverFuck(x:int):void
 	output("Although it’s far smaller than the one in her warehouse, you flip Shekka around and nudge her towards the bench. There’s a small gasp and she has to wiggle her hips to keep her thick horse-cock from getting trapped against furniture. <i>“Go ahead and work on... whatever that piece of my ship is. Just let me do all the work.”</i> Your fingers trace up her spine to her neck where a small, hidden clasp resides. Shekka shivers in anticipation once you find it. You artfully twist your thumb and index finger, releasing the catch and revealing her jumpsuit’s seam. The fabric parts slowly, opening just enough to let her pale crimson flesh peek through, the light sparkling off glossy scales as they’re exposed. <i>“Well? I’m waiting. I want to see maximum satisfaction here.”</i>");
 	output("\n\nShekka, usually sassy and quick to react, looks at you uncertainly. Her tail swishes back and forth nervously, but she does as you ask, plucking up some (frankly expensive looking) parts from all over her workbench into a small pile before you. A moment later, her confident smile returns. She presses her large rump back against you, curling her tail around your side so as not to interfere with the soft, sensuous press of her buttocks against your package. With just an earnest flex, her cheeks squeeze your [pc.cocks] harder.");
 	output("\n\nOhhh, that feels nice. Blood surges to your genitals, and your breath shortens as your heartbeats accelerate. Grunting softly, you grab hold of her slowly releasing suit by its edges and tug, baring her shoulders in an instant. The edge of the fabric catches on her nipples, revealing the soft, eggplant-colored areolae a second before the tips of her nipples pop out over the edge. From there, it’s easy to peel the obstructing garment down past Shekka’s bare belly to her hips. The fit is much tighter there (even more so with her additional endowment) and the press of her expansive ass against your [pc.cocks] makes choosing between continuing to grind against her or getting her out of her clothes an agonizingly difficult decision.");
-	output("\n\n<i>“What’s the matter?”</i> Shekka wonders, applying some ED-80 to a particularly tight fixture to loosen the screws. <i>“Having a little trouble with unwrapping me?”</i>");
+	output("\n\n");
+	if(shekka.hasCock(GLOBAL.TYPE_EQUINE)) showImage("ShekkaBentOverFuta");
+	else showImage("ShekkaBentOver");
+	output("<i>“What’s the matter?”</i> Shekka wonders, applying some ED-80 to a particularly tight fixture to loosen the screws. <i>“Having a little trouble with unwrapping me?”</i>");
 	if(pc.hasCock() || pc.hasVagina()) 
 	{
 		output(" She brings her tail up");
@@ -2634,7 +2640,9 @@ public function shekkaOnaholeIntro():void
 		else if(pc.isBro()) output(" Goddamn, she smells like a real breeder! There could be a bit more pussy in the mix, but unless you find something to give her a huge, fat juicy set of cunt-lips and put her into heat, you’ll have to make do with having hermaphrodite crew-member who seems part breeding stud.");
 		else output(" Fuck, you’re going to be catching whiffs of this for weeks, aren’t you? You won’t be able to check on your ship’s power without smelling a little bit of Shekka’s dick now and then, not that the heat building in your loins seems to mind.");
 
-		output("\n\nThe source of it all is sitting there on her bunk, pumping a comically undersized onahole up and down her gleaming meat-pole. Shekka hasn’t noticed your approach yet. She’s too busy working that blue jelly-toy over every inch of her turgid mast. Her legs are folded almost double, pinned through her armpits to keep them out of the way while she leans up, planting wet, pre-cummy kisses around the trembling flare. Judging by the half-dried juices on her cheeks, she’s been at it a while.");
+		output("\n\n");
+		showImage("ShekkaHorseOnahole");
+		output("The source of it all is sitting there on her bunk, pumping a comically undersized onahole up and down her gleaming meat-pole. Shekka hasn’t noticed your approach yet. She’s too busy working that blue jelly-toy over every inch of her turgid mast. Her legs are folded almost double, pinned through her armpits to keep them out of the way while she leans up, planting wet, pre-cummy kisses around the trembling flare. Judging by the half-dried juices on her cheeks, she’s been at it a while.");
 		output("\n\nMaybe it’s the shockingly pornographic sight... or maybe it’s the musk clouding the air and tempting you join in, but you stand there in slack-jawed amazement for a second while the big-eared mechanic wrings out globules of alien (or equine?) seed.");
 		output("\n\nYou’re still watching when she blinks her eyes open and sees you.");
 		output("\n\n<i>“[pc.name]!”</i> Shekka moans, <i>“Look at what this did to me?”</i> She puts both hands on the toy and jacks herself harder, the heavy balls tightening slightly. <i>“It gets all musky, and then I smell like some big, sexy off-world stud, and then I’m all horny and I have to jack it off... but fuuuck, it’s </i>so<i> sexy!”</i> One hand drifts down to squeeze an ear, an action that makes her shiver in delight. <i>“You dirty fucking fucker, thank you! I love this! You wanna help, or are you just gonna watch me screw myself silly?”</i> Shekka’s tail lifts up, buzzing hungrily as it closes in on her exposed, dewy mound.");
@@ -2672,7 +2680,9 @@ public function shekkaOnaholeIntro():void
 		output("\n\nSure enough, Shekka all but rips off her jumpsuit, yanking it down to her overabundant hips in a single motion. The oily black beast between her legs spills out, flexing under its own weight and dribble something sticky and slick. It overwhelms every other odor in the area. Grease? You don’t even notice. Metal? Absolutely overpowered by Shekka’s bulging bitch breaker. By the time she tugs the suit over her bubbly booty, you’re feeling ");
 		if(pc.lust() >= 50) output("more turned on than her.");
 		else output("nearly as turned on as her.");
-		output("\n\nThe red-scaled slut lets your finger slide out of her mouth with a hungry pop, her tongue lashing your palm in goodbye. <i>“This toy?”</i> She cradles her cock affectionately in one hand. It throbs obligingly, throwing off clouds of its virile odor. <i>“Or this one?”</i> She produces a spongy blue onahole from somewhere and makes a single, room-clearing bound with her powerful thighs. A mid-air twist deposits her ass-first onto her bed. Inertia carries her legs a bit farther, bouncing up to hook under her armpits as Shekka slides the onahole onto her dribbling pole.");
+		output("\n\n");
+		showImage("ShekkaHorseOnahole");
+		output("The red-scaled slut lets your finger slide out of her mouth with a hungry pop, her tongue lashing your palm in goodbye. <i>“This toy?”</i> She cradles her cock affectionately in one hand. It throbs obligingly, throwing off clouds of its virile odor. <i>“Or this one?”</i> She produces a spongy blue onahole from somewhere and makes a single, room-clearing bound with her powerful thighs. A mid-air twist deposits her ass-first onto her bed. Inertia carries her legs a bit farther, bouncing up to hook under her armpits as Shekka slides the onahole onto her dribbling pole.");
 		output("\n\nShe gets right to jacking herself, looking you in the eye while she does it. Her strokes are fast and hard, rapid enough to milk fresh coats of fuck-juice to lube up the shaft. Shekka whimpers in delight and leans up a bit, high enough to nuzzle at her expanding flare. She peppers it with kisses while she strokes, getting pre-cum and sweat all over her face. When she speaks, it’s with the confidence of one who has given themselves over entirely to perversion. <i>“Whatcha gonna do to me this time?”</i>");
 		output("\n\nThere’s so many choices, but only one is truly inconceivable: leaving. She looks so good like that, jacking out ribbons of crystal-clear pre to slather herself in while she waits. At the very least, watching her take care of that hyper-engorged horse-cock of hers should be entertaining.");
 	}
@@ -3966,7 +3976,6 @@ public function shekkaButtfucksYou():void
 		output("\n\n<i>“Maybe,”</i> you concede, kissing her gently on the forehead, so as not to addle her any further. <i>“But we ought to clean up for now.”</i>");
 		output("\n\n<i>“Awww,”</i> Shekka sighs morosely, grinding herself into you. <i>“’Kay I’ll clean up. But then I’m gonna make another mess again, and I’m gonna be thinking about kissing you while I do it.”</i>");
 		output("\n\n<i>“I’m sure you’ll find yourself blessed by an incredibly messy orgasm then - maybe one loud enough to tempt your captain right back into you arms for another bit of engine-room love-making.”</i>");
-
 	}
 	else
 	{
@@ -3985,7 +3994,7 @@ public function shekkaButtfucksYou():void
 	else if(pc.hasVagina()) output("slit" + (pc.totalVaginas() > 1 ? "s":"") + " getting wet once more.");
 	else output("asshole twitch hungrily, a trail of spunk dribbling down your underside.");
 	output(" Now you know how she feels - maybe you’ll have to pay her that visit sooner rather than later.");
-	shekkaSpitAddiction(4);
+	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) shekkaSpitAddiction(4);
 	processTime(35);
 	pc.orgasm();
 	pc.loadInAss(shekka);

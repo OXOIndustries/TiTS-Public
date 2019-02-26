@@ -188,7 +188,7 @@ public function myCollarBrokeMaike():void
 	output("\n\n<i>“Oh, is that hard enough for you, mmm? I can tell you’re <b>new</b> if you’re giving in that easily,”</i> she mocks with a sardonic grin. She even pulls a faux-pout and shakes her head at you. <i>“Mwaaah, the big bad Overseer is putting me in my place, waaah.”</i>");
 	output("\n\nYou try to kick and flail at her other leg but hit only the bony plates covering the sides. Your efforts are met with the most indulgent and devilish of giggles.");
 	output("\n\n<i>“Yesss, there’s fire in you! And here I was thinking to throw you off of the walkway here and now,”</i> she laughs and you’re promptly thrown back to the ground.");
-	output("\n\nYou’re barely given time to breath as you’re hoisted up to a wobbly standing stance by the scruff of your neck.");
+	output("\n\nYou’re barely given time to breathe as you’re hoisted up to a wobbly standing stance by the scruff of your neck.");
 	output("\n\n<i>“You’re going to go <b>back</b> to where you came and then up to the main elevator. I’ll <b>know</b> if you deviate. There will be nowhere that I can’t find you, nowhere for you to hide and shirk your reason for living,”</i> she growls from behind with her grasp pulling you down by the back of your head. <i>“You will learn that Overseer Maike <b>owns you</b>.”</i>");
 	output("\n\nWith that, her hand swiftly darts to your neck with some sort of semi-circle in its grip. Maike slams it against your throat and at once, a tight metallic ring snaps around your neck! The laughing slaver pushes you away from her and you stagger forwards on your shaky [pc.footOrFeet].");
 	output("\n\n<i>“Hurry hurry! If you stay on course, the mining bots won’t find you, ahahaha!”</i>");

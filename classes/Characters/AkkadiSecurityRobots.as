@@ -195,8 +195,13 @@ package classes.Characters
 		{
 			if (super.isDefeated()) return;
 			var botHealing:int = Math.min(5 + rand(16), HPMax() - HP());
-			if (botHealing > 0) output("\n\n" + possessive(StringUtil.toTitleCase(getCombatName())) + " repair protocols kick in. <b>(H: +<span class='hp'>" + botHealing + "</span>)</b>");
-			HP(botHealing);
+			if (botHealing > 0) {
+				output("\n\n" + possessive(StringUtil.toTitleCase(getCombatName())) + " repair protocols kick in.");
+				var damageResult:DamageResult = new DamageResult();
+				damageResult.hpDamage = (-1 * botHealing);
+				outputDamage(damageResult);
+				HP(botHealing);
+			}
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
@@ -417,8 +422,10 @@ Target Link
 			output("The drone Valden is inhabiting takes a moment to plant its feet and turtle up behind the heavy metal bulwark that replaces its face. You watch with annoyance as its energy shields thrum, recharging from the damage you’ve inflicted. Damn!");
 			var healing:int = Math.min(	Math.round((15 + rand(18) + rand(17))*hostCreature.shieldsMax()/100),
 										hostCreature.shieldsMax() - hostCreature.shields());
-			output(" <b>(S: +<span class='shield'>" + healing + "</span>)</b>")
-			hostCreature.shields(healing)
+			var damageResult:DamageResult = new DamageResult();
+			damageResult.shieldDamage = (-1 * healing);
+			outputDamage(damageResult);
+			hostCreature.shields(healing);
 		}
 		
 		private static function valdenTracerRound(hostCreature:Creature, target:Creature, alliedCreatures:Array):void

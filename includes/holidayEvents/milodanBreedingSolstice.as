@@ -92,7 +92,7 @@ public function moreMilodanSolstice():void
 	else output("[pc.vaginas]");
 	output(". Time loses meaning as you wander through the sexual miasma, and before you know it, it’s the dead of night and you find yourself at the foot of a massive tent.");
 	//move location somewhur cheaty - store OG location for movement back?
-	currentLocation = "MYRNAS CAVE";
+	currentLocation = "UVETO WILDERNESS";
 	generateMap();
 	output("\n\n<i>“Ah, the gathering has just begun!”</i> One of the more venerated-looking women yells. The rest of the group cheers and rushes inside, dragging you along with them.");
 
@@ -161,8 +161,11 @@ public function moreMilodanSolstice():void
 	//[Guys] Get breed like a bitch in heat.
 	if(pc.hasCock()) addButton(0,"Girls",celebrateSeasonsBreedings,undefined,"Girls","Go over and breed some bitches.");
 	else addDisabledButton(0,"Girls","Girls","You’d need a dick to breed those sabertooth kitty-bitches.");
-	if(pc.hasVagina() && !pc.isFullyWombPregnant()) addButton(1,"Guys",guysBreedingSolstice,undefined,"Guys","Get bred like a bitch in heat.");
-	else if(pc.isFullyWombPregnant()) addDisabledButton(1,"Guys","Guys","You’re already completely pregnant. Maybe you should go knock up some other girls and share the holiday spirit?");
+	if(pc.hasVagina())
+	{
+		if(!pc.isFullyWombPregnant()) addButton(1,"Guys",guysBreedingSolstice,undefined,"Guys","Get bred like a bitch in heat.");
+		else addDisabledButton(1,"Guys","Guys","You’re already completely pregnant. Maybe you should go knock up some other girls and share the holiday spirit?");
+	}
 	else addDisabledButton(1,"Guys","Guys","Something tells you that without a vagina, you aren’t going to get much attention from them. They’re out to share the season’s breedings!");
 }
 
@@ -210,7 +213,7 @@ public function celebrateSeasonsBreedings():void
 
 	if(pc.cumQ() < 8000) 
 	{
-		output("\n\nYou erupt inside her, pumping out far more than you ever thought you could. [pc.cum] spills out of you in waves that make your previous orgasms look like trickles. By the time you’re done she has a noticeable cum belly that she rubs with reverence.");
+		output("\n\nYou erupt inside her, pumping out far more than you ever thought you could. [pc.Cum] spills out of you in waves that make your previous orgasms look like trickles. By the time you’re done she has a noticeable cum belly that she rubs with reverence.");
 		output("\n\n<i>“T-thank y-you...”</i> She stammers before passing out.");
 	}
 	else if(pc.cumQ() < 40000)
@@ -259,7 +262,7 @@ public function celebrateSeasonsBreedings():void
 	output("\n\nYou roughly grab the busty bitch on your cock, toss her on her back, and line up your [pc.cock " + x + "] with her soaked breeding hole. It’s unconscious, like your body knows what’s happening and is preparing. Meanwhile, Cybris is just about finished inserting the delightful hunk of rock.");
 	output("\n\n<i>“Are you ready, sisters?”</i> A cheer rings out. <i>“Then let it begin!”</i> She slams the last few inches into you.");
 	output("\n\nYou let out a loud, bestial roar as every bit of numbed out pleasure surges back into you like a bolt of lightning. You slam into the busty breeding hole with enough force to push her forward. Your senses are laser focused; you can hear her heartbeat rise, her moans rise in octave, smell her need, fuck, you think you can even hear her ovulate.");
-	output("\n\nYou manhandle her obscene tits, becoming transfixed with the sprays of milk that come out. You can just imagine how much bigger and milkier they’re going to get after she bearsbares your children! You stand up, hoisting her up with you, by her hips. You jackhammer the eager slut into the ground, grinning as you feel watch her tits bounce into her face, and feel her juices coat your crotch. The bitch is so wet that every thrust creates another small puddle on the ground under you.");
+	output("\n\nYou manhandle her obscene tits, becoming transfixed with the sprays of milk that come out. You can just imagine how much bigger and milkier they’re going to get after she bears your children! You stand up, hoisting her up with you, by her hips. You jackhammer the eager slut into the ground, grinning as you feel watch her tits bounce into her face, and feel her juices coat your crotch. The bitch is so wet that every thrust creates another small puddle on the ground under you.");
 	output("\n\nShe tries to squeeze down, to take back control, but you won’t be denied! You own this cunt, you own her! You redouble your thrusts, going faster than you ever thought you were capable of. She tries to keep her composure, trying to steady herself, but eventually succumbs to you, laying limp, drooling into her own oversized tits as they nearly smother her. The sight of her so utterly ruined drives you over the edge, and you unload inside her.");
 	output("\n\nShe moans and gurgles as you cum, absolutely overwhelmed as you fill her womb to the brim and then some. Whatever this thing is doing to you is absolutely overcharging your production, not to mention completely destroying your refractory period. You don’t slow down, even when her womb becomes so pressurized that every thrust sends a jet of [pc.cum] flying out into the crowd.");
 	output("\n\nBy the time your orgasm subsides, her eyes have rolled up into her skull, her hands are absent-mindedly rubbing her swollen stomach, and you’re damn sure she’s completely gone. Seeing that you’re done with her, a male comes over, slings her over his shoulder and walks off to a small group of excited men.");
@@ -334,7 +337,7 @@ public function guysBreedingSolstice():void
 	output("\n\nYour mouth gapes open in awe, and a thought is breaking through the fog of your inebriated mind that this might not be the best idea. One of the men decides to take advantage of you state, however, and pours some kind of herbal tea down your throat. You barely get it all down before he gives you something else to choke on. He facefucks you in ernest, slamming his balls against your chin as he jackhammers you.");
 	output("\n\n<i>“That should <b>really</b> help the swimmers take to you. Just a little reward for being so accommodating.”</i>");
 	output("\n\nThe other two take that as the signal to start. They ram into you at the same time, hilting themselves as deep as your body will allow. It should feel at least weird to have this much meat in you, but you’re in heaven! Whatever he gave you has turned you numb to just about every sensation other than raw pleasure. That doesn’t stop your hands from working two of the other men though, that’s just instinct. That still leaves one man out in the cold though.");
-	output("\n\nYou feel your insides stirring too. Your womb feels like it’s on fire, unnaturally hungry to be constantly full, and raring to go when it’s not. <b>Your fertility has been super-charged</b>");
+	output("\n\nYou feel your insides stirring too. Your womb feels like it’s on fire, unnaturally hungry to be constantly full, and raring to go when it’s not. <b>Your fertility has been super-charged!</b>");
 	
 	var numVag:int = pc.totalVaginas();
 	//multi-puss:

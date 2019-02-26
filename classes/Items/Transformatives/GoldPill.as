@@ -387,7 +387,7 @@ package classes.Items.Transformatives
 				{
 					if(pc.girlCumTypeUnlocked(GLOBAL.FLUID_TYPE_HONEY))
 					{
-						output("\n\nA heat begins to radiates from your loins. Eager to grant yourself some release, you let your fingers wander, fondling your labia and caressing your [pc.clits] and rubbing your insides with mounting desire. The heat fades away but your lust remains, so you continue with your play.");
+						output("\n\nA heat begins to radiate from your loins. Eager to grant yourself some release, you let your fingers wander, fondling your labia and caressing your [pc.clits] and rubbing your insides with mounting desire. The heat fades away but your lust remains, so you continue with your play.");
 						if(pc.wettestVaginalWetness() <= 2) output("\n\nWhen your fluids begin to flow");
 						else output("\n\nWhen your always flowing fluids are dripping");
 						output(", your nostrils are greeted by a sweet scent. And your fingers can feel a sticky thick sap ");

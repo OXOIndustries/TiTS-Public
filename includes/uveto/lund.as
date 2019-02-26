@@ -1,6 +1,6 @@
 //Name: Lund
 //Personality: Fluffy with a Napoleon complex. Wants to dominantly dick down bigger aliens
-//Physical: 5’4”</i>, muscled, ottermode. 10”</i> doggy cock with a fat knot. Fluffy tail. Pale blue fur like the Shoubust. Penis colour like the Shoubust too because it looks like a tasty lolly. Facial expression probably not like the Shoubust; he’s not very friendly to outsiders.
+//Physical: 5' 4", muscled, ottermode. 10”</i> doggy cock with a fat knot. Fluffy tail. Pale blue fur like the Shoubust. Penis colour like the Shoubust too because it looks like a tasty lolly. Facial expression probably not like the Shoubust; he’s not very friendly to outsiders.
 
 //Sex scenes
 //Get doggied
@@ -2754,7 +2754,7 @@ public function lundSubmissionThing():void
 		output("\n\n<i>“Nnnngh, good [pc.girlBoy],”</i> he grunts, keeping your face firmly planted right in his groin as his balls pump against your chin. At his declaration, you can’t help it. Trying to keep your hips from jerking too violently, you gurgle into his massive, swelling knot while your");
 		if(pc.hasVagina() && !pc.isHerm())
 		{
-			output("puss");
+			output(" puss");
 			if(pc.totalVaginas() == 1) output("y spasms");
 			else output("ies spasm");
 			output(",");
@@ -2764,7 +2764,7 @@ public function lundSubmissionThing():void
 		}
 		else if(pc.isHerm())
 		{
-			output("puss");
+			output(" puss");
 			if(pc.totalVaginas() == 1)
 			{
 				output("y");
@@ -2784,7 +2784,7 @@ public function lundSubmissionThing():void
 		}
 		else
 		{
-			output("cock");
+			output(" cock");
 			if(pc.cockTotal() > 1) output("s stiffen");
 			else output(" stiffens");
 			output(", bouncing and flexing while you spray seed between Lund’s legs");
@@ -3026,8 +3026,8 @@ public function lundSpecialSubmission2(sceneSelect:Number):void
 		else output("The males know not to mess with my property,");
 		output("”</i> he says. <i>“You just don’t.”</i>");
 		output("\n\nPulling on your leash, he jerks you closer until you’re standing next to him, a slave accompanying their master. The hierarchy is immediately obvious to anyone who looks, and in a way, that makes you feel good about yourself. It’s Lund’s decision if he wants to show you off, and having your place known by everyone removes the need for pretenses. You’re free to be yourself, and you choose to place that sense of self in Lund’s firm, dominant hands. You can feel them on your");
-		if(pc.isTaur()) output("[pc.breasts]");
-		else output("[pc.butt]");
+		if(pc.isTaur()) output(" [pc.breasts]");
+		else output(" [pc.butt]");
 		output(" right now, unable to stop yourself from moaning quietly as he roughly cops a feel of you in plain view.");
 		output("\n\n<i>“Mm,”</i> he grunts approvingly. <i>“");
 		if(!korgiTranslate()) output("Alien");

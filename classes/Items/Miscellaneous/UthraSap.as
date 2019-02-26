@@ -182,8 +182,7 @@ package classes.Items.Miscellaneous
 						{
 							kGAMECLASS.output(" In the end you actually do, your [pc.sack] shrinking away until you’re left with a smooth patch of [pc.skinFurScales] in its place. <b>You no longer have balls!</b>");
 							
-							target.balls = 0;
-							target.ballSizeRaw = 0;
+							target.removeBalls();
 						}
 					}
 					else kGAMECLASS.output("\n\n" + target.ballSizeLockedMessage());

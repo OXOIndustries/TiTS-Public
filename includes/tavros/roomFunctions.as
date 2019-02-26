@@ -61,6 +61,7 @@ public function hangarFloors(bonus:Boolean = false):Array
 	floors.push(["Nursery", liftMove, "NURSERYELEVATOR", "Nursery Deck", "the nursery deck"]);
 	if(bonus)
 	{
+		if(MailManager.isEntryViewed("riya_party_invite") && flags["RIYA_PARTIED_YEAR"] == undefined) floors.push(["Party", riyaPartyLiftGo, undefined, "Party, Deck 4", "the U.G.C. garrison party"]);
 		if(flags["SAENDRA_XPACK1_STATUS"] == 1 || flags["SAENDRA_XPACK1_STATUS"] == 2)
 			floors.push(["Deck 92", saendraX1LiftGo, undefined, "Deck 92", "Deck 92"]);
 	}
@@ -83,6 +84,11 @@ public function hangarBonus():Boolean
 		output("--whatever she contacted you about, it sounded pretty urgent.");
 		addButton(btnSlot++, "Deck 92", saendraX1LiftGo, undefined, "Deck 92", "Go to Deck 92.");
 	}
+	// Azra encounter
+	if(days >= 8 && flags["AZRA_RECRUITED"] == undefined && flags["AZRA_DISABLED"] == undefined) 
+	{
+		if(azraBonusProc(btnSlot++)) return true;
+	}
 	
 	// Normal floors
 	var floors:Array = hangarFloors();
@@ -100,10 +106,6 @@ public function hangarBonus():Boolean
 				addButton(5, "Up", floors[i + 1][1], floors[i + 1][2], floors[i + 1][3], ("Go to " + floors[i + 1][4] + "."));
 			}
 		}
-	}
-	if(days >= 8 && flags["AZRA_RECRUITED"] == undefined && flags["AZRA_DISABLED"] == undefined) 
-	{
-		if(azraBonusProc(btnSlot++)) return true;
 	}
 	
 	return false;

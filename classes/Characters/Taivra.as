@@ -274,11 +274,11 @@
 		{
 			output("\n\nCharging forward, Dane tosses away a splintered spear. His arms come open, open-palmed and grabbing for Taivra!");
 			//Miss
-			if(combatMiss(kGAMECLASS.chars["DANE"], this)) output("\nShe twists out of the way of his four-armed grapple in the nick of time. The buff Ausar snickers, liberating a spear from the ground. <i>\"Speed alone cannot win a fight.\"</i>");
+			if(combatMiss(kGAMECLASS.chars["DANE"], this)) output("\nShe twists out of the way of his four-armed grapple in the nick of time. The buff Ausar snickers, liberating a spear from the ground. <i>“Speed alone cannot win a fight.”</i>");
 			//Hit
 			else
 			{
-				output("\nTaivra tries to twist out of the way, but there’s just so many hands grabbing for her at once. Her arms are pinned to her [pc.hips] by one pair while the other bear hugs her against his broad chest. <i>\"Now, [pc.name]! Hit her now!\"</i>");
+				output("\nTaivra tries to twist out of the way, but there’s just so many hands grabbing for her at once. Her arms are pinned to her [pc.hips] by one pair while the other bear hugs her against his broad chest. <i>“Now, [pc.name]! Hit her now!”</i>");
 				output("\n<b>Taivra is grappled!</b>");
 				createStatusEffect("Dane Grappled",0,35,0,0,false,"Constrict","Taivra is pinned in a grapple.",true,0);
 			}

@@ -479,7 +479,7 @@
 					target.vaginas[x].clits -= 1;
 					target.lust(50);
 					
-					output("\n\nYour fingers go down to your clitorial region of their own volition. With how much your [pc.clits] are itching, you just can’t help it. ");
+					output("\n\nYour fingers go down to your clitoral region of their own volition. With how much your [pc.clits] are itching, you just can’t help it. ");
 					if( target.vaginas[x].clits > 1 ) output("One of them, however, is itching far more than the others, so you focus your efforts on that one. ");
 					output("Gently rubbing the region brings a soothing wave of relief, your unfocused eyes gaze upwards, and you continue to massage the region until the itching stops. As your wits return, you slowly realize something has gone missing. ");
 					output("<b>A quick examination confirms it: you have one less clit than before. Well, it’s not a big loss, since the others are now feeling that much more sensitive to compensate. </b>");
@@ -495,7 +495,7 @@
 				{
 					target.vaginas[x].bonusCapacity -= (10 + 10*rand(9));
 					if( target.vaginas[x].bonusCapacity < 0 ) target.vaginas[x].bonusCapacity = 0;
-					output("\n\nThe contractions in your burning canal intensify, but at the same time the region starts feeling very, very good. Your vagina is literally rubbing itself from the inside, and it’s turning out to be a unique and delightful experience! Intent on not wasting this rare chance, you reach for your [pc.pussy " + x + "] with both hands – one massages the labia and clitorial regions, while the other penetrates your folds. You feel both helpless and amazed at how much your squirming walls are clenching your fingers, and in this overly sensitive state, it doesn’t take long before you reach a mind-shattering orgasm that causes you to blank out for a moment, moaning in uncontained pleasure as the [pc.girlCumNoun] drenches your hand and thighs. ");
+					output("\n\nThe contractions in your burning canal intensify, but at the same time the region starts feeling very, very good. Your vagina is literally rubbing itself from the inside, and it’s turning out to be a unique and delightful experience! Intent on not wasting this rare chance, you reach for your [pc.pussy " + x + "] with both hands – one massages the labia and clitoral regions, while the other penetrates your folds. You feel both helpless and amazed at how much your squirming walls are clenching your fingers, and in this overly sensitive state, it doesn’t take long before you reach a mind-shattering orgasm that causes you to blank out for a moment, moaning in uncontained pleasure as the [pc.girlCumNoun] drenches your hand and thighs. ");
 					if( target.hasCock() && ( target.totalCocks() > 0 ) ) output("[pc.eachCock] joins your pussy in a sympathetic orgasm, splashing [pc.cumNoun] everywhere. ");
 					else if( target.tailType == GLOBAL.TYPE_COCKVINE ) output("You tailcock joins your pussy in a sympathetic orgasm, splashing [pc.cumNoun] everywhere. ");
 					output("<b>After you come to your senses, you find that your [pc.pussy " + x + "] feels a bit less voluminous than before. </b>");

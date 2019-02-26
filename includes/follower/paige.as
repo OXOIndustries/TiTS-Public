@@ -35,6 +35,9 @@ public function yogaToning(arg:Number):void
 	pc.modTone(arg);
 	if(flags["PAIGE_YOGA_DAY"] == undefined || flags["PAIGE_YOGA_DAY"] != days) flags["PAIGE_YOGA_DAY"] = days;
 	soreDebuff(4);
+	//This should do nothing if Paige isn't crew
+	if (!pc.hasStatusEffect("Paige Showering")) pc.createStatusEffect("Paige Showering");
+	pc.setStatusMinutes("Paige Showering", 12 * 60);
 }
 
 public function paigeBlind():Boolean
@@ -222,6 +225,7 @@ public function yogaIntro():Boolean
 			// if the PC attempts to enter the yoga class after having done one class earlier that day (scene: invalid attendance)
 			if(flags["PAIGE_YOGA_DAY"] != undefined && flags["PAIGE_YOGA_DAY"] == days)
 			{
+				showImage("PaigeYoga");
 				output("You twist the knob to Paige’s yoga class, eager to get back into the swing of her session. She’s busy with her current class and is helping one student correct their posture, and she doesn’t rise to greet you. <i>“Hello!”</i> she calls out.");
 
 				output("\n\nYou respond your greeting. At that, Paige gets up, spinning towards you. <i>“[pc.name]?”</i> she asks. <i>“No no, I’m afraid you’ve already had your session today, sweet thing. You mustn’t do another!”</i>");
@@ -238,6 +242,7 @@ public function yogaIntro():Boolean
 			}
 			else if(paigeRecruited())
 			{
+				showImage("PaigeYoga");
 				output("You show yourself into Paige’s yoga classroom and are greeted by the all-too-familiar sight of Paige personally instructing a student on how to hold their form properly. It’s a little nostalgic for you – it seemed like just yesterday when you first walked into her class and introduced yourself. You two have come an awfully long way.");
 				output("\n\nPaige looks up from her student, her eyes locking onto yours, and she smiles brightly. <i>“Hey there, [pc.name],”</i> she calls, snickering a little bit at the fact that she doesn’t have to call you ‘captain’ while she’s on shore-leave. <i>“It’s good to see you here! Are you interested in joining my class today? You know what to do if you are.”</i>");
 				output("\n\nYou consider it.");
@@ -266,6 +271,7 @@ public function yogaIntro():Boolean
 			// any valid lesson; PC has 19 credits or less (scene: invalid credits)
 			else if(pc.credits < 20)
 			{
+				showImage("PaigeYoga");
 				output("You twist the knob to Paige’s yoga class, eager to get back into the swing of her session. She’s busy with her current class and is helping one student correct their posture, and she doesn’t rise to greet you. <i>“Hello!”</i> she calls out.");
 				output("\n\nYou respond with your greeting. <i>“Oh, hello [pc.name]!”</i> she says, standing to greet you properly. <i>“You’re right on time for our next lesson! Just take an open mat anywhere.”</i>");
 				output("\n\nThe monitor floats silently at the front of the room, quietly watching some of the practitioners. When your eyes meet its wide, colourful, cartoony eyes, you hear the faintest of beeps from its speakers.");
@@ -281,6 +287,7 @@ public function yogaIntro():Boolean
 			else if(flags["PAIGE_YOGA"] == undefined)
 			{
 				pc.credits -= 20;
+				showImage("PaigeYoga");
 				output("You twist the knob to Paige’s yoga class, eager to get back into the swing of her session. She’s busy with her current class and is helping one student correct their posture, and she doesn’t rise to greet you. <i>“Hello!”</i> she calls out.");
 				output("\n\nYou respond with your greeting. <i>“Oh, hello [pc.name]!”</i> she says, standing to greet you properly. <i>“You’re right on time for our next lesson! Just take an open mat anywhere.”</i>");
 				output("\n\nYou strip off your effects and do as instructed, taking an open mat nearer to the front of the class. You notice that the monitor from the other day is now at the front of the classroom, its disarming eyes quietly watching the room. <i>“The position we’re doing now is called the ‘staff.’ Sit on your bum and stretch your legs directly in front of you, toes up. Be sure to keep your back straight, and place your palms flat on the floor by your sides.”</i>");
@@ -298,6 +305,7 @@ public function yogaIntro():Boolean
 			{
 				pc.credits -= 20;
 				flags["PAIGE_YOGA"] = 3;
+				showImage("PaigeYoga");
 				output("You enter Paige’s yoga classroom once more. The familiar scene of the mats of the room occupied by other practitioners taking a difficult-looking pose greets you once again. You can see Paige closer to the front, helping out another student in keeping their elbows straight, and off in the distance is the monitor, gently reminding another student to keep their toes pointed straight.");
 				output("\n\nYou’ve been here enough times to not need the instruction to remove your effects. Paige and the monitor both glance in your direction for a moment. <i>“[pc.name], good to see you!”</i> says Paige. <i>“Not that I was to presume anything, but I’m sure you’re here for another lesson?”</i> When you confirm, you hear a beep from your codex, and you know you’ve been deducted the regular twenty credits.");
 				output("\n\nYou take a position at an open mat, and you begin trying to mimic what everyone else is doing. <i>“Today we’re doing a pose called the back-bend. It’s not an advanced position, but it’ll challenge your sense of balance.”</i>");
@@ -322,6 +330,7 @@ public function yogaIntro():Boolean
 			// The PC goes to Paige’s Yoga Class any valid time it’s open, with enough credits, and after scene: intro 3 is completed (scene: Difficulty Select 1)
 			else
 			{
+				showImage("PaigeYoga");
 				output("You show yourself into Paige’s Yoga class. She’s busy helping one of her other students work their way into a different position, making sure their knees are bent where they’re supposed to and that their backs are completely straight. ");
 				//if PC has completed scene: Paige 1
 				if(flags["MET_IDDI"] != undefined) output("Paige’s robotic helper Iddi");
@@ -2376,7 +2385,9 @@ public function firstTimePaigeCrewHiHi():void
 		}
 		// Merge here
 		output("\n\nShe claps her hands together, straightening her stance and taking a more professional demeanor. <i>“Now then, Captain Steele,”</i> she says, standing straight, trying to look stern and disciplined but her goofy smile and wagging tail give her away. <i>“Where are my quarters? I have some things I need to be setting up.”</i>");
-		output("\n\n<b>Paige is now a crewmate!</b>");
+		
+		output("\n\n(<b>Paige has joined your crew!</b>)");
+		
 	}
 	// Continue here if the PC has no other crew
 	else
@@ -2391,8 +2402,8 @@ public function firstTimePaigeCrewHiHi():void
 		output("\n\n<i>“Well... I’ve been on worse ships,”</i> she giggles. <i>“It’s certainly spacious enough; I have a few ideas on how to manage my own quarters to keep up my yoga with Iddi. And we don’t seem to be using the cargo hold for a lot. Maybe I can turn it into a gym or something.”</i> She turns to you, smiling giddily. <i>“With your permission, of course, Captain Steele.”</i>");
 		output("\n\nCaptain Steele. You kind of like the sound of that. <i>“I already know where I’m setting up,”</i> she continues, standing at attention, trying to look stern and disciplined but her goofy smile and wagging tail give her away. <i>“Permission to start making myself at home. " + pc.mf("Sir","Ma’am") + "?”</i>");
 		output("\n\nYou ask Paige if this is going to be a regular thing between you two. <i>“Nah,”</i> she laughs, relaxing and stepping away from you, towards the quarters she’d already picked out for herself.");
-
-		output("\n\n<b>Paige is now a crewmate!</b>");
+		
+		output("\n\n(<b>Paige has joined your crew!</b>)");
 	}
 	//[=Next=]
 	// end scene (scene: Welcoming)

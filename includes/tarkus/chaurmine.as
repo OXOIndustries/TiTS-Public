@@ -953,7 +953,7 @@ public function intimateCatchChaurmine():void
 	if(pc.tallness < 60)
 	{
 		output("Chaurmine leans down, his warmth encompassing you as he caresses your sides; his heavy hands delicately exploring what he can reach. You sigh, starting to relax, only to tense up with a startled yelp when Chaurmine clutches your [pc.hips], lifting you off the ground");
-		if(!pc.hasWings()) output(", causing your [pc.wings] to flail in alarm");
+		if(pc.hasWings()) output(", causing your [pc.wings] to flail in alarm");
 		if(pc.tailCount > 0) 
 		{
 			output(" as your [pc.tails] whip");

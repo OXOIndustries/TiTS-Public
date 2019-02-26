@@ -696,7 +696,9 @@ public function worshipZeBullCawk():void
 	author("Savin");
 	showName("OGGY &\nAMMA");
 	output("<i>“What do you two " + pc.mf("","girls ") + "say about giving this bad boy a little love, huh?”</i> Ogram says, his fingers eagerly working his belt off. He pulls it, and Amma almost instantly has her hands around his pants, tugging them down with aplomb to reveal the huge swell of her lover’s growing bovine erection, the long, slender pole of cow-meat rapidly rising to its full, intimidating height. Amma takes a long, full whiff of him, her overburdened chest swelling as she drinks in the potent, masculine scent of her lover’s animalistic erection.");
-	output("\n\nAmma’s fingers wrap around Og’s cock, holding the lengthy pole at full mast as she runs her nose across it from stem to crown. Her eyes all but roll up in her head, lids fluttering as she succumbs to the meaty, earthy musk of pheromones radiating off of Ogram’s manhood. ");
+	output("\n\n");
+	showImage("OggyAmmaBJScene");
+	output("Amma’s fingers wrap around Og’s cock, holding the lengthy pole at full mast as she runs her nose across it from stem to crown. Her eyes all but roll up in her head, lids fluttering as she succumbs to the meaty, earthy musk of pheromones radiating off of Ogram’s manhood. ");
 	//if PC is Treated-feminine:
 	if(pc.isTreated() && pc.isBimbo()) output("You smell them too, your heightened fuck-dar going on high alert as Amma starts to gently stroke Ogram’s cock. You nearly fall to your [pc.knees] as his virile scent, the scent of a breeder ready and eager to fuck, nearly overwhelms your lust-addled, Treated mind.");
 	else output("You can’t deny the odor, either: the air’s soon thick with it, now that Ogram’s cock is out and being gently caressed by the busty bimbo before him: an aroma that nearly makes your [pc.knees] wobble with mounting desire.");

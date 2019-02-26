@@ -348,7 +348,8 @@ public function celiseSucksYouDry():void {
 		}
 	}
 	//Resume
-	output("\n\n<i>“Feels like, totally good, right?”</i> Celise asks, squeezing her arms and constantly suckling dicksleeves tighter. <i>“Most bodies can’t handle this kind of suction, and they just let it all out without getting any kind of relief.”</i> Spots of [pc.cumColor] are swimming inside her as she teases you. <i>“You taste so good, too! Captain, I could keep you like this all day long!”</i>");
+	output("\n\n");
+	output("<i>“Feels like, totally good, right?”</i> Celise asks, squeezing her arms and constantly suckling dicksleeves tighter. <i>“Most bodies can’t handle this kind of suction, and they just let it all out without getting any kind of relief.”</i> Spots of [pc.cumColor] are swimming inside her as she teases you. <i>“You taste so good, too! Captain, I could keep you like this all day long!”</i>");
 	output("\n\nYou shudder, wracked by rising ecstasy and yet unable to hit the climax that feels so achingly close. The steady ejaculation continues well past when you thought you should have gone dry.");
 	if(pc.cumQ() >= 5000) output(" Celise, meanwhile, is flush with fresh fluid, noticeably less cohesive and dripping uncontrolled moisture into a puddle of sex and goo at her base.");
 	output(" She draws cum from you until the flow thins, turning runny, more water than protein, and an uncomfortably empty feeling grows even as your [pc.balls] ");
@@ -1768,7 +1769,12 @@ public function zDomCeliseGo():void
 			else output("dicks literally part");
 			output(" her fluid form in a quest to touch the deepest reaches of her sex.");
 			if(pc.hasCock()) pc.cockChange();
-			output("\n\nCelise flops forwards, ");
+			output("\n\n");
+			if(pc.hasCock(GLOBAL.TYPE_EQUINE) || pc.cocks[0].hasFlag(GLOBAL.FLAG_BLUNT)) showImage("CeliseFuckHorse");
+			else if(pc.hasCock(GLOBAL.TYPE_CANINE) || pc.hasAKnot()) showImage("CeliseFuckDog");
+			else if(pc.hasCock(GLOBAL.TYPE_FELINE)) showImage("CeliseFuckCat");
+			else showImage("CeliseFuckHuman");
+			output("Celise flops forwards, ");
 			if(pc.biggestTitSize() < 1) output("barely able to hold herself upright through your savage strokes by pressing against your [pc.chest]");
 			else output("smooshing your tits as she tries to hold herself upright through your savage strokes");
 			output(". Eventually she gives up, laying her head on your chest as you continue to knock the jelly from her frame - the puddle of shapeless galotian goo around you grows in time with her moans as the lust for more dick drains the willpower needed to maintain her form. Before you have a chance to reduce her to a quivering puddle of needy slut, though, you cum. Your ejaculation ");

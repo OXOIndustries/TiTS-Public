@@ -457,7 +457,7 @@ public function nutSwellUpdates(deltaT:uint = 0):void
 		}
 		else if(!bigEndowments && pc.lowerUndergarment.sexiness > 3)
 		{
-			AddLogEvent(ParseText("No longer bulging it to its limits, the hardlight jock relaxes around your groin, giving you some much needed space to breath--however, due to that, <b>it seems to have lost a little bit of its sexual appeal</b>."), "passive", deltaT);
+			AddLogEvent(ParseText("No longer bulging it to its limits, the hardlight jock relaxes around your groin, giving you some much needed space to breathe--however, due to that, <b>it seems to have lost a little bit of its sexual appeal</b>."), "passive", deltaT);
 			pc.lowerUndergarment.onEquip(pc);
 		}
 	}

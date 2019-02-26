@@ -262,9 +262,18 @@ public function siegwulfeInteractBonus(btnSlot:int = 0):String
 public function siegwulfeOnShipBonus(btnSlot:int = 0, fromInv:Boolean = false):String
 {
 	// Bought, but not activated.
-	if(flags["WULFE_ON_SHIP"] == false) return "\n\nYou remember an order you placed for a Siegwulfe... <b>perhaps you should check to see if it arrived in your ship’s storage?</b>";
+	if(flags["WULFE_ON_SHIP"] == false)
+	{
+		addDisabledButton(btnSlot, "Siegwulfe", "Siegwulfe", "Check your storage!");
+		return "\n\nYou remember an order you placed for a Siegwulfe... <b>perhaps you should check to see if it arrived in your ship’s storage?</b>";
+	}
 	// No Siegwulfe!
-	if((!fromInv && !hasSiegwulfe()) || pc.hasItemInStorageByClass(SiegwulfeItem)) return "";
+	if(!fromInv && !hasSiegwulfe()) return "";
+	if(pc.hasItemInStorageByClass(SiegwulfeItem))
+	{
+		addDisabledButton(btnSlot, (chars["WULFE"].short), (chars["WULFE"].short), "You can’t do anything with your Siegwulfe while she is in your ship’s storage.");
+		return "\n\nYour Siegwulfe is currently stored away in your ship’s storage.";
+	}
 	
 	var bonusText:String = "";
 	

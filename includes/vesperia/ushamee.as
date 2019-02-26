@@ -95,7 +95,7 @@ public function approachUshameeCorridor2():void
 	output(" and takes you to a ‘taur-accessible booth near the back. ");
 	if (flags["MET_DEL_SHEMALE"] == undefined) output("One of the serving staff ");
 	else output("Del ");
-	output("quickly comes over and takes a drink order from you both before leaving you in peace with the brawny space-centauress. Once she’s settled in one her haunches, the chief reaches up and yanks off the elastic tie holding her ebony locks back in a ponytail. Her luxuriously long hair comes spilling down around her shoulders, drawing your attention to the fact that she’s not wearing the armor you remember from your first meeting, but rather a white t-shirt with a picture of a railgun printed atop her ample rack underneath an unbuttoned red flannel shirt, and a blanket made of blue denim wrapped over her bestial lower half.");
+	output("quickly comes over and takes a drink order from you both before leaving you in peace with the brawny space-centauress. Once she’s settled in on her haunches, the chief reaches up and yanks off the elastic tie holding her ebony locks back in a ponytail. Her luxuriously long hair comes spilling down around her shoulders, drawing your attention to the fact that she’s not wearing the armor you remember from your first meeting, but rather a white t-shirt with a picture of a railgun printed atop her ample rack underneath an unbuttoned red flannel shirt, and a blanket made of blue denim wrapped over her bestial lower half.");
 	output("<i>“Yeah, I was hoping we could talk. About what happened, and um... what we did.”</i>");
 	output("\n\nThe last few words there cause a dark, purplish flush to spread across her cheeks. Your mind immediately flashes back to those last, involuntarily intimate moments aboard the ship, with the parasites wriggling inside of the chief’s gravid belly, peeking their tentacle-like appendages back out of her chocolate-hued pussy.");
 	if (flags["FUCKED_CHIEF_NEYKKAR"] != undefined)
@@ -154,7 +154,7 @@ public function noIdeaUshamee():void
 	
 	output("You answer with a shrug, saying that how she feels is up to her.");
 	output("\n\n<i>“Well of course it is!”</i> she huffs, crossing her arms in a way that puffs out her already-big tits. <i>“And let me tell you, I’m a girl who knows what she wants! And what I want... is you. That’s why I called you out here, and that’s what I’m gonna get! So are you in, or am I gonna have to work at it until you give in?”</i>");
-	output("\n\nNow that sounds more like the chief you remember. If you’re onboard, maybe you out to ask her out. Or let her ask you out, whichever comes first.");
+	output("\n\nNow that sounds more like the chief you remember. If you’re onboard, maybe you ought to ask her out. Or let her ask you out, whichever comes first.");
 	
 	flags["USHA_STATE"] = 2;
 	processTime(1 + rand(2));
@@ -218,7 +218,7 @@ public function goForUsha():void
 	
 	output("<i>“Deal,”</i> you say, standing.");
 	output("\n\nUsha chuckles and finishes off her beer, drawing in a long, sharp breath as she does so. <i>“Alright! Now we’re talking. C’mon, there’s a shuttle planetside on the other side of the station.”</i>");
-	output("\n\nThe chief pays off the tab and offers you her hand, leading you of of the lodge and around the gentle curve of Canadia Station’s outer ward. The transit station is much more crowded than anywhere else you’ve visited here, and most of them ‘taurs to boot: deers and meese and good old-fashioned horsefolk, all coming and going from the planet’s surface. ");
+	output("\n\nThe chief pays off the tab and offers you her hand, leading you off of the lodge and around the gentle curve of Canadia Station’s outer ward. The transit station is much more crowded than anywhere else you’ve visited here, and most of them ‘taurs to boot: deers and meese and good old-fashioned horsefolk, all coming and going from the planet’s surface. ");
 	if (flags["USHA_DATE"] == undefined)
 	{
 		output("You’ve heard that Vesperia’s got a serious culture for tauric gene-mods, but seeing a slice of the public really drives home just how many four-legged citizens the planet must have. They easily outnumber the two-legged folk three to one. You and Usha are ushered onto a shuttlecraft by a particularly statuesque moose-bodied woman in a red mountie’s jacket who sweetly guides passengers into appropriate cabins before sealing you in.");
@@ -241,7 +241,7 @@ public function firstDateUsha():void
 	clearMenu();
 	chiefNeykkarHeader();
 	
-	moveTo("GAME OVER");
+	moveTo("USHADATE");
 	
 	output("<i>“There’s the gravball arena a couple blocks from here,”</i> Usha suggests as the two of you -- and a crowd of local bulls -- gather onto a spacious elevator and head towards the ground floor. <i>“And I’m pretty sure there’s a game in just a couple hours.”</i>");
 	output("\n\nSounds fun. You tell her to lead the way, falling in beside the towering leithan. Happily, the sidewalks on Vesperia are made for ‘taurs, so there’s plenty of room for both of you to walk side by side. Usha’s arm settles around your shoulder, pulling you against her flank and guiding you towards your destination. It isn’t long before you arrive at a wide, flat arena covered in banners for local sports teams and Vesperian lagers.");
@@ -270,7 +270,7 @@ public function secondDateUsha():void
 	clearMenu();
 	chiefNeykkarHeader();
 	
-	moveTo("GAME OVER");
+	moveTo("USHADATE");
 	
 	output("<i>“I’ve got an idea,”</i> Usha says, leading you towards the edge of the city. <i>“C’mon, it’s not far.”</i>");
 	output("\n\nFair enough. You " + (pc.isTaur() ? "trot along beside Usha" : "hop onto Usha’s back") + " and set out to your mystery destination. Usha’s not exactly a master conversationalist, but over the half hour or so you end up walking, you manage to coax her into talking a little about her work with NovaSec.");

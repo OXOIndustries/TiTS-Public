@@ -464,7 +464,6 @@ package classes.Items.Transformatives
 					if(!target.cocks[i].hasFlag(GLOBAL.FLAG_LUBRICATED)) return false;
 				}
 			}
-			else return false;
 			if(target.hasVagina())
 			{
 				for(i = 0; i < target.vaginas.length; i++)
