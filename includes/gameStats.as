@@ -3050,13 +3050,16 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				if(flags["NYM-FOE"] != undefined) output2("\n<b>* Nym-Foe:</b> Met her");
 				if(flags["NYM-FOE"] >= 2) output2(", Defeated Her");
+				if(flags["NYM-FOE_DISASSEMBLED"] != undefined) output2(", Disassembled her");
+				if(flags["NYM-FOE_FIXED"] != undefined) output2(", Fixed her");
+				if(flags["NYM-FOE_ACTIVATED"] != undefined) output2(", On patrol");
 				if(flags["NYM-FOE_FUCKED"] != undefined) output2("\n<b>* Nym-Foe, Times Sexed Her:</b> " + flags["NYM-FOE_FUCKED"]);
 				if(flags["NYM-FOE_LOSSES"] != undefined) output2("\n<b>* Nym-Foe, Times Lost to Her:</b> " + flags["NYM-FOE_LOSSES"]);
-				if(flags["NYM-FOE_CHIP_RETURN"] != undefined || pc.hasItemByClass(DamagedVIChip))
+				if(flags["NYM-FOE_CHIP_RETURN"] != undefined || pc.hasItemByClass(DamagedVIChip) || flags["NYM-FOE_LOOT_CHIP"] != undefined)
 				{
 					output2("\n<b>* Damaged V.I. Chip:</b> Looted");
-					if(flags["NYM-FOE_CHIP_RETURN"] == undefined) output2(", In possession");
-					else output2(", Given to JoyCo, Rewarded");
+					if(flags["NYM-FOE_CHIP_RETURN"] != undefined) output2(", Given to JoyCo, Rewarded");
+					else if(pc.hasItemByClass(DamagedVIChip)) output2(", In possession");
 				}
 				if(flags["DOLLMAKER_STATUS"] != undefined)
 				{
@@ -3070,17 +3073,48 @@ public function displayQuestLog(showID:String = "All"):void
 						default: output2(" Seen it"); break;
 					}
 				}
-				if(flags["IQBGONE_POLICED"] != undefined || pc.hasItemByClass(IQBGone))
+				if(flags["IQBGONE_POLICED"] != undefined || pc.hasItemByClass(IQBGone) || flags["DOLLMAKER_LOOT_IQBGONE"] != undefined)
 				{
 					output2("\n<b>* IQ B-Gone:</b> Looted");
-					if(flags["IQBGONE_POLICED"] == undefined) output2(", In possession");
-					else
+					if(flags["IQBGONE_POLICED"] != undefined)
 					{
 						output2(", Given to U.G.C.");
 						if(flags["IQBGONE_POLICED"] >= 2) output2(", Rewarded");
 					}
+					else if(pc.hasItemByClass(IQBGone)) output2(", In possession");
 				}
 				
+				sideCount++;
+			}
+			// Nym-Foe Repair
+			if(flags["NYM-FOE_REPAIR_QUEST"] != undefined)
+			{
+				output2("\n<b><u>Fixing the Nym-Foe</u></b>");
+				output2("\n<b>* Status:</b>");
+				switch(flags["NYM-FOE_REPAIR_QUEST"])
+				{
+					case -1:
+					case -2:
+					case -3:
+						output2(" Accepted, Doctor Badger created VI chip");
+						if(flags["NYM-FOE_REPAIR_QUEST"] == -3) output2(", Returned chip to JoyCo");
+						else if(flags["NYM-FOE_REPAIR_QUEST"] == -1) output2(", Sold chip");
+						else output2(", Lost chip");
+						output2(", Failed");
+						break;
+					case 1:
+						output2(" Accepted");
+						if(pc.numberOfItemByClass(SexbotChip) < 6) output2(", <i>Retrieve sexbot VI chips...</i>");
+						else output2(", Sexbot chips retrieved, <i>Return to Doctor Badger!</i>");
+						output2("\n<b>* Inventory, Sexbot VI Chips:</b> " + pc.numberOfItemByClass(SexbotChip) + " / 6");
+						break;
+					case 2:
+						output2(" Accepted, Doctor Badger created VI chip");
+						if(pc.hasItemByClass(DamagedVIChip)) output2(", <i>Insert chip into Nym-Foe!</i>");
+						break;
+					case 3: output2(" Accepted, Doctor Badger created VI chip, Fixed Nym-Foe, Completed"); break;
+					default: output2(" <i>Unknown</i>"); break;
+				}
 				sideCount++;
 			}
 			// Deck 13

@@ -5805,7 +5805,7 @@ public function recruitBimboPenpen():void
 	processTime(10);
 	pc.lust(4);
 	clearMenu();
-	addButton(0,"Cam",camwhoreItUpBimboPenny,undefined,"Cam","Convine Penny to become a camwhore to pay for her debts.")
+	addButton(0,"Cam",camwhoreItUpBimboPenny,undefined,"Cam","Convince Penny to become a camwhore to pay for her debts.");
 	addButton(1,"Never Mind",nevermindBimboCumPennyNoCamwhore,undefined,"Never Mind","Drop the topic for now. No need to push it.");
 }
 
