@@ -457,6 +457,7 @@
 					{
 						output(" Including the disappearance of your [pc.sack]...");
 						target.removeBalls();
+						target.resetCumProduction();
 					}
 					
 					// New pussy:

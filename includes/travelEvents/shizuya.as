@@ -35,6 +35,14 @@ public function showMika(lood:Boolean = false):void
 	showBust((lood ? "MIKA_NUDE" : "MIKA"));
 }
 
+public function shizzyPrepBalls(cumQ:Number = 5000):void
+{
+	chars["SHIZUYA"].balls = 4;
+	chars["SHIZUYA"].ballSizeRaw = 28;
+	chars["SHIZUYA"].createPerk("Fixed CumQ");
+	chars["SHIZUYA"].setPerkValue("Fixed CumQ", 1, cumQ);
+}
+
 /*
  * Yammi stuf
 */
@@ -2050,7 +2058,7 @@ public function shizzyStareAt():void
 	output("\n\nIf the titanic physique weren’t enough to tip you off to her being Treated, the huge ram horns that curl above her head are. The horns twist backward from her forehead, wrapping around her large, feline ears. Her face is covered in small nicks and some large scars, and it’s obvious she doesn’t wear any makeup, but she still manages to be quite cute. Her features are surprisingly soft, with a button nose, supple lips, and long eyelashes. Her feline eyes are odd, shifting more toward red as her lusts inflame, and seem to convey a level of focus beyond what her usually foggy expression would imply. Her straight hair is short and messy, not even reaching halfway down her neck at its longest point. It’s dark red in color.");
 	output("\n\nHer top half is quite built. Her arms are large, but not massive, and coated in strong muscle. You can see her forearms and hands are covered in dark red fur and tipped with abnormally large claws. Her waist is slim, with pronounced abs and back muscle. Her massive K-Cup tits complement the largeness of the rest of her torso, keeping a strong air of femininity despite her muscle. Her intentional jostling of her massive melons makes it very clear that she’s not wearing a bra. Her colossal nipples make obvious swells in her shirt, and you can make out small wet patches at the peaks. Large gashes mar her torso; three large ones across her right shoulder, with more down her back, and one cutting from her other shoulder down. Her bottom half is an almost striking contrast to her top. Her thighs are almost as wide as her torso, and covered in thick muscle. Heavy fur covers her legs from her thigh down, ending in human feet that look somewhat out of place. Her ass borders on ridiculous. Massive, supple globes that make big, noticeable bulges in the back of her skirt. Two feline tails swing happily above her southern peaks, often attempting to frame her rump when she spies someone looking.");
 	output("\n\nThe busy looking bulge, visible even through her loose skirt, gives way to a very crowded looking crotch as Shizuya follows your gaze and lets her monsters spring out. Massive, twined cocks grow out from her crotch, leaking eager streams of pre from the attention you’re giving them. Each shaft is two feet long and about four inches thick. Her shafts are dark red. Each bears the distinct flare of a horse cock, and also the wicked looking but soft spines of a feline phallus. Below her dicks lies a packed scrotum with four soccer-ball-sized balls. Behind her testes is a pink pussy with heavily puffed out lips that constantly drool off-white, frosting flavored girlcum.");
-	output("\n\n<i>“So, " + (silly ? "nya" : "ya") + " gonna sit there and look at my crotch or... what? Unless you just wanna watch me jerk off. I’m game, as long I can finish on your face”</i> She licks her lips and shifts to accentuate her crotch.");
+	output("\n\n<i>“So, " + (silly ? "nya" : "ya") + " gonna sit there and look at my crotch or... what? Unless you just wanna watch me jerk off. I’m game, as long I can finish on your face.”</i> She licks her lips and shifts to accentuate her crotch.");
 
 	addDisabledButton(3, "Appearance");
 }
@@ -2062,7 +2070,9 @@ public function shizzyFunTimes():void
 	
 	output("You tell her that you" + (silly ? " wan sum fuk." : " want to fuck.") + " She springs up at that, in more ways than one. She hops off the bed, and her horsecocks fly up, ripping her thong to ribbons that fall uselessly onto the floor. Her shirt and skirt come off in seconds, revealing her nude form, which she is quick to take advantage of. She hefts her heavy breasts in your direction, giving you a sultry look as she kneads the massive mammaries until they start drooling their lactic cargo all over the floor. Her lower half joins in, splattering the floor with liberal amounts of off-white girl and pre cum. She sits back on the bed, legs splayed as she gives her cocks a hard jerk, sending a splatter of pre directly into her face. She licks off the opaque fluid, breathing raggedly, beckoning you over as her pheromones waft off of her in rivers.");
 	output("\n\nHow do you take her?");
-
+	
+	shizzyPrepBalls();
+	
 	shizzySexyButtons();
 }
 
@@ -2182,7 +2192,7 @@ public function shizzyOneStickDoesTheTrick(dick:int):void
 	}
 	
 	pc.orgasm();
-		
+	
 	addButton(0, "Next", shizzyPostSex);
 }
 
@@ -2351,6 +2361,8 @@ public function shizzyNomNomNom(canleave:Boolean):void
 	
 	output("How do you take her?");
 	
+	shizzyPrepBalls();
+	
 	var dick:int = pc.cockThatFits(500);
 	if (pc.hasVagina() || dick != -1)
 	{
@@ -2454,8 +2466,8 @@ public function shizzySuckHerDick(dick:int):void
 		output("\n\nThe only thing you do know at this point is that she’s still eating you out, though she’s going at a much slower pace than before. The slower pace slows your mind with it. So warm, so full... You doze off, every cell in your body sated to the point where you couldn’t stay up if you wanted to.");
 	}
 	
+	pc.loadInMouth(chars["SHIZUYA"]);
 	pc.orgasm();
-	pc.loadInMouth(chars["SHIZUYA"])
 	
 	addButton(0, "Next", shizzyPostSex);
 }
@@ -2825,7 +2837,7 @@ public function shizzyStuffingCommence(anal:Boolean):void
 	output("\n\nThis is maddening, you asked to be fucked, and all she’s doing is teasing you!");
 	if (!anal) output(" If it weren’t bad enough already, some of her spines seem to have taken a liking to your [pc.clit], and rub against it every time she settles in.");
 	output(" You beg her to get on with it, but get a hard slap in response. A few more follow, sending your [pc.ass] jiggling and turning your cheeks red.");
-	output("\n\n<i>“Look here, with this kind a’ shit I have to make sure I’m not breaking anything. So stop whining and let me work this. ‘Kay?’”</i> You grumble under your breath and submit to her teasing. <i>“Beggars can’t be choosers, cap.”</i> Yeah, yeah...");
+	output("\n\n<i>“Look here, with this kind a’ shit I have to make sure I’m not breaking anything. So stop whining and let me work this. ‘Kay?”</i> You grumble under your breath and submit to her teasing. <i>“Beggars can’t be choosers, cap.”</i> Yeah, yeah...");
 	output("\n\nHer next thrust buries almost half of her length inside you. Void, that’s a lot! It’s hard to think of many partners you’ve had that have been this huge. It’s hard to think in general, now that you mention it. You’re stuffed with so much cock, but all your ravenous" + (anal ? " [pc.ass]" : " [pc.vagina " + vag + "]") + " can do is squeeze as hard as it can and demand more.");
 	output("\n\nHer other prick has settled into the crack of your [pc.ass], hotdogging you while its brother plows you. You feel shotgun blasts of thick pre land all over your back and [pc.hair]. The thick deluge spills over onto your face, dripping down past your nose, where you get a full blast of her musk. Up until now her pheromones have been acting as an undercurrent, not-so-subtly turbocharging your desires, but this is on a completely different level. It’s like her pheromones have condensed down into a super-concentrated liquid. You start going light-headed as the drops turn into small streams.");
 	output("\n\nYou start licking the cum off your face as it comes down, partially to help spare your senses of the sexual overload she’s imposed on you, but mostly because it just tastes really good!" + (pc.hasPerk("Buttslut") || (pc.isBimbo() && pc.isTreated()) ? " It’s even better than before, so much thicker and richer. Maybe it gets better the more you turn her on? Oh Void, you can’t even imagine how good it’s going to taste when she’s actually cumming!" : " You can’t even really place why it’s so good, it’s like liquid sex is drowning each of your taste buds, causing them to orgasm endlessly. You don’t think you’ve ever understood how someone could say they were cumming from their mouth until now."));
@@ -2885,9 +2897,9 @@ public function shizzyStuffingCommence(anal:Boolean):void
 
 	IncrementFlag("SHIZZY_STUFFED");
 	
-	pc.orgasm();
 	if (anal) pc.loadInAss(chars["SHIZUYA"]);
 	else pc.loadInCunt(chars["SHIZUYA"], vag);
+	pc.orgasm();
 	
 	addButton(0, "Next", shizzyPostRoughSex, 240);
 }

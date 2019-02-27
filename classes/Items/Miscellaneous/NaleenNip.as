@@ -119,7 +119,7 @@
 					}
 				}
 				//Increase height to 6' then rarely to 6'5"
-				if (changes < changeLimit && ((target.tallness < 72 && rand(3) == 0) || (target.tallness < 72 && rand(10) == 0))) {
+				if (changes < changeLimit && ((target.tallness < 72 && rand(3) == 0) || (target.tallness < 77 && rand(10) == 0))) {
 					if (target.tallnessUnlocked(77))
 					{
 						kGAMECLASS.output("\n\nVertigo plays tricks with your balance, making the ground seem to drift a little further away as you nearly lose your balance. You do your best to keep upright until the sensation passes, but something isn’t quite right. You... are you taller? You check the codex’s scanners and confirm that you’ve grown ");
@@ -261,7 +261,7 @@
 				if(target.vaginaTotal() > 1) kGAMECLASS.output("Each");
 				else kGAMECLASS.output("It");
 				kGAMECLASS.output(" is near-instantly engorged and wanting");
-				if(target.vaginas[x].clits > 0) kGAMECLASS.output(", your [pc.clits] hard and easy to spot");
+				if(target.totalClits() > 0) kGAMECLASS.output(", your [pc.clits] hard and easy to spot");
 				kGAMECLASS.output(". You gasp and double over, bringing your hand up to start masturbating when you see [pc.oneVagina] changing before your eyes. It’s getting longer vertically while the vulva, even aroused, become less noticeable.");
 				if(target.vaginas[x].clits <= 0) kGAMECLASS.output(" A sensitive nub grows from the top, forming a pulsing, needy clit.");
 				else if(target.vaginas[x].clits > 1) {

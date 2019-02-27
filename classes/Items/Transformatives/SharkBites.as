@@ -379,8 +379,8 @@
 						if(pc.balls == 1) output("its");
 						else output("their");
 						output(" presence slowly retreat into your skin before disappearing completely. How odd... you don’t even feel that torn up about it. <b>You have no testicles now.</b>");
-						pc.balls = 0;
-						pc.ballSizeRaw = 3.5;
+						pc.makeBallsInternal();
+						//pc.ballSizeRaw = 3.5;
 					}
 					else output("\n\n" + pc.ballsLockedMessage());
 					changes++;

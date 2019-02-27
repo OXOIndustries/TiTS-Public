@@ -1521,6 +1521,7 @@
 		{
 			balls = 0;
 			resetBallSize();
+			removeStatusEffect("Uniball");
 		}
 		public function resetBallSize(): void
 		{

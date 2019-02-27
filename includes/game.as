@@ -1146,8 +1146,8 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		count++;
 		if(!counter) 
 		{
-			if (InCollection(CREW_KASE, crewMembers)) crewMessages += kaseCrewBlurbs(btnSlot);
-			else addButton(btnSlot, "Kase", kaseApproachCrew, 1); //9999 ramis stuff
+			if (InCollection(CREW_KASE, crewMembers) && flags["RAMIS_ACTIVITY"] != "KASE") crewMessages += kaseCrewBlurbs(btnSlot);
+			else addButton(btnSlot, "Kase", kaseApproachCrew, 1);
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
@@ -1265,28 +1265,31 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		count++;
 		if(!counter)
 		{
-			if (!InCollection(CREW_SHEKKA, crewMembers)) //9999 ramis stuff
+			if (InCollection(CREW_SHEKKA, crewMembers) && flags["RAMIS_ACTIVITY"] != "SHEKKA")
 			{
-				addButton(btnSlot,"Shekka",approachCrewShekka);
+				if(pc.hasStatusEffect("Shekka_Cum_Playing"))
+				{
+					crewMessages += "\n\nShekka is lounging about after a little bit of play with her toy. Once she’s recovered and cleaned up, she’ll be up to hang out again. Give her an hour at the most.";
+					addDisabledButton(btnSlot,"Shekka","Shekka","Shekka is lounging about after a little bit of play with her toy. Once she’s recovered and cleaned up, she’ll be up to hang out again. Give her an hour at the most.");
+				}
+				else if(pc.hasStatusEffect("SHEKKA_CHEATING_ON_YOU_CD"))
+				{
+					crewMessages += "\n\nShekka is still probably banging out her frustrations on a bull. She’ll be back before too long.";
+					addDisabledButton(btnSlot,"Shekka","Shekka","Shekka is still probably banging out her frustrations on a bull. She’ll be back before too long.");
+				}
+				else if(shekka.hasCock() && flags["SHEKKA_ONAHOLED"] == undefined && rand(5) == 0)
+				{
+					crewMessages += "\n\nShekka should be around your ship’s engines, but there’s <b>a strangely musky smell coming from back there...</b>";
+					addButton(btnSlot,"Shekka",shekkaOnaholeIntro);
+				}
+				else 
+				{
+					crewMessages += "\n\nShekka is hanging out around your ship’s engines, constantly calibrating one circuit or another to maximize power.";
+					addButton(btnSlot,"Shekka",approachCrewShekka);
+				}
 			}
-			if(pc.hasStatusEffect("Shekka_Cum_Playing"))
+			else
 			{
-				crewMessages += "\n\nShekka is lounging about after a little bit of play with her toy. Once she’s recovered and cleaned up, she’ll be up to hang out again. Give her an hour at the most.";
-				addDisabledButton(btnSlot,"Shekka","Shekka","Shekka is lounging about after a little bit of play with her toy. Once she’s recovered and cleaned up, she’ll be up to hang out again. Give her an hour at the most.");
-			}
-			else if(pc.hasStatusEffect("SHEKKA_CHEATING_ON_YOU_CD"))
-			{
-				crewMessages += "\n\nShekka is still probably banging out her frustrations on a bull. She’ll be back before too long.";
-				addDisabledButton(btnSlot,"Shekka","Shekka","Shekka is still probably banging out her frustrations on a bull. She’ll be back before too long.");
-			}
-			else if(shekka.hasCock() && flags["SHEKKA_ONAHOLED"] == undefined && rand(5) == 0)
-			{
-				crewMessages += "\n\nShekka should be around your ship’s engines, but there’s <b>a strangely musky smell coming from back there...</b>";
-				addButton(btnSlot,"Shekka",shekkaOnaholeIntro);
-			}
-			else 
-			{
-				crewMessages += "\n\nShekka is hanging out around your ship’s engines, constantly calibrating one circuit or another to maximize power.";
 				addButton(btnSlot,"Shekka",approachCrewShekka);
 			}
 			btnSlot = crewButtonAdjustments(btnSlot);
