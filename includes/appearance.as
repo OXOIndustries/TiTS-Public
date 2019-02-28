@@ -509,8 +509,8 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " eyes are predatory in nature, each with a vertical slit surrounded by");
 			if (hasMetallicEyes) outputRouter(" a metallically glistening " + target.eyeColor + " iris.");
 			else if (hasGemstoneEyes) outputRouter(" a shimmering gemstone-like " + target.eyeColor + " iris.");
-			else if (hasLuminousEyes) outputRouter(" " +  indefiniteArticle(target.eyeColor) + " iris.");
-			else outputRouter("  " + indefiniteArticle(target.eyeColor) + " iris.");
+			else if (hasLuminousEyes) outputRouter(" " + indefiniteArticle(target.eyeColor) + " iris.");
+			else outputRouter(" " + indefiniteArticle(target.eyeColor) + " iris.");
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " sclera are completely pitch black, giving " + (target == pc ? "you":"[target.himHer]") + " a slightly dangerous air."); 
 			break;
 		case GLOBAL.TYPE_SHEEP:
@@ -1291,7 +1291,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				outputRouter(" A pair of ivory, thick horns extend from " + (target == pc ? "your":"[target.hisHer]") + " forehead, arcing upward and over " + (target == pc ? "your":"[target.hisHer]") + " skull, sort of like they’re protecting " + (target == pc ? "you":"[target.himHer]") + " from anything that might fall onto " + (target == pc ? "your":"[target.hisHer]") + " head. They’re each");
 				if (target.hornLength < 8 || target.hornLength > 12) outputRouter(num2Text(int(target.hornLength)) + "-inches long");
 				else outputRouter(" maybe a foot long");
-				outputRouter(" and as thick as two or three fingers together.  They’re useless for attacking, but they provide decent coverage - and they no doubt add to your imposing visage");
+				outputRouter(" and as thick as two or three fingers together. They’re useless for attacking, but they provide decent coverage - and they no doubt add to your imposing visage");
 				if (target.race() == "frostwyrm") outputRouter(" as a Frostwyrm.");
 				else outputRouter(".");
 				break;

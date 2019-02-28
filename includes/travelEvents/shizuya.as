@@ -2739,7 +2739,8 @@ public function shizzyImNotATurkey(mode:int = -1):void
 		else 
 		{
 			output("\n\n<i>“Oh yeah! FuckfuckfuckFUCK! There’s something about you [pc.name], something about the way you beg that just sends me over the fuckin’ edge!");
-			if (!anal) output(" Oooooh, I wanna stop taking my Sterilex! I wanna make you my fuckin’ brood bitch! Knock you up over and over and over and over until you’re just the perfect little breeding hole! Gah-ah!”</i> You swoon as you feel an otherworldly gob of cum splatter your backside. <i>“Sweet fuck!} I love you, you fucking sexy slut! And I’m gonna fuck ya like you deserve!”</i>");
+			if (!anal) output(" Oooooh, I wanna stop taking my Sterilex! I wanna make you my fuckin’ brood bitch! Knock you up over and over and over and over until you’re just the perfect little breeding hole! Gah-ah!”</i> You swoon as you feel an otherworldly gob of cum splatter your backside. <i>“Sweet fuck!} I love you, you fucking sexy slut! And I’m gonna fuck ya like you deserve!");
+			output("”</i>");
 		}
 		
 		output("\n\nYou give yourself a couple of slaps before slamming yourself against her rods, demanding that she ravage you.");

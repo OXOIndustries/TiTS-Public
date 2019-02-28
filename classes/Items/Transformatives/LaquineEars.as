@@ -271,7 +271,7 @@ package classes.Items.Transformatives
 					// If PC doesn't have balls, grow balls. If PC has 2 or more cocks, grow quads.
 					// If PC has one ball, get two balls.
 					// PC has Penis but no Balls ; start testicles at 6 inches around
-					if(pc.hasCock() && pc.balls == 0)
+					if(pc.balls <= 0)
 					{
 						textBuff += "A strange and much too hot pressure builds in your crotch. Your [pc.cocks] dribble" + (!pc.hasCocks() ? "s":"") + " wincingly-hot prejizz ";
 						if(!pc.isCrotchExposed()) textBuff += "within the tight boundary of your [pc.crotchCoverUnder]";
@@ -284,17 +284,18 @@ package classes.Items.Transformatives
 						else textBuff += "smooth";
 						textBuff += " pouch dangles at the front of your [pc.legsNoun]. <b>You delicately take possession of your sensitive scrotum, noting that you have two, baseball-sized testicles sloshing inside!</b>";
 						textBuff += "\n\nYou’ve never had trouble with your [pc.cumNoun] output, but this is certainly a welcome change. While hefting one of your newly-formed spunk-bunkers, you remind yourself to be a bit more careful how you [pc.walk] and sit from now on. You also think jacking off right now would be fantastic.";
-						pc.balls = 2;
+						textBuff = ParseText(textBuff);
 						pc.ballSizeRaw = 6;
 					}
 					// PC has Penis and only One Ball";
-					else if(pc.hasCock() && pc.balls == 0)
+					else if(pc.balls == 1)
 					{
 						textBuff += "A weird, straining ‘knot’ forms in your spunk-sack that shifts your balance so hard you nearly fall on your face. Luckily you don’t add some other kind of agony on top of your spontaneous testicular torsion.";
 						textBuff += "\n\nWhatever’s going on is shunting blood towards your [pc.cocks], and they’re throwing out fat, simmering rods of pre-cum" + (!pc.isCrotchExposed() ? " into your [pc.crotchCoverUnder]":"") + ". There’s a ‘flop’ of sorts when the unnatural and oddly satisfying development finishes connecting to your prepped plumbing.";
 						textBuff += "\n\nWhen you peer down, you note that where there was once one, there are <b>now two #-sized testicles in your ballsack!</b> It’s the same exact size as its older twin, and it looks just as succulently plump, lickable, fondleable as the other. Already you can feel your [pc.cumVisc] load strengthening with this arousing addition, and you can’t wait to see if the laquine ears will make them both more productive before they run dry.";
-						pc.balls = 2;
+						textBuff = ParseText(textBuff);
 					}
+					pc.balls = 2;
 					pc.lust(30);
 				}
 				else textBuff += ParseText(pc.ballsLockedMessage());
@@ -657,6 +658,7 @@ package classes.Items.Transformatives
 					textBuff += "\n\nWhen you climax, what feels like gallons upon gallons of musky horse-cream spurt from <b>your new horse-cock</b>. You aren’t sure what your cum counts as this point. Is it lapine? Equine? Or still some semblance of Terran? All you know is that <b>your dick got ";
 					if(pc.cocks[x].cLength() < 14) textBuff += "so much ";
 					textBuff += "bigger when it changed species.</b> The raw, bestial weight hangs heavy on your mind and your body, even as it retreats into its snug sheath. You have the feeling these new urges aren’t going to go away... that you’re going to be fantasizing about bunny buns for some time to come.";
+					textBuff = ParseText(textBuff);
 					//Horseween.
 					//slowStatGain +20 libido.
 					pc.slowStatGain("libido",20);
@@ -759,6 +761,7 @@ package classes.Items.Transformatives
 					else textBuff += "Dangling below your waist";
 					textBuff += " is a new-grown sack containing two testes,</b> further displaying your maleness for all to see.";
 					if(!pc.isCrotchExposed()) textBuff += ".. when you aren’t dressed.";
+					textBuff = ParseText(textBuff);
 					//+1 libido
 					pc.libido(2);
 					pc.balls = 2;
