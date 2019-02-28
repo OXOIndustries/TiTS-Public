@@ -375,6 +375,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	
 	// Append any extra messages:
 	priapismBlurbs();
+	siegwulfeLeashBlurbs();
 	
 	// Show the minimap too!
 	userInterface.showMinimap();
@@ -3951,6 +3952,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	var totalHours:uint = Math.floor((minutes + deltaT) / 60);
 	
 	if (!pc.hasStatusEffect("Milk Paused")) lactationUpdateHourTick(totalHours);
+	processSiegwulfeLust(totalHours);
 	
 	processMimbranesTime(deltaT, doOut, totalDays);
 	processLeithaCharmTime(deltaT, doOut);
