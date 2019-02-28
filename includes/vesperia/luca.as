@@ -32,6 +32,14 @@ public function showLuca(nude:Boolean = false):void
 	showBust("LUCA" + nudeS);
 }
 
+public function lucaVRsTried():int
+{
+	var total:int = 0;
+	if (flags["VR_PIRATEQUEEN"] != undefined) total++;
+	if (flags["VR_AMAZONIA"] != undefined) total++;
+	return total;
+}
+
 //PC Finds Store
 // PC is in Access Corridor Beta.
 
@@ -94,8 +102,9 @@ public function lucaMenu():void
 	addButton(0,"Appearance",lucaAppearance,undefined,"Appearance","What Luca looks like.");
 	addButton(1,"Talk",lucaTalkChoices,undefined,"Talk","Talk with Luca about things.");
 	addButton(2,"Business",lucaBusinessMenu,undefined,"Business","See what Luca has to offer.");
+	if (flags["LUCA_JUST_TALKED"] == 5) addButton(3, "Sex", lucaSexRouter, undefined, "Sex", "Ask Luca if she wants to fool around for a bit.");
 	addButton(14,"Leave",mainGameMenu);
-	//[Appearance] [Talk] [Business]
+	//[Appearance] [Talk] [Business] [Sex]
 }
 
 //Appearance
@@ -134,6 +143,8 @@ public function lucaTalkMenu():void
 	addButton(0,"Store",talkToLucaAboutHerStore,undefined,"Store","Ask Luca about her store.");
 	addButton(1,"Sign",askLucaAboutHerSign,undefined,"Sign","Ask Luca about the hand written sign.");
 	addButton(2,"Race",talkToLucasAboutRace,undefined,"Race","Ask Luca about her race.");
+	lucasVRTalkButton(3);
+	lucasJustTalkButton(4);
 	addButton(14,"Back",approachLuca,true);
 }
 
@@ -311,6 +322,8 @@ public function simmPlaying(args:Array):void
 	var exhibition:Boolean = args[1];
 	if(arg == "pirateQueen") thePirateQueenScenario(exhibition);
 	else if(arg == "amazonia") theAmazoniaScenario(exhibition);
+	
+	flags["VR_" + arg.toUpperCase()] = 1;
 }
 
 //Simulation End Text
