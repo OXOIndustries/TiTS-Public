@@ -15,7 +15,7 @@ public function canadiaGloryhole():Boolean
 	gloryholeGenerate();
 
 	//Empty.
-	if(pc.statusEffectv1("Gloryhole Shift Activated") == 0) 
+	if(pc.statusEffectv1("Gloryhole Shift Activated") == 0 || (pc.statusEffectv1("Gloryhole Shift Activated") >= 5 && pc.statusEffectv1("Gloryhole Shift Activated") <= 6)) 
 	{
 		output("\n\nNobody is working the gloryholes right now. You could climb in and man them yourself, if you wanted.");
 		addButton(0,"Work Hole",workTheGloryhole,undefined,"Work Hole","Climb into the gloryhole yourself, and suck some dick.");
@@ -65,7 +65,7 @@ public function gloryholeGenerate():void
 	//2 - kittykat
 	if(!pc.hasStatusEffect("Gloryhole Shift Activated"))
 	{
-		pc.createStatusEffect("Gloryhole Shift Activated",rand(5),0,0,0,true,"INVISIBLE","",false,(60+rand(120)),0xB793C4);
+		pc.createStatusEffect("Gloryhole Shift Activated",rand(7),0,0,0,true,"INVISIBLE","",false,(60+rand(120)),0xB793C4);
 	}
 	//v2 stores if PC cumblasted the stall. 1 = yes.
 }
