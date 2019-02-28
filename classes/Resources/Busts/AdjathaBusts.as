@@ -994,6 +994,8 @@ package classes.Resources.Busts
 		public var Bust_VAANDE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/vaande_nude.png", mimeType = "image/png")]
 		public var Bust_VAANDE_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/vaande_female_nude.png", mimeType = "image/png")]
+		public var Bust_VAANDE_FEMALE_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/vahn.png", mimeType = "image/png")]
 		public var Bust_VAHN:Class;
@@ -1957,6 +1959,8 @@ package classes.Resources.Busts
 			public var Full_VAANDE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vaande_nude.png", mimeType = "image/png")]
 			public var Full_VAANDE_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vaande_female_nude.png", mimeType = "image/png")]
+			public var Full_VAANDE_FEMALE_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vahn.png", mimeType = "image/png")]
 			public var Full_VAHN:Class;
