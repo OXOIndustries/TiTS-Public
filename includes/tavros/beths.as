@@ -459,6 +459,7 @@ public function fuckVaandesPuss():void
 {
 	clearOutput();
 	showVaande(true);
+	showBust("VAANDE_FEMALE_NUDE");
 	author("Zeikfried");
 	output("Vaande looks delighted when you tell her that you want to use your " + vaandeCockChoice() + ". <i>“Oh, that sounds simply lovely,”</i> she sighs. <i>“Won’t you ");
 	if(!pc.isNude()) output("undress yourself and then ");

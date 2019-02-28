@@ -897,6 +897,16 @@
 		{
 			return "Despite the heat in your [pc.legOrLegs], nothing changes.";
 		}
+
+		public var earFlags: Array = new Array();
+		public function earFlagsUnlocked(newFlags:*):Boolean
+		{
+			return true;
+		}
+		public function earFlagsLockedMessage():String
+		{
+			return "Despite the heat in your [pc.ears], nothing changes.";
+		}
 		
 		public var cumType: Number = GLOBAL.FLUID_TYPE_CUM;
 		public function cumTypeUnlocked(newCumType:Number):Boolean
@@ -4420,7 +4430,7 @@
 			var muskLevel:Number = 0;
 			
 			if(hasPerk("Pheromone Cloud")) muskLevel += 4;
-			if(hasPerk("Musky Pheromones")) muskLevel += 4;
+			if(hasPerk("Musky Pheromones")) muskLevel += 5;
 			if(hasPerk("Alpha Scent")) muskLevel += 4;
 			if(hasPerk("Jungle Queen Scent")) muskLevel += 4;
 			if(hasPerk("Pheromone Sweat"))
@@ -5767,6 +5777,25 @@
 		public function clearFaceFlags(): void {
 			faceFlags = new Array();
 		}
+		public function hasEarFlag(arg:int): Boolean {
+			for (var temp: int = 0; temp < earFlags.length; temp++) {
+				if (earFlags[temp] == arg) return true;
+			}
+			return false;
+		}
+		public function removeEarFlag(arg:int):void
+		{
+			if (hasEarFlag(arg))
+			{
+				earFlags.splice(earFlags.indexOf(arg), 1);
+			}
+		}
+		public function addEarFlag(arg:int): void {
+			if (!hasEarFlag(arg)) earFlags[earFlags.length] = arg;
+		}
+		public function clearEarFlags(): void {
+			earFlags = new Array();
+		}
 		public function hasTailFlag(arg:int): Boolean {
 			for (var temp: int = 0; temp < tailFlags.length; temp++) {
 				if (tailFlags[temp] == arg) return true;
@@ -6074,8 +6103,8 @@
 					break;
 				case GLOBAL.TYPE_LAPINE:
 				case GLOBAL.TYPE_QUAD_LAPINE:
-					if(earLength >= tallness/2) adjectives.push("droopy");
-					adjectives = ["bunny", "rabbit-like", "lapine", "floppy"];
+					if(hasEarFlag(GLOBAL.FLAG_FLOPPY)) adjectives = ["lop", "droopy", "floppy"];
+					adjectives = ["bunny", "rabbit-like", "lapine"];
 					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_KANGAROO:
@@ -6167,11 +6196,15 @@
 					adjectives = ["mothrine", "round", "unassuming"];
 					break;
 			}
-			if (hasLongEars()) adjectives.push(num2Text(Math.round(earLength)) + "-inch long");
+			if (hasLongEars()) 
+			{
+				//adjectives.push(num2Text(Math.round(earLength)) + "-inch long");
+				adjectives.push("long");
+			}
 			if (skinType == GLOBAL.SKIN_TYPE_GOO && rand(5) == 0) adjectives.push("gooey", "slimy", "slick");
 			if (hasPerk("Black Latex") && rand(4) == 0) adjectives.push("rubber", "latex", "latex");
-			//Pick an adjective about 75% of the time
-			if (rand(4) < 3 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
+			//Pick an adjective about 40% of the time
+			if (rand(10) <= 3 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
 			//Pick a noun.
 			description += nouns[rand(nouns.length)];
 			return description;

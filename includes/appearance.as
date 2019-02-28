@@ -678,7 +678,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	
 	//Hair
 	var nonFurrySkin:Boolean = (InCollection(target.skinType, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_LATEX) || target.hasPerk("Black Latex"));
-	var isFloppyEars:Boolean = (InCollection(target.earType, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE) && (target.RQ() < 50 || target.AQ() < 50 || target.earLength >= target.tallness/2));
+	var isFloppyEars:Boolean = ((InCollection(target.earType, GLOBAL.TYPE_QUAD_LAPINE) && (target.RQ() < 50 || target.AQ() < 50 || target.earLength >= target.tallness/2)) || (target.earType == GLOBAL.TYPE_LAPINE && target.hasEarFlag(GLOBAL.FLAG_FLOPPY) && target.hasEarFlag(GLOBAL.FLAG_LONG)));
 	
 	//if bald
 	if(!target.hasHair())
@@ -739,18 +739,36 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			case GLOBAL.TYPE_LAPINE:
 			case GLOBAL.TYPE_QUAD_LAPINE:
 			case GLOBAL.TYPE_LEITHAN:
-				if(target.earType == GLOBAL.TYPE_QUAD_LAPINE) outputRouter(" Two pairs of");
-				else outputRouter(" A pair of");
-				if(isFloppyEars) outputRouter(" floppy");
-				else outputRouter(" alert");
-				outputRouter(" rabbit ears stick up");
-				if(target.earLength > 1) outputRouter(" " + num2Text(target.earLength) + " inches");
-				outputRouter(" from the top of " + (target == pc ? "your":"[target.hisHer]") + " " + headNoun + ",");
-				if(target.earLength > target.tallness) outputRouter(" dragging on the floor");
-				else if(target.earLength > target.tallness/2) outputRouter(" swaying about");
-				else if(isFloppyEars || rand(2) == 0) outputRouter(" bouncing around");
-				else outputRouter(" swaying and darting");
-				outputRouter(" as " + (target == pc ? "you [target.walk]":"[target.heShe] moves") + ".");
+				if(target.hasEarFlag(GLOBAL.FLAG_FLOPPY))
+				{
+					outputRouter(" A pair of bouncy lop-rabbit ears emerge from ");
+					if(!target.hasHair()) outputRouter((target == pc ? "your":"[target.hisHer]") + " head");
+					else outputRouter((target == pc ? "your":"[target.hisHer]") + " [target.hair]");
+					outputRouter(" and ");
+					if(target.earLength >= target.tallness) outputRouter("hang low enough to drag on the ground like head-mounted tails");
+					else if(target.earLength > target.tallness/2) outputRouter("hang down to " + (target == pc ? "your":"[target.hisHer]") + " [target.thighs]");
+					else if(target.earLength >= target.tallness/2.5) outputRouter("hang to " + (target == pc ? "your":"[target.hisHer]") + " waist");
+					else if(target.earLength >= target.tallness/3) outputRouter("dangle just above " + (target == pc ? "your":"[target.hisHer]") + " waist");
+					else if(target.earLength >= target.tallness/4) outputRouter("dangle down to " + (target == pc ? "your":"[target.hisHer]") + " [target.chestNoun]");
+					else outputRouter("hang over your shoulders");
+					outputRouter(".");
+				}
+				else
+				{
+					if(target.earType == GLOBAL.TYPE_QUAD_LAPINE) outputRouter(" Two pairs of");
+					else outputRouter(" A pair of");
+					outputRouter(" alert rabbit ears stick up");
+					if(target.earLength >= target.tallness/2) outputRouter(" partway before their " + num2Text(target.earLength) + "-inch length drags them downward under their own weight.");
+					else
+					{
+						if(target.earLength > 1) outputRouter(" " + num2Text(target.earLength) + " inches");
+						outputRouter(" from the top of " + (target == pc ? "your":"[target.hisHer]") + " " + headNoun + ",");
+						if(target.earLength > target.tallness) outputRouter(" dragging on the floor");
+						else if(target.earLength > target.tallness/2) outputRouter(" swaying about");
+						else outputRouter(" swaying and darting");
+						outputRouter(" as " + (target == pc ? "you [target.walk]":"[target.heShe] moves") + ".");
+					}
+				}
 				break;
 			case GLOBAL.TYPE_KANGAROO:
 				outputRouter(" A pair of long");
@@ -913,18 +931,36 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			case GLOBAL.TYPE_LAPINE:
 			case GLOBAL.TYPE_QUAD_LAPINE:
 			case GLOBAL.TYPE_LEITHAN:
-				if(target.earType == GLOBAL.TYPE_QUAD_LAPINE) outputRouter(" Two pairs of");
-				else outputRouter(" A pair of");
-				if(isFloppyEars) outputRouter(" floppy");
-				else outputRouter(" alert");
-				outputRouter(" rabbit ears stick up");
-				if(target.earLength > 1) outputRouter(" " + num2Text(target.earLength) + " inches");
-				outputRouter(" out of " + (target == pc ? "your":"[target.hisHer]") + " " + target.hairDescript(true,true) + ",");
-				if(target.earLength > target.tallness) outputRouter(" dragging on the floor");
-				else if(target.earLength > target.tallness/2) outputRouter(" swaying about");
-				else if(isFloppyEars || rand(2) == 0) outputRouter(" bouncing around");
-				else outputRouter(" swaying and darting");
-				outputRouter(" as " + (target == pc ? "you [target.walk]":"[target.heShe] moves") + ".");
+				if(target.hasEarFlag(GLOBAL.FLAG_FLOPPY))
+				{
+					outputRouter(" A pair of bouncy lop-rabbit ears emerge from ");
+					if(!target.hasHair()) outputRouter((target == pc ? "your":"[target.hisHer]") + " head");
+					else outputRouter((target == pc ? "your":"[target.hisHer]") + " [target.hair]");
+					outputRouter(" and ");
+					if(target.earLength >= target.tallness) outputRouter("hang low enough to drag on the ground like head-mounted tails");
+					else if(target.earLength > target.tallness/2) outputRouter("hang down to " + (target == pc ? "your":"[target.hisHer]") + " [target.thighs]");
+					else if(target.earLength >= target.tallness/2.5) outputRouter("hang to " + (target == pc ? "your":"[target.hisHer]") + " waist");
+					else if(target.earLength >= target.tallness/3) outputRouter("dangle just above " + (target == pc ? "your":"[target.hisHer]") + " waist");
+					else if(target.earLength >= target.tallness/4) outputRouter("dangle down to " + (target == pc ? "your":"[target.hisHer]") + " [target.chestNoun]");
+					else outputRouter("hang over your shoulders");
+					outputRouter(".");
+				}
+				else
+				{
+					if(target.earType == GLOBAL.TYPE_QUAD_LAPINE) outputRouter(" Two pairs of");
+					else outputRouter(" A pair of");
+					outputRouter(" alert rabbit ears stick up");
+					if(target.earLength >= target.tallness/2) outputRouter(" partway before their " + num2Text(target.earLength) + "-inch length drags them downward under their own weight.");
+					else
+					{
+						if(target.earLength > 1) outputRouter(" " + num2Text(target.earLength) + " inches");
+						outputRouter(" from the top of " + (target == pc ? "your":"[target.hisHer]") + " " + headNoun + ",");
+						if(target.earLength > target.tallness) outputRouter(" dragging on the floor");
+						else if(target.earLength > target.tallness/2) outputRouter(" swaying about");
+						else outputRouter(" swaying and darting");
+						outputRouter(" as " + (target == pc ? "you [target.walk]":"[target.heShe] moves") + ".");
+					}
+				}
 				break;
 			case GLOBAL.TYPE_KANGAROO:
 				outputRouter(" The " + target.hairDescript(true,true) + " atop " + (target == pc ? "your":"[target.hisHer]") + " head is parted by a pair of long");

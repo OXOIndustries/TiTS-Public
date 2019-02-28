@@ -82,6 +82,7 @@
 		public static const FLAG_PLUGGED:int                   	            = 47;
 		public static const FLAG_SCALED_PRETTY:int                          = 48;
 		public static const FLAG_SHORT:int									= 49;
+		public static const FLAG_FLOPPY:int									= 50; //Not for dicks, lol. Mostly for differentiating rabbit ears right now, but perhaps another use will arise down the road. Might be good for tails to help differentate tails with no muscular control
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -134,6 +135,7 @@
 			"Plugged",
 			"Partially Scaled",
 			"Short",
+			"Floppy",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
