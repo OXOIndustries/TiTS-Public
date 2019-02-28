@@ -1095,9 +1095,10 @@ public function sellItemMulti(arg:Array):void
 	// Special Events
 	if(soldItem is GooArmor) output("\n\n" + gooArmorInventoryBlurb(soldItem, "sell"));
 	if(soldItem is HorseCock) {
-		if(flags["SYNTHSHEATH_LOST"] == undefined) flags["SYNTHSHEATH_LOST"] = soldNumber;
-		else flags["SYNTHSHEATH_LOST"] += soldNumber;
+		if(flags["SYNTHSHEATH_LOST"] == undefined) flags["SYNTHSHEATH_LOST"] = 0;
+		flags["SYNTHSHEATH_LOST"] += soldNumber;
 	}
+	if(soldItem is DamagedVIChip && flags["NYM-FOE_REPAIR_QUEST"] == 2) flags["NYM-FOE_REPAIR_QUEST"] = -1;
 	soldItem.quantity -= soldNumber;
 	if (soldItem.quantity == 0) pc.inventory.splice(pc.inventory.indexOf(soldItem), 1);
 	
@@ -1118,6 +1119,7 @@ public function sellItemGo(arg:ItemSlotClass):void {
 	if(arg is GooArmor) output("\n\n" + gooArmorInventoryBlurb(arg, "sell"));
 	if(arg is HorseCock) IncrementFlag("SYNTHSHEATH_LOST");
 	if(arg is StrangeEgg) IncrementFlag("STRANGE_EGG_SOLD");
+	if(arg is DamagedVIChip && flags["NYM-FOE_REPAIR_QUEST"] == 2) flags["NYM-FOE_REPAIR_QUEST"] = -1;
 	
 	arg.quantity--;
 	if (arg.quantity <= 0 && pc.inventory.indexOf(arg) != -1)
@@ -1308,10 +1310,11 @@ public function dropItemMulti(arg:Array):void
 	// Special Events
 	if(dumpItem is GooArmor) output("\n\n" + gooArmorInventoryBlurb(dumpItem, "drop"));
 	if(dumpItem is HorseCock) {
-		if(flags["SYNTHSHEATH_LOST"] == undefined) flags["SYNTHSHEATH_LOST"] = dumpNumber;
-		else flags["SYNTHSHEATH_LOST"] += dumpNumber;
+		if(flags["SYNTHSHEATH_LOST"] == undefined) flags["SYNTHSHEATH_LOST"] = 0;
+		flags["SYNTHSHEATH_LOST"] += dumpNumber;
 	}
 	dumpItem.quantity -= dumpNumber;
+	if(dumpItem is DamagedVIChip && flags["NYM-FOE_REPAIR_QUEST"] == 2) flags["NYM-FOE_REPAIR_QUEST"] = -2;
 	if (dumpItem.quantity == 0) pc.inventory.splice(pc.inventory.indexOf(dumpItem), 1);
 	
 	clearMenu();
@@ -1326,6 +1329,7 @@ public function dropItemGo(arg:ItemSlotClass):void {
 	// Special Events
 	if(arg is GooArmor) output("\n\n" + gooArmorInventoryBlurb(arg, "drop"));
 	if(arg is HorseCock) IncrementFlag("SYNTHSHEATH_LOST");
+	if(arg is DamagedVIChip && flags["NYM-FOE_REPAIR_QUEST"] == 2) flags["NYM-FOE_REPAIR_QUEST"] = -2;
 	
 	arg.quantity--;
 	if (arg.quantity <= 0 && pc.inventory.indexOf(arg) != -1)
@@ -1341,7 +1345,7 @@ public function deleteItemPrompt(arg:ItemSlotClass):void
 	clearOutput();
 	output("Are you sure you want to remove " + arg.description + "?");
 	output("\n\n<i>Note that removing the item will purge it from your inventory and cannot be reclaimed.</i>\n\n");
-		
+	
 	clearMenu();
 	addButton(0, "Yes", deleteItemGo, arg);
 	addButton(1, "No", useItemFunction);
@@ -2506,6 +2510,11 @@ public function discardItem(lootList:Array):void {
 	
 	// Special Events
 	if(lootList[0] is GooArmor) output("\n\n" + gooArmorInventoryBlurb(lootList[0], "discard"));
+	if(lootList[0] is HorseCock) {
+		if(flags["SYNTHSHEATH_LOST"] == undefined) flags["SYNTHSHEATH_LOST"] = 0;
+		flags["SYNTHSHEATH_LOST"] += lootList[0].quantity;
+	}
+	if(lootList[0] is DamagedVIChip && flags["NYM-FOE_REPAIR_QUEST"] == 2) flags["NYM-FOE_REPAIR_QUEST"] = -2;
 	
 	output("\n\n");
 	lootList.splice(0,1);
@@ -2616,6 +2625,11 @@ public function replaceItemGo(args:Array):void
 	
 	// Special Events
 	if(pc.inventory[indice] is GooArmor) output("\n\n" + gooArmorInventoryBlurb(pc.inventory[indice], "replace"));
+	if(pc.inventory[indice] is HorseCock) {
+		if(flags["SYNTHSHEATH_LOST"] == undefined) flags["SYNTHSHEATH_LOST"] = 0;
+		flags["SYNTHSHEATH_LOST"] += pc.inventory[indice].quantity;
+	}
+	if(pc.inventory[indice] is DamagedVIChip && flags["NYM-FOE_REPAIR_QUEST"] == 2) flags["NYM-FOE_REPAIR_QUEST"] = -2;
 	
 	pc.inventory[indice] = lootList[0];
 	lootList.splice(0,1);

@@ -1226,7 +1226,7 @@ public function adjustGooBody(arg:Array):void
 		cost = 20;
 		limitMax = 100;
 		limitMin = 0;
-		if(pc.hasPerk("Buttslut")) limitMin = 20;
+		if(pc.hasPerk("Buttslut")) limitMin = 18;
 		if(desc == "increase" || desc == "decrease")
 		{
 			clearOutput2();

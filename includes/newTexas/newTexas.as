@@ -1983,10 +1983,7 @@ public function carrieBlowjobsGo():void
 			if(!pc.isCrotchExposed()) output("tracing the outline of your [pc.cock " + x + "] through your [pc.lowerUndergarment].");
 			else output("gently stroking your bare, swinging [pc.cock " + x + "].");
 
-			output("\n\n<i>“Not at this time of ");
-			if(hours > 6 && hours < 20) output("day ");
-			else output("night ");
-			output(", no,”</i> Cora replies with a light bite of the lip, eyes traveling downward. You consider teasing them a little more, making them admit how much they look forward to this, but - drinking in their milky curves and flushed, eager faces, [pc.eachCock] hardening inexorably - you reflect that life is too damn short.");
+			output("\n\n<i>“Not at this time of day, no,”</i> Cora replies with a light bite of the lip, eyes traveling downward. You consider teasing them a little more, making them admit how much they look forward to this, but - drinking in their milky curves and flushed, eager faces, [pc.eachCock] hardening inexorably - you reflect that life is too damn short.");
 		}
 		//Into the meat of the scene
 		//Big cock

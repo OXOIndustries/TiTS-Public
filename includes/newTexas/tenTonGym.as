@@ -497,7 +497,7 @@ public function annoWorkoutGimmeDatBootySweat():void
 		else output(" Your cock glides through her positively soaked love tunnel with practically no friction whatsoever."); 
 		pc.cockChange();
 		output("\n\nYou can feel Anno picking up the pace as you near your own climax. Slamming your hips together furiously, you simultaneously reach orgasm, cumming hard. You empty yourself into Anno like it’s your last chance at procreation"); 
-		if(pc.cumQ() >= 1000) output(" every shot filling her more excessively than the last"); 
+		if(pc.cumQ() >= 1000) output("; every shot filling her more excessively than the last"); 
 		output(".");
 		if(pc.virility() == 0)output(" Not that you could knock her up, lacking functional sperm.");
 		else output(" You wonder when Anno last took sterilex, not that knowing the answer would make any difference now.");
@@ -873,8 +873,8 @@ public function takeAShowerSloot():void
 	if (flags["TTGYM_BETSY_VICTORIA_HOME"] != undefined && flags["TTGYM_BETSY_VICTORIA_NEVER"] != 1 && rand(2) == 0)
 	{
 		tentongymShowBetsyVictoria(true);
-		output("\n\nThe hot water washes away your sweat and soreness, and it's a significant improvement over your shipboard shower unit; the improved water pressure alone has you wanting to stay in for longer than necessary. But all good things must end.");
-		output("\n\nRight as you're about to turn the shower off and head out, you hear a familiar voice, and look up to see Betsy and Victoria walking toward you, each with one hand resting on the others' ass.");
+		output("\n\nThe hot water washes away your sweat and soreness, and it’s a significant improvement over your shipboard shower unit; the improved water pressure alone has you wanting to stay in for longer than necessary. But all good things must end.");
+		output("\n\nRight as you’re about to turn the shower off and head out, you hear a familiar voice, and look up to see Betsy and Victoria walking toward you, each with one hand resting on the others’ ass.");
 		clearMenu();
 		addButton(0,"Next",showerWithBetsyAndVictoriaApproach);
 		return;	

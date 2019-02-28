@@ -259,10 +259,8 @@ package classes.Items.Transformatives
 				else output(" vanishing");
 				output(", you’re treated to another round of discomfort -- this time from your [pc.balls]! You shiver as your nuts recede into your taint, continuing to shrink until the flesh of your sack merges completely with your body. <b>Your balls are gone!</b>");
 				
-				target.balls = 0;
-				target.ballSizeRaw = 0;
-				target.ballSizeMod = 0;
-				if (target.hasStatusEffect("Uniball")) target.removeStatusEffect("Uniball");
+				target.removeBalls();
+				target.resetCumProduction();
 				changes++;
 			}
 			
@@ -489,7 +487,7 @@ package classes.Items.Transformatives
 
 			//Low chance for cow-leg TF
 			//PC leg type becomes bipedal, fur-covered, with hooves for feet. 
-			if (rand(20) == 0 && changes < tChanges && (target.legType != GLOBAL.TYPE_BOVINE || !target.hasLegFlag(GLOBAL.FLAG_HOOVES) || target.legCount != 2))
+			if (rand(10) == 0 && changes < tChanges && (target.legType != GLOBAL.TYPE_BOVINE || !target.hasLegFlag(GLOBAL.FLAG_HOOVES) || target.legCount != 2))
 			{
 				changes++;
 				

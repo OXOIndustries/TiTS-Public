@@ -5060,7 +5060,7 @@ public function fuckPlantHornedPenny(args:Array):void
 	else output("her cunt flutters absurdly, " + (!penny.isSquirter() ? "drizzling":"spraying") + " you with more liquid adulation.");
 	output(" She’s literally cumming to her own admission of love.");
 	output("\n\nYou can’t hold back in the face of such frenzied affection. Maybe it’s the kiss. Maybe it’s the sizzling genital to genital contact. Maybe it’s the memories of all the other times you’ve fucked, the times you’ve driven Penny to squealing heights of pleasure and gleefully climaxed alongside her, but you cum too. You cum ");
-	if(sceneRoute == 1) output("a bubbling, frothy load directly into her flexing quim");
+	if(sceneRoute == 1) output("a bubbling, frothy load directly into her flexing quim.");
 	else if(sceneRoute == 2) output("with cock-draining force, rippling and squeezing the leftovers of her last load so very deep inside yourself.");
 	else 
 	{
@@ -5805,7 +5805,7 @@ public function recruitBimboPenpen():void
 	processTime(10);
 	pc.lust(4);
 	clearMenu();
-	addButton(0,"Cam",camwhoreItUpBimboPenny,undefined,"Cam","Convine Penny to become a camwhore to pay for her debts.")
+	addButton(0,"Cam",camwhoreItUpBimboPenny,undefined,"Cam","Convince Penny to become a camwhore to pay for her debts.");
 	addButton(1,"Never Mind",nevermindBimboCumPennyNoCamwhore,undefined,"Never Mind","Drop the topic for now. No need to push it.");
 }
 

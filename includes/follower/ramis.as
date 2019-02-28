@@ -283,7 +283,7 @@ public function ramisValidateActivity(crew:Array):void
 	//Make list of valid activities
 	for (var i:int = 0; i < ramisCrewBasicBlurbs.length; ++i) options.push(i);
 	if (InCollection(CREW_KASE, crew)) options.push("KASE");
-	if (InCollection(CREW_SHEKKA, crew)) options.push("SHEKKA");
+	if (InCollection(CREW_SHEKKA, crew) && !pc.hasStatusEffect("Shekka_Cum_Playing") && !pc.hasStatusEffect("SHEKKA_CHEATING_ON_YOU_CD")) options.push("SHEKKA");
 	if (!pc.hasStatusEffect("Ramis Sated")) options.push("HORNY");
 	
 	//Check time

@@ -463,7 +463,7 @@ public function ciaranTalkScritches():void
 		output("\n\nYou put on a face like butter wouldn’t melt in your mouth and innocently explain to the older ausar as you step behind his chair that you’d simply like to take a closer look at his old-fashioned hat.");
 		output("\n\nHe scoffs at your explanation. <i>“Yeah, you and every other tourist in this joint. Hell, if you want it so bad kid, how about you wear it for a bit? Maybe the tourists will think </i>you’re<i> the outlaw for once.”</i> With that he reaches up to doff his hat before passing it to you. ");
 		if (pc.tallness >= 8*12) output("It’s a little snug on your head, but that’s not what matters. ");
-		else if (pc.tallness >= 7*12) output("It’s an almost perfect fit for you" + (InCollection(pc.earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_VULPINE) ? "and it even has holes for your ears to fit through," : "") + " but that’s not what matters. ");
+		else if (pc.tallness >= 7*12) output("It’s an almost perfect fit for you" + (InCollection(pc.earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_VULPINE) ? " and it even has holes for your ears to fit through," : "") + " but that’s not what matters. ");
 		else if (pc.tallness >= 6*12) output("His hat’s just too big for your smaller head, slipping down over your eyes and blocking your vision, forcing you to wear it at a tilted angle. That’s not what matters though. ");
 		else output("His hat is comically large on you, making you look like a child wearing their father’s hat and forcing you to tilt it back at an extreme angle to hang off your brow, but that’s not what matters. ");
 		output("What matters is that the ausar has unwittingly cooperated with your plan. ");
