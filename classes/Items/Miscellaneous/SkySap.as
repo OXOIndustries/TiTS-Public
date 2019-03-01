@@ -426,8 +426,8 @@
 							outputB("<b>");
 							if(pc.balls == 1) outputB(" Your single [pc.ballNoun] has disappeared");
 							else outputB(" You no longer have [pc.ballsNoun]");
-							pc.balls = 0;
-							pc.ballSizeRaw = 0;
+							pc.removeBalls();
+							pc.resetCumProduction();
 						}
 						outputB("!");
 
