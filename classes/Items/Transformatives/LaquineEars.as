@@ -435,7 +435,7 @@ package classes.Items.Transformatives
 							puffed = true;
 						}
 						// PC has Equine Pussy - Increase to Fully Pumped";
-						else
+						else if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED))
 						{
 							//ORGASM
 							textBuff += "A moist churning in your nethers forces a moan of pure pleasure from your lips. The way your legs are quivering makes sitting more than a polite suggestion. When you get your hands on the source of arousal" + (!pc.isCrotchExposed() ? " within your [pc.crotchCoverUnder]":"") + ", sprinklings of [pc.girlCumNoun] mixed with ladyjuice soak your fat cuntlips. The texture and detail of each droplet flowing down your latex-like exterior is orgasmic, and it brings you to sudden orgasm.";
