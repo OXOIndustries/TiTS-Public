@@ -2231,6 +2231,9 @@
 				case "tails":
 					buffer = tailsDescript();
 					break;
+				case "tailsIsAre":
+					buffer = (hasTails() ? tailsDescript() + " are" : tailsDescript() + " is");
+					break;
 				case "crotch":
 				case "groin":
 				case "genitals":
@@ -2273,6 +2276,10 @@
 				case "cocksLight":
 					buffer = cocksDescriptLight();
 					break;
+				case "cocksLightIsAre":
+				case "dicksLightIsAre":
+					buffer = (hasCocks() ? cocksDescriptLight() + " are" : simpleCockNoun(arg2) + " is");
+					break;
 				case "cocksSimple":
 				case "cocksShort":
 				case "cocksNoun":
@@ -2289,6 +2296,10 @@
 				case "cockShort":
 				case "cockNoun":
 					buffer = simpleCockNoun(arg2);
+					break;
+				case "dicksNounIsAre":
+				case "cocksNounIsAre":
+					buffer = (hasCocks() ? simpleCocksNoun() + " are" : simpleCockNoun(arg2) + " is");
 					break;
 				case "cockNounBiggest":
 					buffer = simpleCockNoun(biggestCockIndex());
@@ -2472,6 +2483,9 @@
 				case "eachCock":
 					buffer = eachCock();
 					break;
+				case "eachCockIsAre":
+					buffer = eachCock() + (hasCocks() ? " are" : " is");
+					break;
 				case "oneCock":
 					buffer = oneCock();
 					break;
@@ -2509,6 +2523,9 @@
 					break;
 				case "ball":
 					buffer = ballsDescript();
+					break;
+				case "ballsIsAre":
+					buffer = hasBalls() ? ballsDescript() + " are" : ballDescript() + " is";
 					break;
 				case "prostate":
 				case "sack":
@@ -2659,6 +2676,16 @@
 				case "biggestCunt":
 					buffer = vaginaDescript(biggestVaginaIndex());
 					break;
+				case "vaginasIsAre":
+				case "cuntsIsAre":
+				case "pussiesIsAre":
+					buffer = (hasVaginas() ? vaginasDescript() + " are" : vaginaDescript() + " is");
+					break;
+				case "vaginasLightIsAre":
+				case "cuntsLightIsAre":
+				case "pussiesLightIsAre":
+					buffer = simpleVaginasNoun() + (hasVaginas() ?" are" : " is");
+					break;	
 				case "vagOrAss":
 				case "vagOrAsshole":
 				case "pussyOrAsshole":
