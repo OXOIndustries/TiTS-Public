@@ -1548,7 +1548,7 @@ public function erikaSexGiveAnusoft():void
 	if (pc.isNice()) output("\n\n<i>“I want to make sure that every moment I’m inside you is enjoyable for you.”</i> Smiling reassuringly you stroke her posterior.");
 	else if(pc.isMischievous()) output("\n\n<i>“I’m just making sure that you enjoy your ass as much as I do,”</i> you say, pinching her buttock.");
 	else output("\n\n<i>“I’m going to make your hole worthy of a slut like you.”</i> You slap her ass with a grin on your face.");
-	output("\n\n<i>“A-again? I’m not sure, I’ve already done it once and I hear the it goes... kind of all the way.”</i> You assure that she will love it once she gets used to it, <i>“A-alright, i-if you’re sure,”</i> she stammers, still hesitant but none the less she spreads her cheeks bearing her still normal pucker to you.");
+	output("\n\n<i>“A-again? I’m not sure, I’ve already done it once and I hear that it goes... kind of all the way.”</i> You assure that she will love it once she gets used to it, <i>“A-alright, i-if you’re sure,”</i> she stammers, still hesitant but none the less she spreads her cheeks bearing her still normal pucker to you.");
 	output("\n\nTaking a hold of the tube you unscrew it and start squeezing the cream on her rim. She gasps as the cool transformative substance soaks into her pucker.");
 	output("\n\nYou blink your eyes as suddenly the tube is empty ");
 	if (pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || pc.ass.hasFlag(GLOBAL.FLAG_PUMPED)) output("- it always disappears so suddenly - ");
