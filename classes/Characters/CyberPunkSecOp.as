@@ -418,7 +418,7 @@
 			this.energy(-20);
 			output("<i>“I wonder if you’ve patched the latest firmware vulnerabilities out of your drone...”</i> The cybernetic cat-[pc.boyGirl] taps at his temple, the antennae mounted above glowing.");
 			//Fail: 
-			if(rand(20) + 1 + target.intelligence()/2 < 12)
+			if(rand(20) + 1 + target.intelligence()/2 >= 12)
 			{
 				output("\n\nYou breathe a sigh of relief as your drone successfully fights off the outside interference and rights itself.");
 			}

@@ -233,10 +233,10 @@ package classes.Items.Transformatives
 						kGAMECLASS.output(", your member’s flesh engorges exponentially, swelling into a thick, cum-engorged knot. With a cry, you fall to the ground as the new doggy-cock discharges its heady load, shooting a thick rope of [pc.cum] through the swollen knot and onto the ground.");
 						kGAMECLASS.output("\n\nYou spend a few moments collecting yourself, cleaning the spunk off your new puppy pecker and adjusting to the heft and weight of the knot.");
 						pc.lust(20+rand(20));
-						pc.cocks[x].cockColor = "pale blue";
 						pc.libido(2);
 						changes++;
 						pc.shiftCock(x,GLOBAL.TYPE_CANINE);
+						pc.cocks[x].cockColor = "pale blue";
 					}
 					else
 					{
@@ -399,6 +399,31 @@ package classes.Items.Transformatives
 						{
 							output(" The change extends beyonds just your [pc.legs]. It reaches all the way up your lower body. <b>From the waist down, you’re built like a huge dog!</b>");
 						}
+						pc.legType = GLOBAL.TYPE_KORGONNE;
+						pc.clearLegFlags();
+						pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+						pc.addLegFlag(GLOBAL.FLAG_FURRED);
+						pc.addLegFlag(GLOBAL.FLAG_PAWS);
+						changes++;
+					}
+					else kGAMECLASS.output("\n\n" + target.legTypeLockedMessage());
+				}
+				//Change leg type to bipedal?
+				if(pc.legType != GLOBAL.TYPE_KORGONNE && changes < changeLimit && pc.legCount != 2 && rand(3) == 0)
+				{
+					if (target.legTypeUnlocked(GLOBAL.TYPE_KORGONNE))
+					{
+						if(pc.legCount < 2)
+						{
+							kGAMECLASS.output("\n\nYour [pc.leg] wobbles then folds, dropping you onto your [pc.butt]. It thrashes wildly around, uncontrolled and spasmatic. Something inside is changing, and you’re helpless to do anything but clench your fists and hold on for the ride. A seam appears in your [pc.leg] a moment before it divides into two leg-like shapes. Fur springs up all over them, and after a few seconds, you’re left with two fur-covered legs. <b>You have two korgonne legs!</b>");
+						}
+						//More than biped
+						else
+						{
+							kGAMECLASS.output("\n\nYour [pc.legs] wobble and then fold, dropping you flat on your [pc.butt]. They thrash wildly, so fast you can barely track them, then collide. This time, they stick together, reshaping into two distinct, bipedal legs. Fur springs up all over the new limbs, and by the time it finishes, <b>you’ve grown korgonne-like legs.</b>");
+						}
+						pc.legCount = 2;
+						pc.genitalSpot = 0;
 						pc.legType = GLOBAL.TYPE_KORGONNE;
 						pc.clearLegFlags();
 						pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);

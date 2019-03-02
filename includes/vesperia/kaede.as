@@ -470,7 +470,7 @@ public function fuckHerAssYouSlootAndByHerIMeanKaede():void
 		x = pc.cockThatFits(370);
 		if(x == -1) x = -2;
 	}
-	else if(pc.hasHardLightEquipped() && x < 0) x = -1;
+	if(x < 0 && pc.hasHardLightEquipped()) x = -1;
 	if(x == -2) { output("ERROR. INVALID WANGER. DEFAULTING TO HARDLIGHT VARIANT. PLZ NOTIFY FEN.\n\n"); x = -1; }
 
 	output("You lean down over the ginger pup, running your hands up her shirt until your palms are on her breasts, feeling her nipples pressing through the thin layer of cloth between your flesh and hers. Her breath catches as your thumbs brush across her stiff little peaks, spending a moment to rub and pinch them before reaching up and cupping her cheeks. She smiles up at you, inviting a kiss onto those rosy lips; her legs curl up around your [pc.hips], locking over your ass and pulling you in.");

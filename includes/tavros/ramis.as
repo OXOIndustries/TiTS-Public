@@ -128,6 +128,19 @@ public function getRamisPregContainer():PregnancyPlaceholder
 	if (flags["RAMIS_STRETCHED"] != undefined) ppRamis.vaginas[0].bonusCapacity += flags["RAMIS_STRETCHED"];
 	return ppRamis;
 }
+public function ramisTimesSexed():Number
+{
+	var sexed:int = 0;
+	if(flags["RAMIS_SEXED"] != undefined) sexed += flags["RAMIS_SEXED"];
+	if(flags["RAMIS_SEXED_SHIP"] != undefined) sexed += flags["RAMIS_SEXED_SHIP"];
+	return sexed;
+}
+public function ramisTimesOrallySexedHer():Number
+{
+	var sexed:int = 0;
+	if(flags["RAMIS_SEXED_FACESIT"] != undefined) sexed += flags["RAMIS_SEXED_FACESIT"];
+	return sexed;
+}
 
 // Appearance
 public function ramisAppearance(btnSlot:int = 0):void
@@ -138,7 +151,7 @@ public function ramisAppearance(btnSlot:int = 0):void
 	
 	output("The seven foot, two-inch tall, brown-skinned, honey-haired obelisk of taut muscle and generous feminine curves that calls itself Ramis is a kaithrit, and is definitely one of the more generously sized examples of her race. Beneath her tight jeans, each of her big, brawny buttocks is the size of a basketball, and her dark tank top and sports bra do not disguise her wide, round D-cups. Ropy muscle trembles restlessly in her bare, washboard midriff and arms. Bursting out of the seat of her jeans are her twin tails, the same color as her pointed ears: tawny, with a paintbrush-like dappling of black.");
 	output("\n\nIn keeping with the rest of her, her eyes are a deep yellow. Her hair is pulled back into a ponytail, which combines with her high, proud cheekbones to give her a rather daunting profile at first glance; however, a full, expressive mouth that provides her with a huge, winning smile softens things considerably. Behind that, she has a voice and set of lungs that could be used to deafen people two planets away. She overall gives the impression of a boisterous late summer party looming ponderously into view.");
-	if(flags["RAMIS_SEXED"] != undefined) output("\n\nBetween her legs you know that, just like the rest of her, she’s pure female kaithrit - a single, fluffed, large but vice-like pussy is to be found there, and she has a single pink anus between her tight buttcheeks right where it belongs.");
+	if(ramisTimesSexed() > 0) output("\n\nBetween her legs you know that, just like the rest of her, she’s pure female kaithrit - a single, fluffed, large but vice-like pussy is to be found there, and she has a single pink anus between her tight buttcheeks right where it belongs.");
 	
 	addDisabledButton(btnSlot, "Appearance");
 }
@@ -488,6 +501,16 @@ public function ramisDrink(response:String = "drink"):void
 	}
 }
 
+public function ramisArmWrestleWinRatio(physique:Number = 0):int
+{
+	var winRatio:int = 4;
+	if(physique <= 40)	winRatio++; // PC Physique < 41%: 0 chance PC wins
+	if(physique > 40)	winRatio--; // 79% > PC Physique > 40%: ¼ chance PC wins
+	if(physique > 80)	winRatio--; // 89% > PC Physique > 80%: ½ PC wins
+	if(physique > 90)	winRatio--; // PC Physique > 90% : ¾ chance PC wins
+	
+	return winRatio;
+}
 public function ramisFlirt(response:String = "flirt"):void
 {
 	clearOutput();
@@ -521,11 +544,7 @@ public function ramisFlirt(response:String = "flirt"):void
 			output("\n\n<i>“Ready for this, boyo?”</i> she purrs, tails flicking back and forth in anticipation.");
 			
 			var physique:Number = pc.PQ();
-			var winRatio:int = 4;
-			if(physique <= 40)	winRatio++; // PC Physique < 41%: 0 chance PC wins
-			if(physique > 40)	winRatio--; // 79% > PC Physique > 40%: ¼ chance PC wins
-			if(physique > 80)	winRatio--; // 89% > PC Physique > 80%: ½ PC wins
-			if(physique > 90)	winRatio--; // PC Physique > 90% : ¾ chance PC wins
+			var winRatio:int = ramisArmWrestleWinRatio(physique);
 			
 			// PC wins
 			if(winRatio < 4 && rand(winRatio) == 0)
@@ -654,7 +673,8 @@ public function ramisFuck(response:String = "none"):void
 				output("\n\n<i>“Awhawhawwww,”</i> the big kaithrit half-laughs, half-croons when her eyes land on your [pc.cock " + x + "]. You kind of saw this coming, but it doesn’t stop an all-consuming burn blooming in your cheeks when more than seven feet of ripped, leering amazon looms over your small, sensitive erection.");
 				output("\n\n<i>“You sissy boys and your thing for tiny willies,”</i> she sighs in mocking exasperation. With a toothy grin, she places her fist next to your cock and then unfurls her fingers slowly. Looking down, for a moment you think you might just have her beat, but nope - her little finger <i>is</i> bigger. The burn intensifies, your [pc.nipples] [pc.nipplesHardening] up, your whole body feeling sensitized under her teasing gaze. You don’t resist her when she lies down and molds your body against the dense, rolling curves of her form, squeezing your head between her warm, pliant breasts. You close your eyes as she wraps her hand around the hard, eager nub of your dick.");
 				output("\n\n<i>“It’s not as if cock boosters are hard to come by these days, so why do you keep it so small?”</i> she purrs in your ear, sending the scent of whiskey curling over your face. Her palm moves gently but firmly, up and down. <i>“Do you enjoy not satisfying women? Do you like bein’ teased? Do you like bein’ humiliated by other men and dick girlies? You must do. You must like bein’ treated mean. There’s no other explanation, not en this place ‘n time, is there?”</i> Encapsulated in her overwhelming female warmth and smell, your [pc.cockNoun " + x + "] being stroked and tantalized, you can do nothing but hold her supple boobs and arch your back to the submissive, shameful pleasure.");
-				if(pc.buttRating() <= 1) output(" <i>“Aww, and bound little boi bollocks, too!”</i> Her grip shifts around and all the air leaves your lungs as it tightens momentarily around your [pc.balls]. <i>“A sweet, tightly-wrapped present, like.”</i>");
+				if(pc.buttRating() <= 1) output(" <i>“Aww, and bound little boi bollocks, too!”</i>");
+				if(pc.balls > 0 && pc.hasStatusEffect("Uniball")) output(" Her grip shifts around and all the air leaves your lungs as it tightens momentarily around your [pc.balls]. <i>“A sweet, tightly-wrapped present, like.”</i>");
 				output("\n\n<i>“Thing is though,”</i> she whispers. You moan as she unfurls her hand and slows her ministrations all the way down... nothing but her little finger, sliding up and down your tender, bulging underside. <i>“I love a polite, frisky little pretty boy at the end of the day. So I’m pretty used to this. I know lads like you enjoy it. I know you’re going to cum just from this... even though it’s embarrassing. Because it </i>is<i> embarrassing.”</i> Are you? You could pull away... but that one finger, curling along and then down your stubby girl dick, over and over... it’s entrancing... <i>“You are, aren’t you?”</i> giggles Ramis wickedly, pressing you deeper into her bosom. <i>“G’won. Do it for me. Cum from my little finger, bigger ‘n more use than that sissy twig of yours...”</i>");
 				output("\n\nYour");
 				if(pc.balls > 0) output(" [pc.balls] tighten" + (pc.balls == 1 ? "s" : ""));

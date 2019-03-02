@@ -50,8 +50,6 @@
 			
 			if(target is PlayerCharacter)
 			{
-				pc.taint(2);
-				pc.libido(1);
 				if((pc.isBimbo() || pc.isBro()) && (pc.IQ() < 95 || rand(2) == 0))
 				{
 					// If a player with bimbo brains tries to use Rubber-Made, they receive the following warning
@@ -62,8 +60,10 @@
 					addButton(1,"Blow Bubbles!",blowBubsBadEnd, pc);
 					return true;
 				}
+				pc.taint(2);
+				pc.libido(1);
 				//First Time
-				else if(kGAMECLASS.flags["RUBBER_MADED"] == undefined)
+				if(kGAMECLASS.flags["RUBBER_MADED"] == undefined)
 				{
 					output("Pulling the colorful wrapper away, you clutch the small, cream-colored resin between your fingers, turning it over cautiously. It is a small thing, easily squished but bouncing more or less back into its original shape immediately. Doubtfully, you pop the piece of gum into your mouth and begin chewing. Oddly, it tastes like cherries.\n\nYour mouth waters the longer you chew and gradually the gummy block begins to grow softer and less elastic. As the cherry flavoring begins to fade, you push the waxy substance against the back of your teeth with your [pc.tongue] until it forms a thin plaster. Opening your [pc.lips] slightly, you begin to blow, your breath pushing the pale white gum outward in a small bubble. With each puff, the bubble grows larger, until it even dwarfs your head.");
 					output("\n\nThe pasty bubble thins as it grows and emits a slight keening sound as it is put under unsustainable tension. You give it one more puff and the bubble pops with an audible clap. The gooey gunk splatters all over your face and neck, the moisture warm and slimy. What a mess!");
@@ -85,7 +85,7 @@
 					// player gains the Latex Hair trait
 				}
 				//Skin
-				if(pc.skinType != GLOBAL.SKIN_TYPE_LATEX)
+				if(pc.skinType != GLOBAL.SKIN_TYPE_LATEX || !pc.hasStatusEffect("Latex Skin"))
 				{
 					output("\n\nFlinching at the pop, you clasp your goo-soaked face and wipe the slime off with your palms. Blinking and flushed, you almost don’t notice that the liquid latex on your hands seems to be spreading. It drips down your wrists and over your forearms. You try to touch the slimy seam, but your fingertips have already been covered and it’s impossible to get a firm grip on the oozing membrane. The resin sheath flows over your [pc.skinFurScales] and under your [pc.clothes], sheathing your body in a seamless, glistening rubber coating no thicker than a layer of body oil.");
 					output("\n\nYou’d almost believe the gum had simply vanished into your skin, but when you rub a finger along your cheek, the rude rubber squeak tells you that the latex is permanent. Surprisingly, your sensitivity hasn’t been impaired by the second skin. Touching your pliant, plastic skin confirms that you can feel with surprisingly improved acuteness. <b>You now have rubber skin.</b>");
@@ -144,6 +144,24 @@
 							pc.vaginas[i].vaginaColor = "black";
 						}
 					}
+					if(pc.taint() >= 33)
+					{
+						pc.removeSkinFlag(GLOBAL.FLAG_FURRED);
+						pc.removeSkinFlag(GLOBAL.FLAG_FLUFFY);
+						pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
+						pc.removeTongueFlag(GLOBAL.FLAG_FURRED);
+						pc.removeTongueFlag(GLOBAL.FLAG_FLUFFY);
+						pc.addTongueFlag(GLOBAL.FLAG_SMOOTH);
+						pc.removeArmFlag(GLOBAL.FLAG_FURRED);
+						pc.removeArmFlag(GLOBAL.FLAG_FLUFFY);
+						pc.addArmFlag(GLOBAL.FLAG_SMOOTH);
+						pc.removeLegFlag(GLOBAL.FLAG_FURRED);
+						pc.removeLegFlag(GLOBAL.FLAG_FLUFFY);
+						pc.addLegFlag(GLOBAL.FLAG_SMOOTH);
+						pc.removeTailFlag(GLOBAL.FLAG_FURRED);
+						pc.removeTailFlag(GLOBAL.FLAG_FLUFFY);
+						pc.addTailFlag(GLOBAL.FLAG_SMOOTH);
+					}
 					pc.orgasm();
 				}
 			}
@@ -175,19 +193,20 @@
 			if(kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC)) 
 			{
 				output("\n\nThe people around you glance your way, annoyed expressions on their faces. What’s their problem, you wonder as you continue your noisome munching. ");
-				if(kGAMECLASS.pc.isBimbo()) output("<i>“Um, like, take a holo vid? It’ll last longer,”</i> you offer, between your wet munching.");
+				if(target.isBimbo()) output("<i>“Um, like, take a holo vid? It’ll last longer,”</i> you offer, between your wet munching.");
 				//bro: 
 				else output("<i>“What’s up?”</i> you shout in defiance. <i>“You want to get that ass kicked, bro? Bring it!”</i>");
 				output(" Your lookie-loos go back to minding their own business and you congratulate yourself by smacking your gum extra loudly with a satisfied grin. Tch, it’s like they don’t even know how important you are. Once you get your daddy’s money, everybody’s gonna know how totally boss you are.");
 			}
 			output("\n\nAs you nibble and play with the gum, your mind wanders. If one of those raccoon guys made booze instead of cum in his nuts, he’d probably get crazy rich. Chew chew blow swallow. Who’d win in a fight between the ant girls and the bee guys? And which honey is sweeter? Chew chew blow swallow. If I had a cock for a tongue, would it be like I’m always giving myself a blowjob? Chew chew blow swallow. After pondering all these weighty questions, your head starts to hurt. <i>“Philosophy is hard work,”</i> you remark to no one in particular. <i>“I should go find a hot piece of ass,”</i> you decide, your mental equilibrium settling on more familiar ground. <i>“Oh gross, the gum’s flavor is gone.”</i> Chew chew blow swallow GULP.");
 			output("\n\nYou start off to find a quick fuck but before you’ve taken three steps, your stomach grumbles. You pause and look down, as if to glare at the noisy organ. <i>“Weird. It tastes like cherries again.”</i> ");
-			if(kGAMECLASS.pc.isBimbo()) output("You let out a small, cute burp, covering your mouth with your hand in surprise.");
+			if(target.isBimbo()) output("You let out a small, cute burp, covering your mouth with your hand in surprise.");
 			else output("Your body rocks as a tremendous belch surges from your gut, nearly bringing tears to your eyes.");
 			output(" Woah. What was that? Poking your belly, you can feel the gurgling unrest within as the gum reacts poorly to your stomach acids. Maybe you should get something to settle your stomach?");
 			output("\n\nTaking another step, you’re brought up short again as a hiccup bubbles up your spine. Hic! Ugh, that’s all you need. Hic! What was supposed to cure hiccups? Hic! Drinking cum upside down? Hic! Surprise anal? Hic! Maybe a nursedroid has can fix it? Hic! Hic! Hic! Your shoulders and chest begin to ache from the muscle spasms, the cherry flavor in your mouth growing ever more acute.");
 			
 			kGAMECLASS.processTime(30 + rand(21));
+			target.taint(4);
 			
 			clearMenu();
 			addButton(0,"Next",bubbleYumsBadEnd2, target);
@@ -205,6 +224,7 @@
 			kGAMECLASS.processTime(15 + rand(3));
 			target.lipColor = "black";
 			if(target.lipMod < 7) target.lipMod = 7;
+			target.taint(8);
 			
 			clearMenu();
 			addButton(0,"Next",bubbleYumsBadEnd3, target);
@@ -215,13 +235,13 @@
 			author("Adjatha");
 			output("Forgetting about the CODEX, you start to run, but a fierce series of hiccup knocks you to the ground, panting and trying to recover from the spasm. As you gasp, you notice another gummy bubble has formed at your lips. You try to swallow it, but your lips won’t respond. Every breath you take makes the bubble grow larger, swelling from fist-size to head-size in a few seconds. You try to pop it with your latex hands, but you have no sharp points on the sealed limbs and you can’t seem to get a grip on the weirdly thick ball.");
 			output("\n\nThe bubblegum balloons still larger and the fire in your chest makes it difficult to think as your body begins to throb with some totally inappropriate needs. ");
-			if(kGAMECLASS.pc.hasCock())
+			if(target.hasCock())
 			{
 				output("Your [pc.cocks] surge");
-				if(kGAMECLASS.pc.cockTotal() == 1) output("s");
+				if(target.cockTotal() == 1) output("s");
 				output(" to attention, tender [pc.skinFurScales] aching for attention. ");
 			}
-			if(kGAMECLASS.pc.hasVagina()) output(" [pc.EachVagina] between your [pc.legs] drools in swollen eagerness. ");
+			if(target.hasVagina()) output(" [pc.EachVagina] between your [pc.legs] drools in swollen eagerness. ");
 			output("Stupid body, you silently berate yourself, trying not to indulge your easily addled [pc.crotch]. Well... maybe one touch wouldn’t hurt, you absently rationalize. It’ll, like, help me think of a way out of this probably. Reaching down and gingerly touching your [pc.crotch] with an acrylic hand, you’re rewarded with a soothing relief that spreads through your body like ice cubes running down your back.");
 			output("\n\nAhhh, you sigh into the billowing bubble bouncing before your blissful face. Although you lack the individual fingers to best please yourself, your mitten hands do the job just as well, stroking over-sensitive flesh with an inattentive dreaminess that should be out of place for someone in your situation. More scatterbrained than ever, you keep pumping away even after noticing that the liquid rubber that’s sealed your arms all the way to the shoulder has now begun to cover your crotch, spreading black, oily resin over your [pc.crotch]. Although it hardens and firms up your body, you are, if anything more receptive. Even just touching your peak is enough to bring you to climax, your body writhing on the ground.");
 			output("\n\nMoaning between hiccups, you touch yourself again with the same result: instantaneous orgasm. Well hey, maybe this goo isn’t so bad, you ponder, riding the nectar waves of liquid bliss that flow through your veins. The bubble billowing from your mouth has grown as large as your entire body, so thin that it’s nearly translucent. Touching yourself for a third and fourth and fifth orgasm, your lust-drunk mind absently wonders what will happen when the bubble goes...");
@@ -254,6 +274,22 @@
 			target.skinType = GLOBAL.SKIN_TYPE_LATEX;
 			target.clearSkinFlags();
 			target.addSkinFlag(GLOBAL.FLAG_SMOOTH);
+			target.taint(8);
+			if(target.taint() >= 33)
+			{
+				target.removeTongueFlag(GLOBAL.FLAG_FURRED);
+				target.removeTongueFlag(GLOBAL.FLAG_FLUFFY);
+				target.addTongueFlag(GLOBAL.FLAG_SMOOTH);
+				target.removeArmFlag(GLOBAL.FLAG_FURRED);
+				target.removeArmFlag(GLOBAL.FLAG_FLUFFY);
+				target.addArmFlag(GLOBAL.FLAG_SMOOTH);
+				target.removeLegFlag(GLOBAL.FLAG_FURRED);
+				target.removeLegFlag(GLOBAL.FLAG_FLUFFY);
+				target.addLegFlag(GLOBAL.FLAG_SMOOTH);
+				target.removeTailFlag(GLOBAL.FLAG_FURRED);
+				target.removeTailFlag(GLOBAL.FLAG_FLUFFY);
+				target.addTailFlag(GLOBAL.FLAG_SMOOTH);
+			}
 			
 			clearMenu();
 			addButton(0,"Next",bubbleYumsBadEnd4, target);
@@ -268,20 +304,22 @@
 			author("Adjatha");
 			kGAMECLASS.showRival();
 			output("When somebody first found you, they mistook you for a lost sex doll. They took you home, cleaned you up, and spent a few weeks playing with every inch of your latex-bound body. Despite the often vigorous activities, you found it impossible to cum, always reaching the peak of climax but never experiencing any kind of release or relief. The delight and frustration built until your already weakened mind fell into a panting, shameless need.");
-			output("\n\nWhen your owner got tired of you, they sold you to a sex shop. The owner must follow the extranet news, because he seemed to recognize the fact that his new doll more or less matched the description of the missing corporate magnate. In a perverse sense of class equality, he bought a second hand suit that he forced your squeaking rubber body into and set you out back in an alley, with a chained collar to make sure nobody carried you off. He left a little sign right where you could see that read: <i>“Fuck a rich heir " + kGAMECLASS.pc.mf("","ess") + " for free!”</i>");
+			output("\n\nWhen your owner got tired of you, they sold you to a sex shop. The owner must follow the extranet news, because he seemed to recognize the fact that his new doll more or less matched the description of the missing corporate magnate. In a perverse sense of class equality, he bought a second hand suit that he forced your squeaking rubber body into and set you out back in an alley, with a chained collar to make sure nobody carried you off. He left a little sign right where you could see that read: <i>“Fuck a rich heir " + target.mf("","ess") + " for free!”</i>");
 			output("\n\nThe free sex doll quickly became a favorite spot for the poor - often several at once - using every hole on your latex body until spunk oozed off your glistening, black-varnished skin in thick, slimy cascades. With every new master, your mind slipped a bit further and your climax came just a little closer. Gradually, you grew so excited for more use that you managed to wiggle enough to make happy little squeaking noises. Unfortunately, the rumor that the back alley sex doll had come to life dissuaded your regulars from returning.");
 			output("\n\nThe owner of the sex store tossed you into a closet with a variety of unmovable merchandise, but took small pity on you. He left a couple of vibrators inside you to keep you company. Time passed as you edged closer and closer to climax until, finally, the closet opened again and you found yourself looking at your cousin, [rival.name], directly in the eyes. [rival.HeShe] smiles wickedly, paying the owner of the sex shop ten times what he was asking, and ordering her");
 			if(kGAMECLASS.flags["BEAT_TAIVRA_TIMESTAMP"] == undefined) output(" huge, ausar");
+			else if(kGAMECLASS.flags["FERUZE_ZHENG_OUTCOME"] != undefined) output(" sexy, suula");
 			output(" bodyguard to carry you back to [rival.hisHer] ship.");
-			output("\n\n<i>“Well, [pc.name], I’d like to say I’m surprised to see you again. But, honestly, I think we all knew you’d end up like this sooner or later. But don’t worry, I’m not going to shut you up in a closet. Nah, I think it’d be so much more fun to have you right by my side as I claim your father’s inheritance. His only " + kGAMECLASS.pc.mf("son","daughter") + ", reduced to a dumb fuckdoll.”</i> [rival.HeShe] squeezes you in a tight, mockingly affectionate hug.");
+			output("\n\n<i>“Well, [pc.name], I’d like to say I’m surprised to see you again. But, honestly, I think we all knew you’d end up like this sooner or later. But don’t worry, I’m not going to shut you up in a closet. Nah, I think it’d be so much more fun to have you right by my side as I claim your father’s inheritance. His only " + target.mf("son","daughter") + ", reduced to a dumb fuckdoll.”</i> [rival.HeShe] squeezes you in a tight, mockingly affectionate hug.");
 			
 			kGAMECLASS.days += ((7 * 3) + rand(5));
 			kGAMECLASS.hours = rand(24);
 			kGAMECLASS.processTime(rand(60));
 			target.maxOutLust();
 			target.willpower(-50);
+			target.taint(12);
 			
-			if(!kGAMECLASS.pc.hasGenitals()) kGAMECLASS.badEnd();
+			if(!target.hasGenitals()) kGAMECLASS.badEnd();
 			else
 			{
 				clearMenu();
@@ -295,15 +333,15 @@
 			kGAMECLASS.showRival();
 			output("The pressure of the embrace draws a wheezing squeak from your happy, O-shaped mouth and your latex-sheathed [pc.crotch] begins to leak with your long-delayed orgasm. <i>“Hrm? What’s this?”</i> [rival.name] ponders, noticing the thin, crystal liquid leaking from your body. Leaning in, [rival.heShe] wipes a finger across your fluid and raises it to [rival.hisHer] nose, sniffing curiously. <i>“Is this...?”</i> [rival.heShe] brings it to [rival.hisHer] mouth and licks curiously.");
 			output("\n\nAs if a dam bursting from torrential pressure, your months of edging nearer and nearer to a monumental climax are released in one gushing geyser. ");
-			if(kGAMECLASS.pc.hasVagina()) output("[pc.EachVagina] shudders, spraying [pc.girlCum] in a squirting symphony of blissful release. ");
+			if(target.hasVagina()) output("[pc.EachVagina] shudders, spraying [pc.girlCum] in a squirting symphony of blissful release. ");
 			//cocks: 
-			if(kGAMECLASS.pc.hasCock())
+			if(target.hasCock())
 			{
 				output("Your [pc.cocks] throb");
-				if(kGAMECLASS.pc.cockTotal() == 1) output("s");
+				if(target.cockTotal() == 1) output("s");
 				output(" with the weight of your heavy, thick cum pumping to the latex [pc.cockHead] and lancing out like a pressurized fountain.");
 			}
-			output(" The fluid salvo hits [rival.name] square in the face, spoiling your cousin’s moment of triumph with the shocking indiginity of your dripping discharge. <i>“Oh, you stupid " + kGAMECLASS.pc.mf("basterd","bitch") + "! Petty to the end!”</i> [rival.heShe] curses, wiping the slimy spoo from [rival.hisHer] face.");
+			output(" The fluid salvo hits [rival.name] square in the face, spoiling your cousin’s moment of triumph with the shocking indiginity of your dripping discharge. <i>“Oh, you stupid " + target.mf("basterd","bitch") + "! Petty to the end!”</i> [rival.heShe] curses, wiping the slimy spoo from [rival.hisHer] face.");
 			output("\n\n<i>“Ugh, this is really sticky,”</i> [rival.heShe] mutters, flexing the web of gelling goo between [rival.hisHer] fingers as [rival.heShe] tries to clean herself. The spunky nectar grows more elastic with each passing moment, until [rival.name] finds [rival.heShe] can’t seperate [rival.hisHer] fingers anymore. With the digits on both [rival.hisHer] hands glued together by a transparent varnish, your cousin’s annoyed confusion quickly becomes rage. <i>“What is this, you little shit?”</i> [rival.heShe] grabs your glistening shoulders with [rival.hisHer] rubber-bound hands and shakes you violently, [rival.hisHer] face inches from yours.");
 			output("\n\nHic!");
 			output("\n\nThe last burping hiccup fluttering in your belly finally finds its way up, a bubble of black, liquid rubber forming on your lips and popping right in [rival.name]’s face. [rival.HeShe] hacks and tries to claw it away, but it spreads and hardens almost immediately, sealing [rival.hisHer] mouth closed. The ebony sludge creeps over [rival.hisHer] body, the acids from your stomach melting away [rival.hisHer] clothing until [rival.heShe]’s just as naked as you are. Eyes wide and panicking, your silenced cousin tries to call for help but can produce only a lewd, squeaking as the resin encases [rival.himHer] as firmly as it does you.");

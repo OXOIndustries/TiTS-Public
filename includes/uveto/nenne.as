@@ -21,11 +21,15 @@ NENNE_TAKES_CREDS	- If you've talked to Nenne about taking credits
 
 public function showNenne(nude:Boolean = false):void
 {
-	var nudeS:String = "";
-	if(nude) nudeS = "_NUDE";
-	showBust("NENNE" + nudeS);
+	showBust(nenneBustString(nude));
 	author("B");
 	showName("\nNENNE");
+}
+public function nenneBustString(nude:Boolean = false):String
+{
+	var nudeS:String = "";
+	if(nude) nudeS = "_NUDE";
+	return ("NENNE" + nudeS);
 }
 
 public function nenneItemCost():Number

@@ -95,7 +95,7 @@ public function approachUshameeCorridor2():void
 	output(" and takes you to a ‘taur-accessible booth near the back. ");
 	if (flags["MET_DEL_SHEMALE"] == undefined) output("One of the serving staff ");
 	else output("Del ");
-	output("quickly comes over and takes a drink order from you both before leaving you in peace with the brawny space-centauress. Once she’s settled in one her haunches, the chief reaches up and yanks off the elastic tie holding her ebony locks back in a ponytail. Her luxuriously long hair comes spilling down around her shoulders, drawing your attention to the fact that she’s not wearing the armor you remember from your first meeting, but rather a white t-shirt with a picture of a railgun printed atop her ample rack underneath an unbuttoned red flannel shirt, and a blanket made of blue denim wrapped over her bestial lower half.");
+	output("quickly comes over and takes a drink order from you both before leaving you in peace with the brawny space-centauress. Once she’s settled in on her haunches, the chief reaches up and yanks off the elastic tie holding her ebony locks back in a ponytail. Her luxuriously long hair comes spilling down around her shoulders, drawing your attention to the fact that she’s not wearing the armor you remember from your first meeting, but rather a white t-shirt with a picture of a railgun printed atop her ample rack underneath an unbuttoned red flannel shirt, and a blanket made of blue denim wrapped over her bestial lower half.");
 	output("<i>“Yeah, I was hoping we could talk. About what happened, and um... what we did.”</i>");
 	output("\n\nThe last few words there cause a dark, purplish flush to spread across her cheeks. Your mind immediately flashes back to those last, involuntarily intimate moments aboard the ship, with the parasites wriggling inside of the chief’s gravid belly, peeking their tentacle-like appendages back out of her chocolate-hued pussy.");
 	if (flags["FUCKED_CHIEF_NEYKKAR"] != undefined)
@@ -154,7 +154,7 @@ public function noIdeaUshamee():void
 	
 	output("You answer with a shrug, saying that how she feels is up to her.");
 	output("\n\n<i>“Well of course it is!”</i> she huffs, crossing her arms in a way that puffs out her already-big tits. <i>“And let me tell you, I’m a girl who knows what she wants! And what I want... is you. That’s why I called you out here, and that’s what I’m gonna get! So are you in, or am I gonna have to work at it until you give in?”</i>");
-	output("\n\nNow that sounds more like the chief you remember. If you’re onboard, maybe you out to ask her out. Or let her ask you out, whichever comes first.");
+	output("\n\nNow that sounds more like the chief you remember. If you’re onboard, maybe you ought to ask her out. Or let her ask you out, whichever comes first.");
 	
 	flags["USHA_STATE"] = 2;
 	processTime(1 + rand(2));

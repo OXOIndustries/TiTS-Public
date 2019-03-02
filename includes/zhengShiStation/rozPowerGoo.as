@@ -29,6 +29,7 @@ public function encounterRoz():Boolean
 {
 	clearOutput();
 	showRoz();
+	showBust("ROZ_ARMOR");
 	author("Savin");
 	//First Encounter:
 	if(flags["MET_ROZ"] == undefined)

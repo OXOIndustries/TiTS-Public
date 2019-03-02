@@ -1566,6 +1566,10 @@ public function talkToAliss():void
 	output("You lean against a nearby countertop and ask if you could just talk for a moment.");
 	output("\n\nAliss quirks an eyebrow. <i>“Oh, sure. Not used to people wanting to talk,”</i> she says with a light laugh. She goes to stand behind the counter and waves a hand. <i>“What would you like to talk about?”</i>");
 	processTime(1);
+	talkToAlissMenu();
+}
+public function talkToAlissMenu():void
+{
 	//[Ovir] [Mi Amour] [Chameleon Silk] [Libido] [Exhibitionism]
 	clearMenu();
 	addButton(0,"Ovir",talkToAlissAboutOvier,undefined,"Ovir","Talk to Aliss about her species.");
@@ -1592,8 +1596,9 @@ public function talkToAlissAboutOvier():void
 	output("\n\n<i>“Our females, on the other hand, are less colorful. They didn’t need the bright colors, or the large boobs, so they never developed them. Now, of course, there’s gene mods and all that, so you can’t always tell the gender of an ovir by their coloration, at least in human settlements and stations. Back home, and in primarily ovir colonies, tradition usually wins out.”</i>");
 	output("\n\nAliss stretches and asks, <i>“Anything else you want to ask?”</i>");
 	processTime(3);
-	clearMenu();
-	addButton(14,"Back",talkToAliss);
+	//clearMenu();
+	//addButton(14,"Back",talkToAliss);
+	talkToAlissMenu();
 }
 
 //Mi Amour
@@ -1608,8 +1613,9 @@ public function miAmourTalkWithAliss():void
 	output("\n\n<i>“I had huge wardrobes filled with hand-sewn dresses, blouses, skirts, pants, and so on. And all the girls in my colony wanted some too! I had a bit of an eye for fashion, even back then. So, by the time I was 15 I had this nice little side business and was cleaning up pretty good. So I paid my own way through university, and when I graduated I bought this storefront! It started off pretty small, but after my business really picked up, I bought out the surrounding stores and expanded my showfloor.”</i>");
 	output("\n\n<i>“And now with my new chameleon silk, business is really booming! I’ve got people coming from all over to pick up some of my lingerie. I’m even thinking of expanding to new locations.”</i>");
 	processTime(3);
-	clearMenu();
-	addButton(14,"Back",talkToAliss);
+	//clearMenu();
+	//addButton(14,"Back",talkToAliss);
+	talkToAlissMenu();
 }
 
 //Chameleon Silk
@@ -1624,8 +1630,9 @@ public function chameleonSilkTalkWithAlissYouSlut():void
 	output("\n\nAliss retrieves a small tablet computer and presses something on the screen. The panties, before your eyes, shift from black to white, then to white and pink polka dot, pink and green stripes, and finally to solid red. <i>“It’s really cool. Patterns are taking a bit longer to work with, for obvious reasons, but we’re working on it. My biggest accomplishment was getting it to work with stockings.”</i>");
 	output("\n\nShe sits on a stool and lifts both legs up onto the countertop, crossing them and smiling. A few taps on the tablet, and they shift from fishnets, to sheer, then to opaque black stockings. <i>“It took some doing, but I managed to set these up to vary in transparency as well as color. I’m hoping to apply this to thicker pieces like bras and panties next, but it’s going to take a lot of work.”</i>");
 	processTime(3);
-	clearMenu();
-	addButton(14,"Back",talkToAliss);
+	//clearMenu();
+	//addButton(14,"Back",talkToAliss);
+	talkToAlissMenu();
 }
 
 //Libido
@@ -1642,8 +1649,9 @@ public function talkToAlissAboutLibido():void
 	output("\n\nHm... does Aliss have a bit of an exhibitionism fetish?");
 	chars["ALISS"].lust(5);
 	processTime(3);
-	clearMenu();
-	addButton(14,"Back",talkToAliss);
+	//clearMenu();
+	//addButton(14,"Back",talkToAliss);
+	talkToAlissMenu();
 }
 
 //Exhibitionism
@@ -1660,8 +1668,9 @@ public function exhibitionismTalkWithAliss():void
 	output("\n\nThe alien looks thoughtful for a moment. You’re pretty confident that there might be something more to this in a future update.");
 	chars["ALISS"].lust(10);
 	processTime(3);
-	clearMenu();
-	addButton(14,"Back",talkToAliss);
+	//clearMenu();
+	//addButton(14,"Back",talkToAliss);
+	talkToAlissMenu();
 }
 
 //sensory feedback malfunction (reviewedready for review)

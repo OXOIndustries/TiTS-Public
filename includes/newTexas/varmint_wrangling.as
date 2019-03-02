@@ -209,6 +209,7 @@ public function fuckCameronsButt():void
 	var panties:Boolean = (rand(2) == 0);
 	var x:int = pc.cockThatFits(700);
 	if(x < 0) x = pc.smallestCockIndex();
+	showImage("CameronSplayed");
 	output("Oh, you’ve got something in mind alright... you give Cam a little push onto the bed, smiling to yourself as he makes a panicked little yelp, landing with his legs nice and spread for you. You quickly dispose of his overalls and slink down to your [pc.knees], picking up one of your boy-toy’s boots and slowly pulling it off and freeing the dainty little hoof inside. You give it a little lick, tracing your [pc.tongue] up Cam’s leg to the inside of his thigh, all the way to the ");
 	if(!panties) output("leg of his boxers");
 	else output("rim of his lacey, girly panties");

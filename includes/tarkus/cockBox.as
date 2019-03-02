@@ -6,15 +6,27 @@ import classes.Items.Transformatives.DongDesigner;
 //Discovery
 public function cockBoxDiscoveryBlurb():Boolean
 {
+	var button:int = 0;
 	if(flags["LOOTED_COCKBOX"] == undefined)
 	{
 		output("\n\nA gleam of shining metal catches your eye from amongst the mounds of detritus. Looking closer, you pick out the shape of an oblong console of alloy and composite, scratched in a half-dozen places but otherwise intact. Do you investigate it?");
-		addButton(0,"Investigate",investigateTheCockBox);
+		addButton(button++,"Investigate",investigateTheCockBox);
 	}
 	else if(flags["LOOTED_COCKBOX"] == 0)
 	{
 		output("\n\nA gleam of light indicates that the TamaniCorp Dong Designer is still sitting where you last found it. You can pick it up if you have the room for it.");
-		addButton(0,"Take It",takeDatCockBawks);
+		addButton(button++,"Take It",takeDatCockBawks);
+	}
+	if (flags["KIMBER_QUEST"] != undefined)
+	{
+		output("\n\nThis looks like the place Kimber told you about; there aren't many other metal plates that large in the rusted wilderness. You peer into the crevice, and sure enough, there's some sort of cave entrance down there. It looks like the rock has been smoothed over by the passage of… something. You could probably climb down into it");
+		if (pc.thickness >= 80) output(", though it'll be a tight squeeze");
+		output(".");
+		addButton(button++, "Enter Cave", function ():void
+		{
+			moveTo("KIMBER10");
+			mainGameMenu();
+		});
 	}
 	return (rustRidgesEncounters());
 }

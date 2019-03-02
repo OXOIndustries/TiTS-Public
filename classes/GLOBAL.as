@@ -80,6 +80,8 @@
 		public static const FLAG_TONGUE:int									= 45;
 		public static const FLAG_FRECKLED:int                               = 46;
 		public static const FLAG_PLUGGED:int                   	            = 47;
+		public static const FLAG_SCALED_PRETTY:int                          = 48;
+		public static const FLAG_SHORT:int									= 49;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -130,6 +132,8 @@
 			"Tongued",
 			"Freckled",
 			"Plugged",
+			"Partially Scaled",
+			"Short",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -140,6 +144,7 @@
 			FLAG_SQUISHY,
 			FLAG_LUBRICATED,
 			FLAG_ABSORBENT,
+			FLAG_SCALED_PRETTY,
 		];
 		
 		//TYPES
@@ -234,6 +239,8 @@
 		public static const TYPE_SANDWORM_PARASITE:int 						= 84;
 		public static const TYPE_JANERIA:int								= 85;
 		public static const TYPE_ROEHM:int									= 86;
+		public static const TYPE_XHELARFOG:int								= 87;
+		public static const TYPE_SAURMORIAN:int								= 88;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -323,6 +330,8 @@
 			"Butt Bug",
 			"Janeria",
 			"Roehm",
+			"Xhelarfog",
+			"Saurmorian",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -354,6 +363,8 @@
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
 			TYPE_FROSTWYRM,
+			TYPE_XHELARFOG,
+			TYPE_SAURMORIAN,
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
@@ -383,6 +394,8 @@
 			TYPE_COCKVINE,
 			TYPE_JANERIA,
 			TYPE_FROSTWYRM,
+			TYPE_XHELARFOG,
+			TYPE_SAURMORIAN,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -450,6 +463,7 @@
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
 			TYPE_FROSTWYRM,
+			TYPE_SAURMORIAN,
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -475,6 +489,7 @@
 			TYPE_LUPINE,
 			TYPE_REDPANDA,
 			TYPE_FROSTWYRM,
+			TYPE_SAURMORIAN,
 		];
 
 		public static const VALID_ARM_FLAGS:Array = [
@@ -528,6 +543,7 @@
 			TYPE_MOUSE,
 			TYPE_JANERIA,
 			TYPE_FROSTWYRM,
+			TYPE_SAURMORIAN,
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -570,6 +586,8 @@
 			TYPE_DRYAD,
 			TYPE_SHEEP,
 			TYPE_FROSTWYRM,
+			TYPE_XHELARFOG,
+			TYPE_SAURMORIAN,
 		];
 		
 		public static const VALID_WING_TYPES:Array = [
@@ -636,6 +654,8 @@
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
 			TYPE_FROSTWYRM,
+			TYPE_XHELARFOG,
+			TYPE_SAURMORIAN,
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [
@@ -661,6 +681,7 @@
 			FLAG_STICKY,
 			FLAG_TAPERED,
 			FLAG_CORKSCREWED,
+			FLAG_SHORT,
 		];
 		
 		public static const TAIL_GENITAL_NONE:int 	= 0;
@@ -703,6 +724,7 @@
 		public static const SKIN_TYPE_LATEX:int                                  = 6;
 		public static const SKIN_TYPE_PLANT:int                                  = 7;
 		public static const SKIN_TYPE_BARK:int                                   = 8;
+		public static const SKIN_TYPE_GEL:int                                    = 9;
 		
 		public static const SKIN_TYPE_NAMES:Array = [
 			"Skin",
@@ -714,6 +736,7 @@
 			"Latex",
 			"Plant",
 			"Bark",
+			"Gel",
 		];
 		
 		//NIPPLETYPES
@@ -974,6 +997,7 @@
 			TYPE_SWINE,
 			TYPE_FROSTWYRM,
 			TYPE_JANERIA,
+			TYPE_SAURMORIAN,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
@@ -1021,6 +1045,7 @@
 			TYPE_SWINE,
 			TYPE_MOUTHGINA,
 			TYPE_FROSTWYRM,
+			TYPE_SAURMORIAN,
 		];
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas
@@ -1036,7 +1061,8 @@
 			FLAG_PUMPED,
 			FLAG_CORKSCREWED,
 			FLAG_TONGUE,
-			FLAG_PLUGGED
+			FLAG_PLUGGED,
+			FLAG_RIBBED,
 		];
 		
 		//ROOM FLAGS
@@ -1184,6 +1210,7 @@
 		public static const ITEM_FLAG_NO_REMOVE:int 					= 32; //Worn items that the PC cannot remove by themself.
 		public static const ITEM_FLAG_SMALL_DICK_ONLY:int               = 33; //Cocksock can only be equipped by smol
 		public static const ITEM_FLAG_SHELTER:int						= 34; // For items that regulate environmental effects.
+		public static const ITEM_FLAG_STRETCHY:int						= 35; // Increases sexiness buff if related body part is big. Doubles as Transparent flag at 20+;
 
 		
 		public static const ITEM_FLAG_NAMES:Array = [
@@ -1222,6 +1249,7 @@
 			"Permanent",
 			"Requires Small Cock",
 			"Shelter",
+			"Stretchable",
 		];
 		
 		/**
@@ -1375,6 +1403,7 @@
 			"NUBATTORI",
 			"PEEKAY",
 			"RENEZUO",
+			"SHEEPPUN",
 			"SHOU",
 			"TSUDA",
 			"UTHSTAR",
@@ -1413,6 +1442,7 @@
 			"Nu Battori",
 			"Pee-Kay",
 			"Renezuo",
+			"SheepPun",
 			"Shou",
 			"Tsuda",
 			"Uthstar",

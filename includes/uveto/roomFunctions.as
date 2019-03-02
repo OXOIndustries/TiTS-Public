@@ -250,6 +250,8 @@ public function rideSpaceElevatorUp():void
 	clearOutput();
 	author("Savin");
 	
+	//If Korgii Hold is primed to fall, fall.
+	if(flags["WARGII_DOOM_TIMER"] == 1) flags["WARGII_DOOM_TIMER"] = 2;
 	rooms["UVS LIFT"].outExit = null;
 	currentLocation = "UVS LIFT";
 	generateMap();
@@ -1091,7 +1093,11 @@ public function uvetoMaglevStation():Boolean
 		syriQuestInitialEncounter();
 		return true;
 	}
-	else addButton(0, "Transit", useUvetoTransportMenu);
+	else 
+	{
+		showBust("UVETO_TAXI_VENDOR");
+		addButton(0, "Transit", useUvetoTransportMenu);
+	}
 	return false;
 }
 		
@@ -1574,6 +1580,18 @@ public function encounterSavicite(choice:String = "encounter"):void
 
 public function korgiiHoldExteriorBonus():Boolean
 {
+	//If been to irestead since turning down, RIP Korgii
+	if(flags["WARGII_PROGRESS"] == -1 && flags["WARGII_DOOM_TIMER"] == 2)
+	{
+		flags["WARGII_DOOM_TIMER"] = undefined;
+		flags["WARGII_PROGRESS"] = -2;
+	}
+	if(flags["WARGII_PROGRESS"] == -2)
+	{
+		output("The entrance to Korg’ii Hold, with all its many secret, whistling holes, is gone. A sturdy metal edifice has been plunked down in its place. Geddanium-reinforced armor renders it impervious to small-arms fire, and the muzzles of a dozen remote-control anti-tank weapons dismantle any ideas you have about breaking in as soundly as the hull of a T-3400 battle tank. The korgonne clearly aren’t in charge any longer. Some other force or entity has claimed the hold. <b>Perhaps you should’ve helped out Ula.</b>\n\nNow there’s nothing you can do but stare angrily at the Pyrite Industries logo stamped on a gun barrel.");
+		return false;
+	}
+	output("Hundreds of holes mar the glossy surface of a sparkling wall of savicite and aluminum ore to the west.");
 	output("\n\nThe holes appear to have been drilled through the valuable ore ");
 	if(flags["ENTERED_KORGI_HOLD"] != undefined) output("as a mechanism of hiding Korg’ii Hold.");
 	else output("for an unknown purpose by an unknown entity. You poke a few to little effect. They run too deep to plumb without specialized tools, and it’d be more profitable to just mine out the thing to the bottom.");
@@ -1608,8 +1626,15 @@ public function korgiiHoldInteriorExitBonus():void
 
 public function enterKorgHold():void
 {
+	//WARGII QUEST INTERRUPT!
+	if(korgiTranslateProgress() >= 60 && flags["WARGII_SETUP"] == undefined && flags["ENTERED_KORGI_HOLD"] != undefined && pc.level >= 9 && ulaPregBelly() == 0)
+	{
+		currentLocation = "KORGII B12";
+		generateMap();
+		wargiiHoldProcOhShiiiiit();
+		return;
+	}
 	clearOutput();
-
 	showName("OPEN\nDOGGIE-DOOR");
 	output("<i>“Welcoming, friend!”</i> comes an answering voice.");
 	output("\n\nA sharp-sounding crack echoes through the snow-covered countryside as the glittering rock shifts inward. Rotating slowly, it rolls behind the wall, revealing the ");

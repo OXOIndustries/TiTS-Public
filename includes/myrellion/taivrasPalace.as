@@ -2229,7 +2229,7 @@ public function soloTaivraBadEndPart2():void
 		else output("mate");
 		output(", as incestuous as your union is. More than once after a vigorous fuck session, when [rival.name] thinks you’re fast asleep, [rival.hisHer] head resting on your chest, you’re sure you hear [rival.himHer] say <i>“I love you.”</i>");
 	}
-	output("\n\nYou suppose a life spent in lust, fucking who you please between sexual service to a powerful and domineering queen, isn’t so bad after all. You never find out what your father had in store for you, but frankly... you’re not sure it matters. You have another cousin who might hear of her fortune some day, at your and [rival.name]’s expense. Obviously, you weren’t cut out for the job. But now you’ve found a better one, a career more suited to your talents and to the lust that grows hotter in you day after day.");
+	output("\n\nYou suppose a life spent in lust, fucking who you please between sexual service to a powerful and domineering queen, isn’t so bad after all. You never find out what your father had in store for you, but frankly... you’re not sure it matters. You have another cousin who might hear of " + rival.mf("her", "his") + " fortune some day, at your and [rival.name]’s expense. Obviously, you weren’t cut out for the job. But now you’ve found a better one, a career more suited to your talents and to the lust that grows hotter in you day after day.");
 	output("\n\nSomething feels missing in you for the rest of your life. A destiny unfulfilled. But it’s an easy hole to ignore, surrounded by beautiful aliens");
 	if(flags["COUSIN_BEDWARMER"] == 1) output(" and a cousin who so eagerly warms your bed at night");
 	output(". You can’t say you’re too sad at night, especially when your loving queen takes you into her bed - nothing ever will make you feel more alive again as when Taivra claims you with her royal scepter, filling your body with the most amazing sensation, and new generations of life for your queen’s growing nation.");
@@ -3728,7 +3728,9 @@ public function showPrincess():void
 public function princessBonus():Boolean
 {
 	showPrincess();
-	output("\n\nThe nyrean princess, wearing a crown of citrine embedded into her head-spikes, lounges amongst the males, holding a pair of them against her breasts while another two bob up and down along an eight-inch, flaring shaft.");
+	output("\n\n");
+	showImage("PrincessIntro");
+	output("The nyrean princess, wearing a crown of citrine embedded into her head-spikes, lounges amongst the males, holding a pair of them against her breasts while another two bob up and down along an eight-inch, flaring shaft.");
 	output("\n\nAt the sight of you, she pushes the topmost set away, leaving the busy bottoms to continue orally polishing her rod. <i>“How dare you intrude upon the royal harem!”</i> She releases a gooey wad into a suckling mouth, seemingly unperturbed by her own irritation. With a haughty huff, she gazes at you with lust-lidded eyes. <i>“Unless you’ve come to join the harem. Is that it, star-walker? I suppose you are cute enough to hold a few eggs...”</i>");
 	output("\n\nYou didn’t come here for that, but that wouldn’t be such a bad end to your adventures. Do you join her harem or resist?");
 	clearMenu();

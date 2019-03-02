@@ -117,7 +117,7 @@ public function followRiyaPartyStuff():void
 public function riyaGrenceFuckaboo():void
 {
 	clearOutput();
-	showBust("RIYA","GRENCE");
+	showBust("RIYA_NUDE","GRENCE_NUDE");
 	showName("RIYA\n& GRENCE");
 	author("Franks");
 	output("Riya looks... intrigued, and tempted. If you had to guess, you’d say it’s been a while since someone has stepped to her like this, at least in an intimate setting... she’s clearly considering it, but Lorna doesn’t seem to be in a patient mood just this moment. She steadies herself, undoes her belt, and looks at the other officer coolly as she speaks. <i>“On your knees and get over here.”</i>");
@@ -300,8 +300,10 @@ public function bakeCookiesWithEmbizzle():void
 	pc.lust(5);
 	clearMenu();
 	addButton(0,"Cocoa&Cuddle",cocoaAndEmbryCuddles);
-	addButton(1,"Snowball",snowBallinWithEmbry);
-	addButton(2,"CandyOral",candyCaneOral);
+	if(pc.hasCock()) addButton(1,"Snowball",snowBallinWithEmbry);
+	else addDisabledButton(1,"Snowball","Snowball (and) Cookies","You need a penis for this!");
+	if(pc.hasCock() || pc.hasVagina()) addButton(2,"CandyOral",candyCaneOral);
+	else addDisabledButton(2,"CandyOral","Candy Cane Oral","You need a penis or vagina for this!");
 	addButton(4,"Leave",leaveEmrbyHoliday2018);
 }
 

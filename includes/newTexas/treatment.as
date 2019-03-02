@@ -385,8 +385,8 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			}
 			else
 			{
-				ExtendLogEvent("\n\n(<b>Perk Upgraded: Inhuman Desire</b> - Your maximum lust is increased by 10.)");
-				pc.addPerkValue("Inhuman Desire",1,10);
+				ExtendLogEvent("\n\n(<b>Perk Upgraded: Inhuman Desire</b> - Your maximum lust is increased by 20.)");
+				pc.addPerkValue("Inhuman Desire",1,20);
 				pc.setPerkTooltip("Inhuman Desire","Increases maximum lust by " + pc.perkv1("Inhuman Desire") + ".");
 			}
 			pc.lust(13);
@@ -4202,11 +4202,19 @@ public function dumb4CumReset():void
 	
 	// Ditz Speech Removal
 	// Dr. Badger bimbofication and Dumbfuck sneezes are permanent though...
-	if(pc.hasPerk("Ditz Speech") && flags["DR_BADGER_BIMBOED_PC"] == undefined && (flags["DUMBFUCK_SNEEZES"] == undefined || flags["DUMBFUCK_SNEEZES"] < 20))
+	if(pc.hasPerk("Ditz Speech") && canRemoveDitzSpeech())
 	{
 		ExtendLogEvent("\n\n(<b>Perk Lost: Ditz Speech</b>)");
 		pc.removePerk("Ditz Speech");
 	}
+}
+public function canRemoveDitzSpeech():Boolean
+{
+	// Bimbofication permanence
+	if(flags["DR_BADGER_BIMBOED_PC"] != undefined) return false;
+	if(flags["MITZI_BIMBOED_PC"] != undefined) return false;
+	if(flags["DUMBFUCK_SNEEZES"] != undefined && flags["DUMBFUCK_SNEEZES"] >= 20) return false;
+	return true;
 }
 
 public function dumb4CumUpdate(totalHours:int):void

@@ -767,10 +767,17 @@ public function talkToZephyrMenu():void
 
 	var hasTalkedBets:Boolean = flags["ZEPHYR_TALKED_BETS"] != undefined;
 
+	/*
 	if (!pc.hasCock() && !pc.hasHardLightStrapOn())
 	{
 		if (!hasTalkedBets) addDisabledButton(2, "Bets", "Bets", "You need either a cock or hardlight to hand...");
 		else addDisabledButton(2, "ButtBets", "ButtBets", "You need either a cock or hardlight to hand...");
+	}
+	*/
+	if (!pc.hasCock())
+	{
+		if (!hasTalkedBets) addDisabledButton(2, "Bets", "Bets", "You need a cock to hand...");
+		else addDisabledButton(2, "ButtBets", "ButtBets", "You need a cock to hand...");
 	}
 	else if (!pc.hasItemByClass(Throbb))
 	{
@@ -2129,8 +2136,8 @@ public function zephyrDoubleBetWin():void
 	if (cLength <= 24)
 	{
 		output(" sink yourself past her pouting lips in one thrust, hollowing out her throat");
-		if (pc.balls > 0 && pc.ballDiameter() <= 4) output(" and squishing your [pc.balls] against her nose.");
-		else output(" and slapping your [pc.balls] against her nose.");
+		if (pc.balls > 0) output(" and " + (pc.ballDiameter() <= 4 ? "squishing" : "slapping") + " your [pc.balls] against her nose");
+		output(".");
 	}
 	else
 	{

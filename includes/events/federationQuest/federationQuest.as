@@ -532,8 +532,6 @@ public function fedQuestAmbushText():String
 	eText+="\n\nLieve is " + (lieve.HP() > 0 ? "standing beside you, doing what she can to keep the commando team fighting" : "collapsed on a pile of rubble beside you, groaning and cradling a cracked sleeve of chitin on her arm") + ".";
 	eText+="\n<b>("+flags["GOLD_AMBUSH_COVER"] +"% Cover)</b>";
 	
-	
-	
 	return eText;
 }
 
