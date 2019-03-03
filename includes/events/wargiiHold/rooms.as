@@ -184,7 +184,7 @@ public function initWargiiRooms():void
 
 	rooms["WARGII F14"] = new RoomClass(this);
 	rooms["WARGII F14"].roomName = "SOUTH\nTUNNEL";
-	rooms["WARGII F14"].description = "Scorching warmth carries you along through the tunnels of Korg’ii hold. This one stretches straight to the east and west, terminated by sharp turns to the north at each end. Flashes of fur and laser fire can be seen through the smoky corridor wherever you turn. Directly north of you is a double door, the seam split across a carving of a gilded coat. Alien script ";
+	rooms["WARGII F14"].description = "Scorching warmth carries you along through the tunnels of Korg’ii hold. This one stretches straight to the east and west, terminated by sharp turns to the north at each end. Flashes of fur and laser fire can be seen through the smoky corridor wherever you turn. Directly north of you is a double door, the seam split across a carving of a gilded coat.";
 	rooms["WARGII F14"].planet = "PLANET: UVETO VII";
 	rooms["WARGII F14"].system = "SYSTEM: SIRETTA";
 	rooms["WARGII F14"].moveMinutes = 2;

@@ -259,6 +259,7 @@ public function pcBeatsUpAMilo():void
 	output("\n\nUla does not partake in the excited debauchery. She turns to you, tears streaming from the corners of her eyes. She lunges forward, arms outstretched... and bounces past you, directly into her father’s arms. The old korg sags in such relief that his whole body wrinkles like a discarded blanket. Old, tired eyes blink closed. His breathless voice asks, <i>“" + (korgiTranslate() ? "Are you alright, Ula?":"You okaying, Ula?") + "”</i>");
 	output("\n\n<i>“Yes,”</i> Ula says. She pulls back, looking from her father to you. <i>“" + (korgiTranslate() ? "Thanks to [pc.name].":"[pc.name] make so.") + "”</i> She’s pulled deep into another hug before she can say another word.");
 	output("\n\nIn the distance, the sounds of combat are dying down. Rank and file milodans flee and surrender en mass without their leader to keep them organized. The tide has turned, and victory is at hand.");
+	output("\n\n");
 	processTime(15);
 	eventQueue.push(wargiiHoldEpilogue);
 	CombatManager.genericVictory();

@@ -77,7 +77,8 @@ package classes.Items.Transformatives
 			//ammount of effects to trigger
 			var totalEffects:int = weightedRand([{v:1, w:5}, {v:2, w:3}, {v:3, w:2}]);
 			var effectCount:int = 0;
-			while (effectCount < totalEffects)
+			var fails:int = 0;
+			while (effectCount < totalEffects && fails < totalEffects)
 			{
 				effects = new Array();
 				
@@ -145,7 +146,11 @@ package classes.Items.Transformatives
 						if (effect == skinTypeChange) return true;
 					}
 					//If it fails, don't try again
-					else usedEffects.push(effect);
+					else
+					{
+						usedEffects.push(effect);
+						fails++;
+					}
 				}
 				else
 				{
@@ -299,7 +304,7 @@ package classes.Items.Transformatives
 
 					target.breastRows[0].breastRatingRaw = newCup;
 
-					output("\n\n<b>Your breast size has reduced! You’re " + (newCup > 0 ? "a [pc.breastSize 0]" : "flat") + " now!</b>");
+					output("\n\n<b>Your breast size has reduced! You’re " + (newCup > 0 ? "a [pc.breastCupSize 0]" : "flat") + " now!</b>");
 				}
 				else
 				{
@@ -487,7 +492,7 @@ package classes.Items.Transformatives
 			
 			kGAMECLASS.flags["XHELPLUS_SKIN_CHANGE"] = 1;
 			
-			kGAMECLASS.addButton(0, "Next", kGAMECLASS.mainGameMenu);
+			kGAMECLASS.addButton(0, "Next", kGAMECLASS.useItemFunction);
 		}
 		
 		private function growScales(target:Creature):Boolean

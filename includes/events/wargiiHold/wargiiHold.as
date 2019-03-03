@@ -242,6 +242,9 @@ public function followingTheChiefToKorgii():void
 	currentLocation = "UVGR G8";
 	flags["TUNDRA_STEP"] = 1;
 	generateMap();
+	
+	addUvetoCold();
+	
 	output("The Chieftan’s retinue isn’t as easy to track through the snow as you might have expected. They are obviously practiced at surviving the rugged tundras of Uvetan wilderness. Their path avoids softer snowpack where tracks might be more evident, moving instead to less malleable ice and rock. When they do leave tracks, the rearguard brushes them down with some kind of tool to conceal the shapes of their footprints. If you hadn’t had the opportunity to follow them from the very start, you’d never have noticed their track.");
 	output("\n\nFor well over one hour, you trudge after the fluffy procession, enduring Uveto’s hellish weather as best you can. You thought yourself stealthy, but more than once, you catch the sharp eye of a distant korgonne staring back at you impassively. The guards make no move to stop you, but neither do they care for your presence. You’re an outsider, a distant one who they consider to be trifling in matters beyond [pc.hisHer] ken.");
 	output("\n\nYou keep your distance. When the trekking dog-folk come to a stop in the shadow of an icy cliffside, you set up a short ways away: close enough to keep an eye on the proceedings but far away enough not to draw attention to yourself, should a keen scout happen to discover your vantage point.");
@@ -378,7 +381,12 @@ public function arriveAtKorgiliciousLand():void
 	//Sets that you're in the middle of the quest. disables encounters via disableExploreEvents()
 	flags["WARGII_PROGRESS"] = 2;
 	clearMenu();
-	addButton(0,"Next",move,"WARGII B12");
+	addButton(0,"Next",arriveAtKorgiliciousLandGo);
+}
+public function arriveAtKorgiliciousLandGo():void
+{
+	removeUvetoCold();
+	move("WARGII B12");
 }
 
 public function wargiiBadEnds():void

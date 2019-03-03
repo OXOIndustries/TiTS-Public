@@ -188,8 +188,8 @@ public function getOralFromDoggo(useCock:Boolean = false):void
 		output("\n\nYour ravenous partner’s chin wiggles left and right, framing itself with the inside of your fertile tunnel. When you orgasm now" + (!pc.isSquirter() ? ", when fireworks explode in your mind":", when your thighs squirm and your pussy squirts") + ", he’s in the perfect position to catch every single drop of [pc.girlCumVisc] passion. He audibly gulps down your [pc.girlCumNoun], closing off the drift around you. His tongue’s intensity increases, turning into a molten spear that is as hot as he is, as hot as his cock is - you can feel it around your [pc.footOrFeet].");
 		output("\n\nWhat you’re radiating is nothing compared to what’s burning inside him. Whatever was in that drug has turned him into the best cunt-kisser in the hold. You can’t hope to command a tongue that free and animalistic, only direct it to where its needed most. The raw sensation of his muscle sliding across your hypersensitive underside, drumming against your [pc.clit], nearly throws you over the edge into orgasmic release.");
 		output("\n\nBut you hold on just a little longer. You stare down, pushing him back, [pc.fingers] pressed tight into his temples. He stares up to you with awe, reverence, <i>love.</i> He will follow your lead, do anything you say.");
-		output("\n\nSo you scritch him behind his thick-furred ears and guide him back, letting him start again with slower, tentative strokes, guiding his hands elsewhere to better please you. multiVag: this time sharing his obsession with [pc.vaginaNoun " + x + "]");
-		if(pc.hasVaginas()) output((pc.totalVaginas() == 2 ? "with your other slit":"among your other slits"));
+		output("\n\nSo you scritch him behind his thick-furred ears and guide him back, letting him start again with slower, tentative strokes, guiding his hands elsewhere to better please you");
+		if(pc.hasVaginas()) output(", this time sharing his obsession " + (pc.totalVaginas() == 2 ? "with your other slit":"among your other slits"));
 		output(". You sense, or think, that he wants to say something, maybe rail you until you’re carrying his kids, but it’s all drowned out in squelching suckles and spikes of spastic enjoyment.");
 		// PC Suula or Aphrodisiac Pussy
 		if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("\n\nResubmerged in feminine fluids, he makes himself vulnerable to your alien venom. The cilia lining your embry furnace sting the dog-man’s tongue when he slides back in, slapping him in and on the face with a potent dose of unnatural lust. Hopefully he doesn’t protest. ‘Sides, if he does, you can tell him this is just how outsiders share heat!");
@@ -890,14 +890,14 @@ public function getFuckedByKorgo(x:int):void
 	output("\n\nIt’s all about his pleasure now. His pleasure is your pleasure. Your brain is totally occupied with thinking about how great it’ll be when he cums, how perfect a situation you’ll be in when he knots you");
 	if(pc.hasVagina()) output(" and breeds you");
 	output(". It feels great. Better than great... divine. Completely lost to excess, he shows no mercy when he handles you now, and you don’t want him to anyway." + (pc.hasLongEars() ? " In fact, when he shifts to grip your [pc.ears] and tug your head back, you’re all smiles.":""));
-	output("\n\nHe misses out on the beginning your climax. It isn’t until your voice reaches its highest pitch and slowly dies down that you melt into his unbreakable grasp and clamp down around his cock on its final thrust. Your whole body shakes hard and you slump forward. He falls onto your back and, burrowed down to his pricksheath, and cums. The first thick rope to hit your " + (x < 0 ? "colon":"cervix") + " shatters your thoughts to pieces. The horny korg’s second viscous rope makes you feel lightheaded.");
+	output("\n\nHe misses out on the beginning your climax. It isn’t until your voice reaches its highest pitch and slowly dies down that you melt into his unbreakable grasp and clamp down around his cock on its final thrust. Your whole body shakes hard and you slump forward. He falls onto your back and, burrowed down to his pricksheath, cums. The first thick rope to hit your " + (x < 0 ? "colon":"cervix") + " shatters your thoughts to pieces. The horny korg’s second viscous rope makes you feel lightheaded.");
 	output("\n\nClimax rushes down your spine; you would thrash and explode if he wasn’t latched onto you like the dutiful mate he is. Spittle froths in your mouth while your ");
 	if(pc.isHerm()) 
 	{
 		output("[pc.cocks] helplessly balloons and burst" + (pc.cockTotal() == 1 ? "s":""));
 		if(pc.cumQ()< 50) output(" thin streams");
-		else if(pc.cumQ() < 1000) output("thick cords");
-		else output("torrential waves");
+		else if(pc.cumQ() < 1000) output(" thick cords");
+		else output(" torrential waves");
 		output(" of [pc.cumNoun] that paint the floor under your belly, followed by " + (!pc.isSquirter() ? "oozing strings":"wet splurts") + " of [pc.girlCumNoun]");
 	}
 	else if(pc.hasVagina())
