@@ -455,7 +455,7 @@ package classes.Items.Transformatives
 						// low variant
 						if(pc.vaginas[x].bonusCapacity < 333)
 						{
-							textBuff += (puffed ? "\n\nAs an added bonus (though you’re not sure that a sudden hollowness is a normal feeling), t":"T") + "he tiny robots swarming through your genome are no doubt working some kind of biology-rebuilding magic in your vaginal tunnel. There are subtle differences in shape, like you’re expanding outwards. Warm tingles spread through your reproductive system, stretching the shape of your interior to account for greater insertions. <b>You’re able to slide more of your [pc.hand] in than before].</b> It brings an instant rush of arousal, especially when you realize it’s also going to help more kids make their trip into the galaxy.";
+							textBuff += (puffed ? "\n\nAs an added bonus (though you’re not sure that a sudden hollowness is a normal feeling), t":"T") + "he tiny robots swarming through your genome are no doubt working some kind of biology-rebuilding magic in your vaginal tunnel. There are subtle differences in shape, like you’re expanding outwards. Warm tingles spread through your reproductive system, stretching the shape of your interior to account for greater insertions. <b>You’re able to slide more of your [pc.hand] in than before.</b> It brings an instant rush of arousal, especially when you realize it’s also going to help more kids make their trip into the galaxy.";
 							pc.lust(5);
 						}
 						// middling variant

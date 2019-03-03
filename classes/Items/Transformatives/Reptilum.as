@@ -371,8 +371,8 @@ package classes.Items.Transformatives
 			var lockedCock:Boolean = false;
 			for (i = 0; i < target.cocks.length; i++)
 			{
-				if (target.cocks[i].cType == GLOBAL.TYPE_LIZAN) continue;
-				if (target.cockTypeUnlocked(i, GLOBAL.TYPE_LIZAN)) availableCocks.push(i);
+				if (target.cocks[i].cType == GLOBAL.TYPE_NAGA) continue;
+				if (target.cockTypeUnlocked(i, GLOBAL.TYPE_NAGA)) availableCocks.push(i);
 				else lockedCock = true;
 			}
 			if (availableCocks.length > 0) 
@@ -392,11 +392,11 @@ package classes.Items.Transformatives
 					if (target.lustQ() < 50) output("You’re more than a little pent up, already fantasizing on how to put your new tool to use.");
 					else output("...and you’re more than a little frustrated. But you’ve got a new and exotic prick, and already thinking on how to put it to use.");
 					
-					target.shiftCock(cockIdx, GLOBAL.TYPE_LIZAN);
+					target.shiftCock(cockIdx, GLOBAL.TYPE_NAGA);
 					kGAMECLASS.flags["REPTILUM_DUCKED"] = 1;
 				});
 			}
-			if (lockedCock) lockedTFs.push(target.cockTypeLockedMessage);
+			else if (lockedCock) lockedTFs.push(target.cockTypeLockedMessage);
 
 			// Balls not small:
 			// Decrease ball size by 2”, down to 0.5”. Requires 1” balls, suppress if cock has sheathed flag.

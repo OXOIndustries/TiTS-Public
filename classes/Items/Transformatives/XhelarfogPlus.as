@@ -95,7 +95,7 @@ package classes.Items.Transformatives
 				//Tittays
 				if (target.breastRows.length > 0)
 				{
-					if (target.breastRows.length > 1 && target.removeBreastRowUnlocked(1, target.breastRows.length - 1)) effects.push(breastRowsChange);
+					if (target.breastRows.length > 1 && target.removeBreastRowUnlocked(target.breastRows.length - 1, 1)) effects.push(breastRowsChange);
 					if (target.breastRows[0].breastRatingRaw > 0) effects.push(breastSizeChange);
 					else if (target.breastRows[0].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && target.nippleTypeUnlocked(0, GLOBAL.NIPPLE_TYPE_FLAT)) effects.push(breastSizeChange);
 				}
@@ -280,7 +280,7 @@ package classes.Items.Transformatives
 		{
 			output("\n\nThere’s a sudden, clenching pain in your lower " + (target.breastRows.lenght > 2 ? "rows" : "row") + " of breasts, and you look down in horror as they start to pull back, retracting until they’re gone altogether. A cursory graze over where they once were confirms that your nipples have vanished too. <b>You’ve only got one row of breasts.</b>");
 
-			target.removeBreastRow(1, target.breastRows.length - 1);
+			target.removeBreastRow(target.breastRows.length - 1, 1);
 			
 			return true;
 		}
@@ -292,7 +292,7 @@ package classes.Items.Transformatives
 			//Breast size change
 			if (target.breastRows[0].breastRatingRaw > 0)
 			{
-				var newCup:int = Math.max(0, target.breastRows[0] - 1 - rand(3));
+				var newCup:int = Math.max(0, target.breastRows[0].breastRatingRaw - 1 - rand(3));
 				if (target.breastRatingUnlocked(0, newCup))
 				{
 					output("\n\nYour [pc.breasts 0] tremble suddenly, and your hands fly up to them, giving them a cursory squeeze. The trembling continues, however, and you soon realise your hands have a little less to hold.");
