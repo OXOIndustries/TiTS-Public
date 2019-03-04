@@ -448,6 +448,13 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/kelly_hyper_nude.png", mimeType = "image/png")]
 		public var Bust_KELLY_HYPER_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/kimber.png", mimeType = "image/png")]
+		public var Bust_KIMBER:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/kimber_nude.png", mimeType = "image/png")]
+		public var Bust_KIMBER_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/kimber_underwear.png", mimeType = "image/png")]
+		public var Bust_KIMBER_UNDERWEAR:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/kiro.png", mimeType = "image/png")]
 		public var Bust_KIRO:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/kiro_nude.png", mimeType = "image/png")]
@@ -1019,6 +1026,8 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/vi_large_nude.png", mimeType = "image/png")]
 		public var Bust_VI_LARGE_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/war_alpha.png", mimeType = "image/png")]
+		public var Bust_WAR_ALPHA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/war_alpha_nude.png", mimeType = "image/png")]
 		public var Bust_WAR_ALPHA_NUDE:Class;
 		
@@ -1035,6 +1044,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/yammi_nude.png", mimeType = "image/png")]
 		public var Bust_YAMMI_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/zea.png", mimeType = "image/png")]
+		public var Bust_ZEA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/zea_nude.png", mimeType = "image/png")]
+		public var Bust_ZEA_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/callgirl.png", mimeType = "image/png")]
 		public var Bust_ZIL_CALLGIRL:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/callgirl_cum.png", mimeType = "image/png")]
@@ -1468,6 +1482,13 @@ package classes.Resources.Busts
 			public var Full_KASKA_NUDE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kaska_nude_cum.png", mimeType = "image/png")]
 			public var Full_KASKA_CUM:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kimber.png", mimeType = "image/png")]
+			public var Full_KIMBER:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kimber_nude.png", mimeType = "image/png")]
+			public var Full_KIMBER_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kimber_underwear.png", mimeType = "image/png")]
+			public var Full_KIMBER_UNDERWEAR:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro.png", mimeType = "image/png")]
 			public var Full_KIRO:Class;
@@ -1984,6 +2005,8 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vi_large_nude.png", mimeType = "image/png")]
 			public var Full_VI_LARGE_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/war_alpha.png", mimeType = "image/png")]
+			public var Full_WAR_ALPHA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/war_alpha_nude.png", mimeType = "image/png")]
 			public var Full_WAR_ALPHA_NUDE:Class;
 			
@@ -2000,6 +2023,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/yammi_nude.png", mimeType = "image/png")]
 			public var Full_YAMMI_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/zea.png", mimeType = "image/png")]
+			public var Full_ZEA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/zea_nude.png", mimeType = "image/png")]
+			public var Full_ZEA_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/callgirl.png", mimeType = "image/png")]
 			public var Full_ZIL_CALLGIRL:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/callgirl_cum.png", mimeType = "image/png")]
