@@ -687,7 +687,9 @@ package classes.Items.Transformatives
 				AddLogEvent("Your " + target.earsDescript() + " shift to become large and pointy like that of a fox’s, allowing you to pick up even the faintest of sound as they twitch atop your head. <b>You now have pointy fox ears!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				
 				target.earType = GLOBAL.TYPE_VULPINE;
-				
+				target.clearEarFlags();
+				target.addEarFlag(GLOBAL.FLAG_TAPERED);
+				target.addEarFlag(GLOBAL.FLAG_FURRED);
 				return false;
 			}
 			

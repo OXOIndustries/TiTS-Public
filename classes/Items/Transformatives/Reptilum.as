@@ -135,6 +135,7 @@ package classes.Items.Transformatives
 					output("\n\nYour [pc.ears] begin to itch and burn, and you reach up to rub them. You’re surprised to find, however, that your ears have sunk into the sides of your head, leaving shallow divots for your hearing holes. <b>You now have lizard ears!</b>");
 					
 					target.earType = GLOBAL.TYPE_LIZAN;
+					target.clearEarFlags();
 					target.earLength = 0;
 				});
 				else lockedTFs.push(target.earTypeLockedMessage);

@@ -146,6 +146,8 @@ package classes.Items.Transformatives
 						output("\n\nYou feel the tips of your ears tingle with sensitivity before they begin to pull into some kind of point. Your face wrinkles as they seem to grow longer and longer before subsiding. You pull out your codex and take note of your <b>sail-like suula ears</b>!");
 						
 						pc.earType = GLOBAL.TYPE_SIREN;
+						pc.clearEarFlags();
+						pc.addEarFlag(GLOBAL.FLAG_LONG);
 						pc.earLength = 4;
 					}
 					else output("\n\n" + pc.earTypeLockedMessage());

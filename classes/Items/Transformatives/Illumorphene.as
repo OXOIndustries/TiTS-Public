@@ -291,6 +291,7 @@ package classes.Items.Transformatives
 			
 			target.earLength = 0;
 			target.earType = GLOBAL.TYPE_MOTHRINE;
+			target.clearEarFlags();
 			
 			target.tongueType = GLOBAL.TYPE_MOTHRINE;
 			target.clearTongueFlags();

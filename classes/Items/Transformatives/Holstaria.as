@@ -327,6 +327,9 @@
 					output("\n\nYour ears migrate to the sides of your head and stretch like warm putty, molding into <b>a pair of floppy cow ears</b>. A thin layer of fur soon completes the look.");
 					
 					target.earType = GLOBAL.TYPE_BOVINE;
+					target.clearEarFlags();
+					target.addEarFlag(GLOBAL.FLAG_FLOPPY);
+					target.addEarFlag(GLOBAL.FLAG_FURRED);
 				}
 				else output("\n\n" + target.earTypeLockedMessage());
 				return;

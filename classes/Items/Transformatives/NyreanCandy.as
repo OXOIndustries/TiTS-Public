@@ -174,6 +174,8 @@
 						}
 						
 						target.earType = GLOBAL.TYPE_SYLVAN;
+						target.clearEarFlags();
+						target.addEarFlag(GLOBAL.FLAG_TAPERED);
 						target.earLength = 8;
 						changes++;
 					}

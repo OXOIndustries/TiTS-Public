@@ -237,7 +237,7 @@ public function followingTheChiefToKorgii():void
 {
 	clearOutput();
 	author("Fenoxo");
-	showBust("KORG_CHIEFTAIN","KORGONNE_MALE_WHITE","KORGONNE_MALE_TAWNY");
+	showBust(korgChiefBustString(),"KORGONNE_MALE_WHITE","KORGONNE_MALE_TAWNY");
 	showName("\nTRACKING");
 	currentLocation = "UVGR G8";
 	flags["TUNDRA_STEP"] = 1;
@@ -255,7 +255,7 @@ public function wargiiAmbushles():void
 	clearOutput();
 	//showchiefandmilos
 	showName("\nAMBUSH");
-	showBust("WAR_ALPHA","KORG_CHIEFTAIN","WAR_LION");
+	showBust("WAR_ALPHA",korgChiefBustString(),"WAR_LION");
 	output("You are not prepared for the arrival of the Milodans. Neither is Ula’s father.");
 	output("\n\nThe saber-cats appear at the crest of the ridge with snarling grins and full sets of modern military equipment - including body armor. A score of the up-armed milos leap from the cliff to an apparent demise only for the blue-tinged exhausts of their jetpacks to grant them a graceful landing in snow below. In their hands are military-grade weapons of every shape and size: heavy missile launchers, railguns, lasers, and even a multitude of grenades. Fizzing shields are apparent around them, as are the trademarked stamps of Pyrite Heavy Industries logos.");
 	output("\n\nUh oh.");

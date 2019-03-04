@@ -268,6 +268,7 @@ public function wargiiHoldEpilogue():void
 {
 	clearOutput();
 	author("Fenoxo");
+	showBust("ULA",korgChiefBustString());
 	output("You rest on the edge of the bed while Ula and her father coordinate with their countrymen to secure the rest of the hold. For every milodan that falls, the korgonne resistance becomes better equipped. Prohibitions against using core weapons are discarded upon Ula’s advice and her father’s reluctant pragmatism. Small teams of gun-toting hunters sprint by the door while two bleeding warriors take up guard positions to either side.");
 	output("\n\nMore than once, a passing korg will notice you on their way by and thank you with a grateful smile.");
 	output("\n\n<i>“" + (!korgiTranslate() ? "Right-being, Ula ideas was.":"Right, Ula's ideas were.") + "”</i> The grizzled old korg climbs up onto wobbling legs with help from his battle-baptized daughter. <i>“" + (!korgiTranslate() ? "Knew trap-having milos. Knew needed core magics for safe-making, but Chieftain too dumb for listenings. Too old and too proud.":"She knew the milodans had planned a trap. She knew we needed to make use of the core-magics to stay safe, but I was too proud and too dumb to lend an ear.") + "”</i> He waves to you. <i>“" + (!korgiTranslate() ? "Outsider save hold. Save daughter. Me not even want allow inside, but Ula righting agains.":"Because of that, an outsider saved our hold - saved my daughter. I didn't even want to allow [pc.himHer] inside, but Ula was right again.") + "”</i> He shakes his head, ears flopping like tarps in a windstorm. <i>“");

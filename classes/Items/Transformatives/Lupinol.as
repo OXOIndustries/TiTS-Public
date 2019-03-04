@@ -281,6 +281,9 @@
 					output("\n\nYour ears perk upwards, higher and higher until they sit nearly at the top of your head. The tips continue to stretch upward as they streamline into a pair of triangular wolf ears, coated in a thin layer of fur.");
 					
 					target.earType = GLOBAL.TYPE_LUPINE;
+					target.clearEarFlags();
+					target.addEarFlag(GLOBAL.FLAG_TAPERED);
+					target.addEarFlag(GLOBAL.FLAG_FURRED);
 				}
 				else output("\n\n" + target.earTypeLockedMessage());
 				return;

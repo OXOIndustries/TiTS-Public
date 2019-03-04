@@ -446,6 +446,9 @@ package classes.Items.Transformatives
 				output("\n\nYou let out a startled yelp as your ears start to squirm and wiggle, making horrid jelly-like motions as the nanomachines in the Bovinium rearrange your body shape. Your ears grow out from the side of your head, and start to grow a thick layer of curly, soft hair. You pull your Codex out and flip it around, using it like a mirror to examine your newly-molded ears. <b>You now have distinctly bovine ears!</b>");
 
 				target.earType = GLOBAL.TYPE_BOVINE;
+				target.clearEarFlags();
+				target.addEarFlag(GLOBAL.FLAG_FLOPPY);
+				target.addEarFlag(GLOBAL.FLAG_FURRED);
 				changes++;
 			}
 

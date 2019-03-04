@@ -231,6 +231,9 @@ public function chooseStartingRace(race:String = "human"):void {
 			break;
 		case "half-ausar":
 			pc.earType = GLOBAL.TYPE_CANINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			pc.tailType = GLOBAL.TYPE_CANINE;
 			pc.tailCount = 1;
 			pc.addTailFlag(GLOBAL.FLAG_LONG);
@@ -243,6 +246,9 @@ public function chooseStartingRace(race:String = "human"):void {
 			break;
 		case "half-kaithrit":
 			pc.earType = GLOBAL.TYPE_FELINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			pc.tailType = GLOBAL.TYPE_FELINE;
 			pc.tailCount = 2;
 			pc.addTailFlag(GLOBAL.FLAG_LONG);
@@ -265,6 +271,9 @@ public function chooseStartingRace(race:String = "human"):void {
 			pc.armType = GLOBAL.TYPE_LEITHAN;
 			//>Four ears: two elfin ears on the side, two bunny ears on top. Probably need a new ear-type for this.
 			pc.earType = GLOBAL.TYPE_LEITHAN;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
+			pc.addEarFlag(GLOBAL.FLAG_LONG);
 			pc.earLength = 3;
 			//>Reptilian, forked tongues
 			pc.tongueType = GLOBAL.TYPE_LEITHAN;
@@ -283,6 +292,8 @@ public function chooseStartingRace(race:String = "human"):void {
 			break;
 		case "half kui-tan":
 			pc.earType = GLOBAL.TYPE_KUITAN;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
 			pc.tailCount = 1;
 			pc.tailType = GLOBAL.TYPE_KUITAN;
 			pc.addTailFlag(GLOBAL.FLAG_LONG);
@@ -307,6 +318,7 @@ public function chooseStartingRace(race:String = "human"):void {
 			pc.addTailFlag(GLOBAL.FLAG_TAPERED);
 			pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 			pc.earType = GLOBAL.TYPE_GRYVAIN;
+			pc.clearEarFlags();
 			pc.earLength = 3;
 			pc.wingType = GLOBAL.TYPE_GRYVAIN;
 			pc.wingCount = 2;

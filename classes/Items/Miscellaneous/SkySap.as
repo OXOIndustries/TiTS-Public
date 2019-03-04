@@ -193,6 +193,7 @@
 				{
 					outputB("\n\nA sharp sensation strikes the sides of your head and you instinctively clutch your ears. Beneath your palms you can feel them wriggling and shifting. What’s going on? When it stops, you run your fingers along them. There are strange new contours -- are your ears <i>finned</i> now?\n\nSomething else is different. The sound of your brushing fingers, while small, is very detailed and distinct. In fact, every noise around you is more audible; you’re being bombarded by a sea of sonorous sensations. This is going to take some getting used to. <b>You now have a pair of finned Vanae ears!</b>");
 					pc.earType = GLOBAL.TYPE_VANAE;
+					target.clearEarFlags();
 					changes++;
 				}
 				//Femininity Increase, Masc Decrease, Lip Size Increase

@@ -340,6 +340,9 @@ package classes.Items.Transformatives
 					{
 						kGAMECLASS.output("\n\nYour ears begin to itch uncontrollably. You desperately try to scratch at them, but the itch spreads and grows... as do your ears! Your ears twist and morph as they reshape into a pair of lazy points, flopping down over your head. <b>You now have a pig’s ears!</b>");
 						pc.earType = GLOBAL.TYPE_SWINE;
+						pc.clearEarFlags();
+						pc.addEarFlag(GLOBAL.FLAG_FURRED);
+						pc.addEarFlag(GLOBAL.FLAG_FLOPPY);
 						changes++;
 					}
 					else kGAMECLASS.output("\n\n" + pc.earTypeLockedMessage());

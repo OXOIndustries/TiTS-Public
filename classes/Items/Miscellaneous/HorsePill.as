@@ -863,6 +863,9 @@
 						else msg += "Your ears change shape, morphing into teardrop-shaped horse ears!";
 						msg += "<b> You now have horse ears.</b>";
 						target.earType = GLOBAL.TYPE_EQUINE;
+						target.clearEarFlags();
+						target.addEarFlag(GLOBAL.FLAG_FURRED);
+						target.addEarFlag(GLOBAL.FLAG_TAPERED);
 					}
 					else
 					{

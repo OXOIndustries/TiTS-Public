@@ -7,7 +7,8 @@
 public function showDosedKorgMale():void
 {
 	showName("MALE\nKORGONNE");
-	showBust("DOSED_KORGONNE_MALE");
+	//showBust("DOSED_KORGONNE_MALE");
+	showBust("KORGONNE_MALE_WHITE_NUDE");
 }
 
 public function dosedKorgiMaleEncounter():void

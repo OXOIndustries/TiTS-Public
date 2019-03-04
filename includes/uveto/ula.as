@@ -156,6 +156,12 @@ public function korgiTranslateProgress():Number
 	return qualifyingEvents;
 }
 
+public function korgChiefBustString():String
+{
+	if(silly) return "KORG_CHIEF_SILLY";
+	else return "KORG_CHIEF";
+}
+
 //Meeting
 //Bonustext
 public function ulaBonus():void
@@ -1160,7 +1166,7 @@ public function firstTimeKorgHoldMeeting():void
 {
 	clearOutput();
 	showName("KORG\nMEETING");
-	showBust("KORG_CHIEFTAIN");
+	showBust(korgChiefBustString());
 	currentLocation = "KORGII R10";
 	generateMap();
 	output("The guards hustle you through winding tunnels and up a spiral staircase hewn from solid stone. In stark contrast to the frigid exterior, it’s nearly as warm as a sauna inside Korg’ii Hold. By the time you climb to the next level, you’re ");

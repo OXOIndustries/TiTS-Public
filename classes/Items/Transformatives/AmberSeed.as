@@ -327,6 +327,7 @@ package classes.Items.Transformatives
 						else output(" tufts of feathers");
 						output(" that act as auricles. <b>You now have avian-looking ears!</b>");
 						target.earType = GLOBAL.TYPE_AVIAN;
+						target.clearEarFlags();
 					}
 				});
 			}

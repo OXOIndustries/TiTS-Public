@@ -269,6 +269,9 @@
 					if(pc.earLength < (pc.tallness * 0.75)) kGAMECLASS.output(" They’re getting bigger, you can feel that, but should they really feel this loose? It’s as if they’ve gone well past their sell-by date, hanging limply off the side of your head. That’s when the real growth begins.");
 					kGAMECLASS.output(" You can practically hear your flesh crackle and sprout as your pinna blossom outwards and downwards at a remarkable rate, flattening into long, plump sheets that finally reach well below your waist.\n\nYou run slightly stunned fingers over them once the transformation seems to be over, shivering as you feel how sensitive their undersides are. You can hear more or less the same, but... you coo as you flex muscles that formerly would have made your ears crane slightly, and instead cause your massive new flaps to curl up dexterously. You find, with a few experimental twitches, you are able to move them almost as surely as if they were a new set of limbs. Which is just as well, because when you set off again you realize, with a jerk of the neck, you’re carrying a hell of a lot of weight off the back of your head now.\n\nBetter work on your posture - <b>your new raskvel-like ears will need you to!</b>");
 					pc.earType = GLOBAL.TYPE_RASKVEL;
+					pc.clearEarFlags();
+					pc.addEarFlag(GLOBAL.FLAG_LONG);
+					pc.addEarFlag(GLOBAL.FLAG_FLOPPY);
 					if(pc.earLength < (pc.tallness * 0.75)) pc.earLength = Math.round(pc.tallness * 0.75);
 					if(pc.earLength > pc.tallness * 3) pc.earLength = Math.round(pc.tallness * 3);
 					changes++;

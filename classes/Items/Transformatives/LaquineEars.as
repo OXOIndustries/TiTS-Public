@@ -2253,6 +2253,9 @@ package classes.Items.Transformatives
 						textBuff += "The rabbit ears don’t slosh when you shake your head any more. Instead, they flop warm and fuzzy against your [pc.hair]. Too late - you realize that you can feel through them - and that your old ears are long gone! <b>Looks like you’ll have rabbit ears from here on out.</b>";
 						
 						pc.earType = GLOBAL.TYPE_LAPINE;
+						pc.clearEarFlags();
+						pc.addEarFlag(GLOBAL.FLAG_LONG);
+						pc.addEarFlag(GLOBAL.FLAG_FURRED);
 						pc.earLength = 6 + rand(7);
 					}
 					//Loppy Bois
@@ -2280,6 +2283,9 @@ package classes.Items.Transformatives
 				{
 					textBuff += "<b>Your laquine ears expire</b>, but they do not crumble away as you might expect. Instead, they grow heavier, not with a payload of microsurgeons but with warm, pulsating flesh. There’s no ignoring it. The second pair of ears have grown onto you, and you can feel the new rabbit ears brushing back and forth against the old. <b>You have four bunny ears.</b> They look kind of nice, if you don’t mind appearing like you’ve suffered an obvious mutation.";
 					pc.earType = GLOBAL.TYPE_QUAD_LAPINE;
+					pc.clearEarFlags();
+					pc.addEarFlag(GLOBAL.FLAG_LONG);
+					pc.addEarFlag(GLOBAL.FLAG_FURRED);
 					if(pc.earLength < 6) pc.earLength = 6 + rand(7);
 				}
 				else

@@ -883,6 +883,9 @@ package classes.Items.Transformatives
 					
 					output("Your ears begin to tingle. You reach up with one hand and gently rub them. Your ears twist and morph, growing a thin layer of " + target.furColor + " fur as they reshape into a pair of points, towering over your head. You experimentally move them, feeling them swivel about at your command. And you can hear so much better than before, every slight creak and rustle around you is so clear now! <b>You now have feline ears!</b>");
 					target.earType = GLOBAL.TYPE_FELINE;
+					target.clearEarFlags();
+					target.addEarFlag(GLOBAL.FLAG_TAPERED);
+					target.addEarFlag(GLOBAL.FLAG_FURRED);
 					changes++;
 				}
 				else output(target.earTypeLockedMessage());

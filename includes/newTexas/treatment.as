@@ -1219,6 +1219,9 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		{
 			AddLogEvent(ParseText("You go to scratch at one of your " + pc.earsDescript() + ", only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; <b>you’re just listening through a pair of floppy cow-ears now</b>. Briefly, you consider how good it would feel to have someone scratch them."), "passive", (treatedHours - startHours) * 60);
 			pc.earType = GLOBAL.TYPE_BOVINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
+			pc.addEarFlag(GLOBAL.FLAG_FLOPPY);
 		}
 		
 		// Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs
@@ -2895,6 +2898,9 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		{
 			AddLogEvent("You go to scratch at one of your " + pc.earsDescript() + ParseText(", only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; you’re just listening through a pair of floppy cow-ears now. Briefly, you consider how good it would feel to have someone scratch them."), "passive", (treatedHours - startHours) * 60);
 			pc.earType = GLOBAL.TYPE_BOVINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FLOPPY);
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
 		}
 		// Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs
 		if(pc.legCount >= 2 && pc.legType != GLOBAL.TYPE_BOVINE && startHours < 145 && treatedHours >= 145 && rand(10) <= 1)
@@ -3977,6 +3983,9 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		{
 			AddLogEvent("You go to scratch at one of your " + pc.earsDescript() + ParseText(", only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; you’re just listening through a pair of floppy cow-ears now. Briefly, you consider how good it would feel to have someone scratch them."), "passive", (141 - startHours) * 60);
 			pc.earType = GLOBAL.TYPE_BOVINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
+			pc.addEarFlag(GLOBAL.FLAG_FLOPPY);
 		}
 		
 		// Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs

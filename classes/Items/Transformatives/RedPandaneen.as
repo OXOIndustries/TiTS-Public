@@ -66,6 +66,8 @@
 						output("\n\nYou start to feel light headed and dizzy as a tingling sensation flows through your ears. You go deaf momentarily after feeling them smooth away. Before you have the chance to react, new ones bulge out of your [pc.hair]. <b>You’ve grown triangular red panda ears on top of your head.</b>");
 						
 						target.earType = GLOBAL.TYPE_REDPANDA;
+						target.clearEarFlags();
+						target.addEarFlag(GLOBAL.FLAG_FURRED);
 						changes++;
 					}
 					else output("\n\n" + target.earTypeLockedMessage());

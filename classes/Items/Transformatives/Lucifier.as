@@ -498,6 +498,8 @@ package classes.Items.Transformatives
 						
 						target.earLength = 2 + rand(4);
 						target.earType = GLOBAL.TYPE_DEMONIC;
+						target.clearEarFlags();
+						target.addEarFlag(GLOBAL.FLAG_TAPERED);
 					}
 					else output(target.earTypeLockedMessage());
 				}

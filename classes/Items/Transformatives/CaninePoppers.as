@@ -83,6 +83,9 @@ package classes.Items.Transformatives
 					{
 						output("\n\nYou spend a good few minutes waiting for something to happen. Tired of waiting, you look at your reflection in your Codex and find that a pair of canine ears have settled on the top of your head. You wiggle them around a bit and confirm that they move and function just like those of a dog. An itch spreads across them as fine hairs begin to grow, thickening into a short layer of fur. <b>You have canine ears!</b>");
 						pc.earType = GLOBAL.TYPE_CANINE;
+						target.clearEarFlags();
+						target.addEarFlag(GLOBAL.FLAG_TAPERED);
+						target.addEarFlag(GLOBAL.FLAG_FURRED);
 					}
 					else output("\n\n" + pc.earTypeLockedMessage())
 					changes++;

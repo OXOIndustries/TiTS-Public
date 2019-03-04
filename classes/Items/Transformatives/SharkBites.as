@@ -223,6 +223,7 @@
 					{
 						output("\n\nHow odd... your ears feel oddly numb. You press your hands against the side of your face, noticing that your ear holes are still there but your ear lobes are missing. Suddenly, you feel a pressure against your hands and you move them away, as skin and cartilage bursts forth. They look kind of like three tiny sails were taken off a ship and used to make <b>your new shark ears</b>!");
 						pc.earType = GLOBAL.TYPE_SHARK;
+						pc.clearEarFlags();
 						pc.earLength = 4;
 					}
 					else output("\n\n" + pc.earTypeLockedMessage());

@@ -363,6 +363,7 @@
 					{
 						kGAMECLASS.output("\n\nYou hear a ringing in your [pc.ears], drowning out all other sounds as your ears adjust their size and position. By the time the ringing stops, <b>you’ve got human-like ears on the sides of your head</b>.");
 						pc.earType = GLOBAL.TYPE_HUMAN;
+						target.clearEarFlags();
 						pc.earLength = 0;
 						changes++;
 					}

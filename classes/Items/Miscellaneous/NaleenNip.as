@@ -184,6 +184,9 @@
 					{
 						kGAMECLASS.output("\n\nAll sound vanishes in an instant. You clap your hands to your [pc.ears], wondering if you’ve gone deaf, but they come up against nothing! Your ears have vanished! Just as you start considering learning a form of sign language or finding a back alley geneticist, the sounds you were hearing before come back with an oddly directional twist. You feel around the sides and top of your head to quickly find your new ears. They’re triangular and perched atop your head, swiveling this way and that to help you easily identify the source of any noise. <b>You’ve grown cat-like naleen ears!</b>");
 						target.earType = GLOBAL.TYPE_FELINE;
+						target.clearEarFlags();
+						target.addEarFlag(GLOBAL.FLAG_TAPERED);
+						target.addEarFlag(GLOBAL.FLAG_FURRED);
 						changes++;
 					}
 					else

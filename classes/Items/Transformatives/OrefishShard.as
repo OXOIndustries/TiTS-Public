@@ -81,6 +81,7 @@ package classes.Items.Transformatives
 				output("\n\nGingerly feeling around, you find at first what appears to be a normal reptilian ear. Partially covering the small, round opening, however, is a convex [pc.skinFurScalesColor] scale; almost acting like a shield. The same can be felt on the other side of your head. <b>You’ve grown a pair of saurmorian ears!</b>");
 				
 				target.earType = GLOBAL.TYPE_SAURMORIAN;
+				target.clearEarFlags();
 				target.earLength = 0;
 			});
 	
