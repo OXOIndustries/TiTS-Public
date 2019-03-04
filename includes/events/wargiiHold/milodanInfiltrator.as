@@ -345,7 +345,7 @@ public function nojerkies4KittyBois():void
 	clearOutput();
 	showMiloInfiltrator(true);
 	author("Wsan");
-	output("On second thought, he </i>did<i> try to kill you, you muse. You’d be better off just using him to get off and then ditching, his pleasure be damned. ");
+	output("On second thought, he <i>did</i> try to kill you, you muse. You’d be better off just using him to get off and then ditching, his pleasure be damned. ");
 	if(pc.hasCocks()) output("Besides, it’s not often you get to jack off " + (pc.cockTotal() == 2 ? "both":"two") + " of your cocks while someone eats your ass. ");
 	output("You begin rolling your [pc.hips], rubbing yourself on his face while his warm tongue penetrates your asshole again and again.");
 	output("\n\n<i>“Nnnn, fuck,”</i> you grunt, breathing hard as you feel yourself getting closer to the peak, your [pc.cockBiggest]" + (pc.hasCocks() ? " and [pc.cockSmallest]":"") + " straining in your hand" + (pc.hasCocks() ? "s":"") + ", precum flowing from the" + (pc.hasCocks() ? "ir tips":" tip") + ". <i>“G-gonna... rrrgh!”</i>");

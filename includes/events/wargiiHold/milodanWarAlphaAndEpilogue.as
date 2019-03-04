@@ -366,6 +366,7 @@ public function wargiiHoldEpilogue4():void
 	pc.credits += 150000;
 	//Set location back to normal
 	currentLocation = "KORGII B12";
+	removeUvetoCold();
 	if(score >= 90) quickLoot(new PyriteIndustriesPlasmaBlade(), new PyriteIndustriesSuperchargedLaserPistol(), new KordiiakHideArmor());
 	else if(score >= 50) quickLoot(new PyriteIndustriesPlasmaBlade(), new PyriteIndustriesSuperchargedLaserPistol());
 	else 
