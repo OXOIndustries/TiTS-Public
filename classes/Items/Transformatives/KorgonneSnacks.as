@@ -261,7 +261,7 @@ package classes.Items.Transformatives
 						if(pc.legCount > 1) output("between your [pc.legs]");
 						else output("between your thighs");
 						output(", burning like a furnace. You whimper and double over as the flesh there clenches down, your [pc.vagina " + x + "] going wild. You grow acutely aware of the emptiness inside you as the inferno dies down to a pleasant, lusty heat. Mutagenic quivers ripple through your feminine slit, rapid-fire. Each on changes it a little more.");
-						if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED)) output(" Your mound quivers and plumps.");
+						if(!pc.hasPlumpPussy(x)) output(" Your mound quivers and plumps.");
 						if(pc.vaginas[x].vaginaColor != "pale blue") output(" Starting at the slit, creamy blue stains your skin, spreading until you have a cerulean cunt.");
 						if(pc.vaginas[x].clits > 2) output(" Clits vanish until you’re left with just the one at the top.");
 						if(pc.vaginas[x].clits > 1) output(" The extra clit vanishes to leave you with just the one in the usual place.");

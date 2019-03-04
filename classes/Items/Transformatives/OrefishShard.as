@@ -556,9 +556,14 @@ package classes.Items.Transformatives
 					output(" into your pussy, lips parting like a juicy veil. Your other hand covers your mouth, stifling a cry of joy to the feeling of your [pc.hips] thrusting against your hand, grinding your palm into your [pc.clit].");
 					output("\n\nIt’s not until you’re left panting, cooling down from the breathtaking ordeal, that you dimly start to realize something is off.\n\nTaking a closer look, you notice your labia are still quite plump, even while your arousal recedes; they also look incredibly glossy and smooth. Upon stirring your fingers within your honeypot, you feel odd bulges lining it within - your cunt is ribbed!\n\nChecking in with your Codex confirms it; <b>you’ve got a saurmorian vagina!</b>");
 					
-					var puffedVag:Boolean = target.vaginas[tfCuntIdx].hasFlag(GLOBAL.FLAG_PUMPED);
+					var puffFlag:int = 0;
+					if(target.vaginas[tfCuntIdx].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffFlag = 1;
+					if(target.vaginas[tfCuntIdx].hasFlag(GLOBAL.FLAG_PUMPED)) puffFlag = 2;
+					if(target.vaginas[tfCuntIdx].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) puffFlag = 3;
 					target.shiftVagina(tfCuntIdx, GLOBAL.TYPE_SAURMORIAN);
-					if (puffedVag) target.inflateVagina(tfCuntIdx);
+					if(puffFlag == 1) target.vaginas[tfCuntIdx].addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
+					if(puffFlag == 2) target.vaginas[tfCuntIdx].addFlag(GLOBAL.FLAG_PUMPED);
+					if(puffFlag == 3) target.vaginas[tfCuntIdx].addFlag(GLOBAL.FLAG_HYPER_PUMPED);
 				});
 				else lockedChanges.push(target.vaginaTypeLockedMessage);
 			}

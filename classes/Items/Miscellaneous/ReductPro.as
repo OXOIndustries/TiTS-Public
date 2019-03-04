@@ -604,7 +604,7 @@ package classes.Items.Miscellaneous
 						pc.deflateVagina(y);
 						if(!pumpReported)
 						{
-							if(pc.vaginas[y].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output(" <b>Your [pc.vaginaNoun " + y + "] is less plump</b>, though only slightly so.")
+							if(pc.hasPlumpPussy(y)) output(" <b>Your [pc.vaginaNoun " + y + "] is less plump</b>, though only slightly so.")
 							else output(" <b>Your [pc.vaginaNoun " + y + "] is no longer so quite so plump</b>.");
 							pumpReported = true;
 						}

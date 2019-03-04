@@ -400,7 +400,7 @@ package classes.Items.Transformatives
 					if(pc.vaginas[x].type != GLOBAL.TYPE_EQUINE)
 					{
 						// PC has non-Equine Pussy - Increase to Slightly Pumped
-						if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED))
+						if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
 						{
 							textBuff += "Your attentions are turned swiftly to [pc.oneVagina] when a sudden, head-tilting sensation runs from brain to crotch. " + (!pc.isCrotchExposed() ? "Just as you get your [pc.crotchCoverUnder] out of the way, w":"W") + "etness explodes out of your [pc.pussyNoun " + x + "]. Your sapphic slopes tingle from an inner, electrifying massage, no doubt brought on by the laquine ears’ microsurgeons. Crystalline beads of [pc.girlCumNoun] flow down the expanding, delicate skin, which swells into something decidedly indelicate.";
 							textBuff += "\n\nYou feel as though you’ve been submerged in water, the waves forcibly stroking you from several angles while your engorging pussylips dip and rise in the opposite directions.";
@@ -411,7 +411,7 @@ package classes.Items.Transformatives
 							puffed = true;
 						}
 						// PC has non-Equine Pussy - Increase to Fully Pumped
-						else if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED))
+						else if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
 						{
 							textBuff += "A rubbing sensation stimulating enough to make you moan aloud grips you by the [pc.clit]; " + (!pc.isCrotchExposed() ? "you pull your [pc.crotchCoverUnder] aside in a hurry to see what’s going on":"you glance to your [pc.pussies] straight away") + ". Your dewy mound coats itself in a sudden gush of [pc.girlCumVisc] wetness. The already pumped-looking exterior begins to swell into greater glory, and it’s far more arousing than it has any right to be. ";
 							if(pc.clitLength < 1.5) textBuff += "You attribute that to the fact your [pc.clits] " + (pc.totalClits() == 1 ? "is":"are") + " struggling to maintain presence in the changing landscape, sort of like medieval fiefdoms.";
@@ -425,7 +425,7 @@ package classes.Items.Transformatives
 					// PC has Equine Pussy - Increase to Slightly Pumped
 					else
 					{
-						if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED))
+						if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
 						{
 							textBuff += "Pangs of pleasure bring you to a stop. Demanding throbs draw your eyes to your [pc.vagina " + x + "]" + (!pc.isCrotchExposed() ? ", forcing you to slip aside your [pc.crotchCoverUnder]":"") + ". Your horse-pussy is wettening and tingling, like you’ve just begun fingering yourself. [pc.GirlCumColor] droplets of fresh moisture glaze the [pc.vaginaColor " + x + "] exterior of your rubbery twat, and those fat lips are doing the impossible, spreading into a somehow wider shape. Redness explodes across your [pc.face], thoughts of this new and wonderful development rushing as quick as the transformation occurs.";
 							textBuff += "\n\nOnce it ends, it doesn’t take a genius to see <b>that your mare-cunt is fatter than it was before, the lips slightly pumped.</b> You already had plenty of pussy to worship... but damn, you could probably bury an entire face in there now, not to mention hug a big, fat cock tighter! Just touching it produces the lewdest squelch!";
@@ -435,7 +435,7 @@ package classes.Items.Transformatives
 							puffed = true;
 						}
 						// PC has Equine Pussy - Increase to Fully Pumped";
-						else if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED))
+						else if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
 						{
 							//ORGASM
 							textBuff += "A moist churning in your nethers forces a moan of pure pleasure from your lips. The way your legs are quivering makes sitting more than a polite suggestion. When you get your hands on the source of arousal" + (!pc.isCrotchExposed() ? " within your [pc.crotchCoverUnder]":"") + ", sprinklings of [pc.girlCumNoun] mixed with ladyjuice soak your fat cuntlips. The texture and detail of each droplet flowing down your latex-like exterior is orgasmic, and it brings you to sudden orgasm.";

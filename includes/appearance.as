@@ -4545,7 +4545,12 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 	}
 	//Pumped
 	var wasPumped:Boolean = target.hasStatusEffect("Pussy Pumped");
-	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && target.vaginas[x].type != GLOBAL.TYPE_MOUTHGINA)
+	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_HYPER_PUMPED) && target.vaginas[x].type != GLOBAL.TYPE_MOUTHGINA)
+	{
+		if(!eachOne) outputRouter(" The whole thing is freakishly fat and overflowing " + (target == pc ? "your":"[target.hisHer]") + " lap" + (wasPumped ? ", a result of repeated use of a pussy pump" : " with womanly flesh") + ". There is no use hiding that colossal beachball of a cunt" + (target.isCrotchExposed() ? (", even if " + (target == pc ? "you":"[target.heShe]") + " tried") : (" under " + (target == pc ? "your":"[target.hisHer]") + " clothing")) + ".");
+		else outputRouter(" They’re freakishly fat and overflowing " + (target == pc ? "your":"[target.hisHer]") + " lap" + (wasPumped ? ", a result of repeated use of a pussy pump" : " with womanly flesh") + ". There is no use hiding those colossal beachballs of a cunt" + (target.isCrotchExposed() ? (", even if " + (target == pc ? "you":"[target.heShe]") + " tried") : (" under " + (target == pc ? "your":"[target.hisHer]") + " clothing")) + ".");
+	}
+	else if(target.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && target.vaginas[x].type != GLOBAL.TYPE_MOUTHGINA)
 	{
 		if(!eachOne) outputRouter(" The whole thing is ridiculously puffy and lush" + (wasPumped ? ", a result of repeated use of a pussy pump" : " with womanly flesh") + ". Even" + (target.isCrotchExposed() ? " if " + (target == pc ? "you":"[target.heShe]") + " tried, there is just no hiding its" : " under clothing, it generates a") + " considerable camel-toe.");
 		else outputRouter(" They’re ridiculously puffy and lush" + (wasPumped ? ", a result of repeated use of a pussy pump" : " with womanly flesh") + ". Even" + (target.isCrotchExposed() ? " if " + (target == pc ? "you":"[target.heShe]") + " tried, there is just no hiding their" : " under clothing, they fully display their") + " monumental moose-knuckles.");

@@ -111,13 +111,13 @@
 				{
 					for(i = 0; i < target.vaginas.length; i++)
 					{
-						if(target.vaginas[i].type != GLOBAL.TYPE_GABILANI || target.vaginas[i].vaginaColor != "black" || (!target.vaginas[i].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !target.vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED))) nonCowVaginas++;
+						if(target.vaginas[i].type != GLOBAL.TYPE_GABILANI || target.vaginas[i].vaginaColor != "black" || !target.hasPlumpPussy(i)) nonCowVaginas++;
 					}
 				}
 				if(nonCowVaginas > 0) tfList.push(15);
 				// PC’s vagina is pumped once:
 				// Pump vagina.
-				if(target.vaginas.length == 1 && target.vaginas[0].type == GLOBAL.TYPE_GABILANI && target.vaginas[0].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !target.vaginas[0].hasFlag(GLOBAL.FLAG_PUMPED)) tfList.push(16);
+				if(target.vaginas.length == 1 && target.vaginas[0].type == GLOBAL.TYPE_GABILANI && target.vaginas[0].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !target.vaginas[0].hasFlag(GLOBAL.FLAG_PUMPED) && !target.vaginas[0].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) tfList.push(16);
 				// PC has a cock:
 				// Shrink cock by 2-4 inches. Remove cock once below 3 inches, remove balls and grow one black pumped gabilani vagina if this leaves the PC with no genitals.
 				if(target.hasCock()) tfList.push(17);

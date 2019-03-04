@@ -23,7 +23,7 @@
 		{
 			output("\n" + (x + 1) + ": " + StringUtil.upperCase(pc.vaginaNoun2(pc.vaginas[0], false)));
 			if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output(", <i>Slightly Pumped</i>");
-			if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED))
+			if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) || pc.vaginas[x].hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
 			{
 				output(", <i>Fully Pumped</i>");
 				addDisabledButton(x,"#" + (x+1),"#" + (x+1),"Your [pc.vagina " + x + "] is already as pumped as it is going to get!");
@@ -45,7 +45,7 @@ public function pumpedCunts(both:Boolean = false):Number
 	var count:int = 0;
 	for(var x:int = 0; x < pc.totalVaginas(); x++)
 	{
-		if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED)) count++;
+		if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) || pc.vaginas[x].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) count++;
 		else if(both && pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) count++;
 	}
 	return count;
@@ -70,7 +70,7 @@ public function properlyUseTheSukmastr(x:int = 0):void
 	else output("sprawl across your bunk");
 	
 	//Pumped pussy
-	if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) || pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
+	if(pc.hasPlumpPussy(x))
 	{
 		output(", delighted to discover that the cunt-molded cup in your hand will");
 		if(usedPreviously) output(" still");
@@ -204,14 +204,14 @@ public function properlyUseTheSukmastr(x:int = 0):void
 	output(" mid-orgasm. Crying out, you let your fingers twitch and your passage squeeze, inadvertently pressing your palm flat on your sensitized mound. Fireworks explode behind your eyes, even when you close them, and you slump back, boneless and quivering.");
 	output("\n\nAftershocks of pleasure won’t stop racing through your body, twitching your [pc.legOrLegs]. You close your eyes and slowly, artlessly drag your slick digits across your body and up to your [pc.chest], cupping yourself and idly rubbing your nipples. Nothing feels quite as good as a nice a cum.");
 
-	if(rand(4) == 0 && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
+	if(rand(4) == 0 && pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
 	{
 		output("\n\nYour rubbery, inflated cunt aches, but it isn’t receding much at all. You sit there, watching it, occassionally reaching down to give it a little love-pat, amazed at how plush it seems. <b>Your [pc.vagina " + x + "] appears to to be permanently irrecovably expanded.</b> Pumping it any more would be pointless - it fills the cup as is.");
 		pc.vaginas[x].delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 		pc.vaginas[x].addFlag(GLOBAL.FLAG_PUMPED);
 		pumpedPussyEffect(x);
 	}
-	else if(rand(3) == 0 && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED))
+	else if(rand(3) == 0 && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
 	{
 		output("\n\nWhen you look down, you realize that your [pc.vagina " + x + "] is taking a long time to shrink back down. You wait, but it only loses half of its size before stopping. <b>It looks like you have a permanently pumped-up pussy.</b>");
 		pc.vaginas[x].addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);

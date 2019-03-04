@@ -5182,6 +5182,7 @@ public function annoToNormalTF():void
 	chars["ANNO"].buttRatingRaw = 9;
 	chars["ANNO"].vaginas[0].delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 	chars["ANNO"].vaginas[0].delFlag(GLOBAL.FLAG_PUMPED);
+	chars["ANNO"].vaginas[0].delFlag(GLOBAL.FLAG_HYPER_PUMPED);
 	chars["ANNO"].vaginas[0].wetnessRaw = 6;
 	//chars["ANNO"].removeSkinFlag(GLOBAL.FLAG_FLUFFY);
 	chars["ANNO"].removeArmFlag(GLOBAL.FLAG_FLUFFY);
