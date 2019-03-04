@@ -986,7 +986,7 @@ public function latexBeejhole():void
 	processTime(2);
 	clearMenu();
 	addButton(0,"Suck",suckThatLatexProngodong,undefined,"Suck","Hey, not like latex tastes that bad.");
-	addButton(1,"Stay Quiet",stayQuietForLatexBeejAvoid,undefined,"Stay Quiet","Meh, it's not for you.");
+	addButton(1,"Stay Quiet",stayQuietForLatexBeejAvoid,undefined,"Stay Quiet","Meh, it’s not for you.");
 }
 
 //[Succ]

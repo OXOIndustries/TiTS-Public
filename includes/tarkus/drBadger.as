@@ -168,6 +168,11 @@ public function drBadgerBonusShit():Boolean
 		
 		// Repeat vists
 		if(flags["DR_BADGER_TURNED_IN"] == undefined) addButton(0,"Dr.Badger",repeatBadgerApproach,undefined,"Dr. Badger","Check in with the curvy, bimbo badger.");
+		if (siegwulfeIsDom() && !wulfe.isEggWulfe())
+		{
+			if (pc.hasItemByClass(Ovilium, 10)) addButton(1, "Ovilium", siegwulfeInstallEggs, undefined, "Give Ovilium", "Give Badger the bottles of Ovilium she needs.");
+			else addDisabledButton(1, "Ovilium", "Give Ovilium", "You need 10 bottles of Ovilium and to have [wulfe.name] with you for this.");
+		}
 		
 		drBadgerLookAroundButton(5);
 	}
@@ -179,8 +184,13 @@ public function repeatBadgerApproach():void
 	clearOutput();
 	showDrBadger();
 	author("Abe E. Seedy");
+	//Siegwulfe with PC
+	if (hasSiegwulfeOnSelf() && (flags["DR_BADGER_APPROACHES_TILL_WULFE"] == undefined || flags["DR_BADGER_APPROACHES_TILL_WULFE"]-- <= 0) && !siegwulfeIsDom())
+	{
+		return siegwulfeExpansionIntro();
+	}
 	//REPEAT GREETING NON-BIMBOIFIED
-	if(flags["DR_BADGER_BIMBOED_PC"] == undefined && !pc.hasPerk("Ditz Speech"))
+	else if(flags["DR_BADGER_BIMBOED_PC"] == undefined && !pc.hasPerk("Ditz Speech"))
 	{
 		output("The Doctor looks up as you enter, currently busy pouring through another seemingly innocuous pile of mechanical trash. <i>“Well well, if it isn’t my only repeat customer!”</i> She pauses for a moment as she considers this. <i>“Wow, I have a really terrible business plan.”</i> For a moment, it looks like she might be genuinely concerned, but soon she shrugs and continues happily. <i>“Oh well. You gotta love what you do. So, here to do some more shopping? I’ve still got those little happy pills in stock. They can’t be beat if you want to live a little...”</i>");
 

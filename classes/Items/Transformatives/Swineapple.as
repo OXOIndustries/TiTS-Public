@@ -75,8 +75,8 @@ package classes.Items.Transformatives
 					{
 						kGAMECLASS.output("\n\nYou feel your face beginning to itch and crawl. You throw your hands up to your face and can feel that it’s changing shape. You scramble for a reflective surface just in time to find an <b>utterly human face staring back at you.</b>");
 						
-						pc.clearFaceFlags();
 						pc.faceType = GLOBAL.TYPE_HUMAN;
+						pc.clearFaceFlags();
 						changes++;
 					}
 					else kGAMECLASS.output("\n\n" + pc.faceTypeLockedMessage());
@@ -90,6 +90,7 @@ package classes.Items.Transformatives
 						kGAMECLASS.output("\n\nYou feel your face beginning to itch and crawl. You throw your hands to your face and notice your nose feels...flat? You scramble for a reflective surface just in time to see a <b>flat, pig-like nose on your otherwise human face.</b>");
 						
 						pc.faceType = GLOBAL.TYPE_SWINE;
+						pc.clearFaceFlags();
 						changes++;
 					}
 					else kGAMECLASS.output("\n\n" + pc.faceTypeLockedMessage());
@@ -210,7 +211,7 @@ package classes.Items.Transformatives
 				choices = new Array();
 				for(x = 0; x < pc.cockTotal(); x++)
 				{
-					if(pc.cocks[x].cThicknessRatio() > 0.6 && pc.cocks[x].cType == GLOBAL.TYPE_SWINE) choices[choices.length] = x;
+					if(pc.cocks[x].cThicknessRatio() > 0.3 && pc.cocks[x].cType == GLOBAL.TYPE_SWINE) choices[choices.length] = x;
 				}
 				//Set x to a random dick from choices
 				if(choices.length > 0) x = choices[rand(choices.length)];

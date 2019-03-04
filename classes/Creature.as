@@ -456,8 +456,8 @@
 		}
 		public function eyeCount():int
 		{
-			if (InCollection(eyeType, [GLOBAL.TYPE_ARACHNID])) return 4;
-			if (InCollection(eyeType, [GLOBAL.TYPE_XHELARFOG])) return 3;
+			if (eyeType == GLOBAL.TYPE_ARACHNID) return 4;
+			if (eyeType == GLOBAL.TYPE_XHELARFOG) return 3;
 			return 2;
 		}
 		//New piercing hotness:
@@ -2722,6 +2722,7 @@
 				case "vagOrAss":
 				case "vagOrAsshole":
 				case "pussyOrAsshole":
+				case "pussyOrAss":
 					buffer = vagOrAss(arg2);
 					break;
 				case "vagOrAssNoun":
@@ -5651,7 +5652,12 @@
 			// she grants a bonus to Sexiness equal to the same
 			if (accessory is SiegwulfeItem)
 			{
-				if(this is PlayerCharacter && !kGAMECLASS.chars["WULFE"].isBimbo()) { /* Nada! */ }
+				if(this is PlayerCharacter && !kGAMECLASS.chars["WULFE"].isBimbo())
+				{
+					//While equipped, bimbo-dom siegwulfe will add a bonus to both evasion and sexiness equal to 8% of intelligence that Steele has.
+					if (kGAMECLASS.siegwulfeIsDom()) temp += Math.round(bimboIntelligence() * 0.08);
+					else { /* Nada! */ }
+				}
 				else temp += Math.round(bimboIntelligence() * 0.1);
 			}
 			/*Sweaty penalties!
@@ -5740,7 +5746,12 @@
 			// Evasion bonus equal to 10% of your Intelligence
 			if (accessory is SiegwulfeItem)
 			{
-				if(this is PlayerCharacter && kGAMECLASS.chars["WULFE"].isBimbo()) { /* Nada! */ }
+				if(this is PlayerCharacter && kGAMECLASS.chars["WULFE"].isBimbo())
+				{
+					//While equipped, bimbo-dom siegwulfe will add a bonus to both evasion and sexiness equal to 8% of intelligence that Steele has.
+					if (kGAMECLASS.siegwulfeIsDom()) temp += Math.round(bimboIntelligence() * 0.08);
+					else { /* Nada! */ }
+				}
 				else temp += Math.round(bimboIntelligence() * 0.1);
 			}
 			if (hasPerk("Agility")) {
@@ -9872,7 +9883,12 @@
 		public function inflateVagina(arg: int = 0): void
 		{
 			if(vaginas.length <= 0 || arg >= vaginas.length) return;
-			if(vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED))
+			if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED) && !vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
+			{
+				vaginas[arg].delFlag(GLOBAL.FLAG_PUMPED);
+				vaginas[arg].addFlag(GLOBAL.FLAG_HYPER_PUMPED);
+			}
+			else if(vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED))
 			{
 				vaginas[arg].delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 				vaginas[arg].addFlag(GLOBAL.FLAG_PUMPED);
@@ -9885,7 +9901,12 @@
 		public function deflateVagina(arg: int = 0): void
 		{
 			if(vaginas.length <= 0 || arg >= vaginas.length) return;
-			if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED) && !vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
+			if(vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED) && !vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED))
+			{
+				vaginas[arg].delFlag(GLOBAL.FLAG_HYPER_PUMPED);
+				vaginas[arg].addFlag(GLOBAL.FLAG_PUMPED);
+			}
+			else if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED) && !vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
 			{
 				vaginas[arg].delFlag(GLOBAL.FLAG_PUMPED);
 				vaginas[arg].addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
@@ -9902,6 +9923,7 @@
 			{
 				puffScore += (this as PlayerCharacter).mimbranePuffiness("Mimbrane Pussy");
 			}
+			if(vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) puffScore += 3;
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) puffScore += 2;
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffScore += 1;
 			if(vaginas[arg].type == GLOBAL.TYPE_EQUINE) puffScore += 1;
@@ -10080,7 +10102,12 @@
 		}
 		public function inflateAsshole(): void
 		{
-			if(ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !ass.hasFlag(GLOBAL.FLAG_PUMPED))
+			if(ass.hasFlag(GLOBAL.FLAG_PUMPED) && !ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
+			{
+				ass.delFlag(GLOBAL.FLAG_PUMPED);
+				ass.addFlag(GLOBAL.FLAG_HYPER_PUMPED);
+			}
+			else if(ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !ass.hasFlag(GLOBAL.FLAG_PUMPED))
 			{
 				ass.delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 				ass.addFlag(GLOBAL.FLAG_PUMPED);
@@ -10092,7 +10119,12 @@
 		}
 		public function deflateAsshole(): void
 		{
-			if(ass.hasFlag(GLOBAL.FLAG_PUMPED) && !ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
+			if(ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED) && !ass.hasFlag(GLOBAL.FLAG_PUMPED))
+			{
+				ass.delFlag(GLOBAL.FLAG_HYPER_PUMPED);
+				ass.addFlag(GLOBAL.FLAG_PUMPED);
+			}
+			else if(ass.hasFlag(GLOBAL.FLAG_PUMPED) && !ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
 			{
 				ass.delFlag(GLOBAL.FLAG_PUMPED);
 				ass.addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
@@ -10108,6 +10140,7 @@
 			{
 				puffScore += (this as PlayerCharacter).mimbranePuffiness("Mimbrane Ass");
 			}
+			if(ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) puffScore += 3;
 			if(ass.hasFlag(GLOBAL.FLAG_PUMPED)) puffScore += 2;
 			if(ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffScore += 1;
 			
@@ -13314,7 +13347,7 @@
 			}
 			if(score >= 6 && vaginaTotal() == 1)
 			{
-				if(vaginas[0].hasFlag(GLOBAL.FLAG_RIBBED) && (vaginas[0].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[0].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) && vaginas[0].type == GLOBAL.TYPE_SAURMORIAN) score++;
+				if(vaginas[0].hasFlag(GLOBAL.FLAG_RIBBED) && hasPlumpPussy(0) && vaginas[0].type == GLOBAL.TYPE_SAURMORIAN) score++;
 			}
 			if (!InCollection(faceType, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_SAURMORIAN)) score -= 2;
 			if(hasHair()) score--;
@@ -13816,11 +13849,16 @@
 				descripted++;
 			}
 			// Puffy butt - 50% addition of no other descs - doesn't stack well with loose/wet.
-			if(!simple && descripted == 0 && (analPuffiness() >= 1) && rand(2) == 0)
+			var puffScore:Number = analPuffiness();
+			if(!simple && descripted == 0 && (puffScore >= 1) && rand(2) == 0)
 			{
 				if (descripted > 0) desc += ", ";
-				if (analPuffiness() < 2) desc += RandomInCollection(["puffy", "plump", "fat", "crinkly", "soft", "spongy"]);
-				else desc += RandomInCollection(["puffy", "plump", "fat", "crinkly", "soft", "spongy", "huge", "bloated", "pillowy"]);
+				var donuts:Array = ["puffy", "plump", "fat", "crinkly", "soft", "spongy"];
+				if (puffScore >= 2) donuts.push("huge", "bloated", "pillowy");
+				if (puffScore >= 3) donuts.push("ample", "meaty", "generous");
+				if (puffScore >= 4) donuts.push("imposing", "massive", "enormous", "tremendous");
+				if (puffScore >= 5) donuts.push("monstrous", "freakish", "colossal", "hyper", "oversized");
+				desc += RandomInCollection(donuts);
 				descripted++;
 			}
 			if(!simple && descripted == 0 && hasPerk("Buttslut") && rand(2) == 0)
@@ -15537,19 +15575,22 @@
 				if(puffScore <= 0) {}
 				else if(puffScore <= 1)
 				{
-					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("very swollen", "well-padded", "fat", "bulging", "lewdly bulging");
+					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) mimAdjectives.push("extremely swollen", "greatly padded", "extra fat", "bloated", "lewdly bloated");
+					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("very swollen", "well-padded", "fat", "bulging", "lewdly bulging");
 					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) mimAdjectives.push("swollen", "plush", "plump", "pudgy", "chubby");
 					else mimAdjectives.push("slightly swollen", "lightly swollen", "slightly chubby", "puffy", "cushy");
 				}
 				else if(puffScore <= 2)
 				{
-					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("very bulgy", "enormous", "wobbly", "prodigious", "obscenely swollen");
+					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) mimAdjectives.push("extremely bulgy", "enormously full", "gargantuan", "hyper-sized", "greatly engorged");
+					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("very bulgy", "enormous", "wobbly", "prodigious", "obscenely swollen");
 					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) mimAdjectives.push("bulgy", "large", "fat", "bulging", "lewdly bulging");
 					else mimAdjectives.push("slightly bulgy", "swollen", "plump", "pudgy", "chubby");
 				}
 				else
 				{
-					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("gargantuan", "elephantine", "hyper-sized", "mammoth-sized", "titanically plump", "greatly engorged", "extremely voluminous", "generously padded", "enormously full", "ridiculously fat");
+					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) mimAdjectives.push("colossal", "monstrous", "ultra hyper-sized", "mega-sized", "monumentally plump", "overly engorged", "impossibly voluminous", "excessively padded", "overflowingly massive", "preposterously fat");
+					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("gargantuan", "elephantine", "hyper-sized", "mammoth-sized", "titanically plump", "greatly engorged", "extremely voluminous", "generously padded", "enormously full", "ridiculously fat");
 					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) mimAdjectives.push("massive", "huge", "immensely swollen", "extremely thick", "enormous", "wobbly", "prodigious", "obscenely swollen");
 					else mimAdjectives.push("undeniably bulgy", "very swollen", "well-padded", "large", "fat", "bulging", "lewdly bulging");
 				}
@@ -15564,21 +15605,27 @@
 				}
 			}
 			//Pussy pump - 50% addition of no other descs - doesn't stack well with loose/wet.
-			else if(rand(2) == 0 && (vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) && adjectiveCount == 0)
+			else if(rand(2) == 0 && hasPlumpPussy(vaginaNum) && adjectiveCount == 0)
 			{
 				var pumpAdj:Array = [];
 				if (adjectiveCount > 0) desc += ", ";
-				if (!vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED))
-				{
-					pumpAdj.push("cushy", "cushy", "cushy", "chubby", "lightly swollen", "puffy");
-					if(hasStatusEffect("Pussy Pumped")) pumpAdj.push("slightly pumped");
-					else pumpAdj.push("slightly plump");
-				}
-				else
+				if (vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
 				{
 					pumpAdj.push("bulgy", "swollen", "plump", "pudgy", "jiggly", "wobbly", "prodigious", "obscenely swollen", "lewdly bulging", "bulging");
 					if(hasStatusEffect("Pussy Pumped")) pumpAdj.push("permanently pumped", "pump-enhanced", "pump-fattened");
 					else pumpAdj.push("permanently plump", "bloated", "fat");
+				}
+				else if (vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED))
+				{
+					pumpAdj.push("bulgy", "swollen", "plump", "pudgy", "jiggly", "wobbly", "prodigious", "obscenely swollen", "lewdly bulging", "bulging");
+					if(hasStatusEffect("Pussy Pumped")) pumpAdj.push("permanently pumped", "pump-enhanced", "pump-fattened");
+					else pumpAdj.push("permanently plump", "bloated", "fat");
+				}
+				else
+				{
+					pumpAdj.push("cushy", "cushy", "cushy", "chubby", "lightly swollen", "puffy");
+					if(hasStatusEffect("Pussy Pumped")) pumpAdj.push("slightly pumped");
+					else pumpAdj.push("slightly plump");
 				}
 				desc += RandomInCollection(pumpAdj);
 				adjectiveCount++;
@@ -16043,21 +16090,29 @@
 			if(this is PlayerCharacter && (this as PlayerCharacter).mimbranePuffiness("Mimbrane Pussy") > 0) adjectives.push("parasite-wrapped","mimbrane-toting","mimbrane-swollen","parasite-engorged","plush","swollen","puffy");
 
 			//Pussy pump can show if ALL are at least pumped.
-			biggestSize = 2;
+			biggestSize = -1;
 			for(var i:int = 0; i < vaginas.length; i++)
 			{
 				//No descs if any aren't pumped!
-				if(!vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) && !vaginas[i].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) biggestSize = 0;
+				if(!hasPlumpPussy(i)) biggestSize = 0;
 				//Track if they're all bigpump or smolpump
-				else if(!vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) && biggestSize == 2) biggestSize = 1;
+				else if(!vaginas[i].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && biggestSize == -1) biggestSize = 1;
+				else if(!vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) && biggestSize == -1) biggestSize = 2;
+				else if(!vaginas[i].hasFlag(GLOBAL.FLAG_HYPER_PUMPED) && biggestSize == -1) biggestSize = 3;
 			}
 			if(biggestSize > 0)
 			{
-				if(biggestSize == 1) 
+				if(biggestSize == 1)
 				{
 					adjectives.push("cushy", "cushy", "cushy", "chubby", "lightly swollen", "puffy");
 					if(hasStatusEffect("Pussy Pumped")) adjectives.push("slightly pumped");
 					else adjectives.push("slightly plump");
+				}
+				else if(biggestSize == 2)
+				{
+					adjectives.push("bulgy", "swollen", "plump", "pudgy", "jiggly", "wobbly", "prodigious", "obscenely swollen", "lewdly bulging", "bulging");
+					if(hasStatusEffect("Pussy Pumped")) adjectives.push("permanently pumped", "pump-enhanced", "pump-fattened");
+					else adjectives.push("permanently plump", "bloated", "fat");
 				}
 				else
 				{
@@ -22130,19 +22185,19 @@
 		
 		public function hasPlumpAsshole():Boolean
 		{
-			return (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED));
+			return (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED) || ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED));
 		}
 		public function hasPlumpPussy(arg:Number = -1):Boolean
 		{
 			if(vaginas.length <= 0) return false;
 			if(arg >= 0 && arg > vaginas.length-1) return false;
-			if(arg >= 0) return (vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED));
+			if(arg >= 0) return (vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED));
 			//check em all, fam
 			else
 			{
 				for (var x:int = 0; x < vaginas.length; x++)
 				{
-					if(vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED)) return true;
+					if(vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[x].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) return true;
 				}
 			}
 

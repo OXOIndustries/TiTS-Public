@@ -40,7 +40,7 @@ public function encounterMiloTemptress():void
 	else
 	{
 		output("\n\nYour [pc.ears] twitch as you hear a voice off in the distance. It <i>could</i> be friendly, but at this point you know it’s better to be safe than sorry. The voice comes closer and closer as you duck behind a nearby wall. The melodic tone of another slave-catching Temptress is near enough to make the hairs on your neck stand. You try and sneak away before she realizes you’re there, only to jump when a small dart sticks itself in the ground in front of you.");
-		output("\n\n<i>“Going somewhere, darling? And here I had so many plans for you. Come, stay a while. I promise I’ll make you enjoy it!”</i> The Temptress cracks her whip and struts toward you. No choice now, you’ve got to put this seductive slut in her place!.");
+		output("\n\n<i>“Going somewhere, darling? And here I had so many plans for you. Come, stay a while. I promise I’ll make you enjoy it!”</i> The Temptress cracks her whip and struts toward you. No choice now, you’ve got to put this seductive slut in her place!");
 		startTemptressFight();
 	}
 	IncrementFlag("MET_MILO_TEMPTRESS");
@@ -549,7 +549,7 @@ public function sitOnTemptingKittyFace2():void
 			{
 				output("\n\n[pc.EachPussy] share in the tit-based climax, the clenching of your [pc.thighs] " + (!pc.isSquirter() ? "smearing the milo-slut’s face with [pc.girlCumNoun]":"splattering the milo-slut’s face with [pc.girlCumNoun] in long"));
 				if(pc.isSquirter()) output((pc.girlCumQ() < 10000 ? ", fragrant waves":", erotic missiles"));
-				output(". [pc.girlCumVisc], crystal-clear juices settle deep into her fur, sure to be an adequate reminder of her submission to a better [pc.master].");
+				output(". [pc.GirlCumVisc], crystal-clear juices settle deep into her fur, sure to be an adequate reminder of her submission to a better [pc.master].");
 			}
 		}
 		//hyperTitfucking
@@ -769,6 +769,7 @@ public function rescueTuuvaBlurb():void
 	output("\n\nYou too need to get moving. Sieges to stop, princesses to save, the usual.");
 	output("\n\n");
 	CombatManager.genericVictory();
+	tuuvaAffection(15);
 	flags["WARGII_TUUVA_SAVED"] = 1;
 	IncrementFlag("WARGII_FIGHTS_WON");
 }

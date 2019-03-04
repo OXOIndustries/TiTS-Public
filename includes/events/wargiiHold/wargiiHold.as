@@ -242,6 +242,9 @@ public function followingTheChiefToKorgii():void
 	currentLocation = "UVGR G8";
 	flags["TUNDRA_STEP"] = 1;
 	generateMap();
+	
+	addUvetoCold();
+	
 	output("The Chieftan’s retinue isn’t as easy to track through the snow as you might have expected. They are obviously practiced at surviving the rugged tundras of Uvetan wilderness. Their path avoids softer snowpack where tracks might be more evident, moving instead to less malleable ice and rock. When they do leave tracks, the rearguard brushes them down with some kind of tool to conceal the shapes of their footprints. If you hadn’t had the opportunity to follow them from the very start, you’d never have noticed their track.");
 	output("\n\nFor well over one hour, you trudge after the fluffy procession, enduring Uveto’s hellish weather as best you can. You thought yourself stealthy, but more than once, you catch the sharp eye of a distant korgonne staring back at you impassively. The guards make no move to stop you, but neither do they care for your presence. You’re an outsider, a distant one who they consider to be trifling in matters beyond [pc.hisHer] ken.");
 	output("\n\nYou keep your distance. When the trekking dog-folk come to a stop in the shadow of an icy cliffside, you set up a short ways away: close enough to keep an eye on the proceedings but far away enough not to draw attention to yourself, should a keen scout happen to discover your vantage point.");
@@ -378,7 +381,12 @@ public function arriveAtKorgiliciousLand():void
 	//Sets that you're in the middle of the quest. disables encounters via disableExploreEvents()
 	flags["WARGII_PROGRESS"] = 2;
 	clearMenu();
-	addButton(0,"Next",move,"WARGII B12");
+	addButton(0,"Next",arriveAtKorgiliciousLandGo);
+}
+public function arriveAtKorgiliciousLandGo():void
+{
+	removeUvetoCold();
+	move("WARGII B12");
 }
 
 public function wargiiBadEnds():void
@@ -446,6 +454,7 @@ public function wargiiBadEnds():void
 		pc.aim(-20);
 		pc.HPMod = 2500;
 		pc.HP(2500);
+		removeUvetoCold();
 		processTime(42);
 		addButton(0,"Next",maleBreederWargiiBadEnd2);
 	}
@@ -467,19 +476,26 @@ public function wargiiBadEnds():void
 			output("\n\nThe Milodan " + (pc.hasCock() ? "gropes at your [pc.cock], cupping at your meat, his cold claws scratching uncaringly at your sensitive flesh. Then, he dips further down as he ":"") + "rudely palms and thrusts at your [pc.vagina], testing your female genitals for himself. You clench in fear at what’s going to come next, expecting the worst, but, as soon as he discovers that you indeed have feminine parts, his investigation halts.");
 			output("\n\n<i>“You’ll do,”</i> he says gruffly, followed by another, softer, shove at your side, flipping you back over and onto your front. He tests the knots keeping your limbs in place by yanking at your limbs to see if they’ll come undone. Your body screams in pain at the treatment, but every time you try and cry out in pain, you feel a sharp ‘thwap!’ against your head, and the instruction to keep quiet is not lost on you. But when even that is too much effort, he withdraws a second rope and wraps it around your head and mouth. In some perverse way, it’s a thankful reprieve when he gags you. That way, your shouts of pain are too muffled to bother him....");
 			output("\n\nWhen you’re adequately bound, the Milodan hefts you" + (pc.tallness >= 72 ? ", with some effort,":"") + " onto his shoulder and begins marching you to somewhere else in the hold.");
+			if(currentLocation == "UVGR G8")
+			{
+				currentLocation = "KORGII D10";
+				generateMap();
+				removeUvetoCold();
+			}
 			processTime(35);
 			addButton(0,"Next",bsFemaleFeelbadWargiiBadEnd2);
 		}
+		// Continue here if the PC loses to a Milodan via lust
 		else
 		{
-			//Continue here if the PC loses to a Milodan via lust
-			//output("\n\n{Your stance is wobbly and shaken - not because you’re wounded or you’re too exhausted to keep going, but because you’re just so horny. The Milodan in front of you look so delicious in their armor, and you can smell their overbearing musk from where you are. You close your eyes as you imagine you spending time with the warriors some other way, when you feel a blunt, stinging pain at the back of your head.}");
+			//output("\n\nYour stance is wobbly and shaken - not because you’re wounded or you’re too exhausted to keep going, but because you’re just so horny. The Milodan in front of you look so delicious in their armor, and you can smell their overbearing musk from where you are. You close your eyes as you imagine you spending time with the warriors some other way, when you feel a blunt, stinging pain at the back of your head.");
 			output("When you awake, you’re " + (currentLocation != "UVGR G8" ? "exactly where you were before you lost the fight":"back in the hold proper") + ", but there’s nobody around you. The Milodan warrior is gone" + (fightHasCaptive() ? ", as is the Korgonne captive they were hauling off":"") + ". You have a bit of a bump on your head, but otherwise, you’re fine – and <i>ragingly</i> horny. Although you’ve been stripped of your possessions, your limbs are unbound and free; apparently, the Milodan warrior you were facing off with did not consider you a threat." + ((pc.lust() >= pc.lustMax() || flags["WARGII_BADEND_FUCKED"] != undefined) ? " It probably had something to do with how you succumbed to your baser desires in the fight.":""));
 			pc.lust(200);
 			if(currentLocation == "UVGR G8")
 			{
 				currentLocation = "KORGII D10";
 				generateMap();
+				removeUvetoCold();
 			}
 			output("\n\nThat said, you have a number of iridescent green jewelry hanging off you in parts that weren’t there before. They feel... <i>really</i> good to the touch; when you run your fingers on one, a delightful shock courses through your body, splitting to head towards your head and towards your crotch. You wonder how it would feel to drive this rock up against your-");
 			output("\n\nThe silence of the room you’re in is broken by the stomping of heavy, armored boots coming in your direction. You look in the direction it’s coming from, and you’re face-to-face with another Milodan – a male, and different from the one you just fought. Your heart leaps into your throat, and your [pc.vagina] clenches reflexively, when you look up at that hunky, sexy piece of warrior.");
@@ -501,6 +517,9 @@ public function wargiiBadEnds():void
 
 public function bsFemaleFeelbadWargiiBadEndForLustyThots2():void
 {
+	currentLocation = "KORGII V39";
+	generateMap();
+	
 	clearOutput();
 	author("B");
 	showName("\nCAPTIVE");
@@ -559,6 +578,9 @@ public function bsFemaleFeelbadWargiiBadEndForLustyThots3():void
 
 public function bsFemaleFeelbadWargiiBadEnd2():void
 {
+	currentLocation = "KORGII V39";
+	generateMap();
+	
 	clearOutput();
 	author("B");
 	showName("\nCAPTURED");
@@ -590,7 +612,7 @@ public function bsFemaleFeelbadWargiiBadEnd3():void
 	var miloboi:MilodanMale = new MilodanMale();
 	pc.cuntsChange(miloboi.cockVolume(0));
 
-	output("\n\nNonstop dicks in your [pc.vagina]; nonstop cocks in your mouth; and nonstop cum dripping off your body. As soon as one virile male finished inside you, he was replaced with another, for seventy-two hours straight. When there were more males than holes for them to fuck, they would either stand to the side and stroke themselves, keeping themselves excited for their turn, or they would leave and disappear somewhere – towards, you assumed, where they kept the korgonne males.");
+	output("\n\nNonstop dicks in your [pc.vaginas]; nonstop cocks in your mouth; and nonstop cum dripping off your body. As soon as one virile male finished inside you, he was replaced with another, for seventy-two hours straight. When there were more males than holes for them to fuck, they would either stand to the side and stroke themselves, keeping themselves excited for their turn, or they would leave and disappear somewhere – towards, you assumed, where they kept the korgonne males.");
 
 	output("\n\nYou learned to recognize some of the males as they approached you. Some of them were rough with you: they pulled at your [pc.skinFurScales] and yanked at your limbs and paid no mind to your protests or whines, and you learned to flinch at their sight and fear them. Some of them were gentle, almost romantic with the way they held you, and kissed you, and played with your [pc.clit] as they fucked you, in an effort to get you off, and you learned to appreciate and sometimes even yearn for them.");
 	if(pc.hasCock()) output(" Some of them would even give you a reach-around for "+ (pc.hasCocks() ? "one of ":"") + " your otherwise-totally-neglected [pc.cocksNounSimple] as they pounded you.");

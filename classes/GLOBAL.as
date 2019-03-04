@@ -83,6 +83,7 @@
 		public static const FLAG_SCALED_PRETTY:int                          = 48;
 		public static const FLAG_SHORT:int									= 49;
 		public static const FLAG_FLOPPY:int									= 50; //Not for dicks, lol. Mostly for differentiating rabbit ears right now, but perhaps another use will arise down the road. Might be good for tails to help differentate tails with no muscular control
+		public static const FLAG_HYPER_PUMPED:int 							= 51;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -136,6 +137,7 @@
 			"Partially Scaled",
 			"Short",
 			"Floppy",
+			"Hyper Pumped",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -1101,6 +1103,7 @@
 		public static const SPIDER_WEB:int								= 30;
 		public static const LOW_GRAVITY:int								= 31;
 		public static const NURSERY:int									= 32; //used to mark all rooms in tavros nursery
+		public static const LOW_TECH:int								= 33; //used to mark rooms where the inhabitants wouldn't own regular space tech (see InRoomWithPhones)
 		
 		// Temp flag alias whilst the asset gets introduced
 		public static const LIFT:int = OBJECTIVE;

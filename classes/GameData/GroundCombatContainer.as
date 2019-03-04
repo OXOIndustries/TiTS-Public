@@ -5233,7 +5233,10 @@ package classes.GameData
 			}
 			
 			pc.credits += sumCredits;
-			
+
+			//Making your dom horny is a prize, yes?
+			if (pc.accessory is SiegwulfeItem && kGAMECLASS.chars["WULFE"] != undefined && kGAMECLASS.siegwulfeIsDom()) kGAMECLASS.chars["WULFE"].lust(3);
+
 			// Emit some shit to state what the player got/did
 			output("You defeated ");
 			for (var key:String in enemyNames)

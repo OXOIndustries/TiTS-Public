@@ -612,12 +612,14 @@ package classes.Items.Transformatives
 							output(" puffy");
 							if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffFlag = 1;
 							if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_PUMPED)) puffFlag = 2;
+							if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) puffFlag = 3;
 						}
 						output(" lips and notice some tendrils rubbing and grasping your fingers, trying to pull them deeper into your pussy. You blush a little as you have to resist the urge to start fingering yourself right there and reluctantly pull your fingers away, much to the disappointment of your new pussy tendrils. <b>You now have a suula vagina!</b>");
 						
 						pc.shiftVagina(vIdx, GLOBAL.TYPE_SIREN);
 						if(puffFlag == 1) pc.vaginas[vIdx].addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 						if(puffFlag == 2) pc.vaginas[vIdx].addFlag(GLOBAL.FLAG_PUMPED);
+						if(puffFlag == 3) pc.vaginas[vIdx].addFlag(GLOBAL.FLAG_HYPER_PUMPED);
 						pc.lust(5);
 					}
 					else output("\n\n" + pc.vaginaTypeLockedMessage());

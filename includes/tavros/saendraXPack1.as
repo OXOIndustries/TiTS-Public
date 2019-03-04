@@ -2054,7 +2054,7 @@ public function zilCallGirlFuckHer(inAppt:Boolean = false):void
 	if (pc.cocks[x].cLength() > 6) output("<i>“Oh, so big!”</i> she groans, putting a hand on her belly and arching her back with every inch of cockmeat you pump into her. <i>“Nothing... nothing quite like this back home! Ah-ah yes!”</i>");
 	// else:
 	else output("<i>“Mmm, nice and snug!”</i> she purrs, clamping her muscles down around your tiny prick. She releases you a moment later, only to clench and ease again and again, squeeze-milking you like a wet, gloved hand around your pecker. You can only thrust ever so slightly with a grip like hers wringing you; damn, but she’s got amazing control down there! <i>“Ah, just like that. Wiggle those hips for me, love... and I’ll milk out every drop you have!”</i>");
-	output(" A throaty moan of pleasure tears free from her black lips, and your paid lover rolls her head back into her pillows. You’re completely on top of her now, your [pc.belly] pressed against her");
+	output(" A throaty moan of pleasure tears free from her black lips, and your " + ((flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined && !inAppt) ? "paid" : "lusty") + " lover rolls her head back into her pillows. You’re completely on top of her now, your [pc.belly] pressed against her");
 	if (zilCallGirlPregTime(true) < 5) output(" flat, strong stomach");
 	else if (zilCallGirlPregTime(true) < 25) output(" slightly plush, curvaceous belly");
 	else if (zilCallGirlPregTime(true) < 50) output(" obviously swollen belly");

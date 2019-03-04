@@ -1903,9 +1903,9 @@ public function roughButtfuckFromKiroGo(threesomeTalkIntro:Boolean = false):void
 	{
 		output("\n\nThe tanuki-girl puts the whole of her weight into the opening stroke, but to her shock, your [pc.asshole] opens right up for her. What once seemed a tighter asshole reveals its true nature - a well trained, capacious tunnel that may well very well be designed to delight in enormous insertions. Kiro’s cock slides into your butt like an oiled-up dick into a dripping-wet pussy, no extra lubricants needed.");
 		output("\n\nYour internal folds massage the equine phallus’s every feature, cradling the pulsing veins, gleefully hugging the distention of its medial ring. You moan and clench with your ");
-		if(pc.ass.hasFlag(GLOBAL.FLAG_PUMPED) || pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output("puffy ");
+		if(pc.hasPlumpAsshole()) output("puffy ");
 		output("donut, wrapping your ");
-		if(pc.ass.hasFlag(GLOBAL.FLAG_PUMPED) || pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output("pillowy ");
+		if(pc.hasPlumpAsshole()) output("pillowy ");
 		output("butthole tighter around the intruder, if only to spike Kiro’s pleasure higher. She fills you like nothing else, a rod of singular girth culminating in a puffy, expansive crown, wide enough to massage your walls with every movement. Its violent lurches may as well be the motions of a high-powered vibrator for how wondrous they feel.");
 		output("\n\nFuzzy nuts clap against your [pc.butt]. You’ve taken Kiro to the hilt, her sheath scrunched up against taut pucker, and balls feel like they’re <i>boiling</i> with unspent spunk.");
 		pc.buttChange(kiro.cockVolume(0));
@@ -3138,7 +3138,7 @@ public function kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenL
 	//Merge
 	output("\n\n<i>“Dibs on [pc.hisHer] pussy,”</i> Kally calls with alarming suddenness. <i>“Can’t let you ruin it with that monster-cock of yours.”</i>");
 	output("\n\nKiro slaps her sister’s ass, hard. <i>“I didn’t hear any complaints from you.”</i> She pivots to grab hold of your [pc.butts] and spread them wide open. <i>“Besides, I wanted to play with this ");
-	if(pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || pc.ass.hasFlag(GLOBAL.FLAG_PUMPED)) output("puffy cock-holster");
+	if(pc.hasPlumpAsshole()) output("puffy cock-holster");
 	else if(pc.ass.looseness() >= 4) output("gaped-out slut-hole");
 	else if(pc.ass.looseness() >= 2) output("flexible little asshole");
 	else output("tight little asshole. Somebody’s gotta break it in");

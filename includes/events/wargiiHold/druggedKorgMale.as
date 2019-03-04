@@ -189,8 +189,8 @@ public function getOralFromDoggo(useCock:Boolean = false):void
 		output("\n\nYour ravenous partner’s chin wiggles left and right, framing itself with the inside of your fertile tunnel. When you orgasm now" + (!pc.isSquirter() ? ", when fireworks explode in your mind":", when your thighs squirm and your pussy squirts") + ", he’s in the perfect position to catch every single drop of [pc.girlCumVisc] passion. He audibly gulps down your [pc.girlCumNoun], closing off the drift around you. His tongue’s intensity increases, turning into a molten spear that is as hot as he is, as hot as his cock is - you can feel it around your [pc.footOrFeet].");
 		output("\n\nWhat you’re radiating is nothing compared to what’s burning inside him. Whatever was in that drug has turned him into the best cunt-kisser in the hold. You can’t hope to command a tongue that free and animalistic, only direct it to where its needed most. The raw sensation of his muscle sliding across your hypersensitive underside, drumming against your [pc.clit], nearly throws you over the edge into orgasmic release.");
 		output("\n\nBut you hold on just a little longer. You stare down, pushing him back, [pc.fingers] pressed tight into his temples. He stares up to you with awe, reverence, <i>love.</i> He will follow your lead, do anything you say.");
-		output("\n\nSo you scritch him behind his thick-furred ears and guide him back, letting him start again with slower, tentative strokes, guiding his hands elsewhere to better please you. multiVag: this time sharing his obsession with [pc.vaginaNoun " + x + "]");
-		if(pc.hasVaginas()) output((pc.totalVaginas() == 2 ? "with your other slit":"among your other slits"));
+		output("\n\nSo you scritch him behind his thick-furred ears and guide him back, letting him start again with slower, tentative strokes, guiding his hands elsewhere to better please you");
+		if(pc.hasVaginas()) output(", this time sharing his obsession " + (pc.totalVaginas() == 2 ? "with your other slit":"among your other slits"));
 		output(". You sense, or think, that he wants to say something, maybe rail you until you’re carrying his kids, but it’s all drowned out in squelching suckles and spikes of spastic enjoyment.");
 		// PC Suula or Aphrodisiac Pussy
 		if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("\n\nResubmerged in feminine fluids, he makes himself vulnerable to your alien venom. The cilia lining your embry furnace sting the dog-man’s tongue when he slides back in, slapping him in and on the face with a potent dose of unnatural lust. Hopefully he doesn’t protest. ‘Sides, if he does, you can tell him this is just how outsiders share heat!");
@@ -230,6 +230,9 @@ public function getDeepthroughted(x:int):void
 	clearOutput();
 	showDosedKorgMale();
 	author("William");
+	
+	var ppKorgMale:Creature = new KorgonneMale();
+	
 	output("After a particularly feral grunt, you tap his head and grin. <i>“Hold still,”</i> you start, rearing back, <i>“you’re gonna need to concentrate for this.”</i> You thrust in savagely, eliciting a yelp" + (pc.balls > 0 ? " and a loud slap of ballflesh against his dick-braced jaw":"") + ". <i>“I know...”</i> You shudder, ");
 	if(pc.hasCuntTail()) output("weaving your [pc.cuntTail] forward and cooing when it inhales his virile dick. He won’t need to masturbate like this, won’t need to worry about his lusts. He’ll just need to worry about nutting as hard as you do.");
 	else if(pc.isNaga()) output("shifting position so that your snake tail’s tapered tip can rub at his member");
@@ -320,7 +323,7 @@ public function getDeepthroughted(x:int):void
 	output("\n\nBetter get going yourself! ...Hey are those some healing poultices on the ground? The plucky, cummy korg seems to have forgotten them in his haste.\n\n");
 	processTime(15);
 	pc.orgasm();
-	if(pc.hasCuntTail()) feedCuntSnake(new KorgonneMale());
+	if(pc.hasCuntTail()) feedCuntSnake(ppKorgMale);
 	else if(pc.isGoo()) pc.addBiomass(500);
 	var poulties:HealingPoultice = new HealingPoultice();
 	poulties.quantity = 2;
@@ -333,6 +336,9 @@ public function stayForBeejCuntsuckythings(x:int):void
 	clearOutput();
 	showDosedKorgMale();
 	author("William");
+	
+	var ppKorgMale:Creature = new KorgonneMale();
+	
 	output("Scratching behind the pussy-drunk pup’s ears, you step forward, " + (pc.legCount > 1 ? "scissoring him between your [pc.thighs]":"grinding your front into his skull") + " and rubbing your [pc.clits] on his head. Lightheadedness follows when he licks and suckles at your engorged buzzer, polishing its surface until you’re seeing stars and and impregnating his fur with another batch of [pc.girlCumNoun]. <i>“Whew,”</i> you huff, petting him with as much energy as his tail wags, <i>“you keep that up, just like that, and I’ll help you get off.”</i>");
 	output("\n\nShivering and moaning, you ");
 	if(pc.isNaga()) output("slither your snake-tail close enough to brush his cock");
@@ -378,7 +384,8 @@ public function stayForBeejCuntsuckythings(x:int):void
 	output("\n\nWhen you’re ready, you do the same before that milodan comes to...\n\n");
 	processTime(15);
 	pc.orgasm();
-	if(pc.hasCuntTail()) feedCuntSnake(new KorgonneMale());
+	pc.loadInCunt(ppKorgMale, x);
+	if(pc.hasCuntTail()) feedCuntSnake(ppKorgMale);
 	else if(pc.isGoo()) pc.addBiomass(500);
 	var poulties:HealingPoultice = new HealingPoultice();
 	poulties.quantity = 2;
@@ -394,6 +401,9 @@ public function sixtyNineKorgoborgo(args:Array):void
 	clearOutput();
 	showDosedKorgMale();
 	author("William");
+	
+	var ppKorgMale:Creature = new KorgonneMale();
+	
 	output("[pc.Fingers] grappling his head, you ease him to the ground. The further his paws move from his twitching cock the louder he whines. Indeed, when you floor him and steal a glance at it, it looks so needy that you feel a bit bad. <i>“Don’t worry,”</i> you comfort him, pushing your ");
 	if(pc.balls > 0) output("[pc.balls]");
 	else if(useCock) output("[pc.base " + x + "]");
@@ -480,7 +490,7 @@ public function sixtyNineKorgoborgo(args:Array):void
 	output("\n\nHopefully you didn’t lose too much time.\n\n");
 	processTime(15);
 	pc.orgasm();
-	pc.loadInMouth(new KorgonneMale());
+	pc.loadInMouth(ppKorgMale);
 	var poulties:HealingPoultice = new HealingPoultice();
 	poulties.quantity = 2;
 	quickLoot(poulties);
@@ -690,7 +700,7 @@ public function keepuFrottuWang(x:int):void
 		else output("\n\nHis head jerks back when your [pc.cocks] hose him down with room-flooding amounts of [pc.cum]. It catches you both by surprise, and absorbs the runoff of his orgasm where it lands, creating a multi-colored pool on the stone and on the canvas of his torso. All the excess semen that his fur doesn’t absorb gives him a nice, deep pool of [pc.cumVisc] spunk to bathe in. But you don’t stop there. What would be a dribble for others is still gouts for you... gouts that batter his face and make a sloppier mess.");
 		// Merge
 		output("\n\nFalling back in relief, you sigh airily, a line of [pc.cumNoun] falling from your swollen spunkslit to the floor before you stand on shaky legs. The korg-man rolls over and growls in pleasure, sounding fiercely satisfied. He stands and collects a spear from near the unconscious milodan, laughing that the fallen invader is stained in light of your heat sharing.");
-		output("\n\n<i>“" + !(korgiTranslate() ? "Thankings to alien. All I needed more-know. Safe-stay!":"Thank you, alien. I needed that more than you know. Stay safe!") + "”</i> he says, not caring at all that he looks like he’s spent a day working in the scummiest skank-hole you can imagine.");
+		output("\n\n<i>“" + (!korgiTranslate() ? "Thankings to alien. All I needed more-know. Safe-stay!":"Thank you, alien. I needed that more than you know. Stay safe!") + "”</i> he says, not caring at all that he looks like he’s spent a day working in the scummiest skank-hole you can imagine.");
 		output("\n\nOnce you’ve gotten your things together, you get back to the task at hand.");
 	}
 	// PC hyper dick variant
@@ -756,6 +766,9 @@ public function getFuckedByKorgo(x:int):void
 	clearOutput();
 	showDosedKorgMale();
 	author("William");
+	
+	var ppKorgMale:Creature = new KorgonneMale();
+	
 	// PC not in heat
 	if(!pc.inHeat()) output("There’s no better way to share heat. A lot of things are rushing through you right now, but the primary thoughts all come from what you see when you shifted his loinwear aside. A pent-up korgonne, a sexy, handsome, fluffy specimen of his race all to yourself, made ready by his previous scrap with one of the invaders. He stares up at you imploringly, a tiny smile crossing his muzzle when " + (!pc.isCrotchExposed() ? "you throw off your equipment and":"you") + " plant a hand to your " + (x >= 0 ? "[pc.pussy " + x + "]":"[pc.asshole]") + ".");
 	// PC in heat
@@ -859,8 +872,8 @@ public function getFuckedByKorgo(x:int):void
 	else output(", finding purchase in the welcoming embrace of your well-fucked [pc.vagOrAss " + x + "]. You accept him readily enough, but there’s a spike of pain when he smacks his knot into you");
 	output(". Eager heartbeats pound against the walls that squeeze him tight as your vision adjusts to his unrestrained aggression.");
 
-	if(x >= 0) pc.cuntChange(x,new KorgonneMale().cockVolume(0));
-	else pc.buttChange(new KorgonneMale().cockVolume(0));
+	if(x >= 0) pc.cuntChange(x,ppKorgMale.cockVolume(0));
+	else pc.buttChange(ppKorgMale.cockVolume(0));
 
 	output("\n\nOnce he lets you adjust to his puppy-prick, he takes you to the pound. He heaves and growls, clutching you tight. His animalistic dick rails you in long, rapid beats, pulling out to its thin head and launching back inside on burly hips. You can’t be blamed for how broken up your voice is by his feral fucking. Your voice reduces on every impact, climbing back up only to be muffled again" + (pc.biggestTitSize() >= 1 && pc.isLactating() ? ", all while he squeezes out a fresh stream of [pc.milk] from your boobflesh":"") + ".");
 	output("\n\nYou can feel every twitch and throb ");
@@ -891,14 +904,14 @@ public function getFuckedByKorgo(x:int):void
 	output("\n\nIt’s all about his pleasure now. His pleasure is your pleasure. Your brain is totally occupied with thinking about how great it’ll be when he cums, how perfect a situation you’ll be in when he knots you");
 	if(pc.hasVagina()) output(" and breeds you");
 	output(". It feels great. Better than great... divine. Completely lost to excess, he shows no mercy when he handles you now, and you don’t want him to anyway." + (pc.hasLongEars() ? " In fact, when he shifts to grip your [pc.ears] and tug your head back, you’re all smiles.":""));
-	output("\n\nHe misses out on the beginning your climax. It isn’t until your voice reaches its highest pitch and slowly dies down that you melt into his unbreakable grasp and clamp down around his cock on its final thrust. Your whole body shakes hard and you slump forward. He falls onto your back and, burrowed down to his pricksheath, and cums. The first thick rope to hit your " + (x < 0 ? "colon":"cervix") + " shatters your thoughts to pieces. The horny korg’s second viscous rope makes you feel lightheaded.");
+	output("\n\nHe misses out on the beginning your climax. It isn’t until your voice reaches its highest pitch and slowly dies down that you melt into his unbreakable grasp and clamp down around his cock on its final thrust. Your whole body shakes hard and you slump forward. He falls onto your back and, burrowed down to his pricksheath, cums. The first thick rope to hit your " + (x < 0 ? "colon":"cervix") + " shatters your thoughts to pieces. The horny korg’s second viscous rope makes you feel lightheaded.");
 	output("\n\nClimax rushes down your spine; you would thrash and explode if he wasn’t latched onto you like the dutiful mate he is. Spittle froths in your mouth while your ");
 	if(pc.isHerm()) 
 	{
 		output("[pc.cocks] helplessly balloons and burst" + (pc.cockTotal() == 1 ? "s":""));
 		if(pc.cumQ()< 50) output(" thin streams");
-		else if(pc.cumQ() < 1000) output("thick cords");
-		else output("torrential waves");
+		else if(pc.cumQ() < 1000) output(" thick cords");
+		else output(" torrential waves");
 		output(" of [pc.cumNoun] that paint the floor under your belly, followed by " + (!pc.isSquirter() ? "oozing strings":"wet splurts") + " of [pc.girlCumNoun]");
 	}
 	else if(pc.hasVagina())
@@ -921,8 +934,8 @@ public function getFuckedByKorgo(x:int):void
 	output("\n\n<i>“" + (!korgiTranslate() ? "Wonderful-shares, alien. Thankings for all time. Safe-staying, please...”</i>":"Our bonding was wonderful, alien. You have my thanks for all time. Stay safe, please...") + "”</i> he whispers, kissing you on the lips and then the [pc.ear] before standing.");
 	output("\n\nHe collects a spear and re-dresses what little he has, gathering his scattered belongings before nodding at you. By your side he places a medicinal pack, herbs tied together by gauze. <i>“For troubles,”</i> he says gruffly, hurrying off afterwards. When you can finally stand, a little cum leaks out while you gather your things and do the same. Hopefully he’ll stay safe, too...");
 	output("\n\n");
-	if(x >= 0) pc.loadInCunt(new KorgonneMale(),x);
-	else pc.loadInAss(new KorgonneMale());
+	if(x >= 0) pc.loadInCunt(ppKorgMale,x);
+	else pc.loadInAss(ppKorgMale);
 	processTime(12);
 	pc.orgasm();
 	var poulties:HealingPoultice = new HealingPoultice();

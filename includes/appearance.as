@@ -509,8 +509,8 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " eyes are predatory in nature, each with a vertical slit surrounded by");
 			if (hasMetallicEyes) outputRouter(" a metallically glistening " + target.eyeColor + " iris.");
 			else if (hasGemstoneEyes) outputRouter(" a shimmering gemstone-like " + target.eyeColor + " iris.");
-			else if (hasLuminousEyes) outputRouter(" " +  indefiniteArticle(target.eyeColor) + " iris.");
-			else outputRouter("  " + indefiniteArticle(target.eyeColor) + " iris.");
+			else if (hasLuminousEyes) outputRouter(" " + indefiniteArticle(target.eyeColor) + " iris.");
+			else outputRouter(" " + indefiniteArticle(target.eyeColor) + " iris.");
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " sclera are completely pitch black, giving " + (target == pc ? "you":"[target.himHer]") + " a slightly dangerous air."); 
 			break;
 		case GLOBAL.TYPE_SHEEP:
@@ -1291,7 +1291,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				outputRouter(" A pair of ivory, thick horns extend from " + (target == pc ? "your":"[target.hisHer]") + " forehead, arcing upward and over " + (target == pc ? "your":"[target.hisHer]") + " skull, sort of like they’re protecting " + (target == pc ? "you":"[target.himHer]") + " from anything that might fall onto " + (target == pc ? "your":"[target.hisHer]") + " head. They’re each");
 				if (target.hornLength < 8 || target.hornLength > 12) outputRouter(num2Text(int(target.hornLength)) + "-inches long");
 				else outputRouter(" maybe a foot long");
-				outputRouter(" and as thick as two or three fingers together.  They’re useless for attacking, but they provide decent coverage - and they no doubt add to your imposing visage");
+				outputRouter(" and as thick as two or three fingers together. They’re useless for attacking, but they provide decent coverage - and they no doubt add to your imposing visage");
 				if (target.race() == "frostwyrm") outputRouter(" as a Frostwyrm.");
 				else outputRouter(".");
 				break;
@@ -4545,7 +4545,12 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 	}
 	//Pumped
 	var wasPumped:Boolean = target.hasStatusEffect("Pussy Pumped");
-	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && target.vaginas[x].type != GLOBAL.TYPE_MOUTHGINA)
+	if(target.vaginas[x].hasFlag(GLOBAL.FLAG_HYPER_PUMPED) && target.vaginas[x].type != GLOBAL.TYPE_MOUTHGINA)
+	{
+		if(!eachOne) outputRouter(" The whole thing is freakishly fat and overflowing " + (target == pc ? "your":"[target.hisHer]") + " lap" + (wasPumped ? ", a result of repeated use of a pussy pump" : " with womanly flesh") + ". There is no use hiding that colossal beachball of a cunt" + (target.isCrotchExposed() ? (", even if " + (target == pc ? "you":"[target.heShe]") + " tried") : (" under " + (target == pc ? "your":"[target.hisHer]") + " clothing")) + ".");
+		else outputRouter(" They’re freakishly fat and overflowing " + (target == pc ? "your":"[target.hisHer]") + " lap" + (wasPumped ? ", a result of repeated use of a pussy pump" : " with womanly flesh") + ". There is no use hiding those colossal beachballs of a cunt" + (target.isCrotchExposed() ? (", even if " + (target == pc ? "you":"[target.heShe]") + " tried") : (" under " + (target == pc ? "your":"[target.hisHer]") + " clothing")) + ".");
+	}
+	else if(target.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && target.vaginas[x].type != GLOBAL.TYPE_MOUTHGINA)
 	{
 		if(!eachOne) outputRouter(" The whole thing is ridiculously puffy and lush" + (wasPumped ? ", a result of repeated use of a pussy pump" : " with womanly flesh") + ". Even" + (target.isCrotchExposed() ? " if " + (target == pc ? "you":"[target.heShe]") + " tried, there is just no hiding its" : " under clothing, it generates a") + " considerable camel-toe.");
 		else outputRouter(" They’re ridiculously puffy and lush" + (wasPumped ? ", a result of repeated use of a pussy pump" : " with womanly flesh") + ". Even" + (target.isCrotchExposed() ? " if " + (target == pc ? "you":"[target.heShe]") + " tried, there is just no hiding their" : " under clothing, they fully display their") + " monumental moose-knuckles.");

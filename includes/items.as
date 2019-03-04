@@ -1930,6 +1930,7 @@ public function generalInventoryMenu():void
 	useItemFunction = inventory;
 	
 	clearOutput();
+	if(infiniteItems()) output("<b>\\\[ <span class='lust'>INFINITE ITEM USES IS ON</span> \\\]</b>\n\n");
 	output("What item would you like to use?");
 	if(pc.inventory.length > 10) output("\n\n" + multiButtonPageNote());
 	output("\n\n");
@@ -2022,6 +2023,7 @@ public function combatInventoryMenu():void
 	useItemFunction = inventory;
 	
 	clearOutput();
+	if(infiniteItems()) output("<b>\\\[ <span class='lust'>INFINITE ITEM USES IS ON</span> \\\]</b>\n\n");
 	output("What item would you like to use?");
 	if(pc.inventory.length > 10) output("\n\n" + multiButtonPageNote());
 	output("\n\n");
