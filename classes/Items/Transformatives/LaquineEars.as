@@ -106,8 +106,8 @@ package classes.Items.Transformatives
 			var deltaShift:uint = initDuration - targetDelta;
 
 			//Rejiggering so big part TFs happen more at first, then fantasies more later :3
-			if(rand(10) < 2 + pc.laquineScore()) laquineEarsMinorTFsGO(pc,deltaShift);
-			else if(rand(10) != 0) laquineEarsModerateTFsGo(pc,deltaShift);
+			if(rand(10) < Math.min((2 + pc.laquineScore()), 6)) laquineEarsMinorTFsGO(pc,deltaShift);
+			else if(rand(5) != 0) laquineEarsModerateTFsGo(pc,deltaShift);
 			else laquineEarsMajorTFsGo(pc,deltaShift);
 		}
 		private static function laquineEarsMajorTFsGo(pc:Creature,deltaShift:uint):void
