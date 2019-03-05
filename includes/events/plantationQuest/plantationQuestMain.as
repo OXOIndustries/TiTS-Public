@@ -1572,7 +1572,7 @@ public function loseToNaleenRapeyBall():void
 		pc.milked(100);
 	}
 	//Cock wings:
-	if(pc.wingType == GLOBAL.TYPE_COCKVINE || pc.wingType == GLOBAL.TYPE_TENTACLE) output("\n\nIt doesn’t take much stimulation for your vine dicks to spring out from your back of their own accord, eagerly reacting to the endless stroke of leathery tails and clutching hands. They are soon threading their way through the morass, happy to be spear into every warm, welcoming hole they are coaxed towards. The pleasure of so many of your over-stimulated cocks thrusting home into some tight, wet crevice is electric, maddening; you can only tremble and thrash against your snake-like bonds as your tentacles do as they wish.");
+	if(pc.hasBackGenitals()) output("\n\nIt doesn’t take much stimulation for your vine dicks to spring out from your back of their own accord, eagerly reacting to the endless stroke of leathery tails and clutching hands. They are soon threading their way through the morass, happy to be spear into every warm, welcoming hole they are coaxed towards. The pleasure of so many of your over-stimulated cocks thrusting home into some tight, wet crevice is electric, maddening; you can only tremble and thrash against your snake-like bonds as your tentacles do as they wish.");
 
 	output("\n\nYou are forced to loud orgasm once, twice... you lose count. Time and your own sensitivities have no meaning, down there in the suffocating dark. You ");
 	if(pc.hasCock()) output("spray [pc.cum] freely into some naleen’s dripping twat");

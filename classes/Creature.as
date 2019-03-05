@@ -6100,7 +6100,7 @@
 		{
 			// For ear types that support the earLength value. At least 1 inch long or more to count.
 			if(earLength >= 1 && InCollection(earType, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_GRYVAIN, GLOBAL.TYPE_DOGGIE)) return true;
-			return false;
+			return hasEarFlag(GLOBAL.FLAG_LONG);
 		}
 		public function hasEmoteEars(): Boolean
 		{

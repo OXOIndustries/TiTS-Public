@@ -102,9 +102,9 @@ package classes.Items.Transformatives
 						else output("Your ears are now floppy and round");
 						output("!</b>");
 						pc.earType = GLOBAL.TYPE_DOGGIE;
-						target.clearEarFlags();
-						target.addEarFlag(GLOBAL.FLAG_FURRED);
-						target.addEarFlag(GLOBAL.FLAG_FLOPPY);
+						pc.clearEarFlags();
+						pc.addEarFlag(GLOBAL.FLAG_FURRED);
+						pc.addEarFlag(GLOBAL.FLAG_FLOPPY);
 					}
 					else output("\n\n" + pc.earTypeLockedMessage());
 					changes++;
@@ -117,9 +117,9 @@ package classes.Items.Transformatives
 					{
 						output("\n\nAfter spending a few minutes without anything happening, you check yourself in the Codex and notice that your ears point straight up, like those of a wild wolf. You try to make them droop, but no matter what you do their pointed tips refuse to go down. <b>Your ears are now pointed and stand straight-up!</b>");
 						pc.earType = GLOBAL.TYPE_CANINE;
-						target.clearEarFlags();
-						target.addEarFlag(GLOBAL.FLAG_TAPERED);
-						target.addEarFlag(GLOBAL.FLAG_FURRED);
+						pc.clearEarFlags();
+						pc.addEarFlag(GLOBAL.FLAG_TAPERED);
+						pc.addEarFlag(GLOBAL.FLAG_FURRED);
 					}
 					else output("\n\n" + pc.earTypeLockedMessage());
 					changes++;

@@ -246,7 +246,7 @@ package classes.Items.Transformatives
 				output(" You soon realize that wasn’t the first change - your ears have already reshaped themselves into short yet pointed elvish ones.");
 				target.earType = GLOBAL.TYPE_SYLVAN;
 				target.clearEarFlags();
-				target.addEarFlag(GLOBAL.FLAG_LONG);
+				target.addEarFlag(GLOBAL.FLAG_TAPERED);
 				target.earLength = 3;
 			}
 			output("\n\nThe worst is yet to come - you’re suddenly <i>incredibly</i> glad for the loss of feeling, as your eyes start to reshape themselves. The lower pair act first, pulling further apart and a little lower down, before <i>shrinking</i>. The upper, central one seems to bulge outwards for a moment, but soon starts to grow, easily thrice as large of the others by the time it finishes.");

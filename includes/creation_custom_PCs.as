@@ -962,7 +962,6 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.earType = GLOBAL.TYPE_SYLVAN;
 			pc.clearEarFlags();
 			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
-			pc.addEarFlag(GLOBAL.FLAG_LONG);
 			pc.earLength = 4+rand(5);
 			pc.tone = 30;
 			pc.skinTone = "fair";
