@@ -2291,6 +2291,7 @@
 				case "cockBase":
 				case "sheath":
 				case "sheathDescript":
+				case "sheathOrBase":
 					buffer = sheathDescript(arg2);
 					break;
 				case "biggestSheath":
