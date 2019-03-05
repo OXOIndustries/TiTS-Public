@@ -1383,7 +1383,9 @@ public function taurTFs(arg:int = 1):void
 	pc.removeTails();
 	pc.tailCount = 1;
 	pc.tailType = GLOBAL.TYPE_EQUINE;
+	pc.clearTailFlags();
 	pc.addTailFlag(GLOBAL.FLAG_LONG);
+	pc.addTailFlag(GLOBAL.FLAG_FLOPPY);
 	if(arg == 1 || arg == 3)
 	{
 		//22" horsecock.

@@ -517,6 +517,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 				pc.tailType = GLOBAL.TYPE_EQUINE;
 				pc.clearTailFlags();
 				pc.addTailFlag(GLOBAL.FLAG_LONG);
+				pc.addTailFlag(GLOBAL.FLAG_FLOPPY);
 			}
 			//Doggo
 			else if(targetType == GLOBAL.TYPE_CANINE)

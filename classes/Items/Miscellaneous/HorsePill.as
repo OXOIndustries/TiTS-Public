@@ -910,6 +910,7 @@
 						msg += " <b>You now have a horse-tail.</b>", false;
 						target.clearTailFlags();
 						target.addTailFlag(GLOBAL.FLAG_LONG);
+						target.addTailFlag(GLOBAL.FLAG_FLOPPY);
 						target.tailCount = 1;
 						target.tailType = GLOBAL.TYPE_EQUINE;
 					}

@@ -2268,7 +2268,7 @@ public function initZhengRooms():void
 	rooms["ZSF V20"].moveMinutes = 3;
 	rooms["ZSF V20"].runOnEnter = leaveDisShitOverwrite;
 	rooms["ZSF V20"].addFlag(GLOBAL.INDOOR);
-	//rooms["ZSF V20"].addFlag(GLOBAL.HAZARD);
+	rooms["ZSF V20"].addFlag(GLOBAL.LIFTDOWN);
 
 	rooms["ZSF X20"] = new RoomClass(this);
 	rooms["ZSF X20"].roomName = "ACCESS\nCORRIDOR";
@@ -2436,8 +2436,8 @@ public function initZhengRooms():void
 	rooms["ZSR L33"].addFlag(GLOBAL.LIFTUP);
 
 	rooms["ZSR N33"] = new RoomClass(this);
-	rooms["ZSR N33"].roomName = "RECREATION\nDECK";
-	rooms["ZSR N33"].description = "";
+	rooms["ZSR N33"].roomName = "GOLD\nALLEY";
+	rooms["ZSR N33"].description = "This east-west pathway would shine like pure, luminous gold if it wasn't dirtied and scuffed by hundreds of pirate feet or littered with wrappers for everything from candy to drugs to condoms. Crude graffiti decorates the wall to the north, depicting the words \"Star Vipers\" in bombastic neon lettering. Underneath are crude likenesses of mice and bunnies with 'x's for eyes, something passing Jumpers and Rat's Raiders don't seem to appreciate very much.\n\nThe bottom of the cargo elevator's shaft lies a short distance to the west, should you wish to travel to another deck.";//Golden Path + Star Viper Graffiti
 	rooms["ZSR N33"].planet = "ZHENG SHI STATION";
 	rooms["ZSR N33"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR N33"].northExit = "";
@@ -2450,8 +2450,8 @@ public function initZhengRooms():void
 	//rooms["ZSR N33"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR P33"] = new RoomClass(this);
-	rooms["ZSR P33"].roomName = "RECREATION\nDECK";
-	rooms["ZSR P33"].description = "";
+	rooms["ZSR P33"].roomName = "GOLD\nALLEY";
+	rooms["ZSR P33"].description = "As you traverse this sloping amber thoroughfare through the pirate's mind-bending recreation deck, you spy a rather strange sight: an ornate helmet of ancient design, affixed with enormous mouse ears, flipped upside down. The inside is absolutely stuffed with cheeses of a hundred different varieties - even purple and green ones whose obvious alien origins make you doubt they're fit for terran consumption. A sign beneath reads, \"Raiders Only,\" but you suspect the freewheeling freebooters that inhabit this area pay it little mind.";
 	rooms["ZSR P33"].planet = "ZHENG SHI STATION";
 	rooms["ZSR P33"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR P33"].northExit = "";
@@ -2464,8 +2464,8 @@ public function initZhengRooms():void
 	//rooms["ZSR P33"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR R33"] = new RoomClass(this);
-	rooms["ZSR R33"].roomName = "RECREATION\nDECK";
-	rooms["ZSR R33"].description = "";
+	rooms["ZSR R33"].roomName = "GOLD\nALLEY";
+	rooms["ZSR R33"].description = "Glittering lights draw your eyes to a nearby hardlight kiosk, it's holographic screens flickering with a hundred promises of get rich quick schemes, easy bounties, and hot singles in your area. Most of the pirates don't pay it any more mind than they do you, likely for good reason. Gold light shimmers through the dingy patina that coats the floor on its east-west circuit.";
 	rooms["ZSR R33"].planet = "ZHENG SHI STATION";
 	rooms["ZSR R33"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR R33"].northExit = "";
@@ -2478,8 +2478,8 @@ public function initZhengRooms():void
 	//rooms["ZSR R33"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR T33"] = new RoomClass(this);
-	rooms["ZSR T33"].roomName = "RECREATION\nDECK";
-	rooms["ZSR T33"].description = "";
+	rooms["ZSR T33"].roomName = "GOLD\nALLEY";
+	rooms["ZSR T33"].description = "While strolling through this supposed pirates' paradise, with all its greasy stains and lack of proper janitorial staff, you're shocked to see a clean spot in the nearby plastiboard wall - and not just clean but immaculately painted. A sprawling mural depicts heroic-looking Jumpers in progressively more stylish jumpsuits leaping across the crooked, ill-fitting helmets of novice peacekeepers. The downtrodden cops are portrayed as dopey fools, completely unaware of the sprightly lapines leaping by with their bags of loot.\n\nThis amber path runs an east-west circuit around the spherical pleasure deck, looping back down to the elevator's base so long as you follow it long enough in either direction.";
 	rooms["ZSR T33"].planet = "ZHENG SHI STATION";
 	rooms["ZSR T33"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR T33"].northExit = "";
@@ -2493,7 +2493,7 @@ public function initZhengRooms():void
 
 	rooms["ZSR N23"] = new RoomClass(this);
 	rooms["ZSR N23"].roomName = "APEX\nRING";
-	rooms["ZSR N23"].description = "";
+	rooms["ZSR N23"].description = "You have to shoulder past a small cluster of pirates who have grouped near the wall to watch a GCN newscast from a hanging display. It's presently tuned to a subchannel used to report on exclusively on criminal deeds and droning on about the Black Void's latest undertakings. Grumbles of annoyance and derision from the crowd chase the anchor's every sentence. There's clearly no love lost between these two bands.";
 	rooms["ZSR N23"].planet = "ZHENG SHI STATION";
 	rooms["ZSR N23"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR N23"].northExit = "ZSR N41";
@@ -2507,7 +2507,7 @@ public function initZhengRooms():void
 
 	rooms["ZSR N25"] = new RoomClass(this);
 	rooms["ZSR N25"].roomName = "APEX\nRING";
-	rooms["ZSR N25"].description = "";
+	rooms["ZSR N25"].description = "There isn't much to see in the space around the cargo elevator unless you're looking up or have a real penchant for advertising. There's even a stand with pamphlets for KihaCorp Class 8 Companion droids. They're pretty damn pricy, but the amount of customization crammed into that chassis is amazing. Male, female, herm... it can shift to almost any configuration imaginable with enough raw materials and the right plug-ins. The options for the internal AI's are just as diverse. Dominant intelligences, submissive ones, and even ones with no greater desire than kinky petplay are all listed right there.\n\nYou wonder if any of the pirates have bought one with their ill-gotten gains.";
 	rooms["ZSR N25"].planet = "ZHENG SHI STATION";
 	rooms["ZSR N25"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR N25"].northExit = "ZSR N23";
@@ -2521,7 +2521,7 @@ public function initZhengRooms():void
 
 	rooms["ZSR L25"] = new RoomClass(this);
 	rooms["ZSR L25"].roomName = "APEX\nRING";
-	rooms["ZSR L25"].description = "";
+	rooms["ZSR L25"].description = "You stand next to the cargo elevator's enormous shaft as it disappears into the ceiling (though now your floor). It's ringed by solid walls covered in warring swaths of graffiti and posters, one overlapping the other until the whole is a blaze of color and picture with mismatched letters peeking out from in between.\n\nTo the south, a green path winds through the walls back toward the the elevator's entrance. The apex ring whirls east and west on its circuitous path.";
 	rooms["ZSR L25"].planet = "ZHENG SHI STATION";
 	rooms["ZSR L25"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR L25"].northExit = "";
@@ -2535,7 +2535,7 @@ public function initZhengRooms():void
 
 	rooms["ZSR J25"] = new RoomClass(this);
 	rooms["ZSR J25"].roomName = "APEX\nRING";
-	rooms["ZSR J25"].description = "";
+	rooms["ZSR J25"].description = "Following the apex ring, you notice a particularly eye-catching poster on the southern wall - away from the crowded collection on the shaft itself. This one shows a fleet of gleaming red ships cresting the edge of a sun in spectacular fashion. It's full of lens flares and post-processing effects to make it look as pleasing as possible, with the Corona Lord insignia and name emblazoned across the bottom, lit by luminescent ink to lend the logo its own corona.";
 	rooms["ZSR J25"].planet = "ZHENG SHI STATION";
 	rooms["ZSR J25"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR J25"].northExit = "ZSR J23";
@@ -2549,7 +2549,7 @@ public function initZhengRooms():void
 
 	rooms["ZSR J23"] = new RoomClass(this);
 	rooms["ZSR J23"].roomName = "APEX\nRING";
-	rooms["ZSR J23"].description = "";
+	rooms["ZSR J23"].description = "While circling the elevator, you spare a glance upward to the dances above. They float in the zero-G pocket at the very center of the recreation deck, twirling and spinning. Their glossy nude bodies are some of the most perfect examples of biological beauty on the entire station, be they male, female, or somewhere in between. One sees you looking and bends her legs into a perfect split, flashing you a view straight into her winking pink slit.\n\nYou turn your gaze back down before you walk into a wall.";
 	rooms["ZSR J23"].planet = "ZHENG SHI STATION";
 	rooms["ZSR J23"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR J23"].northExit = "ZSR J41";
@@ -2563,7 +2563,7 @@ public function initZhengRooms():void
 
 	rooms["ZSR J41"] = new RoomClass(this);
 	rooms["ZSR J41"].roomName = "APEX\nRING";
-	rooms["ZSR J41"].description = "";
+	rooms["ZSR J41"].description = "<i>“Join the Rat Pack!”</i> exclaims a poster glued to the side of the elevator atop a mountain of older ones. It features a picture of a tastefully dressed rodenian with armored ears and slicked back hair. Two mouse-eared girls cling to his legs while he spins a plasma pistol around a finger with casual ease. <i>“Friends Never Fail.”</i> It’s then that you notice the girls’ ankle holsters, discrete shield belts, and fistfuls of microgrenades.\n\nPersuasive.";//Rat's Raiders Poster
 	rooms["ZSR J41"].planet = "ZHENG SHI STATION";
 	rooms["ZSR J41"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR J41"].northExit = "";
@@ -2577,7 +2577,7 @@ public function initZhengRooms():void
 
 	rooms["ZSR L41"] = new RoomClass(this);
 	rooms["ZSR L41"].roomName = "APEX\nRING";
-	rooms["ZSR L41"].description = "";
+	rooms["ZSR L41"].description = "The crimson pathway to the south intersects with the far more plain ring around the cargo elevator's apex here. You can look up, past the gyrating dancers, and see the the entrance that you used to get here. Just thinking about it makes your stomach do a backflip. One of the dancers does one too. The ring loops east and west around the poster and graffiti-covered metal plating of the shaft.";
 	rooms["ZSR L41"].planet = "ZHENG SHI STATION";
 	rooms["ZSR L41"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR L41"].northExit = "ZSR L39";
@@ -2591,7 +2591,7 @@ public function initZhengRooms():void
 
 	rooms["ZSR N41"] = new RoomClass(this);
 	rooms["ZSR N41"].roomName = "APEX\nRING";
-	rooms["ZSR N41"].description = "";
+	rooms["ZSR N41"].description = "The latest poster to cover up the ripped bits of paper, adhesive, and sprayed paint that decorates the elevator shaft is a green-hued monstrosity meant to advertise the star vipers. It features a slyveren entwining her tail with a scorpion-like appendage and smiling winningly, her breasts on full display. <i>“The only difference between poison and medicine is dosage. Star Vipers: the cure for a broken galaxy.”</i>\n\nThe apex ring wraps south and west.";
 	rooms["ZSR N41"].planet = "ZHENG SHI STATION";
 	rooms["ZSR N41"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR N41"].northExit = "";
@@ -2604,8 +2604,8 @@ public function initZhengRooms():void
 	//rooms["ZSR N41"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR J33"] = new RoomClass(this);
-	rooms["ZSR J33"].roomName = "RECREATION\nDECK";
-	rooms["ZSR J33"].description = "";
+	rooms["ZSR J33"].roomName = "GOLD\nALLEY";
+	rooms["ZSR J33"].description = "The hoppy aroma of spilled beer and other less recognizable (but still alcoholic) beverages flavors the air with its uniquely acrid scent, and no more than a few steps further you discover why. A gigantic tower of empty beer cans and bottles has been erected, stretching up high enough that the topmost bottles must be flirting with the limits of the artificial gravity. You wonder how it was built so high without being knocked over by the station's chaotically-inclined inhabitants right up until you're close enough to see the layer of ultrahard epoxy coating the first ten feet or so, painted on thicker than a New Texan cow-girl's lipstick.\n\nThe yellow-lit path you're walking connects to the cargo elevator to the east and stretches west through the innumerable distractions this station has to offer.";//Beer Can tower
 	rooms["ZSR J33"].planet = "ZHENG SHI STATION";
 	rooms["ZSR J33"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR J33"].northExit = "";
@@ -2618,8 +2618,8 @@ public function initZhengRooms():void
 	//rooms["ZSR J33"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR H33"] = new RoomClass(this);
-	rooms["ZSR H33"].roomName = "RECREATION\nDECK";
-	rooms["ZSR H33"].description = "";
+	rooms["ZSR H33"].roomName = "GOLD\nALLEY";
+	rooms["ZSR H33"].description = "A six foot gap in the shoulder-height barriers to the north offers entrance to the a bonanza of glittering entertainment and every kind of gambling you can imagine - and some you probably can't. There's a bar a bit farther in, but you'll have to stride beneath the floating holographic sign for a better look: <i>Treasure Nova</i>\n\nThe east-west road you've been walking continues its circuit around the sphere in both directions, should you wish to avail yourself of other forms of entertainment. Perhaps you can find something to do that's less likely to lighten your pockets?";//Casino Entrance
 	rooms["ZSR H33"].planet = "ZHENG SHI STATION";
 	rooms["ZSR H33"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR H33"].northExit = "";
@@ -2632,8 +2632,9 @@ public function initZhengRooms():void
 	//rooms["ZSR H33"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR F33"] = new RoomClass(this);
-	rooms["ZSR F33"].roomName = "RECREATION\nDECK";
-	rooms["ZSR F33"].description = "";
+	rooms["ZSR F33"].roomName = "GOLD\nALLEY";
+	rooms["ZSR F33"].description = "";//DONE IN BONUSFUNC: bonusHolosharkFun
+	//Hacked Hologram of a shark (casino advert) - "BEWARE THE SUULA MENACE"
 	rooms["ZSR F33"].planet = "ZHENG SHI STATION";
 	rooms["ZSR F33"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR F33"].northExit = "";
@@ -2641,13 +2642,13 @@ public function initZhengRooms():void
 	rooms["ZSR F33"].southExit = "";
 	rooms["ZSR F33"].westExit = "ZSR D33";
 	rooms["ZSR F33"].moveMinutes = 3;
-	//rooms["ZSR F33"].runOnEnter = null;
+	rooms["ZSR F33"].runOnEnter = bonusHolosharkFun;
 	rooms["ZSR F33"].addFlag(GLOBAL.INDOOR);
 	//rooms["ZSR F33"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR D33"] = new RoomClass(this);
-	rooms["ZSR D33"].roomName = "RECREATION\nDECK";
-	rooms["ZSR D33"].description = "";
+	rooms["ZSR D33"].roomName = "GOLD\nALLEY";
+	rooms["ZSR D33"].description = "Diving into chamber's substrate, the golden trail's route dips beneath another walled-off route as it makes its loop around the edges of the recreation deck's sphere. Dim blue lights are the only source of illumination for a few paces, and then you're back out into the glare and din once more. A statue of Jumper is there to welcome you, built from scrap parts and then wrapped in their signature jumpsuit with only a dozen ripped holes to show for it. It's fingers (built from emptied medipens) are locked in a perpetual double thumbs-up.";//Dip under
 	rooms["ZSR D33"].planet = "ZHENG SHI STATION";
 	rooms["ZSR D33"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR D33"].northExit = "";
@@ -2660,8 +2661,8 @@ public function initZhengRooms():void
 	//rooms["ZSR D33"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR L31"] = new RoomClass(this);
-	rooms["ZSR L31"].roomName = "GOLDEN\nTRAIL";
-	rooms["ZSR L31"].description = "Underfoot, the path glitters with a luminescent golden glow, broadcast from finely woven, almost invisible circuits. It reflects off a graffiti-covered security barrier to the west. From behind it, you can hear hooting and the clinking of casino chips. Bells ding out a discordant ";
+	rooms["ZSR L31"].roomName = "GREEN\nTRAIL";
+	rooms["ZSR L31"].description = "Underfoot, the path glitters with bars of flaring green that jump and dance to the thumps of distant music and the hoots and hollers of excited pirates. The fickle luminance reflects off a graffiti-covered security barrier to the west. From behind it, you can hear laughter and the clinking of casino chips. Bells ding out a discordant tone when someone loses in spectacular fashion, only to jump up an octave in pitch when a lucky winner scores a king's ransom in credit chits.\n\nThe cargo elevator's entrance lies just to your south.";
 	rooms["ZSR L31"].planet = "ZHENG SHI STATION";
 	rooms["ZSR L31"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR L31"].northExit = "ZSR L29";
@@ -2674,8 +2675,8 @@ public function initZhengRooms():void
 	//rooms["ZSR L31"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR L29"] = new RoomClass(this);
-	rooms["ZSR L29"].roomName = "GOLDEN\nTRAIL";
-	rooms["ZSR L29"].description = ""; // Talk about floor. Hardlight wall to west. Roped off with velvet to the east.
+	rooms["ZSR L29"].roomName = "GREEN\nTRAIL";
+	rooms["ZSR L29"].description = "<i>“GREETINGS!”</i> blares the monotone voice of an enormous mining robot. It waves one creaking arm in greeting, oblivious to the just how loud its joint’s screeching protest becomes. The motion finished, it returns to a neutral position just in time to pivot toward a pirate and begin its greeting all over again. The poor thing doesn’t even have a second arm, just a socket with a tangle of sparking wires, nor does it have the thick armor you’ve seen elsewhere. The chassis is bare enough for you to see every bit of ransacked internals - and the VI micro-controller jacked into its systems.";
 	rooms["ZSR L29"].planet = "ZHENG SHI STATION";
 	rooms["ZSR L29"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR L29"].northExit = "ZSR L27";
@@ -2688,8 +2689,9 @@ public function initZhengRooms():void
 	//rooms["ZSR L29"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR L27"] = new RoomClass(this);
-	rooms["ZSR L27"].roomName = "GOLDEN\nTRAIL";
-	rooms["ZSR L27"].description = ""; //Empty bottles next to wall. 
+	rooms["ZSR L27"].roomName = "GREEN\nTRAIL";
+	rooms["ZSR L27"].description = "You raise your hand to shield your face from the blistering heat of an arch of pure, burning plasma. Suspended in a magnetic beam, its ring straddles the dancing green path such that you have to walk through beneath its unearthly fury to go on your way. The pirates all but ignore it, save for a small contingent of Corona Lords who spend most of their time scowling at a pack of sweat-soaked Jumpers with dark-tinted shades. The latex-suited laquines are too busy gossiping and admiring the slick sheen their collective fur is acquiring to care.\n\nTo the west, a flashing hologram bridges a gap in the wall with cool gold and pink light. Flickering letters in the center read, “Treasure Nova, Entrance.” Beyond the semi-transparent gate lies the biggest collection of gambling paraphernalia you’ve ever seen - and a bar besides.”</i>";
+	; //PLASMA TORCH ARCH :3
 	rooms["ZSR L27"].planet = "ZHENG SHI STATION";
 	rooms["ZSR L27"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR L27"].northExit = "ZSR L25";
@@ -2702,8 +2704,8 @@ public function initZhengRooms():void
 	//rooms["ZSR L27"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR L35"] = new RoomClass(this);
-	rooms["ZSR L35"].roomName = "RECREATION\nDECK";
-	rooms["ZSR L35"].description = "";
+	rooms["ZSR L35"].roomName = "CRIMSON\nPATH";
+	rooms["ZSR L35"].description = "[pc.Walking] along this crimson avenue, you're startled to see a platform ahead, bridging the plastiboard walls like some kind of improvised stage. Velvet carpet dangles off the sides, cut into long fringes with embedded micro-lights. Four figures prance around up there, bedecked in slave collars and silk fabrics that highlight attributes rather than conceal. Their voices rise in perfect harmony, belting out an uptempo acapella tune with surprising enthusiasm for slaves. Most of the pirates pay them no mind, more intent on getting to their destination, but it's nice to listen to, if only for a minute.\n\nThe cargo elevator lies a short distance to the north.";
 	rooms["ZSR L35"].planet = "ZHENG SHI STATION";
 	rooms["ZSR L35"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR L35"].northExit = "ZSR L33";
@@ -2716,8 +2718,8 @@ public function initZhengRooms():void
 	//rooms["ZSR L35"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR L37"] = new RoomClass(this);
-	rooms["ZSR L37"].roomName = "RECREATION\nDECK";
-	rooms["ZSR L37"].description = "";
+	rooms["ZSR L37"].roomName = "CRIMSON\nPATH";
+	rooms["ZSR L37"].description = "A kiosk sits propped against the eastern wall, filled with strange-looking headphones. Its signage declares them to be \"hedon-guard\" headphones, and the price is listed as \"free for Rat's Raiders, via DNA-scan.\" There's a spot to place a thumb for testing, and a slot for the strange devices to dispense into, assuming the user's packing suitably rodenian DNA. Half the racks still hold headphones, the rest already dispensed to mouse-folk in need of a bit of aural protection - or in need of the few credits they can make flipping them elsewhere.";
 	rooms["ZSR L37"].planet = "ZHENG SHI STATION";
 	rooms["ZSR L37"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR L37"].northExit = "ZSR L35";
@@ -2730,8 +2732,8 @@ public function initZhengRooms():void
 	//rooms["ZSR L37"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSR L39"] = new RoomClass(this);
-	rooms["ZSR L39"].roomName = "RECREATION\nDECK";
-	rooms["ZSR L39"].description = "";
+	rooms["ZSR L39"].roomName = "CRIMSON\nPATH";
+	rooms["ZSR L39"].description = "Just off the center of the path is a broken Dong Designer - a TamaniCorp machine designed to sculpt the user's dick into nearly any shape a coreward race could be packing. This one's been flipped on its side. A thick sludge of old cum seeps from its every joint, the metal half rusted from moisture and disuse. The padded hole where it would do is business is completely gone, stripped out to leave nothing but hard metal and blackness in its place.\n\nJust a bit to the south is the Apex Ring - where various paths collide and split around the upper half of the elevator shaft in a wide ring.";
 	rooms["ZSR L39"].planet = "ZHENG SHI STATION";
 	rooms["ZSR L39"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR L39"].northExit = "ZSR L37";
