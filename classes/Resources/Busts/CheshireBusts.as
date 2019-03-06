@@ -207,11 +207,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/embry_3_nude.png", mimeType = "image/png")]
 			public var Full_EMBRY_3_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/cheshire/hr/fisi.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/cheshire/hr/fisianna.png", mimeType = "image/png")]
 			public var Full_FISIANNA:Class;
-			[Embed(source = "../../../assets/images/npcs/cheshire/hr/fisi_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/cheshire/hr/fisianna_nude.png", mimeType = "image/png")]
 			public var Full_FISIANNA_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/cheshire/hr/fisi_panties.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/cheshire/hr/fisianna_panties.png", mimeType = "image/png")]
 			public var Full_FISIANNA_BRA:Class;
 
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/Flahne.png", mimeType = "image/png")]
