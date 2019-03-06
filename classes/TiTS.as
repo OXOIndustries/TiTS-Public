@@ -1717,20 +1717,21 @@
 		{
 			return chars["STORMDRAGON"];
 		}
-		
 		public function get aina():Aina
 		{
 			return chars["AINA"];
 		}
-		
 		public function get amber():Dryad
 		{
 			return chars["DRYAD"];
 		}
-		
 		public function get zea():Zea
 		{
 			return chars["ZEA"];
+		}
+		public function get luca():Luca
+		{
+			return chars["LUCA"];
 		}
 
 		public function testShipCombat():void

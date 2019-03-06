@@ -2661,6 +2661,7 @@
 					break;
 				case "vagOrAss":
 				case "vagOrAsshole":
+				case "pussyOrAss":
 				case "pussyOrAsshole":
 					buffer = vagOrAss(arg2);
 					break;
@@ -3739,6 +3740,12 @@
 				{
 					kGAMECLASS.amazonEnduranceNotice();
 					removeStatusEffect("Amazonian Endurance Report Needed", true);
+				}
+				//Luca Submission
+				if(hasStatusEffect("Denied By Luca"))
+				{
+					if (statusEffectv1("Denied By Luca") == 1) kGAMECLASS.lucaSubmission(-5);
+					removeStatusEffect("Denied By Luca");
 				}
 				StatTracking.track("sex/player/orgasms");
 			}

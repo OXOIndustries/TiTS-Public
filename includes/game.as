@@ -160,6 +160,8 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	{
 		if(eventQueue.indexOf(deathByNoHP) == -1) eventQueue.push(deathByNoHP);
 	}
+	//PC changed their mind about masturbating
+	if(pc.hasStatusEffect("Denied By Luca")) pc.setStatusValue("Denied By Luca",1,0);
 	
 	flags["COMBAT MENU SEEN"] = undefined;
 	
@@ -3910,6 +3912,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processGastigothPregEvents(deltaT, doOut, totalDays);
 	processFrostwyrmPregEvents(deltaT, doOut, totalDays);
 	processAinaPregEvents(deltaT, doOut, totalDays);
+	processLucaTimeStuff(deltaT, doOut, totalDays);
 	
 	
 	// Per-day events
