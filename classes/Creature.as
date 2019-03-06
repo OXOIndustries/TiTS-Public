@@ -4368,6 +4368,16 @@
 		}
 		public function isCuntboy():Boolean
 		{
+			if(isFemale() && mfn("m", "f", "n", true) == "m" && !hasBreasts()) return true;
+			return false;
+		}
+		public function isFemmyMale():Boolean
+		{
+			if(isMale() && mfn("m", "f", "n", true) != "m") return true;
+			return false;
+		}
+		public function isManlyFemale():Boolean
+		{
 			if(isFemale() && mfn("m", "f", "n", true) == "m") return true;
 			return false;
 		}
