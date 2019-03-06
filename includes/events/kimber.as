@@ -11,7 +11,7 @@
 
 public function showKimber(nood:* = false, auth:Boolean = true):void
 {
-	showBust((nood === true ? "KIMBER_NUDE" : (nood === 2 ? "KIMBER" : "KIMBER_UNDERWEAR")));
+	showBust((nood === true ? "KIMBER_NUDE" : (nood === 2 ? "KIMBER_UNDERWEAR" : "KIMBER")));
 	showName((flags["MET_KIMBER"] == undefined ? "\nCOWGIRL" : "\nKIMBER"));
 	if (auth) author("Slab Bulkhead");
 }
