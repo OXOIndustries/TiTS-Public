@@ -359,7 +359,7 @@
 				r.burning.damageValue += Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Cooled") / 1440));
 			}
 			
-			if (accessory.hasFlag(GLOBAL.ITEM_FLAG_SHELTER) || armor.hasFlag(GLOBAL.ITEM_FLAG_SHELTER) || shield.hasFlag(GLOBAL.ITEM_FLAG_SHELTER))
+			if ((accessory.hasFlag(GLOBAL.ITEM_FLAG_SHELTER) || armor.hasFlag(GLOBAL.ITEM_FLAG_SHELTER) || shield.hasFlag(GLOBAL.ITEM_FLAG_SHELTER)) && !inCombat())
 			{
 				r.kinetic.resistanceValue += 60;
 				r.electric.resistanceValue += 60;
