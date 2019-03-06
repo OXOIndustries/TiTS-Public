@@ -253,7 +253,6 @@ package classes.Items.Transformatives
 						pc.earType = GLOBAL.TYPE_SYLVAN;
 						target.clearEarFlags();
 						target.addEarFlag(GLOBAL.FLAG_TAPERED);
-						target.addEarFlag(GLOBAL.FLAG_LONG);
 						pc.earLength = 4+rand(5);
 						changes++;
 					}

@@ -1421,7 +1421,7 @@ public function statisticsScreen(showID:String = "All"):void
 			if(pc.kitsuneScore() > 0 && pc.tailCount > 1)
 				output2("\n<b>* Kitsune:</b> " + prettifyGeneticMarker(pc.kitsuneScore(), 4, 8));
 		}
-		if (CodexManager.entryUnlocked("Xhelarfog") && pc.xhelScore() > 0)
+		if(CodexManager.entryUnlocked("Xhelarfog") && pc.xhelScore() > 0)
 			output2("\n<b>* Xhelarfog:</b> " + prettifyGeneticMarker(pc.xhelScore(), 6, 9));
 		if(CodexManager.entryUnlocked("Zil") && pc.zilScore() > 0)
 			output2("\n<b>* Zil:</b> " + prettifyGeneticMarker(pc.zilScore(), 6, 10));
@@ -5437,7 +5437,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["TTGYM_LOLA_HOTDOG"] != undefined) output2("\n<b>* Lola, Times You Hotdogged Her Ass:</b> " + flags["TTGYM_LOLA_HOTDOG"]);
 					if(flags["TTGYM_LOLA_CUDDLE"] != undefined) output2("\n<b>* Lola, Times You Cuddled With Her:</b> " + flags["TTGYM_LOLA_CUDDLE"]);
 				}
-				if (flags["TTGYM_LOLA_SIMONE_HOME"] != undefined)
+				if(flags["TTGYM_LOLA_SIMONE_HOME"] != undefined)
 				{
 					output2("\n<b>* Lola & Simone, Times You Had a Threesome:</b> " + flags["TTGYM_LOLA_SIMONE_HOME"]);
 					if(flags["TTGYM_LOLA_SIMONE_S_FIN"] != undefined) output2("\n<b>* Lola & Simone, Times You Fingered Simone:</b> " + flags["TTGYM_LOLA_SIMONE_S_FIN"]);
@@ -5465,7 +5465,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Simone:</b> Met her");
 					if(StatTracking.getStat("contests/simone challenge losses") + StatTracking.getStat("contests/simone challenge wins") > 0) output2("\n<b>* Simone, Weight Lift Challenge, Win/Loss Ratio:</b> " + StatTracking.getStat("contests/simone challenge wins") + "/" + StatTracking.getStat("contests/simone challenge losses") + ", of " + (StatTracking.getStat("contests/simone challenge losses") + StatTracking.getStat("contests/simone challenge wins")) + " games");
-					if (flags["SEXED_SIMONE"] != undefined) output2("\n<b>* Simone, Times Sexed:</b> " + flags["SEXED_SIMONE"]);
+					if(flags["SEXED_SIMONE"] != undefined) output2("\n<b>* Simone, Times Sexed:</b> " + flags["SEXED_SIMONE"]);
 					if(flags["TTGYM_SIMONE_ORAL_GIVE"] != undefined && flags["TTGYM_SIMONE_ORAL_GIVE"] > 0) output2("\n<b>* Simone, Times You Gave Her Oral:</b> " + flags["TTGYM_SIMONE_ORAL_GIVE"]);
 					if(flags["TTGYM_SIMONE_ORAL"] != undefined && flags["TTGYM_SIMONE_ORAL"] > 0) output2("\n<b>* Simone, Times She Gave You Oral:</b> " + flags["TTGYM_SIMONE_ORAL"]);
 					if(flags["TTGYM_SIMONE_DP_GYM"] != undefined && flags["TTGYM_SIMONE_DP_GYM"] > 0) output2("\n<b>* Simone, Times You DP’d Her (Gym):</b> " + flags["TTGYM_SIMONE_DP_GYM"]);
@@ -7282,17 +7282,17 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["RATS_SEXED_EAR_0"] != undefined)
 						{
 							output2("\n<b>* Rat’s Raiders, Pink Rodenian Ear Sex Count:</b> " + flags["RATS_SEXED_EAR_0"]);
-							if (flags["RATS_SEXED_EAR_0"] < 5) output2(" (Unknown)");
-							else if (flags["RATS_SEXED_EAR_0"] < 10 || !ratsPCIsGood()) output2(" (Appreciable)");
-							else if (flags["RATS_SEXED_EAR_0"] < 15 || flags["RATS_EARMARK_0"] == undefined) output2(" (Earmarked)");
+							if(flags["RATS_SEXED_EAR_0"] < 5) output2(" (Unknown)");
+							else if(flags["RATS_SEXED_EAR_0"] < 10 || !ratsPCIsGood()) output2(" (Appreciable)");
+							else if(flags["RATS_SEXED_EAR_0"] < 15 || flags["RATS_EARMARK_0"] == undefined) output2(" (Earmarked)");
 							else output2(" (Attached)");
 						}
 						if(flags["RATS_SEXED_EAR_1"] != undefined)
 						{
 							output2("\n<b>* Rat’s Raiders, White Rodenian Ear Sex Count:</b> " + flags["RATS_SEXED_EAR_1"]);
-							if (flags["RATS_SEXED_EAR_1"] < 5) output2(" (Unknown)");
-							else if (flags["RATS_SEXED_EAR_1"] < 10 || !ratsPCIsGood()) output2(" (Appreciable)");
-							else if (flags["RATS_SEXED_EAR_1"] < 15 || flags["RATS_EARMARK_1"] == undefined) output2(" (Earmarked)");
+							if(flags["RATS_SEXED_EAR_1"] < 5) output2(" (Unknown)");
+							else if(flags["RATS_SEXED_EAR_1"] < 10 || !ratsPCIsGood()) output2(" (Appreciable)");
+							else if(flags["RATS_SEXED_EAR_1"] < 15 || flags["RATS_EARMARK_1"] == undefined) output2(" (Earmarked)");
 							else output2(" (Attached)");
 						}
 					}
@@ -8200,10 +8200,10 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Reception</u></b>");
 				output2("\n<b>* Quaelle:</b> Met her");
-				if (quaelleIsLover()) output2(", Lovers");
-				if (quaellePregShutdown()) output2(", Sterile");				
-				if (quaelleInSnit()) output2(", In a Snit");
-				if (quaelleHasLeft()) output2(", Has Left");				
+				if(quaelleIsLover()) output2(", Lovers");
+				if(quaellePregShutdown()) output2(", Sterile");				
+				if(quaelleInSnit()) output2(", In a Snit");
+				if(quaelleHasLeft()) output2(", Has Left");				
 				if(flags["QUAELLE_HUGGED"] != undefined) output2("\n<b>* Quaelle, Times Hugged Her:</b> " + flags["QUAELLE_HUGGED"]);
 				if(flags["QUAELLE_SEXED"] != undefined) output2("\n<b>* Quaelle, Times Sexed:</b> " + flags["QUAELLE_SEXED"]);
 				if(flags["QUAELLE_FUCK_CUNT_FRONT"] != undefined) output2("\n<b>* Quaelle, Times You Fucked Her Front Pussy:</b> " + flags["QUAELLE_FUCK_CUNT_FRONT"]);

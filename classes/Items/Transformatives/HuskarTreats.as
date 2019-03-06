@@ -384,6 +384,9 @@
 					output(" gradually loosen. With a few twitches of your ear muscles, you find that your ears are capable of a lot more expression than before. You can make them perk up when alert, fold back when cautious, or droop down when at rest, and with much less effort now. Their shape rounds out slightly, losing the anubis-like triangle for a look that is less intimidating to strangers. <b>Your canine ears are now floppy dog ears!</b>");
 					
 					target.earType = GLOBAL.TYPE_DOGGIE;
+					target.clearEarFlags();
+					target.addEarFlag(GLOBAL.FLAG_FURRED);
+					target.addEarFlag(GLOBAL.FLAG_FLOPPY);
 					if(target.earLength <= 4) target.earLength = 3 + rand(2);
 					if(target.earLength > 12) target.earLength = 12;
 					changes++;

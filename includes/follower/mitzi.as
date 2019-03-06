@@ -1100,7 +1100,7 @@ public function mitziSexMenu():void
 		if(pc.hasItemByClass(Gush)) addButton(5,"Give Gush",giveMitziGush,undefined,"Give Gush","Give Mitzi a dosage of Gush. It’ll probably make her milky and sort dumb for a while, going by her stories.");
 		else addDisabledButton(5,"Give Gush","Give Gush","You need some Gush in order to do this.");
 	}
-	if(pc.wingType == GLOBAL.TYPE_TENTACLE) addButton(7,"TentacleFun",mitziTentaCocks,undefined,"Tentacle Fun","Put your shoulder-mounted tentacle-wings to work on the cock-socket of a goblin.");
+	if(pc.hasBackGenitals()) addButton(7,"TentacleFun",mitziTentaCocks,undefined,"Tentacle Fun","Put your shoulder-mounted tentacle-wings to work on the cock-socket of a goblin.");
 	else addDisabledButton(7,"TentacleFun","Tentacle Fun","You need tentacle wings for this.");
 
 	addButton(14,"Back",approachCrewMitzi,true);
