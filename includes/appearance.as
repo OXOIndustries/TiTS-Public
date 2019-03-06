@@ -954,7 +954,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 					else
 					{
 						if(target.earLength > 1) outputRouter(" " + num2Text(target.earLength) + " inches");
-						outputRouter(" from the top of " + (target == pc ? "your":"[target.hisHer]") + " " + headNoun + ",");
+						outputRouter(" from the top of " + (target == pc ? "your":"[target.hisHer]") + " " + target.hairDescript(true,true) + ",");
 						if(target.earLength > target.tallness) outputRouter(" dragging on the floor");
 						else if(target.earLength > target.tallness/2) outputRouter(" swaying about");
 						else outputRouter(" swaying and darting");
