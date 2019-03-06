@@ -53,6 +53,13 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/cheshire/embry_3_nude.png", mimeType = "image/png")]
 		public var Bust_EMBRY_3_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/cheshire/fisianna.png", mimeType = "image/png")]
+		public var Bust_FISIANNA:Class;
+		[Embed(source = "../../../assets/images/npcs/cheshire/fisianna_nude.png", mimeType = "image/png")]
+		public var Bust_FISIANNA_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/cheshire/fisianna_panties.png", mimeType = "image/png")]
+		public var Bust_FISIANNA_BRA:Class;
+
 		[Embed(source = "../../../assets/images/npcs/cheshire/Flahne.png", mimeType = "image/png")]
 		public var Bust_FLAHNE:Class;
 		public function get Bust_FLAHNE_NUDE():Class { return Bust_FLAHNE; }
@@ -199,6 +206,13 @@ package classes.Resources.Busts
 			public var Full_EMBRY_3:Class;
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/embry_3_nude.png", mimeType = "image/png")]
 			public var Full_EMBRY_3_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/cheshire/hr/fisi.png", mimeType = "image/png")]
+			public var Full_FISIANNA:Class;
+			[Embed(source = "../../../assets/images/npcs/cheshire/hr/fisi_nude.png", mimeType = "image/png")]
+			public var Full_FISIANNA_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/cheshire/hr/fisi_panties.png", mimeType = "image/png")]
+			public var Full_FISIANNA_BRA:Class;
 
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/Flahne.png", mimeType = "image/png")]
 			public var Full_FLAHNE:Class;

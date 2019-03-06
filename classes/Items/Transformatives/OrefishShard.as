@@ -81,6 +81,7 @@ package classes.Items.Transformatives
 				output("\n\nGingerly feeling around, you find at first what appears to be a normal reptilian ear. Partially covering the small, round opening, however, is a convex [pc.skinFurScalesColor] scale; almost acting like a shield. The same can be felt on the other side of your head. <b>You’ve grown a pair of saurmorian ears!</b>");
 				
 				target.earType = GLOBAL.TYPE_SAURMORIAN;
+				target.clearEarFlags();
 				target.earLength = 0;
 			});
 	
@@ -556,12 +557,14 @@ package classes.Items.Transformatives
 					output(" into your pussy, lips parting like a juicy veil. Your other hand covers your mouth, stifling a cry of joy to the feeling of your [pc.hips] thrusting against your hand, grinding your palm into your [pc.clit].");
 					output("\n\nIt’s not until you’re left panting, cooling down from the breathtaking ordeal, that you dimly start to realize something is off.\n\nTaking a closer look, you notice your labia are still quite plump, even while your arousal recedes; they also look incredibly glossy and smooth. Upon stirring your fingers within your honeypot, you feel odd bulges lining it within - your cunt is ribbed!\n\nChecking in with your Codex confirms it; <b>you’ve got a saurmorian vagina!</b>");
 					
-					var puffedVag:Boolean = target.vaginas[tfCuntIdx].hasFlag(GLOBAL.FLAG_PUMPED);
-					target.vaginas[tfCuntIdx].type = GLOBAL.TYPE_SAURMORIAN;
-					target.vaginas[tfCuntIdx].clearFlags();
-					target.inflateVagina(tfCuntIdx);
-					if (puffedVag) target.inflateVagina(tfCuntIdx);
-					target.vaginas[tfCuntIdx].addFlag(GLOBAL.FLAG_RIBBED);
+					var puffFlag:int = 0;
+					if(target.vaginas[tfCuntIdx].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffFlag = 1;
+					if(target.vaginas[tfCuntIdx].hasFlag(GLOBAL.FLAG_PUMPED)) puffFlag = 2;
+					if(target.vaginas[tfCuntIdx].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) puffFlag = 3;
+					target.shiftVagina(tfCuntIdx, GLOBAL.TYPE_SAURMORIAN);
+					if(puffFlag == 1) target.vaginas[tfCuntIdx].addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
+					if(puffFlag == 2) target.vaginas[tfCuntIdx].addFlag(GLOBAL.FLAG_PUMPED);
+					if(puffFlag == 3) target.vaginas[tfCuntIdx].addFlag(GLOBAL.FLAG_HYPER_PUMPED);
 				});
 				else lockedChanges.push(target.vaginaTypeLockedMessage);
 			}
@@ -631,13 +634,7 @@ package classes.Items.Transformatives
 					target.cocks[tfCockIdx].cockColor = newColor;
 					output("\n\nOnce you’re able to uncross your eyes, you look down at your prick; Thick, fattened ridges ring its [pc.cockColor] length - giving it a ribbed appearance - from the sheath to just under the blunt, almost equine head. And just like that, <b>your cock has become that of a saurmorian!</b>");
 
-					target.cocks[tfCockIdx].cType = GLOBAL.TYPE_SAURMORIAN;
-					if (target.cocks[tfCockIdx].cLength < 5) target.cocks[tfCockIdx].cLength = (target.hasPerk("Hung") ? 10 : (target.hasPerk("Mini") ? 6 : 8));
-					if (target.cocks[tfCockIdx].cThicknessRatioRaw < 0.833) target.cocks[tfCockIdx].cThicknessRatioRaw = 1.125;
-					target.cocks[tfCockIdx].clearFlags();
-					target.cocks[tfCockIdx].addFlag(GLOBAL.FLAG_BLUNT);
-					target.cocks[tfCockIdx].addFlag(GLOBAL.FLAG_RIBBED);
-					target.cocks[tfCockIdx].addFlag(GLOBAL.FLAG_SHEATHED);
+					target.shiftCock(tfCockIdx, GLOBAL.TYPE_SAURMORIAN);
 					//pc orgasms, and becomes cum soaked
 					target.orgasm();
 					target.applyCumSoaked();

@@ -55,7 +55,7 @@ public function pumpkinStartingQuest():void
 	addButton(1,"No Way",notYetDocTrent,undefined,"Not Yet","You’re not going to deal with a problem like this!");
 }
 
-//{PC selects ‘Help’}
+// {PC selects ‘Help’}
 public function helpDrTrentMD():void
 {
 	clearOutput();

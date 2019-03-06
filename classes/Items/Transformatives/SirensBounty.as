@@ -146,6 +146,8 @@ package classes.Items.Transformatives
 						output("\n\nYou feel the tips of your ears tingle with sensitivity before they begin to pull into some kind of point. Your face wrinkles as they seem to grow longer and longer before subsiding. You pull out your codex and take note of your <b>sail-like suula ears</b>!");
 						
 						pc.earType = GLOBAL.TYPE_SIREN;
+						pc.clearEarFlags();
+						pc.addEarFlag(GLOBAL.FLAG_LONG);
 						pc.earLength = 4;
 					}
 					else output("\n\n" + pc.earTypeLockedMessage());
@@ -610,12 +612,14 @@ package classes.Items.Transformatives
 							output(" puffy");
 							if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffFlag = 1;
 							if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_PUMPED)) puffFlag = 2;
+							if(pc.vaginas[vIdx].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) puffFlag = 3;
 						}
 						output(" lips and notice some tendrils rubbing and grasping your fingers, trying to pull them deeper into your pussy. You blush a little as you have to resist the urge to start fingering yourself right there and reluctantly pull your fingers away, much to the disappointment of your new pussy tendrils. <b>You now have a suula vagina!</b>");
 						
 						pc.shiftVagina(vIdx, GLOBAL.TYPE_SIREN);
 						if(puffFlag == 1) pc.vaginas[vIdx].addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 						if(puffFlag == 2) pc.vaginas[vIdx].addFlag(GLOBAL.FLAG_PUMPED);
+						if(puffFlag == 3) pc.vaginas[vIdx].addFlag(GLOBAL.FLAG_HYPER_PUMPED);
 						pc.lust(5);
 					}
 					else output("\n\n" + pc.vaginaTypeLockedMessage());

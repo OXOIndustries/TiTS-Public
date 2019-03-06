@@ -456,8 +456,8 @@
 		}
 		public function eyeCount():int
 		{
-			if (InCollection(eyeType, [GLOBAL.TYPE_ARACHNID])) return 4;
-			if (InCollection(eyeType, [GLOBAL.TYPE_XHELARFOG])) return 3;
+			if (eyeType == GLOBAL.TYPE_ARACHNID) return 4;
+			if (eyeType == GLOBAL.TYPE_XHELARFOG) return 3;
 			return 2;
 		}
 		//New piercing hotness:
@@ -741,6 +741,12 @@
 		public var tonguePiercing:ItemSlotClass = new EmptySlot();
 
 		public var lipMod:Number = 0;
+		public function lipModMin():Number
+		{
+			var rating:Number = 0;
+			if(hasStatusEffect("Mimbrane Face") && rating < statusEffectv3("Mimbrane Face")) rating = statusEffectv3("Mimbrane Face");
+			return rating;
+		}
 		public function lipModUnlocked(newLipMod:Number):Boolean
 		{
 			if(hasBeak()) return false;
@@ -896,6 +902,16 @@
 		public function legFlagsLockedMessage():String
 		{
 			return "Despite the heat in your [pc.legOrLegs], nothing changes.";
+		}
+
+		public var earFlags: Array = new Array();
+		public function earFlagsUnlocked(newFlags:*):Boolean
+		{
+			return true;
+		}
+		public function earFlagsLockedMessage():String
+		{
+			return "Despite the heat in your [pc.ears], nothing changes.";
 		}
 		
 		public var cumType: Number = GLOBAL.FLUID_TYPE_CUM;
@@ -1053,6 +1069,17 @@
 		//20 - inhumanly wide
 		public var hipRatingRaw:Number = 0;
 		public var hipRatingMod:Number = 0;
+		public function hipRatingRawMin():Number
+		{
+			var rating:Number = 0;
+			if(hasPerk("Hips Don't Lie") && rating < 18) rating = 18;
+			return rating;
+		}
+		public function hipRatingModMin():Number
+		{
+			var rating:Number = 0;
+			return rating;
+		}
 		
 		public function hipRating(arg:Number = 0, apply:Boolean = false):Number
 		{
@@ -1101,6 +1128,18 @@
 		//20 - inconceivably large/big/huge etc
 		public var buttRatingRaw:Number = 0;
 		public var buttRatingMod:Number = 0;
+		public function buttRatingRawMin():Number
+		{
+			var rating:Number = 0;
+			if(hasPerk("Buttslut") && rating < 18) rating = 18;
+			return rating;
+		}
+		public function buttRatingModMin():Number
+		{
+			var rating:Number = 0;
+			if(hasStatusEffect("Mimbrane Ass") && rating < statusEffectv3("Mimbrane Ass")) rating = statusEffectv3("Mimbrane Ass");
+			return rating;
+		}
 		
 		public function buttRating(arg:Number = 0, apply:Boolean = false):Number
 		{
@@ -1410,6 +1449,17 @@
 
 		public var ballSizeRaw:Number = 1;
 		public var ballSizeMod:Number = 1;
+		public function ballSizeRawMin():Number
+		{
+			var rating:Number = 0;
+			return rating;
+		}
+		public function ballSizeModMin():Number
+		{
+			var rating:Number = 0;
+			if(hasStatusEffect("Mimbrane Balls") && rating < statusEffectv3("Mimbrane Balls")) rating = statusEffectv3("Mimbrane Balls");
+			return rating;
+		}
 		
 		public function ballDiameter():Number
 		{
@@ -1481,6 +1531,7 @@
 		{
 			balls = 0;
 			resetBallSize();
+			removeStatusEffect("Uniball");
 		}
 		public function resetBallSize(): void
 		{
@@ -2261,6 +2312,9 @@
 				case "knotOrSheath":
 					buffer = knotOrSheath(arg2);
 					break;
+				case "knotBallsHilt":
+					buffer = knotBallsHilt(arg2);
+					break;
 				case "multiCockDescript":
 				case "multiCocks":
 					buffer = multiCockDescript();
@@ -2507,6 +2561,12 @@
 				case "ballNoun":
 					buffer = ballNoun(false);
 					break;
+				case "ballsNounSimple":
+					buffer = ballsNounSimple();
+					break;
+				case "ballNounSimple":
+					buffer = ballsNounSimple(true);
+					break;
 				case "ball":
 					buffer = ballsDescript();
 					break;
@@ -2662,6 +2722,7 @@
 				case "vagOrAss":
 				case "vagOrAsshole":
 				case "pussyOrAsshole":
+				case "pussyOrAss":
 					buffer = vagOrAss(arg2);
 					break;
 				case "vagOrAssNoun":
@@ -3105,6 +3166,12 @@
 			slots += statusEffectv1("Backpack Upgrade");
 			return slots;
 		}
+		public function freeInventorySlots():int {
+			return (inventorySlots() - inventory.length);
+		}
+		public function hasFreeInventorySlot(slots:int = 1):Boolean {
+			return (freeInventorySlots() >= slots);
+		}
 		
 		/*
 		public function hasItem(arg:ItemSlotClass,amount:int = 1):Boolean
@@ -3282,25 +3349,25 @@
 		{
 			if (arg == null || inventory.length == 0 || amount == 0) return;
 			
-			var i:int = 0;
+			var i:int = (inventory.length - 1);
 			
 			// Remove all!
 			if (amount < 0)
 			{
-				while (i < inventory.length)
+				while (i >= 0)
 				{
 					if (inventory[i] is arg)
 					{
 						inventory[i].quantity = 0;
 						inventory.splice(i, 1);
 					}
-					else i++;
+					i--;
 				}
 			}
 			// Normal
 			else
 			{
-				while (amount > 0 && i < inventory.length)
+				while (amount > 0 && i >= 0)
 				{
 					//Item in the slot?
 					if (inventory[i] is arg)
@@ -3312,10 +3379,8 @@
 						{
 							inventory.splice(i, 1);
 						}
-						//else i++;
-						else return;
 					}
-					else i++;
+					i--;
 				}
 				if(amount > 0) output("<b>ERROR - Inventory item quantity needed: " + amount + "!</b>");
 			}
@@ -4413,7 +4478,7 @@
 			var muskLevel:Number = 0;
 			
 			if(hasPerk("Pheromone Cloud")) muskLevel += 4;
-			if(hasPerk("Musky Pheromones")) muskLevel += 4;
+			if(hasPerk("Musky Pheromones")) muskLevel += 5;
 			if(hasPerk("Alpha Scent")) muskLevel += 4;
 			if(hasPerk("Jungle Queen Scent")) muskLevel += 4;
 			if(hasPerk("Pheromone Sweat"))
@@ -4617,6 +4682,7 @@
 		public function autoXPRando(arg:Number):Number
 		{
 			var multi:Number = (85 + rand(31))/100;
+			if(kGAMECLASS.pc.hasStatusEffect("Cupid’s Kiss")) multi *= 2;
 			return Math.round(arg * multi);
 		}
 		//HP
@@ -5586,7 +5652,12 @@
 			// she grants a bonus to Sexiness equal to the same
 			if (accessory is SiegwulfeItem)
 			{
-				if(this is PlayerCharacter && !kGAMECLASS.chars["WULFE"].isBimbo()) { /* Nada! */ }
+				if(this is PlayerCharacter && !kGAMECLASS.chars["WULFE"].isBimbo())
+				{
+					//While equipped, bimbo-dom siegwulfe will add a bonus to both evasion and sexiness equal to 8% of intelligence that Steele has.
+					if (kGAMECLASS.siegwulfeIsDom()) temp += Math.round(bimboIntelligence() * 0.08);
+					else { /* Nada! */ }
+				}
 				else temp += Math.round(bimboIntelligence() * 0.1);
 			}
 			/*Sweaty penalties!
@@ -5621,8 +5692,6 @@
 			
 			var bonus: int = item.sexiness;
 			
-			//Stretchy Gabilani Panties
-			bonus += stretchBonusSexiness(item);
 			// Transparent sexiness adjustments
 			if(item.sexiness > 0 && wornItemIsTransparent(item))
 			{
@@ -5648,24 +5717,9 @@
 			
 			return bonus;
 		}
-		public function stretchBonusSexiness(item:*): Number
-		{
-			if (!item.hasFlag(GLOBAL.ITEM_FLAG_STRETCHY)) return 0;
-			var bigness:int = 0;
-			if (item == lowerUndergarment) bigness = Math.max(hipRating(), buttRating());
-			else if (item == upperUndergarment) bigness = biggestTitSize();
-			else bigness = Math.max(hipRating(), buttRating(), biggestTitSize());
-			if (bigness < 5) return 0;
-			else if (bigness < 10) return 1;
-			else if (bigness < 15) return 2;
-			else if (bigness < 20) return 3;
-			else return 4;
-		}
 		public function wornItemIsTransparent(item:*): Boolean
 		{
-			if (item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT)) return true;
-			if (stretchBonusSexiness(item) >= 3) return true;
-			return false;
+			return (item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT));
 		}
 		public function critBonus(melee: Boolean = true): Number {
 			var temp: int = 5;
@@ -5692,7 +5746,12 @@
 			// Evasion bonus equal to 10% of your Intelligence
 			if (accessory is SiegwulfeItem)
 			{
-				if(this is PlayerCharacter && kGAMECLASS.chars["WULFE"].isBimbo()) { /* Nada! */ }
+				if(this is PlayerCharacter && kGAMECLASS.chars["WULFE"].isBimbo())
+				{
+					//While equipped, bimbo-dom siegwulfe will add a bonus to both evasion and sexiness equal to 8% of intelligence that Steele has.
+					if (kGAMECLASS.siegwulfeIsDom()) temp += Math.round(bimboIntelligence() * 0.08);
+					else { /* Nada! */ }
+				}
 				else temp += Math.round(bimboIntelligence() * 0.1);
 			}
 			if (hasPerk("Agility")) {
@@ -5775,6 +5834,25 @@
 		}
 		public function clearFaceFlags(): void {
 			faceFlags = new Array();
+		}
+		public function hasEarFlag(arg:int): Boolean {
+			for (var temp: int = 0; temp < earFlags.length; temp++) {
+				if (earFlags[temp] == arg) return true;
+			}
+			return false;
+		}
+		public function removeEarFlag(arg:int):void
+		{
+			if (hasEarFlag(arg))
+			{
+				earFlags.splice(earFlags.indexOf(arg), 1);
+			}
+		}
+		public function addEarFlag(arg:int): void {
+			if (!hasEarFlag(arg)) earFlags[earFlags.length] = arg;
+		}
+		public function clearEarFlags(): void {
+			earFlags = new Array();
 		}
 		public function hasTailFlag(arg:int): Boolean {
 			for (var temp: int = 0; temp < tailFlags.length; temp++) {
@@ -5948,6 +6026,15 @@
 					adjectives.push("universe-distorting");
 				}
 				if(adjectives.length > 0) result += adjectives[rand(adjectives.length)];
+				// Silicone
+				var silicone:Number = siliconeRating("lips");
+				if(silicone > 0 && rand(2) == 0) {
+					adjectives.length = 0;
+					if(silicone >= 2) adjectives.push("gravity defying");
+					adjectives.push("fake", "plastic", "silicone-filled");
+					if(result != "") result += ", ";
+					result += adjectives[rand(adjectives.length)];
+				}
 			}
 			//Color!
 			if(rand(4) == 0 && lipColor != "peach")
@@ -6083,8 +6170,8 @@
 					break;
 				case GLOBAL.TYPE_LAPINE:
 				case GLOBAL.TYPE_QUAD_LAPINE:
-					if(earLength >= tallness/2) adjectives.push("droopy");
-					adjectives = ["bunny", "rabbit-like", "lapine", "floppy"];
+					if(hasEarFlag(GLOBAL.FLAG_FLOPPY)) adjectives = ["lop", "droopy", "floppy"];
+					adjectives = ["bunny", "rabbit-like", "lapine"];
 					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_KANGAROO:
@@ -6176,11 +6263,15 @@
 					adjectives = ["mothrine", "round", "unassuming"];
 					break;
 			}
-			if (hasLongEars()) adjectives.push(num2Text(Math.round(earLength)) + "-inch long");
+			if (hasLongEars()) 
+			{
+				//adjectives.push(num2Text(Math.round(earLength)) + "-inch long");
+				adjectives.push("long");
+			}
 			if (skinType == GLOBAL.SKIN_TYPE_GOO && rand(5) == 0) adjectives.push("gooey", "slimy", "slick");
 			if (hasPerk("Black Latex") && rand(4) == 0) adjectives.push("rubber", "latex", "latex");
-			//Pick an adjective about 75% of the time
-			if (rand(4) < 3 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
+			//Pick an adjective about 40% of the time
+			if (rand(10) <= 3 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
 			//Pick a noun.
 			description += nouns[rand(nouns.length)];
 			return description;
@@ -8878,6 +8969,21 @@
 			if (arg >= bRows()) return 0;
 			return breastRows[arg].breastRatingRaw;
 		}
+		public function breastRatingRawMin(arg:int):Number
+		{
+			if(arg >= bRows()) return 0;
+			
+			var rating:Number = 0;
+			return rating;
+		}
+		public function breastRatingModMin(arg:int):Number
+		{
+			if(arg >= bRows()) return 0;
+			
+			var rating:Number = 0;
+			if(arg == 0 && hasStatusEffect("Mimbrane Boobs") && rating < statusEffectv3("Mimbrane Boobs")) rating = statusEffectv3("Mimbrane Boobs");
+			return rating;
+		}
 		public function totalNipples(): Number {
 			var counter: Number = breastRows.length;
 			var total: Number = 0;
@@ -9777,7 +9883,12 @@
 		public function inflateVagina(arg: int = 0): void
 		{
 			if(vaginas.length <= 0 || arg >= vaginas.length) return;
-			if(vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED))
+			if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED) && !vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
+			{
+				vaginas[arg].delFlag(GLOBAL.FLAG_PUMPED);
+				vaginas[arg].addFlag(GLOBAL.FLAG_HYPER_PUMPED);
+			}
+			else if(vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED))
 			{
 				vaginas[arg].delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 				vaginas[arg].addFlag(GLOBAL.FLAG_PUMPED);
@@ -9790,7 +9901,12 @@
 		public function deflateVagina(arg: int = 0): void
 		{
 			if(vaginas.length <= 0 || arg >= vaginas.length) return;
-			if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED) && !vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
+			if(vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED) && !vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED))
+			{
+				vaginas[arg].delFlag(GLOBAL.FLAG_HYPER_PUMPED);
+				vaginas[arg].addFlag(GLOBAL.FLAG_PUMPED);
+			}
+			else if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED) && !vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
 			{
 				vaginas[arg].delFlag(GLOBAL.FLAG_PUMPED);
 				vaginas[arg].addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
@@ -9807,6 +9923,7 @@
 			{
 				puffScore += (this as PlayerCharacter).mimbranePuffiness("Mimbrane Pussy");
 			}
+			if(vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) puffScore += 3;
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) puffScore += 2;
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffScore += 1;
 			if(vaginas[arg].type == GLOBAL.TYPE_EQUINE) puffScore += 1;
@@ -9985,7 +10102,12 @@
 		}
 		public function inflateAsshole(): void
 		{
-			if(ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !ass.hasFlag(GLOBAL.FLAG_PUMPED))
+			if(ass.hasFlag(GLOBAL.FLAG_PUMPED) && !ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
+			{
+				ass.delFlag(GLOBAL.FLAG_PUMPED);
+				ass.addFlag(GLOBAL.FLAG_HYPER_PUMPED);
+			}
+			else if(ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !ass.hasFlag(GLOBAL.FLAG_PUMPED))
 			{
 				ass.delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 				ass.addFlag(GLOBAL.FLAG_PUMPED);
@@ -9997,7 +10119,12 @@
 		}
 		public function deflateAsshole(): void
 		{
-			if(ass.hasFlag(GLOBAL.FLAG_PUMPED) && !ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
+			if(ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED) && !ass.hasFlag(GLOBAL.FLAG_PUMPED))
+			{
+				ass.delFlag(GLOBAL.FLAG_HYPER_PUMPED);
+				ass.addFlag(GLOBAL.FLAG_PUMPED);
+			}
+			else if(ass.hasFlag(GLOBAL.FLAG_PUMPED) && !ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
 			{
 				ass.delFlag(GLOBAL.FLAG_PUMPED);
 				ass.addFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
@@ -10013,6 +10140,7 @@
 			{
 				puffScore += (this as PlayerCharacter).mimbranePuffiness("Mimbrane Ass");
 			}
+			if(ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) puffScore += 3;
 			if(ass.hasFlag(GLOBAL.FLAG_PUMPED)) puffScore += 2;
 			if(ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffScore += 1;
 			
@@ -11508,8 +11636,8 @@
 					break;
 				case GLOBAL.TYPE_SAURMORIAN:
 					cocks[slot].cockColor = (findFirstOfcType(GLOBAL.TYPE_SAURMORIAN) < 0 ? RandomInCollection("black", "dark blue", "dark red", "purple") : cocks[findFirstOfcType(GLOBAL.TYPE_SAURMORIAN)].cockColor);
-					if(cocks[slot].cLengthRaw < 5) cocks[slot].cLengthRaw = 8;
-					if(cocks[slot].cThicknessRatioRaw < 0.833) cocks[slot].cLengthRaw = 1.125;
+					if(cocks[slot].cLengthRaw < 5) cocks[slot].cLengthRaw = (hasPerk("Hung") ? 10 : (hasPerk("Mini") ? 6 : 8));
+					if(cocks[slot].cThicknessRatioRaw < 0.833) cocks[slot].cThicknessRatioRaw = 1.125;
 					cocks[slot].addFlag(GLOBAL.FLAG_BLUNT);
 					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
 					cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
@@ -13219,7 +13347,7 @@
 			}
 			if(score >= 6 && vaginaTotal() == 1)
 			{
-				if(vaginas[0].hasFlag(GLOBAL.FLAG_RIBBED) && (vaginas[0].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[0].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) && vaginas[0].type == GLOBAL.TYPE_SAURMORIAN) score++;
+				if(vaginas[0].hasFlag(GLOBAL.FLAG_RIBBED) && hasPlumpPussy(0) && vaginas[0].type == GLOBAL.TYPE_SAURMORIAN) score++;
 			}
 			if (!InCollection(faceType, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_SAURMORIAN)) score -= 2;
 			if(hasHair()) score--;
@@ -13573,11 +13701,11 @@
 				else desc += num2Text(balls) + " ";
 			}
 			//Not in appearance screen? Okay
-			else if (!hasStatusEffect("Uniball") && rand(5) == 0 && !forceSingular) {
+			else if (!hasStatusEffect("Uniball") && balls != 2 && rand(5) == 0 && !forceSingular) {
 				if (balls == 1) {
 					desc += RandomInCollection(["single ", "solitary ", "lone "]);
 				}
-				else if (balls == 2) {
+				else if (balls == 2) { //This one is basically cut but leaving here unless I change my mind.
 					desc += RandomInCollection(["pair of ", "two ", "two "]);
 				}
 				else if (balls == 3) {
@@ -13646,6 +13774,7 @@
 		}
 		public function ballNoun(asPlural:Boolean = true):String
 		{
+			if (balls == 0) return "prostate";
 			var rando:int = 0;
 			var desc:String = "";
 			rando = rand(11);
@@ -13658,9 +13787,23 @@
 			}
 			else if (rando <= 7) desc += "gonad";
 			else desc += "nut";
-			if (asPlural && balls != 1) desc = plural(desc);
+			if (asPlural && balls > 1) desc = plural(desc);
 			return desc;
 		}
+		public function ballsNounSimple(forceSingle:Boolean = false): String
+		{
+			if(balls < 1) return "prostate";
+			if(forceSingle || balls == 1) return RandomInCollection(["ball","ball","ball","nut"]);
+			else return RandomInCollection(["balls","balls","balls","nuts"]);
+		}
+		//[pc.knotBallsHilt] 4 Dubsan senpai
+		public function knotBallsHilt(x:int = 0):String
+		{
+			if(hasCock() && hasKnot(x)) return "knot";
+			else if(balls > 0) return ballsNounSimple();
+			else return "hilt";
+		}
+
 		public function assholeDescript(simple:Boolean = false): String {
 			var desc: String = "";
 			var rando: Number = 0;
@@ -13706,11 +13849,16 @@
 				descripted++;
 			}
 			// Puffy butt - 50% addition of no other descs - doesn't stack well with loose/wet.
-			if(!simple && descripted == 0 && (analPuffiness() >= 1) && rand(2) == 0)
+			var puffScore:Number = analPuffiness();
+			if(!simple && descripted == 0 && (puffScore >= 1) && rand(2) == 0)
 			{
 				if (descripted > 0) desc += ", ";
-				if (analPuffiness() < 2) desc += RandomInCollection(["puffy", "plump", "fat", "crinkly", "soft", "spongy"]);
-				else desc += RandomInCollection(["puffy", "plump", "fat", "crinkly", "soft", "spongy", "huge", "bloated", "pillowy"]);
+				var donuts:Array = ["puffy", "plump", "fat", "crinkly", "soft", "spongy"];
+				if (puffScore >= 2) donuts.push("huge", "bloated", "pillowy");
+				if (puffScore >= 3) donuts.push("ample", "meaty", "generous");
+				if (puffScore >= 4) donuts.push("imposing", "massive", "enormous", "tremendous");
+				if (puffScore >= 5) donuts.push("monstrous", "freakish", "colossal", "hyper", "oversized");
+				desc += RandomInCollection(donuts);
 				descripted++;
 			}
 			if(!simple && descripted == 0 && hasPerk("Buttslut") && rand(2) == 0)
@@ -13747,118 +13895,128 @@
 			
 			if (hips <= 1) {
 				if (thickness > 70) {
-					adjectives.push("slim ");
-					adjectives.push("narrow ");
-					if (firm < 30) adjectives.push("boyish ");
+					adjectives.push("slim");
+					adjectives.push("narrow");
+					if (firm < 30) adjectives.push("boyish");
 				}
 				//Normal
 				else if (thickness >= 30) {
-					if (firm < 30) adjectives.push("boyish ");
-					adjectives.push("slim ");
+					if (firm < 30) adjectives.push("boyish");
+					adjectives.push("slim");
 				}
 				//Uberthin
 				else {
-					adjectives.push("slim ");
-					adjectives.push("narrow ");
-					if (firm < 30) adjectives.push("boyish ");
+					adjectives.push("slim");
+					adjectives.push("narrow");
+					if (firm < 30) adjectives.push("boyish");
 				}
 			} else if (hips < 4) {
 				if (thickness < 30) {
-					adjectives.push("slightly-flared ");
-					adjectives.push("curved ");
+					adjectives.push("slightly-flared");
+					adjectives.push("curved");
 				}
 				else {
-					adjectives.push("slender ");
-					adjectives.push("narrow ");
-					adjectives.push("thin ");
+					adjectives.push("slender");
+					adjectives.push("narrow");
+					adjectives.push("thin");
 				}
 			} else if (hips < 6) {
 				if (thickness < 30) {
-					adjectives.push("flared ");
-					adjectives.push("curvy ");
+					adjectives.push("flared");
+					adjectives.push("curvy");
 				}
 				else {
-					adjectives.push("well-formed ");
-					adjectives.push("pleasant ");
+					adjectives.push("well-formed");
+					adjectives.push("pleasant");
 				}
 			} else if (hips < 10) {
 				if (thickness < 30) {
-					adjectives.push("flared ");
-					adjectives.push("waspish ");
+					adjectives.push("flared");
+					adjectives.push("waspish");
 				}
 				else {
-					adjectives.push("ample ");
-					adjectives.push("noticeable ");
-					adjectives.push("girly ");
+					adjectives.push("ample");
+					adjectives.push("noticeable");
+					adjectives.push("girly");
 				}
 			} else if (hips < 15) {
 				if (thickness < 30) {
-					adjectives.push("flared ");
-					adjectives.push("waspish ");
+					adjectives.push("flared");
+					adjectives.push("waspish");
 				}
 				else {
-					adjectives.push("flared ");
-					adjectives.push("curvy ");
-					adjectives.push("wide ");
+					adjectives.push("flared");
+					adjectives.push("curvy");
+					adjectives.push("wide");
 				}
 			} else if (hips < 20) {
 				if (thickness < 40) {
-					adjectives.push("flared, voluptuous ");
-					adjectives.push("waspish, voluptuous ");
+					adjectives.push("flared, voluptuous");
+					adjectives.push("waspish, voluptuous");
 				}
 				else {
-					adjectives.push("voluptuous ");
-					adjectives.push("voluptuous ");
+					adjectives.push("voluptuous");
+					adjectives.push("voluptuous");
 				}
 				if (femininity > 50 || hasVagina()) {
 					if (thickness < 40) {
-						adjectives.push("flared, fertile ");
-						adjectives.push("waspish, fertile ");
-						adjectives.push("flared, child-bearing ");
-						adjectives.push("waspish, child-bearing ");
+						adjectives.push("flared, fertile");
+						adjectives.push("waspish, fertile");
+						adjectives.push("flared, child-bearing");
+						adjectives.push("waspish, child-bearing");
 					}
 					else {
-						adjectives.push("fertile ");
-						adjectives.push("child-bearing ");
+						adjectives.push("fertile");
+						adjectives.push("child-bearing");
 					}
 				}
 			} else {
 				if (thickness < 40) {
-					adjectives.push("flaring, inhumanly-wide ");
-					adjectives.push("incredibly waspish, inhumanly-wide ");
-					adjectives.push("flaring, cow-like ");
-					adjectives.push("incredibly waspish, cow-like ");
+					adjectives.push("flaring, inhumanly-wide");
+					adjectives.push("incredibly waspish, inhumanly-wide");
+					adjectives.push("flaring, cow-like");
+					adjectives.push("incredibly waspish, cow-like");
 				}
 				else {
-					adjectives.push("inhumanly-wide ");
-					adjectives.push("cow-like ");
+					adjectives.push("inhumanly-wide");
+					adjectives.push("cow-like");
 				}
 				if (femininity > 50 || hasVagina()) {
 					if (thickness < 40) {
-						adjectives.push("flaring, broodmother-sized ");
-						adjectives.push("incredibly waspish, broodmother-sized ");
+						adjectives.push("flaring, broodmother-sized");
+						adjectives.push("incredibly waspish, broodmother-sized");
 					}
 					else {
-						adjectives.push("broodmother-sized ");
+						adjectives.push("broodmother-sized");
 					}
 				}
 				if (hips >= 30) {
-					adjectives.push("jutting ");
-					adjectives.push("broadly-sloped ");
-					adjectives.push("colossal ");
-					adjectives.push("immensely broad ");
-					adjectives.push("far-reaching ");
-					adjectives.push("gargantuanly splayed ");
+					adjectives.push("jutting");
+					adjectives.push("broadly-sloped");
+					adjectives.push("colossal");
+					adjectives.push("immensely broad");
+					adjectives.push("far-reaching");
+					adjectives.push("gargantuanly splayed");
 				}
 			}
 			if(firm >= 65) {
-				if(mf("m","f", true) == "m") adjectives.push("masculine ");
-				if (tone >= 70) adjectives.push("muscular ");
-				else if (tone >= 30) adjectives.push("lean muscled ");
-				if (thickness >= 30) adjectives.push("broad ");
-				else adjectives.push((mf("m","f", true) == "m" ? "mannishly " : "") + "slender ");
+				if(mf("m","f", true) == "m") adjectives.push("masculine");
+				if (tone >= 70) adjectives.push("muscular");
+				else if (tone >= 30) adjectives.push("lean muscled");
+				if (thickness >= 30) adjectives.push("broad");
+				else adjectives.push((mf("m","f", true) == "m" ? "mannishly" : "") + "slender");
 			}
 			if(adjectives.length > 0) desc += adjectives[rand(adjectives.length)];
+			// Silicone
+			var silicone:Number = siliconeRating("hips");
+			if(silicone > 0 && rand(2) == 0) {
+				adjectives.length = 0;
+				if(silicone >= 5) adjectives.push("ridiculously perky");
+				adjectives.push("fake", "plastic", "silicone-filled");
+				if(desc != "") desc += ", ";
+				desc += adjectives[rand(adjectives.length)];
+			}
+			if(desc != "") desc += " ";
 			//Taurs
 			if (isTaur() && rand(3) == 0) {
 				desc += RandomInCollection(["flank", "flank", "flank", "haunch"]);
@@ -13917,71 +14075,70 @@
 			var butt: Number = buttRating();
 			var firm: Number = buttTone();
 			var desc: String = "";
+			var adjectives: Array = [];
 			var rando: Number = 0;
 			
 			if(hasPerk("Barcoded") && rand(7) == 0)
 			{
 				desc = RandomInCollection(["barcode-stamped","barcode-branded","barcoded","id-branded","barcode-tattooed","id-stamped","AccuPitch-claimed","barcode-stamped","barcode-bearing"]);
-				desc += " ";
 			}
 			else if(rand(2) == 0)
 			{
-				var adjectives: Array = [];
 				if (butt <= 1) {
-					if (firm >= 60) adjectives.push("incredibly tight, perky ");
+					if (firm >= 60) adjectives.push("incredibly tight, perky");
 					else {
 						//Soft PC's buns!
-						if (firm <= 30 && rand(3) == 0) adjectives.push("tiny yet soft ", "tiny yet soft ", "very small yet soft ", "dainty yet soft ");
-						else adjectives.push("tiny ", "tiny ", "very small ", "dainty ");
+						if (firm <= 30 && rand(3) == 0) adjectives.push("tiny yet soft", "tiny yet soft", "very small yet soft", "dainty yet soft");
+						else adjectives.push("tiny", "tiny", "very small", "dainty");
 					}
 				} else if (butt < 4) {
 					if (firm >= 65) {
-						adjectives.push("perky, muscular ");
-						adjectives.push("tight, toned ");
-						adjectives.push("firm ");
-						adjectives.push("compact, muscular ");
-						adjectives.push("tight ");
-						adjectives.push("muscular, toned ");
+						adjectives.push("perky, muscular");
+						adjectives.push("tight, toned");
+						adjectives.push("firm");
+						adjectives.push("compact, muscular");
+						adjectives.push("tight");
+						adjectives.push("muscular, toned");
 					}
 					//Nondescript
 					else if (firm >= 30) {
-						adjectives.push("tight ");
-						adjectives.push("firm ");
-						adjectives.push("compact ");
-						adjectives.push("petite ");
+						adjectives.push("tight");
+						adjectives.push("firm");
+						adjectives.push("compact");
+						adjectives.push("petite");
 					}
 					//FLABBAH
 					else {
-						adjectives.push("small, heart-shaped ");
-						adjectives.push("soft, compact ");
-						adjectives.push("soft, heart-shaped ");
-						adjectives.push("small, cushy ");
-						adjectives.push("small ");
-						adjectives.push("petite ");
-						adjectives.push("snug ");
+						adjectives.push("small, heart-shaped");
+						adjectives.push("soft, compact");
+						adjectives.push("soft, heart-shaped");
+						adjectives.push("small, cushy");
+						adjectives.push("small");
+						adjectives.push("petite");
+						adjectives.push("snug");
 					}
 				} else if (butt < 6) {
 					//TOIGHT LIKE A TIGER
 					if (firm >= 65) {
-						adjectives.push("nicely muscled ");
-						adjectives.push("nice, toned ");
-						adjectives.push("muscly ");
-						adjectives.push("nice toned ");
-						adjectives.push("toned ");
-						adjectives.push("fair ");
+						adjectives.push("nicely muscled");
+						adjectives.push("nice, toned");
+						adjectives.push("muscly");
+						adjectives.push("nice toned");
+						adjectives.push("toned");
+						adjectives.push("fair");
 					}
 					//Nondescript
 					else if (firm >= 30) {
-						adjectives.push("nice ");
-						adjectives.push("fair ");
+						adjectives.push("nice");
+						adjectives.push("fair");
 					}
 					//FLABBAH
 					else {
-						adjectives.push("nice, cushiony ");
-						adjectives.push("soft ");
-						adjectives.push("nicely-rounded, heart-shaped ");
-						adjectives.push("cushy ");
-						adjectives.push("soft, squeezable ");
+						adjectives.push("nice, cushiony");
+						adjectives.push("soft");
+						adjectives.push("nicely-rounded, heart-shaped");
+						adjectives.push("cushy");
+						adjectives.push("soft, squeezable");
 					}
 				} else if (butt < 8) {
 					//TOIGHT LIKE A TIGER
@@ -13990,12 +14147,12 @@
 							if (asPlural) return "muscular, hand-filling ass cheeks";
 							return "muscly handful of ass";
 						}
-						adjectives.push("full, toned ");
-						adjectives.push("shapely, toned ");
-						adjectives.push("muscular, hand-filling ");
-						adjectives.push("shapely, chiseled ");
-						adjectives.push("full ");
-						adjectives.push("chiseled ");
+						adjectives.push("full, toned");
+						adjectives.push("shapely, toned");
+						adjectives.push("muscular, hand-filling");
+						adjectives.push("shapely, chiseled");
+						adjectives.push("full");
+						adjectives.push("chiseled");
 					}
 					//Nondescript
 					else if (firm >= 30) {
@@ -14003,9 +14160,9 @@
 							if (asPlural) return "hand-filling ass cheeks";
 							return "handful of ass";
 						}
-						adjectives.push("full ");
-						adjectives.push("shapely ");
-						adjectives.push("hand-filling ");
+						adjectives.push("full");
+						adjectives.push("shapely");
+						adjectives.push("hand-filling");
 					}
 					//FLABBAH
 					else {
@@ -14013,119 +14170,119 @@
 							if (asPlural) return "supple, hand-filling ass cheeks";
 							return "supple, handful of ass";
 						}
-						adjectives.push("somewhat jiggly ");
-						adjectives.push("soft, hand-filling ");
-						adjectives.push("cushiony, full ");
-						adjectives.push("plush, shapely ");
-						adjectives.push("full ");
-						adjectives.push("soft, shapely ");
-						adjectives.push("rounded, spongy ");
+						adjectives.push("somewhat jiggly");
+						adjectives.push("soft, hand-filling");
+						adjectives.push("cushiony, full");
+						adjectives.push("plush, shapely");
+						adjectives.push("full");
+						adjectives.push("soft, shapely");
+						adjectives.push("rounded, spongy");
 					}
 				} else if (butt < 10) {
 					//TOIGHT LIKE A TIGER
 					if (firm >= 65) {
-						adjectives.push("large, muscular ");
-						adjectives.push("substantial, toned ");
-						adjectives.push("big-but-tight ");
-						adjectives.push("squeezable, toned ");
-						adjectives.push("large, brawny ");
-						adjectives.push("big-but-fit ");
-						adjectives.push("powerful, squeezable ");
-						adjectives.push("large ");
-						adjectives.push("callipygian ");
+						adjectives.push("large, muscular");
+						adjectives.push("substantial, toned");
+						adjectives.push("big-but-tight");
+						adjectives.push("squeezable, toned");
+						adjectives.push("large, brawny");
+						adjectives.push("big-but-fit");
+						adjectives.push("powerful, squeezable");
+						adjectives.push("large");
+						adjectives.push("callipygian");
 					}
 					//Nondescript
 					else if (firm >= 30) {
-						adjectives.push("squeezable ");
-						adjectives.push("large ");
-						adjectives.push("substantial ");
-						adjectives.push("callipygian ");
+						adjectives.push("squeezable");
+						adjectives.push("large");
+						adjectives.push("substantial");
+						adjectives.push("callipygian");
 					}
 					//FLABBAH
 					else {
-						adjectives.push("large, bouncy ");
-						adjectives.push("soft, eye-catching ");
-						adjectives.push("big, slappable ");
-						adjectives.push("soft, pinchable ");
-						adjectives.push("large, plush ");
-						adjectives.push("squeezable ");
-						adjectives.push("cushiony ");
-						adjectives.push("plush ");
-						adjectives.push("pleasantly plump ");
-						adjectives.push("callipygian ");
+						adjectives.push("large, bouncy");
+						adjectives.push("soft, eye-catching");
+						adjectives.push("big, slappable");
+						adjectives.push("soft, pinchable");
+						adjectives.push("large, plush");
+						adjectives.push("squeezable");
+						adjectives.push("cushiony");
+						adjectives.push("plush");
+						adjectives.push("pleasantly plump");
+						adjectives.push("callipygian");
 					}
 				} else if (butt < 13) {
 					//TOIGHT LIKE A TIGER
 					if (firm >= 65) {
-						adjectives.push("thick, muscular ");
-						adjectives.push("big, burly ");
-						adjectives.push("heavy, powerful ");
-						adjectives.push("spacious, muscular ");
-						adjectives.push("toned, cloth-straining ");
-						adjectives.push("thick ");
-						adjectives.push("thick, strong ");
+						adjectives.push("thick, muscular");
+						adjectives.push("big, burly");
+						adjectives.push("heavy, powerful");
+						adjectives.push("spacious, muscular");
+						adjectives.push("toned, cloth-straining");
+						adjectives.push("thick");
+						adjectives.push("thick, strong");
 					}
 					//Nondescript
 					else if (firm >= 30) {
-						adjectives.push("jiggling ");
-						adjectives.push("spacious ");
-						adjectives.push("heavy ");
-						adjectives.push("cloth-straining ");
+						adjectives.push("jiggling");
+						adjectives.push("spacious");
+						adjectives.push("heavy");
+						adjectives.push("cloth-straining");
 					}
 					//FLABBAH
 					else {
-						adjectives.push("super-soft, jiggling ");
-						adjectives.push("spacious, cushy ");
-						adjectives.push("plush, cloth-straining ");
-						adjectives.push("squeezable, over-sized ");
-						adjectives.push("spacious ");
-						adjectives.push("heavy, cushiony ");
-						adjectives.push("slappable, thick ");
-						adjectives.push("jiggling ");
-						adjectives.push("spacious ");
-						adjectives.push("soft, plump ");
+						adjectives.push("super-soft, jiggling");
+						adjectives.push("spacious, cushy");
+						adjectives.push("plush, cloth-straining");
+						adjectives.push("squeezable, over-sized");
+						adjectives.push("spacious");
+						adjectives.push("heavy, cushiony");
+						adjectives.push("slappable, thick");
+						adjectives.push("jiggling");
+						adjectives.push("spacious");
+						adjectives.push("soft, plump");
 					}
 				} else if (butt < 16) {
 					//TOIGHT LIKE A TIGER
 					if (firm >= 65) {
-						adjectives.push("expansive, muscled ");
-						adjectives.push("voluminous, rippling ");
-						adjectives.push("generous, powerful ");
-						adjectives.push("big, burly ");
-						adjectives.push("well-built, voluminous ");
-						adjectives.push("powerful ");
-						adjectives.push("muscular ");
-						adjectives.push("powerful, expansive ");
+						adjectives.push("expansive, muscled");
+						adjectives.push("voluminous, rippling");
+						adjectives.push("generous, powerful");
+						adjectives.push("big, burly");
+						adjectives.push("well-built, voluminous");
+						adjectives.push("powerful");
+						adjectives.push("muscular");
+						adjectives.push("powerful, expansive");
 					}
 					//Nondescript
 					else if (firm >= 30) {
-						adjectives.push("expansive ");
-						adjectives.push("generous ");
-						adjectives.push("voluminous ");
-						adjectives.push("wide ");
+						adjectives.push("expansive");
+						adjectives.push("generous");
+						adjectives.push("voluminous");
+						adjectives.push("wide");
 					}
 					//FLABBAH
 					else {
-						adjectives.push("pillow-like ");
-						adjectives.push("generous, cushiony ");
-						adjectives.push("wide, plush ");
-						adjectives.push("soft, generous ");
-						adjectives.push("expansive, squeezable ");
-						adjectives.push("slappable ");
-						adjectives.push("thickly-padded ");
-						adjectives.push("wide, jiggling ");
-						adjectives.push("wide ");
-						adjectives.push("voluminous ");
-						adjectives.push("soft, padded ");
+						adjectives.push("pillow-like");
+						adjectives.push("generous, cushiony");
+						adjectives.push("wide, plush");
+						adjectives.push("soft, generous");
+						adjectives.push("expansive, squeezable");
+						adjectives.push("slappable");
+						adjectives.push("thickly-padded");
+						adjectives.push("wide, jiggling");
+						adjectives.push("wide");
+						adjectives.push("voluminous");
+						adjectives.push("soft, padded");
 					}
 				} else if (butt < 20) {
 					if (firm >= 65) {
-						adjectives.push("huge, toned ");
-						adjectives.push("vast, muscular ");
-						adjectives.push("vast, well-built ");
-						adjectives.push("huge, muscular ");
-						adjectives.push("strong, immense ");
-						adjectives.push("muscle-bound ");
+						adjectives.push("huge, toned");
+						adjectives.push("vast, muscular");
+						adjectives.push("vast, well-built");
+						adjectives.push("huge, muscular");
+						adjectives.push("strong, immense");
+						adjectives.push("muscle-bound");
 					}
 					//Nondescript
 					else if (firm >= 30) {
@@ -14133,23 +14290,23 @@
 							if (asPlural) return RandomInCollection(["expansive, jiggling ass cheeks", "copious, fleshy ass cheeks"]);
 							return RandomInCollection(["jiggling expanse of ass", "copious ass-flesh"]);
 						}
-						adjectives.push("huge ");
-						adjectives.push("vast ");
-						adjectives.push("giant ");
+						adjectives.push("huge");
+						adjectives.push("vast");
+						adjectives.push("giant");
 					}
 					//FLABBAH
 					else {
-						adjectives.push("vast, cushiony ");
-						adjectives.push("huge, plump ");
-						adjectives.push("expansive, jiggling ");
-						adjectives.push("huge, cushiony ");
-						adjectives.push("huge, slappable ");
-						adjectives.push("seam-bursting ");
-						adjectives.push("plush, vast ");
-						adjectives.push("giant, slappable ");
-						adjectives.push("giant ");
-						adjectives.push("huge ");
-						adjectives.push("swollen, pillow-like ");
+						adjectives.push("vast, cushiony");
+						adjectives.push("huge, plump");
+						adjectives.push("expansive, jiggling");
+						adjectives.push("huge, cushiony");
+						adjectives.push("huge, slappable");
+						adjectives.push("seam-bursting");
+						adjectives.push("plush, vast");
+						adjectives.push("giant, slappable");
+						adjectives.push("giant");
+						adjectives.push("huge");
+						adjectives.push("swollen, pillow-like");
 					}
 				} else {
 					if (firm >= 65) {
@@ -14157,51 +14314,64 @@
 							if (asPlural) return "colossal, muscly ass cheeks";
 							return "colossal, muscly ass";
 						}
-						adjectives.push("ginormous, muscle-bound ");
-						adjectives.push("colossal yet toned ");
-						adjectives.push("strong, tremdously large ");
-						adjectives.push("tremendous, muscled ");
-						adjectives.push("ginormous, toned ");
-						adjectives.push("colossal, well-defined ");
+						adjectives.push("ginormous, muscle-bound");
+						adjectives.push("colossal yet toned");
+						adjectives.push("strong, tremdously large");
+						adjectives.push("tremendous, muscled");
+						adjectives.push("ginormous, toned");
+						adjectives.push("colossal, well-defined");
 					}
 					//Nondescript
 					else if (firm >= 30) {
-						adjectives.push("ginormous ");
-						adjectives.push("colossal ");
-						adjectives.push("tremendous ");
-						adjectives.push("gigantic ");
+						adjectives.push("ginormous");
+						adjectives.push("colossal");
+						adjectives.push("tremendous");
+						adjectives.push("gigantic");
 					}
 					//FLABBAH
 					else 
 					{
-						adjectives.push("ginormous, jiggly ");
-						adjectives.push("plush, ginormous ");
-						adjectives.push("seam-destroying ");
-						adjectives.push("tremendous, rounded ");
-						adjectives.push("bouncy, colossal ");
-						adjectives.push("thong-devouring ");
-						adjectives.push("tremendous, thickly padded ");
-						adjectives.push("ginormous, slappable ");
-						adjectives.push("gigantic, rippling ");
-						adjectives.push("gigantic ");
-						adjectives.push("ginormous ");
-						adjectives.push("colossal ");
-						adjectives.push("tremendous ");
+						adjectives.push("ginormous, jiggly");
+						adjectives.push("plush, ginormous");
+						adjectives.push("seam-destroying");
+						adjectives.push("tremendous, rounded");
+						adjectives.push("bouncy, colossal");
+						adjectives.push("thong-devouring");
+						adjectives.push("tremendous, thickly padded");
+						adjectives.push("ginormous, slappable");
+						adjectives.push("gigantic, rippling");
+						adjectives.push("gigantic");
+						adjectives.push("ginormous");
+						adjectives.push("colossal");
+						adjectives.push("tremendous");
 					}
 				}
 				if(firm >= 65) {
-					adjectives.push("chiseled ");
-					adjectives.push("statuesque ");
-					adjectives.push("shapely ");
-					adjectives.push("sculpted ");
-					if(mf("m","f") == "m") adjectives.push("manly ");
+					adjectives.push("chiseled");
+					adjectives.push("statuesque");
+					adjectives.push("shapely");
+					adjectives.push("sculpted");
+					if(mf("m","f") == "m") adjectives.push("manly");
 				}
+				if(desc != "") desc += ", ";
 				if(adjectives.length > 0) desc += adjectives[rand(adjectives.length)];
 			}
-			rando = rand(21);
+			// Silicone
+			var silicone:Number = siliconeRating("butt");
+			if(silicone > 0 && rand(2) == 0) {
+				adjectives.length = 0;
+				if(silicone >= 2) adjectives.push("gravity defying");
+				if(silicone >= 5) adjectives.push("ridiculously perky");
+				adjectives.push("fake", "plastic", "silicone-filled");
+				if(desc != "") desc += ", ";
+				desc += adjectives[rand(adjectives.length)];
+			}
+			if(desc != "") desc += " ";
 			if(!asPlural)
 			{
+				rando = rand(21);
 				if(onlyCheek) desc += RandomInCollection(["butt", "ass"]) + "cheek";
+				else if(silicone > 0 && rand(4) == 0) desc += "bubble";
 				else if (rando <= 4) desc += "butt";
 				else if (rando <= 9) desc += "ass";
 				else if (rando <= 11) desc += "backside";
@@ -14211,7 +14381,11 @@
 				}
 				else desc += RandomInCollection(["rump", "bottom", mf("butt", "tush", true), "rear end"]);
 			}
-			else desc += "cheeks";
+			else
+			{
+				if(silicone > 0 && rand(4) == 0) desc += "bubbles";
+				else desc += "cheeks";
+			}
 			return desc;
 		}
 		public function nipplesDescript(rowNum:int = 0, forceLactation:Boolean = false): String {
@@ -15401,19 +15575,22 @@
 				if(puffScore <= 0) {}
 				else if(puffScore <= 1)
 				{
-					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("very swollen", "well-padded", "fat", "bulging", "lewdly bulging");
+					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) mimAdjectives.push("extremely swollen", "greatly padded", "extra fat", "bloated", "lewdly bloated");
+					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("very swollen", "well-padded", "fat", "bulging", "lewdly bulging");
 					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) mimAdjectives.push("swollen", "plush", "plump", "pudgy", "chubby");
 					else mimAdjectives.push("slightly swollen", "lightly swollen", "slightly chubby", "puffy", "cushy");
 				}
 				else if(puffScore <= 2)
 				{
-					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("very bulgy", "enormous", "wobbly", "prodigious", "obscenely swollen");
+					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) mimAdjectives.push("extremely bulgy", "enormously full", "gargantuan", "hyper-sized", "greatly engorged");
+					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("very bulgy", "enormous", "wobbly", "prodigious", "obscenely swollen");
 					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) mimAdjectives.push("bulgy", "large", "fat", "bulging", "lewdly bulging");
 					else mimAdjectives.push("slightly bulgy", "swollen", "plump", "pudgy", "chubby");
 				}
 				else
 				{
-					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("gargantuan", "elephantine", "hyper-sized", "mammoth-sized", "titanically plump", "greatly engorged", "extremely voluminous", "generously padded", "enormously full", "ridiculously fat");
+					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) mimAdjectives.push("colossal", "monstrous", "ultra hyper-sized", "mega-sized", "monumentally plump", "overly engorged", "impossibly voluminous", "excessively padded", "overflowingly massive", "preposterously fat");
+					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("gargantuan", "elephantine", "hyper-sized", "mammoth-sized", "titanically plump", "greatly engorged", "extremely voluminous", "generously padded", "enormously full", "ridiculously fat");
 					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) mimAdjectives.push("massive", "huge", "immensely swollen", "extremely thick", "enormous", "wobbly", "prodigious", "obscenely swollen");
 					else mimAdjectives.push("undeniably bulgy", "very swollen", "well-padded", "large", "fat", "bulging", "lewdly bulging");
 				}
@@ -15428,21 +15605,27 @@
 				}
 			}
 			//Pussy pump - 50% addition of no other descs - doesn't stack well with loose/wet.
-			else if(rand(2) == 0 && (vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) && adjectiveCount == 0)
+			else if(rand(2) == 0 && hasPlumpPussy(vaginaNum) && adjectiveCount == 0)
 			{
 				var pumpAdj:Array = [];
 				if (adjectiveCount > 0) desc += ", ";
-				if (!vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED))
-				{
-					pumpAdj.push("cushy", "cushy", "cushy", "chubby", "lightly swollen", "puffy");
-					if(hasStatusEffect("Pussy Pumped")) pumpAdj.push("slightly pumped");
-					else pumpAdj.push("slightly plump");
-				}
-				else
+				if (vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
 				{
 					pumpAdj.push("bulgy", "swollen", "plump", "pudgy", "jiggly", "wobbly", "prodigious", "obscenely swollen", "lewdly bulging", "bulging");
 					if(hasStatusEffect("Pussy Pumped")) pumpAdj.push("permanently pumped", "pump-enhanced", "pump-fattened");
 					else pumpAdj.push("permanently plump", "bloated", "fat");
+				}
+				else if (vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED))
+				{
+					pumpAdj.push("bulgy", "swollen", "plump", "pudgy", "jiggly", "wobbly", "prodigious", "obscenely swollen", "lewdly bulging", "bulging");
+					if(hasStatusEffect("Pussy Pumped")) pumpAdj.push("permanently pumped", "pump-enhanced", "pump-fattened");
+					else pumpAdj.push("permanently plump", "bloated", "fat");
+				}
+				else
+				{
+					pumpAdj.push("cushy", "cushy", "cushy", "chubby", "lightly swollen", "puffy");
+					if(hasStatusEffect("Pussy Pumped")) pumpAdj.push("slightly pumped");
+					else pumpAdj.push("slightly plump");
 				}
 				desc += RandomInCollection(pumpAdj);
 				adjectiveCount++;
@@ -15907,21 +16090,29 @@
 			if(this is PlayerCharacter && (this as PlayerCharacter).mimbranePuffiness("Mimbrane Pussy") > 0) adjectives.push("parasite-wrapped","mimbrane-toting","mimbrane-swollen","parasite-engorged","plush","swollen","puffy");
 
 			//Pussy pump can show if ALL are at least pumped.
-			biggestSize = 2;
+			biggestSize = -1;
 			for(var i:int = 0; i < vaginas.length; i++)
 			{
 				//No descs if any aren't pumped!
-				if(!vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) && !vaginas[i].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) biggestSize = 0;
+				if(!hasPlumpPussy(i)) biggestSize = 0;
 				//Track if they're all bigpump or smolpump
-				else if(!vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) && biggestSize == 2) biggestSize = 1;
+				else if(!vaginas[i].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && biggestSize == -1) biggestSize = 1;
+				else if(!vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) && biggestSize == -1) biggestSize = 2;
+				else if(!vaginas[i].hasFlag(GLOBAL.FLAG_HYPER_PUMPED) && biggestSize == -1) biggestSize = 3;
 			}
 			if(biggestSize > 0)
 			{
-				if(biggestSize == 1) 
+				if(biggestSize == 1)
 				{
 					adjectives.push("cushy", "cushy", "cushy", "chubby", "lightly swollen", "puffy");
 					if(hasStatusEffect("Pussy Pumped")) adjectives.push("slightly pumped");
 					else adjectives.push("slightly plump");
+				}
+				else if(biggestSize == 2)
+				{
+					adjectives.push("bulgy", "swollen", "plump", "pudgy", "jiggly", "wobbly", "prodigious", "obscenely swollen", "lewdly bulging", "bulging");
+					if(hasStatusEffect("Pussy Pumped")) adjectives.push("permanently pumped", "pump-enhanced", "pump-fattened");
+					else adjectives.push("permanently plump", "bloated", "fat");
 				}
 				else
 				{
@@ -18296,7 +18487,7 @@
 					return RandomInCollection(["pecs", "pectoral muscles"]);
 				}
 				return "flat, almost non-existent breasts";
-				}
+			}
 			//33% of the time size-descript them
 			if (rand(3) == 0) descript += breastSize(breastRows[rowNum].breastRating());
 			//Lactation notices are rare unless near-empty or full!
@@ -18380,10 +18571,21 @@
 			// A-cups
 			if(breastRows[rowNum].breastRating() == 1) {
 				if(descript != "") descript += ", ";
-				descript += RandomInCollection(["tiny ", "girly ", "waifish "]);
+				descript += RandomInCollection(["tiny", "girly", "waifish"]) + " ";
 				descript += RandomInCollection(["breasts", "mammaries", "boobs", "tits"]);
 			}
 			else {
+				var adjectives:Array = [];
+				// Silicone
+				var silicone:Number = siliconeRating("tits");
+				if(silicone > 0 && rand(2) == 0) {
+					adjectives.length = 0;
+					if(silicone >= 2) adjectives.push("gravity defying");
+					if(silicone >= 5) adjectives.push("ridiculously perky");
+					adjectives.push("fake", "plastic", "silicone-filled");
+					if(descript != "") descript += ", ";
+					descript += adjectives[rand(adjectives.length)];
+				}
 				if(descript != "") descript += " ";
 				descript += chestNoun(rowNum,milkied);
 			}
@@ -18394,6 +18596,7 @@
 		{
 			if(rowNum < 0 || rowNum == 99) rowNum = 0;
 			var nouns:Array = [];
+			var silicone:Number = siliconeRating("tits");
 			if (isLactating())
 			{
 				if(!milkied)
@@ -18410,6 +18613,12 @@
 			nouns.push("breast", "breast", "breast", "breast", "breast", "breast");
 			nouns.push("tit", "tit", "tit");
 			if (breastRows[rowNum].breastRating() > 6) nouns.push("tit");
+			if(silicone > 0) {
+				nouns.push("balloon");
+				if(silicone >= 2) nouns.push("balloon");
+				if(silicone >= 5) nouns.push("balloon");
+				if(silicone >= 10) nouns.push("balloon");
+			}
 			nouns.push("jug");
 			//Disabled due to "pillowy love-pillows" nouns.push("love-pillow");
 			nouns.push("boob");
@@ -18424,32 +18633,7 @@
 		{
 			if (rowNum < 0 || rowNum == 99) rowNum = 0;
 			if (breastRows[rowNum].breastRating() <= 0) return "chest";
-			
-			var nouns:Array = [];
-			if (isLactating())
-			{
-				if(!milkied)
-				{
-					if(breastRows[0].breastRating() >= 5)
-					{
-						if(InCollection(milkType,GLOBAL.FLUID_TYPE_NECTAR,GLOBAL.FLUID_TYPE_NECTAR) && breastRows[0].breastRating() >= 2) nouns.push("sugar-melons","honey-melons");
-						nouns.push("milk-tanks","milk-jugs");
-					}
-					else nouns.push("milkers","milkers");
-				}
-				if(breastRows[0].breastRating() >= 2) nouns.push("udders", "udders", "udders", "udders");
-			}
-			nouns.push("breasts", "breasts", "breasts", "breasts", "breasts", "breasts");
-			nouns.push("tits", "tits", "tits");
-			if (breastRows[rowNum].breastRating() > 6) nouns.push("tits");
-			nouns.push("jugs");
-			//Disabled due to "pillowy love-pillows" nouns.push("love-pillows");
-			nouns.push("boobs");
-			nouns.push("mammaries");
-			nouns.push("melons");
-			nouns.push("mounds");
-			
-			return nouns[rand(nouns.length)];
+			return plural(breastNoun(rowNum, milkied));
 		}
 		public function biggestBreastDescript(): String {
 			return (breastDescript(biggestTitRow()));
@@ -22001,19 +22185,19 @@
 		
 		public function hasPlumpAsshole():Boolean
 		{
-			return (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED));
+			return (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED) || ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED));
 		}
 		public function hasPlumpPussy(arg:Number = -1):Boolean
 		{
 			if(vaginas.length <= 0) return false;
 			if(arg >= 0 && arg > vaginas.length-1) return false;
-			if(arg >= 0) return (vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED));
+			if(arg >= 0) return (vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED));
 			//check em all, fam
 			else
 			{
 				for (var x:int = 0; x < vaginas.length; x++)
 				{
-					if(vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED)) return true;
+					if(vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) || vaginas[x].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) return true;
 				}
 			}
 
@@ -22217,7 +22401,7 @@
 		}
 		
 		// Silicone
-		public function siliconeRating(sType:String):Number
+		public function siliconeRating(sType:String = "all"):Number
 		{
 			var nRating:Number = 0;
 			
@@ -22235,9 +22419,19 @@
 				case "lips":
 					nRating += statusEffectv4("Nym-Foe Injections");
 					break;
+				case "all":
+					nRating += statusEffectv1("Nym-Foe Injections");
+					nRating += statusEffectv2("Nym-Foe Injections");
+					nRating += statusEffectv3("Nym-Foe Injections");
+					nRating += statusEffectv4("Nym-Foe Injections");
+					break;
 			}
 			
 			return nRating;
+		}
+		public function hasSilicone(sType:String = "all"):Boolean
+		{
+			return (siliconeRating(sType) > 0);
 		}
 	}
 }

@@ -1226,7 +1226,7 @@ public function laterMomsSpaghetti():void
 	if(pc.isNice()) output(" I enjoy this training so much, I’ll be back soon!”</i> You finish.");
 	else if(pc.isMischievous()) output(" I’ll be fittin’ this fitness in my business schedule,”</i> you finish with a wink and a grin.");
 	else output(" Might be back later,”</i> you say cooly, dusting yourself down.");
-	output("\n\nMirrin waves in response. <i>“Be a stranger! Or don’t be. Which? Nevermind,”</i> she fumbles, getting up to jump into more exercise.");
+	output("\n\nMirrin waves in response. <i>“Be a stranger! Or don’t be. Which? Never mind,”</i> she fumbles, getting up to jump into more exercise.");
 	processTime(2);
 	//[Next]
 	//PC returns to front of gym.

@@ -106,11 +106,9 @@ public function approachJade():void {
 
 	processTime(2);
 	
-	jadeStoreSetup();
-	
 	//[Buy][Sell][Talk][Appearance]
 	clearMenu();
-	addButton(0,"Buy",buyItem,undefined,"Buy","Buy some animal-themed transformation items.");
+	addButton(0,"Buy",jadeStoreSetup,undefined,"Buy","Buy some animal-themed transformation items.");
 	addButton(1,"Buy(Erotic)",jadeAdvancedStoreSetup,undefined,"Buy","Buy some highly erotic transformations that may be unpredictably smutty - or otherwise very involved.");
 	addButton(2,"Buy(Specific)",jadeSpecificStoreSetup,undefined,"Buy","Buy a gene-splice for a specific effect.")
 	addButton(3,"Sell",sellItem);
@@ -148,6 +146,8 @@ public function jadeStoreSetup():void
 	//itemScreen = mainGameMenu;
 	//lootScreen = mainGameMenu;
 	//useItemFunction = mainGameMenu;
+	
+	buyItem();
 }
 
 public function jadeSpecificStoreSetup():void
@@ -198,6 +198,7 @@ public function jadeAdvancedStoreSetup():void
 	chars["JADE"].inventory.push(new PandaPro());
 	chars["JADE"].inventory.push(new RedPandaneen());
 	chars["JADE"].inventory.push(new RedPandaPro());
+	
 	buyItem();
 }
 

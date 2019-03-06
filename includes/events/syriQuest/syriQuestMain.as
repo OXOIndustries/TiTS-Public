@@ -2692,7 +2692,7 @@ public function syriQuestWrapUp():void
 		output("\n\n<i>“Maybe a little bit of both,”</i> you tease, earning a wolfish grin from the ausar.");
 		output("\n\n<i>“That right?”</i> Syri growls, sauntering forward. Before you know what’s happening, the raven beauty has shoved you up against the bulkhead, thrusting her lips against yours and grabbing your " + (pc.hasCock() ? "crotch" : "[pc.chest]") + ". When she breaks the kiss, Syri’s cheeks are flushed darkly, and her sapphire eyes sparkle in the light. <i>“Damn but don’t I love you.”</i>");
 		output("\n\nWhat?");
-		output("\n\nBefore you can question the statement, Syri grabs you tight and pushes you towards the bedroom, tearing at your {clothes / gear} as you go. A moment later and you’re buck naked, falling backwards onto the bed with Syri straddling you in nothing but her coat. She shrugs the heavy garment off with a wiggle of her shoulders, rubbing her throbbing erection against your [pc.belly].");
+		output("\n\nBefore you can question the statement, Syri grabs you tight and pushes you towards the bedroom, tearing at your " + (!pc.isNude() ? "clothes" : "gear") + " as you go. A moment later and you’re buck naked, falling backwards onto the bed with Syri straddling you in nothing but her coat. She shrugs the heavy garment off with a wiggle of her shoulders, rubbing her throbbing erection against your [pc.belly].");
 		syriSexMenu(false);
 	}
 	processTime(30);

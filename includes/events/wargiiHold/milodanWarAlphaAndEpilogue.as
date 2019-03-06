@@ -170,12 +170,12 @@ public function miloBossManWinsFite():void
 		output("\n\nYour hands dive " + (!pc.isCrotchExposed() ? "under your [pc.crotchCoverUnder] and ":"") + "into your crotch" + (!pc.hasGenitals() ? ", curling around to press at your [pc.asshole]":"") + ".");
 		output("\n\n<i>“Oh, you wanted this pussy?”</i> The milodan smirks at you. <i>“Too bad.”</i> He carefully pushes forward, guiding his nub-lined tip directly into Ula’s drug-swollen cunt. The first few inches sink in like she’s made of half-melted butter before he’s forced to pause, moaning in delirious pleasure. <i>“Yesss,”</i> the war-alpha purrs, taking a moment to master himself. <i>“Buncha chubby broodmares, your whole race.”</i> He savagely thrusts the remaining nine inches of hard, alien cock deep into Ula’s sapphire snatch, clapping his balls into her ass with authority. <i>“And you’re mine!”</i>");
 		output("\n\n<i>“Mmmhuh!”</i>");
-		output("\n\nIt’s the first cogent thing Ula’s said.");
+		output("\n\nIt’s the first cogent thing Ula’s said.\n\n");
 		//Image here?
-		showImage("UlaMiloFucked9998");
-		output("\n\n<i>“");
+		showImage("UlaWarAlphaSex");
+		output("<i>“");
 		output((korgiTranslate() ? "Knock me up":"Give warms! Warms pups!") + "!”</i> Ula throws her head back and screams in delight, thighs shaking. The trickles of girlcum sliding down her fluffy asscheeks thicken into coursing streams. <i>“Ooooh! Oh! " + (korgiTranslate() ? "So goood!":"Good warms!") + "”</i>");
-		output("\n\nThe milodan draws back, knot audibly popping out of the korg’s elastic cunt and slams home once more. He fucks the korg princess hard. Ula’s body, made soft by biology and a life light in manual labor, jiggles all over. Her tits bounce and slosh around with the promise of how much milk they’re going to be filled with. Her ass ripples with the promise of how much bigger it’ll be after her first litter. Her tongue flops out of her maw in absolute bliss, already subservient to the MIlodan’s will. After a fuck like this, you just know she’s going to be licking his balls clean and loving every second of it...");
+		output("\n\nThe milodan draws back, knot audibly popping out of the korg’s elastic cunt and slams home once more. He fucks the korg princess hard. Ula’s body, made soft by biology and a life light in manual labor, jiggles all over. Her tits bounce and slosh around with the promise of how much milk they’re going to be filled with. Her ass ripples with the promise of how much bigger it’ll be after her first litter. Her tongue flops out of her maw in absolute bliss, already subservient to the milodan’s will. After a fuck like this, you just know she’s going to be licking his balls clean and loving every second of it...");
 		output("\n\nYou whimper and masturbate. The force of the fucking actually splatters Ula’s increasingly well-used pussy-juice across your face, and it just makes it that much hotter.");
 		output("\n\nIt shouldn’t be. You shouldn’t be enjoying this, but neither should Ula. Look at her - gasping and yipping in delight, welcoming the invader’s tool into her squeezing cunt like a long lost lover.");
 		output("\n\n<i>“That’s right. Stay down,”</i> the war-alpha says, looking down at you as his cock slams through Ula’s gates with squelching impact. <i>“She’s my bitch now.”</i> His cock swells, the rounding bulb of its knot gaping the korgonne a little more on each stroke. <i>“Aren’t you, bitch?”</i> He lifts her legs higher, pulling her ass off the bed for the next thrust. <i>“Aren’t you?”</i>");
@@ -259,6 +259,7 @@ public function pcBeatsUpAMilo():void
 	output("\n\nUla does not partake in the excited debauchery. She turns to you, tears streaming from the corners of her eyes. She lunges forward, arms outstretched... and bounces past you, directly into her father’s arms. The old korg sags in such relief that his whole body wrinkles like a discarded blanket. Old, tired eyes blink closed. His breathless voice asks, <i>“" + (korgiTranslate() ? "Are you alright, Ula?":"You okaying, Ula?") + "”</i>");
 	output("\n\n<i>“Yes,”</i> Ula says. She pulls back, looking from her father to you. <i>“" + (korgiTranslate() ? "Thanks to [pc.name].":"[pc.name] make so.") + "”</i> She’s pulled deep into another hug before she can say another word.");
 	output("\n\nIn the distance, the sounds of combat are dying down. Rank and file milodans flee and surrender en mass without their leader to keep them organized. The tide has turned, and victory is at hand.");
+	output("\n\n");
 	processTime(15);
 	eventQueue.push(wargiiHoldEpilogue);
 	CombatManager.genericVictory();
@@ -268,6 +269,7 @@ public function wargiiHoldEpilogue():void
 {
 	clearOutput();
 	author("Fenoxo");
+	showBust("ULA",korgChiefBustString());
 	output("You rest on the edge of the bed while Ula and her father coordinate with their countrymen to secure the rest of the hold. For every milodan that falls, the korgonne resistance becomes better equipped. Prohibitions against using core weapons are discarded upon Ula’s advice and her father’s reluctant pragmatism. Small teams of gun-toting hunters sprint by the door while two bleeding warriors take up guard positions to either side.");
 	output("\n\nMore than once, a passing korg will notice you on their way by and thank you with a grateful smile.");
 	output("\n\n<i>“" + (!korgiTranslate() ? "Right-being, Ula ideas was.":"Right, Ula's ideas were.") + "”</i> The grizzled old korg climbs up onto wobbling legs with help from his battle-baptized daughter. <i>“" + (!korgiTranslate() ? "Knew trap-having milos. Knew needed core magics for safe-making, but Chieftain too dumb for listenings. Too old and too proud.":"She knew the milodans had planned a trap. She knew we needed to make use of the core-magics to stay safe, but I was too proud and too dumb to lend an ear.") + "”</i> He waves to you. <i>“" + (!korgiTranslate() ? "Outsider save hold. Save daughter. Me not even want allow inside, but Ula righting agains.":"Because of that, an outsider saved our hold - saved my daughter. I didn't even want to allow [pc.himHer] inside, but Ula was right again.") + "”</i> He shakes his head, ears flopping like tarps in a windstorm. <i>“");
@@ -365,6 +367,7 @@ public function wargiiHoldEpilogue4():void
 	pc.credits += 150000;
 	//Set location back to normal
 	currentLocation = "KORGII B12";
+	removeUvetoCold();
 	if(score >= 90) quickLoot(new PyriteIndustriesPlasmaBlade(), new PyriteIndustriesSuperchargedLaserPistol(), new KordiiakHideArmor());
 	else if(score >= 50) quickLoot(new PyriteIndustriesPlasmaBlade(), new PyriteIndustriesSuperchargedLaserPistol());
 	else 

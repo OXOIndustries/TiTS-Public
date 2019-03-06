@@ -244,6 +244,7 @@
 			this.baseHPResistances.pheromone.damageValue = -33.0;
 			this.baseHPResistances.drug.damageValue = -33.0;
 			this.meleeWeapon.baseDamage.poison.damageValue = 0;
+			this.meleeWeapon.baseDamage.drug.damageValue = 5;
 			this.meleeWeapon.longName = "lust-venomed claw";
 			this.meleeWeapon.description = "an aphrodisiac-tipped claw";
 			this.meleeWeapon.attackVerb = "swipe";

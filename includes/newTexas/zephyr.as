@@ -767,18 +767,18 @@ public function talkToZephyrMenu():void
 
 	var hasTalkedBets:Boolean = flags["ZEPHYR_TALKED_BETS"] != undefined;
 
-	/*
 	if (!pc.hasCock() && !pc.hasHardLightStrapOn())
 	{
 		if (!hasTalkedBets) addDisabledButton(2, "Bets", "Bets", "You need either a cock or hardlight to hand...");
 		else addDisabledButton(2, "ButtBets", "ButtBets", "You need either a cock or hardlight to hand...");
 	}
-	*/
+	/*
 	if (!pc.hasCock())
 	{
 		if (!hasTalkedBets) addDisabledButton(2, "Bets", "Bets", "You need a cock to hand...");
 		else addDisabledButton(2, "ButtBets", "ButtBets", "You need a cock to hand...");
 	}
+	*/
 	else if (!pc.hasItemByClass(Throbb))
 	{
 		if (!hasTalkedBets) addDisabledButton(2, "Bets", "Bets", "You need some Throbb to tempt Zephyr...");
@@ -2175,13 +2175,17 @@ public function zephyrDoubleBetWin():void
 	if (cLength > 24) output(" monstrous");
 	output(" shaft, though her neck bulges and recedes with your passage.");
 	
-	output("\n\nYou while away the minutes, enjoying the feeling of Zephyr wrapped almost literally around your cock, but something’s missing. This is just a bit too... civilized for a woman like her. With her inability to gag, there’s none of the roughness of the act you were hoping for - she lost, after all. This was a high-stakes game. Pushing her slightly down the desk, you clamber up onto it yourself, on your knees above her face.");
+	output("\n\nYou while away the minutes, enjoying the feeling of Zephyr wrapped almost literally around your " + (cIdx >= 0 ? "" : "faux-") + "cock, but something’s missing. This is just a bit too... civilized for a woman like her. With her inability to gag, there’s none of the roughness of the act you were hoping for - she lost, after all. This was a high-stakes game. Pushing her slightly down the desk, you clamber up onto it yourself, on your knees above her face.");
 	
 	output("\n\n<i>“That’s more like it,”</i> you grunt, getting a nice view of her eyes bulging in alarm as you start to dip your hips downward, fucking her throat. Maybe it’s just your imagination, but she feels even tighter now. It won’t take long at all to cum like this, and the closer you get the faster you fuck her face. Approaching the brink of orgasm, you put your hands on Zephyr’s mammoth breasts and squeeze her nipples to get a reaction, her subdued groan providing a nice backdrop for the first load you spurt right into her stomach.");
 	
-	output("\n\nThrowing your head back, you groan in pleasure as Zephyr chugs your cum through no will of her own. You can see your own cock flexing in her throat if you sit back and watch it, sliding it as deep as possible to ensure your seed ends up right in her core.");
+	output("\n\nThrowing your head back, you groan in pleasure as Zephyr " + (cIdx >= 0 ? "chugs your cum through no will of her own. You can see your own cock flexing in her throat if you sit back and watch it, sliding it as deep as possible to ensure your seed ends up right in her core" : "deep throats your strap-on through no will of her own. You can see the fake organ flex in her throat as if you were filling her up with a decent load of imaginary semen") + ".");
 	var cumQ:Number = pc.cumQ();
-	if (cumQ <= 3000)
+	if (cIdx < 0)
+	{
+		output(" She takes it like a champ, swallowing your faux-cock while groaning quietly beneath you.");
+	}
+	else if (cumQ <= 3000)
 	{
 		output(" She takes it like a champ, swallowing your jizz while groaning quietly beneath you.");
 	}
@@ -2199,15 +2203,23 @@ public function zephyrDoubleBetWin():void
 	}
 	output(" When you withdraw, you notice <i>her</i> cock standing at attention and slowly pulsing, precum oozing from the tip. She’s <i>close</i>.");
 	
-	output("\n\nShe turns her head to the side and moans, spunk");
-	if (cumQ <= 3000) output(" dripping");
-	else if (cumQ <= 10000) output(" flowing");
-	else output(" gushing");
+	output("\n\nShe turns her head to the side and moans,");
+	if(cIdx >= 0)
+	{
+		output(" spunk");
+		if (cumQ <= 3000) output(" dripping");
+		else if (cumQ <= 10000) output(" flowing");
+		else output(" gushing");
+		output("");
+	}
+	else output(" saliva drooling");
 	output(" from her mouth onto the floor. Making to get up, she finds herself being pushed back down on the desk.");
 	
 	output("\n\n<i>“Oh, you thought I was done?”</i> you ask, grinning. <i>“I told you that was just to break you in, right?”</i>");
 	
-	output("\n\nA few minutes later as you’re humping her face, her hips begin to lift off the desk as she desperately fucks the air, her iron-stiff cock throbbing and her knot beginning to swell as, finally, she explosively cums all over herself with gurgling moans. Seeing no better way to finish yourself off, you fuck her throat to completion and sit on her face, letting the rest of your spunk collect in her tummy until you deem it fit to withdraw.");
+	output("\n\nA few minutes later as you’re humping her face, her hips begin to lift off the desk as she desperately fucks the air, her iron-stiff cock throbbing and her knot beginning to swell as, finally, she explosively cums all over herself with gurgling moans. Seeing no better way to finish yourself off, you fuck her throat to completion and sit on her face");
+	if(cIdx >= 0) output(", letting the rest of your spunk collect in her tummy");
+	output(" until you deem it fit to withdraw.");
 	
 	output("\n\nZephyr is still lying on her desk breathlessly dripping spunk by the time you’ve cleaned yourself off and bid her goodbye. You’d say these bets are working out pretty well.");
 

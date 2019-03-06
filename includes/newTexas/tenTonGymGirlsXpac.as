@@ -1,5 +1,3 @@
-/* 
-
 /**
 	 * ...
 	 * @author DrunkZombie
@@ -184,7 +182,10 @@ public function tentongymLolaHome():void
 		output("\n\n<i>“A little bit of everything, but mostly cleaning and maintenance,”</i> Lola says with a nod. <i>“I’ve been working there for a while. The pool’s my favorite place, though the cleaning system gets pretty clogged sometimes.”</i> She leads you up a set of stairs to the second floor, and you watch her ass bounce as she climbs. Her denim shorts look like they could split their seams at any moment. <i>“Quenton’s a real sweetheart, though, and I can usually set my own hours.”</i>");
 		output("\n\nWhen you reach the second floor, Lola stops at door nine, and presses her thumb to a pad on the lock above the doorknob. The lock beeps, the door unlatches, and Lola smiles at you as she gives it a bump with her hip. The door flies open, and Lola says, <i>“Come on in.”</i>");
 		output("\n\nLola has a corner apartment, with windows open wide on two walls, letting in plenty of light for the plants she has potted everywhere. Bright flowers and green leaves fill the place with color, and Lola checks the plants quickly as you walk in, adding a little water to a few of them. She runs a hand down one vine, then turns to look at you. <i>“Do you have any plants on your ship? I’ve read about people who have whole greenhouses on theirs, but I don’t know if that’s your thing.”</i>");
-		output("\n\nYou tell her that you don’t, but you can see that she clearly likes growing things.");
+		output("\n\nYou tell her that you do");
+		if(azraIsCrew() && flags["AZRA_MHENGAED"] != undefined && flags["AZRA_MHENGAED"] != 0) output(" and");
+		else output("n’t, but");
+		output(" you can see that she clearly likes growing things.");
 		output("\n\n<i>“Oh, I like making all kinds of things grow,”</i> she says with a nod. <i>“Plants, flowers...cocks, hardlights, you know. Things.”</i> She pauses, a thoughtful look on her face. <i>“Do hardlights grow? Kind of, when you turn them on....”</i> She laughs, then smiles at you and points farther into the apartment. <i>“The bedroom’s this way.”</i>");
 		output("\n\nYou follow Lola as she heads toward the bedroom. A quick glance into her kitchen shows two counters covered with cooking implements, with pots and ladles hanging from hooks on the walls and an oven that’s clearly seen a lot of use.");
 		output("\n\nLola’s bedroom is simple, with a few pictures on the walls and a few plants hanging in the corners. Her cozy-looking bed sits at the middle of one wall, big enough for Lola and a friend but not much more, with messy covers that make it look like she hasn’t made it for a few days. Once you’re inside, Lola stops, then steps back and presses her ass against you.");
@@ -227,9 +228,9 @@ public function tentongymLolaHome():void
 		output(" She rests her hands on yours, then pulls them around to the front of her barely-fitting jean shorts. <i>“Think you can get these off faster this time?");
 		if (flags["TTGYM_LOLA_SIMONE_HOME"] != undefined) output(" Maybe you can beat Simone’s record, but I don’t know...");
 		output("”</i>.");
-		output("\n\nChallenge accepted.");
+		output("\n\nChallenge accepted. ");
 	}
-	output(" You reach around to the front of her shorts, which only pushes her butt more against you, her cheeks doing their best to wrap themselves around your [pc.hips]. The sheer strain Lola’s hips are putting on her shorts becomes clear as you try to undo the button – you have to grab hold of the cloth and give it a good yank to get enough give to get the button undone. Lola lets out a sigh as the denim comes loose, and you slide the zipper down.");
+	output("You reach around to the front of her shorts, which only pushes her butt more against you, her cheeks doing their best to wrap themselves around your [pc.hips]. The sheer strain Lola’s hips are putting on her shorts becomes clear as you try to undo the button – you have to grab hold of the cloth and give it a good yank to get enough give to get the button undone. Lola lets out a sigh as the denim comes loose, and you slide the zipper down.");
 	output("\n\nHer shorts don’t move. They’re still caught on her hips and ass, and you wonder why she even bothered zipping them up, if they’re not going anywhere without help. Lola just giggles again.");
 	output("\n\nYou slide your hands back around to her hips and give the shorts a good tug. They move a little, but her ass is still holding them in place. You pull again, jerking them down an inch or two, then take hold of the cloth band around Lola’s butt and yank. Lola yelps, laughing as you struggle with the shorts, slowly squeezing them over her titanic rear until they’re finally free.");
 	output("\n\nLola gives her ass a few bounces once it’s out of the shorts, then kicks the overstretched garment across the room. <i>“Now the suit!”</i>");
@@ -265,9 +266,11 @@ public function tentongymLolaHome():void
 	processTime(30);
 	pc.lust(30);
 	
-	clearMenu();	
-	addButton(0, "Like Before", penisRouter, [tentongymLolaLikeBefore, chars["LOLA"].vaginalCapacity(0), true, 0]);
-	if (pc.cockThatFits(chars["LOLA"].analCapacity()) >= 0 || pc.hasHardLightEquipped()) addButton(1, "In the Butt", penisRouter, [tentongymLolaInTheButt, chars["LOLA"].analCapacity(), true, 0]);
+	clearMenu();
+	var strapon:Boolean = false;
+	if (pc.hasVagina()) strapon = true;
+	addButton(0, "Like Before", penisRouter, [tentongymLolaLikeBefore, chars["LOLA"].vaginalCapacity(0), strapon, 0]);
+	if (pc.cockThatFits(chars["LOLA"].analCapacity()) >= 0 || pc.hasHardLightEquipped()) addButton(1, "In the Butt", penisRouter, [tentongymLolaInTheButt, chars["LOLA"].analCapacity(), strapon, 0]);
 	else addDisabledButton(1, "In the Butt", "In the Butt", "You need a cock small enough for this!");
 }
 public function tentongymLolaNope():void
@@ -348,8 +351,10 @@ public function tentongymLolaLikeBefore(kok:int=0):void
 	
 	processTime(10 + rand(10));
 	clearMenu();
-	addButton(0, "Hotdog", penisRouter, [tentongymLolaLikeBeforeHotdog, chars["LOLA"].vaginalCapacity(0), true, 0]);
-	addButton(1, "From Behind", penisRouter, [tentongymLolaLikeBeforeFromBehind, chars["LOLA"].vaginalCapacity(0), true, 0]);
+	var strapon:Boolean = false;
+	if (pc.hasVagina()) strapon = true;
+	addButton(0, "Hotdog", penisRouter, [tentongymLolaLikeBeforeHotdog, chars["LOLA"].vaginalCapacity(0), strapon, 0]);
+	addButton(1, "From Behind", penisRouter, [tentongymLolaLikeBeforeFromBehind, chars["LOLA"].vaginalCapacity(0), strapon, 0]);
 	
 }
 
@@ -522,7 +527,7 @@ public function tentongymLolaCuddles():void
 	output("\n\nLaying there with her against you, it’s hard to argue with that. You gently stroke one hand along the side of her thick thigh, and she makes a quiet sound, clearly enjoying it. After a moment, and because there’s no way you’d do otherwise, you rub your hand on her ass, slowly circling your palm over and around her giant cheek. Lola sags against you, and after a few minutes of that, starts breathing deeply.");
 	output("\n\nShe’s sound asleep. You give her butt a few more strokes, then wrap your arm around her middle again, and close your eyes. Everything is soft and comfortable, and it’s easy for you to just drift off.");
 	output("\n\nYou wake a few hours later, feeling rested and refreshed. Lola’s stirring, her eyes still sleepy. When she sees that you’re awake, she turns over and hugs you, rubbing her head against your [pc.chest]. You give her ass another good squeeze, and hold it until the two of you separate.");
-	output("\n\n<i>“Thanks, [pc.name],”</i>, Lola murmurs. She’s blushing a little. <i>“Come by again sometime, so we can do this again? All of this?”</i>");
+	output("\n\n<i>“Thanks, [pc.name],”</i> Lola murmurs. She’s blushing a little. <i>“Come by again sometime, so we can do this again? All of this?”</i>");
 	output("\n\nYou tell her that you will, and that you hope to run into her again soon. The two of you slowly get up, and you gather your [pc.gear] and bid her goodbye.");
 	output("\n\nYou head out of Lola’s apartment, back to the streets of New Texas.");
 	
@@ -619,8 +624,10 @@ public function tentongymLolaInTheButt(kok:int=0):void
 	
 	processTime(10 + rand(10));
 	clearMenu();
-	addButton(0, "On Top", penisRouter, [tentongymLolaInTheButtOnTop, chars["LOLA"].analCapacity(), true, 0],"On Top","Let Lola take you for a ride.");
-	addButton(1, "From Behind", penisRouter, [tentongymLolaInTheButtFromBehind, chars["LOLA"].analCapacity(), true, 0],"From Behind","Turn Lola over and go at her from behind.");
+	var strapon:Boolean = false;
+	if (pc.hasVagina()) strapon = true;
+	addButton(0, "On Top", penisRouter, [tentongymLolaInTheButtOnTop, chars["LOLA"].analCapacity(), strapon, 0],"On Top","Let Lola take you for a ride.");
+	addButton(1, "From Behind", penisRouter, [tentongymLolaInTheButtFromBehind, chars["LOLA"].analCapacity(), strapon, 0],"From Behind","Turn Lola over and go at her from behind.");
 }
 public function tentongymLolaInTheButtOnTop(kok:int=0):void
 {
@@ -859,7 +866,7 @@ public function tentongymSimoneHome():void
 		
 		output("\n\nYou work your way out of your [pc.gear], doing the best you can to make it look good in the bathroom’s close confines. Once you’re standing there nude, Simone gives you a long look up and down, and nods once she meets your eyes again.");
 		output("\n\n<i>“You still look good, [pc.name],”</i> she says. <i>“Always good to see you keep yourself in shape.”</i> She gestures for you to step back, then starts stripping.");
-		output("\n\nSimonee whips off her headband and tosses it aside, and her tight top is the next to go. She reaches under her boobs to find the lower hem, then pulls it hard to get it around her giant globes. Slowly, she reveals more and more of her dark skin and darker nipples, the peaks already jutting out hard from her tits. Her boobs hardly sag as they come free, and her arms and shoulders flex as she pulls her top the rest of the way off.");
+		output("\n\nSimone whips off her headband and tosses it aside, and her tight top is the next to go. She reaches under her boobs to find the lower hem, then pulls it hard to get it around her giant globes. Slowly, she reveals more and more of her dark skin and darker nipples, the peaks already jutting out hard from her tits. Her boobs hardly sag as they come free, and her arms and shoulders flex as she pulls her top the rest of the way off.");
 		output("\n\nShe drops her top to the floor, and tightens her abs as she bends down a little to reach for her shorts, then twists herself around as she yanks then down over her round, toned ass. She’s got on a pink thong beneath it, and she slaps one cheek hard once her shorts are off. Fit as she is, her ass doesn’t so much wiggle as quiver, and the slap echoes throughout the bathroom. She pulls down her thong, her legs flexing as she drops it down, then turns around.");
 		output("\n\nSimone stands before you, toned muscles gleaming in the bathroom lights, and poses for you, holding her arms in a way that lets her flex and stick out her chest at the same time. She turns, giving you a glimpse of her thick-lipped pussy as she moves from flexing one leg to the other. It seems like she’s practiced posing like this, because she clearly knows exactly how good she looks.");
 		output("\n\nYou tell her so, and she laughs again. <i>“You know it. Always good to have someone appreciate the time I spend on this body, though.”</i> She leans over the tub again, then turns the faucet off and steps into the pink water.");
@@ -940,7 +947,7 @@ public function tentongymSimoneHomeNextCockSingle(kok:int=0):void
 	if(pc.hasKnot(kok)) output(", sticking out even farther than usual thanks to her lips squeezing around your [pc.knot]");
 	output(". Simone cries out, and you slide two fingers up both sides of her clit, just short of jerking it off. Her pussy clenches on your cock, and she shoves her chest harder into your face, her hips pounding against you with short, strong thrusts.");
 	
-	output("\n\nThe hold she has on your [pc.cock " + kok + "] is about to be too much. You feel orgasm building in your [pc.base], and struggle to hold it back. Another few quick strokes on Simone’s clit, and she’s gasping out every breath, her eyes squeezed shut.");
+	output("\n\nThe hold she has on your [pc.cock " + kok + "] is about to be too much. You feel an orgasm building in your [pc.base], and struggle to hold it back. Another few quick strokes on Simone’s clit, and she’s gasping out every breath, her eyes squeezed shut.");
 	output("\n\nFinally, Simone throws her head back and shouts, her pussy squeezing your [pc.cock " + kok + "] like she’s trying to break it, and she thrusts hard enough to send water splashing out over the bath’s edges as her orgasm hits. Yours comes barely a second after her, the sensation hitting you all at once, your [pc.cock " + kok + "] spasming as you shove it into her, spewing out [pc.cum] deep into Simone.");
 	if (pc.cumQ() >= 1000) 
 	{
@@ -1255,7 +1262,7 @@ public function tentongymBetsyVictoriaHome():void
 		output("\n\nBeing stuck between the two cowgirls is making your [pc.nipples] hard, and from the look on Victoria’s face, you know she can feel them poking into her boobs, just as you can feel hers. Blood surges into [pc.eachCock], and you start to grow hard. Betsy’s hands drift toward your crotch as Victoria rubs her own hardening cock against your [pc.thigh].");
 		output("\n\nThe elevator dings, and the doors slide open. Victoria turns away from you and takes your arm again, and Betsy slides aside, rubbing her tits on you again as she holds onto your other arm. The three of you step into the hallway, you and Victoria both sporting obvious bulges.");
 		output("\n\nBetsy opens the door to their apartment, and you step inside, right into what looks like a porn shoot set inside a sex shop. Most of the place is taken up by their living room, which is decorated with porn star posters on the walls. One wall is nothing but a shelf displaying dildos of all colors, shapes, and sizes, organized from small to ridiculously huge, ranging from human and horse-shaped to shapes so bizarre you’re not sure what creature’s dick they’re supposed to look like, if anything.");
-		output("\n\nA 3d-holo system sits in one corner, surrounded by two couches and a chair, with a menu displayed that shows a long list of porn titles. There’s also some kind of recording device attached to it, and you wonder if they make their own porn as well. The small kitchen is littered with barbeque and pizza boxes, making it clear that neither of them cooks and why they both spend a lot of time at the gym.");
+		output("\n\nA 3D-holo system sits in one corner, surrounded by two couches and a chair, with a menu displayed that shows a long list of porn titles. There’s also some kind of recording device attached to it, and you wonder if they make their own porn as well. The small kitchen is littered with barbeque and pizza boxes, making it clear that neither of them cooks and why they both spend a lot of time at the gym.");
 		output("\n\nThe entire place smells like sex, like they’ve fucked on every available surface and against most if not all of the walls. It seems like whenever they move out, the apartment will have to be cleaned with some kind of nanotech to get their scents out of it.");
 		output("\n\n<i>“Home sweet home,”</i> Betsy says, giving your arm another boob-squeeze as she walks through the door. <i>“You like it, [pc.name]?”</i>");
 		output("\n\nBefore you can answer, Victoria plants her hand on your [pc.ass] again, and gives you a little bit of a push. <i>“[pc.HeShe] can check out our collection later,”</i> she says. <i>“Let’s show [pc.himHer] the swing.”</i>");
@@ -1676,7 +1683,7 @@ public function tentongymLolaSimoneHomeStart(kok:int=0):void
 	
 	output("\n\nSimone sticks her tongue all the way out, and Lola makes an <i>“oooo”</i> noise, then yelps as Simone slips the entire thing up and into Lola’s pussy. She presses her mouth to Lola’s muff, and Lola grabs the back of Simone’s head and pulls her even closer, her eyes shut tight, her breath coming in quick gasps. You reach over and squeeze Lola’s giant ass, urging her along as Simone’s oral work continues. Right as Lola looks like she’s about to come, Simone pulls back, and gives Lola a sly smile.");
 	output("\n\nSuch a tease. Simone leans back over to you, and");
-	if (useKok) output(" wraps her lips around your [pc.cockHead " + kok + "], then sucks her way down your [pc.cock " + kok + "], her tongue wrapping around your shaft as she goes. You can’t help groaning at her expert oral work, and with every suck and squeeze, you feel orgasm coming closer. She stops when she’s about halfway down, and bobs her head back and forth, her tongue wrapped around your head. Right as you feel an orgasm starting to build at your base, Simone pulls back, then turns to Lola again, a grin on her face.");
+	if (useKok) output(" wraps her lips around your [pc.cockHead " + kok + "], then sucks her way down your [pc.cock " + kok + "], her tongue wrapping around your shaft as she goes. You can’t help groaning at her expert oral work, and with every suck and squeeze, you feel your orgasm coming closer. She stops when she’s about halfway down, and bobs her head back and forth, her tongue wrapped around your head. Right as you feel an orgasm starting to build at your base, Simone pulls back, then turns to Lola again, a grin on her face.");
 	else output(" sticks her tongue all the way out again, right before sliding it into your [pc.vagina " + vag + "]. You groan at the feeling of her slipping into you, her long tongue bending back and forth, seeking out the places she knows will make you come. She pushes her lips against yours again, and presses the base of her tongue against the top of your [pc.vagina " + vag + "], letting her lips tease your [pc.clit " + vag + "]. Right as you feel an orgasm starting to build within you, Simone pulls back, then turns to Lola again, a grin on her face.");
 	
 	output("\n\nSimone can barely get her tongue in place before Lola takes hold of her head again and pulls her to her crotch. Lola moans and keeps moaning as Simone’s tongue does its work within her, and her wide hips buck, her thick thighs slapping against Simone’s cheeks. Simone reaches around and grabs Lola’s ass, squeezing it hard as her tongue keeps working away. After a moment, Lola’s hips stop thrusting, and she cries out, her whole body shaking. She goes limp all at once, and Simone helps her to the ground as she flops down, her eyes unfocused.");

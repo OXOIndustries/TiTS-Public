@@ -92,6 +92,8 @@ package classes.Items.Transformatives
 			{
 				output("\n\nYou reach up and scratch behind your ear, trying to satisfy a persistent itch. It won’t go away, and amidst your frustration you suddenly realize there’s a new sensation - your ears are changing! They contort and curve, a light covering of fuzzy fur growing across the back of them. When the transformation finishes, you have <b>lightly-furred deer ears!</b>");
 				target.earType = GLOBAL.TYPE_DEER;
+				target.clearEarFlags();
+				target.addEarFlag(GLOBAL.FLAG_FURRED);
 				target.earLength = 3;
 			}
 			else output("\n\n" + target.earTypeLockedMessage());

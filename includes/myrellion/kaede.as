@@ -339,7 +339,7 @@ public function kaedeMyrellionShadeAddition():void
 		
 		output("\n\n<i>“Entara,”</i> you correct. <i>“What’s this all about, Shade?”</i>");
 		
-		output("\n\nThe cat-woman grunts and rubs her temple. <i>“Doesn’t matter. Nevermind, kid.”</i>");
+		output("\n\nThe cat-woman grunts and rubs her temple. <i>“Doesn’t matter. Never mind, kid.”</i>");
 		
 		output("\n\nYou cross your arms. No way she’s just blowing you off after that... whatever that was. Shade sighs and leans back in her chair, arms crossing right back at you and hefting up the smooth swells of her ample bust. <i>“She reminded me of somebody. Somebody I care about a great deal.”</i>");
 		
@@ -401,7 +401,7 @@ public function kaedeMyrellionBarFlirt():void
 		
 		clearMenu();
 		addButton(0, "It’s Fine", kaedeMyrellionBarTheDIsFine, undefined, "It’s Fine", "Tell Kaede you’re fine with her and her dick.");
-		addButton(1, "Nevermind", kaedeMyrellionBarNoDPls, undefined, "Nevermind Then", "Thanks for the heads up. You’re not really into the D.")
+		addButton(1, "Never Mind", kaedeMyrellionBarNoDPls, undefined, "Never Mind Then", "Thanks for the heads up. You’re not really into the D.")
 	}
 }
 

@@ -156,6 +156,12 @@ public function korgiTranslateProgress():Number
 	return qualifyingEvents;
 }
 
+public function korgChiefBustString():String
+{
+	if(silly) return "KORG_CHIEF_SILLY";
+	else return "KORG_CHIEF";
+}
+
 //Meeting
 //Bonustext
 public function ulaBonus():void
@@ -1160,7 +1166,7 @@ public function firstTimeKorgHoldMeeting():void
 {
 	clearOutput();
 	showName("KORG\nMEETING");
-	showBust("KORG_CHIEFTAIN");
+	showBust(korgChiefBustString());
 	currentLocation = "KORGII R10";
 	generateMap();
 	output("The guards hustle you through winding tunnels and up a spiral staircase hewn from solid stone. In stark contrast to the frigid exterior, it’s nearly as warm as a sauna inside Korg’ii Hold. By the time you climb to the next level, you’re ");
@@ -2122,7 +2128,7 @@ public function centaurServiceForUla(x:int):void
 		sheetsoak = true;
 		pc.applyCumSoaked();
 		output(" High-pressure [pc.cumColor] cascades out around you before long. A creature Ula’s size simply isn’t made to contain the ludicrous amounts of semen a being like you can produce. ");
-		if(ulaPregBelly() < 1) output("Nevertheless, your body does its best to absolutely bathe her eggs in it, nevermind that most of it is left to impregnate her sheets.");
+		if(ulaPregBelly() < 1) output("Nevertheless, your body does its best to absolutely bathe her eggs in it, never mind that most of it is left to impregnate her sheets.");
 		else output("Nevertheless, your body its absolute best to ensure that the sheets are just as pregnant as the woman being fucked atop them.");
 	}
 	tryKnockUpUla();

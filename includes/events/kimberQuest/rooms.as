@@ -1,6 +1,6 @@
 public function initKimberRooms():void
 {
-    //rooms are named KIMBER{east}{north}
+	//rooms are named KIMBER{east}{north}
 	rooms["KIMBER10"] = new RoomClass(this);
 	rooms["KIMBER10"].roomName = "CAVE\nENTRANCE";
 	rooms["KIMBER10"].description = "The passage leading down into the cavern is covered with scratches, some barely the width of a hair, others large enough to use as handholds. Cracks run across the walls. A few stalactites hang down from a low ceiling, the stone rough and bumpy. The way into the cave is narrow, though it looks like it widens out to the north.";
@@ -27,7 +27,7 @@ public function initKimberRooms():void
 	
 	rooms["KIMBER01"] = new RoomClass(this);
 	rooms["KIMBER01"].roomName = "MINERAL\nPOOL";
-	rooms["KIMBER01"].description = "The sound of water rippling over rock echoes throughout the small cave chamber. A natural spring fills up half the room, bubbling up from among a small pile of stones to fill a low basin. A quick scan with your Codex shows that the water is safe to drink.\n\nScattered piles of broken eggshells lie scattered all around the basin; it looks like this is where the daer worm lays its young. The stone is also heavily scratched at the basin's edge, the marks small and shallow.\n\nThe only way out is back the way you came.";
+	rooms["KIMBER01"].description = "The sound of water rippling over rock echoes throughout the small cave chamber. A natural spring fills up half the room, bubbling up from among a small pile of stones to fill a low basin. A quick scan with your Codex shows that the water is safe to drink.\n\nScattered piles of broken eggshells lie scattered all around the basin; it looks like this is where the daer worm lays its young. The stone is also heavily scratched at the basin’s edge, the marks small and shallow.\n\nThe only way out is back the way you came.";
 	rooms["KIMBER01"].planet = "PLANET: TARKUS";
 	rooms["KIMBER01"].system = "SYSTEM: REDACTED";
 	rooms["KIMBER01"].eastExit = "KIMBER11";
@@ -63,7 +63,7 @@ public function initKimberRooms():void
 	
 	rooms["KIMBER23"] = new RoomClass(this);
 	rooms["KIMBER23"].roomName = "BONE\nCHAMBER";
-	rooms["KIMBER23"].description = "This small side chamber is filled with bodies in various states of decay, as well as at least a dozen skeletons picked clean. Most of the corpses are gabilani and raskvel, and all of them have clearly been here for a while, if the stench is any indication. It looks like the daer worm was keeping them here, though because it wanted the meat to rot or because it was just done eating, you're not certain.\n\nThe walls are riddled with cracks, but the only way out is back the way you came.";
+	rooms["KIMBER23"].description = "This small side chamber is filled with bodies in various states of decay, as well as at least a dozen skeletons picked clean. Most of the corpses are gabilani and raskvel, and all of them have clearly been here for a while, if the stench is any indication. It looks like the daer worm was keeping them here, though because it wanted the meat to rot or because it was just done eating, you’re not certain.\n\nThe walls are riddled with cracks, but the only way out is back the way you came.";
 	rooms["KIMBER23"].planet = "PLANET: TARKUS";
 	rooms["KIMBER23"].system = "SYSTEM: REDACTED";
 	rooms["KIMBER23"].southExit = "KIMBER22";

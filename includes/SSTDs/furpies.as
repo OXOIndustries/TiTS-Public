@@ -207,18 +207,27 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 				else textBuff += ParseText("Your [pc.ears] shudder and shift. For a moment, you go deaf. Sound returns after a few seconds as they continue changing shape, perching themselves atop your head and then stretching higher into teardrop-shaped, equine ears!");
 				textBuff += "<b> You now have horse ears.</b>";
 				pc.earType = GLOBAL.TYPE_EQUINE;
+				pc.clearEarFlags();
+				pc.addEarFlag(GLOBAL.FLAG_FURRED);
+				pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			}
 			//Furpies C
 			else if(targetType == GLOBAL.TYPE_FELINE)
 			{
 				textBuff += ParseText("All sound vanishes in an instant. You clap your hands to your [pc.ears], wondering if you’ve gone deaf, but they come up against nothing! Your ears have vanished! Just as you start considering learning a form of sign language or finding a back alley geneticist, the sounds you were hearing before come back with an oddly directional twist. You feel around the sides and top of your head to quickly find your new ears. They’re triangular and perched atop your head, swiveling this way and that to help you easily identify the source of any noise. <b>You’ve grown cat-like ears!</b>");
 				pc.earType = GLOBAL.TYPE_FELINE;
+				pc.clearEarFlags();
+				pc.addEarFlag(GLOBAL.FLAG_FURRED);
+				pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			}
 			//Furpies D
 			else
 			{
 				textBuff += ParseText("\n\nYour [pc.ears] begin to itch uncontrollably. You desperately try to scratch at them, but the itch spreads and grows... as do your ears! Your ears twist and morph, growing a thin layer of " + pc.furColor + " fur as they reshape into a pair of perky points, towering over your head. You experimentally move them, feeling them perk and flop at your command. And you can hear so much better than before, every slight creak and rustle around you is so clear now! <b>You now have canine-style ears, like some kind of dog or wolf!</b>");
 				pc.earType = GLOBAL.TYPE_CANINE;
+				pc.clearEarFlags();
+				pc.addEarFlag(GLOBAL.FLAG_FURRED);
+				pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			}
 		}
 	}
@@ -508,6 +517,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 				pc.tailType = GLOBAL.TYPE_EQUINE;
 				pc.clearTailFlags();
 				pc.addTailFlag(GLOBAL.FLAG_LONG);
+				pc.addTailFlag(GLOBAL.FLAG_FLOPPY);
 			}
 			//Doggo
 			else if(targetType == GLOBAL.TYPE_CANINE)

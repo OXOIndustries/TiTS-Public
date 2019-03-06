@@ -3,12 +3,10 @@
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
-	import classes.Items.Guns.*
 	import classes.Items.Melee.Rock;
 	import classes.Items.Protection.ImprovisedShield;
 	import classes.Items.Protection.HammerShield;
-	import classes.Items.Melee.RaskvelWrench;
-	import classes.Items.Miscellaneous.*
+	import classes.Items.Junk.SexbotChip;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -196,6 +194,7 @@
 				this.shield = new HammerShield();
 				this.shields(this.shieldsMax());
 			}
+			if(kGAMECLASS.flags["NYM-FOE_REPAIR_QUEST"] == 1 && rand(2) == 0) this.inventory.push(new SexbotChip());
 
 			//Male or female configuration
 			var manbot:Boolean = false;

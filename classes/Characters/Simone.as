@@ -13,7 +13,7 @@ package classes.Characters
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
-			this.short = "Lola";
+			this.short = "Simone";
 			this.originalRace = "human";
 			this.a = "";
 			this.capitalA = "";

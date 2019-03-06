@@ -88,6 +88,9 @@ package classes.Resources
 			public static const KiroDCLCummy:Class;
 			[Embed(source = "../../assets/images/imagepack/kiro/nazuu_kiro_milker_finish.jpg", mimeType = "image/jpg")]
 			public static const KiroMilkerNazuu:Class;
+			[Embed(source = "../../assets/images/imagepack/kiro/dsan_kiro_kally_questycommissioned.jpg", mimeType = "image/jpg")]
+			public static const KiroKallyTeamMilk:Class;
+			
 			
 			//KORG DOSED
 			[Embed(source = "../../assets/images/imagepack/korg_generic/korg_dosed.png", mimeType = "image/png")]
@@ -183,6 +186,8 @@ package classes.Resources
 			//ULA
 			[Embed(source = "../../assets/images/imagepack/ula/sukebepanda_korgonne_princess.png", mimeType = "image/png")]
 			public static const UlaDildo:Class;
+			[Embed(source = "../../assets/images/imagepack/ula/mrPink_adjColors_ula_war_alpha_sex.png", mimeType = "image/png")]
+			public static const UlaWarAlphaSex:Class;
 
 			//VERUSHA
 			[Embed(source = "../../assets/images/imagepack/verusha/DCLZexon_Verusha_HQ.png", mimeType = "image/png")]

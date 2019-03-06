@@ -40,7 +40,7 @@ public function encounterMiloTemptress():void
 	else
 	{
 		output("\n\nYour [pc.ears] twitch as you hear a voice off in the distance. It <i>could</i> be friendly, but at this point you know it’s better to be safe than sorry. The voice comes closer and closer as you duck behind a nearby wall. The melodic tone of another slave-catching Temptress is near enough to make the hairs on your neck stand. You try and sneak away before she realizes you’re there, only to jump when a small dart sticks itself in the ground in front of you.");
-		output("\n\n<i>“Going somewhere, darling? And here I had so many plans for you. Come, stay a while. I promise I’ll make you enjoy it!”</i> The Temptress cracks her whip and struts toward you. No choice now, you’ve got to put this seductive slut in her place!.");
+		output("\n\n<i>“Going somewhere, darling? And here I had so many plans for you. Come, stay a while. I promise I’ll make you enjoy it!”</i> The Temptress cracks her whip and struts toward you. No choice now, you’ve got to put this seductive slut in her place!");
 		startTemptressFight();
 	}
 	IncrementFlag("MET_MILO_TEMPTRESS");
@@ -67,6 +67,17 @@ public function defeatThisMiloSlut():void
 {
 	showMiloTemptress(true);
 	author("QuestyRobo");
+	
+	var tuuvaTag:Boolean = false;
+	if(flags["WARGII_TUUVA_SAVED"] != undefined)
+	{
+		var allies:Array = CombatManager.getFriendlyActors().slice(1);
+		for(var i:int = 0; i < allies.length; i++)
+		{
+			if(allies[i] is Tuuva) tuuvaTag = true;
+		}
+	}
+	
 	if(enemy.lust() >= enemy.lustMax())
 	{
 		output("The Temptress falls to the ground, too overcome with lust to keep fighting you. She paws at herself, clumsily trying to undo her zippers so she can receive <i>any</i> sort of stimulating contact. A sense of pride wells up inside you as you watch the once-domineering kitty-bitch completely lose herself to your display. She writhes on the ground, twisting and turning as she feels herself up all over.");
@@ -96,8 +107,10 @@ public function defeatThisMiloSlut():void
 			flags["MET_TUUVA"] = 1;
 		}
 		output("\n\nNow, what are you going to do with the Temptress?");
+		
+		tuuvaTag = true;
 	}
-	else if(9999 == 0) //Tuuva, repeat:
+	else if(tuuvaTag) //Tuuva, repeat:
 	{
 		output("\n\nTuuva glares at the defeated Temptress in equal parts rage and arousal. Even if it’s not the same one that caught her, she’s similar enough that it sets Tuuva off.");
 		output("\n\n<i>“");
@@ -117,7 +130,7 @@ public function defeatThisMiloSlut():void
 	else addDisabledButton(1,"PussyPound","Pussy Pound","You need a penis for this.");
 
 	//[Tuuva-Tag] Help Tuuva take revenge on the Temptress. /Available when Tuuva is present (first fight and if she shows up as a helper).
-	if(enemy.statusEffectv1("Has Captive") == 4)
+	if(tuuvaTag)
 	{
 		if((pc.hasCock() && pc.cockThatFits(capacity) >= 0) || pc.hasVagina()) addButton(2,"Tuuva3Some",tuuvaTagTeamScene,undefined,"Tuuva Tag-Team Threesome","Help Tuuva take revenge on the Temptress.");
 		else if(pc.hasCock()) addDisabledButton(2,"Tuuva3Some","Tuuva Tag-Team Threesome","You’re too big to fit this scene.");
@@ -433,7 +446,7 @@ public function sitOnTemptingKittyFace2():void
 			output("\n\nKneading her heavenly boobs you rise and fall, plunging balls deep into her throat and struggling not to unload. Your [pc.cockType " + dick + "] shaft has little difficulty conquering her clenching muscles and flattening out their decadent ridges.");
 			if(pc.balls > 0) output(" Her nose ends up buried in your ball" + (pc.balls > 1 ? "s":"") + "; the soft, vulnerable skin engraves your unique signature on her animal brain.");
 			//suulaOrAphroDick:
-			if(pc.cocks[x].cType == GLOBAL.TYPE_SUULA || pc.cocks[x].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) 
+			if(pc.cocks[dick].cType == GLOBAL.TYPE_SUULA || pc.cocks[dick].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) 
 			{
 				output(" The tendrils lining your alien mast ");
 				if(pc.hasVagina() && (pc.vaginas[0].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED) || pc.vaginas[0].type == GLOBAL.TYPE_SUULA)) output("further ");
@@ -536,7 +549,7 @@ public function sitOnTemptingKittyFace2():void
 			{
 				output("\n\n[pc.EachPussy] share in the tit-based climax, the clenching of your [pc.thighs] " + (!pc.isSquirter() ? "smearing the milo-slut’s face with [pc.girlCumNoun]":"splattering the milo-slut’s face with [pc.girlCumNoun] in long"));
 				if(pc.isSquirter()) output((pc.girlCumQ() < 10000 ? ", fragrant waves":", erotic missiles"));
-				output(". [pc.girlCumVisc], crystal-clear juices settle deep into her fur, sure to be an adequate reminder of her submission to a better [pc.master].");
+				output(". [pc.GirlCumVisc], crystal-clear juices settle deep into her fur, sure to be an adequate reminder of her submission to a better [pc.master].");
 			}
 		}
 		//hyperTitfucking
@@ -756,6 +769,7 @@ public function rescueTuuvaBlurb():void
 	output("\n\nYou too need to get moving. Sieges to stop, princesses to save, the usual.");
 	output("\n\n");
 	CombatManager.genericVictory();
+	tuuvaAffection(15);
 	flags["WARGII_TUUVA_SAVED"] = 1;
 	IncrementFlag("WARGII_FIGHTS_WON");
 }

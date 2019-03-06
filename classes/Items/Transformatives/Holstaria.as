@@ -111,13 +111,13 @@
 				{
 					for(i = 0; i < target.vaginas.length; i++)
 					{
-						if(target.vaginas[i].type != GLOBAL.TYPE_GABILANI || target.vaginas[i].vaginaColor != "black" || (!target.vaginas[i].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !target.vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED))) nonCowVaginas++;
+						if(target.vaginas[i].type != GLOBAL.TYPE_GABILANI || target.vaginas[i].vaginaColor != "black" || !target.hasPlumpPussy(i)) nonCowVaginas++;
 					}
 				}
 				if(nonCowVaginas > 0) tfList.push(15);
 				// PC’s vagina is pumped once:
 				// Pump vagina.
-				if(target.vaginas.length == 1 && target.vaginas[0].type == GLOBAL.TYPE_GABILANI && target.vaginas[0].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !target.vaginas[0].hasFlag(GLOBAL.FLAG_PUMPED)) tfList.push(16);
+				if(target.vaginas.length == 1 && target.vaginas[0].type == GLOBAL.TYPE_GABILANI && target.vaginas[0].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !target.vaginas[0].hasFlag(GLOBAL.FLAG_PUMPED) && !target.vaginas[0].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) tfList.push(16);
 				// PC has a cock:
 				// Shrink cock by 2-4 inches. Remove cock once below 3 inches, remove balls and grow one black pumped gabilani vagina if this leaves the PC with no genitals.
 				if(target.hasCock()) tfList.push(17);
@@ -327,6 +327,9 @@
 					output("\n\nYour ears migrate to the sides of your head and stretch like warm putty, molding into <b>a pair of floppy cow ears</b>. A thin layer of fur soon completes the look.");
 					
 					target.earType = GLOBAL.TYPE_BOVINE;
+					target.clearEarFlags();
+					target.addEarFlag(GLOBAL.FLAG_FLOPPY);
+					target.addEarFlag(GLOBAL.FLAG_FURRED);
 				}
 				else output("\n\n" + target.earTypeLockedMessage());
 				return;
@@ -457,6 +460,7 @@
 					{
 						output(" Including the disappearance of your [pc.sack]...");
 						target.removeBalls();
+						target.resetCumProduction();
 					}
 					
 					// New pussy:
@@ -558,13 +562,14 @@
 			// Increase tone towards 100:
 			if(select == 24) {
 				var newTone:Number = target.tone + (2 + rand(4));
+				if(newTone > 100) newTone = 100;
+				if(newTone < 0) newTone = 0;
 				if(target.toneUnlocked(newTone))
 				{
 					output("\n\n");
 					if(newTone < 50) output("A bit of your softness seems to melt under the heat, letting the muscles underneath show through more clearly.");
 					else output("Heat pools in your muscles, making them surge and sharpen with new definition. You’re looking more ripped by the second.");
 					
-					if(newTone > 100) newTone = 100;
 					target.tone = newTone;
 				}
 				else output("\n\n" + target.toneLockedMessage());
@@ -573,11 +578,12 @@
 			// Increase thickness towards 100:
 			if(select == 25) {
 				var newThickness:Number = target.thickness + (2 + rand(4));
+				if(newThickness > 100) newThickness = 100;
+				if(newThickness < 0) newThickness = 0;
 				if(target.thicknessUnlocked(newThickness))
 				{
 					output("\n\nYou feel the need to roll your shoulders as they broaden together with your midsection, making you wider and more heavyset.");
 					
-					if(newThickness > 100) newThickness = 100;
 					target.thickness = newThickness;
 				}
 				else output("\n\n" + target.thicknessLockedMessage());

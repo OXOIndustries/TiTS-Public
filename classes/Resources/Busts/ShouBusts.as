@@ -381,6 +381,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/kirila_nude.png", mimeType = "image/png")]
 		public var Bust_KIRILA_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/korg_chief.png", mimeType = "image/png")]
+		public var Bust_KORG_CHIEF:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/korg_chief_silly.png", mimeType = "image/png")]
+		public var Bust_KORG_CHIEF_SILLY:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/korgonne_female.png", mimeType = "image/png")]
 		public var Bust_KORGONNE_FEMALE:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/korgonne_female_nude.png", mimeType = "image/png")]
@@ -467,6 +472,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/midee.png", mimeType = "image/png")]
 		public var Bust_MIDEE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_infiltrator.png", mimeType = "image/png")]
+		public var Bust_MILO_INFILTRATOR:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_infiltrator_nude.png", mimeType = "image/png")]
+		public var Bust_MILO_INFILTRATOR_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_male.png", mimeType = "image/png")]
 		public var Bust_MILODANMALE:Class;
 		public var Bounds_MILODANMALE:Rectangle = new Rectangle(30, 0, 65, 62);
@@ -478,10 +488,7 @@
 		public function get Bounds_MILODANMALE_AXE():Rectangle { return Bounds_MILODANMALE; }
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_male_nude.png", mimeType = "image/png")]
 		public var Bust_MILODANMALE_NUDE:Class;
-		public function get Bounds_MILODANMALE_NUDE():Rectangle { return Bounds_MILODANMALE; }
-
-		public function get Bust_MILO_INFILTRATOR():Class { return Bust_MILODANMALE; }
-		public function get Bust_MILO_INFILTRATOR_NUDE():Class { return Bust_MILODANMALE_NUDE; }
+		public function get Bounds_MILODANMALE_NUDE():Rectangle { return Bounds_MILODANMALE; }		
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr_spores.png", mimeType = "image/png")]
 		public var Bust_MYR_INFECTED_FEMALE:Class;
@@ -1088,6 +1095,11 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kirila_nude.png", mimeType = "image/png")]
 			public var Full_KIRILA_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korg_chief.png", mimeType = "image/png")]
+			public var Full_KORG_CHIEF:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korg_chief_silly.png", mimeType = "image/png")]
+			public var Full_KORG_CHIEF_SILLY:Class;
+
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korgonne_female.png", mimeType = "image/png")]
 			public var Full_KORGONNE_FEMALE:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/korgonne_female_nude.png", mimeType = "image/png")]
@@ -1167,6 +1179,11 @@
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/midee.png", mimeType = "image/png")]
 			public var Full_MIDEE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/milodan_infiltrator.png", mimeType = "image/png")]
+			public var Full_MILO_INFILTRATOR:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/milodan_infiltrator_nude.png", mimeType = "image/png")]
+			public var Full_MILO_INFILTRATOR_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/milodan_male.png", mimeType = "image/png")]
 			public var Full_MILODANMALE:Class;

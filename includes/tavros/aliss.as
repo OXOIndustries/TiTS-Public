@@ -2024,7 +2024,8 @@ public function alissRepairTalk():void
 	author("Zeikfried");
 	output("You motion Aliss closer.");
 	output("\n\n<i>“Yeah?”</i> she asks, leaning in conspiratorially.");
-	if(pc.isBimbo()) output("\n\n<i>“Um, can you do repairs on a broken projector? It’s a little </i>too<i> fun,”</i> you whisper.");
+	output("\n\n");
+	if(pc.isBimbo()) output("<i>“Um, can you do repairs on a broken projector? It’s a little </i>too<i> fun,”</i> you whisper.");
 	else if(pc.isBro()) output("<i>“I fucked my hardlight up,”</i> you say frankly.");
 	else output("<i>“My hardlight projector is malfunctioning,”</i> you whisper.");
 

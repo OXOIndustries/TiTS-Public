@@ -17,8 +17,18 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/sheeppun/erra.png", mimeType = "image/png")]
 		public var Bust_ERRA:Class;
 
+		[Embed(source = "../../../assets/images/npcs/sheeppun/heidrun.png", mimeType = "image/png")]
+		public var Bust_HEIDRUN:Class;
+		[Embed(source = "../../../assets/images/npcs/sheeppun/heidrun_nude.png", mimeType = "image/png")]
+		public var Bust_HEIDRUN_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/sheeppun/kelly.png", mimeType = "image/png")]
 		public var Bust_KELLY:Class;
+
+		[Embed(source = "../../../assets/images/npcs/sheeppun/maja.png", mimeType = "image/png")]
+		public var Bust_MAJA:Class;
+		[Embed(source = "../../../assets/images/npcs/sheeppun/maja_nude.png", mimeType = "image/png")]
+		public var Bust_MAJA_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/sheeppun/naleen_female.png", mimeType = "image/png")]
 		public var Bust_NALEEN:Class;
@@ -45,8 +55,18 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/sheeppun/hr/erra.png", mimeType = "image/png")]
 			public var Full_ERRA:Class;
 
+			[Embed(source = "../../../assets/images/npcs/sheeppun/hr/heidrun.png", mimeType = "image/png")]
+			public var Full_HEIDRUN:Class;
+			[Embed(source = "../../../assets/images/npcs/sheeppun/hr/heidrun_nude.png", mimeType = "image/png")]
+			public var Full_HEIDRUN_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/sheeppun/hr/kelly.png", mimeType = "image/png")]
 			public var Full_KELLY:Class;
+
+			[Embed(source = "../../../assets/images/npcs/sheeppun/hr/maja.png", mimeType = "image/png")]
+			public var Full_MAJA:Class;
+			[Embed(source = "../../../assets/images/npcs/sheeppun/hr/maja_nude.png", mimeType = "image/png")]
+			public var Full_MAJA_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/sheeppun/hr/naleen_female.png", mimeType = "image/png")]
 			public var Full_NALEEN:Class;

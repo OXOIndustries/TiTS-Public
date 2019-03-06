@@ -1725,8 +1725,8 @@ public function korgiH14Bonus():void
 
 public function korgiF14Bonus():void
 {
-	if(korgiTranslate()) output("scribbles indecipherably beneath. The best approximation your translator can manage is “Warm Crusts.”");
-	else output("scrawls beneath, declaring this to be a clothing shop. The literal translation is “Warm Crusts.”");
+	if(korgiTranslate()) output(" Alien script scribbles indecipherably beneath. The best approximation your translator can manage is “Warm Crusts.”");
+	else output(" Alien script scrawls beneath, declaring this to be a clothing shop. The literal translation is “Warm Crusts.”");
 }
 
 public function chiefBedroomBonus():Boolean

@@ -395,7 +395,7 @@ public function callOlympia():void
 	output("\n\nOlympia draws a sharp breath, flitting her golden-hued eyes shut. You feel the doctor tense hard, bucking forward; it doesn’t take much sexual insight to realize that the gynoid has just hit her climax, and is enjoying every second of filling Teyaal’s bowels with synthetic seed.");
 	output("\n\nWhile she’s standing still, you take advantage and start " + (pc.hasCock() ? "pounding":"riding") + " the doctor’s face, abusing her lengthy tongue and sultry blue lips until you’re on the cusp of joining your sister-in-sadism. You grab Teyaal’s horns and pull her taut against you, holding her right where you want her until your body comes crashing over that peak and you’re riding her straight into " + (pc.hasGenitals() ? "a messy orgasm that leaves her face coated with slick streams of effluvia":"an anilingus-induced orgasm") + ". The doctor struggles one last time, and then goes limp as you finish using her. When you finally step back, her eyes are crossed and her thighs are coated with her own seed, milked out by her former slave’s buried bone. For her part, Olympia flashes you a coy grin and wraps a digit around Teyaal’s prominent nipple chain.");
 	output("\n\n<i>“I think I deserve a short break from my work. I’ll enjoy this for a few minutes more... don’t wait up, hmm?”</i>");
-	output("\n\nAye aye, ma’am. You gather up your discarded kit and wobble off, leaving Olympia to finish her skillful show of subjugating sodomy.");
+	output("\n\nAye aye, ma’am. You gather up your discarded kit and wobble off, leaving Olympia to finish her skillful show of subjugating sodomy.\n\n");
 	processTime(60);
 	pc.orgasm();
 	flags["OLYMPIA_SODOMIZED_TEYAAL"] = 1;

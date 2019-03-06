@@ -364,7 +364,7 @@ public function seraDebtCheck():Boolean
 		processTime(2);
 		clearMenu();
 		addButton(0, "Buy", buyItem);
-		addButton(14, "Nevermind", shop, shopkeep);
+		addButton(14, "Never Mind", shop, shopkeep);
 		return true;
 	}
 	return false;

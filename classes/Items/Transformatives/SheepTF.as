@@ -177,6 +177,8 @@ package classes.Items.Transformatives
 					{
 						output("\n\nYour ears twitch and tingle and you pull out your codex to check them out. Oh! Well that explains it - <b>you’ve got sheep ears now!</b>");
 						pc.earType = GLOBAL.TYPE_SHEEP;
+						pc.clearEarFlags();
+						pc.addEarFlag(GLOBAL.FLAG_FURRED);
 						changes++;
 					}
 					else output("\n\n" + pc.earTypeLockedMessage());

@@ -347,7 +347,7 @@ public function ciaranTalkJokes():void
 		case 1: output("Did you hear about the restaurant on the asteroid? Great food, no atmosphere."); break;
 		case 2: output("What do you call a fake noodle? An impasta."); break;
 		case 3: output("How many apples grow on a tree? All of them."); break;
-		case 4: output("Want to hear a joke about paper? Nevermind, it’s tearable."); break;
+		case 4: output("Want to hear a joke about paper? Never mind, it’s tearable."); break;
 		case 5: output("I just watched a program about beavers. It was the best dam program I’ve ever seen."); break;
 		case 6: output("Why did the coffee file a police report? It got mugged."); break;
 		case 7: output("How does a penguin build it’s house? Igloos it together."); break;
@@ -358,7 +358,7 @@ public function ciaranTalkJokes():void
 		case 12: output("Why don’t skeletons ever go trick or treating? Because they have no body to go with."); break;
 		case 13: output("What did the buffalo say to his son when he left for college? Bison!"); break;
 		case 14: output("What do you call an elephant that doesn’t matter? An irrelephant."); break;
-		case 15: output("Want to hear a joke about construction? Nevermind, I’m still working on it."); break;
+		case 15: output("Want to hear a joke about construction? Never mind, I’m still working on it."); break;
 		case 16: output("I bought a pair of shoes from a drug dealer once. I don’t know what she laced them with, but I was tripping all day."); break;
 		case 17: output("Why couldn’t the bicycle stand up by itself? It was two tired."); break;
 		case 18: output("What did the grape do when he got stepped on? He let out a little wine."); break;
@@ -463,7 +463,7 @@ public function ciaranTalkScritches():void
 		output("\n\nYou put on a face like butter wouldn’t melt in your mouth and innocently explain to the older ausar as you step behind his chair that you’d simply like to take a closer look at his old-fashioned hat.");
 		output("\n\nHe scoffs at your explanation. <i>“Yeah, you and every other tourist in this joint. Hell, if you want it so bad kid, how about you wear it for a bit? Maybe the tourists will think </i>you’re<i> the outlaw for once.”</i> With that he reaches up to doff his hat before passing it to you. ");
 		if (pc.tallness >= 8*12) output("It’s a little snug on your head, but that’s not what matters. ");
-		else if (pc.tallness >= 7*12) output("It’s an almost perfect fit for you" + (InCollection(pc.earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_VULPINE) ? "and it even has holes for your ears to fit through," : "") + " but that’s not what matters. ");
+		else if (pc.tallness >= 7*12) output("It’s an almost perfect fit for you" + (InCollection(pc.earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_VULPINE) ? " and it even has holes for your ears to fit through," : "") + " but that’s not what matters. ");
 		else if (pc.tallness >= 6*12) output("His hat’s just too big for your smaller head, slipping down over your eyes and blocking your vision, forcing you to wear it at a tilted angle. That’s not what matters though. ");
 		else output("His hat is comically large on you, making you look like a child wearing their father’s hat and forcing you to tilt it back at an extreme angle to hang off your brow, but that’s not what matters. ");
 		output("What matters is that the ausar has unwittingly cooperated with your plan. ");

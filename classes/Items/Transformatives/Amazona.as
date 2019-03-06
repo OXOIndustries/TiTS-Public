@@ -161,7 +161,7 @@
 			addButton(0, "Classic", futazonaUse, [target, "classic"]);
 			addButton(1, "Lite", futazonaUse, [target, "lite"]);
 			addButton(2, "Plus", futazonaUse, [target, "plus"]);
-			addButton(14, "Nevermind", futazonaCancel, target);
+			addButton(14, "Never Mind", futazonaCancel, target);
 			return;
 		}
 		public static function futazonaUse(arg:Array):void

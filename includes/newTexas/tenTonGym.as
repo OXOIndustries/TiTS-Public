@@ -497,7 +497,7 @@ public function annoWorkoutGimmeDatBootySweat():void
 		else output(" Your cock glides through her positively soaked love tunnel with practically no friction whatsoever."); 
 		pc.cockChange();
 		output("\n\nYou can feel Anno picking up the pace as you near your own climax. Slamming your hips together furiously, you simultaneously reach orgasm, cumming hard. You empty yourself into Anno like it’s your last chance at procreation"); 
-		if(pc.cumQ() >= 1000) output(" every shot filling her more excessively than the last"); 
+		if(pc.cumQ() >= 1000) output("; every shot filling her more excessively than the last"); 
 		output(".");
 		if(pc.virility() == 0)output(" Not that you could knock her up, lacking functional sperm.");
 		else output(" You wonder when Anno last took sterilex, not that knowing the answer would make any difference now.");
@@ -873,8 +873,8 @@ public function takeAShowerSloot():void
 	if (flags["TTGYM_BETSY_VICTORIA_HOME"] != undefined && flags["TTGYM_BETSY_VICTORIA_NEVER"] != 1 && rand(2) == 0)
 	{
 		tentongymShowBetsyVictoria(true);
-		output("\n\nThe hot water washes away your sweat and soreness, and it's a significant improvement over your shipboard shower unit; the improved water pressure alone has you wanting to stay in for longer than necessary. But all good things must end.");
-		output("\n\nRight as you're about to turn the shower off and head out, you hear a familiar voice, and look up to see Betsy and Victoria walking toward you, each with one hand resting on the others' ass.");
+		output("\n\nThe hot water washes away your sweat and soreness, and it’s a significant improvement over your shipboard shower unit; the improved water pressure alone has you wanting to stay in for longer than necessary. But all good things must end.");
+		output("\n\nRight as you’re about to turn the shower off and head out, you hear a familiar voice, and look up to see Betsy and Victoria walking toward you, each with one hand resting on the others’ ass.");
 		clearMenu();
 		addButton(0,"Next",showerWithBetsyAndVictoriaApproach);
 		return;	
@@ -1500,11 +1500,6 @@ public function simoneWorkoutResults(response:String = ""):void
 	showBust("SIMONE_HALF_NUDE");
 	clearMenu();
 	
-	// Create Simone
-	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
-	if(!pp.hasVagina()) pp.createVagina();
-	pp.vaginas[0].wetnessRaw = 4;
-	
 	var x:int = 0;
 	
 	switch(response)
@@ -1731,8 +1726,9 @@ public function simoneWorkoutResults(response:String = ""):void
 			output("\n\nSimone saunters out of the weight room, leaving you lying there with a sticky face and a sore tongue.");
 			
 			processTime(20);
-			pc.loadInMouth(pp);
-			pc.loadInMouth(pp);
+			
+			pc.girlCumInMouth(chars["SIMONE"]);
+			pc.girlCumInMouth(chars["SIMONE"]);
 			pc.exhibitionism(2);
 			pc.lust(30+rand(10));
 			pc.applyPussyDrenched();
@@ -2024,19 +2020,6 @@ public function showerWithBetsyAndVictoriaScene(response:String = ""):void
 	
 	var x:int = -1;
 	
-	// Create Betsy
-	var ppBetsy:PregnancyPlaceholder = new PregnancyPlaceholder();
-	ppBetsy.ass.wetnessRaw = 5;
-	ppBetsy.elasticity = 1.5;
-	
-	// Create Victoria
-	var ppVictoria:PregnancyPlaceholder = new PregnancyPlaceholder();
-	if(!ppVictoria.hasCock()) ppVictoria.createCock();
-	ppVictoria.shiftCock(0, GLOBAL.TYPE_EQUINE);
-	ppVictoria.cocks[0].cLengthRaw = 12;
-	ppBetsy.ass.wetnessRaw = 3;
-	ppBetsy.elasticity = 1.15;
-	
 	switch(response)
 	{
 		// Betsy Sandwich
@@ -2110,7 +2093,7 @@ public function showerWithBetsyAndVictoriaScene(response:String = ""):void
 				
 				output("\n\nIt’s quite the squeeze, and you feel every one of Victoria’s slow thrusts pushing back against you. You time your own thrusts to oppose hers, and Betsy lets out a cry with every one, her head lolling back against your shoulder, her breath coming in gasps. Her rear passage clenches around your [pc.cockNoun " + x + "] every time Victoria thrusts, then relaxes to let you push in farther, as the three of you find the rhythm you need.");
 				// If PC has large cock:
-				if(pc.cockVolume(x) >= ppBetsy.analCapacity()) output("\n\n<i>“Oh, fu–uck,”</i> Betsy gasps. <i>“That didn’t – </i>ooh!<i> – feel so big in my mouth...”</i>");
+				if(pc.cockVolume(x) >= chars["BETSY"].analCapacity()) output("\n\n<i>“Oh, fu–uck,”</i> Betsy gasps. <i>“That didn’t – </i>ooh!<i> – feel so big in my mouth...”</i>");
 				output("\n\nOnce you’re hilted in Betsy’s ass, you start thrusting faster, harder, hammering your [pc.crotch] at the cowgirl’s jiggly rear. Victoria picks up on your motion and pumps faster herself, a wet squelching sound rising over the sound of the showers and the onlookers as she pounds her horsecock into her girlfriend, giving Betsy as much as she can take.");
 				output("\n\nBetsy’s breath comes faster and faster, and soon you and Victoria are thrusting at the same time, filling both of her holes just like she wanted. Her gasps become higher and higher pitched, and she tenses against your [pc.chest] and moans again, her ass clenching hard around your cock.");
 				output("\n\nYou feel your orgasm building, and fight it down. Amazing as Betsy’s ass might be, there’s no way you’re going to come first here. You can hold out until–");
@@ -2200,7 +2183,7 @@ public function showerWithBetsyAndVictoriaScene(response:String = ""):void
 				
 				output("\n\nVictoria tenses, and let out a quivering moan.");
 				// If PC has large cock:
-				if(pc.cockVolume(x) >= ppVictoria.analCapacity()) output(" Her voice catches, and she gasps out, <i>“That’s – aah! I didn’t realize you were that big, [pc.name]...”</i>");
+				if(pc.cockVolume(x) >= chars["VICTORIA"].analCapacity()) output(" Her voice catches, and she gasps out, <i>“That’s – aah! I didn’t realize you were that big, [pc.name]...”</i>");
 				output(" And then, Betsy slides Victoria’s horsecock between her fat tits, and starts to suck on her head again.");
 				output("\n\nYou start with gentle thrusts, making sure you don’t shake Victoria’s cock out of where Betsy has it. Then again, you see as you look down, Betsy has Victoria’s dong firmly trapped between her boobs, and her lips wrapped around the flat head, so it doesn’t look like that dick is going anywhere.");
 				output("\n\nVictoria cries out again, her hips shaking, the dual treatment clearly more than she can take for long. You slide your hands along her sides, stroking over her tight abs up to her firm, pert boobs, and stroke your fingers over her dark nipples.");
@@ -2262,7 +2245,7 @@ public function showerWithBetsyAndVictoriaScene(response:String = ""):void
 				output("\n\nAfter a few more thrusts, Betsy reaches down and takes hold of your [pc.ass] in both hands, then opens her legs from where they were wrapped around you. <i>“Come and get [pc.himHer], Vicky!”</i>");
 				output("\n\nSomething hot and slick prods against your [pc.asshole], and you freeze in your thrusting as Victoria’s flat horsecock head pushes into you. Behind you, Victoria lets out a low moan, and keeps pushing, her foot-long dong sliding all the way up your ass.");
 				
-				pc.buttChange(ppVictoria.cockVolume(0));
+				pc.buttChange(chars["VICTORIA"].cockVolume(0));
 				
 				output("\n\nUnable to help yourself, you cry out as Victoria’s hips press against your [pc.ass], the feeling of penetrating and being penetrated nearly enough to drive you over the edge. You shove forward harder into Betsy, making her gasp again, and Victoria steps forward too, making sure her cock stays fully buried in you.");
 				output("\n\nThen, once the two cowgirls have you held tight between them, they start to thrust at the same time, grinding themselves against you. Betsy’s tits squish hard against your [pc.chest], her nipples pressing into your [pc.skinFurScales]. Victoria’s firm boobs press into your back as well, her nipples likewise hard against you.");
@@ -2301,7 +2284,7 @@ public function showerWithBetsyAndVictoriaScene(response:String = ""):void
 				output("\n\n<i>“Damn ready,”</i> Victoria says, giving her hard dick a light slap. <i>“Slide on down, [pc.name].”</i>");
 				output("\n\nYou step over and present your [pc.ass] to Victoria. She plants one hand on your [pc.hip] and, a moment later, you feel her flat cockhead pressing against your ass, gently seeking entry. You shift to align it with your [pc.asshole], and slowly press back against it.");
 				
-				pc.buttChange(ppVictoria.cockVolume(0));
+				pc.buttChange(chars["VICTORIA"].cockVolume(0));
 				
 				output("\n\nVictoria lets out a low grunt as her horsedong’s head slips into your asshole, and you gasp at the penetration. She takes hold of your other hip and slowly guides you down onto her, her cock sliding into you inch by inch, hot and stiff and utterly filling your rear entry. Your breath hitches somewhere around eight inches in, and Victoria eases you toward her, holding on as you take a step back and take all of her up your ass.");
 				output("\n\nYour [pc.ass] bumps against Victoria’s hips, and she shifts her hands to take hold of your own hips from the front, gently thrusting herself against you. She presses her chest against your back, her firm tits rubbing against your [pc.skinFurScales]. The feeling of her cock buried up your ass makes you cry out, and she laughs quietly behind you.");
@@ -2310,7 +2293,7 @@ public function showerWithBetsyAndVictoriaScene(response:String = ""):void
 				output("\n\nBetsy stands and turns and presses her jiggly ass against your dong, taking its slick length between her cheeks and giving it a little squeeze. Then, she hoists her butt up and spreads her cheeks wide, and starts to lean back.");
 				output("\n\nYou only have a second to align your [pc.cockHead " + x + "] with her asshole before Betsy pops it into her. You and her both gasp, and she turns it into a moan as she slides down your shaft, her tight passage squeezing you hard the whole way, until her ass bounces against your hips, your [pc.cockNoun " + x + "] fully buried up in her.");
 				// If PC has large cock:
-				if(pc.cockVolume(x) >= ppBetsy.analCapacity()) output(" Betsy breathes hard as she settles against you, her asshole stretching around your member. She gasps, <i>“So... much... cock...”</i>");
+				if(pc.cockVolume(x) >= chars["BETSY"].analCapacity()) output(" Betsy breathes hard as she settles against you, her asshole stretching around your member. She gasps, <i>“So... much... cock...”</i>");
 				
 				pc.cockChange();
 				
@@ -2331,7 +2314,7 @@ public function showerWithBetsyAndVictoriaScene(response:String = ""):void
 				output("\n\nYou laugh, and tell the girls you’d definitely be up for this another time. Though it seems like all three of you will need a little time to recover.");
 			}
 			
-			pc.loadInAss(ppVictoria);
+			pc.loadInAss(chars["VICTORIA"]);
 			break;
 	}
 	

@@ -1650,7 +1650,7 @@ public function zilVillageOutskirts():void
 	else output("\n\nFrom their doorways and platforms the zil watch you with frank but amicable curiosity. No longer a war camp, the infirm and the young have moved back in, lending the village a friendlier, fuller vibe, and there’s a mild buzz of activity and hubbub around you.");
 	output("\n\nAhead the river deviates to the west, thanks to a steep promontory of rock. A wooden ramp leads up it, surrounded by zil wax-homes. To the south the river runs its course to the cliff edge.");
 	if(flags["PQ_SECURED_LAH"] == 1 && !pc.hasKeyItem("RK Lah - Captured")) {
-		output("The two male zil wordlessly hustle RK Lah over to you as you step down the ramp, his thin wrists bound. Time to take the defeated ausar back to the Plantation, you guess.");
+		output("\n\nThe two male zil wordlessly hustle RK Lah over to you as you step down the ramp, his thin wrists bound. Time to take the defeated ausar back to the Plantation, you guess.");
 		//“RK Lah” appears in Key Items if PC picks him up either here or through the violent resolution
 		output("\n\n(<b>Key Item Gained:</b> RK Lah - Captured)");
 		pc.createKeyItem("RK Lah - Captured");

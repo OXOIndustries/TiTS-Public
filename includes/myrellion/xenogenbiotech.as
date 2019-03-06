@@ -300,7 +300,7 @@ public function myrellionNevrieDiscount():void
 		// [Blow Her] [Nevermind]
 		clearMenu();
 		addButton(0, "Blow Her", myrellionNevrieBlowjerb);
-		addButton(1, "Nevermind", myrellionNevrieMenu, myrellionNevrieDiscount);
+		addButton(1, "Never Mind", myrellionNevrieMenu, myrellionNevrieDiscount);
 	}
 	else
 	{
@@ -312,7 +312,7 @@ public function myrellionNevrieDiscount():void
 
 		clearMenu();
 		addButton(0, "Blow Her", myrellionNevrieBlowjerb);
-		addButton(1, "Nevermind", myrellionNevrieMenu, myrellionNevrieDiscount);
+		addButton(1, "Never Mind", myrellionNevrieMenu, myrellionNevrieDiscount);
 	}
 }
 

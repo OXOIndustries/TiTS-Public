@@ -308,12 +308,15 @@ public function genitalRemovalShit():void
 		if(pc.credits >= 10000) addButton(5,"Vagina R.",lashTreatment,"vagina replacement","Vaginal Replacement","10,000 credits. Replaces a single vagina with safe, non-sexualized tissue.");
 		else addDisabledButton(5,"Vagina R.","Vagina Replacement","You cannot afford this treatment.");
 	}
+	
 	if((pc.biggestTitSize() >= 1 || pc.bRows()))
 	{
-		if(pc.credits >= 7500) addButton(6,"‘Rack’ R.",lashTreatment,"rack removal","‘Rack’ Removal","7,500 credits. Reduces mammary tissue to acceptable biological minimums.");
+		if(pc.hasSilicone("tits")) addDisabledButton(6,"‘Rack’ R.","‘Rack’ Removal","Doctor Lash isn’t willing to operate on your breasts if silicone is in them.");
+		else if(pc.credits >= 7500) addButton(6,"‘Rack’ R.",lashTreatment,"rack removal","‘Rack’ Removal","7,500 credits. Reduces mammary tissue to acceptable biological minimums.");
 		else addDisabledButton(6,"‘Rack’ R.","‘Rack’ Removal","You cannot afford this treatment.");
 	}
 	else addDisabledButton(6,"‘Rack’ R.","‘Rack’ Removal","You need a rack to remove in order to get this operation.");
+	
 	addButton(14,"Back",walkUpToDocLashAgain);
 }
 
@@ -683,7 +686,7 @@ public function flirtWithDrLash():void
 	processTime(1);
 	clearMenu();
 	addButton(0,"Keep Flirtin’",keepFlirtingWithLash);
-	addButton(1,"Nevermind",walkUpToDocLashAgain);
+	addButton(1,"Never Mind",walkUpToDocLashAgain);
 }
 
 //Keep Flirting

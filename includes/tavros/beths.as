@@ -459,6 +459,7 @@ public function fuckVaandesPuss():void
 {
 	clearOutput();
 	showVaande(true);
+	showBust("VAANDE_FEMALE_NUDE");
 	author("Zeikfried");
 	output("Vaande looks delighted when you tell her that you want to use your " + vaandeCockChoice() + ". <i>“Oh, that sounds simply lovely,”</i> she sighs. <i>“Won’t you ");
 	if(!pc.isNude()) output("undress yourself and then ");
@@ -2001,7 +2002,7 @@ public function brothelTrappifyVerify(response:String = "intro"):void
 			
 			clearMenu();
 			addButton(0, "Proceed", brothelTrappifyVerify, "proceed", "Continue Anyway...", "Damn the consequences!");
-			addButton(14, "Nevermind", brothelTrappifyVerify, "nevermind", "Nevermind...", "Maybe you should change before returning.");
+			addButton(14, "Never Mind", brothelTrappifyVerify, "nevermind", "Never Mind...", "Maybe you should change before returning.");
 			break;
 		case "nevermind":
 			output("You decide it might be best to avoid the complication entirely. Besides, you can probably return when you are the proper sex and gender and she will be none the wiser...");

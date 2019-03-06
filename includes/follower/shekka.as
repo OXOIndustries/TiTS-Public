@@ -3870,7 +3870,7 @@ public function shekkaButtfucksYou():void
 	output("\n\n<i>“Here, [pc.name],”</i> Shekka says, taking her cock in hand and running her palm up the underside. <i>“Why don’tcha lube me up a little with those lips of yours? Go on...”</i> she murmurs, smiling like an imp as she beckons you forward." + (pc.tallness > 60 ? " <i>“Bend over and kiss the tip.”</i>":" <i>“Give the tip a kiss.”</i>"));
 
 	if(pc.isBimbo()) output("\n\n<i>“Ohmigosh, yes,”</i> you moan, almost drooling at the sight. <i>“Let me kiss that beautiful cock...”</i>");
-	else output("<i>“Sure,”</i> you reply quietly, eyeing the hefty tip with a faint grin. <i>“It does look good...”</i>");
+	else output("\n\n<i>“Sure,”</i> you reply quietly, eyeing the hefty tip with a faint grin. <i>“It does look good...”</i>");
 
 	if(pc.tallness > 80) output("\n\nYou squat down and spread your [pc.thighs], showing off your [pc.groin] to the grinning raskvel futanari.");
 	else if(pc.tallness >= 60) output("\n\nYou bend at the waist, " + (pc.hasHair() && pc.hairLength > 10 ? "scooping your [pc.hair] back to keep it out of the way":"watching the equine dick fill your vision") + ".");

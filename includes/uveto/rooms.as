@@ -2921,7 +2921,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII F14"] = new RoomClass(this);
 	rooms["KORGII F14"].roomName = "SOUTH\nTUNNEL";
-	rooms["KORGII F14"].description = "Balmy warmth carries you along through the tunnels of Korg’ii hold. This one stretches straight to the east and west, terminated by sharp turns to the north at each end. Directly north of you is a double door, the seam split across a carving of a gilded coat. Alien script ";
+	rooms["KORGII F14"].description = "Balmy warmth carries you along through the tunnels of Korg’ii hold. This one stretches straight to the east and west, terminated by sharp turns to the north at each end. Directly north of you is a double door, the seam split across a carving of a gilded coat.";
 	rooms["KORGII F14"].planet = "PLANET: UVETO VII";
 	rooms["KORGII F14"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII F14"].moveMinutes = 2;

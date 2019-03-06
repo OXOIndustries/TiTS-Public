@@ -126,14 +126,14 @@ package classes.Characters
 				else output("Its jaws snap shut around your [pc.leg], leaving deep wounds. The wormling lets go and pulls back after a second, ready for another attack. ");
 				outputDamage(damage);
 			}
-			else output("You duck to one side, and the wormling's jaws snap shut on empty air.");
+			else output("You duck to one side, and the wormling’s jaws snap shut on empty air.");
 		}
 		
 		private function burrow(target:Creature, rounds:int):void
 		{
 			if (!hasStatusEffect("Burrowed"))
 			{
-				output("The wormling scrabbles at the cave floor with its dozens of claws, digging into the ground. After a few seconds, it's dug beneath the ground, leaving behind a pile of dirt. You can't tell where it's gone.");
+				output("The wormling scrabbles at the cave floor with its dozens of claws, digging into the ground. After a few seconds, it’s dug beneath the ground, leaving behind a pile of dirt. You can’t tell where it’s gone.");
 				auxRes = baseHPResistances;
 				baseHPResistances = buryRes;
 				CombatAttacks.applyBurrow(this);
@@ -153,15 +153,14 @@ package classes.Characters
 					if (target.shields() > 0) output("Its jaws snap against your shield, and it tumbles away, then rights itself and faces you again. ");
 					else
 					{
-						output("Its teeth dig deep into your [pc.feet], and you stumble back. The wormling lets go, but the damage is done, and you know <b>it'll be harder to run away now.</b> ");
+						output("Its teeth dig deep into your [pc.feet], and you stumble back. The wormling lets go, but the damage is done, and you know <b>it’ll be harder to run away now.</b> ");
 						CombatAttacks.applyHobble(target);
 					}
 					outputDamage(damage);
 				}
-				else output("You leap out of the way, and the wormling's jaws snap at where your [pc.feet] used to be, closing with a clacking sound.");
+				else output("You leap out of the way, and the wormling’s jaws snap at where your [pc.feet] used to be, closing with a clacking sound.");
 			}
 		
 		}
 	}
 }
-    

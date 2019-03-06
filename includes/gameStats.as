@@ -573,6 +573,7 @@ public function statisticsScreen(showID:String = "All"):void
 			if(pc.eggCount() > 0) output2("\n<b>* Fertility, Ovipositor Eggs, Total:</b> " + pc.eggCount());
 			if(pc.eggCount(-1) > 0) output2("\n<b>* Fertility, Ovipositor Eggs, Unfertilized, Total:</b> " + pc.eggCount(-1));
 			if(pc.eggCount(1) > 0) output2("\n<b>* Fertility, Ovipositor Eggs, Fertilized, Total:</b> " + pc.eggCount(1));
+			if(pc.hasStatusEffect("Nyrea Eggs")) output2("\n<b>* Fertility, Nyrean Eggs, Quantity Modifier:</b> " + Math.round(pc.statusEffectv2("Nyrea Eggs")*1000)/10 + " %");
 			if(pc.statusEffectv1("Nyrea Eggs") > 0) output2("\n<b>* Fertility, Nyrean Eggs, Total:</b> " + pc.statusEffectv1("Nyrea Eggs"));
 		}
 		
@@ -1106,6 +1107,7 @@ public function statisticsScreen(showID:String = "All"):void
 		var totalOffspring:Number = (StatTracking.getStat("pregnancy/total births") + StatTracking.getStat("pregnancy/total sired"));
 		var totalProduce:Number = 0;
 		totalProduce += StatTracking.getStat("pregnancy/ovilium eggs laid");
+		totalProduce += StatTracking.getStat("pregnancy/siegwulfe eggs laid");
 		totalProduce += StatTracking.getStat("pregnancy/egg trainer eggs laid");
 		totalProduce += StatTracking.getStat("pregnancy/unfertilized venus pitcher seeds");
 		if((totalOffspring + totalProduce) > 0)
@@ -1286,6 +1288,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Ovalasting Eggs, Total:</b> " + StatTracking.getStat("pregnancy/ovalasting eggs laid"));
 				if(StatTracking.getStat("pregnancy/ovilium eggs laid") > 0)
 					output2("\n<b>* Births, Ovilium Eggs, Total:</b> " + StatTracking.getStat("pregnancy/ovilium eggs laid"));
+				if(StatTracking.getStat("pregnancy/siegwulfe eggs laid") > 0)
+					output2("\n<b>* Births, [wulfe.name] Eggs, Total: " + StatTracking.getStat("pregnancy/siegwulfe eggs laid"));
 				if(StatTracking.getStat("pregnancy/egg trainer eggs laid") > 0)
 					output2("\n<b>* Births, TamaniCorp Egg Trainer Eggs, Total:</b> " + StatTracking.getStat("pregnancy/egg trainer eggs laid"));
 				if(StatTracking.getStat("pregnancy/unfertilized venus pitcher seeds") > 0)
@@ -3049,13 +3053,16 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				if(flags["NYM-FOE"] != undefined) output2("\n<b>* Nym-Foe:</b> Met her");
 				if(flags["NYM-FOE"] >= 2) output2(", Defeated Her");
+				if(flags["NYM-FOE_DISASSEMBLED"] != undefined) output2(", Disassembled her");
+				if(flags["NYM-FOE_FIXED"] != undefined) output2(", Fixed her");
+				if(flags["NYM-FOE_ACTIVATED"] != undefined) output2(", On patrol");
 				if(flags["NYM-FOE_FUCKED"] != undefined) output2("\n<b>* Nym-Foe, Times Sexed Her:</b> " + flags["NYM-FOE_FUCKED"]);
 				if(flags["NYM-FOE_LOSSES"] != undefined) output2("\n<b>* Nym-Foe, Times Lost to Her:</b> " + flags["NYM-FOE_LOSSES"]);
-				if(flags["NYM-FOE_CHIP_RETURN"] != undefined || pc.hasItemByClass(DamagedVIChip))
+				if(flags["NYM-FOE_CHIP_RETURN"] != undefined || pc.hasItemByClass(DamagedVIChip) || flags["NYM-FOE_LOOT_CHIP"] != undefined)
 				{
 					output2("\n<b>* Damaged V.I. Chip:</b> Looted");
-					if(flags["NYM-FOE_CHIP_RETURN"] == undefined) output2(", In possession");
-					else output2(", Given to JoyCo, Rewarded");
+					if(flags["NYM-FOE_CHIP_RETURN"] != undefined) output2(", Given to JoyCo, Rewarded");
+					else if(pc.hasItemByClass(DamagedVIChip)) output2(", In possession");
 				}
 				if(flags["DOLLMAKER_STATUS"] != undefined)
 				{
@@ -3069,17 +3076,48 @@ public function displayQuestLog(showID:String = "All"):void
 						default: output2(" Seen it"); break;
 					}
 				}
-				if(flags["IQBGONE_POLICED"] != undefined || pc.hasItemByClass(IQBGone))
+				if(flags["IQBGONE_POLICED"] != undefined || pc.hasItemByClass(IQBGone) || flags["DOLLMAKER_LOOT_IQBGONE"] != undefined)
 				{
 					output2("\n<b>* IQ B-Gone:</b> Looted");
-					if(flags["IQBGONE_POLICED"] == undefined) output2(", In possession");
-					else
+					if(flags["IQBGONE_POLICED"] != undefined)
 					{
 						output2(", Given to U.G.C.");
 						if(flags["IQBGONE_POLICED"] >= 2) output2(", Rewarded");
 					}
+					else if(pc.hasItemByClass(IQBGone)) output2(", In possession");
 				}
 				
+				sideCount++;
+			}
+			// Nym-Foe Repair
+			if(flags["NYM-FOE_REPAIR_QUEST"] != undefined)
+			{
+				output2("\n<b><u>Fixing the Nym-Foe</u></b>");
+				output2("\n<b>* Status:</b>");
+				switch(flags["NYM-FOE_REPAIR_QUEST"])
+				{
+					case -1:
+					case -2:
+					case -3:
+						output2(" Accepted, Doctor Badger created VI chip");
+						if(flags["NYM-FOE_REPAIR_QUEST"] == -3) output2(", Returned chip to JoyCo");
+						else if(flags["NYM-FOE_REPAIR_QUEST"] == -1) output2(", Sold chip");
+						else output2(", Lost chip");
+						output2(", Failed");
+						break;
+					case 1:
+						output2(" Accepted");
+						if(pc.numberOfItemByClass(SexbotChip) < 6) output2(", <i>Retrieve sexbot VI chips...</i>");
+						else output2(", Sexbot chips retrieved, <i>Return to Doctor Badger!</i>");
+						output2("\n<b>* Inventory, Sexbot VI Chips:</b> " + pc.numberOfItemByClass(SexbotChip) + " / 6");
+						break;
+					case 2:
+						output2(" Accepted, Doctor Badger created VI chip");
+						if(pc.hasItemByClass(DamagedVIChip)) output2(", <i>Insert chip into Nym-Foe!</i>");
+						break;
+					case 3: output2(" Accepted, Doctor Badger created VI chip, Fixed Nym-Foe, Completed"); break;
+					default: output2(" <i>Unknown</i>"); break;
+				}
 				sideCount++;
 			}
 			// Deck 13
@@ -3171,6 +3209,19 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				sideCount++;
 			}
+			// Kimber Quest
+			if(flags["KIMBER_QUEST"] != undefined || flags["KIMBER_OFFER"] != undefined)
+			{
+				output2("\n<b><u>Kimber’s Expedition</u></b>");
+				output2("\n<b>* Status:</b> Offered");
+				if(flags["KIMBER_QUEST"] == -1) output2(", Tarkus destroyed, Unable to start");
+				if(flags["KIMBER_QUEST"] == 0) output2(", Accepted, <i>Find daer worm!</i>");
+				if(flags["KIMBER_QUEST"] == 1) output2(", Accepted, Found and defeated daer worm, <i>Return to Kimber!</i>");
+				if(flags["KIMBER_QUEST"] >= 2) output2(", Accepted, Found and defeated daer worm, Reported to Kimber");
+				if(flags["KIMBER_QUEST"] >= 3) output2(", Completed");
+				if(flags["KIMBER_QUEST"] >= 4) output2("\n<b>* Gabilani Panties:</b> Taken");
+				sideCount++;
+			}
 			// Lane's Illegal Activity
 			if(flags["MET_LANE"] != undefined)
 			{
@@ -3220,7 +3271,7 @@ public function displayQuestLog(showID:String = "All"):void
 							if(pc.hasStatusEffect("Shekka_Cure_CD")) output2(", Funded, <i>Creating cure...</i>");
 							else output2(", Funded, Cure ready, <i>Give Shekka a visit!</i>");
 						}
-						if(flags["SHEKKA_ISSUES"] >= 7) output2("Funded, Cure obtained, Completed");
+						if(flags["SHEKKA_ISSUES"] >= 7) output2(", Funded, Cure obtained, Completed");
 						if(flags["SHEKKA_PROJECT_FUNDED"] != undefined) output2("\n<b>* Research Phase:</b> " + flags["SHEKKA_PROJECT_FUNDED"]);
 						if(flags["SHEKKA_ISSUES"] < 5)
 						{
@@ -3913,6 +3964,11 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["WARGII_NENNE_SAVED"] != undefined) output2("\n<b>* Nenne:</b> Saved Her");
 					if(flags["WARGII_LUND_SAVED"] != undefined) output2("\n<b>* " + (flags["MET_LUND"] == undefined ? "Male Korgonne" : "Lund") + ":</b> Saved Him");
 					if(flags["WARGII_TUUVA_SAVED"] != undefined) output2("\n<b>* " + (flags["MET_TUUVA"] == undefined ? "Korgonne Blacksmith" : "Tuuva") + ":</b> Saved Her");
+					if(flags["WARGII_MAJA_SAVED"] != undefined)
+					{
+						output2("\n<b>* " + (flags["MET_MAJA"] == undefined ? "Korgonne Beast Tamer" : "Maja") + ":</b> Saved Her");
+						if(flags["WARGII_MAJA_SAVED"] >= 2) output2(", Saved her animals");
+					}
 				}
 				else output2("<i>Talk to Ula!</i>");
 				sideCount++;
@@ -5912,7 +5968,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// The Mess!
-			if(flags["SHEKKA_TALKED_THE_MESS"] != undefined || metBeth() || flags["MET_DEL"] != undefined || flags["EDAN_MET"] != undefined || flags["TESSA_MET"] != undefined || flags["MET_VERUSHA"] != undefined || flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined)
+			if(flags["SHEKKA_TALKED_THE_MESS"] != undefined || metBeth() || flags["MET_DEL"] != undefined || flags["EDAN_MET"] != undefined || flags["TESSA_MET"] != undefined || flags["MET_VERUSHA"] != undefined || flags["MET_ZEA"] != undefined || flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined)
 			{
 				output2("\n<b><u>The Mess</u></b>");
 				// Rumors
@@ -5982,6 +6038,11 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["VERUSHA_GROPED"] != undefined) output2(", Groped her");
 					if(flags["SEXED_VERUSHA"] != undefined) output2("\n<b>* Verusha, Times Sexed:</b> " + flags["SEXED_VERUSHA"]);
 					if(flags["VERUSHA_ORALED"] != undefined) output2("\n<b>* Verusha, Times You Sucked Her Cock:</b> " + flags["VERUSHA_ORALED"]);
+				}
+				// Tessa
+				if(flags["MET_ZEA"] != undefined)
+				{
+					output2("\n<b>* Zea:</b> Met her");
 				}
 				// Unknown waitress
 				if(flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined) output2("\n<b>* Waitress:</b> Ordered food from her, Food never received");
@@ -8332,6 +8393,23 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["KATTOM_LOCATION"] != undefined && rooms[flags["KATTOM_LOCATION"]].hasFlag(GLOBAL.HAZARD)) output2("\n<b>* " + kattomName + ", Last Known Location:</b> " + getPlanetName(flags["KATTOM_LOCATION"]) + " for " + prettifyMinutes(GetGameTimestamp() - flags["KATTOM_MOVE_CD"]));
 			roamCount++;
 		}
+		// Kimber
+		if(flags["MET_KIMBER"] != undefined)
+		{
+			output2("\n<b>* Kimber:</b> Met her");
+			if(flags["KIMBER_FLIRTED_WITH"] != undefined) output2(", Flirted with her");
+			if(flags["KIMBER_REJECTED_PARASITE"] != undefined) output2(", She rejected your parasites");
+			var kimberItems:Array = [];
+			if(flags["KIMBER_UTHRA_GIVEN"] != undefined) kimberItems.push("Uthra Sap");
+			if(flags["KIMBER_CANDY_GIVEN"] != undefined) kimberItems.push("Nyrean Candy");
+			if(flags["KIMBER_RUSKVEL_GIVEN"] != undefined) kimberItems.push("Ruskvel");
+			if(flags["KIMBER_SKY_GIVEN"] != undefined) kimberItems.push("SkySap");
+			if(flags["KIMBER_RATION_GIVEN"] != undefined) kimberItems.push("Zil Ration");
+			if(kimberItems.length > 0) output2("\n<b>* Kimber, Items Given:</b> " + CompressToList(kimberItems, false));
+			if(flags["KIMBER_SEXED"] > 0) output2("\n<b>* Kimber, Times Sexed:</b> " + flags["KIMBER_SEXED"]);
+			if(flags["KIMBER_ON_TOP"] == 1) output2(", She topped you");
+			roamCount++;
+		}
 		// Kirobutts!
 		if(flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && flags["KIRO_BAR_MET"] != undefined)
 		{
@@ -8431,6 +8509,9 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["MITZI_CUNTLICKED_PC"] != undefined) output2("\n<b>* Mitzi, Times She Licked Your Vagina:</b> " + flags["MITZI_CUNTLICKED_PC"]);
 			if(flags["MITZI_TITFUCKED"] != undefined) output2("\n<b>* Mitzi, Times Slowly Tit-Fucked Her:</b> " + flags["MITZI_TITFUCKED"]);
 			if(flags["MITZI_CUNTNOSIS"] != undefined) output2("\n<b>* Mitzi, Times Sexed with Cuntnosis:</b> " + flags["MITZI_CUNTNOSIS"]);
+			if(flags["MITZI_CELISE_TENTAFUCK"] != undefined) output2("\n<b>* Mitzi, Times Had Tentacle Sex with Celise:</b> " + flags["MITZI_CELISE_TENTAFUCK"]);
+			if(flags["MITZI_CELISE_TENTAFUCK2"] != undefined) output2("\n<b>* Mitzi, Times Had Tentacle Sex with Celise and Reaha:</b> " + flags["MITZI_CELISE_TENTAFUCK2"]);
+			if(flags["MITZI_SERA_TENTASOME"] != undefined) output2("\n<b>* Mitzi, Times Had Tentacle Sex with Celise, Reaha and Sera:</b> " + flags["MITZI_SERA_TENTASOME"]);
 			roamCount++;
 		}
 		// BisonButts
@@ -8843,15 +8924,22 @@ public function displayEncounterLog(showID:String = "All"):void
 				else output2(" " + flags["WULFE_PURCHASED"] + " times");
 				if(hasSiegwulfe())
 				{
-					if(chars["WULFE"].isBimbo()) output2(", Tease drone");
+					if(siegwulfeIsDom()) output2(", Your mistress");
+					else if(chars["WULFE"].isBimbo()) output2(", Tease drone");
 					else output2(", Combat drone");
 					output2(", Crew member");
 					if(hasSiegwulfeOnSelf()) output2(" (Following you)" + (pc.accessory is SiegwulfeItem ? ", Active" : ", Idle"));
 					else output2(" (Onboard Ship)");
+					if(chars["WULFE"].isEggWulfe()) output2(", Ovilium Upgrade Installed");
 				}
+				if(siegwulfeIsDom()) output2("\n<b>* Reaper Armaments, Siegwulfe, Current Lust:</b> " + wulfe.lust());
 				if(flags["WULFE_SEXED_SUCK"] != undefined) output2("\n<b>* Reaper Armaments, Siegwulfe, Times She Sucked Your Dick:</b> " + flags["WULFE_SEXED_SUCK"]);
 				if(flags["WULFE_SEXED_ORAL"] != undefined) output2("\n<b>* Reaper Armaments, Siegwulfe, Times She Gave You Oral:</b> " + flags["WULFE_SEXED_ORAL"]);
 				if(flags["WULFE_SEXED_FUCK"] != undefined) output2("\n<b>* Reaper Armaments, Siegwulfe, Times Fucked Her Vagina:</b> " + flags["WULFE_SEXED_FUCK"]);
+				if(flags["WULFE_SEXED_VAG"] != undefined) output2("\n<b>* Reaper Armaments, Siegwulfe, Times Fucked Your Vagina:</b> " + flags["WULFE_SEXED_VAG"]);
+				if(flags["WULFE_SEXED_ANAL"] != undefined) output2("\n<b>* Reaper Armaments, Siegwulfe, Times Fucked Your Ass:</b> " + flags["WULFE_SEXED_ANAL"]);
+				if(flags["WULFE_REQUESTED_ORAL"] != undefined) output2("\n<b>* Reaper Armaments, Siegwulfe, Times Swapped Oral:</b> " + flags["WULFE_REQUESTED_ORAL"]);
+				if(flags["WULFE_REQUESTED_COCK"] != undefined) output2("\n<b>* Reaper Armaments, Siegwulfe, Times Let You Fuck Her Vagina:</b> " + flags["WULFE_REQUESTED_COCK"]);
 			}
 			// SukMastr 2000
 			if(flags["SUKMASTRED"] != undefined) output2("\n<b>* SukMastr 2000, Times Used:</b> " + flags["SUKMASTRED"]);

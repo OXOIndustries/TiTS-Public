@@ -1260,7 +1260,7 @@ public function gooArmorCrewOption(arg:Array):void
 				if(varmintIsTame() && hasVarmintBuddy() && InRoomWithFlag(GLOBAL.OUTDOOR)) chats.push(msg);
 				
 				msg = " some wierd crime statistics.";
-				msg += "\n\n<i>“...really? I didn’t know you could go to jail for that!”</i> she comments. <i>“Well what if--”</i> [goo.name] quickly realizes where she is. <i>“Uh, nevermind!”</i>";
+				msg += "\n\n<i>“...really? I didn’t know you could go to jail for that!”</i> she comments. <i>“Well what if--”</i> [goo.name] quickly realizes where she is. <i>“Uh, never mind!”</i>";
 				msg += "\n\nYou poke fun at her concern and before you continue to expand on the details, she insists on changing the subject when she spots what could be a patrolling prison guard. What a silly girl!";
 				if(getPlanetName() == "Gastigoth Station" && !InShipInterior()) chats.push(msg);
 				

@@ -15,7 +15,7 @@ public function canadiaGloryhole():Boolean
 	gloryholeGenerate();
 
 	//Empty.
-	if(pc.statusEffectv1("Gloryhole Shift Activated") == 0) 
+	if(pc.statusEffectv1("Gloryhole Shift Activated") == 0 || (pc.statusEffectv1("Gloryhole Shift Activated") >= 5 && pc.statusEffectv1("Gloryhole Shift Activated") <= 6)) 
 	{
 		output("\n\nNobody is working the gloryholes right now. You could climb in and man them yourself, if you wanted.");
 		addButton(0,"Work Hole",workTheGloryhole,undefined,"Work Hole","Climb into the gloryhole yourself, and suck some dick.");
@@ -23,8 +23,17 @@ public function canadiaGloryhole():Boolean
 	//Staffed!
 	else
 	{
+		//Tentacle Fun
+		//tentacle-tongue beej - get sucked off while foot-long tongue jerks off, lots of suction and sloppy messy drooliness.
+		if(pc.statusEffectv1("Gloryhole Shift Activated") == 4)
+		{
+			showName("\nGLORYHOLE");
+			author("SKoW");
+			output("\n\nYou call out into the quiet stall, waiting for an answer. It’s not quite an expected answer; perhaps it’s racist to say but the voice is very... alien. There’s an almost hypnotic, sybiliant hiss followed by a whispery giggle. <i>“Ah... my next visitor. I am glad I brought a drink in with me, a little pallette cleanser.”</i>\n\nOkay, a little bit creepy. Do you stick your dick in?");
+			processTime(1);
+		}
 		//Deertaur/Catgrill normal Beej
-		if(pc.statusEffectv1("Gloryhole Shift Activated") <= 2)
+		else if(pc.statusEffectv1("Gloryhole Shift Activated") <= 3)
 		{
 			output("\n\nThe stall full of gloryholes is presently occupied.");
 			if(pc.hasCock()) output(" Now would be the perfect time to stick your dick through an adjacent slot and get an anonymous blowjob.");
@@ -56,7 +65,7 @@ public function gloryholeGenerate():void
 	//2 - kittykat
 	if(!pc.hasStatusEffect("Gloryhole Shift Activated"))
 	{
-		pc.createStatusEffect("Gloryhole Shift Activated",rand(3),0,0,0,true,"INVISIBLE","",false,(60+rand(120)),0xB793C4);
+		pc.createStatusEffect("Gloryhole Shift Activated",rand(7),0,0,0,true,"INVISIBLE","",false,(60+rand(120)),0xB793C4);
 	}
 	//v2 stores if PC cumblasted the stall. 1 = yes.
 }
@@ -100,8 +109,17 @@ public function stickDickThroughGloryhole(arg:int):void
 		else addButton(0,"Next",mainGameMenu);
 		return;
 	}
-	//Centaur/Kaithrit blowie.
-	if(pc.statusEffectv1("Gloryhole Shift Activated") <= 2)
+	else if(pc.statusEffectv1("Gloryhole Shift Activated") == 3)
+	{
+		usingTheHoleBySkowzers(arg);
+		return;
+	}
+	else if(pc.statusEffectv1("Gloryhole Shift Activated") == 4)
+	{
+		yesSpookydicksucksAreHabbening(arg);
+		return;
+	}
+	else if(pc.statusEffectv1("Gloryhole Shift Activated") <= 2)
 	{
 		output("You thrust yourself through the hole. ");
 		if(fatFlare(arg)) output("The flare catches briefly on the meager entrance, but a little pressure makes it bow back, then pop through a second before it gets painful. You might have to wait a bit after you cum before you can get out... ");
@@ -523,6 +541,17 @@ public function gloryholeWait():void
 		addButton(0,"Wait More",gloryholeWait);
 		addButton(14,"Leave",mainGameMenu);
 	}
+	//SKoW Stuff :3
+	else if(rand(4) == 0) 
+	{	
+		processTime(rand(35)+1);
+		latexBeejhole();
+	}
+	else if(rand(3) == 0)
+	{
+		processTime(rand(35)+1);
+		pupperBeejBySKowzers();
+	}
 	//Space trucker
 	else if(rand(2) == 0)
 	{
@@ -879,6 +908,179 @@ public function blowAThrobUser(user:int):void
 	IncrementFlag("GLORYHOLE_THROBBS");
 	pc.setStatusValue("Gloryhole Shift Activated",2,0);
 	pc.setStatusTooltip("Gloryhole Shift Activated", pp.fluidColorSimple(pp.cumType));
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//SKoW's GLORIOUS HOLE
+//Staffing the hole
+//Pupper Beej
+public function pupperBeejBySKowzers():void
+{
+	clearOutput();
+	author("SKoW");
+	showName("\nGLORYHOLE");
+	output("A loud crack of the bathroom door being slammed open nearly makes you jump out of your seat; your wait at the hole seems to be temporarily over. You can practically hear the sway to their step as they approach before there’s a surprisingly polite knock on the wall. Up close it’s possible to smell Kally’s special brew wafting off of the new arrival, it looks like now would be the time to say hello or stay quiet.");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Suck",pupperSuckBeej,undefined,"Suck","Open wide!");
+	addButton(1,"Hide",nahNoDoggoDick,undefined,"Hide","Not this time, drunko.");
+	//[Succ] //Open wide! [Hide] //Not this time, drunko.
+}
+
+//[Succ]
+//Open wide!
+public function pupperSuckBeej():void
+{
+	clearOutput();
+	author("SKoW");
+	showName("\nGLORYHOLE");
+	output("What the hell else are you here for? You call out to them and get comfortable, waiting for the inevitable. <i>“Hey great! Do you know how fucking wild this stuff drivesh you? I could nut to the photo of an open purshe right about now!”</i> Their voice is a combination of feminine and husky (and drunk), painting the mental image of the giant plush-fluffy pups from Uveto. Or perhaps some other kind of lusty lady of amazonian figure.");
+	output("\n\nIt looks like your first guess was right on the money though; a peek through the hole reveals a some thick thighs and a skirt being flipped up to reveal about eight inches of puppy-prick already oozing a thick bead of pre-cum. Hanging around your anonymous partner’s fluffy knees are some already-stained cute pink panties, and you can just about spot the side-to-side wag of a tail just barely out of sight. <i>“Alright! Here she comesh!”</i> There’s a moment’s pause followed by a chuckle, <i>“Literally!”</i>");
+	output("\n\nYou have to lean back to avoid getting a cock in the eye, but at last you’re treated to the sight of a delightfully thick dick. It’s already the deep red of someone aching with need, and the knot at its base is already starting to swell and engorge. It jumps in your grasp when you give it a stroke, not stopping until you’ve squeezed enough musky husky pre to coat her bone with. Just those few moments of jerking have her knot so swollen that a wicked realization comes to mind...");
+	output("\n\n<i>She’s trapped</i>. More important than that; this girl’s desperate to cum already. Instead of give her exactly what she wants though, you start to tease her tapered tip. Watery ivory dribbles freely down her length before dripping to the floor in a quickly growing puddle, and the only contact your mouth makes is to plant small kisses along the length. <i>“H-hey, come on...”</i> She moans, humping against the stall wall hard enough to make it rattle. <i>“O-oh! I’m shtuck... I see. You-you’re a mean one.”</i> There might have been more accusation in her statement if not for the fact it ends in a hiccup-burp combo. As it is, you have this musky husky right where you want her.");
+	output("\n\nA few kisses is all it takes to bring your [pc.lips] to a perfect shine, and you’re sure to stroke and rub her every few moments. Not too hard of course, just enough to ensure that her member doesn’t flag. It’s unlikely your partner’s going to pull out, but it wouldn’t do to let the poor thing nut soft. Her low moans and drunken murmuring is music to your ears as you repeatedly swap between teasing kisses and polishing her pole, playing the perilous game of keeping her edged.");
+	output("\n\nAfter a while you get used to the sounds she makes; they pick up just when she’s on the verge, and settle down to a whimpering moan when the waves recede. Similarly even despite the slim size of her cumslit it’s starting to look wide enough to sink your tongue into. By now she’s panting for breath and slapping her palm on the door, letting out helpless whines as she once again comes close to completion. You wrap both [pc.hands] around her knot, stroking and rubbing the practically-aching flesh. Oh the other side of the wall she all but babbles and begs you to let her cum, and at last you open wide.");
+	output("\n\nShe yelps in surprise at your hot breath washing over her cock, before finally going quiet. It’s rather a shame that her begging comes to a close, but considering the fact that you can see her knot visibly pulse in time with her heartbeat it’s time to set her free. You moan and groan as deeply in the back of your throat as you can while swallowing her length, forced to stretch as you reach her girthier base. You don’t stop until your pre-coated lips are smashed up against her glistening knot, " + (!pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE) ? "all but wrapping your tongue":"coiling your prehensile tongue") + " around her shaft.");
+	output("\n\n<i>That</i> gets a proper scream out of her. She starts slamming her body against the wall so hard you’re afraid that something’s going to break, and there’s one last almighty pulse against your tongue to herald her final screaming orgasm. You back up the moment the first rope of cum goes blasting down the back of your throat, sucking with concave cheeks so that you pull free with a loud pop. It turns her thick ropes into a messy spray of ivory that cascades down around you, painting your [pc.face] and [pc.fullChest] ivory.");
+	output("\n\nThe musky futa husky comes hard for a seriously long time, not stopping until you’re literally dripping with seed and the last few spurts lack the power to do much more than dribble back down her length and onto her knot.");
+	output("\n\nThis presents a fresh issue for her, while you’re busy with all-but-bathing in the musky-sweet mixture of male and female hormones dripping into your " + (pc.biggestTitSize() >= 1 ? "cleavage and ":"") + "lap. She’s still completely locked there even after finishing.");
+	output("\n\n<i>“Uh... fuck.”</i> She eventually mumbles, gasping for breath. <i>“Thought I wash gonna pass the fuck out just then.”</i> It’s a good thing she didn’t; collapsing with all your weight when you’re knotted in the wall is probably a bad time. <i>“I think I’m gonna be shtuck here awhile h–”</i>");
+	output("\n\nYour anonymous puppy partner’s cut off by the sound of the bathroom door slamming open again, followed by a stop of confusion. <i>“Ah fuck.”</i> Says a fresh, growly voice alive with the typical New Texan drawl. <i>“Tha’s just not fair lil’ lady. How’s a fella supposed t’get his dick suck with you all in the way there?”</i>");
+	output("\n\n<i>“Tell you what, handshome. This hole may be closed for bushinesh, but I hear a new one just opened up!”</i>");
+	output("\n\nYou should probably leave, it looks like the stall’s going to be occupied for a while. Even <i>if</i> it’s tempting to sit around and listen to a futa get railed to some massive bull, the chances of them getting caught and told off for making a mess are a lot higher.");
+	output("\n\nWhen you exit it’s finally possible to see the two of them; at least eight foot of horned (horny) bull boy and a not-much-shorter huskar woman with curves you could get lost in. She looks in your direction but the man behind her places a hand over her eyes. <i>“Now, now missy! Y’not supposed t’know what the pretty filly or fella on the other side’s s’posed t’look like!”</i> He gives you a wink before leaning into one of her ears, letting you leave with a dripping trail behind you. <i>“I bet I can make an even bigger mess.”</i> Are the last words you hear before closing the door behind you.");
+	//Become cum-covered, become aroused, trigger kui-tan balls
+	processTime(10);
+	pc.lust(10);
+	pc.applyCumSoaked();
+	IncrementFlag("GLORYHOLE_SERVER");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+
+//[Hide]
+//Not this time, drunko.
+public function nahNoDoggoDick():void
+{
+	clearOutput();
+	showName("\nGLORYHOLE");
+	author("SKoW");
+	output("You’re not so convinced you want to get particularly intimate with someone who’s probably too drunk to stand up. When you remain silent on your end of the hole there’s a long pause, followed by a sigh before they step (or more likely stumble) away.");
+	//[Next] //Return to waiting!
+	addButton(0,"Wait",gloryholeWait);
+	addButton(14,"Leave",mainGameMenu);
+}
+
+//Latex Beej
+//by skowzers
+public function latexBeejhole():void
+{
+	clearOutput();
+	showName("\nGLORYHOLE");
+	author("SKoW");
+	output("After waiting, your [pc.ears] are feeling alert for any potential sound on the other side of the glory hole wall. Even if they weren’t you’d be able to recognize the sound that plays out after the door comes open; it’s that silky-soft squeek of thick latex-covered thighs rubbing gently together. A peek under the gloryhall wall shows a thick fur coat dropping to the ground, and the limits of some exceptionally-skinny high-heels.");
+	output("\n\n<i>“Why hello there~? Any sweet young thing waiting on the other side want to suck a pre-wrapped treat?”</i> Comes a voice more suited to the belle of the ball than a shrink-wrapped lady looking for a bit of wall-strange.");
+	//[Succ] //Hey, not like latex tastes that bad. [Stay Quiet] //Meh, it’s not for you.
+	processTime(2);
+	clearMenu();
+	addButton(0,"Suck",suckThatLatexProngodong,undefined,"Suck","Hey, not like latex tastes that bad.");
+	addButton(1,"Stay Quiet",stayQuietForLatexBeejAvoid,undefined,"Stay Quiet","Meh, it’s not for you.");
+}
+
+//[Succ]
+//Hey, not like latex tastes that bad.
+public function suckThatLatexProngodong():void
+{
+	clearOutput();
+	showName("\nGLORYHOLE");
+	author("SKoW");
+	output("With a grin you take your position, making sure to rattle the wall a little to make yourself known. <i>“Oh aint’cha you just the best? I tell you sweet-thing, an evening drinking that cutie patootie behind the bar’s special-somethin’? I’m fit t’burst!”</i> She crams her cock through the hole in the wall so fast she almost takes your eye out. <i>“And I do so love to make a mess in this~”</i>");
+	output("\n\nYou’re treated to a glistening black prick perfectly encased in black synthetic. It forms such a tight layer it’s possible to make out the thick veins that travel through the otherwise (surprisingly, besides the footlong size) human-looking member. Strangely enough it seems to keep the heat in, as your [pc.hands] soon find when you give her mass an experimental squeeze. <i>“Oooh, aint it pretty? I bet it’ll look even prettier with a spitshine there sweetie-pie!”</i> She insists, twitching in your grip.");
+	output("\n\nShe’s not wrong either. You noisily spit onto the latex length, giving her a swift jerk that has it reflecting the pale light of the stall. The mushroom-head of her cock is a broad thing, but not so much that you can’t " + (!pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED) ? "wrap your mouth fully around it":"draw it completely into your muzzle") + " and start to suck and tongue. <i>“O-oh! That’s a lovely lil’ kisser you have! Don’t f’get to work the base, I get eeeever-so-sensitive there!”</i>");
+	output("\n\n" + (pc.isBimbo() ? "Please, this is hardly your first dick-sucking rodeo. ":"") + "There’s enough of her that you’ve got to make sure she’s properly coated before you can start jerking her off further down, and it takes a few moments to gather up that much saliva. Once you <i>do</i> manage however it’s more like you’ve started fisting her judging by the way she squeals for you. The base of her cock really is something intensely sensitive, and you can actually feel the definition in her latex-wrapped cockhead start to fail as the tip begins to fill with pre. You come away with a loud lurid <i>’pop’</i>, twisting your hand around your base until she’s gasping and singing your praises. There’s some discoloration at the head of her prick where deep white seed has turned black latex the slightest bit grey.");
+	output("\n\nKeep this up though and you could make some serious balloons.");
+	output("\n\nConsidering her cock’s more sensitive a lot further down – odd, now that you think about it – you might as well get properly introduced to it. Making sure to swallow a few times, you wrap her cock up once more. This time instead of suckle on the head you press further forward, furiously jerking her off as you take more and more of her down. Her moans transform, following a rising crescendo of gasps until you come to a brief pause. The broad head of her cock presses at the limits of your throat, and every time you swallow it seems to get even thicker.");
+	output("\n\nFighting against the urge to back up however, you push yourself in even deeper, finally letting go of her cock in order to slap both your palms against the wall. This time you don’t stop until you’re noisily gurgling on the prick aimed down into your stomach while your lips grind and grip on that overly-sensitive base. <i>“O-oh sweetie I’m about fit t’burst...”</i> She moans in response, throbbing in your maw while you do your valiant best to fuck your throat onto her. You only suck harder and faster, bobbing back and forth until you’re sure your throat’s stretching around her. It’s definitely getting harder to gulp down ear with a gobful of shiny latex.");
+	output("\n\nThankfully she cums before you start risking blacking out... which presents a brand new issue.");
+	output("\n\nThe latex doesn’t break.");
+	output("\n\nShe gasps and cries out, fucking the hole in the wall (and your face by extension) as she lets go and cums. Where her cum-vein has your tongue mashed to the floor of your mouth it’s possible to feel each rope pass through her, and more importantly you can feel a swollen core of heat in your stomach grow.");
+	output("\n\nAnd grow.");
+	output("\n\nWhen you finally start trying to drag yourself off of her you’re tempted to try and rip the stretch material so that she can dump her load in you. It’s hard to say what it’s actually made of, but the girl plowing your maw full is simply giggling and humping as you attempt to get free. Finally you manage, flopping backwards and gasping for breath. A great big grey/white balloon of roiling spunk falls out and drops onto your chest, just daring you to pop it and send the whole lot exploding over you. Sadly you’re too busy catching your breath, flushed with the effort as she starts feeding the spit-coated cum-balloon back out through the hole.");
+	output("\n\n<i>“Oh you are just the sweetest thing! I didn’t expect you to swallow the whole lot!”</i> She giggles and wiggles, before there’s an audible <i>’snap’</i> accompanied by sloshing. <i>“Oooh, I can feel it in my suit sugar-dumplin’! Just movin’ all around. Mnf. Puts a shiver in me right down t’the toes. And look! All the fun, no mess.”</i>");
+	output("\n\nWell, that’s a somewhat fair point. Just about every visitor is expecting to paint you from head-to-toe or fill you up until you’re practically pregnant. Still, you could do without the choking hazard.");
+	processTime(15);
+	pc.lust(10);
+	IncrementFlag("GLORYHOLE_SERVER");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Stay Quiet]
+//Meh, it’s not for you.
+public function stayQuietForLatexBeejAvoid():void
+{
+	clearOutput();
+	showName("\nGLORYHOLE");
+	author("SKoW");
+	output("You stay quiet, waiting for the uncomfortable silence to clear. After a while there’s a soft tongue-clicking, before the coat is picked up again. Once more there’s the subtle squeak of latex and the click-clack of high-heels as she exits the room, leaving you in silence once more.");
+	addButton(0,"Wait",gloryholeWait);
+	addButton(14,"Leave",mainGameMenu);
+}
+
+//Using the hole
+//The Switcharoo
+public function usingTheHoleBySkowzers(x:int):void
+{
+	clearOutput();
+	author("SKoW");
+	showName("\nGLORYHOLE");
+	output("You saunter up to the stall wall, before knocking and waiting. There’s barely a moment between your introduction and a bubbly voice responds. <i>“Oh yay! I was worried I’d have to wait for aaages... Come on! Show me what you’ve got!”</i>");
+	output("\n\nWell, she’s an eager one at least. You shrug" + (!pc.isCrotchExposed() ? " and strip yourself gradually out of your coverings":"") + ", listening for any sounds on the other side of the wall as you gradually render yourself nude. When you press your cock through the wall it’s answered by a satisfied squeak. <i>“Oh look at that! It’s perfect. I could just eat you all up...”</i> Then her bubbly voice dips a register, and you can all but hear the woman on the other side licking her lips. <i>“But I’ve got a much better idea...”</i>");
+	output("\n\nAnd then she backs into you. At least, you can only assume she’s backing into you; the heat that suddenly washes over the head of your [pc.cockType " + x + "] cock certainly comes from no mouth you’ve ever felt. And when the first inch of your prick is all but sucked up your assumptions turn to certainty. It’s not a quick penetration, and you’re left to nothing but imagination and the sounds of your anonymous lover moaning. She’s ridiculously wet; it feels like each inch you drive into her is actually pushing juices out of her. You can hear moisture drip to the floor by the time she finally bottoms out. With the barrier of a wall behind you it’s hard to tell, but you can just about hear her ass bouncing against the wall before she goes still.");
+	pc.cockChange();
+	output("\n\n<i>“I know the servicer’s meant to do all the work, but whaddaya think? I’ll leave myself riiight here and you just rut this wall like a beast!”</i> She gasps and rolls her hips, squeezing you with the muscles buried right down in her depths until she’s practically slavering and gnawing at your cock. She may want you to pull out and start fucking, but her body wants to keep you buried in her. Each time your heart beats and your blood pumps she seems to squeak and whimper, before there are a few more humps against your drenched bone.");
+	output("\n\nTaking the hint, you get to work. It’s difficult to find anything similar to a rhythm, and there’s nothing to grab onto. The comfiest position is to plant your palms on the wall and simply thrust your hips back-and-forth on the spot. She begins to cry out now, staying still as promised while you rapidly hammer yourself into her willing twat.");
+	output("\n\nThen rather suddenly you’re left wanting. You pull out to the sound of yet more juices splattering to the ground, and a muffled moan of ecstasy. But when you thrust again there’s nothing but empty air. <i>“H-hold on a sec, sorry. Phew. Should’ve warned you...”</i>");
+	output("\n\n<i>“I didn’t expect to cum so soon!”</i> She explains, and you can hear a little fabric-rustling. <i>“But don’t you worry, I wouldn’t leave a lovely thing like this hanging.”</i> Her voice moves around in the stall, until you’re pretty sure she’s facing you; those guesses prove correct, as the heat that washes over your soaking cocktip now is the wash of breath. <i>“I just love the smell and taste of myself, nothing makes me...”</i> She trails off, licking your crown. <i>“Hotter,”</i> Another lick. <i>“Hornier,”</i> And one more for good measure. <i>“Hungrier...”</i>");
+	output("\n\nYou’re practically drooling pre straight onto her tongue as she teases you, growing closer while she works herself up. A soft <i>’aaahn~’</i> tracks her progress before it’s muffled by cock and the vibrations are sent right down to your base. She slurps and sucks noisily, moaning as she goes to enhance those sensations. Now you get to try the guessing game as to who (or what) it is that you’re actually fucking. She seems to have a short muzzle, and it doesn’t take much work for you to pass the limits of her mouth and push right down into her throat before she’s practically kissing the stall.");
+	output("\n\nShe stays there for a while, sucking and exploring every " + (pc.cocks[x].cLength() < 12 ? "modest":"incredible") + " inch of you with her tongue. Eventually she runs out of breath, pulling off of you with a gasp that leaves your twitching cock alone in the open air. She slowly jerks you off with firm fingers while preparing for round two, ensuring the flames she’s stoked in you don’t get a chance to die down. <i>“Aww, I’ve licked you clean... we’ll just have to get you all </i>juicy<i> again.”</i>");
+	output("\n\nThat sounds pretty fucking good to you. Once more there’s the awkward pause while she re-adjusts, but this time you’re ready for the treat that’s coming. There’s no slow teasing this time; she lines up, giggles, wiggles her hips against you like a golfer lining up for the swing, and impales herself on you. She’d been so wet before that each errant thrust was forcing pussy juices out of her, and this time it noisily splashes. It’s thicker and stickier now - no doubt the result of copious girl-cum - and when you bottom out (literally, her bottom slams into the wall and stops her short) " + (pc.cocks[x].cLength() < 12 ? "you wish you had a few extra inches to fill her with.":"you could swear you’re pressing at her cervix and waiting to push the rest of the way into her."));
+	output("\n\nSadly there’s no extra give; whatever muscles she’s got must be exercised to all hell judging by the way she milks your cock without letting you into her deepest depths. A few more thrusts later and there’s a tightness in your prostate that heralds the end. <i>“Oooh, you’re getting thicker inside me! You’re about to cum, huh? I wonder how you – nfh – taste!”</i>");
+	output("\n\nShe pulls herself off of you quickly and spins around, mashing her face into your dick in one fell swoop that has you pointed directly into her stomach. She sucks so hard you’re worried for a moment your orgasm is going to be stolen by vacuum-force before she relaxes again. Drool escapes around the base of your prick and joins the puddle of girly juices on the floor, and her tongue assaults you with manic need.");
+	output("\n\nNo point in keeping her waiting. The pressure building up in your core is enough to have you aching with need in the first place, and when you finally let go it’s more akin to a river bursting its banks. Her cock-hungry moans become a muffled squeak of surprise, and you can feel cum spray out despite the tight seal of lips around you. ");
+	if(pc.cumQ() < 1000) output("All too soon your flow comes to a stop, but you can at least hear her satisfied <i>’muah’</i> before she plants a kiss on your cock.");
+	else output("Her stomach probably swells with the weight of your liquid load, but to her credit your anonymous cockslut doesn’t pull off until your last potent loads have trickled down to nothing.");
+	output("\n\nAfter a moment’s pause you call out, suddenly worried about her silence. <i>“Grbfl.”</i> Comes her succinct response, and with a laugh you redress yourself. Now a lot lighter, you make ready to return to the companionable din of Kally’s bar.");
+	//[Next] //Back to Business.
+	processTime(30);
+	IncrementFlag("GLORYHOLE_MOUNTER");
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Yes]
+//As if a spooky voice is going to get between you and some dick-sucking.
+public function yesSpookydicksucksAreHabbening(x:int):void
+{
+	clearOutput();
+	showName("\nGLORYHOLE");
+	author("SKoW");
+	output("You opt to answer with actions rather than words, quickly shucking off your clothes. Apparently your spooky mystery mistress is listening closely, judging by the soft clapping of hands you hear on the other side. <i>“Delightful, you shan’t be disappointed dear.”</i> She insists with a hungry hiss.");
+	output("\n\nHer hiss transforms into a satisfied sigh at the presentation of your cock, and surprisingly gentle hands wrap around it and jerk a few times. <i>“This will do... nicely.”</i>");
+	output("\n\nSomething in her voice sends a shiver down your back, but any discomfort is quickly forgotten as a... something trails along the topside of your cock. You’d argue it was a tongue, but there’s a lot more going on with it than the normal texture. Nodules rub and grind you, before the unknown appendage literally coils around your [pc.cock " + x + "]. There’s a muffled giggle on the other side of the wall that makes you shiver again, before the tentacle – it must be some kind of tentacle – starts to squeeze and milk you.");
+	output("\n\nYet more of the hot bumpy mass wraps around your dick until you’re entirely enveloped in over a foot of the stuff, before it begins to wring and milk you. It turns out you aren’t just getting some kind of tentacular hand-job though; the moisture that builds up around your enveloped dick-meat can only be drool. When the first sounds of pleasure creep out of you a satisfied purr answers on the other side of the gloryhole. Even wrapped up in tentacle-tongue as you are it’s possible to feel the heat and pressure of a mouth swallowing you whole.");
+	output("\n\nWhatever this woman is on the other side, she’s got a long, animalistic face. It’s hard to put a mental image to the combination of sensations, but it’s a long muzzle or snout. The length of your cock is being held in that giant maw, covered in drool and squeezed by this woman’s organic milker of a tongue. You could only imagine what else that tongue were capable of.");
+	output("\n\nAnd it seems it has another trick waiting for you. She starts to bob her head back and forth with noisy spitty gurgles, but her tongue moves in the opposite direction. You’re literally jerked off by the appendage, and she doesn’t appear to mind the fact that her tongue is slapping against the stall wall. Your own [pc.hands] smack the wall in time with it as you’re assaulted from tip to base with suction and jerking, all within the tight sloppy seal of a cavernous maw.");
+	output("\n\nShe must produce a lot of spit, judging by the amount that still manages to escape that vacuum-tight suction. It’s also far thicker than before now that it’s mixed with your still-thickening pre. Her coaxing speeds up, trying to bring you ever-closer to completion despite how desperately you hold back.");
+	output("\n\nTo your own undeniable credit, you hang in there for maybe two minutes of this brutal assault on your senses. There’s a puddle on the ground and your creepy partner’s moans are a mixture of horny and desperate. There’s no preventing the inevitable though, and by this point you’re struggling to find your breath. Each squeeze and roll across the length of your shaft is enough to make your legs tremble.");
+	output("\n\nFinally you nut, hosing down the insides of this woman’s alien maw. Her spit-laden gurgles turn into deeply satisfied coo’ing noises, and your dick is released. The sultry air of the room – long since heated by sexual effort – still manages to feel cold on your cock now that it’s exposed. While she no doubt drowns herself in the delight of a mouthful of cum, you still dredge up a few last ropes of it to try and mark whatever else her body looks like.");
+	output("\n\n<i>“Oh! Hmph, how very naughty... I’ll have to clean that with my tongue.”</i> Again you’re reminded of some horror-movie monster-girl voice. Perhaps it’s time to beat a hasty retreat.");
+	processTime(20);
+	pc.orgasm();
+	IncrementFlag("GLORYHOLE_MOUNTER");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

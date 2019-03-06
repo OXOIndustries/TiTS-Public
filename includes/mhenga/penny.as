@@ -289,7 +289,7 @@ public function fuckTheZilForPennyBecauseYouAreADumbStupidSlut():void {
 	this.clearMenu();
 	this.addButton(0,"Explain",explainWhyYoureAHugeSlut);
 	this.addButton(1,"FlirtItOff",flirtySlutPCsTellPennyFlirts);
-	this.addButton(14,"Nevermind",askPennyIfSheNeedsHelp);
+	this.addButton(14,"Never Mind",askPennyIfSheNeedsHelp);
 }
 
 //[Explain]
@@ -1773,7 +1773,7 @@ public function growADickPenny():void {
 	output("\n\nPenny gives you a doubtful look, but she reaches into her desk all the same, coming out with a vial full of cyan fluid so transparent you can barely identify the color. She twists it between her fingers, looking meaningfully at it as she works up her courage. <i>“This stuff is going to give me a dick, likely forever. My genome is so hacked up by the fennec splicing that most transformation won’t even take anymore - part of the downsides of going as cheap as I did on it. So if I grow this dick, it’ll be hard as hell to get rid of, and maybe the only thing about me we can transform. Are you sure you want me to be your foxy little futanari girlfriend?”</i>");
 	//[Grow It] [Nevermind] - back to talk menu.
 	this.addButton(0,"Grow It",pennySproutsAWeiner);
-	this.addButton(1,"Nevermind",stayAGirlYouBitch);
+	this.addButton(1,"Never Mind",stayAGirlYouBitch);
 }
 //Penny Grows Her Dick NOW!
 public function pennySproutsAWeiner():void {
@@ -3445,7 +3445,7 @@ public function pennyCumslutterMenuTalk():void {
 	clearMenu();
 	if(pennyIsCrew())
 	{
-		addButton(0,"Nevermind",nevermindCumslutPenny,undefined,"Nevermind","Just kidding!");
+		addButton(0,"Never Mind",nevermindCumslutPenny,undefined,"Never Mind","Just kidding!");
 		if(flags["PENNY_CUMSLUT_RECRUITED"] == undefined) addButton(4,"Calm Down",calmDownPennyBitch4Repeats,undefined,"Calm Down","Talk Penny into not being such a brazen, cum-drinking slut.");
 		else addDisabledButton(4,"Calm Down","Calm Down","Penny <b>needs</b> to make money as a camwhore to keep up on her debt payments. Now that she’s given up her old job to live with you, camwhoring is her only option.");
 	}
@@ -3466,7 +3466,7 @@ public function nevermindCumslutPenny():void
 	clearOutput();
 	author("Fenoxo");
 	showPenny(true);
-	output("<i>“Nevermind!”</i> you jovially say, pushing Penny halfway down her dick before tugging the gasping, giggling prick-vixen back up. <i>“You keep camwhoring your heart out. It’s fun, isn’t it?”</i>");
+	output("<i>“Never mind!”</i> you jovially say, pushing Penny halfway down her dick before tugging the gasping, giggling prick-vixen back up. <i>“You keep camwhoring your heart out. It’s fun, isn’t it?”</i>");
 	output("\n\nPenny nods as much as your grip allows. <i>“Y-yeah. They love it when I suck myself deep. I even got a camera script that zooms in when I climax, right on my dick so they can see it pulsate with each load.”</i> Her [penny.cock] swells, forming an enormous droplet of pre at its apex, nestled snugly between " + (rand(2) == 0 ? "Penny" : "the fox") + "’s fuzzy tits. <i>“And I cum so hard knowing they’re all jacking off, mate. I cum so hard.”</i> She whimpers. <i>“Please... can I suck now? Can I milk out a load for you? Please?”</i>");
 	output("\n\n");
 	if(penny.hasCock(GLOBAL.TYPE_EQUINE)) showImage("PennyEquineAutofellate");
@@ -5060,7 +5060,7 @@ public function fuckPlantHornedPenny(args:Array):void
 	else output("her cunt flutters absurdly, " + (!penny.isSquirter() ? "drizzling":"spraying") + " you with more liquid adulation.");
 	output(" She’s literally cumming to her own admission of love.");
 	output("\n\nYou can’t hold back in the face of such frenzied affection. Maybe it’s the kiss. Maybe it’s the sizzling genital to genital contact. Maybe it’s the memories of all the other times you’ve fucked, the times you’ve driven Penny to squealing heights of pleasure and gleefully climaxed alongside her, but you cum too. You cum ");
-	if(sceneRoute == 1) output("a bubbling, frothy load directly into her flexing quim");
+	if(sceneRoute == 1) output("a bubbling, frothy load directly into her flexing quim.");
 	else if(sceneRoute == 2) output("with cock-draining force, rippling and squeezing the leftovers of her last load so very deep inside yourself.");
 	else 
 	{
@@ -5805,8 +5805,8 @@ public function recruitBimboPenpen():void
 	processTime(10);
 	pc.lust(4);
 	clearMenu();
-	addButton(0,"Cam",camwhoreItUpBimboPenny,undefined,"Cam","Convine Penny to become a camwhore to pay for her debts.")
-	addButton(1,"Nevermind",nevermindBimboCumPennyNoCamwhore,undefined,"Nevermind","Drop the topic for now. No need to push it.");
+	addButton(0,"Cam",camwhoreItUpBimboPenny,undefined,"Cam","Convince Penny to become a camwhore to pay for her debts.");
+	addButton(1,"Never Mind",nevermindBimboCumPennyNoCamwhore,undefined,"Never Mind","Drop the topic for now. No need to push it.");
 }
 
 //[Nevermind]
@@ -5851,7 +5851,7 @@ public function camwhoreItUpBimboPenny():void
 	output("\n\nLetting go of her own still-jizzing prick, Penny audibly gurgles as the " + (penny.hasCock(GLOBAL.TYPE_EQUINE) ? "absurdly flared, equine tip strains her bimbo lips into a blow-up doll ‘O’ on its way out.":"narrow tip slips out of her cock-sucking lips and graces them with a layer of animalistic jism for their trouble.") + " She gulps heavily, absently wiping a trickle of pearlescent goo from one nostril. She’s not even looking at you" + (pc.hasCock() ? ", not even when you dribble the last of your own contribution onto the center of her muzzle":"") + ". The slut-fox’s eyes are far away, mostly vacant as returns to idly stroking herself, squeegeeing off waves of gooey excess.");
 	output("\n\nHead to toe, Penny is an absolute mess of spit and cum.");
 	output("\n\nYou " + (pc.hasCock() ? "wipe your [pc.cockNoun] off on the underside of the vixen’s chin and ":"") + "stroke " + (!pc.hasCock() ? "the vixen’s":"her") + " ear one last time. <i>“Let Flahne know where you’re going... after you clean up, okay, pet?”</i>");
-	output("\n\nThat, at last, rouses the fennec from her spooge-drunk stupor. <i>“Uhh... like yeah!”</i> She licks her chops and giggles in delight. <i>“I’m gonna get to be your cummy whore! Or uh, camwhore! Yay! Soooo, uh... what I do again?”</i> She leans down to ease the tip of her dick into her mouth once more, lazily tonguing in wide circles around the [penny.cockHead]. She can barely talk around it. <i>“After this load.”</i>");
+	output("\n\nThat, at last, rouses the fennec from her spooge-drunk stupor. <i>“Uhh... like yeah!”</i> She licks her chops and giggles in delight. <i>“I’m gonna get to be your cummy whore! Or uh, camwhore! Yay! Soooo, uh... what do I do again?”</i> She leans down to ease the tip of her dick into her mouth once more, lazily tonguing in wide circles around the [penny.cockHead]. She can barely talk around it. <i>“After this load.”</i>");
 	output("\n\nYou gently explain to her that she should say goodbye to Flahne, and let her know she’s leaving to be your personal camwhore. The town will get a new cop, and Penny will get to make the entire universe orgasm along with her.");
 	output("\n\nThat does the trick. The fox’s eyes light up as she sinks a few more inches down, slurping ecstatically.");
 	output("\n\n<b>Penny’s going to be your personal cum-dump crew-mate (and camwhore)!</b>");

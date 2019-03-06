@@ -1738,7 +1738,7 @@ public function joinCrewPlanetCrackerVersion():void
 	
 	clearMenu();
 	// [Nevermind] [Help Her] [She Wants It]
-	addButton(0, "Nevermind", annoMainMenu, undefined, "Nevermind", "Not right now.");
+	addButton(0, "Never Mind", annoMainMenu, undefined, "Never Mind", "Not right now.");
 	addButton(1, "Help Her", joinCrewPlanetCrackerVersionHelpHer, undefined, "Help Her", "You’ll be CEO some day. You’ll just give Anno her job back later - and better!");
 	addButton(2, "She Wants It", joinCrewPlanetCrackerVersionSheWantsIt, undefined, "She Wants It", "Play on Anno’s desires. She wants off this rock, and you want the cute little ausar bitch aboard your ship. Everybody wins.");
 }

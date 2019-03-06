@@ -565,7 +565,7 @@ public function sx1CallgirlMenu():void
 	if (pc.credits >= 500) addButton(1, "Job", sx1CallgirlOfferJob, undefined, "Offer Job", "Offer the Callgirl 500 credits to distract the guards.");
 	else addDisabledButton(1, "Job", "Offer Job", "You don’t have enough credits to offer the Callgirl!");
 
-	addButton(2, "Nevermind", sx1CallgirlNevermind);
+	addButton(2, "Never Mind", sx1CallgirlNevermind);
 }
 
 public function sx1CallgirlNevermind():void
@@ -1667,7 +1667,7 @@ public function zilCallgirlSexMenu(isFreebie:Boolean = false):void
 		addButton(2, "Get Honey", zilCallGirlSuckleHoney, undefined, "Suckle Honey", "Your hands on the waspy girl’s breast gives you an idea...");
 	}
 
-	addButton(14, "Nevermind", zilCallGirlCall, [false, isFreebie], "Nevermind", "Maybe this was a bad idea.");
+	addButton(14, "Never Mind", zilCallGirlCall, [false, isFreebie], "Never Mind", "Maybe this was a bad idea.");
 }
 
 public function zilCallgirlStopWhoringTooltip():String
@@ -2054,7 +2054,7 @@ public function zilCallGirlFuckHer(inAppt:Boolean = false):void
 	if (pc.cocks[x].cLength() > 6) output("<i>“Oh, so big!”</i> she groans, putting a hand on her belly and arching her back with every inch of cockmeat you pump into her. <i>“Nothing... nothing quite like this back home! Ah-ah yes!”</i>");
 	// else:
 	else output("<i>“Mmm, nice and snug!”</i> she purrs, clamping her muscles down around your tiny prick. She releases you a moment later, only to clench and ease again and again, squeeze-milking you like a wet, gloved hand around your pecker. You can only thrust ever so slightly with a grip like hers wringing you; damn, but she’s got amazing control down there! <i>“Ah, just like that. Wiggle those hips for me, love... and I’ll milk out every drop you have!”</i>");
-	output(" A throaty moan of pleasure tears free from her black lips, and your paid lover rolls her head back into her pillows. You’re completely on top of her now, your [pc.belly] pressed against her");
+	output(" A throaty moan of pleasure tears free from her black lips, and your " + ((flags["ZIL_CALLGIRL_NAME_KNOWN"] == undefined && !inAppt) ? "paid" : "lusty") + " lover rolls her head back into her pillows. You’re completely on top of her now, your [pc.belly] pressed against her");
 	if (zilCallGirlPregTime(true) < 5) output(" flat, strong stomach");
 	else if (zilCallGirlPregTime(true) < 25) output(" slightly plush, curvaceous belly");
 	else if (zilCallGirlPregTime(true) < 50) output(" obviously swollen belly");

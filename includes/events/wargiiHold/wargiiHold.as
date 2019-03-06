@@ -64,6 +64,11 @@ public function wargiiEncounterStuff():Boolean
 	{
 		output("\n\n" + RandomInCollection(["You hear a scream from somewhere in the distance.","A denser pocket of smoke causes you to cough softly.","A tuft of fur floats by, dislodged in a scrap.","A pair of voices lift in faint, orgasmic cries as far away combatants satisfy the lusts their struggles have sparked in each other.","Dust falls from the ceiling as the dull thud of an explosion rumbles through the hold.","Quiet pops of faraway gunfire startle you, then stop as abruptly as they started.","A feather-lined dart crunches under your [pc.foot]. A few others diligently hang onto the wall, trying to dispense their payloads into solid stone. You’ll have to be careful not to step on any of the needles...","A small pile of shell casings rests against the wall, wafting hints of their acrid propellant into the air.","An unconscious korgonne male sleeps flat on his back - and naked. He’s covered from head to toe in pussy juice and cum... and judging by the state of his hyper-swollen knot and seed-dribbling cock-head, he’s not going to be any good for anything but fucking for a long time... assuming anyone could even rouse him. It looks like there’s a tranq dart still stuck in his neck. Poor guy.","An unconscious korgonne woman lies on the floor with cum streaming from a very packed pussy. She snores audibly, tranquilized by the dart in her neck.","You spot a laser weapon’s battery-mag resting on the floor, completely emptied.","An empty magazine with a jagged crack through the side sits on the ground, discarded. Looking closer, you can see the korgonne spearpoint wedged into it.","Someone tossed out a spent stimpen... and an emptied vial of Throbb. You try not to think about what would necessitate such a combination as you kick them out of your way.","The high-pitched keen of an energy weapon discharging at maximum power carries surprisingly well through the hold’s stonework. You almost wish it didn’t.","Distant war-cries and the clang of metal on metal keep you on your toes.","The faint, staccato ‘thump’ of a flash-bang going off reminds you that the battle is still raging.","A feline howl of displeasure echoes to you, bringing a smile to your [pc.lipsChaste]."]));
 	}
+	else if(rand(10) == 0 && flags["WARGII_MAJA_SAVED"] == 2)
+	{
+		//possible encounter from then on
+		output("\n\nYou run into a cluster of korgonne with a kor’diiak. A group of milodan are tied up along the wall, relieved of their weaponry. The korgonne bristle as they see you, toting their captors weapons haphazardly, but quickly point in the direction of the throne room as they see who you are. You give the group a curt nod and head off. Happy to have avoided an unneeded confrontation.");
+	}
 	return false;
 }
 
@@ -113,6 +118,8 @@ public function wargiiScore():Number
 	if(flags["WARGII_TUUVA_SAVED"] != undefined) score += 10;
 	if(flags["WARGII_HEIDRUN_SAVED"] != undefined) score += 10;
 	if(flags["WARGII_LUND_SAVED"] != undefined) score += 10;
+	if(flags["WARGII_MAJA_SAVED"] != undefined) score += 10;
+	if(flags["WARGII_MAJA_SAVED"] == 2) score += 5;
 
 	if(flags["WARGII_FIGHTS_RAN"] != undefined) score -= flags["WARGII_FIGHTS_RAN"] * 5;
 	if(flags["WARGII_FIGHTS_WON"] != undefined) score += flags["WARGII_FIGHTS_WON"] * 3;
@@ -153,13 +160,18 @@ public function wargiiJ6Bonus():Boolean
 
 public function tamedTamelingsWarBonus():Boolean
 {
-	if(9999 == 9999) output("Various bags and crates of animal feed are littered along the back wall to feed the creatures further into the shop. Carts, leashes, and reins hang from the walls in abundance, but without anyone to mind the shop, you’re left with nothing to do but admire the supplies.");
-	else output("Various bags and crates of animal feed are littered along the back wall to feed the creatures further into the shop - except those same creatures have been unleashed into the hold. Maja must have made it back to let them out. Perhaps you’ll have some beastly allies in the fights to follow?");
+	if(flags["WARGII_MAJA_SAVED"] != 2) output("Various bags and crates of animal feed are littered along the back wall to feed the creatures further into the shop. Carts, leashes, and reins hang from the walls in abundance, but without anyone to mind the shop, you’re left with nothing to do but admire the supplies.");
+	else output("Various bags and crates of animal feed are littered along the back wall to feed the creatures further into the shop - except those same creatures have been unleashed into the hold.");
+	if(flags["WARGII_MAJA_SAVED"] == 1)
+	{
+		majaTamelingFreething();
+		return true;
+	}
 	return wargiiEncounterStuff();
 }
 public function wargiiBeastCagesBonus():Boolean
 {
-	if(9999 == 9999) output("Many larger beasts occupy these stables. Six-legged bear-like creatures with jagged horns jutting from their heads mill about in large pens. Smaller beasts, though plenty large enough to ride sit in fenced-in alcoves.");
+	if(flags["WARGII_MAJA_SAVED"] != 2) output("Many larger beasts occupy these stables. Six-legged bear-like creatures with jagged horns jutting from their heads mill about in large pens. Smaller beasts, though plenty large enough to ride sit in fenced-in alcoves.");
 	else output("The larger beasts have all been turned loose. Cage doors swing wide open. The only evidence of the six-legged bear-like creatures that once lived here are copious, unshoveled piles of dung.");
 	output(" Metal-handled shovels lie stacked against the far wall as you come to a dead end. The curving tunnel to the south provides an exit, should you need to escape an angry milodan.");
 	return wargiiEncounterStuff();
@@ -197,7 +209,7 @@ public function dubbleNopeWargii():void
 	//reject stuff
 	flags["WARGII_PROGRESS"] = -1;
 	flags["WARGII_DOOM_TIMER"] = 1;
-	clearMenu(); //9999 make sure this proper triggers THE END OF TIMES.
+	clearMenu(); //make sure this proper triggers THE END OF TIMES.
 	addButton(0,"Next",mainGameMenu);
 }
 
@@ -225,11 +237,14 @@ public function followingTheChiefToKorgii():void
 {
 	clearOutput();
 	author("Fenoxo");
-	showBust("KORG_CHIEFTAIN","KORGONNE_MALE_WHITE","KORGONNE_MALE_TAWNY");
+	showBust(korgChiefBustString(),"KORGONNE_MALE_WHITE","KORGONNE_MALE_TAWNY");
 	showName("\nTRACKING");
 	currentLocation = "UVGR G8";
 	flags["TUNDRA_STEP"] = 1;
 	generateMap();
+	
+	addUvetoCold();
+	
 	output("The Chieftan’s retinue isn’t as easy to track through the snow as you might have expected. They are obviously practiced at surviving the rugged tundras of Uvetan wilderness. Their path avoids softer snowpack where tracks might be more evident, moving instead to less malleable ice and rock. When they do leave tracks, the rearguard brushes them down with some kind of tool to conceal the shapes of their footprints. If you hadn’t had the opportunity to follow them from the very start, you’d never have noticed their track.");
 	output("\n\nFor well over one hour, you trudge after the fluffy procession, enduring Uveto’s hellish weather as best you can. You thought yourself stealthy, but more than once, you catch the sharp eye of a distant korgonne staring back at you impassively. The guards make no move to stop you, but neither do they care for your presence. You’re an outsider, a distant one who they consider to be trifling in matters beyond [pc.hisHer] ken.");
 	output("\n\nYou keep your distance. When the trekking dog-folk come to a stop in the shadow of an icy cliffside, you set up a short ways away: close enough to keep an eye on the proceedings but far away enough not to draw attention to yourself, should a keen scout happen to discover your vantage point.");
@@ -243,7 +258,7 @@ public function wargiiAmbushles():void
 	clearOutput();
 	//showchiefandmilos
 	showName("\nAMBUSH");
-	showBust("WAR_ALPHA","KORG_CHIEFTAIN","WAR_LION");
+	showBust("WAR_ALPHA",korgChiefBustString(),"WAR_LION");
 	output("You are not prepared for the arrival of the Milodans. Neither is Ula’s father.");
 	output("\n\nThe saber-cats appear at the crest of the ridge with snarling grins and full sets of modern military equipment - including body armor. A score of the up-armed milos leap from the cliff to an apparent demise only for the blue-tinged exhausts of their jetpacks to grant them a graceful landing in snow below. In their hands are military-grade weapons of every shape and size: heavy missile launchers, railguns, lasers, and even a multitude of grenades. Fizzing shields are apparent around them, as are the trademarked stamps of Pyrite Heavy Industries logos.");
 	output("\n\nUh oh.");
@@ -366,7 +381,12 @@ public function arriveAtKorgiliciousLand():void
 	//Sets that you're in the middle of the quest. disables encounters via disableExploreEvents()
 	flags["WARGII_PROGRESS"] = 2;
 	clearMenu();
-	addButton(0,"Next",move,"WARGII B12");
+	addButton(0,"Next",arriveAtKorgiliciousLandGo);
+}
+public function arriveAtKorgiliciousLandGo():void
+{
+	removeUvetoCold();
+	move("WARGII B12");
 }
 
 public function wargiiBadEnds():void
@@ -434,6 +454,7 @@ public function wargiiBadEnds():void
 		pc.aim(-20);
 		pc.HPMod = 2500;
 		pc.HP(2500);
+		removeUvetoCold();
 		processTime(42);
 		addButton(0,"Next",maleBreederWargiiBadEnd2);
 	}
@@ -455,19 +476,26 @@ public function wargiiBadEnds():void
 			output("\n\nThe Milodan " + (pc.hasCock() ? "gropes at your [pc.cock], cupping at your meat, his cold claws scratching uncaringly at your sensitive flesh. Then, he dips further down as he ":"") + "rudely palms and thrusts at your [pc.vagina], testing your female genitals for himself. You clench in fear at what’s going to come next, expecting the worst, but, as soon as he discovers that you indeed have feminine parts, his investigation halts.");
 			output("\n\n<i>“You’ll do,”</i> he says gruffly, followed by another, softer, shove at your side, flipping you back over and onto your front. He tests the knots keeping your limbs in place by yanking at your limbs to see if they’ll come undone. Your body screams in pain at the treatment, but every time you try and cry out in pain, you feel a sharp ‘thwap!’ against your head, and the instruction to keep quiet is not lost on you. But when even that is too much effort, he withdraws a second rope and wraps it around your head and mouth. In some perverse way, it’s a thankful reprieve when he gags you. That way, your shouts of pain are too muffled to bother him....");
 			output("\n\nWhen you’re adequately bound, the Milodan hefts you" + (pc.tallness >= 72 ? ", with some effort,":"") + " onto his shoulder and begins marching you to somewhere else in the hold.");
+			if(currentLocation == "UVGR G8")
+			{
+				currentLocation = "KORGII D10";
+				generateMap();
+				removeUvetoCold();
+			}
 			processTime(35);
 			addButton(0,"Next",bsFemaleFeelbadWargiiBadEnd2);
 		}
+		// Continue here if the PC loses to a Milodan via lust
 		else
 		{
-			//Continue here if the PC loses to a Milodan via lust
-			//output("\n\n{Your stance is wobbly and shaken - not because you’re wounded or you’re too exhausted to keep going, but because you’re just so horny. The Milodan in front of you look so delicious in their armor, and you can smell their overbearing musk from where you are. You close your eyes as you imagine you spending time with the warriors some other way, when you feel a blunt, stinging pain at the back of your head.}");
+			//output("\n\nYour stance is wobbly and shaken - not because you’re wounded or you’re too exhausted to keep going, but because you’re just so horny. The Milodan in front of you look so delicious in their armor, and you can smell their overbearing musk from where you are. You close your eyes as you imagine you spending time with the warriors some other way, when you feel a blunt, stinging pain at the back of your head.");
 			output("When you awake, you’re " + (currentLocation != "UVGR G8" ? "exactly where you were before you lost the fight":"back in the hold proper") + ", but there’s nobody around you. The Milodan warrior is gone" + (fightHasCaptive() ? ", as is the Korgonne captive they were hauling off":"") + ". You have a bit of a bump on your head, but otherwise, you’re fine – and <i>ragingly</i> horny. Although you’ve been stripped of your possessions, your limbs are unbound and free; apparently, the Milodan warrior you were facing off with did not consider you a threat." + ((pc.lust() >= pc.lustMax() || flags["WARGII_BADEND_FUCKED"] != undefined) ? " It probably had something to do with how you succumbed to your baser desires in the fight.":""));
 			pc.lust(200);
 			if(currentLocation == "UVGR G8")
 			{
 				currentLocation = "KORGII D10";
 				generateMap();
+				removeUvetoCold();
 			}
 			output("\n\nThat said, you have a number of iridescent green jewelry hanging off you in parts that weren’t there before. They feel... <i>really</i> good to the touch; when you run your fingers on one, a delightful shock courses through your body, splitting to head towards your head and towards your crotch. You wonder how it would feel to drive this rock up against your-");
 			output("\n\nThe silence of the room you’re in is broken by the stomping of heavy, armored boots coming in your direction. You look in the direction it’s coming from, and you’re face-to-face with another Milodan – a male, and different from the one you just fought. Your heart leaps into your throat, and your [pc.vagina] clenches reflexively, when you look up at that hunky, sexy piece of warrior.");
@@ -489,6 +517,9 @@ public function wargiiBadEnds():void
 
 public function bsFemaleFeelbadWargiiBadEndForLustyThots2():void
 {
+	currentLocation = "KORGII V39";
+	generateMap();
+	
 	clearOutput();
 	author("B");
 	showName("\nCAPTIVE");
@@ -547,6 +578,9 @@ public function bsFemaleFeelbadWargiiBadEndForLustyThots3():void
 
 public function bsFemaleFeelbadWargiiBadEnd2():void
 {
+	currentLocation = "KORGII V39";
+	generateMap();
+	
 	clearOutput();
 	author("B");
 	showName("\nCAPTURED");
@@ -578,7 +612,7 @@ public function bsFemaleFeelbadWargiiBadEnd3():void
 	var miloboi:MilodanMale = new MilodanMale();
 	pc.cuntsChange(miloboi.cockVolume(0));
 
-	output("\n\nNonstop dicks in your [pc.vagina]; nonstop cocks in your mouth; and nonstop cum dripping off your body. As soon as one virile male finished inside you, he was replaced with another, for seventy-two hours straight. When there were more males than holes for them to fuck, they would either stand to the side and stroke themselves, keeping themselves excited for their turn, or they would leave and disappear somewhere – towards, you assumed, where they kept the korgonne males.");
+	output("\n\nNonstop dicks in your [pc.vaginas]; nonstop cocks in your mouth; and nonstop cum dripping off your body. As soon as one virile male finished inside you, he was replaced with another, for seventy-two hours straight. When there were more males than holes for them to fuck, they would either stand to the side and stroke themselves, keeping themselves excited for their turn, or they would leave and disappear somewhere – towards, you assumed, where they kept the korgonne males.");
 
 	output("\n\nYou learned to recognize some of the males as they approached you. Some of them were rough with you: they pulled at your [pc.skinFurScales] and yanked at your limbs and paid no mind to your protests or whines, and you learned to flinch at their sight and fear them. Some of them were gentle, almost romantic with the way they held you, and kissed you, and played with your [pc.clit] as they fucked you, in an effort to get you off, and you learned to appreciate and sometimes even yearn for them.");
 	if(pc.hasCock()) output(" Some of them would even give you a reach-around for "+ (pc.hasCocks() ? "one of ":"") + " your otherwise-totally-neglected [pc.cocksNounSimple] as they pounded you.");

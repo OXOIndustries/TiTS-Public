@@ -387,25 +387,25 @@ package classes.Characters
 		{
 			if (ref == null || ShipStorageInventory.length == 0 || amount == 0) return;
 			
-			var i:int = 0;
+			var i:int = (ShipStorageInventory.length - 1);
 			
 			// Remove all!
 			if (amount < 0)
 			{
-				while (i < ShipStorageInventory.length)
+				while (i >= 0)
 				{
 					if (ShipStorageInventory[i] is ref)
 					{
 						ShipStorageInventory[i].quantity = 0;
 						ShipStorageInventory.splice(i, 1);
 					}
-					else i++;
+					i--;
 				}
 			}
 			// Normal
 			else
 			{
-				while (amount > 0 && i < ShipStorageInventory.length)
+				while (amount > 0 && i >= 0)
 				{
 					//Item in the slot?
 					if (ShipStorageInventory[i] is ref)
@@ -417,10 +417,8 @@ package classes.Characters
 						{
 							ShipStorageInventory.splice(i, 1);
 						}
-						//else i++;
-						else return;
 					}
-					else i++;
+					i--;
 				}
 				if(amount > 0) output("<b>ERROR - Ship inventory item quantity needed: " + amount + "!</b>");
 			}
@@ -886,6 +884,11 @@ package classes.Characters
 					fecundFigure(totalDays);
 				}
 				
+				if(hasPerk("Implant-tastic"))
+				{
+					implantasticSiliconeConversion(totalDays);
+				}
+				
 				if (hasStatusEffect("Nyrea Eggs") && fertility() > 0 && hasOvipositor())
 				{
 					nyreaEggStuff(totalDays);
@@ -1019,8 +1022,8 @@ package classes.Characters
 					if(legCount > 1) m += ParseText(" between the [pc.legs]");
 					else m += "... down there";
 					m += ". Moisture seems to be dripping everywhere, transforming your puss";
-					if(totalVaginas() == 1) m += "y into a slipperier, gooier version of itself. <b>Your entire vagina has become semi-solid, like the rest of your crotch.";
-					else m += "ies into slipperier, gooier versions of themselves. <b>All of your vaginas are now semi-solid, goo-cunts, just like the rest of your crotch.";
+					if(totalVaginas() == 1) m += "y into a slipperier, gooier version of itself. <b>Your entire vagina has become semi-solid, like the rest of your crotch.</b>";
+					else m += "ies into slipperier, gooier versions of themselves. <b>All of your vaginas are now semi-solid, goo-cunts, just like the rest of your crotch.</b>";
 					
 					AddLogEvent(m, "passive", deltaT);
 				}
@@ -1167,6 +1170,77 @@ package classes.Characters
 				
 				AddLogEvent(m, "passive", baseDShift + (i * 1440));
 			}
+		}
+		
+		private function implantasticSiliconeConversion(totalDays:int):void
+		{
+			var implants:StorageClass = getStatusEffect("Nym-Foe Injections");
+			if(implants != null)
+			{
+				var msg:String = "";
+				
+				var oldLips:Number = lipMod;
+				var lipsSilicone:Number = (lipMod - lipModMin());
+				if((lipsSilicone + lipModMin()) > oldLips) {
+					if(msg != "") msg += "\n\n";
+					msg += "You feel a tingle in your [pc.lips] as they purse with a plastic stiffness.";
+					
+					implants.value4 = lipsSilicone;
+					lipMod = (implants.value4 + lipModMin());
+					
+					msg += " <b>The extra plump of your lips has been converted into silicone!</b>";
+				}
+				
+				var boobRating:Number = 0;
+				var boobSilicone:Number = 0;
+				var i:int = 0;
+				for(i = 0; i < breastRows.length; i++)
+				{
+					boobRating += (breastRows[i].breastRatingRaw - breastRatingRawMin(i));
+					boobSilicone += (breastRows[i].breastRatingMod - breastRatingModMin(i));
+				}
+				var titsGrowth:Number = (boobRating / breastRows.length);
+				if(titsGrowth > 0) {
+					if(msg != "") msg += "\n\n";
+					msg += "Your [pc.breasts] give less sag when small pulses thrum within them, soon followed by a slight stretching sensation.";
+					
+					implants.value3 = ((boobSilicone / breastRows.length) + titsGrowth);
+					for(i = 0; i < breastRows.length; i++)
+					{
+						breastRows[i].breastRatingRaw = breastRatingRawMin(i);
+						breastRows[i].breastRatingMod = (implants.value3 + breastRatingModMin(i));
+					}
+					
+					msg += " <b>The growing mass of your tits has been converted into silicone!</b>";
+				}
+				
+				var hipsGrowth:Number = (hipRatingRaw - hipRatingRawMin());
+				if(hipsGrowth > 0) {
+					if(msg != "") msg += "\n\n";
+					msg += "Following a sturdy strut, the sides of your [pc.hips] do not change in appearance, but it certainly <i>feels</i> like they are wider.";
+					
+					implants.value1 = ((hipRatingMod - hipRatingModMin()) + hipsGrowth);
+					hipRatingRaw = hipRatingRawMin();
+					hipRatingMod = (implants.value1 - hipRatingModMin());
+					
+					msg += " <b>Your growth in hip size has converted into silicone!</b>";
+				}
+				
+				var buttGrowth:Number = (buttRatingRaw - buttRatingRawMin());
+				if(buttGrowth > 0) {
+					if(msg != "") msg += "\n\n";
+					msg += "There is more bounce from your bottom as your [pc.butts] tighten to the point where you feel like you are smuggling basketballs back there.";
+					
+					implants.value2 = ((buttRatingMod - buttRatingModMin()) + buttGrowth);
+					buttRatingRaw = buttRatingRawMin();
+					buttRatingMod = (implants.value2 + buttRatingModMin());
+					
+					msg += " <b>Your extra butt mass has converted into silicone!</b>";
+				}
+				
+				if(msg != "") AddLogEvent(msg, "passive", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
+			}
+			else createStatusEffect("Nym-Foe Injections");
 		}
 		
 		private function maneHairGrow(totalDays:uint):void
@@ -1398,7 +1472,7 @@ package classes.Characters
 						removePerk("'Nuki Nuts");
 					}
 				}
-				else if(perkv2("'Nuki Nuts") == 1 && balls <= 0)
+				else if(/*perkv2("'Nuki Nuts") == 1 && */balls <= 0)
 				{
 					AddLogEvent("A strange sensation hits your nethers that forces you to wobble a little... Checking your status on your codex, it seems that removing your ballsack has also made the signature testicle-expanding tanuki mod vanish as well!\n\n(<b>Perk Lost: ‘Nuki Nuts</b> - You have no nuts to expand!)", "passive", deltaT);
 					removePerk("'Nuki Nuts");

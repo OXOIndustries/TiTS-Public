@@ -521,7 +521,8 @@
 							if(target.ballSizeRaw < 3 && !target.hasStatusEffect("Uniball"))
 							{
 								kGAMECLASS.output("that they are shrinking into you at an alarming rate!");
-								target.ballSizeRaw = 0;
+								target.removeBalls();
+								target.resetCumProduction();
 							}
 							//→ huge balls and no trap pouch
 							else if(!target.hasStatusEffect("Uniball"))

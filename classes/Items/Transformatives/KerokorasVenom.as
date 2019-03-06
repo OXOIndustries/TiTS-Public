@@ -389,6 +389,7 @@ package classes.Items.Transformatives
 							output("Your [pc.ears] begin to itch and burn, and you reach up to rub them. You’re surprised to find, however, that your ears have sunk into the sides of your head, leaving shallow divots for your hearing holes. <b>You now have frog ears!</b>");
 							
 							target.earType = GLOBAL.TYPE_FROG;
+							target.clearEarFlags();
 							target.earLength = 0;
 							changes++;
 						}

@@ -86,7 +86,7 @@ public function flyToPoeAConfirm():void
 	output("\n\n");
 	
 	addButton(0, "Continue", flyTo, "Poe A", "Fly to Poe A", "I can handle the consequences!");
-	addButton(14, "Nevermind", flyMenu);
+	addButton(14, "Never Mind", flyMenu);
 }
 public function flyToPoeA():void
 {
@@ -299,6 +299,8 @@ public function leaveLikeABitch():void
 	pc.hornType = GLOBAL.TYPE_DEMONIC;
 	
 	pc.earType = GLOBAL.TYPE_DEMONIC;
+	pc.clearEarFlags();
+	pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 	if(pc.earLength < 2) pc.earLength = 2;
 	if(pc.earLength > 6) pc.earLength = 6;
 	
@@ -1381,7 +1383,9 @@ public function taurTFs(arg:int = 1):void
 	pc.removeTails();
 	pc.tailCount = 1;
 	pc.tailType = GLOBAL.TYPE_EQUINE;
+	pc.clearTailFlags();
 	pc.addTailFlag(GLOBAL.FLAG_LONG);
+	pc.addTailFlag(GLOBAL.FLAG_FLOPPY);
 	if(arg == 1 || arg == 3)
 	{
 		//22" horsecock.
@@ -1961,6 +1965,8 @@ public function spiderCostumeOutro():void
 	output("\n\nOnce the video ends you’re left alone with your thoughts. From what you gathered Holiday’s ‘costumes’ are actually illegal mods. You should be mad, but honestly your new spider body feels like something you should have been born with. Maybe you should find Holiday and thank her for the new body. You’re sure she’d appreciate being bound up and subjected to your sexy ministrations again.");
 	if(pc.femininity < 75) pc.femininity = 75;
 	pc.earType = GLOBAL.TYPE_SYLVAN;
+	pc.clearEarFlags();
+	pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 	pc.earLength = 3;
 	pc.reflexes(2);
 	pc.intelligence(2);
@@ -2099,6 +2105,7 @@ public function saurmorianTimes2():void
 		pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
 		pc.scaleColor = "silver";
 		pc.earType = GLOBAL.TYPE_SAURMORIAN;
+		pc.clearEarFlags();
 		pc.eyeType = GLOBAL.TYPE_SAURMORIAN;
 		pc.tongueType = GLOBAL.TYPE_CANINE;
 		pc.tongueFlags = [GLOBAL.FLAG_LONG,GLOBAL.FLAG_SQUISHY];
@@ -2134,6 +2141,7 @@ public function saurmorianTimes2():void
 		pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
 		pc.scaleColor = "silver";
 		pc.earType = GLOBAL.TYPE_SAURMORIAN;
+		pc.clearEarFlags();
 		pc.tongueType = GLOBAL.TYPE_CANINE;
 		pc.tongueFlags = [GLOBAL.FLAG_LONG,GLOBAL.FLAG_SQUISHY];
 		pc.armType = GLOBAL.TYPE_SAURMORIAN;
@@ -2760,6 +2768,8 @@ public function applyLongswordChanges():void
 	if(pc.earType != GLOBAL.TYPE_SYLVAN) 
 	{
 		pc.earType = GLOBAL.TYPE_SYLVAN;
+		pc.clearEarFlags();
+		pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 		pc.earLength = 2;
 	}
 	//If eyes are not blue
@@ -2806,6 +2816,8 @@ public function applyShortswordChanges():void
 	if(pc.earType != GLOBAL.TYPE_SYLVAN) 
 	{
 		pc.earType = GLOBAL.TYPE_SYLVAN;
+		pc.clearEarFlags();
+		pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 		pc.earLength = 2;
 	}
 	pc.eyeColor = "blue";
@@ -3104,6 +3116,9 @@ public function extraCatTFForCatCostume():void
 
 	//Player's ears become cat ears
 	pc.earType = GLOBAL.TYPE_FELINE;
+	pc.clearEarFlags();
+	pc.addEarFlag(GLOBAL.FLAG_FURRED);
+	pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 
 	//Player's hips, thighs, and butt increase by 2
 	if(pc.hipRating() < 25) pc.hipRating(2);

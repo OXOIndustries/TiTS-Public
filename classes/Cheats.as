@@ -387,7 +387,7 @@
 			// flag, short, long
 			//["NEW_YEARS", "NewYrs", "New Years"],
 			//["LUNAR_NEW_YEAR", "Lunar", "Lunar New Years"],
-			//["VALENTINES", "Valent.", "Valentine’s"],
+			["VALENTINES", "Valent.", "Valentine’s"],
 			//["ST_PATRICKS", "StPatty", "Saint Patrick’s"],
 			["APRIL_FOOLS", "AprFool", "April Fools"],
 			["EASTER", "Easter", "Easter"],

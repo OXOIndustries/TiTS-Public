@@ -172,7 +172,7 @@ public function kellysStoreSetup():void
 	{
 		chars["KELLY"].inventory.push(new Ovilium());
 	}
-	if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] != undefined || flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] != undefined)
+	if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] != undefined || flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] != undefined || flags["JULIANS_QUEST_DISABLED"] != undefined)
 	{
 		if(flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined || flags["JULIANS_QUEST_DISABLED"] != undefined)
 		{
@@ -2172,7 +2172,7 @@ public function mischievouslyFlirtingWithKelly():void
 
 	output("\n\nYou shrug, if she’s so sure she wants you, fine. You smile.");
 
-	output("\n\n<i>“You bet your sweet ass I... oh, you dirty little; you just played me, didn’t you?”</i> Kelly asks , realization visibly dawning on her face. <i>“Oh, well-played, " + pc.mf("sir","madam") + ", well-played indeed,”</i> she giggles, clearly amused at how you tricked her. A coy look in her eyes suggests she’s plotting how to get you back for that, as she starts strutting proudly towards you. <i>“C’mere, you; you want me, you got me... or do I have you?”</i> she suggests, taking your hand and dragging you towards the door.");
+	output("\n\n<i>“You bet your sweet ass I... oh, you dirty little; you just played me, didn’t you?”</i> Kelly asks, realization visibly dawning on her face. <i>“Oh, well-played, " + pc.mf("sir","madam") + ", well-played indeed,”</i> she giggles, clearly amused at how you tricked her. A coy look in her eyes suggests she’s plotting how to get you back for that, as she starts strutting proudly towards you. <i>“C’mere, you; you want me, you got me... or do I have you?”</i> she suggests, taking your hand and dragging you towards the door.");
 
 	output("\n\nYou chuckle. You don’t know, does she?");
 

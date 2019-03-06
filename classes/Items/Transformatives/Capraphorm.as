@@ -538,6 +538,8 @@ package classes.Items.Transformatives
 						msg += ParseText("You can feel your [pc.ears] twitch and flick about on their own accord. A numbness takes them over, followed by that distinctly uncomfortable sensation of pins and needles. As they keep flicking about, you can feel their weight changing ever so slightly. When the feeling subsides, you cup your new set of <b>goat ears!</b>");
 						
 						target.earType = GLOBAL.TYPE_GOAT;
+						target.clearEarFlags();
+						target.addEarFlag(GLOBAL.FLAG_FURRED);
 						target.earLength = 4;
 					}
 					else

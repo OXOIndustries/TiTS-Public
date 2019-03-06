@@ -480,7 +480,7 @@ public function hyperBodyCondomRozAnne():void
 	if(cum < 10000)
 	{
 		output(" [pc.Cum] spurts into the swirling cyan pocket at the tip of your dick, shrouding her gemstone core as you pump spurt after spurt into the goo.");
-		output("\n\nAs you savor the climax, you realize that this is likely what she wanted all along, but it doesn’t matter. You won. She had to work for your cum! Nevermind that you’re sinking to " + (pc.hasKnees() ? "your knees":"the ground") + ", spurting and moaning, incoherent with pleasure. Nevermind the way ");
+		output("\n\nAs you savor the climax, you realize that this is likely what she wanted all along, but it doesn’t matter. You won. She had to work for your cum! Never mind that you’re sinking to " + (pc.hasKnees() ? "your knees":"the ground") + ", spurting and moaning, incoherent with pleasure. Never mind the way ");
 		if(cum < 25) output("she devours your meager offering with ease");
 		else if(cum < 500) output("she devours your seed with happy-sounding gurgles");
 		else output("she captures your seed with happy-sounding gurgles, creating an expanding pocket of [pc.cumColor]-tinged goo to hang from your kingly crown");
