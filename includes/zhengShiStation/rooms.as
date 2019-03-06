@@ -2639,7 +2639,7 @@ public function initZhengRooms():void
 	rooms["ZSR F33"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR F33"].northExit = "";
 	rooms["ZSR F33"].eastExit = "ZSR H33";
-	rooms["ZSR F33"].southExit = "";
+	rooms["ZSR F33"].southExit = "ZSR F35";
 	rooms["ZSR F33"].westExit = "ZSR D33";
 	rooms["ZSR F33"].moveMinutes = 3;
 	rooms["ZSR F33"].runOnEnter = bonusHolosharkFun;
@@ -2745,6 +2745,34 @@ public function initZhengRooms():void
 	rooms["ZSR L39"].addFlag(GLOBAL.INDOOR);
 	//rooms["ZSR L39"].addFlag(GLOBAL.HAZARD);
 	
+	rooms["ZSR F35"] = new RoomClass(this);
+	rooms["ZSR F35"].roomName = "NARROW\nALLEY";
+	rooms["ZSR F35"].description = "Kept dim by close walls, this area's light is almost entirely provided by neon light - or simulated projections of it. There are male and female symbols interlocked, flickering and buzzing as they splay out blue and pink radiance. A tube of eye-watering green bends around itself to spell out \"DRUGS\" atop an east-facing arrow while a more mundane advertisement for \"Cherry's Tap-House\" suggests you head south.";
+	rooms["ZSR F35"].planet = "ZHENG SHI STATION";
+	rooms["ZSR F35"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR F35"].northExit = "ZSR F33";
+	rooms["ZSR F35"].eastExit = "";
+	rooms["ZSR F35"].southExit = "WALL SLUTS";
+	rooms["ZSR F35"].westExit = "";
+	rooms["ZSR F35"].moveMinutes = 3;
+	//rooms["ZSR F35"].runOnEnter = null;
+	rooms["ZSR F35"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSR F35"].addFlag(GLOBAL.HAZARD);
+
+	rooms["WALL SLUTS"] = new RoomClass(this);
+	rooms["WALL SLUTS"].roomName = "CHERRY'S\nTAP-HALL";
+	rooms["WALL SLUTS"].description = "";
+	rooms["WALL SLUTS"].planet = "ZHENG SHI STATION";
+	rooms["WALL SLUTS"].system = "SYSTEM: HERISIOD";
+	rooms["WALL SLUTS"].northExit = "ZSR F35";
+	rooms["WALL SLUTS"].eastExit = "";
+	rooms["WALL SLUTS"].southExit = "";
+	rooms["WALL SLUTS"].westExit = "";
+	rooms["WALL SLUTS"].moveMinutes = 3;
+	rooms["WALL SLUTS"].runOnEnter = cherryTapHallBonerBonus;
+	rooms["WALL SLUTS"].addFlag(GLOBAL.INDOOR);
+	rooms["WALL SLUTS"].addFlag(GLOBAL.NPC);
+
 	rooms["ZSR PLACEHOLDER"] = new RoomClass(this);
 	rooms["ZSR PLACEHOLDER"].roomName = "\n";
 	rooms["ZSR PLACEHOLDER"].description = "";
