@@ -98,7 +98,7 @@ public function ramisOnTop(setTo:int = 0):Boolean
 public function looksFemaleToRamis(target:Creature = null):Boolean
 {
 	if (!target) target = pc;
-	return (target.isFemale() || target.isFemHerm() || target.isSexless() || target.isShemale());
+	return (target.isWoman() || target.isFemHerm() || target.isSexless() || target.isShemale());
 }
 public function looksTrappyToRamis(target:Creature = null):Boolean
 {

@@ -102,7 +102,7 @@ public function looksFamiliarToRamis():Boolean
 	switch(flags["RAMIS_FIRST_IMPRESSION"])
 	{
 		case "girlee":
-			if(pc.isFemale() || pc.isFemHerm() || pc.isSexless() || pc.isShemale()) isSame = true;
+			if(pc.isWoman() || pc.isFemHerm() || pc.isSexless() || pc.isShemale()) isSame = true;
 			break;
 		case "boyo":
 			if(pc.isFemboy()) isSame = true;
@@ -179,7 +179,7 @@ public function approachRamis(special:String = "none"):void
 		return;
 	}
 	
-	var isFem:Boolean = (pc.isFemale() || pc.isFemHerm() || pc.isSexless() || pc.isShemale());
+	var isFem:Boolean = (pc.isWoman() || pc.isFemHerm() || pc.isSexless() || pc.isShemale());
 	var isFemboy:Boolean = pc.isFemboy();
 	
 	// Repeat Approaches
@@ -361,7 +361,7 @@ public function ramisDrink(response:String = "drink"):void
 			output("Matching her challenging grin, you pick up one of the filled shot glasses and slot it home, smacking your [pc.lips] as the liquid burns down your throat. The mercs cheer and Ramis claps approvingly.");
 			output("\n\n<i>“Nice one" + ((!pc.isMasculine(true) && pc.hasVagina()) ? ". Show the boyos how it’s done" : "") + "!”</i> the big kaithrit gestures impatiently at the " + (rand(2) == 0 ? "bartender" : "barkeep") + ", who keeps pouring. <i>“So which part of the galaxy have you blown in from, then...?”</i>");
 			output("\n\nYou spend the next hour or so knocking it back with Ramis and her crew. As you’d guessed, they’re mercs: unaffiliateds that drift from one organization or job to the next.");
-			output("\n\n<i>“No Black Void dipshit’s a better gunner than me, though!”</i> Ramis howls, standing on top of a table and beating her bosom, ignoring the guffawing “siddowns”. <i>“Nobody is!”</i>");
+			output("\n\n<i>“No Black Void dipshit’s a better gunner than me, though!”</i> Ramis howls, standing on top of a table and beating her bosom, ignoring the guffawing <i>“siddowns”</i>. <i>“Nobody is!”</i>");
 			output("\n\nThey’re full of uproarious tales of high speed getaways and day-long benders on distant moons, details of which are very vague in particular parts. Your own story of");
 			if(pc.characterClass == GLOBAL.CLASS_MERCENARY) output(" being an up-and-coming mercenary yourself");
 			else if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) output(" doing a bit of space wheeling and dealing");
@@ -462,7 +462,7 @@ public function ramisDrink(response:String = "drink"):void
 			output("You moan as you slowly regain consciousness. Oh Void... today is going to be hard. Very hard indeed. You feel like you’ve got a simultaneous case of flu and food poisoning, as well as if someone hit you around the [pc.legOrLegs] with a baseball bat a few times. The one good piece of news is, as you woozily cast your gaze around you, is that you did somehow manage to get back into your bed aboard your ship last night. You took something with you, though - there’s a large, hard object lying next to you. You moan again when you pull down the duvet and see what it is. A breadbin-sized conical construction bot in standby mode. Of course.");
 			output("\n\n<i>“Wakey wakey,”</i> trills Ramis, striding into the room from the bathroom in her underwear, toweling her hair. <i>“Nice shower unit you have. Way better than the communal ones you get on merc cruisers, lemme tell you.”</i> Aside from dilated pupils and a continued lack of coordination - a muscular hip knocks your bedside cabinet askew as she advances on a pile of clothes on the floor - she looks disgustingly unaffected by last night.");
 			output("\n\n<i>“We didn’t, uh...”</i> you trail off.");
-			if(pc.isFemale() || pc.isFemHerm() || pc.isSexless() || pc.isShemale())
+			if(pc.isWoman() || pc.isFemHerm() || pc.isSexless() || pc.isShemale())
 			{
 				output("\n\n<i>“Uh? Oh, no. Don’t think so anyway,”</i> Ramis replies, unsteadily pulling on her jeans. <i>“I’m not into other");
 				if(pc.mf("m", "f") == "m") output("... eh,");
