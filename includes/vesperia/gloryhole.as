@@ -969,6 +969,7 @@ public function nahNoDoggoDick():void
 	author("SKoW");
 	output("You’re not so convinced you want to get particularly intimate with someone who’s probably too drunk to stand up. When you remain silent on your end of the hole there’s a long pause, followed by a sigh before they step (or more likely stumble) away.");
 	//[Next] //Return to waiting!
+	clearMenu();
 	addButton(0,"Wait",gloryholeWait);
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -1025,6 +1026,7 @@ public function stayQuietForLatexBeejAvoid():void
 	showName("\nGLORYHOLE");
 	author("SKoW");
 	output("You stay quiet, waiting for the uncomfortable silence to clear. After a while there’s a soft tongue-clicking, before the coat is picked up again. Once more there’s the subtle squeak of latex and the click-clack of high-heels as she exits the room, leaving you in silence once more.");
+	clearMenu();
 	addButton(0,"Wait",gloryholeWait);
 	addButton(14,"Leave",mainGameMenu);
 }

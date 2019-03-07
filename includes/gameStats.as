@@ -8203,8 +8203,13 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(quaelleIsLover()) output2(", Lovers");
 				if(quaellePregShutdown()) output2(", Sterile");				
 				if(quaelleInSnit()) output2(", In a Snit");
-				if(quaelleHasLeft()) output2(", Has Left");				
+				if(quaelleHasLeft()) output2(", Has Left");
 				if(flags["QUAELLE_HUGGED"] != undefined) output2("\n<b>* Quaelle, Times Hugged Her:</b> " + flags["QUAELLE_HUGGED"]);
+				if(chars["QUAELLE"].hasCock() && chars["QUAELLE"].cumQ() > 0)
+				{
+					if(chars["QUAELLE"].virility() <= 0) output2("\n<b>* Quaelle, Virility:</b> Infertile");
+					else output2("\n<b>* Quaelle, Virility:</b> " + Math.round(chars["QUAELLE"].virility()*1000)/10 + " %");
+				}
 				if(flags["QUAELLE_SEXED"] != undefined) output2("\n<b>* Quaelle, Times Sexed:</b> " + flags["QUAELLE_SEXED"]);
 				if(flags["QUAELLE_FUCK_CUNT_FRONT"] != undefined) output2("\n<b>* Quaelle, Times You Fucked Her Front Pussy:</b> " + flags["QUAELLE_FUCK_CUNT_FRONT"]);
 				if(flags["QUAELLE_FUCK_CUNT_BACK"] != undefined) output2("\n<b>* Quaelle, Times You Fucked Her Back Pussy:</b> " + flags["QUAELLE_FUCK_CUNT_BACK"]);

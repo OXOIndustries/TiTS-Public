@@ -163,7 +163,7 @@ public function raskVelBabeGetsDoggieStyled():void
 	else output("defeated");
 	output(" foe, your stiffening maleness");
 	if(pc.cockTotal() > 1) output("es");
-	output(" rise to attention, and you decide that you may as well take care of the lusts she stoked within you in the most biologically appropriate way. You grab the raskvel by one of her sizeable hips and roll her over, seizing her before she can settle into that pose. Her supple ass flexes slightly in your grip, and you can see second clit jutting out from between her juicy-looking folds as you lift her higher. She whimpers, ");
+	output(" rise to attention, and you decide that you may as well take care of the lusts she stoked within you in the most biologically appropriate way. You grab the raskvel by one of her sizeable hips and roll her over, seizing her before she can settle into that pose. Her supple ass flexes slightly in your grip, and you can see her second clit jutting out from between her juicy-looking folds as you lift her higher. She whimpers, ");
 	if(pc.tallness >= 50) output("her legs lifting up off the ground as you align her with your crotch");
 	else output("her legs settling under her as you align her with your crotch. It’s a perfect match, as short as you both are");
 	output(".");

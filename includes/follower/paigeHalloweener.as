@@ -541,7 +541,7 @@ public function HSO():void
 	author("B");
 	output("Once the sweet ambrosia that is Paige’s precum hit your [pc.tongue], a hunger developed in not just your belly, but the whole of your being; you <i>need</i> to have her cum, and the only way you’ll be satisfied is if you feel the hot, smooth ichor slide across your maw and down your throat.");
 	output("\n\nHer Ausar dick is the girth of a wrist, and it’s so long, its tip slaps against her kneecaps. Its base is bloated with a knot the size of your fist, and shadowed underneath that are two grapefruit-sized testicles, each snug underneath a layer of fine, brown fur. Her cock is too heavy to support its own weight, so you do it a favor and hoist it with your hands, leveling it, before bathing it with your tongue.");
-	output("\n\nPaige’s hands run lovingly through over your head");
+	output("\n\nPaige’s hands run lovingly over your head");
 	if(pc.hasHair()) output(" and through your [pc.hair]");
 	output(" as you trail long lines of saliva across the thick, heavy meat of her cock. You kiss at its sides and at the muscles beneath it, sucking its smooth skin against your mouth for a moment and releasing it with a ‘pop!’ every time. You work your way to its base, then start running circles around her knot, breathing heavily through your nose as mat it against her pelvis.");
 	output("\n\nYour work does not stop at her cock: shuffling forward on your knees, you begin kissing upward, planting a thick, heavy smack on every one of her eight, sculpted abdominals, once on the way up and then counting your way back down. When you reach her base again, you dip lower, lathering her solid, powerful thighs with your spit, getting her nice and moist all over her powerful, rippling muscles. And, of course, before you begin your long crawl back up her spire, you pay a visit to each testicle, lovingly shucking them into your mouth for a bath.");
@@ -963,8 +963,9 @@ public function HSE1():void
 
 	processTime(10);
 	pc.orgasm();
-	if(pc.hasVagina()) pc.loadInCunt(paige,0);
-	else pc.loadInAss(paige);
+	//if(pc.hasVagina()) pc.loadInCunt(paige,0);
+	//else pc.loadInAss(paige);
+	pc.loadInMouth(paige);
 	//[=Aftermath=]
 	// end scene (scene: HSE1); go to (scene: HSA)
 	clearMenu();

@@ -2853,7 +2853,7 @@ public function ramisFaceSittingJackOffScene(args:Array):void
 			if(pc.balls > 0) output(" She sends one hand rummaging down, giggling huskily as she makes you start and gasp by gently squeezing your [pc.balls], making even more pre ooze freely from your dilated slit.");
 			output("\n\nAnd yet... despite all that... you still cannot cum. Not without her telling you that you can. It’s hypnotically, submissively wonderful. You close your [pc.eyes], grip her thighs and attack her clit with your [pc.tongue], allowing the pleasure to flow through you, overwhelming your thoughts.");
 			output("\n\n<i>“That’s it boyo, that’s it,”</i> her merry voice drifts down, heightening as she grows ever more excited. Warm, smooth muscles jounces on your face. <i>“I’ll let you go when you get me there... it’s goen to be so fucken good...”</i>");
-			output("\n\nPussy juices drool over your [pc.lips] and are smeared over your nose, filling your head with her sweet, clear scent. Her formidable thighs tighten around your head, turning your whole world into smooth, clenching brownness. Your thumb scrabbles over the tiny little bud whilst you slurp desparately at her wet hole.");
+			output("\n\nPussy juices drool over your [pc.lips] and are smeared over your nose, filling your head with her sweet, clear scent. Her formidable thighs tighten around your head, turning your whole world into smooth, clenching brownness. Your thumb scrabbles over the tiny little bud whilst you slurp desperately at her wet hole.");
 			
 			var cumQ:Number = pc.cumQ();
 			

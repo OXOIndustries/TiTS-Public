@@ -793,10 +793,7 @@ public function worshipMajasBitchBreakingBoner():void
 			}
 			else 
 			{
-				output("thrusting into");
-				if(pc.hasVagina()) output("[pc.vaginas]");
-				else output("your [pc.asshole]");
-				output(" with as many fingers as your can manage");
+				output("thrusting into your " + (pc.hasVagina() ? "[pc.vaginas]" : "[pc.asshole]") + " with as many fingers as you can manage");
 			}
 			output(". The feeling just isn’t the same, but it assauges the need a little. Your actions still elicit a choked moan, and Maja shares it, shifting and pumping her hips. Another inch slides into your mouth, bringing you ever closer to her crotch.");
 		}
