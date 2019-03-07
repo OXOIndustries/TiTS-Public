@@ -119,9 +119,9 @@ public function cherryMenu():void
 {
 	clearMenu();
 	addButton(0,"Appearance",cherryAppearance);
-	if(pc.hasKeyItem("Puss Pass")) addDisabledButton(1,"BuyPussPass","BuyPussPass","You already have a Puss Pass!");
+	if(pc.hasKeyItem("Puss Pass")) addDisabledButton(1,"BuyPussPass","Buy Puss Pass","You already have a Puss Pass!");
 	else if(pc.credits >= 50000) addButton(1,"BuyPussPass",pussPassBuy,undefined,"Buy Puss Pass: 50,000C","For the low price of 50,000 credits, you can use the Tap-Hall as much as you like.");
-	else addDisabledButton(1,"BuyPussPass","Puss Pass","You don’t have enough money for this. Come back with 50,000 credits.");
+	else addDisabledButton(1,"BuyPussPass","Buy Puss Pass","You don’t have enough money for this. Come back with 50,000 credits.");
 	addButton(14,"Leave",pickWallSlutMenu);
 }
 
@@ -179,9 +179,9 @@ public function pickWallSlutMenu():void
 	if(pc.hasStatusEffect("RaskvelDisable"))
 	{
 		output("\n\nThe raskvel are still there, but shut down for cleaning at the moment.");
-		addDisabledButton(2,"DoubleRask","DoubleRask","The raskvel are closed for cleaning.");
+		addDisabledButton(2,"DoubleRask","Double Raskvel","The raskvel are closed for cleaning.");
 	}
-	else addButton(2,"DoubleRask",doubleBooty,undefined,"DoubleRask","Investigate two sandwiched raskvel.");
+	else addButton(2,"DoubleRask",doubleBooty,undefined,"Double Raskvel","Investigate two sandwiched raskvel.");
 
 	if(pc.hasStatusEffect("ThiccGobDisable"))
 	{
@@ -193,7 +193,7 @@ public function pickWallSlutMenu():void
 }
 
 //[Black Dragoness]
-//10’+ dark purple fanfir woman
+//10'+ dark purple fanfir woman
 //lower torso, vaginal only
 public function blackDragonessUse():void
 {
@@ -212,16 +212,16 @@ public function blackDragonessUse():void
 		if(pc.credits >= 2000 || pc.hasKeyItem("Puss Pass"))
 		{
 			if(pc.cockThatFits(1500) >= 0) addButton(0,"Fuck Pussy",cockSelect,[pussyDatGryvain,1500,false,0],"Fuck Pussy","Plow that pussy" + (!pc.hasKeyItem("Puss Pass") ? " for 2000 credits.":" for free, thanks to your pass."));
-			else addDisabledButton(0,"Fuck Pussy","Fuck Pussy","Despite the enormity of her ass, you’re just 				too well endowed to take her for a spin.");
+			else addDisabledButton(0,"Fuck Pussy","Fuck Pussy","Despite the enormity of her ass, you’re just too well endowed to take her for a spin.");
 		}
-		else addDisabledButton(0,"Fuck Pussy","Fuck Pussy","You can’t afford to ride this ride.");
+		else addDisabledButton(0,"Fuck Pussy","Fuck Pussy","You can’t afford to ride this ride.\n\nCosts 2000 credits.");
 	}
 	else addDisabledButton(0,"Fuck Pussy","Fuck Pussy","You’re going to need to find a penis for this.");
 	addButton(4,"Back",pickWallSlut);
 }
 
 //[Pussy]
-//requires dick under 12”</i> girth
+//requires dick under 12" girth
 public function pussyDatGryvain(x:int):void
 {
 	clearOutput();
@@ -276,7 +276,7 @@ public function moreDragonfucks(x:int):void
 	showName("FANFIR\nPUSSY");
 	output("Despite the wordless, affectionate embrace, the temptation to put her colossal derriere through its paces proves too much and you slow your pace just enough to let you appreciate what’s to come. Raising an open-palmed hand up, you bend your waist slightly and whip around to slap one of her cheeks with a startling crack. The unexpected blow sends rippling waves from one dark-hued cheek to the other and a split second later, her nerves register the shock with an internal clenching unlike anything you’ve ever felt. Her tail pulls you tight enough that it crushes the air out of your lungs while her pussy clamps down on your stem with such force that your fingertips start tingling.");
 	output("\n\nThe hold relaxes gradually and you follow up with another slap, hard enough to leave your palm burning. Another clench and you almost lose your balance. It feels like your head is in a velvet vice for just a second before the blossoming heat of a climax cuts through the haze. The dragoness’s cunny is suckling so hard at your [pc.cock " + x + "] that you almost feel lifted off your [pc.footOrFeet]. There’s certainly no way you’re stopping now, so the spanking continues until you’re forced to switch hands from the sheer numbness in your limb. Each impact brings a fresh wave of grasping constriction that it feels like she’s vibrating - inside and out - from the punishing buffet. Her pussy clenches randomly and wildly as the paddling sparks an orgasmic feedback that robs the giantess of muscular control and milks you within an inch of your life.");
-	output("\n\nThe fanfir’s crushing depths are almost too much for your lust-sore cockHead. You grab hold of her wobbling haunches, all sensations in your body compressed down to the surging rush of your [pc.cockHead " + x + "].");
+	output("\n\nThe fanfir’s crushing depths are almost too much for your lust-sore [pc.cockHeadNoun " + x + "]. You grab hold of her wobbling haunches, all sensations in your body compressed down to the surging rush of your [pc.cockHead " + x + "].");
 	//balls: 
 	if(pc.balls > 0) output(" The downpour of hot dragon-girl juices polish your [pc.balls] in slavish, liquid adoration. Though lost in the endless expanse of milfy thighs, your cum tanks churn with the need to fill the wall-slut’s womb.");
 
@@ -323,7 +323,7 @@ public function doubleBooty():void
 			if(pc.cockThatFits(800) >= 0) addButton(0,"Pussies",cockSelect,[raskvelCuntFun,800,false,0],"Pussies","Slide between those two sloppy cunts" + (!pc.hasKeyItem("Puss Pass") ? " for 1000 credits.":" for free, thanks to your pass."));
 			else addDisabledButton(0,"Fuck Pussy","Fuck Pussy","You’re too big to even cram your cockhead inside those pint-sized pusses.");
 		}
-		else addDisabledButton(0,"Pussies","Pussies","You can’t afford to ride this ride.");
+		else addDisabledButton(0,"Pussies","Pussies","You can’t afford to ride this ride.\n\nCosts 1000 credits.");
 	}
 	else addDisabledButton(0,"Pussies","Pussies","You’re going to need to find a penis for this.");
 	addButton(4,"Back",pickWallSlut);
@@ -396,7 +396,7 @@ public function thickGoblinSmex():void
 			if(pc.cockThatFits(700) >= 0) addButton(0,"Buttfuck",cockSelect,[goblinAnalStuff,700,false,0],"Buttfuck","Take the hesitant gabilani for a spin" + (!pc.hasKeyItem("Puss Pass") ? " for 500 credits.":" for free, thanks to your pass."));
 			else addDisabledButton(0,"Buttfuck","Buttfuck","You’re too big to even cram your cockhead inside dat ass.");
 		}
-		else addDisabledButton(0,"Buttfuck","Buttfuck","You can’t afford to ride this ride.");
+		else addDisabledButton(0,"Buttfuck","Buttfuck","You can’t afford to ride this ride.\n\nCosts 500 credits.");
 	}
 	else addDisabledButton(0,"Buttfuck","Buttfuck","You’re going to need to find a penis for this.");
 	addButton(4,"Back",pickWallSlut);
