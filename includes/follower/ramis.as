@@ -942,7 +942,7 @@ public function ramisPlsSexMeh():void
 public function ramisSexButton(btnSlot:int = 1):void
 {
 	if (flags["RAMIS_SEX_DISABLED"] == 3) { /* Nada */ }
-	if (flags["RAMIS_SEX_DISABLED"] == 1 && looksFemaleToRamis()) addDisabledButton(btnSlot, "Sex", "Sex", "You aren’t something that Ramis would be interested in banging. Maybe if you were a guy... or a trap.");
+	if (flags["RAMIS_SEX_DISABLED"] == 1 && looksFemaleToRamis()) addDisabledButton(btnSlot, "Sex", "Sex", ("You aren’t something that Ramis would be interested in banging. Maybe if you " + (pc.isCuntboy() ? "had a willy instead of a fanny" : "were a guy... or a trap") + "."));
 	else if (pc.isTaur()) addDisabledButton(btnSlot, "Sex", "Sex", "You’re a bit too... <i>tauric</i>.");
 	else if (pc.hasStatusEffect("Disable Ramis Sex")) addDisabledButton(btnSlot, "Sex", "Sex", "Unless you want to be teased mercilessly, you think you’ll have to suffer in silence a bit longer before letting Ramis at you again.");
 	//else if (ramisOnTop() && !pc.hasHardLightEquipped()) addDisabledButton(btnSlot, "Sex", "Sex", "For now, you’ll need to wear a certain piece of... equipment... to do this.\n\n(It’s a strap-on)");
@@ -970,13 +970,12 @@ public function ramisLetsShagRouter():void
 	//Blanked enable, so we only have to worry about the options that disable it
 	flags["RAMIS_SEX_DISABLED"] = undefined;
 
-	if (looksFemaleToRamis())
+	if (looksFemaleToRamis() || pc.isCuntboy())
 	{
 		//Player might have been a dude at the bar, and certainly was one at some point if they've had sex in the ship
 		if (flags["RAMIS_SEXED_SHIP"] != undefined || !looksFamiliarToRamis())
-		{
-			output("With a flirty smile and a little shimmy of the hips, you ask if she fancies a bit of fun.");
-			output("\n\n<i>“You’ve ummmm, changed a bit recently, haven’t you captain,”</i> Ramis replies slowly, eyeing you. <i>“Stopped being somethen I’m into.”</i> She shrugs. <i>“Don’t get me wrong, I’m not tryen to get you down if that’s who you want to be, it’s just... it doesn’t do anythen for me.”</i> She grins wistfully. <i>“Call me if you ever turn back into cute boy. I might be ravenous for them by then...”</i>");
+		{	output("With a flirty smile and a little shimmy of the hips, you ask if she fancies a bit of fun.");
+			output("\n\n<i>“You’ve ummmm, changed a bit recently, haven’t you captain,”</i> Ramis replies slowly, eyeing you. <i>“Stopped being somethen I’m into.”</i> She shrugs. <i>“Don’t get me wrong, I’m not tryen to get you down if that’s who you want to be, it’s just... it doesn’t do anythen for me.”</i> She grins wistfully. <i>“Call me if you ever " + (pc.isCuntboy() ? "get that luvley willy back" : "turn back into cute boy") + ". I might be ravenous for them by then...”</i>");
 		}
 		else
 		{
