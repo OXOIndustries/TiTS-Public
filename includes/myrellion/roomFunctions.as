@@ -1,4 +1,8 @@
-﻿//Landing on Myrellion, First Time
+﻿public function myrellionCoordinatesUnlocked():Boolean
+{
+	return (flags["PLANET_3_UNLOCKED"] != undefined);
+}
+//Landing on Myrellion, First Time
 public function flyToMyrellion():void
 {
 	showBust("MYRELLION");

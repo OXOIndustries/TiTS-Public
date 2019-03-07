@@ -2152,14 +2152,14 @@ public function flyMenu():void
 	if(shipLocation != "SHIP HANGAR") addButton(1, "Mhen’ga", flyTo, "Mhen'ga");
 	else addDisabledButton(1, "Mhen’ga", "Mhen’ga", "You’re already here.");
 	//TARKUS
-	if(flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
+	if(tarkusCoordinatesUnlocked())
 	{
 		if(shipLocation != "201") addButton(2, "Tarkus", flyTo, "Tarkus");
 		else addDisabledButton(2, "Tarkus", "Tarkus", "You’re already here.");
 	}
 	else addDisabledButton(2, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
 	//MYRELLION
-	if(flags["PLANET_3_UNLOCKED"] != undefined)
+	if(myrellionCoordinatesUnlocked())
 	{
 		if (flags["KQ2_MYRELLION_STATE"] == undefined)
 		{
@@ -2186,14 +2186,14 @@ public function flyMenu():void
 	else addDisabledButton(4, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
 
 	//NEW TEXAS
-	if(flags["NEW_TEXAS_COORDINATES_GAINED"] != undefined)
+	if(newTexasCoordinatesUnlocked())
 	{
 		if(shipLocation != "500") addButton(5, "New Texas", flyTo, "New Texas");
 		else addDisabledButton(5, "New Texas", "New Texas", "You’re already here.");
 	}
 	else addDisabledButton(5, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
 	//POE A
-	if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)
+	if(poeACoordinatesUnlocked())
 	{
 		if(shipLocation != "POESPACE") addButton(6, "Poe A", flyToPoeAConfirm);
 		else addDisabledButton(6, "Poe A", "Poe A", "You’re already here.");
@@ -2214,14 +2214,14 @@ public function flyMenu():void
 	}
 	else addDisabledButton(8, "Locked", "Locked", "You have not yet learned of this location’s coordinates.");
 	//Gastigoth
-	if(MailManager.isEntryViewed("gastigoth_unlock"))
+	if(gastigothCoordinatesUnlocked())
 	{
 		if(shipLocation != "K16_DOCK") addButton(9, "Gastigoth", flyTo, "Gastigoth");
 		else addDisabledButton(9, "Gastigoth", "Gastigoth Station", "You’re already here!");
 	}
 	else addDisabledButton(9, "Locked", "Locked", "You have not learned of this location’s coordinates yet.");
 	//Breedwell
-	if(MailManager.isEntryViewed("breedwell_unlock"))
+	if(breedwellCoordinatesUnlocked())
 	{
 		// PC must not be a taur, infertile or e.g. on Sterilex to choose this option before they’ve been there at all.
 		if(shipLocation == "BREEDWELL_HANGAR") addDisabledButton(10, "Breedwell", "Breedwell Centre", "You’re already here.");
@@ -3981,7 +3981,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			if(!MailManager.isEntryUnlocked("pumpking_alert") && !pennyIsCrew() && flags["PUMPKING_COMPLETION"] == undefined && flags["SEXED_PENNY"] != undefined) goMailGet("pumpking_alert");
 		}
 		/* SHEKKA RECROOT */
-		if(!shekkaRecruited() && flags["SHEKKA_REPEAT_TALKED"] != undefined && flags["SHEKKA_TALKED_PLAN"] != undefined && flags["PLANET_3_UNLOCKED"] != undefined && flags["TIMES_SEXED_SHEKKA"] != undefined)
+		if(!shekkaRecruited() && flags["SHEKKA_REPEAT_TALKED"] != undefined && flags["SHEKKA_TALKED_PLAN"] != undefined && myrellionCoordinatesUnlocked() && flags["TIMES_SEXED_SHEKKA"] != undefined)
 		{
 			if(!MailManager.isEntryUnlocked("shekkaFollowerIntroMail") && !pc.hasStatusEffect("Shekka_Follower_Email_CD") && currentLocation != "WIDGET WAREHOUSE") goMailGet("shekkaFollowerIntroMail");
 			if(flags["SHEKKA_CURE_TIMER"] != undefined)
@@ -4052,7 +4052,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 
 		//Plantation Quest Offer
 		//Key string - "plantation_quest_start"
-		if (!MailManager.isEntryUnlocked("plantation_quest_start") && flags["PLANTATION_MEALS"] != undefined && flags["PLANTATION_ZIL_TALK"] != undefined && flags["PLANTATION_PLANTATION_TALK"] != undefined && flags["PLANTATION_WORKERS_TALK"] != undefined && flags["PLANET_3_UNLOCKED"] != undefined)
+		if (!MailManager.isEntryUnlocked("plantation_quest_start") && flags["PLANTATION_MEALS"] != undefined && flags["PLANTATION_ZIL_TALK"] != undefined && flags["PLANTATION_PLANTATION_TALK"] != undefined && flags["PLANTATION_WORKERS_TALK"] != undefined && myrellionCoordinatesUnlocked())
 		{
 			if(flags["PQUEST_DELAY_TIMER"] == undefined) flags["PQUEST_DELAY_TIMER"] = GetGameTimestamp();
 			else if(nextTimestamp >= (flags["PQUEST_DELAY_TIMER"] + (60*10))) goMailGet("plantation_quest_start", (flags["PQUEST_DELAY_TIMER"] + (60*10)));
@@ -4867,7 +4867,7 @@ public function emailRoulette(deltaT:uint):void
 	// Character/Event specific:
 	if(!MailManager.isEntryUnlocked("burtsmeadhall") && pc.level >= 1)
 		mailList.push("burtsmeadhall");
-	if(!MailManager.isEntryUnlocked("kihaai") && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
+	if(!MailManager.isEntryUnlocked("kihaai") && tarkusCoordinatesUnlocked())
 		mailList.push("kihaai");
 	if(!MailManager.isEntryUnlocked("syrividja") && flags["SPAM_MSG_COV8"] != undefined && syriIsAFuckbuddy() && (flags["TIMES_WON_AGAINST_SYRI"] != undefined || flags["TIMES_LOST_TO_SYRI"] != undefined))
 		mailList.push("syrividja");

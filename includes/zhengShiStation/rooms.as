@@ -2747,7 +2747,7 @@ public function initZhengRooms():void
 	
 	rooms["ZSR F35"] = new RoomClass(this);
 	rooms["ZSR F35"].roomName = "NARROW\nALLEY";
-	rooms["ZSR F35"].description = "Kept dim by close walls, this area's light is almost entirely provided by neon light - or simulated projections of it. There are male and female symbols interlocked, flickering and buzzing as they splay out blue and pink radiance. A tube of eye-watering green bends around itself to spell out \"DRUGS\" atop an east-facing arrow while a more mundane advertisement for \"Cherry's Tap-House\" suggests you head south.";
+	rooms["ZSR F35"].description = "Kept dim by close walls, this area’s light is almost entirely provided by neon light - or simulated projections of it. There are male and female symbols interlocked, flickering and buzzing as they splay out blue and pink radiance. A tube of eye-watering green bends around itself to spell out “DRUGS” atop an east-facing arrow while a more mundane advertisement for “Cherry’s Tap-House” suggests you head south.";
 	rooms["ZSR F35"].planet = "ZHENG SHI STATION";
 	rooms["ZSR F35"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR F35"].northExit = "ZSR F33";
@@ -2760,7 +2760,7 @@ public function initZhengRooms():void
 	//rooms["ZSR F35"].addFlag(GLOBAL.HAZARD);
 
 	rooms["WALL SLUTS"] = new RoomClass(this);
-	rooms["WALL SLUTS"].roomName = "CHERRY'S\nTAP-HALL";
+	rooms["WALL SLUTS"].roomName = "CHERRY’S\nTAP-HALL";
 	rooms["WALL SLUTS"].description = "";
 	rooms["WALL SLUTS"].planet = "ZHENG SHI STATION";
 	rooms["WALL SLUTS"].system = "SYSTEM: HERISIOD";

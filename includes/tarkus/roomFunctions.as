@@ -1,5 +1,9 @@
 ﻿import classes.Items.Miscellaneous.HorseCock;
 
+public function tarkusCoordinatesUnlocked():Boolean
+{
+	return (flags["UNLOCKED_JUNKYARD_PLANET"] != undefined);
+}
 //Landing on Tarkus (First Time)
 public function landOnTarkus():void
 {

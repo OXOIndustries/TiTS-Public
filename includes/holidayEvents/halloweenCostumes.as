@@ -1,4 +1,7 @@
-﻿
+﻿public function poeACoordinatesUnlocked():Boolean
+{
+	return (flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined);
+}
 public function showHoliday(arg:String = "normal"):void
 {
 	showName("\nHOLIDAY");

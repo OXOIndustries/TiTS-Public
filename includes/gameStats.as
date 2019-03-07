@@ -1373,7 +1373,7 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Mothrine:</b> " + prettifyGeneticMarker(pc.mothrineScore(), 5, 10));
 		if(pc.rodentScore() > 0)
 			output2("\n<b>* Mouse:</b> " + prettifyGeneticMarker(pc.rodentScore(), 4, 7));
-		if(flags["PLANET_3_UNLOCKED"] != undefined)
+		if(myrellionCoordinatesUnlocked())
 		{
 			if(pc.myrScore() > 0) output2("\n<b>* Myr:</b> " + prettifyGeneticMarker(pc.myrScore(), 4, 6));
 			if(CodexManager.entryUnlocked("Red Myr") && pc.redMyrScore() > 0)
@@ -2177,13 +2177,13 @@ public function questLogMenu(currentFunc:Function):Boolean
 		else addGhostButton(1, "Mhen’ga", currentFunc, "Mhen'ga");
 	}
 	// Tarkus
-	if(flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
+	if(tarkusCoordinatesUnlocked())
 	{
 		if(showID == "Tarkus") { output2(header("<u>Tarkus</u>", false)); addDisabledGhostButton(2, "Tarkus"); }
 		else addGhostButton(2, "Tarkus", currentFunc, "Tarkus");
 	}
 	// Myrellion
-	if(flags["PLANET_3_UNLOCKED"] != undefined)
+	if(myrellionCoordinatesUnlocked())
 	{
 		if(showID == "Myrellion") { output2(header("<u>Myrellion</u>", false)); addDisabledGhostButton(3, "Myrellion"); }
 		else addGhostButton(3, "Myrellion", currentFunc, "Myrellion");
@@ -2195,13 +2195,13 @@ public function questLogMenu(currentFunc:Function):Boolean
 		else addGhostButton(4, "ZhengShi", currentFunc, "Zheng Shi");
 	}
 	// New Texas
-	if(flags["NEW_TEXAS_COORDINATES_GAINED"] != undefined)
+	if(newTexasCoordinatesUnlocked())
 	{
 		if(showID == "New Texas") { output2(header("<u>New Texas</u>", false)); addDisabledGhostButton(5, "New Texas"); }
 		else addGhostButton(5, "New Texas", currentFunc, "New Texas");
 	}
 	// Poe A
-	if(flags["HOLIDAY_OWEEN_ACTIVATED"] != undefined)
+	if(poeACoordinatesUnlocked())
 	{
 		if(showID == "Poe A") { output2(header("<u>Poe A</u>", false)); addDisabledGhostButton(6, "Poe A"); }
 		else addGhostButton(6, "Poe A", currentFunc, "Poe A");
@@ -2218,14 +2218,14 @@ public function questLogMenu(currentFunc:Function):Boolean
 		if(showID == "Canadia") { output2(header("<u>Canadia Station</u>", false)); addDisabledGhostButton(8, "Canadia"); }
 		else addGhostButton(8, "Canadia", currentFunc, "Canadia");
 	}
-	//Gastigoth
-	if(MailManager.isEntryViewed("gastigoth_unlock"))
+	// Gastigoth
+	if(gastigothCoordinatesUnlocked())
 	{
 		if(showID == "Gastigoth") { output2(header("<u>Gastigoth Station</u>", false)); addDisabledGhostButton(9, "Gastigoth"); }
 		else addGhostButton(9, "Gastigoth", currentFunc, "Gastigoth");
 	}
-	//Breedwell
-	if(MailManager.isEntryViewed("breedwell_unlock"))
+	// Breedwell
+	if(breedwellCoordinatesUnlocked())
 	{
 		if(showID == "Breedwell") { output2(header("<u>Breedwell Centre</u>", false)); addDisabledGhostButton(10, "Breedwell"); }
 		else addGhostButton(10, "Breedwell", currentFunc, "Breedwell");
@@ -2292,11 +2292,11 @@ public function displayQuestLog(showID:String = "All"):void
 			mainCount++;
 		}
 		// Tarkus
-		if(flags["UNLOCKED_JUNKYARD_PLANET"] != undefined && (showID == "Tarkus" || showID == "All"))
+		if(tarkusCoordinatesUnlocked() && (showID == "Tarkus" || showID == "All"))
 		{
 			output2("\n<b><u>Tarkus</u></b>");
 			output2("\n<b>* Status:</b>");
-			if(flags["PLANET_3_UNLOCKED"] != undefined)
+			if(myrellionCoordinatesUnlocked())
 			{
 				output2(" Coordinates received");
 				if(flags["TARKUS_PROBE_CASH_GOT"] == 1) output2(", Reclaimed probe");
@@ -2375,7 +2375,7 @@ public function displayQuestLog(showID:String = "All"):void
 			mainCount++;
 		}
 		// Myrellion
-		if(flags["PLANET_3_UNLOCKED"] != undefined && (showID == "Myrellion" || showID == "All"))
+		if(myrellionCoordinatesUnlocked() && (showID == "Myrellion" || showID == "All"))
 		{
 			output2("\n<b><u>Myrellion</u></b>");
 			output2("\n<b>* Status:</b>");

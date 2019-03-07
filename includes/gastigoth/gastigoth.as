@@ -32,7 +32,10 @@ Guards are Nova Securities goons: dark orange and white full body armor, full fa
 //From: Regina Kasmiran (DoNotReply@FaangnisCorrections.corp)
 //To: [pc.Email]@SteeleTech.corp
 //Subject: [pc.name]: Exclusive Offer
-
+public function gastigothCoordinatesUnlocked():Boolean
+{
+	return (MailManager.isEntryViewed("gastigoth_unlock"));
+}
 //Start the stuff to unlock flying to space jail...
 public function processGastigothEvents():void
 {
@@ -95,7 +98,8 @@ public function showKaskaPrison(cum:Boolean = false):void
 public function gastigothEmailText():String 
 {
 	var blep:String = "Greetings, " + pc.mf("Mister","Miss") + " Steele,\n\nI am Warden Regina Kasmiran, controlling officer of the private correctional station <i>Gastigoth</i>. It is unlikely you have heard of us, but we have heard of you: and we have a proposition. You are responsible for the recent capture of ";
-	if(flags["GASTIGOTH_UNLOCKNUM"] == 1) blep += "one";
+	if(flags["GASTIGOTH_UNLOCKNUM"] < 1) blep += "<b>NONE</b>";
+	else if(flags["GASTIGOTH_UNLOCKNUM"] == 1) blep += "one";
 	else blep += "several";
 	blep += " of this station’s new inmates which, given the nature of the convicts we supervise here, means you are an individual of exceptional talent. And of exceptional means, if I am not mistaken. The unique realities of privatized correction allow me to make this offer, and do so with what I hope is blunt clarity:\n\n<i>Gastigoth</i> allows private citizens such as yourself to participate in the corrective process of our inmates, for a small fee. We offer several services on the backs of our inmates, as part of their long journey to clear their debt to galactic society. Or more accurately, most services conclude with the inmates <i>on</i> their backs, though we also support a highly successful breeding program and collared labor, among other more esoteric punishments. Should the fate of your prisoner, and the corrective measure to be applied to them, interest you, I encourage you to visit our establishment. Should you continue on your current course, I have little doubt we will be housing several more individuals you come into contact with throughout the course of the Rush.\n\nThe station coordinates are attached. I look forward to meeting you in person, Captain.\n\n\tRegina Kasmiran\n\tWarden-Commander,\n\tPenal Station <i>Gastigoth</i>";
 	blep += "\n\n<i>You note that, indeed, a set of stellar coordinates are included. The penal station is located on the fringe of Rush Space 13, not that far from Tavros in fact.</i>";
