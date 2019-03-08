@@ -1315,7 +1315,11 @@ public function siegwulfeDomSexButtons(fromInv:Boolean):void
 	if (pc.hasBreasts() && pc.isLactating()) addButton(3, "Milking", siegwulfeTheMilkmAId, fromInv);
 	else addDisabledButton(3, "Milking", "Milking", "You need lactating tits to get milked!");
 	var pcLeashed:Boolean = pc.hasStatusEffect("Siegwulfe's Leash");
-	if (hasWornCollar() && flags["WULFE_LEASH"] != undefined) addButton(13, (pcLeashed ? "Remove Leash " : "Put Leash On"), siegwulfeLeashChange, fromInv, (pcLeashed ? "Take Leash Off" : "Put Leash On"), "Adjust your leash.");
+	if (hasWornCollar() && flags["WULFE_LEASH"] != undefined)
+	{
+		if(!canSiegwulfeUseLeash()) addDisabledButton(13, "Put Leash On", "Put Leash On", "You cannot do this here!");
+		else addButton(13, (pcLeashed ? "Remove Leash " : "Put Leash On"), siegwulfeLeashChange, fromInv, (pcLeashed ? "Take Leash Off" : "Put Leash On"), "Adjust your leash.");
+	}
 }
 
 public function siegwulfeQuickie():void
@@ -2170,9 +2174,14 @@ public function siegwulfeRequestOral():void
 }
 
 // LEASHY THINGS BEGIN HERE
-public function hasSiegwulfeLeashOn():Boolean
+public function canSiegwulfeUseLeash():Boolean
 {
 	if (rooms[currentLocation].hasFlag(GLOBAL.NURSERY)) return false;
+	return true;
+}
+public function hasSiegwulfeLeashOn():Boolean
+{
+	if (!canSiegwulfeUseLeash()) return false;
 	if (hasWornCollar() && hasSiegwulfeOnSelf() && pc.hasStatusEffect("Siegwulfe's Leash")) return true;
 	return false;
 }
