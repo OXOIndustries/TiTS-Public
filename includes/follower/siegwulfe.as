@@ -2172,6 +2172,7 @@ public function siegwulfeRequestOral():void
 // LEASHY THINGS BEGIN HERE
 public function hasSiegwulfeLeashOn():Boolean
 {
+	if (rooms[currentLocation].hasFlag(GLOBAL.NURSERY)) return false;
 	if (hasWornCollar() && hasSiegwulfeOnSelf() && pc.hasStatusEffect("Siegwulfe's Leash")) return true;
 	return false;
 }
