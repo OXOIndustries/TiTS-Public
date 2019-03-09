@@ -498,6 +498,7 @@
 		include "../includes/uveto/korgonneMaleHostile.as";
 		include "../includes/uveto/krym.as";
 		include "../includes/uveto/lund.as";
+		include "../includes/uveto/lureling.as";
 		include "../includes/uveto/majaTamedTamelings.as";
 		include "../includes/uveto/milodanFertilityPriestess.as";
 		include "../includes/uveto/milodanMaleHostile.as";
