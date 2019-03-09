@@ -106,6 +106,12 @@ public function approachJade():void {
 
 	processTime(2);
 	
+	shopkeep = chars["JADE"];
+	//List prices and whatnot. Back should go back to Jade's main menu.
+	//Sell Menu
+	chars["JADE"].keeperSell = "Jade tilts her head to the side. <i>“You wanna sell me splices? Well, even if they don’t fit my niche, I can probably turn a profit on them, so why not?”</i> She looks at you inquisitively. <i>“What do you have for me?”</i>\n";
+	chars["JADE"].keeperGreeting = "Jade extends her arm, gesturing towards the rest of her shop. <i>“See anything I can help you with?”</i>\n";
+	
 	//[Buy][Sell][Talk][Appearance]
 	clearMenu();
 	addButton(0,"Buy",jadeStoreSetup,undefined,"Buy","Buy some animal-themed transformation items.");
@@ -120,13 +126,7 @@ public function approachJade():void {
 }
 public function jadeStoreSetup():void 
 {
-	shopkeep = chars["JADE"];
-	
 	chars["JADE"].keeperBuy = "Jade’s console lists off the modification she has in stock along with their prices.\n";
-	//List prices and whatnot. Back should go back to Jade's main menu.
-	//Sell Menu
-	chars["JADE"].keeperSell = "Jade tilts her head to the side. <i>“You wanna sell me splices? Well, even if they don’t fit my niche, I can probably turn a profit on them, so why not?”</i> She looks at you inquisitively. <i>“What do you have for me?”</i>\n";
-	chars["JADE"].keeperGreeting = "Jade extends her arm, gesturing towards the rest of her shop. <i>“See anything I can help you with?”</i>\n";
 	
 	chars["JADE"].inventory = new Array();
 	
@@ -152,13 +152,7 @@ public function jadeStoreSetup():void
 
 public function jadeSpecificStoreSetup():void
 {
-	shopkeep = chars["JADE"];
-	
 	chars["JADE"].keeperBuy = "The console displays a list of Jade’s wares, focusing on specific, highly targeted splices.\n";
-	//List prices and whatnot. Back should go back to Jade's main menu.
-	//Sell Menu
-	chars["JADE"].keeperSell = "Jade tilts her head to the side. <i>“You wanna sell me splices? Well, even if they don’t fit my niche, I can probably turn a profit on them, so why not?”</i> She looks at you inquisitively. <i>“What do you have for me?”</i>\n";
-	chars["JADE"].keeperGreeting = "Jade extends her arm, gesturing towards the rest of her shop. <i>“See anything I can help you with?”</i>\n";
 	
 	chars["JADE"].inventory = new Array();
 	
@@ -170,13 +164,7 @@ public function jadeSpecificStoreSetup():void
 
 public function jadeAdvancedStoreSetup():void
 {
-	shopkeep = chars["JADE"];
-	
 	chars["JADE"].keeperBuy = "Jade taps a few keys to bring you into the more... adult-oriented portion of her stock. Included is a long warning about unexpected, erotic side effects, increased libido, and unexpected occurrences of heat and/or rut.\n\n<b>These are the gene splices for the user who wants slow and sometimes unpredictable transformations that are full of sexual effects.</b>\n";
-	//List prices and whatnot. Back should go back to Jade's main menu.
-	//Sell Menu
-	chars["JADE"].keeperSell = "Jade tilts her head to the side. <i>“You wanna sell me splices? Well, even if they don’t fit my niche, I can probably turn a profit on them, so why not?”</i> She looks at you inquisitively. <i>“What do you have for me?”</i>\n";
-	chars["JADE"].keeperGreeting = "Jade extends her arm, gesturing towards the rest of her shop. <i>“See anything I can help you with?”</i>\n";
 	
 	chars["JADE"].inventory = new Array();
 	if(pc.level >= 2)

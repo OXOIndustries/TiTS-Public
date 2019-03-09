@@ -1615,6 +1615,7 @@ public function stellaPregbangEpilogue():void
 public function stellaKnockupCheck():void
 {
 	if(stellaPregnant()) return;
+	if(pc.virility() <= 0) return;
 	
 	//Stella is pretty fertile and takes a loooot of loads.
 	var chance:Number = 25;
