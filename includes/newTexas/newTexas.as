@@ -1570,7 +1570,7 @@ public function noStahpMilkarStahp(amount:Number = 0):void
 
 	output("\n\n<i>“Less lube?”</i> she ponders, <i>“No, wait - You want it deeper?”</i>");
 
-	output("\n\nYou strain to to get the words out of your mouth, but a sudden creak in the milker and a blaring alarm with flashing lights make your situation apparent.");
+	output("\n\nYou strain to get the words out of your mouth, but a sudden creak in the milker and a blaring alarm with flashing lights make your situation apparent.");
 
 	output("\n\n<i>“Oh, heavens to Betsy!”</i> Carrie jumps up and immediately turns the dials down, relieving you of the pressure on [pc.eachCock].");
 

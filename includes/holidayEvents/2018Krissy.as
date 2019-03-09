@@ -420,7 +420,7 @@ public function krissyWrapUpByThird(x:int):void
 	output("\n\nThinking quick on the best way to restrain your cervine slut, you slip the ribbon between her legs and get to work... In short order you have her completely trussed up in the festive holiday ribbon. Her legs are bent and tied in such a way that they’re forced to spread, leaving her lascivious chocolate slit open and vulnerable. She looks rather like a Christmas turkey. One just waiting to be stuffed.");
 	output("\n\nDiscarding the remainder of the ribbon, you ");
 	if(x >= 0 && !pc.isCrotchExposed()) output("disrobe and ");
-	else output((!pc.isCrotchExposedByArmor() ? "disrobe down to your underwear and ":"") + "promptly activate the the <i>hardlight</i> option and ");
+	else output((!pc.isCrotchExposedByArmor() ? "disrobe down to your underwear and ":"") + "promptly activate the <i>hardlight</i> option and ");
 	output("stand between her legs, stroking your [pc.cockOrStrapon " + x + "]. <i>“");
 	if(pc.isBimbo()) output("Like, before I unwrap you, I totally wanna give you a gift first. It’s totally my dick in your box!");
 	else output("Before I unwrap my present I should give you one of your own. I didn’t have time to wrap it, but oh look, here’s a box I can use,");

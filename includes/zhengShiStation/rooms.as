@@ -2521,7 +2521,7 @@ public function initZhengRooms():void
 
 	rooms["ZSR L25"] = new RoomClass(this);
 	rooms["ZSR L25"].roomName = "APEX\nRING";
-	rooms["ZSR L25"].description = "You stand next to the cargo elevator’s enormous shaft as it disappears into the ceiling (though now your floor). It’s ringed by solid walls covered in warring swaths of graffiti and posters, one overlapping the other until the whole is a blaze of color and picture with mismatched letters peeking out from in between.\n\nTo the south, a green path winds through the walls back toward the the elevator’s entrance. The apex ring whirls east and west on its circuitous path.";
+	rooms["ZSR L25"].description = "You stand next to the cargo elevator’s enormous shaft as it disappears into the ceiling (though now your floor). It’s ringed by solid walls covered in warring swaths of graffiti and posters, one overlapping the other until the whole is a blaze of color and picture with mismatched letters peeking out from in between.\n\nTo the south, a green path winds through the walls back toward the elevator’s entrance. The apex ring whirls east and west on its circuitous path.";
 	rooms["ZSR L25"].planet = "ZHENG SHI STATION";
 	rooms["ZSR L25"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR L25"].northExit = "";
@@ -2577,7 +2577,7 @@ public function initZhengRooms():void
 
 	rooms["ZSR L41"] = new RoomClass(this);
 	rooms["ZSR L41"].roomName = "APEX\nRING";
-	rooms["ZSR L41"].description = "The crimson pathway to the south intersects with the far more plain ring around the cargo elevator’s apex here. You can look up, past the gyrating dancers, and see the the entrance that you used to get here. Just thinking about it makes your stomach do a backflip. One of the dancers does one too. The ring loops east and west around the poster and graffiti-covered metal plating of the shaft.";
+	rooms["ZSR L41"].description = "The crimson pathway to the south intersects with the far more plain ring around the cargo elevator’s apex here. You can look up, past the gyrating dancers, and see the entrance that you used to get here. Just thinking about it makes your stomach do a backflip. One of the dancers does one too. The ring loops east and west around the poster and graffiti-covered metal plating of the shaft.";
 	rooms["ZSR L41"].planet = "ZHENG SHI STATION";
 	rooms["ZSR L41"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR L41"].northExit = "ZSR L39";

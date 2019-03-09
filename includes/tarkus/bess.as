@@ -7565,7 +7565,7 @@ public function bessEvent7DontDrink():void
 	clearOutput();
 	bessHeader();
 
-	output("You look at the stomach-turning concoction you have been handed and you just cannot bring yourself to swallow it, for any reason. You hand it back to to [bess.himHer] and [bess.heShe] stares at you.");
+	output("You look at the stomach-turning concoction you have been handed and you just cannot bring yourself to swallow it, for any reason. You hand it back to [bess.himHer] and [bess.heShe] stares at you.");
 
 	if (pc.isAss())
 	{
