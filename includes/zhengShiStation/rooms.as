@@ -2182,7 +2182,7 @@ public function initZhengRooms():void
 	//Not normal rooms
 	rooms["ZSF T16"] = new RoomClass(this);
 	rooms["ZSF T16"].roomName = "CARGO\nDOOR";
-	rooms["ZSF T16"].description = "Just east of here, a pillar of rusted steal beams and geddanium-braid cabling stretch up to the cavern’s apex and vanish into the rock. ";
+	rooms["ZSF T16"].description = "Just east of here, a pillar of rusted steel beams and geddanium-braid cabling stretch up to the cavern’s apex and vanish into the rock. ";
 	rooms["ZSF T16"].planet = "ZHENG SHI STATION";
 	rooms["ZSF T16"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF T16"].northExit = "";
