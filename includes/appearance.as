@@ -4002,12 +4002,14 @@ public function crotchStuff(forTarget:Creature = null):void
 		
 		wombBonusForAppearance(forTarget, 3);
 		
-		if(target == pc && target.hasStatusEffect("Butt Bug (Female)")) outputRouter("\n\n" + appearanceButtBugBlurb());
-		
-		//Genital Bonus clears target at the end. Bring it back.
+		// Womb Bonus clears target at the end. Bring it back.
 		if(forTarget != null) setTarget(forTarget);
+		
+		if(target == pc && target.hasStatusEffect("Butt Bug (Female)")) outputRouter("\n\n" + appearanceButtBugBlurb());
 	}
 	if(forTarget != null) setTarget(null);
+	
+	outputRouter("\n\n");
 }
 
 public function selectGenderPref():void
