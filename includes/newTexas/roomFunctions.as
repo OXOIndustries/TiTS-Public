@@ -1,4 +1,7 @@
-
+public function newTexasCoordinatesUnlocked():Boolean
+{
+	return (flags["NEW_TEXAS_COORDINATES_GAINED"] != undefined);
+}
 
 public function newTexasRoadFirstTime():Boolean
 {

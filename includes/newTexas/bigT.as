@@ -317,7 +317,7 @@ public function bigTHasABigDDeskBlowjob():void
 
 	if(pc.isChestGarbed()) output("\n\nReturning the favor, you slowly strip off your [pc.upperGarments]. ");
 	else output("\n\n"); 
-	if(pc.lowerUndergarment.shortName != "") output("Clad in just your [pc.lowerUndergarment], you ");
+	if(pc.lowerUndergarment.shortName != "") output("Clad in just your [pc.lowerUndergarment], you");
 	else output("You");
 	output(" stroke your [pc.chest] and look up at Tee. His blue eyes are filled with unashamed lust as he ogles your naked form, enjoying the show you’re giving him.");
 

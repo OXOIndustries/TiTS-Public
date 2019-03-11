@@ -419,7 +419,7 @@ public function sitOnKorgiForTaurs():void
 	if(!pc.isCrotchExposed()) output("strip off your [pc.lowerGarments] and, with a smile, you ");
 	output("lower yourself on top of her.");
 
-	output("\n\nThe girl under you lets out a <i>“whoof!”</i> as your bulk pins her to the ground. You can feel the little fuzzball under you, squirming and trying futilely to wiggle out. As she shifts to the right, you lean slightly to to keep her under, switching to the left when she tries that direction instead. Just as you thought, she’s both absurdly soft and deliciously warm - practically a heated pillow, albeit a struggling one.");
+	output("\n\nThe girl under you lets out a <i>“whoof!”</i> as your bulk pins her to the ground. You can feel the little fuzzball under you, squirming and trying futilely to wiggle out. As she shifts to the right, you lean slightly to keep her under, switching to the left when she tries that direction instead. Just as you thought, she’s both absurdly soft and deliciously warm - practically a heated pillow, albeit a struggling one.");
 
 	output("\n\nEnough fun, you figure. Time to put her to work. You shift forward slightly, so that her head pokes out under your backside. The canid takes a deep breath, drinking in your scent as she does so. Glancing over your shoulder, you enjoy the sight of the Korgonne’s ears twitching frantically, her face filled by the eclipsing closeness of your [pc.ass]. Under you, the girl’s hefty melons squish and roll against the [pc.skinFurScales] of your underside, her nipples hard enough to be felt even through the taut straps of her bra. You wiggle slightly ");
 	if(pc.tailCount > 0) 

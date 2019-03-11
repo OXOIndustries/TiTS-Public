@@ -1973,7 +1973,7 @@ public function centaurServiceForUla(x:int):void
 	output("The sudden diversion of blood from your skull to your crotch ought to leave you dizzy, maybe even drop you to your knees - if you were a lesser creature. Bracing your [pc.feet], you");
 	if(pc.tailCount > 0) output(" flick your tail and");
 	if(!pc.isErect()) output(" let your [pc.cocks] engorge as nature intended - swinging from between your upright hindlegs");
-	else output("let your [pc.cocks] swing as nature intended - dangling between your upright hindlegs");
+	else output(" let your [pc.cocks] swing as nature intended - dangling between your upright hindlegs");
 	output(". <i>“Get your ass up on the edge of the bed.”</i> You prance forward, proud flesh bouncing at what must be eye-level for the horny korgonne.");
 
 	output("\n\nThe scent of her need redoubles, and the thickness of your package surges along with it, heavy with potential pleasure.");
@@ -2077,7 +2077,7 @@ public function centaurServiceForUla(x:int):void
 	if(!korgiTranslate()) output("Ula want");
 	else output("I want it");
 	output("!”</i>");
-	output("\n\nUla does her best to hold herself in position, but with all the dick occupying her pretty blue pussy, she’s not going to be much good for anything but getting knocked up. You thrust harder into her. Solid construction is no match for hundreds of pound of transformed Rusher. The frame creaks dangerously when you bottom out, and Ula squeaks right along with it. Grunting with the effort, you give yourself over to your animal instincts and let the fluffy princess truly have it. <i>“You want fucked like a horny bitch?”</i>");
+	output("\n\nUla does her best to hold herself in position, but with all the dick occupying her pretty blue pussy, she’s not going to be much good for anything but getting knocked up. You thrust harder into her. Solid construction is no match for hundreds of pounds of transformed Rusher. The frame creaks dangerously when you bottom out, and Ula squeaks right along with it. Grunting with the effort, you give yourself over to your animal instincts and let the fluffy princess truly have it. <i>“You want fucked like a horny bitch?”</i>");
 	output("\n\nThe impaled korgonne whimpers. <i>“");
 	if(!korgiTranslate()) output("Am! Am! Am such love! Pussy in-loving with cock! Want more!");
 	else output("I am! I’m a horny bitch in love! My pussy loves your cock, and I want moooore!");

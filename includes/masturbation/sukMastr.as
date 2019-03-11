@@ -206,7 +206,7 @@ public function properlyUseTheSukmastr(x:int = 0):void
 
 	if(rand(4) == 0 && pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_HYPER_PUMPED))
 	{
-		output("\n\nYour rubbery, inflated cunt aches, but it isn’t receding much at all. You sit there, watching it, occassionally reaching down to give it a little love-pat, amazed at how plush it seems. <b>Your [pc.vagina " + x + "] appears to to be permanently irrecovably expanded.</b> Pumping it any more would be pointless - it fills the cup as is.");
+		output("\n\nYour rubbery, inflated cunt aches, but it isn’t receding much at all. You sit there, watching it, occassionally reaching down to give it a little love-pat, amazed at how plush it seems. <b>Your [pc.vagina " + x + "] appears to be permanently irrecovably expanded.</b> Pumping it any more would be pointless - it fills the cup as is.");
 		pc.vaginas[x].delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 		pc.vaginas[x].addFlag(GLOBAL.FLAG_PUMPED);
 		pumpedPussyEffect(x);

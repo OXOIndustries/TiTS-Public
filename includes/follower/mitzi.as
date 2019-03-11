@@ -1100,7 +1100,10 @@ public function mitziSexMenu():void
 		if(pc.hasItemByClass(Gush)) addButton(5,"Give Gush",giveMitziGush,undefined,"Give Gush","Give Mitzi a dosage of Gush. It’ll probably make her milky and sort dumb for a while, going by her stories.");
 		else addDisabledButton(5,"Give Gush","Give Gush","You need some Gush in order to do this.");
 	}
-	if(pc.hasBackGenitals()) addButton(7,"TentacleFun",mitziTentaCocks,undefined,"Tentacle Fun","Put your shoulder-mounted tentacle-wings to work on the cock-socket of a goblin.");
+	if(pc.hasBackGenitals()) {
+		if(pc.wingCount <= 1) addDisabledButton(7,"TentacleFun","Tentacle Fun","You don’t have enough tentacle-wings for this.");
+		else addButton(7,"TentacleFun",mitziTentaCocks,undefined,"Tentacle Fun","Put your shoulder-mounted tentacle-wings to work on the cock-socket of a goblin.");
+	}
 	else addDisabledButton(7,"TentacleFun","Tentacle Fun","You need tentacle wings for this.");
 
 	addButton(14,"Back",approachCrewMitzi,true);
@@ -3430,9 +3433,12 @@ public function mitziTentaCocks():void
 	//More tooltip: Do as many of your on-board harem as possible.
 	processTime(10);
 	clearMenu();
-	addButton(0,"Mitzi",justMitziTentabang,undefined,"Mitzi","Make Mitzi airtight with your ravening tentacle dicks.");
-	if(celiseIsCrew()) addButton(1,"More",mitziAndMoreTentaNightmareScene,undefined,"More","Do as many of your on-board harem as possible.");
-	else addDisabledButton(1,"More","More","You’ll at least need Celise around for this.");
+	if(tCount <= 2) addButton(0,"Next",justMitziTentabang);
+	else {
+		addButton(0,"Mitzi",justMitziTentabang,undefined,"Mitzi","Make Mitzi airtight with your ravening tentacle dicks.");
+		if(celiseIsCrew()) addButton(1,"More",mitziAndMoreTentaNightmareScene,tCount,"More","Do as many of your on-board harem as possible.");
+		else addDisabledButton(1,"More","More","You’ll at least need Celise around for this.");
+	}
 }
 
 //Just Mitzi
@@ -3519,7 +3525,7 @@ public function justMitziTentabang3():void
 }
 
 //More
-public function mitziAndMoreTentaNightmareScene():void
+public function mitziAndMoreTentaNightmareScene(tCount:int):void
 {
 	clearOutput();
 	showMitzi(true);
@@ -3539,8 +3545,8 @@ public function mitziAndMoreTentaNightmareScene():void
 	pc.lust(5);
 	clearMenu();
 	//Progression. Have to do: Celise -> Celise+Reaha -> Celise+Reaha+Sera
-	if(celiseIsCrew() && seraIsCrew() && reahaIsCrew() && flags["SEXED_REAHA"] != undefined && flags["MITZI_CELISE_TENTAFUCK2"] != undefined && seraObedience() >= 80) addButton(0,"Next",celiseReahaAndSeraMitziTentacular);
-	else if(celiseIsCrew() && reahaIsCrew() && flags["SEXED_REAHA"] != undefined && flags["MITZI_CELISE_TENTAFUCK"] != undefined) addButton(0,"Next",mitziAndCeliseAndReaha);
+	if(tCount >= 4 && celiseIsCrew() && seraIsCrew() && reahaIsCrew() && flags["SEXED_REAHA"] != undefined && flags["MITZI_CELISE_TENTAFUCK2"] != undefined && seraObedience() >= 80) addButton(0,"Next",celiseReahaAndSeraMitziTentacular);
+	else if(tCount >= 3 && celiseIsCrew() && reahaIsCrew() && flags["SEXED_REAHA"] != undefined && flags["MITZI_CELISE_TENTAFUCK"] != undefined) addButton(0,"Next",mitziAndCeliseAndReaha);
 	else addButton(0,"Next",moreWithJustCelise);
 }
 

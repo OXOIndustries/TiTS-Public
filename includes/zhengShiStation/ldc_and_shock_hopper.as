@@ -392,9 +392,10 @@ public function loseToJumpBossPart2Busted():void
 		output(". Heat blossoms from her thumping body as she rides your pole and creams your crotch. The radiant pressure is otherworldly; simultaneous sensations of numbness and excitement confuse your mind.");
 		output("\n\nWhat she does next shatters your brain, breaking it into shards of fuck-crazed essence. The frequency at which your eyes roll back, realign, then roll back again is disturbing, but you can’t care. <i>Besides, mistress is taking care of you.</i> Why would she damage her property?");
 		output("\n\nA kick to the stim unit sets it to ‘cum right the fuck now’ and you are bidden on a deep and unknowable level to do so. The groaning bunny’s dick flexes out ropy streams of bunny-batter that lasso through the air, slapping into your " + (pc.hasHair() ? "hair":"head") + ", your cheeks, your [pc.chest] - you open your mouth and roll out your [pc.tongue], sinking further into depravity when her hot, fresh taste trickles down your throat. Sure, you’re cumming");
-		if(pc.cumQ() >= 1000)
+		var cumQ:Number = pc.cumQ();
+		if(cumQ >= 1000)
 		{
-			output(", and you’re noticing " + (pc.cumQ() < 10000 ? "a small bulge":"quite the swell") + " on her");
+			output(", and you’re noticing " + (cumQ < 10000 ? "a small bulge":"quite the swell") + " on her");
 		}
 		output(", but even the hew of orgasm can’t offer you relief. <i>You are merely being allowed to feel this way</i>, and what you feel is consistent, unbroken.");
 		output("\n\nAnd by the look on your mistress’ face, that’s exactly what she wants.");
@@ -416,7 +417,7 @@ public function loseToJumpBossPart2Busted():void
 		output("\n\nYou thrash and spasm, muscles locking down with more pressure than the electro-blanket applied. You’re totally helpless and at her mercy, delighting in every hot kiss, every warm lick. Rationality flows out your ears on the tide of submissive bliss. Prickly tingles pepper your muscles and nerves in an endless tap dance, gloving your entire body in an atmospheric field that redefines your concepts of stimulation and belonging.");
 		output("\n\nLike a good slut you let her work, beg her for more, and wail appropriately when she finds your favorite spots. She’s making you her pliant, obedient slave. You’re letting her do it, and you’re being rewarded for it.The moment you let your chance to escape slip by, back when she strapped you up by this wonderful machine, was the moment you stopped trying to do anything but obey.");
 		output("\n\nShe has total control over you.");
-		output("\n\n<i>“Fuck yes,”</i> the pastel bun growls, vibratory voice like a stone skipping on your " + (pc.hasVagina() ? "feminine ":"") + "river. <i>“Someone like you who can turn me on at at the drop of a fucking pin, and I’ve got you all to myself, I’ve got you cumming your fucking brains out!”</i> she laughs, but not maliciously");
+		output("\n\n<i>“Fuck yes,”</i> the pastel bun growls, vibratory voice like a stone skipping on your " + (pc.hasVagina() ? "feminine ":"") + "river. <i>“Someone like you who can turn me on at the drop of a fucking pin, and I’ve got you all to myself, I’ve got you cumming your fucking brains out!”</i> she laughs, but not maliciously");
 		if(pc.hasVagina()) output(", making a whipping motion with her head when a " + (!pc.isSquirter() ? "small":"large") + " squirt of [pc.girlCumNoun] flies out, a glistening missile of erotic fulfillment buzzing past her ear");
 		output(". She harvests your body of orgasm after orgasm, and no matter how many times relief floods through your head there’s always a buzz there keeping you going. <i>“Do you have any idea how good of a of a slave you are? How lucky you are that this is where you ended up?”</i>");
 		output("\n\nMassaging fingers blaze trails up and down your inner thighs, teasing out the knots" + (pc.hasVagina() ? " and collecting more femslime for the next collecting lick":"") + ". She’s giving your soul a lot think about the more she licks it into depravity; it makes you think of all this less as luck and more like destiny. Smack after wet smack you somehow get louder, no doubt a wonderful show to the orgy on the bed. Stars, if this is how good she makes you feel, then what’ll happen when <i>you are on that bed?</i> Pleasure crests at sanity-eroding levels, smack, smack, smack her tongue goes while her hips thrust frustratedly against your back.");
@@ -799,13 +800,14 @@ public function fuckTheHopper2(x:int):void
 	else if(x >= 0 && pc.hasKnot(x)) output("knot");
 	else output("hilt");
 	output("-deep into the bloated bunny’s cunny. A moment later and you’re over the edge, ");
+	var cumQ:Number = pc.cumQ();
 	//hardlight: 
 	if(x < 0) output("hammered in all the right places by a discharge of neurons. The hardlight strapon around your nethers transmits all the feeling of a hard-won orgasm right to your brain, making you howl with pleasure.");
 	//Small cum vol.:
-	else if(pc.cumQ() < 200) output("drooling your wad into the cavernous channel of the Hopper’s abused cunt. You’re not sure she even noticed, given the absolute flood already sloshing in her stomach.");
+	else if(cumQ < 200) output("drooling your wad into the cavernous channel of the Hopper’s abused cunt. You’re not sure she even noticed, given the absolute flood already sloshing in her stomach.");
 	//med. cum vol.: 
-	else if(pc.cumQ() < 1000) output("shooting your goo straight down the gaping chasm of the Hopper’s horsecock-molded cunt. She gasps, moaning forcefully enough to send a streak of pearly spunk drooling down her chin while the L.D.C.’s still hilted down her throat. Jeez, how’s she even breathing around that thing?");
-	else if(pc.cumQ() < 25000) output("slamming your hips against the Hopper’s and emptying your [pc.balls] into her. Geysers of [pc.cum] lurch from deep inside you, shooting through throbbing dickflesh and filling her belly with steaming seed. Her belly, already gravid with the L.D.C.’s load, swells to a positively pregnant size as your inhuman orgasm goes on and on.");
+	else if(cumQ < 1000) output("shooting your goo straight down the gaping chasm of the Hopper’s horsecock-molded cunt. She gasps, moaning forcefully enough to send a streak of pearly spunk drooling down her chin while the L.D.C.’s still hilted down her throat. Jeez, how’s she even breathing around that thing?");
+	else if(cumQ < 25000) output("slamming your hips against the Hopper’s and emptying your [pc.balls] into her. Geysers of [pc.cum] lurch from deep inside you, shooting through throbbing dickflesh and filling her belly with steaming seed. Her belly, already gravid with the L.D.C.’s load, swells to a positively pregnant size as your inhuman orgasm goes on and on.");
 	else output("[pc.cock " + x + "] erupting in a torrential deluge of [pc.cum]. Spooge flows in an unending tidal wave, swelling the Hopper’s already cum-stuffed belly. Her gut stretches, trying to make room for the sheer volume of your orgasm" + (!pc.hasKnot(x) ? " even as half of it squirts back around your dick":"") + ". Halfway through your nut, it gets so bad that the Hopper gags on the L.D.C.’s cock and chokes out a waterfall of his cum, making room for your much bigger wad.");
 	output("\n\nWhen the mind-blanking climax finally passes by you, you pull out and stumble back against the bulkhead, surveying a bed and two bunnies utterly drenched in three orgasms’ worth of spooge. That’s what they deserve for all of... all of this piracy and slavery all bundled up together around your stolen probe. Speaking of which, you grab the Hopper’s belt device off the floor, click the button, and tell the slaves to get going while the getting’s good.");
 	output("\n\nYou’ve got a probe to go find.");
@@ -894,7 +896,7 @@ public function rideHopperSlut2(args:Array):void
 	output("\n\nThat just has the opposite effect. The Hopper’s body goes rigid a moment, following by a whimper of pleasure and a sudden rush of warmth shooting into your [pc.vagOrAss " + x + "]. Damn it, woman. You twist her nipple harder as punishment, but you can’t deny how good it feels to be filled by all that virile bunny-spunk. But you’re not quite done... not yet.");
 	output("\n\nYou dig your fingers into the pirate leader’s ass and push up, ridding that thick bunny-cock even faster than before. And she’s so damn sensitive now, over-stimulated in the tail-end of her orgasm, that she’s whimpering and squirming under you by the end of the first bounce. More movement milks more spunk from her clenching balls, swelling your " + (x >= 0 && !pc.isPregnant(x) ? "womb":"stomach") + " with cum. At the same time, you shift your attention to her commander and the dick wedged in his tight little hole. You " + (y >= 0 ? "thrust yourself deep in, probing for the sensitive ass-clit hidden in there. It doesn’t take long to find it, and when you do, you’re greeted by a howl of pleasure that echoes through the captain’s quarters.":"urge the futa cat to thrust deeper, to find the most tender places hidden away in the bunny’s butt. She’s eager to please - you and the L.D.C. both! Her hips buck and wiggle, probing around until she finally hits on that sweet little ass-clit hard enough to make the black bunny scream.") + " And stars does he cum from it.");
 	output("\n\nThe Hopper is blown straight off his cock by the first geyser, plastered on the blankets by a wad of white cream, and then the rest is flooding through her fur in great gouts of steaming seed. Watching that degenerate show is just the last little bit of stimulation to push you over the edge. Your breath catches, loins tightening as your [pc.vagOrAss " + x + "] squeezes hard around the Hopper’s thick dong" + (y >= 0 ? "; your [pc.cock " + y + "] pushes deep before release, busting your nut hard into the dusky bun’s behind. He shudders, still leaking from his own orgasm, limply allowing you to fill him as his lieutenant did to you":"") + ".");
-	output("\n\nThe cascade of spooge, flowing from body to body, lasts for a good long while before you’ve finally taken the whole of the Hopper’s load. When she’s finally finished, you roll heavily off her and onto your side, shivering with pleasure as white cream leaks down your thighs. The two bunnies are two busy humping at each other once you’re gone to pay you any mind as you slowly clean yourself up and grab the slave baton from the Hopper’s sundered uniform. One tap and the harem sluts are free to exact their sexual vengeance on the Jumper leadership while you get ready to go find your inheritance.");
+	output("\n\nThe cascade of spooge, flowing from body to body, lasts for a good long while before you’ve finally taken the whole of the Hopper’s load. When she’s finally finished, you roll heavily off her and onto your side, shivering with pleasure as white cream leaks down your thighs. The two bunnies are too busy humping at each other once you’re gone to pay you any mind as you slowly clean yourself up and grab the slave baton from the Hopper’s sundered uniform. One tap and the harem sluts are free to exact their sexual vengeance on the Jumper leadership while you get ready to go find your inheritance.");
 	processTime(30);
 	//track outcome and slavegrill freeing
 	pc.orgasm();
@@ -952,9 +954,10 @@ public function domTheLDCsAss(x:int):void
 	else if(pc.hasVagina()) output("make your [pc.pussies] flex eagerly, inner walls clenching close enough to touch needily");
 	else if(pc.hasCock()) 
 	{
+		var cumQ:Number = pc.cumQ();
 		output("strains your [pc.cocks]; [pc.cumColor] ");
-		if(pc.cumQ() < 100) output("strings");
-		else if(pc.cumQ() < 5000) output("spurts");
+		if(cumQ < 100) output("strings");
+		else if(cumQ < 5000) output("spurts");
 		else output("streams");
 		output(" of preseed ooze onto the dirty bed");
 	}
@@ -1077,20 +1080,21 @@ public function domTheLDCsAss2(x:int):void
 
 	if(x >= 0)
 	{
+		var cumQ:Number = pc.cumQ();
 		// PC low cum
-		if(pc.cumQ() < 150)
+		if(cumQ < 150)
 		{
 			output("\n\nYour orgasm is nowhere near as virile and powerful as the laquine’s. The ecstasy of release is there, but his balls do more than churn, they <i>pump</i>, and they’re pumping his pool with industrial strength and entirely useless loads of rabbit-jizz that concuss the bulkhead of the ship you’re standing in.");
 			output("\n\nThe dribbles and terran-typical ribbons of [pc.cumVisc] [pc.cumNoun] you fill his ass with are nothing compared to the turgid lines of bunny nut " + (silly ? "cheerios":"cream") + " splashing against the wall, his chin, and whatever the hell else is in the way until he’s practically swimming in his own feracity. L.D.C.’s climax does eke out the most of your load, however, and you’re sure the warmth of your [pc.cumColor] seed is to his liking" + (pc.cockTotal() > 1 ? ", particularly those lines you’ve drawn across his pre-soaked ass":"") + ".");
 		}
 		// PC plenty of cum
-		else if(pc.cumQ() < 4000)
+		else if(cumQ < 4000)
 		{
 			output("\n\nYour ecstasy-imbued orgasm is only half as mighty as the laquine’s, but it’s enough that you’re right there with him, howling as his girthy nuts churn, no, <i>pump</i> with industrial strength" + (pc.balls > 0 ? " just beneath yours; testes clench and quiver against one another":"") + ". Rabbit-jizz concusses the bulkhead with lurid effect, entirely wasted and impossible for him to handle.");
 			output("\n\n[pc.Cum] splashes every nerve cluster inside the bunny-boy’s ass as turgid lines of laquine nut-cream splatter the walls, his chin, and whatever the hell else is in the way until he’s practically swimming in his own feracity. The chattering and cute groans coming out of his mouth only make the filling of his bowels more pleasurable" + (pc.cockTotal() > 1 ? ", to say nothing of the thick lines of [pc.cumNoun] drawing shapes of across his back and ass":"") + ".");
 		}
 		// PC lots of cum
-		else if(pc.cumQ() < 25000)
+		else if(cumQ < 25000)
 		{
 			output("\n\nWhen the bunny-boy geysers, you do much the same. The strength at which lapine nut-batter concusses the walls and whatever else is in front of his flared horse-dong is the same at which you ecstatically pump him full of [pc.cumVisc] [pc.cumNoun], the sheer volume flowing through your cum-vein prying his anxious ass apart to make room for its capacious inflation.");
 			output("\n\nIf you were fucking a pussy, he’d be pregnant ten times over. As it is, you’re giving him a spunk-bump that’s gonna leave a trail of [pc.cumColor] cum that’ll lead you right back to him for round two.");
@@ -1198,6 +1202,7 @@ public function getWorshippedByBuns(cockUse:Boolean):void
 	// Merge
 	// PC cock small
 	var longii:Number = 0;
+	var cumQ:Number = pc.cumQ();
 	if(cockUse) 
 	{
 		longii = pc.cocks[x].cLength();
@@ -1291,7 +1296,7 @@ public function getWorshippedByBuns(cockUse:Boolean):void
 			output("\n\nThrough your nerve-melded relationship, you feel the frictious texture of its attempts to pull in more of that tremendous horsecock, and you already feel the searing pre spurting into its unknowable depths. You almost can’t wait for him to cum, to be privy to that raw detonation of delight. Sure, the Hopper’s got the bigger balls (literally and figuratively), but feeling that dick going off inside... Oh man.");
 		}
 		// Merge
-		output("\n\nThe slovenly shock-bunny pulls your [pc.cock " + x + "] from her mouth, gasping for air and bouncing from the pulses in her own gently stroked dick. She falls into you muzzle-first, face overlapped by your juice-glistening prick" + (pc.cockTotal() > 1 ? "s":"") + ", licking the undersides like a voracious slut while pawing " + (pc.cockTotal() == 1 ? "its":"their") + " full length" + (pc.cockTotal() > 1 ? "s":"") + " with the adoration and visage of a born cocksleeve. That kind of dedication deserves a reward, and you ensure the underperforming L.D.C. watches as his LT is rewarded with a scritch behind the floppy ears and another mouthful of [pc.cockType " + x + "] meat. <i>“Maybe I’ll keep this bunny. You’ve got her on a good leash, and she’s good at at lip service.”</i>");
+		output("\n\nThe slovenly shock-bunny pulls your [pc.cock " + x + "] from her mouth, gasping for air and bouncing from the pulses in her own gently stroked dick. She falls into you muzzle-first, face overlapped by your juice-glistening prick" + (pc.cockTotal() > 1 ? "s":"") + ", licking the undersides like a voracious slut while pawing " + (pc.cockTotal() == 1 ? "its":"their") + " full length" + (pc.cockTotal() > 1 ? "s":"") + " with the adoration and visage of a born cocksleeve. That kind of dedication deserves a reward, and you ensure the underperforming L.D.C. watches as his LT is rewarded with a scritch behind the floppy ears and another mouthful of [pc.cockType " + x + "] meat. <i>“Maybe I’ll keep this bunny. You’ve got her on a good leash, and she’s good at lip service.”</i>");
 		output("\n\n<i>“F-fuck, no! Don’t be that kind of pr-!”</i> L.D.C. whines, but you merely shove him back into your sweat-caked surface, moaning in mounting bliss as his tongue runs over your crotch all over again.");
 		output("\n\nIt’s not just the feel of that thick muscle that has you clenching your [pc.thighs] together, it’s that you can feel his consternation behind it - that little bit of resistance tickles your dominant side, and it makes his hand-smothering balls lurch closer to orgasm. The " + (silly ? "ink-ribbun":"ink-bun") + " wants to mouth off and act tough, but he also can’t admit he fucking loves being your bitch. You can see that subby side no clearer than when you grab him by his tall ears and rein him in.");
 		output("\n\nYou guide the imperious pirate down your girth until he’s kissing her right around your swollen tip");
@@ -1322,14 +1327,14 @@ public function getWorshippedByBuns(cockUse:Boolean):void
 		output(".");
 
 		// PC low cum
-		if(pc.cumQ() < 25) 
+		if(cumQ < 25) 
 		{
 			output("\n\nAlthough the mouth" + (pc.cockTotal() > 1 ? "s":"") + " around your [pc.cocks] suck with the power of a pussy, your [pc.balls] " + (pc.balls > 1 ? "don’t":"doesn’t") + " have the necessary amounts of [pc.cum] to adequately reward your cocksucker" + (pc.cockTotal() > 1 ? "s":"") + ".");
 			output("\n\nYou’re not certain if " + (pc.cockTotal() == 1 ? "he notices":"they notice") + " though, not with their eyes rolling back as they blow their own mighty loads onto the floor. Your numb manhood" + (pc.hasCocks() ? "s":"") + " churn out terran-typical ropes of spunk into " + (!pc.hasCocks() ? "his":"their") + " throats, the [pc.cumVisc] loinfruit trickling into their stomachs until you’re all out - which doesn’t take long.");
 			if(pc.hasCocks()) output(" Your extra member" + (pc.cockTotal() > 2 ? "s dribble":" dribbles") + " sympathetically over their brows, leaving easily washed or licked off marks.");
 		}	
 		// PC plenty of cum
-		else if(pc.cumQ() < 1000)
+		else if(cumQ < 1000)
 		{
 			output("\n\nGood cocksuckers get filled bellies, and you’re all too happy to reward the lawless laquine" + (pc.hasCocks() ? "s":"") + " with your [pc.cum]. Hot flashes precede every throat-swelling eruption inside. You’re not entirely sure if " + (pc.hasCocks() ? "he’s":"they’re") + " noticing the streamers of [pc.cumVisc] spooge your tensing [pc.balls] " + (pc.balls <= 1 ? "is":"are") + " unloading into " + (!pc.hasCocks() ? "his":"their") + " throats. There’s enough volume to fill " + (pc.hasCocks() ? "their stomachs and rewrite their":"his stomach and rewrite his") + " sense of taste.");
 			output("\n\nThat’d be fitting. Knowing " + (!pc.hasCocks() ? "he’ll":"they’ll") + " probably be tasting you hours after you leave helps put a bit more strength in your rhythmically contracting ");
@@ -1339,7 +1344,7 @@ public function getWorshippedByBuns(cockUse:Boolean):void
 			if(pc.hasCocks()) output(" They certainly won’t be able to shake your presence with the amount you’re dumping on their heads.");
 		}
 		// PC lots of cum
-		else if(pc.cumQ() < 25000)
+		else if(cumQ < 25000)
 		{
 			output("\n\nWickedly powerful pangs of pleasure assault your brain. Intense orgasmic pressure forces itself to the forefront of all your thoughts to help you revel in the sheer volume of [pc.cum] you’re pumping into the lawless laquine" + (pc.hasCocks() ? "s":"") + ".");
 			output("\n\nThe rhythmic contractions in your [pc.balls] tell" + (pc.balls <= 0 ? "s":"") + " you when " + (!pc.hasCocks() ? "his neck":"their necks") + " bulge" + (pc.cockTotal() == 1 ? "s":"") + " with stomach-filling loads - and " + (!pc.hasCocks() ? "it does":"they do") + " fill out. L.D.C.’s body takes on a spherical shape" + (pc.hasCocks() ? " while the Hopper has a more defined spunk-bump":"") + ". Realizing you’re not stopping, especially as [pc.cumNoun] spurts from " + (!pc.hasCocks() ? "his":"their") + " nostrils, you pull out and shower " + (!pc.hasCocks() ? "him":"them") + " with the rest, painting " + (pc.hasCocks() ? "them":"him") + " [pc.cumColor] with a lasting impression of you.");
@@ -1351,7 +1356,7 @@ public function getWorshippedByBuns(cockUse:Boolean):void
 			output("\n\nOnly a pathetically faint groan seeps between your [pc.lipsChaste] as " + (!pc.hasCocks() ? "his":"their") + " stomach" + (pc.hasCocks() ? "s":"") + " swell to full with [pc.cumVisc] spooge, filling with so much that by the time you recognize you’re on your fifth cumshot it’s squirting back up " + (!pc.hasCocks() ? "his mouth and nose":"their mouths and noses") + ". You drag " + (!pc.hasCocks() ? "him":"them") + " off your virility-blasting dong" + (pc.hasCocks() ? "s":"") + " and give the two a facial they’re not soon to forget, painting their heads and bodies [pc.cumColor] with a blanket of enviable sperminess. Laquines are a musky race, but being that thoroughly basted, you’ve probably rewritten their signature to yours.");
 		}
 		// Merge
-		output("\n\nIt almost hurts to breathe, but you’re calming down well enough. Your orgasm reduces to a few relaxing dribbles. The slaves dutifully clean your [pc.cocksLight] before you collect your things. You’re soon left staring at the sex-coated bunnies who lie back heaving and panting, every hair of fur on their bodies dripping with sweat and " + (pc.cumQ() < 1000 ? "some":"a lot of") + " spooge. The ones at the top have themselves been utterly claimed.");
+		output("\n\nIt almost hurts to breathe, but you’re calming down well enough. Your orgasm reduces to a few relaxing dribbles. The slaves dutifully clean your [pc.cocksLight] before you collect your things. You’re soon left staring at the sex-coated bunnies who lie back heaving and panting, every hair of fur on their bodies dripping with sweat and " + (cumQ < 1000 ? "some":"a lot of") + " spooge. The ones at the top have themselves been utterly claimed.");
 		output("\n\nQuite a satisfying conclusion.");
 		output("\n\n<i>“That wasn’t bad...”</i> the Hopper murmurs, looking at you with a small twinkle in her subby eyes.");
 		output("\n\nL.D.C. scoffs, <i>“Speak for yourself, babe.”</i>");
@@ -1503,7 +1508,7 @@ public function getWorshippedByBuns(cockUse:Boolean):void
 		}
 		output(" It’s all enough to make you cum.");
 		// PC less cum
-		if(pc.cumQ() < 10000) 
+		if(cumQ < 10000) 
 		{
 			output("\n\nWhen the first rope of [pc.cum] surges through your bulging urethra, you’re not sure whose mouth its going in. More follow" + (pc.balls > 0 ? ", forced out by your [pc.balls], tensing from every massage and coaxing stimulation":"") + ". Numbed by the weight and force of your climax, you get the distinct feeling that your [pc.cocks] " + (!pc.hasCocks() ? "is":"are") + " being moved, that while your [pc.cockHeadNoun " + x + "] spurts and spurts and spurts, your cum-blasts are well aimed.");
 			output("\n\nYou’ve no doubt filled the L.D.C’s mouth, and that of his lieutenant’s. What it feels like now is all you’ve got being poured out on them, marking them almost permanently with your dribbly spooge. Every shot now, every impelling thrust against their own detonations makes you cry out in ecstasy. It only lasts for a short and so very blissful time, but that sensitivity takes ages to die down.");
@@ -1739,16 +1744,16 @@ public function laquineShockyThreesomes3(x:int):void
 	//use Z for all main dick descs now since either dick could be in bitch boi.
 	var z:int = x;
 	if(y >= 0) z = y;
-
+	var cumQ:Number = pc.cumQ();
 	// PC one cock
 	if(y < 0) output("\n\nSuddenly withdrawing from the Hopper, you see her winking entrance heave without your indelible presence. The jolt of your exit results in her tumbling down into L.D.C.’s embrace, unhooking his legs and throwing him flat on the mattress - exposing his ass to you at the same time. <i>“T-the hell..?”</i> he pants.");
 	// PC multi cock
 	else
 	{
 		output("\n\nAbruptly pulling back from the Hopper, the [pc.cockHead " + x + "] of your anal-locked dong ");
-		if(pc.cumQ() < 100) output("dribbles");
-		else if(pc.cumQ() < 1000) output("spurts");
-		else if(pc.cumQ() < 10000) output("squirts");
+		if(cumQ < 100) output("dribbles");
+		else if(cumQ < 1000) output("spurts");
+		else if(cumQ < 10000) output("squirts");
 		else output("streams");
 		output(" pre just past her milking anus before sliding free. Her candied ring protests your absence, gaping as if screaming for your return; the jolt of your sudden exit results in her collapsing atop L.D.C., unhooking his legs and flattening his body to the mattress. The dusky bun’s ass is left totally exposed for " + (pc.cockTotal() == 2 ? "your":"an") + " extra dick to close in on. <i>“W-what the f...”</i> he pants.");
 	}
@@ -1765,17 +1770,17 @@ public function laquineShockyThreesomes3(x:int):void
 	output("\n\nDominating those two " + (y < 0 ? "in sequence":"simultaneously") + ", asserting as powerfully as you possibly can on the pirate king and queen of Zheng Shi... It’s fucking <b>hot</b>. Everything is so hot! You can’t feel anything in your seething loins anymore. Keening cries shake what you can perceive down to all that matters: the two bunny butts you’re stretching into loose permanence.");
 	output("\n\nA nebulous feeling cinches around your neck and conflagrates, a firestorm brightening every nerve below. A whimpering wheeze escapes your lips as your [pc.balls] brew up the last batch of your impending climax. The evenness once present in your biologically impelled movements falls apart midway through a muscle pinching thrust. You reach out to grab onto something, furry ass, sweat-caked arm, dick, whatever can steady you as your testes churn out seed-filled release amidst ear-splitting orgasms.");
 	// PC low cum
-	if(pc.cumQ() < 100)
+	if(cumQ < 100)
 	{
 		output("\n\nFor however vigorous your fucking might have been, your [pc.balls] " + (pc.balls <= 1 ? "is":"are") + " not filling the gap as well as you’d like. You spurt a few ropes of [pc.cum] into " + (y < 0 ? "the Hopper":"the laquines") + ", finding yourself trapped inside while a spunk-ball begins to weigh her down heavily. " + (y < 0 ? "You frantically pull out, eager to share what you’ve got left with the ink-bun, spearing yourself into his ass and biting your tongue from the unholy pleasure of it all. ":"") + "Your virility stops flowing long before theirs does.");
 	}
 	// PC plenty of cum
-	else if(pc.cumQ() < 1000)
+	else if(cumQ < 1000)
 	{
 		output("\n\nA potent wave of masculine release soothes your muscles and calms your being. [pc.Cum] sprays through your bulging-out urethra" + (pc.cockTotal() > 1 ? "s":"") + ", splattering the " + (y < 0 ? "Hopper’s":"laquines’") + " insides with [pc.cumVisc] spooge. Due to L.D.C.’s orgasm, she’s already swelled with a pregnant bump of laquine love, and thanks to your orgasm" + (y < 0 ? " and hasty hole swap":"") + ", the dark-furred bunny is experiencing the same sensation of being weighed down by another person’s cum.");
 	}
 	// PC lots of cum
-	else if(pc.cumQ() < 20000)
+	else if(cumQ < 20000)
 	{
 		output("\n\nA cork unpops - you finally unload thanks to the inimitable relief of masculine release. The Hopper’s spunk-bump grows even wider with an ass full of [pc.cum] that surges with such force and volume that it backwashes, splattering your crotch with the excess of your molten-hot passions. " + (y < 0 ? "While you pull out of the candy-colored pirate, you’re hosing her, the wall, and the bed down before you spear L.D.C. on your [pc.cockNoun " + z + "]. ":"") + "The bunny-boss’ stomach fast experiences what it’s like for anyone he wedges on to his dick, and soon both of them are dizzied bearers of tremulous, weighty cum-bumps.");
 	}
@@ -1789,7 +1794,8 @@ public function laquineShockyThreesomes3(x:int):void
 	// Merge
 	output("\n\nShudderingly cold breaths shake your mind of the temptations and wriggle you free of jumper ass. You fall back onto the bed to the " + (pc.cumQ() < 1000 ? "golf claps":"roaring applause") + " of surrounding slaves, feeling tender hands working out the kinks in your very sore limbs. You sputter and crawl off the bed, eager to reclaim your belongings.");
 	output("\n\nA few minutes pass and the mismatched laquines stir to life");
-	if(pc.cumQ() >= 20000) output(", utterly painted in [pc.cumColor] creaminess. They flop off each other, disconnecting like electronic peripherals, burbling and lamely swallowing oxygen.");
+	if(cumQ >= 20000) output(", utterly painted in [pc.cumColor] creaminess. They flop off each other, disconnecting like electronic peripherals, burbling and lamely swallowing oxygen");
+	output(".");
 	//output("\n\nWith all said and done, it’s time to decide what you’re going to do next...");
 	output("\n\n");
 	processTime(30);
@@ -1972,7 +1978,7 @@ public function drainBunnies2(x:int):void
 	output("\n\n<i>You’ve claimed him.</i> You’re mounted on the biggest pole on Zheng Shi, riding it (or at least trying to) and <i>fucking void</i> does it feel <b>awesome!!</b>");
 	output("\n\nThrough his tender hardness every pulse and heartbeat thuds against your core, a keenly felt jerking sensation that bounces you, makes you curl and flinch uncontrollably. It pounds a tempo into you, one your body dances to. It’s not just your stressed and overstretched pussy-walls flexing to the harsh internal stimulation, it’s <i>fucking everything.</i> You grip his shoulders, watching his cottontail wagging with a blur, barely rising before slamming your [pc.hips] back into his with shocking force.");
 	output("\n\n<i>“" + (pc.isAmazon(false) ? "G-go on, say it. Let everyone know how your mistress makes you feel, sissy boy!":"Look, it’s all mine now!") + "”</i> you squeal, one eye closed.");
-	output("\n\n<i>“" + (pc.isAmazon(false) ? "<i>“A-ah... Fuck! I love it! There, are you happy!? I can’t take this... Fuck me! Please!":"You’re a total... ah... f-f-fuck me! Please, I can’t take this!") + "”</i> he cries in heaving surrender.");
+	output("\n\n<i>“" + (pc.isAmazon(false) ? "A-ah... Fuck! I love it! There, are you happy!? I can’t take this... Fuck me! Please!":"You’re a total... ah... f-f-fuck me! Please, I can’t take this!") + "”</i> he cries in heaving surrender.");
 	output("\n\nYou caress his gigantic cock through your middle, grunting when it yanks you hard. You lean forward, grabbing him by the tiny shoulders, abusing him and being abused in equal measure. You’re so enamored by the pillar of dick in your body that you murmur nothings to cope with the strange pleasure. Behind you, the hopper finally crawls over, growling your ear as she thrusts her much more <i>normal</i> cock through the valley of your [pc.ass].");
 	output("\n\n<i>“" + (pc.isAmazon(false) ? "About time, honey bun. Why don’t you go ahead and show me how ‘ya feel about being the lesser girl here?":"Oohh, you feel worked up!”</i> You reach a hand back to spread your cheeks, cooing <i>“Then don’t keep me waiting, big girl!") + "”</i>");
 	output("\n\n<i>“" + (pc.isAmazon(false) ? "I’ll show you lesser when I’m...”</i> The Hopper thrusts indignantly into your [pc.asshole]. <i>“...When I’m turning you into a cum bubble!":"You want him, you get me too...”</i> She growls, thrusting indignantly into your [pc.asshole]. <i>“...I’m gonna fill you until you’re just a cum bubble, slut!") + "”</i> " + (pc.isAmazon(false) ? "You can’t deny her energy is already firing you up!":"Fuck yes! Every drop in her balls too? <i>Aren’t you just the luckiest slut to get two laquine’s hosing you down?</i>"));
@@ -2010,9 +2016,10 @@ public function drainBunnies2(x:int):void
 	output("\n\nYou gargle, moaning in mindless bliss, gurgling and babbling over waves of bubbly-hot rabbit-spunk. It doesn’t seem to have an end. There doesn’t seem to be an end to the heart-gripping climax at the center of you. Yes, you’re creaming all over LDC, but it’s so distant and unnoticeable compared to his oceanic expulsion.");
 	if(pc.hasCock())
 	{
+		var cumQ:Number = pc.cumQ();
 		output(" However, your [pc.cocksLight] " + (!pc.hasCocks() ? "is":"are") + " certainly making an attempt, ");
-		if(pc.cumQ() < 25) output("firing off a few bouncy ropes of");
-		else if(pc.cumQ() < 1000) output("pushing out a few long spurts of");
+		if(cumQ < 25) output("firing off a few bouncy ropes of");
+		else if(cumQ < 1000) output("pushing out a few long spurts of");
 		else output("blanketing your bottom boy with an equal wave of");
 		output(" [pc.cum].");
 		// Big enough dick

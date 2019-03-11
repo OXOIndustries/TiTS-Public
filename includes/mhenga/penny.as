@@ -2328,7 +2328,7 @@ public function penniliciousPawjob():void {
 	output(". She rubs a furred paw against your [pc.leg] affectionately");
 	if(inPennyQuest() || pennyIsCrew())
 	{
-		output("before turning back to smile at at you, squeezing teasingly. She does not leave you to wait long, however.");
+		output("before turning back to smile at you, squeezing teasingly. She does not leave you to wait long, however.");
 		output(" Her fluffy paw migrates higher to press against [pc.oneCock]");
 		if(!pc.isCrotchExposed()) 
 		{

@@ -3798,7 +3798,7 @@ public function look4Lund():void
 	if(lundDommingPC()) 
 	{
 		output(" clap your hand over your mouth and gasp into it when you see what’s happening. Before you on the bed - facing away, luckily - is Lund plowing the fuck out of a female korgonne’s pussy doggystyle. If the loud, orgasmic moans are any indication, she’s having a great time getting pounded out by his canine cock. He has his hands dominantly wrapped around her hips, thrusting into her with a dominance that reminds you of... of, well, when he does this to <i>you</i>.");
-		output("\n\nSo that’s what it looks like to other people. Your cheeks flush red, burning hot while you watch the muscles on his back tighten with every push forward. The way he uses his hips to fuck her is masterful, his ass flexing as he grunts in pleasure. You can see his balls, hangin heavy with seed between his legs, slapping against her fat, jiggling ass with a sound like a whipcrack in the tiny room. Void... you were jealous at first, but now you’re just horny.");
+		output("\n\nSo that’s what it looks like to other people. Your cheeks flush red, burning hot while you watch the muscles on his back tighten with every push forward. The way he uses his hips to fuck her is masterful, his ass flexing as he grunts in pleasure. You can see his balls, hanging heavy with seed between his legs, slapping against her fat, jiggling ass with a sound like a whipcrack in the tiny room. Void... you were jealous at first, but now you’re just horny.");
 	}
 	else
 	{

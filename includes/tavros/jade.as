@@ -106,6 +106,12 @@ public function approachJade():void {
 
 	processTime(2);
 	
+	shopkeep = chars["JADE"];
+	//List prices and whatnot. Back should go back to Jade's main menu.
+	//Sell Menu
+	chars["JADE"].keeperSell = "Jade tilts her head to the side. <i>“You wanna sell me splices? Well, even if they don’t fit my niche, I can probably turn a profit on them, so why not?”</i> She looks at you inquisitively. <i>“What do you have for me?”</i>\n";
+	chars["JADE"].keeperGreeting = "Jade extends her arm, gesturing towards the rest of her shop. <i>“See anything I can help you with?”</i>\n";
+	
 	//[Buy][Sell][Talk][Appearance]
 	clearMenu();
 	addButton(0,"Buy",jadeStoreSetup,undefined,"Buy","Buy some animal-themed transformation items.");
@@ -120,13 +126,7 @@ public function approachJade():void {
 }
 public function jadeStoreSetup():void 
 {
-	shopkeep = chars["JADE"];
-	
 	chars["JADE"].keeperBuy = "Jade’s console lists off the modification she has in stock along with their prices.\n";
-	//List prices and whatnot. Back should go back to Jade's main menu.
-	//Sell Menu
-	chars["JADE"].keeperSell = "Jade tilts her head to the side. <i>“You wanna sell me splices? Well, even if they don’t fit my niche, I can probably turn a profit on them, so why not?”</i> She looks at you inquisitively. <i>“What do you have for me?”</i>\n";
-	chars["JADE"].keeperGreeting = "Jade extends her arm, gesturing towards the rest of her shop. <i>“See anything I can help you with?”</i>\n";
 	
 	chars["JADE"].inventory = new Array();
 	
@@ -152,13 +152,7 @@ public function jadeStoreSetup():void
 
 public function jadeSpecificStoreSetup():void
 {
-	shopkeep = chars["JADE"];
-	
 	chars["JADE"].keeperBuy = "The console displays a list of Jade’s wares, focusing on specific, highly targeted splices.\n";
-	//List prices and whatnot. Back should go back to Jade's main menu.
-	//Sell Menu
-	chars["JADE"].keeperSell = "Jade tilts her head to the side. <i>“You wanna sell me splices? Well, even if they don’t fit my niche, I can probably turn a profit on them, so why not?”</i> She looks at you inquisitively. <i>“What do you have for me?”</i>\n";
-	chars["JADE"].keeperGreeting = "Jade extends her arm, gesturing towards the rest of her shop. <i>“See anything I can help you with?”</i>\n";
 	
 	chars["JADE"].inventory = new Array();
 	
@@ -170,13 +164,7 @@ public function jadeSpecificStoreSetup():void
 
 public function jadeAdvancedStoreSetup():void
 {
-	shopkeep = chars["JADE"];
-	
 	chars["JADE"].keeperBuy = "Jade taps a few keys to bring you into the more... adult-oriented portion of her stock. Included is a long warning about unexpected, erotic side effects, increased libido, and unexpected occurrences of heat and/or rut.\n\n<b>These are the gene splices for the user who wants slow and sometimes unpredictable transformations that are full of sexual effects.</b>\n";
-	//List prices and whatnot. Back should go back to Jade's main menu.
-	//Sell Menu
-	chars["JADE"].keeperSell = "Jade tilts her head to the side. <i>“You wanna sell me splices? Well, even if they don’t fit my niche, I can probably turn a profit on them, so why not?”</i> She looks at you inquisitively. <i>“What do you have for me?”</i>\n";
-	chars["JADE"].keeperGreeting = "Jade extends her arm, gesturing towards the rest of her shop. <i>“See anything I can help you with?”</i>\n";
 	
 	chars["JADE"].inventory = new Array();
 	if(pc.level >= 2)
@@ -426,7 +414,7 @@ public function jadeGetsAGropeGasm():void {
 	output("You take one hand-overflowing boob in each palm and shake them, squeezing them together and then apart before clapping them back together to set off a boobquake of epic proportions. The way her breasts jiggle and shake, you could film them and make a disaster holo out of it. Jade’s bosom, while big and bouncy, still sits fairly high on her body for all its size and weight. You suppose she hasn’t had them long enough for them to sag; she’s got tits that could shame a teenager for pertness and a surgically-altered cougar for size. In short, they’re a boob-lover’s dream, and they’re yours to play with as much as you like.");
 	output("\n\nFrom the way Jade is moaning, eyes rolled back and vacant, she’s not going to stop you. You lean down to press your [pc.face] into her cushions, letting them wrap around to your [pc.ears], your hands holding them against you on either side. The silky softness of her fur is everywhere, completely surrounding you, wrapping you in a blanket of warm goodness. You twist back and forth, rubbing your face against one then the other, luxuriating in her plushness for a moment. Switching your focus, you let your hands resume groping their twin prizes.");
 	output("\n\nThe overly-sensitive panda-girl immediately moans, though it sounds almost like a purr from how throatily it emerges from her mouth. You feel something wet against your [pc.leg] and reluctantly pull out of her smothering breasts to investigate.");
-	output("\n\nJade’s emerald-toned skirt is plastered to her crotch like a second skin, made so transparent by her copious lubricants that the dusky lips of her sex are on full display. Her button-like clit protrudes upward, sheathed in a condom of green fabric, and a dark discoloration is slowly spreading through the couch below. You give her breasts a firm squeeze. Jade groans, her thighs quivering nervelessly, and her ebony netherlips visibly part, releasing a torrent of pheremonally-charged girl-cum. The room is getting increasingly thick with her scent. Has she been cumming this hard the whole time?");
+	output("\n\nJade’s emerald-toned skirt is plastered to her crotch like a second skin, made so transparent by her copious lubricants that the dusky lips of her sex are on full display. Her button-like clit protrudes upward, sheathed in a condom of green fabric, and a dark discoloration is slowly spreading through the couch below. You give her breasts a firm squeeze. Jade groans, her thighs quivering nervelessly, and her ebony netherlips visibly part, releasing a torrent of pheromonally-charged girl-cum. The room is getting increasingly thick with her scent. Has she been cumming this hard the whole time?");
 	output("\n\nYou briefly consider asking her, but a quick look at her drool-slick lips and empty eyes tells you it would be a wasted effort. Instead, you go back to kneading Jade’s tits. Her gushing cunny enthusiastically declares the panda’s desire to continue, and you’re certainly having fun seeing just how much pleasure you can wring from her hand-swallowing titties. You grab one and squeeze it hard enough that it’s probably a little painful, letting your fingers completely vanish from view, lost in her silky fur.");
 	output("\n\nJade gives an ear-shattering screech as every muscle in her body locks at once and begins to violently buck beneath you, throwing her hips up with enough force that you’re nearly sent flying. If it wasn’t for the tight grip on her bosom, you would’ve been bucked into the slick puddle that’s formed on the floor, accumulated from the rivulets of girl-honey that have been leaking down the furniture the past few moments. Her skirt is completely drenched by her violent orgasm, so much so that even the fur on her legs is plastered down by sticky secretions.");
 	output("\n\nInspired, you reach under the drenched fabric and run your fingers across her quivering nether-lips, collecting a palmful of slick juice for your efforts, then bring it up to her heaving bosom. She’s gasping for breath, breasts quivering beautifully with every lungful of air she sucks in. You smile and rub her tits down with her own juice. In response, Jade’s tongue lolls, and her hips resume rocking, this time at a much more sedate pace. It seems that firmness earns violent, thrashing orgasms while gentler gropes and massages earn whimpering drools of feminine bliss.");

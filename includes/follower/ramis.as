@@ -98,7 +98,7 @@ public function ramisOnTop(setTo:int = 0):Boolean
 public function looksFemaleToRamis(target:Creature = null):Boolean
 {
 	if (!target) target = pc;
-	return (target.isFemale() || target.isFemHerm() || target.isSexless() || target.isShemale());
+	return (target.isWoman() || target.isFemHerm() || target.isSexless() || target.isShemale());
 }
 public function looksTrappyToRamis(target:Creature = null):Boolean
 {
@@ -942,7 +942,7 @@ public function ramisPlsSexMeh():void
 public function ramisSexButton(btnSlot:int = 1):void
 {
 	if (flags["RAMIS_SEX_DISABLED"] == 3) { /* Nada */ }
-	if (flags["RAMIS_SEX_DISABLED"] == 1 && looksFemaleToRamis()) addDisabledButton(btnSlot, "Sex", "Sex", "You aren’t something that Ramis would be interested in banging. Maybe if you were a guy... or a trap.");
+	if (flags["RAMIS_SEX_DISABLED"] == 1 && looksFemaleToRamis()) addDisabledButton(btnSlot, "Sex", "Sex", ("You aren’t something that Ramis would be interested in banging. Maybe if you " + (pc.isCuntboy() ? "had a willy instead of a fanny" : "were a guy... or a trap") + "."));
 	else if (pc.isTaur()) addDisabledButton(btnSlot, "Sex", "Sex", "You’re a bit too... <i>tauric</i>.");
 	else if (pc.hasStatusEffect("Disable Ramis Sex")) addDisabledButton(btnSlot, "Sex", "Sex", "Unless you want to be teased mercilessly, you think you’ll have to suffer in silence a bit longer before letting Ramis at you again.");
 	//else if (ramisOnTop() && !pc.hasHardLightEquipped()) addDisabledButton(btnSlot, "Sex", "Sex", "For now, you’ll need to wear a certain piece of... equipment... to do this.\n\n(It’s a strap-on)");
@@ -970,13 +970,12 @@ public function ramisLetsShagRouter():void
 	//Blanked enable, so we only have to worry about the options that disable it
 	flags["RAMIS_SEX_DISABLED"] = undefined;
 
-	if (looksFemaleToRamis())
+	if (looksFemaleToRamis() || pc.isCuntboy())
 	{
 		//Player might have been a dude at the bar, and certainly was one at some point if they've had sex in the ship
 		if (flags["RAMIS_SEXED_SHIP"] != undefined || !looksFamiliarToRamis())
-		{
-			output("With a flirty smile and a little shimmy of the hips, you ask if she fancies a bit of fun.");
-			output("\n\n<i>“You’ve ummmm, changed a bit recently, haven’t you captain,”</i> Ramis replies slowly, eyeing you. <i>“Stopped being somethen I’m into.”</i> She shrugs. <i>“Don’t get me wrong, I’m not tryen to get you down if that’s who you want to be, it’s just... it doesn’t do anythen for me.”</i> She grins wistfully. <i>“Call me if you ever turn back into cute boy. I might be ravenous for them by then...”</i>");
+		{	output("With a flirty smile and a little shimmy of the hips, you ask if she fancies a bit of fun.");
+			output("\n\n<i>“You’ve ummmm, changed a bit recently, haven’t you captain,”</i> Ramis replies slowly, eyeing you. <i>“Stopped being somethen I’m into.”</i> She shrugs. <i>“Don’t get me wrong, I’m not tryen to get you down if that’s who you want to be, it’s just... it doesn’t do anythen for me.”</i> She grins wistfully. <i>“Call me if you ever " + (pc.isCuntboy() ? "get that luvley willy back" : "turn back into cute boy") + ". I might be ravenous for them by then...”</i>");
 		}
 		else
 		{
@@ -2151,7 +2150,7 @@ public function ramisFurtherBoiDrilling(shagType:String):void
 	}
 	else
 	{
-		output("\n\nBeing lusciously licked to orgasm has made you hungry for even more, something more substantial, and it’s with impatience you grab the lithe little guy, making him flinch and gasp as you grasp his orange-and-black dappled wings, stroking the delicate, diaphanous silk-flesh before planting them down on the bed, flapping his skirt onto to his taut belly to reveal his pale pink panties, stretched over a dinky little bulge. Adorable.");
+		output("\n\nBeing lusciously licked to orgasm has made you hungry for even more, something more substantial, and it’s with impatience you grab the lithe little guy, making him flinch and gasp as you grasp his orange-and-black dappled wings, stroking the delicate, diaphanous silk-flesh before planting them down on the bed, flapping his skirt onto his taut belly to reveal his pale pink panties, stretched over a dinky little bulge. Adorable.");
 		output("\n\nThe rising tide of your arousal is swollen by the sight of Ramis ruthlessly dialling up the pace of her own humping, hands clasped around Kroy’s pencil-thin wrists, making the bed creak in protest as she slams her weight into the moaning doggy boi again and again, and your [pc.vagina 0] is moist and parted, by the time you’ve yanked the butterfly’s panties down and allowed his erect sissy clit to ping out, four inches of circumcised pale blue... if that. Maybe to other saeri it would simply look average - to almost anybody else, it spells disappointment. The extremely deep navy blush on Vanesse’s face tells you he’s very aware of this.");
 		output("\n\n<i>“Aww, look at that brave littel soldier!”</i> crows Ramis, watching all of this with leonine lust writ large on her face, breasts bouncing up and down. <i>“Oh, you’re going to have to ride him bluDEE hard to get anything out of that, aren’t you captain? Go on... unf... I wanna watch.”</i>");
 		output("\n\nYou leer down at the pretty saeri. Honestly, the thought of pleasurably tormenting him as a reward for the lovely licking he gave you <i>is</i> compelling. You place the wetness of your [pc.vagina 0] and rotate back and forth for a little while, little his sensitive tip just taste you, enjoying the way his flat chest and antennae quiver and shake, hypnotized by what you’re doing... and then sit yourself down, gloving every inch of him in the sensuousness of your cunt in a single second, eliciting a wondering, fluttering groan from him.");
@@ -2853,7 +2852,7 @@ public function ramisFaceSittingJackOffScene(args:Array):void
 			if(pc.balls > 0) output(" She sends one hand rummaging down, giggling huskily as she makes you start and gasp by gently squeezing your [pc.balls], making even more pre ooze freely from your dilated slit.");
 			output("\n\nAnd yet... despite all that... you still cannot cum. Not without her telling you that you can. It’s hypnotically, submissively wonderful. You close your [pc.eyes], grip her thighs and attack her clit with your [pc.tongue], allowing the pleasure to flow through you, overwhelming your thoughts.");
 			output("\n\n<i>“That’s it boyo, that’s it,”</i> her merry voice drifts down, heightening as she grows ever more excited. Warm, smooth muscles jounces on your face. <i>“I’ll let you go when you get me there... it’s goen to be so fucken good...”</i>");
-			output("\n\nPussy juices drool over your [pc.lips] and are smeared over your nose, filling your head with her sweet, clear scent. Her formidable thighs tighten around your head, turning your whole world into smooth, clenching brownness. Your thumb scrabbles over the tiny little bud whilst you slurp desparately at her wet hole.");
+			output("\n\nPussy juices drool over your [pc.lips] and are smeared over your nose, filling your head with her sweet, clear scent. Her formidable thighs tighten around your head, turning your whole world into smooth, clenching brownness. Your thumb scrabbles over the tiny little bud whilst you slurp desperately at her wet hole.");
 			
 			var cumQ:Number = pc.cumQ();
 			

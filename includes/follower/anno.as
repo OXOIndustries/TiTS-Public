@@ -4857,7 +4857,7 @@ public function annoxErraJoin():void
 			if(pc.cockTotal() > 2) output("another");
 			else output("your other");
 			output(" stiff shaft into between her lips. Erra doesn’t even take a moment to catch her breath, pushing herself onto your rock-hard tool, her flat tongue sliding all over your cockflesh and wetting it with a coat of ausar spit.");
-			output("\n\nBefore too long you have two happy puppy’s enjoying their bones, bobbing up and down your cocks and polishing them with their tongues. They don’t seems to competitive about it either, simply enjoying the pleasures they’re giving their master, shivering at every pleased groan and shuddering breath you release.");
+			output("\n\nBefore too long you have two happy puppies enjoying their bones, bobbing up and down your cocks and polishing them with their tongues. They don’t seems to competitive about it either, simply enjoying the pleasures they’re giving their master, shivering at every pleased groan and shuddering breath you release.");
 		}
 		else
 		{
@@ -4905,7 +4905,7 @@ public function annoxErraJoin():void
 		output("\n\nYour hips buck forward in a series of instinct-driven movements, bouncing against Erra and Anno’s asses, while all of you cum your brains out. ");
 		if (pc.cumQ() >= 1000)
 		{
-			output("Your tremondous load swells your puppies tummies against each other to the point where it pours ");
+			output("Your tremendous load swells your puppies tummies against each other to the point where it pours ");
 			if(pc.hasKnot(cIdx)) output("slowly");
 			else output("steadily");
 			output(" from their clenching cock-holsters to relieve some pressure");

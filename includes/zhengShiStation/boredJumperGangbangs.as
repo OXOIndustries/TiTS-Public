@@ -703,7 +703,7 @@ public function redheadfuckiroodidoody(x:int):void
 	// PC Misch
 	else if(pc.isMischievous()) output("\n\n<i>“Hope you’ve got a similar taste for dick.”</i> You laugh, rubbing your " + (x >= 0 ? "[pc.cockHeads]":"hardlight strapon’s tip") + " into the rabbit’s face and furrowing nose.");
 	// PC Hard
-	else output("\n\n<i>“Move back, and get ready for more than a pussy.”</i> You order the jumper, moving your " + (x >= 0 ? "[pc.cocks]":"hardlight strapon") + " to to where lips and pussylips are connected by spit and girl juice.");
+	else output("\n\n<i>“Move back, and get ready for more than a pussy.”</i> You order the jumper, moving your " + (x >= 0 ? "[pc.cocks]":"hardlight strapon") + " to where lips and pussylips are connected by spit and girl juice.");
 
 	// Merge
 	output("\n\nYou gingerly push your " + (x >= 0 ? "[pc.cockNounSimple " + x + "]":"techno dong") + " between the jumper’s [enemy.lipColor] mouth and the redhead’s glossy honey hole. It’s hard not to inhale these strangling scents with every heady breath you take, shit, it smells like a ripe zil orgy! A growl-like exhalation later, you hear the redhead squeal, your cock being slathered in a fresh helping of modded cum. Saccharine, amber honey flows over your " + (x >= 0 ? "[pc.cockType " + x + "]":"faux") + " shaft like syrupy glaze, trickling down to the laquine’s wide open mouth.");

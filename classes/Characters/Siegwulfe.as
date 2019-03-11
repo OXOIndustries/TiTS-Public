@@ -3,7 +3,6 @@
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.kGAMECLASS;
-	import classes.Items.Miscellaneous.Ovilium;
 	import classes.Items.Protection.ReaperArmamentsMarkIShield;
 	
 	
@@ -139,27 +138,9 @@
 		}
 		
 		//Removes 10 ovilium from eggDonorInv, set it to null if no ovilium should be removed
-		public function configEggs(eggDonorInv:Array = null):void
+		public function configEggs(bEnable:Boolean = true):void
 		{
-			if (eggDonorInv && !kGAMECLASS.infiniteItems())
-			{
-				var i:int = eggDonorInv.length;
-				var eggs:int = 10;
-				//No need to stop if eggs is 0 because then it'll just remove no eggs which is fine
-				while (0<--i)
-				{
-					//Not ovilium, no good
-					if (!(eggDonorInv[i] is Ovilium)) continue;
-					if (eggDonorInv[i].quantity > eggs) eggDonorInv[i].quantity -= eggs;
-					else
-					{
-						eggs -= eggDonorInv[i].quantity;
-						eggDonorInv[i].quantity = 0;
-					}
-					if (eggDonorInv[i].quantity == 0) eggDonorInv.splice(i,1);
-				}
-			}
-			this.impregnationType = "SiegwulfeEggnancy";
+			this.impregnationType = (bEnable ? "SiegwulfeEggnancy" : "");
 		}
 		
 		public function isEggWulfe():Boolean

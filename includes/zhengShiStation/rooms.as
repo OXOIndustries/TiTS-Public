@@ -2182,7 +2182,7 @@ public function initZhengRooms():void
 	//Not normal rooms
 	rooms["ZSF T16"] = new RoomClass(this);
 	rooms["ZSF T16"].roomName = "CARGO\nDOOR";
-	rooms["ZSF T16"].description = "Just east of here, a pillar of rusted steal beams and geddanium-braid cabling stretch up to the cavern’s apex and vanish into the rock. ";
+	rooms["ZSF T16"].description = "Just east of here, a pillar of rusted steel beams and geddanium-braid cabling stretch up to the cavern’s apex and vanish into the rock. ";
 	rooms["ZSF T16"].planet = "ZHENG SHI STATION";
 	rooms["ZSF T16"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF T16"].northExit = "";
@@ -2272,7 +2272,7 @@ public function initZhengRooms():void
 
 	rooms["ZSF X20"] = new RoomClass(this);
 	rooms["ZSF X20"].roomName = "ACCESS\nCORRIDOR";
-	rooms["ZSF X20"].description = "This north-south access corridor looks like it might run the whole length of the Sidewinder, and while it may be glitzy and brand-new, it’s also been decorated in typical garish, Jumper fashion. A promotion poster hangs from the east wall, framed in glowing neon. It depicts a buxom Jumper in a bright yellow jumpsuit and old-style bubble helmet, rocketing through an asteroid field with nothing but a hand blaster and the jets on her belt. Bold text at the commands, “Jump into the fray... TODAY!”\n\nTo the north, the corridor widens into some kind of mess hall. It also stretches south, presumably toward the cockpit.";
+	rooms["ZSF X20"].description = "This north-south access corridor looks like it might run the whole length of the Sidewinder, and while it may be glitzy and brand-new, it’s also been decorated in typical garish, Jumper fashion. A promotion poster hangs from the east wall, framed in glowing neon. It depicts a buxom Jumper in a bright yellow jumpsuit and old-style bubble helmet, rocketing through an asteroid field with nothing but a hand blaster and the jets on her belt. Bold text at the bottom commands, “Jump into the fray... TODAY!”\n\nTo the north, the corridor widens into some kind of mess hall. It also stretches south, presumably toward the cockpit.";
 	rooms["ZSF X20"].planet = "ZHENG SHI STATION";
 	rooms["ZSF X20"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF X20"].northExit = "ZSF X18";
@@ -2314,7 +2314,7 @@ public function initZhengRooms():void
 	
 	rooms["ZSF X18"] = new RoomClass(this);
 	rooms["ZSF X18"].roomName = "THE\nMESS";
-	rooms["ZSF X18"].description = "The ship’s mess hall is a combination kitchen and dining room, complete with tables capable of seating up to twenty. The kitchen is everything you’d expect from hedonistic pirates. Gold trimmed protein synthesizers are neatly packed next to an ornate las-oven and a half-dozen other esoteric food preparation devices. A simple robotic servant trundles around with a touchscreen on its blank face listing suggested foods. At some point, it’s narrow, servile frame was modified to carry around a set of heavy sexbot knockers that jiggle dangerously with its every step. It appears oblivious to the fact that someone scrawled “Fill these puppies with whiskey!” across them.\n\nA wide access corridor intersects with the mess, stretching north toward the cargohold and engines and south up to the cockpit. A heavy doorway to the west gives the captain convenient access to food from his or her quarters.";
+	rooms["ZSF X18"].description = "The ship’s mess hall is a combination kitchen and dining room, complete with tables capable of seating up to twenty. The kitchen is everything you’d expect from hedonistic pirates. Gold trimmed protein synthesizers are neatly packed next to an ornate las-oven and a half-dozen other esoteric food preparation devices. A simple robotic servant trundles around with a touchscreen on its blank face listing suggested foods. At some point, its narrow, servile frame was modified to carry around a set of heavy sexbot knockers that jiggle dangerously with its every step. It appears oblivious to the fact that someone scrawled “Fill these puppies with whiskey!” across them.\n\nA wide access corridor intersects with the mess, stretching north toward the cargohold and engines and south up to the cockpit. A heavy doorway to the west gives the captain convenient access to food from his or her quarters.";
 	rooms["ZSF X18"].planet = "ZHENG SHI STATION";
 	rooms["ZSF X18"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF X18"].northExit = "ZSF X16";
@@ -2521,7 +2521,7 @@ public function initZhengRooms():void
 
 	rooms["ZSR L25"] = new RoomClass(this);
 	rooms["ZSR L25"].roomName = "APEX\nRING";
-	rooms["ZSR L25"].description = "You stand next to the cargo elevator’s enormous shaft as it disappears into the ceiling (though now your floor). It’s ringed by solid walls covered in warring swaths of graffiti and posters, one overlapping the other until the whole is a blaze of color and picture with mismatched letters peeking out from in between.\n\nTo the south, a green path winds through the walls back toward the the elevator’s entrance. The apex ring whirls east and west on its circuitous path.";
+	rooms["ZSR L25"].description = "You stand next to the cargo elevator’s enormous shaft as it disappears into the ceiling (though now your floor). It’s ringed by solid walls covered in warring swaths of graffiti and posters, one overlapping the other until the whole is a blaze of color and picture with mismatched letters peeking out from in between.\n\nTo the south, a green path winds through the walls back toward the elevator’s entrance. The apex ring whirls east and west on its circuitous path.";
 	rooms["ZSR L25"].planet = "ZHENG SHI STATION";
 	rooms["ZSR L25"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR L25"].northExit = "";
@@ -2577,7 +2577,7 @@ public function initZhengRooms():void
 
 	rooms["ZSR L41"] = new RoomClass(this);
 	rooms["ZSR L41"].roomName = "APEX\nRING";
-	rooms["ZSR L41"].description = "The crimson pathway to the south intersects with the far more plain ring around the cargo elevator’s apex here. You can look up, past the gyrating dancers, and see the the entrance that you used to get here. Just thinking about it makes your stomach do a backflip. One of the dancers does one too. The ring loops east and west around the poster and graffiti-covered metal plating of the shaft.";
+	rooms["ZSR L41"].description = "The crimson pathway to the south intersects with the far more plain ring around the cargo elevator’s apex here. You can look up, past the gyrating dancers, and see the entrance that you used to get here. Just thinking about it makes your stomach do a backflip. One of the dancers does one too. The ring loops east and west around the poster and graffiti-covered metal plating of the shaft.";
 	rooms["ZSR L41"].planet = "ZHENG SHI STATION";
 	rooms["ZSR L41"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR L41"].northExit = "ZSR L39";
@@ -2747,7 +2747,7 @@ public function initZhengRooms():void
 	
 	rooms["ZSR F35"] = new RoomClass(this);
 	rooms["ZSR F35"].roomName = "NARROW\nALLEY";
-	rooms["ZSR F35"].description = "Kept dim by close walls, this area's light is almost entirely provided by neon light - or simulated projections of it. There are male and female symbols interlocked, flickering and buzzing as they splay out blue and pink radiance. A tube of eye-watering green bends around itself to spell out \"DRUGS\" atop an east-facing arrow while a more mundane advertisement for \"Cherry's Tap-House\" suggests you head south.";
+	rooms["ZSR F35"].description = "Kept dim by close walls, this area’s light is almost entirely provided by neon light - or simulated projections of it. There are male and female symbols interlocked, flickering and buzzing as they splay out blue and pink radiance. A tube of eye-watering green bends around itself to spell out “DRUGS” atop an east-facing arrow while a more mundane advertisement for “Cherry’s Tap-House” suggests you head south.";
 	rooms["ZSR F35"].planet = "ZHENG SHI STATION";
 	rooms["ZSR F35"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR F35"].northExit = "ZSR F33";
@@ -2760,7 +2760,7 @@ public function initZhengRooms():void
 	//rooms["ZSR F35"].addFlag(GLOBAL.HAZARD);
 
 	rooms["WALL SLUTS"] = new RoomClass(this);
-	rooms["WALL SLUTS"].roomName = "CHERRY'S\nTAP-HALL";
+	rooms["WALL SLUTS"].roomName = "CHERRY’S\nTAP-HALL";
 	rooms["WALL SLUTS"].description = "";
 	rooms["WALL SLUTS"].planet = "ZHENG SHI STATION";
 	rooms["WALL SLUTS"].system = "SYSTEM: HERISIOD";

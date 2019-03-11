@@ -236,7 +236,7 @@ public function talkToAnzhelaAboutHerWork():void
 {
 	clearOutput();
 	showAnzhela();
-	output("You ask Anzhela about her and her team’s work at at the central aid center. You’ve seen as many gold patients as red ones since you arrived.");
+	output("You ask Anzhela about her and her team’s work at the central aid center. You’ve seen as many gold patients as red ones since you arrived.");
 	output("\n\n<i>“Well, there’s tending to the wounded, of course. Thankfully, there’s been hardly any critical injuries since the cease-fire - I wouldn’t have even had time to say ‘hello’ to you if you’d come in here several months ago,”</i> she blows the steam off her scova, then continues, <i>“...Most of the heavily wounded come from nyrea attacks, landmines, and scouts getting caught with their pants down.”</i>");
 
 	//MetLieve:

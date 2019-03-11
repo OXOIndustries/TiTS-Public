@@ -240,7 +240,7 @@ public function useDatacoreOnSiegwulfe(fromInv:Boolean = false):void
 public function SiegwulfeEquip():void
 {
 	output("You call [wulfe.name] to you side and command her to enter guard mode.");
-	output("\n\n<i>“Of course, [pc.master],”</i> she says with a slim smile. <i>“" + (chars["WULFE"].isBimbo() ? "I’ll, like, take super good care of you! Don’t you worry about a thing!" : "I live to serve.") + "”</i>");
+	output("\n\n<i>“Of course, " + (siegwulfeIsDom() ? "[wulfe.pcname]" : "[pc.master]") + ",”</i> she says with a slim smile. <i>“" + (chars["WULFE"].isBimbo() ? "I’ll, like, take super good care of you! Don’t you worry about a thing!" : "I live to serve.") + "”</i>");
 	output("\n\nShe trots around you, rolling her shoulders and lowering her combat visor. Looks like she’s ready to go!");
 	output("\n\n");
 }
@@ -248,7 +248,7 @@ public function SiegwulfeEquip():void
 public function SiegwulfeUnequip():void
 {
 	output("You put a hand on [wulfe.name]’s shoulder and tell her to stand down for now -- to go into passive mode.");
-	output("\n\n<i>“Are you sure, [pc.master]?”</i> she asks, trotting up and circling you. <i>“" + (chars["WULFE"].isBimbo() ? "I can’t, like, keep you safe and stuff if I’m in pa... pass... idle mode!" : "My purpose is to protect you, after all.") + "”</i>");
+	output("\n\n<i>“Are you sure, " + (siegwulfeIsDom() ? "[wulfe.pcname]" : "[pc.master]") + "?”</i> she asks, trotting up and circling you. <i>“" + (chars["WULFE"].isBimbo() ? "I can’t, like, keep you safe and stuff if I’m in pa... pass... idle mode!" : "My purpose is to protect you, after all.") + "”</i>");
 	output("\n\nYou tell her that you’re sure. Just follow along quietly until you reactivate her. She sighs and nods, falling into step behind you.");
 	output("\n\n");
 }
@@ -376,7 +376,7 @@ public function approachSiegwulfe(arg:Array):void
 		siegwulfeDomSexButtons(fromInv);
 		addButton((debug ? 7 : 6), "Bimbo?", siegwulfeBimbosplanation, fromInv, "Bimbo Personality?", "Ask about [wulfe.name]’s bimbo personality.");
 		if (flags["WULFE_EMP"] == 0) addButton((debug ? 8 : 7), "EMP?", siegwulfeEMPExplanation, fromInv, "Her EMP?", "Ask [wulfe.name] about shutting down recording devices.");
-	//No talk, only names
+		//No talk, only names
 		if (flags["WULFE_PCNAME"] == undefined) clearMenu();
 		addButton((flags["WULFE_PCNAME"] == undefined ? 0 : 9), "Talk Names", siegwulfeTalkNames, fromInv);
 	}		
@@ -529,8 +529,10 @@ public function doSiegwulfeAction(arg:Array):void
 			break;
 		// Leave
 		case "leave":
-			if (flags["WULFE_PCNAME"] != undefined) output("<i>“I’ll be leaving, Mistress,”</i> you tell [wulfe.name], who smiles.\n\n<i>“Have fun, [wulfe.pcname]! Just don’t be surprised when I like, jump you in your room,”</i> she giggles. You know she’s not kidding.");
-			else if (siegwulfeIsDom()) output("You give [wulfe.name] a scratch under the chin, her eyes hooding in approval before you leave.");
+			if (siegwulfeIsDom()) {
+				if (flags["WULFE_PCNAME"] != undefined) output("<i>“I’ll be leaving, Mistress,”</i> you tell [wulfe.name], who smiles.\n\n<i>“Have fun, [wulfe.pcname]! Just don’t be surprised when I like, jump you in your room,”</i> she giggles. You know she’s not kidding.");
+				else output("You give [wulfe.name] a scratch under the chin, her eyes hooding in approval before you leave.");
+			}
 			else output("You give [wulfe.name] a pat on the head and leave her to her own devices for a bit.");
 			
 			processTime(1);
@@ -839,15 +841,24 @@ public function siegwulfeInstallDongerGo(useOvi:Boolean):void
 	clearOutput();
 	author("Wsan");
 	showName("DR.\nBADGER");
+	
 	processTime(1);
+	
+	var wulfeIsBimbo:Boolean = wulfe.isBimbo();
 	wulfe.configDom();
+	
 	if (!useOvi) output("<i>“Nope.”</i>\n\n<i>“Ah, well. Bring me those bottles later if you want some extra fun,”</i> Badger replies with a shrug.\n\n");
-	else wulfe.configEggs(pc.inventory);
+	else
+	{
+		pc.destroyItemByClass(Ovilium, 10);
+		wulfe.configEggs();
+	}
 	output("She heads into the lab with your faithful dog-droid in tow, the door shutting behind her with a hiss. You settle down in a nearby ramshackle chair. You don’t know how long it’ll be but given Badger made no indication you should leave, it can’t be too much of a wait. The sound of distant machinery begins to thrum through the air.");
-	addButton(0, "Next", siegwulfeInstallDongerForReals);
+	
+	addButton(0, "Next", siegwulfeInstallDongerForReals, wulfeIsBimbo);
 }
 
-public function siegwulfeInstallDongerForReals():void
+public function siegwulfeInstallDongerForReals(wulfeIsBimbo:Boolean):void
 {
 	clearMenu();
 	clearOutput();
@@ -861,10 +872,10 @@ public function siegwulfeInstallDongerForReals():void
 	output("\n\n<i>“Where’s [wulfe.name]?”</i> you demand, pointing at Badger.");
 	output("\n\n<i>“Hey now, too rude and I’ll" + (pc.isBimbo() ? "- well... I can’t double-bimbo you, but I have a lot of Dumbfuck I’m willing to force down your throat" : " make you pay for it") + ",”</i> she replies lightly. <i>“She’s coming on her own time, just be patient. She’s got a lot to think about and some new... ‘equipment’ for you to play with, after all.”</i>");
 	output("\n\n‘On her own time’? The implications of that are staggering but you guess if anyone could be enough of a deranged lunatic to make a");
-	if (wulfe.isBimbo()) output(" potentially");
+	if (wulfeIsBimbo) output(" potentially");
 	output(" lethal killbot think for itself, it’d be Badger. You’re about to question her further when the lab door hisses open and [wulfe.name] emerges from the laboratory.");
 
-	if (wulfe.isBimbo()) output("\n\nShe looks almost identical, really. But");
+	if (wulfeIsBimbo) output("\n\nShe looks almost identical, really. But");
 	else
 	{
 		output("\n\nShe looks completely different. The first things you notice are a pair of huge, curvaceous milk jugs lewdly presented to your eyes, each one with a large black teat, stiff and already dripping cream. Her figure has been maintained but radically enhanced, her stomach still flat and her waist still impossibly thin given the voluptuousness of her body and her broodmare-like hips. Even the color of her synthetic skin has changed, from a pale white to a sun-kissed bronze.");
@@ -1036,7 +1047,8 @@ public function siegwulfeInstallEggs():void
 	output("\n\n<i>“Oh, the doctor told me not to tell you,”</i> she says, smiling. <i>“But trust me, you’ll love it when it happens.”</i>");
 	output("\n\nOminous...");
 
-	wulfe.configEggs(pc.inventory);
+	pc.destroyItemByClass(Ovilium, 10);
+	wulfe.configEggs();
 
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1303,7 +1315,11 @@ public function siegwulfeDomSexButtons(fromInv:Boolean):void
 	if (pc.hasBreasts() && pc.isLactating()) addButton(3, "Milking", siegwulfeTheMilkmAId, fromInv);
 	else addDisabledButton(3, "Milking", "Milking", "You need lactating tits to get milked!");
 	var pcLeashed:Boolean = pc.hasStatusEffect("Siegwulfe's Leash");
-	if (hasWornCollar() && flags["WULFE_LEASH"] != undefined) addButton(13, (pcLeashed ? "Remove Leash " : "Put Leash On"), siegwulfeLeashChange, fromInv, (pcLeashed ? "Take Leash Off" : "Put Leash On"), "Adjust your leash.");
+	if (hasWornCollar() && flags["WULFE_LEASH"] != undefined)
+	{
+		if(!canSiegwulfeUseLeash()) addDisabledButton(13, "Put Leash On", "Put Leash On", "You cannot do this here!");
+		else addButton(13, (pcLeashed ? "Remove Leash " : "Put Leash On"), siegwulfeLeashChange, fromInv, (pcLeashed ? "Take Leash Off" : "Put Leash On"), "Adjust your leash.");
+	}
 }
 
 public function siegwulfeQuickie():void
@@ -2158,8 +2174,14 @@ public function siegwulfeRequestOral():void
 }
 
 // LEASHY THINGS BEGIN HERE
+public function canSiegwulfeUseLeash():Boolean
+{
+	if (rooms[currentLocation].hasFlag(GLOBAL.NURSERY)) return false;
+	return true;
+}
 public function hasSiegwulfeLeashOn():Boolean
 {
+	if (!canSiegwulfeUseLeash()) return false;
 	if (hasWornCollar() && hasSiegwulfeOnSelf() && pc.hasStatusEffect("Siegwulfe's Leash")) return true;
 	return false;
 }

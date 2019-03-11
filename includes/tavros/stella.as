@@ -729,7 +729,7 @@ public function assFuckStella():void
 
 	output("\n\n<i>“Relax, Stella,”</i> you tell her, intending both meanings. <i>“I’ll give you some time to get used to it.”</i>");
 
-	output("\n\nReaching around to to her front, you drape an arm across her inner thigh and slide a finger across the hard little nub just above her tight slit. She jumps a little at the sensation and gasps, instinctively clamping down on your dick.");
+	output("\n\nReaching around to her front, you drape an arm across her inner thigh and slide a finger across the hard little nub just above her tight slit. She jumps a little at the sensation and gasps, instinctively clamping down on your dick.");
 
 	output("\n\n<i>“Oh, gosh!”</i> she cries, desperation seeping into her voice. <i>“I didn’t even realize how close I was... nnnnggh!”</i>");
 
@@ -1615,6 +1615,7 @@ public function stellaPregbangEpilogue():void
 public function stellaKnockupCheck():void
 {
 	if(stellaPregnant()) return;
+	if(pc.virility() <= 0) return;
 	
 	//Stella is pretty fertile and takes a loooot of loads.
 	var chance:Number = 25;

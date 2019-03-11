@@ -21,6 +21,10 @@ Plans/Ideas
 
 */
 
+public function breedwellCoordinatesUnlocked():Boolean
+{
+	return (MailManager.isEntryViewed("breedwell_unlock"));
+}
 // Ad from Tamani Corp
 // Received if PC has the rahn codex + has 2 or more kids in the Nursery OR has donated 500,000+ ml to the NT Cockmilker
 public function breedwellCheckBirth():Boolean

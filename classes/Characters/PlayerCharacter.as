@@ -1174,6 +1174,10 @@ package classes.Characters
 		
 		private function implantasticSiliconeConversion(totalDays:int):void
 		{
+			// v1: hips
+			// v2: butt
+			// v3: tits
+			// v4: lips
 			var implants:StorageClass = getStatusEffect("Nym-Foe Injections");
 			if(implants != null)
 			{

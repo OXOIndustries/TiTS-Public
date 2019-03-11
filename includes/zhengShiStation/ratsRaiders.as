@@ -1789,7 +1789,7 @@ public function ratFightVictory():void
 	else if (hornyRats == 1)
 	{
 		// Last rat defeated by lust, (1 lusted, 2 KO'd)
-		if (lastRat.HP() > 0) output("\n\nThere’s a sharp gasp and a pitiful whine when the final raider drops " + lastRat.mf("his", "her") + " baton and falls heavily to " + lastRat.mf("his", "her") + " knees. Having had the fight knocked out of them, the other two pant and hang their heads while their friend paws furiously at at the armor insulating " + lastRat.mf("his", "her") + " lust, desperate for relief. You can consider helping with that now that they’ve been trounced.");
+		if (lastRat.HP() > 0) output("\n\nThere’s a sharp gasp and a pitiful whine when the final raider drops " + lastRat.mf("his", "her") + " baton and falls heavily to " + lastRat.mf("his", "her") + " knees. Having had the fight knocked out of them, the other two pant and hang their heads while their friend paws furiously at the armor insulating " + lastRat.mf("his", "her") + " lust, desperate for relief. You can consider helping with that now that they’ve been trounced.");
 		// Last rat defeated by HP, (2 KO'd, 1 lusted)
 		else output("\n\nWhen the last rat charges, you deflect " + lastRat.mf("his", "her") + " baton and slam your shoulder into " + lastRat.mf("his", "her") + ", knocking the rodent clear back and into the others who struggle to stand or alleviate their lusts. Batons and other weapons go flying as you step forward. The raiders now utterly defeated, you step forward, knowing they have been pacified.");
 	}
