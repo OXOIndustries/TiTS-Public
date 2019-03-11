@@ -1512,7 +1512,6 @@ public function autoFillNymFoeBoobjection(bRow:int = 0):void
 	})(bRow);
 	eventQueue.push(tEventCall);
 }
-
 public function nymFoeUninjection():void
 {
 	if(pc.hasStatusEffect("Nym-Foe Injections"))
@@ -1525,9 +1524,10 @@ public function nymFoeUninjection():void
 		}
 		pc.lipMod -= pc.statusEffectv4("Nym-Foe Injections");
 	}
-	if(!pc.hasPerk("Implant-tastic")) pc.removeStatusEffect("Nym-Foe Injections");
+	pc.removeStatusEffect("Nym-Foe Injections");
+	// Perk regens silicone implants!
+	if(pc.hasPerk("Implant-tastic")) pc.createStatusEffect("Nym-Foe Injections");
 }
-
 public function nymFoeMaxInjection(hips:Number = 0, butt:Number = 0, boob:Number = 0, lips:Number = 0):void
 {
 	pc.createStatusEffect("Nym-Foe Injections");
@@ -2949,7 +2949,7 @@ public function drBadgerLabNymFoe(response:String = "menu"):void
 				{
 					output("You [pc.walk] over to the alabaster skinned nurse droid. Her eyes are closed, she rests against the wall, butt on the ground with her knees pressed up against her half-deflated chest. Her arms are like that of a lifeless toy, hanging down to her sides with her palms facing up.");
 					output("\n\nShe seems very damaged. You confirm your suspicions when you tap on her metal forehead, gauging for a reaction. Nothing. Her body sits there, inactive.");
-					output("\n\nMaybe if you still have her VI chip somewhere, you could reactivate her. Otherwise, you’ll have to ask Badger what you need to fix her, though it may not be the wisest idea.");
+					output("\n\nMaybe if you still have her VI chip somewhere, you could reactivate her. Otherwise, you’ll have to ask Badger what you need to fix her, though the doctor may have something perverted in mind.");
 					output("\n\n");
 					
 					processTime(1);
@@ -3424,7 +3424,7 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 		case "shrink tits":
 			showName("SUCK\nBOOBS");
 			
-			output("You carefully slide the needle into the area above your chest, pressing ‘suck’ on the tank. Silicone mass is taken from you as your chest gets smaller. <b>Your [pc.chest] has gotten smaller.</b>");
+			output("You carefully slide the needle into the area above your chest, pressing ‘suck’ on the tank. Silicone mass is taken from you as your chest gets smaller. <b>Your [pc.breasts] have gotten smaller.</b>");
 			
 			processTime(2);
 			
@@ -3550,7 +3550,7 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 			
 			output("You look around for something to put silicone into.");
 			if(silly) output(" Because, for some fucking reason, there’s literally no other place in the universe to remove silicone from your body, so you can’t just body pack it.");
-			output(" Eventually, you come across some bags that are clearly meant to be implants, but empty. Unfortunately, most of them are punctured. However, you do still find two of them that aren’t. You take the silicone hose and poke it into the adjuster of the bag. You press the blow button and carefully fill it up until it can be filled no more. You do it to the other one before putting them in your inventory.");
+			output(" Eventually, you come across some bags that are clearly meant to be implants, but empty. Unfortunately, most of them are punctured. However, you do still find two of them that aren’t, and you take the silicone hose and poke it into the adjuster of one of the bags. You press the ‘blow’ button and carefully fill it up until it can be filled no more before you do the same to the other one, then putting them both in your inventory.");
 			
 			processTime(2);
 			

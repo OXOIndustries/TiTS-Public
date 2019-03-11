@@ -3070,6 +3070,8 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		if (immobilizationList().length > 0) addGhostButton(btnIndex++, "ImmobileHelp", immobilizationHelp, undefined, "Immobilization Help", "You can’t move--Call for help to fix your immobilized state!");
 	}
 	setTarget(null);
+	
+	outputRouter("\n\n");
 }
 
 private var COLLAR_LIST:Array = [
@@ -4008,8 +4010,6 @@ public function crotchStuff(forTarget:Creature = null):void
 		if(target == pc && target.hasStatusEffect("Butt Bug (Female)")) outputRouter("\n\n" + appearanceButtBugBlurb());
 	}
 	if(forTarget != null) setTarget(null);
-	
-	outputRouter("\n\n");
 }
 
 public function selectGenderPref():void
