@@ -116,7 +116,7 @@ public function sureLetsTakeARideDeerbutt2():void
 		if(pc.isErect()) output("measuring the fully erect mass" + (pc.cockTotal() > 1 ? "es":"") + " of your bulge" + (pc.cockTotal() > 1 ? "s":""));
 		else output("measuring the growing mass" + (pc.cockTotal() > 1 ? "es":"") + " of your bulge" + (pc.cockTotal() > 1 ? "s":""));
 	}
-	else if(pc.ballDiameter() >= 4) output("apparently enjoying the feel if your capacious balls pushing back against her");
+	else if(pc.balls > 0 && pc.ballDiameter() >= 4) output("apparently enjoying the feel of your capacious balls" + (pc.balls == 1 ? "ack" : "") + " pushing back against her");
 	else output("warming your loins");
 	output(". <i>“Besides, the best way to spread Christmas cheer is by vigorously fucking sexy deer. And I don’t see any other deer ‘round here. Do you?”</i>");
 	output("\n\nYou don’t. You’re left with a choice: play some of her reindeer games or kick her out of your lap to make the trip in peace. Which will it be?");
@@ -419,12 +419,12 @@ public function krissyWrapUpByThird(x:int):void
 	output("\n\nYou tug the dress a bit further and let it hit the ground, exposing the fact that she’s not wearing anything to protect her dark brown muff, which is already moist and glistening with <i>“holiday spirit.”</i> This time, however, you decide to pay it no mind. You’ll get there in due time. For now, you circle around Krissy and tenderly coax her onto your chair. She sits, a bit perplexed, but grinning nevertheless." + (silly ? " <i>“Look at me,”</i> she giggles, <i>“I am the captain now.”</i>":""));
 	output("\n\nThinking quick on the best way to restrain your cervine slut, you slip the ribbon between her legs and get to work... In short order you have her completely trussed up in the festive holiday ribbon. Her legs are bent and tied in such a way that they’re forced to spread, leaving her lascivious chocolate slit open and vulnerable. She looks rather like a Christmas turkey. One just waiting to be stuffed.");
 	output("\n\nDiscarding the remainder of the ribbon, you ");
-	if(x >= 0 && !pc.isCrotchExposed()) output("disrobe and ");
+	if(x >= 0) { if(!pc.isCrotchExposed()) output("disrobe and "); }
 	else output((!pc.isCrotchExposedByArmor() ? "disrobe down to your underwear and ":"") + "promptly activate the <i>hardlight</i> option and ");
 	output("stand between her legs, stroking your [pc.cockOrStrapon " + x + "]. <i>“");
 	if(pc.isBimbo()) output("Like, before I unwrap you, I totally wanna give you a gift first. It’s totally my dick in your box!");
 	else output("Before I unwrap my present I should give you one of your own. I didn’t have time to wrap it, but oh look, here’s a box I can use,");
-	output("”</i> you " + (pc.isBimbo() ? "giggle":"laugh") + ", pressing the head of cock against Krissy’s cocoa folds. Her slit is hot and moist with anticipation, which easily lubes up the tip of your [pc.cockOrStrapon " + x + "].");
+	output("”</i> you " + (pc.isBimbo() ? "giggle":"laugh") + ", pressing the head of your cock against Krissy’s cocoa folds. Her slit is hot and moist with anticipation, which easily lubes up the tip of your [pc.cockOrStrapon " + x + "].");
 	output("\n\n<i>“Oh yeah?”</i> she says, wiggling her body enticingly. The movement triggers the ribbon, which lights up with colorful merriment, no doubt sending pleasurable shocks throughout the doe’s body. Krissy moans in response, her eyes rolling back in her head while she sinks further into the seat, and coincidentally right down onto the tip of your dick. Her hot folds envelop you, only serving to make her moan louder.");
 	output("\n\nThere’s no beating around the bush now, so instead you go all in... literally. Taking hold of both her trussed up legs, you slide your [pc.cockOrStrapon " + x + "] as deep as it’ll go, her sizzling sweet snatch pulsing and throbbing in all sorts of delightful ways.");
 	if(x >= 0) pc.cockChange();
@@ -433,9 +433,9 @@ public function krissyWrapUpByThird(x:int):void
 	output("\n\nHer warm, slick tunnel grips your " + (x < 0 ? "faux-":"") + "cock tightly, like a child unwilling to relinquish their favorite toy, as you slowly pull out, your thick rod glistening with pussy juices. Without missing a beat, you thrust back in, enjoying the sight of Krissy struggle to keep still and failing miserably. The ribbon lights back up, sending waves of pleasure through her... and you apparently. As her needy cunt contracts around you, you receive a sudden shock of bliss, no doubt a watered down version of what she’s experiencing.");
 	output("\n\nWith that in mind, you redouble your efforts to make her squirm as much as possible. Changing your stance, you angle your dick to thrust upwards, slamming into the deer-woman’s g-spot with reckless abandon. She twists in place and lets out a little cry. The ribbons activate again, blasting Krissy’s body with near-orgasm inducing pleasure, which ebbs right into your [pc.cockOrStrapon " + x + "] in such a way your entire body shudders.");
 	output("\n\nYou pick up the pace of your thrusts, hammering the doe-slut’s drenched pussy, never allowing her a moment of respite, though she doesn’t seem to care. The more she struggles, the more intense the pulsing from the ribbon becomes. The sounds coming from her throat are barely intelligible beyond the occasional <i>“More!”</i> <i>“God!”</i> and <i>“Fuck!”</i>");
-	output("\n\nKrissy’s entire body shudders suddenly, and her vaginal walls tighten, nearly locking you in place as an orgasm rocs her body. Unfortunately, this causes some kind of feedback effect with the ribbon, which seems to constrict before your eyes. The cheery lights grow brighter, and a soft Christmas jingle reverberates around the cabin. The more she shudders, the more pleasure the ribbons give, which seems to send her over the edge into a second orgasm, and then a third.");
-	output("\n\nYou steel yourself against the constant onslaught of electric, pulsing pleasure and continue your trip to pound town" + (pc.balls > 1 ? ", with your balls slapping against the deer-girl’s ass":"with your hips grinding into the deer-girl’s cunt") + " with every thrust. With the Christmas music softly jingling through the room, you find a nice rhythm, battering her honeypot with every jingle, and pulling out in preparation for another thrust with every jangle.");
-	output("\n\nThe orgasm-wracked deer-girl convulses as she comes again and again, each time nearly sending you to the brink with her, until you finally help but succumb. When she twists around in the seat, twisting the tip of your dick like a corkscrew, you give one last thrust. Your whole body tightens up, your dick stiffening and ");
+	output("\n\nKrissy’s entire body shudders suddenly, and her vaginal walls tighten, nearly locking you in place as an orgasm rocks her body. Unfortunately, this causes some kind of feedback effect with the ribbon, which seems to constrict before your eyes. The cheery lights grow brighter, and a soft Christmas jingle reverberates around the cabin. The more she shudders, the more pleasure the ribbons give, which seems to send her over the edge into a second orgasm, and then a third.");
+	output("\n\nYou steel yourself against the constant onslaught of electric, pulsing pleasure and continue your trip to pound town, with your " + (pc.balls > 1 ? "balls slapping against the deer-girl’s ass":"hips grinding into the deer-girl’s cunt") + " with every thrust. With the Christmas music softly jingling through the room, you find a nice rhythm, battering her honeypot with every jingle, and pulling out in preparation for another thrust with every jangle.");
+	output("\n\nThe orgasm-wracked deer-girl convulses as she comes again and again, each time nearly sending you to the brink with her, until you can’t help but finally succumb. When she twists around in the seat, twisting the tip of your dick like a corkscrew, you give one last thrust. Your whole body tightens up, your dick stiffening and ");
 	if(x >= 0) 
 	{
 		output("abruptly unleashing jet after jet of [pc.cum] directly into Krissy’s waiting womb");
@@ -444,7 +444,7 @@ public function krissyWrapUpByThird(x:int):void
 		output(".");
 	}
 	else output("sending a powerful pulse of orgasmic energy into you.");
-	output("\n\nKrissy shakes with yet another orgasm as <i>“Knotty or Nice”</i>, an Ausari Christmas classic begins to play. You stumble back a step, admiring your handiwork as ");
+	output("\n\nKrissy shakes with yet another orgasm as <i>“Knotty or Nice”</i>, an Ausari Christmas classic, begins to play. You stumble back a step, admiring your handiwork as ");
 	if(x >= 0)
 	{
 		if(pc.cumQ() < 1000) output("your [pc.cum] dribbles out of her gaping slit");
@@ -471,7 +471,7 @@ public function KrissyKringleEpilogueThird(x:int = 0):void
 	output("\n\nHah, you think to yourself, that’s an understatement. The sight of her being brought to one orgasm after another by a measly ribbon is not something you’re going to forget anytime soon.");
 	output("\n\n<i>“But I should get going. My roommate is going to be so worried about me. I think I’ll pick her up a roll of that ribbon too, I bet she’d enjoy it as much as I did.”</i> Krissy giggles, seeming to lose herself in the memory before snapping back to reality.");
 	output("\n\nShe gives you a big, full body hug and another kiss before passing you a napkin with her contact information on it. <i>“Maybe we can meet up again sometime? Make this a Christmas tradition?”</i>");
-	output("\n\nWith that she, Krissy struts out of your ship... and you notice " + (x >= 0 ? "two things, first that there’s a small stream of suspiciously cum-colored fluid dripping down her leg, and second, ":"") + "she’s wearing a section of that bondage ribbon around her neck like a lace choker. It’s cute... and oddly the lights are on.");
+	output("\n\nWith that, Krissy struts out of your ship... and you notice " + (x >= 0 ? "two things, first that there’s a small stream of suspiciously cum-colored fluid dripping down her leg, and second, ":"") + "she’s wearing a section of that bondage ribbon around her neck like a lace choker. It’s cute... and oddly the lights are on.");
 	flags["KRISSY_INTRO_RESULT"] = 3;
 	processTime(4*60);
 	shipLocation = "CANADA1";
