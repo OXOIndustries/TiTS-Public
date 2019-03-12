@@ -18093,7 +18093,9 @@
 			if(cocks[arg2].hasFlag(GLOBAL.FLAG_NUBBY)) aAdjective.push("nubby", "nodule-covered");
 			if(cocks[arg2].hasFlag(GLOBAL.FLAG_RIBBED)) aAdjective.push("ribbed");
 			if(cocks[arg2].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) aAdjective.push("aphrodisiac-laced");
-			
+			//Colors - no more than 25% of the time. If no other adjectives, only push color adjective 50% of time for resulting 25% chance.
+			if(aAdjective.length > 0 || rand(2) == 0) aAdjective.push(cocks[arg2].cockColor);
+
 			if(aAdjective.length > 0 && rand(2) == 0) sDesc += aAdjective[rand(aAdjective.length)] + " ";
 			
 			sDesc += aNoun[rand(aNoun.length)];
