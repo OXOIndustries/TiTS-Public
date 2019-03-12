@@ -284,6 +284,7 @@
 		include "../includes/vesperia/kaede.as";
 		include "../includes/vesperia/kally.as";
 		include "../includes/vesperia/luca.as";
+		include "../includes/vesperia/lucaSexAndStuff.as";
 		include "../includes/vesperia/mabbs.as";
 		include "../includes/vesperia/rooms.as";
 		include "../includes/vesperia/roomFunctions.as";
@@ -1717,20 +1718,21 @@
 		{
 			return chars["STORMDRAGON"];
 		}
-		
 		public function get aina():Aina
 		{
 			return chars["AINA"];
 		}
-		
 		public function get amber():Dryad
 		{
 			return chars["DRYAD"];
 		}
-		
 		public function get zea():Zea
 		{
 			return chars["ZEA"];
+		}
+		public function get luca():Luca
+		{
+			return chars["LUCA"];
 		}
 
 		public function testShipCombat():void

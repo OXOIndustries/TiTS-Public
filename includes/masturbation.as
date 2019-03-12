@@ -647,6 +647,12 @@ public function masturbateMenu(roundTwo:Boolean = false):void
 	
 	var aborted:Boolean = false;
 	var btnSlot:int = 0;
+
+	if (pc.hasStatusEffect("Denied By Luca"))
+	{
+		pc.setStatusValue("Denied By Luca",1,1);
+		output("<b>Masturbating now would go against " + (lucaSubmission() < 80 ? "Luca" : "your mistress") + "'s orders.</b>\n\n");
+	}
 	
 	//Masturbation prevention
 	if(rooms[currentLocation].hasFlag(GLOBAL.NOFAP))
