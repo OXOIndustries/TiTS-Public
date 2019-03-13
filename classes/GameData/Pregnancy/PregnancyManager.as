@@ -3,6 +3,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
 	import classes.GameData.ChildManager;
+	import classes.GameData.Pregnancy.Handlers.BoredJumperPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.BothriocPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.BreedwellRahnPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.ButtBugPregnancy;
@@ -16,6 +17,8 @@
 	import classes.GameData.Pregnancy.Handlers.KorgonnePregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.LahPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.LapinaraPregnancyHandler;
+	import classes.GameData.Pregnancy.Handlers.LaquinePregnancyHandler;
+	import classes.GameData.Pregnancy.Handlers.LDCShockHopperPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.MilodanPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.NyreaHuntressPregnancy;
 	import classes.GameData.Pregnancy.Handlers.OvalastingEggPregnancy;
@@ -81,6 +84,9 @@
 			PregnancyManager.insertNewHandler(new ButtBugPregnancy1());
 			PregnancyManager.insertNewHandler(new ButtBugPregnancy2());
 			PregnancyManager.insertNewHandler(new SiegwulfeEggnancyHandler());
+			PregnancyManager.insertNewHandler(new BoredJumperPregnancyHandler());
+			PregnancyManager.insertNewHandler(new LaquinePregnancyHandler());
+			PregnancyManager.insertNewHandler(new LDCShockHopperPregnancyHandler());
 		}
 		
 		// Would use a vector, but vectors can't store derived types. WORST VECTOR CLASS EVER.
