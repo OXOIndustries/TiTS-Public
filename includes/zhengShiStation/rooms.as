@@ -55,7 +55,7 @@ public function initZhengRooms():void
 	rooms["ZS L48"].southExit = "ZS L50";
 	rooms["ZS L48"].westExit = "ZS J48";
 	rooms["ZS L48"].moveMinutes = 1;
-	rooms["ZS L48"].runOnEnter = undefined;
+	rooms["ZS L48"].runOnEnter = boredJumperPregEncounterMissedBirth;
 	rooms["ZS L48"].addFlag(GLOBAL.INDOOR);
 	rooms["ZS L48"].addFlag(GLOBAL.PUBLIC);
 
@@ -73,7 +73,7 @@ public function initZhengRooms():void
 	rooms["ZS L46"].outExit = "";
 	rooms["ZS L46"].outText = "Down";
 	rooms["ZS L46"].moveMinutes = 1;
-	rooms["ZS L46"].runOnEnter = undefined;
+	rooms["ZS L46"].runOnEnter = boredJumperPregHangerEncounter;
 	rooms["ZS L46"].addFlag(GLOBAL.INDOOR);
 	rooms["ZS L46"].addFlag(GLOBAL.PUBLIC);
 
