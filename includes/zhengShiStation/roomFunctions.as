@@ -132,6 +132,18 @@ public function zhengMinesEncounterBonus():Boolean
 		}
 		
 		if (ratsAvailable() && rand(3) == 0) encounters.push(ratsInTheMineEncounter);
+		
+		var pregScene:int = boredJumperPregScene();
+		if (flags["BJUMPER_BIRTH_SCENE"] == 1)
+		{
+			encounters.push(boredJumperPregEncounterJumperPregBirth);
+		}
+		else if (pregScene > 0)
+		{
+			if (pregScene == 1 || pregScene == 4 || pregScene == 5) encounters.push(boredJumperPregEncounterJumperPreg);
+			if (pregScene == 2 || pregScene == 4 || pregScene == 5) encounters.push(boredJumperPregEncounterSteelePreg);
+			if (pregScene == 3 || pregScene == 5) encounters.push(boredJumperPregEncounterBothPreg);		
+		}
 	}
 	if(encounters.length > 0) 
 	{
@@ -207,6 +219,17 @@ public function zhengFoundryF1EncounterBonus():Boolean
 		}
 		/*encounters.push(boredJumperAttackProc);
 		encounters.push(boredJumperAttackProc);*/
+		var pregScene:int = boredJumperPregScene();
+		if (flags["BJUMPER_BIRTH_SCENE"] == 1)
+		{
+			encounters.push(boredJumperPregEncounterJumperPregBirth);
+		}
+		else if (pregScene > 0 && rand(2) == 0)
+		{
+			if (pregScene == 1 || pregScene == 4 || pregScene == 5) encounters.push(boredJumperPregEncounterJumperPreg);
+			if (pregScene == 2 || pregScene == 4 || pregScene == 5) encounters.push(boredJumperPregEncounterSteelePreg);
+			if (pregScene == 3 || pregScene == 5) encounters.push(boredJumperPregEncounterBothPreg);
+		}
 	}
 	if(encounters.length > 0) 
 	{
@@ -236,6 +259,17 @@ public function zhengFoundryF2EncounterBonus():Boolean
 		encounters.push(encounterPunkSecOp);
 		/*encounters.push(boredJumperAttackProc);
 		encounters.push(boredJumperAttackProc);*/
+		var pregScene:int = boredJumperPregScene();
+		if (flags["BJUMPER_BIRTH_SCENE"] == 1)
+		{
+			encounters.push(boredJumperPregEncounterJumperPregBirth);
+		}
+		else if (pregScene > 0)
+		{
+			if (pregScene == 1 || pregScene == 4 || pregScene == 5) encounters.push(boredJumperPregEncounterJumperPreg);
+			if (pregScene == 2 || pregScene == 4 || pregScene == 5) encounters.push(boredJumperPregEncounterSteelePreg);
+			if (pregScene == 3 || pregScene == 5) encounters.push(boredJumperPregEncounterBothPreg);
+		}
 	}
 	if(encounters.length > 0) 
 	{
