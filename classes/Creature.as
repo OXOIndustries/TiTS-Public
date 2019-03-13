@@ -12375,6 +12375,11 @@
 					case "kitsune":
 						sRaceShort = mf("fox", "vixen");
 						break;
+					case "lapine":
+					case "laquine":
+						if(rand(2) == 0) sRaceShort = "bunny";
+						else sRaceShort = "bun";
+						break;
 					case "lupine":
 						sRaceShort = "wolf";
 						break;
