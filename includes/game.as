@@ -3801,6 +3801,8 @@ public function variableRoomUpdateCheck():void
 	if (flags["MET_VARK"] == undefined) rooms[varkCaveRoom].addFlag(GLOBAL.OBJECTIVE);
 	else if (flags["MET_VARK"] == 1) rooms[varkCaveRoom].addFlag(GLOBAL.NPC);
 	else rooms["UVIP T44"].southExit = undefined;
+	//Ula and main hold daddy swapping.
+	ulaRoomUpdater();
 	
 	/* VESPERIA / CANADIA STATION */
 	/*
