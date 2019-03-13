@@ -88,6 +88,7 @@
 			this.scaleColor = "blue";
 			this.furColor = "PLACEHOLDER";
 			this.hairLength = 6;
+			this.lipColor = "pink";
 			
 			this.beardLength = 0;
 			this.beardStyle = 0;
@@ -182,6 +183,8 @@
 			this.fertilityRaw = 1.05;
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
+			
+			this.impregnationType = "BoredJumperPregnancy";
 
 			this.breastRows[0].breastRatingRaw = 7;
 			this.nippleColor = "pink";
@@ -216,36 +219,81 @@
 			vaginas[0].wetnessRaw = 2+rand(4);
 
 			this.createCock();
-			//Hoss!
-			if(rand(4) == 0)
+			//determine which jumpers types are available based on if pc has jumper preggers or jumpers are preggers
+			var selCType:Array = [];
+			var i:int;
+			var rn:int;
+			var sceneNum:int = kGAMECLASS.boredJumperPregScene(-1);
+			if (sceneNum > 0 && sceneNum <= 5)
 			{
-				this.cocks[0].cLengthRaw = 14;
-				this.shiftCock(0,GLOBAL.TYPE_EQUINE);
-				this.cocks[0].cockColor = "chocolate";
-
-				this.furColor = "gray";
-				this.hairColor = "pink";
-				this.eyeColor = "purple";
+				if (kGAMECLASS.boredJumperPregScene(GLOBAL.TYPE_EQUINE) == 0) selCType.push(GLOBAL.TYPE_EQUINE);
+				if (kGAMECLASS.boredJumperPregScene(GLOBAL.TYPE_CANINE) == 0) selCType.push(GLOBAL.TYPE_CANINE);
+				if (kGAMECLASS.boredJumperPregScene(GLOBAL.TYPE_FELINE) == 0) selCType.push(GLOBAL.TYPE_FELINE);
+				if (kGAMECLASS.boredJumperPregScene(GLOBAL.TYPE_HUMAN) == 0) selCType.push(GLOBAL.TYPE_HUMAN);
 			}
-			else if(rand(3) == 0)
+			else
 			{
-				this.cocks[0].cLengthRaw = 12;
-				this.shiftCock(0,GLOBAL.TYPE_CANINE);
-				this.cocks[0].cockColor = "red";
-
-				this.furColor = "white";
-				this.hairColor = "purple";
-				this.eyeColor = "amber";
+				selCType.push(GLOBAL.TYPE_EQUINE);
+				selCType.push(GLOBAL.TYPE_CANINE);
+				selCType.push(GLOBAL.TYPE_FELINE);
+				selCType.push(GLOBAL.TYPE_HUMAN);
 			}
-			else if(rand(2) == 0)
-			{
-				this.cocks[0].cLengthRaw = 13;
-				this.shiftCock(0,GLOBAL.TYPE_FELINE);
-				this.cocks[0].cockColor = "pink";
+			
+			i = selCType.length;
+			
+			if (i > 0)
+			{			  
+				rn = rand(i);
+			
+				//Hoss!
+				if(selCType [rn] == GLOBAL.TYPE_EQUINE)
+				{
+					this.cocks[0].cLengthRaw = 14;
+					this.shiftCock(0,GLOBAL.TYPE_EQUINE);
+					this.cocks[0].cockColor = "chocolate";
 
-				this.furColor = "tawny";
-				this.hairColor = "orange";
-				this.eyeColor = "amber";
+					this.furColor = "gray";
+					this.hairColor = "pink";
+					this.eyeColor = "purple";
+					this.nippleColor = "black";
+					this.lipColor = "black";
+				}
+				else if(selCType [rn] == GLOBAL.TYPE_CANINE)
+				{
+					this.cocks[0].cLengthRaw = 12;
+					this.shiftCock(0,GLOBAL.TYPE_CANINE);
+					this.cocks[0].cockColor = "red";
+
+					this.furColor = "white";
+					this.hairColor = "purple";
+					this.eyeColor = "amber";
+					this.nippleColor = "bright pink";
+					this.lipColor = "pink";
+				}
+				else if(selCType [rn] == GLOBAL.TYPE_FELINE)
+				{
+					this.cocks[0].cLengthRaw = 13;
+					this.shiftCock(0,GLOBAL.TYPE_FELINE);
+					this.cocks[0].cockColor = "pink";
+
+					this.furColor = "creamy";
+					this.hairColor = "orange";
+					this.eyeColor = "amber";
+					this.nippleColor = "pink";
+					this.lipColor = "pink";
+				}
+				else
+				{
+					this.cocks[0].cLengthRaw = 12;
+					this.shiftCock(0,GLOBAL.TYPE_HUMAN);
+					this.cocks[0].cockColor = "pink";
+
+					this.furColor = "brown";
+					this.hairColor = "green";
+					this.eyeColor = "green";
+					this.nippleColor = "peach";
+					this.lipColor = "peach";
+				}
 			}
 			else
 			{
@@ -253,9 +301,11 @@
 				this.shiftCock(0,GLOBAL.TYPE_HUMAN);
 				this.cocks[0].cockColor = "pink";
 
-				this.furColor = "smoky";
-				this.hairColor = "pink";
-				this.eyeColor = "purple";
+				this.furColor = "brown";
+				this.hairColor = "green";
+				this.eyeColor = "green";
+				this.nippleColor = "peach";
+				this.lipColor = "peach";
 			}
 			this.long = "This bored laquine’s pirate affiliation is as plain as the glowing red letters on her glossy black zipsuit: they spell “Jumper” down the side. Beneath the lettering, a powerfully muscled thigh flexes with idle energy. Her wide hips and bubbly butt hint at her prowess as both a leaper and a breeder, but it’s the sizeable ";
 			if(this.cocks[0].cType == GLOBAL.TYPE_EQUINE) this.long += "equine";
@@ -402,6 +452,36 @@
 			output("\n\nHer excitement dulls when she notices the cum covering you. (-5 lust)");
 			//(-5 lust damage)
 			this.lust(-5);
+		}
+		
+		override public function loadInCunt(cumFrom:Creature = null, vagIndex:int = -1):Boolean
+		{
+			var heatSex:Boolean = false;
+			if (flags["BJUMPER_HEAT_SEX"] == 1)
+			{
+				heatSex = true;
+				flags["BJUMPER_HEAT_SEX"] = undefined;
+			}
+			this.vaginalVirgin = false;
+			if (cumFrom is PlayerCharacter)
+			{
+				sstdChecks(cumFrom,"vagina");
+				return kGAMECLASS.tryKnockUpBoredJumper(heatSex);
+			}
+			return false;
+		}
+		
+		override public function isPregnant(vIdx:int = 0):Boolean
+		{
+			if (kGAMECLASS.flags["BJUMPER_PREG_TIMER"] != undefined)
+			{
+				if(this.hasCock(GLOBAL.TYPE_EQUINE)) return (flags["BJUMPER_PREG_TYPE"] == GLOBAL.TYPE_EQUINE);
+				else if(this.hasCock(GLOBAL.TYPE_FELINE)) return (flags["BJUMPER_PREG_TYPE"] == GLOBAL.TYPE_FELINE);
+				else if(this.hasCock(GLOBAL.TYPE_CANINE)) return (flags["BJUMPER_PREG_TYPE"] == GLOBAL.TYPE_CANINE);
+				else return (flags["BJUMPER_PREG_TYPE"] == GLOBAL.TYPE_HUMAN);
+			}
+			
+			return false;
 		}
 	}
 }
