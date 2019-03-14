@@ -2134,6 +2134,7 @@ public function dontFreeThemSlootySloots():void
 	processTime(5);
 	CombatManager.genericVictory();
 }
+//steele preg ends for ldc/shock hopper kids
 public function ldcShockHopperPregnancyEnds():void
 {
 	clearOutput();
@@ -2195,6 +2196,7 @@ public function ldcShockHopperPregnancyEnds():void
 	
 	addButton(0, "Next", ldcShockHopperSteeleBirth,numChildren);	
 }
+//steele birth scene
 public function ldcShockHopperSteeleBirth(numChildren:int = 2):void
 {
 	clearOutput();
@@ -2461,13 +2463,13 @@ public function ldcShockHopperSteeleBirth(numChildren:int = 2):void
 		output("\n\nYou idly fantasize about which color might pop out first, the blue or the black. Turns out,");
 		if (ldc) output(" to your surprise, it's the black. Your first born child is a jet-black bunny with upright ears. How fitting!");
 		else output(" it's the blue. No surprise! The Hopper was the one who seemed to be on top of things! Why wouldn't her kids take precedence?");		
-		output(" The pain you feel between your waist-expanding contractions is nothing compared to the sensations of when you drained those two, when your sexual prowess put them in their rightful places.");
+		output(" The pain you feel between your waist-expanding contractions is nothing compared to the sensations of when you drained Zheng Shi's top buns, when your sexual prowess put them in their rightful places.");
 		
 		output("\n\nAnd of course, their buns in your oven!");
 		output("\n\nThe next one to flop out is");
 		if (ldc) output(" all blue and creamy white like the Hopper!");
 		else output(" midnight-black. L.D.C.'s kids are like little soot sprites rather than bunnies!");		
-		output(" Bearing the fruits of two powerful breeders is a pleasure all on its own. You can't wait to hold them in your arms, to raise them right, to take from such criminals like those two and make wonderful children all on your own! Maybe you can go back and 'redeem' those two when you're done?");
+		output(" Bearing the fruits of two powerful breeders is a pleasure all on its own. You can't wait to hold them in your arms, to raise them right, to take from such criminals like those two and make wonderful children all on your own! Maybe you can go back and 'redeem' those tricksy rabbits when you're done?");
 		
 		output("\n\nFor now though, you've gotta tough this out.");
 		if (pc.isBimbo()) output(" No big deal! If you could handle those two with your body, then giving birth is nothing!");
