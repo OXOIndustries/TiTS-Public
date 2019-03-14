@@ -105,10 +105,14 @@ package classes.Items.Transformatives
 			// Calculate the time offset
 			var deltaShift:uint = initDuration - targetDelta;
 
-			//Rejiggering so big part TFs happen more at first, then fantasies more later :3
-			if(rand(10) < Math.min((2 + pc.laquineScore()), 6)) laquineEarsMinorTFsGO(pc,deltaShift);
-			else if(rand(5) != 0) laquineEarsModerateTFsGo(pc,deltaShift);
-			else laquineEarsMajorTFsGo(pc,deltaShift);
+			//get minutes left. If <= 1, force major
+			var minutes:Number = pc.getStatusMinutes("Laquine Ears");
+			//20% chance, plus a forced change before expiry.
+			if(minutes <= 1 || rand(10) <= 1) laquineEarsMajorTFsGo(pc,deltaShift);
+			//Out of remaining 80%, 30% moderate TFs
+			else if(rand(8) <= 2) laquineEarsModerateTFsGo(pc,deltaShift);
+			//Remaining 50%:
+			else laquineEarsMinorTFsGO(pc,deltaShift);
 		}
 		private static function laquineEarsMajorTFsGo(pc:Creature,deltaShift:uint):void
 		{
