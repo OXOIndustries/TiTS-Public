@@ -175,7 +175,7 @@ public function tryKnockUpBoredJumper(heatSex:Boolean=false):Boolean
 	}
 	else return false;
 }
-
+//process any preg events for jumper preg
 public function processBoredJumperPregEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
 {
 	if(flags["BJUMPER_PREG_TIMER"] != undefined) flags["BJUMPER_PREG_TIMER"] += totalDays;
@@ -201,6 +201,7 @@ public function processBoredJumperPregEvents(deltaT:uint, doOut:Boolean, totalDa
 		else if (flags["BJUMPER_PREG_TIMER"] >= 175) flags["BJUMPER_BIRTH_SCENE"] = 1;
 	}
 }
+//make the kids for jumper birth
 public function boredJumperBirth(birthTimestamp:int = -1):void
 {
 	if(birthTimestamp < 0) birthTimestamp = GetGameTimestamp();
@@ -384,6 +385,7 @@ public function boredJumperBirth(birthTimestamp:int = -1):void
 	flags["BJUMPER_BABY_GENDERS"] = undefined;
 	flags["BJUMPER_BIRTH_SCENE"] = undefined;	
 }
+//determine who is laquine preg at 50+ days: jumper, steele, or both
 //pass in jumperType such as GLOBAL.TYPE_EQUINE for specific jumper or -1 if any jumper 
 //0 no preggers, 1 bored jumper only, 2 pc only, 3 both same, 4 both diff, 5 both same + diff as steel multi jumper preg (4 & 5 returned for jumperType -1 only)
 public function boredJumperPregScene(jumperType:int=-1):int
@@ -445,6 +447,7 @@ public function boredJumperPregScene(jumperType:int=-1):int
   }
   return preg;
 }
+//jumper preg, steele not
 public function boredJumperPregEncounterJumperPreg():Boolean
 {
 	if (flags["BJUMPER_PREG_ENC_COOLDOWN"] != undefined)
@@ -576,6 +579,7 @@ public function boredJumperPregEncounterJumperPreg():Boolean
 	addButton(1, "Don't Go", boredJumperPregEncounterDontGo, jumperType, "Don't Go", "Too bad for her, you've got other places to be. Maybe next time!");
 	return true;
 }
+//steele preg, jumper not
 public function boredJumperPregEncounterSteelePreg():Boolean
 {
 	if (flags["BJUMPER_PC_PREG_ENC_COOLDOWN"] != undefined)
@@ -770,6 +774,7 @@ public function boredJumperPregEncounterSteelePreg():Boolean
 	addButton(1, "Don't Go", boredJumperPregEncounterDontGo, jumperType, "Don't Go", "Too bad for her, you've got other places to be. Maybe next time!");	
 	return true;
 }
+//both jumper and steele preg
 public function boredJumperPregEncounterBothPreg():Boolean
 {
 	if (pc.isTaur()) return false;
@@ -906,6 +911,7 @@ public function boredJumperPregEncounterBothPreg():Boolean
 	addButton(1, "Don't Go", boredJumperPregEncounterDontGo, jumperType, "Don't Go", "Too bad for her, you've got other places to be. Maybe next time!");	
 	return true;
 }
+//dont go
 public function boredJumperPregEncounterDontGo(jumperType:int=0):void
 {
 	clearOutput();
@@ -931,6 +937,7 @@ public function boredJumperPregEncounterDontGo(jumperType:int=0):void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
+//go with
 public function boredJumperPregEncounterGoWith(arg:Array):void
 {
 	clearOutput();
@@ -1131,6 +1138,7 @@ public function boredJumperPregEncounterGoWith(arg:Array):void
 	if (flags["BJUMPER_CAN_LEAVE"] == 1) addButton(4, "Leave", boredJumperPregEncounterDontGoLeave, jumperType, "Leave", "Disengage the cuddles.");	
 	else addDisabledButton(4,"Leave","Leave","You came this far, why not do something first?");
 }
+//talk why pirate
 public function boredJumperPregEncounterGoWithWhyPirate(jumperType:int=0):void
 {
 	clearOutput();
@@ -1217,6 +1225,7 @@ public function boredJumperPregEncounterGoWithWhyPirate(jumperType:int=0):void
 	addDisabledButton(0, "Why Pirate?", "Why Pirate?", "You already talked about this.");
 	addButton(4, "Leave", boredJumperPregEncounterDontGoLeave, jumperType, "Leave", "Disengage the cuddles.");	
 }
+//talk drugs
 public function boredJumperPregEncounterGoWithDrugs(jumperType:int=0):void
 {
 	clearOutput();
@@ -1245,6 +1254,7 @@ public function boredJumperPregEncounterGoWithDrugs(jumperType:int=0):void
 	addDisabledButton(1, "Drugs", "Drugs", "You already talked about this.");
 	addButton(4, "Leave", boredJumperPregEncounterDontGoLeave, jumperType, "Leave", "Disengage the cuddles.");	
 }
+//rest
 public function boredJumperPregEncounterGoWithRest(jumperType:int=0):void
 {
 	clearOutput();
@@ -1341,6 +1351,7 @@ public function boredJumperPregEncounterGoWithRest(jumperType:int=0):void
 		else if (!pc.hasItemByClass(BreedersBliss, 1)) addDisabledButton(2, "Sneak B.B", "Sneak B.B", "You'll need a procreation pill to enable the Jumper's paternal side.");
 	}
 }
+//sex
 public function boredJumperPregEncounterGoWithSex(jumperType:int=0):void
 {
 	clearOutput();
@@ -1417,6 +1428,7 @@ public function boredJumperPregEncounterGoWithSex(jumperType:int=0):void
 	else if (!pc.hasItemByClass(BreedersBliss, 1)) addDisabledButton(2, "Sneak B.B", "Sneak B.B", "You'll need a procreation pill to enable the Jumper's paternal side.");
 
 }
+//leave
 public function boredJumperPregEncounterDontGoLeave(jumperType:int=0):void
 {
 	clearOutput();
@@ -1466,6 +1478,7 @@ public function boredJumperPregEncounterDontGoLeave(jumperType:int=0):void
 		addButton(1, "Pet Her", boredJumperPregEncounterGoWithRestPetHer, jumperType, "Pet Her", "You can show her a good time <i>later…</i>.");	
 	}
 }
+//kiss her
 public function boredJumperPregEncounterGoWithRestKissHer(jumperType:int=0):void
 {
 	clearOutput();
@@ -1530,6 +1543,7 @@ public function boredJumperPregEncounterGoWithRestKissHer(jumperType:int=0):void
 		addButton(0,"Rvs Cowgirl",boredJumperPregEncounterGoWithRestRvsCowgirl,jumperType,"Rvs Cowgirl","Ride the horny bunny's cock.");		
 	}
 }
+//really rest
 public function boredJumperPregEncounterGoWithRestRWH(jumperType:int=0):void
 {
 	clearOutput();
@@ -1639,6 +1653,7 @@ public function boredJumperPregEncounterGoWithRestRWHNext(jumperType:int=0):void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
+//spooning
 public function boredJumperPregEncounterGoWithRestSpooning(jumperType:int=0):void
 {
 	clearOutput();
@@ -1928,6 +1943,7 @@ public function boredJumperPregEncounterGoWithRestSpooningNext2(jumperType:int=0
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);	
 }
+//rvs cowgirl
 public function boredJumperPregEncounterGoWithRestRvsCowgirl(jumperType:int=0):void
 {
 	clearOutput();
@@ -2311,8 +2327,7 @@ public function boredJumperPregEncounterGoWithRestRvsCowgirlNext2(jumperType:int
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);	
 }
-
-
+//sneak bb
 public function boredJumperPregEncounterGoWithRestSneakBB(jumperType:int=0):void
 {
 	clearOutput();
@@ -2754,6 +2769,7 @@ public function boredJumperPregEncounterGoWithRestSneakBBNext4(jumperType:int=0)
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);	
 }
+//pet her
 public function boredJumperPregEncounterGoWithRestPetHer(jumperType:int=0):void
 {
 	clearOutput();
@@ -2814,6 +2830,7 @@ public function boredJumperPregEncounterGoWithRestPetHer(jumperType:int=0):void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);		
 }
+//jumper preg birth scene
 public function boredJumperPregEncounterJumperPregBirth():Boolean
 {
 	clearOutput();
@@ -2981,9 +2998,10 @@ public function boredJumperPregEncounterJumperPregBirth():Boolean
 	addButton(0, "Next", move,"ZS L50");		
 	return true;
 }
-//check for if pc missed jumper birth and scene needs to try
+//missed jumper birth scene
 public function boredJumperPregEncounterMissedBirth():Boolean
 {
+	//check for if pc missed jumper birth and scene needs to try
 	if (flags["BJUMPER_MISSED_BIRTH"] == undefined)
 	{
 		//if no missed birth scene check for preg jumper encounter
@@ -3133,6 +3151,7 @@ public function boredJumperPregEncounterMissedBirth():Boolean
 	addButton(0, "Next", mainGameMenu);	
 	return true;
 }
+//email for missing jumper birth
 public function boredJumperPregBirthEmail():String
 {
 	var eText:String = "";
@@ -3143,6 +3162,7 @@ public function boredJumperPregBirthEmail():String
 	
 	return doParse(eText);
 }
+//determine email sender name
 public function boredJumperPregBirthEmailSender(picEmail:Boolean = false):String
 {
 	var jumperType:int = flags["BJUMPER_PREG_TYPE"];
@@ -3157,7 +3177,7 @@ public function boredJumperPregBirthEmailSender(picEmail:Boolean = false):String
 	
 	return user;
 }
-//text for nursery in nursery.as
+//text for nursery in nursery.as babies
 public function boredJumperPregNurserySceneBabies(arg:Array):void
 {
 	clearOutput();
@@ -3190,6 +3210,7 @@ public function boredJumperPregNurserySceneBabies(arg:Array):void
 	clearMenu();
 	addButton(0, "Next", nurseryVisitLaquine,undefined);
 }
+//text for nursery in nursery.as kids
 public function boredJumperPregNurserySceneKids(arg:Array):void
 {
 	clearOutput();
@@ -3267,6 +3288,7 @@ public function boredJumperPregNurserySceneKids(arg:Array):void
 	clearMenu();
 	addButton(0, "Next", nurseryVisitLaquine,undefined);
 }
+//text for nursery common area in nursery.as
 public function boredJumperPregCommonAreaEvents(kidCnt:int=0,maleKids:int=0,femaleKids:int=0,hermKids:int=0,otherKids:Boolean=false):void
 {
 	var picType:int = 0;
@@ -3341,6 +3363,7 @@ public function boredJumperPregCommonAreaEvents(kidCnt:int=0,maleKids:int=0,fema
 	
 	flags["BJUMPER_SEND_PICKTYPE"] = picType;	
 }
+//test blurb to send pic to jumper
 public function boredJumperPregSendPic():void
 {
 	clearOutput();
@@ -3394,6 +3417,7 @@ public function boredJumperPregSendPic():void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
+//text for return email from jumper
 public function boredJumperPregSendPicEmail():String
 {
 	var eText:String = "";
@@ -3470,6 +3494,7 @@ public function boredJumperPregSendPicEmail():String
 	
 	return doParse(eText);
 }
+//text for spend time in nursery common area in nursery.as
 public function boredJumperPregSpendTimeCommonArea():void
 {
 	clearOutput();
@@ -3526,6 +3551,7 @@ public function boredJumperPregSpendTimeCommonArea():void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
+//text for nursery education center in nursery.as
 public function boredJumperPregLaquineEducationCenterBlurbs():int
 {
 	var sceneNum:int = 0;
@@ -3548,6 +3574,7 @@ public function boredJumperPregLaquineEducationCenterBlurbs():int
 	
 	return sceneNum;
 }
+//text for spend time in nursery education center in nursery.as
 public function boredJumperPregSpendTimeEducationCenter(sceneNum:int=0):void
 {
 	clearOutput();
@@ -3615,6 +3642,7 @@ public function boredJumperPregSpendTimeEducationCenter(sceneNum:int=0):void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);	
 }
+//returns total kids from one or all jumpers
 public function boredJumperPregKidTotal(jumperType:int =-1):int
 {
 	var totalKids:int = 0;
@@ -3633,6 +3661,7 @@ public function boredJumperPregKidTotal(jumperType:int =-1):int
 	
 	return totalKids;
 }
+//returns color for specific jumper
 public function boredJumperHairColor(jumperType:int=0):String
 {
 	var hairColor:String = "green";
@@ -3690,19 +3719,21 @@ public function boredJumperNippleColor(jumperType:int=0):String
 
 	return nippleColor;
 }
-
+//see if steele qualifies for sneak bb scene
 public function boredJumperisSneakBBOK(sceneNum:int=0):Boolean
 {
 	if (pc.hasVagina() && sceneNum == 1 && !pc.isFullyWombPregnant() && pc.hasItemByClass(BreedersBliss, 1)) return true;
 	
 	return false;
 }
+//see if steele can do laquine breastfeeding scenes
 public function boredJumperBreastFeedOK():Boolean
 {
 	if (pc.isLactating() && pc.milkType != GLOBAL.FLUID_TYPE_CUM && pc.milkType != GLOBAL.FLUID_TYPE_GIRLCUM && (pc.hasNormalNipples() || pc.hasInvertedNipples())) return true;
 	
 	return false;
 }
+//has the jumper been told steeles name
 public function boredJumperKnowsSteelesName(jumperType:int=0):Boolean
 {
 	if (jumperType == GLOBAL.TYPE_EQUINE && flags["BJUMPER_HORSE_PREG_NAME"] == 1)
@@ -3723,6 +3754,7 @@ public function boredJumperKnowsSteelesName(jumperType:int=0):Boolean
 	}
 	return false;
 }
+//set the flag for telling steeles name if applicable
 public function boredJumperSetSteelesName(jumperType:int=0):Boolean
 {
 	if (jumperType == GLOBAL.TYPE_EQUINE && flags["BJUMPER_HORSE_PREG_NAME"] != 1)
@@ -3747,6 +3779,7 @@ public function boredJumperSetSteelesName(jumperType:int=0):Boolean
 	}
 	return false;
 }
+//where is the scene taking place in zheng shi
 //a little hacky but no other way to determine these locations
 //-1 error, 0 = mines, 1 = foundry, 2 = hanger
 public function boredJumperPregLocation():int
@@ -3758,13 +3791,13 @@ public function boredJumperPregLocation():int
 	
 	return -1;
 }
-
+//kids currently playing in cafeteria
 public function boredJumperPregAreLaquineKidsPlaying():Boolean
 {
 	if (hours >= 7 && hours <= 19) return true;	
 	return false;
 }
-
+//play preg scene in the zheng shi hanger
 public function boredJumperPregHangerEncounter():Boolean
 {
 	var pregScene:int = boredJumperPregScene();
@@ -3797,6 +3830,7 @@ public function boredJumperPregHangerEncounter():Boolean
 	
 	return false;
 }
+//which jumper got pc preg, returns random one if multiple and no preg slot specified
 public function boredJumperPregGetPCPregType(pregslot:int =-1):int
 {
 	var jumperType:int = -1;
@@ -3835,6 +3869,7 @@ public function boredJumperPregGetPCPregType(pregslot:int =-1):int
 	
 	return jumperType;
 }
+//steele jumper preg ends (run from the BoredJumperPregHandler)
 public function boredJumperPregPregnancyEnds():void
 {
 	clearOutput();
@@ -4423,6 +4458,7 @@ public function boredJumperPregPregnancyEnds():void
 		clearMenu();
 		addButton(0, "Next", move,"ZS L50");		
 	}
+	//if not special scene play intro then go to birth scene
 	else
 	{
 		output("You've gotten wetter since this all started, but something's just happened that redefines your concept of being drenched. You place a protective hand to your belly, and note for the first time that the distension has begun to abate. You're flooding between the legs... Oh shit…");
@@ -4443,7 +4479,7 @@ public function boredJumperPregPregnancyEnds():void
 	}
 	
 }
-
+//preg steele birth scene for jumper preg
 public function boredJumperPregSteeleBirth(numChildren:int = 2):void
 {
 	clearOutput();
@@ -4900,6 +4936,7 @@ public function boredJumperPregSteeleBirthNext(arg:Array):void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);	
 }
+//text blurbs if assisting jumper is also preg
 public function boredJumperPregDoubleBirthJumperText(numJumperBabies:int=2,numJumperBoys:int=0,numJumperGirls:int=0,numJumperHerms:int=0,jumperTypeCnt:int=0,numChildren:int=0):void
 {
 	output("\n\nShe's hitting notes that you didn't think possible. With your burdens survived, she's working her way through her own. She's only got one in front of her still, and that belly's looking rather full.");
@@ -4977,7 +5014,7 @@ public function boredJumperPregDoubleBirthJumperText(numJumperBabies:int=2,numJu
 		else output(" with " + flags["BJUMPER_BIRTH_SCENE_HAIRCOLOR1"] + " hair.");
 	}
 }
-//for LaquinePregnancyHandler
+//for LaquinePregnancyHandler, this is generic laquine preg
 public function laquinePregnancyEnds():void
 {
 	clearOutput();
@@ -5039,7 +5076,7 @@ public function laquinePregnancyEnds():void
 	
 	addButton(0, "Next", laquineSteeleBirth,numChildren);	
 }
-//for LaquinePregnancyHandler
+//for LaquinePregnancyHandler, this is generic laquine preg
 public function laquineSteeleBirth(numChildren:int = 2):void
 {
 	clearOutput();
@@ -5366,7 +5403,7 @@ public function laquineSteeleBirth(numChildren:int = 2):void
 	clearMenu();
 	addButton(0, "Next", laquineSteeleBirthNext, [numChildren, locType]);	
 }
-//for LaquinePregnancyHandler
+//for LaquinePregnancyHandler, this is generic laquine preg
 public function laquineSteeleBirthNext(arg:Array):void
 {
 	clearOutput();
