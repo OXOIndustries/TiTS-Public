@@ -1732,6 +1732,16 @@
 		{
 			return chars["ZEA"];
 		}
+	
+		public function get marion():Marion
+		{
+			return chars["MARION"];
+		}
+	
+		public function get lureling():Lureling
+		{
+			return chars["LURELING"];
+		}
 
 		public function testShipCombat():void
 		{
