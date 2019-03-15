@@ -3830,7 +3830,7 @@ public function drBadgerSiliconeTankGoCrazyImplantasticPerk():void
 	// Any expansion applied to mentioned areas will be immediately converted to silicone.
 	// And yes, this means that the player has to come back here to reduce asset size.
 	// Edit: Changed to daily instead of immediately to not go crazy with the size checks.
-	output("\n\n(<b>Perk Gained: Implant-tastic</b> - Your boobs, butt, ass, and hips will always be filled with silicone." + (pc.canLactate() ? " And thanks to the properties of bio-silicone, you can still lactate!" : "") + ")");
+	output("\n\n(<b>Perk Gained: Implant-tastic</b> - Your boobs, butt, hips, and lips will always be filled with silicone." + (pc.canLactate() ? " And thanks to the properties of bio-silicone, you can still lactate!" : "") + ")");
 	pc.createPerk("Implant-tastic", 0, 0, 0, 0, "Your body will convert most of the mass in your breasts, butt cheeks, hips and lips into silicone.");
 	
 	nymFoeMaxInjection(siliconeMaxHips(), siliconeMaxButt(), siliconeMaxBoob(), siliconeMaxLips());
