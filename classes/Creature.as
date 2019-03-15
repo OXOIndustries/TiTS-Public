@@ -2749,9 +2749,10 @@
 					break;	
 				case "vagOrAss":
 				case "vagOrAsshole":
+				case "vaginaOrAss":
+				case "vaginaOrAsshole":
 				case "pussyOrAss":
 				case "pussyOrAsshole":
-				case "pussyOrAss":
 					buffer = vagOrAss(arg2);
 					break;
 				case "vagOrAssNoun":

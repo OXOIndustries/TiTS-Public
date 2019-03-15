@@ -164,7 +164,7 @@ public function pennyRoomDesc():Boolean {
 				output("\n\nShe continues, <i>“Well, I’m Penny, and I’m what passes for the law out here. I keep things civil and legal. At least, as civil as they can be, given the current collection of laws we call civilization. Lucky for me, Flahne’s got an eye for paperwork, so between the two of us, we’ve cobbled together a few local statutes to keep things running smooth here.”</i> Penny begins to tic off her fingers as she rattles off a list of regulations, inadvertently showing off clawlike nails and padded fingertips. <i>“No murdering anybody. No killing the locals, at least, not if you can help it. Don’t start fights. Don’t rape nobody, and most of all, don’t piss off Penny. Consider that your education. Any questions?”</i> ");
 				
 				output("\n\nWell, that was... simple.");
-				output("\n\n<i>“Look, just use your common sense and you’ll do fine. I’ve got my hands full trying to keep the Zil from running us out of town. And I’d rather not have to spend time scraping anybody off the floor at Burt’s or wasting time when one of you decides to kill the other,”</i> Penny huffs.");
+				output("\n\n<i>“Look, just use your common sense and you’ll do fine. I’ve got my hands full trying to keep the Zil from running us out of town. And I’d rather not have to spend time scraping anybody off the floor at Burt’s or wasting time when one of you decides to kill the other.”</i> Penny huffs.");
 				output("\n\nShe sounds like she has her hands full. Is there something you’d like to ask her?");
 			}
 			//Repeat Pre-Problem Encounter
@@ -544,7 +544,7 @@ public function loseToZilPair():void
 	output(", gently guiding you down his dick until your lips press against his base, cock utterly buried in your mouth. You almost gag as the last inches push past your lips, but at a word from your master, your entire body seems to go limp, easily accepting his delicious offering of cock.");
 	
 	output("\n\n<i>“Good, good,”</i> the yellow Zil coos, slowly guiding you down ");
-	if (pc.tallness >= 48) output("onto all " + plural(num2Text(pc.legCount)));
+	if (pc.tallness >= 48) output(pc.isBiped() && pc.hasLegs() ? "onto all fours" : "to the floor");
 	else output("as he gets on his knees");
 	output(", never letting even the tiniest amount of his prick escape your hungry hole. Reclining, the Zil locks his fingers around your [pc.face], holding you perfectly still. Instinctively you nuzzle into his palm, looking up at the sexual beast with pleading eyes as he slowly moves his hips back, dragging every last inch of his wonderful tool out of you until just the head remains, glans planted on the tip of your tongue. Like the good, hungry slut you are, you lap and lick and kiss his cock head, suckling from it like a teat as ever more of his marvelous amber seed stains your tongue, as sweet as honey and as potent as a drug.");
 	
@@ -558,7 +558,7 @@ public function loseToZilPair():void
 	if(pc.hasCock()) output(" Your own prick twitches in response; dribbling a thick [pc.cumColor] stream onto the cell floor as the alien prick pumps onto your prostate, accidentally massaging your sensitive anal bud.");
 	output(" Submissive, addled, and eager for seed, you can’t help but wiggle your ass and suck as hard as you can, reveling in the bliss of the Zil’s perfect sexual dominance, the aromatic cock shoved down your throat and the carnal anal pleasure of the Zil fucking your butt.");
 	
-	output("\n\nSuddenly, the yellow jacket seems to seize up, fingers clutches at your cheeks as his fuckstick slams into your throat with a sudden force and speed that makes his previous oral assault seem like foreplay. You groan as his pelvis slams into your face, cock thrusting down your throat again and again until a sudden feral groan escapes his lips, and you feel a rushing flood of sweet honey pouring down your throat. The unstoppable wave of seed shoots into you in great pulsing bursts that soon have you feeling utterly, impossibly full; ever so contented and sated. But a moment later, that satisfaction feels like a distant memory when the dusky Zil buried eight inches in your ass grips your [pc.hips] tight and throws his head back, pounding like a jackhammer as the first sticky flood of his own seed joins his brother’s, bursting into your abused asshole like a geyser.");
+	output("\n\nSuddenly, the yellow jacket seems to seize up, fingers clutching at your cheeks as his fuckstick slams into your throat with a sudden force and speed that makes his previous oral assault seem like foreplay. You groan as his pelvis slams into your face, cock thrusting down your throat again and again until a sudden feral groan escapes his lips, and you feel a rushing flood of sweet honey pouring down your throat. The unstoppable wave of seed shoots into you in great pulsing bursts that soon have you feeling utterly, impossibly full; ever so contented and sated. But a moment later, that satisfaction feels like a distant memory when the dusky Zil buried eight inches in your ass grips your [pc.hips] tight and throws his head back, pounding like a jackhammer as the first sticky flood of his own seed joins his brother’s, bursting into your abused asshole like a geyser.");
 	if (silly) output(" The two Zil reach over your insensate form, high-fiving each other");
 	else output(" The two Zil grunt and groan");
 	output(" as they cum in unison deep into your bowels, filling you with all the sweet alien seed their eager cocksleeve deserves.");
@@ -585,19 +585,29 @@ public function loseToZilpackPartTwoLoseHarder():void {
 	else
 	{
 		output("\n\nThe Yellowjack laughs in the police girl’s face as he lowers your defenseless body down on his prick, spearing into your ass, using his brother’s cum as lube for a nice, easy sloppy second. <i>“We came to this town to breed, little girl. We’ll talk, but first...”</i> He pushes you down, making your support yourself on your arms, your hands planted on the cold, cum-slick ground. Digging his fingers into your [pc.butt], the zil soon has you humping up and down on his prick, taking his cock deep into your bowels. You look helplessly up at Penny, but there’s nothing she can do to save you now. Not without meeting the same fate.");
+		pc.buttChange(enemy.cockVolume(0));
 	}
 	output("\n\nWith little other choice, Penny begins interrogating the Zil, trying to drag information out of him as the yellowjacket busily defiles your [pc.vagOrAss].");
 	output("\n\n<i>“Does everyone out here on the rim spend all their time trying to fuck everyone else?”</i> Penny asks, watching with a mix of arousal and disgust as you start to bounce on the Zil’s cock, unable to mask the pleasure that’s taking hold in your abused body. The Zil laughs, holding onto your hips as you move, guiding your motions. The dusky brother joins in, too, getting to his feet and presenting his cock to you: the sudden influx of his returning aroma has you sucking it in seconds.");
-	output("\n\nThe triumphant Zil laughs, <i>“It is a custom when meeting other tribes. Sex establishes dominance and who is to be obeyed. Even though you’re aliens, we see now that your culture is similar. We thought if we could dominate you, you would acknowledge us and leave.”</i> He grins through the bars, but grits his teeth as he cums again, filling your ");
-	if(pc.hasVagina())
-		output("womb");
-	else
-		output("bowels");
-	output(" with another hot, sticky load of honey-colored cum. <i>“And what are you going to do about it, hmm? Clearly your friend likes it... " + pc.mf("he","she") + " knows the way of the world. Dominate, or submit. There is no other choice.”</i>");
+	output("\n\nThe triumphant Zil laughs, <i>“It is a custom when meeting other tribes. Sex establishes dominance and who is to be obeyed. Even though you’re aliens, we see now that your culture is similar. We thought if we could dominate you, you would acknowledge us and leave.”</i> He grins through the bars, but grits his teeth as he cums again, filling your " + (pc.hasVagina() ? "womb" : "bowels") + " with another hot, sticky load of honey-colored cum. <i>“And what are you going to do about it, hmm? Clearly your friend likes it... " + pc.mf("he","she") + " knows the way of the world. Dominate, or submit. There is no other choice.”</i>");
 	output("\n\nYou note that the crotch of Penny’s trousers has begun to soak through. She just can’t hide how hard she got off to watching you tangle with the slutty aliens. She bites her lip. <i>“But you’re the ones behind bars. You’re </i>my<i> prey, now. You’ll submit to me, or rot in here.”</i>");
 	output("\n\nA moment passes. You gag as the dusky Zil brother fills your mouth with a heady load of sweet cum. Then, glumly, they nod. They’re sexual predators, but not stupid... and they’re awfully sexy. Dominant beasts of sensual prey - you shake your head and spit out the cum, trying to focus.");
 	output("\n\nPenny continues more confidently, <i>“Good. If you want to be left alone, then don’t come into town trying to fuck everyone. I’m going to release you, but you WILL listen to me: be sure to tell your people that we’ll kill anyone that comes into town trying to force ‘customs’ on us again. I don’t give a damn about your sick take on dominance; we do NOT exist to be fucked by your people. Do you fuckheads understand that? We will </i>kill<i> the next one that tries to rape an offworlder. Make sure that message spreads through all your villages. I don’t care if you have to fuck or get fucked by every one of them to do it,”</i> Penny declares while pulling her mask back on and hastily twining her wraps back around her torso, covering them them partway with her vest a minute later. <i>“Gotta keep the girls in place,”</i> she mutters as her hard nipples press plainly through the fabric.");
 	output("\n\nPenny smirks and points you to a shower while she finds some restraints. <i>“Get cleaned up, I’ll take care of the hooligans.”</i> You are a bit worked up from the fight. A shower would be nice.");
+	
+	if (pc.hasVagina())
+	{
+		pc.loadInCunt(enemy, 0);
+		pc.loadInCunt(enemy, 0);
+	}
+	else
+	{
+		pc.loadInAss(enemy);
+		pc.loadInAss(enemy);
+	}
+	pc.loadInMouth(enemy);
+	//pc.orgasm();
+	
 	this.clearMenu();
 	this.addButton(0,"Next",finishLosingToZilYouLoser);
 }

@@ -8117,9 +8117,9 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["LUCAS_MINDWASH"] == -1) output2("\n<b>* Services, Broken Visor:</b> <i>Refused to Use</i>");
 				else if(flags["LUCAS_MINDWASH"] > 0) output2("\n<b>* Services, Times Used Broken Mindwash Visor:</b> " + flags["LUCAS_MINDWASH"]);
 				output2("\n<b>* Luca:</b> Met her");
-				if (flags["LUCA_SAFEWORD"] != undefined) output2(", Became her sub");
-				if (flags["LUCA_SUBMISSION_ACCEPTABLE"] != undefined) output2(", Would accept addiction");
-				if (flags["LUCA_SAFEWORD"] != undefined) output2("\n<b>* Luca, Your Submissiveness:</b> " + lucaSubmission() + "/100");
+				if(flags["LUCA_SAFEWORD"] != undefined) output2(", Became her sub");
+				if(flags["LUCA_SUBMISSION_ACCEPTABLE"] != undefined) output2(", Would accept addiction");
+				if(flags["LUCA_SAFEWORD"] != undefined) output2("\n<b>* Luca, Your Submissiveness:</b> " + lucaSubmission() + "/100");
 				variousCount++;
 			}
 			// Spunk Bunker

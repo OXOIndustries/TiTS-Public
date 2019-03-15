@@ -179,6 +179,10 @@ public function ulaDadMiloTalk():void
 
 public function ulaDadPCOpinion():void
 {
+	clearOutput();
+	showBust(korgChiefBustString());
+	showName("ULA’S\nFATHER");
+	author("Fenoxo");
 	output("You ask him what he thinks of you.");
 	//[PC Opinion] - Ula kids more than 10
 	if(StatTracking.getStat("pregnancy/ula sired") >= 10)

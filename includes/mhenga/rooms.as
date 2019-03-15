@@ -206,7 +206,7 @@ public function initMhengaRooms():void
 	//14. The Northeastern Corner of Esbeth
 	rooms["NORTHEAST ESBETH"] = new RoomClass(this);
 	rooms["NORTHEAST ESBETH"].roomName = "NORTHEAST\nESBETH";
-	rooms["NORTHEAST ESBETH"].description = "Esbeth’s single road twists to the south and west here, spoking out in straight lines that run in those directions. The path here is as barren and burned-out as everywhere else in town, but the houses on either side are fresh and new, though a few show places of rust already. To the south, you can see the eastern exit of town splitting off from the roadway. There are occasionally other adventurers, like you, on their way, but they pay you no mind.";
+	rooms["NORTHEAST ESBETH"].description = "Esbeth’s single road twists to the south and west here, spoking out in straight lines that run in those directions. The path here is as barren and burned-out as everywhere else in town, but the houses on either side are fresh and new, though a few places show signs of rust already. To the south, you can see the eastern exit of town splitting off from the roadway. There are occasionally other adventurers, like you, on their way, but they pay you no mind.";
 	rooms["NORTHEAST ESBETH"].planet = "PLANET: MHEN'GA";
 	rooms["NORTHEAST ESBETH"].system = "SYSTEM: ARA ARA";
 	rooms["NORTHEAST ESBETH"].westExit = "NORTH ESBETH 1";
