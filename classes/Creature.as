@@ -1979,6 +1979,12 @@
 				case "weaponRanged":
 					buffer = rangedWeapon.longName;
 					break;
+				case "rangedNoun":
+				case "gunNoun":
+				case "bowNoun":
+					var gName = rangedWeapon.longName.split(" ");
+					buffer = gName[gName.length - 1];
+					break;
 				case "mainWeapon":
 				case "weaponMain":
 				case "weaponStat":
@@ -2566,6 +2572,12 @@
 					break;
 				case "ballNounSimple":
 					buffer = ballsNounSimple(true);
+					break;
+				case "ballsNounIsAre":
+					buffer = ballsNoun() + " " + (balls == 1 ? "is" : "are");
+					break;
+				case "ballsNounSimpleIsAre":
+					buffer = ballsNounSimple() + " " + (balls == 1 ? "is" : "are");
 					break;
 				case "ball":
 					buffer = ballsDescript();
