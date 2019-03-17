@@ -864,6 +864,8 @@ public function selleraPerformsReconnaissanceOnYourNetherLips():void
 	{
 		output("\n\nSmall wonder that your [pc.milk] suddenly squirts out in fine jets. Sellera's eyes light up as soon as she feels it against her palms. <i>\"Oh ho ho, was this for your children, Steele? Knowing how decadent your people are, I wouldn't be surprised if you made yourself lactate just so you could feel some alien stud suckling from you.\"</i>");
 		output("\n\nShe begins milking you with rough, cruel motions, though her panting breath and the gleeful smile on her face clues you in to just how excited she is about this. <i>\"Or would you rather be like those slutty little gold honeypots? Just lazing around all day eating and having your big, fat tits sucked and tugged and pumped? Do you even have the sense of duty those gluttons have, or do you just get off on begging someone stronger than you to drain these jugs for you? Yes, you're not even 'Steele the honeypot.' You're just a cow, and a whore to boot!\"</i>");
+
+		pc.milked(25);
 	}
 	else if (pc.biggestTitSize() < 4)
 	{
@@ -1301,6 +1303,7 @@ public function sellaraIsNaLukingTiredYet(x:int):void
 
 	//Pass like 5 hours, lose a bunch of energy, empty balls, add pussy soaked status, if PC cum amount is high then add cum covered too, add a sizeable amount to red myr venom addiction score, PC orgasm +1
 
+	pc.exhibitionism(2);
 	pc.applyPussyDrenched();
 	if (pc.cumQ() > 3000) pc.applyCumSoaked();
 	pc.energy(pc.PQ()/10-50-rand(31));
