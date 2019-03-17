@@ -3430,15 +3430,18 @@
 				var nouns:Array = ["gun"];
 				if(rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_RIFLE_WEAPON)) nouns.push("rifle");
 				if(rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_PISTOL_WEAPON)) nouns.push("pistol");
+				if(rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_SHOTGUN_WEAPON)) nouns.push("shotgun");
+				if(rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_THROWER_WEAPON)) nouns.push("thrower");
+				if(rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_LAUNCHER_WEAPON)) nouns.push("launcher");
 				
-				//This portion adds the last actual word in the gun's name to the pool. For example, if you have a Buttcannon 1000, it will push "Buttcannon" because the string can't be converted to a number. 
-				//Because of TiTS longname conventions of having the MK version at the front of a long name for weapons in all cases that exist (ie. MK.VII Goovolver), this should be fine. 
-				//If it becomes a problem later, it can be easily commented out or deleted, but at current, the expanded pool of nouns is a decent QOL feature.
+				//Basically checks if the last word in a weapons name is a number and if it isn't, adds that to the list of possible outputs.
+				//Makes for a far nicer pool, and covers some more details than just "rifle" and the like.
+				//Doesn't work with things like MK.IV, but the current ranged weapon convention has that at the front of the long range
 				
 				var gName:Array = rangedWeapon.longName.split(" ");
 				var nameDesc:String = gName[gName.length - 1];
-				if(!isNan(Number(nameDesc))) nameDesc = gName[gName.length - 2];
-				nouns.push(nameDesc);
+				if(isNan(Number(nameDesc))) nouns.push(nameDesc);
+				
 
 				return RandomInCollection(nouns);
 			}

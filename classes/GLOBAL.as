@@ -1218,6 +1218,9 @@
 		public static const ITEM_FLAG_STRETCHY:int						= 35; // Increases sexiness buff if related body part is big. Doubles as Transparent flag at 20+;
 		public static const ITEM_FLAG_RIFLE_WEAPON:int					= 36; //For outputing that a gun is a rifle
 		public static const ITEM_FLAG_PISTOL_WEAPON:int					= 37; //For outputing that a gun is a pistol
+		public static const ITEM_FLAG_SHOTGUN_WEAPON:int				= 38; //For outputing that a gun is a shotgun
+		public static const ITEM_FLAG_THROWER_WEAPON:int				= 39; //For outputing that a gun is a thrower
+		public static const ITEM_FLAG_LAUNCHER_WEAPON:int				= 40; //For outputing that a gun is a Launcher
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1258,6 +1261,9 @@
 			"Stretchable",
 			"Rifle",
 			"Pistol",
+			"Shotgun",
+			"Thrower",
+			"Launcher"
 		];
 		
 		/**
