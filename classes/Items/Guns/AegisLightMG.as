@@ -48,6 +48,7 @@ package classes.Items.Guns
 			baseDamage.addFlag(DamageFlag.BULLET);
 			addFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR);
 			addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
+			this.addFlag(GLOBAL.ITEM_FLAG_RIFLE_WEAPON);
 			baseDamage.addFlag(DamageFlag.NO_CRIT);
 			
 			this.defense = 0;

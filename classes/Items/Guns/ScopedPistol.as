@@ -50,6 +50,7 @@
 			baseDamage.burning.damageValue = 5;
 			baseDamage.addFlag(DamageFlag.LASER);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
+			this.addFlag(GLOBAL.ITEM_FLAG_PISTOL_WEAPON);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;

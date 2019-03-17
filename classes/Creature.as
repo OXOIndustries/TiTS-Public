@@ -1982,8 +1982,7 @@
 				case "rangedNoun":
 				case "gunNoun":
 				case "bowNoun":
-					var gName = rangedWeapon.longName.split(" ");
-					buffer = gName[gName.length - 1];
+					buffer = getRangedNoun();
 					break;
 				case "mainWeapon":
 				case "weaponMain":
@@ -3420,6 +3419,30 @@
 			if(!(rangedWeapon is EmptySlot) && !(rangedWeapon is Rock) && ((meleeWeapon is EmptySlot) || (meleeWeapon is Rock))) return rangedWeapon.longName;
 			if(!(meleeWeapon is EmptySlot) && !(meleeWeapon is Rock) && ((rangedWeapon is EmptySlot) || (rangedWeapon is Rock))) return meleeWeapon.longName;
 			return getWeaponName(true);
+		}
+
+		public function getRangedNoun():String
+		{
+			if(!(rangedWeapon is EmptySlot))
+			{
+				if (rangedWeapon is Rock) return "rock"
+				if(rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON)) return "bow";
+				var nouns:Array = ["gun"];
+				if(rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_RIFLE_WEAPON)) nouns.push("rifle");
+				if(rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_PISTOL_WEAPON)) nouns.push("pistol");
+				
+				//This portion adds the last actual word in the gun's name to the pool. For example, if you have a Buttcannon 1000, it will push "Buttcannon" because the string can't be converted to a number. 
+				//Because of TiTS longname conventions of having the MK version at the front of a long name for weapons in all cases that exist (ie. MK.VII Goovolver), this should be fine. 
+				//If it becomes a problem later, it can be easily commented out or deleted, but at current, the expanded pool of nouns is a decent QOL feature.
+				
+				var gName:Array = rangedWeapon.longName.split(" ");
+				var nameDesc:String = gName[gName.length - 1];
+				if(!isNan(Number(nameDesc))) nameDesc = gName[gName.length - 2];
+				nouns.push(nameDesc);
+
+				return RandomInCollection(nouns);
+			}
+			return "fists";
 		}
 		
 		public function weaponActionReady(present:Boolean = false, weapon:String = "", full:Boolean = true):String
