@@ -5579,6 +5579,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					else output2(" Met her");
 					if(flags["SYRI_SEEN_PCS_SHIP_CABIN"] != undefined) output2(", She’s seen your ship’s cabin");
 					if(flags["ANNOxSYRI_WINCEST"] != undefined) output2(", Sexed her with Anno")
+					if(flags["SYRI_MILOFUCK"] != undefined) output2(", Sexed Ziresh and her mother with Syri");
 					if(syriRecruited())
 					{
 						output2(", Crew member");
