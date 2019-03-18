@@ -331,10 +331,11 @@
 
 		[Embed(source = "../../../assets/images/npcs/gats/Zil_Female.png", mimeType = "image/png")]
 		public var Bust_ZILFEMALE:Class;
+		public var Bounds_ZILFEMALE:Rectangle = new Rectangle(0, 10, 64, 70);
 		
 		[Embed(source = "../../../assets/images/npcs/gats/Zil_Male.png", mimeType = "image/png")]
 		public var Bust_ZIL:Class;
-		public var Bounds_ZIL:Rectangle = new Rectangle(14,19,79,92);
+		public var Bounds_ZIL:Rectangle = new Rectangle(1, 19, 81, 70);
 		
 		
 		CONFIG::IMAGEPACK

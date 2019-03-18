@@ -111,8 +111,8 @@ public function callAmberForMoreFun():void
 		output("\n\nA gush of cum suddenly splats on the ground between her shaking hindlegs, her output too excessive for the milker. Then another, and another, and suddenly she’s bucking like a rabid stallion against the machine while crying out in bliss, thick equine cum splashing to the ground as she rapes it into submission.");
 		output("\n\n<i>“Guh! Ngh! Ffffuh,”</i> she pants, sweat dripping down her body as her breed-hungry humping begins to slow. <i>“Oh, fuck...”</i>");
 		output("\n\n<i>“Feeling a little better?”</i> you ask as she slowly dismounts, impressed by her efforts.");
-		if(amberDumbfuckDoses() <= 2) output("\n\n{dumbfucked1-2: <i>“Fuck, it feels </i>amazing<i> to cum inside it with you watching,”</i> she moans, wiping her damp brow. <i>“My cock’s all covered in your cum, [pc.name]... I wanna do it again. You’re gonna go again, right?”</i>");
-		else output("\n\n<i>“Nnnh... fuck,”</i> she moans, shaking her body as if to loosen herself up. She gazes at you with lust burning in her eyes. <i>“Your turn?”</i>}");
+		if(amberDumbfuckDoses() <= 2) output("\n\n<i>“Fuck, it feels </i>amazing<i> to cum inside it with you watching,”</i> she moans, wiping her damp brow. <i>“My cock’s all covered in your cum, [pc.name]... I wanna do it again. You’re gonna go again, right?”</i>");
+		else output("\n\n<i>“Nnnh... fuck,”</i> she moans, shaking her body as if to loosen herself up. She gazes at you with lust burning in her eyes. <i>“Your turn?”</i>");
 		output("\n\n<i>“Yup,”</i> you confirm, taking your place in front of the milker. Damn, she really went off on - and in - this thing. It’s filled to the brim with her strong, sticky spunk, dripping to the floor as you insert yourself once more, the opening spreading around you.");
 		output("\n\n<i>“Amber..?”</i> you ask, feeling her breasts press at your back and her breath hot on your shoulder. Her nipples are as hard as diamond, jutting into you like studs.");
 		output("\n\n<i>“Cum,”</i> Amber whispers, gently pushing your [pc.hips] forward from behind. <i>“Please cum!”</i>");

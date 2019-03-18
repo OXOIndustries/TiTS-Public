@@ -133,6 +133,8 @@ public function disableExploreEvents():Boolean
 	if (flags["PENNY_CREW_ASKED"] == 2) return true;
 	// Korgii Quest
 	if (flags["WARGII_PROGRESS"] == 2) return true;
+	// Event Whorizon
+	if (isDoingEventWhorizon()) return true;
 
 	return false;
 }
@@ -3082,7 +3084,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	if(currentLocation == "SHIP INTERIOR")
 	{
 		//Procs in safe areas only, like Reaha's milk stand:
-		if(!rooms[arg].hasFlag(GLOBAL.HAZARD))
+		if(!rooms[arg].hasFlag(GLOBAL.HAZARD) && !disableExploreEvents())
 		{
 			if(reahaIsCrew() && !reahaAddicted() && rand(5) == 0) eventQueue.push(reahaMilkStand);
 		}

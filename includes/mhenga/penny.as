@@ -2164,12 +2164,12 @@ public function faceFuckPenny():void {
 	pc.orgasm();
 	penny.loadInMouth(pc);
 	//[Fuck her butt] [Get ass fucked] [Nah, girl]
-	this.clearMenu();
-	if(pc.hasCock() && pc.cockThatFits(penny.vaginalCapacity(0)*1.5) >= 0) this.addButton(0,"Fuck Her Butt",fuckPennyButtFromFraceFuckSceneNyahhhh,undefined,"Fuck Her Butt","Fuck Penny’s ass.");
-	else addDisabledButton(0,"Fuck Her Butt","Fuck Her Butt","You need a dick to fuck Penny’s ass.")
-	if(penny.hasCock()) this.addButton(1,"GetButtFucked",getAssFuckedByPenny,true,"Get Butt Fucked","Let Penny drill you in the ass.");
-	else addDisabledButton(1,"GetButtFucked","Get Butt Fucked","Penny needs to have a dick for this scene.")
-	this.addButton(2,"Nah, girl",nahhhhGurrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrllllllllllllllllllllllllllllllllllll,undefined,"Nah, girl","You’re too tired for that right now.");
+	clearMenu();
+	if(pc.hasCock() && pc.cockThatFits(penny.analCapacity()*1.5) >= 0) addButton(0,"Fuck Her Butt",fuckPennyButtFromFraceFuckSceneNyahhhh,undefined,"Fuck Her Butt","Fuck Penny’s ass.");
+	else addDisabledButton(0,"Fuck Her Butt","Fuck Her Butt","You need a dick that fits to fuck Penny’s ass.");
+	if(penny.hasCock()) addButton(1,"GetButtFucked",getAssFuckedByPenny,true,"Get Butt Fucked","Let Penny drill you in the ass.");
+	else addDisabledButton(1,"GetButtFucked","Get Butt Fucked","Penny needs to have a dick for this scene.");
+	addButton(2,"Nah, girl",nahhhhGurrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrllllllllllllllllllllllllllllllllllll,undefined,"Nah, girl","You’re too tired for that right now.");
 }
 
 //Nah,girl

@@ -1019,34 +1019,35 @@ public function pumpkingMainGateBonus():Boolean
 			output("\n\nThere are about a dozen zil workers here, using primitive tools and carts to lug building equipment around the work site. Looking up to see you, they drop their tools and flee while <b>the gate guards level their weapons at you.</b>");
 			//(PC should fight a mob of zil guards out here; maybe four to six? Shouldn’t be an impossible fight by any means, these are just your average zil, only armed with rifles and some basic shooting practice and physical training. What their weapons and armor are will have to be hashed out with Savin/Fen, but just some basic stuff should be fine. Again, not too hard of a fight.)
 			CodexManager.unlockEntry("Zil");
-			CombatManager.newGroundCombat();
-			CombatManager.setFriendlyActors(pc);
-			var enemies:Array = [new ZilMale(),new ZilMale(),new ZilMale(),new ZilFemale(),new ZilFemale()]
-			enemies[0].pumpkingIt();
-			enemies[1].pumpkingIt();
-			enemies[2].pumpkingIt();
-			enemies[3].pumpkingIt();
-			enemies[4].pumpkingIt();
-			//10 rations & 10 honey!
-			var loot:ItemSlotClass = new ZilRation();
-			loot.quantity = 10;
-			enemies[0].inventory.push(loot);
-			loot = new ZilHoney();
-			loot.quantity = 10;
-			enemies[0].inventory.push(loot);
-
-			CombatManager.setHostileActors(enemies[0],enemies[1],enemies[2],enemies[3],enemies[4]);
-			CombatManager.victoryScene(defeatZilGuards);
-			CombatManager.lossScene(loseToZilGuards);
-			CombatManager.displayLocation("ZIL GUARDS");
 			
-			clearMenu();
-			addButton(0,"Next",CombatManager.beginCombat);
+			pumpkingMainGateZilGuardFight();
 			return true;
 		}
 		else output("\n\nThe guards lie unconscious where you left them, in various uncomfortable positions in front of the gates. A small group of zil workers are carefully tending their wounds, but they run back into the jungle when they see you. Building tools lie scattered around the premises in random places, wherever the zil workers left them when they fled your initial approach.");
 	}
 	return false;
+}
+public function pumpkingMainGateZilGuardFight():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyActors(pc);
+	var enemies:Array = [new ZilMale(),new ZilMale(),new ZilMale(),new ZilFemale(),new ZilFemale()];
+	for(var i:int = 0; i < enemies.length; i++) { enemies[i].pumpkingIt(); }
+	//10 rations & 10 honey!
+	var loot:ItemSlotClass = new ZilRation();
+	loot.quantity = 10;
+	enemies[0].inventory.push(loot);
+	loot = new ZilHoney();
+	loot.quantity = 10;
+	enemies[0].inventory.push(loot);
+
+	CombatManager.setHostileActors(enemies);
+	CombatManager.victoryScene(defeatZilGuards);
+	CombatManager.lossScene(loseToZilGuards);
+	CombatManager.displayLocation("ZIL GUARDS");
+	
+	clearMenu();
+	addButton(0,"Next",CombatManager.beginCombat);
 }
 
 public function defeatZilGuards():void
