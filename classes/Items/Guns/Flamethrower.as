@@ -45,7 +45,7 @@
 			baseDamage.burning.damageValue = 8;
 			baseDamage.addFlag(DamageFlag.NO_CRIT);
 			addFlag(GLOBAL.ITEM_FLAG_BLIND_IGNORE);
-			this.addFlag(GLOBAL.ITEM_FLAG_THOWER_WEAPON);
+			this.addFlag(GLOBAL.ITEM_FLAG_THROWER_WEAPON);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;

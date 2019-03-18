@@ -2588,7 +2588,7 @@
 					buffer = ballsNounSimple(true);
 					break;
 				case "ballsNounIsAre":
-					buffer = ballsNoun() + " " + (balls == 1 ? "is" : "are");
+					buffer = ballNoun(true) + " " + (balls == 1 ? "is" : "are");
 					break;
 				case "ballsNounSimpleIsAre":
 					buffer = ballsNounSimple() + " " + (balls == 1 ? "is" : "are");
@@ -3470,8 +3470,7 @@
 				
 				var gName:Array = rangedWeapon.longName.split(" ");
 				var nameDesc:String = gName[gName.length - 1];
-				if(isNan(Number(nameDesc))) nouns.push(nameDesc);
-				
+				if (isNaN(Number(nameDesc))) nouns.push(nameDesc);				
 
 				return RandomInCollection(nouns);
 			}
