@@ -3954,6 +3954,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		processUlaPregEvents(deltaT, doOut, totalDays);
 		processBothriocQuadommeEvents(deltaT, doOut, totalDays);
 		processQuaellePregEvents(deltaT, doOut, totalDays);
+		processBoredJumperPregEvents(deltaT, doOut, totalDays);
 	}
 	
 	var totalHours:uint = Math.floor((minutes + deltaT) / 60);
