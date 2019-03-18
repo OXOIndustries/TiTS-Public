@@ -6797,6 +6797,9 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Kressia Manor and Federation War Room</u></b>");
 				output2("\n<b>* Sellera:</b> Met her");
+				if (flags["SELLERA_SERVICED"] != undefined) output2(", Serviced Her");
+				if (flags["SELLERA_GANGBANGED"] != undefined) output2(", Serviced Her Troops");
+				if (flags["SELLERA_SEXED"] != undefined) output2(", Sexed Her");
 				variousCount++;
 			}
 			// Anzhela
