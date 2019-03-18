@@ -6,6 +6,9 @@
 	
 	public class Marion extends Creature
 	{
+		// gets set in the lureling encounter
+		public var marionGenitals:int = 0;
+
 		//constructor
 		public function Marion()
 		{
@@ -114,6 +117,7 @@
 			//Vag!
 			this.vaginas = new Array();
 			this.createVagina();
+			this.vaginas[0].hymen = false;
 			this.vaginas[0].loosenessRaw = 3;
 			this.vaginas[0].wetnessRaw = 3;
 			this.vaginas[0].bonusCapacity = 300;
@@ -151,8 +155,21 @@
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 2;
 			this.ass.bonusCapacity += 75;
-
+			
+			this.marionGenitals = marionGenitals;
+			//randomise();
+			
 			this._isLoading = false;
+		}
+		private function randomise():void
+		{
+			if(marionGenitals == 1)
+			{
+					this.cocks[0].cLengthRaw = 8;
+					this.shiftCock(0,GLOBAL.TYPE_CANINE);
+					this.cocks[0].cockColor = "black";
+					
+			}
 		}
 	}
 }
