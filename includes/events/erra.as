@@ -449,7 +449,7 @@ public function erraGoodGirl2():void
 	if(!pc.isCrotchExposed() || !pc.isChestExposed()) output("dressed and ");
 	output("ready, you head out back into the ship’s atrium and make your way to the airlock. <i>“You seem happy, Captain,”</i> Dee’s voice booms. <i>“I trust that means you and [pc.name] enjoyed yourselves.”</i> Erra’s eyes widen with an emotion akin to anger as you start to [pc.walk] out of the ship. She quickly regains control of her emotions before saying, <i>“Later, [pc.name], stop by some time.”</i>");
 	output("\n\nDee chimes in as well, calling out <i>“Farewell, [pc.name].”</i>");
-	output("\n\nYou say goodbye to the two, and as the airlock closes behind you, you can faintly hear, <i>“Hey, Dee, time for one of our ‘talks.’”</i>");
+	output("\n\nYou say goodbye to the two, and as the airlock closes behind you, you can faintly hear, <i>“Hey, Dee, time for one of our ‘talks’.”</i>");
 	IncrementFlag("ERRA_SEXED");
 	processTime(35);
 	restHeal();

@@ -654,6 +654,9 @@ public function statisticsScreen(showID:String = "All"):void
 						case "ButtBugPregnancy1": output2(" Butt Bug, Cycling Egg" + (pData.pregnancyQuantity == 1 ? "" : "s") + (pc.statusEffectv2("Butt Bug (Female)") == 1 ? ", Fertilized" : "")); break;
 						case "ButtBugPregnancy2": output2(" Butt Bug, Hybrid Egg" + (pData.pregnancyQuantity == 1 ? "" : "s") + (pc.statusEffectv2("Butt Bug (Female)") == 1 ? ", Fertilized" : "")); break;
 						case "QuaellePregnancy": output2(" Quaelle"); break;
+						case "BoredJumperPregnancy": output2(" Laquine"); break;
+						case "LaquinePregnancy": output2(" Laquine"); break;
+						case "LDCShockHopperPregnancy": output2(" Laquine"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -1122,6 +1125,14 @@ public function statisticsScreen(showID:String = "All"):void
 				// Mother
 				if(StatTracking.getStat("pregnancy/total births") > 0)
 					output2("\n<b>* Births, Total:</b> " + StatTracking.getStat("pregnancy/total births"));
+				if(StatTracking.getStat("pregnancy/jumper horse births") > 0)
+					output2("\n<b>* Births, Bored Jumper (Gray) Children:</b> " + StatTracking.getStat("pregnancy/jumper horse births"));	
+				if(StatTracking.getStat("pregnancy/jumper dog births") > 0)
+					output2("\n<b>* Births, Bored Jumper (White) Children:</b> " + StatTracking.getStat("pregnancy/jumper dog births"));	
+				if(StatTracking.getStat("pregnancy/jumper cat births") > 0)
+					output2("\n<b>* Births, Bored Jumper (Creamy) Children:</b> " + StatTracking.getStat("pregnancy/jumper cat births"));	
+				if(StatTracking.getStat("pregnancy/jumper terran births") > 0)
+					output2("\n<b>* Births, Bored Jumper (Brown) Children:</b> " + StatTracking.getStat("pregnancy/jumper terran births"));
 				if(StatTracking.getStat("pregnancy/fertile bothrioc eggs") > 0)
 					output2("\n<b>* Births, Bothrioc Eggs, Fertile:</b> " + StatTracking.getStat("pregnancy/fertile bothrioc eggs"));
 				if(StatTracking.getStat("pregnancy/infertile bothrioc eggs") > 0)
@@ -1149,6 +1160,10 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Lah’s Children:</b> " + StatTracking.getStat("pregnancy/lah kids"));
 				if(StatTracking.getStat("pregnancy/lapinara eggs") > 0)
 					output2("\n<b>* Births, Lapinara Eggs:</b> " + StatTracking.getStat("pregnancy/lapinara eggs"));
+				if(StatTracking.getStat("pregnancy/laquine births") > 0)
+					output2("\n<b>* Births, Laquine Children (generic):</b> " + StatTracking.getStat("pregnancy/laquine births"));	
+				if(StatTracking.getStat("pregnancy/l. d. c. births") > 0)
+					output2("\n<b>* Births, L.D.C.'s Children:</b> " + StatTracking.getStat("pregnancy/l. d. c. births"));	
 				if(StatTracking.getStat("pregnancy/milodan births") > 0)
 					output2("\n<b>* Births, Milodan Young:</b> " + StatTracking.getStat("pregnancy/milodan births"));
 				var nyreanEggs:Number = 0;
@@ -1191,6 +1206,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Sera’s Children:</b> " + StatTracking.getStat("pregnancy/sera kids"));
 				if(StatTracking.getStat("pregnancy/shekka kids") > 0)
 					output2("\n<b>* Births, Shekka’s Children:</b> " + StatTracking.getStat("pregnancy/shekka kids"));
+				if(StatTracking.getStat("pregnancy/shock hopper births") > 0)
+					output2("\n<b>* Births, Shock Hopper's Children:</b> " + StatTracking.getStat("pregnancy/shock hopper births"));	
 				if(StatTracking.getStat("pregnancy/sydian births") > 0)
 					output2("\n<b>* Births, Sydian Young:</b> " + StatTracking.getStat("pregnancy/sydian births"));
 				if(StatTracking.getStat("pregnancy/venus pitcher seeds") > 0)
@@ -1249,6 +1266,14 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Sired, Briha’s Sons:</b> " + StatTracking.getStat("pregnancy/briha sons"));
 				if(StatTracking.getStat("pregnancy/briha daughters") > 0)
 					output2("\n<b>* Sired, Briha’s Daughters:</b> " + StatTracking.getStat("pregnancy/briha daughters"));
+				if(StatTracking.getStat("pregnancy/jumper horse sired") > 0)
+					output2("\n<b>* Sired, Bored Jumper (Gray) Children:</b> " + StatTracking.getStat("pregnancy/jumper horse sired"));	
+				if(StatTracking.getStat("pregnancy/jumper dog sired") > 0)
+					output2("\n<b>* Sired, Bored Jumper (White) Children:</b> " + StatTracking.getStat("pregnancy/jumper dog sired"));	
+				if(StatTracking.getStat("pregnancy/jumper cat sired") > 0)
+					output2("\n<b>* Sired, Bored Jumper (Creamy) Children:</b> " + StatTracking.getStat("pregnancy/jumper cat sired"));	
+				if(StatTracking.getStat("pregnancy/jumper terran sired") > 0)
+					output2("\n<b>* Sired, Bored Jumper (Brown) Children:</b> " + StatTracking.getStat("pregnancy/jumper terran sired"));	
 				if(StatTracking.getStat("pregnancy/ellie sired") > 0)
 					output2("\n<b>* Sired, Ellie’s Children:</b> " + StatTracking.getStat("pregnancy/ellie sired"));
 				if(StatTracking.getStat("pregnancy/frostwyrm eggs sired") > 0)
@@ -5579,6 +5604,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					else output2(" Met her");
 					if(flags["SYRI_SEEN_PCS_SHIP_CABIN"] != undefined) output2(", She’s seen your ship’s cabin");
 					if(flags["ANNOxSYRI_WINCEST"] != undefined) output2(", Sexed her with Anno")
+					if(flags["SYRI_MILOFUCK"] != undefined) output2(", Sexed Ziresh and her mother with Syri");
 					if(syriRecruited())
 					{
 						output2(", Crew member");
@@ -6797,6 +6823,9 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Kressia Manor and Federation War Room</u></b>");
 				output2("\n<b>* Sellera:</b> Met her");
+				if (flags["SELLERA_SERVICED"] != undefined) output2(", Serviced Her");
+				if (flags["SELLERA_GANGBANGED"] != undefined) output2(", Serviced Her Troops");
+				if (flags["SELLERA_SEXED"] != undefined) output2(", Sexed Her");
 				variousCount++;
 			}
 			// Anzhela
@@ -7192,7 +7221,18 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Bored Jumper, Times Encountered:</b> " + flags["BORED_JUMPER_JUMPED"]);
 					if(flags["BORED_JUMPER_CONSECUTIVE_LOSSES"] > 1) output2("\n<b>* Bored Jumper, Combat, Times You Consecutively Lost:</b> " + flags["BORED_JUMPER_CONSECUTIVE_LOSSES"]);
-					if(flags["JUMPER_DOCKED"] != undefined) output2("\n<b>* Bored Jumper, Times Docked By:</b> " + flags["JUMPER_DOCKED"]);
+					if (flags["JUMPER_DOCKED"] != undefined) output2("\n<b>* Bored Jumper, Times Docked By:</b> " + flags["JUMPER_DOCKED"]);
+					if (flags["BJUMPER_HORSE_TOTAL_KIDS"] != undefined) output2("\n<b>* Bored Jumper, Total Kids (gray):</b> " + flags["BJUMPER_HORSE_TOTAL_KIDS"]);
+					if (flags["BJUMPER_DOG_TOTAL_KIDS"] != undefined) output2("\n<b>* Bored Jumper, Total Kids (white):</b> " + flags["BJUMPER_DOG_TOTAL_KIDS"]);
+					if (flags["BJUMPER_CAT_TOTAL_KIDS"] != undefined) output2("\n<b>* Bored Jumper, Total Kids (creamy):</b> " + flags["BJUMPER_CAT_TOTAL_KIDS"]);
+					if (flags["BJUMPER_TERRAN_TOTAL_KIDS"] != undefined) output2("\n<b>* Bored Jumper, Total Kids (brown):</b> " + flags["BJUMPER_TERRAN_TOTAL_KIDS"]);
+					if (flags["BJUMPER_PREG_TIMER"] != undefined)
+					{
+						output2("\n<b>* Bored Jumper, Days Pregnant");
+						if (flags["BJUMPER_PREG_TYPE"] != undefined) output2(" (" + boredJumperFurColor(flags["BJUMPER_PREG_TYPE"]) + ")");
+						output2(":</b> " + flags["BJUMPER_PREG_TIMER"]);
+					}
+					
 				}
 				// Mining bot
 				if(flags["MINING_ROBOT_ENCOUNTERS"] != undefined) output2("\n<b>* Mining Robot, Times Encountered:</b> " + flags["MINING_ROBOT_ENCOUNTERS"]);
@@ -7437,10 +7477,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				// The DCL
 				output2("\n<b>* The L.D.C.:</b> Met him");
-				if(flags["LDC_FUCKED"] != undefined) output2(", Sexed him");
+				if (flags["LDC_FUCKED"] != undefined) output2(", Sexed him");
+				if (flags["LDC_TOTAL_KIDS"] != undefined) output2("\n<b>* The L.D.C., Total Kids:</b> " + flags["LDC_TOTAL_KIDS"]);
 				// Fight Bunny
 				output2("\n<b>* Shock Hopper:</b> Met her");
 				if(flags["SHOCK_HOPPER_FUCKED"] != undefined) output2(", Sexed her");
+				if (flags["SHOCKHOPPER_TOTAL_KIDS"] != undefined) output2("\n<b>* Shock Hopper, Total Kids:</b> " + flags["SHOCKHOPPER_TOTAL_KIDS"]);
 				// Slaves
 				if(flags["JUMPER_SLAVES_FREED"] != undefined) output2("\n<b>* Slaves:</b> " + (flags["JUMPER_SLAVES_FREED"] == 1 ? "Freed" : "Ignored"));
 				variousCount++;
@@ -8117,9 +8159,9 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["LUCAS_MINDWASH"] == -1) output2("\n<b>* Services, Broken Visor:</b> <i>Refused to Use</i>");
 				else if(flags["LUCAS_MINDWASH"] > 0) output2("\n<b>* Services, Times Used Broken Mindwash Visor:</b> " + flags["LUCAS_MINDWASH"]);
 				output2("\n<b>* Luca:</b> Met her");
-				if (flags["LUCA_SAFEWORD"] != undefined) output2(", Became her sub");
-				if (flags["LUCA_SUBMISSION_ACCEPTABLE"] != undefined) output2(", Would accept addiction");
-				if (flags["LUCA_SAFEWORD"] != undefined) output2("\n<b>* Luca, Your Submissiveness:</b> " + lucaSubmission() + "/100");
+				if(flags["LUCA_SAFEWORD"] != undefined) output2(", Became her sub");
+				if(flags["LUCA_SUBMISSION_ACCEPTABLE"] != undefined) output2(", Would accept addiction");
+				if(flags["LUCA_SAFEWORD"] != undefined) output2("\n<b>* Luca, Your Submissiveness:</b> " + lucaSubmission() + "/100");
 				variousCount++;
 			}
 			// Spunk Bunker

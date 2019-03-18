@@ -1156,7 +1156,8 @@ public function GlacialRiftS40():Boolean
 	{
 		var tt:String = "Since you have";
 		if (pc.hasJetpack()) tt += " a jetpack";
-		else tt += " wings";
+		else if(pc.hasWings()) tt += " wings";
+		else tt += " the ability to fly";
 		tt += ", you can bypass the rope and head down at your leisure.";
 		addButton(0, "Fly Down", GlacialRiftS40FlyDown, undefined, "Fly Down", tt);
 	}
@@ -1166,7 +1167,7 @@ public function GlacialRiftS40():Boolean
 public function GlacialRiftS40FlyDown():void
 {
 	clearOutput();
-	output("You take flight, smirking at the sad little groundlings that must have struggled down that precarious rope. Instead, you’re able to soar down the side of the glacial cliff, right down to where the rope ends at a gaping hole in the cliff-face. A cave! You swoop in and land, ready to see what’s in store.");
+	output("You " + (pc.hasJetpack() ? "blast off" : "take flight") + ", smirking at the sad little groundlings that must have struggled down that precarious rope. Instead, you’re able to " + (pc.hasJetpack() ? "hover" : "soar") + " down the side of the glacial cliff, right down to where the rope ends at a gaping hole in the cliff-face. A cave! You swoop in and land, ready to see what’s in store.");
 	currentLocation = "UVGR O42";
 	
 	clearMenu();
@@ -1183,7 +1184,8 @@ public function GlacialRiftQ40():Boolean
 	{
 		var tt:String = "Since you have";
 		if (pc.hasJetpack()) tt += " a jetpack";
-		else tt += " wings";
+		else if(pc.hasWings()) tt += " wings";
+		else tt += " the ability to fly";
 		tt += ", you can bypass the rope and head down at your leisure.";
 		
 		addButton(1, "Fly Down", GlacialRiftS40FlyDown, undefined, "Fly Down", tt);

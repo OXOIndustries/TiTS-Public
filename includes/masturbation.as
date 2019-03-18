@@ -651,7 +651,7 @@ public function masturbateMenu(roundTwo:Boolean = false):void
 	if (pc.hasStatusEffect("Denied By Luca"))
 	{
 		pc.setStatusValue("Denied By Luca",1,1);
-		output("<b>Masturbating now would go against " + (lucaSubmission() < 80 ? "Luca" : "your mistress") + "'s orders.</b>\n\n");
+		output("<b>Masturbating now would go against " + (lucaSubmission() < 80 ? "Luca" : "your mistress") + "’s orders.</b>\n\n");
 	}
 	
 	//Masturbation prevention
@@ -1875,7 +1875,7 @@ public function wutwutindabuttbuttFap():void
 		output("ou can feel [pc.eachVagina] wet and ready for something to pound");
 		if (pc.vaginas.length == 1) output(" it");
 		else output(" them");
-		output(". You idly give [pc.oneVagina] a tantilizing stroke,");
+		output(". You idly give [pc.oneVagina] a tantalizing stroke,");
 	}
 	else if (pc.hasCock() && pc.hasVagina())
 	{

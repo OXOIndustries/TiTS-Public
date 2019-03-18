@@ -71,6 +71,8 @@ public function zhengShiHangerFloorBonus():Boolean
 			addDisabledButton(1,"Spacewalk","Spacewalk","Stepping into space without protection is a one-way ticket to a real quick death. You aren’t feeling particularly suicidal today.");
 		}
 	}
+	if (boredJumperPregScene() > 0) return boredJumperPregHangerEncounter();
+	
 	return false;
 }
 

@@ -573,7 +573,7 @@ public function getExamanitedByVi():void
 public function removeDiseasesVI():void
 {
 	clearOutput();
-	showVKo();
+	showVi();
 	author("Fenoxo");
 	output("After a few moments of simulated concentration, the nursedroid speaks up, <i>“There! I’ve scanned your viral structure and uploaded a countermeasure to your microsurgeon immune system. You should be clear of the disease in a few moments.”</i>");
 	output("\n\n<i>“Do you require additional services?”</i>");

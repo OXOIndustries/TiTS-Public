@@ -494,9 +494,9 @@ public function approachDatUrtaKnockoff():void
 	if(pc.credits >= 3000)
 	{
 		if(pc.cockThatFits(1200) >= 0) addButton(0,"Fuck Cunt",cockSelect,[fuckThatExtendedUrtaReference,1200,false,0],"Fuck Cunt","Fuck her pussy.");
-		else addDisabledButton(0,"Fuck Cunt","Fuck Cunt","You're too big! You'd split her in half!");
+		else addDisabledButton(0,"Fuck Cunt","Fuck Cunt","You’re too big! You’d split her in half!");
 	}
-	else addDisabledButton(0,"Fuck Cunt","Fuck Cunt","You're too poor to ride this ride.");
+	else addDisabledButton(0,"Fuck Cunt","Fuck Cunt","You’re too poor to ride this ride.");
 	addButton(4,"Back",pickWallSlut);
 }
 
@@ -571,14 +571,15 @@ public function yesLetUrtaCum(x:int):void
 	if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output(" - exactly like hers did, thanks to your matching horse-like features");
 	else output(", though not quite exactly owing to the differing shapes");
 	output(", and you mount your climax just as you mounted this wall-bound cum-puddle of a fox.");
+	var cumQ:Number = pc.cumQ();
 	//Normie cum
-	if(pc.cumQ() < 500) 
+	if(cumQ < 500) 
 	{
 		output("\n\n[pc.CumNoun] sprays deep into Tura’s cunt, smacking into her cervix" + (pc.cocks[x].cLength() > 20 ? " just as your [pc.cockHead " + x + "] did a moment ago":"") + ". Her pussy feels like it jumps four or five degrees in an instant. The massaging, muscular rippling sucks it deeper, keeping your [pc.cumVisc] [pc.cumNoun] from drooling out " + (pc.hasKnot(x) ? "around your [pc.knot " + x + "]":"across your [pc.sheath " + x + "]") + ". Even well and truly fucked out, her body finds the energy to secure its spermy prize where it has the greatest potential for impregnation" + (pc.cumQuality() <= 0 ? ", even if you are shooting blanks":"") + ".");
 		output("\n\nYou groan in satisfaction as you come down from your climactic high, wallowing in the blissful caresses of the fox futa’s creampied cunny." + (pc.hasKnot(x) ? " Not like you could pull out right away with your [pc.knot " + x + "] lodged inside there, gaping Tura’s lips into a wide, satisfied ‘O’.":""));
 	}
 	//Big boi cummies
-	else if(pc.cumQ() < 10000)
+	else if(cumQ < 10000)
 	{
 		output("\n\n[pc.CumNoun] pours out of you in lances so thick and creamy that a single one would be sufficient to fully creampie your lover’s clutching cunt, but you’ve only just begun. Rope after extra-thick rope hoses down the vixen’s willing-but-obstinate cervix, slinging your impressive virility against the barrier of her cervix until you’re certain you’ve slung a few shot glasses worth of [pc.cumNoun] past the biological blockade." + (pc.hasKnot(x) ? " Your [pc.knot " + x + "] keeps any off-target sperm from sliding back out, and by the time your climax is on the wane, the interior of Tura’s pussy is practically pressured, forced to vent directly into her vacant womb.":" Without anything to seal your cummy but waning climax inside, Tura’s pussy drools streams of [pc.cumColor] white over your [pc.sheath " + x + "]. Your last few spurts produce especially messy flows. Wasted spunk sparkles in the air as it separates and falls to the floor in stringy webs."));
 	}
@@ -586,31 +587,30 @@ public function yesLetUrtaCum(x:int):void
 	else
 	{
 		output("\n\n[pc.CumNoun] hoses out of you in a stream so thick and potent that it saturates the available space in Tura’s channel in an instant. Her cervix buckles beneath your load, admitting a sordid spray of raw virility directly into her vulnerable womb. It drinks deeply of your climax as you pump her greater and greater volumes into the slut-fox’s elastic body. There’s no way she’s not ballooning up on the other side of the wall, rounding out in pure pregnant parody until she could pass for a woman ");
-		if(pc.cumQ() < 20000) output("several months into pregnancy");
-		else if(pc.cumQ() < 30000) output("near the end of her pregnancy");
-		else if(pc.cumQ() < 50000) output("about to birth twins");
-		else if(pc.cumQ() < 70000) output("ready to birth triplets");
-		else if(pc.cumQ() < 100000) output("about to birth quintuplets");
-		else if(pc.cumQ() < 125000) output("carrying around an unborn gravball team");
+		if(cumQ < 20000) output("several months into pregnancy");
+		else if(cumQ < 30000) output("near the end of her pregnancy");
+		else if(cumQ < 50000) output("about to birth twins");
+		else if(cumQ < 70000) output("ready to birth triplets");
+		else if(cumQ < 100000) output("about to birth quintuplets");
+		else if(cumQ < 125000) output("carrying around an unborn gravball team");
 		else output("carting around an inhuman amount of unborn offspring");
 		output(".");
 		//Knot bonus :3
-		if(pc.hasKnot(x)) output("\n\nStrings of high-pressure [pc.cumNoun] sometimes spurt out around the straining seal your knot provides, glazing Tura’s lips and your [pc.thighs] alike in the glittering proof of your ecstasy. If it wasn’t for that inflated bulb of " + (InCollection(pc.cocks[x].cType, [GLOBAL.TYPE_CANINE, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_WORG, GLOBAL.TYPE_DOGGIE]) ? "canine":"alien") + " flesh, a [pc.cumGem] waterfall would be spilling out onto the floor" + (pc.cumQ() >= 125000 ? " and doing its damnedest to flood the entire facility":" to produce a slick puddle") + ". So much pressure builds inside the vixen’s spunk-suffused form that it takes a bit of force to hold yourself steady, even with your [pc.knot " + x + "] hanging onto her distended cuntlips for dear life.");
+		if(pc.hasKnot(x)) output("\n\nStrings of high-pressure [pc.cumNoun] sometimes spurt out around the straining seal your knot provides, glazing Tura’s lips and your [pc.thighs] alike in the glittering proof of your ecstasy. If it wasn’t for that inflated bulb of " + (InCollection(pc.cocks[x].cType, [GLOBAL.TYPE_CANINE, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_WORG, GLOBAL.TYPE_DOGGIE]) ? "canine":"alien") + " flesh, a [pc.cumGem] waterfall would be spilling out onto the floor" + (cumQ >= 125000 ? " and doing its damnedest to flood the entire facility":" to produce a slick puddle") + ". So much pressure builds inside the vixen’s spunk-suffused form that it takes a bit of force to hold yourself steady, even with your [pc.knot " + x + "] hanging onto her distended cuntlips for dear life.");
 		//No knot boni
 		else output("\n\nTorrents of pressurized [pc.cumNoun] backspray out around your [pc.sheath " + x + "], glazing Tura’s sodden quim and your [pc.thighs] alike. The glittering proof of your ecstasy refuses to be contained by something as meager as an unaugmented vagina. Enough [pc.cumGem] fluid escapes to paint the fox - not just her thighs, ass, and spooge-sponge of a tail, but her entire unseen body - tits and all. If you had access to her, you’d be painting her [pc.cumColor] white instead of the wall and floor. Your release is so excessive that even as you wind down, condom-filling loads of sperm-infused juice continue to rain down in front of your [pc.footOrFeet].");
 		//The biggest boi cummies (bonus on bigger boi cummies)
-		if(pc.cumQ() > 200000) output("\n\nA pink klaxon goes off overhead when your load begins to flood the booth, and well-placed vents in the floor pop open to drain away the excess. Squeegee-bearing robots wheel out of housings in the wall to do battle with the slimy morass, their little motors in overdrive as they struggle to keep up with Tura’s overflowing cunt.");
+		if(cumQ > 200000) output("\n\nA pink klaxon goes off overhead when your load begins to flood the booth, and well-placed vents in the floor pop open to drain away the excess. Squeegee-bearing robots wheel out of housings in the wall to do battle with the slimy morass, their little motors in overdrive as they struggle to keep up with Tura’s overflowing cunt.");
 	}
 	//merge
 	output("\n\nYou pull out and wipe down with the provided cleaning towels" + (pc.isMischievous() ? ", giving the fox-slut a friendly swat on the ass to compliment her good work":"") + (!pc.isCrotchExposed() ? ", then tuck your tackle away":"") + ", ready to face the universe once more.");
 	processTime(25);
-	var cummies:Number = pc.cumQ();
 	pc.orgasm();
 	pc.createStatusEffect("FoxyDisable");
 	pc.setStatusMinutes("FoxyDisable",90);
 
 	clearMenu();
-	addButton(0,"Next",turaFinaleRouter,cummies);
+	addButton(0,"Next",turaFinaleRouter,cumQ);
 }
 
 //[N]
@@ -624,15 +624,16 @@ public function noCummiesForUrta(x:int):void
 	//Balls Deep
 	if(pc.cocks[x].cLength() <= 20) output("\n\nYour lip peels back in a too-pleased smile when you finally take the fox-whore [pc.knotBallsHilt " + x + "]-deep. There’s no point in worrying about where her balls are resting when you can grab her by the ankles and " + (pc.cocks[x].cLength() >= 15 ? "nudge your [pc.cockHead " + x + "] against the squishy ring of her cervix":"burrow your [pc.cockHead " + x + "] so deep that you feel like you’ll lose yourself inside her") + ". So what if those heavy, swollen orbs slide against the top of your [pc.cock " + x + "] on the backstroke? They’re just as soaked in oily fox-lube as the clutching cuntlips below. It’s another tantalizing taste of pleasure for you to savor while pounding away at the wall-bound fox.");
 	//Toobigforballs deep
-	else output("\n\nYou snarl in delight and displeasure when your [pc.cockHead " + x + "] nudges up against the squishy but solid ring of the fox-whore’s cervix. Your whole length throbs in protest as you push harder, bowing slightly but unable to dive any deeper, forcing you to draw back for a shorter stroke and denying you the ecstasy of diving [pc.knotBallsHilt " + x + "]-deep. You grab her ankles, pumping your hips back and forth twice as fast to make up for the lack of depth, but you knew what you were doing when you grew this monster. You know that you’d be too big for most girls - that part of you would be hanging out, exposed  to  the chill air. It’s almost a relief that her balls are weighty and soaked with oily fox-lube. They rest atop your pumping shaft, stroking against you with every dive into the wall-bound’s fox velvet box.");
+	else output("\n\nYou snarl in delight and displeasure when your [pc.cockHead " + x + "] nudges up against the squishy but solid ring of the fox-whore’s cervix. Your whole length throbs in protest as you push harder, bowing slightly but unable to dive any deeper, forcing you to draw back for a shorter stroke and denying you the ecstasy of diving [pc.knotBallsHilt " + x + "]-deep. You grab her ankles, pumping your hips back and forth twice as fast to make up for the lack of depth, but you knew what you were doing when you grew this monster. You know that you’d be too big for most girls - that part of you would be hanging out, exposed to the chill air. It’s almost a relief that her balls are weighty and soaked with oily fox-lube. They rest atop your pumping shaft, stroking against you with every dive into the wall-bound’s fox velvet box.");
 	//Merge
 	output("\n\nThe ring binding your furry toy’s horse-prick relaxes somewhat, but she doesn’t surge back to full stiffness. Her imprisoned shaft retains all of its size but none of the rigidity, the flare wobbling beneath its own spongy weight instead of reaching out with womb-stretching authority, leaking out a steady flow of crystalline herm-juice in absolute submission, orgasm long forgotten.");
-	output("\n\nTura’s cunt, meanwhile, gets better with every second that passes, warmer and tighter.  When it squeezes now, it isn’t from the panic of a blocked orgasm but from the desire to take as much of your cock as possible for as long as possible. The lust-fattened lips cling tight to your [pc.dickSkin " + x + "], stretching when you draw back in an attempt to hold your veiny flesh as long as possible. On the instroke, they squish between the rest of her puffy mound and the inflexible wall of your cock, bulging out in engorged delight.");
+	output("\n\nTura’s cunt, meanwhile, gets better with every second that passes, warmer and tighter. When it squeezes now, it isn’t from the panic of a blocked orgasm but from the desire to take as much of your cock as possible for as long as possible. The lust-fattened lips cling tight to your [pc.dickSkin " + x + "], stretching when you draw back in an attempt to hold your veiny flesh as long as possible. On the instroke, they squish between the rest of her puffy mound and the inflexible wall of your cock, bulging out in engorged delight.");
 	output("\n\nEvery " + (pc.cocks[x].cLength() <= 20 ? "hip-slapping":"cock-sheathing") + " pump carries with it the long, pronounced squelch of a pussy being properly used. Your cock throbs inside the velveteen folds, and you throw yourself into it, fucking fast and wild. Muscles burning, you rail her like a [pc.manWoman] possessed, feeling your [pc.cockNoun " + x + "] swell meaningfully, every inch fattened by lust and glittering with sensation. The best part about paying for a pussy to creampie is that you don’t have to worry about holding back. You can let loose whenever you choose.");
+	var cumQ:Number = pc.cumQ();
 	//Smol cummies
-	if(pc.cumQ() < 100) output("\n\nThe weight of your orgasm feels like it slams into your hips from behind, throwing your [pc.cockNoun " + x + "] as deeply " + (pc.cocks[x].cLength() > 20 ? "as it can go":"as the fox-girl’s limited anatomy will allow") + ". You spurt your load into her suckling, hungry cunt one rope at a time, your [pc.cockHead " + x + "] swelling along with every spermy spurt to seal it inside" + (pc.hasKnot(x) ? ", though your [pc.knot " + x + "] does a much better job of that. No matter how much or how little you dump into her, you’re confident it’ll lock those virile droplets exactly where they need to be":"") + ". Groaning as you come down, you stand there for a moment, savoring the rhythmic squeezing of the fox-woman’s well-fucked twat.");
+	if(cumQ < 100) output("\n\nThe weight of your orgasm feels like it slams into your hips from behind, throwing your [pc.cockNoun " + x + "] as deeply " + (pc.cocks[x].cLength() > 20 ? "as it can go":"as the fox-girl’s limited anatomy will allow") + ". You spurt your load into her suckling, hungry cunt one rope at a time, your [pc.cockHead " + x + "] swelling along with every spermy spurt to seal it inside" + (pc.hasKnot(x) ? ", though your [pc.knot " + x + "] does a much better job of that. No matter how much or how little you dump into her, you’re confident it’ll lock those virile droplets exactly where they need to be":"") + ". Groaning as you come down, you stand there for a moment, savoring the rhythmic squeezing of the fox-woman’s well-fucked twat.");
 	//Med cummies
-	else if(pc.cumQ() < 5000) output("\n\nOrgasm grabs hold of your hips and piledrives back and forth one last time, scissoring you home just in time for the first lance of boiling lust to erupt with womb-basting force. You blast stream after stream of creamy delight into Tura’s cunt, mixing your virile goo into her pussy’s puddled slickness it feels like one continuous, syrupy morass." + (pc.hasKnot(x) ? " If it wasn’t for your [pc.knot " + x + "], you know that some would be sloughing out with each passionate deposit, but your inhuman anatomy keeps your sperm locked in nice and tight.":" With each passionate deposit, a little leaks out, sliding down the crack of Tura’s ass and into her thick, spongy fur. The longer the creampie continues, the more sodden the fox’s thick gray brush becomes.") + " You grunt as you come down, spending a moment to savor the thankful, rhythmic squeezes the fox-woman’s well-fucked twat favors you with.");
+	else if(cumQ < 5000) output("\n\nOrgasm grabs hold of your hips and piledrives back and forth one last time, scissoring you home just in time for the first lance of boiling lust to erupt with womb-basting force. You blast stream after stream of creamy delight into Tura’s cunt, mixing your virile goo into her pussy’s puddled slickness it feels like one continuous, syrupy morass." + (pc.hasKnot(x) ? " If it wasn’t for your [pc.knot " + x + "], you know that some would be sloughing out with each passionate deposit, but your inhuman anatomy keeps your sperm locked in nice and tight.":" With each passionate deposit, a little leaks out, sliding down the crack of Tura’s ass and into her thick, spongy fur. The longer the creampie continues, the more sodden the fox’s thick gray brush becomes.") + " You grunt as you come down, spending a moment to savor the thankful, rhythmic squeezes the fox-woman’s well-fucked twat favors you with.");
 	//Big Boi cummies
 	else 
 	{
@@ -641,18 +642,17 @@ public function noCummiesForUrta(x:int):void
 		else if(pc.balls == 1) output("ball");
 		else output("crotch");
 		output(" and explodes up your spine before you have time for another thought. The boiling, white-hot bliss of climax surges through your length with torrential force, bursting out a second later in the form of a tide of womb-drenching [pc.cumNoun]. You can feel it surge and whirl around your [pc.cock " + x + "], mixing with the copious cunt-juice into a potent sexual slurry, and that’s only from your first spurt. Ever great amounts of virile goo hose down the fox-woman’s well-fucked twat, rounding the bit of her abdomen out slightly, but you’re far from done.");
-		output("\n\nYou cum like the true breeder you’ve become, not just drenching Tura’s passage but stuffing it full and then some." + (!pc.hasKnot(x) ? " Thick rivers of your excess pour out around your girth to slide down the crack of her ass and soak into the fibers of her furry tail, but the greatest portions remain inside.":" Not a single dribble escapes. Your [pc.knot " + x + "] seals her cunt tightly, trapping the fullness of your steaming hot load inside, where it belongs.") + " Your sure that on the other side of the wall, her belly is inflating, rounding out in an obscene parody of the fecundity " + (pc.cumQuality() <= 0 ? "she’s liable to experience all too soon":"she’d soon experience, were you virile") + ". Spraying your last deposits, you smile and savor the caresses of her squeezing quim, muted by the pussy-inflating layer of seed between.");
+		output("\n\nYou cum like the true breeder you’ve become, not just drenching Tura’s passage but stuffing it full and then some." + (!pc.hasKnot(x) ? " Thick rivers of your excess pour out around your girth to slide down the crack of her ass and soak into the fibers of her furry tail, but the greatest portions remain inside.":" Not a single dribble escapes. Your [pc.knot " + x + "] seals her cunt tightly, trapping the fullness of your steaming hot load inside, where it belongs.") + " Your sure that on the other side of the wall, her belly is inflating, rounding out in an obscene parody of the fecundity " + (pc.cumQuality() <= 0 ? "she’d soon experience, were you virile":"she’s liable to experience all too soon") + ". Spraying your last deposits, you smile and savor the caresses of her squeezing quim, muted by the pussy-inflating layer of seed between.");
 	}
 	//Merge
 	output("\n\nYou pull out and wipe down with the provided cleaning towels" + (pc.isMischievous() ? ", giving the fox-slut a friendly swat on the ass to compliment her good work":"") + (!pc.isCrotchExposed() ? ", then tuck your tackle away":"") + ", ready to face the universe once more.");
 	processTime(25);
-	var cummies:Number = pc.cumQ();
 	pc.orgasm();
 	pc.createStatusEffect("FoxyDisable");
 	pc.setStatusMinutes("FoxyDisable",90);
 
 	clearMenu();
-	addButton(0,"Next",turaFinaleRouter,cummies);
+	addButton(0,"Next",turaFinaleRouter,cumQ);
 }
 
 public function turaFinaleRouter(cummies:int):void

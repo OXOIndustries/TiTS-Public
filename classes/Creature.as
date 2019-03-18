@@ -1979,6 +1979,11 @@
 				case "weaponRanged":
 					buffer = rangedWeapon.longName;
 					break;
+				case "rangedNoun":
+				case "gunNoun":
+				case "bowNoun":
+					buffer = getRangedNoun();
+					break;
 				case "mainWeapon":
 				case "weaponMain":
 				case "weaponStat":
@@ -2582,6 +2587,12 @@
 				case "ballNounSimple":
 					buffer = ballsNounSimple(true);
 					break;
+				case "ballsNounIsAre":
+					buffer = ballNoun(true) + " " + (balls == 1 ? "is" : "are");
+					break;
+				case "ballsNounSimpleIsAre":
+					buffer = ballsNounSimple() + " " + (balls == 1 ? "is" : "are");
+					break;
 				case "ball":
 					buffer = ballsDescript();
 					break;
@@ -2749,9 +2760,10 @@
 					break;	
 				case "vagOrAss":
 				case "vagOrAsshole":
+				case "vaginaOrAss":
+				case "vaginaOrAsshole":
 				case "pussyOrAss":
 				case "pussyOrAsshole":
-				case "pussyOrAss":
 					buffer = vagOrAss(arg2);
 					break;
 				case "vagOrAssNoun":
@@ -3437,6 +3449,32 @@
 			if(!(rangedWeapon is EmptySlot) && !(rangedWeapon is Rock) && ((meleeWeapon is EmptySlot) || (meleeWeapon is Rock))) return rangedWeapon.longName;
 			if(!(meleeWeapon is EmptySlot) && !(meleeWeapon is Rock) && ((rangedWeapon is EmptySlot) || (rangedWeapon is Rock))) return meleeWeapon.longName;
 			return getWeaponName(true);
+		}
+
+		public function getRangedNoun():String
+		{
+			if(!(rangedWeapon is EmptySlot))
+			{
+				if (rangedWeapon is Rock) return "rock"
+				if(rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON)) return "bow";
+				var nouns:Array = ["gun"];
+				if(rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_RIFLE_WEAPON)) nouns.push("rifle");
+				if(rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_PISTOL_WEAPON)) nouns.push("pistol");
+				if(rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_SHOTGUN_WEAPON)) nouns.push("shotgun");
+				if(rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_THROWER_WEAPON)) nouns.push("thrower");
+				if(rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_LAUNCHER_WEAPON)) nouns.push("launcher");
+				
+				//Basically checks if the last word in a weapons name is a number and if it isn't, adds that to the list of possible outputs.
+				//Makes for a far nicer pool, and covers some more details than just "rifle" and the like.
+				//Doesn't work with things like MK.IV, but the current ranged weapon convention has that at the front of the long range
+				
+				var gName:Array = rangedWeapon.longName.split(" ");
+				var nameDesc:String = gName[gName.length - 1];
+				if (isNaN(Number(nameDesc))) nouns.push(nameDesc);				
+
+				return RandomInCollection(nouns);
+			}
+			return "fists";
 		}
 		
 		public function weaponActionReady(present:Boolean = false, weapon:String = "", full:Boolean = true):String
@@ -12424,6 +12462,11 @@
 					case "vulpine":
 					case "kitsune":
 						sRaceShort = mf("fox", "vixen");
+						break;
+					case "lapine":
+					case "laquine":
+						if(rand(2) == 0) sRaceShort = "bunny";
+						else sRaceShort = "bun";
 						break;
 					case "lupine":
 						sRaceShort = "wolf";

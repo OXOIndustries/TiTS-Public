@@ -3830,15 +3830,103 @@ public function drBadgerSiliconeTankGoCrazyImplantasticPerk():void
 	// Any expansion applied to mentioned areas will be immediately converted to silicone.
 	// And yes, this means that the player has to come back here to reduce asset size.
 	// Edit: Changed to daily instead of immediately to not go crazy with the size checks.
-	output("\n\n(<b>Perk Gained: Implant-tastic</b> - Your boobs, butt, ass, and hips will always be filled with silicone." + (pc.canLactate() ? " And thanks to the properties of bio-silicone, you can still lactate!" : "") + ")");
+	output("\n\n(<b>Perk Gained: Implant-tastic</b> - Your boobs, butt, hips, and lips will always be filled with silicone." + (pc.canLactate() ? " And thanks to the properties of bio-silicone, you can still lactate!" : "") + ")");
 	pc.createPerk("Implant-tastic", 0, 0, 0, 0, "Your body will convert most of the mass in your breasts, butt cheeks, hips and lips into silicone.");
 	
 	nymFoeMaxInjection(siliconeMaxHips(), siliconeMaxButt(), siliconeMaxBoob(), siliconeMaxLips());
+	implantasticSiliconeConversion(pc);
 	flags["BADGER_SILICONE_TANK_USES"]++;
 	
 	IncrementFlag("BADGER_SILICONE_GO_CRAZY");
 	
 	drBadgerSiliconeTankMenu();
+}
+public function implantasticSiliconeConversion(target:Creature):String
+{
+	var msg:String = "";
+	
+	// v1: hips
+	// v2: butt
+	// v3: tits
+	// v4: lips
+	target.createStatusEffect("Nym-Foe Injections");
+	
+	var implants:StorageClass = target.getStatusEffect("Nym-Foe Injections");
+	if(implants != null)
+	{
+		var oldLips:Number = target.lipMod;
+		var lipsSilicone:Number = (target.lipMod - target.lipModMin());
+		if((lipsSilicone + target.lipModMin()) > oldLips) {
+			if(target is PlayerCharacter)
+			{
+				if(msg != "") msg += "\n\n";
+				msg += "You feel a tingle in your [pc.lips] as they purse with a plastic stiffness.";
+			}
+			
+			implants.value4 = lipsSilicone;
+			target.lipMod = (implants.value4 + target.lipModMin());
+			
+			if(target is PlayerCharacter) msg += " <b>The extra plump of your lips has been converted into silicone!</b>";
+		}
+		
+		var boobRating:Number = 0;
+		var boobSilicone:Number = 0;
+		var i:int = 0;
+		for(i = 0; i < target.breastRows.length; i++)
+		{
+			boobRating += (target.breastRows[i].breastRatingRaw - target.breastRatingRawMin(i));
+			boobSilicone += (target.breastRows[i].breastRatingMod - target.breastRatingModMin(i));
+		}
+		var titsGrowth:Number = (boobRating / target.breastRows.length);
+		if(titsGrowth > 0) {
+			if(target is PlayerCharacter)
+			{
+				if(msg != "") msg += "\n\n";
+				msg += "Your [pc.breasts] give less sag when small pulses thrum within them, soon followed by a slight stretching sensation.";
+			}
+			
+			implants.value3 = ((boobSilicone / target.breastRows.length) + titsGrowth);
+			for(i = 0; i < target.breastRows.length; i++)
+			{
+				target.breastRows[i].breastRatingRaw = target.breastRatingRawMin(i);
+				target.breastRows[i].breastRatingMod = (implants.value3 + target.breastRatingModMin(i));
+			}
+			
+			if(target is PlayerCharacter) msg += " <b>The growing mass of your tits has been converted into silicone!</b>";
+		}
+		
+		var hipsGrowth:Number = (target.hipRatingRaw - target.hipRatingRawMin());
+		if(hipsGrowth > 0) {
+			if(target is PlayerCharacter)
+			{
+				if(msg != "") msg += "\n\n";
+				msg += "Following a sturdy strut, the sides of your [pc.hips] do not change in appearance, but it certainly <i>feels</i> like they are wider.";
+			}
+			
+			implants.value1 = ((target.hipRatingMod - target.hipRatingModMin()) + hipsGrowth);
+			target.hipRatingRaw = target.hipRatingRawMin();
+			target.hipRatingMod = (implants.value1 - target.hipRatingModMin());
+			
+			if(target is PlayerCharacter) msg += " <b>Your growth in hip size has converted into silicone!</b>";
+		}
+		
+		var buttGrowth:Number = (target.buttRatingRaw - target.buttRatingRawMin());
+		if(buttGrowth > 0) {
+			if(target is PlayerCharacter)
+			{
+				if(msg != "") msg += "\n\n";
+				msg += "There is more bounce from your bottom as your [pc.butts] tighten to the point where you feel like you are smuggling basketballs back there.";
+			}
+			
+			implants.value2 = ((target.buttRatingMod - target.buttRatingModMin()) + buttGrowth);
+			target.buttRatingRaw = target.buttRatingRawMin();
+			target.buttRatingMod = (implants.value2 + target.buttRatingModMin());
+			
+			if(target is PlayerCharacter) msg += " <b>Your extra butt mass has converted into silicone!</b>";
+		}
+	}
+	
+	return msg;
 }
 
 /*
