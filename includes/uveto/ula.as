@@ -206,6 +206,11 @@ public function ulaRoomBonusFunc():Boolean
 		startWargiiQuestOnEnterUlaRoom();
 		return true;
 	}
+	if(flags["WARGII_FIGHTS_RAN"] == undefined && flags["WARGII_NORAN_REWARD"] == undefined && ulaChief()) 
+	{
+		neverRanBonusUlaGift();
+		return true;
+	}
 	//20% chance and Ula has kids older than 7 days
 	if(rand(5) == 0 && (flags["ULA_BIRTH_TIMER"] > 7 || flags["ULA_TOTAL_KIDS"] > 4))
 	{

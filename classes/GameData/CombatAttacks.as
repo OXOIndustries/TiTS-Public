@@ -711,7 +711,7 @@ package classes.GameData
 			{
 				return false;
 			}
-			if(target.hasStatusEffect("Flying") && !target.isImmobilized() && !attacker.hasPerk("Lunge"))
+			if(target.hasStatusEffect("Flying") && !target.isImmobilized() && (!attacker.hasPerk("Lunge") && !attacker.canFly()))
 			{
 				output(StringUtil.capitalize(possessive(attacker.getCombatName()), false) + " can’t reach " + target.getCombatName() + "! " + (!target.isPlural ? (target.mfn("He","She","It") + " is") : "They are") + " too high!");
 				return false;

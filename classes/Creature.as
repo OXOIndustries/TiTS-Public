@@ -4739,6 +4739,7 @@
 		public function HPMax(): Number {
 			var bonus:int = 0;
 			bonus = fortification();
+			if(accessory is SignetOfBravery) bonus += 25;
 			var hitPoints: Number = 15 + (level - 1) * 15 + HPMod + bonus;
 			if (characterClass == GLOBAL.CLASS_MERCENARY)
 				hitPoints += level * 5;
@@ -4870,7 +4871,7 @@
 			if (hasStatusEffect("Psychic Leech")) currPhys *= 0.85;
 			if (hasStatusEffect("Full Stomach")) currPhys *= 0.9;
 			if (hasStatusEffect("Pumped!")) currPhys *= 1.15;
-
+			if (accessory is SignetOfBravery) currPhys += 5;
 
 			if (currPhys > physiqueMax()) 
 			{
@@ -4961,6 +4962,8 @@
 			if (hasStatusEffect("Staggered")) currAim *= 0.8;
 			if (hasStatusEffect("Pitch Black")) currAim *= 0.66;
 			if (hasStatusEffect("Pumped!")) currAim *= 1.15;
+
+			if (accessory is SignetOfBravery) currAim += 5;
 			
 			if (currAim > aimMax())
 			{
@@ -5268,6 +5271,7 @@
 			if(!raw) {
 				if(hasStatusEffect("Quivering Quasar")) bonuses += 5;
 			}
+			if (accessory is SignetOfBravery) bonuses += 5;
 			return ((level * 5) + bonuses);
 		}
 		public function reflexesMax(raw:Boolean = false): Number {
@@ -5286,6 +5290,7 @@
 		public function aimMax(raw:Boolean = false): Number {
 			var bonuses:int = 0;
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
+			if (accessory is SignetOfBravery) bonuses += 5;
 			if(!raw) {
 				// Nothing yet!
 			}

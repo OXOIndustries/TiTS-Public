@@ -21,7 +21,15 @@ import classes.Items.Recovery.PyriteIssuedStim;
 //flags["WARGII_TUUVA_SAVED"]
 //flags["WARGII_HEIDRUN_SAVED"] 
 //flags["WARGII_LUND_SAVED"]
+//flags["WARGII_MAJA_SAVED"]
 //		1 = saved character
+
+//flags["WARGII_FIGHTS_RAN"] = #  of fights ran from.
+//flags["WARGII_FIGHTS_WON"] = pretty fuckin obvious
+
+//flags["WARGII_NORAN_REWARD"]
+//		1 = Got the prize ring for not running.
+
 
 public function wargiiEncounterStuff():Boolean
 {

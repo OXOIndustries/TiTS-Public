@@ -386,5 +386,6 @@ public function neverRanBonusUlaGift():void
 	//Signet of Bravery - ring of solid diamond shrouded in a twisting, silver spear. +5 physique/aim and +25 HP but disables flee.
 	output("Ula pops up at the sight of you, ears twitching nervously. <i>“" + (!korgiTranslate() ? "[pc.name]! Am knowing we giving many thanks already, but stories still told about how you never run from fight.":"[pc.name]! I know we gave you many thanks already, but with all the stories about how you never even ran from a fight...") + "”</i> She smiles proudly, producing a small box. <i>“" + (!korgiTranslate() ? "Thought deserved extra for good alien-being. Great, even!":"We thought you deserved more for being such a great alien.") + "”</i> The canine Chieftain hands you the box. <i>“" + (!korgiTranslate() ? "Wear when want feel brave. Good gem. Got from deepest mine where rocks more potent.":"Wear this when you need to be that brave again. The stone is a good one, mined from the hold's deepest depths, where the gems are most potent.") + "”</i>");
 	output("\n\nYou’re not sure what to make of that last bit, but you thank newly-minted Chieftain for the ring nonetheless" + (pc.isBimbo() ? " with a sloppy kiss":"") + ".\n\n");
-	quickLoot(9999);
+	flags["WARGII_NORAN_REWARD"] = 1;
+	quickLoot(new SignetOfBravery);
 }
