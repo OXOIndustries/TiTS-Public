@@ -44,6 +44,7 @@
 			baseDamage = new TypeCollection();
 			baseDamage.corrosive.damageValue = 8;
 			//baseDamage.addFlag(DamageFlag.BULLET);
+			this.addFlag(GLOBAL.ITEM_FLAG_PISTOL_WEAPON);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;

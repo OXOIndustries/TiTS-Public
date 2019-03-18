@@ -48,6 +48,7 @@ package classes.Items.Guns
 			baseDamage = new TypeCollection();
 			baseDamage.kinetic.damageValue = 11;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
+			this.addFlag(GLOBAL.ITEM_FLAG_PISTOL_WEAPON);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;
