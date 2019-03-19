@@ -757,13 +757,8 @@ public function boredJumperPregEncounterSteelePreg():Boolean
 		
 		output("\n\nBefore you say anything else, she hops up and kisses you right on the lips, pulling you into her sweaty arms while tonguing over your teeth. Her sweltering embrace and her aggressive, affectionate assault cause you to melt into her. All you manage while reciprocating her oral initiation is a moan. <i>“Love how you taste,”</i> she smooches you on the nose, nuzzling into your neck. <i>“God! You look so cute! I think I'm starting to hate you not being around more often.”</i>");
 		
-<<<<<<< HEAD
-		if (pc.isBimbo()) output("\n\nAww! You feel the same way too, and you let her know how much you've been thinking about her with a little touch to the [enemy.cockNoun] bulging between her thighs.");
-		else if (pc.isBro()) output("\n\nAll you do is smirk, gripping her bulgy [enemy.cockNoun].");
-=======
 		if (pc.isBimbo()) output("\n\nAww! You feel the same way too, and you let her know how much you've been thinking about her with a little touch to the [enemy.cockNoun 0] bulging between her thighs.");
 		else if (pc.isBro()) output("\n\nAll you do is smirk, gripping her bulgy [enemy.cockNoun 0].");
->>>>>>> ea1e0dcc5b4c45fd3f6be48da863e7fcd652b289
 		else if (pc.isNice()) output("\n\n<i>“You could see me more if you'd leave this place behind,”</i> you say, stroking her fluff-ball tail.");
 		else if (pc.isMischievous()) output("\n\n<i>“I think I'm starting to hate not having this ass in my hand wherever I go.”</i> You slap the laquine's tush, droplets of moisture flying off from impact.");
 		else output("\n\nYou grip the rabbit-woman by her ear and nibble at her neck. <i>“Could just put a leash on you, then maybe your boss wouldn't care you're gone.”</i>");
@@ -1759,10 +1754,7 @@ public function boredJumperPregEncounterGoWithRestSpooningNext(arg:Array):void
 	showPregBoredJumper(true, true,jumperType);
 	var sceneNum:int = boredJumperPregScene(jumperType);
 	var kok2:int = pc.biggestCockIndex2();
-<<<<<<< HEAD
-=======
 	if (kok2 < 0) kok2 = 0;
->>>>>>> ea1e0dcc5b4c45fd3f6be48da863e7fcd652b289
 	
 	output("Falling to your side, you grip the laquine's latex-girded thigh and lift it into the air, making it clear how you'll have her.<i>“");
 	if (pc.isBimbo()) output(" Can't hurt the kids now! How 'bout you turn over and lean into me, hunny bunny?");
@@ -1789,11 +1781,7 @@ public function boredJumperPregEncounterGoWithRestSpooningNext(arg:Array):void
 	pc.cockChange();
 	
 	output("\n\nWithdrawing feels so good you forget to finish the movement. The rubbery pressure on your [pc.cocksLight] is incredible, and you can tell your aggressive lover is keen on making you work for everything you want out of her. It takes a hard yank and a bite to her neck to part her legs, revealing the shining black lips of her soggy horse-cunt. The Jumper's tender black ridges shine with feminine excitement, and you can't help but dive a [pc.hand] between her copious ass-cheeks and into that sinful tunnel.");
-<<<<<<< HEAD
-	output("\n\nPanting, the rabbit strokes her [enemy.cock], looking over her shoulder with a lustfully vacant expression. A broad smile builds on her euphoric features. <i>“Pleeease, no teasing! I… that's… that's a crime!”</i> Is it now? <i>“Nooo, I can't take it!”</i> The begging slut's hips are shuddering hard against your [pc.thighs], and then she volcanos. <i>“Hieekk!”</i> she rasps, a powerful male climax straining her rent urethra. Hermaphroditic orgasm interrupts your train of thought. Against your shaft");
-=======
 	output("\n\nPanting, the rabbit strokes her [enemy.cock 0], looking over her shoulder with a lustfully vacant expression. A broad smile builds on her euphoric features. <i>“Pleeease, no teasing! I… that's… that's a crime!”</i> Is it now? <i>“Nooo, I can't take it!”</i> The begging slut's hips are shuddering hard against your [pc.thighs], and then she volcanos. <i>“Hieekk!”</i> she rasps, a powerful male climax straining her rent urethra. Hermaphroditic orgasm interrupts your train of thought. Against your shaft");
->>>>>>> ea1e0dcc5b4c45fd3f6be48da863e7fcd652b289
 	if (pc.cockTotal() > 1) output("s");
 	output(" you feel her rhythmically contracting balls urging out a desperate load, taking her IQ with it.");
 	output("\n\n<i>“Stop,”</i> you command, taking both melting ears in hand, shushing the moaning bun. Her plush, puffy lips part even further, vulva on the verge of inhaling your rod from the wrong side. Supple laquine testes sag, no longer stocked by pent-up seed. <i>“Relax,”</i> you tell her, <i>“...and get ready.”</i>");
@@ -1808,17 +1796,6 @@ public function boredJumperPregEncounterGoWithRestSpooningNext(arg:Array):void
 	}
 	if (pc.cockTotal() > 1) output("\n\nYou can't tell if she's ready for what comes next either. You slide your next biggest cock up to her winking asshole, hidden in the depths of her wide bubbly bunny butt, and buck inside. Thanks to the workout from before, your lubed [pc.cockNoun " + kok2 + "] doesn't just slip in, it's engulfed. [pc.EachCock] are soon pulsing communicatively in the pirate's holes, signalling to her intensely grateful nerves how fucked she's going to be, and how packed she's going to become.");
 	
-<<<<<<< HEAD
-	if (pc.cocks[kok].hasFlag(GLOBAL.TYPE_SIREN) || pc.cocks[kok].hasFlag(GLOBAL.TYPE_ANEMONE))
-	{
-		if (pc.cocks[kok2].hasFlag(GLOBAL.TYPE_SIREN) || pc.cocks[kok2].hasFlag(GLOBAL.TYPE_ANEMONE)) output("\n\nYour alien biology has a plan of its own. The stingers on your dual-slotted [pc.cocksLight] lash out at every corner of the Jumper's pussy- and ass-flesh they can reach, dumping copious amounts of lust-venom into her most sensitive areas. Like an overtuned vibrator she waggles against you, spasming in a pool of sweat, her voice breaking apart into a million pieces.");
-		else output("\n\nYour alien biology has a plan of its own. The stingers on your slotted [pc.cock " + kok + "] lash out at every corner of the Jumper's pussy-flesh they can reach, dumping copious amounts of lust-venom into her most sensitive areas. Like an overtuned vibrator she waggles against you, spasming in a pool of sweat, her voice breaking apart into a million pieces.");
-	}
-	else if (pc.cocks[kok2].hasFlag(GLOBAL.TYPE_SIREN) || pc.cocks[kok2].hasFlag(GLOBAL.TYPE_ANEMONE)) output("\n\nYour alien biology has a plan of its own. The stingers on your slotted [pc.cock " + kok2 + "] lash out at every corner of the Jumper's ass-flesh they can reach, dumping copious amounts of lust-venom into her most sensitive areas. Like an overtuned vibrator she waggles against you, spasming in a pool of sweat, her voice breaking apart into a million pieces.");
-	
-	
-	output("\n\n<i>“Yesss… Yes!”</i> she stirs from her stupor, [enemy.cockNoun] still hard, still dribbling. Her laughs return, and so does her lagomorphic libido.<i>“");
-=======
 	if (pc.cockTotal() > 1)
 	{
 		if (pc.cocks[kok].hasFlag(GLOBAL.TYPE_SIREN) || pc.cocks[kok].hasFlag(GLOBAL.TYPE_ANEMONE))
@@ -1831,7 +1808,7 @@ public function boredJumperPregEncounterGoWithRestSpooningNext(arg:Array):void
 	else if (pc.cocks[kok].hasFlag(GLOBAL.TYPE_SIREN) || pc.cocks[kok].hasFlag(GLOBAL.TYPE_ANEMONE)) output("\n\nYour alien biology has a plan of its own. The stingers on your slotted [pc.cock " + kok + "] lash out at every corner of the Jumper's pussy-flesh they can reach, dumping copious amounts of lust-venom into her most sensitive areas. Like an overtuned vibrator she waggles against you, spasming in a pool of sweat, her voice breaking apart into a million pieces.");
 	
 	output("\n\n<i>“Yesss… Yes!”</i> she stirs from her stupor, [enemy.cockNoun 0] still hard, still dribbling. Her laughs return, and so does her lagomorphic libido.<i>“");
->>>>>>> ea1e0dcc5b4c45fd3f6be48da863e7fcd652b289
+
 	if (boredJumperKnowsSteelesName(jumperType)) output(" [pc.name],");	
 	output(" I… I can't describe what I'm feeling!”</i> She looks to you, drooling and heaving with a glimmer in her eyes. <i>“Can you go slow at first? Let's just…”</i>");
 	
@@ -1840,11 +1817,9 @@ public function boredJumperPregEncounterGoWithRestSpooningNext(arg:Array):void
 	if (pc.cockTotal() > 1) output(" both cockheads are inside her holes");
 	else output(" your cockhead is inside her hole");	
 	output(", and thrust forward faster, but in a divinely smooth motion. <i>“Ahh… So warm…”</i> Once again. Juices squelch in your tender pumps. The fatuous futa-bunny's neck strains to pepper your face with kisses - you do the same. Numbness overtakes your entire body until the only thing you feel is the rhythmic penetration of horse-cunt.");
-<<<<<<< HEAD
-	output("\n\nSighing in equal parts arousal and relief, pre drools out in nearly orgasmic volumes, producing a euphoric buzz that twists and turns down your spine. There's absolutely no doubt she feels the same, gingerly tending to her [enemy.cockNoun] and well-drained tits. Furry fingers dig into the space between your [pc.cockNoun " + kok + "] and her pussy, impaling herself so that she can add to the girlish pleasure");
-=======
+
 	output("\n\nSighing in equal parts arousal and relief, pre drools out in nearly orgasmic volumes, producing a euphoric buzz that twists and turns down your spine. There's absolutely no doubt she feels the same, gingerly tending to her [enemy.cockNoun 0] and well-drained tits. Furry fingers dig into the space between your [pc.cockNoun " + kok + "] and her pussy, impaling herself so that she can add to the girlish pleasure");
->>>>>>> ea1e0dcc5b4c45fd3f6be48da863e7fcd652b289
+
 	if (pc.hasKnot(kok)) output(", while stealing gropes at your knot");
 	else if (pc.hasSheath(kok)) output(", while stealing gropes at your sheath");	
 	output(". <i>“When you cum, I want you to do it hard, don't hold back for my sake, okay?”</i>");
