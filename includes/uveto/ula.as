@@ -235,7 +235,8 @@ public function ulaRoomBonusFunc():Boolean
 	}
 	else if(pc.hasStatusEffect("Afraid of Ula Pussy"))
 	{
-		move(rooms[currentLocation].northExit);
+		if(ulaChief()) move(rooms[currentLocation].southExit);
+		else move(rooms[currentLocation].northExit);
 		output("\n\n<b>You’d best wait a bit for the pheromones to thin.</b>");
 	}
 	//Ula breast-feeding blurb
@@ -1956,7 +1957,8 @@ public function ulaBirthHook():void
 	else output("The babies are coming! Get the medicine korg!");
 	output("</b>”</i>");
 	output("\n\nRight! You rush out of the room to seek the services of the tribe’s healer. She’s easy to locate, once you make the situation clear to the nearest native, and a short time later, you find yourself standing in the hall, forced to listen to Ula giving birth through the door. Judging from the sounds you’re hearing, it isn’t as painful as a typical a typical terran birth. In fact, the whole process takes less than thirty minutes according to your Codex’s chronometer.");
-	currentLocation = rooms[currentLocation].northExit;
+	if(ulaChief()) currentLocation = rooms[currentLocation].southExit;
+	else currentLocation = rooms[currentLocation].northExit;
 	generateMap();
 	//First time:
 	if(flags["ULA_TOTAL_KIDS"] == undefined) 
@@ -2086,7 +2088,8 @@ public function pullAwayFromPregUlaCunt():void
 	processTime(5);
 	pc.lust(20);
 	clearMenu();
-	addButton(0,"Next",move,rooms[currentLocation].northExit);
+	if(!ulaChief()) addButton(0,"Next",move,rooms[currentLocation].northExit);
+	else addButton(0,"Next",move,rooms[currentLocation].southExit);
 	//prevent ula room entering for 60m
 	pc.createStatusEffect("Afraid of Ula Pussy");
 	pc.setStatusMinutes("Afraid of Ula Pussy",60);
