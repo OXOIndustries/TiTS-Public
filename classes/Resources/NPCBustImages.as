@@ -26,6 +26,7 @@
 		public static var CHESHIRE:Object = new CheshireBusts();
 		public static var CROSSMAN:Object = new CrossmanBusts();
 		public static var CYANCAPSULE:Object = new CyanCapsuleBusts();
+		public static var DCLZEXON:Object = new DCLZexonBusts();
 		public static var DAMNIT:Object = new DamnitBusts();
 		public static var DOCBADGER:Object = new DocBadgerBusts();
 		public static var DOXY:Object = new DoxyBusts();

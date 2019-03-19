@@ -219,7 +219,7 @@ public function syriFreezerTalkCuntSleeve():void
 // Ziresh busts and stuff go here
 public function syriZireshBusts(nude:Boolean = false):void
 {
-	showSyri(nude);
+	showBust(syriBustDisplay(nude),"ZIRESH");
 	showName("SYRI &\nMILODANS");
 	author("Wsan");
 }

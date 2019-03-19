@@ -651,7 +651,7 @@ public function bsFemaleFeelbadWargiiBadEnd3():void
 public function maleBreederWargiiBadEnd2():void
 {
 	clearOutput();
-	showBust("ALVELLA_NUDE","MILODANMALE",tuuvaBustString(true));
+	showBust("ALVELLA","MILODANMALE",tuuvaBustString(true));
 	showName("\nALVELLA");
 	output("You wake up sometime later, chained up, lacking your harem, and achingly hard. This displeases you. You were the king of those little bitches, damn it! How dare they take your property! Something interrupts your thoughts, something... you don’t even know. It’s like you’re forgetting something. Bits of your old life are trying to reach out to you, but you shake them away. They’re too unrecognizable to you to mean anything at this point. You just want some more bitches to fuck. Should you even want anything else?");
 	output("\n\nAlvella walks in with a pair of bodyguards. <i>“Well, congratulations. Pyrite looooooved the data we got from you, and they’ve already started to license out the formula. Of course, that’s not the only one we’re testing out right now. Since you took so well to the last one, I’ve decided to take you out to our ‘special product’ testing. Boys.”</i> She motions the two bodyguards to get you. They grab a heavy leash wrapped around your neck and pull you up. You chuckle as you loom over them, their impressive stature seeming almost child-like compared to you. The drug she gave you has turned you into a real goliath, with " + (!pc.hasCocks() ? "a cock":"cocks") + " to match. You swear you can <i>feel</i> their jealousy.");
@@ -692,7 +692,7 @@ public function maleBreederWargiiBadEnd2():void
 public function maleBreederWargiiBadEnd3():void
 {
 	clearOutput();
-	showBust("ALVELLA_NUDE","MILODANMALE",tuuvaBustString(true));
+	showBust("ALVELLA","MILODANMALE",tuuvaBustString(true));
 	showName("\nALVELLA");
 	output("Sometime between the start of the camp-wide orgy and when anyone actually bothered to check up on you, the universe lost track of you. No one knows what happened or where any of you went. Search parties were sent out, but none ever even got close.");
 	output("\n\nYou and Tuuva took your new collection of fuckboys and bitches and started up your own tribe, far away from civilization. You fucked, you bred, you hunted. There was no concern left for anything else in your mind. Your dad’s quest had long since fallen from thought, as did even your memories of life before this.");
