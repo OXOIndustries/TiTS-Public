@@ -122,6 +122,7 @@ public function cherryMenu():void
 	if(pc.hasKeyItem("Puss Pass")) addDisabledButton(1,"BuyPussPass","Buy Puss Pass","You already have a Puss Pass!");
 	else if(pc.credits >= 50000) addButton(1,"BuyPussPass",pussPassBuy,undefined,"Buy Puss Pass: 50,000C","For the low price of 50,000 credits, you can use the Tap-Hall as much as you like.");
 	else addDisabledButton(1,"BuyPussPass","Buy Puss Pass","You don’t have enough money for this. Come back with 50,000 credits.");
+	addButton(2,"Talk",talkToCherry,undefined,"Talk","Talk to Cherry.");
 	addButton(14,"Leave",pickWallSlutMenu);
 }
 
@@ -156,6 +157,243 @@ public function pussPassBuy():void
 //[Talk]
 // wears belt of filled condoms (bubbles) patrons give her as appreciation gifts (like leaving a tip)
 //exudes rahn chemicals that put biologicals to sleep when policing the Tap-House. When she’s horny (turns a slightly pink), bodily contact simply paralyzes them. Has ‘squirt-gun’ arm cannon in one of her legs robo-cop style that lets her weaponize her chemicals from a distance
+
+//[Talk]
+public function talkToCherry():void
+{
+	clearOutput();
+	showCherry();
+	author("Adjatha");
+
+	//first time:
+	if(flags["CHERRY_TALKED"] == undefined)
+	{
+		output("You decide to strike up a conversation with the apparent proprietor of this unusual business. " + (pc.isTaur() ? "Folding your [pc.legOrLegs] beneath you,":"Leaning up against the far wall next to her") + ", the two of you look out on the long corridor of captive sluts and the patrons browsing through them. Cherry gives you a sideways glance before turning back to look at a Slyveren strutting towards a big balled Wall-Slut.");
+		output("\n\n<i>“So, unaffiliated, huh? I should probably be giving you the hard sell for joining the Cyber Punks,”</i> she sighs, ponytail wiggling around to slap against her bionic legs. <i>“But then, I’ve already got a job.”</i> She grins at the serpentine woman at the other end of the hall cuddles up against the hefty sack of her captive and begins tongue-polishing the cum tanks. Absently, she pulls one of the spherical condoms off her belt and pops it in her mouth like a jawbreaker, swishing the bubble treat from cheek to cheek.");
+		output("\n\n<i>“So, what’s up?”</i>");
+		processTime(5);
+	}
+	//repeat:
+	else
+	{
+		output("Cherry’s keenly observing all the patrons of the Tap-Hall, seemingly at ease and enjoying herself. Her ponytail gives a little waggle at you as you approach, as if to say hello. She’s not looking at you, but you know she’s listening.");
+		processTime(1);
+	}
+	//[Herself][Her Job][Her Legs][Tap-Hall][Janitor][Nothing]
+	clearMenu();
+	//[Her Job]
+	addButton(0,"Herself",askCherryAbootHerself,undefined,"Herself","Ask Cherry about herself.");
+	addButton(1,"Her Job",cherryJobTalkies,undefined,"Her Job","Ask about Cherry's job.");
+	addButton(2,"Her Legs",cherryLegsTalkin,undefined,"Her Legs","Ask Cherry about her artificial legs.");
+	addButton(3,"Tap-Hall",cherryTapTalking,undefined,"Tap-Hall","Ask Cherry about her fine establishment.");
+	addButton(4,"Janitor",janitorTalkWithCherCher,undefined,"Janitor",(silly ? "The dummy THICC goo-girl cleaning up all the messes keeps distracting you with the clap of her ass-cheeks. Maybe you should ask about her.":"Ask Cherry about the janitor."));
+	addButton(14,"Back",goForCherryStuff);
+}
+
+//[Herself]
+public function askCherryAbootHerself():void
+{
+	clearOutput();
+	showCherry();
+	author("Adjatha");
+	//first time
+	if(flags["CHERRY_HERSELF_TALKED"] == undefined)
+	{
+		output("You ask Cherry if she wouldn’t mind telling you a bit more about herself. <i>“Me? Or rahn in general? I don’t know if you’re into the whole ‘brevity’ thing or not, but I subscribe to that particular feed, so long story short: I run the wall and rahn are like you, but a bit gooier.”</i>");
+		output("\n\nYou explain that you’ve had some exposure to rahn before, but nobody quite like her.");
+		output("\n\n<i>“Ha hah, I love terrible lines like that. Gimme another,”</i> she laughs, her torso jiggling like jelly.");
+		output("\n\nYou were going to explain that you didn’t mean it that way, but she seems to actually get a kick out of it, so you rack your brain for the lamest line you can think of. <i>“I didn’t know rahn needed hearts,”</i> you start.");
+		output("\n\n<i>“Oh yeah? Do we?”</i> she turns her attention fully to you, smiling wide in anticipation.");
+		output("\n\n<i>“Well, you stole mine.”</i>");
+		output("\n\n<i>“Hah! So awful!”</i> she snickers, leaning out to punch your shoulder in a friendly fashion before catching herself. <i>“Oh, whoops.”</i> She jerks back her small fist like it were a deadly weapon.");
+		output("\n\n<i>“Is the staff on a strict ‘no-touching’ policy?”</i> you ask, confused by her overreaction.");
+		output("\n\n<i>“Not quite. More like a ‘only touching people breaking the rules’ policy. You know about zel’rahn?”</i>");
+		output("\n\nYour CODEX chirps, but you let her explain for you.");
+		output("\n\n<i>“We basically sweat out chemicals all the time and with a little effort, we can change what those chemicals do. You high-five a random zel’rahn on the street and there’s no telling what’d happen to you.”</i>");
+		output("\n\n<i>“As for me? Paralysis,”</i> she explains, arching an eyebrow. <i>“Lock up your muscles and make a pretty statue out of you. Too much exposure and you could be trapped in your own body for a week. Feeling everything, but unable to do anything about what’s happening to you.”</i>");
+		output("\n\n<i>“It helps for my job,”</i> she winks, gesturing at the wall.");
+		processTime(10);
+		IncrementFlag("CHERRY_HERSELF_TALKED");
+	}
+	//second time
+	else if(flags["CHERRY_HERSELF_TALKED"] == 1)
+	{
+		output("You prod for a little bit more about Cherry, but she seems reluctant to go into it.");
+		output("\n\n<i>“My dude, this is a place of fucking and getting fucked. All this chatting is making me lose my wide-on. How about this: you give me a really, brutally awful pick up line and I’ll give you a ‘certified fresh’ Cherry fun fact. Sound good?”</i>");
+		output("\n\nYou’ll have to think up some stinkers if you want to find out more about the red gel girl.");
+		processTime(2);
+		IncrementFlag("CHERRY_HERSELF_TALKED");
+	}
+	//repeat
+	else
+	{
+		output("<i>“You know the deal,”</i> Cherry insists with a puckered smile. <i>“Gimme that pick-up artist charm.”</i>");
+		output("\n\nIt’s a good thing you travel in some questionable circles because you always seem to have a line on hand. You clear your throat and hit her with a new worst:");
+		//silly mode only: 
+		if(silly && rand(3) == 0) output("<i>“I find the most erotic part of the woman to be the boobies.”</i>");
+		//randomly select from one of the following:
+		else output(RandomInCollection(["\n\n<i>“I can tell you work security, because one glance from you and I’m stunned.”</i>","\n\n<i>“I know your name’s on the door, but can I call you mine instead?”</i>","\n\n<i>“Do you think the Cyber Punks could get me new eyes? I can’t take mine off of you.”</i>","\n\n<i>“Aside from being drop dead gorgeous, what else do you do around here?”</i>","\n\n<i>“Kiss me if I’m wrong, but your parents were ausars, right?”</i>","\n\n<i>“Your gang owes me a new jaw, because when I looked your way, I dropped mine.”</i>","\n\n<i>“Your legs must be set to Long Distance mode, because you’ve been running through my mind all day.”</i>","\n\n<i>“I’m pretty good with numbers. Give me your measurements and you’ll be amazed at what I can do with them.”</i>","\n\n<i>“If I gave a credit to the thousand prettiest girls in the galaxy, you’d have yourself a cool grand.”</i>","\n\n<i>“Should we step over to the photo booth so you can picture us together?”</i>","\n\n<i>“I think you’re suffering from a lack of vitamin me.”</i>","\n\n<i>“I feel like I’ve seen you before. Oh, that’s right: in my codex, under ‘Gorgeous’.”</i>","\n\n<i>“Girl, you’ve got more pull than an event horizon.”</i>","\n\n<i>“I’m a bit lost in this station. Can you give me directions to your place?”</i>","\n\n<i>“I can tell you run this brothel, because ma-DAMN!”</i>","\n\n<i>“Fat korgonne. Sorry, I just needed an ice breaker.”</i>","\n\n<i>“If I were to rate you 1 to 10, I’d give you a 9 because I’m the 1 you’re missing.”</i>","\n\n<i>“I can tell you’re a pirate with plenty of wealth by the size of your chest and booty.”</i>","\n\n<i>“How about you slide out of those legs and sit on my lap? We can talk about the first thing to pop up.”</i>","\n\n<i>“You must come from a family of drug dealers, because I’m addicted to you.”</i>"]));
+		//merge
+		output("\n\nShe titters and claps her hands in delight. <i>“Thank you so much for that, I hated it. So, something about me, huh? Lemme think.”</i>");
+		//select a random entry, then remove it from the talk options
+
+		
+		if(flags["CHERRY_HERSELF_TALKED"] == 2)
+		{
+			//player hasn’t given her a bubble: 
+			if(9999 == 9999) output("\n\n<i>“You ever heard of a Bubble Buddy? They’re these wank sleeves Tamani Corp puts out.");
+			else output("\n\n<i>“You know the Bubble Buddies, right? Of course you do.");
+			output(" Anway, I’ve got a personal collection of those like you wouldn’t believe. Even limited run, collectors edition versions.”</i>");
+			output("\n\nShe rubs the back of her neck thoughtfully. <i>“It’s actually getting to be kind of a problem! I should probably start giving away some of my duplicates. Maybe have a promotional give-away day at the Tap-Hall.”</i>");
+		}
+		else if(flags["CHERRY_HERSELF_TALKED"] == 3)
+		{
+			output("\n\n<i>“How’s this: ‘Cherry’ isn’t my real name. Shocking, I know. I chose it when I became a pirate because I wanted something that sounded sweet and unassuming but could also be deadly and poisoned by, like, an evil queen.”</i> She gives a wicked grin and wiggles her toxic fingers menacingly.");
+			output("\n\nYou’re pretty sure she was thinking of an poisoned apple, but no sense in bringing it up this late in the game.");
+		}
+		else if(flags["CHERRY_HERSELF_TALKED"] == 4)
+		{
+			output("\n\n<i>“This is kind of embarrassing, but my first crime was breaking and entering. Not to steal anything, really. See, the home belonged to this kui-tan couple and, well, let’s just say they’d installed the extra large pipes for their private milking station. I basically lived there for a month until one of them heard me making yummy noises one day.”</i>");
+			output("\n\nYou’d almost swear she’s blushing through all the red. <i>“Yeah, yeah, I was a dummy alright. I still hold that it’s inexcusably wasteful. That’s why I’ve got galotians on staff to clean up around here. Waste not, want not.”</i>");
+		}
+		else if(flags["CHERRY_HERSELF_TALKED"] == 5)
+		{
+			output("\n\n<i>“This might seem weird, but I kinda think the whole slaving thing we do is actually good for the people we capture. Sure, some of the people around here are a bit excessive, but it’s better we grab them then somebody like the Black Void, or one of those psychopathic mad scientists you hear about.”</i>");
+			output("\n\n<i>“Besides, there’s always plenty of folk eager to make sure the slaves get three square meals a day,”</i> she adds, pulling one of the cum bubbles from her belt and popping it into her mouth.");
+		}
+		else if(flags["CHERRY_HERSELF_TALKED"] == 6)
+		{
+			output("\n\n<i>“Don’t get me wrong, it’s mighty handy having a body that generates its own weapon, but sometimes the whole toxic part of being a zel’rahn is more trouble than it’s worth. One little mistake and the erotic tingle you meant to go for turns into a narcoleptic coma. Never got a call back after THAT date.”</i>");
+			output("\n\nShe taps her chin thoughtfully. <i>“I’ve always thought it would’ve been sweet to be a loo’rahn with their super fast body sculpting. Give yourself a different face for every day of the week,”</i> she muses, trailing off.");
+		}
+		else if(flags["CHERRY_HERSELF_TALKED"] == 7)
+		{
+			output("\n\n<i>“Obviously cum is my jam,”</i> she notes, adjusting her filled-condom belt, <i>“but you know rahn can eat pretty much anything organic, yeah? If it’s got DNA, it’s A-OK, or something along those lines.”</i>");
+			output("\n\n<i>“Anyway, this may seem weird, but I actually can’t stand fruits. Yet, if you turn them into a wine, I like that just fine. I don’t know why! The best though, is a good, hard liquor. I don’t generally get a chance to go off-duty, but plenty of the gangers get pretty sauced before coming here, so I get a little second-hand enjoyment from time to time.”</i>");
+		}
+		else if(flags["CHERRY_HERSELF_TALKED"] == 8)
+		{
+			output("\n\n<i>“Before I signed up with the Cyber Punks, I used to pull jobs with the cutest little go’rahn you’ve ever seen. She was a master at putting people off guard long enough for me to get in there and neutralize any threats. And you wouldn’t believe how much she jizzed when you got her riled up! I swear that girl was hiding an ocean somewhere inside her.”</i>");
+			output("\n\nCherry laughs in her reminisce, absently fingering the thick loop serving as a hair band for her ponytail. <i>“Anyway, that partnership ended and I came to Zheng Shi soon after. Still fond of the color white, though.”</i>");
+		}
+		else if(flags["CHERRY_HERSELF_TALKED"] == 9)
+		{
+			output("\n\n<i>“Don’t judge me too harshly, but when I first set this thing up, I was the only one in the wall. Greedy of me, I know! Anyway, I got fed plenty and it was loads of fun, but all these damned pirates kept skimping on the whole ‘payment’ part of the deal. More innocent times.”</i>");
+			output("\n\n<i>“So, I invested everything I had in a camera equipment and used the recordings to track down the cheapskates. It turns out that I enjoyed watching myself getting fucked nearly as much as actually being there in the first place. The things we learn about ourselves,”</i> she laughs, staring a bit too intensely at one of the in-use boothes.");
+		}
+		else if(flags["CHERRY_HERSELF_TALKED"] == 10)
+		{
+			output("\n\n<i>“If I’m being really, REALLY honest? I had a bit of a bias against non-amorphs in my youth. I kinda treated them like walking dinner plates. You’ve probably heard how solid races see Rahn and galotians as sort of cum-hungry sluts? From our side of it, that’s usually just the only thing we see other races as being good for. Cultural misunderstandings, I guess. Anyway, I’m past that.”</i>");
+			output("\n\nYou’re tempted to point out that her entire hall here is entirely devoted to treating people like meat, but you’re not sure she’d appreciate the irony of it. Maybe she’ll get there on her own one day.");
+		}
+		else if(flags["CHERRY_HERSELF_TALKED"] == 11)
+		{
+			output("\n\n<i>“You know what’s fucked up? I could sit here watching people rutting all day long - and, in fact, that’s exactly what I do - but porn does nothing for me. There’s just something different about knowing the fucking is done right here, instead of on some sound stage in some studio.”</i>");
+			output("\n\nShe taps her VR glasses and lowers her voice. <i>“Pretty much everything I watch with these puppies are recordings from surveillance systems on the station.”</i> She glances down, then back up at you, raising her eyebrows meaningfully.");
+		}
+		//after all discussion prompts have been exhausted, repeat the following:
+		else
+		{
+			output("\n\nCherry shares a brief snippet of her life, talking about raids she’s been on, partners she’s worked with, and interesting patrons who’ve visited her Tap-Hall. Though affable, you’re struck by how she legitimately doesn’t seem to feel bad about any of the criminal things she’s done over the years.");
+			output("\n\nThe only things she never mentions is why she went into piracy in the first place, and how she originally lost her legs.");
+		}
+		IncrementFlag("CHERRY_HERSELF_TALKED");
+		processTime(5);
+	}
+	clearMenu();
+	addButton(0,"Next",talkToCherry);
+}
+
+//[Her Job]
+public function cherryJobTalkies():void
+{
+	clearOutput();
+	showCherry();
+	author("Adjatha");
+	output("<i>“Yeah, it’s pretty great, right? All these eager patrons and all that available flesh. A marriage made in the primordial soup.”</i>");
+	output("\n\nYou ask what exactly she does all day, other than watch.");
+	output("\n\n<i>“The fiddly bits of the business don’t really take all that much time. I’ll check in new arrivals and get them plugged in sometimes, or release people whose contracts have run their course. Boring stuff like that.”</i>");
+	output("\n\nShe holds a hand out, studying her perpetually wet fingertips. <i>“Oh, there are rare cases where somebody feels like getting a free sample, damaging the equipment, or attempting to make off with merchandise itself.”</i>");
+	output("\n\nHer expression hardens for a moment. <i>“I find a tap on the shoulder tends to discourage repeat offenders. And, of course, they can always pay off their debt with a contract of their own.”</i>");
+	output("\n\nHer easy smile returns, though her ponytail sways like the tail of a venomous predator.");
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",talkToCherry);
+}
+
+//[Her Legs]
+public function cherryLegsTalkin():void
+{
+	clearOutput();
+	showCherry();
+	author("Adjatha");
+	if(silly) 
+	{
+		output("<i>“So what’s with the metal legs?”</i> you ask out of nowhere.");
+		output("\n\n<i>“Well, it was a risky operation, but I think it was worth it.”</i> Cherry gives them a slap and nods to herself. <i>“These bad boys can fit so much rahn in them.”</i>");
+	}
+	else
+	{
+		output("Cherry catches you looking her mechanical legs and folds her arms under her breasts. <i>“Hey. Goo’s up here,”</i> she teases.");
+	}
+	output("\n\nYou thought rahn could regenerate just about any injury, so you’re not really sure why one would be using cybernetics.");
+	output("\n\n<i>“Don’t tell the Cyber Punks that, or they might kick me out,”</i> she whispers, a finger pressed to her glossy black lips.");
+	output("\n\nYou admit it does seem like it’d be helpful to have something metallic on hand. Or on-foot, rather.");
+	output("\n\n<i>“You mean when I need to put my size 20s up somebody’s ass? Yeah. Or when I really need to scoot. These gams got some get up and go,”</i> she brags, lifting her knees like she’s stretching for a runner’s start, sending booming clangs through the hall with each footfall. A few patrons turn to look, but most of them seem accustomed to the ruckus.");
+	output("\n\nIf only it were that easy for everybody to get cybernetics, you lament.");
+	output("\n\n<i>“Amorph privilege,”</i> she brags, jiggling her hips in their socketed seats.");
+
+	//player has given her a Large or Huge Bubble
+	if(9999 == 0)
+	{
+		output("\n\n<i>“Though mostly,”</i> she confides with a sly glance, <i>“it’s a question of concentration. If I’m using my own legs, my surface area increases. The bigger I am, the less of an effect my toxin has. And when you’re dealing with a bunch of treacherous pirates, it’s best to keep a bullet in the chamber.”</i> She narrows her eyes at you, then shrugs. <i>“No offense.”</i>");
+		output("\n\nYou’d ask her what kind of experiences she’s had with pirates to give her that opinion, but considering your surroundings, that question would probably be pretty silly.");
+		output("\n\n<i>“Aaaaaaaaanyway,”</i> she adds with an eyeroll, <i>“I bring in money for the Cyber Punks with my little Tap-Hall here, and they keep my legs in state-of-the-art condition. Everybody’s happy.”</i>");
+	}
+	processTime(6);
+	clearMenu();
+	addButton(0,"Next",talkToCherry);
+}
+
+//[Tap-Hall]
+public function cherryTapTalking():void
+{
+	clearOutput();
+	showCherry();
+	author("Adjatha");
+	output("You ask her about the business she’s running in the middle of a pirate station. Wouldn’t something like this get more traffic in a public place?");
+	output("\n\n<i>“Oh sure. But then I’d have to worry about things like paying taxes, paying rent, playing employees... man, just so many headaches. Here, I’ve got the Cyber Punks making sure none of the other gangs try to muscle in and all the free labor I could ask for. People just take out a contract for a booth, we install the merchandise, and the owner gets a cut of every patron who stops by.”</i>");
+	output("\n\nBut why, you press, would people pay for enjoyment if there are so many slaves in Zheng Shi already?");
+	output("\n\n<i>“Variety?”</i> she hazards. <i>“Eh, I assume a fair number of the slaves that come through here get sold off one way or the other. It can be a real hassle, managing a stable of hundreds for any length of time, you know. I’m not really on that end of the business, so your guess is as good as mine.”</i>");
+	output("\n\nWagging her ponytail mischievously, Cherry leans in closer. <i>“Besides, we get some gangers in here from time to time, and it’s great stress relief when you can pound the hell out of somebody belonging to the group that’s been giving you trouble.”</i>");
+	output("\n\nFair enough. As for the name...?");
+	output("\n\n<i>“Is that not obviously? Tap-Hall. As in ‘tap that ass.’ Eh? Eh?”</i> She smirks, entirely too pleased with herself.");
+	processTime(7);
+	clearMenu();
+	addButton(0,"Next",talkToCherry);
+}
+
+//[Janitor]
+public function janitorTalkWithCherCher():void
+{
+	clearOutput();
+	showBust("CHERRY","MOLLI");
+	author("Adjatha");
+	output("You notice the pink galotian scooting among the booths and are a bit surprised to see just how large she is up close. Even though she’s only manifested a humanoid form up to her knees, she’s easily over seven feet tall and voluptuous enough to embarrass primitive fertility idols. You point out the rubenesque slime to Cherry and ask if she’s an owner of the Tap-Hall too.");
+	output("\n\n<i>“Molli? Not so much, no. She’s an employee. But, not like like them,”</i> she gestures expansively at the wall of presenting hindquarters.");
+	output("\n\nCherry unhooks one of the cum bubbles from her belt and tosses it to the full-figured googirl, who doesn’t seem to notice the impact until it’s already sunk inside her body. She wiggles in happy surprise, digesting the condom and its cream in an instant and waves at her boss with an affectionate smile.");
+	output("\n\nThe rahn’s tone turns more professional, almost possessive. <i>“Molli works for me directly, unlike those in the wall. As you’d expect, this place needs a full-time cleaner.”</i>");
+	output("\n\nAs the two of you are talking the galotian oozes up to a recently used booth and buries her chubby cheeks against the wall-slut’s hindquarters. With a soft humming, she gleefully slurps up cum inside and out. Her bimbo-thick lips wiggle almost like tongues as she kisses inner thighs and trembling vaginal folds, diving in to lap at the furthest depths as only a slime girl can. By the end, she leaves the girl’s posterior cleaned to a sparkling polish, ready for the next customer to step up.");
+	output("\n\n<i>“And the collar?”</i> You ask, noting the rather sizable hunk of technology laying heavily on the goo’s bare shoulders.");
+	output("\n\n<i>“That’s our little compromise. You know what happens when galotians eat too much? For one, they get gigantic. Like, two tons big. And when they get big enough, they divide into a half dozen smaller goo daughters.”</i>");
+	output("\n\nJust watching Molli go at it on those sex booths for a few minutes, you can imagine how much she must eat in a given week.");
+	output("\n\n<i>“Hence, the collar,”</i> Cherry explains. <i>“Little bit of amorph tech. Past a certain size, it rapidly increases her digestion rate. That way, we’re not up to our nipples in galotians and my janitor can actually fit in the booths. In return, she gets to eat as much as she can all day, every day.”</i>");
+	output("\n\nYou ask if Molli ever sees any first-hand action while working at the Tap-Hall.");
+	output("\n\n<i>“Not on my watch,”</i> Cherry responds, in a tone that broaches no compromise. Seems like if you wanted to get to know the pink goo girl a bit better, you’d have to do it when Cherry’s not watching.");
+	processTime(12);
+	clearMenu();
+	addButton(0,"Next",talkToCherry);
+}
 
 //[Give Bubble]
 //Mouseover: <i>“Offer Cherry a sealed cum snack”</i>
@@ -196,6 +434,12 @@ public function pickWallSlutMenu():void
 		addDisabledButton(4,"Fox Herm","Fox Herm","The fox herm is closed for cleaning.");
 	}
 	else addButton(4,"Fox Herm",approachDatUrtaKnockoff,undefined,"Fox Herm","One eye-catching stall houses what is clearly a fox-girl with more than a little extra: a 20-inch horse-cock and orange-sized spunk-bunkers hanging just below.");
+	if(pc.hasStatusEffect("TaurDisable"))
+	{
+		output("\n\nThe leithan is closed for cleaning. Maybe next time!");
+		addDisabledButton(5,"Demure Taur","Demure Taur","The fox herm is closed for cleaning.");
+	}
+	else addButton(5,"Demure Taur",demureTaurWallIntro,undefined,"Demure Taur","A white Leithan's haunches are jutting out of the wall. Check them out!");
 
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -491,7 +735,7 @@ public function approachDatUrtaKnockoff():void
 	output("\n\nDo you plow this vixen’s cunt?");
 	processTime(3);
 	clearMenu();
-	if(pc.credits >= 3000)
+	if(pc.credits >= 3000 || pc.hasKeyItem("Puss Pass"))
 	{
 		if(pc.cockThatFits(1200) >= 0) addButton(0,"Fuck Cunt",cockSelect,[fuckThatExtendedUrtaReference,1200,false,0],"Fuck Cunt","Fuck her pussy.");
 		else addDisabledButton(0,"Fuck Cunt","Fuck Cunt","You’re too big! You’d split her in half!");
@@ -718,6 +962,131 @@ public function dontTurnDownTaoth():void
 	pc.credits += 3000;
 	flags["MET_TAOTH"] = 1;
 	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Demure Taur]
+//White Leithan futa w/ horsecock
+//lower torso, anal only (back and mid legs through, lay under for breeding press)
+public function demureTaurWallIntro():void
+{
+	clearOutput();
+	showName("\nLEITHAN");
+	author("Adjatha");
+	output("One of the larger girls locked in the wall alcoves catches your eye. She’s a leithan, that much is obvious, though her coloration is singular: an albino! And no doubt a prize captive for whichever pirate grabbed her. The tauric woman’s upper body and front legs are hidden within the wall, but her rear four legs are enough to stick out past the shallow cell dividers and any hope of discrete modesty. The holo-pic on the wall displays a full-cheeked, heart-shaped face, her heavily lidded red eyes  averted from the viewer in embarrassment. She has a considerable mane of elaborate, braided tresses, which suggests she may have come from money. A far cry from her current state.");
+	output("\n\nMoving closer, you have a chance to admire the taur’s physique. Her wide, mare-like hips extend some distance from the oval hole her waist is stuck in. Her pale white scales are so fine they’re indistinguishable from oiled skin and the plates mounted along her back shimmer like polished alabaster. A short, un-armored tail ineffectually hugs her considerable rump tightly, too stubby to provide any modesty. Between her sculpted, champagne-hued ass lies a blushing, lilac anal ring as plump as a labia and glistening with the humiliated arousal of her indentured exposure. Just below her plugged, petal-perfect pussy hangs huge, dark purple balls squished between her back legs and a crude, animalistic sheath stuffed fat with her shameful girth.");
+	output("\n\nThere is a pale white bio-plug in her pussy, but her ass and cock are open for business. It will cost " + demureTaurCost() + " credits to lay the leithan.");
+	//PussPass
+	if(pc.hasKeyItem("Puss Pass")) output(" Good thing <b>you won’t have to pay a dime</b> if you want to make use of her.");
+	processTime(3);
+	clearMenu();
+	if(pc.credits >= demureTaurCost() || pc.hasKeyItem("Puss Pass"))
+	{
+		if(pc.cockThatFits(1300) >= 0) addButton(0,"Fuck Ass",cockSelect,[demureTaurAss,1300,false,0],"Fuck Ass","Take her ass for a ride.");
+		else addDisabledButton(0,"Fuck Ass","Fuck Ass","You’re too big! You’d split her in half!");
+	}
+	else addDisabledButton(0,"Fuck Ass","Fuck Ass","You’re too poor to ride this ride.");
+	addButton(4,"Back",pickWallSlut);
+}
+
+public function demureTaurCost():Number
+{
+	return 2500;
+}
+
+public function demureTaurAss(x:int):void
+{
+	clearOutput();
+	//no puss pass:
+	if(!pc.hasKeyItem("Puss Pass")) 
+	{
+		output("The slot under her holo-pic takes your credit chit and bloops the go-ahead.");
+		pc.credits -= demureTaurCost();
+	}
+	//has puss pass:
+	else output("You insert your Puss Pass and get down to business.");
+	//merge
+
+	output("\n\nDespite being installed in a public use hole, it seems like the albino girl is largely untouched by the station’s denizens. Perhaps it’s the degree to which her rump juts out past the privacy walls, but it seems like she’s largely yours for the taking. Judging by the way her back legs anxiously paw at the ground  and her tail ineffectually prods at her pussy plug, her predicament has apparently had an arousing effect on the captive woman. Well, just because the pirates may be intimidated by the chitin-armored alien, that’s no reason you can’t enjoy the unsullied maiden. " + (pc.tallness < (5*12) ? "You cast about for something to stand on, eventually finding a stray box somebody set left nearby. You’re going to need every inch you can get, when it comes to a lady like this!":""));
+	output("\n\n" + (!pc.isCrotchExposed() ? "Pulling your [pc.crotchCovers] aside to give your [pc.cock " + x + "] room to hang, y":"Y") + "ou figure it wouldn’t hurt to make sure she’s ready and raring to go. You run a thumb along her broad flanks and down the smooth, slender length of her diminutive tail  She thumps a back paw against the ground at your touch, but as you reach her tail’s tip, the leg rises and trembles, shuddering in place. Lightly pinching the tender tip between your fingers, you pull it down to the rim of her plump asshole. Her leg kicks at the air but her tail doesn’t fight you as you run it across the raised, plush loop of her donut. Teasing the taur with a gradually diminishing spiral, you finally bring the tail to rest lightly against the muscle-taut sphincter. She stomps again, swaying her ass in a wide arc of shameful enjoyment, her tail slipping out of your hands and pulling away in a fashion that, incidentally, serves to present her posterior in a decidedly immodest fashion.");
+	//pc has taur body
+	if(pc.isTaur()) 
+	{
+		output("\n\nYou certainly need no stronger invitation than that. Your [pc.cock " + x + "] thumps the [pc.skinFurScales] of your undercarriage, roused to a bucking ardor at the ivory taur’s immediate submission. " + (flags["DEMTAUR_TAURED"] == undefined ? "Stepping forward enough to feel the heat pouring off of the girl’s backside, you have to wonder how long she’s been without a proper mate to mount her. Too long, you decide, as her back legs droop at your approach, her knees going weak in the presence of matched biology. She must be in desperate need indeed!":"Though she can’t see you, your approach is felt almost immediately. Her knees tense at the promise of a proper mounting and her heels rise to lift her rear to your level, eager for another wild ride. It seems she’s taken to your anal training with shameless zeal. Well, good ponies deserve rewards and you’re just the taur to give it to her."));
+		output("\n\nKicking your front [pc.legOrLegs] up, your bulk lands heavily atop the leithan’s warm, delicate back-plates. " + (flags["DEMTAUR_TAURED"] == undefined ? "She sags somewhat under your encompassing pressure, but given that her upper body is mounted in the wall, she has little choice but to keep square and tall.":"Her back legs tremble at your weight, but her mid legs stay firm and upright as she pushes herself to remain standing.") + " One [pc.foot] at a time, you step forward until the great bulk of your lower body straddles the tremendous thickness of the snow white girl. You can feel the muscles beneath her silken scales tightening and clenching with the intimacy of your embrace - an intimacy shared by all the other patrons of the Tap-Hall by virtue of your body’s size.");
+		if(pc.isNice()) output(" You avoid meeting any stares and have enough dignity to blush at the public display of your bestial mounting. A bit embarrassed, but certainly not enough to stop.");
+		else if(pc.isMischievous()) output(" You flash a wide grin at the onlookers and offer a thumbs up, encouraging them to keep watching for what’s to come next. You’re met with scattered cheers and crude words of encouragement.");
+		else output(" You meet the glances of onlookers with an expression that plainly states the only reason you’re not mounting them instead is that you’re busy at the moment. Most get the hint and go back to their own business.");
+	}
+	//merge
+	output("\n\nYour wall-mounted pony’s shifts her stance, bucking back against your [pc.thighs] in the process. Her burdensome booty buffets your [pc.cock " + x + "], wobbling cheeks stroking your hoisted mast. Intentional or not, this filly’s ready for a stallion. You grab hold of the girl’s sides, your hardness guide itself past the milky warmth of her ample tush and right to the seething passion of her tail-hole. With your [pc.cockHead " + x + "] pressing lightly against her meek ring, the albino mare paws at the floor. The tip of her tail traces the length of your member, as if blindly measuring the scope of your imminent infiltration. The polished floor gives you an almost mirror-like view of her underside, the girl’s own shaft quickening in its sheath, plump, ivory inches peeking out from her sheath in anticipation.");
+	if(pc.cocks[x].thickness() < 3) output("\n\nThere is just the faintest resistance as you press in, the big girl’s body taut but anxious. Spreading her sphincter with your easily enough, the fat band of plush muscle squeezes just enough to keep you from going too quickly, forcing you to savor each inch.");
+	else output("\n\nDespite her size, the white maiden isn’t quite prepared for your mass. Stomping her back legs and pushing into your peak as best her confines allow, the two of you somehow manage to squeeze the tip of your cock past the compress of her taut sphincter.");
+	output(" Your [pc.cockHead " + x + "] slips into the collaring ring of your mount’s posterior like a plug being pushed into place. Suckling heat engulfs your loins as her flushed biology ignites the intrusion like an engine starting between your [pc.thighs].");
+	pc.cockChange();
+
+	//first time:
+	if(flags["DEMTAUR_FUKKED"] == undefined)
+	{
+		output("\n\nEven the first inch of penetration is too much for the leithan’s untouched, virgin ass. Her barely emerged horsecock spreads its flaring crest and practically lunges from its deep hued sheath. Her balls clench even tighter against her flanks and a geyser of white-gold spunk spurts in helpless spree. The gushing blast shoots upward, hosing her underside primarily, though some of the thick cream manages to splattering against the thighs of her middle legs, pooling around her trembling paws. Her tail twitches and flits restlessly in the throes of her first orgasm anal orgasm, her body trying to process the overflow of sensations.");
+	}
+	//repeat:
+	else
+	{
+		output("\n\nMore used to your penetration, the leithan nevertheless reacts with knee-shaking delight at your first inch. The dark orbs between her thighs droop slightly, weighed down by the gravity of her carnal needs. A pale white cock slides out of the thick folds of her sheath, its mass ballooning with lust-glutted thickness. Her white-gold pre bubbles at the plump, flat peak of equine endowment, drooling desire onto the floor in splattering dollops.");
+	}
+	processTime(15);
+	pc.lust(25);
+	clearMenu();
+	addButton(0,"Next",demTaurButt2,x);
+}
+public function demTaurButt2(x:int):void
+{
+	clearOutput();
+	showName("\nLEITHAN");
+	author("Adjatha");
+	output("You can’t help but smile at the taur’s prim and demure holo-pic staring back at you while  her actual body is getting off on the slightest bit of anal stimulation, debasing herself with such enthusiasm. It’s almost more than your hyper-charged libido can stand. You " + (pc.isTaur() ? "tighten the grip of your forelegs around her midsection":"fill your hands with the pliant pillows of her copious rear") + " as you thrust forward, piercing her clenching hole in a single go. She kicks a leg back in shock, her inner walls pulling tight in irregularly spaced bands of rut-slick muscle." + (pc.balls > 1 ? " Your [pc.balls] slap against her weighty orbs while the overflowing wetness of her plugged pussy polishes both sets with a glistening heat. Holding her balls deep, you drive in with shallow thrusts, every stroke meaty enough to carry the vibrating impacts through her sheath and down her wobbling, bobbing member.":""));
+	output("\n\nPulling back, you savor the narrowing closeness of each rippling internal loop as it tries to keep your peak from retreating. It isn’t until you reversing directions, that you find refreshed resistance every few inches. It’s as if her ass were lined with donut-thick sphincters all through the span of her devouring depths. It takes some getting used to, but before long you’re pumping at a steady pace, each hip-bobbing pluge forcing a couple of inches at a time. Once she’s swallowed everything you’ve got to give, you pull back through the gaped inner gates, ring by ring, before beginning again.");
+	//first time:
+	if(flags["DEMTAUR_FUKKED"] == undefined)
+	{
+		output("\n\nIt doesn’t take long until your relentless riding wears her down, breaking the filly into an obedient broodmare. Your swollen member claims her innocence in steady, pole-pumping thwacks that leave her legs weak and her tail limp. She slumps, but transfixed by your hardness, barely manages to remain upright. It’s not long before her fully engorged cock erupts again in overstimulated gouts, spilling her jizz in thick ropes. One of her mid legs lifts, the hefty paw rising to stroke the underside of her massive member as it spurts a few loads of wildly spirally cum across her underside. The more you fuck her, the more seed she spills, fountaining her helpless loads all the way to the wall imprisoning her.");
+	}
+	//repeat:
+	else
+	{
+		output("\n\nBetter trained than her first time, the pale pony meets you, thrust for thrust, delighting in each breaching thwack of your [pc.cock " + x + "]. She even manages a degree of clenching control to let you speed up, the two of you rocking in quarter-time beats. Her massive cock bounces freely, slapping against her broad stomach while her heaving balls gradually descend in their drooping pouch before being tugged right back up with each orgasm. Her equine length spurts in time with your pounding while the puddle at fer paws grows wider and wider.");
+	}
+	//merge
+	output("\n\nHer cunt clings to your [pc.cock " + x + "] with a needy, desperate desire, rewarding every panting thrust with a mirrored motion, humping in obedient rhythm to your pace.  Even her silvery, scaled skin has flushed a wanton lavender as she floods with rutting heat. With a few more deep, savage plunges, you’re finally ready to turn this majestic mare into a proper cum dump. " + (pc.isTaur() ? "You put all your weight on your rear [pc.legOrLegs] before thrusting upward, burying":"You yank on her tail hard enough to haul her off her rear paws and bury") + " yourself as deep as you can before releasing your pent-up bliss. Liquid passion shoots into her and - incapable of doing anything less than obeying your body - her poor, depleted balls find a final reservoir of cum to match yours.");
+
+	//low cum:
+	if(pc.cumQ() < 500) output("\n\nAn initial spurt of [pc.cumVisc] spunk jets into the leithan’s core, followed by another and another. Your surging heat multiplies against her own, irrepressible passions flowing both ways. With heavy, panting thrusts, you clap your [pc.thighs] against her bountiful booty. She bucks back against your [pc.cock " + x + "], her muscles riding your inches with disorganized fervor. She squeezes and slams into the liquid warmth spilling from your loins, desperate for more. Rather than sating her needs, your throbbing length driving inside her leaves the ivory mare hungrier, more desperate, and shudderingly needy for cum.");
+	//high cum:
+	else
+	{
+		output("\n\nLuckily for her, you’ve just begun. {taur: Rocking atop her, you slam your hands against the wall and put every inch of your tauric spine into your thrusts.}{non-taur: Leaning down against her upraised tail and hooking your arms around the girl’s broad hips, you grab on for dear life. Your pounding becomes spasmodic as you let yourself go. Great gouts of [pc.cum] pour into the leithan, filling her with the bloating cream she so desperately craves. Your ejaculate gushes up against her inner, clenching walls and floods the space in short order. Her taut tunnel inflates with load upon load, [pc.cum] pushing deeper inside her greedy gut.");
+		output("\n\nThe feel of your oversaturated reservoir pouring into every inch of her violated rectum proves just enough to rouse her flagging phallus. The alabaster woman tenses against you, stomping one last time before her body pours out everything it’s got. Deep purple balls lurch and her unblemished mast stiffens with vein-throbbing release. Despite the pool of golden-pearl goo beneath her, fresh ropes of sticky nut lance out to strike the the Slut-Wall. Her spurts clench in time with your own, as she were discharging the very cream you pump into her.");
+		//hyper cum:
+		if(pc.cumQ() >= 10000)
+		{
+			output("\n\nYet, even after she’s ceased her bucking and her cock has flopped heavily to the spunk-stained floor, your tanks keep draining. Seed drowns the deflowered girl in relentless gallons that rush through her with all the bestial lust you’ve been building towards. Her abdomen swells at the volume of your [pc.cum], inundating her from sphincter to her stomach. The feast of spunk balloons her midsection past the level of her knees, and all four rear legs tremble at the weight." + (pc.balls > 0 ? " Squishing your [pc.balls] against her fatigued sack, you let her feel every churning clench and heated load before unloading it inside her.":""));
+		}
+		//merge
+	}
+	output("\n\nIt isn’t until a passerby happens to accidentally brush up against your [pc.ass], that you remember you’re technically in a public place and sticking rather far out into the main thoroughfare. You catch your breath, and steady yourself as you " + (pc.isTaur() ? "gingerly dismount, careful not to tread on any paws.":"pull back, loosening your white-knuckled grip on her fine, equine ass.") + " Emptied of your warmth, she shudders, still savoring the ");
+	if(pc.cumQ() < 5000) output("pool");
+	else if(pc.cumQ() < 10000) output("lake");
+	else output("ocean");
+	output(" of anal ardor you left behind. Your unplugged creampie flows over the bio-plug in her pussy, down the girl’s considerably diminished balls, and washes over the retreating inches of her alabaster endowment.It’s not long, however, before her legs shake at your absence and she flops down on her ass with a spunky splash. The leithan hangs limply from her alcove, your excess pouring into the pond of her own white-gold seed with the pumping regularity of a heartbeat.");
+	//drop lust to 30, remove 10-20 energy
+	pc.orgasm();
+	pc.energy(-5);
+	pc.createStatusEffect("TaurDisable");
+	pc.setStatusMinutes("TaurDisable",90);
+	IncrementFlag("DEMTAUR_FUKKED");
+	if(pc.isTaur()) IncrementFlag("DEMTAUR_TAURED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
