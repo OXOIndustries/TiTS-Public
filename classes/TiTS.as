@@ -440,6 +440,7 @@
 
 		//FIFTH PLANET: ZHENG SHI
 		include "../includes/zhengShiStation/agroshAndArdia.as";
+		include "../includes/zhengShiStation/blackjack.as";
 		include "../includes/zhengShiStation/boredJumper.as";
 		include "../includes/zhengShiStation/boredJumperExpanded.as";
 		include "../includes/zhengShiStation/boredJumperGangbangs.as";

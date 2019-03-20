@@ -1347,3 +1347,75 @@ public function bonusHolosharkFun():void
 	else output("\n\nYou’re careful not to trigger the trapped hologram emitter on your way through the area. You have no desire to be jumped by a gigantic holo-shark for these pirates’ amusement, nor do you wish a second look at the inside of its impressively rendered maw. The floor panel with a splotch of red paint never gets stepped on by anyone else, after all. Now that you know to tread carefully here, you won’t have to suffer again.\n\nThe yellow-hued pathway winds east and west through a forest of dividers and entertainments.");
 	output("\n\nTo the south, you spot a opening that winds through the flash, improvised constructions. The pirates entering seem excited. Those leaving stroll with relaxed, satisfied smiles.");
 }
+public function zhengGameFloorBonus():Boolean
+{
+	output("Glasses clink and voices raise in celebration of victories. Astute, fastidious, and utterly professional dealers man tables strikingly traditional but with mechanical flair. Pirates and mercenaries of all walks gamble their life savings in the pursuit of riches " + (silly ? "and bitches ":"") + "at blackjack, roulette, craps... most known forms of poker even have dedicated tables crammed full of players and witnesses. So much liquor is passing through this exultant atmosphere that the otherwise pleasant aromas are overpowered with signature drinks and the regular cry of <i>Another round!</i>");
+	/* Roo Not Met - 9999 TBD
+	One notably enthusiastic dealer who manages a table at the very middle of this room catches your eye. A white head of curly hair and two floppy bunny's ears cap a heart-shaped face with cherry-red eyes. If you want to play a hand of blackjack, you don't need to look farther than her. Also, it's one of the only free seats you see.
+	// Roo Met (PC hasn't played her today)
+	Roo is where you last saw her, dealing out cards with masterful reflex. Her ears flop abruptly when she blows a cute kiss your way, finishing with a wink. Through that gesture she still kept one eye on her game! To her left a seat is available. Maybe you could be her player one?
+	// Roo Met (PC has played her and gotten her to strip today, replace the above)
+	Roo is where she always is, shuffling a deck of cards and humming happily as she does a few clothes short. The moment she spots you she waves you over with her ruby red smile, distributing cards with feline precision. You could pull up that free chair and join her again, see if you can get her to take the rest of her clothes off...
+	// Roo Met (PC has gamegasm'd her once, replace the above)
+	Roo is cheerily dealing cards and running game after successful game. The cat-bunny hops to her feet when she spots you, calling your name and waving you over to take the free seat. With graciousness like that you almost do so on autopilot. {noStripToday: Considering your recent victories, you wonder if you could get another messy jackpot out of her! /stripped: You wonder if you should finish your game and get another messy jackpot out of her...}
+	// Roo Met (PC has gamegasm'd her repeatedly, replace the above)
+	"[pc.name]!" Roo shouts your name before you look her way. She's leaned forward provocatively, showing off the slit of her creamy cleavage, all but begging you with her beaming eyes to try your luck again. Despite her distinctly unprofessional (and of course well received) gesture, she casually returns to her game while keeping one cat-like eye on you.
+	// Roo Met but isn't at her table (Got Gamegasm'd!)
+	Roo's table has been commandeered by a sylvan-eared substitute. The fey man assumes her job with a calm demeanor that doesn't do justice to the true owner. After your string of victories she's had to take the day off, alas. She'll no doubt be back later!
+	*/
+	basicBitchBlackjackDealerIntro();
+
+
+	return false;
+
+}
+
+public function enteringTreasureNovaBonus():Boolean
+{
+	// First Time Entering Treasure Nova
+	if(flags["TREASURE_NOVAD"] == undefined)
+	{
+		clearOutput();
+		showName("CASINO\nSECURITY");
+		showBust("CASINO_SECURITY");
+		author("William");
+		output("You’re not entirely sure it’s a smart idea patronizing a pirate-owned-and-managed casino, but up to the flaring neon gates you [pc.walk], sidestepping sore losers and boastful winners. A hulking thraggen man is thrown to the ground in your direction by two well-armed and vertically endowed terran bouncers dressed in silver suits. The viridian-skinned giant storms off in a huff while they dust their gloved hands of the trash.");
+		output("\n\nBoth bruisers sport obvious augmentation. On the sides of their oval-shaped heads sit square-shaped implants that summon visors of simmering green light across their field of vision. You don’t need to see their eyes to know that they are staring at you, one intently and the other aggressively.");
+		output("\n\n<i>“A newbie,”</i> the red-haired one says apathetically, folding his trunk-like arms.");
+		output("\n\n<i>“Right, I’ll handle this,”</i> the black-haired one responds brusquely, upturning his muscle-rippled palm and beckoning you to the side - can’t hold up traffic, after all.");
+		output("\n\n<i>“Welcome to Treasure Nova,”</i> he begins in a professional oboe voice, interlocking his fingers behind his back. The same movement reveals the gun at his hip under the fancy jacket he wears. <i>“First, no weapons.”</i> ");
+		if(pc.tallness <= 70) output("He looks down at you hard enough that his scrunched eyes are visible behind the mask, making it clear that was <i>not</i> an innocuous statement.");
+		else if(pc.tallness < 80) output("He looks across at you hard enough and with tense body language, his firm warning crystal clear.");
+		else output("He stares up at you unintimidated, his rock-solid body language supporting his terse warning.");
+		output(" <i>“You will check your equipment before passing the gates and submit them to storage, and you will reclaim them when you leave. If it makes you feel better, nobody else will handle your gear.”</i>");
+		output("\n\n");
+		if(pc.isBimbo() || pc.isBro() || pc.isNice() || pc.isMischievous()) output("Nodding, you make ready to disarm. Agitating local security is the last thing you want on a crowded station.");
+		else output("You scowl and prep your gear for apprehension. If someone tries anything, it’ll be a race between you and the help to make it their last mistake.");
+		output("\n\n<i>“Lastly, you will respect the Dealers and adhere to the rules of the game. Credits are to be presented up front. Bets will not be forfeited or surrendered. Take it from me, you would do well <b>not</b> to spend beyond your means.”</i> A light smirk crosses his olive features. <i>“Everything else should be self-explanatory.”</i>");
+		output("\n\nHe nods once, cracking his neck in the stiff motion, before returning to his post and quashing a sprouted argument.");
+		output("\n\nIn the nearby alcoves, not too unlike a set of keyed lockers, you claim an unused rack and stash your [pc.rangedNoun] and whatever else on your personage that could be construed as a weapon, sealing them under magnetic clamps that will only open for the cardkey you take. You then [pc.move] unmolested through the cerulean forcefield, feeling the scanner bristle along your [pc.skinFurScalesNoun].");
+		processTime(5);
+		clearMenu();
+		addButton(0,"Next",firstTimeCasinoPartDues);
+		return true;
+	}
+	return false;
+}
+
+public function firstTimeCasinoPartDues():void
+{
+	clearOutput();
+	showName("CASINO\nSECURITY");
+	showBust("CASINO_SECURITY");
+	author("William");
+	output("Weaponized glamor that could topple old Terran religions decorates the <i>Treasure Nova</i> interior - the opulence on display stabs you right in the eye. Behind the idolatry are hardlight walls tuned to exhibit an accurate representation of atmospheric auroras. Soothing magenta rays fade into chilling emerald gradients, dimming until a chromatic pulse revivifies them, changing the color and the mood as it travels.");
+	output("\n\nYou can practically see the aurelian strings being pulled from this grand space, attached tightly to the money moving through here at rapid rates. Obnoxiously loud slot machines jingle all around, shrill noises and psychologically exploitative lights persuading retries from lightened wallets. Dealers bellow at the nadir of the casino, in an area devoted to high-stakes gambling. Platinum-white carpets are laid at the center of every walkway, pathing through wealthy thoroughfares.");
+	output("\n\nDominating the center of this hall is a massive bar that can be described as the very core of this den of iniquity. It may in fact <b>be</b> a giant power core with its eye-catching design. There, a battalion of bartenders serve freelancers, Jumpers, Cyber Punks, anyone who seats themselves at the counter. A poppy jazz theme highlighted by a suplerative sax emanates from the speakers slotted into its crown.");
+	output("\n\nSlaves happy with their lot in life handle platters of steaming food and fizzy, raspberry-colored drinks, delivering condiments where they’re needed most, dressed in fine clothing featuring name tags and the logo of their owner’s business: unsurprisingly, a stylized nova.");
+	output("\n\nNow that you’ve adjusted to the celestial aesthetic, you wonder where your money would best be spent. " + (silly ? "Assuming you don’t disturb the sound of silence, anyway. ":"") + "Considering everyone checks their weapons at the door, this may just be the safest place on Zheng Shi.");
+	output("\n\nAt least until someone loses hard enough.");
+	flags["TREASURE_NOVAD"] = 1;
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}

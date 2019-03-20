@@ -73,19 +73,23 @@
 		{
 			cards.push(newCard);
 		}
-		public function getCardPointTotalBlackjack():Number
+		public function getCardPointTotalBlackjack(dealer:Boolean = false):Number
 		{
 			var total:Number = 0;
 			var aces:Number = 0;
 
 			for(var x:int = 0; x < cards.length; x++)
 			{
-				if(cards[x].cardPriority == 14)
+				if(x == 0 && dealer) {}
+				else
 				{
-					total += 11;
-					aces++;
+					if(cards[x].cardPriority == 14)
+					{
+						total += 11;
+						aces++;
+					}
+					else total += cards[x].cardValue;
 				}
-				else total += cards[x].cardValue;
 			}
 			//Convert aces to 1 to keep under 21.
 			while(total > 21 && aces > 0)
@@ -96,10 +100,10 @@
 			}
 			return total;
 		}
-		public function listHand():String
+		public function listHand(dealer:Boolean = false):String
 		{
 			if(cards.length == 1) return cards[0].cardDescription();
-			else if(cards.length == 2) return cards[0].cardDescription() + " and " + cards[1].cardDescription();
+			else if(cards.length == 2) return (dealer ? "facedown card":cards[0].cardDescription()) + " and " + cards[1].cardDescription();
 			else if(cards.length > 2)
 			{
 				var outputS:String = "";
@@ -107,7 +111,8 @@
 				{
 					if(x+2 > cards.length) outputS += ", and ";
 					else if(x != 0 && x < cards.length - 1) outputS += ", ";
-					outputS += cards[x].cardDescription();
+					if(dealer && x == 0) outputS += "facedown card";
+					else outputS += cards[x].cardDescription();
 				}
 				return outputS;
 			}
