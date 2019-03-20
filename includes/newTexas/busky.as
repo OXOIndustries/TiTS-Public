@@ -311,7 +311,7 @@ public function buskyTalksAboutModeling():void {
 	output("\n\n<i>“True, but they’re so still and lifeless. I need something dynamic,”</i> you continue.");
 	output("\n\n<i>“Hardlight mannequin, dead center of the displays, can’t miss it,”</i> he says nonchalantly.");
 	output("\n\n<i>“Can’t compliment it either,”</i> you joke. <i>“So I was wondering. If you’d be willing to try on your clothes for me.”</i>");
-	output("\n\n<i>“You want me to model eh? Well why didn’t you say so.”</i> Busky laughs a bit. <i>“Well, I can’t say I’m opposed to the idea. Also can’t say you’re the first to ask. But if you want, I’ll be glad to put myself on display.”</i>");
+	output("\n\n<i>“You want me to model, eh? Well why didn’t you say so.”</i> Busky laughs a bit. <i>“Well, I can’t say I’m opposed to the idea. Also can’t say you’re the first to ask. But if you want, I’ll be glad to put myself on display.”</i>");
 	
 	processTime(1);
 	
