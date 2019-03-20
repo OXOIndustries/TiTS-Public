@@ -1910,7 +1910,6 @@ public function boredJumperPregEncounterGoWithRestSpooningNext2(jumperType:int=0
 	clearOutput();
 	showPregBoredJumper(true, true,jumperType);
 	var sceneNum:int = boredJumperPregScene(jumperType);
-	var firstName:Boolean = boredJumperSetSteelesName(jumperType);
 	
 	output("<i>Exhale.</i> Your eyes open, bringing you back to reality from a dreamless yet no less pleasant sleep. The smells you're greeted with are lewd and all too arousing. What you see when you open your eyes is the [enemy.furColor] back of your bunny-girl, whom still snoozes in the security of your [pc.arms]. You nuzzle into the back of her neck again, kissing upwards to her cheek, finally waking the slumbering Jumper.");
 	output("\n\n<i>“Ahhh… where…”</i> she starts, then turns to face you, smiling happily. <i>“Hey");
@@ -1919,6 +1918,8 @@ public function boredJumperPregEncounterGoWithRestSpooningNext2(jumperType:int=0
 	output("\n\nShe smooches you on the nose and starts looking around, no doubt fiercely satisfied after what you just did. <i>“Oh man, I wonder what time it is. I feel like a brand new girl!”</i> she boasts, giggling. When she tries to turn to face you, your cock slides out of her pussy, along with a thin stream of  lubricant. <i>“You are the fucking best. I loved everything about that.”</i> She says that and more with misty eyes, and you chat for a while about her pregnancy. <i>“Will you try to be around when they're born? I really don't wanna ask but… I'll need help and we can't-”</i>");
 	output("\n\nYou touch a finger to her lips and shake your head. Now's not the time.");
 	output("\n\n<i>“R-right… When it's time, I'll do my best, too.”</i>");
+	
+	var firstName:Boolean = boredJumperSetSteelesName(jumperType);
 	
 	if (firstName)
 	{
