@@ -2775,7 +2775,7 @@ public function initZhengRooms():void
 
 	rooms["ZSR H31"] = new RoomClass(this);
 	rooms["ZSR H31"].roomName = "CASINO\nGATE";
-	rooms["ZSR H31"].description = "Before enmeshing yourself in <i>Treasure Nova's</i> bewitching fluorescence, you check your weapons at the door and pass cleanly through a security forcefield. Hardlight walls flaunt patterns of scintillant richness in the shape of atmospheric auroras while gamblers and others flock to and from the massive bar. Zheng Shi's premiere lap of luxury invites those with ample means to win their place in it.\n\nTo your north is a massive bar in the shape of a quasar. Everything about it is designed with hardlight functionality, but a contrasting word flashes atop caustic colors: <i>AQUARIUS.</i> To your east is a large space devoted to standard slot machines";
+	rooms["ZSR H31"].description = "Before enmeshing yourself in <i>Treasure Nova’s</i> bewitching fluorescence, you check your weapons at the door and pass cleanly through a security forcefield. Hardlight walls flaunt patterns of scintillant richness in the shape of atmospheric auroras while gamblers and others flock to and from the massive bar. Zheng Shi’s premiere lap of luxury invites those with ample means to win their place in it.\n\nTo your north is a massive bar in the shape of a quasar. Everything about it is designed with hardlight functionality, but a contrasting word flashes atop caustic colors: <i>AQUARIUS.</i> To your east is a large space devoted to standard slot machines";
 	rooms["ZSR H31"].planet = "ZHENG SHI STATION";
 	rooms["ZSR H31"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR H31"].northExit = "ZSR H29";
@@ -2789,7 +2789,7 @@ public function initZhengRooms():void
 
 	rooms["ZSR J31"] = new RoomClass(this);
 	rooms["ZSR J31"].roomName = "\nSLOTS";
-	rooms["ZSR J31"].description = "No self-respecting Casino is unequipped of slot machines. In this labyrinthian wing of the building you find that not all slot machines are the same. Some are beaten up and look to be hastily fixed, while others shine with their mechanic's love. A lot of them look to be straight up stolen, as indicated by scratch patterns where logos or serial numbers may have once boldly presented. Although you're pretty sure these are rigged in the <i>Nova's</i> favor, that doesn't stop dozens of people from trying their luck.\n\nTo the north is the main game room where your personal aptitude will be properly tested; to the west is the main entrance.";
+	rooms["ZSR J31"].description = "No self-respecting Casino is unequipped of slot machines. In this labyrinthian wing of the building you find that not all slot machines are the same. Some are beaten up and look to be hastily fixed, while others shine with their mechanic’s love. A lot of them look to be straight up stolen, as indicated by scratch patterns where logos or serial numbers may have once boldly presented. Although you’re pretty sure these are rigged in the <i>Nova’s</i> favor, that doesn’t stop dozens of people from trying their luck.\n\nTo the north is the main game room where your personal aptitude will be properly tested; to the west is the main entrance.";
 	rooms["ZSR J31"].planet = "ZHENG SHI STATION";
 	rooms["ZSR J31"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR J31"].northExit = "ZSR J29";
@@ -2833,7 +2833,7 @@ public function initZhengRooms():void
 
 	rooms["ZSR J27"] = new RoomClass(this);
 	rooms["ZSR J27"].roomName = "CASINO\nGATE";
-	rooms["ZSR J27"].description = "Glamorous colors invite you through the gaudiest side entrance you've ever seen past two well-dressed bouncers who usher the crowds expertly. The owners of the aptly named <i>Treasure Nova</i> flaunt their conspicuous wealth in colors of fortune so bright they leave spotty marks in your sightlessness. After storing your weaponry and butting a few shoulders you're past the flickery gates, standing in the aurora-themed interior of <i>Treasure Nova.</i>\n\nTo your south is the gambling floor, large as a mall cafeteria; cards are being dealt at eye-crossing speeds. To your west is a comfortable lounge, everyone in attendance entertained by sweaty strippers dancing and grinding for their audiences.";
+	rooms["ZSR J27"].description = "Glamorous colors invite you through the gaudiest side entrance you’ve ever seen past two well-dressed bouncers who usher the crowds expertly. The owners of the aptly named <i>Treasure Nova</i> flaunt their conspicuous wealth in colors of fortune so bright they leave spotty marks in your sightlessness. After storing your weaponry and butting a few shoulders you’re past the flickery gates, standing in the aurora-themed interior of <i>Treasure Nova.</i>\n\nTo your south is the gambling floor, large as a mall cafeteria; cards are being dealt at eye-crossing speeds. To your west is a comfortable lounge, everyone in attendance entertained by sweaty strippers dancing and grinding for their audiences.";
 	rooms["ZSR J27"].planet = "ZHENG SHI STATION";
 	rooms["ZSR J27"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR J27"].northExit = "";
@@ -2847,7 +2847,7 @@ public function initZhengRooms():void
 
 	rooms["ZSR H27"] = new RoomClass(this);
 	rooms["ZSR H27"].roomName = "\nLOUNGE";
-	rooms["ZSR H27"].description = "<i>Treasure Nova's</i> lounge is a smokier part of the casino, muggy with the scent of sex. Ceiling-bound hardlight walls help muffle the outside while all lighting within is directed to stages centered among couches, chairs, and half-private booths. Dancers grace poles with gradual descent into depravity, accepting thrown money and invitations for one-on-one time. Every offer is eagerly reciprocated. Rhapsodizing light shows accompany their inhumanly graceful movements, and it seems that for every man or woman that departs the stage, there's always another to take their place.\n\nHeading south, you could make your way to <i>Treasure Nova's</i> galaxy-class bar, or move on to more attractions in the east and west.";
+	rooms["ZSR H27"].description = "<i>Treasure Nova’s</i> lounge is a smokier part of the casino, muggy with the scent of sex. Ceiling-bound hardlight walls help muffle the outside while all lighting within is directed to stages centered among couches, chairs, and half-private booths. Dancers grace poles with gradual descent into depravity, accepting thrown money and invitations for one-on-one time. Every offer is eagerly reciprocated. Rhapsodizing light shows accompany their inhumanly graceful movements, and it seems that for every man or woman that departs the stage, there’s always another to take their place.\n\nHeading south, you could make your way to <i>Treasure Nova’s</i> galaxy-class bar, or move on to more attractions in the east and west.";
 	rooms["ZSR H27"].planet = "ZHENG SHI STATION";
 	rooms["ZSR H27"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR H27"].northExit = "";

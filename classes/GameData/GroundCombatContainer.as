@@ -1602,7 +1602,7 @@ package classes.GameData
 			{
 				addDisabledButton(14, "Run", "Run", "You agreed to this, no turning back now.");
 			}
-			else if (pc.accessory is SignetOfBravery) addDisabledButton(14, "Run", "Run", "You can't possibly bring yourself to run! (Prevented by <b>Signet of Bravery</b> accessory.)");
+			else if (pc.accessory is SignetOfBravery) addDisabledButton(14, "Run", "Run", "You can’t possibly bring yourself to run! (Prevented by <b>Signet of Bravery</b> accessory.)");
 			else
 			{
 				addButton(14, "Run", runAway, undefined, "Run", "Attempt to run away from your enemy. Success is greatly dependent on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");

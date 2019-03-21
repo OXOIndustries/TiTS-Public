@@ -14,8 +14,12 @@ public function canadiaGloryhole():Boolean
 {
 	gloryholeGenerate();
 
+	var occupant:Number = pc.statusEffectv1("Gloryhole Shift Activated");
+	var otherCummed:Boolean = (pc.statusEffectv2("Gloryhole Shift Activated") != 1);
+	var overcumDesc:String = pc.getStatusTooltip("Gloryhole Shift Activated");
+	
 	//Empty.
-	if(pc.statusEffectv1("Gloryhole Shift Activated") == 0 || (pc.statusEffectv1("Gloryhole Shift Activated") >= 5 && pc.statusEffectv1("Gloryhole Shift Activated") <= 6)) 
+	if(occupant == 0 || (occupant >= 5 && occupant <= 6)) 
 	{
 		output("\n\nNobody is working the gloryholes right now. You could climb in and man them yourself, if you wanted.");
 		addButton(0,"Work Hole",workTheGloryhole,undefined,"Work Hole","Climb into the gloryhole yourself, and suck some dick.");
@@ -25,15 +29,15 @@ public function canadiaGloryhole():Boolean
 	{
 		//Tentacle Fun
 		//tentacle-tongue beej - get sucked off while foot-long tongue jerks off, lots of suction and sloppy messy drooliness.
-		if(pc.statusEffectv1("Gloryhole Shift Activated") == 4)
+		if(occupant == 4)
 		{
 			showName("\nGLORYHOLE");
 			author("SKoW");
-			output("\n\nYou call out into the quiet stall, waiting for an answer. It’s not quite an expected answer; perhaps it’s racist to say but the voice is very... alien. There’s an almost hypnotic, sybiliant hiss followed by a whispery giggle. <i>“Ah... my next visitor. I am glad I brought a drink in with me, a little pallette cleanser.”</i>\n\nOkay, a little bit creepy. Do you stick your dick in?");
+			output("\n\nYou call out into the quiet stall, waiting for an answer. It’s not quite an expected answer; perhaps it’s racist to say but the voice is very... alien. There’s an almost hypnotic, sybiliant hiss followed by a whispery giggle. <i>“Ah... my next visitor. I am glad I brought a drink in with me, a little palate cleanser.”</i>\n\nOkay, a little bit creepy. Do you stick your dick in?");
 			processTime(1);
 		}
 		//Deertaur/Catgrill normal Beej
-		else if(pc.statusEffectv1("Gloryhole Shift Activated") <= 3)
+		else if(occupant <= 3)
 		{
 			output("\n\nThe stall full of gloryholes is presently occupied.");
 			if(pc.hasCock()) output(" Now would be the perfect time to stick your dick through an adjacent slot and get an anonymous blowjob.");
@@ -43,10 +47,10 @@ public function canadiaGloryhole():Boolean
 		//Centaur girl
 		if(9999 == 0) output(" The floor surrounding the stall is wet with... girlcum. A moist little fillie must be hard at work inside.");
 		//Futa/Male overcum?
-		if(pc.getStatusTooltip("Gloryhole Shift Activated") != "") 
+		if(overcumDesc != "") 
 		{
-			output(" Streams of " + pc.getStatusTooltip("Gloryhole Shift Activated") + " flow from under the edge, following grooves in the floor toward the drain.");
-			if(pc.statusEffectv2("Gloryhole Shift Activated") != 1) output(" Either the person inside busted a backed-up nut or serviced a pair of blue-balled stallions.");
+			output(" Streams of " + overcumDesc + " flow from under the edge, following grooves in the floor toward the drain.");
+			if(otherCummed) output(" Either the person inside busted a backed-up nut or serviced a pair of blue-balled stallions.");
 			else output(" You made quite a mess.");
 		}
 		//In heat
@@ -99,6 +103,7 @@ public function stickDickThroughGloryhole(arg:int):void
 {
 	clearOutput();
 	showName("\nGLORYHOLE");
+	var occupant:Number = pc.statusEffectv1("Gloryhole Shift Activated");
 	//Too Big
 	if(pc.cThickness(arg) > 4) 
 	{
@@ -109,17 +114,17 @@ public function stickDickThroughGloryhole(arg:int):void
 		else addButton(0,"Next",mainGameMenu);
 		return;
 	}
-	else if(pc.statusEffectv1("Gloryhole Shift Activated") == 3)
+	else if(occupant == 3)
 	{
 		usingTheHoleBySkowzers(arg);
 		return;
 	}
-	else if(pc.statusEffectv1("Gloryhole Shift Activated") == 4)
+	else if(occupant == 4)
 	{
 		yesSpookydicksucksAreHabbening(arg);
 		return;
 	}
-	else if(pc.statusEffectv1("Gloryhole Shift Activated") <= 2)
+	else if(occupant <= 2)
 	{
 		output("You thrust yourself through the hole. ");
 		if(fatFlare(arg)) output("The flare catches briefly on the meager entrance, but a little pressure makes it bow back, then pop through a second before it gets painful. You might have to wait a bit after you cum before you can get out... ");
@@ -131,7 +136,7 @@ public function stickDickThroughGloryhole(arg:int):void
 		output("It takes but a moment for the occupant to notice the lusty intruder.");
 
 		//Kitty
-		if(pc.statusEffectv1("Gloryhole Shift Activated") == 2)
+		if(occupant == 2)
 		{
 			output("\n\n<i>“Mmm... ");
 			if(pc.cocks[arg].cType == GLOBAL.TYPE_FELINE) output("hey there, tiger.");
@@ -284,7 +289,7 @@ public function stickDickThroughGloryhole(arg:int):void
 			}
 		}
 		//deertaur
-		else if(pc.statusEffectv1("Gloryhole Shift Activated") == 1)
+		else if(occupant == 1)
 		{
 			output("\n\n<i>“Oh wow!”</i> The voice is almost breathless with excitement. <i>“It’s so... so...");
 			if(flags["DEERTAUR_GLORYHOLED"] != undefined) output(" familiar...");

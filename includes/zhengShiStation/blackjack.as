@@ -23,7 +23,7 @@ public function blackjackTest():void
 public function basicBitchBlackjackDealerIntro():void
 {
 	output("\n\nA robotic dealer invites you to play a game of blackjack. <i>“Blackjack! The game older than time. <b>500 credits</b> to play, a fortune to be won. House stands at sixteen, ties go to the dealer. Interested?”</i>");
-	addButton(0,"Blackjack",setUpBasicBitchBlackjack,undefined,"Blackjack","Playing will cost you at least 500 credits, maybe more if you're feeling greedy.");
+	addButton(0,"Blackjack",setUpBasicBitchBlackjack,undefined,"Blackjack","Playing will cost you at least 500 credits, maybe more if you’re feeling greedy.");
 }
 public function setUpBasicBitchBlackjack():void
 {
@@ -63,7 +63,7 @@ public function startBlackjack(clearBet:Boolean = false):void
 	}
 	else if(flags["BLACKJACK_DEALER"] == 0)
 	{
-		output("The dealer shuffles the deck exactly three times, each time with near-perfect precision. It's time to play!");
+		output("The dealer shuffles the deck exactly three times, each time with near-perfect precision. It’s time to play!");
 	}
 	pcHand.addCard(deck.drawCard()[0]);
 	pcHand.addCard(deck.drawCard()[0]);
@@ -95,7 +95,7 @@ public function blackjackStatus(args:Array):void
 	clearOutput();
 	showBlackjackDealer();
 	output("Your current hand: " + pcHand.listHand() + ".\nValue: <b>" + pcHand.getCardPointTotalBlackjack() + " </b>");
-	output("\n\nThe dealer's hand: " + dealerHand.listHand(true) + ".\nVisible Value: <b>" + dealerHand.getCardPointTotalBlackjack(true) + "</b>");
+	output("\n\nThe dealer’s hand: " + dealerHand.listHand(true) + ".\nVisible Value: <b>" + dealerHand.getCardPointTotalBlackjack(true) + "</b>");
 	blackJackOptions([deck,dealerHand,pcHand]);
 }
 

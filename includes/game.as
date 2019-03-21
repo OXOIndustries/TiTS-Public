@@ -229,9 +229,6 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	if(debug) output("<b>\\\[ <span class='lust'>DEBUG MODE IS ON</span> \\\]</b>\n\n");
 	output(rooms[currentLocation].description);
 	
-	// Time passing effects
-	if(passiveTimeEffects(minutesMoved)) return;
-	
 	// Random events, outside of important/timed missions
 	if (!disableExploreEvents())
 	{
@@ -261,6 +258,9 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 			if(pattonIsHere()) pattonAppearance();
 		}
 	}
+	
+	// Time passing effects
+	if(passiveTimeEffects(minutesMoved)) return;
 	
 	//Standard buttons:
 	addButton(13, "Inventory", inventory);

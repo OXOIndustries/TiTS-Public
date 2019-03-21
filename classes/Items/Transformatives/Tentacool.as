@@ -79,6 +79,8 @@ package classes.Items.Transformatives
 					{
 						target.createStatusEffect("Tentatool", 1, 0, 0, 0, false, "Pill", "Your skin tingles from the Tentatool pill.", false, 30, 0xB793C4); // Transformations take place after time runs out
 					}
+					
+					target.taint(2);
 				}
 			}
 			//Not player!
@@ -638,6 +640,7 @@ package classes.Items.Transformatives
 			if(target.hairType != GLOBAL.HAIR_TYPE_TENTACLES) target.hairType = GLOBAL.HAIR_TYPE_TENTACLES;
 			if(target.hairLength < 20) target.hairLength = 20;
 			target.hairColor = target.skinTone;
+			target.hairStyle = "null";
 			if(target.tongueType != GLOBAL.TYPE_TENTACLE)
 			{
 				target.tongueType = GLOBAL.TYPE_TENTACLE;
@@ -698,6 +701,7 @@ package classes.Items.Transformatives
 				if(target.vaginas[i].minLooseness > 1) target.vaginas[i].minLooseness = 1;
 				target.vaginas[i].vaginaColor = target.skinTone;
 			}
+			target.taint(100);
 			
 			kGAMECLASS.processTime(52);
 			

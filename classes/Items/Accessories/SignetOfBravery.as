@@ -32,7 +32,7 @@ package classes.Items.Accessories
 			
 			//ring of solid diamond shrouded in a twisting, silver spear. +5 physique/aim and +25 HP but disables flee.
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This ring is made from a solid diamond that's been cut into the shape of a twisting, glimmering spear. Silver-red streaks of some strange impurity are the only sign of its primitive manufacture, though you wager a coreward jeweler could judge it better than you.\n\n(Increases maximum aim and physique by +5)\n(Increases maximum HP by 25.)\n(Cannot <b>flee</b> combat.)";
+			this.tooltip = "This ring is made from a solid diamond that’s been cut into the shape of a twisting, glimmering spear. Silver-red streaks of some strange impurity are the only sign of its primitive manufacture, though you wager a coreward jeweler could judge it better than you.\n\n(Increases maximum aim and physique by +5)\n(Increases maximum HP by 25.)\n(Cannot <b>flee</b> combat.)";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

@@ -190,9 +190,9 @@ public function ulaRoomBonusFunc():Boolean
 	{
 		if(ulaChief()) 
 		{
-			output("While this room may have once been vastly different from others in the hold, that uniqueness has been smothered in tradition since Ula's ascension to Chieftess and the resulting relocation of her father. Tribal art decorates the walls. Squared off, angular corners are hidden by woven blankets and intricate sculptures. Furniture not that dissimilar from your own has been replaced with baskets, stoneware, and crude metal bins. The only feature to survive the transition unharmed is the majestic, transparent aluminum window on the southern wall, looking out of across the deadly-beautiful snows of Uvetan countryside.");
+			output("While this room may have once been vastly different from others in the hold, that uniqueness has been smothered in tradition since Ula’s ascension to Chieftess and the resulting relocation of her father. Tribal art decorates the walls. Squared off, angular corners are hidden by woven blankets and intricate sculptures. Furniture not that dissimilar from your own has been replaced with baskets, stoneware, and crude metal bins. The only feature to survive the transition unharmed is the majestic, transparent aluminum window on the southern wall, looking out of across the deadly-beautiful snows of Uvetan countryside.");
 			output("\n\nUla’s father, the former Chieftain of Korg’ii Hold, sits heavily upon the edge of his bed. He doesn’t seem to be aware of you just yet, too focused on the ancient tome in his paw.");
-			addButton(0,"Ula's Father",approachUlasDad);
+			addButton(0,"Ula’s Father",approachUlasDad);
 			return false;
 		}
 		else output("Straight away, you can tell this room is vastly different from the others in Korg’ii Hold. It seems to exist in an entirely different time period. The walls are cut perfectly square with the kind of sharp, mechanically precise geometry you’d expect to find in a UGC warship. Angular grooves split and rejoin each other in an artist’s impression of futuristic adornment. One wall even has a transparent aluminum window, looking out over the deadly-beautiful Uvetan countryside.");
@@ -253,7 +253,7 @@ public function ulaRoomBonusFunc():Boolean
 			else if(rand(3) == 0) output("\n\nUla is sprawled out on " + (ulaChief() ? "some furs, too large for to comfortably fit her throne":"her bed") + ", idly reaching around a very swollen midsection to prod at her puffy, wet sex. Pregnancy hormones have apparently swollen her mound and her appetites right alongside her belly.");
 			else if(rand(2) == 0) output("\n\nUla is propped up against the wall, reading an old-style codex computer that she keeps balanced on her big, pregnant belly.");
 			else output("\n\nUla’s dosing in " + (ulaChief() ? "":"her bed") + ", surrounded by wadded up sheets and a few glistening dildos. The same hormones that helped give her such a big, pregnant belly must be playing hell with her libido.");
-			if(ulaChief()) output(RandomInCollection([" The elders, you note, are nowhere to be seen, giving Ula a wide berth unless summoned."," The chamber is otherwise deserted, the tribe's elders giving her space during her pregnancy."," There isn't a single advisor to be seen, though you're sure the Chieftess of the hold could summon them with a single word to one of the guards outside."," You note that the Chieftess has been given plenty of space by her advisors since becoming pregnant."," None of her advisors are anywhere to be seen."]));
+			if(ulaChief()) output(RandomInCollection([" The elders, you note, are nowhere to be seen, giving Ula a wide berth unless summoned."," The chamber is otherwise deserted, the tribe’s elders giving her space during her pregnancy."," There isn’t a single advisor to be seen, though you’re sure the Chieftess of the hold could summon them with a single word to one of the guards outside."," You note that the Chieftess has been given plenty of space by her advisors since becoming pregnant."," None of her advisors are anywhere to be seen."]));
 		}
 		addButton(0, "Ula", ulaPregApproach);
 	}
@@ -1094,7 +1094,7 @@ public function centaurServiceForUla(x:int):void
 	if(!korgiTranslate()) output("Ula want");
 	else output("I want it");
 	output("!”</i>");
-	output("\n\nUla does her best to hold herself in position, but with all the dick occupying her pretty blue pussy, she’s not going to be much good for anything but getting knocked up. You thrust harder into her. Solid construction is no match for hundreds of pounds of transformed Rusher. The " + (ulaChief() ? "legs":"frame") + "  creaks dangerously when you bottom out, and Ula squeaks right along with it. Grunting with the effort, you give yourself over to your animal instincts and let the fluffy " + (ulaCapacity() ? "chieftess":"princess") + " truly have it. <i>“You want fucked like a horny bitch?”</i>");
+	output("\n\nUla does her best to hold herself in position, but with all the dick occupying her pretty blue pussy, she’s not going to be much good for anything but getting knocked up. You thrust harder into her. Solid construction is no match for hundreds of pounds of transformed Rusher. The " + (ulaChief() ? "legs":"frame") + " creaks dangerously when you bottom out, and Ula squeaks right along with it. Grunting with the effort, you give yourself over to your animal instincts and let the fluffy " + (ulaCapacity() ? "chieftess":"princess") + " truly have it. <i>“You want fucked like a horny bitch?”</i>");
 	output("\n\nThe impaled korgonne whimpers. <i>“");
 	if(!korgiTranslate()) output("Am! Am! Am such love! Pussy in-loving with cock! Want more!");
 	else output("I am! I’m a horny bitch in love! My pussy loves your cock, and I want moooore!");
@@ -1333,7 +1333,7 @@ public function ulasRoleInTheClan():void
 	{
 		output("<i>“So what are you, to your clan?”</i> You gesture around her spacious quarters, clearly decorated to her tastes. <i>“Chieftess?”</i>");
 		output("\n\nUla nods bashfully. Her tail hangs flat on the bed. <i>“");
-		if(!korgiTranslate()) output("Very correct. After battle for hold, father make Clan Chieftess. Many elders big doubting until fight, when Ula's friend save hold and Ula rally fighters for battling.");
+		if(!korgiTranslate()) output("Very correct. After battle for hold, father make Clan Chieftess. Many elders big doubting until fight, when Ula’s friend save hold and Ula rally fighters for battling.");
 		else output("Correct. After the battle for the hold, my father made me Clan Chieftess. Many of the elders, my uncles and aunts, doubted me until that fight, when you saved the hold and I rallied our warriors to clear the hold.");
 		output("”</i> She blushes emphatically. <i>“");
 		if(!korgiTranslate()) output("Such silly! They sayinged Ula too headstrong and also not leader! Sayinged needed mate but not let visit males. Though pussy-dumb and useless, but Ula show them! Alien show them! If Ula not got mad and run away to meet [pc.name], whole hold be fang-cat city now!");

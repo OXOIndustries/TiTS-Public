@@ -988,10 +988,7 @@ public function drinkDatCatMilk(x:int):void
 	output(".");
 	if(pc.hasKnot(x)) 
 	{
-		output("\n\nJust before climax, you slam your [pc.knot");
-		if(y >= 0 && pc.hasKnot(y)) output("s");
-		else output(" " + x + " ");
-		output("] into the kaithrit pirate, sealing her pussy" + (y >= 0 ? " and ass simultaneously":"") + ". The thought that your liquid virility isn’t going anywhere else is the last satisfying thought you need to cross the orgasmic line.");
+		output("\n\nJust before climax, you slam your [pc.knot" + ((y >= 0 && pc.hasKnot(y)) ? "s" : (" " + x)) + "] into the kaithrit pirate, sealing her pussy" + (y >= 0 ? " and ass simultaneously":"") + ". The thought that your liquid virility isn’t going anywhere else is the last satisfying thought you need to cross the orgasmic line.");
 	}
 	else output("\n\nAs your [pc.balls] prepare the first surge of cum, you slam your hips into the kaithrit pirate’s, a feral roar preceding your effortless ejaculation.");
 	// PC low cum

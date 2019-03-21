@@ -384,7 +384,8 @@ public function getSpitRoastedForPenny():void {
 	}
 	
 	output("\n\nBoth zil share a smile at your descent into debauchery, one grabbing you by the head and the other seizing you by the hips, sawing your body back and forth on their slick honeysticks. You aren’t inclined to protest with how good this feels, and the zil don’t seem to have any intention of slowing. The black-skinned one in front jams his dick all the way into your throat, pressing his smooth sack against your lower lip. Grinding up against your nose, the smell is even more potent than the haze already suffusing the metal-paneled cell");
-	if(pc.hasCock() && pc.cumQ() >= 50) output(", making your naughty bits drip like a faucet");
+	var cumQ:Number = pc.cumQ();
+	if(pc.hasCock() && cumQ >= 50) output(", making your naughty bits drip like a faucet");
 	output(". The ebony zil’s cock slides back out from your lips, leaving only its honeysweet head against your lips. You gasp, catching your breath but immediately seal your lips back around the cock in an airtight “O” of need. You tremble, feeling your ");
 	if(!pc.hasVagina()) output("bowels are plugged full of rigid zil-cock");
 	else output("[pc.vagina] is stuffed full of rigid zil-cock");
@@ -399,7 +400,7 @@ public function getSpitRoastedForPenny():void {
 	output("\n\nGurgling happily, you lose yourself in a mind-bending orgasm.");
 	if(pc.hasCock()) {
 		output(" [pc.EachCock] gushes [pc.cum] onto the cell floor, spattering the tile with [pc.cumColor] globs.");
-		if(pc.cumQ() >= 200) output(" You giggle, nearly out of your mind in pleasure as cum saturates and slathers over you until the three of you, zil and human, are in an orgasmic puddle of your own creation.");
+		if(cumQ >= 200) output(" You giggle, nearly out of your mind in pleasure as cum saturates and slathers over you until the three of you, zil and human, are in an orgasmic puddle of your own creation.");
 	}
 	if(pc.hasVagina()) {
 		output(" [pc.OneVagina] clutches tight around the invader");
@@ -419,7 +420,7 @@ public function getSpitRoastedForPenny():void {
 		if(pc.lactationQ() < 500) output(" [pc.Milk] dribbles from your [pc.nipples], coaxed out by the tremors of pleasure running through your body.");
 		else {
 			output(" [pc.Milk] spurts from your nipples, splashing ");
-			if(pc.hasCock() && pc.cumQ() >= 200) output("into the pooling fluids");
+			if(pc.hasCock() && cumQ >= 200) output("into the pooling fluids");
 			else output("onto the floor");
 			output(".");
 		}
@@ -905,19 +906,20 @@ public function firstTimePennyShowerSex():void {
 	output(" The feelings the fox-girl is forcing into you obliterate your worry and replace it with pleasure, starting in a knotted up ball of heat inside you. You unthinkingly plow the whole way inside her and hold her there, cock-stuffed as you begin to spew your load.");
 	
 	output("\n\nPenny’s convulsing cunny gleefully accepts the [pc.cum] you spray into it, taking it deep inside her pussy, perhaps even all the way into her womb.");
+	var cumQ:Number = pc.cumQ();
 	if(pc.hasKnot(x))
 	{
 		output(" She grunts as your knot swells within her, eyes wide as her gene-spliced pussy starts a second orgasm from being mated the way she was meant to be. Her body goes limp in your arms, and you’re forced to support the pleasure-drunk fox, your gushing goo filling her with an instinctual lust that drowns reason and leaves only a savage, primal love.");
-		if(pc.cumQ() < 750) {}
-		else if(pc.cumQ() < 2000) output(" Her belly rounds slightly from all you put into her, but the way her eyes are rolling back, you’re sure she doesn’t mind the added weight.");
+		if(cumQ < 750) {}
+		else if(cumQ < 2000) output(" Her belly rounds slightly from all you put into her, but the way her eyes are rolling back, you’re sure she doesn’t mind the added weight.");
 		else
 		{
 			output("Her belly balloons from all the spunk you pour into her, but the way her eyes roll back and her mouth mouths ‘more,’ you’re sure she doesn’t mind.");
-			if(pc.cumQ() >= 5000)
+			if(cumQ >= 5000)
 			{
 				output(" Of course, after that the pressure becomes to great, and your [pc.cum] runs out in a wave, ");
-				if(pc.cumQ() <= 10000) output("puddling at the bottom of the tub");
-				else if(pc.cumQ() <= 20000) output("slowly filling the tub");
+				if(cumQ <= 10000) output("puddling at the bottom of the tub");
+				else if(cumQ <= 20000) output("slowly filling the tub");
 				else output("slowly filling the tub until you fear it will overflow");
 				output(".");
 			}
@@ -925,20 +927,20 @@ public function firstTimePennyShowerSex():void {
 	}
 	else
 	{
-		if(pc.cumQ() <= 50) output(" Droplets of it leak down her legs to be washed away before they can dry, and you stay inside her until you’ve squeezed out every drop.");
-		else if(pc.cumQ() <= 250) output(" Some of it oozes down her legs in thick streams. The water ensures it doesn’t get to dry there, but you’re cumming hard enough for it not to matter.");
+		if(cumQ <= 50) output(" Droplets of it leak down her legs to be washed away before they can dry, and you stay inside her until you’ve squeezed out every drop.");
+		else if(cumQ <= 250) output(" Some of it oozes down her legs in thick streams. The water ensures it doesn’t get to dry there, but you’re cumming hard enough for it not to matter.");
 		else
 		{
 			output(" Waves of [pc.cumColor] fluid roll down the fennec’s thighs, drenching her legs faster than the water can wash it away. Penny’s pussy is turned into a [pc.cum] fountain by your orgasm, and all she can do is hang there, orgasming so powerfully that she looks about to lose consciousness.");
-			if(pc.cumQ() >= 1000) output(" Her belly expands under your sordid care, rounding nicely into a little paunch, filled with [pc.cum].");
-			if(pc.cumQ() >= 3000) output(" Your body refuses to stop there, and soon that paunch transforms into a gravid tummy, packed full of your fluid.");
-			if(pc.cumQ() >= 5000) 
+			if(cumQ >= 1000) output(" Her belly expands under your sordid care, rounding nicely into a little paunch, filled with [pc.cum].");
+			if(cumQ >= 3000) output(" Your body refuses to stop there, and soon that paunch transforms into a gravid tummy, packed full of your fluid.");
+			if(cumQ >= 5000) 
 			{
 				output(" She whimpers when her body becomes too full to handle any more, and the cum running out of her speared slit begins to fill the tub faster than it can drain, turning the enclosure into a");
-				if(pc.cumQ() <= 5500) output("n inch deep puddle");
-				else if(pc.cumQ() <= 6000) output(" two inch deep puddle");
-				else if(pc.cumQ() <= 10000) output(" four inch deep puddle");
-				else if(pc.cumQ() <= 20000) output(" almost a foot deep puddle");
+				if(cumQ <= 5500) output("n inch deep puddle");
+				else if(cumQ <= 6000) output(" two inch deep puddle");
+				else if(cumQ <= 10000) output(" four inch deep puddle");
+				else if(cumQ <= 20000) output(" almost a foot deep puddle");
 				else output("tub full of sex-juice");
 				output(".");
 			}
@@ -947,7 +949,7 @@ public function firstTimePennyShowerSex():void {
 	output("\n\nGradually sliding down, ");
 	if(pc.hasKnot(x)) output("hanging for a moment before she pops off, ");
 	output("Penny eventually frees herself from your manhood and collapses into the tub. She looks at you through bleary eyes and abruptly climbs back up, ");
-	if(pc.cumQ() >= 2000) output("cradling her stuffed middle and ");
+	if(cumQ >= 2000) output("cradling her stuffed middle and ");
 	output("kissing you on the lips. You kiss her back until you both tire of dueling tongues and simply enjoy feeling of the shower washing you clean, helping each other to scrub off.");
 	output("\n\n<i>“My mate...”</i> Penny muses out loud, <i>“I like the sound of that.”</i> She looks at you with a warm smile, putting an arm around your ");
 	if(pc.tallness <= 55) output("shoulder");
@@ -1036,18 +1038,19 @@ public function femaleFirstTimePennyLesboz():void {
 	output(", over your [pc.belly], and into your [pc.fullChest], causing your whole body to clench and relax over and over again. As you shudder and shake your way through release, the small fennec seems content to continue her ministrations, cooing, <i>“Good " + pc.mf("boy","girl") + ", cum for me.... Such obedient prey.”</i>");
 	if(pc.hasCock())
 	{
+		var cumQ:Number = pc.cumQ();
 		output(" A look of irritation covers her face when [pc.cum] ");
-		if(pc.cumQ() <= 1000) output("stains her fur");
-		else if(pc.cumQ() <= 2000) output("fills the bottom of the tub");
-		else if(pc.cumQ() <= 15000) output("turns the tub into a half-full bath");
+		if(cumQ <= 1000) output("stains her fur");
+		else if(cumQ <= 2000) output("fills the bottom of the tub");
+		else if(cumQ <= 15000) output("turns the tub into a half-full bath");
 		else output("floods the entire tub, covering you to your neck and her to her waist");
 		output(", but it is soon forgotten once she sees your eyes roll back.");
 		if(pc.canMilkSquirt())
 		{
 			output(" Your milk pours out to join the rest of the fluid in the tub");
-			if(pc.cumQ() + pc.lactationQ() <= 5000) output(", vanishing down the drain as quickly as it appears");
-			else if(pc.cumQ() + pc.lactationQ() <= 10000) output(", filling it a little bit higher");
-			else if(pc.lactationQ() + pc.cumQ() <= 15000) output(", filling it to the brim");
+			if(cumQ + pc.lactationQ() <= 5000) output(", vanishing down the drain as quickly as it appears");
+			else if(cumQ + pc.lactationQ() <= 10000) output(", filling it a little bit higher");
+			else if(pc.lactationQ() + cumQ <= 15000) output(", filling it to the brim");
 			else output(", pouring out over the sides, wasted");
 			output(".");
 			pc.milked();
@@ -1147,19 +1150,20 @@ public function stickAHugeDickInPennysWorld():void {
 	output(" so that she can handle a tit in each hand, bouncing them up and down alternatively. The waves of slick, mammary sensation wash across your pulsating length with such rapidly that your abdomen begins clenching and your dick begins flexing, building to an unavoidable, orgasmic deluge. Penny purrs, <i>“Give it to me, my new mate... my big, hung " + pc.mf("stud","breeder") + ". I want to taste it.”</i>");
 	
 	output("\n\nYour urethra bulges, first at the base and then at the tip. A moment later, your cum-slit opens up, and a thick jet of [pc.cum] launches forth, straight into the fox-girl’s open maw. Her eyes are twinkling happily while she watches lust consume your mind. Then, the next rope comes and paints her from nose to forehead, causing her to unintentionally blink over her beautiful blue orbs. She holds them closed while you pool cum on top of them, even getting some into her short mohawk.");
-	if(pc.cumQ() >= 500)
+	var cumQ:Number = pc.cumQ();
+	if(cumQ >= 500)
 	{
 		output(" You grunt, your [pc.hips] lurching slightly with the spasms of ecstasy rolling through your body, flinging a steady flow of [pc.cum] across the few portions of her muzzle still unpainted. One spurt after another claims those rogue patches of fur, soaking them before sloughing off her cheekbones to drip down her body. The puddle in her maw deepens when a few blobs fall on her tongue and roll on in, but she doesn’t seem to mind.");
-		if(pc.cumQ() >= 1000) output(" When you adjust your aim and completely fill the orifice with [pc.cum],not much changes. She pushes some out, and big blobs of your ejaculate splatter off her tits. This only serves to give your orgasm-riddled consciousness an idea. You aim lower and soak the nape of her neck, her tits, and then draw a line down her navel towards her unclaimed sex, painting the pink lips in your efflux.");
-		if(pc.cumQ() >= 3000) 
+		if(cumQ >= 1000) output(" When you adjust your aim and completely fill the orifice with [pc.cum], not much changes. She pushes some out, and big blobs of your ejaculate splatter off her tits. This only serves to give your orgasm-riddled consciousness an idea. You aim lower and soak the nape of her neck, her tits, and then draw a line down her navel towards her unclaimed sex, painting the pink lips in your efflux.");
+		if(cumQ >= 3000) 
 		{
 			output(" [pc.Cum] fills up the tub around your [pc.feet] thanks to your immense virility");
-			if(pc.cumQ() >= 5000) 
+			if(cumQ >= 5000) 
 			{
-				if(pc.cumQ() >= 7000)
+				if(cumQ >= 7000)
 				{
 					output(", and it just gets higher and higher ");
-					if(pc.cumQ() <= 10000) output("before thankfully stopping halfway up");
+					if(cumQ <= 10000) output("before thankfully stopping halfway up");
 					else output("until you worry it’ll overflow. Thankfully, your worry puts the brakes on your excessive orgasm, cutting it off before you flood the whole bathroom");
 				}
 			}
@@ -1169,7 +1173,7 @@ public function stickAHugeDickInPennysWorld():void {
 	output(" The corners of her mouth twist upward around the [pc.cumColor] puddle filling her mouth, luxuriating in the lewd face-painting you’ve doled out with a happy sigh.");
 	
 	output("\n\nPenny tips her head back under the shower to wash her eyes clear, making a show of swallowing the portion of your load still in her mouth while she does. <i>“Ahhh, tasty.”</i> She gathers some up on her fingers and makes a show of sucking them clean. All the while, the cascading sheets of cleaning hydration clear her upper body completely. ");
-	if(pc.cumQ() >= 3000) output("The drain gurgles under the load, but the ocean of love juice and h2o IS lowering. ");
+	if(cumQ >= 3000) output("The drain gurgles under the load, but the ocean of love juice and h2o IS lowering. ");
 	output("Safe to open her eyes, the fox-girl blinks her sticky eyelids apart, and she growls, <i>“I’m still horny.”</i> Penny rises up out of the accumulated mess, hooking her leg behind yours so fast you that you’re barely aware of what’s going on before you’re falling, dropping straight into her waiting arms. She eases your climax-slackened musculature into a seated position and steps over your torso");
 	if(pc.biggestTitSize() >= 1) output(", dragging her puffy, pink pussy across your [pc.nipples] with an agonizingly aroused moan");
 	output(". Her soaking-wet cunt gradually finds its way up in front of your [pc.face], dripping water and feminine juices in almost equal measure.");
@@ -1839,9 +1843,9 @@ public function pennyToBigPenny():void {
 	if(penny.balls == 0) output("\n\nMid-orgasm, the flesh between Penny’s [penny.cock] and pink slit bulges out, her skin ballooning slowly, coming to rest flat and empty upon her quivering folds. A second later, something squeezes out of the fox-girl and into the sack of pink skin. It’s a rounded, egg-shaped little bulge that you identify as a testicle almost immediately. A second falls into the other side, and both bounce happily in their new home as they grow, swelling up to the size of golf balls before stopping. Fine amber hairs sprout all over the pouch a moment later, blending in with the sheath above and the fur to either side. <b>Penny grew a ballsack!</b>");
 	output("\n\nGulping noisily, the now-hung hermaphrodite works to keep up with her prodigious alabaster flow. Her [penny.cock] seems to have finished the worst of its growth and appears content to serve as a sperm highway straight into Penny’s belly. Her taut tummy bulges slightly with hastily-swallowed, liquid weight, distending under the size of the drug-born load. Still, even such ludicrous orgasms have to come to an end, and Penny’s tapers down to an unsubtle white-leaking drip.");
 	
-	output("\n\nYou watch the fennec come down from her orgasmic high with a bit of uncertainty. She’s gotten pretty big, and you can’t even see the whole size of her member with it buried in her throat. Penny answers your unasked questions a moment later by pulling off and gasping for breath. <b>Her cock has grown to somewhere just under twelve inches, maybe eleven and a half.</b> The tip is still leaking white, but it does begin to recede into the vixen’s enlarged sheath. Her balls have nowhere to go, and she comments, <i>“</i>");
-	if(penny.balls == 0) output("<i>I guess I better be careful how I sit from now on.... </i>");
-	output("<i>That felt better than last time!”</i>");
+	output("\n\nYou watch the fennec come down from her orgasmic high with a bit of uncertainty. She’s gotten pretty big, and you can’t even see the whole size of her member with it buried in her throat. Penny answers your unasked questions a moment later by pulling off and gasping for breath. <b>Her cock has grown to somewhere just under twelve inches, maybe eleven and a half.</b> The tip is still leaking white, but it does begin to recede into the vixen’s enlarged sheath. Her balls have nowhere to go, and she comments, <i>“");
+	if(penny.balls == 0) output("I guess I better be careful how I sit from now on....");
+	output(" That felt better than last time!”</i>");
 	output("\n\nYou cock your head to the side.");
 	
 	output("\n\n<i>“Seriously! Last time, it was like I was supremely horny and HAD to bring myself off right now,”</i> Penny explains. <i>“This time, it’s like I was getting more and more aroused with each passing second. I didn’t have to touch myself, I <b>knew</b> I’d be coming in ten or fifteen seconds, I just touched myself because I wanted it to feel even better, and boy did it ever! When it started growing, it was like I was having this beautiful, perfect, slow orgasm, and then when it went into my mouth, I started cumming all over again! I got off on jizzing into my own throat and I came forever! I can still feel it sloshing inside of me...”</i> She cradles her belly, but her shaft has apparently re-engorged, ready to go again.");
@@ -2460,12 +2464,13 @@ public function suckAndLickAtPennyYouDildo(dick:Boolean = true):void {
 	output(" Then, she cums, pouring her juices into your mouth, and you find yourself cumming with her.");
 	
 	output("\n\nYour hot load spews out onto your belly, one jet after another. Penny intervenes mid-climax, rubbing a paw against the topside of your spurting cock and guiding her other in the way of your slippery stream. Your [pc.cumColor] pleasure washes across her foot, and she grunts, still cumming into your mouth while she enjoys watching your [pc.cum] cling to her soles.");
-	if (pc.cumQ() >= 40) 
+	var cumQ:Number = pc.cumQ();
+	if (cumQ >= 40) 
 	{
 		output(" The excess rolls off you to either side to soak into the " + (inPennyQuest() ? "muddy ground, turning it":"mattress pad, turning the bunk") + " into a sopping mess");
-		if(pc.cumQ() >= 500 && !inPennyQuest()) output(", eventually overwhelming its meager absorptive capabilities to cascade onto the floor");
+		if(cumQ >= 500 && !inPennyQuest()) output(", eventually overwhelming its meager absorptive capabilities to cascade onto the floor");
 		output(".");
-		if(pc.cumQ() >= 1000)
+		if(cumQ >= 1000)
 		{
 			if(!inPennyQuest()) output(" Luckily, there’s a drain to catch the waves of spooge you put out, and you don’t wind up flooding the entire " + (!pennyIsCrew() ? "cell" : "area") + ".");
 			else output(" Luckily, the floor is sloped, so the waves of spooge you put out are free to flow away.");
@@ -2531,15 +2536,16 @@ public function getGroundOnByPenny():void {
 		output(" a little off to the side, over your hip and onto the mattress.");
 	}
 	output("\n\nYou hold her there, pumping out your [pc.cum] onto both your bodies, forcing her to feel the warm, wet juices sliding into her fur. Her mouth falls open and her tongue lolls out. An unmistakably happy smile is painted upon her face, even if the spark of intelligence behind her eyes is still missing. All that you can see is animal pleasure, a feeling matched by the pulsing throbs down below.");
-	if(pc.cumQ() <= 100) {}
-	else if(pc.cumQ() <= 500) output(" [pc.Cum] spills off your sides to soak into the mattress by the time you finish, soaking it with [pc.cumColor].");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ <= 100) {}
+	else if(cumQ <= 500) output(" [pc.Cum] spills off your sides to soak into the mattress by the time you finish, soaking it with [pc.cumColor].");
 	else
 	{
 		output(" [pc.Cum] spills off your sides, soaks the mattress, and falls in syrupy waterfalls down to puddle on the floor.");
-		if(pc.cumQ() >= 2000) 
+		if(cumQ >= 2000) 
 		{
 			output(" That puddle doubles in size, then triples");
-			if(pc.cumQ() >= 10000) output(", then the entire floor is filling");
+			if(cumQ >= 10000) output(", then the entire floor is filling");
 			output(".");
 		}
 	}
@@ -2561,28 +2567,29 @@ public function pennyFrottage():void {
 	output(" futanari fox wraps her hand around her stiff meat for one long stroke. She bites her lip in nervous anticipation, eyes fixed on your [pc.cockBiggest]");
 	if(pc.cockTotal() == 2) output(" rather than your other penis");
 	else if(pc.cockTotal() > 2) output(" rather than your other penises");
-	output(". A salacious grin gradually spreads across her face, and she admits, <i>“</i>");
+	output(". A salacious grin gradually spreads across her face, and she admits, <i>“");
 	if (flags["TIMES_FROTTAGED_PENNY"] == undefined)
 	{
-		output("<i>I’ve wanted to do this since I got one of these.</i>");
+		output("I’ve wanted to do this since I got one of these.");
 		flags["TIMES_FROTTAGED_PENNY"] = 1;
 	}
 	else
 	{
-		output("<i>I was hoping I’d get to do this with you again. I love watching us cum together, particularly when you’re the one getting painted, </i>");
-		if(pc.biggestCockVolume() < 50) output("<i>little</i>");
-		else output("<i>my meaty</i>");
-		output("<i> mate.”</i>");
+		output("I was hoping I’d get to do this with you again. I love watching us cum together, particularly when you’re the one getting painted,");
+		if(pc.biggestCockVolume() < 50) output(" little");
+		else output(" my meaty");
+		output(" mate.");
 	}
-	output("\n\nYou reply, <i>“</i>");
+	output("”</i>");
+	output("\n\nYou reply, <i>“");
 	if(inPennyQuest()) output("Then hurry! I need you!");
 	else
 	{
-		if(pc.isNice()) output("<i>Then get up on here. You’ve gotten me plenty hard already!</i>");
-		else if(pc.isMischievous()) output("<i>Then why not get up here and get started? I bet you’ll cum first anyway.</i>");
-		else output("<i>Then get your furry ass up here and start rubbing my dick, bitch.</i>");
+		if(pc.isNice()) output("Then get up on here. You’ve gotten me plenty hard already!");
+		else if(pc.isMischievous()) output("Then why not get up here and get started? I bet you’ll cum first anyway.");
+		else output("Then get your furry ass up here and start rubbing my dick, bitch.");
 	}
-	output("<i>”</i>");
+	output("”</i>");
 	output("\n\nThe fox-girl’s ears twitch nervously, and you can tell she’s blushing by the way her bare genitalia darken. This time, she can’t hide behind her fur. She launches herself ");
 	if(inPennyQuest()) output("onto you in a huff, bearing you to the ground with her weight. ");
 	else output("onto the " + (pennyIsCrew() ? "her bed":"cot") + " in a huff, causing the frame to rock and creak dangerously in spite of her modest weight. ");
@@ -2783,6 +2790,7 @@ public function pennyOverTheDeskRoughFuck(usingCock:Boolean = true):void {
 	else output("self");
 	output(" inside with one last, bone-jarring impact, leaning over the dominated girl to bite her ear as you feel your breeding fluids flow.");
 	
+	var cumQ:Number = pc.cumQ();
 	//Girl
 	if(!usingCock)
 	{
@@ -2793,12 +2801,12 @@ public function pennyOverTheDeskRoughFuck(usingCock:Boolean = true):void {
 		output(" disappears deep into her furthest recesses, nestled firmly inside. Only after [pc.eachVagina] stops fluttering with passion do you pull free to admire the mixed [pc.girlCumColor] creampie. It’s small, all things considered, but Penny’s cunt seems to have a powerful thirst.");
 	}
 	//Small cum
-	else if (pc.cumQ() <= 100)
+	else if (cumQ <= 100)
 	{
 		output("\n\nThe submissive fox’s sordid snatch devours your [pc.cum] with aplomb. Each jet disappears deep inside her furthest recesses, nestled firmly inside. Only after your [pc.cock " + x + "] is empty and softening do you pull free to admire the [pc.cumColor] creampie. It’s small, all things considered, but Penny’s cunt seemed to have a powerful thirst.");
 	}
 	//Med cum
-	else if (pc.cumQ() <= 1000)
+	else if (cumQ <= 1000)
 	{
 		output("\n\nThe submissive fox’s sordid snatch devours your [pc.cum] with a seemingly insatiable thirst. Yet even with such an appetite, your bountiful virility quickly gains the upper hand. [pc.cumColor] trickles become visible around your [pc.cock " + x + "] as you fill the fox, and after so much teasing, this orgasm seems particularly long and potent. Penny’s pussy is thoroughly glazed with [pc.cum] by the time you start to soften and pull out. Better yet, there’s enough fuck-slime that a significant stream leaks out in your wake. It gets all over the items from her desk.");
 	}
@@ -2806,7 +2814,7 @@ public function pennyOverTheDeskRoughFuck(usingCock:Boolean = true):void {
 	else
 	{
 		output("\n\nThe submissive fox’s sordid snatch devours your [pc.cum] with a seemingly insatiable thirst. It proves inadequate when compared to your unholy virility. Midway through the second, long jet of [pc.cum], you feel her passage pressurize. The third jet causes spurts of fuck-slime to backwash out onto the floor, where it falls across Penny’s scattered possessions. You pump inside her until her belly rounds slightly under the lusty deluge, and then you inject some more.");
-		if (pc.cumQ() < 5000)
+		if (cumQ < 5000)
 		{
 			output(" By the time you’ve finally started to soften inside her, she’s leaking [pc.cumColor] joy down the inside of her legs and sporting a belly that would make any who saw her assume pregnancy. Pulling out rewards you with the sight of a river of escaping [pc.cum] and the sight of a fox helplessly cumming a second time from the sensation.");
 		}
@@ -2927,14 +2935,14 @@ public function jackinPennyOffWithAnOnahole():void {
 	{
 		output(" <i>“You aren’t going to do that again, like the last time, are you?”</i>");
 	}
-	output("\n\nYou smile and respond, <i>“</i>");
+	output("\n\nYou smile and respond, <i>“");
 	if(pc.isMischievous() || pc.isNice()) 
 	{
-		if(flags["TIMES_JACKED_PENNY_OFF_WITH_ONAHOLE"] > 1) output("<i>You know I am. How else will I see how big you can make it?</i>");
-		else output("<i>Well we aren’t done yet. I bet you can do it again!</i>");
+		if(flags["TIMES_JACKED_PENNY_OFF_WITH_ONAHOLE"] > 1) output("You know I am. How else will I see how big you can make it?");
+		else output("Well we aren’t done yet. I bet you can do it again!");
 	}
-	else output("<i>We aren’t done yet. You’re going to go again. After all, how else will we see how big a balloon you can make?</i>");
-	output("<i>”</i>");
+	else output("We aren’t done yet. You’re going to go again. After all, how else will we see how big a balloon you can make?");
+	output("”</i>");
 
 	output("\n\nPenny’s tongue is back up in her mouth in a moment, and she growls, <i>“It’s too soon!”</i>");
 	
@@ -3385,9 +3393,10 @@ public function useYourCocksOnCumSluttyPenny():void {
 	else if(pc.hasVagina()) output("your [pc.vaginas]");
 	if(pc.cockTotal() > 1 || pc.hasVagina()) output(" soon joining in sympathetically, and ");
 	output("your [pc.cumColor] cum spurting out to land on her face.");
+	var cumQ:Number = pc.cumQ();
 	//MODERATE LEVEL OF CUM PRODUCTION
-	if(pc.cumQ() >= 500 && pc.cumQ() < 2000) output(" You cum again and again, producing enough to cover her entire head, which she reacts to with cooing pleasure, turning herself from side to side slowly to ensure an even coating of your [pc.cumColor] fluid.");
-	else if(pc.cumQ() >= 2000) output(" You cum over and over, a seemingly endless wave of fluid pouring out of you. Penny wriggles beneath it in delight, turning from side to side to ensure it covers as much of herself as possible. Between your convulsive aim and her work to spread it further you manage to coat her entire body, leaving her happily dripping with [pc.cumColor] fluid.");
+	if(cumQ >= 500 && cumQ < 2000) output(" You cum again and again, producing enough to cover her entire head, which she reacts to with cooing pleasure, turning herself from side to side slowly to ensure an even coating of your [pc.cumColor] fluid.");
+	else if(cumQ >= 2000) output(" You cum over and over, a seemingly endless wave of fluid pouring out of you. Penny wriggles beneath it in delight, turning from side to side to ensure it covers as much of herself as possible. Between your convulsive aim and her work to spread it further you manage to coat her entire body, leaving her happily dripping with [pc.cumColor] fluid.");
 	output("\n\nWhen you finally finish, Penny spends several long moments simply breathing deeply, blissfully taking in the scent of sex filling her nostrils. She licks her lips once, then opens her eyes slowly. <i>“Fuck, [pc.name], you’re right. I’m going to have to do that a </i>lot<i> more often.”</i> She wipes one finger along the worst of it, gathering up the [pc.cumColor] strands and slipping them happily inside her mouth, but makes no effort to clean herself up further. It looks like she really has taken your lesson to heart - she’d rather leave herself visibly marked as a cumslut than enjoy the pleasure of cleaning herself off. That said, she’s hardly forced to go without the taste of cum for long - with a satisfied moan her head moves forward, filling her muzzle with her own massive cock and thrusting dreamily into herself. This time you decide to let her keep going, figuring that she’s earned the release.");
 	output("\n\nYou turn to leave while she’s still pleasantly self-absorbed, her eager slurping noises following you as you step out of her office. You imagine that her new predilections will make doing her job considerably harder, but, you add to yourself with a grin, considerably more enjoyable for all involved.");
 	processTime(5+rand(10));
@@ -3545,9 +3554,10 @@ public function bukkakePenny():void {
 		output(" soon joining in sympathetically, and ");
 	}
 	output("your [pc.cumColor] cum spurting out to land on her face.");
-	if(pc.cumQ() >= 500 && pc.cumQ() < 2000) output(" You cum again and again, producing enough to cover her entire head, which she reacts to with cooing pleasure, turning herself from side to side slowly to ensure an even coating of your [pc.cumColor] fluid.");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ >= 500 && cumQ < 2000) output(" You cum again and again, producing enough to cover her entire head, which she reacts to with cooing pleasure, turning herself from side to side slowly to ensure an even coating of your [pc.cumColor] fluid.");
 	//LARGE LEVEL OF CUM PRODUCTION
-	else if(pc.cumQ() >= 2000) output(" You cum over and over; a seemingly endless wave of fluid pouring out of you. Penny wriggles beneath it in delight, turning herself from side to side to ensure it covers as much of herself as possible. Between your convulsive aim and her work to spread it around upon herself you manage to coat her entire body, leaving her happily dripping with [pc.cumColor] fluid.");
+	else if(cumQ >= 2000) output(" You cum over and over; a seemingly endless wave of fluid pouring out of you. Penny wriggles beneath it in delight, turning herself from side to side to ensure it covers as much of herself as possible. Between your convulsive aim and her work to spread it around upon herself you manage to coat her entire body, leaving her happily dripping with [pc.cumColor] fluid.");
 	output("\n\nWhen you finally finish, Penny spends several long moments simply breathing deeply, blissfully taking in the scent of sex filling her nostrils. She licks her lips once, then opens her eyes slowly. <i>“Fuck, [pc.name], I have to thank you again for this. I don’t think I ever feel so good as when I’m coated with cum. Especially yours, of course.”</i> She wipes one finger along the worst of it, gathering up the [pc.cumColor] strands and slipping them happily inside her mouth, but makes no effort to clean herself up further. It looks like she’s intending to leave herself visibly marked as a cumslut rather than enjoying the pleasure of cleaning herself off. That said, she’s hardly helpless to enjoy the taste of more cum - with a satisfied moan her head moves forward, filling her muzzle with her own massive cock and thrusting dreamily into herself. You graciously decide to let her keep going, figuring that she’s earned the release.");
 	output("\n\nYou turn to leave while she’s still pleasantly self-absorbed, her eager slurping noises following you as you step out of her " + (pennyIsCrew() ? "quarters":"office") + ".");
 	//[reduce lust to zero]
@@ -4137,10 +4147,11 @@ public function yesPennyLetsRP():void
 		output("grab [pc.oneCock]. Stroking your length furiously, she milks pre from your [pc.cockHead], allowing her hand to glide across it with smooth, flawless strokes.");
 	}	
 	output("\n\nYou moan breathlessly as she pleasures you with her hand; all the while her cock is squirting more seed into you.");
+	var cumQ:Number = pc.cumQ();
 	if(pc.isHerm())
 	{
 		output(" [pc.Girlcum] floods down your thighs while [pc.oneCock] jerks in Penny’s hand, sending your [pc.cumNoun] over the floor.");
-		if(pc.cumQ() >= 1000) output(" Your groin might as well be a cornucopia of lust, pumping more and more [pc.cumVisc] relief onto the floor until the room looks like post-shoot porno set.");
+		if(cumQ >= 1000) output(" Your groin might as well be a cornucopia of lust, pumping more and more [pc.cumVisc] relief onto the floor until the room looks like post-shoot porno set.");
 		if(pc.isSquirter() || pc.girlCumQ() >= 1500) 
 		{
 			output(" Your [pc.vaginas] ");
@@ -4163,8 +4174,8 @@ public function yesPennyLetsRP():void
 		output(" Your [pc.cocks] squirt");
 		if(pc.cockTotal() == 1) output("s");
 		output(" [pc.cumNoun] all over the floor, creating [pc.cumVisc] ropes of wasted seed on the floor.");
-		if(pc.cumQ() >= 1000) output(" You keep cumming, turning the few ropes off [pc.cumNoun] into an ever-growing lake.");
-		if(pc.cumQ() >= 5000) output(" By the time you stop hosing down the room, you’re both standing in a lake of your [pc.cum] and the bars of the cell are soaked in your baby batter.");
+		if(cumQ >= 1000) output(" You keep cumming, turning the few ropes off [pc.cumNoun] into an ever-growing lake.");
+		if(cumQ >= 5000) output(" By the time you stop hosing down the room, you’re both standing in a lake of your [pc.cum] and the bars of the cell are soaked in your baby batter.");
 	}
 	output("\n\nBoth of you having achieved your orgasm, you just stand there for a minute, catching your breath. Eventually, Penny lets go of your neck and pulls her [penny.cock] out of your asshole. Pausing to unlock your cuffs, Penny walks out of the cell.\n\nOnce your hands are free, you massage your slightly sore wrists while Penny puts her clothes back on. <i>“Don’t worry, I’ll come back to pump another load into you when I get my next break. I’ll be using you as the police-issue cum-dump on every break until transfer is arranged. Could be a couple of weeks if you’re unlucky.”</i>\n\nShe leaves you there, naked with cum leaking out of your ");
 	if(pc.analCapacity() < penny.cockVolume(0)) output("sore ");
@@ -5180,13 +5191,14 @@ public function druggedPennyLovesThatHypercock():void
 	else if(pc.hasKnot(x)) output("r [pc.knot] inflates obscenely. Penny’s legs automatically scissor around it in a tight squeeze, giving the bestial endowment exactly what it needs to spew its entire bitch-impregnating load.");
 	else output(" swell to absolute biggest and hardest, your mammoth organ doing its best to keep any seed from escaping a phantom lover’s oh-so-impregnable pussy.");
 	output(" The first spurt flies out, and Penny is there to catch");
-	if(pc.cumQ() < 40) output(" and swallow it");
-	else if(pc.cumQ() < 1000) output(" it in her waiting mouth, uncaring that it bulges her cheeks or dribbles out the sides");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 40) output(" and swallow it");
+	else if(cumQ < 1000) output(" it in her waiting mouth, uncaring that it bulges her cheeks or dribbles out the sides");
 	else output(" it in her waiting mouth, and across her face, and in her hair, and even on top of her submissively folded ears");
 	output(". She revels in your [pc.cumNoun].");
 	output("\n\nThe fox-woman pulls you tight a sympathetic climax rips through her. She wriggles and squirms, tits jiggling from how the bulges racing up your urethra slap past them. Each ejaculation is married to a muffled moan of delight and hurried attempts to drink down as much of the fragrant seed as possible." + (penny.hasCock() ? " Her cum splashes along your [pc.belly] and [pc.chest] as she wantonly frots the side of your bigger tool.":""));
 	if(!penny.hasCock()) output((!penny.isSquirter() ? " The vixen’s cunt dribbles, its convulsions making it feel like her cunt is stroking your [pc.thigh] with raw eagerness to be filled.":" The vixen’s cunt drenches your [pc.thigh] in a torrent of pussy-juice so thick and so forceful that for a moment you wonder how such a thing is even possible. Then she cums again, squirting just as hard. With each fresh pulse of cum, the fox-girl achieves a new climax of her own. Her body is a clutching, spunk-drenched rag-doll that just can’t seem to stop cumming no matter how far back her eyes roll or thoughtless her gurgles."));
-	output("\n\nYour " + (pc.balls > 1 ? "[pc.balls] empty":"[pc.cock] empties") + " everything you have " + (pc.cumQ() < 1000 ? "into":"onto") + " the fox. She’s squeezing you too tightly for anything else. Even when your orgasm winds down, " + (flags["PQUEST_PENNY_PODDED"] == undefined ? "she continues to work you for more, wringing out the last drop of sperm-infused fluid in your body":"she continues to vibrate in so much feverish ecstasy that you can’t help but squeeze out the last drop of sperm-infused fluid directly onto her nose, which immediately flares to drink in the brazenly sexual odor of it all") + ". <i>“Cummy,”</i> " + (flags["PQUEST_PENNY_PODDED"] == undefined ? "Penny babbles, sloughing off of you.":"Penny moans, losing what’s left of her motor control and flopping onto her back to ride out the end of her squirting drug-trip. Her nipples fountain milk once more, but thinner flows this time. With the chemical’s influence fading, the surprise lactation she experienced seems to be fading... though this pussy-wringing squirt appears even wetter than the last."));
+	output("\n\nYour " + (pc.balls > 1 ? "[pc.balls] empty":"[pc.cock] empties") + " everything you have " + (cumQ < 1000 ? "into":"onto") + " the fox. She’s squeezing you too tightly for anything else. Even when your orgasm winds down, " + (flags["PQUEST_PENNY_PODDED"] == undefined ? "she continues to work you for more, wringing out the last drop of sperm-infused fluid in your body":"she continues to vibrate in so much feverish ecstasy that you can’t help but squeeze out the last drop of sperm-infused fluid directly onto her nose, which immediately flares to drink in the brazenly sexual odor of it all") + ". <i>“Cummy,”</i> " + (flags["PQUEST_PENNY_PODDED"] == undefined ? "Penny babbles, sloughing off of you.":"Penny moans, losing what’s left of her motor control and flopping onto her back to ride out the end of her squirting drug-trip. Her nipples fountain milk once more, but thinner flows this time. With the chemical’s influence fading, the surprise lactation she experienced seems to be fading... though this pussy-wringing squirt appears even wetter than the last."));
 	output("\n\nYou stumble back onto your [pc.butt]. Your [pc.cock] pulsates in powerful approval, refusing to soft quite yet, perhaps approving of what you’ve done to your mate.");
 	output("\n\n<i>“[pc.name],”</i> Penny whimpers, <i>“you " + pc.mf("stud","goddess") + "... you fucking...”</i> She rolls over, slowly crawling into your lap to snuggle a cum-stained cheek against your [pc.cockNoun]. <i>“Love you.”</i> She pats your thigh and smiles, tongue lapping a bit of juice from her nose. <i>“Want you to knock me up sometime... after the rush.”</i> Her eyes drift closed. <i>“Make me have lots of kits sometime, okay?”</i>");
 	output("\n\nYou’re both snoring soon after.");
@@ -5852,9 +5864,10 @@ public function camwhoreItUpBimboPenny():void
 	if(pc.hasCock()) 
 	{
 		output("\n\nIt’s fucking hot watching Penny’s mind shut down from raw pleasure, the last few lights of her consciousness washed out by sunbursts of obscene animal need. You grab her slippery palm and reposition it to hold your [pc.cock], and she strokes it automatically and unthinkingly. Jerking and sucking come as easily to her as eating or breathing. Her slick-furred paw caresses you all through her seemingly endless orgasm, hitting all your most sensitive spots in sequence until you can’t help but join her in erupting, in shooting sticky webs of [pc.cumNoun] over her hair");
-		if(pc.cumQ() >= 50) output(", face");
-		if(pc.cumQ() >= 250) output(", shoulders");
-		if(pc.cumQ() >= 2000) output(", tits");
+		var cumQ:Number = pc.cumQ();
+		if(cumQ >= 50) output(", face");
+		if(cumQ >= 250) output(", shoulders");
+		if(cumQ >= 2000) output(", tits");
 		output(" and ears. Your [pc.cock] claims Penny in that moment by right of the mask of [pc.cumColor] she now wears.");
 	}
 	//Merge

@@ -2484,8 +2484,8 @@ public function ldcShockHopperSteeleBirth(numChildren:int = 2):void
 		output(" You've got your eyes wide open, though you can't really put voice to anything. There's a deep excitement whenever you see a pair of ears part your vaginal lips and flop out into the universe, covered in a sheen of you.");
 		
 		output("\n\nYou're not sure where it started and how it's going to end, but you've given birth to several kids already.");
-		if (numWombs > 2) output(" three");
-		else output(" two");
+		if (numWombs > 2) output(" Three");
+		else output(" Two");
 		output(" whole litters are piled up in a sprawling pool of mewling munchkins, " + num2Text(numChildren, true) + " laquine boys, girls, hermaphrodites, there's every combination you could imagine! Some with little fur, some totally coated in it, but they're all the offspring of your piratical tryst. All-black and blue and vanilla coats or limbs shimmer; eyes not even opened yet, they cry out quietly for you.");
 		output("\n\nYou giggle happily, not even realizing the pain has passed. No sense in wasting any more time: you reach over and pull them all into your arms, a positively delightful and bubbly heat blossoming throughout your soul.");
 	}
