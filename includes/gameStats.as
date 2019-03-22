@@ -5568,6 +5568,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["KELLY_SEXED"] != undefined) output2("\n<b>* Kelly, Times Sexed:</b> " + flags["KELLY_SEXED"]);
 					if(flags["KELLY_BLOWJOBS_GIVEN"] != undefined) output2("\n<b>* Kelly, Times Given Her Blowjobs:</b> " + flags["KELLY_BLOWJOBS_GIVEN"]);
 					if(flags["KELLY_HYPERPLAY_COUNT"] != undefined) output2("\n<b>* Kelly, Times Hyperplay:</b> " + flags["KELLY_HYPERPLAY_COUNT"]);
+					if(flags["KELLY_HYPERBJ"] != undefined) output2("\n<b>* Kelly, Times Given Her Hyper Blowjobs:</b> " + flags["KELLY_HYPERBJ"]);
 					if(flags["KELLY_HAD_SPECIAL_TAUR_DP"] != undefined) output2("\n<b>* Kelly, Times Had Tauric Double Penetrate:</b> " + flags["KELLY_HAD_SPECIAL_TAUR_DP"]);
 					if(flags["KELLY_TIMES_DOUBLESTUFFED_THE_PC"] != undefined) output2("\n<b>* Kelly, Times Getting Double-Stuffed:</b> " + flags["KELLY_TIMES_DOUBLESTUFFED_THE_PC"]);
 				}
