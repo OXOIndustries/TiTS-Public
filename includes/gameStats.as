@@ -4711,6 +4711,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["SAEN_X_SERA_THREESOME"] > 0) output2(" (with threesome discount)");
 					}
 				}
+				if(StatTracking.getStat("milkers/sera milker") > 0) output2("\n<b>* Breast Milker, Fluid Milked:</b> " + mLs(Math.round(StatTracking.getStat("milkers/sera milker"))));
 				if(flags["MET_CHRYSALIS_DRONE"] != undefined) output2("\n<b>* Mods4U Drone:</b> Met it");
 				output2("\n<b>* Sera:</b> Met her");
 				if(flags["SERA_NO_SEX"] == 1) output2(", Pissed off at you indefinitely");
@@ -4760,6 +4761,8 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SERA_IN_JARDI_THREESOME"] != undefined) output2("\n<b>* Sera, Times Sexed in Threesome with Jardi:</b> " + flags["SERA_IN_JARDI_THREESOME"]);
 					if(flags["SERA_FACE_RIDE_TRAINING"] != undefined) output2("\n<b>* Sera, Times She Rode Your Face:</b> " + flags["SERA_FACE_RIDE_TRAINING"]);
 					if(flags["SERA_TAILED"] != undefined) output2("\n<b>* Sera, Times She Fucked Your Parasitic Tail Cock:</b> " + flags["SERA_TAILED"]);
+					if(flags["SERA_TONGUE_FUCKED"] != undefined) output2("\n<b>* Sera, Times She Fucked You with Her Tongue:</b> " + flags["SERA_TONGUE_FUCKED"]);
+					if(flags["SERA_MILKINGS"] != undefined) output2("\n<b>* Sera, Times She Milked You:</b> " + flags["SERA_MILKINGS"]);
 					if(flags["SERA_INCH_STEALING_SEX"] > 0) output2("\n<b>* Sera, Times She Absorbed Your Length:</b> " + flags["SERA_INCH_STEALING_SEX"]);
 					if(flags["SERA_INCH_STEALING_HELP"] > 0) output2("\n<b>* Sera, Times You Untangled Her Tail Cock:</b> " + flags["SERA_INCH_STEALING_HELP"]);
 					if(flags["SERA_BITCHENING_PUNISH_SPANK"] > 0) output2("\n<b>* Sera, Punish, Times You Spanked Her:</b> " + flags["SERA_BITCHENING_PUNISH_SPANK"]);
