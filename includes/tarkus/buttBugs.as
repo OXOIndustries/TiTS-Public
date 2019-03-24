@@ -498,6 +498,8 @@ public function sexButtBugOfferButt(swfVariant:int = 0):void
 	if(newBug >= 0 && oldBug < 0) success = true;
 	// matching bug
 	if(newBug == oldBug) success = true;
+	// opposing bug (autowin now, then check triangle after)
+	else if(newBug >= 0 && oldBug >= 0) success = true;
 	// capacity check
 	if(newBug == 2) success = (pc.analCapacity() > 60 ? true : false);
 	
