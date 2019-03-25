@@ -747,7 +747,7 @@ New Flags:
 			
 			var wasSuccessful:Boolean = false;
 			
-			if (kGAMECLASS.flags["BJUMPER_HEAT_SEX"] == 1) _alwaysImpregnate = true;
+			if (kGAMECLASS.flags["BJUMPER_HEAT_SEX"] == 1 && mother.fertility() > 0) _alwaysImpregnate = true;
 			
 			if (kGAMECLASS.flags["BJUMPER_TAUR_LOSS_SEX"] == 1)
 			{
