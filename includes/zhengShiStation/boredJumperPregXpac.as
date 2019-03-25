@@ -89,15 +89,14 @@ import classes.GameData.Pregnancy.Containers.Genders;
 //show nude and/or preg bust
 public function showPregBoredJumper(nude:Boolean = false,preg:Boolean = false,jumperType:int = 0):void
 {
-	//NOTE: preg currently set to always false until preg bust are in the game, remove next line of code when they are implemented
-	preg = false;
-	//
 	//passed in preg parameter is just to toggle the check to display or not
 	if (preg)
 	{
 		//set false if not actually showing
 		if (flags["BJUMPER_PREG_TIMER"] == undefined || flags["BJUMPER_PREG_TIMER"] < 50) preg = false;
 	}
+	//currently no non nude preg bust, so if preg, always show nude as well
+	if (preg) nude = true;
 	showName("BORED\nJUMPER");
 	if(jumperType == GLOBAL.TYPE_EQUINE) showBust("BORED_JUMPER_EQUINE" + (nude ? "_NUDE" : "") + (preg ? "_PREGNANT" : ""));
 	else if(jumperType == GLOBAL.TYPE_FELINE) showBust("BORED_JUMPER_FELINE" + (nude ? "_NUDE" : "") + (preg ? "_PREGNANT" : ""));
