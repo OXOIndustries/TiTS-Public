@@ -1641,29 +1641,29 @@ public function shizzyTalkButtons(slot:int = -1):void
 {
 	clearMenu();
 	if (slot != 0) addButton(0, "Herself", shizzyTellMeAboutYourMother, undefined, "Herself", "Ask about her.");
-	else addDisabledButton(0, "Herself");
+	else addDisabledButton(0, "Herself", "Herself", "You already talked about this!");
 	addButton(1, "Crew", shizzyTalkCrew);
 	if (slot != 2 && flags["SHIZZY_TALKED_HERSELF"] != undefined) addButton(2, "Kenka", shizzyWhyDoesSheWearTheMask, undefined, "Kenka", "Ask about her relationship with her boss.");
-	else if (slot == 2) addDisabledButton(2, "Kenka");
+	else if (slot == 2) addDisabledButton(2, "Kenka", "Kenka", "You already talked about this!");
 	if (slot != 3 && flags["SHIZZY_TALKED_HERSELF"]) addButton(3, "Past", shizzyLetsDwellOnThePast, undefined, "Her Past", "Ask about before she got Treated.");
-	else if (slot == 3) addDisabledButton(3, "Past");
+	else if (slot == 3) addDisabledButton(3, "Past", "Past", "You already talked about this!");
 	if (flags["SHIZZY_OUTFIT_STATE"] != undefined)
 	{
 		if (flags["SHIZZY_OUTFIT_STATE"] < 4 && slot != 4) addButton(4, "Outfit", shizzyGimmeYerClothes, undefined, "Her Outfit", "Ask about the outfit she wore during your fight.");
 		else
 		{
 			if (flags["SHIZZY_OUTFIT_STATE"] < 4) addDisabledButton(4, "Outfit", "Outfit", "She’s already given you her outfit.");
-			else addDisabledButton(4, "Outfit");
+			else addDisabledButton(4, "Outfit", "Outfit", "You already talked about this!");
 		}
 	}
 	if (slot != 5) addButton(5, "Black Iron", shizzyTellMeYourSecrets, undefined, "Black Iron", "Ask about the organization she works for.");
-	else addDisabledButton(5, "Black Iron");
+	else addDisabledButton(5, "Black Iron", "Black Iron", "You already talked about this!");
 	if (slot != 6) addButton(6, "Treatment", shizzyHowDidTheyTreatYou, undefined, "The Treatment", "Ask about how she got Treated.");
-	else addDisabledButton(6, "Treatment");
+	else addDisabledButton(6, "Treatment", "", "You already talked about this!");
 	if (slot != 7 && flags["SHIZZY_TALKED_TREATMENT"]) addButton(7, "Overdose", shizzyODdOnLifeItself, undefined, "Overdose", "Ask about the drug, Overdose.");
-	else if (slot == 7) addDisabledButton(7, "Overdose");
+	else if (slot == 7) addDisabledButton(7, "Overdose", "Overdose", "You already talked about this!");
 	if (slot != 8 && flags["SHIZZY_TALKED_OVERDOSE"]) addButton(8, "Bounty", shizzyTellMeAboutTheBooty, undefined, "Bounty", "Ask about the person she’s after.");
-	else if (slot == 8) addDisabledButton(8, "Bounty");
+	else if (slot == 8) addDisabledButton(8, "Bounty", "Bounty", "You already talked about this!");
 	addButton(14, "Back", shizzyMajinMainButtons);
 }
 

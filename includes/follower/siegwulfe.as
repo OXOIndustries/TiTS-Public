@@ -1201,7 +1201,18 @@ public function siegwulfeDommePettings(fromInv:Boolean):void
 		processTime(5);
 		output("\n\nShe toys with your hair and ears while you recover, breathing hard while laying against her. You feel some errant tugs on your [pc.hair] but pay them no heed, not until you’ve rested for a while and make to get up, only to find [wulfe.name] excitedly ushering you upwards.");
 		output("\n\n<i>“Up! Now turn around and smile,”</i> she says, wagging her tail. <i>“Oh, perfect! You look so pretty!”</i>");
-		output((flags["WULFE_HAIRDRESSED"] == undefined ? "Confused, y" : "Has she done it again? Y") + "ou take out your codex and use the screen as a mirror, inspecting yourself. Your hair is now tied " + (pc.hairLength < 11 ? "up into a cute parted bob, held in place with a pretty pink bow-adorned hairclip" : "into a high ponytail, complete with a large pink ribbon in a cutesy bow stretching from ear to ear") + ". You have to admit, it looks adorable.");
+		output((flags["WULFE_HAIRDRESSED"] == undefined ? "Confused, y" : "Has she done it again? Y") + "ou take out your codex and use the screen as a mirror, inspecting yourself. Your hair is now tied ");
+		if(pc.hairLength < 11)
+		{
+			output("up into a cute parted bob, held in place with a pretty pink bow-adorned hairclip");
+			pc.hairStyle = "bob cut";
+		}
+		else
+		{
+			output("into a high ponytail, complete with a large pink ribbon in a cutesy bow stretching from ear to ear");
+			pc.hairStyle = "ponytail";
+		}
+		output(". You have to admit, it looks adorable.");
 		output("\n\n<i>“Good [pc.boyGirl],”</i> [wulfe.name] says, drawing closer with a huge smile. <i>“Such a perfect pet.”</i>");
 		output("\n\nHappy with the praise, you hug her back when she wraps her arms around you and gives you a kiss before you part.");
 		

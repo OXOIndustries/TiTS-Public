@@ -465,7 +465,7 @@
 			this.vaginalVirgin = false;
 			if (cumFrom is PlayerCharacter)
 			{
-				sstdChecks(cumFrom,"vagina");
+				//sstdChecks(cumFrom,"vagina");
 				return kGAMECLASS.tryKnockUpBoredJumper(heatSex);
 			}
 			return false;

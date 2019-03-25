@@ -4532,6 +4532,7 @@ public function processSeraEvents(deltaT:uint, doOut:Boolean, totalDays:uint):vo
 	}
 	
 	seraPregnancyIsDue(totalDays);
+	seraDrinksMilk(totalDays);
 }
 
 public function processRiyaEvents(deltaT:uint, doOut:Boolean):void
