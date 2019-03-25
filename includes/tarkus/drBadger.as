@@ -206,7 +206,7 @@ public function repeatBadgerApproach():void
 	else
 	{
 		output("The Doctor looks up as you enter, her face sliding into a lecherous grin as she sees you. <i>“Well well”</i>, she says, <i>“if it isn’t my little bimbo pet. Back from slutting your way around the galaxy, are you? I hope you’ve been a good little bimbo and sucked some nice alien cock while you’ve been away, hmm</i>?”");
-		output("\n\nYou can’t seem to do anything but squirm in response, even just being teased by the Doctor enough to make the pink fog rise up in your brain again and leave you feeling achingly horny.");
+		output("\n\nYou can’t seem to do anything but squirm in response, even just being teased by the Doctor is enough to make the pink fog rise up in your brain again and leave you feeling achingly horny.");
 		output("\n\nIn the end however, she simply sighs heartily without standing. <i>“Unfortunately, my supplies are a little low right now”</i>, she says, indicating her ramshackle surroundings with a lazy sweep of her arm, <i>“so I’m afraid I can’t offer you anything more... intense... right now. I do still have some of those happy pills if you want them though. How does that sound</i>?”");
 		applyDamage(new TypeCollection( { tease: 10 } ), chars["DRBADGER"], pc, "minimal");
 	}

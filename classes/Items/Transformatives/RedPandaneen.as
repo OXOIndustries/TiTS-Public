@@ -102,12 +102,12 @@
 					else output("\n\n" + target.hairColorLockedMessage());
 				}
 				// Eye Transformations
-				if((pro || (changes < changeLimit && rand(3) == 0)) && InCollection(target.eyeType, [GLOBAL.TYPE_ARACHNID]))
+				if((pro || (changes < changeLimit && rand(3) == 0)) && target.eyeCount() != 2)
 				{
 					if(target.eyeTypeUnlocked(GLOBAL.TYPE_HUMAN))
 					{
 						// PC loses eyes until PC has two eyes: 
-						if(target.eyeType == GLOBAL.TYPE_ARACHNID) output("\n\nYou can feel your [pc.eyes] start to water, and your vision blur. This continues until you can see nothing but black. You feel around for the nearest thing you can hold on to until you have a vague sense of what is going on. After a few moments, your sight starts to brighten and become clear. Your visual periphery is notably different however, as you aren’t able to look around as freely as you did before. Lifting your hands to your face, you confirm that you have fewer eyes than you did before.");
+						if(target.eyeCount() > 2) output("\n\nYou can feel your [pc.eyes] start to water, and your vision blur. This continues until you can see nothing but black. You feel around for the nearest thing you can hold on to until you have a vague sense of what is going on. After a few moments, your sight starts to brighten and become clear. Your visual periphery is notably different however, as you aren’t able to look around as freely as you did before. Lifting your hands to your face, you confirm that you have fewer eyes than you did before.");
 						// PC gain eyes until PC has two eyes:
 						else output("\n\nYou can feel your [pc.eye] start to water, and your vision blur. This continues until you can see nothing but black. You feel around for the nearest thing you can hold on to until you have a vague sense of what is going on. After a few moments, your sight starts to brighten and become clear. Your visual periphery is notably different however, as you have gained more of a three-dimensional periphery to your sight. Lifting your hands to your face, you confirm that you have more eyes than you did before.");
 						
