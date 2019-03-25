@@ -505,7 +505,7 @@ public function boredJumperPregEncounterJumperPreg():Boolean
 		enemy.shiftCock(0,GLOBAL.TYPE_FELINE);
 		enemy.cocks[0].cockColor = "pink";
 	}
-	else (jumperType == GLOBAL.TYPE_HUMAN)
+	else if (jumperType == GLOBAL.TYPE_HUMAN)
 	{
 		if (flags["BJUMPER_TERRAN_PREG_ENC_JUMPER"] > 0) firstTime = false;
 		if (flags["BJUMPER_TERRAN_PREG_NEW"] > 0) newPreg = true;
@@ -663,7 +663,7 @@ public function boredJumperPregEncounterSteelePreg():Boolean
 		enemy.shiftCock(0,GLOBAL.TYPE_FELINE);
 		enemy.cocks[0].cockColor = "pink";
 	}
-	else (jumperType == GLOBAL.TYPE_HUMAN)
+	else if (jumperType == GLOBAL.TYPE_HUMAN)
 	{
 		if (flags["BJUMPER_TERRAN_PC_PREG_ENC_JUMPER"] > 0) firstTime = false;
 		if (flags["BJUMPER_TERRAN_PC_PREG_NEW"] > 0) newPreg = true;
@@ -856,7 +856,7 @@ public function boredJumperPregEncounterBothPreg():Boolean
 		enemy.shiftCock(0,GLOBAL.TYPE_FELINE);
 		enemy.cocks[0].cockColor = "pink";
 	}
-	else (jumperType == GLOBAL.TYPE_HUMAN)
+	else if (jumperType == GLOBAL.TYPE_HUMAN)
 	{
 		if (flags["BJUMPER_TERRAN_PREG_ENC_JUMPER"] > 0) firstTime = false;
 		if (flags["BJUMPER_TERRAN_PC_PREG_ENC_JUMPER"] > 0) firstTime = false;
@@ -973,7 +973,7 @@ public function boredJumperPregEncounterGoWith(arg:Array):void
 		if (StatTracking.getStat("pregnancy/jumper cat sired") > 0) firstJPreg = false;
 		if (StatTracking.getStat("pregnancy/jumper cat births") > 0) firstPCPreg = false;	
 	}
-	else (jumperType == GLOBAL.TYPE_HUMAN)
+	else if (jumperType == GLOBAL.TYPE_HUMAN)
 	{
 		if (flags["BJUMPER_TERRAN_PREG_GOWITH"] > 0) firstTime = false;
 		IncrementFlag("BJUMPER_TERRAN_PREG_GOWITH");
@@ -1922,6 +1922,7 @@ public function boredJumperPregEncounterGoWithRestSpooningNext2(jumperType:int=0
 	output("\n\n<i>“R-right... When it’s time, I’ll do my best, too.”</i>");
 	
 	var firstName:Boolean = boredJumperSetSteelesName(jumperType);
+	
 	if (firstName)
 	{
 		output("\n\nShe tilts her head. <i>“So, before you go, can I ask you something? I was wondering if... well, you don’t have to, but can I know your name? You’re their " + pc.mf("dad","mom too") + " so...”</i>");
@@ -3050,7 +3051,7 @@ public function boredJumperPregEncounterMissedBirth():Boolean
 		if (flags["BJUMPER_MISSED_BIRTH_CNT_CAT"] > 0) firstMiss = false;
 		IncrementFlag("BJUMPER_MISSED_BIRTH_CNT_CAT");
 	}
-	else (jumperType == GLOBAL.TYPE_HUMAN)
+	else if (jumperType == GLOBAL.TYPE_HUMAN)
 	{
 		if (flags["BJUMPER_TERRAN_PREG_ENC_JUMPER"] > 0) neverMetPreg = false;
 		if (flags["BJUMPER_MISSED_BIRTH_CNT_TERRAN"] > 0) firstMiss = false;

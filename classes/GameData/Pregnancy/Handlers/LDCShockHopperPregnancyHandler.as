@@ -690,6 +690,9 @@ New Flags:
 			{
 				throw new Error("BasePregnancyHandler for type " + _handlesType + " doesn't have a defined onTryImpregnate event handler.");
 			}
+
+			//_alwaysImpregnate is set to true so they always knock you up, but we still don't want to get infertile steel's preggo
+			if (mother.fertility() == 0) wasSuccessful = false;
 			
 			if (_onSuccessfulImpregnation != null)
 			{
