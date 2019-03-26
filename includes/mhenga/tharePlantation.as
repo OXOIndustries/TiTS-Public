@@ -299,7 +299,7 @@ public function thareManorResponse(response:String = "none"):void
 				else flags["LAH_TO_GASTIGOTH"] = GetGameTimestamp();
 			}
 			
-			addDisabledButton(4, "Workers");
+			addDisabledButton(9, "Lah?");
 			break;
 		case "finish":
 			showDarnock(true);
