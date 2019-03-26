@@ -258,6 +258,7 @@ public function genitalRemovalShit():void
 		else if(pc.isBimbo() && pc.hasVagina()) addDisabledButton(0,"Pure Purge","Pure Purge","Ew! You don’t want to get rid of your pussy!");
 		else if(pc.isBro() && pc.hasCock()) addDisabledButton(0,"Pure Purge","Pure Purge","No way! You’re not losing your junk.");
 		else if(pc.hasWombPregnancy()) addDisabledButton(0,"Pure Purge","Pure Purge","Dr. Lash has no interest in ending your unborn offspring.");
+		else if(pc.hasSilicone("tits")) addDisabledButton(0,"Pure Purge","Pure Purge","Doctor Lash isn’t willing to operate on your breasts if silicone is in them.");
 		else if(!pc.hasGenitals()) addDisabledButton(0,"Pure Purge","Pure Purge","You don’t have any genitals!");
 		else if(pc.credits >= 1000) addButton(0,"Pure Purge",lashTreatment,"pure purge","Pure Purge","1,000 credits. Removes all evidence of troublesome mating organs.");
 		else addDisabledButton(0,"Pure Purge","Pure Purge","You cannot afford this treatment.");
