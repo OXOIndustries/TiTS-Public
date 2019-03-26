@@ -19316,6 +19316,23 @@
 			
 			return -1;
 		}
+		public function findUsedPregnancySlot(type:uint):int
+		{
+			if (type == PREGSLOT_ANY || type == PREGSLOT_VAG)
+			{
+				for (var i:int = 0; i < vaginas.length; i++)
+				{
+					if ((pregnancyData[i] as PregnancyData).pregnancyType != "") return i;
+				}
+			}
+			
+			if (type == PREGSLOT_ANY || type == PREGSLOT_ASS)
+			{
+				if ((pregnancyData[3] as PregnancyData).pregnancyType != "") return 3;
+			}
+			
+			return -1;
+		}
 		
 		//Used for ovipositors
 		public var eggs: int = 0;
