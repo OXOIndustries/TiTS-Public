@@ -2826,7 +2826,7 @@ public function initZhengRooms():void
 	rooms["ZSR H29"].southExit = "ZSR H31";
 	rooms["ZSR H29"].westExit = "";
 	rooms["ZSR H29"].moveMinutes = 3;
-	//rooms["ZSR H29"].runOnEnter = null;
+	rooms["ZSR H29"].runOnEnter = aquariusBonusFunc;
 	rooms["ZSR H29"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSR H29"].addFlag(GLOBAL.COMMERCE);
 	rooms["ZSR H29"].addFlag(GLOBAL.FOREST);

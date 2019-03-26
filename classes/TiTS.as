@@ -445,6 +445,7 @@
 		include "../includes/zhengShiStation/boredJumperExpanded.as";
 		include "../includes/zhengShiStation/boredJumperGangbangs.as";
 		include "../includes/zhengShiStation/boredJumperPregXpac.as";
+		include "../includes/zhengShiStation/dane.as";
 		include "../includes/zhengShiStation/forgehound.as";
 		include "../includes/zhengShiStation/ldc_and_shock_hopper.as";
 		include "../includes/zhengShiStation/maike.as";
@@ -638,7 +639,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.269";
+			version = "0.7.270";
 
 			//temporary nonsense variables.
 			temp = 0;

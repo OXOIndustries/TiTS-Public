@@ -1419,3 +1419,8 @@ public function firstTimeCasinoPartDues():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+
+public function aquariusBonusFunc():void
+{
+	daneBonus(0);
+}
