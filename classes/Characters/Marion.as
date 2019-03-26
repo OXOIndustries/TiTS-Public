@@ -7,7 +7,7 @@
 	public class Marion extends Creature
 	{
 		// gets set in the lureling encounter
-		public var marionGenitals:int = 0;
+	//	public var marionGenitals:int = 0;
 
 		//constructor
 		public function Marion()
@@ -58,19 +58,19 @@
 			this.skinType = GLOBAL.SKIN_TYPE_FUR;
 			this.skinTone = "silver";
 			//this.skinFlags = new Array();
-			this.faceType = GLOBAL.TYPE_FELINE;
+			this.faceType = GLOBAL.TYPE_VULPINE;
 			this.faceFlags = [GLOBAL.FLAG_MUZZLED, GLOBAL.FLAG_FURRED];
-			this.tongueType = GLOBAL.TYPE_FELINE;
+			this.tongueType = GLOBAL.TYPE_VULPINE;
 			this.lipMod = 0;
-			this.earType = GLOBAL.TYPE_FELINE;
+			this.earType = GLOBAL.TYPE_VULPINE;
 			//this.antennae = 0;
 			this.antennaeType = GLOBAL.TYPE_HUMAN;
 			this.horns = 0;
 			this.hornType = 0;
-			this.armType = GLOBAL.TYPE_FELINE;
+			this.armType = GLOBAL.TYPE_VULPINE;
 			this.gills = false;
 			this.wingType = GLOBAL.TYPE_HUMAN;
-			this.legType = GLOBAL.TYPE_FELINE;
+			this.legType = GLOBAL.TYPE_VULPINE;
 			this.legCount = 2;
 			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE,GLOBAL.FLAG_FURRED];
 			//0 - Waist
@@ -78,9 +78,9 @@
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = GLOBAL.TYPE_FELINE;
+			this.tailType = GLOBAL.TYPE_VULPINE;
 			this.tailCount = 1;
-			this.tailFlags = [GLOBAL.FLAG_LONG,GLOBAL.FLAG_PREHENSILE]
+			this.tailFlags = [GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_LONG]
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
 			//tailGenital:
@@ -118,6 +118,9 @@
 			this.vaginas = new Array();
 			this.createVagina();
 			this.vaginas[0].hymen = false;
+			this.vaginas[0].vaginaColor = "pink";
+			this.vaginas[0].clits = 1;
+			this.vaginas[0].type = GLOBAL.TYPE_VULPINE;
 			this.vaginas[0].loosenessRaw = 3;
 			this.vaginas[0].wetnessRaw = 3;
 			this.vaginas[0].bonusCapacity = 300;
@@ -156,12 +159,12 @@
 			this.ass.loosenessRaw = 2;
 			this.ass.bonusCapacity += 75;
 			
-			this.marionGenitals = marionGenitals;
+			//this.marionGenitals = marionGenitals;
 			//randomise();
 			
 			this._isLoading = false;
 		}
-		private function randomise():void
+/*		private function randomise():void
 		{
 			if(marionGenitals == 1)
 			{
@@ -171,5 +174,5 @@
 					
 			}
 		}
-	}
+*/	}
 }

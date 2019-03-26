@@ -25,6 +25,8 @@ public function TundraEncounterBonus():Boolean
 		choices[choices.length] = encounterAKorgonneFemaleHostile;
 		choices[choices.length] = korgMaleEncounter;
 		choices[choices.length] = korgMaleEncounter;
+		//Essyras/Lurelings
+		choices[choices.length] = marionEncounter;
 		if(stormguardMaleEncounterAvailabale()) 
 		{
 			choices[choices.length] = stormguardIntro;
@@ -62,6 +64,8 @@ public function GlacialRiftEncounterBonus():Boolean
 		choices[choices.length] = encounterAMilodan;
 		choices[choices.length] = encounterAMilodan;
 		choices[choices.length] = encounterAMilodan;
+		//Essyras/Lurelings
+		choices[choices.length] = marionEncounter;
 		//very low encounter rate korgs
 		if(rand(2) == 0)
 		{
