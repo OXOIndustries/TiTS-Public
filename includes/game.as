@@ -286,7 +286,8 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	}
 	else
 	{
-		addButton(9, "Sleep", sleepMenu);
+		if(flags["WARGII_PROGRESS"] == 2) addDisabledButton(2,"Rest","Rest","There’s no place to rest in a pitched battle!");
+		else addButton(9, "Sleep", sleepMenu);
 	}
 	addButton(14, "Codex", showCodex);
 	
