@@ -2437,7 +2437,7 @@ public function mitziMakesYouABimbo():void
 	output("\n\nYou nod and moan. <i>“Yessss...”</i>");
 	output("\n\nMitzi slides a second in, and you nearly cum. <i>“And we both know that horny people make bad decisions right?”</i>");
 	output("\n\nThat sounds right, but you’re so wet, so very wet, that you don’t really think it over. <i>“Oh yeaaah.”</i>");
-	output("\n\n<i>“Like, really bad decisions. People get turned on, and they’ll do the dumbest shit for a chance to fuck.”</i> Mitzi kisses your thigh. A shining outline of her lips glows with sensitizing delight on your [pc.skinFurScales]. <i>“Being horny makes you stupid. Fucking stupid. That’s why they call it that, because you get <i>fucking stupid</i>.”</i>");
+	output("\n\n<i>“Like, really bad decisions. People get turned on, and they’ll do the dumbest shit for a chance to fuck.”</i> Mitzi kisses your thigh. A shining outline of her lips glows with sensitizing delight on your [pc.skinFurScales]. <i>“Being horny makes you stupid. Fucking stupid. That’s why they call it that, because you get </i>fucking stupid<i>.”</i>");
 	output("\n\nYou half-suppress a giggle. It sounds like a joke, but you don’t really have the capacity to think about it on a deep level. The words slip in alongside Mitzi’s gloriously soaked fingers. You mouth ‘fucking stupid,’ then mentally berate yourself for doing something so stupid... until those fingers twist around, and you forget all about it. <i>“Ah-ahhh!”</i>");
 	processTime(20);
 	pc.lust(100);

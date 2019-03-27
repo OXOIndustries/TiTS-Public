@@ -545,6 +545,7 @@ public function bigBallBadEnd(bBadEnd:Boolean = true):void
 		
 		pc.ballFullness = 0;
 		nutStatusCleanup();
+		pc.lustRaw = pc.lustMin();
 		
 		moveTo("SHIP INTERIOR");
 		
