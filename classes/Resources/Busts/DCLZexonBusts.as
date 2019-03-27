@@ -15,10 +15,16 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/dclzexon/ziresh.png", mimeType = "image/png")]
 		public var Bust_ZIRESH:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/dclzexon/berwyn.png", mimeType = "image/png")]
+		public var Bust_BERWYN:Class;
+
 		CONFIG::IMAGEPACK
 		{
 			[Embed(source = "../../../assets/images/npcs/dclzexon/hr/ziresh.png", mimeType = "image/png")]
 			public var Full_ZIRESH:Class;
+
+			[Embed(source = "../../../assets/images/npcs/dclzexon/hr/berwyn.png", mimeType = "image/png")]
+			public var Full_BERWYN:Class;
 		}
 	}
 
