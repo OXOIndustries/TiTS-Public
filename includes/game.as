@@ -3524,6 +3524,9 @@ public function variableRoomUpdateCheck():void
 	//Brandy (she is in bar from 2 to 6
 	if (hours >= 2 && hours <= 5 && flags["BRANDY_RELATIONSHIP"] == 1 && flags["MET_SALLY"] != undefined && !pc.hasStatusEffect("Brandy Sally Timer")) rooms["505.75"].removeFlag(GLOBAL.NPC);
 	else rooms["505.75"].addFlag(GLOBAL.NPC);
+	// Haley
+	if (pc.hasStatusEffect("Haley Satisfied")) rooms["HALEY"].removeFlag(GLOBAL.NPC);
+	else rooms["HALEY"].addFlag(GLOBAL.NPC);
 	
 	
 	/* MYRELLION */

@@ -80,6 +80,11 @@ public function milkBarn513Func():Boolean
 	}
 	else output(" The door to the east is marked “unoccupied”.");
 	output("\n\nYou can hear a dull thudding coming from one of the stalls to the east.");
+	if (pc.hasStatusEffect("Haley Satisfied"))
+	{
+		output("\n\nHaley isn't at the milker. She probably won't need it for a while after winning your bet.");
+		setNavDisabled(NAV_EAST_DISABLE);
+	}
 	
 	return randomBarnEventFunc();
 }
