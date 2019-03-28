@@ -187,6 +187,7 @@
 						
 						target.legType = GLOBAL.TYPE_REDPANDA;
 						target.clearLegFlags();
+						target.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 						target.addLegFlag(GLOBAL.FLAG_FURRED);
 						target.addLegFlag(GLOBAL.FLAG_PAWS);
 						changes++;

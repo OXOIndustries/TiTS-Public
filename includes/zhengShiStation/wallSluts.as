@@ -236,7 +236,6 @@ public function askCherryAbootHerself():void
 		//merge
 		output("\n\nShe titters and claps her hands in delight. <i>“Thank you so much for that, I hated it. So, something about me, huh? Lemme think.”</i>");
 		//select a random entry, then remove it from the talk options
-
 		
 		if(flags["CHERRY_HERSELF_TALKED"] == 2)
 		{
@@ -1067,7 +1066,10 @@ public function demTaurButt2(x:int):void
 	//high cum:
 	else
 	{
-		output("\n\nLuckily for her, you’ve just begun. {taur: Rocking atop her, you slam your hands against the wall and put every inch of your tauric spine into your thrusts.}{non-taur: Leaning down against her upraised tail and hooking your arms around the girl’s broad hips, you grab on for dear life. Your pounding becomes spasmodic as you let yourself go. Great gouts of [pc.cum] pour into the leithan, filling her with the bloating cream she so desperately craves. Your ejaculate gushes up against her inner, clenching walls and floods the space in short order. Her taut tunnel inflates with load upon load, [pc.cum] pushing deeper inside her greedy gut.");
+		output("\n\nLuckily for her, you’ve just begun.");
+		if(pc.isTaur()) output(" Rocking atop her, you slam your hands against the wall and put every inch of your tauric spine into your thrusts.");
+		else output(" Leaning down against her upraised tail and hooking your arms around the girl’s broad hips, you grab on for dear life.");
+		output(" Your pounding becomes spasmodic as you let yourself go. Great gouts of [pc.cum] pour into the leithan, filling her with the bloating cream she so desperately craves. Your ejaculate gushes up against her inner, clenching walls and floods the space in short order. Her taut tunnel inflates with load upon load, [pc.cum] pushing deeper inside her greedy gut.");
 		output("\n\nThe feel of your oversaturated reservoir pouring into every inch of her violated rectum proves just enough to rouse her flagging phallus. The alabaster woman tenses against you, stomping one last time before her body pours out everything it’s got. Deep purple balls lurch and her unblemished mast stiffens with vein-throbbing release. Despite the pool of golden-pearl goo beneath her, fresh ropes of sticky nut lance out to strike the the Slut-Wall. Her spurts clench in time with your own, as she were discharging the very cream you pump into her.");
 		//hyper cum:
 		if(cumQ >= 10000)
