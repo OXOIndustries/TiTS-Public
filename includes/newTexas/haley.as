@@ -2120,6 +2120,7 @@ public function haleyWonTheBetNowYoureAPet():void
 	output("\n\n<i>“Guh- god,”</i> she pants, lifting herself back to her feet as her orgasm continues. <i>“G-gotta get myself back home…”</i>");
 
 	processTime(15);
+	generateMapForLocation("511");
 	var pp:PregnancyPlaceholder = getHaleyPregContainer();
 	if (hole < 0) pc.loadInAss(pp);
 	else pc.loadInCunt(pp, hole);
@@ -2146,6 +2147,7 @@ public function haleysCumYouGetForLosingHerBet(hole:int):void
 	output("\n\nYou open your mouth for her as she puts her forelegs up on the bed.");
 
 	processTime((13+rand(4))*60);
+	generateMapForLocation("NT TTGG APARTMENT");
 	var pp:PregnancyPlaceholder = getHaleyPregContainer();
 	if (hole < 0) pc.loadInAss(pp);
 	else pc.loadInCunt(pp, hole);
@@ -2173,6 +2175,7 @@ public function haleysDoneUsingYouForNow():void
 	pc.removeStatusEffect("Haley Bet In Progress");
 	pc.createStatusEffect("Haley Satisfied");
 	pc.setStatusMinutes("Haley Satisfied", 24*60);
+	generateMapForLocation(rooms[currentLocation].westExit);
 
 	clearMenu();
 	addButton(0, "Next", move, rooms[currentLocation].westExit);
@@ -2815,6 +2818,7 @@ public function haleyWholesomeTaurpussySex(cockIdx:int):void
 	if (flags["HALEY_BETS_WON_FUCK"] == undefined) output("Haley doesn’t seem very experienced, despite all expectations to the contrary given her residence on New Texas. Nonetheless, she’s clearly into it - the slick femcum dripping from your fingers is all the physical evidence you need. Her giant cock, despite being neglected, throbs with desire between her legs.\n\n");
 	output("No need to be too subtle when she’s already this worked up. " + (pc.isCrotchGarbed() ? "Removing your clothes while she watches, you " : "You ") + (pc.isTaur() ? "mount the muscular amazon and slowly align yourself with her sopping wet slit." : "grip her muscular, curvy flank tight and guide her to the perfect height, her powerful hindlegs spreading slowly as she acquiesces to your command."));
 	output("\n\nThe moment your " + (cockIdx < 0 ? "hardlight’s sensitive head" : "[pc.cockHead " + cockIdx + "]") + " touches her soft pink sex she stiffens up and holds her breath, willing herself to be still as you gently push inside her. She fits you like a warm, silken glove, wrapping around your stiff, swollen length as if to welcome you inside her, her soft folds quivering at your touch.");
+	if (cockIdx >= 0) pc.cockChange();
 	output("\n\n<i>“Ah…!”</i> Haley cries softly, and you can feel her entire body weakening");
 	if (pc.isTaur()) output(" beneath you");
 	output(" until she realizes she’s about to fall and regathers her strength. <i>“Oh, that’s… that’s really good…”</i>");
