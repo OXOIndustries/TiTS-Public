@@ -531,6 +531,7 @@
 		include "../includes/uveto/willow.as";
 		
 		include "../includes/chargendata.as";
+		include "../includes/SSTDs/cooties.as";
 		include "../includes/SSTDs/furpies.as";
 		include "../includes/SSTDs/locofever.as";
 		include "../includes/SSTDs/sneezingTits.as";

@@ -22096,6 +22096,13 @@
 							}
 						}
 						break;
+					case "Undetected Cooties":
+					case "Cooties":
+						if(this is PlayerCharacter)
+						{
+							kGAMECLASS.cootiesProcGoooo(deltaT, maxEffectLength, doOut, this, thisStatus);
+						}
+						break;
 					case "Undetected Sneezing Tits":
 					case "Sneezing Tits":
 						if(this is PlayerCharacter)
@@ -22401,6 +22408,11 @@
 					if(victim.hasSSTD("Sneezing Tits", true)) { /* Already have it! */ }
 					else victim.createStatusEffect("Undetected Sneezing Tits", 0, 0, 0, 0, true, "Icon_Boob_Torso", "Hidden Sneezing Tits infection!", false, 10080, 0xFF69B4);
 					break;
+				case "Undetected Cooties":
+					if(victim.hasSSTD("Cooties", true)) { /* Already have it! */ }
+					else victim.createStatusEffect("Undetected Cooties", 0, 0, 0, 0, true, "Icon_Boob_Torso", "Hidden Cooties infection!", false, 4320, 0xFF69B4);
+					break;
+
 			}
 		}
 		public function sstdPurgeCheck(deltaT:uint, doOut:Boolean):void
