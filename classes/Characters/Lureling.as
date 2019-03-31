@@ -4,13 +4,7 @@ package classes.Characters
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
-	import classes.Items.Armor.ChitPlate;
-	import classes.Items.Guns.BothriocRifle;
 	import classes.Items.Melee.Fists;
-	import classes.Items.Melee.BothriocRapier;
-	import classes.Items.Miscellaneous.Picardine;
-	import classes.Items.Miscellaneous.Kirkite;
-	import classes.Items.Miscellaneous.Satyrite;
 	import classes.StorageClass;
 	import classes.VaginaClass;
 	import classes.kGAMECLASS;
@@ -26,7 +20,7 @@ package classes.Characters
 	import classes.Util.RandomInCollection;
 	import classes.Util.InCollection;
 	
-	
+	//The Lureling should have shitloads of Heath and massive Armor. It is, however, super vulnerable to lust. The whole reason it's doing this is cuz it's horny.
 	public class Lureling extends Creature
 	{
 		//constructor
@@ -40,74 +34,82 @@ package classes.Characters
 			originalRace = "lureling";
 			a = "the ";
 			capitalA = "The ";
-			//this.long = "";
-			this.customBlock = "The bothrioc’s armor deflects your attack with alarming ease.";
+			this.long = "It's a huge, gross sea monster that resembles an oversized angler fish with frog-like legs. Its gaping, slavering maw drools with a thousand teeth arranged in a fearsome circle, and tiny black eyes stare at you with unbridled malice.";
+			this.customBlock = "The lurelings’s armor deflects your attack.";
 			this.isPlural = false;
 			isLustImmune = false;
 			
-			this.meleeWeapon = new BothriocRapier();
-			this.rangedWeapon = new BothriocRifle();
-			this.armor = new ChitPlate();
-			
-			baseHPResistances.kinetic.damageValue = 25.0;
-			baseHPResistances.electric.damageValue = 25.0;
-			baseHPResistances.burning.damageValue = 25.0;
+			this.meleeWeapon = new Fists();
+			meleeWeapon.baseDamage.kinetic.damageValue = 10;
+			meleeWeapon.baseDamage.addFlag(DamageFlag.CRUSHING);
 			
 			this.physiqueRaw = 18;
-			this.reflexesRaw = 25;
-			this.aimRaw = 18;
-			this.intelligenceRaw = 10;
-			this.willpowerRaw = 8;
+			this.reflexesRaw = 12;
+			this.aimRaw = 15;
+			this.intelligenceRaw = 20;
+			this.willpowerRaw = 18;
 			this.libidoRaw = 30;
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
-			this.lustRaw = 10;
+			this.lustRaw = 20;
 			
+			baseHPResistances = new TypeCollection();
+			baseHPResistances.freezing.damageValue = 100.0;
+			baseHPResistances.burning.damageValue = -10.0;
+			baseHPResistances.kinetic.damageValue = 20;
+			baseHPResistances.electric.damageValue = -10;
+			baseHPResistances.poison.damageValue = 20;
+			baseHPResistances.corrosive.damageValue = 20;
+			baseHPResistances.drug.resistanceValue = -20.0;
+			baseHPResistances.tease.resistanceValue = -20.0;
+			baseHPResistances.pheromone.resistanceValue = -20.0;
+			baseHPResistances.psionic.resistanceValue = -20.0;
+
 			this.level = 7;
 			this.XPRaw = normalXP();
 			this.credits = 80 + rand(80);
-			this.HPMod = 70;
+			this.HPMod = 100;
 			this.HPRaw = this.HPMax();
 			
 			this.femininity = 35;
-			this.eyeType = GLOBAL.TYPE_BOTHRIOC;
+			this.eyeType = GLOBAL.TYPE_FROG;
 			this.eyeColor = "black";
-			this.tallness = 68;
+			this.tallness = 100;
 			this.thickness = 20;
 			this.tone = 70;
-			this.hairColor = RandomInCollection("black", "white", "electric blue", "rusty red");
+			this.hairColor = "green";
 			this.scaleColor = "black";
 			this.furColor = "black";
-			this.hairLength = 3;
-			this.hairType = GLOBAL.TYPE_BOTHRIOC;
+			this.hairLength = 0;
+			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN_TYPE_CHITIN;
-			this.skinTone = "pale";
+			this.skinType = GLOBAL.SKIN_TYPE_SCALES;
+			this.skinTone = "green";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.TYPE_BOTHRIOC;
+			this.faceType = GLOBAL.TYPE_FROG;
 			this.faceFlags = new Array();
-			this.tongueType = GLOBAL.TYPE_BOTHRIOC;
-			this.tongueFlags = [GLOBAL.FLAG_LONG];
+			this.tongueType = GLOBAL.TYPE_FROG;
+			this.tongueFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_LUBRICATED];
 			this.lipMod = 0;
 			this.earType = 0;
 			this.antennae = 0;
 			this.horns = 0;
 			this.hornType = 0;
-			this.armType = GLOBAL.TYPE_BOTHRIOC;
-			this.armFlags = [GLOBAL.FLAG_CHITINOUS];
-			this.gills = false;
-			this.legType = GLOBAL.TYPE_BOTHRIOC;
-			this.legCount = 4;
-			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE, GLOBAL.FLAG_CHITINOUS, GLOBAL.FLAG_HEELS];
+			this.armType = GLOBAL.TYPE_FROG;
+			this.armFlags = [GLOBAL.FLAG_SCALED];
+			this.gills = true;
+			this.legType = GLOBAL.TYPE_FROG;
+			this.legCount = 2;
+			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE, GLOBAL.FLAG_SCALED];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = GLOBAL.TYPE_BOTHRIOC;
-			this.tailCount = 1;
-			this.tailFlags = [GLOBAL.FLAG_CHITINOUS];
+			this.tailType = 0;
+			this.tailCount = 0;
+			this.tailFlags = new Array();
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
 			//tailGenital:
@@ -141,27 +143,12 @@ package classes.Characters
 			this.buttRatingRaw = 2;
 			//No dicks here!
 			this.cocks = new Array();
-			var c:CockClass = new CockClass();
-			cocks.push(c);
-			c.cLengthRaw = 8;
-			c.cThicknessRatioRaw = 1.75;
-			c.cType = GLOBAL.TYPE_BOTHRIOC;
-			c.addFlag(GLOBAL.FLAG_LUBRICATED);
-			c.addFlag(GLOBAL.FLAG_OVIPOSITOR);
-			c.addFlag(GLOBAL.FLAG_RIBBED);
 			
 			this.vaginas = [];
-			var v:VaginaClass = new VaginaClass();
-			vaginas.push(v);
-			v.wetnessRaw = 2;
-			v.loosenessRaw = 3;
-			v.type = GLOBAL.TYPE_BOTHRIOC;
 			
 			//balls
-			this.balls = 2;
+			this.balls = 0;
 			this.cumMultiplierRaw = 6;
-			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
-			this.impregnationType = "BothriocPregnancy";
 			this.cumQualityRaw = 1;
 			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 1.5;
@@ -189,10 +176,10 @@ package classes.Characters
 			this.ass.wetnessRaw = 0;
 			
 			isUniqueInFight = true;
-			btnTargetText = "B.Pidemme";
+			btnTargetText = "Lureling";
 			
 			createStatusEffect("Force It Gender");
-			sexualPreferences.setRandomPrefs(2 + rand(3));
+			//sexualPreferences.setRandomPrefs(2 + rand(3));
 			
 			this._isLoading = false;
 		}
@@ -201,222 +188,62 @@ package classes.Characters
 		{
 			return "LURELING";
 		}
-		
+	
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
-			
-			if (target.hasStatusEffect("Grappled"))
-			{
-				grappleFollowup(target);
-				return;
-			}
-			
-			var se:StorageClass = getStatusEffect("Bolo CD");
-			if (se != null)
-			{
-				se.value1--;
-				if (se.value1)
-				{
-					removeStatusEffect("Bolo CD");
-					se = null;
-				}
-			}
-			
-			// enemy AI
-			var enemyAttacks:Array = [];
-			if(!hasStatusEffect("Disarmed")) enemyAttacks.push( { v: rapierThrust, w: 10 } );
-			if(!hasStatusEffect("Disarmed")) enemyAttacks.push( { v: gunshot, w: 10 } );
-			enemyAttacks.push( { v: tease, w: 10 } );
-			
-			if (_preppedBolo == false) enemyAttacks.push( { v: prepBolo, w: 10 } );
 
-			var attack:Function = weightedRand(enemyAttacks);
-			attack(target);
-			
-			//enemyAttacks.splice(enemyAttacks.indexOf(attack), 1);
-			for (var cnt:int = 0; cnt < enemyAttacks.length; cnt++)
-			{
-				if (enemyAttacks[cnt].v == attack) enemyAttacks.splice(cnt, 1);
-			}
-			
-			output("\n\n");
-			
-			if (InCollection(attack, rapierThrust, gunshot, tease) && _preppedBolo)
-			{
-				boloShot(target, attack);
-			}
-			else
-			{	
-				weightedRand(enemyAttacks)(target);
-			}
-			
+			if(rand(5) == 0 && !target.hasStatusEffect("Staggered")) chomp(target);
+			else if((rand(3) == 0 || this.HP() / this.HPMax() <= 0.3) && !target.hasStatusEffect("Psionic Backlash Cooldown")) psionicBacklash(target);
+			else flipperSlap(target);
 		}
-		
-		private var _grappleRound:int = 0;
-		
-		private function grappleFollowup(target:Creature):void
-		{
-			if (target.hasAirtightSuit())
-			{
-				if (_grappleRound == 0)
-				{
-					output("The bothrioc gently lays down flat against you and attempts to give you a kiss on the cheek as their ovipositor extends out of their abdomen. You can feel the tip of the ovipositor trail against the crotch of your suit. Unfortunately for them, your airtight attire prevents the intrusion, rendering the move useless...");
-				}
-				else
-				{
-					output("The bothrioc’s oil has seeped around your groin and leaks to the floor. Meanwhile, the bothrioc continues to mold their lithe body against yours, one pair of hands massaging your [pc.chest] whilst the other caresses your shielded face. Their thin, glossy lips try to desperately press against your own though you’re sure to be safe while your suit is sealed.");
-				}
-				_grappleRound++;
-				return;
-			}
-			
-			if (_grappleRound == 0)
-			{
-				output("The bothrioc gently lays down flat against you and gives you a kiss on the cheek as their ovipositor extends out of their abdomen. You can feel the warm, wet tip of the ovipositor, questing its way");
-				if (!target.isCrotchExposed()) output(" through your [pc.lowerGarments]");
-				else output(" into your crotch");
-				if (target.hasCock() || target.hasVagina()) output(",");
-				if (target.hasCock()) output(" stroking against your [pc.cock]");
-				if (target.hasCock() && target.hasVagina()) output(" and");
-				if (target.hasVagina()) output(" sliding between the lips of your [pc.vagina]");
-				output("...");
-			}
-			else
-			{
-				output("The bothrioc’s warm oil has seeped into your [pc.skinFurScales] around your groin. It seems to radiate heat through you, making you feel helplessly aroused, a sensation enhanced by your tight binds. Meanwhile, the bothrioc continues to mold their lithe body against yours, one pair of hands massaging your [pc.chest] whilst the other caresses your face. Their thin, hard lips are glossy and incredibly smooth when they press against yours. While alien, it feels remarkable.");
-			}
-			
-			_grappleRound++;
-			applyDamage(new TypeCollection( { tease: 2, drug: 3 } ), this, target, "minimal");
-		}
-		
-		private function rapierThrust(target:Creature):void
-		{
-			output("The slim, powerful legs of your opponent close the distance between the two of you in a flash, rapier held grimly and two-handed like a small lance. Suddenly, the thrust lashes out as the warrior abandons one hand in a twist of the body to cover over a meter of distance in the blink of an eye.");
-			
-			if (combatMiss(this, target))
-			{
-				output(" Parrying the attack isn’t easy, but you knock the rapier off course, causing its seeking tip to soar off in a wide angle.");
-			}
-			else
-			{
-				var dr:DamageResult = applyDamage(damageRand(meleeDamage(), 15), this, target, "suppress");
-				
-				if (dr.shieldDamage > 0 && dr.hpDamage <= 0)
-				{
-					output(" Thankfully most of the force behind the attack went into closing the distance, but rapiers are no joke even with seemingly little force behind them. While your shield is able to deflect the blow, it takes quite the toll on it.");
-				}
-				else
-				{
-					output(" Thankfully most of the force behind the attack went into closing the distance, but being stabbed by a rapier is no joke. Your wound grinds and stings as you move.");
-				}
-				
-				outputDamage(dr);
-			}
-		}
-		
-		private function gunshot(target:Creature):void
-		{
-			output("In a smooth motion, the rapier in one of their lower hands is planted point-first into the ground beside the warrior as the other hand pulls the rifle out of its holster and kicks it up for the opposite upper hand to take hold of. The rapier arm comes up to steady the rifle neatly from beneath and a shot is sighted immediately as the body twists into a side-stance firing pose. A pull of the trigger flings an old-fashioned metal slug out of the barrel straight at you.");
-			
-			if (rangedCombatMiss(this, target))
-			{
-				output(" You dive to one side, and the shot whines off a rock behind you.");
-			}
-			else
-			{
-				var dr:DamageResult = applyDamage(damageRand(rangedDamage(), 15), this, target, "suppress");
-				if (dr.shieldDamage > 0 && dr.hpDamage <= 0)
-				{
-					output(" The shot spangs off of your shields.");
-				}
-				else
-				{
-					output(" You wince as the crude weapon finds its mark.");
-				}
-				outputDamage(dr);
-				
-			}
-		}
-		
-		private var _preppedBolo:Boolean = false;
-		
-		private function prepBolo(target:Creature):void
-		{
-			output("One of the bothrioc’s lower hands reaches into the collection of belts around their hips and pulls out a bolo. After passing it to the upper set of hands, a few quick swings has it spun up.");
-			_preppedBolo = true;
-			createStatusEffect("Bolo CD", 5, 0, 0, 0, true); // Not using builtin CD system to avoid back to back potential grapples
-		}
-		
-		private function boloShot(target:Creature, lastAttack:Function):void
-		{
-			_preppedBolo = false;
-			
-			if (lastAttack == rapierThrust)
-			{
-				output("In the same breath as their rapier stab, the bothrioc flicks their bolo-swinging hand to hurl the wheel of rope and iron at you.");
-			}
-			else if (lastAttack == gunshot)
-			{
-				output("Following swiftly on the heels of the rifle shot, the bothrioc lets loose the bolo swinging above their head.");
-			}
-			else
-			{
-				output("The bothrioc turns away, displaying their round bum beneath their abdomen, looking over their shoulder with mischievous black eyes... and the next moment they hurl the bolos in their upper pair of hands overarm at you with all their strength.");
-			}
-			
-			if (rangedCombatMiss(this, target))
-			{
-				output(" You dart out of the way, the furiously spinning weights careening past your [pc.legs] by a fraction.");
-			}
-			else
-			{
-				output(" The whirling trap hits you right in the middle, heavy ropes wrapping themselves around your limbs and weights thumping into you with hard momentum.\n\nYou try and tear yourself loose of the tangle, but before you can the bothrioc pounces on you, pinning you to the ground under them.\n\n<i>“Now then, precious,”</i> they whisper, caressing your face. <i>“Let’s have no more silly struggling, hmm?”</i>");
-				
-				CombatAttacks.applyGrapple(target, 50, false, "The bolos are still tangled around your limbs!");
-				_grappleRound = 0;
-			}
-		}
-		
-		private function tease(target:Creature):void
-		{
-			if (rand(2) == 0)
-			{
-				output("The bothrioc’s circling hunter’s stance begins to accommodate hops, skips and twists, and with remarkable naturalness they segue into a belly dance. With each gyration of the hips and collapse of their stomach you’re treated to a surprisingly fertile and toned visage, despite the lack of anything between their legs to accompany it.");
-			}
-			else
-			{
-				output("The bothrioc plants their rapier for a second to free up both lower hands, quickly turning to the side as they heft their abdomen aloft. Their ovipositor reaches out lazily. It is a thick, prehensile appendage which drools slime obscenely.");
-			}
-			
-			output("\n\nYou can’t help but let your guard down a little, daydream at the possibilities... before you know what’s happened the bothrioc has effortlessly slipped beyond your arms.");
-			
-			if (target.willpower() / 2 + rand(30) + 1 < target.libido() / 2 + rand(target.lust() / 4))
-			{
-				output(" The bothrioc leans into you, one hand caressing your [pc.chest] while another cops a feel of your [pc.ass] as they whisper into your ear");
-				
-				var o:Array = [];
-				if (target.buttRating() >= 10) o.push(" <i>“Such a plush posterior" + (target.hipRating() >= 10 ? " and such fertile hips, too" : "") + ". You were born to carry our eggs and you know it, don’t you?”</i>");
-				if (target.biggestTitSize() > 11) o.push(" <i>“You know, you’d make an excellent nurse for our many, many offspring." + (target.isLactating() ? " And I see you’ve come prepared,”</i> they add, laughing delightedly as a few spurts of [pc.milk] are coaxed out by their hand to spatter against their gleaming chitin." : "”</i>"));
 
-				if (o.length == 0)
-				{
-					output(" <i>“You’re not quite the broodmare you should be, but our eggs will take care of that quite nicely, offworlder. Look forward to it.”</i>");
-				}
-				else
-				{
-					output(RandomInCollection(o));
-				}
-				output(" You shiver, between the touches and words sliding into your ear, and shove the creature away.");
-				
-				applyDamage(new TypeCollection( { tease: 6 + (Math.floor(target.libido() / 8)) } ), this, target, "minimal");
-			}
+		//Flipper Slap
+		//Does Crushing damage. //Default attack, used most often
+		private function flipperSlap(target:Creature):void
+		{
+			output("Growling deeply, the Lureling advances on you and slaps with its frog-like foot, trying to backhand you across the igloo. ");
+			if (combatMiss(this, target)) output("You duck down, avoiding the flailing monster's attack.");
 			else
 			{
-				applyDamage(new TypeCollection( { tease: 6 } ), this, target, "minimal");
+				output("You grunt as the massive arm smashes you across the chest and face. Ow!");
+				applyDamage(meleeDamage(), this, target, "minimal");
 			}
+		}
+
+		//Chomp!
+		//Deals heavy penetrating damage. Lowers PC physique by 5 on a hit, lasts for a turn. Low accuracy.
+		private function chomp(target:Creature):void
+		{
+			output("The huge sea monster snarls and lunges, trying to grab you between its gnashing teeth! You dodge back");
+			if (combatMiss(this, target)) output(", narrowly avoiding a nasty bite!");
+			else
+			{
+				output(" but don't manage to evade the Lureling's bestial mouth, and feel its teeth crush into you. The bite isn't lethal, but it leaves you gasping and winded for a moment by the time you struggle free!");
+				if (!target.isPlanted()) CombatAttacks.applyStagger(target, 1, true);
+				if (rand(4) == 0 && target.shields() <= 0) CombatAttacks.applyBleed(target);
+				applyDamage(new TypeCollection( { kinetic: 20 }, DamageFlag.PENETRATING), this, target, "minimal");
+			}
+		}
+
+		//Psionic Backlash
+		//If the PC uses a ranged or psychic ability, the Lureling has a high chance to use this. PC must pass a Willpower check or take some psychic damage and be Stunned for a round.
+		private function psionicBacklash(target:Creature):void
+		{
+			output("The sea beast howls, an unearthly screech that leaves you staggering back and grabbing at your head. Oh, stars, that hurts! ");
+			if (willpower() + rand(100) < target.WQ()) output("You grit your teeth and push through the pain, refusing the give in to the Lureling's psychic assault!");
+			else
+			{
+				output("You scream in pain and slump to your [pc.knees], unable to think of anything but the pounding in your head.");
+				if (!target.hasStatusEffect("Stun Immune"))
+				{
+					CombatAttacks.applyStun(target, 1, true);
+					output(" <b>You’re stunned!</b>");
+				}
+				applyDamage(new TypeCollection( { kinetic: 30 }, DamageFlag.PSIONIC), this, target, "minimal");
+			}
+			createStatusEffect("Psionic Backlash Cooldown", 2);
 		}
 	}
 }

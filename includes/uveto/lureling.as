@@ -1,4 +1,3 @@
-import classes.Characters.Lureling;
 // Savins Lurelings
 // https://docs.google.com/document/d/1tyOj-RbpsF7gNND4h3TAKp_DcAsqj7WcetJUx1RWmK4/edit
 // coded by Stygs 03/2019
@@ -11,31 +10,24 @@ import classes.Characters.Lureling;
  * multiple tentacles without sheath (marion.hasCocks())
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// CHANGE THE CODEX REFERENCE FROM KORGONNES TO MILODAN - KORGONNES ARNT PSYCHIC ANYMORE
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*	MET_LURELING		0/undefined = met the Marion/Essyra first time, 1 = repat, hasnt seen a Lureling, 2 = repeat, has seen a Lureling
-/*	MARION_FUCKED
-/*	LURELINGS_FOUGHT
+ * MET_LURELING			0/undefined = met the Marion/Essyra first time, 1 = repat, hasnt seen a Lureling, 2 = repeat, has seen a Lureling
+ * MARIONS_FUCKED		number of times fucked a marion
+ * LURELINGS_FOUGHT		number of times fought a lureling
 */
 
 public function showMarion(nude:Boolean = false):void
 {
 	showName("\n"+ marionName().toUpperCase());
-	if(nude) showBust("MILO_TEMPTRESS_NUDE");
-	else showBust("MILO_TEMPTRESS");
+	if(nude) showBust("MARION_NUDE");
+	else showBust("MARION");
 }
 
 public function showLureling(nude:Boolean = false):void
 {
 	showName("\nLURELING");
-	if(nude) showBust("KORGONNE_FEMALE_NUDE");
-	else showBust("KORGONNE_FEMALE");
+	if(nude) showBust("LURELING_NUDE");
+	else showBust("LURELING");
 }
 
 public function marionName():String
@@ -47,6 +39,38 @@ public function marionName():String
 public function marionSetUp():void
 {
 	marion.tailCount = 3 + rand(5);
+	marion.removeCocks();
+	marion.removeBalls();
+	switch (flags["MARION_SETUP"])
+	{
+		case 0:
+			break;
+		case 1:
+			marion.createCock(8);
+			//marion.cocks[0].cLengthRaw = 8;
+			marion.shiftCock(0,GLOBAL.TYPE_CANINE);
+			marion.cocks[0].cockColor = "black";
+			marion.balls = 2;
+			break;
+		case 2:
+			marion.createCock(12);
+			//marion.cocks[0].cLengthRaw = 8;
+			marion.shiftCock(0,GLOBAL.TYPE_TENTACLE);
+			marion.cocks[0].cockColor = "blue";
+			marion.cocks[0].addFlag(GLOBAL.FLAG_SHEATHED);
+			break;
+		case 3:
+			var i:int = 0;
+			while (i < marion.tailCount)
+			{
+				marion.createCock(12);
+				marion.shiftCock(i,GLOBAL.TYPE_TENTACLE);
+				marion.cocks[i].cockColor = "blue";
+				marion.cocks[i].knotMultiplier = 1.1;
+				i++;
+			}
+			break;
+	}
 }
 
 public function marionEncounter():void
@@ -261,7 +285,7 @@ public function insideMarionsDen():void
 	output(".");
 
 	output("\n\nWhen you finally emerge from the tunnel's end, you're greeted by a welcome sight indeed: a hemispherical chamber has been dug out of the hillside, with smooth packed-in walls and a floor of perfect ice, covered with plush fur rugs that surround a circle of obsidian stones and wood. Apparently the ring is a fire pit - one that your companion is already lighting, allowing much-needed warmth to spread through the chamber. A chill still hangs in the air here, but it's nothing like the seeping, gut-clenching freeze of the outside world. What's left inside is a calm, almost relaxing chill - just enough to make you thankful for the heat of the fire"+ (pc.hasHeatBelt() ? "and your heat-belt" : "") +". You approach the fire, extending your hands to warm yourself up. The furry hide of some creature shifts beneath your [pc.feet], drawing your attention to the strangely homey accoutrements around you: pillows, fur blankets, and rugs adorn the cave. This must be the ");
-	if (flags["MET_LURELING"] == 1) output("product of the lureling below you's efforts, meant to give you and its marion a nice and comfortable place to carry out your business. How thoughtful.");
+	if (flags["MET_LURELING"] == 2) output("product of the lureling below you's efforts, meant to give you and its marion a nice and comfortable place to carry out your business. How thoughtful.");
 	else output("essyra girl's home.");
 
 	output("\n\nYour thoughts draw your gaze back to your hostess, standing across the fire with her back to you, staring down into the hazy, dark ice of the cave's floor. She gives you a glance over her shoulder and a blue-lipped smile, and lets the heavy cloak slip down. The figure that had been hidden beneath it is svelte and athletic, honed to physical perfection after a lifetime of surviving in the harshest wilderness. Her pale skin hints at tense, strong muscles hidden under the colorful woolen garments still clinging to her body. And, you note, several more tails are on display now: "+ marion.tailCount +" pink, fluffy fox-tails wrap around her waist and groin, keeping her nice and warm.");
@@ -343,6 +367,7 @@ public function smackTheMarion():void
 	output("\n\nThe lureling rears back on its tiny legs, issuing a terrifying banshee's shriek before it lunges for you!");
 
 	processTime(10);
+	IncrementFlag("LURELINGS_FOUGHT");
 
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc);
@@ -375,19 +400,12 @@ public function marionsDenSexMenu():void
 
 	processTime(10);
 
-/*
-Sex Options Possible!
-If you have a cock: Fuck her in the cooch
-If you don't have a cock or are too big for her: Mutual Masturbation
-If she has a cock: Get fucked (vagOrAss). 
-*/
-
 	clearMenu();
 	// only allow FuckVag for PCs with a) dicks and NO hardlight or b) cunts AND hardlight. Scene doesnt make sense otherwise
 	if (pc.hasCock() && pc.cockThatFits(marion.vaginalCapacity()) >= 0) addButton(0, "Fuck Vag", penisRouter,[marionsDenSexFuckMarion,marion.vaginalCapacity(),false,0], "Fuck Vag", "Stick your "+ pc.cockDescript(pc.cockThatFits(marion.vaginalCapacity())) +" in the essyra's pretty blue pussy and let her ride you.");
 	else if (pc.isFemale() && pc.hasHardLightEquipped()) addButton(0, "Fuck Vag", marionsDenSexFuckMarion, -1, "Fuck Vag", "Stick your [pc.cockOrStrapon] in the essyra's pretty blue pussy and let her ride you.");
 	else addDisabledButton(0, "Fuck Vag", "Fuck Vag", "You need a penis or hardlight dildo for this.");
-	// if PC has either no cock (but a pussy) or a cock thats to large
+	// if PC has either a pussy & no cock or a cock thats to large
 	if (pc.isFemale() || (pc.hasCock() && pc.cockThatFits(marion.vaginalCapacity()) == 0)) addButton(1, "Mutual Masturbation", marionsDenSexMutualMasturbation, undefined, "Mutual Masturbation", !pc.hasCock() ? "Well, you’re a little bit cockless, but company always makes a good time better." : "There’s no way you’re fitting inside her, but sharing is caring.");
 	else if (pc.hasGenitals()) addDisabledButton(1, "Mutual Masturbation", "Mutual Masturbation", "You need a pussy OR an overly large dick for this.");
 	else addDisabledButton(1, "Mutual Masturbation", "Mutual Masturbation", "You need genitals for this.");
@@ -453,6 +471,7 @@ public function marionsDenSexMenuDebug():void
 	addButton(1, "Mutual Masturbation", marionsDenSexMutualMasturbation, undefined, "Mutual Masturbation", !pc.hasCock() ? "Well, you’re a little bit cockless, but company always makes a good time better." : "There’s no way you’re fitting inside her, but sharing is caring.");
 	addButton(2, "Get Fucked", vaginaRouter, [marionsDenSexGetFucked, marion.cockVolume(0), 1, 0], "Get Fucked", "?????");
 	addButton(3, "Get Fucked", marionsDenSexGetFucked, -1, "Get Fucked", "?????");
+	addButton(9, "FIGHT!", smackTheMarion, undefined);
 
 	addButton(10, "Pussy", function():void { flags["MARION_SETUP"] = 0; marionsDenSexMenuDebug(); })
 	addButton(11, "DogDock", function():void { flags["MARION_SETUP"] = 1; marionsDenSexMenuDebug(); })
@@ -569,9 +588,7 @@ public function marionsDenSexFuckMarion(x:int):void
 	marionSexOutro(false);
 
 //	pc.applyPussyDrenched();
-// supposted to be a different essyra everytime, so better not track this
-//	marion.orgasm();
-//	marion.loadInCunt(pc);
+	marion.loadInCunt(pc);
 }
 
 public function marionsDenSexMutualMasturbation():void
@@ -627,8 +644,6 @@ public function marionsDenSexMutualMasturbation():void
 	output("\n\nThe Essyra pushes herself along the floor until her body is pressing up against your own "+ (pc.isTaur() ? "— admittedly broad and tauric — yet " : "") +"warm flesh. While she gulps down breaths, soaking in the scent of your mixed orgasms until sleep tries to claim the both of you.");
 
 	marionSexOutro();
-
-	//marion.orgasm();
 }
 
 public function marionsDenSexGetFucked(x:int):void
@@ -695,7 +710,6 @@ public function marionsDenSexGetFucked(x:int):void
 	if (x >= 0) pc.loadInCunt(marion, x);
 	else pc.loadInAss(marion);
 	//pc.applyCumSoaked(),
-	//marion.orgasm();
 }
 
 public function marionSexOutro(full:Boolean = true):void
@@ -704,7 +718,7 @@ public function marionSexOutro(full:Boolean = true):void
 
 	output("\n\nYou sigh and let yourself out, back into the frigid embrace of Uveto's perpetual chill.");
 
-	IncrementFlag("MARION_FUCKED");
+	IncrementFlag("MARIONS_FUCKED");
 	processTime(5*60);
 	sleepHeal();
 	pc.orgasm();
@@ -712,6 +726,21 @@ public function marionSexOutro(full:Boolean = true):void
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+public function lurelingFightEscape():void
+{
+	clearOutput();
+
+	output("To hell with this, you're getting out of here! You fight back just enough to push the snarling beast back, giving yourself the room you need to dive for the narrow entrance to the hidden den. You've barely wedged yourself into the snowy tunnel when you hear a horrible, croaking sound from behind you. What sounds at first like a roar or a growl steadily resolves into what can only be a hoarse but rhythmic laugh.");
+
+	output("\n\nThe Lureling is <i>laughing</i> at you!");
+
+	output("\n\nShame and rage burns your cheeks, but still, you know when you're outmatched. If only you'd know what slapping some random fox-girl would have gotten you into!");
+
+	output("\n\nYou crawl out of the den and into the whirling winds of Uveto as quick as you can, hoping that the howling gale will drown out the psychic fish's mirth.");
+
+	CombatManager.abortCombat();
 }
 
 public function lurelingFightDefeat():void
@@ -722,17 +751,13 @@ public function lurelingFightDefeat():void
 
 	output("You go staggering back against the far wall of the igloo, trying to avoid the gnashing teeth and flailing arms of the lureling. Only when your [pc.weapon] scatters from your hand does the writhing beast calm itself,  transfixing you with its fathomless dark eyes. As it maintains your gaze, the pink fox-girl it was guarding slowly creeps forward with fear and desire in her eyes in equal measure. The huge behemoth behind her slowly sinks back towards the shattered floor of the chamber as she slips down beside you and grabs at your gear, pulling it aside.");
 
-	output("\n\nRather than mounting you, though, the frigid vixen grabs one of the "+ (pc.credits < 100 ? "sadly empty " : "") +"credit chits from your kit and stuffs it down her cleavage. Wordlessly, she tuts at you and wags a finger in your face before standing and going over to the sea monster. It murmurs at her and begins to slink back, returning to the depths. When it's gone, the puppet-like foxen simply waves you off, as if dismissing you. ");
+	output("\n\nRather than mounting you, though, the frigid vixen grabs one of the "+ (pc.credits < 100 ? "sadly empty " : "") +"credit chits from your kit and stuffs it down her cleavage. Wordlessly, she tuts at you and wags a finger in your face before standing and going over to the sea monster. It murmurs at her and begins to slink back, returning to the depths. When it's gone, the puppet-like foxen simply waves you off, as if dismissing you.");
 
 	output("\n\nYou can't help but question why she'd let you go without further molestation after all that time spent trying to seduce you. Has she just lost interest in you, or in her own queer way, does she really insist on consent?");
 
 	output("\n\nEither way, you'll count your lucky stars and leave while you can.\n\n");
 
 	CombatManager.genericLoss();
-	IncrementFlag("LURELINGS_FOUGHT");
-
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
 }
 
 public function lurelingFightVictory():void
@@ -746,8 +771,4 @@ public function lurelingFightVictory():void
 	output("\n\nWhile the getting's good, you retreat back through the entrance to the igloo and stumble away into the freezing embrace of Uveto's wilderness. Behind you, the cave rumbles and finally collapses in on itself, sinking into the waters below. Good thing you got out... but it's a shame about that fox-girl. By the looks of things, she was just being controlled by the beast. Hopefully she manages to survive.\n\n");
 
 	CombatManager.genericVictory();
-	IncrementFlag("LURELINGS_FOUGHT");
-
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
 }
