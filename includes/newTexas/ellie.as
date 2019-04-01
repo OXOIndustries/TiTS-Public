@@ -343,6 +343,8 @@ public function buildEllieTalkMenu():void
 	else if(flags["ELLIE_OPERATION_TALK_UNLOCKED"] != undefined) addButton(4, "Operation", talkToEllieAboutOperation, undefined, "Operation", "Discuss the fertility operation with Ellie.");
 	else if(flags["ELLIE_PREG_TALK_UNLOCKED"] != undefined && nephAffection() > 66) addButton(4, "Pregnancy", talkToEllieAboutPregnancy, undefined, "Pregnancy", "Discuss pregnancy with Ellie.");
 	else addDisabledButton(4, "Locked", "Locked", "You need to be really close with Ellie to discuss this.");
+
+	if (pc.hasStatusEffect("Haley Bet In Progress") && flags["HALEY_WEAKSPOT_KNOWN"] == undefined) addButton(5, "Haley", ellieSnitchesOnHaley, undefined, "Haley", "Ask Ellie about Haley to see if you can get an advantage over the competition for your bet."); //function in ./haley.as
 	 
 	addButton(14,"Back",ellieMenu);
 }
