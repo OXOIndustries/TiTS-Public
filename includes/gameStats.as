@@ -1087,7 +1087,6 @@ public function statisticsScreen(showID:String = "All"):void
 		if(!chars["PENNY"].cockVirgin) totalVirginitiesTaken++;
 		if(!chars["SAENDRA"].cockVirgin) totalVirginitiesTaken++;
 		if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
-		if(flags["TOOK_LDC_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(flags["TOOK_PRINCESS_BUTTGINITY"] != undefined) totalVirginitiesTaken++;
 		if(flags["ANZHELA_ANALED"] != undefined) totalVirginitiesTaken++;
 		if(flags["NAYNA_FUCKED"] != undefined) totalVirginitiesTaken++;
@@ -7483,7 +7482,6 @@ public function displayEncounterLog(showID:String = "All"):void
 				// The DCL
 				output2("\n<b>* The L.D.C.:</b> Met him");
 				if(flags["LDC_FUCKED"] != undefined) output2(", Sexed him");
-				if(flags["TOOK_LDC_BUTTGINITY"] != undefined) output2(", Took his anal virginity");
 				if(flags["LDC_TOTAL_KIDS"] != undefined) output2("\n<b>* The L.D.C., Total Kids:</b> " + flags["LDC_TOTAL_KIDS"]);
 				// Fight Bunny
 				output2("\n<b>* Shock Hopper:</b> Met her");

@@ -826,16 +826,6 @@ public function fuckTheHopper2(x:int):void
 	CombatManager.genericVictory();
 }
 
-public function insertCockIntoLDC(cIdx:int = 0):void
-{
-	pc.cockChange();
-	if(flags["TOOK_LDC_BUTTGINITY"] == undefined)
-	{
-		output(" <b>You’ve taken L.D.C.’s anal virginity!</b>");
-		flags["TOOK_LDC_BUTTGINITY"] = 1;
-	}
-}
-
 //[Ride Hopper]
 // Tooltip: Hop on that pillar of bunny mean and show the L.D.C. how to <i>really</i> pleasure an oversexed futa slut like the Hopper.
 public function rideHopperSlut(x:int):void
@@ -874,7 +864,7 @@ public function rideHopperSlut(x:int):void
 		output("\n\nTime to get him in on the action - and punish this wayward bunny the best way you know how. You wrap your hands around your [pc.cock " + y + "] and press the crown into the fluffy crevasse between the L.D.C.’s cheeks, letting him feel the pressure rubbing on his pucker.");
 		output("\n\n<i>“W-wait a second,”</i> he gasps, sputtering into the Hopper’s rack. <i>“Look I’m sorry about whatever and shit but don’t-”</i>");
 		output("\n\nHis voice transitions to a wordless screech as you thrust your [pc.hips] forward, shoving your [pc.cock " + y + "] directly into the L.D.C.’s tailhole. His little bunny tail shoots straight out behind him, and his mammoth cock squirts all over the Hopper’s belly.");
-		insertCockIntoLDC(y);
+		pc.cockChange();
 	}
 	else
 	{
@@ -1038,7 +1028,7 @@ public function domTheLDCsAss2(x:int):void
 	output("weight of your " + (x < 0 ? "holographic ":"") + "cockflesh fall on his ass. It’s the last non-verbal suggestion he’s going to get. " + (!pc.isTaur() ? "You align":"The girls align") + " your crown with his hole and you simultaneously put force to your [pc.hips], pressing the [pc.cockOrStraponHead " + x + "] to the horse-bunny’s tantalizing entrance.");
 	output("\n\nThe force, the intense pressure, and <i>the loudness</i> of his asshole popping nearly makes you cum.");
 	
-	if(x >= 0) insertCockIntoLDC(x);
+	if(x >= 0) pc.cockChange();
 	
 	output("\n\n<i>“Fu... Fuck!!”</i> the bunny boss squeaks, a strand of cum plastering his lips, another ultra-thick cord whirling past his upjerked chin and barely open eyes. Goo-webbed blankets are tugged and nude bodies slide. You burden his distending asshole with more of your raging " + (x < 0 ? "faux-cock":"[pc.cockNoun " + x + "]") + ", pumping your [pc.cockOrStraponFull " + x + "] further into his wet cavern until it seems like his entire body tightens around it. The gyrations of your waist press the slick, hard tip into sensitive clusters that have him lurching forward involuntarily, changing the color of his puddled place on the sheets from chalky to milky.");
 	if((x >= 0 && pc.cockTotal() > 2) || (x < 0 && pc.hasCocks())) output(" Your extra shafts slide over his wobbling rump, painting his curves with cock-juice that his fur soaks up like a sponge worth its price.");
@@ -1782,7 +1772,7 @@ public function laquineShockyThreesomes3(x:int):void
 	output("\n\nYou let him know with one [pc.hand] on his cheek and the other lifting his cum-pouch. You hoist the hapless Jumpers up to give yourself room to work. <i>“What are you doi- FUCK!”</i>");
 	output("\n\nThere was only a second for him to panic when " + (y >= 0 ? "a":"your") + " [pc.cock " + z + "] prodded at the entrance to his effluvium-moistened pucker, and you thrust in just the same as you did to his honey-bun: skewering him on your [pc.cockType " + z + "] lance in a gate-smashing thrust. The trappy boy screams in dismay, arms thrashing and hips bucking upwards. The cock-locked skank loses grip on her bottom’s taut tummy, slumping forward only to catch herself on his shoulders" + (y >= 0 ? " and swing you forward just to keep both dicks inside":"") + ".");
 	
-	if(z >= 0) insertCockIntoLDC(z);
+	if(z >= 0) pc.cockChange();
 	
 	output("\n\nThose thick and obscenely swollen nuts of his clench and strain, and you can see a massive swell in what little cockflesh protrudes from her hole. His bloating cum-vein pries apart her interior when it swells with a creamy gout of laquine cum. What splashes her womb spills right back out on the next gut-crunch.");
 	output("\n\nOn your next thrust he does it again, and then again. You twang him like a fiddle even though he’s spasming around your [pc.cock " + z + "] so tightly you can feel pre backing up in your shaft. You’re double-teaming them so hard that you’re just fucking his black-pelt nutsack now, the thrust of [pc.cockNoun " + x + "] hitting all the <i>make this bitch-boy cum</i> buttons in sequence. A slave moves in to hold his those sloshing testes up, coaxing <i>even more</i> into the mistress-rabbit’s rounding gut.");
