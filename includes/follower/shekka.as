@@ -354,7 +354,7 @@ public function talkToShekkaAboutPeople():void
 	if(azraIsCrew()) addButton(button++,"Azra",shekkaAzraTalk);
 	if(bessIsCrew()) addButton(button++,chars["BESS"].short,shekkaBessTalk);
 	if(celiseIsCrew()) addButton(button++,"Celise",shekkaCeliseTalk);
-	if (hasGooArmor() || gooArmorIsCrew()) addButton(button++,chars["GOO"].short,talkToShekkaAboutNova);
+	if(hasGooArmor() || gooArmorIsCrew()) addButton(button++,chars["GOO"].short,talkToShekkaAboutNova);
 	if(reahaIsCrew()) addButton(button++,"Reaha",shekkaReahaTalk);
 	if(yammiIsCrew()) addButton(button++,"Yammi",talkToShekkaAboutYammi);
 
