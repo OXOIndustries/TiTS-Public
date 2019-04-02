@@ -687,9 +687,9 @@ public function gooArmorIsCrew():Boolean
 	if(flags["GOO_ARMOR_ON_SHIP"] != undefined) return flags["GOO_ARMOR_ON_SHIP"];
 	return false;
 }
-public function hasGooArmor():Boolean
+public function hasGooArmor(nearby:Boolean = false):Boolean
 {
-	if(InShipInterior() && (pc.hasItemInStorageByClass(GooArmor) || gooArmorIsCrew())) return true;
+	if(pc.hasItemInStorageByClass(GooArmor) || gooArmorIsCrew()) return (nearby ? InShipInterior(): true);
 	return hasGooArmorOnSelf();
 }
 public function hasGooArmorOnSelf():Boolean

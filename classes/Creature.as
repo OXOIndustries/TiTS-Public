@@ -10004,54 +10004,57 @@
 				vaginas[arg].delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 			}
 		}
-		public function vaginalPuffiness(arg: int = 0): Number {
-			if (vaginas.length <= 0) return 0;
+		public function vaginalPuffiness(arg: int = 0, flagOnly:Boolean = false): Number {
+			if(vaginas.length <= 0) return 0;
 			var puffScore:Number = 0;
-			if(this is PlayerCharacter && arg == 0 && hasStatusEffect("Mimbrane Pussy"))
+			if(!flagOnly)
 			{
-				puffScore += (this as PlayerCharacter).mimbranePuffiness("Mimbrane Pussy");
+				if(this is PlayerCharacter && arg == 0 && hasStatusEffect("Mimbrane Pussy"))
+				{
+					puffScore += (this as PlayerCharacter).mimbranePuffiness("Mimbrane Pussy");
+				}
+				if(vaginas[arg].type == GLOBAL.TYPE_EQUINE) puffScore += 1;
+				if(vaginas[arg].type == GLOBAL.TYPE_MOUTHGINA) puffScore += 1;
 			}
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) puffScore += 3;
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) puffScore += 2;
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffScore += 1;
-			if(vaginas[arg].type == GLOBAL.TYPE_EQUINE) puffScore += 1;
-			if(vaginas[arg].type == GLOBAL.TYPE_MOUTHGINA) puffScore += 1;
 			
 			return puffScore;
 		}
-		public function puffiestVaginaIndex(): int {
+		public function puffiestVaginaIndex(flagOnly:Boolean = false): int {
 			if (vaginas.length <= 1) return -1;
 			var index: Number = 0;
 			for(var i:int = 0; i < vaginas.length; i++)
 			{
-				if (vaginalPuffiness(index) < vaginalPuffiness(i)) index = i;
+				if (vaginalPuffiness(index, flagOnly) < vaginalPuffiness(i, flagOnly)) index = i;
 			}
 			return index;
 		}
-		public function flattestVaginaIndex(): int {
+		public function flattestVaginaIndex(flagOnly:Boolean = false): int {
 			if (vaginas.length <= 1) return -1;
 			var index: Number = 0;
 			for(var i:int = 0; i < vaginas.length; i++)
 			{
-				if (vaginalPuffiness(index) > vaginalPuffiness(i)) index = i;
+				if (vaginalPuffiness(index, flagOnly) > vaginalPuffiness(i, flagOnly)) index = i;
 			}
 			return index;
 		}
-		public function puffiestVaginalPuffiness(): Number {
+		public function puffiestVaginalPuffiness(flagOnly:Boolean = false): Number {
 			if(vaginas.length <= 0) return 0;
-			var puffScore:Number = vaginalPuffiness(0);
+			var puffScore:Number = vaginalPuffiness(0, flagOnly);
 			for(var i:int = 0; i < vaginas.length; i++)
 			{
-				if (puffScore < vaginalPuffiness(i)) puffScore = vaginalPuffiness(i);
+				if (puffScore < vaginalPuffiness(i, flagOnly)) puffScore = vaginalPuffiness(i, flagOnly);
 			}
 			return puffScore;
 		}
-		public function flattestVaginalPuffiness(): Number {
+		public function flattestVaginalPuffiness(flagOnly:Boolean = false): Number {
 			if(vaginas.length <= 0) return 0;
-			var puffScore:Number = vaginalPuffiness(0);
+			var puffScore:Number = vaginalPuffiness(0, flagOnly);
 			for(var i:int = 0; i < vaginas.length; i++)
 			{
-				if (puffScore > vaginalPuffiness(i)) puffScore = vaginalPuffiness(i);
+				if (puffScore > vaginalPuffiness(i, flagOnly)) puffScore = vaginalPuffiness(i, flagOnly);
 			}
 			return puffScore;
 		}

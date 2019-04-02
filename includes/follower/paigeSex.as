@@ -3987,7 +3987,7 @@ public function SSDYSH(args:Array):void
 		{
 			output("your [pc.cock 1] with your other. You grunt as she works you over, licking and sucking, playing with your [pc.cock] with her tongue; you bathe her tongue with pre-cum while your second cock shows its adoration by shooting its own into her hair and across her cheek, which she takes without resistance");
 			if(pc.cockTotal() >= 3) output(". The rest of your [pc.cocks] flop about, hard as nails and neglected, their own brands and juices going every which way as your [pc.hips] rock into her mouth");
-			else output(". You’re hard as nails, your [pc.hips] rocking into her mouth], signs of your impending orgasm just on the horizon");
+			else output(". You’re hard as nails, your [pc.hips] rocking into her mouth, signs of your impending orgasm just on the horizon");
 		}
 		output(".");
 

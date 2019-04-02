@@ -709,7 +709,9 @@ public function giannaAppearance():void
 	output("\n\nIn addition to her feminine wiles, she’s got a [gianna.asshole] nestled right between her [gianna.butts], where it belongs, only functioning as an auxiliary sexual input for interested partners. Another port sits not far above it, just at the base of her spine. This one is round and metal, designed to connect to some kind of cabling or hose.");
 	if(flags["BEEN_IN_GIANNA_BODYMOD_MENU"] != undefined) output(" You know from experience that she takes in more silicone there, distributing it through her body to improve her aesthetics.");
 	output("\n\nShe has knees and feet exactly as you would expect. There’s even ten carefully crafted, synth-skin covered artificial toes that wiggle when she walks. They lack nails, but pink-hued depressions conceal that from a distance, looking like painted polish.");
-
+	
+	pc.lust(5);
+	
 	clearMenu();
 	addButton(0,"Next",approachGianna,"back");
 }

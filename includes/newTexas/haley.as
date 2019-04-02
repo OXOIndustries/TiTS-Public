@@ -708,7 +708,7 @@ public function enteringHaleysStallRepeat():void
 	else addButton(5, "Make A Bet", haleyBetStart, undefined, "Make A Bet", "Make a bet with Haley about making her cum.");
 	if (flags["MET_HALEY"] == undefined) { }
 	else if (!pc.hasItemByClass(Throbb)) addDisabledButton(9, "Throbb Jab", "Jab With Throbb", "You need a dose of Throbb for this.");
-	else addButton(9, "Throbb Jab", haleyPlsBadEndMe, undefined, "Jab With Throbb", "Sneakily jab Haley with some Throbb to forcibly grow her enormous cock. She's probably not going to be happy about it, though.");
+	else addButton(9, "Throbb Jab", haleyPlsBadEndMe, undefined, "Jab With Throbb", "Sneakily jab Haley with some Throbb to forcibly grow her enormous cock. She’s probably not going to be happy about it, though.");
 	addButton(14,"Back Out",backOutFromHaleyRepeat,undefined,"Back Out","Time to leave.");
 }
 
@@ -1773,45 +1773,45 @@ public function haleyPlsBadEndMe():void
 
 	var hole:int = (pc.hasVagina() ? (pc.isPregnant() ? pc.findUsedPregnancySlot(Creature.PREGSLOT_VAG) : rand(pc.vaginas.length)) : -1);
 
-	output("<i>\"What <b>is</b> that?\"</i> you ask, pointing at the milker behind her.");
-	output("\n\n<i>\"Eh?\"</i> she asks, clawed feet clacking on the floor as she turns around, puzzled. <i>\"It's my milker. You've seen it before, haven't y- ugh-\"</i>");
-	output("\n\nShe suddenly recoils, her hindlegs jumping into the air as she pivots away from you, but it's too late. The Throbb vial lies on the floor empty and as she gazes at it, her expression of confusion changes to one of mixed anger and consternation.");
-	output("\n\n<i>\"What the- what the <b>fuck</b>,\"</i> she breathes, voice trembling. <i>\"You-\"</i>");
+	output("<i>“What <b>is</b> that?”</i> you ask, pointing at the milker behind her.");
+	output("\n\n<i>“Eh?”</i> she asks, clawed feet clacking on the floor as she turns around, puzzled. <i>“It’s my milker. You’ve seen it before, haven’t y- ugh-”</i>");
+	output("\n\nShe suddenly recoils, her hindlegs jumping into the air as she pivots away from you, but it’s too late. The Throbb vial lies on the floor empty and as she gazes at it, her expression of confusion changes to one of mixed anger and consternation.");
+	output("\n\n<i>“What the- what the <b>fuck</b>,”</i> she breathes, voice trembling. <i>“You-”</i>");
 	output("\n\nShe charges you, slamming you against the wall of her stall with a massive bang, snarling in your face.");
-	output("\n\n<i>\"You " + (pc.hasCock() ? "limp-dick fuck" : "little bitch") + ",\"</i> Haley pants, color rising to her face. <i>\"Nnnngh… I should- I should turn you over to security…\"</i>");
-	output("\n\nShe spends several seconds considering the notion as you struggle against the wall, taken aback by her sheer strength. It feels like she could bend a streetlight in half. Suddenly, you're dropped to the floor with a crash, landing in a heap before her. She has her forelegs on you to hold you down within a second.");
-	output("\n\n<i>\"I should turn you over to security,\"</i> she says, giggling slightly. The amusement doesn't reach her icy blue eyes. <i>\"But I'm not going to. I can already feel what this drug is doing to me… making me worse than I am. But that's just perfect for you, isn't it? Now I can keep you for myself. I won't need the milker any more.\"</i>");
-	if (pc.isNude()) output("\n\n<i>\"Good thing you're already naked, bitch.\"</i>");
-	else output("\n\n<i>\"Now <b>strip</b>, bitch.\"</i>\n\nHaley 'assists' you by way of tearing your [pc.gear] off, spinning you around and shoving you up against the wall once more.");
-	output("\n\n<i>\"Ngh! You know, I've never fucked someone as hard as I could. I've always held back at least a little because I was afraid of hurting someone. Good news, Steele,\"</i> Haley growls, slapping your ass so hard you cry out in pain. <i>\"I'm not going to fucking care about any of that shit for you!\"</i>");
-	output("\n\nYour first inspection of her newly-Throbbed cock comes as it spreads and stretches your " + (hole < 0 ? "asshole" : "pussylips") + " so wide you can't help but squeeze your eyes shut and scream as her flare enters you, distending your [pc.vagOrAss " + hole + "] so severely it feels like your " + (pc.isTaur() ? "hindlegs" : "[pc.legs]") + " will never close again. She is <i>gigantic</i>, well past anything you've ever experienced. You can't even imagine how much of her is still to go, but Haley's not content to leave it to your imagination.");
+	output("\n\n<i>“You " + (pc.hasCock() ? "limp-dick fuck" : "little bitch") + ",”</i> Haley pants, color rising to her face. <i>“Nnnngh... I should- I should turn you over to security...”</i>");
+	output("\n\nShe spends several seconds considering the notion as you struggle against the wall, taken aback by her sheer strength. It feels like she could bend a streetlight in half. Suddenly, you’re dropped to the floor with a crash, landing in a heap before her. She has her forelegs on you to hold you down within a second.");
+	output("\n\n<i>“I should turn you over to security,”</i> she says, giggling slightly. The amusement doesn’t reach her icy blue eyes. <i>“But I’m not going to. I can already feel what this drug is doing to me... making me worse than I am. But that’s just perfect for you, isn’t it? Now I can keep you for myself. I won’t need the milker any more.”</i>");
+	if (pc.isNude()) output("\n\n<i>“Good thing you’re already naked, bitch.”</i>");
+	else output("\n\n<i>“Now <b>strip</b>, bitch.”</i>\n\nHaley ‘assists’ you by way of tearing your [pc.gear] off, spinning you around and shoving you up against the wall once more.");
+	output("\n\n<i>“Ngh! You know, I’ve never fucked someone as hard as I could. I’ve always held back at least a little because I was afraid of hurting someone. Good news, Steele,”</i> Haley growls, slapping your ass so hard you cry out in pain. <i>“I’m not going to fucking care about any of that shit for you!”</i>");
+	output("\n\nYour first inspection of her newly-Throbbed cock comes as it spreads and stretches your " + (hole < 0 ? "asshole" : "pussylips") + " so wide you can’t help but squeeze your eyes shut and scream as her flare enters you, distending your [pc.vagOrAss " + hole + "] so severely it feels like your " + (pc.isTaur() ? "hindlegs" : "[pc.legs]") + " will never close again. She is <i>gigantic</i>, well past anything you’ve ever experienced. You can’t even imagine how much of her is still to go, but Haley’s not content to leave it to your imagination.");
 	if (hole < 0) pc.buttChange(1500);
 	else pc.holeChange(hole, 1500);
-	output("\n\n<i>\"Nngh! Grrrh! FUUUCK!\"</i> she howls, slamming her hips forward. <i>\"TAKE IT!\"</i>");
-	output("\n\nYou can scarcely make a noise as she pummels you, slamming the flaring head of her enormous, swollen cock so far inside it feels like " + (hole < 0 ? "it'll come out of your mouth." : "she's going to force her way into your womb.") + " Your stomach bulges with her, the imprint of her angrily pumping cockhead appearing beneath your [pc.skinFurScales] while she has her way with you.");
-	output("\n\n<i>\"Oh, FUCK, this feels so good!\"</i> she cries, her gigantic nuts slapping against your [pc.ass] as she bottoms out inside you. <i>\"UUUGH!\"</i>");
+	output("\n\n<i>“Nngh! Grrrh! FUUUCK!”</i> she howls, slamming her hips forward. <i>“TAKE IT!”</i>");
+	output("\n\nYou can scarcely make a noise as she pummels you, slamming the flaring head of her enormous, swollen cock so far inside it feels like " + (hole < 0 ? "it’ll come out of your mouth." : "she’s going to force her way into your womb.") + " Your stomach bulges with her, the imprint of her angrily pumping cockhead appearing beneath your [pc.skinFurScales] while she has her way with you.");
+	output("\n\n<i>“Oh, FUCK, this feels so good!”</i> she cries, her gigantic nuts slapping against your [pc.ass] as she bottoms out inside you. <i>“UUUGH!”</i>");
 	output("\n\nWith a fierce cry she thrusts so hard " + (pc.isTaur() ? "your hindlegs almost slip out from under you" : "your [pc.feet] leave the ground") + ", her bloated cockhead flowering " + (hole < 0 ? "in your gut" : "against your cervix") + " as cum begins to spurt and spew from her nozzle. " + (pc.isTaur() ? "She roughly grabs you from behind and wraps her arm around your neck, pulling you backwards and choking you" : "She presses you up against the wall and groans, leaning over you") + " while her fertile spunk splashes and churns inside your " + (hole < 0 ? "[pc.stomach]." : "[pc.womb]."));
-	output("\n\n<i>\"Get used to this feeling, cunt!\"</i> she growls in your ear. <i>\"It's all you're good for from today.\"</i>");
-	output("\n\nYou can't even reply, your gurgling stomach tripling and then quadrupling in size as her quaking balls empty out their Throbbed-up load into your");
+	output("\n\n<i>“Get used to this feeling, cunt!”</i> she growls in your ear. <i>“It’s all you’re good for from today.”</i>");
+	output("\n\nYou can’t even reply, your gurgling stomach tripling and then quadrupling in size as her quaking balls empty out their Throbbed-up load into your");
 	if (hole < 0)
 	{
 		output(" gurgling stomach. She fucks you harder and harder, ramping up to a rhythm that has your body slamming against the wall so violently the noise resounds throughout the stables. You can feel her hot, thick semen permeating your insides until, inevitably, you begin to haltingly cough and choke. Urged on by Haley, you begin to noisily gag and dribble, your saliva much saltier than usual.");
-		output("\n\n<i>\"Come on, bitch!\"</i> she jeers, leaning down and grabbing your throat to make a show of roughly jerking it off. <i>\"Cum for me!\"</i>");
-		output("\n\nUnable to hold back, you begin to vomit cum all over the walls as she brutally pumps you full from below, jiggling and bouncing you on her cock while she laughs and laughs. After a few seconds it starts to spurt and spray from your nostrils, and the last thing you hear before you pass out is Haley cheering you on, daring you to 'cum' even harder.");
+		output("\n\n<i>“Come on, bitch!”</i> she jeers, leaning down and grabbing your throat to make a show of roughly jerking it off. <i>“Cum for me!”</i>");
+		output("\n\nUnable to hold back, you begin to vomit cum all over the walls as she brutally pumps you full from below, jiggling and bouncing you on her cock while she laughs and laughs. After a few seconds it starts to spurt and spray from your nostrils, and the last thing you hear before you pass out is Haley cheering you on, daring you to ‘cum’ even harder.");
 	}
 	else if (pc.isPregnant(hole))
 	{
-		output(" clamped-shut pussy. Her flare has you swollen out so badly nothing escapes save for a trickle down your shaking " + (pc.isTaur() ? "hindlegs" : "[pc.legs]") + ", the rest of her liquid warmth trapped inside. When she at last relents, it's only to to turn you around and mount your face, shoving her still-spraying cock right into your mouth.");
-		output("\n\n<i>\"Ungh!\"</i> Haley grunts through grit teeth. <i>\"Oh, god! Should've done this sooner. Mmmm!\"</i>");
-		output("\n\n" + (pc.isTaur() ? "With her forelegs pressing down on your tauric half, she plies you with" : "She hammers you against the wall with") + " battering thrusts that stretch your neck out around her pulsing length, forcing her throbbing dickflesh further into your throat than you've ever taken her. Her ecstatic groans reach a fever pitch while she does so, evidently revelling in the bliss of letting it all go, and the last thing you hear before you pass out impaled on the end of her cock like a sextoy is the endless rush of semen entering your belly.");
+		output(" clamped-shut pussy. Her flare has you swollen out so badly nothing escapes save for a trickle down your shaking " + (pc.isTaur() ? "hindlegs" : "[pc.legs]") + ", the rest of her liquid warmth trapped inside. When she at last relents, it’s only to to turn you around and mount your face, shoving her still-spraying cock right into your mouth.");
+		output("\n\n<i>“Ungh!”</i> Haley grunts through grit teeth. <i>“Oh, god! Should’ve done this sooner. Mmmm!”</i>");
+		output("\n\n" + (pc.isTaur() ? "With her forelegs pressing down on your tauric half, she plies you with" : "She hammers you against the wall with") + " battering thrusts that stretch your neck out around her pulsing length, forcing her throbbing dickflesh further into your throat than you’ve ever taken her. Her ecstatic groans reach a fever pitch while she does so, evidently revelling in the bliss of letting it all go, and the last thing you hear before you pass out impaled on the end of her cock like a sextoy is the endless rush of semen entering your belly.");
 	}
 	else
 	{
 		output(" gurgling womb. She hammers at your cervix <i>relentlessly</i>, forcing you to shakily cry out while her inexorable orgasm fills you even further. Only a slim trickle of her seed escapes down your quivering " + (pc.isTaur() ? "hindlegs" : "[pc.legs]") + ", dripping to the ground between your thighs during your domination.");
-		output("\n\n<i>\"Nnnnhhh… fuck,\"</i> Haley grunts aggressively, pushing you flat against the wall. <i>\"I'm gonna make you my housewhore, you little slut. Open your mouth.\"</i>");
+		output("\n\n<i>“Nnnnhhh... fuck,”</i> Haley grunts aggressively, pushing you flat against the wall. <i>“I’m gonna make you my housewhore, you little slut. Open your mouth.”</i>");
 		output("\n\nShe pulls out, slaps your ass to turn you around, and mounts your face, shoving her still-spraying cock right into your mouth.");
-		output("\n\n<i>\"Ungh!\"</i> Haley grunts through grit teeth. <i>\"Oh, god! Should've done this sooner. Mmmm!\"</i>");
-		output("\n\n" + (pc.isTaur() ? "With her forelegs pressing down on your tauric half, she plies you with" : "She hammers you against the wall with") + " battering thrusts that stretch your neck out around her pulsing length, forcing her throbbing dickflesh further into your throat than you've ever taken her. Her ecstatic groans reach a fever pitch while she does so, evidently revelling in the bliss of letting it all go, and the last thing you hear before you pass out impaled on the end of her cock like a sextoy is the endless rush of semen entering your belly.");
+		output("\n\n<i>“Ungh!”</i> Haley grunts through grit teeth. <i>“Oh, god! Should’ve done this sooner. Mmmm!”</i>");
+		output("\n\n" + (pc.isTaur() ? "With her forelegs pressing down on your tauric half, she plies you with" : "She hammers you against the wall with") + " battering thrusts that stretch your neck out around her pulsing length, forcing her throbbing dickflesh further into your throat than you’ve ever taken her. Her ecstatic groans reach a fever pitch while she does so, evidently revelling in the bliss of letting it all go, and the last thing you hear before you pass out impaled on the end of her cock like a sextoy is the endless rush of semen entering your belly.");
 	}
 
 	processTime(35);
@@ -1831,30 +1831,30 @@ public function haleyKeepsBadEndingYouLikeYouWanted():void
 	showHaley();
 	author("Wsan");
 
-	output("When you groggily awaken, " + (pc.hasVagina() ? "nothing seems to have changed: Haley's pounding away at your face" : "not much seems to have changed: Haley's pounding away at your face now") + ", grunting eagerly above you as her cumvein pulses intermittently, depositing yet another fat load of seed right into your sperm-bloated tummy.");
-	output("\n\n<i>\"Ogh, goohhhd,\"</i> Haley groans. <i>\"That noise your throat makes when you swallow is so fucking hot. Choke it all down, slut. I've got another massive load coming for you real soon…\"</i>");
-	output("\n\nWith your mouth so wholly occupied, you don't have much of an opportunity to do anything other than think and try to ignore the gouts of leithan semen pouring into you. It feels like you're swinging a little and now that you try and move, you notice your bindings -- they're tight, secure, but admittedly not uncomfortable. They also seem overwhelmingly strong.");
-	output("\n\n<i>\"Nngh! Don't mind the bondage too much, whore,\"</i> Haley huffs, apparently having noticed your efforts. <i>\"Just a temporary thing before I get you set up in a mounting platform. Nnnnfff, makes me fucking horny just thinking about it -- time to pound this one out real fast…\"</i>");
-	output("\n\nYou can hear wooden creaking as Haley strains against you, fucking your face with all the wild, unrestrained strength of a stallion. Her enormous cockhead stretches your throat so wide you're not sure it'll ever tighten back up, or if you'll be left with a gullet only good for being Haley's cocksleeve. Either way, it sure feels like her cumvein is flexing and pumping happily inside you-");
-	output("\n\n<i>\"HnnaaAAAAHHHH! OH! OH!\"</i> Haley screams, bucking into you. <i>\"OH, FUCK!\"</i>");
-	output("\n\nWith a low, desperate groan, Haley shoves herself up against you and <i>pushes</i>, forcing her titanic cock all the way inside you and planting her sloshing balls right on your face. They're so heavy you can actually feel their weight pushing you down but honestly, right now, that's not what's capturing your attention. It's the gargantuan flare flowering in your stomach, a result of the hyper leithan stud above you sheating herself in your throat.");
-	output("\n\n<i>\"Oh… oooohhhh… fuuuck…\"</i> she groans loudly, and <i>finally</i> you feel the gushing warmth inside you.");
-	output("\n\nIt must have taken a while for it to be pumped up from those seed-filled nuts but now that it's here, you can see why. Having Haley's Throbbed up cock in your throat is like standing beneath a waterfall with your mouth upturned and open, except the entire thing is being routed directly between your lips. You cough and gag while your neck ripples with her, her wildly throbbing cumvein making a mockery of a swallowing motion in your esophagus.");
+	output("When you groggily awaken, " + (pc.hasVagina() ? "nothing seems to have changed: Haley’s pounding away at your face" : "not much seems to have changed: Haley’s pounding away at your face now") + ", grunting eagerly above you as her cumvein pulses intermittently, depositing yet another fat load of seed right into your sperm-bloated tummy.");
+	output("\n\n<i>“Ogh, goohhhd,”</i> Haley groans. <i>“That noise your throat makes when you swallow is so fucking hot. Choke it all down, slut. I’ve got another massive load coming for you real soon...”</i>");
+	output("\n\nWith your mouth so wholly occupied, you don’t have much of an opportunity to do anything other than think and try to ignore the gouts of leithan semen pouring into you. It feels like you’re swinging a little and now that you try and move, you notice your bindings -- they’re tight, secure, but admittedly not uncomfortable. They also seem overwhelmingly strong.");
+	output("\n\n<i>“Nngh! Don’t mind the bondage too much, whore,”</i> Haley huffs, apparently having noticed your efforts. <i>“Just a temporary thing before I get you set up in a mounting platform. Nnnnfff, makes me fucking horny just thinking about it -- time to pound this one out real fast...”</i>");
+	output("\n\nYou can hear wooden creaking as Haley strains against you, fucking your face with all the wild, unrestrained strength of a stallion. Her enormous cockhead stretches your throat so wide you’re not sure it’ll ever tighten back up, or if you’ll be left with a gullet only good for being Haley’s cocksleeve. Either way, it sure feels like her cumvein is flexing and pumping happily inside you-");
+	output("\n\n<i>“HnnaaAAAAHHHH! OH! OH!”</i> Haley screams, bucking into you. <i>“OH, FUCK!”</i>");
+	output("\n\nWith a low, desperate groan, Haley shoves herself up against you and <i>pushes</i>, forcing her titanic cock all the way inside you and planting her sloshing balls right on your face. They’re so heavy you can actually feel their weight pushing you down but honestly, right now, that’s not what’s capturing your attention. It’s the gargantuan flare flowering in your stomach, a result of the hyper leithan stud above you sheating herself in your throat.");
+	output("\n\n<i>“Oh... oooohhhh... fuuuck...”</i> she groans loudly, and <i>finally</i> you feel the gushing warmth inside you.");
+	output("\n\nIt must have taken a while for it to be pumped up from those seed-filled nuts but now that it’s here, you can see why. Having Haley’s Throbbed up cock in your throat is like standing beneath a waterfall with your mouth upturned and open, except the entire thing is being routed directly between your lips. You cough and gag while your neck ripples with her, her wildly throbbing cumvein making a mockery of a swallowing motion in your esophagus.");
 	output("\n\nThick leithan cum <i>pours</i> into your already-swollen stomach, joining the remainders of what she forced into you earlier. Your ears fill with the wet noise of it, splashing and gushing as your insides are splattered with her, your tummy swelling outwards. Her claws clack on the floor as she strains, pushing against you, trying to get herself even deeper.");
-	output("\n\n<i>\"Uuunnnggghhh- <b>fuck</b>,\"</i> Haley groans, half-heartedly drawing her hips back just to slap you in the face with her nuts on another savage thrust. <i>\"Feels like I cum so much harder now… think I'll just stay here for a while and empty the tanks…\"</i>");
-	output("\n\nWave after wave of her spunk enters you, overfilling you to the point you're sure you're either about to pop or begin vomiting, but neither ever happens. By the time she withdraws herself from your roughly-used body with a happy, fulfilled sigh and pops a ballgag in your mouth, it seems like she's beaten your instincts down so badly that none of it ever comes up. Her cum just stays there, deeply embedded in your body as if you're nothing more than her condom, while she takes a shower.");
-	output("\n\nWhen she emerges glistening wet and toweling herself off, you finally get a good look at the sexual equipment she's wielding. Her backbreaking cock has grown to an absurd degree, more than ten inches longer than it was before you gave her the Throbb, and her balls seem to have undergone the same level of groundbreaking growth. Each one is surely big enough to put a hyperporn star to shame, and that's <i>after</i> she's ejaculated what feels like enough to fill a freighter into you. She gives you a friendly smile, looking down at you tied up.");
-	output("\n\n<i>\"Still thinking about whether I want to mod you,\"</i> she says casually, drying her hair and shaking it out. <i>\"Might just leave that for later -- after I've properly broken you in. Till then, you can just enjoy what we've got going here. I'm going out for a bit. Give me a goodbye kiss, lover.\"</i>");
+	output("\n\n<i>“Uuunnnggghhh- <b>fuck</b>,”</i> Haley groans, half-heartedly drawing her hips back just to slap you in the face with her nuts on another savage thrust. <i>“Feels like I cum so much harder now... think I’ll just stay here for a while and empty the tanks...”</i>");
+	output("\n\nWave after wave of her spunk enters you, overfilling you to the point you’re sure you’re either about to pop or begin vomiting, but neither ever happens. By the time she withdraws herself from your roughly-used body with a happy, fulfilled sigh and pops a ballgag in your mouth, it seems like she’s beaten your instincts down so badly that none of it ever comes up. Her cum just stays there, deeply embedded in your body as if you’re nothing more than her condom, while she takes a shower.");
+	output("\n\nWhen she emerges glistening wet and toweling herself off, you finally get a good look at the sexual equipment she’s wielding. Her backbreaking cock has grown to an absurd degree, more than ten inches longer than it was before you gave her the Throbb, and her balls seem to have undergone the same level of groundbreaking growth. Each one is surely big enough to put a hyperporn star to shame, and that’s <i>after</i> she’s ejaculated what feels like enough to fill a freighter into you. She gives you a friendly smile, looking down at you tied up.");
+	output("\n\n<i>“Still thinking about whether I want to mod you,”</i> she says casually, drying her hair and shaking it out. <i>“Might just leave that for later -- after I’ve properly broken you in. Till then, you can just enjoy what we’ve got going here. I’m going out for a bit. Give me a goodbye kiss, lover.”</i>");
 	output("\n\nHaley presses the thick, swollen flare of her cock up against your cheek and flexes, leaving a hot, wet spurt of precum dribbling down your face and running over your lips. She giggles.");
-	output("\n\n<i>\"Play your cards right and I might let you get some more when I get back! See you!\"</i>");
-	output("\n\nShe departs the room and you hear her exit a door lower in the building. You're half-dazed and cumdrunk, but now that you think of it, where <i>is</i> this? Looking about, you can see things like a dresser, a bed… is this Haley's house? Is this where she intends to keep you?");
-	output("\n\nAll the questions whirl in your mind while you're left alone and dribbling, some of the spunk finally coming up and running down your chin around your ballgag. Haley's eventual reappearance is almost welcome, signalling the end of your time spent alone with your thoughts. When she peels your gag away and reinserts her cock to drain her heavy nuts again, you hardly even mind -- at least you don't have to do anything. Even swallowing is unnecessary when the head of her cock is inside your stomach, though you have to admit it does hasten the process somewhat when your throat is working with her instead of against her.");
-	output("\n\n<i>\"Ooh,\"</i> she murmurs above you, shifting her position. Her legs spread a little wider as she sinks closer to the ground, pulling her hips forward and angling your neck upward. <i>\"You can keep doing </i>that<i>.\"</i>");
-	output("\n\nShe pulls herself out when she's done and re-gags you, leaving you feeling a little like a corked-up winebottle. All the creamy cum you've swallowed down and the pheromonal musk of a Treated amazon swirling around your head is <i>really</i> doing a number on you…");
-	if (pc.isHerm()) output(" your [pc.cocks] " + (pc.hasCocks() ? "are so stiff they hurt" : "is so stiff it hurts") + ", and [pc.cum] drools unendingly from " + (pc.hasCocks() ? "their tips" : "the tip") + ". Your [pc.pussy] is every bit as wet as your chin by the time you finish sucking her cock and tonguing those big, virile balls of hers, too -- you can only hope she'll indulge herself with it sometime. <i>Anything</i> to make this burning desire go away.");
-	else if (pc.hasCock()) output((pc.hasCocks() ? "your [pc.cocks] are so stiff they hurt, and [pc.cum] drools unendingly from the tips. You know Haley's not even going to acknowledge them let alone do anything with them" : " your [pc.cock] is so stiff it hurts, and [pc.cum] drools unendingly from the tip. You know Haley's not even going to acknowledge it let alone do anything with it") + ", but that doesn't stop you from idly fantasizing every time you suck her nuts.");
-	else if (pc.hasVagina()) output(" your [pc.pussy] is always so wet after you finish sucking her cock and tonguing her big, virile balls. Maybe she'll fuck that instead of your face sometime -- <i>anything</i> to make the desire go away.");
-	else output(" your desire to get fucked only grows further with every passing day, your lust finding no outlet, trapped and swirling inside you just like Haley's seed.");
+	output("\n\n<i>“Play your cards right and I might let you get some more when I get back! See you!”</i>");
+	output("\n\nShe departs the room and you hear her exit a door lower in the building. You’re half-dazed and cumdrunk, but now that you think of it, where <i>is</i> this? Looking about, you can see things like a dresser, a bed... is this Haley’s house? Is this where she intends to keep you?");
+	output("\n\nAll the questions whirl in your mind while you’re left alone and dribbling, some of the spunk finally coming up and running down your chin around your ballgag. Haley’s eventual reappearance is almost welcome, signalling the end of your time spent alone with your thoughts. When she peels your gag away and reinserts her cock to drain her heavy nuts again, you hardly even mind -- at least you don’t have to do anything. Even swallowing is unnecessary when the head of her cock is inside your stomach, though you have to admit it does hasten the process somewhat when your throat is working with her instead of against her.");
+	output("\n\n<i>“Ooh,”</i> she murmurs above you, shifting her position. Her legs spread a little wider as she sinks closer to the ground, pulling her hips forward and angling your neck upward. <i>“You can keep doing </i>that<i>.”</i>");
+	output("\n\nShe pulls herself out when she’s done and re-gags you, leaving you feeling a little like a corked-up winebottle. All the creamy cum you’ve swallowed down and the pheromonal musk of a Treated amazon swirling around your head is <i>really</i> doing a number on you...");
+	if (pc.isHerm()) output(" your [pc.cocks] " + (pc.hasCocks() ? "are so stiff they hurt" : "is so stiff it hurts") + ", and [pc.cum] drools unendingly from " + (pc.hasCocks() ? "their tips" : "the tip") + ". Your [pc.pussy] is every bit as wet as your chin by the time you finish sucking her cock and tonguing those big, virile balls of hers, too -- you can only hope she’ll indulge herself with it sometime. <i>Anything</i> to make this burning desire go away.");
+	else if (pc.hasCock()) output((pc.hasCocks() ? "your [pc.cocks] are so stiff they hurt, and [pc.cum] drools unendingly from the tips. You know Haley’s not even going to acknowledge them let alone do anything with them" : " your [pc.cock] is so stiff it hurts, and [pc.cum] drools unendingly from the tip. You know Haley’s not even going to acknowledge it let alone do anything with it") + ", but that doesn’t stop you from idly fantasizing every time you suck her nuts.");
+	else if (pc.hasVagina()) output(" your [pc.pussy] is always so wet after you finish sucking her cock and tonguing her big, virile balls. Maybe she’ll fuck that instead of your face sometime -- <i>anything</i> to make the desire go away.");
+	else output(" your desire to get fucked only grows further with every passing day, your lust finding no outlet, trapped and swirling inside you just like Haley’s seed.");
 
 	processTime(9*60+30);
 
@@ -1869,24 +1869,24 @@ public function haleyHasUnsurprisinglyBrokenYou():void
 	showHaley();
 	author("Wsan");
 
-	output("Eventually, though, you come to <i>enjoy</i> being denied the sexual attention -- every time she comes to make use of you, you're that little bit more horny, more hungry, more eager to please, until all she has to do is present you with her cock and allow you to blow her as hard as you can until she loudly cums down your throat.");
-	output("\n\nOne particular day finds you beneath her, desperately sucking and worshipping the base of Haley's beautiful cock free of restraints save for the fuzzy pair of handcuffs tying your hands behind your back. You're so good now that you can usually get her off in a few minutes of hard, sweaty work with your throat and your tongue and for those times you can't, your hands gently massaging and squeezing her enormous, quaking balls will do the trick.");
-	output("\n\n<i>\"NNNNGH! OH!\"</i> Haley moans, stepping forward as you loosen your throat for her. <i>\"Ngh! Ooh! Good work, whore!\"</i>");
-	output("\n\nHaley's seed bursts down your throat, drowning you in rich, fertile spunk, and the growing sensation of inescapable submission finally becomes too great to bear.");
-	if (pc.isHerm()) output(" Your " + (pc.hasCocks() ? "cocks throb" : "cock throbs") + " in sympathy while your " + (pc.hasVaginas() ? "pussies clench" : "pussy clenches") + " down hard, and suddenly you're cumming your brains out all over her floor while you gulp the sloshing torrent of leithan jizz down.");
-	else if (pc.hasCock()) output(" Your " + (pc.hasCocks() ? "cocks throb" : "cock throbs") + " once, twice, and suddenly you're cumming your brains out all over her floor while you gulp the sloshing torrent of leithan jizz down.");
-	else if (pc.hasVagina()) output(" Your " + (pc.hasVaginas() ? "pussies clench" : "pussy clenches") + " down hard, dripping and drooling, and suddenly you're cumming your brains out all over her floor while you gulp the sloshing torrent of leithan jizz down.");
-	else output(" Your lower half bucks once, twice, and then you're suffering a confusingly interminable and impossibly strong orgasm, cumming your brains out while you gulp the sloshing torrent of leithan jizz down.");
-	output("\n\nYou'd thought you'd gotten used to having a swollen, seed-filled stomach by now but while you're chugging the content of her nuts, each foreboding pump of Haley's massive cumvein on your tongue forces you to experience new heights of ecstasy. Your taut tummy grows gravid with heavy cum and your orgasm only grows stronger with each passing second, finally reaching its peak when Haley groans in utter satisfaction, having drained herself inside you. Moaning, you blow a foamy cum bubble that pops all over your chin after she pulls herself out, almost falling to the floor.");
-	output("\n\n<i>\"Oh, <b>good</b> whore,\"</i> Haley laughs, dragging a clawed foot through the mess you've made. <i>\"Now clean all of this up with your tongue. Slowly.\"</i>");
+	output("Eventually, though, you come to <i>enjoy</i> being denied the sexual attention -- every time she comes to make use of you, you’re that little bit more horny, more hungry, more eager to please, until all she has to do is present you with her cock and allow you to blow her as hard as you can until she loudly cums down your throat.");
+	output("\n\nOne particular day finds you beneath her, desperately sucking and worshipping the base of Haley’s beautiful cock free of restraints save for the fuzzy pair of handcuffs tying your hands behind your back. You’re so good now that you can usually get her off in a few minutes of hard, sweaty work with your throat and your tongue and for those times you can’t, your hands gently massaging and squeezing her enormous, quaking balls will do the trick.");
+	output("\n\n<i>“NNNNGH! OH!”</i> Haley moans, stepping forward as you loosen your throat for her. <i>“Ngh! Ooh! Good work, whore!”</i>");
+	output("\n\nHaley’s seed bursts down your throat, drowning you in rich, fertile spunk, and the growing sensation of inescapable submission finally becomes too great to bear.");
+	if (pc.isHerm()) output(" Your " + (pc.hasCocks() ? "cocks throb" : "cock throbs") + " in sympathy while your " + (pc.hasVaginas() ? "pussies clench" : "pussy clenches") + " down hard, and suddenly you’re cumming your brains out all over her floor while you gulp the sloshing torrent of leithan jizz down.");
+	else if (pc.hasCock()) output(" Your " + (pc.hasCocks() ? "cocks throb" : "cock throbs") + " once, twice, and suddenly you’re cumming your brains out all over her floor while you gulp the sloshing torrent of leithan jizz down.");
+	else if (pc.hasVagina()) output(" Your " + (pc.hasVaginas() ? "pussies clench" : "pussy clenches") + " down hard, dripping and drooling, and suddenly you’re cumming your brains out all over her floor while you gulp the sloshing torrent of leithan jizz down.");
+	else output(" Your lower half bucks once, twice, and then you’re suffering a confusingly interminable and impossibly strong orgasm, cumming your brains out while you gulp the sloshing torrent of leithan jizz down.");
+	output("\n\nYou’d thought you’d gotten used to having a swollen, seed-filled stomach by now but while you’re chugging the content of her nuts, each foreboding pump of Haley’s massive cumvein on your tongue forces you to experience new heights of ecstasy. Your taut tummy grows gravid with heavy cum and your orgasm only grows stronger with each passing second, finally reaching its peak when Haley groans in utter satisfaction, having drained herself inside you. Moaning, you blow a foamy cum bubble that pops all over your chin after she pulls herself out, almost falling to the floor.");
+	output("\n\n<i>“Oh, <b>good</b> whore,”</i> Haley laughs, dragging a clawed foot through the mess you’ve made. <i>“Now clean all of this up with your tongue. Slowly.”</i>");
 	output("\n\nYou bend to her bidding immediately, tired and used but the thought of following her every whim just too rewarding to be passed up.");
 	if (pc.isHerm()) output(" Your " + (pc.hasCocks() ? "cocks" : "cock") + " and " + (pc.hasVaginas() ? "pussies" : "pussy") + " continue dribbling and spurting");
 	else if (pc.hasCock()) output(" Your " + (pc.hasCocks() ? "cocks continue" : "cock continues") + " spurting and dribbling cum");
 	else if (pc.hasVagina()) output(" Your " + (pc.hasVaginas() ? "pussies continue" : "pussy continues") + " dribbling [pc.girlCum]");
 	else output(" Your asshole clenches in reflexive, orgasmic pleasure");
-	output(" but you ignore the feeling as the smile on Haley's face grows, watching you debase yourself for her. She allows you to stop when you've licked up every last drop of the seed besmirching her floors and foot, leaning down in front of you.");
-	output("\n\n<i>\"I think I've broken you in enough,\"</i> she murmurs, stroking your cheek. <i>\"You're going to be a good [pc.boyGirl] and do everything I say, aren't you? Because if you don't, I might not let you suck my cock any more.\"</i>");
-	output("\n\nA quick nod is all she needs to see before she grins, straightening back up. <i>\"Good. Because I've got a whole lot of presents for you to take…\"</i>");
+	output(" but you ignore the feeling as the smile on Haley’s face grows, watching you debase yourself for her. She allows you to stop when you’ve licked up every last drop of the seed besmirching her floors and foot, leaning down in front of you.");
+	output("\n\n<i>“I think I’ve broken you in enough,”</i> she murmurs, stroking your cheek. <i>“You’re going to be a good [pc.boyGirl] and do everything I say, aren’t you? Because if you don’t, I might not let you suck my cock any more.”</i>");
+	output("\n\nA quick nod is all she needs to see before she grins, straightening back up. <i>“Good. Because I’ve got a whole lot of presents for you to take...”</i>");
 
 	processTime((9 - pc.libido()/25)*24*60);
 	clearMenu();
@@ -1899,26 +1899,26 @@ public function haleyItsTheFinalBadEeeeend():void
 	showHaley();
 	author("Wsan");
 
-	output("The milking station's income suffers a little as a result of Haley's visits halting, but everyone agrees it's for the best -- they've never seen her so happy and outgoing as she's been in the past few months. She's like a new woman now that she doesn't have the constant frustration of needing release nagging at the back of her mind. Nobody would ever say it to her face but, well, she's just less of a bitch these days. A lot less.");
-	output("\n\nYou're out and about with her when...");
-	output("\n\n<i>\"Hey, that Haley?\"</i> one of the bulls says, nudging Brynn and pointing out the leithan trotting next to a voluptuous cowgirl with a very swollen tummy. <i>\"Hell, she's got that cowgirl knocked <b>all</b> the way up!\"</i>");
-	output("\n\n<i>\"Stupid,\"</i> Brynn laughs, elbowing the younger bull in the arm. <i>\"That ain't pregnancy. Lookit the way her tummy's movin'! You prolly seen it before yerself -- it's-\"</i>");
-	output("\n\n<i>\"Look at you all happy and shy,\"</i> Haley says, grinning ear to ear as she runs her fingers through your long, flowing hair. <i>\"I think you love being out here and showing yourself off to everyone. Don't you?\"</i>");
-	output("\n\n<i>\"Heya, Haley!\"</i> a friendly voice calls out from nearby, and she turns to look.");
-	output("\n\nIt's Brynn and one of the bulls that recently started work at the barn. You haven't seen them in a long time, not since…");
-	output("\n\n<i>\"Hey, Brynn, Colby,\"</i> Haley says, all smiles. <i>\"Out for a walk?\"</i>");
-	output("\n\n<i>\"Jes' figured we'd say hi to you 'n your girl,\"</i> Brynn replies, grinning. <i>\"She is your girl, right?\"</i>");
-	output("\n\n<i>\"Oh yeah,\"</i> Haley affirms, pulling your hair slightly. <i>\"Maribelle, say hello to the nice boys.\"</i>");
-	output("\n\nYou look up from beneath your golden locks and give them the best smile you can given your circumstances. <i>\"Hiiii…\"</i>");
-	output("\n\n<i>\"Poor girl's lips are so plush she can hardly talk!\"</i> Brynn laughs, looking you up and down. <i>\"Cute cowbell necklace, though. Ever since Ellie put that on the shelves they've been flyin' off faster 'n I can even get there and buy one for a girl m'self.\"</i>");
-	output("\n\n<i>\"I'm a big proponent of 'seen and not heard'. I'll see ya, fellers,\"</i> Haley says, smirking as she rubs your big, round tummy. <i>\"We've got a hot date I'm just <b>raring</b> to go for.\"</i>");
-	output("\n\n<i>\"'Spect you do,\"</i> Brynn says, winking knowingly. <i>\"Can't be easy without the milking station…\"</i>");
-	output("\n\n<i>\"Oh, we get by,\"</i> Haley laughs gently, hooding her eyes at them before turning to you, a finger sliding up your chin until you're looking her in the face. <i>\"Don't we?\"</i>");
-	output("\n\n<i>\"Uh huh,\"</i> you nod obediently.");
-	output("\n\n<i>\"We'll leave ya to it,\"</i> Brynn says, chuckling. <i>\"C'mon, Colby. Hell, boy, you're gonna need one of the stablegirls to take care of that…\"</i>");
-	output("\n\nTheir chatter fades into the distance as Haley giggles, looking after them with her finger still on your chin. <i>\"Wonder how annoyed he'd be if he knew we broke the necklace every day. C'mon, girl. Let's take a quick break -- bull pheromones always get me a little competitive…\"</i>");
-	output("\n\nIt's true that your necklace breaks a lot; almost immediately this time around, owing to how pent up and aggressive she is as she takes you. You've learned to catch it in your fingers every time the strap tears apart around your throat, though, and over time you've gotten very good with your hands. It's all worth it to have a nice, cute accessory for Haley to parade you around with -- though admittedly, most of the bulls hardly notice it for your lips.");
-	output("\n\nBig, pink and as plush as they're ever going to get. Just <i>perfect</i> for wrapping around a thick, virile studcock as the owner moans in bliss, feeling it throb and pulse while her little whore desperately works to earn her affection…");
+	output("The milking station’s income suffers a little as a result of Haley’s visits halting, but everyone agrees it’s for the best -- they’ve never seen her so happy and outgoing as she’s been in the past few months. She’s like a new woman now that she doesn’t have the constant frustration of needing release nagging at the back of her mind. Nobody would ever say it to her face but, well, she’s just less of a bitch these days. A lot less.");
+	output("\n\nYou’re out and about with her when...");
+	output("\n\n<i>“Hey, that Haley?”</i> one of the bulls says, nudging Brynn and pointing out the leithan trotting next to a voluptuous cowgirl with a very swollen tummy. <i>“Hell, she’s got that cowgirl knocked <b>all</b> the way up!”</i>");
+	output("\n\n<i>“Stupid,”</i> Brynn laughs, elbowing the younger bull in the arm. <i>“That ain’t pregnancy. Lookit the way her tummy’s movin’! You prolly seen it before yerself -- it’s-”</i>");
+	output("\n\n<i>“Look at you all happy and shy,”</i> Haley says, grinning ear to ear as she runs her fingers through your long, flowing hair. <i>“I think you love being out here and showing yourself off to everyone. Don’t you?”</i>");
+	output("\n\n<i>“Heya, Haley!”</i> a friendly voice calls out from nearby, and she turns to look.");
+	output("\n\nIt’s Brynn and one of the bulls that recently started work at the barn. You haven’t seen them in a long time, not since...");
+	output("\n\n<i>“Hey, Brynn, Colby,”</i> Haley says, all smiles. <i>“Out for a walk?”</i>");
+	output("\n\n<i>“Jes’ figured we’d say hi to you ‘n your girl,”</i> Brynn replies, grinning. <i>“She is your girl, right?”</i>");
+	output("\n\n<i>“Oh yeah,”</i> Haley affirms, pulling your hair slightly. <i>“Maribelle, say hello to the nice boys.”</i>");
+	output("\n\nYou look up from beneath your golden locks and give them the best smile you can given your circumstances. <i>“Hiiii...”</i>");
+	output("\n\n<i>“Poor girl’s lips are so plush she can hardly talk!”</i> Brynn laughs, looking you up and down. <i>“Cute cowbell necklace, though. Ever since Ellie put that on the shelves they’ve been flyin’ off faster ‘n I can even get there and buy one for a girl m’self.”</i>");
+	output("\n\n<i>“I’m a big proponent of ‘seen and not heard’. I’ll see ya, fellers,”</i> Haley says, smirking as she rubs your big, round tummy. <i>“We’ve got a hot date I’m just <b>raring</b> to go for.”</i>");
+	output("\n\n<i>“‘Spect you do,”</i> Brynn says, winking knowingly. <i>“Can’t be easy without the milking station...”</i>");
+	output("\n\n<i>“Oh, we get by,”</i> Haley laughs gently, hooding her eyes at them before turning to you, a finger sliding up your chin until you’re looking her in the face. <i>“Don’t we?”</i>");
+	output("\n\n<i>“Uh huh,”</i> you nod obediently.");
+	output("\n\n<i>“We’ll leave ya to it,”</i> Brynn says, chuckling. <i>“C’mon, Colby. Hell, boy, you’re gonna need one of the stablegirls to take care of that...”</i>");
+	output("\n\nTheir chatter fades into the distance as Haley giggles, looking after them with her finger still on your chin. <i>“Wonder how annoyed he’d be if he knew we broke the necklace every day. C’mon, girl. Let’s take a quick break -- bull pheromones always get me a little competitive...”</i>");
+	output("\n\nIt’s true that your necklace breaks a lot; almost immediately this time around, owing to how pent up and aggressive she is as she takes you. You’ve learned to catch it in your fingers every time the strap tears apart around your throat, though, and over time you’ve gotten very good with your hands. It’s all worth it to have a nice, cute accessory for Haley to parade you around with -- though admittedly, most of the bulls hardly notice it for your lips.");
+	output("\n\nBig, pink and as plush as they’re ever going to get. Just <i>perfect</i> for wrapping around a thick, virile studcock as the owner moans in bliss, feeling it throb and pulse while her little whore desperately works to earn her affection...");
 
 	badEnd();
 }
@@ -1935,12 +1935,12 @@ public function haleyBetStart():void
 		{
 			output("<i>“Hiya Halez! You done busting a nut into that dumb machine yet? I gotta propopo- prup- a thing to help you with your sexual furstatedness!”</i>");
 			output("\n\n<i>“My furstatedness, huh?”</i> Haley grins happily, beginning to dismount. <i>“Well, I’m all ears for you, cutie. Especially if you’ve got something for my ‘sexual furstatedness’. Is the solution between your legs, by any chance?”</i>");
-			output("\n\n<i>“Nuh uh. Well, maybe afterwards,”</i> you reply, thoughtfully shifting your [pc.hips] and eyeing her still-dripping behemoth of a cock. Having it between your legs <i>would</i> be nice right now… wait, you came here to do actual stuff. <i>“I wanna make a bet!”</i>");
+			output("\n\n<i>“Nuh uh. Well, maybe afterwards,”</i> you reply, thoughtfully shifting your [pc.hips] and eyeing her still-dripping behemoth of a cock. Having it between your legs <i>would</i> be nice right now... wait, you came here to do actual stuff. <i>“I wanna make a bet!”</i>");
 		}
 		else
 		{
 			output("<i>“Hey Haley! You about done? I wanted to run something by you. I might even be able to help with your predicament.”</i>");
-			output("\n\n<i>“Heya, [pc.name]. Well, I’m pretty much done,”</i> she sighs, beginning to dismount. <i>“That orgasm was never happening. So what’s up? You know there’s pretty much only one way to help me…”</i>");
+			output("\n\n<i>“Heya, [pc.name]. Well, I’m pretty much done,”</i> she sighs, beginning to dismount. <i>“That orgasm was never happening. So what’s up? You know there’s pretty much only one way to help me...”</i>");
 			output("\n\n<i>“I was thinking something along the lines of making a bet,”</i> you reply innocently.");
 		}
 
@@ -1948,21 +1948,21 @@ public function haleyBetStart():void
 		output("\n\n<i>“I bet that I can make you cum in thirty seconds,”</i> you declare, hands on hips, <i>“without any penetration involved.”</i>");
 		output("\n\nShe stares at you unblinking for a few seconds. <i>“Are you sane?”</i>");
 		output("\n\n<i>“You don’t believe me?”</i> you say, turning your palms up.");
-		output("\n\n<i>“Uh, no? No, I d… well, hey, who am I to say no to a free win?”</i> Haley asks with a shrug. <i>“What do you want if you win?”</i>");
+		output("\n\n<i>“Uh, no? No, I d... well, hey, who am I to say no to a free win?”</i> Haley asks with a shrug. <i>“What do you want if you win?”</i>");
 		output("\n\n<i>“You,”</i> you answer simply, <i>“however I want.”</i>");
 		output("\n\n<i>“Wow,”</i> Haley answers with a low whistle. <i>“Ambitious, huh? Trying to tame the big, mean, Amazonian girl by tempting her into a bet?”</i> She pauses. <i>“Well, it’s working, ‘cuz there’s no chance in hell you win this. " + (pc.isTreated() ? "You sure your Treatment didn’t make you dumber, Steele?" : "You’re not even Treated, Steele, you’re meant to be smart.") + "”</i>");
 		output("\n\n<i>“So you don’t mind the terms, then?”</i> you ask.");
 		output("\n\n<i>“Nope. Fair warning, when I win I’m going to pound the living </i>fuck<i> out of you,”</i> she says, smiling pleasantly.");
-		output("\n\n" + (pc.isBimbo() ? "<i>“Ooh… tempting!”</i> you titter, smiling back at her. <i>“But you’re not gonna.”</i>" : "<i>“Good to hear,”</i> you say, smiling right back at her. <i>“Just means I won’t have to feel bad when you lose knowing what you had planned.”</i>"));
+		output("\n\n" + (pc.isBimbo() ? "<i>“Ooh... tempting!”</i> you titter, smiling back at her. <i>“But you’re not gonna.”</i>" : "<i>“Good to hear,”</i> you say, smiling right back at her. <i>“Just means I won’t have to feel bad when you lose knowing what you had planned.”</i>"));
 		output("\n\nHer eyes narrow and tension crackles between the two of you until you give her a wink, turning around and waving.");
 		output("\n\n<i>“I’ll be back soon. You’ll be ready, right?”</i> you ask.");
 		output("\n\n<i>“I’m </i>always<i> ready,”</i> Haley replies.");
-		output("\n\nGood enough. You step outside the stall, looking around. Now you just need to figure out how to actually make her cum in thirty seconds or less or face the - likely dire - consequences. You’re pretty sure " + (flags["MET_ELLIE"] != undefined ? "Ellie" : "that leithan shopkeeper") + " might have an idea or two of where to start…");
+		output("\n\nGood enough. You step outside the stall, looking around. Now you just need to figure out how to actually make her cum in thirty seconds or less or face the - likely dire - consequences. You’re pretty sure " + (flags["MET_ELLIE"] != undefined ? "Ellie" : "that leithan shopkeeper") + " might have an idea or two of where to start...");
 	}
 	else
 	{
 		output("<i>“Up for another bet?”</i> you ask, grinning at Haley.");
-		output("\n\n<i>“Damn right!”</i> she says, hands on her hips. <i>“Don’t think you’re gonna win so easy this time. I mean, I can’t really see what it is you do down there, and I don’t remember that much…”</i> she pauses, her swollen cock noticeably throbbing as her face reddens slightly. <i>“Anyway! I’ll be more prepared this time… just give me a few minutes to get ready, okay?”</i>");
+		output("\n\n<i>“Damn right!”</i> she says, hands on her hips. <i>“Don’t think you’re gonna win so easy this time. I mean, I can’t really see what it is you do down there, and I don’t remember that much...”</i> she pauses, her swollen cock noticeably throbbing as her face reddens slightly. <i>“Anyway! I’ll be more prepared this time... just give me a few minutes to get ready, okay?”</i>");
 		output("\n\n<i>“Alright,”</i> you say, shrugging. <i>“I’ll be back in a moment, then.”</i>");
 		output("\n\nYou step outside the stall for a few minutes as she takes a few deep, unsteady breaths, trying to center herself a little. It doesn’t look like it’s working.");
 	}
@@ -1985,10 +1985,10 @@ public function ellieSnitchesOnHaley():void
 		output("<i>“Babe, do you know any way to get a horse-cocked leithan off without letting her fuck me? It’s gotta be really really fast, too!”</i>");
 		output("\n\n<i>“You must be talking about Haley, right?”</i> Ellie smiles knowingly. <i>“Whatcha need to know that for?”</i>");
 		output("\n\n<i>“I made a bet that I could get her off in thirty seconds or less,”</i> you tell her confidently, <i>“or she gets to use me as a fucktoy.”</i>");
-		output("\n\n<i>“Wow! That sounds pretty okay to me…”</i> Ellie says, giggling. <i>“But yeah, I do know. The secret is…”</i>");
+		output("\n\n<i>“Wow! That sounds pretty okay to me...”</i> Ellie says, giggling. <i>“But yeah, I do know. The secret is...”</i>");
 		output("\n\nShe leans in to whisper it to you, inadvertently exposing herself to you and anyone within eyeshot. You listen intently, brow knitting in confusion. Afterwards, she leans back, apparently satisfied with the explanation.");
 		output("\n\n<i>“For reals?”</i> you ask, a little surprised.");
-		output("\n\n<i>“Yee-up!”</i> she nods, bouncing up and down. <i>“Works a hundred percent of the time, all the time!”</i> She lowers her voice a little. <i>“But they don’t really like it when you do it! I think it has to do with having control taken away from them… but you said it was for a bet, right?”</i>");
+		output("\n\n<i>“Yee-up!”</i> she nods, bouncing up and down. <i>“Works a hundred percent of the time, all the time!”</i> She lowers her voice a little. <i>“But they don’t really like it when you do it! I think it has to do with having control taken away from them... but you said it was for a bet, right?”</i>");
 		output("\n\n<i>“Uh huh! Thanks babe!”</i> you lean over the counter and give Ellie a kiss on the cheek. <i>“I’m gonna go win this bet!”</i>");
 		output("\n\n<i>“Uh huh,”</i> she says with a smile. <i>“Have fun, [pc.name]!”</i>");
 	}
@@ -1997,10 +1997,10 @@ public function ellieSnitchesOnHaley():void
 		output("<i>“Hey Ellie,”</i> you start, leaning in a little closer. <i>“You know any way to get a leithan with a horsecock off really fast?”</i>");
 		output("\n\n<i>“Oh jeez,”</i> she giggles, smiling at you a little sheepishly. <i>“Are you messing with Haley? I hope you’re not being mean to her!”</i>");
 		output("\n\n<i>“Nah, it’s just for a bet,”</i> you reassure her. <i>“She doesn’t think I can do it.”</i>");
-		output("\n\n<i>“That does sound like her,”</i> Ellie says, head tilted to the side a little. <i>“Always confident, those amazons! Anyway, yeah, I do. The secret is…”</i>");
+		output("\n\n<i>“That does sound like her,”</i> Ellie says, head tilted to the side a little. <i>“Always confident, those amazons! Anyway, yeah, I do. The secret is...”</i>");
 		output("\n\nShe leans in to whisper it to you, inadvertently exposing herself to you and anyone within eyeshot. You listen intently, brow knitting in confusion. Afterwards, she leans back, apparently satisfied with the explanation.");
 		output("\n\n<i>“That’s it?”</i> you ask, a little incredulous.");
-		output("\n\n<i>“Yee-up!”</i> she nods, bouncing up and down. <i>“Works a hundred percent of the time, all the time!”</i> She lowers her voice a little. <i>“But they don’t really like it when you do it! I think it has to do with having control taken away from them… but you said it was for a bet, right?”</i>");
+		output("\n\n<i>“Yee-up!”</i> she nods, bouncing up and down. <i>“Works a hundred percent of the time, all the time!”</i> She lowers her voice a little. <i>“But they don’t really like it when you do it! I think it has to do with having control taken away from them... but you said it was for a bet, right?”</i>");
 		output("\n\n<i>“Yeah. Hey, thanks, Ellie,”</i> you nod, grateful. <i>“Now I don’t have to be her toy.”</i>");
 		output("\n\n<i>“Ooooh,”</i> she giggles, eyeing you. <i>“You sure you don’t plan to lose on purpose?”</i>");
 		output("\n\n<i>“That’s not on the agenda,”</i> you reply with a grin.");
@@ -2015,8 +2015,8 @@ public function ellieSnitchesOnHaley():void
 
 public function haleyBetApproach():void
 {
-	if (flags["HALEY_BETS_WON"] == undefined) output("<i>“Oho,”</i> Haley says, looking you up and down. <i>“Ready to lose your bet? Gotta say, I’ve been looking forward to this… having you for a day is gonna be a fucking party.”</i>");
-	else output("<i>“Okay!”</i> Haley announces, looking at you uncertainly. <i>“This time… this time for sure. Are you ready?”</i>");
+	if (flags["HALEY_BETS_WON"] == undefined) output("<i>“Oho,”</i> Haley says, looking you up and down. <i>“Ready to lose your bet? Gotta say, I’ve been looking forward to this... having you for a day is gonna be a fucking party.”</i>");
+	else output("<i>“Okay!”</i> Haley announces, looking at you uncertainly. <i>“This time... this time for sure. Are you ready?”</i>");
 
 	clearMenu();
 	addButton(0, "Ready", function ():void
@@ -2031,7 +2031,7 @@ public function haleyBetApproach():void
 		if (flags["HALEY_WEAKSPOT_KNOWN"] == undefined) addButton(0, "Next", haleyLoseBet);
 		else
 		{
-			addButton(0, "Ellie's Advice", haleyWinBet);
+			addButton(0, "Ellie’s Advice", haleyWinBet);
 			addButton(1, "Throw Bet", haleyLoseBet);
 		}
 	});
@@ -2053,25 +2053,25 @@ public function haleyLoseBet():void
 	output(" pushes you down onto the hay-covered ground of her stall and stands above you with her hands on her hips.");
 	output("\n\n<i>“You know, can’t say I’ve never thought about having a cute little live-in fuckslave all for myself,”</i> she says, walking around you in a little circle. She knows she’s won, now she wants to rub it in. <i>“How about you be a good " + pc.mf("bitchboy", "bitch") + " and get on your knees, [pc.name]? I have </i>big<i> plans for today but right now? All I want is for you to lick my balls. So,”</i> she murmurs, <i>“get started.”</i>");
 	output("\n\nStanding over you, she presents you with them: two enormous, cum-swollen orbs, each outrageously large and hanging low in her sack. " + (flags["FUCKED_BY_HALEY"] != undefined ? "You’ve felt for yourself their explosive output and gulp unconsciously, wondering if she’s going to make you swallow it all." : "The influence of her kui-tan mods is readily evident.") + " Still, you did make a bet - now you have to follow through. Placing your hands on her gigantic testes, you lean in and let your [pc.tongue] slip from between your lips.");
-	output("\n\n<i>“Oh, that’s nice,”</i> Haley hums cheerily, shifting slightly above you. <i>“Make sure you </i>really<i> get that tongue in there, [pc.name] - I’m all sweaty and I know you just love getting a faceful of amazon musk. Mmm…”</i>");
-	output("\n\nThey’re so fucking big that the only real way to accomplish this is doing exactly what she says. Gently pulling them towards your face, you lick in one long, slow motion all the way from the bottom, a line of saliva trailing in your wake. Fuck, you can <i>taste</i> her sex pheromones… they’re all around you now, hanging thickly in the air and reminding you that you’re nothing but a dominant shestud’s bitch. She really wasn’t kidding about the musk.");
+	output("\n\n<i>“Oh, that’s nice,”</i> Haley hums cheerily, shifting slightly above you. <i>“Make sure you </i>really<i> get that tongue in there, [pc.name] - I’m all sweaty and I know you just love getting a faceful of amazon musk. Mmm...”</i>");
+	output("\n\nThey’re so fucking big that the only real way to accomplish this is doing exactly what she says. Gently pulling them towards your face, you lick in one long, slow motion all the way from the bottom, a line of saliva trailing in your wake. Fuck, you can <i>taste</i> her sex pheromones... they’re all around you now, hanging thickly in the air and reminding you that you’re nothing but a dominant shestud’s bitch. She really wasn’t kidding about the musk.");
 	output("\n\nOr the sweat. It’s salty on your tongue, the taste of her only intensifying when you plant your [pc.lips] on her massive nuts and suck before returning to cleaning her off. Haley’s gigantic equine cock throbs with lustful vigor above you while you perform for her, the leithan’s muscular body shivering with pleasure and barely-contained glee. You can picture the smug grin on her face as you lap at her heavy balls, leaning into her to lick the warm sweat off.");
-	output("\n\n<i>“Mmm, you’re gooood,”</i> Haley purrs, relishing the gentle treatment. <i>“Jack me off… slowly. I want to savor this.”</i>");
+	output("\n\n<i>“Mmm, you’re gooood,”</i> Haley purrs, relishing the gentle treatment. <i>“Jack me off... slowly. I want to savor this.”</i>");
 	output("\n\nYou’ve come this far; there’s no reason to hold back now. Reaching up, you wrap a hand around her meaty shaft - not even close to all the way around it - and begin stroking her enormous cock while you worship her nuts. You can hear but not see the thick, heavy ropes of precum spurting from her flared tip with every motion and find yourself almost wishing you were at the other end, feeling and tasting the payload as a preview to what’s to come. She makes a deep, contented growl in her throat when you begin squeezing her dick in your palm, silently encouraging her further.");
 	output("\n\nMost of her sweaty nutsack is coated in your shiny saliva by the time she stops you, though it’s drying quickly in the growing heat of the stall. You’re dripping as much as she is now, her scent exciting you in body and mind. Fuck, you <i>really</i> want to make her cum now - and it looks like you’re about to get your wish.");
-	output("\n\n<i>“Okay,”</i> she huffs, her cock flexing and flaring beneath her stomach. <i>“Put your mouth on my tip and jerk me off into it, [pc.name]. Feeling you down there has gotten me - nnh - all worked up…”</i>");
+	output("\n\n<i>“Okay,”</i> she huffs, her cock flexing and flaring beneath her stomach. <i>“Put your mouth on my tip and jerk me off into it, [pc.name]. Feeling you down there has gotten me - nnh - all worked up...”</i>");
 	output("\n\nShe’s not kidding. By the time you position yourself in front of her cock you’re soaked in her clear precum, a new batch of it spurting and dribbling from her aggressively flaring cockhead every second. It splatters across your [pc.chest] and face, coating your [pc.skinFurScales] in her. Liquid warmth drips down your body and you haven’t even really started.");
 	output("\n\nOnce you do, though, the effect is immediate. Snorting and clawing the ground, Haley stands lower and lower until she begins thrusting her hindquarters out of instinct, jabbing her massively swollen cockhead against your [pc.lips] while spunk begins to bubble and pour from the end. Her underside shakes and flexes, legs spreading as she braces herself against the ground and grunts in pleasure.");
 	output("\n\nA sudden swelling between your hands is all the warning you get before Haley groans in ecstasy and begins hosing you down with massive, unending gouts of impossibly thick spunk. Pushing it up against your lips and face insistently she forcefully ejaculates all over you, drowning your features in a sticky layer folkof warm, creamy seed while you ardently jack her off. Your reward for obedience is catching a gigantic rope of it right in the back of your throat, where it slowly begins to slide down to your stomach.");
-	output("\n\n<i>“H-hold your! Nngh! Mouth open,”</i> Haley grunts before losing herself to a long, low groan of utter bliss. <i>“Oooohhhh, gooood…”</i>");
+	output("\n\n<i>“H-hold your! Nngh! Mouth open,”</i> Haley grunts before losing herself to a long, low groan of utter bliss. <i>“Oooohhhh, gooood...”</i>");
 	output("\n\nFollowing her instructions, you let her cover every inch of your naked body in her sperm before holding your mouth open for the ceaseless river of spunk to fill your cheeks. Gallon after gallon of Haley’s jizz streams down your unresisting throat to bloat your stomach, her absurd output ensuring you’re thoroughly seeded. She hasn’t even finished by the time she pulls back.");
 	output("\n\n<i>“Oohhh, g-good [pc.boyGirl]...”</i> she moans. <i>“Now hold those lips open for me, and </i>don’t<i> swallow!”</i>");
 	output("\n\nShe steps back and triumphantly inspects her handiwork - your mouth full to the brim with her warm, thick cum. You feel like a toy. Her toy.");
-	output("\n\n<i>“Oh fuck, that’s a good look for you, Steele,”</i> Haley murmurs, softly squeezing her own giant breasts. <i>“Even hotter than I thought it would be. Now swallow it… slowly. Bit by bit. I want to watch you gulp my spunk down.”</i>");
+	output("\n\n<i>“Oh fuck, that’s a good look for you, Steele,”</i> Haley murmurs, softly squeezing her own giant breasts. <i>“Even hotter than I thought it would be. Now swallow it... slowly. Bit by bit. I want to watch you gulp my spunk down.”</i>");
 	output("\n\nTrue to her word, she watches you intently as you struggle to get all of it down in shallow, gradual swallows. Your throat works incessantly and, with your head craned upwards staring into her eyes, you’re treated to a perfect view of Haley getting more and more worked up as she watches you. It’s difficult to follow up her act of pumping your tummy full of cum by swallowing down even more of it, but you eventually manage.");
 	output("\n\n<i>“Oh shit, that was fucking hot,”</i> she breathes heavily, pawing the ground in unconscious agitation. <i>“Go lie on that hay over there. Face down. Now.”</i>");
 	output("\n\nDoing so, your cumflated belly has scarcely even made contact with the matted, browning hay before Haley is above you, lowering her front half until she’s practically lying on top of you. You hear the scrape of her nails across the floor as she spreads her hindlegs, angling her hips until you feel the tip of her fat, cum-dripping prick catch between your asscheeks. A little more experimental scrabbling and you half-stifle a gasp when you feel her pressing into you.");
-	output("\n\n<i>“Ooohhh fuck,”</i> she grunts, relaxing a little when she feels the entrance of your asshole wrap around her swollen cockhead. <i>“I need this… spread that tight little asshole for me, Steele. Come on baby, I want to get nice and deep before I cum again.”</i>");
+	output("\n\n<i>“Ooohhh fuck,”</i> she grunts, relaxing a little when she feels the entrance of your asshole wrap around her swollen cockhead. <i>“I need this... spread that tight little asshole for me, Steele. Come on baby, I want to get nice and deep before I cum again.”</i>");
 	output("\n\nOnce she’s sure of the angle, she begins slowly lowering herself to the ground, uttering little moans of satisfaction with every inch that slips inside you, until she’s lying down on top of you and shivering with glee.");
 	output("\n\n<i>“Oh, fuck, I’m so close,”</i> she whispers excitedly, lifting her ass and bringing it back down with a heavy slap of impact. <i>“Uh! Nnn! Mmmmh I’m gonna cum so fucking hard!”</i>");
 	output("\n\nWith a desperate, horny moan she sinks herself to the hilt inside you, her muscular hindquarters clenching and flexing as she begins pumping your ass full of hot cream. You can’t resist. With a groan,");
@@ -2080,9 +2080,9 @@ public function haleyLoseBet():void
 	else if (pc.hasVagina()) output(" you feel your [pc.pussies] clench and tighten in orgasm, " + (pc.isSquirter() ? "squirting femcum all over Haley’s balls." : "dripping femcum down your shaking " + (pc.isTaur() ? "hindlegs." : "thighs.")));
 	else output(" you orgasm.");
 	output(" Your domineering leithan lover either doesn’t notice or doesn’t care.");
-	output("\n\n<i>“Ohhh, yes,”</i> she hisses in pleasure. <i>“Drain my nuts, my little slut… that’s right...”</i>");
+	output("\n\n<i>“Ohhh, yes,”</i> she hisses in pleasure. <i>“Drain my nuts, my little slut... that’s right...”</i>");
 	output("\n\nShe keeps you like that for minutes, murmuring sexy promises into your ears while she pumps you with seed. Unable to keep it all down after getting it from both ends, you open your mouth and let her incoming ejaculations force the contents of her previous one from your lips. Body-temperature leithan semen bubbles and drips down your chin.");
-	output("\n\n<i>“Hooh, </i>that<i> was fun… I really needed to get off after that sexy little display of yours,”</i> Haley murmurs sensually, shifting atop you. <i>“This is normally when I’d let the silly cowgirl or cowboy who thought they could take it go. But pity for you, you didn’t really specify what happened if I won! So I’m going to take you home for a day. Don’t worry,”</i> she whispers, leaning in with a grinning leer, <i>“you’re in good hands…”</i>");
+	output("\n\n<i>“Hooh, </i>that<i> was fun... I really needed to get off after that sexy little display of yours,”</i> Haley murmurs sensually, shifting atop you. <i>“This is normally when I’d let the silly cowgirl or cowboy who thought they could take it go. But pity for you, you didn’t really specify what happened if I won! So I’m going to take you home for a day. Don’t worry,”</i> she whispers, leaning in with a grinning leer, <i>“you’re in good hands...”</i>");
 
 	processTime(45);
 	pc.lust(pc.lustMax());
@@ -2115,9 +2115,9 @@ public function haleyWonTheBetNowYoureAPet():void
 	output("\n\n<i>“Damn, go Haley!”</i> the bull laughs, the onlookers cheering and clapping at the lewd display.");
 	output("\n\n<i>“Thank you, boys,”</i> she says, flashing them a beautiful smile. <i>“Now if you don’t mind, I gotta get [pc.himHer] back to my place so I can bust a massive nut in [pc.hisHer] face. See you!”</i>");
 	output("\n\nShe canters past them and rounds a corner, panting and sweating.");
-	output("\n\n<i>“Well, that was fun, wasn’t it?”</i> she laughs shakily, tenseness fading from her body. <i>“Nngh... didn’t exactly expect to run into the Bro Brigade on the way back home…”</i>");
+	output("\n\n<i>“Well, that was fun, wasn’t it?”</i> she laughs shakily, tenseness fading from her body. <i>“Nngh... didn’t exactly expect to run into the Bro Brigade on the way back home...”</i>");
 	output("\n\nBracing herself against a wall, she shudders in release as she lets herself go, her legs sagging with relief while she cums. Forced so deep inside you, the blossom of her orgasm in your " + (hole < 0 ? "guts" : "[pc.womb " + hole + "]") + " is inescapably warm. The excess splashes to the ground, pouring out of you in steady pumps around her throbbing cock.");
-	output("\n\n<i>“Guh- god,”</i> she pants, lifting herself back to her feet as her orgasm continues. <i>“G-gotta get myself back home…”</i>");
+	output("\n\n<i>“Guh- god,”</i> she pants, lifting herself back to her feet as her orgasm continues. <i>“G-gotta get myself back home...”</i>");
 
 	processTime(15);
 	generateMapForLocation("511");
@@ -2141,9 +2141,9 @@ public function haleysCumYouGetForLosingHerBet(hole:int):void
 	output("\n\nYou rest that night in Haley’s muscular arms, being hugged closely against her voluptuous chest and tight tummy. Sleep takes you quickly, the two of you slumbering deeply in the wake of it all. It’s well past midday by the time you awaken, blinking blearily as Haley shifts and stretches out next to you.");
 	output("\n\n<i>“Hello,”</i> Haley murmurs, kissing you on the cheek");
 	if (pc.hasHair()) output(" and running her hand through your hair");
-	output(". <i>“Guess I’m taking a day off… I’ll take you back to the stables.”</i>");
+	output(". <i>“Guess I’m taking a day off... I’ll take you back to the stables.”</i>");
 	output("\n\nYou’re struck by her natural beauty as she gets out of bed, flexing experimentally and extending her legs. She’s just woken up and her long blonde hair is all out of order, hanging behind her in a disorganized, curled mess of bedhead, but it only enhances her sexiness. Turning to you, she eyes your roving gaze as you take in her chiselled form and curvy, feminine features. A smile alights upon her face.");
-	output("\n\n<i>“Well, before we do that,”</i> she murmurs, drawing closer, <i>“I suppose I could at least give you a nutritious breakfast…”</i>");
+	output("\n\n<i>“Well, before we do that,”</i> she murmurs, drawing closer, <i>“I suppose I could at least give you a nutritious breakfast...”</i>");
 	output("\n\nYou open your mouth for her as she puts her forelegs up on the bed.");
 
 	processTime((13+rand(4))*60);
@@ -2165,10 +2165,10 @@ public function haleysDoneUsingYouForNow():void
 
 	output("The trip back to the stables is a <i>lot</i> faster than the one you took to her place; Haley can run like the wind when she really wants to, transporting you to the entrance in what feels like a few minutes.");
 	output("\n\n<i>“Thanks,”</i> you grunt, your [pc.feet] hitting the ground as you jump off her back. <i>“Appreciate the ride.”</i>");
-	output("\n\n<i>“Least I could do after ‘riding’ you all day yesterday,”</i> she says, smiling cheerfully. <i>“Think I came harder last night than I’ve ever cum in my life. I feel so nice and fresh…”</i> she sighs, thrusting her bare chest outward as she stretches. <i>“Oh, and uh, you can bet with me again any time you like. Y’know, in case you were wondering.”</i>");
+	output("\n\n<i>“Least I could do after ‘riding’ you all day yesterday,”</i> she says, smiling cheerfully. <i>“Think I came harder last night than I’ve ever cum in my life. I feel so nice and fresh...”</i> she sighs, thrusting her bare chest outward as she stretches. <i>“Oh, and uh, you can bet with me again any time you like. Y’know, in case you were wondering.”</i>");
 	output("\n\n<i>“I’ll keep that in mind,”</i> you mutter, one hand on your [pc.ass]. Ow.");
 	output("\n\n<i>“I’ll bet you will!”</i> Haley giggles. <i>“Okay, [pc.name]. Thanks for the fun. Come see me again!”</i>");
-	output("\n\nTurning away, she canters towards town instead of her stall as you wave her goodbye. After the events of yesterday, you’re not that surprised to see she doesn’t need to use the milker today… turning your mind towards the rest of New Texas, you think about your options.");
+	output("\n\nTurning away, she canters towards town instead of her stall as you wave her goodbye. After the events of yesterday, you’re not that surprised to see she doesn’t need to use the milker today... turning your mind towards the rest of New Texas, you think about your options.");
 
 	processTime(45);
 	IncrementFlag(flags["HALEY_BETS"]);
@@ -2199,7 +2199,7 @@ public function haleyWinBet():void
 	else
 	{
 		output("<i>“C’mon, hands out,”</i> you say, nodding at the stall’s wall. <i>“You know the drill.”</i>");
-		output("\n\n<i>“Okay,”</i> she breathes, inhaling deeply as she puts her hands out. <i>“Gotta focus…”</i>");
+		output("\n\n<i>“Okay,”</i> she breathes, inhaling deeply as she puts her hands out. <i>“Gotta focus...”</i>");
 		output("\n\nYou don’t bother interrupting her; in a way, listening to her audibly lose her mind is the funnest part. Standing alongside her, you bend at the hips and gently grab the head of her dick with one hand and the giant shaft with the other. The size of each is so big that you can’t hope to entirely hold them, but it’s just spongy enough that you don’t have much trouble getting a good grip.");
 		output("\n\nHaley’s already so close. She’s dripping and spurting from her swollen head, so revved up in anticipation that she’d probably blow her load at the slightest of provocations. Still, though - no need to go easy on her. You start by rubbing her gently but within a few seconds of her syrup-sweet moans of ecstasy, decide to end it all at once.");
 	}
@@ -2207,11 +2207,11 @@ public function haleyWinBet():void
 	output("\n\nYou ramp up the tempo, jerking her massive, throbbing shaft so hard the only noises coming out of her mouth are strained grunts from between grit teeth until, finally, she gives in. With a bestial scream of release, she slams herself up against the wall in confusion as her hips buck wildly, trying to seed a mare that isn’t there. Her instincts betraying her, it’s all you can do to keep her in one spot.");
 	output("\n\nWith her back half lowered to the ground, ass clenched so tight her tail is caught between her cheeks, and spew of cum flowing from her cock, she looks more beast than woman. Her wasted seed comes out like a firehose, absolutely pasting the wall she’s pushing against. The backsplatter coats her front, but she doesn’t care or even seem to notice, the muscles all over her upper half bulging as she flexes in complete, desperate release.");
 	output("\n\nThe whole experience is over in less than five minutes. Utterly defeated and depleted, Haley doesn’t even groan as she slumps to the ground, eyelids fluttering as she fights to maintain consciousness. You do your best to steady her descent, tipping her into a pile of hay rather than the floor.");
-	output("\n\n<i>“Whuh- whuh happen,”</i> she asks sluggishly, trying to regain her bearings in her torpor. <i>“You… you…”</i>");
+	output("\n\n<i>“Whuh- whuh happen,”</i> she asks sluggishly, trying to regain her bearings in her torpor. <i>“You... you...”</i>");
 	if (pc.isBimbo()) output("\n\n<i>“I made you cum aaaall over yourself! And the wall! And me, too,”</i> you say, running a finger down her heaving breasts and holding it in front of her face, covered in her own cum. <i>“You gotta clean this up!”</i>");
 	else output("\n\n<i>“You came so hard you passed out. You need to clean yourself up! But first,”</i> you say, gesturing at the spattered spots where her cum landed on you, <i>“you need to clean me.”</i>");
-	output("\n\n<i>“You… you won? I… I lost?”</i> Haley mumbles, regaining some semblance of consciousness.");
-	if (flags["HALEY_BETS_WON"] != undefined) output(" <i>“Not… not again...”</i>");
+	output("\n\n<i>“You... you won? I... I lost?”</i> Haley mumbles, regaining some semblance of consciousness.");
+	if (flags["HALEY_BETS_WON"] != undefined) output(" <i>“Not... not again...”</i>");
 	output("\n\n<i>“Ah ah! Clean first,”</i> you warn her, wagging a finger as you put your other hand’s digits right in her mouth. <i>“Talk later. Good girl.”</i>");
 	output("\n\nSurprisingly, or perhaps just because she’s so docile in the wake of her earth-shattering orgasm, she doesn’t seem to mind. She gently laps at your fingers, licking off all of her own cum and quietly swallowing it down without protest. You’ve never seen her like this before, and you feel yourself shiver in pleasure a little just watching the usually-dominant amazon debase herself in so simple a manner.");
 	output("\n\nNow might be a good time to get her started on being on the receiving end.");
@@ -2255,7 +2255,7 @@ public function haleyGetsFuckedInTheAssForLosing(cockIdx:int):void
 	if (flags["HALEY_ANAL_VIRGINITY_TAKEN"] == undefined)
 	{
 		output("She glances back and you past her blonde hair you catch an expression that’s unsure, if not downright nervous.");
-		output("\n\n<i>“Haley… have you never done this before?”</i>");
+		output("\n\n<i>“Haley... have you never done this before?”</i>");
 		output("\n\nShe hangs her head. Bingo. <i>“I haven’t,”</i> she mumbles, as if there were any doubt.");
 	}
 
@@ -2279,19 +2279,19 @@ public function haleyGettingGentlyAssfucked(cockIdx:int):void
 	output("\n\n<i>“Oh, I think she </i>likes<i> it,”</i> you tell her, and she doesn’t even try to deny it.");
 	output("\n\n" + (pc.cLength(cockIdx) < 10 ? "By now, you’ve managed to sheathe yourself entirely in her insanely tight little asshole, and begin to slowly fuck her the way you set out to" : "You figure your getting your entire length inside her would be a tad too ambitious for her first time, but you’ve got almost a foot of cock fed into her ass, which is more than enough for you to begin slowly fucking her the way you set out to") + ". It’s an unusual experience, having Haley panting and moaning in pleasure like a regular submissive slut as you slide in and out of her asshole, one you wouldn’t mind repeating.");
 	if (flags["HALEY_ANAL_VIRGINITY_TAKEN"] == undefined) output("\n\n<i>“I-I think I’m going to cum?”</i> Haley says questioningly, voice higher than you’ve ever heard it. <i>“I can’t tell!”</i>");
-	else output("\n\n<i>“O-oh! It’s, it feels like…”</i> Haley moans, voice rising a few octaves. <i>“I think I’m cumming!”</i>");
+	else output("\n\n<i>“O-oh! It’s, it feels like...”</i> Haley moans, voice rising a few octaves. <i>“I think I’m cumming!”</i>");
 	output("\n\n<i>“Relax and focus on the feeling,”</i> you tell her, not far from orgasm yourself. She begins moaning louder, pretenses abandoned, and you can feel her begin to tighten up around you as her cock begins spewing precum every time you thrust.");
 	output("\n\n<i>“Oh, I’m definitely cumming,”</i> she pants, out of breath. <i>“Cumming, cumming- ohhh! Hnnngh!”</i>");
 	output("\n\nShe clamps down on you <i>hard</i> as her cock begins slowly pumping load after load into a rapidly-widening pool on the floor, unconsciously hastening you towards your own orgasm and pulling you deeper still.");
-	output("\n\n<i>“It’s - it’s nnnn! Not, stopping!”</i> Haley groans, hips jerking as she seeks to expel the heavy loads from her pulsing cock. <i>“God, fuuuck…”</i>");
+	output("\n\n<i>“It’s - it’s nnnn! Not, stopping!”</i> Haley groans, hips jerking as she seeks to expel the heavy loads from her pulsing cock. <i>“God, fuuuck...”</i>");
 	output("\n\nYou grunt and cum inside her while she’s marveling over her own pleasure, prompting a brief squeal of pleasure and renewed moaning as you start filling her insides with [pc.cum]. By the time you’re finished, Haley’s ejaculated what looks to be a small tub’s worth of cum across the barn. You give a low whistle.");
 	output("\n\n<i>“Looks like I might have underestimated just how much you liked that, huh?”</i>");
 	output("\n\nShe gives a low, long groan as you slowly withdraw from her asshole, a cascade of spunk following your exit.");
 	output("\n\n<i>“Oh, god,”</i> she moans, her front half leaning against a bale of hay.");
-	if (flags["HALEY_ANAL_VIRGINITY_TAKEN"] == undefined) output(" <i>“I’ve never cum like </i>that<i> before…”</i>");
+	if (flags["HALEY_ANAL_VIRGINITY_TAKEN"] == undefined) output(" <i>“I’ve never cum like </i>that<i> before...”</i>");
 	else output(" <i>“How do you make me do that..?”</i>");
 	output("\n\n<i>“Not everything has to be achieved with brute strength, Haley,”</i> you tell her with a friendly grin, <i>“and besides, that was just your first time. We fuck another few times and you’ll be emptying your balls out so hard even you’ll run dry.”</i>");
-	output("\n\n<i>“Wow,”</i> she mumbles woozily, still not entirely steady. <i>“Always thought it was just my size…”</i>");
+	output("\n\n<i>“Wow,”</i> she mumbles woozily, still not entirely steady. <i>“Always thought it was just my size...”</i>");
 	output("\n\nYou help Haley to her feet and help her hose off, rinsing the unarmoured underside of her tummy with the supplies in the stall. She shakes herself off and gives you a small smile.");
 	output("\n\n<i>“I guess this might not be </i>too<i> bad,”</i> she admits, glancing at you sidelong. <i>“I guess you know a thing or two about making others feel good.”</i>");
 	output("\n\n<i>“Give me </i>some<i> credit,”</i> you reply, rolling your eyes. <i>“And don’t think I won’t be back for more, ‘cause I will.”</i>");
@@ -2331,7 +2331,7 @@ public function haleyIsMadeIntoASoreLoser(cockIdx:int):void
 	output("\n\n<i>“And you won’t,”</i> you say with a smile, giving her a swat on the butt. <i>“Not until I cum too.”</i>");
 	output("\n\n<i>“Wha- nngh! Nnnh!”</i> she cries.");
 	output("\n\nHaley grunts through grit teeth with every thrust, clenching down on you with all her might as you corral her onwards through her submissive orgasm, until you finally feel your own rising up. The tightness of her insides is too good to resist, and you shove " + (pc.cLength(cockIdx) < 16 ? "your entire cock inside her, enjoying the snug fit of her " + (flags["HALEY_ANAL_VIRGINITY_TAKEN"] == undefined ? "formerly virgin" : "tight, hot") + " passage as you begin to cum." : "shove a foot and a half of cock up the leithan’s " + (flags["HALEY_ANAL_VIRGINITY_TAKEN"] == undefined ? "formerly virgin" : "tight, hot") + " asshole, enjoying the snug fit around you as you begin to cum."));
-	output("\n\n<i>“Oh,”</i> Haley moans thankfully, <i>“oh, god…”</i>");
+	output("\n\n<i>“Oh,”</i> Haley moans thankfully, <i>“oh, god...”</i>");
 	output("\n\nShe lies there panting as you drain yourself inside her, cock still weakly spurting cum all over herself. By the time you’re done with her, a huge pool has formed along her side, soaking one half of her body. You pull out, and on the way out the head of your cock brushes her prostate and sets her off one last time, a stream of wasted seed lasting three or four seconds pouring from her cock.");
 	output("\n\n<i>“Oooooh! Fuck!”</i> she cries, collapsing once more into a pile, breathless, with the arrogance thoroughly fucked out of her - for now, at least.");
 	output("\n\n<i>“</i>Now<i> you’re done cumming,”</i> you tell her, sliding her a hose to clean herself off with. <i>“I’ll see you real soon, Haley.”</i>");
@@ -2383,7 +2383,7 @@ public function haleyIsGentlyIntroducedToYourCock(cockIdx:int):void
 	{
 		output("If she’s going to be your servant for a day, you might as well teach her right the first time.");
 		output("\n\n<i>“Alright, we’ll go slow,”</i> you tell her, and you can see the relief flicker across her face. <i>“Just focus on licking all around the tip. Use that leithan tongue.”</i>");
-		output("\n\nShe starts hesitantly, lapping at the underside with it inside her mouth. You have to admit, for such a basic technique it feels pretty good… perhaps leithan girls are just born with the talent for this. Emboldened by your evident pleasure, Haley takes a gentle hold of your dick and uses it to push slightly deeper, wrapping her mouth around the first few inches.");
+		output("\n\nShe starts hesitantly, lapping at the underside with it inside her mouth. You have to admit, for such a basic technique it feels pretty good... perhaps leithan girls are just born with the talent for this. Emboldened by your evident pleasure, Haley takes a gentle hold of your dick and uses it to push slightly deeper, wrapping her mouth around the first few inches.");
 		output("\n\n<i>“That’s right, good girl,”</i> you murmur, stroking her hair to pull it back out of her face. <i>“Bob your head and suck.”</i>");
 	}
 	else output("<i>“Okay, take it a little deeper,”</i> you say, pushing her down just a bit. <i>“There you go.”</i>");
@@ -2404,7 +2404,7 @@ public function haleyIsGentlyIntroducedToYourCock(cockIdx:int):void
 		output("\n\n<i>“Wait,”</i> you gasp, right on the edge, <i>“not a good- nng!”</i>");
 		output("\n\nHer half-lidded eyes shoot open in alarm when she feels the first heavy rope of [pc.cum] plaster itself against the back of her throat, and although she quickly swallows after getting over her surprise, the torrent of seed gushing down her throat is too much for her to keep up with. With a cough, she pulls back from your dick and gets a faceful of jizz for her efforts.");
 		output("\n\n<i>“My god,”</i> she gurgles, swallowing several times before continuing. <i>“So that’s what it’s like on the other end.”</i>");
-		output("\n\n<i>“I’d have warned you, but…”</i>");
+		output("\n\n<i>“I’d have warned you, but...”</i>");
 		output("\n\n<i>“No, that’s on me,”</i> she sighs, looking up at you with her face dripping cum. <i>“I bet my insides have a pretty [pc.cumColor] shade to them right about now.”</i>");
 	}
 	else if (pc.cumQ() < 10000)
@@ -2470,9 +2470,9 @@ public function haleysHaunchesArentTheOnlyPlaceYouCanSitOn(vagIdx:int):void
 	showHaley();
 	author("Wsan");
 
-	output("You really wanna feel Haley’s long, leithan tongue in your [pc.pussy " + vagIdx + "] while you rub your [pc.clit " + vagIdx + "] on her face. " + (flags["HALEY_BETS_WON_RIDE"] == undefined ? "This is something you’d actually expect her to be pretty good at, what with all the horny cowgirls running about and Haley’s overactive libido." : "You know from experience that she’s very good at it, no doubt owing to all the sexy, horny cowgirls running about on New Texas.") + " Plus, there’s just something inherently attractive about flipping the tables on a would-be domme and making her eat you out…");
+	output("You really wanna feel Haley’s long, leithan tongue in your [pc.pussy " + vagIdx + "] while you rub your [pc.clit " + vagIdx + "] on her face. " + (flags["HALEY_BETS_WON_RIDE"] == undefined ? "This is something you’d actually expect her to be pretty good at, what with all the horny cowgirls running about and Haley’s overactive libido." : "You know from experience that she’s very good at it, no doubt owing to all the sexy, horny cowgirls running about on New Texas.") + " Plus, there’s just something inherently attractive about flipping the tables on a would-be domme and making her eat you out...");
 	output("\n\n<i>“Alright girl,”</i> you murmur, " + (pc.isCrotchGarbed() ? "lowering your [pc.lowerGarments] down your [pc.thighs] to expose" : "standing over her and presenting") + " your [pc.pussy " + vagIdx + "]. <i>“Put that tongue to work.”</i>");
-	output("\n\nShe leans in, and you shiver unconsciously at the first touch of her warm, wet tongue. Running your hands through her thick, blonde hair, you quietly moan in approval while her lengthy tongue traces along the lines of your supple flesh, leaving a wet warmth in its wake. You can hardly help but pull her into you slightly, shuddering as you feel her lips around your [pc.clits " + vagIdx + "]. It would be so easy to rub yourself all over her face to get off…");
+	output("\n\nShe leans in, and you shiver unconsciously at the first touch of her warm, wet tongue. Running your hands through her thick, blonde hair, you quietly moan in approval while her lengthy tongue traces along the lines of your supple flesh, leaving a wet warmth in its wake. You can hardly help but pull her into you slightly, shuddering as you feel her lips around your [pc.clits " + vagIdx + "]. It would be so easy to rub yourself all over her face to get off...");
 
 	processTime(5);
 
@@ -2487,7 +2487,7 @@ public function haleyLostButStillGetsFreeDinner(vagIdx:int):void
 	showHaley();
 	author("Wsan");
 
-	output("…But half the fun is getting there, after all. You’re content to let her service you in her own way, as long as she acknowledges you’re in charge. Encouraging her with sweet talk and lovely moans, you smile down at her with flushed cheeks when she glances upwards, mouth buried in your pussy.");
+	output("...But half the fun is getting there, after all. You’re content to let her service you in her own way, as long as she acknowledges you’re in charge. Encouraging her with sweet talk and lovely moans, you smile down at her with flushed cheeks when she glances upwards, mouth buried in your pussy.");
 	output("\n\n<i>“Good girl,”</i> you murmur, stroking her behind the ears. <i>“Keep going.”</i>");
 	output("\n\nShe follows your lead perfectly, responding to the cues of your body - any time she feels you shake under her licking, she focuses on that spot and that spot only until a moan leaks from your lips. Time and time again she brings you to the brink of collapse, letting you catch a breath when you’re right at the precipice. It doesn’t take long before you’re red-faced and panting hard, " + (pc.hasHair() ? "your hair in messy disarray" : "your face covered in sweat") + ", and Haley can tell you’re ready.");
 	output("\n\nYou groan in ecstasy as she hones in on your [pc.clits " + vagIdx + "], sliding her tongue over " + (pc.vaginas[vagIdx].clits > 1 ? "them" : "it") + " with a rhythm that soon has you gasping in pleasure, your hips shaking. Suddenly, you feel a hand at your entrance, and the moment Haley’s finger slips inside you feel yourself about to cum.");
@@ -2545,7 +2545,7 @@ public function haleyLostTheTaurnament():void
 	showHaley();
 	author("Wsan");
 
-	output("You’ve always wondered what it’d be like to bed another ‘taur face-to-face… time to find out. With some gentle guidance and pushing, you lay Haley down on the back of her tauric half, her torso propped against some hay. With her legs splayed to the side and her dick lying across her tummy, she looks very vulnerable, and she knows it. You can see shyness in her face when she realizes what you’re doing, her cheeks still flushed in the wake of her forced orgasm.");
+	output("You’ve always wondered what it’d be like to bed another ‘taur face-to-face... time to find out. With some gentle guidance and pushing, you lay Haley down on the back of her tauric half, her torso propped against some hay. With her legs splayed to the side and her dick lying across her tummy, she looks very vulnerable, and she knows it. You can see shyness in her face when she realizes what you’re doing, her cheeks still flushed in the wake of her forced orgasm.");
 	output("\n\n<i>“You want to do it like- like bipeds?”</i> she asks hesitantly, looking up at you.");
 	output("\n\n<i>“Well, you’re going to be the one getting done,”</i> you tell her, smiling. <i>“But yes. It’ll be fun, I promise.”</i>");
 
@@ -2570,7 +2570,7 @@ public function sillyTaurMissionaryDickIsForHaley(cockIdx:int):void
 	if (flags["HALEY_ANAL_VIRGINITY_TAKEN"] == undefined)
 	{
 		output("\n\nShe glances at you and you past her blonde hair you catch an expression that’s unsure, if not downright nervous.");
-		output("\n\n<i>“Haley… have you never done this before?”</i> you ask.");
+		output("\n\n<i>“Haley... have you never done this before?”</i> you ask.");
 		output("\n\nShe hangs her head. Bingo. <i>“I haven’t,”</i> she mumbles, as if there were any doubt.");
 	}
 
@@ -2594,17 +2594,17 @@ public function haleyFindsOutYouCanGetGentleAssfucks(cockIdx:int):void
 	output("\n\n<i>“Oh, I think she </i>likes<i> it,”</i> you tell her, and she doesn’t even try to deny it.");
 	output("\n\n" + (pc.cLength(cockIdx) < 10 ? "By now, you’ve managed to sheathe yourself entirely in her insanely tight little asshole, and begin to slowly fuck her the way you set out to" : "You figure your getting your entire length inside her would be a tad too ambitious for her first " + (flags["HALEY_ANAL_VIRGINITY_TAKEN"] == undefined ? "time" : "few times") + ", but you’ve got almost a foot of cock fed into her ass, which is more than enough for you to begin slowly fucking her the way you set out to") + ". It’s an unusual experience, having Haley panting and moaning in pleasure like a regular submissive slut as you slide in and out of her asshole, one you wouldn’t mind repeating.");
 	if (flags["HALEY_ANAL_VIRGINITY_TAKEN"] == undefined) output("\n\n<i>“I-I think I’m going to cum?”</i> Haley says questioningly, voice higher than you’ve ever heard it. <i>“I can’t tell!”</i>");
-	else output("\n\n<i>“O-oh! It’s, it feels like…”</i> Haley moans, voice rising a few octaves. <i>“I think I’m cumming!”</i>");
+	else output("\n\n<i>“O-oh! It’s, it feels like...”</i> Haley moans, voice rising a few octaves. <i>“I think I’m cumming!”</i>");
 	output("\n\n<i>“Relax and focus on the feeling,”</i> you tell her, not far from orgasm yourself. She begins moaning louder, pretenses abandoned, and you can feel her begin to tighten up around you as her cock begins spewing precum every time you thrust.");
 	output("\n\n<i>“Oh, I’m definitely cumming,”</i> she pants, out of breath. <i>“Cumming, cumming- ohhh! Hnnngh!”</i>");
 	output("\n\nShe clamps down on you <i>hard</i> as her cock begins slowly pumping load after load into a rapidly-widening pool across her tensed abs, unconsciously hastening you towards your own orgasm and pulling you deeper still.");
-	output("\n\n<i>“It’s - it’s nnnn! Not, stopping!”</i> Haley groans, hips jerking as she seeks to expel the heavy loads from her pulsing cock. <i>“God, fuuuck…”</i>");
+	output("\n\n<i>“It’s - it’s nnnn! Not, stopping!”</i> Haley groans, hips jerking as she seeks to expel the heavy loads from her pulsing cock. <i>“God, fuuuck...”</i>");
 	output("\n\nYou grunt and cum inside her while she’s marveling over her own pleasure, prompting a brief squeal of pleasure and renewed moaning as you start filling her insides with [pc.cum]. By the time you’re finished, Haley’s ejaculated what looks to be a small tub’s worth of cum across the barn. You give a low whistle.");
 	output("\n\n<i>“Looks like I might have underestimated just how much you liked that, huh?”</i>");
 	output("\n\nShe gives a low, long groan as you slowly withdraw from her asshole, a cascade of spunk following your exit.");
-	output("\n\n<i>“Oh, god,”</i> she moans, her front half leaning against a bale of hay. " + (flags["HALEY_ANAL_VIRGINITY_TAKEN"] == undefined ? "<i>“I’ve never cum like </i>that<i> before…”</i>" : "<i>“How do you make me do that..?”</i>"));
+	output("\n\n<i>“Oh, god,”</i> she moans, her front half leaning against a bale of hay. " + (flags["HALEY_ANAL_VIRGINITY_TAKEN"] == undefined ? "<i>“I’ve never cum like </i>that<i> before...”</i>" : "<i>“How do you make me do that..?”</i>"));
 	output("\n\n<i>“Not everything has to be achieved with brute strength, Haley,”</i> you tell her with a friendly grin, <i>“and besides, that was just your first time. We fuck another few times and you’ll be emptying your balls out so hard even you’ll run dry.”</i>");
-	output("\n\n<i>“Wow,”</i> she mumbles woozily, still not entirely steady. <i>“Always thought it was just my size…”</i>");
+	output("\n\n<i>“Wow,”</i> she mumbles woozily, still not entirely steady. <i>“Always thought it was just my size...”</i>");
 	output("\n\nYou help Haley to her feet and help her hose off, rinsing the unarmoured underside of her tummy with the supplies in the stall. She shakes herself off and gives you a small smile.");
 	output("\n\n<i>“I guess this might not be </i>too<i> bad,”</i> she admits, glancing at you sidelong. <i>“I guess you know a thing or two about making others feel good.”</i>");
 	output("\n\n<i>“Give me </i>some<i> credit,”</i> you reply, rolling your eyes. <i>“And don’t think I won’t be back for more, ‘cause I will.”</i>");
@@ -2644,7 +2644,7 @@ public function haleyOnHerBackGettingHerBacksidePounded(cockIdx:int):void
 	output("\n\n<i>“And you won’t,”</i> you say with a smile, giving her a swat on the butt. <i>“Not until I cum too.”</i>");
 	output("\n\n<i>“Wha- nngh! Nnnh!”</i>");
 	output("\n\nHaley grunts through grit teeth with every thrust, clenching down on you with all her might as you corral her onwards through her submissive orgasm, until you finally feel your own rising up. The tightness of her insides is too good to resist, and you shove " + (pc.cLength(cockIdx) < 16 ? "your entire cock inside her, enjoying the snug fit of her " + (flags["HALEY_ANAL_VIRGINITY_TAKEN"] == undefined ? "formerly virgin" : "tight, hot") + " passage as you begin to cum." : "shove a foot and a half of cock up the leithan’s " + (flags["HALEY_ANAL_VIRGINITY_TAKEN"] == undefined ? "formerly virgin" : "tight, hot") + " asshole, enjoying the snug fit around you as you begin to cum."));
-	output("\n\n<i>“Oh,”</i> Haley moans thankfully, <i>“oh, god…”</i>");
+	output("\n\n<i>“Oh,”</i> Haley moans thankfully, <i>“oh, god...”</i>");
 	output("\n\nShe lies there panting as you drain yourself inside her, her cock still weakly spurting cum all over herself. By the time you’re done with her, a huge pool has formed along her side, soaking one half of her body. You pull out, and on the way out the head of your cock brushes her prostate and sets her off one last time, a stream of wasted seed lasting three or four seconds pouring from her cock.");
 	output("\n\n<i>“Oooooh! Fuck!”</i> she cries, collapsing once more into a pile, breathless, with the arrogance thoroughly fucked out of her - for now, at least.");
 	output("\n\n<i>“</i>Now<i> you’re done cumming,”</i> you tell her, sliding her a hose to clean herself off with. <i>“I’ll see you real soon, Haley.”</i>");
@@ -2698,7 +2698,7 @@ public function haleyNicelyRidden():void
 	else if (pc.hasCock()) output(" Your [pc.cocks] " + (pc.hasCocks() ? "spurt" : "spurts") + " precum across her stomach, matching the mess she already made of herself.");
 	else if (pc.hasVagina()) output(" Your [pc.pussies] " + (pc.hasVaginas() ? "clench" : "clenches") + " around nothing as you squeeze down on Haley, dripping wetness over her tail.");
 	output(" <i>“Do you wanna cum, Haley?”</i>");
-	output("\n\n<i>“Pleeeaase,”</i> she pants, all semblance of arrogance gone. <i>“I’m so close…”</i>");
+	output("\n\n<i>“Pleeeaase,”</i> she pants, all semblance of arrogance gone. <i>“I’m so close...”</i>");
 	output("\n\n<i>“Uh huh, I can tell,”</i> you murmur, affectionately patting her midriff. <i>“I’m pretty close myself, so lets have some fun!”</i>");
 	output("\n\nDrawing back, you slam your haunches down onto her underside, your progress partially arrested by her fat, swelling balls. The sensation of Haley’s flaring cock drives you further towards the peak, and it doesn’t take long before you feel yourself right on the edge.");
 	output("\n\n<i>“Come on, girl,”</i> you pant, burying her inside yourself. <i>“Cum for me!”</i>");
@@ -2709,7 +2709,7 @@ public function haleyNicelyRidden():void
 	output(" The moment you’re done cumming you lift yourself off her, letting the vast majority of her teased-out spunk spill over the leithan’s bottom half.");
 	output("\n\n<i>“Mmmmmn,”</i> you sigh in satisfaction, luxuriously stretching your entire body out atop Haley. <i>“That was nice.”</i>");
 	output("\n\nStill cumming, she meets your gaze and holds it, gasping with every heavy splurt of cum across her underside. Before long, she’s practically lying in a pool of it. You help Haley to her feet and help her hose off, rinsing the unarmoured underside of her tummy with the supplies in the stall. She shakes herself off and gives you a small smile.");
-	output("\n\n<i>“That was… okay,”</i> she admits, glancing at you sidelong. <i>“It feels a little better when you wait before letting go.”</i>");
+	output("\n\n<i>“That was... okay,”</i> she admits, glancing at you sidelong. <i>“It feels a little better when you wait before letting go.”</i>");
 	output("\n\n<i>“See?”</i> you answer, smiling. <i>“It’s better when I’m in charge. See you soon, Haley.”</i>");
 	output("\n\nYou wave her goodbye, stepping out of the stall.");
 
@@ -2777,16 +2777,16 @@ public function haleysPussyFinallySeesUse(cockIdx:int):void
 	author("Wsan");
 
 	output("<i>“Think you can get back up?”</i> you ask her, grinning. <i>“Big, strong amazon like you should be able to at least stand, right?”</i>");
-	output("\n\n<i>“Uh… uuuunh,”</i> Haley strains, struggling back to her clawed feet with considerable effort. <i>“Th… there.”</i>");
+	output("\n\n<i>“Uh... uuuunh,”</i> Haley strains, struggling back to her clawed feet with considerable effort. <i>“Th... there.”</i>");
 	output("\n\n<i>“Good girl,”</i> you murmur, walking around to her curvy, muscular rear. Her tail swishes nervously until you touch it and lifts away with a jolt, revealing her puffy, puckered ring and below it, the thick, onyx-black lips of her dripping wet sex. A clear strand of glistening arousal hangs between her legs, eventually snapping and spattering onto her fat, seed-filled balls below.");
 	output("\n\n<i>“You </i>really<i> like cumming like that, don’t you?”</i> you muse, stroking her flank.");
-	output("\n\n<i>“Mmm… nobody’s ever- I mean, nobody </i>had<i> ever made me cum quite </i>that<i> hard,”</i> Haley sheepishly admits. <i>“I wouldn’t complain too much if you wanted t- aah!”</i>");
+	output("\n\n<i>“Mmm... nobody’s ever- I mean, nobody </i>had<i> ever made me cum quite </i>that<i> hard,”</i> Haley sheepishly admits. <i>“I wouldn’t complain too much if you wanted t- aah!”</i>");
 	output("\n\nShifting your fingers to her inflamed snatch and stroking her sensitive lips cuts her sentence short and sets the amazonian woman trembling against your hand in a surprising display of her femininity. The reaction is enough to get you rubbing her harder, pressing into her dark netherlips and enjoying her sudden moans. A little more friction and suddenly she’s lowering her hind half and desperately squirting all over your fingers and the hay-covered ground, crying out in bliss as she cums her brains out.");
 	output("\n\n<i>“Holy shit,”</i> you mutter, feeling the wetness between her flanks redouble until her slick marecunt is flowing with need.");
 	if (flags["HALEY_BETS_WON_FUCK"] == undefined)
 	{
 		output(" <i>“Is this an amazon thing, or..?”</i>");
-		output("\n\n<i>“It- it’s not,”</i> Haley pants, groaning as she shakily raises herself back up. <i>“It’s my fault…”</i>");
+		output("\n\n<i>“It- it’s not,”</i> Haley pants, groaning as she shakily raises herself back up. <i>“It’s my fault...”</i>");
 		output("\n\nYou’ve been waiting for this opportunity for so long and now that she’s in front of you literally dripping with need, it’s hard to resist the desire to just plunge your [pc.cockOrHardlight " + cockIdx + "] into her slavering pussy and give her what she wants. Still, you’re at least a little bit curious what she’s talking about.");
 		output("\n\n<i>“Go on,”</i> you urge her, feeling your");
 		if (pc.isHerm()) output(" [pc.cocks] harden to the point of hurting while your [pc.pussies] drip with need.");
@@ -2794,13 +2794,13 @@ public function haleysPussyFinallySeesUse(cockIdx:int):void
 		else if (pc.hasVagina()) output(" [pc.pussies] drip with need while the hardlight almost pulses in eagerness in response.");
 		else output(" hardlight pulse with eagerness in response to your desires.");
 		output(" <i>“How is it your fault?”</i>");
-		output("\n\n<i>“I, I should really be dealing with the heat by just fucking the bulls,”</i> Haley says, hanging her head in shame. <i>“I can only partially suppress it by cumming with my dick. It </i>always<i> comes back though, so… that’s why you always find me here,”</i> she finishes lamely.");
+		output("\n\n<i>“I, I should really be dealing with the heat by just fucking the bulls,”</i> Haley says, hanging her head in shame. <i>“I can only partially suppress it by cumming with my dick. It </i>always<i> comes back though, so... that’s why you always find me here,”</i> she finishes lamely.");
 		output("\n\nThis seems like something you could ask her about <i>after</i> you get your first feel of that incredibly hot, sensitive marecunt clenching around your cock while she cums. She looks back at you nervously.");
 	}
 	else
 	{
 		output(" <i>“You really need this, don’t you?”</i>");
-		output("\n\n<i>“Yes,”</i> Haley admits, raising haunches back up for you. <i>“[pc.name], please…”</i>");
+		output("\n\n<i>“Yes,”</i> Haley admits, raising haunches back up for you. <i>“[pc.name], please...”</i>");
 	}
 
 	processTime(5);
@@ -2819,33 +2819,33 @@ public function haleyWholesomeTaurpussySex(cockIdx:int):void
 	output("No need to be too subtle when she’s already this worked up. " + (pc.isCrotchGarbed() ? "Removing your clothes while she watches, you " : "You ") + (pc.isTaur() ? "mount the muscular amazon and slowly align yourself with her sopping wet slit." : "grip her muscular, curvy flank tight and guide her to the perfect height, her powerful hindlegs spreading slowly as she acquiesces to your command."));
 	output("\n\nThe moment your " + (cockIdx < 0 ? "hardlight’s sensitive head" : "[pc.cockHead " + cockIdx + "]") + " touches her soft pink sex she stiffens up and holds her breath, willing herself to be still as you gently push inside her. She fits you like a warm, silken glove, wrapping around your stiff, swollen length as if to welcome you inside her, her soft folds quivering at your touch.");
 	if (cockIdx >= 0) pc.cockChange();
-	output("\n\n<i>“Ah…!”</i> Haley cries softly, and you can feel her entire body weakening");
+	output("\n\n<i>“Ah...!”</i> Haley cries softly, and you can feel her entire body weakening");
 	if (pc.isTaur()) output(" beneath you");
-	output(" until she realizes she’s about to fall and regathers her strength. <i>“Oh, that’s… that’s really good…”</i>");
+	output(" until she realizes she’s about to fall and regathers her strength. <i>“Oh, that’s... that’s really good...”</i>");
 	if (cockIdx >= 0 && pc.cLength(cockIdx) < 10)
 	{
 		output("\n\nYou sink yourself " + (pc.balls > 0 ? "balls-deep" : "all the way to the hilt") + " without issue, her deep, hot sex swallowing you up with room to spare. She’s ecstatic just to have you inside her, a high-pitched moan coming from her dark chocolate lips when she feels your groin press against her juicy butt.");
-		if (flags["HALEY_BETS_WON_FUCK"] == undefined) output("\n\n<i>“Oh, that feels </i>so<i> good,”</i> she moans, pushing back into you gently. <i>“Like you’re scratching the deepest, most satisfying itch… mmm.”</i>");
-		else output("\n\n<i>“Oh, you’re so </i>good<i> at this,”</i> she moans, pushing back into you gently. <i>“I feel like cumming already…”</i>");
+		if (flags["HALEY_BETS_WON_FUCK"] == undefined) output("\n\n<i>“Oh, that feels </i>so<i> good,”</i> she moans, pushing back into you gently. <i>“Like you’re scratching the deepest, most satisfying itch... mmm.”</i>");
+		else output("\n\n<i>“Oh, you’re so </i>good<i> at this,”</i> she moans, pushing back into you gently. <i>“I feel like cumming already...”</i>");
 	}
 	else if (cockIdx < 0 || pc.cLength(cockIdx) < 20)
 	{
 		output("\n\nYou push so deep into her she suffers a small orgasm just feeling it, her hot sex squeezing down on you and massaging your aching shaft as if to thank you. It takes you a few seconds to even realize she’s moaning out loud, a feminine, high-pitched noise that spills unbidden from her dark chocolate lips.");
-		if (flags["HALEY_BETS_WON_FUCK"] != undefined) output("\n\n<i>“Ooohh, yes, keep going,”</i> she moans, breathing hard. <i>“Keep doing that…”</i>");
-		else if (pc.isTaur()) output("\n\n<i>“Oh, [pc.name],”</i> she moans, reaching up to caress your side. <i>“Don’t stop now…”</i>");
+		if (flags["HALEY_BETS_WON_FUCK"] != undefined) output("\n\n<i>“Ooohh, yes, keep going,”</i> she moans, breathing hard. <i>“Keep doing that...”</i>");
+		else if (pc.isTaur()) output("\n\n<i>“Oh, [pc.name],”</i> she moans, reaching up to caress your side. <i>“Don’t stop now...”</i>");
 		else output("\n\n<i>“Oh, stars, you are big for a biped,”</i> she moans, breathing deeply. <i>“Don’t you dare stop now, [pc.name]...”</i>");
 	}
 	else if (pc.cLength(cockIdx) < 30)
 	{
 		output("\n\nYou slide so deeply into her that she cums on the spot with a deep grunt, her tightness around you increasing with each passing second until her entire body seems to be wound like a spring. Femcum squirts from between her spread-wide pussylips, spattering down your " + (pc.isTaur() ? "hindlegs" : "[pc.thighs]") + " while she silently shakes. Several seconds pass before she finally lets out her breath, gasping in the wake of it.");
-		if (flags["HALEY_BETS_WON_FUCK"] == undefined) output("\n\n<i>“Oh, </i>stars<i>,”</i> she pants in awe. <i>“I- I don’t know how much of this I can handle…”</i>");
+		if (flags["HALEY_BETS_WON_FUCK"] == undefined) output("\n\n<i>“Oh, </i>stars<i>,”</i> she pants in awe. <i>“I- I don’t know how much of this I can handle...”</i>");
 		else output("\n\n<i>“Nnnhh- oohhh,”</i> she pants, very slowly untensing. <i>“You’re so good, [pc.name]...”</i>");
 	}
 	else if (pc.cLength(cockIdx) < 37)
 	{
 		output("\n\nYou slowly push your entire length into her inch by inch, enjoying the way her imperceptible shivers get more and more enthusiastic until she’s violently shaking " + (pc.isTaur() ? "under you." : "against you.") + " Then, at last, you bottom out all the way inside her right as your " + (pc.balls > 0 ? "[pc.balls] press" : "groin presses") + " against her juicy backside. She barely manages a delirious moan of pleasure before she’s silenced by a massive orgasm that rocks her entire body, setting her alien legs quivering with the strength of it. Her spread-wide cunt clenches down on you and squirts with a repeated undulating motion, fiercely massaging your entire, aching shaft. You can feel her squished-flat clit throbbing against your underside in time with each contraction and it takes several long, blissful seconds before she manages to speak again.");
-		if (flags["HALEY_BETS_WON_FUCK"] == undefined) output("\n\n<i>“Oh… oh, fuck, you’re a perfect fit for me,”</i> she moans shakily, raising her head. <i>“Stars, [pc.name]... mate me more… please!”</i>");
-		else output("\n\n<i>“Fuuuck,”</i> she groans, still being caught out by lingering aftershocks. <i>“Nh! Ohh- stars… you’re fucking </i>perfect<i>...”</i>");
+		if (flags["HALEY_BETS_WON_FUCK"] == undefined) output("\n\n<i>“Oh... oh, fuck, you’re a perfect fit for me,”</i> she moans shakily, raising her head. <i>“Stars, [pc.name]... mate me more... please!”</i>");
+		else output("\n\n<i>“Fuuuck,”</i> she groans, still being caught out by lingering aftershocks. <i>“Nh! Ohh- stars... you’re fucking </i>perfect<i>...”</i>");
 	}
 	else
 	{
@@ -2884,9 +2884,9 @@ public function haleyIsHappyWithThePrizeYouPicked():void
 
 	if (flags["HALEY_BETS_WON_FUCK"] == undefined)
 	{
-		output("<i>“Wow,”</i> sighs Haley, the first words she’s said for minutes. <i>“That was… well. Uh, thanks, [pc.name].”</i> She blushes a little. <i>“I could tell you were being nice for me.”</i>");
+		output("<i>“Wow,”</i> sighs Haley, the first words she’s said for minutes. <i>“That was... well. Uh, thanks, [pc.name].”</i> She blushes a little. <i>“I could tell you were being nice for me.”</i>");
 		output("\n\n<i>“Well, you did lose the bet but there’s no sense in being a bully,”</i> you say, patting her on the butt. She quivers in response. <i>“Especially when you’re so responsive.”</i>");
-		output("\n\n<i>“Yeee-eah...”</i> she says, voice hitching as she tries not to moan. <i>“Think a few muscles I didn’t know existed got a workout there. Hey, uh… wanna bet again sometime?”</i>");
+		output("\n\n<i>“Yeee-eah...”</i> she says, voice hitching as she tries not to moan. <i>“Think a few muscles I didn’t know existed got a workout there. Hey, uh... wanna bet again sometime?”</i>");
 		output("\n\n<i>“Sure,”</i> you say, grinning. <i>“But I don’t think you’re gonna win next time either.”</i>");
 		output("\n\n<i>“I will,”</i> she protests, frowning. <i>“I feel a lot more confident about it now, even. The first time you did it I was completely unprepared, you know? Now I’ve got a pretty good idea of it all.”</i>");
 		output("\n\n<i>“Uh huh,”</i> you nod nonchalantly. <i>“See you soon, then?”</i>");
@@ -2899,7 +2899,7 @@ public function haleyIsHappyWithThePrizeYouPicked():void
 		output("<i>“Amazing as usual,”</i> Haley sighs, looking up with a wry grin. <i>“You must have a trail of lovers behind you with skills like that, [pc.name]. Keen for another bet sometime?”</i>");
 		output("\n\n<i>“Sure, I don’t see why not,”</i> you say, shrugging.");
 		output("\n\n<i>“Great,”</i> Haley murmurs, biting her lip and looking you up and down. <i>“Sooner the better.”</i>");
-		output("\n\n<i>“Yeah,”</i> you say, smiling wide. <i>“So you can prove me wrong… right?”</i>");
+		output("\n\n<i>“Yeah,”</i> you say, smiling wide. <i>“So you can prove me wrong... right?”</i>");
 		output("\n\n<i>“Of course,”</i> she says, snapping out of it. <i>“What did you think I meant?”</i>");
 		output("\n\n<i>“Nothing,”</i> you reply, waving her off with a cheeky grin. <i>“I’ll see you soon, Haley.”</i>");
 		output("\n\n<i>“Okay!”</i> she says, eyes lighting up. <i>“See you then, [pc.name].”</i>");

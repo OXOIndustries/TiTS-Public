@@ -96,7 +96,7 @@ public function wargiiHoldProcOhShiiiiit():void
 	//show korgi male
 	author("Fenoxo");
 	showBust("KORGONNE_MALE_WHITE","KORGONNE_MALE_TAWNY");
-	output("One of the guards stops you at the door. <i>“<b>" + (!korgiTranslate() ? "Ula want talking to you.</b> Not sure what seeing in, but not my place judge.":"Ula wants to talk to you.</b> I don’t understand what she sees in you, but it’s not my place to judge.") + "”</i> His fur bristles. <i>“Get on then.”</i>\n\n<b>Visiting Ula is going to start something...</b>");
+	output("One of the guards stops you at the door. <i>“" + (!korgiTranslate() ? "<b>Ula want talking to you.</b> Not sure what seeing in, but not my place judge.":"<b>Ula wants to talk to you.</b> I don’t understand what she sees in you, but it’s not my place to judge.") + "”</i> His fur bristles. <i>“Get on then.”</i>\n\n<b>Visiting Ula is going to start something...</b>");
 	flags["WARGII_SETUP"] = 1;
 	processTime(2);
 	clearMenu();

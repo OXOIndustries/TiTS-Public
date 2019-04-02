@@ -6317,9 +6317,9 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Sand Worm, Times Encountered:</b> " + flags["ENCOUNTERED_SANDWORM"]);
 					switch(flags["ENABLE_SANDWORM"])
 					{
-						case undefined: output(", Away"); break;
-						case 1: output(", Active (Uncommon)"); break;
-						case 2: output(", Active (Common)"); break;
+						case undefined: output2(", Away"); break;
+						case 1: output2(", Active (Uncommon)"); break;
+						case 2: output2(", Active (Common)"); break;
 					}
 				}
 				if(flags["MET_SEXBOT_FEMALE_ON_TARKUS"] != undefined) output2("\n<b>* Female Sexbots, Times Encountered:</b> " + flags["MET_SEXBOT_FEMALE_ON_TARKUS"]);
@@ -6827,9 +6827,9 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Kressia Manor and Federation War Room</u></b>");
 				output2("\n<b>* Sellera:</b> Met her");
-				if (flags["SELLERA_SERVICED"] != undefined) output2(", Serviced Her");
-				if (flags["SELLERA_GANGBANGED"] != undefined) output2(", Serviced Her Troops");
-				if (flags["SELLERA_SEXED"] != undefined) output2(", Sexed Her");
+				if(flags["SELLERA_SERVICED"] != undefined) output2(", Serviced Her");
+				if(flags["SELLERA_GANGBANGED"] != undefined) output2(", Serviced Her Troops");
+				if(flags["SELLERA_SEXED"] != undefined) output2(", Sexed Her");
 				variousCount++;
 			}
 			// Anzhela
@@ -7225,15 +7225,15 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Bored Jumper, Times Encountered:</b> " + flags["BORED_JUMPER_JUMPED"]);
 					if(flags["BORED_JUMPER_CONSECUTIVE_LOSSES"] > 1) output2("\n<b>* Bored Jumper, Combat, Times You Consecutively Lost:</b> " + flags["BORED_JUMPER_CONSECUTIVE_LOSSES"]);
-					if (flags["JUMPER_DOCKED"] != undefined) output2("\n<b>* Bored Jumper, Times Docked By:</b> " + flags["JUMPER_DOCKED"]);
-					if (flags["BJUMPER_HORSE_TOTAL_KIDS"] != undefined) output2("\n<b>* Bored Jumper, Total Kids (gray):</b> " + flags["BJUMPER_HORSE_TOTAL_KIDS"]);
-					if (flags["BJUMPER_DOG_TOTAL_KIDS"] != undefined) output2("\n<b>* Bored Jumper, Total Kids (white):</b> " + flags["BJUMPER_DOG_TOTAL_KIDS"]);
-					if (flags["BJUMPER_CAT_TOTAL_KIDS"] != undefined) output2("\n<b>* Bored Jumper, Total Kids (creamy):</b> " + flags["BJUMPER_CAT_TOTAL_KIDS"]);
-					if (flags["BJUMPER_TERRAN_TOTAL_KIDS"] != undefined) output2("\n<b>* Bored Jumper, Total Kids (brown):</b> " + flags["BJUMPER_TERRAN_TOTAL_KIDS"]);
-					if (flags["BJUMPER_PREG_TIMER"] != undefined)
+					if(flags["JUMPER_DOCKED"] != undefined) output2("\n<b>* Bored Jumper, Times Docked By:</b> " + flags["JUMPER_DOCKED"]);
+					if(flags["BJUMPER_HORSE_TOTAL_KIDS"] != undefined) output2("\n<b>* Bored Jumper, Total Kids (gray):</b> " + flags["BJUMPER_HORSE_TOTAL_KIDS"]);
+					if(flags["BJUMPER_DOG_TOTAL_KIDS"] != undefined) output2("\n<b>* Bored Jumper, Total Kids (white):</b> " + flags["BJUMPER_DOG_TOTAL_KIDS"]);
+					if(flags["BJUMPER_CAT_TOTAL_KIDS"] != undefined) output2("\n<b>* Bored Jumper, Total Kids (creamy):</b> " + flags["BJUMPER_CAT_TOTAL_KIDS"]);
+					if(flags["BJUMPER_TERRAN_TOTAL_KIDS"] != undefined) output2("\n<b>* Bored Jumper, Total Kids (brown):</b> " + flags["BJUMPER_TERRAN_TOTAL_KIDS"]);
+					if(flags["BJUMPER_PREG_TIMER"] != undefined)
 					{
 						output2("\n<b>* Bored Jumper, Days Pregnant");
-						if (flags["BJUMPER_PREG_TYPE"] != undefined) output2(" (" + boredJumperFurColor(flags["BJUMPER_PREG_TYPE"]) + ")");
+						if(flags["BJUMPER_PREG_TYPE"] != undefined) output2(" (" + boredJumperFurColor(flags["BJUMPER_PREG_TYPE"]) + ")");
 						output2(":</b> " + flags["BJUMPER_PREG_TIMER"]);
 					}
 					
@@ -7481,12 +7481,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				// The DCL
 				output2("\n<b>* The L.D.C.:</b> Met him");
-				if (flags["LDC_FUCKED"] != undefined) output2(", Sexed him");
-				if (flags["LDC_TOTAL_KIDS"] != undefined) output2("\n<b>* The L.D.C., Total Kids:</b> " + flags["LDC_TOTAL_KIDS"]);
+				if(flags["LDC_FUCKED"] != undefined) output2(", Sexed him");
+				if(flags["LDC_TOTAL_KIDS"] != undefined) output2("\n<b>* The L.D.C., Total Kids:</b> " + flags["LDC_TOTAL_KIDS"]);
 				// Fight Bunny
 				output2("\n<b>* Shock Hopper:</b> Met her");
 				if(flags["SHOCK_HOPPER_FUCKED"] != undefined) output2(", Sexed her");
-				if (flags["SHOCKHOPPER_TOTAL_KIDS"] != undefined) output2("\n<b>* Shock Hopper, Total Kids:</b> " + flags["SHOCKHOPPER_TOTAL_KIDS"]);
+				if(flags["SHOCKHOPPER_TOTAL_KIDS"] != undefined) output2("\n<b>* Shock Hopper, Total Kids:</b> " + flags["SHOCKHOPPER_TOTAL_KIDS"]);
 				// Slaves
 				if(flags["JUMPER_SLAVES_FREED"] != undefined) output2("\n<b>* Slaves:</b> " + (flags["JUMPER_SLAVES_FREED"] == 1 ? "Freed" : "Ignored"));
 				variousCount++;
@@ -8852,7 +8852,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Illegal items... Penny's gonna getcha!
-		if(CodexManager.entryViewed("Dumbfuck") || CodexManager.entryViewed("Gush") || CodexManager.entryViewed("The Treatment") || flags["PENNY_THROBB_PURCHASE_UNLOCKED"] != undefined || flags["PENNY_THROBB_USES"] != undefined || flags["TIMES_THROBB_USED"] != undefined || flags["ZEPHYR_THROBBED"] != undefined)
+		if(CodexManager.entryViewed("Dumbfuck") || CodexManager.entryViewed("Gush") || CodexManager.entryViewed("The Treatment") || flags["PENNY_THROBB_PURCHASE_UNLOCKED"] != undefined || flags["PENNY_THROBB_USES"] != undefined || flags["TIMES_THROBB_USED"] != undefined || flags["ZEPHYR_THROBBED"] != undefined || flags["SLYVEREN_THROBB_FUCKED"] != undefined)
 		{
 			output2("\n<b><u>Illegal Items</u></b>");
 			// Dumbfuck
@@ -8878,7 +8878,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["USED_GUSH"] != undefined) output2(", Used");
 			}
 			// Throbb
-			if(flags["PENNY_THROBB_PURCHASE_UNLOCKED"] != undefined || flags["PENNY_THROBB_USES"] != undefined || flags["TIMES_THROBB_USED"] != undefined || flags["ZEPHYR_THROBBED"] != undefined)
+			if(flags["PENNY_THROBB_PURCHASE_UNLOCKED"] != undefined || flags["PENNY_THROBB_USES"] != undefined || flags["TIMES_THROBB_USED"] != undefined || flags["ZEPHYR_THROBBED"] != undefined || flags["SLYVEREN_THROBB_FUCKED"] != undefined)
 			{
 				output2("\n<b>* Throbb:</b> Known");
 				if(flags["TIMES_THROBB_USED"] != undefined)
