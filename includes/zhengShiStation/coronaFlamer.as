@@ -751,7 +751,8 @@ public function coronaFlamerPlsGetMeOff():void
 	output("\n\nYou're forced to exhale from your [pc.nose] instead, coughing erratically while she gazes calculatingly down at you. <i>\"But I guess I could use you to get off.\"</i>");
 
 	addButton(0, "Change Mind", coronaFlamerLeavesCauseYoureACoward, 2, "Change Your Mind", "Change of plans.");
-	addButton(1, "Let Her", coronaFlamerIsCajoledIntoTakingHerPrize, undefined, "Let Her", "Give yourself over to this rabid huskar woman.");
+	if (pc.hasGenitals()) addButton(1, "Let Her", coronaFlamerIsCajoledIntoTakingHerPrize, undefined, "Let Her", "Give yourself over to this rabid huskar woman.");
+	else addDisabledButton(1, "Let Her", "Let Her", "You don't want to imagine how she'd react if she found out you have nothing for her to get off with.");
 }
 
 public function coronaFlamerIsCajoledIntoTakingHerPrize():void
@@ -759,18 +760,19 @@ public function coronaFlamerIsCajoledIntoTakingHerPrize():void
 	clearMenu();
 	clearOutput();
 	showCoronaFlamer(true);
-	processTime(1);
+	processTime(4+rand(11));
+	pc.lust(pc.lustMax());
 
 	output("<i>\"First things first…\"</i> she murmurs, twisting around and");
 	if (pc.isCrotchGarbed()) output(" pulling your [pc.lowerGarments] off.");
 	else output(" checking on you.");
-	if (pc.hasCock()) output(" <i>\"Oh, good. At least you have a dick, so you're not totally useless.\"</i>");
-	else output(" <i>\"No dick. That's a pretty pussy, though.\"</i>");
 
 	if (pc.hasCock())
 	{
 		var bigDicks:Array = new Array();
 		for (var cawk:int = 0; cawk < pc.cocks.length; cawk++) if (pc.cLength(cawk) >= 8) bigDicks.push(cawk);
+
+		output(" <i>\"Oh, good. At least you have a dick, so you're not totally useless.\"</i>");
 
 		if (bigDicks.length <= 0)
 		{
@@ -809,18 +811,70 @@ public function coronaFlamerIsCajoledIntoTakingHerPrize():void
 		output("\n\nShe's gone by the time you recover, lying on your side. You're missing credits, too. Sighing as you make your way to your [pc.feet], you clean yourself off");
 		if (pc.isCrotchGarbed()) output(" and reclothe yourself before setting out again.");
 		else output(" and set out again.");
-	}
-	else if (pc.hasVagina())
-	{
-		output("\n\n<b>Stay tuned, pussy-owners!</b>");
+
+		IncrementFlag("FIREPUP_SEXED");
+		IncrementFlag("FIREPUP_SEXED_BEGGED");
+
+		coronaFlamerLossEnd();
 	}
 	else
 	{
-		output("\n\n<b>Fuck you, neuter nerd.</b>");
-	}
+		var vag:int = rand(pc.vaginas.length);
+		output(" <i>\"No dick. That's a pretty pussy, though.\"</i>");
+		output("\n\nShe slides down your body for a closer look, watching your face as she slides two fingers right into your [pc.pussy " + vag + "] to gauge your reaction. Even biting your lower lip can't stop you from moaning; it's like she's intimately familiar with your pussy, knowing just how to get you going. Your [pc.thighs] begin to draw inward before she forcefully spreads them with her hand, keeping them apart.");
+		output("\n\n<i>\"You're so cute,\"</i> she says, smiling. <i>\"Makes me want to fuck you up.\"</i>");
+		output("\n\nYou have to admit having");
+		if (pc.tallness > 77) output(" the shorter woman");
+		else output(" the fit huskar woman");
+		output(" call you cute makes your heart pound a little, though maybe it's the way she's so expertly manipulating your slit with her fingers. Your [pc.hips] struggle to rise and fall against her hands, shivering with pleasure while she lazily brings you closer and closer to an incredible orgasm. Stars, this is going to be <i>massive</i>-");
+		output("\n\n<i>\"I- I'm, I'm cumming,\"</i> you gasp, back arching off the ground. <i>\"Oh! O-\"</i>");
+		output("\n\nThe huskar woman pulls her fingers free of your quivering cunt and slaps you upside the face so hard your head lurches sideways, the stinging of your cheek all you can feel in the wake of it. Your orgasm dies down in seconds, the pleasure fading away while the huskar bitch smiles down at you, grabbing your hands and entwining her fingers in yours, slamming them to the ground as she leans in. Her warm, wet tongue trails up");
+		if (pc.hasBreasts()) output(" between your [pc.breasts]");
+		else output(" your [pc.chest]");
+		output(" all the way to your throat, licking and suckling at your exposed, vulnerable neck.");
+		output("\n\nThen, ever so slowly, the huskar bares her canines and places them at your neck, her hand finding its way back down to your [pc.clit " + vag + "] to rub you. You can feel her teeth slowly pressing into your [pc.skinFurScales], not yet breaking the skin but digging in hard enough that you can feel them scrape across your throat. Despite it all, despite the danger and the humiliation, you find your hips beginning to slowly jerk and roll with the movement of her fingers");
+		output("\n\n<i>\"<b>Oh</b>,\"</i> you groan, your freed hand slowly coming to rest against the back of her head. <i>\"Oh, stars…\"</i>");
+		output("\n\n<i>\"I bet you've never been fucked like this before, little cunt,\"</i> she whispers, sensually licking your throat. <i>\"Or maybe it's the experience of submission that makes you roll over for me so easily. Hm?\"</i>");
+		output("\n\n<i>\"Nnnh- hhuh,\"</i> you shakily moan, unable to turn your head or do anything but suffer the torturous so-close pleasure as she builds you up from nothing again.");
+		output("\n\n<i>\"Hmmmh,\"</i> she murmurs, lifting herself away. <i>\"Sit up and turn around.\"</i>");
+		output("\n\nOnce you've switched positions she roughly pulls you in against her, pressing her curvy breasts into your back as one of her hands comes to rest at your throat and the other returning to stimulating you below. By now she has you so wet you just want to <i>cum</i>, to make the burning lust inside you go away and to at last satisfy your desires. The domineering woman slides her fingers over your throat, still slick with her saliva as she gently rubs at your engorged clit.");
+		output("\n\n<i>\"So close now,\"</i> she notes quietly, watching and feeling you shudder against her body, her legs coming around to softly entwine themselves with yours.");
+		output("\n\n<i>\"Ah,\"</i> you gasp, your head tilting back as she delicately caresses your neck. <i>\"Ah!\"</i>");
+		output("\n\nYou can feel it -- the little lightning bolts shooting up your [pc.thighs], flexing and trying to rub against each other but prevented by the huskar's firm legholds. Your core begins to flutter as you press your shoulders back into her, all but melting against her while she takes you higher and higher.");
+		output("\n\n<i>\"Beg,\"</i> she whispers in your [pc.ear]. <i>\"Beg me to cum.\"</i>");
+		output("\n\n<i>\"Please,\"</i> you pant, breathless with desire. <i>\"Please let me cum! Pl- hhhkk-\"</i>");
+		output("\n\nShe encloses her hand around your throat, choking the words from your mouth before you can even get them out.");
+		output("\n\n<i>\"I can't hear you,\"</i> she whispers even quieter. You can barely hear her yourself, the sound of rushing blood filling your eardrums until she relaxes her grip just slightly.");
+		output("\n\n<i>\"Please! Please let me c-gghk!\"</i> you try to scream, rocking against her as she calmly strangles the air from your throat.");
+		output("\n\n<i>\"You want to cum?\"</i> she murmurs.");
+		output("\n\nAll you can think to do is nod, your face turning red as you bob your head in her grip, and then suddenly you feel it -- her fingers digging into your slippery cunt, curling upwards while her thumb comes down on your oversensitive clit. Letting out a strangled cry of bliss, you cum while being asphyxiated, your entire body trembling with the effort of release.");
+		if (pc.isSquirter()) output(" You squirt");
+		else output(" You drip");
+		output(" all over the ground, shaking and gasping, your mouth open wide in a silent scream as she locks your legs open with her own.");
+		output("\n\nShe makes you cum so hard you can feel your eyes rolling back, your [pc.feet] kicking as you lose control of your body, the choking getting more and more intense until you can't keep it up any more. You're still cumming violently as you feel your body go numb, drooling spit from the corner of your mouth.");
+		output("\n\n<i>\"Good [pc.boyGirl],\"</i> she whispers. <i>\"Good [pc.boyGirl].\"</i>");
+		output("\n\nThen everything goes black.");
 
-	processTime(4+rand(11));
-	pc.lust(pc.lustMax());
+		pc.orgasm();
+
+		addButton(0, "Next", notHideOrHairOfTheCoronaFlamerThatBitYou);
+	}
+}
+
+public function notHideOrHairOfTheCoronaFlamerThatBitYou():void
+{
+	clearMenu();
+	clearOutput();
+	author("Wsan");
+	processTime(45+rand(196));
+
+	output("You awaken groggy and sore all over, lying in a pool of your own juices… and stained with hers. You can only imagine she got herself off watching you slowly pass out while in the throes of orgasm. Cheeks flushed and shaking your head in an attempt to clear it, you dazedly make your way to an upright position");
+	if (!pc.isNude()) output(" and check for your clothes.");
+	output(" Some of your credits are gone, but you hardly notice.");
+	output("\n\nRe-equipping your [pc.gear] and rubbing your neck, you slowly set off once more. You can still feel her fingers lingering at your throat…");
+
+	pc.applyPussyDrenched();
+
 	IncrementFlag("FIREPUP_SEXED");
 	IncrementFlag("FIREPUP_SEXED_BEGGED");
 
