@@ -2150,7 +2150,7 @@ public function tableFuckRoo():void
 	processTime(5);
 	pc.lust(3);
 	clearMenu();
-	addButton(0,"Next",rooTableFuck);
+	addButton(0,"Next",rooTableFuck,false);
 }
 
 //[Yes] // You could use an extra drink!
