@@ -2330,6 +2330,7 @@ public function futaBabePantyfapsRouter():void
 		if(pc.hasKeyItem("Panties - Fisianna's - Lacy, white panties with a cute cat pattern.")) jackOffWithLadyPantiesYouSicko("Fisianna");
 		if(pc.hasKeyItem("Panties - Claes's - Silky white panties with green ribbon ties.")) jackOffWithLadyPantiesYouSicko("Claes");
 		if(pc.hasKeyItem("Panties - Ramis's - Black, tight-fit, frictionless undies.")) jackOffWithLadyPantiesYouSicko("Ramis");
+		if(pc.hasKeyItem("Panties - Roo's - Satiny, bright red panties with ribbony side-ties.")) jackOffWithLadyPantiesYouSicko("Roo");
 	}
 	//More than one pair? Build a menu.
 	else
@@ -2408,6 +2409,11 @@ public function futaBabePantyfapsRouter():void
 			addButton(button,"Ramis’s",jackOffWithLadyPantiesYouSicko,"Ramis","Ramis’s Panties","Use Ramis’s tight, black panties to masturbate with.");
 			button++;
 		}
+		if(pc.hasKeyItem("Panties - Roo's - Satiny, bright red panties with ribbony side-ties."))
+		{
+			addButton(button,"Roo’s",jackOffWithLadyPantiesYouSicko,"Roo","Roo’s Panties","Use Roo’s bright red, satiny panties to masturbate with.");
+			button++;
+		}
 		if(pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink."))
 		{
 			addButton(button,"Saendra’s",futaBabePantyfaps,"Saendra","Saendra’s Panties","Use Saendra’s tight, pink panties to stroke one out.");
@@ -2449,6 +2455,7 @@ public function futaBabePantySchlicksRouter():void
 		if(pc.hasKeyItem("Panties - Anno's - Blue boxer briefs.")) pureLadyWaifuPussyRubFap("Anno");
 		if(pc.hasKeyItem("Panties - Fisianna's - Lacy, white panties with a cute cat pattern.")) pureLadyWaifuPussyRubFap("Fisianna");
 		if(pc.hasKeyItem("Panties - Ramis's - Black, tight-fit, frictionless undies.")) pureLadyWaifuPussyRubFap("Ramis");
+		if(pc.hasKeyItem("Panties - Roo's - Satiny, bright red panties with ribbony side-ties.")) pureLadyWaifuPussyRubFap("Roo");
 	}
 	//More than one pair? Build a menu.
 	else
@@ -2527,6 +2534,11 @@ public function futaBabePantySchlicksRouter():void
 			addButton(button,"Ramis’s",futaPantiesFapInPussy,"Ramis","Ramis’s Panties","Use Ramis’s tight, pink panties to masturbate with.");
 			button++;
 		}
+		if(pc.hasKeyItem("Panties - Roo's - Satiny, bright red panties with ribbony side-ties."))
+		{
+			addButton(button,"Roo’s",futaPantiesFapInPussy,"Roo","Roo’s Panties","Use Roo’s bright red, satiny panties to masturbate with.");
+			button++;
+		}
 		if(pc.hasKeyItem("Panties - Saendra's - Ultra-tight and bright pink."))
 		{
 			addButton(button,"Saendra’s",futaPantiesFapInPussy,"Saendra","Saendra’s Panties","Use Saendra’s tight, pink panties to stroke one out.");
@@ -2566,6 +2578,7 @@ public function pantyCollectionList(total:Boolean = false):Array
 	if(total || pc.hasKeyItem("Panties - Fisianna's - Lacy, white panties with a cute cat pattern.")) panties.push("Fisianna");
 	if(total || pc.hasKeyItem("Panties - Claes's - Silky white panties with green ribbon ties.")) panties.push("Claes");
 	if(total || pc.hasKeyItem("Panties - Ramis's - Black, tight-fit, frictionless undies.")) panties.push("Ramis");
+	if(total || pc.hasKeyItem("Panties - Roo's - Satiny, bright red panties with ribbony side-ties.")) panties.push("Roo");
 	return panties;
 }
 
@@ -2632,6 +2645,7 @@ public function pantyFapRandom(genitalSelect:int = -1, waifu:String = ""):void
 			case "Myrna": jackOffWithLadyPantiesYouSicko("Myrna"); break;
 			case "Fisianna": jackOffWithLadyPantiesYouSicko("Fisianna"); break;
 			case "Ramis": jackOffWithLadyPantiesYouSicko("Ramis"); break;
+			case "Roo": jackOffWithLadyPantiesYouSicko("Roo"); break;
 		}
 	}
 	else
@@ -2656,6 +2670,7 @@ public function pantyFapRandom(genitalSelect:int = -1, waifu:String = ""):void
 			case "Myrna": pureLadyWaifuPussyRubFap("Myrna"); break;
 			case "Fisianna": pureLadyWaifuPussyRubFap("Fisianna"); break;
 			case "Ramis": pureLadyWaifuPussyRubFap("Ramis"); break;
+			case "Roo": pureLadyWaifuPussyRubFap("Roo"); break;
 		}
 	}
 }
@@ -2683,6 +2698,7 @@ public function getPantyColor(waifu:String = ""):String
 		case "Myrna": pantyColor = "green"; break;
 		case "Fisianna": pantyColor = "white"; break;
 		case "Ramis": pantyColor = "black"; break;
+		case "Roo": pantyColor = "bright red"; break;
 	}
 	return pantyColor;
 }
@@ -2711,6 +2727,7 @@ public function getPantyTexture(waifu:String = ""):String
 		case "Claes": pantyTexture = "silk"; break;
 		case "Fisianna": pantyTexture = "lace"; break;
 		case "Ramis": pantyTexture = "frictionless spandex"; break;
+		case "Roo": pantyTexture = "satiny"; break;
 	}
 	return pantyTexture;
 }

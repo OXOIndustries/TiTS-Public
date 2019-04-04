@@ -3959,6 +3959,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		processBothriocQuadommeEvents(deltaT, doOut, totalDays);
 		processQuaellePregEvents(deltaT, doOut, totalDays);
 		processBoredJumperPregEvents(deltaT, doOut, totalDays);
+		processCasinoEvents();
 	}
 	
 	var totalHours:uint = Math.floor((minutes + deltaT) / 60);

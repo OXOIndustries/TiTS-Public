@@ -100,6 +100,11 @@
 			}
 			return total;
 		}
+		public function hasBlackjack():Boolean
+		{
+			if(cards.length < 2 || cards.length > 2) return false;
+			return ((cards[0].cardValue + cards[1].cardValue) == 21);
+		}
 		public function listHand(dealer:Boolean = false):String
 		{
 			if(cards.length == 1) return cards[0].cardDescription();
