@@ -58,6 +58,11 @@ public function setUpBasicBitchBlackjack():void
 	startBlackjack();
 }
 
+public function rooCapacity():Number
+{
+	return 750;
+}
+
 public function startBlackjack(clearBet:Boolean = false):void
 {
 	var deck:PlayingCardDeck = new PlayingCardDeck();
@@ -339,7 +344,12 @@ public function winAtBlackjack(args:Array):void
 	output("Cheating...");
 	if(pcHand.getCardPointTotalBlackjack() < 21)
 	{
-		while(pcHand.getCardPointTotalBlackjack() < 21) { pcHand.cards[pcHand.cards.length-1].cardValue++; }
+		while(pcHand.getCardPointTotalBlackjack() < 21) 
+		{ 
+			pcHand.cards[pcHand.cards.length-1].cardValue++; 
+			pcHand.cards[0].cardValue++;
+			if(pcHand.getCardPointTotalBlackjack() > 21) pcHand.cards[0].cardValue--;
+		}
 	}
 	blackjackDealerAI([deck,dealerHand,pcHand]);
 }
@@ -1137,12 +1147,13 @@ public function rooPantyProcChance():Boolean
 	return (flags["ROO_GASMED"] >= 10 && !pc.hasKeyItem("Panties - Roo's - Satiny, bright red panties with ribbony side-ties."));
 }
 
-public function rooPantyCollectScene(back:Boolean = true):void
+public function rooPantyCollectScene(arg:String = "back"):void
 {
 	clearOutput();
 	showRoo();
 	author("William");
-	if(!back) output("<i>“Ah, [pc.name], this reminds me!”</i> she chirps, launching deftly to her feet. <i>“There’s something I want you to have, and something I wish to tell you.”</i> She maneuvers around the table to collect something, but you can’t see what - it’s hidden behind her back.");
+	if(arg == "tableFukk") output("\n\n<i>“That’s good,”</i> she nods, <i>“because I have something I need to tell you, and something else I wish for you to have.”</i> Roo strides around the table and back, collecting something you can’t see. She hides it behind her back coyly.");
+	else if(arg == "notBack") output("<i>“Ah, [pc.name], this reminds me!”</i> she chirps, launching deftly to her feet. <i>“There’s something I want you to have, and something I wish to tell you.”</i> She maneuvers around the table to collect something, but you can’t see what - it’s hidden behind her back.");
 	else output("You tell Roo you’re not in need of service, and she nods. Instead of giving you a spiel, instead of heading off like she usually does, she takes this precious one-on-one time to maneuver around the table and grab something. She holds it behind her back as she approaches you again. <i>“[pc.name], there’s something I want you to have, and something I want to say.”</i>");
 	output("\n\nA degree of worry builds inside, but you wait patiently for her to continue. <i>“You asked me how I came to be here. I can’t answer that.”</i> She kneels down in front of you, a dour smile cresting her features. <i>“But I want you to know that I am not unhappy, that I don’t begrudge any of this. Especially not after meeting you.”</i>");
 	output("\n\nHer arms weave around and she presents you something... red...");
@@ -1526,6 +1537,9 @@ public function rooSexMenu(display:Boolean = true):void
 	// Requires Genitals, and is usable by all body types.
 	// Able to choose Cock or Vagina if Herm.
 	addButton(0,"U.Table Oral",undertableOral,undefined,"Undertable Oral","Make Roo service you under the table. Her tongue’s probably as nimble as her fingers!");
+	if(pc.hasCock() && pc.cockThatFits(rooCapacity()) >= 0) addButton(1,"Table Fuck",tableFuckRoo,undefined,"Table Fuck","Flop the lapcat on the table and rail her!");
+	else if(!pc.hasCock()) addDisabledButton(1,"Table Fuck","Table Fuck","Go spend your winnings on a brand new penis so you can fuck Roo with it!");
+	else addDisabledButton(1,"Table Fuck","Table Fuck","You’re way too big for this kitty!");
 	addButton(5,"Nevermind",turnDownRoocipher);
 }
 
@@ -1808,7 +1822,7 @@ public function rooBeej2(x:int):void
 		IncrementFlag("ROO_SEXED");
 		IncrementFlag("ROO_BJS");
 		clearMenu();
-		addButton(0,"Next",rooPantyCollectScene);
+		addButton(0,"Next",rooPantyCollectScene,"notBack");
 		return;
 	}
 	// Normal End
@@ -1816,6 +1830,8 @@ public function rooBeej2(x:int):void
 	output("\n\nMiraculously, you’re not entirely sure how, but your <i>Ruby Tether</i> survived the sex untarnished. After that, you aren’t about to say no to that godlike beverage. You don’t even attempt to relish it, just downing it, rejuvenating your body with top-tier alcohol. Striding off the game floor you let the staff take it all from there, thousands of credits richer, and wondering when next you might come back for such quality service...");
 	processTime(35);
 	pc.orgasm();
+	var ppBJMeow:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppBJMeow.loadInMouth(pc);
 	pc.imbibeAlcohol(50);
 	IncrementFlag("ROO_SEXED");
 	IncrementFlag("ROO_BJS");
@@ -1935,7 +1951,7 @@ public function underTableRooEatsPuss(x:int = 0):void
 		IncrementFlag("ROO_CUNNILINGED");
 		IncrementFlag("ROO_SEXED");
 		clearMenu();
-		addButton(0,"Next",rooPantyCollectScene);
+		addButton(0,"Next",rooPantyCollectScene,"notBack");
 		return;
 	}
 	// Normal Ending
@@ -1963,129 +1979,285 @@ public function underTableRooEatsPuss(x:int = 0):void
 // Requires penis. Roo’s capacity volume is around 17 inches|100% thickness at most.
 // Roo will stick herself with a drug that makes her tits bloat with milk rapidly when she is fucked after the 6th gamegasm, making this a milkier encounter.
 // After Roo uses her milky drug, the PC will be presented, after clicking this, an option to ask her to use it again, and the option is always available.
+public function tableFuckRoo():void
+{
+	clearOutput();
+	showRoo();
+	author("William");
+	// Special Start:  6+ Gamegasms, Roo takes a milky drug (one-time only blurb)
+	if(flags["ROO_GASMED"] >= 6 && flags["ROO_MILKED"] == undefined)
+	{
+		clearOutput();
+		showRoo();
+		author("William");
+		flags["ROO_MILKED"] = 1;
+		output("<i>“I wanna give you something extra, [pc.name],”</i> Roo says, putting a hand to your [pc.chest] and reaching behind herself. On the dealer’s side of the fancy table she fumbles for a medipen among a few random objects. It’s filled with a bright green liquid that rolicks around its airtight container. <i>“Don’t worry, it’s for me. Keep your eyes wide open, okay?”</i>");
+		output("\n\nPressing the hypo to her neck she hits the button and the fluid inside shunts instantly into her bloodstream. She flicks the useless device away and immediately groans. Her pupils dilate in separate timeframes and her boobs, her oh-so squeezable and lavish... lush...");
+		output("\n\nThey’re getting bigger!");
+		output("\n\nThe bunny-eared kitten’s voice fails her and she gets locked into a limp, groan. Her chest thrusts out and pearlescent white drops of kaithrit-flavored cream dribble out from her expanding swells. Her tits were just short of an F-cup, but they’re growing well past that and into G-cup territory, filling with unnatural amounts of purest-white milk. What surprises you the most is how they still aren’t sagging despite their chemically-induced bounty. They’re holding firm, taut, and audibly sloshing before your eyes.");
+		output("\n\nRoo raises a finger to one sugarmound and your boner’s added inches " + (!pc.isCrotchExposed() ? "nearly thrust your meat through your [pc.crotchCoverUnder]":"throb out a [pc.cumVisc] strand of goop onto her crotch") + ". The carmine-colored cat regards your awestruck countenance with a tiny laugh as you struggle to " + (!pc.isCrotchExposed() ? "free your [pc.cocks] and ":"") + "mount her. <i>“It’s a super-charged drug, little like lactaid. It doesn’t last long, but it does leave me rather burdened! Make sure you milk me really good! And... I can always get more...”</i> she giggles.");
+		output("\n\nOh fuck.");
+		processTime(5);
+		pc.lust(3);
+		clearMenu();
+		addButton(0,"Next",rooTableFuck,true);
+	}
+	// Roo Gamegasms 4-9
+	if(flags["ROO_GASMED"] < 10)
+	{
+		output("You lean down and slide your [pc.hands] under Roo’s armpits, lifting her light body up and drawing her into a short kiss, then roughly bending her back over the table and prying her slime-glazed legs apart.");
+		if(pc.tallness < 54) output(" Given that you’re not the most vertically inclined [pc.raceShort], there’s a chair nearby that gives you ample position above her.");
+		output("\n\n<i>“So polite!”</i> The bubbly catgirl titters and grabs her tits in either hand, trill words tumbling from her tantalizingly pursed mouth. <i>“Oh, [pc.name]! You’ll make so many jealous! I hope you leave them no doubt of your ability...”</i>");
+		output("\n\n");
+		if(pc.isBimbo()) output("<i>“Naw, they’ll just wanna come have a round with me after I dick you really good!”</i> you chirp, wagging a [pc.finger].");
+		else if(pc.isBro()) output("<i>“If they doubt it, they can take your place when I’m done with you,”</i> you smile, totally self-assured.");
+		else if(pc.isNice()) output("<i>“That’s their problem,”</i> you whisper, stroking her waist and pinching a nipple, <i>“not ours, Roo.”</i>");
+		else if(pc.isMischievous()) output("<i>“They’ll be doubting their own before too long, mark my words!”</i> you laugh, <i>“so let’s focus on us right now. You’ve had this coming for a while methinks!”</i>");
+		else output("<i>“They’ll regret it if they try something,”</i> you snarl, casting a wary eye outwards. <i>“They will never be in this position,”</i> you finish, watching her shiver in adoration.");
+		if(flags["ROO_MILKED"] != undefined)
+		{
+			output("\n\n<i>“Shall we make it a creamier reward?”</i> she asks, grasping at a medipen from where she sat.");
+			processTime(2);
+			clearMenu();
+			addButton(0,"Yes",yesGetDatMilk,undefined,"Yes","You could use an extra drink!");
+			addButton(1,"No",noMilkNowRoocipher,undefined,"No","Maybe next time.");
+			return;
+		}
+	}
+	// Roo Gamegasms >=10
+	else
+	{
+		output("It’s your turn to stand" + (pc.tallness < 54 ? " and you need a boost to do it right, grabbing a nearby chair for support":"") + "; you tap the table and ask Roo to lie back, carefully grabbing her legs by the ankles and spreading her fuzzy limbs wide, exposing her dizzyingly engorged cunt, visibly steaming. Boiling pussyjuice drips from her overheated nethers, translucent and mouth-watering in shape, texture, and fragrance. She grips her breasts, losing her hands into plush, sweet titflesh, regarding you with a sanguine face. <i>“Let them all know, [pc.name], what I am to you right here... right now...”</i>");
+		if(pc.isBimbo()) output("\n\n<i>“No problem, sweetness! I’m gonna give your pussy the creamiest reward!”</i> you sing.");
+		else if(pc.isBro()) output("<i>“They’ll know that and then some,”</i> you grin, patting her thigh.");
+		else if(pc.isNice()) output("<i>“They’ll know what you </i>mean<i> to me,”</i> you reply, stroking her shimmery face, <i>“that’s all I want you to think about.”</i>");
+		else if(pc.isMischievous()) output("<i>“They don’t see anything but two sexy beasts about to fuck,”</i> you grin enthusiastically, <i>“all the better for us to go wild.”</i>");
+		else output("<i>“I’ll do that, and for you, too,”</i> you whisper, pinching her nipple.");
+
+		if(flags["ROO_MILKED"] != undefined) 
+		{
+			output(" <i>“Shall we make it a bit messier, too?”</i> she grins, producing a medipen.");
+			processTime(2);
+			clearMenu();
+			addButton(0,"Yes",yesGetDatMilk,undefined,"Yes","You could use an extra drink!");
+			addButton(1,"No",noMilkNowRoocipher,undefined,"No","Maybe next time.");
+			return;
+		}
+	}
+	processTime(5);
+	pc.lust(3);
+	clearMenu();
+	addButton(0,"Next",rooTableFuck);
+}
+
+//[Yes] // You could use an extra drink!
+public function yesGetDatMilk():void
+{
+	clearOutput();
+	showRoo();
+	author("William");
+	output("You give her an eager nod and Roo presses the injector to her neck, groaning voraciously. Her mouth salivates as a green goo roils and shunts into her body. She tosses the device away, the drug acting fast. She’s glassy-eyed and shivering in the span of three heartbeats. Her boobs tremble wetly and the first droplets of unnaturally produced lactic bounty trickle out through unpopped corks. <i>“Ohh, it’s... heavy...!”</i> she winces.");
+	output("\n\nBut just like before, her amazing tits swell into arm-swallowing mounds of flesh that visibly slosh with excessive bounty, far more squeezable than before having swollen up to G-cups again. Right now, she has the best boobies on Zheng Shi.");
+	output("\n\nAnd they’re all yours to play with.");
+	processTime(2);
+	IncrementFlag("ROO_MILKED");
+	clearMenu();
+	addButton(0,"Next",rooTableFuck,true);
+}
+
+//[No] // Maybe next time.
+public function noMilkNowRoocipher():void
+{
+	clearOutput();
+	showRoo();
+	author("William");
+	output("You pilfer the injector and set it out of her reach, shaking your head. <i>“I understand, [pc.name],”</i> she murmurs, giving herself back to you.");
+	clearMenu();
+	addButton(0,"Next",rooTableFuck,false);
+}
+
+// Merge
+public function rooTableFuck(milky:Boolean):void
+{
+	clearOutput();
+	showRoo();
+	author("William");
+	var x:int = pc.cockThatFits(rooCapacity());
+	if(x < 0) x = pc.smallestCockIndex();
+	// Normal Start
+	output("Roo does everything she can to present her superlative chest to you, silently demonstrating that you needn’t show any shame or restraint. All their size, all their weight, all their sumptuousness... just watching them react to her lightest movements feels right... feels enough...");
+	output("\n\nGrunting cutely, she scooches forward a bit so that her waist hangs off the table and her tails are freed, which are able to caress you around the neck and [pc.ears]. It’s a gesture of reassurance, and when they come close to your thigh-gripping hands, they wrap around your wrists and softly tug you to her " + (!milky ? "ample":"rotund") + " breasts, which now sit at eye-level with your blushing face, inches away.");
+	if(!pc.isChestExposed())
+	{
+		output("\n\nOnce you’re positioned for her needs, Roo divests you of your [pc.chestCovers] one piece at a time" + (pc.biggestTitSize() >= 1 ? ", exposing your [pc.breasts] for her own enjoyment":"") + ".");
+	}
+	else output("\n\nNow that you’re straddling her, her hands roam over your body" + (pc.biggestTitSize() >= 1 ? ", playing with your [pc.breasts] by pawing playfully at a [pc.nippleNoun]":"") + ".");
+	output("\n\nThe second your [pc.fingers] touch down on her " + (!milky ? "plump, well-rounded":"swollen, jiggly") + " tits you don’t want to ever let go. <i>“My nipples, too!”</i> she grins, pinching one and moaning. You can’t resist thrusting your [pc.face] into her cleavage, an incredible feeling of satisfaction washing over you from scalp to belly. She moves quickly to stroke your head{, threading [pc.hairColor] hair between her fingers, tousling [pc.hairs] and pulling in reminder of your purpose}. <i>“[pc.name], you can’t rest yet!”</i>");
+	output("\n\nYou reluctantly rise, mouth curling into a goofy smile. Caressing then squeezing, you marvel at how her boobs shake and overflow from inadequately sized palms that are better served clapping those puppies together. " + (milky ? "Doing so unleashes the pressure behind her teats, and broad, glistening arcs of milk shoot into the air and land messily on her, to be rubbed in by whoever’s hand gets there first.":"") + " Roo’s lips part and her jaw slackens; her slitted eyes shine with boobie-based bliss. Birdsong coos drift from her satin-red lips. The moments when her brain soft-locks are visible in her twitching irises, always glimmering when hit with short, sharp spikes of nipple-bound lust.");
+	output("\n\nShe was warm already, but you swear she’s getting hotter. Before your restraint totally vanishes, you massage her pert melons with inspiring rubs, swirling one hand clockwise and the other counter" + (milky ? ", puddling milk into her valley, abusing her nipples until she’s a milky momma shining in her own wetness":"") + ". Silky flesh bounces in your grasp; you’re feeling for her thick heartbeats, and holding your breath when she gasps for air, quivering beautifully underneath.");
+	output("\n\nPanting madly, you grab lady luck by her tits and smush them together, letting your fingers sink into dreamy fields of kaithrit bosom. " + (milky ? "Thin white arcs squirt upwards, sprinkling your cheek only to drip back down. Palmfuls of kitty-cream slough on the table in steadily increasing amounts. ":"") + "The sensitive kitten gladly moans, but in her hyper-aroused state it’s a much throatier purr than you’ve heard. She’s not a simple cat, but a ripe lioness waiting to be claimed. The sound inspires an animal reaction, and you knead hard enough to hurt" + (milky ? ", soaking your [pc.hands] in the alabaster droplets trickling over them":"") + ".");
+	output("\n\nHer deep pink sex blooms in submissive bliss, drizzling wet and warm sugar. The kaithrit’s gumball-like clit is vibrating skyward, coated in a cooling layer of warm juice. A discoloration spreads on the tabletop, expanding the more she’s teased. Roo instinctively wraps her arms around either side of her sweat" + (milky ? " and milk":"") + " slickened chest, giggling pleasure-drunk. <i>“Are you gonna play with them all day?”</i> she asks, one tail tickling your cheek. <i>“That’s fine with me. But just remember, when you cum our time’s up!”</i>");
+	output("\n\nThat’s fine with you; you don’t intend on busting your nut " + (!pc.isCrotchExposed() ? "in your pants":"on the table") + ".");
+
+	// Milky Roo
+	if(milky)
+	{
+		output("\n\nBut before you get started, you want just a little more time with this lactating feline. Milk spurts out with such ease that she’d make top dollar hooked up to a machine. You can tell the crowd loves it when you shift your grip to her throbbing areola and pull upwards, then go back down to <i>squeeze</i>, yanking her caps in eager, varying tugs that soon have her entire top coated in white. She looks hot, and she <i>feels</i> hot... and there’s still more in her fluctuant mammaries...");
+		output("\n\n...More to drink... you can’t resist pressing her nipples together and suckling from both at once. Superheated cream flows past your lips, rinsing and rejuvenating your palate before surging down into your thirsty gut. It feels like you’re gaining weight with every hungry gulp, and you almost consign yourself to living your life as an industrial-grade kitty-milker when you feel her massaging the rear of your head.");
+		output("\n\nShaking free, you finally turn your attentions to your own needs, ready to officially claim your prize.");
+		var ppBJMeow:PregnancyPlaceholder = new PregnancyPlaceholder();
+		ppBJMeow.createPerk("Fixed MilkQ", 2000, 0, 0, 0);
+		pc.milkInMouth(ppBJMeow);
+	}
+	processTime(15);
+	pc.lust(35);
+	clearMenu();
+	addButton(0,"Next",rooTableFuck2,milky);
+}
+
+public function rooTableFuck2(milky:Boolean = false):void
+{
+	clearOutput();
+	showRoo();
+	author("William");
+	var x:int = pc.cockThatFits(rooCapacity());
+	if(x < 0) x = pc.smallestCockIndex();
+	output("Thick, aching throbs pulse through your [pc.cocks]");
+	if(!pc.isCrotchExposed()) output(", demanding to be released, to taste the pussy-scented air and plumb its source. It’s a simple matter to pull your bottoms aside and introduce your cunt-stuffer" + (pc.hasCocks() ? "s":"") + " to the casino.");
+	else output(", so immovably erect that the smallest touches make you lurch forward involuntarily.");
+	output(" Roo rocks herself a little closer to your stiffened rod, bringing her haze of vaginal heat close enough to envelop the the [pc.cockHead " + x + "]. <i>“I can feel how hard you are without looking!”</i>");
+	output("\n\nSwallowing, you " + (pc.isTaur() ? "lift your front half up on the table and mount her, and she widens her crotch in acceptance":"grab her by the thighs, widening her crotch until her pussy modestly parts") + ". Fueled by mite impatience you line your [pc.cock " + x + "] up to her nectar-suffused pocket, sliding the [pc.cockHead " + x + "] between her chubby folds and glazing your pre-coated dick in her feminine moisture. Natural male and female lubricants come together to ready your breeding rod for its time-tested duty. <i>“Mmf...”</i> Roo moans, <i>“make sure you’re nice and ready. I might be a... little tight...”</i>");
+	pc.cockChange();
+	//repeat:
+	if(flags["ROO_TABLEFUCKED"] == undefined) output("\n\nFucking understatement!");
+	output("\n\nHer heart-melting smile lends a vigorous boost of speed to your preparation. Slathered in superheated syrup, you purposefully aim your rigid prong over her pussy and thrust forward across her delicate skin. Rubbing your [pc.cockType " + x + "] shaft over her clit in an elongated motion, you ‘bottom’ out, grinding your [pc.knotBallsHilt " + x + "] to her vulva");
+	if(pc.cocks[x].cLength() >= 12) output(" and wiggling your [pc.cockHeadBiggest " + x + "] into the lower entrance of her cleavage");
+	output(". Dilated cat’s eyes regard your member with deep affection and sensuous analysis. <i>“");
+	if(pc.cocks[x].cLength() < 7) output("You’ll be able to fit that all in perfectly! I’ll be hugging every inch from every side...");
+	else if(pc.cocks[x].cLength() < 13) output("Ooh, yours is so big, I bet it can’t fit in most girls! But I’m very wet... I think you can get it all inside me... I can’t wait!");
+	else output("Your cock is big enough to make others wish theirs was so... so large and powerful. Please be careful with me, okay?");
+	output("”</i>");
+	output("\n\nSliding back across her vanilla tummy, you rock your [pc.hips] and plant your [pc.cockHeadBiggest " + x + "] to her lust-slick tunnel. Taking a deep breath, you apply weight to your lower half and push in as you exhale. Your crown slips past the fattened entrance easily, already beginning to stretch her pliant and moldable muff. The dealer grabs both of her boobs, happily squealing the more [pc.dickSkin " + x + "] sinks into her pressurized depths.");
+	output("\n\nSeeping streams of honey drool over and under your most sensitive skin, agitating your passions, imbuing the desire to skewer her on your veiny girth. Roo gasps, shuddering nervelessly, voice rising in an orgasm that begins where your motions are finally arrested in her vibed-up pussy. ");
+	if(pc.cocks[x].cLength() < 7) output("You’re [pc.knotBallsHilt " + x + "]-deep in the clenching cat’s spread lips, and her glorious pussy is clutching super tight, almost painfully so. Were you any bigger, it might hurt!");
+	else if(pc.cocks[x].cLength() < 13) output("You nearly make it all the way, but her painfully tight clenching stops you. All it takes is an insistently firm thrust, and you socket her feminine folds with the rest up to the [pc.knotOrSheath " + x + "]. At her navel you can see the outline of your [pc.cockHead " + x + "], which just tapped her cervix.");
+	else output("Your too-big size spears her in more ways than one. Your sheer width and length strains her body far wider than it was meant to be taken, and several [pc.cockColor " + x + "] inches are left out never to be welcomed" + (pc.cocks[x].cType == GLOBAL.TYPE_EQUINE ? ", including your medial ring":"especially your [pc.knotOrSheath " + x + "]") + ".");
+	output("\n\n<i>“[pc.name]!”</i> she cries, her tails wrapping around your waist on genetic instinct. <i>“Take me! Mark me as yours!”</i> she yowls, mauling hands never far from her " + (milky ? "milk-squirting ":"") + "tits. Yours aren’t either" + (milky ? ", and you’re practically bathing yourself in her lurid bounty":"") + ".");
+	output("\n\nBucking against you weight she innately compels you to stuff her with all you’ve got and plunge your length in and out of her nubile form, something you try to do, slamming into her creamy haunches and rocking the table as you do it, but the resistance you face is outrageous!");
+	output("\n\nNo matter how hard you try to control your breathing or manage her needfully scissoring thighs, you can’t beat the tightening of her inner walls. Turns out you don’t need to. It’s a distraction from the baying crowds no doubt recording this event, all racing to get the highest views. The galaxy’s appetite for porn is as ravenous as this kaithrit’s unappeasable pussy.");
+	output("\n\nThe dealer’s pot clinches down on you like you just got caught robbing the place. The suckling nerves of her shameless mitten darken your vision and numb your loins. Pressure slowly fades into benignness, making it all the more urgent that you fuck her harder. So you do, jack-hammering back and forth, pumping her voluptuous frame as pinkish colors softly creep in on your consciousness" + (pc.balls > 0 ? ", amplified by the impact of your [pc.sack] to her nethers":"") + ".");
+	output("\n\nThough your [pc.cock " + x + "] is swimming in a bucket’s worth of lubricant her restraining hole holds tight like it’s slowly melded to you and you’re not fucking it, but fucking the entire body it’s part of. For a second that seems to be true, considering every spastic jerk throws Roo up and down. You’re not sure if she’s wriggling to purposefully push you back in when you manage to unholster even a few inches, but it’s not helping your case!");
+	output("\n\nYet, despite the firmness of her her cock-curtaining cunt, you do manage to fuck her addled tunnel with mindless relish. You’re not really sliding in or out, but squeezing your hips against one another in what must be a feral, depraved show to others. You decide, after your knuckles have gone white from " + (!pc.isTaur() ? "gripping so tight to her thighs":"to an imagined handhold") + ", that she’s just been cumming this entire time... that her rigged-up pussy has been oversensitized by a lifetime of obligated debauchery.");
+	output("\n\nInstead of working against the pain and focusing on it, you push it out with a monumental effort. At last you open your eyes, fully adjusted to the bulge-strangling vice of her sweltering channel. A little more blood makes it to your slut-taming " + (pc.cocks[x].cLength() < 12 ? "shaft":"pillar") + ", restoring some semblance of control and feeling. You can hear the squelches of her lurid cunt, feel the wave-like motions of her unrelaxed interior grabbing hold, fighting to pull you back in and drain you of your load.");
+	output("\n\nRoo’s legs " + (pc.isTaur() ? "firm themselves to your flanks":"lock around your waist") + " as possessive as her tails, undergirding the inward thrusts " + (pc.cocks[x].cLength() < 7 ? "that lunge close to ":"that bounce off ") + "her womb. The backstrokes have become a little easier. So much orgasmic honey gathers inside that it backblasts when enough vacant space is available, splashing your [pc.knotBallsHilt " + x + "] in heady liquid.");
+	// PC feline or barbed cock
+	if(pc.cocks[x].hasFlag(GLOBAL.FLAG_NUBBY) || pc.cocks[x].cType == GLOBAL.TYPE_FELINE)
+	{
+		output("\n\nFor a kaithrit, there’s no better than a cock of their race, and you came well-equipped for this molten hole. Every time you bury your [pc.cock " + x + "] in her aggressive twat, the soft, bristly nubs lining your shaft brush her insides that pleasure her so well it seems her pussy relents out of respectful mercy. For a short time anyway. When you hit her clit just right, it’s back to the suffocating compression.");
+	}
+	// PC suula or stinger-flagged cock
+	else if(pc.cocks[x].hasFlag(GLOBAL.FLAG_APHRODISIAC_LACED) || pc.cocks[x].cType == GLOBAL.TYPE_SUULA)
+	{
+		output("\n\nThis may just be a time you regret having an aphrodisiac-equipped penis. For a brief second you thought the application of sanity-eroding venom would confuse her hungry pussy, get it to cede more control to you. It doesn’t. Instead, Roo screams blissfully, roaring uncharacteristically. Her walls tighten to the point that pre backs up inside your urethra, double-layering the devilishly brilliant pressure eating away at your being.");
+	}
+	// Merge
+	output("\n\nSnapping back to sudden awareness, you realize that you just blacked out for a single second. It did nothing to slow your pace. Instead, that spot of rest kicks your brain into overdrive, and you’re punishing the pussy’s pussy harder. Your anguish up to this point vanishes. Roo’s femininity is being split with savage ferocity by your [pc.cock " + x + "], and you note that the more unclaimed inches she has, the more she whimpers in agonizing emptiness.");
+	output("\n\nBut you’re here, driving your turgid mast back inside and widening her hips to house it. You can’t blame her or her body for the way it cherishes your virile shaft. Roo’s cunt has been trained to delight in lonely, unaided orgasm, that now that it has someone to take charge and show it what it’s been missing, it’s released all of that bottled up desire, happily enjoying having a big, hot, sticky dick to grip tight to instead of the hollow nothingness you now occupy.");
+	// PC balls
+	if(pc.balls > 0)
+	{
+		output("\n\nAnd your [pc.ballsNoun], your ");
+		if(pc.ballDiameter() < 3) output("ample");
+		else if(pc.ballDiameter() < 5) output("hefty");
+		else output("tremendous");
+		output(" orbs, fervor-fattened and eager to unload, slap powerfully to her taint. When they swing you feel a shot of pre squirt out inside, glossing her with more [pc.cumColor] juice. You can’t imagine the torrid fire that’s been burning for so long, waiting for a mate like you to come and quench it’s endless desire just for one round. You know your subby kaithrit can feel the boiling load churning inside, can feel the ");
+		if(!pc.hasFur() && !pc.hasScales()) output("doughy");
+		else if(pc.hasFur()) output("furry");
+		else output("scaly");
+		output(" texture squirming and shifting in her vulnerable places. You know she, like you, can’t wait for it all come spurting and flooding out.");
+	}
+	// Merge
+	output("\n\nIn your frenzied state you hardly register lady libertine’s great big smile, her joy-inundated eyes staring only at you. You don’t feel the sweat dripping off you, you don’t even know you have an audience. Watching her knead her " + (milky ? "sopping-wet, milky ":"") + "tits and hold tight to you while orgasm urgently weaves inside you is enough. Soon, they all become insignificant details.");
+	output("\n\nOne hand scrambles above her head, reaching for a control at the table, and in that mind-bending, everything before this disappears to a vibration not a soul could ever prepare for. Flipping on her vibrators, her contracting pussy ignites and seizes, padlocking your [pc.cocks " + x + "]. She explodes in unfathomable orgasm while the tremulations flood into your nervous system. All you can do is slam one more time into the ecstatic, platinum-furred creature below you, and cum.");
+	// low cum (<1000mL)
+	if(pc.cumQ() < 1000)
+	{
+		output("\n\nOrgasm spills out and reality flashes before your eyes, incoherent sounds muted. All you know for sure is that your [pc.cocks] have opened, and [pc.cum] is spurting" + (pc.balls > 0 ? " on every clench of your [pc.ballsNoun]":"") + ". Your brain is only capable of comprehending things in images with your senses gone haywire, and the only one you’re able to conjure in your moment of release is the manic onrush of [pc.cumVisc] sperm being shepherded into Roo’s womb. You don’t think she’s fertile, but the fantasy that she may be, the imagination that she doesn’t belong to pirates... those thoughts help your ejaculations finish.");
+	}
+	// oodles of cum (1001-6999mL)
+	else if(pc.cumQ() < 7000)
+	{
+		output("\n\nRaging ropes of magma-hot [pc.cumNoun] erupt from your [pc.eachCockHead]. You’re spunking Roo with gouts of [pc.cumVisc], gushing seed. Unable to see or even think, only weird images come to mind of what’s going on. You understand just how powerful her vibrators are that even though you’re not the intended target, ropes of [pc.cumColor] sperm gush into her thirsty puss with a volume that easily inflates her belly, giving her a delightful pudge. In the recesses of your mind you hope it’s enough to satisfy her and yourself, and that you’ll walk away from this unscathed.");
+	}
+	// lots of cum (>7000mL)
+	else
+	{
+		output("\n\nRoo’s vibrators were meant only for her. They’re set a strength only she can handle. Yet the jolt of their activation, and the low hum they’ve reduced to, have both unleashed the proverbial kraken. The volume of [pc.cumNoun] pumping through [pc.eachCock] is enough to feed a family of galotians, and it’s more than enough [pc.cumVisc] jizz to round out her abdominals with a nut-stuffed bulge that suggests early pregnancy.");
+		output("\n\nNot that you can hear it. Your senses are on a climax-induced vacation, and your lagged brain is only capable of producing images to understand the muted world surrounding it. It senses your needful spunk battering her inner walls, collecting in the scant few spaces your dick isn’t in, and all subsequent shots shooting the previous loads further in and the rest of it back out. Yours is a gifted orgasm that lasts longer than most, every shot greater than the average loads of some races; every throb of goop, you can feel Roo’s legs tighten, ensuring she gets all you’ve got to give.");
+		flags["ROO_TEMP_CUM_STORAGE"] = 1;
+	}
+	processTime(30);
+	pc.orgasm();
+	//loadIn?
+	var ppBJMeow:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppBJMeow.createVagina();
+	ppBJMeow.loadInCunt(pc,0);
+	clearMenu();
+	addButton(0,"Next",rooTableFukkEpi,milky);
+}
+
+public function rooTableFukkEpi(milky:Boolean = false):void
+{
+	clearOutput();
+	showRoo();
+	author("William");
+	var x:int = pc.cockThatFits(rooCapacity());
+	if(x < 0) x = pc.smallestCockIndex();
+	output("You dare to open your eyes in the aftermath, finding a blurry existence waiting for you. Bright lights, flashing cameras, recording indicators... those are all there. You stumble back numb to everything, and miraculously manage to stay on your feet. You’re not in pain, you realize, you’re not suffering, you’re just... rebooting. Yeah...");
+	output("\n\nSomehow you slide your [pc.cock " + x + "] free of Roo, and, seeing her as the only thing comforting thing in the area, you fall face-first into her pillowy chest");
+	if(milky || flags["ROO_TEMP_CUM_STORAGE"] == 1)
+	{
+		output(", splattering ");
+		if(milky) output("milk");
+		if(milky && flags["ROO_TEMP_CUM_STORAGE"] == 1) output(" and ");
+		if(flags["ROO_TEMP_CUM_STORAGE"] == 1) output("cum");
+		output(" everywhere");
+	}
+	output(". You don’t care, you just want to lie here for a second. You can’t sleep... it’s a public place, right... but you’ve gotta catch your breath, fuck...");
+	output("\n\nMotherly strokes to your head gradually reactivate your brain functions, and you find the strength to look up, meeting Roo’s face. <i>“[pc.name],”</i> you hear, <i>“good [pc.boyGirl], good [pc.boyGirl]...”</i>");
+	output("\n\nShe helps you off her. The crowds have begun dispersing");
+	//, highCumV and multicock:
+	if(pc.cockTotal() > 1 && flags["ROO_TEMP_CUM_STORAGE"] == 1) output(" some of them wiping off the [pc.cumNoun]-geysering you nailed them with");
+	output(". Staff begin cleaning up the area and preparing their game room in ordinary fashion, giving you a few precious, unwatched seconds with Roo.");
+
+	flags["ROO_TEMP_CUM_STORAGE"] = undefined;
+	output("\n\n<i>“Sorry to " + (flags["ROO_TABLEFUCKED"] == undefined ? "catch you off guard":"hit you with that again") + "... you just looked like you needed a boost!”</i> She kisses your cheek, still stroking you with her wonderfully soft hand. <i>“Feel better, my " + (pc.mf("handsome","cute")) + " [pc.raceCuteShort]?”</i>");
+	output("\n\nHer laugh makes you laugh, and nod too. You’re still throbbing from the abuse of her pussy <i>and</i> her toys, and you’re fucking exhausted, but you’re plenty relieved.");
+
+	if(rooPantyProcChance()) 
+	{
+		processTime(15);
+		IncrementFlag("ROO_SEXED");
+		IncrementFlag("ROO_TABLEFUCKED");
+		pc.imbibeAlcohol(50);
+		addButton(0,"Next",rooPantyCollectScene,"tableFukk");
+	}
+	// Normal End
+	else
+	{
+		output("\n\n<i>“Well, we better clear out,”</i> she explains, surprisingly lucid and perky, <i>“gotta clean up... keep the cards shuffling... come back to do it tomorrow! Hope to see you again!”</i>");
+		output("\n\nShe hops down from the table and collects her clothing before meeting with security who guide her safely out, but not before she blows you a kiss. While you sit for a few minutes longer, a servant brings you your complimentary <i>Ruby Tether,</i> and you waste no time guzzling it down. Whether or not alcohol is conducive to recovery doesn’t matter, because that inveigling beverage gets you right out of the ditch you were in.");
+		output("\n\nYou fish through the effluence-coated table and collect your prize winnings too! # credits richer, you leave the game floor behind, still thinking about Roo. By the time you’re off, a new dealer has manned the rapidly cleaned table.");
+		output("\n\nHe isn’t anywhere near as appealing as the kaithrit before him.");
+		processTime(15);
+		IncrementFlag("ROO_SEXED");
+		IncrementFlag("ROO_TABLEFUCKED");
+		pc.imbibeAlcohol(50);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+}
 /*
-output("\n\n// Roo Gamegasms 4-9");
-output("\n\nYou lean down and slide your [pc.hands] under Roo’s armpits, lifting her light body up and drawing her into a short kiss, then roughly bending her back over the table and prying her slime-glazed legs apart. {tallness<54: Given that you’re not the most vertically inclined [pc.raceShort], there’s a chair nearby that gives you ample position above her.}");
-output("\n\n<i>“So polite!”</i> The bubbly catgirl titters and grabs her tits in either hand, trill words tumbling from her tantalizingly pursed mouth. <i>“Oh, [pc.name]! You’ll make so many jealous! I hope you leave them no doubt of your ability...”</i>");
-output("\n\n{bimboBroKindMischHard: <i>“Naw, they’ll just wanna come have a round with me after I dick you really good!”</i> you chirp, wagging a [pc.finger]. // <i>“If they doubt it, they can take your place when I’m done with you,”</i> you smile, totally self-assured. // <i>“That’s their problem,”</i> you whisper, stroking her waist and pinching a nipple, <i>“not ours, Roo.”</i> // <i>“They’ll be doubting their own before too long, mark my words!”</i> you laugh, <i>“so let’s focus on us right now. You’ve had this coming for a while methinks!”</i> // <i>“They’ll regret it if they try something,”</i> you snarl, casting a wary eye outwards. <i>“They will never be in this position,”</i> you finish, watching her shiver in adoration.}");
-output("\n\n{milkyRoo: <i>“Shall we make it a creamier reward?”</i> she asks, grasping at a medipen from where she sat.}");
-
-output("\n\n[Yes] // You could use an extra drink!");
-output("\n\nYou give her an eager nod and Roo presses the injector to her neck, groaning voraciously. Her mouth salivates as a green goo roils and shunts into her body. She tosses the device away, the drug acting fast. She’s glassy-eyed and shivering in the span of three heartbeats. Her boobs tremble wetly and the first droplets of unnaturally produced lactic bounty trickle out through unpopped corks. <i>“Ohh, it’s... heavy...!”</i> she winces.");
-output("\n\nBut just like before, her amazing tits swell into arm-swallowing mounds of flesh that visibly slosh with excessive bounty, far more squeezable than before having swollen up to G-cups again. Right now, she has the best boobies on Zheng Shi.");
-output("\n\nAnd they’re all yours to play with.");
-
-output("\n\n[No] // Maybe next time.");
-output("\n\nYou pilfer the injector and set it out of her reach, shaking your head. <i>“I understand, [pc.name],”</i> she murmurs, giving herself back to you.");
-
-output("\n\n// Roo Gamegasms >=10");
-output("\n\nIt’s your turn to stand{ tallness<54: and you need a boost to do it right, grabbing a nearby chair for support}; you tap the table and ask Roo to lie back, carefully grabbing her legs by the ankles and spreading her fuzzy limbs wide, exposing her dizzyingly engorged cunt, visibly steaming. Boiling pussyjuice drips from her overheated nethers, translucent and mouth-watering in shape, texture, and fragrance. She grips her breasts, losing her hands into plush, sweet titflesh, regarding you with a sanguine face. <i>“Let them all know, [pc.name], what I am to you right here... right now...”</i>");
-output("\n\n{bimboBroKindMischHard: <i>“No problem, sweetness! I’m gonna give your pussy the creamiest reward!”</i> you sing. // <i>“They’ll know that and then some,”</i> you grin, patting her thigh. // <i>“They’ll know what you </i>mean<i> to me,”</i> you reply, stroking her shimmery face, <i>“that’s all I want you to think about.”</i> // <i>“They don’t see anything but two sexy beasts about to fuck,”</i> you grin enthusiastically, <i>“all the better for us to go wild.”</i> // <i>“I’ll do that, and for you, too,”</i> you whisper, pinching her nipple.}");
-output("\n\n{milkyRoo: <i>“Shall we make it a bit messier, too?”</i> she grins, producing a medipen.}");
-
-output("\n\n[Yes] // You could use an extra drink!");
-output("\n\nYou give her an eager nod and Roo presses the injector to her neck, groaning voraciously. Her mouth salivates as a green goo roils and shunts into her body. She tosses the device away, the drug acting fast. She’s glassy-eyed and shivering in the span of three heartbeats. Her boobs tremble wetly and the first droplets of unnaturally produced lactic bounty trickle out through unpopped corks. <i>“Ohh, it’s... heavy...!”</i> she winces.");
-output("\n\nBut just like before, her amazing tits swell into arm-swallowing mounds of flesh that visibly slosh with excessive bounty, far more squeezable than before having swollen up to G-cups again. Right now, she has the best boobies on Zheng Shi.");
-output("\n\nAnd they’re all yours to play with.");
-
-output("\n\n[No] // Maybe next time.");
-output("\n\nYou pilfer the injector and set it out of her reach, shaking your head. <i>“I understand, [pc.name],”</i> she murmurs, giving herself back to you.");
-
-output("\n\n// Merge");
-
-output("\n\n// Normal Start");
-output("\n\nRoo does everything she can to present her superlative chest to you, silently demonstrating that you needn’t show any shame or restraint. All their size, all their weight, all their sumptuousness... just watching them react to her lightest movements feels right... feels enough...");
-output("\n\nGrunting cutely, she scooches forward a bit so that her waist hangs off the table and her tails are freed, which are able to caress you around the neck and [pc.ears]. It’s a gesture of reassurance, and when they come close to your thigh-gripping hands, they wrap around your wrists and softly tug you to her {ample/rotund} breasts, which now sit at eye-level with your blushing face, inches away.");
-output("\n\n{notExposed: Once you’re positioned for her needs, Roo divests you of your [pc.chestCovers] one piece at a time{ breasts:, exposing your [pc.breasts] for her own enjoyment. /exposed: Now that you’re straddling her, her hands roam over your body{ breasts:, playing with your [pc.breasts] by pawing playfully at a [pc.nippleNoun]}.}");
-output("\n\nThe second your [pc.fingers] touch down on her {plump, well-rounded/swollen, jiggly} tits you don’t want to ever let go. <i>“My nipples, too!”</i> she grins, pinching one and moaning. You can’t resist thrusting your [pc.face] into her cleavage, an incredible feeling of satisfaction washing over you from scalp to belly. She moves quickly to stroke your head{, threading [pc.hairColor] hair between her fingers, tousling [pc.hairs] and pulling in reminder of your purpose}. <i>“[pc.name], you can’t rest yet!”</i>");
-output("\n\nYou reluctantly rise, mouth curling into a goofy smile. Caressing then squeezing, you marvel at how her boobs shake and overflow from inadequately sized palms that are better served clapping those puppies together. {milkyRoo: Doing so unleashes the pressure behind her teats, and broad, glistening arcs of milk shoot into the air and land messily on her, to be rubbed in by whoever’s hand gets there first.} Roo’s lips part and her jaw slackens; her slitted eyes shine with boobie-based bliss. Birdsong coos drift from her satin-red lips. The moments when her brain soft-locks are visible in her twitching irises, always glimmering when hit with short, sharp spikes of nipple-bound lust.");
-output("\n\nShe was warm already, but you swear she’s getting hotter. Before your restraint totally vanishes, you massage her pert melons with inspiring rubs, swirling one hand clockwise and the other counter{, puddling milk into her valley, abusing her nipples until she’s a milky momma shining in her own wetness}. Silky flesh bounces in your grasp; you’re feeling for her thick heartbeats, and holding your breath when she gasps for air, quivering beautifully underneath.");
-output("\n\nPanting madly, you grab lady luck by her tits and smush them together, letting your fingers sink into dreamy fields of kaithrit bosom. {Thin white arcs squirt upwards, sprinkling your cheek only to drip back down. Palmfuls of kitty-cream slough on the table in steadily increasing amounts.} The sensitive kitten gladly moans, but in her hyper-aroused state it’s a much throatier purr than you’ve heard. She’s not a simple cat, but a ripe lioness waiting to be claimed. The sound inspires an animal reaction, and you knead hard enough to hurt{, soaking your [pc.hands] in the alabaster droplets trickling over them}.");
-output("\n\nHer deep pink sex blooms in submissive bliss, drizzling wet and warm sugar. The kaithrit’s gumball-like clit is vibrating skyward, coated in a cooling layer of warm juice. A discoloration spreads on the tabletop, expanding the more she’s teased. Roo instinctively wraps her arms around either side of her sweat {and milk} slickened chest, giggling pleasure-drunk. <i>“Are you gonna play with them all day?”</i> she asks, one tail tickling your cheek. <i>“That’s fine with me. But just remember, when you cum our time’s up!”</i>");
-output("\n\nThat’s fine with you, you don’t intend on busting your nut {in your pants/on the table}.");
-output("\n\n// Milky Roo");
-output("\n\nBut before you get started, you want just a little more time with this lactating feline. Milk spurts out with such ease that she’d make top dollar hooked up to a machine. You can tell the crowd loves it when you shift your grip to her throbbing areola and pull upwards, then go back down to <i>squeeze</i>, yanking her caps in eager, varying tugs that soon have her entire top coated in white. She looks hot, and she <i>feels</i> hot... and there’s still more in her fluctuant mammaries...");
-output("\n\n...More to drink... you can’t resist pressing her nipples together and suckling from both at once. Superheated cream flows past your lips, rinsing and rejuvenating your palate before surging down into your thirsty gut. It feels like you’re gaining weight with every hungry gulp, and you almost consign yourself to living your life as an industrial-grade kitty-milker when you feel her massaging the rear of your head.");
-output("\n\nShaking free, you finally turn your attentions to your own needs, ready to officially claim your prize.");
-
-output("\n\n[Next]");
-
-output("\n\n// Special Start:  6+ Gamegasms, Roo takes a milky drug (one-time only blurb)");
-output("\n\n<i>“I wanna give you something extra, [pc.name],”</i> Roo says, putting a hand to your [pc.chest] and reaching behind herself. On the dealer’s side of the fancy table she fumbles for a medipen among a few random objects. It’s filled with a bright green liquid that rolicks around its airtight container. <i>“Don’t worry, it’s for me. Keep your eyes wide open, okay?”</i>");
-output("\n\nPressing the hypo to her neck she hits the button and the fluid inside shunts instantly into her bloodstream. She flicks the useless device away and immediately groans. Her pupils dilate in separate timeframes and her boobs, her oh-so squeezable and lavish... lush...");
-output("\n\nThey’re getting bigger!");
-output("\n\nThe bunny-eared kitten’s voice fails her and she gets locked into a limp, groan. Her chest thrusts out and pearlescent white drops of kaithrit-flavored cream dribble out from her expanding swells. Her tits were just short of an F-cup, but they’re growing well past that and into G-cup territory, filling with unnatural amounts of purest-white milk. What surprises you the most is how they still aren’t sagging despite their chemically-induced bounty. They’re holding firm, taut, and audibly sloshing before your eyes.");
-output("\n\nRoo raises a finger to one sugarmound and your boner’s added inches {nearly thrust your meat through your [pc.crotchCovers]/throb out a [pc.cumVisc] strand of goop onto her crotch}. The carmine-colored cat regards your awestruck countenance with a tiny laugh as you struggle to {free your [pc.cocks] and} mount her. <i>“It’s a super-charged drug, little like lactaid. It doesn’t last long, but it does leave me rather burdened! Make sure you milk me really good! And... I can always get more...”</i> she giggles.");
-output("\n\nOh fuck.");
-
-output("\n\n[Next]");
-
-output("\n\nThick, aching throbs pulse through your [pc.cocks]{ notExposed:, demanding to be released, to taste the pussy-scented air and plumb its source. It’s a simple matter to pull your bottoms aside and introduce your cunt-stuffer{s} to the casino. /exposed:, so immovably erect that the smallest touches make you lurch forward involuntarily.} Roo rocks herself a little closer to your stiffened rod, bringing her haze of vaginal heat close enough to envelop the the [pc.cockHead]. <i>“I can feel how hard you are without looking!”</i>");
-output("\n\nSwallowing, you {taur: lift your front half up on the table and mount her, and she widens her crotch in acceptance /notTaur: grab her by the thighs, widening her crotch until her pussy modestly parts}. Fueled by mite impatience you line your [pc.cock] up to her nectar-suffused pocket, sliding the [pc.cockHead] between her chubby folds and glazing your pre-coated dick in her feminine moisture. Natural male and female lubricants come together to ready your breeding rod for its time-tested duty. <i>“Mmf...”</i> Roo moans, <i>“make sure you’re nice and ready. I might be a... little tight...”</i>");
-output("\n\n{repeat: Fucking understatement!}");
-output("\n\nHer heart-melting smile lends a vigorous boost of speed to your preparation. Slathered in superheated syrup, you purposefully aim your rigid prong over her pussy and thrust forward across her delicate skin. Rubbing your [pc.cockType] shaft over her clit in an elongated motion, you ‘bottom’ out, grinding your [pc.knotBallsHilt] to her vulva{ size>12: and wiggling your [pc.cockHeadBiggest] into the lower entrance of her cleavage.} Dilated cat’s eyes regard your member with deep affection and sensuous analysis. <i>“{cockSize<7: You’ll be able to fit that all in perfectly! I’ll be hugging every inch from every side... //<13: Ooh, yours is so big, I bet it can’t fit in most girls! But I’m very wet... I think you can get it all inside me... I can’t wait! //<17: Your cock is big enough to make others wish theirs was so... so large and powerful. Please be careful with me, okay?}”</i>");
-output("\n\nSliding back across her vanilla tummy, you rock your [pc.hips] and plant your [pc.cockHeadBiggest] to her lust-slick tunnel. Taking a deep breath, you apply weight to your lower half and push in as you exhale. Your crown slips past the fattened entrance easily, already beginning to stretch her pliant and moldable muff. The dealer grabs both of her boobs, happily squealing the more [pc.dickSkin] sinks into her pressurized depths.");
-output("\n\nSeeping streams of honey drool over and under your most sensitive skin, agitating your passions, imbuing the desire to skewer her on your veiny girth. Roo gasps, shuddering nervelessly, voice rising in an orgasm that begins where your motions are finally arrested in her vibed-up pussy. {size<7: You’re [pc.knotBallsHilt]-deep in the clenching cat’s spread lips, and her glorious pussy is clutching super tight, almost painfully so. Were you any bigger, it might hurt! /<13: You nearly make it all the way, but her painfully tight clenching stops you. All it takes is an insistently firm thrust, and you socket her feminine folds with the rest up to the [pc.knotOrSheath]. At her navel you can see the outline of your [pc.cockHeadBiggest], which just tapped her cervix. /<17: Your too-big size spears her in more ways than one. Your sheer width and length strains her body far wider than it was meant to be taken, and several [pc.cockColor] inches are left out never to be welcomed{, including your medial ring/especially your [pc.knotOrSheath]}.}");
-output("\n\n<i>“[pc.name]!”</i> she cries, her tails wrapping around your waist on genetic instinct. <i>“Take me! Mark me as yours!”</i> she yowls, mauling hands never far from her {milk-squirting} tits. Yours aren’t either{, and you’re practically bathing yourself in her lurid bounty}.");
-output("\n\nBucking against you weight she innately compels you to stuff her with all you’ve got and plunge your length in and out of her nubile form, something you try to do, slamming into her creamy haunches and rocking the table as you do it, but the resistance you face is outrageous!");
-output("\n\nNo matter how hard you try to control your breathing or manage her needfully scissoring thighs, you can’t beat the tightening of her inner walls. Turns out you don’t need to. It’s a distraction from the baying crowds no doubt recording this event, all racing to get the highest views. The galaxy’s appetite for porn is as ravenous as this kaithrit’s unappeasable pussy.");
-output("\n\nThe dealer’s pot clinches down on you like you just got caught robbing the place. The suckling nerves of her shameless mitten darken your vision and numb your loins. Pressure slowly fades into benignness, making it all the more urgent that you fuck her harder. So you do, jack-hammering back and forth, pumping her voluptuous frame as pinkish colors softly creep in on your consciousness{, balls: amplified by the impact of your [pc.sack] to her nethers}.");
-output("\n\nThough your [pc.cock] is swimming in a bucket’s worth of lubricant her restraining hole holds tight like it’s slowly melded to you and you’re not fucking it, but fucking the entire body it’s part of. For a second that seems to be true, considering every spastic jerk throws Roo up and down. You’re not sure if she’s wriggling to purposefully push you back in when you manage to unholster even a few inches, but it’s not helping your case!");
-output("\n\nYet, despite the firmness of her her cock-curtaining cunt, you do manage to fuck her addled tunnel with mindless relish. You’re not really sliding in or out, but squeezing your hips against one another in what must be a feral, depraved show to others. You decide, after your knuckles have gone white from {gripping so tight to her thighs /taur: to an imagined handhold}, that she’s just been cumming this entire time... that her rigged-up pussy has been oversensitized by a lifetime of obligated debauchery.");
-output("\n\nInstead of working against the pain and focusing on it, you push it out with a monumental effort. At last you open your eyes, fully adjusted to the bulge-strangling vice of her sweltering channel. A little more blood makes it to your slut-taming {shaft/pillar}, restoring some semblance of control and feeling. You can hear the squelches of her lurid cunt, feel the wave-like motions of her unrelaxed interior grabbing hold, fighting to pull you back in and drain you of your load.");
-output("\n\nRoo’s legs {taur: firm themselves to your flanks /notTaur: lock around your waist} as possessive as her tails, undergirding the inward thrusts {size>7: that lunge close to />12: that bounce off} her womb. The backstrokes have become a little easier. So much orgasmic honey gathers inside that it backblasts when enough vacant space is available, splashing your [pc.knotBallsHilt] in heady liquid.");
-output("\n\n// PC feline or barbed cock");
-output("\n\nFor a kaithrit, there’s no better than a cock of their race, and you came well-equipped for this molten hole. Every time you bury your [pc.cock] in her aggressive twat, the soft, bristly nubs lining your shaft brush her insides that pleasure her so well it seems her pussy relents out of respectful mercy. For a short time anyway. When you hit her clit just right, it’s back to the suffocating compression.");
-output("\n\n// PC suula or stinger-flagged cock");
-output("\n\nThis may just be a time you regret having an aphrodisiac-equipped penis. For a brief second you thought the application of sanity-eroding venom would confuse her hungry pussy, get it to cede more control to you. It doesn’t. Instead, Roo screams blissfully, roaring uncharacteristically. Her walls tighten to the point that pre backs up inside your urethra, double-layering the devilishly brilliant pressure eating away at your being.");
-output("\n\n// Merge");
-output("\n\nSnapping back to sudden awareness, you realize that you just blacked out for a single second. It did nothing to slow your pace. Instead, that spot of rest kicks your brain into overdrive, and you’re punishing the pussy’s pussy harder. Your anguish up to this point vanishes. Roo’s femininity is being split with savage ferocity by your [pc.cock], and you note that the more unclaimed inches she has, the more she whimpers in agonizing emptiness.");
-output("\n\nBut you’re here, driving your turgid mast back inside and widening her hips to house it. You can’t blame her or her body for the way it cherishes your virile shaft. Roo’s cunt has been trained to delight in lonely, unaided orgasm, that now that it has someone to take charge and show it what it’s been missing, it’s released all of that bottled up desire, happily enjoying having a big, hot, sticky dick to grip tight to instead of the hollow nothingness you now occupy.");
-output("\n\n// PC balls");
-output("\n\nAnd your [pc.ballsNoun], your {ample/hefty/tremendous} orbs, fervor-fattened and eager to unload, slap powerfully to her taint. When they swing you feel a shot of pre squirt out inside, glossing her with more [pc.cumColor] juice. You can’t imagine the torrid fire that’s been burning for so long, waiting for a mate like you to come and quench it’s endless desire just for one round. You know your subby kaithrit can feel the boiling load churning inside, can feel the {doughy/furry/scaly} texture squirming and shifting in her vulnerable places. You know she, like you, can’t wait for it all come spurting and flooding out.");
-output("\n\n// Merge");
-output("\n\nIn your frenzied state you hardly register lady libertine’s great big smile, her joy-inundated eyes staring only at you. You don’t feel the sweat dripping off you, you don’t even know you have an audience. Watching her knead her {sopping-wet, milky} tits and hold tight to you while orgasm urgently weaves inside you is enough. Soon, they all become insignificant details.");
-output("\n\nOne hand scrambles above her head, reaching for a control at the table, and in that mind-bending, everything before this disappears to a vibration not a soul could ever prepare for. Flipping on her vibrators, her contracting pussy ignites and seizes, padlocking your [pc.cock]. She explodes in unfathomable orgasm while the tremulations flood into your nervous system. All you can do is slam one more time into the ecstatic, platinum-furred creature below you, and cum.");
-output("\n\n// low cum (<1000mL)");
-output("\n\nOrgasm spills out and reality flashes before your eyes, incoherent sounds muted. All you know for sure is that your [pc.cocks] have opened, and [pc.cum] is spurting {on every clench of your [pc.ballsNoun]}. Your brain is only capable of comprehending things in images with your senses gone haywire, and the only one you’re able to conjure in your moment of release is the manic onrush of [pc.cumVisc] sperm being shepherded into Roo’s womb. You don’t think she’s fertile, but the fantasy that she may be, the imagination that she doesn’t belong to pirates... those thoughts help your ejaculations finish.");
-output("\n\n// oodles of cum (1001-6999mL)");
-output("\n\nRaging ropes of magma-hot [pc.cumNoun] erupt from your [pc.eachCockHead]. You’re spunking Roo with gouts of [pc.cumVisc], gushing seed. Unable to see or even think, only weird images come to mind of what’s going on. You understand just how powerful her vibrators are that even though you’re not the intended target, ropes of [pc.cumColor] sperm gush into her thirsty puss with a volume that easily inflates her belly, giving her a delightful pudge. In the recesses of your mind you hope it’s enough to satisfy her and yourself, and that you’ll walk away from this unscathed.");
-output("\n\n// lots of cum (>7000mL)");
-output("\n\nRoo’s vibrators were meant only for her. They’re set a strength only she can handle. Yet the jolt of their activation, and the low hum they’ve reduced to, have both unleashed the proverbial kraken. The volume of [pc.cumNoun] pumping through [pc.eachCock] is enough to feed a family of galotians, and it’s more than enough [pc.cumVisc] jizz to round out her abdominals with a nut-stuffed bulge that suggests early pregnancy.");
-output("\n\nNot that you can hear it. Your senses are on a climax-induced vacation, and your lagged brain is only capable of producing images to understand the muted world surrounding it. It senses your needful spunk battering her inner walls, collecting in the scant few spaces your dick isn’t in, and all subsequent shots shooting the previous loads further in and the rest of it back out. Yours is a gifted orgasm that lasts longer than most, every shot greater than the average loads of some races; every throb of goop, you can feel Roo’s legs tighten, ensuring she gets all you’ve got to give.");
-
-output("\n\n[Next]");
-
-output("\n\nYou dare to open your eyes in the aftermath, finding a blurry existence waiting for you. Bright lights, flashing cameras, recording indicators... those are all there. You stumble back numb to everything, and miraculously manage to stay on your feet. You’re not in pain, you realize, you’re not suffering, you’re just... rebooting. Yeah...");
-output("\n\nSomehow you slide your [pc.cock] free of Roo, and, seeing her as the only thing comforting thing in the area, you fall face-first into her pillowy chest{, splattering {milk/cum/milk and cum} everywhere}. You don’t care, you just want to lie here for a second. You can’t sleep... it’s a public place, right... but you’ve gotta catch your breath, fuck...");
-output("\n\nMotherly strokes to your head gradually reactivate your brain functions, and you find the strength to look up, meeting Roo’s face. <i>“[pc.name],”</i> you hear, <i>“good [pc.boyGirl], good [pc.boyGirl]...”</i>");
-output("\n\nShe helps you off her. The crowds have begun dispersing{, highCumV and multicock: some of them wiping off the [pc.cumNoun]-geysering you nailed them with}. Staff begin cleaning up the area and preparing their game room in ordinary fashion, giving you a few precious, unwatched seconds with Roo.");
-output("\n\n<i>“Sorry to {catch you off guard/hit you with that again}... you just looked like you needed a boost!”</i> She kisses your cheek, still stroking you with her wonderfully soft hand. <i>“Feel better, my {handsome/cute} [pc.raceCuteShort]?”</i>");
-output("\n\nHer laugh makes you laugh, and nod too. You’re still throbbing from the abuse of her pussy <i>and</i> her toys, and you’re fucking exhausted, but you’re plenty relieved.");
-output("\n\n// Normal End");
-output("\n\n<i>“Well, we better clear out,”</i> she explains, surprisingly lucid and perky, <i>“gotta clean up... keep the cards shuffling... come back to do it tomorrow! Hope to see you again!”</i>");
-output("\n\nShe hops down from the table and collects her clothing before meeting with security who guide her safely out, but not before she blows you a kiss. While you sit for a few minutes longer, a servant brings you your complimentary <i>Ruby Tether,</i> and you waste no time guzzling it down. Whether or not alcohol is conducive to recovery doesn’t matter, because that inveigling beverage gets you right out of the ditch you were in.");
-output("\n\nYou fish through the effluence-coated table and collect your prize winnings too! # credits richer, you leave the game floor behind, still thinking about Roo. By the time you’re off, a new dealer has manned the rapidly cleaned table.");
-output("\n\nHe isn’t anywhere near as appealing as the kaithrit before him.");
-output("\n\n[Special Event - 10+ Gamegasms (ONE-TIME ONLY)]");
-output("\n\n// After Roo gamegasm’s for the 10th time, then no matter what the PC picks, this sequence will override/add on to the endings of sex/leaving.");
-output("\n\n// This event will not trigger until the PC has had sex with her once in any fashion, and has exhausted all of her talk options.");
-
-output("\n\n<i>“That’s good,”</i> she nods, <i>“because I have something I need to tell you, and something else I wish for you to have.”</i> Roo strides around the table and back, collecting something you can’t see. She hides it behind her back coyly.");
-output("\n\nA degree of worry builds inside, but you wait patiently for her to continue. <i>“You asked me how I came to be here. I can’t answer that.”</i> She kneels down in front of you, a dour smile cresting her features. <i>“But I want you to know that I am not unhappy, that I don’t begrudge any of this. Especially not after meeting you.”</i>");
-output("\n\nHer arms weave around and she presents you something... red...");
-output("\n\n...her bright red panties.");
-output("\n\n<i>“I love the game, and I love the job. Nobody else has ever come as close as you have. You could point your finger to the sky, and instead of seeing the moon or the star, they’d only be able to look at your finger.”</i> She grins goofily. <i>“Sorry, it’s just a silly compliment. I don’t want you to get attached to me or anything, if you were asking that question back then because you were worried for me.”</i>");
-output("\n\n{bimboKindMisch: You were, and you emphasize that. All you get out of her is a shrug of the shoulders. /broHard: You nod lightly, not committing to an answer.}");
-output("\n\n<i>“As long as you’re happy, then I’m happy. It’s how I feel for anyone who comes here,”</i> she smiles as you take her underwear. <i>“When I first saw you I didn’t see a pirate, a killer... I don’t see anything of this place or the usual clientele in you. That’s why I was even happier when you began to win.”</i>");
-output("\n\nShe stands finally, refulgent in splendid nudity. <i>“Any time you come back, I’ll treat you to a show. So long as you win!”</i> She wags a playful finger. <i>“And don’t go thinking I didn’t appreciate the sentiment either way. I’ll be alright, you’ve got my word on that!”</i>");
-output("\n\nRoo turns to gather her things while you hastily pocket her lingerie, lest security take it from you. <i>“Just see me as I am: a funny-looking kaithrit.”</i> A blown kiss and a heartful wave later, she’s gone.");
-output("\n\nHer clarity still lingers, overriding the effect of the free drink you’re given. You wander off with your earnings and your fragrant bonus{, bimboKindMisch: thinking her situation a little morose. You doubt you’ll learn anything more of that cat, but if she has that attitude every day, she’ll surely be alright /broHard: thinking little of her situation. You didn’t learn much in the end, but you’re still happy to accept her graces, wondering when next you should try to earn them}...");
-
-output("\n\n<b>You got Roo’s panties!</b>");
-output("\n\n//Satiny, bright red panties with ribbony side-ties.");
-
-
 
 output("\n\n[Leave/Done Playing]");
 output("\n\n// Tooltip1: This isn’t for you.");
