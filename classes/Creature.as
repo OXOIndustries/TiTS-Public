@@ -3057,6 +3057,11 @@
 				case "guyGirl":
 					buffer = mf("guy","girl");
 					break;
+				case "daddy":
+				case "mommy":
+				case "daddyMommy":
+					buffer = mf("daddy", "mommy");
+					break;
 				case "cockShape":
 				case "cockshape":
 				case "cockType":
