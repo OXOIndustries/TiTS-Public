@@ -10004,54 +10004,57 @@
 				vaginas[arg].delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 			}
 		}
-		public function vaginalPuffiness(arg: int = 0): Number {
-			if (vaginas.length <= 0) return 0;
+		public function vaginalPuffiness(arg: int = 0, flagOnly:Boolean = false): Number {
+			if(vaginas.length <= 0) return 0;
 			var puffScore:Number = 0;
-			if(this is PlayerCharacter && arg == 0 && hasStatusEffect("Mimbrane Pussy"))
+			if(!flagOnly)
 			{
-				puffScore += (this as PlayerCharacter).mimbranePuffiness("Mimbrane Pussy");
+				if(this is PlayerCharacter && arg == 0 && hasStatusEffect("Mimbrane Pussy"))
+				{
+					puffScore += (this as PlayerCharacter).mimbranePuffiness("Mimbrane Pussy");
+				}
+				if(vaginas[arg].type == GLOBAL.TYPE_EQUINE) puffScore += 1;
+				if(vaginas[arg].type == GLOBAL.TYPE_MOUTHGINA) puffScore += 1;
 			}
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) puffScore += 3;
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) puffScore += 2;
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffScore += 1;
-			if(vaginas[arg].type == GLOBAL.TYPE_EQUINE) puffScore += 1;
-			if(vaginas[arg].type == GLOBAL.TYPE_MOUTHGINA) puffScore += 1;
 			
 			return puffScore;
 		}
-		public function puffiestVaginaIndex(): int {
+		public function puffiestVaginaIndex(flagOnly:Boolean = false): int {
 			if (vaginas.length <= 1) return -1;
 			var index: Number = 0;
 			for(var i:int = 0; i < vaginas.length; i++)
 			{
-				if (vaginalPuffiness(index) < vaginalPuffiness(i)) index = i;
+				if (vaginalPuffiness(index, flagOnly) < vaginalPuffiness(i, flagOnly)) index = i;
 			}
 			return index;
 		}
-		public function flattestVaginaIndex(): int {
+		public function flattestVaginaIndex(flagOnly:Boolean = false): int {
 			if (vaginas.length <= 1) return -1;
 			var index: Number = 0;
 			for(var i:int = 0; i < vaginas.length; i++)
 			{
-				if (vaginalPuffiness(index) > vaginalPuffiness(i)) index = i;
+				if (vaginalPuffiness(index, flagOnly) > vaginalPuffiness(i, flagOnly)) index = i;
 			}
 			return index;
 		}
-		public function puffiestVaginalPuffiness(): Number {
+		public function puffiestVaginalPuffiness(flagOnly:Boolean = false): Number {
 			if(vaginas.length <= 0) return 0;
-			var puffScore:Number = vaginalPuffiness(0);
+			var puffScore:Number = vaginalPuffiness(0, flagOnly);
 			for(var i:int = 0; i < vaginas.length; i++)
 			{
-				if (puffScore < vaginalPuffiness(i)) puffScore = vaginalPuffiness(i);
+				if (puffScore < vaginalPuffiness(i, flagOnly)) puffScore = vaginalPuffiness(i, flagOnly);
 			}
 			return puffScore;
 		}
-		public function flattestVaginalPuffiness(): Number {
+		public function flattestVaginalPuffiness(flagOnly:Boolean = false): Number {
 			if(vaginas.length <= 0) return 0;
-			var puffScore:Number = vaginalPuffiness(0);
+			var puffScore:Number = vaginalPuffiness(0, flagOnly);
 			for(var i:int = 0; i < vaginas.length; i++)
 			{
-				if (puffScore > vaginalPuffiness(i)) puffScore = vaginalPuffiness(i);
+				if (puffScore > vaginalPuffiness(i, flagOnly)) puffScore = vaginalPuffiness(i, flagOnly);
 			}
 			return puffScore;
 		}
@@ -19316,6 +19319,23 @@
 			
 			return -1;
 		}
+		public function findUsedPregnancySlot(type:uint):int
+		{
+			if (type == PREGSLOT_ANY || type == PREGSLOT_VAG)
+			{
+				for (var i:int = 0; i < vaginas.length; i++)
+				{
+					if ((pregnancyData[i] as PregnancyData).pregnancyType != "") return i;
+				}
+			}
+			
+			if (type == PREGSLOT_ANY || type == PREGSLOT_ASS)
+			{
+				if ((pregnancyData[3] as PregnancyData).pregnancyType != "") return 3;
+			}
+			
+			return -1;
+		}
 		
 		//Used for ovipositors
 		public var eggs: int = 0;
@@ -22096,6 +22116,13 @@
 							}
 						}
 						break;
+					case "Undetected Cooties":
+					case "Cooties":
+						if(this is PlayerCharacter)
+						{
+							kGAMECLASS.cootiesProcGoooo(deltaT, maxEffectLength, doOut, this, thisStatus);
+						}
+						break;
 					case "Undetected Sneezing Tits":
 					case "Sneezing Tits":
 						if(this is PlayerCharacter)
@@ -22401,6 +22428,11 @@
 					if(victim.hasSSTD("Sneezing Tits", true)) { /* Already have it! */ }
 					else victim.createStatusEffect("Undetected Sneezing Tits", 0, 0, 0, 0, true, "Icon_Boob_Torso", "Hidden Sneezing Tits infection!", false, 10080, 0xFF69B4);
 					break;
+				case "Undetected Cooties":
+					if(victim.hasSSTD("Cooties", true)) { /* Already have it! */ }
+					else victim.createStatusEffect("Undetected Cooties", 0, 0, 0, 0, true, "Icon_Boob_Torso", "Hidden Cooties infection!", false, 4320, 0xFF69B4);
+					break;
+
 			}
 		}
 		public function sstdPurgeCheck(deltaT:uint, doOut:Boolean):void

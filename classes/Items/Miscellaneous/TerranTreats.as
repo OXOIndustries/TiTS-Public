@@ -90,35 +90,45 @@
 					target.createStatusEffect("Wool Removal");
 					changes++;
 				}
-				//Remove fur/scales:
-				if((pc.skinType == GLOBAL.SKIN_TYPE_FUR || pc.skinType == GLOBAL.SKIN_TYPE_SCALES) && rand(3) == 0 && changes < changeLimit)
+				// Skin type change
+				if(pc.skinType != GLOBAL.SKIN_TYPE_SKIN && rand(3) == 0 && changes < changeLimit)
 				{
-					kGAMECLASS.output("\n\nYou feel itchy, and begin to scratch at your [pc.skinFurScales] only to feel ");
-					if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) kGAMECLASS.output("it");
-					else kGAMECLASS.output("them");
-					kGAMECLASS.output(" come away under your fingers, ");
-					if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) kGAMECLASS.output("fur");
-					else kGAMECLASS.output("scales");
-					kGAMECLASS.output(" falling in clumps until the new, smooth [pc.skinTone] skin underneath is exposed.");
-					pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
-					pc.clearSkinFlags();
-					changes++;
-				}
-				//Remove latex skin (if not locked by perk):
-				if(pc.skinType == GLOBAL.SKIN_TYPE_LATEX && pc.hasStatusEffect("Latex Skin") && rand(3) == 0 && changes < changeLimit)
-				{
-					if(!pc.hasPerk("Black Latex"))
+					if(target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN))
 					{
-						kGAMECLASS.output("\n\nYour skin heats up and then tingles as you feel goosebumps run across it.");
-						pc.addStatusValue("Latex Skin", 1, -1);
-						if(pc.statusEffectv1("Latex Skin") > 0) kGAMECLASS.output(" Strange... It looks a little less shiny now.");
-						else
+						// Remove latex skin (if not locked by perk):
+						if(pc.skinType == GLOBAL.SKIN_TYPE_LATEX && pc.hasStatusEffect("Latex Skin"))
 						{
-							kGAMECLASS.output(".. and just like that, the remaining shininess evaporates off its surface, making your skin appear very much normal. <b>Your skin is no longer made of latex!</b>");
+							kGAMECLASS.output("\n\nYour skin heats up and then tingles as you feel goosebumps run across it.");
+							pc.addStatusValue("Latex Skin", 1, -1);
+							if(pc.statusEffectv1("Latex Skin") > 0) kGAMECLASS.output(" Strange... It looks a little less shiny now.");
+							else
+							{
+								kGAMECLASS.output(".. and just like that, the remaining shininess evaporates off its surface, making your skin appear very much normal. <b>Your skin is no longer made of latex!</b>");
+								pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+								pc.clearSkinFlags();
+								pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
+								pc.removeStatusEffect("Latex Skin");
+							}
+						}
+						// Remove fur/scales:
+						else if(pc.skinType == GLOBAL.SKIN_TYPE_FUR || pc.skinType == GLOBAL.SKIN_TYPE_SCALES)
+						{
+							kGAMECLASS.output("\n\nYou feel itchy, and begin to scratch at your [pc.skinFurScales] only to feel ");
+							if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) kGAMECLASS.output("it");
+							else kGAMECLASS.output("them");
+							kGAMECLASS.output(" come away under your fingers, ");
+							if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) kGAMECLASS.output("fur");
+							else kGAMECLASS.output("scales");
+							kGAMECLASS.output(" falling in clumps until the new, smooth [pc.skinTone] skin underneath is exposed.");
 							pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
 							pc.clearSkinFlags();
-							pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
-							pc.removeStatusEffect("Latex Skin");
+						}
+						// Generic
+						else
+						{
+							kGAMECLASS.output("\n\nYou feel itchy, and begin to scratch at your [pc.skinFurScales] only to feel the [pc.skinNoun] come away under your fingers, falling in clumps until the new, smooth [pc.skinTone] skin underneath is exposed. <b>You now have normal skin!</b>");
+							pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+							pc.clearSkinFlags();
 						}
 						changes++;
 					}

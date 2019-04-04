@@ -313,7 +313,7 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 		faps.push(fap);
 	}
 
-	if (hasGooArmor())
+	if (hasGooArmor(true))
 	{
 		fap = new FapCommandContainer();
 		fap.text = "Goo Dicks";

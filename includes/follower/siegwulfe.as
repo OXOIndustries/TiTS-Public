@@ -43,9 +43,9 @@ public function siegwulfeIsCrew():Boolean
 	if(flags["WULFE_ON_SHIP"] != undefined) return flags["WULFE_ON_SHIP"];
 	return false;
 }
-public function hasSiegwulfe():Boolean
+public function hasSiegwulfe(nearby:Boolean = false):Boolean
 {
-	if(InShipInterior() && (pc.hasItemInStorageByClass(SiegwulfeItem) || siegwulfeIsCrew())) return true;
+	if(pc.hasItemInStorageByClass(SiegwulfeItem) || siegwulfeIsCrew()) return (nearby ? InShipInterior() : true);
 	return hasSiegwulfeOnSelf();
 }
 public function hasSiegwulfeOnSelf():Boolean

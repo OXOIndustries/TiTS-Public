@@ -152,6 +152,10 @@ public function zhengMinesEncounterBonus():Boolean
 	//If no combat, MAUS!
 	if(flags["MAUS_MECHANIC_DISABLED"] == undefined && flags["MINING_ROBOT_ENCOUNTERS"] != undefined && !pc.hasKeyItem("Zheng Shi RFID Badge"))
 	{
+		// Check for button space. If not space on top button row, no mouse.
+		var mouseBtn:int = 0; 
+		for(mouseBtn = 0; mouseBtn < 5; mouseBtn++) { if(!hasButton(mouseBtn)) break; }
+		if(mouseBtn >= 5) return false;
 		//Move Mouse
 		if((rand(20) == 0) && !pc.hasStatusEffect("Maus CD"))
 		{
@@ -162,7 +166,7 @@ public function zhengMinesEncounterBonus():Boolean
 		if(flags["MAUS_LOCALE"] == currentLocation)
 		{
 			output("\n\nA pair of mousy ears peaks out over the bulk of a busted mining robot. Half its circuits are splayed across the ground like spilled spaghetti, and more join the pile with each passing moment. The caustic curses coming from behind the ill-used metal could strip industrial paint.");
-			addButton(0,"Investigate",investageDatMouseMechanicYo,undefined,"Investigate","This probably won’t lead to a fight. Probably. Maybe.");
+			addButton(mouseBtn,"Investigate",investageDatMouseMechanicYo,undefined,"Investigate","This probably won’t lead to a fight. Probably. Maybe.");
 		}
 	}
 	return false;
@@ -970,7 +974,7 @@ public function investageDatMouseMechanicYo():void
 	}
 	else
 	{
-		output("You approach the mouse-girl oncemore. This time, the rodenian looks up almost immediately. <i>“You again? Whaddya want?”</i>");
+		output("You approach the mouse-girl once more. This time, the rodenian looks up almost immediately. <i>“You again? Whaddya want?”</i>");
 		rodentTalkTopics();
 	}
 }

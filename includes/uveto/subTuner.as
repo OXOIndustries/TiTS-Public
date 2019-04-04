@@ -3083,7 +3083,7 @@ public function randomSubTunerShit():void
 	else if(rand(2) == 0)
 	{
 		buffer += "You go rigid for a moment as you’re walking as a shock of need and heat hits your loins before quickly fading, leaving you panting.";
-		buffer += "\n\nAfter trying to figure out what happened, you tug at the collar around your neck and remember the special function Belle gave it and wonder it the thing is actually off or not.";
+		buffer += "\n\nAfter trying to figure out what happened, you tug at the collar around your neck and remember the special function Belle gave it and wonder if the thing is actually off or not.";
 		pc.lust(10);
 	}
 	//4 (Requires the PC to have fucked Saec):

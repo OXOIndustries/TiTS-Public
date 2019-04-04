@@ -229,11 +229,11 @@
 			
 			var target:Creature = arg[0];
 			var x:int = arg[1];
-			var change:int = rand(9);
+			var change:int = rand(10);
 			var change2:int = -1;
 			if( change >= 5 )			//chance of extra transformation
 			{
-				change2 = rand(4);		//(0~4)
+				change2 = rand(5);		//(0~4)
 				change -= 5;			//(0~4)
 			}
 			var hasChanged:Boolean = false;
@@ -254,9 +254,9 @@
 				
 				if( target.hasCock() && (target.totalCocks() > 0) && (target.cocks[x].cLengthRaw > cockSizeLimit) ) //Not applicable to cockvine tail
 				{
-					if( target.cocks[x].cLengthRaw > 10 ) cockChange = Math.round(target.cocks[x].cLengthRaw/4) + rand(5)/10;
-					else cockChange = (0.5 + rand(5)/10);
-					if( target.hasPerk("Mini") ) cockChange += (0.5 + rand(5)/10);
+					if( target.cocks[x].cLengthRaw > 10 ) cockChange = Math.round(target.cocks[x].cLengthRaw/4) + rand(6)/10;
+					else cockChange = (0.5 + rand(6)/10);
+					if( target.hasPerk("Mini") ) cockChange += (0.5 + rand(6)/10);
 					target.cocks[x].cLengthRaw -= cockChange;
 					output("\n\nYou start feeling very dizzy all of a sudden, and finding somewhere to lie down is all you can do before you pass out. While unconscious, you have a strange dream in which you use a pumpkin to masturbate furiously, but you don’t cum enough and the evil pumpkin goddess decides to punish you by shrinking your cock. So weird! ");
 					output("<b>You wake up with a start, only to find that your [pc.cock " + x + "] has lost about " + cockChange.toFixed(2) + " inches of size. </b> ");
@@ -274,7 +274,7 @@
 				var ballSizeLimit:Number = 0.6;
 				
 				//First try to remove uniball status (but not pouch!) at 1/3 chance
-				if( (target.balls == 1) && (target.hasStatusEffect("Uniball")) && (rand(2) == 0) )
+				if( (target.balls == 1) && (target.hasStatusEffect("Uniball")) && (rand(3) == 0) )
 				{
 					target.removeStatusEffect("Uniball");
 					target.balls = 2;
@@ -286,7 +286,7 @@
 				}
 			
 				//Then try to normalize ball count at 1/3 chance
-				else if( (target.balls > 2) && (rand(2) == 0) )
+				else if( (target.balls > 2) && (rand(3) == 0) )
 				{
 					target.balls -= 1;
 					output("\n\nSuddenly, you feel an electric-like tingling in your crotch. You look down alarmed only to see your [pc.balls] twitching wildly, almost as if they were alive! Thanks to the nanogel’s numbing effect, it’s not painful at all, so you just can’t help watching this bizarre spectacle. Eventually, your balls calm down, and you notice there’s one less than before. <b>You find yourself with a total of " + target.balls + " [pc.balls]! </b>");
@@ -296,7 +296,7 @@
 				//If neither of the above apply, reduce ball size
 				else if( target.ballSizeRaw > ballSizeLimit )
 				{
-					ballSizeChange = (rand(3)+3)/10;
+					ballSizeChange = (rand(4)+3)/10;
 					if( (target.ballSizeRaw - ballSizeChange) < ballSizeLimit ) ballSizeChange = target.ballSizeRaw - ballSizeLimit;
 					target.ballSizeRaw -= ballSizeChange;
 					output("\n\nSuddenly, you feel an electric-like tingling in your crotch. You look down alarmed only to see your [pc.balls] twitching and contracting, becoming tighter and denser. You try not to remind yourself that this nanogel is based on the Uthra sap’s mutagens, but now it’s a tad too late to feel regret. You watch with a mixture of expectation and apprehension as your ball slowly shrinks in size over the next few minutes, until the transformation finally stops, allowing you to breathe a sigh of relief. ");
@@ -317,7 +317,7 @@
 				if( target.ballEfficiency > cumStorageLimit )
 				{
 					if( target.ballEfficiency > 5 ) cumStorageChange = Math.round(target.ballEfficiency/3);
-					else cumStorageChange = rand(1)+1;
+					else cumStorageChange = rand(2)+1;
 					target.ballEfficiency -= cumStorageChange;
 					if( target.ballEfficiency < cumStorageLimit ) target.ballEfficiency = cumStorageLimit;
 					cumStorageChange = cumStorageOld - target.ballEfficiency;	//Used for output
@@ -353,7 +353,7 @@
 				if( target.cumMultiplierRaw > cumMultiplierLimit )
 				{
 					if( target.cumMultiplierRaw > 5 ) cumMultiplierChange = Math.round(target.cumMultiplierRaw/3);
-					else cumMultiplierChange = rand(1)+1;
+					else cumMultiplierChange = rand(2)+1;
 					target.cumMultiplierRaw -= cumMultiplierChange;
 					if( target.cumMultiplierRaw < cumMultiplierLimit ) target.cumMultiplierRaw = cumMultiplierLimit;
 					cumMultiplierChange = cumMultiplierOld - target.cumMultiplierRaw;	//Used for output
@@ -373,7 +373,7 @@
 					if ( cumMultiplierChange < 2 ) output("<b>slightly less messy than before. </b>");
 					target.orgasm();
 				
-					if( (target.cumQualityRaw > cumQualityLimit) && (rand(1) == 0) )
+					if( (target.cumQualityRaw > cumQualityLimit) && (rand(2) == 0) )
 					{
 						target.cumQualityRaw -= 0.15;
 						if( target.hasPerk("Virile") || target.isTreated() ) target.cumQualityRaw += 0.05;
@@ -400,14 +400,14 @@
 				if( target.refractoryRate > refractoryLimit )
 				{
 					if( target.refractoryRate > 5 ) refractoryChange = Math.round(target.refractoryRate/3);
-					else refractoryChange = rand(1)+1;
+					else refractoryChange = rand(2)+1;
 					target.refractoryRate -= refractoryChange;
 					if( target.refractoryRate < refractoryLimit ) target.refractoryRate = refractoryLimit;
 					refractoryChange = refractoryOld - target.refractoryRate;	//Used for output
 					
 					if( target.libido() > libidoLimit )
 					{
-						libidoChange = rand(4)+1;
+						libidoChange = rand(5)+1;
 						if( (target.libido()-libidoChange) < libidoLimit ) libidoChange = target.libido() - libidoLimit;
 						target.libido(-libidoChange);
 						target.lust(-50);
@@ -442,7 +442,7 @@
 			}
 			
 			//applyCumSoaked(target);
-			//processTime(20+rand(5));
+			//processTime(20+rand(6));
 			
 			return;
 		} //End of uthraUseCock
@@ -459,11 +459,11 @@
 			
 			var target:Creature = arg[0];
 			var x:int = arg[1];
-			var change:int = rand(9);	//chance of extra transformation
+			var change:int = rand(10);	//chance of extra transformation
 			var change2:int = -1;
 			if( change >= 5 )
 			{
-				change2 = rand(4);		//(0~4)
+				change2 = rand(5);		//(0~4)
 				change -= 5;			//(0~4)
 			}
 			var hasChanged:Boolean = false;
@@ -493,7 +493,7 @@
 			{
 				if(target.vaginas[x].bonusCapacity > 0 )
 				{
-					target.vaginas[x].bonusCapacity -= (10 + 10*rand(9));
+					target.vaginas[x].bonusCapacity -= (10 + 10*rand(10));
 					if( target.vaginas[x].bonusCapacity < 0 ) target.vaginas[x].bonusCapacity = 0;
 					output("\n\nThe contractions in your burning canal intensify, but at the same time the region starts feeling very, very good. Your vagina is literally rubbing itself from the inside, and it’s turning out to be a unique and delightful experience! Intent on not wasting this rare chance, you reach for your [pc.pussy " + x + "] with both hands – one massages the labia and clitoral regions, while the other penetrates your folds. You feel both helpless and amazed at how much your squirming walls are clenching your fingers, and in this overly sensitive state, it doesn’t take long before you reach a mind-shattering orgasm that causes you to blank out for a moment, moaning in uncontained pleasure as the [pc.girlCumNoun] drenches your hand and thighs. ");
 					if( target.hasCock() && ( target.totalCocks() > 0 ) ) output("[pc.eachCock] joins your pussy in a sympathetic orgasm, splashing [pc.cumNoun] everywhere. ");
@@ -517,7 +517,7 @@
 					output("\n\nYour [pc.pussy " + x + "] starts to squirm uncomfortably. The contractions last for a good ten minutes and then suddenly stop. When you’re sure all of the Uthra plus’ effects have subsided, you insert a probing finger inside. ");
 					output("<b>To your surprise, you find that your entrance is somewhat tighter than it used to be. </b>");
 					
-					if( (target.vaginas[x].hymen == false) && (target.vaginas[x].loosenessRaw <= 2) && (rand(1) == 0) )
+					if( (target.vaginas[x].hymen == false) && (target.vaginas[x].loosenessRaw <= 2) && (rand(2) == 0) )
 					{
 						target.vaginas[x].hymen = true;
 						output("\n\nYour probing suddenly stops when you reach a barrier. Wait, is that what you think it is? No doubt about it, your [pc.pussy " + x + "] has grown a new hymen! Purity may be old-fashioned, but you can already think of some exciting ways to lose your new ‘virginity’. ");
@@ -567,7 +567,7 @@
 					
 					if( target.libido() > libidoLimit )
 					{
-						libidoChange = rand(4)+1;
+						libidoChange = rand(5)+1;
 						if( (target.libido()-libidoChange) < libidoLimit ) libidoChange = target.libido() - libidoLimit;
 						target.libido(-libidoChange);
 						target.lust(-50);
@@ -592,7 +592,7 @@
 				output("\n\nYou’re not sure what those numbers mean exactly, but at least they give you a baseline. ");
 			}
 			
-			//processTime(20+rand(5));
+			//processTime(20+rand(6));
 			//applyPussyDrenched(target);
 			
 			return;
@@ -610,11 +610,11 @@
 			
 			var target:Creature = arg[0];
 			var x:int = arg[1];
-			var change:int = rand(7);	//chance of extra transformation
+			var change:int = rand(8);	//chance of extra transformation
 			var change2:int = -1;
 			if( change >= 4 )
 			{
-				change2 = rand(3);		//(0~3)
+				change2 = rand(4);		//(0~3)
 				change -= 4;			//(0~3)
 			}
 			var hasChanged:Boolean = false;
@@ -629,7 +629,7 @@
 			
 				if( target.breastRows[x].breastRatingRaw >= breastLimit )
 				{
-					target.breastRows[x].breastRatingRaw -= (rand(2)+1);
+					target.breastRows[x].breastRatingRaw -= (rand(3)+1);
 					if( target.breastRows[x].breastRatingRaw < breastLimit ) target.breastRows[x].breastRatingRaw = breastLimit;
 					output("\n\nAfter a while, the numbness subsides. Your gaze wanders down and you notice the volume on your chest has diminished somewhat. Well, this medicine is based on the Uthra sap’s mutagens, so you shouldn’t be surprised. ");
 					output("<b>Your [pc.breasts " + x + "] have shrunk in size, settling on [pc.breastCupSize " + x + "]. </b>");
@@ -649,7 +649,7 @@
 				if( target.isLactating() && (target.milkStorageMultiplier > milkStorageLimit) )
 				{
 					if( target.milkStorageMultiplier > 5 ) milkStorageChange = Math.round(target.milkStorageMultiplier/3);
-					else milkStorageChange = rand(1)+1;
+					else milkStorageChange = rand(2)+1;
 					target.milkStorageMultiplier -= milkStorageChange;
 					if( target.milkStorageMultiplier < milkStorageLimit ) target.milkStorageMultiplier = milkStorageLimit;
 					milkStorageChange = milkStorageOld - target.milkStorageMultiplier;
@@ -673,7 +673,7 @@
 				if( target.isLactating() && target.milkMultiplier > milkMultiplierLimit )
 				{
 					if( target.milkMultiplier > 5 ) milkMultiplierChange = Math.round(target.milkMultiplier/3);
-					else milkMultiplierChange = rand(1)+1;
+					else milkMultiplierChange = rand(2)+1;
 					target.milkMultiplier -= milkMultiplierChange;
 					if( target.milkMultiplier < milkMultiplierLimit ) target.milkMultiplier = milkMultiplierLimit;
 					milkMultiplierChange = milkMultiplierOld - target.milkMultiplier;
@@ -702,7 +702,7 @@
 				if( target.isLactating() && target.milkRate > milkRateLimit )
 				{
 					if( target.milkRate > 5 ) milkRateChange = Math.round(target.milkRate/3);
-					else milkRateChange = rand(1)+1;
+					else milkRateChange = rand(2)+1;
 					target.milkRate -= milkRateChange;
 					if( target.milkRate < milkRateLimit ) target.milkRate = milkRateLimit;
 					milkRateChange = milkRateOld - target.milkRate;
@@ -736,7 +736,7 @@
 				output("\n\nYou’re not sure what those numbers mean exactly, but at least they give you a baseline. ");
 			}
 			
-			//processTime(20+rand(5));
+			//processTime(20+rand(6));
 			
 			return;
 		} //End of uthraUseChest
@@ -751,11 +751,11 @@
 			author("Violent Knight");
 			addButton(0,"Next",kGAMECLASS.useItemFunction);
 			
-			var change:int = rand(7);	//chance of extra transformation
+			var change:int = rand(8);	//chance of extra transformation
 			var change2:int = -1;
 			if( change >= 4 )
 			{
-				change2 = rand(3);		//(0~3)
+				change2 = rand(4);		//(0~3)
 				change -= 4;			//(0~3)
 			}
 			var hasChanged:Boolean = false;
@@ -770,7 +770,7 @@
 				
 				if( target.buttRatingRaw > 0 )
 				{
-					var buttChange:int = rand(3)+1;
+					var buttChange:int = rand(4)+1;
 					target.buttRatingRaw -= buttChange;
 					if( target.buttRatingRaw < 0 ) target.buttRatingRaw = 0;
 					buttChange = oldButt - target.buttRatingRaw;
@@ -792,7 +792,7 @@
 			{
 				if( target.ass.bonusCapacity > 0 )
 				{
-					target.ass.bonusCapacity -= (10 + 10*rand(9));
+					target.ass.bonusCapacity -= (10 + 10*rand(10));
 					if( target.ass.bonusCapacity < 0 ) target.ass.bonusCapacity = 0;
 					output("\n\nAfter a couple of minutes, your rectal cavity starts to twitch and contract as well, slowly reconfiguring itself into a less voluminous passage. ");
 					output("<b>When it’s all over, the inside of your [pc.butt] feels less roomy than before. </b>");
@@ -859,7 +859,7 @@
 				output("\n\nYou’re not sure what those numbers mean exactly, but at least they give you a baseline. ");
 			}
 			
-			//processTime(20+rand(5));
+			//processTime(20+rand(6));
 			
 			return;
 		} //End of uthraUseButt
@@ -874,20 +874,20 @@
 			author("Violent Knight");
 			addButton(0,"Next",kGAMECLASS.useItemFunction);
 			
-			var change:int = rand(3);
+			var change:int = rand(4);
 			
 			//On-use text
 			output("You spread the nanogel over your arms, abs and other muscly parts of your body, shivering as you give yourself a massage with the numbingly cold ointment. However, the sensation gradually shifts from very cold to intensely warm, causing you to sweat profusely for many minutes. When it’s finally over, you can’t help but go wash yourself at the nearest place available. ");
 			
 			if( target.tone > 0 )
 			{
-				target.tone -= (5 + 5*rand(5));
+				target.tone -= (5 + 5*rand(6));
 				if( target.tone < 0 ) target.tone = 0;
 				output("<b>You notice you body has lost some of its hardness, looking smoother even though your strength is unaltered. </b>");
 				
 				if( target.thickness > 0 )
 				{
-					target.thickness -= (5 + 5*rand(5));
+					target.thickness -= (5 + 5*rand(6));
 					if( target.thickness < 0 ) target.thickness = 0;
 					output("<b>And it looks like you’ve shed some fat too! </b>");
 				}
@@ -900,7 +900,7 @@
 			}
 			
 			target.shower();
-			//processTime(20+rand(5));
+			//processTime(20+rand(6));
 			
 			return;
 		}

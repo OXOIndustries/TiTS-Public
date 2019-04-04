@@ -1629,7 +1629,7 @@ public function korgiiHoldInteriorExitBonus():void
 public function enterKorgHold():void
 {
 	//WARGII QUEST INTERRUPT!
-	if(korgiTranslateProgress() >= 60 && flags["WARGII_SETUP"] == undefined && flags["ENTERED_KORGI_HOLD"] != undefined && pc.level >= 9 && ulaPregBelly() == 0)
+	if(korgiTranslateProgress() >= 60 && flags["WARGII_SETUP"] == undefined && flags["WARGII_PROGRESS"] == undefined && flags["ENTERED_KORGI_HOLD"] != undefined && pc.level >= 9 && ulaPregBelly() == 0)
 	{
 		currentLocation = "KORGII B12";
 		generateMap();
