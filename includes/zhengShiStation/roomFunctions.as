@@ -1354,22 +1354,7 @@ public function bonusHolosharkFun():void
 public function zhengGameFloorBonus():Boolean
 {
 	output("Glasses clink and voices raise in celebration of victories. Astute, fastidious, and utterly professional dealers man tables strikingly traditional but with mechanical flair. Pirates and mercenaries of all walks gamble their life savings in the pursuit of riches " + (silly ? "and bitches ":"") + "at blackjack, roulette, craps... most known forms of poker even have dedicated tables crammed full of players and witnesses. So much liquor is passing through this exultant atmosphere that the otherwise pleasant aromas are overpowered with signature drinks and the regular cry of <i>Another round!</i>");
-	/* Roo Not Met - 9999 TBD
-	One notably enthusiastic dealer who manages a table at the very middle of this room catches your eye. A white head of curly hair and two floppy bunny's ears cap a heart-shaped face with cherry-red eyes. If you want to play a hand of blackjack, you don't need to look farther than her. Also, it's one of the only free seats you see.
-	// Roo Met (PC hasn't played her today)
-	Roo is where you last saw her, dealing out cards with masterful reflex. Her ears flop abruptly when she blows a cute kiss your way, finishing with a wink. Through that gesture she still kept one eye on her game! To her left a seat is available. Maybe you could be her player one?
-	// Roo Met (PC has played her and gotten her to strip today, replace the above)
-	Roo is where she always is, shuffling a deck of cards and humming happily as she does a few clothes short. The moment she spots you she waves you over with her ruby red smile, distributing cards with feline precision. You could pull up that free chair and join her again, see if you can get her to take the rest of her clothes off...
-	// Roo Met (PC has gamegasm'd her once, replace the above)
-	Roo is cheerily dealing cards and running game after successful game. The cat-bunny hops to her feet when she spots you, calling your name and waving you over to take the free seat. With graciousness like that you almost do so on autopilot. {noStripToday: Considering your recent victories, you wonder if you could get another messy jackpot out of her! /stripped: You wonder if you should finish your game and get another messy jackpot out of her...}
-	// Roo Met (PC has gamegasm'd her repeatedly, replace the above)
-	"[pc.name]!" Roo shouts your name before you look her way. She's leaned forward provocatively, showing off the slit of her creamy cleavage, all but begging you with her beaming eyes to try your luck again. Despite her distinctly unprofessional (and of course well received) gesture, she casually returns to her game while keeping one cat-like eye on you.
-	// Roo Met but isn't at her table (Got Gamegasm'd!)
-	Roo's table has been commandeered by a sylvan-eared substitute. The fey man assumes her job with a calm demeanor that doesn't do justice to the true owner. After your string of victories she's had to take the day off, alas. She'll no doubt be back later!
-	*/
 	basicBitchBlackjackDealerIntro();
-
-
 	return false;
 
 }

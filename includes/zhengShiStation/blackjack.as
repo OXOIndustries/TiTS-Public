@@ -1,6 +1,47 @@
 import classes.PlayingCard;
 import classes.PlayingCardDeck;
 
+/* ROO NOTES
+NPC by William
+
+Panty String: "Panties - Roo's - Satiny, bright red panties with ribbony side-ties."
+
+Flags
+======================================
+MET_ROO
+	1 = know her name
+	2 = she knows your name
+ROO_HIGHEST_STRIP_LEVEL
+	See ROO_STRIP_LEVEL FOR DETAILS
+ROO_STRIP_LEVEL
+	0 = normal
+	1 = jacket off
+	2 = skirtoff
+	3 = shoirt
+	4 = Panties
+	5 = nakkers
+ROO_GASMED
+	Total roogasm count
+ROO_ON_CD
+	1 if Roo is on Cooldown for gasming
+ROO_CREDIT_OVERALL
+	Overall credits won/lost
+ROO_CREDITS_DAILY
+	Overall credits daily - WILL NOT GO BELOW 0.
+ROO_GAMES_PLAYED
+	Total blackjack games played.
+ROO_WINS
+	Blackjacks won.
+ROO_LOSSES
+	Blackjacks lost.
+ROO_SEXED
+	Sex scene counter.
+ROO_SELFTALKED
+	Used for tracking which topic to discuss. Loops. Undefined at start.
+ROO_SELFTALKED_TOTAL
+	Incremented for each time talked. Undefined at start
+*/
+
 public function showBlackjackDealer():void
 {
 	showName("\nBLACKJACK!");
@@ -25,6 +66,8 @@ public function processCasinoEvents():void
 		flags["ROO_ON_CD"] = undefined;
 		flags["ROO_CREDITS_DAILY"] = 0;
 		flags["ROO_STRIP_LEVEL"] = 0;
+		flags["ROO_TALK_CD"] = 1;
+		flags["ROO_GAMED_TODAY"] = undefined;
 	}
 }
 
@@ -45,7 +88,10 @@ public function blackjackTest():void
 public function basicBitchBlackjackDealerIntro():void
 {
 	output("\n\nA robotic dealer invites you to play a game of blackjack. <i>“Blackjack! The game older than time. <b>500 credits</b> to play, a fortune to be won. House stands at sixteen, ties go to the dealer. Interested?”</i>");
-	addButton(0,"Blackjack",setUpBasicBitchBlackjack,undefined,"Blackjack","Playing will cost you at least 500 credits, maybe more if you’re feeling greedy.");
+	//Roo roo roo!
+	rooBonus(0);
+
+	addButton(1,"Blackjack",setUpBasicBitchBlackjack,undefined,"Blackjack","Playing will cost you at least 500 credits, maybe more if you’re feeling greedy.");
 }
 public function setUpBasicBitchBlackjack():void
 {
@@ -458,13 +504,55 @@ public function bjScorecheck():void
 // Roo will be available from 12:00 to 24:00 each day; her work day refreshes at 12:00. When Roo gamegasms, she reappears the next day at 12:00.
 // PC will introduce themselves after they get her to strip once, which will determine when Roo can say their name.
 // Roo has three levels of lewdness. Minimum, Intensifies, Maximizes. [Play] revolves around this from start to finish!
-
-//[Bunny Dealer/Roo]
-// Tooltip1: Grab a seat at the table and consider striking up a game with the bunny-eared dealer!
-// Tooltip2: Sidle up to the blackjack table and have a go with Roo again!
-// Tooltip3: You don't have any money. There's no reason to annoy anybody by sitting at a game you can't afford to play.
-// PC requires at least 500 credits for the minimum bet, otherwise no gaming.
-// If the PC gets Roo to strip a bit but leaves, she will remain stripped to that level for the rest of her work day.
+public function rooBonus(button:Number = 0):void
+{
+	if(hours >= 12)
+	{
+		//Roo Not Met
+		if(flags["MET_ROO"] == undefined)
+		{
+			output("\n\nOne notably enthusiastic dealer who manages a table at the very middle of this room catches your eye. A white head of curly hair and two floppy bunny’s ears cap a heart-shaped face with cherry-red eyes. If you want to play a hand of blackjack, you don’t need to look farther than her. Also, it’s one of the only free seats you see.");
+		}
+		// Roo Met but isn’t at her table (Got Gamegasm’d!)
+		else if(flags["ROO_ON_CD"] == 1)
+		{
+			output("\n\nRoo’s table has been commandeered by a sylvan-eared substitute. The fey man assumes her job with a calm demeanor that doesn’t do justice to the true owner. After your string of victories she’s had to take the day off, alas. She’ll no doubt be back later!");
+		}
+		// Roo Met (PC has gamegasm’d her repeatedly, replace the above)
+		else if(flags["ROO_GASMED"] >= 4)
+		{
+			output("\n\n<i>“[pc.name]!”</i> Roo shouts your name before you look her way. She’s leaned forward provocatively, showing off the slit of her creamy cleavage, all but begging you with her beaming eyes to try your luck again. Despite her distinctly unprofessional (and of course well received) gesture, she casually returns to her game while keeping one cat-like eye on you.");
+		}
+		// Roo Met (PC has gamegasm’d her once, replace the above)
+		else if(flags["ROO_GASMED"] > 0)
+		{
+			output("\n\nRoo is cheerily dealing cards and running game after successful game. The cat-bunny hops to her feet when she spots you, calling your name and waving you over to take the free seat. With graciousness like that you almost do so on autopilot. " + (flags["ROO_STRIP_LEVEL"] == 0 ? "Considering your recent victories, you wonder if you could get another messy jackpot out of her!":"You wonder if you should finish your game and get another messy jackpot out of her..."));
+		}
+		// Roo Met (PC has played her and gotten her to strip today, replace the above)
+		else if(flags["ROO_STRIP_LEVEL"] > 0)
+		{
+			output("\n\nRoo is where she always is, shuffling a deck of cards and humming happily as she does a few clothes short. The moment she spots you she waves you over with her ruby red smile, distributing cards with feline precision. You could pull up that free chair and join her again, see if you can get her to take the rest of her clothes off...");
+		}
+		// Roo Met (PC hasn’t played her today)
+		else //Fen note: made this generic since she didn't have a catch-all "else".
+		{
+			output("\n\nRoo is where you last saw her, dealing out cards with masterful reflex. Her ears flop abruptly when she blows a cute kiss your way, finishing with a wink. Through that gesture she still kept one eye on her game! To her left a seat is available. Maybe you could be her player one?");
+		}
+		if(flags["ROO_ON_CD"] == 1) addDisabledButton(button,"Roo","Roo","After her climax, Roo is off duty for the day.");
+		else if(flags["MET_ROO"] == undefined) addButton(button,"Bunny Dealer",approachRoo,undefined,"Bunny Dealer","Grab a seat at the table and consider striking up a game with the bunny-eared dealer!");
+		else if(pc.credits < 500) addDisabledButton(button,"Roo","Roo","You don't have any money. There's no reason to annoy anybody by sitting at a game you can't afford to play.");
+		else addButton(button,"Roo",approachRoo,undefined,"Roo","Sidle up to the blackjack table and have a go with Roo again!");
+	}
+	else
+	{
+		if(flags["MET_ROO"] != undefined) 
+		{
+			output("\n\nRoo isn't working her usual table right now. Maybe you should check back after noon?");
+			addDisabledButton(0,"Roo","Roo","This blackjack table isn't currently open for business.");
+		}
+		else addDisabledButton(0,"Bunny Dealer","Bunny Dealer","This blackjack table isn't currently open for business.");
+	}
+}
 
 public function approachRoo():void
 {
@@ -492,7 +580,7 @@ public function approachRoo():void
 		processTime(5);
 	}
 	// Repeat Time
-	else if(flags["ROO_HIGHEST_STRIP_LEVEL"] < 4)
+	else if(flags["ROO_HIGHEST_STRIP_LEVEL"] < 1)
 	{
 		output("<i>“Hiya, ");
 		if(flags["MET_ROO"] != 2) output(pc.mfn("handsome","cutie","cutie"));
@@ -558,7 +646,7 @@ public function rooMenu(inGames:Boolean = false):void
 	addButton(1,"Appearance",rooAppearance,undefined,"Appearance","The decorations here are nice and all, but this lady deserves a thorough inspection!");
 	if(flags["ROO_TALK_CD"] == 0) addButton(2,"Talk",talkToRoo,undefined,"Take the downtime to ask Roo a personal question - you’ll have to play another hand to keep things moving, though!")
 	else addDisabledButton(2,"Talk","Talk","You’re at the apex of the game, now’s not the time for talking!");
-	addButton(14,"Leave",mainGameMenu);
+	addButton(14,"Leave",leaveRooBehind,undefined,"Leave",(flags["ROO_GAMED_TODAY"] != undefined ? "You’ve played long enough, time to move on.":"This isn’t for you."));
 }
 
 //[Play]
@@ -581,8 +669,10 @@ public function gamblingThymesWivRoocipher():void
 	flags["BLACKJACK_DEALER"] = 1;
 	flags["BLACKJACK_DEALER_SHOWN"] = undefined;
 	flags["BLACKJACK_BET"] = 0;
+	IncrementFlag("ROO_GAMES_PLAYED");
 	//Disable talking till she strips
 	flags["ROO_TALK_CD"] = 1;
+	flags["ROO_GAMED_TODAY"] = 1;
 	startBlackjack();
 }
 
@@ -600,6 +690,7 @@ public function rooKickedYerAssholeOutYourTeeth():void
 	flags["BLACKJACK_DEALER_SHOWN"] = undefined;
 	flags["BLACKJACK_BET"] = 0;
 	flags["BLACKJACK_STANDING"] = undefined;
+	IncrementFlag("ROO_LOSSES");
 
 	output("Roo’s voice is the only one not cackling or jeering when your slice of the table glowers in defeat. ");
 	if(pc.isAss()) output("The way it rubs your nose in it makes you want to slam your fist on it, or the person who designed it. ");
@@ -634,7 +725,7 @@ public function pcWinsVsRoocipher():void
 	flags["ROO_CREDIT_OVERALL"] += bet;
 	flags["BLACKJACK_DEALER_SHOWN"] = undefined;
 	flags["BLACKJACK_STANDING"] = undefined;
-
+	IncrementFlag("ROO_WINS");
 	//Reset talk CD if stripping time
 	if((flags["ROO_STRIP_LEVEL"]+1) * 5000 <= flags["ROO_CREDITS_DAILY"]) flags["ROO_TALK_CD"] = 0;
 
@@ -943,8 +1034,8 @@ public function pcWinsVsRoocipher():void
 			pc.imbibeAlcohol(50);
 			roogasm();
 			output("\n\n");
-			quickLoot(new Satyrite());
-			return;
+			clearMenu();
+			addButton(0,"Next",mainGameMenu);
 		}
 		// Gamegasms <=3
 		else if(flags["ROO_GASMED"] <= 3)
@@ -1114,6 +1205,9 @@ public function turnDownRoocipher():void
 	clearOutput();
 	showRoo();
 	author("William");
+	//Set up this status for displaying certain outros when leaving.
+	if(!pc.hasStatusEffect("Roo_Turned_Down")) pc.createStatusEffect("Roo_Turned_Down");
+	pc.setStatusMinutes("Roo_Turned_Down",40);
 	//Special panty collect interrupt:
 	if(flags["ROO_GASMED"] >= 10 && !pc.hasKeyItem("Panties - Roo's - Satiny, bright red panties with ribbony side-ties."))
 	{
@@ -1223,6 +1317,7 @@ public function rooAppearance():void
 	output("\n\nIn your opinion, Roo is a nonpareil dealer, and without a doubt one of the <i>Nova’s</i> brightest pearls.");
 	output("\n\n<i>“Ready to play yet" + (flags["MET_ROO"] == 2 ? ", [pc.name]":"") + "?”</i> she quips, deck of cards in hand and a grin on her adorable face.");
 	output("\n\nThe smile she gives really is disarming...");
+	flags["ROO_TALK_CD"] = 1;
 	processTime(11);
 	clearMenu();
 	rooMenu();
@@ -1352,11 +1447,14 @@ public function rooHerselfTalkies():void
 			output("\n\nShe shrugs her shoulders, bouncing her boobs in the process, clearly enjoying the light smile you give.");
 		}
 		// facts exhausted (when everything else is said, add this on)
-		output("\n\nRoo doesn’t spend too long talking this time, instead offering up a bunch of random details about herself, such as her measurements, that she used to be a little overweight, and how on her first week of dealing cards she somehow broke the table and later caused a brawl. In her words they weren’t the halcyon days.");
-		output("\n\nWhat sticks with you the most are when she lets slip the tiniest details about her personality, how she reacted to what she was doing - willfully, responsibly. Unfortunately, you can’t get her to tell you anything more personal.");
+		else
+		{
+			output("\n\nRoo doesn’t spend too long talking this time, instead offering up a bunch of random details about herself, such as her measurements, that she used to be a little overweight, and how on her first week of dealing cards she somehow broke the table and later caused a brawl. In her words they weren’t the halcyon days.");
+			output("\n\nWhat sticks with you the most are when she lets slip the tiniest details about her personality, how she reacted to what she was doing - willfully, responsibly. Unfortunately, you can’t get her to tell you anything more personal.");
+		}
 	}
 	IncrementFlag("ROO_SELFTALKED");
-	if(flags["ROO_SELFTALKED"] > 5) flags["ROO_SELFTALKED"] = 1;
+	if(flags["ROO_SELFTALKED"] > 6) flags["ROO_SELFTALKED"] = 1;
 	IncrementFlag("ROO_SELFTALKED_TOTAL");
 	processTime(10);
 	rooMenu();
@@ -1879,7 +1977,12 @@ public function underTableRooEatsPuss(x:int = 0):void
 	else if(pc.clitLength < 1.5) output("a lube-lacquered gumball of muscle-locking potential");
 	else output("a suckable pole of oversexed flesh");
 	output(". Very carefully your vaginal buzzer is pinched between her teeth and rolled back and forth, causing you to arch back and gush a little more enthusiastically, spitting out enough pheromones that yours and hers become a visible soup of sexual humidity.");
-	output("\n\nThose bright, velvety lips of hers...");
+
+	//Image here
+
+	output("\n\n");
+	showImage("RooUnderTableLick");
+	output("Those bright, velvety lips of hers...");
 	if(flags["ROO_CUNNILINGED"] == undefined) output("if you thought they felt amazing at any other point, you weren’t ready for feeling them where it matters most");
 	else output("you’re never prepared for their inhuman suppleness You’re not sure if kaithrits have better lips than most, or if hers are modded, but their contact is greater than any finger or cock");
 	output(". Her tongue is barely felt for their exquisite plushness. Roo’s carmine cushions seem to have two different luxurious textures spread out among upper and lower lip, and all you can do is quiver nervelessly, somehow made so sensitive to those sparkling pleasure-pillows.");
@@ -2142,7 +2245,10 @@ public function rooTableFuck2(milky:Boolean = false):void
 	if(pc.cocks[x].cLength() < 7) output("You’re [pc.knotBallsHilt " + x + "]-deep in the clenching cat’s spread lips, and her glorious pussy is clutching super tight, almost painfully so. Were you any bigger, it might hurt!");
 	else if(pc.cocks[x].cLength() < 13) output("You nearly make it all the way, but her painfully tight clenching stops you. All it takes is an insistently firm thrust, and you socket her feminine folds with the rest up to the [pc.knotOrSheath " + x + "]. At her navel you can see the outline of your [pc.cockHead " + x + "], which just tapped her cervix.");
 	else output("Your too-big size spears her in more ways than one. Your sheer width and length strains her body far wider than it was meant to be taken, and several [pc.cockColor " + x + "] inches are left out never to be welcomed" + (pc.cocks[x].cType == GLOBAL.TYPE_EQUINE ? ", including your medial ring":"especially your [pc.knotOrSheath " + x + "]") + ".");
-	output("\n\n<i>“[pc.name]!”</i> she cries, her tails wrapping around your waist on genetic instinct. <i>“Take me! Mark me as yours!”</i> she yowls, mauling hands never far from her " + (milky ? "milk-squirting ":"") + "tits. Yours aren’t either" + (milky ? ", and you’re practically bathing yourself in her lurid bounty":"") + ".");
+	output("\n\n");
+	if(milky) showImage("RooTableFuckMilk");
+	else showImage("RooTableFuck");
+	output("<i>“[pc.name]!”</i> she cries, her tails wrapping around your waist on genetic instinct. <i>“Take me! Mark me as yours!”</i> she yowls, mauling hands never far from her " + (milky ? "milk-squirting ":"") + "tits. Yours aren’t either" + (milky ? ", and you’re practically bathing yourself in her lurid bounty":"") + ".");
 	output("\n\nBucking against you weight she innately compels you to stuff her with all you’ve got and plunge your length in and out of her nubile form, something you try to do, slamming into her creamy haunches and rocking the table as you do it, but the resistance you face is outrageous!");
 	output("\n\nNo matter how hard you try to control your breathing or manage her needfully scissoring thighs, you can’t beat the tightening of her inner walls. Turns out you don’t need to. It’s a distraction from the baying crowds no doubt recording this event, all racing to get the highest views. The galaxy’s appetite for porn is as ravenous as this kaithrit’s unappeasable pussy.");
 	output("\n\nThe dealer’s pot clinches down on you like you just got caught robbing the place. The suckling nerves of her shameless mitten darken your vision and numb your loins. Pressure slowly fades into benignness, making it all the more urgent that you fuck her harder. So you do, jack-hammering back and forth, pumping her voluptuous frame as pinkish colors softly creep in on your consciousness" + (pc.balls > 0 ? ", amplified by the impact of your [pc.sack] to her nethers":"") + ".");
@@ -2257,23 +2363,46 @@ public function rooTableFukkEpi(milky:Boolean = false):void
 		addButton(0,"Next",mainGameMenu);
 	}
 }
-/*
 
-output("\n\n[Leave/Done Playing]");
-output("\n\n// Tooltip1: This isn’t for you.");
-output("\n\n// Tooltip2: You’ve played long enough, time to move on.");
-
-output("\n\n// First Time/Haven’t played yet");
-output("\n\nOn second thought, no, you will not play. Roo is a gracious sort about it though, only shrugging lightly with that cute smile on her face. <i>“I’ll always be here when you feel up to the challenge!”</i> she says. {rooEverStripped: <i>“And do come back! I can’t wait to see how far you can push your luck!”</i>}");
-output("\n\nMaybe later.");
-output("\n\n// Leave After Playing A Hand, Roo Hasn’t Stripped");
-output("\n\nYou’ve spent enough money, and you know better than to overindulge. You collect your chit and stand up from the table, prompting a theatrical ‘awww’ from Roo. <i>“All done, {handsome/cutie/[pc.name]}? That’s fine, but make sure you come back, okay? I know you’ll win your way to the top!”</i>");
-output("\n\nThe way she says it implies it can <i>only</i> be true. ...Maybe you’ll be back.");
-output("\n\n// Leave After Roo Strips A Clothing Piece");
-output("\n\n<i>“Noo!”</i> Roo cries playfully. <i>“[pc.name], you’re on such a strong streak!”</i> You are, sort of, but you didn’t plan to spend all your time gaming today. <i>“If you were a light, would you want someone to turn you on and forget to flip the switch on their way out?”</i>");
-output("\n\nYou swallow. The way she asked that question was...");
-output("\n\n// Repeat Time (Gamegasm’d >=2 times, choosing not to sex)");
-output("\n\nWhile it’s sorely tempting, you’re not keen on getting any kind of service smack dab in the middle of a packed casino. No matter how much she may seem to love and encourage it!");
-output("\n\n<i>“Mmmf,”</i> Roo’s vacant face glows with shameful happiness, a messy orgasm painting the space under the table. Her legs shudder in warm bliss, the low-set vibrators to remain active for some time. <i>“I hope I’ll be seeing you again very soon [pc.name]...”</i>");
-output("\n\nOh, she might, especially if you’re treated to these kinds of shows!");
-output("\n\n");*/
+//[Leave/Done Playing]
+// Tooltip1: This isn’t for you.
+// Tooltip2: You’ve played long enough, time to move on.
+public function leaveRooBehind():void
+{
+	clearOutput();
+	showRoo();
+	author("William");
+	// Repeat Time (Gamegasm’d >=2 times, choosing not to sex)
+	if(flags["ROO_GASMED"] >= 0 && pc.hasStatusEffect("Roo_Turned_Down"))
+	{
+		pc.removeStatusEffect("Roo_Turned_Down");
+		output("While it’s sorely tempting, you’re not keen on getting any kind of service smack dab in the middle of a packed casino. No matter how much she may seem to love and encourage it!");
+		output("\n\n<i>“Mmmf,”</i> Roo’s vacant face glows with shameful happiness, a messy orgasm painting the space under the table. Her legs shudder in warm bliss, the low-set vibrators to remain active for some time. <i>“I hope I’ll be seeing you again very soon [pc.name]...”</i>");
+		output("\n\nOh, she might, especially if you’re treated to these kinds of shows!");
+	}
+	// Leave After Roo Strips A Clothing Piece
+	else if(flags["ROO_STRIP_LEVEL"] > 0)
+	{
+		output("<i>“Noo!”</i> Roo cries playfully. <i>“[pc.name], you’re on such a strong streak!”</i> You are, sort of, but you didn’t plan to spend all your time gaming today. <i>“If you were a light, would you want someone to turn you on and forget to flip the switch on their way out?”</i>");
+		output("\n\nYou swallow. The way she asked that question was...");
+	}
+	// Leave After Playing A Hand, Roo Hasn’t Stripped
+	else if(flags["ROO_STRIP_LEVEL"] == 0 && flags["ROO_GAMED_TODAY"] <= 0)
+	{
+		output("You’ve spent enough money, and you know better than to overindulge. You collect your chit and stand up from the table, prompting a theatrical ‘awww’ from Roo. <i>“All done, ");
+		if(flags["MET_ROO"] == 2) output(pc.mfn("handsome","cutie","cutie"));
+		else output("[pc.name]");
+		output("? That’s fine, but make sure you come back, okay? I know you’ll win your way to the top!”</i>");
+		output("\n\nThe way she says it implies it can <i>only</i> be true. ...Maybe you’ll be back.");
+	}
+	// First Time/Haven’t played yet
+	else
+	{
+		output("On second thought, no, you will not play. Roo is a gracious sort about it though, only shrugging lightly with that cute smile on her face. <i>“I’ll always be here when you feel up to the challenge!”</i> she says." + (flags["ROO_HIGHEST_STRIP_LEVEL"] > 0 ? " <i>“And do come back! I can’t wait to see how far you can push your luck!”</i>":""));
+		output("\n\nMaybe later.");
+	}
+	flags["ROO_TALK_CD"] = 1;
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
