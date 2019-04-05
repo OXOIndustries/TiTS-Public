@@ -87,7 +87,7 @@ public function blackjackTest():void
 
 public function basicBitchBlackjackDealerIntro():void
 {
-	output("\n\nA robotic dealer invites you to play a game of blackjack. <i>“Blackjack! The game older than time. <b>500 credits</b> to play, a fortune to be won. House stands at sixteen, ties go to the dealer. Interested?”</i>");
+	output("\n\nA robotic dealer invites you to play a game of blackjack. <i>“Blackjack! The game older than time. <b>500 credits</b> to play, a fortune to be won. House stands at seventeen, ties go to the dealer. Interested?”</i>");
 	//Roo roo roo!
 	rooBonus(0);
 
