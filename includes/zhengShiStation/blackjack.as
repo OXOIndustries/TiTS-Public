@@ -1388,7 +1388,7 @@ public function rooTalkMenu():void
 	addButton(0,"Herself",rooHerselfTalkies,undefined,"Herself","Is there anything she can tell you about herself?");
 	//[Her Job]
 	// Must ask about [Herself] five times; gray out otherwise
-	if(flags["ROO_SELFTALKED_TOTAL"] == undefined || (flags["ROO_SELFTALKED_TOTAL"] != undefined && flags["ROO_SELFTALKED_TOTAL"] < 50)) addDisabledButton(1,"Her Job","Her Job","You should get to know her a bit more. As well as you can, anyway.");
+	if(flags["ROO_SELFTALKED_TOTAL"] == undefined || (flags["ROO_SELFTALKED_TOTAL"] != undefined && flags["ROO_SELFTALKED_TOTAL"] < 5)) addDisabledButton(1,"Her Job","Her Job","You should get to know her a bit more. As well as you can, anyway.");
 	else addButton(1,"Her Job",rooHerJobbieTalk,undefined,"Her Job","Ask about her job and why she does it.");
 	//[Treasure Nova]
 	addButton(2,"Treas.Nova",rooTalksTreasureNova,undefined,"Treasure Nova","How’d she end up here, and what’s this place like?");
