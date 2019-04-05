@@ -314,6 +314,10 @@ public function blackJackOptions(args:Array):void
 	var deck:PlayingCardDeck = args[0];
 	var dealerHand:PlayingCardDeck = args[1];
 	var pcHand:PlayingCardDeck = args[2];
+
+	var standValue:Number = 17;
+	if(flags["BLACKJACK_DEALER"] == 1) standValue = 16;
+
 	if(pcHand.hasBlackjack())
 	{
 		output("\n\n<b>BLACKJACK! You win!</b>");
@@ -340,7 +344,7 @@ public function blackJackOptions(args:Array):void
 		clearMenu();
 		addButton(0,"Next",flags["BLACKJACK_LOSE"]);
 	}
-	else if(dealerHand.getCardPointTotalBlackjack() >= 17 && pcHand.getCardPointTotalBlackjack() > dealerHand.getCardPointTotalBlackjack() && flags["BLACKJACK_STANDING"] != undefined)
+	else if(dealerHand.getCardPointTotalBlackjack() >= standValue && pcHand.getCardPointTotalBlackjack() > dealerHand.getCardPointTotalBlackjack() && flags["BLACKJACK_STANDING"] != undefined)
 	{
 		output("\n\n<b>You win!</b>");
 		if(flags["BLACKJACK_DEALER_SHOWN"] == undefined) output(" The facedown card is flipped to reveal a " + dealerHand.cards[0].cardDescription() + " for a total of <b>" + dealerHand.getCardPointTotalBlackjack() + "</b>.");
@@ -350,14 +354,15 @@ public function blackJackOptions(args:Array):void
 	//If standing, proceed with dealer till result:
 	else if(flags["BLACKJACK_STANDING"] != undefined)
 	{
-		if(dealerHand.getCardPointTotalBlackjack() >= pcHand.getCardPointTotalBlackjack())
+		//If dealer is set and leading, dealer wins
+		if(dealerHand.getCardPointTotalBlackjack() >= standValue && dealerHand.getCardPointTotalBlackjack() >= pcHand.getCardPointTotalBlackjack())
 		{
 			output("\n\n<b>Dealer wins!</b>");
 			if(flags["BLACKJACK_DEALER_SHOWN"] == undefined) output(" The facedown card is flipped to reveal a " + dealerHand.cards[0].cardDescription() + " for a total of <b>" + dealerHand.getCardPointTotalBlackjack() + "</b>.");
 			clearMenu();
 			addButton(0,"Next",flags["BLACKJACK_LOSE"]);
 		}
-		//Dealer didnt win and must be below 17, so next round...
+		//Dealer didnt win and must be below stand value (16/17), so next round...
 		else
 		{
 			clearMenu();
@@ -428,7 +433,10 @@ public function blackjackDealerAI(args:Array):void
 	var deck:PlayingCardDeck = args[0];
 	var dealerHand:PlayingCardDeck = args[1];
 	var pcHand:PlayingCardDeck = args[2];
-	if(dealerHand.getCardPointTotalBlackjack() < 17)
+
+	var standValue:Number = 17;
+	if(flags["BLACKJACK_DEALER"] == 1) standValue = 16;
+	if(dealerHand.getCardPointTotalBlackjack() < standValue)
 	{
 		dealerHand.addCard(deck.drawCard()[0]);
 		output("\n\nThe dealer draws a card: " + dealerHand.cards[dealerHand.cards.length-1].cardDescription() + ".\n");
@@ -575,7 +583,7 @@ public function approachRoo():void
 		output("\n\nPlaying cards of decidedly traditional origins are flicked to the other players by agile fingers. <i>“My name’s Roo!”</i> she declares in a near-whistle, winking at you, laying one card face down on her side with a tiny flourish. <i>“And I’ll be your blackjack dealer for today, and hopefully every day!”</i> The attention she hits you with is mildly embarrassing; it’s enough to make you forget the kind of crowd you’re surrounded by. <i>“Or I could be! Are you playing, sweetie?”</i>");
 		output("\n\nAs the bouncer explained, credits are to be presented up front... though you don’t quite know how to do that. At least until you look at what everyone else has done. Devices similar to your codex or plain chits have been slotted into ports on the table, their displayed balances increasing or decreasing with success or failure.");
 		output("\n\nIn the seconds it took for you to make that discovery, another round has just played out. Roo sings praises and wishes the losers a shift in fortune. You pull out a loaded credit chit and glance at the cat-tailed dealer- wait, cat tails? So she’s a kaithrit then! That explains the feline’s fancy moves!");
-		output("\n\n<i>“Ah, first time in Treasure Nova?”</i> the genial kitty-rabbit perks up again, sensing your confusion. <i>“The rules are pretty simple if I says so myself!”</i> she flicks out one card to each player in a mere second. <i>“Just plug in your money, tell me your bet, and we’ll start playing! No forfeits, though! Hopefully Colis or Alphonse told you that.”</i> Another card swicks. <i>“Minimum bets are 500 credits, maximum bets 2500,”</i> another, <i>“and if you win a lot, <b>you’ll start earning some super special VIP prizes!</b>”</i> The deep heat in her tone raises an eyebrow. <i>“Haven’t had to give out any lately believe it or not! Luck’s just not been on anyone’s side, sadly...”</i>");
+		output("\n\n<i>“Ah, first time in Treasure Nova?”</i> the genial kitty-rabbit perks up again, sensing your confusion. <i>“The rules are pretty simple if I says so myself!”</i> she flicks out one card to each player in a mere second. <i>“Just plug in your money, tell me your bet, and we’ll start playing! No forfeits, though! Hopefully Colis or Alphonse told you that.”</i> Another card swicks. <i>“Minimum bets are 500 credits, maximum bets 5000,”</i> another, <i>“and if you win a lot, <b>you’ll start earning some super special VIP prizes!</b>”</i> The deep heat in her tone raises an eyebrow. <i>“Haven’t had to give out any lately believe it or not! Luck’s just not been on anyone’s side, sadly...”</i>");
 		output("\n\n'<i>Swick.</i>'' <i>“But that’s all there is to it!”</i> she announces gaily, flattening an upright card next to her face-down ‘hole’ card with avid diligence. Deck still in hand, her apple cat’s eyes are centered on you. <i>“Shall we play?”</i>");
 		processTime(5);
 	}
@@ -961,7 +969,7 @@ public function pcWinsVsRoocipher():void
 			output("\n\nBeing at the top certainly has its advantages too... like seeing a certain kaithrit dealer about to bare her all.");
 			output("\n\nRoo’s panty-straps cling tight enough that the flesh of her breedable hips spreads over the strings like a soft muffin. Two fingers on either side wiggle past the knotted side-ties, pushing outwards and unraveling the garment with kittenish pressure. She bites her lower lip tastefully, loosing a long, lustful cry when she tears it off in one quick motion. With little restraint and absolutely no shame, Roo presents her panties to you in their lust-glossened glory, and a thunderous applause and cheer breaks out in your honor.");
 			output("\n\nA growing lump in your throat threatens to close off air for good; so intently do you watch the enthusiastic kaithrit exhibit her pure-looking, dribbling pussy to you, gently parting the engorged, sloped labia, that the amount of restraint being shown in this room right now is worthy of a few grand prizes. The sensitive skin shines with accumulating arousal, and there’s almost no resistance when she slides a finger between the lips, dipping into her sheathing honeypot, shifting the wires of her cleverly-hidden vibes around.");
-			output("\n\nHer body jerks upwards while she slides another finger in, coming away with strands of femme cum clinging to her digits; Roo groans, her thighs quivering, silencing her unsteady voice with a taste of secreted bliss. The kitten preens herself a little too long, delighting in what must be a fantastic taste to go with a promising, scintillating scent. Soon enough, she seats herself, visibly horny {and looking ready to take your painfully erect [pc.cockBiggestNoun]}.");
+			output("\n\nHer body jerks upwards while she slides another finger in, coming away with strands of femme cum clinging to her digits; Roo groans, her thighs quivering, silencing her unsteady voice with a taste of secreted bliss. The kitten preens herself a little too long, delighting in what must be a fantastic taste to go with a promising, scintillating scent. Soon enough, she seats herself, visibly horny" + (pc.hasCock() ? " and looking ready to take your painfully erect [pc.cockBiggestNoun]":"") +".");
 			output("\n\n<i>“[pc.name], allow me to shuffle this deck, and let us all to bear witness to your final victory! You can do it!”</i> Roo’s fists pump and her pussyscent thickens, threatening to make this area reek with her womanly musk.");
 			output("\n\nMore than that, you can see an incredible thrill running through her like a soft wave. After what happened last time she must be <i>expecting</i> you to win...");
 			pc.lust(1);
@@ -1045,7 +1053,7 @@ public function pcWinsVsRoocipher():void
 			output("\n\nHer brilliant eyes glass over, divested of rationality and replaced with one of the roughest, most forced orgasms you’ll ever see. The way she pleasure seizes and grips tight to the chair makes you think her entire nervous system has been rigged up to some incredible device, something more than a few vibrators. Unless her womb has been rigged up, you don’t see how else an invisible force treats her as little more a ragdoll.");
 			output("\n\nHer keening voice carries across the casino and out the door; her tails fall limp and she arches upwards on her tiptoes. Fem-cum is squirting violently from her juciy slit, her glands ejaculating with unmatched ferocity. Copious, pheromonally-charged lubricants blast towards the table in a show of feminine bukkake, discoloring everything in her vicinity. You can see when the implants show mercy: her butt is planted back in the seat and her nerveless thighs merely quiver rapidly.");
 			output("\n\nAnd now, the cat-rabbit’s floor drenching wetness streams out with intermittent bursts, puddling expansively across the ground. Her freckled face glows molten red with bliss, and is the prime target of all snapping photos. Roo goes through climax after climax, squirting, spurting, and flailing uselessly, a prisoner to the mechanisms slagging her with obscenity - all the while, she moans a rumbly purr, absent-mindedly groping more enjoyment out of her glazed frame.");
-			output("\n\nWhen the show comes to an end, you retrieve your chit # credits richer, and find another <i>Ruby Tether</i> sat within reach, the piece of satyrite gleaming at the bottom of its basin. <i>“Glory... Glorious... Oh, [pc.name], I’m so happy...”</i> Roo whines, her voice stabilizing enough to speak. Her womanly fragrance fills your nostrils");
+			output("\n\nWhen the show comes to an end, you retrieve your credits and find another <i>Ruby Tether</i> sat within reach, the piece of satyrite gleaming at the bottom of its basin. <i>“Glory... Glorious... Oh, [pc.name], I’m so happy...”</i> Roo whines, her voice stabilizing enough to speak. Her womanly fragrance fills your nostrils");
 			if(pc.hasGenitals()) output(" and hardens your " + (pc.hasCock() ? "[pc.cocks]":"[pc.clits]"));
 			output(". <i>“You’ve done it again, and here I am... your reward...”</i>");
 			output("\n\nYou down the exquisite drink, basking in your moment of fame, the " + (pc.mf("kingly","queenly")) + " star at the center of <i>Treasure Nova.</i> Security shows up to shoulder the gamegasm’d Roo, who waves at you while she stumbles off in their arms, and you’re left to leave the fuckscented floor behind");
@@ -1722,8 +1730,9 @@ public function undertableOral(forceGenital:Number = 0):void
 	if(pc.isTaur()) 
 	{
 		output("while sliding under your hindquarters ");
+		output("and rubbing her cheek to your " + (dicking ? "[pc.cock " + x + "]":"[pc.pussy " + x + "]") + ", taking a long, trembling whiff of " + (!pc.isCrotchExposed() ? "concealed ":"") + (!dicking ? "mare-":"stud-") + "musk. You lift up and plant your front legs on the table, swiveling a bit to give yourself a view of the horny suckslut.");
 	}
-	output("and rubbing her cheek to your " + (dicking ? "[pc.cock " + x + "]":"[pc.pussy " + x + "]") + ", taking a long, trembling whiff of " + (!pc.isCrotchExposed() ? "concealed ":"") + (!dicking ? "mare-":"stud-") + "musk. You lift up and plant your front legs on the table, swiveling a bit to give yourself a view of the horny suckslut./notTaur:, burying her face in your groin and breathing in your " + (!dicking ? "girl-":"phallic ") + "musk, groping carefully at the ");
+	else output("while burying her face in your groin and breathing in your " + (!dicking ? "girl-":"phallic ") + "musk, groping carefully at the ");
  	if(!pc.isCrotchExposed())
  	{
  		if(dicking) output("bulge");
