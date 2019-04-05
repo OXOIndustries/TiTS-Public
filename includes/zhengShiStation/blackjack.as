@@ -74,15 +74,26 @@ public function processCasinoEvents():void
 public function blackjackTest():void
 {
 	clearOutput();
-	
 	flags["BLACKJACK_WIN"] = blackjackWin;
 	flags["BLACKJACK_LOSE"] = blackjackLose;
+	flags["BLACKJACK_TIE"] = blackjackTie;
 	flags["BLACKJACK_DEALER"] = 9999;
 	flags["BLACKJACK_BET"] = 0;
 	flags["BLACKJACK_DEALER_SHOWN"] = undefined;
 	output("Want play blackjack? Kay!");
 	
 	startBlackjack(true);
+}
+
+public function blackjackTie():void
+{
+	if(flags["BLACKJACK_DEALER"] == 1)
+	{
+		clearOutput();
+		showRoo();
+		output("<i>“Another hand then?”</i> the bunny-cat smiles with apparent delight at the thought of playing with you again.");
+		rooMenu();
+	}
 }
 
 public function basicBitchBlackjackDealerIntro():void
@@ -98,6 +109,7 @@ public function setUpBasicBitchBlackjack():void
 
 	flags["BLACKJACK_WIN"] = blackjackWin;
 	flags["BLACKJACK_LOSE"] = blackjackLose;
+	flags["BLACKJACK_TIE"] = blackjackTie;
 	flags["BLACKJACK_DEALER"] = 0;
 	flags["BLACKJACK_DEALER_SHOWN"] = undefined;
 	flags["BLACKJACK_BET"] = 0;
@@ -337,13 +349,6 @@ public function blackJackOptions(args:Array):void
 		clearMenu();
 		addButton(0,"Next",flags["BLACKJACK_WIN"]);
 	}
-	else if(dealerHand.getCardPointTotalBlackjack() == 21)
-	{
-		output("\n\n<b>Dealer has 21! You lose!</b>");
-		if(flags["BLACKJACK_DEALER_SHOWN"] == undefined) output(" The facedown card is flipped to reveal a " + dealerHand.cards[0].cardDescription() + ".");
-		clearMenu();
-		addButton(0,"Next",flags["BLACKJACK_LOSE"]);
-	}
 	else if(dealerHand.getCardPointTotalBlackjack() >= standValue && pcHand.getCardPointTotalBlackjack() > dealerHand.getCardPointTotalBlackjack() && flags["BLACKJACK_STANDING"] != undefined)
 	{
 		output("\n\n<b>You win!</b>");
@@ -355,12 +360,20 @@ public function blackJackOptions(args:Array):void
 	else if(flags["BLACKJACK_STANDING"] != undefined)
 	{
 		//If dealer is set and leading, dealer wins
-		if(dealerHand.getCardPointTotalBlackjack() >= standValue && dealerHand.getCardPointTotalBlackjack() >= pcHand.getCardPointTotalBlackjack())
+		if(dealerHand.getCardPointTotalBlackjack() >= standValue && dealerHand.getCardPointTotalBlackjack() > pcHand.getCardPointTotalBlackjack())
 		{
 			output("\n\n<b>Dealer wins!</b>");
 			if(flags["BLACKJACK_DEALER_SHOWN"] == undefined) output(" The facedown card is flipped to reveal a " + dealerHand.cards[0].cardDescription() + " for a total of <b>" + dealerHand.getCardPointTotalBlackjack() + "</b>.");
 			clearMenu();
 			addButton(0,"Next",flags["BLACKJACK_LOSE"]);
+		}
+		//If tie, nobody winzors!
+		else if(dealerHand.getCardPointTotalBlackjack() >= standValue && dealerHand.getCardPointTotalBlackjack() == pcHand.getCardPointTotalBlackjack())
+		{
+			output("\n\n<b>A tie!</b> Nobody wins and nobody loses - for now.");
+			if(flags["BLACKJACK_DEALER_SHOWN"] == undefined) output(" The facedown card is flipped to reveal a " + dealerHand.cards[0].cardDescription() + " for a total of <b>" + dealerHand.getCardPointTotalBlackjack() + "</b>.");
+			clearMenu();
+			addButton(0,"Next",flags["BLACKJACK_TIE"]);
 		}
 		//Dealer didnt win and must be below stand value (16/17), so next round...
 		else
@@ -478,6 +491,7 @@ public function blackjackCleanup():void
 {
 	flags["BLACKJACK_LOSE"] = undefined;
 	flags["BLACKJACK_WIN"] = undefined;
+	flags["BLACKJACK_TIE"] = undefined;
 	mainGameMenu();
 }
 
@@ -674,6 +688,7 @@ public function gamblingThymesWivRoocipher():void
 	// Following text takes place between hands, allowing the player to continue betting, talk to Roo, or pack up and leave.
 	flags["BLACKJACK_WIN"] = pcWinsVsRoocipher;
 	flags["BLACKJACK_LOSE"] = rooKickedYerAssholeOutYourTeeth;
+	flags["BLACKJACK_TIE"] = blackjackTie;
 	flags["BLACKJACK_DEALER"] = 1;
 	flags["BLACKJACK_DEALER_SHOWN"] = undefined;
 	flags["BLACKJACK_BET"] = 0;
