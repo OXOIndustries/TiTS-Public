@@ -40,14 +40,14 @@ package classes.Characters
 			isLustImmune = false;
 			
 			this.meleeWeapon = new Fists();
-			meleeWeapon.baseDamage.kinetic.damageValue = 10;
+			meleeWeapon.baseDamage.kinetic.damageValue = 20;
 			meleeWeapon.baseDamage.addFlag(DamageFlag.CRUSHING);
 			
-			this.physiqueRaw = 18;
-			this.reflexesRaw = 12;
+			this.physiqueRaw = 30;
+			this.reflexesRaw = 20;
 			this.aimRaw = 15;
-			this.intelligenceRaw = 20;
-			this.willpowerRaw = 18;
+			this.intelligenceRaw = 25;
+			this.willpowerRaw = 30;
 			this.libidoRaw = 30;
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
@@ -65,10 +65,10 @@ package classes.Characters
 			baseHPResistances.pheromone.resistanceValue = -20.0;
 			baseHPResistances.psionic.resistanceValue = -20.0;
 
-			this.level = 7;
+			this.level = 8;
 			this.XPRaw = normalXP();
-			this.credits = 80 + rand(80);
-			this.HPMod = 100;
+			this.credits = 0;
+			this.HPMod = 450;
 			this.HPRaw = this.HPMax();
 			
 			this.femininity = 35;
@@ -223,7 +223,7 @@ package classes.Characters
 				output(" but don't manage to evade the Lureling's bestial mouth, and feel its teeth crush into you. The bite isn't lethal, but it leaves you gasping and winded for a moment by the time you struggle free!");
 				if (!target.isPlanted()) CombatAttacks.applyStagger(target, 1, true);
 				if (rand(4) == 0 && target.shields() <= 0) CombatAttacks.applyBleed(target);
-				applyDamage(new TypeCollection( { kinetic: 20 }, DamageFlag.PENETRATING), this, target, "minimal");
+				applyDamage(new TypeCollection( { kinetic: 30 }, DamageFlag.PENETRATING), this, target, "minimal");
 			}
 		}
 

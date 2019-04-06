@@ -7740,8 +7740,8 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				if(flags["MET_LURELING"] != undefined)
 				{
-					output2("\n<b>* "+ marionName() +":</b> Encountered");
-					if(flags["MET_LURELING"] >= 1) output2(", Followed her to the Den");
+					output2("\n<b>* "+ StringUtil.upperCase(marionName()) +":</b> Encountered");
+					if(flags["MET_LURELING"] >= 1) output2(", Entered the Den");
 					if(flags["MET_LURELING"] >= 2) output2(", Encountered a Lureling");
 					if(flags["MARIONS_FUCKED"] != undefined) output2("\n<b>* "+ StringUtil.upperCase(marionName()) +", Times Fucked:</b> " + flags["MARIONS_FUCKED"]);
 					if(flags["LURELINGS_FOUGHT"] != undefined) output2("\n<b>* Lureling, Times Encountered:</b> " + flags["LURELINGS_FOUGHT"]);

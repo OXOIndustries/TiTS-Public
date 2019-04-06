@@ -6,9 +6,8 @@
  * essyra has 4 possible genital settings, allowing for easy checks:
  * pure female
  * dog cock with balls (marion.hasBalls())
- * one tentacle cock with a sheath (marion.hasSheath())
+ * one tentacle cock with a sheath (marion.hasSheath() - dog cock has sheath too, so check for balls first)
  * multiple tentacles without sheath (marion.hasCocks())
-
 
 
  * MET_LURELING			0/undefined = met the Marion/Essyra first time, 1 = repat, hasnt seen a Lureling, 2 = repeat, has seen a Lureling
@@ -41,6 +40,10 @@ public function marionSetUp():void
 	marion.tailCount = 3 + rand(5);
 	marion.removeCocks();
 	marion.removeBalls();
+	// 50% chance of no cock, 1/3 chance for each cocktype afterwards
+	// if  PC is neuter, give the marion a cock no matter the chances
+	if (rand(2) == 0 && pc.hasGenitals()) flags["MARION_SETUP"] = 0;
+	else flags["MARION_SETUP"] = rand(3) + 1;
 	switch (flags["MARION_SETUP"])
 	{
 		case 0:
@@ -67,6 +70,7 @@ public function marionSetUp():void
 				marion.shiftCock(i,GLOBAL.TYPE_TENTACLE);
 				marion.cocks[i].cockColor = "blue";
 				marion.cocks[i].knotMultiplier = 1.1;
+				marion.cocks[i].addFlag(GLOBAL.FLAG_KNOTTED);
 				i++;
 			}
 			break;
@@ -404,80 +408,14 @@ public function marionsDenSexMenu():void
 	// only allow FuckVag for PCs with a) dicks and NO hardlight or b) cunts AND hardlight. Scene doesnt make sense otherwise
 	if (pc.hasCock() && pc.cockThatFits(marion.vaginalCapacity()) >= 0) addButton(0, "Fuck Vag", penisRouter,[marionsDenSexFuckMarion,marion.vaginalCapacity(),false,0], "Fuck Vag", "Stick your "+ pc.cockDescript(pc.cockThatFits(marion.vaginalCapacity())) +" in the essyra's pretty blue pussy and let her ride you.");
 	else if (pc.isFemale() && pc.hasHardLightEquipped()) addButton(0, "Fuck Vag", marionsDenSexFuckMarion, -1, "Fuck Vag", "Stick your [pc.cockOrStrapon] in the essyra's pretty blue pussy and let her ride you.");
-	else addDisabledButton(0, "Fuck Vag", "Fuck Vag", "You need a penis or hardlight dildo for this.");
+	else if (pc.hasGenitals()) addDisabledButton(0, "Fuck Vag", "Fuck Vag", "You need either a penis or a vagina and a hardlight dildo for this.");
+	else addDisabledButton(0, "Fuck Vag", "Fuck Vag", "You need genitals for this.");
 	// if PC has either a pussy & no cock or a cock thats to large
-	if (pc.isFemale() || (pc.hasCock() && pc.cockThatFits(marion.vaginalCapacity()) == 0)) addButton(1, "Mutual Masturbation", marionsDenSexMutualMasturbation, undefined, "Mutual Masturbation", !pc.hasCock() ? "Well, you’re a little bit cockless, but company always makes a good time better." : "There’s no way you’re fitting inside her, but sharing is caring.");
-	else if (pc.hasGenitals()) addDisabledButton(1, "Mutual Masturbation", "Mutual Masturbation", "You need a pussy OR an overly large dick for this.");
-	else addDisabledButton(1, "Mutual Masturbation", "Mutual Masturbation", "You need genitals for this.");
+	if (pc.isFemale() || (pc.hasCock() && pc.cockThatFits(marion.vaginalCapacity()) == 0)) addButton(1, "Masturbation", marionsDenSexMutualMasturbation, undefined, "Mutual Masturbation", !pc.hasCock() ? "Well, you’re a little bit cockless, but company always makes a good time better." : "There’s no way you’re fitting inside her, but sharing is caring.");
+	else if (pc.hasGenitals()) addDisabledButton(1, "Masturbation", "Mutual Masturbation", "You need a pussy OR an overly large dick for this.");
+	else addDisabledButton(1, "Masturbation", "Mutual Masturbation", "You need genitals for this.");
 	// if essray has at least 1 cock, else hide the button
 	if (marion.hasCock()) addButton(2, "Get Fucked", vaginaRouter, [marionsDenSexGetFucked, marion.cockVolume(0), 1, 0], "Get Fucked", "Let the "+ marionName() +" use her [marion.multiCocks] on your [pc.vagOrAss].");
-}
-
-public function marionsDenSexMenuDebug():void
-{
-	clearOutput();
-	author("Savin");
-	showMarion();
-
-	if (marion.tailCount == 1) marionSetUp();
-/*
-1 8-inch black knotted korgonne-cock, with a fleshy pair of nuts hanging under it.
-1 foot-long blue tentacle wanger. It has a pointed tip, no knot, and a sheathe.
-1d6+2 tentacles. As above, but no sheathe, and they have small knots each.
-*/
-	marion.removeCocks();
-	marion.removeBalls();
-	switch (flags["MARION_SETUP"])
-	{
-		case 0:
-			break;
-		case 1:
-			marion.createCock(8);
-			//marion.cocks[0].cLengthRaw = 8;
-			marion.shiftCock(0,GLOBAL.TYPE_CANINE);
-			marion.cocks[0].cockColor = "black";
-			marion.balls = 2;
-			break;
-		case 2:
-			marion.createCock(12);
-			//marion.cocks[0].cLengthRaw = 8;
-			marion.shiftCock(0,GLOBAL.TYPE_TENTACLE);
-			marion.cocks[0].cockColor = "blue";
-			marion.cocks[0].addFlag(GLOBAL.FLAG_SHEATHED);
-			break;
-		case 3:
-			var i:int = 0;
-			while (i < marion.tailCount)
-			{
-				marion.createCock(12);
-				marion.shiftCock(i,GLOBAL.TYPE_TENTACLE);
-				marion.cocks[i].cockColor = "blue";
-				marion.cocks[i].knotMultiplier = 1.1;
-				i++;
-			}
-			break;
-	}
-
-//debug
-	output("Marion Setting: " + flags["MARION_SETUP"] + "\n\n");
-	output("[marion.cunt]\n\n");
-	output(marion.hasCock() ? "[marion.cocks]\n\n" : "Missing Cock\n\n");
-	output("[marion.multiCocks]\n\n");
-	output(marion.hasBalls() ? "[marion.balls]\n\n" : "Missing Balls\n\n");
-
-
-	addButton(0, "Fuck Vag (Male)", penisRouter,[marionsDenSexFuckMarion,marion.vaginalCapacity(),false,0], "Fuck Vag", "Stick your [pc.cockOrStrapon] in the essyra's pretty blue pussy and let her ride you.");
-	addButton(5, "Fuck Vag (Hardlight)", marionsDenSexFuckMarion, -1, "Fuck Vag", "Stick your [pc.cockOrStrapon] in the essyra's pretty blue pussy and let her ride you.");
-	addButton(1, "Mutual Masturbation", marionsDenSexMutualMasturbation, undefined, "Mutual Masturbation", !pc.hasCock() ? "Well, you’re a little bit cockless, but company always makes a good time better." : "There’s no way you’re fitting inside her, but sharing is caring.");
-	addButton(2, "Get Fucked", vaginaRouter, [marionsDenSexGetFucked, marion.cockVolume(0), 1, 0], "Get Fucked", "?????");
-	addButton(3, "Get Fucked", marionsDenSexGetFucked, -1, "Get Fucked", "?????");
-	addButton(9, "FIGHT!", smackTheMarion, undefined);
-
-	addButton(10, "Pussy", function():void { flags["MARION_SETUP"] = 0; marionsDenSexMenuDebug(); })
-	addButton(11, "DogDock", function():void { flags["MARION_SETUP"] = 1; marionsDenSexMenuDebug(); })
-	addButton(12, "1 Tenta", function():void { flags["MARION_SETUP"] = 2; marionsDenSexMenuDebug(); })
-	addButton(13, "X Tentas", function():void { flags["MARION_SETUP"] = 3; marionsDenSexMenuDebug(); })
-	addButton(14, "Tails", function():void { marion.tailCount = 8; marionsDenSexMenuDebug(); })
 }
 
 public function marionsDenSexFuckMarion(x:int):void
@@ -529,7 +467,7 @@ public function marionsDenSexFuckMarion(x:int):void
 	output("twat drenches your [pc.tummy]. Every time your "+ pc.cockOrStrapon(x,0) +" sinks deeper into her welcoming embrace it wrings and squeezes at you. It’s not until her whole body starts spasming with each thrust that you can actually <i>feel</i> the essyra enter into a series of mini-orgasms that desperately milk you.");
 
 	output("\n\nAt first it feels like the horny bubblegum fox is slamming down on you hard enough to rock your entire body, but soon enough you realize it’s the floor itself trembling. If your lover cares about this seismic activity it’s hard to say, if only that her wordless whimpers of delight become cries of orgasmic pleasure. ");
-	if (flags["MET_LURELING"] == 2) output("Somewhere through the fugue of your own bacchanal joy (and the redirection of precious fluids to your [pc.cocks]) you figure out that the trembling ice floor is probably the result of this marion’s master starting to cum as well.");
+	if (flags["MET_LURELING"] == 2) output("Somewhere through the fugue of your own bacchanal joy (and the redirection of precious fluids to your "+ (x >= 0 ? "[pc.cocks]" : "[pc.multiCunts]") +") you figure out that the trembling ice floor is probably the result of this marion’s master starting to cum as well.");
 	else output("There’s a dose of terror flushed in your system at the thought of this buxom beauty’s cave collapsing atop the both of you, but thankfully the ceiling remains entirely where it belongs.");
 
 	output("\n\nYou squirm a little beneath the cumming fox before lifting her cloak and rolling over, putting her between the floor and yourself. There’s no word of complaint from her (rather obviously), and she wiggles her tails beneath you and moans as the sudden shift in position has you ");
