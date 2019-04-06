@@ -42,21 +42,21 @@
 			this.shieldsRaw = this.shieldsMax();
 
 			this.femininity = 90;
-			this.eyeType = GLOBAL.TYPE_FELINE;
-			this.eyeColor = "brown";
+			this.eyeType = GLOBAL.TYPE_VULPINE;
+			this.eyeColor = "blue";
 			this.tallness = 87;
 			this.thickness = 50;
 			this.tone = 85;
-			this.hairColor = "orange";
+			this.hairColor = "pink";
 			//this.hairType = GLOBAL.TYPE_FELINE;
 			//this.scaleColor = "red";;
-			this.furColor = "white";
+			this.furColor = "pink";
 			this.hairLength = 7;
 			
 			//this.beardLength = 0;
 			//this.beardStyle = 0;
 			this.skinType = GLOBAL.SKIN_TYPE_FUR;
-			this.skinTone = "silver";
+			this.skinTone = "pink";
 			//this.skinFlags = new Array();
 			this.faceType = GLOBAL.TYPE_VULPINE;
 			this.faceFlags = [GLOBAL.FLAG_MUZZLED, GLOBAL.FLAG_FURRED];
@@ -158,21 +158,8 @@
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 2;
 			this.ass.bonusCapacity += 75;
-			
-			//this.marionGenitals = marionGenitals;
-			//randomise();
-			
+						
 			this._isLoading = false;
 		}
-/*		private function randomise():void
-		{
-			if(marionGenitals == 1)
-			{
-					this.cocks[0].cLengthRaw = 8;
-					this.shiftCock(0,GLOBAL.TYPE_CANINE);
-					this.cocks[0].cockColor = "black";
-					
-			}
-		}
-*/	}
+	}
 }
