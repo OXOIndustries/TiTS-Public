@@ -82,7 +82,7 @@ package classes.Characters
 			this.thickness = 80;
 			this.femininity = 75;
 			this.addSkinFlag(GLOBAL.FLAG_FLUFFY);
-			this.furColor = "red";
+			this.furColor = "white";
 			this.skinTone = "tan";
 			this.hipRatingRaw = 16;
 			this.buttRatingRaw = 8;
@@ -90,7 +90,7 @@ package classes.Characters
 			this.nippleWidthRatio = 2;
 
 			// Head
-			this.hairColor = "red";
+			this.hairColor = "white";
 			this.hairLength = 14;
 			this.eyeColor = "green";
 			this.earType = GLOBAL.TYPE_CANINE;
