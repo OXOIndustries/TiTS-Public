@@ -2734,7 +2734,7 @@ public function haleyRiddenHardAndPutAwayWet():void
 
 	output("<i>“Mmmm,”</i> you murmur, settling back onto her cock. <i>“Let’s see if everything they say about amazon virility is true. Gonna take you for a ride, Haley.”</i>");
 	output("\n\nYou push yourself back into the flared head of Haley’s dick immediately, hissing in pleasure as the folds around it compress upon entry and bloom again once she’s inside. Your [pc.asshole] is <i>full</i> of her, quivering and stretching around the shestud’s impressive cock as she spurts precum inside you.");
-	pp.buttChange(1500);
+	pc.buttChange(1500);
 	output("\n\n<i>“Ooh, good girl,”</i> you say, grinning down at her. <i>“All that sticky lube pumping out of your balls is gonna make this real easy.”</i>");
 	output("\n\nHaley groans in need as you thrust back roughly, working your way down her enormous shaft and spreading yourself wide. You tense your core with a grunt as you feel her bulging cockhead slip deeper, exploring new depths and covering them in oozing white spunk. Getting down to her medial ring is a struggle but a pleasant one; just having her so deep inside you is something to treasure, especially when she’s got that look of tortured pleasure written all over her face.");
 	output("\n\nShe moans and twists, her bedraggled blonde hair shifting beneath her while you gyrate your hindquarters atop her underside. More than once she almost screams with the pleasure, arching her humanoid half’s back off the ground as an accompanying gout of hot seed spills inside you. You haven’t let her cum just yet, though. That would be <i>too</i> easy.");

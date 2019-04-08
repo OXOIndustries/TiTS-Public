@@ -215,6 +215,9 @@ public function zhengFoundryF1EncounterBonus():Boolean
 		encounters.push(encounterPunkSecOp);
 		encounters.push(encounterPunkSecOp);
 		encounters.push(encounterPunkSecOp);
+		encounters.push(coronaFlamerEncounter);
+		encounters.push(coronaFlamerEncounter);
+		encounters.push(coronaFlamerEncounter);
 		if (ratsAvailable())
 		{
 			encounters.push(ratsInTheMineEncounter);
@@ -261,6 +264,14 @@ public function zhengFoundryF2EncounterBonus():Boolean
 		encounters.push(encounterPunkSecOp);
 		encounters.push(encounterPunkSecOp);
 		encounters.push(encounterPunkSecOp);
+		encounters.push(coronaFlamerEncounter);
+		encounters.push(coronaFlamerEncounter);
+		encounters.push(coronaFlamerEncounter);
+		encounters.push(coronaFlamerEncounter);
+		encounters.push(coronaFlamerEncounter);
+		encounters.push(coronaFlamerEncounter);
+		encounters.push(coronaFlamerEncounter);
+		encounters.push(coronaFlamerEncounter);
 		/*encounters.push(boredJumperAttackProc);
 		encounters.push(boredJumperAttackProc);*/
 		var pregScene:int = boredJumperPregScene();

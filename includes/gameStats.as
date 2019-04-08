@@ -7273,7 +7273,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
-			if(flags["TOOK_FEDORA"] == 1 || flags["SNAKEBYTE_LOOTED"] == 1 || flags["FORGEHOUND_ENCOUNTERED"] != undefined || flags["MET_SECOP_MALE"] != undefined || flags["MET_SECOP_FEMALE"] != undefined || flags["RATS_ENABLED"] != undefined)
+			if(flags["TOOK_FEDORA"] == 1 || flags["SNAKEBYTE_LOOTED"] == 1 || flags["FORGEHOUND_ENCOUNTERED"] != undefined || flags["MET_SECOP_MALE"] != undefined || flags["MET_SECOP_FEMALE"] != undefined || flags["RATS_ENABLED"] != undefined || flags["FIREPUP_ENCOUNTERS"] != undefined)
 			{
 				output2("\n<b><u>Foundry</u></b>");
 				// Items looted
@@ -7290,6 +7290,18 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["FORGEHOUND_MOUNTEDRUTTED"] != undefined) output2("\n<b>* Forgehound, Times Mounted Him:</b> " + flags["FORGEHOUND_MOUNTEDRUTTED"]);
 					if(flags["FORGEHOUND_FISTED"] != undefined) output2("\n<b>* Forgehound, Times Fisted Him:</b> " + flags["FORGEHOUND_FISTED"]);
 					if(flags["FORGEHOUND_BUKKAKED"] != undefined) output2("\n<b>* Forgehound, Times Ejaculated On Him:</b> " + flags["FORGEHOUND_BUKKAKED"]);
+				}
+				// Corona Flamer
+				if (flags["FIREPUP_ENCOUNTERS"] != undefined) output2("\n<b>* Corona Lord Flamer, Times Encountered:</b> " + flags["FIREPUP_ENCOUNTERS"]);
+				if (flags["FIREPUP_SEXED_ROUGH"] != undefined) output2(", Fucked Her Hard");
+				if (flags["FIREPUP_PUNISHED"] != undefined)
+				{
+					output2("\n<b>* Corona Lord Flamer, Standing Orders:</b> ");
+					if (flags["FIREPUP_PUNISHED"] == FIREPUP_KNEEL) output2("Get On Her Knees");
+					else if (flags["FIREPUP_PUNISHED"] == FIREPUP_BEND) output2("Bend Over");
+					else if (flags["FIREPUP_PUNISHED"] == FIREPUP_BUTT) output2("Offer Her Ass");
+					else output2(" ERROR");
+					if (!fireBitchPunishSceneAvailable()) output2(", <b>You Lack Appropriate Genitalia</b>");
 				}
 				// Cyberpunk SecOps
 				if(flags["MET_SECOP_MALE"] != undefined) output2("\n<b>* Male Punk Security Operative, Times Encountered:</b> " + flags["MET_SECOP_MALE"]);
