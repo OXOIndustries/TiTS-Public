@@ -396,7 +396,7 @@ public function blackJackOptions(args:Array):void
 		if(debug) addButton(2,"Win",winAtBlackjack,[deck,dealerHand,pcHand],"Stand","Keep your current cards for now.");
 		
 		//if(pcHand.getCardPointTotalBlackjack() >= 21) addButton(2,(flags["BLACKJACK_BET"] > 0 ? "Bet More":"Bet"),blackJackBettingScreen,[deck,dealerHand,pcHand]);
-		//else addDisabledButton(2,"Bet","Bet","It's too late in the game for more betting.");
+		//else addDisabledButton(2,"Bet","Bet","It’s too late in the game for more betting.");
 	}
 }
 public function winAtBlackjack(args:Array):void
@@ -562,17 +562,17 @@ public function rooBonus(button:Number = 0):void
 		}
 		if(flags["ROO_ON_CD"] == 1) addDisabledButton(button,"Roo","Roo","After her climax, Roo is off duty for the day.");
 		else if(flags["MET_ROO"] == undefined) addButton(button,"Bunny Dealer",approachRoo,undefined,"Bunny Dealer","Grab a seat at the table and consider striking up a game with the bunny-eared dealer!");
-		else if(pc.credits < 500) addDisabledButton(button,"Roo","Roo","You don't have any money. There's no reason to annoy anybody by sitting at a game you can't afford to play.");
+		else if(pc.credits < 500) addDisabledButton(button,"Roo","Roo","You don’t have any money. There’s no reason to annoy anybody by sitting at a game you can’t afford to play.");
 		else addButton(button,"Roo",approachRoo,undefined,"Roo","Sidle up to the blackjack table and have a go with Roo again!");
 	}
 	else
 	{
 		if(flags["MET_ROO"] != undefined) 
 		{
-			output("\n\nRoo isn't working her usual table right now. Maybe you should check back after noon?");
-			addDisabledButton(0,"Roo","Roo","This blackjack table isn't currently open for business.");
+			output("\n\nRoo isn’t working her usual table right now. Maybe you should check back after noon?");
+			addDisabledButton(0,"Roo","Roo","This blackjack table isn’t currently open for business.");
 		}
-		else addDisabledButton(0,"Bunny Dealer","Bunny Dealer","This blackjack table isn't currently open for business.");
+		else addDisabledButton(0,"Bunny Dealer","Bunny Dealer","This blackjack table isn’t currently open for business.");
 	}
 }
 
@@ -598,7 +598,7 @@ public function approachRoo():void
 		output("\n\nAs the bouncer explained, credits are to be presented up front... though you don’t quite know how to do that. At least until you look at what everyone else has done. Devices similar to your codex or plain chits have been slotted into ports on the table, their displayed balances increasing or decreasing with success or failure.");
 		output("\n\nIn the seconds it took for you to make that discovery, another round has just played out. Roo sings praises and wishes the losers a shift in fortune. You pull out a loaded credit chit and glance at the cat-tailed dealer- wait, cat tails? So she’s a kaithrit then! That explains the feline’s fancy moves!");
 		output("\n\n<i>“Ah, first time in Treasure Nova?”</i> the genial kitty-rabbit perks up again, sensing your confusion. <i>“The rules are pretty simple if I says so myself!”</i> she flicks out one card to each player in a mere second. <i>“Just plug in your money, tell me your bet, and we’ll start playing! No forfeits, though! Hopefully Colis or Alphonse told you that.”</i> Another card swicks. <i>“Minimum bets are 500 credits, maximum bets 5000,”</i> another, <i>“and if you win a lot, <b>you’ll start earning some super special VIP prizes!</b>”</i> The deep heat in her tone raises an eyebrow. <i>“Haven’t had to give out any lately believe it or not! Luck’s just not been on anyone’s side, sadly...”</i>");
-		output("\n\n'<i>Swick.</i>'' <i>“But that’s all there is to it!”</i> she announces gaily, flattening an upright card next to her face-down ‘hole’ card with avid diligence. Deck still in hand, her apple cat’s eyes are centered on you. <i>“Shall we play?”</i>");
+		output("\n\n‘<i>Swick.</i>’ <i>“But that’s all there is to it!”</i> she announces gaily, flattening an upright card next to her face-down ‘hole’ card with avid diligence. Deck still in hand, her apple cat’s eyes are centered on you. <i>“Shall we play?”</i>");
 		processTime(5);
 	}
 	// Repeat Time
@@ -1287,7 +1287,7 @@ public function rooPantyCollectScene(arg:String = "back"):void
 	output("...");
 	//Satiny, bright red panties with ribbony side-ties.
 
-	pc.createKeyItem("Panties - Roo's - Satiny, bright red panties with ribbony side-ties.")
+	pc.createKeyItem("Panties - Roo's - Satiny, bright red panties with ribbony side-ties.");
  	output("\n\n(<b>Gained Key Item: Panties - Roo’s</b>.)");
  	clearMenu();
  	addButton(0,"Next",mainGameMenu);
@@ -1393,7 +1393,7 @@ public function rooTalkMenu():void
 	//[Treasure Nova]
 	addButton(2,"Treas.Nova",rooTalksTreasureNova,undefined,"Treasure Nova","How’d she end up here, and what’s this place like?");
 	//[Boss]
-	if(flags["ROO_NOVA_TALK"] == undefined) addDisabledButton(3,"???","???","You'll need to talk about something else first.");
+	if(flags["ROO_NOVA_TALK"] == undefined) addDisabledButton(3,"???","???","You’ll need to talk about something else first.");
 	else addButton(3,"Her Boss",askRooAboutHerBoss,undefined,"Her Boss","Ask about her boss.");
 	//[Fetish]
 	// Tooltip: Ask about her love for exhibition.
@@ -1650,7 +1650,7 @@ public function rooSexMenu(display:Boolean = true):void
 	{
 		clearOutput();
 		showRoo();
-		output("Roo's down for fun, but what do you want to do with her?");
+		output("Roo’s down for fun, but what do you want to do with her?");
 	}
 	clearMenu();
 	//[Undertable Oral]
@@ -2111,7 +2111,7 @@ public function tableFuckRoo():void
 	clearOutput();
 	showRoo();
 	author("William");
-	// Special Start:  6+ Gamegasms, Roo takes a milky drug (one-time only blurb)
+	// Special Start: 6+ Gamegasms, Roo takes a milky drug (one-time only blurb)
 	if(flags["ROO_GASMED"] >= 6 && flags["ROO_MILKED"] == undefined)
 	{
 		clearOutput();

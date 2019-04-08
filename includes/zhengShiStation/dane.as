@@ -506,22 +506,23 @@ public function suckDaneOffYaWanker():void
 		output("\n\nIt’s almost fifteen seconds later when you remember to breathe through your nose and look up at the wonderful man who gave you all this dick to suck.");
 	}
 	//Merge
+	var sexed:Boolean = (flags["DANE_SEXED"] != undefined);
 	//Bimbo/Snakebyte
 	if(pc.isBimbo() && flags["USED_SNAKEBYTE"] != undefined)
 	{
-		output("\n\n<i>“Oh wow,”</i> the mountain of muscle and turgid dick mouths. <i>“" + (flags["DANE_SEXED"] == undefined ? "You suck dick better than a galotian.":"I swear you’re the universe’s best cock-sucker.") + "”</i> His hips tremble against you, and he can’t resist using the hand on your head to swivel you this way and that, rolling his length around the inside of your maw and the throat. His dick flexes and strains; you can feel faint warmth when thicker dribbles of pre splash into your belly. <i>“" + (flags["DANE_SEXED"] == undefined ? "You’re making me glad I turned down the slyveren girls that came in earlier. I’d fuck all that cum into you.":"You keep this up, and I’ll have to stop sleeping around entirely. I can let you take care of it whenever my balls get this full.") + "”</i>");
+		output("\n\n<i>“Oh wow,”</i> the mountain of muscle and turgid dick mouths. <i>“" + (!sexed ? "You suck dick better than a galotian.":"I swear you’re the universe’s best cock-sucker.") + "”</i> His hips tremble against you, and he can’t resist using the hand on your head to swivel you this way and that, rolling his length around the inside of your maw and the throat. His dick flexes and strains; you can feel faint warmth when thicker dribbles of pre splash into your belly. <i>“" + (!sexed ? "You’re making me glad I turned down the slyveren girls that came in earlier. I’d fuck all that cum into you.":"You keep this up, and I’ll have to stop sleeping around entirely. I can let you take care of it whenever my balls get this full.") + "”</i>");
 		output("\n\nYou cup his balls without even thinking about it, gently kneading them. All that cum inside... and he saved it for you? A blush colors your cheek while you roll the heavy, fattening cum-tanks around in your hands, stroking his sack with your thumbs. There isn’t a single thought in your head besides the desire to suck him deep and make him cum. The taste and feel of Dane’s dong fills the space in your brain that might otherwise think of shame or worry. Right now, you’re a cock-stuffed cum-dump.");
 	}
 	//Deepthroat
 	else if(pc.canDeepthroat()) 
 	{
-		output("\n\n<i>“Oh wow,”</i> the mountain of muscle and turgid dick mouths. <i>“" + (flags["DANE_SEXED"] == undefined ? "You suck dick like a real pro.":"You’re a real devoted cock-sucker...") + "”</i> His hips shudder slightly, and he can’t resist using his hand to press you a little deeper into his sheath, smothering you in the scent of his musky cock-pocket. <i>“Really trained away that gag reflex, didn’t you?”</i> He grunts, flinging warm pre into your belly. <i>“" + (flags["DANE_SEXED"] == undefined ? "Blink once if you did it for me.":"Blink once if you masturbate thinking about this.") + "”</i> He tips your head back to see your eyes better.");
+		output("\n\n<i>“Oh wow,”</i> the mountain of muscle and turgid dick mouths. <i>“" + (!sexed ? "You suck dick like a real pro.":"You’re a real devoted cock-sucker...") + "”</i> His hips shudder slightly, and he can’t resist using his hand to press you a little deeper into his sheath, smothering you in the scent of his musky cock-pocket. <i>“Really trained away that gag reflex, didn’t you?”</i> He grunts, flinging warm pre into your belly. <i>“" + (!sexed ? "Blink once if you did it for me.":"Blink once if you masturbate thinking about this.") + "”</i> He tips your head back to see your eyes better.");
 		output("\n\nYou don’t even think about it, you just blink, long and slow. Whether it’s true or not doesn’t matter - you know that doing it is going to make him feel even better, and right now, that’s all you want to do - make Dane feel as good as possible. You’re being a slutty little cum-dump and loving it.");
 	}
 	//Normal
 	else
 	{
-		output("\n\n<i>“Not bad,”</i> the mountain of muscle and turgid dick mutters. <i>“It’s not easy for a normal [pc.boyGirl] to suck a dick this big, I know.”</i> He can’t resist stroking the back of your head with his fingers, gently encouraging you to keep at it. <i>“" + (flags["DANE_SEXED"] == undefined ? "If this is going to be a regular thing, I can see about finding you a mod to take care of that pesky little gag reflex.":"I really need to get you a mod to get rid of that pesky gag reflex.") + "”</i> His prick surges, dribbling pre onto your tongue at the thought. <i>“Get you some SnakeByte, and you’ll suck cock like a pro. You’d be able to take all this.”</i> He gestures at his dick and smiles when you cross your eyes to look at the still-exposed length. <i>“Fuck that’d be hot.”</i>");
+		output("\n\n<i>“Not bad,”</i> the mountain of muscle and turgid dick mutters. <i>“It’s not easy for a normal [pc.boyGirl] to suck a dick this big, I know.”</i> He can’t resist stroking the back of your head with his fingers, gently encouraging you to keep at it. <i>“" + (!sexed ? "If this is going to be a regular thing, I can see about finding you a mod to take care of that pesky little gag reflex.":"I really need to get you a mod to get rid of that pesky gag reflex.") + "”</i> His prick surges, dribbling pre onto your tongue at the thought. <i>“Get you some SnakeByte, and you’ll suck cock like a pro. You’d be able to take all this.”</i> He gestures at his dick and smiles when you cross your eyes to look at the still-exposed length. <i>“Fuck that’d be hot.”</i>");
 		output("\n\nYou nod, unable to stop yourself from imagining what that might feel like. You’d be so full, and without an ounce of discomfort. Dane could probably grab you back the back of the head and just jack-hammer your throat until your eyes are watering and you’re twitching with pleasure, just a limp-bodied cum-dump for him to use.");
 	}
 	//Merge
@@ -580,7 +581,7 @@ public function suckDaneOffYaWanker():void
 	}
 	//Merge
 	output("\n\nDane threads himself out of your " + (!pc.canDeepthroat() ? "mouth":"throat") + " so abruptly that you don’t even remember to breathe right away. You just sit there, taking the last lance of spunk across your features, dumbly waiting to pass out until a stray trickle of cum hits your sensitive [pc.nippleNoun] and reminds you that you’re capable of gasping. The world blasts back to full color, but your brain lags behind while you suck in fresh air, more aware of how " + (flags["USED_SNAKEBYTE"] == undefined ? "oddly":"totally") + " satisfying the encounter was than the feel of Dane wiping his dick off on your " + (pc.hasHair() ? "[pc.hair]":"shoulder") + ".");
-	output("\n\n<i>“" + (flags["DANE_SEXED"] == undefined ? "Fuck, you’re a good slut, [pc.name].":"You’re always good for a facial, aren’t you, slut?") + "”</i> Dane gingerly slips his codpiece on with a bit of effort, clipping his shield belt on just after. He pats your head. <i>“Maybe next time, I’ll " + ((flags["LOST_TO_DANE_ON_MHENGA"] == 1 || flags["DANE_BUTTFUCKED_U"] != undefined) ? "hit your ass again":"try your ass") + ". You’d like that, wouldn’t you?”</i>");
+	output("\n\n<i>“" + (!sexed ? "Fuck, you’re a good slut, [pc.name].":"You’re always good for a facial, aren’t you, slut?") + "”</i> Dane gingerly slips his codpiece on with a bit of effort, clipping his shield belt on just after. He pats your head. <i>“Maybe next time, I’ll " + ((flags["LOST_TO_DANE_ON_MHENGA"] == 1 || flags["DANE_BUTTFUCKED_U"] != undefined) ? "hit your ass again":"try your ass") + ". You’d like that, wouldn’t you?”</i>");
 	output("\n\nYou nod, covered in cum and drool, still trying to catch your breath.");
 	output("\n\nThe swaggering mercenary walks out while you’re still " + (pc.hasKnees() ? "on your knees":"on the floor") + ", though you note that his tail is wagging rapidly enough to thump both sides of the door.");
 	output("\n\nIt’s a good thing someone left a roll of paper towels in here or you’d have to walk back out with your face covered in spunk... unless you want to look like a total slut?");
@@ -599,6 +600,7 @@ public function beDanesDirtySlut():void
 	showName("BEING\nA SLUT");
 	output("Striding back into the casino with Dane’s approval painted upon your features seems like a great idea, so it’s exactly what you do. Who cares if you look like a slut? You are.");
 	pc.applyCumSoaked();
+	IncrementFlag("DANE_SEXED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -608,7 +610,10 @@ public function cleanUpYaSkank():void
 {
 	clearOutput();
 	showName("TIDYING\nUP");
-	output("You make yourself as presentable as you can, but there’s no cleaning up all the cum in your belly.");
+	output("You make yourself as presentable as you can");
+	if(pc.cumflationEnabled()) output(", but there’s no cleaning up all the cum in your belly");
+	output(".");
+	IncrementFlag("DANE_SEXED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

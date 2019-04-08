@@ -1543,7 +1543,7 @@ public function finalLadyTaurCostumeEpilogue():void
 	output(" centaur now.</b>");
 	pc.lust(50);
 	halloweenShipMove();
-	flags["TAURFUCKED_DANE"] = 1;
+	IncrementFlag("TAURFUCKED_DANE");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

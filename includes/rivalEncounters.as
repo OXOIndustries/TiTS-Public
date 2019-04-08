@@ -44,6 +44,14 @@ public function daneBustDisplay(nude:Boolean = false):String
 	if(nude) sBust += "_NUDE";
 	return sBust;
 }
+public function daneSexedTotal():int
+{
+	var nTimes:int = 0;
+	if(flags["LOST_TO_DANE_ON_MHENGA"] != undefined) nTimes++;
+	if(flags["TAURFUCKED_DANE"] != undefined) nTimes += flags["TAURFUCKED_DANE"];
+	if(flags["DANE_SEXED"] != undefined) nTimes += flags["DANE_SEXED"];
+	return nTimes;
+}
 
 //Approach
 public function approachRivalOnMhenga():Boolean 

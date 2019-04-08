@@ -8323,11 +8323,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2(", Crew member");
 				if(daneIsCrew()) output2(" (Onboard Ship)");
 			}
-			if(flags["LOST_TO_DANE_ON_MHENGA"] != undefined || flags["TAURFUCKED_DANE"] != undefined)
+			if(daneSexedTotal())
 			{
 				output2("\n<b>* Dane, Sexual History:</b> Sexed him");
-				if(flags["LOST_TO_DANE_ON_MHENGA"] != undefined) output2(", He fucked your ass");
+				if(flags["LOST_TO_DANE_ON_MHENGA"] != undefined || flags["DANE_BUTTFUCKED_U"] != undefined) output2(", He fucked your ass");
 				if(flags["TAURFUCKED_DANE"] != undefined) output2(", Fucked him as a centaur");
+				output2("\n<b>* Dane, Times Sexed:</b> " + daneSexedTotal());
 			}
 			roamCount++;
 		}
