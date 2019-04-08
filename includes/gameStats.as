@@ -157,6 +157,13 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.hasAntennae()) output2("\n<b>* Antennae:</b> " + pc.antennae + ", " + GLOBAL.TYPE_NAMES[pc.antennaeType]);
 		output2("\n<b>* Ears:</b>");
 		if(pc.hasLongEars()) output2(" " + prettifyLength(pc.earLength) + ",");
+		if(pc.earFlags.length > 0)
+		{
+			for(i = 0; i < pc.earFlags.length; i++)
+			{
+				output2(" " + GLOBAL.FLAG_NAMES[pc.earFlags[i]] + ",");
+			}
+		}
 		output2(" " + GLOBAL.TYPE_NAMES[pc.earType]);
 		if(pc.earsPierced != 0) output2("\n<b>* Ear Piercing:</b> " + pc.earsPierced + " " + StringUtil.toDisplayCase(pc.earsPShort));
 		output2("\n<b>* Eyes:</b>");
@@ -199,7 +206,7 @@ public function statisticsScreen(showID:String = "All"):void
 				else 
 				{
 					output2(" " + pc.horns + ",");
-					if(pc.hornLength > 0) output2(" " + prettifyLength(pc.hornLength));
+					if(pc.hornLength > 0) output2(" " + prettifyLength(pc.hornLength) + ",");
 					output2(" " + GLOBAL.TYPE_NAMES[pc.hornType]);
 				}
 			}

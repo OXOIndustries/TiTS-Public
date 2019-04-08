@@ -596,6 +596,8 @@ public function shizzyMikaNomNomNom(args:*):void
 	showMika(true);
 	author("QuestyRobo");
 	
+	pc.lust(100);
+	
 	//mode is -1 for herm, 1 for deeks, 2 for pussays and 3 for silly. 0 is for losers.
 	var mode:int;
 	var destination:String;
@@ -647,24 +649,26 @@ public function shizzyMikaNomNomNom(args:*):void
 		
 		if (pc.isCrotchGarbed())
 		{
-			output("\n\nHer dainty, dark toes expertly move across the bulge in your " + (pc.hasLowerGarment() ? "[pc.lowerGarment]" : "[pc.armor]") + ", teasing the sensitive flesh until pre starts " + (pc.cumQ() < 8000 ? "collecting at your tip." : "soaking through."));
-			output("\n\nJust when you think she’s going to make you cum in your pants, she pulls off and yanks your clothes off with a graceful flourish, letting your tool" + (pc.hasCocks() ? "s" : "") + " spring out, flinging " + (pc.cumQ() < 8000 ? "faint drops" : "a splash") + " of off-[pc.cumColor] pre onto your [pc.belly].");
+			output("\n\nHer dainty, dark toes expertly move across the bulge in your " + (pc.hasLowerGarment() ? "[pc.lowerGarment]" : "[pc.armor]") + ", teasing the sensitive flesh until pre starts " + (cumQ < 8000 ? "collecting at your tip." : "soaking through."));
+			output("\n\nJust when you think she’s going to make you cum in your pants, she pulls off and yanks your clothes off with a graceful flourish, letting your tool" + (pc.hasCocks() ? "s" : "") + " spring out, flinging " + (cumQ < 8000 ? "faint drops" : "a splash") + " of off-[pc.cumColor] pre onto your [pc.belly].");
 		}
 		
-		output("\n\n<i>“Oh ho, someone’s a little overeager. Let me guess.”</i> Mika brings her foot up to your [pc.cockHead]. <i>“You want this naughty boy inside me instead of your tongue?”</i> She flicks your head with her toe. The impact is a sublime mix of pain and pleasure, causing another " + (pc.cumQ() < 8000 ? "drop of pre to roll" : "spurt of pre to fly") + " out of your eager urethra. You begin to thrust your [pc.hips] on instinct, as your [pc.tongue] probes even deeper into her depths. Her Treated pheromones have you on full breed mode, thrusting anything getting stimulation in a desperate bid to sow your seed.");
+		output("\n\n<i>“Oh ho, someone’s a little overeager. Let me guess.”</i> Mika brings her foot up to your [pc.cockHead]. <i>“You want this naughty boy inside me instead of your tongue?”</i> She flicks your head with her toe. The impact is a sublime mix of pain and pleasure, causing another " + (cumQ < 8000 ? "drop of pre to roll" : "spurt of pre to fly") + " out of your eager urethra. You begin to thrust your [pc.hips] on instinct, as your [pc.tongue] probes even deeper into her depths. Her Treated pheromones have you on full breed mode, thrusting anything getting stimulation in a desperate bid to sow your seed.");
+		var cLength:Number = pc.cLength(cIdx);
 		output("\n\n<i>“Yeah, you want in, don’t you?”</i> She starts stroking you, while you start eating her out faster. <i>“You want my tight, fertile pussy squeezing around your ");
-		if (pc.longestCockLength() < 8) output("little");
-		else if (pc.longestCockLength() < 12) output("fat");
-		else if (pc.longestCockLength() < 18) output("big");
-		else if (pc.longestCockLength() < 26) output("giant");
+		if (cLength < 8) output("little");
+		else if (cLength < 12) output("fat");
+		else if (cLength < 18) output("big");
+		else if (cLength < 26) output("giant");
 		else output("fuck-huge");
 		output(" cock?”</i> You both go faster. <i>“You want me to scream your name in pleasure while I’m cumming my brains out around you?”</i> Faster. <i>“Your [pc.balls] tightening up from the sensation, brewing up a big, fat, fertile load at the thought of knocking up a curvy, Treated slut.”</i> Oh stars, you’re so close! And so’s she.");
 		output("\n\nYour tongue is shooting in and out of her like a piston, drawing out fat splatters of girlcum with each thrust. It’s like eating a warm, ripe watermelon, so delicious and juicy that it’s worth having your face soaked in it, and soaked it is. You feel like you’re laying under a small, pulsing waterfall, each splash soaking your face and sense in a wash of pheromone-laced ambrosia. The runoff pools below you, soaking into your [pc.hair] and back, ensuring that you’ll reek of her cunt for at least the rest of the day.");
 		output("\n\n<i>“Mmmh, feel how wet I am? Fuck, I’m just crying out to be bred! And you’d love to do it. You’d love to fill me with fertile cum, to watch my belly swell up with your cum, knocking me up with your little brats.”</i> FUCK, you can’t take it anymore! <i>“Cum, breeding slut!”</i> Mika lifts off of you in a flash, leaving your tongue slurping at empty air. Before you can react, she’s already on your [pc.oneCock], pressing it down against your [pc.belly] with her foot.");
 		output("\n\n<i>“Cum!”</i>");
 
-		if (pc.cumQ() < 8000) output("\n\nYou moan out loud as you unload on yourself, splattering streaks of [pc.cumColor] across your front. An errant drop hits your tongue, giving you a taste of your own [pc.cumFlavor] [pc.cumNoun].");
-		else if (pc.cumQ() < 40000) output("\n\nYour urethra bulges enough to lift her foot up a bit as it transports your fertile cargo. Jets of [pc.cum] spray from your overworked cock, painting you in waves of [pc.cumColor] as Mika laughs at your obscene output.");
+		var cumQ:Number = pc.cumQ();
+		if (cumQ < 8000) output("\n\nYou moan out loud as you unload on yourself, splattering streaks of [pc.cumColor] across your front. An errant drop hits your tongue, giving you a taste of your own [pc.cumFlavor] [pc.cumNoun].");
+		else if (cumQ < 40000) output("\n\nYour urethra bulges enough to lift her foot up a bit as it transports your fertile cargo. Jets of [pc.cum] spray from your overworked cock, painting you in waves of [pc.cumColor] as Mika laughs at your obscene output.");
 		else
 		{
 			output("\n\nMassive sperm-packed bulges obscenely distend your urethra. The curvaceous cowgirl notices this and presses her toe down on your cumvein, hard enough to stop your seed in its tracks. You groan out loud as your release is halted, fat floods of [pc.cum] melding together as they desperately seek an exit. In less than a minute the bottom half of your urethra is swollen beyond reason, pulsing and throbbing, begging for release. Even with that, there’s enough leeway for your cum to shoot out with force and volume that puts most men to shame, and it’s just the leakage.");
@@ -673,7 +677,7 @@ public function shizzyMikaNomNomNom(args:*):void
 
 		}
 		
-		output("\n\nAs you recover from your orgasm, you hear a small whirring noise. You look over and see Mika holding a small, handheld vacuum cleaner. The device effortlessly sweeps up all of your cum, leaving you" + (pc.cumQ() >= 40000 ? " and the rest of the hall" : "") + " spotless. <i>“These things are expensive, but they’re damn worth it.”</i>");
+		output("\n\nAs you recover from your orgasm, you hear a small whirring noise. You look over and see Mika holding a small, handheld vacuum cleaner. The device effortlessly sweeps up all of your cum, leaving you" + (cumQ >= 40000 ? " and the rest of the hall" : "") + " spotless. <i>“These things are expensive, but they’re damn worth it.”</i>");
 	}
 	else
 	{
@@ -852,7 +856,9 @@ public function shizzyIntroductionPartForParting(destination:String):void
 	else output(" conovian hopper with a melon rind, you people"); 
 	output(" don’t get to TELL me what’s possible!”</i>");
 	output("\n\nAn awkward silence falls over all of you. Through it all, Winston retains the same, indignant look. A few moments pass before Winston starts reaching into one of the large pockets of his pants. He pulls out a small jar of peanut butter and places it in your hand. <i>“Stay safe...”</i> And he, and Adelline just continue on their way, not saying another word.");
-
+	
+	pc.maxOutLust();
+	
 	addButton(0, "Next", shizzyIntroductionPartTimeJobForAFiver, destination);
 }
 
@@ -1115,9 +1121,10 @@ public function shizzyIntroductionHazing(args:*):void
 		if (silly) output(" your punishment must be more severe.");
 		else output(" you’re far from done here.");
 		output(" Don’t even think about trying anything, either. I see one hand and that vibe is going to go off like a thraggen cluster mine.”</i> Damn it, looks like you’re in here for the long haul.");
+		var cumQ:Number = pc.cumQ();
 		output("\n\nYou try and calm down, panting as your [pc.cocks]");
-		if (pc.cumQ() < 8000) output(" drip" + (pc.cocks.length == 1 ? "s" : ""));
-		else if (pc.cumQ() < 40000) output(" dribble" + (pc.cocks.length == 1 ? "s" : ""));
+		if (cumQ < 8000) output(" drip" + (pc.cocks.length == 1 ? "s" : ""));
+		else if (cumQ < 40000) output(" dribble" + (pc.cocks.length == 1 ? "s" : ""));
 		else output(" spray" + (pc.cocks.length == 1 ? "s" : ""));
 		output(" pre onto Mika. You can’t see her face, but you can just imagine the grin she has on it, watching you in this state.");
 		if (pc.hasVagina()) output(" Even your [pc.pussy] is on the edge, soaking the seat under you");
@@ -1143,8 +1150,8 @@ public function shizzyIntroductionHazing(args:*):void
 		else output(".");
 		output(" You choke back what must be the biggest moan you could let out, your throat straining, and your resolve waning.");
 		output("\n\nShe’s back to deepthroating you, and you’re sure that she’s not going to hold back this time. You try and brace yourself, but there’s no way you could, not in this state. All of your muscles are slack from pleasure, your head feels light, it’s almost like all of your blood has pooled in your [pc.cocks], making it feel like half of your weight has shifted into your crotch. It feels so bloated, like your skin is an overfilled balloon, and it’s going to pop; thankfully, in not nearly as disgusting a way.");
-		if (pc.cumQ() < 8000) output("\n\nYou unload into Mika’s throat, desperately spraying every drop from your [pc.balls] down her clenching throat. You keep cumming, and cumming, and cumming. Even when you’re long empty, your body still tries to expel more cum than you could possibly make without mods. You’re so sore... Stars, you won’t be able to sit right for a week!");
-		else if (pc.cumQ() < 40000) output("\n\nYou fire off into Mika’s throat, your [pc.cock " + cIdx + "] feeling more like a hose that’s been kinked up for an hour, and finally got straightened out. You flood her throat, letting out an inhuman amount of [pc.cum] almost straight into her gut. Of course, she’s Treated, so your load is nothing that she can’t handle, and she takes as much as you pump out, without complaint. Even your mighty reserves run dry, but that doesn’t stop your body from trying to expel more. You clench and pump until your [pc.balls] feel like they’ve been through a ringer, and then keep going. Oh boy, you’re not going to be sitting right for a while.");
+		if (cumQ < 8000) output("\n\nYou unload into Mika’s throat, desperately spraying every drop from your [pc.balls] down her clenching throat. You keep cumming, and cumming, and cumming. Even when you’re long empty, your body still tries to expel more cum than you could possibly make without mods. You’re so sore... Stars, you won’t be able to sit right for a week!");
+		else if (cumQ < 40000) output("\n\nYou fire off into Mika’s throat, your [pc.cock " + cIdx + "] feeling more like a hose that’s been kinked up for an hour, and finally got straightened out. You flood her throat, letting out an inhuman amount of [pc.cum] almost straight into her gut. Of course, she’s Treated, so your load is nothing that she can’t handle, and she takes as much as you pump out, without complaint. Even your mighty reserves run dry, but that doesn’t stop your body from trying to expel more. You clench and pump until your [pc.balls] feel like they’ve been through a ringer, and then keep going. Oh boy, you’re not going to be sitting right for a while.");
 		else 
 		{
 			output("\n\nYou explode like a broken faucet, hosing gallons of [pc.cum] down her throat. She tries her best, and being Treated, her best is pretty damn good, but even her mighty moo tummy can’t handle everything you put out, and she eventually lets you out of her sinfully tight, moist mouth, letting you unload right onto her. Shizuya gasps and pushes her crotch further under the table, presumably right into Mika, judging by her reaction.");
@@ -1225,8 +1232,9 @@ public function shizzyIntroductionHazingLoss(destination:String):void
 		if (pc.hasVagina()) output(" Your [pc.pussy] is just as riled up, feeling like it’s swelling to almost double its size from the amount of blood going into it.");
 		output("\n\nPre pools at the " + (pc.hasCocks() ? "tips" : "tip") + " of your meat, more than you’ve ever seen. How can you have more cum, what the fuck did she give you? Heavy contractions start in the bottom of your gut, reverberating into your [pc.balls] and " + (pc.hasCocks() ? "shafts." : "shaft.") + " You feel like a soda can that’s been shaken up in a tumble dryer, ready to pop, to fucking explode whether someone opens you or not.");
 		output("\n\nIt gets heavier and heavier, until you feel like your crotch is made of lead. Your screams of pleasure devolve into mindless babbling, and then, finally, teeth gritting as you feel something snap, like the rope on a catapult.");
-		if (pc.cumQ() < 8000) output(" You hose out [pc.cum] in gouts that are bigger than your entire, usual orgasm. Your [pc.balls] are working overtime to keep up with the demand of your drugged-up libido. It doesn’t work completely, and you fire far more blanks than real shots, but you still get out enough to give yourself a nice [pc.cumColor] coating. Whatever she gave you must have skyrocketed your production.");
-		else if (pc.cumQ() < 40000) output(" You spray out [pc.cum] like a hose, your urethra working so hard that the contractions come in less than a second after each other. Even your virility can’t quite keep up with your drugged-up lusts, and your stream wanes as your [pc.balls] struggle to keep pace, even with what seems like a production boost from whatever is going through you. It doesn’t take long for you to absolutely coat yourself in a few layers of [pc.cumColor], and there’s more where that came from.");
+		var cumQ:Number = pc.cumQ();
+		if (cumQ < 8000) output(" You hose out [pc.cum] in gouts that are bigger than your entire, usual orgasm. Your [pc.balls] are working overtime to keep up with the demand of your drugged-up libido. It doesn’t work completely, and you fire far more blanks than real shots, but you still get out enough to give yourself a nice [pc.cumColor] coating. Whatever she gave you must have skyrocketed your production.");
+		else if (cumQ < 40000) output(" You spray out [pc.cum] like a hose, your urethra working so hard that the contractions come in less than a second after each other. Even your virility can’t quite keep up with your drugged-up lusts, and your stream wanes as your [pc.balls] struggle to keep pace, even with what seems like a production boost from whatever is going through you. It doesn’t take long for you to absolutely coat yourself in a few layers of [pc.cumColor], and there’s more where that came from.");
 		else output(" You explode, firing cannon blasts of [pc.cum] with such force that small splatters coat the ceiling. Your continuous climax is so forceful, that rivers of your seed run out from your urethra, in addition to the massive, thick arcs that fly up into the air. You’re soaked from above and below as you form a small, [pc.cumColor] lake under you. It feels like so much more than usual. Maybe whatever she put in you is putting your [pc.balls] into overdrive? Doesn’t really matter at this point.");
 		if (pc.hasVagina())
 		{
@@ -2172,14 +2180,15 @@ public function shizzyOneStickDoesTheTrick(dick:int):void
 	output("\n\nAnd you just keep going! Whatever her pheromones are doing to you is turning you into a sexual god. You rut her in a frenzy, going far beyond the point where you would usually tire out or cum. Every nerve feels super charged, even the slight trickle of sweat beading down your [pc.skin] is electrifying. And yet you don’t cum, your body somehow holding it back in spite of all the pleasure you’re experiencing.");
 	output("\n\nNothing lasts forever though, and you soon feel your high start to fade as your orgasm approaches. Your [pc.legs] are trembling with pleasure and exertion" + (pc.isTaur() ? "." : ", and your [pc.arms] are straining from keeping her near-limp form held up.") + " Every muscle feels exhausted and energized at the same time, the building pleasure in your gut and the desire to breed keeping you going. You feel your release creeping up on you, your [pc.balls] feel bloated with the [pc.cumVisc] payload they’re about to deliver.");
 
-	if (pc.cumQ() < 8000)
+	var cumQ:Number = pc.cumQ();
+	if (cumQ < 8000)
 	{
 		output("\n\nYour release hits you like a freight train. Your [pc.balls] tense up, shooting everything they have, going on far longer than you usually do. Your [pc.cock " + dick + "] is still throbbing, even after you’ve begun shooting blanks. Your strength gives out and you both go tumbling to the ground, too worn out to do much more than lie there and pant from your exertion.");
 		if (pc.cocks[dick].hasFlag(GLOBAL.FLAG_KNOTTED)) output(" Your knot stays stubbornly lodged inside of her, still trying to pump out cum from your long-empty [pc.balls].");
 		else output(" You go limp, your [pc.cock " + dick + "] slipping out of her still-spasming hole.");
 		output("\n\nYou don’t even have the strength to move anymore, and you flop down on top of her.");
 	}
-	else if (pc.cumQ() < 40000)
+	else if (cumQ < 40000)
 	{
 		output("\n\nYour release hits you like a freight train. Your [pc.balls] tense up, shooting massive gouts of [pc.cum] through your urethra. Each massive pulse feels like its own orgasm, shorting your already overworked nerves, causing both of you to go tumbling to the ground.");
 		if (pc.cocks[dick].hasFlag(GLOBAL.FLAG_KNOTTED)) output(" Your knot has already tied you both together, leaving you helpless to do anything but fill her overwhelmed hole until backed up [pc.cum] is shooting out around your knot. With nothing to do but sit there and cum, you quickly find your exhaustion getting the better of you. You take one last look into Shizuya’s insensate face, before you fall limply on her back.");
@@ -2310,7 +2319,8 @@ public function shizzyTwoDicksForThoseThatFit(dicks:Array):void
 	output("\n\nShe moans like a siren, cumming almost instantly. Your foreplay earlier must have really gotten her going, her holes squeeze orgasmically down on you, holding your pricks hostage and halting your thrusts for a few seconds. Her dongs spray down her top half and then some, leaving a growing white pool around her.");
 	output("\n\nEverything collides into a perfect storm. Her orgasmic contractions wringing your cocks, the sight of her cumming her brains out, the pheromones that are still hanging in the air. It’s heavenly, and you can feel your [pc.balls] tense up as you get ready to top it off.");
 
-	if (pc.cumQ() < 8000) 
+	var cumQ:Number = pc.cumQ();
+	if (cumQ < 8000) 
 	{
 		output("\n\nYour [pc.cocks] explode inside of her, dumping the entire content of your [pc.balls] in a matter of seconds. To you, though, those seconds feel like hours. You’ve been so on-edge this whole time that each throb of your dicks feels like its separate orgasm.");
 		if (knotX || knotY) output(" The feeling only intensifies when your" + (knotX && knotY ? " knots finally swells enough to plug her holes." : " knot finally swells enough to plug her" + (knotX ? " muff." : " ass.")));
@@ -2319,7 +2329,7 @@ public function shizzyTwoDicksForThoseThatFit(dicks:Array):void
 	else
 	{
 		output("\n\nYour [pc.cocks] throb heavily, their urethras distending as fat wads of [pc.cum] shoot through them. By this point she’s far too insensate to do much more than groan as you begin to fill her. Her belly starts to swell as you stuff both of her holes to capacity, and then some.");
-		if (pc.cumQ() < 40000) output("\n\nYou pump until she looks at least six months pregnant, and your cum is spraying out" + (knotX || knotY ? " around your swelling " + (knotX && knotY ? "knots" : "knot") : " onto your crotch") + " in small streams. The cum that splatters out is quickly swept up in the pool of her own cum. Even your mighty output is no match for her flood.");
+		if (cumQ < 40000) output("\n\nYou pump until she looks at least six months pregnant, and your cum is spraying out" + (knotX || knotY ? " around your swelling " + (knotX && knotY ? "knots" : "knot") : " onto your crotch") + " in small streams. The cum that splatters out is quickly swept up in the pool of her own cum. Even your mighty output is no match for her flood.");
 		else
 		{
 			output("\n\nYou pump and pump, never letting up." );
@@ -2385,11 +2395,12 @@ public function shizzySuckHerDick(dick:int):void
 	
 	output("She hops up to grope you, grabbing your [pc.crotch], and" + (pc.hasBreasts() ? " groping your" : " running her hand down your") + " [pc.chest], you fire back, one hand grabbing one of her massive tits and the other grabbing for her crotch. You alternate between jerking off her colossal cocks, squeezing one of her many balls, and massaging the fat lips of her flower. She rips off your [pc.gear] in response, intensifying her touches on your now naked form.");
 	
+	var cumQ:Number = (dick != -1 ? pc.cumQ() : 0);
 	if (dick != -1)
 	{
 		output("\n\nShe pays particular attention to your [pc.cocks]," + (pc.hasCocks() ? " frenziedly jerking each of your lengths." : " rubbing your length raw.") + " You return the favor, taking your hand off of her tit and putting your full attention on her shafts. You stand there, stroking each other off until your pre has formed a ");
-		if (pc.cumQ() < 8000) output(" small");
-		else if (pc.cumQ() < 40000) output(" large");
+		if (cumQ < 8000) output(" small");
+		else if (cumQ < 40000) output(" large");
 		else output(" massive");
 		output(" off-[pc.cumColor] puddle on the ground. You can feel your [pc.balls] tense up, and her own shafts throb on the edge of release. Before you can get off, she stops stroking you and takes your hands off of her schlongs.");
 		output("\n\n<i>“That’d be a pretty boring way to end things, wouldn’t it?”</i> She pants at you. <i>“I’ve got a better idea.”</i>");
@@ -2447,7 +2458,7 @@ public function shizzySuckHerDick(dick:int):void
 	if (dick != -1)
 	{
 		output("\n\nYour ministrations are driving her over the edge and she decides she isn’t going alone. She takes your [pc.cock " + dick + "] in to the base, purring uncontrollably, sending vibrations up and down your shaft. Your [pc.balls] tremble in tune with hers, signaling your synchronous orgasms.");
-		if (pc.cumQ() < 8000)
+		if (cumQ < 8000)
 		{
 			output("\n\nYou unload in seconds, her skilled mouth carrying away everything you have to offer and then some. Her purring tunnel is demanding more and more of your [pc.cum]. You deliver with gusto, coming to a second orgasm in record time, and being hot on the heels of a third. She sucks down load after load, demanding more from you, and always seeming to get it no matter how drained you feel. You wish you could say you were handling it as well. Your belly is so full that you look like a beach ball just inflated inside you. You’ve gone completely slack at the intense sensations. Everything is white... so much cum... Your stomach is so pressurized that a large blast sends you rocketing off of her cock. Her flow seems to slow down as your face settles next to her balls. Your tongue sticks out, unthinkingly licking at the source of the lewd pool you’ve found yourself in. Your stomach growls in discomfort, but you feel surprisingly sated.");
 			output("\n\nShe takes your cock out of her mouth, placing it gently into her tits. Her arms cradle around you as you pass out.");
@@ -2455,7 +2466,7 @@ public function shizzySuckHerDick(dick:int):void
 		else
 		{
 			output("\n\nYou cum first, your urethra distending as fat gobs of [pc.cum] come barreling through it directly into her stomach. You feel her stomach start to swell against your [pc.belly] before her orgasm balloons you out. Thankfully she’s so deep in your throat that you don’t have to worry about swallowing. You can just sit there and bask in the warm feelings flooding your stomach. Her other cock is a geyser, coating both of you in layer upon layer of her cum.");
-			if (pc.cumQ() < 40000) output("\n\nShe looks pregnant with twins by the time your flow subsides. She actually manages to swallow your entire load before flopping your spit-slick dick out of her mouth, letting it sit and dribble its last drops of [pc.cumNoun] on her cheek. You wish you could say you were handling it as well. Your belly is so full that you look like a beach ball just inflated inside you. You’ve gone completely slack at the intense sensations. Everything is white... so much cum... Your stomach is so pressurized that a large blast sends you rocketing off of her shaft. Her flow seems to slow down as your face settles next to her balls. Your tongue sticks out, unthinkingly licking at the source of the lewd pool you’ve found yourself in. Your stomach growls in discomfort, but you feel surprisingly sated. Her arms cradle around you as you pass out.");
+			if (cumQ < 40000) output("\n\nShe looks pregnant with twins by the time your flow subsides. She actually manages to swallow your entire load before flopping your spit-slick dick out of her mouth, letting it sit and dribble its last drops of [pc.cumNoun] on her cheek. You wish you could say you were handling it as well. Your belly is so full that you look like a beach ball just inflated inside you. You’ve gone completely slack at the intense sensations. Everything is white... so much cum... Your stomach is so pressurized that a large blast sends you rocketing off of her shaft. Her flow seems to slow down as your face settles next to her balls. Your tongue sticks out, unthinkingly licking at the source of the lewd pool you’ve found yourself in. Your stomach growls in discomfort, but you feel surprisingly sated. Her arms cradle around you as you pass out.");
 			else output("\n\nYou match her spray for spray, feeling your [pc.cumNoun] hose out of you as her own cum floods your stomach. Your stomachs are both ridiculously gravid. Anyone looking at the two of you would think you were about to give birth to a small village. And you both just keep going. Your bellies are filled to bursting, and excess cum is shooting out of your mouths and noses, creating a pool on the ground. You pop off of each other’s cocks, catching another massive gout right to the face as you flop into a pile of sticky cum-balloons. Your body is numb with pleasure and covered in a thick blanket of mixed cum. You think your orgasm stopped, but it’s hard to feel anything about your body right now. You’re tired, sore, and more sated than you think you’ve ever been. Your eyelids drop like lead, and sleep quickly comes.");
 		}
 	}
@@ -2538,7 +2549,8 @@ public function shizzySlurpSlurp(dick:int):void
 	else
 	{
 		output("\n\nHer balls are pulsing, swelling against the back of your head, almost mirroring your own [pc.balls]. Her womanhood is going insane, trying as hard as it can to drag your tongue deeper inside. It’s milking you, desperate for fresh, virile cum despite knowing that your [pc.cock " + dick + "] is busy elsewhere. Through the fog of your mind you can feel her getting more aggressive on your length. She takes it down to the base, deepthroating you and letting her purring throat massage you. She’s vibrating so hard it feels like your prick is in a malfunctioning sex toy! The gyrations are so strong that you can feel them on your tongue. She sticks one of her fingers up your [pc.asshole], sending you flying over the edge.");
-		if (pc.cumQ() < 8000)
+		var cumQ:Number = pc.cumQ();
+		if (cumQ < 8000)
 		{
 			output("\n\nYour [pc.balls] tighten as they unload in thick waves. It might just be your imagination, but you feel like you’re cumming more than you usually do. It doesn’t matter though. All that matters now is getting more delicious girlcum from her honeypot. Well, that and the incessant throbbing of her sack on your head as she unloads. No matter how much you even think you’re cumming, you’re no match for her. Even mired in her crotch as you are, you can feel the huge splashes of white drown your body.");
 			output("\n\nHer balls are almost thrumming into your ears, sending sweet vibrations into your head. Your thoughts scatter into the deep haze of your mind, replaced by pure lust. You feel like a lone worshipper at the foot of a fertility goddess. Her balls are so productive that she could sire an entire generation by herself. Her pussy is so soft and inviting, and her hips are just made for birthing. Visions, vivid fantasies of being atop a massive throne with your goddess fill your mind. You’re surrounded by worshipful subjects with massively swollen bellies, thanking their goddess for her gifts. Her own stomach is swollen with your offspring, and you sit under her, fucking her ambrosial hole in an endless rut.");
@@ -2547,7 +2559,7 @@ public function shizzySlurpSlurp(dick:int):void
 		}
 		else
 		{
-			if (pc.cumQ() < 40000)
+			if (cumQ < 40000)
 			{
 				output("\n\nYour balls tighten as your urethra distends powerfully. Huge sprays of [pc.cum] hose their way into her gut. You fill her obscenely, but she somehow manages to keep it all down. Her gut is pushing hard against your [pc.belly], sloshing with your copious [pc.cumNoun]. Her own cock goes off, firing massive arcs into the air that rain down on both of your bodies. She keeps going too. The warm, frantic pulsations of her sack on your head and the warm flood washing over your body are only further numbing your already blurry thoughts.");
 				output("\n\nThis is where you belong isn’t it? Helping big virile breeders relieve their lusts, and tending to their underused assets. Oh, maybe she’ll even let you knock her up while she’s plugging some slut! Your [pc.cock " + dick + "] rockets back to hardness at the thought, still dripping from your last orgasm. The thought of breeding her has your hips moving on their own, facefucking her as hard your hips will carry you. You desperately return to tonguefucking her, compelled by some voice at the back of your mind to fuck her hard even though there’s no way you could knock her up with your tongue. You don’t even care at this point. You’re stuck in a rut, looping in and out of orgasms, never seeming to run dry. Your world fades to nothing but pussy, cock, and endless orgasms, and you quickly lose track of time and even consciousness.");
