@@ -491,7 +491,7 @@ public function ratStartEncounterFight(argumentOver:int = 0):void
 	CombatManager.lossScene(ratFightLoss);
 	CombatManager.displayLocation("RAT’S RAIDERS");
 	CombatManager.encounterTextGenerator(ratcounterTextGenerator);
-	addButton(0, "Fight!", CombatManager.beginCombat);
+	addButton(0, "Next", CombatManager.beginCombat);//Already chose the "Fight" option. No need to make people do anything than tap space at this formality.
 }
 
 public function ratGiveThemMoney():void

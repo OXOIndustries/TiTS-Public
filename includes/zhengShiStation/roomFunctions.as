@@ -220,7 +220,7 @@ public function zhengFoundryF1EncounterBonus():Boolean
 		encounters.push(coronaFlamerEncounter);
 		if (ratsAvailable())
 		{
-			encounters.push(ratsInTheMineEncounter);
+			//encounters.push(ratsInTheMineEncounter);
 			encounters.push(ratsInTheMineEncounter);
 			encounters.push(ratsInTheMineEncounter);
 		}
