@@ -1827,7 +1827,12 @@ public function amberOnshipSex():void
 	else addDisabledButton(2, "Fuck Pussy", "Fuck Pussy", "You need a cock or a hardlight to fuck Amber’s pussy.");
 	if (pc.hasCock() || pc.hasHardLightEquipped()) addButton(3, "Mounting", penisRouter,[amberOnshipSexMounting,amber.vaginalCapacity(),true,0], "Mounting", "Put some of the equipment you and Urbolg put in here to good use.");
 	else addDisabledButton(3, "Mounting", "Mounting", "You need a penis or hardlight dildo to mount Amber.");
-	if (amberCanThreesome()) addButton(4, "Threesome", amberThreesomesMenu, undefined, "Threesome", "Bring a friend.");
+	// //For non-neuter, non-taur/non-naga PCs with Amber recruited. Uses the taur equipment to comfortably mount a biped PC. Can't be done with Amber at 3+ Dumbfucks.
+	if (amberDumbfuckDoses() > 2) addDisabledButton(4, "Mount Me", "Mount Me", "Amber's too worked up to consider using the machines to mount you!");
+	else if (pc.isTaur() || pc.isNaga()) addDisabledButton(4, "Mount Me", "Mount Me", "Requires a regular biped body.");
+	else if (!pc.hasGenitals()) addDisabledButton(4, "Mount Me", "Mount Me", "Requires genitals.");
+	else addButton(4, "Mount Me", vaginaRouter, [amberDoesTheMountingThisTime, ppAmber.biggestCockVolume(), 1, 0], "Mount Me", "Ask Amber to mount the equipment so she can rut you in comfort.");
+	if (amberCanThreesome()) addButton(5, "Threesome", amberThreesomesMenu, undefined, "Threesome", "Bring a friend.");
 		
 	addButton(14, "Back", amberInTheHold);
 
@@ -3104,6 +3109,123 @@ public function amberOnshipSexMounting(kok:int=0):void
 	if (celiseIsCrew()) processTime(5 + rand(5));
 	else processTime(30 + rand(30));
 		
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function amberDoesTheMountingThisTime(vagIdx:int):void
+{
+	clearOutput();
+	amberHeader();
+
+	var ppAmber:PregnancyPlaceholder = getDryadPregContainer();
+
+	output("<i>\"So I know mounting can take a lot out of you,\"</i> you say, smiling at Amber, <i>\"and I figured we could use some of the stuff Urbolg and I set up. Like this!\"</i>");
+	output("\n\n<i>\"Oh!\"</i> Amber exclaims, looking at the little platform hanging from the ceiling. <i>\"Is that what it's for?\"</i>");
+	output("\n\n<i>\"Uh huh. You just put your front legs over it so you can stand more comfortably,\"</i> you say, nodding. <i>\"So how about it? Wanna give it a try?\"</i>");
+	output("\n\n<i>\"Oh </i>yeah<i>!\"</i> she says enthusiastically. <i>\"Like I'm gonna miss out on mounting you, [pc.name]!\"</i>");
+	output("\n\nYou grin at the eager response. Sex is never <i>that</i> far from the pretty deergirl's mind, after all, and frankly watching her climb into the little harness is a little erotic in itself. All that enormous, sensitive horsecock just hanging there in midair, waiting for you to move into position.");
+	output("\n\n<i>\"Like what you see, [pc.name]?\"</i> Amber says, smirking down from above. <i>\"You look as keen as I feel… I can hardly wait!\"</i>");
+	output("\n\nShe's not kidding -- thick white precum drips from her heavy pink cock, running down her swollen cockhead and veiny underside as she wiggles her powerful hips in anticipation. The motion of it makes");
+	if (amberEquilicumDoses() > 0) output(" all four of");
+	output(" her giant, seed-swollen nuts jiggle, an enticing and promising sight if you've ever seen one. Even her teeth are bared, biting her bottom lip while she watches you");
+	if (!pc.isNude()) output(" undress");
+	output(".");
+	output("\n\n<i>\"Oh, fuck, you are so hot,\"</i> she mutters quietly, her cock throbbing and standing even stiffer. <i>\"Wanna rut the shit out of </i>that<i>...\"</i>");
+	output("\n\n<i>\"This?\"</i> you say, smiling as you bend over in front of her, reaching back to spread");
+	if (vagIdx < 0) output(" your cheeks for her, exposing your [pc.asshole]. <i>\"You wanna force-fuck that gigantic horsecock of yours into my biped ass, Amber?\"</i>");
+	else output(" the lips of your [pc.pussy " + vagIdx + "] for her, exposing the wetness. <i>\"You wanna force-fuck that gigantic horsecock of yours into my biped pussy, Amber?\"</i>");
+	output("\n\n<i>\"Yeah! Yeah!\"</i> Amber pants, her cheeks flushing with color while she bucks her hips forward, straining against the mounting harness. <i>\"Nnnnh!\"</i>");
+	output("\n\nTurning Amber on to the point of insensibility is like a switch, so easy it's almost like cheating, really. But looking up at her and seeing her literally drool in eagerness, her tongue stuck out of her mouth while she lets out heated pants, you can't say you mind. She's such a <i>giving</i> lover, after all… she deserves to be treated nicely.");
+	output("\n\n<i>\"Aaaaah!\"</i> Amber cries out, shivering in your grip as you bend down to take a quick suck of her cock. <i>\"Oh! Oh! [pc.name]...\"</i>");
+	output("\n\nYou'd just intended to lube her up and tease her a little bit before the main event but as you withdraw licking your [pc.lips] clean, it's evident you needn't have bothered. She's <i>slick</i> with precum, the first few inches of her staggering equine dick coated in it. Little wonder she's so good at getting it in.");
+	output("\n\n<i>\"You ready?\"</i> you murmur to her, already knowing the answer.");
+	output("\n\nAmber doesn't even have time to get the words out before you're both groaning deeply, her flared head pressing at your " + (vagIdx < 0 ? (pc.hasPlumpAsshole() ? "puffy donut" : "stretching asshole") : "wet, slippery folds") + ". She lets out a little scream of joy as she caves your");
+	if (vagIdx < 0) output(" ring inwards, pushing her way into your slickened intestines");
+	else output(" pussy inwards, pushing her way into your stretched-out slit");
+	output(" while you grip the lower bar for support. <i>Whoever built this must be a genius,</i> you think, biting your lip and shivering in bliss while Amber's dizzying pheromones swirl around your head and her fat cock sinks deeper between your");
+	if (vagIdx < 0) output(" asscheeks, sticky precum dripping down your " + (pc.balls > 0 ? "[pc.balls]" : "underside"));
+	else output(" sensitive walls, coating them in sticky precum");
+	output(" as she goes. <i>There's going to be just enough room for-</i>");
+	output("\n\nThis time it's your turn to scream in ecstasy when Amber's fat, juicy nutsack swings up and slaps your [pc.ass]. A few droplets of");
+	if (vagIdx < 0) output(" her cum squirt back down her cock, forced from your clenching asshole");
+	else output(" [pc.girlCum] squirt down her cock, forced from your clenching vagina");
+	output(", the enormous horsecock embedded in your body taking up all available space. It feels like if you were to tense your abdominals right now, all you'd accomplish is giving her a nice massage from the inside.");
+	pc.holeChange(vagIdx, ppAmber.biggestCockVolume());
+	output("\n\n<i>\"St-stars,\"</i> you moan, hanging your head she draws back for another thrust. <i>\"Oh, </i>fuck<i>!\"</i>");
+	output("\n\nThis time Amber makes <i>sure</i> she's bottomed out inside you, bringing her hips forward and roughly grinding herself up and down your");
+	if (pc.buttRating() < 3) output(" tight butt");
+	else if (pc.buttRating() < 5) output(" jiggling butt");
+	else output(" enormous butt");
+	output(", getting just the right angle to make you groan like a whore. Once she hears that, she can't be stopped -- suddenly you're being pounded like her life depends on it, the clap of flesh on flesh ringing out in the hold while the two of you sing a duet of shared carnal joy. A mixture of your juices begins to drip and squirt from between your [pc.thighs], your fuckhole stretching wide every time she pulls back and lets her flaring head approach the entrance.");
+	output("\n\nThen she drives it back in with such force and precision you have to fight to keep from screaming in outright rapture on every thrust, biting your lip so hard it hurts, muffled grunts and groans slipping from your mouth unbidden regardless. There's no time to even adjust your slickening grip on the mounting hold, your fingers slipping while Amber pounds you out until you're coated in sweat both hers and your own. The way her");
+	if (vagIdx < 0) output(" thrumming cumvein rubs against your prostate, though, does you in. Each rough stroke");
+	else output(" heavy balls fiercely slap against your [pc.clit " + vagIdx + "], though, does you in. Each thudding impact");
+	output(" makes your [pc.legs] quake with the pleasure of it, your knees turning inwards until you give up and let go.");
+	output("\n\n<i>\"Amber,\"</i> you moan, squeezing your eyes shut as a violent orgasm threatens to unsteady your grip. <i>\"Oh, <b>Amber!</b>\"</i>");
+	output("\n\nYou cry out her name as she makes you cum all over");
+	if (pc.hasCock()) output(" the floor,");
+	else output(" her thrusting cock,");
+	if (vagIdx < 0) output(" your insides");
+	else output(" your sensitive walls");
+	output(" clamping down on her and succeeding only in forcing you to orgasm even harder, a bellowing groan of pleasure forcing its way past your lips. The complete loss of control doesn't go unnoticed and Amber, sensing your inability to keep yourself afoot, begins thrusting upwards until you get your legs back under you. You don't even comprehend what she's done, just that she's back to slamming her immense length all the way inside your quivering " + (vagIdx < 0 ? "hole" : "clam") + " and you can feel your brain oozing from your [pc.ears].");
+	output("\n\nThe longer she goes the more and more eager you get to finally feel Amber pop, her breathing growing more ragged by the second while her deliciously large flare begins to flower inside you, spreading wide until it feels like she must be as large as a fucking dinner plate. Your mouth opens and closes and nothing comes out save for little breathless gasps and pants as well as your [pc.tongue], stuck out on particularly strong thrusts right into your most sensitive parts. The iron-hard length between your [pc.hips] beginning to swell to unimaginable proportions as you shake and tremble on the end of it, you bring your thighs together and squeeze her as hard as you can, hearing your lover groan in response.");
+	output("\n\n<i>\"Fuuuuck-!\"</i> Amber strains, her lower half bucking wildly. <i>\"Gonna cum! Cumming! Cumming! Nnnnnnghk-\"</i>");
+	output("\n\nShe lets out a plaintive cry and thrusts forward, letting the silence hang in the air for a second before a <i>massive</i> stream of spunk spurts from the end of her pulsing, flexing horsecock and into");
+	if (vagIdx < 0) output(" your bowels");
+	else if (pc.isPregnant(vagIdx)) output(" the squeezing confines of your pussy");
+	else output(" your [pc.womb " + vagIdx + "]");
+	output(". Your eyes roll up into your head at the feeling of it, the blissful warmth and heat of her pumping sperm flooding your body and spraying back out of your quivering fuckhole. She pours it into you with little thrusts, grinding herself against your ass while her bloated cockhead blooms over and over.");
+	output("\n\nYou stand there and take it, breathing hard while your");
+	if (vagIdx < 0)
+	{
+		output(" guts fill with Amber's virile sperm, jetting into your stomach and swelling it outwards.");
+		if (amberEquilicumDoses() > 0) output(" Boosted by the Equilibricum, Amber's absurd output doesn't stop or even slow until you're groaning with exertion, your belly distended by a thick, heavy liquid load.");
+		else output(" Her ballsack doesn't stop throbbing against your rear until you look like you've swallowed a volleyball, though the way it shifts inside you gives away the heavy liquid nature of the load.");
+	}
+	else
+	{
+		if (pc.isPregnant(vagIdx)) output(" tightening canal is filled with fresh sperm over and over, spraying down your thighs as you reach capacity almost instantly. By the time she's done, your legs are utterly coated in Amber's spunk.");
+		else
+		{ 
+			output(" womb fills to the brim with Amber's virile sperm, swelling to the limit as a bump begins to appear through your stomach.");
+			if (amberEquilicumDoses() > 0) output(" Boosted by the Equilibricum, her absurd output doesn't stop flowing into you until you're groaning with exertion, your belly distended by a thick, heavy liquid load.");
+			else output(" Her ballsack doesn't stop throbbing against your rear until you look like you've swallowed a volleyball, though the way it shifts inside you gives away the heavy liquid nature of the load.");
+		}
+	}
+	output("\n\n<i>\"Oooohhhh, wow,\"</i> Amber moans, slowly -- very slowly -- stepping back, withdrawing her spent, pulsing cock from your cum-slick hole. She comes free with an audible <i>pop</i>, her impressive flare coming loose with a deluge of her formerly plugged spunk. It splashes to the ground between your [pc.feet] while you quiver and moan, each reflexive clench forcing yet more of her squelching seed to spurt and dribble from your");
+	if (vagIdx < 0) output(" ring.");
+	else
+	{
+		output(" slit.");
+		if (!pc.isPregnant(vagIdx)) output(" Your womb still feels like it's full to the brim with her and no doubt it will for some time, the warmth of her semen acting as a reminder of her love.");
+	}
+	output("\n\n<i>\"Mmmm…\"</i> she murmurs, walking around to your front. <i>\"You were right… that </i>was<i> comfortable.\"</i>");
+	output("\n\nShe picks you up and kisses you, wrapping her arms around your back and entwining her tongue with yours as her alabaster cum drips and drools from your");
+	if (vagIdx < 0) output(" gaping asshole.");
+	else output(" gaping slit.");
+	output(" After a second you hug her closer, closing your eyes and leaning into the kiss, pressing her soft breasts");
+	if (pc.hasBreasts()) output(" into your own.");
+	else output(" against your [pc.chest].");
+	output(" You're both sweaty and sticky but damn if the way she smells and feels against you doesn't make you want to bury your head in her pretty red hair forever. You'll settle for gently running your fingers through it.");
+	output("\n\n<i>\"Do you like my hair?\"</i> Amber asks, nuzzling you and smiling.");
+	output("\n\n<i>\"I do,\"</i> you say, nodding and rubbing your cheek against hers, then grinning. <i>\"Maybe even more than I love your dick!\"</i>");
+	output("\n\n<i>\"Ooooh, let's not say things we can't take back,\"</i> she says, trying to scowl and only giggling. <i>\"I'll have to ride you even harder next time, [pc.name]. Can't have you disrespecting my cock!\"</i>");
+	output("\n\n<i>\"Especially when it gives you such an alluring gape,\"</i> she adds, hooding her eyes as she reaches down and grabs two handfuls of your ass. <i>\"You know what that looks like to a girl like me?\"</i>");
+	output("\n\n<i>\"What?\"</i> you whisper, looking into her narrowed blue eyes.");
+	output("\n\n<i>\"An invitation,\"</i> she murmurs, leaning forward and biting your lip. <i>\"So you'd better come back and see me again the next time you want some, [pc.name]. I'll keep you nice and stretched out so you can fit all of me.\"</i>");
+	output("\n\nSitting back up in your room after a hot, steamy shower, you");
+	if (pc.hasVagina()) output(" idly wonder if the wetness between your legs is because of Amber's cock or her sensual promise.");
+	else output(" look down at your [pc.cocks] and idly wonder if " + (pc.hasCocks() ? "they're" : "it's") + " erect because of the lingering feeling of Amber inside you or her sensual promise.");
+	output(" It's hard to tell.");
+
+	IncrementFlag("DRYAD_FUCKED");
+	processTime(20 + rand(15));
+	if (vagIdx < 0) pc.loadInAss(ppAmber);
+	else pc.loadInCunt(ppAmber, vagIdx);
+	pc.orgasm();
+	pc.shower();
+
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
