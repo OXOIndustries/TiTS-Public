@@ -594,9 +594,9 @@ public function boredJumperPregEncounterSteelePreg():Boolean
 	var i:int;
 	var rn:int;
 	
-	if (flags["BJUMPER_PC_PREG_TYPE"] != undefined && flags["BJUMPER_PC_PREG_TYPE"] != flags["BJUMPER_PREG_TYPE"]) sel.push(flags["BJUMPER_PC_PREG_TYPE"]);
-	if (flags["BJUMPER_PC_PREG_TYPE1"] != undefined && flags["BJUMPER_PC_PREG_TYPE1"] != flags["BJUMPER_PREG_TYPE"]) sel.push(flags["BJUMPER_PC_PREG_TYPE1"]);
-	if (flags["BJUMPER_PC_PREG_TYPE2"] != undefined && flags["BJUMPER_PC_PREG_TYPE2"] != flags["BJUMPER_PREG_TYPE"]) sel.push(flags["BJUMPER_PC_PREG_TYPE2"]);
+	if (flags["BJUMPER_PC_PREG_TYPE"] != undefined && (flags["BJUMPER_PC_PREG_TYPE"] != flags["BJUMPER_PREG_TYPE"] || flags["BJUMPER_PREG_TIMER"] < 50)) sel.push(flags["BJUMPER_PC_PREG_TYPE"]);
+	if (flags["BJUMPER_PC_PREG_TYPE1"] != undefined && (flags["BJUMPER_PC_PREG_TYPE1"] != flags["BJUMPER_PREG_TYPE"] || flags["BJUMPER_PREG_TIMER"] < 50)) sel.push(flags["BJUMPER_PC_PREG_TYPE1"]);
+	if (flags["BJUMPER_PC_PREG_TYPE2"] != undefined && (flags["BJUMPER_PC_PREG_TYPE2"] != flags["BJUMPER_PREG_TYPE"] || flags["BJUMPER_PREG_TIMER"] < 50)) sel.push(flags["BJUMPER_PC_PREG_TYPE2"]);
 	
 	i = sel.length;
 	
