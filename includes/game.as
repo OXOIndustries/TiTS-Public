@@ -1301,6 +1301,18 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
+	if (syriIsCrew())
+	{
+		count++;
+		if (!counter)
+		{
+			if (InCollection(CREW_SYRI, crewMembers))
+			{
+				addButton(btnSlot, "Syri", syriFollowerApproach);
+				btnSlot = crewButtonAdjustments(btnSlot);
+			}
+		}
+	}
 	if (yammiIsCrew())
 	{
 		count++;
@@ -4085,6 +4097,18 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			if(flags["SYRI_VIDEO_DELAY_TIMER"] == undefined) flags["SYRI_VIDEO_DELAY_TIMER"] = GetGameTimestamp();
 			else if(nextTimestamp >= (flags["SYRI_VIDEO_DELAY_TIMER"] + (60*24*3))) goMailGet("syri_video", (flags["SYRI_VIDEO_DELAY_TIMER"] + (60*24*3)));
 		}
+
+		//Syri Onahole vid. If you're from the future, you're probably here because the email is firing for non-camwhore Pennys. Have fun.
+		if (!MailManager.isEntryUnlocked("syri_onahole_video") && syrisPussAvailable() && syriIsCrew() && pennyIsCrew() && penny.hasCock() && (pennyIsCumSlut() || penny.isBimbo()))
+		{
+			if (flags["SYRI_HOLE_VID_TIMER"] == undefined) flags["SYRI_HOLE_VID_TIMER"] = GetGameTimestamp() + 3*24*60 + rand(2*24*60+1);
+			else if (nextTimestamp >= flags["SYRI_HOLE_VID_TIMER"])
+			{
+				goMailGet("syri_onahole_video", Math.floor((GetGameTimestamp()+nextTimestamp)/2));
+				flags["SYRI_HOLE_VID_TIMER"] = undefined;
+			}
+		}
+
 		//Prai email stuff
 		if (flags["PRAI_EMAIL_NUMBER"] != undefined && flags["PRAI_EMAIL_STAMP"] != undefined && nextTimestamp >= (flags["PRAI_EMAIL_STAMP"] + (60*10)))
 		{
