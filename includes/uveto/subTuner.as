@@ -474,7 +474,7 @@ public function walkiesPart2():void
 	var lover:Boolean = false;
 	var choices:Array = [];
 	if(annoIsCrew()) choices.push(0);
-	if(syriIsCrew()) choices.push(1);
+	if(syriIsCrew() || (syriRecruited() && syriAtFreeezer())) choices.push(1);
 	if(roamingKiroAvailable()) choices.push(2);
 	var select:int = -1;
 	if(choices.length > 0) select = choices[rand(choices.length)];
@@ -505,7 +505,7 @@ public function walkiesPart2():void
 		output(" Giving you an odd, slightly lustful look, Syri turns her attention to Belle, who is just as interested in the wolfy bitch as she is in you.");
 		
 		output("\n\n<i>“Oh, you must be a friend of my pet then?”</i> she asks, extending a hand and introduces herself as “Dr. Belle Baslocvicz” before she continues. <i>“Your ‘Steele’ here has been oh-so kind enough to help me with a few experiments here.”</i> Running her eyes up and down Syri’s curvy form for a moment, she continues her introductions, <i>“And I must say, I wouldn’t mind getting your help for a few experiments.”</i>");
-		output("\n\n<i>“Uh, yeeeeah,”</i> Syri says, clearly not interested in such a deal, <i>“Well, uh, I gotta get going, later, [pc.name]”</i>");
+		output("\n\n<i>“Uh, yeeeeah,”</i> Syri says, clearly not interested in such a deal, <i>“Well, uh, I gotta get going, later, [pc.name]!”</i>");
 		output("\n\nThe ausar quickly starts walking the opposite direction of the two of you, leaving you and Belle relatively alone in the wide open dome of Uveto station.");
 		if (flags["SUBTUNER_NAMED"] == undefined) flags["SUBTUNER_NAMED"] = 1;
 		lover = true;

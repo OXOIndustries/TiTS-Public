@@ -10230,11 +10230,14 @@
 				ass.delFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED);
 			}
 		}
-		public function analPuffiness(): Number {
+		public function analPuffiness(flagOnly:Boolean = false): Number {
 			var puffScore:Number = 0;
-			if(this is PlayerCharacter && hasStatusEffect("Mimbrane Ass"))
+			if(!flagOnly)
 			{
-				puffScore += (this as PlayerCharacter).mimbranePuffiness("Mimbrane Ass");
+				if(this is PlayerCharacter && hasStatusEffect("Mimbrane Ass"))
+				{
+					puffScore += (this as PlayerCharacter).mimbranePuffiness("Mimbrane Ass");
+				}
 			}
 			if(ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) puffScore += 3;
 			if(ass.hasFlag(GLOBAL.FLAG_PUMPED)) puffScore += 2;
