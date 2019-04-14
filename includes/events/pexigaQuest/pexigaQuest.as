@@ -3548,7 +3548,6 @@ public function drBadgerSiliconeTank():void
 	output("You take the metal tentacle into your hand, wobbling it around. You squeeze it gently, making a few drops of mostly clear silicone exit the needle. You look at the buttons by where the tube is connected, and there are two options: suck and inject... except ‘inject’ is crossed off, and it says ‘blow’. Definitely something Doctor Badger would do.");
 	output("\n\nWhat are you going to do?");
 	if(drBadgerSiliconeTankBagFillTaken() < drBadgerSiliconeTankBagFillTotal()) output(" You could easily pump yourself full of silicone, or you could harvest some of it using one of the bags laying around.");
-	output("\n\n( taken: " + drBadgerSiliconeTankBagFillTaken() + ", total: " + drBadgerSiliconeTankBagFillTotal() + " )");
 	
 	drBadgerSiliconeTankMenu();
 }
