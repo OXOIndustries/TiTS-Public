@@ -210,5 +210,10 @@
 		{
 			kGAMECLASS.mainGameMenu();
 		}
+		
+		override public function isBimbo():Boolean
+		{
+			return (kGAMECLASS.flags["BADGER_QUEST"] <= -3);
+		}
 	}
 }

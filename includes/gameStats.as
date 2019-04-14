@@ -5972,7 +5972,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Doctor Badger:</b>");
 				if(flags["DR_BADGER_TURNED_IN"] != undefined) output2(" Inactive, Arrested by the U.G.C.");
 				else output2(" Active");
-				if(flags["BADGER_QUEST"] <= -3) output2(", Bimbofied");
+				if(chars["DRBADGER"].isBimbo()) output2(", Bimbofied");
 				variousCount++;
 			}
 			// Colenso's

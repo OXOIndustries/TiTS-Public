@@ -6124,7 +6124,7 @@
 				if(silicone > 0 && rand(2) == 0) {
 					adjectives.length = 0;
 					if(silicone >= 2) adjectives.push("gravity defying");
-					adjectives.push("fake", "plastic", "silicone-filled");
+					adjectives.push("fake", "plastic", "silicone-filled", "perfectly rounded");
 					if(result != "") result += ", ";
 					result += adjectives[rand(adjectives.length)];
 				}
@@ -14116,7 +14116,7 @@
 			if(silicone > 0 && rand(2) == 0) {
 				adjectives.length = 0;
 				if(silicone >= 5) adjectives.push("ridiculously perky");
-				adjectives.push("fake", "plastic", "silicone-filled");
+				adjectives.push("fake", "plastic", "silicone-filled", "perfectly rounded");
 				if(desc != "") desc += ", ";
 				desc += adjectives[rand(adjectives.length)];
 			}
@@ -14466,7 +14466,7 @@
 				adjectives.length = 0;
 				if(silicone >= 2) adjectives.push("gravity defying");
 				if(silicone >= 5) adjectives.push("ridiculously perky");
-				adjectives.push("fake", "plastic", "silicone-filled");
+				adjectives.push("fake", "plastic", "silicone-filled", "perfectly rounded");
 				if(desc != "") desc += ", ";
 				desc += adjectives[rand(adjectives.length)];
 			}
@@ -18688,7 +18688,7 @@
 					adjectives.length = 0;
 					if(silicone >= 2) adjectives.push("gravity defying");
 					if(silicone >= 5) adjectives.push("ridiculously perky");
-					adjectives.push("fake", "plastic", "silicone-filled");
+					adjectives.push("fake", "plastic", "silicone-filled", "perfectly rounded");
 					if(descript != "") descript += ", ";
 					descript += adjectives[rand(adjectives.length)];
 				}
@@ -18724,6 +18724,7 @@
 				if(silicone >= 2) nouns.push("balloon");
 				if(silicone >= 5) nouns.push("balloon");
 				if(silicone >= 10) nouns.push("balloon");
+				nouns.push("bolt-on");
 			}
 			nouns.push("jug");
 			//Disabled due to "pillowy love-pillows" nouns.push("love-pillow");
