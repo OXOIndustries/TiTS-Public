@@ -756,7 +756,7 @@ public function caveBottomEntranceBonus():Boolean
 {
 	if (flags["KQ2_MYRELLION_STATE"] == 2)
 	{
-		output(" There’s a hastily painted radiation symbol to one side of the cave here; a universal warning to any who might venture through these parts that it’d probably be prudent <i>not</i> to ascend to the upper levels of the cave system.");
+		output(" There’s a hastily painted radiation symbol to one side of the cave here; a universal warning to any who might venture through these parts that it’d probably be prudent <i>not</i> to ascend to the upper levels of the cave system.\n\n<b>The surface got nuked. There's nothing for you there any longer.</b>");
 		addDisabledButton(5,"Ascend");
 		return false;
 	}
