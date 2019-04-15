@@ -186,7 +186,9 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "SIMONE", Simone);
 	prepChar(justUpdate, "BETSY", Betsy);
 	prepChar(justUpdate, "VICTORIA", Victoria);
-	
+	prepChar(justUpdate, "MARION", Marion);
+	prepChar(justUpdate, "LURELING", Lureling);
+
 	
 	// Check all characters have version information set
 	for (var prop:String in chars)
