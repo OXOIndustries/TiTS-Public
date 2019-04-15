@@ -166,6 +166,7 @@
 		include "../includes/follower/ramis.as";
 		include "../includes/follower/shekka.as";
 		include "../includes/follower/siegwulfe.as";
+		include "../includes/follower/syri.as";
 		include "../includes/follower/yammi.as";
 		
 		//Sidequest shit

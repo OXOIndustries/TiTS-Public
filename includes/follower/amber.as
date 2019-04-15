@@ -569,6 +569,38 @@ public function amberInTheHold():void
 		output("\n\n<i>“Yes,”</i> she replies matter-of-factly. <i>“Most people don’t run around space rescuing people left and right. Heck, you might be the only one who does. Besides... you saved me. Of course I wanna get to know you.”</i>");
 		output("\n\n<i>“Fair enough,”</i> you say, smiling.");
 	}
+	// Celise Threesome hook
+	else if (flags["AM_CEL_SKIP"] == undefined && flags["AMBER_CREW_SEX"] == 1 && celiseIsCrew() && rand(10) == 0)
+	{
+		clearMenu();
+		showCelise();
+		author("Wsan");
+
+		output("You're just on the way down to see Amber when a girly giggle sounds out from below, <i>inside</i> the ship. There's really only one person that could be.");
+		output("\n\n<i>\"Celise? What're you doing down there?\"</i> you call out.");
+		output("\n\nA few seconds later and she's popping up through a grate, her body gradually reforming in front of you until there stands the voracious googirl in all her shiny splendor.");
+		output("\n\n<i>\"Hiii!\"</i> Celise says, waving. <i>\"I was just snacking, [pc.name].\"</i>");
+		output("\n\n<i>You</i> were just on your way to see Amber and as you eye Celise, you");
+		if (flags["AMBER_CELISE_THREESOMES"] != undefined) output(" think about inviting her down there.");
+		else output(" sense a golden opportunity for the two of them to get acquainted.");
+
+		flags["AM_CEL_SKIP"] = 1;
+
+		addButton(0, "Take With", amberCeliseThreesomeGo, undefined, "Take Celis With", "Take Celise down to see Amber. Something tells you they'll get along really, <i>really</i> well.");
+		addButton(1, "Nah", function ():void
+		{
+			clearMenu();
+			clearOutput();
+			showCelise();
+			author("Wsan");
+			output("<i>\"Alright,\"</i> you say, smiling. <i>\"Don't let me get in your way, then.\"</i>");
+			output("\n\n<i>\"You're never in the way, [pc.name]!\"</i> she giggles, beginning to drip back down through the drain. <i>\"Thanks to you, I never go hungry. See you!\"</i>");
+			output("\n\nYou wonder if she intended the double entendre there. Shaking your head, you continue down to the hold.");
+			addButton(0, "Next", amberInTheHold);
+		}, undefined, "Nah", "Let Celise get back to her \"ship maintenance.\"");
+
+		return;
+	}
 	else
 	{
 		//greeting based off of dumbfuck doses given
@@ -586,6 +618,8 @@ public function amberInTheHold():void
 		}
 		else output("<i>“Hey, [pc.name]!”</i> Amber says, her ears flitting above her head as she turns to regard you with a smile on her face. <i>“Whatcha doing?”</i>");
 	}
+
+	flags["AM_CEL_SKIP"] = undefined;
 	amberMainMenu();
 }
 
@@ -1827,7 +1861,12 @@ public function amberOnshipSex():void
 	else addDisabledButton(2, "Fuck Pussy", "Fuck Pussy", "You need a cock or a hardlight to fuck Amber’s pussy.");
 	if (pc.hasCock() || pc.hasHardLightEquipped()) addButton(3, "Mounting", penisRouter,[amberOnshipSexMounting,amber.vaginalCapacity(),true,0], "Mounting", "Put some of the equipment you and Urbolg put in here to good use.");
 	else addDisabledButton(3, "Mounting", "Mounting", "You need a penis or hardlight dildo to mount Amber.");
-	if (amberCanThreesome()) addButton(4, "Threesome", amberThreesomesMenu, undefined, "Threesome", "Bring a friend.");
+	// //For non-neuter, non-taur/non-naga PCs with Amber recruited. Uses the taur equipment to comfortably mount a biped PC. Can't be done with Amber at 3+ Dumbfucks.
+	if (amberDumbfuckDoses() > 2) addDisabledButton(4, "Mount Me", "Mount Me", "Amber's too worked up to consider using the machines to mount you!");
+	else if (pc.isTaur() || pc.isNaga()) addDisabledButton(4, "Mount Me", "Mount Me", "Requires a regular biped body.");
+	else if (!pc.hasGenitals()) addDisabledButton(4, "Mount Me", "Mount Me", "Requires genitals.");
+	else addButton(4, "Mount Me", vaginaRouter, [amberDoesTheMountingThisTime, ppAmber.biggestCockVolume(), 1, 0], "Mount Me", "Ask Amber to mount the equipment so she can rut you in comfort.");
+	if (amberCanThreesome()) addButton(5, "Threesome", amberThreesomesMenu, undefined, "Threesome", "Bring a friend.");
 		
 	addButton(14, "Back", amberInTheHold);
 
@@ -3108,6 +3147,123 @@ public function amberOnshipSexMounting(kok:int=0):void
 	addButton(0,"Next",mainGameMenu);
 }
 
+public function amberDoesTheMountingThisTime(vagIdx:int):void
+{
+	clearOutput();
+	amberHeader();
+
+	var ppAmber:PregnancyPlaceholder = getDryadPregContainer();
+
+	output("<i>\"So I know mounting can take a lot out of you,\"</i> you say, smiling at Amber, <i>\"and I figured we could use some of the stuff Urbolg and I set up. Like this!\"</i>");
+	output("\n\n<i>\"Oh!\"</i> Amber exclaims, looking at the little platform hanging from the ceiling. <i>\"Is that what it's for?\"</i>");
+	output("\n\n<i>\"Uh huh. You just put your front legs over it so you can stand more comfortably,\"</i> you say, nodding. <i>\"So how about it? Wanna give it a try?\"</i>");
+	output("\n\n<i>\"Oh </i>yeah<i>!\"</i> she says enthusiastically. <i>\"Like I'm gonna miss out on mounting you, [pc.name]!\"</i>");
+	output("\n\nYou grin at the eager response. Sex is never <i>that</i> far from the pretty deergirl's mind, after all, and frankly watching her climb into the little harness is a little erotic in itself. All that enormous, sensitive horsecock just hanging there in midair, waiting for you to move into position.");
+	output("\n\n<i>\"Like what you see, [pc.name]?\"</i> Amber says, smirking down from above. <i>\"You look as keen as I feel… I can hardly wait!\"</i>");
+	output("\n\nShe's not kidding -- thick white precum drips from her heavy pink cock, running down her swollen cockhead and veiny underside as she wiggles her powerful hips in anticipation. The motion of it makes");
+	if (amberEquilicumDoses() > 0) output(" all four of");
+	output(" her giant, seed-swollen nuts jiggle, an enticing and promising sight if you've ever seen one. Even her teeth are bared, biting her bottom lip while she watches you");
+	if (!pc.isNude()) output(" undress");
+	output(".");
+	output("\n\n<i>\"Oh, fuck, you are so hot,\"</i> she mutters quietly, her cock throbbing and standing even stiffer. <i>\"Wanna rut the shit out of </i>that<i>...\"</i>");
+	output("\n\n<i>\"This?\"</i> you say, smiling as you bend over in front of her, reaching back to spread");
+	if (vagIdx < 0) output(" your cheeks for her, exposing your [pc.asshole]. <i>\"You wanna force-fuck that gigantic horsecock of yours into my biped ass, Amber?\"</i>");
+	else output(" the lips of your [pc.pussy " + vagIdx + "] for her, exposing the wetness. <i>\"You wanna force-fuck that gigantic horsecock of yours into my biped pussy, Amber?\"</i>");
+	output("\n\n<i>\"Yeah! Yeah!\"</i> Amber pants, her cheeks flushing with color while she bucks her hips forward, straining against the mounting harness. <i>\"Nnnnh!\"</i>");
+	output("\n\nTurning Amber on to the point of insensibility is like a switch, so easy it's almost like cheating, really. But looking up at her and seeing her literally drool in eagerness, her tongue stuck out of her mouth while she lets out heated pants, you can't say you mind. She's such a <i>giving</i> lover, after all… she deserves to be treated nicely.");
+	output("\n\n<i>\"Aaaaah!\"</i> Amber cries out, shivering in your grip as you bend down to take a quick suck of her cock. <i>\"Oh! Oh! [pc.name]...\"</i>");
+	output("\n\nYou'd just intended to lube her up and tease her a little bit before the main event but as you withdraw licking your [pc.lips] clean, it's evident you needn't have bothered. She's <i>slick</i> with precum, the first few inches of her staggering equine dick coated in it. Little wonder she's so good at getting it in.");
+	output("\n\n<i>\"You ready?\"</i> you murmur to her, already knowing the answer.");
+	output("\n\nAmber doesn't even have time to get the words out before you're both groaning deeply, her flared head pressing at your " + (vagIdx < 0 ? (pc.hasPlumpAsshole() ? "puffy donut" : "stretching asshole") : "wet, slippery folds") + ". She lets out a little scream of joy as she caves your");
+	if (vagIdx < 0) output(" ring inwards, pushing her way into your slickened intestines");
+	else output(" pussy inwards, pushing her way into your stretched-out slit");
+	output(" while you grip the lower bar for support. <i>Whoever built this must be a genius,</i> you think, biting your lip and shivering in bliss while Amber's dizzying pheromones swirl around your head and her fat cock sinks deeper between your");
+	if (vagIdx < 0) output(" asscheeks, sticky precum dripping down your " + (pc.balls > 0 ? "[pc.balls]" : "underside"));
+	else output(" sensitive walls, coating them in sticky precum");
+	output(" as she goes. <i>There's going to be just enough room for-</i>");
+	output("\n\nThis time it's your turn to scream in ecstasy when Amber's fat, juicy nutsack swings up and slaps your [pc.ass]. A few droplets of");
+	if (vagIdx < 0) output(" her cum squirt back down her cock, forced from your clenching asshole");
+	else output(" [pc.girlCum] squirt down her cock, forced from your clenching vagina");
+	output(", the enormous horsecock embedded in your body taking up all available space. It feels like if you were to tense your abdominals right now, all you'd accomplish is giving her a nice massage from the inside.");
+	pc.holeChange(vagIdx, ppAmber.biggestCockVolume());
+	output("\n\n<i>\"St-stars,\"</i> you moan, hanging your head she draws back for another thrust. <i>\"Oh, </i>fuck<i>!\"</i>");
+	output("\n\nThis time Amber makes <i>sure</i> she's bottomed out inside you, bringing her hips forward and roughly grinding herself up and down your");
+	if (pc.buttRating() < 3) output(" tight butt");
+	else if (pc.buttRating() < 5) output(" jiggling butt");
+	else output(" enormous butt");
+	output(", getting just the right angle to make you groan like a whore. Once she hears that, she can't be stopped -- suddenly you're being pounded like her life depends on it, the clap of flesh on flesh ringing out in the hold while the two of you sing a duet of shared carnal joy. A mixture of your juices begins to drip and squirt from between your [pc.thighs], your fuckhole stretching wide every time she pulls back and lets her flaring head approach the entrance.");
+	output("\n\nThen she drives it back in with such force and precision you have to fight to keep from screaming in outright rapture on every thrust, biting your lip so hard it hurts, muffled grunts and groans slipping from your mouth unbidden regardless. There's no time to even adjust your slickening grip on the mounting hold, your fingers slipping while Amber pounds you out until you're coated in sweat both hers and your own. The way her");
+	if (vagIdx < 0) output(" thrumming cumvein rubs against your prostate, though, does you in. Each rough stroke");
+	else output(" heavy balls fiercely slap against your [pc.clit " + vagIdx + "], though, does you in. Each thudding impact");
+	output(" makes your [pc.legs] quake with the pleasure of it, your knees turning inwards until you give up and let go.");
+	output("\n\n<i>\"Amber,\"</i> you moan, squeezing your eyes shut as a violent orgasm threatens to unsteady your grip. <i>\"Oh, <b>Amber!</b>\"</i>");
+	output("\n\nYou cry out her name as she makes you cum all over");
+	if (pc.hasCock()) output(" the floor,");
+	else output(" her thrusting cock,");
+	if (vagIdx < 0) output(" your insides");
+	else output(" your sensitive walls");
+	output(" clamping down on her and succeeding only in forcing you to orgasm even harder, a bellowing groan of pleasure forcing its way past your lips. The complete loss of control doesn't go unnoticed and Amber, sensing your inability to keep yourself afoot, begins thrusting upwards until you get your legs back under you. You don't even comprehend what she's done, just that she's back to slamming her immense length all the way inside your quivering " + (vagIdx < 0 ? "hole" : "clam") + " and you can feel your brain oozing from your [pc.ears].");
+	output("\n\nThe longer she goes the more and more eager you get to finally feel Amber pop, her breathing growing more ragged by the second while her deliciously large flare begins to flower inside you, spreading wide until it feels like she must be as large as a fucking dinner plate. Your mouth opens and closes and nothing comes out save for little breathless gasps and pants as well as your [pc.tongue], stuck out on particularly strong thrusts right into your most sensitive parts. The iron-hard length between your [pc.hips] beginning to swell to unimaginable proportions as you shake and tremble on the end of it, you bring your thighs together and squeeze her as hard as you can, hearing your lover groan in response.");
+	output("\n\n<i>\"Fuuuuck-!\"</i> Amber strains, her lower half bucking wildly. <i>\"Gonna cum! Cumming! Cumming! Nnnnnnghk-\"</i>");
+	output("\n\nShe lets out a plaintive cry and thrusts forward, letting the silence hang in the air for a second before a <i>massive</i> stream of spunk spurts from the end of her pulsing, flexing horsecock and into");
+	if (vagIdx < 0) output(" your bowels");
+	else if (pc.isPregnant(vagIdx)) output(" the squeezing confines of your pussy");
+	else output(" your [pc.womb " + vagIdx + "]");
+	output(". Your eyes roll up into your head at the feeling of it, the blissful warmth and heat of her pumping sperm flooding your body and spraying back out of your quivering fuckhole. She pours it into you with little thrusts, grinding herself against your ass while her bloated cockhead blooms over and over.");
+	output("\n\nYou stand there and take it, breathing hard while your");
+	if (vagIdx < 0)
+	{
+		output(" guts fill with Amber's virile sperm, jetting into your stomach and swelling it outwards.");
+		if (amberEquilicumDoses() > 0) output(" Boosted by the Equilibricum, Amber's absurd output doesn't stop or even slow until you're groaning with exertion, your belly distended by a thick, heavy liquid load.");
+		else output(" Her ballsack doesn't stop throbbing against your rear until you look like you've swallowed a volleyball, though the way it shifts inside you gives away the heavy liquid nature of the load.");
+	}
+	else
+	{
+		if (pc.isPregnant(vagIdx)) output(" tightening canal is filled with fresh sperm over and over, spraying down your thighs as you reach capacity almost instantly. By the time she's done, your legs are utterly coated in Amber's spunk.");
+		else
+		{ 
+			output(" womb fills to the brim with Amber's virile sperm, swelling to the limit as a bump begins to appear through your stomach.");
+			if (amberEquilicumDoses() > 0) output(" Boosted by the Equilibricum, her absurd output doesn't stop flowing into you until you're groaning with exertion, your belly distended by a thick, heavy liquid load.");
+			else output(" Her ballsack doesn't stop throbbing against your rear until you look like you've swallowed a volleyball, though the way it shifts inside you gives away the heavy liquid nature of the load.");
+		}
+	}
+	output("\n\n<i>\"Oooohhhh, wow,\"</i> Amber moans, slowly -- very slowly -- stepping back, withdrawing her spent, pulsing cock from your cum-slick hole. She comes free with an audible <i>pop</i>, her impressive flare coming loose with a deluge of her formerly plugged spunk. It splashes to the ground between your [pc.feet] while you quiver and moan, each reflexive clench forcing yet more of her squelching seed to spurt and dribble from your");
+	if (vagIdx < 0) output(" ring.");
+	else
+	{
+		output(" slit.");
+		if (!pc.isPregnant(vagIdx)) output(" Your womb still feels like it's full to the brim with her and no doubt it will for some time, the warmth of her semen acting as a reminder of her love.");
+	}
+	output("\n\n<i>\"Mmmm…\"</i> she murmurs, walking around to your front. <i>\"You were right… that </i>was<i> comfortable.\"</i>");
+	output("\n\nShe picks you up and kisses you, wrapping her arms around your back and entwining her tongue with yours as her alabaster cum drips and drools from your");
+	if (vagIdx < 0) output(" gaping asshole.");
+	else output(" gaping slit.");
+	output(" After a second you hug her closer, closing your eyes and leaning into the kiss, pressing her soft breasts");
+	if (pc.hasBreasts()) output(" into your own.");
+	else output(" against your [pc.chest].");
+	output(" You're both sweaty and sticky but damn if the way she smells and feels against you doesn't make you want to bury your head in her pretty red hair forever. You'll settle for gently running your fingers through it.");
+	output("\n\n<i>\"Do you like my hair?\"</i> Amber asks, nuzzling you and smiling.");
+	output("\n\n<i>\"I do,\"</i> you say, nodding and rubbing your cheek against hers, then grinning. <i>\"Maybe even more than I love your dick!\"</i>");
+	output("\n\n<i>\"Ooooh, let's not say things we can't take back,\"</i> she says, trying to scowl and only giggling. <i>\"I'll have to ride you even harder next time, [pc.name]. Can't have you disrespecting my cock!\"</i>");
+	output("\n\n<i>\"Especially when it gives you such an alluring gape,\"</i> she adds, hooding her eyes as she reaches down and grabs two handfuls of your ass. <i>\"You know what that looks like to a girl like me?\"</i>");
+	output("\n\n<i>\"What?\"</i> you whisper, looking into her narrowed blue eyes.");
+	output("\n\n<i>\"An invitation,\"</i> she murmurs, leaning forward and biting your lip. <i>\"So you'd better come back and see me again the next time you want some, [pc.name]. I'll keep you nice and stretched out so you can fit all of me.\"</i>");
+	output("\n\nSitting back up in your room after a hot, steamy shower, you");
+	if (pc.hasVagina()) output(" idly wonder if the wetness between your legs is because of Amber's cock or her sensual promise.");
+	else output(" look down at your [pc.cocks] and idly wonder if " + (pc.hasCocks() ? "they're" : "it's") + " erect because of the lingering feeling of Amber inside you or her sensual promise.");
+	output(" It's hard to tell.");
+
+	IncrementFlag("DRYAD_FUCKED");
+	processTime(20 + rand(15));
+	if (vagIdx < 0) pc.loadInAss(ppAmber);
+	else pc.loadInCunt(ppAmber, vagIdx);
+	pc.orgasm();
+	pc.shower();
+
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
 public function amberCanThreesome():Boolean
 {
 	if (annoIsCrew()) return true;
@@ -3163,6 +3319,8 @@ public function amberAndAnnoFun():void
 	clearOutput();
 	amberAnnoHeader();
 
+	var ppAmber:PregnancyPlaceholder = getDryadPregContainer();
+
 	output("You call Anno down to the hold for some crew duties and she's there in a flash, fuzzy-eared and smiling brightly. She stops in the doorway when she sees Amber and her happy smile widens even further as her eyes travel down the dryad's body, settling right on the girl's thickly erect cock.");
 	output("\n\n<i>\"This is <b>exactly</b> what I signed up for when I took this job,\"</i> Anno says with a laugh, stepping forward to stand with you in front of the more-than-ready taurgirl. <i>\"You look so pent-up there, Amber… let us take care of you.\"</i>");
 
@@ -3170,7 +3328,7 @@ public function amberAndAnnoFun():void
 
 	clearMenu();
 	addButton(0, "Get Fucked", vaginaRouter, [amberAnnoSuckNGetFuck, getDryadPregContainer().cockVolume(0), 1, 0, false], "Get Fucked", "Give Anno a hand with getting Amber to blow her first load and get the second inside you.");
-	if (pc.hasCock() || pc.hasHardLightAvailable()) addButton(1, "Fuck Her", penisRouter, [amberAndAnnoGetFucked, pc.biggestCockVolume()+1, true, 0], "Fuck Her", "Pound the fuck out of Amber while Anno takes care of her below.");
+	if (pc.cockThatFits(ppAmber.vaginalCapacity()) >= 0 || pc.hasHardLightAvailable()) addButton(1, "Fuck Her", penisRouter, [amberAndAnnoGetFucked, ppAmber.vaginalCapacity(), true, 0], "Fuck Her", "Pound the fuck out of Amber while Anno takes care of her below.");
 	else addDisabledButton(1, "Fuck Her", "Fuck Her", "Requires cock or hardlight.");
 }
 
@@ -3297,6 +3455,7 @@ public function amberAnnoSuckNGetFuck(vagIdx:int):void
 	pc.loadInMouth(ppAmber);
 	pc.applyCumSoaked();
 	pc.orgasm();
+	flags["AMBER_LASTCUM"] = GetGameTimestamp();
 
 	clearMenu();
 	addButton(0, "Next", amberAndAnnoGiveYouAmbersCock, ppAmber);
@@ -3373,6 +3532,7 @@ public function amberAndAnnoGetFucked(cockIdx:int):void
 	var ppAmber:PregnancyPlaceholder = getDryadPregContainer();
 	ppAmber.loadInCunt(pc);
 	anno.loadInMouth(ppAmber);
+	flags["AMBER_LASTCUM"] = GetGameTimestamp();
 
 	processTime(60);
 	pc.orgasm();
@@ -3601,3 +3761,287 @@ public function dontHelpAmber():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+public function amberCeliseHeader():void
+{
+	author("Wsan");
+	showName("AMBER\n& CELISE");
+	showBust(dryadBustDisplay(), celiseBustDisplay());
+}
+
+public function amberCeliseThreesomeGo():void
+{
+	clearMenu();
+	clearOutput();
+	amberCeliseHeader();
+	processTime(2);
+
+	if (flags["AMBER_CELISE_THREESOMES"] != undefined)
+	{
+		output("<i>\"I was gonna go down and see Amber again, the deergirl you met in the hold last time. You liked her, right?\"</i> you ask.");
+		output("\n\n<i>\"Oh, her!\"</i> Celise says, brightening up. <i>\"I've been visiting her every once in a while, she's always so pent-up and yummy!\"</i>");
+		output("\n\n<i>\"Time to drink another fill of her, then,\"</i> you tell her, starting down the ramp as Celise eagerly follows behind.");
+	}
+	else
+	{
+		output("<i>\"Well, I was just on my way down to the hold. Why don't you come with? There's someone I want you to meet,\"</i> you tell her, nodding at the ramp down. <i>\"I'm pretty sure she'll be thrilled to see you.\"</i>");
+		output("\n\n<i>\"Oh, okay!\"</i> Celise cheers, joining you at your side. <i>\"I love meeting new people. So who's the girl? Is she new? Is she cute?\"</i>");
+		output("\n\n<i>\"You'll see in a moment…\"</i> you say, stepping down the ramp as Celise follows behind, peppering you with curious questions.");
+	}
+
+	flags["AM_CEL_SKIP"] = undefined;
+
+	addButton(0, "Next", whenTheGalotianHitsYourHorsecockLikeABigHungrySlutThatsAThreesome)
+}
+
+public function whenTheGalotianHitsYourHorsecockLikeABigHungrySlutThatsAThreesome():void
+{
+	clearMenu();
+	clearOutput();
+	amberCeliseHeader();
+	processTime(3);
+
+	var ppAmber:PregnancyPlaceholder = getDryadPregContainer();
+
+	if (flags["AMBER_CELISE_THREESOMES"] == undefined)
+	{
+		switch (amberDumbfuckDoses())
+		{
+			case 0:
+				output("<i>\"Oh, hey [pc.name]!\"</i> Amber calls, spotting your entrance. <i>\"What are y- oh, hello!\"</i>");
+				output("\n\n<i>\"Hi!\"</i> chirps Celise, smiling happily. <i>\"You look new! And cute! And-\"</i>");
+				output("\n\nCelise's eyes drop to Amber's enormous horsecock, hanging between her spindly furred forelegs. The galotian gal's eyes widen, her mouth dropping open slightly before she turns to you.");
+				output("\n\n<i>\"I'm gonna go say hi,\"</i> she says simply, and you nod.");
+				output("\n\nCelise immediately crashes to the floor as Amber looks on in surprise, the googirl slithering forward and forming two arms to tightly grip the deertaur's legs.");
+				break;
+			case 1:
+				output("<i>\"Hiya, [pc.name]!\"</i> Amber calls, trotting over in her eagerness to see you. <i>\"Oh! You've brought a friend, hi! Here to join the fun?\"</i>");
+				output("\n\n<i>\"The fun?\"</i> Celise considers. <i>\"Well-\"</i>");
+				output("\n\nCelise's eyes drop to Amber's enormous swaying horsecock, hanging between her spindly furred forelegs. The galotian gal's eyes widen, her mouth dropping open slightly before she gets down on her knees and grabs Amber's spindly furred forelegs.");
+				break;
+			case 2: case 3:
+				output("<i>\"Hiya, [pc.name]!\"</i> Amber calls, trotting over in her eagerness to see you. <i>\"Oh! You've brought a friend, hi! Wanna fuck me too?\"</i>");
+				output("\n\nCelise wordlessly drops her eyes to Amber's enormous swaying horsecock, hanging between her spindly furred forelegs and drooling cum. The galotian gal's eyes widen, her mouth dropping open slightly before she gets down on her knees and grabs Amber's spindly furred forelegs.");
+				break;
+			case 4: default:
+				output("<i>\"[pc.name]!\"</i> Amber cries in happiness, springing over to you before she spots Celise and raises her eyebrows, her thick, veiny cock stiffening.");
+				output("\n\nCelise doesn't hesitate for a second. She drops to her knees and greets the deergirl the best way she knows how, with a wide open mouth and lusty eyes as she grabs Amber's spindly furred forelegs for leverage.");
+				break;
+		}
+
+		output("\n\n<i>\"Enjoy,\"</i> you say to Amber with a grin, arms crossed.");
+		output("\n\n<i>\"Wh-uuooohhhhgod,\"</i> Amber groans, her knees quaking as Celise's puffy, pouty lips wrap around the head of her cock with immaculate tightness. <i>\"Ooohhh, goood!\"</i>");
+		output("\n\n<i>\"Celise is a galotian,\"</i> you say, walking around the head-bobbing slimegirl while she sucks on Amber with a voracious hunger. <i>\"They're pretty ubiquitous galaxy-wide, but I suppose you might not have met one before. They live on protein, so…\"</i> You smile, leaning in as Amber turns her head towards you, flushed and panting already. <i>\"She's going to <b>love</b> you, Amber.\"</i>");
+	}
+	else
+	{
+		output("<i>\"Hey Amber,\"</i> you call out, the 'taur spinning around to greet you. <i>\"I brought a friend.\"</i>");
+		output("\n\n<i>\"Ooh! O-oh,\"</i> Amber gasps as Celise immediately lurches forward, wrapping her puffy lips around the head of the dryad's thick equine cock by way of greeting. <i>\"Oh, fuck, yes!\"</i>");
+		output("\n\n<i>\"Thought you'd see it that way,\"</i> you note, leaning in.");
+	}
+
+	output("\n\n<i>\"Nnn-hmmnn,\"</i> Amber sighs as you kiss her, the surprise and tenseness melting away from her body until there's only her lips and tongue while her hips roll with the ease of practice. <i>\"Mm! Mm!\"</i>");
+	output("\n\n<i>\"She's very enthusiastic,\"</i> you murmur to the deergirl as her eyes go wide, staring at you. <i>\"Don't be too surprised when she tries her hardest to earn that protein of yours…\"</i>");
+	output("\n\n<i>\"Ggghh- uh! Cumming! Cumming!\"</i> Amber suddenly grunts, her brow creased in effort. <i>\"Uuugh!\"</i>");
+	output("\n\nYou glance down to see thick white sperm <i>jet</i> into Celise's jiggling form, a misty cloud permeating her core and spreading further by the second as the throbbing horsecock between her lips pulses again and again. Amber groans loudly, a sound of desperate, animalistic need and release. She doesn't even need to work her shuddering hips -- Celise is more than happy to suck every last sweet, delicious surge of cum straight from her jiggling");
+	if (amberEquilicumDoses() > 0) output(" quartet of overproductive");
+	output(" balls.");
+	output("\n\nCelise only barely keeps abreast of Amber's incredible, jizz-spurting climax, greedily drinking it all in and looking for more. As you know well yourself, when it comes to Amber, there's <i>always</i> more if you want it. A low, deep moan slips from the deertaur's throat, her head dipping as she at last gives in, spreading her legs and submitting to the galotian. She knows Celise isn't going to stop until she gets everything she wants, and now she's prepared to give it to her. You could help her along...");
+
+	if (pc.cockThatFits(ppAmber.vaginalCapacity()) < 0 && !pc.hasHardLightAvailable()) addDisabledButton(0, "Fuck", "Fuck", "Requires fitting dick or hardlight.");
+	else addButton(0, "Fuck", penisRouter, [amberGetsGooSuckedAndHardFucked, ppAmber.vaginalCapacity(), true, 0], "Fuck", "Fuck Amber's dripping cunt while Celise drains her to the last drop.");
+	addButton(1, "Fist", amberAndTheFistOfTheGooStar, undefined, "Fist", "Slide your fist into Amber's tight little body as Celise drinks her fill.");
+	addButton(2, "Watch", amberAndCelisePutOnAShow, undefined, "Watch", "Just watch the two of them rut like beasts.");
+}
+
+public function amberGetsGooSuckedAndHardFucked(cockIdx:int):void
+{
+	clearMenu();
+	clearOutput();
+	amberCeliseHeader();
+	processTime(30);
+
+	var ppAmber:PregnancyPlaceholder = getDryadPregContainer();
+
+	output("You wordlessly walk around to Amber's shivering, dripping rear. She's so incredibly wet you're not even going to need the foreplay -- she's more than halfway to cumming again as it is. Her inflamed pussylips grip at your [pc.cockOrHardlight " + cockIdx + "] the moment you rub it against them, trying to greedily pull you in to sustain her lust, and you don't see a reason to disagree.");
+	if (cockIdx < 0) output(" You slip the sensitive, swollen head of the dildo in and moan in pleasure, the dryad's walls immediately clamping down on you and intimately massaging the tip.");
+	else output(" You slip your [pc.cockHead " + cockIdx + "] in and grunt in pleasure, the dryad's walls immediately clamping down on you and intimately massaging your sensitive tip.");
+	if (cockIdx >= 0) pc.cockChange();
+	output("\n\nYou've only just started and Amber is <i>this</i> close to squirting all over you thanks to Celise's ongoing efforts, juices trickling from her soft, squeezing pussy. Sliding yourself in slowly, you feel the deertaur tense up and clench around you, shuddering violently until she can't hold it in a second longer. With a great, gasping moan, Amber orgasms so violently femcum spatters your");
+	if (pc.isTaur()) output(" hindlegs");
+	else output(" [pc.thighs]");
+	output(" before dripping to the ground.");
+	output("\n\n<i>\"Ggguh- god, fuck, [pc.name]!\"</i> Amber pants, her breath coming hard and fast as she's assailed from behind and below, her legs struggling to maintain grip on the floor. <i>\"Nnnh- hhgh!\"</i>");
+	output("\n\n<i>\"Relax,\"</i> you murmur, running your hands through the lush fur of her flanks before taking a tight grip.");
+	if (amberDumbfuckDoses() < 4)
+	{
+		output("\n\n<i>\"Y-you tr-try fucking relaxing like- uh! Like this!\"</i> she half-whines, half-moans. Even now you can feel the motion of her body as she tenses up and lets out a gigantic load right into Celise's waiting maw.");
+		output("\n\n<i>\"Fair point,\"</i> you reply, grinning while you squeeze her ass.");
+	}
+	output("\n\nHolding her in place, you grind your [pc.hips] into Amber's bouncing butt until you're hilted and she's crying out in bliss, trying to thrust back into you but finding herself arrested by Celise's neediness. You bring it to her instead, roughly drawing back and slamming yourself home into her hot, wet canal as she grips you from every direction. She begins to cry out every time you sheath yourself inside her velvet caress, softly at first then louder and louder until she's screaming your name in ecstasy.");
+	output("\n\n<i>\"Oh, god! Harder! <b>Harder!</b>\"</i> Amber howls, shuddering from top to bottom. <i>\"Uh! Nh! [pc.name]!\"</i>");
+	output("\n\nYou grunt as Amber's rocked by yet another massive orgasm, wringing your pulsing cock with her warm, slippery folds like she's trying to milk you. Rather than halt you instead step it up, slamming into her so hard the impacts of [pc.skinFurScales] against fur begin to dully resound in the hold. Glancing downwards, you're pretty sure her enormous, quaking balls are swelling even <i>further</i> -- did Celise slip herself inside?");
+	output("\n\nThe way Amber seems to be stuck in a neverending back-and-forth orgasm between you pounding her pussy and Celise milking her throbbing equine cock all but confirms it, her nuts swaying forcefully every time your groin smacks against her tight little ass. Her puffy asshole winks at you, sweat running down her backside, until you slip your thumb inside and she gasps, holding her breath for one -- two -- three -- seconds, then lets it all out as the size of her bulging nuts noticeably shrinks, semen surging from her cock only to be swallowed down by Celise before it can even escape her pulsating flare. Amber <i>screams</i> in delight as you work her over, filling her suckling galotian with jet after jet of thick centaur cum.");
+	output("\n\nYou pound and pound her until her forelegs get away from her and she slips down onto her knees, panting and gasping wildly while you ravage her squirting cunt. Drawing ever closer to your orgasm, the sound of Amber desperately begging you to");
+	if (cockIdx < 0) output(" let her feel you cum");
+	else output(" cum inside her");
+	output(" fills your ears until you can hear nothing else, and finally you can't resist.");
+	output("\n\n<i>\"Amber!\"</i> you grunt, sinking your fingers white-knuckled into the fur of her hindquarters.");
+	output("\n\n<i>\"Oh, god! [pc.name]!\"</i> she squeals in pleasure, pushing herself backwards into you. <i>\"Nnnnffh!\"</i>");
+
+	if (cockIdx < 0) output("\n\nYou cum impossibly hard, your shaft throbbing as you're sympathetically squeezed dry by the orgasming dryad's pussy walls. Amber cries out in delight like she can feel every single pulse, and the longer your orgasm goes the louder she gets. By the time you're finished with her she's explosively cum Celise all over the floor, splattering the googirl into disparate puddles that slowly reform while Amber pants deliriously, chest heaving and sweaty with the effort of it all. She rolls over onto her side and smiles back at you, dazed and red-faced.");
+	else
+	{
+		output("\n\nYou cum inside her impossibly hard, your shaft throbbing as you're sympathetically squeezed dry by the orgasming dryad's pussy walls, [pc.cum] spurting into her womb and filling it with your essence. Amber cries out in delight like she can feel every drop of it, and the more you cum the louder she gets.");
+		if (pc.cumQ() < 5000) output("\n\nBy the time you're finished with her she's explosively cum Celise all over the floor, splattering the googirl into disparate puddles that slowly reform while Amber pants deliriously, chest heaving and sweaty with the effort of it all. She rolls over onto her side and smiles back at you, dazed and red-faced.");
+		else if (pc.cumQ() < 10000) output("\n\nBy the time you're finished with her Amber's belly has swollen with the sheer weight of your seed, rounding her form out and ensuring she looks to be in the early stages of pregnancy. She explosively cums Celise from the end of her flexing flare, grunting in bliss as pools of googirl spurt across the floor and slowly begin to reform. She rolls onto her side panting deliriously, exhausted from the effort of it all, and gives you a dazed, red-faced smile.");
+		else output("\n\nBy the time you're finished with her Amber's belly is absurdly swollen, gallons of your roiling spunk rounding her form out and giving her the appearance of a woman heavily pregnant. She explosively cums Celise from the end of her flexing flare, grunting in bliss as pools of googirl spurt across the floor and slowly begin to reform. She rolls onto her side panting deliriously, exhausted from the effort of it all, and gives you a dazed, red-faced smile.");
+
+		ppAmber.loadInCunt(pc);
+	}
+
+	if (amberDumbfuckDoses() < 1)
+	{
+		output("\n\n<i>\"That was <b>amazing</b>,\"</i> Amber purrs, hooding her eyes dreamily. <i>\"Nnnmm…\"</i>");
+		output("\n\n<i>\"Guess I'll bring her down more often, then,\"</i> you say, grinning.");
+		output("\n\n<i>\"As long as you're coming with,\"</i> she replies, sighing happily and spreading her arms out. <i>\"Aah, I'm about ready to fall asleep here…\"</i>");
+		output("\n\n<i>\"I'll leave you to it, then -- not like there's any cleanup to be done,\"</i> you say, nodding at Celise. <i>\"She's nice, right?\"</i>");
+		output("\n\n<i>\"Uh huh,\"</i> Amber mumbles. <i>\"Bring her back… soon…\"</i>");
+	}
+	else if (amberDumbfuckDoses() < 4)
+	{
+		output("\n\n<i>\"<b>God</b>,\"</i> she moans, her lips curling upwards. <i>\"You fuck like an animal, [pc.name].\"</i>");
+		output("\n\n<i>\"One of my better traits,\"</i> you quip, nodding at Celise. <i>\"You want me to bring her back so we can do this again sometime?\"</i>");
+		output("\n\n<i>\"Oh, fuck yes,\"</i> she replies, sighing and laying back. <i>\"Between the two of you, you've about fucked me to bed over here…\"</i>");
+		output("\n\n<i>\"I'll let you get some beauty sleep in so you're in top shape to get slammed the next time, then,\"</i> you say, stretching out. <i>\"See you soon, Amber.\"</i>");
+		output("\n\n<i>\"Byeee,\"</i> she calls, waving after you. <i>\"Plow me soon, [pc.name]!\"</i>");
+	}
+	else
+	{
+		output("\n\n<i>\"Love you, [pc.name],\"</i> she sighs, lying back and spreading her arms in fulfillment. <i>\"Mmm…\"</i>");
+		output("\n\n<i>\"Glad to hear it,\"</i> you say, grinning. <i>\"I'll bring Celise back down here sometime so we can fuck like that again, okay?\"</i>");
+		output("\n\n<i>\"Uh huh,\"</i> Amber says dreamily, eyes fluttering. <i>\"Bye, [pc.name]...\"</i>");
+	}
+
+	output("\n\nYou guide a very satisfied, giggly Celise back up into the ship and let her loose, watching her slip into the network of pipes and drains. She's definitely keeping the place cleaner than it would be otherwise, that's for sure. Especially when it comes to certain very messy 'taurs cooped up -- and <i>pent</i> up -- in your hold.");
+
+	IncrementFlag("AMBER_CELISE_THREESOMES");
+	pc.orgasm();
+	celise.orgasm();
+	celise.loadInMouth(ppAmber);
+	flags["AMBER_LASTCUM"] = GetGameTimestamp();
+
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function amberAndTheFistOfTheGooStar():void
+{
+	clearMenu();
+	clearOutput();
+	amberCeliseHeader();
+	processTime(30);
+
+	var ppAmber:PregnancyPlaceholder = getDryadPregContainer();
+
+	output("You step around to Amber's rear and rub her haunches while she whimpers needily, her pussy winking and dripping with juices. Held in the galotian's demanding grip it's all she can do to stop herself from outright crying with lustful desire, her body taut and flexing thanks to Celise's loving ministrations. She lets out a loving moan and glances back as your fingertips brush against her inflamed pussylips, shivering with pleasure and clearly hoping you're going to do that a second time.");
+	output("\n\nYou delight her by sliding your fingers into her wet, squeezing pussy one by one, stretching her clenching pussy wide around your hand as you slowly drive them deeper. She groans in utter bliss, arching her back and cumming into Celise so hard you can see the googirl's shimmering skin momentarily discolored white. You flex your arm and sink yourself into Amber's juicy cunt almost to the elbow, eliciting a long, drawn-out moan of whorish ecstasy. She's loving this.");
+	output("\n\nYou can't help but wonder how she's going to feel about being overloaded with the dual sensations of separate orgasms crashing into her mind at once in a few minutes, but that's really her problem -- and besides, the way she's desperately trying to push back into you is a sure indicator of the love she's feeling right now. You're only too happy to feed into it, clenching your fist and slowly driving into her shuddering slit until you've got it stretched so wide she could take a hyperporn star.");
+	output("\n\n<i>\"Fuh- fuh-hhck,\"</i> Amber grunts, her entire body tightening up around you. <i>\"Uh! Fff! Uck! [pc.name]!\"</i>");
+	output("\n\nYou just grin as she starts to cum all over again, noting less and less of Celise is visible. Classic galotian -- she's starting to slip <i>inside</i> Amber's pulsing cumvein, seeking out the source. As the horny dryad's ejaculations are suddenly stoppered she begins to grunt and groan, straining to cum and getting none of the satisfaction of letting it all out. Soon her enormous balls are bulging with extra weight, swinging back and forth as you pump your fist into her and Celise sucks seed straight from the source.");
+	output("\n\n<i>\"Ohgodohgod,\"</i> Amber pants, thrusting her hips wildly. <i>\"Nghngghhn! Cumming! Cumming!\"</i>");
+	output("\n\nBut nothing happens, her gargantuan flare flexing wildly as her entire cock stiffens up and thrums in orgasm from base to tip, a desperate moan escaping the taurgirl's lips. She thrusts and thrusts, her oversized nuts swinging wildly while you flex your arm inside her. Soon she's gasping and twisting, trying as hard as she can to just let it all go and cum.");
+	output("\n\nYou give her the edge she needs by slipping just a few inches deeper and rubbing your arm inside her. With a loud, desperate cry her forelegs slip out from under her and she falls to her knees. Her gigantic cock throbs once, twice, and suddenly galotian goo is splattering the floor of the hold as jets of it stream from Amber's pulsating flare.");
+	output("\n\nThe pleasure must be unimaginable, Amber's hind half jerking and bucking while she cums, her voice coming out in a low, senseless growl of mindless orgasm. Pools of galotian goo spatter and spurt across the hold, slowly reforming into a singular being as Celise slides back up wearing a massive grin. Pulling your arm from Amber with a wet slurp and a gasp of pleasure from the dryad, you gently slide it into Celise's body and let her suck you clean.");
+	output("\n\n<i>\"So, how was that?\"</i> you say, turning back to Amber and winking.");
+	if (amberDumbfuckDoses() < 1)
+	{
+		output("\n\n<i>\"That- that was amazing,\"</i> she moans, lying on her side. <i>\"Oh, my god, I feel so </i>drained<i>...\"</i>");
+		output("\n\n<i>\"Sucked you dry, huh? Lucky girl,\"</i> you quip, looking at Celise jiggling as you take your hand out. <i>\"I'll bring her back down for you sometime, okay?\"</i>");
+		output("\n\n<i>\"Uh hnh,\"</i> Amber mumbles, already falling asleep post-fuck. <i>\"Thanks, [pc.name]...\"</i>");
+		output("\n\n<i>\"Byeee!\"</i> Celise calls over her shoulder, waving to the sleepy 'taur.");
+	}
+	else if (amberDumbfuckDoses() < 4)
+	{
+		output("\n\n<i>\"Oh my god, bring her back soon,\"</i> she moans, lying on her side. <i>\"Between her and your fist I think I blacked out for a while there from cumming so hard…\"</i>");
+		output("\n\n<i>\"I'll be sure to bring her back down here sometime, then,\"</i> you say, nodding at Celise as you take your hand out. <i>\"Rest up, Amber. I'll be back down for you soon.\"</i>");
+		output("\n\n<i>\"Mm, you better be,\"</i> she mumbles wearily. <i>\"Nobody else… like… zznk…\"</i>");
+	}
+	else
+	{
+		output("\n\n<i>\"Nnn… more soon,\"</i> Amber moans needily, stretching out on the ground. <i>\"Sleep...\"</i>");
+		output("\n\n<i>\"Take a rest, Amber,\"</i> you say, slipping your hand free of Celise's desirous grip. <i>\"I'll bring her back down sometime soon, okay?\"</i>");
+		output("\n\n<i>\"'Kay,\"</i> she mumbles, eyes fluttering closed. <i>\"Night [pc.name].\"</i>");
+	}
+
+	output("\n\nYou guide a very satisfied, giggly Celise back up into the ship and let her loose, watching her slip into the network of pipes and drains. She's definitely keeping the place cleaner than it would be otherwise, that's for sure. Especially when it comes to certain very messy 'taurs cooped up -- and <i>pent</i> up -- in your hold.");
+
+	IncrementFlag("AMBER_CELISE_THREESOMES");
+	pc.lust(pc.lustMax());
+	celise.orgasm();
+	celise.loadInMouth(ppAmber);
+	flags["AMBER_LASTCUM"] = GetGameTimestamp();
+
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function amberAndCelisePutOnAShow():void
+{
+	clearMenu();
+	clearOutput();
+	amberCeliseHeader();
+	processTime(30);
+
+	var ppAmber:PregnancyPlaceholder = getDryadPregContainer();
+
+	output("You want to make sure you don't miss a second of the action. You take a seat on the floor and watch just what Celise is <i>doing</i> to the wailing, cumming deertaur, rope after rope of equine seed shooting from her flared, pulsating cockhead. The cunning googirl has Amber deep in her throat but that's hardly where it ends.");
+	output("\n\nTaking advantage of her unique biology, Celise's made a pussy for Amber to fuck several inches inside, encouraging the dryad to desperately thrust into her in search of its grasping, clenching pleasures. Your galotian crewmate is milking Amber for everything she's worth, stuck so deeply into her task you can feel the intensity with which she's stroking that hulking horsecock. With her mouth now securely wrapped around the base of it and sucking hard, new inspiration strikes her as she forms new limbs to reach up and grasp Amber's enormous, jiggling balls.");
+	output("\n\nAmber whimpers in utter pleasure as the galotian takes ahold of her bulging testes, massaging and squeezing while the overproductive orbs pour an endless flow of semen into the gooey slut's body. Her cries become louder and more strained as she pumps and pumps, grinding her hips up and down while Celise clings to her underside and blows her mind. The two of them make an amazingly sexy pair.");
+	output("\n\nCelise begins gathering more and more of her bodymass around the impressively flared head of Amber's cock, rubbing and undulating until the dryad is almost screaming in bliss and earning several more thick ropes of sperm, but it's not enough. The wilful, desirous galotian starts slipping <i>inside</i> Amber's cum-streaming cocknozzle, seeking out the source of her delicious sustenance. You watch transfixed as Amber's cumvein begins to bulge with goo, more and more of Celise's body smoothly sliding into her until the outward flow of semen has completely halted.");
+	output("\n\n<i>\"Oh! Oooohhhhh! Nnnngh!\"</i> Amber strains, veins standing out on her thick, goo-swollen cock as she pants. <i>\"C-cumming! Cumming! Cumming!\"</i>");
+	output("\n\nShe cries out in desperate, horny release as she cums so hard her cockhead flares to four times its usual size, her urethra spread wide, but not even a single drop escapes. Instead she screams in pleasure as she cums a second time, overlaid on the first, the cum being sucked straight from her taut balls. It's hard to even imagine just how much pleasure Celise is forcing out of her, Amber's eyes rolling upwards while her spunk is mindlessly harvested.");
+	output("\n\nAmber's heaving, cum-swollen balls inflate even further as the galotian finds her way to the source of her heavenly nutrition, and the dryad groans in utter bliss. You don't know how long this mutual arrangement is going to last but for now, Amber looks like she's off on cloud nine. Her voice becomes softer and softer until it sounds like she's deep within the embrace of a long-known lover, crying out in intimate lust. It's a stark contrast to the rougher milking and you can't help but wonder if Celise is finally feeling a little more sated since they started.");
+	output("\n\nNothing lasts forever, though. You watch as Amber slowly climbs higher and higher, beginning to buck her hips and moan loudly, her taxed hindquarters straining and flexing with the effort of it all. Biting down hard on her lower lip, she cums -- and cums, and cums, until at last goo begins to spurt from her throbbing cockhead until a dazed, giggling Celise is ejaculated all over the floor. Not even a single drop of spunk remains in her wake, Amber's prick twitching weakly as the galotian immediately raises herself up and plants a wet, sloppy kiss right on her prickhole.");
+	output("\n\n<i>\"I think I love yooouuuu,\"</i> Celise sings happily.");
+	if (amberDumbfuckDoses() < 1)
+	{
+		output("\n\n<i>\"H-holy shit,\"</i> Amber moans exhaustedly, teetering on her thin cervine legs. <i>\"I-I'm gonna lie down…\"</i>");
+		output("\n\n<i>\"Good idea,\"</i> you murmur");
+		if (pc.hasGenitals()) output(", looking down at yourself. Maybe you should take care of this yourself, or have Celise do it once you're out of the hold");
+		output(". <i>\"I'll bring Celise around some other time.\"</i>");
+		output("\n\n<i>\"Bye, C'lise…\"</i> Amber mumbles, settling down in a heap on the floor.");
+	}
+	else if (amberDumbfuckDoses() < 3)
+	{
+		output("\n\n<i>\"Holy fuuuck,\"</i> Amber groans, practically collapsing at the waist before she catches herself. <i>\"Does this wonderful creature have a name, [pc.name]?\"</i>");
+		output("\n\n<i>\"I'm Celise,\"</i> the galotian announces, like she's inordinately proud of having a name. <i>\"Nice to meet you!\"</i>");
+		output("\n\n<i>\"No shit,\"</i> Amber laughs wearily, eyeing the googirl with naked lust. <i>\"You can come back down into the hold any time you like, Celise. I'd be <b>more</b> than happy to accommodate your needs.\"</i>");
+		output("\n\n<i>\"I'll bet,\"</i> you say, grinning at Amber as she gives you a knowing wink.");
+		output("\n\n<i>\"You already know I've extended the same offer to you, [pc.name],\"</i> she says, rolling her eyes before snickering.");
+	}
+	else if (amberDumbfuckDoses() < 4)
+	{
+		output("\n\n<i>\"Oh, my god, <b>fuck</b>,\"</i> Amber pants, catching herself before she slips over in exhaustion. <i>\"What's your name, you slutty little thing?\"</i>");
+		output("\n\n<i>\"I'm Celise,\"</i> the galotian announces, like she's inordinately proud of having a name. <i>\"Nice to meet you!\"</i>");
+		output("\n\n<i>\"Celise, if I see you in the hold again, I am going to fuck you until we do that whole thing over,\"</i> Amber says, grinning wide. <i>\"So come back soon.\"</i>");
+		output("\n\n<i>\"Celise is <b>always</b> on the lookout for more,\"</i> you assure her, nodding at the needy googirl. <i>\"Aren't you?\"</i>");
+		output("\n\n<i>\"Yup!\"</i> Celise chirps.");
+		output("\n\n<i>\"Good,\"</i> Amber says firmly.");
+	}
+	else
+	{
+		output("\n\n/dumbfuck4:<i>\"Hhhooohhh, <b>fuck</b>,\"</i> Amber spits, swaying and teetering. <i>\"Nnnh…\"</i>");
+		output("\n\n<i>\"Bet it feels good to be dry for a minute, doesn't it?\"</i> you ask her, grinning.");
+		output("\n\nShe looks up and meets your gaze dreamily, her eyelids drooping. <i>\"Love you, [pc.name]...\"</i>");
+		output("\n\n<i>\"I'll bring Celise back down for you again, okay girl?\"</i> you assure her, rubbing the dryad's furry ears as she moans. <i>\"I think you'll get along great on your own. See you soon.\"</i>");
+		output("\n\n<i>\"Byeee,\"</i> she calls out wearily, slumping to the floor in a tired heap.");
+	}
+
+	output("\n\nYou guide a very satisfied, giggly Celise back up into the ship and let her loose, watching her slip into the network of pipes and drains. She's definitely keeping the place cleaner than it would be otherwise, that's for sure. Especially when it comes to certain very messy 'taurs cooped up -- and <i>pent</i> up -- in your hold.");
+
+	IncrementFlag("AMBER_CELISE_THREESOMES");
+	pc.lust(pc.lustMax());
+	celise.orgasm();
+	celise.loadInMouth(ppAmber);
+	flags["AMBER_LASTCUM"] = GetGameTimestamp();
+
+	addButton(0, "Next", mainGameMenu);
+}

@@ -1742,6 +1742,96 @@ public function mutualJerkWithPennyCamStuff():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+//Syri & Penny stuff:
+public function pennySyriPornText():String
+{
+	var smut:String = "When the video starts it's immediately apparent that the thumbnail must have taken place later on, because Syri is nowhere to be seen and Penny is jacking the <i>fuck</i> out of her veiny, turgid cock. Her head turns up, towards the ceiling, and her hips rise into the air as she pounds the daylights out of an imaginary partner for the benefit of her stream viewers. Creamy spunk flies from the end of her";
+	if (penny.cocks[0].cType == GLOBAL.TYPE_EQUINE) smut += " swollen flare, her bloated cumvein thrumming with life";
+	else smut += " tapered tip, her bitch-knot swollen in need";
+	smut += " while an ecstatic, giggly moan comes from between her lips, utter bliss written across her features.";
+	smut += "\n\nThe toy she was using lies in her left hand while Penny's overeager semen continues to fountain from her burgeoning";
+	if (penny.cocks[0].cType == GLOBAL.TYPE_EQUINE) smut += " studprick";
+	else smut += " dogdick";
+	smut += ", splattering her surroundings in a manner reminiscent of thick, heavy rain. It's clearly not the first time she's cum during this streaming session, relatively fresh seed soaking her sheets almost everywhere you look -- hang on, that toy looks familiar…";
+	smut += "\n\nPausing the video for a moment and trying to ignore the way";
+
+	if (pc.isHerm())
+	{
+		smut += " your [pc.cocks]";
+		if (pc.hasCocks()) smut += " throb";
+		else smut += " throbs";
+		smut += " with arousal while sexual juices drip down your [pc.thighs] from your [pc.pussies]";
+	}
+	else if (pc.hasCock())
+	{
+		smut += " your [pc.cocks]";
+		if (pc.hasCocks()) smut += "are";
+		else smut += "is";
+		smut += " are half-erect";
+		if (pc.isCrotchGarbed()) smut += " in your [pc.lowerGarments]";
+	}
+	else if (pc.hasVagina()) smut += " sexual arousal is dripping down your [pc.thighs]";
+	else smut += " your rising arousal creates an uncomfortable heat inside you";
+
+	smut += ", you zoom in on the contents of her trembling fingers.";
+	if (silly) smut += "\n\n<i>\"Enhance,\"</i> you mutter to nobody in particular.";
+	smut += "\n\nThat sneaky little foxslut! She's nabbed Syri's biona-pussy from";
+	if (flags["SYRIQUEST_SYRI_ONAHOLE"] == 1) smut += " your room!";
+	else smut += " her room!";
+	//dunno: storage!}
+	smut += " Zooming back out to fully appreciate the still picture for a moment, you look at Penny's face. Yup -- that's pure, brazen ecstasy right there. Unpausing the video and letting it run, Penny puts voice to the first coherent words she's managed so far.";
+	smut += "\n\n<i>\"Hooohhh, fuck…\"</i> she moans, the tension in her body fading but the stiff, throbbing erection of her cock not budging an inch. <i>\"I fucking love this toy </i>so much</i>! Like, oh my god, guys!\"</i>";
+	smut += "\n\nYou realize she's addressing her stream viewers, of which you can only imagine there's at least a few thousand minimum. With her giant, cum-slick rack and her sweaty hands squeezing at her still-dripping cock, she's got to be a popular pick.";
+	smut += "\n\n<i>\"This fucking pussy is sooo good!\"</i> Penny cries, lifting it up for the stream to check it out and putting her thumb in to spread the lips. A warm deluge of her own wasted sperm pours out, splattering across her heaving tits. She doesn't seem to notice. <i>\"Don't tell anyone but it's actually my friend's! And I don't mean like, a toy. I mean it's her real, actual pussy!\"</i> A big grin spreads over her face. <i>\"But shh! She's a fucking hot ausar babe and I don't want her to be mad at me.\"</i>";
+	smut += "\n\n<i>\"Bit late for that,\"</i> a voice from off-camera says, laced with annoyance. <i>\"Damn it, Penny!\"</i>";
+	smut += "\n\n<i>\"Syri!,\"</i>  Penny yelps, throwing her well-loved toy into the air in surprise. <i>\"Oh my gosh!\"</i>";
+	smut += "\n\n<i>\"Don't say my name on stream! Ugh,\"</i> Syri groans, stepping forward into the room. <i>\"And don't just take my… my… ugh, jeez. How much are you using this thing?\"</i>";
+	smut += "\n\n<i>\"You mean your pussy?\"</i> Penny asks, looking up at Syri with a face incapable of guile. <i>\"How much am I fucking your pussy?\"</i>";
+	smut += "\n\n<i>\"<b>Yes</b>, how much are you fucking my pussy,\"</i> Syri seethes.";
+	smut += "\n\n<i>\"Oh my gosh, like soooo much,\"</i> Penny says, bursting into peals of giggles as she picks it back up and hugs it to her breasts. <i>\"I love it! I only found it like a little bit ago and now it's my favorite! U-um,\"</i> she says hesitantly, searching for approval. <i>\"Do you wanna… watch me use it?\"</i>";
+	smut += "\n\nSyri stands stock-still, her expression unreadable but her cheeks reddening faintly. This is <i>not</i> unfolding how you expected it.";
+	smut += "\n\n<i>\"Fine,\"</i> Syri snaps, though her anger seems subdued. She crosses her arms and settles against the closed door behind her, leaning against it. <i>\"Show me what you got.\"</i>";
+	smut += "\n\n<i>\"Oh my gosh,\"</i> Penny squeals, all smiles and happiness. <i>\"I gotta special treat for you guys! I'm gonna fuck this pussy while the owner watches!\"</i>";
+	smut += "\n\n<i>\"Are you talking to your stream?\"</i> Syri asks, nodding at Penny's little laptop.";
+	smut += "\n\n<i>\"Uh huh,\"</i> Penny says softly, rubbing the toy against her";
+	if (penny.cLength() < 12) smut += " iron-hard dick.";
+	else smut += " towering cock.";
+	smut += " <i>\"They loOoOoOve watching me fuck… don't you, cuties? Hey,\"</i> she says suddenly, realizing the situation. <i>\"You're like a real life stream-watcher right now! That's so hot! Ohmygosh, it's like I'm fucking in front of you guys for real!\"</i>";
+	smut += "\n\n<i>\"Well? I'm waiting,\"</i> Syri mutters, rubbing the bridge of her nose.";
+	smut += "\n\n<i>\"Okaaaay!\"</i> Penny chirps, lifting Syri's former cunt to";
+	if (penny.cocks[0].cType == GLOBAL.TYPE_EQUINE) smut += " the subdued flare of her horsecock.";
+	else smut += " her pointed cocktip.";
+	smut += " The owner looks on with blatantly apparent interest, no matter what her body language might be saying otherwise.";
+	smut += "\n\n<i>\"Uuuuuhhhhnnnn,\"</i> Penny groans, slipping the opening over her cockhead. <i>\"Oh, fuck, I love how tight it is…\"</i>";
+	smut += "\n\nSyri's ears noticeably twitch and perk up at that, though she says nothing. Penny slowly lifts her hips, sliding deeper into the toy like she were entering a familiar lover, moaning softly all the while. When she pulls herself back out you can actually see how much the pussy physically clings to her -- the cute little lips <i>grip</i> her vein-covered cock as though they need her back inside, an impulse Penny is only too happy to oblige.";
+	smut += "\n\nA shuddering groan escapes her lips as she thrusts herself back inside, leaning back against her pile of pillows and starting to one-handedly fuck herself with Syri's bionahole. Her earlier orgasms have lubricated it to the point where it flawlessly glides up and down her length though even if they hadn't, it's plain to see how much Syri's pussy is juicing itself. Translucent fluid <i>coats</i>";
+	if (penny.cLength() < 12) smut += " the entirety of Penny's prick, rolling down her own flared pussylips.";
+	else smut += " the majority of Penny's shaft, rolling down and dripping to the bed.";
+	smut += "\n\n<i>\"O-okay,\"</i> Syri stammers, holding an arm out. <i>\"Wait! Y-you can hang onto it, it's fine. I have to, to go. And uh, mail me the stream address later! So- so I can make sure you're not misusing my- my pussy...\"</i>";
+	smut += "\n\n<i>\"Aw, okay! Bye, Syri!\"</i> Penny says cheerfully, waving as the ausar girl leaves, almost doubled over and walking funny. Poor girl. You're not sure what she expected out of Penny, but she probably wasn't imagining it would be quite <i>that</i> lewd…";
+	smut += "\n\n<i>\"Mmmm, time to finish up,\"</i> Penny murmurs, lovingly gripping the toy clenched around her dick. It looks harder than some bulkheads you've seen. <i>\"Ooohhhh…\"</i>";
+	smut += "\n\nThe next ten minutes of the stream are a display of sexual hunger like you rarely see it. Penny places the toy on the bed and holds it there with one hand, rolling her foxy hips hard enough to send sweat droplets flying with every thrust, rutting her 'partner' from above with sexy moans and grunts. She's <i>working</i> that pussy so expertly that its redfaced owner would no doubt blow a load in her pants were she to see it.";
+	smut += "\n\nThe climax of the clip comes when Penny, dripping with sweat and moaning so loudly you're surprised you couldn't hear her in the ship yourself, finally blows her load right into the toy. Seed gushes out from around her throbbing cock in pulses, Syri's stretched-out cunt spurting foxspunk all over Penny's sheets as it's filled to capacity in an instant. She lets out a long, orgasmic groan of joy and topples over onto the toy, still absently bucking her hips into the bed, grinding against it.";
+	smut += "\n\nPenny lies there for a couple of minutes, breathing hard, before the clip ends with her turning towards her webcam and smiling. She looks like she's won a race.";
+	if (flags["PENNY_SYRIVAG_WATCHED"] == undefined) smut += "\n\nYou tear yourself away from the video eventually, though you'll file this away for… later perusal. Captain's privilege.";
+
+	return ParseText(smut);
+}
+
+public function pennySyriOnaholeVid():void
+{
+	clearMenu();
+	clearOutput();
+	showBust(pennyBustDisplay(true), syriBustDisplay());
+	showName("PENNY\n& SYRI VID");
+	processTime(18);
+	pc.lust(75);
+
+	output(pennySyriPornText());
+
+	addButton(0, "Next", mainGameMenu);
+}
+
 //Badger & Penny stuff:
 	
 	
