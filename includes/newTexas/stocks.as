@@ -105,6 +105,10 @@ public function getNTStocksPregContainer(arg:String = ""):PregnancyPlaceholder
 			pp.shiftCock(0, GLOBAL.TYPE_SNAKE);
 			// 9999 pp.impregnationType = "LeithanPregnancy";
 			break;
+		case "laquine":
+			pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
+			pp.impregnationType = "LaquinePregnancy";
+			break;
 	}
 	pp.ballFullness = 100;
 	
@@ -699,6 +703,7 @@ public function stocksEpilogue(args:Array):void
 	var x:int = args[2];
 	var inCunt:int = args[0];
 	var inMouth:int = args[1];
+	var rn:int;
 
 	output("Life in Miscreant Manor is a parade of cocks. Cocks that thrust into every hole. Cocks that jet cum into you. Cocks that throb and pleasure and cum without end. You can’t count how many times you orgasm or how many loads are swimming around in your abused womb");
 	if(pc.totalVaginas() > 1) output("s");
@@ -713,10 +718,13 @@ public function stocksEpilogue(args:Array):void
 		//Pick random pussy
 		x = rand(pc.totalVaginas());
 		//Pick a cumshot - mostly placeholder
+		rn = rand(10);
 		//Hellhound
-		if(rand(9) == 0) ppRando = getNTStocksPregContainer("hellhound");
+		if(rn == 0) ppRando = getNTStocksPregContainer("hellhound");
 		//Kaithrit
-		else if(rand(7) == 0) ppRando = getNTStocksPregContainer("kaithrit");
+		else if (rn <= 2) ppRando = getNTStocksPregContainer("kaithrit");
+		//laquine
+		else if (rn <= 4) ppRando = getNTStocksPregContainer("laquine");		
 		//New Texan/Terran Tourist
 		else ppRando = getNTStocksPregContainer("farmer");
 		pc.loadInCunt(ppRando,x);

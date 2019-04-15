@@ -387,6 +387,8 @@ New Flags:
 		
 		public static function boredJumperSuccessfulImpregnation(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
+			//added to clean up some previous flag issues			
+			kGAMECLASS.flags["BJUMPER_PREGHAND_MULTIBIRTH"] = undefined;
 			//set flag to track which jumper type made each womb preggers
 			if (pregSlot == 0)	kGAMECLASS.flags["BJUMPER_PC_PREG_TYPE"] = father.cocks[0].cType;
 			else if (pregSlot == 1)	kGAMECLASS.flags["BJUMPER_PC_PREG_TYPE1"] = father.cocks[0].cType;
@@ -420,16 +422,15 @@ New Flags:
 					for(j = 0; j < babyList[i].NumIntersex; j++) { genderList.push(2); }
 					ChildManager.addChild(babyList[i]);
 				}
-				
+
 				var babyGender:int = rand(3);
 				if (genderList.length > 0) babyGender = genderList[rand(genderList.length)];
-				
 				//if the multibirth flag is not set check if it should be
 				if (kGAMECLASS.flags["BJUMPER_PREGHAND_MULTIBIRTH"] == undefined)
 				{
 					if (pregSlot != 0 && kGAMECLASS.flags["BJUMPER_PC_PREG_TYPE"] != undefined)
 					{
-						if (mother.pregnancyData[0].pregnancyIncubation <= 1440)
+						if (mother.pregnancyData[0].pregnancyIncubation <= (1440 * mother.pregnancyData[0].pregnancyIncubationMulti))
 						{
 							mother.pregnancyData[0].pregnancyIncubation = 0;
 							IncrementFlag("BJUMPER_PREGHAND_MULTIBIRTH");
@@ -437,7 +438,7 @@ New Flags:
 					}
 					if (pregSlot != 1 && kGAMECLASS.flags["BJUMPER_PC_PREG_TYPE1"] != undefined)
 					{
-						if (mother.pregnancyData[1].pregnancyIncubation <= 1440)
+						if (mother.pregnancyData[1].pregnancyIncubation <= (1440 * mother.pregnancyData[1].pregnancyIncubationMulti))
 						{
 							mother.pregnancyData[1].pregnancyIncubation = 0;
 							IncrementFlag("BJUMPER_PREGHAND_MULTIBIRTH");
@@ -445,7 +446,7 @@ New Flags:
 					}
 					if (pregSlot != 2 && kGAMECLASS.flags["BJUMPER_PC_PREG_TYPE2"] != undefined)
 					{
-						if (mother.pregnancyData[2].pregnancyIncubation <= 1440)
+						if (mother.pregnancyData[2].pregnancyIncubation <= (1440 * mother.pregnancyData[2].pregnancyIncubationMulti))
 						{
 							mother.pregnancyData[2].pregnancyIncubation = 0;
 							IncrementFlag("BJUMPER_PREGHAND_MULTIBIRTH");

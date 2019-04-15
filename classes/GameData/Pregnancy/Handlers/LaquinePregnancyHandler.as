@@ -413,7 +413,7 @@ New Flags:
 				{
 					if (pregSlot != 0 && mother.pregnancyData[0].pregnancyType == thisPtr.handlesType)
 					{
-						if (mother.pregnancyData[0].pregnancyIncubation <= 1440)
+						if (mother.pregnancyData[0].pregnancyIncubation <= (1440 * mother.pregnancyData[0].pregnancyIncubationMulti))
 						{
 							mother.pregnancyData[0].pregnancyIncubation = 0;
 							IncrementFlag("LAQUINE_PREGHAND_MULTIBIRTH");
@@ -421,7 +421,7 @@ New Flags:
 					}
 					if (pregSlot != 1 && mother.pregnancyData[1].pregnancyType == thisPtr.handlesType)
 					{
-						if (mother.pregnancyData[1].pregnancyIncubation <= 1440)
+						if (mother.pregnancyData[1].pregnancyIncubation <= (1440 * mother.pregnancyData[1].pregnancyIncubationMulti))
 						{
 							mother.pregnancyData[1].pregnancyIncubation = 0;
 							IncrementFlag("LAQUINE_PREGHAND_MULTIBIRTH");
@@ -429,7 +429,7 @@ New Flags:
 					}
 					if (pregSlot != 2 && mother.pregnancyData[2].pregnancyType == thisPtr.handlesType)
 					{
-						if (mother.pregnancyData[2].pregnancyIncubation <= 1440)
+						if (mother.pregnancyData[2].pregnancyIncubation <= (1440 * mother.pregnancyData[2].pregnancyIncubationMulti))
 						{
 							mother.pregnancyData[2].pregnancyIncubation = 0;
 							IncrementFlag("LAQUINE_PREGHAND_MULTIBIRTH");
