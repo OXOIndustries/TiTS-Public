@@ -7820,7 +7820,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Ice Plains
-			if(flags["MET_MYRNA"] != undefined || flags["MET_FEMKORGONNE"] != undefined || flags["MET_KORG_MALE"] != undefined || flags["MET_MILODAN_MALE"] != undefined || flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined || flags["MET_STORMGUARD"] != undefined || flags["UVIP_J46_SEARCHED"] != undefined || flags["MET_VARK"] != undefined)
+			if(flags["MET_MYRNA"] != undefined || flags["MET_FEMKORGONNE"] != undefined || flags["MET_KORG_MALE"] != undefined || flags["MET_MILODAN_MALE"] != undefined || flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined || flags["MET_STORMGUARD"] != undefined || flags["UVIP_J46_SEARCHED"] != undefined || flags["MET_VARK"] != undefined || flags["MET_LURELING"] != undefined)
 			{
 				output2("\n<b><u>Ice Plains</u></b>");
 				if(flags["MET_STORMGUARD"] != undefined)
@@ -7863,6 +7863,14 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Milodan Priestess, Times Encountered:</b> " + flags["FERTILITY_PRIESTESSES_FOUGHT"]);
 					if(flags["FERTILITY_PRIESTESSES_FUCKED"] != undefined) output2("\n<b>* Milodan Priestess, Times Fucked Her Vagina:</b> " + flags["FERTILITY_PRIESTESSES_FUCKED"]);
+				}
+				if(flags["MET_LURELING"] != undefined)
+				{
+					output2("\n<b>* "+ StringUtil.upperCase(marionName()) +":</b> Encountered");
+					if(flags["MET_LURELING"] >= 1) output2(", Entered the Den");
+					if(flags["MET_LURELING"] >= 2) output2(", Encountered a Lureling");
+					if(flags["MARIONS_FUCKED"] != undefined) output2("\n<b>* "+ StringUtil.upperCase(marionName()) +", Times Fucked:</b> " + flags["MARIONS_FUCKED"]);
+					if(flags["LURELINGS_FOUGHT"] != undefined) output2("\n<b>* Lureling, Times Encountered:</b> " + flags["LURELINGS_FOUGHT"]);
 				}
 				// Abandoned Outpost
 				if(flags["UVIP_J46_SEARCHED"] != undefined) output2("\n<b>* Abandoned Outpost:</b> Found, Looted camp");

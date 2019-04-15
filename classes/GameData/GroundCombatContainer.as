@@ -1979,6 +1979,12 @@ package classes.GameData
 					CombatManager.abortCombat();
 					return;
 				}
+				if (hasEnemyOfClass(Lureling))
+				{
+					kGAMECLASS.lurelingFightEscape();
+					CombatManager.abortCombat();
+					return;
+				}
 				if (pc.canFly()) 
 				{
 					if (pc.legCount == 1) output("Your [pc.foot] leaves");
