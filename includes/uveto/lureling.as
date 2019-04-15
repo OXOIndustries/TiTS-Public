@@ -80,7 +80,7 @@ public function marionSetUp():void
 public function marionEncounter():void
 {
 	clearOutput();
-	processTime(10);
+	processTime(5);
 	clearMenu();
 	author("Savin");
 	showMarion();
@@ -131,6 +131,7 @@ public function marionEncounter():void
 		else {
 			output("Your Codex chirps, just barely audible over the howl of the wind, that this is an essyra, one of the native species here on Uveto. One that is, generally, friendly to off-worlders like you.");
 			CodexManager.unlockEntry("Essyras");
+			output("\n\n<b>(New Codex entry unlocked: Essyras.)</b>");
 		}
 
 		if (pc.willTakeColdDamage()) {
@@ -363,6 +364,7 @@ public function smackTheMarion():void
 		output("\n\nYour Codex beeps urgently: <i>“Lureling detected. This native species is a psionically active sapient, known for aggressively attacking colonists that attack their mind-controlled puppets. Extreme caution is advised.”</i> ");
 
 		output("\n\n<i>“Thanks for the early warning,”</i> you growl, drawing your [pc.weapon].");
+		output("\n\n<b>(New Codex entry unlocked: Lureling.)</b>");
 
 		flags["MET_LURELING"] = 2;
 		CodexManager.unlockEntry("Lurelings");
@@ -516,8 +518,8 @@ public function marionsDenSexFuckMarion(x:int):void
 //Next: Pass three hours, heal 10hp
 
 	output("\n\nTime passes in a drowsy blur, with soft hands ");
-	if (pc.hasFur()) output("petting your [pc.fur]");
-	else if (pc.hasScales()) output("teasing out the contours of your [pc.scales]");
+	if (pc.hasFur()) output("petting your [pc.skinFurScales]");
+	else if (pc.hasScales()) output("teasing out the contours of your [pc.skinFurScales]");
 	else output("playing gently over the soft skin of your back");
 	output(". It’s only a short nap, but when you finally wake up it feels like you’ve managed to indulge in a full night’s sleep. The pink-furred fox is gently petting you on the head and smiling softly.");
 

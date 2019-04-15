@@ -55,15 +55,15 @@ package classes.Characters
 			
 			baseHPResistances = new TypeCollection();
 			baseHPResistances.freezing.damageValue = 100.0;
-			baseHPResistances.burning.damageValue = -10.0;
-			baseHPResistances.kinetic.damageValue = 20;
-			baseHPResistances.electric.damageValue = -10;
-			baseHPResistances.poison.damageValue = 20;
-			baseHPResistances.corrosive.damageValue = 20;
-			baseHPResistances.drug.resistanceValue = -20.0;
-			baseHPResistances.tease.resistanceValue = -20.0;
-			baseHPResistances.pheromone.resistanceValue = -20.0;
-			baseHPResistances.psionic.resistanceValue = -20.0;
+			baseHPResistances.burning.damageValue = -50.0;
+			baseHPResistances.kinetic.damageValue = 25;
+			//baseHPResistances.electric.damageValue = -10;
+			baseHPResistances.poison.damageValue = 50;
+			baseHPResistances.corrosive.damageValue = 50;
+			baseHPResistances.drug.resistanceValue = -50.0;
+			baseHPResistances.tease.resistanceValue = -25.0;
+			baseHPResistances.pheromone.resistanceValue = -25.0;
+			baseHPResistances.psionic.resistanceValue = -25.0;
 
 			this.level = 8;
 			this.XPRaw = normalXP();
@@ -183,6 +183,8 @@ package classes.Characters
 			
 			this._isLoading = false;
 		}
+
+		private var _psiCD:Number = 0;
 		
 		override public function get bustDisplay():String
 		{
@@ -193,9 +195,10 @@ package classes.Characters
 		{
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
-
-			if(rand(5) == 0 && !target.hasStatusEffect("Staggered")) chomp(target);
-			else if((rand(3) == 0 || this.HP() / this.HPMax() <= 0.3) && !target.hasStatusEffect("Psionic Backlash Cooldown")) psionicBacklash(target);
+			if(_psiCD > 0) _psiCD--;
+			if(_psiCD < 0) _psiCD = 0;
+			if(rand(3) == 0 && !target.hasStatusEffect("Staggered")) chomp(target);
+			else if((rand(4) == 0 || this.HP() / this.HPMax() <= 0.3) && _psiCD == 0) psionicBacklash(target);
 			else flipperSlap(target);
 		}
 
@@ -217,12 +220,21 @@ package classes.Characters
 		private function chomp(target:Creature):void
 		{
 			output("The huge sea monster snarls and lunges, trying to grab you between its gnashing teeth! You dodge back");
-			if (combatMiss(this, target)) output(", narrowly avoiding a nasty bite!");
+			//Low accuracy = 3x normal dodge chance for PC.
+			if (combatMiss(this, target) || combatMiss(this, target) || combatMiss(this, target)) output(", narrowly avoiding a nasty bite!");
 			else
 			{
 				output(" but don't manage to evade the Lureling's bestial mouth, and feel its teeth crush into you. The bite isn't lethal, but it leaves you gasping and winded for a moment by the time you struggle free!");
-				if (!target.isPlanted()) CombatAttacks.applyStagger(target, 1, true);
-				if (rand(4) == 0 && target.shields() <= 0) CombatAttacks.applyBleed(target);
+				if (!target.isPlanted()) 
+				{
+					CombatAttacks.applyStagger(target, 1, true);
+					output(" <b>You are staggered!</b>");
+				}
+				if (rand(4) == 0 && target.shields() <= 0) 
+				{
+					CombatAttacks.applyBleed(target);
+					output(" <b>You are bleeding!</b>");
+				}
 				applyDamage(new TypeCollection( { kinetic: 30 }, DamageFlag.PENETRATING), this, target, "minimal");
 			}
 		}
@@ -236,14 +248,14 @@ package classes.Characters
 			else
 			{
 				output("You scream in pain and slump to your [pc.knees], unable to think of anything but the pounding in your head.");
-				if (!target.hasStatusEffect("Stun Immune"))
+				if (!target.hasStatusEffect("Stun Immune") && !target.hasStatusEffect("Stunned") && target.physique()/2 + rand(20) + 1 < this.physique()/2+10)
 				{
 					CombatAttacks.applyStun(target, 1, true);
 					output(" <b>You’re stunned!</b>");
 				}
 				applyDamage(new TypeCollection( { kinetic: 30 }, DamageFlag.PSIONIC), this, target, "minimal");
 			}
-			createStatusEffect("Psionic Backlash Cooldown", 2);
+			_psiCD += 2;
 		}
 	}
 }
