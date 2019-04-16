@@ -3926,7 +3926,8 @@ public function boredJumperPregPregnancyEnds():void
 		var smallHips:Boolean = true;
 		if (pc.hipRating() >= 14) smallHips = false;
 		var encLocation:int = boredJumperPregLocation();
-		var dblBirth:Boolean = false;
+		var dblBirth:Boolean = false;		
+		flags["BJUMPER_PREGHAND_MULTIBIRTH"] = undefined;
 		
 		var numBoys:int = 0;
 		var numGirls:int = 0;
@@ -4918,7 +4919,7 @@ public function boredJumperPregSteeleBirthNext(arg:Array):void
 		output(" A mechanical chirp from your codex alerts you to the incoming nursery probes.");
 		if (numberChildren > 2)
 		{
-			if (numberChildren > 8) output("\n\nThe retrieval shuttles zero in on your location, and there are many of them. Good thing your codex is on top of things!.");
+			if (numberChildren > 8) output("\n\nThe retrieval shuttles zero in on your location, and there are many of them. Good thing your codex is on top of things!");
 			else output("\n\nThe retrieval shuttles zero in on your location.");
 		}
 		else output("\n\nThe retrieval shuttle zeroes in on your location.");
@@ -5474,7 +5475,7 @@ public function laquineSteeleBirthNext(arg:Array):void
 		output(" A mechanical chirp from your codex alerts you to the incoming nursery probes.");
 		if (numberChildren > 2)
 		{
-			if (numberChildren > 8) output("\n\nThe retrieval shuttles zero in on your location, and there are many of them. Good thing your codex is on top of things!.");
+			if (numberChildren > 8) output("\n\nThe retrieval shuttles zero in on your location, and there are many of them. Good thing your codex is on top of things!");
 			else output("\n\nThe retrieval shuttles zero in on your location.");
 		}
 		else output("\n\nThe retrieval shuttle zeroes in on your location.");
