@@ -12,6 +12,11 @@
 //Placeholder func. Move to ardia when she's in.
 public function ardiaIsCrew():Boolean { return false; }
 
+public function daneCockVolume():Number
+{
+	return 250;
+}
+
 //Encountering Dane
 public function daneBonus(buttLoc:Number = 0):void
 {
@@ -180,6 +185,11 @@ public function daneTalkMenu():void
 	else addDisabledButton(0,"TentacleD","TentacleD","You need to have lost to Dane on Mhen’ga to discuss this topic.");
 	addButton(1,"Your Cuz",talkDaneAboutYoCousin,undefined,"Your Cuz","Ask Dane what it was like to work for your cousin. Your guess? Awful.");
 	addButton(2,"Other Jobs",askDaneAboutOtherJobs,undefined,"Other Jobs","Go digging to see if he’s got any stories to share.");
+	if(flags["LOST_TO_DANE_ON_MHENGA"] == 1 || flags["DANE_JOBS_TALK"] == 1)  addButton(3,"Harem",danesHaremTalk,undefined,"Harem","Dane has made mention of having a harem in the past. You don't see any girls here. Where are they?");
+	else addDisabledButton(3,"Locked","Locked","You'll need to ask Jane about his previous jobs to unlock this topic.");
+	addButton(4,"His Start",daneStartTalk,undefined,"His Start","How does a guy like Dane gets his start in the merc game?");
+	if(pc.hasItemByClass(ShockBlade)) addButton(5,"ReturnBlade",giveDaneShockblade,undefined,"Return Blade","Give Dane back the shock blade you took from him after defeating him on Mhen'ga.");
+	else addDisabledButton(5,"ReturnBlade","Return Blade","You cannot give Dane back one of his swords if you do not have that sword to give.");
 	addButton(14,"Back",approachDane,true);
 }
 
@@ -302,23 +312,135 @@ public function askDaneAboutOtherJobs():void
 	output("\n\nThe albino ausar sips a bit of whiskey, grimacing from the aftertaste. <i>“‘Course I was wrong. The weaselly little snake hooked up with the Black Void. Can’t touch him now.”</i> He cracks his knuckles. <i>“Who knows. Maybe I’ll bump into him in my next job and get the chance to play at being a lawman myself. That’s the nice part about being a mercenary - you get to do a little bit of everything.”</i> Glancing your way, the hound for hire remarks, <i>“A bit like being a Rusher, I suppose.”</i>");
 	processTime(15);
 	//UNLOCKS HAREM TOPIC
-	//9999
+	flags["DANE_JOBS_TALK"] = 1;
+	clearMenu();
+	addButton(0,"Next",talkToDaneIntro,true);
 }
 
-/*
-output("\n\n[UNF] Harem");
-output("\n\n//DANE HAD A HAREM - Had two half-sisters and a real subby rahn. Skipped town with some kaithrit musician named <i>“Astrokat”</i> or some shit.");
-output("\n\n//Got fucked:");
-output("\n\n<i>“So where’s that harem you mentioned?”</i>");
-output("\n\n//Else");
-output("\n\n<i>“You had a harem?”</i>");
-output("\n\n//Merge");
+//Harem
+//DANE HAD A HAREM - Had two half-sisters and a real subby rahn. Skipped town with some kaithrit musician named "Astrokat" or some shit.
+public function danesHaremTalk():void
+{
+	clearOutput();
+	showDane();
+	author("Fenoxo");
+	//Got fucked:
+	if(flags["LOST_TO_DANE_ON_MHENGA"] == 1) output("<i>“So where’s that harem you mentioned?”</i>");
+	else output("<i>“You had a harem?”</i>");
+	//Merge
+	output("\n\nDane scratches the back of his head. <i>“Guess I did mention that, didn’t I?”</i>");
+	//Bimbo
+	if(pc.isBimbo()) output("\n\n<i>“Uh-huh!”</i> You wiggle closer, leaning into the big galoot. <i>“Sounds hot.”</i>");
+	//Bro
+	else if(pc.isBro()) output("\n\nYou nod, deciding to add a verbal ‘yep’ after it becomes clear that Dane wasn’t looking.");
+	//Nice
+	else if(pc.isNice()) output("\n\n<i>“Yep!”</i> You give the burly ausar an encouraging pat on the back. <i>“Come on. You can’t drop a detail like that and </i>not<i> talk about it!”</i>");
+	//Mischiev
+	else if(pc.isMischievous()) output("\n\nYou elbow him in the side of the ribs. <i>“Damn right you did. Don’t even think about holding back on the details either.”</i>");
+	//Hard
+	else 
+	{
+		output("\n\n<i>“Fuck yes you did.”</i> You lean hard on the bar, saying, <i>“And not telling me all about it could be considered an act of war by some cultures.”</i>");
+		output("\n\nDane raises an eyebrow. <i>“Which cultures?”</i>");
+		output("\n\n<i>“Doesn’t matter. Dish.”</i>");
+	}
+	//Merge
+	output("\n\nDane shrugs all four of his shoulders at once. <i>“Guess I might as well start at the beginning. Didn’t set out to put together a harem or nothing. I was just a normal guy doing normal things - working out, making credits, and trying to find hot pieces of tail to bang on the weekends, you know?”</i> He shakes his head in amusement. <i>“Sure was a fuck of a lot simpler back then. ‘Course you can’t really beat having three cuties in your bed, even if it does get complicated quick.”</i>");
+	output("\n\nYou ask how it started.");
+	output("\n\n<i>“Chydi’s how it started,”</i> Dane grumbles. <i>“Lithe little piece of ausar tail. She worked out at my gym, so I saw a fair amount of her with my own comings and goings. I didn’t even know she was into me at first.”</i> He snorts. <i>“I was so busy worrying about my own workout that I didn’t spare more than a glance at anyone else. Physique like this doesn’t just happen - even with mods helping. It still takes work, and lots of it, to sculpt yourself into a work of art.”</i> The grinning ausar flexes an arm and plants a kiss upon his own bulging bicep. <i>“Chydi understood that. She liked these beauties almost as much as I do.”</i>");
+	//Bimbo
+	if(pc.isBimbo()) output("\n\nYou coo adoringly, eyes riveted to male’s bulging slab of muscle.");
+	//Bro
+	else if(pc.isBro()) output("\n\nYou grunt in acknowledgement.");
+	//Else
+	else output("\n\nYou nod in understanding.");
+	//Merge
+	output("\n\n<i>“Anyway, one day my usual errant glance noticed her full-on leering at me. You could’ve pulled her face from the cover of ‘Girl-Boners Monthly.’ I’d have to be blind not to notice.”</i> A sharp canine glints as the corner of his mouth lifts in pleasant memory. <i>“I did a few more sets to finish up my workout, only this time I stole glances at her every chance I could get. Caught her peeking a few times, and even when she wasn’t, I got an eyeful of a woman in peak form, shrink-wrapped in lycra. It was a lucky day to be wearing baggy shorts, I’ll tell you that.”</i>");
+	output("\n\n<i>“How’d you ask her out?”</i> you ask.");
+	output("\n\nA sheet of crimson works across Dane’s cheeks. <i>“I didn’t. Not really. Well... I meant to.”</i> He takes a fortifying sip of whiskey and sighs heavily before resuming his tale. <i>“We were both getting ready to leave when I walked up to her, and... fuck. She smelled so good that I forgot what I was going to say to her, and she... she was about the same. She just stared at me for a few seconds, breathing heavily. There was a damp patch in her bottoms, and my shorts weren’t baggy enough to completely conceal what I was thinking about.”</i> Dane leans back and shakes his head. <i>“I picked her up, and we started making out right there. I couldn’t stop myself, and she didn’t want me to. I fucked her in the gym’s bathroom. And then we fucked again in my car. And again in my shower.”</i>");
+	output("\n\nYou let out a slow whistle of approval.");
+	output("\n\n<i>“Yeah it was pretty great. Needless to say, we got real serious real fast. She brought me over to meet her family one day... and she had a sister that smelled just amazing as she did.”</i> Dane flashes a toothy grin. <i>“Not a hardbody like Chydi of course. No, this girl was thick in all the right places. If you had told me she was part huskar, I’d have believed you. You could smell the fertility pouring off of her, and I... what red-blooded guy wouldn’t want to fuck her?”</i> Dane fidgets. <i>“I’ve never been that hard through an entire meal before or since.”</i>");
+	output("\n\nDane gestures vaguely behind him. <i>“So of course I make for the bathroom first chance I get. The last thing I want to do is accidentally rip a hole in my pants while her parents are watching. I’m in there, wanking up a storm, when the door pops open. In comes Chydi’s sister, Kythi, smiling up a storm. I’m fumbling and apologizing, but she just closes the door behind her and drops to her knees. Starts servicing me like a pro, and before I can pull my brain out of my dick, I’m dumping what feels like a gallon of cum down her throat.”</i> He leans back, fluttering his eyes for a moment before laughing out loud at his own orgasm-face. <i>“That girl could suck-start a capital ship, no problem. Had me hooked in one blowjob.”</i>");
+	//Bimbo
+	if(pc.isBimbo()) output("\n\n<i>“So that’s all it takes?”</i> you ask, licking your lips. <i>“" + (flags["DANE_SEXED"] == undefined ? "I’ll remember that.":"Guess I’m well on my way then.") + " But you still have to tell me how you got yourself a sister-harem!”</i>");
+	//Bro
+	else if(pc.isBro()) output("\n\n<i>“Sure she wasn’t from New Texas?”</i> You ask. <i>“All the best cock-suckers come from New Texas. Same for bangable sisters. Usually takes a cow-girl for that sort of sharing.”</i>");
+	//Else
+	else output("\n\nRaising an eyebrow, you ask, <i>“How’d you handle Chydi finding out about Kythi?”</i>");
+	//Merge
+	output("\n\nThe four-armed alpha drums his fingertips on the table with a hint of nervousness. <i>“To this day I’m not entirely sure how I pulled it off. I started fucking Kythi on the side when her sister wasn’t around, but it’s real hard to keep your screwing a secret when you’re banging two adjacent branches of the same family tree. If I had to guess, Chydi probably figured it out by smell. Girl was always into my scent, and a few hours of lovemaking leaves pretty obvious scent markers to any ausar with half a nose.”</i> Dane pauses. <i>“I guess she decided that she’d catch us red handed before she started slinging accusations. Smart girl, that one.”</i>");
+	output("\n\nPressing on, the merc sets the scene, <i>“So there I am, sprawled out in bed with Kythi bouncing in my lap, huge tits jiggling and bouncing in my palms. I’m basically in heaven.”</i> He smirks. <i>“Then the door bursts open. Chydi’s got a holocam out, snapping footage, her face all screwed up with rage. She’s screaming and yelling while Kythi and I are falling all over ourselves to cover up. Not my most graceful moment, I’ll tell you that.”</i>");
+	output("\n\n<i>“And then?”</i> Your curiosity bids you to lean in.");
+	output("\n\n<i>“And then we had a good hour of crying, screaming, and arguing.”</i> He waves wildly with his upper arms. <i>“Chydi can’t decide whether she wants to kill me or her sister more, so she slices us to pieces with that razor tongue of hers. Meanwhile I’m trying to salvage something from this, explaining that I didn’t start anything, but then Kythi feels like I’m throwing her under the bus and cries even harder.”</i> Dane shudders. <i>“I’ve been in hopeless battles before, but they’re nothing next to being caught between two sisters - like trying to fly through an Ausaril hurricane. None of your usual instrumentation works, you’re getting slapped from every angle, and you’re not sure when you’re gonna break out into clear skies - or if you ever will again.”</i> Wiping his brow, the former antagonist throws up his hands. <i>“I gave up. Figured both relationships were a total loss and started for the door with nothing but my boxers and the tattered pieces of my pride.”</i>");
+	output("\n\nThe bartender swings by to offer Dane a refill.");
+	output("\n\nHe waves the help away and continues, <i>“Made it halfway before both of them yelled for me to wait at the same time, in practically the same voice.”</i> His cocksure grin returns. <i>“I realized that the reason they were fighting so hard was because they both wanted to be the one to come home with me at the end of the day, even with my wandering dick.”</i> He gestures at the half-mast he’s sporting. <i>“So I steered the conversation to the root of the problem and suggested an amicable solution.”</i> His ears flatten. <i>“I got screamed at for that, so I asked them what their solutions would be - how to keep everyone happy at the end of the day.”</i> Dane chuckles. <i>“Kythi saw it my way after a few wasted minutes. Chydi took a lot longer... but she came around.”</i>");
+	output("\n\n<i>“Wow.”</i> You rack your brain for some appropriate response. <i>“Lucky dog.”</i>");
+	output("\n\n<i>“Yeah,”</i> Dane agrees. <i>“Fucked them both back to back that night. Maybe it was all the hostility from beforehand getting worked out in the bedroom, but I still rate that as one of the best evenings of my life. Those girls. Just... wow.”</i>");
+	output("\n\n<i>“I can imagine.”</i>");
+	output("\n\nThe albino wolf-man nods and takes another sip from his drink. <i>“Yeah, so that’s how my little harem started. Added a go’rahn later, but that’s a whole other story.”</i> He huffs, <i>“Besides, I don’t have any of them now. While your cousin kept me on a tight leash licking [rival.hisHer] boot-heels, they went to a concert... and got to meet Astrokat backstage - I’m talking dressing room backstage.”</i> He pounds the table in irritation. <i>“Long story short, when I finally get a chance to check in at home, all three of ‘em are long gone, off to suck kaithrit dick, and I’m left all alone with the galaxy’s biggest case of blue balls.”</i>");
+	output("\n\n<i>“Oof.”</i>");
+	output("\n\n<i>“You’re damned right!”</i> Dane barks. <i>“So not only did your shitstick family buttfuck me financially, [rival.heShe] left the door hanging open on the way out so all my bitches could run off.”</i> He snarls. <i>“So that’s the long, sordid story of my once-harem.”</i> Knocking back the last of his whiskey, Dane signals the bartender for another. <i>“Now I’m getting drunk with pirates and trying to find some easy work... and pouring my guts out to [pc.name] Steele. What a universe.”</i>");
+	output("\n\nThe ausar falls silent as a fresh whiskey is delivered.");
+	processTime(20);
+	flags["DANE_HAREM_TALKED"] = 1;
+	clearMenu();
+	addButton(0,"Next",talkToDaneIntro,true);
+}
 
-output("\n\n[UNF] His Start");
-output("\n\n8:39 PM] Slab Bulkhead: Dane’s past and how he got into the merc business could be interesting.");
-output("\n\n[UNF] Give Shockblade");
-output("\n\n8:39 PM] Lestia Urufuhando: You could add an option to give him back his shockblade as a peace offering, if he doesn’t start on a friendly term by that point in the story");
-*/
+//His Start
+//[8:39 PM] Slab Bulkhead: Dane’s past and how he got into the merc business could be interesting.
+public function daneStartTalk():void
+{
+	clearOutput();
+	showDane();
+	author("Fenoxo");
+	output("You ask Dane about how he got into the mercenary game in the first place.");
+	output("\n\n<i>“Not much to tell on that front, I’m afraid. Standard ‘boy is pretty strong and not that smart’ story. Signed up for the military right out of academy and spent three years wishing I hadn’t. I doubt you will, but if you were considering it, let me state it clear: enlisting in any military is a dumbshit decision, especially for a [pc.guyGirl] in your situation.”</i> Dane cracks his knuckles. <i>“I should’ve gotten into the merc game right away. There’s plenty of old pros that’ll take on younger wards for a fraction of the usual pay. Sort of an apprenticeship system. I could’ve learned all the same things without having some jackass mandating when and where I was allowed to take a leak.”</i>");
+	output("\n\n<i>“But you didn’t.”</i>");
+	output("\n\n<i>“I didn’t.”</i> Dane bobs his head. <i>“But I still came out of it stronger than when I went in, and I got plenty of opportunities to work over loudmouthed dipshits with my fists.”</i> His face flashes with feral delight. <i>“Both skills are essential in merc work, and I guess it would be fair to say that I developed a certain taste for violence while I was in the service.”</i> He shrugs. <i>“A whole lotta people like to talk a whole lot of shit about traits like that, but they all come running to men like me when the chips are down. The way I see it, there’s nothing wrong with enjoying a bit of justified violence. Hell, you remember how I was grinning that first time we fought, right? [rival.name] had my head so full of shit I was halfway convinced I was about to take down one of the galaxy’s greatest villains.”</i>");
+	output("\n\nHis smile was rather... unnerving.");
+	output("\n\n<i>“The great thing about violence is that it doesn’t really matter all that much as long as you don’t get too stupid with it. Broken bones and bullet holes? Neither takes that long to patch up. Hell, losing a limb is more of a financial penalty than a genuine life-ruiner. A few injections, maybe a little cloning, and you’re back on your feet and good as new.”</i> Dane nods. <i>“So the way I see it, there’s absolutely nothing wrong with smashing somebody’s face black and blue for being a shitdick. And getting paid to do it? Well, that’s a wet dream in the making right there.”</i> Dane chortles, <i>“And I’m living it.”</i>");
+	output("\n\nRather than making an argument about his take on his baser urges, you try to dial the conversation back toward his start.");
+	output("\n\n<i>“Right, right...”</i> Dane drawls, <i>“I guess I did get a little off topic there, but only because there’s not much to tell. Most mercenary work is done through independent contracts and extranet job boards. All I did was sign myself up for rating with the Mercenary Consortium and Reaper Industries, then start accepting contracts that seemed on the level.”</i> Say what you want about our dystopian corporate overlords - no offense - but the ones that set up merc regulations did a pretty swell job of it.”</i> Dane puffs out his chest as he explains, <i>“Up until your cousin tanked my ratings, I was one of the highest rated contractors in the quadrant.”</i> He seems to visibly deflate in the wake of that statement. <i>“Fucking cuntrag.”</i>");
+	output("\n\nYou can’t quite suppress your chuckle.");
+	output("\n\n<i>“Yeah... tell you what. I don’t really do the whole bounty hunting-slash-hitman thing, but " + (!daneRecruited() ? "if you ever need a hand taking down your cousin down a few pegs, I promise I won’t charge too much for the effort.":"I can’t wait till we get a chance to knock that shit-eating grin off that twat-waffle’s face.") + "”</i>");
+	//Unlocks bodyguard hire!
+	flags["DANE_START_TALKED"] = 1;
+	processTime(20);
+	clearMenu();
+	addButton(0,"Next",talkToDaneIntro,true);
+}
+
+//Give Shockblade
+//Track this shit for suresies. Might come into play later.
+//[8:39 PM] Lestia Urufuhando: You could add an option to give him back his shockblade as a peace offering, if he doesn’t start on a friendly term by that point in the story
+public function giveDaneShockblade():void
+{
+	clearOutput();
+	showDane();
+	author("Fenoxo");
+	output("Reaching into your pack, you produce the security check tag for Dane’s shockblade, the one you looted from him so long ago. A holographic display of the weapon spins in the air above it.");
+	//No new PG, personality fork
+	//Bimbo
+	if(pc.isBimbo()) output(" <i>“Remember this thing you tried to stab me with? I figured you might want it back since I’m like, done with it.”</i> You smile happily at the surprised look on Dane’s face. <i>“I always remember when a pretty boy gives me his sword~”</i>");
+	//Bro
+	else if(pc.isBro()) output(" <i>“Figured you might want this back.”</i>");
+	//Nice
+	else if(pc.isNice()) output("<i>“Just to show that there’s no hard feelings,”</i> you announce.");
+	//Misch
+	else if(pc.isMischievous()) output(" <i>“I’m gonna give you back this thing on the condition that you promise not to use it on me.”</i> You yank it away from Dane’s hand when he reaches for it. <i>“I’m also gonna need a crisp high-five, and maybe a pony.”</i> With a chuckle, you let it fall onto the bar in front of him. <i>“Just fucking with you bro. I thought you might want it back.”</i>");
+	//Hard
+	else output(" <i>“I think you might need this more than me.”</i>");
+	//Merge
+	output("\n\nDane raises an eyebrow. <i>“I already wrote this off as a business expense, you know.”</i> He leans down, watching the sword’s tip slowly trace a circle above the countertop. <i>“If I took this, they might come after me for tax fraud.”</i> He pauses, looking up at you with a lopsided grin. <i>“But I’d have to be an idiot not to take one of my favorite swords back.”</i> He snatches the tag up faster than you can blink. <i>“Of course I’ll have to have the edge redone and the voltage regulators swapped out. Maybe get a new battery to push out all that power.”</i> His eyes crinkle with genuine happiness. <i>“I guess I’ll have some more tax deductions to file for soon. Thank you, [pc.name].”</i> He grabs your hand and shakes it firmly in two of his own. <i>“Whatever our past differences, you have my respect.”</i>");
+	output("\n\nAfter five seconds of his crushing grip, you finally pry your hand free, but Dane’s not paying attention any longer. He’s smiling at the holographic representation of his sword and daydreaming about all the ways he’s going to improve it for his next job.");
+	output("\n\nTime for a new topic.");
+	processTime(5);
+	pc.destroyItemByClass(ShockBlade);
+	pc.addNice(5);
+	clearMenu();
+	addButton(0,"Next",talkToDaneIntro,true);
+}
 
 //Flirt
 public function daneSexIntro():void
@@ -389,8 +511,24 @@ public function daneSexIntro():void
 		processTime(2);
 		pc.lust(5);
 		clearMenu();
-		addButton(0,"Next",suckDaneOffYaWanker);
+		addButton(0,"Next",repeatDaneFuckSceneRouter);
 	}
+}
+
+public function repeatDaneFuckSceneRouter():void
+{
+	var choices:Array = [];
+	//Thirsty cunttails need big boy feeding!
+	if(pc.hasCuntTail() && pc.hasCuntSnake() && flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 5)
+	{
+		daneTailjerkScene();
+		return;
+	}
+	//Populate the list of possible scenes. Real short now, I know.
+	choices.push(suckDaneOffYaWanker);
+	if(pc.hasVagina()) choices.push(daneCuntfucks);
+	//Roll dice on scene if needed
+	choices[rand(choices.length)]();
 }
 
 //Fat Chance
@@ -614,6 +752,280 @@ public function cleanUpYaSkank():void
 	if(pc.cumflationEnabled()) output(", but there’s no cleaning up all the cum in your belly");
 	output(".");
 	IncrementFlag("DANE_SEXED");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Dane Tailjerk [2200 werdz]
+//Happens if tail hasn't been proper fed. If this scene has happened twice, fed status stops mattering and just randomly occurs in the future.
+public function daneTailjerkScene():void
+{
+	clearOutput();
+	showDane(true);
+	author("Fenoxo");
+	output("You can’t quite control your enthusiasm - or your " + (pc.tailCount == 1 ? "tail’s":"tails’") + ". " + (pc.tailCount > 1 ? "One of them":"It") + " gleefully wraps itself around Dane’s body as you’re carried, nuzzling its slit-vented tip against the ausar’s weighty bulge. Each contact is wetter than the last, and by the time you reach the entrance to the booth, Dane’s crotch guard is frosted in your parasite’s eager juices.");
+	output("\n\nHis heavy bootfalls come to an abrupt stop, but your slobbering tail won’t stop. It rubs its slick flesh against Dane’s still-contained cock with increasing ardor. You whimper softly, as much a prisoner to erotic sensation as to the ausar’s arms and helpless to do anything about either - not that you have any mind to. Whatever he has planned for you will be fine, you muse while relishing your hungry orifice’s sensations. The room whirls around, but Dane’s walking again, carrying you somewhere.");
+	output("\n\nProbably somewhere sexy. Maybe he’s going to fuck your tail? That big bitch-breaker of a knot at its base would feel so good spreading you out from inside... maybe it’d even get stuck, forced to fire every load directly into your suckling parasitic twat.");
+	output("\n\nWalls spin by drunkenly as you are plunked back into your original seat. It’s still warm, the cushion vaguely retaining its previous imprint of your [pc.butts]. Somehow your tail is still affixed to Dane’s tender, throbbing loins, but only barely. You blink a few times, whimpering slightly, and ask, <i>“Wh-what? I thought we were...”</i>");
+	output("\n\nDane, shifting awkwardly into his own seat, gently removes your tail from his crotch. Webs of slime drizzle from the winking entrance. It writhes softly, straining to get closer to his delicious cock. The ausar watches your face closely, bringing a finger up to the sodden entrance. He prods the rim, circling slowly around the fleshy lips before diving in without warning. His fingertip is just so <i>thick</i> and <i>strong</i> that you can’t contain your whimpering, nor can you stop your tail from squeezing down on the intruder or worshipfully massaging it.");
+	output("\n\n<i>“Ah,”</i> Dane remarks, pulling his finger free to leave you achingly vacant once more. <i>“I was going to fuck you, but this little slut...”</i> He shakes the tail in front of your face. <i>“She couldn’t wait... and she made some very persuasive arguments.”</i> Shaded beneath the bar, Dane’s free hands go work around his crotch. <i>“Besides, it’ll be fun to watch you try to keep it together while I’m playing with her.”</i> Dane hands you his codpiece, the fabric lining slick and musky with sweat and who knows what else.");
+	if(pc.libido() <= 33) output(" You feel dirty just handling it.");
+	else if(pc.libido() <= 66) output(" You don’t really know what else to do with it, so you hold onto it for now.");
+	else output(" You sneak a wanton sniff before clutching it to your chest, your heart hammering in excitement at the idea of some public play.");
+	output("\n\n<i>“This is going to be fun,”</i> the mercenary dryly remarks. He roughly handles your [pc.tailCunt], tugging it under the bartop to somewhere just above his blunt-tipped dick. You can almost feel the turgid flesh below, only a few inches away, but his grip is too tight to allow you to wrench free. He squeezes so hard that it feels like you’re being juiced. Streams of girlish anticipation pour out of you as inner folds are forced to squeeze against one another. It’s a wonderful feeling, but it’s not quite penetration. It doesn’t carry a shiver of satisfaction up your spine, only a greater craving for more.");
+	output("\n\nNow that something has woken those nerves up, they refuse to go silent, filling the back of your mind up with their pernicious demand for cock - their need for endless pulsating waves of warm, creamy jism. It’s like an itch that only thick, white spooge can relieve.");
+	output("\n\nDane slaps your cheek, drawing you back to the present. <i>“Hey, you still with me?”</i>");
+	output("\n\nYou nod, blushing hotly.");
+	output("\n\n<i>“Keep it together, or I’m not gonna let you be my cum-dump.”</i> He’s looking at you so severely, but there’s a smile woven through in the stern timbre of his voice. <i>“Okay?”</i>");
+	output("\n\nYou nod, biting your lip. <i>“Okay.”</i>");
+	output("\n\n<i>“Atta [pc.boyGirl].”</i> Dane says. <i>“Just keep your eyes open and look at me. If you close them or let them roll back, I won’t cum inside.”</i> One of his hands produces a small holocam, already flashing red to indicate it’s recording. <i>“Ready?”</i>");
+	output("\n\nYour head flops up and down like a dashboard bobblehead during re-entry.");
+	output("\n\nGrinning roguishly, Dane relaxes his grip and guides your rebellious (but oh so pleasant!) appendage down until its slobbering lips make contact with his blunt-tipped apex. The full weight of your cunttail’s muscles pushes downward, and the ausar allows it. He lets you smush your cunt’s cum-hungry folds against his prickhead so hard that you can feel his heartbeat through them. His fingers loosen, and at long last, you’re allowed to spread yourself wide enough to swallow the first inch of hard mercenary dick.");
+	output("\n\nYour eyes cross from the pleasure, but you keep yourself from letting your head loll back or closing your eyes. It’s just so... intense! Hot, hard cock is spearing inside you! It’s spreading your folds so thigh-shudderingly wide. Your tailcunt pumps so much pleasure up your spine that there’s scarcely room for any other sensation. You may forget what the seat feels like, but you know every vein and ridge on Dane’s first two inches.");
+	output("\n\n<i>“Look at you, holding it together... mostly,”</i> your four-armed mate says, grabbing you by the chin and tilting your head this way and that.");
+	output("\n\nInches of dick-starved cunt slither through Dane’s fingertips, taking him to the knot with a few wet-sounding gulps. Explosions of ecstasy detonate behind your fluttering eyes. Fluids splatter the floor, and a bit of drool trickles down to your chin. Wantonly rippling contractions bombard you with hellishly pleasurable friction until that spec of drool seems about a thousand miles away.");
+	output("\n\n<i>“Ohhh yeah,”</i> he sighs, watching you through heavy lidded eyes. <i>“How are you doing, [pc.name]? Just relaxing and enjoying yourself, right?”</i>");
+	output("\n\n<i>“Mmm-huh,”</i> you mutter, not quite looking at Dane (or much of anything). You just want to wrap yourself around him and let your tail go wild. Of course, if you did that... he’d probably pull out. He’d pull out and not let you have any of that cum...");
+	output("\n\nThe whimper that began in the back of your throat is silenced by the sudden appearance of Dane’s thumb, filling your lips. <i>“Yeah... you don’t need to talk much. Don’t need to have the whole bar hearing you squeak, do we?”</i>");
+	output("\n\nA muffled hum is the best you can manage.");
+	output("\n\n<i>“Thought so. Here, let me help.”</i> Dane grabs your [pc.tailCunt] just behind its swollen lips and tugs it the rest of the way down. Feeling like it’s about to split in two, your strained channel transmits the barest flash of pain before something inside gives way, allowing Dane’s ballooning knot to pop back inside, your sore entrance vacuum-tight against its sloping underside. <i>“Hoo-fuuuck,”</i> the canine brute grunts, squeezing tighter. <i>“Tight.”</i> His face scrunches up with the effort of holding back.");
+	output("\n\nYou’re no better. You suck on Dane’s finger with ravenous intensity, your [pc.tailCunt]’s hunger bleeding into your perception of almost every bodily orifice. You want to be full of dick. Full of <b>cum</b>. You ache for it. You crave it. That big, hard hybrid cock inside you is only dribbling, but you want it to spurt. You suck harder from both ends, feeling the rippling in your tail accelerating, so fast and so tight that you’re nearly vibrating. You’re basically Dane’s condom at this point, and it feels <i>so good</i>.");
+	output("\n\nThe red-eyed ausar doesn’t announce his climax with a grunt or a moan or a whine. No, his dick does that for him. It <b>throbs</b> so large that your tail feels like it’s about to tear in half. His heartbeat slams against your inner surfaces like a stimmed-up drummer. Somehow, all the extra blood flow makes him even warmer - no, hotter, almost incandescent. You imagine that if you could see it, wisps of steam would rise from its gnarled flesh, but you’ll have to get by on the amplified sensations your tail provides. Even if you were a blushing virgin, the parasitic prick-hunter on your spine would tell you that Dane is less than a second away from giving up his virile prize.");
+	output("\n\nMind-whitening bliss hits you harder than the galaxy’s most potent drug. The thick tide of ausar cum flooding your [pc.tailCunt] feels better than anything should. It’s like having one gigantic clit wrapped around his dick and cumming from the sensation of jism drizzling across every inch of it. His turgid, hybridized schlong flings pussy-drenching gouts of spunk deep into your butt-mounted cunt’s recesses - so deep that automatic, muscular response used for swallowing it up mostly just coaxes the spurting pole to cum harder. Staying cogent (or even upright) in the face of such incredible pleasure is impossible.");
+	output("\n\nThe camera records your eyes going unfocused and far away, then rolling halfway back as your head empties and your pussy fills. An arm around your shoulder keeps you from toppling out of your seat, but it comes at the expense of Dane pulling his finger out of your mouth, leaving your jaw to gape and tongue to spill out");
+	if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output(" onto the bar");
+	output(". Feverish-sounding whimper-moans stutter up out of your throat as your brain struggles to cope with entire orgasms worth of pleasure, synced perfectly to the tempo of Dane’s seemingly endless ejaculations.");
+	output("\n\nTears of joy soak your cheeks, and drool hangs from your chin. Dane, meanwhile, breathes a series of increasingly satisfied sighs. He pulls you closer, tucking your cheek against a bicep moistened by the slightest hint of sweat, giving you all the license you need to give up on maintaining your appearance so that you can focus on the ecstatic sensation of getting your tailcunt absolutely stuffed with the knotty merc’s cream.");
+	output("\n\nWith the bar little more than a fuzzy backdrop, your senses narrow down to focus almost entirely on what’s going on in your tail. The lone exception is the aromatic hint of Dane’s scent tickling your nostrils, ensuring that every blissful new memory is just as tied with his scent as you are with his dick. However augmented the muscle-bound ausar may be, he’s no kui-tan. His prodigious load tapers down to a steady trickle of fresh-brewed sperm, but true to his canine nature, it does not stop there. Dane’s knot ensures that he’s going to be lodged inside your tail for some time to come, and the frequent dribbles of semen oozing out of him ensure that you won’t be thinking of anything but how good it feels to get your tail flooded for the rest of the hour.");
+	output("\n\nWhen Dane asks you if you’re his filthy little cum-rag, you agreeably nod, half kissing at his pecs. When the bartender asks him if he needs anything, he smiles wolfishly and pets the back of your head, answering, <i>“Nah. [pc.HeShe] got me satisfied for the moment.”</i>");
+	processTime(30);
+	pc.orgasm();
+	pc.loadInCuntTail(chars["DANE"]);
+	clearMenu();
+	addButton(0,"Next",daneTailFuckOutro);
+}
+
+public function daneTailFuckOutro():void
+{
+	clearOutput();
+	showDane();
+	author("Fenoxo");
+	output("Of course, the intoxicating pleasure your tail pumps out has to come to end, just like Dane’s load, and as you become more lucid, the big guy holds up the camera and asks you once more, <i>“How to feel about taking ausar loads?”</i>");
+	//First time
+	if(flags["DANE_TAILCUNTED"] == undefined) output("\n\nYou smile, too satisfied for words, and flash a thumbs up.");
+	else if(flags["DANE_TAILCUNTED"] == 1) output("\n\nMaybe you’re starting to get used to the rough treatment, but this time you manage to answer, <i>“I love it.”</i>");
+	else if(flags["DANE_TAILCUNTED"] == 2) output("\n\nFully expecting this, you smile broadly. <i>“It makes me cum soooo hard. Thanks, Dane!”</i>");
+	else if(flags["DANE_TAILCUNTED"] == 3) output("\n\nYour answer spills out almost automatically. <i>“Fuck yes, I love it when you cum in me!”</i> It feels almost like a trained response at this point - cum super hard on Dane’s dick, then gush about how much you love it... but you do love it.");
+	else if(flags["DANE_TAILCUNTED"] < 7) 
+	{
+		output("\n\n<i>“I love it,”</i> you gush, entirely honestly. <i>“I love making you bust big, fat, filthy nuts in my greedy little tailcunt.");
+		if(flags["DANE_TAILCUNTED"] >= 5) output(" I love letting you use me in public like some slutty fucktoy.");
+		if(flags["DANE_TAILCUNTED"] >= 6) output(" You don’t even need to wait for me to ask. Just grab it and use me. Whenever you want.");
+		output("”</i> The placid bliss radiating from your tail makes it hard to be anything but happy about that course of events.");
+	}
+	//8+
+	else if(flags["DANE_TAILCUNTED"] == 7)
+	{
+		output("\n\nI love it!”</i> you proclaim wholeheartedly. <i>“Nothing makes me happier than draining your balls, Dane.”</i> You reach down to brazenly fondle him beneath the bar, smiling licentiously at the camera. <i>“You got me hooked on that thick, ausar dick.”</i> You thrill at how pleasant it feels to be openly cum-thirsty, and the narcotic thrill of pleasure leaves you to wonder when you can do this again...");
+	}
+	//Merge
+	output("\n\nWith his knot’s swelling finally going down, Dane is at last able to pry himself free from your rapacious parasite. The wet sucking sound it makes as it’s removed seems loud enough for the whole bar to hear it, even over the din of the slot machines casino patrons, but nobody spares you a second glance.");
+	output("\n\nMiraculously, your tail doesn’t so much as release a single drop. Every drip of virile ausar cum is safely tucked away inside for your parasite to digest. The feeling of calm warmth it radiates into you is going to linger for hours, longer after you’ve left the casino behind.");
+	output("\n\n...assuming you can pry yourself away from Dane. Now that you’re able to move under your own power, he releases your wobbly form back into your seat with a smile and a muttered, <i>“Good [pc.boyGirl].”</i>");
+
+	//If pc.hasCock && !crotch exposed && pc.cumQ() > 50 OR vagina+squirter
+	if(((pc.hasCock() && pc.cumQ() >= 50) || (pc.hasVagina() && pc.isSquirter())) && !pc.isCrotchExposed()) output("\n\nClimaxing that hard is not without cost. The inside of your [pc.crotchCoverUnder] is absolutely drenched with the proof of your passion, leaving you smeared with own sexual juices from the waist down.");
+	//+libido
+	pc.libido(1);
+	//+feeding happened at climax of previous scene.	
+	IncrementFlag("DANE_SEXED");
+	IncrementFlag("DANE_TAILCUNTED");
+	processTime(25);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Dane Cuntfuxx [4400]
+//Seated reverse cow-girl. Hands everywhere. Lots of comments on tit size/config? Neck biting for 1 damage.
+public function daneCuntfucks():void
+{
+	var x:int = rand(pc.totalVaginas());
+	clearOutput();
+	showDane(true);
+	author("Fenoxo");
+	//Clothed
+	if(!pc.isCrotchExposed()) output("Dane strips you bare before he bothers to close the booth" + (pc.exhibitionism() >= 66 ? ", giving you a lovely exhibitionist thrill":"") + ". ");
+	//Merge no new pg!!!!
+	output("Your possessions come to form a lovely little pile in the corner at the behest of " + (pc.isCrotchExposed() ? "Dane’s":"his") + " omnipresent hands. This leaves you with naught but your [pc.skinFurScales] for protection, and even that seems a flimsy shield against his furry mits and heated breath.");
+	output("\n\nGravity goes crazy as Dane takes his seat. You blink your eyes closed and try to fight off the dizziness as best you can. When you open them once more, you’ve come to rest in the burly ausar’s lap with your [pc.butts] graced by the increasingly warm throbs of Dane’s augmented erection. It threads up" + (pc.tailCount > 0 ? " past your [pc.tails]":"") + " to rub against the small of your back, slightly greasy with sweat from long hours of being hidden away in his codpiece. You wiggle back against it, nausea forgotten for the moment as your body reacts to his presence with ");
+	if(pc.vaginas[x].wetness() < 3) output("a trickle of wetness into your slit" + (pc.hasVaginas() ? "s":""));
+	else if(pc.vaginas[x].wetness() < 5) output("a stream of pussy-moistening lubrication");
+	else output("a flood of pussy-soaking moisture");
+	if(pc.hasCock()) output(" and " + (pc.cockTotal() == 1 ? "a ":"") + "useless erection" + (pc.hasCocks() ? "s":""));
+	output(".");
+	output("\n\nYour wrists are grabbed and restrained to the side while your [pc.butt] is groped and explored with ever-greated levels of force and attention. Dane’s fingertips knead deeply, spreading your cheeks apart before slapping them back together again around his cock. For a second, he savors the experience, but the greedy mutt won’t be satisfied with your heiny alone. The same hands that groped you lift you up with seeming ease, guiding you back so that you’re hovering just above the blunt head of his prick.");
+	output("\n\nYou can see it when you look down. The glossy, bestial crown twitches in eagerness, welling up a crystalline droplet at its apex as you float above. From here it seems massive - impossible even");
+	if(pc.tallness < 5*12) output(", like it’ll be jabbing all the way into your ribcage by the three quarter mark");
+	output(".");
+	if(pc.vaginalCapacity(x) >= daneCockVolume() * 2) 
+	{
+		output(" You know better, of course. Your cunt is prepared to take 18”</i> monsters like this");
+		if(pc.wetness(x) >= 4) output(" - so prepared, in fact, that your dribbling sex" + (pc.hasVaginas() ? "es have":" has") + " already coated his crotch in " + (!pc.hasVaginas() ? "its":"their") + " constant, dribbling slickness");
+		else if(pc.wetness(x) >= 3) output(" - so prepared, in fact, that your leaky sex" + (pc.hasVaginas() ? "es have":" has") + " begun to share " + (pc.hasVaginas() ? "their":"its") + " sopping bounty in the form of dribbling dick-lube");
+		output(".");
+	}
+	else if(pc.vaginalCapacity(x) >= daneCockVolume()) output(" You’re fairly confident that you can take this monster - or at least you were a minute ago. Now the second thoughts just make you hotter, wetter, and even more eager to give it a try.");
+	else output("It’s too late to turn back now. Whether it’ll fit or not, Dane has the look of a man that’s going to try, and the thought of taking such a monster has your heart fluttering with anxious lust.");
+
+	output("\n\nHot breath washes over your [pc.ear] as Dane leans close. With his grip on your arms, he pulls you the rest of the way back, nibbling a little before he announces, <i>“I’m going to ruin you for other men.”</i>");
+	output("\n\nEquine prick forcefully slaps into cuntlips, not hard enough to hurt but hard enough to leave you exquisitely aware of just how <i>firm</i> you’ve made the mercenary. His cock feels like it’s made out of iron, and as it slides back and forth, gathering moisture from your channel, it thumbs its rim past your [pc.clit]" + (pc.totalClits() > 1 ? "s one at a time":"") + ". With no control over your descent, you’re left a shuddering wreck. Each brush against " + (pc.totalClits() > 1 ? "a":"your") + " buzzer makes you gasp and twitch. Each forced gyration of your hips makes you wonder if it’ll be the one that finally pries your " + (pc.looseness(x) >= 4 ? "loose ":"") + "lips open and welcomes him inside.");
+	output("\n\nDane’s warning rings " + (flags["DANE_VAGFUCKS"] != undefined ? "just as true as last time.":"true as you hang there.") + " He has complete control over your entire body, and that enormous, cunt-wrecking dick is right there, grinding against you. It’s maddening! Without conscious thought, you spread your [pc.thighs] wider in an attempt to welcome it inside" + (flags["DANE_VAGFUCKS"] != undefined ? ", on some level aware that you got him to thrust that way last time":"") + ".");
+
+	var oldCapacity:Number = pc.vaginalCapacity(x);
+
+	//Gaped
+	if((pc.isTaur() || pc.looseness(x) >= 4 || oldCapacity >= 4*daneCockVolume()) && oldCapacity >= daneCockVolume())
+	{
+		output("\n\nRight on cue, Dane thrusts himself into your welcoming twat. There’s no pain to the act. Your pussy has been trained to take dicks like this. As you sink down his seemingly endless inches, you swoon from the rising pleasure. The more the ausar’s thick cock fills you, the more wonderful the pleasure. It flattens interior folds as it presses by, somehow still finding the girth to make you stretch the tiniest bit. You know that he’s turning your cunt into an inverse mold of his dick, at least for the moment, and it makes your pussy absolutely molten with desire. Rivulets of [pc.girlCum] stream down Dane’s length up until the moment your lips kiss his balls.");
+	}
+	//Smolcunt
+	else if(oldCapacity < daneCockVolume())
+	{
+		output("\n\nNothing could prepare you for the sensation of that huge, ausar-equine dick abruptly forcing its way into you. Your lips spread so wide so fast that it feels like you’re on the verge of tearing something, but at the same time, that first inch of prick-head fills you so blissfully full that you can’t help but wonder how much more you can take. Dane answers for you by pulling you further down. His fingers dig into your thighs as he grunts and lays his claim to your passage, transforming it from a taut channel to an inverse mold of his thick beast-cock.");
+	}
+	//Not toosmol but not gaped
+	else
+	{
+		output("\n\nThere’s nothing quite like having a nice, fat cock spreading you open. When Dane’s dick slides inside, it pins your lips wide around its veiny girth, burrowing in with only a little additional help from your Dane and your own bodyweight. The sensation of it slithering through your folds, stretching them out and reshaping the inside of your body into a mold of his dick, is intoxicating. You swoon as you are filled, your whole body blushing" + (pc.bellyRating() < 30 ? " as Dane’s imprint appears on your stomach":" as Dane’s dick lays claim to you in the most primal of ways") + ".");
+	}
+	//Merge
+	//Stretchuchekku!
+
+	pc.cuntChange(x,daneCockVolume());
+	output("\n\n<i>“Ohh yeah...”</i> Dane sighs in sudden ecstasy, your juices as pleasant as the universe’s best salve. <i>“");
+	if(oldCapacity < daneCockVolume()) output("Fuuuck, I can’t believe I’m not splitting you in half! Look at it, [pc.name]. Look at how badly my dick is breaking-in that tight little puss of yours.");
+	else if(oldCapacity < daneCockVolume() * 2) output("Look down, [pc.name]. Look at what my dick’s doing to that slutty little cunt of yours. Look at good it nice it looks split open by a nice, big cock.");
+	else if(pc.looseness(x) < 4) output("Damn, [pc.name]. You’ve got a fucking magic little twat on you, clutching me all nice, but it doesn’t fight me in the slightest. I could probably pop a couple of Throbbs, and that slut-cunt of yours wouldn’t mind in the least.");
+	else output("Fuuuck, you’re such a filthy slut, [pc.name]! Look at that cunt! Look at how easy it sucks down my dick. Bet I could invite a Jumper over, and you’d have room for both of us.”</i> He groans. <i>“But damn it feels nice to take a pussy that knows what it’s doing.");
+	output("”</i>");
+	//No tit mocking
+	if(pc.biggestTitSize() < 1)
+	{
+		output("\n\nHowever you intended to retort doesn’t matter. Dane’s hands find your chest, cupping and stroking their way across your bare [pc.skinFurScalesNoun] to find your [pc.nipples]. He growls, <i>“Usually I prefer my cum-rags to have something for me play with up top.”</i> His fingernails prick sharply, dizzying you with mixed pain and pleasure. <i>“Nothing says fertile, breeding bitch like a pair of slutty, jiggling tits,”</i> he growls into your ear, nipping at its underside. <i>“But you don’t have that. You came here with a wet cunt and these pathetic little nubs.”</i> He twists one. <i>“You should be ashamed of yourself, begging for my dick when you don’t even bother to get proper tits.”</i> His growled insult seems to vibrate through your entire body, radiating playful displeasure. <i>“But I guess when you’re a pocket pussy on legs, you aren’t expected to have tits, is that it? Is that what you think?”</i>");
+		output("\n\nHeld tightly and fucked completely full... you’re in no place to think anything through. You just know that he’s so fucking hot inside you, and what he’s doing to your nipples is making you leak like a faucet. Your whimpered ‘Yesssss’ seems a formality at this point. You’ve already volunteered to be his cum-dump.");
+		output("\n\nHow bad can being his personal pocket pussy be?");
+		output("\n\n<i>“That’s what I thought. Lazy bitch.”</i> Dane bites you, hard. Hard enough to bruise, though not enough to leave you bloody. <i>“I’ll just have to torture these little bitch-nubs, then. Maybe if I pinch them enough, they’ll swell up into proper tits.”</i> He pinches harder, scissoring his hips upward at the same time to leave you seeing stars. <i>“We’ll make you a properly fuckable cunt in no time.”</i>");
+		output("\n\n<i>“Yesss, Dane,”</i> you mumble through gritted teeth, not intending to sound quite so... fawning, but not exactly minding either.");
+	}
+	//Small tid
+	else if(pc.biggestTitSize() < 4)
+	{
+		output("\n\nWhatever your intended reply, it vanishes with the sudden appearance of Dane’s hands on your [pc.fullChest]. His meaty, calloused palms and grubby fingers feel like they belong on a giant when compared to your modest bosom. He cups the entirety of a pert swell in a single palm with plenty of room leftover to reach for your [pc.nipple]. True to his canine nature, Dane’s claws prick at your tender buds while they explore. Sparks of intermingled pain and pleasure dance through your captive chest with increasing frequency - until at last, Dane is squeezing and tuggle upon your tender peaks.");
+		output("\n\nIt’s clear that the mercenary has taken full possession of your chest. Though it is attached to your body, it’s Dane’s hands that control it, that force sensation after sensation through it until you’re squirming on his dick like, well... his personal cum-rag.");
+		output("\n\n" + (flags["DANE_VAGFUCKS"] == undefined ? "Why does that thought make you so wet?":"The rush of moisture that thought brings to your channel always leaves you smiling... that and the big, thick dick inside of it."));
+	}
+	//(Not big tit) Deece tit groping (sub F-cup. Boy we have a skewed scale!)
+	else if(pc.biggestTitSize() < 11) 
+	{
+		output("\n\nHowever your thoughts on his words, they’re scattered the moment his palms appear against the undersides of your [pc.fullChest]. His calloused hands squeeze you roughly, the tips of his fingers grazing your [pc.nipples] with their cursory exploration. He’s just so... <b>strong</b>, his grip so solid. You feel equal parts claimed and protected by his grip. The cords of his muscles flex against you while he explores your bosom, providing a calm reassurance that while you are his, no harm will come to befall you. When he squeeze harder, enough to twinge at the edge of pain, the rush of endorphins leaves you quivering like a taut bowstring.");
+	}
+	//Big tiddy groping commence - prereq for fingering/milking/jerking
+	else
+	{
+		output("\n\nWhatever reply you were about to make is stolen by the sudden appearance of Dane’s hands on your [pc.fullChest]. No longer needed to hold your ass aloft, they’ve taken full possession of your chesty swells. Strong fingertips dig furrows into the vulnerable flesh as they explore, pricking where his nail dig in. You moan at their eager touch, then let out a full-throated groan of pleasure when those pointed tips wiggle up to your [pc.nipples], gently scratching small circuits of blazing sensation across the tender surfaces.");
+	}
+	//Big enough tids get maybe bonus funzies!
+	if(pc.biggestTitSize() >= 4)
+	{
+		//Fingering
+		if(pc.hasFuckableNipples())
+		{
+			output("\n\nYou arch your back to better present your breastly treasures, in turn forcing the ausar’s fingers deeper into your [pc.nipplesNoun]." + (pc.hasLipples() ? " They slide inside as easily as you might expect thanks to the forgiving nature of your oral-endowed nips, forcing the pillowy breast-toppers into wide, whorish ‘o’s. It looks almost like your chest is greedily sucking Dane’s digits inside, but he’s solely responsible - and happy to violate every supple hole you present him with. He fingerfucks your tit-mounted mouths until the various penetrations all blend together into a chorus of satisfying <i>fullness</i>.":" He seems surprised to find himself knuckle deep in tit, but with a shrug, Dane sets himself to taking full advantage of the opportunity you’ve presented with, plunging his digits in and out to fully explore the depth and elasticity of your nipple-cunts. Neither disappoints him. Your fuckable bosom is as tight as it is slick, and it welcomes the four-armed alien inside just as eagerly as you welcome the pleasure it brings with it. Dane <i>fills</i> you in three places at once. It feels fantastic, suspended in his lap as he avails himself of every perverse orifice you have to offer."));
+		}
+		//Titty jerking
+		else if(pc.hasDickNipples()) 
+		{
+			output("\n\nLetting your [pc.nippleCocks] surge free from your tits feels almost like an extravagance in a situation like this. You’re already getting the fucking you want. It would be easy to hold in your rapidly engorging, boob-mounted pricks, but you can feel so much more! You can feel them slide into Dane’s befuddled fingers. After being stuffed up for so long, being allowed to expand to full tumescence is heavenly. You revel in the sensation of his callouses exploring your freshly revealed phalli, gasping and panting in sublime glee like the decadent slut you are.");
+			output("\n\nIt’s fortunate that the pup-for-hire is a fast learner. He grabs your [pc.nippleCocks] when he realizes just how much you love his touch, gathering their fragrant drippings into his hands to smear over their trembling surfaces. Dane pumps them casually, almost effortlessly - like he’s done this before. He doesn’t ask how you got them or where, he merely uses the bounties he’s been given.");
+			output("\n\nIt’s difficult for you to process. Having dicknipples jerked while impaled upon the universe’s loveliest cock isn’t something anyone of any race was meant to experience. But you don’t have to understand the bursts of ecstasy you experience. You don’t have to react. All you have to do is sit in Dane’s lap, well and truly fucked, cooing out noises of approval while he does whatever he wants to you.");
+			output("\n\nYou’re pretty sure he’s going to make you cum.");
+		}
+		//Titty milking
+		else if(pc.canLactate())
+		{
+			output("\n\nYou arch your back to better present your milktanks, and just in time too! Dane grabs your [pc.nipplesNoun] as the first [pc.milkVisc] droplet emerges. Though you can’t see it, you can feel his grin weighing on you from behind every bit as firmly as his corded pecs. Rough, near-painful tugs goad your [pc.milkNoun] into letting down, at first in steady dribbles, then in higher-pressure sprays as he the ausar settles into an easy rhythm. He milks you like a cow" + (pc.isTreated() ? ", groaning when his business-like tit-massage earns him a rewarding squeeze from your twat.\n\nYou moo, which clearly convinces Dane to milk you even more thoroughly. He yanks hard on your [pc.nipples], and you nearly cry out from the mix of pain, pleasure, and relief. The feeling of it steals what little strength is left in your [pc.legOrLegs]. You’re a [pc.milkNoun]-spraying puppet for the four-armed ausar, mostly unaware that you’re mooing louder and longer by the minute":"") + ".");
+		}
+		//Mega titty groping - added on to big titty gropes. Actually lowest priority behind fingering/milk/etc
+		else if(pc.biggestTitSize() >= 40)
+		{
+			output("\n\nDane seems amazed by the sheer amount of breastflesh you’ve given him to play with. Not even nipples can hold his attention with such a buffet of boob on display. His hands roam across your expansive bosom in apparent wonder, stopping here or there for an awed grope or squeeze. His hands aren’t big enough to take a true measure of their heft, so the dog-eared albino is forced to satisfy himself by worshipping them piecemeal. It’s cute, how he tries to keep up with tits like these... right up until he lifts one up so he can lick your [pc.nipple] from over your shoulder. That nearly propels you into orgasm all on its own.");
+			output("\n\nNearly.");
+		}
+	}
+	//Bouncing dicksquelching love
+	output("\n\nThe booth bounces. No, wait. <i>You</i> bounce. The change was too rapid for your sex-addled mind to grasp at first, but now that Dane has given your [pc.vaginaNoun " + x + "] time to adjust to his presence, he has begun to fuck it in earnest. With his hands still on your [pc.chest], he bounces you in his lap with almost casual ease. ");
+	if(pc.libido() < 33) output("You might not be the kind of full-blown slut that rides dicks like strippers ride poles, but even you find yourself flexing your thighs to assist in your rhythmic violation.");
+	else if(pc.libido() < 66) output("You find yourself going along for the ride with the instinctive support of your thighs, gyrating your [pc.hips] to vary how you squeeze and delight you both.");
+	else output("You gyrate in carnal delight, working your [pc.hips] in wide figure eights designed to stimulate his pole from all sides. Dane may be fucking you, but you’re going to make the most of it for the both of you. You’re going to clutch his cock with such loving adoration that he’ll be having wet-dreams of about your pussy for the rest of the week.");
+	output("\n\n<i>“Atta [pc.boyGirl],”</i> Dane murmurs, licking the sweat from your neck. His breath falls on your [pc.skinFurScales] as ruinously hot puffs of steam. <i>“Don’t be afraid to moan now.”</i>");
+	//Bimbo
+	if(pc.isBimbo()) output("\n\nYou moan on the spot, openly and happily, pitching your voice upward into a squeal as you bottom out on the ausar’s enormous, cunt-wrecking cock. <i>“Ohhh yes, Daney-baby!”</i> You cover up the sound of his hips crashing into your crotch with joyous exultations. His every twat-creaming thrust makes you wetter and your voice higher. You’re not just his cock-sock! You’re his little songbird too, wailing out your pleasure for the entire casino to hear. The way his dick swells when you chirp out more wordless pleasure leaves you a molten, gooey mess - but a vocal one.");
+	//Bro
+	else if(pc.isAmazon() || pc.isBro())
+	{
+		output("\n\nYou grunt back, <i>“Then you’d better fuck harder,”</i> with a wry smile of your own.");
+		output("\n\nDane takes up your challenge with gusto. Shifting his grip, he begins to truly jackhammer at your [pc.vagina " + x + "], not just bouncing you in his lap any longer. He lifts you up, holding you in the air so that his cock can be a slick, soaked blur between your thighs, plowing your quim so firmly that the liquid squelching is doubtless audible beyond the confines of the booth. Your head spins as a dopey smile spreads across your [pc.lips].");
+		output("\n\nIt does not take much of that treatment to make you moan and shake, but now that Dane has begun to rut you so, he shows no signs of stopping. You ragdoll, unable to contribute in any meaningful way to the fuck any longer. You bounce and squelch and dribble and squeal like the slut that he’s treating you as, and beneath it all is the quiet knowledge that it was your words that coaxed him into fucking you so pleasantly.");
+	}
+	//Exhib >= 66
+	else if(pc.exhibitionism() >= 66)
+	{
+		output("\n\nAs if you needed his permission to let everyone in the immediate vicinity know that you’re getting the dicking of a lifetime! You do as you are bid, not only because he asked so nicely but because you want to. You moan loud and throatily, sure it’ll carry through the walls and into the casino proper. You punctuate every thrust with a rapturous cry. When Dane’s fingers on your [pc.chest] rub you the right way, you announce your approval with a chirpy squeak of delight. And you just know that somewhere outside the walls, there are pirates listening in, hearing you lose your mind for this big, knot-equipped horse-cock and loving it. Part of you wants to throw open the door so they can see, but Dane’s fucking you far too hard for you to concern yourself with anything but the rising crest of pleasure he’s pounding into your twat.");
+	}
+	//Else
+	else
+	{
+		output("\n\nYou haven’t exactly been quiet through this experience, but you doubt you could stay quiet if you wanted to. Dane’s handling of your body wracks you with paroxysms of pleasure no matter which part of you he’s touching, and his dick is pretty much <i>always</i> touching your inner channel, bashing into sensitive nerve clusters with sufficient rapidity to make you screech and moan. A hint of shame surfaces at the back of your mind when you think of how the other patrons might be able to hear you beyond the booth’s walls, but Dane’s fucking you far too hard for you to concern yourself with anything beyond the crests of pleasure he pounds into your twat.");
+	}
+	//PC cums first
+	output("\n\nOrgasm grabs your [pc.vaginas] and squeezes" + (pc.hasVaginas() ? " one":"") + " down on Dane’s cock in a moment of instinctual passion. You ragdoll, safe and secure in the ausar’s hands. He keeps his firm grip on you as he continues to pound away, your " + (pc.wetness(x) < 4 ? "increasingly sodden cunt fluttering in the throes of pure pleasure. Dribbles of your [pc.girlCum] slide down the curvature of his slowly tightening sack, but he doesn’t cum just yet.":"juicing slut-cunt exploding with liquid relief, spraying cascades of [pc.girlCum] down Dane’s tightening balls and thighs. Inside, you’re fluttering in mad pleasure, but outside there is only the stuttering bursts of fragrant delight."));
+	//Dicks paint a wall
+	if(pc.hasCock())
+	{
+		output("\n\nYour long-neglected [pc.cocks] go" + (!pc.hasCocks() ? "es":"") + " off with " + (!pc.hasCocks() ? "its":"their") + " sister" + (pc.hasVaginas() ? "s":"") + ", spraying ropes of [pc.cum] at the door.");
+		if(pc.cumQ() < 500) output(" Thick ribbons of the stuff emerge in rapid succession, forming into a slowly spreading heap of wasted jism on the floor.");
+		else if(pc.cumQ() < 5000) output(" Huge deluges of the stuff emerge in urethra-straining loads, splattering into a wide, growing pool of wasted jism on the floor.");
+		else output(" Those enormous discharges slap into the door with hinge-rattling force, waterfalling down the inside edge to join the slowly growing lake around Dane’s ankles. If he cares, he shows no sign of it, simply letting you waste every ounce your jism on the floor.");
+		output(" You look down at the last second, blissed out and gleeful, watching your [pc.cocks] bob and twitch out the last few [pc.cumGem] dribbles.");
+	}
+	//Merge
+	output("\n\nThe scent of your climax must please your ausar lover, because you can feel his nose wrinkle and his breath grow heavier. He pants, still fucking you, slapping his heavy nuts against your slit with authoritative force. Leaning you back" + ((!pc.isBro() && !pc.isAmazon()) ? " and rising up":"") + ", he drives his knot into your [pc.vagina " + x + "] with every ounce of his strength. It pops inside, seating itself just as your orgasm had begun to fade, a channel-straining reminder that ausar hasn’t actually cum quite yet - but he’s about to.");
+	output("\n\nDane licks you, dragging his knotted dick back and forth as quickly as his hips will let him. His grunts shift slightly upward in pitch, and his fingers clutch your " + (pc.biggestTitSize() >= 4 && pc.hasDickNipples() ? "[pc.dickNipples]":"[pc.nipples]") + " harder, digging in as his knot balloons further. You feel like your [pc.hips] are creaking with how wide he spreads you, but the resulting splash of cervix-kissing warmth soothes any discomfort to enjoyable levels. Dane growls louder. It’s an almost feral sound. A howl wouldn’t be out of the question, but his vocals grow no longer. He grunts like a beast as he unloads " + (!pc.isPregnant(x) ? "into your womb":"into your cunt") + ". The size of his big, equine dick ensures that every droplet is delivered to the deepest parts of you while the flaring head does what it can to keep it stopped up there.");
+	output("\n\nThe few dribbles that leak past there have no hope of escaping the cunt-straining girth of his knot. Salty seed sloshes around inside you while Dane squirms. His balls quiver, and you slackly accept every ounce of their offering. It feels sort of like he’s stoking a fire in your belly. Successive, pussy-distending ejaculations fill you fuller and further - and more and more aware of just how warm his canine semen is.");
+	output("\n\nIf this is how Dane fucks, he must be leaving quite a trail of bastards across the galaxy. You cradle your middle, feeling it bulge slightly as Dane finishes flexing and sags back down to seated position, breathing heavily.");
+	output("\n\nThe mercenary doesn’t seem interested in cuddling, however. He scoots forward to the edge of his seat and gently pushes you down to the floor. Still joined to his crotch by the anchor of his knot, your [pc.butt] ass is lifted up into the air. You pant for breath");
+	if(pc.hasCock() && pc.cumQ() >= 500) output(" just above the pool of your own cum" + (pc.biggestTitSize() >= 10 ? ", dragging your [pc.nipples] through it":"") + ". Dane slaps one cheek in apparent approval.");
+	output("\n\n<i>“Now you look like a proper, bred bitch.”</i> His fingers rove higher, sliding across sweat-slickened [pc.skinFurScales] to trace the curvature of your spin. His other hands join it soon after, caressing and squeezing you as you’re trapped " + (pc.legCount == 2 ? "on all fours":"in post-coital doggie-style") + ". <i>“Lower.”</i> He pushes down on your neck but holds your hips where they are, and deep inside yourself, you can feel the accumulated spunk puddling against your cervix" + (!pc.isPregnant(x) ? ", forcing egg-seeking missiles through in dribs and drabs":"") + ". Your cheek ");
+	if(pc.hasCock() && pc.cumQ() >= 500) output("smears through your [pc.cumNoun].");
+	else output("rubs on the ground.");
+	output("\n\n<i>“Just like that. Now tell me how much you love being my cumrag.”</i> From seemingly nowhere, a finger appears against the side of your clitoral hood.");
+
+	output("\n\n<i>“");
+	if(flags["DANE_VAGFUCKS"] != undefined && flags["DANE_VAGFUCKS"] >= 4) output("I fucking love it!”</i> you scream. <i>“I love the feel of your spunk inside me, and how you hold me down to make sure it all flows into my womb. I can barely think it feels so good!”</i> True to your words, you squirm around while still embedded on his big, drooling dick. <i>“Fuck me " + (pc.isPregnant() ? "even pregnanter!":"pregnant!") + "”</i>");
+	else if(flags["DANE_VAGFUCKS"] != undefined && flags["DANE_VAGFUCKS"] >= 1) output("It’s so fucking good,”</i> you whine, briefly trying to lift yourself up to look at him before accepting the inevitability of your position. <i>“You fill me so full, and there’s so much cum trapped inside.”</i> Blushing, you add, <i>“I’d probably be down for a second round the moment your balls filled back up.”</i>");
+	else output("I... uh... umm. Who am I kidding, it’s fucking great!”</i> you babble. <i>“Are you always like this?”</i> You vainly try to lift yourself up to look at him, but he holds you in place that much firmer, his pressure only making you more aware of how <i>taut</i> you are around his cock. <i>“Mmm, I guess that does make me your cum-rag, doesn’t it?”</i> You wiggle against him. <i>“I almost wish that knot wouldn’t go down.”</i>");
+	output("\n\nThe ausar’s fingers tease your clit in slow circles, speading up the sluttier your speech becomes. Soon, you’re babbling about how he can nut in every hole you have as much as he wants, barely listening to his whispered ‘Good [pc.boyGirl]s.’ Time seems a blur of post-orgasmic pleasure and warm, comforting decadance that only comes to end when your [pc.vagina " + x + "] abruptly pops free from Dane’s softening cunt, leaking a trickle of white across your [pc.belly].");
+	output("\n\n<i>“Thanks for the fuck, [pc.name],”</i> Dane says, stepping past you to open the door. <i>“I’ll be at the bar when you’re ready for " + (flags["DANE_VAGFUCKS"] == undefined ? "round two":"another round. Don’t keep me waiting") + ".”</i> He steps out, and the door swings closed.");
+	output("\n\nYou’re still on the floor with your ass in the air, only now beginning to link the ausar’s cooling jism.");
+	output("\n\nGathering your possessions and your recovering your full faculties takes a minute.");
+	processTime(45);
+	pc.orgasm();
+	pc.loadInCunt(chars["DANE"],x);
+
+	IncrementFlag("DANE_VAGFUCKS");
+	IncrementFlag("DANE_SEXED");
+	//If PC got milking scene, empty tits
+	if(pc.biggestTitSize() >= 4 && !pc.hasDickNipples() && !pc.hasFuckableNipples() && pc.canLactate()) pc.milked();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
