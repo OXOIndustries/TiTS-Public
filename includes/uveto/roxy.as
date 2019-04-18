@@ -5953,8 +5953,8 @@ public function roxyMissedBirthNameKids():void
 	var children:Array = listBabiesOfParent("Roxy");
 	var child:UniqueChild;
 	var c:UniqueChild;
-	var boyNames:Array = ["Max", "Peter", "Nate", "Nick", "Ben", "Ken", "Jake", "Derrick"];
-	var girlNames:Array = ["Katreena", "Evelyn", "Allysin", "Jessica", "Melanie", "Amai", "Tia", "Lystra"];
+	var boyNames:Array = ["Max", "Peter", "Nate", "Nick", "Michael", "Ken", "Gabriel", "Derrick"];
+	var girlNames:Array = ["Katreena", "Evelyn", "Joan", "Jessica", "Mary", "Amai", "Tia", "Lystra"];
 	
 	for(var i:int = 0; i < children.length; i++)
 	{
