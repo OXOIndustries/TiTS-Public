@@ -12476,8 +12476,8 @@
 						break;
 					case "lapine":
 					case "laquine":
-						if(rand(2) == 0) sRaceShort = "bunny";
-						else sRaceShort = "bun";
+						if (kGAMECLASS.silly) sRaceShort = "bun";
+						else sRaceShort = mf("rabbit", "bunny");
 						break;
 					case "lupine":
 						sRaceShort = "wolf";
