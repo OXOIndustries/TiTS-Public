@@ -93,7 +93,8 @@ public function npcInNurseryCafeteria():Boolean
 {
 	if(seraAtNursery()) return true;
 	if(riyaAtNursery()) return true;
-	if(reahaAtNurseryCafeteria()) return true;
+	if (reahaAtNurseryCafeteria()) return true;
+	if (roxyIsInCafeteria()) return true;
 	return false;
 }
 public function npcInNurseryCommonArea():Boolean
@@ -115,8 +116,11 @@ public function nurseryFoyerFunc():Boolean
 
 	if (flags["ELLIE_PREG_TIMER"] == 70 && flags["ELLIE_OPERATION"] == 3) return ellieEggsHatching();
 	else if (ainaKids() == 1 && ainaBirthScene()) return ainaFirstBirth();
-	else if(isHalloweenish() && havePumpkinCarvingScenes() && flags["CARVED_W_KIDDOS"] == undefined) return doPumpkinCarving();
-	else if(!isHalloweenish()) flags["CARVED_W_KIDDOS"] = undefined;
+	else if (flags["ROXY_BIRTH_SCENE"] == 1) return roxyBirthScene();
+	else if (isHalloweenish() && havePumpkinCarvingScenes() && flags["CARVED_W_KIDDOS"] == undefined) return doPumpkinCarving();
+	else if (!isHalloweenish()) flags["CARVED_W_KIDDOS"] = undefined;
+	
+	if (roxyNurseryRandomEvents("foyer")) return true;
 	
 	output(" The Steele Tech logo is emblazoned across the wall opposite the elevator, surrounded by pastel-colored images of flowers and small animals.");
 	if (silly) output(" There’s even a cute little cartoonish cow!");
@@ -526,6 +530,8 @@ public function nurseryCommonAreaFunc():Boolean
 	}
 	
 	nurseryZilCallgirlRandomEvents();
+	if (roxyNurseryRandomEvents("common")) return true;
+	if (roxyIsExercising()) roxyExcerciseBlurb();
 	
 	if (boredJumperPregAreLaquineKidsPlaying())
 	{
@@ -563,7 +569,8 @@ public function nurseryCafeteriaFunc():Boolean
 	else pc.removeStatusEffect("Sera at Nursery");
 	if(riyaAtNursery()) riyaNurseryCafeteriaBonus(btnSlot++);
 	else pc.removeStatusEffect("Riya at Nursery");
-	if(reahaAtNurseryCafeteria()) reahaNurseryCafeteriaBonus(btnSlot++);
+	if (reahaAtNurseryCafeteria()) reahaNurseryCafeteriaBonus(btnSlot++);
+	if (roxyIsInCafeteria()) roxyInCafeteriaBonus(btnSlot++);
 	
 	return false;
 }
@@ -616,6 +623,7 @@ public function nurseryKidsDormsFunc():Boolean
 	output(" would be many, many offspring. A central hub provides access to over a dozen small halls, branching off like tunnels in an anthill off in every direction. There must be hundreds of individual rooms available here, not to mention bathrooms, showers, laundry facilities... everything your heirs and the station’s support staff could ever need.");
 
 	nurseryZilCallgirlRandomEvents();
+	if (roxyNurseryRandomEvents("children")) return true;
 	khorganBabyBlurbs();
 	tamtamBabyBlurbs();
 	ainaBabyBlurbs();
@@ -786,7 +794,8 @@ public function nurseryBrigetsApptFunc():Boolean
 
 public function nurserySpareApptIsOccupied():Boolean
 {
-	if(flags["SERA_CREWMEMBER"] == 0) return true;
+	if (flags["SERA_CREWMEMBER"] == 0) return true;
+	if (roxyIsInTempHousing()) return true;
 	return false;
 }
 public function nurserySpareApptBonus():Boolean
@@ -795,7 +804,7 @@ public function nurserySpareApptBonus():Boolean
 	
 	// For followers or grown kids and stuff.
 	if(flags["SERA_CREWMEMBER"] == 0) output(seraOnTavrosBonus(btnSlot++));
-
+	if (roxyIsInNursery()) output(roxyInSpareAptBonus(btnSlot++));
 	return false;
 }
 
