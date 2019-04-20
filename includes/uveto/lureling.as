@@ -41,7 +41,7 @@ public function marionSetUp():void
 	marion.removeCocks();
 	marion.removeBalls();
 	// 50% chance of no cock, 1/3 chance for each cocktype afterwards
-	// if  PC is neuter, give the marion a cock no matter the chances
+	// if PC is neuter, give the marion a cock no matter the chances
 	if (rand(2) == 0 && pc.hasGenitals()) flags["MARION_SETUP"] = 0;
 	else flags["MARION_SETUP"] = rand(3) + 1;
 	switch (flags["MARION_SETUP"])
@@ -89,23 +89,23 @@ public function marionEncounter():void
 	
 	// Repeat, hasnt meet a Lureling
 	if (flags["MET_LURELING"] == 1) {
-		output("As you're meandering through the snow and ice, you see a figure approaching you. She's a tall and thickly built humanoid, wrapped in heavy furs that almost - but not completely - conceal a head of pink hair and a myriad of fluffy tails swishing in her wake. Another Essyra come to play, perhaps?");
+		output("As you’re meandering through the snow and ice, you see a figure approaching you. She’s a tall and thickly built humanoid, wrapped in heavy furs that almost - but not completely - conceal a head of pink hair and a myriad of fluffy tails swishing in her wake. Another Essyra come to play, perhaps?");
 
-		output("\n\nIt seems like it, going by the little smile she favors you as she gets almost to arm's reach. She's got no weapons and makes no hostile gesture, just a playful little smile and a crook of her finger as she turns towards a nearby gash in the snowbanks. It seems she wants you to follow her, no doubt to share some warmth beside the fire...");
+		output("\n\nIt seems like it, going by the little smile she favors you as she gets almost to arm’s reach. She’s got no weapons and makes no hostile gesture, just a playful little smile and a crook of her finger as she turns towards a nearby gash in the snowbanks. It seems she wants you to follow her, no doubt to share some warmth beside the fire...");
 
-		addButton(0, "Follow Her", goToMarionsDen, 0, "Yes", "The strange pink-haired essyra seems intent on taking you somewhere. Let's see where this goes...");
-		addButton(1, "Don't", definitelyDontGoWithMarion, 1, "Don't", "No thanks.");
+		addButton(0, "Follow Her", goToMarionsDen, 0, "Yes", "The strange pink-haired essyra seems intent on taking you somewhere. Let’s see where this goes...");
+		addButton(1, "Don’t", definitelyDontGoWithMarion, 1, "Don’t", "No thanks.");
 	}
 	// Repeat, has meet a Lureling
 	else if (flags["MET_LURELING"] == 2) {
-		output("As you're meandering through the snow and ice, you see a figure approaching you. She's a tall and thickly built humanoid, wrapped in heavy furs that almost - but not completely - conceal a head of pink hair and a myriad of fluffy tails swishing in her wake. Another Essyra... and very likely a lureling's marion at that.");
+		output("As you’re meandering through the snow and ice, you see a figure approaching you. She’s a tall and thickly built humanoid, wrapped in heavy furs that almost - but not completely - conceal a head of pink hair and a myriad of fluffy tails swishing in her wake. Another Essyra... and very likely a lureling’s marion at that.");
 
-		output("\n\nYou find your hand settling on your [pc.weapon] as she draws closer, and indeed, she stops some thirty feet ahead of you and puts her hands up in a gesture of peace. Though as wordless as the last of her kin, she uses her mittened hands to make clear gestures at you: <i>“Don't hurt me. You can follow me if you like.”</i>");
+		output("\n\nYou find your hand settling on your [pc.weapon] as she draws closer, and indeed, she stops some thirty feet ahead of you and puts her hands up in a gesture of peace. Though as wordless as the last of her kin, she uses her mittened hands to make clear gestures at you: <i>“Don’t hurt me. You can follow me if you like.”</i>");
 
 		output("\n\nSeems like she, too, intends to honeypot you. But if you can stomach knowing what lurks under the ice... would that be so bad?");
 
-		addButton(0, "Follow Her", goToMarionsDen, 0, "Yes", "The strange pink-haired essyra seems intent on taking you somewhere. Let's see where this goes...");
-		addButton(1, "Don't", definitelyDontGoWithMarion, 2, "Don't", "No thanks.");
+		addButton(0, "Follow Her", goToMarionsDen, 0, "Yes", "The strange pink-haired essyra seems intent on taking you somewhere. Let’s see where this goes...");
+		addButton(1, "Don’t", definitelyDontGoWithMarion, 2, "Don’t", "No thanks.");
 	}
 	//	First Time
 	else {
@@ -118,7 +118,7 @@ public function marionEncounter():void
 		}
 		output(". The snow-paths around you seem vast and endless, stretching off in featureless expanses of white as far as the eye can see. White, save for a pillar of obsidian darkness moving on the horizon in your direction.");
 
-		output("\n\nYou squint, trying to see a bit clearer through the biting wind. As your path and the figure's draw ever close together, the dark shape resolves into that of a humanoid, wrapped in heavy furs that billow in the wind. One of the natives, maybe? ");
+		output("\n\nYou squint, trying to see a bit clearer through the biting wind. As your path and the figure’s draw ever close together, the dark shape resolves into that of a humanoid, wrapped in heavy furs that billow in the wind. One of the natives, maybe? ");
 		if (pc.willTakeColdDamage()) {
 			output("Thank God! Maybe they can help you find shelter");
 			if(pc.lust() >= 80) output(" ... or some other way to warm up...");
@@ -126,7 +126,7 @@ public function marionEncounter():void
 		}
 		else output("Hopefully not hostile, though you have to admit: getting the blood pumping like in a good fight would really help against the pervasive chill. Not to mention what comes after....");
 
-		output("\n\nEither way, the two of you are headed right for each other. You raise a wary hand to the cloaked figure as it draws near and to your relief, you see it wave back. No more than twenty paces away now, it pulls down its fur-lined hood to reveal a head of brilliant bright-pink hair flooding down to its owner's shoulders in silken curls, framing a pale, feminine face. A pair of perky, fox-like ears - much too small to be those of an ausar, and filled with a lush blue-white fluff - poke out from her scalp, twitching in your direction. The woman's - and that's most certainly what she is - lips are full and dark blue, forming an enchanting smile. ");
+		output("\n\nEither way, the two of you are headed right for each other. You raise a wary hand to the cloaked figure as it draws near and to your relief, you see it wave back. No more than twenty paces away now, it pulls down its fur-lined hood to reveal a head of brilliant bright-pink hair flooding down to its owner’s shoulders in silken curls, framing a pale, feminine face. A pair of perky, fox-like ears - much too small to be those of an ausar, and filled with a lush blue-white fluff - poke out from her scalp, twitching in your direction. The woman’s - and that’s most certainly what she is - lips are full and dark blue, forming an enchanting smile. ");
 		if (CodexManager.entryUnlocked("Essyras"))	output("You recognize her for one of the fox-like essyra, a thankfully friendly race!");
 		else {
 			output("Your Codex chirps, just barely audible over the howl of the wind, that this is an essyra, one of the native species here on Uveto. One that is, generally, friendly to off-worlders like you.");
@@ -135,23 +135,23 @@ public function marionEncounter():void
 		}
 
 		if (pc.willTakeColdDamage()) {
-			output("\n\nYou give a sigh of relief as you see the friendly smile on the girl's face. She instantly seems to recognize that you're freezing where you stand, slowly turning into [pc.aRace] icicle. Her smile, the warmest thing out here, wavers with concern, and a cream-pale hand darts out from under her hide cloak to grasp yours, locking her fingers around your hand and giving you an urgent tug towards the south. In your condition, you don't even think about refusing the silent woman's saving graces. Any promise of salvation from this lethal cold is good enough, especially when she pulls you in against herself, wrapping part of her heavy cloak around you to share in the warmth of it - and her body.");
+			output("\n\nYou give a sigh of relief as you see the friendly smile on the girl’s face. She instantly seems to recognize that you’re freezing where you stand, slowly turning into [pc.aRace] icicle. Her smile, the warmest thing out here, wavers with concern, and a cream-pale hand darts out from under her hide cloak to grasp yours, locking her fingers around your hand and giving you an urgent tug towards the south. In your condition, you don’t even think about refusing the silent woman’s saving graces. Any promise of salvation from this lethal cold is good enough, especially when she pulls you in against herself, wrapping part of her heavy cloak around you to share in the warmth of it - and her body.");
 
 			addButton(0, "Next", insideMarionsDen);
 		}
 		else {
-			output("\n\nA moment passes in silence, her warm smile and bright eyes locked on you. You can see the hint of a glistening pink tail swishing eagerly under her coat, and heavily-clad arms moving at her side. The moment goes past, and a hint of the tension of meeting a stranger in the wilds passes: neither of you seem eager to attack the other, yet the girl isn't speaking. You suppose you need to take the initiative, and so you introduce yourself.");
+			output("\n\nA moment passes in silence, her warm smile and bright eyes locked on you. You can see the hint of a glistening pink tail swishing eagerly under her coat, and heavily-clad arms moving at her side. The moment goes past, and a hint of the tension of meeting a stranger in the wilds passes: neither of you seem eager to attack the other, yet the girl isn’t speaking. You suppose you need to take the initiative, and so you introduce yourself.");
 
-			output("\n\nThe essyra smiles a little broader when you speak, but she makes no motion that she understood you. You blink in confusion, not really used to that happening, and tap your Codex through your pack. It beeps at you, letting you know it's still awake and functioning as your personal translator. Huh. Approaching the problem from a different angle, you point your hands at yourself and say, <i>“[pc.name].”</i>");
+			output("\n\nThe essyra smiles a little broader when you speak, but she makes no motion that she understood you. You blink in confusion, not really used to that happening, and tap your Codex through your pack. It beeps at you, letting you know it’s still awake and functioning as your personal translator. Huh. Approaching the problem from a different angle, you point your hands at yourself and say, <i>“[pc.name].”</i>");
 
-			output("\n\nThe essyra giggles, tossing her pink hair to one side and regarding you with a blue-lipped smile. You're not sure if you're making progress - you get no word of reply - but she does extend her arms to you, grabbing your hands in hers. Her hands are bare, with cream-pale flesh ending in tiny, sharp little claws. They rake gently against your "+ (pc.isNude() ? "[pc.skinFurScales]" : "[pc.clothes]") +", and when you fail to flinch away, the woman gives you a gentle pull towards the south. Does she want you to come with her somewhere?");
+			output("\n\nThe essyra giggles, tossing her pink hair to one side and regarding you with a blue-lipped smile. You’re not sure if you’re making progress - you get no word of reply - but she does extend her arms to you, grabbing your hands in hers. Her hands are bare, with cream-pale flesh ending in tiny, sharp little claws. They rake gently against your "+ (pc.isNude() ? "[pc.skinFurScales]" : "[pc.clothes]") +", and when you fail to flinch away, the woman gives you a gentle pull towards the south. Does she want you to come with her somewhere?");
 
-			output("\n\nWhen you don't instantly follow, trying to puzzle out what she's up to, the woman smiles again and steps closer - right into your personal space, pressing the curvaceous front of her furry outfit against your [pc.chest], gripping your hands firmly. She glances "+ (pc.tallness > 80 ? "up" : "down") +" into your eyes and chews on her lower lip, almost like she's nervous about something. Another gentle tug cements her desires you your mind, and this time she puts her whole body into it, leaning back with an inviting motion of her head that indicates a half-hidden path through the snow.");
+			output("\n\nWhen you don’t instantly follow, trying to puzzle out what she’s up to, the woman smiles again and steps closer - right into your personal space, pressing the curvaceous front of her furry outfit against your [pc.chest], gripping your hands firmly. She glances "+ (pc.tallness > 80 ? "up" : "down") +" into your eyes and chews on her lower lip, almost like she’s nervous about something. Another gentle tug cements her desires you your mind, and this time she puts her whole body into it, leaning back with an inviting motion of her head that indicates a half-hidden path through the snow.");
 
 			output("\n\nIt looks like this strange, silent essyra is trying to take you somewhere. Do you let her?");
 
-			addButton(0, "Yes", goToMarionsDen, 0, "Yes", "The strange pink-haired essyra seems intent on taking you somewhere. Let's see where this goes...");
-			addButton(1, "No", dontGoWithMarion, undefined, "No", "You're not going anywhere with a stranger that won't even give you her name!");
+			addButton(0, "Yes", goToMarionsDen, 0, "Yes", "The strange pink-haired essyra seems intent on taking you somewhere. Let’s see where this goes...");
+			addButton(1, "No", dontGoWithMarion, undefined, "No", "You’re not going anywhere with a stranger that won’t even give you her name!");
 		}
 	}
 }
@@ -164,14 +164,14 @@ public function dontGoWithMarion():void
 
 	output("You resist the invitation, tempting though it might be, and gently brush her hands off you. The girl pouts, slowly withdrawing her arms into the front of her coat.");
 
-	output("\n\nSlowly, you start to turn around to depart - only to feel her clawed hands grab at your shoulders. For a second, you panic, thinking you're under attack. The fear passes a moment later when you feel her fur-clad body press into your back, feeling the perky mounds of a pair of breasts under the coat rubbing against you. She makes a sad, wordless whining sound, clutching desperately at you. You manage to squirm around in her awkward embrace that you face her, getting a good look at her big, puppy-dog eyes in the process. The essyra gives you a gentle, almost pleading tug in the direction of... whatever it is she wants.");
+	output("\n\nSlowly, you start to turn around to depart - only to feel her clawed hands grab at your shoulders. For a second, you panic, thinking you’re under attack. The fear passes a moment later when you feel her fur-clad body press into your back, feeling the perky mounds of a pair of breasts under the coat rubbing against you. She makes a sad, wordless whining sound, clutching desperately at you. You manage to squirm around in her awkward embrace that you face her, getting a good look at her big, puppy-dog eyes in the process. The essyra gives you a gentle, almost pleading tug in the direction of... whatever it is she wants.");
 
 	output("\n\nShe looks pretty desperate for you to come with her now, whining and tugging at you like she is. Maybe you <i>should</i> go with her?");
 
 	processTime(5);
 
 	clearMenu();
-	addButton(0, "Yes", goToMarionsDen, 0, "Yes", "The strange pink-haired essyra seems intent on taking you somewhere. Let's see where this goes...");
+	addButton(0, "Yes", goToMarionsDen, 0, "Yes", "The strange pink-haired essyra seems intent on taking you somewhere. Let’s see where this goes...");
 	addButton(1, "Definitely Not!", definitelyDontGoWithMarion, 0, "Definitely Not!", "Nope. Not falling for it.");
 }
 
@@ -184,15 +184,15 @@ public function definitelyDontGoWithMarion(variant:int = 0):void
 	if (variant == 2) output("You step backwards, away from the marionette. She only sighs and turns away, walking back into the snow. Seems that this one at least knows how to take <i>“No”</i> for an answer...");
 	else {
 		if (variant == 0) {
-			output("You wrest yourself out of the essyra's grasp and ");
+			output("You wrest yourself out of the essyra’s grasp and ");
 			if (pc.isNice()) output("gently");
 			else if (pc.isMischievous()) output("mockingly");
 			else output("forcefully");
-			output(" tell her that you're not going with her. Not that she understands you, anyway.");
+			output(" tell her that you’re not going with her. Not that she understands you, anyway.");
 
-			output("\n\nBy the time you manage to turn away and put some distance between you, you're half sure you can see tears welling up in her eyes when you look over your shoulder. What the hell? You sigh and turn away, starting to resume your trudge through the snowy wastes.");
+			output("\n\nBy the time you manage to turn away and put some distance between you, you’re half sure you can see tears welling up in her eyes when you look over your shoulder. What the hell? You sigh and turn away, starting to resume your trudge through the snowy wastes.");
 		}
-		else output("You shake your head and tell her no, you aren't going to follow her. You earn a pout and huff from the foxy native, but she doesn't move to stop you from walking away.");
+		else output("You shake your head and tell her no, you aren’t going to follow her. You earn a pout and huff from the foxy native, but she doesn’t move to stop you from walking away.");
 
 		output("\n\nAfter about fifty paces, you feel something heavy and cold hit you in the back, exploding in a hail of white dust. You stumble, more from surprise than anything, and watch as a second snowball goes careening over your head! Spinning around, you see the same, persistent essyra standing atop a nearby snowbank with another snowball in her hands, giggling as she hucks it at you.");
 	}
@@ -200,7 +200,7 @@ public function definitelyDontGoWithMarion(variant:int = 0):void
 	processTime(5);
 
 	clearMenu();
-	addButton(0, "Fight Back!", resistMarion, undefined, "Fight Back!", "Well, you can't let that go unanswered. Hit her back with a snowball!");
+	addButton(0, "Fight Back!", resistMarion, undefined, "Fight Back!", "Well, you can’t let that go unanswered. Hit her back with a snowball!");
 	addButton(1, "Go Away!", scareAwayMarion, 0, "Go Away!", "No, seriously, go away!");
 }
 
@@ -212,21 +212,21 @@ public function resistMarion():void
 
 	output("<i>“Hey!”</i> you shout, ducking a third snowball that comes hurling at you. <i>“I said no!”</i>");
 
-	output("\n\nShe giggles and leans over, grabbing more snow. Dammit, that's it! You do the same, grabbing a fistful of snow and letting fly right at her big, dumb, pink head. The girl squeals when the snowball impacts her, turning into an uproarious laugh as she throws another that hits you right in the [pc.chest]. A running start and a hard overhead throw like a grenade gives her another taste of her own medicine, beaning her in the leg, apparently hard enough to make her tumble over. She yelps, planting her ass in the snow as the bank she's standing on rumbles behind her, and starts to shift.");
+	output("\n\nShe giggles and leans over, grabbing more snow. Dammit, that’s it! You do the same, grabbing a fistful of snow and letting fly right at her big, dumb, pink head. The girl squeals when the snowball impacts her, turning into an uproarious laugh as she throws another that hits you right in the [pc.chest]. A running start and a hard overhead throw like a grenade gives her another taste of her own medicine, beaning her in the leg, apparently hard enough to make her tumble over. She yelps, planting her ass in the snow as the bank she’s standing on rumbles behind her, and starts to shift.");
 
-	output("\n\nOh, shit. You have just enough time to turn around and take a desperate step before the essyra's ass-plant sends the side of the hill tumbling down in a great wave of crashing snow. You scream in surprise as the miniature avalanche slams into your back, barreling you over. Darkness takes hold for a moment, until you manage to flail your limbs enough to fight your way to the surface - and right into another snowball. The essyra, now all of two feet away and sitting dazed beside you, laughs reaches for more snow.");
+	output("\n\nOh, shit. You have just enough time to turn around and take a desperate step before the essyra’s ass-plant sends the side of the hill tumbling down in a great wave of crashing snow. You scream in surprise as the miniature avalanche slams into your back, barreling you over. Darkness takes hold for a moment, until you manage to flail your limbs enough to fight your way to the surface - and right into another snowball. The essyra, now all of two feet away and sitting dazed beside you, laughs reaches for more snow.");
 
-	output("\n\nYou reach up and grab her arm, pulling her down. She just laughs and rolls with it, happily letting you restrain her as you pull yourself out of the snow. The moment you're out, though, you feel a pull on you in turn, sending you right back into the ground beside the essyra, who's got her arms around your waist and her legs straddling yours.");
+	output("\n\nYou reach up and grab her arm, pulling her down. She just laughs and rolls with it, happily letting you restrain her as you pull yourself out of the snow. The moment you’re out, though, you feel a pull on you in turn, sending you right back into the ground beside the essyra, who’s got her arms around your waist and her legs straddling yours.");
 
-	output("\n\nShe laughs and smiles, leaning in so close that you can feel her hot, sweet breath on your [pc.face]. Before you can react, she leans down and plants a lightning-fast kiss on your [pc.lips], sending an electric current of surprise and stimulation through your snow-logged body. But she doesn't press the issue further, at least not now. She gives you a much more sensual, inviting smile, and nods towards the south.");
+	output("\n\nShe laughs and smiles, leaning in so close that you can feel her hot, sweet breath on your [pc.face]. Before you can react, she leans down and plants a lightning-fast kiss on your [pc.lips], sending an electric current of surprise and stimulation through your snow-logged body. But she doesn’t press the issue further, at least not now. She gives you a much more sensual, inviting smile, and nods towards the south.");
 
-	output("\n\nSuddenly, you think you realize what she's wanted all along...");
+	output("\n\nSuddenly, you think you realize what she’s wanted all along...");
 
 	processTime(10);
 
 	clearMenu();
-	addButton(0, "Go for it!", goToMarionsDen, 1, "Go for it!", "Alright, alright. She's made her point. Go along with the pretty pink fox-girl.");
-	addButton(1, "Seriously, No!", scareAwayMarion, 1, "Seriously, No!", "You don't want what the pink-haired slut's offering.");
+	addButton(0, "Go for it!", goToMarionsDen, 1, "Go for it!", "Alright, alright. She’s made her point. Go along with the pretty pink fox-girl.");
+	addButton(1, "Seriously, No!", scareAwayMarion, 1, "Seriously, No!", "You don’t want what the pink-haired slut’s offering.");
 }
 
 public function scareAwayMarion(variant:int = 0):void
@@ -241,9 +241,9 @@ public function scareAwayMarion(variant:int = 0):void
 
 			output("\n\n<i>“Fuck off!”</i> you yell after her, [pc.holstering] your weapon. God damn barbarians.");
 		}
-		else output("God dammit! You scream some profanities at her before you take off as fast as you can, hoping she'll take the hint. A few silent minutes later, and you're fairly convinced she has. Shaking your head, you look to resume your travel.");
+		else output("God dammit! You scream some profanities at her before you take off as fast as you can, hoping she’ll take the hint. A few silent minutes later, and you’re fairly convinced she has. Shaking your head, you look to resume your travel.");
 	}
-	else output("You give her one last, fierce scowl and shake your head. The essyra's chest gives a sad little heave, and she stands up, releasing her hold on you. She pouts, but this time doesn't try and stop you from leaving.");
+	else output("You give her one last, fierce scowl and shake your head. The essyra’s chest gives a sad little heave, and she stands up, releasing her hold on you. She pouts, but this time doesn’t try and stop you from leaving.");
 
 	processTime(5);
 
@@ -257,8 +257,8 @@ public function goToMarionsDen(variant:int = 0):void
 	author("Savin");
 	showMarion();
 	
-	if (variant == 0) output("Curiosity takes the better of you, and you decide to see what exactly this silent pink vixen wants to show you. You give her a nod and let her take your hand, drawing you southwards into the winding white wasteland of the Uvetan wilderness. You wonder where she's taking you...");
-	else output("<i>“Alright, alright,”</i> you laugh, grabbing the girl's hips and giving her a wink. Her big, blue smile returns with gusto, followed through by a delighted squeal. She slips down and gives you a big, warm hug, enveloping you in heavy, soft furs. You laugh as the two of you get up, her hand locked firmly around your own, and she pulls you towards the snow-wracked wastes of the south. You wonder where she's taking you...");
+	if (variant == 0) output("Curiosity takes the better of you, and you decide to see what exactly this silent pink vixen wants to show you. You give her a nod and let her take your hand, drawing you southwards into the winding white wasteland of the Uvetan wilderness. You wonder where she’s taking you...");
+	else output("<i>“Alright, alright,”</i> you laugh, grabbing the girl’s hips and giving her a wink. Her big, blue smile returns with gusto, followed through by a delighted squeal. She slips down and gives you a big, warm hug, enveloping you in heavy, soft furs. You laugh as the two of you get up, her hand locked firmly around your own, and she pulls you towards the snow-wracked wastes of the south. You wonder where she’s taking you...");
 	
 	processTime(5)
 
@@ -275,9 +275,9 @@ public function insideMarionsDen():void
 	output("The essyra leads you by the hand through the whipping winds and vast snowdrifts. She stays close to you, letting you feel the heat and softness of her heavy cloak. Her tail whips against your [pc.leg] with every step, a show of obvious and unabashed excitement as she leads you to ");
 	if (flags["MET_LURELING"] == undefined || pc.willTakeColdDamage()) output("your fate");
 	else output("her home");
-	output(". A few short minutes pass without a word said between you. Your pink-maned companion seems content, as ever, to remain wordless - if she even can speak. Still, with her hand on yours and her warm body pressed constantly against your own there's little need for words, and you follow her soothing presence through the bleak Uvetan chill.");
+	output(". A few short minutes pass without a word said between you. Your pink-maned companion seems content, as ever, to remain wordless - if she even can speak. Still, with her hand on yours and her warm body pressed constantly against your own there’s little need for words, and you follow her soothing presence through the bleak Uvetan chill.");
 
-	output("\n\nHer meandering path soon leads you to a towering hill of snow and ice, flanked by the pillars of obsidian-like growths that form from the planet's frigid surface. A dark, slender opening sits at the base of the snow-mound, obviously dug out by living hands - although it's incredibly smooth, almost a perfect half-circle stretching up from the flat ice below it. Your essyra guide gives you a smile over her shoulder and slinks down onto her hands and knees, crawling through the opening and into the dark, out of sight. You shiver at the sudden return of the ceaseless cold, now deprived of her warm presence, and move quickly to follow her");
+	output("\n\nHer meandering path soon leads you to a towering hill of snow and ice, flanked by the pillars of obsidian-like growths that form from the planet’s frigid surface. A dark, slender opening sits at the base of the snow-mound, obviously dug out by living hands - although it’s incredibly smooth, almost a perfect half-circle stretching up from the flat ice below it. Your essyra guide gives you a smile over her shoulder and slinks down onto her hands and knees, crawling through the opening and into the dark, out of sight. You shiver at the sudden return of the ceaseless cold, now deprived of her warm presence, and move quickly to follow her");
 	if (pc.isTaur() || pc.tallness >= 96) {
 		output("- though your struggle somewhat due to your " );
 		if (pc.tallness >= 96) {
@@ -289,25 +289,25 @@ public function insideMarionsDen():void
 	}
 	output(".");
 
-	output("\n\nWhen you finally emerge from the tunnel's end, you're greeted by a welcome sight indeed: a hemispherical chamber has been dug out of the hillside, with smooth packed-in walls and a floor of perfect ice, covered with plush fur rugs that surround a circle of obsidian stones and wood. Apparently the ring is a fire pit - one that your companion is already lighting, allowing much-needed warmth to spread through the chamber. A chill still hangs in the air here, but it's nothing like the seeping, gut-clenching freeze of the outside world. What's left inside is a calm, almost relaxing chill - just enough to make you thankful for the heat of the fire"+ (pc.hasHeatBelt() ? "and your heat-belt" : "") +". You approach the fire, extending your hands to warm yourself up. The furry hide of some creature shifts beneath your [pc.feet], drawing your attention to the strangely homey accoutrements around you: pillows, fur blankets, and rugs adorn the cave. This must be the ");
-	if (flags["MET_LURELING"] == 2) output("product of the lureling below you's efforts, meant to give you and its marion a nice and comfortable place to carry out your business. How thoughtful.");
-	else output("essyra girl's home.");
+	output("\n\nWhen you finally emerge from the tunnel’s end, you’re greeted by a welcome sight indeed: a hemispherical chamber has been dug out of the hillside, with smooth packed-in walls and a floor of perfect ice, covered with plush fur rugs that surround a circle of obsidian stones and wood. Apparently the ring is a fire pit - one that your companion is already lighting, allowing much-needed warmth to spread through the chamber. A chill still hangs in the air here, but it’s nothing like the seeping, gut-clenching freeze of the outside world. What’s left inside is a calm, almost relaxing chill - just enough to make you thankful for the heat of the fire"+ (pc.hasHeatBelt() ? "and your heat-belt" : "") +". You approach the fire, extending your hands to warm yourself up. The furry hide of some creature shifts beneath your [pc.feet], drawing your attention to the strangely homey accoutrements around you: pillows, fur blankets, and rugs adorn the cave. This must be the ");
+	if (flags["MET_LURELING"] == 2) output("product of the lureling below you’s efforts, meant to give you and its marion a nice and comfortable place to carry out your business. How thoughtful.");
+	else output("essyra girl’s home.");
 
-	output("\n\nYour thoughts draw your gaze back to your hostess, standing across the fire with her back to you, staring down into the hazy, dark ice of the cave's floor. She gives you a glance over her shoulder and a blue-lipped smile, and lets the heavy cloak slip down. The figure that had been hidden beneath it is svelte and athletic, honed to physical perfection after a lifetime of surviving in the harshest wilderness. Her pale skin hints at tense, strong muscles hidden under the colorful woolen garments still clinging to her body. And, you note, several more tails are on display now: "+ marion.tailCount +" pink, fluffy fox-tails wrap around her waist and groin, keeping her nice and warm.");
+	output("\n\nYour thoughts draw your gaze back to your hostess, standing across the fire with her back to you, staring down into the hazy, dark ice of the cave’s floor. She gives you a glance over her shoulder and a blue-lipped smile, and lets the heavy cloak slip down. The figure that had been hidden beneath it is svelte and athletic, honed to physical perfection after a lifetime of surviving in the harshest wilderness. Her pale skin hints at tense, strong muscles hidden under the colorful woolen garments still clinging to her body. And, you note, several more tails are on display now: "+ marion.tailCount +" pink, fluffy fox-tails wrap around her waist and groin, keeping her nice and warm.");
 
-	output("\n\nThe "+ marionName() +" turns on a heel to face you, taking a long-legged stride closer until your bodies are separated only by the ring of the fire pit. She's still smiling, her bright eyes gleaming in the firelight, as she slowly walks around. One of her arms reaches out, gently caressing your waist until she's pressed fully against you, rubbing her body against yours. Mute though she may be her desires are clear and alluring, offering you the warmth of her flesh. ");
+	output("\n\nThe "+ marionName() +" turns on a heel to face you, taking a long-legged stride closer until your bodies are separated only by the ring of the fire pit. She’s still smiling, her bright eyes gleaming in the firelight, as she slowly walks around. One of her arms reaches out, gently caressing your waist until she’s pressed fully against you, rubbing her body against yours. Mute though she may be her desires are clear and alluring, offering you the warmth of her flesh. ");
 
 	output("\n\n");
-	if (flags["MET_LURELING"] == 2) output("You're not sure how you feel about this, knowing the girl's only a puppet for another being... a creature lurking below the ice, ready to use her as a conduit for its own pleasure. And yours, too, yes... but still, you're not far from just fucking a sea monster. Then again, this pink-haired beauty's got a body bred for pleasure, and is more than eager to put it to full use for you. Can you go through with it?");
-	else output("The essyra's pale hand wanders across your body, drawing inexorably towards your groin. Her long, slender fingers brush across your crotch as she grinds herself further against you, letting you feel her husky, hot breath on your [pc.skinFurScales]. The invitation is obvious: to come share in the heat of her body, and the comfort of her bed. The mute fox-girl's had this in mind from the start, and her amorous advances are only becoming more overt, ready for you to take her.");
+	if (flags["MET_LURELING"] == 2) output("You’re not sure how you feel about this, knowing the girl’s only a puppet for another being... a creature lurking below the ice, ready to use her as a conduit for its own pleasure. And yours, too, yes... but still, you’re not far from just fucking a sea monster. Then again, this pink-haired beauty’s got a body bred for pleasure, and is more than eager to put it to full use for you. Can you go through with it?");
+	else output("The essyra’s pale hand wanders across your body, drawing inexorably towards your groin. Her long, slender fingers brush across your crotch as she grinds herself further against you, letting you feel her husky, hot breath on your [pc.skinFurScales]. The invitation is obvious: to come share in the heat of her body, and the comfort of her bed. The mute fox-girl’s had this in mind from the start, and her amorous advances are only becoming more overt, ready for you to take her.");
 
 	if (flags["MET_LURELING"] == undefined) flags["MET_LURELING"] = 1;
 
 	processTime(60);
 
 	clearMenu();
-	addButton(0, "Nope!", refuseMarionsAdvances, undefined, "Nope!", "This isn't what you bargained for!");
-	addButton(1, "Fuck Her", marionsDenSexMenu, undefined, "Fuck Her", "Well, the vixen's made her intention clear. "+ (silly ? "Take her in a manly fashion!" : "Take her up on her wordless offer and enjoy the native pleasures of this otherwise hostile world..."));
+	addButton(0, "Nope!", refuseMarionsAdvances, undefined, "Nope!", "This isn’t what you bargained for!");
+	addButton(1, "Fuck Her", marionsDenSexMenu, undefined, "Fuck Her", "Well, the vixen’s made her intention clear. "+ (silly ? "Take her in a manly fashion!" : "Take her up on her wordless offer and enjoy the native pleasures of this otherwise hostile world..."));
 }
 
 public function refuseMarionsAdvances():void
@@ -316,7 +316,7 @@ public function refuseMarionsAdvances():void
 	author("Savin");
 	showMarion();
 
-	output("You awkwardly brush the essyra's hands aside, trying to extricate yourself from the uncomfortable predicament you've bungled into. The mute girl must think you're playing hard to get, and she lunges forward with a hail of awkward kisses and gropes, grabbing at you amid lusty moans and heavy breaths. Her hands grab at your groin and [pc.chest], pulling at your [pc.gear] until you manage to break away again, this time putting a few feet of distance between you before the dazed "+ marionName() +" recovers. She pouts at you, consternated but still wagging her tails - she's not taking a hint.");
+	output("You awkwardly brush the essyra’s hands aside, trying to extricate yourself from the uncomfortable predicament you’ve bungled into. The mute girl must think you’re playing hard to get, and she lunges forward with a hail of awkward kisses and gropes, grabbing at you amid lusty moans and heavy breaths. Her hands grab at your groin and [pc.chest], pulling at your [pc.gear] until you manage to break away again, this time putting a few feet of distance between you before the dazed "+ marionName() +" recovers. She pouts at you, consternated but still wagging her tails - she’s not taking a hint.");
 
 	output("\n\nThe pink-haired vixen starts striding to you, pulling off her colorful shirt and revealing a pair of perky tits with stiff, blue nipples contrasting against her creamy skin. She smiles, advancing with sultry confidence, reaching out to you again with a lusty look in her eyes. What do you do?");
 
@@ -324,7 +324,7 @@ public function refuseMarionsAdvances():void
 
 	clearMenu();
 	addButton(0, "Flee!", fleeMarionsDen, undefined, "Flee!", "Just run for it! Run away... from the unarmed, overly friendly fox-girl.");
-	addButton(1, "Smack", smackTheMarion, undefined, "Smack", (silly ? "Smack a bitch up." : "She's got you cornered and certainly doesn't seem to care about your protests. Give her a smack to try and make her back off!") + (flags["MET_LURELING"] == 2 ? " Though you're probably going to have to deal with her lureling master..." : ""));
+	addButton(1, "Smack", smackTheMarion, undefined, "Smack", (silly ? "Smack a bitch up." : "She’s got you cornered and certainly doesn’t seem to care about your protests. Give her a smack to try and make her back off!") + (flags["MET_LURELING"] == 2 ? " Though you’re probably going to have to deal with her lureling master..." : ""));
 }
 
 public function fleeMarionsDen():void
@@ -333,10 +333,10 @@ public function fleeMarionsDen():void
 	author("Savin");
 	showMarion();
 
-	output("Fuck it, you're out! You scramble back, making for the opening as fast as you can. The essyra makes a loud, pitiful whine of bewilderment and reaches you, grabbing at your "+ (pc.isNude() ? "pack" : "armor") +", trying to pull you back into her embrace. She lunges, and you dodge, tumbling back onto ice. She recovers on all fours, tails wiggling in the air behind her pert behind as she advances.");
+	output("Fuck it, you’re out! You scramble back, making for the opening as fast as you can. The essyra makes a loud, pitiful whine of bewilderment and reaches you, grabbing at your "+ (pc.isNude() ? "pack" : "armor") +", trying to pull you back into her embrace. She lunges, and you dodge, tumbling back onto ice. She recovers on all fours, tails wiggling in the air behind her pert behind as she advances.");
 
-	output("\n\nYou manage to crawl back, squirming into the entrance tunnel and clambering through as quick as you can. Thankfully, the girl doesn't follow you out, and you're able to make good your escape. With a sigh of relief, you turn back to continue your journey through the waste - and far away from the incorrigible vixen.");
-	if (pc.willTakeColdDamage()) output(" Though now that you're outside, you realize that you're right back to freezing yourself to death...");
+	output("\n\nYou manage to crawl back, squirming into the entrance tunnel and clambering through as quick as you can. Thankfully, the girl doesn’t follow you out, and you’re able to make good your escape. With a sigh of relief, you turn back to continue your journey through the waste - and far away from the incorrigible vixen.");
+	if (pc.willTakeColdDamage()) output(" Though now that you’re outside, you realize that you’re right back to freezing yourself to death...");
 	
 	processTime(5);
 
@@ -350,14 +350,14 @@ public function smackTheMarion():void
 	author("Savin");
 	showMarion();
 
-	output("No way you're getting raped by some random woman in a snowy backwater. As she lunges in for another round of kisses and gropes, you get a hand free and rear back, delivering a sharp slap across her face. She yelps, more from surprise than pain, and stumbles back cupping her reddened cheek. She looks up at you with big, startled blue eyes. Her lips quiver, and her arms curl defensively around herself. She moves back, and for a moment, you think you've made your point.");
+	output("No way you’re getting raped by some random woman in a snowy backwater. As she lunges in for another round of kisses and gropes, you get a hand free and rear back, delivering a sharp slap across her face. She yelps, more from surprise than pain, and stumbles back cupping her reddened cheek. She looks up at you with big, startled blue eyes. Her lips quiver, and her arms curl defensively around herself. She moves back, and for a moment, you think you’ve made your point.");
 
 	output("\n\nAnd then the ice beneath you starts to quake.");
 
-	output("\n\nYour eyes go wide as you look down between your [pc.feet]. Something big and dark is sloshing around just beneath the ice, which is shaking and cracking and starting to bulge. "+ (flags["MET_LURELING"] != 2 ? "Looks like you've lured out the lureling! " : "") +"You leap back, just barely rolling out of the way in time as the ice shatters beneath where you'd stood, throwing shards of jagged ice and geysers of frigid water in every direction, forcing you to shield your eyes.");
+	output("\n\nYour eyes go wide as you look down between your [pc.feet]. Something big and dark is sloshing around just beneath the ice, which is shaking and cracking and starting to bulge. "+ (flags["MET_LURELING"] != 2 ? "Looks like you’ve lured out the lureling! " : "") +"You leap back, just barely rolling out of the way in time as the ice shatters beneath where you’d stood, throwing shards of jagged ice and geysers of frigid water in every direction, forcing you to shield your eyes.");
 
-	output("\n\nWhen you recover, there's a tremendous hole in the ice where the firepit had been, sloshing with water and jagged chunks of debris. The essyra has scrambled away to the other side of the cavern, well away from you, and leaving the creature that's burrowed up from the ocean below to stand between you: ");
-	if (flags["MET_LURELING"] == 2) output("another lureling! It's huge, slavering maw flaps around in a circle of razor-sharp teeth beneath a pair of dark eyes full of hatred and malice. Looks like you've pissed daddy off!");
+	output("\n\nWhen you recover, there’s a tremendous hole in the ice where the firepit had been, sloshing with water and jagged chunks of debris. The essyra has scrambled away to the other side of the cavern, well away from you, and leaving the creature that’s burrowed up from the ocean below to stand between you: ");
+	if (flags["MET_LURELING"] == 2) output("another lureling! It’s huge, slavering maw flaps around in a circle of razor-sharp teeth beneath a pair of dark eyes full of hatred and malice. Looks like you’ve pissed daddy off!");
 	else {
 		output("a huge, pale green creature easily eight feet tall, sitting on tiny webbed legs - it looks like a cross between a frog and some ungodly scion of an angler fish. Where its mouth should be, though, you see a circular, slavering maw filled with ring after ring of spear-like teeth. Mother of god... ");
 
@@ -370,7 +370,7 @@ public function smackTheMarion():void
 		CodexManager.unlockEntry("Lurelings");
 	}
 
-	output("\n\nThe lureling rears back on its tiny legs, issuing a terrifying banshee's shriek before it lunges for you!");
+	output("\n\nThe lureling rears back on its tiny legs, issuing a terrifying banshee’s shriek before it lunges for you!");
 
 	processTime(10);
 	IncrementFlag("LURELINGS_FOUGHT");
@@ -394,13 +394,13 @@ public function marionsDenSexMenu():void
 
 	output("The silent "+ marionName() +" gasps happily when your arms wrap around her slender waist, pulling her close and tearing at her parka. Naked, warm flesh presses against your "+ (pc.isNude() ? "own bare [pc.skinFurScales], gently guiding you down onto the rugs and blankets of her makeshift bed" : "your "+ (pc.isChestCovered() ? "[pc.upperGarment]" : "[pc.lowerGarment]") +", her hands wandering across your clothing with gentle, insistent tugs. You allow the eager woman to undress you, pushing you gently down onto the rugs and blankets of her makeshift bed") +". Her long, pale legs come to straddle your [pc.hips] and the last of her clothes fall to the wayside, revealing a pair of perky breasts tipped with ice blue nipples, the same color as her lips, which her hands guide yours to; you squeeze the two soft mounds, circling and flicking her cyan teats with your thumbs.");
 
-	output("\n\nThe last piece of the essyra's outfit to go are the tight cloth panties hugging her hips, slipped off and tossed aside to ");
+	output("\n\nThe last piece of the essyra’s outfit to go are the tight cloth panties hugging her hips, slipped off and tossed aside to ");
 	if (marion.hasBalls()) output("reveal a slender black shaft hanging between her legs, knotted at the base and sitting over a pair of fleshy balls and a blue-lipped slit. Freed from its confines, the dark, canid prick bounces on your [pc.belly], stiff and begging for your touch.");
 	else if (marion.hasSheath()) output("reveal a wriggling blue tendril with a tapered red crown sitting above a cyan pussy. Freed from its confines, the alien-like prick slithers across your [pc.belly], desperately begging for your touch.");
-	else if (marion.hasCocks()) output("reveal several wriggling blue tendrils sitting around a cyan pussy; each tentacle is tipped with a tapered red tip, and several flaccid knots at the base. The colorful tendrils caress your [pc.belly], spreading out to frame the essyra's sex invitingly.");
+	else if (marion.hasCocks()) output("reveal several wriggling blue tendrils sitting around a cyan pussy; each tentacle is tipped with a tapered red tip, and several flaccid knots at the base. The colorful tendrils caress your [pc.belly], spreading out to frame the essyra’s sex invitingly.");
 	else output("let you see the blue lips of her pussy, glistening in the firelight. She gives you a demure smile, running a finger through her slickened slit and spreading herself invitingly.");
 
-	output("\n\nYour glimpse of the fox-girl's alien sex lasts only a moment before she grabs one of the heavy blankets from nearby and throws it over her shoulders, lying down atop you to cover both your bodies in the soothing, shared warmth. ");
+	output("\n\nYour glimpse of the fox-girl’s alien sex lasts only a moment before she grabs one of the heavy blankets from nearby and throws it over her shoulders, lying down atop you to cover both your bodies in the soothing, shared warmth. ");
 	if (marion.hasCock()) output("You can feel her [marion.cocksDescriptLight] trapped between your [pc.belly] and hers, throbbing with anticipation. ");
 	output("The essyra flashes you a smile, transitioning to trailing kisses along your [pc.chest] and nibbling on a [pc.nipple]. Under the blanket, you find your hands sliding down her supple form, grabbing her ass in hands and squeezing until she moans for you.");
 
@@ -408,8 +408,8 @@ public function marionsDenSexMenu():void
 
 	clearMenu();
 	// only allow FuckVag for PCs with a) dicks and NO hardlight or b) cunts AND hardlight. Scene doesnt make sense otherwise
-	if (pc.hasCock() && pc.cockThatFits(marion.vaginalCapacity()) >= 0) addButton(0, "Fuck Vag", penisRouter,[marionsDenSexFuckMarion,marion.vaginalCapacity(),false,0], "Fuck Vag", "Stick your "+ pc.cockDescript(pc.cockThatFits(marion.vaginalCapacity())) +" in the essyra's pretty blue pussy and let her ride you.");
-	else if (pc.isFemale() && pc.hasHardLightEquipped()) addButton(0, "Fuck Vag", marionsDenSexFuckMarion, -1, "Fuck Vag", "Stick your [pc.cockOrStrapon] in the essyra's pretty blue pussy and let her ride you.");
+	if (pc.hasCock() && pc.cockThatFits(marion.vaginalCapacity()) >= 0) addButton(0, "Fuck Vag", penisRouter,[marionsDenSexFuckMarion,marion.vaginalCapacity(),false,0], "Fuck Vag", "Stick your "+ pc.cockDescript(pc.cockThatFits(marion.vaginalCapacity())) +" in the essyra’s pretty blue pussy and let her ride you.");
+	else if (pc.isFemale() && pc.hasHardLightEquipped()) addButton(0, "Fuck Vag", marionsDenSexFuckMarion, -1, "Fuck Vag", "Stick your [pc.cockOrStrapon] in the essyra’s pretty blue pussy and let her ride you.");
 	else if (pc.hasGenitals()) addDisabledButton(0, "Fuck Vag", "Fuck Vag", "You need either a penis or a vagina and a hardlight dildo for this.");
 	else addDisabledButton(0, "Fuck Vag", "Fuck Vag", "You need genitals for this.");
 	// if PC has either a pussy & no cock or a cock thats to large
@@ -427,13 +427,13 @@ public function marionsDenSexFuckMarion(x:int):void
 	showMarion(true);
 
 	if (x >= 0) {
-		output("Your "+ pc.cockDescript(x) +" is tucked snugly between the essyra's thick thighs, engulfed in her warm embrace. Feeling your member harden, the sultry fox-girl shifts her legs back and forth, massaging your shaft between them.");
+		output("Your "+ pc.cockDescript(x) +" is tucked snugly between the essyra’s thick thighs, engulfed in her warm embrace. Feeling your member harden, the sultry fox-girl shifts her legs back and forth, massaging your shaft between them.");
 
-		output("\n\n<i>“That's good,”</i>  you murmur, tightening your grip on her ass. You're not sure if she understands what you're saying, really, but the message gets through all the same: she smiles and starts rocking her whole body under the blankets, jacking you off");
+		output("\n\n<i>“That’s good,”</i> you murmur, tightening your grip on her ass. You’re not sure if she understands what you’re saying, really, but the message gets through all the same: she smiles and starts rocking her whole body under the blankets, jacking you off");
 		if (marion.hasCock()) output(" and thrusting her own [marion.cocksNoun] against your [pc.belly]");
 		output(".");
 	}
-	else output("Between gropes and squeezes to the essyra's plump behind, you manage to sneak a hand away to your panties, pulling them back on and flicking on the hardlight emitter. The alien girl gasps when the luminescent rod springs to life, but she clearly recognizes the shape - and the function. Her hand wraps around your glistening shaft, experimentally stroking it from base to crown. She gives a delighted little squeal when you moan at her touch, proving your artifical member is just as sensitive as a real dick.");
+	else output("Between gropes and squeezes to the essyra’s plump behind, you manage to sneak a hand away to your panties, pulling them back on and flicking on the hardlight emitter. The alien girl gasps when the luminescent rod springs to life, but she clearly recognizes the shape - and the function. Her hand wraps around your glistening shaft, experimentally stroking it from base to crown. She gives a delighted little squeal when you moan at her touch, proving your artifical member is just as sensitive as a real dick.");
 
 	output("\n\nStill stroking you off, the essyra rises up on her knees, wrapping the blankets around herself and planting her hands firmly on your [pc.chest]. Looking down at you with a lusty lick of her lips, the mute beauty shifts her hips and grasps the crown of your cock with the bright lips of her sex");
 	if (marion.hasBalls()) output(". Her own black prick jumps and beads with watery white when your crown parts her pussylips, rubbing gingerly against the back of her balls as you slide in");
@@ -448,7 +448,7 @@ public function marionsDenSexFuckMarion(x:int):void
 	}
 	output(". Her breath comes ins shuddering clouds of mist that form a fog around her head until all you can clearly make out is her azure eyes and the wolfish grin on her slender lips.");
 
-	output("\n\nOnce she's settled in your lap, the icy vixen contracts her muscles, rhythmically squeezing your "+ pc.cockOrStrapon(x) +" while she gets herself comfortable. It isn't long, though, before she's shaking her hips and wiggling her myriad of tails for you, panting with pleasure. It’s an odd sensation to make love with someone who doesn’t speak; sound still comes out of her of course, but still. The deep, shudder-laden moan of pleasure that comes out of her when you roll your hips would usually be accompanied by some visceral declaration of pleasure. Instead you just have to infer it from the way her [marion.eyes] drink you in with open adoration at the way she’s stirred up.");
+	output("\n\nOnce she’s settled in your lap, the icy vixen contracts her muscles, rhythmically squeezing your "+ pc.cockOrStrapon(x) +" while she gets herself comfortable. It isn’t long, though, before she’s shaking her hips and wiggling her myriad of tails for you, panting with pleasure. It’s an odd sensation to make love with someone who doesn’t speak; sound still comes out of her of course, but still. The deep, shudder-laden moan of pleasure that comes out of her when you roll your hips would usually be accompanied by some visceral declaration of pleasure. Instead you just have to infer it from the way her [marion.eyes] drink you in with open adoration at the way she’s stirred up.");
 
 	output("\n\n");
 	if (pc.hasKnot(x)) {
@@ -490,7 +490,7 @@ public function marionsDenSexFuckMarion(x:int):void
 	output("\n\n");
 	if (x >= 0 && pc.hasBalls(x)) output("Your balls feel thick and heavy, following the movement of your hips with audible slaps against the fox girl’s bouncing booty. Her tails wiggle beneath you, stroking them with fluffy tenderness entirely at odds with the sweating fuck-hungry body that otherwise bounces against your prick. It’s all the approval you need, and you practically drop your body onto hers, delighting in the "+ (pc.hasBreasts() ? "squish of her [marion.tits] against your own" : "way her soft tits cushion your chest") +". Her mouth opens wide and she makes whimpering barks that you recognize as a request to kiss her. Once more your mouth lays into hers a moment before she wraps her legs around you until her feet cross around your [pc.ass]. Your [pc.balls] slap home one last time, and the floodgates break.");
 	else if (x >= 0) output("There’s an almost painful tightening in your backdoor button in time with every thrust, swelling with "+ (silly ? "a need to seed (™)" : "need") +". Her tails wiggle beneath you and stroke the insides of your thighs with a fluffy tenderness entirely at odds with the sweating fuck-hungry body that otherwise bounces against your prick. Her wordless urgings are all you need and you practically drop your body onto hers, delighting in the "+ (pc.hasBreasts() ? "squish of her tits against your own" : "way her soft tits cushion your chest") +". Her mouth opens wide and she makes whimpering barks that you recognize as a request to kiss her. Once more your mouth lays into hers a moment before she wraps her legs around you until her feet cross around your [pc.ass]. There’s one last tightening in time with the peristaltic squeezing of her cunt before the floodgates break.");
-	else output("The way your [pc.hardlightCockFull] is squeezed in the grip of the essyra’s perfect twat is enough to have your [pc.chest] heaving, and your legs to shake as your need to orgasm starts to insist itself upon you. It becomes harder to keep up a steady pace, and you come entirely to a halt when you’re pulled down onto her, delighting in the "+ (pc.hasBreasts() ? "squish of her tits against your own" : "way her soft tits cushion your chest") +". Her mouth opens wide and she makes whimpering barks that you recognize as a request to kiss her. Once more your mouth lays into hers a moment before she wraps her legs around you until her feet cross around your [pc.ass]. It’s a tougher position to fuck her from, but you fight your way through the task; failing to cum now would be such "+ (pc.libido() > 50 ? "sweet" : "agonizing") +" torture. The term ‘floodgates' feels rather literal judging by how juicy your [pc.vaginasLight] "+ (pc.hasVaginas() ? "feel" : "feels") +".");
+	else output("The way your [pc.hardlightCockFull] is squeezed in the grip of the essyra’s perfect twat is enough to have your [pc.chest] heaving, and your legs to shake as your need to orgasm starts to insist itself upon you. It becomes harder to keep up a steady pace, and you come entirely to a halt when you’re pulled down onto her, delighting in the "+ (pc.hasBreasts() ? "squish of her tits against your own" : "way her soft tits cushion your chest") +". Her mouth opens wide and she makes whimpering barks that you recognize as a request to kiss her. Once more your mouth lays into hers a moment before she wraps her legs around you until her feet cross around your [pc.ass]. It’s a tougher position to fuck her from, but you fight your way through the task; failing to cum now would be such "+ (pc.libido() > 50 ? "sweet" : "agonizing") +" torture. The term ‘floodgates’ feels rather literal judging by how juicy your [pc.vaginasLight] "+ (pc.hasVaginas() ? "feel" : "feels") +".");
 
 	output("\n\nHer silent mouth forms the word “Come, please!” before it’s contorted into a silent wave of pleasure, getting off on your own timely completion. You ")
 	if (x >= 0) output("blast thick hot ropes of [pc.cumFlavor] [pc.cumType] into her twat.")
@@ -499,17 +499,18 @@ public function marionsDenSexFuckMarion(x:int):void
 	output("\n\nThe "+ marionName() +" gasps around your lips, spasming loosely as her own orgasm comes to an end"+ (marion.hasCock() ? ", painting her abdomen (and yours) in watery aftershocks of her last load" : "") +". Her [marion.cuntNoun] sprays across the floor and the bases of her fluffy tails, and her toes curl up while she chews on her lip. At the same time the trembling of the cavern seems to come to a close "+ (flags["MET_LURELING"] == 2 ? "; it would seem the Lureling is quite done after your efforts" : "... was <i>she</i> the one causing it to happen? That’s a stunning coincidence otherwise") +".");
 
 	output("\n\n");
+	var cumQ:Number = pc.cumQ();
 	if (x >= 0 && pc.hasKnot(x)) {
 		output("You try to roll off of your lover, but you find yourself stuck fast. Apparently on your last thrust you managed to bury the thick hot mass of your "+ pc.knotDescript(x) +" back in her already-tightening cunt. It looks like you’re going to be stuck here for a little while")
-		if (pc.cumQ() >= 2000) output(", pressed up against her cum-inflated tummy.");
-		else if (pc.cumQ() >= 500) output(" atop her squirming cum-stuffed body.");
+		if (cumQ >= 2000) output(", pressed up against her cum-inflated tummy.");
+		else if (cumQ >= 500) output(" atop her squirming cum-stuffed body.");
 		else output(" hugged by her yet-unfilled-twat.");
 	}
 	else if (x >= 0) {
 		output("When you roll off of her the ");
-		if (pc.cumQ() >= 2000) output("seemingly endless quantities of your cum pool from her well-used snatch.");
-		else if (pc.cumQ() >= 500) output("tightness of her pussy seems to restore itself, trapping at least the majority of your orgasm.");
-		output("essyra’s tight slit clenches and doesn’t let a single drop of your "+ (pc.cumQ() < 5 ? "admittedly limited" : "") +" load out.");
+		if (cumQ >= 2000) output("seemingly endless quantities of your cum pool from her well-used snatch.");
+		else if (cumQ >= 500) output("tightness of her pussy seems to restore itself, trapping at least the majority of your orgasm.");
+		output("essyra’s tight slit clenches and doesn’t let a single drop of your "+ (cumQ < 500 ? "admittedly limited" : "") +" load out.");
 	}
 	else output("It’s a titanic effort just to reach down and switch off your hardlight as the two of you try to catch your respective breaths. The floor beneath you both is a sticky-sweet girlcummy mess, and the Essyra shivers a little as she comes down from her nearly mind-breaking series of orgasms.");
 
@@ -615,7 +616,7 @@ public function marionsDenSexGetFucked(x:int):void
 	if (pc.isTaur()) output("When the bubblegum fox leaps onto your flanks and starts trying to line herself up with your "+ (x >= 0 ? pc.vaginaDescript(x) : "[pc.anus]") +" you’re suddenly inclined to think of some kind of animalistic mounting frenzy. She may have to stretch quite hard to reach the rest of your body but she manages to get a decent grip on you, and the heat of her flesh sinks into you even as more heat radiates off of her "+ (marion.hasCocks() ? "many tentacular cocks" : "glans") +" until your "+ (x >= 0 ? "pussy lips are feeling flushed and dewy." : "asshole is winking invitingly."));
 	else output("Her weight drops onto you with surprising speed now that she’s properly ready, and her hips keep waving as she attempts to get herself lined up with your "+ (x >= 0 ? pc.vaginaDescript(x) : "[pc.anus]") +". The waving of her tails is almost canid, and the weight of them is throwing her hips a little off target even as they occasionally curl up and tickle your thighs. Heat radiates from her [marion.cocks] in a way that has your "+ (x >= 0 ? "pussy moistening ever-further and parting" : "asshole winking invitingly") +" at "+ (marion.hasCocks() ? "their" : "its") +" closeness.");
 
-    output("\n\nYou grow a little impatient yourself, throwing your hips back towards her while the "+ marionName() +"’s squishy tummy rubs against you. ");
+	output("\n\nYou grow a little impatient yourself, throwing your hips back towards her while the "+ marionName() +"’s squishy tummy rubs against you. ");
 	if (silly) output("For a brief moment you wish you were on your back. That soft body would pool into your "+ (pc.tone >= 75 ? "rock-hard " : "") +"abdomen like pancake batter into a fuckable waffle-iron. ");
 	output("Her wordless noises of pleasure turn to a small cry of delight as your "+ (x >= 0 ? "sultry twat" : "pliable asshole") +" envelopes "+ (marion.hasCocks() ? "one of her members" : "her member") +", until you’re able to clench your way around a good five or six inches of delectable fuck-material. ");
 	if (marion.hasBalls()) output("Pushing any further onto the luscious fox’s prick would have you knotted though, and it’s far too early to come to a halt now.");
@@ -654,9 +655,9 @@ public function marionsDenSexGetFucked(x:int):void
 
 public function marionSexOutro(full:Boolean = true):void
 {
-	if (full) output("\n\nYou awaken some time later, covered in a thin layer of loose pink hair from your foxen lover... but that's the only trace she was ever here. The furs are just as you found them and the entrance stands open, letting in a faint chill that the embers of the fire struggle to fight back. You sigh and stand, gathering your discarded possessions. It seems this wasn't meant to be more than a one-night rendezvous. A shame.");
+	if (full) output("\n\nYou awaken some time later, covered in a thin layer of loose pink hair from your foxen lover... but that’s the only trace she was ever here. The furs are just as you found them and the entrance stands open, letting in a faint chill that the embers of the fire struggle to fight back. You sigh and stand, gathering your discarded possessions. It seems this wasn’t meant to be more than a one-night rendezvous. A shame.");
 
-	output("\n\nYou sigh and let yourself out, back into the frigid embrace of Uveto's perpetual chill.");
+	output("\n\nYou sigh and let yourself out, back into the frigid embrace of Uveto’s perpetual chill.");
 
 	IncrementFlag("MARIONS_FUCKED");
 	processTime(5*60);
@@ -672,13 +673,13 @@ public function lurelingFightEscape():void
 {
 	clearOutput();
 
-	output("To hell with this, you're getting out of here! You fight back just enough to push the snarling beast back, giving yourself the room you need to dive for the narrow entrance to the hidden den. You've barely wedged yourself into the snowy tunnel when you hear a horrible, croaking sound from behind you. What sounds at first like a roar or a growl steadily resolves into what can only be a hoarse but rhythmic laugh.");
+	output("To hell with this, you’re getting out of here! You fight back just enough to push the snarling beast back, giving yourself the room you need to dive for the narrow entrance to the hidden den. You’ve barely wedged yourself into the snowy tunnel when you hear a horrible, croaking sound from behind you. What sounds at first like a roar or a growl steadily resolves into what can only be a hoarse but rhythmic laugh.");
 
 	output("\n\nThe Lureling is <i>laughing</i> at you!");
 
-	output("\n\nShame and rage burns your cheeks, but still, you know when you're outmatched. If only you'd know what slapping some random fox-girl would have gotten you into!");
+	output("\n\nShame and rage burns your cheeks, but still, you know when you’re outmatched. If only you’d know what slapping some random fox-girl would have gotten you into!");
 
-	output("\n\nYou crawl out of the den and into the whirling winds of Uveto as quick as you can, hoping that the howling gale will drown out the psychic fish's mirth.");
+	output("\n\nYou crawl out of the den and into the whirling winds of Uveto as quick as you can, hoping that the howling gale will drown out the psychic fish’s mirth.");
 
 	CombatManager.abortCombat();
 }
@@ -689,13 +690,13 @@ public function lurelingFightDefeat():void
 	author("Savin");
 	showLureling();
 
-	output("You go staggering back against the far wall of the igloo, trying to avoid the gnashing teeth and flailing arms of the lureling. Only when your [pc.weapon] scatters from your hand does the writhing beast calm itself,  transfixing you with its fathomless dark eyes. As it maintains your gaze, the pink fox-girl it was guarding slowly creeps forward with fear and desire in her eyes in equal measure. The huge behemoth behind her slowly sinks back towards the shattered floor of the chamber as she slips down beside you and grabs at your gear, pulling it aside.");
+	output("You go staggering back against the far wall of the igloo, trying to avoid the gnashing teeth and flailing arms of the lureling. Only when your [pc.weapon] scatters from your hand does the writhing beast calm itself, transfixing you with its fathomless dark eyes. As it maintains your gaze, the pink fox-girl it was guarding slowly creeps forward with fear and desire in her eyes in equal measure. The huge behemoth behind her slowly sinks back towards the shattered floor of the chamber as she slips down beside you and grabs at your gear, pulling it aside.");
 
-	output("\n\nRather than mounting you, though, the frigid vixen grabs one of the "+ (pc.credits < 100 ? "sadly empty " : "") +"credit chits from your kit and stuffs it down her cleavage. Wordlessly, she tuts at you and wags a finger in your face before standing and going over to the sea monster. It murmurs at her and begins to slink back, returning to the depths. When it's gone, the puppet-like foxen simply waves you off, as if dismissing you.");
+	output("\n\nRather than mounting you, though, the frigid vixen grabs one of the "+ (pc.credits < 100 ? "sadly empty " : "") +"credit chits from your kit and stuffs it down her cleavage. Wordlessly, she tuts at you and wags a finger in your face before standing and going over to the sea monster. It murmurs at her and begins to slink back, returning to the depths. When it’s gone, the puppet-like foxen simply waves you off, as if dismissing you.");
 
-	output("\n\nYou can't help but question why she'd let you go without further molestation after all that time spent trying to seduce you. Has she just lost interest in you, or in her own queer way, does she really insist on consent?");
+	output("\n\nYou can’t help but question why she’d let you go without further molestation after all that time spent trying to seduce you. Has she just lost interest in you, or in her own queer way, does she really insist on consent?");
 
-	output("\n\nEither way, you'll count your lucky stars and leave while you can.\n\n");
+	output("\n\nEither way, you’ll count your lucky stars and leave while you can.\n\n");
 
 	CombatManager.genericLoss();
 }
@@ -708,7 +709,7 @@ public function lurelingFightVictory():void
 
 	output("The Lureling is screeching and thrashing around by now, slapping its whole body weight against the ice. Its flippers bash huge holes in the floor, sending the fire and furs into the deep. Its marion gasps and cries and tries to calm the creature, but to no avail.");
 
-	output("\n\nWhile the getting's good, you retreat back through the entrance to the igloo and stumble away into the freezing embrace of Uveto's wilderness. Behind you, the cave rumbles and finally collapses in on itself, sinking into the waters below. Good thing you got out... but it's a shame about that fox-girl. By the looks of things, she was just being controlled by the beast. Hopefully she manages to survive.\n\n");
+	output("\n\nWhile the getting’s good, you retreat back through the entrance to the igloo and stumble away into the freezing embrace of Uveto’s wilderness. Behind you, the cave rumbles and finally collapses in on itself, sinking into the waters below. Good thing you got out... but it’s a shame about that fox-girl. By the looks of things, she was just being controlled by the beast. Hopefully she manages to survive.\n\n");
 
 	CombatManager.genericVictory();
 }
