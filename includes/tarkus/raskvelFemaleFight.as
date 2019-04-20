@@ -224,13 +224,14 @@ public function raskVelBabeGetsDoggieStyled():void
 	if(pc.balls > 0) output("[pc.sack] into her bullet-hard frontal clit and your ");
 	output("crotch against her rigid frontal button. Blood surges into [pc.eachCock] as orgasm arrives, stretching the raskvel’s sopping-wet cunt with even more thickness, triggering a whole new avalanche of climatic contractions from her well-used mound.");
 
+	var cumQ:Number = pc.cumQ();
 	//NON KNOT:
 	if(!pc.hasKnot(x))
 	{
 		output("\n\n[pc.Cum] rolls out of your [pc.cock " + x + "] in a wave. Between your internal muscles’ squeezings and the clutching tightness of the raskvel’s horny box, a veritable deluge releases into the unprotected, thirsty little womb. Your hands firmly hold the lizard-like woman’s hips against your own until you’re done");
-		if(pc.cumQ() <= 500)
+		if(cumQ <= 500)
 		{}
-		else if(pc.cumQ() <= 2000) output(", not caring when her belly forms a noticeable cum-paunch.");
+		else if(cumQ <= 2000) output(", not caring when her belly forms a noticeable cum-paunch.");
 		else
 		{
 			output(", not caring when her belly rounds with your obscene");
@@ -241,23 +242,23 @@ public function raskVelBabeGetsDoggieStyled():void
 			output(" seed that is sure to turn that cum-dome into a proper, pregnant belly in no time.");
 		}
 		output(" Her hands massage her mound as she’s filled, gathering the dripping [pc.cum] into her hands and slathering it all over her ");
-		if(pc.cumQ() <= 500) output("cock-distorted belly");
+		if(cumQ <= 500) output("cock-distorted belly");
 		else output("rounding belly");
 		output(".");
-		if(pc.cumQ() >= 10000) output(" When the pressure becomes too much a wave of [pc.cumColor] pours out from between her thighs, pooling on the ground below, she shudders and screeches in inhuman pleasure.");
+		if(cumQ >= 10000) output(" When the pressure becomes too much a wave of [pc.cumColor] pours out from between her thighs, pooling on the ground below, she shudders and screeches in inhuman pleasure.");
 		output("\n\nAs the passion drains from your body and into the small lizard-girl’s passage, you pull out");
-		if(pc.cumQ() >= 500) output(", smiling at the gush of [pc.cum] that squirts from her overpressurized uterus");
+		if(cumQ >= 500) output(", smiling at the gush of [pc.cum] that squirts from her overpressurized uterus");
 		output(".");
 	}
 	//KNOT
 	else
 	{
 		output("\n\nYour knot inflates as she squeezes, stretching her passage around the cunt-blocking bulb until it’s so well sealed that you couldn’t possibly pull out, even if you wanted to. You hold your new, lizard-like bitch in place while your animalistic organ does its work, pumping out shot after shot of [pc.cum] straight into her fertile passage. You don’t know much about interspecies breeding with raskvel, but your body is desperate to try. You can feel the warmth of your [pc.cum] filling her up as you ejaculate, and your knot ensures that not a single drop is wasted.");
-		if(pc.cumQ() <= 500) {}
+		if(cumQ <= 500) {}
 		else 
 		{
 			output(" The thick spurts round the raskvel’s trim tummy into a nicely-filled dome in no time, and her perfectly plugged pussy wrings you tighter in excitement at such treatment.");
-			if(pc.cumQ() >= 2000)
+			if(cumQ >= 2000)
 			{
 				output(" She’s less pleased when you continue to cum, filling her with");
 				if(pc.virility() > 0) output(" nice, hot, virile");
@@ -304,10 +305,11 @@ public function hugeDickEarJackoff():void
 	else if(pc.cockTotal() > 2) output(", completely ignoring your other penises");
 	output(", hedonistically relishing in using this alien’s odd anatomy as your private masturbation tool.");
 	output("\n\nThe heat of the act sets off a series of contractions inside you that make [pc.eachCock] jerk and spasm once, twice... thrice, and then you’re cumming, firing a load of hot [pc.cumNoun] straight into the air above your defeated once-foe. You lean back and angle your [pc.cockBiggest] forward to point away from yourself, keeping the spraying [pc.cumColor] goo firing up in long arcs that should deposit it on your blissed out companion. The tiny lizard-woman doesn’t seem to mind in the slightest, as her mouth gleefully opens to catch as much as she can. Her pussy gushes out under her, soaking everything below in fragrant girlcum, practically fountaining out from below as you paint her face.");
-	if(pc.cumQ() >= 70) output(" Huge, hot gobs of the stuff spatter across her face, turning it into a [pc.cumColor] mask in short order.");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ >= 70) output(" Huge, hot gobs of the stuff spatter across her face, turning it into a [pc.cumColor] mask in short order.");
 	output(" Some of the [pc.cum] drizzles down your length to soak into her ears, and they’re soon messy with your copious gunk.");
-	if(pc.cumQ() >= 500) output(" You rain down enough for her to swallow mouthful after mouthful all while the pooling sexual release forms a massive puddle below her.");
-	if(pc.cumQ() >= 5000) output(" If it weren’t for the porous nature of the ground below, you’d like be filling a lake by now, but instead your [pc.cum] is likely draining down into some abandoned subterranean dwelling. Or, perhaps there’s a lucky raskvel living down there, somewhere, about to get the pregnancy of her dreams.");
+	if(cumQ >= 500) output(" You rain down enough for her to swallow mouthful after mouthful all while the pooling sexual release forms a massive puddle below her.");
+	if(cumQ >= 5000) output(" If it weren’t for the porous nature of the ground below, you’d like be filling a lake by now, but instead your [pc.cum] is likely draining down into some abandoned subterranean dwelling. Or, perhaps there’s a lucky raskvel living down there, somewhere, about to get the pregnancy of her dreams.");
 	output("\n\nAs your orgasm winds down, you unwrap yourself and let the raskvel’s ears fall away while you slide down. Once your spurting [pc.cockHeadBiggest] is low enough, you let loose one last spurt, right into her fist-spread lips, bathing her in the seed she seemed quite anxious for earlier. The raskvel shudders at this and begins to cum once more, nearly blacking out this time.");
 	output("\n\nYou smile as [pc.eachCock] slowly starts to sag, losing tumescence as you prepare to move on. The defeated alien girl is scooping your [pc.cum] off her face and into her swollen twat as you leave.\n\n");
 	processTime(20+rand(10));
@@ -742,13 +744,14 @@ public function hugeDicksGetForceWorshippedByFemRaskvel(fromCombat:Boolean = fal
 	}
 	//Orgasm!
 	output("\n\nThe tip of that too-tight, latex-like enclosure already stuck out a bit, sort of like an uninflated balloon. Now, it stretches out in a titanic line nearly three feet above your pulsating prick. Again and again, lances of white-hot [pc.cumNoun] fire out of your [pc.cockBiggest], distorting the transparent enclosure into a rapidly-filling balloon of liquid passion.");
-	if(pc.cumQ() <= 10) output("You fill it with a few drops.");
-	else if(pc.cumQ() <= 75) output(" You fill it up to roughly the size of a small apple before finishing with a dopey, satisfied smile.");
-	else if(pc.cumQ() <= 250) output(" You fill it up to roughly the size of a cantaloupe before finishing with a dopey, satisfied smile.");
-	else if(pc.cumQ() <= 1200) output(" You fill it up to roughly the size of cantaloupe before firing some more, stretching the bubble out to the size of a basketball. It sloshes ponderously as it’s pulled down by gravity.");
-	else if(pc.cumQ() <= 3000) output(" You fill it up to roughly the size of a basketball and yet somehow keep going, pouring more and more spunk into that taut enclosure until it’s the size of a watermelon and the pressure is forcing streams of your [pc.cum] back out the bottom.");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ <= 10) output(" You fill it with a few drops.");
+	else if(cumQ <= 75) output(" You fill it up to roughly the size of a small apple before finishing with a dopey, satisfied smile.");
+	else if(cumQ <= 250) output(" You fill it up to roughly the size of a cantaloupe before finishing with a dopey, satisfied smile.");
+	else if(cumQ <= 1200) output(" You fill it up to roughly the size of cantaloupe before firing some more, stretching the bubble out to the size of a basketball. It sloshes ponderously as it’s pulled down by gravity.");
+	else if(cumQ <= 3000) output(" You fill it up to roughly the size of a basketball and yet somehow keep going, pouring more and more spunk into that taut enclosure until it’s the size of a watermelon and the pressure is forcing streams of your [pc.cum] back out the bottom.");
 	else output(" You fill it up to roughly the size of a watermelon before the sloshing, liquid weight yanks the bulbous [pc.cumNoun]-tank down under its own gravity and keep going until it swells up to the size of a beachball. It sloshes ponderously back and forth with each fresh jet, the pressure so great that streamers of cum are shooting out the bottom of the condom even as you fill the top.");
-	if(pc.cumQ() >= 10000) output(" In spite of your torrential climax, the condom seems to be as big as it will go, and each new blast just exits out around the seam at the bottom.");
+	if(cumQ >= 10000) output(" In spite of your torrential climax, the condom seems to be as big as it will go, and each new blast just exits out around the seam at the bottom.");
 	output("\n\n<i>“No more?”</i> the raskvel coos as she gently pats your twitching maleness. <i>“Just a few more drops for your toll, please.”</i> Her tail squirms inside you, squeezing out one last, huge spray of [pc.cum]. <i>“There we go.”</i> She withdraws from your anus while planting a chaste kiss upon your spent phallus");
 	if(pc.cockTotal() > 1) {
 		output(", carefully not to slip in the seed your other, unnattended boner");
@@ -851,19 +854,20 @@ public function getPeggedWhileDoublePenetrate():void
 	if(pc.cocks[x].cLength() <= 14) output("hilted inside her");
 	else output("rammed against whatever her species has for a cervix");
 	output(" throbs and explodes, shooting lightning bolts of passion up your spine and [pc.cumColor] ");
-	if(pc.cumQ() <= 8) output("drops");
-	else if(pc.cumQ() <= 50) output("ropes");
-	else if(pc.cumQ() <= 250) output("wads");
-	else if(pc.cumQ() <= 500) output("splashes");
-	else if(pc.cumQ() <= 2000) output("torrents");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ <= 8) output("drops");
+	else if(cumQ <= 50) output("ropes");
+	else if(cumQ <= 250) output("wads");
+	else if(cumQ <= 500) output("splashes");
+	else if(cumQ <= 2000) output("torrents");
 	else output("floods");
 	output(" straight into the alien’s well-prepared womb. Her ass bounces off you as she begins to fuck you once more, restarting your orgasm before it even gets a chance to trail off. Her stretched anus gets a similar stuffing as you glaze the walls of her colon with [pc.cumColor].");
-	if(pc.cumQ() >= 2000) 
+	if(cumQ >= 2000) 
 	{
 		output(" You shoot so much that there’s a gooey blob rolling out around each of your members as you fill her");
-		if(pc.cumQ() >= 4000) output(", but those pale in comparison to the belly-bloating volume that’s stuck inside");
+		if(cumQ >= 4000) output(", but those pale in comparison to the belly-bloating volume that’s stuck inside");
 		output(".");
-		if(pc.cumQ() >= 10000) output(" The raskvel quickly grows cum-gravid and insensate, lacking the strength to shake her body with the added weight and far too pleased to form cogent thoughts.");
+		if(cumQ >= 10000) output(" The raskvel quickly grows cum-gravid and insensate, lacking the strength to shake her body with the added weight and far too pleased to form cogent thoughts.");
 	}
 
 	output("\n\nThe now-familiar tongue worms its way into your mouth for another kiss, and you happily swap spit with the alien’s organ as the two of you come down together.");
@@ -876,7 +880,7 @@ public function getPeggedWhileDoublePenetrate():void
 	}
 	else output(" She pulls off not long after.");
 	output(" Then, she dresses");
-	if(pc.cumQ() >= 2000) output(" as best she can, given how thoroughly you filled her");
+	if(cumQ >= 2000) output(" as best she can, given how thoroughly you filled her");
 	output(" and bends down for one last kiss. There’s a snap of pain on your neck, and then you’re unconscious.");
 	processTime(30+rand(10));
 	enemy.loadInCunt(pc, 0);
@@ -942,15 +946,16 @@ public function giveRaskvelSomeDongToSuckle():void
 	output("\n\nYou hear her next egg splatter into the cummy mud beneath her, but you feel it more in the blissful purrs of pleasure that thrum through her throat. The raskvel’s eyelids droop low, fluttering in ecstasy. You can see flashes of her arms below you, stroking over the gravid expanse of her belly, encouraging more of her fertilized presents to make the journey to her squirting gates. She keeps sucking throughout, rhythmically bobbing her head and up and down your length, occasionally pausing to let out eggs and accompanying hums of delight.");
 	output("\n\nLetting your own eyes drift closed, you focus on enjoying the sensations, listening for the wet ‘plops’ the eggs make as they land in the soaked, sandy soil. Sometimes you’ll take a peek at the miniature broodmother and admire the way she ardently sucks your cock while her wide-flared hips part around an oversized egg. The longer this goes on, the more vigorously she sucks you and the faster you hear the eggs fall.");
 	output("\n\nYou can’t hold out anymore, not when you’re getting your [pc.cockBiggest] sucked this vigorously by your knocked-up alien slut. Grabbing hold of her long ears, you guide her in a few quick back-and-forth strokes to push you over the edge, and judging by her muffled squeals, her as well.");
-	if(pc.cumQ() < 150) output(" She swallows your load without protest, though her eyes are rolled back in her head from the act of passing a gigantic egg at the same time.");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 150) output(" She swallows your load without protest, though her eyes are rolled back in her head from the act of passing a gigantic egg at the same time.");
 	else 
 	{
 		output(" She tries to swallow your load, but there’s so much [pc.cum] that ");
-		if(pc.cumQ() < 500) output("it leaks");
-		else if(pc.cumQ() < 1000) output("thick streams leak");
+		if(cumQ < 500) output("it leaks");
+		else if(cumQ < 1000) output("thick streams leak");
 		else output("it hoses");
 		output(" from the corners of her mouth");
-		if(pc.cumQ() >= 2000)
+		if(cumQ >= 2000)
 		{
 			output(", soaking the front half of her body in a reminder of your excessive");
 			if(pc.virility() > 0) output(" virility");
@@ -1177,17 +1182,18 @@ public function watchDatRaskvelEggLayyyy():void
 	output("\n\nShe doesn’t reply, instead trying to pull off a smug grimace in spite of any discomfort. You lightly gyrate her hips in circles on your girth to coax out a reply. It proves to be very effective as she starts moaning in a flash. She finally understands that there is no point in fighting it and rests her body against yours, mushing her face in your [pc.chest]. With that out of the way, you begin bouncing her up and down at a brisk pace, eliciting more of her frustrated, lustful moans. It doesn’t feel nearly as tight as you’d expect it to be... Good thing there is a way to fix that.");
 	output("\n\nWithout a warning, you grab the raskvel’s ears and tug them, causing her asshole to clamp down with amazing force – much better!");
 	output("\n\nHer protests have completely caved in by now – she bounces on your [pc.cock " + x + "] with newfound vigour, all by herself. You can feel an orgasm approaching rapidly. Now is a good time to go all out. Still holding onto her ears, you slide down their lengths, press them firmly together, and begin rubbing the undersides together like a couple of rags. The onslaught of pleasure coming from her ears is too much, and her humping kicks into overdrive, sending you over the edge in turn.");
+	var cumQ:Number = pc.cumQ();
 	if(pc.hasKnot(x)) 
 	{
 		output("\n\nYour knot mistakenly locks, leaving the little, thoroughly fucked buttslut stuck on top of your [pc.cock " + x + "] while you unload the content of your [pc.balls] inside her.");
 		//lotsa cummies:
-		if(pc.cumQ() >= 2000) output(" Her belly visibly swells under the gut straining pressure of your [pc.cum].");
+		if(cumQ >= 2000) output(" Her belly visibly swells under the gut straining pressure of your [pc.cum].");
 		output(" You might as well use the opportunity to lie back and have a short rest. The knot stays inflated for a good thirty minutes. That would have been a somewhat peaceful break for you if not for her constant incoherent babbling and blissful drooling.");
 	}
 	else
 	{
 		output("\n\nYour member spasms, pumping seed deep into her colon.");
-		if(pc.cumQ() >= 2000) output(" Her belly visibly swells under the gut straining pressure of your [pc.cum].");
+		if(cumQ >= 2000) output(" Her belly visibly swells under the gut straining pressure of your [pc.cum].");
 	}
 	output("\n\nFeeling positively spent, you pull the raskvel girl off and lie her down next to you. While recollecting your stuff ");
 	if(!pc.isCrotchExposed()) output("and re-dressing");

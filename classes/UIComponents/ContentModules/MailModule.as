@@ -137,7 +137,7 @@ package classes.UIComponents.ContentModules
 			}
 			else if(key == "syri_onahole_video")
 			{
-				if (kGAMECLASS.flags["PENNY_SYRIVAG_WATCHED"] == undefined) addGhostButton(0, "Watch Vid", watchPennysSyriPorn, undefined, "Watch Vid", "Check out this video -- you're curious as to what's happening between these two.");
+				if (kGAMECLASS.flags["PENNY_SYRIVAG_WATCHED"] == undefined) addGhostButton(0, "Watch Vid", watchPennysSyriPorn, undefined, "Watch Vid", "Check out this video -- you’re curious as to what’s happening between these two.");
 				else
 				{
 					_mailText.htmlText += "\n\n<i>The vid has been downloaded to your smut menu.</i>";
