@@ -519,6 +519,7 @@
 		include "../includes/uveto/rhenworld.as";
 		include "../includes/uveto/rooms.as";
 		include "../includes/uveto/roomFunctions.as";
+		include "../includes/uveto/roxy.as";
 		include "../includes/uveto/shade.as";
 		include "../includes/uveto/stormguardMale.as";
 		include "../includes/uveto/subTuner.as";
@@ -1753,7 +1754,11 @@
 		{
 			return chars["LURELING"];
 		}
-
+		public function get roxy():Roxy
+		{
+			return chars["ROXY"];
+		}
+		
 		public function testShipCombat():void
 		{
 			CombatManager.newSpaceCombat();

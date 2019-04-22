@@ -1339,6 +1339,15 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	// Worn collars
 	appearanceWornCollar();
 	
+	if (target.hasStatusEffect("Roxy Style Collar Mark"))
+	{
+		outputRouter(" A bright red loop of collar-tenderized skin is visible on your neck");
+		if (target.hasFur()) outputRouter(" below your fur");
+		outputRouter(", proof of Roxy's lasting");
+		if (silly) outputRouter(" snu-snu.");
+		else outputRouter(" domination.");
+	}
+	
 	//BODY PG HERE
 	if(target == pc) outputRouter("\n\nYou have a humanoid upper body with the usual torso, arms, hands, and fingers");
 	else outputRouter("\n\nFrom the waist up, [target.name] has your typical humanoid upper body: torso, arms, hands, and fingers");

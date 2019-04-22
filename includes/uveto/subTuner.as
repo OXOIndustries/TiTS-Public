@@ -3179,7 +3179,21 @@ public function taurStadiumInterior():Boolean
 	
 	removeUvetoCold();
 	
-	addButton(0,"Cashier",taurStadiumCashier);
+	addButton(0, "Cashier", taurStadiumCashier);
+	
+	if (roxyIsInStadium())
+	{
+		if (flags["ROXY_MET"] >= 1)
+		{
+			output("\n\nThe sporty laquine Roxy is relaxing alone on her usual bench. She's watching the crowd lazily, only being snapped out of her rest by the occasional fan.");
+			addButton(1, "Roxy", roxyGreet,undefined,"Roxy","Touch base with Roxy.");
+		}
+		else
+		{
+			output("\n\nThrough the hustle and bustle of fortunes won and lost, you spot a coffee-colored laquine girl chilling out on one of many benches. From the way her upright ears crane and the way her neck pivots, you'd say she's people-watching. Occasionally someone approaches her holding a pen and a piece of paper. You'd guess from the flair she applies in accepting and signing those slips - and other sporty objects - she must be an athlete. A successful one.");
+			addButton(1, "Laquine", roxyGreet,undefined,"Laquine","Approach the spunky rabbit.");
+		}
+	}
 	
 	return false;
 }
