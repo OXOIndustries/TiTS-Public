@@ -691,13 +691,18 @@ public function enteringHaleysStallRepeat():void
 		}
 	}
 	clearMenu();
-	addButton(0,"Get Fucked",getFuckedByHaleyAsATreatedFemPCRepeatSlut,undefined,"Get Fucked","Ask Haley if she needs your help to relieve her stress.");
+	if(pc.hasGenitals()) addButton(0,"Get Fucked",getFuckedByHaleyAsATreatedFemPCRepeatSlut,undefined,"Get Fucked","Ask Haley if she needs your help to relieve her stress.");
+	else addDisabledButton(0, "Get Fucked","Get Fucked", "You’ve got to have genitals for this!");
 	if(pc.isTaur() && pc.hasCock() && pc.biggestCockLength() >= 18) addButton(1,"Sandwiched",getHaleyAFuckingSandwich,undefined,"Sandwiched","Fuck the milker while Haley fills you up.")
 	else addDisabledButton(1, "Sandwiched", "Sandwiched", "You’ve got to be a big-dicked taur in order to get between them.");
 	if (!pc.hasCock()) addDisabledButton(2, "Competition", "Competition", "You can’t do that without a penis.");
 	else if (pc.biggestCockLength() >= 15) addButton(2, "Competition", haleyChallenge, undefined, "Competition", "Challenge Haley to see who can cum more.");
 	else addDisabledButton(2, "Competition", "Competition", "You need to have a bigger dick to use the taur-milker to challenge her.");
-	if (flags["MET_ELLIE"] != undefined && flags["BEAT_HALEY"] != undefined && pc.hasCock() && pc.hasVagina()) addButton(3, "Threesome", haleyEllieThreesome, undefined, "Threesome", "Ask Haley if she wants a threesome with Ellie.");
+	if (flags["MET_ELLIE"] != undefined && flags["BEAT_HALEY"] != undefined)
+	{
+		if (!pc.hasCock()) addDisabledButton(3, "Threesome", "Threesome", "You need to have a penis for this!");
+		else addButton(3, "Threesome", haleyEllieThreesome, undefined, "Threesome", "Ask Haley if she wants a threesome with Ellie.");
+	}
 	else if (flags["MET_ELLIE"] == undefined) addDisabledButton(3, "Threesome", "Threesome", "If only you knew a sexy taurgirl who’d be up for a threesome with Haley. Gotta be one of those on New Texas...");
 	else if (flags["BEAT_HALEY"] == undefined) addDisabledButton(3, "Threesome", "Threesome", "You have to beat Haley in the competition for this.");
 	else if (!pc.hasCock() || !pc.hasVagina()) addDisabledButton(3, "Threesome", "Threesome", "You currently have to be a herm for this.");
@@ -1283,7 +1288,7 @@ public function haleyEllieThreesome():void
 	var mainCockIdx:int = pc.cockThatFits(ppHaley.vaginalCapacity());
 	if (mainCockIdx < 0) mainCockIdx = pc.smallestCockIndex();
 	var subCockIdx:int = -1;
-	if (pc.cocks.length > 1)
+	if (pc.cocks.length > 1 && flags["HALEY_ANAL_VIRGINITY_TAKEN"] != undefined)
 	{
 		subCockIdx = pc.cockThatFits(ppHaley.analCapacity(), "volume", [mainCockIdx]);
 	}
@@ -2854,7 +2859,7 @@ public function haleyWholesomeTaurpussySex(cockIdx:int):void
 		else output("\n\n<i>“Stars,”</i> she pants wildly, trying to catch her breath. <i>“That- that </i>behemoth<i> cock of yours is something else, [pc.name]...”</i>");
 	}
 	output("\n\nYou stay silent and instead ply Haley’s indomitable yet inexperienced body with all the pleasure she can handle. Very soon you have a strong, powerful mare all but champing at the proverbial bit while you rock her world, enjoying the way she can barely keep control of her quivering hindquarters to stay standing. Her clawed feet scrabble against the ground, pushing hay out of their path as her puzzled mind tries to figure out whether her legs should be spread or held close, if she should scream in bliss or breathlessly pant. It doesn’t seem like she’s ever going to find an answer as long as you’re inside her, her continual writhing and moaning the only constant she can come up with.");
-	output("\n\nHaley cums over and over, almost fighting for control as you keep her held in place with{taur: your legs and hindquarters/else: a steady hand} and ride her all throughout while she cries out in orgasmic ecstasy. Twenty minutes of having her mind blown finds her submissively knelt down, unable to stay completely standing while you frantically rut her spasming mareslit, the overpowering need running away with your sex-frayed mind. Only her curvy behind remains thrust obstinately into the air, your anchor amidst the mating frenzy.");
+	output("\n\nHaley cums over and over, almost fighting for control as you keep her held in place with " + (pc.isTaur() ? "your legs and hindquarters" : "a steady hand") + " and ride her all throughout while she cries out in orgasmic ecstasy. Twenty minutes of having her mind blown finds her submissively knelt down, unable to stay completely standing while you frantically rut her spasming mareslit, the overpowering need running away with your sex-frayed mind. Only her curvy behind remains thrust obstinately into the air, your anchor amidst the mating frenzy.");
 	output("\n\nYour own orgasm is the cherry on top of the whole experience,");
 	if (cockIdx < 0) output(" cumming as hard as you ever have");
 	else

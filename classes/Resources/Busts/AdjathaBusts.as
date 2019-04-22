@@ -1311,6 +1311,22 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/darnock.png", mimeType = "image/png")]
 			public var Full_DARNOCK:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/del.png", mimeType = "image/png")]
+			public var Full_DELILAH:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/del_nude.png", mimeType = "image/png")]
+			public var Full_DELILAH_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/del_shemale.png", mimeType = "image/png")]
+			public var Full_DELILAH_SHEMALE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/del_shemale_nude.png", mimeType = "image/png")]
+			public var Full_DELILAH_SHEMALE_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/del_shemale_horse.png", mimeType = "image/png")]
+			public var Full_DELILAH_SHEMALE_HORSE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/del_shemale_horse_nude.png", mimeType = "image/png")]
+			public var Full_DELILAH_SHEMALE_HORSE_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/del_boy.png", mimeType = "image/png")]
+			public var Full_DELILAH_BOY:Class;
+			public function get Full_DELILAH_BOY_NUDE():Class { return Full_DELILAH_NUDE; }
+			
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/syri_hell.png", mimeType = "image/png")]
 			public var Full_DEMONSYRI:Class;
 			

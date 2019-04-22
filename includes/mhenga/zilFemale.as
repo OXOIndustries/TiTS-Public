@@ -1554,11 +1554,14 @@ public function normalZilgirlCockfuck():void
 		output("\n\nThe [pc.cum]-stuffed woman giggles as you brush yourself off, hands caressing her bloated stomach. <i>“Amazing,”</i> she says breathlessly, gazing up at you through half-lidded eyes, <i>“You offworlders... are...”</i>");
 		output("\n\nYou look down to see her fast asleep, a smile on her face. With an amused shrug, you clean yourself up, gather your equipment, and set out, feeling a deep sense of satisfaction.");
 	}
-	else if(pc.hasKnot(x)) output("\n\nYou grow still as the pleasure fades, your waspish partner coming down alongside you. But the [pc.knot "+x+"] at the base of your [pc.cockNoun "+ x +"] keeps the two of you locked together, and the zil’s hand moves to her crotch. You nuzzle against her neck as she massages her sticky folds, helping to work your slowly-shrinking member free. You eventually withdraw with a slick squish, standing up to get ready to leave.");
-	else output("\n\nYou grow still as the pleasure fades, your waspish partner coming down alongside you. " + (pc.isAss() ? "Satisfied, you pull away and " : "While you’d like to simply lie beside her and savor the blissful intimacy, you manage to ") + "force yourself upright to begin gathering your gear. The beaming zil stays on the ground, idly playing with her [pc.cum]-leaking sex as you get ready to leave.");
-	output("\n\n<i>“You don’t have to go,”</i> she murmurs, caressing herself enticingly. ");
-	if(pc.isAss()) output("\n\n<i>“Actually, I do.”</i> You secure your equipment with one final tug and give a farewell salute as you walk off. The zil looks disappointed, but shrugs and returns her attention to her vagina. You doubt she’ll be upset for long.");
-	else output("\n\nYou smile. <i>“As much as I wish that were true, I do.”</i> You secure the last of your belongings and kneel down, giving the bee girl a final kiss goodbye before walking off, filled with warmth and satisfaction.");
+	else
+	{
+		if(pc.hasKnot(x)) output("\n\nYou grow still as the pleasure fades, your waspish partner coming down alongside you. But the [pc.knot "+x+"] at the base of your [pc.cockNoun "+ x +"] keeps the two of you locked together, and the zil’s hand moves to her crotch. You nuzzle against her neck as she massages her sticky folds, helping to work your slowly-shrinking member free. You eventually withdraw with a slick squish, standing up to get ready to leave.");
+		else output("\n\nYou grow still as the pleasure fades, your waspish partner coming down alongside you. " + (pc.isAss() ? "Satisfied, you pull away and " : "While you’d like to simply lie beside her and savor the blissful intimacy, you manage to ") + "force yourself upright to begin gathering your gear. The beaming zil stays on the ground, idly playing with her [pc.cum]-leaking sex as you get ready to leave.");
+		output("\n\n<i>“You don’t have to go,”</i> she murmurs, caressing herself enticingly. ");
+		if(pc.isAss()) output("\n\n<i>“Actually, I do.”</i> You secure your equipment with one final tug and give a farewell salute as you walk off. The zil looks disappointed, but shrugs and returns her attention to her vagina. You doubt she’ll be upset for long.");
+		else output("\n\nYou smile. <i>“As much as I wish that were true, I do.”</i> You secure the last of your belongings and kneel down, giving the bee girl a final kiss goodbye before walking off, filled with warmth and satisfaction.");
+	}
 	output("\n\n");
 	
 	processTime(20+rand(10));

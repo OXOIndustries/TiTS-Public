@@ -48,6 +48,7 @@
 			//addFlag(GLOBAL.ITEM_FLAG_BLIND_IGNORE);
 			//baseDamage.addFlag(DamageFlag.VAMPIRIC);
 			//baseDamage.addFlag(DamageFlag.PENETRATING);
+			addFlag(GLOBAL.ITEM_FLAG_PISTOL_WEAPON);
 
 			this.defense = 0;
 			this.shieldDefense = 0;

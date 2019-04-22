@@ -3731,7 +3731,7 @@
 		}
 		public function shower():void
 		{
-			if(hasStatusEffect("Shower Douche Toggle"))
+			if(statusEffectv1("Shower Douche Toggle") == 1)
 			{
 				flushCumflation();
 				removeStatusEffect("Shower Douche Toggle");
@@ -4905,11 +4905,7 @@
 
 			currPhys += statusEffectv1("Dispassion Fruit");
 			if (hasStatusEffect("Tripped")) currPhys -= 4;
-			if (hasStatusEffect("Crunched"))
-			{
-				var se:StorageClass = getStatusEffect("Crunched");
-				currPhys -= (8 * se.value1);
-			}
+			if (hasStatusEffect("Crunched")) currPhys -= (8 * statusEffectv1("Crunched"));
 			if (hasStatusEffect("Tranquilized")) currPhys *= 0.5;
 			if (hasStatusEffect("Psychic Leech")) currPhys *= 0.85;
 			if (hasStatusEffect("Full Stomach")) currPhys *= 0.9;
@@ -5724,7 +5720,7 @@
 			temp += armor.shields + upperUndergarment.shields + lowerUndergarment.shields + accessory.shields + shield.shields;
 			if (hasPerk("Shield Tweaks")) temp += level * 2;
 			if (hasPerk("Shield Booster")) temp += level * 8;
-			if (hasPerk("Attack Drone") && hasActiveCombatDrone(true, false)) temp += (3 * level);
+			if (hasPerk("Attack Drone") && hasActiveCombatDrone(true, false) && !hasCombatDrone(false, true)) temp += (3 * level);
 			if (hasStatusEffect("Valden-Possessed")) temp *= 1 + AkkadiSecurityRobots.valdenShieldBuffMult;
 			
 			//Debuffs!
@@ -11562,6 +11558,7 @@
 					cocks[slot].addFlag(GLOBAL.FLAG_FORESKINNED);
 					break;
 				case GLOBAL.TYPE_LIZAN:
+				case GLOBAL.TYPE_SNAKE:
 				case GLOBAL.TYPE_NAGA:
 					cocks[slot].cockColor = "purple";
 					cocks[slot].knotMultiplier = 1;
@@ -18025,7 +18022,9 @@
 			switch(arg)
 			{
 				case GLOBAL.FLUID_TYPE_MILK:
-					collection.push("milk", "cream");
+					collection.push("milk");
+					if(rand(10) == 0) collection.push("cream");
+					if(kGAMECLASS.silly && cowScore() >= 4 && rand(5) == 0) collection.push("moo juice");
 					break;
 				case GLOBAL.FLUID_TYPE_CUM:
 				case GLOBAL.FLUID_TYPE_CUNDARIAN_SEED:

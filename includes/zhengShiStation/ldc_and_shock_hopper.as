@@ -906,7 +906,6 @@ public function rideHopperSlut2(args:Array):void
 	pc.orgasm();
 	if (x >= 0)
 	{
-		
 		flags["LDC_SHOCKHOPPER_CUMIN"] = 2;
 		pc.loadInCunt(enemy,x);
 	}
@@ -1426,7 +1425,7 @@ public function getWorshippedByBuns(cockUse:Boolean):void
 		output("\n\nThe Hopper " + (pc.legCount > 1 ? "shoulders your leg":"holds you steady") + " with all the strength a domme bunny can muster, her tongue swishing with near-mechanical speed. She catches up to her captain’s level of twat-pleasing performance in no time, eager to show you how well she can treat your [pc.pussyNoun].");
 		if(pc.balls > 1)
 		{
-			output("She doesn’t leave your [pc.balls] alone. The zap-rabbit moans louder when she handles those sumptuous spunk-weights that rest atop her furry head, wearing your ");
+			output(" She doesn’t leave your [pc.balls] alone. The zap-rabbit moans louder when she handles those sumptuous spunk-weights that rest atop her furry head, wearing your ");
 			if(pc.hasStatusEffect("Uniball")) output("taut");
 			else if(pc.ballDiameter() < 3) output("weighty");
 			else if(pc.ballDiameter() < 7) output("bloated");
@@ -1713,9 +1712,9 @@ public function laquineShockyThreesomes2(x:int):void
 	if(pc.balls > 0)
 	{
 		if(pc.ballDiameter() < 5) output(" Your cum-pouch swings close to his, not quite heavy enough to touch.");
-		else output(" Your sagging ballsack collides with L.D.C.’s, sinking into testicular thresh");
+		else output(" Your sagging ballsack collides with L.D.C.’s, sinking into testicular thresh.");
 	}
-	output(". You tug and tweak the weapons-grade nipples between your fingers, grinding the unbalanced candy-rabbit’s ass into your personal space.");
+	output(" You tug and tweak the weapons-grade nipples between your fingers, grinding the unbalanced candy-rabbit’s ass into your personal space.");
 	output("\n\n<i>“H-hey, don’t you know how to treat a woman?”</i> the bunny-boy quips, but he’s just trying to distract from his inattentiveness - if he practiced what he preached, then he’d have been all over her from the start. That’s something you growl out to him after the next feral thrust into still-stretching anus.");
 	processTime(15);
 	pc.lust(1000);
@@ -2596,7 +2595,7 @@ public function ldcShockHopperSteeleBirthNext(arg:Array):void
 		else output(" sloshing");
 		if (numChildren >= 6) output(" at the idea of feeding this many children, but feed them you must.");
 		else output(" at the idea of feeding your children.");
-		output(" A little wince and grunt is nothing compared to the weeks you’ve endured, and as you get yourself ready you let out a happy, bubbly sigh.");
+		output(" A little wince and grunt is nothing compared to the " + (pc.pregnancyIncubationBonusMother() < 14 ? "weeks" : "time") + " you’ve endured, and as you get yourself ready you let out a happy, bubbly sigh.");
 		
 		if (numChildren == 2) output("\n\nThe twins feed from each [pc.milkNoun] dripping nipple while you cradle their heads with profound gentleness.");
 		else

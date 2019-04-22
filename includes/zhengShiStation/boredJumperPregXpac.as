@@ -2015,8 +2015,8 @@ public function boredJumperPregEncounterGoWithRestRvsCowgirl(jumperType:int=0):v
 		else if (pc.milkType == GLOBAL.FLUID_TYPE_MILKSAP) output("\n\n<i>“Gosh, what is this... It tastes like...”</i> She smacks her lips, looking up to you with [pc.milkColor] milk-sap dripping from the edges of her [enemy.lipColor] lips. <i>“It’s... I can’t tell!”</i> You ask her if she’s displeased by it, but she’s quick to shake her head. <i>“Hell no! The aftertaste is incredible!”</i>");
 		else if (pc.milkType == GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT) output("\n\n<i>“Oh fuck, you’re not just a milky momma, you’re a walkin’ picnic!”</i> The Jumper dives into your chest again, painting her muzzle [pc.milkColor] with your [pc.milkFlavor] treat. <i>“Mm-mmf, sweetness with a bit of crisp. I looove fruity stuff! How’d ‘ya know?”</i> You shrug your shoulders and shove her back into it.");
 		else if (pc.milkType == GLOBAL.FLUID_TYPE_NECTAR) output("\n\n<i>“Just... what is this...”</i> The slut-bun licks her lips like a frenzied animal, sucking so hard for your revitalizing nectar that you yelp in pain - when you do, she apologizes profusely. <i>“I... this stuff is delicious, but I feel like I’m getting stronger just by drinking it.”</i> A wide grin spreads on her lapine muzzle. <i>“Just means I’m gonna have plenty of energy for taking care of ‘ya, cutie!”</i>");
-		else output("\n\n<i>“Creamy!”</i> she chirps. <i>“Creamy, smooth, good ‘ol fashioned milky milkness!”</i> she giggles, tonguing up and over your nubs like a cat playing with a toy, causing them to vibrate and throb in pangs of pure pleasure.");
-				
+		else output("\n\n<i>“Creamy!”</i> she chirps. <i>“Creamy, smooth, good ‘ol fashioned milky milkness!”</i> she giggles, tonguing up and over your " + (pc.hasErectNipples() ? "nubs" : "spouts") + " like a cat playing with a toy, causing them to vibrate and throb in pangs of pure pleasure.");
+		
 		output("\n\nYour partner’s thick breaths blanket your [pc.chest] in as much heat as [pc.milkNoun]. She works herself into an animalistic rut, slobbering all over you with increasing disregard. You have to remind the sweat-slicked slut of that between your delirious moans, and when you do, she parts your tits and lets all the pooled lactation run down");
 		if (sceneNum >= 2) output(" and over");
 		output(" your [pc.belly]. It makes you feel uncomfortably empty as well as slightly cold, and then she’s mauling your chest with alternating gropes all over again.");
@@ -2038,7 +2038,6 @@ public function boredJumperPregEncounterGoWithRestRvsCowgirl(jumperType:int=0):v
 		output(" and sitting you in her lap. <i>“No milk either... aww...");
 		if (sceneNum >= 2) output(" hope you’ve got a plan when you give birth, sweetie!");
 		output("”</i> she pouts, running her sweat-slick paws all over your [pc.skinFurScales] and especially your [pc.belly]. <i>“But that’s no big deal. Let’s get you in the mood, baby!”</i>");
-		
 		
 		output("\n\nSpeaking of being in the mood, you can see her [enemy.cockNoun 0] poking out from the top of her half-yanked zipper, painted thick with lubricant. You waste no time finishing the job, planting your palms to its");
 		if (jumperType == GLOBAL.TYPE_HUMAN) output(" swollen shape.");
@@ -2580,7 +2579,7 @@ public function boredJumperPregEncounterGoWithRestSneakBBNext2(jumperType:int=0)
 	}
 	else if (pc.hasTits())
 	{
-		output("\n\nAll you can hope to affect are your [pc.breasts] and the shining nipples capping them. Your fingers curl around the stiff [pc.nippleColor] nubs");
+		output("\n\nAll you can hope to affect are your [pc.breasts] and the shining nipples capping them. Your fingers " + (pc.hasErectNipples() ? "curl around the stiff [pc.nippleColor] nubs" : "pinch at the engorged [pc.nippleColor] organs"));
 		if (boredJumperBreastFeedOK()) output(" dripping with [pc.milk]");
 		output(", squeezing them upwards in alternating yanks that change their malleable shape in pleasant ways");
 		if (boredJumperBreastFeedOK()) output(" and shooting thin arcs of [pc.milkVisc] mammary-meal into the air");
@@ -2959,7 +2958,7 @@ public function boredJumperPregEncounterJumperPregBirth():Boolean
 	else if (jumperType == GLOBAL.TYPE_FELINE && flags["BJUMPER_CAT_TOTAL_KIDS"] == numBabies) output(" <i>“I’m a mom now, huh...”</i>");
 	else if (jumperType == GLOBAL.TYPE_HUMAN && flags["BJUMPER_TERRAN_TOTAL_KIDS"] == numBabies) output(" <i>“I’m a mom now, huh...”</i>");
 	else output(" <i>“I’m a mom all over again...”</i>");
-		
+	
 	output("\n\nShe extends her arms, ready to receive her babies and begin their feeding. You sit wordlessly by her side, gaze locked on their little mouths and unopened eyes. She brings them to her [enemy.nippleColor] teat, letting them suckle and pinch at her milk-trickling nubs until they tire.");
 	if (numBabies == 2) output(" When they’re both satisfied, you sit shoulder-to-shoulder with the mother-bun."); 	
 	else output(" When one is satisfied, it is set to the side to rest until the rest have had their fill. Afterward, you snuggle up with the lawless laquine shoulder-to-shoulder.");
@@ -3199,7 +3198,7 @@ public function boredJumperPregNurserySceneBabies(arg:Array):void
 	{
 		output("\n\nSince you’re here, you see no reason why you can’t indulge them and yourself a bit. You guide one of the infants to your [pc.breasts]");
 		if (!pc.isChestExposed()) output(", slipping your [pc.chestCovers] out of the way");
-		output(", and encourage them with your erect, [pc.milkNoun]-dribbling teat. Sensing the treat, the tiny bunny opens its mouth and begins to suckle, but not too much. The staff must have fed them already, because they’re back to napping rather quickly... but their rest seems much more relaxed, somehow!");
+		output(", and encourage them with your " + (pc.hasErectNipples() ? "erect, [pc.milkNoun]-dribbling teat" : "engorged, [pc.milkNoun]-dribbling spout") + ". Sensing the treat, the tiny bunny opens its mouth and begins to suckle, but not too much. The staff must have fed them already, because they’re back to napping rather quickly... but their rest seems much more relaxed, somehow!");
 	}
 	output("\n\nSadly, you can’t hold them forever. With a heavy heart, you stand and return them to their bed, fitting a blanket tight under their limbs and making sure they’re holding each other tight.");
 	if (boredJumperPregKidTotal( -1) > 0)
@@ -3731,9 +3730,10 @@ public function boredJumperisSneakBBOK(sceneNum:int=0):Boolean
 //see if steele can do laquine breastfeeding scenes
 public function boredJumperBreastFeedOK():Boolean
 {
-	if (pc.isLactating() && pc.milkType != GLOBAL.FLUID_TYPE_CUM && pc.milkType != GLOBAL.FLUID_TYPE_GIRLCUM && (pc.hasNormalNipples() || pc.hasInvertedNipples())) return true;
-	
-	return false;
+	// Note: edited for consistency, sorry!
+	//if (pc.isLactating() && pc.milkType != GLOBAL.FLUID_TYPE_CUM && pc.milkType != GLOBAL.FLUID_TYPE_GIRLCUM && (pc.hasNormalNipples() || pc.hasInvertedNipples())) return true;
+	//return false;
+	return (pc.isLactating());
 }
 //has the jumper been told steeles name
 public function boredJumperKnowsSteelesName(jumperType:int=0):Boolean
@@ -4137,7 +4137,7 @@ public function boredJumperPregPregnancyEnds():void
 				output("\n\n<i>“Ah, but you’ve gotta give ‘em their meal, sweet-stuff!”</i>");
 				if (dblBirth) output(" You gather up your kids while she nurses her own.");
 				else output(" The Jumper hands them off to you with all the care and tenderness she’s physically capable of.");
-				output(" The squeaking bunny-babies are guided to your [pc.milkyNipples], quieting down the moment their frail lips seal around the trickling nubs. [pc.MilkVisc] nourishment flows in small amounts, suckled by little ones who need it most.");
+				output(" The squeaking bunny-babies are guided to your [pc.milkyNipples], quieting down the moment their frail lips seal around the trickling " + (pc.hasErectNipples() ? "nubs" : "spouts") + ". [pc.MilkVisc] nourishment flows in small amounts, suckled by little ones who need it most.");
 			
 				pc.milked(milk,true);
 			}
@@ -4221,7 +4221,7 @@ public function boredJumperPregPregnancyEnds():void
 			else output(" Some are wholly coated in it, but others are identifiably halfbreed rabbits. You can see a little of " + flags["BJUMPER_PC_BIRTH_SCENE_HAIRCOLOR1"] + " in there.");
 			
 			output("\n\nIn the limpid moment, all you can feel is pure joy. ");
-						
+			
 			if (boredJumperBreastFeedOK())
 			{
 				output("\n\n<i>“Now, you’ve got some work to do, </i>mom!<i>”</i> the Jumper snerks,");
@@ -4366,7 +4366,7 @@ public function boredJumperPregPregnancyEnds():void
 			
 			if (boredJumperBreastFeedOK())
 			{
-				output("\n\nYou can’t waste any time. You’ve got " + num2Text(numChildren) + " kids to feed, and your [pc.milk] belongs in their needy bellies. They all get their turns, ten, twelve... however many suckles they desire, all until it dribbles wasted and the next are given their chance at your milk-nubs.");
+				output("\n\nYou can’t waste any time. You’ve got " + num2Text(numChildren) + " kids to feed, and your [pc.milk] belongs in their needy bellies. They all get their turns, ten, twelve... however many suckles they desire, all until it dribbles wasted and the next are given their chance at your milk-" + (pc.hasErectNipples() ? "nubs" : "spouts") + ".");
 				if (pc.breastRows.length > 1) output(" Right now, your multiple rows of breasts are getting used to their fullest. Right now, you look like the galaxy’s happiest broodmother.");
 				output(" Slumber rabbits are packed into a softly rumbling pile.");
 				

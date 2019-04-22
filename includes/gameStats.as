@@ -1104,6 +1104,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(flags["CHRISSY_ANAL"] != undefined) totalVirginitiesTaken++;
 		if(flags["ULA_DEFLOWERED"] != undefined) totalVirginitiesTaken++;
 		if(flags["LILA_VIRGINITY_TAKEN"] != undefined) totalVirginitiesTaken++;
+		if(flags["HALEY_ANAL_VIRGINITY_TAKEN"] == undefined) totalVirginitiesTaken++;
 		if(!ainaIsVirgin()) totalVirginitiesTaken++;
 		if(sleepingPartner != "" || totalVirginitiesTaken > 0 || pantyFapCount() > 0)
 		{
@@ -7510,6 +7511,17 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["JUMPER_SLAVES_FREED"] != undefined) output2("\n<b>* Slaves:</b> " + (flags["JUMPER_SLAVES_FREED"] == 1 ? "Freed" : "Ignored"));
 				variousCount++;
 			}
+			// Casino Royale
+			if(flags["MET_ROO"] != undefined)
+			{
+				output2("\n<b><u>Treasure Nova</u></b>");
+				// Roo
+				if(flags["MET_ROO"] != undefined)
+				{
+					output2("\n<b>* Roo:</b> Met her");
+					if(flags["ROO_GAMES_PLAYED"] != undefined) output2("\n<b>* Roo, Times Played Blackjack With:</b> " + flags["ROO_GAMES_PLAYED"]);
+				}
+			}
 		}
 		
 		if(showID == "Uveto" || showID == "All")
@@ -8338,6 +8350,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			output2("\n<b>* Dane:</b> Met him");
 			if(flags["FOUGHT_DANE_ON_MHENGA"] != undefined) output2(", Fought him on Mhen’ga");
 			if(flags["FREED_DANE_FROM_TAIVRA"] != undefined) output2(", Freed him on Myrellion");
+			if(flags["DANE_PUNCHED"] != undefined) output2(", Seen him on Zhèng Shi");
 			if(daneRecruited())
 			{
 				output2(", Crew member");

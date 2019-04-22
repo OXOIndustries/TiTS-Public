@@ -1340,7 +1340,7 @@ public function ulasRoleInTheClan():void
 		else output("So silly! They said I was too headstrong and lacked the qualities of a leader. They said I needed a mate but wouldn’t let me visit males. They thought I was pussy-dumb and useless, but I showed them! You did too! If I hadn’t gotten mad and run away to meet you, the whole hold would be a milodan city by now!");
 		output("”</i> She pats at her mostly-bared crotch. <i>“");
 		if(!korgiTranslate()) output("Now no elder can tell Ula what do about males, but Ula not care. Not need korg visiting. Rather [pc.name] visit.");
-		else output("nNow no elder can tell me what to do about males and mating, but I don’t care. I don’t need a male korg to visit. I’d rather you visit.");
+		else output("Now no elder can tell me what to do about males and mating, but I don’t care. I don’t need a male korg to visit. I’d rather you visit.");
 		output("”</i> The korgonne " + (ulaChief() ? "chieftess":"princess") + " smiles sidelong at you.");
 
 		//Bimb
@@ -1850,7 +1850,7 @@ public function ulaPregApproach():void
 					}
 					else
 					{
-						output("They’re so smart They’ve already learned how to play the belly-drum!");
+						output("They’re so smart. They’ve already learned how to play the belly-drum!");
 						if(pc.isBimbo()) output(" They must have gotten it from me. You’re more body-smart than brain-smart.");
 					}
 					output("”</i> She smiles bashfully. <i>“");
@@ -1904,7 +1904,7 @@ public function ulaPregApproach():void
 					}
 					else
 					{
-						output("They’re so smart They’ve already learned how to play the belly-drum!");
+						output("They’re so smart. They’ve already learned how to play the belly-drum!");
 						if(pc.isBimbo()) output(" They must have gotten it from me. You’re more body-smart than brain-smart.");
 					}
 					output("”</i> She smiles proudly. <i>“");

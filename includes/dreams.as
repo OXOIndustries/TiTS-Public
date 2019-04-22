@@ -1401,13 +1401,13 @@ public function capraphormPrimorditattsGain():void
 	output("There’s an indescribable itch that takes over your [pc.skinFurScales], one that covers your body. You feel the urge to scratch but merely brushing your fingers against the sensitive surface makes you wince.");
 	if(pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_FUR))
 	{
-		if(pc.skinType != GLOBAL.SKIN_TYPE_FUR)
+		if(pc.skinType == GLOBAL.SKIN_TYPE_FUR)
 		{
-			output("\n\nYour [pc.skinFurScales] visibly shifts color to a cool, jade green shade!");
+			output("\n\nThe surface of your [pc.skinFurScales] visibly shifts color to a cool, jade green shade!");
 		}
 		else
 		{
-			output("\n\nYou feel sharp hairs come out from unseen pores all over your body, their color a cool, jade green shade!");
+			output("\n\nYou feel sharp hairs come out from unseen pores all over your body, their color to a cool, jade green shade!");
 			pc.skinType = GLOBAL.SKIN_TYPE_FUR;
 			pc.clearSkinFlags();
 		}

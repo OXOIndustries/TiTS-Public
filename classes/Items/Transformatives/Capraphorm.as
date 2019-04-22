@@ -142,7 +142,7 @@ package classes.Items.Transformatives
 				TFList.push(4);
 			// Change skintype to goat fur. Descriptors: short, coarse, thick. Randomly change fur color to mottled brown, cream, white, chocolate, or black.
 			var goatFurColors:Array = ["mottled brown", "cream", "white", "chocolate", "black"];
-			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && rand(2) == 0)
+			if((target.skinType != GLOBAL.SKIN_TYPE_FUR || !target.hasSkinFlag(GLOBAL.FLAG_THICK)) && rand(2) == 0)
 				TFList.push(5);
 			// Change eyes to goat eyes. Descriptors: alien, goat-like, intimidating, caprine. Eyes change color to amber, hazel, blue, or white.
 			var goatEyeType:int = (rand(2) == 0 ? GLOBAL.TYPE_GOAT : -1);
@@ -152,7 +152,7 @@ package classes.Items.Transformatives
 				goatEyeType = GLOBAL.TYPE_ADREMMALEX;
 				goatEyeColors = ["amber", "crimson", "red"];
 			}
-			if(!InCollection(target.eyeType, [GLOBAL.TYPE_GOAT, GLOBAL.TYPE_ADREMMALEX]) && target.eyeType != -1)
+			if(!InCollection(target.eyeType, [GLOBAL.TYPE_GOAT, GLOBAL.TYPE_ADREMMALEX]) && goatEyeType != -1)
 				TFList.push(6);
 			// Change face to goat muzzle. Descriptors: goat-like, elongated, angular, caprine.
 			if(target.faceType != GLOBAL.TYPE_GOAT && rand(2) == 0)

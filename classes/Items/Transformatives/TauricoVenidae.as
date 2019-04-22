@@ -331,8 +331,8 @@ package classes.Items.Transformatives
 
 				for(var x:int = 0; x < pc.totalVaginas(); x++)
 				{
-					//pc.vaginas[x].type = GLOBAL.TYPE_DEER;
 					pc.shiftVagina(x,GLOBAL.TYPE_DEER);
+					pc.vaginas[x].bonusCapacity += 200;
 				}
 				pc.orgasm();
 				pc.libido(2);

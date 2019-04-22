@@ -851,7 +851,7 @@ public function removeDatCuntTail():void
 		changes++;
 	}
 	//IF PC HAS A SMALLER THAN VERY LARGE COCK
-	if(pc.cockLengthUnlocked(0, 11) && pc.biggestCockLength() < 11 && changes < 3 && rand(3) == 0)
+	if(pc.hasCock() && pc.cockLengthUnlocked(0, 11) && pc.biggestCockLength() < 11 && changes < 3 && rand(3) == 0)
 	{
 		output("\n\nYou grimace as the feeling of fullness moves to concentrate on your crotch, the sensation so overpowering for a moment that your [pc.knees] almost buckle");
 		if(pc.legCount == 1) output("s");

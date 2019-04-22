@@ -207,7 +207,7 @@ public function hasCockLossForForgGirls():void
 	author("Gardeford");
 	showFrogGirl();
 	var x:int = pc.cockThatFits(enemy.vaginalCapacity(0));
-	if(x < 0) x = pc.biggestCockIndex();
+	if(x < 0) x = pc.smallestCockIndex();
 	output("The lithe frog-girl walks around your helpless body, appraising her prize carefully. She makes a few short hops over to you and presses your ");
 	if(inCombat()) output("weakened");
 	else output("submissively kneeling");

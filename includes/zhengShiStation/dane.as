@@ -540,7 +540,7 @@ public function fatChanceDaneImNoCumdump():void
 	output("<i>“Fat chance,”</i> you growl, slipping low and twisting free from the mouthy merc’s greasy mitts before he decides verbal consent isn’t necessary for his twisted fantasies. <i>“I’m nobody’s bitch");
 	if(ardiaIsCrew()) output(", except Ardia’s");
 	else if(seraIsMistress()) output(", besides Sera’s");
-	else if(siegwulfeIsDom()) output(", besides " + (pc.isBimbo() ? "my big titty robot mistress":"[siegfloof.name]"));
+	else if(siegwulfeIsDom()) output(", besides " + (pc.isBimbo() ? "my big titty robot mistress":"[wulfe.name]’s"));
 	output(".”</i>");
 	output("\n\nLaughter answers your bold declaration. Most of Dane’s hands are on his hips, but one pounds the countertop to the tempo of his sudden mirth. <i>“You...”</i> He coughs and staggers, flopping back into his chair as he struggles with his twitching diaphragm. <i>“You had me fuckin’ going there, Steele. Damn.”</i> Clearing his throat, the white-furred merc reaches for his glass with fumbling fingers. He knocks back a heavy swig and sighs, <i>“Got me ready to rip a hole in the old codpiece for nothing. Guess cock-blocking runs in the family after all, huh?”</i> He elbows you. <i>“Won’t make that mistake again, don’t you worry... unless you wanna take a crack at double-teaming one of these floppy eared bitches later. Let me know.”</i>");
 	flags["DANE_NO_SEX"] = 1;
@@ -810,7 +810,7 @@ public function daneTailFuckOutro():void
 	clearOutput();
 	showDane();
 	author("Fenoxo");
-	output("Of course, the intoxicating pleasure your tail pumps out has to come to end, just like Dane’s load, and as you become more lucid, the big guy holds up the camera and asks you once more, <i>“How to feel about taking ausar loads?”</i>");
+	output("Of course, the intoxicating pleasure your tail pumps out has to come to end, just like Dane’s load, and as you become more lucid, the big guy holds up the camera and asks you once more, <i>“How do you feel about taking ausar loads?”</i>");
 	//First time
 	if(flags["DANE_TAILCUNTED"] == undefined) output("\n\nYou smile, too satisfied for words, and flash a thumbs up.");
 	else if(flags["DANE_TAILCUNTED"] == 1) output("\n\nMaybe you’re starting to get used to the rough treatment, but this time you manage to answer, <i>“I love it.”</i>");

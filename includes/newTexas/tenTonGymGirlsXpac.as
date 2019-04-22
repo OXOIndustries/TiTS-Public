@@ -1182,8 +1182,7 @@ public function tentongymEncounterBetsyVictoria():void
 	if (silly) addButton(0,"Fuck the Cows",tentongymBetsyVictoriaHome, undefined, "Fuck the Cows", "DO IT NOWS.");
 	else addButton(0,"Yes",tentongymBetsyVictoriaHome, undefined);
 	addButton(1,"Nope",tentongymBetsyVictoriaNope, undefined,"Nope","Tell the girls you’re not interested right now, but you might be some other time.");
-	addButton(2,"Never",tentongymBetsyVictoriaNever, undefined,"Never","Tell the girls they’re not your type. They won’t bother you ever again.");
-	
+	addButton(14,"Never",tentongymBetsyVictoriaNever, undefined,"Never",((flags["TTGYM_BETSY_VICTORIA_HOME"] != undefined ? "You’ve changed your mind... " : "") + "Tell the girls they’re not your type. They won’t bother you ever again."));
 }
 public function tentongymBetsyVictoriaNope():void
 {
@@ -1216,7 +1215,9 @@ public function tentongymBetsyVictoriaNever():void
 {
 	clearOutput();
 	tentongymShowBetsyVictoria();
-		
+	
+	if (flags["TTGYM_BETSY_VICTORIA_HOME"] != undefined) output("Even after trying the goods, you have decided to change your mind... ");
+	
 	if (pc.isAss())
 	{
 		output("You tell the cowgirls to fuck off and not bother you again. You don’t want to fuck them now or ever.");
@@ -1243,7 +1244,7 @@ public function tentongymBetsyVictoriaHome():void
 {
 	clearOutput();
 	tentongymShowBetsyVictoria();
-		
+	
 	moveTo("NT TTGG APARTMENT");
 	
 	if (flags["TTGYM_BETSY_VICTORIA_HOME"] == undefined)

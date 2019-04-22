@@ -50,8 +50,12 @@ public function showBlackjackDealer():void
 }
 public function showRoo():void
 {
-	showName("\nROO");
-	showBust("ROO_" + flags["ROO_STRIP_LEVEL"]);
+	showName(flags["MET_ROO"] != undefined ? "\nROO" : "\nBLACKJACK!");
+	showBust(rooBustDisplay());
+}
+public function rooBustDisplay():String
+{
+	return ("ROO_" + flags["ROO_STRIP_LEVEL"]);
 }
 public function roogasm():void
 {
@@ -87,12 +91,23 @@ public function blackjackTest():void
 
 public function blackjackTie():void
 {
+	clearOutput();
+	showBlackjackDealer();
+	
 	if(flags["BLACKJACK_DEALER"] == 1)
 	{
-		clearOutput();
-		showRoo();
 		output("<i>“Another hand then?”</i> the bunny-cat smiles with apparent delight at the thought of playing with you again.");
 		rooMenu();
+	}
+	else
+	{
+		output("Well, what are the chances?\n\nThe dealer prepares another hand. Do you play again?");
+		flags["BLACKJACK_DEALER_SHOWN"] = undefined;
+		flags["BLACKJACK_BET"] = 0;
+		flags["BLACKJACK_STANDING"] = undefined;
+		clearMenu();
+		addButton(0,"Play Again",startBlackjack,true);
+		addButton(14,"Leave",blackjackCleanup);
 	}
 }
 
@@ -1388,7 +1403,7 @@ public function rooTalkMenu():void
 	addButton(0,"Herself",rooHerselfTalkies,undefined,"Herself","Is there anything she can tell you about herself?");
 	//[Her Job]
 	// Must ask about [Herself] five times; gray out otherwise
-	if(flags["ROO_SELFTALKED_TOTAL"] == undefined || (flags["ROO_SELFTALKED_TOTAL"] != undefined && flags["ROO_SELFTALKED_TOTAL"] < 5)) addDisabledButton(1,"Her Job","Her Job","You should get to know her a bit more. As well as you can, anyway.");
+	if(flags["ROO_SELFTALKED_TOTAL"] == undefined || flags["ROO_SELFTALKED_TOTAL"] < 5) addDisabledButton(1,"Her Job","Her Job","You should get to know her a bit more. As well as you can, anyway.");
 	else addButton(1,"Her Job",rooHerJobbieTalk,undefined,"Her Job","Ask about her job and why she does it.");
 	//[Treasure Nova]
 	addButton(2,"Treas.Nova",rooTalksTreasureNova,undefined,"Treasure Nova","How’d she end up here, and what’s this place like?");
@@ -2063,8 +2078,8 @@ public function underTableRooEatsPuss(x:int = 0):void
 	// PC squirter
 	else 
 	{
-		output("\n\nYour eyes water and your [pc.pussieslight] are spread, bent, strained by the thirsty kaithrit. When orgasm crashes upwards through your system you unconsciously flex out lances of [pc.girlCum] that shatter upon Roo’s face and fervently flushes across the casino floor. She stretches you to the breaking point, working out your cataclysmic release in thunderously erotic increments. All of her efforts were devoted to <i>that</i> spot inside you, knowing exactly the area that made you howl spectacularly on the plateau.");
-		output("\n\nYou moan, you curse, and moan some more before relaxing into sighs and mewls of susceptibility. [pc.EachPussyIsAre] vibrating with untold amounts of pleasure, brought to a brilliant pinpoint where even the slightest kiss of wind could make you repeat that all over. In the aftermath, a glittering, [pc.girlCumGem] puddle spreads out from where you and Roo sit. It’s a mixture of your combined fluids like an atmosphere.");
+		output("\n\nYour eyes water and your [pc.pussiesLight] are spread, bent, strained by the thirsty kaithrit. When orgasm crashes upwards through your system you unconsciously flex out lances of [pc.girlCum] that shatter upon Roo’s face and fervently flushes across the casino floor. She stretches you to the breaking point, working out your cataclysmic release in thunderously erotic increments. All of her efforts were devoted to <i>that</i> spot inside you, knowing exactly the area that made you howl spectacularly on the plateau.");
+		output("\n\nYou moan, you curse, and moan some more before relaxing into sighs and mewls of susceptibility. Your [pc.pussiesIsAre] vibrating with untold amounts of pleasure, brought to a brilliant pinpoint where even the slightest kiss of wind could make you repeat that all over. In the aftermath, a glittering, [pc.girlCumGem] puddle spreads out from where you and Roo sit. It’s a mixture of your combined fluids like an atmosphere.");
 	}
 	// Merge
 	if(pc.hasCock()) output("\n\nYour dick-gasm wasn’t anywhere near as exciting, and indeed wasn’t noticed. The only evidence your [pc.cocksLight] had any fun is the dregs of [pc.cum] in the kaithrit’s hair.");
@@ -2129,6 +2144,7 @@ public function tableFuckRoo():void
 		pc.lust(3);
 		clearMenu();
 		addButton(0,"Next",rooTableFuck,true);
+		return;
 	}
 	// Roo Gamegasms 4-9
 	if(flags["ROO_GASMED"] < 10)
@@ -2205,7 +2221,7 @@ public function noMilkNowRoocipher():void
 }
 
 // Merge
-public function rooTableFuck(milky:Boolean):void
+public function rooTableFuck(milky:Boolean = false):void
 {
 	clearOutput();
 	showRoo();
@@ -2220,7 +2236,9 @@ public function rooTableFuck(milky:Boolean):void
 		output("\n\nOnce you’re positioned for her needs, Roo divests you of your [pc.chestCovers] one piece at a time" + (pc.biggestTitSize() >= 1 ? ", exposing your [pc.breasts] for her own enjoyment":"") + ".");
 	}
 	else output("\n\nNow that you’re straddling her, her hands roam over your body" + (pc.biggestTitSize() >= 1 ? ", playing with your [pc.breasts] by pawing playfully at a [pc.nippleNoun]":"") + ".");
-	output("\n\nThe second your [pc.fingers] touch down on her " + (!milky ? "plump, well-rounded":"swollen, jiggly") + " tits you don’t want to ever let go. <i>“My nipples, too!”</i> she grins, pinching one and moaning. You can’t resist thrusting your [pc.face] into her cleavage, an incredible feeling of satisfaction washing over you from scalp to belly. She moves quickly to stroke your head{, threading [pc.hairColor] hair between her fingers, tousling [pc.hairs] and pulling in reminder of your purpose}. <i>“[pc.name], you can’t rest yet!”</i>");
+	output("\n\nThe second your [pc.fingers] touch down on her " + (!milky ? "plump, well-rounded":"swollen, jiggly") + " tits you don’t want to ever let go. <i>“My nipples, too!”</i> she grins, pinching one and moaning. You can’t resist thrusting your [pc.face] into her cleavage, an incredible feeling of satisfaction washing over you from scalp to belly. She moves quickly to stroke your head");
+	if(pc.hasHair() && pc.hairLength >= 3) output(", threading [pc.hairColor] [pc.hairNoun] between her fingers, tousling [pc.hairs] and pulling in reminder of your purpose");
+	output(". <i>“[pc.name], you can’t rest yet!”</i>");
 	output("\n\nYou reluctantly rise, mouth curling into a goofy smile. Caressing then squeezing, you marvel at how her boobs shake and overflow from inadequately sized palms that are better served clapping those puppies together. " + (milky ? "Doing so unleashes the pressure behind her teats, and broad, glistening arcs of milk shoot into the air and land messily on her, to be rubbed in by whoever’s hand gets there first.":"") + " Roo’s lips part and her jaw slackens; her slitted eyes shine with boobie-based bliss. Birdsong coos drift from her satin-red lips. The moments when her brain soft-locks are visible in her twitching irises, always glimmering when hit with short, sharp spikes of nipple-bound lust.");
 	output("\n\nShe was warm already, but you swear she’s getting hotter. Before your restraint totally vanishes, you massage her pert melons with inspiring rubs, swirling one hand clockwise and the other counter" + (milky ? ", puddling milk into her valley, abusing her nipples until she’s a milky momma shining in her own wetness":"") + ". Silky flesh bounces in your grasp; you’re feeling for her thick heartbeats, and holding your breath when she gasps for air, quivering beautifully underneath.");
 	output("\n\nPanting madly, you grab lady luck by her tits and smush them together, letting your fingers sink into dreamy fields of kaithrit bosom. " + (milky ? "Thin white arcs squirt upwards, sprinkling your cheek only to drip back down. Palmfuls of kitty-cream slough on the table in steadily increasing amounts. ":"") + "The sensitive kitten gladly moans, but in her hyper-aroused state it’s a much throatier purr than you’ve heard. She’s not a simple cat, but a ripe lioness waiting to be claimed. The sound inspires an animal reaction, and you knead hard enough to hurt" + (milky ? ", soaking your [pc.hands] in the alabaster droplets trickling over them":"") + ".");
