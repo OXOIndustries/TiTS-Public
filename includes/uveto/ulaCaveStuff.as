@@ -187,7 +187,9 @@ public function ulaSexApproach():void
 		if(!korgiTranslate()) output("Elders truthspeak: aliens sex-love more than korg matron. Naughty tease-[pc.boyGirl]!");
 		else output("The elders told the truth: aliens love sex more than a korg matron. Naughty... teasing [pc.boyGirl]!");
 		output("”</i>");
-		output("\n\nYou tilt your head, <i>“Are you asking me to stop?”</i>");
+		output("\n\n");
+		showImage("UlaDildo");
+		output("You tilt your head, <i>“Are you asking me to stop?”</i>");
 		output("\n\n<i>“No,”</i> Ula pants, tongue refusing to retreat entirely within her mouth. She clutches tight, short-clawed fingers digging deep. You can feel her dripping into your hand, and the familiar scent of her minty lust creeps into the air. <i>“Want more!”</i> She jerks away, dragging your slick digits from her juicy muff. A visible blush has spread across her exposed skin, darkening her nipples and lips. She grabs you by the wrist and pulls your pussy-soaked hand between you. <i>“");
 		if(!korgiTranslate()) output("Want you horny like Ula.");
 		else output("Want you as horny as I am.");
@@ -201,7 +203,6 @@ public function ulaSexApproach():void
 		else output("I want that loving, mated bond.");
 		output("”</i>");
 		output("\n\n");
-		showImage("UlaDildo");
 		output("You swoon when she breaks away, breathing hard. The near-naked native prances to nearby bin, retrieving a dildo. She drags and back and forth across her steamy slit, watching you all the while. A slow smile spreads across her features. <i>“");
 		if(!korgiTranslate()) output("Go on. Tell what want.");
 		else output("Go on. Tell me what you want.");

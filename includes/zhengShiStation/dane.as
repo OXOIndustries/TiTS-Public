@@ -186,7 +186,7 @@ public function daneTalkMenu():void
 	addButton(1,"Your Cuz",talkDaneAboutYoCousin,undefined,"Your Cuz","Ask Dane what it was like to work for your cousin. Your guess? Awful.");
 	addButton(2,"Other Jobs",askDaneAboutOtherJobs,undefined,"Other Jobs","Go digging to see if he’s got any stories to share.");
 	if(flags["LOST_TO_DANE_ON_MHENGA"] == 1 || flags["DANE_JOBS_TALK"] == 1)  addButton(3,"Harem",danesHaremTalk,undefined,"Harem","Dane has made mention of having a harem in the past. You don't see any girls here. Where are they?");
-	else addDisabledButton(3,"Locked","Locked","You'll need to ask Jane about his previous jobs to unlock this topic.");
+	else addDisabledButton(3,"Locked","Locked","You'll need to ask Dane about his previous jobs to unlock this topic.");
 	addButton(4,"His Start",daneStartTalk,undefined,"His Start","How does a guy like Dane gets his start in the merc game?");
 	if(pc.hasItemByClass(ShockBlade)) addButton(5,"ReturnBlade",giveDaneShockblade,undefined,"Return Blade","Give Dane back the shock blade you took from him after defeating him on Mhen'ga.");
 	else addDisabledButton(5,"ReturnBlade","Return Blade","You cannot give Dane back one of his swords if you do not have that sword to give.");
