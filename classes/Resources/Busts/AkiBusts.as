@@ -15,9 +15,9 @@ package classes.Resources.Busts
 		
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/aki/hr/sera.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/aki/HR/sera.png", mimeType = "image/png")]
 			public var Full_SERA:Class;
-			[Embed(source = "../../../assets/images/npcs/aki/hr/sera_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/aki/HR/sera_nude.png", mimeType = "image/png")]
 			public var Full_SERA_NUDE:Class;
 		}
 	}

@@ -11,9 +11,9 @@ package classes.Resources.Busts
 		
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/ber00/hr/shizuya.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/ber00/HR/shizuya.png", mimeType = "image/png")]
 			public var Full_SHIZUYA:Class;
-			[Embed(source = "../../../assets/images/npcs/ber00/hr/shizuya_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/ber00/HR/shizuya_nude.png", mimeType = "image/png")]
 			public var Full_SHIZUYA_NUDE:Class;
 		}
 	}

@@ -20,10 +20,10 @@ package classes.Resources.Busts
 
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/dclzexon/hr/ziresh.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/dclzexon/HR/ziresh.png", mimeType = "image/png")]
 			public var Full_ZIRESH:Class;
 
-			[Embed(source = "../../../assets/images/npcs/dclzexon/hr/berwyn.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/dclzexon/HR/berwyn.png", mimeType = "image/png")]
 			public var Full_BERWYN:Class;
 		}
 	}

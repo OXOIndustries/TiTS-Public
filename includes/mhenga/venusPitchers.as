@@ -1792,3 +1792,39 @@ public function venusPitcherBadEnd7():void
 	
 	badEnd();
 }
+
+public function venusFlowerDrops():Boolean
+{
+	var bonus:int = 0;
+	
+	if(flags["EMMY_QUEST"] == 0) bonus += 100;
+	if(flags["ENABLE_LYS_FLOWER"] != undefined) bonus += (flags["GAVE_LYS_FLOWER"] == undefined ? 100 : 30);
+	
+	// default 20% chance + bonus
+	return ((rand(100) + bonus) >= 80);
+}
+
+//Venus Pitcher Post Sex or Avoidance
+public function venusPitcherBonusFlower():void
+{
+	clearOutput();
+	showName("AN EXOTIC\nFLOWER!");
+	showBust("");
+	if(flags["EMMY_QUEST"] == 0)
+	{
+		output("Ever since Emmy asked you for an exotic flower, you’ve kept your eyes open for a good one, and now there’s one laying on the ground right in front of you! The venus pitcher must have shed this one in her hurry to escape underground, leaving a pink and purple bloom that’s sure to dazzle the eye and delight the nostrils. You even sniff it a few times to make sure it doesn’t have any of that sneezy pollen that clouds the air around the plant-women.");
+		if(venusSubmission() >= 40) output(" Sadly, it doesn’t.");
+	}
+	else
+	{
+		output("Oh hey, there’s a particularly pretty bloom left on the ground, dazzlingly purple and pink. Better yet, it smells delightful.");
+		if(flags["ENABLE_LYS_FLOWER"] != undefined && (flags["GAVE_LYS_FLOWER"] == undefined || rand(4) == 0)) output(" Maybe Lys will" + (pc.isBimbo() ? ", like," : "") + " appreciate it.");
+		else output(" Should you" + (pc.isBimbo() ? ", like," : "") + " take it with you?");
+	}
+	//Acquire bloom
+	output("\n\n");
+	clearMenu();
+	addButton(0, "Take It", quickLoot, new VenusBloom());
+	addButton(1, "Leave It", mainGameMenu);
+}
+

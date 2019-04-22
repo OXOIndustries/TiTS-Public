@@ -35,9 +35,9 @@
 
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/tsuda/hr/kiro.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/tsuda/HR/kiro.png", mimeType = "image/png")]
 			public var Full_KIRO:Class;
-			//[Embed(source = "../../../assets/images/npcs/tsuda/hr/kiro_nude.png", mimeType = "image/png")]
+			//[Embed(source = "../../../assets/images/npcs/tsuda/HR/kiro_nude.png", mimeType = "image/png")]
 			//public var Full_KIRO_NUDE:Class;
 			//PLACEHOLDER TILL ABOVE IS DONE
 			public function get Full_KIRO_NUDE():Class { return Full_KIRO; }
@@ -55,9 +55,9 @@
 			public function get Full_KIRO_XL_1_NUDE():Class { return Full_KIRO_NUDE; }
 			public function get Full_KIRO_XL_2_NUDE():Class { return Full_KIRO_NUDE; }
 
-			[Embed(source = "../../../assets/images/npcs/tsuda/hr/kally.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/tsuda/HR/kally.png", mimeType = "image/png")]
 			public var Full_KALLY:Class;
-			//[Embed(source = "../../../assets/images/npcs/tsuda/hr/kally_nude.png", mimeType = "image/png")]
+			//[Embed(source = "../../../assets/images/npcs/tsuda/HR/kally_nude.png", mimeType = "image/png")]
 			//public var Full_KALLY_NUDE:Class;
 		}
 	}
