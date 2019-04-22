@@ -2404,7 +2404,7 @@ public function shekkaAnnoVibeOff():void
 		output("\n\n<i>“Don’t drown [pc.himHer]!”</i> Shekka grunts, reaching forward to bap Anno on the nose. <i>“At least not yet,”</i> she adds, before her more occupied hand begins its unstoppable trajectory into your waiting ");
 		if(!silly) output("sphincter");
 		else output("boipussy");
-		output(". Her toy’s girth drives home into your spreading womanhood; each bump on it grinds against sensitive inner-walls and sets clusters of nerves to sparking. Before you get a chance to be completely overwhelmed by an ass-stuffing, the cheekily-grinning Ausar opens wide with a loud <i>’Aaaaah!’</i> before gulping up your cock, ");
+		output(". Her toy’s girth drives home into your spreading anus; each bump on it grinds against sensitive inner-walls and sets clusters of nerves to sparking. Before you get a chance to be completely overwhelmed by an ass-stuffing, the cheekily-grinning Ausar opens wide with a loud <i>’Aaaaah!’</i> before gulping up your cock, ");
 		if(pc.cocks[0].cLength() > 14) output("slurping its [pc.cockHead]");
 		else if(pc.cocks[0].cLength() > 7) output("hilting herself face-first onto your girthy [pc.cockNoun]");
 		else output("practically swallowing the entirety of your modest [pc.cock]");

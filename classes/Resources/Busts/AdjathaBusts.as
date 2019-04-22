@@ -1099,982 +1099,982 @@ package classes.Resources.Busts
 
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/able.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/able.png", mimeType = "image/png")]
 			public var Full_ABLE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/able_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/able_nude.png", mimeType = "image/png")]
 			public var Full_ABLE_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/aina.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/aina.png", mimeType = "image/png")]
 			public var Full_AINA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/aina_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/aina_nude.png", mimeType = "image/png")]
 			public var Full_AINA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/akkadirobots.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/akkadirobots.png", mimeType = "image/png")]
 			public var Full_AKKADIROBOTS:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/angel.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/angel.png", mimeType = "image/png")]
 			public var Full_ANGEL:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/anno_huskar.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/anno_huskar.png", mimeType = "image/png")]
 			public var Full_ANNO_HUSKAR:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/anno_huskar_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/anno_huskar_nude.png", mimeType = "image/png")]
 			public var Full_ANNO_HUSKAR_NUDE:Class;
 		
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/anyxine.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/anyxine.png", mimeType = "image/png")]
 			public var Full_ANYXINE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/anyxine_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/anyxine_nude.png", mimeType = "image/png")]
 			public var Full_ANYXINE_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/anzhela.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/anzhela.png", mimeType = "image/png")]
 			public var Full_ANZHELA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/anzhela_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/anzhela_nude.png", mimeType = "image/png")]
 			public var Full_ANZHELA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ardia.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/ardia.png", mimeType = "image/png")]
 			public var Full_ARDIA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ardia_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/ardia_nude.png", mimeType = "image/png")]
 			public var Full_ARDIA_NUDE:Class;
 			public function get Full_ARDIA_HORSE():Class { return Full_ARDIA; }
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ardia_horse_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/ardia_horse_nude.png", mimeType = "image/png")]
 			public var Full_ARDIA_HORSE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/argosh.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/argosh.png", mimeType = "image/png")]
 			public var Full_AGROSH:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/argosh_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/argosh_nude.png", mimeType = "image/png")]
 			public var Full_AGROSH_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/atha.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/atha.png", mimeType = "image/png")]
 			public var Full_ATHA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/atha_ausar.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/atha_ausar.png", mimeType = "image/png")]
 			public var Full_ATHA_AUSAR:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/atha_cocktail.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/atha_cocktail.png", mimeType = "image/png")]
 			public var Full_ATHA_COCKTAIL:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/atha_equine.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/atha_equine.png", mimeType = "image/png")]
 			public var Full_ATHA_EQUINE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/atha_kaithrit.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/atha_kaithrit.png", mimeType = "image/png")]
 			public var Full_ATHA_KAITHRIT:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/atha_kuitan.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/atha_kuitan.png", mimeType = "image/png")]
 			public var Full_ATHA_KUITAN:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/atha_laquine.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/atha_laquine.png", mimeType = "image/png")]
 			public var Full_ATHA_LAQUINE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/atha_ovir.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/atha_ovir.png", mimeType = "image/png")]
 			public var Full_ATHA_OVIR:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/atha_rahn.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/atha_rahn.png", mimeType = "image/png")]
 			public var Full_ATHA_RAHN:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/atha_rahn_xl.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/atha_rahn_xl.png", mimeType = "image/png")]
 			public var Full_ATHA_RAHN_XL:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/atha_terran.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/atha_terran.png", mimeType = "image/png")]
 			public var Full_ATHA_TERRAN:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/atha_zil.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/atha_zil.png", mimeType = "image/png")]
 			public var Full_ATHA_ZIL:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azaphel.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/azaphel.png", mimeType = "image/png")]
 			public var Full_AZAPHEL:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azaphel_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/azaphel_nude.png", mimeType = "image/png")]
 			public var Full_AZAPHEL_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azra.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/azra.png", mimeType = "image/png")]
 			public var Full_AZRA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azra_dong.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/azra_dong.png", mimeType = "image/png")]
 			public var Full_AZRA_DONG:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azra_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/azra_nude.png", mimeType = "image/png")]
 			public var Full_AZRA_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azra_preg_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/azra_preg_nude.png", mimeType = "image/png")]
 			public var Full_AZRA_PREG_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azra_big.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/azra_big.png", mimeType = "image/png")]
 			public var Full_AZRA_BIG:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azra_big_dong.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/azra_big_dong.png", mimeType = "image/png")]
 			public var Full_AZRA_BIG_DONG:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/azra_big_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/azra_big_nude.png", mimeType = "image/png")]
 			public var Full_AZRA_BIG_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ben.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/ben.png", mimeType = "image/png")]
 			public var Full_BEN:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/bess.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/bess.png", mimeType = "image/png")]
 			public var Full_BESS:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/carver.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/carver.png", mimeType = "image/png")]
 			public var Full_BETH:Class;
 			public function get Full_BETH_NUDE():Class { return Full_BETH; }
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/betsy_victoria_dressed.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/betsy_victoria_dressed.png", mimeType = "image/png")]
 			public var Full_BETSY_AND_VICTORIA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/betsy_victoria.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/betsy_victoria.png", mimeType = "image/png")]
 			public var Full_BETSY_AND_VICTORIA_NUDE:Class;
 			public function get Full_BETSY_VICTORIA():Class { return Full_BETSY_AND_VICTORIA; }
 			public function get Full_BETSY_VICTORIA_NUDE():Class { return Full_BETSY_AND_VICTORIA_NUDE; }
 
-			//[Embed(source = "../../../assets/images/npcs/adjatha/hr/betsy.png", mimeType = "image/png")]
+			//[Embed(source = "../../../assets/images/npcs/adjatha/HR/betsy.png", mimeType = "image/png")]
 			//public var Full_BETSY:Class;
-			//[Embed(source = "../../../assets/images/npcs/adjatha/hr/victoria.png", mimeType = "image/png")]
+			//[Embed(source = "../../../assets/images/npcs/adjatha/HR/victoria.png", mimeType = "image/png")]
 			//public var Full_VICTORIA:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kat.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kat.png", mimeType = "image/png")]
 			public var Full_BORING_MISTRESS:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kat_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kat_nude.png", mimeType = "image/png")]
 			public var Full_BORING_MISTRESS_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/brandt.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/brandt.png", mimeType = "image/png")]
 			public var Full_BRANDT:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/brandt_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/brandt_nude.png", mimeType = "image/png")]
 			public var Full_BRANDT_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briget.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/briget.png", mimeType = "image/png")]
 			public var Full_BRIGET:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briget_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/briget_nude.png", mimeType = "image/png")]
 			public var Full_BRIGET_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briget_busty.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/briget_busty.png", mimeType = "image/png")]
 			public var Full_BRIGET_TITS:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briget_topless_busty.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/briget_topless_busty.png", mimeType = "image/png")]
 			public var Full_BRIGET_TITS_TOPLESS:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briget_nude_busty.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/briget_nude_busty.png", mimeType = "image/png")]
 			public var Full_BRIGET_TITS_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briget_preg.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/briget_preg.png", mimeType = "image/png")]
 			public var Full_BRIGET_PREG:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briget_nude_preg.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/briget_nude_preg.png", mimeType = "image/png")]
 			public var Full_BRIGET_PREG_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briget_busty_preg.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/briget_busty_preg.png", mimeType = "image/png")]
 			public var Full_BRIGET_TITS_PREG:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briget_nude_busty_preg.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/briget_nude_busty_preg.png", mimeType = "image/png")]
 			public var Full_BRIGET_TITS_PREG_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briha.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/briha.png", mimeType = "image/png")]
 			public var Full_BRIHA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briha_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/briha_nude.png", mimeType = "image/png")]
 			public var Full_BRIHA_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briha_pregnant.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/briha_pregnant.png", mimeType = "image/png")]
 			public var Full_BRIHA_PREGNANT:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/briha_pregnant_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/briha_pregnant_nude.png", mimeType = "image/png")]
 			public var Full_BRIHA_PREGNANT_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/bronco.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/bronco.png", mimeType = "image/png")]
 			public var Full_BRONCO:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/calnor.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/calnor.png", mimeType = "image/png")]
 			public var Full_CALNOR:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/calnor_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/calnor_nude.png", mimeType = "image/png")]
 			public var Full_CALNOR_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/khorgan.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/khorgan.png", mimeType = "image/png")]
 			public var Full_CAPTAIN_KHORGAN:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/khorgan_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/khorgan_nude.png", mimeType = "image/png")]
 			public var Full_CAPTAIN_KHORGAN_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/khorgan_jail.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/khorgan_jail.png", mimeType = "image/png")]
 			public var Full_CAPTAIN_KHORGAN_JAIL:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/khorgan_jail_preg.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/khorgan_jail_preg.png", mimeType = "image/png")]
 			public var Full_CAPTAIN_KHORGAN_JAIL_PREG:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/carrie.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/carrie.png", mimeType = "image/png")]
 			public var Full_CARRIE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/carrie_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/carrie_nude.png", mimeType = "image/png")]
 			public var Full_CARRIE_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cass.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cass.png", mimeType = "image/png")]
 			public var Full_CASS:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cass_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cass_nude.png", mimeType = "image/png")]
 			public var Full_CASS_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cherry.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cherry.png", mimeType = "image/png")]
 			public var Full_CHERRY:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cherry_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cherry_nude.png", mimeType = "image/png")]
 			public var Full_CHERRY_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cherry_cumflated.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cherry_cumflated.png", mimeType = "image/png")]
 			public var Full_CHERRY_CUMFLATED:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/chrissy.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/chrissy.png", mimeType = "image/png")]
 			public var Full_CHRISSY:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/chrissy_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/chrissy_nude.png", mimeType = "image/png")]
 			public var Full_CHRISSY_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ciaran.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/ciaran.png", mimeType = "image/png")]
 			public var Full_CIARAN:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ciaran_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/ciaran_nude.png", mimeType = "image/png")]
 			public var Full_CIARAN_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/chupy.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/chupy.png", mimeType = "image/png")]
 			public var Full_CHUPACABRO:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cockvine_single.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cockvine_single.png", mimeType = "image/png")]
 			public var Full_COCKVINE_SEEDLING:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cora.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cora.png", mimeType = "image/png")]
 			public var Full_CORA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cora_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cora_nude.png", mimeType = "image/png")]
 			public var Full_CORA_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cow_lager.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cow_lager.png", mimeType = "image/png")]
 			public var Full_BEER_COW:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cow_whiskey.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/cow_whiskey.png", mimeType = "image/png")]
 			public var Full_WHISKEY_COW:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/darnock.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/darnock.png", mimeType = "image/png")]
 			public var Full_DARNOCK:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/syri_hell.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/syri_hell.png", mimeType = "image/png")]
 			public var Full_DEMONSYRI:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/dollmaker.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/dollmaker.png", mimeType = "image/png")]
 			public var Full_DOLLMAKER:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/dryad.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/dryad.png", mimeType = "image/png")]
 			public var Full_DRYAD:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/dryad_dumbfuck.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/dryad_dumbfuck.png", mimeType = "image/png")]
 			public var Full_DRYAD_DUMBFUCK:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/egg_trainer.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/egg_trainer.png", mimeType = "image/png")]
 			public var Full_EGG_TRAINER:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/eimear.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/eimear.png", mimeType = "image/png")]
 			public var Full_CFS_EIMEAR:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/eimear_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/eimear_nude.png", mimeType = "image/png")]
 			public var Full_CFS_EIMEAR_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/erika.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/erika.png", mimeType = "image/png")]
 			public var Full_ERIKA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/erika_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/erika_nude.png", mimeType = "image/png")]
 			public var Full_ERIKA_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/erra.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/erra.png", mimeType = "image/png")]
 			public var Full_ERRA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/erra_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/erra_nude.png", mimeType = "image/png")]
 			public var Full_ERRA_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/estallia.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/estallia.png", mimeType = "image/png")]
 			public var Full_ESTALLIA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/estallia_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/estallia_nude.png", mimeType = "image/png")]
 			public var Full_ESTALLIA_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/flahne.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/flahne.png", mimeType = "image/png")]
 			public var Full_FLAHNE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/flahne_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/flahne_nude.png", mimeType = "image/png")]
 			public var Full_FLAHNE_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/flahne_nude_ovi.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/flahne_nude_ovi.png", mimeType = "image/png")]
 			public var Full_FLAHNE_OVI_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/feruze.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/feruze.png", mimeType = "image/png")]
 			public var Full_FERUZE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/feruze_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/feruze_nude.png", mimeType = "image/png")]
 			public var Full_FERUZE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/fetch_and_carry.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/fetch_and_carry.png", mimeType = "image/png")]
 			public var Full_FETCH_AND_CARRY:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/frostwyrm.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/frostwyrm.png", mimeType = "image/png")]
 			public var Full_FROSTWYRM:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jesse.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jesse.png", mimeType = "image/png")]
 			public var Full_JESSE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jesse_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jesse_nude.png", mimeType = "image/png")]
 			public var Full_JESSE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gene.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/gene.png", mimeType = "image/png")]
 			public var Full_GENE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gene_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/gene_nude.png", mimeType = "image/png")]
 			public var Full_GENE_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vending_tarkus.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/vending_tarkus.png", mimeType = "image/png")]
 			public var Full_GOBLINOLA_VENDING_MACHINE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/godi.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/godi.png", mimeType = "image/png")]
 			public var Full_GODI:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/godi_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/godi_nude.png", mimeType = "image/png")]
 			public var Full_GODI_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gold_remnant_brute.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/gold_remnant_brute.png", mimeType = "image/png")]
 			public var Full_GOLD_REMNANT_BRUTE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gold_remnant_fighter.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/gold_remnant_fighter.png", mimeType = "image/png")]
 			public var Full_GOLD_REMNANT_FIGHTER:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gold_remnant_si_officer.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/gold_remnant_si_officer.png", mimeType = "image/png")]
 			public var Full_GOLD_REMNANT_SI_OFFICER:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gold_remnant_si_officer_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/gold_remnant_si_officer_nude.png", mimeType = "image/png")]
 			public var Full_GOLD_REMNANT_SI_OFFICER_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gryvain.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/gryvain.png", mimeType = "image/png")]
 			public var Full_GRYVAIN:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gryvain_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/gryvain_nude.png", mimeType = "image/png")]
 			public var Full_GRYVAIN_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gryvain_agent.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/gryvain_agent.png", mimeType = "image/png")]
 			public var Full_GRYVAIN_AGENT:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gryvain_agent_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/gryvain_agent_nude.png", mimeType = "image/png")]
 			public var Full_GRYVAIN_AGENT_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/hana.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/hana.png", mimeType = "image/png")]
 			public var Full_HANA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/hana_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/hana_nude.png", mimeType = "image/png")]
 			public var Full_HANA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/heidrun.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/heidrun.png", mimeType = "image/png")]
 			public var Full_HEIDRUN:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/heidrun_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/heidrun_nude.png", mimeType = "image/png")]
 			public var Full_HEIDRUN_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/horisha_peck.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/horisha_peck.png", mimeType = "image/png")]
 			public var Full_HORISHA_AND_PECK:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ilaria.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/ilaria.png", mimeType = "image/png")]
 			public var Full_ILARIA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ilaria_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/ilaria_nude.png", mimeType = "image/png")]
 			public var Full_ILARIA_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ilaria_pregnant.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/ilaria_pregnant.png", mimeType = "image/png")]
 			public var Full_ILARIA_PREG:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ilaria_pregnant_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/ilaria_pregnant_nude.png", mimeType = "image/png")]
 			public var Full_ILARIA_PREG_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jade.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jade.png", mimeType = "image/png")]
 			public var Full_JADE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jade_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jade_nude.png", mimeType = "image/png")]
 			public var Full_JADE_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jade_nips.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jade_nips.png", mimeType = "image/png")]
 			public var Full_JADE_NIPS:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jade_nips_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jade_nips_nude.png", mimeType = "image/png")]
 			public var Full_JADE_NIPS_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/james.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/james.png", mimeType = "image/png")]
 			public var Full_JAMES:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jejune.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jejune.png", mimeType = "image/png")]
 			public var Full_JEJUNE_VENDING_MACHINE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/joyco_vending_machine.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/joyco_vending_machine.png", mimeType = "image/png")]
 			public var Full_JOYCO_VENDING_MACHINE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jumper_horse.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jumper_horse.png", mimeType = "image/png")]
 			public var Full_BORED_JUMPER_EQUINE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jumper_horse_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jumper_horse_nude.png", mimeType = "image/png")]
 			public var Full_BORED_JUMPER_EQUINE_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jumper_feline.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jumper_feline.png", mimeType = "image/png")]
 			public var Full_BORED_JUMPER_FELINE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jumper_feline_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jumper_feline_nude.png", mimeType = "image/png")]
 			public var Full_BORED_JUMPER_FELINE_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jumper_canine.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jumper_canine.png", mimeType = "image/png")]
 			public var Full_BORED_JUMPER_CANINE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jumper_canine_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jumper_canine_nude.png", mimeType = "image/png")]
 			public var Full_BORED_JUMPER_CANINE_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jumper_terran.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jumper_terran.png", mimeType = "image/png")]
 			public var Full_BORED_JUMPER_TERRAN:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jumper_terran_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jumper_terran_nude.png", mimeType = "image/png")]
 			public var Full_BORED_JUMPER_TERRAN_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kally.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kally.png", mimeType = "image/png")]
 			public var Full_KALLY:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kally_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kally_nude.png", mimeType = "image/png")]
 			public var Full_KALLY_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kitsune-traders.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kitsune-traders.png", mimeType = "image/png")]
 			public var Full_KAZRA_AND_LORRE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kelly.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kelly.png", mimeType = "image/png")]
 			public var Full_KELLY:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kelly_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kelly_nude.png", mimeType = "image/png")]
 			public var Full_KELLY_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kelly_hyper_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kelly_hyper_nude.png", mimeType = "image/png")]
 			public var Full_KELLY_HYPER_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kase_pyrite_hurt.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kase_pyrite_hurt.png", mimeType = "image/png")]
 			public var Full_KASE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kase_pyrite.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kase_pyrite.png", mimeType = "image/png")]
 			public var Full_KASE_HEALED:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kase_hurt.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kase_hurt.png", mimeType = "image/png")]
 			public var Full_KASE_ST:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kase.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kase.png", mimeType = "image/png")]
 			public var Full_KASE_ST_HEALED:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kase_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kase_nude.png", mimeType = "image/png")]
 			public var Full_KASE_NUDE:Class;
 
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nessa.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/nessa.png", mimeType = "image/png")]
 			public var Full_KAITHRIT_SCOUT:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nessa_big.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/nessa_big.png", mimeType = "image/png")]
 			public var Full_KAITHRIT_SCOUT_BELLY:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nessa_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/nessa_nude.png", mimeType = "image/png")]
 			public var Full_KAITHRIT_SCOUT_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nessa_nude_big.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/nessa_nude_big.png", mimeType = "image/png")]
 			public var Full_KAITHRIT_SCOUT_BELLY_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kane.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kane.png", mimeType = "image/png")]
 			public var Full_KANE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kane_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kane_nude.png", mimeType = "image/png")]
 			public var Full_KANE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kaska.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kaska.png", mimeType = "image/png")]
 			public var Full_KASKA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kaska_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kaska_nude.png", mimeType = "image/png")]
 			public var Full_KASKA_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kaska_nude_cum.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kaska_nude_cum.png", mimeType = "image/png")]
 			public var Full_KASKA_CUM:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kimber.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kimber.png", mimeType = "image/png")]
 			public var Full_KIMBER:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kimber_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kimber_nude.png", mimeType = "image/png")]
 			public var Full_KIMBER_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kimber_underwear.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kimber_underwear.png", mimeType = "image/png")]
 			public var Full_KIMBER_UNDERWEAR:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kiro.png", mimeType = "image/png")]
 			public var Full_KIRO:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kiro_nude.png", mimeType = "image/png")]
 			public var Full_KIRO_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro_1.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kiro_1.png", mimeType = "image/png")]
 			public var Full_KIRO_1:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro_1_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kiro_1_nude.png", mimeType = "image/png")]
 			public var Full_KIRO_1_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro_2.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kiro_2.png", mimeType = "image/png")]
 			public var Full_KIRO_2:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro_2_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kiro_2_nude.png", mimeType = "image/png")]
 			public var Full_KIRO_2_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro_sm_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kiro_sm_nude.png", mimeType = "image/png")]
 			public var Full_KIRO_SM_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro_sm_1_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kiro_sm_1_nude.png", mimeType = "image/png")]
 			public var Full_KIRO_SM_1_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro_sm_2_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kiro_sm_2_nude.png", mimeType = "image/png")]
 			public var Full_KIRO_SM_2_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro_lg_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kiro_lg_nude.png", mimeType = "image/png")]
 			public var Full_KIRO_LG_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro_lg_1_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kiro_lg_1_nude.png", mimeType = "image/png")]
 			public var Full_KIRO_LG_1_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro_lg_2_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kiro_lg_2_nude.png", mimeType = "image/png")]
 			public var Full_KIRO_LG_2_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro_xl_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kiro_xl_nude.png", mimeType = "image/png")]
 			public var Full_KIRO_XL_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro_xl_1_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kiro_xl_1_nude.png", mimeType = "image/png")]
 			public var Full_KIRO_XL_1_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kiro_xl_2_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kiro_xl_2_nude.png", mimeType = "image/png")]
 			public var Full_KIRO_XL_2_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/krissy.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/krissy.png", mimeType = "image/png")]
 			public var Full_KRISSY:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/krissy_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/krissy_nude.png", mimeType = "image/png")]
 			public var Full_KRISSY_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/krissy_nude_gush.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/krissy_nude_gush.png", mimeType = "image/png")]
 			public var Full_KRISSY_NUDE_GUSH:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/krissy_nude_throbb.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/krissy_nude_throbb.png", mimeType = "image/png")]
 			public var Full_KRISSY_NUDE_THROBB:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/krym.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/krym.png", mimeType = "image/png")]
 			public var Full_KRYM:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/krym_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/krym_nude.png", mimeType = "image/png")]
 			public var Full_KRYM_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lah.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lah.png", mimeType = "image/png")]
 			public var Full_LAH:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ldc.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/ldc.png", mimeType = "image/png")]
 			public var Full_LDC:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lieve.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lieve.png", mimeType = "image/png")]
 			public var Full_LIEVE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lieve_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lieve_nude.png", mimeType = "image/png")]
 			public var Full_LIEVE_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lerris_0.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lerris_0.png", mimeType = "image/png")]
 			public var Full_LERRIS_0:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lerris_0_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lerris_0_nude.png", mimeType = "image/png")]
 			public var Full_LERRIS_0_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lerris_1.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lerris_1.png", mimeType = "image/png")]
 			public var Full_LERRIS_1:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lerris_1_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lerris_1_nude.png", mimeType = "image/png")]
 			public var Full_LERRIS_1_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lerris_2.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lerris_2.png", mimeType = "image/png")]
 			public var Full_LERRIS_2:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lerris_2_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lerris_2_nude.png", mimeType = "image/png")]
 			public var Full_LERRIS_2_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lerris_cow.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lerris_cow.png", mimeType = "image/png")]
 			public var Full_LERRIS_COW:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lerris_cow_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lerris_cow_nude.png", mimeType = "image/png")]
 			public var Full_LERRIS_COW_NUDE:Class;
 		
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lola_clothed.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lola_clothed.png", mimeType = "image/png")]
 			public var Full_LOLA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lola_suit.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lola_suit.png", mimeType = "image/png")]
 			public var Full_LOLA_SUIT:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lola_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lola_nude.png", mimeType = "image/png")]
 			public var Full_LOLA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/luca.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/luca.png", mimeType = "image/png")]
 			public var Full_LUCA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/luca_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/luca_nude.png", mimeType = "image/png")]
 			public var Full_LUCA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lys.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lys.png", mimeType = "image/png")]
 			public var Full_LYS:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lys_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lys_nude.png", mimeType = "image/png")]
 			public var Full_LYS_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/maja.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/maja.png", mimeType = "image/png")]
 			public var Full_MAJA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/maja_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/maja_nude.png", mimeType = "image/png")]
 			public var Full_MAJA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/maike.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/maike.png", mimeType = "image/png")]
 			public var Full_MAIKE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/maike_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/maike_nude.png", mimeType = "image/png")]
 			public var Full_MAIKE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/merc.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/merc.png", mimeType = "image/png")]
 			public var Full_MERCGUARD:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/midee.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/midee.png", mimeType = "image/png")]
 			public var Full_MIDEE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/miko_mai.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/miko_mai.png", mimeType = "image/png")]
 			public var Full_MIKO_AND_MAI:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/milly.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/milly.png", mimeType = "image/png")]
 			public var Full_MILLY:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/milly_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/milly_nude.png", mimeType = "image/png")]
 			public var Full_MILLY_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/priestess.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/priestess.png", mimeType = "image/png")]
 			public var Full_MILODAN_PRIESTESS:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/temptress.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/temptress.png", mimeType = "image/png")]
 			public var Full_MILO_TEMPTRESS:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/temptress_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/temptress_nude.png", mimeType = "image/png")]
 			public var Full_MILO_TEMPTRESS_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mirian.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/mirian.png", mimeType = "image/png")]
 			public var Full_MIRIAN:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mitzi.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/mitzi.png", mimeType = "image/png")]
 			public var Full_MITZI_PINK_DRESS:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mitzi_school.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/mitzi_school.png", mimeType = "image/png")]
 			public var Full_MITZI_SCHOOLGIRL:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mitzi_gym.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/mitzi_gym.png", mimeType = "image/png")]
 			public var Full_MITZI_YOGAPANTS:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mitzi_librarian.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/mitzi_librarian.png", mimeType = "image/png")]
 			public var Full_MITZI_LIBRARIAN:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mitzi_succubus.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/mitzi_succubus.png", mimeType = "image/png")]
 			public var Full_MITZI_BIKINI:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mitzi_cow.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/mitzi_cow.png", mimeType = "image/png")]
 			public var Full_MITZI_COW:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mitzi_zipsuit.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/mitzi_zipsuit.png", mimeType = "image/png")]
 			public var Full_MITZI_ZIPSUIT:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mitzi_nun.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/mitzi_nun.png", mimeType = "image/png")]
 			public var Full_MITZI_NUN:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mitzi_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/mitzi_nude.png", mimeType = "image/png")]
 			public var Full_MITZI_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/myrna.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/myrna.png", mimeType = "image/png")]
 			public var Full_MYRNA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/myrna_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/myrna_nude.png", mimeType = "image/png")]
 			public var Full_MYRNA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/myrra.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/myrra.png", mimeType = "image/png")]
 			public var Full_MYRRA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/myrra_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/myrra_nude.png", mimeType = "image/png")]
 			public var Full_MYRRA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/naleen_futa.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/naleen_futa.png", mimeType = "image/png")]
 			public var Full_NALEEN_FUTA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/naleen_futa_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/naleen_futa_nude.png", mimeType = "image/png")]
 			public var Full_NALEEN_FUTA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/naleen_bros.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/naleen_bros.png", mimeType = "image/png")]
 			public var Full_NALEEN_BROS:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nenne.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/nenne.png", mimeType = "image/png")]
 			public var Full_NENNE:Class;
 			public function get Full_NENNE_NUDE():Class { return Full_NENNE; }
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nova.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/nova.png", mimeType = "image/png")]
 			public var Full_NOVA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nova_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/nova_nude.png", mimeType = "image/png")]
 			public var Full_NOVA_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nova_nude_0.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/nova_nude_0.png", mimeType = "image/png")]
 			public var Full_NOVA_NUDE_0:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nova_nude_1.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/nova_nude_1.png", mimeType = "image/png")]
 			public var Full_NOVA_NUDE_1:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nykke.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/nykke.png", mimeType = "image/png")]
 			public var Full_NYKKE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nykke_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/nykke_nude.png", mimeType = "image/png")]
 			public var Full_NYKKE_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nymfoe.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/nymfoe.png", mimeType = "image/png")]
 			public var Full_NYMFOE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/olympia.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/olympia.png", mimeType = "image/png")]
 			public var Full_OLYMPIA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/olympia_steele.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/olympia_steele.png", mimeType = "image/png")]
 			public var Full_OLYMPIA_STEELE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/olympia_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/olympia_nude.png", mimeType = "image/png")]
 			public var Full_OLYMPIA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ovir_dancer.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/ovir_dancer.png", mimeType = "image/png")]
 			public var Full_OVIR_DANCER:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ovir_dancer_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/ovir_dancer_nude.png", mimeType = "image/png")]
 			public var Full_OVIR_DANCER_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/orryx.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/orryx.png", mimeType = "image/png")]
 			public var Full_ORRYX:Class;
 			
 			public function get Full_PENNY_NUDE_HORSE():Class { return Full_PENNY_BIMBO_HORSE; }
 			public function get Full_PENNY_NUDE_HORSE_1():Class { return Full_PENNY_BIMBO_HORSE; }
 			public function get Full_PENNY_NUDE_HORSE_2():Class { return Full_PENNY_BIMBO_HORSE; }
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/penny_bimbo_horse.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/penny_bimbo_horse.png", mimeType = "image/png")]
 			public var Full_PENNY_BIMBO_HORSE:Class;
 			public function get Full_PENNY_BIMBO_HORSE_1():Class { return Full_PENNY_BIMBO_HORSE; }
 			public function get Full_PENNY_BIMBO_HORSE_2():Class { return Full_PENNY_BIMBO_HORSE; }
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/petr.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/petr.png", mimeType = "image/png")]
 			public var Full_PETR:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/petr_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/petr_nude.png", mimeType = "image/png")]
 			public var Full_PETR_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/broodmother.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/broodmother.png", mimeType = "image/png")]
 			public var Full_PREGRASK:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/punk_secop_male.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/punk_secop_male.png", mimeType = "image/png")]
 			public var Full_PUNK_SECOP_MALE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/punk_secop_male_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/punk_secop_male_nude.png", mimeType = "image/png")]
 			public var Full_PUNK_SECOP_MALE_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/punk_secop_female.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/punk_secop_female.png", mimeType = "image/png")]
 			public var Full_PUNK_SECOP_FEMALE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/punk_secop_female_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/punk_secop_female_nude.png", mimeType = "image/png")]
 			public var Full_PUNK_SECOP_FEMALE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/pexiga.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/pexiga.png", mimeType = "image/png")]
 			public var Full_PEXIGA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/pexiga_bimbo.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/pexiga_bimbo.png", mimeType = "image/png")]
 			public var Full_PEXIGA_BIMBO:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quaelle.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/quaelle.png", mimeType = "image/png")]
 			public var Full_QUAELLE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quaelle_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/quaelle_nude.png", mimeType = "image/png")]
 			public var Full_QUAELLE_NUDE:Class;
 			public function get Full_QUAELLE_F1():Class { return Full_QUAELLE; }
 			public function get Full_QUAELLE_F2():Class { return Full_QUAELLE; }
 			public function get Full_QUAELLE_B1():Class { return Full_QUAELLE; }
 			public function get Full_QUAELLE_B2():Class { return Full_QUAELLE; }
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quenton.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/quenton.png", mimeType = "image/png")]
 			public var Full_QUENTON:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quenton_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/quenton_nude.png", mimeType = "image/png")]
 			public var Full_QUENTON_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/quinn.png", mimeType = "image/png")]
 			public var Full_QUINN:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/quinn_nude.png", mimeType = "image/png")]
 			public var Full_QUINN_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn_preg.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/quinn_preg.png", mimeType = "image/png")]
 			public var Full_QUINN_PREG:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn_preg_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/quinn_preg_nude.png", mimeType = "image/png")]
 			public var Full_QUINN_PREG_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn_tits_preg.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/quinn_tits_preg.png", mimeType = "image/png")]
 			public var Full_QUINN_PREG_TITS:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn_tits_preg_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/quinn_tits_preg_nude.png", mimeType = "image/png")]
 			public var Full_QUINN_PREG_TITS_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn_huge.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/quinn_huge.png", mimeType = "image/png")]
 			public var Full_QUINN_PREG_HUGE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn_huge_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/quinn_huge_nude.png", mimeType = "image/png")]
 			public var Full_QUINN_PREG_HUGE_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn_tits.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/quinn_tits.png", mimeType = "image/png")]
 			public var Full_QUINN_MOMMY:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn_tits_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/quinn_tits_nude.png", mimeType = "image/png")]
 			public var Full_QUINN_MOMMY_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/raskvel_male.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/raskvel_male.png", mimeType = "image/png")]
 			
 			public var Full_RASKVEL_MALE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/raskvel_male_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/raskvel_male_nude.png", mimeType = "image/png")]
 			public var Full_RASKVEL_MALE_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/raskvel_gang.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/raskvel_gang.png", mimeType = "image/png")]
 			public var Full_RASKVEL_GANG:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/raskvel_gang_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/raskvel_gang_nude.png", mimeType = "image/png")]
 			public var Full_RASKVEL_GANG_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/rats_raider_boy.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/rats_raider_boy.png", mimeType = "image/png")]
 			public var Full_RATS_RAIDER_BOY:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/rats_raider_girl.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/rats_raider_girl.png", mimeType = "image/png")]
 			public var Full_RATS_RAIDER_GIRL:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/reaha_anusoft.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/reaha_anusoft.png", mimeType = "image/png")]
 			public var Full_REAHA_ANUSOFT:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/red_commando.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/red_commando.png", mimeType = "image/png")]
 			public var Full_RED_COMMANDO:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/red_heavy.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/red_heavy.png", mimeType = "image/png")]
 			public var Full_RED_HEAVY:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/red_heavy_weapons.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/red_heavy_weapons.png", mimeType = "image/png")]
 			public var Full_RED_HEAVY_WEAPONS:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/red_heavy_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/red_heavy_nude.png", mimeType = "image/png")]
 			public var Full_RED_HEAVY_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/roz.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/roz.png", mimeType = "image/png")]
 			public var Full_ROZ:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/roz_armor.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/roz_armor.png", mimeType = "image/png")]
 			public var Full_ROZ_ARMOR:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/roz_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/roz_nude.png", mimeType = "image/png")]
 			public var Full_ROZ_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/semith.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/semith.png", mimeType = "image/png")]
 			public var Full_SEMITH:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/semith_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/semith_nude.png", mimeType = "image/png")]
 			public var Full_SEMITH_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/saendra.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/saendra.png", mimeType = "image/png")]
 			public var Full_SAENDRA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/saendra_dick.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/saendra_dick.png", mimeType = "image/png")]
 			public var Full_SAENDRA_FUTA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/saendra_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/saendra_nude.png", mimeType = "image/png")]
 			public var Full_SAENDRA_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/saendra_nude_dick.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/saendra_nude_dick.png", mimeType = "image/png")]
 			public var Full_SAENDRA_FUTA_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/sally.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/sally.png", mimeType = "image/png")]
 			public var Full_SALLY:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/schora.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/schora.png", mimeType = "image/png")]
 			public var Full_SCHORA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/schora_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/schora_nude.png", mimeType = "image/png")]
 			public var Full_SCHORA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/shelly.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/shelly.png", mimeType = "image/png")]
 			public var Full_SHELLY:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/shelly_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/shelly_nude.png", mimeType = "image/png")]
 			public var Full_SHELLY_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/shelly_huge.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/shelly_huge.png", mimeType = "image/png")]
 			public var Full_SHELLY_HUGE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/shelly_huge_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/shelly_huge_nude.png", mimeType = "image/png")]
 			public var Full_SHELLY_HUGE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/shock_hopper.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/shock_hopper.png", mimeType = "image/png")]
 			public var Full_SHOCK_HOPPER:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/shock_hopper_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/shock_hopper_nude.png", mimeType = "image/png")]
 			public var Full_SHOCK_HOPPER_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/simone.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/simone.png", mimeType = "image/png")]
 			public var Full_SIMONE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/simone_topless.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/simone_topless.png", mimeType = "image/png")]
 			public var Full_SIMONE_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/simone_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/simone_nude.png", mimeType = "image/png")]
 			public var Full_SIMONE_HALF_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/rodenian_mechanic.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/rodenian_mechanic.png", mimeType = "image/png")]
 			public var Full_RODENIAN_MECHANIC:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/rodenian_mechanic_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/rodenian_mechanic_nude.png", mimeType = "image/png")]
 			public var Full_RODENIAN_MECHANIC_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/double_goo.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/double_goo.png", mimeType = "image/png")]
 			public var Full_SLUTGOO:Class;
 			public function get Full_SLUTGOO_L():Class { return Full_SLUTGOO; }
 			public function get Full_SLUTGOO_R():Class { return Full_SLUTGOO; }
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/slyveren_slavebreaker_1.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/slyveren_slavebreaker_1.png", mimeType = "image/png")]
 			public var Full_SLAVEBREAKER_1:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/slyveren_slavebreaker_1_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/slyveren_slavebreaker_1_nude.png", mimeType = "image/png")]
 			public var Full_SLAVEBREAKER_1_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/slyveren_slavebreaker_2.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/slyveren_slavebreaker_2.png", mimeType = "image/png")]
 			public var Full_SLAVEBREAKER_2:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/slyveren_slavebreaker_2_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/slyveren_slavebreaker_2_nude.png", mimeType = "image/png")]
 			public var Full_SLAVEBREAKER_2_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/stella.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/stella.png", mimeType = "image/png")]
 			public var Full_STELLA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/stella_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/stella_nude.png", mimeType = "image/png")]
 			public var Full_STELLA_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/stella_preg.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/stella_preg.png", mimeType = "image/png")]
 			public var Full_STELLA_PREG:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/stella_preg_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/stella_preg_nude.png", mimeType = "image/png")]
 			public var Full_STELLA_PREG_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/steph.png", mimeType = "image/png")]
 			public var Full_STEPH:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/steph_nude.png", mimeType = "image/png")]
 			public var Full_STEPH_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_2.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/steph_2.png", mimeType = "image/png")]
 			public var Full_STEPH_2:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_2_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/steph_2_nude.png", mimeType = "image/png")]
 			public var Full_STEPH_2_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_3.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/steph_3.png", mimeType = "image/png")]
 			public var Full_STEPH_3:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_3_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/steph_3_nude.png", mimeType = "image/png")]
 			public var Full_STEPH_3_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_4.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/steph_4.png", mimeType = "image/png")]
 			public var Full_STEPH_4:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_4_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/steph_4_nude.png", mimeType = "image/png")]
 			public var Full_STEPH_4_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_5.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/steph_5.png", mimeType = "image/png")]
 			public var Full_STEPH_5:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_5_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/steph_5_nude.png", mimeType = "image/png")]
 			public var Full_STEPH_5_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_6.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/steph_6.png", mimeType = "image/png")]
 			public var Full_STEPH_6:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_6_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/steph_6_nude.png", mimeType = "image/png")]
 			public var Full_STEPH_6_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lancer.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lancer.png", mimeType = "image/png")]
 			public var Full_STORMGUARD_MALE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lancer_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/lancer_nude.png", mimeType = "image/png")]
 			public var Full_STORMGUARD_MALE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/sydian_queen.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/sydian_queen.png", mimeType = "image/png")]
 			public var Full_SYDIAN_QUEEN:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/sydian_queen_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/sydian_queen_nude.png", mimeType = "image/png")]
 			public var Full_SYDIAN_QUEEN_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/syri_coat.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/syri_coat.png", mimeType = "image/png")]
 			public var Full_SYRI:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/syri_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/syri_nude.png", mimeType = "image/png")]
 			public var Full_SYRI_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tam.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/tam.png", mimeType = "image/png")]
 			public var Full_TAMTAM:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tam_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/tam_nude.png", mimeType = "image/png")]
 			public var Full_TAMTAM_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tam_jail.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/tam_jail.png", mimeType = "image/png")]
 			public var Full_TAMTAM_JAIL:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tam_jail_preg.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/tam_jail_preg.png", mimeType = "image/png")]
 			public var Full_TAMTAM_JAIL_PREG:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tamani.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/tamani.png", mimeType = "image/png")]
 			public var Full_TAMANI:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tamani_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/tamani_nude.png", mimeType = "image/png")]
 			public var Full_TAMANI_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tank_kannon.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/tank_kannon.png", mimeType = "image/png")]
 			public var Full_TANK_KANNON:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/techie.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/techie.png", mimeType = "image/png")]
 			public var Full_TECHGUARD:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/techie_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/techie_nude.png", mimeType = "image/png")]
 			public var Full_TECHGUARD_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/techie_jail.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/techie_jail.png", mimeType = "image/png")]
 			public var Full_TECHGUARD_JAIL:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/techie_jail_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/techie_jail_nude.png", mimeType = "image/png")]
 			public var Full_TECHGUARD_JAIL_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/techie_jail_preg.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/techie_jail_preg.png", mimeType = "image/png")]
 			public var Full_TECHGUARD_JAIL_PREG:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/terensha.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/terensha.png", mimeType = "image/png")]
 			public var Full_TERENSHA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/terensha_filled.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/terensha_filled.png", mimeType = "image/png")]
 			public var Full_TERENSHA_FILLED:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/egg.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/egg.png", mimeType = "image/png")]
 			public var Full_TENTACLE_EGG:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tessa.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/tessa.png", mimeType = "image/png")]
 			public var Full_TESSA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tessa_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/tessa_nude.png", mimeType = "image/png")]
 			public var Full_TESSA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/teyaal.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/teyaal.png", mimeType = "image/png")]
 			public var Full_TEYAAL:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/teyaal_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/teyaal_nude.png", mimeType = "image/png")]
 			public var Full_TEYAAL_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tivf.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/tivf.png", mimeType = "image/png")]
 			public var Full_TIVF:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tivf_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/tivf_nude.png", mimeType = "image/png")]
 			public var Full_TIVF_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tlako.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/tlako.png", mimeType = "image/png")]
 			public var Full_TLAKO:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/torra_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/torra_nude.png", mimeType = "image/png")]
 			public var Full_TORRA_NUDE:Class;
 			public function get Full_TORRA():Class { return Bust_TORRA_NUDE; }
-			//[Embed(source = "../../../assets/images/npcs/adjatha/hr/torra.png", mimeType = "image/png")]
+			//[Embed(source = "../../../assets/images/npcs/adjatha/HR/torra.png", mimeType = "image/png")]
 			//public var Full_TORRA:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/rocket_pods.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/rocket_pods.png", mimeType = "image/png")]
 			public var Full_TURRET:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tuuva.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/tuuva.png", mimeType = "image/png")]
 			public var Full_TUUVA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tuuva_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/tuuva_nude.png", mimeType = "image/png")]
 			public var Full_TUUVA_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tuuva_horse_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/tuuva_horse_nude.png", mimeType = "image/png")]
 			public var Full_TUUVA_HORSE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ula.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/ula.png", mimeType = "image/png")]
 			public var Full_ULA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ula_preg.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/ula_preg.png", mimeType = "image/png")]
 			public var Full_ULA_PREG:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ula_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/ula_nude.png", mimeType = "image/png")]
 			public var Full_ULA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vaande.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/vaande.png", mimeType = "image/png")]
 			public var Full_VAANDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vaande_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/vaande_nude.png", mimeType = "image/png")]
 			public var Full_VAANDE_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vaande_female_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/vaande_female_nude.png", mimeType = "image/png")]
 			public var Full_VAANDE_FEMALE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vahn.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/vahn.png", mimeType = "image/png")]
 			public var Full_VAHN:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vahn_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/vahn_nude.png", mimeType = "image/png")]
 			public var Full_VAHN_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/valden.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/valden.png", mimeType = "image/png")]
 			public var Full_VALDEN:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/verusha.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/verusha.png", mimeType = "image/png")]
 			public var Full_VERUSHA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/verusha_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/verusha_nude.png", mimeType = "image/png")]
 			public var Full_VERUSHA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vi.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/vi.png", mimeType = "image/png")]
 			public var Full_VI:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vi_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/vi_nude.png", mimeType = "image/png")]
 			public var Full_VI_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vi_large.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/vi_large.png", mimeType = "image/png")]
 			public var Full_VI_LARGE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vi_large_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/vi_large_nude.png", mimeType = "image/png")]
 			public var Full_VI_LARGE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/war_alpha.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/war_alpha.png", mimeType = "image/png")]
 			public var Full_WAR_ALPHA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/war_alpha_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/war_alpha_nude.png", mimeType = "image/png")]
 			public var Full_WAR_ALPHA_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/xotchi.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/xotchi.png", mimeType = "image/png")]
 			public var Full_XOTCHI:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vending_adult.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/vending_adult.png", mimeType = "image/png")]
 			public var Full_XXX_VENDING_MACHINE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/yammi.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/yammi.png", mimeType = "image/png")]
 			public var Full_YAMMI:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/yammi_follower.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/yammi_follower.png", mimeType = "image/png")]
 			public var Full_YAMMI_APRON:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/yammi_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/yammi_nude.png", mimeType = "image/png")]
 			public var Full_YAMMI_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/zea.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/zea.png", mimeType = "image/png")]
 			public var Full_ZEA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/zea_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/zea_nude.png", mimeType = "image/png")]
 			public var Full_ZEA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/callgirl.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/callgirl.png", mimeType = "image/png")]
 			public var Full_ZIL_CALLGIRL:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/callgirl_cum.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/callgirl_cum.png", mimeType = "image/png")]
 			public var Full_ZIL_CALLGIRL_CUM:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/callgirl_pregnant.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/callgirl_pregnant.png", mimeType = "image/png")]
 			public var Full_ZIL_CALLGIRL_PREG:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/callgirl_pregnant_cum.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/callgirl_pregnant_cum.png", mimeType = "image/png")]
 			public var Full_ZIL_CALLGIRL_PREG_CUM:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/pollen_dancers.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/pollen_dancers.png", mimeType = "image/png")]
 			public var Full_ZIL_CHAMPS:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/pollen_dancers_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/pollen_dancers_nude.png", mimeType = "image/png")]
 			public var Full_ZIL_CHAMPS_NUDE:Class;
 			public function get Full_ZIL_CHAMP_BOW():Class { return Full_ZIL_CHAMPS; }
 			public function get Full_ZIL_CHAMP_SPEAR():Class { return Full_ZIL_CHAMPS; }
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/hornet.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/hornet.png", mimeType = "image/png")]
 			public var Full_ZIL_HORNET:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/hoverfly.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/hoverfly.png", mimeType = "image/png")]
 			public var Full_ZIL_HOVERFLY:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/hoverfly_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/hoverfly_nude.png", mimeType = "image/png")]
 			public var Full_ZIL_HOVERFLY_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/zil9tail.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/zil9tail.png", mimeType = "image/png")]
 			public var Full_ZIL9TAIL:Class;
 		}
 	}

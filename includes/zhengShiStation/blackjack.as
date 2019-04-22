@@ -1931,7 +1931,7 @@ public function rooBeej2(x:int):void
 	// Merge
 	if(pc.cumQ() < 6000) output("\n\nRoo slides off your cock with a wet pop.");
 	else output("\n\nRoo sputters and wipes her windshield with both arms, panting dryly.");
-	if (pc.cumType == GLOBAL.FLUID_TYPE_CHOCOLATE_CUM) output("  She slurps up the dregs of your still-warm release, puffing out her cheeks with seed-filled chocolate. The kitty cums again, moaning in confectionery delight. She gulps the hot, melty, creamy dark nut down, cumming <i>again,</i> looking extremely well fed.");
+	if (pc.cumType == GLOBAL.FLUID_TYPE_CHOCOLATE_CUM) output(" She slurps up the dregs of your still-warm release, puffing out her cheeks with seed-filled chocolate. The kitty cums again, moaning in confectionery delight. She gulps the hot, melty, creamy dark nut down, cumming <i>again,</i> looking extremely well fed.");
 	output(" <i>“M-My... [pc.name]... that was delicious,”</i> she grins, patting her belly.");
 	output("\n\nSatisfied eyes gaze longingly at your receding [pc.cocksLight]" + (pc.balls > 0 ? " and your diminished [pc.ballsNoun]":"") + "; she passes the seconds catching her breath and savoring the warmth you emptied into ");
 	if(pc.cumQ() >= 6000) output("and onto ");

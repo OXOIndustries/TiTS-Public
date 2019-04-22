@@ -16,9 +16,9 @@ package classes.Resources.Busts
 		
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/missbehavior/hr/akane.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/missbehavior/HR/akane.png", mimeType = "image/png")]
 			public var Full_AKANE:Class;
-			[Embed(source = "../../../assets/images/npcs/missbehavior/hr/akane_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/missbehavior/HR/akane_nude.png", mimeType = "image/png")]
 			public var Full_AKANE_NUDE:Class;
 		}
 	}

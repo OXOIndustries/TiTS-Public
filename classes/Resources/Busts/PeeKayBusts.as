@@ -16,7 +16,7 @@ package classes.Resources.Busts
 
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/peekay/hr/kara.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/peekay/HR/kara.png", mimeType = "image/png")]
 			public var Full_KARA:Class;
 			public function get Full_KARA_NUDE():Class { return Full_KARA; }
 		}

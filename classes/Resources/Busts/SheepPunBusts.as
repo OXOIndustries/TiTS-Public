@@ -46,40 +46,40 @@ package classes.Resources.Busts
 		
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/sheeppun/hr/aina.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/sheeppun/HR/aina.png", mimeType = "image/png")]
 			public var Full_AINA:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/sheeppun/hr/celise.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/sheeppun/HR/celise.png", mimeType = "image/png")]
 			public var Full_CELISE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/sheeppun/hr/erra.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/sheeppun/HR/erra.png", mimeType = "image/png")]
 			public var Full_ERRA:Class;
 
-			[Embed(source = "../../../assets/images/npcs/sheeppun/hr/heidrun.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/sheeppun/HR/heidrun.png", mimeType = "image/png")]
 			public var Full_HEIDRUN:Class;
-			[Embed(source = "../../../assets/images/npcs/sheeppun/hr/heidrun_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/sheeppun/HR/heidrun_nude.png", mimeType = "image/png")]
 			public var Full_HEIDRUN_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/sheeppun/hr/kelly.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/sheeppun/HR/kelly.png", mimeType = "image/png")]
 			public var Full_KELLY:Class;
 
-			[Embed(source = "../../../assets/images/npcs/sheeppun/hr/maja.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/sheeppun/HR/maja.png", mimeType = "image/png")]
 			public var Full_MAJA:Class;
-			[Embed(source = "../../../assets/images/npcs/sheeppun/hr/maja_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/sheeppun/HR/maja_nude.png", mimeType = "image/png")]
 			public var Full_MAJA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/sheeppun/hr/naleen_female.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/sheeppun/HR/naleen_female.png", mimeType = "image/png")]
 			public var Full_NALEEN:Class;
 
-			[Embed(source = "../../../assets/images/npcs/sheeppun/hr/nenne.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/sheeppun/HR/nenne.png", mimeType = "image/png")]
 			public var Full_NENNE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/sheeppun/hr/tuuva_dog.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/sheeppun/HR/tuuva_dog.png", mimeType = "image/png")]
 			public var Full_TUUVA_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/sheeppun/hr/tuuva_equine.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/sheeppun/HR/tuuva_equine.png", mimeType = "image/png")]
 			public var Full_TUUVA_HORSE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/sheeppun/hr/ula.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/sheeppun/HR/ula.png", mimeType = "image/png")]
 			public var Full_ULA_NUDE:Class;
 		}
 	}

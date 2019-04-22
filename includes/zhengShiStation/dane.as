@@ -185,10 +185,10 @@ public function daneTalkMenu():void
 	else addDisabledButton(0,"TentacleD","TentacleD","You need to have lost to Dane on Mhen’ga to discuss this topic.");
 	addButton(1,"Your Cuz",talkDaneAboutYoCousin,undefined,"Your Cuz","Ask Dane what it was like to work for your cousin. Your guess? Awful.");
 	addButton(2,"Other Jobs",askDaneAboutOtherJobs,undefined,"Other Jobs","Go digging to see if he’s got any stories to share.");
-	if(flags["LOST_TO_DANE_ON_MHENGA"] == 1 || flags["DANE_JOBS_TALK"] == 1)  addButton(3,"Harem",danesHaremTalk,undefined,"Harem","Dane has made mention of having a harem in the past. You don't see any girls here. Where are they?");
-	else addDisabledButton(3,"Locked","Locked","You'll need to ask Dane about his previous jobs to unlock this topic.");
+	if(flags["LOST_TO_DANE_ON_MHENGA"] == 1 || flags["DANE_JOBS_TALK"] == 1) addButton(3,"Harem",danesHaremTalk,undefined,"Harem","Dane has made mention of having a harem in the past. You don’t see any girls here. Where are they?");
+	else addDisabledButton(3,"Locked","Locked","You’ll need to ask Dane about his previous jobs to unlock this topic.");
 	addButton(4,"His Start",daneStartTalk,undefined,"His Start","How does a guy like Dane gets his start in the merc game?");
-	if(pc.hasItemByClass(ShockBlade)) addButton(5,"ReturnBlade",giveDaneShockblade,undefined,"Return Blade","Give Dane back the shock blade you took from him after defeating him on Mhen'ga.");
+	if(pc.hasItemByClass(ShockBlade)) addButton(5,"ReturnBlade",giveDaneShockblade,undefined,"Return Blade","Give Dane back the shock blade you took from him after defeating him on Mhen’ga.");
 	else addDisabledButton(5,"ReturnBlade","Return Blade","You cannot give Dane back one of his swords if you do not have that sword to give.");
 	addButton(14,"Back",approachDane,true);
 }
@@ -989,12 +989,14 @@ public function daneCuntfucks():void
 	}
 	//PC cums first
 	output("\n\nOrgasm grabs your [pc.vaginas] and squeezes" + (pc.hasVaginas() ? " one":"") + " down on Dane’s cock in a moment of instinctual passion. You ragdoll, safe and secure in the ausar’s hands. He keeps his firm grip on you as he continues to pound away, your " + (pc.wetness(x) < 4 ? "increasingly sodden cunt fluttering in the throes of pure pleasure. Dribbles of your [pc.girlCum] slide down the curvature of his slowly tightening sack, but he doesn’t cum just yet.":"juicing slut-cunt exploding with liquid relief, spraying cascades of [pc.girlCum] down Dane’s tightening balls and thighs. Inside, you’re fluttering in mad pleasure, but outside there is only the stuttering bursts of fragrant delight."));
+	var cumQ:Number = 0;
 	//Dicks paint a wall
 	if(pc.hasCock())
 	{
+		cumQ = pc.cumQ();
 		output("\n\nYour long-neglected [pc.cocks] go" + (!pc.hasCocks() ? "es":"") + " off with " + (!pc.hasCocks() ? "its":"their") + " sister" + (pc.hasVaginas() ? "s":"") + ", spraying ropes of [pc.cum] at the door.");
-		if(pc.cumQ() < 500) output(" Thick ribbons of the stuff emerge in rapid succession, forming into a slowly spreading heap of wasted jism on the floor.");
-		else if(pc.cumQ() < 5000) output(" Huge deluges of the stuff emerge in urethra-straining loads, splattering into a wide, growing pool of wasted jism on the floor.");
+		if(cumQ < 500) output(" Thick ribbons of the stuff emerge in rapid succession, forming into a slowly spreading heap of wasted jism on the floor.");
+		else if(cumQ < 5000) output(" Huge deluges of the stuff emerge in urethra-straining loads, splattering into a wide, growing pool of wasted jism on the floor.");
 		else output(" Those enormous discharges slap into the door with hinge-rattling force, waterfalling down the inside edge to join the slowly growing lake around Dane’s ankles. If he cares, he shows no sign of it, simply letting you waste every ounce your jism on the floor.");
 		output(" You look down at the last second, blissed out and gleeful, watching your [pc.cocks] bob and twitch out the last few [pc.cumGem] dribbles.");
 	}
@@ -1004,9 +1006,9 @@ public function daneCuntfucks():void
 	output("\n\nThe few dribbles that leak past there have no hope of escaping the cunt-straining girth of his knot. Salty seed sloshes around inside you while Dane squirms. His balls quiver, and you slackly accept every ounce of their offering. It feels sort of like he’s stoking a fire in your belly. Successive, pussy-distending ejaculations fill you fuller and further - and more and more aware of just how warm his canine semen is.");
 	output("\n\nIf this is how Dane fucks, he must be leaving quite a trail of bastards across the galaxy. You cradle your middle, feeling it bulge slightly as Dane finishes flexing and sags back down to seated position, breathing heavily.");
 	output("\n\nThe mercenary doesn’t seem interested in cuddling, however. He scoots forward to the edge of his seat and gently pushes you down to the floor. Still joined to his crotch by the anchor of his knot, your [pc.butt] is lifted up into the air. You pant for breath");
-	if(pc.hasCock() && pc.cumQ() >= 500) output(" just above the pool of your own cum" + (pc.biggestTitSize() >= 10 ? ", dragging your [pc.nipples] through it":"") + ". Dane slaps one cheek in apparent approval.");
+	if(pc.hasCock() && cumQ >= 500) output(" just above the pool of your own cum" + (pc.biggestTitSize() >= 10 ? ", dragging your [pc.nipples] through it":"") + ". Dane slaps one cheek in apparent approval.");
 	output("\n\n<i>“Now you look like a proper, bred bitch.”</i> His fingers rove higher, sliding across sweat-slickened [pc.skinFurScales] to trace the curvature of your spin. His other hands join it soon after, caressing and squeezing you as you’re trapped " + (pc.legCount == 2 ? "on all fours":"in post-coital doggie-style") + ". <i>“Lower.”</i> He pushes down on your neck but holds your hips where they are, and deep inside yourself, you can feel the accumulated spunk puddling against your cervix" + (!pc.isPregnant(x) ? ", forcing egg-seeking missiles through in dribs and drabs":"") + ". Your cheek ");
-	if(pc.hasCock() && pc.cumQ() >= 500) output("smears through your [pc.cumNoun].");
+	if(pc.hasCock() && cumQ >= 500) output("smears through your [pc.cumNoun].");
 	else output("rubs on the ground.");
 	output("\n\n<i>“Just like that. Now tell me how much you love being my cumrag.”</i> From seemingly nowhere, a finger appears against the side of your clitoral hood.");
 

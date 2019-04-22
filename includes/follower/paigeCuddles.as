@@ -69,8 +69,9 @@ public function paigePostCuddles(args:Array):Boolean
 		|| InCollection("PCSE4", args)
 		|| InCollection("PCSES", args)
 		|| InCollection("SSVE3", args)
-		|| InCollection("SSVE4", args))
-	{		
+		|| InCollection("SSVE4", args)
+		|| InCollection("PCSSB", args)
+	){
 		flags["PAIGE_WAKEY_FLAGS"] = args.concat();
 		sleep(false);
 		return true;

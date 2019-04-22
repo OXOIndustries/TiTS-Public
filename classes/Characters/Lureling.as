@@ -34,7 +34,7 @@ package classes.Characters
 			originalRace = "lureling";
 			a = "the ";
 			capitalA = "The ";
-			this.long = "It's a huge, gross sea monster that resembles an oversized angler fish with frog-like legs. Its gaping, slavering maw drools with a thousand teeth arranged in a fearsome circle, and tiny black eyes stare at you with unbridled malice.";
+			this.long = "It’s a huge, gross sea monster that resembles an oversized angler fish with frog-like legs. Its gaping, slavering maw drools with a thousand teeth arranged in a fearsome circle, and tiny black eyes stare at you with unbridled malice.";
 			this.customBlock = "The lurelings’s armor deflects your attack.";
 			this.isPlural = false;
 			isLustImmune = false;
@@ -207,7 +207,7 @@ package classes.Characters
 		private function flipperSlap(target:Creature):void
 		{
 			output("Growling deeply, the Lureling advances on you and slaps with its frog-like foot, trying to backhand you across the igloo. ");
-			if (combatMiss(this, target)) output("You duck down, avoiding the flailing monster's attack.");
+			if (combatMiss(this, target)) output("You duck down, avoiding the flailing monster’s attack.");
 			else
 			{
 				output("You grunt as the massive arm smashes you across the chest and face. Ow!");
@@ -224,7 +224,7 @@ package classes.Characters
 			if (combatMiss(this, target) || combatMiss(this, target) || combatMiss(this, target)) output(", narrowly avoiding a nasty bite!");
 			else
 			{
-				output(" but don't manage to evade the Lureling's bestial mouth, and feel its teeth crush into you. The bite isn't lethal, but it leaves you gasping and winded for a moment by the time you struggle free!");
+				output(" but don’t manage to evade the Lureling’s bestial mouth, and feel its teeth crush into you. The bite isn’t lethal, but it leaves you gasping and winded for a moment by the time you struggle free!");
 				if (!target.isPlanted()) 
 				{
 					CombatAttacks.applyStagger(target, 1, true);
@@ -244,7 +244,7 @@ package classes.Characters
 		private function psionicBacklash(target:Creature):void
 		{
 			output("The sea beast howls, an unearthly screech that leaves you staggering back and grabbing at your head. Oh, stars, that hurts! ");
-			if (willpower() + rand(100) < target.WQ()) output("You grit your teeth and push through the pain, refusing the give in to the Lureling's psychic assault!");
+			if (willpower() + rand(100) < target.WQ()) output("You grit your teeth and push through the pain, refusing the give in to the Lureling’s psychic assault!");
 			else
 			{
 				output("You scream in pain and slump to your [pc.knees], unable to think of anything but the pounding in your head.");
