@@ -60,7 +60,7 @@ package classes.Characters
 			this.girlCumType = GLOBAL.FLUID_TYPE_GIRLCUM;
 			
 			this.createVagina();
-			this.vaginas[0].vaginaColor = "Ebony-black";
+			this.vaginas[0].vaginaColor = "ebony-black";
 			this.vaginas[0].clits = 1;
 			this.vaginas[0].type = GLOBAL.TYPE_EQUINE;
 			this.vaginas[0].loosenessRaw = 3;
@@ -106,6 +106,10 @@ package classes.Characters
 				return kGAMECLASS.tryKnockUpRoxy(heatSex);
 			}
 			return false;
+		}
+		override public function isPregnant(vIdx:int = 0):Boolean
+		{
+			return (kGAMECLASS.flags["ROXY_PREG_TIMER"] != undefined);
 		}
 		
 	}
