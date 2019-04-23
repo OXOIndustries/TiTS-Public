@@ -1473,22 +1473,25 @@ package classes.Resources.Busts
 			public var Full_BORED_JUMPER_EQUINE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jumper_horse_nude.png", mimeType = "image/png")]
 			public var Full_BORED_JUMPER_EQUINE_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jumper_horse_nude_pregnant.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jumper_horse_nude_pregnant.png", mimeType = "image/png")]
 			public var Full_BORED_JUMPER_EQUINE_NUDE_PREGNANT:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jumper_feline.png", mimeType = "image/png")]
 			public var Full_BORED_JUMPER_FELINE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jumper_feline_nude.png", mimeType = "image/png")]
 			public var Full_BORED_JUMPER_FELINE_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jumper_feline_nude_pregnant.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jumper_feline_nude_pregnant.png", mimeType = "image/png")]
 			public var Full_BORED_JUMPER_FELINE_NUDE_PREGNANT:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jumper_canine.png", mimeType = "image/png")]
 			public var Full_BORED_JUMPER_CANINE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jumper_canine_nude.png", mimeType = "image/png")]
 			public var Full_BORED_JUMPER_CANINE_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jumper_canine_nude_pregnant.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jumper_canine_nude_pregnant.png", mimeType = "image/png")]
 			public var Full_BORED_JUMPER_CANINE_NUDE_PREGNANT:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jumper_terran.png", mimeType = "image/png")]
 			public var Full_BORED_JUMPER_TERRAN:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jumper_terran_nude.png", mimeType = "image/png")]
 			public var Full_BORED_JUMPER_TERRAN_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jumper_terran_nude_pregnant.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/jumper_terran_nude_pregnant.png", mimeType = "image/png")]
 			public var Full_BORED_JUMPER_TERRAN_NUDE_PREGNANT:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/kally.png", mimeType = "image/png")]
@@ -1837,19 +1840,20 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/red_heavy_nude.png", mimeType = "image/png")]
 			public var Full_RED_HEAVY_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/roxy.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/roxy.png", mimeType = "image/png")]
 			public var Full_ROXY:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/roxy_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/roxy_nude.png", mimeType = "image/png")]
 			public var Full_ROXY_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/roxy_preg.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/roxy_preg.png", mimeType = "image/png")]
 			public var Full_ROXY_PREG:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/roxy_preg_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/roxy_preg_nude.png", mimeType = "image/png")]
 			public var Full_ROXY_PREG_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/roxy_tits.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/roxy_tits.png", mimeType = "image/png")]
 			public var Full_ROXY_TITS:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/hr/roxy_tits_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/roxy_tits_nude.png", mimeType = "image/png")]
 			public var Full_ROXY_TITS_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/HR/roz.png", mimeType = "image/png")]
 			public var Full_ROZ:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/roz_armor.png", mimeType = "image/png")]
 			public var Full_ROZ_ARMOR:Class;
