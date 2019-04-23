@@ -124,7 +124,7 @@ package classes.Characters
 		override public function get bustDisplay():String
 		{
 			//return "ANNO_HUSKAR";
-			return "";
+			return "FIREPUP";
 		}
 
 		override public function setDefaultSexualPreferences():void
