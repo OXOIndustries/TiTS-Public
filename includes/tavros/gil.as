@@ -49,14 +49,14 @@ public function gilPupperProccer():Boolean
 
 		output("\n\n<i>“Yes, I did.”</i> You show him a red snausage to confirm his suspicions, which calms him a bit.");
 		output("\n\n<i>“Gil.”</i> He steels his nerves and extends his hand for a handshake.");
-		output("\n\n<i>“[pc.name] Steele”</i>");
-		if(pc.isNice()) output(", you say and shake his hand.");
+		output("\n\n<i>“[pc.name] Steele");
+		if(pc.isNice()) output(",”</i> you say and shake his hand.");
 		else if(pc.isMischievous()) 
 		{
-			output(", you say and extend your hand, only to quickly move it out of the way as soon as he tries to shake it.");
+			output(",”</i> you say and extend your hand, only to quickly move it out of the way as soon as he tries to shake it.");
 			if(silly) output(" Psyche!");
 		}
-		else if(pc.isBro() || pc.isHard) output(", you say, ignoring his extended arm, until he puts both of his hands back in his pockets out of embarrassment.");
+		else if(pc.isBro() || pc.isHard) output(",”</i> you say, ignoring his extended arm, until he puts both of his hands back in his pockets out of embarrassment.");
 		output(" It takes some time for your new acquaintance to realize the implications of your name, but when he does his breath catches for a few moments.");
 		output("\n\nEventually he regains his composure and tries his best to play it cool. <i>“The thing is, I’m rather desperate for a very specific set of transformations that can only be found in those,”</i> he says, pointing at the product in your hands, <i>“and buying them from other people is the cheapest way to get them.”</i>");
 		output("\n\n<i>“Why don’t you just buy it yourself?”</i>");
