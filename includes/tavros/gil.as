@@ -306,7 +306,7 @@ public function giveDoggoADoggoTreat():void
 		else
 		{
 			output("\n\n<i>“Does that mean I can fuck you now?”</i>");
-			output("\n\n<i>“Yes, if that’s what y’want. So... what<b>do</b> you want?”</i>");
+			output("\n\n<i>“Yes, if that’s what y’want. So... what <b>do</b> you want?”</i>");
 		}
 	}
 	processTime(4);
