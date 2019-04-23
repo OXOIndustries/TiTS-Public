@@ -763,6 +763,7 @@ public function roxyAppearance():void
 	}
 	
 	processTime(3);
+	setButtonDisabled(0);
 }
 public function roxyTalk(quip:int=0):void
 {	
@@ -847,7 +848,7 @@ public function roxyTalkHerself():void
 	if (firstTime) output("\n\n<i>“Woah, you sure don’t look like a busybody executive. I’d know one, you should have seen my seventh agent.”</i>");
 	else output("\n\n<i>“Yeah I’ll bet... gotta have goals to aim for, though.”</i>");
 	output(" Roxy nods, bouncing a little faster than before. <i>“Nothing like a chat with a friend,”</i> she says, excitable as ever, mimicking a few silly gestures, <i>“beats the usual ‘can I have an autograph?’ stuff!”</i>");
-		
+	
 	processTime(10);
 	clearMenu();
 	
@@ -1728,8 +1729,8 @@ public function roxySoxyTakesYourCoxyInHerBoxyBJ(firstTime:Boolean=false):void
 	output("\n\nWith nothing but her head in arms reach, you run your [pc.fingers] down her ear until your [pc.hand] rests on her head in quiet appreciation. [pc.Hips] jerking forward, you whisper <i>“Harder, please.”</i> Your begging elicits another dick-pleasing laugh from her lungs, and then the voracious bunny clamps down harder around your seething phallus.");
 	output("\n\nFrom the way Roxy’s tongue coddles your [pc.dickSkin " + kok + "] to the lewd noises her mouth makes, holding limp instead of battering her brainless becomes a Herculean labor. She told you not to move, and the desire to fuck back is a bastard imp on your shoulder. Having her savor you is enjoyable but-");
 	output("\n\nThe more stubborn she feels you getting, the firmer her hold on your [pc.thighs] becomes...");
-	output("\n\nIn the squishy embrace of her wonderfully warm mouth, the direct command to cum rises echoes up through you. She’s slurping around your [pc.cockNoun " + kok + "] with alternating forces, saliva hanging in thick cords when she withdraws for air.");
-	output("\n\nShe buries your lube-slick bone in her throat with a pop-like wetness, long enough for her throat to clench, and then she pulls out only to scissor your member in the passionate squeezes of her throat-hole. Hoarse breaths slither past your lips;");
+	output("\n\nIn the squishy embrace of her wonderfully warm mouth, the direct command to cum rises up and echoes through you. She’s slurping around your [pc.cockNoun " + kok + "] with alternating forces, saliva hanging in thick cords when she withdraws for air.");
+	output("\n\nShe buries your lube-slick bone in her throat with an ear-pleasing pop, long enough for her throat to clench, and then she pulls out only to scissor your member in the passionate squeezes of her throat-hole. Hoarse breaths slither past your lips;");
 	if (pc.balls > 0) output(" your seed-laden nutsack sloshes inches from her jaw;");
 	output(" now it’s not just eagerness showing plainly in your eyes, but lustful vacancy.");
 	
@@ -2975,8 +2976,8 @@ public function roxySexIdea():void
 		output("\n\nRoxy hops to her feet, unzipping her shorts and stepping out of them. <i>“Guess I should tell ‘ya why we’re here. You fuck good, so I figured I owed ‘ya some privacy.”</i> She smirks, bending over to her bag, giving you a beautiful, hip-rocking display of taut laquine assflesh. You can’t see what she’s digging out");
 		if (pc.isCrotchExposedByLowerUndergarment()) output(" but [pc.eachCock] " + (pc.cockTotal() > 1 ? "are" : "is") + " squirming skyward in anticipation.");
 		else output(" but she’s doing a heck of a job digging [pc.eachCock] out from your [pc.crotchCoverUnder].");
-	
-		output("\n\After rooting through her stuff she rises, and a long, black lead follows her ascent. When Roxy turns around, she yanks a black collar out from her bag. It pops up, spins around, and is finally clutched in her hand, presenting you a leathery petmaker. The face you make must be to her liking, because she’s sneering in a way that only adds to your bewilderment.");
+		
+		output("\n\nAfter rooting through her stuff she rises, and a long, black lead follows her ascent. When Roxy turns around, she yanks a black collar out from her bag. It pops up, spins around, and is finally clutched in her hand, presenting you a leathery petmaker. The face you make must be to her liking, because she’s sneering in a way that only adds to your bewilderment.");
 		output("\n\n<i>“This thing,”</i> she unclasps the back and looks at you smarmily, <i>“your neck,”</i> closes it again, <i>“this in my hand,”</i> she pulls up the leash, <i>“...and you aren’t walking away ‘til I’m so heavy with");
 		if (noPreg || pregTri > 0) output(" cum");
 		else output(" kids");
