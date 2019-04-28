@@ -5302,7 +5302,7 @@
 			{
 				if (bonus < statusEffectv2("Lane Detoxing Weakness")) bonus = statusEffectv2("Lane Detoxing Weakness");
 			}
-			return (0 + bonus);
+			return Math.min((0 + bonus), lustMax());
 		}
 		public function physiqueMax(raw:Boolean = false): Number {
 			var bonuses:int = 0;

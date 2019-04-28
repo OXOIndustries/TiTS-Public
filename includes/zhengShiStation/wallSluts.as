@@ -52,7 +52,7 @@ public function cherryTapHallBonerBonus():Boolean
 	{
 		output("The cloying scent of Cherry’s bio-chemical perfume wafts around you as the throbbing, subliminal vibrations of the Cyber Punks’ lust generators fill you once more. Your libido kicks into overdrive just by walking the length of the Tap-Hall. The wall of public use sluts is as popular as ever, but there are still plenty of unoccupied stalls.");
 		//is lust is not at least 30, set lust to 30
-		processTime(75);
+		pc.lust(75);
 		clearMenu();
 		addButton(0,"Wall Sluts",pickWallSlut,undefined,"Wall Sluts","Take a gander at the wares on display.");
 		return false;
@@ -885,7 +885,7 @@ public function noCummiesForUrta(x:int):void
 		else if(pc.balls == 1) output("ball");
 		else output("crotch");
 		output(" and explodes up your spine before you have time for another thought. The boiling, white-hot bliss of climax surges through your length with torrential force, bursting out a second later in the form of a tide of womb-drenching [pc.cumNoun]. You can feel it surge and whirl around your [pc.cock " + x + "], mixing with the copious cunt-juice into a potent sexual slurry, and that’s only from your first spurt. Ever great amounts of virile goo hose down the fox-woman’s well-fucked twat, rounding the bit of her abdomen out slightly, but you’re far from done.");
-		output("\n\nYou cum like the true breeder you’ve become, not just drenching Tura’s passage but stuffing it full and then some." + (!pc.hasKnot(x) ? " Thick rivers of your excess pour out around your girth to slide down the crack of her ass and soak into the fibers of her furry tail, but the greatest portions remain inside.":" Not a single dribble escapes. Your [pc.knot " + x + "] seals her cunt tightly, trapping the fullness of your steaming hot load inside, where it belongs.") + " Your sure that on the other side of the wall, her belly is inflating, rounding out in an obscene parody of the fecundity " + (pc.cumQuality() <= 0 ? "she’d soon experience, were you virile":"she’s liable to experience all too soon") + ". Spraying your last deposits, you smile and savor the caresses of her squeezing quim, muted by the pussy-inflating layer of seed between.");
+		output("\n\nYou cum like the true breeder you’ve become, not just drenching Tura’s passage but stuffing it full and then some." + (!pc.hasKnot(x) ? " Thick rivers of your excess pour out around your girth to slide down the crack of her ass and soak into the fibers of her furry tail, but the greatest portions remain inside.":" Not a single dribble escapes. Your [pc.knot " + x + "] seals her cunt tightly, trapping the fullness of your steaming hot load inside, where it belongs.") + " You’re sure that on the other side of the wall, her belly is inflating, rounding out in an obscene parody of the fecundity " + (pc.cumQuality() <= 0 ? "she’d soon experience, were you virile":"she’s liable to experience all too soon") + ". Spraying your last deposits, you smile and savor the caresses of her squeezing quim, muted by the pussy-inflating layer of seed between.");
 	}
 	//Merge
 	output("\n\nYou pull out and wipe down with the provided cleaning towels" + (pc.isMischievous() ? ", giving the fox-slut a friendly swat on the ass to compliment her good work":"") + (!pc.isCrotchExposed() ? ", then tuck your tackle away":"") + ", ready to face the universe once more.");
@@ -1028,7 +1028,7 @@ public function demureTaurAss(x:int):void
 	//first time:
 	if(flags["DEMTAUR_FUKKED"] == undefined)
 	{
-		output("\n\nEven the first inch of penetration is too much for the leithan’s untouched, virgin ass. Her barely emerged horsecock spreads its flaring crest and practically lunges from its deep hued sheath. Her balls clench even tighter against her flanks and a geyser of white-gold spunk spurts in helpless spree. The gushing blast shoots upward, hosing her underside primarily, though some of the thick cream manages to splattering against the thighs of her middle legs, pooling around her trembling paws. Her tail twitches and flits restlessly in the throes of her first orgasm anal orgasm, her body trying to process the overflow of sensations.");
+		output("\n\nEven the first inch of penetration is too much for the leithan’s untouched, virgin ass. Her barely emerged horsecock spreads its flaring crest and practically lunges from its deep hued sheath. Her balls clench even tighter against her flanks and a geyser of white-gold spunk spurts in helpless spree. The gushing blast shoots upward, hosing her underside primarily, though some of the thick cream manages to splattering against the thighs of her middle legs, pooling around her trembling paws. Her tail twitches and flits restlessly in the throes of her first anal orgasm, her body trying to process the overflow of sensations.");
 	}
 	//repeat:
 	else

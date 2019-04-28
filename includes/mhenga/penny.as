@@ -2342,7 +2342,7 @@ public function penniliciousPawjob():void {
 	output(". She rubs a furred paw against your [pc.leg] affectionately");
 	if(inPennyQuest() || pennyIsCrew())
 	{
-		output("before turning back to smile at you, squeezing teasingly. She does not leave you to wait long, however.");
+		output(" before turning back to smile at you, squeezing teasingly. She does not leave you to wait long, however.");
 		output(" Her fluffy paw migrates higher to press against [pc.oneCock]");
 		if(!pc.isCrotchExposed()) 
 		{
@@ -4060,7 +4060,7 @@ public function pennyRPScene():void
 	if(pc.isBimbo()) output("<i>“I was thinking that we could do like roleplay. I’ll be a really nasty criminal who tried to like seduce you and stuff and now you’re all pent up and super horny.”</i>");
 	else output("<i>“How about some roleplay? I’ll play a dirty crook who tried to seduce you but got arrested nonetheless and now you’re all pent up and lusty.”</i> you whisper in a low tone while drawing small circles on the desk.");
 	output("\n\n<i>“That sounds fun, my mate. But are you sure? I might get a bit lost in the role.”</i> Penny’s voice is a mixture of lust and worry.");
-	output("\n\n<i>There is a predatory glint in her eyes, she’ll probably be a touch rougher than usually</i>");
+	output("\n\n<i>There is a predatory glint in her eyes, she’ll probably be a touch rougher than usual.</i>");
 	processTime(2);
 	clearMenu();
 	addButton(0,"Yes",yesPennyLetsRP);

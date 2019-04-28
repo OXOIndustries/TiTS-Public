@@ -1087,7 +1087,7 @@ public function shekkaSleepWithMornings():void
 		if(rand(2) == 0)
 		{
 			output("A soft, trilling breathing tickles at one of your [pc.ears]. It’s a very much alien sound, as though it were a hint away from a sibilant hiss, or trickling birdsong. Peeking over your shoulder reveals an innocently sleeping face, and the need to climb out of bed and get on with your day has to pose a quick war with comfort.");
-			output("\n\nYou reach around your back, planting your hands on warm, naked ass-cheeks. Although Shekka’s eyes stay closed, her breathing shifts. She’s probably awake now. Not that it stops you from continuing, massaging her expansive rear and rubbing the very base of her tail until the horny Rask struggles to fight down delighted little ‘coo-ing’ sounds. She finally fives up, nibbling your shoulder and moaning sweetly. <i>“A girl could get used to a little hands-on wakeup like that.”</i>");
+			output("\n\nYou reach around your back, planting your hands on warm, naked ass-cheeks. Although Shekka’s eyes stay closed, her breathing shifts. She’s probably awake now. Not that it stops you from continuing, massaging her expansive rear and rubbing the very base of her tail until the horny Rask struggles to fight down delighted little ‘coo-ing’ sounds. She finally gives up, nibbling your shoulder and moaning sweetly. <i>“A girl could get used to a little hands-on wakeup like that.”</i>");
 			output("\n\nShekka gives you a quick spank, disentangling from your body and letting you up.");
 		}
 		//2

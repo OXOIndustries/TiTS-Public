@@ -559,7 +559,7 @@ public function continueChangingPenny(newScreen:Boolean = false):void
 		output("Y");
 	}
 	else output("y");
-	output(" have a total, uninterrupted view of her thong-clad, and slightly damp, vixen vagina");
+	output("ou have a total, uninterrupted view of her thong-clad, and slightly damp, vixen vagina");
 	if(penny.hasCock() && penny.balls > 0) 
 	{
 		output(", and her thick, full, bouncing balls}; the only thing sitting between you and one of the greatest shows in space is a flimsy bit of red fabric. You" + (pc.lust() >= 33 ? ", with some restraint,":"") + " do nothing but sit and watch.");
@@ -1493,7 +1493,9 @@ public function reachAroundThePennyslut(x:int):void
 	{
 		output("\n\n<i>“Ooohhh, shit,”</i> Penny whimpers in the wake of it all, falling back against your [pc.chest]. <i>“I can’t cum any more than that...”</i>");
 		output("\n\n<i>“That’s okay, I’ll be leaving the panties with you,”</i> you remark lightly, pulling free of her quivering quim. A trail of her juices" + (x >= 0 ? " and your cum":"") + " follows, dripping to the bed. <i>“I’ll send Mitzi around to get them later.”</i>");
-		output("\n\n<i>“Oof,”</i> she says, settling back on the bed and admiring your butt{clothed: as you re-dress}. <i>“That’ll be fun...”</i>");
+		output("\n\n<i>“Oof,”</i> she says, settling back on the bed and admiring your butt");
+		if(!pc.isCrotchExposed()) output(" as you re-dress");
+		output(". <i>“That’ll be fun...”</i>");
 		output("\n\n<i>“No doubt,”</i> you say, grinning. <i>“I’ll swing by again later. See ya soon, Penny.”</i>");
 		output("\n\nShe gives you an affectionate smile and a wave as you depart.");
 	}

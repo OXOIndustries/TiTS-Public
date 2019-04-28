@@ -758,7 +758,7 @@ public function redheadfuckiroodidoody(x:int):void
 			output(", spilling out around your ");
 			if(pc.hasKnot(x) && pc.hasKnot(y)) output("knots");
 			else if(pc.hasKnot(x)) output("[pc.knot " + x + "]");
-			else output("[pc.knot" + y + "]");
+			else output("[pc.knot " + y + "]");
 		}
 		output(". She jerks violently in your grasp, dragging your still-cumming cocks in several directions, making your orgasm indescribably powerful. You last longer than most, too, as thick ribbons of cum are eased out by her shameless body’s spasms." + (pc.hasVagina() ? " The vicious struggle to stay upright spreads the boiling pleasure to your [pc.pussy]. It soon drenches the laquine slut’s face with spurts of [pc.girlCum].":""));
 	}
