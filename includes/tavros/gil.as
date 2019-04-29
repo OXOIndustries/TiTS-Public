@@ -2,7 +2,7 @@ import classes.Items.Transformatives.PupperPoppers;
 //Gil
 //By: Lashcharge
 
-//A cuntboy doberman-morph that wants to to get the worg traits from the promotional red snausages. Pays 1000 or gives a blowjob for each Pupper Popper you bring him, up to nine at which point you can fuck him.
+//A cuntboy doberman-morph that wants to get the worg traits from the promotional red snausages. Pays 1000 or gives a blowjob for each Pupper Popper you bring him, up to nine at which point you can fuck him.
 
 //Background
 //Gil was born from self impregnation to an absurdly rich maleherm rockstar/music company CEO(race undecided). He is the 2nd out of 3 children born this way and has lots of half siblings. When he was young he was frequently bullied by his peers for being a “clone” and a cuntboy, especially from one particular nasty bully who harassed him through his school years.

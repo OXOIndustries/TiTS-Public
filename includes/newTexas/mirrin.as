@@ -2028,7 +2028,7 @@ public function winAgainstMirrin():void
 	showMirrin(true);
 	author("SoAndSo");
 	output("You dust your naked self down, a comfortable warmth energizing you from the exertion. Mirrin has her head cowed, still smiling in defeat.");
-	output("\n\n<i>“Whelp, rules is rules or some such. What does " + pc.mf("Sir","Madame") + " Steele require of her uhhh, subordinate?”</i> She says, shuffling closer to you. It’s strange to find you in a higher position while she kneels before you. Still, you know what to do with her.");
+	output("\n\n<i>“Whelp, rules is rules or some such. What does " + pc.mf("Sir","Madame") + " Steele require of [pc.hisHer] uhhh, subordinate?”</i> She says, shuffling closer to you. It’s strange to find you in a higher position while she kneels before you. Still, you know what to do with her.");
 	output("\n\nYou draw a circle in the air around your pelvis and then point to her mouth.");
 	//PC is kind:
 	if(pc.isNice())

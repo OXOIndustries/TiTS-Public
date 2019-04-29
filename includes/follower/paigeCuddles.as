@@ -67,7 +67,9 @@ public function paigePostCuddles(args:Array):Boolean
 {
 	if (InCollection("PCSE3", args)
 		|| InCollection("PCSE4", args)
-		|| InCollection("PCSES", args))
+		|| InCollection("PCSES", args)
+		|| InCollection("SSVE3", args)
+		|| InCollection("SSVE4", args))
 	{		
 		flags["PAIGE_WAKEY_FLAGS"] = args.concat();
 		sleep(false);
@@ -577,7 +579,9 @@ public function paigeWakeyWakey():void
 	
 	var hadSex:Boolean =	InCollection("PCSE3", args)
 							|| InCollection("PCSE4", args)
-							|| InCollection("PCSBN", args);
+							|| InCollection("PCSBN", args)
+							|| InCollection("SSVE3", args)
+							|| InCollection("SSVE4", args);
 
 	output("You wake to the sensation of a soft, yet insistent, vibration from your bed’s mattress and its headboard, serving as your alarm. Lazily, you reach for one of the alarm’s settings, also built into the headboard, so you can slap the snooze button and drift off for another ten minutes.");
 	output("\n\nHowever, your arms and legs are all tangled up, and it takes you a moment to realize, and then remember, that Paige is in the bed with you. She’s clamped to your limbs, her head resting gently against your [pc.chest]");

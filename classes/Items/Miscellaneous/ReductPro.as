@@ -1348,23 +1348,21 @@ package classes.Items.Miscellaneous
 					pc.removeStatusEffect("Horn Bumps");
 				}
 				output("\n\nAfter the feeling subsides, you close the empty container and throw it away, washing your hands afterward.");
+				
+				kGAMECLASS.flags["REDUCTPRO_USED_ON_HORNS"] = 1;
+				
+				// Done!
+				useReductProDone();
+				return;
 			}
 			else
 			{
 				output("\n\n" + pc.hornLengthLockedMessage());
 				output("\n\nRubbing your [pc.hornsNoun], you sigh in disappointment and throw out the empty container, washing your hands afterward.");
+				
+				useReductProDone(true);
+				return;
 			}
-			
-			kGAMECLASS.flags["REDUCTPRO_USED_ON_HORNS"] = 1;
-			if (kGAMECLASS.flags["TIMES_REDUCTPRO_USED"] == undefined)
-				kGAMECLASS.flags["TIMES_REDUCTPRO_USED"] = 1;
-			else
-				kGAMECLASS.flags["TIMES_REDUCTPRO_USED"]++;
-			
-			clearMenu();
-			addButton(0, "Next", kGAMECLASS.mainGameMenu);
-			
-			return;
 		}
 		
 		private function useReductProDone(failed:Boolean = false):void

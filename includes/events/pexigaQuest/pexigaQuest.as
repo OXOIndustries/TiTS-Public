@@ -1512,7 +1512,6 @@ public function autoFillNymFoeBoobjection(bRow:int = 0):void
 	})(bRow);
 	eventQueue.push(tEventCall);
 }
-
 public function nymFoeUninjection():void
 {
 	if(pc.hasStatusEffect("Nym-Foe Injections"))
@@ -1525,9 +1524,10 @@ public function nymFoeUninjection():void
 		}
 		pc.lipMod -= pc.statusEffectv4("Nym-Foe Injections");
 	}
-	if(!pc.hasPerk("Implant-tastic")) pc.removeStatusEffect("Nym-Foe Injections");
+	pc.removeStatusEffect("Nym-Foe Injections");
+	// Perk regens silicone implants!
+	if(pc.hasPerk("Implant-tastic")) pc.createStatusEffect("Nym-Foe Injections");
 }
-
 public function nymFoeMaxInjection(hips:Number = 0, butt:Number = 0, boob:Number = 0, lips:Number = 0):void
 {
 	pc.createStatusEffect("Nym-Foe Injections");
@@ -2949,7 +2949,7 @@ public function drBadgerLabNymFoe(response:String = "menu"):void
 				{
 					output("You [pc.walk] over to the alabaster skinned nurse droid. Her eyes are closed, she rests against the wall, butt on the ground with her knees pressed up against her half-deflated chest. Her arms are like that of a lifeless toy, hanging down to her sides with her palms facing up.");
 					output("\n\nShe seems very damaged. You confirm your suspicions when you tap on her metal forehead, gauging for a reaction. Nothing. Her body sits there, inactive.");
-					output("\n\nMaybe if you still have her VI chip somewhere, you could reactivate her. Otherwise, you’ll have to ask Badger what you need to fix her, though it may not be the wisest idea.");
+					output("\n\nMaybe if you still have her VI chip somewhere, you could reactivate her. Otherwise, you’ll have to ask Badger what you need to fix her, though the doctor may have something perverted in mind.");
 					output("\n\n");
 					
 					processTime(1);
@@ -3093,7 +3093,7 @@ public function drBadgerLabNymFoe(response:String = "menu"):void
 			else output("\n\n<i>“Could you, like, give me perfect silicone curves? I’m totes cool with being all blown up and stuff, I would love having some huge boobies,”</i> you say, smiling while looking at the nursedroid.");
 			output("\n\n<i>“Oh dearie, that’s all you had to say. Please, undress and find a place to sit,”</i> she explains. You strip off your [pc.gear] before finding the nearest padded surface. Nym-Foe sits next to you, smiling and placing her arm around your shoulder. She pulls you somewhat close while her tail sneaks up to you.");
 			output("\n\n" + (!pc.isBimbo() ? "<i>“Please be gentle...”</i> you say quietly." : "<i>“Don’t hold back, I want the biggest titties you can give me...”</i> you say excitedly.") + " The needle slowly pierces the [pc.skin] of your [pc.hip] painlessly. You hold your breath while thick bulges of silicone pass through the nurse’s tail, entering your body with no resistance. ");
-			output("\n\nHeat radiates from the injection site, right in your [pc.hips]. The semi solid goop slides through your body effortlessly to settle in your [pc.thighs] and [pc.hips]. Soon enough, they’re starting to swell. Since you aren’t exactly struggling, the nurse sees no reason to stop. You sigh gently, enjoying this peculiar feeling of growth.");
+			output("\n\nHeat radiates from the injection site, right in your [pc.hips]. The semi solid goop slides through your body effortlessly to settle in your [pc.thighs] and [pc.hips]. It takes very little time before they begin to swell. Since you aren’t exactly struggling, the nurse continues her work on you. You sigh gently, enjoying this peculiar feeling of growth.");
 			if(pc.isBimbo()) output("\n\n<i>“More! More please, Miss Nym-Foe!”</i> you giddily say, grabbing the closest boob of the happy nurseroid. She happily obliges, rubbing your shoulder gently while more bulges of silicone enter you. You smile while you gently wiggle your hips, loving how wide they feel.");
 			output("\n\nIt doesn’t exactly stop there, either. The plastic fluid passes across you to deposit itself into your [pc.ass], allowing your cheeks to inflate like bubbles. Really, really big bubbles. Slowly, your butt expands so much that you raise in your seat. It continues for just over a minute before your cheeks are full.");
 			if(pc.isBimbo()) output("\n\n<i>“Oh, oh! Can I get a way bigger ass?”</i> you beg quickly, putting your face near the nurse’s. <i>“Please?”</i> you add, making your best sad puppy face. The alabaster nurse only responds by putting more pressure into her tail, plumping you up faster. You giggle at the feeling, reaching down to give your booty a squeeze.");
@@ -3127,11 +3127,10 @@ public function drBadgerLabNymFoe(response:String = "menu"):void
 			pc.milkStorageMultiplier++;
 			
 			output("You wake up some time later, now laying down with your head in Nym-Foe’s lap. You slowly sit up, a strange taste stuck in the back of your throat. Nym-Foe looks at you with a friendly smile. You smile back, your [pc.lips] practically wobbling just from the slight movement.");
-			output("\n\n<i>“Your treatment is finished, but don’t let that stop you from having another.”</i> she says, smiling.");
-			if(flags["NYM-FOE_SILICONE_BOOSTS"] == undefined) output(" She pulls a lollipop from her mountains of boobage, handing it to you. <i>“That’s for being such a good patient.”</i> She closes her eyes and makes a little cutesy pose with her head before standing up.");
+			output("\n\n<i>“Your treatment is finished, but don’t let that stop you from having another.”</i> She says, smiling. She pulls a lollipop from her mountains of boobage, handing it to you. <i>“That’s for being such a good patient.”</i> She closes her eyes and makes a little cutesy pose with her head before standing up.");
 			output("\n\n<i>“Hey...”</i> you start as you begin to stand up. <i>“Can I put you back against the wall? So, y’know, I’ll know where to find you if I want another treatment?”</i> you ask, struggling into your [pc.gear]. Your new assets make it quite difficult. Porn stars would be jealous... or laughing.");
 			output("\n\n<i>“Sure!”</i> she says. You rest her back against the wall in her usual position, and disconnect her from the silicone tank, as well as carefully wrap the rag over her eyes again. You give her a little kiss on the forehead as a thank you for her free gift. Her eyes slowly shut off.");
-			output("\n\nYou take a moment to look down at yourself. She didn’t hold back with the silicone, as shown by your almost doll-like structure. You can see your [pc.lips] at the bottom of your vision, which wobble with every tiny movement. Down a bit farther, your [pc.boobs] are quite massive now, and leaking with [pc.milk]. They must be at least [pc.breastCupSize " + pc.biggestTitRow() + "]. You’re not sure whether most of the weight in them is plastic or [pc.milk]. Regardless, you look down further. Your [pc.thighs] and [pc.hips] are much thicker, as is your [pc.ass]. You give your rear end a light smack, and it wobbles like crazy.");
+			output("\n\nYou take a moment to look down at yourself. She didn’t hold back with the silicone, as shown by your almost doll-like structure. You can see your [pc.lips] at the bottom of your vision, which wobble with every tiny movement. Down a bit farther, your [pc.boobs] are quite massive now, and leaking with [pc.milk]. They must be at least [pc.breastCupSize " + pc.biggestTitRow() + "]s. You’re not sure whether most of the weight in them is plastic or [pc.milk]. Regardless, you look down further. Your [pc.thighs] and [pc.hips] are much thicker, as is your [pc.ass]. You give your rear end a light smack, and it wobbles like crazy.");
 			output("\n\nWell, if you feel like removing any of the silicone, you could use the tank and suck it all out. Otherwise... you can expect a lot more wobble in your step, and every other movement you perform.");
 			output("\n\n");
 			
@@ -3407,11 +3406,11 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 		case "grow tits":
 			showName("BLOW\nBOOBS");
 			
-			output("You carefully slide the needle into the area just above your chest, pressing ‘blow’ on the tank. Within seconds, your chest wobbles with new weight, now " + pc.breastCup(0, (pc.bRating(0) + 1)) + ". <b>Your [pc.boobs 0] have gotten bigger,</b> stuffed with silicone.");
-			if(pc.breastRows.length >= 2) output("\n\nYour second row of [pc.boobs 1] expand as well, swollen to " + pc.breastCup(1, (pc.bRating(1) + 1)) + ".");
-			if(pc.breastRows.length >= 3) output("\n\nAnd it doesn’t stop there! Your third row of [pc.boobs 2] continue the growth, now " + pc.breastCup(2, (pc.bRating(2) + 1)) + ".");
-			if(pc.breastRows.length >= 4) output("\n\n" + (pc.breastRows.length == 4 ? "Finally" : "Next") + ", your fourth row of [pc.boobs 3] grow and grow, distended with silicone to " + pc.breastCup(3, (pc.bRating(3) + 1)) + ".");
-			if(pc.breastRows.length >= 5) output("\n\nThe process continues until " + (pc.breastRows.length == 5 ? ("your final row of [pc.boobs 4] is inflated with silicone to become " + pc.breastCup(4, (pc.bRating(4) + 1)) + ".") : "the last of your breast rows have been inflated with silicone!") + "");
+			output("You carefully slide the needle into the area just above your chest, pressing ‘blow’ on the tank. Within seconds, your chest wobbles with new weight, now " + pc.breastCup(0, (pc.bRating(0) + 1)) + "s. <b>Your [pc.boobs 0] have gotten bigger,</b> stuffed with silicone.");
+			if(pc.breastRows.length >= 2) output("\n\nYour second row of [pc.boobs 1] expand as well, swollen to " + pc.breastCup(1, (pc.bRating(1) + 1)) + "s.");
+			if(pc.breastRows.length >= 3) output("\n\nAnd it doesn’t stop there! Your third row of [pc.boobs 2] continue the growth, now " + pc.breastCup(2, (pc.bRating(2) + 1)) + "s.");
+			if(pc.breastRows.length >= 4) output("\n\n" + (pc.breastRows.length == 4 ? "Finally" : "Next") + ", your fourth row of [pc.boobs 3] grow and grow, distended with silicone to " + pc.breastCup(3, (pc.bRating(3) + 1)) + "s.");
+			if(pc.breastRows.length >= 5) output("\n\nThe process continues until " + (pc.breastRows.length == 5 ? ("your final row of [pc.boobs 4] is inflated with silicone to become " + pc.breastCup(4, (pc.bRating(4) + 1)) + "s.") : "the last of your breast rows have been inflated with silicone!") + "");
 			
 			processTime(2);
 			
@@ -3424,7 +3423,7 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 		case "shrink tits":
 			showName("SUCK\nBOOBS");
 			
-			output("You carefully slide the needle into the area above your chest, pressing ‘suck’ on the tank. Silicone mass is taken from you as your chest gets smaller. <b>Your [pc.chest] has gotten smaller.</b>");
+			output("You carefully slide the needle into the area above your chest, pressing ‘suck’ on the tank. Silicone mass is taken from you as your chest gets smaller. <b>Your [pc.breasts] have gotten smaller.</b>");
 			
 			processTime(2);
 			
@@ -3550,7 +3549,7 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 			
 			output("You look around for something to put silicone into.");
 			if(silly) output(" Because, for some fucking reason, there’s literally no other place in the universe to remove silicone from your body, so you can’t just body pack it.");
-			output(" Eventually, you come across some bags that are clearly meant to be implants, but empty. Unfortunately, most of them are punctured. However, you do still find two of them that aren’t. You take the silicone hose and poke it into the adjuster of the bag. You press the blow button and carefully fill it up until it can be filled no more. You do it to the other one before putting them in your inventory.");
+			output(" Eventually, you come across some bags that are clearly meant to be implants, but empty. Unfortunately, most of them are punctured. However, you do still find two of them that aren’t, and you take the silicone hose and poke it into the adjuster of one of the bags. You press the ‘blow’ button and carefully fill it up until it can be filled no more before you do the same to the other one, then putting them both in your inventory.");
 			
 			processTime(2);
 			
@@ -3822,7 +3821,7 @@ public function drBadgerSiliconeTankGoCrazyImplantasticPerk():void
 	showName("IMPLANT-\nTASTIC!");
 	author("Natetheman223");
 	
-	output("You slap the ‘blow’ button for the " + num2Ordinal(flags["BADGER_SILICONE_GO_CRAZY"]) + " time, happily stuffing yourself with the bio silicone. Pulling it in and out of your body repeatedly has made you adapt to it... use it just like your real body, although much perkier. You don’t get the same feeling of strangeness in your body like the first time you used it. It just feels natural to have all this in your body.");
+	output("You slap the ‘blow’ button for the " + num2Ordinal(flags["BADGER_SILICONE_GO_CRAZY"]) + " time, happily stuffing yourself with the bio silicone. Pulling it in and out of your body repeatedly has made you adapt to it... use it just like your real body, although much perkier. You don’t get the same feeling of strangeness in your body like the first time you used it. It just feels natural to have all this in your system.");
 	output("\n\nThe bio silicone inside your body seems to like you as well, making changes to you beyond just expanding you. A peculiar sensation hits your body, a silent shift within that gives you goosebumps all over, namely in your lips, hips, ass, and boobs. They feel like they’re solidifying, but suddenly go back to wobbly. You touch yourself quickly, feeling... any natural material like body fat and the like have been converted to silicone, and <b>it’s likely any growth from now on will be converted to silicone immediately</b>.");
 	
 	processTime(8);
@@ -3830,15 +3829,103 @@ public function drBadgerSiliconeTankGoCrazyImplantasticPerk():void
 	// Any expansion applied to mentioned areas will be immediately converted to silicone.
 	// And yes, this means that the player has to come back here to reduce asset size.
 	// Edit: Changed to daily instead of immediately to not go crazy with the size checks.
-	output("\n\n(<b>Perk Gained: Implant-tastic</b> - Your boobs, butt, ass, and hips will always be filled with silicone." + (pc.canLactate() ? " And thanks to the properties of bio-silicone, you can still lactate!" : "") + ")");
+	output("\n\n(<b>Perk Gained: Implant-tastic</b> - Your boobs, butt, hips, and lips will always be filled with silicone." + (pc.canLactate() ? " And thanks to the properties of bio-silicone, you can still lactate!" : "") + ")");
 	pc.createPerk("Implant-tastic", 0, 0, 0, 0, "Your body will convert most of the mass in your breasts, butt cheeks, hips and lips into silicone.");
 	
 	nymFoeMaxInjection(siliconeMaxHips(), siliconeMaxButt(), siliconeMaxBoob(), siliconeMaxLips());
+	implantasticSiliconeConversion(pc);
 	flags["BADGER_SILICONE_TANK_USES"]++;
 	
 	IncrementFlag("BADGER_SILICONE_GO_CRAZY");
 	
 	drBadgerSiliconeTankMenu();
+}
+public function implantasticSiliconeConversion(target:Creature):String
+{
+	var msg:String = "";
+	
+	// v1: hips
+	// v2: butt
+	// v3: tits
+	// v4: lips
+	target.createStatusEffect("Nym-Foe Injections");
+	
+	var implants:StorageClass = target.getStatusEffect("Nym-Foe Injections");
+	if(implants != null)
+	{
+		var oldLips:Number = target.lipMod;
+		var lipsSilicone:Number = (target.lipMod - target.lipModMin());
+		if((lipsSilicone + target.lipModMin()) > oldLips) {
+			if(target is PlayerCharacter)
+			{
+				if(msg != "") msg += "\n\n";
+				msg += "You feel a tingle in your [pc.lips] as they purse with a plastic stiffness.";
+			}
+			
+			implants.value4 = lipsSilicone;
+			target.lipMod = (implants.value4 + target.lipModMin());
+			
+			if(target is PlayerCharacter) msg += " <b>The extra plump of your lips has been converted into silicone!</b>";
+		}
+		
+		var boobRating:Number = 0;
+		var boobSilicone:Number = 0;
+		var i:int = 0;
+		for(i = 0; i < target.breastRows.length; i++)
+		{
+			boobRating += (target.breastRows[i].breastRatingRaw - target.breastRatingRawMin(i));
+			boobSilicone += (target.breastRows[i].breastRatingMod - target.breastRatingModMin(i));
+		}
+		var titsGrowth:Number = (boobRating / target.breastRows.length);
+		if(titsGrowth > 0) {
+			if(target is PlayerCharacter)
+			{
+				if(msg != "") msg += "\n\n";
+				msg += "Your [pc.breasts] give less sag when small pulses thrum within them, soon followed by a slight stretching sensation.";
+			}
+			
+			implants.value3 = ((boobSilicone / target.breastRows.length) + titsGrowth);
+			for(i = 0; i < target.breastRows.length; i++)
+			{
+				target.breastRows[i].breastRatingRaw = target.breastRatingRawMin(i);
+				target.breastRows[i].breastRatingMod = (implants.value3 + target.breastRatingModMin(i));
+			}
+			
+			if(target is PlayerCharacter) msg += " <b>The growing mass of your tits has been converted into silicone!</b>";
+		}
+		
+		var hipsGrowth:Number = (target.hipRatingRaw - target.hipRatingRawMin());
+		if(hipsGrowth > 0) {
+			if(target is PlayerCharacter)
+			{
+				if(msg != "") msg += "\n\n";
+				msg += "Following a sturdy strut, the sides of your [pc.hips] do not change in appearance, but it certainly <i>feels</i> like they are wider.";
+			}
+			
+			implants.value1 = ((target.hipRatingMod - target.hipRatingModMin()) + hipsGrowth);
+			target.hipRatingRaw = target.hipRatingRawMin();
+			target.hipRatingMod = (implants.value1 - target.hipRatingModMin());
+			
+			if(target is PlayerCharacter) msg += " <b>Your growth in hip size has converted into silicone!</b>";
+		}
+		
+		var buttGrowth:Number = (target.buttRatingRaw - target.buttRatingRawMin());
+		if(buttGrowth > 0) {
+			if(target is PlayerCharacter)
+			{
+				if(msg != "") msg += "\n\n";
+				msg += "There is more bounce from your bottom as your [pc.butts] tighten to the point where you feel like you are smuggling basketballs back there.";
+			}
+			
+			implants.value2 = ((target.buttRatingMod - target.buttRatingModMin()) + buttGrowth);
+			target.buttRatingRaw = target.buttRatingRawMin();
+			target.buttRatingMod = (implants.value2 + target.buttRatingModMin());
+			
+			if(target is PlayerCharacter) msg += " <b>Your extra butt mass has converted into silicone!</b>";
+		}
+	}
+	
+	return msg;
 }
 
 /*

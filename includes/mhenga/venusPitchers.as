@@ -753,7 +753,7 @@ public function watchElderVenusPitcher():void {
 	
 	output("\n\nIn a voice so throaty and lustful that it makes your [pc.legOrLegs] shudder, the venus pitcher woman answers, <i>“You can make an exception for me and my sisters. We don’t want to do anything bad to you</i>");
 	if(rand(3) == 0) output("<i>; we just want to make you feel good for as long as possible and help you cum out all that pent-up, nasty tension whenever it rises up inside you</i>");
-	else output("<i>; we just want to to make you feel very good while we milk you and fuck through as many orgasms as possible</i>");
+	else output("<i>; we just want to make you feel very good while we milk you and fuck through as many orgasms as possible</i>");
 	output("<i>. What’s not to love? Honestly, I’d be surprised if you weren’t already rationalizing a reason to crawl into my arms and let me and my perfect tits take you to a paradise beyond imagining, </i>");
 	if(pc.hasCock()) output("<i>one that will make your [pc.cocks] melt</i>");
 	else output("<i>one that will make your [pc.vaginas] melt</i>");

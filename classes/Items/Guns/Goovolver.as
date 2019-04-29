@@ -56,6 +56,7 @@ package classes.Items.Guns
 			this.fortification = 0;
 			
 			addFlag(GLOBAL.ITEM_FLAG_LUST_WEAPON);
+			this.addFlag(GLOBAL.ITEM_FLAG_PISTOL_WEAPON);
 			
 			this.version = _latestVersion;
 			

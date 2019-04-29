@@ -155,6 +155,14 @@ package classes.Resources
 			[Embed(source = "../../assets/images/imagepack/princess/DCLzexon_Princess_Taivris_Fullsize.png", mimeType = "image/png")]
 			public static const PrincessIntro:Class;
 
+			//ROO
+			[Embed(source = "../../assets/images/imagepack/roo/octomush_dealer_table_fuck_nomilk.jpg", mimeType = "image/jpg")]
+			public static const RooTableFuck:Class;
+			[Embed(source = "../../assets/images/imagepack/roo/octomush_dealer_table_fuck.jpg", mimeType = "image/jpg")]
+			public static const RooTableFuckMilk:Class;
+			[Embed(source = "../../assets/images/imagepack/roo/octomush_dealer_under_table.jpg", mimeType = "image/jpg")]
+			public static const RooUnderTableLick:Class;
+
 			//SECOP (PUNK)
 			[Embed(source = "../../assets/images/imagepack/secOp/dsan_wall_slut_jumper_thersaadi_laquine_horsecock_1.jpg", mimeType = "image/jpg")]
 			public static const VRWallSlut:Class;

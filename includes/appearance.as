@@ -954,7 +954,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 					else
 					{
 						if(target.earLength > 1) outputRouter(" " + num2Text(target.earLength) + " inches");
-						outputRouter(" from the top of " + (target == pc ? "your":"[target.hisHer]") + " " + headNoun + ",");
+						outputRouter(" from the top of " + (target == pc ? "your":"[target.hisHer]") + " " + target.hairDescript(true,true) + ",");
 						if(target.earLength > target.tallness) outputRouter(" dragging on the floor");
 						else if(target.earLength > target.tallness/2) outputRouter(" swaying about");
 						else outputRouter(" swaying and darting");
@@ -3070,6 +3070,8 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		if (immobilizationList().length > 0) addGhostButton(btnIndex++, "ImmobileHelp", immobilizationHelp, undefined, "Immobilization Help", "You can’t move--Call for help to fix your immobilized state!");
 	}
 	setTarget(null);
+	
+	outputRouter("\n\n");
 }
 
 private var COLLAR_LIST:Array = [
@@ -4002,10 +4004,10 @@ public function crotchStuff(forTarget:Creature = null):void
 		
 		wombBonusForAppearance(forTarget, 3);
 		
-		if(target == pc && target.hasStatusEffect("Butt Bug (Female)")) outputRouter("\n\n" + appearanceButtBugBlurb());
-		
-		//Genital Bonus clears target at the end. Bring it back.
+		// Womb Bonus clears target at the end. Bring it back.
 		if(forTarget != null) setTarget(forTarget);
+		
+		if(target == pc && target.hasStatusEffect("Butt Bug (Female)")) outputRouter("\n\n" + appearanceButtBugBlurb());
 	}
 	if(forTarget != null) setTarget(null);
 }

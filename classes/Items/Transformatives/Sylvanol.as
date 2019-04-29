@@ -92,7 +92,7 @@
 			output(" the sides of your head and changing shape to a form very much like a human’s save for the pointed tips. <b>You have elven ears!</b>");
 			pc.earType = GLOBAL.TYPE_SYLVAN;
 			pc.clearEarFlags();
-			pc.addEarFlag(GLOBAL.FLAG_LONG);
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			
 			if(pc.earLength != 0)
 			{

@@ -1572,7 +1572,7 @@ public function loseToNaleenRapeyBall():void
 		pc.milked(100);
 	}
 	//Cock wings:
-	if(pc.wingType == GLOBAL.TYPE_COCKVINE || pc.wingType == GLOBAL.TYPE_TENTACLE) output("\n\nIt doesn’t take much stimulation for your vine dicks to spring out from your back of their own accord, eagerly reacting to the endless stroke of leathery tails and clutching hands. They are soon threading their way through the morass, happy to be spear into every warm, welcoming hole they are coaxed towards. The pleasure of so many of your over-stimulated cocks thrusting home into some tight, wet crevice is electric, maddening; you can only tremble and thrash against your snake-like bonds as your tentacles do as they wish.");
+	if(pc.hasBackGenitals()) output("\n\nIt doesn’t take much stimulation for your vine dicks to spring out from your back of their own accord, eagerly reacting to the endless stroke of leathery tails and clutching hands. They are soon threading their way through the morass, happy to be spear into every warm, welcoming hole they are coaxed towards. The pleasure of so many of your over-stimulated cocks thrusting home into some tight, wet crevice is electric, maddening; you can only tremble and thrash against your snake-like bonds as your tentacles do as they wish.");
 
 	output("\n\nYou are forced to loud orgasm once, twice... you lose count. Time and your own sensitivities have no meaning, down there in the suffocating dark. You ");
 	if(pc.hasCock()) output("spray [pc.cum] freely into some naleen’s dripping twat");
@@ -2176,7 +2176,7 @@ public function loseToZatZilTribe():void
 	if(silly) output("\n\n<i>“AaaaAAAAaaaargle gargle bargle!”</i> you scream as you are carried off. <i>“Not the bees! Not the bees! MY EYES!”</i>");
 	else output("\n\nShe dismisses the crowd with a wave. You are carried by a troop of zil back down the ramp, and back through the village, any querying croak on your part met by stony silence. The sound of the waterfall becomes inexorably clearer just as surely as their intention does. You struggle and " + pc.mf("bellow","scream") + " like a wild beast, but they’ve got you held tight.");
 	output("\n\n<i>“Shame that someone strong enough to beat the cliffs wasn’t smart enough to know when to quit,”</i> opines Kane, at the precipice, wind blowing through your [pc.hair]. ");
-	if(pc.canFly()) output("He brings up his stone and, with the air of craftsman, lays it upon your [pc.wings]. You don’t feel him breaking them, not really. You’ve tuned out. This isn’t happening. ");
+	if(pc.canFly() && pc.hasWings()) output("He brings up his stone and, with the air of a craftsman, lays it upon your [pc.wings]. You don’t feel him breaking them, not really. You’ve tuned out. This isn’t happening. ");
 	output("<i>“Take comfort in the knowledge that others of your kind may learn from your end. And that it was quick.”</i>");
 	if(silly) output("\n\n<i>“Killing me won’t bring back your goddamn honey!”</i> you howl in his face.");
 	output("\n\nHalf a dozen zil heave the weight back - and then swing it forward. And then... there’s only the deafening inhalation of the wind.");
@@ -2578,8 +2578,8 @@ public function leaveZeLovelyQuinnBeeeeeehind():void
 	if(inCombat())
 	{
 		output(" <i>“You have easily done enough to be treated as an honored guest in our village. ");
-	if(!pc.canFly()) output("Call at the bottom, and a ladder will be provided.");
-	else output("I can see you have no need for ladders. My people will not molest you when you fly up here, now that you have defeated the cliffs.");
+		if(!pc.canFly()) output("Call at the bottom, and a ladder will be provided.");
+		else output("I can see you have no need for ladders. My people will not molest you when you fly up here, now that you have defeated the cliffs.");
 		output("”</i>");
 	}
 	output(" She takes you in from tip to tail with those heavy-lidded, appraising " + (inCombat() ? "pits" : "rings") + " of gold again. <i>“You should visit often. Your Quinn requires much attention, after all.”</i>");
@@ -2772,7 +2772,13 @@ public function goUpZeWaterfall():void
 	}
 	else
 	{
-		output("You open your [pc.wings] and leap into the air. You find a warm air current and allow that to do most of the hard work, the waterfall revealing more and more of its grandeur as you climb. Male zil hover threateningly near the top, but they disappear once they see it’s you. You drop out of the sky at the outskirts of the village, tucking your wings away as you do.");
+		output("You");
+		if(pc.hasJetpack()) output(" activate your jetpack");
+		else if(pc.hasWings()) output(" open your [pc.wings]");
+		else output(" prepare for flight");
+		output(" and leap into the air. You find a warm air current and allow that to do most of the hard work, the waterfall revealing more and more of its grandeur as you climb. Male zil hover threateningly near the top, but they disappear once they see it’s you. You drop out of the sky at the outskirts of the village");
+		if(pc.hasWings()) output(", tucking your wings away as you do");
+		output(".");
 		processTime(10);
 		pc.energy(-5);
 	}
@@ -2789,7 +2795,14 @@ public function goDownZeCliff():void
 	author("Nonesuch");
 	showName("GOING\nDOWN!");
 	if(!pc.canFly()) output("There’s a bulky, cylindrical object stowed here, like a rolled up fence. When you ask them to, two female zil carry it to the cliff and unroll it over the edge; the rope ladder thumps and clatters its way out of view.\n\nThe climb down is long and slightly unnerving, but the fibrous rope is strong and it’s a hell of a lot better than doing it with your hands and [pc.feet]. After a short while you are back next to the waterfall pool, and the ladder is being hoisted back out of sight.");
-	else output("Climbing down? Pshaw! You open your [pc.wings] and hop easily into the gusty air. It’s an ease and a pleasure to glide right back down to the bottom of the waterfall.");
+	else
+	{
+		output("Climbing down? Pshaw! You");
+		if(pc.hasJetpack()) output(" activate your jetpack");
+		else if(pc.hasWings()) output(" open your [pc.wings]");
+		else output(" prepare for flight");
+		output(" and hop easily into the gusty air. It’s an ease and a pleasure to glide right back down to the bottom of the waterfall.");
+	}
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",move,"2. WATERFALL POOL");

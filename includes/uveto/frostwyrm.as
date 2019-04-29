@@ -3091,7 +3091,7 @@ public function frostwyrmXMasCaroling():void
 	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
 		output(", although your performance inspired your "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "daughters" : "daughter") +" to pick up dance along with you; "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "their" : "her") +" body motion and language matching yours, ");
 		if (silly) output("most of "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "their" : "hrt") +" motion in the knees and ankles while "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "their" : "her") +" hands ball into fists, "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "their" : "her") +" shoulders shimmying in time with the lyrics");
-		else if (pc.isNice()) output("twirling around you and grabbing "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "each other" : "you") +" by the hands for a spin{ before switching partners}");
+		else if (pc.isNice()) output("twirling around you and grabbing "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "each other" : "you") +" by the hands for a spin" + (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "before switching partners" : ""));
 		else if (pc.isMischievous()) output("grabbing "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "each other" : "you") +" by the hips and sometimes leaning in to mimic the actions your lyrics described");
 		else output("bumping "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "each other" : "you") +" hip-to-hip but otherwise dancing rather off-tune to the song");
 	}

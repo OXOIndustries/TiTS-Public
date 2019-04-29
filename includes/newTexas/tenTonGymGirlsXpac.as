@@ -230,7 +230,7 @@ public function tentongymLolaHome():void
 		output("”</i>.");
 		output("\n\nChallenge accepted. ");
 	}
-	output("You reach around to the front of her shorts, which only pushes her butt more against you, her cheeks doing their best to wrap themselves around your [pc.hips]. The sheer strain Lola’s hips are putting on her shorts becomes clear as you try to undo the button – you have to grab hold of the cloth and give it a good yank to get enough give to get the button undone. Lola lets out a sigh as the denim comes loose, and you slide the zipper down.");
+	output("You reach around to the front of her shorts, which only pushes her butt more against you, her cheeks doing their best to wrap themselves around your [pc.hips]. The sheer strain Lola’s hips are putting on her shorts becomes clear as you try to undo the button -- you have to grab hold of the cloth and give it a good yank to get enough give to get the button undone. Lola lets out a sigh as the denim comes loose, and you slide the zipper down.");
 	output("\n\nHer shorts don’t move. They’re still caught on her hips and ass, and you wonder why she even bothered zipping them up, if they’re not going anywhere without help. Lola just giggles again.");
 	output("\n\nYou slide your hands back around to her hips and give the shorts a good tug. They move a little, but her ass is still holding them in place. You pull again, jerking them down an inch or two, then take hold of the cloth band around Lola’s butt and yank. Lola yelps, laughing as you struggle with the shorts, slowly squeezing them over her titanic rear until they’re finally free.");
 	output("\n\nLola gives her ass a few bounces once it’s out of the shorts, then kicks the overstretched garment across the room. <i>“Now the suit!”</i>");

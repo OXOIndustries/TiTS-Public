@@ -1100,7 +1100,10 @@ public function mitziSexMenu():void
 		if(pc.hasItemByClass(Gush)) addButton(5,"Give Gush",giveMitziGush,undefined,"Give Gush","Give Mitzi a dosage of Gush. It’ll probably make her milky and sort dumb for a while, going by her stories.");
 		else addDisabledButton(5,"Give Gush","Give Gush","You need some Gush in order to do this.");
 	}
-	if(pc.wingType == GLOBAL.TYPE_TENTACLE) addButton(7,"TentacleFun",mitziTentaCocks,undefined,"Tentacle Fun","Put your shoulder-mounted tentacle-wings to work on the cock-socket of a goblin.");
+	if(pc.hasBackGenitals()) {
+		if(pc.wingCount <= 1) addDisabledButton(7,"TentacleFun","Tentacle Fun","You don’t have enough tentacle-wings for this.");
+		else addButton(7,"TentacleFun",mitziTentaCocks,undefined,"Tentacle Fun","Put your shoulder-mounted tentacle-wings to work on the cock-socket of a goblin.");
+	}
 	else addDisabledButton(7,"TentacleFun","Tentacle Fun","You need tentacle wings for this.");
 
 	addButton(14,"Back",approachCrewMitzi,true);
@@ -2418,7 +2421,7 @@ public function mitziMakesYouABimbo():void
 	output("\n\nDid you really just say that? Why would- how could... wow, Mitzi’s lips feel nice on your [pc.vaginaNounSimple]. They squeeze down harder in response to your declaration. Smashing her face into your mound, Mitzi snakes her tongue deep inside, smearing her freshly applied gloss into every fold. <i>“Wow.”</i> Your head lolls, and your [pc.vagina] clenches in trembling desire.");
 	output("\n\nWith a pussy-pleasing slurp, Mitzi pulls away, her heart-shaped pupils dilating wide as she fumbles with her lip gloss. <i>“Whoopsie! Mitzi got so excited she mighta got some on her tongue.”</i> She licks her lips and shudders. <i>“What a dumbcunt!”</i> Applying a fresh coat, the blushing goblin arcs her spaded tail around to fondle at her own sopping-wet folds. <i>“Guess we’re both gonna be stupid, horny sluts now, huh?”</i> Her lips shine invitingly as she tosses the drug applicator over shoulder. <i>“But Mitzi’s already a dumb, leaky bimbo!”</i>");
 	output("\n\nMitzi... yeah, she’s a brainless little cum-dump, that’s for sure.");
-	if(pc.hasCock()) output(" If you had a dick, she’d probably wrap herself around your crotch like boxers, just to be closer to it.");
+	if(!pc.hasCock()) output(" If you had a dick, she’d probably wrap herself around your crotch like boxers, just to be closer to it.");
 	else output(" She probably loses a few brain cells every time jizz spurts into her overheating quim.");
 	output(" A real stupid slut.");
 	output("\n\nWhy’s she smiling so wide?");
@@ -2434,7 +2437,7 @@ public function mitziMakesYouABimbo():void
 	output("\n\nYou nod and moan. <i>“Yessss...”</i>");
 	output("\n\nMitzi slides a second in, and you nearly cum. <i>“And we both know that horny people make bad decisions right?”</i>");
 	output("\n\nThat sounds right, but you’re so wet, so very wet, that you don’t really think it over. <i>“Oh yeaaah.”</i>");
-	output("\n\n<i>“Like, really bad decisions. People get turned on, and they’ll do the dumbest shit for a chance to fuck.”</i> Mitzi kisses your thigh. A shining outline of her lips glows with sensitizing delight on your [pc.skinFurScales]. <i>“Being horny makes you stupid. Fucking stupid. That’s why they call it that, because you get <i>fucking stupid</i>.”</i>");
+	output("\n\n<i>“Like, really bad decisions. People get turned on, and they’ll do the dumbest shit for a chance to fuck.”</i> Mitzi kisses your thigh. A shining outline of her lips glows with sensitizing delight on your [pc.skinFurScales]. <i>“Being horny makes you stupid. Fucking stupid. That’s why they call it that, because you get </i>fucking stupid<i>.”</i>");
 	output("\n\nYou half-suppress a giggle. It sounds like a joke, but you don’t really have the capacity to think about it on a deep level. The words slip in alongside Mitzi’s gloriously soaked fingers. You mouth ‘fucking stupid,’ then mentally berate yourself for doing something so stupid... until those fingers twist around, and you forget all about it. <i>“Ah-ahhh!”</i>");
 	processTime(20);
 	pc.lust(100);
@@ -3163,7 +3166,7 @@ public function publicMitziFun():void
 	output("\n\n<i>“[pc.Master] is so smart,”</i> she gasps. <i>“But Mitzi knows that just strutting your naked butt won’t be enough. Mitzi also knows just how to get the boys all over you.”</i> She grabs a pair of markers from somewhere. <i>“We should let everyone know that we’re both stupid bimbos that think with their pussies, then even the shy boys will come to have some fun.”</i>");
 	output("\n\nYou pull the clothing off of the miniature bimbo and then you grab the marker. ‘Slap me’, ‘Cumdump’ and ‘Gobbo slut’ are amongst the things you write on the canvas that is her expansive behind. Her large tits are also fair game, and after a few moments, you’ve written ‘Grab me’, ‘Whore’ on her breasts and ‘Cock warmer’ right above her cleavage. You also write ‘Fuckhole’ and ‘Free’ above her pussy lips. Alongside the lewd terms, you draw cartoony hearts and cumming cocks on her body.");
 	output("\n\nAdmiring your artistry, you hand the pen to Mitzi. She too draws cocks and hearts on your body alongside a little target on your ass with the words ‘Slap me’ written around it. You kneel down so that she can write ‘Bimbo’ and ‘Dick lover’ on your boobs. And to wrap it up she writes ‘Cock slot’, ‘Fuck me’ and ‘Free fuck-hole’ above your [pc.pussy]. You’re not exactly sure if Mitzi was intending to write ‘Cock slut’ above your cunny but it works either way.");
-	output("\n\n<i>“Yaay, now [pc.masterMistress] and Mitzi are ready to have fun.”</i> The now naked goblin celebrates. As Mitzi jiggles in excitement, a slightly concerning thought crosses your mind.");
+	output("\n\n<i>“Yaay, now [pc.Master] and Mitzi are ready to have fun.”</i> The now naked goblin celebrates. As Mitzi jiggles in excitement, a slightly concerning thought crosses your mind.");
 	output("\n\n<i>“Umm, Mitzi, are these like, permanent markers?”</i>");
 	output("\n\n<i>“Uh, dunno. Mitzi got pussy stupid again.”</i>");
 	output("\n\nWell, bugger, you might end up with lewd markings on your body for a long while. The damage is done already, so you decide to worry about it later.");
@@ -3430,9 +3433,12 @@ public function mitziTentaCocks():void
 	//More tooltip: Do as many of your on-board harem as possible.
 	processTime(10);
 	clearMenu();
-	addButton(0,"Mitzi",justMitziTentabang,undefined,"Mitzi","Make Mitzi airtight with your ravening tentacle dicks.");
-	if(celiseIsCrew()) addButton(1,"More",mitziAndMoreTentaNightmareScene,undefined,"More","Do as many of your on-board harem as possible.");
-	else addDisabledButton(1,"More","More","You’ll at least need Celise around for this.");
+	if(tCount <= 2) addButton(0,"Next",justMitziTentabang);
+	else {
+		addButton(0,"Mitzi",justMitziTentabang,undefined,"Mitzi","Make Mitzi airtight with your ravening tentacle dicks.");
+		if(celiseIsCrew()) addButton(1,"More",mitziAndMoreTentaNightmareScene,tCount,"More","Do as many of your on-board harem as possible.");
+		else addDisabledButton(1,"More","More","You’ll at least need Celise around for this.");
+	}
 }
 
 //Just Mitzi
@@ -3519,7 +3525,7 @@ public function justMitziTentabang3():void
 }
 
 //More
-public function mitziAndMoreTentaNightmareScene():void
+public function mitziAndMoreTentaNightmareScene(tCount:int):void
 {
 	clearOutput();
 	showMitzi(true);
@@ -3539,8 +3545,8 @@ public function mitziAndMoreTentaNightmareScene():void
 	pc.lust(5);
 	clearMenu();
 	//Progression. Have to do: Celise -> Celise+Reaha -> Celise+Reaha+Sera
-	if(celiseIsCrew() && seraIsCrew() && reahaIsCrew() && flags["SEXED_REAHA"] != undefined && flags["MITZI_CELISE_TENTAFUCK2"] != undefined && seraObedience() >= 80) addButton(0,"Next",celiseReahaAndSeraMitziTentacular);
-	else if(celiseIsCrew() && reahaIsCrew() && flags["SEXED_REAHA"] != undefined && flags["MITZI_CELISE_TENTAFUCK"] != undefined) addButton(0,"Next",mitziAndCeliseAndReaha);
+	if(tCount >= 4 && celiseIsCrew() && seraIsCrew() && reahaIsCrew() && flags["SEXED_REAHA"] != undefined && flags["MITZI_CELISE_TENTAFUCK2"] != undefined && seraObedience() >= 80) addButton(0,"Next",celiseReahaAndSeraMitziTentacular);
+	else if(tCount >= 3 && celiseIsCrew() && reahaIsCrew() && flags["SEXED_REAHA"] != undefined && flags["MITZI_CELISE_TENTAFUCK"] != undefined) addButton(0,"Next",mitziAndCeliseAndReaha);
 	else addButton(0,"Next",moreWithJustCelise);
 }
 

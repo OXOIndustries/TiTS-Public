@@ -105,10 +105,14 @@ package classes.Items.Transformatives
 			// Calculate the time offset
 			var deltaShift:uint = initDuration - targetDelta;
 
-			//Rejiggering so big part TFs happen more at first, then fantasies more later :3
-			if(rand(10) < Math.min((2 + pc.laquineScore()), 6)) laquineEarsMinorTFsGO(pc,deltaShift);
-			else if(rand(5) != 0) laquineEarsModerateTFsGo(pc,deltaShift);
-			else laquineEarsMajorTFsGo(pc,deltaShift);
+			//get minutes left. If <= 1, force major
+			var minutes:Number = pc.getStatusMinutes("Laquine Ears");
+			//20% chance, plus a forced change before expiry.
+			if(minutes <= 1 || rand(10) <= 1) laquineEarsMajorTFsGo(pc,deltaShift);
+			//Out of remaining 80%, 30% moderate TFs
+			else if(rand(8) <= 2) laquineEarsModerateTFsGo(pc,deltaShift);
+			//Remaining 50%:
+			else laquineEarsMinorTFsGO(pc,deltaShift);
 		}
 		private static function laquineEarsMajorTFsGo(pc:Creature,deltaShift:uint):void
 		{
@@ -152,11 +156,11 @@ package classes.Items.Transformatives
 			}
 			// If PC is sufficiently Laquine and has a big enough dick (20" according to Fen's) then the PC will permanently obtain the arousing musk of a space-bunny.
 			// Operates like all other pheromone effects. Can be referenced, etc.
-			if(pc.hasCock() && !pc.hasPerk("Musky Pheromones") && pc.laquineScore() >= 4 && pc.biggestCockLength() >= 20)
+			if(pc.hasCock() && !pc.hasPerk("Musky Pheromones") && pc.laquineScore() >= 4)
 			{
 				for(i = 0; i < pc.cockTotal(); i++)
 				{
-					if(pc.cocks[i].cLength() >= 25) choices.push(5);
+					if(pc.cocks[i].cLength() >= 20) choices.push(5);
 				}
 			}
 			if(pc.hasVagina())
@@ -336,7 +340,7 @@ package classes.Items.Transformatives
 			{
 				// If PC is sufficiently Laquine and has a big enough dick (25" according to Fen's doc) then the PC will permanently obtain the arousing musk of a space-bunny.
 				// Operates like all other pheromone effects. Can be referenced, etc.
-				textBuff += "\n\n<i>Wow.</i> For a brief moment, you felt relaxed. Even the word ‘relaxed’ doesn’t do justice to how <b>good</b> you randomly felt. A full body warmth blossomed and spread from your [pc.footOrFeet] to your [pc.fingers] out of the blue. For a brief instant you were spellbound by your environs, felt there was no evil, no great task, no boulder to push up a hill. You glance down, noticing your [pc.cocks] " + (!pc.hasCocks() ? "is":"are") + " heavy" + (!pc.isCrotchExposed() ? ", bulging mightily behind your [pc.crotchCoverUnder]":"") + ".";
+				textBuff += "<i>Wow.</i> For a brief moment, you felt relaxed. Even the word ‘relaxed’ doesn’t do justice to how <b>good</b> you randomly felt. A full body warmth blossomed and spread from your [pc.footOrFeet] to your [pc.fingers] out of the blue. For a brief instant you were spellbound by your environs, felt there was no evil, no great task, no boulder to push up a hill. You glance down, noticing your [pc.cocks] " + (!pc.hasCocks() ? "is":"are") + " heavy" + (!pc.isCrotchExposed() ? ", bulging mightily behind your [pc.crotchCoverUnder]":"") + ".";
 				if(!pc.isErect()) 
 				{
 					if(!pc.hasCocks()) textBuff += " It isn’t that erect, but it’s an admirable schlong all the same.";
@@ -344,7 +348,7 @@ package classes.Items.Transformatives
 				}
 				textBuff += " Do laquine ears just come with the random ability to provide spontaneous orgasms? Then it hits you...";
 				textBuff += "\n\n...Something smells... <i>phenomenal</i>. Once you get more than a whiff, you identify the fragrance to be on some kind of all-natural spectrum. There’s a little salt - some sweat. There’s a wooden, earthy overlay to that. Beneath it all, there’s the weirdest scintillation of all, something that’s <i>spicy</i> but mildly suffocating. It’s the base of this clean and <b>thick</b> aroma. You can’t place it, but you are sure that it’s <b>musk.</b> Have you always smelled like this?";
-				textBuff += "\n\nYour body odor has changed. " + (inPublic ? "When you start to look around, you’re noticing a few tents pitching in the passerby’s crotches.":"The more you inhale, the harder you get.") + " The previous raw happiness returns when you begin stroking your unready slab" + (pc.hasCocks() ? "s":"") + ", <b>revealing that your signature has become laced with the same arousing musk of a laquine.</b> Your [pc.cocks] " + (!pc.hasCocks() ? "is":"are") + " so swollen with laquine pride that they’re generating the strongest clouds of it, " + (inPublic ? "leaving":"sure to leave") + " everyone around you squirming from the overwhelming amounts of sexual signal boosting.";
+				textBuff += "\n\nYour body odor has changed. " + (inPublic ? "When you start to look around, you’re noticing a few tents pitching in the passerby’s crotches.":"The more you inhale, the harder you get.") + " The previous raw happiness returns when you begin stroking your unready slab" + (pc.hasCocks() ? "s":"") + ", <b>revealing that your signature has become laced with the same arousing musk of a laquine.</b> Your [pc.cocks] " + (!pc.hasCocks() ? "is":"are") + " so swollen with laquine pride that " + (!pc.hasCocks() ? "it’s":"they’re") + " generating the strongest clouds of it, " + (inPublic ? "leaving":"sure to leave") + " everyone around you squirming from the overwhelming amounts of sexual signal boosting.";
 				textBuff += "\n\nNow that your body is adequately broadcasting its truest, basest intentions, you wonder how much easier it’ll be to pick up a few bar hopping hotties. Anyone that gets in your way from now on is going to have to fight the compulsion to spread their legs in front of you, too!";
 				textBuff += "\n\n(<b>Perk Gained: Musky Pheromones</b> - Pheromones grant a +5 musk bonus to tease attack and arousal.)";
 				pc.createPerk("Musky Pheromones", 0, 0, 0, 0, "Grants a +5 musk bonus to tease attacks.");
@@ -500,36 +504,32 @@ package classes.Items.Transformatives
 				//Lapine Legs TF (From Naga, Taur, and regular legs) (Major Effect/10%)
 				//Start of William's Modifications to Laquine Ears
 			
-				// Bipedal Lapine Legs ; I will not write for 'bunnytaurs' or the like.
 				// Lapine Legs already exist in code, they merely lack legitimate obtainment.
 				// FLAGS: Digitigrade, Furred, Paws
-				var bipedal:Boolean = false;
+				var bipedal:Boolean = true;
 				
-				//[From Naga]
-				if(pc.isNaga())
-				{
-					textBuff += "When you try to slither forward, a loss of movement and feeling is felt in your snake-like tail. Pain erupts after a full-body numbness sets in, dragging you to the ground while a silent scream writes itself on your face. Fear strikes you when you look over your shoulder, seeing the entire lower half of your body wildly shifting, tightening to an absurdly gut-wrenching detail. New limbs sprout in place of your shedding tail, covered in short, fibrous bunny-fur.";
-					textBuff += "\n\nYou bite your lower lip, the straining rigidity fading as quick as it came. When you look back again, your single coil has vanished, <b>transformed into two long lapine legs!</b> The new, digitigrade balance takes a few seconds to get used to, but you find that when you stand on your six padded bunny-toes, hopping is a lot easier than walking. In fact, your bouncier mobility <i>feels preferable!</i>";
-					bipedal = true;
-				}
-				//[From Taur]
-				else if(pc.isTaur())
-				{
-					textBuff += "Bowling over, a sudden and complete loss of feeling in your horse-half brings you to the ground yelping. Before you’ve hit the surface, your voice is lost in the unholy pain of a reshaping body structure. Your vision fades to black straight away, the numbness being overtaken with an immensely relieving warmth. Somehow, it feels like you’re getting smaller. But that’s not what these ears are supposed to do... right? Finally looking back, you see your entire lower-half disappearing and reshaping from the form of a " + (pc.tallness < 60 ? "pony":"steed") + "...";
-					textBuff += "\n\n...to the form of a bunny. You bite your lip hard enough to bleed, groaning from the torture. Your transmogrification does away with your many legs, reducing you to the level of a normal, bipedal creature. After clapping your hands to the ground and loosing one final yell, it ends as quick as it came. You look back in fear, noting that your waist <b>now thickens out with two furry lapine legs!</b>";
-					textBuff += "\n\nYou clutch the nearest wall when you stand, finding balance hard to discover anew on digitigrade rabbit’s feet. The thick pads at the bottom of your digitigrade limbs, along with the six toes, make hopping around much easier than walking. After a minute or so of experimenting, you determine that your newfound bounciness is <i>preferable!</i>";
-					bipedal = true;
-				}
-				//[From Other]
-				else
-				{
-					textBuff += "A painful numbness begins at your feet and rises to your waist, staunching blood flow and forcing you to the ground with a grimace on your face. The muscle-locked sensation is replaced with a rapidly growing warmth. When you look back to see the beginnings of transmogrification, your hips widen painfully to account for thickening thighs covered in short, fibrous bunny-fur. Further down, past the knee, your ankles bend into animalistic paws capped with three big toes.";
-					textBuff += "\n\nShifting skeletal structure pries your mouth open in a silent scream, but it lasts for only a moment. Warmth flexes out through your pores, and when you look back again, feeling returns to your limbs. Standing is easy, but you find yourself balancing on your toes. Experimental movements reveal hopping on your padded feet has become easier - and, curiously, <i>preferable</i> to walking. <b>Getting around on your new lapine legs is going to encourage a bouncier mode of mobility!</b>";
-					bipedal = true;
-				}
-				
+				// Bipedal Lapine Legs ; I will not write for 'bunnytaurs' or the like.
 				if(bipedal)
 				{
+					//[From Naga]
+					if(pc.isNaga())
+					{
+						textBuff += "When you try to slither forward, a loss of movement and feeling is felt in your snake-like tail. Pain erupts after a full-body numbness sets in, dragging you to the ground while a silent scream writes itself on your face. Fear strikes you when you look over your shoulder, seeing the entire lower half of your body wildly shifting, tightening to an absurdly gut-wrenching detail. New limbs sprout in place of your shedding tail, covered in short, fibrous bunny-fur.";
+						textBuff += "\n\nYou bite your lower lip, the straining rigidity fading as quick as it came. When you look back again, your single coil has vanished, <b>transformed into two long lapine legs!</b> The new, digitigrade balance takes a few seconds to get used to, but you find that when you stand on your six padded bunny-toes, hopping is a lot easier than walking. In fact, your bouncier mobility <i>feels preferable!</i>";
+					}
+					//[From Taur]
+					else if(pc.isTaur())
+					{
+						textBuff += "Bowling over, a sudden and complete loss of feeling in your horse-half brings you to the ground yelping. Before you’ve hit the surface, your voice is lost in the unholy pain of a reshaping body structure. Your vision fades to black straight away, the numbness being overtaken with an immensely relieving warmth. Somehow, it feels like you’re getting smaller. But that’s not what these ears are supposed to do... right? Finally looking back, you see your entire lower-half disappearing and reshaping from the form of a " + (pc.tallness < 60 ? "pony":"steed") + "...";
+						textBuff += "\n\n...to the form of a bunny. You bite your lip hard enough to bleed, groaning from the torture. Your transmogrification does away with your many legs, reducing you to the level of a normal, bipedal creature. After clapping your hands to the ground and loosing one final yell, it ends as quick as it came. You look back in fear, noting that your waist <b>now thickens out with two furry lapine legs!</b>";
+						textBuff += "\n\nYou clutch the nearest wall when you stand, finding balance hard to discover anew on digitigrade rabbit’s feet. The thick pads at the bottom of your digitigrade limbs, along with the six toes, make hopping around much easier than walking. After a minute or so of experimenting, you determine that your newfound bounciness is <i>preferable!</i>";
+					}
+					//[From Other]
+					else
+					{
+						textBuff += "A painful numbness begins at your feet and rises to your waist, staunching blood flow and forcing you to the ground with a grimace on your face. The muscle-locked sensation is replaced with a rapidly growing warmth. When you look back to see the beginnings of transmogrification, your hips widen painfully to account for thickening thighs covered in short, fibrous bunny-fur. Further down, past the knee, your ankles bend into animalistic paws capped with three big toes.";
+						textBuff += "\n\nShifting skeletal structure pries your mouth open in a silent scream, but it lasts for only a moment. Warmth flexes out through your pores, and when you look back again, feeling returns to your limbs. Standing is easy, but you find yourself balancing on your toes. Experimental movements reveal hopping on your padded feet has become easier - and, curiously, <i>preferable</i> to walking. <b>Getting around on your new lapine legs is going to encourage a bouncier mode of mobility!</b>";
+					}
 					pc.legCount = 2;
 					pc.genitalSpot = 0;
 				}

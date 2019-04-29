@@ -132,6 +132,18 @@ public function zhengMinesEncounterBonus():Boolean
 		}
 		
 		if (ratsAvailable() && rand(3) == 0) encounters.push(ratsInTheMineEncounter);
+		
+		var pregScene:int = boredJumperPregScene();
+		if (flags["BJUMPER_BIRTH_SCENE"] == 1)
+		{
+			encounters.push(boredJumperPregEncounterJumperPregBirth);
+		}
+		else if (pregScene > 0)
+		{
+			if (pregScene == 1 || pregScene == 4 || pregScene == 5) encounters.push(boredJumperPregEncounterJumperPreg);
+			if (pregScene == 2 || pregScene == 4 || pregScene == 5) encounters.push(boredJumperPregEncounterSteelePreg);
+			if (pregScene == 3 || pregScene == 5) encounters.push(boredJumperPregEncounterBothPreg);		
+		}
 	}
 	if(encounters.length > 0) 
 	{
@@ -140,6 +152,10 @@ public function zhengMinesEncounterBonus():Boolean
 	//If no combat, MAUS!
 	if(flags["MAUS_MECHANIC_DISABLED"] == undefined && flags["MINING_ROBOT_ENCOUNTERS"] != undefined && !pc.hasKeyItem("Zheng Shi RFID Badge"))
 	{
+		// Check for button space. If not space on top button row, no mouse.
+		var mouseBtn:int = 0; 
+		for(mouseBtn = 0; mouseBtn < 5; mouseBtn++) { if(!hasButton(mouseBtn)) break; }
+		if(mouseBtn >= 5) return false;
 		//Move Mouse
 		if((rand(20) == 0) && !pc.hasStatusEffect("Maus CD"))
 		{
@@ -150,7 +166,7 @@ public function zhengMinesEncounterBonus():Boolean
 		if(flags["MAUS_LOCALE"] == currentLocation)
 		{
 			output("\n\nA pair of mousy ears peaks out over the bulk of a busted mining robot. Half its circuits are splayed across the ground like spilled spaghetti, and more join the pile with each passing moment. The caustic curses coming from behind the ill-used metal could strip industrial paint.");
-			addButton(0,"Investigate",investageDatMouseMechanicYo,undefined,"Investigate","This probably won’t lead to a fight. Probably. Maybe.");
+			addButton(mouseBtn,"Investigate",investageDatMouseMechanicYo,undefined,"Investigate","This probably won’t lead to a fight. Probably. Maybe.");
 		}
 	}
 	return false;
@@ -207,6 +223,17 @@ public function zhengFoundryF1EncounterBonus():Boolean
 		}
 		/*encounters.push(boredJumperAttackProc);
 		encounters.push(boredJumperAttackProc);*/
+		var pregScene:int = boredJumperPregScene();
+		if (flags["BJUMPER_BIRTH_SCENE"] == 1)
+		{
+			encounters.push(boredJumperPregEncounterJumperPregBirth);
+		}
+		else if (pregScene > 0 && rand(2) == 0)
+		{
+			if (pregScene == 1 || pregScene == 4 || pregScene == 5) encounters.push(boredJumperPregEncounterJumperPreg);
+			if (pregScene == 2 || pregScene == 4 || pregScene == 5) encounters.push(boredJumperPregEncounterSteelePreg);
+			if (pregScene == 3 || pregScene == 5) encounters.push(boredJumperPregEncounterBothPreg);
+		}
 	}
 	if(encounters.length > 0) 
 	{
@@ -236,6 +263,17 @@ public function zhengFoundryF2EncounterBonus():Boolean
 		encounters.push(encounterPunkSecOp);
 		/*encounters.push(boredJumperAttackProc);
 		encounters.push(boredJumperAttackProc);*/
+		var pregScene:int = boredJumperPregScene();
+		if (flags["BJUMPER_BIRTH_SCENE"] == 1)
+		{
+			encounters.push(boredJumperPregEncounterJumperPregBirth);
+		}
+		else if (pregScene > 0)
+		{
+			if (pregScene == 1 || pregScene == 4 || pregScene == 5) encounters.push(boredJumperPregEncounterJumperPreg);
+			if (pregScene == 2 || pregScene == 4 || pregScene == 5) encounters.push(boredJumperPregEncounterSteelePreg);
+			if (pregScene == 3 || pregScene == 5) encounters.push(boredJumperPregEncounterBothPreg);
+		}
 	}
 	if(encounters.length > 0) 
 	{
@@ -936,7 +974,7 @@ public function investageDatMouseMechanicYo():void
 	}
 	else
 	{
-		output("You approach the mouse-girl oncemore. This time, the rodenian looks up almost immediately. <i>“You again? Whaddya want?”</i>");
+		output("You approach the mouse-girl once more. This time, the rodenian looks up almost immediately. <i>“You again? Whaddya want?”</i>");
 		rodentTalkTopics();
 	}
 }
@@ -1296,7 +1334,7 @@ public function enterRecreationDeck():Boolean
 		}
 		output("Once the elevator’s doors grind and rattle aside, you’re blasted with a cacophony of noise and light the likes of which never expected to see beyond the digitized walls of a virtual reality simulation. It’s overwhelming, even to a hardened explorer like yourself. Everywhere you look there are blinking lights, gleaming hardlight barriers, and acts of debauchery wanton enough to shock a purer soul into unconsciousness.");
 		output("\n\nYou blink and look again, determined to take in this new locale.");
-		output("\n\nThis time, you're prepared to puzzle out the deck’s unique geography: that of a hollow sphere. The shape allows you to see everything at once: shops, kiosks, pirates, scantily clad slaves, and even the glitz and glam of an packed casino. Looking up is a dizzying experience made all the more nauseating by the floating forms of dancing slaves, pirouetting in zero G around the center of the elevator shaft. All bound with gleaming, silvery collars, they are without a doubt the most attractive creatures you've seen on this entire station, chosen for their task on the sole basis of peerless bone structure and flawless skin. One favors you with a wink and a sensuously blown kiss.\n\nYou half-heartedly wave back but turn your attention aside, determined to get a feel for this place before indulging in its basest forms of entertainment.");
+		output("\n\nThis time, you’re prepared to puzzle out the deck’s unique geography: that of a hollow sphere. The shape allows you to see everything at once: shops, kiosks, pirates, scantily clad slaves, and even the glitz and glam of an packed casino. Looking up is a dizzying experience made all the more nauseating by the floating forms of dancing slaves, pirouetting in zero G around the center of the elevator shaft. All bound with gleaming, silvery collars, they are without a doubt the most attractive creatures you’ve seen on this entire station, chosen for their task on the sole basis of peerless bone structure and flawless skin. One favors you with a wink and a sensuously blown kiss.\n\nYou half-heartedly wave back but turn your attention aside, determined to get a feel for this place before indulging in its basest forms of entertainment.");
 		output("\n\nYou aren’t sure what history lead to the creation of this place - whether the pirates built it, or indeed, if they found it amongst the planet’s rubble, but you are sure that they’ve done a decent job of organizing the mind-boggling topography. Colorized paths drill through the chaotic mess of hedonistic pleasure-seeking and pure, unregulated capitalism. A gleaming green trail climbs straight up the wall that your Codex’s compass has chosen to designate as ‘north,’ mirrored by a crimson path to the south. Both come together at the apex of the chamber, forming a tight ring around the elevator shaft. Meanwhile, a luminous gold-floored alley winds east and west, reaching for the deck’s equator without quite reaching it. Where it meets with the brighter routes, it slides beneath into the caustic glow of simulated neon projections and dangerously dark corners only to emerge on the other side, brighter for the contrast.");
 		output("\n\nYou’d best watch yourself. While the crowds of pirates range from amicable-looking to indifferent, it’s best to remember that these are all wanted men (and women) - every last one of them.");
 	}
@@ -1309,6 +1347,69 @@ public function enterRecreationDeck():Boolean
 
 public function bonusHolosharkFun():void
 {
-	if(flags["SHARKED"] == undefined) output("A sizzle of static draws your eyes upward just in time to see the colossal maw of a shark bearing down upon. Teeth as big as infantryman’s rifle race toward your face with bowel-loosening speed, and on pure instinct, you roll aside a split-second before it crashes into the floor, its jaw scissoring shut with a staticy ‘snap.’ Nearby pirates burst into laughter as the imposing beast fizzles away into shimmering lettering, revealing itself to be nothing more than a hologram. \"Beware the Suula menace!\" it proudly declares.\n\nYou spot the hologram emitter nestled into a seam in the wall next to a glowing Cyber Punks logo." + (azraIsCrew() ? "\n\nIt's a good thing Azra isn't here.":""));
+	if(flags["SHARKED"] == undefined) output("A sizzle of static draws your eyes upward just in time to see the colossal maw of a shark bearing down upon. Teeth as big as infantryman’s rifle race toward your face with bowel-loosening speed, and on pure instinct, you roll aside a split-second before it crashes into the floor, its jaw scissoring shut with a staticy ‘snap.’ Nearby pirates burst into laughter as the imposing beast fizzles away into shimmering lettering, revealing itself to be nothing more than a hologram. “Beware the Suula menace!” it proudly declares.\n\nYou spot the hologram emitter nestled into a seam in the wall next to a glowing Cyber Punks logo." + (azraIsCrew() ? "\n\nIt’s a good thing Azra isn’t here.":""));
 	else output("\n\nYou’re careful not to trigger the trapped hologram emitter on your way through the area. You have no desire to be jumped by a gigantic holo-shark for these pirates’ amusement, nor do you wish a second look at the inside of its impressively rendered maw. The floor panel with a splotch of red paint never gets stepped on by anyone else, after all. Now that you know to tread carefully here, you won’t have to suffer again.\n\nThe yellow-hued pathway winds east and west through a forest of dividers and entertainments.");
+	output("\n\nTo the south, you spot a opening that winds through the flash, improvised constructions. The pirates entering seem excited. Those leaving stroll with relaxed, satisfied smiles.");
+}
+public function zhengGameFloorBonus():Boolean
+{
+	output("Glasses clink and voices raise in celebration of victories. Astute, fastidious, and utterly professional dealers man tables strikingly traditional but with mechanical flair. Pirates and mercenaries of all walks gamble their life savings in the pursuit of riches " + (silly ? "and bitches ":"") + "at blackjack, roulette, craps... most known forms of poker even have dedicated tables crammed full of players and witnesses. So much liquor is passing through this exultant atmosphere that the otherwise pleasant aromas are overpowered with signature drinks and the regular cry of <i>Another round!</i>");
+	basicBitchBlackjackDealerIntro();
+	return false;
+
+}
+
+public function enteringTreasureNovaBonus():Boolean
+{
+	// First Time Entering Treasure Nova
+	if(flags["TREASURE_NOVAD"] == undefined)
+	{
+		clearOutput();
+		showName("CASINO\nSECURITY");
+		showBust("CASINO_SECURITY");
+		author("William");
+		output("You’re not entirely sure it’s a smart idea patronizing a pirate-owned-and-managed casino, but up to the flaring neon gates you [pc.walk], sidestepping sore losers and boastful winners. A hulking thraggen man is thrown to the ground in your direction by two well-armed and vertically endowed terran bouncers dressed in silver suits. The viridian-skinned giant storms off in a huff while they dust their gloved hands of the trash.");
+		output("\n\nBoth bruisers sport obvious augmentation. On the sides of their oval-shaped heads sit square-shaped implants that summon visors of simmering green light across their field of vision. You don’t need to see their eyes to know that they are staring at you, one intently and the other aggressively.");
+		output("\n\n<i>“A newbie,”</i> the red-haired one says apathetically, folding his trunk-like arms.");
+		output("\n\n<i>“Right, I’ll handle this,”</i> the black-haired one responds brusquely, upturning his muscle-rippled palm and beckoning you to the side - can’t hold up traffic, after all.");
+		output("\n\n<i>“Welcome to Treasure Nova,”</i> he begins in a professional oboe voice, interlocking his fingers behind his back. The same movement reveals the gun at his hip under the fancy jacket he wears. <i>“First, no weapons.”</i> ");
+		if(pc.tallness <= 70) output("He looks down at you hard enough that his scrunched eyes are visible behind the mask, making it clear that was <i>not</i> an innocuous statement.");
+		else if(pc.tallness < 80) output("He looks across at you hard enough and with tense body language, his firm warning crystal clear.");
+		else output("He stares up at you unintimidated, his rock-solid body language supporting his terse warning.");
+		output(" <i>“You will check your equipment before passing the gates and submit them to storage, and you will reclaim them when you leave. If it makes you feel better, nobody else will handle your gear.”</i>");
+		output("\n\n");
+		if(pc.isBimbo() || pc.isBro() || pc.isNice() || pc.isMischievous()) output("Nodding, you make ready to disarm. Agitating local security is the last thing you want on a crowded station.");
+		else output("You scowl and prep your gear for apprehension. If someone tries anything, it’ll be a race between you and the help to make it their last mistake.");
+		output("\n\n<i>“Lastly, you will respect the Dealers and adhere to the rules of the game. Credits are to be presented up front. Bets will not be forfeited or surrendered. Take it from me, you would do well <b>not</b> to spend beyond your means.”</i> A light smirk crosses his olive features. <i>“Everything else should be self-explanatory.”</i>");
+		output("\n\nHe nods once, cracking his neck in the stiff motion, before returning to his post and quashing a sprouted argument.");
+		output("\n\nIn the nearby alcoves, not too unlike a set of keyed lockers, you claim an unused rack and stash your [pc.rangedNoun] and whatever else on your personage that could be construed as a weapon, sealing them under magnetic clamps that will only open for the cardkey you take. You then [pc.move] unmolested through the cerulean forcefield, feeling the scanner bristle along your [pc.skinFurScalesNoun].");
+		processTime(5);
+		clearMenu();
+		addButton(0,"Next",firstTimeCasinoPartDues);
+		return true;
+	}
+	return false;
+}
+
+public function firstTimeCasinoPartDues():void
+{
+	clearOutput();
+	showName("CASINO\nSECURITY");
+	showBust("CASINO_SECURITY");
+	author("William");
+	output("Weaponized glamor that could topple old Terran religions decorates the <i>Treasure Nova</i> interior - the opulence on display stabs you right in the eye. Behind the idolatry are hardlight walls tuned to exhibit an accurate representation of atmospheric auroras. Soothing magenta rays fade into chilling emerald gradients, dimming until a chromatic pulse revivifies them, changing the color and the mood as it travels.");
+	output("\n\nYou can practically see the aurelian strings being pulled from this grand space, attached tightly to the money moving through here at rapid rates. Obnoxiously loud slot machines jingle all around, shrill noises and psychologically exploitative lights persuading retries from lightened wallets. Dealers bellow at the nadir of the casino, in an area devoted to high-stakes gambling. Platinum-white carpets are laid at the center of every walkway, pathing through wealthy thoroughfares.");
+	output("\n\nDominating the center of this hall is a massive bar that can be described as the very core of this den of iniquity. It may in fact <b>be</b> a giant power core with its eye-catching design. There, a battalion of bartenders serve freelancers, Jumpers, Cyber Punks, anyone who seats themselves at the counter. A poppy jazz theme highlighted by a suplerative sax emanates from the speakers slotted into its crown.");
+	output("\n\nSlaves happy with their lot in life handle platters of steaming food and fizzy, raspberry-colored drinks, delivering condiments where they’re needed most, dressed in fine clothing featuring name tags and the logo of their owner’s business: unsurprisingly, a stylized nova.");
+	output("\n\nNow that you’ve adjusted to the celestial aesthetic, you wonder where your money would best be spent. " + (silly ? "Assuming you don’t disturb the sound of silence, anyway. ":"") + "Considering everyone checks their weapons at the door, this may just be the safest place on Zheng Shi.");
+	output("\n\nAt least until someone loses hard enough.");
+	flags["TREASURE_NOVAD"] = 1;
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function aquariusBonusFunc():void
+{
+	daneBonus(0);
 }

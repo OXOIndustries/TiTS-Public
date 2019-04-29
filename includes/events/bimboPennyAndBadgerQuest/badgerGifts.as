@@ -1448,7 +1448,7 @@ public function fuckDoctorBadgersAss():void
 	output("\n\nWithout bothering to wait for any sort of response you step up to her, the fact that she never wears anything below the waist meaning you can slide your cock into her ass without hesitation. It feels like she’s already slick somehow - you’re not sure if that’s because of what you’ve done or if that was a feature she already had, but you definitely appreciate it. She’s clearly enjoying herself too, letting out a long low moan as she settles backwards against you.");
 	output("\n\n<i>“Good girl,”</i> you whisper. <i>“Doesn’t that feel good?”</i>");
 	output("\n\nShe gasps as you press yourself forwards again, then manages to pant out a response. <i>“Y... yes...”</i>");
-	output("\n\n<i>“You want this, to to be fucked into a nice, bimbo slut, don’t you?”</i>");
+	output("\n\n<i>“You want this, to be fucked into a nice, bimbo slut, don’t you?”</i>");
 	output("\n\n<i>“I...”</i> There’s a pause. She doesn’t stop moving in and out against you, but she can’t bring herself to say the words.");
 	output("\n\n");
 	if(pc.isBimbo()) output("<i>“Oh, don’t worry!”</i> you reassure her as you keep up your constant thrusting rhythm. <i>“Being a bimbo is the best! You get to... mhmmm... fuck all the time, you get to... ah-ahmmm! Be fucked over and over again. You get to- to! Suck cock, eat pussy, drink c-cum! All the time, every day, over a- ahhM! And over, you get to be treated as the... Slut! That it feels so... good! To... be! Ahhm! Oh, oh, you have to, have to give in, accept it, let yourself be a nice... bimbo! Slut! Please, it’s so... so good! Ahhmmm!”</i>");

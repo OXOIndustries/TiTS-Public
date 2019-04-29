@@ -13,6 +13,9 @@
 		//[Embed(source = "../../../assets/images/sig/shou.png", mimeType = "image/png")]
 		//public var SigEmbed:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/alvella.png", mimeType = "image/png")]
+		public var Bust_ALVELLA:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/amma.png", mimeType = "image/png")]
 		public var Bust_AMMA:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/amma_nude.png", mimeType = "image/png")]
@@ -488,7 +491,12 @@
 		public function get Bounds_MILODANMALE_AXE():Rectangle { return Bounds_MILODANMALE; }
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_male_nude.png", mimeType = "image/png")]
 		public var Bust_MILODANMALE_NUDE:Class;
-		public function get Bounds_MILODANMALE_NUDE():Rectangle { return Bounds_MILODANMALE; }		
+		public function get Bounds_MILODANMALE_NUDE():Rectangle { return Bounds_MILODANMALE; }
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_temptress.png", mimeType = "image/png")]
+		public var Bust_MILO_TEMPTRESS:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/milodan_temptress_nude.png", mimeType = "image/png")]
+		public var Bust_MILO_TEMPTRESS_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/fungal_myr_spores.png", mimeType = "image/png")]
 		public var Bust_MYR_INFECTED_FEMALE:Class;
@@ -735,6 +743,9 @@
 
 		CONFIG::IMAGEPACK
 		{
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/alvella.png", mimeType = "image/png")]
+			public var Full_ALVELLA:Class;
+
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/amma.png", mimeType = "image/png")]
 			public var Full_AMMA:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/amma_nude.png", mimeType = "image/png")]
@@ -1193,6 +1204,11 @@
 			public var Full_MILODANMALE_AXE:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/milodan_male_nude.png", mimeType = "image/png")]
 			public var Full_MILODANMALE_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/milodan_temptress.png", mimeType = "image/png")]
+			public var Full_MILO_TEMPTRESS:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/milodan_temptress_nude.png", mimeType = "image/png")]
+			public var Full_MILO_TEMPTRESS_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/fungal_myr_spores.png", mimeType = "image/png")]
 			public var Full_MYR_INFECTED_FEMALE:Class;

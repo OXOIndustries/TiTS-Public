@@ -105,13 +105,24 @@
 			
 			Cheats.OutputStuff();
 			kGAMECLASS.output("\n<b>All locations have been unlocked.</b>");
+			// Tarkus
 			kGAMECLASS.flags["UNLOCKED_JUNKYARD_PLANET"] = 1;
+			// Myrellion
 			kGAMECLASS.flags["PLANET_3_UNLOCKED"] = 1;
+			// Zheng Shi
+			kGAMECLASS.flags["KING_NYREA"] = 1; kGAMECLASS.flags["BEAT_TAIVRA_TIMESTAMP"] = kGAMECLASS.GetGameTimestamp();
+			// New Texas
 			kGAMECLASS.flags["NEW_TEXAS_COORDINATES_GAINED"] = 1;
+			// Poe A
 			kGAMECLASS.flags["HOLIDAY_OWEEN_ACTIVATED"] = kGAMECLASS.GetGameTimestamp();
+			// Uveto
 			kGAMECLASS.flags["UVETO_UNLOCKED"] = 1;
+			// Canadia Station
 			kGAMECLASS.flags["CANADA_UNLOCKED"] = 1;
-
+			// Gastigoth
+			kGAMECLASS.flags["GASTIGOTH_UNLOCKNUM"] = 0; kGAMECLASS.goMailGet("gastigoth_unlock");
+			// Breedwell
+			kGAMECLASS.goMailGet("breedwell_unlock");
 		}
 		public static function toggleDebug():void
 		{

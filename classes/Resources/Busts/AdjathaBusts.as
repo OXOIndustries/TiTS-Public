@@ -202,6 +202,13 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/cass_nude.png", mimeType = "image/png")]
 		public var Bust_CASS_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/cherry.png", mimeType = "image/png")]
+		public var Bust_CHERRY:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/cherry_nude.png", mimeType = "image/png")]
+		public var Bust_CHERRY_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/cherry_cumflated.png", mimeType = "image/png")]
+		public var Bust_CHERRY_CUMFLATED:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/chrissy.png", mimeType = "image/png")]
 		public var Bust_CHRISSY:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/chrissy_nude.png", mimeType = "image/png")]
@@ -388,18 +395,26 @@ package classes.Resources.Busts
 		public var Bust_BORED_JUMPER_EQUINE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/jumper_horse_nude.png", mimeType = "image/png")]
 		public var Bust_BORED_JUMPER_EQUINE_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/jumper_horse_nude_pregnant.png", mimeType = "image/png")]
+		public var Bust_BORED_JUMPER_EQUINE_NUDE_PREGNANT:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/jumper_feline.png", mimeType = "image/png")]
 		public var Bust_BORED_JUMPER_FELINE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/jumper_feline_nude.png", mimeType = "image/png")]
 		public var Bust_BORED_JUMPER_FELINE_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/jumper_feline_nude_pregnant.png", mimeType = "image/png")]
+		public var Bust_BORED_JUMPER_FELINE_NUDE_PREGNANT:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/jumper_canine.png", mimeType = "image/png")]
 		public var Bust_BORED_JUMPER_CANINE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/jumper_canine_nude.png", mimeType = "image/png")]
 		public var Bust_BORED_JUMPER_CANINE_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/jumper_canine_nude_pregnant.png", mimeType = "image/png")]
+		public var Bust_BORED_JUMPER_CANINE_NUDE_PREGNANT:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/jumper_terran.png", mimeType = "image/png")]
 		public var Bust_BORED_JUMPER_TERRAN:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/jumper_terran_nude.png", mimeType = "image/png")]
 		public var Bust_BORED_JUMPER_TERRAN_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/jumper_terran_nude_pregnant.png", mimeType = "image/png")]
+		public var Bust_BORED_JUMPER_TERRAN_NUDE_PREGNANT:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/kally.png", mimeType = "image/png")]
 		public var Bust_KALLY:Class;
@@ -1259,6 +1274,13 @@ package classes.Resources.Busts
 			public var Full_CASS:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cass_nude.png", mimeType = "image/png")]
 			public var Full_CASS_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cherry.png", mimeType = "image/png")]
+			public var Full_CHERRY:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cherry_nude.png", mimeType = "image/png")]
+			public var Full_CHERRY_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/cherry_cumflated.png", mimeType = "image/png")]
+			public var Full_CHERRY_CUMFLATED:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/chrissy.png", mimeType = "image/png")]
 			public var Full_CHRISSY:Class;

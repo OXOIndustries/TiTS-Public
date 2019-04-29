@@ -813,8 +813,8 @@ public function flahneMunchesBoxesMetalBawkses():void {
 	//Mean
 	else output("\n\n<i>“Faster! Come on, facefuck my cunt! Lick it! Suck it! Make me cum!”</i> you demand.");
 	//Merge, no new PG.
-	output(" Your hands drift away from your [pc.fullChest] towards her shoulders, and you squeeze them encouragingly. Flahne gives you a knowing look and circles one arm around you to hold you still. With the other, she reaches up to your [pc.nipple], ");
-	if(pc.hasFuckableNipples()) output("slipping it inside the moist entrance with a little trepidation. She soon acclimates to your anatomy, matching the motions of her fingerfuck to the rhythm of her tongue");
+	output(" Your hands drift away from your [pc.fullChest] towards her shoulders, and you squeeze them encouragingly. Flahne gives you a knowing look and circles one arm around you to hold you still. With the other, she reaches up to your [pc.nipple]");
+	if(pc.hasFuckableNipples()) output(", slipping it inside the moist entrance with a little trepidation. She soon acclimates to your anatomy, matching the motions of her fingerfuck to the rhythm of her tongue");
 	else {
 		output(", pinching and pulling on it with confident motions. She’s obviously no stranger to nipple play");
 		if(pc.hasNippleCocks()) output(", pulling on it until the concealed cock within erects, parting the sensitive skin to bob heavily upon her chest. Flahne wraps her gooey fingers around it begins to stroke it, smoothly polishing your rod to the tempo her tongue has set");

@@ -160,13 +160,14 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/Zil_Female.png", mimeType = "image/png")]
 		public var Bust_ZILFEMALE:Class;
+		public var Bounds_ZILFEMALE:Rectangle = new Rectangle(3, 10, 75, 80);
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/Zil_Male.png", mimeType = "image/png")]
 		public var Bust_ZIL:Class;
-		public var Bounds_ZIL:Rectangle = new Rectangle(40, 3, 100, 75);
+		public var Bounds_ZIL:Rectangle = new Rectangle(14, 3, 75, 80);
 		[Embed(source = "../../../assets/images/npcs/cheshire/zil_red.png", mimeType = "image/png")]
 		public var Bust_ZIL_RED:Class;
-		public var Bounds_ZIL_RED:Rectangle = new Rectangle(30, 3, 100, 75);
+		public function get Bounds_ZIL_RED():Rectangle { return Bounds_ZIL; }
 
 		CONFIG::IMAGEPACK
 		{
@@ -207,11 +208,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/embry_3_nude.png", mimeType = "image/png")]
 			public var Full_EMBRY_3_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/cheshire/hr/fisi.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/cheshire/hr/fisianna.png", mimeType = "image/png")]
 			public var Full_FISIANNA:Class;
-			[Embed(source = "../../../assets/images/npcs/cheshire/hr/fisi_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/cheshire/hr/fisianna_nude.png", mimeType = "image/png")]
 			public var Full_FISIANNA_NUDE:Class;
-			[Embed(source = "../../../assets/images/npcs/cheshire/hr/fisi_panties.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/cheshire/hr/fisianna_panties.png", mimeType = "image/png")]
 			public var Full_FISIANNA_BRA:Class;
 
 			[Embed(source = "../../../assets/images/npcs/cheshire/hr/Flahne.png", mimeType = "image/png")]

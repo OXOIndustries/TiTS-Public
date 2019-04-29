@@ -44,6 +44,7 @@
 			
 			baseDamage.kinetic.damageValue = 23;
 			baseDamage.addFlag(DamageFlag.BULLET);
+			this.addFlag(GLOBAL.ITEM_FLAG_RIFLE_WEAPON);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;

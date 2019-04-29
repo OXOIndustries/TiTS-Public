@@ -498,6 +498,8 @@ public function sexButtBugOfferButt(swfVariant:int = 0):void
 	if(newBug >= 0 && oldBug < 0) success = true;
 	// matching bug
 	if(newBug == oldBug) success = true;
+	// opposing bug (autowin now, then check triangle after)
+	else if(newBug >= 0 && oldBug >= 0) success = true;
 	// capacity check
 	if(newBug == 2) success = (pc.analCapacity() > 60 ? true : false);
 	
@@ -2321,7 +2323,7 @@ public function birthButtBugType2(eggs:int = 0):void
 	else if(vIdx >= 0) output(" vaginal walls spastically clench down onto your invading digits. Streams of [pc.girlCum] flow from [pc.eachVagina] liberally covering your hands and the floor in [pc.girlCumColor].");
 	else output(" your nerves briefly explode in a lustful supernova of pleasure. The sensual heat stays for a while before a state of bliss radiates throughout your form that leaves you as calm as a still lake.");
 	output(" The rest of the slime splashes out of your rectum and falls onto the already ooze covered egg like liquid afterbirth and forms quite a large puddle beneath you.");
-	output("\n\nDizziness creeps upon your consciousness and you almost fall into a blackout as you collapse onto to fluid covered floor. The parasite’s tendril around your [pc.legOrLegs] unties itself, slipping back into your bug’s now gaping birthing canal and disappearing from your sight. Damn it, your ass is fucking sore! Was it worth it? Maybe. <b>You’re pretty sure your asshole won’t fully recover from this for quite a while.</b> A bit sensitive but glad you’re free of the extra weight while you gather you gear, your mind wanders towards the egg you’ve laid. The hybrid hilinara egg will soon hatch and if not taken care of it will likely pester the locals. Either that, or try and integrate with them.");
+	output("\n\nDizziness creeps upon your consciousness and you almost fall into a blackout as you collapse onto the fluid covered floor. The parasite’s tendril around your [pc.legOrLegs] unties itself, slipping back into your bug’s now gaping birthing canal and disappearing from your sight. Damn it, your ass is fucking sore! Was it worth it? Maybe. <b>You’re pretty sure your asshole won’t fully recover from this for quite a while.</b> A bit sensitive but glad you’re free of the extra weight while you gather you gear, your mind wanders towards the egg you’ve laid. The hybrid hilinara egg will soon hatch and if not taken care of it will likely pester the locals. Either that, or try and integrate with them.");
 	if(rooms[currentLocation].planet != "TAVROS STATION") output(" What do you do with it?");
 	else output(" Since you are already on Tavros Station, the choice seems obvious.");
 	output("\n\n");
@@ -2730,10 +2732,10 @@ public function nurseryHilinaraNurseDroid(arg:Array):void
 		"moving a bag of worm feed",
 		"sweeping some sand from the main platform",
 		"on its way to tend to some unknown duty",
-	]) + ", and tap on its metallic shoulder to get its attention. Diverting its head towards you, her sensors recognize you and stop what she was currently doing to tend to your requests. <i>“Is there anything you’d like help with [pc.misterMiss] Steele?”</i> they ask as they fold their hands in front of their dress, awaiting your input. Upon telling them you just want some information, they turn into some kind of tour guide, telling you the functions and purposes of various things until finally you reach the end of the tour. <i>“" + RandomInCollection([
+	]) + ", and tap on its metallic shoulder to get its attention. Diverting its head towards you, her sensors recognize you and stop what she was currently doing to tend to your requests. <i>“Is there anything you’d like help with [pc.MisterMiss] Steele?”</i> they ask as they fold their hands in front of their dress, awaiting your input. Upon telling them you just want some information, they turn into some kind of tour guide, telling you the functions and purposes of various things until finally you reach the end of the tour. <i>“" + RandomInCollection([
 		"As you can see, this sectioned-off room is where we keep all the nutritional packages to feed the biological units that cannot make it to the mess hall.",
 		"This biodome system is completely automated and designed to simulate Tarkus to the best of the system’s computational abilities. This includes time of day, heat, wind, gravity, horizon, atmosphere and sand composition.",
-		"No expense was spared for the raising of any and all desert organism offspring [pc.misterMiss] Steele might produce. This dome is as adaptable as many of the other rooms on this floor.",
+		"No expense was spared for the raising of any and all desert organism offspring [pc.MisterMiss] Steele might produce. This dome is as adaptable as many of the other rooms on this floor.",
 		"Domes like this one are actually commonly used in many stations across the galaxy. Most are used for parks or beaches rather than desert simulations, so consider yours a rarity!",
 		"We hope you don’t mind, but we’ve synthesized the air in the dome to smell more or less like you. Making the hybrids and worms think you are nearby puts them in a cooperative and calm state.”</i> Really? You don’t smell anythi-... oh. You’re probably used to your own smell so of course it won’t be noticeable.",
 	]) + " That concludes the requirements of current query request. For more info, please post queries to another nurse unit.”</i>. She resumes her previous task with no delay. They must be busy. You guess you need to get the attention of a different one if you want to know more.");

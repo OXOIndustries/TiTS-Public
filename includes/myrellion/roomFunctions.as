@@ -1,4 +1,8 @@
-﻿//Landing on Myrellion, First Time
+﻿public function myrellionCoordinatesUnlocked():Boolean
+{
+	return (flags["PLANET_3_UNLOCKED"] != undefined);
+}
+//Landing on Myrellion, First Time
 public function flyToMyrellion():void
 {
 	showBust("MYRELLION");
@@ -768,7 +772,11 @@ public function deepCavesDescend():void
 	if(pc.canFly())
 	{
 		showName("GLIDING\nDOWN");
-		output("Rather than climbing down the rappelling lines, you stretch your wings and start to fly down, zipping down like a diving bird of prey into the fathomless depths of the bug world. The cavern is much, much deeper than you had expected, you quickly realize: minutes pass in controlled descent, to the point that you start to wonder if there even <i>is</i> a bottom... until you suddenly see several large, stone spikes rushing up to meet you.\n\nYou pull up at the last minute, landing between several of the largest outcroppings.");
+		output("Rather than climbing down the rappelling lines, you");
+		if(pc.hasJetpack()) output(" activate your jetpack");
+		else if(pc.hasWings()) output(" stretch your [pc.wings]");
+		else output(" prepare yourself");
+		output(" and start to fly down, zipping down like a diving bird of prey into the fathomless depths of the bug world. The cavern is much, much deeper than you had expected, you quickly realize: minutes pass in controlled descent, to the point that you start to wonder if there even <i>is</i> a bottom... until you suddenly see several large, stone spikes rushing up to meet you.\n\nYou pull up at the last minute, landing between several of the largest outcroppings.");
 		pc.energy(-5);
 		processTime(4);
 		StatTracking.track("movement/time travelled", 4);
@@ -830,7 +838,13 @@ public function ascendFromDeepCaves():void
 	else
 	{
 		showName("FLYING\nUP");
-		output("Rather than climbing up the ropes ahead like some kind of wingless peasant, you spread your [pc.wings] and take flight, soaring up the cliff face in all your inhuman majesty. The ascent takes what seems like ages, minutes and minutes spent in darkness and silence, barely able to see the ropes and rocks mere feet from your face.\n\nEventually, you arrive at the top of the chasm and land, stopping to catch your breath for a few long minutes. Whew, going up’s certainly a lot more work than going down...");
+		output("Rather than climbing up the ropes ahead like some kind of wingless peasant, you");
+		if(pc.hasJetpack()) output(" prime your jetpack");
+		else if(pc.hasWings()) output(" spread your [pc.wings]");
+		else output(" leap upwards");
+		output(" and take flight, soaring up the cliff face in all your inhuman majesty. The ascent takes what seems like ages, minutes and minutes spent in darkness and silence, barely able to see the ropes and rocks mere feet from your face.\n\nEventually, you arrive at the top of the chasm and land");
+		if(!pc.hasJetpack()) output(", stopping to catch your breath for a few long minutes");
+		output(". Whew, going up’s certainly a lot more work than going down...");
 		pc.energy(-25);
 		processTime(20);
 		StatTracking.track("movement/time travelled", 20);

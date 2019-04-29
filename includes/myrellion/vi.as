@@ -573,7 +573,7 @@ public function getExamanitedByVi():void
 public function removeDiseasesVI():void
 {
 	clearOutput();
-	showVKo();
+	showVi();
 	author("Fenoxo");
 	output("After a few moments of simulated concentration, the nursedroid speaks up, <i>“There! I’ve scanned your viral structure and uploaded a countermeasure to your microsurgeon immune system. You should be clear of the disease in a few moments.”</i>");
 	output("\n\n<i>“Do you require additional services?”</i>");
@@ -1409,7 +1409,7 @@ public function tailScrewWithVi():void
 
 	output("\n\nWith great effort, you nod, pulling yourself up ");
 	if(pc.legCount == 2 && pc.hasKnees()) output("and off the bed.");
-	else output("and onto to your [pc.footOrFeet].");
+	else output("and onto your [pc.footOrFeet].");
 	//GotClothes:
 	if(!pc.isNude()) output(" You then grab your [pc.gear] and re-dress yourself, though it takes some time.");
 	output(" There’s a lot of lube leaking from your recently pummeled butthole, drooling out like the remnants of slick cum shot up into you. With how slickened up she was, you’ll probably be leaking it all day!");

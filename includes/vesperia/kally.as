@@ -4133,7 +4133,7 @@ public function kiroXKallyEmailShow():void
 	
 	output("\n\n<i>“And you want your own sister to fuck you harder, don’t you?”</i>");
 	
-	output("\n\n<i>“Yesyesyes!”</i> Kally cries, pushing back to to pop Kiro’s medial ring into her greedy slot. One-handed, she squeezes one of her own tits, hard.");
+	output("\n\n<i>“Yesyesyes!”</i> Kally cries, pushing back to pop Kiro’s medial ring into her greedy slot. One-handed, she squeezes one of her own tits, hard.");
 	
 	output("\n\n<i>“Goddamn, I love you Kally,”</i> Kiro purrs, holding position to let Kally slurp up the rest of her throbbing-hard cock. <i>“Such a sweet woman... with such a fuckable body... and a per-perfect pussy. You fuck that moose-girl as much as you want.”</i>");
 	

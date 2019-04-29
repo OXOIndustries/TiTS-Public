@@ -986,7 +986,7 @@ public function ratsWilliamWantedANextButtonHere():void
 				else if (pc.hasCock()) output(" Your " + (pc.hasCocks() ? "[pc.cocks] flex and fire" : "[pc.cock] flexes and fires") + " off a few loads of [pc.cum]" + (pc.hasLowerGarment() ? " against your [pc.lowerUndergarment]" : ""));
 				else if (pc.hasVagina()) output(" Your " + (pc.hasVaginas() ? "[pc.pussies] tingle and gush" : "[pc.pussy] tingles and gushes") + (pc.hasLowerGarment() ? " against your [pc.lowerUndergarment]" : ""));
 				else output(" Your body shivers");
-				output(". A slutty and perhaps submissive orgasm batters your {drenched} loins, waves that rise and fall with every churning contraction.");
+				output(". A slutty and perhaps submissive orgasm batters your" + (pc.hasGenitals() ? " drenched" : "") + " loins, waves that rise and fall with every churning contraction.");
 				
 				output("\n\nThe realization makes you blush");
 				if (pc.isBimbo()) output(" and giggle");
@@ -1001,8 +1001,9 @@ public function ratsWilliamWantedANextButtonHere():void
 			else if (ratsPCIsKnown()) output(" Is... is that how you do business?");
 			output("”</i>");
 			output("\n\nYou clear your jizz-scented throat and stand, looking down at the exhausted rats. Damn, something about this just makes you <i>proud</i>. <i>“");
-			if (ratsPCIsKnown()) output(" That’s my business.");
-			output(" Guess I don’t have to pay huh?”</i>");
+			if (ratsPCIsKnown()) output("That’s my business.");
+			output("Guess I don’t have to pay huh?");
+			output("”</i>");
 			output("\n\n<i>“Uhh...”</i> they moan, finally heaving and sitting up. The rodenian tucks her ears and groans,");
 			if (ratsPCIsGood()) output("\n\n<i>“Heh-heh, you already did. But we’ll maybe give you something back next time.”</i>");
 			else output("\n\n<i>“No... just go. Um, thanks... But don’t think this makes us friends!”</i>");
@@ -1789,7 +1790,7 @@ public function ratFightVictory():void
 	else if (hornyRats == 1)
 	{
 		// Last rat defeated by lust, (1 lusted, 2 KO'd)
-		if (lastRat.HP() > 0) output("\n\nThere’s a sharp gasp and a pitiful whine when the final raider drops " + lastRat.mf("his", "her") + " baton and falls heavily to " + lastRat.mf("his", "her") + " knees. Having had the fight knocked out of them, the other two pant and hang their heads while their friend paws furiously at at the armor insulating " + lastRat.mf("his", "her") + " lust, desperate for relief. You can consider helping with that now that they’ve been trounced.");
+		if (lastRat.HP() > 0) output("\n\nThere’s a sharp gasp and a pitiful whine when the final raider drops " + lastRat.mf("his", "her") + " baton and falls heavily to " + lastRat.mf("his", "her") + " knees. Having had the fight knocked out of them, the other two pant and hang their heads while their friend paws furiously at the armor insulating " + lastRat.mf("his", "her") + " lust, desperate for relief. You can consider helping with that now that they’ve been trounced.");
 		// Last rat defeated by HP, (2 KO'd, 1 lusted)
 		else output("\n\nWhen the last rat charges, you deflect " + lastRat.mf("his", "her") + " baton and slam your shoulder into " + lastRat.mf("his", "her") + ", knocking the rodent clear back and into the others who struggle to stand or alleviate their lusts. Batons and other weapons go flying as you step forward. The raiders now utterly defeated, you step forward, knowing they have been pacified.");
 	}
@@ -1821,8 +1822,8 @@ public function ratFightVictory():void
 			else if (pc.isMisch()) output("\n\nYou smirk. <i>“That’s not a good answer. I’m still thinking how I should punish three little rats...”</i>");
 			else output("\n\n<i>“You don’t get to beg after the way you acted before,”</i> you growl, stomping near her.");
 			output("\n\nThe other two cover their heads, curling their tails around their shaking bodies, obviously under the belief that you’re going to kill them or do something even worse. Geez.");
-			if (pc.isBimbo()) output("<i>“I’m not gonna hurt ‘ya, stop shaking and look at me!”</i>");
-			else output("<i>“Stop. I won’t hurt you unless you give me a reason to.”</i>");
+			if (pc.isBimbo()) output(" <i>“I’m not gonna hurt ‘ya, stop shaking and look at me!”</i>");
+			else output(" <i>“Stop. I won’t hurt you unless you give me a reason to.”</i>");
 			output("\n\nThey look up warily as you come to a decision...");
 			
 			break;

@@ -251,7 +251,7 @@ public function reahaMilkStand():void
 		//Var 2.
 		else if(rand(2) == 0)
 		{
-			output("As you’re stepping back aboard, you’re greeting with a muffled series of moans and a rhythmic <i>thump-thump</i> of something hitting one of the bulkheads. You’d be alarmed, except you quickly realize that the noise is coming from Reaha’s quarters. Sounds like the cow-girl’s <i>“entertaining”</i> a customer right now.");
+			output("As you’re stepping back aboard, you’re greeting with a muffled series of moans and a rhythmic <i>thump-thump</i> of something hitting one of the bulkheads. You’d be alarmed, except you quickly realize that the noise is coming from Reaha’s quarters. Sounds like the cow-girl’s “entertaining” a customer right now.");
 		}
 		//Var 3.
 		else

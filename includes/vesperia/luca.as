@@ -32,6 +32,14 @@ public function showLuca(nude:Boolean = false):void
 	showBust("LUCA" + nudeS);
 }
 
+public function lucaVRsTried():int
+{
+	var total:int = 0;
+	if (flags["VR_PIRATEQUEEN"] != undefined) total++;
+	if (flags["VR_AMAZONIA"] != undefined) total++;
+	return total;
+}
+
 //PC Finds Store
 // PC is in Access Corridor Beta.
 
@@ -61,6 +69,9 @@ public function approachLuca(back:Boolean = false):void
 	clearOutput();
 	showLuca();
 	author("RequiemForAMeme");
+
+	var lucamission:int = lucaSubmission();
+
 	if(back)
 	{
 		output("Is there something else you’d rather ask of Luca?");
@@ -80,11 +91,72 @@ public function approachLuca(back:Boolean = false):void
 		flags["MET_LUCA"] = 1;
 	}
 	//Repeat
-	else
+	else if (lucamission < 25)
 	{
 		output("Luca holds a warm smile as she waits for you to cross her establishment. You wonder for a moment how she keeps up with so many patrons. When you reach the counter she greets you immediately. <i>“Welcome back " + pc.mf("Mister","Miss") + " Steele, what fantasy can I interest you in today?”</i>");
 	}
+	else if (lucamission < 50)
+	{
+		output("Luca holds a warm smile as she waits for you to cross her establishment. Looking around, she’s just as busy as usual. When you reach the counter she greets you immediately. <i>“Welcome back, [pc.name]. What fantasy can I interest you in today?”</i>");
+	}
+	else if (lucamission < 75)
+	{
+		output("Luca’s face lights up as she waits for you to cross her establishment. Looking around, you see a few other regulars who give you a friendly wave. When you reach the counter, she greets you with a wide grin. <i>“Welcome back, [pc.name]. What fantasy can I interest you in today?”</i>");
+	}
+	else if (lucamission >= 80 && rand(5) == 0 && flags["LUCA_SWITCHED"] == undefined)
+	{
+		clearMenu();
+		processTime(4);
+		output("<i>“[pc.name]! I was just thinking about you,”</i> Luca says. <i>“I have an idea I want to run by you.”</i>");
+		output("\n\n<i>“Yes Mistress?”</i>");
+		output("\n\n<i>“I know you’re- no that’s not right.”</i> Luca looks away, trying to reorganize her thoughts. <i>“I think that we’ve- no that’s still not right. Ugh.”</i>");
+		output("\n\n<i>“Mistress?”</i> you ask with confusion.");
+		output("\n\nLuca looks at you and takes a deep breath. <i>“I love being a dom, [pc.name]. I love being in control and having you submit to me...”</i> She looks away again with embarrassment, her eyes cast down at the floor. <i>“And recently I’ve been thinking that it would feel pretty great if we tried switching roles.”</i>");
+		output("\n\n<i>“Are you asking me to be on top?”</i>");
+		output("\n\n<i>“Yeah. But not all the time.”</i> She turns her gaze back to you in a slight panic. <i>“Just every so often... I really like you, [pc.name], and I want to try something different with you. As long as you’re alright with it that is. If you want to try it, just let me know.”</i>");
+		flags["LUCA_SWITCHED"] = 0;
+		flags["LUCA_LAST_VISITED"] = GetGameTimestamp();
+		addButton(0, "Next", approachLuca, true);
+		return;
+	}
+	else if (lucamission < 100)
+	{
+		output("Luca’s face can’t contain her excitement when she see you walk to her. You receive a few knowing catcalls as you make your way across her establishment. When you reach the counter, she greets you with a lovely smile. <i>“Seeing you might be the best part of my day, [pc.name],”</i> she tells you. <i>“What fantasy can I interest you in today?”</i>");
+	}
+	else if (rand(3) == 0 && flags["LUCA_SWITCHED"] > 0 && flags["LUCA_GENTLE"] == undefined && flags["LUCA_DENIED"] > 0 && flags["LUCA_FUCKTOYD"] > 0 && flags["LUCA_CUMDUMP"] > 0 && flags["LUCA_ANAL"] > 0 && flags["LUCA_PUBLIC_ORAL"] > 0)
+	{
+		clearMenu();
+		processTime(4);
+		output("<i>“[pc.name]. I need to talk with you,”</i> Luca orders.");
+		output("\n\n<i>“What is it, Mistress?”</i>");
+		output("\n\nLuca looks at you. She seems happier than usual. <i>“I love our relationship, [pc.name], but I want... something a bit more.”</i> She looks away briefly before returning your gaze with a bright smile. <i>“I’ve been thinking a lot lately, and I want to have sex with you.”</i>");
+		output("\n\n<i>“" + (pc.isMisch() ? "My entire life is a lie. What have we been doing this entire time?" : "I’m confused.") + "”</i>");
+		output("\n\n<i>“" + (pc.isMisch() ? "Ha, ha. Jokes aside, what" : "What") + " I mean is we have different sex. No S and M. No toys. Just us. I want something else, something slow and gentle and passionate.”</i> She couldn’t hide her joy if she tried. <i>“I don’t know how else to say it... I want you, [pc.name]. I’ll understand if you don’t, but if you ever want to try something gentle just let me know.”</i>");
+		flags["LUCA_GENTLE"] = 0;
+		flags["LUCA_LAST_VISITED"] = GetGameTimestamp();
+		addButton(0, "Next", approachLuca, true);
+		return;
+	}
+	else
+	{
+		output("Luca’s face beams with joy as she watches you walk towards her. You receive a few knowing catcalls as you make your way across her establishment. When you reach the counter, she cups your cheek and gazes into your [pc.eyes]. <i>“Welcome back, [pc.name],”</i> she tells you cheerfully. <i>“");
+	
+		var lucaDeltaT:Number = GetGameTimestamp() - flags["LUCA_LAST_VISITED"];
+	
+		if (flags["LUCA_LAST_VISITED"] == undefined) { /* nothing! */ }
+		//PC hasn't visited for 21+ days:
+		else if (lucaDeltaT > 20*24*60) output("I know you’re an adventurer, but I get worried when you’re gone for so long. Please tell me you’re being safe.”</i>\n\n<i>“I’m sorry I made you worry about me, mistress. I promise I’m being careful.”</i>\n\n<i>“That’s good to hear, [pc.name]. I’ll have you know I get a pit in my stomach each time I watch you leave. I hate it. And I’m happy to see you again,");
+		//PC hasn't visited for 11-20 days:
+		else if (lucaDeltaT > 10*24*60) output("I missed you, you know. I get lonely when you don’t visit.”</i>\n\n<i>“I’m sorry mistress. I’ll try to visit more.”</i>\n\n<i>“You’d better visit me more, [pc.name]. No one makes me happier when I see them,");
+		//PC hasn't visited for 11-20 days:
+		else if (lucaDeltaT > 3*24*60) output("I missed you.”</i>\n\n<i>“I missed you too, mistress.”</i>\n\n<i>“It’s alright, [pc.name], and you’re here now, so I’m glad,");
+		//PC hasn't visited for 11-20 days:
+		else output("I was beginning to miss you.”</i>\n\n<i>“I’m sorry, mistress.”</i>\n\n<i>“It’s alright, [pc.name],");
+
+		output("”</i> she says. <i>“Anyway what fantasy can I interest you in today?”</i>");
+	}
 	processTime(4);
+	flags["LUCA_LAST_VISITED"] = GetGameTimestamp();
 	lucaMenu();
 }
 
@@ -94,8 +166,9 @@ public function lucaMenu():void
 	addButton(0,"Appearance",lucaAppearance,undefined,"Appearance","What Luca looks like.");
 	addButton(1,"Talk",lucaTalkChoices,undefined,"Talk","Talk with Luca about things.");
 	addButton(2,"Business",lucaBusinessMenu,undefined,"Business","See what Luca has to offer.");
+	lucaSexButton(3);
 	addButton(14,"Leave",mainGameMenu);
-	//[Appearance] [Talk] [Business]
+	//[Appearance] [Talk] [Business] [Sex]
 }
 
 //Appearance
@@ -134,6 +207,8 @@ public function lucaTalkMenu():void
 	addButton(0,"Store",talkToLucaAboutHerStore,undefined,"Store","Ask Luca about her store.");
 	addButton(1,"Sign",askLucaAboutHerSign,undefined,"Sign","Ask Luca about the hand written sign.");
 	addButton(2,"Race",talkToLucasAboutRace,undefined,"Race","Ask Luca about her race.");
+	lucasVRTalkButton(3);
+	lucasJustTalkButton(4);
 	addButton(14,"Back",approachLuca,true);
 }
 
@@ -252,7 +327,7 @@ public function lucasVRSims():void
 	//First Time:
 	if(flags["VR_SIMMED"] == undefined)
 	{
-		output("\n\n<i>“Of course [pc.Name].”</i> Luca spins a hardlight screen towards you displaying a Terms & Conditions screen. <i>“But first I need you to read this, then sign and accept.”</i>");
+		output("\n\n<i>“Of course [pc.name].”</i> Luca spins a hardlight screen towards you displaying a Terms & Conditions screen. <i>“But first I need you to read this, then sign and accept.”</i>");
 		if(pc.isBimbo() || pc.isBro()) output("\n\nYou quickly scroll down the document, sign your name and accept.");
 		else 
 		{
@@ -311,6 +386,8 @@ public function simmPlaying(args:Array):void
 	var exhibition:Boolean = args[1];
 	if(arg == "pirateQueen") thePirateQueenScenario(exhibition);
 	else if(arg == "amazonia") theAmazoniaScenario(exhibition);
+	
+	flags["VR_" + arg.toUpperCase()] = 1;
 }
 
 //Simulation End Text
@@ -448,7 +525,7 @@ public function nutrientStallsWheee(exhibition:Boolean):void
 	if(exhibition) output("\n\nA series of numbers and letters are displayed above the other drain opposite you: Views - " + 27+rand(4));
 	output("\n\nAs you free yourself from the drain you end up nearly falling out head first. You reach for the floor of the trough to catch yourself, but you don’t find it in time. You slip and fall face first into a stream of cum. You’re immediately filled with the taste and smell of serum infused semen. You pull yourself up on your hands and knees, gasping for air.");
 	output("\n\nBefore you can gather yourself, veritable buckets of cum are poured down on you from above. You push yourself forwards on your hands and knees, but soon you begin to feel dizzy. Your senses are being overwhelmed by the sheer amount of semen you’re essentially bathing in. Somehow you keep moving forward.");
-	output("\n\nYou don’t know how far you made it before your tongue started lapping up the alabaster slime you’re wading in. Somehow you manage to to keep moving straight despite your body slowly betraying you. You begin to revel in the flavor and fragrance as you continue to crawl.");
+	output("\n\nYou don’t know how far you made it before your tongue started lapping up the alabaster slime you’re wading in. Somehow you manage to keep moving straight despite your body slowly betraying you. You begin to revel in the flavor and fragrance as you continue to crawl.");
 	output("\n\nYou wonder how anyone could hate this sensation. How could this vulgar scene possibly be considered awful? All you need now are two burly guards or some double dicked partner to fill your empty cunt and anus. Both of your holes start feeling more and more painfully hollow as you keep moving.");
 	output("\n\nEventually though you manage to reach the end of the trough. You feel heavy as you pull yourself out of the heavenly gunk. Once you’re fully out, you book it to the door and out of the Nutrient Stalls. You quickly find a safe corner to rest in and plan your next move.");
 	output("\n\nAs you catch your breath you wonder just how much cum you drank. No matter how much you ingested, it wasn’t enough. Your body craves more, but your stomach must be bloated by now. Upon examination however, your belly is nice and flat; kind of empty when you think about it.");

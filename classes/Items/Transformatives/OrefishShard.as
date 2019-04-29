@@ -97,7 +97,7 @@ package classes.Items.Transformatives
 				validChanges.push(function (target:Creature):void
 				{
 					if (target.eyeCount() != 2) output("Your vision momentarily flickers, and you have the strange sensation of your eyes going numb. Once your sight completely goes dark, you force yourself not to panic as you try to maintain your balance. You wait for your eyes to work again, though you’re not quite prepared when - as if a switch were flipped - you can see once more. Something’s off, though... Feeling around your [pc.face], it would seem you have " + (target.eyeCount() == 1 ? "more" : "fewer") + " eyes now.\n\n");
-					output("You gasp as colors seem to swap, shifting and changing with a pulsating beat. You blink several times - as if that would somehow fix everything - but that just causes each eye to see different hues. Just as you’re starting to feel quite nauseous a bright flash forces your eyes shut, the pulsating gradually receding. When you open your eyes again, everything seems back to normal - except metals seem to catch your attention more easily (or is that just your imagination?). Checking your Codex, you notice your eyes are different; vertically slitted, reptilian pupils bordered by slight - almost imperceptible - [pc.eyeColor] irises, sclera similarly colored. <b>You have saurmorian eyes!</b>");
+					output("You gasp as colors seem to swap, shifting and changing with a pulsating beat. You blink several times - as if that would somehow fix everything - but that just causes each eye to see different hues. Just as you’re starting to feel quite nauseous a bright flash forces your eyes shut, the pulsating gradually receding. When you open your eyes again, everything seems back to normal - except metals seem to catch your attention more easily (or is that just your imagination?). Checking your Codex, you notice your eyes are different; vertically slitted, reptilian pupils bordered by slight - almost imperceptible - " + newEyeColor + " irises, sclera similarly colored. <b>You have saurmorian eyes!</b>");
 					
 					target.eyeType = GLOBAL.TYPE_SAURMORIAN;
 					target.eyeColor = newEyeColor;
@@ -631,10 +631,10 @@ package classes.Items.Transformatives
 					output("; slipping right back into your grip, your phallus’ exodus is more than enough to send you into a powerful climax. Bolts of pleasure run along your nerves with each contraction,");
 					if (target.cumQ() >= 3000) output(" rope after rope of");
 					output(" [pc.cumNoun] making a mess of your hands and the floor beneath you as you sloppily stroke away.");
-					target.cocks[tfCockIdx].cockColor = newColor;
-					output("\n\nOnce you’re able to uncross your eyes, you look down at your prick; Thick, fattened ridges ring its [pc.cockColor] length - giving it a ribbed appearance - from the sheath to just under the blunt, almost equine head. And just like that, <b>your cock has become that of a saurmorian!</b>");
+					output("\n\nOnce you’re able to uncross your eyes, you look down at your prick; Thick, fattened ridges ring its " + newColor + " length - giving it a ribbed appearance - from the sheath to just under the blunt, almost equine head. And just like that, <b>your cock has become that of a saurmorian!</b>");
 
 					target.shiftCock(tfCockIdx, GLOBAL.TYPE_SAURMORIAN);
+					target.cocks[tfCockIdx].cockColor = newColor;
 					//pc orgasms, and becomes cum soaked
 					target.orgasm();
 					target.applyCumSoaked();

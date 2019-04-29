@@ -302,6 +302,10 @@ public function configureMails():void
 	
 	//quaelle birth email
 	MailManager.addMailEntry("quaelle_birth", quaelleBirthEmail, "Your Presence is Requested.", "Breedwell Natal Unit", "BreedwellNatalUnit@TamaniCorp.corp", quickPCTo, quickPCToAddress);
+	//jumper birth email
+	MailManager.addMailEntry("jumper_birth", boredJumperPregBirthEmail, "Heyyy, where are yooouuu", "User-UNKNOWN", boredJumperPregBirthEmailSender(false) +"@J6.source", quickPCTo, quickPCToAddress);
+	//jumper send pic email
+	MailManager.addMailEntry("jumper_sendpic", boredJumperPregSendPicEmail, RandomInCollection(["Thaaaanks!","Sooo cute!","You're the best!"]), "User-UNKNOWN", boredJumperPregBirthEmailSender(true) +"@J6.source", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String

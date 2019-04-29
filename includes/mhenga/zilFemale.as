@@ -1113,10 +1113,10 @@ public function defeatHostileZil():void {
 	}
 	// Lust
 	else {
-		output("Sighing needily, the wasp-girl’s hand dives back between her legs, digging her fingers knuckle-deep into the simmering slit in an effort to quench the excitement you’ve stoked within her. She moans as she realizes how futile an effort it is, dropping down onto all fours to present herself more perfectly for you. Her voice escapes in a needy pant, <i>“I yield to you. </i>");
-		if(pc.race() != "zil") output("<i>You’re more like... like us than you let on, traveler.</i>");
-		else output("<i>Mmm... you may claim me now, zil.</i>");
-		output("<i>“</i>");
+		output("Sighing needily, the wasp-girl’s hand dives back between her legs, digging her fingers knuckle-deep into the simmering slit in an effort to quench the excitement you’ve stoked within her. She moans as she realizes how futile an effort it is, dropping down onto all fours to present herself more perfectly for you. Her voice escapes in a needy pant, <i>“I yield to you.");
+		if(pc.race() != "zil") output(" You’re more like... like us than you let on, traveler.");
+		else output(" Mmm... you may claim me now, zil.");
+		output("”</i>");
 		//Raise lust to 33 if below and continue:
 		if(pc.lust() < 33) pc.lust(33-pc.lust());
 		output("\n\nShe’s practically begging for it at this point.");
@@ -1334,15 +1334,15 @@ public function numbPussyFuck(dick:Boolean = true):void {
 	
 	output("\n\n<i>“What are you doing, off-worlder?!”</i> she demands weakly, looking over her shoulder.");
 	
-	output("\n\nPushing her face into the dirt, your mouth spreads in a twisted grin. <i>“</i>");
+	output("\n\nPushing her face into the dirt, your mouth spreads in a twisted grin. <i>“");
 	if(enemy.HP() <= 0) {
-		if(x >= 0) output("<i>Seeding</i>");
-		else output("<i>Using</i>");
-		output("<i> you, as is your custom.</i>");
+		if(x >= 0) output("Seeding");
+		else output("Using");
+		output(" you, as is your custom.");
 	}
-	else if(pc.race() != "zil") output("<i>Suppose I’m just like you after all.</i>");
-	else output("<i>Isn’t this the zil way?</i>");
-	output("<i>”</i>");
+	else if(pc.race() != "zil") output("Suppose I’m just like you after all.");
+	else output("Isn’t this the zil way?");
+	output("”</i>");
 
 	output("\n\n<i>“That’s... no...”</i> she trails off, robbed of her voice by the toxin. Her jaw hangs half open and a trail of saliva runs into the soil, though her still-alert eyes follow you as you ");
 	if(pc.legCount > 2) {

@@ -71,6 +71,8 @@ public function zhengShiHangerFloorBonus():Boolean
 			addDisabledButton(1,"Spacewalk","Spacewalk","Stepping into space without protection is a one-way ticket to a real quick death. You aren’t feeling particularly suicidal today.");
 		}
 	}
+	if (boredJumperPregScene() > 0) return boredJumperPregHangerEncounter();
+	
 	return false;
 }
 
@@ -995,7 +997,7 @@ public function getDoggyDoggyUrbolg(x:int):void
 	if(flags["URBOLG_DOGGYED"] >= 3) output(" me, daddy");
 	output("! Uhhh!”</i>");
 
-	output("\n\n<i>“Not the first slut I’ve had singing in their own cabin and I doubt ye’ll be the last, either,”</i> Urbolg cackles, spanking your ass with his non-mechanical arm. The impact is loud enough to surprise you more than the stinging sensation that settles in a second later, your [pc.ass] jiggling with the contact. You open your mouth to complain but all that comes out is the long, eager moan of a whore getting what [pc.heShe] wants.");
+	output("\n\n<i>“Not the first slut I’ve had singing in their own cabin and I doubt ye’ll be the last, either,”</i> Urbolg cackles, spanking your ass with his non-mechanical arm. The impact is loud enough to surprise you more than the stinging sensation that settles in a second later, your ass jiggling with the contact. You open your mouth to complain but all that comes out is the long, eager moan of a whore getting what [pc.heShe] wants.");
 
 	output("\n\nFuck it, he can spank you like a bitch and talk all the shit he wants if he keeps fucking your needy");
 	if(x >= 0) output(" cunt");

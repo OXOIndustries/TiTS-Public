@@ -1174,73 +1174,8 @@ package classes.Characters
 		
 		private function implantasticSiliconeConversion(totalDays:int):void
 		{
-			var implants:StorageClass = getStatusEffect("Nym-Foe Injections");
-			if(implants != null)
-			{
-				var msg:String = "";
-				
-				var oldLips:Number = lipMod;
-				var lipsSilicone:Number = (lipMod - lipModMin());
-				if((lipsSilicone + lipModMin()) > oldLips) {
-					if(msg != "") msg += "\n\n";
-					msg += "You feel a tingle in your [pc.lips] as they purse with a plastic stiffness.";
-					
-					implants.value4 = lipsSilicone;
-					lipMod = (implants.value4 + lipModMin());
-					
-					msg += " <b>The extra plump of your lips has been converted into silicone!</b>";
-				}
-				
-				var boobRating:Number = 0;
-				var boobSilicone:Number = 0;
-				var i:int = 0;
-				for(i = 0; i < breastRows.length; i++)
-				{
-					boobRating += (breastRows[i].breastRatingRaw - breastRatingRawMin(i));
-					boobSilicone += (breastRows[i].breastRatingMod - breastRatingModMin(i));
-				}
-				var titsGrowth:Number = (boobRating / breastRows.length);
-				if(titsGrowth > 0) {
-					if(msg != "") msg += "\n\n";
-					msg += "Your [pc.breasts] give less sag when small pulses thrum within them, soon followed by a slight stretching sensation.";
-					
-					implants.value3 = ((boobSilicone / breastRows.length) + titsGrowth);
-					for(i = 0; i < breastRows.length; i++)
-					{
-						breastRows[i].breastRatingRaw = breastRatingRawMin(i);
-						breastRows[i].breastRatingMod = (implants.value3 + breastRatingModMin(i));
-					}
-					
-					msg += " <b>The growing mass of your tits has been converted into silicone!</b>";
-				}
-				
-				var hipsGrowth:Number = (hipRatingRaw - hipRatingRawMin());
-				if(hipsGrowth > 0) {
-					if(msg != "") msg += "\n\n";
-					msg += "Following a sturdy strut, the sides of your [pc.hips] do not change in appearance, but it certainly <i>feels</i> like they are wider.";
-					
-					implants.value1 = ((hipRatingMod - hipRatingModMin()) + hipsGrowth);
-					hipRatingRaw = hipRatingRawMin();
-					hipRatingMod = (implants.value1 - hipRatingModMin());
-					
-					msg += " <b>Your growth in hip size has converted into silicone!</b>";
-				}
-				
-				var buttGrowth:Number = (buttRatingRaw - buttRatingRawMin());
-				if(buttGrowth > 0) {
-					if(msg != "") msg += "\n\n";
-					msg += "There is more bounce from your bottom as your [pc.butts] tighten to the point where you feel like you are smuggling basketballs back there.";
-					
-					implants.value2 = ((buttRatingMod - buttRatingModMin()) + buttGrowth);
-					buttRatingRaw = buttRatingRawMin();
-					buttRatingMod = (implants.value2 + buttRatingModMin());
-					
-					msg += " <b>Your extra butt mass has converted into silicone!</b>";
-				}
-				
-				if(msg != "") AddLogEvent(msg, "passive", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
-			}
-			else createStatusEffect("Nym-Foe Injections");
+			var msg:String = kGAMECLASS.implantasticSiliconeConversion(this);
+			if(msg != "") AddLogEvent(msg, "passive", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
 		}
 		
 		private function maneHairGrow(totalDays:uint):void
