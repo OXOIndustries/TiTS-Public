@@ -15,6 +15,7 @@
 	import classes.Items.Apparel.CString;
 	import classes.Items.Apparel.ZipPouch;
 	import classes.Items.Apparel.NurseOutfit;
+	import classes.Items.Accessories.AdventurersCoat;
 	import classes.kGAMECLASS;
 	
 	public class Xanthe extends Creature
@@ -48,6 +49,7 @@
 			this.inventory.push(new RevealingMaleArmor());
 			this.inventory.push(new ReinforcedBodysuit());
 			this.inventory.push(new TransparentZipsuit());
+			this.inventory.push(new AdventurersCoat());
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.UPPER_UNDERGARMENT;
 			this.typesBought[this.typesBought.length] = GLOBAL.LOWER_UNDERGARMENT;
@@ -210,6 +212,12 @@
 		{
 			kGAMECLASS.enterTheSilkenSerenityWhyDidWashHaveToDie();
 		}
+		/*
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.inventory.push(new AdventurersCoat().getSaveObject());
+		}
+		*/
 	}
 
 }
