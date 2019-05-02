@@ -1324,7 +1324,7 @@ public function statisticsScreen(showID:String = "All"):void
 				if(StatTracking.getStat("pregnancy/ovilium eggs laid") > 0)
 					output2("\n<b>* Births, Ovilium Eggs, Total:</b> " + StatTracking.getStat("pregnancy/ovilium eggs laid"));
 				if(StatTracking.getStat("pregnancy/siegwulfe eggs laid") > 0)
-					output2("\n<b>* Births, [wulfe.name] Eggs, Total: " + StatTracking.getStat("pregnancy/siegwulfe eggs laid"));
+					output2("\n<b>* Births, [wulfe.name] Eggs, Total:</b> " + StatTracking.getStat("pregnancy/siegwulfe eggs laid"));
 				if(StatTracking.getStat("pregnancy/egg trainer eggs laid") > 0)
 					output2("\n<b>* Births, TamaniCorp Egg Trainer Eggs, Total:</b> " + StatTracking.getStat("pregnancy/egg trainer eggs laid"));
 				if(StatTracking.getStat("pregnancy/unfertilized venus pitcher seeds") > 0)
