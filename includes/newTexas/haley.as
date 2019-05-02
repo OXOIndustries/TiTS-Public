@@ -2156,7 +2156,7 @@ public function haleysCumYouGetForLosingHerBet(hole:int):void
 	var pp:PregnancyPlaceholder = getHaleyPregContainer();
 	if (hole < 0) pc.loadInAss(pp);
 	else pc.loadInCunt(pp, hole);
-	pc.loadInMouth();
+	pc.loadInMouth(pp);
 	pc.orgasm();
 	clearMenu();
 	addButton(0, "Next", haleysDoneUsingYouForNow);
@@ -2259,9 +2259,10 @@ public function haleyGetsFuckedInTheAssForLosing(cockIdx:int):void
 	output("\n\n<i>“Looks like you’re looking forward to this as much as I am, Haley.”</i>");
 	if (flags["HALEY_ANAL_VIRGINITY_TAKEN"] == undefined)
 	{
-		output("She glances back and you past her blonde hair you catch an expression that’s unsure, if not downright nervous.");
+		output("\n\nShe glances back and you past her blonde hair you catch an expression that’s unsure, if not downright nervous.");
 		output("\n\n<i>“Haley... have you never done this before?”</i>");
 		output("\n\nShe hangs her head. Bingo. <i>“I haven’t,”</i> she mumbles, as if there were any doubt.");
+		output(" <b>Haley has lost her anal virginity!</b>");
 	}
 
 	processTime(5);
@@ -2320,8 +2321,8 @@ public function haleyIsMadeIntoASoreLoser(cockIdx:int):void
 	author("Wsan");
 
 	output("<i>“Time for a crash course, then,”</i> you say cheerfully, right before shoving the [pc.cockHead " + cockIdx + "] of your [pc.cock " + cockIdx + "] inside her asshole. The reaction is immediate.");
+	output("\n\n<i>“Nnngh!”</i> Haley groans, hands balled into fists around some hay. She clamps down on you hard, but she’s <i>just</i> lubed enough that all she really accomplishes is intimately massaging your cock as it painfully stretches her apart. <i>“Guuuh-uh!”</i>");
 	pc.cockChange();
-	output("\n\n<i>“Nnngh!”</i> Haley groans, hands balled into fists around some hay. She clamps down on you hard, but she’s </i>just<i> lubed enough that all she really accomplishes is intimately massaging your cock as it painfully stretches her apart. <i>“Guuuh-uh!”</i>");
 	output("\n\nShe breathes a shaky sigh of relief when you begin to slide back outwards, but squeals and jumps when you ram yourself back home, earning yourself a few inches more of unexplored leithan asshole.");
 	output("\n\n<i>“Fuck, you are </i>tight<i> back here,”</i> you tell her, petting her flank. <i>“Guess the bulls never took it upon themselves to introduce you to anal, huh?”</i>");
 	output("\n\nHaley doesn’t reply to your jibe, too caught up in catching her breath - she’s bent over at the torso, leaning on her arms and panting. On another rough thrust, you notice your cock is sliding over a slight protrusion in her ass, and with some exploration accompanied by girly moans from up front, you realize you’ve discovered her extremely oversized prostate.");
@@ -2577,6 +2578,7 @@ public function sillyTaurMissionaryDickIsForHaley(cockIdx:int):void
 		output("\n\nShe glances at you and you past her blonde hair you catch an expression that’s unsure, if not downright nervous.");
 		output("\n\n<i>“Haley... have you never done this before?”</i> you ask.");
 		output("\n\nShe hangs her head. Bingo. <i>“I haven’t,”</i> she mumbles, as if there were any doubt.");
+		output(" <b>Haley has lost her anal virginity!</b>");
 	}
 
 	processTime(3);
