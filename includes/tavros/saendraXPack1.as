@@ -90,7 +90,6 @@ public function updateSaendraXPackTimer(deltaT:Number = 0):void
 public function saendraX1LiftGo():void
 {
 	clearOutput();
-	clearBust();
 	showName("\nDECK 92");
 	author("Savin");
 	generateMapForLocation("SX1 FAKE FIGHT ROOM");
@@ -98,6 +97,8 @@ public function saendraX1LiftGo():void
 	// 2late
 	if (flags["SAENDRA_XPACK1_STATUS"] == 2)
 	{
+		clearBust();
+		
 		output("The elevator door opens onto an open, dark area. Looks to be under construction, with half-finished walls arranged along an avenue, and heavy equipment lying all over. Tarps and semi-transparent sheets are tacked up on the skeletal outlines of walls, making it almost impossible to see more than a few yards ahead of you. There are no lights on, except dim glow coming from a flashlight lying on the ground. When you take a few steps closer, you see that its sitting in a pool of blood. Not that fresh, either.");
 		
 		output("\n\nYou spend a few minutes poking around, but nothing comes of it. Looks like whatever action was going on here came and went. Shit.");
@@ -113,6 +114,8 @@ public function saendraX1LiftGo():void
 	}
 	else
 	{
+		showBust(saendraBustDisplay());
+		
 		output("The elevator door opens onto an open, dark area. Looks to be under construction, with half-finished walls arranged along an avenue, and heavy equipment lying all over. Tarps and semi-transparent sheets are tacked up on the skeletal outlines of walls, making it almost impossible to see more than a few yards ahead of you. As the elevator door locks open and beeps, a flashlight suddenly clicks on just ahead, blinding you for a moment.");
 		
 		output("\n\n<i>“Oh, there you are!”</i> Saendra’s familiar voice says as the light swings out of your eyes. You can just make her out, sitting on the edge of a half-finished fountain. Her robotic hand’s clutching a light, you can see, and her other is wrapped around her Hammer pistol.");
@@ -352,7 +355,7 @@ public function sx1TalkFriendII():void
 	output("\n\nSaen gives you a look and falls behind you,");
 	if (pc.tallness < 60) output(" awkwardly hiding her face behind your tiny form");
 	else output(" trying to hide behind you");
-	output(". That should give you a momentary advantage - just enough to get you close to the guard. You pick up the pace, trying to seem as nonchalant as you can until you’re within striking range.");
+	output(". That should give you a momentary advantage -- just enough to get you close to the guard. You pick up the pace, trying to seem as nonchalant as you can until you’re within striking range.");
 	
 	output("\n\nThe man looks up, chomping his cigar and sneering at you. <i>“");
 	if (pc.isMasculine()) output("Move along, bro.");
@@ -1195,7 +1198,7 @@ public function sx1TalkPirates():void
 	
 	output("\n\n<i>“Bad enough to want to kill you.”</i>");
 	
-	output("\n\n<i>“Probably worse than that,”</i> Saendra says with a shake of her head. <i>“Listen, I know you have questions... and if you never want to talk to a filthy pirate again, well... I’d understand. I’d feel like shit for a while, but I’d understand. Pirates have a bad rep for a reason, and I deserve that. I’ve done some shitty things that I wish I hadn’t. But my friend, Pete - the guy we rescued? He’s fine, by the way - he gave me the codes to pull the </i>Phoenix<i> out of Tavros without the chief mechanic’s permission. What I stole from Miri... that’s my chance to start fresh. It’s intelligence, data the Void’s been gathering and studying for years now. Some kind of treasure map, basically. And I’m going to steal it right out from under the bastards.”</i>");
+	output("\n\n<i>“Probably worse than that,”</i> Saendra says with a shake of her head. <i>“Listen, I know you have questions... and if you never want to talk to a filthy pirate again, well... I’d understand. I’d feel like shit for a while, but I’d understand. Pirates have a bad rep for a reason, and I deserve that. I’ve done some shitty things that I wish I hadn’t. But my friend, Pete -- the guy we rescued? He’s fine, by the way -- he gave me the codes to pull the </i>Phoenix<i> out of Tavros without the chief mechanic’s permission. What I stole from Miri... that’s my chance to start fresh. It’s intelligence, data the Void’s been gathering and studying for years now. Some kind of treasure map, basically. And I’m going to steal it right out from under the bastards.”</i>");
 	
 	output("\n\nFirst Saendra turns out to be an ex-pirate, and now she wants to go on a treasure hunt? What storybook did she fall out of?");
 	

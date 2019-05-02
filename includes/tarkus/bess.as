@@ -12246,7 +12246,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		if (!bTargetVag) output(" pulls [bess.hisHer] fingers out,");
 		output(" bends you over and gives you another swift slap on your [pc.ass]. [bess.HisHer] hands are incredibly firm - far more than a regular "+ bess.mf("man", "woman") +"’s - and you squeal out loud!");
 		
-		output("\n\n<i>“You are not to get yourself off without my say so, is that understood?</i> [bess.name] growls and slaps your ass once more, a delicious stinging sensation spreading out from your spanked rump.");
+		output("\n\n<i>“You are not to get yourself off without my say so, is that understood?”</i> [bess.name] growls and slaps your ass once more, a delicious stinging sensation spreading out from your spanked rump.");
 		
 		output("\n\n<i>“...I promise, I promise! I won’t try to get off without your permission, "+ bessSexName() +".”</i> You plead like a naughty little schoolgirl being bent over [pc.hisHer] parent’s knee.");
 		

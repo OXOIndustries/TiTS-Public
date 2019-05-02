@@ -1339,6 +1339,15 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	// Worn collars
 	appearanceWornCollar();
 	
+	if (target.hasStatusEffect("Roxy Style Collar Mark"))
+	{
+		outputRouter(" A bright red loop of collar-tenderized skin is visible on your neck");
+		if (target.hasFur()) outputRouter(" below your fur");
+		outputRouter(", proof of Roxy's lasting");
+		if (silly) outputRouter(" snu-snu.");
+		else outputRouter(" domination.");
+	}
+	
 	//BODY PG HERE
 	if(target == pc) outputRouter("\n\nYou have a humanoid upper body with the usual torso, arms, hands, and fingers");
 	else outputRouter("\n\nFrom the waist up, [target.name] has your typical humanoid upper body: torso, arms, hands, and fingers");
@@ -3295,8 +3304,8 @@ public function boobStuff(forTarget:Creature = null):void
 		if(InCollection(target.breastRows[0].nippleType, [GLOBAL.NIPPLE_TYPE_DICK, GLOBAL.NIPPLE_TYPE_NORMAL]))
 		{ 
 			//One nipple
-			if(target.nipplesPerBreast == 1) outputRouter(num2Text(target.nipplesPerBreast) + " " + int(target.nippleLength(0)*10)/10 + "-inch " + target.nippleDescript(0) + " each.");
-			else outputRouter(num2Text(target.nipplesPerBreast) + " " + int(target.nippleLength(0)*10)/10 + "-inch " + plural(target.nippleDescript(0)) + " each.");
+			if(target.nipplesPerBreast == 1) outputRouter(num2Text(target.nipplesPerBreast) + " " + num2Text(int(target.nippleLength(0)*10)/10) + "-inch " + target.nippleDescript(0) + " each.");
+			else outputRouter(num2Text(target.nipplesPerBreast) + " " + num2Text(int(target.nippleLength(0)*10)/10) + "-inch " + plural(target.nippleDescript(0)) + " each.");
 			//Dicknipples mention areolae desc later.
 			if(target.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_DICK) outputRouter(" The areolae are " + target.nippleColor + ".");
 			else outputRouter(" The " + target.areolaSizeDescript() + " areolae are " + target.nippleColor + ".");
@@ -3326,7 +3335,7 @@ public function boobStuff(forTarget:Creature = null):void
 					break;
 				case GLOBAL.NIPPLE_TYPE_INVERTED:
 					outputRouter(" The " + target.areolaSizeDescript() + " areolae are " + target.nippleColor + ".");
-					outputRouter(" When " + (target == pc ? "you’re":"[target.heShe]’s") + " aroused enough, " + (target == pc ? "your":"[target.hisHer]") + " " + int(target.nippleLength(0)*10)/10 + "-inch nipples pop out, ready for action.");
+					outputRouter(" When " + (target == pc ? "you’re":"[target.heShe]’s") + " aroused enough, " + (target == pc ? "your":"[target.hisHer]") + " " + num2Text(int(target.nippleLength(0)*10)/10) + "-inch nipples pop out, ready for action.");
 					break;
 				case GLOBAL.NIPPLE_TYPE_TENTACLED:
 					outputRouter(" Once " + (target == pc ? "you are":"[target.heShe] is") + " worked up, several long, prehensile tentacles emerge from their " + target.nippleColor + " home, seeking for an orifice to pleasure.");
@@ -3433,12 +3442,12 @@ public function boobStuff(forTarget:Creature = null):void
 			if(target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_DICK || target.breastRows[temp].nippleType == GLOBAL.NIPPLE_TYPE_NORMAL) { 
 				//One nipple
 				if(target.nipplesPerBreast == 1) {
-					outputRouter(num2Text(target.nipplesPerBreast) + " " + int(target.nippleLength(temp)*10)/10 + "-inch " + target.nippleDescript(temp) + " ");
+					outputRouter(num2Text(target.nipplesPerBreast) + " " + num2Text(int(target.nippleLength(temp)*10)/10) + "-inch " + target.nippleDescript(temp) + " ");
 					if(target.breastRows[temp].breastRating() < 1) outputRouter("on each side.");
 					else outputRouter("each.");
 				}
 				else {
-					outputRouter(num2Text(target.nipplesPerBreast) + " " + int(target.nippleLength(temp)*10)/10 + "-inch " + plural(target.nippleDescript(temp)) + " ");
+					outputRouter(num2Text(target.nipplesPerBreast) + " " + num2Text(int(target.nippleLength(temp)*10)/10) + "-inch " + plural(target.nippleDescript(temp)) + " ");
 					if(target.breastRows[temp].breastRating() < 1) outputRouter("on each side.");
 					else outputRouter("each.");
 				}
@@ -3472,7 +3481,7 @@ public function boobStuff(forTarget:Creature = null):void
 						outputRouter(" There isn’t any actual nub to the nipples - just flat areolae.");
 						break;
 					case GLOBAL.NIPPLE_TYPE_INVERTED:
-						outputRouter(" When you’re aroused enough, the nubs pop out, ready to play.");
+						outputRouter(" When you’re aroused enough, the " + num2Text(int(target.nippleLength(0)*10)/10) + "-inch nubs pop out, ready to play.");
 						break;
 					case GLOBAL.NIPPLE_TYPE_TENTACLED:
 						outputRouter(" They hide several long, prehensile tentacles, eager for an orifice to pleasure.");

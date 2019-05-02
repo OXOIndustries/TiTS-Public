@@ -505,6 +505,7 @@
 		include "../includes/uveto/korgonneMaleHostile.as";
 		include "../includes/uveto/krym.as";
 		include "../includes/uveto/lund.as";
+		include "../includes/uveto/lureling.as";
 		include "../includes/uveto/majaTamedTamelings.as";
 		include "../includes/uveto/milodanFertilityPriestess.as";
 		include "../includes/uveto/milodanMaleHostile.as";
@@ -518,6 +519,7 @@
 		include "../includes/uveto/rhenworld.as";
 		include "../includes/uveto/rooms.as";
 		include "../includes/uveto/roomFunctions.as";
+		include "../includes/uveto/roxy.as";
 		include "../includes/uveto/shade.as";
 		include "../includes/uveto/stormguardMale.as";
 		include "../includes/uveto/subTuner.as";
@@ -642,7 +644,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.276";
+			version = "0.7.278";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1742,7 +1744,21 @@
 		{
 			return chars["LUCA"];
 		}
-
+	
+		public function get marion():Marion
+		{
+			return chars["MARION"];
+		}
+	
+		public function get lureling():Lureling
+		{
+			return chars["LURELING"];
+		}
+		public function get roxy():Roxy
+		{
+			return chars["ROXY"];
+		}
+		
 		public function testShipCombat():void
 		{
 			CombatManager.newSpaceCombat();

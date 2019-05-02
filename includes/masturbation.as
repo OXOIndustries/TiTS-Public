@@ -657,12 +657,12 @@ public function masturbateMenu(roundTwo:Boolean = false):void
 	//Masturbation prevention
 	if(rooms[currentLocation].hasFlag(GLOBAL.NOFAP))
 	{
-		output("Masturbating here would be impossible.");
+		output("Masturbating here would be impossible.\n\n");
 		aborted = true;
 	}
 	else if(rooms[currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL))
 	{
-		output("Public masturbation is illegal here. Trying to masturbate would almost certainly land you in jail.");
+		output("Public masturbation is illegal here. Trying to masturbate would almost certainly land you in jail.\n\n");
 		aborted = true;
 	}
 	//Subtuner hypnoproc.
@@ -1798,6 +1798,7 @@ public function milkturbation():void
 		if(orgasmed) pc.orgasm();
 		pc.milked(pc.milkFullness);
 	}
+	output("\n\n");
 	//Force faps
 	if(!orgasmed && milked && pc.lust() >= pc.lustMax() && canFapAgain)
 	{

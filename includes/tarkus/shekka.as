@@ -1318,11 +1318,12 @@ public function hugeEarShekkaFaps():void
 	else if(pc.biggestCockLength() < 30) output("just barely");
 	else output("almost");
 	output(" leave no square inch of your turgid sausage to the open elements. As world-rocking as the fine flesh burrito feels, the sight of the perfectly symmetric zigzag of crimson scales is equally impressive. If you weren’t so attached to it, you’d imagine the fine phallus would be better suited in an art gallery. Let no one say the little craftswoman doesn’t live up to her profession.");
-	output("\n\nThe charged heat emanating from your cock seeps into the woman’s lithe listeners. There’s no helping at least smirking as she visibly tries to keep from succumbing to the electricity flowing through her, too keen on making adjustments on her masterpiece. By the time Shekka is complete, she’s left with only a few free inches of skin planting her face extraordinarily close to your plump and exposed [pc.cockHeadBiggest]. Just the way she wants it, you imagine; the eccentric little deviant took extra care to tuck in some of the makeshift sheathe right underneath ");
+	output("\n\nThe charged heat emanating from your cock seeps into the woman’s lithe listeners. There’s no helping at least smirking as she visibly tries to keep from succumbing to the electricity flowing through her, too keen on making adjustments on her masterpiece. By the time Shekka is complete, she’s left with only a few free inches of skin planting her face extraordinarily close to your plump and exposed [pc.cockHeadBiggest]. Just the way she wants it, you imagine; the eccentric little deviant took extra care to tuck in some of the makeshift sheathe right ");
 	var x:int = pc.biggestCockIndex();
-	if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output("underneath the broad expanse of your flare.");
+	if(pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output("underneath the broad expanse of your flare");
 	else if(pc.cocks[x].hasFlag(GLOBAL.FLAG_TAPERED)) output("atop the barest limits of your tapered tip");
-	else output("your mushroom top.");
+	else output("underneath your mushroom top");
+	output(".");
 	output("\n\n<i>“Well, what do you think?”</i> she asks. As you breathlessly voice your approval, Shekka moves in on your enshrouded meat. Her pert, little breasts do what little they can to flank your scale-covered shaft. Supple, leathery feet go to work on your ");
 	if(pc.balls > 0) output("[pc.balls]");
 	else output("taint");

@@ -5,6 +5,7 @@ package classes.Characters
 	import classes.Engine.Interfaces.GetGameTimestamp;
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.Items.Accessories.LeithaCharm;
+	import classes.Items.Armor.GooArmor;
 	import classes.Items.Transformatives.OmegaOil;
 	import classes.Items.Transformatives.SheepTF;
 	import classes.Items.Melee.Rock;
@@ -826,7 +827,6 @@ package classes.Characters
 		{
 			return "you";
 		}
-		
 		override public function processTime(deltaT:uint, doOut:Boolean):void
 		{	
 			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
@@ -909,6 +909,7 @@ package classes.Characters
 			// Minutely changes
 			updateVaginaStretch(deltaT, doOut);
 			updateButtStretch(deltaT, doOut);
+			novaCumSlurpUpdates(deltaT, doOut);
 			
 			super.processTime(deltaT, doOut);
 			
@@ -958,6 +959,28 @@ package classes.Characters
 			else if(flags["VENOM_ADDICTION"] == undefined && !hasStatusEffect("Red Myr Venom"))
 			{
 				kGAMECLASS.venomProgress(-2 * totalDays);
+			}
+		}
+		
+		public function novaCumSlurpUpdates(deltaT:uint, doOut:Boolean):void
+		{
+			if(armor is GooArmor && flags["GOO_ARMOR_AUTOCLEAN"] != undefined)
+			{
+				if(hasStatusEffect("Cum Soaked") || hasStatusEffect("Pussy Drenched") || hasStatusEffect("Milk Bathed"))
+				{
+					AddLogEvent(RandomInCollection([
+						"<i>“Oooh, you got <b>covered</b>, didn’t you!?”</i> [goo.name] giggles, wobbling excitedly all around you. <i>“Don’t worry, I’ll clean you aaaaall up.!”</i>\n\nShe vibrates rapidly all over your body, absorbing all the sexual effluvia that’s slathered you during your latest misadventures. Within the span of a few moments, she has you glistening in the light, as fresh and clean as the day you first departed on your quest. [goo.name] feels a bit heavier and thicker around you, but the weight soon settles in like a natural heavy coat. <i>“All done!”</i> she purrs, wiggling around your loins. <i>“Off to the next adventure!”</i>",
+						"You feel your armor vibrating excitedly all around you. <i>“Ohh, you really got <b>covered</b> didn’t ya? Don’t worry, I’ll clean up!”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
+						"You feel your armor vibrating excitedly all around you. <i>“Wow, what a smell! It’s soooo hot. Lemme slurp it all up!”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
+						"You feel your armor vibrating excitedly all around you. <i>“Oh wow, that’s a lotta juice. It’s like you got me a million presents!”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
+						"You feel your armor vibrating excitedly all around you. <i>“You’re so messy! What’d you... ohh, that smells good... lemme lick it up?”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
+						"You feel your armor vibrating excitedly all around you. <i>“Yaaaaay, " + ((hasStatusEffect("Cum Soaked") || hasStatusEffect("Pussy Drenched")) ? "cummies" : "milkies") + "!”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
+						"You feel your armor vibrating excitedly all around you. <i>“Aww, somebody had some fun. Let me get you cleaned up for the next round!”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
+					]), "passive", deltaT);
+					removeStatusEffect("Cum Soaked");
+					removeStatusEffect("Pussy Drenched");
+					removeStatusEffect("Milk Bathed");
+				}
 			}
 		}
 		

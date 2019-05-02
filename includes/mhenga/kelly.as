@@ -2238,7 +2238,7 @@ public function kellyBarSexMenu(onCouch:Boolean = false):void
 	else addDisabledButton(4, "Get DPed", "Get DPed", "You need to have two holes close together for this scene to work.");
 	if (kellyAttraction() >= 50 && pc.cockThatFits(chars["KELLY"].analCapacity()) >= 0) addButton(5, "Assfuck", doKellyInTheBumBUMBUMMMMMMMM, undefined, "Assfuck", "Do her right up the bumhole!");
 	else addDisabledButton(5, "Assfuck", "Assfuck", "You need a cock that’ll fit into her butt, and Kelly’s affection for you must be fairly high.");
-	if (kellyAttraction() >= 50 && (flags["KELLY_HYPERBJ"] != undefined || pc.hasItemByClass(Throbb,1))) addButton(6, "HyperBlow", kellyHyperBlowDoubleYiss, undefined, "Hyper Blow", "Get down on your knees and give Kelly's enormous equine cocks some <i>real</i> oral loving, nice and messy. Note that this will consume a Throbb if you have one in your inventory (one time only).");
+	if (kellyAttraction() >= 50 && (flags["KELLY_HYPERBJ"] != undefined || pc.hasItemByClass(Throbb,1))) addButton(6, "HyperBlow", kellyHyperBlowDoubleYiss, undefined, "Hyper Blow", "Get down on your knees and give Kelly’s enormous equine cocks some <i>real</i> oral loving, nice and messy. Note that this will consume a Throbb if you have one in your inventory (one time only).");
 	else addDisabledButton(6, "HyperBlow", "Hyper Blow", "This scene requires high Kelly affection" + (flags["KELLY_HYPERBJ"] == undefined ? " and a vial of Throbb!" : "!"));
 	
 	addButton(14,"Leave",leaveKellyNext);
@@ -2391,6 +2391,7 @@ public function keepGoingWithFuckingHyperModeKelly():void
 	var y:int = -1;
 	//If you got two dicks, check to see if one will fit elsewhere
 	if(pc.cockTotal() > 1) y = pc.cockThatFits2(chars["KELLY"].vaginalCapacity());
+	var cumQ:Number = pc.cumQ();
 
 	clearOutput();
 	showKelly(true);
@@ -2424,17 +2425,17 @@ public function keepGoingWithFuckingHyperModeKelly():void
 		output("and, crying out in release, you empty yourself into her.");
 
 		//CumQuantity=Normal:
-		if(pc.cumQ() < 500)
+		if(cumQ < 500)
 		{
 			output("\n\nYour semen vanishes into the rapacious void that is the horny laquine’s pussy, swallowed without a trace it was ever there... at least, externally. Kelly moans as you empty yourself inside of her. <i>“Oh, yes!”</i> she wails even as her own quad clenches and her cocks distend, erupting in twin cannons of jizz that send honey spraying all over, flooding her bedding, spraying against the underside of her boobs, and puddling in a great sticky pool on the floor. The air is filled with the sweet scent of her jizz, so strong it’s overpowering, even as she sighs in release. <i>“Mmm, that hit the spot.... Oh, don’t worry, [pc.name]; It doesn’t matter if you don’t shoot much cum. All we gotta do is make you shoot a bunch of times and it’ll all add up,”</i> she giggles, rubbing her belly.");
 		}
 		//CumQuantity=High:
-		else if(pc.cumQ() <= 2000)
+		else if(cumQ <= 2000)
 		{
 			output("\n\nKelly moans in pleasure as you flood her waiting womb, her stomach rising like the proverbial bun in the oven. <i>“Oh... that did it, that did - IT!”</i> she wails, arching her back as the feeling of your [pc.cum] inside of her pushes her past her limits and she cums, her belly interfering with the two cum-cannons somewhat, but nowhere near enough to hinder her in her efforts to try and flood the room with honey, a goal she makes a very considerable try at. Finally sighing as she spurts a last few globs of seed, she pats her belly. <i>“Mmm... there’s nothing quite like a nice, heavy load of spooge in your belly to add to some great sex, now isn’t there?”</i> she giggles.");
 		}
 		//CumQuantity=VeryHigh:
-		else if(pc.cumQ() <= 10000)
+		else if(cumQ <= 10000)
 		{
 			output("\n\nKelly squeals in delight as your inhuman cascade of seed floods inside of her. <i>“Oh, gods, yes! Fuck! Fill me up - give it to me!”</i> she exhorts, her own cocks erupting as she climaxes; she barely even notices the honey shooting everywhere, too wrapped up in the sensations she’s receiving from you. The feeling of your cock flooding her cunt, of her womb stretching rounder and fuller... she looks more and more pregnant, and still she clutches it, writhing in ecstasy, until at last even your limits are met and you have nothing more to give her. You lay there, panting, hands roaming over the dome-like expanse of her newly engorged stomach, until Kelly breaks the silence. <i>“Now that... was incredible. A fantastic lover is one thing, but one who can cum worthy of a laquine? I might just have to keep you,”</i> she says, in a tone such that you can almost hear her grinning mischievously. She pats her stomach, producing a muffled drum-like thumping as she does so. <i>“Mmm... nothing like a great big belly full of jizz,”</i> she giggles.");
 		}
@@ -2458,17 +2459,17 @@ public function keepGoingWithFuckingHyperModeKelly():void
 		output(".");
 
 		//CumQuantity=Normal
-		if(pc.cumQ() < 250)
+		if(cumQ < 250)
 		{
 			output("\n\nYour semen vanishes into the rapacious void that is a horny laquine’s pussy, swallowed without a trace it was ever there. <i>“Mmm, that feels good; just the right spot,”</i> she assures you sincerely, her tone bespeaking the smile on her lips as she rubs gently at her belly.");
 		}
 		//CumQuantity=High
-		else if(pc.cumQ() <= 1000)
+		else if(cumQ <= 1000)
 		{
 			output("\n\nAlthough your shots pale in comparison to the sheer volume of your lover’s, her belly still starts to bulge as you fill her womb with gush after gush of [pc.cum]. She moans like a whore as her belly rises, hands instinctively grabbing onto the swelling stomach and cradling it proudly, even as you reach your limits. <i>“That’s the way to do it, lover-" + pc.mf("boy","girl") + ",”</i> she giggles to you.");
 		}
 		//CumQuantity=VeryHigh
-		else if(pc.cumQ() <= 10000)
+		else if(cumQ <= 10000)
 		{
 			output("\n\nKelly might be a very productive girl, but you’re easily a match for her. She squeals in delight, all but gibbering in ecstasy as your cum hammers into her womb with the subtlety of a mallet to the face, stretching her fatter and fuller with each passing heartbeat. Her belly grows out and out, rounder and riper with your liquid love, stretching down until it brushes the soaked bedding underneath.");
 			output("\n\nShe groans softly as you finish, wriggling slightly as she adjusts to being stretched so swollen <i>“Do you believe what they say about us laquines? That we’re all mad for being crammed full of jizz?”</i> she asks, sarcastically. Then, with a smile you can hear, <i>“Because in my case, it’s absolutely true,”</i> she laughs.");
@@ -2482,7 +2483,7 @@ public function keepGoingWithFuckingHyperModeKelly():void
 	}
 	processTime(12);
 	clearMenu();
-	if(pc.cumQ() > 1000) addButton(0,"Next",kellyHyperPlayEpilogue,true);
+	if(cumQ > 1000) addButton(0,"Next",kellyHyperPlayEpilogue,true);
 	else addButton(0,"Next",kellyHyperPlayEpilogue);
 	pc.orgasm();
 }
@@ -2531,17 +2532,18 @@ public function addAHandjobToKellyHyperFuckPlay():void
 	if(y >= 0) output(" and gut");
 	output(".");
 
+	var cumQ:Number = pc.cumQ();
 	//CumQuantity=Normal
-	if(pc.cumQ() < 250) output("\n\nYour semen vanishes into the rapacious void that is a horny laquine’s pussy, swallowed without a trace it was ever there. Still, small as it might be compared to her world, it’s evidently enough to quench the fires burning inside her, and she moans low and exultantly as she feels your seed swirling through her depths.");
+	if(cumQ < 250) output("\n\nYour semen vanishes into the rapacious void that is a horny laquine’s pussy, swallowed without a trace it was ever there. Still, small as it might be compared to her world, it’s evidently enough to quench the fires burning inside her, and she moans low and exultantly as she feels your seed swirling through her depths.");
 	//CumQuantity=High
-	else if(pc.cumQ() <= 1000) output("\n\nAlthough your shots pale in comparison to the sheer volume of your lover’s, her belly still starts to bulge as you fill her womb with gush after gush of [pc.cum]. She moans like a whore as her belly rises, hands instinctively grabbing onto the swelling stomach and cradling it proudly, even as you reach your limits.");
+	else if(cumQ <= 1000) output("\n\nAlthough your shots pale in comparison to the sheer volume of your lover’s, her belly still starts to bulge as you fill her womb with gush after gush of [pc.cum]. She moans like a whore as her belly rises, hands instinctively grabbing onto the swelling stomach and cradling it proudly, even as you reach your limits.");
 	//CumQuantity=VeryHigh
-	else if(pc.cumQ() <= 10000) output("\n\nKelly might be a very productive girl, but you’re easily a match for her. She squeals in delight, all but gibbering in ecstasy as your cum hammers into her womb with the subtlety of a mallet to the face, stretching her fatter and fuller with each passing heartbeat. Her belly grows out and out, rounder and riper with your liquid love, stretching down until it brushes the soaked bedding underneath. She groans softly as you finish, wriggling slightly as she adjusts to being stretched so swollen, looking so hugely mock-pregnant with your climax.");
+	else if(cumQ <= 10000) output("\n\nKelly might be a very productive girl, but you’re easily a match for her. She squeals in delight, all but gibbering in ecstasy as your cum hammers into her womb with the subtlety of a mallet to the face, stretching her fatter and fuller with each passing heartbeat. Her belly grows out and out, rounder and riper with your liquid love, stretching down until it brushes the soaked bedding underneath. She groans softly as you finish, wriggling slightly as she adjusts to being stretched so swollen, looking so hugely mock-pregnant with your climax.");
 	//CumQuantity=Extreme
 	else output("\n\nKelly babbles deliriously in shock and pleasure as your veritable tidal wave of spooge washes into her depths. Her stomach almost explodes outwards, her once-slender waistline swallowed by gallon after gallon of [pc.cum] as it floods her womb, filling it to capacity and beyond, squirting splashes of jizz back around your [pc.legs] as she wriggles and writhes against the onslaught. Any doubts that she’s enjoying this are quashed when the pleasure wrings a second orgasm from her, great sprays of honey sweeping from her flares to splatter messily against the wall. Finally, mercifully, you run empty, leaving Kelly more resting atop a belly like an overinflated black-and-yellow beachball than supporting herself with her limbs. A moan of equal parts exhaustion, pleasure and triumph heaves from her; you just know she’s smiling triumphantly at taking your inhuman climax.");
 	processTime(15);
 	clearMenu();
-	if(pc.cumQ() > 1000) addButton(0,"Next",kellyHyperPlayEpilogue,true);
+	if(cumQ > 1000) addButton(0,"Next",kellyHyperPlayEpilogue,true);
 	else addButton(0,"Next",kellyHyperPlayEpilogue);
 	pc.orgasm();
 }
@@ -2587,39 +2589,40 @@ public function kellyHyperBlowDoubleYiss():void
 	if (flags["KELLY_HYPERBJ"] == undefined) pc.destroyItemByClass(Throbb,1);
 
 	output("You <i>do</i> have something particular in mind, actually.");
-	output("\n\n<i>\"I want you,\"</i> you say, smiling seductively and reaching between her legs to pat her bulging package, <i>\"to take a seat on the couch and let me blow your Throbbed-up cock. " + (pc.hasHair() ? "Maybe run your fingers through my hair." : "Make some sexy moans.") + " Think you can do that?\"</i>");
+	output("\n\n<i>“I want you,”</i> you say, smiling seductively and reaching between her legs to pat her bulging package, <i>“to take a seat on the couch and let me blow your Throbbed-up cock. " + (pc.hasHair() ? "Maybe run your fingers through my hair." : "Make some sexy moans.") + " Think you can do that?”</i>");
 	output("\n\nShe smiles back but cocks an eyebrow at you.");
-	output("\n\n<i>\"You do know just what you're asking for, riiiight?\"</i> Kelly purrs, one finger softly stroking your throat. <i>\"I'm not going to be in here,\"</i> she continues, leaning in as her voice lowers to a whisper. She runs her fingertip down");
+	output("\n\n<i>“You do know just what you’re asking for, riiiight?”</i> Kelly purrs, one finger softly stroking your throat. <i>“I’m not going to be in here,”</i> she continues, leaning in as her voice lowers to a whisper. She runs her fingertip down");
 	if (pc.hasBreasts()) output(" between your [pc.breasts]");
-	output(" to your tummy even as you watch her immense cock growing thickly erect between her thighs, promising you the time of your life. <i>\"I'm going to be in here. Bulging your little stomach out from the inside.\"</i> She fixes you with a confident grin, hair falling over her face. <i>\"You sure you can handle that?\"</i>");
-	output("\n\n<i>\"Yes,\"</i> you whisper to her, not even knowing if it's true but certain you want to find out.");
+	output(" to your tummy even as you watch her immense cock growing thickly erect between her thighs, promising you the time of your life. <i>“I’m going to be in here. Bulging your little stomach out from the inside.”</i> She fixes you with a confident grin, hair falling over her face. <i>“You sure you can handle that?”</i>");
+	output("\n\n<i>“Yes,”</i> you whisper to her, not even knowing if it’s true but certain you want to find out.");
 	if (pc.isHerm()) output(" Your [pc.cocks] " + (pc.hasCocks() ? "are" : "is") + " so hard and your [pc.pussies] " + (pc.hasVaginas() ? "are" : "is") + " so wet that your arousal is plain to see; with a smile playing across her pretty face, Kelly runs her hand along your netherlips and up the underside of your" + (pc.hasCocks() ? " lower" : "") + " shaft before softly rubbing her finger across your [pc.lips].");
 	else if (pc.hasCock()) output(" Your [pc.cocks] are so hard after her teasing " + (pc.hasCocks() ? "they feel like steel rods" : "it feels like a steel rod") + " jutting from between your thighs. Naked as you are, Kelly can see your eagerness for herself.");
-	else if (pc.hasVagina()) output(" Your [pc.pussies] " + (pc.hasVaginas() ? "are" : "is") + " so wet in the wake of her teasing there's a strand of arousal hanging between your thighs. With a smirk, Kelly snaps it with her finger and rubs it across your [pc.lips].");
+	else if (pc.hasVagina()) output(" Your [pc.pussies] " + (pc.hasVaginas() ? "are" : "is") + " so wet in the wake of her teasing there’s a strand of arousal hanging between your thighs. With a smirk, Kelly snaps it with her finger and rubs it across your [pc.lips].");
 	else output(" Kelly smirks as she gently tweaks your [pc.nipples], drinking in just how intoxicated you are with the idea of sucking her. Popping a finger between your [pc.lips], she lets you lap at it for a few tantalizing seconds before withdrawing.");
-	output("\n\n<i>\"Alright,\"</i> she murmurs, turning away. With a sexy strut she stalks over to her couch, taking a seat and smiling at you as she spreads her legs, inviting you to drink in the beautiful sight of her overendowed form. <i>\"Be a darling and grab the Throbb for me, would you?\"</i>");
-	output("\n\nYou hand her the vial and watch her carefully inject just enough to counteract her medicine, depressing the needle into her thick black equine cock, a shudder of pleasure working its way up her spine until she's shaking her head to clear it. Moaning, she lets the syringe fall by her side as she leans back into the couch, her half-erect cock engorging before your very eyes.");
-	output("\n\n<i>\"Ooohhh, stars,\"</i> Kelly groans, the couch creaking beneath her fingers as she grips it tight. <i>\"Nnnngh…\"</i>");
-	output("\n\nHer flesh shifts and expands, the added weight of her cocks forcing them to sag to your eye-level as her erections fight against gravity. It's only when she feels the pleasure, the sensation of uninhibited growth and virility, that her mammoth pricks begin to perk up once more, throbbing fiercely as inch after inch pours itself on. They rise to stand proud before you, thick, black, leathery, and with cumveins so immense and bulging you can only imagine the sheer volume of honeyed sperm she must be able to pump out of them.");
+	output("\n\n<i>“Alright,”</i> she murmurs, turning away. With a sexy strut she stalks over to her couch, taking a seat and smiling at you as she spreads her legs, inviting you to drink in the beautiful sight of her overendowed form. <i>“Be a darling and grab the Throbb for me, would you?”</i>");
+	output("\n\nYou hand her the vial and watch her carefully inject just enough to counteract her medicine, depressing the needle into her thick black equine cock, a shudder of pleasure working its way up her spine until she’s shaking her head to clear it. Moaning, she lets the syringe fall by her side as she leans back into the couch, her half-erect cock engorging before your very eyes.");
+	output("\n\n<i>“Ooohhh, stars,”</i> Kelly groans, the couch creaking beneath her fingers as she grips it tight. <i>“Nnnngh...”</i>");
+	output("\n\nHer flesh shifts and expands, the added weight of her cocks forcing them to sag to your eye-level as her erections fight against gravity. It’s only when she feels the pleasure, the sensation of uninhibited growth and virility, that her mammoth pricks begin to perk up once more, throbbing fiercely as inch after inch pours itself on. They rise to stand proud before you, thick, black, leathery, and with cumveins so immense and bulging you can only imagine the sheer volume of honeyed sperm she must be able to pump out of them.");
 	if (pc.hasGenitals()) output("\n\n" + StringUtil.capitalize(pc.cockAndVagina("your " + (pc.hasCocks() ? "cocks are" : "cock is") + " so hard", "your " + (pc.hasVagina() ? "pussies are" : "pussy is") + "so wet", " and ")) + " you think you might cum on the spot.");
-	else output("\n\nWere you to possess genitals you're sure you'd be a lesser mirror of her arousal right now but as it is, all you can do is gape in awe.} You're not sure you've ever seen such an amazing - <i>mouthwatering</i> - sight. Kelly looks down at you, flipping her hair out of her sweaty face with a casual grin, and places one hand on the underside of her bottom-most horsecock.");
-	output("\n\n<i>\"Get a taste,\"</i> she purrs.");
-	output("\n\nShe doesn't have to tell you twice. Spreading her legs wide, she leans back into the couch and lets out a sigh of satisfaction as you begin to tonguebathe her immense, veiny length, all but paying worship to her giant dick. The sight of her still wearing her stockings and tie when your eyes flick upwards just turns you on all the more -- you so, so badly want to bring relief to her, to indulge her every desire, to fulfill her needs. Focusing on your task, you lift her gorgeous cocks out of the way to press your [pc.tongue] right into her nuts, sucking on her enormous, seed-filled sack with eager aplomb.");
-	output("\n\nYour reward is a lazy groan of pleasure, as though she couldn't be happier about how much of a servile slut you're being. You can see little shivers running through her calves, her legs tensing every time you bring your tongue to bear where she needs it most. A spatter of warmth on your upper back is your first sign your performance is wholly appreciated -- you're so tempted to stop right there and proceed to sucking the rest directly from her cockhole but you're not doing this for you… you're doing it for her, and if the way her toes are curling is any indication, she likes it a lot.");
-	output("\n\nA breathy sigh escapes her lips as your tongue laps at the sweaty underside of her overproductive balls, each one almost as big as your head. God, even her <i>musk</i> smells so sweet and delicious, an effect you can truly appreciate when your mouth begins to water at her behest, as though she knew you'd need the help to suck her cock. Whatever the reason, you find yourself faithfully applying yourself with the added help. Fuck, her nuts taste so <i>good</i>...");
-	output("\n\n<i>\"Steele… Steele,\"</i> Kelly says softly, a hand brushing your [pc.hair] and rousing you from your haze. <i>\"I know you love my balls but you've been down there for ten minutes, babe. I'm starting to get antsy up here.\"</i>");
-	output("\n\n<i>\"Oh… sorry,\"</i> you mumble absently, giving her one last long, hard lick right between her balls that makes her shudder and straighten her back before you rise back to the main course.");
-	output("\n\nAnd what a main course it is. By now there's a nice, scented trail of precum leaking from the tip and running right down its glazed underside, something to keep you wholly occupied on your ascent. Dragging your tongue along her cumvein, you listen to Kelly groan while you drink down her sweet-tasting precum. It flows between your lips and across your tongue, delighting your mind and your tastebuds with the warmth and the thickness of it.");
-	output("\n\n<i>\"Hoohh, shit,\"</i> Kelly grunts, watching you with slitted eyes as you approach the tip of her towering cock. <i>\"You </i>really<i> know how to make a girl feel like a goddess, Steele -- keep that up and y- nnnhh- you're going to get a hell of a reward…\"</i>");
-	output("\n\nSmiling at the praise you wrap your hands around her oversized prick, unable to get your fingers all the way around, and close your eyes. You only need to be able to hear for this part, Kelly's moans of mounting pleasure like music to your ears while you lap at the lip of her bulging flare. The dribbling flow of her impressive virility drives you further and further, until you're depravedly tonguing her slit for more, the bunnygirl throwing her head back and letting out an animalistic noise of joy from between grit teeth.");
-	output("\n\nShe wriggles and writhes beneath you, her hips rolling as you seek to hold the beast steady, never letting up your rhythmic suckling of her cockhead for even a second until at last you achieve what you were looking for. A strong, dominant hand on your head pulls you away and you find yourself confronted by Kelly's flushed, sweat-sheened face, her hair half-covering her eyes and her breath coming in short, desperate pants.");
-	output("\n\n<i>\"Okay,\"</i> she huffs, embers of lust smoldering in her golden eyes. <i>\"Sit back. Straighten that neck and back, Steele. And tell me. One or two?\"</i>");
+	else output("\n\nWere you to possess genitals you’re sure you’d be a lesser mirror of her arousal right now but as it is, all you can do is gape in awe.");
+	output(" You’re not sure you’ve ever seen such an amazing - <i>mouthwatering</i> - sight. Kelly looks down at you, flipping her hair out of her sweaty face with a casual grin, and places one hand on the underside of her bottom-most horsecock.");
+	output("\n\n<i>“Get a taste,”</i> she purrs.");
+	output("\n\nShe doesn’t have to tell you twice. Spreading her legs wide, she leans back into the couch and lets out a sigh of satisfaction as you begin to tonguebathe her immense, veiny length, all but paying worship to her giant dick. The sight of her still wearing her stockings and tie when your eyes flick upwards just turns you on all the more -- you so, so badly want to bring relief to her, to indulge her every desire, to fulfill her needs. Focusing on your task, you lift her gorgeous cocks out of the way to press your [pc.tongue] right into her nuts, sucking on her enormous, seed-filled sack with eager aplomb.");
+	output("\n\nYour reward is a lazy groan of pleasure, as though she couldn’t be happier about how much of a servile slut you’re being. You can see little shivers running through her calves, her legs tensing every time you bring your tongue to bear where she needs it most. A spatter of warmth on your upper back is your first sign your performance is wholly appreciated -- you’re so tempted to stop right there and proceed to sucking the rest directly from her cockhole but you’re not doing this for you... you’re doing it for her, and if the way her toes are curling is any indication, she likes it a lot.");
+	output("\n\nA breathy sigh escapes her lips as your tongue laps at the sweaty underside of her overproductive balls, each one almost as big as your head. God, even her <i>musk</i> smells so sweet and delicious, an effect you can truly appreciate when your mouth begins to water at her behest, as though she knew you’d need the help to suck her cock. Whatever the reason, you find yourself faithfully applying yourself with the added help. Fuck, her nuts taste so <i>good</i>...");
+	output("\n\n<i>“Steele... Steele,”</i> Kelly says softly, a hand brushing your [pc.hair] and rousing you from your haze. <i>“I know you love my balls but you’ve been down there for ten minutes, babe. I’m starting to get antsy up here.”</i>");
+	output("\n\n<i>“Oh... sorry,”</i> you mumble absently, giving her one last long, hard lick right between her balls that makes her shudder and straighten her back before you rise back to the main course.");
+	output("\n\nAnd what a main course it is. By now there’s a nice, scented trail of precum leaking from the tip and running right down its glazed underside, something to keep you wholly occupied on your ascent. Dragging your tongue along her cumvein, you listen to Kelly groan while you drink down her sweet-tasting precum. It flows between your lips and across your tongue, delighting your mind and your tastebuds with the warmth and the thickness of it.");
+	output("\n\n<i>“Hoohh, shit,”</i> Kelly grunts, watching you with slitted eyes as you approach the tip of her towering cock. <i>“You </i>really<i> know how to make a girl feel like a goddess, Steele -- keep that up and y- nnnhh- you’re going to get a hell of a reward...”</i>");
+	output("\n\nSmiling at the praise you wrap your hands around her oversized prick, unable to get your fingers all the way around, and close your eyes. You only need to be able to hear for this part, Kelly’s moans of mounting pleasure like music to your ears while you lap at the lip of her bulging flare. The dribbling flow of her impressive virility drives you further and further, until you’re depravedly tonguing her slit for more, the bunnygirl throwing her head back and letting out an animalistic noise of joy from between grit teeth.");
+	output("\n\nShe wriggles and writhes beneath you, her hips rolling as you seek to hold the beast steady, never letting up your rhythmic suckling of her cockhead for even a second until at last you achieve what you were looking for. A strong, dominant hand on your head pulls you away and you find yourself confronted by Kelly’s flushed, sweat-sheened face, her hair half-covering her eyes and her breath coming in short, desperate pants.");
+	output("\n\n<i>“Okay,”</i> she huffs, embers of lust smoldering in her golden eyes. <i>“Sit back. Straighten that neck and back, Steele. And tell me. One or two?”</i>");
 
 	processTime(5);
 	clearMenu();
 	addButton(0, "Take One", blowThatHyperKellyDick, undefined, "Take One", "Suck one of her big, beautiful horsecocks and jack the other off as best you can.");
-	if (flags["USED_SNAKEBYTE"] == undefined) addDisabledButton(1, "Take Both", "Take Both", "You're going to need some SnakeByte if you want any hope of throating two of these bitch-breakers.");
-	addButton(1, "Take Both", inForKellysHyperCockInForBoth, undefined, "Take Both", "Suck <i>both</i> of those beautiful cocks at once. You're a big [pc.boyGirl], you can handle it.");
+	if (flags["USED_SNAKEBYTE"] == undefined) addDisabledButton(1, "Take Both", "Take Both", "You’re going to need some SnakeByte if you want any hope of throating two of these bitch-breakers.");
+	addButton(1, "Take Both", inForKellysHyperCockInForBoth, undefined, "Take Both", "Suck <i>both</i> of those beautiful cocks at once. You’re a big [pc.boyGirl], you can handle it.");
 }
 
 public function blowThatHyperKellyDick():void
@@ -2629,38 +2632,38 @@ public function blowThatHyperKellyDick():void
 	showBust("KELLY_HYPER_NUDE");
 	author("Wsan");
 
-	output("No sooner have you answered than she's standing upright, one hand still holding you firmly and the other aligning the giant, swollen flare of her veiny stallioncock with your [pc.lips]. As eager a bitch as you'll ever be, you hold your mouth open wide-");
+	output("No sooner have you answered than she’s standing upright, one hand still holding you firmly and the other aligning the giant, swollen flare of her veiny stallioncock with your [pc.lips]. As eager a bitch as you’ll ever be, you hold your mouth open wide-");
 	output("\n\n-and almost cum on the spot when she violently shoves the first sixteen inches of her turgid shaft down your tight little throat. You teased and titillated her past the point of being reasonable and now your neck bulges outwards with her, your head immobile as a consequence of being stuffed full of dick. Your entire body can <i>feel</i> her, the presence of her bestial studcock impossible to ignore with the way it pulses inside you and holds your core rigid, penetrating almost to your stomach.");
-	output("\n\nIt's everything you could have wished for.");
-	output("\n\n<i>\"Ooohhhhh, </i>GOD<i>,\"</i> Kelly hisses hotly, her grip on your " + (pc.hasHair() ? "hair" : "head") + " tightening hard enough to hurt a little. <i>\"Fucking TAKE IT!\"</i>");
-	output("\n\nWith another powerful thrust - no wonder they call it breeding like rabbits - she pounds her impossibly large flare, stiff and swollen with blood, right into your [pc.stomach]. It bulges outwards with the size of her, bloated with bunnygirl studprick. You get your first taste of what's to come when her cumvein pulses just once and she unloads a truly prodigious amount of precum into your belly, hot and sticky and clinging to your insides.");
-	output("\n\nIn such a position, you do the only thing you can think of. Reaching upwards, you take the base of her second cock and begin jerking her off as hard as you can manage with the iron-hard rod inside you to brace against. Ordinarily you suspect Kelly would giggle or even laugh at your brazen sluttery, but her unrestrained libido is too much for her to mentally fight against when she's so worked up and presented with a willing bitch. She's not thinking of anything beyond seeding you right now.");
+	output("\n\nIt’s everything you could have wished for.");
+	output("\n\n<i>“Ooohhhhh, </i>GOD<i>,”</i> Kelly hisses hotly, her grip on your " + (pc.hasHair() ? "hair" : "head") + " tightening hard enough to hurt a little. <i>“Fucking TAKE IT!”</i>");
+	output("\n\nWith another powerful thrust - no wonder they call it breeding like rabbits - she pounds her impossibly large flare, stiff and swollen with blood, right into your [pc.stomach]. It bulges outwards with the size of her, bloated with bunnygirl studprick. You get your first taste of what’s to come when her cumvein pulses just once and she unloads a truly prodigious amount of precum into your belly, hot and sticky and clinging to your insides.");
+	output("\n\nIn such a position, you do the only thing you can think of. Reaching upwards, you take the base of her second cock and begin jerking her off as hard as you can manage with the iron-hard rod inside you to brace against. Ordinarily you suspect Kelly would giggle or even laugh at your brazen sluttery, but her unrestrained libido is too much for her to mentally fight against when she’s so worked up and presented with a willing bitch. She’s not thinking of anything beyond seeding you right now.");
 	output("\n\nAs if to provide evidence for the hot, wet thoughts circling your boiling mind, Kelly lets out a feral grunt as she begins to thrust back and forth, her enormous sack jiggling just out of reach. What you would give just to feel their warm, sweaty kiss against your stretched-open lips-");
-	output("\n\nIt seems like Kelly's thinking along the same wavelength. Adjusting her position, she takes a half-step forward and throws one leg over your back without a second thought, digging her heel into you and forcing you to sit up right into the base of her cock. Firmly held in place");
+	output("\n\nIt seems like Kelly’s thinking along the same wavelength. Adjusting her position, she takes a half-step forward and throws one leg over your back without a second thought, digging her heel into you and forcing you to sit up right into the base of her cock. Firmly held in place");
 	if (pc.isHerm()) output(" with both your [pc.cocks] and [pc.pussies] so wet and dripping");
 	else if (pc.hasCock()) output(" with your [pc.cocks] so hard and dripping");
 	else if (pc.hasVagina()) output(" with your [pc.pussies] so wet and dripping");
 	else output(" and feeling like");
-	output(" you might cum any second, you at last get to feel the wet <i>>smack<</i> of Kelly's fat, seed-filled balls against your saliva-coated chin. It feels <i>good</i>.");
-	output("\n\n<i>\"Hhhuuunnh, fuck,\"</i> Kelly moans under her breath, rutting your face as hard as she possibly can. You're hardly able to keep your sweaty hands on her second cock, though the slippery massage of your underside might be appreciated anyway. <i>\"Fuck, fuck, fuck, fuck…\"</i>");
-	output("\n\nThe increase in her pace is gradual but feels like anything but. Each thrust of her powerful laquine hips sends spit running down your chin as it's squeezed from your overtaxed mouth, only to have it splattered by the impact of her heavy swinging nuts as she desperately buries her flaring cockhead in your stomach. You can feel it getting bigger by the second, stretching taut as more and more precum starts to bubble and spurt from her nozzle, pooling in your stomach.");
+	output(" you might cum any second, you at last get to feel the wet <i>>smack<</i> of Kelly’s fat, seed-filled balls against your saliva-coated chin. It feels <i>good</i>.");
+	output("\n\n<i>“Hhhuuunnh, fuck,”</i> Kelly moans under her breath, rutting your face as hard as she possibly can. You’re hardly able to keep your sweaty hands on her second cock, though the slippery massage of your underside might be appreciated anyway. <i>“Fuck, fuck, fuck, fuck...”</i>");
+	output("\n\nThe increase in her pace is gradual but feels like anything but. Each thrust of her powerful laquine hips sends spit running down your chin as it’s squeezed from your overtaxed mouth, only to have it splattered by the impact of her heavy swinging nuts as she desperately buries her flaring cockhead in your stomach. You can feel it getting bigger by the second, stretching taut as more and more precum starts to bubble and spurt from her nozzle, pooling in your stomach.");
 	output("\n\nWith a wild moan, Kelly suddenly puts her other leg over your back and forces your head to crane backwards just to accommodate her, burying herself balls-deep in your face. Now all you can see while she facefucks you into next week is the shiny black skin of her upper cock as her cumvein pulses and throbs with life and suddenly, you realize that when one of them cums so does the other.");
-	output("\n\n<i>\"Ghhrrrlg-\"</i> you moan as your throat stretches around the gigantic load being pumped from her overproductive balls, travelling further down her flexing shaft with every ominous throb. Then another, and another, and another, and suddenly the first one finally reaches her flare and Kelly screams in ecstasy, seizing your head and throwing her own backwards in utter exultation.");
+	output("\n\n<i>“Ghhrrrlg-”</i> you moan as your throat stretches around the gigantic load being pumped from her overproductive balls, travelling further down her flexing shaft with every ominous throb. Then another, and another, and another, and suddenly the first one finally reaches her flare and Kelly screams in ecstasy, seizing your head and throwing her own backwards in utter exultation.");
 	output("\n\nHoneyed cum <i>pours</i> into your stomach, your eyes rolling in your head as you struggle to process the sheer pace of it. Before your very nose you can see her upper cumvein pulsing harder and faster by the second and by the feel of her taut nutsack shifting on your chin, her bottom one is matching it pound for pound. You can feel <i>gallons</i> of her pumping into your tummy, bulging you further and further outward beneath her while she lets out loud and very un-ladylike grunts and groans of pleasure.");
-	output("\n\nGetting someone off <i>this</i> hard is something else. With every passing second you can feel her pleasure for yourself, evidenced by the heartpoundingly large cock throbbing in your throat and stomach, and it's that sense of just how hard she's blowing her load that sets you off.");
-	if (pc.isHerm()) output(" Your own " + (pc.hasCocks() ? "cocks" : "cock") + " flex and strain beneath your burgeoning cum-pumped stomach, shooting ropes of [pc.cum] all over your [pc.skinFurScales] while your empty " + (pc.hasVaginas() ? "pussies" : "pussy") + " squeeze and clench as though Kelly's titanic cock were between your thighs rather than embedded in your throat.");
+	output("\n\nGetting someone off <i>this</i> hard is something else. With every passing second you can feel her pleasure for yourself, evidenced by the heartpoundingly large cock throbbing in your throat and stomach, and it’s that sense of just how hard she’s blowing her load that sets you off.");
+	if (pc.isHerm()) output(" Your own " + (pc.hasCocks() ? "cocks" : "cock") + " flex and strain beneath your burgeoning cum-pumped stomach, shooting ropes of [pc.cum] all over your [pc.skinFurScales] while your empty " + (pc.hasVaginas() ? "pussies" : "pussy") + " squeeze and clench as though Kelly’s titanic cock were between your thighs rather than embedded in your throat.");
 	else if (pc.hasCock()) output(" Your own " + (pc.hasCocks() ? "cocks" : "cock") + " flex and strain beneath your burgeoning cum-pumped stomach, shooting ropes of [pc.cum] all over your [pc.skinFurScales] while Kelly obliges you with yet more of her seed from above.");
 	else if (pc.hasVagina()) output(" Your empty " + (pc.hasVaginas() ? "pussies" : "pussy") + " squeeze and clench as though the cum-pumping cock in your throat is instead between your [pc.thighs], being covered in the femcum that " + (pc.isSquirter() ? "squirts" : "drips") + " from your neglected " + (pc.hasVaginas() ? "fuckholes." : "fuckhole."));
 	else output(" Though no particular height or pinnacle of pleasure passes between your [pc.thighs] you can feel a heady pleasure accumulating in your nethers all the same -- that of submission, of utter subservience and service to the beautiful woman standing above you and filling you with her seed.");
-	output(" Between the dual sensations of your own orgasm and Kelly's, you have to fight to stay conscious while she unloads every last drop of her sweet, succulent payload into your O-face.");
-	output("\n\n<i>\"Ooohhhh, god,\"</i> Kelly finally groans a few minutes later, her enormous cock at last starting to soften and go limp in your abused throat. <i>\"I think I'm totally dry.\"</i>");
+	output(" Between the dual sensations of your own orgasm and Kelly’s, you have to fight to stay conscious while she unloads every last drop of her sweet, succulent payload into your O-face.");
+	output("\n\n<i>“Ooohhhh, god,”</i> Kelly finally groans a few minutes later, her enormous cock at last starting to soften and go limp in your abused throat. <i>“I think I’m totally dry.”</i>");
 	output("\n\nShe winces as she gingerly fishes herself free of your mouth with a wet <i>schluck</i>, a veritable river of her spunk spurting from between your lips even as you try to keep it down. Not even a second goes by before it starts to drip, run, and then spray from your nostrils until you find yourself with a towel pressed into your face.");
-	output("\n\n<i>\"Here,\"</i> Kelly says, softly stroking your head. <i>\"I maaaay have gone a little too far.\"</i>");
-	output("\n\nYou'd tell her she was perfect were you not busy fighting to keep her balls' massive payload inside you. Instead you just grip her wrist and squeeze, as though cautioning her against her own words. By the time she finishes wiping you off, she's got a smile on her face.");
-	output("\n\n<i>\"That was… </i>really<i> something,\"</i> she admits, raising an eyebrow. <i>\"A lady could get used to that kind of treatment, [pc.name]. Y'know, if you're up for it sometime. Not like, right </i>now<i> because you've sucked me dry and, well,\"</i> she continues, gesturing at the apartment. <i>\"I need to clean this up.\"</i>");
-	output("\n\nOh. It looks like not having that second cock of hers inside you has had some… serious consequences that pertain to the state of her apartment. The untold gallons of laquine sperm contained in your absurdly stretched stomach are matched only by the amount of it <i>outside</i> your stomach -- most notably spattered all across your back and legs, but also across every other conceivable surface in the house.");
-	output("\n\n<i>\"Look what you did, [pc.name],\"</i> Kelly says, grinning down at you. <i>\"Made me nut so hard I repainted my house.\"</i>");
-	output("\n\nIt's some time before you recover -- and it's going to be even longer before you can walk properly, let alone not look like you had a train run on you by hyperpornstars -- but when you find you can manage, you let yourself out with a kiss from Kelly and a wave as she tends to cleaning up. You have to be honest; you're <i>really</i> glad you're not stuck with the task of wiping all that up. Maybe next time you could just swallow both of them instead and save her the trouble...");
+	output("\n\n<i>“Here,”</i> Kelly says, softly stroking your head. <i>“I maaaay have gone a little too far.”</i>");
+	output("\n\nYou’d tell her she was perfect were you not busy fighting to keep her balls’ massive payload inside you. Instead you just grip her wrist and squeeze, as though cautioning her against her own words. By the time she finishes wiping you off, she’s got a smile on her face.");
+	output("\n\n<i>“That was... </i>really<i> something,”</i> she admits, raising an eyebrow. <i>“A lady could get used to that kind of treatment, [pc.name]. Y’know, if you’re up for it sometime. Not like, right </i>now<i> because you’ve sucked me dry and, well,”</i> she continues, gesturing at the apartment. <i>“I need to clean this up.”</i>");
+	output("\n\nOh. It looks like not having that second cock of hers inside you has had some... serious consequences that pertain to the state of her apartment. The untold gallons of laquine sperm contained in your absurdly stretched stomach are matched only by the amount of it <i>outside</i> your stomach -- most notably spattered all across your back and legs, but also across every other conceivable surface in the house.");
+	output("\n\n<i>“Look what you did, [pc.name],”</i> Kelly says, grinning down at you. <i>“Made me nut so hard I repainted my house.”</i>");
+	output("\n\nIt’s some time before you recover -- and it’s going to be even longer before you can walk properly, let alone not look like you had a train run on you by hyperpornstars -- but when you find you can manage, you let yourself out with a kiss from Kelly and a wave as she tends to cleaning up. You have to be honest; you’re <i>really</i> glad you’re not stuck with the task of wiping all that up. Maybe next time you could just swallow both of them instead and save her the trouble...");
 
 	processTime(20);
 	pc.orgasm();
@@ -2678,34 +2681,34 @@ public function inForKellysHyperCockInForBoth():void
 	showBust("KELLY_HYPER_NUDE");
 	author("Wsan");
 
-	output("Ordinarily you suspect she would ask if you could handle it, or joke that you were too eager, or wonder out loud if such a thing was really possible. Not now, though. She's hardly aligned the stiff, swollen heads of her throbbing equine cocks with your [pc.lips] before she shoves forward with a desperate grunt of unrestrainted lust, the twin stallionpricks sinking over a foot deep into your wet, slutty gullet.");
-	output("\n\n<i>\"F-fuh,\"</i> Kelly pants, her grip on your " + (pc.hasHair() ? "hair" : "head") + " tightening. <i>\"Ungh! God!\"</i>");
-	output("\n\nShe hardly seems capable of speech right now, slow and steady exploration tossed out the window in favor of hard, neck-bulging thrusts as two enormous cocks jostle for position in your absurdly swollen throat. You're a perfect fit around her, stroking her cumveins with your flexible insides while she plows your oral fuckhole in a manner more suited to someone a quarter her size. Such is the force of her wild, frenzied fucking that you find yourself borne to the floor with her sitting over you, shaking her hips.");
-	output("\n\n<i>\"Rrrfuck,\"</i> she gasps, busily shifting above you, trying to find the best angle to go balls-deep in your little throat. <i>\"Yesyesyes-\"</i>");
-	output("\n\nShe's momentarily lost to the world, pressing and pushing at you with her unimaginably large cocks until they slide their swollen flares right into your stomach and set about fucking you from the inside. Though you can't see it thanks to the fat, musky bunnyballs swinging tantalizingly in front of your face, you can certainly <i>feel</i> the way the [pc.skinFurScales] of your [pc.stomach] are being thrust outwards by a pair of rampaging stallions. It feels like you've been turned into a sex toy for hyper pornstars.");
-	output("\n\nLying flat on the ground, your [pc.ass] thumping on Kelly's floor while she slides more and more of her slick, turgid shafts into your stretched-wide throat, you can hardly help yourself. Reaching upwards, you fiercely sink your fingers right into the springy flesh of her womanly ass and pull her closer, a deep, lusty groan tearing its way past her lips. You've all but forced her inside, her heavy, seed-filled and sweat-coated balls parked on your chin before she starts to hump and grind at your face in earnest.");
-	output("\n\n<i>\"Oh- oh, god,\"</i> Kelly pants, a sweaty hand weaving between her legs to hold your head in place. <i>\"[pc.name]!\"</i>");
+	output("Ordinarily you suspect she would ask if you could handle it, or joke that you were too eager, or wonder out loud if such a thing was really possible. Not now, though. She’s hardly aligned the stiff, swollen heads of her throbbing equine cocks with your [pc.lips] before she shoves forward with a desperate grunt of unrestrainted lust, the twin stallionpricks sinking over a foot deep into your wet, slutty gullet.");
+	output("\n\n<i>“F-fuh,”</i> Kelly pants, her grip on your " + (pc.hasHair() ? "hair" : "head") + " tightening. <i>“Ungh! God!”</i>");
+	output("\n\nShe hardly seems capable of speech right now, slow and steady exploration tossed out the window in favor of hard, neck-bulging thrusts as two enormous cocks jostle for position in your absurdly swollen throat. You’re a perfect fit around her, stroking her cumveins with your flexible insides while she plows your oral fuckhole in a manner more suited to someone a quarter her size. Such is the force of her wild, frenzied fucking that you find yourself borne to the floor with her sitting over you, shaking her hips.");
+	output("\n\n<i>“Rrrfuck,”</i> she gasps, busily shifting above you, trying to find the best angle to go balls-deep in your little throat. <i>“Yesyesyes-”</i>");
+	output("\n\nShe’s momentarily lost to the world, pressing and pushing at you with her unimaginably large cocks until they slide their swollen flares right into your stomach and set about fucking you from the inside. Though you can’t see it thanks to the fat, musky bunnyballs swinging tantalizingly in front of your face, you can certainly <i>feel</i> the way the [pc.skinFurScales] of your [pc.stomach] are being thrust outwards by a pair of rampaging stallions. It feels like you’ve been turned into a sex toy for hyper pornstars.");
+	output("\n\nLying flat on the ground, your [pc.ass] thumping on Kelly’s floor while she slides more and more of her slick, turgid shafts into your stretched-wide throat, you can hardly help yourself. Reaching upwards, you fiercely sink your fingers right into the springy flesh of her womanly ass and pull her closer, a deep, lusty groan tearing its way past her lips. You’ve all but forced her inside, her heavy, seed-filled and sweat-coated balls parked on your chin before she starts to hump and grind at your face in earnest.");
+	output("\n\n<i>“Oh- oh, god,”</i> Kelly pants, a sweaty hand weaving between her legs to hold your head in place. <i>“[pc.name]!”</i>");
 	output("\n\nThe sheer ferocity and intensity with which she begins to pound you " + (flags["KELLY_DOUBLEHYPERBJ"] == undefined ? "catches you completely off-guard" : "is impossible to get used to") + ", your vision blurring as Kelly starts jackhammering your throat so hard you can feel her equine flares crudely pushing right up against your abs. The only noises in her house are the slapping of skin, the rhythmic thumping of your bodies against the floor, and her hot, labored breath from above you as sweat droplets land on your face and [pc.chest].");
-	output("\n\nHot, sticky precum pours into your stomach from her wide-open cocknozzles, bloating you every bit as much as any real orgasm and feeling twice as good. The warmth douses your insides with impunity, coating your stomach walls and providing that little bit of extra lubrication for her to properly fuck your tummy. Any other partner would be gagging and choking for their lives but you've given Kelly what she <i>really</i> needs -- a hole she can fuck with <i>true</i> abandon, uncaring of the consequences. You give her big, curvy ass a reassuring squeeze as she moans in bliss, pumping you for all you're worth.");
-	output("\n\n<i>\"Cum,\"</i> Kelly groans through grit teeth, her powerful laquine legs shaking slightly. <i>\"Need- to cum!\"</i>");
-	output("\n\nTaking your head in both hands, she begins letting out delirious moans and grunts of ecstasy as she slams her enormous cocks right into your belly, each of her flares growing thicker and stronger by the second until they occupy so much space inside your tummy there's no room for anything else. Her voice gets higher and higher in pitch, her wide hips thrusting so fast that the force of her meaty nuts smacking against your chin almost hurts you.");
-	output("\n\nRather than recoil, though, you welcome it. You relish in the prospect of your honeybee-laquine lover nutting <i>so</i> hard she can't control herself, of her emptying out every last drop of seed contained in those seed-swollen testes of hers right into your stomach. As tight and welcoming as your throat is, it doesn't take long for you to get your wish.");
-	output("\n\nThis time it's your turn to groan and thrust your [pc.hips] into the air as Kelly suddenly halts stock-still, letting out a massive, rumbling groan of effort as an impossibly massive load stretches your lips even wider. The sheer sensation of feeling her orgasm begin drives your mind wild and you find yourself");
+	output("\n\nHot, sticky precum pours into your stomach from her wide-open cocknozzles, bloating you every bit as much as any real orgasm and feeling twice as good. The warmth douses your insides with impunity, coating your stomach walls and providing that little bit of extra lubrication for her to properly fuck your tummy. Any other partner would be gagging and choking for their lives but you’ve given Kelly what she <i>really</i> needs -- a hole she can fuck with <i>true</i> abandon, uncaring of the consequences. You give her big, curvy ass a reassuring squeeze as she moans in bliss, pumping you for all you’re worth.");
+	output("\n\n<i>“Cum,”</i> Kelly groans through grit teeth, her powerful laquine legs shaking slightly. <i>“Need- to cum!”</i>");
+	output("\n\nTaking your head in both hands, she begins letting out delirious moans and grunts of ecstasy as she slams her enormous cocks right into your belly, each of her flares growing thicker and stronger by the second until they occupy so much space inside your tummy there’s no room for anything else. Her voice gets higher and higher in pitch, her wide hips thrusting so fast that the force of her meaty nuts smacking against your chin almost hurts you.");
+	output("\n\nRather than recoil, though, you welcome it. You relish in the prospect of your honeybee-laquine lover nutting <i>so</i> hard she can’t control herself, of her emptying out every last drop of seed contained in those seed-swollen testes of hers right into your stomach. As tight and welcoming as your throat is, it doesn’t take long for you to get your wish.");
+	output("\n\nThis time it’s your turn to groan and thrust your [pc.hips] into the air as Kelly suddenly halts stock-still, letting out a massive, rumbling groan of effort as an impossibly massive load stretches your lips even wider. The sheer sensation of feeling her orgasm begin drives your mind wild and you find yourself");
 	if (pc.isHerm()) output(" grinding your hips in the air as though you were being fucked, [pc.cum] pouring from your [pc.cocks] and femcum " + (pc.isSquirter() ? "squirting" : "dripping") + " down your [pc.thighs]");
 	else if (pc.hasCock()) output(" fucking the air while [pc.cum] pours from your [pc.cocks]");
 	else if (pc.hasVagina()) output(" rolling your hips as though you were being fucked, femcum " + (pc.isSquirter() ? "squirting from your [pc.pussies]" : "dripping down your [pc.thighs]"));
 	else output(" squeezing your eyes tight as your entire body tenses up around the rigid horsecocks inside you");
 	output(" while Kelly blows her load.");
-	output("\n\n<i>\"Oohh,\"</i> she grunts, your neck <i>bulging</i> outward with the sheer volume of creamy spunk travelling down her throbbing shafts. <i>\"Ooh- hhhh-\"</i>");
+	output("\n\n<i>“Oohh,”</i> she grunts, your neck <i>bulging</i> outward with the sheer volume of creamy spunk travelling down her throbbing shafts. <i>“Ooh- hhhh-”</i>");
 	output("\n\nWith a great, moaning sigh of release as though she were letting go of a massive weight, she at last experiences the bliss of unrelenting orgasm. Thick, honeyed seed <i>spews</i> from her pulsing cocks into your stomach, setting your insides noisily awash with her spooge as she drains herself inside you. Your throat bobs and pulses with each massive nut forced from her balls, her cumveins working in unison to roughly squirt each and every gallon of laquine sperm into your rapidly swelling tummy.");
-	output("\n\nYou take on what feels like a drum's worth of Kelly's seed within the first few seconds of her unstoppable orgasm, her curvy hips slowly grinding her sweaty groin into your well-fucked face while your stomach bulges obscenely. Your eyes roll back in your head as you cum once more, so spurred on by her outrageous release that you can't help but bask in the second-hand pleasure. She must feel <i>so good</i> finally having a partner she can fully unload on, and if the way she's moaning and tightening her thighs around your head is any indicator, she's not letting you go until you've drunk down everything she has to give.");
-	output("\n\nKelly keeps you there, willingly lying under her with her fat nuts pressed up on your chin and her immense cocks pumping in your throat, until she finally has her needs met. Her exit from your throat is slow, tired and methodical; she leaves you just enough time to get used to <i>not</i> having her inside you, your throat reshaping itself in her wake and ensuring you don't immediately cough up the seed she planted in your belly. She thumps onto her butt and lays back against a table, groaning.");
-	output("\n\n<i>\"That was… amazing,\"</i> Kelly moans. <i>\"Oh, my god, all I wanna do right now is just lie around and do nothing…\"</i>");
-	output("\n\n<i>\"Nngh...\"</i> you moan, one hand on your enormous, sloshing tummy and the other bracing yourself against the floor. <i>\"Not like I'm going anywhere.\"</i>");
-	output("\n\n<i>\"Oh, yeah,\"</i> Kelly says, grinning tiredly. <i>\"My little cumbucket. C'mere, cutie.\"</i>");
-	output("\n\nKelly shuffles over and leans in to give you a long, deep kiss as her hand comes up to hold your chin as though her balls hadn't been throbbing against it just thirty seconds ago. You'd almost forgotten she was so capable of being nice and gentle after you provoked her with your tongue and lips.");
-	output("\n\n<i>\"Mmm… am I a narcissist if I think you taste divine?\"</i> she murmurs to you, brushing your [pc.hair]. <i>\"Hey, let's just sleep here, [pc.name]. I'll grab a blanket.\"</i>");
-	output("\n\nYou're hardly inclined to disagree with your stomach full of her cum and your conscious mind circling the drain. All that fucking has taken quite the toll on you, unique biology or not. By the time Kelly returns with a warm blanket you've already fallen asleep on her floor, a smile on her face as she wraps you up in it and snuggles close with an arm laid across your chest.");
+	output("\n\nYou take on what feels like a drum’s worth of Kelly’s seed within the first few seconds of her unstoppable orgasm, her curvy hips slowly grinding her sweaty groin into your well-fucked face while your stomach bulges obscenely. Your eyes roll back in your head as you cum once more, so spurred on by her outrageous release that you can’t help but bask in the second-hand pleasure. She must feel <i>so good</i> finally having a partner she can fully unload on, and if the way she’s moaning and tightening her thighs around your head is any indicator, she’s not letting you go until you’ve drunk down everything she has to give.");
+	output("\n\nKelly keeps you there, willingly lying under her with her fat nuts pressed up on your chin and her immense cocks pumping in your throat, until she finally has her needs met. Her exit from your throat is slow, tired and methodical; she leaves you just enough time to get used to <i>not</i> having her inside you, your throat reshaping itself in her wake and ensuring you don’t immediately cough up the seed she planted in your belly. She thumps onto her butt and lays back against a table, groaning.");
+	output("\n\n<i>“That was... amazing,”</i> Kelly moans. <i>“Oh, my god, all I wanna do right now is just lie around and do nothing...”</i>");
+	output("\n\n<i>“Nngh...”</i> you moan, one hand on your enormous, sloshing tummy and the other bracing yourself against the floor. <i>“Not like I’m going anywhere.”</i>");
+	output("\n\n<i>“Oh, yeah,”</i> Kelly says, grinning tiredly. <i>“My little cumbucket. C’mere, cutie.”</i>");
+	output("\n\nKelly shuffles over and leans in to give you a long, deep kiss as her hand comes up to hold your chin as though her balls hadn’t been throbbing against it just thirty seconds ago. You’d almost forgotten she was so capable of being nice and gentle after you provoked her with your tongue and lips.");
+	output("\n\n<i>“Mmm... am I a narcissist if I think you taste divine?”</i> she murmurs to you, brushing your [pc.hair]. <i>“Hey, let’s just sleep here, [pc.name]. I’ll grab a blanket.”</i>");
+	output("\n\nYou’re hardly inclined to disagree with your stomach full of her cum and your conscious mind circling the drain. All that fucking has taken quite the toll on you, unique biology or not. By the time Kelly returns with a warm blanket you’ve already fallen asleep on her floor, a smile on her face as she wraps you up in it and snuggles close with an arm laid across your chest.");
 
 	processTime(20);
 	pc.loadInMouth(chars["KELLY"]);
@@ -2715,13 +2718,13 @@ public function inForKellysHyperCockInForBoth():void
 	addButton(0, "Next", function ():void
 	{
 		clearOutput();
-		showName("KELLY'S\nHOUSE");
+		showName("KELLY’S\nHOUSE");
 		author("Wsan");
 
-		output("You awaken groggily, looking around a seemingly empty house. Raising yourself to sitting, you see that though Kelly isn't here, she's left you a note.");
-		output("\n\n<i>\"Hi [pc.name]! Thanks for yesterday, you were AMAZING! I'm out of the house, but you can just let yourself out whenever. Love you!");
-		output("\n\nKelly\"</i>");
-		output("\n\nThere's a big, red lipsticked kissmark below her name. Looks like she'd be <i>really</i> happy to do this again sometime and honestly, so would you. Your mind lingering momentarily on just how much of her cum you ingested, you tidy up and step out the door after appreciating just how clean you've left her apartment. Not a missed spot or droplet.");
+		output("You awaken groggily, looking around a seemingly empty house. Raising yourself to sitting, you see that though Kelly isn’t here, she’s left you a note.");
+		output("\n\n<i>“Hi [pc.name]! Thanks for yesterday, you were AMAZING! I’m out of the house, but you can just let yourself out whenever. Love you!");
+		output("\n\nKelly”</i>");
+		output("\n\nThere’s a big, red lipsticked kissmark below her name. Looks like she’d be <i>really</i> happy to do this again sometime and honestly, so would you. Your mind lingering momentarily on just how much of her cum you ingested, you tidy up and step out the door after appreciating just how clean you’ve left her apartment. Not a missed spot or droplet.");
 
 		processTime(7*60);
 		kellyFucked();
@@ -2897,17 +2900,18 @@ public function getGlazedWhileButtFuckingTheHoneyBunny():void
 	output("\n\nYou watch her face turn from one of confusing to one of pleasure as you spear right back into her, pummeling her against the back of the couch as you border the inevitable edge of your climax. Not keen on leaving her unattended, you grab her shafts, stroking them furiously as you dump your load into her accepting ass.");
 
 	//CumQuantity=Normal:
-	if(pc.cumQ() < 500)
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 500)
 	{
 		output("\n\nKelly moans appreciatively as she feels your [pc.cum] gushing inside of her, a hand automatically going to her lower belly, as if trying to seek out the warmth.");
 	}
 	//CumQuantity=High:
-	else if(pc.cumQ() < 1000)
+	else if(cumQ < 1000)
 	{
 		output("\n\nA giggling gasp escapes your laquine lover as you flood her stomach with your [pc.cum], her hand darting to her stomach and pressing itself eagerly there as it visibly bulges before your eyes, bee-colored coat stretching over the newfound roundness, which she pets approvingly.");
 	}
 	//CumQuantity=VeryHigh:
-	else if(pc.cumQ() < 10000)
+	else if(cumQ < 10000)
 	{
 		output("\n\nShe moans loud and exultantly as your cascade of [pc.cum] pours inside of her, belly bloating second after second. <i>“Oh, yeah, fill me up!”</i> she hollers joyously as your load keeps flooding her guts, puffing her stomach out into a pregnant-looking swell that she rubs with both hands.");
 	}
@@ -2919,7 +2923,7 @@ public function getGlazedWhileButtFuckingTheHoneyBunny():void
 	output("\n\nYou close your eyes as her seed sprays all over yourself, only to rain back down at her. By the time she’s done you look like a mess, she looks like a mess, and even the couch looks like a mess.");
 
 	output("\n\nA deep, loud groan escapes Kelly, who bonelessly collapses back against her seat, cocks falling limply against her ");
-	if(pc.cumQ() > 1000) output("swollen ");
+	if(cumQ > 1000) output("swollen ");
 	output("stomach and slowly sliding back into her sheaths. <i>“I... I think I’m done now,”</i> she mumbles, opening her eyes to take in what she did. <i>“Wow, I sure did a number on us, didn’t I?”</i> she asks. She sounds quite pleased with the sheer amount of mess she’s made.");
 
 	//Kind:
@@ -2935,7 +2939,7 @@ public function getGlazedWhileButtFuckingTheHoneyBunny():void
 		output("\n\n<i>“I’m sure it was,”</i> she chuckles back.");
 		output("\n\nYou pull out of her butt and help her to her feet.");
 		output("\n\nShe stretches luxuriantly, ");
-		if(pc.cumQ() > 1000) output("gives her belly an appreciative pat, ");
+		if(cumQ > 1000) output("gives her belly an appreciative pat, ");
 		output("and takes you by the hand. <i>“Come on, the shower’s this way....”</i>");
 		output("\n\nClean, for the moment, you don your [pc.gear] and set out with a parting kiss.");
 		output("\n\nKelly folds her arms around you while she can, and then steps back with a smile. <i>“Don’t be a stranger, sweet thing. I’m always happy to have you,”</i> she tells you as you leave.");
@@ -3015,18 +3019,19 @@ public function deepFuckKellysButthole():void
 
 	output("\n\nHer ass squeezing down on you, demanding your seed. The perverted fountain of honey-jizz she’s spewing into the air. It’s all too much for you. You let loose a scream of pleasure as you paint her innards with your [pc.cum].");
 
+	var cumQ:Number = pc.cumQ();
 	//CumQuantity=Normal:
-	if(pc.cumQ() <= 250) output("\n\nAs you empty yourself inside of her, Kelly’s rosebud milks you, doing its best to suck you completely dry. When nothing more is forthcoming, it clenches down on you, holding you in a vice-like grip.");
+	if(cumQ <= 250) output("\n\nAs you empty yourself inside of her, Kelly’s rosebud milks you, doing its best to suck you completely dry. When nothing more is forthcoming, it clenches down on you, holding you in a vice-like grip.");
 	//CumQuantity=High:
-	else if(pc.cumQ() <= 1000) output("\n\nKelly grinds herself back into you, wringing your dick for all it’s worth even as her stomach begins to stretch from the sheer quantity of cum you’ve given her. Even as your prodigious load ebbs away, her tailhole keeps on gently milking you, as if hoping there’s yet more to come.");
+	else if(cumQ <= 1000) output("\n\nKelly grinds herself back into you, wringing your dick for all it’s worth even as her stomach begins to stretch from the sheer quantity of cum you’ve given her. Even as your prodigious load ebbs away, her tailhole keeps on gently milking you, as if hoping there’s yet more to come.");
 	//CumQuantity=VeryHigh:
-	else if(pc.cumQ() <= 10000) output("\n\nYou can feel the weight of the laquine in your lap increasing as your [pc.cum] pours inside of her, bloating her belly into a pregnant-looking bulge. Throughout it all her ass suckles from you, its hunger insatiable, gobbling down each great globule of jism without pause. When you finally run dry, it clamps down on you, determined to not let a single drop escape.");
+	else if(cumQ <= 10000) output("\n\nYou can feel the weight of the laquine in your lap increasing as your [pc.cum] pours inside of her, bloating her belly into a pregnant-looking bulge. Throughout it all her ass suckles from you, its hunger insatiable, gobbling down each great globule of jism without pause. When you finally run dry, it clamps down on you, determined to not let a single drop escape.");
 	//CumQuantity=Extreme:
 	else output("\n\nKelly’s stomach balloons outwards under the inhuman tidal wave of [pc.cum] that is your orgasm, her whole body writhing atop you as you fill her to her very limits. If she weren’t so busy catching her own cum with her mouth, she’d probably be crying out in ecstasy at being crammed so very full, stomach visible to you even from your position behind and under her. Through it all, her ravenous ass shows no signs of relenting its efforts of milking you, even as her cum-gut sloshes and wobbles with each twitch of her orgasmic form. Only the slightest of moisture escapes to wet your dick once you have finished, the rest locked away inside her stomach.");
 	output("\n\nYou hug your lapful of laquine, not really caring that you wind up with a bit of her honey on your arms. You feel pretty warm right now. The afterglow after such a great climax must be settling in. Without thinking you hug Kelly just a bit tighter, feeling her bosom press against your [pc.skinFurScales]. Her little nipples feel like small pebbles poking against your arm.");
 	output("\n\nKelly moans softly and shifts gingerly in your arms, audibly wincing as she does so. <i>“[pc.name]? Honey? That was incredible, but...”</i> she groans again and shifts once more. <i>“I am going to be feeling this for days,”</i> she whimpers.");
 	var bigCum:Boolean = false;
-	if(pc.cumQ() > 1000) bigCum = true;
+	if(cumQ > 1000) bigCum = true;
 	processTime(10);
 	pc.orgasm();
 
@@ -4739,19 +4744,20 @@ public function getBlownByKelly(noIntro:Boolean = false):void
 	if(pc.balls > 0) output("your balls churn and ");
 	output("you let loose your lust upon the receptive bunny’s cock-sleeve of a throat.");
 
+	var cumQ:Number = pc.cumQ();
 	//CumQuantity=Normal:
-	if(pc.cumQ() < 250)
+	if(cumQ < 250)
 	{
 		output("\n\nYour load of [pc.cum] vanishes down Kelly’s throat like water down a drain, with barely a gurgle of effort as she swallows. From the blissed look on her face as her eyes sink closed to savor its flavor, and the hum of contentment that rumbles delightfully across your now-limp shaft, she enjoyed it all the same. Her tongue writhes around your swallowed length, painstakingly lapping you clean before she pops wetly free of you, dabbing at your glans with her tongue before settling back on her knees and looking at you.");
 	}
 	//CumQuantity=High:
-	else if(pc.cumQ() < 1000)
+	else if(cumQ < 1000)
 	{
 		output("\n\nIf you were expecting to catch the laquine off-guard with your greater-than-average cumshot, you failed. With masterful skill, Kelly gulps and gurgles and swallows each great streamer of [pc.cum] that you unload into her mouth, letting it all gush down her throat. Though you pack her belly full until it visibly bulges, she takes it all with aplomb, smiling as best she can around her cock-stuffed mouth.");
 		output("\n\nWhen you are finished, she starts to loosen her mouth and tongue, lapping gently at your cock to clean off anything left behind before wetly letting you fall from between her lips. She looks up at you and pets her bulging belly with a grin, hiccuping loudly as she does so.");
 	}
 	//CumQuantity=VeryHigh:
-	else if(pc.cumQ() < 10000)
+	else if(cumQ < 10000)
 	{
 		output("\n\nA gurgle of seemingly equal parts surprise and delight bubbles wetly from Kelly’s throat as the first of your massive output of [pc.cum] washes into her mouth. Gamely she sucks away at you, determined to spill not so much as a drop of cum even as her belly begins to bulge from the amount of fluid you are pumping into her. Madly she gulps and swallows, using her tongue to help seal her mouth around your cock, until finally even you run dry.");
 		output("\n\nThe laquine pants heavily for breath upon your cock, slowly lapping at it once she has inhaled enough air through her nostrils to catch her breath, and then wetly pops herself free. She wallows back on her knees, stomach huge and gravid before her, and she strokes it with a proud look. Furrows cross her brow before she belches wetly, filling the air with a stink of sex, her fingers darting daintily to her embarrassed lips. <i>“Excuse me,”</i> she giggles, an embarrassed grin on her face.");

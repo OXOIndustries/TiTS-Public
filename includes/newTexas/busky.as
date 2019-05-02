@@ -1444,7 +1444,7 @@ public function buskySexMotivationFollowUp():void {
 		output("\n\n<i>“Hold on to something, you’re not done yet,”</i> smirks Busky. You wrap your arms around his neck, pulling yourself to his ear.");
 	}
 	
-	if (pc.isBro()) output("\n\n<i>“Ugh, yeah. Fuck my ass raw you little wimp! You got 4 balls, use ‘em!”</i>");
+	if (pc.isBro()) output("\n\n<i>“Ugh, yeah. Fuck m" + (pc.hasVagina() ? "e" : "y ass") + " raw you little wimp! You got 4 balls, use ‘em!”</i>");
 	else if (pc.isBimbo()) output("\n\n<i>“Oh my god, you’re fucking me raw. Cum, c’mon, I like, need it.”</i>");
 	else output("\n\n<i>“I can’t take it anymore, just finish already.”</i>");
 	

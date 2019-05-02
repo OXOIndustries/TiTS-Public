@@ -17,11 +17,11 @@ package classes.Resources.Busts
 
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/uthstar/hr/kaska.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/uthstar/HR/kaska.png", mimeType = "image/png")]
 			public var Full_KASKA:Class;
 			public function get Full_KASKA_NUDE():Class { return Full_KASKA; }
 			
-			[Embed(source = "../../../assets/images/npcs/uthstar/hr/sexbot_female.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/uthstar/HR/sexbot_female.png", mimeType = "image/png")]
 			public var Full_SEXBOT_FEMALE:Class;
 		}
 	}

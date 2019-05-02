@@ -32,7 +32,7 @@ package classes.Resources.Busts
 			public function get Full_PENNY_NUDE_HORSE():Class { return Full_PENNY_BIMBO_VIXEN; }
 			public function get Full_PENNY_NUDE_HORSE_1():Class { return Full_PENNY_BIMBO_VIXEN; }
 			public function get Full_PENNY_NUDE_HORSE_2():Class { return Full_PENNY_BIMBO_VIXEN; }
-			[Embed(source = "../../../assets/images/npcs/wolfynail/hr/penny_bimbo.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/wolfynail/HR/penny_bimbo.png", mimeType = "image/png")]
 			public var Full_PENNY_BIMBO_VIXEN:Class;
 			public function get Full_PENNY_BIMBO_VIXEN_1():Class { return Full_PENNY_BIMBO_VIXEN; }
 			public function get Full_PENNY_BIMBO_VIXEN_2():Class { return Full_PENNY_BIMBO_VIXEN; }

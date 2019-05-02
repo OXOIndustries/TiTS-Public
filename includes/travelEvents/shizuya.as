@@ -2040,7 +2040,7 @@ public function shizzyWhoWinston():void
 	output("\n\n<i>“Anything else?”</i>");
 	
 	flags["SHIZZY_TALKED_WINSTON"] = 1;
-		
+	
 	shizzyCrewTalkButtons(3);
 }
 
@@ -2101,7 +2101,23 @@ public function shizzySexyButtons(canleave:Boolean = true):void
 	else addDisabledButton(2, "Sixty-Nine", "Sixty-Nine", "With what?");
 	addButton(3, "Get Fucked", shizzyDriverNephisLegacy, canleave);
 	if (canleave) addButton(14, "Back", shizzyMajinMainButtons);
+	else if (!pc.hasVagina() && firstcawk < 0 && secondcawk < 0 && sixtycawk < 0) addButton(14, "Leave", shizzyNotSexableDitchIt, undefined, "Leave", "You can’t seem to sex her at the moment...");
 	else addDisabledButton(14, "Leave");
+}
+
+public function shizzyNotSexableDitchIt():void
+{
+	clearOutput();
+	showShizuya(true, false);
+	
+	output("Not being able to fit any of the options available to you, you grab your belongings and run away from the pheromone flooding feline.");
+	output("\n\n<i>“Nooo!”</i> She shouts as you make a break for the door and quickly exit her ship.");
+	output("\n\nYou are certain the horny amazon will find a way to get her fill... eventually.");
+	
+	processTime(2);
+	
+	clearMenu();
+	addButton(0, "Next", majinLeave, false);
 }
 
 public function shizzyOneStickDoesTheTrick(dick:int):void
@@ -2923,7 +2939,7 @@ public function shizzyPostSex():void
 	showShizuya(true);
 	
 	processTime(60);
-		
+	
 	output("You groan as you recover from your intense session with Shizuya. You pant heavily as her warm, purring body soothes your aches away. It isn’t long before you feel your strength come back to you. You pry yourself away from her, hearing her whine softly as you do.");
 	output("\n\n<i>“Mmmm, alright babe. Just come back whenever ya need another roll in the kitty sack.”</i> She stays in bed, moaning softly as she starts to grope herself, probably trying to entice you into another round. But you have places to go, and you" + (pc.isNude() ? " head out." : " put on your [pc.gear] and head out."));
 	
@@ -3105,6 +3121,7 @@ public function shizzyKickedUrAssFagget():void
 		output("\n\n<i>“Fuck. Me!”</i> She huskily insists, and you’re in no place to refuse.");
 		moveTo("MAJIN OFFICERS QUARTERS");
 		processTime(2);
+		shizzyPrepBalls();
 		shizzySexyButtons(false);
 	}
 }

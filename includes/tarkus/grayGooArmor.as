@@ -1033,6 +1033,8 @@ public function approachGooArmorCrewMenu(fromCrew:Boolean = true):void
 	else if(pc.hasStatusEffect("Goo Armor Healed")) gooArmorAddDisabledButton(fromCrew, 5, "Heal", "Restore Health", "[goo.name] has already healed you in the past hour. She may need some time to recover before trying it again.");
 	else gooArmorAddButton(fromCrew, 5, "Heal", gooArmorCrewOption, ["heal", fromCrew], "Restore Health", "Ask [goo.name] to help mend your wounds.");
 	
+	if(pc.armor is GooArmor) gooArmorAddButton(fromCrew, 6, ("Clean:" + (flags["GOO_ARMOR_AUTOCLEAN"] != undefined ? "ON" : "OFF")), gooArmorCrewOption, ["clean", fromCrew], "Toggle Fluid Cleaning", ("[goo.name] will " + (flags["GOO_ARMOR_AUTOCLEAN"] != undefined ? "clean your body whenever you are covered in sexual fluids" : "ignore any sexual fluids your body may be covered in") + "."));
+	
 	if(flags["GOO_ARMOR_ON_SHIP"] == undefined)
 	{
 		if(InShipInterior()) gooArmorAddButton(fromCrew, 4, "Stay", gooArmorCrewOption, ["stay", fromCrew], "Stay Here, " + chars["GOO"].short + ".", "Ask [goo.name] to stay on your ship.");
@@ -1420,8 +1422,28 @@ public function gooArmorCrewOption(arg:Array):void
 				gooArmorDefense(-2);
 				txt += "\n\nYou feel [goo.name]’s strength being sapped again. You should be careful not to over-do it...";
 			}
+			txt += "\n\n";
 			
 			gooArmorAddButton(fromCrew, 0, "Next", approachGooArmorCrew, [false, fromCrew]);
+			break;
+		case "clean":
+			showGrayGooArmor();
+			
+			if(flags["GOO_ARMOR_AUTOCLEAN"] != undefined)
+			{
+				txt += "<b>[goo.name] will now resist the urge to clean your body of any sexual fluids you may be covered in!</b>";
+				
+				flags["GOO_ARMOR_AUTOCLEAN"] = undefined;
+			}
+			else
+			{
+				txt += "<b>[goo.name] will now happily clean your body of any sexual fluids you may be covered in!</b>";
+				
+				flags["GOO_ARMOR_AUTOCLEAN"] = 1;
+			}
+			txt += "\n\n";
+			
+			approachGooArmorCrewMenu(fromCrew);
 			break;
 		case "stay":
 			showGrayGooArmor();

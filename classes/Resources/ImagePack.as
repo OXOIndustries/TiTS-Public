@@ -155,6 +155,10 @@ package classes.Resources
 			[Embed(source = "../../assets/images/imagepack/princess/DCLzexon_Princess_Taivris_Fullsize.png", mimeType = "image/png")]
 			public static const PrincessIntro:Class;
 
+			//RATS
+			[Embed(source = "../../assets/images/imagepack/rats/octomush_earfuck_ffion.jpg", mimeType = "image/jpg")]
+			public static const OctoEarfuck:Class;
+
 			//ROO
 			[Embed(source = "../../assets/images/imagepack/roo/octomush_dealer_table_fuck_nomilk.jpg", mimeType = "image/jpg")]
 			public static const RooTableFuck:Class;

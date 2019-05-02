@@ -27,7 +27,7 @@ public function gilPupperProccer():Boolean
 	{
 		showGil();
 		author("Lashcharge");
-		output("\n\nAlmost immediately after you leave Jade’s shop, you notice a tall, male-looking figure following you. He is slowly getting closer to you, trying his best to stay unnoticed despite his height, his obvious inexperience, and his outfit - a face hiding hoodie certainly not helping him look any less conspicuous.");
+		output("\n\nAlmost immediately after you leave Jade’s shop, you notice a tall, male-looking figure following you. He is slowly getting closer to you, trying his best to stay unnoticed despite his height, his obvious inexperience, and his outfit: a face-hiding hoodie certainly not helping him look any less conspicuous.");
 		output("\n\nIt seems like he wants something, but doesn’t have the guts to address you. Not wanting to let this farce get drawn out any longer, you suddenly turn around to confront your stalker.");
 
 		//pc is ditz:
@@ -41,7 +41,7 @@ public function gilPupperProccer():Boolean
 		//pc is hard:
 		else output("\n\n<i>“Why’re you following me?”</i> you ask, with the hint of threat in your voice.");
 
-		output("\n\nHis head lifts for the first time, revealing an elongated canine muzzle. The top is covered in black fur, while the lower section is covered in light brown, similar to a doberman. He looks straight into your [pc.eyeColor] eyes with his own minty green pair and blinks a few times, dazed by your sudden question.");
+		output("\n\nHis head lifts for the first time, revealing an elongated canine muzzle. The top is covered in black fur, while the lower section is covered in light brown, similar to a Doberman. He looks straight into your [pc.eyeColor] eyes with his own minty green pair and blinks a few times, dazed by your sudden question.");
 		if(pc.isBro() || pc.isBimbo()) output(" He hesitates for a moment, blushing at your suggestion, before shaking away the obvious lewd thoughts. <i>“No. ");
 		else if(pc.isNice()) output(" <i>“Yes. ");
 		else output(" <i>“I-");
@@ -56,11 +56,11 @@ public function gilPupperProccer():Boolean
 			output("you say and extend your hand, only to quickly move it out of the way as soon as he tries to shake it.");
 			if(silly) output(" Psyche!");
 		}
-		else if(pc.isBro()) output(" you say, ignoring his extended arm, until he puts both of his hands back in his pockets out of embarrassment.");
+		else if(pc.isBro() || pc.isAss()) output(" you say, ignoring his extended arm, until he puts both of his hands back in his pockets out of embarrassment.");
 		output(" It takes some time for your new acquaintance to realize the implications of your name, but when he does his breath catches for a few moments.");
 		output("\n\nEventually he regains his composure and tries his best to play it cool. <i>“The thing is, I’m rather desperate for a very specific set of transformations that can only be found in those,”</i> he says, pointing at the product in your hands, <i>“and buying them from other people is the cheapest way to get them.”</i>");
 		output("\n\n<i>“Why don’t you just buy it yourself?”</i>");
-		output("\n\n<i>“Transformations that should be part of the original product and instead are being sold separately at thrice the price? Fuck that! Besides, I’m not giving Jade anymore of my money.”</i> He sounds more than a little bit exasperated, but he takes in a good breath and continues. <i>“I’ll pay 500 credits for each one until I get the transformations I want.”</i> Then he mumbles something you don’t quite get as his face turns away.");
+		output("\n\n<i>“Transformations that should be part of the original product and instead are being sold separately at thrice the price? Fuck that! Besides, I’m not giving Jade any more of my money.”</i> He sounds more than a little bit exasperated, but he takes in a good breath and continues. <i>“I’ll pay 500 credits for each one until I get the transformations I want.”</i> Then he mumbles something you don’t quite get as his face turns away.");
 		output("\n\n<i>“What was that?”</i>");
 		output("\n\n<i>“I’ll also offer other forms of ‘payment’ if that’s what y’want.”</i> You can see that he is clearly embarrassed at the proposal and, if not for the black fur, you’re certain you would see his cheeks turning beet red.");
 		output("\n\n<i>“What ‘forms’ of payment?”</i> you ask him, more firmly this time.");
@@ -171,12 +171,12 @@ public function gilAppearance():void
 	else output(", but can’t hide the glow of his minty green eyes or his");
 	//Gil has worg face:
 	if(gilWorgFace()) output(" powerful worg snout with teeth poking out from between his lips.");
-	else output(" elongated doberman snout.");
+	else output(" elongated Doberman snout.");
 	//upper body revealed:
 	if(flags["GIL_UPPER_BODY_REVEAL"] != undefined) output("\n\nHis frame is exceedingly thin, without an ounce of fat or muscle visible on his belly and chest. This is especially noticeable in his hips and waist, which are as thin as they can possibly be, making his shoulders look broad in comparison and giving him a distinctly masculine frame. Most of his body is covered in black fur, with the exception of a large patch of light brown that extends from his chin down to his inner thighs, with his forearms also covered in fur of the same shade of brown. His thin chest sports a pair of midnight black nipples, barely visible beneath the dark fur around them.");
 	else output("\n\nHis frame is exceedingly thin, and even though his baggy clothes obscures his waist, it shows. Both his hips and his shoulders are just the right size to give him a distinctly masculine shape.");
 	//lower body revealed:
-	if(flags["GIL_LOWER_BODY_REVEAL"] != undefined) output(" You know that despite his masculine looks there isn’t any male genitalia on his crotch. Instead, he has the musky cunt of a bitch. It’s constantly dripping with his fluids, and it’s got thick, noticeable lips that swell when he’s aroused. A tight black asshole hides between his prodigious fuzzy asscheecks, and above them a black and brown furry tail wags lazily, much longer than what the tail of a doberman should be.");
+	if(flags["GIL_LOWER_BODY_REVEAL"] != undefined) output(" You know that despite his masculine looks there isn’t any male genitalia on his crotch. Instead, he has the musky cunt of a bitch. It’s constantly dripping with his fluids, and it’s got thick, noticeable lips that swell when he’s aroused. A tight black asshole hides between his prodigious fuzzy asscheecks, and above them a black and brown furry tail wags lazily, much longer than what the tail of a Doberman should be.");
 	else output(" Behind him you can see a black and brown furry tail wagging between his prodigious glutes, their size pronounced by the skin tight jeans.");
 	clearMenu();
 	addButton(0,"Next",backToGilMenu);
@@ -211,9 +211,9 @@ public function giveDoggoADoggoTreat():void
 		output("\n\n<i>“Hold up, I’ll pay in a bit, I just wanna see what transformation I get first..”</i>");
 		output("\n\nYou patiently wait for ten minutes, leaning on the wall next to the dog-morph, but you don’t notice anything different about him.");
 		output("\n\n<i>“Are you sure you haven’t changed yet?”</i> you ask, finally overcome with boredom.");
-		output("\n\n<i>“I don’t feel different,”</i> Gil says, shrugging off your question. After a few more minutes he brings his hand to his chin in a pensive manner. <i>“Unless...”</i> He takes off his hood and reveals his moist nose and the rest of his elongated snout, sleek and with short black fur smudged in brown on his neck and jaw, similar to a doberman. The dog-morph’s mint green eyes are canine, large irises with barely any sclera. Suddenly, he looks straight at you and asks, <i>“What are my ears like right now?”</i>");
+		output("\n\n<i>“I don’t feel different,”</i> Gil says, shrugging off your question. After a few more minutes he brings his hand to his chin in a pensive manner. <i>“Unless...”</i> He takes off his hood and reveals his moist nose and the rest of his elongated snout, sleek and with short black fur smudged in brown on his neck and jaw, similar to a Doberman. The dog-morph’s mint green eyes are canine, large irises with barely any sclera. Suddenly, he looks straight at you and asks, <i>“What are my ears like right now?”</i>");
 		output("\n\nThey are perfectly dog-like and kind of floppy. You tell Gil as much.");
-		output("\n\n<i>“Damn it. I should’ve know, my ears were pointy before I ate that popper,”</i> he says rubbing the back of his neck in embarrassment.");
+		output("\n\n<i>“Damn it. I should’ve known. My ears were pointy before I ate that popper,”</i> he says rubbing the back of his neck in embarrassment.");
 		output("\n\n<i>“Next time, take off the damn hood,”</i> you tell him, frustrated by the time wasted.");
 		output("\n\n<i>“Don’t worry. I will, if y’bring me another.”</i> For a few seconds there is an awkward silence between you two, then Gil asks, <i>“So what do y’want in exchange for it?”</i>");
 	}
@@ -245,7 +245,7 @@ public function giveDoggoADoggoTreat():void
 		output("\n\n<i>“Fuck,”</i> he says half in pain, half in anger, <i>“show me what I look like.”</i>");
 		output("\n\nYou take out your Codex and show it to him.");
 		output("\n\nGil passes his hands through his new features before throwing a fist into the air triumphantly. <i>“This is exactly what I wanted!”</i>");
-		output("\n\n<i>“So you don’t need anymore snausages?”</i>");
+		output("\n\n<i>“So you don’t need any more snausages?”</i>");
 		output("\n\n<i>“I still need the eyes to match, so I’ll definitely need more.”</i> He takes a few more moments to pass his hands over his new canine fangs, before pushing the Codex away and asking, <i>“What do y’want in exchange for that?”</i>");
 	}
 	//5 snausage tf:
@@ -262,7 +262,7 @@ public function giveDoggoADoggoTreat():void
 		output("Gil quickly swipes the Pupper Popper from your hands and unwraps it. He takes his time eating it, before pulling down his hood and looking at his reflection in the Codex.");
 		output("\n\nSurprisingly, the dog-morph’s face doesn’t seem to change, but his tail suddenly falls limp on his noticeable rear. He yowls, winces and bites his lips, doing his best to contain the pain as the tail splits into two. Both of the appendages are thin and gangly, with missing spots of fur, but soon enough fresh new flesh and hairs cover them until Gil is left with a more healthy-looking pair of tails.");
 		output("\n\n<i>“Oh cool, I got two tails.”</i> He looks at it, pondering for a moment. <i>“But, I’d rather have one.”</i> The dog boy fetches a black snausage from his pockets, unwraps it, and shoves it down his muzzle, causing one of the tails to recede into his body effortlessly.");
-		output("\n\nBut that’s not the only thing that changes. The features of his face become smaller. The fangs disappear behind his lips, turning his powerful canine snout into the lean one of a doberman. <i>“Oh, fuck no!”</i> He grabs his face, as if in a futile attempt to hold it in place and stop the transformation, but the change finishes quickly.");
+		output("\n\nBut that’s not the only thing that changes. The features of his face become smaller. The fangs disappear behind his lips, turning his powerful canine snout into the lean one of a Doberman. <i>“Oh, fuck no!”</i> He grabs his face, as if in a futile attempt to hold it in place and stop the transformation, but the change finishes quickly.");
 		output("\n\n<i>“I totally forgot these custom transformatives do this.”</i> He sighs, slightly punching his forehead. Gil takes a few deep breaths, trying to calm his anger at yet another setback, before asking, <i>“What do y’want in exchange for that?”</i>");
 	}
 	//7 snausage tf:
@@ -279,7 +279,7 @@ public function giveDoggoADoggoTreat():void
 	{
 		output("You throw the package at Gil’s chest and he tries his best to catch as it jumps between his hand until it slips and falls on the floor.");
 		output("\n\n<i>“I’m getting pretty tired of this.”</i>");
-		output("\n\n<i>“Me too.”</i> Gil says as he unwraps the package and swallows it down.");
+		output("\n\n<i>“Me too,”</i> Gil says as he unwraps the package and swallows it down.");
 		output("\n\nYou show the dog-morph his face on your Codex as it turns into a snarl and begins to change. His skull grows wider, his nose larger, and the muscles of his neck and jaw swell to become more powerful. His canines lengthen until they poke out from his lips, and the process is complete. Like the last time he underwent this transformation, he seems unreasonably angry, shouting swear words at a random passerby.");
 		output("\n\nEventually, he calms down and regains his composure. <i>“Well at least I’ve bounced back from that stupid accident. What do y’want in exchange for that?”</i>");
 	}
@@ -288,7 +288,7 @@ public function giveDoggoADoggoTreat():void
 	{
 		//eyes turn worg
 		output("<i>“I hope this is the last one.”</i> You tell Gil as you hand him yet another Pupper Popper.");
-		output("\n\n<i>“Unlikely, I’ll probably get a few more ear transformations,”</i> he says, the frustration clear in his voice as he unwraps the snausage.");
+		output("\n\n<i>“Unlikely. I’ll probably get a few more ear transformations,”</i> he says, the frustration clear in his voice as he unwraps the snausage.");
 		output("\n\nYou groan in response as the dog-morph shoves the treats into his mouth.");
 		output("\n\n<i>“Mah sentiphments exachtly,”</i> he mutters through a mouthful of snausage. He then swallows it down and waits for a change while staring at his reflection in your Codex.");
 		output("\n\nHis face twists into an angry snarl as he closes his eyes and rubs them with his hand. When he opens them again they glow with a soft minty-green light, lacking any form of pupils or iris.");
@@ -306,7 +306,7 @@ public function giveDoggoADoggoTreat():void
 		else
 		{
 			output("\n\n<i>“Does that mean I can fuck you now?”</i>");
-			output("\n\n<i>“Yes, if that’s what y’want. So... what <i>do</i> you want?”</i>");
+			output("\n\n<i>“Yes, if that’s what y’want. So... what </i>do<i> you want?”</i>");
 		}
 	}
 	processTime(4);
@@ -407,14 +407,14 @@ public function talkToGilAboutSnausages():void
 	output("<i>“Why did you want these Pupper Poppers so much? You could probably find a genemod that does the same thing or even order a custom-made one, with all the credits you’re willing to pay for them.”</i>");
 	output("\n\n<i>“Do y’know about the Corponarrativists?”</i>");
 	output("\n\n<i>“No.”</i>");
-	output("\n\n<i>“So, there is this art movement that’s all about <i>perfecting</i> one’s body through genemods. Y’look for the products, sample them and find if it fits with what y’want your perfect body to be. But it’s not just about how you look, it’s also about building a story you can tell about each part of your body, y’know. So these things...”</i> he says, taking out one of the wrappers from his pockets, <i>“are vintage, with lots of history behind them. Originally, I was just going to buy them, but that panda fatso is the only one selling such mods around here, and I want nothing to do with her. So I tried haggling with random passerbys that bought them.”</i>");
+	output("\n\n<i>“So, there is this art movement that’s all about <i>perfecting</i> one’s body through genemods. Y’look for the products, sample them and find if it fits with what y’want your perfect body to be. But it’s not just about how you look, it’s also about building a story you can tell about each part of your body, y’know. So these things...”</i> he says, taking out one of the wrappers from his pockets, <i>“are vintage, with lots of history behind them. Originally, I was just going to buy them, but that panda fatso is the only one selling such mods around here, and I want nothing to do with her. So I tried haggling with random passersby that bought them.”</i>");
 	output("\n\nGil pauses for a moment and winces, seemingly remembering something bad. <i>“That didn’t go well. That is until I met you. And, thanks to you...”</i> He points at his eyes and muzzle. <i>“I was successful. Now I can give my muzzle and my eyes a story about haggling and how I seduced Steele’s child.”</i>");
 	output("\n\n<i>“That’s not how I remember it.”</i>");
 	output("\n\n<i>“Every artist gives their stories a little bit of flourish.");
 	if(silly) output(" Just look at any smut story, and how balls are filled with cum, when semen is mostly produced in the prostate.");
 	output("”</i>");
 	output("\n\n<i>“So are you done now?”</i>");
-	output("\n\n<i>“Not by a long shot, there still a lot of stories to write in this body of mine. So I think I’ll stay here a while, getting my stuff in order, and then hit someplace else. I heard there’s this planet where everyone takes a controversial transformative. I think I’ll hit that place next.”</i>");
+	output("\n\n<i>“Not by a long shot. There still a lot of stories to write in this body of mine. So I think I’ll stay here a while, getting my stuff in order, and then hit someplace else. I heard there’s this planet where everyone takes a controversial transformative. I think I’ll hit that place next.”</i>");
 	processTime(6);
 	clearMenu();
 	addButton(0,"Next",backToGilMenu);
@@ -466,7 +466,7 @@ public function sexWithGilYaDumbshit(fromTrade:Boolean = false):void
 	//if hasn’t revealed lower body and gave 9 snausages/has worg eyes:
 	else if(flags["GIL_DOSES"] != undefined && flags["GIL_DOSES"] >= 9 && flags["GIL_LOWER_BODY_REVEAL"] == undefined) 
 	{
-		output("\n\nHe starts to unfasten his belt, but stops midway. <i>“So, this might come as a surprise, but...”</i> It seems like he as something to say, but he is obviously hesitant about what he is about to reveal.");
+		output("\n\nHe starts to unfasten his belt, but stops midway. <i>“So, this might come as a surprise, but...”</i> It seems like he has something to say, but he is obviously hesitant about what he is about to reveal.");
 		//pc is brute or bimbo:
 		if(pc.isBro() || pc.isBimbo()) output("\n\n<i>“Why do you still have your pants on?”</i> you ask, exasperated at the delay.");
 		//pc is nice:
@@ -608,7 +608,7 @@ public function getASloppyGrillBLowjorb(fromTrade:Boolean):void
 	//pc has genital slit:
 	else if(pc.hasStatusEffect("Genital Slit"))
 	{
-		output("\n\nGil starts by nudging his moist nose against your [pc.base " + x + "], taking the opportunity to get a few good sniffs and enjoying ");
+		output("\n\nGil starts by nudging his moist nose against your [pc.base " + x + "], taking the opportunity to get a few good sniffs and enjoy ");
 		//pc has pheromone cloud perk or pheromone sweat and is sweaty or mimbranes:
 		if(pheromones) output("the smell of your potent pheromones");
 		else if(pc.hasStatusEffect("Sweaty")) output("the smell of your sweat-covered body");
@@ -617,14 +617,14 @@ public function getASloppyGrillBLowjorb(fromTrade:Boolean):void
 		if(pc.totalCocks() == 1) output(" begins");
 		else output("s begin");
 		output(" to grow, ");
-		if(pc.cockTotal() == 1) output("the tip");
-		else output("their tips");
-		output(" poking out of its protective slit. Only when he thinks your crotch is glazed enough with his slobber does he slip his tongue inside, working to coax the rest of your [pc.cock " + x + "] out. The more he licks, the larger your erection grows, and the more your [pc.cockColor " + x + "] dick is exposed to the open air. When your cock is as big as it’s gonna get, the dog-morph gives your sheath one final lick and begins to pull away. He drags his large, floppy tongue along the underside of your dick as he moves back, trailing from base to tip.");
+		if(pc.cockTotal() == 1) output("the tip poking out of its protective slit");
+		else output("their tips poking out of their protective slits");
+		output(". Only when he thinks your crotch is glazed enough with his slobber does he slip his tongue inside, working to coax the rest of your [pc.cock " + x + "] out. The more he licks, the larger your erection grows, and the more your [pc.cockColor " + x + "] dick is exposed to the open air. When your cock is as big as it’s gonna get, the dog-morph gives your sheath one final lick and begins to pull away. He drags his large, floppy tongue along the underside of your dick as he moves back, trailing from base to tip.");
 	}
 	//pc has sheath:
 	else if(pc.hasSheath(x))
 	{
-		output("\n\nGil starts by nudging his moist nose against your crotch, taking the opportunity to get a few good sniffs and enjoying ");
+		output("\n\nGil starts by nudging his moist nose against your crotch, taking the opportunity to get a few good sniffs and enjoy ");
 		//pc has pheromone cloud perk or pheromone sweat and is sweaty or mimbranes:
 		if(pheromones) output("the smell of your potent pheromones");
 		else if(pc.hasStatusEffect("Sweaty")) output("the smell of your sweat-covered body");
@@ -634,7 +634,7 @@ public function getASloppyGrillBLowjorb(fromTrade:Boolean):void
 	//else:
 	else
 	{
-		output("\n\nGil starts by nudging his moist nose against your flaccid cock, taking the opportunity to get a few goods sniffs and enjoying ");
+		output("\n\nGil starts by nudging his moist nose against your flaccid cock, taking the opportunity to get a few goods sniffs and enjoy ");
 		//pc has pheromone cloud perk or pheromone sweat and is sweaty or mimbranes:
 		if(pheromones) output("the smell of your potent pheromones");
 		else if(pc.hasStatusEffect("Sweaty")) output("the smell of your sweat-covered body");
@@ -1002,13 +1002,13 @@ public function doggyStyleWithGil():void
 	//if more than 7 feet:
 	else if(pc.tallness >= 7*12)
 	{
-		output("\n\nYou wrap your arms around his waist and pull him up to your [pc.chest]. He stands on the tips of his toes as he leans in for a kiss, and he can’t help but grab your");
+		output("\n\nYou wrap your arms around his waist and pull him up to your [pc.chest]. He stands on the tips of his toes as he leans in for a kiss, and he can’t help but grab your ");
 		if(pc.hasFur() || pc.hasScales() || pc.hasFeathers() || pc.hasChitin()) output("[pc.skinFurScales]-covered");
 		else if(pc.femininity <= 10 && pc.biggestTitSize() < 1) output("hairy");
 		else output("hairless");
-		if(pc.biggestTitSize() >= 1) output("bosoms");
-		else if(pc.tone >= 70) output("pecs");
-		else output("chest");
+		if(pc.biggestTitSize() >= 1) output(" bosoms");
+		else if(pc.tone >= 70) output(" pecs");
+		else output(" chest");
 		output(". You plant a passionate kiss on his lips and spend a while just enjoying each other’s embrace. Then you break your kiss, throw him onto the bed, and " + (pc.isTaur() ? "and lay beside" : "fall on top of") + " him.");
 	}
 	//else:
@@ -1048,7 +1048,7 @@ public function doggyStyleWithGil():void
 	else output("press your tauric body against him");
 	output(". Then, in a sudden movement, you turn him around and tell him, <i>“Let’s do this doggystyle.”</i>");
 
-	output("\n\n<i>“Oh... fuck yo- me,”</i> Gil says obviously not enjoying the joke you just made. Despite that, he moves his body onto all fours, accidently hotdogging your shaft on his ass, before answering your demand with a <i>“Fine.”</i> You can clearly see that it’s more than ‘fine’, with how happily his tail wags.");
+	output("\n\n<i>“Oh... fuck yo- me,”</i> Gil says, obviously not enjoying the joke you just made. Despite that, he moves his body onto all fours, accidentally hotdogging your shaft on his ass, before answering your demand with a <i>“Fine.”</i> You can clearly see that it’s more than ‘fine’, with how happily his tail wags.");
 
 	//pc cock less than 10 inches or Hardlight:
 	if(dLength < 10 || hardlighted)
@@ -1254,7 +1254,7 @@ public function doggyStyleWithGil():void
 	
 		output("\n\nAfter resting for a while, reveling in the shared afterglow, he grabs you by the wrist and drags you to the bathroom to take a shower. Under the stream of water, you teasingly help each other clean up, and occasionally share a kiss.");
 	}
-	output("\n\nWhen he is done with the shower you both get dressed and he leaves you with a simple, <i>“Bye!”</i>");
+	output("\n\nWhen he is done with the shower, you both get dressed and he leaves you with a simple, <i>“Bye!”</i>");
 	processTime(35);
 	pc.orgasm();
 	//orgasm

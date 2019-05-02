@@ -2381,9 +2381,9 @@ public function birthButtBugLeave(arg:Array):void
 	addButton(0, "Next", mainGameMenu);
 }
 // Create child object
-public function createButtBugChild(variant:int = -1, numEggs:int = 0):void
+public function createButtBugChild(variant:int = -1, numEggs:int = 0):Child
 {
-	if(variant < 0 || numEggs <= 0) return;
+	if(variant < 0 || numEggs <= 0) return null;
 	
 	var c:Child = null;
 	switch(variant)
@@ -2400,6 +2400,8 @@ public function createButtBugChild(variant:int = -1, numEggs:int = 0):void
 	
 	StatTracking.track("pregnancy/butt bugs/day care/total", numEggs);
 	StatTracking.track("pregnancy/total day care", numEggs);
+	
+	return c;
 }
 // [Nursery]
 public function birthButtBugNursery(arg:Array):void

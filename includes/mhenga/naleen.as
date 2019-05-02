@@ -485,13 +485,14 @@ public function bendNaleenOver():void {
 	if(y >= 0) output("s");
 	output(" up with the kitty-naga’s slavering cunt");
 	if(y >= 0) output(" and winking asshole, so relaxed and ready you’re sure you could slip in as easily as a well-fucked pussy");
-	output(". Her back arches in a rush of pleasure as the tip of your [pc.cock " + x + "] brushes her slick folds, making her gasp as your [pc.cockHead " + x + "] ever so slightly parts her womanly veil, letting her juices run free to practically slather your schlong. Grabbing her big hips for support, you slide forward, parting her slick folds");
+	output(". Her back arches in a rush of pleasure as the tip of your [pc.cock " + x + "] brushes her moist gash, making her gasp as your [pc.cockHead " + x + "] ever so slightly parts her womanly veil, letting her juices run free to practically slather your schlong. Grabbing her big hips for support, you slide forward, further parting her slick folds");
 	if(y >= 0) output(" as your [pc.cock " + y + "] presses up against her tight rump, straining for a brief moment before the naleen screams as you’re in, pushing through her tight rectal channel");
 	output(". Her walls squirm and squeeze around your cock");
 	if(y >= 0) output("s");
 	output(", pushing back hard against you to make you work for every inch. But she’s so wet, it barely slows your onslaught. ");
 	if(y >= 0) output("Her ass gives a bit more of a fight, but the steady push of your hips keeps it going - and your lover’s not shy about thrusting her hips back, too, moaning louder with every pump you give into her tight behind. ");
 	output("She’s loving every second of it, clutching at her tits and purring so throatily you can feel it all the way back in her quivering quim, a thrumming vibration that spreads to your very core.");
+	
 	pc.cockChange();
 	
 	output("\n\nYou wrap your hand through her fiery hair, pulling the slut’s head back to stop her before you cum too soon. She gives a sharp cry, but returns your harsh rebuke by grinding her hips back against you, nearly swallowing your cock");
@@ -539,7 +540,7 @@ public function bendNaleenOver():void {
 		output(" distending her until her stomach bulges larger than even her tremendous bust");
 	}
 	output(". Her ecstatic voice warps into a scream of feral pleasure as you fuck her, higher and higher as she loses herself to orgasm. Her cunt’s soaked channel squeezes and slides along your rock-hard length, spasming wildly as her fem-cum splatters across her coiled tail, a steady stream of alien spunk leaking from her well-fucked womanhood as you slow your furious pace, letting her ride her orgasm out. ");
-	if(y >= 0) output("Her ass is no slouch, either: as her cunt milks your [pc.cock " + y + "], your other meaty prick is subjected to an endless wringing courtesy of her tight-clenched muscles, squeezing and pushing at the veiny intruder piercing her tender ass. ");
+	if(y >= 0) output("Her ass is no slouch either: as her cunt milks your [pc.cock " + x + "], your other meaty prick is subjected to an endless wringing courtesy of her tight-clenched muscles, squeezing and pushing at the veiny intruder piercing her tender ass. ");
 	output("No reason to hold back anymore: you grab her hips and slam in one last time, making her scream as her muscles do the rest: squeezing down so tight around your ");
 	if(y >= 0) output("dual cocks");
 	else output("cock");

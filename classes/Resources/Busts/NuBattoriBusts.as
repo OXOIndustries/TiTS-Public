@@ -16,7 +16,7 @@ package classes.Resources.Busts
 		
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/NuBattori/hr/briha.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/NuBattori/HR/briha.png", mimeType = "image/png")]
 			public var Full_BRIHA:Class;
 			public function get Full_BRIHA_NUDE():Class { return Full_BRIHA; }
 			public function get Full_BRIHA_PREGNANT():Class { return Full_BRIHA; }

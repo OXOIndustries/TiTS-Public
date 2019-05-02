@@ -5,7 +5,7 @@
 }
 public function drBadgerBustDisplay(nude:Boolean = false):String
 {
-	if(flags["BADGER_QUEST"] == -3) return "DR_BADGER_BIMBO";
+	if(chars["DRBADGER"].isBimbo()) return "DR_BADGER_BIMBO";
 	
 	var sBust:String = "DRBADGER";
 	if(nude) sBust += "_NUDE";
@@ -59,6 +59,11 @@ public function drBadgerMenu():void
 			else addDisabledButton(3,"Fix NymFoe","Fix Nym-Foe","You need at least 6 sexbot VI chips in order to repair the Nym-Foe.");
 		}
 		else addButton(3,"Fix NymFoe?",drBadgerLabNymFoe,"badger fix","Fix Nym-Foe?","Ask Doctor Badger about repairing the Nym-Foe.");
+	}
+	if(silly && flags["NYM-FOE"] >= 3 && (flags["NYM-FOE_SILICONE_BOOSTS"] != undefined || flags["NYM-FOE_ACTIVATED"] != undefined || flags["NYM-FOE_FUCKED"] != undefined))
+	{
+		if(flags["NYM-FOE_DAKIMAKURA_TAKE"] == undefined) addButton(8,"Buy NymFoe?",drBadgerLabNymFoe,"badger buy","Buy Nym-Foe?","Request to buy the modded nurse bot.");
+		else if(flags["NYM-FOE_DAKIMAKURA_TAKE"] == 0) addButton(8,"Take Pillow",drBadgerLabNymFoe,"pillow take","Take the Nym-Foe Body Pillow","Procure the perverted pillow.");
 	}
 	
 	if(flags["MET_DR_BADGER"] != undefined)
@@ -139,7 +144,7 @@ public function drBadgerBonusShit():Boolean
 	}
 	else
 	{
-		if(flags["BADGER_QUEST"] == -3)
+		if(chars["DRBADGER"].isBimbo())
 		{
 			bimboBadgerShopStuff();
 			drBadgerLookAroundButton(5);
@@ -846,7 +851,7 @@ public function removeDatCuntTail():void
 		changes++;
 	}
 	//IF PC HAS A SMALLER THAN VERY LARGE COCK
-	if(pc.cockLengthUnlocked(0, 11) && pc.biggestCockLength() < 11 && changes < 3 && rand(3) == 0)
+	if(pc.hasCock() && pc.cockLengthUnlocked(0, 11) && pc.biggestCockLength() < 11 && changes < 3 && rand(3) == 0)
 	{
 		output("\n\nYou grimace as the feeling of fullness moves to concentrate on your crotch, the sensation so overpowering for a moment that your [pc.knees] almost buckle");
 		if(pc.legCount == 1) output("s");

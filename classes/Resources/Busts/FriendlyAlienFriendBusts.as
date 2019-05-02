@@ -17,9 +17,9 @@ package classes.Resources.Busts
 		
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/friendlyalienfriend/hr/anno_huskar.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/friendlyalienfriend/HR/anno_huskar.png", mimeType = "image/png")]
 			public var Full_ANNO_HUSKAR:Class;
-			[Embed(source = "../../../assets/images/npcs/friendlyalienfriend/hr/anno_huskar_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/friendlyalienfriend/HR/anno_huskar_nude.png", mimeType = "image/png")]
 			public var Full_ANNO_HUSKAR_NUDE:Class;
 		}
 	}

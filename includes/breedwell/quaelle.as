@@ -291,7 +291,7 @@ public function quaelleTalkHitOn():void
 		if (flags["QUAELLE_HUGGED"] != undefined) 
 		{
 			output("\n\nQuaelle’s smile broadens slowly as she gazes back at you. There’s a long pause... but you’re too used to that now to feel discomfited by it.");
-			output("\n\n<i>“Do you really mean that, vibrulent Steele?”</i> she asks, antennae wriggling fitfully. <i>“Oh, that makes me feel so pulsumous! So mumburfelt! I must say I have found you fassscinating since we first met, I was soooo glad you seemed to enjoy sitting with me. I hope it hasn’t been too tiresome waiting for me to get to the point, but...”</i> She giggles, gazing at you more coyly now.Hmm. Hmm. <i>“ ...it is a good way of finding out if someone is comfortable with a roehm’s rhythms, is it not?”</i>");
+			output("\n\n<i>“Do you really mean that, vibrulent Steele?”</i> she asks, antennae wriggling fitfully. <i>“Oh, that makes me feel so pulsumous! So mumburfelt! I must say I have found you fassscinating since we first met, I was soooo glad you seemed to enjoy sitting with me. I hope it hasn’t been too tiresome waiting for me to get to the point, but...”</i> She giggles, gazing at you more coyly now. <i>“Hmm. Hmm... it is a good way of finding out if someone is comfortable with a roehm’s rhythms, is it not?”</i>");
 			output("\n\nShe opens her arms to you, and without a moment’s hesitation you get up and dive into that incredibly soft, wet, caramel-scented embrace. This one is different, though - Quaelle’s hands sink downwards, touching and stroking your back and [pc.ass] with obvious interest, deepening the heat you already feel in your [pc.groin]. When you surface from between her wide, pillowy breasts, you reach upwards to plant a soft kiss on her fruity lips.");
 			output("\n\n<i>“I have to plan longer breaks ahead of time,”</i> she murmurs to you. <i>“So you’ll have to wait a bit before we get, hmm, intimate. But I know you’re willing to do that, don’t I? My shiverous, throbbful Steele.”</i>");
 			output("\n\nShe oozes out from behind the table and heads back to the front desk. You notice several of the rahn over there have barely been pretending not to rubberneck, and there’s gleeful clapping and a cheer when Quaelle slithers triumphantly back to her post.");
@@ -1376,7 +1376,7 @@ public function quaelleSexBathRomcom():void
 	output("\n\nThe sitcom about having an untethered, immensely powerful A.I. for a roommate bounces along breezily enough, the gags revolving around nerd patheticness and total biological extermination coming thick and fast. Apparently this draws in an audience of hundreds of billions galaxy-wide, and you sort of get why after watching for a bit: aside from the familiar will-they-won’t-they shaggy dog dynamics, whether or not PM is ever going to annihilate Komet and her equally asinine friends is an undeniable hook.");
 	output("\n\n<i>“Despite everything... I’m still glad I got up this morning,”</i> the human smiles after half an hour, <i>“Aren’t you, PM?”</i>");
 	output("\n\n<i>“MY.ANALYTICS.RECOMMEND.THIS.FACILE.CHARADE.PROCEED.FOR.NOW.”</i> says PM, prehensile multi-tools gently circling around her head.");
-	output("\n\n<i>“Awwwwwwww,” sighs Quaelle, squeezing you happily into her soft side as the credits roll. <i>“You know it loves her, deeeeep down.”</i>");
+	output("\n\n<i>“Awwwwwwww,”</i> sighs Quaelle, squeezing you happily into her soft side as the credits roll. <i>“You know it loves her, deeeeep down.”</i>");
 
 	quaelleSexBathEnd(60);
 }
