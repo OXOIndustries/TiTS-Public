@@ -202,6 +202,7 @@ public function zhengFoundryF1EncounterBonus():Boolean
 			encounters.push(ratsInTheMineEncounter);
 			encounters.push(ratsInTheMineEncounter);
 		}
+		if (snekAndMausHavingFun()) encounters = [snekMausBonus];
 		/*encounters.push(boredJumperAttackProc);
 		encounters.push(boredJumperAttackProc);*/
 		var pregScene:int = boredJumperPregScene();
