@@ -19898,6 +19898,29 @@
 			}
 			return (stretched || devirgined);
 		}
+		public function instaBuzzed():String
+		{
+			var outputS:String = "";
+			//Imbibe some to keep party train going.
+			imbibeAlcohol(20);
+			var thisStatus:StorageClass = getStatusEffect("Alcohol");
+		
+			if (thisStatus == null) return "";
+			
+			//Bump booze in blood up to buzzed level
+			if(thisStatus.value2 < 25) thisStatus.value2 = 25;
+			
+			// Alcohol is consumed at a rate of 1 unit per minute
+			if (!hasStatusEffect("Buzzed"))
+			{
+				createStatusEffect("Buzzed",0,0,0,0, false, "Icon_DizzyDrunk", "You’re a little buzzed, leaving you feeling strong but a little slower of wit and weaker of will.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
+				physiqueMod += 2;
+				willpowerMod -= 1;
+				intelligenceMod -= 1;
+				if(this is PlayerCharacter) outputS += "\n\nDamn, that stuff you were drinking was awesome. <b>You’re feeling pretty good right now. You must be buzzed.</b>";
+			}
+			return outputS;
+		}
 		public function instaDrunk():String
 		{
 			var outputS:String = "";
@@ -19908,7 +19931,7 @@
 			if (thisStatus == null) return "";
 			
 			//Bump booze in blood up to drunko level
-			if(thisStatus.value2 < 55) thisStatus.value2 = 55;
+			if(thisStatus.value2 < 50) thisStatus.value2 = 50;
 			
 			// Alcohol is consumed at a rate of 1 unit per minute
 			if (!hasStatusEffect("Buzzed"))
@@ -19941,7 +19964,7 @@
 			
 			if (thisStatus == null) return "";
 			
-			//Bump booze in blood up to drunko level
+			//Bump booze in blood up to smashed level
 			if(thisStatus.value2 < 75) thisStatus.value2 = 75;
 			
 			// Alcohol is consumed at a rate of 1 unit per minute
@@ -19970,7 +19993,6 @@
 				{
 					getStatusEffect("Drunk").hidden = true;
 				}
-				
 				physiqueMod += 1;
 				reflexesMod -= 1;
 				willpowerMod -= 1;
