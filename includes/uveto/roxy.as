@@ -1883,7 +1883,9 @@ public function roxySoxyTakesYourCoxyInHerBoxyVag():void
 	
 	output("Ebony-black horse-pussy calls out to you, drooling thin streams of clear lubricant down its radiant surface. The way she’s positioned makes it the most obvious target, the easiest guess. It’s like she’s set herself up for an own goal. The hypnotic shake of her butt is one thing, but the way that dewy mound gushes the longer you stare is... amazing. Your [pc.cockType " + kok + "] firmness agrees.");
 	output("\n\nThat fat-lipped pheromone mitten is built to take insertions people think only leithans could handle. Vertically, that supple gash extends further than the average pussy, making it abundantly clear what kind of girth it’s willing to accommodate. It looks and smells sweeter than fine, rich chocolate. The syrupy mess it makes is what all lovers look like when their passions have exhausted.");
-	output("\n\nYou gulp, licking your lips, catching another breath of the girlmusk emitting from the heated, nectar-lubed hole in front of you. Her ears perk up, tilting left and right in symmetrical rhythm. Scoring this easily anywhere else would be impossible, and that’s just what she wants you realize. <b>If you were in rut, you bet this slut-rabbit would just throw herself on you without a second thought, without even blinking.</b> She’d confine herself to a bedroom with you until all pheromone production had ceased");
+	output("\n\nYou gulp, licking your lips, catching another breath of the girlmusk emitting from the heated, nectar-lubed hole in front of you. Her ears perk up, tilting left and right in symmetrical rhythm. Scoring this easily anywhere else would be impossible, and that's just what she wants you to realize.");
+	if (pc.inRut()) output(" How appropriate that you're in the hyper-endowed state of arousal and breeding necessary to breed a laquine the way she deserves.");	
+	else output(" <b>If you were in rut, you bet this slut-rabbit would just throw herself on you without a second thought, without even blinking.</b> She'd confine herself to a bedroom with you until all pheromone production had ceased.");
 	output("\n\n<i>“Oh, I don’t know,”</i> you finally speak, voice bone dry, [pc.moving] towards her. When you sidle up behind the prostrate laquine, she hums quietly at the touch of your [pc.skinFurScales] against her back");
 	if (pc.hasTits()) output(", and the weight of your [pc.breasts] contouring to her body");
 	output(". <i>“Must be this.”</i>");
@@ -1998,6 +2000,8 @@ public function roxySoxyTakesYourCoxyInHerBoxyVag():void
 		output(".");
 	}
 	
+	processTime(15 + rand(15));
+	
 	if (pc.hasKnot(kok)) output("\n\nIt takes one... two thrusts, and your [pc.knot " + kok + "] finally pops inside at the same time your [pc.cockHead " + kok + "] inflates for the churning of your [pc.cumFlavor] seed. Inside Roxy’s magnificently chubby laquine womanhood, warm seed begins to flow.");
 	else output("\n\nTwo thrusts more you hilt yourself in the laquine, her magnificently chubby cunt handling it from there.");
 	output(" Hoarse screams tear their way out of Roxy’s throat; her nerves ripple wildly and her fingers spasm against whatever’s in grasping range.");
@@ -2048,7 +2052,6 @@ public function roxySoxyTakesYourCoxyInHerBoxyVag():void
 	}	
 
 	pc.exhibitionism(1);
-	processTime(15 + rand(15));
 	roxy.loadInCunt(pc, 0);
 	pc.orgasm();
 	clearMenu();
@@ -2246,6 +2249,9 @@ public function roxySoxyTakesYourCoxyInHerBoxyAnal():void
 			output(" tiny, mound-coating streams of [pc.girlCum] in distant girly release.");
 		}
 	}
+	
+	processTime(15 + rand(15));
+	
 	if (pc.cumQ() >= 10000)
 	{
 		output("\n\nThe first vibrant load of [pc.cum] that blasts through your [pc.cock " + kok + "] like a volcanic detonation of masculinity. Her asshole is incandescent with ecstasy, and so is your [pc.cockColor " + kok + "] rod. You let your glazing eyes drift ashut on a staccato of [pc.legsNoun]-writhing pleasure. Her anus, her entire body, for all its anti-anal grumblings, is guzzling your [pc.cumFlavor] spooge down. Acquiescence doesn’t spare her ring from further torture -- the sheer weight, force, and strength of your [pc.cumVisc], busting nut spreads her slightly wider to handle it.");
@@ -2292,7 +2298,6 @@ public function roxySoxyTakesYourCoxyInHerBoxyAnal():void
 	flags["ROXY_DOGGY_LAST"] = 1;
 	IncrementFlag("ROXY_SEX");
 	IncrementFlag("ROXY_DOGGY_ANAL");
-	processTime(15 + rand(15));
 	roxy.loadInAss(pc);
 	pc.orgasm();
 	pc.shower();
@@ -2449,7 +2454,8 @@ public function roxySoxyTakesYourCoxyInHerBoxyDP():void
 		else if (pc.hasKnot(kok)) output(", cum-cork sliding into place in her pussy");
 		else output(", cum-cork sliding into place in her ass");
 	}
-	output(".");
+	output(".");	
+	processTime(15 + rand(15));
 	if (pc.cumQ() >= 10000)
 	{
 		output("\n\nYou can feel the heat of your orgasm long before it pumps out of your molten-hot rods. You and Roxy shake violently when the first voluminous pillars of [pc.cum] geyser, not a moment of rest allotted before the rest come. The laquine’s body may be suitable for your breeding rods, but it is certainly not built to naturally handle the [pc.cumFlavor] torrent of seed-filled spooge");
@@ -2532,7 +2538,6 @@ public function roxySoxyTakesYourCoxyInHerBoxyDP():void
 	IncrementFlag("ROXY_SEX");
 	IncrementFlag("ROXY_DOGGY_DP");
 	pc.exhibitionism(1);
-	processTime(15 + rand(15));
 	roxy.loadInCunt(pc,0);
 	roxy.loadInAss(pc);
 	pc.orgasm();
