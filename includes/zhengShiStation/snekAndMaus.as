@@ -791,7 +791,14 @@ public function mausesAreTheNaturalPreyOfSneksAndPCs():void
 	// Cum Addict
 	else if (pc.isDependant(Creature.DEPENDANT_CUM)) output("The sheer size of the mouse-boy's squishy balls promises a feast to remember. The more you think about sucking down some of his creamy jism the more you brain comes up with justifications as to why you <i>need</i> to be in there earning your share. There's absolutely no way you can miss out on what he's packing, even if it has to be split with that snake. You're already imagining how delicate and salty his taste must be, matching his effete features. A trail of over-producing saliva is left in your drive to take your place at his crotch.");
 	// Heat
-	else if (pc.inHeat()) output("You would love nothing more than to seat your fertile cunt{s one by one} on a virile boy-thief's dick. He could pump your womb{s} so full that not only would you look pregnant outright, the little rodent'd father more than {a few sets of} twins. Sadly, the snake-slut prepping him would object. Sucking that dick is the next best thing, though, followed up by sinking your [pc.fingers] into his spunk-stash. A cum-filled stomach could fool your cravings for motherhood into relenting for a few hours. Suffering a critical willpower failure, you're shoving your way in, hurrying to the hottest, hardest dick you've been able to find.");
+	else if (pc.inHeat())
+	{
+		output("You would love nothing more than to seat your fertile " + (pc.hasVaginas() ? "cunts" : "cunt"));
+		if (pc.vaginas.length > 2) output(" one by one");
+		output(" on a virile boy-thief's dick. He could pump your " + (pc.hasVaginas() ? "wombs" : "womb") + " so full that not only would you look pregnant outright, the little rodent'd father more than");
+		if (pc.hasVaginas()) output(" a few sets of");
+		output(" twins. Sadly, the snake-slut prepping him would object. Sucking that dick is the next best thing, though, followed up by sinking your [pc.fingers] into his spunk-stash. A cum-filled stomach could fool your cravings for motherhood into relenting for a few hours. Suffering a critical willpower failure, you're shoving your way in, hurrying to the hottest, hardest dick you've been able to find.");
+	}
 	// Else
 	else output("It'd be a lie to say you aren't turned on by this turn of events, and it would also be a lie to say you weren't interested in having a taste too. Your mouth is flooding with saliva just thinking about joining that pirate-snake and stretching your throat around that [rat1.skinColor] mouse's stiff, hot boner, to say nothing of his doughy balls. Before anyone can catch you peeping, you intrude upon their affair, striding your way to join the pre-soaked rendezvous.");
 
@@ -872,7 +879,7 @@ public function mausSquirtsCumWhenSurroundedByCumSlutsAsADefenseMechanism():void
 		if (pc.isCrotchExposed()) output(" down your [pc.thighs] and onto the floor.");
 		else output(" into your [pc.crotchCovers].");
 		if (pc.isHerm()) output(" Your [pc.cocksLight] " + (pc.hasCocks() ? "have" : "has") + " been rock hard for an indeterminate amount of time, turgid and helplessly unattended, all for his sake. That full-body quiver you had a while ago at the center of your soaking delta must have been your [pc.pussiesLight] going off. The scent of [pc.girlCumNoun] must have tickled his nose as some point...");
-		else if (pc.hasVagina()) output(" You're not sure how long ago you felt that full-body quiver, but when you think about it, you realize you're a sopping wet mess. It's a superheated swamp where your [pc.pussiesLight] are. Penetrating you would be trivial" + (pc.isCrotchExposed() ? "." : ", even through clothing.") + " Your [pc.girlCumNoun]-scent must be tickling his nose right now, as surely as it is yours.");
+		else if (pc.hasVagina()) output(" You're not sure how long ago you felt that full-body quiver, but when you think about it, you realize you're a sopping wet mess. It's a superheated swamp where your [pc.pussiesLightIsAre]. Penetrating you would be trivial" + (pc.isCrotchExposed() ? "." : ", even through clothing.") + " Your [pc.girlCumNoun]-scent must be tickling his nose right now, as surely as it is yours.");
 		else output(" The inexorable rise of your [pc.cocksLight] was a faint occurrence in your cock-drunk haze. They send signals of stiffness and helpless inattention, ignored in favor of the one between a pi-rat's legs.");
 	}
 	output("\n\n<i>\"Can you switch? And use your hands, too?\"</i> he asks with almond eyes. <i>\"When they're this big I can't walk around with getting distracted.\"</i>");
