@@ -18045,8 +18045,9 @@
 				case GLOBAL.FLUID_TYPE_GIRLCUM:
 				case GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM:
 				case GLOBAL.FLUID_TYPE_NYREA_CUM:
-					collection.push("girl-cum");
+					collection.push("girl-cum","girl-cum","fem-cum");
 					if(isBimbo() || isBro()) collection.push("girl-cum", "girl-lube", "girl-lube", "girl-juice", "cunny-honey");
+					if(libido() >= 50) collection.push("girl-spunk","fem-spunk","fem-cum");
 					break;
 				case GLOBAL.FLUID_TYPE_HONEY:
 					collection.push("honey");
