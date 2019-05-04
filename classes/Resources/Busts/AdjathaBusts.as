@@ -290,6 +290,11 @@ package classes.Resources.Busts
 		public var Bust_ESTALLIA_NUDE:Class;
 		public function get Bounds_ESTALLIA_NUDE():Rectangle { return Bounds_ESTALLIA; }
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/corona_firepup.png", mimeType = "image/png")]
+		public var Bust_FIREPUP:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/corona_firepup_nude.png", mimeType = "image/png")]
+		public var Bust_FIREPUP_NUDE:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/adjatha/flahne.png", mimeType = "image/png")]
 		public var Bust_FLAHNE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/flahne_nude.png", mimeType = "image/png")]

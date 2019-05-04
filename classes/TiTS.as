@@ -461,6 +461,7 @@
 		include "../includes/zhengShiStation/rozPowerGoo.as";
 		include "../includes/zhengShiStation/slyverenSlavebreaker.as";
 		include "../includes/zhengShiStation/spacewalk.as";
+		include "../includes/zhengShiStation/snekAndMaus.as";
 		include "../includes/zhengShiStation/tivf.as";
 		include "../includes/zhengShiStation/teyaalTheEngineer.as";
 		include "../includes/zhengShiStation/urbolg.as";

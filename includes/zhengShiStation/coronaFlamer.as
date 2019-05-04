@@ -1,6 +1,6 @@
 public function showCoronaFlamer(nude:Boolean = false, aut:Boolean = true):void
 {
-	//showBust((nude ? "ANNO_HUSKAR_NUDE" : "ANNO_HUSKAR"));
+	showBust((nude ? "FIREPUP_NUDE" : "FIREPUP"));
 	showName("CORONA\nLORD FLAMER");
 	if (aut) author("Wsan");
 }
