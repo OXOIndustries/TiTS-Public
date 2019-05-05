@@ -5,6 +5,7 @@
 	import classes.Items.Apparel.AnnosBlouse;
 	import classes.Items.Apparel.AnnosCatsuit;
 	import classes.Items.Apparel.TSTArmor;
+	import classes.Items.Armor.ArmorSteeleSuit;
 	import classes.Items.Guns.HammerCarbine;
 	import classes.Items.Guns.LaserCarbine;
 	import classes.Items.Guns.Goovolver;
@@ -30,7 +31,7 @@
 		//constructor
 		public function Anno()
 		{
-			this._latestVersion = 13;
+			this._latestVersion = 14;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -283,7 +284,10 @@
 		{
 			dataObject.balls = 0;
 		}
-		
+		public function UpgradeVersion13(dataObject:Object):void
+		{
+			dataObject.inventory.push(new ArmorSteeleSuit().getSaveObject());
+		}
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature;
