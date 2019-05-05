@@ -26,7 +26,7 @@ public function pennyIsCumSlut():Boolean
 }
 public function pcHasBadgerForm():Boolean
 {
-	if(pc.longestCockLength() >= 11 && pc.biggestTitSize() >= 8 && pc.bRows() == 1 && pc.cockTotal() == 1 && pc.balls == 2 && pc.totalVaginas() == 1 && ((pc.tailCount == 1 && pc.tailType == GLOBAL.TYPE_BADGER) || pc.hasCockTail() || pc.hasTailgina()) && pc.hasFur() && pc.furColor == "black" && pc.isBiped() && pc.armType == GLOBAL.TYPE_BADGER && pc.faceType == GLOBAL.TYPE_BADGER && pc.femininity >= 75 && pc.lipMod >= 1 && pc.hasPerk("Easy") && pc.hasPerk("Inhuman Desire") && pc.hasPerk("Breed Hungry"))
+	if(pc.longestCockLength() >= 11 && pc.biggestTitSize() >= 8 && pc.bRows() == 1 && pc.cockTotal() == 1 && pc.balls == 2 && pc.totalVaginas() == 1 && ((pc.tailCount == 1 && pc.tailType == GLOBAL.TYPE_BADGER) || pc.hasCockTail() || pc.hasTailgina()) && pc.hasFur() && pc.furColor == "black" && pc.isBiped() && pc.armType == GLOBAL.TYPE_BADGER && pc.faceType == GLOBAL.TYPE_BADGER && pc.earType == GLOBAL.TYPE_BADGER && pc.femininity >= 75 && pc.lipMod >= 1 && pc.hasPerk("Easy") && pc.hasPerk("Inhuman Desire") && pc.hasPerk("Breed Hungry"))
 	{
 		return true;
 	}
@@ -38,26 +38,15 @@ public function resetDrBadgerBimboTF():void
 	if(pc.thickness < 75) 
 	{
 		pc.thickness = 75;
-		//IF PC DOES NOT HAVE TWO LEGS
-		if(pc.legCount != 2) 
-		{
-			pc.legCount = 2;
-			pc.genitalSpot = 0;
-			pc.clearLegFlags();
-			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-			pc.legType = GLOBAL.TYPE_HUMAN;
-		}
 	}
-	else
+	//IF PC DOES NOT HAVE TWO LEGS
+	if(pc.legCount != 2) 
 	{
-		if(pc.legCount != 2) 
-		{
-			pc.legCount = 2;
-			pc.genitalSpot = 0;
-			pc.clearLegFlags();
-			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-			pc.legType = GLOBAL.TYPE_HUMAN;
-		}
+		pc.legCount = 2;
+		pc.genitalSpot = 0;
+		pc.clearLegFlags();
+		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+		pc.legType = GLOBAL.TYPE_HUMAN;
 	}
 	//IF PC HAS GOO-SKIN
 	if(pc.skinType == GLOBAL.SKIN_TYPE_GOO) 
@@ -206,6 +195,13 @@ public function resetDrBadgerBimboTF():void
 		pc.faceType = GLOBAL.TYPE_BADGER;
 		pc.clearFaceFlags();
 		pc.addFaceFlag(GLOBAL.FLAG_MUZZLED);
+	}
+	if(pc.earType != GLOBAL.TYPE_BADGER)
+	{
+		pc.earType = GLOBAL.TYPE_BADGER;
+		pc.clearEarFlags();
+		pc.addEarFlag(GLOBAL.FLAG_FURRED);
+		pc.earLength = 1;
 	}
 	if(pc.femininity < 75) pc.femininity = 75;
 	if(pc.lipMod < 1) pc.lipMod = 1;
