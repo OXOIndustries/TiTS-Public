@@ -638,10 +638,11 @@ public function doSiegwulfeSex(response:String = "none"):void
 				if(chars["WULFE"].isBimbo()) output("<i>“Gimme all that sweet [pc.cumNoun], [pc.master]!”</i> the bimbo-wolf mewls hungrily, bouncing her chest just that much faster along your slick shaft. <i>“" + (flags["WULFE_SEXED_SUCK"] == undefined ? "I sooo wanna taste you for real now!" : "My [pc.master] makes the tastiest cum!") + "”</i>");
 				else output("<i>“Cum for me,”</i> [wulfe.name] urges, gripping your shaft in one hand and pumping as hard as she can. <i>“Please, [pc.master], cover me in it!”</i>");
 				output("\n\nShe sounds so hungry for it... how could you not? You buck your [pc.hips] and give [wulfe.name] what she wants,");
+				var cumQ:Number = pc.cumQ();
 				// low cum:
-				if(pc.cumQ() <= 50) output(" spreading a few thick globs of [pc.cum] across her dark lips. She giggles playfully and licks herself clean, continuing to pump your shaft until you’ve fired your last ropes of seed into her waiting maw.");
+				if(cumQ <= 50) output(" spreading a few thick globs of [pc.cum] across her dark lips. She giggles playfully and licks herself clean, continuing to pump your shaft until you’ve fired your last ropes of seed into her waiting maw.");
 				// med cum:
-				else if(pc.cumQ() <= 2000) output(" blasting a thick, musky spray of [pc.cum] across the wolf-drone’s " + (chars["WULFE"].isBimbo() ? "blushed" : "alabaster") + " cheeks. She recoils, then laughs, then licks at her cheeks and pumps your shaft manually, milking out more and more of your seed for her to feast on.");
+				else if(cumQ <= 2000) output(" blasting a thick, musky spray of [pc.cum] across the wolf-drone’s " + (chars["WULFE"].isBimbo() ? "blushed" : "alabaster") + " cheeks. She recoils, then laughs, then licks at her cheeks and pumps your shaft manually, milking out more and more of your seed for her to feast on.");
 				// high cum:
 				else output(" unleashing a fire-hose of an orgasm that splatters her face and hair in a creamy geyser. She gasps, laughs, and ends up swallowing a bucket’s worth of cum. [wulfe.name] laughs heartily, lapping at her cheeks and [wulfe.lips]. Cum pours down her, spreading across her breasts and drooling down onto her belly and your thighs.");
 				output(" <i>“Ah, so much... and so good!”</i> the sexy battle-droid praises, languidly cleaning herself off. She puts on quite the show, running her tongue over her shadowy lips and her playing her hands across her bare chest, giving herself a pinch and a caress when your eyes wander down.");
@@ -2076,14 +2077,15 @@ public function siegwulfeRequestCock(cockId:int):void
 		if (pc.hasKnot(cockId)) output(" Your [pc.knot] pops inside her with scant resistance, all but encouraged by the shifting grip of her incredible pussy.");
 		output("\n\nThough unseen, you can hear [wulfe.name]’s cock sowing her synthetic seed all over the ground while she shakes atop you, milking you with intense, grippy undulations of her soft walls. You’re drained into her waiting womb, " + (pc.hasKnot(cockId) ? "squeezing your knot" : "all") + " while she cums repeatedly.");
 
-		if (pc.cumQ() < 5000) output("\n\n<i>“Nnnn... fuck,”</i> she sighs, lifting her head and swishing her dark blonde hair out of her face. <i>“Not bad, pet.”</i>");
-		else if (pc.cumQ() < 10000) output("\n\n<i>“Still cumming...”</i> she notes, gripping you harder. <i>“Quite the toy you are, pet.”</i>");
+		var cumQ:Number = pc.cumQ();
+		if (cumQ < 5000) output("\n\n<i>“Nnnn... fuck,”</i> she sighs, lifting her head and swishing her dark blonde hair out of her face. <i>“Not bad, pet.”</i>");
+		else if (cumQ < 10000) output("\n\n<i>“Still cumming...”</i> she notes, gripping you harder. <i>“Quite the toy you are, pet.”</i>");
 		else output("\n\n<i>“Oh, you’ve got so much love to give me,”</i> she sighs, gripping you so intensely it’s almost like she has your cock in hand. <i>“Pour it all out until you’re satisfied, pet.”</i>");
 		output("\n\n[wulfe.name] raises herself with a groan when you’re done");
 		if (pc.hasKnot(cockId)) output(", your own weight pulling your knot back out of her");
 		output(". A deep noise of satisfaction rumbles in her throat as your [pc.cum]");
-		if (pc.cumQ() < 5000) output(" drips");
-		else if (pc.cumQ() < 10000) output(" spurts");
+		if (cumQ < 5000) output(" drips");
+		else if (cumQ < 10000) output(" spurts");
 		else output(" flows like a river");
 		output(" down her hindlegs, the former sex droid spreading them as far as they’ll go.");
 
@@ -2140,16 +2142,16 @@ public function siegwulfeRequestOral():void
 	output("\n\nShe slowly lowers herself to the ground, shuffling between your [pc.feet] before pressing at your [pc.thighs]. <i>“Hold your thighs open, pet,”</i> she commands you.");
 	output("\n\nYou’re only too eager to obey, watching your master lick her plush lips as she eyes your " + (pc.hasCock() ? "stiffly erect cock" : "succulent pussy") + ". Bending at the hips she");
 
+	var cumQ:Number = (pc.hasCock() ? pc.cumQ() : 0);
 	if (pc.isHerm())
 	{
 		output(" wraps her long, warm tongue around your [pc.cockHeadBiggest] and pulls it into her mouth, eliciting a groan of pleasure from your throat. She’s hardly even started and it already feels amazing. Leaning back and resting on your elbows, you moan in contentment while she begins to work you over.");
 		output("\n\nHer technique is divine. She sucks you deep and hollows her cheeks on the way back up before withdrawing you completely and running her tongue down your length, all the way down to your waiting pussy where she licks and laps at your [pc.clits] with frenetic vigor. Suffering her attentions on both of your sexes when you were already so submissively worked up, you can’t avoid cumming with both sets at once.");
 		output("\n\nYour [pc.hips] come off the ground as you cry out in release, incapable of resisting the urge to thrust between her lips and cum as deep as you can. She allows you the privilege of emptying yourself into her throat while she slips two fingers into your clenching quim and fingerfucks you, driving you to have a full-body orgasm that leaves you shaking and breathless.");
 		output("\n\nShe raises herself back up when you’re done,");
-		if (pc.cumQ() < 10000) output(" having swallowed everything you had and looking no worse for wear. If anything, she looks incredibly pleased with your offering.");
-		else if (pc.cumQ() < 20000) output(" having taken your impressive loads into her stomach and looking just slightly pudgier as a result. She looks all kinds of happy about it, though.");
+		if (cumQ < 10000) output(" having swallowed everything you had and looking no worse for wear. If anything, she looks incredibly pleased with your offering.");
+		else if (cumQ < 20000) output(" having taken your impressive loads into her stomach and looking just slightly pudgier as a result. She looks all kinds of happy about it, though.");
 		else output(" having long since resorted to roughly jacking you off after your massive loads became too much to swallow. She looks very happy with the amount you’ve offered her.");
-		output("\n\n<i>“There,”</i> [wulfe.name] murmurs, looking up at you and smiling. <i>“A suitable reward for my favorite pet.”</i>");
 	}
 	else if (pc.hasCock())
 	{
@@ -2157,8 +2159,8 @@ public function siegwulfeRequestOral():void
 		output("\n\nHer technique is divine. The way she sucks you so deep then withdraws with hollowed cheeks has you squirming in her grip, actively denying your impulse to cum. So blissful is the experience, so peaceful and pleasurable, that you don’t want to give it up just yet. Try as you might, though, you can’t resist [wulfe.name]’s amazing oral skill and she knows it. She looks up at you and smiles as she feels you shiver, heralding your orgasm before she dives back down on you with aplomb.");
 		output("\n\nYour [pc.hips] come off the ground as you groan in release, incapable of resisting the urge to thrust between her lips and cum as deep as you can. She allows you the privilege, wrapping her hands around your thighs and forcing you to raise your groin. You can feel her swallowing your loads down with enthusiasm, her dark blonde hair shaking as her head bobs on the end of your throbbing prick.");
 		output("\n\nShe raises herself back up when you’re done,");
-		if (pc.cumQ() < 10000) output(" having swallowed everything you had and looking no worse for wear. If anything, she looks incredibly pleased with your offering.");
-		else if (pc.cumQ() < 20000) output(" having taken your impressive loads into her stomach and looking just slightly pudgier as a result. She looks all kinds of happy about it, though.");
+		if (cumQ < 10000) output(" having swallowed everything you had and looking no worse for wear. If anything, she looks incredibly pleased with your offering.");
+		else if (cumQ < 20000) output(" having taken your impressive loads into her stomach and looking just slightly pudgier as a result. She looks all kinds of happy about it, though.");
 		else output(" having long since resorted to roughly jacking you off after your massive loads became too much to swallow. She looks very happy with the amount you’ve offered her.");
 	}
 	else if (pc.hasVagina())

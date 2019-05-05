@@ -335,7 +335,7 @@
 					else kGAMECLASS.output("\n\n" + target.armTypeLockedMessage());
 				}
 				//Change leg-type to bipedal human
-				if((pc.legType != GLOBAL.TYPE_HUMAN || pc.legCount != 2) && changes < changeLimit && rand(3) == 0 && pc.armType == GLOBAL.TYPE_HUMAN)
+				if((pc.legType != GLOBAL.TYPE_HUMAN || pc.legCount != 2) && changes < changeLimit && rand(3) == 0 /*&& pc.armType == GLOBAL.TYPE_HUMAN*/)
 				{
 					if (target.legTypeUnlocked(GLOBAL.TYPE_HUMAN))
 					{

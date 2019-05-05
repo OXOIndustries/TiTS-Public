@@ -1005,7 +1005,7 @@ public function roxyTalkFetish():void
 	flags["ROXY_TALK_FETISH"] = 1;
 	flags["ROXY_STERILEX"] = 0;
 	
-	output("After having gone a round with the fiery jock-rabbit, something’s been on your mind. You tap her shoulder and look her dead in the eye, asking if she really is fertile, if she really is <i>that</i> keen on having kids");
+	output("After having gone a round with the fiery jock-rabbit, something’s been on your mind. You tap her shoulder and look her dead in the eye, asking if she really is fertile, if she really is <i>that</i> keen on having kids.");
 	output("\n\n<i>“So you noticed, huh?”</i> She laughs and leans back and forth like a swivel, an uncharacteristically bashful look flashing across her short muzzle. <i>“Well, I’m glad it wasn’t hard to. Would have to question your state of mind if you didn’t!”</i> She elbows you playfully. <i>“Yeah. I wanna get pregnant... I wanna get knocked up. Yep...”</i> her head rotates, <i>“I’ve got a thing- a big thing, for getting bred.”</i>");
 	output("\n\nShe crosses her arms, looking at you seriously. <i>“I want to be a mom, and that’s probably my biggest goal in life.”</i> Roxy swallows, chewing her lip for a second. <i>“Maybe a bit of it is hormones. Maybe it’s because my younger sisters already have kids and I’m still single and only meeting people who cum tiny ropes as big as their little twigs. Maybe it’s cause they, mom, and my other mom hold it against me.”</i>");
 	output("\n\nShe sighs regretfully. <i>“You should see how my ‘dad’ gets when talking about the fertility plague going on...”</i>");
@@ -1686,9 +1686,10 @@ public function roxySoxyTakesYourCoxyInHerBoxyBJ(firstTime:Boolean=false):void
 		else output(" <i>“I don’t know how or where you got yourself to smell like this, but I love it. It’s like you were born to mate laquines like me. I really can’t believe you don’t have a bunch of rabbit-eared sluts clinging to you... like, fucking shocked that you don’t waddle around with four bitches begging to get railed like braindead cumdumps on a daily basis!”</i>");
 
 		output("\n\nYou ask her if she’d like to be the first.");
-		output("\n\nBlinking, she takes an ascending whiff of your [pc.cock " + kok + "], totally enthralled.");
-		if (flags["ROXY_TOTAL_KIDS"] == undefined && flags["ROXY_PREG_TIMER"] == undefined) output(" Get me pregnant first, then we’ll see.");
-		else output(" Get me pregnant again and I might start thinking about it.");
+		output("\n\nBlinking, she takes an ascending whiff of your [pc.cock " + kok + "], totally enthralled. <i>“");
+		if (flags["ROXY_TOTAL_KIDS"] == undefined && flags["ROXY_PREG_TIMER"] == undefined) output("Get me pregnant first, then we’ll see.");
+		else output("Get me pregnant again and I might start thinking about it.");
+		output("”</i>");
 	}
 		
 	output("\n\nShe plants two wet kisses to [pc.eachCockHead]");
@@ -1883,9 +1884,9 @@ public function roxySoxyTakesYourCoxyInHerBoxyVag():void
 	
 	output("Ebony-black horse-pussy calls out to you, drooling thin streams of clear lubricant down its radiant surface. The way she’s positioned makes it the most obvious target, the easiest guess. It’s like she’s set herself up for an own goal. The hypnotic shake of her butt is one thing, but the way that dewy mound gushes the longer you stare is... amazing. Your [pc.cockType " + kok + "] firmness agrees.");
 	output("\n\nThat fat-lipped pheromone mitten is built to take insertions people think only leithans could handle. Vertically, that supple gash extends further than the average pussy, making it abundantly clear what kind of girth it’s willing to accommodate. It looks and smells sweeter than fine, rich chocolate. The syrupy mess it makes is what all lovers look like when their passions have exhausted.");
-	output("\n\nYou gulp, licking your lips, catching another breath of the girlmusk emitting from the heated, nectar-lubed hole in front of you. Her ears perk up, tilting left and right in symmetrical rhythm. Scoring this easily anywhere else would be impossible, and that's just what she wants you to realize.");
-	if (pc.inRut()) output(" How appropriate that you're in the hyper-endowed state of arousal and breeding necessary to breed a laquine the way she deserves.");	
-	else output(" <b>If you were in rut, you bet this slut-rabbit would just throw herself on you without a second thought, without even blinking.</b> She'd confine herself to a bedroom with you until all pheromone production had ceased.");
+	output("\n\nYou gulp, licking your lips, catching another breath of the girlmusk emitting from the heated, nectar-lubed hole in front of you. Her ears perk up, tilting left and right in symmetrical rhythm. Scoring this easily anywhere else would be impossible, and that’s just what she wants you to realize.");
+	if (pc.inRut()) output(" How appropriate that you’re in the hyper-endowed state of arousal and breeding necessary to breed a laquine the way she deserves.");	
+	else output(" <b>If you were in rut, you bet this slut-rabbit would just throw herself on you without a second thought, without even blinking.</b> She’d confine herself to a bedroom with you until all pheromone production had ceased.");
 	output("\n\n<i>“Oh, I don’t know,”</i> you finally speak, voice bone dry, [pc.moving] towards her. When you sidle up behind the prostrate laquine, she hums quietly at the touch of your [pc.skinFurScales] against her back");
 	if (pc.hasTits()) output(", and the weight of your [pc.breasts] contouring to her body");
 	output(". <i>“Must be this.”</i>");
@@ -2147,10 +2148,10 @@ public function roxySoxyTakesYourCoxyInHerBoxyAnal():void
 	
 	output("\n\nRoxy is of course displeased with the idea.");
 	output("\n\n<i>“[pc.name], don’t use my ass, use my pu-”</i>");
-	output("\n\nHer complaints halt the second you knock your [pc.cockHead " + kok + "] to her entrance. Roxy’s lapine features shiver; her ears instantly flop and her digits curl; it intensifies per the glistening [pc.cockColor " + kok + "] inches you socket inside. Around your twitching [pc.cockNoun " + kok + "] her obdurate asshole clenches in resistance, one last bodily effort to persuade you <i>turn around,");
+	output("\n\nHer complaints halt the second you knock your [pc.cockHead " + kok + "] to her entrance. Roxy’s lapine features shiver; her ears instantly flop and her digits curl; it intensifies per the glistening [pc.cockColor " + kok + "] inches you socket inside. Around your twitching [pc.cockNoun " + kok + "] her obdurate asshole clenches in resistance, one last bodily effort to persuade you, <i>‘turn around,");
 	if (pregTri > 0) output(" give me more babies");
 	else output(" give me a baby instead");
-	output("! Repopulate my entire race!</i>");
+	output("! Repopulate my entire race!’</i>");
 	
 	output("\n\nIgnoring the plea (which is really, REALLY hard) you power on, pushing in as far as");
 	if (pc.cocks[kok].cLength() >= 8) output(" her body will allow");
@@ -2210,7 +2211,7 @@ public function roxySoxyTakesYourCoxyInHerBoxyAnal():void
 	output("\n\n<i>“Come on, come on...”</i> you hear Roxy whispering, nibbling at her lower lip. <i>“So close...”</i>");
 	output("\n\nShe’s going to cum, and after all the unwillingness! Your lips spread into a wide grin after the next thrust. You lower your [pc.face] into her neck and bite down. <i>“Why are you being so <b>mean,</b> [pc.name]?”</i> she moans. <i>“Let me cum!”</i>");
 	output("\n\nYou pinch her nipples on a slow reverse, leaving only the [pc.cockHead " + kok + "] to stretch her oval gap. <i>“S-Steele!! I’m almost there, d-don’t stop!”</i>");
-	output("\n\n<i>Why is that</i> you");
+	output("\n\n<i>“Why is that?”</i> you");
 	if (pc.isBimbo() || pc.isBro() || pc.isNice()) output(" ask");
 	else output(" snark");
 	output(". Roxy groans again, trying to thrust backwards, but with your hands on her waist she can do naught but struggle and whimper in defeat.");
@@ -3204,8 +3205,9 @@ public function roxySexMissionary():void
 	output("\n\n<i>Just remember whose dicks are aimed at whose crotch</i> you mentally utter.");
 	output("\n\nYour face contorts with ecstasy the longer you look, and it takes the masterful laquine’s tug on your leash to change your course. Roxy pushes up off you when you reach out for a touch of athlete’s quim, dragging on the lead hard enough that you tumble to your knees in front of that molten-hot honeypot, salivating close to her gently sloping vulva. Her black pearl pulses its way out of the peak of her shimmery slit, bared to you like the prize in an opened oyster.");
 	output("\n\n<i>“Not gonna waste this opportunity. Hope you don’t mind I want your tongue in there for a bit. Gotta get me nice and ready to handle all of this,”</i> she says, touching her foot to your [pc.cockBiggest]");
-	if (pc.cockTotal() > 2) output(", and then the others next to it}. <i>“They’ll each get a go. Need to figure out which one I like best!”</i>");
-	else if (pc.cockTotal() > 1) output(", and then the other next to it. <i>“They’ll each get a go. Need to figure out which one I like best!”</i>");
+	if (pc.cockTotal() > 2) output(", and then the others next to it");
+	else if (pc.cockTotal() > 1) output(", and then the other next to it");
+	output(". <i>“They’ll each get a go. Need to figure out which one I like best!”</i>");
 	
 	output("\n\nYou gasp, fluids squirting from your shudderingly hot");
 	if (pc.hasVagina()) output(" genitals.");

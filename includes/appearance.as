@@ -801,6 +801,9 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			case GLOBAL.TYPE_VANAE:
 				outputRouter(" A pair of pointed, finned ears tops " + (target == pc ? "your":"[target.hisHer]") + " " + headNoun + ", each one sensitive to the slightest sound.");
 				break;
+			case GLOBAL.TYPE_BADGER:
+				outputRouter(" A pair of rounded, mustelid ears protrude from " + (target == pc ? "your":"[target.hisHer]") + " " + headNoun + ", pointing up as if sensing mischief in the air.");
+				break;
 			case GLOBAL.TYPE_PANDA:
 				outputRouter(" A pair of rounded, panda-like ears protrude from " + (target == pc ? "your":"[target.hisHer]") + " " + headNoun + ", " + target.mf("standing tall and proud", "looking absolutely adorable", true) + ".");
 				break;
@@ -992,6 +995,9 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				break;
 			case GLOBAL.TYPE_VANAE:
 				outputRouter(" The " + target.hairDescript(true,true) + " atop " + (target == pc ? "your":"[target.hisHer]") + " head is parted by a pair of pointed, fin-like ears, sensitive to the slightest sound.");
+				break;
+			case GLOBAL.TYPE_BADGER:
+				outputRouter(" The " + target.hairDescript(true,true) + " on " + (target == pc ? "your":"[target.hisHer]") + " head is parted by a pair of round badger ears that perk up as if sensing mischief in the air.");
 				break;
 			case GLOBAL.TYPE_PANDA:
 				outputRouter(" The " + target.hairDescript(true,true) + " on " + (target == pc ? "your":"[target.hisHer]") + " head is parted by a pair of round panda ears.");
@@ -2548,7 +2554,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			outputRouter(" covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo" : target.scaleColor + "-colored scales") + ".");
 			break;
 		case GLOBAL.TYPE_SUCCUBUS:
-			if(target.legCount < 4) outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " perfectly lissom legs end in mostly human feet, apart from the horn protruding straight down from the heel that forces " + (target == pc ? "you":"[target.himHer]") + " to walk with a sexy, swaying gait. Surprisingly " + (target == pc ? "your":"[target.hisHer]") + " mobility isn’t impaired by having " + (target == pc ? "your":"[target.hisHer]") + " feet converted into natural high heels, although " + (target == pc ? "you are":"[target.heShe] is") + " forced to totter about with " + (target == pc ? "your":"[target.hisHer]") + " upper body thrust forward a little to compensate, leaving you permanently locked into an awkwardly sexy pose.");
+			if(target.legCount < 4) outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " perfectly lissom legs end in " + (target.hasLegFlag(GLOBAL.FLAG_PAWS) ? "pawed feet with an addition of a" : "mostly human feet, apart from the") + " horn protruding straight down from the heel that forces " + (target == pc ? "you":"[target.himHer]") + " to walk with a sexy, swaying gait. Surprisingly " + (target == pc ? "your":"[target.hisHer]") + " mobility isn’t impaired by having " + (target == pc ? "your":"[target.hisHer]") + " feet converted into natural high heels, although " + (target == pc ? "you are":"[target.heShe] is") + " forced to totter about with " + (target == pc ? "your":"[target.hisHer]") + " upper body thrust forward a little to compensate, leaving you permanently locked into an awkwardly sexy pose.");
 			else outputRouter(" " + (target == pc ? "You have":"[target.HeShe] has") + " perfectly lissom legs that end in " + target.feet(true,true) + ".");
 			break;
 		case GLOBAL.TYPE_DEMONIC:

@@ -6194,7 +6194,7 @@
 		public function hasEmoteEars(): Boolean
 		{
 			// For ear types that move emotively, like cute animal ears.
-			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT, GLOBAL.TYPE_SIMII) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
+			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT, GLOBAL.TYPE_SIMII, GLOBAL.TYPE_BADGER) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
 			return false;
 		}
 		public function hasFlatEars(): Boolean
@@ -6236,8 +6236,8 @@
 					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_KORGONNE:
-					adjectives = ["cute","triangular","rounded","fuzzy","floppy","dog-like","korgonne-like","canine"];
-					if(!nonFurrySkin) adjectives.push("furry");
+					adjectives = ["cute","triangular","rounded","floppy","dog-like","korgonne-like","canine"];
+					if(!nonFurrySkin) adjectives.push("furry","fuzzy");
 					break;
 				case GLOBAL.TYPE_EQUINE:
 					adjectives = ["equine", "horse-like", "inhuman"];
@@ -6287,6 +6287,10 @@
 				case GLOBAL.TYPE_KUITAN:
 					adjectives = ["tanuki", "egg-shaped", "rounded"];
 					if(!nonFurrySkin) adjectives.push("furry", "beastial");
+					break;
+				case GLOBAL.TYPE_BADGER:
+					adjectives = ["badger", "mustelid", "triangular", "rounded"];
+					if(!nonFurrySkin) adjectives.push("furry", "fuzzy");
 					break;
 				case GLOBAL.TYPE_MOUSE:
 					adjectives = ["mousey", "mouse-like", "rounded", "circular"];
@@ -12883,6 +12887,7 @@
 			if (hasTail(GLOBAL.TYPE_BADGER)) counter++;
 			if (armType == GLOBAL.TYPE_BADGER) counter++;
 			if (faceType == GLOBAL.TYPE_BADGER) counter++;
+			if (earType == GLOBAL.TYPE_BADGER) counter++;
 			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_FUR) counter++;
 			return counter;
 		}
@@ -13449,7 +13454,7 @@
 			if(/*hasTongueFlag(GLOBAL.FLAG_LONG) && */hasTongueFlag(GLOBAL.FLAG_SQUISHY) && tongueType == GLOBAL.TYPE_CANINE) score++;
 			if(score >= 6 && cockTotal() == 1)
 			{
-				if(InCollection(cocks[0].cType, GLOBAL.TYPE_SAURIAN, GLOBAL.TYPE_SAURMORIAN) && hasSheath(0) && hasCockFlag(0, GLOBAL.FLAG_RIBBED)) score++;
+				if(InCollection(cocks[0].cType, GLOBAL.TYPE_SAURIAN, GLOBAL.TYPE_SAURMORIAN) && hasSheath(0) && hasCockFlag(GLOBAL.FLAG_RIBBED, 0)) score++;
 			}
 			if(score >= 6 && vaginaTotal() == 1)
 			{
