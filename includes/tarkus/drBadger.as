@@ -39,6 +39,9 @@ public function bimbotoriumHallBonus():Boolean
 
 public function drBadgerMenu():void
 {
+	chars["DRBADGER"].keeperBuy = "The “good” doctor points you towards a nearby display with a bored look on her face. It’s clear she’d rather have you doing something other than shopping.\n";
+	chars["DRBADGER"].keeperSell = "Doctor Badger rolls her eyes but begrudgingly looks over your possessions.\n";
+	chars["DRBADGER"].keeperGreeting = "<i>“So what do you want then?”</i> Doctor Badger grumps.\n";
 	shopkeep = chars["DRBADGER"];
 	
 	clearMenu();

@@ -3462,7 +3462,7 @@ public function roxySexMissionaryNext2(arg:Array):void
 		
 		output("\n\nTaking Roxy by the shoulders you withdraw, only for her to grab yours and thump her crotch against yours. <i>“AGAIN!”</i> she barks, bumping your forehead to hers with a sharp tug on the leash. <i>“Againagainagain!”</i> she giggles joyfully.");
 		output("\n\nRabbit femcum splashes over your");
-		if (kok2 >= 0) output(" [pc.cock" + kok2 + "] when you thrust your next prick in, cramming through your own sloppy mess.");
+		if (kok2 >= 0) output(" [pc.cock " + kok2 + "] when you thrust your next prick in, cramming through your own sloppy mess.");
 		else output(" [pc.cock " + kok + "] when you reluctantly push back into her cum-clogged hole.");
 		output(" Your pale, torpid hands sink into Roxy’s fur, a long whimper flowing from your [pc.lipColor] lips. It hurts at first, and none of her fresh heat or the extra lubrication of your minutes old seed makes this easier.");
 		output("\n\nUninterested in a slow pace, the power-bottom laquine wallops your pelvis. She teases you with mocking words, trying to build your boner back to full mast from its sore, tender, soft state. It occurs to you that her cunt never loosened, only tightened harder to keep all the cum in -- and your [pc.cocksLight] too. Lewd squishing sounds from her rewettening snatch shatter your sense of coherency after a minute or two of hot flashes.");

@@ -44,9 +44,9 @@ public function resetDrBadgerBimboTF():void
 	{
 		pc.legCount = 2;
 		pc.genitalSpot = 0;
+		pc.legType = GLOBAL.TYPE_HUMAN;
 		pc.clearLegFlags();
 		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
-		pc.legType = GLOBAL.TYPE_HUMAN;
 	}
 	//IF PC HAS GOO-SKIN
 	if(pc.skinType == GLOBAL.SKIN_TYPE_GOO) 

@@ -33,7 +33,7 @@ package classes.Items.Apparel
 			this.description = "a hardlight anti-gravity undershirt";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A sleek metallic choker fitted with hardlight projectors. Upon activation it coats the wearer�s upper body in sapphire light, providing coverage while keeping your musculature on display.";
+			this.tooltip = "A sleek metallic choker fitted with hardlight projectors. Upon activation it coats the wearer’s upper body in sapphire light, providing coverage while keeping your musculature on display.";
 
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

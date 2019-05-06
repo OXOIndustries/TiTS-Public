@@ -33,7 +33,7 @@ package classes.Items.Apparel
 			this.description = "a pair of swim briefs";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Masculine swimwear with a distinctive V shape. Popular amongst athletes seeking to minimize drag. Hydrophobic ultralastic weave allows the garment to accommodate even the largest packages.";
+			this.tooltip = "Masculine swimwear with a distinctive ‘V’ shape. Popular amongst athletes seeking to minimize drag. Hydrophobic ultralastic weave allows the garment to accommodate even the largest packages.";
 
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

@@ -2893,8 +2893,8 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				outputRouter(" Your");
 				if(target.hasLegFlag(GLOBAL.FLAG_HEELS))
 				{
-					if(bothFeet) outputRouter(" feet appear");
-					else outputRouter(" foot appears");
+					if(bothFeet) outputRouter(" " + (target.hasLegFlag(GLOBAL.FLAG_PAWS) ? "paws" : "feet") + " appear");
+					else outputRouter(" " + (target.hasLegFlag(GLOBAL.FLAG_PAWS) ? "paw" : "foot") + " appears");
 				}
 				else
 				{
