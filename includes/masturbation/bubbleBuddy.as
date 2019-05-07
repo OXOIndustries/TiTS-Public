@@ -300,7 +300,7 @@ public function putItAway(item:ItemSlotClass):void
 {
 	clearOutput();
 	author("Adjatha");
-	showName("\nNEVERMIND...");
+	showName("\nNEVER MIND...");
 	output("You tuck the cum bubble back into your belongings for now. Surely there’s somebody out there who would love a fresh spunk delivery.");
 	clearMenu();
 	addButton(0,"Next",useItemFunction);

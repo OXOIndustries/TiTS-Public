@@ -818,10 +818,10 @@ public function swallowDatZilCockCauseJooLost():void {
 	
 	output("\n\nA rope of honey-like cum splatters off your tongue and slides down your throat before you can react. Master’s balls twitch so perfectly, pumping their syrupy load through his lovely dick and into your waiting mouth. You collect as much as you can on your tongue, holding each successive squirt on your palate until your cheeks are puffed out almost comically. He groans and pulls out, stroking himself as he fires a series of long, wet ejaculations over your [pc.face] and [pc.hair]. You smile, still holding his load, and let him coat you with the ropes of goo.");
 	output("\n\n<i>“Swallow,”</i> your master’s voice buzzes in your ears. You open your mouth to show it to him, and then gulp noisily. It takes two big, long swallows to consume all his honey. Then, you open wide to show him what you’ve done.");
-	output("\n\nThe zil pats your head and chirps, <i>“Nice work. </i>");
-	if(!silly) output("<i>Perhaps we’ll meet again and I can bring you home.</i>");
-	else output("<i>Perhaps if we meet again you’ll get a little bee all your own.</i>");
-	output("<i>“</i>");
+	output("\n\nThe zil pats your head and chirps, <i>“Nice work.");
+	if(!silly) output(" Perhaps we’ll meet again and I can bring you home.");
+	else output(" Perhaps if we meet again you’ll get a little bee all your own.");
+	output("”</i>");
 	output("\n\nYour master has you lick him clean before he buzzes off into the trees, leaving his sensuous taste to remember him by. You sit there, staring at nothing for perhaps thirty minutes. Then, as the effect he had on you evaporates, you realize just how fucking horny you are! You vigorously masturbate for the next two hours before finally sating yourself and passing out.\n\n");
 	// Blah blah, combat texts.
 	pc.loadInMouth(enemy);
@@ -1169,10 +1169,10 @@ public function zilSticksItInYourBoot():void {
 	}
 	output(" you made, the zil spurting his last ropes across your [pc.legOrLegs], [pc.butt], and back.");
 	
-	output("\n\nHe lands a few feet away and admits, <i>“That was better than I thought it would be. I hope we’ll meet again. Maybe I’ll </i>");
-	if(rand(2) == 0) output("<i>even let you be on top!</i>");
-	else output("<i>fuck you so hard you don’t want to leave!</i>");
-	output("<i>“</i>");
+	output("\n\nHe lands a few feet away and admits, <i>“That was better than I thought it would be. I hope we’ll meet again. Maybe I’ll");
+	if(rand(2) == 0) output(" even let you be on top!");
+	else output(" fuck you so hard you don’t want to leave!");
+	output("”</i>");
 	output("\n\nYou slip into an exhausted daze, losing consciousness as the insect-man takes off and floats away.\n\n");
 	processTime(25);
 	pc.orgasm();

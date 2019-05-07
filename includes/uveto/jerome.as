@@ -715,13 +715,14 @@ public function jeromeHipbusterIII(s:Object):void
 	output(" claim over the thick invader stretching your");
 	if (s.vIdx >= 0)
 	{
-		if (pc.vaginas[s.vIdx].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || pc.vaginas[s.vIdx].hasFlag(GLOBAL.FLAG_PUMPED)) output(" pumped-up");
+		if (pc.hasPlumpPussy(s.vIdx)) output(" pumped-up");
 		output(" pussylips");
 	}
 	else
 	{
-		if (pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || (s.vGape >= 3 && s.vGape <= 4)) output(" puffy asshole");
-		else if (pc.ass.hasFlag(GLOBAL.FLAG_PUMPED) || s.vGape >= 5) output(" plump donut");
+		if (pc.ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || (s.vGape >= 3 && s.vGape < 5)) output(" puffy asshole");
+		else if (pc.ass.hasFlag(GLOBAL.FLAG_PUMPED) || (s.vGape >= 5 && s.vGape < 7)) output(" plump donut");
+		else if (pc.ass.hasFlag(GLOBAL.FLAG_HYPER_PUMPED) || s.vGape >= 7) output(" extremely fat donut");
 		else output(" asshole");
 	}
 	output(" wide. The delectable strumming of the ridges calls to you before too long, your hips moving instinctively to drag the bear’s cock back out of you. You don’t wait around when you reach the peak this time, though, your ass sliding back down to swallow the throbbing cock much faster than your first descent. His hips meet your [pc.ass] with a thump as you reach the base of his towering pillar of fuckflesh again, another slightly-winded groan from the bear as you come to rest.");

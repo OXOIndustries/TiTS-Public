@@ -94,7 +94,7 @@ public function miloBossManWinsFite():void
 		output("\n\nYou look back over your shoulder to see the " + (pc.lust() >= 75 ? "sexy":"brutal") + " milodan leader clicking the activation studs on a pair of grenades. He walks around the corner, and you hear the metallic pings of hard impacts against a wall, followed by screams of alarm - and a pervasive hissing sound. Those same screams halt, only to be reborn as moans of desire and pleasure. A chorus of passionate voices, once lifted in determination, now rise in unrestrained sexual hedonism.");
 		output("\n\nThe milodan returns with a cocky smile and an even harder, firmer cock. Wisps of pink smoke trail behind him, tickling your nose.");
 		if(pc.lust() < pc.lustMax()) output(" They smell like... like sex. Like a hard, drooling milodan cock held right below your nose, tinting every breath with the indescribable aroma of a long night spent fucking under the blankets. It clings in a haze to the war-alpha’s fur. When he grabs you by the chin, you’re subjected to an even stronger whiff, one that finally pushes you past the point of resistance and straight into spread-leg servitude.");
-		else output(" They smell like... not much of anything really. It’s hard to pay attention to the scents in your nose when you can be staring in awe at the war-alpha’s magnificent cock. It’s a sterling example of mouthwatering masculinity, one that leaves your mouth" + (pc.hasVagina() ? " and [pc.vaginasNounSimple]":"") + " watering with excitement, your heart thrumming in your chest. You might be sinking into spread-leg servitude, but so what?");
+		else output(" They smell like... not much of anything really. It’s hard to pay attention to the scents in your nose when you can be staring in awe at the war-alpha’s magnificent cock. It’s a sterling example of immaculate masculinity, one that leaves your mouth" + (pc.hasVagina() ? " and [pc.vaginasNounSimple]":"") + " watering with excitement, your heart thrumming in your chest. You might be sinking into spread-leg servitude, but so what?");
 		output("\n\n<i>“Thought so.”</i> The brute is right behind you. He grabs you by the neck and tugs upward, lifting you up onto your forearms, your back shaped into a sensuous curve. <i>“Much better.”</i> He reaches through the gap in your [pc.thighs] " + (x >= 0 ? "to cup [pc.oneVagina], a single, furred finger sliding along the crease to test the moisture.":"to tap against your [pc.asshole], running a single, furred finger around the rim."));
 		output("\n\nYou clench wantonly at the touch, anxious for him to be inside you already. A pinprick of terror lights up in the back of your mind: what if he decides not to fuck you? What if he punishes you for resisting by tying you down and forcing you to watch him getting his relief with the korgs in the hall? What if you got ");
 		if(pc.hasVagina()) output("this wet");
@@ -170,12 +170,12 @@ public function miloBossManWinsFite():void
 		output("\n\nYour hands dive " + (!pc.isCrotchExposed() ? "under your [pc.crotchCoverUnder] and ":"") + "into your crotch" + (!pc.hasGenitals() ? ", curling around to press at your [pc.asshole]":"") + ".");
 		output("\n\n<i>“Oh, you wanted this pussy?”</i> The milodan smirks at you. <i>“Too bad.”</i> He carefully pushes forward, guiding his nub-lined tip directly into Ula’s drug-swollen cunt. The first few inches sink in like she’s made of half-melted butter before he’s forced to pause, moaning in delirious pleasure. <i>“Yesss,”</i> the war-alpha purrs, taking a moment to master himself. <i>“Buncha chubby broodmares, your whole race.”</i> He savagely thrusts the remaining nine inches of hard, alien cock deep into Ula’s sapphire snatch, clapping his balls into her ass with authority. <i>“And you’re mine!”</i>");
 		output("\n\n<i>“Mmmhuh!”</i>");
-		output("\n\nIt’s the first cogent thing Ula’s said.");
+		output("\n\nIt’s the first cogent thing Ula’s said.\n\n");
 		//Image here?
-		showImage("UlaMiloFucked9998");
-		output("\n\n<i>“");
+		showImage("UlaWarAlphaSex");
+		output("<i>“");
 		output((korgiTranslate() ? "Knock me up":"Give warms! Warms pups!") + "!”</i> Ula throws her head back and screams in delight, thighs shaking. The trickles of girlcum sliding down her fluffy asscheeks thicken into coursing streams. <i>“Ooooh! Oh! " + (korgiTranslate() ? "So goood!":"Good warms!") + "”</i>");
-		output("\n\nThe milodan draws back, knot audibly popping out of the korg’s elastic cunt and slams home once more. He fucks the korg princess hard. Ula’s body, made soft by biology and a life light in manual labor, jiggles all over. Her tits bounce and slosh around with the promise of how much milk they’re going to be filled with. Her ass ripples with the promise of how much bigger it’ll be after her first litter. Her tongue flops out of her maw in absolute bliss, already subservient to the MIlodan’s will. After a fuck like this, you just know she’s going to be licking his balls clean and loving every second of it...");
+		output("\n\nThe milodan draws back, knot audibly popping out of the korg’s elastic cunt and slams home once more. He fucks the korg princess hard. Ula’s body, made soft by biology and a life light in manual labor, jiggles all over. Her tits bounce and slosh around with the promise of how much milk they’re going to be filled with. Her ass ripples with the promise of how much bigger it’ll be after her first litter. Her tongue flops out of her maw in absolute bliss, already subservient to the milodan’s will. After a fuck like this, you just know she’s going to be licking his balls clean and loving every second of it...");
 		output("\n\nYou whimper and masturbate. The force of the fucking actually splatters Ula’s increasingly well-used pussy-juice across your face, and it just makes it that much hotter.");
 		output("\n\nIt shouldn’t be. You shouldn’t be enjoying this, but neither should Ula. Look at her - gasping and yipping in delight, welcoming the invader’s tool into her squeezing cunt like a long lost lover.");
 		output("\n\n<i>“That’s right. Stay down,”</i> the war-alpha says, looking down at you as his cock slams through Ula’s gates with squelching impact. <i>“She’s my bitch now.”</i> His cock swells, the rounding bulb of its knot gaping the korgonne a little more on each stroke. <i>“Aren’t you, bitch?”</i> He lifts her legs higher, pulling her ass off the bed for the next thrust. <i>“Aren’t you?”</i>");
@@ -259,6 +259,7 @@ public function pcBeatsUpAMilo():void
 	output("\n\nUla does not partake in the excited debauchery. She turns to you, tears streaming from the corners of her eyes. She lunges forward, arms outstretched... and bounces past you, directly into her father’s arms. The old korg sags in such relief that his whole body wrinkles like a discarded blanket. Old, tired eyes blink closed. His breathless voice asks, <i>“" + (korgiTranslate() ? "Are you alright, Ula?":"You okaying, Ula?") + "”</i>");
 	output("\n\n<i>“Yes,”</i> Ula says. She pulls back, looking from her father to you. <i>“" + (korgiTranslate() ? "Thanks to [pc.name].":"[pc.name] make so.") + "”</i> She’s pulled deep into another hug before she can say another word.");
 	output("\n\nIn the distance, the sounds of combat are dying down. Rank and file milodans flee and surrender en mass without their leader to keep them organized. The tide has turned, and victory is at hand.");
+	output("\n\n");
 	processTime(15);
 	eventQueue.push(wargiiHoldEpilogue);
 	CombatManager.genericVictory();
@@ -268,6 +269,7 @@ public function wargiiHoldEpilogue():void
 {
 	clearOutput();
 	author("Fenoxo");
+	showBust("ULA",korgChiefBustString());
 	output("You rest on the edge of the bed while Ula and her father coordinate with their countrymen to secure the rest of the hold. For every milodan that falls, the korgonne resistance becomes better equipped. Prohibitions against using core weapons are discarded upon Ula’s advice and her father’s reluctant pragmatism. Small teams of gun-toting hunters sprint by the door while two bleeding warriors take up guard positions to either side.");
 	output("\n\nMore than once, a passing korg will notice you on their way by and thank you with a grateful smile.");
 	output("\n\n<i>“" + (!korgiTranslate() ? "Right-being, Ula ideas was.":"Right, Ula's ideas were.") + "”</i> The grizzled old korg climbs up onto wobbling legs with help from his battle-baptized daughter. <i>“" + (!korgiTranslate() ? "Knew trap-having milos. Knew needed core magics for safe-making, but Chieftain too dumb for listenings. Too old and too proud.":"She knew the milodans had planned a trap. She knew we needed to make use of the core-magics to stay safe, but I was too proud and too dumb to lend an ear.") + "”</i> He waves to you. <i>“" + (!korgiTranslate() ? "Outsider save hold. Save daughter. Me not even want allow inside, but Ula righting agains.":"Because of that, an outsider saved our hold - saved my daughter. I didn't even want to allow [pc.himHer] inside, but Ula was right again.") + "”</i> He shakes his head, ears flopping like tarps in a windstorm. <i>“");
@@ -365,6 +367,7 @@ public function wargiiHoldEpilogue4():void
 	pc.credits += 150000;
 	//Set location back to normal
 	currentLocation = "KORGII B12";
+	removeUvetoCold();
 	if(score >= 90) quickLoot(new PyriteIndustriesPlasmaBlade(), new PyriteIndustriesSuperchargedLaserPistol(), new KordiiakHideArmor());
 	else if(score >= 50) quickLoot(new PyriteIndustriesPlasmaBlade(), new PyriteIndustriesSuperchargedLaserPistol());
 	else 
@@ -383,5 +386,6 @@ public function neverRanBonusUlaGift():void
 	//Signet of Bravery - ring of solid diamond shrouded in a twisting, silver spear. +5 physique/aim and +25 HP but disables flee.
 	output("Ula pops up at the sight of you, ears twitching nervously. <i>“" + (!korgiTranslate() ? "[pc.name]! Am knowing we giving many thanks already, but stories still told about how you never run from fight.":"[pc.name]! I know we gave you many thanks already, but with all the stories about how you never even ran from a fight...") + "”</i> She smiles proudly, producing a small box. <i>“" + (!korgiTranslate() ? "Thought deserved extra for good alien-being. Great, even!":"We thought you deserved more for being such a great alien.") + "”</i> The canine Chieftain hands you the box. <i>“" + (!korgiTranslate() ? "Wear when want feel brave. Good gem. Got from deepest mine where rocks more potent.":"Wear this when you need to be that brave again. The stone is a good one, mined from the hold's deepest depths, where the gems are most potent.") + "”</i>");
 	output("\n\nYou’re not sure what to make of that last bit, but you thank newly-minted Chieftain for the ring nonetheless" + (pc.isBimbo() ? " with a sloppy kiss":"") + ".\n\n");
-	quickLoot(9999);
+	flags["WARGII_NORAN_REWARD"] = 1;
+	quickLoot(new SignetOfBravery);
 }

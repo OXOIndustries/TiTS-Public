@@ -1623,7 +1623,7 @@ public function willowGiftClothes(sceneChoice:int):void
 		{	
 			output("<i>“Something to wear? What for? I have enough clothes.”</i> She says.");
 			output("\n\n<i>“Well, these are some... special kinda clothes.”</i> You say, winking at her. <i>“And, of course, there will be more!”</i>");
-			output("\n\n<i>“Special kind of-? Ohhhh. I get it. Nevermind.”</i> She says, chuckling and shaking her head.");
+			output("\n\n<i>“Special kind of-? Ohhhh. I get it. Never mind.”</i> She says, chuckling and shaking her head.");
 			flags["WILLOW_GIFT_CLOTHES"] = 1;
 			
 		}

@@ -10,6 +10,10 @@
 	import classes.Items.Apparel.StrappyWhiteBikiniBottom;
 	import classes.Items.Apparel.BaggySwimShorts;
 	import classes.Items.Apparel.TightSwimShorts;
+	import classes.Items.Apparel.Swimstrap;
+	import classes.Items.Apparel.Swimshirt;
+	import classes.Items.Apparel.Swimtank;
+	import classes.Items.Apparel.SwimBriefs;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	
@@ -32,7 +36,11 @@
 			this.inventory.push(new StrappyWhiteBikiniBottom());
 			this.inventory.push(new BaggySwimShorts());
 			this.inventory.push(new TightSwimShorts());
-			this.inventory.push(new Thong());
+			this.inventory.push(new Thong());			
+			this.inventory.push(new Swimstrap());
+			this.inventory.push(new Swimshirt());
+			this.inventory.push(new Swimtank());
+			this.inventory.push(new SwimBriefs());
 
 			this.sellMarkup = 1.0;
 			this.buyMarkdown = .5;

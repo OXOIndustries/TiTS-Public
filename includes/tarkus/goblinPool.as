@@ -361,7 +361,7 @@ public function arbetzMainOptions(response:int = 0):void
 			// [Insist] [Go Back]
 			clearMenu();
 			addButton(0, "Insist", arbetzTalkOptions, 7, "Insist", "Insist on sex.");
-			addButton(1, "Go Back", arbetzMainMenu, false, "Nevermind", "Choose to do something else.");
+			addButton(1, "Go Back", arbetzMainMenu, false, "Never Mind", "Choose to do something else.");
 		}
 		// Repeat
 		else

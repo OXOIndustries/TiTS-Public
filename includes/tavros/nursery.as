@@ -93,7 +93,8 @@ public function npcInNurseryCafeteria():Boolean
 {
 	if(seraAtNursery()) return true;
 	if(riyaAtNursery()) return true;
-	if(reahaAtNurseryCafeteria()) return true;
+	if (reahaAtNurseryCafeteria()) return true;
+	if (roxyIsInCafeteria()) return true;
 	return false;
 }
 public function npcInNurseryCommonArea():Boolean
@@ -115,8 +116,11 @@ public function nurseryFoyerFunc():Boolean
 
 	if (flags["ELLIE_PREG_TIMER"] == 70 && flags["ELLIE_OPERATION"] == 3) return ellieEggsHatching();
 	else if (ainaKids() == 1 && ainaBirthScene()) return ainaFirstBirth();
-	else if(isHalloweenish() && havePumpkinCarvingScenes() && flags["CARVED_W_KIDDOS"] == undefined) return doPumpkinCarving();
-	else if(!isHalloweenish()) flags["CARVED_W_KIDDOS"] = undefined;
+	else if (flags["ROXY_BIRTH_SCENE"] == 1) return roxyBirthScene();
+	else if (isHalloweenish() && havePumpkinCarvingScenes() && flags["CARVED_W_KIDDOS"] == undefined) return doPumpkinCarving();
+	else if (!isHalloweenish()) flags["CARVED_W_KIDDOS"] = undefined;
+	
+	if (roxyNurseryRandomEvents("foyer")) return true;
 	
 	output(" The Steele Tech logo is emblazoned across the wall opposite the elevator, surrounded by pastel-colored images of flowers and small animals.");
 	if (silly) output(" There’s even a cute little cartoonish cow!");
@@ -526,6 +530,29 @@ public function nurseryCommonAreaFunc():Boolean
 	}
 	
 	nurseryZilCallgirlRandomEvents();
+	if (roxyNurseryRandomEvents("common")) return true;
+	if (roxyIsExercising()) roxyExcerciseBlurb();
+	
+	if (boredJumperPregAreLaquineKidsPlaying())
+	{
+		nurseryLaquineCommonAreaEvents();	
+
+		if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_LAPINE, 12, 120) >= 2) 
+		{
+			var jumperKids:int = boredJumperPregKidTotal( -1);
+			if (jumperKids > 0)
+			{
+				if (jumperKids == boredJumperPregKidTotal(GLOBAL.TYPE_EQUINE) || jumperKids == boredJumperPregKidTotal(GLOBAL.TYPE_CANINE) || jumperKids == boredJumperPregKidTotal(GLOBAL.TYPE_FELINE) || jumperKids == boredJumperPregKidTotal(GLOBAL.TYPE_HUMAN)) addButton(btnIdx, "Send Pic", boredJumperPregSendPic, undefined, "Send Pic", "Your Jumper fling back on Zheng Shi would no doubt appreciate seeing what you and she made possible.");
+				else addButton(btnIdx, "Send Pic", boredJumperPregSendPic, undefined, "Send Pic", "Your Jumper flings back on Zheng Shi would no doubt appreciate seeing what you and they made possible.");
+				btnIdx++;
+			}
+			if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_LAPINE, 12, 120) >= 3) 
+			{
+				addButton(btnIdx, "Laquines", boredJumperPregSpendTimeCommonArea, undefined, "Laquines", "Spend some time with your laquine children.");
+				btnIdx++;	
+			}
+		}
+	}
 
 	return false;
 }
@@ -542,7 +569,8 @@ public function nurseryCafeteriaFunc():Boolean
 	else pc.removeStatusEffect("Sera at Nursery");
 	if(riyaAtNursery()) riyaNurseryCafeteriaBonus(btnSlot++);
 	else pc.removeStatusEffect("Riya at Nursery");
-	if(reahaAtNurseryCafeteria()) reahaNurseryCafeteriaBonus(btnSlot++);
+	if (reahaAtNurseryCafeteria()) reahaNurseryCafeteriaBonus(btnSlot++);
+	if (roxyIsInCafeteria()) roxyInCafeteriaBonus(btnSlot++);
 	
 	return false;
 }
@@ -561,6 +589,8 @@ public function nurseryG14Func():Boolean
 
 public function nurseryEducationCenterFunc():Boolean
 {
+	var btnIdx:int = 0;
+	
 	if (hours >= 7 && hours <= 16)
 	{
 		if (ChildManager.mobileInAgeRangeYears(3, 16))
@@ -573,6 +603,14 @@ public function nurseryEducationCenterFunc():Boolean
 		}
 
 		nurseryZilCallgirlRandomEvents();
+		
+		if (ChildManager.numOfTypeInRange(GLOBAL.TYPE_LAPINE, 36, 120) >= 1) 
+		{
+			var sceneNum:int = 0;
+			sceneNum = boredJumperPregLaquineEducationCenterBlurbs();
+			addButton(btnIdx, "Laquines", boredJumperPregSpendTimeEducationCenter, sceneNum, "Laquines", "Spend some time in class with your laquine children.");
+			btnIdx++;	
+		}
 	}
 
 	return false;
@@ -585,15 +623,18 @@ public function nurseryKidsDormsFunc():Boolean
 	output(" would be many, many offspring. A central hub provides access to over a dozen small halls, branching off like tunnels in an anthill off in every direction. There must be hundreds of individual rooms available here, not to mention bathrooms, showers, laundry facilities... everything your heirs and the station’s support staff could ever need.");
 
 	nurseryZilCallgirlRandomEvents();
+	if (roxyNurseryRandomEvents("children")) return true;
 	khorganBabyBlurbs();
 	tamtamBabyBlurbs();
 	ainaBabyBlurbs();
+	nurseryLaquineBlurbs();
 	var button:Number = 0;
 	button = zilBabyBonus(button);
 	button = milodanPlayOptions(button);
 	button = ellieKidVisits(button);
 	button = samBabiesVisitOptions(button);
 	button = zephyrKidsOption(button);
+	button = nurseryLaquineOptions(button);
 
 	return false;
 }
@@ -753,7 +794,8 @@ public function nurseryBrigetsApptFunc():Boolean
 
 public function nurserySpareApptIsOccupied():Boolean
 {
-	if(flags["SERA_CREWMEMBER"] == 0) return true;
+	if (flags["SERA_CREWMEMBER"] == 0) return true;
+	if (roxyIsInTempHousing()) return true;
 	return false;
 }
 public function nurserySpareApptBonus():Boolean
@@ -762,7 +804,7 @@ public function nurserySpareApptBonus():Boolean
 	
 	// For followers or grown kids and stuff.
 	if(flags["SERA_CREWMEMBER"] == 0) output(seraOnTavrosBonus(btnSlot++));
-
+	if (roxyIsInNursery()) output(roxyInSpareAptBonus(btnSlot++));
 	return false;
 }
 
@@ -1503,8 +1545,7 @@ public function nurseryDisplayUniqueChildren(uniques:Array):void
 	{
 		parentName = parentList[p];
 		var babies:Array = listBabiesOfParent(parentName);
-		var nKids:Number = (StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " kids") + StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " sired"));
-		
+		var nKids:Number = (StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " kids") + StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " sired") + StatTracking.getStat("pregnancy/" + parentName.toLowerCase() + " births"));
 		output("\n<u><b>Children by " + (chars[parentName] != null ? chars[parentName].short : StringUtil.toDisplayCase(parentName.toLowerCase())) + "</b></u>");
 		if(nKids > 0) output(" - Total: " + nKids);
 		if(babies.length > 0)
@@ -2491,4 +2532,138 @@ public function nurserySpecialistRoehm():void
 	if (kidCnt > 0) addButton(1, "Kids", quaelleNurserySceneKids,kidCnt);
 	else addDisabledButton(1, "Kids", "Kids", "You have no Roehm of this age.");
 	addButton(14, "Leave", mainGameMenu);
+}
+public function nurseryLaquineBlurbs():void
+{	
+	var arg:Array = nurseryAgeCounts(GLOBAL.TYPE_LAPINE,1,10);
+	var babyCnt:int = arg[0];
+	var kidCnt:int = arg[1];
+	var oldCnt:int = arg[2];
+	var maleKids:int = arg[3];
+	var femaleKids:int = arg[4];
+	var hermKids:int = arg[5];	
+
+	var ttl:int = babyCnt + kidCnt;
+
+	if (ttl > 0)
+	{	
+		if (babyCnt > 0 && kidCnt == 0)
+		{
+			if (rand(2) == 0) 
+			{
+				output("\n\nIn the nursery's living space you're not surprised to see your infant laquines resting peacefully in the provided cribs and cradles. Doting staff see to their needs at all times, the milk never too far behind when one starts crying for food.");
+				if (boredJumperBreastFeedOK()) output(" You could probably help with that! Carrying this load of [pc.milkNoun] is hard enough, and there's no better place to put it!");					
+			}
+			else
+			{
+				output("\n\nBriget is usually found in this room attending");
+				if (ChildManager.numChildrenAtNursery() > ttl) output(" to other children");
+				else output(" to daily errands");
+				output(", but right now she's supervising the staff on the care of your infant laquines. They're raised from the cribs and given their meal, patted down until they obligingly burp.");
+				if (boredJumperBreastFeedOK()) output(" Considering how full of [pc.milkNoun] you are, you could give your kids some warm cream right from the source!");	
+			}
+		}
+		else if (babyCnt > 0 && kidCnt > 0)
+		{
+			output("\n\nYour older laquine children often spend their time here, watching their younger siblings grow, no doubt eager to add them to their ranks for all the mischief they get up to. The older rabbits prove themselves careful helpers for the staff, something that gives you every reason to be proud of them.");
+		}
+		else if (babyCnt == 0 && kidCnt > 0)
+		{
+			output("\n\nWhen they're not horsing around, the eldest among your laquine children spend a lot of time here. You can only surmise because it's a quiet place, and they have ample opportunity to help the staff. Part of you wonders if they're just trying to curry favor so the adults'll look the other way when they start tearing the place up all over again.");
+		}
+	}		
+}
+public function nurseryLaquineOptions(btnSlot:Number):Number
+{
+	var arg:Array = nurseryAgeCounts(GLOBAL.TYPE_LAPINE,1,10);
+	var babyCnt:int = arg[0];
+	var kidCnt:int = arg[1];
+	var oldCnt:int = arg[2];
+	var maleKids:int = arg[3];
+	var femaleKids:int = arg[4];
+	var hermKids:int = arg[5];	
+	var ttl:int = babyCnt + kidCnt;
+
+	if (ttl > 0)
+	{	
+		addButton(btnSlot, "Laquines", nurseryVisitLaquine, undefined, "Laquine Kids", "See what your kids are up to.");
+		btnSlot++;
+	}
+	else if(oldCnt > 0)
+	{
+		addDisabledButton(btnSlot, "Laquines", "Laquines Kids", "All your laquine kids are over 10 now.");
+		btnSlot++;
+	}		
+
+	return btnSlot;
+}
+public function nurseryVisitLaquine():void
+{
+	clearOutput();
+	showName("LAQUINE\nKIDS");
+	author("William");	
+
+	var arg:Array = nurseryAgeCounts(GLOBAL.TYPE_LAPINE,1,10);
+	var babyCnt:int = arg[0];
+	var kidCnt:int = arg[1];
+	var oldCnt:int = arg[2];
+	var maleKids:int = arg[3];
+	var femaleKids:int = arg[4];
+	var hermKids:int = arg[5];	
+
+	output("What age group will you visit?");
+
+	clearMenu();
+	if (babyCnt > 0) addButton(0, "Babies", boredJumperPregNurserySceneBabies,[babyCnt,kidCnt]);
+	else addDisabledButton(0, "Babies", "Babies", "You have no laquine of this age.");
+	if (kidCnt > 0) addButton(1, "Kids", boredJumperPregNurserySceneKids,[kidCnt,maleKids,femaleKids,hermKids]);
+	else addDisabledButton(1, "Kids", "Kids", "You have no laquine of this age.");
+	addButton(14, "Leave", mainGameMenu);
+}
+public function nurseryLaquineCommonAreaEvents():void
+{
+	var arg:Array = nurseryAgeCounts(GLOBAL.TYPE_LAPINE,1,10);
+	var babyCnt:int = arg[0];
+	var kidCnt:int = arg[1];
+	var oldCnt:int = arg[2];
+	var maleKids:int = arg[3];
+	var femaleKids:int = arg[4];
+	var hermKids:int = arg[5];	
+	var otherKids:Boolean = false;
+
+	if (ChildManager.numChildrenAtNursery() > (babyCnt + kidCnt + oldCnt)) otherKids = true;
+
+	if (kidCnt > 0) boredJumperPregCommonAreaEvents(kidCnt, maleKids, femaleKids, hermKids, otherKids);		
+}
+public function nurseryAgeCounts(kidType:Number,babyAge:int=1,kidAge:int=18):Array
+{
+	var children:Array = ChildManager.getChildrenOfType(kidType);
+	var child:Child;
+	var babyCnt:int = 0;
+	var kidCnt:int = 0;
+	var oldCnt:int = 0;
+	var maleKids:int = 0;
+	var femaleKids:int = 0;
+	var hermKids:int = 0;	
+
+	if (children != null && children.length > 0)
+	{
+		child = children[0];
+		for (var i:int = 0; i < children.length; i++)
+		{
+			var c:Child = children[i] as Child;
+			if (c.Years < babyAge) babyCnt += c.Quantity;
+			else if  (c.Years <= kidAge)
+			{
+				kidCnt += c.Quantity;
+				if (c.NumMale > 0) maleKids += c.NumMale;
+				if (c.NumFemale > 0) femaleKids += c.NumFemale;
+				if (c.NumIntersex > 0) hermKids += c.NumIntersex;
+			}
+			else oldCnt += c.Quantity;
+		}
+	}
+	var arg:Array = [babyCnt, kidCnt, oldCnt, maleKids, femaleKids, hermKids];
+
+	return arg;
 }

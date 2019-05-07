@@ -305,6 +305,7 @@
 						output("\n\nYou feel something like a pinch on the tip of your [pc.ear], pulling at it. You swipe a hand back that way, thinking something’s caught you, yet find nothing but [pc.skin] -- but not where it ought to be. Letting your fingers wander, you feel that your ear itself has sunk into the side of your head and is now shielded by a sweeping, bony fin -- a pair of them on either side! <b>You’ve got frilled reptilian ears now!</b>");
 						
 						pc.earType = GLOBAL.TYPE_GRYVAIN;
+						target.clearEarFlags();
 						pc.earLength = 3;
 						changes++;
 					}

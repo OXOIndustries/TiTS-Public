@@ -459,6 +459,7 @@ public function fuckVaandesPuss():void
 {
 	clearOutput();
 	showVaande(true);
+	showBust("VAANDE_FEMALE_NUDE");
 	author("Zeikfried");
 	output("Vaande looks delighted when you tell her that you want to use your " + vaandeCockChoice() + ". <i>“Oh, that sounds simply lovely,”</i> she sighs. <i>“Won’t you ");
 	if(!pc.isNude()) output("undress yourself and then ");
@@ -1414,7 +1415,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 			// Any: Dzaan Druggies
 			if(!InCollection(5, scenesIndex) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
-				output("\n\nA group of dzaan call you over and imperiously demand you get on top of their table and present your [pc.ass]. Mentally steeling yourself for a hard session of anal, you do as they ask - and then feel lines of powder being formed on the bare [pc.skin] of your buttocks, followed by hefty snorts and husky hermaphroditic crows of enjoyment. Any form of drug tastes better if it’s taken off the backside of a hooker, it turns out.");
+				output("\n\nA group of dzaan call you over and imperiously demand you get on top of their table and present your [pc.ass]. Mentally steeling yourself for a hard session of anal, you do as they ask - and then feel lines of powder being formed on the bare [pc.skinFurScalesNoun] of your buttocks, followed by hefty snorts and husky hermaphroditic crows of enjoyment. Any form of drug tastes better if it’s taken off the backside of a hooker, it turns out.");
 				processTime(10);
 				pc.exhibitionism(1);
 				scenesLimit--;
@@ -2001,7 +2002,7 @@ public function brothelTrappifyVerify(response:String = "intro"):void
 			
 			clearMenu();
 			addButton(0, "Proceed", brothelTrappifyVerify, "proceed", "Continue Anyway...", "Damn the consequences!");
-			addButton(14, "Nevermind", brothelTrappifyVerify, "nevermind", "Nevermind...", "Maybe you should change before returning.");
+			addButton(14, "Never Mind", brothelTrappifyVerify, "nevermind", "Never Mind...", "Maybe you should change before returning.");
 			break;
 		case "nevermind":
 			output("You decide it might be best to avoid the complication entirely. Besides, you can probably return when you are the proper sex and gender and she will be none the wiser...");

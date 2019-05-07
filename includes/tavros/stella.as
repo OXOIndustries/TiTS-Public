@@ -729,7 +729,7 @@ public function assFuckStella():void
 
 	output("\n\n<i>“Relax, Stella,”</i> you tell her, intending both meanings. <i>“I’ll give you some time to get used to it.”</i>");
 
-	output("\n\nReaching around to to her front, you drape an arm across her inner thigh and slide a finger across the hard little nub just above her tight slit. She jumps a little at the sensation and gasps, instinctively clamping down on your dick.");
+	output("\n\nReaching around to her front, you drape an arm across her inner thigh and slide a finger across the hard little nub just above her tight slit. She jumps a little at the sensation and gasps, instinctively clamping down on your dick.");
 
 	output("\n\n<i>“Oh, gosh!”</i> she cries, desperation seeping into her voice. <i>“I didn’t even realize how close I was... nnnnggh!”</i>");
 
@@ -852,7 +852,7 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 		if(pc.balls > 1) 
 		{
 			output("balls.");
-			if(pc.ballDiameter() < 4) output(" You can feel the heat of her breath washing over your nuts from her nose as she needily licks, sucks, and fondles them, putting her face right into your crotch to get a better feel. She takes long, deep inhales of your scent while she pays you worship, slowly stroking your cock even as she takes your balls in her mouth to suck");
+			if(pc.ballDiameter() < 4) output(" You can feel the heat of her breath washing over your nuts from her nose as she needily licks, sucks, and fondles them, putting her face right into your crotch to get a better feel. She takes long, deep inhales of your scent while she pays you worship, slowly stroking your cock even as she takes your balls in her mouth to suck.");
 			else if(pc.ballDiameter() <= 6) output(" You can hear her quietly groan in need from below you as she gently takes your balls in both hands, licking up and down their entire surface and suckling them when she can’t get them entirely in her mouth. You can feel the short, hot exhalations from her cute little nose as she shoves it right into your crotch to inhale your scent, one hand slowly snaking upwards to rub your cock while she worships your balls with her tongue. She’s definitely got a thing for size...");
 			else if(pc.ballDiameter() <= 9) 
 			{
@@ -874,7 +874,7 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 		else if(pc.balls == 1) 
 		{
 			output("ball.");
-			if(pc.ballDiameter() < 4) output(" You can feel the heat of her breath washing over your nut from her nose as she needily licks, sucks, and fondles it, putting her face right into your crotch to get a better feel. She takes long, deep inhales of your scent while she pays you worship, slowly stroking your cock even as she takes your ball in her mouth to suck");
+			if(pc.ballDiameter() < 4) output(" You can feel the heat of her breath washing over your nut from her nose as she needily licks, sucks, and fondles it, putting her face right into your crotch to get a better feel. She takes long, deep inhales of your scent while she pays you worship, slowly stroking your cock even as she takes your ball in her mouth to suck.");
 			else if(pc.ballDiameter() <= 6) output(" You can hear her quietly groan in need from below you as she gently takes your ball in both hands, licking up and down its entire surface and suckling it when she can’t get it entirely in her mouth. You can feel the short, hot exhalations from her cute little nose as she shoves it right into your crotch to inhale your scent, one hand slowly snaking upwards to rub your cock while she worships your ball with her tongue. She’s definitely got a thing for size...");
 			else if(pc.ballDiameter() <= 9) 
 			{
@@ -1615,6 +1615,7 @@ public function stellaPregbangEpilogue():void
 public function stellaKnockupCheck():void
 {
 	if(stellaPregnant()) return;
+	if(pc.virility() <= 0) return;
 	
 	//Stella is pretty fertile and takes a loooot of loads.
 	var chance:Number = 25;

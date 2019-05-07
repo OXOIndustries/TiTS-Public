@@ -877,6 +877,8 @@ public function helpAlissWithSexyTiems():void
 	else addDisabledButton(1,"Offer Pussy","Offer Pussy","You need a vagina to offer Aliss the use of it!");
 	addButton(2,"Offer Ass",offerAlissYourAss,undefined,"Offer Ass","Offer Aliss the use of your ass. What better place for her to spend her lust?");
 	addButton(3,"SuckHerOff",suckAlissOffBecauseYouLikeToGulpDownLoadsOfJizzYouSlut,undefined,"SuckHerOff","Suck Aliss off with your mouth.");
+	if(pc.hasCock()) addButton(4,"PantyFrot",alissPresentForThirdsBday2019,undefined,"PantyFrot","Do a bit of frottage with a pair of surplus panties to wrap everything up nice and tight.");
+	else addDisabledButton(4,"PantyFrot","PantyFrot","You need a penis for this.");
 }
 
 //Question
@@ -1554,6 +1556,8 @@ public function sexWithAlissFromMainMenu():void
 	else addDisabledButton(1,"Offer Pussy","Offer Pussy","You need a vagina to offer Aliss the use of it!");
 	addButton(2,"Offer Ass",offerAlissYourAss,undefined,"Offer Ass","Offer Aliss the use of your ass. What better place for her to spend her lust?");
 	addButton(3,"SuckHerOff",suckAlissOffBecauseYouLikeToGulpDownLoadsOfJizzYouSlut,undefined,"SuckHerOff","Suck Aliss off with your mouth.");
+	if(pc.hasCock()) addButton(4,"PantyFrot",alissPresentForThirdsBday2019,undefined,"PantyFrot","Do a bit of frottage with a pair of surplus panties to wrap everything up nice and tight.");
+	else addDisabledButton(4,"PantyFrot","PantyFrot","You need a penis for this.");
 	addButton(14,"Back",alissDiscussionsInsteadOfPanties);
 }
 
@@ -2024,7 +2028,8 @@ public function alissRepairTalk():void
 	author("Zeikfried");
 	output("You motion Aliss closer.");
 	output("\n\n<i>“Yeah?”</i> she asks, leaning in conspiratorially.");
-	if(pc.isBimbo()) output("\n\n<i>“Um, can you do repairs on a broken projector? It’s a little </i>too<i> fun,”</i> you whisper.");
+	output("\n\n");
+	if(pc.isBimbo()) output("<i>“Um, can you do repairs on a broken projector? It’s a little </i>too<i> fun,”</i> you whisper.");
 	else if(pc.isBro()) output("<i>“I fucked my hardlight up,”</i> you say frankly.");
 	else output("<i>“My hardlight projector is malfunctioning,”</i> you whisper.");
 
@@ -2061,6 +2066,72 @@ public function alissRepairPart2():void
 	//if first time repair, either directly unlock the upgraded version of each hardlight panties or add the upgrade kit in Aliss’s shop
 	//tooltip: Take your repaired [pc.lowerUndergarment] and leave.
 	processTime(3);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function alissPresentForThirdsBday2019():void
+{
+	clearOutput();
+	showAliss(true);
+	author("Fenoxo");
+	var x:int = pc.biggestCockIndex();
+	output("You tell Aliss what you want.");
+	output("\n\n<i>“Really?”</i> Aliss twirls a pair of panties around her fingertip, a slow smile spreading across her scaled features. <i>“I didn’t take you for that type, Mi Amour.”</i> Hesitance forgotten, the cock-toting ovir steps closer, the slight scent of her lingering body soap warring with potent hint of sexuality that wafts from the engorging shaft between her thighs. She leans forward, presenting you with the sight of her ample bosom. Her breasts heave with lascivious excitement. <i>“I didn’t think my little show would... coerce you into such depravity.”</i>");
+	output("\n\nYou do not resist as her nimble fingers come to rest on your [pc.chest], nor when they pause to fondle one [pc.nipple]. The whispering sigh that slips your [pc.lipsChaste] is tacit admission of just how turned on you are - so turned on that when you slide to the floor, all you’re aware of is how hard you’re throbbing. Your [pc.cock " + x + "] juts upward in rigid declaration of your ovir-inspired ardor. It quivers with unbridled anticipation, though judging by the dangling panties, its bridle is about to be affixed.");
+	output("\n\nAliss smiles sweetly, easing one thigh over [pc.legOrLegs] at a time. Her own prick, you note, is equally erect, almost distended with the force of the passion coursing through it. It bobs and dips to the beat of her heart. When she shifts a little closer, that heaving, blunt-headed monster rubs against your own, lighting off starbursts of pleasure all over the formerly untouched length. <i>“Oh myyy,”</i> the ovir husks. <i>“I needed this.”</i> Twirling a pair of panties around one finger, she leans down low for you to feel her breath on your neck. Her slitted eyes search your own. <i>“We both did.”</i>");
+	output("\n\nYou agree wholeheartedly.");
+	output("\n\nWhen the sensuous shopkeep deftly wraps the silky underthings against your paired pricks, you find yourself immensely grateful to her, not just for the pleasure but for the way she muffles your resulting gasp with a fierce kiss. Her inhuman tongue slides over your [pc.lipsChaste] one at a time before sliding through to wrestle your own. As the muscles writhe together in passionate embrace, slender digits dance around your dong, surrounding it in layer after layer of satiny binding.");
+	output("\n\nHer cock no longer simply brushes against your own. It’s practically welded to it such that you are acutely aware of how very pleasantly her every throb is transmitted through your sparking, over-eager nerves, and your phallic flesh quivers right back. Both dicks strain and squeeze against one another, flooding the inside of the swaddling underthings with heat and intensely virile musk. When Aliss spins the last free strap around one more time to tie into a delicate-looking bow, you moan into her mouth in pure, panty-bound pleasure.");
+	output("\n\nBreaking the kiss, Aliss says only, <i>“Wow.”</i> Her cheeks flush purple.");
+	//Light to no precummies
+	if(pc.cumQ() < 150) output("\n\nInside the cloth cocoon, the panty-vendor’s prick shifts slightly against your own, leaving a patch of warm slickness in its wake for you to slip through. The resulting spike of pleasure sends blissful spasms through your [pc.cock " + x + "], driving you to slide through the moist patch and dive headlong into an even slipperier spot. Aliss’s blunt-tipped member leaks more pre-cum by the second, saturating not just the fabric wrapping but your [pc.dickSkin " + x + "] as well. Her phallic lubrication seeps <i>everywhere</i>, transforming the taut pouch of tied panties into a slick heaven for your pre-glazed schlongs.");
+	//Good precummies
+	else if(pc.cumQ() < 1000) output("\n\nInside the cloth cocoon, things get... syrupy. Instead of mere warmth and silken fabric, the distinct sensation of something wet and slick alerts you to the growing presence of pre-cum. It’s difficult to identify the responsible party, but who cares? Your [pc.cockNoun " + x + "] grows hotter thanks to the phallus-powered sauna of Aliss’s panties. Inside, your flesh must be glossy and dripping with combined pre-cum, and when you shift even the slightest amount, you’re rewarded with the heady buzz of low-friction genital-to-genital contact. You can detect a little of your own dribbling as you leaking your own additions to the ambrosial stew surrounding your veiny, pulsing flesh.");
+	//Sopping precummies
+	else output("\n\nInside the cloth cocoon, your prick goes to work doing what it always does when you’re this turned on: pumping out enough pre-cum to turn any hole, no matter how dry or unprepared, into a soaked, suckling fuck-channel. Aliss’s panties are no different. You impregnate the fabric with pre-spunk so thoroughly that fragrant dribbles emerge from the underside to stain your [pc.belly]. Inside, the twin tools swim through the soupy morass as they reflexively grind against one another, lighting up with the same sort of low-friction ecstasy you’d expect from an eager cunt - not frottage-binding underthings. In turn, you spew ever greater torrents of liquid excitement, raising the temperature and the sloppiness of your prick-to-prick affection to new heights of depravity.");
+	//Mergywurgy
+	output("\n\n<i>“Mi Amour!”</i> Aliss cries, beginning to scissor her hips back and forth, exposing the pre-glossed surface of her base a moment before slamming it back into the increasingly wet garment. <i>“You kinky beast!”</i> She giggles, her tail curling around to stroke your cheek. <i>“Talking me into soiling my inventory... and I don’t regret it at all.”</i> She’s openly frotting now, fucking the panties as much as grinding against your dick. After her first few strokes, she grabs the sticky mess with both hands and humps harder, focused entirely on the pleasure this unique activity can provide.");
+	//Smaller
+	if(pc.cocks[x].cLength() <= 11) 
+	{
+		output("\n\nYou join the rutting ovir without conscious thought. Lifting your [pc.ass] off the ground with the force of your strokes, you become quite aware at the difference in size between your members. Aliss packs those panties so much more than you ever could, and the added length allows her to ply you with longer, uninterrupted streaks of friction. Meanwhile, you’re reduced to quick humps and wriggles that take advantage of the alien beastprick’s superior size. Once you accept the difference and change your motions to support the well-endowed dick-girl instead of competing with her, everything becomes more pleasurable.");
+		output("\n\nAliss’s cock smothers you with its size, heat, and wetness. Her veins, thick and pulsating, tickle your smaller [pc.cockHead " + x + "] on the way by. The sheer weight of her triumphant tool keeps you pinned in place but also maximizes the sensations of every little wiggle and squirm. You pant while she grinds herself off on your dick, barely able to keep yourself from shouting for joy at how wonderful it feels. Everything is just so warm and hot and wet and good...");
+	}
+	//Samish
+	else if(pc.cocks[x].cLength() <= 15.5)
+	{
+		output("\n\nYou join the rutting ovir without conscious thought. Lifting your [pc.ass] off the ground with the force of your strokes, you answer hump for hump, accelerating the pace at which the turgid, veiny flesh slides past. Your matching lengths make it easy to slide into a steady rhythm with the giggling shopkeeper. Squelches and excited pants fill the air as you pump away at each other, fully saturating the garment in prickscent and pre alike. Words seem unnecessary by this point. Looking Aliss in the eyes, you moan back as the gyrations and slick, hot, tunnel work to overwhelm you with pleasure. There’s no resisting something that feels this good.");
+	}
+	//Bigger
+	else
+	{
+		output("\n\nYou join the rutting ovir without conscious thought. Lifting your [pc.ass] off the ground with the force of your strokes, you become instantly and powerfully aware of just how much bigger you are than her. Aliss’s dick is great - with its short, back-and-forth motions, but when you move, dragging your [pc.cockHead " + x + "] from far above the ovir’s all the way down to her sensitive base, it’s one continuous, uninterrupted smear of ecstasy. When you thrust back inside, you do so with authority, pleasuring her so thoroughly that she stops trying to move herself and simply rests herself atop you, wiggling back and forth to tease you to new heights panty-bulging rut.");
+		output("\n\nAn assertive, jackhammer-like stroke blasts your [pc.cockHead " + x + "] right through the pretty little bow Aliss had tied on top, but the smooth-scaled slut’s hands are right there to shift the wrap around and smother your sensitive apex in tantalizingly slick fabric once more. Still gripping the bundle, she strokes you as you hump, her tongue lolling out when the heat and bound-up eroticism threaten to overwhelm her, and you know just how she feels. With the bindings on your huge cock tightened, it becomes impossible to hold yourself any longer.");
+	}
+	//merge Cummies time!
+	output("\n\nYou cum a second after gasping a warning. Your phallic flesh strains");
+	if(pc.hasCocks()) 
+	{
+		output(", unbound dick" + (pc.cockTotal() > 2 ? "s":"") + " jerking and spraying ");
+		if(pc.cocks[x].cLength() < 12) output("onto your [pc.chest]");
+		else if(pc.cocks[x].cLength() < 24) output("onto your [pc.face]");
+		else output("over your shoulder and into the wall");
+	}
+	output(".");
+	if(pc.cumQ() < 150) output(" [pc.Cum] spurts and sputters into sweltering bindings, making them slicker and hotter on your skin. Aliss must feel it, because a moment after releasing your own load, she joins you in erupting, disgorging inhumanly thick pulsations of virile alien cream all over your [pc.cockNoun " + x + "]. It feels like she’s drowning you in cum, slowly but surely bathing your entire length in the heat of her now-released orgasm.");
+	else if(pc.cumQ() < 3500) output(" [pc.Cum] shoots in long, lurid flows directly into the sweltering bindings, rendering them slicker and hotter while simultaneously bathing Aliss’s tool in your virile bliss. She reacts by throwing back her head and screaming, the flare of her dick opening wide in time to shoot out a load of her own. Spunk swirls and blends around your taut, flexing shafts, thickening by the second. Fat droplets spill out onto your conjoined bases as the internal pressure slowly pries apart the panties, allowing the fragrant double-load to dump itself onto your [pc.belly].");
+	else 
+	{
+		output(" [pc.CumNoun] erupts in a single panty-flooding column, blasting into the sodden undies like a broken fire hydrant. Potent seed swirls around the paired penises forcefully enough to coax Aliss to unleash her own torrid contributions. Truth be told, her spunk barely registers against the swirling vortex of your own seed. Each garment-ballooning ejaculation strains the seams and sprays rivers of [pc.cumVisc] backwash down your thighs, though it’s hardly enough to ease the pressure upon your hypersensitive shaft. All that packed-in spooge squeezes you tighter than a virgin’s pussy, in turn triggering you to cum all the harder, spurting and spraying until one end blows open to release a coursing waterfall of warm jism.");
+	}
+	output("\n\nSighing in delight and shuddering with aftershocks of sensation, Aliss slowly - and very, very carefully - withdraws her [pc.cumColor]-stained dick free of the ruined undergarment. Dribbles of excess hang from her still-flared tip, and as you watch, her urethra opens, leaking one last, pearly drop.");
+	output("\n\n<i>“Ohh, Mi Amour...”</i> Aliss murmurs, peeling what’s left of the underwear from your orgasm-sensitized member. It’s a flimsy mess, and unwrapping it releases the combined scents of fifteen minutes worth of solid fucking. <i>“They’re ruined.”</i> She flings the sticky mess into a bin and fetches a towel to mop the worst from her scales. <i>“But I can’t say it wasn’t worth it. I just can’t let you talk me into this too often, or you’ll put me out of business. Won’t you?”</i>");
+	output("\n\nOne well-thrown towel hits you in the face when you go to nod, and by the time you pull it off and start to wipe off, Aliss has already seen herself out.");
+	processTime(25);
+	pc.orgasm();
+	fuckedAliss();
+	chars["ALISS"].orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

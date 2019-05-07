@@ -82,6 +82,8 @@
 		public static const FLAG_PLUGGED:int                   	            = 47;
 		public static const FLAG_SCALED_PRETTY:int                          = 48;
 		public static const FLAG_SHORT:int									= 49;
+		public static const FLAG_FLOPPY:int									= 50; //Not for dicks, lol. Mostly for differentiating rabbit ears right now, but perhaps another use will arise down the road. Might be good for tails to help differentate tails with no muscular control
+		public static const FLAG_HYPER_PUMPED:int 							= 51;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -134,6 +136,8 @@
 			"Plugged",
 			"Partially Scaled",
 			"Short",
+			"Floppy",
+			"Hyper Pumped",
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
@@ -1099,6 +1103,7 @@
 		public static const SPIDER_WEB:int								= 30;
 		public static const LOW_GRAVITY:int								= 31;
 		public static const NURSERY:int									= 32; //used to mark all rooms in tavros nursery
+		public static const LOW_TECH:int								= 33; //used to mark rooms where the inhabitants wouldn't own regular space tech (see InRoomWithPhones)
 		
 		// Temp flag alias whilst the asset gets introduced
 		public static const LIFT:int = OBJECTIVE;
@@ -1211,7 +1216,11 @@
 		public static const ITEM_FLAG_SMALL_DICK_ONLY:int               = 33; //Cocksock can only be equipped by smol
 		public static const ITEM_FLAG_SHELTER:int						= 34; // For items that regulate environmental effects.
 		public static const ITEM_FLAG_STRETCHY:int						= 35; // Increases sexiness buff if related body part is big. Doubles as Transparent flag at 20+;
-
+		public static const ITEM_FLAG_RIFLE_WEAPON:int					= 36; //For outputing that a gun is a rifle
+		public static const ITEM_FLAG_PISTOL_WEAPON:int					= 37; //For outputing that a gun is a pistol
+		public static const ITEM_FLAG_SHOTGUN_WEAPON:int				= 38; //For outputing that a gun is a shotgun
+		public static const ITEM_FLAG_THROWER_WEAPON:int				= 39; //For outputing that a gun is a thrower
+		public static const ITEM_FLAG_LAUNCHER_WEAPON:int				= 40; //For outputing that a gun is a Launcher
 		
 		public static const ITEM_FLAG_NAMES:Array = [
 			"Bow Weapon",
@@ -1250,6 +1259,11 @@
 			"Requires Small Cock",
 			"Shelter",
 			"Stretchable",
+			"Rifle",
+			"Pistol",
+			"Shotgun",
+			"Thrower",
+			"Launcher"
 		];
 		
 		/**
@@ -1387,6 +1401,7 @@
 			"CROSSMAN",
 			"CYANCAPSULE",
 			"DAMNIT",
+			"DCLZEXON",
 			"DOCBADGER",
 			"DOXY",
 			"FRIENDLYALIENFRIEND",
@@ -1426,6 +1441,7 @@
 			"Crossman",
 			"CyanCapsule",
 			"Damnit",
+			"DCLZexon",
 			"DatBadger",
 			"Doxy",
 			"FriendlyAlienFriend",

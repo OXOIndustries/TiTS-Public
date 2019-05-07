@@ -203,7 +203,7 @@ public function topicHerSeer():void
 	output("\n\n<i>“I’m the Seer. Not </i>this<i> seer or </i>that<i> seer but <b>the</b> Seer! Seer of what? I’ve seen so much. More than I remember, more than I’m prepared for, more, more, more of you! You’ve seen things! But not the same things,”</i> she rambles, her eyes darting around from under the hood. She seems to peer behind you, as if watching for a queue of customers.");
 	output("\n\n<i>“You agree, of course.”</i>");
 	output("\n\nDo you? What?");
-	output("\n\n<i>“Ah, oh, nevermind,”</i> she says, distracted by something else. <i>“If I may say, I do hope that you don’t.”</i>");
+	output("\n\n<i>“Ah, oh, never mind,”</i> she says, distracted by something else. <i>“If I may say, I do hope that you don’t.”</i>");
 	output("\n\nDon’t? Don’t what? You ask her what she means.");
 	output("\n\n<i>“You must know, if I know then you must know, surely! You see?”</i> She gestures erratically with her left hand to the shop’s entrance.");
 	output("\n\nThere’s nothing there.");
@@ -364,7 +364,7 @@ public function loungeWakeAgainSeer():void
 	clearMenu();
 	
 	output("Your eyes flutter open.");
-	output("\n\nYou’re standing on a path. Where is this, Gildenmere? Right, right. You were here for... something. Something that made you apprehensive. Finding dad’s probes! Or was it... ah, nevermind.");
+	output("\n\nYou’re standing on a path. Where is this, Gildenmere? Right, right. You were here for... something. Something that made you apprehensive. Finding dad’s probes! Or was it... ah, never mind.");
 	output("\n\nYou take a look at your surroundings. Oh there’s a shop here!");
 	output("\n\n<i>“The En-tite...?”</i> You say out loud. <i>“Wait...”</i>");
 	output("\n\nCurious, your memory wants to tell you that you’ve been inside before. Well, it’s not like you had anything better to do! Or did you...");

@@ -194,9 +194,9 @@ public function sixtyNineKorg():void
 	if(pc.isHerm()) 
 	{
 		output("\n\nYour throbbing, pulsing cock unloads in her");
-		if(pc.biggestCockLength() < 6) output("warm mouth");
-		else if(pc.biggestCockLength() < 14) output("tight little throat");
-		else output("unprepared stomach");
+		if(pc.biggestCockLength() < 6) output(" warm mouth");
+		else if(pc.biggestCockLength() < 14) output(" tight little throat");
+		else output(" unprepared stomach");
 		output(" even as she roughly fingerfucks your [pc.pussy] to a violent, clenching orgasm that traps her little fingers inside while you let out a sated, bestial groan. The sensation of this korgonne girl bringing you to simultaneous orgasm has you humping and grinding at her face while she wrestles to keep control of you, keeping you firmly planted in her mouth and blowing your load while she greedily gulps it all down, slipping an encouraging finger into your [pc.asshole] and gently stroking your prostate just to drive you that little bit further.");
 	}
 	else if(pc.hasCock())

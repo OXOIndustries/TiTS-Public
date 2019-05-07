@@ -1812,7 +1812,7 @@ public function pippaGetSatOnFocus():void
 		else if (pc.hasVagina()) output("probe your [pc.pussy]");
 		else output("tease your [pc.nipples]");
 		
-		output("as you climax");
+		output(" as you climax");
 	}
 	else output("but in what feels like no time, Pippa climaxes once again");
 	

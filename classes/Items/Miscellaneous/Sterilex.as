@@ -58,6 +58,7 @@
 		}
 		private function reportHeatRut(hasHeat:Boolean = false, hasRut:Boolean = false):void
 		{
+			if(!hasHeat && !hasRut) return;
 			kGAMECLASS.output("\n\nThe after-effects of the Sterilex has calmed your loins some... <b>Your");
 			if(hasHeat) kGAMECLASS.output(" heat");
 			if(hasHeat && hasRut) kGAMECLASS.output(" and");

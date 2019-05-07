@@ -166,6 +166,7 @@
 		include "../includes/follower/ramis.as";
 		include "../includes/follower/shekka.as";
 		include "../includes/follower/siegwulfe.as";
+		include "../includes/follower/syri.as";
 		include "../includes/follower/yammi.as";
 		
 		//Sidequest shit
@@ -284,6 +285,7 @@
 		include "../includes/vesperia/kaede.as";
 		include "../includes/vesperia/kally.as";
 		include "../includes/vesperia/luca.as";
+		include "../includes/vesperia/lucaSexAndStuff.as";
 		include "../includes/vesperia/mabbs.as";
 		include "../includes/vesperia/rooms.as";
 		include "../includes/vesperia/roomFunctions.as";
@@ -439,9 +441,13 @@
 
 		//FIFTH PLANET: ZHENG SHI
 		include "../includes/zhengShiStation/agroshAndArdia.as";
+		include "../includes/zhengShiStation/blackjack.as";
 		include "../includes/zhengShiStation/boredJumper.as";
 		include "../includes/zhengShiStation/boredJumperExpanded.as";
 		include "../includes/zhengShiStation/boredJumperGangbangs.as";
+		include "../includes/zhengShiStation/boredJumperPregXpac.as";
+		include "../includes/zhengShiStation/coronaFlamer.as";
+		include "../includes/zhengShiStation/dane.as";
 		include "../includes/zhengShiStation/forgehound.as";
 		include "../includes/zhengShiStation/ldc_and_shock_hopper.as";
 		include "../includes/zhengShiStation/maike.as";
@@ -455,9 +461,11 @@
 		include "../includes/zhengShiStation/rozPowerGoo.as";
 		include "../includes/zhengShiStation/slyverenSlavebreaker.as";
 		include "../includes/zhengShiStation/spacewalk.as";
+		include "../includes/zhengShiStation/snekAndMaus.as";
 		include "../includes/zhengShiStation/tivf.as";
 		include "../includes/zhengShiStation/teyaalTheEngineer.as";
 		include "../includes/zhengShiStation/urbolg.as";
+		include "../includes/zhengShiStation/wallSluts.as";
 		
 		// Breedwell
 		include "../includes/breedwell/breedwell.as";
@@ -498,6 +506,7 @@
 		include "../includes/uveto/korgonneMaleHostile.as";
 		include "../includes/uveto/krym.as";
 		include "../includes/uveto/lund.as";
+		include "../includes/uveto/lureling.as";
 		include "../includes/uveto/majaTamedTamelings.as";
 		include "../includes/uveto/milodanFertilityPriestess.as";
 		include "../includes/uveto/milodanMaleHostile.as";
@@ -511,6 +520,7 @@
 		include "../includes/uveto/rhenworld.as";
 		include "../includes/uveto/rooms.as";
 		include "../includes/uveto/roomFunctions.as";
+		include "../includes/uveto/roxy.as";
 		include "../includes/uveto/shade.as";
 		include "../includes/uveto/stormguardMale.as";
 		include "../includes/uveto/subTuner.as";
@@ -518,12 +528,15 @@
 		include "../includes/uveto/tlako_and_xotchi.as";
 		include "../includes/uveto/tuuvaBlacksmith.as";
 		include "../includes/uveto/ula.as";
+		include "../includes/uveto/ulaCaveStuff.as";
+		include "../includes/uveto/ulasDad.as";
 		include "../includes/uveto/vark.as";
 		include "../includes/uveto/vavaGroom.as";
 		include "../includes/uveto/walt.as";
 		include "../includes/uveto/willow.as";
 		
 		include "../includes/chargendata.as";
+		include "../includes/SSTDs/cooties.as";
 		include "../includes/SSTDs/furpies.as";
 		include "../includes/SSTDs/locofever.as";
 		include "../includes/SSTDs/sneezingTits.as";
@@ -632,7 +645,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.261";
+			version = "0.7.279";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1716,22 +1729,37 @@
 		{
 			return chars["STORMDRAGON"];
 		}
-		
 		public function get aina():Aina
 		{
 			return chars["AINA"];
 		}
-		
 		public function get amber():Dryad
 		{
 			return chars["DRYAD"];
 		}
-		
 		public function get zea():Zea
 		{
 			return chars["ZEA"];
 		}
-
+		public function get luca():Luca
+		{
+			return chars["LUCA"];
+		}
+	
+		public function get marion():Marion
+		{
+			return chars["MARION"];
+		}
+	
+		public function get lureling():Lureling
+		{
+			return chars["LURELING"];
+		}
+		public function get roxy():Roxy
+		{
+			return chars["ROXY"];
+		}
+		
 		public function testShipCombat():void
 		{
 			CombatManager.newSpaceCombat();

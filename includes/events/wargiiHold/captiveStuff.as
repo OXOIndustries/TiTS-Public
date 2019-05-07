@@ -49,6 +49,9 @@ public function captiveRescueButton(arg:Number):void
 		case 4:
 			addButton(arg,"Rescue",rescueTuuvaBlurb);
 			break;
+		case 5:
+			addButton(arg,"Rescue",rescueMaja);
+			break;
 		default:
 			break;
 	}
@@ -93,6 +96,10 @@ public function wargiiFightWinRouting():void
 				clearMenu();
 				addButton(0,"Next",rescueTuuvaBlurb);
 				break;
+			case 5:
+				clearMenu();
+				addButton(0,"Next",rescueMaja);
+				break;
 			default:
 				CombatManager.genericVictory();
 				break;
@@ -120,11 +127,17 @@ public function randomKorgSavingProcChances():void
 				addBust("LUND");
 				output("\n\nBehind your foe is the stunned form of " + (flags["MET_LUND"] == undefined ? "a short, male korgonne":"Lund") + ". He’s bruised and battered, but alive. Uncertain wobbles plague his steps; perhaps he’s recently suffered a blow to the head. <b>If you defeat [enemy.himHer], you can free him from whatever depravity the savage [enemy.manWoman] intends!</b>");
 				break;
+			//Maja
+			case 5:
+				addBust("MAJA");
+				//Majas wargii hold rescue
+				output("\n\nYou can see maja behind the milodan. Her knees and elbows are tied to the ring of savivicte on her top, effectively leaving her in a forced fetal position. Her tail wags enthusiastically as she watches you fight, but a gag prevents her from cheering you on.");
+				break;
 			default:
 				break;
 		}
 	}
-	else if(!enemy.hasStatusEffect("Has Captive") && flags["WARGII_TUUVA_SAVED"] != undefined && rand(3) == 0 && !pc.hasStatusEffect("Tuuva Combat CD")) 
+	else if(!enemy.hasStatusEffect("Has Captive") && flags["WARGII_TUUVA_SAVED"] != undefined && !pc.hasStatusEffect("Tuuva Combat CD") && rand(3) == 0) 
 	{
 		tuuvaJoinsTheBattle();
 	}
@@ -181,6 +194,7 @@ public function korgCaptives():Array
 	//if(flags["WARGII_NENNE_SAVED"] == undefined) captives.push(["Nenne"]);
 	if(flags["WARGII_HEIDRUN_SAVED"] == undefined) captives.push(["Heidrun"]);
 	if(flags["WARGII_LUND_SAVED"] == undefined) captives.push(["Lund"]);
+	if(flags["WARGII_MAJA_SAVED"] == undefined) captives.push(["Maja"]);
 	//if(flags["WARGII_TUUVA_SAVED"] == undefined) captives.push(["Tuuva"]);
 	return captives;
 }
@@ -195,6 +209,9 @@ public function pickAKorgCaptiveNumber():Number
 			break;
 		case "Lund":
 			return 3;
+			break;
+		case "Maja":
+			return 5;
 			break;
 		default:
 			return 0;
@@ -268,4 +285,58 @@ public function saveNenne():void
 	output("\n\n");
 	CombatManager.genericVictory();
 	IncrementFlag("WARGII_FIGHTS_WON");
+}
+
+
+//rescued
+public function rescueMaja():void
+{
+	clearOutput();
+	showMaja();
+	author("Gardeford");
+	showName((flags["MET_MAJA"] != undefined ? "SAVING\nMAJA":"SAVE\nA KORG"));
+	author("Fenoxo");
+	output("You rush to " + (flags["MET_MAJA"] != undefined ? "the korgonne" : "Maja") + "’s side as the milodan collapses, Cutting away her restraints and pulling the gag from her mouth. She works her jaw for a few seconds, massaging her cheeks before jumping into a sudden hug.");
+	if(flags["MET_MAJA"] == undefined)
+	{
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Stranger savings! M-Maja name Maja!");
+		else output("You’ve come to save me! My name’s Maja!");
+		output("”</i> The korgonne muffles into you.");
+		output("\n\n<i>“[pc.fullName],”</i> you respond.");
+		flags["MET_MAJA"] = 1;
+	}
+	output("\n\n<i>“" + (!korgiTranslate() ? "Many thankings! Maja thought milodan would carry her off for good,":"Thank you! I thought I was done for,") + "”</i> She says, clinging to you while she talks. She lets you go in short order, brushing herself off and adjusting her top. A shadow of worry still coats her features, and she glances off in the direction of the bottom floors.");
+	output("\n\n<i>“" + (!korgiTranslate() ? "The animals! Animals still downstairs! Steele help? Maja need helpings, not safe to check alone. Get captured again,":"The animals! My animals are still trapped downstairs! Can you help me check on them? I’ll just get captured again if I go alone,") + "”</i> she begs, her tail giving a few subdued shakes as she looks back and forth through the halls.");
+	output("\n\n<i>“");
+	if(pc.isBimbo()) output("Those poor things! Of course I’ll come help,");
+	else if(pc.isNice()) output("Of course I’ll come, we’ll make sure they’re safe,");
+	else if(pc.isMischievous()) output("As cute as you looked all tied up like that, I don’t want them carting you off,");
+	else output("I’ll be out a mount if they do anything down there, so count me in,");
+	output("”</i> you reply, glancing around to regain your bearings. Maja scoots off in the direction of the stairs, hugging the walls and moving so carefully that her paws hardly make a sound on the cavern floor. You can hear fighting going on all around you, with explosions reverberating through the open passages at odd intervals. Hopefully they aren’t able to fully collapse any tunnels before you find whoever’s in charge.");
+	output("\n\nYour would be guide ducks off before you can see what path she’s taking, leaving you to fight your way through the milodan attackers. Some of those animals might be a good help in the close quarters fighting of the tunnels, if you can make it down there.");
+	output("\n\n<b>You saved Maja!</b>");
+	flags["WARGII_MAJA_SAVED"] = 1;
+	flags["TUNDRA_STEP"] = 0;
+	output("\n\n");
+	CombatManager.genericVictory();
+	IncrementFlag("WARGII_FIGHTS_WON");
+}
+
+//pc enters tamed tamelings
+//if(flags["WARGII_MAJA_SAVED"] == 1) majaTamelingFreething
+public function majaTamelingFreething():void
+{
+	author("Gardeford");
+	showBust("MAJA");
+	showName("\nMAJA");
+	output("\n\nA single milodan digs through the things atop Maja’s desk, looking to have already pillaged the boxes and bags around the room in search of loot. Maja creeps forward " + (silly ? "examining a fallen post before shaking her head. She hefts her massive bust as she sneaks up behind the looter. With one swift move she turns her body and smashes her chest into the back of the cat-man’s knees, when he falls with a huff she lifts her breasts and brings them slapping down onto his head. He bounces off the table, falling into a mewling stupor.":"examining a fallen post and grasping it with both hands. She deftly sneaks up to the looter, leveling her improvised club. In one swift move she brings the long stake into the back of the cat-man’s knees. When he falls with a huff she lifts her weapon and brings it down on his head, reducing him to a mewling stupor."));
+	output("\n\nYou hear a scuffling noise from the pen room, and another milodan rushes into the office area. Her attention is trained entirely on Maja, so she doesn’t notice when you kick one of the barrels. The tumbling container knocks her legs out from under her. She falls on her face, scrambling to regain her bearings. Unfortunately, she stays down just long enough for Maja to " + (silly ? "give her the kind of tiddy drop that would get a gorillion upvotes on the extranet":"smack her on the head with her length of post") + ".");
+	output("\n\nNo more sound comes from the animal pens barring the curious cooing and grunting of the animals themselves, but the two of you still edge carefully into the back area. The food storage and extra bedding are ransacked, but you can’t see any other milodan in the area. Some of the kor’diiak paw excitedly at the fence when they see Maja round the corner. She drops her club, scooting over to the gate as quickly as she can and comforting the animals. You walk up to the nog’wich pen, petting a few of the younger cat-horse’s who are curious enough to investigate. You turn in time to see Maja undoing the lock on the kor’diiak cage.");
+	output("\n\n<i>“" + (!korgiTranslate() ? "Maja send kor’diiak to help with fighting. Many strongs, bigger than milodan. Maybe think twice about weapons. If kor’diiak di- get hurt, they take up space in passage, block way for intruders. Kor’diiak much smart though, know not to run into shootings. Maja will stay with these milodan, Keep them from getting into trouble. Maybe give taste of own medicine,":"I’ll send out some of the kor’diiak to help with the fighting. The milodan might think twice about kil- about shooting them if their bodies will block important passageways. They’re smart though, and they should know well enough to not run into the line of fire if they can’t attack first. I’ll stay here with these two, make sure they don’t get into trouble. Maybe i’ll give them a taste of their own medicine if they’re up for it,") + "”</i> she gives you a half-hearted smile.");
+	output("\n\n<i>“I’m sure they’ll be fine. I’ll help get this sorted out soon,”</i> You step to the side to give some kor’diiaks the space to step through the doorway. They squeeze past, lumbering towards the sounds of fighting. You duck out after they’re through, moving toward the throne room.");
+	flags["WARGII_MAJA_SAVED"] = 2;
+	processTime(3);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }

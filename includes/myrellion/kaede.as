@@ -339,7 +339,7 @@ public function kaedeMyrellionShadeAddition():void
 		
 		output("\n\n<i>“Entara,”</i> you correct. <i>“What’s this all about, Shade?”</i>");
 		
-		output("\n\nThe cat-woman grunts and rubs her temple. <i>“Doesn’t matter. Nevermind, kid.”</i>");
+		output("\n\nThe cat-woman grunts and rubs her temple. <i>“Doesn’t matter. Never mind, kid.”</i>");
 		
 		output("\n\nYou cross your arms. No way she’s just blowing you off after that... whatever that was. Shade sighs and leans back in her chair, arms crossing right back at you and hefting up the smooth swells of her ample bust. <i>“She reminded me of somebody. Somebody I care about a great deal.”</i>");
 		
@@ -401,7 +401,7 @@ public function kaedeMyrellionBarFlirt():void
 		
 		clearMenu();
 		addButton(0, "It’s Fine", kaedeMyrellionBarTheDIsFine, undefined, "It’s Fine", "Tell Kaede you’re fine with her and her dick.");
-		addButton(1, "Nevermind", kaedeMyrellionBarNoDPls, undefined, "Nevermind Then", "Thanks for the heads up. You’re not really into the D.")
+		addButton(1, "Never Mind", kaedeMyrellionBarNoDPls, undefined, "Never Mind Then", "Thanks for the heads up. You’re not really into the D.")
 	}
 }
 
@@ -1262,7 +1262,7 @@ public function vaginalCassKaedeThreesome():void
 	output("\n\n<i>“Thanks Cass anyway enjoy yourself bye,”</i> Kaede babbles, looking positively flushed as she scampers off back upstairs. Sporting, you notice, a not-unnoticable bulge in her jeans.");
 	output("\n\nCass snickers and lets her hands fall to rest on her breasts, tugging at her oversized nipples. <i>“Poor thing. I... mmm, little deeper, honey... I shouldn’t have ridden her so hard this morning. She... ooh, getting close...”</i>");
 	output("\n\nCass’s almost-coherent thought trails back off into lusty moos of pleasure as you tongue-fuck her. The way her chest is heavy, leaking trickles of milk into her fingers, while her cunt clenches is ever more desperate ways to try and milk your phantom cock... you know she’s just about ready to hit her breaking point.");
-	output("\n\nAll that’s left for you to do is keep your [pc.tongue] wriggling between her juicy walls, letting the cow-girl ride her way through the coming climax. And ride she does, bucking her hips and grinding her cooch against your face, reaching down to rub her clit and bellow her pleasure to the heavens. You’re treated to to a miniature waterfall of fem-cum that splatters across your cheeks, bathing you in Cass’s alluring scent even as your tongue drinks in the sweetly bitter taste of her twat all through her orgasm, right until she’s collapsing on the couch and gasping for breath.");
+	output("\n\nAll that’s left for you to do is keep your [pc.tongue] wriggling between her juicy walls, letting the cow-girl ride her way through the coming climax. And ride she does, bucking her hips and grinding her cooch against your face, reaching down to rub her clit and bellow her pleasure to the heavens. You’re treated to a miniature waterfall of fem-cum that splatters across your cheeks, bathing you in Cass’s alluring scent even as your tongue drinks in the sweetly bitter taste of her twat all through her orgasm, right until she’s collapsing on the couch and gasping for breath.");
 	output("\n\nOf course that doesn’t stop you or anything. You reckon Kaede’s gonna need plenty of time to recover...");
 	processTime(19);
 	pc.lust(50);

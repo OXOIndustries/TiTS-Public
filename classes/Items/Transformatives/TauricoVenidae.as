@@ -63,7 +63,7 @@ package classes.Items.Transformatives
 			var TFs:Array = new Array();
 
 			if(target.earType != GLOBAL.TYPE_DEER) TFs.push(deerEarTF);
-			if(target.tailType != GLOBAL.TYPE_DEER || target.tailType == 0) TFs.push(deerTailTF);
+			if(target.tailType != GLOBAL.TYPE_DEER || target.tailCount <= 0) TFs.push(deerTailTF);
 			if(target.hasLegFlag(GLOBAL.FLAG_FURRED) && ((target.legType != GLOBAL.TYPE_DEER && target.furColor != "brown") || (target.legType == GLOBAL.TYPE_DEER && target.furColor != "white-dappled brown"))) TFs.push(skinToFur);
 			if(target.legType != GLOBAL.TYPE_DEER || !target.isTaur() || target.legCount != 4) TFs.push(getYouACentaurBod);
 			if(target.faceType != GLOBAL.TYPE_HUMAN) TFs.push(humanFaceTeef);
@@ -92,6 +92,8 @@ package classes.Items.Transformatives
 			{
 				output("\n\nYou reach up and scratch behind your ear, trying to satisfy a persistent itch. It won’t go away, and amidst your frustration you suddenly realize there’s a new sensation - your ears are changing! They contort and curve, a light covering of fuzzy fur growing across the back of them. When the transformation finishes, you have <b>lightly-furred deer ears!</b>");
 				target.earType = GLOBAL.TYPE_DEER;
+				target.clearEarFlags();
+				target.addEarFlag(GLOBAL.FLAG_FURRED);
 				target.earLength = 3;
 			}
 			else output("\n\n" + target.earTypeLockedMessage());
@@ -123,6 +125,8 @@ package classes.Items.Transformatives
 				else
 				{
 					output("\n\nYou feel a knot of pleasure forming at the base of your spine, right above your [pc.butt]. Gingerly reaching a hand down there, you find a sizeable bump! It looks like you’re growing a tail! You moan in pleasure as your new appendage slowly but surely shapes itself together, coalescing into <b>a short fluffy tail - like a deer’s!</b>");
+					
+					target.tailCount = 1;
 				}
 				target.tailType = GLOBAL.TYPE_DEER;
 				target.clearTailFlags();
@@ -329,8 +333,8 @@ package classes.Items.Transformatives
 
 				for(var x:int = 0; x < pc.totalVaginas(); x++)
 				{
-					//pc.vaginas[x].type = GLOBAL.TYPE_DEER;
 					pc.shiftVagina(x,GLOBAL.TYPE_DEER);
+					pc.vaginas[x].bonusCapacity += 200;
 				}
 				pc.orgasm();
 				pc.libido(2);

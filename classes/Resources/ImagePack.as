@@ -88,6 +88,9 @@ package classes.Resources
 			public static const KiroDCLCummy:Class;
 			[Embed(source = "../../assets/images/imagepack/kiro/nazuu_kiro_milker_finish.jpg", mimeType = "image/jpg")]
 			public static const KiroMilkerNazuu:Class;
+			[Embed(source = "../../assets/images/imagepack/kiro/dsan_kiro_kally_questycommissioned.jpg", mimeType = "image/jpg")]
+			public static const KiroKallyTeamMilk:Class;
+			
 			
 			//KORG DOSED
 			[Embed(source = "../../assets/images/imagepack/korg_generic/korg_dosed.png", mimeType = "image/png")]
@@ -152,6 +155,18 @@ package classes.Resources
 			[Embed(source = "../../assets/images/imagepack/princess/DCLzexon_Princess_Taivris_Fullsize.png", mimeType = "image/png")]
 			public static const PrincessIntro:Class;
 
+			//RATS
+			[Embed(source = "../../assets/images/imagepack/rats/octomush_earfuck_ffion.jpg", mimeType = "image/jpg")]
+			public static const OctoEarfuck:Class;
+
+			//ROO
+			[Embed(source = "../../assets/images/imagepack/roo/octomush_dealer_table_fuck_nomilk.jpg", mimeType = "image/jpg")]
+			public static const RooTableFuck:Class;
+			[Embed(source = "../../assets/images/imagepack/roo/octomush_dealer_table_fuck.jpg", mimeType = "image/jpg")]
+			public static const RooTableFuckMilk:Class;
+			[Embed(source = "../../assets/images/imagepack/roo/octomush_dealer_under_table.jpg", mimeType = "image/jpg")]
+			public static const RooUnderTableLick:Class;
+
 			//SECOP (PUNK)
 			[Embed(source = "../../assets/images/imagepack/secOp/dsan_wall_slut_jumper_thersaadi_laquine_horsecock_1.jpg", mimeType = "image/jpg")]
 			public static const VRWallSlut:Class;
@@ -183,6 +198,8 @@ package classes.Resources
 			//ULA
 			[Embed(source = "../../assets/images/imagepack/ula/sukebepanda_korgonne_princess.png", mimeType = "image/png")]
 			public static const UlaDildo:Class;
+			[Embed(source = "../../assets/images/imagepack/ula/mrPink_adjColors_ula_war_alpha_sex.png", mimeType = "image/png")]
+			public static const UlaWarAlphaSex:Class;
 
 			//VERUSHA
 			[Embed(source = "../../assets/images/imagepack/verusha/DCLZexon_Verusha_HQ.png", mimeType = "image/png")]

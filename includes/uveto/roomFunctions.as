@@ -25,6 +25,8 @@ public function TundraEncounterBonus():Boolean
 		choices[choices.length] = encounterAKorgonneFemaleHostile;
 		choices[choices.length] = korgMaleEncounter;
 		choices[choices.length] = korgMaleEncounter;
+		//Essyras/Lurelings
+		choices[choices.length] = marionEncounter;
 		if(stormguardMaleEncounterAvailabale()) 
 		{
 			choices[choices.length] = stormguardIntro;
@@ -62,6 +64,8 @@ public function GlacialRiftEncounterBonus():Boolean
 		choices[choices.length] = encounterAMilodan;
 		choices[choices.length] = encounterAMilodan;
 		choices[choices.length] = encounterAMilodan;
+		//Essyras/Lurelings
+		choices[choices.length] = marionEncounter;
 		//very low encounter rate korgs
 		if(rand(2) == 0)
 		{
@@ -656,7 +660,9 @@ public function uvetoFallToColdDamage():void
 		
 		output("\n\nGroggily, you open your eyes, long enough to see that you’re in the back of a vehicle, bumping along the snowy outskirts of the plains. Ice has formed on the windows, but you can just make out Irestead in the distance, growing closer by the moment. Glancing at the front of the vehicle, you see metal bars separating you from the driver’s cabin, and an old slug shotgun bolted to the cage. A pair of cute little chibi ausar tokens hang from the rear view mirror, both dressed in too-tight Peacekeeper blouses and pointing finger guns at you.");
 		
-		output("\n\n<i>“You’re awake!”</i> a woman’s voice says from the driver’s seat, drawing your attention to a head of blue hair and a pair of floppy canid ears peeking out of a Peacekeeper helmet.");
+		if(silly) output("\n\n<i>“Hey, you. You’re finally ");
+		else output("\n\n<i>“You're ");
+		output("awake!”</i> a woman’s voice says from the driver’s seat, drawing your attention to a head of blue hair and a pair of floppy canid ears peeking out of a Peacekeeper helmet.");
 		if (flags["UVETO_LUNA_RESCUES"] == undefined)
 		{
 			output(" <i>“What were you thinking, wandering around outside town without a heat belt. Lucky you I was around, or you’d have been dead for sure!”</i>");
@@ -1156,7 +1162,8 @@ public function GlacialRiftS40():Boolean
 	{
 		var tt:String = "Since you have";
 		if (pc.hasJetpack()) tt += " a jetpack";
-		else tt += " wings";
+		else if(pc.hasWings()) tt += " wings";
+		else tt += " the ability to fly";
 		tt += ", you can bypass the rope and head down at your leisure.";
 		addButton(0, "Fly Down", GlacialRiftS40FlyDown, undefined, "Fly Down", tt);
 	}
@@ -1166,7 +1173,7 @@ public function GlacialRiftS40():Boolean
 public function GlacialRiftS40FlyDown():void
 {
 	clearOutput();
-	output("You take flight, smirking at the sad little groundlings that must have struggled down that precarious rope. Instead, you’re able to soar down the side of the glacial cliff, right down to where the rope ends at a gaping hole in the cliff-face. A cave! You swoop in and land, ready to see what’s in store.");
+	output("You " + (pc.hasJetpack() ? "blast off" : "take flight") + ", smirking at the sad little groundlings that must have struggled down that precarious rope. Instead, you’re able to " + (pc.hasJetpack() ? "hover" : "soar") + " down the side of the glacial cliff, right down to where the rope ends at a gaping hole in the cliff-face. A cave! You swoop in and land, ready to see what’s in store.");
 	currentLocation = "UVGR O42";
 	
 	clearMenu();
@@ -1183,7 +1190,8 @@ public function GlacialRiftQ40():Boolean
 	{
 		var tt:String = "Since you have";
 		if (pc.hasJetpack()) tt += " a jetpack";
-		else tt += " wings";
+		else if(pc.hasWings()) tt += " wings";
+		else tt += " the ability to fly";
 		tt += ", you can bypass the rope and head down at your leisure.";
 		
 		addButton(1, "Fly Down", GlacialRiftS40FlyDown, undefined, "Fly Down", tt);
@@ -1627,7 +1635,7 @@ public function korgiiHoldInteriorExitBonus():void
 public function enterKorgHold():void
 {
 	//WARGII QUEST INTERRUPT!
-	if(korgiTranslateProgress() >= 60 && flags["WARGII_SETUP"] == undefined && flags["ENTERED_KORGI_HOLD"] != undefined && pc.level >= 9 && ulaPregBelly() == 0)
+	if(korgiTranslateProgress() >= 60 && flags["WARGII_SETUP"] == undefined && flags["WARGII_PROGRESS"] == undefined && flags["ENTERED_KORGI_HOLD"] != undefined && pc.level >= 9 && ulaPregBelly() == 0)
 	{
 		currentLocation = "KORGII B12";
 		generateMap();
@@ -1725,18 +1733,37 @@ public function korgiH14Bonus():void
 
 public function korgiF14Bonus():void
 {
-	if(korgiTranslate()) output("scribbles indecipherably beneath. The best approximation your translator can manage is “Warm Crusts.”");
-	else output("scrawls beneath, declaring this to be a clothing shop. The literal translation is “Warm Crusts.”");
+	if(korgiTranslate()) output(" Alien script scribbles indecipherably beneath. The best approximation your translator can manage is “Warm Crusts.”");
+	else output(" Alien script scrawls beneath, declaring this to be a clothing shop. The literal translation is “Warm Crusts.”");
 }
 
 public function chiefBedroomBonus():Boolean
 {
 	//Temporary? Maybe someday in the future actually allow into chief's bedroom.
-	clearOutput();
-	output("You stop yourself before you do something terribly stupid. It would be best to let sleeping dogs lie.");
-	currentLocation = rooms[currentLocation].westExit;
-	generateMap();
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
-	return true;
+	if(!ulaChief())
+	{
+		clearOutput();
+		output("You stop yourself before you do something terribly stupid. It would be best to let sleeping dogs lie.");
+		currentLocation = rooms[currentLocation].westExit;
+		generateMap();
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		return true;
+	}
+	else
+	{
+		//OLD: The Chief’s bedroom is surprisingly bare. Yes, he has a large, comfortable-looking bed with more fluffy hides and cushions than you care to count, but the rest of the chamber is quite simple. A bone crate holds a pile of knick-knacks and primitive jewelry. A stolen mining crate, still-bearing the SteeleTech logo, sits against the east wall. Judging by the chair next to it, it serves dual use as a wardrobe and desk.
+		output("The Chieftain’s bedroom may have once been a spartan, traditional affair, but since Ula’s sudden promotion to unquestioned leader of her tribe, much has changed. The comfortable but primitive bed has gained a set of flannel sheets decorated with snowflakes and cartoonish seals, obviously purchased from somewhere in Irestead. The furniture from Ula’s old room joins it in sprucing up the place and lending it an air befitting of a more civilized people.");
+	}
+	return false;
+}
+public function korgiiThroneRoomBonus():Boolean
+{
+	if(!ulaChief()) output("Walls of whitish stone, worked into murals of ancient korgonne heroism, display the might of Korg’ii clan on all sides. Gold chains hold glowing crystals from the ceiling to light it amber radiance. You can see a single, armored korg fighting off three frostwyrms single-handled. Elsewhere, a horde of fluffy barbarians riding six-legged bears does battle with a swarm of bestial milodans.\n\nCarefully hewn rock and skillfully carved bone decorate the rest of the interior. An enormous throne rises up in the center of it all, a place for the tribe’s undisputed leader. Its cushion looks quite comfy.\n\nCurtains to the east provide entrance to the Chief’s bedchamber. A passage northward provides access to what looks to be some kind of private armory.");
+	else 
+	{
+		output("Walls of whitish stone, worked into murals of ancient korgonne heroism, display the might of Korg’ii clan on all sides. Gold chains hold glowing crystals from the ceiling to light it amber radiance. You can see a single, armored korg fighting off three frostwyrms single-handled. Elsewhere, a horde of fluffy barbarians riding six-legged bears does battle with a swarm of bestial milodans.\n\nCarefully hewn rock and skillfully carved bone decorate the rest of the interior. An enormous throne rises up in the center of it all, a place for the tribe’s undisputed leader. Dozens of cushions have been heaped upon it since Ula's rise to power, and she's even taken the luxury of piling furs and pillows into a high stack in the corner for when she can take more relaxed meetings. A large desk and chair sits at the opposite end, for use by scribes or the Chieftess herself when there's paperwork to be done.");
+		return ulaRoomBonusFunc();
+	}
+	return false;
 }

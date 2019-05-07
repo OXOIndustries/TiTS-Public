@@ -242,7 +242,7 @@ public function letSeraFuckYouXXXpac(response:String = "no"):void
 				clearMenu();
 				addButton(0, "Yes Shrink", letSeraFuckYouXXXpac, "yes shrink", "Accept", "Allow Sera to shrink your [pc.cock " + cockIndex + "].");
 				addButton(1, "Got It", letSeraFuckYouXXXpac, "don't show me", "Refuse", "Tell her you’ve got this covered.");
-				addButton(2, "Nevermind", seraInchStealing, "nevermind", "Nevermind", "Actually, you’d rather not at this time....");
+				addButton(2, "Never Mind", seraInchStealing, "nevermind", "Never Mind", "Actually, you’d rather not at this time....");
 				if(seraIsMistress()) addDisabledButton(3, "Don’t Care", "Not Interested", "You really don’t have the power to tell her off now that you’re committed to her being your Mistress.");
 				else if(pc.WQ() >= 50) addButton(3, "Don’t Care", letSeraFuckYouXXXpac, "not interested", "Not Interested", "Tell her you are not putting up with her attitude anymore.");
 				else addDisabledButton(3, "Don’t Care", "Not Interested", "You really don’t have the willpower to tell her off....");
@@ -486,7 +486,7 @@ public function seraInchStealingIntro(response:String = ""):void
 		processTime(2);
 		clearMenu();
 		addButton(0, "Yes", letSeraFuckYouXXXpac, "yes shrink", "Yes", "Allow Sera to alter your [pc.cock " + cockIndex + "].");
-		addButton(1, "Nevermind", seraInchStealing, "nevermind", "Nevermind", "Actually, you’d rather do something else....");
+		addButton(1, "Never Mind", seraInchStealing, "nevermind", "Never Mind", "Actually, you’d rather do something else....");
 		return;
 	}
 	
@@ -1150,6 +1150,8 @@ public function fuckedSeraAsMistress():Boolean
 	if(flags["SERA_TIT_FUCK_LUCKY_DIP"] != undefined) totalSex += flags["SERA_TIT_FUCK_LUCKY_DIP"];
 	if(flags["SERA_PARTY_FUCKED"] != undefined) totalSex += flags["SERA_PARTY_FUCKED"];
 	if(flags["SERA_TAILED"] != undefined) totalSex += flags["SERA_TAILED"];
+	if(flags["SERA_TONGUE_FUCKED"] != undefined) totalSex += flags["SERA_TONGUE_FUCKED"];
+	if(flags["SERA_MILKINGS"] != undefined) totalSex += flags["SERA_MILKINGS"];
 	
 	if(totalSex > 0) return true;
 	
@@ -1180,10 +1182,17 @@ public function seraSexXXXRouter():void
 	if(flags["SERA_UNLOCK_LUCIFIER"] != undefined) chance += 2;
 	if(flags["SERA_TIT_FUCK_LUCKY_DIP"] == undefined || (timesFuckedSera() % 4 == 0 && chance < 6)) newScenes.push(seraSexXXXTitfuckLuckyDipStart);
 	if(rand(chance) == 0) choices.push(seraSexXXXTitfuckLuckyDipStart);
+	// Parasite tail-cock
 	if(pc.hasParasiteTailCock())
 	{
 		if(flags["SERA_TAILED"] == undefined) newScenes.push(seraCockvineScene);
 		choices.push(seraCockvineScene);
+	}
+	// Milkings
+	if(pc.biggestTitSize() > 2 && pc.isLactating())
+	{
+		if(flags["SERA_MILKINGS"] == undefined || (flags["SERA_MILK_RESERVE_DAYS"] <= 0 && rand(3) > 0)) newScenes.push(seraMilkingsStart);
+		choices.push(seraMilkingsStart);
 	}
 	
 	// Go go sexytimes
@@ -2959,5 +2968,357 @@ public function seraTongueFuckFin(lickedFloor:Boolean = false):void
 	
 	clearMenu();
 	addButton(0, "Next", seraMenu);
+}
+
+// Sera Milkings
+// Requirements: PC must be at least C cup, must be lactating
+/*
+Sera cuffs you up and gets some creamery and some puss. PC doesn’t necessarily have to be preg, anal variant possible.
+Some breastfeeding requested.
+Scene should be added to her standard sub rotation. If possible, scene should proc straight away if the PC qualifies after it is added.
+*/
+public function seraMilkingsStart():void
+{
+	seraMilkings([0]);
+}
+private var seraMilkTankVolReg:Number = 20000;
+private var seraMilkTankVolBig:Number = 200000;
+public function seraMilkings(arg:Array):void
+{
+	clearOutput();
+	author("Nonesuch");
+	clearMenu();
+	
+	var pageNum:int = (arg.length > 0 ? arg[0] : 0);
+	var milkQ:Number = (arg.length > 1 ? arg[1] : 0);
+	var vIdx:int = (arg.length > 2 ? arg[2] : -1);
+	
+	switch(pageNum)
+	{
+		case 0:
+			showSera();
+			
+			var seraIsDad:Boolean = (StatTracking.getStat("pregnancy/sera kids") > 0 || pc.hasPregnancyOfType("SeraSpawnPregnancy"));
+			
+			output("<i>“Mistress.”</i>");
+			output("\n\nSera gazes down at your [pc.chest] with her glowing eyes, claws drumming on the counter, expression inscrutable. The demon domme has a steaming cup reading ‘Galaxy’s #1 " + (seraIsDad ? "Dad" : "Domme") + "’ with her today; she takes a sip from it and twists her lip.");
+			output("\n\n<i>“Look at those " + (pc.milkFullness < 75 ? "fat titties" : "swollen teats") + " of yours,”</i> she says softly.");
+			if(flags["SERA_MILKINGS"] == undefined) output(" <i>“Give ‘em a squeeze and they spray everywhere. So much fun... but such a waste too. No more, though.”</i> The demon-morph grins at you in that crooked way she has that never fails to send a cold thrill running right through you. <i>“I’ve set something up, in the back. Just for you.”</i>");
+			else output(" <i>“Practically dripping with slut calories. Crying out for your owner to give them a good... hard... milking. What do you say?”</i>");
+			output("\n\n<i>“Yes Mistress,”</i> you mumble, heat shooting into your face. <i>“Please... please milk me.”</i>");
+			if(pc.isPregnant() && pc.bellyRating() >= 10)
+			{
+				output("\n\n<i>“Do me a favor first,”</i> she says, teasing grin on her face. <i>“You aren’t wearing shoes right now, are you? Just... stand up. Stand right there, for a moment.”</i>");
+				output("\n\nYou do so, the conditioned air moving over your naked [pc.skinFurScales] in the middle of the shop store, under the burning gaze of your Mistress. You realize why she’s made you do this when those eyes move down to your taut, round belly, and your face burns even more as you picture yourself.");
+				output("\n\n<i>“Pregnant, naked and barefoot. Standing there, obediently waiting to be ordered around by " + (seraIsDad ? "daddy" : "me") + ".”</i> Sera groans in soft enjoyment, tracing her lips with a claw. <i>“");
+				if(wearingSeraCollar()) output("With the collar on and all! ");
+				if(pc.hasPregnancyOfType("SeraSpawnPregnancy")) output("I can’t believe you had to convince me so hard to knock you up. ");
+				output("It’s so good, seeing the billionaire’s brat like that. So primal.”</i> Her teeth clench. <i>“One I can’t wait to get my nails into you. C’mon, babycakes. Time’s a-wasting.”</i>");
+			}
+			output("\n\nYou follow the beckoning tail and hypnotic purple form into the Dark Chrysalis’s back, where the succubus stores her merchandise and commits her more exquisitely nasty activities.");
+			if(flags["SERA_MILKINGS"] == undefined)
+			{
+				output(" You’re expecting her to lead you into her bedroom, but she strides right past, to the door at the far end.");
+				output("\n\nThis is a spacious storage space, of the sort you’d find in the rear of any space station commercial lot. Or, at least, it was; the grey, synthetic floors and walls are slowly being devoured by matte black panelings, and bits and pieces of equipment that look distinctly like they’re geared more towards Sera’s pleasures than her work have been set up, or standing waiting forbiddingly for assemblage.");
+				output("\n\n<i>“This is going to be my dungeon,”</i> she explains, gazing around her with a happy smile. <i>“I always intended to build one, once I had my own place. It’s coming along.");
+				if(seraPartySuccess()) output(" Mostly thanks to you.”</i> She turns and grazes her claws along the line of your jaw lovingly.");
+				else output("”</i>");
+				output(" She raps a knuckle against one of the black panels. <i>“Soundproof. Once I’m done, nobody’ll be able to hear you scream. I’ll be able to make it pitch black in here too, so the only thing you’ll be able to see is...”</i> Sera points at her eyes. She’s beaming, already picturing it. <i>“It’s gonna be so good. For now, though...”</i>");
+			}
+			else
+			{
+				output(" Once again, Sera leads you past her bedroom to her half-constructed dungeon, where she conducts her more... industrial activities. You think it’s come together a little more since you were here last, the black paneling closing in on the remaining grey. The implication makes you shiver a bit, a fact not lost on Sera.");
+				output("\n\n<i>“Aww, you a little cold?”</i> She runs her claws " + (pc.hasHair() ? "through" : "over") + " your [pc.hair] affectionately. <i>“Don’t worry. There’ll be plenty of ways for me to warm you up in here, once it’s finished.”</i> Her expression turns hungrier. <i>“For now, though...”</i>");
+			}
+			output("\n\nImpulsively she reaches in, seizing one of your breasts. You have a moment to see her mouth open, a wet red cavern with that sinuous beast of a tongue slathering out of it, and then it’s plastered itself over your [pc.nipple], licking and pulling at it ravenously. Claws and teeth prickle your sensitive flesh, making you gasp, and quickly the liquid wealth swollen within rises exquisitely to the surface, " + (!pc.canMilkSquirt() ? "spotting delicately into Sera’s mouth in response to her kneading lips" : "squirting heavily into Sera’s mouth, such is the dense pressure contained therein") + ".");
+			output("\n\n<i>“Mmm,”</i> she purrs, breaking off for a moment. You see a drop of [pc.milk] disappear down her throat. <i>“");
+			if(InCollection(pc.milkType, [GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_NECTAR])) output("Slut-honey, sticky and horny. So fucking decadent.");
+			else if(InCollection(pc.milkType, [GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT, GLOBAL.FLUID_TYPE_FRUIT_CUM, GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM])) output("Fruity, drippy slut. Over-ripe and ready to pluck.");
+			else if(InCollection(pc.milkType, [GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK]))
+			{
+				output("Fruity. Holy shit, what is that?”</i> You can actually see her pupils dilate as it hits her veins. She laughs, slightly giddy. <i>“I feel so... is that an aphro?”</i> She bites her lip, staring at you. <i>“Oh [pc.name]. I am going to fuck you so damn hard. Then I’m going to take another drag from those tits of yours, and do you again. Then you’re gonna tell me where you got the mod for those from.");
+				
+				chars["SERA"].lust(50);
+			}
+			else output("Slut-milk, straight from the source.");
+			output(" Yes...”</i> she sighs beatifically, licking her lips. <i>“This is the shit I should be getting.”</i>");
+			output("\n\nShe draws your other breast into her mouth, licking and pulling at you slower and more purposefully this time, her other hand grazing down over your [pc.belly] as she does it, drifting between your delta");
+			if(pc.hasVagina() || pc.hasCock())
+			{
+				output(" to tease");
+				if(pc.hasVagina()) output(" the lips of [pc.eachVagina]");
+				else output(" [pc.eachCock]");
+			}
+			output(" with little strokes and pulls. You sigh with pleasure as " + (!pc.canMilkSquirt() ? "little spots and drops" : "little oozes and squirts") + " of [pc.milk] are produced by Sera’s ardent, hungry mouth, lust and a naughty thrill darting through you at nursing your Mistress like this.");
+			output("\n\n<i>“Alright,”</i> the tall, horned human says lowly, breaking off. " + (pc.totalNipples() == 2 ? "Both" : "All") + " of your [pc.nipples] are wet and");
+			if(pc.hasErectNipples()) output(" protrude like cherries");
+			else output(" plush, leaking fluid like " + (!pc.hasCuntNipples() ? "aroused pussies" : "the aroused pussies they are"));
+			output(". She flicks at one tender nub, making you gasp. <i>“Go stand over there, and grip the bar.”</i>");
+			output("\n\n");
+			
+			processTime(4);
+			// ++Lust
+			pc.lust(25);
+			milkQ = pc.milkQ();
+			if(pc.hasVagina())
+			{
+				vIdx = pc.findEmptyPregnancySlot(1);
+				if(vIdx < 0) vIdx = pc.cuntThatFits(chars["SERA"].cockVolume(0));
+				if(vIdx < 0) vIdx = rand(pc.vaginas.length);
+			}
+			
+			addButton(0, "Next", seraMilkings, [1, milkQ, vIdx]);
+			break;
+		case 1:
+			showSera(true);
+			
+			output("A series of horizontal steel bars protrude from the wall on the opposite, like rungs leading nowhere. LEDs gleam around one a short distance above your head. You grip that one, and try and keep your breath steady as you feel Sera’s breasts press into your back, her soft thigh creeping around your own, her smokey breath in your ear as she reaches around you and cuffs your wrists to the bar. Light, cool vices on your [pc.skinFurScales] that ensure you aren’t going anywhere. You mumble something, you aren’t sure what, when she then loops a black, perforated rubber ball over your head.");
+			output("\n\n<i>“This is for the neighbors’ good, sugarplum,”</i> Sera explains, pressing the ball gag against your [pc.lips] until you open up and accept it, mouth held open by the smooth, flavorless rubber. Its leather strap is firmly tightened around the back of your neck. <i>“Told you - not soundproofed yet. Also it is pretty sweet, making you drool.”</i>");
+			output("\n\nIt’s difficult for you to turn like this, hands held helplessly above your heads with your [pc.boobs] exposed, so you can only listen to her drag across a " + ((flags["SERA_MILKINGS"] == undefined || flags["SERA_MILKINGS_OVERFLOW"] == undefined || milkQ < seraMilkTankVolReg) ? "moderately sized" : "huge") + " glass canister with the box device across, its dangling pods sprouting out the top like drooping glass orchids.");
+			// First
+			if(flags["SERA_MILKINGS"] == undefined)
+			{
+				output("\n\nSera’s brow is furrowed as she turns the suction on, experiments by placing her palm over the milker’s rubber mouths, and then carefully applies one to each of your [pc.nipples], only letting go when she’s sure they’re going to stay.");
+				output("\n\n<i>“Min suck,”</i> she says, eyes flicking up to your face. <i>“How’s that?”</i>");
+				output("\n\nIt’s clear she’s never done this before, and like all dommes is terribly self-conscious about performing in front of her bottoms. You help her by murmuring in muffled pleasure as the vacuum clutches at your areola, nibbling air around your already wet and tender [pc.nipples]. <i>Yes,</i> you tell her with your [pc.eyes], <i>I like this.</i>");
+				output("\n\n<i>“Mmm. Good,”</i> she purrs, claws grazing your [pc.boobs]. <i>“But does it actually... ooh!”</i> she exclaims, as little beads of [pc.milkColor] start out of your nips, lovely, precious warmth oozing out of your nourishment-givers in response to the coaxing vacuum. <i>“It works!”</i>");
+				output("\n\nYou sigh, flexing your trapped arms as your [pc.milk] spots the glass tubes, hurried away in drops down the curling tubes to the canister, a lovely, gentle sensation pulsing through your [pc.boobs]. Sera watches enthralled for a little while, delighted with how well her new toy interacts with her favorite one. Inevitably, though...");
+				output("\n\n<i>“That’s the minimum setting. A cow slut like you needs plenty more juice than that, no?”</i> She’s clicked the dial up before you can respond. The machine throbs, the tubes quiver, and your [pc.nipples] are gripped fiercely by the tubes, puffed almost all the way inside them by a vacuum intent on milking poor chained you mercilessly hard. You whine around your ball gag, shaking helplessly against your bonds, and Sera laughs with glee.");
+				output("\n\n<i>“There we gooooo,”</i> she coos, as " + (!pc.canMilkSquirt() ? "a sizeable spurt" : "a huge, rich spurt") + " of [pc.milk] blots out the cups. <i>“I knew you were holding out on me, you saucy bitch. Makes me wonder how much more you might give, with the right stimulation...”</i>");
+				output("\n\nShe brushes her thigh and tail against your [pc.hip] as she stalks behind you. Your breath comes more ragged as she molests your bound, naked body freely, hands moving over your [pc.ass], up your sides to your boobs, which she gives a hard squeeze, tittering slightly at the fresh spurt into the sucking cups this causes. Hot, semi-hard meat presses between your [pc.thighs], hot-dogging itself in-between the soft flesh there.");
+				output("\n\n<i>“So there’s this big, fat, dripping demon dick,”</i> she breathes in your ear. <i>“Fills cow slut " + (vIdx >= 0 ? "pussy" : "butt") + " pretty well, so I’ve heard. That something you might be interested in? Ooh... you know, I think you might be!”</i> Her hand is busy between your " + (vIdx >= 0 ? "cleft, fingering [pc.eachVagina]" : "ass cheeks, testing your [pc.anus] with her fingers") + ".");
+				if(pc.isTreatedCow()) output("\n\n<i>“Mmm... mmmmmeeeeeerrrrph,”</i> you moan through the gag, making Sera laugh with glee.");
+				output("\n\nYou can’t help it - bound and gagged like this, being teased and tormented by your Mistress whilst the milker attacks your inflamed [pc.nipples]... it’s a rush of subby sensations that is such a turn on. Above all, that wonderful feeling of giving from your body to the strict, unceasing vacuum... that fills your head as Sera draws her cock back " + (vIdx >= 0 ? "over the lips of your sopping pussy" : "between your buttocks") + " and presses the blunt head against your [pc.vagOrAss " + vIdx + "], clutching you by the boobs, setting her teeth into your shoulder and biting down with a hiss as she opens you up, helping herself to " + (vIdx >= 0 ? "the tender wetness inside" : "the tightness inside") + ".");
+				
+				if(vIdx >= 0) pc.cuntChange(vIdx, chars["SERA"].cockVolume(0));
+				else pc.buttChange(chars["SERA"].cockVolume(0));
+				
+				output("\n\nBigger than your average dick, intense as ever as she slots more and more hot, unyielding cock-flesh into you, but fuck so good, so good when your chest is being stimulated like this. Saliva clogging your ball, you butt your [pc.ass] back into her, eager for her to go at you hard, one request she will always happily comply with. You huff and moan with pleasure, melting as her curvy thighs slap into you, a foot of purple slut-pleaser thrust energetically past your entrance repeatedly, your arousal ratcheting upwards.");
+				if(pc.isPregnant() && pc.bellyRating() >= 10) output("\n\n<i>“Fucking... pregnant puss...”</i> she groans, transported as [pc.femcum] drools down her ardent shaft and balls, her hands spreading over your [pc.belly] as she rocks against you. <i>“So wet... so deep... gotta... give my baby momma what [pc.heShe] needs...”</i>");
+			}
+			// Repeat, low to moderate lactation
+			else if(milkQ < seraMilkTankVolReg || flags["SERA_MILKINGS_OVERFLOW"] == undefined)
+			{
+				output("\n\nSera’s turns the suction on, and then carefully applies one to each of your [pc.nipples], only letting go when she’s sure they’re going to stay.");
+				output("\n\n<i>“Min suck,”</i> she says. <i>“You like that, don’t you?”</i>");
+				output("\n\nShe knows what she’s doing now, smirking as you murmur in response to the vacuum clutching at your areola, nibbling air around your already wet and tender [pc.nipples]. You know, already, you should savour the gentleness.");
+				output("\n\n<i>“Mmm. Good,”</i> she purrs, claws grazing your [pc.boobs]. <i>“And how much have you... mmm.”</i> Little beads of [pc.milkColor] start out of your nips, lovely, precious warmth oozing out of your nourishment-givers in response to the coaxing vacuum.");
+				output("\n\nYou sigh, flexing your trapped arms as your [pc.milk] spots the glass tubes, hurried away in drops down the curling tubes to the canister, a lovely, gentle sensation pulsing through your [pc.boobs]. Sera watches enthralled for a little while, delighted with how well her toys interact with one another. Inevitably, though...");
+				output("\n\n<i>“That’s the minimum setting. A cow slut like you needs plenty more juice than that.”</i> She’s clicked the dial up before you can respond. The machine throbs, the tubes quiver, and your [pc.nipples] are gripped fiercely by the tubes, puffed almost all the way inside them by a vacuum intent on milking poor chained you mercilessly hard. You whine around your ball gag, shaking helplessly against your bonds, and Sera laughs with glee.");
+				output("\n\n<i>“There we gooooo,”</i> she coos, as " + (!pc.canMilkSquirt() ? "a sizeable spurt" : "a huge, rich spurt") + " of [pc.milk] blots out the cups. <i>“I knew you were holding out on me, you saucy bitch. Makes me wonder how much more you might give, with the right stimulation...”</i>");
+				output("\n\nShe brushes her thigh and tail against your [pc.hip] as she stalks behind you. Your breath comes more ragged as she molests your bound, naked body freely, hands moving over your [pc.ass], up your sides to your boobs, which she gives a hard squeeze, tittering slightly at the fresh spurt into the sucking cups this causes. Hot, semi-hard meat presses between your [pc.thighs], hot-dogging itself in-between the soft flesh there.");
+				output("\n\n<i>“So there’s this big, fat, dripping demon herm dick,”</i> she breathes in your ear. <i>“Fills cow slut " + (vIdx >= 0 ? "pussy" : "butt") + " pretty well, so I’ve heard. That something you might be interested in? Ooh... you know, I think you might be!”</i> Her hand is busy between your " + (vIdx >= 0 ? "cleft, fingering [pc.eachVagina]" : "ass cheeks, testing your [pc.anus] with her fingers") + ".");
+				if(pc.isTreatedCow()) output("\n\n<i>“Mmm... mmmmmeeeeeerrrrph,”</i> you moan through the gag, making Sera laugh with pure glee.");
+				output("\n\nYou can’t help it - bound and gagged like this, being teased and tormented by your Mistress whilst the milker attacks your inflamed [pc.nipples]... it’s a rush of subby sensations that is such a turn on. Above all, that wonderful feeling of giving from your body to the strict, unceasing vacuum... that fills your head as Sera draws her cock back " + (vIdx >= 0 ? "over the lips of your sopping pussy" : "between your buttocks") + " and presses the blunt head against your [pc.vagOrAss " + vIdx + "], clutching your by the boobs, setting her teeth into your shoulder and biting down with a hiss as she opens you up, helping herself to " + (vIdx >= 0 ? "the tender wetness inside" : "the tightness inside") + ".");
+				
+				if(vIdx >= 0) pc.cuntChange(vIdx, chars["SERA"].cockVolume(0));
+				else pc.buttChange(chars["SERA"].cockVolume(0));
+				
+				output("\n\nBigger than your average dick, intense as ever as she slots more and more hot, unyielding cock-flesh into you, but fuck so good, so good when your chest is being stimulated like this. Saliva clogging your ball, you butt your [pc.ass] back into her, eager for her to go at you hard, one request she will always happily comply with. You huff and moan with pleasure, melting as her curvy thighs slap into you, a foot of purple slut-pleaser thrust energetically past your entrance repeatedly, your arousal ratcheting upwards.");
+				if(pc.isPregnant() && pc.bellyRating() >= 10) output("\n\n<i>“Fucking... pregnant puss...”</i> she groans, transported as [pc.femcum] drools down her ardent shaft and balls, her hands spreading over your [pc.belly] as she rocks against you. <i>“So wet... so deep... gotta... give my baby momma what [pc.heShe] needs...”</i>");
+			}
+			// Repeat, High to Mega Lactation
+			else
+			{
+				output("\n\n<i>“Just for you, milk tank,”</i> she says, tapping the glass cylinder. It’s the same height as her. <i>“I had to find a farm equipment company to get one this size.”</i> She turns the suction on, and then carefully applies one to each of your [pc.nipples], only letting go when she’s sure they’re going to stay. <i>“It’s gonna be so worth it, though.”</i>");
+				output("\n\nYou thrill slightly to the sight of it, knowing you’re going to be in for a long, hard milking. And you need it; your [pc.boobs] bulge with barely contained [pc.milk], all for Mistress. She knows what she’s doing now, smirking as you murmur in response to the vacuum clutching at your areola, nibbling air around your already wet and tender [pc.nipples].");
+				output("\n\n<i>“Mmm. Good,”</i> she purrs, claws grazing your [pc.boobs]. <i>“And... yeah, that’s what I wanna see.”</i> It drips and then spurts out of your [pc.nipples] in warm, wet little trickles, your boobs drooling sumptuously in response to the gentle air.");
+				output("\n\nYou close your eyes, flexing your trapped arms as your [pc.milk] spots the glass tubes, hurried away in drops down the curling tubes to the canister. Already, you want more - it’s not powerful enough to really get your milk churning. Sera’s grin widens when she sees you huff impatiently around you gag.");
+				output("\n\n<i>“You want more do you, [pc.boyGirl]?”</i> she coos. <i>“You want me to really work those " + (pc.isTreatedCow() ? "teats" : "big juicy tits") + " of yours? Well... ok.”</i>");
+				output("\n\nShe clicks the dial up. The machine throbs, the tubes quiver, and you groan with pleasure as your [pc.nipples] are gripped fiercely by the tubes, puffed almost all the way inside them by a vacuum intent on milking poor chained you mercilessly hard. You shudder against your cuffs, and Sera laughs with glee.");
+				output("\n\n<i>“There we gooooo,”</i> she coos, as a huge, rich spurt of [pc.milk] blots out the cups. <i>“Now we’re cooking with gas.”</i> Her hand hovers over the dial. <i>“Why cook with gas when you can cook with octane, though?”</i>");
+				output("\n\nThe machine moans as she clicks it to max, the tubes shake, and your teats are sucked into a vacuum intended for large farm animals. It’s on the verge of painful, but fuck it’s so good to feel that [pc.milk] bursting out of you in response, finally draining all that dense, liquid pressure you’ve been carrying around... a huge gush of it pours out of you, and it feels like it washes over your brain, blotting out everything but the sensation of being given the hard, ruthless milking you deserve.");
+				output("\n\nSera brushes her thigh and tail against your [pc.hip] as she stalks behind you. Your breath comes more ragged as she molests your bound, naked body freely, hands moving over your [pc.ass], up your sides to your boobs, which she gives a hard squeeze, tittering slightly at the fresh spurt into the sucking cups this causes. Hot, semi-hard meat presses between your [pc.thighs], hot-dogging itself in-between the soft flesh there.");
+				output("\n\n<i>“So there’s this big, fat, dripping demon herm dick,”</i> she breathes in your ear. <i>“You’d think only the sluttiest, loosest of " + (pc.isTreatedCow() ? "cow slaves" : "breeding bitches") + "’d be interested in it.”</i> Her hand is busy between your " + (vIdx >= 0 ? "cleft, fingering [pc.eachVagina]" : "ass cheeks, testing your [pc.anus] with her fingers") + ". <i>“Is that you? Would you like a good hard " + (vIdx >= 0 ? "screw" : "fuck up the ass") + " whilst you’re having your milkers seen to?”</i>");
+				output("\n\nYou arch your back, eagerly presenting your " + (vIdx >= 0 ? "dripping pussy" : "[pc.ass]") + " for her. You can’t help it - bound and gagged like this, being teased and tormented by your Mistress whilst the milker attacks your inflamed [pc.nipples]... it’s a rush of subby sensations that is such a turn on. Above all, that wonderful feeling of giving from your body to the strict, unceasing vacuum... that fills your head as Sera draws her cock back " + (vIdx >= 0 ? "over the lips of your [pc.vagina " + vIdx + "]" : "between your buttocks") + " and presses the blunt head against your [pc.vagOrAss " + vIdx + "], clutching your by the boobs, setting her teeth into your shoulder and biting down with a hiss as she opens you up, helping herself to " + (vIdx >= 0 ? "the tender wetness inside" : "the tightness inside") + ".");
+				
+				if(vIdx >= 0) pc.cuntChange(vIdx, chars["SERA"].cockVolume(0));
+				else pc.buttChange(chars["SERA"].cockVolume(0));
+				
+				output("\n\nBigger than your average dick, intense as ever as she slots more and more hot, unyielding cock-flesh into you, but fuck so good, so good when your chest is being stimulated like this. Saliva clogging your ball, you butt your [pc.ass] back into her, eager for her to go at you hard, one request she will always happily comply with. You huff and moan with pleasure, melting as her curvy thighs slap into you, a foot of purple slut-pleaser thrust energetically past your entrance repeatedly, your arousal ratcheting upwards.");
+				if(pc.isPregnant() && pc.bellyRating() >= 10) output("\n\n<i>“Fucking... pregnant puss...”</i> she groans, transported as [pc.femcum] drools down her ardent shaft and balls, her hands spreading over your [pc.belly] as she rocks against you. <i>“So wet... so deep... gotta... give my baby momma what [pc.heShe] needs...”</i>");
+			}
+			output("\n\n");
+			
+			processTime(9);
+			
+			// ++Lust
+			pc.lust(35);
+			
+			addButton(0, "Next", seraMilkings, [2, milkQ, vIdx]);
+			break;
+		case 2:
+			showSera(true);
+			
+			processTime(32);
+			var cums:int = 0;
+			
+			// First
+			// Repeat, low to moderate lactation
+			if(flags["SERA_MILKINGS"] == undefined || milkQ < seraMilkTankVolReg || flags["SERA_MILKINGS_OVERFLOW"] == undefined)
+			{
+				output("It doesn’t take you long to orgasm quiveringly,");
+				if(vIdx >= 0) output(" your [pc.vagina] clenching up and " + (!pc.isSquirter() ? "drooling" : "spurting") + " [pc.femcum] in response to the magical thrust and beat of your Mistress’s cock,");
+				else if(pc.hasCock()) output(" [pc.cum] leaking slowly down your semi-erect shaft as your prostate is milked as relentlessly as your breasts are,");
+				output(" saliva clogging your ball-gag as you whine with joy, trapped hands balling up.");
+				// Low-moderate lactation
+				if(milkQ < seraMilkTankVolReg)
+				{
+					output("\n\nYour [pc.boobs] go into overdrive in response to the hot pleasure pulsing through you, and ecstatic little spurts of [pc.milk] blot out the glass cups, the tubes turning [pc.milkColor].");
+					output("\n\n<i>“Yeah, that’s what I thought... that’s what I fucking thought,”</i> snarls Sera passionately, seizing your breasts and squeezing hard, making you squeal and spurt and shake against your chains. Fluids run down your [pc.thighs] as she pumps her cock into your " + (vIdx >= 0 ? "oozing, simmering cunt" : "abused asshole") + " furiously. <i>“Put some cock up you and you’re like a soaked sponge! And I’m " + (flags["SERA_MILKINGS"] == undefined ? "gonna" : "here to") + " squeeze out every... last... drop.”</i> She emphasises her words with one " + (flags["SERA_MILKINGS"] == undefined ? "dirty" : "ardent") + " slap of her thighs against your [pc.ass] after another.");
+					output("\n\nGetting milked and fucked at the same time like this is a heady, glorious experience, quickly spinning you down into mewling, blissful subspace, happy to be your Mistress’s cowslave, giving her all the milk and " + (vIdx >= 0 ? "pussy" : "ass") + " she desires. Void, she gets so filthily eloquent when she gets into this state... You orgasm once, twice more, each time a bit more warm [pc.milkFlavor] shaken out of you, eyes rolling at the intense sensation. Sera orgasms spectacularly with you the last time, a huge rocket of demon cum warming your " + (vIdx >= 0 ? "inner pussy" : "bowels") + ", quickly spurting thickly out over your [pc.thighs] and her clenching balls as she howls and swears with delight.");
+					
+					// Lust reset, Milk reset
+					if(vIdx >= 0) pc.loadInCunt(chars["SERA"], vIdx);
+					else pc.loadInAss(chars["SERA"]);
+					pc.milked();
+					for(cums = 0; cums < 5; cums++) { pc.orgasm(); }
+					chars["SERA"].orgasm();
+					
+					output("\n\n<i>“One fucking damn,”</i> she sighs, soft, sweat-dappled breasts pressing again on your back, nails trailing over your [pc.hair]. <i>“I’m gonna have so much fun with you in here.”</i>");
+					output("\n\nA muffled whimper from you makes her focus on your [pc.boobs]. You have been kneaded utterly dry, but the milkers don’t care: they continue to pull mercilessly at your hugely inflamed [pc.nipples], starting out around the sides. Sera withdraws from your gaped " + (vIdx >= 0 ? "twat" : "asshole") + " in a cascade of sexual fluids and fiddles with the box. Mercifully, the vacuum quits, although Sera needs to pull the pods off herself, such is the swelling.");
+					output("\n\n<i>“Aww,”</i> she laughs, gazing down at your throbbing teats. She raises her claw and then puts it down again, clearly suppressing an urge to flick them only with difficulty. <i>“Are they a little tender?”</i>");
+					output("\n\nShe picks up the moderately sized glass tanker and examines it. " + (milkQ < 5000 ? "There’s a few inches of [pc.milkColor] swirling around in there, as much as you’d expect a pregnant human to give." : "It’s close to full of warm [pc.milk], an impressive amount of bounty harvested from your generous tits, and you feel a glow of pride."));
+					output("\n\n<i>“Lovely,”</i> Sera says, admiring the liquid wealth. <i>“Cream and sweetener for my coffee for the next week.”</i> Her eyes slide meaningfully back to you. <i>“Then I’m gonna want more.”</i> She puts it down and gives you a long, passionate kiss, her long tongue filling your mouth, owning it with its writhing explorations as her pert lips move over yours. <i>“My sweet little " + ((pc.isPregnant() && pc.bellyRating() >= 10) ? "baby factory" : "cow slut") + ".”</i>");
+				}
+				// High-Mega Lactation
+				else
+				{
+					output("\n\nYour [pc.boobs] go into overdrive in response to the hot pleasure pulsing through you, and you ecstatically surge [pc.milk] into the glass cups, the tubes first turning completely [pc.milkColor], then shaking with the volume being drawn out.");
+					output("\n\nYou’re releasing the deep cream, kept trembling and pent up inside of you for a moment like this, and fuck it’s so good to spurt it all out of your tender [pc.nipples]! You squeal and " + (pc.isTreatedCow() ? "moo" : "moan") + " as the liquid warmth jets out of you.");
+					output("\n\n<i>“Yeah, that’s what I thought... that’s what I fucking thought,”</i> snarls Sera, lost in the throws of passion, seizing your breasts and squeezing hard. That’s... a mistake. A huge spurt of [pc.milkFlavor] fluid fills the cups entirely, backs up the tubes and then forces them off your udders, your [pc.boobs] no longer able to be contained by such modest equipment.");
+					output("\n\n<i>“Holy... holy shit,”</i> the succubus groans, staring at your wildly shaking tits spattering milk all over the floor. But she’s too into it to stop, too into emphatically pumping her cock into your " + (vIdx >= 0 ? "oozing, simmering cunt" : "abused asshole") + ", and so you continue with your [pc.boobs] hanging down and drooling like partially opened taps.");
+					
+					// Lust reset, Milk reset
+					if(vIdx >= 0) pc.loadInCunt(chars["SERA"], vIdx);
+					else pc.loadInAss(chars["SERA"]);
+					pc.milked();
+					for(cums = 0; cums < 8; cums++) { pc.orgasm(); }
+					chars["SERA"].orgasm();
+					
+					output("\n\nJust because you’re no longer being actively milked doesn’t slow down your bountiful tits: they react wonderfully to every sumptuous thrust of your Mistress’s dick. You orgasm once, twice more, and each time you spurt rich, [pc.milkColor] all over the floor and wall, bliss trembling through you. eyes rolling");
+					if(pc.isTreatedCow()) output(" and slutty, muffled moos forced out of your throat");
+					output(" to the intense sensation. Sera orgasms spectacularly with you the last time, a huge rocket of demon cum warming your " + (vIdx >= 0 ? "inner pussy" : "bowels") + ", quickly dripping thickly out over your [pc.thighs] and her clenching balls as she howls and swears with delight.");
+					output("\n\n<i>“Alright. Wow. Fuck,”</i> she says at last, boobs rested on your back, staring over your shoulder at your own set of crowd-pleasers. They continue to drip and ooze freely, adding to the heavy [pc.milkColor] mess you’ve left all over the floor. Her hands shift around, stroking your [pc.boobs] wonderingly.");
+					output("\n\n<i>“Ordinarily I’d probably give you a paddling and then make you lick that up,”</i> she says. <i>“But this is my fault, isn’t it? I wasn’t prepared for the amount of snack you carry around with you.”</i> She strokes your [pc.hair]. <i>“We’ll make this a test run, ok? I’ll be better prepared next time.”</i>");
+					output("\n\nShe picks up the moderately sized glass tanker and examines it. The only reason it’s not filled to the brim with [pc.milkColor] calories is that the milkers broke off too soon. You feel a glow of pride.");
+					output("\n\n<i>“Lovely,”</i> Sera says, admiring the liquid wealth. <i>“Cream and sweetener for my coffee for the next week.”</i> Her eyes slide meaningfully back to you. <i>“Then I’m gonna want more.”</i> She puts it down and gives you a long, passionate kiss, her long tongue sliding into your mouth, owning it with its writhing explorations as her pert lips move over yours. <i>“My sweet little " + ((pc.isPregnant() && pc.bellyRating() >= 10) ? "baby factory" : "cow slut") + ".”</i>");
+					
+					milkQ = (seraMilkTankVolReg - Math.floor(seraMilkTankVolReg * 0.10));
+					if(flags["SERA_MILKINGS_OVERFLOW"] == undefined || flags["SERA_MILKINGS_OVERFLOW"] < 1) flags["SERA_MILKINGS_OVERFLOW"] = 1;
+				}
+			}
+			// Repeat, High to Mega Lactation
+			else
+			{
+				output("Your [pc.boobs] go into overdrive in response to the hot pleasure pulsing through you, and you ecstatically surge [pc.milk] into the glass cups, the tubes first turning completely [pc.milkColor], then shaking with the volume being drawn out.");
+				output("\n\nYou’re releasing the deep cream, kept trembling and pent up inside of you for a moment like this, and fuck it’s so good to spurt it all out of your tender [pc.nipples]! You squeal and " + (pc.isTreatedCow() ? "moo" : "moan") + " as the liquid warmth jets out of you.");
+				output("\n\n<i>“Yeah, all of it... all of it!”</i> snarls Sera, lost in the throws of passion, seizing your breasts and squeezing hard. The sweet liquid chatters like a stream as it pours into the canister steadily, litre after litre filling the human-sized container. Skilfull, sharp fingers knead your bulky softness, bring you to one unbearably good boobgasm after another, drool hanging down from your gagged mouth.");
+				// Mega lactation
+				if(milkQ > seraMilkTankVolBig)
+				{
+					output("\n\nEven industrial equipment is no match for your herculean tits. Once again, the fluid backs up, the tank completely full, and [pc.milk] is still gushing out of your [pc.nipples]. The pods come loose in warm spurts of [pc.milkColor].");
+					output("\n\n<i>“Holy... holy shit,”</i> the succubus groans, staring at your wildly shaking tits spattering milk all over the floor. But she’s too into it to stop, too into emphatically pumping her cock into your " + (vIdx >= 0 ? "oozing, simmering cunt" : "abused asshole") + ", and so you continue with your [pc.boobs] hanging down and drooling like partially opened taps.");
+					output("\n\nJust because you’re no longer being actively milked doesn’t slow your boobs down: they react wonderfully to every sumptuous thrust of your Mistress’s dick. You orgasm once, twice more, and each time you spurt rich, [pc.milkColor] all over the floor and wall, bliss trembling through you. eyes rolling");
+					if(pc.isTreatedCow()) output(" and slutty, muffled moos forced out of your throat");
+					output(" to the intense sensation. Sera orgasms spectacularly with you the last time, a huge rocket of demon cum warming your " + (vIdx >= 0 ? "inner pussy" : "bowels") + ", quickly dripping thickly out over your [pc.thighs] and her clenching balls as she howls and swears with delight.");
+					
+					// Lust reset, Milk reset
+					if(vIdx >= 0) pc.loadInCunt(chars["SERA"], vIdx);
+					else pc.loadInAss(chars["SERA"]);
+					pc.milked();
+					for(cums = 0; cums < 12; cums++) { pc.orgasm(); }
+					chars["SERA"].orgasm();
+					
+					output("\n\n<i>“Alright. Wow. Fuck,”</i> she says at last, boobs rested on your back, staring over your shoulder at your own set of crowd-pleasers. They continue to drip and ooze freely, adding to the heavy [pc.milkColor] mess you’ve left all over the floor. Her hands shift around, stroking your [pc.boobs] wonderingly.");
+					output("\n\n<i>“Didn’t really know what I was getting into when I decided it’d be neat to milk you, did I?”</i> she sighs. <i>“You’re a messy bitch who’s too milky for your own good.”</i> She reaches over and removes the ball gag, stroking your [pc.ass] as she does so. You tense up slightly. You can guess what’s coming.");
+					output("\n\n<i>“What are you?”</i>");
+					output("\n\n<i>“I’m a... a messy...”</i> You gasp as the palm of her hand lands on your left buttock, the fleshy sound reverberating off the walls.");
+					
+					var dom:Sera = (chars["SERA"] as Sera);
+					var sub:PlayerCharacter = (pc as PlayerCharacter);
+					var actualDamage:TypeCollection = new TypeCollection( { kinetic: 5, tease: 2 }, DamageFlag.BYPASS_SHIELD );
+					var damageResult:DamageResult;
+					var smacks:int = 0;
+					
+					damageResult = applyDamage(actualDamage, dom, sub, "minimal");
+					
+					output("\n\n<i>“Start again.”</i> Sharp, flat pain lands on your right buttock. <i>“What are you?”</i>");
+					
+					damageResult = applyDamage(actualDamage, dom, sub, "minimal");
+					
+					output("\n\n<i>“I’m a messy bitch who’s too... milky for my own good,”</i> you manage. Spank, spank, spank goes her hand on your [pc.ass] rhythmically as you say it, motion shivering up to your hanging udders.");
+					
+					for(smacks = 0; smacks < 3; smacks++)
+					{
+						damageResult = applyDamage(actualDamage, dom, sub, "suppress");
+						if (damageResult.totalDamage > 0) { output("\n"); outputDamage(damageResult); }
+					}
+					
+					output("\n\n<i>“Again.”</i>");
+					output("\n\n<i>“I’m a --”</i> SLAP. <i>“-- messy bitch who’s too --”</i> SMACK. <i>“-- milky for my own --”</i> SLAP. <i>“-- good!”</i>");
+					
+					for(smacks = 0; smacks < 3; smacks++)
+					{
+						damageResult = applyDamage(actualDamage, dom, sub, "suppress");
+						if (damageResult.totalDamage > 0) { output("\n"); outputDamage(damageResult); }
+					}
+					
+					output("\n\n<i>“Good [pc.boy].”</i> A hot hand strokes your blushing face. <i>“You’ve paid for the clean-up I’m gonna have to do.”</i>");
+					output("\n\nShe’s examining the tanker as you’re feeling your tender wrists. The only reason it’s not filled to the brim with [pc.milkColor] calories is that the milkers broke off too soon. You feel a glow of exhausted pride.");
+					output("\n\n<i>“What am I going to do with all this?”</i> Sera laughs in soft amazement, admiring the liquid wealth. <i>“I don’t need coffee THAT much.”</i> Her eyes slide meaningfully over to you. <i>“Not that that’s gonna stop me doing it to you whenever I get the chance.”</i> She puts it down and gives you a long, passionate kiss, her long tongue sliding into your mouth, owning it with its writhing explorations as her pert lips move over yours. <i>“My sweet little " + ((pc.isPregnant() && pc.bellyRating() >= 10) ? "baby factory" : "cow slut") + ".”</i>");
+					
+					milkQ = (seraMilkTankVolBig - Math.floor(seraMilkTankVolBig * 0.10));
+					if(flags["SERA_MILKINGS_OVERFLOW"] == undefined || flags["SERA_MILKINGS_OVERFLOW"] < 2) flags["SERA_MILKINGS_OVERFLOW"] = 2;
+				}
+				else
+				{
+					output("\n\nGetting milked and fucked at the same time like this is a heady, glorious experience, quickly spinning you down into mewling, blissful subspace, happy to be your Mistress’s cowslave, giving her all the milk and " + (vIdx >= 0 ? "pussy" : "ass") + " she desires. Void, she gets so filthily eloquent when she gets into this state... and now your tits are connected to a vessel that can take every last drop that she screws out of you. Your whimpers of delight twine with the gurgle of warm liquid, litre after litre drawn out of your shaking [pc.chest].");
+					output("\n\nYou cum repeatedly, full body tremors, each time a bit more warm [pc.milkFlavor] shaken out of you, eyes rolling at the intense sensation. Sera orgasms spectacularly with you the last time, a huge rocket of demon cum warming your " + (vIdx >= 0 ? "inner pussy" : "bowels") + ", quickly spurting thickly out over your [pc.thighs] and her clenching balls as she howls and swears with delight.");
+					
+					// Lust reset, Milk reset
+					if(vIdx >= 0) pc.loadInCunt(chars["SERA"], vIdx);
+					else pc.loadInAss(chars["SERA"]);
+					pc.milked();
+					for(cums = 0; cums < 8; cums++) { pc.orgasm(); }
+					chars["SERA"].orgasm();
+					
+					output("\n\n<i>“One fucking damn,”</i> she sighs, soft, sweat-dappled breasts pressing again on your back, nails trailing over your [pc.hair]. <i>“I’m gonna have so much fun with you in here.”</i>");
+					output("\n\nA muffled grunt from you makes her focus on your [pc.boobs]. You have been kneaded utterly dry, but the milkers don’t care: they continue to pull mercilessly at your hugely inflamed [pc.nipples], starting out around the sides. Sera withdraws from your gaped " + (vIdx >= 0 ? "twat" : "asshole") + " in a cascade of sexual fluids and fiddles with the box. Mercifully, the vacuum quits, although Sera needs to pull the pods off herself, such is the swelling.");
+					output("\n\n<i>“Aww,”</i> she laughs, gazing down at your throbbing teats. She raises her claw and then puts it down again, clearly suppressing an urge to flick them only with difficulty. <i>“Are they a little tender?”</i>");
+					output("\n\nShe examines the human-sized vessel. It’s close to full of warm [pc.milk], a massive amount of bounty harvested from your lavish tits, and you feel a glow of exhausted, sweaty pride.");
+					output("\n\n<i>“Man,”</i> Sera says, shaking her head in awe. <i>“What am I even gonna do with all this? I don’t like coffee THAT much.”</i> Her eyes slide meaningfully back to you. <i>“I’ll think of something. Cuz we’re definitely gonna be doing this more.”</i> She puts it down and gives you a long, passionate kiss, her long tongue filling your mouth, owning it with its writhing explorations as her pert lips move over yours. <i>“My sweet little " + ((pc.isPregnant() && pc.bellyRating() >= 10) ? "baby factory" : "cow slut") + ".”</i>");
+				}
+			}
+			output("\n\n");
+			
+			addButton(0, "Next", seraMilkings, [3, milkQ, vIdx]);
+			break;
+		case 3:
+			showSera();
+			
+			output("A little while later, you’re back in your [pc.gear] and out in the shop front, stroking your wrists. Your [pc.boobs] and [pc.groin] ache mightily in that way that tell you you’ve just had a thoroughly rigorous experience with the heavily modded sadist that is your owner.");
+			output("\n\n<i>“Mmm,”</i> she says, taking a long sip of her coffee as she examines her stock reports, smacking her lips. <i>“Just right.”</i>");
+			output("\n\n");
+			
+			processTime(5);
+			
+			IncrementFlag("SERA_MILKINGS");
+			StatTracking.track("milkers/sera milker", Math.min(Math.floor(milkQ), seraMilkTankVolBig));
+			// Milk can last for 2 weeks. Chance will randomly increase when she's craving some cream.
+			if(flags["SERA_MILK_RESERVE_DAYS"] == undefined) flags["SERA_MILK_RESERVE_DAYS"] = 0;
+			flags["SERA_MILK_RESERVE_DAYS"] += 14;
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
+}
+public function seraDrinksMilk(totalDays:int = 0):void
+{
+	if(flags["SERA_MILK_RESERVE_DAYS"] != undefined)
+	{
+		if(totalDays != 0) flags["SERA_MILK_RESERVE_DAYS"] -= totalDays;
+		if(flags["SERA_MILK_RESERVE_DAYS"] < 0) flags["SERA_MILK_RESERVE_DAYS"] = 0;
+	}
 }
 

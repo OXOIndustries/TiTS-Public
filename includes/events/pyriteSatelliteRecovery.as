@@ -134,7 +134,7 @@ public function turnInTheKaithritDiskuDrivo():void
 	showKaithritBoyslut();
 	author("Savin");
 	output("You approach the kaithrit company man, hard drive in hand. He looks up as you approach, and his concerned scowl evaporates in an instant, replaced by an ear-to-ear grin.");
-	output("\n\n<i>“Nevermind. I’ll call you back,”</i> he says into his commpad, tucking it into his arm’s sling. <i>“As for you! I see you’ve had success out there. Thank the One for that. My superiors were breathing down my neck something fierce. May I examine it?”</i>");
+	output("\n\n<i>“Never mind. I’ll call you back,”</i> he says into his commpad, tucking it into his arm’s sling. <i>“As for you! I see you’ve had success out there. Thank the One for that. My superiors were breathing down my neck something fierce. May I examine it?”</i>");
 	output("\n\nYou hand the device over, and the man (with some awkwardness due to his arm) runs a cable from his datapad to the drive. After a moment of squinting at the screen and muttering to himself, the cat-man gives a satisfied nod and detaches the cable. <i>“Ah, yes, everything’s in order... and just as I thought, there’s evidence of a breach in our security protocols. I’ve had a feeling that satellite didn’t crash on its own!”</i>");
 	output("\n\nYou nod, telling him about the gryvain woman out in the jungle. She seemed to be responsible.");
 	output("\n\nThe man’s smile fades, replaced by a worried grimace. <i>“Well, thank you for this, friend. You’ve done Pyrite - and Port Esbeth - a service. I’ll make sure our I.T. department gets this straight away so we can plug up the leaks. But first...”</i>");

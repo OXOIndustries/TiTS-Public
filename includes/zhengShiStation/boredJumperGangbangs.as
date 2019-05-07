@@ -703,7 +703,7 @@ public function redheadfuckiroodidoody(x:int):void
 	// PC Misch
 	else if(pc.isMischievous()) output("\n\n<i>“Hope you’ve got a similar taste for dick.”</i> You laugh, rubbing your " + (x >= 0 ? "[pc.cockHeads]":"hardlight strapon’s tip") + " into the rabbit’s face and furrowing nose.");
 	// PC Hard
-	else output("\n\n<i>“Move back, and get ready for more than a pussy.”</i> You order the jumper, moving your " + (x >= 0 ? "[pc.cocks]":"hardlight strapon") + " to to where lips and pussylips are connected by spit and girl juice.");
+	else output("\n\n<i>“Move back, and get ready for more than a pussy.”</i> You order the jumper, moving your " + (x >= 0 ? "[pc.cocks]":"hardlight strapon") + " to where lips and pussylips are connected by spit and girl juice.");
 
 	// Merge
 	output("\n\nYou gingerly push your " + (x >= 0 ? "[pc.cockNounSimple " + x + "]":"techno dong") + " between the jumper’s [enemy.lipColor] mouth and the redhead’s glossy honey hole. It’s hard not to inhale these strangling scents with every heady breath you take, shit, it smells like a ripe zil orgy! A growl-like exhalation later, you hear the redhead squeal, your cock being slathered in a fresh helping of modded cum. Saccharine, amber honey flows over your " + (x >= 0 ? "[pc.cockType " + x + "]":"faux") + " shaft like syrupy glaze, trickling down to the laquine’s wide open mouth.");
@@ -728,7 +728,7 @@ public function redheadfuckiroodidoody(x:int):void
 		output("\n\nYour [pc.balls] hang" + (pc.balls == 1 ? "s":"") + " over the jumper’s face, and as soon as she recovers from her double dicking, she seeks out the savory ballflesh hovering above, desperate to do anything as she and her [enemy.cock] go unattended. You soon feel her thick, warm tongue drawing lewd shapes in the underside of your creasing cum sack, even reaching a furry paw over to knead your warm nads as she feverishly fondles the girl atop her.");
 	}
 	// Merge
-	output("\n\nThe redhead’s pussy fills out like a glove every time you touch your cockslit to her womb. At your deepest, you grind your hips left and right, using her pussy to give your rod a series of erotically straining jerks. As her muscles spasm and she comes again, squirting honey on your [pc.thighs]" + (pc.balls > 0 ? " and down your [pc.sack":"") + ", her knees give out and she slumps belly first on a fuzzy jaw. The laquine’s hips buck upward even with her legs hiked over the jade gryvain’s shoulders. Interestingly, the saeri finally sets himself down in front of the redhead, presenting his moist cock to her.");
+	output("\n\nThe redhead’s pussy fills out like a glove every time you touch your cockslit to her womb. At your deepest, you grind your hips left and right, using her pussy to give your rod a series of erotically straining jerks. As her muscles spasm and she comes again, squirting honey on your [pc.thighs]" + (pc.balls > 0 ? " and down your [pc.sack]":"") + ", her knees give out and she slumps belly first on a fuzzy jaw. The laquine’s hips buck upward even with her legs hiked over the jade gryvain’s shoulders. Interestingly, the saeri finally sets himself down in front of the redhead, presenting his moist cock to her.");
 	output("\n\n<i>“P-please, if it’s no trouble...”</i> He asks gently, one shy hand over his blushing cobalt face and the other jerking his alien endowment. The terran girl, whether out of sheer lust or elsewise, spreads her lips across his tip and inhales his twilight phallus, arousing sounds carrying to every ear around.");
 	output("\n\nThe bunny moves both mits to where the redhead’s crotch meets yours, aimlessly molesting her nethers and your " + (x >= 0 ? "[pc.cocks]":"hardlight strapon") + ", cooing everytime she makes you flinch. The saeri boy’s wails amplify the gryvain’s feral bellowing as they get closer to messy orgasm; the laquine’s [enemy.cock] humps between his petite ass with shockwave generating impacts.");
 	output("\n\nThe dragon woman’s savage thrusting fuels the fire in your own loins, driving you to rail the sugary, spitroasted slave in your lap with unmatched speed. A few playful palm taps against your sensitive cock make your teeth clench and hands shake. A series of shudders and whines morph into hyperventilating pants that grow louder with each that worms its way up your throat. <i>You’ve got to keep thrusting!</i> There’s a beautiful girl there howling in the pleasure that you’re giving her, you can’t stop for anything!");
@@ -758,7 +758,7 @@ public function redheadfuckiroodidoody(x:int):void
 			output(", spilling out around your ");
 			if(pc.hasKnot(x) && pc.hasKnot(y)) output("knots");
 			else if(pc.hasKnot(x)) output("[pc.knot " + x + "]");
-			else output("[pc.knot" + y + "]");
+			else output("[pc.knot " + y + "]");
 		}
 		output(". She jerks violently in your grasp, dragging your still-cumming cocks in several directions, making your orgasm indescribably powerful. You last longer than most, too, as thick ribbons of cum are eased out by her shameless body’s spasms." + (pc.hasVagina() ? " The vicious struggle to stay upright spreads the boiling pleasure to your [pc.pussy]. It soon drenches the laquine slut’s face with spurts of [pc.girlCum].":""));
 	}

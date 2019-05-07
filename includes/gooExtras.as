@@ -1226,7 +1226,7 @@ public function adjustGooBody(arg:Array):void
 		cost = 20;
 		limitMax = 100;
 		limitMin = 0;
-		if(pc.hasPerk("Buttslut")) limitMin = 20;
+		if(pc.hasPerk("Buttslut")) limitMin = 18;
 		if(desc == "increase" || desc == "decrease")
 		{
 			clearOutput2();
@@ -3393,7 +3393,8 @@ public function gooVaginaInflate(arg:int = 0):void
 	
 	output2("You concentrate and watch your [pc.vagina " + arg + "] swell larger.");
 	pc.inflateVagina(arg);
-	if(pc.vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) output2(" <b>Your vagina is now obviously puffy!</b>");
+	if(pc.vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) output2(" <b>Your vagina is now massively puffy!</b>");
+	else if(pc.vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) output2(" <b>Your vagina is now obviously puffy!</b>");
 	else if(pc.vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output2(" <b>Your vagina is now slightly puffy!</b>");
 	else output2(" <b>Your vagina is no longer puffy!</b>");
 	gooBiomass(-100);
@@ -3407,7 +3408,8 @@ public function gooVaginaDeflate(arg:int = 0):void
 	
 	output2("You focus and feel your [pc.vagina " + arg + "] lose some mass.");
 	pc.deflateVagina(arg);
-	if(pc.vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) output2(" <b>Your vagina is now obviously puffy!</b>");
+	if(pc.vaginas[arg].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)) output2(" <b>Your vagina is now massively puffy!</b>");
+	else if(pc.vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) output2(" <b>Your vagina is now obviously puffy!</b>");
 	else if(pc.vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output2(" <b>Your vagina is now slightly puffy!</b>");
 	else output2(" <b>Your vagina is no longer puffy!</b>");
 	gooBiomass(75);

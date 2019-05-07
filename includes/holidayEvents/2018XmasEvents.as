@@ -4,7 +4,7 @@
 //Gets to watch Riya and Grence get shitfaced and bang
 //Ain’t no partie like a UGC partie cause’ a UGC partie don’t stop
 
-//{PC receives email around Christmas, no level requirement}From: Commander Lorna Grence<Lorna_Grence@UGC.gov>
+// {PC receives email around Christmas, no level requirement}From: Commander Lorna Grence<Lorna_Grence@UGC.gov>
 //To: [pc.name] Steele<[pc.email]@SteeleTech.corp>
 //Subject: Christmas Party Invitation
 
@@ -1148,8 +1148,8 @@ public function gardefordsGwenmas2018():void
 	{
 		output("\n\nYou step up to the harness, running a hand through Gwen’s damp hair and trying to position yourself as best you can. As if reading your mind, the machine buzzes and whirs, shifting the suspended slut till her face lines up perfectly with your crotch. Well, that takes care of that. The confined cocktease tenses up as you get close enough, her tongue stretching out to try and touch your approaching cock. Her eyes are glued to your crotch, staring with an aphrodisiac intensity that sets your blood to boiling. When you finally reach her, you see her whole body tense as [pc.eachCock] rubs against her face.");
 		output("\n\n<i>“You’ve barely done anything, and she’s already cumming! Having a human around is the best! Don’t tell her I said that though, this is supposed to be a gift for her, not me, so get to it,”</i> Eimear winks, kneading the jiggly assflesh in front of her as she lubes up the bulbous dildo. You chuckle, but don’t actually have much left to ‘get to’ for now. Gwen is in the process of voraciously attempting to devour your ");
-		if(pc.cockTotal() > 3) output("garden of maleness");
-		else if(pc.cockTotal() > 2) output("duo of dicks");
+		if(pc.cockTotal() >= 3) output("garden of maleness");
+		else if(pc.cockTotal() == 2) output("duo of dicks");
 		else output("manhood");
 		output(".");
 		if(pc.cocks[x].cLength() < 6) output(" Her tongue alone completely covers your [pc.cock " + x + "], its fluted surface rubbing all the right places along your length.");

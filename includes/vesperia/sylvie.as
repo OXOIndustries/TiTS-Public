@@ -1333,7 +1333,7 @@ public function hugSylvie():void
 	//Cocks
 	if(pc.hasCock()) 
 	{
-		output("\n\n<i>“God, I love giving out hugs!”</i> Sylvie declares while rubbing her whole body against you. Your [pc.cocks] can’t help but get hard when pressed against her, nevermind that her pussy is nowhere within sight. A huge-breasted amazon is manhandling you against her waistline while you’ve got a faceful of tit. The only sensible response is to grow the biggest, bulgiest boner");
+		output("\n\n<i>“God, I love giving out hugs!”</i> Sylvie declares while rubbing her whole body against you. Your [pc.cocks] can’t help but get hard when pressed against her, never mind that her pussy is nowhere within sight. A huge-breasted amazon is manhandling you against her waistline while you’ve got a faceful of tit. The only sensible response is to grow the biggest, bulgiest boner");
 		if(pc.cockTotal() > 1) output("s");
 		output(" that you can. She feels it too. There’s no way that she can’t, not while she’s basically grinding ");
 		if(pc.cockTotal() > 1) output("iron bars");
@@ -1349,7 +1349,7 @@ public function hugSylvie():void
 	//NoCoxButtCunts
 	else if(pc.hasVagina())
 	{
-		output("\n\n<i>“God, I love giving out hugs!”</i> Sylvie declares while rubbing her whole body against you. You can’t help but get a little wet from all the friction, nevermind that her crotch is out of sight. It certainly isn’t out of mind, definitely not as you luxuriate in the feel of her bare skin rubbing your [pc.vaginas]");
+		output("\n\n<i>“God, I love giving out hugs!”</i> Sylvie declares while rubbing her whole body against you. You can’t help but get a little wet from all the friction, never mind that her crotch is out of sight. It certainly isn’t out of mind, definitely not as you luxuriate in the feel of her bare skin rubbing your [pc.vaginas]");
 		if(!pc.isCrotchExposed()) output(" through your [pc.lowerGarments]");
 		output(".");
 		if(pc.clitLength >= 3)
@@ -3932,7 +3932,7 @@ public function inviteKallyOverForTripleHorsemeat():void
 	else addButton(0,"Gangbang",tripleHorseingIntro,false,"Gangbang","You’ve always wondered what it’d be like to be a horse’s onahole.");
 	if(pc.hasPerk("Buttslut")) addButton(1,"UpTheAss",tripleHorseingIntro,true,"Up the Ass","Let’s take this in a different direction.");
 	else addDisabledButton(1,"UpTheAss","Up The Ass","You’d need to be a <i>special</i> kind of butt slut to even consider this.");
-	addButton(3,"Nope",turnDownATripleHorsing,undefined,"Nevermind","You enjoy your organs far too much to do this.")
+	addButton(3,"Nope",turnDownATripleHorsing,undefined,"Never Mind","You enjoy your organs far too much to do this.")
 }
 
 //Nope

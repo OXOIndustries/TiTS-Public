@@ -14,7 +14,7 @@ package classes.Resources.Busts
 		
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/maniacpaint/hr/lieve.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/maniacpaint/HR/lieve.png", mimeType = "image/png")]
 			public var Full_LIEVE:Class;
 			public function get Full_LIEVE_NUDE():Class { return Full_LIEVE; }
 		}

@@ -339,7 +339,7 @@
 				case "mouthgina":
 					oldColor = target.vaginas[idx].vaginaColor;
 					sizeDiff = 0;
-					if(sizeType == "decrease" && (target.vaginas[idx].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || target.vaginas[idx].hasFlag(GLOBAL.FLAG_PUMPED)))
+					if(sizeType == "decrease" && (target.vaginas[idx].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || target.vaginas[idx].hasFlag(GLOBAL.FLAG_PUMPED) || target.vaginas[idx].hasFlag(GLOBAL.FLAG_HYPER_PUMPED)))
 					{
 						sizeDiff = -1;
 						sizeChanged = true;

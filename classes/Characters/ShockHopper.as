@@ -204,7 +204,7 @@
 			
 			isUniqueInFight = true;
 			btnTargetText = "ShockHop";
-			//this.impregnationType = "LapinaraPregnancy";
+			this.impregnationType = "LDCShockHopperPregnancy";
 			kGAMECLASS.zhengShiSSTDChance(this);
 			randomise();
 			this.createStatusEffect("Disarm Immune");

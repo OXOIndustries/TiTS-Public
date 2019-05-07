@@ -474,7 +474,7 @@ public function walkiesPart2():void
 	var lover:Boolean = false;
 	var choices:Array = [];
 	if(annoIsCrew()) choices.push(0);
-	if(syriIsCrew()) choices.push(1);
+	if(syriIsCrew() || (syriRecruited() && syriAtFreeezer())) choices.push(1);
 	if(roamingKiroAvailable()) choices.push(2);
 	var select:int = -1;
 	if(choices.length > 0) select = choices[rand(choices.length)];
@@ -505,7 +505,7 @@ public function walkiesPart2():void
 		output(" Giving you an odd, slightly lustful look, Syri turns her attention to Belle, who is just as interested in the wolfy bitch as she is in you.");
 		
 		output("\n\n<i>“Oh, you must be a friend of my pet then?”</i> she asks, extending a hand and introduces herself as “Dr. Belle Baslocvicz” before she continues. <i>“Your ‘Steele’ here has been oh-so kind enough to help me with a few experiments here.”</i> Running her eyes up and down Syri’s curvy form for a moment, she continues her introductions, <i>“And I must say, I wouldn’t mind getting your help for a few experiments.”</i>");
-		output("\n\n<i>“Uh, yeeeeah,”</i> Syri says, clearly not interested in such a deal, <i>“Well, uh, I gotta get going, later, [pc.name]”</i>");
+		output("\n\n<i>“Uh, yeeeeah,”</i> Syri says, clearly not interested in such a deal, <i>“Well, uh, I gotta get going, later, [pc.name]!”</i>");
 		output("\n\nThe ausar quickly starts walking the opposite direction of the two of you, leaving you and Belle relatively alone in the wide open dome of Uveto station.");
 		if (flags["SUBTUNER_NAMED"] == undefined) flags["SUBTUNER_NAMED"] = 1;
 		lover = true;
@@ -3083,7 +3083,7 @@ public function randomSubTunerShit():void
 	else if(rand(2) == 0)
 	{
 		buffer += "You go rigid for a moment as you’re walking as a shock of need and heat hits your loins before quickly fading, leaving you panting.";
-		buffer += "\n\nAfter trying to figure out what happened, you tug at the collar around your neck and remember the special function Belle gave it and wonder it the thing is actually off or not.";
+		buffer += "\n\nAfter trying to figure out what happened, you tug at the collar around your neck and remember the special function Belle gave it and wonder if the thing is actually off or not.";
 		pc.lust(10);
 	}
 	//4 (Requires the PC to have fucked Saec):
@@ -3179,7 +3179,21 @@ public function taurStadiumInterior():Boolean
 	
 	removeUvetoCold();
 	
-	addButton(0,"Cashier",taurStadiumCashier);
+	addButton(0, "Cashier", taurStadiumCashier);
+	
+	if (roxyIsInStadium())
+	{
+		if (flags["ROXY_MET"] >= 1)
+		{
+			output("\n\nThe sporty laquine Roxy is relaxing alone on her usual bench. She's watching the crowd lazily, only being snapped out of her rest by the occasional fan.");
+			addButton(1, "Roxy", roxyGreet,undefined,"Roxy","Touch base with Roxy.");
+		}
+		else
+		{
+			output("\n\nThrough the hustle and bustle of fortunes won and lost, you spot a coffee-colored laquine girl chilling out on one of many benches. From the way her upright ears crane and the way her neck pivots, you'd say she's people-watching. Occasionally someone approaches her holding a pen and a piece of paper. You'd guess from the flair she applies in accepting and signing those slips - and other sporty objects - she must be an athlete. A successful one.");
+			addButton(1, "Laquine", roxyGreet,undefined,"Laquine","Approach the spunky rabbit.");
+		}
+	}
 	
 	return false;
 }
@@ -3345,7 +3359,7 @@ public function betRaceOnUveto():void
 	if(pc.credits >= 10000) addButton(2,"10,000",bettingAtTheTaurRaces,10000,"10,000 Credits","Bet 10,000 credits.");
 	else addDisabledButton(2,"10,000","10,000","You don’t have the cash to make that bet.");
 	//[Nevermind]
-	addButton(3,"Nevermind",neverMindTaurStadium);
+	addButton(3,"Never Mind",neverMindTaurStadium);
 }
 
 //Choosing any of these will trigger an INT check based on the bet chosen. Lower-priced bets have a higher success rate, while the higher-priced ones have a much lower success rate. These chances are multiplied by the PC’s intelligence. Bimbo PCs automatically have a 50/50 success chance. Winning a bet doubles payment.
@@ -3401,7 +3415,7 @@ public function neverMindTaurStadium():void
 {
 	clearOutput();
 	author("HugsAlright");
-	showName("\nNEVERMIND.");
+	showName("\nNEVER MIND.");
 	output("You take a look down at your credit balance and ponder your chances for a moment before telling the cashier that you’ve changed your mind.");
 	output("\n\n<i>“Oh, that’s alright,”</i> she says, flipping off the holo-pad as you go to put away your Codex, <i>“If you ever do feel like you’d want to place a bet, U7 is always open!”</i>");
 

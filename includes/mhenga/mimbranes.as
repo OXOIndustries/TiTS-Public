@@ -269,12 +269,17 @@ public function hasFeedableMimbranes():Boolean
 
 public function hasVisibleMimbranes():Boolean
 {
-	//Improve this later plox
-	if (pc.hasStatusEffect("Mimbrane Hand Left") || pc.hasStatusEffect("Mimbrane Hand Right") || pc.hasStatusEffect("Mimbrane Foot Left") || pc.hasStatusEffect("Mimbrane Foot Right") || pc.hasStatusEffect("Mimbrane Face")) return true;
-	if (pc.hasStatusEffect("Mimbrane Boobs") && target.isChestExposed()) return true;
-	if (pc.hasStatusEffect("Mimbrane Cock") && !pc.hasStatusEffect("Genital Slit") && pc.isCrotchExposed()) return true;
-	if ((pc.hasStatusEffect("Mimbrane Balls") || pc.hasStatusEffect("Mimbrane Pussy")) && pc.isCrotchExposed()) return true;
-	if (pc.hasStatusEffect("Mimbrane Ass") && target.isAssExposed()) return true;
+	if (pc.hasStatusEffect("Mimbrane Face")) return true;
+	if (pc.hasAirtightSuit()) return false;
+	if (pc.hasStatusEffect("Mimbrane Hand Left") || pc.hasStatusEffect("Mimbrane Hand Right") || pc.hasStatusEffect("Mimbrane Foot Left") || pc.hasStatusEffect("Mimbrane Foot Right")) return true;
+	if (pc.isChestExposed() && pc.hasStatusEffect("Mimbrane Boobs")) return true;
+	if (pc.isCrotchExposed())
+	{
+		if (pc.hasStatusEffect("Mimbrane Cock") && !pc.hasStatusEffect("Genital Slit")) return true;
+		if (pc.hasStatusEffect("Mimbrane Balls")) return true;
+		if (pc.hasStatusEffect("Mimbrane Pussy")) return true;
+	}
+	if (pc.isAssExposed() && pc.hasStatusEffect("Mimbrane Ass")) return true;
 	return false;
 }
 
@@ -3897,7 +3902,7 @@ public function beatUpByAFuckinDishcloth():void
 All numbers in this section may be subject to change.
 Preferred Order of Attachment
 Mimbranes will attach to the PC’s body in a specific order, ideally prioritizing nourishment, seclusion, and warmth. Parasites will only skip to the next organ when previous organs have been claimed by other Mimbranes or the PC does not have the organ. If the missing organ appears later, new Mimbranes will target it before the organ next in the list (e.g. a male PC becomes a herm by gaining a vagina, but already has parasites on their dick, ass and balls. The next Mimbrane will target the new pussy before going for breasts or hands). 
-Head Mimbranes require all attached Mimbranes to be at at least level two trust before they can be gained. They will start at level two trust.
+Head Mimbranes require all attached Mimbranes to be at least level two trust before they can be gained. They will start at level two trust.
 Breasts must be more than flat (A cup+) to be a target for Mimbranes.
 If by some happenstance, a PC has testicles and no dick, then they’re skipped as well.
 The order is as follows:

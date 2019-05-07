@@ -258,7 +258,7 @@ package classes.Items.Transformatives
 						(!target.hasCockFlag(GLOBAL.FLAG_KNOTTED, i) && target.cockFlagsUnlocked(i, GLOBAL.FLAG_KNOTTED)
 						|| !target.hasCockFlag(GLOBAL.FLAG_TAPERED, i) && target.cockFlagsUnlocked(i, GLOBAL.FLAG_TAPERED)
 						|| !target.hasCockFlag(GLOBAL.FLAG_SHEATHED, i) && target.cockFlagsUnlocked(i, GLOBAL.FLAG_SHEATHED)
-						|| target.cocks[i].knotMultiplier <= 1 && target.knotMultiplierUnlocked(i, 1.25)))
+						|| target.cocks[i].knotMultiplier <= 1.25 && target.knotMultiplierUnlocked(i, 1.25)))
 					{
 						options.push(function():*{
 							// Here are fixing of somehow missing flags on already doggie one. Like ones on that ausars.
@@ -267,7 +267,7 @@ package classes.Items.Transformatives
 								AddLogEvent("You feel a light tug at the base of your " + target.cockDescript(i) + ", followed by something sliding up and over your shaft. A quick look tells you that an animalistic sheath has formed, bringing your cock to a standard canine form. <b>Your cock now has a canine-sheath!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 								target.cocks[i].addFlag(GLOBAL.FLAG_SHEATHED);
 							}
-							else if (!target.cocks[i].hasFlag(GLOBAL.FLAG_KNOTTED) && target.cockFlagsUnlocked(i, GLOBAL.FLAG_KNOTTED) || target.cocks[i].knotMultiplier <= 1 && target.knotMultiplierUnlocked(i, 1.25))
+							else if (!target.cocks[i].hasFlag(GLOBAL.FLAG_KNOTTED) && target.cockFlagsUnlocked(i, GLOBAL.FLAG_KNOTTED))
 							{
 								AddLogEvent("You feel a bulging pressure near the base of your " + target.cockDescript(i) + ", as a vulpine knot begins to form. <b>Your cock is now knotted!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 								target.cocks[i].addFlag(GLOBAL.FLAG_KNOTTED);
@@ -346,9 +346,10 @@ package classes.Items.Transformatives
 					if (target.vaginas[v].type != GLOBAL.TYPE_VULPINE && target.hasFur() && target.vaginaTypeUnlocked(v, GLOBAL.TYPE_VULPINE))
 					{
 						options.push(function():*{
+							var newVagColor:String = !colorsMatching(target) ? "black" : target.lipColor;
 							AddLogEvent("You start panting as an intense sensation of warmth washes over your crotch. Your " + target.vaginaDescript(v) + " begins to swell and puff up rapidly, leaving you little time to ponder the situation as your cunt morphs to take on a spade-like shape, much like a vixen’s. <b>You now have a fox-cunt!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 							target.shiftVagina(v, GLOBAL.TYPE_VULPINE);
-							target.vaginas[v].vaginaColor = !colorsMatching(target) ? "black" : target.lipColor;
+							target.vaginas[v].vaginaColor = newVagColor;
 						});
 						break;
 					}
@@ -687,7 +688,9 @@ package classes.Items.Transformatives
 				AddLogEvent("Your " + target.earsDescript() + " shift to become large and pointy like that of a fox’s, allowing you to pick up even the faintest of sound as they twitch atop your head. <b>You now have pointy fox ears!</b>", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				
 				target.earType = GLOBAL.TYPE_VULPINE;
-				
+				target.clearEarFlags();
+				target.addEarFlag(GLOBAL.FLAG_TAPERED);
+				target.addEarFlag(GLOBAL.FLAG_FURRED);
 				return false;
 			}
 			

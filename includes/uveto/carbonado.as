@@ -134,7 +134,7 @@ public function uvetoCarbonadoMenu():void
 				cfsHolidayShopping();
 				return;
 			}
-			if(pc.hasGenitals() && !pc.hasStatusEffect("GWEN_XMAS_CD") && flags["GWEIMEER_XMAS_2018"] == undefined) 
+			if((pc.hasCock() || (pc.totalVaginas() > pc.blockedVaginas())) && !pc.hasStatusEffect("GWEN_XMAS_CD") && flags["GWEIMEER_XMAS_2018"] == undefined) 
 			{
 				gardefordsGwenmas2018();
 				return;

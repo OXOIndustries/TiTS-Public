@@ -143,11 +143,21 @@ package classes.GameData.Pregnancy.Handlers
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			var buttBugF:StorageClass = mother.getStatusEffect("Butt Bug (Female)");
 			var eggs:int = pData.pregnancyQuantity;
+			var c:Child = null;
 			
-			kGAMECLASS.trackButtBugEggs(buttBugF, (buttBugF.value2 == 1 ? "type2" : "infertile"), eggs);
+			if(buttBugF.value2 == 1)
+			{
+				kGAMECLASS.trackButtBugEggs(buttBugF, "type2", eggs);
+				c = kGAMECLASS.createButtBugChild(2, eggs);
+			}
+			else
+			{
+				kGAMECLASS.trackButtBugEggs(buttBugF, "infertile", eggs);
+				c = null;
+			}
 			
 			ButtBugPregnancy2.cleanupPregnancy(mother, pregSlot);
-			return null;
+			return c;
 		}
 	}
 }

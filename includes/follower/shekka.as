@@ -354,7 +354,7 @@ public function talkToShekkaAboutPeople():void
 	if(azraIsCrew()) addButton(button++,"Azra",shekkaAzraTalk);
 	if(bessIsCrew()) addButton(button++,chars["BESS"].short,shekkaBessTalk);
 	if(celiseIsCrew()) addButton(button++,"Celise",shekkaCeliseTalk);
-	if (hasGooArmor() || gooArmorIsCrew()) addButton(button++,chars["GOO"].short,talkToShekkaAboutNova);
+	if(hasGooArmor() || gooArmorIsCrew()) addButton(button++,chars["GOO"].short,talkToShekkaAboutNova);
 	if(reahaIsCrew()) addButton(button++,"Reaha",shekkaReahaTalk);
 	if(yammiIsCrew()) addButton(button++,"Yammi",talkToShekkaAboutYammi);
 
@@ -1087,7 +1087,7 @@ public function shekkaSleepWithMornings():void
 		if(rand(2) == 0)
 		{
 			output("A soft, trilling breathing tickles at one of your [pc.ears]. It’s a very much alien sound, as though it were a hint away from a sibilant hiss, or trickling birdsong. Peeking over your shoulder reveals an innocently sleeping face, and the need to climb out of bed and get on with your day has to pose a quick war with comfort.");
-			output("\n\nYou reach around your back, planting your hands on warm, naked ass-cheeks. Although Shekka’s eyes stay closed, her breathing shifts. She’s probably awake now. Not that it stops you from continuing, massaging her expansive rear and rubbing the very base of her tail until the horny Rask struggles to fight down delighted little ‘coo-ing’ sounds. She finally fives up, nibbling your shoulder and moaning sweetly. <i>“A girl could get used to a little hands-on wakeup like that.”</i>");
+			output("\n\nYou reach around your back, planting your hands on warm, naked ass-cheeks. Although Shekka’s eyes stay closed, her breathing shifts. She’s probably awake now. Not that it stops you from continuing, massaging her expansive rear and rubbing the very base of her tail until the horny Rask struggles to fight down delighted little ‘coo-ing’ sounds. She finally gives up, nibbling your shoulder and moaning sweetly. <i>“A girl could get used to a little hands-on wakeup like that.”</i>");
 			output("\n\nShekka gives you a quick spank, disentangling from your body and letting you up.");
 		}
 		//2
@@ -1328,7 +1328,7 @@ public function shekkaCrewBendoverFuck(x:int):void
 	else output("titanium bars");
 	output(", and there’s no way you’re going to pass up on your raskvel honey’s pussy.");
 
-	output("\n\nYou pull away from the fidgeting mechanic. Her hands are shaking as she swaps components, and her breath is as ragged as and endurance runner’s. She’s still managing to do her work, though. The jumpsuit gives way around her hips, stretching before rolling down her scaly hips. It clings to her sopping-wet slit in liquid-assisted defiance before finally breaking away, carrying a glossy sheen as a memento of its time wedged into her crotch. You grunt in appreciation of the fine ass you’ve revealed while you push her clothing to the ground.");
+	output("\n\nYou pull away from the fidgeting mechanic. Her hands are shaking as she swaps components, and her breath is as ragged as an endurance runner’s. She’s still managing to do her work, though. The jumpsuit gives way around her hips, stretching before rolling down her scaly hips. It clings to her sopping-wet slit in liquid-assisted defiance before finally breaking away, carrying a glossy sheen as a memento of its time wedged into her crotch. You grunt in appreciation of the fine ass you’ve revealed while you push her clothing to the ground.");
 
 	output("\n\nShekka’s tail pats the side of your face, right on your cheek, and she purrs, <i>“Mmmm, good [pc.boyGirl], but I think I might get this repaired before you can cum inside me.”</i> The naughty little limb snakes down your neck to your chest then around to your [pc.butt]. It slaps you for good measure. <i>“If this is the best you’ve got, maybe I should just let you at me the whole damn day. I could get so much done before you even wring a single orgasm out of my dripping... wet... cunt.”</i> She steps further apart to show you just how wet she’s become.");
 	output("\n\nOh wow, is it ever. Her violet lips are absolutely sopping. Beads of clear lubricant hang from her labia as rain clings to a spider’s web. Plump and engorged, her meaty vulva is begging for a fuck. Both her clits are jutting out from between the soaked lips, and droplets hang on slick strands from them, sometimes releasing to patter on the floor. A small puddle has formed beneath the juicy raskvel, matching the one in her suit, proof of just how badly she needs you to fuck her.");
@@ -1347,9 +1347,9 @@ public function shekkaCrewBendoverFuck(x:int):void
 	output("\n\nShekka’s legs slam against her little table as you take her from behind, pressing on her hard enough that she winds up wrapping her perky chest around a pipe like an impromptu tit-fuck. Her lips cling to your piston like oiled cylinder walls, and as you really start to give it to her they only seal tighter around you. Every forceful thrust is accompanied by lurid squelches, every cock-hilting thrust matched by affectionate, muscular squeezes from Shekka’s box. The impacts cause you to bump her rearward clit repeatedly, and she moans each time. These raskvel were made to be fucked from any angle; no matter how you take them, one of their clits will be happily sparking.");
 	output("\n\nYou settle into an easy, musical rhythm. Her swaying, pierced ears provide a pleasant jingling background while her staccato moans provide proof positive that’s getting the hard fucking she wanted. Shekka’s petite body feels almost entirely wrapped around your [pc.cock " + x + "] even though such a thing is impossible. Her tail is wrapped around your waist encouragingly, helping you to thrust into her as hard as absolutely possible. If you weren’t so caught up in the moment, you might be worried that you would bruise her thighs against the workbench. She wouldn’t let you stop, though. She’d tell you to get back to work. After all, she’s working.");
 
-	output("\n\nIt’s hard to tell if she’s still working, actually. She did manage unwedge the cylinder from between her perky tits at least. Damn, her nipples look hard. And she seems to be trying to place it aside and get her hands on another, but she keeps throwing back her head and moaning. Her free hand keeps knocking over the little bottle of cleaning fluid and scrabbling against the workbench’s hard metal surface. Shekka might have made some good progress on her toy, but there’s no way she’s going to finish it in this condition.");
+	output("\n\nIt’s hard to tell if she’s still working, actually. She did manage to unwedge the cylinder from between her perky tits at least. Damn, her nipples look hard. And she seems to be trying to place it aside and get her hands on another, but she keeps throwing back her head and moaning. Her free hand keeps knocking over the little bottle of cleaning fluid and scrabbling against the workbench’s hard metal surface. Shekka might have made some good progress on her toy, but there’s no way she’s going to finish it in this condition.");
 
-	output("\n\nShe’s little more than a slutty mess of fuckjuice and pleasure now - a tingling bundle of nerves spasming around your ");
+	output("\n\nShe’s little more than a slutty mess of fuckjuice and pleasure now -- a tingling bundle of nerves spasming around your ");
 	if(y >= 0) output("doubled dicks");
 	else output("[pc.cock " + x + "]");
 	output(" in an effort to please you. Her tongue lolls out of her mouth. There’s at least half a foot of organ there, tempting you into having the little gadget-slut clean you off afterwards. Holding her by the hips, you pound away, feeling her start to orgasm underneath you, gushing fluid over your [pc.knot " + x + "]");
@@ -1429,7 +1429,7 @@ public function shekkaCrewBendoverFuck(x:int):void
 	//No knot for you, come back next year.
 	else
 	{
-		output("\n\nHer wet, milking walls coax you to a glorious a climax");
+		output("\n\nHer wet, milking walls coax you to a glorious climax");
 		if(y >= 0) output(", and the way her asshole is tugging at your dick doesn’t hurt either");
 		output(". ");
 		if(cumQ < 10) 
@@ -1460,12 +1460,12 @@ public function shekkaCrewBendoverFuck(x:int):void
 		{
 			output("Gigantic blasts of [pc.cum] force their way into Shekka’s eager tunnel");
 			if(y >= 0) output("s");
-			output(" packing ");
-			if(y >= 0) output("them ");
-			else output("it ");
-			output(" full with the first few injections. The next ones, heavy as they are, swell her [shekka.belly] with added weight, giving her a positively pregnant appearance. Waves of excess, hot-pumping [pc.cumNoun] vent out over your [pc.cocks] as you continue to ejaculate, sluicing down your ");
-			if(pc.balls > 0) output("[pc.balls]");
-			else output("[pc.leg]");
+			output(" packing");
+			if(y >= 0) output(" them");
+			else output(" it");
+			output(" full with the first few injections. The next ones, heavy as they are, swell her [shekka.belly] with added weight, giving her a positively pregnant appearance. Waves of excess, hot-pumping [pc.cumNoun] vent out over your [pc.cocks] as you continue to ejaculate, sluicing down your");
+			if(pc.balls > 0) output(" [pc.balls]");
+			else output(" [pc.leg]");
 			output(".");
 			if(pc.hasCockFlag(GLOBAL.FLAG_FLARED)) output(" Your flared tip makes sure a fair portion of it shoots directly against her cervix.");
 		}
@@ -1474,7 +1474,7 @@ public function shekkaCrewBendoverFuck(x:int):void
 		output(" slipping halfway out of her. You take the moment to appreciate the shapeliness of her shoulder blades and the natural scent of her feathery hair air.");
 	}
 	//Merge
-	output("\n\nAfter a while of holding her like this, she comes down from her own plateau and cranes her head around to look at you, smiling. It isn’t a mere sated smile either - the kind that telegraphs just how well fucked she’s been. No. It’s a gloating, knowing smile. Although her fingers tremble in nerveless aftershocks, she neatly stacks a series of cleaned tubes that belong to your ship’s engine.");
+	output("\n\nAfter a while of holding her like this, she comes down from her own plateau and cranes her head around to look at you, smiling. It isn’t a mere sated smile either -- the kind that telegraphs just how well fucked she’s been. No. It’s a gloating, knowing smile. Although her fingers tremble in nerveless aftershocks, she neatly stacks a series of cleaned tubes that belong to your ship’s engine.");
 	output("\n\nShekka gently pushes you back with her feet, letting your soaked [pc.cocks] fall away. She pulls herself up onto her workbench, rubbing her belly, a slightly vacant look in her eyes. <i>“I think we both won that little competition.”</i>");
 	output("\n\n<i>“Oh?”</i> you say while wiping up.");
 	output("\n\nShekka nods, giggling, her hand still on her belly. <i>“Fuck yes. I prefer my work to be on the fixing side compared to the cleaning, but cumming with an armload of sweet techy goodbits? That was nirvana. I’ll make sure to keep the chores stocked up in preparation for the next visit, and we can do this every time.”</i>");
@@ -1537,7 +1537,7 @@ public function shekkaCrewFutaBendoverFuck(x:int):void
 	else output("are as hard as titanium bars");
 	output(", and there’s no way you’re going to pass up on your raskvel honey’s pussy.");
 
-	output("\n\nYou pull away from the fidgeting mechanic. Her hands are shaking as she swaps components, and her breath is as ragged as and endurance runner’s. She’s still managing to do her work, though. The jumpsuit gives way around her hips, stretching before rolling down her scaly hips. It clings to her sopping-wet slit in liquid-assisted defiance before finally breaking away, carrying a glossy sheen as a memento of its time wedged into her crotch. You grunt in appreciation of the fine ass you’ve revealed while you push her clothing to the ground.");
+	output("\n\nYou pull away from the fidgeting mechanic. Her hands are shaking as she swaps components, and her breath is as ragged as an endurance runner’s. She’s still managing to do her work, though. The jumpsuit gives way around her hips, stretching before rolling down her scaly hips. It clings to her sopping-wet slit in liquid-assisted defiance before finally breaking away, carrying a glossy sheen as a memento of its time wedged into her crotch. You grunt in appreciation of the fine ass you’ve revealed while you push her clothing to the ground.");
 	output("\n\nShekka’s tail pats the side of your face, right on your cheek, and she purrs, <i>“Mmmm, good [pc.boyGirl], but I think I might get this repaired before you can cum inside me.”</i> The naughty little limb snakes down your neck to your chest then around to your [pc.butt]. It slaps you for good measure. <i>“If this is the best you’ve got, maybe I should just let you at me the whole damn day. I could get so much done before you even wring a single orgasm out of my dripping... wet... cunt.”</i> She steps further apart to show you just how wet she’s become.");
 	output("\n\nOh wow, is it ever. Her violet lips are absolutely sopping. Beads of clear lubricant hang from her labia as rain clings to a spider’s web. Plump and engorged, her meaty vulva is begging for a fuck. Both her clits are jutting out from between the soaked lips, and droplets hang on slick strands from them, sometimes releasing to patter on the floor. A small puddle has formed beneath the juicy raskvel, matching the one in her suit, proof of just how badly she needs you to fuck her.");
 	output("\n\nAlong with all of that her meaty balls sway and twitch in time with her heartbeat, and her member is forced to point directly down to the floor, flaring eagerly and begging to be milked.");
@@ -1557,9 +1557,9 @@ public function shekkaCrewFutaBendoverFuck(x:int):void
 	output("\n\nHer voice turns into an orchestra of lurid moans as her pleasure is doubled up; a teasing pinky toys with her stretchy cumslit, before trailing down to the base fast enough to make her balls slap into her frontward clit.");
 	output("\n\nYou settle into an easy musical rhythm. Her swaying, pierced ears provide a pleasant jingling background while her staccato moans provide proof positive that’s getting the hard fucking she wanted. Shekka’s petite body feels almost entirely wrapped around your [pc.cock " + x + "] even though such a thing is impossible. Her tail is wrapped around your waist encouragingly, helping you to thrust into her as hard as absolutely possible.");
 	output("\n\nThere would be cause for concern about bruising her if not for the way your busily-jerking arm keeps her thighs from smashing into the table too hard. Not that she would stop in such a case; she’d tell you to get back to work. After all, she’s working.");
-	output("\n\nIt’s hard to tell if she’s still working, actually. She did manage unwedge the cylinder from between her perky tits at least. Damn, her nipples look hard. And she seems to be trying to place it aside and get her hands on another, but she keeps throwing back her head and moaning. Her free hand keeps knocking over the little bottle of cleaning fluid and scrabbling against the workbench’s hard metal surface. Shekka might have made some good progress on her toy, but there’s no way she’s going to finish it in this condition.");
-	output("\n\nYou’d steal that stuff for lube if not for the fact you’re one-hundred percent sure if it’s for stripping metal clean, it doesn’t belong on a junker-slut Raskvel’s futa-junk. To be fair, there isn’t much need for it. The moisture from her own slobbering cunt drip down the back of her balls and into your waiting palm, happy to be used as lotion for her impromptu hand-job.");
-	output("\n\nShe’s little more than a slutty mess of fuckjuice and pleasure now - a tingling bundle of nerves spasming around your ");
+	output("\n\nIt’s hard to tell if she’s still working, actually. She did manage to unwedge the cylinder from between her perky tits at least. Damn, her nipples look hard. And she seems to be trying to place it aside and get her hands on another, but she keeps throwing back her head and moaning. Her free hand keeps knocking over the little bottle of cleaning fluid and scrabbling against the workbench’s hard metal surface. Shekka might have made some good progress on her toy, but there’s no way she’s going to finish it in this condition.");
+	output("\n\nYou’d steal that stuff for lube if not for the fact you’re one-hundred percent sure if it’s for stripping metal clean, it doesn’t belong on a junker-slut Raskvel’s futa-junk. To be fair, there isn’t much need for it. The moisture from her own slobbering cunt, dripping down the back of her balls and into your waiting palm, happy to be used as lotion for her impromptu hand-job.");
+	output("\n\nShe’s little more than a slutty mess of fuckjuice and pleasure now -- a tingling bundle of nerves spasming around your ");
 	if(y >= 0) output("doubled dicks");
 	else output("[pc.cock " + x + "]");
 	output(" in an effort to please you. Her tongue lolls out of her mouth. There’s at least half a foot of organ there, and you wonder how hard it would be for the little gadget-slut to suck herself off, perhaps tonguefuck that stretchy stallion cum-slit. Holding her by the hips, you pound away, feeling her start to orgasm underneath you, gushing fluid over your [pc.knot " + x + "]");
@@ -1644,7 +1644,7 @@ public function shekkaCrewFutaBendoverFuck(x:int):void
 	//No knot for you, come back next year.
 	else
 	{
-		output("\n\nHer wet, milking walls coax you to a glorious a climax");
+		output("\n\nHer wet, milking walls coax you to a glorious climax");
 		if(y >= 0) output(", and the way her asshole is tugging at your dick doesn’t hurt either");
 		output(". ");
 		if(cumQ < 10) 
@@ -1692,7 +1692,7 @@ public function shekkaCrewFutaBendoverFuck(x:int):void
 		output("er balls tighten up against her dick, a whole lot lighter than they were before your tryst.");
 	}
 	//Merge
-	output("\n\nAfter a while of holding her like this, she comes down from her own plateau and cranes her head around to look at you, smiling. It isn’t a mere sated smile either - the kind that telegraphs just how well fucked she’s been. No. It’s a gloating, knowing smile. Although her fingers tremble in nerveless aftershocks, she licks her fingers clean of cream and neatly stacks a series of cleaned tubes that belong to your ship’s engine.");
+	output("\n\nAfter a while of holding her like this, she comes down from her own plateau and cranes her head around to look at you, smiling. It isn’t a mere sated smile either -- the kind that telegraphs just how well fucked she’s been. No. It’s a gloating, knowing smile. Although her fingers tremble in nerveless aftershocks, she licks her fingers clean of cream and neatly stacks a series of cleaned tubes that belong to your ship’s engine.");
 	output("\n\nShekka gently pushes you back with her feet, letting your soaked [pc.cocks] fall away. She pulls herself up onto her workbench, rubbing her belly, a slightly vacant look in her eyes. <i>“I think we both won that little competition.”</i>");
 	output("\n\n<i>“Oh?”</i> you say while wiping up.");
 	output("\n\nShekka nods, giggling, her hand still on her belly. <i>“Fuck yes. I prefer my work to be on the fixing side compared to the cleaning, but cumming with an armload of sweet techy goodbits? That was nirvana. I’ll make sure to keep the chores stocked up in preparation for the next visit, and we can do this every time.”</i> Her cock pulses in agreement, shining with her own juices and your mixed cums.");
@@ -1752,9 +1752,9 @@ public function tribCrewVibeyVibe():void
 	else output("greedily gropes your tits, squeezing and caressing the orbs impulsively.");
 	output(" <i>“Just a little bit.”</i>");
 
-	output("\n\nThe slowly opening divide in the alabaster fabric widens with torturous slowness, but it affords you a detailed view of Shekka’s reddish scales and well-formed breasts. You grab hold of it on both sides and tug. It gives as if there was never anything holding it at all, allowing you to to yank it down to her flared hips in an instant. The raskvel’s puffy nipples pebble in your ship’s atmosphere and you let go of her suit to brush one with your thumb, eliciting a gasp of delight from the tiny alien.");
+	output("\n\nThe slowly opening divide in the alabaster fabric widens with torturous slowness, but it affords you a detailed view of Shekka’s reddish scales and well-formed breasts. You grab hold of it on both sides and tug. It gives as if there was never anything holding it at all, allowing you to yank it down to her flared hips in an instant. The raskvel’s puffy nipples pebble in your ship’s atmosphere and you let go of her suit to brush one with your thumb, eliciting a gasp of delight from the tiny alien.");
 
-	output("\n\nShekka giggles and squirms, but she lifts her shapely bottom up off of you to to aid you in disrobing her. You tug it down her legs to her knees before giving up on the current positioning and rolling, pinning her underneath you so that you pull the offending garment entirely away. You toss it over your shoulder, and it lands in a shimmery heap, it’s owner naked and vulnerable below. You echo, <i>“A little fun,”</i> now that you’re above her, your [pc.vaginas] close enough to hers to kiss, the glittering wetness of your anticipation hanging from a [pc.clit] like a drop of dew.");
+	output("\n\nShekka giggles and squirms, but she lifts her shapely bottom up off of you to aid you in disrobing her. You tug it down her legs to her knees before giving up on the current positioning and rolling, pinning her underneath you so that you pull the offending garment entirely away. You toss it over your shoulder, and it lands in a shimmery heap, it’s owner naked and vulnerable below. You echo, <i>“A little fun,”</i> now that you’re above her, your [pc.vaginas] close enough to hers to kiss, the glittering wetness of your anticipation hanging from a [pc.clit] like a drop of dew.");
 	output("\n\nHer tail curls up between your bodies to bar her violet entrance from sight. She giggles playfully, then bucks her hips upward, slamming the slightly-ridged texture of her tail into [pc.oneVagina]. You gasp in surprise and pleasure. The sudden press of her warm body against your entrance is at once tantalizing and mildly painful - more the former than the latter. Then, with a knowing grin, Shekka closes her eyes, an expression of pleased focus on her features.");
 	if(flags["TIMES_TAILVIBED_WITH_SHEKKA"] != undefined)
 	{
@@ -1888,9 +1888,9 @@ public function shekkaCrewFutaTailTrib():void
 	else output("greedily gropes your tits, squeezing and caressing the orbs impulsively.");
 	output(" <i>“Just a little bit.”</i>");
 
-	output("\n\nThe slowly opening divide in the alabaster fabric widens with torturous slowness, but it affords you a detailed view of Shekka’s reddish scales and well-formed breasts. You grab hold of it on both sides and tug. It gives as if there was never anything holding it at all, allowing you to to yank it down to her flared hips in an instant. The raskvel’s puffy nipples pebble in your ship’s atmosphere and you let go of her suit to brush one with your thumb, eliciting a gasp of delight from the tiny alien.");
+	output("\n\nThe slowly opening divide in the alabaster fabric widens with torturous slowness, but it affords you a detailed view of Shekka’s reddish scales and well-formed breasts. You grab hold of it on both sides and tug. It gives as if there was never anything holding it at all, allowing you to yank it down to her flared hips in an instant. The raskvel’s puffy nipples pebble in your ship’s atmosphere and you let go of her suit to brush one with your thumb, eliciting a gasp of delight from the tiny alien.");
 
-	output("\n\nShekka giggles and squirms, but she lifts her shapely bottom up off of you to to aid you in disrobing her. You tug it down her legs to her knees, allowing her cock free to slap down onto your [pc.tummy]. <i>“Girlish fun,”</i> you retort before giving up on the current positioning and rolling, pinning her underneath you so that you pull the offending garment entirely away. You toss it over your shoulder, and it lands in a shimmery heap, it’s owner naked and vulnerable below. You echo, <i>“Just a little,”</i> now that you’re above her, your [pc.vaginas] close enough to hers to kiss, the glittering wetness of your anticipation hanging from a [pc.clit] like a drop of dew.");
+	output("\n\nShekka giggles and squirms, but she lifts her shapely bottom up off of you to aid you in disrobing her. You tug it down her legs to her knees, allowing her cock free to slap down onto your [pc.tummy]. <i>“Girlish fun,”</i> you retort before giving up on the current positioning and rolling, pinning her underneath you so that you pull the offending garment entirely away. You toss it over your shoulder, and it lands in a shimmery heap, it’s owner naked and vulnerable below. You echo, <i>“Just a little,”</i> now that you’re above her, your [pc.vaginas] close enough to hers to kiss, the glittering wetness of your anticipation hanging from a [pc.clit] like a drop of dew.");
 
 	output("\n\nHer tail curls up between your bodies to bar her violet entrance from sight. She giggles playfully, then bucks her hips upward, slamming the slightly-ridged texture of her tail into [pc.oneVagina]. You gasp in surprise and pleasure. The sudden press of her warm body against your entrance is at once tantalizing and mildly painful - more the former than the latter. Then, with a knowing grin, Shekka closes her eyes, an expression of pleased focus on her features.");
 	//Happened before
@@ -2404,7 +2404,7 @@ public function shekkaAnnoVibeOff():void
 		output("\n\n<i>“Don’t drown [pc.himHer]!”</i> Shekka grunts, reaching forward to bap Anno on the nose. <i>“At least not yet,”</i> she adds, before her more occupied hand begins its unstoppable trajectory into your waiting ");
 		if(!silly) output("sphincter");
 		else output("boipussy");
-		output(". Her toy’s girth drives home into your spreading womanhood; each bump on it grinds against sensitive inner-walls and sets clusters of nerves to sparking. Before you get a chance to be completely overwhelmed by an ass-stuffing, the cheekily-grinning Ausar opens wide with a loud <i>’Aaaaah!’</i> before gulping up your cock, ");
+		output(". Her toy’s girth drives home into your spreading anus; each bump on it grinds against sensitive inner-walls and sets clusters of nerves to sparking. Before you get a chance to be completely overwhelmed by an ass-stuffing, the cheekily-grinning Ausar opens wide with a loud <i>’Aaaaah!’</i> before gulping up your cock, ");
 		if(pc.cocks[0].cLength() > 14) output("slurping its [pc.cockHead]");
 		else if(pc.cocks[0].cLength() > 7) output("hilting herself face-first onto your girthy [pc.cockNoun]");
 		else output("practically swallowing the entirety of your modest [pc.cock]");
@@ -3870,7 +3870,7 @@ public function shekkaButtfucksYou():void
 	output("\n\n<i>“Here, [pc.name],”</i> Shekka says, taking her cock in hand and running her palm up the underside. <i>“Why don’tcha lube me up a little with those lips of yours? Go on...”</i> she murmurs, smiling like an imp as she beckons you forward." + (pc.tallness > 60 ? " <i>“Bend over and kiss the tip.”</i>":" <i>“Give the tip a kiss.”</i>"));
 
 	if(pc.isBimbo()) output("\n\n<i>“Ohmigosh, yes,”</i> you moan, almost drooling at the sight. <i>“Let me kiss that beautiful cock...”</i>");
-	else output("<i>“Sure,”</i> you reply quietly, eyeing the hefty tip with a faint grin. <i>“It does look good...”</i>");
+	else output("\n\n<i>“Sure,”</i> you reply quietly, eyeing the hefty tip with a faint grin. <i>“It does look good...”</i>");
 
 	if(pc.tallness > 80) output("\n\nYou squat down and spread your [pc.thighs], showing off your [pc.groin] to the grinning raskvel futanari.");
 	else if(pc.tallness >= 60) output("\n\nYou bend at the waist, " + (pc.hasHair() && pc.hairLength > 10 ? "scooping your [pc.hair] back to keep it out of the way":"watching the equine dick fill your vision") + ".");

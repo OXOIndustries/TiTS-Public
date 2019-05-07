@@ -251,7 +251,7 @@ public function reahaMilkStand():void
 		//Var 2.
 		else if(rand(2) == 0)
 		{
-			output("As you’re stepping back aboard, you’re greeting with a muffled series of moans and a rhythmic <i>thump-thump</i> of something hitting one of the bulkheads. You’d be alarmed, except you quickly realize that the noise is coming from Reaha’s quarters. Sounds like the cow-girl’s <i>“entertaining”</i> a customer right now.");
+			output("As you’re stepping back aboard, you’re greeting with a muffled series of moans and a rhythmic <i>thump-thump</i> of something hitting one of the bulkheads. You’d be alarmed, except you quickly realize that the noise is coming from Reaha’s quarters. Sounds like the cow-girl’s “entertaining” a customer right now.");
 		}
 		//Var 3.
 		else
@@ -358,7 +358,7 @@ public function herTalentsReaha():void
 	output("<i>“What I’m capable of?”</i> she asks, taken aback by the question.");
 	output("\n\nYou nod encouragingly, and Reaha’s forced to think for a moment. <i>“I guess... I mean, I guess I’ve got a lot of experience as a whore. Without the bitches at Beth’s tormenting me all day every day, there could be worse jobs. The money’s good - she made a fucking fortune off of me, that’s for sure.”</i> You’re a bit surprised she’d actually think of that as a talent. Would she actually consider whoring again, you wonder to yourself.");
 	output("\n\n<i>“Other than that? Well, I don’t know if I could really make a living just selling milk. I’ve loved what I’ve been doing, but it’s hard on my poor tits. And I’d probably need some more mods to produce enough to really support myself like that...”</i>");
-	output("\n\nYou give Reaha a look when she mentions modding herself even further, and she visibly winces. <i>“N-nevermind. The only other thing I’d be really good for is, like, being a mercenary or something. I’ve got army experience, after all, though I’m not some super-hardcore badass or anything. And I’d like to see them try and crowbar me into combat armor with a body like this...”</i>");
+	output("\n\nYou give Reaha a look when she mentions modding herself even further, and she visibly winces. <i>“N-never mind. The only other thing I’d be really good for is, like, being a mercenary or something. I’ve got army experience, after all, though I’m not some super-hardcore badass or anything. And I’d like to see them try and crowbar me into combat armor with a body like this...”</i>");
 	output("\n\n<i>“Is that all? Come on, you’ve gotta have some hidden talents somewhere,”</i> you urge.");
 	output("\n\nReaha shrugs. <i>“I grew up on New Texas, [pc.name]. All I ever really learned was sex-ed and how to work an industrial milker. I just... don’t know. I’m ");
 	if(silly) output("just a dumb cow");
@@ -1548,7 +1548,7 @@ public function curedReahaFucksASubbyPCsButt():void
 	{
 		output("\n\n<i>“Okay! You’re gonna want to lube this up, [pc.name]! I’ve taken enough cock to know the difference it makes. Open wide.”</i>");
 		output("\n\nYou blink, just in time to see Reaha grab you by the [pc.hair] and yank your head back. Your mouth opens instinctively, and is instantly filled with a slab of latex cock-meat. <i>“Good [pc.boyGirl],”</i> Reaha giggles, rocking her hips forward into your [pc.lips]. <i>“Use that tongue, now!”</i>");
-		output("\n\nYou take her advice, sucking on her rigid plastic rod and coating it with as much spit as you can. Reaha nods approvingly, one hand cupping a hefty breast and the other snaking down your bare back. You suck in a sharp breath, feeling her hand caress your [pc.butt]... and again when you feel a pair of her fingers pressing against your [pc.vagOrAss]. It takes just a little pressure for her to snake her way inside you, stirring up the inner depths of your hole to get you ready, too. You can feel a little [reaha.milk] on her fingertips, whetted to ease her entry... and lube you up.");
+		output("\n\nYou take her advice, sucking on her rigid plastic rod and coating it with as much spit as you can. Reaha nods approvingly, one hand cupping a hefty breast and the other snaking down your bare back. You suck in a sharp breath, feeling her hand caress your [pc.butt]... and again when you feel a pair of her fingers pressing against your [pc.vagOrAss]. It takes just a little pressure for her to snake her way inside you, stirring up the inner depths of your hole to get you ready, too. You can feel a little [reaha.milk] on her fingertips, wettened to ease her entry... and lube you up.");
 	}
 	output("\n\nSatisfied with her wetwork, Reaha gives you an appreciative slap on your [pc.butt], digging her fingers into your taut [pc.skin]. That’s more like it! You wiggle your ass happily as the cow’s hands wrap around your [pc.hips]. Her own bovine hips pushing in towards you, the head of the massive strapon teasing the clenched ");
 	if(pc.hasVagina()) output("lips");

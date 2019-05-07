@@ -9,6 +9,7 @@ package classes.GameData
 	import classes.Items.Accessories.KordiiakLeash;
 	import classes.Items.Accessories.ShoulderGrunchLeash;
 	import classes.Items.Accessories.GrunchLeash;
+	import classes.Items.Accessories.SignetOfBravery;
 	import classes.Items.Apparel.Harness;
 	import classes.Items.Armor.GooArmor;
 	import classes.Items.Transformatives.ThiccNShake;
@@ -1601,6 +1602,7 @@ package classes.GameData
 			{
 				addDisabledButton(14, "Run", "Run", "You agreed to this, no turning back now.");
 			}
+			else if (pc.accessory is SignetOfBravery) addDisabledButton(14, "Run", "Run", "You can’t possibly bring yourself to run! (Prevented by <b>Signet of Bravery</b> accessory.)");
 			else
 			{
 				addButton(14, "Run", runAway, undefined, "Run", "Attempt to run away from your enemy. Success is greatly dependent on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
@@ -1974,6 +1976,12 @@ package classes.GameData
 				if (hasEnemyOfClass(NyreaBeta) && kGAMECLASS.bothriocQuestBetaNyreaMiniquestActive())
 				{
 					kGAMECLASS.bothriocQuestBetaNyreaMiniquestRun();
+					CombatManager.abortCombat();
+					return;
+				}
+				if (hasEnemyOfClass(Lureling))
+				{
+					kGAMECLASS.lurelingFightEscape();
 					CombatManager.abortCombat();
 					return;
 				}
@@ -5233,7 +5241,10 @@ package classes.GameData
 			}
 			
 			pc.credits += sumCredits;
-			
+
+			//Making your dom horny is a prize, yes?
+			if (pc.accessory is SiegwulfeItem && kGAMECLASS.chars["WULFE"] != undefined && kGAMECLASS.siegwulfeIsDom()) kGAMECLASS.chars["WULFE"].lust(3);
+
 			// Emit some shit to state what the player got/did
 			output("You defeated ");
 			for (var key:String in enemyNames)

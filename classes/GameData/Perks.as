@@ -525,7 +525,7 @@ package classes.GameData
 			attackDrone.classLimit = GLOBAL.CLASS_ENGINEER;
 			attackDrone.levelLimit = 2;
 			attackDrone.perkName = "Attack Drone";
-			attackDrone.perkDescription = "Grants an attack drone that will automatically fire on your enemies every combat round as long as your shields are up. The drone will also bolster your shields with its own, raising your maximum shielding by [altTooltip AttackDrone] per level.";
+			attackDrone.perkDescription = "Grants an attack drone that will automatically fire on your enemies every combat round as long as your shields are up. The drone will also bolster your shields with its own, raising your maximum shielding by [altTooltip AttackDrone] per level. Grants acquired drones more damage.";
 			insertPerkData(attackDrone);
 			
 			var shieldBooster:PerkData = new PerkData();
@@ -735,7 +735,7 @@ package classes.GameData
 			rapidRecharge.perkDescription = "Grants passive shield regeneration on any turn where no damage is taken.";
 			insertPerkData(rapidRecharge);
 
-			/*1A. Dampening Field: Your Gravidic Charge deals more damage (vs. primary target), and the  gravidic field lingers for 3 rounds after detonation, dramatically lessening the damage dealt by kinetic weapons -- both yours and enemies'! (Fen: 50%? Might be OP. Fuck it. Let’s try it)
+			/*1A. Dampening Field: Your Gravidic Charge deals more damage (vs. primary target), and the gravidic field lingers for 3 rounds after detonation, dramatically lessening the damage dealt by kinetic weapons -- both yours and enemies'! (Fen: 50%? Might be OP. Fuck it. Let’s try it)
 			1B. Lingering Burns: Your Thermal Charge deals bonus damage (vs. primary target), and has a chance to keep your enemies burning for 2 turns if they didn't have shields up.*/
 			var boostedCharges:PerkData = new PerkData();
 			boostedCharges.classLimit = GLOBAL.CLASS_ENGINEER;

@@ -5,6 +5,7 @@
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.Throbb;
 	import classes.Items.Transformatives.Gush;
+	import classes.Items.Stories.BreedingSylvie;
 	import classes.kGAMECLASS;
 	
 	public class Mabbs extends Creature
@@ -27,6 +28,7 @@
 			this.inventory = [];
 			inventory.push(new Gush());
 			inventory.push(new Throbb());
+			inventory.push(new BreedingSylvie());
 			
 			keeperBuy = "set in vesperia/mabbs.as";
 			

@@ -137,7 +137,11 @@ package classes.Items.Transformatives
 					output("\n\nThis has got to be your " + num2Ordinal(doses) + " time in a short span of eating Twink-ease... But hey, anything to get at being the cute boy you’ve wanted to be. Those damn things are addictingly good, too! The effects must be working, because you feel--");
 					output("\n\nYou crash to the ground before you can manage to mentally describe what you’re feeling. Uh oh. What’s going on?! You are totally paralyzed, helpless at whatever may happen to you! Everything’s tingly, bones move on their own, skin moves to work with your changing flesh... You can barely tell what’s happening in the haze of it all. You drift into a light nap before being awaken to the realization that you probably shouldn’t try to sleep after overdosing such a drug... But after a moment, you feel control return to your body, though now... your body is much different than what it was before. <b>Every aspect that Twink-ease can change has been done to the best of the cakes’ ability.</b> You’re probably not going to experience a drastic difference if you decide to eat them again.");
 					
-					if(!target.hasCock()) target.createCock(cLength, 1);
+					if(!target.hasCock())
+					{
+						target.createCock(cLength, 1);
+						target.setNewCockValues(0);
+					}
 					for(i = 0; i < target.cocks.length; i++)
 					{
 						if(target.cocks[i].cLengthRaw != cLength) target.cocks[i].cLengthRaw = cLength;
@@ -196,6 +200,7 @@ package classes.Items.Transformatives
 						output("\n\nNot much can be put into that thought before you feel more pressure from your skin, now under your newly-formed cock. Two lumps are pushing their way through, going through what must be a similar process that your penis just underwent. They must be your balls! You rub on them as they grow out of you, hoping to coax your first penile orgasm from them... They’re terribly sensitive, shutters sent through your cerebellum as you toy with them and your dick, until they make a cute, cohesive sack formed around them, clinging against your perineum and dick underside tightly. You pump harder and harder on your cock as you massage your balls, bathing in the new and fantastic sensations brought by your hypersensitive flesh. Man, being a femboy is gonna fuckin’ rule! That thought rings throughout your head as you feel it -- cum, frothing forth and dripping out of your cock, short spurts going forward and painting the ground below. <b>You now have a penis and two testicles!</b>");
 						
 						target.createCock(cLength, 1);
+						target.setNewCockValues(0);
 						target.balls = 2;
 						target.ballSizeRaw = tSize;
 						target.orgasm();

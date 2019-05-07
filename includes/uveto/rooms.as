@@ -2921,7 +2921,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII F14"] = new RoomClass(this);
 	rooms["KORGII F14"].roomName = "SOUTH\nTUNNEL";
-	rooms["KORGII F14"].description = "Balmy warmth carries you along through the tunnels of Korg’ii hold. This one stretches straight to the east and west, terminated by sharp turns to the north at each end. Directly north of you is a double door, the seam split across a carving of a gilded coat. Alien script ";
+	rooms["KORGII F14"].description = "Balmy warmth carries you along through the tunnels of Korg’ii hold. This one stretches straight to the east and west, terminated by sharp turns to the north at each end. Directly north of you is a double door, the seam split across a carving of a gilded coat.";
 	rooms["KORGII F14"].planet = "PLANET: UVETO VII";
 	rooms["KORGII F14"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII F14"].moveMinutes = 2;
@@ -3290,7 +3290,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII R10"] = new RoomClass(this);
 	rooms["KORGII R10"].roomName = "THRONE\nROOM";
-	rooms["KORGII R10"].description = "Walls of whitish stone, worked into murals of ancient korgonne heroism, display the might of Korg’ii clan on all sides. Gold chains hold glowing crystals from the ceiling to light it amber radiance. You can see a single, armored korg fighting off three frostwyrms single-handled. Elsewhere, a horde of fluffy barbarians riding six-legged bears does battle with a swarm of bestial milodans.\n\nCarefully hewn rock and skillfully carved bone decorate the rest of the interior. An enormous throne rises up in the center of it all, a throne for the tribe’s undisputed leader. Its cushion looks quite comfy.\n\nCurtains to the east provide entrance to the Chief’s bedchamber. A passage northward provides access to what looks to be some kind of private armory.";
+	rooms["KORGII R10"].description = ""//Moved to bonusFunc for changing with Ula Chief: Walls of whitish stone, worked into murals of ancient korgonne heroism, display the might of Korg’ii clan on all sides. Gold chains hold glowing crystals from the ceiling to light it amber radiance. You can see a single, armored korg fighting off three frostwyrms single-handled. Elsewhere, a horde of fluffy barbarians riding six-legged bears does battle with a swarm of bestial milodans.\n\nCarefully hewn rock and skillfully carved bone decorate the rest of the interior. An enormous throne rises up in the center of it all, a throne for the tribe’s undisputed leader. Its cushion looks quite comfy.\n\nCurtains to the east provide entrance to the Chief’s bedchamber. A passage northward provides access to what looks to be some kind of private armory.";
 	rooms["KORGII R10"].planet = "PLANET: UVETO VII";
 	rooms["KORGII R10"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII R10"].moveMinutes = 2;
@@ -3304,7 +3304,7 @@ public function initUvetoRoomsII():void
 	rooms["KORGII R10"].inText = "Up";
 	rooms["KORGII R10"].addFlag(GLOBAL.INDOOR);
 	rooms["KORGII R10"].addFlag(GLOBAL.PUBLIC);
-	//rooms["KORGII PLACEHOLDIE"].runOnEnter = korgiD12Bonus;
+	rooms["KORGII R10"].runOnEnter = korgiiThroneRoomBonus;
 
 	rooms["KORGII R8"] = new RoomClass(this);
 	rooms["KORGII R8"].roomName = "CHIEF’S\nARMORY";
@@ -3326,7 +3326,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII T10"] = new RoomClass(this);
 	rooms["KORGII T10"].roomName = "CHIEF’S\nBEDROOM";
-	rooms["KORGII T10"].description = "The Chief’s bedroom is surprisingly bare. Yes, he has a large, comfortable-looking bed with more fluffy hides and cushions than you care to count, but the rest of the chamber is quite simple. A bone crate holds a pile of knick-knacks and primitive jewelry. A stolen mining crate, still-bearing the SteeleTech logo, sits against the east wall. Judging by the chair next to it, it serves dual use as a wardrobe and desk.";
+	rooms["KORGII T10"].description = "";//Cut and moved to chiefBedroomBonus: The Chief’s bedroom is surprisingly bare. Yes, he has a large, comfortable-looking bed with more fluffy hides and cushions than you care to count, but the rest of the chamber is quite simple. A bone crate holds a pile of knick-knacks and primitive jewelry. A stolen mining crate, still-bearing the SteeleTech logo, sits against the east wall. Judging by the chair next to it, it serves dual use as a wardrobe and desk.";
 	rooms["KORGII T10"].planet = "PLANET: UVETO VII";
 	rooms["KORGII T10"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII T10"].moveMinutes = 2;
@@ -3346,7 +3346,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII T14"] = new RoomClass(this);
 	rooms["KORGII T14"].roomName = "ULA’S\nCHAMBERS";
-	rooms["KORGII T14"].description = "Straight away, you can tell this room is vastly different from the others in Korg’ii Hold. It seems to exist in an entirely different time period. The walls are cut perfectly square with the kind of sharp, mechanically precise geometry you’d expect to find in a UGC warship. Angular grooves split and rejoin each other in an artist’s impression of futuristic adornment. One wall even has a transparent aluminum window, looking out over the deadly-beautiful Uvetan countryside.";
+	rooms["KORGII T14"].description = "";//Cut and moved to ulaRoomBonusFunc: Straight away, you can tell this room is vastly different from the others in Korg’ii Hold. It seems to exist in an entirely different time period. The walls are cut perfectly square with the kind of sharp, mechanically precise geometry you’d expect to find in a UGC warship. Angular grooves split and rejoin each other in an artist’s impression of futuristic adornment. One wall even has a transparent aluminum window, looking out over the deadly-beautiful Uvetan countryside.
 	rooms["KORGII T14"].planet = "PLANET: UVETO VII";
 	rooms["KORGII T14"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII T14"].moveMinutes = 2;

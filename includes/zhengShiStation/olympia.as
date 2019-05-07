@@ -244,7 +244,7 @@ public function olympiaSexWheee():void
 		clearMenu();
 		if(pc.IQ() >= 90) addButton(0,"Work & Fuck",workAnFuckDatGynoidsGyni,undefined,"Work & Fuck","You’re pretty damn brilliant, if you do say so yourself. Maybe you can get this scientific sexbot all hot and bothered with your mind.");
 		else addDisabledButton(0,"Work & Fuck","Work & Fuck","You aren’t smart enough for this.");
-		addButton(1,"Nevermind",meatOlympiasMons,true,"Nevermind","You’ll just let Olympia get back to work then. Like she said, maybe after she’s done working you can hook up with the genius gynoid.");
+		addButton(1,"Never Mind",meatOlympiasMons,true,"Never Mind","You’ll just let Olympia get back to work then. Like she said, maybe after she’s done working you can hook up with the genius gynoid.");
 	}
 	else
 	{

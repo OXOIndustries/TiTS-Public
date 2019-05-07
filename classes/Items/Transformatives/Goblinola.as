@@ -156,6 +156,8 @@ package classes.Items.Transformatives
 						// Transformation text:
 						msg += "Your ears have been bothering you for a bit now. You give them a another scratch a discover that they’ve reshaped themselves! <b>You now have long pointy gabilani ears!</b>";
 						target.earType = GLOBAL.TYPE_GABILANI;
+						target.clearEarFlags();
+						target.addEarFlag(GLOBAL.FLAG_TAPERED);
 						target.earLength = 2 + rand(3);
 					}
 					else

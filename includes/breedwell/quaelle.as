@@ -175,7 +175,7 @@ public function quaelleTalkRoehmPart2():void
 		output("\n\n<i>“What if these orchan race warriors had decided to wipe you all out?”</i> you ask. <i>“What then?”</i>");
 		output("\n\n<i>“But they didn’t,”</i> replies the roehm, antennae waving curiously.");
 		output("\n\n<i>“But. What. If. They. Had,”</i> you persist. <i>“You can’t sit and wait for things to work out on its own in every case, that’s insane!”</i>");
-		output("\n\n<i>“Shiverous Steele... “</i> Quaelle smiles at you with infuriating compassion and kindness. <i>“ ...what if you kill yourself careening fluctacularly around the frontier as you do? What if you and all of your crew wind up enslaved to a cruel and terrible pirate lord? With your skills and upbringing, you could find a safe and peaceful living in the core. This has all occurred to you, I’m sure. And yet you act as you do, flickersome and humful nonetheless, because you are the child of your parents, and can do nothing other.”</i>");
+		output("\n\n<i>“Shiverous Steele...”</i> Quaelle smiles at you with infuriating compassion and kindness. <i>“ ...what if you kill yourself careening fluctacularly around the frontier as you do? What if you and all of your crew wind up enslaved to a cruel and terrible pirate lord? With your skills and upbringing, you could find a safe and peaceful living in the core. This has all occurred to you, I’m sure. And yet you act as you do, flickersome and humful nonetheless, because you are the child of your parents, and can do nothing other.”</i>");
 		output("\n\nShe laughs. <i>“Hmm. Hmm. Hmm.”</i>");
 		output("\n\n<i>“And I adore you, and all others like you! How lovely to see you stride about impetuously, vibrosely, magnificently uncaring of your impending doom! Please - don’t ask why roehm act like we do. Simply marvel at the differences that make this throbbulent galaxy so beautiful.”</i>");
 	}
@@ -212,7 +212,7 @@ public function quaelleTalkHerPart2First(clear:Boolean=false):void
 	if (clear) clearOutput();
 	else output("\n\n");		
 	
-	output("<i>“We have a ssslowwww reproductive system.”</i> She giggles in that singular, humming way of hers. <i>“I suppose that’s not much of a surprise, is it? We only become fertile once every five years. Well, it only makes sense if you live for many centuries, doesn’t it? If we were like you and could breed at any time during our adulthood, Hdar-Roe would have collapsed under the weight of us long ago. Still... “</i> she sighs, brilliant eyes on you. <i>“You can’t help but pine a little bit, seeing the vigorous, fibrose races having children whenever they feel the urge. And sometimes even when they do not.”</i>");
+	output("<i>“We have a ssslowwww reproductive system.”</i> She giggles in that singular, humming way of hers. <i>“I suppose that’s not much of a surprise, is it? We only become fertile once every five years. Well, it only makes sense if you live for many centuries, doesn’t it? If we were like you and could breed at any time during our adulthood, Hdar-Roe would have collapsed under the weight of us long ago. Still...”</i> she sighs, brilliant eyes on you. <i>“You can’t help but pine a little bit, seeing the vigorous, fibrose races having children whenever they feel the urge. And sometimes even when they do not.”</i>");
 	output("\n\nYou ask when her last full year was.");
 	output("\n\n<i>“Umm. I’m in the middle of it!”</i> she replies, touching her lips. <i>“I’m surprised you didn’t notice, shiverous Steele. We give off a pheromonal scent when it’s our time.”</i>");
 	output("\n\nThe sex-drenched caramel, which even now is breathing a certain, tetchy redolence down to your [pc.groin]... you thought perhaps that was simply a function of the TFs she’s taken.");
@@ -230,7 +230,7 @@ public function quaelleTalkHerPart2Next():void
 	showQuaelle();
 	author("Nonesuch");
 	clearMenu();
-		
+	
 	output("<i>“And now it’s my third full year. I’ve been waiting judderifically in anticipation of it, Steele, I don’t mind telling you!”</i> the colorful, buxom gastropod continues with a laughing sigh. <i>“I soooo very much wanted to meet interesting, throbbulent people, have some children I could take back to Hdar-Roe and raise when my time is over. It’s a part of my life that feels... empty. Particularly after the hollowsome sorrow of my second full year.”</i>");
 	output("\n\n<i>“So I chose my new employment carefully. Where better to meet people who might be interested in weighing my back with young than a place like Breedwell?”</i> She laughs again, in a slightly doleful, minor key series of hums. <i>“I’m afraid I didn’t really think it through, shiverous Steele. The studs who pass through here want to <i>trade</i> their sperm, not give it away. And when they hobble back from the milkers, aching and oh so throbbose, they are certainly not thinking about chatting with me!”</i>");
 	output("\n\nThe roehm fiddles with her bracelets for a while quietly.");
@@ -291,7 +291,7 @@ public function quaelleTalkHitOn():void
 		if (flags["QUAELLE_HUGGED"] != undefined) 
 		{
 			output("\n\nQuaelle’s smile broadens slowly as she gazes back at you. There’s a long pause... but you’re too used to that now to feel discomfited by it.");
-			output("\n\n<i>“Do you really mean that, vibrulent Steele?”</i> she asks, antennae wriggling fitfully. <i>“Oh, that makes me feel so pulsumous! So mumburfelt! I must say I have found you fassscinating since we first met, I was soooo glad you seemed to enjoy sitting with me. I hope it hasn’t been too tiresome waiting for me to get to the point, but...”</i> She giggles, gazing at you more coyly now.Hmm. Hmm. <i>“ ...it is a good way of finding out if someone is comfortable with a roehm’s rhythms, is it not?”</i>");
+			output("\n\n<i>“Do you really mean that, vibrulent Steele?”</i> she asks, antennae wriggling fitfully. <i>“Oh, that makes me feel so pulsumous! So mumburfelt! I must say I have found you fassscinating since we first met, I was soooo glad you seemed to enjoy sitting with me. I hope it hasn’t been too tiresome waiting for me to get to the point, but...”</i> She giggles, gazing at you more coyly now. <i>“Hmm. Hmm... it is a good way of finding out if someone is comfortable with a roehm’s rhythms, is it not?”</i>");
 			output("\n\nShe opens her arms to you, and without a moment’s hesitation you get up and dive into that incredibly soft, wet, caramel-scented embrace. This one is different, though - Quaelle’s hands sink downwards, touching and stroking your back and [pc.ass] with obvious interest, deepening the heat you already feel in your [pc.groin]. When you surface from between her wide, pillowy breasts, you reach upwards to plant a soft kiss on her fruity lips.");
 			output("\n\n<i>“I have to plan longer breaks ahead of time,”</i> she murmurs to you. <i>“So you’ll have to wait a bit before we get, hmm, intimate. But I know you’re willing to do that, don’t I? My shiverous, throbbful Steele.”</i>");
 			output("\n\nShe oozes out from behind the table and heads back to the front desk. You notice several of the rahn over there have barely been pretending not to rubberneck, and there’s gleeful clapping and a cheer when Quaelle slithers triumphantly back to her post.");
@@ -305,7 +305,7 @@ public function quaelleTalkHitOn():void
 		}
 		else
 		{
-			output("\n\n<i>“That’s very sweet of you, Steele,”</i> replies Quaelle with a kind smile, <i>“but I know you only say it out of pity. My body isssss... unnerving to you, is it not? I want my partners to be comfortable with me when we’re alone, it would be terribly sad otherwise. No... “</i> she sighs wistfully. <i>“It’s clear to me that I need to move on, rather than mope about the issue. It was good to talk it through with you, Steele. Thank you for sitting with me and listening.”</i>");
+			output("\n\n<i>“That’s very sweet of you, Steele,”</i> replies Quaelle with a kind smile, <i>“but I know you only say it out of pity. My body isssss... unnerving to you, is it not? I want my partners to be comfortable with me when we’re alone, it would be terribly sad otherwise. No...”</i> she sighs wistfully. <i>“It’s clear to me that I need to move on, rather than mope about the issue. It was good to talk it through with you, Steele. Thank you for sitting with me and listening.”</i>");
 			output("\n\nShe oozes back out from the table and heads back towards reception, leaving you to recover from being shot down.");
 			
 			processTime(5);
@@ -321,7 +321,7 @@ public function quaelleTalkHitOn():void
 			output("\n\nQuaelle’s smile broadens slowly as she gazes back at you. There’s a long pause... but you’re too used to that to feel discomfited by it.");
 			output("\n\n<i>“Oh, vibrulent Steele! You know you shouldn’t be making such kind, shiverous offers,”</i> she says, antennae wriggling fitfully. <i>“Your womb should be being stuffed full of rahn eggs as much as possible");
 			if (pc.hasPregnancyOfType("RahnPregnancyBreedwell")) output(" , as it is now");			
-			output(". But... “</i> She giggles, gazing at you more coyly now. Hmm. Hmm. <i>“Hearing you say that makes me feel so pulsumous! So mumburfelt! I must say I have found you fassscinating since we first met, I was soooo glad you seemed to enjoy sitting with me. Of course I would like to share intimacy with you.”</i>");
+			output(". But...”</i> She giggles, gazing at you more coyly now. Hmm. Hmm. <i>“Hearing you say that makes me feel so pulsumous! So mumburfelt! I must say I have found you fassscinating since we first met, I was soooo glad you seemed to enjoy sitting with me. Of course I would like to share intimacy with you.”</i>");
 			
 			output("\n\nShe opens her arms to you, and without a moment’s hesitation you get up and dive into that incredibly soft, wet, caramel-scented embrace. This one is different, though - Quaelle’s hands sink downwards, touching and stroking your back and [pc.ass] with obvious interest, deepening the heat you already feel in your [pc.groin]. When you surface from between her wide, pillowy breasts, you reach upwards to plant a soft kiss on her fruity lips.");
 			output("\n\n<i>“I have to plan longer breaks ahead of time,”</i> she murmurs to you. <i>“So you’ll have to wait a bit before we, hmm, get to know each other better. But I know you’re willing to do that, don’t I? My shiverous, throbbful Steele.”</i>");
@@ -336,7 +336,7 @@ public function quaelleTalkHitOn():void
 		}
 		else
 		{
-			output("\n\n<i>“That’s very sweet of you, Steele,”</i> replies Quaelle with a kind smile, <i>“but I know you only say it out of pity. My body isssss... unnerving to you, is it not? I want my partners to be comfortable with me when we’re alone, it would be terribly sad otherwise. No... “</i> she sighs wistfully. <i>“It’s clear to me that I need to move on, rather than mope about the issue. It was good to talk it through with you, Steele. Thank you for sitting with me and listening.”</i>");
+			output("\n\n<i>“That’s very sweet of you, Steele,”</i> replies Quaelle with a kind smile, <i>“but I know you only say it out of pity. My body isssss... unnerving to you, is it not? I want my partners to be comfortable with me when we’re alone, it would be terribly sad otherwise. No...”</i> she sighs wistfully. <i>“It’s clear to me that I need to move on, rather than mope about the issue. It was good to talk it through with you, Steele. Thank you for sitting with me and listening.”</i>");
 			output("\n\nShe oozes back out from the table and heads back towards reception, leaving you to recover from being shot down.");
 			
 			processTime(5);
@@ -437,7 +437,7 @@ public function quaelleFlirtDohrahn():void
 	
 	flags["QUAELLE_DOHRAHN_FLIRT"] = 1;
 	
-	output("<i>“This station has a way of satisfying female biological urges through theeeere... “</i> the do’rahn leans and points her stylus to the west. <i>“And a way of satisfying male ones through there.”</i> The stylus waggles towards the east. <i>“");
+	output("<i>“This station has a way of satisfying female biological urges through theeeere...”</i> the do’rahn leans and points her stylus to the west. <i>“And a way of satisfying male ones through there.”</i> The stylus waggles towards the east. <i>“");
 	if(flags["BREEDWELL_DONATION_LOCKED"] != undefined) output("And it’s not my fault you got your ass barred. ");
 	output("Me? I’ve got a hell of a lot of work to do. Stop bothering me.”</i>");
 	addDisabledButton(1, "Flirt", "Flirt", "You tried this already!");
@@ -618,8 +618,8 @@ public function breedwellQuaelleAptBonus():Boolean
 			else
 			{
 				output("You head past reception and down the ramp into the living quarters. You enter Quaelle’s dim, humid apartment cautiously.");
-				output("\n\n<i>“I caaaaaan’t believe I let you dooooooo thissss to me agaaaiiiiin,”</i> moans Quaelle. She is, once again, utterly engorged with pregnancy, her front belly watermelon-like in size, the middle of her lower body bulging with growing life. <i>“I can baaaaarely move, and aalll I want to do is eat and... “</i>");
-				output("\n\nShe pauses and closes her eyes for at least twenty seconds. ");
+				output("\n\n<i>“I caaaaaan’t believe I let you dooooooo thissss to me agaaaiiiiin,”</i> moans Quaelle. She is, once again, utterly engorged with pregnancy, her front belly watermelon-like in size, the middle of her lower body bulging with growing life. <i>“I can baaaaarely move, and aalll I want to do is eat and...”</i>");
+				output("\n\nShe pauses and closes her eyes for at least twenty seconds.");
 				output("\n\n<i>“...sleep.”</i>");
 				output("\n\nShe manages to wave the very tip of her blunt tail at you.");
 				output("\n\n<i>“You’ll staaaay for a little while, won’t you?”</i> she asks. <i>“I’ll put sooomething on. I’d just liiiike to hold you. Please?”</i>");
@@ -701,7 +701,7 @@ public function quaelleSexFuckPussyBig(kok:int=0):void
 	output("\n\nShe’s gazing over her shoulder, and has curled her tail around a bit, so that you can see its blunt end. <i>Is</i> there something there, beneath the chubby blue-crested dimples of shimmering flesh? Ardor renewed, you [pc.move] across, dipping down into the bed pit and lay your hands on her great, squishy bulk from behind.");
 	output("\n\nYou stroke her flanks, swiftly coating your arms and hands in caramel-scented slime, a small price to pay from the long sighs and hums of pleasure it draws out of her, her softness undulating underneath your touch whilst you probe carefully underneath the last ridge of her tail. Aha.");
 	output("\n\nYou hold your breath slightly as you peel the flesh back, parting lubrication like a veil to reveal a brilliant blue vertical ravine, a plump sapphire treasure, similar enough to the pussy she has on her front for you to know immediately what it is... but still arrestingly alien. The slug girl sighs, a blissful sound that edges into alluring need as you probe the clit-less, perfectly round hole, sinking first one finger into its warm wetness, then two fingers, then your entire fist, disappearing into her soft, pulsing body up to your forearm, coming loose at last like a boot from mud. It stays gaped, a wormhole of a cunt that practically begs for something massive, throbbing and dripping to fill it.");
-	output("\n\n<i>“It’s not too... churrisirous to you, is it, throbbulent Steele?”</i> Quaelle asks timidly, blinking her conjoined pupils at you over her shoulder. <i>“I do not mind if so. We could just hoooooollllllld... “</i> she dissolves into a delighted moan as you line your [pc.cock " + kok + "] up to it, take a firm grip of her flanks and then penetrate her, groaning at the sheer joy of the silky wetness engulfing first your [pc.cockHead " + kok + "] and then the rest of your oak-like shaft.");
+	output("\n\n<i>“It’s not too... churrisirous to you, is it, throbbulent Steele?”</i> Quaelle asks timidly, blinking her conjoined pupils at you over her shoulder. <i>“I do not mind if so. We could just hoooooollllllld...”</i> she dissolves into a delighted moan as you line your [pc.cock " + kok + "] up to it, take a firm grip of her flanks and then penetrate her, groaning at the sheer joy of the silky wetness engulfing first your [pc.cockHead " + kok + "] and then the rest of your oak-like shaft.");
 	
 	pc.cockChange();
 	
@@ -720,7 +720,7 @@ public function quaelleSexFuckPussyBig(kok:int=0):void
 	}
 	
 	output("\n\nYou can see the waves of motion you’re driving into Quaelle travelling up her wide, blunt body, right up to her copse of waggling antennae. She herself has turned away, one hand schlicking away in her front pussy and the other kneading her breast, apparently lost in an erotic trance. When you experimentally reach forward and touch the dark, orange spots on the top of her gastropod body though, she gasps.");
-	output("\n\n<i>“Ohhhhhh... not those! That would be too much, tremuful, palpitacious, throbbulent... “</i>");
+	output("\n\n<i>“Ohhhhhh... not those! That would be too much, tremuful, palpitacious, throbbulent...”</i>");
 	output("\n\nYou grin and seize them, using them as leverage to pound her even harder, wondering as they grow rise like small buns under your groping, stroking touch. Are these her natural nipples? Certainly she reacts as if they were, crying out shrilly, jilling herself rhythmically, orgasming in a great shudder, spurting lubricant all over your");
 	if (pc.balls > 0) output(" [pc.balls] and");
 	output(" [pc.thighs], her sapphire pussy clenching and rippling around you.");
@@ -804,8 +804,8 @@ public function quaelleSexFuckPussySmall(kok:int=0):void
 	IncrementFlag("QUAELLE_FUCK_CUNT_FRONT");
 	knockUpQuaelleChance(0);
 	pc.orgasm();
-	quaelleHugged();	
-		
+	quaelleHugged();
+	
 	clearMenu();
 	addButton(0, "Bath", quaelleSexBath, undefined,"Bath","Melting sounds pretty fun.");	
 	addButton(1, "Scoot", quaelleSexScoot, undefined,"Scoot","You should go.");	
@@ -821,7 +821,7 @@ public function quaelleSexFuckPussySmallMore(kok:int=0):void
 	
 	output("Your [pc.skinFurScales] is still ablaze with lust. Slathered in the roehm’s cloying pheromones, enveloped in her warm, sticky embrace, you are made momentarily dizzy by it and the damp heat, staring at her blunt, fertile curves. <i>More</i>, your body whispers. <i>Make it with her some more.</i>");
 	output("\n\n<i>“Oooohhhhh myyyyyy Steele!”</i> Quaelle says, with a teasing lilt, gazing downwards with those eerie, double-pupiled eyes of hers. Woozily you realise you haven’t lost your erection at all, your [pc.cock " + kok + "] still standing short and stout to attention.");
-	output("\n\n<i>“You aren’t yet spent?”</i> the roehm asks, squeezing you. You open your mouth as you feel her hand enclose your slime-coated erection, spongy pressure gripping... receding. Gripping... receding. <i>“So full of vigor and quiver! My eager little lover. My dizzy little seed packet.”</i> She kisses you on the temple, lips tickling your [pc.ear]. <i>“Shall I drain you some more? I think so. Hmm. I think so. Go around to the back, sweet leaf. Have a rummage around... see what you might find... “</i>");
+	output("\n\n<i>“You aren’t yet spent?”</i> the roehm asks, squeezing you. You open your mouth as you feel her hand enclose your slime-coated erection, spongy pressure gripping... receding. Gripping... receding. <i>“So full of vigor and quiver! My eager little lover. My dizzy little seed packet.”</i> She kisses you on the temple, lips tickling your [pc.ear]. <i>“Shall I drain you some more? I think so. Hmm. I think so. Go around to the back, sweet leaf. Have a rummage around... see what you might find...”</i>");
 	output("\n\nBreathlessly you peel yourself out of her embrace and [pc.move] around to the blunt, wide end of her tail. Beneath the folds of warm yellow flesh there your fingers probe, until - Quaelle sighs like a gentle summer wind - you peel back two curtains of lube-painted softness and reveal a vertical, sapphire ravine. The roehm’s second vagina is the same color as her front sex but is arrestingly alien. You sink your fingers into that perfectly round, clit-less hole, wonderingly probing its apparently endless, hot, sticky give.");
 	if (pc.cockVolume(kok) <= 4.6) output(" It’s an aperture clearly meant for a partner much, much better endowed than you.");
 	else if (pc.cockVolume(kok) <= chars["QUAELLE"].vaginalCapacity(0)) output(" It’s an aperture clearly meant for a partner better endowed than you.");
@@ -840,8 +840,8 @@ public function quaelleSexFuckPussySmallMore(kok:int=0):void
 	output("\n\n<i>“Oooohhhhh that’s it,”</i> she sighs as fresh ecstasy seizes you and you orgasm into her,");
 	if (pc.balls > 0) output(" [pc.balls]");
 	else output(" groin");	
-	output(" flexing desperately to propel a new hot, [pc.cumVisc] load into her depths. She writhes around you gleefully, powerful muscles kissing your flexing shaft on either side. <i>“Give me everything you have left, my cute, shiversome lover! Don’t stop until you’re completely dry! The feeling of your seed inside of me is so mumberfelt...“</i>");
-		
+	output(" flexing desperately to propel a new hot, [pc.cumVisc] load into her depths. She writhes around you gleefully, powerful muscles kissing your flexing shaft on either side. <i>“Give me everything you have left, my cute, shiversome lover! Don’t stop until you’re completely dry! The feeling of your seed inside of me is so mumberfelt...”</i>");
+	
 	output("\n\nPropelled onwards, you keep pumping into her until you are utterly spent, your [pc.cock " + kok + "] flexing dryly, so that when you part from her easily you almost collapse, so shaky are you. Quaelle turns and sweeps you into her arms with a happy chorus of hums, swaddling you in the endless plushness of her boobs, planting a motherly kiss on your brow.");
 	output("\n\n<i>“Good, trembluous little Steele,”</i> she coos. <i>“[pc.He] has done so well for me today!”</i>");
 	output("\n\nGroin throbbing mightily, you’re happy to let her coddle you, dizzily enjoying the sweet, slimy embrace.");
@@ -853,8 +853,8 @@ public function quaelleSexFuckPussySmallMore(kok:int=0):void
 	IncrementFlag("QUAELLE_FUCK_CUNT_MORE");
 	knockUpQuaelleChance(1);
 	pc.orgasm();
-	quaelleHugged();	
-		
+	quaelleHugged();
+	
 	clearMenu();
 	addButton(0, "Bath", quaelleSexBath, undefined,"Bath","Melting sounds pretty fun.");	
 	addButton(1, "Scoot", quaelleSexScoot, undefined,"Scoot","You should go.");	
@@ -877,7 +877,7 @@ public function quaelleSexFuckPussyPerfect(kok:int=0):void
 	if (flags["QUAELLE_FUCK_CUNT_FRONT"] == undefined) output("\n\nFor a little while you just hold and explore this lovely but very alien creature, stroking and gripping and touching her great, pliant bulk, working out exactly what she likes and what she doesn’t. You can sink your hands into her flanks up to your wrist, and although that doesn’t seem to bother her you yourself don’t like doing that. Too deep and you think you can actually feel her organs, pulsing away. Her boobies though, pillowing into your face and [pc.chest] with each undulation of her body. That flush, wet entrance you can feel as you run your length over its plump, wet lips. Those you <i>do</i> understand.");
 	else output("\n\nYou know enough now how to get Quaelle’s motor running. It’s great fun, indeed, to reach beyond her calm, complacent facade and coax out someone who’s just as eager and excited in the bedroom as any endoskeletal being. She moans, a long and fruity sound, as you finger her, using more force than you normally would to dig into her incredibly pliant pussy and find those lovely little nerve clusters of hers, all the while you stroke her flanks, reaching back far enough to find a natural nipple, gently pulling at it until it’s fully erect, orange and bun-like in your hand. The slug girl bucks against you as hard as she can in response, translating as a wave of delightful, slimy motion undulating up your [pc.belly] and [pc.chest].");
 	
-	output("\n\n<i>“Oh, throbbulent Steele... “</i> she groans, as you line your [pc.cock " + kok + "] up between her chubby, brilliant blue lips and open her up with a slow push forward, sultry joy spreading up your shaft as you penetrate her cunt, every bit as soft, pleasant and slimy as the rest of her. She oozes forward, drawing you into her embrace as she pushes herself down your cock, pressing you against the soft cushions of the bed pit’s side. You groan ecstatically; your");
+	output("\n\n<i>“Oh, throbbulent Steele...”</i> she groans, as you line your [pc.cock " + kok + "] up between her chubby, brilliant blue lips and open her up with a slow push forward, sultry joy spreading up your shaft as you penetrate her cunt, every bit as soft, pleasant and slimy as the rest of her. She oozes forward, drawing you into her embrace as she pushes herself down your cock, pressing you against the soft cushions of the bed pit’s side. You groan ecstatically; your");
 	if (pc.balls > 0) output(" [pc.balls]");
 	else output(" [pc.thighs]");	
 	output(" deep in her, spongey, rippling warmth squeezing into your [pc.cockNoun " + kok + "] from all sides. Your sexes are perfectly suited to one another.");
@@ -894,14 +894,14 @@ public function quaelleSexFuckPussyPerfect(kok:int=0):void
 	}
 	else if (pc.bellyRating() >= 30) output(" Your baby bulge makes this an even gentler, loving experience than it is usually, and you coax wonderful, musical hums out of her by spreading your hand over hers, stroking the taut, harder curve over and over.");
 	
-	if (quaelleIsPregnant(0)) output("\n\n<i>“Go slowly please, virullous Steele... “</i> she gasps into your mouth, her growing stomach planing over your own. <i>“Not just because... ummmmm... I love feeling you inside of me.”</i> You do as she asks, letting her press you into the side of the bed pet and just giving her the most gentle of pushes, back and forth, back and forth, a very sedentary, sensual rhythm. Sweat runs down your brow in steady rivulets as you do it.");
+	if (quaelleIsPregnant(0)) output("\n\n<i>“Go slowly please, virullous Steele...”</i> she gasps into your mouth, her growing stomach planing over your own. <i>“Not just because... ummmmm... I love feeling you inside of me.”</i> You do as she asks, letting her press you into the side of the bed pet and just giving her the most gentle of pushes, back and forth, back and forth, a very sedentary, sensual rhythm. Sweat runs down your brow in steady rivulets as you do it.");
 	else
 	{
 		output("\n\nLust begins to tighten its grasp on you, the pressure in your");
 		if (pc.balls > 0) output(" [pc.balls]");
 		else output(" loins");	
 		output(" pushing you onwards, and you begin to thrust your red hot length into her passionately, your energy translating into little waves along her great, wide bulk.");
-		output("\n\n<i>“So virullous!... “</i> she moans, eyes open, drinking in the fast, dynamic creature mating with her. <i>“So judderific! Like that! Yeeeeessssssss!”</i>");
+		output("\n\n<i>“So virullous!...”</i> she moans, eyes open, drinking in the fast, dynamic creature mating with her. <i>“So judderific! Like that! Yeeeeessssssss!”</i>");
 	}	
 	
 	output("\n\nShe cums with a drawn out, husky cry, shoving herself into you eagerly, burying you in waves of soft, wet flesh, her cunt rippling and squeezing your [pc.cock " + kok + "]. You are able to just lie back and let her do the work, just giving back with small little pushes of your [pc.thighs] whilst you lick and fondle her breasts... for a bit. One and fuck, her orgasm just seems to go on and on, slickness and clenches running up and down your prick for more than a minute as she sighs and groans and surrounds you in her endless, pillowy, sugary give, and ultimately it becomes impossible not to get caught up in it.");
@@ -936,7 +936,7 @@ public function quaelleSexFuckPussyPerfectMore(kok:int=0):void
 	if (flags["QUAELLE_FUCK_CUNT_MORE"] == undefined)
 	{
 		output("You? Ready to call it a day? Clearly this gastropod doesn’t know the type of lover she’s gotten here! You grin back at her wolfishly and splay your [pc.thighs], a simple look at her glistening, colorful, Rubenesque curves enough for a fresh surge of lust to enter you, powering your [pc.cock " + kok + "] into a fresh, hot erection.");
-		output("\n\n<i>“Oohhhhhhh. My,”</i> Quaelle simpers, gazing down at it, orange spreading across her face. <i>“You are a <b>very</b>  throbbulent one, aren’t you Steele? Hmm. I’m... not sure what to do about that... “</i>");
+		output("\n\n<i>“Oohhhhhhh. My,”</i> Quaelle simpers, gazing down at it, orange spreading across her face. <i>“You are a <b>very</b>  throbbulent one, aren’t you Steele? Hmm. I’m... not sure what to do about that...”</i>");
 		
 		output("\n\nYou do.");
 		
@@ -944,18 +944,18 @@ public function quaelleSexFuckPussyPerfectMore(kok:int=0):void
 		else output(" Didn’t the codex say roehm have more than one sex?");		
 		output(" You pull yourself up and, hand sliding down her warm slimy flank, you move around her, hands questing beneath the folds of her blunt, lozenge-like tail. You huff with satisfaction when you find it: a brilliant blue vertical ravine nestled deep within her creamy yellow softness, a plump sapphire treasure, similar enough to the pussy she has on her front for you to know immediately what it is... but still arrestingly alien.");
 		
-		output("\n\n<i>“Ooooohh... “</i> she hoots, softly and mellowly, gazing over her shoulder. <i>“Do be lembellous with that, Steele... “</i>");
+		output("\n\n<i>“Ooooohh...”</i> she hoots, softly and mellowly, gazing over her shoulder. <i>“Do be lembellous with that, Steele...”</i>");
 	}
 	else
 	{
 		output("You answer that question with a roguish grin, directing attention to your [pc.cock " + kok + "], half-erect between your [pc.thighs] and already thickening again, impatient for more.");
-		output("\n\n<i>“Ohhhhh my,”</i> Quaelle giggles, face orange. You know by now she finds such an energetic, insatiable lover as you a turn-on; she’s just a big, lusty sponge, eager to soak you up. <i>“Whatever are we going to do about that, throbbulent Steele?”</i> She shifts herself slightly, a ripple of flesh that draws your eye to her wide, blunt, back end. <i>“Maybe there’s an answer, somewhere... “</i>");
+		output("\n\n<i>“Ohhhhh my,”</i> Quaelle giggles, face orange. You know by now she finds such an energetic, insatiable lover as you a turn-on; she’s just a big, lusty sponge, eager to soak you up. <i>“Whatever are we going to do about that, throbbulent Steele?”</i> She shifts herself slightly, a ripple of flesh that draws your eye to her wide, blunt, back end. <i>“Maybe there’s an answer, somewhere...”</i>");
 	}
 	
 	output("\n\nAbout half a minute later you’re gripping her soft, wet flanks, engaged in slapping your [pc.thighs] into her tail end energetically, painting your [pc.skinFurScales] in sweet-smelling slime, delighting in the deep, wet magic you’re steeping your [pc.cock " + kok + "] in with each thrust. Quaelle herself is lost in an erotic reverie, fingering her front pussy and pawing at her breast, her head thrown back and antennae flicking frenetically at the air, little waves of motion carrying up her flanks and flowing up her humanoid half.");
 	
-	if (quaelleIsPregnant(1)) output("\n\n<i>“Oh, to have a stud like thiiissssss,”</i> she cries thickly. <i>“[pc.he] has already gotten me with child, and yet [pc.he] still makes love to me like we were first full yearers! I never knew it could be... “</i> she can’t even find the non-existent word to describe it, simply drones long and low with the deepest appreciation.");
-	else output("\n\n<i>“I can’t believe you’re siring me from behind as well,”</i> she moans, as transported as you’ve ever heard her. <i>“I am going to be so full! It’s so mellifluent... so virulous... so... “</i> she subsides into wordless sounds of the deepest, wettest arousal.");
+	if (quaelleIsPregnant(1)) output("\n\n<i>“Oh, to have a stud like thiiissssss,”</i> she cries thickly. <i>“[pc.He] has already gotten me with child, and yet [pc.he] still makes love to me like we were first full yearers! I never knew it could be...”</i> she can’t even find the non-existent word to describe it, simply drones long and low with the deepest appreciation.");
+	else output("\n\n<i>“I can’t believe you’re siring me from behind as well,”</i> she moans, as transported as you’ve ever heard her. <i>“I am going to be so full! It’s so mellifluent... so virulous... so...”</i> she subsides into wordless sounds of the deepest, wettest arousal.");
 	
 	output("\n\nHer back pussy isn’t as tight and compact as her front one");
 	if (pc.cockVolume(kok) <= chars["QUAELLE"].vaginalCapacity(0)) output(", clearly suited to an alien member bigger than your [pc.cock " + kok + "]");
@@ -979,8 +979,8 @@ public function quaelleSexFuckPussyPerfectMore(kok:int=0):void
 	IncrementFlag("QUAELLE_FUCK_CUNT_MORE");
 	knockUpQuaelleChance(1);
 	pc.orgasm();
-	quaelleHugged();	
-		
+	quaelleHugged();
+	
 	clearMenu();
 	addButton(0, "Bath", quaelleSexBath, undefined,"Bath","Melting sounds pretty fun.");	
 	addButton(1, "Scoot", quaelleSexScoot, undefined,"Scoot","You should go.");	
@@ -1000,7 +1000,7 @@ public function quaelleSexLickPussy():void
 	
 	output("\n\n<i>“You look hungry, trembulous Steele,”</i> smiles Quaelle, antennae waving like grass touched by a gentle breeze. She undulates faintly, making her sex pulse and her boobs and stomach gently tremble. She knows what she’s doing. <i>“Would you like me to make you a salad? Or... perhaps there’s something else that’s caught your attention. Hmm. Hmm.”</i>");
 	output("\n\nIn a heated, sweaty daze you [pc.move] across and kneel in front of her, gazing up at her as you caress her gleaming epidermis, admiring its welcoming pliant give when you sink a finger past her sapphire folds, testing the deep, wet warmth within.");
-	output("\n\n<i>“Ooh... “</i> sighs Quaelle, stroking your [pc.hair] and instinctively swelling her bulk forward, her wet blueness take up the entirety of your vision. Her sugary pheromones fill your mouth and nose, heat");
+	output("\n\n<i>“Ooh...”</i> sighs Quaelle, stroking your [pc.hair] and instinctively swelling her bulk forward, her wet blueness take up the entirety of your vision. Her sugary pheromones fill your mouth and nose, heat");
 	if (pc.isLactating()) output(" moistening");
 	else output(" hardening");	
 	output(" your [pc.nipples] and");
@@ -1020,15 +1020,15 @@ public function quaelleSexLickPussy():void
 	output(" your [pc.hair]. <i>“All that energy and vim, flitting between every flower that catches your eye... you just can’t help yourself, can you?”</i>");
 	
 	output("\n\nNo, you cannot. High on creamy sugar and feminine arousal, you part from her to grin up at her, dizzy and dilated, face smeared with her juices, before returning to delicately flick at her engorged, slightly pointed clit.");
-	output("\n\n<i>“Oh don’t do that... “</i> she pants, alarm gripping her tone. Her clit bulges up noticeably beneath the tip of your [pc.tongue], and a great shudder runs right through her pliant form. <i>“You’ll make me... just the hole, just the hole!”</i>");
+	output("\n\n<i>“Oh don’t do that...”</i> she pants, alarm gripping her tone. Her clit bulges up noticeably beneath the tip of your [pc.tongue], and a great shudder runs right through her pliant form. <i>“You’ll make me... just the hole, just the hole!”</i>");
 
 	processTime(25 + rand(15));
 	IncrementFlag("QUAELLE_SEXED");
 	IncrementFlag("QUAELLE_LICK_CUNT_FRONT");
 	pc.girlCumInMouth(chars["QUAELLE"]);
 	pc.applyPussyDrenched();
-	quaelleHugged();	
-		
+	quaelleHugged();
+	
 	clearMenu();
 	addButton(0, "Keep Going", quaelleSexLickPussyKeepGoing, undefined);
 	addButton(1, "Hole", quaelleSexLickPussyHole, undefined);
@@ -1047,7 +1047,7 @@ public function quaelleSexLickPussyKeepGoing():void
 	output("\n\nOh no, how terrible! Sucking on a big hard lady cock! It’s just as sweet as her pussy, too, as you discover when you press your tongue along its underside and give it a long, lavish slurp, cute little cilia tickling your taste buds. It has a slightly wilder, muskier undertone to it, though, one that gives you a frisson of hard lust as you grip the hard, fibrous member halfway down, spread your [pc.lips] over its mushroom-like head and slowly bob forward, taking it into your mouth.");
 	output("\n\nYou keep your teasing eyes locked with her own mesmeric, conjoined counterparts as you dip down, letting her feel how deep you can go, before withdrawing to lick and fondle the shaft. She watches transfixed, her disgruntlement subsiding into pure lust as you feed more and more heat and hardness into her tentacle dick with every loving kiss and lick, and she begins to coo and groan encouragement, reaching out to stroke your [pc.hair], gleaming softness trembling above you. ");
 	output("\n\nHer penis seems to have a life of its own, a blue cilia-tipped eel that rears, pulses and curls in your grasp, and when you go in deep again, fill your maw with its musky sweetness, you can feel it tremble impatiently against your cheeks, drooling liquid sugar on your [pc.tongue].");
-	output("\n\n<i>“I’ve got to go further, trembulous Steele... “</i> the roehm groans, bosom heaving as her breath comes heavier. <i>“It’s emmmm, necessary. For me to relax.”</i>");
+	output("\n\n<i>“I’ve got to go further, trembulous Steele...”</i> the roehm groans, bosom heaving as her breath comes heavier. <i>“It’s emmmm, necessary. For me to relax.”</i>");
 	output("\n\nYeah, sure. You " + pc.mf("laugh","giggle") + " quietly at her, before opening your mouth with her cock again, slowly pushing your [pc.lips] down it and then with a deep breath shoving forward, penetrating your throat, blocking off your air with thickness and sex and caramel. You huff in amazement - the prehensile nature of her cock allows her to easily bend it right around the curve of your oesophagus, the entirety of your neck bulging with it. It’s made for throat-fucking you!");
 	output("\n\nThe roehm groans with low, slow pleasure, yellow breasts heaving with arousal, as you saw backwards a few times, before pulling it back, enjoying the feeling of the saliva-and-slime slathered member sliding out of your mouth, letting you breathe deep. ");
 	output("\n\nThen she seizes your head and firmly slots herself back in. You heroically quell your gag reflex as your nose bumps against the soft, wet blue of her groin, all ten inches of her maleness lodged in your throat, utterly filling you. All thoughts are obliterated by the scent and taste of horny sugar as Quaelle cums with a rising and falling tide of cooing groans, cute, wet, alien sounds as warm thickness gushes straight into your gut. You limpet your [pc.lips] firmly around her base, pleasuring her all the more, and in response she bounces her great, soft bulk against your eyes and cheeks, a wet, feminine bouncy castle fucking your face.");
@@ -1063,8 +1063,8 @@ public function quaelleSexLickPussyKeepGoing():void
 	pc.lust(30);
 	pc.loadInMouth(chars["QUAELLE"]);
 	pc.loadInMouth(chars["QUAELLE"]);
-	quaelleHugged();	
-		
+	quaelleHugged();
+	
 	clearMenu();
 	addButton(0, "Bath", quaelleSexBath, undefined,"Bath","Melting sounds pretty fun.");	
 	addButton(1, "Scoot", quaelleSexScoot, undefined,"Scoot","You should go.");	
@@ -1085,7 +1085,7 @@ public function quaelleSexLickPussyHole():void
 	if (flags["QUAELLE_INCUBATION_TIMER_F"] >= 60)
 	{
 		output("\n\nHer sex is particularly florid and wet now, a morass of hormonal urge. You drink a good mouthful of her juices and then find more dribbling down your chin when you return to kiss and lick at her some more. Her pregnant belly trembles against your brow.");
-		output("\n\n<i>“Ooooohhhhh do be careful, robullous Steele... “</i> the roehm gasps, grasping your hair. <i>“You put something in there that makes me worry when you lick me so.... so... ”</i>");	
+		output("\n\n<i>“Ooooohhhhh do be careful, robullous Steele...”</i> the roehm gasps, grasping your hair. <i>“You put something in there that makes me worry when you lick me so.... so... ”</i>");	
 	}
 	
 	output("\n\nShe cums in a trembling little gush moments later, smearing your face with sticky, sugary lube. You emit a muffled coo as warmth and lust floods your [pc.groin], your system run through with roehm pheromones, evolved to make you want to hug her");
@@ -1112,9 +1112,9 @@ public function quaelleSexLickPussyHole():void
 	if (quaelleIsPregnant(1)) output(" The fact her back womb is heavy with growing life only seems to have made its pussy yet more tender and in need of oral attention. The drools of femcum you coax out of her are incredibly rich and musky, and she pushes herself back against your tongue with urgent, slapping ripples of her body, moaning with wet delight.");
 	else output(" It’s evidently just as delightfully sensitive as her front sex; your ears are somewhat muffled by the deep dive you’re currently undergoing, but you can still hear her sigh and moan with delight, her slimy bulk quivering and tensing around you.");
 	
-	output("\n\n<i>“That’s good, pulsimous Steele. Right there... “</i> she groans, humid softness shivering around you as you smooch and nibble at her rich blue sex lovingly. Beyond the pale orange flesh pushing into your face, you can see her head arching back, her hands busy on her plush breasts and front muff, the busy wet sounds of her fingers reaching your ears. You mash your [pc.lips] into her sugar, ardent to make her reach yet greater heights of ecstasy.");
+	output("\n\n<i>“That’s good, pulsimous Steele. Right there...”</i> she groans, humid softness shivering around you as you smooch and nibble at her rich blue sex lovingly. Beyond the pale orange flesh pushing into your face, you can see her head arching back, her hands busy on her plush breasts and front muff, the busy wet sounds of her fingers reaching your ears. You mash your [pc.lips] into her sugar, ardent to make her reach yet greater heights of ecstasy.");
 	if (pc.hasLongTongue()) output("\n\n<i>“As soon as I felt that tongue of yours, I knew I had to treat my other to it... Yeeesssss!”</i> she squeals, antennae standing erect as you unravel it to its fullest extent, stuffing her delightfully long tunnel with it.");
-	output("\n\n<i>“Such a good, flickerful [pc.boy]... “</i> the roehm cries, schlicking herself. <i>“So hungry and obedient and... “</i> Whatever approximation of a word she was reaching for is lost as she orgasms for the second time, the round, gaping tunnel of her second pussy rippling around your tongue and spurting her juices across your face. ");
+	output("\n\n<i>“Such a good, flickerful [pc.boy]...”</i> the roehm cries, schlicking herself. <i>“So hungry and obedient and...”</i> Whatever approximation of a word she was reaching for is lost as she orgasms for the second time, the round, gaping tunnel of her second pussy rippling around your tongue and spurting her juices across your face. ");
 	output("\n\nYou are faintly addicted to the taste, still deep in your lusty, pheromone-induced thirst; knelt behind her and face pushed deep into her back end, you continue worshipping that pulsing hole with energetic flicks of your tongue, swallowing back sweet femcum and going back for more. You’re blissed out on it by the end, a sugar demon who took too much, wilted against the roehm’s warm, gooey tail and cooing gently at the way it feels like all of the cells of your body have dilated, face dripping with her juices.");
 	
 	processTime(25 + rand(15));
@@ -1122,7 +1122,7 @@ public function quaelleSexLickPussyHole():void
 	IncrementFlag("QUAELLE_LICK_CUNT_BACK");
 	pc.lust(30);
 	pc.girlCumInMouth(chars["QUAELLE"]);
-	quaelleHugged();	
+	quaelleHugged();
 	
 	clearMenu();
 	addButton(0, "Next", quaelleSexLickPussyHoleNext, undefined);
@@ -1134,7 +1134,7 @@ public function quaelleSexLickPussyHoleNext():void
 	author("Nonesuch");
 	
 	output("Quaelle giggles lowly when she finally slithers herself around and beholds you, collapsed against her like a beanbag. <i>“Hmm. Hmm. Hmm.”</i> She gathers you into her arms and you happily snuggle her back, head between her large, plump boobs.");
-	output("\n\n<i>“You’re a lovely pussy munch, pulsimous Steele,”</i> she murmurs into your ear. <i>“I hope you’re always this hungry, when you visit me... “</i>");
+	output("\n\n<i>“You’re a lovely pussy munch, pulsimous Steele,”</i> she murmurs into your ear. <i>“I hope you’re always this hungry, when you visit me...”</i>");
 	output("\n\nYou relax in her softness a little while longer. Your own lust has spread itself through your body, a soft, heat haze.");
 	output("\n\n<i>“I think I’ll have a bath now,”</i> she whispers. <i>“You’ll join me, won’t you Steele? Exquark and melt? Yeesssss. Of course you will.”</i>");
 
@@ -1152,11 +1152,11 @@ public function quaelleSexCatchVag(hole:int):void
 	if (flags["QUAELLE_CATCH_CUNT"] == undefined)
 	{
 		output("Roehm are hermaphrodites, aren’t they? Quaelle must have something long and hard snaffled away for you somewhere in her hot, wet treasure chest, surely.");
-		output("\n\n<i>“Ummmmm,”</i> the slug girl hums, wringing her hands, seeming almost to be embarrassed when you suggest this to her. <i>“Mmmmaybe? If you went and looked... perhaps... “</i>");
+		output("\n\n<i>“Ummmmm,”</i> the slug girl hums, wringing her hands, seeming almost to be embarrassed when you suggest this to her. <i>“Mmmmaybe? If you went and looked... perhaps...”</i>");
 	}
 	else
 	{
-		output("<i>“You want that, do you, sculliteral Steele?”</i> Quaelle says with a teasing lilt, when you meaningfully dart your eyes down to her azure crotch and then back up to her face, biting your [pc.lips]. <i>“Weeellll... maybe I do have something down there for you. Maybe if you went and looked... “</i>");
+		output("<i>“You want that, do you, sculliteral Steele?”</i> Quaelle says with a teasing lilt, when you meaningfully dart your eyes down to her azure crotch and then back up to her face, biting your [pc.lips]. <i>“Weeellll... maybe I do have something down there for you. Maybe if you went and looked...”</i>");
 	}
 	
 	output("\n\nYou approach her, holding her gaze as you undo your [pc.gear] as you come. Her double-pupiled eyes flicker down your [pc.chest] and your [pc.groin], and even in the dim light you think you can actually see her mons becoming more inflamed, two small, blue pillows, aroused by what you’re showing her. And in-between them... something else. A blunt, dark blue nub. Maybe slightly too big to just be a clit.");
@@ -1176,9 +1176,9 @@ public function quaelleSexCatchVag(hole:int):void
 	
 	if (flags["QUAELLE_CATCH_CUNT"] == undefined)
 	{
-		output("\n\n<i>“If you keep doing that... “</i> she groans, very un-roehm-like urgency grating her tone, <i>“ ...if you keep doing that I’ll... “</i>");
+		output("\n\n<i>“If you keep doing that...”</i> she groans, very un-roehm-like urgency grating her tone, <i>“...if you keep doing that I’ll...”</i>");
 		output("\n\nYou respond by grinning and increasing your efforts, frenetically flicking at that supposed clit of hers. It comes loose with a ‘schlorp’ and a husky squeal, a long, dripping, tentacle-like phallus with stubby, wiggly cilia at the end suddenly sprouting outwards from her sex and batting you in the [pc.belly]. You run your grip down the hefty dark-blue schlong admiringly. It’s easily the hardest part about her and you can feel, by waggling it around slightly, that it’s slightly prehensile, bending back and forth eagerly in your hand. Quaelle huffs and hums to your fondlings, still orange-cheeked with embarrassment.");
-		output("\n\n<i>“Are you... really interested in that, vibrantic Steele?”</i> she whispers. <i>“When I thought about bringing lovers in here, I imagined taking them inside myself, not... “</i>");
+		output("\n\n<i>“Are you... really interested in that, vibrantic Steele?”</i> she whispers. <i>“When I thought about bringing lovers in here, I imagined taking them inside myself, not...”</i>");
 		if (pc.fertility() <= 0 || pc.isFullyWombPregnant())
 		{
 			output("\n\nYou tell her not to worry so much;");
@@ -1186,23 +1186,23 @@ public function quaelleSexCatchVag(hole:int):void
 			else output(" you’re expecting right now yourself.");
 			output(" This is just for fun. That seems to relax her a bit (as does the endless movement of your hand, up and down her pretty tentacle dick).");
 			
-			output("\n\n<i>“I suppose you’re right. Just for fun... “</i> Her mouth opens, bulk quivering in response to the movements of your masterful hand, lust gathering on her face. <i>“Hmm.”</i>");
+			output("\n\n<i>“I suppose you’re right. Just for fun...”</i> Her mouth opens, bulk quivering in response to the movements of your masterful hand, lust gathering on her face. <i>“Hmm.”</i>");
 			
 		}
 		else
 		{
 			output("\n\nShe’s never thought about claiming a wet, fertile hole for herself? She’s never watched the breeders walk past her desk towards the harness lounge and thought about getting in on that action? You don’t believe that. Not for a second.");
-			output("\n\n<i>“Mmmmaybe... once or twice... “</i> Her mouth opens, bulk quivering in response to the movements of your masterful hand, lust gathering on her face. <i>“Hmm.”</i>");
+			output("\n\n<i>“Mmmmaybe... once or twice...”</i> Her mouth opens, bulk quivering in response to the movements of your masterful hand, lust gathering on her face. <i>“Hmm.”</i>");
 		}		
 	}
 	else
 	{
-		output("\n\n<i>“Keep doing that... “</i> she groans, very un-roehm-like urgency grating her tone, <i>“ ...you know exactly how to do that... “</i>");
+		output("\n\n<i>“Keep doing that...”</i> she groans, very un-roehm-like urgency grating her tone, <i>“...you know exactly how to do that...”</i>");
 		output("\n\nYou increase your efforts with a winning grin, frenetically flicking at that pseudo-clit of hers. It comes loose with a ‘schlorp’ and a husky squeal, a long, dripping, tentacle-like phallus with stubby, wiggly cilia at the end suddenly sprouting outwards from her sex and batting you in the [pc.belly]. You run your grip down the dark-blue schlong admiringly. It’s easily the hardest part about her and you can feel, by waggling it around slightly, that it’s slightly prehensile, bending back and forth eagerly in your hand. Quaelle huffs and hums to your fondlings, orange-cheeked with lust.");
 	
 		if (quaelleIsPregnant() && (pc.fertility() > 0 && !pc.isPregnant(hole)))
 		{
-			output("\n\n<i>“It’s so naughty of you to go after this after you already filled me with child,”</i> she whispers, eyes glistening. <i>“So hoversome. So metronomic. So... “</i>");
+			output("\n\n<i>“It’s so naughty of you to go after this after you already filled me with child,”</i> she whispers, eyes glistening. <i>“So hoversome. So metronomic. So...”</i>");
 			output("\n\n<i>“Horny,”</i> you supply, letting your own arousal blaze out of your face. The slug girl doesn’t reply, seemingly taken aback by the depths of your desire.");
 		}
 		else if (pc.fertility() > 0 && !pc.isPregnant(hole))
@@ -1213,7 +1213,7 @@ public function quaelleSexCatchVag(hole:int):void
 			output(" baby bulge... hmm. The thought makes me so mumberfelt!”</i>");
 			
 		}
-		else output("\n\n<i>“It’s so naughty of you to let me do this so often,”</i> she whispers, eyes glittering. <i>“I’ve gotten too used to it. Now when a particularly shiversome donor walks past my desk, it’s all I can do not to sprout!”</i> Her tentacle cock slaps at you, as if delivering a rebuke. <i>“You will have to take care of it, you hoversome, metronomic thing...“</i>");
+		else output("\n\n<i>“It’s so naughty of you to let me do this so often,”</i> she whispers, eyes glittering. <i>“I’ve gotten too used to it. Now when a particularly shiversome donor walks past my desk, it’s all I can do not to sprout!”</i> Her tentacle cock slaps at you, as if delivering a rebuke. <i>“You will have to take care of it, you hoversome, metronomic thing...”</i>");
 		
 	}
 	
@@ -1267,15 +1267,16 @@ public function quaelleSexCatchVagNext(hole:int):void
 	output("\n\n<i>“Vibrillous Steele,”</i> she purrs, laying a kiss on your brow. <i>“I’m going to take a bath. You’ll join me, won’t you? We can Exquark and melt.”</i>");
 	
 	processTime(25 + rand(15));
+	
 	IncrementFlag("QUAELLE_SEXED");
 	IncrementFlag("QUAELLE_CATCH_CUNT");
 	chars["QUAELLE"].impregnationType = "QuaellePregnancy";
-	chars["QUAELLE"].cumQualityRaw = 3;
-	if (flags["QUAELLE_FERTILE"] == 1) chars["QUAELLE"].cumQualityRaw = 3;
-	else chars["QUAELLE"].cumQualityRaw = 0;
+	chars["QUAELLE"].cumQualityRaw = (flags["QUAELLE_FERTILE"] == 1 ? 3 : 0);
+	chars["QUAELLE"].createPerk("Fixed CumQ", 3000, 0, 0, 0);
 	pc.loadInCunt(chars["QUAELLE"], hole);
+	chars["QUAELLE"].removePerk("Fixed CumQ");
 	pc.orgasm();
-	quaelleHugged();	
+	quaelleHugged();
 	
 	clearMenu();
 	addButton(0, "Bath", quaelleSexBath, undefined,"Bath","Melting sounds pretty fun.");	
@@ -1288,8 +1289,8 @@ public function quaelleSexOral():void
 	showQuaelle(true);
 	author("Nonesuch");
 	
-	output("<i>“Oh, flowullous Steele... “</i> murmurs Quaelle, looking away when you intimate you’d quite like to see that extremely active mouth of hers in action. For a moment you think you’ve offended her. Perhaps she’d like for you to get to work on her first?");
-	output("\n\n<i>“No, no, it’s not that,”</i> she smiles, returning her gaze to you fondly. <i>“Hmm. It’s... I’m a herbivore, like all roehm. I can’t digest animal proteins, even small amounts would give me a tummies ache. I can’t do that with my mouth, as much as I’d like to. Emmm.”</i> She undulates in a hopeful sort of way, making her wet, blue pussy catch the dim light. <i>“You’re very welcome to use your own mouth, if you like... “</i>");
+	output("<i>“Oh, flowullous Steele...”</i> murmurs Quaelle, looking away when you intimate you’d quite like to see that extremely active mouth of hers in action. For a moment you think you’ve offended her. Perhaps she’d like for you to get to work on her first?");
+	output("\n\n<i>“No, no, it’s not that,”</i> she smiles, returning her gaze to you fondly. <i>“Hmm. It’s... I’m a herbivore, like all roehm. I can’t digest animal proteins, even small amounts would give me a tummies ache. I can’t do that with my mouth, as much as I’d like to. Emmm.”</i> She undulates in a hopeful sort of way, making her wet, blue pussy catch the dim light. <i>“You’re very welcome to use your own mouth, if you like...”</i>");
 	output("\n\n<b>Looks like you won’t be able to get oral off Quaelle, unless you think of something else.</b>");
 	
 	processTime(2);
@@ -1328,7 +1329,7 @@ public function quaelleSexScoot():void
 	
 	moveTo("BREEDWELL_RECEPTION");
 	
-	output("<i>“Ohh... “</i> sighs Quaelle, antennae sagging when you tell her you’re really pressed for time. <i>“Ok.”</i>");
+	output("<i>“Ohh...”</i> sighs Quaelle, antennae sagging when you tell her you’re really pressed for time. <i>“Ok.”</i>");
 	output("\n\nShe lets you go and watches dolefully as you pull your [pc.gear] back on. <b>It’s kind of gross when you’re still covered in roehm slime. The smell of sexual sugar lingers on your [pc.skin].</b>");
 	output("\n\n<i>“Safe travels, quiverful Steele,”</i> she says. <i>“Come back and keep me company again soon, won’t you?”</i>");
 	output("\n\nA minute or so later, you’re back in Breedwell Reception. There’s a lot of quiet smirking going on amongst the rahn staff manning the desk.");
@@ -1375,7 +1376,7 @@ public function quaelleSexBathRomcom():void
 	output("\n\nThe sitcom about having an untethered, immensely powerful A.I. for a roommate bounces along breezily enough, the gags revolving around nerd patheticness and total biological extermination coming thick and fast. Apparently this draws in an audience of hundreds of billions galaxy-wide, and you sort of get why after watching for a bit: aside from the familiar will-they-won’t-they shaggy dog dynamics, whether or not PM is ever going to annihilate Komet and her equally asinine friends is an undeniable hook.");
 	output("\n\n<i>“Despite everything... I’m still glad I got up this morning,”</i> the human smiles after half an hour, <i>“Aren’t you, PM?”</i>");
 	output("\n\n<i>“MY.ANALYTICS.RECOMMEND.THIS.FACILE.CHARADE.PROCEED.FOR.NOW.”</i> says PM, prehensile multi-tools gently circling around her head.");
-	output("\n\n<i>“Awwwwwwww,” sighs Quaelle, squeezing you happily into her soft side as the credits roll. <i>“You know it loves her, deeeeep down.”</i>");
+	output("\n\n<i>“Awwwwwwww,”</i> sighs Quaelle, squeezing you happily into her soft side as the credits roll. <i>“You know it loves her, deeeeep down.”</i>");
 
 	quaelleSexBathEnd(60);
 }
@@ -1387,7 +1388,7 @@ public function quaelleSexBathSexy():void
 	
 	pc.lust(30);
 	
-	output("<i>“You want something... naughty? You’re not still pent up and trembulent after all that, Steele?”</i> giggles Quaelle, psychedelic eyes skating over your naked body. Her hand shifts across your [pc.thigh], strokes your inner thigh. <i>“Awwww. I’d hate for you to leave my company and not feel, hmm, hmm, satisfied. Let me see what I can find... “</i>");
+	output("<i>“You want something... naughty? You’re not still pent up and trembulent after all that, Steele?”</i> giggles Quaelle, psychedelic eyes skating over your naked body. Her hand shifts across your [pc.thigh], strokes your inner thigh. <i>“Awwww. I’d hate for you to leave my company and not feel, hmm, hmm, satisfied. Let me see what I can find...”</i>");
 	output("\n\nShe fiddles with her remote control for a bit, before finding <i>The Power Palace</i>.");
 	output("\n\n<i>“Hello again, mere mortals,”</i> husks the lithe, red-skinned woman with the huge, spreading horns lying on the divan. <i>“It is I, Rita Veluptua.”</i>");
 	output("\n\nShe is clad in long slips of silk; the neoclassical room is lit by flickers of flame. There is... equipment, arrayed around it, but its exact utility is disguised by the sultry gloom.");
@@ -1448,7 +1449,7 @@ public function quaelleSexBathHerChoice():void
 	output("\n\n<i>“Welcome back to Adamantine Chef!”</i> oozes the aproned, raspberry-skinned roehm host. She’s sat between bays of kitchen equipment that look more like biolabs than something you’d use to make dinner with; tensely faced contestants of all shapes and sizes are hard at work in them, dicing, measuring, frying, seasoning, and in one case wrestling with a lively tentacle bush. A panel of snippy looking judges floats on a hovering diaz above the action.");
 	output("\n\n<i>“We’ll get back to see how Mike and Mia’s Vellafreyan sorbet is getting on in six months’ time,”</i> the host says brightly. <i>“But, now... those of you who have been on tenterhooks to find out how the Spattergroach team’s iridescent ratatouille from Season 138 turned out, ready yourselves!”</i>");
 	output("\n\nAs with most cooking shows, it’s about concocting the best dish possible with the ingredients and time period provided. The length of said time period, however, is... elastic. It’s mostly vegetarian based, which is the main attraction for Quaelle.");
-	output("\n\n<i>“Ooohhhh,”</i> she sighs, resting her head on your shoulder as she watches one team of chefs hussle a lavish, steaming, palm-tree shaped dish oozing green cheese out of a massive oven, <i>“I wish I had a spare week to make that. Maybe when I’m finished here... “</i>");
+	output("\n\n<i>“Ooohhhh,”</i> she sighs, resting her head on your shoulder as she watches one team of chefs hussle a lavish, steaming, palm-tree shaped dish oozing green cheese out of a massive oven, <i>“I wish I had a spare week to make that. Maybe when I’m finished here...”</i>");
 	output("\n\nIt’s light and enjoyable, perfect hangover TV, although the final judgments can be pretty brutal.");
 	output("\n\n<i>“Seven years!”</i> sobs one contestant, on his knees in front of the floating panel of judges with his intricate biscotti-based dish. <i>“Seven years of my life baking this! You have to tell me it’s worth more than that!”</i>");
 	output("\n\nThe samarin judge scratches her chin as she considers, taps at the control panel, and amends her score from a 6.5 to a 6.4.");
@@ -1529,7 +1530,7 @@ public function quaellePCPregGreeting():void
 	if (quaelleIsPCPreg() == 1)
 	{
 		output("<i>“Vibrantic Steele! You are... is that...?”</i> Quaelle wrings her hands, antennae ashiver, very un-roehm-like in her anxious wonder as she gazes down at your [pc.belly]. You smile at her, draw close to her slimy bulk so that she can have a stroke. Her wet, warm hand moves across your growing bulge.");
-		output("\n\n<i>“I never imagined it would be this way,”</i> she murmurs, lost in a reverie. She seems unable to take her eyes off your stomach. <i>“I was prepared for my body to grow fat with tumbulous life. All those extranet videos I watched, how to prepare for it! But... “</i> she raises her double-pupiled eyes to meet yours, smiling. <i>“ ...that was foolish of me, wasn’t it? Hoping to meet someone in this place of all places, expecting that was how my partner would wish it to be. It’s strange but... wonderful.”</i>");
+		output("\n\n<i>“I never imagined it would be this way,”</i> she murmurs, lost in a reverie. She seems unable to take her eyes off your stomach. <i>“I was prepared for my body to grow fat with tumbulous life. All those extranet videos I watched, how to prepare for it! But...”</i> she raises her double-pupiled eyes to meet yours, smiling. <i>“ ...that was foolish of me, wasn’t it? Hoping to meet someone in this place of all places, expecting that was how my partner would wish it to be. It’s strange but... wonderful.”</i>");
 		output("\n\nShe sighs happily, and then withdraws her hand.");	
 		output("\n\n<i>“Thank you for visiting, shiverous Steele. You have other business here I’m sure... but you’ll sit with me for a little while, won’t you?”</i>");	
 	}
@@ -1538,7 +1539,7 @@ public function quaellePCPregGreeting():void
 		output("<i>“Shiverous Steele.”</i> Quaelle gives you a wide smile when she catches sight of you - and your [pc.belly]. <i>“That’s mine, isn’t it? I can tell. I can feel it on the tips of my antennae... come here. Let me feel.”</i>");
 		output("\n\nYou come across and let her lay her eager hands upon the burgeoning weight in your womb, warm, sweet smoothness circling across your taut [pc.skin]. Mmm... almost as nice as getting coconut oil rubbed on it.");
 		output("\n\n<i>“How are you feeling?”</i> she asks. <i>“Are you eating well? You’re taking a bottle of water everywhere you go, aren’t you? You should exercise frequently but gently, and rest at regular intervals. Would you like me to type up a schedule for you?”</i> On and on go the matronly instructions as she continues to rub you, until at last she subsides into amiable silence.");	
-		output("\n\n<i>“I’d prefer you to stay here, where I could keep an eye on you... “</i> your brightly-colored sugar sluggy sighs, withdrawing her paw. <i>“I worry a lot, hmm, you running around the frontier. But... you are a flickersome creature, I know. I made my peace with that when I decided to have children with you.”</i> She smiles at you lovingly. <i>“And I wouldn’t change anything about you.”</i>");	
+		output("\n\n<i>“I’d prefer you to stay here, where I could keep an eye on you...”</i> your brightly-colored sugar sluggy sighs, withdrawing her paw. <i>“I worry a lot, hmm, you running around the frontier. But... you are a flickersome creature, I know. I made my peace with that when I decided to have children with you.”</i> She smiles at you lovingly. <i>“And I wouldn’t change anything about you.”</i>");	
 	}
 }
 public function quaelleImmobileBath():void
@@ -1569,7 +1570,7 @@ public function quaelleImmobileLeave():void
 	
 	moveTo("BREEDWELL_RECEPTION");
 	
-	output("<i>“Ok... “</i> The heavily pregnant roehm’s antennae droop downwards and she rubs her hands together unhappily. <i>“I knooooow I’m too slooooooww for you riiiiiiight nowww. You’ll come and sssssit with me sooon though, won’t yoooouuuu?”</i>");
+	output("<i>“Ok...”</i> The heavily pregnant roehm’s antennae droop downwards and she rubs her hands together unhappily. <i>“I knooooow I’m too slooooooww for you riiiiiiight nowww. You’ll come and sssssit with me sooon though, won’t yoooouuuu?”</i>");
 	output("\n\nYou head back out towards Reception as she’s pulling one of her plant pots towards her, brilliant eyes misting up.");
 	
 	processTime(5);
@@ -1587,7 +1588,7 @@ public function quaelleImmobileBathSexy():void
 	
 	pc.lust(50);
 	
-	output("<i>“Oooh. You wwwwant something... viiiibrulent? Yooouuuu are a shiverousssss thing,”</i> says Quaelle, eyes twinkling. She shifts slightly in the water, her great pregnant bulk sending little steaming waves skating over your naked body. <i>“Iiiii’m not sure I can, eeeemmmm, do much for yooouuuuu in my current state.. But if you’d like to doooo... soomethiing with meeee... “</i>");
+	output("<i>“Oooh. You wwwwant something... viiiibrulent? Yooouuuu are a shiverousssss thing,”</i> says Quaelle, eyes twinkling. She shifts slightly in the water, her great pregnant bulk sending little steaming waves skating over your naked body. <i>“Iiiii’m not sure I can, eeeemmmm, do much for yooouuuuu in my current state.. But if you’d like to doooo... soomethiing with meeee...”</i>");
 	output("\n\nShe’s arranged herself so she’s on her side, half-submerged, her front pussy just above the steaming waters. Its sapphire folds are plump and splayed by pregnancy, oozing sweetness, mouth-wateringly inviting.");
 	output("\n\n<i>“ ...Hmm. I wwwwouldn’t say noooooo.”</i>");
 	output("\n\nYou grin as you sink into the hot waters in front of her, all of your [pc.skinFurScales] submerged except for your head. You stroke her taut, spherical belly, hands slowly sinking downwards as she fiddles with her remote control until she finds The Power Palace. You turn and watch for a moment, fingers tracing Quaelle’s soft, slimy labia, making her sigh and tremble gently like an overstretched balloon.");
@@ -1762,7 +1763,7 @@ public function quaelleBirthScene():void
 		if (flags["QUAELLE_BIRTHSCENE_KIDS"] > 1) output("ren");
 		output(".");
 		
-		output("\n\n<i>“Emmmmm,”</i> she murmurs at last, raising her eyes to yours again. <i>“I... looked through your file again, shiversome Steele. I hope you don’t mind, I just... wanted to know a bit more about you. Your father! What a shriltaltic individual he was! I know he left you that nursery, on Tavros, with all the things a child could want. You have seen this place... “</i> she wriggles her shoulders slightly. <i>“ ...it’s for rahn. Tamani might let me keep");
+		output("\n\n<i>“Emmmmm,”</i> she murmurs at last, raising her eyes to yours again. <i>“I... looked through your file again, shiversome Steele. I hope you don’t mind, I just... wanted to know a bit more about you. Your father! What a shriltaltic individual he was! I know he left you that nursery, on Tavros, with all the things a child could want. You have seen this place...”</i> she wriggles her shoulders slightly. <i>“ ...it’s for rahn. Tamani might let me keep");
 		if (flags["QUAELLE_BIRTHSCENE_KIDS"] > 1) output(" them here, somnolently.... But they");
 		else output(" her here, somnolently.... But she");
 		output(" would not belong. They would be amongst children being trained to be colonists, and would not understand. It fills my heart with burrilliousness.”</i>");
@@ -1885,7 +1886,7 @@ public function quaelleBirthScenePart2():void
 	}
 	else
 	{
-		output("\n\n<i>“I will back at work soon,”</i> she says at last, holding your hand. <i>“You’ll still visit, won’t you? I feel so vibriscent in your company. And, I think, once I’ve recovered... “</i> she squeezes your hand and is silent for a few moments, just looking at you with soft intent. <i>“ ...I would like some more.”</i>");
+		output("\n\n<i>“I will back at work soon,”</i> she says at last, holding your hand. <i>“You’ll still visit, won’t you? I feel so vibriscent in your company. And, I think, once I’ve recovered...”</i> she squeezes your hand and is silent for a few moments, just looking at you with soft intent. <i>“ ...I would like some more.”</i>");
 		output("\n\nVoid, she’s keen! You give her a soft kiss on the lips and then leave, heading back to reception.");
 	}
 	
@@ -2261,7 +2262,7 @@ public function quaellePregShutdownTalk():void
 	output("\n\n<i>“I will continue to work here for a while longer,”</i> she says. <i>“Tamani has been very good towards me... and the work suits me.");
 	if (kids > 1) output(" Once all of my daughters have come of age, I shall take them to Hdar-Roe, show them their home. From there... they will have their own destiny to choose.");
 	else output(" Once my daughter has come of age, I shall take her to Hdar-Roe, show her home. From there... she will have her own destiny to choose.");
-	output(" By then... “</i> she sighs, lapsing into silence for a little while. <i>“ ...It will be my next full year again. And I will have some choosing to do myself. But I shall do it with peace in my heart.”</i>");
+	output(" By then...”</i> she sighs, lapsing into silence for a little while. <i>“...It will be my next full year again. And I will have some choosing to do myself. But I shall do it with peace in my heart.”</i>");
 	
 	output("\n\nHer attention turns by degrees back to you.");
 	output("\n\n<i>“You’ll still visit, won’t you?”</i> she asks. <i>“I will come by the nursery when I can, of course. Buuuttt... it would make me vigroful to spend time with you, still.”</i>");

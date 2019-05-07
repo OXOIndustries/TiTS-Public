@@ -846,7 +846,7 @@ public function kiroDrankinConterst():void
 	clearMenu();
 	addButton(0,"Play Fair",drinkingContestGo,false,"Play Fair","Play it fair. Rely on your iron liver to see you through.");
 	addButton(1,"Cheat",drinkingContestGo,true,"Cheat","All’s fair in love and war, particularly when 24 hours of it are on the line.");
-	addButton(2,"Nevermind",kiroMenu);
+	addButton(2,"Never Mind",kiroMenu);
 }
 
 public function drinkContestScore(arg:Creature):Number
@@ -1012,7 +1012,7 @@ public function unisexLostToKiroAndGaveHerAHandJobBecauseDrunkenSluttery():void
 	if(!pc.isNude()) output("Lose the gear.");
 	else output("Get naked.");
 	output("”</i>");
-	output("\n\nYou blink through bleary eyes to regard the owner of that unwelcome hand. It’s Kiro, of course. Right... you lost a bet to to that impressively endowed Kui-Tan. Her pillar of equine fuckmeat is already exposed, towering over you and expanding with powerful need, pulsing hotly at your supine form. It’s ready to take you, to you use as a.... What did she say? Oh, right. A cock-milker. She’s going to use you as a cum-squeezing dick-sleeve until her balls go dry or twenty four hours pass, whichever happens first. You lick your lips without meaning to, her smell stronger in your nostrils. The air is thick with the scent of fuck, and your body is responding powerfully to it.");
+	output("\n\nYou blink through bleary eyes to regard the owner of that unwelcome hand. It’s Kiro, of course. Right... you lost a bet to that impressively endowed Kui-Tan. Her pillar of equine fuckmeat is already exposed, towering over you and expanding with powerful need, pulsing hotly at your supine form. It’s ready to take you, to you use as a.... What did she say? Oh, right. A cock-milker. She’s going to use you as a cum-squeezing dick-sleeve until her balls go dry or twenty four hours pass, whichever happens first. You lick your lips without meaning to, her smell stronger in your nostrils. The air is thick with the scent of fuck, and your body is responding powerfully to it.");
 	output("\n\n<i>");
 	if(!pc.isNude()) output("Get naked.");
 	else output("Lose the gear.");
@@ -1224,7 +1224,7 @@ public function youWinAContestAndKiroSlobbersYerPussy():void
 	//Huge clit bonus!
 	if(pc.hasClit() && pc.clitLength > 6)
 	{
-		output("\n\nKiro’s cheeks bulge as the feminine organ puffs and swells up inside her mouth. Before she knows it, your stiff clit has swollen to a thick, throbbing pole. Panting around in excitement, she lets it push her off of your [pc.vagina], though her lips stretch out, as if they could still maintain contact with your netherlips by force of will alone. Smooth, nigh-infinite pleasure wicks up along the underside of your [pc.clit] when Kiro’s tongue goes to work. The sides of it fold up on either side to to try and encircle it, not quite able to cover the top but still managing to make your dense nerve endings fire off like firecrackers thrown into a bonfire. You start to slip into her throat one gasping breath later, and the curvaceous raccoon-girl’s lips glide closer to your [pc.vagina], finally making contact once your [pc.clit] is lodged securely in her throat.");
+		output("\n\nKiro’s cheeks bulge as the feminine organ puffs and swells up inside her mouth. Before she knows it, your stiff clit has swollen to a thick, throbbing pole. Panting around in excitement, she lets it push her off of your [pc.vagina], though her lips stretch out, as if they could still maintain contact with your netherlips by force of will alone. Smooth, nigh-infinite pleasure wicks up along the underside of your [pc.clit] when Kiro’s tongue goes to work. The sides of it fold up on either side to try and encircle it, not quite able to cover the top but still managing to make your dense nerve endings fire off like firecrackers thrown into a bonfire. You start to slip into her throat one gasping breath later, and the curvaceous raccoon-girl’s lips glide closer to your [pc.vagina], finally making contact once your [pc.clit] is lodged securely in her throat.");
 	}
 	output("\n\nHumming as she works, your lusty fuck-pet seems perfectly happy to slurp away at your quim. Her eyes have closed, and she seems utterly and completely fixated on getting you off, gulping and swallowing all the [pc.girlCum] she can get, her tongue never slowing in its attempts to get more. The hum she’s making turns into a decidedly feline purr, and the ensuing pleasure nearly knocks you off your [pc.feet]. Somehow you hold on, both hands planted on the back of Kiro’s head, and let yourself slowly ease down towards the metallic floor as the strength ebbs from your [pc.legOrLegs] and into your [pc.vaginas].");
 	output("\n\nThe masked, cunt-hungry maiden stays firmly sealed against your crotch as you sink lower, her plush pillows suckling hungrily, drawing ever more of your liquid lust from your shuddering form. Your [pc.butt] touches down just in time. You’re so close to cumming that you can’t help but thrust your [pc.hips] upward and grind yourself hard upon Kiro’s lady-glazed face. Spread out in a veil, her curly, cinnamon-colored tangles tickle across your [pc.belly] while she works, hiding her face.");
@@ -3927,22 +3927,23 @@ public function kiroKallyDoubleMilkingThreesome3():void
 		output("<i>“On your marks...”</i> You squeeze the sisters’ asses. <i>“Get set...”</i> You rub your thumb across the soft flesh, pressing closer and closer to their assholes. <i>“GO!”</i> You graze their dusky rosebuds with a fingertip.");
 	}
 	//Merge
-	output("\n\nBoth sisters thrust forward, right on cue, burying their lengths into their chosen dick-milkers. Twin sighs of contentment fill the air. A second later, they transform into moans when the machine turns on, rhythmically whirring. Wet slurps can be heard coming from the nuki-girls’ crotches, slow and gentle at first. You can see their horse-cocks pulsating to the tempo of the vacuum suction, expanding and contracting. For every cycle, they look a little thicker.");
-
+	output("\n\nBoth sisters thrust forward, right on cue, burying their lengths into their chosen dick-milkers. Twin sighs of contentment fill the air. A second later, they transform into moans when the machine turns on, rhythmically whirring. Wet slurps can be heard coming from the nuki-girls’ crotches, slow and gentle at first. You can see their horse-cocks pulsating to the tempo of the vacuum suction, expanding and contracting. For every cycle, they look a little thicker.\n\n");
+	//Commissioned by Questyrobo, drawn by Dsan.
+	showImage("KiroKallyTeamMilk");
 	//First Time
 	if(flags["SISTER_MILK_ACT"] == undefined)
 	{
-		output("\n\nKally’s legs wobble dangerously, but you’re there to catch her under the elbows. The poor thing isn’t used to feeling so much so fast, or to having so much more blood in her dick than in her brain. Her tongue lolls and her hips thrust, bucking wildly, sending the hard plastic tube holding her dick flailing in a circle. You lift her higher, and your cock slides perfectly between her asscheeks, pressing on her spasming sphincter. The sudden onslaught of pressure seems to lend her strength. Kally sucks in a deep lungful of air, and with a whimper of delight, straightens her knees. At the same time, she leans forward, presenting you with easier access to her asshole.");
+		output("Kally’s legs wobble dangerously, but you’re there to catch her under the elbows. The poor thing isn’t used to feeling so much so fast, or to having so much more blood in her dick than in her brain. Her tongue lolls and her hips thrust, bucking wildly, sending the hard plastic tube holding her dick flailing in a circle. You lift her higher, and your cock slides perfectly between her asscheeks, pressing on her spasming sphincter. The sudden onslaught of pressure seems to lend her strength. Kally sucks in a deep lungful of air, and with a whimper of delight, straightens her knees. At the same time, she leans forward, presenting you with easier access to her asshole.");
 	}
 	//Second Time
 	else if(flags["SISTER_MILK_ACT"] == 1)
 	{
-		output("\n\nKally’s legs wobble, but not so dangerously as before. She braces herself against the machine’s central column, half-burying her face in a hologram of four milk-spraying tits, tail lifted so high it nearly brushes the ceiling. Her dick dangles down, jumping with each slurping suck from the pump, but more important is the sight of her pussy, framed by cushy thighs already matted with moisture from the leaky organ. You rub against her lips to gather a thick coating of lubricant, then shift up to press against her spasming sphincter. Kally’s whole body shivers, and with a whimper of delight, she bends lower to better present herself for the taking.");
+		output("Kally’s legs wobble, but not so dangerously as before. She braces herself against the machine’s central column, half-burying her face in a hologram of four milk-spraying tits, tail lifted so high it nearly brushes the ceiling. Her dick dangles down, jumping with each slurping suck from the pump, but more important is the sight of her pussy, framed by cushy thighs already matted with moisture from the leaky organ. You rub against her lips to gather a thick coating of lubricant, then shift up to press against her spasming sphincter. Kally’s whole body shivers, and with a whimper of delight, she bends lower to better present herself for the taking.");
 	}
 	//Third+
 	else
 	{
-		output("\n\nKally handles herself like a pro: no knee-knocking loss of control, no overly whorish moans. She does spread her legs, adopting a stance that gives you a lovely view of her delightfully lubricated cunt and tube-bound cock. The latter jumps fiercely with every burst of suction, while the former drizzles all over your encroaching dick. You slide forward, rubbing your [pc.cockHead " + x + "] deep between her sloshing balls before you deign to lift it up to its true target: Kally’s spasming anal ring. She moans and bends lower on contact, lifting her tail up high. It may as well be a gigantic arrow pointing at her pucker, demanding that you fuck it long and deep.");
+		output("Kally handles herself like a pro: no knee-knocking loss of control, no overly whorish moans. She does spread her legs, adopting a stance that gives you a lovely view of her delightfully lubricated cunt and tube-bound cock. The latter jumps fiercely with every burst of suction, while the former drizzles all over your encroaching dick. You slide forward, rubbing your [pc.cockHead " + x + "] deep between her sloshing balls before you deign to lift it up to its true target: Kally’s spasming anal ring. She moans and bends lower on contact, lifting her tail up high. It may as well be a gigantic arrow pointing at her pucker, demanding that you fuck it long and deep.");
 	}
 	//Merge
 	output("\n\nSliding into Kally proves easier than expected, likely owing to some training in her private time.");

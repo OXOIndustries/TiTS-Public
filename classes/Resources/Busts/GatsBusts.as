@@ -331,45 +331,46 @@
 
 		[Embed(source = "../../../assets/images/npcs/gats/Zil_Female.png", mimeType = "image/png")]
 		public var Bust_ZILFEMALE:Class;
+		public var Bounds_ZILFEMALE:Rectangle = new Rectangle(0, 10, 64, 70);
 		
 		[Embed(source = "../../../assets/images/npcs/gats/Zil_Male.png", mimeType = "image/png")]
 		public var Bust_ZIL:Class;
-		public var Bounds_ZIL:Rectangle = new Rectangle(14,19,79,92);
+		public var Bounds_ZIL:Rectangle = new Rectangle(1, 19, 81, 70);
 		
 		
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/gats/hr/cameron.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/gats/HR/cameron.png", mimeType = "image/png")]
 			public var Full_CAMERON:Class;
-			[Embed(source = "../../../assets/images/npcs/gats/hr/cameron_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/gats/HR/cameron_nude.png", mimeType = "image/png")]
 			public var Full_CAMERON_NUDE:Class;
 			
 			/* UNUSED FEMALE BUST COUNTERPOINT TO COLENSO:
-			[Embed(source = "../../../assets/images/npcs/gats/hr/goblin.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/gats/HR/goblin.png", mimeType = "image/png")]
 			public var Full_GOBLIN:Class;
-			[Embed(source = "../../../assets/images/npcs/gats/hr/goblin_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/gats/HR/goblin_nude.png", mimeType = "image/png")]
 			public var Full_GOBLIN_NUDE:Class;
 			*/
 
-			[Embed(source = "../../../assets/images/npcs/gats/hr/ehstraffe.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/gats/HR/ehstraffe.png", mimeType = "image/png")]
 			public var Full_EHSTRAFFE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/gats/hr/korgonne_female_barbarian.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/gats/HR/korgonne_female_barbarian.png", mimeType = "image/png")]
 			public var Full_KORGONNE_FEMALE:Class;
-			[Embed(source = "../../../assets/images/npcs/gats/hr/korgonne_female_barbarian_2.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/gats/HR/korgonne_female_barbarian_2.png", mimeType = "image/png")]
 			public var Full_KORGONNE_FEMALE2:Class;
-			[Embed(source = "../../../assets/images/npcs/gats/hr/korgonne_female_barbarian_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/gats/HR/korgonne_female_barbarian_nude.png", mimeType = "image/png")]
 			public var Full_KORGONNE_FEMALE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/gats/hr/mabbs_headphones.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/gats/HR/mabbs_headphones.png", mimeType = "image/png")]
 			public var Full_MABBS:Class;
 
-			[Embed(source = "../../../assets/images/npcs/gats/hr/millie.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/gats/HR/millie.png", mimeType = "image/png")]
 			public var Full_MILLIE:Class;
-			[Embed(source = "../../../assets/images/npcs/gats/hr/millie_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/gats/HR/millie_nude.png", mimeType = "image/png")]
 			public var Full_MILLIE_NUDE:Class;
 			
-			[Embed(source = "../../../assets/images/npcs/gats/hr/nayna.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/gats/HR/nayna.png", mimeType = "image/png")]
 			public var Full_NAYNA:Class;
 			public function get Full_NAYNA_NUDE():Class { return Full_NAYNA; }
 			public function get Full_NAYNA_SOFT_NUDE():Class { return Full_NAYNA; }
@@ -377,16 +378,16 @@
 			public function get Full_NAYNA_SUIT_NUDE():Class { return Full_NAYNA; }
 			public function get Full_NAYNA_SUIT_SOFT_NUDE():Class { return Full_NAYNA; }
 			
-			[Embed(source = "../../../assets/images/npcs/gats/hr/sylvie.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/gats/HR/sylvie.png", mimeType = "image/png")]
 			public var Full_SYLVIE:Class;
-			[Embed(source = "../../../assets/images/npcs/gats/hr/sylvie_bra.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/gats/HR/sylvie_bra.png", mimeType = "image/png")]
 			public var Full_SYLVIE_BRA:Class;
-			[Embed(source = "../../../assets/images/npcs/gats/hr/sylvie_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/gats/HR/sylvie_nude.png", mimeType = "image/png")]
 			public var Full_SYLVIE_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/gats/hr/una.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/gats/HR/una.png", mimeType = "image/png")]
 			public var Full_UNA:Class;
-			[Embed(source = "../../../assets/images/npcs/gats/hr/una_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/gats/HR/una_nude.png", mimeType = "image/png")]
 			public var Full_UNA_NUDE:Class;
 		}
 	}

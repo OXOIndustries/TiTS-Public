@@ -178,7 +178,8 @@ package classes.Items.Transformatives
 						
 						target.hairType = GLOBAL.HAIR_TYPE_PLANT;
 						if(target.hairLength < 6) target.hairLength = 6 + rand(3);
-						target.hairColor = RandomInCollection(plantHairColor);
+						//target.hairColor = RandomInCollection(plantHairColor);
+						target.hairColor = ((target.hasBeard() && InCollection(target.beardColor, plantHairColor)) ? target.beardColor : RandomInCollection(plantHairColor));
 						
 						msg += ParseText("\n\nThe cool, tingling sensation intensifies on your bald scalp, a thousand mint pencils scribbling on your head. It’s a relief when dozens of new growths sprout into being, thin stems burgeoning satisfyingly outwards, then unfurling spearhead-shaped pads as they come. The [pc.hairColor] leaves you grow out over the course of the next half hour are thin, healthy, and - ouch. Yes, definitely connected to you. You run your hands through your bonnet of plant growth, sighing at the pleasure of being able to feel each individual leaf.");
 					}
@@ -196,7 +197,8 @@ package classes.Items.Transformatives
 						
 						target.hairType = GLOBAL.HAIR_TYPE_TENTACLES;
 						if(target.hairLength < 6) target.hairLength = 6 + rand(3);
-						target.hairColor = RandomInCollection(plantHairColor);
+						//target.hairColor = RandomInCollection(plantHairColor);
+						target.hairColor = ((target.hasBeard() && InCollection(target.beardColor, plantHairColor)) ? target.beardColor : RandomInCollection(plantHairColor));
 						
 						msg += ParseText("\n\nThe cool, tingling sensation intensifies on your bald scalp, a thousand mint pencils scribbling on your head. It’s initially a relief when the infuriation is broken by dozens of new growths sprouting into being; that turns to mild alarm when the growths unravel downwards at a furious rate, heavy, vaguely rubbery appendages that dangle loosely downwards from your head. Within half an hour you have a full head of [pc.hairColor] tentacle hair, thick plant vines that bounce and sway as you move.");
 						msg += "\n\nYou find, once you work out the scalp-flexing tweaks you use to fire your strange new nerve groups, you can actually move them around a bit, and - ooh. Yes, they are quite sensitive. You return to business, unsure whether to be delighted or askance at this new reality flopping around your ears and neck.";

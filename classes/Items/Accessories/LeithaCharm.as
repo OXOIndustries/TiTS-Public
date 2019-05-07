@@ -201,6 +201,8 @@
 			output("\n\nSuddenly, you feel a pressure building in the center of your forehead. Running your fingers along it, you feel a lump forming dead center of your brow. The lump becomes hard and plated, smooth like chitin rather than the same texture of your [pc.skinFurScales]. After a long moment, the lump splits off, growing two prongs out of the top. While they start off as amorphous, chitinous blobs growing off of your head, the two lumps eventually begin to coalesce and solidify into what seem to be a pair of reversed, plated bunny ears. <b>It looks like you now have the strange, four-part ears of a leithan!</b>");
 
 			target.earType = GLOBAL.TYPE_LEITHAN;
+			target.clearEarFlags();
+			target.addEarFlag(GLOBAL.FLAG_LONG);
 			if (target.earLength < 2) target.earLength = 2 + rand(5);
 			if (target.earLength > 6) target.earLength = 6;
 

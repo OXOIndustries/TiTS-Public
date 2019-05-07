@@ -2394,7 +2394,7 @@ public function frostwyrmIncubateEggs():void
 	clearMenu();
 	if(pc.hasPregnancy()) addDisabledButton(0, "4 Months...", "Progress 4 Months...", "You cannot do this while currently pregnant!");
 	else addButton(0, "4 Months...", frostwyrmHolyCrapYoureStillWaiting);
-	addButton(1, "Nevermind", frostwyrmMainMenu, undefined);
+	addButton(1, "Never Mind", frostwyrmMainMenu, undefined);
 }
 
 public function frostwyrmRaiseHatchlings():void
@@ -2410,7 +2410,7 @@ public function frostwyrmRaiseHatchlings():void
 	clearMenu();
 	if(pc.hasPregnancy()) addDisabledButton(0, "4 Months...", "Progress 4 Months...", "You cannot do this while currently pregnant!");
 	else addButton(0, "4 Months...", frostwyrmWowThisReallyTakesAWhile, undefined);
-	addButton(1, "Nevermind", frostwyrmMainMenu, undefined);
+	addButton(1, "Never Mind", frostwyrmMainMenu, undefined);
 }
 
 // Hatches all incubating eggs.
@@ -2566,7 +2566,7 @@ public function frostwyrmlingTalkMenu():void
 	
 	addButton(0, "Biology", frostwyrmWhyDoesMommyLookDifferent, undefined);
 	addButton(1, "Technology", frostwyrmShinyShit, undefined);
-	addButton(2, "Traditions", frostwyrmBlessedBeOurSmutlords, undefined);
+	//addButton(2, "Traditions", frostwyrmBlessedBeOurSmutlords, undefined);
 	//addButton(3, "Incest", frostwyrmIChangeMyMind, undefined);
 	
 	addButton(14, "Back", frostwyrmBunchaKiddoContent, undefined);
@@ -2575,6 +2575,8 @@ public function frostwyrmWhyDoesMommyLookDifferent():void
 {
 	clearOutput();
 	nykkeHeader();
+	
+	var lewdToggle:Boolean = false;
 	
 	output("You ask " + (flags["NYKKE_MET"] == undefined ? "her" : "Nykke") + " if she’s ever really wondered why her Qim and her Qal look so differently. [frostwyrm.name] is very large, and you’re... well, you’re not. [frostwyrm.name] has six limbs, and you only have four. There’s a lot of differences.");
 	output("\n\n<i>“I never really even thought about it,”</i> she answers happily. <i>“You are my Qal, and [frostwyrm.name] is my Qim. Qims looking like her and Qals looking like you was just... a truth of the world that I accepted");
@@ -2587,7 +2589,7 @@ public function frostwyrmWhyDoesMommyLookDifferent():void
 	output(". When [frostwyrm.name] walks around, she does so using her six legs, but you and her walk around on two. You only have two arms, while [frostwyrm.name] doesn’t have any, and your kip has four.");
 	output("\n\n<i>“Why is that?”</i> she asks, and you answer that you don’t know, but your best guess is because [frostwyrm.name] has six limbs, so some wires got crossed when your kip was born and gave her six limbs as well. <i>“What does that mean, that ‘some wires got crossed?’”</i> You... answer that gene-passing is a complicated subject that you’re no expert on, and she’ll figure it out when she has her own mate.");
 	output("\n\n<i>“Would it... be able to explain why my body is darker than our Qim’s?”</i> she asks, hopeful for an answer to a question that’s clearly been bugging her for some time. You answer that it likely would, but, again, you can only speculate; you don’t have a lot of answers on the subject.");
-	if(pc.hasGenitals() || pc.biggestTitSize() > 0) {
+	if(lewdToggle && (pc.hasGenitals() || pc.biggestTitSize() > 0)) {
 		output("\n\n<i>“So what other differences are there?”</i> she asks. One of her hands reaches for your [pc.crotch], fondling casually, almost innocently in her pursuit of knowledge, at your junk. <i>“");
 		if(pc.hasGenitals()) {
 			if (pc.isHerm()) output("You have a penis and a vagina, just like the Qim and I do , so that’s not any different");
@@ -2604,17 +2606,21 @@ public function frostwyrmWhyDoesMommyLookDifferent():void
 		output("Her face is a lot longer than ours, too, and she doesn’t have these puffy things around our mouths.”</i>");
 		if (pc.biggestTitSize() > 0 && pc.biggestTitSize() < 6) output("\n\nYou grit your teeth at " + (flags["NYKKE_MET"] == undefined ? "your kip" : "Nykke") + " reminding you that your boobs are smaller than hers, and tell yourself that she meant nothing by it.");
 	}
+	else output("\n\n<i>“So what other differences are there?”</i> she asks. She caresses her face with one of her hands. <i>“Her face is a lot longer than ours, too, and she doesn’t have these puffy things around our mouths.”</i>");
 	output("\n\nYou respond to most of her questions at once by saying that everyone is born a little different: some people have more than others; some are born taller, or with bigger assets. But you remind her that not always is bigger, better, and that she should judge others by their personality and their merits rather than their physical appearance.");
 	output("\n\n<i>“And these?”</i> she asks, groping and squeezing at her tits. You tell her that those are called ‘breasts,’ and that their primary function is to nurse young with – but they have lots of other feel-good uses, too. ");
-	if (pc.isLactating()){
+	if(pc.isLactating()) {
 		output("\n\n<i>“How do you ‘nurse’ young with these? That doesn’t make any sense to me.”</i>");
 		output("\n\nYou reply that she’s asking at a lucky time: you gently grip your boob just beneath the nipple and give it a squeeze. Your [pc.milk] sprays from your [pc.nipple] in thin streams, going every which way.");
 		output("\n\n" + (flags["NYKKE_MET"] == undefined ? "Your kip" : "Nykke") + " gasps in surprise at the sight, then a giddy grin crosses her face. This liquid, called ‘milk,’ is what the young of your kind sustain on until they’re older for other, solid foods.");
-		output("\n\n<i>“May I have some?”</i> she asks. You reply that she’s... a little above being breastfed at her age, and you lower your [pc.nipple] away from her. She pouts, but respects your decision.");
+		if(lewdToggle) output("\n\n<i>“May I have some?”</i> she asks. You reply that she’s... a little above being breastfed at her age, and you lower your [pc.nipple] away from her. She pouts, but respects your decision.");
 	}
-	output("\n\n<i>“What about these?”</i> she asks, drawing a finger across her lips, continuing your biology lesson. You tell her that those are her lips: without those, she wouldn’t be able to talk, or open her mouth to eat, or kiss. <i>“What is a ‘kiss?’”</i> she asks, and you demonstrate, leaning forward and putting your [pc.lipsChaste] to hers.");
-	output("\n\n<i>“That felt really good!”</i> she exclaims. You tell her that that is how others of your kind show affection with others. <i>“Can you do that again?”</i> ");
-	output("\n\nYou do so, leaning in to give her another quick peck on her lips. She sighs in delight when your [pc.lipsChaste] meet hers once more. <i>“Can you... can we do that again?”</i> she asks, but you stay firm and tell her that that’s enough for now. She pouts, but respects your decision as her Qal.");
+	output("\n\n<i>“What about these?”</i> she asks, drawing a finger across her lips, continuing your biology lesson. You tell her that those are her lips: without those, she wouldn’t be able to talk, or open her mouth to eat, or kiss.");
+	if(lewdToggle) {
+		output(" <i>“What is a ‘kiss?’”</i> she asks, and you demonstrate, leaning forward and putting your [pc.lipsChaste] to hers.");
+		output("\n\n<i>“That felt really good!”</i> she exclaims. You tell her that that is how others of your kind show affection with others. <i>“Can you do that again?”</i>");
+		output("\n\nYou do so, leaning in to give her another quick peck on her lips. She sighs in delight when your [pc.lipsChaste] meet hers once more. <i>“Can you... can we do that again?”</i> she asks, but you stay firm and tell her that that’s enough for now. She pouts, but respects your decision as her Qal.");
+	}
 	
 	
 	processTime(5);
@@ -3091,7 +3097,7 @@ public function frostwyrmXMasCaroling():void
 	if (flags["FROSTWYRM_KIP_COUNT"] != undefined) {
 		output(", although your performance inspired your "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "daughters" : "daughter") +" to pick up dance along with you; "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "their" : "her") +" body motion and language matching yours, ");
 		if (silly) output("most of "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "their" : "hrt") +" motion in the knees and ankles while "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "their" : "her") +" hands ball into fists, "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "their" : "her") +" shoulders shimmying in time with the lyrics");
-		else if (pc.isNice()) output("twirling around you and grabbing "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "each other" : "you") +" by the hands for a spin{ before switching partners}");
+		else if (pc.isNice()) output("twirling around you and grabbing "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "each other" : "you") +" by the hands for a spin" + (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "before switching partners" : ""));
 		else if (pc.isMischievous()) output("grabbing "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "each other" : "you") +" by the hips and sometimes leaning in to mimic the actions your lyrics described");
 		else output("bumping "+ (flags["FROSTWYRM_KIP_COUNT"] > 1 ? "each other" : "you") +" hip-to-hip but otherwise dancing rather off-tune to the song");
 	}

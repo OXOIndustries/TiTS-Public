@@ -231,6 +231,9 @@ public function chooseStartingRace(race:String = "human"):void {
 			break;
 		case "half-ausar":
 			pc.earType = GLOBAL.TYPE_CANINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			pc.tailType = GLOBAL.TYPE_CANINE;
 			pc.tailCount = 1;
 			pc.addTailFlag(GLOBAL.FLAG_LONG);
@@ -243,6 +246,9 @@ public function chooseStartingRace(race:String = "human"):void {
 			break;
 		case "half-kaithrit":
 			pc.earType = GLOBAL.TYPE_FELINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
 			pc.tailType = GLOBAL.TYPE_FELINE;
 			pc.tailCount = 2;
 			pc.addTailFlag(GLOBAL.FLAG_LONG);
@@ -265,6 +271,9 @@ public function chooseStartingRace(race:String = "human"):void {
 			pc.armType = GLOBAL.TYPE_LEITHAN;
 			//>Four ears: two elfin ears on the side, two bunny ears on top. Probably need a new ear-type for this.
 			pc.earType = GLOBAL.TYPE_LEITHAN;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_TAPERED);
+			pc.addEarFlag(GLOBAL.FLAG_LONG);
 			pc.earLength = 3;
 			//>Reptilian, forked tongues
 			pc.tongueType = GLOBAL.TYPE_LEITHAN;
@@ -283,6 +292,8 @@ public function chooseStartingRace(race:String = "human"):void {
 			break;
 		case "half kui-tan":
 			pc.earType = GLOBAL.TYPE_KUITAN;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
 			pc.tailCount = 1;
 			pc.tailType = GLOBAL.TYPE_KUITAN;
 			pc.addTailFlag(GLOBAL.FLAG_LONG);
@@ -307,6 +318,7 @@ public function chooseStartingRace(race:String = "human"):void {
 			pc.addTailFlag(GLOBAL.FLAG_TAPERED);
 			pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 			pc.earType = GLOBAL.TYPE_GRYVAIN;
+			pc.clearEarFlags();
 			pc.earLength = 3;
 			pc.wingType = GLOBAL.TYPE_GRYVAIN;
 			pc.wingCount = 2;
@@ -1805,10 +1817,10 @@ public function takeCelise():void {
 	}
 	//Feed Celise [Female]
 	else {
-		output("Smiling a little lustily, you strip out of your gear and toss it up on the shelf, next to the key. Celise smiles beatifically up at you, her eyes practically humping your " + pc.skinFurScales() + " as you reveal yourself. When " + pc.eachVagina() + " is exposed, she visibly licks her lips and ceases her masturbation, using her jade secretions to oil her heavy tits, teasing tiny nubs that bloom into big, suckable nipples in a matter of moments. You sensually swivel your hips and ask, <i>“</i>");
-		if(pc.isNice()) output("<i>What’s the best way to feed you?</i>");
-		else if(pc.isMischievous()) output("<i>So, is this your first time or what?</i>");
-		else output("<i>Here’s my cunt. Why aren’t you licking it yet? I thought that’s what you wanted!</i>");
+		output("Smiling a little lustily, you strip out of your gear and toss it up on the shelf, next to the key. Celise smiles beatifically up at you, her eyes practically humping your " + pc.skinFurScales() + " as you reveal yourself. When " + pc.eachVagina() + " is exposed, she visibly licks her lips and ceases her masturbation, using her jade secretions to oil her heavy tits, teasing tiny nubs that bloom into big, suckable nipples in a matter of moments. You sensually swivel your hips and ask, <i>“");
+		if(pc.isNice()) output("What’s the best way to feed you?");
+		else if(pc.isMischievous()) output("So, is this your first time or what?");
+		else output("Here’s my cunt. Why aren’t you licking it yet? I thought that’s what you wanted!");
 		output("”</i>");
 		output("\n\nThe glittering, hungry slut composes herself enough to surge towards you, ignoring your question completely. Instead, she rolls at you like a wave, if a wave could be capped with bloating bimbo lips and a slithering tongue that could put a snake to shame. You let her crash into you, knowing that she doesn’t pose any real threat at this point, and simply enjoy the sensation of her warm body sliding around your " + pc.legOrLegs() + ". In a way, it’s like slipping into a nice bath, only the bath is a bit thicker and strokes you everywhere, like an army of phantasmal tongues, all worshipping you at once.");
 		output("\n\nThe real tongue comes into contact with " + pc.oneVagina() + " a moment before two plush pillows compress against your mons, smothering your labia in sloppy-wet kisses. The tongue slithers over the folded flesh, drawing gasps and moans from you as your pussy goes ten kinds of juicy. Your " + pc.clitDescript() + " engorges and peeks out from its hood in response, hard and sensitive against the slippery, gooey mouth. You grab hold of the shelf to try remain upright, briefly fearing that you’ll fall inside her and drown as the pleasure takes you, but the way Celise’s eyes look up at you while she tends to your " + pc.vaginaDescript() + " leaves no doubt in your mind: she’d never let that happen. She’s far too busy worshipping you orally, sucking down your juices even as hers turn your exterior genitalia into a swampy, green mess.");

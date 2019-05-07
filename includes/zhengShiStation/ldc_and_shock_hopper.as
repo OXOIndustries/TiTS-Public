@@ -392,9 +392,10 @@ public function loseToJumpBossPart2Busted():void
 		output(". Heat blossoms from her thumping body as she rides your pole and creams your crotch. The radiant pressure is otherworldly; simultaneous sensations of numbness and excitement confuse your mind.");
 		output("\n\nWhat she does next shatters your brain, breaking it into shards of fuck-crazed essence. The frequency at which your eyes roll back, realign, then roll back again is disturbing, but you can’t care. <i>Besides, mistress is taking care of you.</i> Why would she damage her property?");
 		output("\n\nA kick to the stim unit sets it to ‘cum right the fuck now’ and you are bidden on a deep and unknowable level to do so. The groaning bunny’s dick flexes out ropy streams of bunny-batter that lasso through the air, slapping into your " + (pc.hasHair() ? "hair":"head") + ", your cheeks, your [pc.chest] - you open your mouth and roll out your [pc.tongue], sinking further into depravity when her hot, fresh taste trickles down your throat. Sure, you’re cumming");
-		if(pc.cumQ() >= 1000)
+		var cumQ:Number = pc.cumQ();
+		if(cumQ >= 1000)
 		{
-			output(", and you’re noticing " + (pc.cumQ() < 10000 ? "a small bulge":"quite the swell") + " on her");
+			output(", and you’re noticing " + (cumQ < 10000 ? "a small bulge":"quite the swell") + " on her");
 		}
 		output(", but even the hew of orgasm can’t offer you relief. <i>You are merely being allowed to feel this way</i>, and what you feel is consistent, unbroken.");
 		output("\n\nAnd by the look on your mistress’ face, that’s exactly what she wants.");
@@ -416,7 +417,7 @@ public function loseToJumpBossPart2Busted():void
 		output("\n\nYou thrash and spasm, muscles locking down with more pressure than the electro-blanket applied. You’re totally helpless and at her mercy, delighting in every hot kiss, every warm lick. Rationality flows out your ears on the tide of submissive bliss. Prickly tingles pepper your muscles and nerves in an endless tap dance, gloving your entire body in an atmospheric field that redefines your concepts of stimulation and belonging.");
 		output("\n\nLike a good slut you let her work, beg her for more, and wail appropriately when she finds your favorite spots. She’s making you her pliant, obedient slave. You’re letting her do it, and you’re being rewarded for it.The moment you let your chance to escape slip by, back when she strapped you up by this wonderful machine, was the moment you stopped trying to do anything but obey.");
 		output("\n\nShe has total control over you.");
-		output("\n\n<i>“Fuck yes,”</i> the pastel bun growls, vibratory voice like a stone skipping on your " + (pc.hasVagina() ? "feminine ":"") + "river. <i>“Someone like you who can turn me on at at the drop of a fucking pin, and I’ve got you all to myself, I’ve got you cumming your fucking brains out!”</i> she laughs, but not maliciously");
+		output("\n\n<i>“Fuck yes,”</i> the pastel bun growls, vibratory voice like a stone skipping on your " + (pc.hasVagina() ? "feminine ":"") + "river. <i>“Someone like you who can turn me on at the drop of a fucking pin, and I’ve got you all to myself, I’ve got you cumming your fucking brains out!”</i> she laughs, but not maliciously");
 		if(pc.hasVagina()) output(", making a whipping motion with her head when a " + (!pc.isSquirter() ? "small":"large") + " squirt of [pc.girlCumNoun] flies out, a glistening missile of erotic fulfillment buzzing past her ear");
 		output(". She harvests your body of orgasm after orgasm, and no matter how many times relief floods through your head there’s always a buzz there keeping you going. <i>“Do you have any idea how good of a of a slave you are? How lucky you are that this is where you ended up?”</i>");
 		output("\n\nMassaging fingers blaze trails up and down your inner thighs, teasing out the knots" + (pc.hasVagina() ? " and collecting more femslime for the next collecting lick":"") + ". She’s giving your soul a lot think about the more she licks it into depravity; it makes you think of all this less as luck and more like destiny. Smack after wet smack you somehow get louder, no doubt a wonderful show to the orgy on the bed. Stars, if this is how good she makes you feel, then what’ll happen when <i>you are on that bed?</i> Pleasure crests at sanity-eroding levels, smack, smack, smack her tongue goes while her hips thrust frustratedly against your back.");
@@ -481,8 +482,12 @@ public function moreHopperBadEndStuff():void
 	output("\n\nIncapable of recognizing anything, you open your eyes to note the inflated gut you now possess. A small breath escapes your lips. You’re not sure if you can trust anything anymore, even with the narrow band of vision you still possess.");
 	output("\n\nYour consciousness begins to abate, and it’s a sweet release you gladly allow.");
 	processTime(60);
-	if(pc.hasVagina()) pc.loadInCunt(enemy,0);
-	else pc.loadInAss();
+	if (pc.hasVagina())
+	{
+		flags["LDC_SHOCKHOPPER_CUMIN"] = 1;
+		pc.loadInCunt(enemy,0);
+	}
+	else pc.loadInAss(enemy);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",hopperLossBadEndCombinedNewLifeShit);
@@ -799,13 +804,14 @@ public function fuckTheHopper2(x:int):void
 	else if(x >= 0 && pc.hasKnot(x)) output("knot");
 	else output("hilt");
 	output("-deep into the bloated bunny’s cunny. A moment later and you’re over the edge, ");
+	var cumQ:Number = pc.cumQ();
 	//hardlight: 
 	if(x < 0) output("hammered in all the right places by a discharge of neurons. The hardlight strapon around your nethers transmits all the feeling of a hard-won orgasm right to your brain, making you howl with pleasure.");
 	//Small cum vol.:
-	else if(pc.cumQ() < 200) output("drooling your wad into the cavernous channel of the Hopper’s abused cunt. You’re not sure she even noticed, given the absolute flood already sloshing in her stomach.");
+	else if(cumQ < 200) output("drooling your wad into the cavernous channel of the Hopper’s abused cunt. You’re not sure she even noticed, given the absolute flood already sloshing in her stomach.");
 	//med. cum vol.: 
-	else if(pc.cumQ() < 1000) output("shooting your goo straight down the gaping chasm of the Hopper’s horsecock-molded cunt. She gasps, moaning forcefully enough to send a streak of pearly spunk drooling down her chin while the L.D.C.’s still hilted down her throat. Jeez, how’s she even breathing around that thing?");
-	else if(pc.cumQ() < 25000) output("slamming your hips against the Hopper’s and emptying your [pc.balls] into her. Geysers of [pc.cum] lurch from deep inside you, shooting through throbbing dickflesh and filling her belly with steaming seed. Her belly, already gravid with the L.D.C.’s load, swells to a positively pregnant size as your inhuman orgasm goes on and on.");
+	else if(cumQ < 1000) output("shooting your goo straight down the gaping chasm of the Hopper’s horsecock-molded cunt. She gasps, moaning forcefully enough to send a streak of pearly spunk drooling down her chin while the L.D.C.’s still hilted down her throat. Jeez, how’s she even breathing around that thing?");
+	else if(cumQ < 25000) output("slamming your hips against the Hopper’s and emptying your [pc.balls] into her. Geysers of [pc.cum] lurch from deep inside you, shooting through throbbing dickflesh and filling her belly with steaming seed. Her belly, already gravid with the L.D.C.’s load, swells to a positively pregnant size as your inhuman orgasm goes on and on.");
 	else output("[pc.cock " + x + "] erupting in a torrential deluge of [pc.cum]. Spooge flows in an unending tidal wave, swelling the Hopper’s already cum-stuffed belly. Her gut stretches, trying to make room for the sheer volume of your orgasm" + (!pc.hasKnot(x) ? " even as half of it squirts back around your dick":"") + ". Halfway through your nut, it gets so bad that the Hopper gags on the L.D.C.’s cock and chokes out a waterfall of his cum, making room for your much bigger wad.");
 	output("\n\nWhen the mind-blanking climax finally passes by you, you pull out and stumble back against the bulkhead, surveying a bed and two bunnies utterly drenched in three orgasms’ worth of spooge. That’s what they deserve for all of... all of this piracy and slavery all bundled up together around your stolen probe. Speaking of which, you grab the Hopper’s belt device off the floor, click the button, and tell the slaves to get going while the getting’s good.");
 	output("\n\nYou’ve got a probe to go find.");
@@ -894,12 +900,16 @@ public function rideHopperSlut2(args:Array):void
 	output("\n\nThat just has the opposite effect. The Hopper’s body goes rigid a moment, following by a whimper of pleasure and a sudden rush of warmth shooting into your [pc.vagOrAss " + x + "]. Damn it, woman. You twist her nipple harder as punishment, but you can’t deny how good it feels to be filled by all that virile bunny-spunk. But you’re not quite done... not yet.");
 	output("\n\nYou dig your fingers into the pirate leader’s ass and push up, ridding that thick bunny-cock even faster than before. And she’s so damn sensitive now, over-stimulated in the tail-end of her orgasm, that she’s whimpering and squirming under you by the end of the first bounce. More movement milks more spunk from her clenching balls, swelling your " + (x >= 0 && !pc.isPregnant(x) ? "womb":"stomach") + " with cum. At the same time, you shift your attention to her commander and the dick wedged in his tight little hole. You " + (y >= 0 ? "thrust yourself deep in, probing for the sensitive ass-clit hidden in there. It doesn’t take long to find it, and when you do, you’re greeted by a howl of pleasure that echoes through the captain’s quarters.":"urge the futa cat to thrust deeper, to find the most tender places hidden away in the bunny’s butt. She’s eager to please - you and the L.D.C. both! Her hips buck and wiggle, probing around until she finally hits on that sweet little ass-clit hard enough to make the black bunny scream.") + " And stars does he cum from it.");
 	output("\n\nThe Hopper is blown straight off his cock by the first geyser, plastered on the blankets by a wad of white cream, and then the rest is flooding through her fur in great gouts of steaming seed. Watching that degenerate show is just the last little bit of stimulation to push you over the edge. Your breath catches, loins tightening as your [pc.vagOrAss " + x + "] squeezes hard around the Hopper’s thick dong" + (y >= 0 ? "; your [pc.cock " + y + "] pushes deep before release, busting your nut hard into the dusky bun’s behind. He shudders, still leaking from his own orgasm, limply allowing you to fill him as his lieutenant did to you":"") + ".");
-	output("\n\nThe cascade of spooge, flowing from body to body, lasts for a good long while before you’ve finally taken the whole of the Hopper’s load. When she’s finally finished, you roll heavily off her and onto your side, shivering with pleasure as white cream leaks down your thighs. The two bunnies are two busy humping at each other once you’re gone to pay you any mind as you slowly clean yourself up and grab the slave baton from the Hopper’s sundered uniform. One tap and the harem sluts are free to exact their sexual vengeance on the Jumper leadership while you get ready to go find your inheritance.");
+	output("\n\nThe cascade of spooge, flowing from body to body, lasts for a good long while before you’ve finally taken the whole of the Hopper’s load. When she’s finally finished, you roll heavily off her and onto your side, shivering with pleasure as white cream leaks down your thighs. The two bunnies are too busy humping at each other once you’re gone to pay you any mind as you slowly clean yourself up and grab the slave baton from the Hopper’s sundered uniform. One tap and the harem sluts are free to exact their sexual vengeance on the Jumper leadership while you get ready to go find your inheritance.");
 	processTime(30);
 	//track outcome and slavegrill freeing
 	pc.orgasm();
-	if(x >= 0) pc.loadInCunt(enemy,x);
-	else pc.loadInAss();
+	if (x >= 0)
+	{
+		flags["LDC_SHOCKHOPPER_CUMIN"] = 2;
+		pc.loadInCunt(enemy,x);
+	}
+	else pc.loadInAss(enemy);
 
 	flags["JUMPER_LEADERSHIP_WINFUCKED"] = 1;
 	flags["SHOCK_HOPPER_FUCKED"] = 1;
@@ -952,9 +962,10 @@ public function domTheLDCsAss(x:int):void
 	else if(pc.hasVagina()) output("make your [pc.pussies] flex eagerly, inner walls clenching close enough to touch needily");
 	else if(pc.hasCock()) 
 	{
+		var cumQ:Number = pc.cumQ();
 		output("strains your [pc.cocks]; [pc.cumColor] ");
-		if(pc.cumQ() < 100) output("strings");
-		else if(pc.cumQ() < 5000) output("spurts");
+		if(cumQ < 100) output("strings");
+		else if(cumQ < 5000) output("spurts");
 		else output("streams");
 		output(" of preseed ooze onto the dirty bed");
 	}
@@ -1015,7 +1026,9 @@ public function domTheLDCsAss2(x:int):void
 	else if(longii >= 30) output("crushing ");
 	output("weight of your " + (x < 0 ? "holographic ":"") + "cockflesh fall on his ass. It’s the last non-verbal suggestion he’s going to get. " + (!pc.isTaur() ? "You align":"The girls align") + " your crown with his hole and you simultaneously put force to your [pc.hips], pressing the [pc.cockOrStraponHead " + x + "] to the horse-bunny’s tantalizing entrance.");
 	output("\n\nThe force, the intense pressure, and <i>the loudness</i> of his asshole popping nearly makes you cum.");
+	
 	if(x >= 0) pc.cockChange();
+	
 	output("\n\n<i>“Fu... Fuck!!”</i> the bunny boss squeaks, a strand of cum plastering his lips, another ultra-thick cord whirling past his upjerked chin and barely open eyes. Goo-webbed blankets are tugged and nude bodies slide. You burden his distending asshole with more of your raging " + (x < 0 ? "faux-cock":"[pc.cockNoun " + x + "]") + ", pumping your [pc.cockOrStraponFull " + x + "] further into his wet cavern until it seems like his entire body tightens around it. The gyrations of your waist press the slick, hard tip into sensitive clusters that have him lurching forward involuntarily, changing the color of his puddled place on the sheets from chalky to milky.");
 	if((x >= 0 && pc.cockTotal() > 2) || (x < 0 && pc.hasCocks())) output(" Your extra shafts slide over his wobbling rump, painting his curves with cock-juice that his fur soaks up like a sponge worth its price.");
 	else if((x >= 0 && pc.cockTotal() > 1) || (x < 0 && pc.hasCock())) output(" Your extra shaft slides over his wobbling rump, painting his curves with cock-juice that his fur soaks up like a sponge worth its price.");
@@ -1077,20 +1090,21 @@ public function domTheLDCsAss2(x:int):void
 
 	if(x >= 0)
 	{
+		var cumQ:Number = pc.cumQ();
 		// PC low cum
-		if(pc.cumQ() < 150)
+		if(cumQ < 150)
 		{
 			output("\n\nYour orgasm is nowhere near as virile and powerful as the laquine’s. The ecstasy of release is there, but his balls do more than churn, they <i>pump</i>, and they’re pumping his pool with industrial strength and entirely useless loads of rabbit-jizz that concuss the bulkhead of the ship you’re standing in.");
 			output("\n\nThe dribbles and terran-typical ribbons of [pc.cumVisc] [pc.cumNoun] you fill his ass with are nothing compared to the turgid lines of bunny nut " + (silly ? "cheerios":"cream") + " splashing against the wall, his chin, and whatever the hell else is in the way until he’s practically swimming in his own feracity. L.D.C.’s climax does eke out the most of your load, however, and you’re sure the warmth of your [pc.cumColor] seed is to his liking" + (pc.cockTotal() > 1 ? ", particularly those lines you’ve drawn across his pre-soaked ass":"") + ".");
 		}
 		// PC plenty of cum
-		else if(pc.cumQ() < 4000)
+		else if(cumQ < 4000)
 		{
 			output("\n\nYour ecstasy-imbued orgasm is only half as mighty as the laquine’s, but it’s enough that you’re right there with him, howling as his girthy nuts churn, no, <i>pump</i> with industrial strength" + (pc.balls > 0 ? " just beneath yours; testes clench and quiver against one another":"") + ". Rabbit-jizz concusses the bulkhead with lurid effect, entirely wasted and impossible for him to handle.");
 			output("\n\n[pc.Cum] splashes every nerve cluster inside the bunny-boy’s ass as turgid lines of laquine nut-cream splatter the walls, his chin, and whatever the hell else is in the way until he’s practically swimming in his own feracity. The chattering and cute groans coming out of his mouth only make the filling of his bowels more pleasurable" + (pc.cockTotal() > 1 ? ", to say nothing of the thick lines of [pc.cumNoun] drawing shapes of across his back and ass":"") + ".");
 		}
 		// PC lots of cum
-		else if(pc.cumQ() < 25000)
+		else if(cumQ < 25000)
 		{
 			output("\n\nWhen the bunny-boy geysers, you do much the same. The strength at which lapine nut-batter concusses the walls and whatever else is in front of his flared horse-dong is the same at which you ecstatically pump him full of [pc.cumVisc] [pc.cumNoun], the sheer volume flowing through your cum-vein prying his anxious ass apart to make room for its capacious inflation.");
 			output("\n\nIf you were fucking a pussy, he’d be pregnant ten times over. As it is, you’re giving him a spunk-bump that’s gonna leave a trail of [pc.cumColor] cum that’ll lead you right back to him for round two.");
@@ -1122,12 +1136,12 @@ public function domTheLDCsAss2(x:int):void
 	}
 	// Merge
 	output("\n\nYou catch your breath in deep gasps and prickling blinks. It almost hurts to swallow in the wake of your overwhelming climax. It’s like every drop of liquid in your body was wrung out by the torrid wave of euphoria you just landed.");
-	output("\n\nIt’s exhausting just freeing your [pc.cockOrStrapon " + x + "] from the slut-boy’s rear, the ring of his ruined asshole " + (longii < 12 ? "slightly agape":"gaping like a chasm") + " in the wake of your assertive lovemaking." + (pc.hasVagina() ? " You deposit another few loads of [pc.cumNoun] on his anus in parting.":"") + (pc.hasCuntTail() ? " Your cunt-tail sends a signal to your brain, one that bids you look back to see its lips caked with the dazed XO’s seed. Good girl.":""));
-	output("\n\nYou stand and collect your gear, all the while thinking of what you should do now as the lawless echelon slowly rouse. One thing’s for sure: you’ve left that bunny-boy little more than a shuddering lump of " + (pc.hasCock() ? "[pc.cumNoun]-splattered ":"") + "coal.");
+	output("\n\nIt’s exhausting just freeing your [pc.cockOrStrapon " + x + "] from the slut-boy’s rear, the ring of his ruined asshole " + (longii < 12 ? "slightly agape":"gaping like a chasm") + " in the wake of your assertive lovemaking." + (x >= 0 ? " You deposit another few loads of [pc.cumNoun] on his anus in parting.":"") + (pc.hasCuntTail() ? " Your cunt-tail sends a signal to your brain, one that bids you look back to see its lips caked with the dazed XO’s seed. Good girl.":""));
+	output("\n\nYou stand and collect your gear, all the while thinking of what you should do now as the lawless echelon slowly rouse. One thing’s for sure: you’ve left that bunny-boy little more than a shuddering lump of " + (x >= 0 ? "[pc.cumNoun]-splattered ":"") + "coal.");
 	output("\n\n");
 	processTime(35);
 	if(pc.hasCuntTail()) feedCuntSnake(enemy);
-	enemy.loadInAss(pc);
+	if(x >= 0) enemy.loadInAss(pc);
 	pc.orgasm();
 	
 	flags["JUMPER_LEADERSHIP_WINFUCKED"] = 1;
@@ -1198,6 +1212,7 @@ public function getWorshippedByBuns(cockUse:Boolean):void
 	// Merge
 	// PC cock small
 	var longii:Number = 0;
+	var cumQ:Number = pc.cumQ();
 	if(cockUse) 
 	{
 		longii = pc.cocks[x].cLength();
@@ -1291,7 +1306,7 @@ public function getWorshippedByBuns(cockUse:Boolean):void
 			output("\n\nThrough your nerve-melded relationship, you feel the frictious texture of its attempts to pull in more of that tremendous horsecock, and you already feel the searing pre spurting into its unknowable depths. You almost can’t wait for him to cum, to be privy to that raw detonation of delight. Sure, the Hopper’s got the bigger balls (literally and figuratively), but feeling that dick going off inside... Oh man.");
 		}
 		// Merge
-		output("\n\nThe slovenly shock-bunny pulls your [pc.cock " + x + "] from her mouth, gasping for air and bouncing from the pulses in her own gently stroked dick. She falls into you muzzle-first, face overlapped by your juice-glistening prick" + (pc.cockTotal() > 1 ? "s":"") + ", licking the undersides like a voracious slut while pawing " + (pc.cockTotal() == 1 ? "its":"their") + " full length" + (pc.cockTotal() > 1 ? "s":"") + " with the adoration and visage of a born cocksleeve. That kind of dedication deserves a reward, and you ensure the underperforming L.D.C. watches as his LT is rewarded with a scritch behind the floppy ears and another mouthful of [pc.cockType " + x + "] meat. <i>“Maybe I’ll keep this bunny. You’ve got her on a good leash, and she’s good at at lip service.”</i>");
+		output("\n\nThe slovenly shock-bunny pulls your [pc.cock " + x + "] from her mouth, gasping for air and bouncing from the pulses in her own gently stroked dick. She falls into you muzzle-first, face overlapped by your juice-glistening prick" + (pc.cockTotal() > 1 ? "s":"") + ", licking the undersides like a voracious slut while pawing " + (pc.cockTotal() == 1 ? "its":"their") + " full length" + (pc.cockTotal() > 1 ? "s":"") + " with the adoration and visage of a born cocksleeve. That kind of dedication deserves a reward, and you ensure the underperforming L.D.C. watches as his LT is rewarded with a scritch behind the floppy ears and another mouthful of [pc.cockType " + x + "] meat. <i>“Maybe I’ll keep this bunny. You’ve got her on a good leash, and she’s good at lip service.”</i>");
 		output("\n\n<i>“F-fuck, no! Don’t be that kind of pr-!”</i> L.D.C. whines, but you merely shove him back into your sweat-caked surface, moaning in mounting bliss as his tongue runs over your crotch all over again.");
 		output("\n\nIt’s not just the feel of that thick muscle that has you clenching your [pc.thighs] together, it’s that you can feel his consternation behind it - that little bit of resistance tickles your dominant side, and it makes his hand-smothering balls lurch closer to orgasm. The " + (silly ? "ink-ribbun":"ink-bun") + " wants to mouth off and act tough, but he also can’t admit he fucking loves being your bitch. You can see that subby side no clearer than when you grab him by his tall ears and rein him in.");
 		output("\n\nYou guide the imperious pirate down your girth until he’s kissing her right around your swollen tip");
@@ -1322,14 +1337,14 @@ public function getWorshippedByBuns(cockUse:Boolean):void
 		output(".");
 
 		// PC low cum
-		if(pc.cumQ() < 25) 
+		if(cumQ < 25) 
 		{
 			output("\n\nAlthough the mouth" + (pc.cockTotal() > 1 ? "s":"") + " around your [pc.cocks] suck with the power of a pussy, your [pc.balls] " + (pc.balls > 1 ? "don’t":"doesn’t") + " have the necessary amounts of [pc.cum] to adequately reward your cocksucker" + (pc.cockTotal() > 1 ? "s":"") + ".");
 			output("\n\nYou’re not certain if " + (pc.cockTotal() == 1 ? "he notices":"they notice") + " though, not with their eyes rolling back as they blow their own mighty loads onto the floor. Your numb manhood" + (pc.hasCocks() ? "s":"") + " churn out terran-typical ropes of spunk into " + (!pc.hasCocks() ? "his":"their") + " throats, the [pc.cumVisc] loinfruit trickling into their stomachs until you’re all out - which doesn’t take long.");
 			if(pc.hasCocks()) output(" Your extra member" + (pc.cockTotal() > 2 ? "s dribble":" dribbles") + " sympathetically over their brows, leaving easily washed or licked off marks.");
 		}	
 		// PC plenty of cum
-		else if(pc.cumQ() < 1000)
+		else if(cumQ < 1000)
 		{
 			output("\n\nGood cocksuckers get filled bellies, and you’re all too happy to reward the lawless laquine" + (pc.hasCocks() ? "s":"") + " with your [pc.cum]. Hot flashes precede every throat-swelling eruption inside. You’re not entirely sure if " + (pc.hasCocks() ? "he’s":"they’re") + " noticing the streamers of [pc.cumVisc] spooge your tensing [pc.balls] " + (pc.balls <= 1 ? "is":"are") + " unloading into " + (!pc.hasCocks() ? "his":"their") + " throats. There’s enough volume to fill " + (pc.hasCocks() ? "their stomachs and rewrite their":"his stomach and rewrite his") + " sense of taste.");
 			output("\n\nThat’d be fitting. Knowing " + (!pc.hasCocks() ? "he’ll":"they’ll") + " probably be tasting you hours after you leave helps put a bit more strength in your rhythmically contracting ");
@@ -1339,7 +1354,7 @@ public function getWorshippedByBuns(cockUse:Boolean):void
 			if(pc.hasCocks()) output(" They certainly won’t be able to shake your presence with the amount you’re dumping on their heads.");
 		}
 		// PC lots of cum
-		else if(pc.cumQ() < 25000)
+		else if(cumQ < 25000)
 		{
 			output("\n\nWickedly powerful pangs of pleasure assault your brain. Intense orgasmic pressure forces itself to the forefront of all your thoughts to help you revel in the sheer volume of [pc.cum] you’re pumping into the lawless laquine" + (pc.hasCocks() ? "s":"") + ".");
 			output("\n\nThe rhythmic contractions in your [pc.balls] tell" + (pc.balls <= 0 ? "s":"") + " you when " + (!pc.hasCocks() ? "his neck":"their necks") + " bulge" + (pc.cockTotal() == 1 ? "s":"") + " with stomach-filling loads - and " + (!pc.hasCocks() ? "it does":"they do") + " fill out. L.D.C.’s body takes on a spherical shape" + (pc.hasCocks() ? " while the Hopper has a more defined spunk-bump":"") + ". Realizing you’re not stopping, especially as [pc.cumNoun] spurts from " + (!pc.hasCocks() ? "his":"their") + " nostrils, you pull out and shower " + (!pc.hasCocks() ? "him":"them") + " with the rest, painting " + (pc.hasCocks() ? "them":"him") + " [pc.cumColor] with a lasting impression of you.");
@@ -1351,7 +1366,7 @@ public function getWorshippedByBuns(cockUse:Boolean):void
 			output("\n\nOnly a pathetically faint groan seeps between your [pc.lipsChaste] as " + (!pc.hasCocks() ? "his":"their") + " stomach" + (pc.hasCocks() ? "s":"") + " swell to full with [pc.cumVisc] spooge, filling with so much that by the time you recognize you’re on your fifth cumshot it’s squirting back up " + (!pc.hasCocks() ? "his mouth and nose":"their mouths and noses") + ". You drag " + (!pc.hasCocks() ? "him":"them") + " off your virility-blasting dong" + (pc.hasCocks() ? "s":"") + " and give the two a facial they’re not soon to forget, painting their heads and bodies [pc.cumColor] with a blanket of enviable sperminess. Laquines are a musky race, but being that thoroughly basted, you’ve probably rewritten their signature to yours.");
 		}
 		// Merge
-		output("\n\nIt almost hurts to breathe, but you’re calming down well enough. Your orgasm reduces to a few relaxing dribbles. The slaves dutifully clean your [pc.cocksLight] before you collect your things. You’re soon left staring at the sex-coated bunnies who lie back heaving and panting, every hair of fur on their bodies dripping with sweat and " + (pc.cumQ() < 1000 ? "some":"a lot of") + " spooge. The ones at the top have themselves been utterly claimed.");
+		output("\n\nIt almost hurts to breathe, but you’re calming down well enough. Your orgasm reduces to a few relaxing dribbles. The slaves dutifully clean your [pc.cocksLight] before you collect your things. You’re soon left staring at the sex-coated bunnies who lie back heaving and panting, every hair of fur on their bodies dripping with sweat and " + (cumQ < 1000 ? "some":"a lot of") + " spooge. The ones at the top have themselves been utterly claimed.");
 		output("\n\nQuite a satisfying conclusion.");
 		output("\n\n<i>“That wasn’t bad...”</i> the Hopper murmurs, looking at you with a small twinkle in her subby eyes.");
 		output("\n\nL.D.C. scoffs, <i>“Speak for yourself, babe.”</i>");
@@ -1410,7 +1425,7 @@ public function getWorshippedByBuns(cockUse:Boolean):void
 		output("\n\nThe Hopper " + (pc.legCount > 1 ? "shoulders your leg":"holds you steady") + " with all the strength a domme bunny can muster, her tongue swishing with near-mechanical speed. She catches up to her captain’s level of twat-pleasing performance in no time, eager to show you how well she can treat your [pc.pussyNoun].");
 		if(pc.balls > 1)
 		{
-			output("She doesn’t leave your [pc.balls] alone. The zap-rabbit moans louder when she handles those sumptuous spunk-weights that rest atop her furry head, wearing your ");
+			output(" She doesn’t leave your [pc.balls] alone. The zap-rabbit moans louder when she handles those sumptuous spunk-weights that rest atop her furry head, wearing your ");
 			if(pc.hasStatusEffect("Uniball")) output("taut");
 			else if(pc.ballDiameter() < 3) output("weighty");
 			else if(pc.ballDiameter() < 7) output("bloated");
@@ -1503,7 +1518,7 @@ public function getWorshippedByBuns(cockUse:Boolean):void
 		}
 		output(" It’s all enough to make you cum.");
 		// PC less cum
-		if(pc.cumQ() < 10000) 
+		if(cumQ < 10000) 
 		{
 			output("\n\nWhen the first rope of [pc.cum] surges through your bulging urethra, you’re not sure whose mouth its going in. More follow" + (pc.balls > 0 ? ", forced out by your [pc.balls], tensing from every massage and coaxing stimulation":"") + ". Numbed by the weight and force of your climax, you get the distinct feeling that your [pc.cocks] " + (!pc.hasCocks() ? "is":"are") + " being moved, that while your [pc.cockHeadNoun " + x + "] spurts and spurts and spurts, your cum-blasts are well aimed.");
 			output("\n\nYou’ve no doubt filled the L.D.C’s mouth, and that of his lieutenant’s. What it feels like now is all you’ve got being poured out on them, marking them almost permanently with your dribbly spooge. Every shot now, every impelling thrust against their own detonations makes you cry out in ecstasy. It only lasts for a short and so very blissful time, but that sensitivity takes ages to die down.");
@@ -1697,9 +1712,9 @@ public function laquineShockyThreesomes2(x:int):void
 	if(pc.balls > 0)
 	{
 		if(pc.ballDiameter() < 5) output(" Your cum-pouch swings close to his, not quite heavy enough to touch.");
-		else output(" Your sagging ballsack collides with L.D.C.’s, sinking into testicular thresh");
+		else output(" Your sagging ballsack collides with L.D.C.’s, sinking into testicular thresh.");
 	}
-	output(". You tug and tweak the weapons-grade nipples between your fingers, grinding the unbalanced candy-rabbit’s ass into your personal space.");
+	output(" You tug and tweak the weapons-grade nipples between your fingers, grinding the unbalanced candy-rabbit’s ass into your personal space.");
 	output("\n\n<i>“H-hey, don’t you know how to treat a woman?”</i> the bunny-boy quips, but he’s just trying to distract from his inattentiveness - if he practiced what he preached, then he’d have been all over her from the start. That’s something you growl out to him after the next feral thrust into still-stretching anus.");
 	processTime(15);
 	pc.lust(1000);
@@ -1739,22 +1754,25 @@ public function laquineShockyThreesomes3(x:int):void
 	//use Z for all main dick descs now since either dick could be in bitch boi.
 	var z:int = x;
 	if(y >= 0) z = y;
-
+	var cumQ:Number = pc.cumQ();
 	// PC one cock
 	if(y < 0) output("\n\nSuddenly withdrawing from the Hopper, you see her winking entrance heave without your indelible presence. The jolt of your exit results in her tumbling down into L.D.C.’s embrace, unhooking his legs and throwing him flat on the mattress - exposing his ass to you at the same time. <i>“T-the hell..?”</i> he pants.");
 	// PC multi cock
 	else
 	{
 		output("\n\nAbruptly pulling back from the Hopper, the [pc.cockHead " + x + "] of your anal-locked dong ");
-		if(pc.cumQ() < 100) output("dribbles");
-		else if(pc.cumQ() < 1000) output("spurts");
-		else if(pc.cumQ() < 10000) output("squirts");
+		if(cumQ < 100) output("dribbles");
+		else if(cumQ < 1000) output("spurts");
+		else if(cumQ < 10000) output("squirts");
 		else output("streams");
 		output(" pre just past her milking anus before sliding free. Her candied ring protests your absence, gaping as if screaming for your return; the jolt of your sudden exit results in her collapsing atop L.D.C., unhooking his legs and flattening his body to the mattress. The dusky bun’s ass is left totally exposed for " + (pc.cockTotal() == 2 ? "your":"an") + " extra dick to close in on. <i>“W-what the f...”</i> he pants.");
 	}
 	// Merge
 	output("\n\nYou let him know with one [pc.hand] on his cheek and the other lifting his cum-pouch. You hoist the hapless Jumpers up to give yourself room to work. <i>“What are you doi- FUCK!”</i>");
 	output("\n\nThere was only a second for him to panic when " + (y >= 0 ? "a":"your") + " [pc.cock " + z + "] prodded at the entrance to his effluvium-moistened pucker, and you thrust in just the same as you did to his honey-bun: skewering him on your [pc.cockType " + z + "] lance in a gate-smashing thrust. The trappy boy screams in dismay, arms thrashing and hips bucking upwards. The cock-locked skank loses grip on her bottom’s taut tummy, slumping forward only to catch herself on his shoulders" + (y >= 0 ? " and swing you forward just to keep both dicks inside":"") + ".");
+	
+	if(z >= 0) pc.cockChange();
+	
 	output("\n\nThose thick and obscenely swollen nuts of his clench and strain, and you can see a massive swell in what little cockflesh protrudes from her hole. His bloating cum-vein pries apart her interior when it swells with a creamy gout of laquine cum. What splashes her womb spills right back out on the next gut-crunch.");
 	output("\n\nOn your next thrust he does it again, and then again. You twang him like a fiddle even though he’s spasming around your [pc.cock " + z + "] so tightly you can feel pre backing up in your shaft. You’re double-teaming them so hard that you’re just fucking his black-pelt nutsack now, the thrust of [pc.cockNoun " + x + "] hitting all the <i>make this bitch-boy cum</i> buttons in sequence. A slave moves in to hold his those sloshing testes up, coaxing <i>even more</i> into the mistress-rabbit’s rounding gut.");
 	output("\n\n" + (y < 0 ? "You pull out and slam back into her":"You pull out and slam back into them") + ", forcing out a stream of cream with subsequent hammers of the [pc.hip] while you relive the brutal sensations. Can’t let either of them get used to it - how else are you going to work out your <b>lagonic rut</b>!?");
@@ -1764,32 +1782,36 @@ public function laquineShockyThreesomes3(x:int):void
 	output("\n\nYour knees give out, muscle control robbed by your quickening hips. Your [pc.toes] curl into the soft fabrics as beads of spit and visible puffs of heavy air bellow from your mouth. You’re whining and grunting - you’re giving it all you’ve got. " + (!InCollection(pc.race(), "laquine", "half-laquine", "rabbit", "rabbit-morph","laquine-morph","bunny-morph","bunny") ? " If laquines go hard, then you’re going harder.":" Laquines go hard, but you’re a shining example of their race right now.") + " The lurid ‘schlucks’ of pre, the swelling of two bellies, and the deafening moans of the cumming hopper bring you to that euphoric edge.");
 	output("\n\nDominating those two " + (y < 0 ? "in sequence":"simultaneously") + ", asserting as powerfully as you possibly can on the pirate king and queen of Zheng Shi... It’s fucking <b>hot</b>. Everything is so hot! You can’t feel anything in your seething loins anymore. Keening cries shake what you can perceive down to all that matters: the two bunny butts you’re stretching into loose permanence.");
 	output("\n\nA nebulous feeling cinches around your neck and conflagrates, a firestorm brightening every nerve below. A whimpering wheeze escapes your lips as your [pc.balls] brew up the last batch of your impending climax. The evenness once present in your biologically impelled movements falls apart midway through a muscle pinching thrust. You reach out to grab onto something, furry ass, sweat-caked arm, dick, whatever can steady you as your testes churn out seed-filled release amidst ear-splitting orgasms.");
-	// PC low cum
-	if(pc.cumQ() < 100)
+	if(z >= 0)
 	{
-		output("\n\nFor however vigorous your fucking might have been, your [pc.balls] " + (pc.balls <= 1 ? "is":"are") + " not filling the gap as well as you’d like. You spurt a few ropes of [pc.cum] into " + (y < 0 ? "the Hopper":"the laquines") + ", finding yourself trapped inside while a spunk-ball begins to weigh her down heavily. " + (y < 0 ? "You frantically pull out, eager to share what you’ve got left with the ink-bun, spearing yourself into his ass and biting your tongue from the unholy pleasure of it all. ":"") + "Your virility stops flowing long before theirs does.");
-	}
-	// PC plenty of cum
-	else if(pc.cumQ() < 1000)
-	{
-		output("\n\nA potent wave of masculine release soothes your muscles and calms your being. [pc.Cum] sprays through your bulging-out urethra" + (pc.cockTotal() > 1 ? "s":"") + ", splattering the " + (y < 0 ? "Hopper’s":"laquines’") + " insides with [pc.cumVisc] spooge. Due to L.D.C.’s orgasm, she’s already swelled with a pregnant bump of laquine love, and thanks to your orgasm" + (y < 0 ? " and hasty hole swap":"") + ", the dark-furred bunny is experiencing the same sensation of being weighed down by another person’s cum.");
-	}
-	// PC lots of cum
-	else if(pc.cumQ() < 20000)
-	{
-		output("\n\nA cork unpops - you finally unload thanks to the inimitable relief of masculine release. The Hopper’s spunk-bump grows even wider with an ass full of [pc.cum] that surges with such force and volume that it backwashes, splattering your crotch with the excess of your molten-hot passions. " + (y < 0 ? "While you pull out of the candy-colored pirate, you’re hosing her, the wall, and the bed down before you spear L.D.C. on your [pc.cockNoun " + z + "]. ":"") + "The bunny-boss’ stomach fast experiences what it’s like for anyone he wedges on to his dick, and soon both of them are dizzied bearers of tremulous, weighty cum-bumps.");
-	}
-	// PC monstrous cum
-	else
-	{
-		output("\n\nThe air is sucked right out of your lungs when the first geyser of [pc.cumNoun] fires from your [pc.cockNoun " + z + "]. The Hopper is silenced by the intense wad of spooge searing her innards, and utterly mind-broken by the second.");
-		output("\n\nHer entire backside swells out with [pc.cumVisc] seed, to say nothing of her massive belly-bump that, when she falls forward, is pressed on, resulting in an obscene backwash - no, explosion - that mixes L.D.C.’s cream with yours. On the fourth cumshot, you notice your [pc.cumColor] seed bubbling out of her nostrils and lips, the domme’s eyes rolled clean back.");
-		output("\n\n" + (y < 0 ? "You beat feet to swap holes, hosing the both of them and whatever the hell else is in the way with unparalleled virility. Spearing L.D.C.’s hole is a physiological need as much as it was a moment of sanity-erasing pleasure. ":"") + "The sissy-boss groans and gargles hilted on a dick that’s channeling a flood of [pc.cum] through his petite body. You give him a huge cum-belly that wobbles against the Hopper’s, and as your balls continue to drain, your seed soon spurts right out of his slack mouth, fountaining to the incapacitated blue-bun’s lips.");
+		// PC low cum
+		if(cumQ < 100)
+		{
+			output("\n\nFor however vigorous your fucking might have been, your [pc.balls] " + (pc.balls <= 1 ? "is":"are") + " not filling the gap as well as you’d like. You spurt a few ropes of [pc.cum] into " + (y < 0 ? "the Hopper":"the laquines") + ", finding yourself trapped inside while a spunk-ball begins to weigh her down heavily. " + (y < 0 ? "You frantically pull out, eager to share what you’ve got left with the ink-bun, spearing yourself into his ass and biting your tongue from the unholy pleasure of it all. ":"") + "Your virility stops flowing long before theirs does.");
+		}
+		// PC plenty of cum
+		else if(cumQ < 1000)
+		{
+			output("\n\nA potent wave of masculine release soothes your muscles and calms your being. [pc.Cum] sprays through your bulging-out urethra" + (pc.cockTotal() > 1 ? "s":"") + ", splattering the " + (y < 0 ? "Hopper’s":"laquines’") + " insides with [pc.cumVisc] spooge. Due to L.D.C.’s orgasm, she’s already swelled with a pregnant bump of laquine love, and thanks to your orgasm" + (y < 0 ? " and hasty hole swap":"") + ", the dark-furred bunny is experiencing the same sensation of being weighed down by another person’s cum.");
+		}
+		// PC lots of cum
+		else if(cumQ < 20000)
+		{
+			output("\n\nA cork unpops - you finally unload thanks to the inimitable relief of masculine release. The Hopper’s spunk-bump grows even wider with an ass full of [pc.cum] that surges with such force and volume that it backwashes, splattering your crotch with the excess of your molten-hot passions. " + (y < 0 ? "While you pull out of the candy-colored pirate, you’re hosing her, the wall, and the bed down before you spear L.D.C. on your [pc.cockNoun " + z + "]. ":"") + "The bunny-boss’ stomach fast experiences what it’s like for anyone he wedges on to his dick, and soon both of them are dizzied bearers of tremulous, weighty cum-bumps.");
+		}
+		// PC monstrous cum
+		else
+		{
+			output("\n\nThe air is sucked right out of your lungs when the first geyser of [pc.cumNoun] fires from your [pc.cockNoun " + z + "]. The Hopper is silenced by the intense wad of spooge searing her innards, and utterly mind-broken by the second.");
+			output("\n\nHer entire backside swells out with [pc.cumVisc] seed, to say nothing of her massive belly-bump that, when she falls forward, is pressed on, resulting in an obscene backwash - no, explosion - that mixes L.D.C.’s cream with yours. On the fourth cumshot, you notice your [pc.cumColor] seed bubbling out of her nostrils and lips, the domme’s eyes rolled clean back.");
+			output("\n\n" + (y < 0 ? "You beat feet to swap holes, hosing the both of them and whatever the hell else is in the way with unparalleled virility. Spearing L.D.C.’s hole is a physiological need as much as it was a moment of sanity-erasing pleasure. ":"") + "The sissy-boss groans and gargles hilted on a dick that’s channeling a flood of [pc.cum] through his petite body. You give him a huge cum-belly that wobbles against the Hopper’s, and as your balls continue to drain, your seed soon spurts right out of his slack mouth, fountaining to the incapacitated blue-bun’s lips.");
+		}
 	}
 	// Merge
-	output("\n\nShudderingly cold breaths shake your mind of the temptations and wriggle you free of jumper ass. You fall back onto the bed to the " + (pc.cumQ() < 1000 ? "golf claps":"roaring applause") + " of surrounding slaves, feeling tender hands working out the kinks in your very sore limbs. You sputter and crawl off the bed, eager to reclaim your belongings.");
+	output("\n\nShudderingly cold breaths shake your mind of the temptations and wriggle you free of jumper ass. You fall back onto the bed to the " + (z < 0 || cumQ < 1000 ? "golf claps":"roaring applause") + " of surrounding slaves, feeling tender hands working out the kinks in your very sore limbs. You sputter and crawl off the bed, eager to reclaim your belongings.");
 	output("\n\nA few minutes pass and the mismatched laquines stir to life");
-	if(pc.cumQ() >= 20000) output(", utterly painted in [pc.cumColor] creaminess. They flop off each other, disconnecting like electronic peripherals, burbling and lamely swallowing oxygen.");
+	if(z >= 0 && cumQ >= 20000) output(", utterly painted in [pc.cumColor] creaminess. They flop off each other, disconnecting like electronic peripherals, burbling and lamely swallowing oxygen");
+	output(".");
 	//output("\n\nWith all said and done, it’s time to decide what you’re going to do next...");
 	output("\n\n");
 	processTime(30);
@@ -1797,7 +1819,7 @@ public function laquineShockyThreesomes3(x:int):void
 	flags["JUMPER_LEADERSHIP_WINFUCKED"] = 1;
 	flags["SHOCK_HOPPER_FUCKED"] = 1;
 	flags["LDC_FUCKED"] = 1;
-	enemy.loadInAss(pc);
+	if(z >= 0) enemy.loadInAss(pc);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",postSexShockHopperVictoryEpiloggieDoggie,1);
@@ -1972,7 +1994,7 @@ public function drainBunnies2(x:int):void
 	output("\n\n<i>You’ve claimed him.</i> You’re mounted on the biggest pole on Zheng Shi, riding it (or at least trying to) and <i>fucking void</i> does it feel <b>awesome!!</b>");
 	output("\n\nThrough his tender hardness every pulse and heartbeat thuds against your core, a keenly felt jerking sensation that bounces you, makes you curl and flinch uncontrollably. It pounds a tempo into you, one your body dances to. It’s not just your stressed and overstretched pussy-walls flexing to the harsh internal stimulation, it’s <i>fucking everything.</i> You grip his shoulders, watching his cottontail wagging with a blur, barely rising before slamming your [pc.hips] back into his with shocking force.");
 	output("\n\n<i>“" + (pc.isAmazon(false) ? "G-go on, say it. Let everyone know how your mistress makes you feel, sissy boy!":"Look, it’s all mine now!") + "”</i> you squeal, one eye closed.");
-	output("\n\n<i>“" + (pc.isAmazon(false) ? "<i>“A-ah... Fuck! I love it! There, are you happy!? I can’t take this... Fuck me! Please!":"You’re a total... ah... f-f-fuck me! Please, I can’t take this!") + "”</i> he cries in heaving surrender.");
+	output("\n\n<i>“" + (pc.isAmazon(false) ? "A-ah... Fuck! I love it! There, are you happy!? I can’t take this... Fuck me! Please!":"You’re a total... ah... f-f-fuck me! Please, I can’t take this!") + "”</i> he cries in heaving surrender.");
 	output("\n\nYou caress his gigantic cock through your middle, grunting when it yanks you hard. You lean forward, grabbing him by the tiny shoulders, abusing him and being abused in equal measure. You’re so enamored by the pillar of dick in your body that you murmur nothings to cope with the strange pleasure. Behind you, the hopper finally crawls over, growling your ear as she thrusts her much more <i>normal</i> cock through the valley of your [pc.ass].");
 	output("\n\n<i>“" + (pc.isAmazon(false) ? "About time, honey bun. Why don’t you go ahead and show me how ‘ya feel about being the lesser girl here?":"Oohh, you feel worked up!”</i> You reach a hand back to spread your cheeks, cooing <i>“Then don’t keep me waiting, big girl!") + "”</i>");
 	output("\n\n<i>“" + (pc.isAmazon(false) ? "I’ll show you lesser when I’m...”</i> The Hopper thrusts indignantly into your [pc.asshole]. <i>“...When I’m turning you into a cum bubble!":"You want him, you get me too...”</i> She growls, thrusting indignantly into your [pc.asshole]. <i>“...I’m gonna fill you until you’re just a cum bubble, slut!") + "”</i> " + (pc.isAmazon(false) ? "You can’t deny her energy is already firing you up!":"Fuck yes! Every drop in her balls too? <i>Aren’t you just the luckiest slut to get two laquine’s hosing you down?</i>"));
@@ -1988,7 +2010,8 @@ public function drainBunnies2(x:int):void
 		y = 1;
 		if(y == x) y = 0;
 		output("\n\nSeeing the extra hole" + (pc.totalVaginas() > 2 ? "s":"") + " unused next to LDC’s insertion, you squeak when the lapine humper withdraws from your chute and slams herself into your unclaimed [pc.pussyNoun " + y + "], the abruptness and curling pressure forcing her to shoot right into your ancillary womb. <i>“You wanted to fuck us that bad? I’ve got plenty to spare, bitch!”</i> she growls, her dick inflating to the point that it seals itself in your hole while it dumps a gallon or two of lapine nut-butter inside. By the time that hole milks her thoroughly, she’s already pulled out, baring her throbbing bitch-inflater to the air.");
-		pc.cuntChange(y,enemy.cockVolume(0));
+		pc.cuntChange(y, enemy.cockVolume(0));		
+		flags["LDC_SHOCKHOPPER_CUMIN"] = 3;
 		pc.loadInCunt(enemy,y);
 		// PC multi vagina (3 pussies, add-on)
 		if(pc.totalVaginas() > 2)
@@ -1996,7 +2019,8 @@ public function drainBunnies2(x:int):void
 			var z:int = 0;
 			while(z == x || z == y) { z++; }
 			output("\n\n...And she’s stuffing your third [pc.pussyNoun " + z + "] with that spunk-stained rod, writhing and howling, her muscular breeder’s thighs <i>whapping</i> into you with hostile and totally reckless abandon. Your [pc.tongue] falls from your mouth as you let the domme-rabbit take control, impregnating your third womb with another ecstatic and spite-rushed orgasm. <i>“I don’t use sterilex,”</i> she grunts into your neck" + (pc.hasHair() ? ", tugging on your [pc.hair]":"") + ". <i>“When you have my kids, I’ll come and find them, make them part of my crew...! Maybe next time I’ll make you my personal breeder...!”</i> Another brawny load shatters your coherency.");
-			pc.cuntChange(z,enemy.cockVolume(0));
+			pc.cuntChange(z,enemy.cockVolume(0));	
+			flags["LDC_SHOCKHOPPER_CUMIN"] = 3;
 			pc.loadInCunt(enemy,z);
 		}
 		output("\n\nSatisfied, the zap-rabbit reclaims your colon. ");
@@ -2010,9 +2034,10 @@ public function drainBunnies2(x:int):void
 	output("\n\nYou gargle, moaning in mindless bliss, gurgling and babbling over waves of bubbly-hot rabbit-spunk. It doesn’t seem to have an end. There doesn’t seem to be an end to the heart-gripping climax at the center of you. Yes, you’re creaming all over LDC, but it’s so distant and unnoticeable compared to his oceanic expulsion.");
 	if(pc.hasCock())
 	{
+		var cumQ:Number = pc.cumQ();
 		output(" However, your [pc.cocksLight] " + (!pc.hasCocks() ? "is":"are") + " certainly making an attempt, ");
-		if(pc.cumQ() < 25) output("firing off a few bouncy ropes of");
-		else if(pc.cumQ() < 1000) output("pushing out a few long spurts of");
+		if(cumQ < 25) output("firing off a few bouncy ropes of");
+		else if(cumQ < 1000) output("pushing out a few long spurts of");
 		else output("blanketing your bottom boy with an equal wave of");
 		output(" [pc.cum].");
 		// Big enough dick
@@ -2026,12 +2051,14 @@ public function drainBunnies2(x:int):void
 	processTime(35);
 	pc.orgasm();
 	for(x = 0; x < pc.totalVaginas(); x++)
-	{
-		pc.loadInCunt(enemy,x);
+	{			
+		flags["LDC_SHOCKHOPPER_CUMIN"] = 3;
+		pc.loadInCunt(enemy, x);			
+		flags["LDC_SHOCKHOPPER_CUMIN"] = 3;
 		pc.loadInCunt(enemy,x);
 	}
-	pc.loadInAss();
-	pc.loadInAss();
+	pc.loadInAss(enemy);
+	pc.loadInAss(enemy);
 	pc.applyCumSoaked();
 	pc.orgasm();
 	clearMenu();
@@ -2051,12 +2078,14 @@ public function drainBunnies3():void
 	//More cummies.
 	pc.orgasm();
 	for(x = 0; x < pc.totalVaginas(); x++)
-	{
-		pc.loadInCunt(enemy,x);
+	{	
+		flags["LDC_SHOCKHOPPER_CUMIN"] = 3;
+		pc.loadInCunt(enemy,x);	
+		flags["LDC_SHOCKHOPPER_CUMIN"] = 3;
 		pc.loadInCunt(enemy,x);
 	}
-	pc.loadInAss();
-	pc.loadInAss();
+	pc.loadInAss(enemy);
+	pc.loadInAss(enemy);
 	pc.applyCumSoaked();
 	pc.orgasm();
 	flags["JUMPER_LEADERSHIP_WINFUCKED"] = 1;
@@ -2118,4 +2147,519 @@ public function dontFreeThemSlootySloots():void
 	flags["JUMPER_SLAVES_FREED"] = -1;
 	processTime(5);
 	CombatManager.genericVictory();
+}
+//steele preg ends for ldc/shock hopper kids
+public function ldcShockHopperPregnancyEnds():void
+{
+	clearOutput();
+	author("William");
+	showBust("");
+	showName("\nBIRTHING!");
+	
+	var se:StorageClass;
+	var numChildren:int = 0;
+	//var bRatingContrib:int = se.value2;
+	//var pregSlot:int = se.value3;
+	//var babym:Boolean = (se.value4 == 1);
+	
+	var multiPreg:Boolean = false;
+		
+	//use this to track number of wombs giving birth
+	flags["LDC_SHOCKHOPPER_MULTIBIRTH"] = 0;
+	
+	if (pc.hasStatusEffect("LDC ShockHopper Pregnancy Ends 0"))
+	{
+		se = pc.getStatusEffect("LDC ShockHopper Pregnancy Ends 0");
+		numChildren += se.value1;
+		pc.removeStatusEffect("LDC ShockHopper Pregnancy Ends 0");
+		IncrementFlag("LDC_SHOCKHOPPER_MULTIBIRTH");
+	}
+	if (pc.hasStatusEffect("LDC ShockHopper Pregnancy Ends 1"))
+	{
+		se = pc.getStatusEffect("LDC ShockHopper Pregnancy Ends 1");
+		numChildren += se.value1;
+		pc.removeStatusEffect("LDC ShockHopper Pregnancy Ends 1");
+		IncrementFlag("LDC_SHOCKHOPPER_MULTIBIRTH");
+	}
+	if (pc.hasStatusEffect("LDC ShockHopper Pregnancy Ends 2"))
+	{
+		se = pc.getStatusEffect("LDC ShockHopper Pregnancy Ends 2");
+		numChildren += se.value1;
+		pc.removeStatusEffect("LDC ShockHopper Pregnancy Ends 2");
+		IncrementFlag("LDC_SHOCKHOPPER_MULTIBIRTH");
+	}		
+	
+	if (flags["LDC_SHOCKHOPPER_MULTIBIRTH"] > 1) multiPreg = true;
+	
+	var loc:String = getPlanetName().toLowerCase();  //current planet
+	
+	output("You’ve gotten wetter since this all started, but something’s just happened that redefines your concept of being drenched. You place a protective hand to your belly, and note for the first time that the distension has begun to abate. You’re flooding between the legs... Oh shit...");
+	output("\n\n<i>Your water just broke.</i> Your babies are coming. Pain and agony bursts across your middle like arcs of lightning. The ");
+	if (multiPreg) output("kicks in your wombs are");
+	else output("kicking in your womb is");
+	output(" undeniable. Stricken with fear, you let your instincts take over. Your body knows what it needs to do . All you need do is find a place to let it handle this... ");
+	
+	if (InShipInterior()) output("\n\nAt least you’re safe on your ship. You’d like to have the support of a doctor, but it’s just not possible right now.");
+	else if (InRoomWithFlag(GLOBAL.HAZARD)) output("\n\nYou’re afraid and angry, suddenly realizing that you’re nowhere near professional medical care. There’s no helping it... you must give birth alone.");
+	else
+	{
+		output("\n\nAt least you won’t be giving birth unassisted. Perhaps rationality, in the end, won out against the thought-depriving effects of your changed biology?");
+		if (silly) output(" Some part of you really hopes you don’t get cited for littering.");
+	}
+	clearMenu();
+	
+	addButton(0, "Next", ldcShockHopperSteeleBirth,numChildren);	
+}
+//steele birth scene
+public function ldcShockHopperSteeleBirth(numChildren:int = 2):void
+{
+	clearOutput();
+	author("William");
+	showBust("");
+	showName("\nBIRTHING!");
+	
+	var loc:String = getPlanetName().toLowerCase();  //current planet
+	var smallHips:Boolean = true;
+	if (pc.hipRating() >= 14) smallHips = false;
+	var locType:int = 0;
+	var multiPreg:Boolean = false;
+	var numWombs:int = flags["LDC_SHOCKHOPPER_MULTIBIRTH"];
+	if (numWombs > 1) multiPreg = true;
+	flags["LDC_SHOCKHOPPER_MULTIBIRTH"] = undefined;	
+	
+	//on ship 1
+	if (InShipInterior())
+	{
+		output("Finding the medkit takes precedence. You rummage through your storage and clutch it tight to your chest, staggering to your room, the contractions down below hammering a painful reminder, <i>“It’s time!”</i> into you with every step. You can find no words, only huffs and whimpers while you");
+		if (!pc.isCrotchExposed()) (" strip down and");
+		output(" lie on your bed, ready to let your body work.");
+		locType = 1;
+	}
+	//tavros station 2
+	else if (loc == "tavros station")
+	{
+		output("The moment you scream, everyone nearby turns to you, rushing over to see what they can do to help. You needn’t explain yourself to the peacekeepers in the group, they’re already acting on training. Emergency responders are on the scene in less than a minute, escorting you to their vehicle and hauling you off to the station’s hospital amid an applause filled with congratulatory smiles.");
+		if (!pc.isCrotchExposed()) (" The medics relieve you of your clothes en-route.");	
+		moveTo("NURSERYE14");
+		locType = 2;
+	}
+	//mhenga zil village 3
+	else if (loc == "mhen'ga" && flags["PQ_RESOLUTION"] != -1 && (currentLocation == "11. Zil Village Outskirts" || currentLocation == "12. Zil Village Winnar" || currentLocation == "ZIL FESTIVAL VILLAGE" || currentLocation == "ZIL FESTIVAL YURT"))
+	{
+		output("Zil are no strangers to procreation, and when they notice you in the throes of childbirth, you are rushed to the healer’s hut. As an honored guest of Quinn’s, all possible anodynes are made available, including the soft hands that tend you at your weakest. The gentle handmaidens");
+		if (!pc.isCrotchExposed()) output(" disrobe you and");
+		output(" begin to guide you through the arduous process to come.");
+		locType = 3;
+	}
+	//mhenga in civ 4
+	else if (loc == "mhen'ga" && !InRoomWithFlag(GLOBAL.HAZARD))
+	{
+		output("When you slump to your knees, the nearest rusher, a brawny");
+		if (CodexManager.entryUnlocked("Saurmorians")) output(" saurmorian");
+		else output(" lizard-man");
+		output(" charges over. Your pants and groans, and your swollen belly, tell him all he needs to know. You’re scooped up into the giant dino-man’s warm arms - belly facing skyward - and rushed to the local clinic. Once inside, a doctor is all over you by the bedside with a squawking V-Ko droid opposite him");
+		if (!pc.isCrotchExposed()) output(" removing your clothes");
+		output(".");
+		moveTo("ESBETH MEDICAL OFFICE");
+		locType = 4;
+	}
+	//mhenga tarkus in civ 5
+	else if (loc == "tarkus" && !InRoomWithFlag(GLOBAL.HAZARD))
+	{
+		output("Novahome being what it is, you don’t expect there to be a med-station quite up to galactic standards, but there should be plenty of quiet places and even more breed-hungry raskvel to aid you. Sure enough, when you double over and show the tell-tale signs of birthing, a large group of wide-hipped kobold-bunnies usher you to safety, drawing you into a nice little hideaway much quieter than imagined.");
+		if (!pc.isCrotchExposed()) output(" They have your clothes off in a jiffy.");
+		moveTo("207");
+		locType = 5;
+	}
+	else if (loc == "myrellion")
+	{
+		var inKressia:Boolean = false;
+		if (isNaN(parseInt(currentLocation)))
+		{
+			if (currentLocation == "LIEVE BUNKER" || currentLocation == "FAZIAN_RESCUE_ROOM" || currentLocation == "KRESSIA MEDICAL") inKressia = true;
+		}
+		else 
+		{
+			if (parseInt(currentLocation) >= 800 && parseInt(currentLocation) <= 899) inKressia = true;
+		}
+		
+		//myrellion red myr 6
+		if (inKressia) 
+		{
+			output("A duo of red myr soldiers discover your peril. Sensing your distress they rush you to the Kressia medical center as quickly as they can, delivering you into the capable arms of their CMO, Anzhela. The red doctor");
+			if (!pc.isCrotchExposed()) output(" disrobes you and");
+			output(" gets you to the cleanest bed she can find, well away from other patients. You hope that she and her staff are familiar with non-myr birthing procedure.");
+			moveTo("KRESSIA MEDICAL");
+			locType = 6;
+		}
+		//taivra 7
+		else if (currentLocation == "2E11" || currentLocation == "2E13" || currentLocation == "2G13" || currentLocation == "2G15" || currentLocation == "2G17" || currentLocation == "2E17" || currentLocation == "2C11" || currentLocation == "2C13" || currentLocation == "2C15" || currentLocation == "2C09" || currentLocation == "2A09")
+		{
+			if (flags["KING_NYREA"] == 1 && flags["BEAT_TAIVRA_TIMESTAMP"] != undefined) output("Being the subjugator of");
+			else if (flags["KING_NYREA"] == 1) output("Being the " + pc.mf(" husband"," wife") + " to");
+			output(" an alien royalty has its perks. Namely, being able to command the assistance of the resident nyreans and their queen on your final step through pregnancy. You’re taken to Taivra’s bedchamber and afforded all the care you could possibly need to make this birthing much less painful than it needs to be. All the water and blankets they can find are brought to your bedside");
+			if (!pc.isCrotchExposed()) output(", clothes are finally removed");
+			output(".");
+			moveTo("2C15");
+			locType = 7;
+		}
+		//myrellion gold myr 8
+		else
+		{
+			if (InRoomWithFlag(GLOBAL.HAZARD))
+			{
+				output("A few rushers cross your path. You explain what’s going on before they anxiously hurry you to the great elevator and down to the gold myr city where help awaits.");
+			}
+			else
+			{
+				output("To your delight, a gold myr squad on patrol are at your side when you cry out for help.");
+			}
+			output(" The sprawling Gildenmere hospital welcomes you immediately, and a team of professionals is assigned right away to your imminent birthing. A cozy bed is prepared and all possible amenities are provided");
+			if (!pc.isCrotchExposed()) output(" as soon as your clothes are off");
+			output(".");
+			moveTo("741");
+			locType = 8;
+		}
+	}
+	//uveto kryms camp 9
+	else if (loc == "uveto vii" && currentLocation == "UVGR M4")
+	{
+		output("It could be worse. For instance, you could be somewhere far away from this insulated bunker and the fierce warrior lady who resides within. <i>“Steele... you’re not...”</i> she starts, <i>“You’re giving birth, here!?”</i> Krym looks flabbergasted, but wastes no time bringing you in from the cold and straight to her bed. She’s storming around the cozy little hideaway for anything that might be useful");
+		if (!pc.isCrotchExposed()) output(" while you undress");
+		output(", soon returning with water and extra blankets.");		
+		locType = 9;
+	}
+	//uveto korgii hold 10
+	else if (loc == "uveto vii" && currentLocation.search("KORGII") >= 0)
+	{
+		output("Hand on the wall you call out for any one of the fluffy korgonne to help you to safety. To your imminent relief, two of the Hold’s guards are hefting you to the communal nursery, a breeding room and birthing room all in one filled with a number of mothers, expecting and otherwise. You’re given the last bed and left in the capable hands of the tribe’s healer");
+		if (!pc.isCrotchExposed()) output(", those hands already seeing to your clothes");
+		output(".");
+		locType = 10;
+	}
+	//uveto town 11
+	else if (loc == "uveto vii" && !InRoomWithFlag(GLOBAL.HAZARD))
+	{
+		output("The worst possible thing to be right now is cold, and the chill of Uveto is biting deeply. Fortunately, Irestead is home to many people, and those many hardy folk are already at your side, helping you to your feet and barking orders at others while they carry you to safety. Inside a local care center you’re waited on by two doctors who get you into the warmest corner they can find before");
+		if (!pc.isCrotchExposed()) output(" disrobing you and");
+		output(" prepping you for birth.");
+		locType = 11;
+	}
+	//new texas 12
+	else if (loc == "new texas")
+	{
+		output("Pain consumes you almost immediately, and on a libertine paradise like New Texas nobody could miss your discomfort. Certainly, wherever two very bubbly cowgirls are hustling you now will be a safe enough place to give birth to your kids, far away from the easily excitable bulls that have cocked their heads in your direction. The two bosomy babes get you settled in their home,");
+		if (!pc.isCrotchExposed()) output(" disrobing you and");
+		output(" grabbing whatever they could possibly need for your babies.");
+		locType = 12;
+	}
+	//gastigoth 13
+	else if (loc == "gastigoth station")
+	{
+		output("The well-trained guards on a maximum security prison-station like Gastigoth recognize your plight immediately. The station’s facilities are used typically for impregnated inmates, but they’ll have you as a special guest today.");
+		output(" Once your vitals are checked");
+		if (!pc.isCrotchExposed()) output(" and your clothes are ditched");
+		output(", you’re prepared to give birth on a rather comfy bed.");
+		locType = 13;
+	}
+	//breedwell 14
+	else if (loc == "breedwell centre")
+	{
+		output("For a place named Breedwell, it comes as no surprise they’re equipped to handle a " + pc.mf("childbearer","mother") + " in need, and you’re rushed to the first available bed.");
+		output(" Once your vitals are checked");
+		if (!pc.isCrotchExposed()) output(" and your clothes are ditched");
+		output(", you’re prepared to give birth on a rather comfy bed.");
+		locType = 14;
+	}
+	//canadia 15
+	else if (loc == "canadia station")
+	{
+		output("A nurse on vacation introduces herself rather eloquently and helps you to her rented room in the station’s lodgings.");
+		output(" Once your vitals are checked");
+		if (!pc.isCrotchExposed()) output(" and your clothes are ditched");
+		output(", you’re prepared to give birth on a rather comfy bed.");
+		locType = 15;
+	}
+	//uveto station 16
+	else if (loc == "uveto station")
+	{
+		output("A flock of toves and a few other employees - Steele Tech scientists - have your back the second you collapse, ushering you into the station’s medbay and leaving you in the hands of trained caregivers.");
+		output(" Once your vitals are checked");
+		if (!pc.isCrotchExposed()) output(" and your clothes are ditched");
+		output(", you’re prepared to give birth on a rather comfy bed.");
+		locType = 16;
+	}
+	//zheng shi rat friends 17
+	else if (loc == "zheng shi station" && ratsPCIsGood() && (boredJumperPregLocation() == 0 || boredJumperPregLocation() == 1))
+	{
+		if (boredJumperPregLocation() == 0) output("The heat of the mines mixes with your weakness, makes the gush of cream at your loins all the more noticeable. A cold rush of adrenaline flows when you hear hasty footsteps.");
+		else if (boredJumperPregLocation() == 1) output("Whilst you search for a safe place, a cold rush of adrenaline flows when the rapid ‘taptaptap’ of footsteps catches you off guard.");
+		output("You brace yourself for the worst, until three rats, decked out in their usual gear, stop short of you with worried looks on their faces. <i>“[pc.Mister] CEO! What are you doing walking around like that? You can’t stay here! Come on, we know all the good hiding spots!”</i>");
+		output("\n\nThe pink-furred rodenian and her entourage take you by the arms, lending you their oh-so small shoulders as they usher you into a maintenance room of sorts. It’s surprisingly cool and spacious; it’s perfect for your needs. The rascals set about scooping up whatever they could need to help, finding cloths, fabrics, water, anything that might help.");
+		if (!pc.isCrotchExposed()) output(" The last thing they do is help you out of your gear.");
+		locType = 17;
+	}
+	//zheng shi mines 18
+	else if (loc == "zheng shi station" && boredJumperPregLocation() == 0)
+	{
+		output("Fuck... This is perhaps the worst possible place you can bring a child into the galaxy, but you won’t make the walk back to the hangar. Fortunately, there are a few dead ends in these mines that the pirates have long lost interest in. They’ll have to do. At least it’s a little cooler here than the network at large.");
+		locType = 18;		
+	}
+	//zheng shi foundry 19
+	else if (loc == "zheng shi station" && boredJumperPregLocation() == 1)
+	{
+		output("You keep your voice down lest any pirates on patrol catch wind of it. There are plenty of unused, prefab extensions to this floor, perfect for hiding away. On the way to such a secluded room, you’re at least able to find a crummy looking medkit with the barest essentials inside. It’ll have to do.");
+		locType = 19;
+	}
+	//generic civ 20
+	else if (loc != "zheng shi station" && !InRoomWithFlag(GLOBAL.HAZARD))
+	{
+		output("A local " + RandomInCollection(["man","woman"]) + " comes running at your distress. When the adrenaline runs its course, they have you in the hands of medical staff on your way to the local clinic. Once there, you’re given the coziest bed and prepared for birthing");
+		if (!pc.isCrotchExposed()) output(", your clothes having been removed on the way");
+		output(".");
+		locType = 20;
+	}
+	//default 0
+	else
+	{
+		output("It takes much too long to find a place safe enough, but you do. It’s going to hurt like hell, of that you have no doubt, but you remind yourself that these are the kinds of conditions people in history endured. If they can do it, why can’t you with all of today’s advancements marking you as a product of your time? You try to keep your mind off the dangers, breathing in rhythm, ready to go through this");
+		if (!pc.isCrotchExposed()) output(" after shucking your kit");
+		output(".");
+		locType = 0;
+	}
+		
+	output("\n\nSpreading your legs is the only easy part of this tribulation. Labor aches tear through your body, overwriting all unpained nerves with the sensation before surging downward to your vagina");
+	if (numWombs > 1) output("s");
+	output(".");
+	if (numWombs == 3) output(" You’re on autopilot; your triumvirate of wombs soften and your cervixes dilate as your bundles of joy enter the galaxy.");
+	else if (numWombs == 2) output(" You’re on autopilot; your gemini of wombs soften and your cervixes dilate as your bundles of joy enter the galaxy.");
+	else output(" You’re on autopilot; your womb softens and your cervix dilates as your bundles of joy enter the galaxy.");	
+	output(" You can feel the weight, the width, the diameter, the <i>everything</i> of the first little munchkin spreading your straining birthing canal wide between your body’s organ-clenching contractions.");
+	if (pc.gapestVaginaLooseness() >= 4)
+	{
+		output(" Considering how loose you are, it could be much worse");
+		if (smallHips) output(", particularly as your pelvic structure widens to handle the process");
+		output(".");
+	}
+	else
+	{
+		output(" Your tightness only makes this harder");
+		if (smallHips) output(", not to mention it’s a pain on top of your reshaping pelvic structure");
+		output(".");
+	}
+	
+	if (flags["LDC_SHOCKHOPPER_PREGBY"] != 3 || !multiPreg)
+	{
+		output("\n\nThe first laquine’s head emerges from your snug tunnel. Or rather, the <b>" + RandomInCollection("upraised ears","lop ears") + "</b> do. You push, screaming with tears in your eyes until your first laquine baby pops out unceremoniously. You can’t focus on it at all, head thrown back in dissipating agony as the next one moves through. Another pair of floppy ears emerges, and another small rabbit squirms out");
+	
+		if (locType == 3) output(" to be wrapped up and cleaned by the quiet zil maidens.");
+		else if (locType == 5) output(" to be wrapped up and cleaned by the attending raskvel.");
+		else if (locType == 10) output(" to be wrapped up and cleaned by the healer-pup.");
+		else if (locType == 12) output(" to be wrapped up and cleaned by the humming cowgirl.");
+		else if (locType == 15) output(" to be wrapped up and cleaned by the red-headed nurse.");
+		else if (locType == 17) output(" to be wrapped up and cleaned by the rodenian and her friends. <i>“Ohh, you’re doing fine, [pc.mister] CEO!”</i> she chirps");
+		else if (locType == 2 || locType == 4 || locType == 6 || locType == 7 || locType == 8 || locType == 9 || locType == 11 || locType == 13 || locType == 14 || locType == 16 || locType == 20) output(" to be wrapped up and cleaned by the nurses at your side.");
+		else output(".");
+	}
+	
+	//special birth scene for preg by both ldc and shockhooper
+	if (flags["LDC_SHOCKHOPPER_PREGBY"] == 3 && multiPreg)
+	{
+		//randomize which kid pops out first
+		var ldc:Boolean = false;
+		if (rand(2) == 0) ldc = true;
+		
+		output("\n\nAfter taking on both the oversexed rabbits in charge of a gang of bunny-pirates the way you did, pregnancy was as assured as continued cosmic expansion. While L.D.C. could only fill one womb, his bottom bitch filled the other");
+		if (numWombs > 2) output(" two");
+		else output(" one");
+		output(" so well that you can still remember the weight of her spunk. Well, now all you’ve been burdened with are their children, and you’re having them right now!");
+		
+		output("\n\nYou idly fantasize about which color might pop out first, the blue or the black. Turns out,");
+		if (ldc) output(" to your surprise, it’s the black. Your first born child is a jet-black bunny with upright ears. How fitting!");
+		else output(" it’s the blue. No surprise! The Hopper was the one who seemed to be on top of things! Why wouldn’t her kids take precedence?");		
+		output(" The pain you feel between your waist-expanding contractions is nothing compared to the sensations of when you drained Zheng Shi’s top buns, when your sexual prowess put them in their rightful places.");
+		
+		output("\n\nAnd of course, their buns in your oven!");
+		output("\n\nThe next one to flop out is");
+		if (ldc) output(" all blue and creamy white like the Hopper!");
+		else output(" midnight-black. L.D.C.’s kids are like little soot sprites rather than bunnies!");		
+		output(" Bearing the fruits of two powerful breeders is a pleasure all on its own. You can’t wait to hold them in your arms, to raise them right, to take from such criminals like those two and make wonderful children all on your own! Maybe you can go back and ‘redeem’ those tricksy rabbits when you’re done?");
+		
+		output("\n\nFor now though, you’ve gotta tough this out.");
+		if (pc.isBimbo()) output(" No big deal! If you could handle those two with your body, then giving birth is nothing!");
+		else output(" Which is easy. You were able to handle those two at their best and shrug it off like it was nothing. You’re too strong to be put down by a few aches and pains.");
+		output(" You’ve got your eyes wide open, though you can’t really put voice to anything. There’s a deep excitement whenever you see a pair of ears part your vaginal lips and flop out into the universe, covered in a sheen of you.");
+		
+		output("\n\nYou’re not sure where it started and how it’s going to end, but you’ve given birth to several kids already.");
+		if (numWombs > 2) output(" Three");
+		else output(" Two");
+		output(" whole litters are piled up in a sprawling pool of mewling munchkins, " + num2Text(numChildren, true) + " laquine boys, girls, hermaphrodites, there’s every combination you could imagine! Some with little fur, some totally coated in it, but they’re all the offspring of your piratical tryst. All-black and blue and vanilla coats or limbs shimmer; eyes not even opened yet, they cry out quietly for you.");
+		output("\n\nYou giggle happily, not even realizing the pain has passed. No sense in wasting any more time: you reach over and pull them all into your arms, a positively delightful and bubbly heat blossoming throughout your soul.");
+	}
+	else if (numChildren == 2)
+	{
+		output("\n\nCuriously, it ends there. The hormonal weight on your mind lifts, and a cold sweat washes over your body between the fading spasmic pains. There are faint little squeals that bring your brain back to reality between the waves of endorphins. The reality being that you’ve safely given birth to <b>two laquines,</b>");
+		output(" with mixed colors, one part of the palette containing <b>your [pc.hairColor] hair</b> for fur up and down their tiny sizes.");
+		
+		output("\n\nYou lean over and scoop the twins into your [pc.arms], gently wiping the ‘you’ off of their faces while their tiny hands reach out for their mother. You just want to hold them close forever, to always remember how wonderful this moment right here, right now, is, and will always be. A warmth as fuzzy as your offspring dominates your recovering form...");
+	}
+	else if (numChildren > 2 && numChildren <= 8)
+	{	
+		output("\n\nYou’ve got more coming, but it does get noticeably easier. Your neck muscles dry up as your grunts and moans dissolve into gravelly rasps of relenting anguish.");
+		if (numChildren == 3) output(" One more rabbit falls from your hole, landing next to its siblings.");
+		else if (numChildren == 4) output(" Another rabbit falls out closely tailed by another, flopping into the world next to their siblings.");
+		else if (numChildren == 5)
+		{
+			output(" It’s hard to believe, but you can feel three rabbits in your hole");
+			if (numWombs > 1) output("s");
+			output(" right now, emerging at roughly the same time from your capable body and flopping out next to their siblings.");
+		}
+		else if (numChildren == 6)
+		{
+			output(" Your bloated belly noticeable compresses when two rabbits flop out in front of you, followed closely by two others from");
+			if (numWombs > 1) output(" separate holes.");
+			else output(" the same hole.");
+		}
+		else if (numChildren >= 7)
+		{
+			output(" Undoubtedly, you’re carrying a full litter; you loose an animalistic growl, immersed in some twisted gestalt of euphoria as you feel all of them pushing through your stretching tunnel. Ears, hands, and digitigrade feet emerge from your overstretched cavern; your last screams carry them the rest of the way through");
+			if (numWombs > 1) output(" separate holes");
+			else output(" the same hole");		
+			output(" until they’re all flopping out into a pile of weighty, mewling bunnies, some with little fur and others totally coated.");
+		}
+		
+		output("\n\nThe pain clears up; endorphins and adrenaline are chucking through your system at record levels. A weight on your mind eases and vanishes, leaving you feeling cold and relieved -- sucking for air is the most you manage. You can now clearly hear the squeals of your children, waiting for their first meal. Once your vision realigns, you take in their features, leaning up and over to bring them into your [pc.arms].");
+		output("\n\nYou’ve given birth to " + num2Text(numChildren) + " laquines, a variety of girls, boys, and natural hermaphrodites. Each one is painted with varying amounts of fur, pelts of mixed colors including <b>your [pc.hairColor] hair!</b>");
+		output("\n\nScooping them up into your arms is one of the most enjoyable things you can say you’ve ever done. Joyfulness buzzes throughout your body with a rich, creamy texture. There’s something all too intoxicating about the way they grasp cutely at your [pc.skinFurScalesNoun]. Brief, ecstatic fantasies about who and what they might become fill your mind too.");
+	}
+	else if (numChildren > 9 && numChildren <= 16)
+	{	
+		output("\n\nIf you thought it was going to get any easier, you were dead wrong -- ");
+		if (numWombs == 3) output("all");
+		else output("both");
+		output(" of your holes stretch and squirm against each other with the weight and form of multiple laquines squishing through them. Lop and upright ears poke through your widening slits, the contractions not enough to push them out, needing your aid to do it. And provide it you do, squealing yourself hoarse as several children pop out, followed by more, more...");
+		output("\n\nDistracting yourself with idle, pain-fragmented fantasies is the best you can do. <i>It’ll be over soon,</i> you think to yourself; <i>your kids sound and look so healthy!</i> you mentally utter. Sure, you only caught the briefest glimpse before another hip-extending contraction slipped another laquine through, but the growing volume of hungry babies tells you that you’re doing just fine");
+		if (locType != 0 && locType != 1 && locType != 18 && locType != 19) output(", the encouragements of your attendants notwithstanding");		
+		output(".");
+		
+		output("\n\nAdrenaline, endorphins, and a little serotonin have you slowly deflating your stomach one neonate critter at a time.");
+		if (numChildren >= 13) output(" Your sizeable litter continues to swell in size. So many yous, unable to open their eyes, are huddling together with twitching noses and soft squeals. The final bun flops out into the galaxy when you’re on the verge of slipping into unconsciousness.");
+		else output(" You’ve given birth to a sizeable litter, and to your great relief, the pain begins to fade away when the last little bun flops out into the galaxy.");
+		
+		output("\n\nYou pant, heave, and pant some more, finally able to sit up and take stock of your children. " + num2Text(numChildren, true) + " laquines are huddled in a pile. Girls, boys, natural hermaphrodites, you’ve given birth to just about every combination of space-rabbit there is. Their furs are shimmery, if a little reddened with your innards. Some have full coats, others only have it on their limbs. The colors are all similar though;");
+		output(" they have wildly contrasting colors, the majority of the palette containing your [pc.hairColor]!</b>");
+		output("\n\nYou let out a soft huff as you slump forward, bringing the first few into your [pc.arms]. There’s something undeniably magical about the act. Seeing them is one thing, but holding them... the inner jubilation you feel is a delight you wish never to end. Your mind drifts to thoughts of their futures, gleefully imagining them as happy as you are right now.");
+	}
+	else if (numChildren >= 17)
+	{	
+		output("\n\nThe sheer amount of pain you’re in is indescribable. Excruciating is the understatement of the year, the century, <b>the fucking millennium.</b> <i>It hurts.</i> And it’s all worth it just to feel one, two, three little critters all wiggling their way down your snug passages. You were filled to the brim with a laquine’s seed, and now you’re bearing the fruits of coitus with a gifted breeder. You could not be happier, but you could not be in any more agony than you are. Certainly, nothing will ever compare to this, mothering three litters all at once. ");
+		output("\n\nSaving your strength for your rippling loins somehow keeps you conscious during this ordeal. Were you ranting or grousing, you might not have as much a hold on reality as you do. Indeed, some part of you thinks that being anesthetized for this would be a cowardly way out...");
+		output("\n\nFantasies of how they will look, the sounds they make when they add themselves to the fuzzy pile of newborn runts, it all keeps you going. You can’t pass out. <i>You must not pass out.</i> You’re the mother of three entire laquine litters. They need you, and you need to be there for them. And so, you push. You scream yourself into hoarseness, barely keeping your thighs down and spread, making sure your distending waistline aims the rapidly squirming bundles next to their siblings.");
+		output("\n\nEvery time you feel a pair of lips spread and a fuzzy boulder pass, another takes its place, and then two more beside it. You grit your teeth and play back in your mind whatever you think might help. A funny movie you watched in your younger years. A book you read a dozen times. That weird gift you got during a holiday. It doesn’t matter, just... you just need something to hold on to.");
+		output("\n\nYou’re inhaling so hard that your ribcage shows through your [pc.skinFurScales]. Color drains from your cheeks and lips, spread wide and strained just as badly as your vaginal trio. Lop and upraised ears both stick out then flip over adorably, more, more... you have no idea what the count is, only that you’re a mother who’s bringing so many kids into this galaxy.");
+		output("\n\nAnd then... it just ends. You didn’t even feel the last one shirk your internal protection, only the relieving weight of adrenaline and endorphins beginning the slow cleanse of your body. There’s only a tiny lurch in your [pc.fingers], a little thrum in your [pc.legsNoun]. There’s a hollow gasp before you can finally sit up, an exceedingly difficult thing to do. But so, so worth it...");
+		output("\n\nWhen you look down to the mound of squeals and twitching ears, your heart flutters. It feels so light that it might just be floating away to heaven, enraptured by the sight. Your " + num2Text(numChildren) + " children all huddle together for warmth, each covered in a little bit of you. It’s no surprise you’ve just spawned every conceivable combination of laquine there is: boys, girls, hermaphrodites, lop-ears, upraised ears, furry limbs, totally furry, there’s almost too much to take in. Despite being marred by a little internal sheen,");
+		output(" the contrasting colors of their pelts - the majority of it being your [pc.hairColor] - is beautiful.");
+		
+		output("\n\nScooping up the first of your sons and daughters for the first time is a feeling utterly indescribable. They’re your kids. You made this possible. You gave them life. You’re overcome with empathy and happiness, feeling like all that matters is right here, right now. The maternal feelings running through your mind are dominant, suppressing all other thoughts and emotions to allow you this hypnotic reprieve.");
+	}
+	else
+	{
+		output("\n\nYou give birth to " + num2Text(numChildren) + " kids!");		
+	}
+
+	//increase hipsize
+	if (smallHips) pc.hipRating(numWombs);
+	
+	clearMenu();
+	addButton(0, "Next", ldcShockHopperSteeleBirthNext, [numChildren, locType]);	
+}
+
+public function ldcShockHopperSteeleBirthNext(arg:Array):void
+{
+	clearOutput();
+	author("William");
+	showBust("");
+	showName("\nBIRTHING!");
+	
+	var numberChildren:int = arg[0];
+	var locType:int = arg[1];
+	
+	var milk:Number = 200 * numChildren;
+	if (milk > pc.milkQ()) milk = pc.milkQ();
+	
+	if (boredJumperBreastFeedOK())
+	{
+		output("You can feel your [pc.breasts]");
+		if (pc.milkQ() >= 2000) output(" straining");
+		else output(" sloshing");
+		if (numChildren >= 6) output(" at the idea of feeding this many children, but feed them you must.");
+		else output(" at the idea of feeding your children.");
+		output(" A little wince and grunt is nothing compared to the " + (pc.pregnancyIncubationBonusMother() < 14 ? "weeks" : "time") + " you’ve endured, and as you get yourself ready you let out a happy, bubbly sigh.");
+		
+		if (numChildren == 2) output("\n\nThe twins feed from each [pc.milkNoun] dripping nipple while you cradle their heads with profound gentleness.");
+		else
+		{
+			output("\n\nYou guide the mouths of your newborns to your [pc.milkNoun] dripping nipples");
+			if (pc.breastRows.length > 1) output(", glad that you have extra jugs to satisfy a litter of this size");
+			output(".");
+
+		}
+		output(" Soft wet noises are all you hear");
+		if (locType != 0 && locType != 1 && locType != 18 && locType != 19) output(" between the congratulating coos of your bedside assistant");
+		output(".");
+		
+		if (numChildren / 2 > pc.breastRows.length)
+		{
+			output(" When the quiet suckles stop, you bring the next hungry mouth");
+			if (numberChildren % 2 == 0) output("s");
+			output(" to your chest");
+		}
+		else output(" When the quiet suckles stop, you set the two siblings down and hold them close to your neck");
+		
+		output(". Relief floods through you with the same unceasingness your [pc.milkyNipples] dribble their rich treat, as eager for its recipients as they are for it.");
+		
+		pc.milked(milk,true);
+	}
+	else
+	{
+		output("You don’t have any milk, not in you or on you, and that thought brings you some amount of discomfort. They’re expecting their first meal, but you can’t provide.");
+		if (locType != 0 && locType != 1 && locType != 18 && locType != 19) 
+		{
+			output(" Fortunately, your bedside attendant has things covered.");
+			if (locType == 12) output(" What kind of universe would you be living in if there wasn’t any milk on New Texas?");
+		}
+		else output(" There’s nothing for it but to keep your kids safe while waiting for their taxi to come by.");
+	}	
+		
+	output("\n\nFor your part, all you do is lie there in total relaxation, delighting in the feel of twitching whiskers against your [pc.skinFurScales]. When you focus hard enough, their tiny lungs and the little airs they breathe can be heard. Craning ears pulse against your body, a much more pleasant sensation than a kick to your placenta! You curl into a fetal position yourself; whatever keeps the fuzzy pile of rabbits close to you, that’s what you’re doing. Their shared body heat and the low vibrations in their bodies keep you company.");
+	output("\n\nYou would drift off to a nap, but you can’t. You know better than anyone that you can’t leave them here, and you can’t stay like this. There’ll be time for enjoying their company later, but their safety and needs cannot be guaranteed in this place.");
+	
+	if (locType == 2)
+	{
+		output(" Your kids belong in your nursery, and you alert the medical staff to that fact. Once you tell them your name, you need not say anything more.");
+		output("\n\nWhen you can finally stand again, thanks in part to the wonders of medical science, you help the doctors prepare your kids for transfer. Once they’re all safe, you watch with some amount of discomfort as they’re taken away. Sure, you know where they’re going, and you trust them fully... but something about it fills you with sadness.");
+		output("\n\nThat sadness, however, will evaporate when you go and visit them later!");		
+	}
+	else
+	{
+		output(" A mechanical chirp from your codex alerts you to the incoming nursery probes.");
+		if (numberChildren > 2)
+		{
+			if (numberChildren > 8) output("\n\nThe retrieval shuttles zero in on your location, and there are many of them. Good thing your codex is on top of things!.");
+			else output("\n\nThe retrieval shuttles zero in on your location.");
+		}
+		else output("\n\nThe retrieval shuttle zeroes in on your location.");
+		
+		output(" Shaken but not stirred, you rise to your feet and, with the utmost caution, load your children into its warm confines");
+		if (numberChildren > 8) output(", one after the other");
+		output(". When they’re all filled, you watch the humming taxis whirl back into space on a one way trip to your nursery. You can’t help but think about something going wrong, about never seeing one or all of your kids again.");
+		
+		output("\n\nMost of all, you simply feel sad letting them all go. Still, that sadness evaporates when you think about visiting them as soon as possible. Yeah. They’ll be there when you get there, and they’ll all be fine!");
+		output("\n\nFor now, though, it’s time to get going...");
+	}	
+	
+	processTime(60 + ((rand(15) + 5) * numChildren));
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);	
 }
