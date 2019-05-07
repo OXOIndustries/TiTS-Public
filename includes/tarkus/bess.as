@@ -7528,7 +7528,7 @@ public function bessEvent7DrinkForgive():void
 		
 		output("\n\n<i>“Just because it didn’t kill you doesn’t mean I didn’t do permanent internal damage, "+ bessPCName() +"! I know you’re trying to be kind, but I put your life in danger and as such I must be punished - probably dismantled!”</i> [bess.name] looks at you with a deeply concerned look in [bess.hisHer] synthetic eyes.");
 		
-		output("\n\n<i>“...Look, horrible as it was I doubt it did any damage to me. I’ve got fantastic antibodies floating around my system, my body would have adapted to your drink before giving out. I bet I can probably even drink it now, given a second attempt.”</i> That said, you’re not exactly keen to give [bess.hisHer] concoction a second try.");
+		output("\n\n<i>“...Look, horrible as it was, I doubt it did any damage to me. I’ve got fantastic antibodies floating around my system, my body would have adapted to your drink before giving out. I bet I can probably even drink it now, given a second attempt.”</i> That said, you’re not exactly keen to give [bess.hisHer] concoction a second try.");
 	}
 	else if (pc.isMischievous())
 	{
@@ -7565,7 +7565,7 @@ public function bessEvent7DontDrink():void
 	clearOutput();
 	bessHeader();
 
-	output("You look at the stomach-turning concoction you have been handed and you just cannot bring yourself to swallow it, for any reason. You hand it back to to [bess.himHer] and [bess.heShe] stares at you.");
+	output("You look at the stomach-turning concoction you have been handed and you just cannot bring yourself to swallow it, for any reason. You hand it back to [bess.himHer] and [bess.heShe] stares at you.");
 
 	if (pc.isAss())
 	{
@@ -12246,7 +12246,7 @@ public function bessGetDoggySelected(bTargetVag:Boolean):void
 		if (!bTargetVag) output(" pulls [bess.hisHer] fingers out,");
 		output(" bends you over and gives you another swift slap on your [pc.ass]. [bess.HisHer] hands are incredibly firm - far more than a regular "+ bess.mf("man", "woman") +"’s - and you squeal out loud!");
 		
-		output("\n\n<i>“You are not to get yourself off without my say so, is that understood?</i> [bess.name] growls and slaps your ass once more, a delicious stinging sensation spreading out from your spanked rump.");
+		output("\n\n<i>“You are not to get yourself off without my say so, is that understood?”</i> [bess.name] growls and slaps your ass once more, a delicious stinging sensation spreading out from your spanked rump.");
 		
 		output("\n\n<i>“...I promise, I promise! I won’t try to get off without your permission, "+ bessSexName() +".”</i> You plead like a naughty little schoolgirl being bent over [pc.hisHer] parent’s knee.");
 		

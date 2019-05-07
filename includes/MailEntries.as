@@ -241,9 +241,12 @@ public function configureMails():void
 	MailManager.addMailEntry("ushamee_meet", ushameeMeetInviteText, "Follow Up on Kashima Incident", "Chief Ushamee Neykkar", "U.Neykkar.7609@Nova.corp", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("gastigoth_unlock",gastigothEmailText, "Exclusive Offer","Regina Kasmiran","DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("syri_video", syriVideoEmailText, "New_Video.holo", "Syri Dorna", "BlastMaster@GalLink.org", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("syri_onahole_video", "HI STEELE!!! I MAde yu a video, i hope u like it!!!\n\nAttached below appears to be a stream clip of one of Penny’s stream “sessions” but not from her little webcam -- from a camera attached to her room’s ceiling. There’s someone standing in the door in the thumbnail and it looks like... Syri?", "video", "Penny Inoue", "Penny_Inoue@UGC.gov", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("breedwell_unlock", breedwellEmailText, "The Breedwell Incubation Centre Needs YOU.", "TamaniCorp", "Marketing@TamaniCorp.corp", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("succucow_email", succucowEmailText, "Check out this weird cabin? Cash reward.", "Ciaran Eildean", "Warden_Eildean@NewTexas.gov", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("randy_claws_email", clawsEmailText, "Merry Christmas!", "New Texas Department of Wildlife", "NT_DoW@NewTexas.gov", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("riya_party_invite", riyaXmasPartyInviteText, "Christmas Party Invitation", "Commander Lorna Grence", "Lorna_Grence@UGC.gov", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("emrby_xxxmas_invite", embryXmasInvite, "Come Visit!", embryName, "SpacePrincess@bibliotech.com", quickPCTo, quickPCToAddress);
 	
 	//extrameet 	
 	MailManager.addMailEntry("extrameet_invite_email", extrameetInviteText, "Meet local singles on your planet today!", "ExtraMeet Team", "Consumer_Outreach@ExtraMeet.com", quickPCTo, quickPCToAddress);
@@ -297,6 +300,18 @@ public function configureMails():void
 
 	//Pumpking email from Penpen
 	MailManager.addMailEntry("pumpking_alert", pennyPumpkingEmailText, pennyPumpkingEmailSubject, "Penny Inoue", "Penny_Inoue@UGC.gov", quickPCTo, quickPCToAddress);
+	
+	//quaelle birth email
+	MailManager.addMailEntry("quaelle_birth", quaelleBirthEmail, "Your Presence is Requested.", "Breedwell Natal Unit", "BreedwellNatalUnit@TamaniCorp.corp", quickPCTo, quickPCToAddress);
+	//jumper birth email
+	MailManager.addMailEntry("jumper_birth", boredJumperPregBirthEmail, "Heyyy, where are yooouuu", "User-UNKNOWN", boredJumperPregBirthEmailSender(false) +"@J6.source", quickPCTo, quickPCToAddress);
+	//jumper send pic email
+	MailManager.addMailEntry("jumper_sendpic", boredJumperPregSendPicEmail, RandomInCollection(["Thaaaanks!", "Sooo cute!", "You're the best!"]), "User-UNKNOWN", boredJumperPregBirthEmailSender(true) +"@J6.source", quickPCTo, quickPCToAddress);
+	//roxy preg, move, birth, missed birth emails
+	MailManager.addMailEntry("roxy_preg", roxyPregEmail, roxyPregEmailSubject(), "Roxy Aiken", "RoxSox@PinupPunks.org", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("roxy_move", roxyPregMoveEmail, roxyPregMoveEmailSubject(), "Roxy Aiken", "RoxSox@PinupPunks.org", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("roxy_birth", roxyBirthEmail, roxyBirthEmailSubject(), "Roxy Aiken", "RoxSox@PinupPunks.org", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("roxy_missedbirth", roxyMissedBirthEmail, "So I didnt die", "Roxy Aiken", "RoxSox@PinupPunks.org", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String

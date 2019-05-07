@@ -1333,7 +1333,7 @@ public function hugSylvie():void
 	//Cocks
 	if(pc.hasCock()) 
 	{
-		output("\n\n<i>“God, I love giving out hugs!”</i> Sylvie declares while rubbing her whole body against you. Your [pc.cocks] can’t help but get hard when pressed against her, nevermind that her pussy is nowhere within sight. A huge-breasted amazon is manhandling you against her waistline while you’ve got a faceful of tit. The only sensible response is to grow the biggest, bulgiest boner");
+		output("\n\n<i>“God, I love giving out hugs!”</i> Sylvie declares while rubbing her whole body against you. Your [pc.cocks] can’t help but get hard when pressed against her, never mind that her pussy is nowhere within sight. A huge-breasted amazon is manhandling you against her waistline while you’ve got a faceful of tit. The only sensible response is to grow the biggest, bulgiest boner");
 		if(pc.cockTotal() > 1) output("s");
 		output(" that you can. She feels it too. There’s no way that she can’t, not while she’s basically grinding ");
 		if(pc.cockTotal() > 1) output("iron bars");
@@ -1349,7 +1349,7 @@ public function hugSylvie():void
 	//NoCoxButtCunts
 	else if(pc.hasVagina())
 	{
-		output("\n\n<i>“God, I love giving out hugs!”</i> Sylvie declares while rubbing her whole body against you. You can’t help but get a little wet from all the friction, nevermind that her crotch is out of sight. It certainly isn’t out of mind, definitely not as you luxuriate in the feel of her bare skin rubbing your [pc.vaginas]");
+		output("\n\n<i>“God, I love giving out hugs!”</i> Sylvie declares while rubbing her whole body against you. You can’t help but get a little wet from all the friction, never mind that her crotch is out of sight. It certainly isn’t out of mind, definitely not as you luxuriate in the feel of her bare skin rubbing your [pc.vaginas]");
 		if(!pc.isCrotchExposed()) output(" through your [pc.lowerGarments]");
 		output(".");
 		if(pc.clitLength >= 3)
@@ -1485,24 +1485,37 @@ public function sylvieSexMenu():void
 		else addDisabledButton(2,"TakeVaginal","Take Vaginal","You need a vagina for this.");
 		//Requires 10" of dick: FuckHerPuss
 		var x:int = pc.cockThatFits(sylvieCuntSize());
-		if(pc.hasCock() && pc.cockVolume(x) >= 50) addButton(3,"FuckHerPuss",penisRouter,[fuckDickedSylviesPussah,sylvieCuntSize(),false,50],"FuckHerPuss","Just because she has a dick doesn’t mean she can’t take one...");
-		else if(pc.hasCock()) addDisabledButton(3,"FuckHerPuss","FuckHerPuss","Your penis isn’t appropriately sized for her.");
-		else addDisabledButton(3,"FuckHerPuss","FuckHerPuss","You need a penis for this.");
-		if(pc.hasCock())
+		if(pc.hasCock() && pc.cockVolume(x) >= 50)
 		{
-			if(pc.biggestCockLength() >= 12) addButton(4,"TittyBlow",tittyBlow,undefined,"Titty Blow","Get your dick wet in Sylvie’s drizzling pussy, then stuff it between her tits until you’re blowing a load down her throat.");
-			else addDisabledButton(4,"TittyBlow","TittyBlow","Your penis is too short to truly enjoy the expanse of cleavage that Sylvie offers. Come back when your largest member is 12 inches or longer.");
+			addButton(3,"FuckHerPuss",penisRouter,[fuckDickedSylviesPussah,sylvieCuntSize(),false,50],"FuckHerPuss","Just because she has a dick doesn’t mean she can’t take one...");
+			if(pc.isTaur()) addButton(4,"Mount Pussy",taurPussyMountWsanIsMyHero,undefined,"Mount Pussy","Mount her the way that ‘taurs were meant to be mounted - by another ‘taur.");
+			else addDisabledButton(4,"Mount Pussy","Mount Pussy","You need to be some type of centaur-like creature for this.");
 		}
-		else addDisabledButton(4,"TittyBlow","Titty Blow","You need a penis 12 inches or longer to titfuck her massive mammaries.");
-		if(pc.hasVagina())
+		else if(pc.hasCock()) 
 		{
-			addButton(5,"SpankNGrind",spankyGrindyWimyFunSchlicks,false,"Spank ‘N Grind","Spank her and grind on her slit and clit until you mutually orgasm.");
-			addButton(6,"Cuffs&Tongue",cuffsAndTongueFromNonesuchyDuchy,false,"Cuffs & Tongue","Get cuffed up and force-fed dripping deer cunt.");
+			addDisabledButton(3,"FuckHerPuss","FuckHerPuss","Your penis isn’t appropriately sized for her.");
+			addDisabledButton(4,"Mount Pussy","Mount Pussy","Your penis isn’t appropriately sized for her (and on top of that, this scene is for centaur-like characters only).");
 		}
 		else 
 		{
-			addDisabledButton(5,"SpankNGrind","Spank ‘N Grind","You need a vagina in order to do all this.");
-			addDisabledButton(6,"Cuffs&Tongue","Cuffs & Tongue","You need a vagina in order to experience this forceful scene!");
+			addDisabledButton(3,"FuckHerPuss","FuckHerPuss","You need a penis for this.");
+			addDisabledButton(4,"Mount Pussy","Mount Pussy","You need a penis for this (and on top of that, this scene is for centaur-like characters only).");
+		}		
+		if(pc.hasCock())
+		{
+			if(pc.biggestCockLength() >= 12) addButton(5,"TittyBlow",tittyBlow,undefined,"Titty Blow","Get your dick wet in Sylvie’s drizzling pussy, then stuff it between her tits until you’re blowing a load down her throat.");
+			else addDisabledButton(5,"TittyBlow","TittyBlow","Your penis is too short to truly enjoy the expanse of cleavage that Sylvie offers. Come back when your largest member is 12 inches or longer.");
+		}
+		else addDisabledButton(5,"TittyBlow","Titty Blow","You need a penis 12 inches or longer to titfuck her massive mammaries.");
+		if(pc.hasVagina())
+		{
+			addButton(6,"SpankNGrind",spankyGrindyWimyFunSchlicks,false,"Spank ‘N Grind","Spank her and grind on her slit and clit until you mutually orgasm.");
+			addButton(7,"Cuffs&Tongue",cuffsAndTongueFromNonesuchyDuchy,false,"Cuffs & Tongue","Get cuffed up and force-fed dripping deer cunt.");
+		}
+		else 
+		{
+			addDisabledButton(6,"SpankNGrind","Spank ‘N Grind","You need a vagina in order to do all this.");
+			addDisabledButton(7,"Cuffs&Tongue","Cuffs & Tongue","You need a vagina in order to experience this forceful scene!");
 		}
 	}
 	else
@@ -2037,7 +2050,7 @@ public function fuckyTittyBlowblow2():void
 	//More than 10k
 	if(cumQ > 10000) output("\n\nThe policegirl must think the mess is getting out of hand, because she steps back to slide your [pc.cockHead " + x + "] back inside her tunnel, capturing wave after wave of virile bliss.");
 	//More than 20k - no new PG.
-	if(cumQ > 20000) output("Liquid burbles can be heard through her middle as you expand it, lending the big woman a pregnant appearance.");
+	if(cumQ > 20000) output(" Liquid burbles can be heard through her middle as you expand it, lending the big woman a pregnant appearance.");
 	//More than 30k - no new PG.
 	if(cumQ > 30000) 
 	{
@@ -2500,7 +2513,7 @@ public function redMyrSylvieFunz():void
 	output(" When you attempt to join them you feel the drunken moose-taur’s grip tighten around your shoulders.");
 
 	output("\n\n<i>“Noooooo. Don’ leave... More lick. I need you to lick more,”</i> she slurs, planting a sloppy smooch on your forehead and pulling you into her cleavage. Even incapacitated by aphrodisiac venom, her strength is far beyond the average woman. You resign yourself to the situation, what the hell. It’s not like you weren’t coming right back. The drunken pecks continue to dot your head, so you turn up to meet one, pushing back up and into her exposed mouth with your [pc.tongue].");
-	output("\n\nBetween your saliva, her sweat, and the natural humidity in the baths, Sylvie is sopping wet from head to hoof and oozing with enough heat to form your own personal sauna. It’s hard to breath in the sweltering warmth, and harder to find traction on her slick skin. None of that matters to you; every inconvenience is driven from your mind by the sweet softness of her lips against yours.");
+	output("\n\nBetween your saliva, her sweat, and the natural humidity in the baths, Sylvie is sopping wet from head to hoof and oozing with enough heat to form your own personal sauna. It’s hard to breathe in the sweltering warmth, and harder to find traction on her slick skin. None of that matters to you; every inconvenience is driven from your mind by the sweet softness of her lips against yours.");
 	output("\n\nFaintly twitching muscle alerts you to an oncoming orgasm before Sylvie can register what’s going on. This one feels much bigger than the barrage of smaller spasms that have come before it, and you make as inconspicuous an effort as possible to maneuver the moose-taur police-woman’s hands into a better position.");
 	if(silly) output(" An early obituary reading <i>“crushed to death by moose in the throes of lust”</i> is not on your desired list of accomplishments.");
 	else output(" A hug is one thing, a guillotine is another.");
@@ -3919,7 +3932,7 @@ public function inviteKallyOverForTripleHorsemeat():void
 	else addButton(0,"Gangbang",tripleHorseingIntro,false,"Gangbang","You’ve always wondered what it’d be like to be a horse’s onahole.");
 	if(pc.hasPerk("Buttslut")) addButton(1,"UpTheAss",tripleHorseingIntro,true,"Up the Ass","Let’s take this in a different direction.");
 	else addDisabledButton(1,"UpTheAss","Up The Ass","You’d need to be a <i>special</i> kind of butt slut to even consider this.");
-	addButton(3,"Nope",turnDownATripleHorsing,undefined,"Nevermind","You enjoy your organs far too much to do this.")
+	addButton(3,"Nope",turnDownATripleHorsing,undefined,"Never Mind","You enjoy your organs far too much to do this.")
 }
 
 //Nope

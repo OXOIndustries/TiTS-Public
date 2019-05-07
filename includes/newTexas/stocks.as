@@ -105,6 +105,10 @@ public function getNTStocksPregContainer(arg:String = ""):PregnancyPlaceholder
 			pp.shiftCock(0, GLOBAL.TYPE_SNAKE);
 			// 9999 pp.impregnationType = "LeithanPregnancy";
 			break;
+		case "laquine":
+			pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
+			pp.impregnationType = "LaquinePregnancy";
+			break;
 	}
 	pp.ballFullness = 100;
 	
@@ -388,7 +392,7 @@ public function stocksOralIntros(args:Array):void
 		if(pc.totalVaginas() == 1) output("is");
 		else output("are");
 		output(" going from whorishly sopping to wantonly drooling just from breathing it in. You twitch your nose, subconsciously sniffing for greater concentrations of his pheromones, letting your tongue wiggle and lick your [pc.lips] until they shine. Then, you open wide, entirely of your own volition. He doesn’t have to pry your salivating mouth open. He doesn’t even have to talk, he just has to flop that bitch-breaking staff onto your [pc.tongue], and you’ll suck right on in.");
-		output("\n\nHow fortunate that he does! You suck the built ausar’s prong into your slavering maw like your life depends on it, hollowing your cheeks and drawing him in until the swelling knot at his base is kissing your straining lips, forcing you to breath through your nose. Cloying musk flows into you, worming from your lungs into your blood. There, it can pump all around your body - some to your head, making it so much easier to see the appeal and eroticism of this incredible specimen, but much, much to the delta");
+		output("\n\nHow fortunate that he does! You suck the built ausar’s prong into your slavering maw like your life depends on it, hollowing your cheeks and drawing him in until the swelling knot at his base is kissing your straining lips, forcing you to breathe through your nose. Cloying musk flows into you, worming from your lungs into your blood. There, it can pump all around your body - some to your head, making it so much easier to see the appeal and eroticism of this incredible specimen, but much, much to the delta");
 		if(pc.totalVaginas() > 1) output("s");
 		if(pc.legCount > 1) output(" between your [pc.legs]");
 		else output(" below");
@@ -649,7 +653,7 @@ public function stocksMouthgasms(args:Array):void
 		else output("Fucking greedy cows");
 		output(".”</i>");
 		output("\n\nYou’re still dizzy on his aroma when another body steps in front of you. He doesn’t smell as nice as your dog-dicked boyfriend, but you open nice and wide, rolling out your [pc.tongue] like a red carpet. The newcomer smirks, mutters something about how <i>“hellhounds always get them in the right mood.”</i> He thrusts in, and you resume sucking and slurping, careful not to bite when you cum real hard.");
-		var ppHellhound:PregnancyPlaceholder = getZephyrPregContainer();
+		var ppHellhound:PregnancyPlaceholder = getNTStocksPregContainer("hellhound");
 		pc.loadInMouth(ppHellhound);
 	}
 	//Kaithrit Futa
@@ -661,7 +665,7 @@ public function stocksMouthgasms(args:Array):void
 		output("\n\nLooking about to collapse, the pretty kitty staggers back, gaping at the web of sperm that hangs between your spunk-glossed lips and her still-turgid member. <i>“That was... that was pretty good.”</i> She staggers around, gathering the discarded pieces of her dress. <i>“I’ll be sure to uhm... put in the good word for you with uh, your supervisor.”</i> Glancing back over her shoulder, she flashes a tired-looking grin. <i>“Maybe I’ll even be a repeat customer!”</i>");
 		output("\n\nYou don’t bother to inform the clueless cat-girl. Part of the reason might be that you just want to swallow the last of her cum and have a few seconds to breathe, but the real reason is that a much bigger stud is sauntering up to you, drawing all of your attention to the tree trunk between his legs.");
 		output("\n\nAny attempt at modesty would be wasted by now, so you do the only thing a girl stuck in stocks on New Texas can do: open your mouth and try to enjoy the taste of the cock sliding into you. If the dripping from below is any indication, your pussy does.");
-		var ppKaithrit:PregnancyPlaceholder = getZephyrPregContainer();
+		var ppKaithrit:PregnancyPlaceholder = getNTStocksPregContainer("kaithrit");
 		pc.loadInMouth(ppKaithrit);
 	}
 	//New Texan farmer
@@ -681,7 +685,7 @@ public function stocksMouthgasms(args:Array):void
 		else output("You did pretty good. Your must practice on your boyfriend all the time, huh?");
 		output("”</i> He slips his cock out from your lips without another word. You try to fight it, but no matter how you suck, he’s just so strong and manly! The crown escapes with an audible ‘pop,’ and you’re left pouting until another dick appears in front of your face, this one veiny and rock-hard.");
 		output("\n\nIt definitely <i>needs</i> sucked. You can smell it as easily as the big-dicked farmer’s orgasm. You decide to do the responsible thing and meet the newcomer’s gaze through your mask of spent seed, rolling out your tongue in greeting. If the mess bothers him, it doesn’t show in the slightest. He pushes right in, giving you something besides the pure pleasure from your pussy to enjoy.");
-		var ppTexan:PregnancyPlaceholder = getZephyrPregContainer();
+		var ppTexan:PregnancyPlaceholder = getNTStocksPregContainer("farmer");
 		pc.loadInMouth(ppTexan);
 	}
 	processTime(10);
@@ -699,6 +703,7 @@ public function stocksEpilogue(args:Array):void
 	var x:int = args[2];
 	var inCunt:int = args[0];
 	var inMouth:int = args[1];
+	var rn:int;
 
 	output("Life in Miscreant Manor is a parade of cocks. Cocks that thrust into every hole. Cocks that jet cum into you. Cocks that throb and pleasure and cum without end. You can’t count how many times you orgasm or how many loads are swimming around in your abused womb");
 	if(pc.totalVaginas() > 1) output("s");
@@ -713,12 +718,15 @@ public function stocksEpilogue(args:Array):void
 		//Pick random pussy
 		x = rand(pc.totalVaginas());
 		//Pick a cumshot - mostly placeholder
+		rn = rand(10);
 		//Hellhound
-		if(rand(9) == 0) ppRando = getZephyrPregContainer();
+		if(rn == 0) ppRando = getNTStocksPregContainer("hellhound");
 		//Kaithrit
-		else if(rand(7) == 0) ppRando = getZephyrPregContainer();
+		else if (rn <= 2) ppRando = getNTStocksPregContainer("kaithrit");
+		//laquine
+		else if (rn <= 4) ppRando = getNTStocksPregContainer("laquine");		
 		//New Texan/Terran Tourist
-		else ppRando = getZephyrPregContainer();
+		else ppRando = getNTStocksPregContainer("farmer");
 		pc.loadInCunt(ppRando,x);
 		pc.loadInMouth(ppRando);
 		pc.orgasm();

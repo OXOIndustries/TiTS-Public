@@ -1126,7 +1126,7 @@ public function mutualMasturbkorg():void
 		output("\n\nHis fingers go back to work, finding their old places along the nerves of your pussy entrance. As he circles it once more and begins to slip in and out, his furry knuckles run across your [pc.clits], sending a shock that jellies your back and forces you to slump into his hand, hoping for another touch. Even through the haze of his own approaching climax, the korgonne notices - he brushes the nub");
 		if(pc.totalClits() > 1) output("s");
 		output(" again, smiling smugly at finally finding a weakpoint in the ");
-		if(!pc.hasCock()) output("woman");
+		if(!pc.hasCock()) output(pc.isWoman() ? "woman" : "cunt-boy");
 		else output("herm");
 		output(" who defeated him. He continues to tease and finger-fuck your hole with his soft pads until you can’t take any more... what he lacks in familiarity with your anatomy, he makes up for in cleverness and quick observation. You groan and cum, ");
 		if(!pc.isSquirter()) 

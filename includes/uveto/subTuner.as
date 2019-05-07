@@ -474,7 +474,7 @@ public function walkiesPart2():void
 	var lover:Boolean = false;
 	var choices:Array = [];
 	if(annoIsCrew()) choices.push(0);
-	if(syriIsCrew()) choices.push(1);
+	if(syriIsCrew() || (syriRecruited() && syriAtFreeezer())) choices.push(1);
 	if(roamingKiroAvailable()) choices.push(2);
 	var select:int = -1;
 	if(choices.length > 0) select = choices[rand(choices.length)];
@@ -505,7 +505,7 @@ public function walkiesPart2():void
 		output(" Giving you an odd, slightly lustful look, Syri turns her attention to Belle, who is just as interested in the wolfy bitch as she is in you.");
 		
 		output("\n\n<i>“Oh, you must be a friend of my pet then?”</i> she asks, extending a hand and introduces herself as “Dr. Belle Baslocvicz” before she continues. <i>“Your ‘Steele’ here has been oh-so kind enough to help me with a few experiments here.”</i> Running her eyes up and down Syri’s curvy form for a moment, she continues her introductions, <i>“And I must say, I wouldn’t mind getting your help for a few experiments.”</i>");
-		output("\n\n<i>“Uh, yeeeeah,”</i> Syri says, clearly not interested in such a deal, <i>“Well, uh, I gotta get going, later, [pc.name]”</i>");
+		output("\n\n<i>“Uh, yeeeeah,”</i> Syri says, clearly not interested in such a deal, <i>“Well, uh, I gotta get going, later, [pc.name]!”</i>");
 		output("\n\nThe ausar quickly starts walking the opposite direction of the two of you, leaving you and Belle relatively alone in the wide open dome of Uveto station.");
 		if (flags["SUBTUNER_NAMED"] == undefined) flags["SUBTUNER_NAMED"] = 1;
 		lover = true;
@@ -537,7 +537,7 @@ public function walkiesPart2():void
 	output("\n\n<i>“Like what you see, " + pc.mf("boy","girl") + "?”</i> Belle asks with a smile, reaching a hand down to cup your cheek while simultaneously yanking your leash to pull your face into her crotch.");
 	output("\n\nThe smell is heavenly, so earthy and musky, and paired with the heat radiating off her package and onto your cheeks, all you can do is look up at her and pant in answer.");
 	output("\n\n<i>“Well, come on then,”</i> the dual-dicked woman says, <i>“Fetch.”</i>");
-	output("\n\nThat’s all the invitation you need. You dart for her lower shaft almost immediately, taking her cockhead into your mouth and starting to slide your [pc.lips] down her shaft, barely giving yourself any time to breath. Belle places a hand on your head, letting a pleasured, shuddering breath escape her lips as the molten cockflesh of her upper dong carresses your cheek. Speaking of her other cock, it seems a little neglected, desperately and enviously leaking pre onto your face. <i>That won’t do at all; you need to make sure your master feels as good as possible.</i> Far beyond being able to have second thoughts at this point, you reach a hand up and take hold of Belle’s other cock, gently stroking it as you start bob your head up and down her lower, equally turgid and lengthy rod.");
+	output("\n\nThat’s all the invitation you need. You dart for her lower shaft almost immediately, taking her cockhead into your mouth and starting to slide your [pc.lips] down her shaft, barely giving yourself any time to breathe. Belle places a hand on your head, letting a pleasured, shuddering breath escape her lips as the molten cockflesh of her upper dong carresses your cheek. Speaking of her other cock, it seems a little neglected, desperately and enviously leaking pre onto your face. <i>That won’t do at all; you need to make sure your master feels as good as possible.</i> Far beyond being able to have second thoughts at this point, you reach a hand up and take hold of Belle’s other cock, gently stroking it as you start bob your head up and down her lower, equally turgid and lengthy rod.");
 	output("\n\n<i>“</i>Ah<i>, yes!”</i> The lady scientist moans, ");
 	if(pc.isPuppyorKitten() && pc.hasEmoteEars()) output("giving your ears a scritch, ");
 	output("<i>“Good " + pc.mf("boy","girl") + ", keep going, just like that.”</i>");
@@ -656,7 +656,7 @@ public function postWalkiesHeat2(ppBelle:PregnancyPlaceholder):void
 		output("\n\nIt isn’t long before your master’s ever-expansive hips start to move, fucking you like the bitch in heat you are, her knots spreading your supple entrances with each thrust. <i>The feeling of being bred like this, of having your hungers sated, it all feels so good.</i> You moan as loud as you can with each thrust of Belle’s foot-long cocks, crying out as your inner walls hug at her shafts, eagerly accepting her turgid dicks into your waiting holes.");
 		pc.cuntChange(v,ppBelle.cockVolume(0));
 		pc.buttChange(ppBelle.cockVolume(1));
-		IncrementFlag("SEXED_SAEC");
+		//IncrementFlag("SEXED_SAEC");
 	}
 	//hasCock:
 	if(x >= 0)
@@ -1476,7 +1476,7 @@ public function subTunerExhibRouter():void
 {
 	var options:Array = [subTunerRivalBullshit];
 	if(annoIsCrew()) options.push(subTunerAnnoExhib);
-	if(syriIsCrew()) options.push(syriExhibStuff);
+	if(syriIsCrew() || (syriRecruited() && syriAtFreeezer())) options.push(syriExhibStuff);
 	if(roamingKiroAvailable()) options.push(subTunerKiroExhib);
 	moveTo("UVS B9");
 	options[rand(options.length)]();
@@ -1868,7 +1868,7 @@ public function syriExhibStuff():void
 	else output("a cum-slut on a kui-tan");
 	output(", darting forward and taking her tapered tip between your [pc.lipsChaste]. The ausar quivers in her spot for a moment as you lavish her cockhead with your tongue, coating it with your saliva. You can feel Syri tensing when you move your tongue, and with each clench of her muscles the vibrators in and on you pick up in speed, shaking violently against your inner walls. The pleasurable buzzing leaves you to moan gently onto your lover’s warm shaft. You don’t let up and start to slide your way down Syri’s manhood, wet lips sliding along her cock while your tongue caresses her sensitive undercarriage all the way down, making the ausar whimper.");
 
-	output("\n\nOnce you’ve got her deep-red dong well sheathed between your [pc.lips], you let your tongue loll from your mouth and gently lick along the circumference of of Syri’s big ol’ knot, wetting the ball of cockflesh and tearing a few moans from its owner’s lips.");
+	output("\n\nOnce you’ve got her deep-red dong well sheathed between your [pc.lips], you let your tongue loll from your mouth and gently lick along the circumference of Syri’s big ol’ knot, wetting the ball of cockflesh and tearing a few moans from its owner’s lips.");
 
 	output("\n\nAt this point, a small crowd seems to have gathered behind you, judging by the sudden shadows being cast around you and all that mumbling gossip. You pay no attention to them, though, <i>because all that matters is making your mistress cum</i>. ");
 	if(pc.hasTongueFlag(GLOBAL.FLAG_LONG) && pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) output(" To further speed you along your way to that goal, you employ your very special oral organ. You snake your [pc.tongue] around Syri’s turgid tool, wrapping it in hot, wet coils, squeezing it tightly until she groans loudly for you. Her pleasured tones send a surge of bliss to your loins, only serving to increase your efforts and leading you to shift the coils of your tongue around her cock, effectively jerking her off within the embrace of your mouth.");
@@ -3083,7 +3083,7 @@ public function randomSubTunerShit():void
 	else if(rand(2) == 0)
 	{
 		buffer += "You go rigid for a moment as you’re walking as a shock of need and heat hits your loins before quickly fading, leaving you panting.";
-		buffer += "\n\nAfter trying to figure out what happened, you tug at the collar around your neck and remember the special function Belle gave it and wonder it the thing is actually off or not.";
+		buffer += "\n\nAfter trying to figure out what happened, you tug at the collar around your neck and remember the special function Belle gave it and wonder if the thing is actually off or not.";
 		pc.lust(10);
 	}
 	//4 (Requires the PC to have fucked Saec):
@@ -3179,7 +3179,21 @@ public function taurStadiumInterior():Boolean
 	
 	removeUvetoCold();
 	
-	addButton(0,"Cashier",taurStadiumCashier);
+	addButton(0, "Cashier", taurStadiumCashier);
+	
+	if (roxyIsInStadium())
+	{
+		if (flags["ROXY_MET"] >= 1)
+		{
+			output("\n\nThe sporty laquine Roxy is relaxing alone on her usual bench. She's watching the crowd lazily, only being snapped out of her rest by the occasional fan.");
+			addButton(1, "Roxy", roxyGreet,undefined,"Roxy","Touch base with Roxy.");
+		}
+		else
+		{
+			output("\n\nThrough the hustle and bustle of fortunes won and lost, you spot a coffee-colored laquine girl chilling out on one of many benches. From the way her upright ears crane and the way her neck pivots, you'd say she's people-watching. Occasionally someone approaches her holding a pen and a piece of paper. You'd guess from the flair she applies in accepting and signing those slips - and other sporty objects - she must be an athlete. A successful one.");
+			addButton(1, "Laquine", roxyGreet,undefined,"Laquine","Approach the spunky rabbit.");
+		}
+	}
 	
 	return false;
 }
@@ -3345,7 +3359,7 @@ public function betRaceOnUveto():void
 	if(pc.credits >= 10000) addButton(2,"10,000",bettingAtTheTaurRaces,10000,"10,000 Credits","Bet 10,000 credits.");
 	else addDisabledButton(2,"10,000","10,000","You don’t have the cash to make that bet.");
 	//[Nevermind]
-	addButton(3,"Nevermind",neverMindTaurStadium);
+	addButton(3,"Never Mind",neverMindTaurStadium);
 }
 
 //Choosing any of these will trigger an INT check based on the bet chosen. Lower-priced bets have a higher success rate, while the higher-priced ones have a much lower success rate. These chances are multiplied by the PC’s intelligence. Bimbo PCs automatically have a 50/50 success chance. Winning a bet doubles payment.
@@ -3362,7 +3376,7 @@ public function bettingAtTheTaurRaces(bet:Number):void
 		output("You tap your Codex a few times and transfer your chosen amount of credits over to the cashier who nods when she receives your payment.");
 		output("\n\n<i>“Alright, " + pc.mf("sir","ma’am") + ",”</i> the alien girl says, flipping the counter-mounted holo-pad off, <i>“You can head to our stadium seating up the stairs here and watch the race. When it’s concluded you can return here.”</i>");
 		if(pc.isAss()) output("\n\nYou nod");
-		else output("thank the woman");
+		else output("\n\nYou thank the woman");
 		output(" and make your way towards the stairs, climbing the steps until your eyes are greeted by the huge, open arena of the U7 racing stadium. It won’t be long before the race starts, so you skip finding a seat and lean yourself against a guardrail to get a closer look at the action.");
 		output("\n\nBefore too long cheering and clapping fills the air when as the race begins. The buzzer sounds and the tauric racers shoot from their gates like bullets, jockeys riding underneath. They maneuver the turns of the track like veteran racers, and the riders beneath seem to be enjoying being along for the ride.");
 		output("\n\nYou keep your eyes fixed on the mass of contestants as they round corners and reach the finish line. Your grip tightens with anticipation as your number starts to pull ahead of the pack, gaining a lead until you’re practically screaming and cheering loud enough for the whole stadium to hear. Sure enough, they cross the finish line first with a cry of victory from you, and the rest of the crowd that bet on them.");
@@ -3401,7 +3415,7 @@ public function neverMindTaurStadium():void
 {
 	clearOutput();
 	author("HugsAlright");
-	showName("\nNEVERMIND.");
+	showName("\nNEVER MIND.");
 	output("You take a look down at your credit balance and ponder your chances for a moment before telling the cashier that you’ve changed your mind.");
 	output("\n\n<i>“Oh, that’s alright,”</i> she says, flipping off the holo-pad as you go to put away your Codex, <i>“If you ever do feel like you’d want to place a bet, U7 is always open!”</i>");
 

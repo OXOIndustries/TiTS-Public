@@ -29,6 +29,7 @@ public function encounterRoz():Boolean
 {
 	clearOutput();
 	showRoz();
+	showBust("ROZ_ARMOR");
 	author("Savin");
 	//First Encounter:
 	if(flags["MET_ROZ"] == undefined)
@@ -170,7 +171,7 @@ public function rozCombatVictoryMenu():void
 	//Disabled for nau.
 	if(pc.IQ() >= 50 || pc.isGoo()) addButton(5,"Steal Core",coreJack,undefined,"Steal Core","Roz might be obsessing over your body now, but she seems to have her shit together more than your average galotian. She’s gotta have a core under that suit... give it a tug.");
 	else addDisabledButton(5,"Locked","Locked","You aren’t smart enough for this.");
-	if(pc.legCount == 2 || pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) addButton(6,"Hijack Armor",hijackRozArmor,undefined,"Hijack Armor","Steal Roz’s ramshackle power armor for yourself. She will probably never recover from this sleight -- at least not for the rest of the planet rush.");
+	if(!pc.isTaur()) addButton(6,"Hijack Armor",hijackRozArmor,undefined,"Hijack Armor","Steal Roz’s ramshackle power armor for yourself. She will probably never recover from this sleight -- at least not for the rest of the planet rush.");
 	else addDisabledButton(6,"Hijack Armor","Hijack Armor","You need to be a biped or otherwise have an amorphous lower body to operate this!");
 
 	addButton(14,"Leave",leaveRozAfterWinning);
@@ -226,7 +227,7 @@ public function takeRozArmor():void
 {
 	clearOutput();
 	showRoz(true);
-	output("You shove Roz off you and, while she’s busy peeling herself off the stone, you clamber up into the armor’s hatch and lock yourself in. There’s a pneumatic hiss as the armor seals up around you, and the padding inside tightens around your arms and legs. A holographic HUD lights up, displaying ammunition and shielding status, atmospheric data, and a thousand other datapoints that swirl around your eyes.");
+	output("You shove Roz off you and, while she’s busy peeling herself off the stone, you clamber up into the armor’s hatch and lock yourself in. There’s a pneumatic hiss as the armor seals up around you, and the padding inside tightens around your arms and [pc.legOrLegs]. A holographic HUD lights up, displaying ammunition and shielding status, atmospheric data, and a thousand other datapoints that swirl around your eyes.");
 	output("\n\n<i>“Heeeyyy!”</i> Roz shouts, splatting a fist on the chest plate. <i>“Gimme that back ya jerk! Get out and... I dunno just get out!”</i>");
 	output("\n\nThere’s a lot of incoherent angry shrieking after that, but it’s easy to ignore while you do a systems check and get accustomed to the controls. After a couple minutes, you’re pretty sure you’re ready to go - and to get this angry goo out of your way.");
 	output("\n\n<i>“You ain’t gettin’ past me!”</i> Roz shrieks, moments before getting stepped on by her own power armor as you blithely trudge through her. An exceptionally irate smear on the ground shouts after you, <i>“Ow! Hey! You can’t just ignore me!!! I’ll find you someday, I swear it!”</i>");
@@ -479,7 +480,7 @@ public function hyperBodyCondomRozAnne():void
 	if(cum < 10000)
 	{
 		output(" [pc.Cum] spurts into the swirling cyan pocket at the tip of your dick, shrouding her gemstone core as you pump spurt after spurt into the goo.");
-		output("\n\nAs you savor the climax, you realize that this is likely what she wanted all along, but it doesn’t matter. You won. She had to work for your cum! Nevermind that you’re sinking to " + (pc.hasKnees() ? "your knees":"the ground") + ", spurting and moaning, incoherent with pleasure. Nevermind the way ");
+		output("\n\nAs you savor the climax, you realize that this is likely what she wanted all along, but it doesn’t matter. You won. She had to work for your cum! Never mind that you’re sinking to " + (pc.hasKnees() ? "your knees":"the ground") + ", spurting and moaning, incoherent with pleasure. Never mind the way ");
 		if(cum < 25) output("she devours your meager offering with ease");
 		else if(cum < 500) output("she devours your seed with happy-sounding gurgles");
 		else output("she captures your seed with happy-sounding gurgles, creating an expanding pocket of [pc.cumColor]-tinged goo to hang from your kingly crown");

@@ -390,10 +390,10 @@ public function pexigaDroolTalk():void
 	//bimbo
 	if(pc.isBimbo())
 	{
-		output("\n\nOne thing that you always wondered: do pexiga like the taste of their own drool? It’s so sweet and yummy! If you had sugar drool, you’d be licking your own tongue all the time. Actually, if you were trying to taste your own tongue, would you taste the part being tasted or the part doing the tasting? How confusing! To avoid further headaches, you pose the question to [pexiga.name] instead.");
+		output("One thing that you always wondered: do pexiga like the taste of their own drool? It’s so sweet and yummy! If you had sugar drool, you’d be licking your own tongue all the time. Actually, if you were trying to taste your own tongue, would you taste the part being tasted or the part doing the tasting? How confusing! To avoid further headaches, you pose the question to [pexiga.name] instead.");
 	}
 	//non-bimbo
-	else output("\n\nYou ask [pexiga.name] about her strangely sugary saliva. For one thing, why is it so sweet? And, for that matter, does she mind being milked?");
+	else output("You ask [pexiga.name] about her strangely sugary saliva. For one thing, why is it so sweet? And, for that matter, does she mind being milked?");
 	output("\n\n<i>“My tongue?”</i> she wiggles the drooping, tendril-like appendage. <i>“Yeah! Feels really nice when stroked. Or licked. Or sucked. Or-”</i> she goes on, shamelessly listing off all manner of creative ways to excite her fat organ, tail wagging vigorously.");
 	output("\n\nYou notice something almost aggressive in her stance, like she’s getting ready to pounce. Suddenly it occurs to you that the sweet drool might be more than just a digestive aid. <i>“How do you use your tongue while hunting?”</i> you press.");
 	output("\n\nShe swings her moist organ back and forth slowly, blobs of candy-scented saliva dripping onto the deck of your ship. <i>“I dunno,”</i> she responds with an amused demeanor.");
@@ -1233,7 +1233,7 @@ public function tooBigPexigaFacefuck2(x:int):void
 		if(pc.hasToes()) output("toe-curling");
 		else output("teeth-clenching");
 		output(" heat.");
-		output("\n\nDespite her half-lidded eyes and limp, drooling tongue, [pexiga.name] moves with the speed and force one would expect of an apex predator. She rides the swollen mast of your manhood with purpose and zeal, her breasts squeezing your tender underside while her toeless feet massage the swell of your [pc.knot" + x + "]. Astride your [pc.cockNounComplex " + x + "] like a love-drunk junkie, [pexiga.name]’s glossy silver scales scintilate in the glow of the kitchen lights with a lustrous, lusty beauty.");
+		output("\n\nDespite her half-lidded eyes and limp, drooling tongue, [pexiga.name] moves with the speed and force one would expect of an apex predator. She rides the swollen mast of your manhood with purpose and zeal, her breasts squeezing your tender underside while her toeless feet massage the swell of your [pc.knot " + x + "]. Astride your [pc.cockNounComplex " + x + "] like a love-drunk junkie, [pexiga.name]’s glossy silver scales scintillate in the glow of the kitchen lights with a lustrous, lusty beauty.");
 		output("\n\nUnable to hold back any longer, your climax rises with all the ceremony of an erupting volcano. The tightness in your gut clenches to almost painful levels as a rush of warmth spreads through your body. Your [pc.cock " + x + "] throbs and trembles before bloating in the pexiga’s grasp as your climax fills your veins with overflowing fervor. The liquid cascade reaches your urethra like a geyser and thick streams of [pc.cumNoun] spray into the open air. The wild, unguided release splatters down across the kitchen with heavy splashes before your woozy pet regains her sense of self and slams her O-ringed mouth down onto your frothing spout.");
 		if(pc.cumQ() >= 3000) 
 		{

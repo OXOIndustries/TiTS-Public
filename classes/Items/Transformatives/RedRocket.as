@@ -72,6 +72,7 @@ package classes.Items.Transformatives
 
 				//Consume
 				output("Down the hatch! You open wide and pop the miniature rocket ship into your maw. It fizzles on contact with your saliva, melting into a salty, spicy goo in the span of a heartbeat. Before you can swallow the illicit payload, the moisture wicks into your tongue and takes your spit with it, leaving your mouth notably dry but your heart fluttering with artificial excitement.");
+
 				pc.taint(1);
 
 				//No dick: Grow one.
@@ -81,7 +82,7 @@ package classes.Items.Transformatives
 					if(pc.hasVagina()) output("dewy juncture " + (pc.legCount == 1 ? "below":"between your [pc.legs]"));
 					else output("senstivie patch of bare [pc.skin]");
 					output(". It’s warmer than a summer’s night and more insistent than a lover’s touch. You moan involuntarily, rocking your [pc.hips] forward. Electric currents sizzle through your groin as something <i>new</i> and powerful flexes. Panting, you throw your head back and moan.");
-					output("\n\nA ridge appears " + (pc.hasVagina() ? "just above your [pc.vaginas]":"at the very center") + ", red and irritated-looking yet so deliriously, wonderfully erotic. Recovering for a moment, you look down in awe, just in time to see a red-pointed tip emerging from your distending flesh. It glistens and pulsates, quivering to the beat of your heart. You watch it grow with building excitement. It’s like there’s a wick lit inside you, and for every inch of it that burns down, another inch of blossoming, crimson cock is released.\n\nThree inches of proud canine phallus wiggle imploringly. You grab them and tug unthinkingly, accelerating the release of your fourth inch of dick. The resulting spasms of relief and excitement nearly make you cum, but something holds you back. <i>It's not ready yet.</i>");
+					output("\n\nA ridge appears " + (pc.hasVagina() ? "just above your [pc.vaginas]":"at the very center") + ", red and irritated-looking yet so deliriously, wonderfully erotic. Recovering for a moment, you look down in awe, just in time to see a red-pointed tip emerging from your distending flesh. It glistens and pulsates, quivering to the beat of your heart. You watch it grow with building excitement. It’s like there’s a wick lit inside you, and for every inch of it that burns down, another inch of blossoming, crimson cock is released.\n\nThree inches of proud canine phallus wiggle imploringly. You grab them and tug unthinkingly, accelerating the release of your fourth inch of dick. The resulting spasms of relief and excitement nearly make you cum, but something holds you back. <i>It’s not ready yet.</i>");
 					output("\n\nYou thrust pump your new tool with feverish excitement. Beads of sweat pour from your brow, and tiny droplets have begun to bead at the tip of your demanding new endowment. It flexes in your fingers, straining to pack on more mass, forcing your hand halfway open to make room for more of the tender cock’s glossy skin. All the while, more length emerges from your sizzlingly aroused loins.\n\nYou’re almost there. You can feel it. Like a rocket about to go off, you can feel the tension in the air and inside you, all that potential energy about to emerge in one explosive burst.");
 					output("\n\nA heavy weight rolls into place against the underside of your [pc.skin]. Your sheath strains in response, stretching wide, revealing a bulge of hotrod red cock below. The pressure mounts. Your eyes cross from just how good it feels to grow to a dick. You barely notice your descent to the ground or the sloppy, lurid sounds that your hand makes as it jacks off your pre-cum-slathered rod. All that matters is giving <b>your new dog-cock</b> what it wants. All that matters is stroking and straining, and the increasingly heavy weight of your organ’s powerful new knot pushing hard, fighting to burst into existence and reward you with your first bit of canine cum.");
 					output("\n\nIt heaves. Your eyes cross in pleasure and-");
@@ -113,7 +114,7 @@ package classes.Items.Transformatives
 					if(selCock < 0) 
 					{
 						selCock = 0;
-						output("ERROR. Attempted to TF dick but didn't find a dick to TF. Whoops. Damned RedRocket.");
+						output("\n\n<b>ERROR. Attempted to TF dick but didn’t find a dick to TF. Whoops. Damned RedRocket.</b>");
 					}
 					output("\n\nThe residual warmth from the spice and the strange method of absorption doesn’t linger in your mouth for long. You feel it slide into your chest; a little spreads into your arms, but the bulk collects lower, infecting your crotch with heat and unfiltered need " + (!pc.isErect() ? "that forces you to a fully erect state":"that pumps you past the point of hardness into complete rigidity") + ".");
 					//If !exposed
@@ -168,8 +169,11 @@ package classes.Items.Transformatives
 						if(pc.cocks[x].cLength() < 24) choices.push("grow");
 						choices.push("grow");
 					}
-					if(!pc.inRut()) choices.push("rut");
-					if(!pc.inRut()) choices.push("rut");
+					if(!pc.inRut())
+					{
+						choices.push("rut");
+						choices.push("rut");
+					}
 					//cumdrool
 					choices.push("cumdrool");
 					choices.push("cumdrool");
@@ -319,7 +323,7 @@ package classes.Items.Transformatives
 							output("\n\n<i>“Mmmm, and a knot like this...”</i> A furry toe circles the hyper-swollen bulb of your knot, <i>“must be so beautifully sensitive. So easy to bring off.”</i>");
 							output("\n\nYou nod, dribbling and leaking. Your [pc.cock] flexes hard enough to lift her a few inches before slapping back down under its own weight.");
 							output("\n\n<i>“Atta [pc.boyGirl]. So easy to make you cum. Perfect for knocking me up.”</i> She dismounts you, and you realize she’s not just a dog-girl anymore. She’s a dog-taur. She’s got four legs behind and a body large enough to look like a good fit. Stepping into place, she lines her pussy up with your [pc.cock].");
-							output("\n\nShe doesn’t even have to move. Your thobbing eagerness throws your dick up to the right height, and you growth spurt drives the [pc.cockHead] into her waiting lips.");
+							output("\n\nShe doesn’t even have to move. Your thobbing eagerness throws your dick up to the right height, and your growth spurt drives the [pc.cockHead] into her waiting lips.");
 							output("\n\n<i>“Ah! Such an eager stud.”</i> She prances back, swallowing your cock. Her body is made for you: big enough to take you and wet enough for her drippings to completely soak you. The folds ripple and squeeze and clutch at you, and you grow to fill her. <i>“Such a <b>good dog</b>.”</i>");
 							output("\n\nYou almost cum. The way she says it is so pleased that it makes your head spin with delight, moreso than the tight heat surrounding you.");
 							output("\n\n<i>“Now knock momma up.”</i> She backs up further, grunting with the effort of trying to take your knot. Her back paws skit and slip in her own slobbering pussyjuice as she fights for traction. <i>“Give me so many pups.”</i>");
@@ -379,8 +383,7 @@ package classes.Items.Transformatives
 							output("\n\nNo matter how taut your [pc.balls] get" + (pc.balls <= 1 ? "s":"") + " or how much [pc.cum] you leak out, you know that eventually you’re going to have to get up and deal with the ache inside you. It’ll be messier. A lot messier. Because you’re a breeder and a seeder. You’re a walking cum tank whose body is learning how to better exude impregnating juices with every passing second.");
 							output("\n\nThe flow slackens, but the tightness remains. Your body is absolutely packed with [pc.cumNoun]. You should find someone to cum inside. Someone fertile and canine preferably. Someone who will enjoy the fact that <b>you produce more cum when you orgasm than before.</b>");
 							pc.boostCum(20);
-							pc.ballFullness = 100;
-							pc.createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
+							pc.applyBlueBalls();
 						}
 					}
 					else output("\n\nERROR: " + select);

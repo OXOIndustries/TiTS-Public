@@ -389,6 +389,7 @@ package classes.Items.Transformatives
 							output("Your [pc.ears] begin to itch and burn, and you reach up to rub them. You’re surprised to find, however, that your ears have sunk into the sides of your head, leaving shallow divots for your hearing holes. <b>You now have frog ears!</b>");
 							
 							target.earType = GLOBAL.TYPE_FROG;
+							target.clearEarFlags();
 							target.earLength = 0;
 							changes++;
 						}
@@ -455,7 +456,7 @@ package classes.Items.Transformatives
 								}
 								output("You feel a warm tugging just above your butt, and look back to see a small mound of flesh slowly growing from your tailbone. The tugging ebbs as the protrusion settles into a small stubby tail. It waggles cutely when you look at it, and feels sensitive when you touch it. <b>You now have a frog tail!</b>");
 								
-								target.clearTailFlags();
+								target.removeTails();
 								target.tailCount = 1;
 								target.tailType = GLOBAL.TYPE_FROG;
 								target.addTailFlag(GLOBAL.FLAG_SMOOTH);

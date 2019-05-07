@@ -378,11 +378,17 @@ public function defeatDaKorgiShit():void
 	}
 	else addDisabledButton(5,"Sit On Her","Sit On Her","You need to be a centaur with a vagina or a centaur with balls and a penis for this.");
 	
-	if(eligibleForKorgiHumiliation()) addButton(6,"CockMockery",korgonneHardlightPussyStuffsStuffStuffings,true,"Cock Mockery","Your [pc.cockBiggest] is nothing to scoff at. Use it instead.");
-	else if(pc.hasHardLightEquipped() && pc.hasKeyItem("Hardlight Strap-on Upgrades")) addButton(6,"HardlightFuck",korgonneHardlightPussyStuffsStuffStuffings,false,"Hardlight Punishment","See if your hardlight sextoy can satisfy this insatiable puppy slut.");
-	else if(pc.hasCock()) addDisabledButton(6,"CockMockery","Cock Mockery","Your [pc.cockBiggest] is not nearly thick enough for this. You are definitely too big.");
+	if(pc.hasHardLightEquipped() && pc.hasKeyItem("Hardlight Strap-on Upgrades"))
+	{
+		addButton(6,"HardlightFuck",korgonneHardlightPussyStuffsStuffStuffings,false,"Hardlight Punishment","See if your hardlight sextoy can satisfy this insatiable puppy slut.");
+		if(pc.hasCock())
+		{
+			if(pc.biggestCockLength() < 24 && pc.biggestCockThickness() < 2.7) addButton(7,"CockMockery",korgonneHardlightPussyStuffsStuffStuffings,true,"Cock Mockery","Your [pc.cockBiggest] is nothing to scoff at. Use it instead.");
+			else addDisabledButton(7,"CockMockery","Cock Mockery","Your [pc.cockBiggest] is not nearly thick enough for this. You are definitely too big.");
+		}
+	}
 	else if(!pc.hasHardLightEquipped()) addDisabledButton(6,"HardlightFuck","Hardlight Punishment","You need hardlight-enabled underwear for this.");
-	else if(!pc.hasKeyItem("Hardlight Strap-on Upgrades")) addDisabledButton(6,"HardlightFuck","Hardlight Punishment","You need hardlight-enabled underwear for this - <b>with the upgrade that enables you to change the size.</b>.");
+	else if(!pc.hasKeyItem("Hardlight Strap-on Upgrades")) addDisabledButton(6,"HardlightFuck","Hardlight Punishment","You need hardlight-enabled underwear for this - <b>with the upgrade that enables you to change the size</b>.");
 
 	addButton(14,"Leave",defeatDaKorgiLeave);
 }
@@ -413,7 +419,7 @@ public function sitOnKorgiForTaurs():void
 	if(!pc.isCrotchExposed()) output("strip off your [pc.lowerGarments] and, with a smile, you ");
 	output("lower yourself on top of her.");
 
-	output("\n\nThe girl under you lets out a <i>“whoof!”</i> as your bulk pins her to the ground. You can feel the little fuzzball under you, squirming and trying futilely to wiggle out. As she shifts to the right, you lean slightly to to keep her under, switching to the left when she tries that direction instead. Just as you thought, she’s both absurdly soft and deliciously warm - practically a heated pillow, albeit a struggling one.");
+	output("\n\nThe girl under you lets out a <i>“whoof!”</i> as your bulk pins her to the ground. You can feel the little fuzzball under you, squirming and trying futilely to wiggle out. As she shifts to the right, you lean slightly to keep her under, switching to the left when she tries that direction instead. Just as you thought, she’s both absurdly soft and deliciously warm - practically a heated pillow, albeit a struggling one.");
 
 	output("\n\nEnough fun, you figure. Time to put her to work. You shift forward slightly, so that her head pokes out under your backside. The canid takes a deep breath, drinking in your scent as she does so. Glancing over your shoulder, you enjoy the sight of the Korgonne’s ears twitching frantically, her face filled by the eclipsing closeness of your [pc.ass]. Under you, the girl’s hefty melons squish and roll against the [pc.skinFurScales] of your underside, her nipples hard enough to be felt even through the taut straps of her bra. You wiggle slightly ");
 	if(pc.tailCount > 0) 
@@ -947,11 +953,6 @@ public function loseToKorgonneWithABigDickAfterGivingHerBigDickFetish2():void
 	CombatManager.genericLoss();
 }
 
-public function eligibleForKorgiHumiliation():Boolean
-{
-	return (pc.hasCock() && pc.biggestCockThickness() < 2.7);
-}
-
 //hardlight overclock versus giant korgonne pussy [tbd title]
 //button name: "Cock Mockery" (maybe) or "Hardlight Punishment" (meh)
 //PC win scene for female korgonne boobarian
@@ -991,7 +992,7 @@ public function korgonneHardlightPussyStuffsStuffStuffings(korgiHumiliation:Bool
 
 		output("\n\nYour blood burns and your cheek tingles in shame as the cold wind licks at your blushing face. A desperate urge to punish bubbles up in you");
 		if(pc.isNice()) output(", though you try to force it down");
-		output(". You’re tempted to fuck her anyway, even if she wouldn’t feel anything... and then you remember the special equipment you’re packing in your [pc.lowerUndergarment]. You could use your adjustable, high-tech hardlight underwear to give her a dicking fit to stretch a leithan, if you were of a mind....");
+		output(". You’re tempted to fuck her anyway, even if she wouldn’t feel anything... and then you remember the special equipment you’re packing " + (!pc.isCrotchExposed() ? "in your [pc.lowerGarment]" : "between your [pc.thighs]") + ". You could use your adjustable, high-tech hardlight underwear to give her a dicking fit to stretch a leithan, if you were of a mind....");
 		output("\n\n<i>“What about this, then?”</i> You reach for the controls and activate the hardlight projection. A long, glimmering white light-cock springs forth.");
 		output("\n\nThe korgonne is stunned - at least, for a moment. <i>“Pleasure shines,”</i> she oohs and ahhs. Her expression dulls. <i>“But still no knot. Useless.”</i>");
 

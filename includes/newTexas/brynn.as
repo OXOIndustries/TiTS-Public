@@ -97,7 +97,7 @@ public function brynnRandomBarnEventFunc():Boolean
 				}
 				output(" with need as arousal begins to bead around your quim");
 				if (pc.vaginas.length > 1) output("s, ");
-				else output(", ");
+				else output(",");
 				if (pc.hasCock()) output(" as equally");
 				output(" sensitive to the scent of a powerful, virile male wanting for a tight cunt to fill.");
 			}
@@ -474,7 +474,7 @@ public function suckThatMassiveStudlyBrynnDick():void
 	}
 
 	output("\n\nYour mouth is inched along the seemingly endless feet of cock with a firmly controlled pace, allowing you time to inspect every ridge along its length with your tongue in great detail");
-	if (pc.isTreated()) output(", the treatments tune-up of your oral sensitivity bringing your own pleasure to new heights");
+	if (pc.isTreated()) output(", the Treatment’s tune-up of your oral sensitivity bringing your own pleasure to new heights");
 	output(". As you bump into the ring at the midpoint of the cock, the grip controlling your progress stalls momentarily, allowing you time to get far more intimate with the highly sensitive feature; you experiment with sucking and nibbling on the thick ridge, figuring out the most pleasurable effect based on the tone of the stud’s growing grunts of approval at the collective activity of three needy sluts suckling his iron-hard shaft.");
 	
 	output("\n\nEventually though, the grip begins to tug you away from your station. You give the ridge a final parting nibble before you’re pulled away from it, further up the length of cock. As you near the head, you notice the trail of musky pre you’ve spent considerable effort to capture entirely growing thicker; you find more and more of the tangy fluid to tantalize your taste buds, until you finally reach the flared head of the monster horsecock. The grip pulls you away from the pillar of flesh, and you strain your tongue to maintain contact with it for as long as possible, but it’s out of reach all too quickly.");
@@ -520,7 +520,7 @@ public function suckThatMassiveStudlyBrynnDick():void
 	output(" increases; a testament to the pleasure that your maw is bringing the stud, simply by offering a wet, tight hole to sheathe inside of. He seems content to leave you there, giving your jaw time to relax and properly accept such a hugely thick cock jamming it wide open.");
 
 	// First time OR not treated OR no horns
-	if (flags["SUCKED_BRYNN"] == undefined || !pc.isTreated() || pc.tallness < 59)
+	if (flags["SUCKED_BRYNN"] == undefined || !pc.canDeepthroat() || pc.tallness < 59)
 	{
 		flags["SUCKED_BRYNN"] = 1;
 		
@@ -595,7 +595,7 @@ public function suckThatMassiveStudlyBrynnDick():void
 		else output(" applied to the back of your skull");
 		output(" increases, quickly sliding more of his cock deep into your mouth. Very quickly though, he runs into a roadblock. Or more accurately, your [pc.lips] run into the fat ridge marking the two-thirds point of his dick. With what little play you have, you slowly manage to wriggle your lips around and over the ridge with care, slowly working past the widest part of his cock so that he can continue.");
 		
-		output("\n\nWith one final heave, the stud tugs you all the way to the hilt in one slow, continual glide, your chin nestling into the space between his balls and your nose pressed into the short fuzzy fur above his sheath. You can’t help but feel a certain sense of pride, having managed to conquer such an expansive, throbbing monster of a cock. A few powerful jabs from his hips, his cock pounding into your throat, sheath mashing against your lips, and it’s more than pride; the Treatment’s tweaks to your mouth’s sensitivity pays dividends, simply being fucked in the mouth enough to cause your");
+		output("\n\nWith one final heave, the stud tugs you all the way to the hilt in one slow, continual glide, your chin nestling into the space between his balls and your nose pressed into the short fuzzy fur above his sheath. You can’t help but feel a certain sense of pride, having managed to conquer such an expansive, throbbing monster of a cock. A few powerful jabs from his hips, his cock pounding into your throat, sheath mashing against your lips, and it’s more than pride; the Treatment’s tweaks to your mouth’s sensitivity pays dividends, simply being fucked in the mouth is enough to cause your");
 		if (pc.hasVagina())
 		{
 			output(" cunt to ripple around the digits deeply embedded in your tunnel,");

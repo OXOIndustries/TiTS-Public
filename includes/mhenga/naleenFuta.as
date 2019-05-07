@@ -262,7 +262,7 @@ public function postNaleenHermCumSuckLoss():void
 	clearOutput();
 	showName("HOURS\nLATER");
 	output("You lost count at how many times the huntress busted a nut down your throat, but your lips are puffed up and sore. Your whole mouth is numb! Worst of all, your face is covered in a thick layer of spit, pre, and cum.");
-	output("\n\nMore cum floods your overstuffed stomach, but it washes back into your mouth and onto her crotch. She wipes away the spunk covering her cock" + (!(pc.lowerUndergarment is EmptySlot) ? " using your [pc.lowerUnderGarment].":" with her loincloth.") + " A moment later, she slithers off.");
+	output("\n\nMore cum floods your overstuffed stomach, but it washes back into your mouth and onto her crotch. She wipes away the spunk covering her cock " + (!(pc.lowerUndergarment is EmptySlot) ? "using your [pc.lowerUndergarment]":"with her loincloth") + ". A moment later, she slithers off.");
 	output("\n\nYou let out a burp and spit out the cum in your mouth, not that it changes much. You pick up your equipment and set out into the jungle once more, still feeling the cum sloshing around in your bloated belly.\n\n");
 	processTime(180);
 	pc.loadInMouth(enemy);

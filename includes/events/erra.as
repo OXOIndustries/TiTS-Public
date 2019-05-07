@@ -449,7 +449,7 @@ public function erraGoodGirl2():void
 	if(!pc.isCrotchExposed() || !pc.isChestExposed()) output("dressed and ");
 	output("ready, you head out back into the ship’s atrium and make your way to the airlock. <i>“You seem happy, Captain,”</i> Dee’s voice booms. <i>“I trust that means you and [pc.name] enjoyed yourselves.”</i> Erra’s eyes widen with an emotion akin to anger as you start to [pc.walk] out of the ship. She quickly regains control of her emotions before saying, <i>“Later, [pc.name], stop by some time.”</i>");
 	output("\n\nDee chimes in as well, calling out <i>“Farewell, [pc.name].”</i>");
-	output("\n\nYou say goodbye to the two, and as the airlock closes behind you, you can faintly hear, <i>“Hey, Dee, time for one of our ‘talks.’”</i>");
+	output("\n\nYou say goodbye to the two, and as the airlock closes behind you, you can faintly hear, <i>“Hey, Dee, time for one of our ‘talks’.”</i>");
 	IncrementFlag("ERRA_SEXED");
 	processTime(35);
 	restHeal();
@@ -833,7 +833,8 @@ public function walkiesWithErra():void
 	clearOutput();
 	showErra(true);
 	author("Hugs Alright");
-	output("<i>“Who’s my good girl?”</i> you say, leaning forward and bringing Erra’s collar to her neck. She smiles wide as the piece of leather is closed around her neck, tail swaying gaily behind her. You pull yourself back and take in the sight of your freshly-collared puppy for a moment before placing a hand between her black-furred ears. Erra coos as you scritch between her ears, moving her head around to make sure your digits hit all the right places. <i>“That’s right,”</i> you whisper, <i>“Who’s my big, strong puppy?”</i> Your pet’s tail wags even faster at your words, moaning gently as your hand runs through her ebony hair. You smirk at the sight of Erra going into puppy-mode, and tell her to roll over for you; she does as you say and rolls over onto her back, arms curled up like a puppy’s, smiling up at you with growing eagerness. Returning her grin, you reach down to her dusky, muscular tummy, and start to stroke it with your palm. Your fingers lift and descend as they run along firm cords of muscle, making Erra’s breath shudder. Your belly-rubbing quickly picks up in speed, your digits caressing Erra’s dark skin and athletic frame until she’s panting like a dog, tongue lolling from her mouth.");
+	output("<i>“Who’s my good girl?”</i> you say, leaning forward and bringing Erra’s collar to her neck. She smiles wide as the piece of leather is closed around her neck, tail swaying gaily behind her. You pull yourself back and take in the sight of your freshly-collared puppy for a moment before placing a hand between her black-furred ears. Erra coos as you scritch between her ears, moving her head around to make sure your digits hit all the right places. <i>“That’s right,”</i> you whisper, <i>“Who’s my big, strong puppy?”</i> Your pet’s tail wags even faster at your words, moaning gently as your hand runs through her ebony hair.");
+	output("\n\nYou smirk at the sight of Erra going into puppy-mode, and tell her to roll over for you; she does as you say and rolls over onto her back, arms curled up like a puppy’s, smiling up at you with growing eagerness. Returning her grin, you reach down to her dusky, muscular tummy, and start to stroke it with your palm. Your fingers lift and descend as they run along firm cords of muscle, making Erra’s breath shudder. Your belly-rubbing quickly picks up in speed, your digits caressing Erra’s dark skin and athletic frame until she’s panting like a dog, tongue lolling from her mouth.");
 	output("\n\nBefore the puppy can get too ahead of herself, you pull your hand back, resulting in a little whine from the ausar before you shush her and stand up ");
 	if(!pc.isTaur()) output("off the bed.");
 	else output("straight.");
@@ -845,7 +846,7 @@ public function walkiesWithErra():void
 	output(" Turning around, you face your pet and give her a grin, <i>“Time for walkies, girl!”</i> The ausar’s green eyes go wide at your suggestion, more with worry than anything else, her tail halting in its place. <i>“What’s wrong?”</i> you question, trying to give Erra’s leash a pull, <i>“My girl isn’t afraid of going for a little walk, is she?”</i> Your words seem to upset Erra in some way, or encourage her, because her eyes narrow in determination, her jet-black, fluffy tail quickly returning to its regular swishing and swaying.");
 	output("\n\nYour pet steps off the bed with a confident stride, bringing herself to the ground on all fours; looks like tapping into Erra’s pridefulness was enough to get the ausar over her fears. Glad that your puppy’s found bravery in the face of walkies, you give her tether a tug and make your way out of the bedroom. [pc.Walking] into the atrium of Erra’s ship, you’re greeted by a robotic chuckle from Dee, <i>“Going out, Captain? Do try to enjoy yourself.”</i>");
 	output("\n\nThe AI’s captain groans as you near the airlock, and you tell Dee you’ll make sure to take care of Erra while she’s out. Your puppy seems a bit nervous when you actually open the porthole and reveal where she’ll soon be crawling, though she still follows you out of the ship all the same with another good pull of her leash.");
-	output("\n\nOnce you’re finally out among the public, Erra manages to relax herself, or tries to seem relaxed, at the least. She trails behind you as you lead her around, keeping close to make sure her leash doesn’t get tangled around the countless pairs of legs she’s crawling around. A few locals pause in their tracks to get a look at your fluffy pet, normally saying something along the lines of <i>“Aww, what a cute puppy!”</i> before showering her with pets and verbal affections, all of which Erra graciously accepts. In fact, your puppy seems pretty worked up about what’s going on, her tail wagging gleefully with each passing stranger and her flat tongue hanging out of of her mouth as she pants. ");
+	output("\n\nOnce you’re finally out among the public, Erra manages to relax herself, or tries to seem relaxed, at the least. She trails behind you as you lead her around, keeping close to make sure her leash doesn’t get tangled around the countless pairs of legs she’s crawling around. A few locals pause in their tracks to get a look at your fluffy pet, normally saying something along the lines of <i>“Aww, what a cute puppy!”</i> before showering her with pets and verbal affections, all of which Erra graciously accepts. In fact, your puppy seems pretty worked up about what’s going on, her tail wagging gleefully with each passing stranger and her flat tongue hanging out of her mouth as she pants.");
 	output("\n\nWith your puppy getting her fill of public interaction, you decide to prop yourself against a more comfortable-looking wall and beckon your pet over.");
 	var cock:Boolean = (!pc.hasVagina() || (pc.isHerm() && rand(2) == 0));
 	//hasCock:
@@ -1011,6 +1012,7 @@ public function erraCuddleScenes2():void
 	//firstTime:
 	if(flags["ERRA_CUDDLED"] == undefined)
 	{
+		showImage("ErraAfterCuddlePanties");
 		output("\n\nAs you’re making yourself ready for your journeys and Erra’s making herself decent, the former-puppy calls out, <i>“Hey, [pc.name], I think you forgot your panties.”</i>");
 		output("\n\nBefore you have a chance to reply, or consider if you are missing any panties, a wadded up ball of purple fabric hits you.");
 		if(pc.reflexes() >= 10) output(" Managing to catch the soft, violet sphere, you cock an eyebrow and unravel the matrix of lacy fabrics.");
@@ -1022,6 +1024,7 @@ public function erraCuddleScenes2():void
 		pc.createKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")
 		output("\n\n(<b>Gained Key Item: Panties - Erra’s</b>.)");
 	}
+	else showImage("ErraAfterCuddle");
 	output("\n\nOnce you’re both decent, you walk back into the ship’s Atrium, Dee’s robotic voice ringing in your ears before you can even get a foot out the airlock. <i>“Leaving, [pc.name]? I-”</i>");
 	output("\n\nThe AI is suddenly cut off by her captain: <i>“Dee I swear! I’ll-”</i>");
 	output("\n\nErra is interrupted in turn by her artificial co-pilot, <i>“Don’t worry, Captain, I’ll let you </i>enjoy the moment<i>.”</i>");

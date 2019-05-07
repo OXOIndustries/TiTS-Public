@@ -281,6 +281,9 @@
 					output("\n\nYour ears perk upwards, higher and higher until they sit nearly at the top of your head. The tips continue to stretch upward as they streamline into a pair of triangular wolf ears, coated in a thin layer of fur.");
 					
 					target.earType = GLOBAL.TYPE_LUPINE;
+					target.clearEarFlags();
+					target.addEarFlag(GLOBAL.FLAG_TAPERED);
+					target.addEarFlag(GLOBAL.FLAG_FURRED);
 				}
 				else output("\n\n" + target.earTypeLockedMessage());
 				return;
@@ -316,7 +319,7 @@
 			}
 			// No genitals, gain canine cock with sheath and balls:
 			if(select == 11) {
-				if(target.createVaginaUnlocked(1))
+				if(target.createCockUnlocked(1))
 				{
 					makeBlack = (rand(4) == 0);
 					
@@ -409,13 +412,14 @@
 			// Increase tone towards 70:
 			if(select == 16) {
 				var newTone:Number = target.tone + (2 + rand(4));
+				if(newTone > 100) newTone = 100;
+				if(newTone < 0) newTone = 0;
 				if(target.toneUnlocked(newTone))
 				{
 					output("\n\n");
 					if(newTone < 50) output("A bit of your softness seems to melt away, letting your muscles show through more clearly.");
 					else output("Your muscles tighten, turning denser and heavier as they grow ever more defined.");
 					
-					if(newTone > 100) newTone = 100;
 					target.tone = newTone;
 				}
 				else output("\n\n" + target.toneLockedMessage());
@@ -424,13 +428,14 @@
 			// Decrease thickness towards 0:
 			if(select == 17) {
 				var newThickness:Number = target.thickness - (2 + rand(4));
+				if(newThickness > 100) newThickness = 100;
+				if(newThickness < 0) newThickness = 0;
 				if(target.thicknessUnlocked(newThickness))
 				{
 					output("\n\nYour body feels like it’s compacting,");
 					if(newThickness >= 50) output(" making you significantly less wide-bodied.");
 					else output(" getting sleeker and more agile-looking by the moment. Of course, a hunter should be nice and lean.");
 					
-					if(newThickness > 100) newThickness = 100;
 					target.thickness = newThickness;
 				}
 				else output("\n\n" + target.thicknessLockedMessage());

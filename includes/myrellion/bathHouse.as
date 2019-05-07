@@ -627,7 +627,7 @@ public function backFromPrivateBath():void
 {
 	clearOutput();
 	showOserre();
-	output("<i>“Uh... nevermind. I’ve changed my mind.”</i>\n\nThe matron shrugs and refunds your credits.");
+	output("<i>“Uh... never mind. I’ve changed my mind.”</i>\n\nThe matron shrugs and refunds your credits.");
 	processTime(1);
 	pc.credits += 50;
 	clearMenu();
@@ -1087,7 +1087,7 @@ public function doubleEndedOserre():void
 		output(" Even your [pc.cocks] ");
 		if(pc.cockTotal() == 1) output("get");
 		else output("gets");
-		output(" a bit stiff at the sight of a big dick to compete with, nevermind that it’s fake.");
+		output(" a bit stiff at the sight of a big dick to compete with, never mind that it’s fake.");
 	}
 
 	output("\n\nShe lowers herself into the spring and into your lap, but contrary to your hopes, doesn’t offer you the other end of the cock right away. Instead, she begins to work hot water into your [pc.skinFurScales] with strong, sure strokes of her hands.");

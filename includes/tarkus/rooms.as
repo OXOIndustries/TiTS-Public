@@ -1011,7 +1011,7 @@ public function initTarkusRooms():void
 	rooms["268"] = new RoomClass(this);
 	rooms["268"].roomName = "METAL\nRAVINE";
 	rooms["268"].description = "This deep, dark crevice between two house-sized plates is about the quietest, most shadowy place you’ve found on planet. The air is markedly still, and drifts of fine dust have accumulated against the giant sheets of metal into small mounds. There’s nowhere to travel but north from here.";
-	rooms["268"].runOnEnter = cockBoxDiscoveryBlurb;
+	rooms["268"].runOnEnter = tarkusMetalRavineBonus;
 	rooms["268"].northExit = "267";
 	rooms["268"].planet = "PLANET: TARKUS";
 	rooms["268"].system = "SYSTEM: REDACTED";
@@ -1047,7 +1047,7 @@ public function initTarkusRooms():void
 	//#71 SCYTHING\nGLADE
 	rooms["271"] = new RoomClass(this);
 	rooms["271"].roomName = "SCYTHING\nGLADE";
-	rooms["271"].description = "You’re struck by how red the soil of Tarkus is inside the glade; it’s so dark that’s it’s nearly purple in places, broken only by the glittering silver roots of the trees that hem that your path. The gaps between them trail north and east from here, wide enough for you to be safe from the deadly blades so long as you mind your position.";
+	rooms["271"].description = "You’re struck by how red the soil of Tarkus is inside the glade; it’s so dark that it’s nearly purple in places, broken only by the glittering silver roots of the trees that hem your path. The gaps between them trail north and east from here, wide enough for you to be safe from the deadly blades so long as you mind your position.";
 	rooms["271"].runOnEnter = rustScytheGladeEncounters;
 	rooms["271"].northExit = "270";
 	rooms["271"].eastExit = "272";

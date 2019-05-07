@@ -33,6 +33,7 @@ package classes.GameData
 	import classes.Engine.Combat.*;
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.StringUtil;
+	import classes.Util.RandomInCollection;
 	
 	/**
 	 * Static library of combat attack implementations
@@ -394,7 +395,7 @@ package classes.GameData
 			StealthFieldGenerator.DisabledIfEffectedBy = ["Stealth Field Generator"];
 			StealthFieldGenerator.Implementor = StealthFieldGeneratorImpl;
 			StealthFieldGenerator.TooltipTitle = "Stealth Field Generator";
-			StealthFieldGenerator.TooltipBody = "Creates a stealth field that greatly increases your evasion for a few turns.";
+			StealthFieldGenerator.TooltipBody = "Creates a stealth field that greatly increases your evasion by 80% for a few turns.";
 			StealthFieldGenerator.RequiresTarget = false;
 			StealthFieldGenerator.SetAttackTypeFlags(SingleCombatAttack.ATF_SPECIAL);
 			a.push(StealthFieldGenerator);
@@ -710,7 +711,7 @@ package classes.GameData
 			{
 				return false;
 			}
-			if(target.hasStatusEffect("Flying") && !target.isImmobilized() && !attacker.hasPerk("Lunge"))
+			if(target.hasStatusEffect("Flying") && !target.isImmobilized() && (!attacker.hasPerk("Lunge") && !attacker.canFly()))
 			{
 				output(StringUtil.capitalize(possessive(attacker.getCombatName()), false) + " can’t reach " + target.getCombatName() + "! " + (!target.isPlural ? (target.mfn("He","She","It") + " is") : "They are") + " too high!");
 				return false;
@@ -1109,7 +1110,40 @@ package classes.GameData
 			
 			if(attacker is PlayerCharacter)
 			{
-				if(kGAMECLASS.chars["WULFE"].isBimbo())
+				if(kGAMECLASS.siegwulfeIsDom())
+				{
+					// Bimbo-dom siegwulfe will switch between lust attacks and regular attacks to match which type of damage she thinks you’re trying to deal.
+					// More lust than dmg
+					if (!target.isLustImmune && (100*(target.HP()+target.shields()) / (target.HPMax()+target.shieldsMax())) >= 100 - target.lustQ())
+					{
+						output(RandomInCollection([
+							"[wulfe.name] pushes her chest out, smirking while she runs her hands over her gigantic, jutting breasts and moans. <i>“Look at what you’re missing out on...”</i>",
+							"[wulfe.name] turns and lowers her front half, spreading her hindlegs while her holocock snaps into existence, tantalizing the enemy with her impressive assets. She wiggles her massive centaur ass from side to side, smirking with confidence.",
+							"[wulfe.name] turns and spreads her hindlegs, presenting her thick, black pussy and letting moisture drool from her tight little slit. <i>“Give up now and maybe I’ll let you put your tongue in it.”</i>"
+						]));
+
+						// Scales dmg with PC level.
+						//dmg = new TypeCollection( { tease: 12 + attacker.level } );
+						dmg = new TypeCollection( { tease: 20 + rand(3) } );
+						damageResult = applyDamage(dmg, kGAMECLASS.chars["WULFE"], target, "suppress");
+						output("\n");
+						output(teaseReactions(damageResult.lustDamage, target));
+					}
+					//More dmg than lust
+					else
+					{
+						output(RandomInCollection([
+							"[wulfe.name] jumps into the fray, slashing with her extendable claws!",
+							"[wulfe.name] spins around and kicks at the opponent with her powerful hindlegs!",
+							"[wulfe.name] rears up and kicks at the opponent with her clawed forelegs!"
+						]));
+
+						// Scales dmg with PC level.
+						dmg = new TypeCollection( { kinetic: ((d * 0.9) + rand(3)) }, DamageFlag.PENETRATING);
+						damageResult = applyDamage(dmg, attacker, target, "suppress");
+					}
+				}
+				else if(kGAMECLASS.chars["WULFE"].isBimbo())
 				{
 					output("<i>“Don’t you worry your pretty head, " + attacker.mf("master", "mistress") + "!”</i> " + kGAMECLASS.chars["WULFE"].short + " giggles, prancing forward with her massive milk-tanks on display. <i>“I’ll, like, distract ‘em and stuff!”</i> She sure does, bouncing around with jiggling tits and a wiggling ass, putting herself between you and " + target.getCombatName() + ".");
 					
@@ -1156,7 +1190,7 @@ package classes.GameData
 		
 		public static function TamedVarmintAttack(attacker:Creature, target:Creature):void
 		{
-			if (attacker is PlayerCharacter) output("Your pet varmint hoots and hisses at " + target.getCombatName() + ",");
+			if (attacker is PlayerCharacter) output(kGAMECLASS.varmintPetName("Your pet") + " hoots and hisses at " + target.getCombatName() + ",");
 			else output(attacker.getCombatName() + "’s pet varmint hoots and hisses at you,");
 			if (attacker.isGrappled()) output(" pacing about defensively near " + (attacker is PlayerCharacter ? "you" : attacker.getCombatPronoun("himher")));
 			else output(" standing protectively in front of " + (attacker is PlayerCharacter ? "you" : attacker.getCombatPronoun("himher")));
@@ -1286,6 +1320,11 @@ package classes.GameData
 			target.setStatusValue("Burning", 2, threshold);
 			if(tooltip != "") target.setStatusTooltip("Burning", tooltip);
 		}
+		public static function applyBurrow(target:Creature, tooltip:String = ""):void
+		{
+			target.createStatusEffect("Burrowed",0,0,0,0,false,"Icon_DefUp",StringUtil.capitalize(target.uniqueName) + (target.isPlural  ? " have " : " has") + " burrowed beneath the ground. You can see some faint trembling through the dirt, but there's no other sign of it.",true);
+			if(tooltip != "") target.setStatusTooltip("Burrowed", tooltip);
+		}
 		public static function applyDisarm(target:Creature, turns:int = 4, apply:Boolean = false, tooltip:String = ""):void
 		{
 			target.createStatusEffect("Disarmed", 4, 0, 0, 0, false, "Blocked", "Cannot use normal melee or ranged attacks!", true, 0, 0xFF0000);
@@ -1306,6 +1345,12 @@ package classes.GameData
 			if(apply) target.setStatusValue("Grappled", 2, chance);
 			else target.addStatusValue("Grappled", 2, chance);
 			if(tooltip != "") target.setStatusTooltip("Grappled", tooltip);
+		}
+		public static function applyHobble(target:Creature, intensity:int = 1, apply:Boolean = false):void
+		{
+			target.createStatusEffect("Hobbled",0,0,0,0,true,"","",true);
+			if(apply) target.setStatusValue("Hobbled", 1, intensity);
+			else target.addStatusValue("Hobbled",1 , intensity);
 		}
 		public static function applyLustStun(target:Creature, turns:int = 2, apply:Boolean = false, tooltip:String = ""):void
 		{
@@ -2143,7 +2188,7 @@ package classes.GameData
 				rounds = 4;
 			}
 			
-			attacker.createStatusEffect("Stealth Field Generator", rounds, 0, 0, 0, false, "DefenseUp", "Provides a massive bonus to evasion chances!", true, 0);
+			attacker.createStatusEffect("Stealth Field Generator", rounds, 0, 0, 0, false, "DefenseUp", "Provides a massive 80% bonus to evasion chances!", true, 0);
 		}
 		
 		public static var Grenade:SingleCombatAttack;

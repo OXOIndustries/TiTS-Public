@@ -729,7 +729,7 @@ public function assFuckStella():void
 
 	output("\n\n<i>“Relax, Stella,”</i> you tell her, intending both meanings. <i>“I’ll give you some time to get used to it.”</i>");
 
-	output("\n\nReaching around to to her front, you drape an arm across her inner thigh and slide a finger across the hard little nub just above her tight slit. She jumps a little at the sensation and gasps, instinctively clamping down on your dick.");
+	output("\n\nReaching around to her front, you drape an arm across her inner thigh and slide a finger across the hard little nub just above her tight slit. She jumps a little at the sensation and gasps, instinctively clamping down on your dick.");
 
 	output("\n\n<i>“Oh, gosh!”</i> she cries, desperation seeping into her voice. <i>“I didn’t even realize how close I was... nnnnggh!”</i>");
 
@@ -852,7 +852,7 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 		if(pc.balls > 1) 
 		{
 			output("balls.");
-			if(pc.ballDiameter() < 4) output(" You can feel the heat of her breath washing over your nuts from her nose as she needily licks, sucks, and fondles them, putting her face right into your crotch to get a better feel. She takes long, deep inhales of your scent while she pays you worship, slowly stroking your cock even as she takes your balls in her mouth to suck");
+			if(pc.ballDiameter() < 4) output(" You can feel the heat of her breath washing over your nuts from her nose as she needily licks, sucks, and fondles them, putting her face right into your crotch to get a better feel. She takes long, deep inhales of your scent while she pays you worship, slowly stroking your cock even as she takes your balls in her mouth to suck.");
 			else if(pc.ballDiameter() <= 6) output(" You can hear her quietly groan in need from below you as she gently takes your balls in both hands, licking up and down their entire surface and suckling them when she can’t get them entirely in her mouth. You can feel the short, hot exhalations from her cute little nose as she shoves it right into your crotch to inhale your scent, one hand slowly snaking upwards to rub your cock while she worships your balls with her tongue. She’s definitely got a thing for size...");
 			else if(pc.ballDiameter() <= 9) 
 			{
@@ -874,7 +874,7 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 		else if(pc.balls == 1) 
 		{
 			output("ball.");
-			if(pc.ballDiameter() < 4) output(" You can feel the heat of her breath washing over your nut from her nose as she needily licks, sucks, and fondles it, putting her face right into your crotch to get a better feel. She takes long, deep inhales of your scent while she pays you worship, slowly stroking your cock even as she takes your ball in her mouth to suck");
+			if(pc.ballDiameter() < 4) output(" You can feel the heat of her breath washing over your nut from her nose as she needily licks, sucks, and fondles it, putting her face right into your crotch to get a better feel. She takes long, deep inhales of your scent while she pays you worship, slowly stroking your cock even as she takes your ball in her mouth to suck.");
 			else if(pc.ballDiameter() <= 6) output(" You can hear her quietly groan in need from below you as she gently takes your ball in both hands, licking up and down its entire surface and suckling it when she can’t get it entirely in her mouth. You can feel the short, hot exhalations from her cute little nose as she shoves it right into your crotch to inhale your scent, one hand slowly snaking upwards to rub your cock while she worships your ball with her tongue. She’s definitely got a thing for size...");
 			else if(pc.ballDiameter() <= 9) 
 			{
@@ -1168,25 +1168,26 @@ public function breedStella():void
 	output("\n\n<i>“Uunnnnf!”</i> she screams into the pillow, her back arching as she does. You love how honest she is, how every bit of her reflects how into it she is, and how much that makes you want to keep giving it to her. You couldn’t stop fucking her right now even if you wanted to, driven on by the need to reduce this sexy bimbo bitch to a quivering, cum-filled mess. You can see her massive breasts and ass jiggling as you slam her tight little cunt, the sight driving you wild.");
 
 	output("\n\nIt feels like she’s even tighter than she is otherwise in this position, her pussy walls intimately wrapping around your [pc.cock " + x + "] and kissing your tip every time you plunge it inside her. Right on time, you grunt and cum inside her, somehow your biggest load yet despite having had several orgasms by now. This time, you slow down and really focus on pumping her full.");
-	if(pc.cumQ() < 1000) output(" You shudder in pleasure as you shoot several thick ropes of seed inside her, pressed right up against the entrance to her womb, your spunk joining the rest of what you’ve fucked inside her");
-	else if(pc.cumQ() < 4000) output(" Groaning, you shake in pleasure while what feels like a gallon of spunk pours into Stella’s womb, the bimbo moaning like a whore in heat the entire time");
-	else if(pc.cumQ() < 8000) output(" You groan through grit teeth while you unload more than a gallon of thick [pc.cum] right into Stella’s overstuffed womb, ejaculating so much that her lower stomach begins to outwardly sag");
-	else if(pc.cumQ() < 12000) output(" You clench your teeth and hiss in fierce satisfaction while you slowly hump Stella’s womb full of what must be two or three gallons of [pc.cum], listening to her slutty moans all the while. By the time you’re done, she’s cumming again and her tummy is sagging with the liquid weight of your spunk");
-	else if(pc.cumQ() < 25000) output(" [pc.Cum] jets from your [pc.cockHead " + x + "], filling Stella’s womb to the brim and then, finding no escape, swelling her even further. Her loud, slutty moans accompanying each pulsing ejaculation, you rapidly swell her tummy outwards with the sheer liquid weight of your cum. By the time you’re done, her formerly flat, fit stomach is about as big as her massive tits");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 1000) output(" You shudder in pleasure as you shoot several thick ropes of seed inside her, pressed right up against the entrance to her womb, your spunk joining the rest of what you’ve fucked inside her");
+	else if(cumQ < 4000) output(" Groaning, you shake in pleasure while what feels like a gallon of spunk pours into Stella’s womb, the bimbo moaning like a whore in heat the entire time");
+	else if(cumQ < 8000) output(" You groan through grit teeth while you unload more than a gallon of thick [pc.cum] right into Stella’s overstuffed womb, ejaculating so much that her lower stomach begins to outwardly sag");
+	else if(cumQ < 12000) output(" You clench your teeth and hiss in fierce satisfaction while you slowly hump Stella’s womb full of what must be two or three gallons of [pc.cum], listening to her slutty moans all the while. By the time you’re done, she’s cumming again and her tummy is sagging with the liquid weight of your spunk");
+	else if(cumQ < 25000) output(" [pc.Cum] jets from your [pc.cockHead " + x + "], filling Stella’s womb to the brim and then, finding no escape, swelling her even further. Her loud, slutty moans accompanying each pulsing ejaculation, you rapidly swell her tummy outwards with the sheer liquid weight of your cum. By the time you’re done, her formerly flat, fit stomach is about as big as her massive tits");
 	else
 	{
 		output("\n\n<i>“Fuck, fuck, fuuuuck,”</i> you groan in pleasure, your hips shaking while you grasp Stella’s hips and ride the high of ejaculation. Barrelful after barrelful of thick, virile spunk splatters into her waiting womb, almost immediately stuffing it to capacity and then swelling it further. Each passing second makes her fatter and fatter, the liquid weight of your seed weighing her stomach down until it’s sagging on the bed like she’s starring in a hyperporn. The excess spurts back out onto the bed, unable to find purchase in her overstuffed womb");
 	}
 	output(".");
 
-	if(pc.PQ() < 50 && pc.libido() < 80 && !pc.isBro() && !pc.isAmazon()) output("A bit winded, you flop back, only to have Stella appear overhead, cracking open a can of something marked ‘Sanguine Stallion’. You thirstily guzzle the beverage, more invigorated by the second. Before long, you’re grabbing the can out of her hand and sucking down the last of the energy drink. [pc.EachCock] is hard and full, rearing to go. You want to <i>breed</i>.");
+	if(pc.PQ() < 50 && pc.libido() < 80 && !pc.isBro() && !pc.isAmazon(false)) output("A bit winded, you flop back, only to have Stella appear overhead, cracking open a can of something marked ‘Sanguine Stallion’. You thirstily guzzle the beverage, more invigorated by the second. Before long, you’re grabbing the can out of her hand and sucking down the last of the energy drink. [pc.EachCock] is hard and full, rearing to go. You want to <i>breed</i>.");
 
 	output("\n\nYou flip the horny ausar over, laying your eyes upon her face once more, and you like what you see. A woman mired in heat and need, a sweat-slicked bimbo with flushed cheeks, the perfect image of a girl who needs your cock to live. Stella looks every bit as happy to see you as you do her, panting hotly and gazing at you with desire. She sweeps her wet, sweaty blonde hair out of her face and flirts.");
 	output("\n\n<i>“Oooh,”</i> she moans, running her hands up and down her");
-	if(pc.cumQ() < 1000) output(" washboard flat");
+	if(cumQ < 1000) output(" washboard flat");
 	else output(" curvaceous");
 	output(" stomach and voluptuous breasts, hooding her eyes and fluttering her eyelashes at you. <i>“Do you like");
-	if(pc.cumQ() < 1000) output(" pumping");
+	if(cumQ < 1000) output(" pumping");
 	else output(" seeing");
 	output(" me full of your cum, master?”</i>");
 	output("\n\n<i>“Fuck yeah I do,”</i> you pant, your sweaty hands wrapped around her waist, squeezing her enormous asscheeks in lust.");
@@ -1614,6 +1615,7 @@ public function stellaPregbangEpilogue():void
 public function stellaKnockupCheck():void
 {
 	if(stellaPregnant()) return;
+	if(pc.virility() <= 0) return;
 	
 	//Stella is pretty fertile and takes a loooot of loads.
 	var chance:Number = 25;

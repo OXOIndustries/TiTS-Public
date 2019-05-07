@@ -45,6 +45,7 @@
 			baseDamage.corrosive.damageValue = 15;
 			//baseDamage.addFlag(DamageFlag.NO_CRIT);
 			//addFlag(GLOBAL.ITEM_FLAG_BLIND_IGNORE);
+			this.addFlag(GLOBAL.ITEM_FLAG_RIFLE_WEAPON);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;

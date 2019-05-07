@@ -251,7 +251,7 @@ public function reahaMilkStand():void
 		//Var 2.
 		else if(rand(2) == 0)
 		{
-			output("As you’re stepping back aboard, you’re greeting with a muffled series of moans and a rhythmic <i>thump-thump</i> of something hitting one of the bulkheads. You’d be alarmed, except you quickly realize that the noise is coming from Reaha’s quarters. Sounds like the cow-girl’s <i>“entertaining”</i> a customer right now.");
+			output("As you’re stepping back aboard, you’re greeting with a muffled series of moans and a rhythmic <i>thump-thump</i> of something hitting one of the bulkheads. You’d be alarmed, except you quickly realize that the noise is coming from Reaha’s quarters. Sounds like the cow-girl’s “entertaining” a customer right now.");
 		}
 		//Var 3.
 		else
@@ -358,7 +358,7 @@ public function herTalentsReaha():void
 	output("<i>“What I’m capable of?”</i> she asks, taken aback by the question.");
 	output("\n\nYou nod encouragingly, and Reaha’s forced to think for a moment. <i>“I guess... I mean, I guess I’ve got a lot of experience as a whore. Without the bitches at Beth’s tormenting me all day every day, there could be worse jobs. The money’s good - she made a fucking fortune off of me, that’s for sure.”</i> You’re a bit surprised she’d actually think of that as a talent. Would she actually consider whoring again, you wonder to yourself.");
 	output("\n\n<i>“Other than that? Well, I don’t know if I could really make a living just selling milk. I’ve loved what I’ve been doing, but it’s hard on my poor tits. And I’d probably need some more mods to produce enough to really support myself like that...”</i>");
-	output("\n\nYou give Reaha a look when she mentions modding herself even further, and she visibly winces. <i>“N-nevermind. The only other thing I’d be really good for is, like, being a mercenary or something. I’ve got army experience, after all, though I’m not some super-hardcore badass or anything. And I’d like to see them try and crowbar me into combat armor with a body like this...”</i>");
+	output("\n\nYou give Reaha a look when she mentions modding herself even further, and she visibly winces. <i>“N-never mind. The only other thing I’d be really good for is, like, being a mercenary or something. I’ve got army experience, after all, though I’m not some super-hardcore badass or anything. And I’d like to see them try and crowbar me into combat armor with a body like this...”</i>");
 	output("\n\n<i>“Is that all? Come on, you’ve gotta have some hidden talents somewhere,”</i> you urge.");
 	output("\n\nReaha shrugs. <i>“I grew up on New Texas, [pc.name]. All I ever really learned was sex-ed and how to work an industrial milker. I just... don’t know. I’m ");
 	if(silly) output("just a dumb cow");
@@ -580,7 +580,7 @@ public function curedReahaMenu():void
 	addButton(7,"Wear Outfit",whatOutfitWillCuredReahaWear,undefined,"Wear Outfit","Choose an outfit for Reaha to wear.");
 	addButton(8,"Give Item",giveReahaTFItemPresents,undefined,"Give Item","Give Reaha a little present.");
 	if (shipLocation == "500") addButton(9, "Boot Reaha", reahaBootOffShip, undefined, "Boot Reaha", "Kick Reaha off the ship. Dropping her off on the homeworld might not be in her best interest, but hey. She’s your property, anyway.");
-	else addButton(9, "Boot Reaha", reahaBootOffShip, undefined, "Boot Reaha", "Kick Reaha off the ship. You can send her to hang out on Tavros Station");
+	else addButton(9, "Boot Reaha", reahaBootOffShip, undefined, "Boot Reaha", "Kick Reaha off the ship. You can send her to hang out on Tavros Station.");
 	
 	addButton(11, "Take Clothes", whatOutfitWillCuredReahaReturn, undefined, "Take Clothes", "Take back some clothes from Reaha.");
 	addButton(12,"DestroyOutfit", whatOutfitWillCuredReahaDestroy, undefined, "Destroy Outfit", "Choose an outfit for Reaha to throw away.");
@@ -1438,12 +1438,12 @@ public function getATitjobFromCuredReaha():void
 	if(curedReahaInDebt()) output("<i>“Bad cow!”</i>");
 	else output("<i>“Aww, you made a mess, Reaha!”</i>");
 	output(" you laugh, pushing your hand deeper into the cow’s cavernous cunt. She shrieks with ecstasy, tits bouncing as you fingers her quivering quim. Reaha babbles an apology as your finger-fucking intensifies, deft digits delving deeper into her darkest depths, slipping your whole hand in past her well-stretched lips. A few good thrusts has the submissive little cow screaming in pleasure, head thrown back as she bounces on your fist, working with you to ram it deeper and deeper into her spasming cunt. The slick walls of Reaha’s pussy squeeze and ripple along your pounding hand, muscles contracting wildly in a vain attempt to delay the massive penetration from ramming home into her again and again; her pleasured cries, though, let you know she’s enjoying every second of fist-fucking goodness she can get as her screams reach their crescendo.");
-	output("\n\nReaha’s orgasm comes crashing down like a wave. Her cunt contracts and spasms, lips quaking around your wrist. Her pussy squirts, joining her leaking tits in a hurricane of fluids that spatters across your body as she cums, soaking your arms and [pc.chest] in girl-spunk and [reaha.milk]. You chuckle as the cow’s chest heaves, still drooling [reaha.milk] at a steady rate as her orgasm passes; breathing hard, she slumps back against the bulkhead, with nothing but your fist buried deep up her cunt to prop her up. When you finally pull your hand free, the exhausted slut slumps to her knees, tits bouncing enticingly as her big booty plops onto the wet floor. You lick your lips at the sight of her jiggly flesh warbling, still coated with a moist sheen, already nice and lubricated by her own lactation. Finally, time for the main course.");
+	output("\n\nReaha’s orgasm comes crashing down like a wave. Her cunt contracts and spasms, lips quaking around your wrist. Her pussy squirts, joining her leaking tits in a hurricane of fluids that spatters across your body as she cums, soaking your arms and [pc.chest] in girl-spunk and [reaha.milk]. You chuckle as the cow’s chest heaves, still drooling [reaha.milk] at a steady rate as her orgasm passes; breathing hard, she slumps back against the bulkhead, with nothing but your fist buried deep up her cunt to prop her up. When you finally pull your hand free, the exhausted slut slumps to her knees, tits bouncing enticingly as her big booty plops onto the wet floor. You lick your lips at the sight of her jiggly flesh wobbling, still coated with a moist sheen, already nice and lubricated by her own lactation. Finally, time for the main course.");
 	output("\n\nYou grab your [pc.cockOrStrapon " + x + "], presenting it to the collapsed cow-slut, and her whorish instincts have her sucking it in a heartbeat. She swallows it up, wide-set tongue caressing your sensitive underside as your hips push inch after inch past her spit-slick lips ");
 	var length:Number = 9;
 	if(x >= 0) length = pc.cocks[x].cLength();
 	if(length < 10) output("until the lusty bovine’s swallowed up every inch of cockmeat you’re packing, her nose poking into your groin expectantly");
-	else output("until her throat’s bulging with cockmeat, cheeks puffing out as she tries desperately to breath around your inhuman package");
+	else output("until her throat’s bulging with cockmeat, cheeks puffing out as she tries desperately to breathe around your inhuman package");
 	output(". You let your cow-slut suckle from your [pc.cockOrStrapon " + x + "] for a few good moments, reveling in the feeling of her huge tongue wrapping and caressing your prick. Exhausted as she is from her cunt-pounding orgasm, the taste of cock seems to revive her, and soon Reaha’s sucking like a champ, head bobbing up and down your shaft with rhythmic motion");
 	if(length >= 10) output(", throat bulging and deflating as your massive dick rams down her throat time after time");
 	output(". In fact, she might be getting a bit <i>too</i> enthusiastic, deep-throating you with such skill and speed that you don’t know if you’ll hold out long enough to get what you were after - but would that be so bad? You sigh, cock throbbing with unanswered need as you push Reaha back, the head of your prick breaching from between her lips with a wet pop, bridges of spittle still connecting you and your slutty little slave.");
@@ -1548,7 +1548,7 @@ public function curedReahaFucksASubbyPCsButt():void
 	{
 		output("\n\n<i>“Okay! You’re gonna want to lube this up, [pc.name]! I’ve taken enough cock to know the difference it makes. Open wide.”</i>");
 		output("\n\nYou blink, just in time to see Reaha grab you by the [pc.hair] and yank your head back. Your mouth opens instinctively, and is instantly filled with a slab of latex cock-meat. <i>“Good [pc.boyGirl],”</i> Reaha giggles, rocking her hips forward into your [pc.lips]. <i>“Use that tongue, now!”</i>");
-		output("\n\nYou take her advice, sucking on her rigid plastic rod and coating it with as much spit as you can. Reaha nods approvingly, one hand cupping a hefty breast and the other snaking down your bare back. You suck in a sharp breath, feeling her hand caress your [pc.butt]... and again when you feel a pair of her fingers pressing against your [pc.vagOrAss]. It takes just a little pressure for her to snake her way inside you, stirring up the inner depths of your hole to get you ready, too. You can feel a little [reaha.milk] on her fingertips, whetted to ease her entry... and lube you up.");
+		output("\n\nYou take her advice, sucking on her rigid plastic rod and coating it with as much spit as you can. Reaha nods approvingly, one hand cupping a hefty breast and the other snaking down your bare back. You suck in a sharp breath, feeling her hand caress your [pc.butt]... and again when you feel a pair of her fingers pressing against your [pc.vagOrAss]. It takes just a little pressure for her to snake her way inside you, stirring up the inner depths of your hole to get you ready, too. You can feel a little [reaha.milk] on her fingertips, wettened to ease her entry... and lube you up.");
 	}
 	output("\n\nSatisfied with her wetwork, Reaha gives you an appreciative slap on your [pc.butt], digging her fingers into your taut [pc.skin]. That’s more like it! You wiggle your ass happily as the cow’s hands wrap around your [pc.hips]. Her own bovine hips pushing in towards you, the head of the massive strapon teasing the clenched ");
 	if(pc.hasVagina()) output("lips");
@@ -2472,36 +2472,136 @@ public function giveReahaTFItemPresentsGO(item:ItemSlotClass):void
 //FreedReaha Only. SlaveReaha has same reactions as before.
 //Replace normal [Boot Reaha] text as follows.
 
-/* 9999
 public function bootReahaOffShipIfFreed():void
 {
 	clearOutput();
 	reahaHeader();
+	
 	output("<i>“Hey, Reaha, you mind jumping ship for a while? I need to free up some room.”</i>");
-	output("\n\nReaha chews her lip a moment before giving you a great big shrug. <i>“I guess, sure. I’ll wait for you on Tavros station - maybe hang out at that nursery your dad bought. {if PC has 1+ kid there: I can at least make myself useful there. I’m sure the staff wouldn’t mind another wetnurse, right?} That sound okay?”</i>");
+	output("\n\nReaha chews her lip a moment before giving you a great big shrug. <i>“I guess, sure. I’ll wait for you on Tavros station - maybe hang out at that nursery your dad bought.");
+	if(ChildManager.numChildrenAtNursery() >= 1) output(" I can at least make myself useful there. I’m sure the staff wouldn’t mind another wetnurse, right?");
+	output(" That sound okay?”</i>");
+	output("\n\nYou nod. <i>“Sounds perfectly alright.”</i>");
+	output("\n\n<i>“Great! I’ll pack up and be out of here in a few minutes. Don’t forget about me, okay?”</i>");
+	output("\n\nYou promise that you won’t, and find yourself spending the next few minutes helping Reaha pack up her belongings and calling a taxi for her. When it docks with you, she says goodbye by way of a bear hug, squeezing her tits between the two of you in that heavy, full way only a cow-girl can, and plants a kiss on your cheek. <i>“See you soon, [pc.name]!”</i>");
+	output("\n\nYou wave as she cycles through the airlock, and is whisked away back to Tavros.");
+}
 
-output("\n\nYou nod. <i>“Sounds perfectly alright.”</i>");
+// Reaha the Nursemaid
+// Change when you have visited the nursery and have at least 1 kid. Now when you kick Reaha off the ship, add her to the Nursery. Change the following tooltip during her Boot Off scene:
+// Go to Tavros
+// Requires: 50 Credits
+// Tell Reaha to go to Tavros Station. Since the Nursery’s opened up, you can probably send her there...
+public function reahaCanGoToNursery():Boolean
+{
+	return (reahaIsCured() && visitedNursery());
+}
+public function reahaAtNurseryCafeteria():Boolean
+{
+	return (reahaAtNursery() && hours >= 09 && hours <= 17 && ChildManager.numChildrenAtNursery() >= 1);
+}
+public function reahaAtNurseryFoyer():Boolean
+{
+	if(reahaAtNurseryCafeteria()) return false;
+	return (reahaAtNursery());
+}
 
-output("\n\n<i>“Great! I’ll pack up and be out of here in a few minutes. Don’t forget about me, okay?”</i>");
+// Recover Reaha
+// Add to PC’s nursery foyer:
+public function reahaNurseryFoyerBonus(btnSlot:int = 0):void
+{
+	output("\n\nReaha’s wandering around, making herself as useful as you can.");
+	if(ChildManager.numChildrenAtNursery() <= 1)
+	{
+		output(" She’s tidying the place up, barren as it is.");
+		if(!(reaha.armor is MaidOutfit) && !(reaha.armor is MaidUniform)) output(" You’re a bit sad to see she’s lacking a full maid outfit to complete the picture");
+		else output(" She’s even got her maid outfit on to completely the picture, though it’s been made a lot less risque than you remember. No doubt Briget’s doing");
+		output(".");
+	}
+	else
+	{
+		output(" She’s clearly been getting used quite a bit by your offspring, and her breasts look more drained than you’ve ever seen them - they look positively tiny under her " + (!reaha.isNude() ? "[reaha.clothes]" : "clothes") + ".");
+		if(reaha.isNude()) output(" You imagine Briget must have given her those to wear while she’s here.");
+	}
+	output(" Reaha perks up when you enter, and flashes you an inviting smile.");
+	
+	// [Reaha]
+	addButton(btnSlot, "Reaha", reahaNurseryFoyerApproach);
+}
 
-output("\n\nYou promise that you won’t, and find yourself spending the next few minutes helping Reaha pack up her belongings and calling a taxi for her. When it docks with you, she says goodbye by way of a bear hug, squeezing her tits between the two of you in that heavy, full way only a cow-girl can, and plants a kiss on your cheek. <i>“See you soon, [pc.name]!”</i>");
+public function reahaNurseryFoyerApproach():void
+{
+	clearOutput();
+	reahaHeader();
+	
+	output("You head over to Reaha, putting a hand around her waist and pulling the little cow into a hug - one she welcomes with a smile and a giddy squeal. <i>“Hey, [pc.name]! Good to see you!”</i>");
+	output("\n\n");
+	
+	processTime(1);
+	
+	// [Rejoin Crew] [Leave]
+	clearMenu();
+	addButton(0, "Rejoin Crew", reahaBackAtNurseryFoyerRejoin);
+	addButton(14, "Leave", mainGameMenu);
+}
+public function reahaBackAtNurseryFoyerRejoin():void
+{
+	clearOutput();
+	reahaHeader();
+	
+	output("<i>“Ready to get on outta here?”</i>");
+	output("\n\n<i>“You mean, back aboard your ship?”</i> she asks, clearly hopeful. You nod, and Reaha beams. <i>“You bet I am!”</i>");
+	output("\n\nWith a chuckle, you ruffle Reaha’s strawberry hair and tell her to pack her bags, sending her off towards her quarters with a slap on the rear that makes her flesh jiggle. She gives you a wink over her shoulder and says she’ll see you back aboard ship!");
+	output("\n\n(<b>Reaha has rejoined your crew!</b>)");
+	output("\n\n");
+	
+	processTime(15);
+	flags["REAHA_IS_CREW"] = 1;
+	
+	addNextButton(mainGameMenu);
+}
 
-output("\n\nYou wave as she cycles through the airlock, and is whisked away back to Tavros.");
-
-output("\n\nRecover Reaha");
-output("\n\n//Add to PC’s nursery foyer:");
-
-output("\n\nReaha’s wandering around, making herself as useful as you can. {She’s tidying the place up, barren as it is. {You’re a bit sad to see she’s lacking a full maid outfit to complete the picture // She’s even got her maid outfit on to completely the picture, though it’s been made a lot less risque than you remember. No doubt Briget’s doing}. // She’s clearly been getting used quite a bit by your offspring, and her breasts look more drained than you’ve ever seen them - they look positively tiny under her [reaha.clothes]{nude Reaha: . You imagine Briget must have given her those to wear while she’s here.}} Reaha perks up when you enter, and flashes you an inviting smile.");
-
-output("\n\n[Reaha]");
-
-output("\n\nYou head over to Reaha, putting a hand around her waist and pulling the little cow into a hug - one she welcomes with a smile and a giddy squeal. <i>“Hey, [pc.name]! Good to see you!”</i>");
-
-output("\n\n[Rejoin Crew]");
-
-output("\n\n<i>“Ready to get on outta here?”</i>");
-
-output("\n\n<i>“You mean, back aboard your ship?”</i> she asks, clearly hopeful. You nod, and Reaha beams. <i>“You bet I am!”</i>");
-
-output("\n\nWith a chuckle, you ruffle Reaha’s strawberry hair and tell her to pack her bags, sending her off towards her quarters with a slap on the rear that makes her flesh jiggle. She gives you a wink over her shoulder and says she’ll see you back aboard ship!");
-*/
+// Find Reaha Again, Tavros Station
+// Add to Nursery cafeteria
+public function reahaNurseryCafeteriaBonus(btnSlot:int = 0):void
+{
+	output("\n\nReaha’s made herself at home in the kitchen, cooking up a storm. Her magic milker is close at hand and clearly used quite recently -- looks like she’s using some <i>very</i> fresh ingredients. The little cow perks up when she sees you, flashing you a hopeful smile.");
+	
+	// [Reaha]
+	addButton(btnSlot, "Reaha", reahaNurseryCafeteriaApproach);
+}
+public function reahaNurseryCafeteriaApproach():void
+{
+	clearOutput();
+	reahaHeader();
+	
+	output("<i>“Hey, Reaha,”</i> you say, leaning against the serving counter. The moment her name leaves your lips, her bovine ears flip up and her tail starts swishing.");
+	if(reaha.isNude()) output(" She’s got an apron on over a pair of jeans and a blouse that looks like it’s straight from Bridget’s closet. It’s a good look for the little cow.");
+	output("\n\nShe gives you a demure smile and sets aside the mixing bowl she’s working with, giving you her full attention. <i>“Hi, [pc.name]. This nursery of yours is amazing! It’s like the daycare I used to go to on New Texas but a thousand times more high tech. Look at all the robots and stuff,”</i> she giggles. <i>“But as cute as your kid" + (ChildManager.numChildrenAtNursery() == 1 ? " is" : "s are") + ", I’d rather be with you...”</i>");
+	output("\n\n");
+	
+	processTime(1);
+	
+	// [Rejoin Crew] [Leave]
+	clearMenu();
+	addButton(0, "Rejoin Crew", reahaBackAtNurseryCafeteriaRejoin);
+	addButton(14, "Leave", mainGameMenu);
+}
+public function reahaBackAtNurseryCafeteriaRejoin():void
+{
+	clearOutput();
+	reahaHeader();
+	
+	output("You grin and put an arm around the cow-girl’s shoulders. <i>“Ready to get on out of here?”</i>");
+	output("\n\n<i>“You mean, back aboard your ship?”</i> she asks, clearly hopeful. You nod, and Reaha immediately hops into your arms, hugging you tight. <i>“Yay! I-I mean, uh, yes, absolutely. Ready whenever you want me back...”</i>");
+	output("\n\nWith a chuckle, you ruffle Reaha’s strawberry hair and tell her to pack her bags. She heads off at a jog for her room to grab her bag and says she’ll meet you back aboard ship. You send her off with a playful swat on the rear, making her");
+	if(reaha.isNude()) output(" tattooed");
+	output(" rump jiggle obscenely as she scampers off.");
+	output("\n\n(<b>Reaha has rejoined your crew!</b>)");
+	output("\n\n");
+	
+	processTime(15);
+	flags["REAHA_IS_CREW"] = 1;
+	
+	addNextButton(mainGameMenu);
+}

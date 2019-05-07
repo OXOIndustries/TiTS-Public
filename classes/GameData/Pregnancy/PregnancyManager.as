@@ -3,6 +3,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
 	import classes.GameData.ChildManager;
+	import classes.GameData.Pregnancy.Handlers.BoredJumperPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.BothriocPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.BreedwellRahnPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.ButtBugPregnancy;
@@ -16,11 +17,14 @@
 	import classes.GameData.Pregnancy.Handlers.KorgonnePregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.LahPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.LapinaraPregnancyHandler;
+	import classes.GameData.Pregnancy.Handlers.LaquinePregnancyHandler;
+	import classes.GameData.Pregnancy.Handlers.LDCShockHopperPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.MilodanPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.NyreaHuntressPregnancy;
 	import classes.GameData.Pregnancy.Handlers.OvalastingEggPregnancy;
 	import classes.GameData.Pregnancy.Handlers.OviliumEggPregnancy;
 	import classes.GameData.Pregnancy.Handlers.PsychicTentacles;
+	import classes.GameData.Pregnancy.Handlers.QuaellePregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.QueenOfTheDeepPregnancy;
 	import classes.GameData.Pregnancy.Handlers.RaskvelPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.RenvraEggPregnancy;
@@ -28,6 +32,7 @@
 	import classes.GameData.Pregnancy.Handlers.RiyaPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.RoyalEggPregnancy;
 	import classes.GameData.Pregnancy.Handlers.ShekkaPregnancyHandler;
+	import classes.GameData.Pregnancy.Handlers.SiegwulfeEggnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.SydianPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.SeraSpawnPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.VenusPitcherFertilizedSeedCarrierHandler;
@@ -54,6 +59,7 @@
 			PregnancyManager.insertNewHandler(new KorgonnePregnancyHandler());
 			PregnancyManager.insertNewHandler(new MilodanPregnancyHandler());
 			PregnancyManager.insertNewHandler(new NyreaHuntressPregnancy());
+			PregnancyManager.insertNewHandler(new QuaellePregnancyHandler());
 			PregnancyManager.insertNewHandler(new QueenOfTheDeepPregnancy());
 			PregnancyManager.insertNewHandler(new RoyalEggPregnancy());
 			PregnancyManager.insertNewHandler(new OvalastingEggPregnancy());
@@ -77,6 +83,10 @@
 			PregnancyManager.insertNewHandler(new ButtBugPregnancy0());
 			PregnancyManager.insertNewHandler(new ButtBugPregnancy1());
 			PregnancyManager.insertNewHandler(new ButtBugPregnancy2());
+			PregnancyManager.insertNewHandler(new SiegwulfeEggnancyHandler());
+			PregnancyManager.insertNewHandler(new BoredJumperPregnancyHandler());
+			PregnancyManager.insertNewHandler(new LaquinePregnancyHandler());
+			PregnancyManager.insertNewHandler(new LDCShockHopperPregnancyHandler());
 		}
 		
 		// Would use a vector, but vectors can't store derived types. WORST VECTOR CLASS EVER.

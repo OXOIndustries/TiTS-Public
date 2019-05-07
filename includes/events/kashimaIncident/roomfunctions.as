@@ -322,7 +322,7 @@ public function kiP16TakeSword():void
 	
 	lootScreen = kiP16TakeSwordCheck;
 	flags["KI_TAKEN_SWORD"] = 1;
-	flags["SUPRESS_COMBAT"] = 1;
+	flags["KI_SUPPRESS_COMBAT"] = 1;
 	itemCollect([new VampBlade()]);
 }
 
@@ -611,6 +611,13 @@ public function kiI3SucceedSafeCrack():void
 
 public function commandDeckRandomEncounter():Boolean
 {
+	//Combat requires 4+ steps, so reset step count when suppressed. #LazyKode -F
+	if (flags["KI_SUPPRESS_COMBAT"] != undefined)
+	{
+		flags["KI_SUPPRESS_COMBAT"] = undefined;
+		flags["KI_COMMAND_DECK_STEPS"] = 0;
+	}
+
 	IncrementFlag("KI_COMMAND_DECK_STEPS");
 
 	var encChance:int = 5;
@@ -742,7 +749,7 @@ public function kiRandomMutantVictory():void
 	output(". You doubt the horrid things will stay down for long. No way you’re staying here. Time to go!\n\n");
 
 	flags["KI_COMMAND_DECK_STEPS"] = 0;
-	flags["SUPPRESS_COMBAT"] = 1;
+	flags["KI_SUPPRESS_COMBAT"] = 1;
 
 	CombatManager.genericVictory();
 	//clearMenu();
@@ -1133,7 +1140,7 @@ public function kiHolmesVictoryII():void
 
 public function kiHolmesRun():void
 {
-	flags["SUPPRESS_COMBAT"] = 1;
+	flags["KI_SUPPRESS_COMBAT"] = 1;
 	currentLocation = "KI-P18";
 	generateLocation(currentLocation);
 	mainGameMenu();
@@ -1179,7 +1186,7 @@ public function kiRipChief():void
 	processTime(2);
 	
 	flags["CHIEF_NEYKKAR_WITH_PC"] = 2;
-	flags["SUPPRESS_COMBAT"] = 1;
+	flags["KI_SUPPRESS_COMBAT"] = 1;
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

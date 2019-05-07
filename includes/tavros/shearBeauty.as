@@ -309,7 +309,7 @@ public function lengthenHairConfirmation(hairInches:Number = 0):void
 	else addDisabledButton(0,"Okay","Okay","You can’t pay for that!");
 	//[OK] Go to Lengthen Treatment
 	//[Nevermind] Go to Ceria Main
-	addButton(1,"Nevermind",lengthenHairChoices);
+	addButton(1,"Never Mind",lengthenHairChoices);
 }
 
 //Lengthen Treatment
@@ -728,7 +728,7 @@ public function styleConfirmation(hStyle:String = ""):void
 	clearMenu();
 	if(pc.credits >= ceriaServicePrice(1200)) addButton(0,"Okay",styleDatHairGo,hStyle);
 	else addDisabledButton(0,"Okay","Okay","You can’t afford that.");
-	addButton(1,"Nevermind",hairworkFromCeria);
+	addButton(1,"Never Mind",hairworkFromCeria);
 }
 	
 //Styling
@@ -915,7 +915,7 @@ public function ceriaFurColorWings(arg:Array):void
 		addButton(1, "Unique", ceriaFurColorWings, ["done", newColor, "unique"], "Unique Color", "Dye them, but retain its own fur color seperately.");
 		addButton(2, "No Dye", ceriaFurColorWings, ["done", newColor, "none"], "Don’t Dye", "Dye everything else, if applicable, and don’t apply dye to wing fur. (This will still cost credits!)");
 		addButton(3, "Current", ceriaFurColorWings, ["done", newColor, "current"], "Current Preference", "Dye them and keep the preferences how they already are.");
-		addButton(14, "Nevermind", furColorMenu);
+		addButton(14, "Never Mind", furColorMenu);
 		return;
 	}
 	
@@ -965,7 +965,7 @@ public function ceriaFurColorBallZ(arg:Array):void
 		addButton(1, "Unique", ceriaFurColorBallZ, ["done", newColor, "unique"], "Unique Color", "Dye it, but retain its own fur color seperately.");
 		addButton(2, "No Dye", ceriaFurColorBallZ, ["done", newColor, "none"], "Don’t Dye", "Dye everything else, if applicable, and don’t apply dye to scrotum fur. (This will still cost credits!)");
 		addButton(3, "Current", ceriaFurColorBallZ, ["done", newColor, "current"], "Current Preference", "Dye it and keep the preferences how they already are.");
-		addButton(14, "Nevermind", furColorMenu);
+		addButton(14, "Never Mind", furColorMenu);
 		return;
 	}
 	

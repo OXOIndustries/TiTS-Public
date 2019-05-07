@@ -51,9 +51,9 @@ public function yomaFirstMeeting():void
 	author("GothPastel");
 
 	if (pc.hasStatusEffect("Yoma Sex Disabled")) pc.removeStatusEffect("Yoma Sex Disabled");
- 	pc.createStatusEffect("Yoma Cooldown", 0, 0, 0, 0, true, "", "", false, 24 * 60);
+ 	pc.createStatusEffect("Yoma Cooldown", 0, 0, 0, 0, true, "", "", false, 6 * 60);
 	if (flags["YOMA_MET"] == undefined) {
-		output("You’re making your way through the jungle when you hear a crack behind you. Whipping around suddenly, you see a figure, too far away to make out in perfect detail but not far over five feet tall, slowly lifting their foot back off of a snapped twig. It’s definitely not a native, you realise - unless you’ve somehow missed a species with big fennec fox ears and tails.");
+		output("You’re making your way through the jungle when you hear a crack behind you. Whipping around suddenly, you see a figure, too far away to make out in perfect detail but not far over five feet tall, slowly lifting their foot back off of a snapped twig. It’s definitely not a native, you realize - unless you’ve somehow missed a species with big fennec fox ears and tails.");
 		output("\n\n<i>“Damn it,”</i> they - no, he, that’s a distinctly rich, masculine voice - say, <i>“I really must ask master for less clumsy feet.”</i>");
 		output("\n\nFor a moment, you don’t say anything, but then decide that since he doesn’t seem to have registered your presence at all, you ought to call out a greeting.");
 		output("\n\n<i>“Oh! Hello there!”</i> is the surprised response, and now that he’s talking a little louder, you can make out a rather posh sounding Terran accent: you’d guess British if pushed. <i>“Who are you?”</i> he asks.");
@@ -85,7 +85,7 @@ public function yomaLeave():void
 	showYoma();
 	author("GothPastel");
 
-	output("You apologise to Yoma, saying you’re busy.");
+	output("You apologize to Yoma, saying you’re busy.");
 	output("\n\n<i>“No problem, I will see you around!”</i> And without further ado, he’s gone again, vanishing into the jungle.");
 
 	clearMenu();
@@ -107,7 +107,7 @@ public function yomaShakeHands(handshake:Boolean = true):void
 	}
 	else {
 		output("He waits another five, ten seconds with his hand outstretched before dropping it to his side.");
-		output("\n\n<i>“As uncivilised as the natives...? Brilliant.”</i> His face twists into a slight snarl, showing his artificially white and wicked sharp canines in stark contrast to his dark skin.");
+		output("\n\n<i>“As uncivilized as the natives...? Brilliant.”</i> His face twists into a slight snarl, showing his artificially white and wicked sharp canines in stark contrast to his dark skin.");
 		output("\n\nYou ");
 		if (!pc.isAss()) output("apologise, saying");
 		else output("say")
@@ -362,54 +362,57 @@ public function yomaInitiateFight():void
 	CombatManager.setFriendlyActors(pc);
 	CombatManager.setHostileActors(attackingEnemy);
 
-	if (attackingEnemy.short == "huntress vanae") {
-		IncrementFlag("MET_VANAE_HUNTRESS");
-	//	CodexManager.unlockEntry("Vanae");
-		CombatManager.victoryScene(vanaePCVictory);
-		CombatManager.lossScene(vanaeHuntressPCDefeat);
-		CombatManager.displayLocation("HUNTRESS");
-	}
-	else if (attackingEnemy.short == "maiden vanae") {
-		IncrementFlag("MET_VANAE_MAIDEN");
-	//	CodexManager.unlockEntry("Vanae");
-		CombatManager.victoryScene(vanaePCVictory);
-		CombatManager.lossScene(vanaeMaidenPCDefeat);
-		CombatManager.displayLocation("MAIDEN");
-	}
-	else if (attackingEnemy.short == "female zil") {
-		IncrementFlag("TIMES_MET_FEMZIL");
-	//	CodexManager.unlockEntry("Zil");
-		CombatManager.victoryScene(defeatHostileZil);
-		CombatManager.lossScene(girlZilLossRouter);
-		CombatManager.displayLocation("FEMALE ZIL");
-	}
-	else if (attackingEnemy.short == "zil male") {
-		IncrementFlag("ENCOUNTERED_ZIL");
-	//	CodexManager.unlockEntry("Zil");
-		CombatManager.victoryScene(winVsZil);
-		CombatManager.lossScene(zilLossRouter);
-		CombatManager.displayLocation("MALE ZIL");
-	}
-	else if (attackingEnemy.short == "kerokoras") {
-		IncrementFlag("MET_KEROKORAS");
-	//	CodexManager.unlockEntry("Kerokoras");
-		CombatManager.victoryScene(victoryAgainstTheFrogs);
-		CombatManager.lossScene(loseAgainstTheFrogs);
-		CombatManager.displayLocation("KEROKORAS");
-	}
-	else if (attackingEnemy.short == "naleen") {
-		IncrementFlag("TIMES_MET_NALEEN");
-	//	CodexManager.unlockEntry("Naleen");
-		CombatManager.victoryScene(beatDatCatNaga);
-		CombatManager.lossScene(pcLosesToNaleenLiekABitch);
-		CombatManager.displayLocation("NALEEN");
-	}
-	else if (attackingEnemy.short == "naleen male") {
-		IncrementFlag("TIMES_MET_MALE_NALEEN");
-	//	CodexManager.unlockEntry("Naleen");
-		CombatManager.victoryScene(defeatAMaleNaleen);
-		CombatManager.lossScene(loseToDudeleenRouter);
-		CombatManager.displayLocation("NALEEN MALE");
+	switch(attackingEnemy.short)
+	{
+		case "huntress vanae":
+			IncrementFlag("MET_VANAE_HUNTRESS");
+			//CodexManager.unlockEntry("Vanae");
+			CombatManager.victoryScene(vanaePCVictory);
+			CombatManager.lossScene(vanaeHuntressPCDefeat);
+			CombatManager.displayLocation("HUNTRESS");
+			break;
+		case "maiden vanae":
+			IncrementFlag("MET_VANAE_MAIDEN");
+			//CodexManager.unlockEntry("Vanae");
+			CombatManager.victoryScene(vanaePCVictory);
+			CombatManager.lossScene(vanaeMaidenPCDefeat);
+			CombatManager.displayLocation("MAIDEN");
+			break;
+		case "female zil":
+			IncrementFlag("TIMES_MET_FEMZIL");
+			//CodexManager.unlockEntry("Zil");
+			CombatManager.victoryScene(defeatHostileZil);
+			CombatManager.lossScene(girlZilLossRouter);
+			CombatManager.displayLocation("FEMALE ZIL");
+			break;
+		case "zil male":
+			IncrementFlag("ENCOUNTERED_ZIL");
+			//CodexManager.unlockEntry("Zil");
+			CombatManager.victoryScene(winVsZil);
+			CombatManager.lossScene(zilLossRouter);
+			CombatManager.displayLocation("MALE ZIL");
+			break;
+		case "kerokoras":
+			IncrementFlag("MET_KEROKORAS");
+			//CodexManager.unlockEntry("Kerokoras");
+			CombatManager.victoryScene(victoryAgainstTheFrogs);
+			CombatManager.lossScene(loseAgainstTheFrogs);
+			CombatManager.displayLocation("KEROKORAS");
+			break;
+		case "naleen":
+			IncrementFlag("TIMES_MET_NALEEN");
+			//CodexManager.unlockEntry("Naleen");
+			CombatManager.victoryScene(beatDatCatNaga);
+			CombatManager.lossScene(pcLosesToNaleenLiekABitch);
+			CombatManager.displayLocation("NALEEN");
+			break;
+		case "naleen male":
+			IncrementFlag("TIMES_MET_MALE_NALEEN");
+			//CodexManager.unlockEntry("Naleen");
+			CombatManager.victoryScene(defeatAMaleNaleen);
+			CombatManager.lossScene(loseToDudeleenRouter);
+			CombatManager.displayLocation("NALEEN MALE");
+			break;
 	}
 
 	clearMenu();
@@ -613,7 +616,9 @@ public function yomaSexGiveOral():void
 
 	if (pc.HPRaw <= pc.HPMax()) pc.HP(10);
 	processTime(30+rand(15));
-	pc.loadInMouth();
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!pp.hasVagina()) pp.createVagina();
+	pc.girlCumInMouth(pp);
 	pc.lust(10);
 	if (flags["YOMA_SEEN_NAKED"] == undefined) flags["YOMA_SEEN_NAKED"] = 1
 	IncrementFlag("YOMA_TIMES_EATEN_OUT");
@@ -627,12 +632,18 @@ public function yomaSexVaginal():void
 	showYoma(true);
 	author("GothPastel");
 
+	var cIdx:int = pc.cockThatFits(500);
+	if(cIdx < 0) cIdx = pc.smallestCockIndex();
+	
 	if (pc.isNude()) output("Already naked, you wait for Yoma to finish undressing before you step closer to him.");
 	else output("You join Yoma in stripping off, carefully putting your [pc.gear] somewhere you’ll be able to find them later and set down your codex.");
 	output(" He looks you up and down before speaking, <i>“I can definitely show you a good time. How about you lie down?”</i>");
-	output("\n\nThere’s no reason to protest, so you do so, clearing off the jungle floor so you don’t lie on anything sharp. The android grins, gently sitting down on your stomach, and you groan at the feeling of warm, wet cunt settling on top of you. Yoma takes your [pc.biggestCock] in a hand, and you know enough about him now to tell that he’s grinning from the gentle swish of his tail.");
+	output("\n\nThere’s no reason to protest, so you do so, clearing off the jungle floor so you don’t lie on anything sharp. The android grins, gently sitting down on your stomach, and you groan at the feeling of warm, wet cunt settling on top of you. Yoma takes your [pc.cock " + cIdx + "] in a hand, and you know enough about him now to tell that he’s grinning from the gentle swish of his tail.");
 	output("\n\n<i>“This will do nicely,”</i> he says, giving it a firm few strokes. You groan, his soft palm caressing you feels amazing.");
 	output("\n\nIt doesn’t last long though, Yoma pulls his hand away from you - but not before giving your head one last, teasing touch - and lifts himself up, positioning himself. Your "+ pc.legs(false,true) +" are easily pinned beneath his and he turns to you with a wide, teasing grin when you try and fail to buck your [pc.hips] up to penetrate the sweltering pussy rubbing itself against your tip.");
+	
+	pc.cockChange();
+	
 	output("\n\n<i>“I am in charge, [pc.name], I will take this at my own pace,”</i> he says, before turning back to the task at hand.");
 	output("\n\nAt first, he seems content to tease you, strong legs holding you in place as you leak pre into his bare snatch, but he suddenly tenses up, letting out a loud moan, he’s caught his clit on you. That’s all it takes for him to stop, re-adjusting himself and rapidly impaling himself on your length with a gasp.");
 	output("\n\n<i>“Sh-shit [pc.name] that... That is good,”</i> he forces out, already setting to bounce up and down, tail flicking from side to side rapidly.");
@@ -643,8 +654,8 @@ public function yomaSexVaginal():void
 	output("\n\nThe slight flush you can make out on his face when he finally calms down and turns to look at you prove that he did. He shoots you a glare, but there’s an edge of playfulness in it. You’ve not <i>really</i> pissed him off.");
 	output("\n\n<i>“I am going to have to redouble my efforts to get you off, am I not?”</i> he asks, and it’s the only warning you get before ")
 	if (pc.tone >= 50) output("even ");
-	output("your grip can’t hold him still. Yoma’s tail stands ramrod straight now, letting you get a glimpse of a very welcoming looking asshole, as he rapidly slams himself up and down on your [pc.biggestCock].");
-	if (pc.hasVagina()) output(" He doesn’t leave your [pc.oneVagina] out either, reaching down between your legs to stroke your throbbing clit expertly, the sensation bringing you ever closer to orgasm.");
+	output("your grip can’t hold him still. Yoma’s tail stands ramrod straight now, letting you get a glimpse of a very welcoming looking asshole, as he rapidly slams himself up and down on your [pc.cock " + cIdx + "].");
+	if (pc.hasVagina()) output(" He doesn’t leave [pc.oneVagina] out either, reaching down between your legs to stroke your throbbing clit expertly, the sensation bringing you ever closer to orgasm.");
 	output(" His hot, wet cunt grips you tight, and the fast, rippling motion brings you closer and closer to your climax.");
 	output("\n\nEventually, you can’t hold back any longer and slam your hips up");
 	if (pc.hasKnot()) output(", forcing your knot into him");
@@ -661,7 +672,7 @@ public function yomaSexVaginal():void
 		output("in your orgasm, and finally, finally your climax draws to a close.");
 	}
 	if (pc.hasKnot()) output("\n\nFor just a moment, he tries to pull himself back off your cock, but you hold him steady so that he doesn’t try and get your knot out until it goes down. Said deflation takes some time, what with Yoma’s pussy convulsing around you even now. At some point you sit up to wrap your arms around his waist, pressing gentle kisses to his neck. Eventually though, your knot goes down just enough for him to safely get off it and you release him.");
-	output("\n\nYour hips are <i>soaked</i>, you realise as he pulls himself up. You had no idea just how wet he was!");
+	output("\n\nYour hips are <i>soaked</i>, you realize as he pulls himself up. You had no idea just how wet he was!");
 	output("\n\n<i>“You might need a towel, [pc.name].”</i> Yoma manages to pant out as he pulls his shirt back on, but he doesn’t produce one; not that you were expecting him to have it in the middle of the jungle.");
 	if (!pc.isNude()) output("\n\nIt doesn’t take long to put back on your [pc.gear] and the");
 	else output("The");

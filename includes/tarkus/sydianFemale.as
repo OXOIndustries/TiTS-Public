@@ -1222,7 +1222,7 @@ public function femSydianGiveThrob():void
 	output(".");
 	if (!pc.isAss()) output(" <i>“Yeah?”</i>");
 	
-	output("\n\nThe sydian thinks for a moment. <i>“Nevermind...”</i> she eventually says. You look into her eyes; she’s uneasy. <i>“It’s fine. I’ll figure something out.”</i> She leans forward and kisses you a final time, then bids you goodbye.");
+	output("\n\nThe sydian thinks for a moment. <i>“Never mind...”</i> she eventually says. You look into her eyes; she’s uneasy. <i>“It’s fine. I’ll figure something out.”</i> She leans forward and kisses you a final time, then bids you goodbye.");
 	
 	output("\n\nYou watch her satisfied hip-sway as she goes, thinking it might be a good idea to stock up on Throbb.\n\n");
 	

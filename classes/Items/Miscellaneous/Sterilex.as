@@ -37,7 +37,7 @@
 			
 			version = _latestVersion;
 		}
-		private function useDudEffect():void
+		private function useDudEffect(target:Creature):void
 		{
 			kGAMECLASS.output("You gulp down the pill, feeling a throbbing sensation in your [pc.crotch]...");
 			kGAMECLASS.output("\n\n... and nothing happens.");
@@ -56,6 +56,15 @@
 		{
 			target.createPerk("Sterile", 0,0,0,0,"There’s no way anyone or anything could get you pregnant.");
 		}
+		private function reportHeatRut(hasHeat:Boolean = false, hasRut:Boolean = false):void
+		{
+			if(!hasHeat && !hasRut) return;
+			kGAMECLASS.output("\n\nThe after-effects of the Sterilex has calmed your loins some... <b>Your");
+			if(hasHeat) kGAMECLASS.output(" heat");
+			if(hasHeat && hasRut) kGAMECLASS.output(" and");
+			if(hasRut) kGAMECLASS.output(" rut");
+			kGAMECLASS.output("ha" + ((hasHeat && hasRut) ? "ve" : "s") + " subsided!</b>");
+		}
 		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
@@ -66,13 +75,19 @@
 			if(target is PlayerCharacter)
 			{
 				// Rut/Heat removal on use.
-				if(target.inHeat()) target.clearHeat();
-				if(target.inRut()) target.clearRut();
+				var hasHeat:Boolean = false;
+				var hasRut:Boolean = false;
+				if(target.inHeat()) { hasHeat = true; target.clearHeat(); }
+				if(target.inRut()) { hasRut = true; target.clearRut(); }
 				
-				// Sexless get duds:
-				if(target.hasPerk("Infertile") || !target.hasGenitals())
-				{
-					useDudEffect();
+				// Sexless or too infertile get duds:
+				if(	target.hasPerk("Infertile") || !target.hasGenitals()
+				||	(target.isHerm() && target.hasPerk("Sterile") && target.hasPerk("Firing Blanks"))
+				||	(target.isFemale() && target.hasPerk("Sterile"))
+				||	(target.isMale() && target.hasPerk("Firing Blanks"))
+				) {
+					useDudEffect(target);
+					reportHeatRut(hasHeat, hasRut);
 					return false;
 				}
 				
@@ -94,6 +109,8 @@
 					target.energy(-20);
 					
 					kGAMECLASS.output("\n\nAfter your stomach settles and your fever subsides, your codex gives a few affirming beeps. You tap the screen and find that your body has rejected the drug due to your pending motherhood. Maybe it isn’t such a good idea to take this stuff when you’re already pregnant...");
+					
+					reportHeatRut(hasHeat, hasRut);
 					
 					return false;
 				}
@@ -123,6 +140,7 @@
 					else kGAMECLASS.output("You ignore the directions and pop " + indefiniteArticle(num2Ordinal(target.statusEffectv1("Infertile") + 1)) + " Sterilex. The protection you feel restores itself, but you feel an odd discomfort in your gut. <b>Taking any more is probably a bad idea.</b>");
 					
 					useAddDose(target);
+					reportHeatRut(hasHeat, hasRut);
 				}
 				
 				// Sterilize:
@@ -130,27 +148,29 @@
 				{
 					kGAMECLASS.output("You take your " + num2Ordinal(target.statusEffectv1("Infertile") + 1) + " Sterilex without waiting for the first to end, and immediately feel an unplugged sensation inside you. Even after the Sterilex wears off, you’re not going to");
 					
-					if(target.hasVagina())
-					{
-						if(target.hasCock() && !target.hasPerk("Firing Blanks") && rand(2) == 0) sterilizeMale(target);
-						else sterilizeFemale(target);
-					}
-					else sterilizeMale(target);
+					if(!target.hasPerk("Firing Blanks") && target.hasCock() && (!target.hasVagina() || target.hasPerk("Sterile") || rand(2) == 0)) sterilizeMale(target);
+					else sterilizeFemale(target);
 					
 					useAddDose(target);
+					var removeEffect:Boolean = false;
 					
 					if(target.hasPerk("Sterile") && !target.hasPerk("Firing Blanks")) kGAMECLASS.output(" get");
 					else kGAMECLASS.output(" be making anyone");
 					kGAMECLASS.output(" pregnant any time soon. Thankfully, removing your genitals and then regrowing them should reset this... you think.");
 					kGAMECLASS.output(" <b>You");
 					
-					if(target.hasPerk("Sterile") && target.hasPerk("Firing Blanks")) kGAMECLASS.output("’re now completely");
+					if(target.hasPerk("Sterile") && target.hasPerk("Firing Blanks"))
+					{
+						kGAMECLASS.output("’re now completely");
+						removeEffect = true;
+					}
 					else if(target.hasPerk("Sterile"))
 					{
 						kGAMECLASS.output("r womb");
 						if(target.totalVaginas() > 1) kGAMECLASS.output("s are");
 						else kGAMECLASS.output(" is");
 						kGAMECLASS.output(" now");
+						if(!target.hasCock()) removeEffect = true;
 					}
 					else
 					{
@@ -158,15 +178,21 @@
 						if(target.balls > 1) kGAMECLASS.output(" are");
 						else kGAMECLASS.output(" is");
 						kGAMECLASS.output(" now");
+						if(!target.hasVagina()) removeEffect = true;
 					}
 					
 					kGAMECLASS.output(" sterile.</b>");
+					
+					if(removeEffect) target.removeStatusEffect("Infertile");
+					
+					reportHeatRut(hasHeat, hasRut);
 				}
 				
 				// Already too infertile:
 				else
 				{
-					useDudEffect();
+					useDudEffect(target);
+					reportHeatRut(hasHeat, hasRut);
 					return false;
 				}
 			}

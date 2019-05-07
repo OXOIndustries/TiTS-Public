@@ -123,6 +123,8 @@
 		include "../includes/StubbedFunctions.as";
 
 		//Holiday shit
+		include "../includes/holidayEvents/2018XmasEvents.as";
+		include "../includes/holidayEvents/2018Krissy.as";
 		include "../includes/holidayEvents/candyRahn.as";
 		include "../includes/holidayEvents/chupacabro.as";
 		include "../includes/holidayEvents/freedomBeef.as";
@@ -157,12 +159,14 @@
 		include "../includes/follower/paigeCuddles.as";        
 		include "../includes/follower/paigeHalloweener.as";
 		include "../includes/follower/paigeSex.as";
+		include "../includes/follower/paigeShower.as";
 		include "../includes/follower/paigeSpar.as";
 		include "../includes/follower/penny.as";
 		include "../includes/follower/pippa.as";
 		include "../includes/follower/ramis.as";
 		include "../includes/follower/shekka.as";
 		include "../includes/follower/siegwulfe.as";
+		include "../includes/follower/syri.as";
 		include "../includes/follower/yammi.as";
 		
 		//Sidequest shit
@@ -196,7 +200,16 @@
 		include "../includes/events/atha_lets_fapper.as";
 		include "../includes/events/bimboPennyAndBadgerQuest/badgerGifts.as";
 		include "../includes/events/erra.as";
+		include "../includes/events/extrameet/extrameet.as";
+		include "../includes/events/extrameet/extrameetProfiles.as";
+		include "../includes/events/federationQuest/federationQuest.as";
+		include "../includes/events/federationQuest/rooms.as";
+		include "../includes/events/federationQuest/roomFunctions.as";
 		include "../includes/events/kattomOsgood.as";
+		include "../includes/events/kimber.as";
+		include "../includes/events/kimberQuest/rooms.as";
+		include "../includes/events/kimberQuest/roomFunctions.as";
+		include "../includes/events/kimberQuest/kimberQuest.as";
 		include "../includes/events/kiroCrewQuest/buttslutinator.as";
 		include "../includes/events/kiroCrewQuest/omnisuitExtras.as";
 		include "../includes/events/kiroCrewQuest/orgasmender.as";
@@ -204,11 +217,16 @@
 		include "../includes/events/pyriteSatelliteRecovery.as";
 		include "../includes/events/steph_on_demand.as";
 		include "../includes/events/tentacle_psychic_hatchling.as";
-		include "../includes/events/federationQuest/federationQuest.as";
-		include "../includes/events/federationQuest/rooms.as";
-		include "../includes/events/federationQuest/roomFunctions.as";
-		include "../includes/events/extrameet/extrameet.as";
-		include "../includes/events/extrameet/extrameetProfiles.as";
+		include "../includes/events/wargiiHold/druggedKorg.as";
+		include "../includes/events/wargiiHold/druggedKorgMale.as";
+		include "../includes/events/wargiiHold/milodanInfiltrator.as";
+		include "../includes/events/wargiiHold/milodanTemptress.as";
+		include "../includes/events/wargiiHold/milodanWarLion.as";
+		include "../includes/events/wargiiHold/milodanWarAlphaAndEpilogue.as";
+		include "../includes/events/wargiiHold/captiveStuff.as";
+		include "../includes/events/wargiiHold/wargiiHold.as";
+		include "../includes/events/wargiiHold/rooms.as";
+
 		
 		// Travel Events
 		include "../includes/travelEvents.as";
@@ -267,6 +285,7 @@
 		include "../includes/vesperia/kaede.as";
 		include "../includes/vesperia/kally.as";
 		include "../includes/vesperia/luca.as";
+		include "../includes/vesperia/lucaSexAndStuff.as";
 		include "../includes/vesperia/mabbs.as";
 		include "../includes/vesperia/rooms.as";
 		include "../includes/vesperia/roomFunctions.as";
@@ -339,6 +358,7 @@
 		include "../includes/tarkus/theMess.as";
 		include "../includes/tarkus/tessa.as";
 		include "../includes/tarkus/verusha.as";
+		include "../includes/tarkus/zea.as";
 		
 
 		//Third planet
@@ -360,6 +380,7 @@
 		include "../includes/newTexas/roomFunctions.as";
 		include "../includes/newTexas/stocks.as";
 		include "../includes/newTexas/tenTonGym.as";
+		include "../includes/newTexas/tenTonGymGirlsXpac.as";
 		include "../includes/newTexas/treatment.as";
 		include "../includes/newTexas/varmint_wrangling.as";
 		include "../includes/newTexas/yammi.as";
@@ -412,6 +433,7 @@
 		include "../includes/myrellion/thollum.as";
 		include "../includes/myrellion/tradingPost.as";
 		include "../includes/myrellion/venomAddiction.as";
+		include "../includes/myrellion/verushaBath.as";
 		include "../includes/myrellion/vi.as";
 		include "../includes/myrellion/wetraxxel.as";
 		include "../includes/myrellion/xanthe.as";
@@ -419,10 +441,15 @@
 
 		//FIFTH PLANET: ZHENG SHI
 		include "../includes/zhengShiStation/agroshAndArdia.as";
+		include "../includes/zhengShiStation/blackjack.as";
 		include "../includes/zhengShiStation/boredJumper.as";
 		include "../includes/zhengShiStation/boredJumperExpanded.as";
 		include "../includes/zhengShiStation/boredJumperGangbangs.as";
+		include "../includes/zhengShiStation/boredJumperPregXpac.as";
+		include "../includes/zhengShiStation/coronaFlamer.as";
+		include "../includes/zhengShiStation/dane.as";
 		include "../includes/zhengShiStation/forgehound.as";
+		include "../includes/zhengShiStation/ldc_and_shock_hopper.as";
 		include "../includes/zhengShiStation/maike.as";
 		include "../includes/zhengShiStation/olympia.as";
 		include "../includes/zhengShiStation/punkSecOp.as";
@@ -434,13 +461,16 @@
 		include "../includes/zhengShiStation/rozPowerGoo.as";
 		include "../includes/zhengShiStation/slyverenSlavebreaker.as";
 		include "../includes/zhengShiStation/spacewalk.as";
+		include "../includes/zhengShiStation/snekAndMaus.as";
 		include "../includes/zhengShiStation/tivf.as";
 		include "../includes/zhengShiStation/teyaalTheEngineer.as";
 		include "../includes/zhengShiStation/urbolg.as";
+		include "../includes/zhengShiStation/wallSluts.as";
 		
 		// Breedwell
 		include "../includes/breedwell/breedwell.as";
 		include "../includes/breedwell/rooms.as";
+		include "../includes/breedwell/quaelle.as";
 		
 		// GASTIGOTH!
 		include "../includes/gastigoth/gastigoth.as";
@@ -476,6 +506,7 @@
 		include "../includes/uveto/korgonneMaleHostile.as";
 		include "../includes/uveto/krym.as";
 		include "../includes/uveto/lund.as";
+		include "../includes/uveto/lureling.as";
 		include "../includes/uveto/majaTamedTamelings.as";
 		include "../includes/uveto/milodanFertilityPriestess.as";
 		include "../includes/uveto/milodanMaleHostile.as";
@@ -489,6 +520,7 @@
 		include "../includes/uveto/rhenworld.as";
 		include "../includes/uveto/rooms.as";
 		include "../includes/uveto/roomFunctions.as";
+		include "../includes/uveto/roxy.as";
 		include "../includes/uveto/shade.as";
 		include "../includes/uveto/stormguardMale.as";
 		include "../includes/uveto/subTuner.as";
@@ -496,12 +528,15 @@
 		include "../includes/uveto/tlako_and_xotchi.as";
 		include "../includes/uveto/tuuvaBlacksmith.as";
 		include "../includes/uveto/ula.as";
+		include "../includes/uveto/ulaCaveStuff.as";
+		include "../includes/uveto/ulasDad.as";
 		include "../includes/uveto/vark.as";
 		include "../includes/uveto/vavaGroom.as";
 		include "../includes/uveto/walt.as";
 		include "../includes/uveto/willow.as";
 		
 		include "../includes/chargendata.as";
+		include "../includes/SSTDs/cooties.as";
 		include "../includes/SSTDs/furpies.as";
 		include "../includes/SSTDs/locofever.as";
 		include "../includes/SSTDs/sneezingTits.as";
@@ -610,7 +645,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.240";
+			version = "0.7.279";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -1694,17 +1729,37 @@
 		{
 			return chars["STORMDRAGON"];
 		}
-		
 		public function get aina():Aina
 		{
 			return chars["AINA"];
 		}
-		
 		public function get amber():Dryad
 		{
 			return chars["DRYAD"];
 		}
-
+		public function get zea():Zea
+		{
+			return chars["ZEA"];
+		}
+		public function get luca():Luca
+		{
+			return chars["LUCA"];
+		}
+	
+		public function get marion():Marion
+		{
+			return chars["MARION"];
+		}
+	
+		public function get lureling():Lureling
+		{
+			return chars["LURELING"];
+		}
+		public function get roxy():Roxy
+		{
+			return chars["ROXY"];
+		}
+		
 		public function testShipCombat():void
 		{
 			CombatManager.newSpaceCombat();

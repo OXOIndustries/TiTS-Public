@@ -468,7 +468,7 @@ if (PC is nice)
 	He won't be begging for this once he realizes just what you're going to do to this insolent green alien.
 }
 
-Then you drop your hips, and completely smother his nose and mouth with your womanhood, completely cutting off his ability to breath. Almost instantly he starts struggling futilely against your warm imprisonment and pleading with his eyes, just peaking out from under your snatch. A quick shake is given to your hips, then you inform the small green man that if he wants to be free, he's going to have to please you.
+Then you drop your hips, and completely smother his nose and mouth with your womanhood, completely cutting off his ability to breathe. Almost instantly he starts struggling futilely against your warm imprisonment and pleading with his eyes, just peaking out from under your snatch. A quick shake is given to your hips, then you inform the small green man that if he wants to be free, he's going to have to please you.
 
 In desperation, he extends his tongue into your depths and desperately tries to satisfy your feminine lusts. In response to his quite clearly practiced oral skills, [{if lower body is humanoid} you tighten your legs about his form] [{if lower body is snake} you tighten your coiled grip on his head] and push your womanhood harder against his prone form.
 

@@ -15,13 +15,14 @@ public function sydianQueenIntroRedux():void
 		if (flags["SYDIAN_QUEEN_LUBBIN"] != undefined||flags["RASKVEL_HAREM_SPITROAST"] != undefined)output("\n\n<i>“You again?”</i> the Sydian Queen asks coolly, sceptre tapping in her hand. <i>“What possible reason would you have to try my patience by trespassing in our territory once more? Especially without your giant fish friend this time.”</i> She smirks, eyeing you up. <i>“Perhaps you come because you enjoyed serving me, hmm? You were certainly an enjoyable treat last time.”</i> The sceptre taps a slow rhythm against the armored curve of her hip. <i>“I would allow you back in my court... for a little while. What say you?”</i>");
 		else output("\n\n<i>“You again?”</i> the Sydian Queen asks coolly, sceptre tapping in her hand. <i>“What possible reason would you have to try my patience by trespassing in our territory once more? Especially without your giant fish friend this time.”</i> She clicks her tongue, eyeing you up. <i>“Perhaps you’re here because you wish to serve, hmm? You would make an acceptable treat for my harem...”</i> There is a sharp intake of breath around her, and the persistent whispering gets even more excited. <i>“ ...or perhaps even for me.”</i> She smiles thinly. The sceptre taps a slow rhythm against the armored curve of her hip. <i>“What say you?”</i>");
 		
+		processTime(3);
+		if(flags["SYDIAN_QUEEN_STAGE"] == undefined)flags["SYDIAN_QUEEN_STAGE"] = 1;
+		
 		//Buttons
 		if (flags["SYDIAN_QUEEN_LUBBIN"] == undefined&&flags["RASKVEL_HAREM_SPITROAST"] == undefined) addButton(0,"Yes",sydianQueenChoice,0,"No","Agree to serve her. It sounds like it could be fun.");
 		else addButton(0,"Yes",sydianQueenChoice,0,"Yes","Agree to serve her. You know it will be fun.");
 		addButton(1,"No",sydianQueenChoice,1,"No","Politely turn her down for now.");
 		addButton(2,"Never",sydianQueenChoice,2,"Never","Absolutely refuse to serve her.");
-		
-		if(flags["SYDIAN_QUEEN_STAGE"] == undefined)flags["SYDIAN_QUEEN_STAGE"] = 1;
 	}
 	//Said no during first stage
 	else if(flags["SYDIAN_QUEEN_STAGE"] == 4)
@@ -31,7 +32,6 @@ public function sydianQueenIntroRedux():void
 
 		addButton(0,"Serve",sydianQueenChoice,3,"Serve","You suspect this will involve your mouth.");
 		addButton(1,"Never",sydianQueenChoice,2,"Never","Absolutely refuse to serve her.");
-	
 	}
 	else if(flags["SYDIAN_QUEEN_STAGE"] == 2)	
 	{	
@@ -40,7 +40,6 @@ public function sydianQueenIntroRedux():void
 		
 		addButton(0,"Yes",sydianQueenChoice,5,"Serve","Serve your queen.");
 		addButton(1,"No",sydianQueenChoice,4,"No","Eh, not right now.");
-
 	}
 	else if(flags["SYDIAN_QUEEN_STAGE"] == 3)	
 	{
@@ -60,6 +59,8 @@ public function sydianQueenIntroRedux():void
 			addButton(1,"Not Today",sydianQueenChoice,7,"Not Today","Danger, Will Robinson!");
 		}
 	}
+	
+	sydianQueenCooldownMinutes(90);
 }
 
 /*public function sydianButtons():void
@@ -69,6 +70,11 @@ public function sydianQueenIntroRedux():void
 	addButton(0,"Yes",sydianQueenChoice,5,"Serve","Serve your queen.");
 	addButton(1,"No",sydianQueenChoice,4,"No","Eh, not right now.");
 }	*/
+public function sydianQueenCooldownMinutes(nMins:int = 90):void
+{
+	pc.createStatusEffect("Sydian Queen Cooldown", 0, 0, 0, 0, true, "", "", false, 0);
+	pc.setStatusMinutes("Sydian Queen Cooldown", nMins);
+}
 public function sydianQueenChoice(sceneChoice:int):void
 {
 	clearOutput();
@@ -84,8 +90,11 @@ public function sydianQueenChoice(sceneChoice:int):void
 		else output("You grin your assent.");
 		output(" Yeah, you’ll happily... serve.");
 		output("\n\n<i>“Excellent!”</i> replies the Sydian breezily. She waves her sceptre with practiced grandness. <i>“To the pleasure barrow, my consort!”</i>");
-		addButton(0, "Next", sydianQueenSexyTimes);
+		
+		processTime(1);
 		if(flags["SYDIAN_QUEEN_SEXCOUNT"]==undefined) flags["SYDIAN_QUEEN_SEXCOUNT"]= 0;
+		
+		addButton(0, "Next", sydianQueenSexyTimes);
 	}
 	//Stage 1 No
 	if (sceneChoice==1)
@@ -93,6 +102,8 @@ public function sydianQueenChoice(sceneChoice:int):void
 		output("Politeness comes naturally to a refusal when you’re surrounded by armed goons, however adorable they may be.");
 		output("\n\n<i>“Do you believe that by merely watching your tone with me you can come and go from my lands as you wish, alien?”</i> replies the sydian with an imperious laugh. She wags her sceptre. <i>“Go, for now. Next time I find you blithely trespassing, though - you shall have to prove your fealty to me. Or face the consequences.”</i>");
 		output("\n\nYou head back out of the rust spires, back of your neck crawling at the thought of those plasma pistols trained on you. Maybe next time it would be wise to do what she wants, or never come back again.");
+		
+		processTime(1);
 		flags["SYDIAN_QUEEN_STAGE"]=4;
 		flags["SYDIAN_QUEEN_SEXCOUNT"]= 0;
 		
@@ -103,6 +114,8 @@ public function sydianQueenChoice(sceneChoice:int):void
 	{
 		output("<i>“Then never let your shadow fall upon this land again!”</i> thunders the sydian. In a split second, all of the raskvel’s plasma weapons are up and pointed at you. <i>“I shall have you slain immediately if you do so, rather than tortured to death, for I am a beneficent queen! Now be off with you!”</i>");
 		output("\n\nYou back off as slowly and calmly as you can. You make a mental note to give the giant rust pillars a very wide berth in future.");
+		
+		processTime(1);
 		flags["SYDIAN_QUEEN_STAGE"]=5;
 		
 		addButton(0,"Leave",mainGameMenu);
@@ -157,6 +170,8 @@ public function sydianQueenChoice(sceneChoice:int):void
 		//output("\n\nSomething warm and rubbery is being pushed into your hand. The raskvel boi is retreating back to his position by the time you look down at the "+ shrooms.quantity +" spunkshrooms you are now holding.");
 		output("\n\n<i>“Obedient servants get treats,”</i> the sydian says, with a swish of her feathers. <i>“And it is now treat time.”</i> She eyes you coyly. <i>“Are you coming? You would make an acceptable treat.”</i>");
 		//output("\n\n");
+		
+		processTime(7);
 		flags["SYDIAN_QUEEN_STAGE"]=1;
 		
 		//itemScreen = sydianButtons;
@@ -166,9 +181,6 @@ public function sydianQueenChoice(sceneChoice:int):void
 	
 		addButton(0,"Yes",sydianQueenChoice,5,"Serve","Serve your queen.");
 		addButton(1,"No",sydianQueenChoice,4,"No","Eh, not right now.");
-		
-		
-		
 	}
 	//Stage 4 No more lubbin
 	if (sceneChoice==4)
@@ -209,6 +221,7 @@ public function sydianQueenChoice(sceneChoice:int):void
 		output("\n\nYour body <i>is</i> thinking about it, and makes you feel miserable as you watch that seductive menace sashay away. But perhaps you made the sensible decision.");
 		flags["SYDIAN_QUEEN_STAGE"]=2;
 		flags["SYDIAN_QUEEN_SEXCOUNT"]= 0;
+		processTime(1);
 		addButton(0,"Leave",mainGameMenu);
 	}
 }
@@ -226,12 +239,13 @@ public function sydianQueenSexyTimes():void
 	//First Time Sex Intro
 	if(flags["SYDIAN_QUEEN_SEXCOUNT"]==undefined)
 	{
-	
 		output("You follow sydian’s swishing, feathery tail as it leads you further into the rusting pillars.");
 		output("\n\n<i>“Are you wondering how I became a Queen, stranger?”</i> the tan creature asks. Even heavily clad in her armor it’s obvious she has a nice figure, slim and muscular but with hourglass swells that make the mouth water. She’s taken you to a steep hollow created by the bulwark of a half-buried spaceship, the heavily plated metal craning over a depression furnished with a large number of pillows and a spiky, welded together chair that obviously fancies itself as a throne. The sydian shoos her small charges down into it as she continues to speak.");
 		output("\n\n<i>“I knew I was destined for greatness, but my people do not recognise such things in females. So I had to find another way of building a realm. These raskvel are all outcasts too - effeminate males are the lowest ranking of their kind. But they obey me with total loyalty and fearlessness, thanks to my discovery of the spunkshroom, which makes them far more potent and lively than any male that used to be cruel to them.”</i>");
 		output("\n\nShe sinks back into her throne, and with a wriggle of her muscles and a grateful sigh she begins to peel her armor back, revealing the soft, smooth orange skin beneath. Tiny flakes of rust hang in the still air down here. You emit little puffs of bronze dust as her fine, firm breasts and protuberant nipples slide into view.");
 		output("\n\n<i>“Soon I shall have an army of them at my command,”</i> husks the sydian, feathers waving and prideful desire inflaming her face, compound eyes unfocused as she mauls her own boob, fingers sinking deep into the softness there as she pulls at the nipple. She recrosses her legs, and you catch a glimpse of her pussy, as soft, pale and plump as her armor is hard, tanned and severe. <i>“But - for now - I have them, and you. And it’s treat time. So what shall we do with you?”</i>");
+		
+		processTime(4);
 	}
 	//Stage 3 Sex Intro	
 	else if (flags["SYDIAN_QUEEN_STAGE"]==3)
@@ -239,6 +253,8 @@ public function sydianQueenSexyTimes():void
 		output("You already know where to go, and in a lusty, anticipative daze, you [pc.move] with the raskvel femboys in formation back to the Sydian Queen’s rusty hollow. The great curve of the spaceship over your head feels almost like home; the blissful, sexy memories you’ve collected in this place have you eyeing the cushions and scrap decorations fondly.");
 		output("\n\nYou all watch fervently as the insectile monarch scrapes her austere armor back, exposing her soft, luscious innards to her roving fingers. She gazes at you particularly as she pinches and touches herself, her compound eyes acquisitive and avaricious; you are suddenly aware that you are amongst savage aliens many miles from anywhere, and nobody knows where you are. It’s a thought that gives you a deep, undeniable thrill.");
 		output("\n\n<i>“My lovely servants,”</i> she pronounces with a hovering buzz in her throat, hand on her plentiful breast. <i>“Mine for now and ever. How shall we amuse ourselves today?”</i>");
+		
+		processTime(2);
 	}
 	//Stage 1-2 Sex Intro
 	else 
@@ -246,6 +262,8 @@ public function sydianQueenSexyTimes():void
 		output("You follow the sydian’s swishing tail, leading you to the huge, craning wreck of the spaceship, underneath which she has created her dusky, rust-speckled, softly furnished ‘court’.");
 		output("\n\nThe pent-up raskvel femboys watch breathlessly as she sinks back into her throne of scrap, and with a wriggle of her muscles and a grateful sigh she begins to peel her armor back, revealing the soft, smooth orange skin beneath. Tiny flakes of rust hang in the still air down here. You emit little puffs of bronze dust as her fine, firm breasts and protuberant nipples slide into view.");
 		output("\n\n<i>“Now then, my loyal, frisky servants,”</i> she husks, feathers waving and prideful desire inflaming her face, compound eyes unfocused as she mauls her own boob, fingers sinking deep into the softness there as she pulls at the nipple. She recrosses her legs, and you catch a glimpse of her pussy, as soft, pale and plump as her armor is hard, tanned and severe. <i>“How shall you amuse me today?”</i>");
+		
+		processTime(2);
 	}
 	
 	if(pc.hasCock() && pc.cockThatFits(550) >= 0) addButton(0,"Lay Her",penisRouter,[fuckTheSydianQueenRedux,550,false,0],"Lay Her","Dick the sydian. You may require some femboy fucking to get to her.");
@@ -557,8 +575,7 @@ public function raskOrgyPart4Redux():void
 	if (flags["SYDIAN_QUEEN_SEXCOUNT"] == 2) flags["SYDIAN_QUEEN_STAGE"] = 2;
 	if (flags["SYDIAN_QUEEN_SEXCOUNT"] >= 3) flags["SYDIAN_QUEEN_STAGE"]=3;
 	
-	pc.createStatusEffect("Sydian Queen Cooldown", 0, 0, 0, 0, true, "", "", false, 0);
-	pc.setStatusMinutes("Sydian Queen Cooldown", 90);
+	sydianQueenCooldownMinutes(90);
 }
 
 //Lay Her
@@ -718,8 +735,7 @@ public function fuckTheSydianQueen3Redux():void
 	if (flags["SYDIAN_QUEEN_SEXCOUNT"] >= 3) flags["SYDIAN_QUEEN_STAGE"]=3;
 	
 	//Needs a 3 hour cooldown
-	pc.createStatusEffect("Sydian Queen Cooldown", 0, 0, 0, 0, true, "", "", false, 0);
-	pc.setStatusMinutes("Sydian Queen Cooldown", 90);
+	sydianQueenCooldownMinutes(90);
 	
 }
 public function raskOrgyBadEnd(sceneChoice:int):void

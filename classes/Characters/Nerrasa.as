@@ -6,6 +6,8 @@
 	import classes.Items.Protection.ArcticWarfareBelt;
 	import classes.Items.Miscellaneous.ClimbingKit;
 	import classes.Items.Miscellaneous.FishingRod;
+	import classes.Items.Apparel.InsulatingBriefs;
+	import classes.Items.Apparel.InsulatingUndershirt;
 	import classes.Items.Apparel.ThermalJacket;
 	import classes.Items.Accessories.LightJetpack;
 	import classes.Items.Accessories.FlashGoggles;
@@ -32,6 +34,8 @@
 			//inventory.push(new AusarTreats());
 			inventory.push(new ClimbingKit());
 			inventory.push(new FishingRod());
+			inventory.push(new InsulatingBriefs());
+			inventory.push(new InsulatingUndershirt());
 			inventory.push(new ThermalJacket());
 			inventory.push(new LightJetpack());
 			//inventory.push(new HL4Salamander()); 9999

@@ -73,12 +73,17 @@ public function tuuvaCredits(arg:Number = 0):Number
 }
 public function showTuuva(nude:Boolean = false):void
 {
+	showName("\nTUUVA");
+	showBust(tuuvaBustString(nude));
+	author("QuestyRobo");
+}
+
+public function tuuvaBustString(nude:Boolean = false):String
+{
 	var nudeS:String = "";
 	if(nude) nudeS = "_NUDE";
-	showName("\nTUUVA");
 	var horseS:String = (nude ? (tuuva.hasCock(GLOBAL.TYPE_EQUINE) ? "_HORSE" : "") : "");
-	showBust("TUUVA"+horseS+nudeS);
-	author("QuestyRobo");
+	return ("TUUVA"+horseS+nudeS);
 }
 
 public function tuuvaExpeditionRescueChance():Boolean
@@ -674,7 +679,7 @@ public function tuuvaScavenging():void
 	}
 	else
 	{
-		output(", uh, nevermind, ");
+		output(", uh, never mind, ");
 		if(!korgiTranslate()) output("no important");
 		else output("it’s not important");
 		output(".");

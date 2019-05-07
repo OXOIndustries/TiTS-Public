@@ -459,6 +459,7 @@ public function fuckVaandesPuss():void
 {
 	clearOutput();
 	showVaande(true);
+	showBust("VAANDE_FEMALE_NUDE");
 	author("Zeikfried");
 	output("Vaande looks delighted when you tell her that you want to use your " + vaandeCockChoice() + ". <i>“Oh, that sounds simply lovely,”</i> she sighs. <i>“Won’t you ");
 	if(!pc.isNude()) output("undress yourself and then ");
@@ -1414,7 +1415,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 			// Any: Dzaan Druggies
 			if(!InCollection(5, scenesIndex) && scenesLimit > 0 && rand(scenesTotal) == 0)
 			{
-				output("\n\nA group of dzaan call you over and imperiously demand you get on top of their table and present your [pc.ass]. Mentally steeling yourself for a hard session of anal, you do as they ask - and then feel lines of powder being formed on the bare [pc.skin] of your buttocks, followed by hefty snorts and husky hermaphroditic crows of enjoyment. Any form of drug tastes better if it’s taken off the backside of a hooker, it turns out.");
+				output("\n\nA group of dzaan call you over and imperiously demand you get on top of their table and present your [pc.ass]. Mentally steeling yourself for a hard session of anal, you do as they ask - and then feel lines of powder being formed on the bare [pc.skinFurScalesNoun] of your buttocks, followed by hefty snorts and husky hermaphroditic crows of enjoyment. Any form of drug tastes better if it’s taken off the backside of a hooker, it turns out.");
 				processTime(10);
 				pc.exhibitionism(1);
 				scenesLimit--;
@@ -1900,7 +1901,7 @@ public function brothelTurnTrixLadyNonFem():void
 {
 	// Sex-Gender check!
 	// Pure females resume as normal.
-	if(pc.isFemale() || (debug && pc.hasVagina()))
+	if((pc.isFemale() && !pc.isMasculine(true)) || (debug && pc.hasVagina()))
 	{
 		brothelTurnTrixLady();
 		return;
@@ -2001,7 +2002,7 @@ public function brothelTrappifyVerify(response:String = "intro"):void
 			
 			clearMenu();
 			addButton(0, "Proceed", brothelTrappifyVerify, "proceed", "Continue Anyway...", "Damn the consequences!");
-			addButton(14, "Nevermind", brothelTrappifyVerify, "nevermind", "Nevermind...", "Maybe you should change before returning.");
+			addButton(14, "Never Mind", brothelTrappifyVerify, "nevermind", "Never Mind...", "Maybe you should change before returning.");
 			break;
 		case "nevermind":
 			output("You decide it might be best to avoid the complication entirely. Besides, you can probably return when you are the proper sex and gender and she will be none the wiser...");
@@ -2171,7 +2172,7 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			// If vagina remove vagina
 			if(pc.hasVagina())
 			{
-				msg += ParseText("[pc.EachVagina] " + (pc.totalVaginas() == 1 ? "feels like it is" : "feel like they are") + " puckering up, turning in on " + (pc.totalVaginas() == 1 ? "itself" : "themselves") + "... until at last " + (pc.totalVaginas() == 1 ? "it disappears" : "they disappear") + " entirely, leaving nothing but a prim, blank perineum between your [pc.anus] and [pc.eachCock] and a feeling of greater density inside. ");
+				msg += ParseText("[pc.EachVagina] " + (pc.totalVaginas() == 1 ? "feels like it is" : "feel like they are") + " puckering up, turning in on " + (pc.totalVaginas() == 1 ? "itself" : "themselves") + "... until at last " + (pc.totalVaginas() == 1 ? "it disappears" : "they disappear") + " entirely, leaving nothing but a prim, blank " + (pc.hasCock() ? "perineum between your [pc.anus] and [pc.eachCock]" : "area between your pelvis and [pc.anus]") + " and a feeling of greater density inside. ");
 				pc.removeVaginas();
 				minPass += 2;
 			}
@@ -2234,9 +2235,30 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 			}
 			if(msg != "") output("\n\n" + msg);
 			msg = "";
+			// No cock? get one!
+			if(!pc.hasCock())
+			{
+				msg += "For a number of minutes, your bare naked crotch gradually sprouts a toy-sized penis";
+				pc.createCock();
+				pc.setNewCockValues(0);
+				pc.cocks[0].cLengthRaw = 4;
+				if(pc.hasPerk("Mini")) pc.cocks[0].cLengthRaw = 2;
+				else if(pc.hasPerk("Hung")) pc.cocks[0].cLengthRaw = 5;
+				if(pc.balls <= 0)
+				{
+					msg += " and a pair of small, tightly packed balls";
+					pc.balls = 2;
+					pc.ballSizeRaw = 2;
+					if(pc.hasPerk("Bulgy")) pc.ballSizeRaw = 3;
+					pc.createStatusEffect("Uniball", 0, 0, 0, 0, true, "", "", false, 0);
+					pc.ballFullness = 100;
+				}
+				msg += ". The growth sends butterflies to your stomach--but that could just as well be the immense feeling of the warm semen quickly filling up your new sexual organ’s prostate. ";
+				minPass += 8;
+			}
 			// If 1 < penis reduce to 1 penis
 			// If penis > 5 inches reduce to 5 inches
-			if(pc.hasCock() && pc.biggestCockLength() > 5)
+			else if(pc.hasCock() && pc.cocks[pc.biggestCockIndex()].cLengthRaw > 5)
 			{
 				msg += ParseText("[pc.EachCock] clench" + (pc.cockTotal() == 1 ? "es" : "") + " up as the mods get to merciless work on " + (pc.cockTotal() == 1 ? "it" : "them") + ".");
 				if(pc.cockTotal() == 2) msg += ParseText(" Your [pc.cock 1] becomes incredibly sensitive as the bulging meat shrinks down and down, pulsing away intensely like a clit until it finally disappears entirely.");
@@ -2244,7 +2266,7 @@ public function brothelTrappifyAnswer(response:String = "none"):void
 				if(pc.cocks[0].cLengthRaw > 5)
 				{
 					msg += ParseText(" Slowly but surely, your [pc.cock 0] shrinks down, with every passing second becoming less of an intimidating monster and more of a cute little toy. As the nerve endings crowd together it becomes more sensitive, and by the time the transformation is done with you, you are hot and erect - not that that looks particularly impressive anymore. ");
-					pc.cocks[0].cLengthRaw = 5;
+					pc.cocks[0].cLengthRaw = (pc.hasPerk("Mini") ? 3 : 5);
 				}
 				if(pc.cocks.length > 1)
 				{

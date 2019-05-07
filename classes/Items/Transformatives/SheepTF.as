@@ -177,9 +177,22 @@ package classes.Items.Transformatives
 					{
 						output("\n\nYour ears twitch and tingle and you pull out your codex to check them out. Oh! Well that explains it - <b>you’ve got sheep ears now!</b>");
 						pc.earType = GLOBAL.TYPE_SHEEP;
+						pc.clearEarFlags();
+						pc.addEarFlag(GLOBAL.FLAG_FURRED);
 						changes++;
 					}
 					else output("\n\n" + pc.earTypeLockedMessage());
+				}
+				//Hair
+				if(pc.hasHair() && pc.hairType != GLOBAL.HAIR_TYPE_HAIR && changes < changeLimit && rand(4) == 0)
+				{
+					if(pc.hairTypeUnlocked(GLOBAL.HAIR_TYPE_HAIR))
+					{
+						output("\n\nYour scalp itches, the [pc.hair] covering it falling away as a mass of new filaments sprouts in their place. <b>You have hair!</b>");
+						pc.hairType = GLOBAL.HAIR_TYPE_HAIR;
+						changes++;
+					}
+					else output("\n\n" + pc.hairTypeLockedMessage());
 				}
 				//PC has straight hair: Change hair to curly/frizzy [25%]
 				//Change hair to curly/frizzy: 

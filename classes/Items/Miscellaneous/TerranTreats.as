@@ -90,35 +90,45 @@
 					target.createStatusEffect("Wool Removal");
 					changes++;
 				}
-				//Remove fur/scales:
-				if((pc.skinType == GLOBAL.SKIN_TYPE_FUR || pc.skinType == GLOBAL.SKIN_TYPE_SCALES) && rand(3) == 0 && changes < changeLimit)
+				// Skin type change
+				if(pc.skinType != GLOBAL.SKIN_TYPE_SKIN && rand(3) == 0 && changes < changeLimit)
 				{
-					kGAMECLASS.output("\n\nYou feel itchy, and begin to scratch at your [pc.skinFurScales] only to feel ");
-					if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) kGAMECLASS.output("it");
-					else kGAMECLASS.output("them");
-					kGAMECLASS.output(" come away under your fingers, ");
-					if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) kGAMECLASS.output("fur");
-					else kGAMECLASS.output("scales");
-					kGAMECLASS.output(" falling in clumps until the new, smooth [pc.skinTone] skin underneath is exposed.");
-					pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
-					pc.clearSkinFlags();
-					changes++;
-				}
-				//Remove latex skin (if not locked by perk):
-				if(pc.skinType == GLOBAL.SKIN_TYPE_LATEX && pc.hasStatusEffect("Latex Skin") && rand(3) == 0 && changes < changeLimit)
-				{
-					if(!pc.hasPerk("Black Latex"))
+					if(target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN))
 					{
-						kGAMECLASS.output("\n\nYour skin heats up and then tingles as you feel goosebumps run across it.");
-						pc.addStatusValue("Latex Skin", 1, -1);
-						if(pc.statusEffectv1("Latex Skin") > 0) kGAMECLASS.output(" Strange... It looks a little less shiny now.");
-						else
+						// Remove latex skin (if not locked by perk):
+						if(pc.skinType == GLOBAL.SKIN_TYPE_LATEX && pc.hasStatusEffect("Latex Skin"))
 						{
-							kGAMECLASS.output(".. and just like that, the remaining shininess evaporates off its surface, making your skin appear very much normal. <b>Your skin is no longer made of latex!</b>");
+							kGAMECLASS.output("\n\nYour skin heats up and then tingles as you feel goosebumps run across it.");
+							pc.addStatusValue("Latex Skin", 1, -1);
+							if(pc.statusEffectv1("Latex Skin") > 0) kGAMECLASS.output(" Strange... It looks a little less shiny now.");
+							else
+							{
+								kGAMECLASS.output(".. and just like that, the remaining shininess evaporates off its surface, making your skin appear very much normal. <b>Your skin is no longer made of latex!</b>");
+								pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+								pc.clearSkinFlags();
+								pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
+								pc.removeStatusEffect("Latex Skin");
+							}
+						}
+						// Remove fur/scales:
+						else if(pc.skinType == GLOBAL.SKIN_TYPE_FUR || pc.skinType == GLOBAL.SKIN_TYPE_SCALES)
+						{
+							kGAMECLASS.output("\n\nYou feel itchy, and begin to scratch at your [pc.skinFurScales] only to feel ");
+							if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) kGAMECLASS.output("it");
+							else kGAMECLASS.output("them");
+							kGAMECLASS.output(" come away under your fingers, ");
+							if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) kGAMECLASS.output("fur");
+							else kGAMECLASS.output("scales");
+							kGAMECLASS.output(" falling in clumps until the new, smooth [pc.skinTone] skin underneath is exposed.");
 							pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
 							pc.clearSkinFlags();
-							pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
-							pc.removeStatusEffect("Latex Skin");
+						}
+						// Generic
+						else
+						{
+							kGAMECLASS.output("\n\nYou feel itchy, and begin to scratch at your [pc.skinFurScales] only to feel the [pc.skinNoun] come away under your fingers, falling in clumps until the new, smooth [pc.skinTone] skin underneath is exposed. <b>You now have normal skin!</b>");
+							pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+							pc.clearSkinFlags();
 						}
 						changes++;
 					}
@@ -325,7 +335,7 @@
 					else kGAMECLASS.output("\n\n" + target.armTypeLockedMessage());
 				}
 				//Change leg-type to bipedal human
-				if((pc.legType != GLOBAL.TYPE_HUMAN || pc.legCount != 2) && changes < changeLimit && rand(3) == 0 && pc.armType == GLOBAL.TYPE_HUMAN)
+				if((pc.legType != GLOBAL.TYPE_HUMAN || pc.legCount != 2) && changes < changeLimit && rand(3) == 0 /*&& pc.armType == GLOBAL.TYPE_HUMAN*/)
 				{
 					if (target.legTypeUnlocked(GLOBAL.TYPE_HUMAN))
 					{
@@ -363,6 +373,7 @@
 					{
 						kGAMECLASS.output("\n\nYou hear a ringing in your [pc.ears], drowning out all other sounds as your ears adjust their size and position. By the time the ringing stops, <b>you’ve got human-like ears on the sides of your head</b>.");
 						pc.earType = GLOBAL.TYPE_HUMAN;
+						target.clearEarFlags();
 						pc.earLength = 0;
 						changes++;
 					}
@@ -471,6 +482,7 @@
 				if(pc.hasHair() && pc.hasPerk("Mane") && changes < changeLimit && rand(3) == 0)
 				{
 					kGAMECLASS.output("\n\nYou feel the hairline on the back of your neck receding to something more in line with the back of your head. <b>You no longer have a mane.</b>");
+					kGAMECLASS.output("\n\n(<b>Perk Lost: Mane</b>)");
 					changes++;
 					pc.removePerk("Mane");
 				}
@@ -496,6 +508,7 @@
 				if(pc.hasPerk("Regal Mane") && changes < changeLimit && rand(3) == 0)
 				{
 					kGAMECLASS.output("\n\nA tingling sensation suddenly rushes through the base of your mane. Like a pile of dying weeds, it quickly droops down and falls off your shoulders. When the feeling subsides, your shoulders seem a bit lighter around the collar. <b>You no longer have a royal-looking mane around your neck.</b>");
+					kGAMECLASS.output("\n\n(<b>Perk Lost: Regal Mane</b>)");
 					changes++;
 					pc.removePerk("Regal Mane");
 				}
@@ -503,8 +516,24 @@
 				if (pc.hasPerk("Hollow Bones") && changes < changeLimit && rand(3) == 0)
 				{ // racialPerkUpdateCheck: removal of Icy Veins perk with the loss of fluffy fur (fork on still having fur but not fluffy flag?).
 					kGAMECLASS.output("\n\nYou feel somewhat heavy and clumsy as your bones turn solid again, losing their hollow avian structure.");
+					kGAMECLASS.output("\n\n(<b>Perk Lost: Hollow Bones</b>)");
 					changes++;
 					pc.removePerk("Hollow Bones");
+				}
+				
+				if (pc.hasPerk("Nyrea Eggs") && changes < changeLimit && rand(3) == 0)
+				{
+					kGAMECLASS.output("\n\nYou are interrupted by a shifting in your insides as a bubbling sensation fills your loins, and then... nothing. Strangely, you feel as if something has changed. Double-checking your codex, you find that your [pc.cumNoun] is no longer capable of producing eggs");
+					if(pc.fertility() > 0) kGAMECLASS.output(" as it once had");
+					if(pc.hasStatusEffect("Nyrea Eggs"))
+					{
+						kGAMECLASS.output("... at least not permanently so");
+						pc.setStatusValue("Nyrea Eggs", 4, 0);
+					}
+					kGAMECLASS.output(".");
+					kGAMECLASS.output("\n\n(<b>Perk Lost: Nyrea Eggs</b>)");
+					pc.removePerk("Nyrea Eggs");
+					changes++;
 				}
 				
 				//Lose "Special Scrotum" Effect:

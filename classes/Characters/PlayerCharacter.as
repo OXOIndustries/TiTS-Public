@@ -5,6 +5,7 @@ package classes.Characters
 	import classes.Engine.Interfaces.GetGameTimestamp;
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.Items.Accessories.LeithaCharm;
+	import classes.Items.Armor.GooArmor;
 	import classes.Items.Transformatives.OmegaOil;
 	import classes.Items.Transformatives.SheepTF;
 	import classes.Items.Melee.Rock;
@@ -28,7 +29,7 @@ package classes.Characters
 	{
 		public function PlayerCharacter() 
 		{
-			this._latestVersion = 4;
+			this._latestVersion = 5;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			this._isLoading = false;
@@ -387,25 +388,25 @@ package classes.Characters
 		{
 			if (ref == null || ShipStorageInventory.length == 0 || amount == 0) return;
 			
-			var i:int = 0;
+			var i:int = (ShipStorageInventory.length - 1);
 			
 			// Remove all!
 			if (amount < 0)
 			{
-				while (i < ShipStorageInventory.length)
+				while (i >= 0)
 				{
 					if (ShipStorageInventory[i] is ref)
 					{
 						ShipStorageInventory[i].quantity = 0;
 						ShipStorageInventory.splice(i, 1);
 					}
-					else i++;
+					i--;
 				}
 			}
 			// Normal
 			else
 			{
-				while (amount > 0 && i < ShipStorageInventory.length)
+				while (amount > 0 && i >= 0)
 				{
 					//Item in the slot?
 					if (ShipStorageInventory[i] is ref)
@@ -417,10 +418,8 @@ package classes.Characters
 						{
 							ShipStorageInventory.splice(i, 1);
 						}
-						//else i++;
-						else return;
 					}
-					else i++;
+					i--;
 				}
 				if(amount > 0) output("<b>ERROR - Ship inventory item quantity needed: " + amount + "!</b>");
 			}
@@ -797,6 +796,23 @@ package classes.Characters
 				}
 			}
 		}
+		public function UpgradeVersion4(d:Object):void
+		{
+			var i:uint = 0;
+			if (d.perks)
+			{
+				for (i = 0; i < d.perks.length; i++)
+				{
+					if (d.perks[i] && d.perks[i].storageName)
+					{
+						switch(d.perks[i].storageName)
+						{
+							case "Concussive Shot": d.perks[i].tooltip = "[altTooltip ConcussiveShot]"; break;
+						}
+					}
+				}
+			}
+		}
 		
 		override public function get bustDisplay():String
 		{
@@ -811,7 +827,6 @@ package classes.Characters
 		{
 			return "you";
 		}
-		
 		override public function processTime(deltaT:uint, doOut:Boolean):void
 		{	
 			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
@@ -869,6 +884,11 @@ package classes.Characters
 					fecundFigure(totalDays);
 				}
 				
+				if(hasPerk("Implant-tastic"))
+				{
+					implantasticSiliconeConversion(totalDays);
+				}
+				
 				if (hasStatusEffect("Nyrea Eggs") && fertility() > 0 && hasOvipositor())
 				{
 					nyreaEggStuff(totalDays);
@@ -889,6 +909,7 @@ package classes.Characters
 			// Minutely changes
 			updateVaginaStretch(deltaT, doOut);
 			updateButtStretch(deltaT, doOut);
+			novaCumSlurpUpdates(deltaT, doOut);
 			
 			super.processTime(deltaT, doOut);
 			
@@ -938,6 +959,28 @@ package classes.Characters
 			else if(flags["VENOM_ADDICTION"] == undefined && !hasStatusEffect("Red Myr Venom"))
 			{
 				kGAMECLASS.venomProgress(-2 * totalDays);
+			}
+		}
+		
+		public function novaCumSlurpUpdates(deltaT:uint, doOut:Boolean):void
+		{
+			if(armor is GooArmor && flags["GOO_ARMOR_AUTOCLEAN"] != undefined)
+			{
+				if(hasStatusEffect("Cum Soaked") || hasStatusEffect("Pussy Drenched") || hasStatusEffect("Milk Bathed"))
+				{
+					AddLogEvent(RandomInCollection([
+						"<i>“Oooh, you got <b>covered</b>, didn’t you!?”</i> [goo.name] giggles, wobbling excitedly all around you. <i>“Don’t worry, I’ll clean you aaaaall up.!”</i>\n\nShe vibrates rapidly all over your body, absorbing all the sexual effluvia that’s slathered you during your latest misadventures. Within the span of a few moments, she has you glistening in the light, as fresh and clean as the day you first departed on your quest. [goo.name] feels a bit heavier and thicker around you, but the weight soon settles in like a natural heavy coat. <i>“All done!”</i> she purrs, wiggling around your loins. <i>“Off to the next adventure!”</i>",
+						"You feel your armor vibrating excitedly all around you. <i>“Ohh, you really got <b>covered</b> didn’t ya? Don’t worry, I’ll clean up!”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
+						"You feel your armor vibrating excitedly all around you. <i>“Wow, what a smell! It’s soooo hot. Lemme slurp it all up!”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
+						"You feel your armor vibrating excitedly all around you. <i>“Oh wow, that’s a lotta juice. It’s like you got me a million presents!”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
+						"You feel your armor vibrating excitedly all around you. <i>“You’re so messy! What’d you... ohh, that smells good... lemme lick it up?”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
+						"You feel your armor vibrating excitedly all around you. <i>“Yaaaaay, " + ((hasStatusEffect("Cum Soaked") || hasStatusEffect("Pussy Drenched")) ? "cummies" : "milkies") + "!”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
+						"You feel your armor vibrating excitedly all around you. <i>“Aww, somebody had some fun. Let me get you cleaned up for the next round!”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
+					]), "passive", deltaT);
+					removeStatusEffect("Cum Soaked");
+					removeStatusEffect("Pussy Drenched");
+					removeStatusEffect("Milk Bathed");
+				}
 			}
 		}
 		
@@ -1002,8 +1045,8 @@ package classes.Characters
 					if(legCount > 1) m += ParseText(" between the [pc.legs]");
 					else m += "... down there";
 					m += ". Moisture seems to be dripping everywhere, transforming your puss";
-					if(totalVaginas() == 1) m += "y into a slipperier, gooier version of itself. <b>Your entire vagina has become semi-solid, like the rest of your crotch.";
-					else m += "ies into slipperier, gooier versions of themselves. <b>All of your vaginas are now semi-solid, goo-cunts, just like the rest of your crotch.";
+					if(totalVaginas() == 1) m += "y into a slipperier, gooier version of itself. <b>Your entire vagina has become semi-solid, like the rest of your crotch.</b>";
+					else m += "ies into slipperier, gooier versions of themselves. <b>All of your vaginas are now semi-solid, goo-cunts, just like the rest of your crotch.</b>";
 					
 					AddLogEvent(m, "passive", deltaT);
 				}
@@ -1150,6 +1193,12 @@ package classes.Characters
 				
 				AddLogEvent(m, "passive", baseDShift + (i * 1440));
 			}
+		}
+		
+		private function implantasticSiliconeConversion(totalDays:int):void
+		{
+			var msg:String = kGAMECLASS.implantasticSiliconeConversion(this);
+			if(msg != "") AddLogEvent(msg, "passive", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
 		}
 		
 		private function maneHairGrow(totalDays:uint):void
@@ -1381,7 +1430,7 @@ package classes.Characters
 						removePerk("'Nuki Nuts");
 					}
 				}
-				else if(perkv2("'Nuki Nuts") == 1 && balls <= 0)
+				else if(/*perkv2("'Nuki Nuts") == 1 && */balls <= 0)
 				{
 					AddLogEvent("A strange sensation hits your nethers that forces you to wobble a little... Checking your status on your codex, it seems that removing your ballsack has also made the signature testicle-expanding tanuki mod vanish as well!\n\n(<b>Perk Lost: ‘Nuki Nuts</b> - You have no nuts to expand!)", "passive", deltaT);
 					removePerk("'Nuki Nuts");

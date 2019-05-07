@@ -62,7 +62,9 @@ package classes.Engine.Combat
 
 		//25% dam multiplier
 		if (lustDamage.tease.damageValue > 0 && target.hasStatusEffect("Red Myr Venom")) lustDamage.tease.damageValue *= 1.25;
-
+		//30% tease from Cupid's Kiss
+		if (lustDamage.tease.damageValue > 0 && target.hasStatusEffect("Cupid’s Kiss")) lustDamage.tease.damageValue *= 1.30;
+		
 		// Apply any defensive modifiers
 		var damMulti:Number = 1;
 		if (target.hasStatusEffect("Blue Balls")) damMulti += 0.25;

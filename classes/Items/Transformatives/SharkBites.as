@@ -223,6 +223,7 @@
 					{
 						output("\n\nHow odd... your ears feel oddly numb. You press your hands against the side of your face, noticing that your ear holes are still there but your ear lobes are missing. Suddenly, you feel a pressure against your hands and you move them away, as skin and cartilage bursts forth. They look kind of like three tiny sails were taken off a ship and used to make <b>your new shark ears</b>!");
 						pc.earType = GLOBAL.TYPE_SHARK;
+						pc.clearEarFlags();
 						pc.earLength = 4;
 					}
 					else output("\n\n" + pc.earTypeLockedMessage());
@@ -379,8 +380,8 @@
 						if(pc.balls == 1) output("its");
 						else output("their");
 						output(" presence slowly retreat into your skin before disappearing completely. How odd... you don’t even feel that torn up about it. <b>You have no testicles now.</b>");
-						pc.balls = 0;
-						pc.ballSizeRaw = 3.5;
+						pc.makeBallsInternal();
+						//pc.ballSizeRaw = 3.5;
 					}
 					else output("\n\n" + pc.ballsLockedMessage());
 					changes++;
@@ -397,7 +398,7 @@
 					if(pc.vaginaTypeUnlocked(ii,GLOBAL.TYPE_SHARK))
 					{
 						output("\n\nYour [pc.vagina " + ii + "] tingles as it begins to shift on the inside. Curious, you run your hands over your ");
-						if(pc.vaginas[ii].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || pc.vaginas[ii].hasFlag(GLOBAL.FLAG_PUMPED)) output("puffy ");
+						if(pc.hasPlumpPussy(ii)) output("puffy ");
 						output("lips and notice some tendrils rubbing and grasping your fingers, trying to pull them deeper into your pussy. You blush a little as you have to resist the urge to start fingering yourself right there and reluctantly pull your fingers away, much to the disappointment of your new pussy tendrils. <b>You now have a gray shark vagina!</b>");
 						pc.shiftVagina(ii,GLOBAL.TYPE_SHARK);
 						pc.lust(20);

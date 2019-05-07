@@ -4,19 +4,21 @@
 import classes.Items.Transformatives.DongDesigner;
 
 //Discovery
-public function cockBoxDiscoveryBlurb():Boolean
+public function cockBoxDiscoveryBlurb(btnSlot:int = 0):Boolean
 {
 	if(flags["LOOTED_COCKBOX"] == undefined)
 	{
 		output("\n\nA gleam of shining metal catches your eye from amongst the mounds of detritus. Looking closer, you pick out the shape of an oblong console of alloy and composite, scratched in a half-dozen places but otherwise intact. Do you investigate it?");
-		addButton(0,"Investigate",investigateTheCockBox);
+		addButton(btnSlot,"Investigate",investigateTheCockBox);
+		return true;
 	}
 	else if(flags["LOOTED_COCKBOX"] == 0)
 	{
 		output("\n\nA gleam of light indicates that the TamaniCorp Dong Designer is still sitting where you last found it. You can pick it up if you have the room for it.");
-		addButton(0,"Take It",takeDatCockBawks);
+		addButton(btnSlot,"Take It",takeDatCockBawks);
+		return true;
 	}
-	return (rustRidgesEncounters());
+	return false;
 }
 
 public function cockboxUpgraded(inShip:Boolean):Boolean

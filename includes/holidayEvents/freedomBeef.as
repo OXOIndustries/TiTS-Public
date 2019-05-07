@@ -196,7 +196,7 @@ public function freedomBeefJoinHer(beefType:uint):void
 	output("”</i>");
 
 	output("\n\nSo she’s a fellow rusher? Neat. Don’t actually");
-	if (silly) output(" meat");
+	if (silly) output(" ‘meat’");
 	else output(" meet");
 	output(" many other actual adventure-seekers like yourself out in the wilds, come to think of it. You suppose there’s few enough of you over so much terrain that it’s not likely you’d ever run into each other face to face, but still, it’s cool to meet the competition.");
 
@@ -256,6 +256,8 @@ public function freedomBeefJoinHerII(beefType:uint):void
 	output("\n\nAs if to punctuate her request, the bison-girl’s black twat winks hungrily at you, smearing the leather straps with thick, viscous trails of musky feminine juice.");
 
 	processTime(15+rand(10));
+	pc.lust(5);
+	pc.instaBuzzed();
 
 	//[Chaste Help] [Flirty Help] [Nope Out]
 
@@ -282,11 +284,9 @@ public function freedomBeefNopeOut(beefType:uint):void
 	output(" and turn to depart.");
 
 	processTime(5+rand(2));
-	//Apply Home Cooking buff.
-	eatHomeCooking(100);
 
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", freedomBeefLeave);
 }
 
 public function freedomBeefFlirtyHelp(beefType:uint):void
@@ -316,8 +316,6 @@ public function freedomBeefFlirtyHelp(beefType:uint):void
 
 	pc.lust(33);
 	processTime(5+rand(2));
-	//Apply Home Cooking buff.
-	eatHomeCooking(100);
 
 	freedomBeefSexMenu(beefType);
 }
@@ -336,7 +334,7 @@ public function freedomBeefChasteHelp(beefType:uint):void
 	if (pc.hasCock())
 	{
 		var willChance:Number = (pc.willpower() / pc.willpowerMax()) * 100;
-		failedCheck = pc.willpower() >= rand(willChance);
+		failedCheck = (pc.inRut() ? true : (pc.willpower() >= rand(willChance)));
 
 		if (!failedCheck) output("\n\nYou shake off the mounting chemical lust and stagger back, gasping for breath. Oh damn, is Riley in some kind of heat? It takes a moment to clear your head, but you manage to take and hold a deep breath of fresh air before diving back in to do your work.");
 		else output("\n\nYour heart hammers in your chest, and your [pc.cock] throbs with agonizing need. The bestial part of your mind takes charge, erasing your chaste intentions with a simple, overwhelming command: <b>fuck</b>.");
@@ -360,6 +358,7 @@ public function freedomBeefChasteHelp(beefType:uint):void
 		
 		output("\n\nAfter a few moments, Riley cracks another beer and sits back, happily watching her fireworks shoot off. She offers you another beer as thanks, and given the haze still lingering in your mind from the buffalo’s needy quim, you’re quick to accept. It isn’t long before lingering sex-haze is replaced by a nice, tingly buzz, and find yourself relaxing against the bison’s cobalt flank, watching the display in the sky.");
 
+		pc.lust(33);
 		processTime(50+rand(20));
 		clearMenu();
 		addButton(0, "Next", freedomBeefChasteHelpII, beefType);
@@ -384,8 +383,6 @@ public function freedomBeefChasteHelp(beefType:uint):void
 
 		pc.lust(33);
 		processTime(5+rand(2));
-		//Apply Home Cooking buff.
-		eatHomeCooking(100);
 
 		freedomBeefSexMenu(beefType);
 	}
@@ -428,11 +425,9 @@ public function freedomBeefNoneForMe(beefType:uint):void
 	output("\n\nYou give her a wave and turn back to your path.");
 
 	processTime(5+rand(2));
-	//Apply Home Cooking buff.
-	eatHomeCooking(100);
 
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", freedomBeefLeave);
 }
 
 public function freedomBeefLikedIt(beefType:uint):void
@@ -458,9 +453,6 @@ public function freedomBeefLikedIt(beefType:uint):void
 	}
 	
 	output("\n\nRiley gives you a wink and cups her hands under her titanic rack, already starting to work the holopin clasp holding it back.");
-	
-	//Apply Home Cooking buff.
-	eatHomeCooking(100);
 	
 	freedomBeefSexMenu(beefType);
 }
@@ -764,5 +756,12 @@ public function freedomBeefSexOutro(params:Array):void
 	output(" - as she turns to go. <i>“Till next time, [pc.name]!”</i>");
 
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", freedomBeefLeave);
+}
+
+public function freedomBeefLeave():void
+{
+	//Apply Home Cooking buff.
+	eatHomeCooking(100);
+	mainGameMenu();
 }

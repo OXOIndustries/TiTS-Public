@@ -85,10 +85,11 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/gats_old/zilFemale.png", mimeType = "image/png")]
 		public var Bust_ZILFEMALE:Class;
+		public var Bounds_ZILFEMALE:Rectangle = new Rectangle(1, 20, 75, 64);
 		
 		[Embed(source = "../../../assets/images/npcs/gats_old/zilMale.png", mimeType = "image/png")]
 		public var Bust_ZIL:Class;
-		public var Bounds_ZIL:Rectangle = new Rectangle(31, 4, 91, 79);
+		public var Bounds_ZIL:Rectangle = new Rectangle(20, 5, 80, 75);
 		
 	}
 

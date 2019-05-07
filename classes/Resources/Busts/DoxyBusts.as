@@ -17,7 +17,7 @@ package classes.Resources.Busts
 		
 		CONFIG::IMAGEPACK
 		{
-			[Embed(source = "../../../assets/images/npcs/doxy/hr/zodee.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/doxy/HR/zodee.png", mimeType = "image/png")]
 			public var Full_ZODEE:Class;
 		}
 	}

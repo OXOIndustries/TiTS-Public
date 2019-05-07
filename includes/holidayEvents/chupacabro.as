@@ -182,7 +182,7 @@ public function iDidntStopTheRapingSorryReaha():void
 		if(pc.totalCocks() > 1) output("At the same time, your own [pc.cocks] empty themselves onto your [pc.chest], coating you with your own seed. ");
 		else if(pc.totalCocks() > 0) output("At the same time, your own [pc.cocks] empties itself onto your [pc.chest], coating you with your own seed. ");
 		output("\n\nYour [pc.stomach] swells with the sheer volumes of " + (silly ? "el Chupacabro" : "the Chupacabro") + "’s virile load, leaving your tummy rounded to the point where you look pregnant.");
-		output("\n\nWhen the beast of a man finally does finish, he pulls out of you without any ceremony or hesitation, leaving you whimpering and gaping considerably as you’re emptied. You lie there on the the floor, all full of cum and barely able to keep your eyes open after that forceful fucking as " + (silly ? "el Chupacabro" : "the Chupacabro") + " rises to his hooves again, smirking down at you.");
+		output("\n\nWhen the beast of a man finally does finish, he pulls out of you without any ceremony or hesitation, leaving you whimpering and gaping considerably as you’re emptied. You lie there on the floor, all full of cum and barely able to keep your eyes open after that forceful fucking as " + (silly ? "el Chupacabro" : "the Chupacabro") + " rises to his hooves again, smirking down at you.");
 		pc.orgasm();
 	}
 	

@@ -385,8 +385,8 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			}
 			else
 			{
-				ExtendLogEvent("\n\n(<b>Perk Upgraded: Inhuman Desire</b> - Your maximum lust is increased by 10.)");
-				pc.addPerkValue("Inhuman Desire",1,10);
+				ExtendLogEvent("\n\n(<b>Perk Upgraded: Inhuman Desire</b> - Your maximum lust is increased by 20.)");
+				pc.addPerkValue("Inhuman Desire",1,20);
 				pc.setPerkTooltip("Inhuman Desire","Increases maximum lust by " + pc.perkv1("Inhuman Desire") + ".");
 			}
 			pc.lust(13);
@@ -1219,6 +1219,9 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		{
 			AddLogEvent(ParseText("You go to scratch at one of your " + pc.earsDescript() + ", only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; <b>you’re just listening through a pair of floppy cow-ears now</b>. Briefly, you consider how good it would feel to have someone scratch them."), "passive", (treatedHours - startHours) * 60);
 			pc.earType = GLOBAL.TYPE_BOVINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
+			pc.addEarFlag(GLOBAL.FLAG_FLOPPY);
 		}
 		
 		// Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs
@@ -2895,6 +2898,9 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		{
 			AddLogEvent("You go to scratch at one of your " + pc.earsDescript() + ParseText(", only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; you’re just listening through a pair of floppy cow-ears now. Briefly, you consider how good it would feel to have someone scratch them."), "passive", (treatedHours - startHours) * 60);
 			pc.earType = GLOBAL.TYPE_BOVINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FLOPPY);
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
 		}
 		// Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs
 		if(pc.legCount >= 2 && pc.legType != GLOBAL.TYPE_BOVINE && startHours < 145 && treatedHours >= 145 && rand(10) <= 1)
@@ -3977,6 +3983,9 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 		{
 			AddLogEvent("You go to scratch at one of your " + pc.earsDescript() + ParseText(", only to find it differently shaped - and in a new location - than before. Gingerly feeling it, you discover that your aural organs are soft and leathery, with a fine coat of [pc.furColor] across their outer edges. You can still hear just fine; you’re just listening through a pair of floppy cow-ears now. Briefly, you consider how good it would feel to have someone scratch them."), "passive", (141 - startHours) * 60);
 			pc.earType = GLOBAL.TYPE_BOVINE;
+			pc.clearEarFlags();
+			pc.addEarFlag(GLOBAL.FLAG_FURRED);
+			pc.addEarFlag(GLOBAL.FLAG_FLOPPY);
 		}
 		
 		// Hooves (Rarish) - requires biped minimum. No change for goo/nagaPCs
@@ -4202,11 +4211,19 @@ public function dumb4CumReset():void
 	
 	// Ditz Speech Removal
 	// Dr. Badger bimbofication and Dumbfuck sneezes are permanent though...
-	if(pc.hasPerk("Ditz Speech") && flags["DR_BADGER_BIMBOED_PC"] == undefined && (flags["DUMBFUCK_SNEEZES"] == undefined || flags["DUMBFUCK_SNEEZES"] < 20))
+	if(pc.hasPerk("Ditz Speech") && canRemoveDitzSpeech())
 	{
 		ExtendLogEvent("\n\n(<b>Perk Lost: Ditz Speech</b>)");
 		pc.removePerk("Ditz Speech");
 	}
+}
+public function canRemoveDitzSpeech():Boolean
+{
+	// Bimbofication permanence
+	if(flags["DR_BADGER_BIMBOED_PC"] != undefined) return false;
+	if(flags["MITZI_BIMBOED_PC"] != undefined) return false;
+	if(flags["DUMBFUCK_SNEEZES"] != undefined && flags["DUMBFUCK_SNEEZES"] >= 20) return false;
+	return true;
 }
 
 public function dumb4CumUpdate(totalHours:int):void

@@ -311,7 +311,7 @@ public function buskyTalksAboutModeling():void {
 	output("\n\n<i>“True, but they’re so still and lifeless. I need something dynamic,”</i> you continue.");
 	output("\n\n<i>“Hardlight mannequin, dead center of the displays, can’t miss it,”</i> he says nonchalantly.");
 	output("\n\n<i>“Can’t compliment it either,”</i> you joke. <i>“So I was wondering. If you’d be willing to try on your clothes for me.”</i>");
-	output("\n\n<i>“You want me to model eh? Well why didn’t you say so.”</i> Busky laughs a bit. <i>“Well, I can’t say I’m opposed to the idea. Also can’t say you’re the first to ask. But if you want, I’ll be glad to put myself on display.”</i>");
+	output("\n\n<i>“You want me to model, eh? Well why didn’t you say so.”</i> Busky laughs a bit. <i>“Well, I can’t say I’m opposed to the idea. Also can’t say you’re the first to ask. But if you want, I’ll be glad to put myself on display.”</i>");
 	
 	processTime(1);
 	
@@ -333,12 +333,12 @@ public function buskySex(): void {
 		
 		if (pc.hasBreasts() && pc.femininity <= 40) output(" tits on a guy");
 		else if (pc.hasBreasts() || pc.femininity > 40) {
-			if (pc.isFemboy() || pc.isManHerm() || pc.isCuntboy()) output(" femboys");
+			if (pc.isFemmyMale() || pc.isManHerm() || pc.isManlyFemale()) output(" femboys");
 			else if (pc.isTreated()) output(" cows");
 			else output(" chicks");
 		}
 		output(", plenty of other bulls are, just not me. Sorry,");
-		if (pc.isFemboy() || pc.isManHerm() || pc.isCuntboy()) output(" you’re a bit too girly for my tastes - not into that myself.");
+		if (pc.isFemmyMale() || pc.isManHerm() || pc.isManlyFemale()) output(" you’re a bit too girly for my tastes - not into that myself.");
 		else output(" just really not looking for what you’ve got");
 		output(". No offense intended of course.”</i>");
 		
@@ -1444,7 +1444,7 @@ public function buskySexMotivationFollowUp():void {
 		output("\n\n<i>“Hold on to something, you’re not done yet,”</i> smirks Busky. You wrap your arms around his neck, pulling yourself to his ear.");
 	}
 	
-	if (pc.isBro()) output("\n\n<i>“Ugh, yeah. Fuck my ass raw you little wimp! You got 4 balls, use ‘em!”</i>");
+	if (pc.isBro()) output("\n\n<i>“Ugh, yeah. Fuck m" + (pc.hasVagina() ? "e" : "y ass") + " raw you little wimp! You got 4 balls, use ‘em!”</i>");
 	else if (pc.isBimbo()) output("\n\n<i>“Oh my god, you’re fucking me raw. Cum, c’mon, I like, need it.”</i>");
 	else output("\n\n<i>“I can’t take it anymore, just finish already.”</i>");
 	

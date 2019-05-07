@@ -1,6 +1,6 @@
 public function eventWhorizonInitRooms():void
 {
-	var planetName:String = "SPATIAL ANOMOLY";
+	var planetName:String = "SPATIAL ANOMALY";
 	var systemName:String = "UNKNOWN SPACE";
 
 	rooms["EW-M23"] = new RoomClass(this);
@@ -116,7 +116,9 @@ public function eventWhorizonTentacleGarden():Boolean
 	}
 	else
 	{
-		output("You’re standing in the heart of the tentacle garden, surrounded by the wilted remains of the dildo-vines and fuck-flowers that accosted you. There’s an obvious path to the east{, from which you can hear moans and cries}, and another that continues north.");
+		output("You’re standing in the heart of the tentacle garden, surrounded by the wilted remains of the dildo-vines and fuck-flowers that accosted you. There’s an obvious path to the east");
+		if(flags["EVENT_WHORIZON_TENTACLE_GARDEN"] <= -1) output(", from which you can hear moans and cries");
+		output(", and another that continues north.");
 	}
 
 	return false;

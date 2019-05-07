@@ -599,7 +599,7 @@ public function willowSexScenes(sceneChoice:int):void
 			if (pc.hasVagina()) output("pleasure as you spray your own femcum across her mattress.");
 			else output("dampened pleasure to organs that are no longer there.");
 		}
-		output("\n\n<i>“You’re welcome, pet,”</i> you say, lying down next to her for a quick nap. Willow passes out almost immediately and after a few hours of napping with your arm around her, you unfortunately have to get up to leave. You write a little note and toss it onto the the bedside table, telling her you’ll be back soon for more fun.");
+		output("\n\n<i>“You’re welcome, pet,”</i> you say, lying down next to her for a quick nap. Willow passes out almost immediately and after a few hours of napping with your arm around her, you unfortunately have to get up to leave. You write a little note and toss it onto the bedside table, telling her you’ll be back soon for more fun.");
 		if(!pc.isNude())output(" You then gather up and put on your [pc.gear] before leaving the apartment, closing the door softly behind you.");
 		
 		if (flags["WILLOW_VAG_NO_CUFFS"]==undefined) flags["WILLOW_VAG_NO_CUFFS"] == 1;
@@ -1623,7 +1623,7 @@ public function willowGiftClothes(sceneChoice:int):void
 		{	
 			output("<i>“Something to wear? What for? I have enough clothes.”</i> She says.");
 			output("\n\n<i>“Well, these are some... special kinda clothes.”</i> You say, winking at her. <i>“And, of course, there will be more!”</i>");
-			output("\n\n<i>“Special kind of-? Ohhhh. I get it. Nevermind.”</i> She says, chuckling and shaking her head.");
+			output("\n\n<i>“Special kind of-? Ohhhh. I get it. Never mind.”</i> She says, chuckling and shaking her head.");
 			flags["WILLOW_GIFT_CLOTHES"] = 1;
 			
 		}

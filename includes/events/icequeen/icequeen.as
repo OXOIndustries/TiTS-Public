@@ -564,7 +564,7 @@ public function iceQueenUvetoEntry(oldUvetoVisitFlagValue:* = undefined):void
 		output("\n\nNo, you’re <b>not</b> okay! Not at all.");
 	}
 	
-	output("\n\nZaalt’s hands are on you before you can regain your balance, throwing you backwards against your captain’s chair. He bellows and snarls, and suddenly you have claws slicing at you, trying to to tear you apart! You manage to shove him back and grab your [pc.weapon], interposing it between yourself and the crazed sabertooth. By now he’s breathing heavily, staring at you with dilated, hugely black eyes. Yours, however, are drawn downwards to a swelling bulge in his breeches, standing out like a pillar of desperate need from his loins.");
+	output("\n\nZaalt’s hands are on you before you can regain your balance, throwing you backwards against your captain’s chair. He bellows and snarls, and suddenly you have claws slicing at you, trying to tear you apart! You manage to shove him back and grab your [pc.weapon], interposing it between yourself and the crazed sabertooth. By now he’s breathing heavily, staring at you with dilated, hugely black eyes. Yours, however, are drawn downwards to a swelling bulge in his breeches, standing out like a pillar of desperate need from his loins.");
 	if (flags["ZAALT DISARMED"] == undefined) output(" He grabs the force blade from his belt and activates it, letting a blade of shimmering purple energy spring to life between you.");
 	
 	output("\n\nWith him standing between you and the corridor out, there’s nothing you can do but try and pacify him... somehow.");

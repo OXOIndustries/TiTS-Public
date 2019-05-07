@@ -1502,6 +1502,7 @@ public function lieveSoloFucktime(tempVenomEnabled:Boolean = false):void
 
 	hasFuckedLieveSolo(true);
 
+	showImage("LieveAgainstWall");
 	output("You gently brush the two harem babes off and close the distance between you and the amazonian red myr. She retreats a step under your advance, pressing her back to a wall; you plant a hand beside her, leaning in and saying that you’d prefer to just have a slice of her. No trench wives, just you and her.");
 	
 	output("\n\n<i>“I’m sure the girls will be horribly disappointed,”</i> Lieve answers, though one of her hands shimmies around to grab your [pc.butt].");

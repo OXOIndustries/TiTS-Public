@@ -222,7 +222,7 @@ public function firstTimeAnnoTalks():void
 public function soAboutDatDiscountSlut():void
 {
 	shopkeep = chars["ANNO"];
-	chars["ANNO"].keeperBuy = "<i>“So, about that discount...”</i>\n\n<i>“Of course. Right this way, " + pc.mf("Mr.","Ms") + " Steele,”</i> Anno says, guiding you to the register.\n";
+	chars["ANNO"].keeperBuy = "<i>“So, about that discount...”</i>\n\n<i>“Of course. Right this way, " + pc.mf("Mr.","Ms.") + " Steele,”</i> Anno says, guiding you to the register.\n";
 	//[Shop Menu Here]
 	buyItem();
 }
@@ -1030,13 +1030,13 @@ public function anyoneSpecial():void
 	addButton(0,"Threeway",threeWayAnno,undefined,"Threeway","Ask her if she’s up for threeways sometime.");
 	//[Leave] [Threeway?] If NotSex'd & PC is girl: [Into Girls?] PC is shemale/futa: [Into Dickgirls?]
 	//If NotSex'd & PC is girl: [Into Girls?]
-	if(pc.isFemale() && pc.mf("he","she") == "she" && annoSexed() == 0)
+	if(pc.isFemale() && pc.isFeminine() && annoSexed() == 0)
 	{
 		//[Into Girls?]
 		addButton(1,"Into Girls?",intoGirlsAnno,undefined,"Into Girls?","Ask her if she’s into girls.");
 	}
 	//PC is shemale/futa: [Into Dickgirls?]
-	else if(pc.hasCock() && pc.mf("he","she") == "she" && annoSexed() == 0)
+	else if(pc.hasCock() && pc.isFeminine() && annoSexed() == 0)
 	{
 		//[Into Dickgirls?]
 		addButton(2,"Into D-Girls?",intoDickgirlsAnno,undefined,"Into Dickgirls?","Ask her if she’s into dickgirls.");
@@ -1738,7 +1738,7 @@ public function joinCrewPlanetCrackerVersion():void
 	
 	clearMenu();
 	// [Nevermind] [Help Her] [She Wants It]
-	addButton(0, "Nevermind", annoMainMenu, undefined, "Nevermind", "Not right now.");
+	addButton(0, "Never Mind", annoMainMenu, undefined, "Never Mind", "Not right now.");
 	addButton(1, "Help Her", joinCrewPlanetCrackerVersionHelpHer, undefined, "Help Her", "You’ll be CEO some day. You’ll just give Anno her job back later - and better!");
 	addButton(2, "She Wants It", joinCrewPlanetCrackerVersionSheWantsIt, undefined, "She Wants It", "Play on Anno’s desires. She wants off this rock, and you want the cute little ausar bitch aboard your ship. Everybody wins.");
 }
@@ -3601,7 +3601,7 @@ public function annoxKaedeFuckThemFromKaedeBeej(selCock:int):void
 	
 	if(!annoIsHuskar()) output("\n\nSpeaking of Anno, she’s finally relaxed enough for you to start really moving. Your [pc.hips] rock back and forth at a steady pace to get her started, easing the both of you into the throes of carnal pleasure one languid thrust at a time.");
 	else output("\n\nSpeaking of Anno, she’s driving you wild down there, squeezing her muscles together and thrusting back against you. Every motion sends pounds of ausar butt crashing against your thighs, almost enough to push you out of her before you thrust back in.");
-	output(" As you dig your fingers into Kaede, though, you start to move faster on both ends, massaging the redhead’s prostate and stirring up the ausar’s pussy with increasing vigor. Before long, you’re pounding Anno’s box, hips slamming into her wet hole hard enough to to make some of her free-flowing lube splatter back against your thighs.");
+	output(" As you dig your fingers into Kaede, though, you start to move faster on both ends, massaging the redhead’s prostate and stirring up the ausar’s pussy with increasing vigor. Before long, you’re pounding Anno’s box, hips slamming into her wet hole hard enough to make some of her free-flowing lube splatter back against your thighs.");
 	
 	output("\n\nSeeing that, Kaede grins. <i>“Juicy, isn’t she? Perfect for taking a big, thick knot");
 	if (!pc.hasKnot(pc.biggestCockIndex())) output(" like mine");
