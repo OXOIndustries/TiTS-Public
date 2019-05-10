@@ -16899,7 +16899,7 @@
 							break;
 						case GLOBAL.TYPE_EQUINE:
 							//adjectives.push("flared","equine","bestial","flat-tipped","animalistic","blunted","musky");
-							desc += RandomInCollection(["flared horse-cock","blunted horse-cock","bestial cock","equine cock","musky cock","flared cock","musky horse-dick","animalistic dick","blunt-tipped dick","flared horse-dick","bestial member","musky member","equine shaft","animalistic shaft","equine horse-prick","flat-tipped horse-boner","bestial tool","equine phallus","equine tool"]);
+							desc += RandomInCollection(["flared horse-cock","blunted horse-cock","bestial cock","equine cock","musky cock","flared cock","musky horse-dick","animalistic dick","blunt-tipped dick","flared horse-dick","bestial member","musky member","equine shaft","animalistic shaft","equine member","horse-prick","flat-tipped horse-boner","bestial tool","equine phallus","equine tool"]);
 							break;
 						case GLOBAL.TYPE_DEMONIC:
 							//adjectives.push("nub-covered","nubby","perverse","bumpy","demonic","cursed","infernal","unholy","blighted","fiendish");
