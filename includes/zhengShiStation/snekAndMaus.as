@@ -14,13 +14,10 @@ public var snake:SlyverenSlavebreaker;
 public function snekMausHeader(sceneName:String):void
 {
 	showName(sceneName);
-	var snek:String = "SLAVEBREAKER_"
-	if (!snake || snake.lipColor == "black") snek += "1";
-	else snek += "2";
-	snek += "_NUDE";
-	var rat:String;
-	if (!rat1) rat = "RATS_RAIDER_MOUSE_1_NUDE";
-	else rat = rat1.bustDisplay + "_NUDE";
+	var snek:String = "";
+	if (snek) snek = snake.bustDisplay + "_NUDE";
+	var rat:String = "";
+	if (rat1) rat = rat1.bustDisplay + "_NUDE";
 	showBust(snek, rat);
 	author("William");
 }

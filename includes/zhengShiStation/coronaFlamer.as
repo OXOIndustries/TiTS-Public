@@ -1063,7 +1063,7 @@ public function fireBitchBeingANicePuppyForOnce(order:int):Boolean
 				else if (cumQ < 6000) output(" belly swollen outward with your cum and the excess flooding down her weakened thighs");
 				else output(" with her womb utterly full and stretched, her belly absurdly swollen as the excess gushes from her sloppy cunt}, and push her off the end of your prick to her knees. She immediately turns around and leans in, closing her eyes as she sucks you completely clean.");
 			}
-			output("\n\nYou grunt in orgasmic release as recognition flashes across her ecstasy-contorted face and she lets it all go, cumming all over your groin while you throb inside her cunny again and again. You leave her almost crying in relief and bliss and push her off the end of your hardlight to her knees. She immediately turns around and leans in, closing her eyes as she sucks the sensitive tool completely clean.");
+			else output("\n\nYou grunt in orgasmic release as recognition flashes across her ecstasy-contorted face and she lets it all go, cumming all over your groin while you throb inside her cunny again and again. You leave her almost crying in relief and bliss and push her off the end of your hardlight to her knees. She immediately turns around and leans in, closing her eyes as she sucks the sensitive tool completely clean.");
 			output("\n\nThe moment she’s done you");
 			if (pc.isCrotchGarbed()) output(" redress and");
 			output(" leave, sparing not a second thought for the huskar slut. The next time you meet will be different -- she’s paid her debt -- but this was little more than using a screaming, cumming fuckdoll. As far as experiences go, it wasn’t bad.");
