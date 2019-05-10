@@ -2666,7 +2666,7 @@ public function initZhengRooms():void
 	rooms["ZSR L31"].planet = "ZHENG SHI STATION";
 	rooms["ZSR L31"].system = "SYSTEM: HERISIOD";
 	rooms["ZSR L31"].northExit = "ZSR L29";
-	rooms["ZSR L31"].eastExit = "";
+	rooms["ZSR L31"].eastExit = "ZSR N31";
 	rooms["ZSR L31"].southExit = "ZSR L33";
 	rooms["ZSR L31"].westExit = "";
 	rooms["ZSR L31"].moveMinutes = 3;
@@ -2873,4 +2873,14 @@ public function initZhengRooms():void
 	rooms["ZSR PLACEHOLDER"].addFlag(GLOBAL.INDOOR);
 	//rooms["ZSR PLACEHOLDER"].addFlag(GLOBAL.HAZARD);
 
+	rooms["ZSR LORELEI"] = new RoomClass(this);
+	rooms["ZSR LORELEI"].roomName = "\n";
+	rooms["ZSR LORELEI"].description = "";
+	rooms["ZSR LORELEI"].planet = "ZHENG SHI STATION";
+	rooms["ZSR LORELEI"].system = "SYSTEM: HERISIOD";
+	rooms["ZSR LORELEI"].westExit = loreleiExit;
+	rooms["ZSR LORELEI"].moveMinutes = 1;
+	rooms["ZSR LORELEI"].runOnEnter = enterLoreleisHouse;
+	rooms["ZSR LORELEI"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSR N31"] = rooms["ZSR LORELEI"];
 }
