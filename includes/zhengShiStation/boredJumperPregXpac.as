@@ -3427,34 +3427,34 @@ public function boredJumperPregSendPicEmail():String
 	{
 		eText += "Omigod, they’re all together like that already, they sure grow fast!";
 		eText += "\n\nSend me more okay?";
-		eText += "\n\n<i>Attached is a picture of your Jumper’s crotch barely open underneath a zipper. You can still clearly see her dick, though.</i>";
+		eText += "\n\n<i>Attached is a picture of your Jumper's crotch barely visible beneath a half-opened zipper. You can still clearly see her dick, though.</i>";
 	}
 	else if (emailTxt == 1)
 	{
 		eText += "I wonder if they play like that because of you or me.";
 		eText += "\n\nDon’t let ‘em go thinking they’re space rangers okay?";
 		eText += "\n\nI don’t mind if you yourself want to though. Let’s get together again sometime.";
-		eText += "\n\n<i>Attached is a picture of your Jumper’s crotch barely open underneath a zipper. You can still clearly see her dick, though.</i>";
+		eText += "\n\n<i>Attached is a picture of your Jumper's crotch barely visible beneath a half-opened zipper. You can still clearly see her dick, though.</i>";
 	}
 	else if (emailTxt == 2)
 	{
 		eText += "Aww, I hope that one on the right makes it as an artist. Don’t tell em I said that.";
 		eText += "\n\nThat pic is the best.";
-		eText += "\n\n<i>Attached is a picture of your Jumper’s crotch barely open underneath a zipper. You can still clearly see her dick, though.</i>";
+		eText += "\n\n<i>Attached is a picture of your Jumper's crotch barely visible beneath a half-opened zipper. You can still clearly see her dick, though.</i>";
 	}
 	else if (emailTxt == 3)
 	{
 		eText += "Yesss, that’s what I wanted to see! Look at all of them.";
 		eText += "\n\nI just want to hug them so tight!";
 		eText += "\n\nMaybe someday. You take care of them, okay?";
-		eText += "\n\n<i>Attached is a picture of your Jumper’s crotch barely open underneath a zipper. You can still clearly see her dick, though.</i>";
+		eText += "\n\n<i>Attached is a picture of your Jumper's crotch barely visible beneath a half-opened zipper. You can still clearly see her dick, though.</i>";
 	}
 	else if (emailTxt == 4)
 	{
 		eText += "Hehe, they look like they just got disciplined. I’d know that kinda face anywhere.";
 		eText += "\n\nMade it a lot when I was young too. They’ve inherited something bad from me.";
 		eText += "\n\nWhy don’t you come by and punish me for that, babe?";
-		eText += "\n\n<i>Attached is a picture of your Jumper’s crotch barely open underneath a zipper. You can still clearly see her dick, though.</i>";
+		eText += "\n\n<i>Attached is a picture of your Jumper's crotch barely visible beneath a half-opened zipper. You can still clearly see her dick, though.</i>";
 	}
 	else if (emailTxt == 5)
 	{

@@ -964,19 +964,67 @@ package classes.Characters
 		
 		public function novaCumSlurpUpdates(deltaT:uint, doOut:Boolean):void
 		{
-			if(armor is GooArmor && flags["GOO_ARMOR_AUTOCLEAN"] != undefined)
-			{
-				if(hasStatusEffect("Cum Soaked") || hasStatusEffect("Pussy Drenched") || hasStatusEffect("Milk Bathed"))
+			if(!(armor is GooArmor)) return;
+			
+			var fluidLevels:Number = 0;
+			var fluidType:int = -1;
+			var amountVented:Number = 0;
+			
+			if(flags["GOO_ARMOR_AUTOSUCK"] == 1)
+			{	
+				// Can't get through blocked holes
+				var cuntStatus:StorageClass = ((hasVagina() && blockedVaginas() < vaginaTotal()) ? getStatusEffect("Vaginally-Filled") : null);
+				var buttStatus:StorageClass = (!isBlocked(-1) ? getStatusEffect("Anally-Filled") : null);
+				var suckHole:String = "none";
+				
+				if(cuntStatus != null || buttStatus != null)
 				{
-					AddLogEvent(RandomInCollection([
-						"<i>“Oooh, you got <b>covered</b>, didn’t you!?”</i> [goo.name] giggles, wobbling excitedly all around you. <i>“Don’t worry, I’ll clean you aaaaall up.!”</i>\n\nShe vibrates rapidly all over your body, absorbing all the sexual effluvia that’s slathered you during your latest misadventures. Within the span of a few moments, she has you glistening in the light, as fresh and clean as the day you first departed on your quest. [goo.name] feels a bit heavier and thicker around you, but the weight soon settles in like a natural heavy coat. <i>“All done!”</i> she purrs, wiggling around your loins. <i>“Off to the next adventure!”</i>",
-						"You feel your armor vibrating excitedly all around you. <i>“Ohh, you really got <b>covered</b> didn’t ya? Don’t worry, I’ll clean up!”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
-						"You feel your armor vibrating excitedly all around you. <i>“Wow, what a smell! It’s soooo hot. Lemme slurp it all up!”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
-						"You feel your armor vibrating excitedly all around you. <i>“Oh wow, that’s a lotta juice. It’s like you got me a million presents!”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
-						"You feel your armor vibrating excitedly all around you. <i>“You’re so messy! What’d you... ohh, that smells good... lemme lick it up?”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
-						"You feel your armor vibrating excitedly all around you. <i>“Yaaaaay, " + ((hasStatusEffect("Cum Soaked") || hasStatusEffect("Pussy Drenched")) ? "cummies" : "milkies") + "!”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
-						"You feel your armor vibrating excitedly all around you. <i>“Aww, somebody had some fun. Let me get you cleaned up for the next round!”</i> <b>[goo.name] has cleaned you of sexual effluvia.</b>",
-					]), "passive", deltaT);
+					amountVented = 0;
+					fluidType = -1;
+					
+					if(cuntStatus != null) {
+						if(buttStatus == null) { fluidType = cuntStatus.value3; suckHole = "cunt"; }
+						else suckHole = "both";
+						amountVented += cuntStatus.value1;
+					}
+					if(buttStatus != null) {
+						if(cuntStatus == null) { fluidType = buttStatus.value3; suckHole = "butt"; }
+						else suckHole = "both";
+						amountVented += buttStatus.value1;
+					}
+					
+					AddLogEvent(kGAMECLASS.gooArmorAutoSuckBlurb(suckHole, amountVented, fluidType), "passive", deltaT);
+					removeStatusEffect("Vaginally-Filled");
+					removeStatusEffect("Anally-Filled");
+				}
+			}
+			if(flags["GOO_ARMOR_AUTOCLEAN"] == 1)
+			{
+				var cumStatus:StorageClass = getStatusEffect("Cum Soaked");
+				var girlcumStatus:StorageClass = getStatusEffect("Pussy Drenched");
+				var milkStatus:StorageClass = getStatusEffect("Milk Bathed");
+				
+				if(cumStatus != null || girlcumStatus != null || milkStatus != null)
+				{
+					fluidLevels = 0;
+					fluidType = -1;
+					
+					if(cumStatus != null) {
+						if(girlcumStatus == null && milkStatus == null) fluidType = GLOBAL.FLUID_TYPE_CUM;
+						fluidLevels += cumStatus.value1;
+					}
+					if(girlcumStatus != null) {
+						if(cumStatus == null && milkStatus == null) fluidType = GLOBAL.FLUID_TYPE_GIRLCUM;
+						fluidLevels += girlcumStatus.value1;
+					}
+					if(milkStatus != null) {
+						if(cumStatus == null && girlcumStatus == null) fluidType = GLOBAL.FLUID_TYPE_MILK;
+						fluidLevels += milkStatus.value1;
+					}
+					
+					amountVented = (500 * fluidLevels);
+					
+					AddLogEvent(kGAMECLASS.gooArmorAutoCleanBlurb("skin", amountVented, fluidType), "passive", deltaT);
 					removeStatusEffect("Cum Soaked");
 					removeStatusEffect("Pussy Drenched");
 					removeStatusEffect("Milk Bathed");

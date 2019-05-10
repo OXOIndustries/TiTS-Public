@@ -159,7 +159,7 @@ public function initZhengRooms():void
 
 	rooms["ZS H44"] = new RoomClass(this);
 	rooms["ZS H44"].roomName = "\nMINESHAFT";
-	rooms["ZS H44"].description = "The mineshaft has been tunneled out into an intersection here, running from east to west and also north. Like the rest of the mine you passed so far, the walls here are black rock that’s painfully hot to touch. Ring hooks have been bolted into every few years, many adorned with heavy chains.";
+	rooms["ZS H44"].description = "The mineshaft has been tunneled out into an intersection here, running from east to west and also north. Like the rest of the mine you passed so far, the walls here are black rock that’s painfully hot to touch. Ring hooks have been bolted into every few yards, many adorned with heavy chains.";
 	rooms["ZS H44"].planet = "ZHENG SHI STATION";
 	rooms["ZS H44"].system = "SYSTEM: HERISIOD";
 	rooms["ZS H44"].northExit = "ZS H42";
@@ -173,7 +173,7 @@ public function initZhengRooms():void
 
 	rooms["ZS H42"] = new RoomClass(this);
 	rooms["ZS H42"].roomName = "\nMINESHAFT";
-	rooms["ZS H42"].description = "The mineshaft here is a long tunnel running south to north. Like the rest of the mine you passed so far, the walls here are black rock that’s painfully hot to touch. Ring hooks have been bolted into every few years, many adorned with heavy chains.\n\nYou can see a large grated iron door at the end of the hall, some distance north, and another door just east of you labeled “Overseer Maike” in hard block lettering. That door has an electronic security box installed next to the handle; must be somebody important office.";
+	rooms["ZS H42"].description = "The mineshaft here is a long tunnel running south to north. Like the rest of the mine you passed so far, the walls here are black rock that’s painfully hot to touch. Ring hooks have been bolted into every few yards, many adorned with heavy chains.\n\nYou can see a large grated iron door at the end of the hall, some distance north, and another door just east of you labeled “Overseer Maike” in hard block lettering. That door has an electronic security box installed next to the handle; must be somebody important office.";
 	rooms["ZS H42"].planet = "ZHENG SHI STATION";
 	rooms["ZS H42"].system = "SYSTEM: HERISIOD";
 	rooms["ZS H42"].northExit = "ZS H40";

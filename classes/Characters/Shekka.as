@@ -12,13 +12,15 @@
 	import classes.Items.Apparel.Smartclothes;
 	import classes.Items.Upgrades.ExpandedBackpackI;
 	import classes.Items.Armor.Unique.StrangeCollar;
+	import classes.Items.Protection.ScrapShield;
+	import classes.Items.Apparel.RogueRags;
 	
 	public class Shekka extends Creature
 	{
 		//constructor
 		public function Shekka()
 		{
-			this._latestVersion = 5;
+			this._latestVersion = 6;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -217,6 +219,11 @@
 		{
 			dataObject.vaginas[0].hymen = false;
 			dataObject.analVirgin = false;
+		}
+		public function UpgradeVersion5(dataObject:Object):void
+		{
+			dataObject.inventory.push(new RogueRags().getSaveObject());
+			dataObject.inventory.push(new ScrapShield().getSaveObject());			
 		}
 		override public function onLeaveBuyMenu():void
 		{

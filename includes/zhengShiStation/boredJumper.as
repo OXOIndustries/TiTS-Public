@@ -143,7 +143,7 @@ public function winVsBoredJumper():void
 		else addDisabledButton(8,"Heat Sex","Heat Sex","You’ll need some ‘breeding inducers’ to get ruined with the lusty laquine. " + (pc.inHeat() ? "One":"Two") + " Breeder’s Bliss ought to do...");
 	}
 	else addDisabledButton(8,"Heat Sex","Heat Sex","You’ll need a vagina for this.");
-	addButton(9,"Blow Her",blowZatJumpah,undefined,"Blow Her","he jumper’s cock is bulging so temptingly against the latex. You could teach the libidinous lapine a very <i>blue</i> lesson... or immerse yourself. She does smell good...");
+	addButton(9,"Blow Her",blowZatJumpah,undefined,"Blow Her","The jumper’s cock is bulging so temptingly against the latex. You could teach the libidinous lapine a very <i>blue</i> lesson... or immerse yourself. She does smell good...");
 	addButton(14,"Leave",leaveTheBoredJumperAfterWinning);
 }
 

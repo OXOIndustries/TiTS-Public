@@ -3068,6 +3068,29 @@
 				case "daddyMommy":
 					buffer = mf("daddy", "mommy");
 					break;
+				case "son":
+				case "daughter":
+				case "sonDaughter":
+					buffer = mf("son", "daughter");
+					break;
+				case "brother":
+				case "sister":
+				case "brotherSister":
+				case "bro":
+				case "sis":
+				case "broSis":
+					buffer = mf("brother", "sister");
+					break;
+				case "uncle":
+				case "aunt":
+				case "uncleAunt":
+					buffer = mf("uncle", "aunt");
+					break;
+				case "nephew":
+				case "niece":
+				case "nephewNiece":
+					buffer = mf("nephew", "niece");
+					break;
 				case "cockShape":
 				case "cockshape":
 				case "cockType":
@@ -5252,7 +5275,7 @@
 					if(!hasStatusEffect("Taint_CD")) createStatusEffect("Taint_CD",0,0,0,0);
 					setStatusMinutes("Taint_CD",72*60);
 					//Warning 1 - 5 taint
-					if(taintRaw - arg < 5 && taintRaw >= 5) AddLogEvent("Something isn’t quite right. You feel a little off, like something inside you is <i>twisted</i> out of place. A quick scan with your Codex informs you that you’ve suffered some genetic <b>taint</b>. Information on causes and treatments can be found in the <u>Medical -> General Knowledge -> Taint</u> section.","passive");
+					if(taintRaw - arg < 5 && taintRaw >= 5) AddLogEvent(("Something isn’t quite right. You feel a little off, like something inside you is <i>twisted</i> out of place. A quick scan with your Codex informs you that you’ve suffered some genetic <b>taint</b>." + (CodexManager.entryViewed("Taint") ? "" : " Information on causes and treatments can be found in the <u>Medical -> General Knowledge -> Taint</u> section.")),"passive");
 					//Warning "Corruptish" - 30 taint
 					else if(taintRaw - arg < 30 && taintRaw >= 30) AddLogEvent("A beep from your Codex informs you <b>that you have surpassed a 30% taint measurement</b>. Whoah! You guess you have been sort of strangely randy lately, but is that so bad?");
 					//Warning: Corrupt! - 50 taint
@@ -6213,7 +6236,7 @@
 		public function hasEmoteEars(): Boolean
 		{
 			// For ear types that move emotively, like cute animal ears.
-			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT, GLOBAL.TYPE_SIMII) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
+			if(InCollection(earType, GLOBAL.TYPE_CANINE, GLOBAL.TYPE_DOGGIE, GLOBAL.TYPE_KORGONNE, GLOBAL.TYPE_EQUINE, GLOBAL.TYPE_BOVINE, GLOBAL.TYPE_FELINE, GLOBAL.TYPE_LAPINE, GLOBAL.TYPE_QUAD_LAPINE, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_VULPINE, GLOBAL.TYPE_KUITAN, GLOBAL.TYPE_MOUSE, GLOBAL.TYPE_PANDA, GLOBAL.TYPE_REDPANDA, GLOBAL.TYPE_LEITHAN, GLOBAL.TYPE_RASKVEL, GLOBAL.TYPE_DEER, GLOBAL.TYPE_SWINE, GLOBAL.TYPE_LUPINE, GLOBAL.TYPE_SHEEP, GLOBAL.TYPE_GOAT, GLOBAL.TYPE_SIMII, GLOBAL.TYPE_BADGER) || (earType == GLOBAL.TYPE_SYLVAN && earLength > 1)) return true;
 			return false;
 		}
 		public function hasFlatEars(): Boolean
@@ -6255,8 +6278,8 @@
 					if(!nonFurrySkin) adjectives.push("furry");
 					break;
 				case GLOBAL.TYPE_KORGONNE:
-					adjectives = ["cute","triangular","rounded","fuzzy","floppy","dog-like","korgonne-like","canine"];
-					if(!nonFurrySkin) adjectives.push("furry");
+					adjectives = ["cute","triangular","rounded","floppy","dog-like","korgonne-like","canine"];
+					if(!nonFurrySkin) adjectives.push("furry","fuzzy");
 					break;
 				case GLOBAL.TYPE_EQUINE:
 					adjectives = ["equine", "horse-like", "inhuman"];
@@ -6306,6 +6329,10 @@
 				case GLOBAL.TYPE_KUITAN:
 					adjectives = ["tanuki", "egg-shaped", "rounded"];
 					if(!nonFurrySkin) adjectives.push("furry", "beastial");
+					break;
+				case GLOBAL.TYPE_BADGER:
+					adjectives = ["badger", "mustelid", "triangular", "rounded"];
+					if(!nonFurrySkin) adjectives.push("furry", "fuzzy");
 					break;
 				case GLOBAL.TYPE_MOUSE:
 					adjectives = ["mousey", "mouse-like", "rounded", "circular"];
@@ -11652,6 +11679,9 @@
 					cocks[slot].cockColor = "pink";
 					if(cocks[slot].cLengthRaw < 20) cocks[slot].cLengthRaw = 20;
 					if(cocks[slot].cThicknessRatioRaw < 1.5) cocks[slot].cThicknessRatioRaw = 1.5;
+					cocks[slot].addFlag(GLOBAL.FLAG_BLUNT);
+					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
+					cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
 					break;
 				case GLOBAL.TYPE_SYNTHETIC:
 					cocks[slot].cockColor = RandomInCollection(["silver", "gray", "black"]);
@@ -12902,6 +12932,7 @@
 			if (hasTail(GLOBAL.TYPE_BADGER)) counter++;
 			if (armType == GLOBAL.TYPE_BADGER) counter++;
 			if (faceType == GLOBAL.TYPE_BADGER) counter++;
+			if (earType == GLOBAL.TYPE_BADGER) counter++;
 			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_FUR) counter++;
 			return counter;
 		}
@@ -13468,7 +13499,7 @@
 			if(/*hasTongueFlag(GLOBAL.FLAG_LONG) && */hasTongueFlag(GLOBAL.FLAG_SQUISHY) && tongueType == GLOBAL.TYPE_CANINE) score++;
 			if(score >= 6 && cockTotal() == 1)
 			{
-				if(InCollection(cocks[0].cType, GLOBAL.TYPE_SAURIAN, GLOBAL.TYPE_SAURMORIAN) && hasSheath(0) && hasCockFlag(0, GLOBAL.FLAG_RIBBED)) score++;
+				if(InCollection(cocks[0].cType, GLOBAL.TYPE_SAURIAN, GLOBAL.TYPE_SAURMORIAN) && hasSheath(0) && hasCockFlag(GLOBAL.FLAG_RIBBED, 0)) score++;
 			}
 			if(score >= 6 && vaginaTotal() == 1)
 			{
@@ -16975,7 +17006,7 @@
 							desc += RandomInCollection(["alien cock","sucker-tipped cock","sucker-tipped dick","sucker-tipped prick","sucker-tipped cock","sucker-crowned cock","sucker-crowned dick","sucker-capped member","sucker-capped phallus","alien dick","exotic vanae-cock","exotic vanae-dick","sucker-topped prick"]);
 							break;
 						case GLOBAL.TYPE_SHARK:
-							desc += RandomInCollection(["tubular shark-dong", "finned pseudopenis", "finned shark-dick", "tubular shark-penis", "finned shark-penis", "finned, tubular tool", "finned shark-dong", "finned shark-cock", "tubular, finned penis", "finned shark-phallus", "tubular phallus", "finned shark-cock", "finned, tubular shark-cock"]);
+							desc += RandomInCollection(["tubular shark-dong", "finned piscine-penis", "finned shark-dick", "tubular shark-penis", "finned shark-penis", "finned, tubular tool", "finned shark-dong", "finned shark-cock", "tubular, finned penis", "finned shark-phallus", "tubular phallus", "finned shark-cock", "finned, tubular shark-cock"]);
 							break;
 						case GLOBAL.TYPE_SWINE:
 							desc += RandomInCollection(["swine cock","swine schlong","pig prick","corkscrew-shaped pig cock","twisted swine dick","animalistic dick","twisted prick","animalistic shaft"]);
@@ -18064,8 +18095,9 @@
 				case GLOBAL.FLUID_TYPE_GIRLCUM:
 				case GLOBAL.FLUID_TYPE_GABILANI_GIRLCUM:
 				case GLOBAL.FLUID_TYPE_NYREA_CUM:
-					collection.push("girl-cum");
+					collection.push("girl-cum","girl-cum","fem-cum");
 					if(isBimbo() || isBro()) collection.push("girl-cum", "girl-lube", "girl-lube", "girl-juice", "cunny-honey");
+					if(libido() >= 50) collection.push("girl-spunk","fem-spunk","fem-cum");
 					break;
 				case GLOBAL.FLUID_TYPE_HONEY:
 					collection.push("honey");
@@ -18119,41 +18151,26 @@
 			
 			return RandomInCollection(collection);
 		}
-		public function milkDescript(): String {
+		public function fluidDescript(fluidType:int = 0): String {
 			var temp: int = rand(10);
 			var desc: String = "";
 			var described: Boolean = false;
 			if (rand(3) == 0) {
-				desc += fluidColor(milkType);
+				desc += fluidColor(fluidType);
 				described = true;
 			}
 			if (described) desc += " ";
-			desc += fluidNoun(milkType);
+			desc += fluidNoun(fluidType);
 			return desc;
+		}
+		public function milkDescript(): String {
+			return fluidDescript(milkType);
 		}
 		public function cumDescript(): String {
-			var temp: int = rand(10);
-			var desc: String = "";
-			var described: Boolean = false;
-			if (rand(3) == 0) {
-				desc += fluidColor(cumType);
-				described = true;
-			}
-			if (described) desc += " ";
-			desc += fluidNoun(cumType);
-			return desc;
+			return fluidDescript(cumType);
 		}
 		public function girlCumDescript(): String {
-			var temp: int = rand(10);
-			var desc: String = "";
-			var described: Boolean = false;
-			if (rand(3) == 0) {
-				desc += fluidColor(girlCumType);
-				described = true;
-			}
-			if (described) desc += " ";
-			desc += fluidNoun(girlCumType);
-			return desc;
+			return fluidDescript(girlCumType);
 		}
 		public function nippleCuntDescript(appearance: Boolean = false): String {
 			var descript: String = "";
@@ -19917,6 +19934,29 @@
 			}
 			return (stretched || devirgined);
 		}
+		public function instaBuzzed():String
+		{
+			var outputS:String = "";
+			//Imbibe some to keep party train going.
+			imbibeAlcohol(20);
+			var thisStatus:StorageClass = getStatusEffect("Alcohol");
+		
+			if (thisStatus == null) return "";
+			
+			//Bump booze in blood up to buzzed level
+			if(thisStatus.value2 < 25) thisStatus.value2 = 25;
+			
+			// Alcohol is consumed at a rate of 1 unit per minute
+			if (!hasStatusEffect("Buzzed"))
+			{
+				createStatusEffect("Buzzed",0,0,0,0, false, "Icon_DizzyDrunk", "You’re a little buzzed, leaving you feeling strong but a little slower of wit and weaker of will.\n\nThis status will expire as your alcohol levels drop.", false, 0,0xB793C4);
+				physiqueMod += 2;
+				willpowerMod -= 1;
+				intelligenceMod -= 1;
+				if(this is PlayerCharacter) outputS += "\n\nDamn, that stuff you were drinking was awesome. <b>You’re feeling pretty good right now. You must be buzzed.</b>";
+			}
+			return outputS;
+		}
 		public function instaDrunk():String
 		{
 			var outputS:String = "";
@@ -19927,7 +19967,7 @@
 			if (thisStatus == null) return "";
 			
 			//Bump booze in blood up to drunko level
-			if(thisStatus.value2 < 55) thisStatus.value2 = 55;
+			if(thisStatus.value2 < 50) thisStatus.value2 = 50;
 			
 			// Alcohol is consumed at a rate of 1 unit per minute
 			if (!hasStatusEffect("Buzzed"))
@@ -19960,7 +20000,7 @@
 			
 			if (thisStatus == null) return "";
 			
-			//Bump booze in blood up to drunko level
+			//Bump booze in blood up to smashed level
 			if(thisStatus.value2 < 75) thisStatus.value2 = 75;
 			
 			// Alcohol is consumed at a rate of 1 unit per minute
@@ -19989,7 +20029,6 @@
 				{
 					getStatusEffect("Drunk").hidden = true;
 				}
-				
 				physiqueMod += 1;
 				reflexesMod -= 1;
 				willpowerMod -= 1;
@@ -20808,7 +20847,13 @@
 			var cumDrain:Boolean = (!hasPerk("No Cum Leakage") && !hasStatusEffect("No Cum Leakage"));
 			var amountStored:Number = 0;
 			var omitNotice:Boolean = hasStatusEffect("Omit Cumflation Messages");
-
+			
+			if(this is PlayerCharacter)
+			{
+				// Goo Armor plug
+				if(armor is GooArmor && flags["GOO_ARMOR_AUTOSUCK"] == -1) cumDrain = false;
+			}
+			
 			//Find the index value for various types of cumflation.
 			for(var x:int = 0; x < statusEffects.length; x++)
 			{
@@ -20833,6 +20878,8 @@
 			{
 				amountVented = 0;
 				fluidType = statusEffects[z].value3;
+				// Plugged exceptions
+				if(pluggedVaginas() >= vaginaTotal()) cumDrain = false;
 				//Fen - added blocked vag check here instead of in cumdrain as putting it in the cumdrain check would need a more complicated if check
 				if(cumDrain && blockedVaginas() < vaginas.length && (!lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_VAGINALLY_SEALED) || statusEffects[z].value1 > 300000))
 				{
@@ -20850,7 +20897,11 @@
 				//Special notices!
 				if(this is PlayerCharacter && notice == "")
 				{
-					if(amountVented >= 25000) 
+					if(armor is GooArmor && flags["GOO_ARMOR_AUTOCLEAN"] == 1)
+					{
+						notice = kGAMECLASS.gooArmorAutoCleanBlurb("cunt", amountVented, fluidType);
+					}
+					else if(amountVented >= 25000) 
 					{
 						notice = upperCase(fluidViscosity(fluidType)) + " " + fluidNoun(fluidType) + " hoses out ";
 						if(legCount > 1) notice += ParseText("from between your [pc.legs] ");
@@ -20897,6 +20948,8 @@
 			{
 				amountVented = 0;
 				fluidType = statusEffects[a].value3;
+				// Plugged exception
+				if(isPlugged(-1)) cumDrain = false;
 				if(cumDrain && (!lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANALLY_SEALED) || statusEffects[a].value1 > 300000))
 				{
 					//Figure out how much cum is vented over time.
@@ -20912,7 +20965,11 @@
 				//Special notices!
 				if(this is PlayerCharacter && notice == "")
 				{
-					if(amountVented >= 25000) 
+					if(armor is GooArmor && flags["GOO_ARMOR_AUTOCLEAN"] == 1)
+					{
+						notice = kGAMECLASS.gooArmorAutoCleanBlurb("butt", amountVented, fluidType);
+					}
+					else if(amountVented >= 25000) 
 					{
 						notice = upperCase(fluidViscosity(fluidType)) + " " + fluidNoun(fluidType) + " hoses out ";
 						if(legCount > 1) notice += ParseText("from between your [pc.legs] ");

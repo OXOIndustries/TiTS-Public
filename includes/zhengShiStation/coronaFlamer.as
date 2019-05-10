@@ -598,12 +598,12 @@ public function coronaFlamerGetsASecondChanceToShowOff():void
 		if (pc.biggestCockLength() < 8) output(" rapidly fucking her own face hard enough to make her skin slap against yours.");
 		else if (pc.biggestCockLength() < 15) output(" fucking her own face hard enough to reach your " + (pc.balls > 0 ? "[pc.balls] and strain against them, just barely getting the tip of her tongue out from under your fat dick to lick at your nuts." : "groin. She’s <i>good</i> at this."));
 		else output(" fucking her own face on your enormous dick. She can’t hope to reach your " + (pc.balls > 0 ? "[pc.balls]" : "groin") + " but fuck if she isn’t trying her damnedest, gagging and choking as she extends her tongue along your veiny underside.");
-		output("\n\nThe closer you get to orgasm the slower and harder she goes, her every action deliberate and demonstrating just how much she’s learned about you in the past few minutes. You find yourself grunting in pleasure as she tends to you,");
-		if (pc.hasCockFlag(GLOBAL.FLAG_FLARED, cawk)) output(" your bloated flare slowly flowering in her throat as she gags on it.");
-		else if (pc.hasCockFlag(GLOBAL.FLAG_TAPERED, cawk)) output(" your tapered tip drooling precum into her throat while she gags around the rest of it.");
-		else if (pc.hasCockFlag(GLOBAL.FLAG_NUBBY)) output(" experiencing a form of uncommon pleasure watching her loudly gag on your barbed cock.");
-		else if (pc.cocks[cawk].cType == GLOBAL.TYPE_SIREN && pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output(" listening to her loudly gag as your envenomed stingers slap at the inside of her throat.");
-		output(" Reaching up to your [pc.ass], she grabs your cheeks and pulls you into her, skewering herself on your pulsating prick.");
+		output("\n\nThe closer you get to orgasm the slower and harder she goes, her every action deliberate and demonstrating just how much she’s learned about you in the past few minutes. You find yourself grunting in pleasure as she tends to you");
+		if (pc.hasCockFlag(GLOBAL.FLAG_FLARED, cawk)) output(", your bloated flare slowly flowering in her throat as she gags on it");
+		else if (pc.hasCockFlag(GLOBAL.FLAG_TAPERED, cawk)) output(", your tapered tip drooling precum into her throat while she gags around the rest of it");
+		else if (pc.hasCockFlag(GLOBAL.FLAG_NUBBY, cawk)) output(", experiencing a form of uncommon pleasure watching her loudly gag on your barbed cock");
+		else if (pc.cocks[cawk].cType == GLOBAL.TYPE_SIREN && pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED, cawk)) output(", listening to her loudly gag as your envenomed stingers slap at the inside of her throat");
+		output(". Reaching up to your [pc.ass], she grabs your cheeks and pulls you into her, skewering herself on your pulsating prick.");
 		output("\n\nThat does it. With a strained, jaw-clenching groan you explode down her throat, [pc.cum]");
 		var cumQ:Number = pc.cumQ();
 		if (cumQ < 1000)
@@ -901,7 +901,7 @@ public function coronaFlamerSitsOnYourFace():void
 	if (pc.hasBreasts()) output(" covering your [pc.breasts] in femcum.");
 	else output(" covering your upper half in femcum.");
 	output(" The longer you lick the harder she cums, her plump thighs shaking on either side of your body as more and more of her juices spurt and dribble down your [pc.stomach] while she pants in joy, almost whining as you drive your tongue inside her.");
-	output("\n\nSo excited are you to be tongue-deep in this dominant cunt of a huskar’s guts, her lackadaisical efforts prove to be more than enough to get you off. [pc.cum] spurts from your flexing cock, dribbling and flying all over her fingers. She makes sure to squeeze every last drop from you, running her thumb up your cumvein and over your [pc.cockHeadBiggest] to force it all out.");
+	output("\n\nSo excited are you to be tongue-deep in this dominant cunt of a huskar’s guts, her lackadaisical efforts prove to be more than enough to get you off. [pc.Cum] spurts from your flexing cock, dribbling and flying all over her fingers. She makes sure to squeeze every last drop from you, running her thumb up your cumvein and over your [pc.cockHeadBiggest] to force it all out.");
 	output("\n\n<i>“Oh!”</i> she gasps as you take your tongue back out, saliva dripping from her winking hole.");
 	if (flags["FIREPUP_RIMMED"] == undefined) output(" <i>“Ooh... damn, [pc.boyGirl]. Never had that done for me before, but I think we’ve got a winner... I’m still gonna go find that Jumper to give me a good fuck, though.”</i>");
 	else output(" <i>“Fuck... not bad, [pc.boyGirl]. I should keep you around to eat my ass more often. Maybe right after a Jumper fucks it.”</i>");
@@ -1008,7 +1008,7 @@ public function fireBitchBeingANicePuppyForOnce(order:int):Boolean
 				output("\n\nYou don’t care if she gets off on this or not. What you do care about is the incredibly tight, warm and soft throat wrapping around your stiff cock as you step over her and begin to thrust your hips, holding the slut by her hair and roughly fucking her face as you grunt in pleasure. Stars, what she loses with inexperience she more than gains back with her complete and utter willingness to please. She gurgles and chokes beneath you and never once moves at all, gargling your cock in its entirety");
 				if (pc.biggestCockLength() < 24) output(" while you thrust it to the hilt.");
 				else output(" even as you thrust it into her stomach and leave behind precum in its wake.");
-				output("\n\nControlling her so completely, it’s not hard to bust a nut down her throat. You grunt and strain, the huskar whore’s eyes widening in recognition while her tail begins to wag happily. [pc.cum]");
+				output("\n\nControlling her so completely, it’s not hard to bust a nut down her throat. You grunt and strain, the huskar whore’s eyes widening in recognition while her tail begins to wag happily. [pc.Cum]");
 
 				cumQ = pc.cumQ();
 				if (cumQ < 1000) output(" shoots down her throat as her eyes roll up into her head in bliss, the familiar noise of her bitch pussy squirting all over the ground reaching your [pc.ears] while you empty yourself into her stomach. The moment you’re done you push her backwards coughing and choking, gagging on your cum mid-swallow.");
