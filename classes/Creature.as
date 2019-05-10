@@ -18132,41 +18132,26 @@
 			
 			return RandomInCollection(collection);
 		}
-		public function milkDescript(): String {
+		public function fluidDescript(fluidType:int = 0): String {
 			var temp: int = rand(10);
 			var desc: String = "";
 			var described: Boolean = false;
 			if (rand(3) == 0) {
-				desc += fluidColor(milkType);
+				desc += fluidColor(fluidType);
 				described = true;
 			}
 			if (described) desc += " ";
-			desc += fluidNoun(milkType);
+			desc += fluidNoun(fluidType);
 			return desc;
+		}
+		public function milkDescript(): String {
+			return fluidDescript(milkType);
 		}
 		public function cumDescript(): String {
-			var temp: int = rand(10);
-			var desc: String = "";
-			var described: Boolean = false;
-			if (rand(3) == 0) {
-				desc += fluidColor(cumType);
-				described = true;
-			}
-			if (described) desc += " ";
-			desc += fluidNoun(cumType);
-			return desc;
+			return fluidDescript(cumType);
 		}
 		public function girlCumDescript(): String {
-			var temp: int = rand(10);
-			var desc: String = "";
-			var described: Boolean = false;
-			if (rand(3) == 0) {
-				desc += fluidColor(girlCumType);
-				described = true;
-			}
-			if (described) desc += " ";
-			desc += fluidNoun(girlCumType);
-			return desc;
+			return fluidDescript(girlCumType);
 		}
 		public function nippleCuntDescript(appearance: Boolean = false): String {
 			var descript: String = "";
@@ -20843,7 +20828,13 @@
 			var cumDrain:Boolean = (!hasPerk("No Cum Leakage") && !hasStatusEffect("No Cum Leakage"));
 			var amountStored:Number = 0;
 			var omitNotice:Boolean = hasStatusEffect("Omit Cumflation Messages");
-
+			
+			if(this is PlayerCharacter)
+			{
+				// Goo Armor plug
+				if(armor is GooArmor && flags["GOO_ARMOR_AUTOSUCK"] == -1) cumDrain = false;
+			}
+			
 			//Find the index value for various types of cumflation.
 			for(var x:int = 0; x < statusEffects.length; x++)
 			{
@@ -20868,6 +20859,8 @@
 			{
 				amountVented = 0;
 				fluidType = statusEffects[z].value3;
+				// Plugged exceptions
+				if(pluggedVaginas() >= vaginaTotal()) cumDrain = false;
 				//Fen - added blocked vag check here instead of in cumdrain as putting it in the cumdrain check would need a more complicated if check
 				if(cumDrain && blockedVaginas() < vaginas.length && (!lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_VAGINALLY_SEALED) || statusEffects[z].value1 > 300000))
 				{
@@ -20885,7 +20878,11 @@
 				//Special notices!
 				if(this is PlayerCharacter && notice == "")
 				{
-					if(amountVented >= 25000) 
+					if(armor is GooArmor && flags["GOO_ARMOR_AUTOCLEAN"] == 1)
+					{
+						notice = kGAMECLASS.gooArmorAutoCleanBlurb("cunt", amountVented, fluidType);
+					}
+					else if(amountVented >= 25000) 
 					{
 						notice = upperCase(fluidViscosity(fluidType)) + " " + fluidNoun(fluidType) + " hoses out ";
 						if(legCount > 1) notice += ParseText("from between your [pc.legs] ");
@@ -20932,6 +20929,8 @@
 			{
 				amountVented = 0;
 				fluidType = statusEffects[a].value3;
+				// Plugged exception
+				if(isPlugged(-1)) cumDrain = false;
 				if(cumDrain && (!lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANALLY_SEALED) || statusEffects[a].value1 > 300000))
 				{
 					//Figure out how much cum is vented over time.
@@ -20947,7 +20946,11 @@
 				//Special notices!
 				if(this is PlayerCharacter && notice == "")
 				{
-					if(amountVented >= 25000) 
+					if(armor is GooArmor && flags["GOO_ARMOR_AUTOCLEAN"] == 1)
+					{
+						notice = kGAMECLASS.gooArmorAutoCleanBlurb("butt", amountVented, fluidType);
+					}
+					else if(amountVented >= 25000) 
 					{
 						notice = upperCase(fluidViscosity(fluidType)) + " " + fluidNoun(fluidType) + " hoses out ";
 						if(legCount > 1) notice += ParseText("from between your [pc.legs] ");
