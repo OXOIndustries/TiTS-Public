@@ -422,7 +422,7 @@ public function yogaLesson3Cont():void
 	output("\n\nYou approach the modded Ausar non-threateningly. She doesn’t get a read on your body language at all. <i>“Good work again today, [pc.name],”</i> she tells you, smiling warmly. <i>“You’re making great progress, sweet thing. I’m looking forward to your next visit!”</i>");
 	output("\n\n<i>“Yeah, about that,”</i> you interrupt. Paige’s expression softens and her ears perk.");
 	output("\n\nYou ask her about the way she’s been conducting herself in her own classroom. Twice now, she’s shoved herself into your personal space and started touching you and pressing at you. The first time wasn’t quite so bad, and you chalked it up to her just trying to confirm good posture, but today, she was a little more... invasive than you appreciated");
-	if(pc.tone >= 50 && pc.tone <= 89) output("even if you kinda liked it");
+	if(pc.tone >= 50 && pc.tone <= 89) output(" even if you kinda liked it");
 	output(". Frankly, it wasn’t behavior you had come to expect from a professional.");
 
 	output("\n\n<i>“I’m just trying to make sure your form is correct, that’s all,”</i> she assures you, taking a submissive tone in her voice. <i>“Yoga is a very physical practice, and sometimes I need to take a more hands-on form of teaching to make sure my students don’t hurt themselves.”</i>");

@@ -307,7 +307,8 @@ public function insideMarionsDen():void
 
 	clearMenu();
 	addButton(0, "Nope!", refuseMarionsAdvances, undefined, "Nope!", "This isn’t what you bargained for!");
-	addButton(1, "Fuck Her", marionsDenSexMenu, undefined, "Fuck Her", "Well, the vixen’s made her intention clear. "+ (silly ? "Take her in a manly fashion!" : "Take her up on her wordless offer and enjoy the native pleasures of this otherwise hostile world..."));
+	if (pc.isFemale() || (pc.hasCock() && pc.cockThatFits(marion.vaginalCapacity()) == 0) || marion.hasCock()) addButton(1, "Fuck Her", marionsDenSexMenu, undefined, "Fuck Her", "Well, the vixen’s made her intention clear. "+ (silly ? "Take her in a manly fashion!" : "Take her up on her wordless offer and enjoy the native pleasures of this otherwise hostile world..."));
+	else addDisabledButton(1, "Fuck Her", "Fuck Her", "You will need to be female or have a cock that fits in order to do this!");
 }
 
 public function refuseMarionsAdvances():void

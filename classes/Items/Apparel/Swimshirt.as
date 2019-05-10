@@ -40,7 +40,7 @@ package classes.Items.Apparel
 			this.attackVerb = "null"; 
 			
 			//Information
-			this.basePrice = 0;
+			this.basePrice = 200;
 			this.attack = 0; 
 			this.defense = 0;
 			this.shieldDefense = 0;

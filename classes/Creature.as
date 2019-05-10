@@ -3062,6 +3062,29 @@
 				case "daddyMommy":
 					buffer = mf("daddy", "mommy");
 					break;
+				case "son":
+				case "daughter":
+				case "sonDaughter":
+					buffer = mf("son", "daughter");
+					break;
+				case "brother":
+				case "sister":
+				case "brotherSister":
+				case "bro":
+				case "sis":
+				case "broSis":
+					buffer = mf("brother", "sister");
+					break;
+				case "uncle":
+				case "aunt":
+				case "uncleAunt":
+					buffer = mf("uncle", "aunt");
+					break;
+				case "nephew":
+				case "niece":
+				case "nephewNiece":
+					buffer = mf("nephew", "niece");
+					break;
 				case "cockShape":
 				case "cockshape":
 				case "cockType":
@@ -5233,7 +5256,7 @@
 					if(!hasStatusEffect("Taint_CD")) createStatusEffect("Taint_CD",0,0,0,0);
 					setStatusMinutes("Taint_CD",72*60);
 					//Warning 1 - 5 taint
-					if(taintRaw - arg < 5 && taintRaw >= 5) AddLogEvent("Something isn’t quite right. You feel a little off, like something inside you is <i>twisted</i> out of place. A quick scan with your Codex informs you that you’ve suffered some genetic <b>taint</b>. Information on causes and treatments can be found in the <u>Medical -> General Knowledge -> Taint</u> section.","passive");
+					if(taintRaw - arg < 5 && taintRaw >= 5) AddLogEvent(("Something isn’t quite right. You feel a little off, like something inside you is <i>twisted</i> out of place. A quick scan with your Codex informs you that you’ve suffered some genetic <b>taint</b>." + (CodexManager.entryViewed("Taint") ? "" : " Information on causes and treatments can be found in the <u>Medical -> General Knowledge -> Taint</u> section.")),"passive");
 					//Warning "Corruptish" - 30 taint
 					else if(taintRaw - arg < 30 && taintRaw >= 30) AddLogEvent("A beep from your Codex informs you <b>that you have surpassed a 30% taint measurement</b>. Whoah! You guess you have been sort of strangely randy lately, but is that so bad?");
 					//Warning: Corrupt! - 50 taint
@@ -11637,6 +11660,9 @@
 					cocks[slot].cockColor = "pink";
 					if(cocks[slot].cLengthRaw < 20) cocks[slot].cLengthRaw = 20;
 					if(cocks[slot].cThicknessRatioRaw < 1.5) cocks[slot].cThicknessRatioRaw = 1.5;
+					cocks[slot].addFlag(GLOBAL.FLAG_BLUNT);
+					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
+					cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
 					break;
 				case GLOBAL.TYPE_SYNTHETIC:
 					cocks[slot].cockColor = RandomInCollection(["silver", "gray", "black"]);
@@ -16961,7 +16987,7 @@
 							desc += RandomInCollection(["alien cock","sucker-tipped cock","sucker-tipped dick","sucker-tipped prick","sucker-tipped cock","sucker-crowned cock","sucker-crowned dick","sucker-capped member","sucker-capped phallus","alien dick","exotic vanae-cock","exotic vanae-dick","sucker-topped prick"]);
 							break;
 						case GLOBAL.TYPE_SHARK:
-							desc += RandomInCollection(["tubular shark-dong", "finned pseudopenis", "finned shark-dick", "tubular shark-penis", "finned shark-penis", "finned, tubular tool", "finned shark-dong", "finned shark-cock", "tubular, finned penis", "finned shark-phallus", "tubular phallus", "finned shark-cock", "finned, tubular shark-cock"]);
+							desc += RandomInCollection(["tubular shark-dong", "finned piscine-penis", "finned shark-dick", "tubular shark-penis", "finned shark-penis", "finned, tubular tool", "finned shark-dong", "finned shark-cock", "tubular, finned penis", "finned shark-phallus", "tubular phallus", "finned shark-cock", "finned, tubular shark-cock"]);
 							break;
 						case GLOBAL.TYPE_SWINE:
 							desc += RandomInCollection(["swine cock","swine schlong","pig prick","corkscrew-shaped pig cock","twisted swine dick","animalistic dick","twisted prick","animalistic shaft"]);

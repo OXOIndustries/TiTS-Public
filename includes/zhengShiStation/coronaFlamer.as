@@ -901,7 +901,7 @@ public function coronaFlamerSitsOnYourFace():void
 	if (pc.hasBreasts()) output(" covering your [pc.breasts] in femcum.");
 	else output(" covering your upper half in femcum.");
 	output(" The longer you lick the harder she cums, her plump thighs shaking on either side of your body as more and more of her juices spurt and dribble down your [pc.stomach] while she pants in joy, almost whining as you drive your tongue inside her.");
-	output("\n\nSo excited are you to be tongue-deep in this dominant cunt of a huskar’s guts, her lackadaisical efforts prove to be more than enough to get you off. [pc.cum] spurts from your flexing cock, dribbling and flying all over her fingers. She makes sure to squeeze every last drop from you, running her thumb up your cumvein and over your [pc.cockHeadBiggest] to force it all out.");
+	output("\n\nSo excited are you to be tongue-deep in this dominant cunt of a huskar’s guts, her lackadaisical efforts prove to be more than enough to get you off. [pc.Cum] spurts from your flexing cock, dribbling and flying all over her fingers. She makes sure to squeeze every last drop from you, running her thumb up your cumvein and over your [pc.cockHeadBiggest] to force it all out.");
 	output("\n\n<i>“Oh!”</i> she gasps as you take your tongue back out, saliva dripping from her winking hole.");
 	if (flags["FIREPUP_RIMMED"] == undefined) output(" <i>“Ooh... damn, [pc.boyGirl]. Never had that done for me before, but I think we’ve got a winner... I’m still gonna go find that Jumper to give me a good fuck, though.”</i>");
 	else output(" <i>“Fuck... not bad, [pc.boyGirl]. I should keep you around to eat my ass more often. Maybe right after a Jumper fucks it.”</i>");
@@ -1008,7 +1008,7 @@ public function fireBitchBeingANicePuppyForOnce(order:int):Boolean
 				output("\n\nYou don’t care if she gets off on this or not. What you do care about is the incredibly tight, warm and soft throat wrapping around your stiff cock as you step over her and begin to thrust your hips, holding the slut by her hair and roughly fucking her face as you grunt in pleasure. Stars, what she loses with inexperience she more than gains back with her complete and utter willingness to please. She gurgles and chokes beneath you and never once moves at all, gargling your cock in its entirety");
 				if (pc.biggestCockLength() < 24) output(" while you thrust it to the hilt.");
 				else output(" even as you thrust it into her stomach and leave behind precum in its wake.");
-				output("\n\nControlling her so completely, it’s not hard to bust a nut down her throat. You grunt and strain, the huskar whore’s eyes widening in recognition while her tail begins to wag happily. [pc.cum]");
+				output("\n\nControlling her so completely, it’s not hard to bust a nut down her throat. You grunt and strain, the huskar whore’s eyes widening in recognition while her tail begins to wag happily. [pc.Cum]");
 
 				cumQ = pc.cumQ();
 				if (cumQ < 1000) output(" shoots down her throat as her eyes roll up into her head in bliss, the familiar noise of her bitch pussy squirting all over the ground reaching your [pc.ears] while you empty yourself into her stomach. The moment you’re done you push her backwards coughing and choking, gagging on your cum mid-swallow.");

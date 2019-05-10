@@ -1694,7 +1694,7 @@ public function roxySoxyTakesYourCoxyInHerBoxyBJ(firstTime:Boolean=false):void
 		
 	output("\n\nShe plants two wet kisses to [pc.eachCockHead]");
 	if (pc.cocks[kok].hasFlag(GLOBAL.FLAG_FORESKINNED)) output(", sliding your foreskin back,");
-	output(" and then to your [pc.knotOrSheath]. Spittle runs down her chin, plastering the fur around her lips to her skin before attaching itself to your swelling length in ruddy strings, all for the goal of getting your dicks to drool as messily as she does. [pc.CumColor] preseed beads at your summit, forming a dollop that is lapped up before it sags. The laquine visibly shudders, all sorts of sensations firing in her crossing eyes and aroused nerves. For a few seconds all she can do is stroke her cheek across the underside of your [pc.cocksLight].");
+	output(" and then to your [pc.knotOrSheath]. Spittle runs down her chin, plastering the fur around her lips to her skin before attaching itself to your swelling length in ruddy strings, all for the goal of getting your dick to drool as messily as she does. [pc.CumColor] preseed beads at your summit, forming a dollop that is lapped up before it sags. The laquine visibly shudders, all sorts of sensations firing in her crossing eyes and aroused nerves. For a few seconds all she can do is stroke her cheek across the underside of your [pc.cocksLight].");
 	
 	
 	if (pc.cocks[kok].cType == GLOBAL.TYPE_EQUINE) output("\n\n<i>“Tryin’ to break every bitch you lay, [pc.name]?”</i> Roxy asks, inhaling more musk from your beefy, turgid tool. <i>“Mmf, big fat pony-mounter like this, can’t wait to see every vein standing out. You came well equipped for a laquine; no dick like horsedick!”</i>");
