@@ -84,7 +84,7 @@ public function zhengMinesEncounterBonus():Boolean
 	IncrementFlag("ZS_MINE_STEP");
 	var encounters:Array = [];
 	//First 3 times are gimmes, then increasing odds till step 15 or so.
-	if(flags["ZS_MINE_STEP"]-4 > rand((isLoreleisBitch() ? 20 : 16)))
+	if(flags["ZS_MINE_STEP"]-4 > rand((isLoreleisBitchVisibly() ? 20 : 16)))
 	{
 		flags["ZS_MINE_STEP"] = 0;
 		IncrementFlag("ZS_MINE_ENCOUNTERS");
@@ -185,7 +185,7 @@ public function zhengFoundryF1EncounterBonus():Boolean
 	IncrementFlag("ZS_FOUNDRY_STEP");
 	var encounters:Array = [];
 	//First 3 times are gimmes, then increasing odds till step 15 or so.
-	if(flags["ZS_FOUNDRY_STEP"]-4 > rand((isLoreleisBitch() ? 20 : 16)))
+	if(flags["ZS_FOUNDRY_STEP"]-4 > rand((isLoreleisBitchVisibly() ? 20 : 16)))
 	{
 		flags["ZS_FOUNDRY_STEP"] = 0;
 		IncrementFlag("ZS_FOUNDRY_ENCOUNTERS");
@@ -241,7 +241,7 @@ public function zhengFoundryF2EncounterBonus():Boolean
 	IncrementFlag("ZS_FOUNDRY_STEP");
 	var encounters:Array = [];
 	//First 3 times are gimmes, then increasing odds till step 15 or so.
-	if(flags["ZS_FOUNDRY_STEP"] - 8 > rand((isLoreleisBitch() ? 20 : 16)))
+	if(flags["ZS_FOUNDRY_STEP"] - 8 > rand((isLoreleisBitchVisibly() ? 20 : 16)))
 	{
 		flags["ZS_FOUNDRY_STEP"] = 0;
 		IncrementFlag("ZS_FOUNDRY_ENCOUNTERS");
