@@ -5378,6 +5378,7 @@ public function finalPennyQuestRoomproc():Boolean
 	addButton(0,"Next",mainGameMenu);
 	return true;
 	*/
+	flags["NAV_DISABLED"] = NAV_WEST_DISABLE;
 
 	showBust("MINING_ROBOT",pennyBustDisplay());
 	author("Fenoxo");
