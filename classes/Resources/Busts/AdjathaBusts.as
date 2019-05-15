@@ -815,6 +815,17 @@ package classes.Resources.Busts
 		public var Bust_RED_HEAVY_NUDE:Class;
 		public function get Bounds_RED_HEAVY_NUDE():Rectangle { return Bounds_RED_HEAVY; }
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/roo.png", mimeType = "image/png")]
+		public var Bust_ROO:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/roo_skirt.png", mimeType = "image/png")]
+		public var Bust_ROO_SKIRT:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/roo_shirt.png", mimeType = "image/png")]
+		public var Bust_ROO_SHIRT:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/roo_panties.png", mimeType = "image/png")]
+		public var Bust_ROO_PANTIES:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/roo_nude.png", mimeType = "image/png")]
+		public var Bust_ROO_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/roxy.png", mimeType = "image/png")]
 		public var Bust_ROXY:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/roxy_nude.png", mimeType = "image/png")]
@@ -1845,6 +1856,17 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/red_heavy_nude.png", mimeType = "image/png")]
 			public var Full_RED_HEAVY_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/roo.png", mimeType = "image/png")]
+			public var Full_ROO:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/roo_skirt.png", mimeType = "image/png")]
+			public var Full_ROO_SKIRT:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/roo_shirt.png", mimeType = "image/png")]
+			public var Full_ROO_SHIRT:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/roo_panties.png", mimeType = "image/png")]
+			public var Full_ROO_PANTIES:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/roo_nude.png", mimeType = "image/png")]
+			public var Full_ROO_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/roxy.png", mimeType = "image/png")]
 			public var Full_ROXY:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/HR/roxy_nude.png", mimeType = "image/png")]

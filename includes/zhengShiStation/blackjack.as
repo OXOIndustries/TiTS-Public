@@ -55,7 +55,23 @@ public function showRoo():void
 }
 public function rooBustDisplay():String
 {
-	return ("ROO_" + flags["ROO_STRIP_LEVEL"]);
+	switch(flags["ROO_STRIP_LEVEL"])
+	{
+		case undefined:
+		case 0:
+			return "ROO";
+		case 1:
+			return "ROO_SKIRT";
+		case 2:
+			return "ROO_SHIRT";
+		case 3:
+			return "ROO_PANTIES";
+		case 4:
+			return "ROO_NUDE";
+		default:
+			return "ROO";
+			break;
+	}
 }
 public function roogasm():void
 {
@@ -749,8 +765,7 @@ public function rooStrips(amount:Number):void
 
 public function pcWinsVsRoocipher():void
 {
-	clearOutput();
-	showRoo();
+	clearOutput()
 	author("William");
 
 	var bet:Number = flags["BLACKJACK_BET"];
@@ -770,6 +785,7 @@ public function pcWinsVsRoocipher():void
 	// Player won hand! No stripping.
 	if((flags["ROO_STRIP_LEVEL"]+1) * 5000 > flags["ROO_CREDITS_DAILY"])
 	{
+		showRoo();
 		output("<i>“Congratulations!”</i> Roo chimes, gathering and shuffling the cards at inhuman speed, your side of the table exploding with monetary achievement. <i>“A deserved win" + (flags["MET_ROO"] == 2 ? ", [pc.name]":"") + "! Will you be playing again, sweetie? " + (RandomInCollection(["Luck is on your side, there’s no doubt!","Lady luck has her hand on your shoulder, of that I am certain!","It’s always worth it to capitalize on good fortune!"])) + "”</i>");
 		output("\n\nSo she says, but what seems like a potential windfall can just as easily be a short-lived fluke. Play again?\n");
 		winningsDisplay();
@@ -849,6 +865,7 @@ public function pcWinsVsRoocipher():void
 		processTime(4);
 		pc.lust(5);
 		rooStrips(1);
+		showRoo();
 		rooMenu();
 	}
 	//[Player won, Roo strips! (Skirt)]
@@ -912,6 +929,7 @@ public function pcWinsVsRoocipher():void
 		processTime(5);
 		pc.lust(5);
 		rooStrips(2);
+		showRoo();
 		rooMenu();
 	}
 	//[Player won, Roo strips! (Shirt)]
@@ -971,6 +989,7 @@ public function pcWinsVsRoocipher():void
 		processTime(5);
 		pc.lust(5);
 		rooStrips(3);
+		showRoo();
 		rooMenu();
 	}
 	//[Player won, Roo strips! (Panties)]
@@ -1036,12 +1055,14 @@ public function pcWinsVsRoocipher():void
 		processTime(5);
 		pc.lust(5);
 		rooStrips(4);
+		showRoo();
 		rooMenu();
 	}
 	//[Player won, Roo gamegasms!]
 	// PC will have intoxication added each time - getting VIP Drinks :3
 	else
 	{
+		showRoo();
 		// First Gamegasm
 		if(flags["ROO_GASMED"] == 0)
 		{
