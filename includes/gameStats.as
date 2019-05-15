@@ -416,6 +416,7 @@ public function statisticsScreen(showID:String = "All"):void
 				}
 				if(pc.statusEffectv4("Vanae Markings") > 0) output2(", " + StringUtil.toDisplayCase(pc.skinAccent) + " Markings");
 				output2("\n<b>* Testicle, Size:</b> " + prettifyLength(pc.ballDiameter()) + " across, " + prettifyLength(pc.ballSize()) + " around");
+				if(pc.ballSizeMod != 1) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.ballSizeMod, 3)) + ")");
 				if(pc.balls != 1) output2(", each");
 				output2("\n<b>* Testicle, Volume:</b> " + prettifyVolume(pc.ballVolume(), 1));
 				if(pc.balls != 1) output2(", each");

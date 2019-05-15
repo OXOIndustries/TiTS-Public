@@ -218,14 +218,14 @@ public function kiroMenu():void
 		else if(kiroKallyThreesomeUnlockPoints() > 0) addDisabledButton(4,"Sister3Some","Sister Threesome","Kiro and Kally haven’t made the kind of breakthrough that would let you just walk up and ask this.");
 		else addDisabledButton(4,"Sister3Some","Sister Threesome","Kiro and Kally don’t really like each other that way...");
 		
-		if(flags["PAIGE_TALK_SELF"] >= 4 && kiroTrust() >= 70 && flags["SEXED_PAIGE"] != undefined && (paigeIsCrew() || (getPlanetName().toLowerCase() == "tavros station" && (hours >= 17 || hours < 9))))
+		if(flags["PAIGE_TALK_SELF"] >= 4 && kiroTrust() >= 75 && flags["SEXED_PAIGE"] != undefined && (paigeIsCrew() || (getPlanetName().toLowerCase() == "tavros station" && (hours >= 17 || hours < 9))))
 		{
 			if(flags["PAIGE_KIRO_THREESOMES"] == undefined) addButton(5,"Paige",paigeThreesomeIntro,undefined,"Paige","The Ausar yoga instructor, Paige, once told you that she considers Kiro to be her closest friend. Maybe you should ask Kiro if the name sounds familiar to her?");
 			else addButton(5,"Paige",paigeThreesomeIntro,undefined,"Paige","Nothing says good time like a Paige, Kiro, and Steele sandwich.");
 		}
 		else if(flags["PAIGE_TALK_SELF"] < 4 || flags["PAIGE_TALK_SELF"] == undefined) addDisabledButton(5,"Locked","Locked","You don’t know the right person well enough for this.");
 		else if(flags["SEXED_PAIGE"] == undefined) addDisabledButton(5,"Paige","Paige","You need a deeper relationship with Paige for this.");
-		else if(kiroTrust() < 70) addDisabledButton(5,"Paige","Paige","Kiro doesn't trust you enough for this yet.");
+		else if(kiroTrust() < 75) addDisabledButton(5,"Paige","Paige","Kiro doesn’t trust you enough for this yet.");
 		else addDisabledButton(5,"Paige","Paige","Paige needs to be on your crew, or you need to meet Kiro after 17:00 and before 9:00 in Tavros Station to pursue Paige.");
 
 		addButton(14,"Leave",mainGameMenu);
@@ -1553,6 +1553,16 @@ public function reduceKirosBallSize():void
 //Savin
 public function letsFuckKiro():void
 {
+	// Pending panty event
+	if(!pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless."))
+	{
+		if(pc.hasStatusEffect("Kiro Panties Event Queue") || (kiroTrust() >= 75 && !kiro.vaginas[0].hymen))
+		{
+			kiroginityEpilogue(true);
+			return;
+		}
+	}
+	
 	clearOutput();
 	showKiro();
 	author("Savin");
@@ -1568,9 +1578,6 @@ public function letsFuckKiro():void
 		else if(pc.hasVagina()) output(", circling [pc.oneVagina]");
 		else output(", rubbing down the bare, sensitive flesh");
 		output(" as you pull your kit off, tossing your [pc.gear] aside. When the airlock’s done processing you, the two of you tumble into the hallway, barely making it to Kiro’s cabin before her great big cock spills out of her undergarments as she tears them off, letting her massive horsemeat swing free. With a push, you’re thrown down onto her bed, surrounded by dirty mags and condom packs. Looming over you, Kiro idly strokes her cock, already fucking you with her eyes as you roll over, facing her and her huge endowment.");
-		
-		//[OPTIONS BITCH]
-		kiroSexMenu();
 	}
 	//Big Ball Kiro Sex Menu
 	else
@@ -1602,8 +1609,10 @@ public function letsFuckKiro():void
 		else output("the little equipment you wear on your mostly-nude form");
 		output(" discarded in a pile so that Kiro can return to ravishing your body. She presses into you from behind, dick threading through your asscrack, and she whispers, <i>“Now, am I going to shove this thing straight up your ass and turn you into a cream-filled fuck-balloon or something else?”</i>");
 		output("\n\nHer weighty balls throb as she considers her action, growing heavier by the second. They look almost as big as soccer balls now. <b>If you speak up, you can likely goad her into taking you a certain way...</b>");
-		kiroBallsSexMenu();
 	}
+	
+	//[OPTIONS BITCH]
+	kiroSexMenu();
 	
 	if(kiroRoughButtfucks() > 0) flags["BF_STORAGE"] = currentLocation;
 	moveTo("KIROS SHIP QUARTERS", true);
@@ -1635,6 +1644,9 @@ public function kiroBallsSexMenu():void
 
 public function kiroSexMenu():void
 {
+	// Her balls are too damn big!
+	if(kiro.ballDiameter() > 14) return kiroBallsSexMenu();
+	
 	clearMenu();
 	//[Done] Take Her Virginity - 3800 words
 	//High trust only - get her panties.
@@ -1683,7 +1695,7 @@ public function takeKirosVirginity():void
 	showKiro(true);
 	output("Looking up at her from the bed, you catch a glimpse of her shiny black pussy lips. They practically wink at you. Why haven’t you fucked those yet? You stretch out an arm, cradling her balls gently before slipping past to rub at the alluring entrance. <i>“How about a little cow-girl?”</i> you suggest with your fingers already beginning to explore her innermost places.");
 	//Low trust
-	if(kiroTrust() <= 75) 
+	if(kiroTrust() < 75) 
 	{
 		output("\n\nWide-eyed, Kiro bats your hand away with enough force to make your wrist ache. <i>“No!”</i> Her jaw works, and she repeats the word more softly, a little nervously even. <i>“Angel, no. I’m saving that for when I meet the right person. The last thing I need is to be saddled down with a kid I’m not ready for. All I have to do is keep my legs closed and use this big ol’ bitch-breaker whenever I get a little lusty.”</i>");
 		output("\n\n<i>“Come on,”</i> you cajole. <i>“It’ll feel way better. I promise.”</i>");
@@ -1691,8 +1703,8 @@ public function takeKirosVirginity():void
 		output("\n\nDamn. Well, she’d probably let you put it in her butt.");
 		//Sex menu, no text.
 		processTime(2);
-		if(kiro.ballDiameter() <= 14) kiroSexMenu();
-		else kiroBallsSexMenu();
+		
+		kiroSexMenu();
 		return;
 	}
 	//High Trust
@@ -1875,11 +1887,13 @@ public function tookKiroginityPartIII():void
 	output("\n\nYou chuckle.");
 	output("\n\n<i>“Don’t worry, [pc.name]. I’m on pretty high-end stuff. I shouldn’t swell up with pups unless we’re horribly unlucky or you start stacking virility enhancements like some kind of breeder superhero.”</i> Kiro pushes on your chest. <i>“Oof, you’re heavy. Now get out of me so we can clean up, and if you do a good job, I’ll let you inside in the shower...”</i>");
 	output("\n\nYour crotch gives a happy little twitch at the suggestion.");
+	
+	kiro.cuntChange(0,pc.cockVolume(x),false,false,false);
 	output("\n\n<b>You’ve taken Kiro’s virginity.</b>");
-	kiro.vaginas[0].hymen = false;
-	kiro.vaginalVirgin = false;
+	//kiro.vaginas[0].hymen = false;
+	//kiro.vaginalVirgin = false;
+	
 	processTime(7);
-	pc.shower();
 	
 	IncrementFlag("KIRO_VAG_FUCKED");
 	
@@ -1887,20 +1901,41 @@ public function tookKiroginityPartIII():void
 	addButton(0,"Next",kiroginityEpilogue);
 }
 
-public function kiroginityEpilogue():void
+// To queue her panties scene
+public function takeKiroginity():void
+{
+	IncrementFlag("KIRO_VAG_FUCKED");
+	if(!pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.") && kiroTrust() >= 75) pc.createStatusEffect("Kiro Panties Event Queue");
+}
+// Panties scene
+public function kiroginityEpilogue(fromSexMenu:Boolean = false):void
 {
 	clearOutput();
-	showKiro(true);
-	output("While drying off after a surprisingly hot shower, Kiro offers you a pair of lacy black panties. There’s a none-too-discrete hole in the front and underwire reinforcements below.");
+	showKiro(fromSexMenu ? false : true);
+	
+	if(fromSexMenu) output("Before propositioning her, ");
+	else
+	{
+		output("While drying off after a surprisingly hot shower, ");
+		pc.shower();
+	}
+	output("Kiro offers you a pair of lacy black panties. There’s a none-too-discrete hole in the front and underwire reinforcements below.");
 	output("\n\n<i>“What’s this?”</i> you ask, confused.");
 	output("\n\nKiro puts them in your hand. They smell richly of her, her soap, and the potent aroma of her double genitals. <i>“They’re my panties, silly.”</i>");
 	output("\n\n<i>“And...?”</i>");
 	output("\n\n<i>“A trophy, silly. I’ve collected quite a few from my conquests. It seems only fitting that you get to keep mine for conquering me.”</i> She playfully pinches your [pc.butt]. <i>“...Or coming as close to conquering me as anyone’s ever going to get.”</i> She grins, showing off canines that look a little sharper than any human’s. <i>“Now get going, and make sure to think of me if you jack off into them!”</i>");
+	
 	pc.createKeyItem("Panties - Kiro's - Lacy, black, and crotchless.");
 	//scene over!
 	processTime(15);
+	
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	if(fromSexMenu)
+	{
+		pc.removeStatusEffect("Kiro Panties Event Queue");
+		addButton(0, "Next", letsFuckKiro);
+	}
+	else addButton(0, "Next", mainGameMenu);
 }
 
 //[Done] Catch Vaginal - 4000 words!
@@ -2836,8 +2871,7 @@ public function inviteAFriendForKiroPlays():void
 	if(nFriends > 0) output("A sly smile creeps up the side of your lips and blossoms into a full blown grin. You press a finger to the Tanuki’s small, black nose and tell her to give you just a minute. She barks out an angry protest, gesturing broadly as if to remind you that she’s ready to go. <i>“You’d better not leave me hanging, you cock-tease,”</i> she complains, her half-hard shaft throbbing between her legs. <i>“I don’t want a repeat of that milker accident!”</i> You tweak one of her round, fluffy ears and give her a wink as you throw a robe over your body and step towards the door. Just a minute, you promise.");
 	else output("Unfortunately, you don’t know of any available friends to invite...");
 	
-	if(kiro.ballDiameter() <= 14) addButton(14,"Back",kiroSexMenu);
-	else addButton(14,"Back",kiroBallsSexMenu);
+	addButton(14,"Back",kiroSexMenu);
 }
 
 public function inviteSaenForKiroFilling():void
@@ -2994,8 +3028,12 @@ public function kiroPussPumpPartII():void
 	IncrementFlag("PUMPED_KIRO_PUSSY");
 
 	//[FuckThem] [TribThem] [GrindFrot]
-	if(pc.hasCock() && pc.cockThatFits(kiro.vaginalCapacity(0)) >= 0) addButton(0,"Fuck Them",fuckPumpedKiro,undefined,"Fuck Them","Fuck Kiro’s plush, pumped-up lips. She’s begging for it.");
-	else if(pc.hasCock()) addDisabledButton(0,"Fuck Them","Fuck Them","Your dick is too large to fuck Kiro’s pussy.");
+	if(pc.hasCock())
+	{
+		if(kiroTrust() < 75) addDisabledButton(0,"Fuck Them","Fuck Them","Kiro doesn’t trust you enough for this yet.");
+		else if(pc.cockThatFits(kiro.vaginalCapacity(0)) >= 0) addButton(0,"Fuck Them",fuckPumpedKiro,undefined,"Fuck Them","Fuck Kiro’s plush, pumped-up lips. She’s begging for it.");
+		else addDisabledButton(0,"Fuck Them","Fuck Them","Your dick is too large to fuck Kiro’s pussy.");
+	}
 	else addDisabledButton(0,"Fuck Them","Fuck Them","You need a penis in order to fuck Kiro’s pussy.");
 	
 	if(pc.hasVagina()) addButton(1,"TribThem",tribDemLips,undefined,"TribThem","What better to please a pussy than another hot, wet cunt?");
@@ -3044,11 +3082,10 @@ public function fuckPumpedKiro():void
 	pc.orgasm();
 	processTime(22);
 	
-	IncrementFlag("KIRO_VAG_FUCKED");
+	takeKiroginity();
 	
 	clearMenu();
-	if(!pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) addButton(0,"Next",kiroginityEpilogue) 
-	else addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Trib Them [Pussy Pump Continued] [Done]

@@ -866,7 +866,7 @@ public function paigeCrewToggle(recruit:Boolean = true):void
 		
 		flags["PAIGE_CREW"] = 0;
 		
-		output("\n\n(<b>Paige is no longer on your crew. You can find her again on Tavros Station.</b>)");
+		output("\n\n(<b>Paige is no longer on your crew. You can find her again in Tavros Station.</b>)");
 	}
 	
 	processTime(2);
@@ -1819,7 +1819,7 @@ public function leavePaige():void
 {
 	clearOutput();
 	showPaige();
-	output("It’s been fun, but it’s time to say until next time to Paige. <i>“Aw, so soon?”</i> she pouts, then perks back up. <i>“I understand, sweet thing. Being an adventurer is an all-day gig. Get out there and show the universe how a [pc.race] does it!”</i>");
+	output("It’s been fun, but it’s time to say until next time to Paige. <i>“Aw, so soon?”</i> she pouts, then perks back up. <i>“I understand, sweet thing. Being an adventurer is an all-day gig. Get out there and show the universe how [pc.aRace] does it!”</i>");
 	output("\n\nPaige follows you to the door of her unit.");
 	if(flags["SEXED_PAIGE"] != undefined) output(" Before you leave, she spins you around and gives you a quick kiss on your lips.");
 	output(" <i>“See you around,”</i> she giggles, then pushes you out.");

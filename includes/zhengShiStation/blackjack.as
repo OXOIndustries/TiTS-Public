@@ -2040,7 +2040,7 @@ public function underTableRooEatsPuss(x:int = 0):void
 	output("\n\nLurching forward, [pc.thighs] clenching, you");
 	if(!pc.isTaur()) output(" grab Roo by the ears and hold tight");
 	else output(" shift all your weight onto Roo’s face");
-	output(", hyperventilating on the edge of a tectonic orgasm. The slut-cat whimpers but doesn’t resist, clearly enjoying a little rough treatment. You decide to set the pace, unwilling to be little more than a [pc.raceShort] cumming like crazy, helpless to those expansive, heavenly... lips...");
+	output(", hyperventilating on the edge of a tectonic orgasm. The slut-cat whimpers but doesn’t resist, clearly enjoying a little rough treatment. You decide to set the pace, unwilling to be little more than [pc.aRaceShort] cumming like crazy, helpless to those expansive, heavenly... lips...");
 	output("\n\nOh right...");
 	output("\n\nBefore Roo gets any ideas you seat her drooling and cum-splattered face deeper into your bliss-imbued [pc.pussyNoun " + x + "]. Your [pc.hips] rock against her head, taking pleasure directly from her. She obliges, allowing you to use her like a lop-eared dildo, suckling firmly on your labia and worshiping your clit with lurid, squelching echoes. The kitty-rabbit has yet to lose herself to wantonness: she just purrs away, faintly squeaking while filling you to capacity with tongue and lip.");
 	// PC gryvain pussy

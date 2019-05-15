@@ -321,7 +321,7 @@ public function ratsKneelingForService():void
 		output(" nutsack wobble back and forth makes your jostling maleness a too-tempting target. Smooth and furry fingers noticeably combine their efforts to coax an even larger orgasm from you, caressing the underside of your swelling spunk-tanks. Those virile orbs are claimed as possessively as your [pc.cocksLight], each rodent taking turns smothering their faces into your ‘nads, breathing deep of your ball-musk while massaging them imploringly with tongue and cheek. Their efforts are certainly not in vain: the more they play with your scrotum, the fatter it feels with a heavier load of [pc.cumNoun].");
 	}
 
-	if (catPC && pc.hasTail()) output("\n\nYour [pc.tails] swirl around, the fuzzy " + (pc.hasTails() ? "tips" : "tip") + " caressing their scalps in appreciative circles. You can’t help but think how fitting a position this is: you, a [pc.raceShort], catching three mice and getting them to service you. It’s enough to make you purr!");
+	if (catPC && pc.hasTail()) output("\n\nYour [pc.tails] swirl around, the fuzzy " + (pc.hasTails() ? "tips" : "tip") + " caressing their scalps in appreciative circles. You can’t help but think how fitting a position this is: you, [pc.aRaceShort], catching three mice and getting them to service you. It’s enough to make you purr!");
 
 	switch (pc.cocks.length)
 	{

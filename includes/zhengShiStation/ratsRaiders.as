@@ -2271,10 +2271,10 @@ public function ratsLossSex():void
 			output("Although no attempt was made to turn you on, you are debilitatingly aroused and can think of nothing but getting off. Your body slackens and you fall to your knees, eyes crossing amid the muted jeers of your would-be robbers. It takes you by surprise when you’re sandwiched between their bodies, duplicitous hands and paws roaming all over your body");
 			if (!pc.isNude()) output(" and clothes");
 			output(".");
-			output("\n\nYou’re sure you must be dripping, you feel unpleasantly hot and usable");
+			output("\n\nYou're sure you must be dripping. You feel unpleasantly hot and usable");
 			if (pc.hasGenitals()) output(", to say nothing of the twitchiness in your crotch");
 			output(". It’s not long before you’re forced on your back and kept there, lamely trying to masturbate amid the cacophony.");
-			output("\n\nThe rats join you in that gropefest");
+			output("\n\nThe rats join you in the gropefest");
 			if (!pc.isNude()) output(", pawing at the clothes still on your body");
 			output(". At least they seem interested in your pleasure...");
 		}
@@ -2505,10 +2505,10 @@ public function ratsTeasingACEO():void
 		
 		if (pc.isHerm())
 		{
-			output("\n\nHer hand ");
+			output("\n\nHer hand");
 			if (rat2.isFemale()) output(" and the halfbreed girl’s squeeze");	
 			else output(" squeezes");
-			output(" your throbbing [pc.cocksLight] just before ");
+			output(" your throbbing [pc.cocksLight] just before");
 			if (rat2.isFemale()) output(" they wind their tails");
 			else output(" she winds her tail");
 			output(" around your [pc.base]");
@@ -2598,7 +2598,7 @@ public function ratsTeasingACEO():void
 		output(" Tails grind " + (pc.isBiped() ? "between your [pc.thighs]" : "against your loins") + " in reckless euphoria");
 		if (pc.hasGenitals()) output(", making sure you are never pushed too far as to cum in spite of their control");
 		output(".");
-		output("\n\nYou no doubt look... unique... from a distance. Three rampant rats swiveling and masturbating atop your form like you’re a [pc.raceCuteShort] bed that exists to improve the pleasure of anyone resting on you. Your lower half is utterly drenched in pussy juice, the [rat2.hairColor]-haired slut has seen to that with multiple orgasms. Her gratuitously wet twat is less a pussy and more like a jizz-launcher, firing off missile after erotic missile.");
+		output("\n\nYou no doubt look... unique... from a distance. Three rampant rats swiveling and masturbating atop your form like you’re [pc.aRaceCuteShort] bed that exists to improve the pleasure of anyone resting on you. Your lower half is utterly drenched in pussy juice, the [rat2.hairColor]-haired slut has seen to that with multiple orgasms. Her gratuitously wet twat is less a pussy and more like a jizz-launcher, firing off missile after erotic missile.");
 		if (pc.hasVagina()) output(" It’s the worst feeling of all, however, when your own [pc.pussies] " + (pc.hasVaginas() ? "are" : "is") + " tingling on the verge of climax, clenching down and getting ready for release, but the paw or tail pulls away every single time...");
 	}
 

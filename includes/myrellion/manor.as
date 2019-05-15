@@ -977,9 +977,9 @@ public function selleraEnlistForSexualService():void
 public function selleraServiceButtons():void
 {
 	clearMenu();
-	addButton(0, "Under Her Desk", selleraShowsYouTheTasteOfWarUnderHerDesk, undefined, "Under Her Desk", "The field marshal said she doesn’t take trench wives, so she must be pretty pent up under there. She’d probably just use you like a sex toy though.");
+	addButton(0, "Under Desk", selleraShowsYouTheTasteOfWarUnderHerDesk, undefined, "Under Her Desk", "The field marshal said she doesn’t take trench wives, so she must be pretty pent up under there. She’d probably just use you like a sex toy though.");
 	if (pc.isTaur() || !pc.hasCock()) addDisabledButton(1, "Reverse Gangbang");
-	else addButton(1, "Reverse Gangbang", selleraRalliesHerTroopsToFuckYou, undefined, "Reverse Gangbang", "Perform pleasure service for Sellera’s chosen subordinates. This might sound fun, but it really means dozens of beautiful women are going to fuck you, and you’re not allowed to cum.");
+	else addButton(1, "RevGangbang", selleraRalliesHerTroopsToFuckYou, undefined, "Reverse Gangbang", "Perform pleasure service for Sellera’s chosen subordinates. This might sound fun, but it really means dozens of beautiful women are going to fuck you, and you’re not allowed to cum.");
 }
 
 public function selleraGoAwayWithoutOfficialLicking():void

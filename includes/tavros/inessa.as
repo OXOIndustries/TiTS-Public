@@ -389,8 +389,8 @@ public function inessaSaeriTalk():void
 	else // Not first time:
 	{
 		output("<i>“Anything else you can tell me about your species?”</i> you ask, and Inessa shakes her head.");
-		output("\n\n<i>“Not off the top of my head–there’s not really that much more to tell, you know? Tell me about </i>yours<i>. What’s it like being a [pc.raceShort]–?”</i>");
-		output("\n\nYou tell her a bit about about being a [pc.race], and she seems fascinated. Once you’re done talking, she looks at the time and gulps. <i>“Whoops... I was meant to be on the clock, but I got distracted by your story. I should really get back to work!”</i>");
+		output("\n\n<i>“Not off the top of my head–there’s not really that much more to tell, you know? Tell me about </i>yours<i>. What’s it like being [pc.aRaceShort]–?”</i>");
+		output("\n\nYou tell her a bit about about being [pc.aRace], and she seems fascinated. Once you’re done talking, she looks at the time and gulps. <i>“Whoops... I was meant to be on the clock, but I got distracted by your story. I should really get back to work!”</i>");
 	}
 	processTime(4);
 	inessaTalkMenu(inessaSaeriTalk);

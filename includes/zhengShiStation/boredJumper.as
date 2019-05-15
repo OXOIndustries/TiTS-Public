@@ -2625,7 +2625,7 @@ public function boredJumperHeatSexIII():void
 	}
 	if (pc.vaginaTotal() > 2)
 	{
-		output("\n\nAnd now the third. Of course your floppy herm’s got it in her! She’s fucking her very soul out, all for the express intent of ensuring her bloodline, her race, her <i>everything</i> with you! How lucky this rabbit must feel, and <i>will</i> feel when her head clears, coming across the biggest slut she’ll ever meet. A [pc.raceCuteShort]-slut who willingly entered reproductive mode right next to her, begging for a gut full of children. She’s not a pirate right now, she’s just a member of her race... a member of her race who had begun to understand what it meant to be a laquine sire.");
+		output("\n\nAnd now the third. Of course your floppy herm’s got it in her! She’s fucking her very soul out, all for the express intent of ensuring her bloodline, her race, her <i>everything</i> with you! How lucky this rabbit must feel, and <i>will</i> feel when her head clears, coming across the biggest slut she’ll ever meet. [pc.ARaceCuteShort]-slut who willingly entered reproductive mode right next to her, begging for a gut full of children. She’s not a pirate right now, she’s just a member of her race... a member of her race who had begun to understand what it meant to be a laquine sire.");
 		output("\n\nAnd while her overproductive balls brewed up and shunted that third and very important load into your tertiary womb, she found herself totally lost, not sure what hole to breed now. She fucked the others again, cumming in only two thrusts each, but <i>it was not nearly enough.</i>");
 		flags["BJUMPER_HEAT_SEX"] = 1;
 		pc.loadInCunt(enemy,2);	

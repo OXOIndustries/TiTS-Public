@@ -524,6 +524,48 @@ public function amberComeWithSleep():void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
+// 9999
+public function amberBootFromCrew():void
+{
+	clearOutput();
+	amberHeader();
+	author("");
+	
+	output("");
+	output("\n\n");
+	
+	processTime(20);
+	
+	flags["AMBER_CREWMEMBER"] = 2;
+	//if(flags["CREWMEMBER_SLEEP_WITH"] == "AMBER") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
+	
+	output("\n\n(<b>Amber is no longer on your crew. You can find her again on Mhen’ga.</b>)");
+	output("\n\n");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+// 9999
+public function amberRejoinCrew():void
+{
+	clearOutput();
+	amberHeader();
+	author("");
+	
+	output("");
+	output("\n\n");
+	
+	processTime(20);
+	
+	//currentLocation = "SHIP INTERIOR";
+	flags["AMBER_CREWMEMBER"] = 1;
+
+	output("\n\n(<b>Amber has rejoined your crew!</b>)");
+	output("\n\n");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
 
 //crew activity blurb for ship 
 public function amberShipBonusText():String
@@ -634,7 +676,9 @@ public function amberMainMenu():void
 	if (amberDumbfuckDoses() <= 2) addButton(3,"Brush Fur",amberOnshipBrushFur,undefined,"Brush Fur","Give Amber’s soft animal ears a nice fluffing and petting.");
 	else addDisabledButton(3,"Brush Fur","Brush Fur","You already know the only type of touch Amber’s keen on right now is a much more sensual one.");
 	addButton(4,"Sex",amberOnshipSex,undefined);
-
+	
+	//9999 addButton(13, "Leave Crew", amberBootFromCrew, undefined, "Leave Crew", "Ask Amber to move off the ship. You’ll be able to pick her up again later.");
+	
 	addButton(14,"Leave",crew);
 }
 //look at amber

@@ -54,7 +54,7 @@ package classes.Characters
 
 			this.a = "the ";
 			this.capitalA = "The ";
-						
+			
 			this.hipRatingRaw = 5;
 			this.buttRatingRaw = 5;
 			

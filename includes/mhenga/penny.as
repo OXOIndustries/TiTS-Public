@@ -1465,12 +1465,17 @@ public function pennyGirlfriendMenu():void
 
 	if(pc.hasItemByClass(IQBGone)) addButton(3,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
 
-	//[=Cave=]
-	// Add this button after having spoken to Penny about getting the Oxonium.
-	// Tooltip: Set off for the cave full of Oxonium that Penny had told you about.
-	if(flags["PENNY_CREW_ASKED"] == 1) addButton(5,"OxoniumHunt",startPenpenQuest,undefined,"Oxonium Hunt","Help Penny score that Oxonium, pay of a bunch of her debt, and convince her to join your crew.");
-	if(flags["PENNY_CREW_ASKED"] == 3) addButton(5,"Recruit",recruitPennyOfferFinal,undefined,"Recruit","Now that you’ve excavated the cave full of Oxonium, maybe Penny will be more receptive to the possibility of joining your crew?");
-	if(pennyIsCumSlut()) addButton(5,"Recruit",recruitCumslutPenny,undefined,"Recruit As Camwhore","Since Penny’s already spending most of her time jacking off, why not join you in the stars and get to indulge 100% of the time?");
+	if(pennyRecruited()) addButton(5, "Join Crew", pennyRejoinCrew, undefined, "Join Crew", "Ask Penny to rejoin your crew and move back into your ship.");
+	else
+	{
+		//[=Cave=]
+		// Add this button after having spoken to Penny about getting the Oxonium.
+		// Tooltip: Set off for the cave full of Oxonium that Penny had told you about.
+		if(flags["PENNY_CREW_ASKED"] == 1) addButton(5,"OxoniumHunt",startPenpenQuest,undefined,"Oxonium Hunt","Help Penny score that Oxonium, pay of a bunch of her debt, and convince her to join your crew.");
+		if(flags["PENNY_CREW_ASKED"] == 3) addButton(5,"Recruit",recruitPennyOfferFinal,undefined,"Recruit","Now that you’ve excavated the cave full of Oxonium, maybe Penny will be more receptive to the possibility of joining your crew?");
+		if(pennyIsCumSlut()) addButton(5,"Recruit",recruitCumslutPenny,undefined,"Recruit As Camwhore","Since Penny’s already spending most of her time jacking off, why not join you in the stars and get to indulge 100% of the time?");
+	}
+	
 	this.addButton(14,"Back",mainGameMenu);
 }
 
@@ -3932,7 +3937,7 @@ public function needPennyPanties():Boolean
 }
 
 //Acquire Cumslut Penny Panties - 1000 wrds
-public function acquireCumslootPennyPanties():void
+public function acquireCumslootPennyPanties(fromCrew:Boolean = false):void
 {
 	clearOutput();
 	showPenny(true);
@@ -3940,16 +3945,18 @@ public function acquireCumslootPennyPanties():void
 	//PUBLIC USE PENNY
 	if(flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] != undefined)
 	{
-		output("You walk past the people waiting for Penny, getting yourself more than a few envious looks in the process. Inside Penny is again relaxing happily naked on her chair, a new and interesting kaleidoscope of cum coating her bare fur.");
-		output("\n\n<i>“[pc.name]!”</i> she calls out happily when she sees you, idly stroking her shaft along the top of her desk.");
+		if(!fromCrew) output("You walk past the people waiting for Penny, getting yourself more than a few envious looks in the process. Inside Penny is again");
+		else output("When you enter her chambers, Penny is");
+		output(" relaxing happily naked on her chair, a new and interesting kaleidoscope of cum coating her bare fur.");
+		output("\n\n<i>“[pc.name]!”</i> she calls out happily when she sees you, idly stroking her shaft along the " + (!fromCrew ? "top of her desk" : "side of her workstation") + ".");
 		//No new PG, merge in with dialogue.
-		output(" <i>“Just the sexy mate I was hoping to see.”</i> Her [penny.cock] stiffens tremendously as you approach, almost in greeting. You note that it’s coated in a few strangely-colored blobs of cum that definitely didn’t originate from inside of her. She uses them as lube, stroking herself off while reaching for a desk drawer. <i>“I’ve got a present for you.”</i> She licks her own [penny.cockHead], momentarily distracted by the pulsing hardness so close at hand.");
+		output(" <i>“Just the sexy mate I was hoping to see.”</i> Her [penny.cock] stiffens tremendously as you approach, almost in greeting. You note that it’s coated in a few " + (!fromCrew ? "strangely-colored blobs of cum that definitely didn’t originate from inside of her" : "blobs of her fennec spunk") + ". She uses them as lube, stroking herself off while reaching for " + (!fromCrew ? "a desk drawer" : "her personal shelf") + ". <i>“I’ve got a present for you.”</i> She licks her own [penny.cockHead], momentarily distracted by the pulsing hardness so close at hand.");
 	}
 	//Autofellatio Penny
-	else if(flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] != undefined)
+	else if(fromCrew || flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] != undefined)
 	{
 		output("Penny looks up at you as you come close, the edges of her lips curling upwards in a smile before she breaks contact with her cock, jizz and spit snapping as pulls back. <i>“[pc.name],”</i> calls after swallowing what must be a cocktail of saliva and dickjuice. <i>“Just the sexy " + pc.mf("guy","girl") + " I was hoping to see!”</i>");
-		output("\n\nSomehow, her [penny.cock] seems to get ever stiffer at the sight of you. You note that it’s covered with so much fennec spunk that it practically gleams white. Penny uses it as lube, stroking herself off while reaching for a desk drawer. <i>“I’ve got a present for you.”</i> She licks her own [penny.cockHead], momentarily distracted by the pulsing hardness so close at hand.");
+		output("\n\nSomehow, her [penny.cock] seems to get ever stiffer at the sight of you. You note that it’s covered with so much fennec spunk that it practically gleams white. Penny uses it as lube, stroking herself off while reaching for " + (!fromCrew ? "a desk drawer" : "her personal shelf") + ". <i>“I’ve got a present for you.”</i> She licks her own [penny.cockHead], momentarily distracted by the pulsing hardness so close at hand.");
 	}
 	//SECRET CUMSLUT PENNY
 	else
@@ -3963,8 +3970,10 @@ public function acquireCumslootPennyPanties():void
 		output("\n\nPenny giggles almost drunkenly. <i>“No, no, of course not.”</i>\n\n");
 	}
 	//MERGE: No new PG
-	output("\n\nYou hear a latch open and the gravelly sound of poorly lubricated rollers giving way.");
-	output("\n\nTriumphantly, Penny pulls a pair of functional blue panties - or what were functional blue panties once, long ago. A thick hole was clearly cut in the center of the gusset, then reinforced by an amateur seamstress’ hand. She lays them out across the tip of her pre-oozing cock and sighs. <i>“They didn’t fit right after all the throbb, and after a while, I couldn’t get them to stop smelling like cum. I even tried soaking them in my pussy while I jerked off, and it didn’t help.”</i>");
+	output("\n\nYou " + (!fromCrew ? "hear a latch open and the gravelly sound of poorly lubricated rollers giving way" : "see her hand carefully grab a case and pop it open with her cum-coverd digits") + ".");
+	output("\n\nTriumphantly, Penny pulls a pair of functional blue panties - or what were functional blue panties once, long ago. A thick hole was clearly cut in the center of the gusset, then reinforced by an amateur seamstress’ hand. She lays them out across the tip of her pre-oozing cock and sighs. <i>“They didn’t fit right after all the Throbb, and after a while, I couldn’t get them to stop smelling like cum. I even tried soaking them in my");
+	if(penny.isSquirter()) output(" gushing");
+	output(" pussy while I jerked off, and it didn’t help.”</i>");
 	output("\n\nYou arch an eyebrow, <i>“Did you try washing them?”</i>");
 	output("\n\nPenny points her cock your way, allowing you to see the center of the fabric beginning to darken with her pre-cum. <i>“Of course! What kind of cum-addled sexpot do you think I am?”</i> She giggles inanely and ");
 	if(flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] != undefined) output("scoops a stray strand of spunk into her mouth");
@@ -3973,9 +3982,9 @@ public function acquireCumslootPennyPanties():void
 	output("\n\nThis close, you’ve got to admit, they smell a lot like the dick they’re mounted on... and a little like very wet pussy. <i>“How’s that?”</i> you barely remember to ask.");
 	output("\n\n<i>“They’re the ones I was wearing when you talked me into growing that dick. The first ones that ever got soaked in pre-cum from how horny I got or were used to wipe up all the gooey spunk I shot.”</i> Penny moans, and more of the fabric darkens, wicking the lusty prick-vixen’s pre-cum up.");
 	output("\n\nYou snatch them off her pole before she soaks them, having no desire to carry around a pair of cum-soaked panties.");
-	output("\n\nPenny’s dick snaps back up to full attention, and the spermy fox-girl grabs it in both hands, feverishly pumping it, jerking her hips upward with each thrust. ");
-	if(flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] != undefined) output("She starts shooting cum all over herself before you can say another word. There’s no denying the eroticism of the situation, or the way it’s making your pulse race.");
-	else output("Her mouth manages to seal around the head just before it begins to unload, stretching obscenely to allow such a large object to push into her throat. You can actually hear her belly gurgling as those urethra-distending bulges fire off into her stomach, one after another.");
+	output("\n\nPenny’s dick snaps back up to full attention, and the spermy fox-girl grabs it in both hands, feverishly pumping it, jerking her hips upward with each thrust.");
+	if(flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] != undefined) output(" She starts shooting cum all over herself before you can say another word. There’s no denying the eroticism of the situation, or the way it’s making your pulse race.");
+	else output(" Her mouth manages to seal around the head just before it begins to unload, stretching obscenely to allow such a large object to push into her throat. You can actually hear her belly gurgling as those urethra-distending bulges fire off into her stomach, one after another.");
 	output("\n\nYou look down at the dampened panties in your hand, your trophy for helping unleash the fennec-girl’s inner jizz-queen.");
 	output("\n\n<b>You’ve acquired Penny’s panties!</b>");
 	output("\n\nPenny pants, ");
@@ -3989,7 +3998,7 @@ public function acquireCumslootPennyPanties():void
 	pc.lust(13);
 	pc.createKeyItem("Panties - Penny's - Plain, blue, and crotchless.");
 	clearMenu();
-	addButton(0,"Next",pennyGirlfriendMenu);
+	addButton(0,"Next",(fromCrew ? pennyCrewMenu : pennyGirlfriendMenu));
 }
 
 //Requires penny to have a dick

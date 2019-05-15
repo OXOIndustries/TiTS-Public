@@ -310,7 +310,7 @@ public function nykkeAdventuringTalk():void
 	
 	//Placeholder: tf and race check for frostwym does not currently exist
 	if (nykkeFrostwyrmTF()) output(", or, at least, you weren’t always, you were born as a " + pc.originalRace + ".");
-	else output(", you’re a [pc.race].");
+	else output(", you’re [pc.aRace].");
 		
 	output(" You ask her to guess how many of your kind exist. <i>“Hundreds?”</i> she asks, and you tell her there are more. <i>“Thousands?”</i> More than that. Her eyes squint in concentration. <i>“Um....”</i>");	
 	output("\n\nThere are more of your own kind than she might be able to properly envision: a number so large that she might not be able to understand the magnitude of how many exist.");

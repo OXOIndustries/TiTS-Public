@@ -28,11 +28,6 @@ public function ramisBustDisplay(nude:Boolean = false):String
 	return sBust;
 }
 
-public function ramisIsCrew():Boolean
-{
-	return flags["RAMIS_ONBOARD"] == 1;
-}
-
 // Intros
 // Appears every other day in Anon’s Bar between 21:00 - 01:30
 // Edit, new time: 20:15 - 02:30
@@ -163,7 +158,11 @@ public function approachRamis(special:String = "none"):void
 	clearMenu();
 	
 	addButton(10, "Appearance", ramisAppearance, 10);
-	if(flags["RAMIS_MET"] != undefined) addButton(4, "Recruit", ramisRecruit, undefined, "Recruit", "She’s a mercenary, right? See what it would cost to get her on board your ship.");
+	if(flags["RAMIS_MET"] != undefined)
+	{
+		if(ramisRecruited()) addButton(4, "Join Crew", ramisRejoinCrew, undefined, "Join Crew", "Ask the mercenary to rejoin your crew and move back into your ship.");
+		else addButton(4, "Recruit", ramisRecruit, undefined, "Recruit", "She’s a mercenary, right? See what it would cost to get her on board your ship.");
+	}
 	
 	// Special femboy approach
 	if(special == "femboy")

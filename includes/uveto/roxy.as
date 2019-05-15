@@ -3541,7 +3541,7 @@ public function roxySexMissionaryAfter():void
 	output("You’re stuck in some half-aware state, not sure what your brain is telling you is real. One eye open and the other shut, the gentle little caresses to your temple coax you from what is an insufferable and uncertain state of mind. Swallowing is nearly an impossible task, your innards so dried up after being used as little more than");
 	if (pc.cockTotal() > 1) output(" dicks that just happen");
 	else output(" a dick that just happens");
-	output(" to have a [pc.raceShort] attached to them.");
+	output(" to have [pc.aRaceShort] attached to them.");
 	output("\n\n<i>“Hey, [pc.name], hey, c’mon, it’s over...”</i> Roxy whispers warmly into your [pc.ear], and for the first time since this all began you finally feel serenity. You pull your head from Roxy’s perky cleavage, meeting a rare and almost maternal smile. <i>“Shh, I know it kinda hurts, just... try to pull out slowly, okay?”</i>");
 	output("\n\nFuck, it does. Your mouth stretches into a wide expression. It feels like your dick, soft as it is, coated in ludicrous amounts of effluence, is pulling itself off your body. You remove yourself from Roxy with a loud, wet pop that makes your heart sink in some way. The rubs to your shoulder and the nuzzle to your cheek from makes it vanish quick as it came.");
 	output("\n\nOnly one question’s on your mind: <i>“Can I relax?”</i>");

@@ -620,7 +620,7 @@ public function kirosShipChubnookiUpDaCooter():void
 
 	processTime(60+rand(15));
 	
-	IncrementFlag("KIRO_VAG_FUCKED");
+	takeKiroginity();
 
 	clearMenu();
 	addButton(0, "Next", kirosShipPostFirstFuck);

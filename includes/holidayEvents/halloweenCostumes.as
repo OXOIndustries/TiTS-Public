@@ -551,7 +551,9 @@ public function bountyHuntsPart2():void
 	output("\n\n<i>“No help for it now,”</i> Holiday mutters. <i>“Better just let nature take its course.”</i> Stepping up to you, she gently pushes your head down, lifting your [pc.ass] higher into the air. Ripply lets out a tiny roar and feeds more of his breeding shaft into your suit, its firm head finally locating the entrance to your [pc.asshole]. Liquid oozes from his member, greasing up your cheeks, the warm lube dripping down your [pc.thighs] and spreading his tingling heat through your whole lower body. You squirm in the latex bodysuit, tugging at the too-tight surface straining against your [pc.breasts] ");
 	if(pc.hasCock()) output("and your [pc.cocks]");
 	output(". You shake your head, hair spilling across your eyes in full, blonde tresses. Has your hair always been");
-	if(pc.hairLength < pc.tallness / 1.8)
+	
+	var newHairLength:Number = Math.ceil(pc.tallness / 1.8);
+	if(pc.hairLength < newHairLength)
 	{
 		output(" that long");
 		if(pc.hairColor != "blonde") output("? Or that golden");
@@ -562,7 +564,7 @@ public function bountyHuntsPart2():void
 	
 	//[pc.hair becomes blonde and grows to ass-length without outputting any text.]
 	pc.hairColor = "blonde";
-	if(pc.hairLength < pc.tallness / 1.8) pc.hairLength = pc.tallness / 1.8;
+	if(pc.hairLength < newHairLength) pc.hairLength = newHairLength;
 
 	output("\n\nAll worries vanish as Ripply’s swollen shaft pushes its way past your pucker and into your ass, inch by oh-so-thick inch. Biting your lower lip, you can’t help but marvel at the little guy’s determination! Claws buried in the yielding expanse of your hefty heinie, he pumps with single-minded determination, feeding a ribbed shaft longer than he is into your clenching rump. He lets out tiny roars from time to time, but your initial mirth quickly becomes delight as his rigid tool twists and flexes in vibrating segments. Your low moans at the filling pressure upgrade to ecstatic squeals as your body knots in a sudden and irresistible orgasm. As if Ripply had hit a release valve, you shudder and drop to");
 	if(pc.hasKnees()) output(" your knees");
@@ -1329,7 +1331,7 @@ public function taurBarAdventures(config:int = 1):void
 	if(config != 2) output("unprotected, moist slits, a smorgasbord of cunt awaiting impregnation");
 	else output("dozens of gift-wrapped, bulging dicks, a smorgasbord of cock waiting for your decision");
 	output(". You push your way through the crowd to the bar. All the dripping you’ve been doing has you parched, and you need refreshments before you show these people what a centaur can do.");
-	output("\n\nThe thought that you’re not really a centaur, just a [pc.raceShort] in a costume doesn’t even come to mind, ");
+	output("\n\nThe thought that you’re not really a centaur, just [pc.aRaceShort] in a costume doesn’t even come to mind, ");
 	if(config != 2) output("not when your bulging balls feel like they’re flooding with fresh, thick cum.");
 	else output("not when your cunt is promising you the world in exchange for a little penetration.");
 

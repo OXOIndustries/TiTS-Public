@@ -1688,7 +1688,7 @@ public function actuallyGetFuckedByTuuva(x:int):void
 		else output("bowels");
 		output(" with what feels like gallons of seed. You see her big, black horsey balls pulse and throb heavily as the little doggo slut struggles to truly deal with the immense virility you gifted her with. Her face twists and contorts as she’s subjected to pleasures she was never meant to experience so intensely.");
 		output("\n\nYour body responds by bloating, your [pc.belly] filling out to pregnant proportions, each passing second seeming to add another month, and after that, a twin, then a triplet to your arbitrary, unborn-child-based measuring standard for cum inflation. It doesn’t stop there, and eventually her seed spills out around the seal her knot has made.");
-		output("\n\nYou feel like a [pc.race] cocksleave, reduced to a drooling, fleshy holster by the strong little korg, and her massively oversized cock. She seems just as put out as you are by her dick. Her eyes are crossed and her mouth seems to be mumbling out some kind of blissed out nonsense.");
+		output("\n\nYou feel like [pc.aRace] cocksleave, reduced to a drooling, fleshy holster by the strong little korg, and her massively oversized cock. She seems just as put out as you are by her dick. Her eyes are crossed and her mouth seems to be mumbling out some kind of blissed out nonsense.");
 		output("\n\nAt some point she stops cumming and collapses, leaving the both of you to bask in the afterglow.");
 	}
 

@@ -1535,6 +1535,8 @@
 		}
 		public function resetBallSize(): void
 		{
+			// Revert 'Nuki Ball size changes first
+			if(hasPerk("'Nuki Nuts")) setPerkValue("'Nuki Nuts", 1, 0);
 			// Revert ball size to default value.
 			ballSizeRaw = 1;
 			ballSizeMod = 1;
@@ -17522,14 +17524,16 @@
 			}
 			//Hornyness 1/2
 			else if (lust() > 75 && rand(2) == 0) {
+				var lust:Number = lust();
+				var cumQ:Number = cumQ();
 				//Uber horny like a baws!
-				if (lust() > 90) {
+				if (lust > 90) {
 					//Weak as shit cum
-					if (cumQ() < 50) {
+					if (cumQ < 50) {
 						descript += RandomInCollection(["throbbing", "pulsating"]);
 					}
 					//lots of cum? drippy.
-					else if (cumQ() < 200) {
+					else if (cumQ < 200) {
 						descript += RandomInCollection(["dribbling", "drooling", "leaking"]);
 					}
 					//Tons of cum
@@ -17538,12 +17542,12 @@
 					}
 				}
 				//A little less lusty, but still lusty.
-				else if (lust() > 75) {
-					if (cumQ() < 50) {
+				else if (lust > 75) {
+					if (cumQ < 50) {
 						descript += RandomInCollection(["turgid", "blood-engorged", "rock-hard", "stiff", "eager"]);
 					}
 					//A little drippy
-					else if (cumQ() < 200) {
+					else if (cumQ < 200) {
 						if (rand(10) <= 3) descript += RandomInCollection(["fluid-beading", "slowly-oozing"]);
 						else descript += RandomInCollection(["turgid", "blood-engorged", "rock-hard", "stiff", "eager"]);
 					}
@@ -17643,14 +17647,16 @@
 			}
 			//Hornyness 1/2
 			else if (lust() > 75 && rand(2) == 0) {
+				var lust:Number = lust();
+				var cumQ:Number = cumQ();
 				//Uber horny like a baws!
-				if (lust() > 90) {
+				if (lust > 90) {
 					//Weak as shit cum
-					if (cumQ() < 50) {
+					if (cumQ < 50) {
 						descript += RandomInCollection(["throbbing", "pulsating"]);
 					}
 					//lots of cum? drippy.
-					else if (cumQ() < 200) {
+					else if (cumQ < 200) {
 						descript += RandomInCollection(["dribbling", "drooling", "leaking"]);
 					}
 					//Tons of cum
@@ -17659,12 +17665,12 @@
 					}
 				}
 				//A little less lusty, but still lusty.
-				else if (lust() > 75) {
-					if (cumQ() < 50) {
+				else if (lust > 75) {
+					if (cumQ < 50) {
 						descript += RandomInCollection(["turgid", "blood-engorged", "rock-hard", "stiff", "eager"]);
 					}
 					//A little drippy
-					else if (cumQ() < 200) {
+					else if (cumQ < 200) {
 						descript += RandomInCollection(["turgid", "blood-engorged", "rock-hard", "stiff", "eager", "fluid-beading", "slowly-oozing"]);
 					}
 					//uber drippy

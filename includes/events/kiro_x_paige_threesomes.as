@@ -1718,6 +1718,7 @@ public function PKTSKR(args:Array):void
 		if(pc.cocks[0].cLength() >= 16) output(" She’s tight, remarkably so, and yet, despite her ‘inexperience,’ she takes you about as easily as any other slut – you’ll have to look into buying some of that elasticizing oil yourself!");
 		pc.cockChange();
 		kiro.cuntChange(0,pc.cockVolume(0));
+		takeKiroginity();
 
 		output("\n\nWhen you thrust crotch-deep into her, you push Kiro forward, burying her thick cock back into Paige, who sighs in delight at being filled up once more. You remain there until Kiro pulls out, and you repeat her action yourself. It’s a slow-going rhythm at first, but when you get it going, the three of you are a well-lubed fucking machine: no cocks are left unattended cold and");
 		if(pc.hasVagina()) output(" almost");

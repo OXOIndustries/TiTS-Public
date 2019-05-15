@@ -55,8 +55,13 @@ public function bimboPennyMenu():void
 	if(pc.lust() >= 33) addButton(1,"Sex",bimboPennySex);
 	else addDisabledButton(1,"Sex","Sex","You are not quite in the mood for this at the moment.");
 	if(pc.hasItemByClass(IQBGone)) addButton(2,"IQ B-Gone",turnInIQBGoneToPenpen,undefined,"IQ B-Gone","Turn in the IQ B-Gone you got from Dr. Badger’s lab.");
-	if(hours >= 8 && hours < 17) addButton(3,"Recruit",recruitBimboPenpen,undefined,"Recruit","Offer Penny a spot on your crew as your own personal on-demand bimbo.");
-	else addDisabledButton(3,"Recruit","Recruit","Penny seems a bit busy with Flahne. It would be better to discuss this between you and Penny.");
+	
+	if(pennyRecruited()) addButton(5, "Join Crew", pennyRejoinCrew, undefined, "Join Crew", "Ask Penny to rejoin your crew and move back into your ship.");
+	else
+	{
+		if(hours >= 8 && hours < 17) addButton(5,"Recruit",recruitBimboPenpen,undefined,"Recruit","Offer Penny a spot on your crew as your own personal on-demand bimbo.");
+		else addDisabledButton(5,"Recruit","Recruit","Penny seems a bit busy with Flahne. It would be better to discuss this between you and Penny.");
+	}
 	addButton(14,"Leave",mainGameMenu);
 }
 
