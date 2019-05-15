@@ -61,6 +61,11 @@ public function steeleTechTarkusShopAvailable():Boolean
 public function steeleTechTarkusOutsideFunction():Boolean
 {
 	variableRoomUpdateCheck();
+	if (breedwellPremiumBootyCallCheck("tarkus") && rand(4) == 0)
+	{
+		breedwellPremiumBootyCallPing();
+		return true;
+	}
 	if (steeleTechTarkusShopAvailable())
 	{
 		output("\n\nSet into the wall of the main corridor through the <i>Nova</i> is a smallish shop bearing your name: a neon “Steele Tech” sign hangs above the door, the last “e” on your name flickering pitifully every few moments. A dusty window set in side of the shop shows stacks of salvaged tech from the " + (flags["TARKUS_DESTROYED"] != undefined ? "now-lost" : "planet’s") + " wastelands: mostly old machine parts, though there are a few weapons and useful bits with glowing holographic price tags hovering over them.");
