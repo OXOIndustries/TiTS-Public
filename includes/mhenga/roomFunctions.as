@@ -374,6 +374,7 @@ public function jungleEncounterChances(hostileOnly:Boolean = false):Boolean {
 				choices.push(fZilPregEncounter);
 			}
 		}
+		if (!hostileOnly && breedwellPremiumBootyCallCheck("mhen'ga")) choices.push(breedwellPremiumBootyCallPing);
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
