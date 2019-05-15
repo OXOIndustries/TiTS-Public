@@ -3946,7 +3946,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processFrostwyrmPregEvents(deltaT, doOut, totalDays);
 	processAinaPregEvents(deltaT, doOut, totalDays);
 	processLucaTimeStuff(deltaT, doOut, totalDays);
-	
+	processBreedwellPremiumBreederEvents(deltaT, doOut, totalDays);
 	
 	// Per-day events
 	if (totalDays >= 1)
@@ -4169,6 +4169,9 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		{
 			flags["RANDY_CLAWS"] = undefined;
 		}
+		
+		//breedwell premium
+		if (breedwellPremiumIsQualified() && !MailManager.isEntryUnlocked("breedwell_premium_invite")) goMailGet("breedwell_premium_invite");
 		
 		//Other Email Checks!
 		if (rand(100) == 0) emailRoulette(deltaT);
@@ -4911,6 +4914,8 @@ public function emailRoulette(deltaT:uint):void
 		mailList.push("burtsmeadhall");
 	if(!MailManager.isEntryUnlocked("kihaai") && tarkusCoordinatesUnlocked())
 		mailList.push("kihaai");
+	if (!MailManager.isEntryUnlocked("extrameet_invite_email") && extrameetSmutAvail())
+		mailList.push("extrameet_invite_email", "extrameet_invite_email", "extrameet_invite_email");
 	if(!MailManager.isEntryUnlocked("syrividja") && flags["SPAM_MSG_COV8"] != undefined && syriIsAFuckbuddy() && (flags["TIMES_WON_AGAINST_SYRI"] != undefined || flags["TIMES_LOST_TO_SYRI"] != undefined))
 		mailList.push("syrividja");
 	if(!MailManager.isEntryUnlocked("fuckinggoosloots") && celiseIsCrew() && pc.level >= 2)
@@ -4919,8 +4924,6 @@ public function emailRoulette(deltaT:uint):void
 		mailList.push("fuckinggooslootsII");
 	if(!MailManager.isEntryUnlocked("cuzfuckball") && flags["TIMES_MET_FEMZIL"] != undefined && flags["BEEN_ON_TARKUS"] != undefined && pc.level >= 2)
 		mailList.push("cuzfuckball");
-	if (!MailManager.isEntryUnlocked("extrameet_invite_email") && extrameetSmutAvail())
-		mailList.push("extrameet_invite_email", "extrameet_invite_email", "extrameet_invite_email");
 	
 	// SPAM: (9999: If does not have spamblocker upgrade toggled on for CODEX.)
 	if(SpamEmailKeys.length > 0 && flags["CODEX_SPAM_BLOCKER"] == undefined)

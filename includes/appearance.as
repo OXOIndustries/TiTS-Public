@@ -487,6 +487,12 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		else outputRouter(" F");
 		outputRouter(target.mf("reckles spot " + (target == pc ? "your":"[target.hisHer]") + " cheeks.","reckles cutely adorn " + (target == pc ? "your":"[target.hisHer]") + " cheeks.", true));
 	}
+	//Premium Breeder Tattoo
+	if (target.hasStatusEffect("Premium Breeder Cheek Tattoo"))
+	{
+		if (rand(2) == 0) outputRouter(" On your left cheek is a pink tattoo of a sperm, its long tail forming a heart, with smaller tadpoles clustered around its head. It has a faint luminescence, unmistakably branding you as a Premium Breeder.");
+		else outputRouter(" Emblazoned on your left cheek is the mark of a Premium Breeder: A pink, luminous sperm, its long tail forming a heart, with other wigglers arranged around its head.");
+	}
 	//M/F stuff!
 	outputRouter(" Overall, " + (target == pc ? "your":"[target.hisHer]") + " visage has " + target.faceDesc() + ".");
 	
@@ -2981,7 +2987,20 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		outputRouter(" " + target.pregBellyFragment());
 	}
 	//9999
-	
+	//Premium Breeder Tattoo
+	if (target.hasStatusEffect("Premium Breeder Crotch Tattoo"))
+	{
+		if (rand(2) == 0)
+		{
+			outputRouter(" Right above your groin is the same tattoo that’s on your cheek: the sperm heart radiating pinkness that marks you out as a Premium Breeder.");
+			if (target.isPregnant() && tempBelly >= 30) outputRouter(" The way it’s stretched out currently by your heavily pregnant belly makes it look all the more sluttily appropriate.");
+		}
+		else
+		{			
+			outputRouter(" You have a tattoo on your lower belly, the pink heart-tailed sperm of a professional broodwhore.");
+			if (target.isPregnant() && tempBelly >= 30) outputRouter(" It’s stretched out by your round, tautened belly, the most perfect advertisement of your skills imaginable.");
+		}
+	}
 	//Chesticles.
 	boobStuff(forTarget);
 	//CROTCH STUFF!

@@ -312,6 +312,9 @@ public function configureMails():void
 	MailManager.addMailEntry("roxy_move", roxyPregMoveEmail, roxyPregMoveEmailSubject(), "Roxy Aiken", "RoxSox@PinupPunks.org", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("roxy_birth", roxyBirthEmail, roxyBirthEmailSubject(), "Roxy Aiken", "RoxSox@PinupPunks.org", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("roxy_missedbirth", roxyMissedBirthEmail, "So I didnt die", "Roxy Aiken", "RoxSox@PinupPunks.org", quickPCTo, quickPCToAddress);
+	//breedwell premium
+	MailManager.addMailEntry("breedwell_premium_invite", breedwellPremiumInviteEmail, "Hey There, Eager Breeder…", "TamaniCorp", "Marketing@TamaniCorp.corp", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("breedwell_premium_earnings", breedwellPremiumEarningsEmail, "Your Earnings", "TamaniCorp", "BCounter@TamaniCorp.corp", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String
