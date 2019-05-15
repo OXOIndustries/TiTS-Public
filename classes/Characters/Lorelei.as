@@ -9,6 +9,7 @@ package classes.Characters
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	import classes.Items.Treasures.Savicite;
+	import classes.Items.Protection.JoyCoEliteShield;
 	import classes.Util.*;
 	
 	import classes.kGAMECLASS;
@@ -47,11 +48,13 @@ package classes.Characters
 			this.armor.resistances.burning.damageValue = -15;
 			this.armor.sexiness = 10;
 			// just eyeballing shield stats rn
+			this.shield = new JoyCoEliteShield();
 			this.shield.shields = 150;
 			this.shield.hasRandomProperties = true;
+			/*this.shield.resistances = new TypeCollection();
 			this.shield.resistances.kinetic.damageValue = 20;
 			this.shield.resistances.electric.damageValue = 50;
-			this.shield.resistances.burning.damageValue = -15;
+			this.shield.resistances.burning.damageValue = -15;*/
 
 			this.meleeWeapon.shortName = "Shock Glove";
 			this.meleeWeapon.baseDamage = new TypeCollection();
@@ -60,6 +63,7 @@ package classes.Characters
 
 			this.level = 9;
 			this.characterClass = GLOBAL.CLASS_SMUGGLER;
+			this.HPMod = 65;
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 			this.physiqueRaw = 35;
