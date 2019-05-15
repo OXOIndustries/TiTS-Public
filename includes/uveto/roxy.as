@@ -1276,8 +1276,9 @@ public function roxyTalkChildren(loc:int=0):void
 		}
 		else if (sel [rn] == 4)
 		{
-			output("\n\n<i>“Hehe, our family’s grown a lot. " + num2Text(numLitters, true) + " pregnancies, " + num2Text(numLitters) + " litters... y");
+			output("\n\n<i>“Hehe, our family’s grown a lot. " + num2Text(numLitters, true) + " pregnancies, " + num2Text(numLitters) + " litters...");
 			if (flags["ROXY_PREG_TIMER"] != undefined) output(" and now a " + num2Ordinal(numLitters + 1) + " on the way! Y");
+			else output(" y");
 			output("ou have no idea how much I love that you love me.”</i> She tilts her head left and right, rattling her brain for something to respond with. <i>“For some reason they know how to organize in a big group like that. Don’t ask me how, but I swear they’re going to get more rebellious as they get older. I’m actually kinda scared, I don’t want any of them fighting. Sibling rivalry’s good and all - was for me anyway - but I hope they don’t come to step on each other or anything...”</i>");
 			output("\n\nYou’ll have to do your best to steer them away from such tendencies. For now, they’re just a bunch of tykes who like smiling and laughing! Best to focus on that rather than the future paranoias, right?");
 			output("\n\n<i>“Yeah... Well, all’s good otherwise. Was just feeling a bit nervous. You take care of yourself okay?”</i>");
@@ -1694,7 +1695,7 @@ public function roxySoxyTakesYourCoxyInHerBoxyBJ(firstTime:Boolean=false):void
 		
 	output("\n\nShe plants two wet kisses to [pc.eachCockHead]");
 	if (pc.cocks[kok].hasFlag(GLOBAL.FLAG_FORESKINNED)) output(", sliding your foreskin back,");
-	output(" and then to your [pc.knotOrSheath]. Spittle runs down her chin, plastering the fur around her lips to her skin before attaching itself to your swelling length in ruddy strings, all for the goal of getting your dick to drool as messily as she does. [pc.CumColor] preseed beads at your summit, forming a dollop that is lapped up before it sags. The laquine visibly shudders, all sorts of sensations firing in her crossing eyes and aroused nerves. For a few seconds all she can do is stroke her cheek across the underside of your [pc.cocksLight].");
+	output(" and then to your [pc.knotOrSheath]. Spittle runs down her chin, plastering the fur around her lips to her skin before attaching itself to your swelling length in ruddy strings, all for the goal of getting your dicks to drool as messily as she does. [pc.CumColor] preseed beads at your summit, forming a dollop that is lapped up before it sags. The laquine visibly shudders, all sorts of sensations firing in her crossing eyes and aroused nerves. For a few seconds all she can do is stroke her cheek across the underside of your [pc.cocksLight].");
 	
 	
 	if (pc.cocks[kok].cType == GLOBAL.TYPE_EQUINE) output("\n\n<i>“Tryin’ to break every bitch you lay, [pc.name]?”</i> Roxy asks, inhaling more musk from your beefy, turgid tool. <i>“Mmf, big fat pony-mounter like this, can’t wait to see every vein standing out. You came well equipped for a laquine; no dick like horsedick!”</i>");
