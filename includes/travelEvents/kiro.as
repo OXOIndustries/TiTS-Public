@@ -1672,7 +1672,7 @@ public function kiroSexMenu():void
 	{
 		if(kiroTrust() >= 66)
 		{
-			if(pc.hasCock() && (pc.cockThatFits(kiro.vaginalCapacity(0)) < 0 && pc.biggestCockLength() < 20) && !pc.hasVagina()) addDisabledButton(4,"PussyPump","PussyPump","You need a penis of a specific size or a vagina (in the usual location) to deal with the consequences of pumping up Kiro’s pussy.");
+			if(pc.hasCock() && (pc.cockThatFits(kiro.vaginalCapacity(0) + 200) < 0 && pc.biggestCockLength() < 20) && !pc.hasVagina()) addDisabledButton(4,"PussyPump","PussyPump","You need a penis of a specific size or a vagina (in the usual location) to deal with the consequences of pumping up Kiro’s pussy.");
 			else if(pc.hasGenitals()) addButton(4,"PussyPump",treatedPussPumps,undefined,"PussyPump","Give Kiro’s pussy a thorough pumping up with the SukMastr 2000 you bought. She could spare to give her feminine side a little extra attention.");
 			else addDisabledButton(4,"PussyPump","PussyPump","You need a penis or vagina (in the usual location) to deal with the consequences of pumping up Kiro’s pussy.");
 		}
@@ -1707,6 +1707,9 @@ public function takeKirosVirginity():void
 		kiroSexMenu();
 		return;
 	}
+	var x:int = pc.cockThatFits(kiro.vaginalCapacity(0) + 200);
+	if(x < 0) x = pc.smallestCockIndex();
+	
 	//High Trust
 	output("\n\nWide-eyed, Kiro nervously bats your hand away. <i>“Come on, angel. You’ve got know I’m saving that for someone special. The last thing I want is to get stuffed up with some " + pc.mf("stud","slut") + "’s cum, then blow up so big that I have to waddle around hunting jobs a pregnant woman can do.”</i> She shakes her head. <i>“No, that’s not entirely true. It’s not that I wouldn’t mind having a few pups, someday. I just...”</i> She trails off, blushing a little under her fur.");
 	output("\n\n<i>“Just what?”</i>");
@@ -1724,8 +1727,6 @@ public function takeKirosVirginity():void
 	else output("your");
 	output(" [pc.leg] and rubs her dewy lips back and forth across it. <i>“You’re already there. If you’re serious about this, taking my virginity... I guess it would be okay.”</i> She scoots forward, sliding her way to the top of your thigh. <i>“If you think you’re " + pc.mf("man","woman") + " enough.”</i>");
 	output("\n\nYou shift her mammoth member aside to ");
-	var x:int = pc.cockThatFits(kiro.vaginalCapacity(0));
-	if(x < 0) x = pc.smallestCockIndex();
 	if(pc.cockVolume(x) * .75 > kiro.cockVolume(0)) output("get the petite thing off of");
 	else output("reveal");
 	output(" your");
@@ -1745,7 +1746,7 @@ public function takeKirosVirginity():void
 	output("\n\n<i>“Maybe you should bend over the bed then, let me take you properly,”</i> you suggest.");
 	output("\n\nKiro leans low, her breasts brushing past your [pc.cockHead " + x + "]. <i>“You know I’ve never been the prim and proper type of girl. I’d rather take charge, given the chance.”</i> She slides further up, releasing your [pc.cock " + x + "] so that her slippery, alien slit can drag across the bottom half of it. <i>“You talked me into giving you my virginity, you silver-tongued devil, but I’m still going to fuck you.”</i>");
 	output("\n\nYou stretch back, putting your hands behind your head. <i>“");
-	if(pc.isBimbo()) output("I bet I make you feel so good you like, fall off!");
+	if(pc.isBimbo()) output("I bet I make you feel so good you, like, fall off!");
 	else if(pc.isNice()) output("Somehow, I think my pride can survive getting ridden by the hottest girl this side of the Milky Way.");
 	else if(pc.isMischievous()) output("I think I’ll survive as long as you don’t crush me with those big ol’ balls of yours.");
 	else output("So in other words, you’re going to do all the work. ‘Kay.");
@@ -1769,16 +1770,14 @@ public function takeKirosVirginity():void
 	processTime(12);
 	pc.lust(3000);
 	clearMenu();
-	addButton(0,"Yes",yesImTakingKirosVcards);
+	addButton(0,"Yes",yesImTakingKirosVcards, x);
 	addDisabledButton(1,"No","No","You consider throwing out a <i>“no”</i>, but change your mind. You’re more than ready for this and have no desire to spoil the mood.");
 }
 
-public function yesImTakingKirosVcards():void
+public function yesImTakingKirosVcards(x:int):void
 {
 	clearOutput();
 	showKiro(true);
-	var x:int = pc.cockThatFits(kiro.vaginalCapacity(0));
-	if(x < 0) x = pc.smallestCockIndex();
 	output("<i>“Yes,”</i> you tell her. <i>“I’m ready if you are.");
 	if(pc.isBimbo() && pc.hasVagina()) output(" You’re gonna love it! Having your pussy fucked is like, the best feeling in the universe!");
 	output("”</i>");
@@ -1787,7 +1786,7 @@ public function yesImTakingKirosVcards():void
 	output("\n\nWet heat envelops you from tip to root");
 	if(pc.hasSheath(x)) output(", netherlips rubbing sinfully against the folds of your sheath");
 	output(", the pleasure forcing you to close your eyes and gasp from the delight of it all. The kui-tan’s slippery interior only offers a brief moment of token resistance, then caves wholly into your body’s pernicious demands for penetration. She’s smooth as silk and yet somehow textured with folds that hug your [pc.cock " + x + "] like a long-lost love.");
-	output("\n\n<i>“Ah-ahhh!”</i> Kiro’s tongue flops out, panting. <i>“It’s so sensitive, and your cock is so... so </i>hard<i>.”</i> She shudders. <i>“I can feel it pushing on me, whenever I shift or move, and I keep squeezing it tighter without meaning to. N-no wonder girls keep coming back to me.”</i> One of her hands grabs her oozing cock and rapidly pumps it. <i>“It hurt a little going in, but it’s like a good hurt, you know?”</i> Looking down at you, the tanuki beams at you. <i>“I’m going to try moving now. Hold onto your dick.”</i>");
+	output("\n\n<i>“Ah-ahhh!”</i> Kiro’s tongue flops out, panting. <i>“It’s so sensitive, and your cock is so... so </i>hard<i>.”</i> She shudders. <i>“I can feel it pushing on me, whenever I shift or move, and I keep squeezing it tighter without meaning to. N-no wonder girls keep coming back to me.”</i> One of her hands grabs her oozing cock and rapidly pumps it. <i>“It hurt a little going in, but it’s like a good hurt, you know?”</i> Looking down at you, the tanuki beams. <i>“I’m going to try moving now. Hold onto your dick.”</i>");
 	pc.cockChange();
 	output("\n\nYou let your arms play down the small of her back until each hand is cradling a well-rounded butt-cheek. <i>“How about I hold onto the next best thing?”</i>");
 	output("\n\nWiggling a little, the impaled hermaphrodite lifts her hips, jerking at first and then smoothing out into a more controlled motion. <i>“Oooh, it feels so much better when you move.”</i> She starts laughing good-naturedly. <i>“Fuck, I sound like such a blushing virgin. If some girl was going on like this, I’d probably just stick it in her mouth to shut her up.”</i> Dropping back down, she gives up the narration and lets out a full-bodied moan. <i>“Yeeesss...”</i>");
@@ -1814,15 +1813,13 @@ public function yesImTakingKirosVcards():void
 	processTime(14);
 	//[Next]
 	clearMenu();
-	addButton(0,"Next",kiroginityTakingPartII);
+	addButton(0,"Next",kiroginityTakingPartII, x);
 }
 
-public function kiroginityTakingPartII():void
+public function kiroginityTakingPartII(x:int):void
 {
 	clearOutput();
 	showKiro(true);
-	var x:int = pc.cockThatFits(kiro.vaginalCapacity(0));
-	if(x < 0) x = pc.smallestCockIndex();
 	showImage("KiroFapFinish");
 	output("Rolling the fucked-out kui-tan into her own sperm-drenched sheets, you switch positions, pinning her underneath you. Puddles of cum run out of her cleavage and down her neck as she looks up at you in confusion, babbling, <i>“A-angel?”</i>");
 	output("\n\nYou put a finger to her lips to shush her and bend low, nibbling at the underside of her jaw, tasting traces of her too-voluminous ejaculate in her fur. How the hell did she hit herself there? It doesn’t matter. You move your kisses up to her lips and gently begin to rock your hips, taking over the fuck now that she’s caved into her own bliss.");
@@ -1863,15 +1860,14 @@ public function kiroginityTakingPartII():void
 	processTime(9+rand(4));
 	pc.orgasm();
 	clearMenu();
-	addButton(0,"Next",tookKiroginityPartIII);
+	addButton(0,"Next",tookKiroginityPartIII, x);
 }
 
-public function tookKiroginityPartIII():void
+public function tookKiroginityPartIII(x:int):void
 {
 	clearOutput();
 	showKiro(true);
-	var x:int = pc.cockThatFits(kiro.vaginalCapacity(0));
-	if(x < 0) x = pc.smallestCockIndex();
+	
 	output("Spent, you collapse on Kiro. She doesn’t recover for a few minutes, giving you both time to catch your breath and enjoy the simple pleasure of your warm bodies cuddling against one another. When her eyes finally blink open, she looks at you and smiles, then gently kisses you. You kiss her back, slowly and sensually twisting your tongue around her own, expressing your feelings in simple physical contact rather than with any words.");
 	output("\n\nShe eventually pushes on your chest, breaking the kiss. <i>“Wow... I didn’t... wow.”</i> She licks a little of her cum from her face and admits, <i>“I didn’t know it could feel that good. No wonder girls always wind up ringing me back.”</i> She squeezes your ");
 	if(pc.libido() >= 70) output("still-hard");
@@ -2200,7 +2196,7 @@ public function repeatVagFuckKiro():void
 	clearOutput();
 	showKiro(true);
 	author("Savin");
-	var x:int = pc.cockThatFits(kiro.vaginalCapacity(0));
+	var x:int = pc.cockThatFits(kiro.vaginalCapacity(0) + 200);
 	if(x < 0) x = pc.smallestCockIndex();
 	if(kiro.ballDiameter() <= 7) 
 	{
@@ -2328,6 +2324,7 @@ public function repeatVagFuckKiro():void
 	processTime(33);
 	pc.orgasm();
 	kiro.orgasm();
+	takeKiroginity();
 	//[Next]
 	clearMenu();
 	addButton(0,"Next",repeatFillingKirosCuntEpilogue);
@@ -3031,7 +3028,7 @@ public function kiroPussPumpPartII():void
 	if(pc.hasCock())
 	{
 		if(kiroTrust() < 75) addDisabledButton(0,"Fuck Them","Fuck Them","Kiro doesn’t trust you enough for this yet.");
-		else if(pc.cockThatFits(kiro.vaginalCapacity(0)) >= 0) addButton(0,"Fuck Them",fuckPumpedKiro,undefined,"Fuck Them","Fuck Kiro’s plush, pumped-up lips. She’s begging for it.");
+		else if(pc.cockThatFits(kiro.vaginalCapacity(0) + 200) >= 0) addButton(0,"Fuck Them",fuckPumpedKiro,undefined,"Fuck Them","Fuck Kiro’s plush, pumped-up lips. She’s begging for it.");
 		else addDisabledButton(0,"Fuck Them","Fuck Them","Your dick is too large to fuck Kiro’s pussy.");
 	}
 	else addDisabledButton(0,"Fuck Them","Fuck Them","You need a penis in order to fuck Kiro’s pussy.");
@@ -3047,7 +3044,7 @@ public function kiroPussPumpPartII():void
 public function fuckPumpedKiro():void
 {
 	clearOutput();
-	var x:int = pc.cockThatFits(kiro.vaginalCapacity(0));
+	var x:int = pc.cockThatFits(kiro.vaginalCapacity(0) + 200);
 	if(x < 0) x = pc.smallestCockIndex();
 	showKiro(true);
 	output("Smiling to yourself, you climb into bed with the sperm-sauced kui-tan and grab [pc.oneCock] in hand. Was there ever any doubt it would end this way - with the proud, cock-centered Kiro craving a dicking like a bitch in heat? All it took was getting her in touch with her feminine side, and now she wants nothing more than to have your cock buried in her sopping-wet, overly-engorged entrance. Her sodden lips part around you like a clinging, silken sleeve, sucking you in to the [pc.sheath " + x + "].");
