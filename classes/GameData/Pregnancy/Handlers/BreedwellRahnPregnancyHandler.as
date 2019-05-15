@@ -231,6 +231,8 @@ package classes.GameData.Pregnancy.Handlers
 			var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
 			pData.pregnancyQuantity = 2;
 			mother.addPregnancyBellyMod(pregSlot, 5, true);
+			//if have super incubator perk, increase preg multi to set base preg time to 10 days
+			if (mother.hasPerk("Rahn Super Incubator")) pData.pregnancyIncubationMulti += .4;
 		}
 		
 		public static function rahnBreedwellOnSuccessfulImpregnationOutput(father:Creature, mother:Creature, thisPtr:BasePregnancyHandler):void
