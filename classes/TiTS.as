@@ -471,6 +471,8 @@
 		include "../includes/breedwell/breedwell.as";
 		include "../includes/breedwell/rooms.as";
 		include "../includes/breedwell/quaelle.as";
+		include "../includes/breedwell/breedwellPremium.as";
+		include "../includes/breedwell/breedwellPremiumBootyCalls.as";
 		
 		// GASTIGOTH!
 		include "../includes/gastigoth/gastigoth.as";
