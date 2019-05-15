@@ -824,9 +824,9 @@ public function daneTailFuckOutro():void
 		output("”</i> The placid bliss radiating from your tail makes it hard to be anything but happy about that course of events.");
 	}
 	//8+
-	else if(flags["DANE_TAILCUNTED"] == 7)
+	else if(flags["DANE_TAILCUNTED"] >= 7)
 	{
-		output("\n\nI love it!”</i> you proclaim wholeheartedly. <i>“Nothing makes me happier than draining your balls, Dane.”</i> You reach down to brazenly fondle him beneath the bar, smiling licentiously at the camera. <i>“You got me hooked on that thick, ausar dick.”</i> You thrill at how pleasant it feels to be openly cum-thirsty, and the narcotic thrill of pleasure leaves you to wonder when you can do this again...");
+		output("\n\n<i>“I love it!”</i> you proclaim wholeheartedly. <i>“Nothing makes me happier than draining your balls, Dane.”</i> You reach down to brazenly fondle him beneath the bar, smiling licentiously at the camera. <i>“You got me hooked on that thick, ausar dick.”</i> You thrill at how pleasant it feels to be openly cum-thirsty, and the narcotic thrill of pleasure leaves you to wonder when you can do this again...");
 	}
 	//Merge
 	output("\n\nWith his knot’s swelling finally going down, Dane is at last able to pry himself free from your rapacious parasite. The wet sucking sound it makes as it’s removed seems loud enough for the whole bar to hear it, even over the din of the slot machines casino patrons, but nobody spares you a second glance.");
@@ -1007,6 +1007,7 @@ public function daneCuntfucks():void
 	output("\n\nIf this is how Dane fucks, he must be leaving quite a trail of bastards across the galaxy. You cradle your middle, feeling it bulge slightly as Dane finishes flexing and sags back down to seated position, breathing heavily.");
 	output("\n\nThe mercenary doesn’t seem interested in cuddling, however. He scoots forward to the edge of his seat and gently pushes you down to the floor. Still joined to his crotch by the anchor of his knot, your [pc.butt] is lifted up into the air. You pant for breath");
 	if(pc.hasCock() && cumQ >= 500) output(" just above the pool of your own cum" + (pc.biggestTitSize() >= 10 ? ", dragging your [pc.nipples] through it":"") + ". Dane slaps one cheek in apparent approval.");
+	else output(".");
 	output("\n\n<i>“Now you look like a proper, bred bitch.”</i> His fingers rove higher, sliding across sweat-slickened [pc.skinFurScales] to trace the curvature of your spin. His other hands join it soon after, caressing and squeezing you as you’re trapped " + (pc.legCount == 2 ? "on all fours":"in post-coital doggie-style") + ". <i>“Lower.”</i> He pushes down on your neck but holds your hips where they are, and deep inside yourself, you can feel the accumulated spunk puddling against your cervix" + (!pc.isPregnant(x) ? ", forcing egg-seeking missiles through in dribs and drabs":"") + ". Your cheek ");
 	if(pc.hasCock() && cumQ >= 500) output("smears through your [pc.cumNoun].");
 	else output("rubs on the ground.");

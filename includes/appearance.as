@@ -135,6 +135,13 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			clearMenu();
 			addButton(0,"Next",backTarget);
 		}
+		if (target.hasPerk("Custom Appearance"))
+		{
+			if (target is Lorelei) loreleiLooksGood();
+			//Safeguard
+			else loreleiLooksGood();
+			return;
+		}
 	}
 	author("Fenoxo’s Code");
 	
@@ -3094,6 +3101,7 @@ private var COLLAR_LIST:Array = [
 	"Sera’s",
 	"Sub-Tuner",
 	"Vark's",
+	"[lorelei.name]'s",
 ];
 
 public function hasCollars():Number
@@ -3119,6 +3127,14 @@ public function getWornCollar():StorageClass
 		if (itm != null && itm.value1 == 1) return itm;
 	}
 	return null;
+}
+
+public function collarOwnerName():String
+{
+	if (!hasWornCollar()) return "Nobody";
+	var ownerName:String = getWornCollar().storageName.split(" ")[0];
+	if (ownerName == "Sub-Tuner") return "Belle";
+	return ownerName.slice(0, ownerName.length-2);
 }
 
 public function appearanceWornCollar():void

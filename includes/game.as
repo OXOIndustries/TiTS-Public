@@ -3729,7 +3729,10 @@ public function variableRoomUpdateCheck():void
 	if(flags["ZHENG_SHI_PROBED"] == undefined && !rooms["ZSF V14"].hasFlag(GLOBAL.OBJECTIVE)) rooms["ZSF V14"].addFlag(GLOBAL.OBJECTIVE);
 	else if(flags["ZHENG_SHI_PROBED"] != undefined && rooms["ZSF V14"].hasFlag(GLOBAL.OBJECTIVE)) rooms["ZSF V14"].removeFlag(GLOBAL.OBJECTIVE);
 
-	 
+	// Lorelei
+	if (flags["LORELEI_BEATEN"] != undefined || isLoreleisBitch()) rooms["ZSR LORELEI"].addFlag(GLOBAL.NPC);
+	else rooms["ZSR LORELEI"].removeFlag(GLOBAL.NPC);
+
 	/* UVETO */
 	
 	// Huskar Bimbos

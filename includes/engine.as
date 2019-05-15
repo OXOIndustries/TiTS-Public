@@ -446,3 +446,27 @@ public function penisRouterCockDesc(cIdx:int = 0, fullDesc:Boolean = false):Stri
 	return msg;
 }
 
+// args:
+// 0 - scene function, should be (genitalIndex:int, useVag:Boolean):void
+// 1 - penisArgs for penisRouter (required, skip scene)
+// 2 - vaginaArgs for vaginaRouter (required, skip scene)
+// 3 - use vagina 0 if neuter pc? (default yes)
+public function hermRouter(args:Array):void
+{
+	var scene:Function = args[0];
+	var penisArgs:Array = [function (cockIdx:int):void { scene(cockIdx, false) }].concat(args[1]);
+	var vaginaArgs:Array = [function (vagIdx:int):void { scene(vagIdx, true) }].concat(args[2]);
+	var vagDefault:Boolean = (args.length > 3 ? args[3] : true);
+	if (pc.isHerm())
+	{
+		clearOutput();
+		showName("\nSELECTING...");
+		output("Which set of implements will you use?");
+		clearMenu();
+		addButton(0, (pc.hasCocks() ? "Penises" : "Penis"), penisRouter, penisArgs);
+		addButton(1, (pc.hasVaginas() ? "Vaginas" : "Vagina"), vaginaRouter, vaginaArgs);
+	}
+	else if (pc.hasCock()) penisRouter(penisArgs);
+	else if (pc.hasVagina()) vaginaRouter(vaginaArgs);
+	else scene(0, vagDefault);
+}

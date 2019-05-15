@@ -450,6 +450,7 @@
 		include "../includes/zhengShiStation/dane.as";
 		include "../includes/zhengShiStation/forgehound.as";
 		include "../includes/zhengShiStation/ldc_and_shock_hopper.as";
+		include "../includes/zhengShiStation/lorelei.as";
 		include "../includes/zhengShiStation/maike.as";
 		include "../includes/zhengShiStation/olympia.as";
 		include "../includes/zhengShiStation/punkSecOp.as";
@@ -1760,6 +1761,11 @@
 			return chars["ROXY"];
 		}
 		
+		public function get lorelei():Lorelei
+		{
+			return chars["LORELEI"];
+		}
+
 		public function testShipCombat():void
 		{
 			CombatManager.newSpaceCombat();

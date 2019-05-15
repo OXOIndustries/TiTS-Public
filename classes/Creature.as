@@ -3059,6 +3059,12 @@
 				case "guyGirl":
 					buffer = mf("guy","girl");
 					break;
+				case "son":
+				case "daughter":
+				case "sonDaughter":
+				case "daughterSon":
+					buffer = mf("son", "daughter");
+					break;
 				case "daddy":
 				case "mommy":
 				case "daddyMommy":
@@ -3293,6 +3299,10 @@
 			}
 			return amt;
 		}
+		public function numberOfItemByReference(item:ItemSlotClass):int
+		{
+			return numberOfItemByClass(getDefinitionByName(getQualifiedClassName(item)) as Class);
+		}
 		public function hasItemByClass(ref:Class, amount:int = 1):Boolean
 		{
 			if (ref == null || inventory.length == 0) return false;
@@ -3308,6 +3318,15 @@
 			
 			var amt:int = numberOfItemType(arg);
 			
+			if (amt >= amount) return true;
+			return false;
+		}
+		public function hasItemByReference(item:ItemSlotClass, amount:int = 1):Boolean
+		{
+			if (item == null || inventory.length == 0  || amount == 0) return false;
+
+			var amt:int = numberOfItemByReference(item);
+
 			if (amt >= amount) return true;
 			return false;
 		}

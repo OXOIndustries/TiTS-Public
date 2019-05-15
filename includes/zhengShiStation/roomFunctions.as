@@ -84,7 +84,7 @@ public function zhengMinesEncounterBonus():Boolean
 	IncrementFlag("ZS_MINE_STEP");
 	var encounters:Array = [];
 	//First 3 times are gimmes, then increasing odds till step 15 or so.
-	if(flags["ZS_MINE_STEP"]-4 > rand(16))
+	if(flags["ZS_MINE_STEP"]-4 > rand((isLoreleisBitch() ? 20 : 16)))
 	{
 		flags["ZS_MINE_STEP"] = 0;
 		IncrementFlag("ZS_MINE_ENCOUNTERS");
@@ -110,6 +110,7 @@ public function zhengMinesEncounterBonus():Boolean
 		}
 		
 		if (ratsAvailable() && rand(3) == 0) encounters.push(ratsInTheMineEncounter);
+		if (rollForLorelei()) encounters.push(loreleiRandomEncounter);
 		
 		var pregScene:int = boredJumperPregScene();
 		if (flags["BJUMPER_BIRTH_SCENE"] == 1)
@@ -178,13 +179,13 @@ public function takeSnakeByte2():void
 	showName("\nSNAKEBYTE");
 	quickLoot(new SnakeByte());
 }
-
+	
 public function zhengFoundryF1EncounterBonus():Boolean
 {
 	IncrementFlag("ZS_FOUNDRY_STEP");
 	var encounters:Array = [];
 	//First 3 times are gimmes, then increasing odds till step 15 or so.
-	if(flags["ZS_FOUNDRY_STEP"]-4 > rand(16))
+	if(flags["ZS_FOUNDRY_STEP"]-4 > rand((isLoreleisBitch() ? 20 : 16)))
 	{
 		flags["ZS_FOUNDRY_STEP"] = 0;
 		IncrementFlag("ZS_FOUNDRY_ENCOUNTERS");
@@ -201,6 +202,11 @@ public function zhengFoundryF1EncounterBonus():Boolean
 			//encounters.push(ratsInTheMineEncounter);
 			encounters.push(ratsInTheMineEncounter);
 			encounters.push(ratsInTheMineEncounter);
+		}
+		if (rollForLorelei())
+		{
+			encounters.push(loreleiRandomEncounter);
+			encounters.push(loreleiRandomEncounter);
 		}
 		if (snekAndMausHavingFun())
 		{
@@ -235,7 +241,7 @@ public function zhengFoundryF2EncounterBonus():Boolean
 	IncrementFlag("ZS_FOUNDRY_STEP");
 	var encounters:Array = [];
 	//First 3 times are gimmes, then increasing odds till step 15 or so.
-	if(flags["ZS_FOUNDRY_STEP"] - 8 > rand(16))
+	if(flags["ZS_FOUNDRY_STEP"] - 8 > rand((isLoreleisBitch() ? 20 : 16)))
 	{
 		flags["ZS_FOUNDRY_STEP"] = 0;
 		IncrementFlag("ZS_FOUNDRY_ENCOUNTERS");
@@ -259,6 +265,21 @@ public function zhengFoundryF2EncounterBonus():Boolean
 		encounters.push(coronaFlamerEncounter);
 		/*encounters.push(boredJumperAttackProc);
 		encounters.push(boredJumperAttackProc);*/
+		if (ratsAvailable())
+		{
+			//encounters.push(ratsInTheMineEncounter);
+			encounters.push(ratsInTheMineEncounter);
+			encounters.push(ratsInTheMineEncounter);
+			encounters.push(ratsInTheMineEncounter);
+			encounters.push(ratsInTheMineEncounter);
+		}
+		if (rollForLorelei())
+		{
+			encounters.push(loreleiRandomEncounter);
+			encounters.push(loreleiRandomEncounter);
+			encounters.push(loreleiRandomEncounter);
+			encounters.push(loreleiRandomEncounter);
+		}
 		var pregScene:int = boredJumperPregScene();
 		if (flags["BJUMPER_BIRTH_SCENE"] == 1)
 		{
