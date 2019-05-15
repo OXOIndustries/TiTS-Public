@@ -1923,7 +1923,7 @@ public function kiroginityEpilogue(fromSexMenu:Boolean = false):void
 	output("\n\n<i>“What’s this?”</i> you ask, confused.");
 	output("\n\nKiro puts them in your hand. They smell richly of her, her soap, and the potent aroma of her double genitals. <i>“They’re my panties, silly.”</i>");
 	output("\n\n<i>“And...?”</i>");
-	output("\n\n<i>“A trophy, silly. I’ve collected quite a few from my conquests. It seems only fitting that you get to keep mine for conquering me.”</i> She playfully pinches your [pc.butt]. <i>“...Or coming as close to conquering me as anyone’s ever going to get.”</i> She grins, showing off canines that look a little sharper than any human’s. <i>“Now get going, and make sure to think of me if you jack off into them!”</i>");
+	output("\n\n<i>“A trophy, of course. I’ve collected quite a few from my conquests. It seems only fitting that you get to keep mine for conquering me.”</i> She playfully pinches your [pc.butt]. <i>“...Or coming as close to conquering me as anyone’s ever going to get.”</i> She grins, showing off canines that look a little sharper than any human’s. <i>“Now get going, and make sure to think of me if you jack off into them!”</i>");
 	
 	pc.createKeyItem("Panties - Kiro's - Lacy, black, and crotchless.");
 	//scene over!
