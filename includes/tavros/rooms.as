@@ -279,7 +279,7 @@ public function initTavrosRooms():void
 	rooms["9004"].addFlag(GLOBAL.INDOOR);
 	rooms["9004"].addFlag(GLOBAL.PUBLIC);
 	rooms["9004"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["9004"].runOnEnter = undefined;
+	rooms["9004"].runOnEnter = breedwellPremiumBootyCallsCheckTavrosAusar;
 
 	//9005
 	rooms["9005"] = new RoomClass(this);
@@ -421,7 +421,7 @@ public function initTavrosRooms():void
 	rooms["9014"].addFlag(GLOBAL.INDOOR);
 	rooms["9014"].addFlag(GLOBAL.PUBLIC);
 	rooms["9014"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["9014"].runOnEnter = undefined;
+	rooms["9014"].runOnEnter = breedwellPremiumBootyCallsCheckTavrosDomme;
 
 	//9015
 	rooms["9015"] = new RoomClass(this);
@@ -758,6 +758,7 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 14"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 14"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 14"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["RESIDENTIAL DECK 14"].runOnEnter = breedwellPremiumBootyCallsCheckTavrosCouple;
 	
 	//1015 West Walkway 2
 	rooms["RESIDENTIAL DECK 15"] = new RoomClass(this);
