@@ -13,6 +13,7 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.Engine.Utility.num2Text;
 	import classes.Engine.Interfaces.AddLogEvent;
 	import classes.Engine.Interfaces.ExtendLogEvent;
+	import classes.Engine.Map.InPublicSpace;
 	import classes.StorageClass;
 	
 	public class ButtBugPregnancy1 extends BasePregnancyHandler
@@ -53,6 +54,9 @@ package classes.GameData.Pregnancy.Handlers
 			var addRating:int = 1;
 			pData.pregnancyBellyRatingContribution += addRating;
 			mother.bellyRatingMod += addRating;
+			
+			var eggCycleEffect:StorageClass = mother.getStatusEffect("Butt Bug Egg Cycle");
+			if(eggCycleEffect != null) eggCycleEffect.value4 += pData.pregnancyQuantity;
 			
 			mother.lust(50);
 			
@@ -101,6 +105,7 @@ package classes.GameData.Pregnancy.Handlers
 		public static function buttBugAddEggs1(mother:Creature, pregSlot:int, eggs:int = 1):void
 		{
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
+			
 			pData.pregnancyQuantity += eggs;
 			var addRating:int = (eggs * 1);
 			pData.pregnancyBellyRatingContribution += addRating;
@@ -108,32 +113,60 @@ package classes.GameData.Pregnancy.Handlers
 			var eggCycleEffect:StorageClass = mother.getStatusEffect("Butt Bug Egg Cycle");
 			
 			var txt:String = "";
-			txt += "You emit a brief moan as your butt bug squirts another load of her warm slimy liquid into your gut. Her tendrils deploy inside you again as she prepares to lay another egg. This time, instead of simply making space, she pushes the previous egg further along your intestines while the bulge in your [pc.belly] visibly shifts around. She expands like she did the first time to deposit another one of her eggs to join those already in you. Her center of mass moves deeper into your digestive tract and stretches your anal passage in the process.";
-			txt += "\n\nJust like the first time, her movements stimulate you in all kinds of interesting ways whenever her nubby surfaces rub along your anal walls. Unable to resist, you drop your [pc.gear].";
-			if(mother.exhibitionism() < 66) txt += " You are a bit nervous about someone seeing you but this simply cannot wait";
-			else txt += " You don’t even care if someone sees you";
-			txt += ". One hand finds its way to your [pc.belly] and sensually rubs its surface while your other hand";
-			if(mother.isHerm()) txt += " rubs its palm along the underside of your cock" + (mother.cocks.length == 1 ? "" : "s") + " as your digits dig into your vaginal lips";
-			else if(mother.hasCock()) txt += " grips and strokes " + (mother.cocks.length == 1 ? "your cock" : "one of your cocks");
-			else if(mother.hasVagina()) txt += " fingers " + (mother.vaginas.length == 1 ? "your cunt" : "one of your cunts");
-			else txt += " slips a single digit into the orifice of your anal parasite. Her nerve link provides you all the sensual feedback she feels. If you didn’t know any better you’d think you were fingering a vagina you don’t have yet still feel";
-			txt += ".";
-			if(eggs > 1) txt += "\n\nWith the time that has passed, she eventually slots in " + (eggs == 2 ? "one more egg" : (num2Text(eggs - 1) + " more eggs")) + " into your behind...";
-			txt += "\n\nYour hips buck as her newest egg plops out into you to join the rest. A miniature orgasm rolls through you while your butt bug winds down her activities and your hand";
-			if(mother.isHerm()) txt += " gets covered in both [pc.cum] and [pc.girlCum]";
-			else if(mother.hasCock()) txt += " is covered in tiny spurts of [pc.cum]";
-			else if(mother.hasVagina()) txt += " acquires a thin lamination of [pc.girlCum]";
-			else txt += " gets covered in a thin layer of the female’s slime";
-			txt += ". Satisfied slightly but not completely, you redress in your [pc.gear] and continue your day with an extra egg bulging out your gut.";
 			
-			AddLogEvent(ParseText(txt), "passive");
+			// Next-first egg injection in cycle or potential max lust blurb
+			if((eggCycleEffect != null && eggCycleEffect.value4 <= 1) || (mother.lust() >= mother.lustMax() && rand(2)))
+			{
+				var inPublic:Boolean = InPublicSpace();
+				
+				txt += "You emit a brief moan as your butt bug squirts another load of her warm slimy liquid into your gut. Her tendrils deploy inside you again as she prepares to lay another egg. This time, instead of simply making space, she pushes the previous egg further along your intestines while the bulge in your [pc.belly] visibly shifts around. She expands like she did the first time to deposit another one of her eggs to join those already in you. Her center of mass moves deeper into your digestive tract and stretches your anal passage in the process.";
+				txt += "\n\nJust like the first time, her movements stimulate you in all kinds of interesting ways whenever her nubby surfaces rub along your anal walls. Unable to resist, you drop your [pc.gear].";
+				if(inPublic)
+				{
+					if(mother.exhibitionism() < 66) txt += " You are a bit nervous about someone seeing you but this simply cannot wait.";
+					else txt += " You don’t even care if someone sees you.";
+				}
+				txt += " One hand finds its way to your [pc.belly] and sensually rubs its surface while your other hand";
+				if(mother.isHerm()) txt += " rubs its palm along the underside of your cock" + (mother.cocks.length == 1 ? "" : "s") + " as your digits dig into your vaginal lips";
+				else if(mother.hasCock()) txt += " grips and strokes " + (mother.cocks.length == 1 ? "your cock" : "one of your cocks");
+				else if(mother.hasVagina()) txt += " fingers " + (mother.vaginas.length == 1 ? "your cunt" : "one of your cunts");
+				else txt += " slips a single digit into the orifice of your anal parasite. Her nerve link provides you all the sensual feedback she feels. If you didn’t know any better you’d think you were fingering a vagina you don’t have yet still feel";
+				txt += ".";
+				if(eggs > 1) txt += "\n\nWith the time that has passed, she eventually slots in " + (eggs == 2 ? "one more egg" : (num2Text(eggs - 1) + " more eggs")) + " into your behind...";
+				txt += "\n\nYour hips buck as her newest egg plops out into you to join the rest. A miniature orgasm rolls through you while your butt bug winds down her activities and your hand";
+				if(mother.isHerm()) txt += " gets covered in both [pc.cum] and [pc.girlCum]";
+				else if(mother.hasCock()) txt += " is covered in tiny spurts of [pc.cum]";
+				else if(mother.hasVagina()) txt += " acquires a thin lamination of [pc.girlCum]";
+				else txt += " gets covered in a thin layer of the female’s slime";
+				txt += ". Satisfied slightly but not completely, you";
+				if(!mother.isNude()) txt += " redress in your [pc.gear] and";
+				txt += " continue your day with an extra egg bulging out your gut.";
+				
+				txt = ParseText(txt);
+				
+				if(inPublic) mother.exhibitionism(1);
+				mother.orgasm();
+				mother.lust(50);
+			}
+			// Repeat blurbs
+			else
+			{
+				txt += "You moan as your butt bug once again squirts liquid into your gut and her tendrils deploy " + (eggs == 1 ? "another egg" : (num2Text(eggs) + " more eggs")) + " into you; the mass increasing and shifting the bulge in your [pc.belly], " + ((mother.lust() + 25) < mother.lustMax() ? "greatly arousing you further" : "putting you on the verge of orgasm") + ".";
+				
+				txt = ParseText(txt);
+				
+				mother.lust(25);
+			}
 			
-			mother.orgasm();
-			mother.lust(50);
+			if(txt != "") AddLogEvent(txt, "passive");
 			
-			// reset egg timer
-			if(eggCycleEffect != null) eggCycleEffect.value2 = 0;
-			
+			if(eggCycleEffect != null)
+			{
+				// reset egg timer
+				eggCycleEffect.value2 = 0;
+				// count eggs for cycle
+				eggCycleEffect.value4 += eggs;
+			}
 			pData.pregnancyIncubation += 480;
 		}
 		

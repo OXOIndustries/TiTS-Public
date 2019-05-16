@@ -91,7 +91,7 @@ public function breedwellPremiumEarningsEmail():String
 		else eText += "\n\nYour contract has expired. Visit Breedwell if you’d like to renew. We’ll be eagerly awaiting you!";
 		eText += "\n\n<i>The email message ends with a cartoon of CEO Tamani, lounging happily in a big pile of tiny rahn. She’s bouncing one on her lap whilst others play with her hair and crawl all over her.</i>";
 		pc.credits += (kidPay + sexPay);
-		flags["BREEDWELL_PREM_TTL_PAY"] += (kidPay + sexPay);  
+		flags["BREEDWELL_PREM_TTL_PAY"] += (kidPay + sexPay);
 	}
 	else
 	{		
@@ -154,8 +154,8 @@ public function processBreedwellPremiumBreederEvents(deltaT:uint, doOut:Boolean,
 			if (!pc.hasVagina())
 			{
 				//removing the tattoos will trigger the end of contract code in the else below on the next processTime call
-				if (pc.hasStatusEffect("Premium Breeder Cheek Tattoo"))  pc.removeStatusEffect("Premium Breeder Cheek Tattoo");
-				if (pc.hasStatusEffect("Premium Breeder Crotch Tattoo"))  pc.removeStatusEffect("Premium Breeder Crotch Tattoo");
+				if (pc.hasStatusEffect("Premium Breeder Cheek Tattoo")) pc.removeStatusEffect("Premium Breeder Cheek Tattoo");
+				if (pc.hasStatusEffect("Premium Breeder Crotch Tattoo")) pc.removeStatusEffect("Premium Breeder Crotch Tattoo");
 			}
 		}
 		//this means the contract has ended and should be closed out
@@ -175,7 +175,7 @@ public function processBreedwellPremiumBreederEvents(deltaT:uint, doOut:Boolean,
 			if (breedwellPremiumContractCount() >= 2)
 			{
 				desc = "There’s a funny tickling sensation on the sensitive spot just above your crotch. It’s your Premium Breeder tattoo fading away, commensurate with the end of your half-year-long contract with Breedwell.";
-				if (flags["BREEDWELL_PREM_CON_BAN"] == 1) desc += " You feel despondent, knowing you’ll no longer be an agent of sexual pleasure and bearer of new life. An urge to go back to Breedwell pulls at you, to get a new contract sorted out. Maybe they’ll offer you something even better…";
+				if (flags["BREEDWELL_PREM_CON_BAN"] == 1) desc += " You feel despondent, knowing you’ll no longer be an agent of sexual pleasure and bearer of new life. An urge to go back to Breedwell pulls at you, to get a new contract sorted out. Maybe they’ll offer you something even better...";
 				else desc += " You guess you’ll have to go back there and sign another, if you want to keep getting alerts from nearby rahn.";
 				AddLogEvent(desc);			
 			}	
@@ -212,7 +212,7 @@ public function breedwellPremiumGetPremiumQuaelle():void
 		flags["BREEDWELL_PREM_CNT"] = 0;
 		if (quaelleReserve)
 		{
-			output("<i>“You’re interested in that, delectivious Steele?”</i> Quaelle smiles nervously, eyes sinking down to your [pc.belly]. <i>“It’s, hmm, a big commitment. And I, hmm, was hoping a certain amount of space was, that is to say... it may be somnolent for you to… both…”</i>");
+			output("<i>“You’re interested in that, delectivious Steele?”</i> Quaelle smiles nervously, eyes sinking down to your [pc.belly]. <i>“It’s, hmm, a big commitment. And I, hmm, was hoping a certain amount of space was, that is to say... it may be somnolent for you to... both...”</i>");
 			output("\n\nShe spends a few moments straightening her blouse, and then goes on in a more professional tone. <i>“Well. I’ll give you the presentation, and then you can decide for yourself, ok?”</i>");
 		}
 		else
@@ -235,7 +235,7 @@ public function breedwellPremiumGetPremiumQuaelle():void
 		processTime(2);
 		clearMenu();
 		addButton(0, "Sign", breedwellPremiumGetPremiumSign, false);
-		addButton(1, "Don't", breedwellPremiumGetPremiumQuaelleDont);
+		addButton(1, "Don’t", breedwellPremiumGetPremiumQuaelleDont);
 		addButton(2, "Presentation", breedwellPremiumGetPremiumWatchPres, false);
 	}	
 }
@@ -256,7 +256,7 @@ public function breedwellPremiumGetPremiumQuaelleNext():void
 	processTime(5);
 	clearMenu();
 	addButton(0, "Sign", breedwellPremiumGetPremiumSign, false);
-	addButton(1, "Don't", breedwellPremiumGetPremiumQuaelleDont);
+	addButton(1, "Don’t", breedwellPremiumGetPremiumQuaelleDont);
 }
 public function breedwellPremiumGetPremiumWatchPres(dohrahn:Boolean=false):void
 {
@@ -287,7 +287,7 @@ public function breedwellPremiumGetPremiumQuaelleDont():void
 	output(" put the contract down. This seems a little too extreme for you.");
 	
 	if (quaelleReserve) output("\n\n <i>“Ohh, ok!”</i> Quaelle looks relieved. <i>“Yes, it’s a little too much right now, isn’t it? My thrombulent Steele.”</i> She strokes your shoulder fondly. <i>“You can always come back to it in a year or so, when your calendar might not be so, hmm, hmm, full. The offer will still be there!”</i>");
-	else output("\n\n<i>“Of course, somnolent Steele,”</i> says Quaelle tactfully. <i>“It’s a large commitment, and I would hate to push you into it simply because I have my own quotas to consider. Maybe think about it for a bit and come back when you’re ready, hmm? There’s always time…”</i>");
+	else output("\n\n<i>“Of course, somnolent Steele,”</i> says Quaelle tactfully. <i>“It’s a large commitment, and I would hate to push you into it simply because I have my own quotas to consider. Maybe think about it for a bit and come back when you’re ready, hmm? There’s always time...”</i>");
 	
 	output("\n\nYou amble back to Reception, and Quaelle tucks the contract away. Notably within reach.");
 	output("\n\n<i>“With that out of the way. Was there something else you were after, shiverous Steele?”</i>");
@@ -304,7 +304,7 @@ public function breedwellPremiumPresentationText(dohrahn:Boolean=false):void
 	if (!dohrahn)
 	{
 		output("She happily oozes out from behind the desk, and beckons you along the corridor to the observation chamber above the waiting lounge adjoining the breeding pods. Once again, you are looking down at the clusters of brightly colored gel women, excitedly chatting with one another as they wait for a coupling session.");	
-		output("\n\n<i>“‘Emmmm... I’m afraid we haven’t had a chance to produce a full presentation for the breeders… beyond the email you received, of course,”</i> hums Quaelle. She taps and scrolls at one of the screens. <i>“But, look, you can watch the advert intended for the subscribers. That should make everything clear.”</i>");	
+		output("\n\n<i>“‘Emmmm... I’m afraid we haven’t had a chance to produce a full presentation for the breeders... beyond the email you received, of course,”</i> hums Quaelle. She taps and scrolls at one of the screens. <i>“But, look, you can watch the advert intended for the subscribers. That should make everything clear.”</i>");	
 		output("\n\n");	
 	}
 	output("You sit yourself down and watch.");	
@@ -312,22 +312,22 @@ public function breedwellPremiumPresentationText(dohrahn:Boolean=false):void
 	output("\n\nThe words of Tamani, but this time spoken in the slightly wet, girly tones of one of her go’rahn aides from the last video. The white gel girl is dressed in a smart, tight suit and is slowly walking through a large office.");	
 	output("\n\n<i>“If you are watching this video, it means you have visited the Breedwell Incubation Centre and have expressed interest in our Premium Breeder program,”</i> she smiles. <i>“Firstly: Thank you for helping us in the Great Effort! Your eggings were gratefully received. But what is the Premium Breeder scheme? Tamani herself would be here to explain it to you. Unfortunately she is currently too full of rahn young to move, so I’m filling in.”</i>");	
 	output("\n\nThe go’rahn stops by a white screen, upon which the PB logo is displayed.");	
-	output("\n\n<i>“Sisters,”</i> she says, tapping the desk with a pointer with a slightly anguished expression on her pretty, noseless face, <i>“if you are anything like me, at certain times during the week you can get a little… anxious. A need to blow off some steam becomes too difficult to ignore, you know? Particularly if, again like me, you hold that stuffing your business away up inside you is uncomfortable, and a shame to do besides.”</i>");	
+	output("\n\n<i>“Sisters,”</i> she says, tapping the desk with a pointer with a slightly anguished expression on her pretty, noseless face, <i>“if you are anything like me, at certain times during the week you can get a little... anxious. A need to blow off some steam becomes too difficult to ignore, you know? Particularly if, again like me, you hold that stuffing your business away up inside you is uncomfortable, and a shame to do besides.”</i>");	
 	output("\n\nThere is, indeed, a noticeable bulge at groin level on her tight, prim skirt. ");	
 	output("\n\n<i>“It causes heartache to us here at Breedwell (in partnership with Tamani Corp) that viable eggs are lost by our sisters, say, cranking one off in the bathroom at work for lack of any other option,”</i> she goes on. <i>“Which is where the Premium Breeder scheme comes in. We’ve selected the most fertile and entertaining incubators that have passed through our doors, and paid for them to be available <b>at all times.</b>”</i>");	
 	output("\n\nThe logo shrinks down, doubles itself, and lands itself on the cheek of an outline of a humanoid male and female. You frown. Is there something wrong with the audio? There seems to be a persistent flapping noise coming from somewhere.");	
 	output("\n\n<i>“Upgrade to the scheme, and whenever you see this logo on a cute passerby, you’ll be able to ask them to help you out!”</i> the go’rahn continues brightly. <i>“Since they are paid more the more rahn they service, you know you will be getting experienced relief with a smile, however you want it, wherever you want it. It’s great! But don’t take my word for it. Ask Yolawmee, my recently upgraded colleague.”</i>");	
 	output("\n\nShe walks on from the screen, and at last the source of the flapping comes into view: The other go’rahn from the first video, twin office gear dishevelled and skirt pulled down, is furiously pounding her hips into the upraised buttocks of a naked, redhead female human.");	
 	output("\n\n<i>“And how are things going?”</i> the first rahn queries.");	
-	output("\n\n<i>“So… fucking… tight… so… fucking… good!”</i> groans Yolawmee, drool coursing down from one corner of her mouth. She cranes her head back, eyes rolling, there’s a heavy wet sound - she thrusts herself into the redhead emphatically a few more times, drawing a hovering moan and wince from her - and at last the go’rahn relaxes, visibly thinner, and staggers back, drawing her smooth, ten inch long ovipositor outwards as she does.");	
+	output("\n\n<i>“So... fucking... tight... so... fucking... good!”</i> groans Yolawmee, drool coursing down from one corner of her mouth. She cranes her head back, eyes rolling, there’s a heavy wet sound - she thrusts herself into the redhead emphatically a few more times, drawing a hovering moan and wince from her - and at last the go’rahn relaxes, visibly thinner, and staggers back, drawing her smooth, ten inch long ovipositor outwards as she does.");	
 	output("\n\n<i>“Now Yolawmee, I can’t hope but notice that you were fucking that human in the ass,”</i> the first go’rahn says, tapping her chin as she looks down at the girl’s wide, freckled backside. <i>“Is that really allowed under the scheme?”</i>");	
 	output("\n\n<i>“You betcha Nihn - whew!”</i> The go’rahn is rearranging her clothes and checking her frondular hair. <i>“Our government wishes to encourage our most successful citizens in the outer territories to seek out relief from safe, vetted, professional sluts. Like Tess here!”</i> She casually slaps the girl on the buttock, drawing a squeak out of her.");	
 	output("\n\n<i>“And you’re alright about that, Tess?”</i> Nihn queries, hands on knees.");	
 	output("\n\n<i>“Huh? Oh, sure. I mean, obviously I’d prefer she put it up my foof instead of my dirtbox,”</i> replies the human with a grin. She’s got the PB tattoo emblazoned prominently on one of her rosy cheeks. A great load of white fluid oozes onto the pristine floor as she gingerly sits herself down. <i>“But whatever you girls need, I’m down for, y’know? I just want to make as many big-dicked jelly babes as happy as possible.”</i>");	
-	output("\n\n<i>“Really?”</i> says Nihn. <i>“You know, it’s been a long morning, and… do you think I could get you to give my pussy a bit of attention?”</i>");	
+	output("\n\n<i>“Really?”</i> says Nihn. <i>“You know, it’s been a long morning, and... do you think I could get you to give my pussy a bit of attention?”</i>");	
 	output("\n\n<i>“Do it Nihn,”</i> says Yolawmee, leaning on a desk, simmering with post-coital satisfaction. <i>“You won’t believe what this one can do with her tongue.”</i>");	
 	output("\n\nStill standing, Nihn shoves her skirt down and, facing the camera, cranes her gently quivering butt backwards; with a happy beam, Tess grips the rahn’s thighs and dives in face first.");	
-	output("\n\n<i>“Ooh my,”</i> Nihn coos, dark red eyes crossing slightly. <i>“Aren’t you eager! That’s… uh... some piercing you’ve got...”</i>");	
+	output("\n\n<i>“Ooh my,”</i> Nihn coos, dark red eyes crossing slightly. <i>“Aren’t you eager! That’s... uh... some piercing you’ve got...”</i>");	
 	output("\n\n<i>“Upgrade today,”</i> says the second rahn, stepping in front of the conjoined pair with a sultry smile. <i>“We have an ever growing number of Premium Breeders across many frontier and outer worlds waiting to satiate your urges today. Support the Great Effort! Have way more sex than any of your colleagues! Visit the BIC site and click on the banner to learn more.”</i>");	
 	pc.lust(30);
 	processTime(15);
@@ -348,7 +348,7 @@ public function breedwellPremiumGetPremiumDohrahn():void
 	if (firstTime)
 	{
 		flags["BREEDWELL_PREM_CNT"] = 0;
-		output("<i>“You interested?”</i> the purple rahn says, perking up a bit. <i>“That’s good. Great. Let me just… I’ll give you the Premium presentation after I…”</i>");
+		output("<i>“You interested?”</i> the purple rahn says, perking up a bit. <i>“That’s good. Great. Let me just... I’ll give you the Premium presentation after I...”</i>");
 		output("\n\nShe spends a minute or so rapping out orders to the rest of the staff, and then briskly leads you into the breeding pod observation area. Once again, you are looking down at the clusters of brightly colored gel women, excitedly chatting with one another as they wait for a coupling session.");
 		output("\n\n‘They still haven’t provided us with a proper vid for the breeders,”</i> scowls the do’rahn. She taps and scrolls at one of the screens. <i>“But, look, you can watch the advert intended for the subscribers. That should make everything clear.”</i>");	
 		output("\n\n");
@@ -362,7 +362,7 @@ public function breedwellPremiumGetPremiumDohrahn():void
 		processTime(2);
 		clearMenu();
 		addButton(0, "Sign", breedwellPremiumGetPremiumSign,true);
-		addButton(1, "Don't", breedwellPremiumGetPremiumDohrahnDont);
+		addButton(1, "Don’t", breedwellPremiumGetPremiumDohrahnDont);
 		addButton(2, "Presentation", breedwellPremiumGetPremiumWatchPres,true);
 	}
 }
@@ -384,7 +384,7 @@ public function breedwellPremiumGetPremiumDohrahnNext():void
 	processTime(5);
 	clearMenu();
 	addButton(0, "Sign", breedwellPremiumGetPremiumSign,true);
-	addButton(1, "Don't", breedwellPremiumGetPremiumDohrahnDont);
+	addButton(1, "Don’t", breedwellPremiumGetPremiumDohrahnDont);
 }
 public function breedwellPremiumGetPremiumDohrahnDont():void
 {
@@ -436,7 +436,7 @@ public function breedwellPremiumGetPremiumSign(dohrahn:Boolean=false):void
 	
 	IncrementFlag("BREEDWELL_PREM_CNT");
 	
-	output("Your gut leaps a little bit as you pick up the stylus. It’s certainly a big commitment… but c’mon, being a rahn slut whilst getting state-of-the-art mods AND getting paid more for the privilege? How is this not a win-win situation? ");
+	output("Your gut leaps a little bit as you pick up the stylus. It’s certainly a big commitment... but c’mon, being a rahn slut whilst getting state-of-the-art mods AND getting paid more for the privilege? How is this not a win-win situation? ");
 	if (dohrahn) output("\n\n<i>“Great,”</i> says the do’rahn, giving you a hearty smile for once as she watches you sign the three month contract. <i>“I’ll take you across to the modding bay right away.”</i>");
 	else output("\n\n<i>“Ooh I’m so quiverful, Steele,”</i> coos Quaelle, as she watches you sign the three month contract. <i>“I just know this is a perfect career for you! Come on - we’ll go along to the modding bay right away.”</i>");
 	
@@ -499,29 +499,28 @@ public function breedwellPremiumGetPremiumSurgery(addVag:Boolean=false):void
 		pc.vaginas[ttl].hymen = true;
 		ttl += 1;
 	}
-	if (!pc.hasPerk("Rahn Super Incubator")) pc.createPerk("Rahn Super Incubator", 0, 0, 0, 0, "The modification you received from Breedwell decreases the length of time rahn eggs need to incubate within you. Cuts rahn pregnancy from 14 days to 10.");
+	if (!pc.hasPerk("Rahn Super Incubator")) pc.createPerk("Rahn Super Incubator", 0, 0, 0, 0, "[altTooltip RahnSuperIncubator]");
 	
-
-		output("They put you under, and you wake under the sterile lab lights a little later, feeling groggy. The consultant hands you a mirror, and you consider the neon pink, heart-shaped tattoo formed by a long-tailed sperm that is now on your left cheek. Well… you guess that’s you, for the next three months. ");
-		output("\n\nYou pass your hand over your [pc.belly]. There’s a faint, warm, glowy sensation in there - a suggestion of springiness, and fresh space perhaps, eager to be filled.");
-		if (addVag)
-		{
-			output("\n\nFinally, you sink your hand between your [pc.thighs] and find that, yep, there’s another pair of lips guarding a moist tunnel down there now, right behind your");
-			if (ttl > 2) output(" others. Having so many");
-			else output(" first. Having two");
-			output(" breeding bays, each with the desire to be packed out with hard, fertile cock - or ovipositor - gives you a little shiver, erotic whispers of potential murmuring in your mind.");
-		}
-		output("\n\n<i>“You’re entered into the Premium Breeder database now, " + pc.mf("Mr.","Ms.") + " Steele,”</i> the consultant tells you, handing you a glass of water. <i>“You will be pinged through your wrist device when nearby subscribers desire your company. You’ll be given a stipend for each encounter they give us a thumbs up from, regardless of whether they impregnated you. And, of course, you are still more than welcome to receive your eggings here! Just remember… ”</i>");
-		output("\n\nShe smiles at you briskly. ");
-		output("\n\n<i>“We need 18 rahn babies out of you every 30 days. If you don’t manage that, we’ll find alternative ways for you to meet your quota. Now, off you go! Find some nice healthy rahn friends that can help you on your way! We’ll hopefully talk again in 3 months time.”</i>");
-		
-		processTime(60);
-		time = 90 * 24 * 60;
-		desc = "You have the tattoo of a Premium Breeder. This is the length of time remaining on your current contract."
-		//pc shouldn't have existing status but just in case...
-		if (pc.hasStatusEffect("Premium Breeder Cheek Tattoo")) pc.setStatusMinutes("Premium Breeder Cheek Tattoo", time);
-		else pc.createStatusEffect("Premium Breeder Cheek Tattoo", 0, 0, 0, 0, false, "Icon_Sperm_Hearts", desc, false, time, 0xFF33AF);
-		flags["BREEDWELL_PREM_QUOTA"] = 18;		
+	output("They put you under, and you wake under the sterile lab lights a little later, feeling groggy. The consultant hands you a mirror, and you consider the neon pink, heart-shaped tattoo formed by a long-tailed sperm that is now on your left cheek. Well... you guess that’s you, for the next three months. ");
+	output("\n\nYou pass your hand over your [pc.belly]. There’s a faint, warm, glowy sensation in there - a suggestion of springiness, and fresh space perhaps, eager to be filled.");
+	if (addVag)
+	{
+		output("\n\nFinally, you sink your hand between your [pc.thighs] and find that, yep, there’s another pair of lips guarding a moist tunnel down there now, right behind your");
+		if (ttl > 2) output(" others. Having so many");
+		else output(" first. Having two");
+		output(" breeding bays, each with the desire to be packed out with hard, fertile cock - or ovipositor - gives you a little shiver, erotic whispers of potential murmuring in your mind.");
+	}
+	output("\n\n<i>“You’re entered into the Premium Breeder database now, " + pc.mf("Mr.","Ms.") + " Steele,”</i> the consultant tells you, handing you a glass of water. <i>“You will be pinged through your wrist device when nearby subscribers desire your company. You’ll be given a stipend for each encounter they give us a thumbs up from, regardless of whether they impregnated you. And, of course, you are still more than welcome to receive your eggings here! Just remember...”</i>");
+	output("\n\nShe smiles at you briskly. ");
+	output("\n\n<i>“We need 18 rahn babies out of you every 30 days. If you don’t manage that, we’ll find alternative ways for you to meet your quota. Now, off you go! Find some nice healthy rahn friends that can help you on your way! We’ll hopefully talk again in 3 months time.”</i>");
+	
+	processTime(60);
+	time = 90 * 24 * 60;
+	desc = "You have the tattoo of a Premium Breeder. This is the length of time remaining on your current contract."
+	//pc shouldn't have existing status but just in case...
+	if (pc.hasStatusEffect("Premium Breeder Cheek Tattoo")) pc.setStatusMinutes("Premium Breeder Cheek Tattoo", time);
+	else pc.createStatusEffect("Premium Breeder Cheek Tattoo", 0, 0, 0, 0, false, "Icon_Sperm_Hearts", desc, false, time, 0xFF33AF);
+	flags["BREEDWELL_PREM_QUOTA"] = 18;
 	
 	flags["BREEDWELL_PREM_DAY"] = 1;
 	flags["BREEDWELL_PREM_BACKPAY"] = 0;
@@ -529,7 +528,7 @@ public function breedwellPremiumGetPremiumSurgery(addVag:Boolean=false):void
 	flags["BREEDWELL_PREM_KID_CNT"] = 0;
 	flags["BREEDWELL_PREM_SEX_CNT_CON"] = 0;
 	flags["BREEDWELL_PREM_KID_CNT_CON"] = 0;
-	flags["BREEDWELL_PREM_PAYPERIOD"] = 1;	
+	flags["BREEDWELL_PREM_PAYPERIOD"] = 1;
 	if (flags["BREEDWELL_PREM_SEX_CNT_TTL"] == undefined) flags["BREEDWELL_PREM_SEX_CNT_TTL"] = 0;
 	if (flags["BREEDWELL_PREM_KID_CNT_TTL"] == undefined) flags["BREEDWELL_PREM_KID_CNT_TTL"] = 0;
 	if (flags["BREEDWELL_PREM_TTL_PAY"] == undefined) flags["BREEDWELL_PREM_TTL_PAY"] = 0;
@@ -563,7 +562,7 @@ public function breedwellPremiumPunishScene():Boolean
 	var justWarn:Boolean = true;
 	if (flags["BREEDWELL_PREM_PUN_WARN"] == 1) justWarn = false;
 	var keepKids:Boolean = false;
-	if (flags["BREEDWELL_PREM_KEEP_KID"] == 1) keepKids = true;	
+	if (flags["BREEDWELL_PREM_KEEP_KID"] == 1) keepKids = true;
 	
 	if (dohrahn) quaelleShowDohrahn();
 	else showQuaelle();
@@ -591,7 +590,7 @@ public function breedwellPremiumPunishScene():Boolean
 				output("<i>“Fluctilious Steele! Could I talk to you for a moment?”</i>");
 				output("\n\nQuaelle calls over to you the moment you step into the humid hush of Breedwell’s reception. She has that expression of patient, professional concern native to HR managers about to administer the Quiet Word, and it cannot fail to seed dread in your heart. You follow the roehm into the leafy sitting area.");
 				output("\n\n<i>“The incubator drone we sent you told us that you have an, emmmmm, alternative arrangement set up,”</i> she says, knitting her fingers beneath her bosom and gazing at you placidly. <i>“That’s nice! And I understand, pulsiment Steele, I genuinely do.”</i> She pats you on the hand. <i>“If I were the one bearing cute little baby rahn, I do not think I could bear to let them go either. I would keep them all for myself too!”</i>");	
-				output("\n\n<i>“Buuut. You can’t do that. You must let us have the babies. You know we look after them well, right? I can show you around the living complexes here, if you like.”</i> Quaelle smiles at you patiently. <i>“If you do it again, then… the matter will be out of my hands. We will either have to void your incubator rights, or sanction you. Sanctioning… well, Breedwell will make sure you produce the babies you agreed you would, put it that way.”</i>");	
+				output("\n\n<i>“Buuut. You can’t do that. You must let us have the babies. You know we look after them well, right? I can show you around the living complexes here, if you like.”</i> Quaelle smiles at you patiently. <i>“If you do it again, then... the matter will be out of my hands. We will either have to void your incubator rights, or sanction you. Sanctioning... well, Breedwell will make sure you produce the babies you agreed you would, put it that way.”</i>");	
 				output("\n\nShe pats you on the hand again.");	
 				output("\n\n<i>“But it won’t come to that, will it? Because you’re a numiliant [pc.boy]. Emmmm, unless you want it to, I suppose. Hmm, hmm, hmm. No more stealing rahn, ok?”</i>");	
 			}
@@ -617,7 +616,7 @@ public function breedwellPremiumPunishScene():Boolean
 				output("\n\nThe colorful gastropod sighs, fiddling with her charm bracelets fretfully.");
 				output("\n\n<i>“You have two choices,”</i> she says at last. <i>“You can forego being an incubator. That means");
 				if (breedwellPremiumUnderContract()) output(" your Premium Breeder contract will be cancelled, and");
-				output(" you won’t be able to use the breeding pods again. Oorrrr… you can accept the sanction.”</i>");
+				output(" you won’t be able to use the breeding pods again. Oorrrr... you can accept the sanction.”</i>");
 				
 				output("\n\nSanction?");
 				output("\n\n<i>“12 hours of breeding,”</i> sighs Quaelle. <i>“Staff, guests, visitors will have free use of you in that time. There will be some, emmmm, training involved as well. To try and avoid a repeat.”</i> ");
@@ -627,7 +626,7 @@ public function breedwellPremiumPunishScene():Boolean
 			
 			if (!pc.hasVagina())
 			{
-				addButton(0, "Void", breedwellPremiumVoidContract, true,"Void","You removed your female sex, making this Breedwell's only recourse.");
+				addButton(0, "Void", breedwellPremiumVoidContract, true,"Void","You removed your female sex, making this Breedwell’s only recourse.");
 				addDisabledButton(1, "Sanction", "Sanction", "You removed your female sex!");
 			}
 			else
@@ -662,7 +661,7 @@ public function breedwellPremiumPunishScene():Boolean
 		}
 		if (!pc.hasVagina())
 		{
-			addButton(0, "Void", breedwellPremiumVoidContract, false,"Void","You removed your female sex, making this Breedwell's only recourse.");
+			addButton(0, "Void", breedwellPremiumVoidContract, false,"Void","You removed your female sex, making this Breedwell’s only recourse.");
 			addDisabledButton(1, "Sanction", "Sanction", "You removed your female sex!");
 		}
 		else
@@ -710,14 +709,14 @@ public function breedwellPremiumVoidContract(closePods:Boolean=false):void
 			output("Breedwell and Tamani can fuck off, you didn’t do anything wrong by choosing to raise the jelly babies you bore yourself. You sign the annulment Quaelle hands you.");
 			output("\n\n<i>“Well, emmm, that’s that.”</i> The roehm looks at you with a reluctant admiration.");
 			if (flags["QUAELLE_LOVER"] == 1) output(" <i>“I suppose I get you all to myself now, right? Hmm. Hmm. Hmm.”</i>");
-			else output(" <i>“You are naughty, Steele, don’t think you aren’t, buuuuut… as I said before. I do understand.”</i>");
+			else output(" <i>“You are naughty, Steele, don’t think you aren’t, buuuuut... as I said before. I do understand.”</i>");
 		}
 		else
 		{
 			output("Breedwell and Tamani can fuck off, you never signed up for this. You sign the annulment Quaelle hands you. There’s a tickling sensation on your cheek; you fetch a mirror in time to see the last of the pink tattoo fade away.");
 			output("\n\n<i>“Well, emmm, that’s that.”</i> The roehm looks at you with a reluctant admiration.");
 			if (flags["QUAELLE_LOVER"] == 1) output(" <i>“I suppose I get you all to myself now, right? Hmm. Hmm. Hmm.”</i>");
-			else output(" <i>“You are naughty, Steele, don’t think you aren’t, buuuuut… I admire your, emm, steeliness. Hmm.”</i>");
+			else output(" <i>“You are naughty, Steele, don’t think you aren’t, buuuuut... I admire your, emm, steeliness. Hmm.”</i>");
 		}
 	}
 	
@@ -725,14 +724,14 @@ public function breedwellPremiumVoidContract(closePods:Boolean=false):void
 	{
 		pc.removeStatusEffect("Premium Breeder Cheek Tattoo");
 		desc = "You feel a faint prickling sensation on your face, as if someone were flicking at your cheek with a brush. A quick check with your mirror app reveals that your Premium Breeder tattoo is fading away, the pink sperm losing their luminescence and disappearing into your [pc.skin].";
-		desc += " You feel despondent, knowing you’ll no longer be an agent of sexual pleasure and bearer of new life. An urge to go back to Breedwell pulls at you, to get a new contract sorted out. Maybe they’ll offer you something even better…";
+		desc += " You feel despondent, knowing you’ll no longer be an agent of sexual pleasure and bearer of new life. An urge to go back to Breedwell pulls at you, to get a new contract sorted out. Maybe they’ll offer you something even better...";
 		AddLogEvent(desc);
 	}
 	if (pc.hasStatusEffect("Premium Breeder Crotch Tattoo"))
 	{
 		pc.removeStatusEffect("Premium Breeder Crotch Tattoo");
 		desc = "There’s a funny tickling sensation on the sensitive spot just above your crotch. It’s your Premium Breeder tattoo fading away, commensurate with the end of your half-year-long contract with Breedwell.";
-		desc += " You feel despondent, knowing you’ll no longer be an agent of sexual pleasure and bearer of new life. An urge to go back to Breedwell pulls at you, to get a new contract sorted out. Maybe they’ll offer you something even better…";
+		desc += " You feel despondent, knowing you’ll no longer be an agent of sexual pleasure and bearer of new life. An urge to go back to Breedwell pulls at you, to get a new contract sorted out. Maybe they’ll offer you something even better...";
 		AddLogEvent(desc);	
 	}
 	
@@ -776,7 +775,7 @@ public function breedwellPremiumSanction(quotaPun:Boolean=false):void
 	output(" leads you to a room off the incubator pods. It’s a changing area, sterile white like the rest of the station. Hanging from a rack is a skintight bodysuit: White, except for green and purple touches around the arms and thighs. <b>Tamani Public Service Operative</b> is written across the shoulders. Sat on the bench next to the suit is a round, bulky helmet, with a slim, purple visor across the eyes.");
 	if (dohrahn) output("\n\n<i>“The helmet will explain everything,”</i> says the do’rahn. <i>“Have a nice time getting fucked.”</i> She strides out.");
 	else output("\n\n<i>“The helmet will explain everything,”</i> says Quaelle, laying a soothing, slimy hand on your shoulder. <i>“Good luck, mellificent Steele. I’ll make some tea for you afterwards, if you like.”</i> She slithers out.");
-	output("\n\nYou climb out of your [pc.gear], store it in a locker, and pull on the suit. It clings to your [pc.skinFurScales] tightly, but it’s very elastic: you experimentally pull the material over your [pc.belly] and find you can easily stretch it out by several feet before it snaps right back. It’s also very thin, and shifts over your flesh with each movement you make, a constant source of tactile stimulation. You’d put it down to the fine, glossy material… but it also feels like it has a mind of its own, and it’s touching your form with interest.");
+	output("\n\nYou climb out of your [pc.gear], store it in a locker, and pull on the suit. It clings to your [pc.skinFurScales] tightly, but it’s very elastic: you experimentally pull the material over your [pc.belly] and find you can easily stretch it out by several feet before it snaps right back. It’s also very thin, and shifts over your flesh with each movement you make, a constant source of tactile stimulation. You’d put it down to the fine, glossy material... but it also feels like it has a mind of its own, and it’s touching your form with interest.");
 	output("\n\nYou shiver slightly, then don the helmet, clicking the purple visor into place. It completely blocks your sight.");
 	output("\n\n<i>“Hey there, eager breeder.”</i> ");
 	output("\n\nA cartoon CEO Tamani, pink-skinned, green-haired and boisterous, appears on the visor. She pouts at you, and wags her finger.");
@@ -822,9 +821,9 @@ public function breedwellPremiumSanction(quotaPun:Boolean=false):void
 		output(" Don’t you want to be able to ride two or three thick, juicy cocks at once? Get multiple wombs stuffed full of eggs, swelling you out like a lovely big mom-balloon? Yeah, you do.”</i> Her head deflates, the air seeming to transfer to her gut, swelling her out until her little legs collapse under the weight. She groans happily, running her hands over her tautened stomach and smirks at you. <i>“By the end of today you will, anyway.”</i>");
 	}
 	output("\n\nThe pink-and-green gremlin sticks a hard hat on and pulls a giant wrench out from behind her back. A head appears next to her with the scalp off, revealing clockwork turning away inside.");
-	output("\n\n<i>“We’re gonna be doing a bit of tinkering in here today, make a couple of improvements. Nothing too serious… <i>“ She climbs up to her butt inside the head, tightening a bolt vigorously. A giant, red balloon labelled BREED steadily inflates from inside, until it dominates the entire contraption. Tamani clamps the scalp back on with difficulty, patting her hands with satisfaction. <i>“ ...but I’m sure you’ll be pleased with the results. Now!”</i>");
+	output("\n\n<i>“We’re gonna be doing a bit of tinkering in here today, make a couple of improvements. Nothing too serious... <i>“ She climbs up to her butt inside the head, tightening a bolt vigorously. A giant, red balloon labelled BREED steadily inflates from inside, until it dominates the entire contraption. Tamani clamps the scalp back on with difficulty, patting her hands with satisfaction. <i>“ ...but I’m sure you’ll be pleased with the results. Now!”</i>");
 	output("\n\nA cut-out of a space station appears. It fills with lines of stick figures of three different colors: red, blue and yellow.");
-	output("\n\n<i>“Both visitors and privileged guests are welcome at Tamani Corp, and we employ many hardworking staff as well. It’s quite the bustle around here, as I’m sure you’ve noticed! Because of the nature of the work we do - and the experimental things we put in the atmosphere - they can all get… a little frustrated.”</i>");
+	output("\n\n<i>“Both visitors and privileged guests are welcome at Tamani Corp, and we employ many hardworking staff as well. It’s quite the bustle around here, as I’m sure you’ve noticed! Because of the nature of the work we do - and the experimental things we put in the atmosphere - they can all get... a little frustrated.”</i>");
 	output("\n\nThe image on the visor zooms in on a single blue figure, who swells out into the hourglass outline of a rahn. She puts her figurine hands between her thighs, blush lines appear on her face, and little sweat drops pop out of her head.");
 	output("\n\n<i>“We’d hate any one of them to feel like they were underappreciated. Or to lose their precious sexual fluids. That’s where you come in!”</i>");
 	output("\n\nA figure in white with purple-and-green touches on their hips and arms moves in from the right. The blue rahn raises her arms in delight, then bends the public service operative over, and energetically bumps her groin against their butt. A few sweat-drops later, the operative’s belly takes on a bit of a swell, and the rahn outline happily slides off the screen. They are replaced by a yellow human, and then by a red rahn, each repeating the same action, as if on a treadmill. The operatives winds up sat down, clutching a very heavily swollen gut. The suit gently nibbles the folds of [pc.eachVagina] as you watch.");
@@ -865,15 +864,15 @@ public function breedwellPremiumSanctionVisitors():void
 		output("\n\nSomething is nagging you, a kind of fretful headache. You should sit down on the cushion and push your lips through the hole. You turn and look at the door you came in through; there’s no handle or button. A digital readout above it reading 06:00. You really should sit down on the cushion, get your mouth into position. The clock changes to 05:59. You <b>must</b> sit down on the cushion and present your mouth to the hole. It’s <b>really</b> important that y-");
 	}
 	output("\n\nYou put your [pc.knees] on the padded floor and push your [pc.lips] through the plush, supple hole. The relief is instant and overwhelming, like a warm cloth spreading over your body.");
-	output("\n\nA panorama view of a room appears on the visor: It’s that of a large, unisex public bathroom, utilitarian and clean. On the wall opposite the exit is a round hole about three feet off the ground, in the centre of which are a pair of lips. Instinctively you wet your [pc.lips], and a funny, vicarious thrill runs down your spine as you watch the mouth mimic the action. It looks… inviting. ");
+	output("\n\nA panorama view of a room appears on the visor: It’s that of a large, unisex public bathroom, utilitarian and clean. On the wall opposite the exit is a round hole about three feet off the ground, in the centre of which are a pair of lips. Instinctively you wet your [pc.lips], and a funny, vicarious thrill runs down your spine as you watch the mouth mimic the action. It looks... inviting. ");
 	output("\n\nThere’s a hand-wipe dispenser beside it and a brass plaque above. COMPLIMENTARY ALLEVIATION ORIFICE, you read. GIVE GENEROUSLY.");
 	output("\n\nYou jump slightly as a gryvain spacer strides in. You should really lick your lips again. Present yourself. You blink and shake your head, muddled. The gryvain quickly uses a urinal and leaves. You feel that aching, fretful feeling again as she does. You <i>really</i> need to do better, make sure the public knows that sweet relief is on hand. You <i>thirst</i> to do better. ");
-	output("\n\nThe entrance bumps open again, and this time you lick your [pc.lips] and extend your [pc.tongue], glossy and inviting. The burly saurmorian who’s just walked in pauses, green reptilian eyes on the hole. He slowly slopes off to the stalls… but when he comes back, and you repeat the action, he grunts with lusty amusement and approaches, unzipping his trousers and allowing his sturdy, ridged member to flop outwards.");
+	output("\n\nThe entrance bumps open again, and this time you lick your [pc.lips] and extend your [pc.tongue], glossy and inviting. The burly saurmorian who’s just walked in pauses, green reptilian eyes on the hole. He slowly slopes off to the stalls... but when he comes back, and you repeat the action, he grunts with lusty amusement and approaches, unzipping his trousers and allowing his sturdy, ridged member to flop outwards.");
 	output("\n\nThat soothing balm you felt earlier enfolds you, only this time it’s even stronger, happy warmth running slowly down your body, concentrating itself finally over [pc.eachVagina]; you sigh with bliss, puffing over the big reptile’s dick as he hefts it and bumps its blunt, musky head against your [pc.lips].");
 	output("\n\nYou make its passage inside the alleviation orifice smooth and pliant, easily allowing him to bump his ridges over your bottom lip and fill your mouth with his texture and filthy taste. He grunts with approval as he pulls slowly backwards and fills you pull wetly at him, begging him to fill your mouth with it again. ");
 	output("\n\nYou should really use your tongue, lick along his underside when he feeds it into you. The saurmorian is starting to get into a rhythm now, sighing with pleasure as he screws his powerful hips into the wall, tail twitching. You <i>really</i> sh- you rub your [pc.tongue] along his shaft, and practically whimper with delight when you’re rewarded with sumptuous vibrations and fondlings inside [pc.eachVagina] and up your [pc.chest], making you drip. Already you’re learning to instinctively follow the directions you’re being fed, eager for the rewards they give and keen to avoid the punishment for not.");
 	output("\n\n<i>“Oh!”</i> says someone new a few moment later. <i>“I’m sorry, I thought this was - <i>“");
-	output("\n\n<i>“Nah man, it’s cool, it’s cool,”</i> groans the saurmorian. He’s thrusting his cock into your mouth now with rough urgency, and you’re doing your best to keep your [pc.lips] a nice, tight, wet o-shape for him. <i>“It’s an, uh… allevy hole thing. You have a slash or whatever, don’t mind… uh. Uhh!”</i> ");
+	output("\n\n<i>“Nah man, it’s cool, it’s cool,”</i> groans the saurmorian. He’s thrusting his cock into your mouth now with rough urgency, and you’re doing your best to keep your [pc.lips] a nice, tight, wet o-shape for him. <i>“It’s an, uh... allevy hole thing. You have a slash or whatever, don’t mind... uh. Uhh!”</i> ");
 	output("\n\nA gout of hot cum floods into your mouth, and you are seized by a intense desire to seize it, drink it down, don’t let a single drop of it go to waste. You hollow your cheeks powerfully around his jolting dick, obscene slurps and slaps echoing in your head as your throat works around his heavy load. Fingers massage your scalp and [pc.belly], and it’s as if you’ve taken a big gulp of alcohol, satisfying, refreshing, heady yet also incredibly sexual. {Your [pc.cock] is rock-hard, straining against the shifting material.} [pc.eachVagina] floods with [pc.femcum], soaking your uniform.");
 	
 	pc.lust(30);
@@ -899,7 +898,7 @@ public function breedwellPremiumSanctionVisitorsNext(firstTime:Boolean=false):vo
 	var rn:int = 10 + rand(10);
 	
 	output("You obediently kneel in front of the hole and suck the hot, red cock that’s shoved through it next, as you do the next, and the next, and the next. Breedwell’s main loading bay is well-frequented, and there’s a constant stream of over-sexed males and hermaphrodites coming in here.");
-	output("\n\nYou had a worry that this would get boring. It doesn’t. Hard cock is wonderful - the shifting texture of it over your [pc.lips] and [pc.tongue], the flavor which fills your head and makes you so thirsty and needy, the inexpressible joy of thick, hot cum spurting out over your face and filling your throat.  You only want more of it even as your tummy presses against the tight material of your costume, swelling out with sloshing, goopy semen.");
+	output("\n\nYou had a worry that this would get boring. It doesn’t. Hard cock is wonderful - the shifting texture of it over your [pc.lips] and [pc.tongue], the flavor which fills your head and makes you so thirsty and needy, the inexpressible joy of thick, hot cum spurting out over your face and filling your throat. You only want more of it even as your tummy presses against the tight material of your costume, swelling out with sloshing, goopy semen.");
 	output("\n\nAnd they have so many different kinds, how could you possibly get tired of them? Smooth blue ones, rough, red ones, studded ones, ones with bloated balls and ones that sprout out of vaginas, ones that cum honey and others that cum rich purple. Ones that belong to cute twinks that cum with a girly moan the moment you start sucking on them, ones that belong to seasoned breeders that require long, long minutes of blowing and throating in order for them to bloat your cheeks with what you need.");
 	output("\n\nAnd they all belong to studs - studs with prize sperm who deserve to use your mouth, to groan with gratification at the things you can do with it. You deserve to be on your knees, making them feel so good, and the more you think that the better you feel, vibrations reaching deep, deep into [pc.eachVagina], endorphins flooding your bloodstream. As you allow your mind to dissolve and sink deep into a submissive state, you orgasm repeatedly to the sensation of dick pushing into your face, your");
 	if (pc.vaginaTotal() > 1) output(" pussies");
@@ -923,7 +922,7 @@ public function breedwellPremiumSanctionVisitorsNext(firstTime:Boolean=false):vo
 	output(" <i>“A complimentary gloryhole. And here’s me that’s just spent the last few hours lookin’ at rahn fillin’ out their clothes in that mighty fine way of theirs.”</i>");
 	output("\n\nThere’s a rustle and unbuttoning, and you can’t help but gulp as you feel a flat, oozing tip a good three inches wide butt against your opened, waiting lips.");
 	output("\n\n<i>“Hope you’re ready for this, whoever you may be,”</i> she rumbles. <i>“I ain’t gonna be gentle, and I ain’t gonna be quick.”</i>");
-	output("\n\nSoothing calmness brushes its way down you as the massive, light pink horse shaft is fed into your face, your jaw cracking, holding your [pc.lips] open as far as they will go. She grunts as she bumps against your tonsils. Void, it’s so big… and the swarming, bestial <i>smell</i>... and the sinful taste, dripping down your throat… you orgasm with a muffled moan, a wet explosion in [pc.eachVagina], and you shudder mightily around the massive, unyielding beast-cock packing out your maw.");
+	output("\n\nSoothing calmness brushes its way down you as the massive, light pink horse shaft is fed into your face, your jaw cracking, holding your [pc.lips] open as far as they will go. She grunts as she bumps against your tonsils. Void, it’s so big... and the swarming, bestial <i>smell</i>... and the sinful taste, dripping down your throat... you orgasm with a muffled moan, a wet explosion in [pc.eachVagina], and you shudder mightily around the massive, unyielding beast-cock packing out your maw.");
 	output("\n\n<i>“Ooh, I felt that,”</i> your partner laughs. She draws back, and you can’t do anything but give her the tightest squeeze, because it <i>is</i> the tightest squeeze. Once that flat tip is pulling at your lips, she shoves her way back in firmly, pure, meaty, sexual force. <i>“You like the taste of me, " + pc.mf(" boy"," girl") + "? Good. Cuz you ain’t gonna be tasting anythin’ other for the next lil while.”</i>");
 	output("\n\nThe bulky cowmazon is true to her word. She takes her time building herself up, sampling your mouth, lips and tongue dragging over her smooth cock-flesh as her lust builds and she begins to push into the wall harder, claiming your throat as well with her impossibly big, pink, juicy bull dick. Again that wave of sensuous calm, artificial but undeniable: quelling your gag reflex, keeping you open and still even as she draws obscene, wet sounds out of your gullet, saliva and pre drooling down your chin and onto your [pc.chest].");
 	output("\n\nOther people come in and out of the restroom - you vaguely hear a few exclamations - but the hugely endowed amazon doesn’t care; she’s locked into a single-minded tryst with your mouth, her musclebound hips and bloated balls slapping against the wall, husky groans and mild curses vibrating through the wall as she fucks your throat with pumped up abandon.");
@@ -1026,10 +1025,10 @@ public function breedwellPremiumSanctionGuestsNext(firstTime:Boolean=false):void
 	output(" with delight.");
 	output("\n\n<i>“Are you really going to let that one have your eggs, Moa-zalla?”</i> yawns a large, plump do’rahn, laid on a sedan whilst a boyish PSO feeds her fruit. <i>“I thought you might wait until second dessert at least.”</i>");
 	output("\n\n<i>“Don’t you ever open the society tabs?”</i> One hand clutching your [pc.thigh], she chucks a holopad catalogue with your face on it at the do’rahn. <i>“That’s [pc.name] Steele. Heir to the Steele fortune! Riding my poz for credits like a little whore.”</i>");
-	output("\n\n<i>“Oooh…”</i> The do’rahn eyes light up, fixed on you riding her friend with one juicy thrust of your [pc.hips] after another.");
-	output("\n\n<i>“How’d it happen, [pc.name]?”</i> Moa-zalla coos, wicked eyes on your face, hands plastered around your [pc.ass]. <i>“Few bad decisions on the market, and now you’re having to work it to get the cruiser out of repo? Or is this tourism? Finding out what being a corpo-whore is like before you go back to the swimming pool? No…”</i> she reaches out and places a finger on your [pc.lips]. <i>“ ...I don’t want to know. It’s much better that way.”</i>");
+	output("\n\n<i>“Oooh...”</i> The do’rahn eyes light up, fixed on you riding her friend with one juicy thrust of your [pc.hips] after another.");
+	output("\n\n<i>“How’d it happen, [pc.name]?”</i> Moa-zalla coos, wicked eyes on your face, hands plastered around your [pc.ass]. <i>“Few bad decisions on the market, and now you’re having to work it to get the cruiser out of repo? Or is this tourism? Finding out what being a corpo-whore is like before you go back to the swimming pool? No...”</i> she reaches out and places a finger on your [pc.lips]. <i>“ ...I don’t want to know. It’s much better that way.”</i>");
 	output("\n\nYou couldn’t answer her even if you wanted to; those barbs of hers running up and down the insides of your pussy are so delicious, the only thing coming out of your mouth is gasps of delight. The helmet is making you clamp down on them, ride her harder and harder, milking her relentlessly for her eggs. Waves of motion travel up the zel’rahn’s jelly body, her eyes rolling backwards and her mouth opens with delight, and you feel a surge of ecstasy, a lightning bolt up your spine, as her ovipositor bulges up and releases a fat surge of goopy, egg-ridden love into your [pc.vagina " + hole + "].");
-	output("\n\n<i>“Mmm…”</i>“ she sighs, hand drifting towards another glass of cum. <i>“And anyway, I can always make a few more.”</i>");
+	output("\n\n<i>“Mmm...”</i>“ she sighs, hand drifting towards another glass of cum. <i>“And anyway, I can always make a few more.”</i>");
 	
 	breedwellPremiumCreampie(hole);
 	pc.loadInCunt(ppRahn, hole);
@@ -1129,7 +1128,7 @@ public function breedwellPremiumSanctionStaff():void
 	
 	output("\n\nYou squeak as the hole scrunches up around you, tightening up securely around your waist. You bat against it with your palms, finding you are quite firmly stuck, with your head and [pc.chest] on one side, your [pc.ass] and [pc.legs] on the other. You hear a click on the side of the booths.");
 	output("\n\n<i>“Oh sweet. We got a relief op in?”</i> It’s the muffled, girly sound of a rahn on the staff room side. <i>“It’s been waaayyy too long.”</i> The booth door opens and closes behind you.");
-	output("\n\n<i>“Oh wow!”</i> You gasp as a hand lands sharply on your [pc.ass]. <i>“What an ass they got in for us today! Mmm…”</i> They’ve drawn away, and a moment later you feel why - of its own volition, your suit is peeling away, exposing the [pc.skinFurScales] on your backside to the cool air, and the lustful gaze of the unseen rahn. <i>“ ...oh, I’m going to go <i>nuts</i> on you, you naughty [pc.boy]!”</i>");
+	output("\n\n<i>“Oh wow!”</i> You gasp as a hand lands sharply on your [pc.ass]. <i>“What an ass they got in for us today! Mmm...”</i> They’ve drawn away, and a moment later you feel why - of its own volition, your suit is peeling away, exposing the [pc.skinFurScales] on your backside to the cool air, and the lustful gaze of the unseen rahn. <i>“ ...oh, I’m going to go <i>nuts</i> on you, you naughty [pc.boy]!”</i>");
 
 	clearMenu();	
 	pc.lust(60);
@@ -1156,13 +1155,13 @@ public function breedwellPremiumSanctionStaffNext(firstTime:Boolean=false):void
 	
 	pc.cuntChange(hole, ppRahn.cockVolume(0));
 	
-	output("\n\n<i>“Unf! God I love breeder pussy,”</i> cries the rahn, jelly thighs slapping against your raised [pc.butt] as she thrusts her thick, malleable sex into you joyously. <i>“Nobody - uh! - wants it in quite the same way… ”</i>");
+	output("\n\n<i>“Unf! God I love breeder pussy,”</i> cries the rahn, jelly thighs slapping against your raised [pc.butt] as she thrusts her thick, malleable sex into you joyously. <i>“Nobody - uh! - wants it in quite the same way...”</i>");
 	output("\n\n<i>“Oh hey. I think I know you.”</i> You start as the door in front of you opens, and a curvy fuu’rahn technician sidles in. <i>“Sucks that they do this kind of thing to you, huh?”</i> She rather shyly unbuttons her skirt, revealing the smooth, soft delta beneath... all the while you are being made to clamp down and <i>milk</i> that ovipositor spreading your sweltering pussy beyond the wall for all you are worth. <i>“Do you think you could give me a lick? My boyfriend won’t do it. He only ever wants the poz.”</i>");
 	output("\n\n<i>Open your mouth and present your tongue for use.</i> You do it, and this time you’re rewarded with a full-blown orgasm, pleasure shuddering into your core, [pc.femcum]");
 	if (pc.isSquirter(hole)) output(" spurting");
 	else output(" dribbling");
 	output(" out of your packed entrance.");	
-	output("\n\n<i>“Oh, you’re getting… the other side, right now?”</i> giggles the fuu’rahn, as she steps inwards, curling a hand around your [pc.hair] and presenting her prim cleft to your lips. She sighs as you delve inside with your [pc.tongue], tracing her sweet-tasting hole. <i>“That’s pretty hot. Up now… right there. Oh, that’s nice.”</i>");
+	output("\n\n<i>“Oh, you’re getting... the other side, right now?”</i> giggles the fuu’rahn, as she steps inwards, curling a hand around your [pc.hair] and presenting her prim cleft to your lips. She sighs as you delve inside with your [pc.tongue], tracing her sweet-tasting hole. <i>“That’s pretty hot. Up now... right there. Oh, that’s nice.”</i>");
 	
 	clearMenu();	
 	flags["BREEDWELL_PREM_PUN_STAFF"] += 180;
@@ -1283,7 +1282,7 @@ public function breedwellPremiumSanctionStaffNext3(firstTime:Boolean=false):void
 	pc.loadInAss(ppRahn);
 	
 	output("\n\n<i>“Just the ticket. Thanks [pc.boy]friend,”</i> she sighs as she withdraws over your lips. She tinkles with laughter when she notices you’re still juddering away, hands clutching at the wall. <i>“Still getting your butt reamed? I bet that’s Pahndee, she always takes her sweet time. Hey Pahndee!”</i> she yells, slapping on the wall. <i>“Let a poor [pc.boy] go on her break, huh? That ass belongs to someone!”</i>");
-	output("\n\n<i>“Oh, you should feel it though…”</i> moans your partner orgasmically. You shudder as her hips meet your [pc.ass] again and again, thrusting that thick, malleable girl-club into your bowels. <i>“The candy they got us this time… oh! Ohhh!”</i>");
+	output("\n\n<i>“Oh, you should feel it though...”</i> moans your partner orgasmically. You shudder as her hips meet your [pc.ass] again and again, thrusting that thick, malleable girl-club into your bowels. <i>“The candy they got us this time... oh! Ohhh!”</i>");
 	output("\n\nYou bite your lip as you feel your bowels being packed with even more rahn batter, your [pc.belly] growing even more distended. The rahn leave you, one with an affectionate face stroke and the other with a regretful squeeze of your heinie, and at long last the aperture releases its grasp on your waist.");
 	output("\n\nYou pool messily onto the floor of the staff room, groaning woozily as you clutch your massively rotund belly. Warm alabaster egg-seed gushes out of [pc.eachVagina] in a thick ooze, like an upended bowl of cake batter - it barely makes a difference to your size. Your womb");
 	if (pc.vaginaTotal() > 1) output("s");
@@ -1311,8 +1310,8 @@ public function breedwellPremiumSanctionDebrief():void
 	author("Nonesuch");
 	
 	var punCnt:int = 0;
-	if (flags["BREEDWELL_PREM_PUNQ_CNT"] != undefined)  punCnt += flags["BREEDWELL_PREM_PUNQ_CNT"];
-	if (flags["BREEDWELL_PREM_PUNK_CNT"] != undefined)  punCnt += flags["BREEDWELL_PREM_PUNK_CNT"];
+	if (flags["BREEDWELL_PREM_PUNQ_CNT"] != undefined) punCnt += flags["BREEDWELL_PREM_PUNQ_CNT"];
+	if (flags["BREEDWELL_PREM_PUNK_CNT"] != undefined) punCnt += flags["BREEDWELL_PREM_PUNK_CNT"];
 	
 	output("You slowly waddle back to the changing room, picking up looks and giggles as you go. The bottom of your suit is sticky with the constant ooze of rahn goo emanating from [pc.eachVagina], the front of it stretched way out as though you already were ten months pregnant. You are utterly gorged and exhausted, your [pc.groin] and throat throbbing mightily from the pounding they’ve taken over the last twelve hours.");
 	output("\n\n<i>“Congratulations Public Service Operative, you completed your sanction!”</i> cheers Toon Tamani on the visor, once you’ve plonked yourself down on a bench. You glower at her as she bounces up and down and lets off party poppers. <i>“If you are a premium breeder, you have now been credited your salary. Isn’t it great to make soooo many people happy whilst being trained to be a better employee in the future? I think so! Let’s recap, so you can avoid having to do this again (unless you want to, of course!)”</i> This last is added in a stagey whisper and wink.");
@@ -1343,7 +1342,7 @@ public function breedwellPremiumSanctionDebrief():void
 	if (flags["BREEDWELL_PREM_BACKPAY"] != undefined)
 	{
 		pc.credits += flags["BREEDWELL_PREM_BACKPAY"];		
-		flags["BREEDWELL_PREM_TTL_PAY"] += flags["BREEDWELL_PREM_BACKPAY"];  
+		flags["BREEDWELL_PREM_TTL_PAY"] += flags["BREEDWELL_PREM_BACKPAY"];
 	}
 	flags["BREEDWELL_PREM_BACKPAY"] = 0;
 	breedwellPremiumEnsureMaxEggs();
@@ -1500,7 +1499,7 @@ public function breedwellPremiumRenewPremium():void
 		if (dohrahn)
 		{
 			output("You ask about your Premium Breeder status. Your contract has expired, you remember that from the last email - is it possible to renew it?");
-			output("\n\n<i>“Damn. I meant to tell you…”</i> The purple receptionist rummages through her desk. <i>“Tamani Corp were impressed enough with how many sprogs you popped for them, that they want to offer you an improved contract. Six months long, this time, and you’ll get another free modification that’ll boost the capacity of your womb");
+			output("\n\n<i>“Damn. I meant to tell you...”</i> The purple receptionist rummages through her desk. <i>“Tamani Corp were impressed enough with how many sprogs you popped for them, that they want to offer you an improved contract. Six months long, this time, and you’ll get another free modification that’ll boost the capacity of your womb");
 			if (pc.vaginaTotal() > 1) output("s");
 			output(". Sound good?”</i> She pushes you a holopad contract and a stylus. <i>“Just sign the dotted line.”</i>");
 		}
@@ -1524,7 +1523,7 @@ public function breedwellPremiumRenewPremium():void
 				output("You ask about your Premium Breeder status, barely able to restrain your eagerness to get back to spreading them for lovely, sexy gel ladies. Your contract has expired, you remember that from the last email - is it possible to renew it?");
 				output("\n\n<i>“Uh. Yes,”</i> says the do’rahn, with unusual hesitancy. <i>“Yes, you can.”</i> ");
 				output("\n\nShe brings out a holopad, pushes it over to you. <b>This one has an awful lot of fine print.</b>");
-				output("\n\n<i>“I’ve been told to offer this you. It gets offered to all premium breeders that really impress Tamani, actually. You’d be working in their RnD department, their breeding pens… and with their advertisers I think.");
+				output("\n\n<i>“I’ve been told to offer this you. It gets offered to all premium breeders that really impress Tamani, actually. You’d be working in their RnD department, their breeding pens... and with their advertisers I think.");
 				if (otherBadEnd) output(" You’ve actually got multiple offers. Turns out a lot of people are interested in your ass. You can make a decision, once you sign.");
 				output("”</i>");
 				output("\n\nShe holds your eye as she passes you the stylus.");
@@ -1533,10 +1532,10 @@ public function breedwellPremiumRenewPremium():void
 			else
 			{
 				output("You ask about your Premium Breeder status, barely able to restrain your eagerness to get back to spreading them for lovely, sexy gel ladies. Your contract has expired, you remember that from the last email - is it possible to renew it?");
-				output("\n\n<i>“Eeeehhhhhhhmmm.”</i> Quaelle hums for at least twenty seconds, double-pupiled eyes fixed on you, wringing her hands. <i>“I’ve been… instructed to offer you a new contract, yes, humberfelt Steele. Ummmm, ordered to, actually.”</i>");
+				output("\n\n<i>“Eeeehhhhhhhmmm.”</i> Quaelle hums for at least twenty seconds, double-pupiled eyes fixed on you, wringing her hands. <i>“I’ve been... instructed to offer you a new contract, yes, humberfelt Steele. Ummmm, ordered to, actually.”</i>");
 				output("\n\nShe slowly presents a holopad, with Tamani Corp’s logo at the top. <b>This one has an awful lot of fine print.</b>");
-				output("\n\n<i>“Tamani Corp want to offer you a permanent contract,”</i> the colorful roehm says. <i>“They do that, with the most impressive, judicirous premium breeders. You’d be working in their RnD department, their breeding pens… and with their advertising department, I think. Emmm.");
-				if (otherBadEnd) output(" Other parties have made… offers. You are very popular, fulliscent Steele.");
+				output("\n\n<i>“Tamani Corp want to offer you a permanent contract,”</i> the colorful roehm says. <i>“They do that, with the most impressive, judicirous premium breeders. You’d be working in their RnD department, their breeding pens... and with their advertising department, I think. Emmm.");
+				if (otherBadEnd) output(" Other parties have made... offers. You are very popular, fulliscent Steele.");
 				output("”</i>");
 				output("\n\nShe taps the holopad with her stylus.");
 				output("\n\n<i>“Only sign this one if you reeeeaaaaaallly want to. Ok?”</i> Her tone is almost pleading.");
@@ -1545,7 +1544,7 @@ public function breedwellPremiumRenewPremium():void
 			processTime(10);
 			clearMenu();
 			addButton(0, "Sign", breedwellPremiumRenewLifetimeYes);
-			addButton(1, "Don't", breedwellPremiumRenewLifetimeNo);	
+			addButton(1, "Don’t", breedwellPremiumRenewLifetimeNo);	
 		//}
 		//else
 		//{
@@ -1599,11 +1598,11 @@ public function breedwellPremiumRenewPremiumYes():void
 	else output("\n\n<i>“What a giving person you are, hoverful Steele,”</i> coos Quaelle, as she watches you sign the dotted line. <i>“How many rahn were given the gift of life because of you! Come on - let’s go straight over to the modding suite, shall we?”</i>");
 	output("\n\nOnce again, you’re whisked to Breedwell’s gleaming white and steel Modding Bay, where the sleek, smiling loo’rahn consultant is ready to greet you enthusiastically, and sit you down in a padded, dentist-like chair. ");
 	output("\n\n<i>“Willing, healthy breeders like you are priceless, Steele,”</i> she says. <i>“You keep this up and Tamani will be forced to offer you a permanent role.”</i>");
-	output("\n\nThey put you under, and you wake under the sterile lab lights a little later, feeling groggy. The consultant hands you a mirror. The heart shaped emblem on your cheek is back, and… you train the mirror down further, onto the faintly luminescent pink heart tattoo that you now sport just above your crotch. You pass your hand over your [pc.belly]. The warm glow in there has intensified, emanating from your ovaries, the steady pulse of");
+	output("\n\nThey put you under, and you wake under the sterile lab lights a little later, feeling groggy. The consultant hands you a mirror. The heart shaped emblem on your cheek is back, and... you train the mirror down further, onto the faintly luminescent pink heart tattoo that you now sport just above your crotch. You pass your hand over your [pc.belly]. The warm glow in there has intensified, emanating from your ovaries, the steady pulse of");
 	if (pc.vaginaTotal() > 1) output(" multiple thirsty baby factories eager to start production.");
 	else output(" a thirsty baby factory eager to start production.");	
 	output("\n\nThe glow seems to rise up right to your brain, murmuring of a deep need to breed, to present [pc.eachVagina] to strong, virile mates, to hunt and milk poz and cock as a matter of urgency, to be stretched out and full of child as much as possible. You shiver at the thought of having such potency planted within you, and being marked in such a way that everyone will be aware of it.");
-	output("\n\n<i>“You should see an uptick in your overall fertility,”</i> the consultant tells you, handing you a glass of water, <i>“as well as an increase in your capacity. <i>“You’re back on the PB database, " + pc.mf("Mr.","Ms.") + " Steele, and you’ll be pinged whenever a nearby subscriber desires your company.  As before, you’ll be given a stipend for each encounter they give us a thumbs up from, regardless of whether they impregnated you. And, of course, you are still more than welcome to receive your eggings here! Just remember… ”</i>");
+	output("\n\n<i>“You should see an uptick in your overall fertility,”</i> the consultant tells you, handing you a glass of water, <i>“as well as an increase in your capacity. <i>“You’re back on the PB database, " + pc.mf("Mr.","Ms.") + " Steele, and you’ll be pinged whenever a nearby subscriber desires your company. As before, you’ll be given a stipend for each encounter they give us a thumbs up from, regardless of whether they impregnated you. And, of course, you are still more than welcome to receive your eggings here! Just remember...”</i>");
 	output("\n\nShe smiles at you briskly.");
 	output("\n\n<i>“We need 22 rahn babies out of you every 30 days. If you don’t manage that, we’ll find alternative ways for you to meet your quota. Off you go! There’s a galaxy full of willing rahn out there, as you know. We’ll hopefully talk again in 6 months time.”</i>");
 	
@@ -1653,7 +1652,7 @@ public function breedwellPremiumRenewLifetimeNo():void
 	clearMenu();
 	addButton(0, "Next", move, "BREEDWELL_RECEPTION");
 	
-	output("Yeah… the way she’s talking about this has gotten your wind up. You’ll pass putting your name to that, as enticing a prospect as it might be.");
+	output("Yeah... the way she’s talking about this has gotten your wind up. You’ll pass putting your name to that, as enticing a prospect as it might be.");
 
 	if (dohrahn)
 	{
@@ -1715,8 +1714,8 @@ public function breedwellPremiumRenewLifetimeYes():void
 	var btn:int = 0;
 	
 	var punCnt:int = 0;
-	if (flags["BREEDWELL_PREM_PUNQ_CNT"] != undefined)  punCnt += flags["BREEDWELL_PREM_PUNQ_CNT"];
-	if (flags["BREEDWELL_PREM_PUNK_CNT"] != undefined)  punCnt += flags["BREEDWELL_PREM_PUNK_CNT"];
+	if (flags["BREEDWELL_PREM_PUNQ_CNT"] != undefined) punCnt += flags["BREEDWELL_PREM_PUNQ_CNT"];
+	if (flags["BREEDWELL_PREM_PUNK_CNT"] != undefined) punCnt += flags["BREEDWELL_PREM_PUNK_CNT"];
 	
 	var guestPunish:Boolean = false;
 	if (flags["BREEDWELL_PREM_PUN_GUESTS"] != undefined) guestPunish = true;
@@ -1732,7 +1731,7 @@ public function breedwellPremiumRenewLifetimeYes():void
 	if (dohrahn) output("\n\n<i>“Go through into the VIP lounge,”</i> the receptionist says. <i>“They’re waiting for you there. See you around, Steele.”</i>");
 	else
 	{
-		output("\n\n<i>“Weeellll… if it is what you want… I can’t sit in your way.”</i> The roehm smiles at you");
+		output("\n\n<i>“Weeellll... if it is what you want... I can’t sit in your way.”</i> The roehm smiles at you");
 		if (quaelleIsLover()) output(" with a touch of melancholy");
 		output(". <i>“Go through into the VIP lounge, mumberlous Steele. They’re waiting for you there. Good luck.”</i>");
 	}
@@ -1743,12 +1742,12 @@ public function breedwellPremiumRenewLifetimeYes():void
 	output("\n\nIntellectual property?");
 	output("\n\n<i>“Of course!”</i> The vildarii looks professionally bemused by your questioning tone. <i>“Within you are contained several prototype pieces of Tamani Corp bio-engineering. Very expensive ones, all of which you agreed to install inside you. Really, that piece of paper you signed is a simple confirmation of what’s been true for a while - Tamani Corp own you, and your lovely body, in perpetuity.”</i>");
 	output("\n\nOh.");
-	if (lavlevBadend) output("\n\n<i>“You’re a highly sought after piece of property, I may say,”</i> the Tamani representative says. They indicate the documents in front of them. With a tightening of the chest, you recognize Lavender Leverage’s logo. <i>“LavLev have a buyout offer placed, were you ever to take the final step. A <i>substantial</i> buyout offer. How did you ever get tangled up with those crooks? Anyway, I am authorized to accept it… if you’d prefer to be owned by them.”</i> They smile at you urbanely. <i>“Your happiness is a priority.”</i>");
+	if (lavlevBadend) output("\n\n<i>“You’re a highly sought after piece of property, I may say,”</i> the Tamani representative says. They indicate the documents in front of them. With a tightening of the chest, you recognize Lavender Leverage’s logo. <i>“LavLev have a buyout offer placed, were you ever to take the final step. A <i>substantial</i> buyout offer. How did you ever get tangled up with those crooks? Anyway, I am authorized to accept it... if you’d prefer to be owned by them.”</i> They smile at you urbanely. <i>“Your happiness is a priority.”</i>");
 	if (cowmazonBadend)
 	{
-		output("\n\n<i>“You do have another option, Steele…”</i> the consultant butts in.");
-		output("\n\n<i>“Na-zee…”</i> drawls the vildarii, with a hint of warning.");
-		output("\n\n<i>“A sperm donor left their details at the front desk,”</i> the loo’rahn pushes on. <i>“It seems you, uh, impressed her when you were working as a PSO for us. We were supposed to hand the details over if you ever got into trouble.”</i> She fiddles with her napkin. <i>“I’m strictly forbidden from doing that of course, but… perhaps if something were to drop on the floor…”</i>");
+		output("\n\n<i>“You do have another option, Steele...”</i> the consultant butts in.");
+		output("\n\n<i>“Na-zee...”</i> drawls the vildarii, with a hint of warning.");
+		output("\n\n<i>“A sperm donor left their details at the front desk,”</i> the loo’rahn pushes on. <i>“It seems you, uh, impressed her when you were working as a PSO for us. We were supposed to hand the details over if you ever got into trouble.”</i> She fiddles with her napkin. <i>“I’m strictly forbidden from doing that of course, but... perhaps if something were to drop on the floor...”</i>");
 		output("\n\n<i>“There’ll be trouble about this, Na-zee,”</i> the rep sighs, with the air of a chiding parent. They look at you. <i>“We take run-away pieces of property quite seriously, Steele. Do be aware.”</i>");
 	}
 	processTime(30);
@@ -1871,12 +1870,12 @@ public function breedwellPremiumBadEndCowmazonNext2():void
 	else output(" [pc.eachVagina] puffs up and trickles [pc.femcum] of its own accord as she speaks.");
 	output("\n\n<i>“The nice folks there at Breedwell kept offering you nice little freebies to keep working for ‘em. But it turns out they weren’t no freebies, and then they made you an offer you couldn’t refuse. Then you ran all the way here. That about right?”</i>");
 	output("\n\n<i>“Yes,”</i> you mutter. You realize how hopeless and ludicrous the situation you’ve found yourself in is, the blur of the last 24 hours and everything you’ve lost weighing onto your shoulders. Some of it must show on your face, because Patronella immediately unlatches the gate and gathers you into her brown, bulky arms for a hug. It’s only moderately bone-crushing.");
-	output("\n\n<i>“Aw no, don’t be like that! It happens to the best of us. See, this?”</i> She moves your hand down to the thick, warm bulge in her pants. <i>“I took one of Tamani’s dang treatments myself. Jacked my lil guy up so I could get all the credits I needed using their extractor thingies. I wanted to afford to do… this.”</i> She swings you around bodily so you can see the handsome farmhouse. <i>“But it’s so difficult to control now. I need milkings, daily, or I can’t think straight. Course Tamani would prefer me that way. They hoped I’d spend the rest of my days giving ‘em lakes of cum.”</i>");
+	output("\n\n<i>“Aw no, don’t be like that! It happens to the best of us. See, this?”</i> She moves your hand down to the thick, warm bulge in her pants. <i>“I took one of Tamani’s dang treatments myself. Jacked my lil guy up so I could get all the credits I needed using their extractor thingies. I wanted to afford to do... this.”</i> She swings you around bodily so you can see the handsome farmhouse. <i>“But it’s so difficult to control now. I need milkings, daily, or I can’t think straight. Course Tamani would prefer me that way. They hoped I’d spend the rest of my days giving ‘em lakes of cum.”</i>");
 	output("\n\n<i>“But did I let ‘em? Naw!”</i> Patronella squeezes you again, head firmly wedged between the warm softness of her breasts. The smell of her envelopes your senses: concentrated, untamed sex. <i>“I did what I wanted to do, and no matter how pent up I get, I c’n tell myself I stuck it to those bastards. And you did the same thing. They don’t own you. Nobody owns you. ‘Cept me.”</i>");
 	output("\n\nYou look up to find her grinning down at you knowingly. Beneath your hand the bulge throbs, and [pc.eachVagina] practically soak");
 	if (pc.vaginaTotal() > 1) output(" themselves, delirious with the amazon pheromones you’re drenched in.");
 	else output("s itself, delirious with the amazon pheromones you’re drenched in.");
-	output("\n\n<i>“Or I will, anyway,”</i> she goes on in a lower tone, once again raising her finger to your mouth to trace your [pc.lips]. You let her do it, entranced by the gentle yet assertive movement. <i>“I ain’t no corpo bloodsucker, you c’n decide. You can stay here, so long as you do as I say, and you can take all the time you want decidin’ whether or not this is the bolthole for you. For now…”</i>");
+	output("\n\n<i>“Or I will, anyway,”</i> she goes on in a lower tone, once again raising her finger to your mouth to trace your [pc.lips]. You let her do it, entranced by the gentle yet assertive movement. <i>“I ain’t no corpo bloodsucker, you c’n decide. You can stay here, so long as you do as I say, and you can take all the time you want decidin’ whether or not this is the bolthole for you. For now...”</i>");
 	output("\n\nThe cowmazon releases you to step back and unzip her pants. You can’t stop a groan bubbling up as the undiluted smell of her pink, sheathed bull-cock, all three feet of it, swings down between her thighs like a pendulum, flanked by two heavily swollen balls.");
 	output("\n\n<i>“ ...you can get on your [pc.knees], and remind me how we got to know each other in the first place.”</i>");
 
@@ -1941,7 +1940,7 @@ public function breedwellPremiumBadEndLavLev():void
 	output("\n\n<i>“Really?”</i> they reply, registering polite surprise. <i>“They must have left quite the impression upon you, Steele. I won’t pretend to not be disappointed: you would have been a fine acquisition for Tamani. But: they made a very reasonable offer, and as said, your happiness is tantamount.”</i> ");
 	output("\n\nA flute glass of champagne is placed in front of you, and the red androgyne raises theirs to you.");
 	output("\n\n<i>“Here’s to your future, Steele. And ours.”</i>");
-	output("\n\nYou take a polite sip of the fizz, and instantly feel drowsy…");
+	output("\n\nYou take a polite sip of the fizz, and instantly feel drowsy...");
 	
 	processTime(10);
 	clearMenu();
@@ -1979,7 +1978,7 @@ public function breedwellPremiumBadEndLavLevNext2():void
 	output("\n\nThe pheromones help with that. You have to guess that the most elevated of LavLev’s employees are all on some sort of supplement or gene-mod which turbocharges the do’rahn’s natural ability to produce pheromones that arouse and subdue others, just one way this utterly ruthless corporation goes about its business. Knowing it doesn’t stop it affecting you; you feel peaceful, soft and incredibly horny around your rahn superiors, sweetness filling your head and [pc.femcum] moistening your panties. After a few days of ceaseless exposure, when they order you to do something it’s like somebody is yanking a ring through your nose, and it’s a pleasure, a deep, profound pleasure, to follow it.");
 	output("\n\nFahl-Zeen spends plenty of time with you though, more as you become accustomed to being her squeeze ball. You quickly find out that beyond a panel in her immaculate, penthouse office there is a door to a windowless, matt-black dungeon, filled with all sorts of interesting ways of inflicting pain and torment. It is her pleasure to spend her evenings in there reviewing your performances, tying you to the ceiling or putting you into a gimp suit, describing all the ways you didn’t complete a task in time, didn’t quite please a colleague fully, or just plain fucked up whilst applying the riding crop, the electric current, the clamps, the vibrator to your helpless body. The room is thoroughly soundproofed, and the pear-shaped rahn who never raises her voice encourages you to scream and beg for mercy, because doing so gets her wet.");
 	output("\n\nYou come to accept and love it, crave the discipline, delight in Mistress’s sadism, beg her to whip your bare [pc.ass] for some minor miscalculation, lick her high-heels afterwards in worshipful thank you. It’s not enough for Fahl-Zeen that you be broken, turned into her servile pain-pet, though. She wants a quick mind too, an assistant who understands the labyrinthine financial trickery of LavLev and helps run it with gusto. All of her training is aimed at that, and once your mind is broken it is slowly built back into a form she desires.");
-	output("\n\nOnce you see how the do’rahn’s ice-cold diabolism runs through everything she does, from the  boardroom to the bedroom, you fall helplessly in love with it, and set about making her fantastically richer at the expense of many others. Void, being the willing instrument and accomplice of a completely evil bitch... It makes you feel dirty. It makes you desire a long, purifying session in the dungeon, begging for mercy that you neither deserve nor receive. On and on it goes, eroding away everything you once knew like sugar-laced acid.");
+	output("\n\nOnce you see how the do’rahn’s ice-cold diabolism runs through everything she does, from the boardroom to the bedroom, you fall helplessly in love with it, and set about making her fantastically richer at the expense of many others. Void, being the willing instrument and accomplice of a completely evil bitch... It makes you feel dirty. It makes you desire a long, purifying session in the dungeon, begging for mercy that you neither deserve nor receive. On and on it goes, eroding away everything you once knew like sugar-laced acid.");
 
 	clearMenu();
 	addButton(0, "Next", breedwellPremiumBadEndLavLevNext3);
@@ -1993,12 +1992,12 @@ public function breedwellPremiumBadEndLavLevNext3():void
 	author("Nonesuch");	
 	
 	output("It’s a morning like any other, many years later. Fahl-Zeen has long since earned the money necessary to purchase a penthouse suite in one of the more absurdly expensive floating condominiums on the lush leisure world of Quorido IV, and she is currently engaged in fucking in one of her favorite positions: you face and [pc.chest] pushed against the glass of the window, soft thighs slapping against your [pc.ass], ovipositor deep in your bowels.");
-	output("\n\n<i>“Isn’t it a great view?”</i> she groans, the soft lusciousness of her tits pressing against your back as she delivers one firm thrust after another past your [pc.anus]. You are privileged to not have the gimp mask on today so you can agree that yes, the aerial, sun-kissed view of the miles of beach, parks and pleasure palaces is certainly something. <i>“Isn’t it great to take it in whilst...uff... I screw piggy’s tight little ass…”</i>");
-	output("\n\nShe subsides into hot, hard exhalations, warming your neck as she pounds herself to orgasm. You sigh with delight, shivering as you feel another steaming helping of Mistress’s eggs fill your back passage. You never get tired of that sensation. Which is good, because when she withdraws her long, tubular egg-cock with a gratified sigh, she squeezes your buttplug back in and zips that part of your latex suit back up, ensuring the warm, gloopy, full feeling will be with you for as long as she deems fit. You’re in the voice-activated tactile suit today, one of your favorites. At a single word from Mistress, it can fill [pc.eachVagina] with succulent vibration, pinch your [pc.nipples] sharply, tickle you into a screaming, thrashing mess… the only limitation is the owner’s imagination, and Fahl-Zeen imagination is a bottomless pit.");
+	output("\n\n<i>“Isn’t it a great view?”</i> she groans, the soft lusciousness of her tits pressing against your back as she delivers one firm thrust after another past your [pc.anus]. You are privileged to not have the gimp mask on today so you can agree that yes, the aerial, sun-kissed view of the miles of beach, parks and pleasure palaces is certainly something. <i>“Isn’t it great to take it in whilst...uff... I screw piggy’s tight little ass...”</i>");
+	output("\n\nShe subsides into hot, hard exhalations, warming your neck as she pounds herself to orgasm. You sigh with delight, shivering as you feel another steaming helping of Mistress’s eggs fill your back passage. You never get tired of that sensation. Which is good, because when she withdraws her long, tubular egg-cock with a gratified sigh, she squeezes your buttplug back in and zips that part of your latex suit back up, ensuring the warm, gloopy, full feeling will be with you for as long as she deems fit. You’re in the voice-activated tactile suit today, one of your favorites. At a single word from Mistress, it can fill [pc.eachVagina] with succulent vibration, pinch your [pc.nipples] sharply, tickle you into a screaming, thrashing mess... the only limitation is the owner’s imagination, and Fahl-Zeen imagination is a bottomless pit.");
 	output("\n\n<i>“Good,”</i> she says, as if she’s just finalised an important transaction, crisply checking her frondular hair and glasses, and striding over to the desk. <i>“I’m going to send you the first item for today. We’ve identified weaknesses in this company’s recent activities. You are to lay out an initial plan for its leveraged buyout.”</i>");
 	output("\n\nYou swiftly head over to your own holo lap device on the bed, delighting at the swirl of egg-cum in your bowels with every step. You click open Mistress’s forwarded email, and pause for a long moment when the Steele Tech logo fills the screen.");
 	output("\n\n<i>“Problem?”</i> the do’rahn says, peering at you expressionlessly over her glasses.");
-	output("\n\n<i>“No… Mistress.”</i> You sigh, closing your eyes for a moment. <i>“Could I… may I have the vibes as I do it?”</i>");
+	output("\n\n<i>“No... Mistress.”</i> You sigh, closing your eyes for a moment. <i>“Could I... may I have the vibes as I do it?”</i>");
 	output("\n\n<i>“Of course.”</i> She fires off one of her brief, bright smiles, sunbeam glancing off ice. <i>“I know how piggy likes being teased as [pc.he] works.”</i>");
 	output("\n\nThe suit buzzes over [pc.eachVagina], invisible fingers flicking at [pc.eachClit] and reaching deep into your tender insides, and you bite your [pc.lips] in delight as you begin the process of destroying your father’s company for the glory of your Mistress.");
 	
@@ -2148,7 +2147,7 @@ public function breedwellPremiumBootyCallPing(bcScene:int=0):Boolean
 		case "zheng shi station":
 			flags["BREEDWELL_PREM_BC_ZHENGSHI"] = GetGameTimestamp();
 			addButton(0, "Respond", breedwellPremiumBootyCallsZhengShiTwofer);
-			addButton(1, "Don't", mainGameMenu);
+			addButton(1, "Don’t", mainGameMenu);
 			return true;
 			break;	
 		default:
@@ -2156,6 +2155,6 @@ public function breedwellPremiumBootyCallPing(bcScene:int=0):Boolean
 			break;
 	}
 	
-	addButton(1, "Don't", mainGameMenu);
+	addButton(1, "Don’t", mainGameMenu);
 	return false;
 }

@@ -22,7 +22,7 @@ public function breedwellPremiumBootyCallsPheromonalFuurahn():void
 	
 	output("<i>“Oh thank the Void!”</i>");
 	output("\n\nThe blue-and-green rahn in the jungle fatigues is over to you almost the moment you step into the clearing. Her sober clothes, glasses and tied back gel fronds suggest a serious field researcher, but right now her face is flush and she looks utterly desperate.");
-	output("\n\n<i>“Some… natives dosed me really bad with their ph… ph… smell,”</i> she explains, as she tears off her clothes, allowing her small breasts and fat, six-inch ovipositor to swell out of her white panties. The latter is strainingly erect, oozing plentiful lube at the tip. <i>“Thought they were joking when they told me to sign up to this scheme if I was going to Mhen’ga, but now… fuck! Fuck!”</i> She pushes you against a tree and presses her soft, wet mouth against yours, tongue curling around hers as she humps your [pc.thigh] urgently.");
+	output("\n\n<i>“Some... natives dosed me really bad with their ph... ph... smell,”</i> she explains, as she tears off her clothes, allowing her small breasts and fat, six-inch ovipositor to swell out of her white panties. The latter is strainingly erect, oozing plentiful lube at the tip. <i>“Thought they were joking when they told me to sign up to this scheme if I was going to Mhen’ga, but now... fuck! Fuck!”</i> She pushes you against a tree and presses her soft, wet mouth against yours, tongue curling around hers as she humps your [pc.thigh] urgently.");
 	output("\n\nShe");
 	if (!pc.isCrotchExposed()) output(" shoves down your [pc.lowerGarments] and");
 	output(" hoiks you up by the [pc.thighs], parts your [pc.vagina " + hole + "] with the slick, bulbous crown of her egg-cock and thrusts its supple hardness in deep, a burble of hyper-aroused nonsense tumbling out of her mouth as she does so. She fucks you like a rabbit in rut, waves of lithe gel washing up your body as she judders into you with helpless abandon, a pulsating truncheon inside you that quickly drives you almost as wild as her. Your shared gasps and moans fill the glade.");
@@ -38,7 +38,7 @@ public function breedwellPremiumBootyCallsPheromonalFuurahn():void
 	pc.loadInCunt(ppRahn, hole);
 	pc.orgasm();
 	
-	output("\n\n<i>“Oh! Oh! Ohhhhh…”</i> the fuu’rahn groans, at last coming loose from you. <i>“Oh thank fuck that’s out of me.”</i> She gazes down at her club-like ovipositor, still pheremonally charged and hard, and smiles at you amorously. <i>“Now I can get down to really enjoying you.”</i>");
+	output("\n\n<i>“Oh! Oh! Ohhhhh...”</i> the fuu’rahn groans, at last coming loose from you. <i>“Oh thank fuck that’s out of me.”</i> She gazes down at her club-like ovipositor, still pheremonally charged and hard, and smiles at you amorously. <i>“Now I can get down to really enjoying you.”</i>");
 	
 	if (pc.vaginaTotal() > 1)
 	{
@@ -180,10 +180,10 @@ public function breedwellPremiumBootyCallsTavrosCouple():void
 	
 	if (pc.isPregnant())
 	{
-		output("\n\n<i>“Remarkable. And you’re not currently… full?”</i> the go’rahn asks, glancing at your [pc.belly].");
+		output("\n\n<i>“Remarkable. And you’re not currently... full?”</i> the go’rahn asks, glancing at your [pc.belly].");
 		if (pc.isFullyWombPregnant())
 		{
-			output("\n\nMaybe… but you didn’t get into this purely to make baby rahn and money. You do it for the joy of it.");
+			output("\n\nMaybe... but you didn’t get into this purely to make baby rahn and money. You do it for the joy of it.");
 			output("\n\n<i>“That’s great,”</i> beams the zel’rahn. <i>“We’d only want to do this kind of thing with breeders who are really <i>willing</i>, you know? That’s what the advert promised.”</i>");
 		}
 		else
@@ -194,8 +194,8 @@ public function breedwellPremiumBootyCallsTavrosCouple():void
 	}
 	else
 	{		
-		output("\n\n<i>“And… is this your first time?”</i> the go’rahn asks, glancing at your [pc.belly].");
-		output("\n\nOoh no, you’ve been present at plenty rahn rodeos before. But… you give him a coy smirk… it <i>could</i> be your first time, if they wanted. It’s their pleasure, after all.");
+		output("\n\n<i>“And... is this your first time?”</i> the go’rahn asks, glancing at your [pc.belly].");
+		output("\n\nOoh no, you’ve been present at plenty rahn rodeos before. But... you give him a coy smirk... it <i>could</i> be your first time, if they wanted. It’s their pleasure, after all.");
 		output("\n\nHe blushes and coughs into his napkin.");
 		output("\n\n<i>“Wow,”</i> he says, glancing at his partner with flashing eyes. <i>“They certainly do pick them, don’t they?”</i>");
 	}
@@ -222,7 +222,7 @@ public function breedwellPremiumBootyCallsTavrosCoupleNext():void
 	if (pc.hasTits()) output(" [pc.boobs]");
 	else output(" [pc.ass]");
 	output(" a sexy little wiggle when you’re done.");
-	output("\n\nThe go’rahn then moves across, puts you on your back, spreads your [pc.thighs] and fucks you rotten. He holds your [pc.ass] up so he can thrust his thick, tapering ovipositor into your [pc.vagina] particularly hard, spreading and filling you with gooey rahn cock. Ooh, it's got little stubs along its length that drag along your walls! Your giggles and squeals join the squishes and boyish groans, your pleasure building into a feverish foam as he thrusts it home again and again.");
+	output("\n\nThe go’rahn then moves across, puts you on your back, spreads your [pc.thighs] and fucks you rotten. He holds your [pc.ass] up so he can thrust his thick, tapering ovipositor into your [pc.vagina] particularly hard, spreading and filling you with gooey rahn cock. Ooh, it’s got little stubs along its length that drag along your walls! Your giggles and squeals join the squishes and boyish groans, your pleasure building into a feverish foam as he thrusts it home again and again.");
 	
 	pc.cuntChange(hole, ppRahn.cockVolume(0));
 	
@@ -256,14 +256,14 @@ public function breedwellPremiumBootyCallsTavrosCoupleNext():void
 	
 	pc.cuntChange(hole2, ppRahn2.cockVolume(0));
 	
-	output("\n\n<i>“Yeah?”</i> The zel’rahn’s hands are upon your [pc.legs]; she coaxes you onto your hands and [pc.knees], wedged between them. You sigh as her fingers find [pc.eachVagina], fondling your well-opened twat" + (pc.vaginaTotal() > 1 ? "s" : "") + " with interest, then  gasp as the crown of her ovipositor butts against your lips. She’s considerably bigger than her guy. <i>“And what are you going to do, whilst I’m doing that?”</i>");
+	output("\n\n<i>“Yeah?”</i> The zel’rahn’s hands are upon your [pc.legs]; she coaxes you onto your hands and [pc.knees], wedged between them. You sigh as her fingers find [pc.eachVagina], fondling your well-opened twat" + (pc.vaginaTotal() > 1 ? "s" : "") + " with interest, then gasp as the crown of her ovipositor butts against your lips. She’s considerably bigger than her guy. <i>“And what are you going to do, whilst I’m doing that?”</i>");
 	output("\n\nSomething bulky and moist bumps against your brow. You look up, and are confronted with the white rahn’s own ovi-cock, still erect, thick and ready. He smirks at you above it.");
 	output("\n\n<i>“Give [pc.him] dessert, of course.”</i>");
 	output("\n\nThey spit-roast you slowly at first, one phallus swelling into your [pc.vagina " + hole2 + "] whilst another is dipped into your mouth, enjoying you whilst getting you used to taking both of their sweet protrusions at once. Lust swarms over your senses from the stimulation of it, and you coax them on with ardent movements of your [pc.tongue] and [pc.lips] over his crown and pushing your [pc.hips] back into her, sinking your fingers into trim, gooey tush.");
 	output("\n\nThey respond eagerly, laughing with glee as they take a firm hold of you and fuck you firmly in the mouth and cunt. You gaze needily up the flat, athletic front of the go’rahn, and he responds by gripping your [pc.hair] and slotting himself into the tightness of your throat, the smoothness and gooeyness of his ovipositor easily allowing him entrance into your air-hole. His partner huffs huskily as she pounds your [pc.vagina " + hole2 + "], her wide, wobbly thighs and gut bouncing briskly against your [pc.ass]. ");
 	output("\n\nYou orgasm again there, transfixed on egg-cock, [pc.eachVagina] crimping up again and again to the ecstatic sensation of being so swollen with delicious egg-cock, huffing and whining around the one halfway down your neck. Your only dim thought is to pleasure your lovely hosts in every way you’re able.");
 	output("\n\n<i>“Huff! Huff! Huff! Oh, it’s so good!”</i> moans the red rahn, thrusting that massive, malleable egg-tube into you deep. <i>“And I’m so - swollen - ”</i>");
-	output("\n\n<i>“Give [pc.him] what [pc.he] came for, darling…”</i> groans her partner. She does so a few seconds later with an eye-crossing squelch, a huge load of fertilized eggs bulging up that long ovipositor stuffed inside and bulging your gut out with its thick, slimy warmth. It quickly backs up and squirts out heavily down your [pc.thighs], but she keeps going, bloating you with a reservoir of gel girl love.");
+	output("\n\n<i>“Give [pc.him] what [pc.he] came for, darling...”</i> groans her partner. She does so a few seconds later with an eye-crossing squelch, a huge load of fertilized eggs bulging up that long ovipositor stuffed inside and bulging your gut out with its thick, slimy warmth. It quickly backs up and squirts out heavily down your [pc.thighs], but she keeps going, bloating you with a reservoir of gel girl love.");
 	
 	breedwellPremiumCreampie(hole2);
 	pc.loadInCunt(ppRahn2, hole2);
@@ -291,9 +291,9 @@ public function breedwellPremiumBootyCallsTavrosCoupleNext2():void
 	showName("TAVROS\nCOUPLE");
 	author("Nonesuch");	
 	
-	output("<i>“Mmm… I love doing this with you, darling!”</i> the zil’rahn trills, a few moments later. They have you between them, their squishy bodies sliding over your heated flesh as they cuddle each other around you. <i>“Sharing is so much fun! Oh, it’s a shame we can’t do it more often.”</i>");
+	output("<i>“Mmm... I love doing this with you, darling!”</i> the zil’rahn trills, a few moments later. They have you between them, their squishy bodies sliding over your heated flesh as they cuddle each other around you. <i>“Sharing is so much fun! Oh, it’s a shame we can’t do it more often.”</i>");
 	output("\n\n<i>“I’ll get that promotion,”</i> the go’rahn murmurs, <i>“and so will you. And then we’ll just buy ourselves a premium breeder, full time, and enjoy [pc.him] every single night. How does that sound?”</i> he asks you teasingly, brushing your [pc.hair]. <i>“We’ll only make you wear a collar if you want.”</i>");
-	output("\n\nWell… not right now, anyway. You catch a shower with their blessing, and then head back out into Tavros, feeling distinctly fuller than you did before.");
+	output("\n\nWell... not right now, anyway. You catch a shower with their blessing, and then head back out into Tavros, feeling distinctly fuller than you did before.");
 	
 	processTime(60);
 	pc.shower();
@@ -310,11 +310,11 @@ public function breedwellPremiumBootyCallsMyrellionQuickie():void
 	
 	output("<i>“Hey! HEY! In here!”</i>");
 	output("\n\nAlmost the moment you click accept, you are beckoned into a disused storage space by a slender, speckled loo’rahn in a UGC uniform. ");
-	output("\n\n<i>“Thank the One you were just passing,”</i> she says, blinking at you. <i>“I’ve only got ten minutes left of my break and… can you give me a hand shandy real quick?”</i> She unbuttons her trousers, her heavily engorged orange egg-tube immediately swelling outwards like a prize zucchini. She groans in discomfort. <i>“Please.”</i>");
+	output("\n\n<i>“Thank the One you were just passing,”</i> she says, blinking at you. <i>“I’ve only got ten minutes left of my break and... can you give me a hand shandy real quick?”</i> She unbuttons her trousers, her heavily engorged orange egg-tube immediately swelling outwards like a prize zucchini. She groans in discomfort. <i>“Please.”</i>");
 	output("\n\nEmploying all your expertise and professionalism to the situation, you get to work without another word, gripping the supple, squishy phallus and jerking it swiftly up and down. You keep your gaze locked on her pretty, speckled face, judging what movement of your hand in particular makes her groan in ardour.");
-	output("\n\n<i>“Yeah… yeah!”</i> she cries, shoving her back against the wall and jerking her hips to it as you crank her hot, waggly meat hard. <i>“Fuck you, Sergeant Harris! Oh, what I’d give to bend you over a desk and fuck your prissy little boy hole!”</i>");
+	output("\n\n<i>“Yeah... yeah!”</i> she cries, shoving her back against the wall and jerking her hips to it as you crank her hot, waggly meat hard. <i>“Fuck you, Sergeant Harris! Oh, what I’d give to bend you over a desk and fuck your prissy little boy hole!”</i>");
 	output("\n\nRahn fluids throb under your hand and fountain spectacularly out of her engorged tip all over the dusty floor. You, a professional, saw it coming and are over to one side before they can hit you in the [pc.chest]. No need to get mucky on a short operation.");
-	output("\n\n<i>“Th- thank you,”</i> she mutters, sagged against the wall and withdrawing her sagging balloon animal back into her. <i>“That was necessary. Uh… ignore everything that I said. And don’t tell anyone about this. Thanks again.”</i>");
+	output("\n\n<i>“Th- thank you,”</i> she mutters, sagged against the wall and withdrawing her sagging balloon animal back into her. <i>“That was necessary. Uh... ignore everything that I said. And don’t tell anyone about this. Thanks again.”</i>");
 	output("\n\nOf course. You’re a professional, after all.");
 	
 	pc.lust(30);
@@ -336,17 +336,17 @@ public function breedwellPremiumBootyCallsFlahne():void
 	output("You smirk when you see where the text coordinates are telling you to go. Surely there isn’t another rahn working in Esbeth spaceport? Nope. You find yourself walking straight into Flahne’s office.");
 	output("\n\n<i>“Oh, hi there [pc.name]!”</i> the plump loo’rahn trills nervously. She fiddles with an unwrapped lollipop. <i>“So nice of you to drop by. I’m expecting an appointment though, so maybe - ?”</i>");
 	output("\n\n<i>“You are, are you?”</i> You grin at her knowingly, leaning against the doorframe.");
-	output("\n\n<i>“You - you!”</i> she says, eyes widening, hand shooting up to her neck. Her bust heaves delightfully. <i>“But… you don’t need to work for Tamani, [pc.name]! Why are you doing this?”</i>");
+	output("\n\n<i>“You - you!”</i> she says, eyes widening, hand shooting up to her neck. Her bust heaves delightfully. <i>“But... you don’t need to work for Tamani, [pc.name]! Why are you doing this?”</i>");
 	// medium difficulty int check
 	if (pc.IQ() > rand(75))
 	{
 		output("\n\n<i>She</i> doesn’t need call [pc.boyGirl]s, not working the front desk of a spaceport... not being the thoroughly friendly and voluptuous individual that she is! So why is she paying for the Premium Breeder plan?");
-		output("\n\n<i>“It caught my eye, and… I thought I would help the Great Effort,”</i> Flahne mumbles, blushing. <i>“Every rahn should do their part, right? And… it excited me, [pc.name],”</i> she finally admits. <i>“What if my manager finds out I’ve been having call [pc.boyGirl]s in here?");
-		output("\n\nOoh, it would be such a shame, such a scandal. What if I had to tell a court of arbitration about everything I’ve gotten up to in here…”</i> she blinks, mouth open, face glowing dark orange. <i>“ ...can we do it now? I really, um, I really do need it.”</i>");
+		output("\n\n<i>“It caught my eye, and... I thought I would help the Great Effort,”</i> Flahne mumbles, blushing. <i>“Every rahn should do their part, right? And... it excited me, [pc.name],”</i> she finally admits. <i>“What if my manager finds out I’ve been having call [pc.boyGirl]s in here?");
+		output("\n\nOoh, it would be such a shame, such a scandal. What if I had to tell a court of arbitration about everything I’ve gotten up to in here...”</i> she blinks, mouth open, face glowing dark orange. <i>“ ...can we do it now? I really, um, I really do need it.”</i>");
 	}
 	else
 	{
-		output("\n\nYou shrug carelessly. Well, sure, you should be out somewhere on the Frontier, questing after daddy’s legacy. But all you really want to do is get down and dirty with as many big-dicked gel ladies as you possibly can… and you’ve found your perfect calling.");
+		output("\n\nYou shrug carelessly. Well, sure, you should be out somewhere on the Frontier, questing after daddy’s legacy. But all you really want to do is get down and dirty with as many big-dicked gel ladies as you possibly can... and you’ve found your perfect calling.");
 		output("\n\n<i>“Ooh, you are <i>naughty</i> [pc.name],”</i> scolds Flahne with a big smile. She touches her stuffed bust again. <i>“Gallivanting around and being mucky instead of doing what you should be doing! I’ve got no choice but to stuff you full of my eggs. Maybe being an incubator will finally get you flying on the straight and narrow!”</i>");
 	}
 	output("\n\nYou close the door - but don’t lock it - and sashay across, loosening your");
@@ -362,10 +362,10 @@ public function breedwellPremiumBootyCallsFlahne():void
 	
 	output("\n\n<i>“Ooh,”</i> Flahne quivers, moist hands molding themselves around your [pc.butt] and back as you sink downwards, enveloping more and more of her pseudo-dick, <i>“you weren’t what I expected, [pc.name]... but this is ahhh, aaas nice a surprise as a girl could get.”</i>");
 	output("\n\nYou rock on top of her, enjoying that expanse of soft, jiggling orange beneath you as you get what you need, your [pc.vagina " + hole + "] stretched full of rahn-cock, delivering wonderful little spasms of pleasure up your spine that urge you to ride her harder.");
-	output("\n\nYou touch her pointed ears with your [pc.lips], whisper that if she’s giving you fertile eggs, she must have had someone else in here… she must have had someone else giving her the business another way. Would that be right? Did someone bend a big, jiggly orange ass over a desk recently?");
-	output("\n\n<i>“You’re so… so naughty [pc.name]...”</i> she moans, clutching you hard giving back to you now. Your eyes roll upwards as orgasm shudders through you, that hard yet malleable ovipositor bending into your [pc.vaginaNoun " + hole + "] in <i>just</i> the right way to make it melt and force a slutty squeal out of your mouth. Fuck do you love rahn-cock.");
+	output("\n\nYou touch her pointed ears with your [pc.lips], whisper that if she’s giving you fertile eggs, she must have had someone else in here... she must have had someone else giving her the business another way. Would that be right? Did someone bend a big, jiggly orange ass over a desk recently?");
+	output("\n\n<i>“You’re so... so naughty [pc.name]...”</i> she moans, clutching you hard giving back to you now. Your eyes roll upwards as orgasm shudders through you, that hard yet malleable ovipositor bending into your [pc.vaginaNoun " + hole + "] in <i>just</i> the right way to make it melt and force a slutty squeal out of your mouth. Fuck do you love rahn-cock.");
 	output("\n\nThere’s a knock on the door, and the handle turns.");
-	output("\n\n<i>“Ms. Flahne, did you see that email I…”</i>");
+	output("\n\n<i>“Ms. Flahne, did you see that email I...”</i>");
 	output("\n\n<i>“Not now! Not now!”</i> she cries, wobbling delightfully. <i>“Appointment here! Later!”</i>");
 	output("\n\nThe handle stops turning immediately. She may not want to be caught, but you’d guess Flahne’s extracurricular activities are becoming well known around here.");
 	output("\n\nNot that you care. You care about tightening your [pc.thighs] around her, fondling her lovely, soft boobies and making her moan with delight, her ovipositor swelling mightily within you and then blooming a goopy, ripe load of eggs into your");
@@ -381,7 +381,7 @@ public function breedwellPremiumBootyCallsFlahne():void
 	pc.exhibitionism(1);
 	
 	output("\n\nYou sit for a little while like that with her, steaming together gently, before she shoos you off.");
-	output("\n\n<i>“I… need to get back to work,”</i> she says. <i>“I can’t let anyone…”</i> she sighs as she watches you leave an alabaster trail of goop from your opened pussy all over the floor. <i>“ …well, maybe I can get a galotian in here.”</i>");
+	output("\n\n<i>“I... need to get back to work,”</i> she says. <i>“I can’t let anyone...”</i> she sighs as she watches you leave an alabaster trail of goop from your opened pussy all over the floor. <i>“ ...well, maybe I can get a galotian in here.”</i>");
 	output("\n\nShe pulls you into a loving kiss, and pushes a lollipop into your hand before you go, though.");
 	output("\n\n<i>“My naughty little surprise,”</i> she says with a shake of the head and a smile.");
 	
@@ -407,15 +407,15 @@ public function breedwellPremiumBootyCallsTarkusMercs():void
 	output("\n\n<i>“Heeyyyyy there, good looking!”</i> smiles the zel’rahn perched upon the hulking cundarian’s knee. She is quite short and boyish, small tits pressing on a faded vest, her red head-fronds bunched into a pony-hawk. He is heavily-built, corded with blue muscle, tentacle locks flowing down his shoulders. Both are dressed in the bulky, well-used armor of mercs the galaxy over.");
 	output("\n\n<i>“What did I tell you, small man,”</i> she says, poking him in the side. <i>“This app’s so convenient when you’re light years away from the nearest chicken coop. You’re telling me we could pick up anything as " + pc.mf("hunky","pretty") + " as that around here?”</i>");
 	output("\n\nHe grunts, eyeing you up.");
-	output("\n\n<i>“I dunno. You might not like shortstacks. I do,”</i> he says, squeezing her ample backside. <i>“But… I’m not gonna say no.”</i>");
+	output("\n\n<i>“I dunno. You might not like shortstacks. I do,”</i> he says, squeezing her ample backside. <i>“But... I’m not gonna say no.”</i>");
 	output("\n\nThey lead you to the quarters they’ve commandeered, a poky little space in the bowels of the ship that’s barely big enough for the three of you. Once it gets going though, once you’re sandwiched between thick muscle on one side and soft goo on the other, once they’ve ripped your [pc.gear] off and have started exploring your body with interest, big rough hands on your [pc.chest] and small slick ones between your [pc.thighs], you quickly forget about that. ");
 	output("\n\nThey are as raucous, rough and enthusiastic as you’d expect, pushing you down on your hands and [pc.knees] so that they can spit-roast you, the zel’rahn’s thighs slapping against your [pc.ass] as she shove her tapered, knotted ovipositor into your unfurled [pc.vaginaNoun " + hole + "], pleasurable sensation pulsing into your core as you wrap your hands around the cundarian’s sheathed horse-dick and slather its blunt heads with kisses and licks.");
 	
 	pc.cuntChange(hole, ppRahn.cockVolume(0));
 	
 	output("\n\nHe isn’t as big as his frame suggests - possibly in consideration of his small partner - but that’s still a good ten inches of bulging, veiny meat you wedge deep into your mouth, looking up at him as you get your [pc.tongue] beyond your lips to lap at his balls.");
-	output("\n\n<i>“Oooohhhh sky-shit, big girl,”</i> he groans, muscles trembling up his rippled front. <i>“What a mouth this one’s got! You have to try it…”</i>");
-	output("\n\n<i>“I gotta, I gotta give it [pc.him] in the back end first,”</i> she responds, hands clutching your [pc.thighs] as she rams her bendy ovi-prick into you again and again, waves of motion carrying up your body, forcing you deeper onto the space-goat’s own dick. <i>“Gotta - give [pc.him] what [pc.he] came for…”</i>");
+	output("\n\n<i>“Oooohhhh sky-shit, big girl,”</i> he groans, muscles trembling up his rippled front. <i>“What a mouth this one’s got! You have to try it...”</i>");
+	output("\n\n<i>“I gotta, I gotta give it [pc.him] in the back end first,”</i> she responds, hands clutching your [pc.thighs] as she rams her bendy ovi-prick into you again and again, waves of motion carrying up your body, forcing you deeper onto the space-goat’s own dick. <i>“Gotta - give [pc.him] what [pc.he] came for...”</i>");
 	output("\n\nShe trails off into an orgasmic croon, and your eyes cross as you feel that familiar, gorgeous sensation: your");
 	if (pc.isPregnant(hole)) output(" cunt");
 	else output(" womb");	
@@ -457,7 +457,7 @@ public function breedwellPremiumBootyCallsTarkusMercs():void
 	pc.orgasm();
 	pc.applyPussyDrenched();
 	
-	output("\n\n<i>“Mmm… come back around this way if you get the chance, breeder,”</i> she says a little while later, lying on her side and watching you splash a bit of water over yourself from the tap and put your [pc.gear] back on. She pats her swollen midriff, and rubs her slumbering partner’s thigh. <i>“I’ll always have a nice load of fertile eggs ready for a " + pc.mf("handsome","sweet") + " bit of chicken like you.”</i>");
+	output("\n\n<i>“Mmm... come back around this way if you get the chance, breeder,”</i> she says a little while later, lying on her side and watching you splash a bit of water over yourself from the tap and put your [pc.gear] back on. She pats her swollen midriff, and rubs her slumbering partner’s thigh. <i>“I’ll always have a nice load of fertile eggs ready for a " + pc.mf("handsome","sweet") + " bit of chicken like you.”</i>");
 	
 	if(!CodexManager.entryUnlocked("Cundarians")) 
 	{
@@ -484,25 +484,25 @@ public function breedwellPremiumBootyCallsTavrosAusar():void
 {	
 	clearOutput();	
 	showBust("");
-	showName("TAVROS\n'RAHN'");
+	showName("TAVROS\n‘RAHN’");
 	author("Nonesuch");	
 	var ppRandom:PregnancyPlaceholder = breedwellPremiumGetRandomCock(2);
 	
 	output("The signal leads you to the north west area of the commercial deck, a relatively clean and spacious set of shops.");
 	output("\n\n<i>“Hello,”</i> says a figure, leaning against a wall near a gap between two stores. <i>“Are you my breeder buddy?”</i> ");
 	output("\n\nShe’s an orange gel girl, dressed in plain office clothes, pert breasts and butt pressing gently against them. She grins as she eyes you, and with a certain, strange extravagance walks towards you.");
-	output("\n\n<i>“I’m so glad you’re here!”</i> she oozes. <i>“I’m soooo pent up with my eggs, you see, as we rahn get…”</i> She tugs at her sleeve and darts her eyes at the alleyway. <i>“I’m so desperate, in fact, we’ll need to do it in this alleyway! That’s a thing we rahn do, you know. We’re very open and… so sexual.”</i>");
+	output("\n\n<i>“I’m so glad you’re here!”</i> she oozes. <i>“I’m soooo pent up with my eggs, you see, as we rahn get...”</i> She tugs at her sleeve and darts her eyes at the alleyway. <i>“I’m so desperate, in fact, we’ll need to do it in this alleyway! That’s a thing we rahn do, you know. We’re very open and... so sexual.”</i>");
 	output("\n\nA bit closer, you notice the gel girl has a nose, and her ears are blunt and floppy, rather than long and pointy. You put your hands on your hips and simply frown at her.");
-	output("\n\n<i>“ ...is there something wrong? I thought Tamani hired people who were really into rahn. Which I am.”</i> The heavily modded ausar sighs. <i>“Alright, look. Do you think you could just… go along with it? It’s… it’s my thing, ok. I don’t mean any harm. Please?”</i>");
+	output("\n\n<i>“ ...is there something wrong? I thought Tamani hired people who were really into rahn. Which I am.”</i> The heavily modded ausar sighs. <i>“Alright, look. Do you think you could just... go along with it? It’s... it’s my thing, ok. I don’t mean any harm. Please?”</i>");
 	output("\n\nYou sigh. Fine. You aren’t going to get eggs out of this, but presumably she can still give you a thumbs up. You put your perkiest expression on and tell her you can’t <i>wait</i> to relieve all that pressure she’s feeling. Because of all the eggs. She brightens up, and practically skips into the alleyway.");
 	output("\n\nWhen you kneel in front of her and she unbuttons her skirt, a pointed, tapered cock with a thick bulb of meat at its base flops out and bops you on the face. You pull it to one side and glare up at her.");
-	output("\n\n<i>“I’ve not gotten around to modding it,”</i> she mumbles. <i>“It’s, the tube ovi-thingy, it’s the hardest thing to… oh…”</i> she trails off as you begin jerking her, lightly fingering that ever-so-sensitive point as you smother the dog-gel-thingy in attention.");
+	output("\n\n<i>“I’ve not gotten around to modding it,”</i> she mumbles. <i>“It’s, the tube ovi-thingy, it’s the hardest thing to... oh...”</i> she trails off as you begin jerking her, lightly fingering that ever-so-sensitive point as you smother the dog-gel-thingy in attention.");
 	output("\n\nSighs tumble down to you as you spread your [pc.lips] over it, easily taking the rocket-shaped member into your maw. Well, she got one thing right - the fluid which beads over your [pc.tongue] as you pump your mouth up and down it are nice and sweet. You grip her knot firmly, alternating between firm, wet pumps and licking lavishes of her tip.");
 	output("\n\nThe exhibitionist element of this clearly arouses her - people are going about their business not more than ten feet away from where you’re pleasuring her, and she keeps shooting looks that way, biting her fingers and gasping with delight.");
 	if (pc.exhibitionism() >= 33) output(" As, to be fair, it does you. You see yourself as you are - a whore on [pc.his] [pc.knees], blowing a client where anyone could see [pc.him], and [pc.eachVagina] grow shamelessly wet at the thought.");
-	output("\n\n<i>“Oh yes…”</i> she moans, eyes closed, hand gripping your [pc.hair] as she gets close. <i>“I get so heavy with eggs… I’m so slutty and needy, I’ll do it in public… uunnnngh!”</i> Thick sugar spurts deep in your mouth, knot throbbing against the saliva-seal of your lips. You work your mouth and throat with professional skill, wetly sucking her cum away at the same time as working her completely dry.");
+	output("\n\n<i>“Oh yes...”</i> she moans, eyes closed, hand gripping your [pc.hair] as she gets close. <i>“I get so heavy with eggs... I’m so slutty and needy, I’ll do it in public... uunnnngh!”</i> Thick sugar spurts deep in your mouth, knot throbbing against the saliva-seal of your lips. You work your mouth and throat with professional skill, wetly sucking her cum away at the same time as working her completely dry.");
 	output("\n\n<i>“Thank you for your donation,”</i> you say, giving her your best smile once she’s unplugged herself from you.");
-	output("\n\n<i>“It was my pleasure to help the Great Effort!”</i> she beams, tucking herself away. She shoots a nervous look to the entrance of the alley as you get up, and touches you on the shoulder. <i>“Uh… thank you. For doing that. Please don’t tell your boss. Please?”</i>");
+	output("\n\n<i>“It was my pleasure to help the Great Effort!”</i> she beams, tucking herself away. She shoots a nervous look to the entrance of the alley as you get up, and touches you on the shoulder. <i>“Uh... thank you. For doing that. Please don’t tell your boss. Please?”</i>");
 	output("\n\nShe’s hurried away before you’re done dusting your [pc.knees] off.");
 	
 	if(!CodexManager.entryUnlocked("Ausar")) 
@@ -538,7 +538,7 @@ public function breedwellPremiumBootyCallsZhengShiTwofer():void
 		else if (hole == hole2) hole2 = 0;
 	}
 	
-	output("This is hardly the place to go looking for a hook-up… but you’re a professional. If there’s some luscious, pent-up gel dick in here somewhere, it’s your job to find it and drain it. Cautiously, you follow the coordinates down a side passage into a grubby docking area. A group of Corona Lords working around a docked freighter turn to stare at you askance.");
+	output("This is hardly the place to go looking for a hook-up... but you’re a professional. If there’s some luscious, pent-up gel dick in here somewhere, it’s your job to find it and drain it. Cautiously, you follow the coordinates down a side passage into a grubby docking area. A group of Corona Lords working around a docked freighter turn to stare at you askance.");
 	output("\n\n<i>“Oh fuck,”</i> says a deep, rich voice. <i>“A breeder! I completely forgot I still had that app turned on.”</i> It belongs to a masculine fuu’rahn, swaggering along the gantry from the opposite direction. He’s one of the biggest rahns you’ve clapped eyes on, well over six foot tall, lean but powerfully built (for a single-celled organism, anyway). He laughs, considering you with lively eyes.");
 	output("\n\n<i>“You didn’t risk your ass to come all the way out here to do me, did you?”</i> the blue-and-green collosus asks. Shrugging, he");
 	if (pc.tallness >= 82) output(" clamps his arm around your waist.");
@@ -552,7 +552,7 @@ public function breedwellPremiumBootyCallsZhengShiTwofer():void
 	if (pc.hasTits()) output(" around your breast");
 	else output(" down your flat chest");
 	output(", squeezing you as flicks his long tongue over your [pc.skinFurScales], tasting you with interest. Inevitably you feel your heat building as he slides his other hand gracefully between the cleft of your [pc.thighs], tracing the lips of your [pc.vagina " + hole + "] before slipping inside, pushing two fingers gently into your tunnel.");
-	output("\n\n<i>“If I wanted a slave fuck, I could get that easy. What I want, why I got the app…”</i> He pulls back, opens his thighs with a wet rumbling of lust. You stare as not one but two ovipositors sprout out from his groin, both easily 9 inches long and human-like in shape. He grasps them both, hefting them ponderously. <i>“ ...is to sow my wild oats. Pirates don’t last forever, y’know? While I’m out here, having fun, I wanna swell as many rusher bellies as I can. Even if I won’t know my kids, <i>I’ll</i> know they’re out there.”</i>");
+	output("\n\n<i>“If I wanted a slave fuck, I could get that easy. What I want, why I got the app...”</i> He pulls back, opens his thighs with a wet rumbling of lust. You stare as not one but two ovipositors sprout out from his groin, both easily 9 inches long and human-like in shape. He grasps them both, hefting them ponderously. <i>“ ...is to sow my wild oats. Pirates don’t last forever, y’know? While I’m out here, having fun, I wanna swell as many rusher bellies as I can. Even if I won’t know my kids, <i>I’ll</i> know they’re out there.”</i>");
 	output("\n\nHe finishes in a lusty growl, diving on top of you, smothering you in thick, warm gel. Your [pc.ass] is hoisted into the air as he levers your [pc.legs] over his shoulder");
 	if (!pc.isNaga()) output("s");
 	output(", and then he spears his first dick into your [pc.vagina " + hole + "], working the smooth, sturdy member into your hole steadily, giving you plenty of time to soften and");
@@ -564,7 +564,7 @@ public function breedwellPremiumBootyCallsZhengShiTwofer():void
 	
 	if (hole2 >= 0)
 	{
-		output("\n\n<i>“Void-damn,”</i> he grunts, fingers trailing down your [pc.eachVagina]. <i>“Fucking love a [pc.boyGirl] who packs more than one.”</i>  You sigh in anticipation, then moan as he lines his other ovipositor up with your [pc.vagina " + hole2 + "] and then works himself in, helped by a");
+		output("\n\n<i>“Void-damn,”</i> he grunts, fingers trailing down your [pc.eachVagina]. <i>“Fucking love a [pc.boyGirl] who packs more than one.”</i> You sigh in anticipation, then moan as he lines his other ovipositor up with your [pc.vagina " + hole2 + "] and then works himself in, helped by a");
 		if (pc.isSquirter()) output(" gush");
 		else output(" trickle");
 		output(" of [pc.femcum] that ensues as the sensation of getting");
@@ -584,7 +584,7 @@ public function breedwellPremiumBootyCallsZhengShiTwofer():void
 	output(" deep, one long plunge after another. They stuff you and rub at each other through your walls, incredibly intense sensation, and you orgasm in a sudden, wet and prickly burst, moved to shout at him to keep doing that as your holes clamp up around him and pleasure rocks through your core");
 	if (!pc.isNaga()) output(", waggling your [pc.feet] gleefully in the air");
 	output(".");
-	output("\n\n<i>“That’s it [pc.boy], nice and loud,”</i> groans the fuu’rahn, supple, muscular thighs slapping against your [pc.ass]. <i>“Let those lunkheads out there know how a real rahn fucks…”</i>");
+	output("\n\n<i>“That’s it [pc.boy], nice and loud,”</i> groans the fuu’rahn, supple, muscular thighs slapping against your [pc.ass]. <i>“Let those lunkheads out there know how a real rahn fucks...”</i>");
 	output("\n\nPassion hardening his features, he pulls out and twists you around, pushing you onto your hands and your knees, before screwing his thick, malleable pseudo-cocks back into your opened holes. Having thoroughly softened and widened you, he’s able to really let rip, growls and grunts storming out of his mouth as he pins you down and drives himself into your");
 	if (hole2 >= 0) output(" cunts");
 	else output(" cunt and asshole");
@@ -615,7 +615,7 @@ public function breedwellPremiumBootyCallsZhengShiTwofer():void
 	output("\n\nYou shift over on the bed and lie on your side, allow him to gaze at his handiwork - your [pc.belly] utterly swollen with his nascent eggs");
 	if (pc.hasTits()) output(", your [pc.boobs] sat on top of it");
 	output(". You look at least 8 months gone. The ripped, masculine rahn beams at the sight. There’s a certain sad wistfulness in that smile.");
-	output("\n\n<i>“Use the shower, if you like,”</i> he says. <i>“And… you get out Zheng Shi right away, ok?”</i> he goes on, as you crab-walk your throbbing way towards the bathroom. <i>“I can tell my guys to leave you alone. But this isn’t a place for a pregnant " + pc.mf("person","lady") + " to be hanging around. It would sure suck a lot if I found you in the slave pens later on.”</i>");
+	output("\n\n<i>“Use the shower, if you like,”</i> he says. <i>“And... you get out Zheng Shi right away, ok?”</i> he goes on, as you crab-walk your throbbing way towards the bathroom. <i>“I can tell my guys to leave you alone. But this isn’t a place for a pregnant " + pc.mf("person","lady") + " to be hanging around. It would sure suck a lot if I found you in the slave pens later on.”</i>");
 
 	pc.shower();
 	processTime(60);
@@ -658,14 +658,14 @@ public function breedwellPremiumBootyCallsTarkusStaceyNext():void
 	else if (pc.inSwimwear(true)) output("You strip down to your [pc.underGarments] and");
 	else output("You strip and put some spare swimclothes on and");
 	output(" sit yourself down on the lounger next to her.");
-	if (pc.isBimbo()) output(" It’s so nice to sit in the sun with a kindred spirit! You lie there and happily natter with her about clothes, extranet icons, where it’s hot, where it’s not, cute videos of pets… the time just flies by.");
+	if (pc.isBimbo()) output(" It’s so nice to sit in the sun with a kindred spirit! You lie there and happily natter with her about clothes, extranet icons, where it’s hot, where it’s not, cute videos of pets... the time just flies by.");
 	else output(" The loo’rahn is a complete imbecile, but not a malicious one, and honestly, in the warm sun next to the gentle lap of a swimming pool, it’s easy enough to let her prattle.");
 	output("\n\n<i>“I love that tattoo! Did they make you get it? Well, it totally suits your [pc.skinFurScales]! Hey there, Una! Have you lost weight? You’re looking sooooooo trim in that shirt!”</i>");
 	output("\n\nThe gabilani grits her teeth. Her long ears twitch.");
 	output("\n\n<i>“Petr. My room. Now.”</i>");
 	output("\n\n<i>“She adores me, you know,”</i> the loo’rahn tells you conspiratorially, touching your arm. <i>“I can tell. I have that, kind of, sensitivity for people, you know. Oh! Oh dear.”</i> She giggles, embarrassed, as the rough, squishy sounds of sexual congress begin to float down from the opened windows of Una’s suite.");
 	output("\n\nThe sounds do get her own juices running though, and running her hand down the slim curve of her calf she asks you about your career as a premium breeder. Each story is met with coy giggles.");
-	output("\n\n<i>“That sounds soooo much fun! It’s not something I could do, though - I need to feel, like, an intimate bond with someone to have sex with them. Oh! Do you want my eggs?”</i> she asks, as if this had only just occurred to her. She shifts her one-piece to one side, and out of her mound sprouts her small, chubby ovipositor, oozing moisture at the tip. She sighs, fingers trailing over your [pc.chest] as you shift your hand over to it, giving it a few experimental pumps. <i>“You can, if you like. They might not be, like, fertile - although I guess I did blow that guy at the party two nights ago…”</i>");
+	output("\n\n<i>“That sounds soooo much fun! It’s not something I could do, though - I need to feel, like, an intimate bond with someone to have sex with them. Oh! Do you want my eggs?”</i> she asks, as if this had only just occurred to her. She shifts her one-piece to one side, and out of her mound sprouts her small, chubby ovipositor, oozing moisture at the tip. She sighs, fingers trailing over your [pc.chest] as you shift your hand over to it, giving it a few experimental pumps. <i>“You can, if you like. They might not be, like, fertile - although I guess I did blow that guy at the party two nights ago...”</i>");
 	output("\n\nUna and Petr don’t sound like they’re going to be done anytime soon. You slither over to the loo’rahn’s lounger and mount her, clasping her firm boobies as you sink your [pc.vagina " + hole + "] down her stubby ovi-cock. Her sunglasses are knocked askew, allowing you to see her unfocused, transported eyes as you rock your [pc.ass] on top of her, pleasuring your entrance, [pc.femcum] soon sliding down your inner lips.");
 	
 	processTime(60 + rand(60));
@@ -745,7 +745,7 @@ public function breedwellPremiumBootyCallsTavrosDommeNext():void
 	output("\n\nThe role of Office Relaxer is diverse - a real gap filler. Sometimes you’re needed to sit in the corner and take notes at a meeting. Sometimes somebody just wants a coffee made. Sometimes a middle manager’s temper has run over, and she needs someone to strip her down, gag her, tie her wrists to metal links built into the ceiling, and stripe her back and ass with a riding crop, issuing gratified, muffled barks as you send pleasant waves of purple flesh this way and that with one well-directed blow after another. ");
 	output("\n\nOn several occasions you see things - vid-conferences in darkened offices, glimpses of funds moving in strange ways, email exchanges with UGC officials - that you’re pretty sure you aren’t meant to see. The uneasiness you feel combines soupily with the pheremonal haze you’re swimming in, that sexual spice that’s always in your mouth and nostrils, making you docile and horny and happy to just be around the perfumed rahn, doing whatever they say, touching their soft flesh, thrilling at their oozing, supple ovipositors stretching your holes. You begin to see why the two might go together.");
 	output("\n\nThis culminates in you serving at a particularly high-powered meeting of execs with another Relaxer. Some of the things being said above that matte black table top should make your skin crawl, but the only thing that matters is the thick, pliant pair of thighs your face is buried between, lapping at the gaping, oozing, grape wonder of the executive’s pussy. What matters is carefully coordinating with the saeri girl whose pert thighs and ass your own [pc.thighs] and [pc.ass] are tightly bound to, the double-ended dildo stuffed into your pussies vibrating away, so that you can service two do’rahn on opposite sides of the table at the same time. The meeting goes on for hours. You are shuffling through puddles of [pc.femcum] by the end.");
-	output("\n\n<i>“That was… productive,”</i> sighs one, when it’s finally over and you’ve been untied. She clasps the shoulder of the saeri. <i>“I’m gonna take this one into the rec room for a little afters. That one only a loanee? Aw, shame. Lovely tongue on [pc.him].”</i> ");
+	output("\n\n<i>“That was... productive,”</i> sighs one, when it’s finally over and you’ve been untied. She clasps the shoulder of the saeri. <i>“I’m gonna take this one into the rec room for a little afters. That one only a loanee? Aw, shame. Lovely tongue on [pc.him].”</i> ");
 	output("\n\nShe gives you a brisk slap on the [pc.ass], and you feel a glow of accomplishment.");
 	
 	for(var y:int = 0; y < rn; y++)
@@ -793,7 +793,7 @@ public function breedwellPremiumBootyCallsTavrosDommeNext2():void
 	var hole:int = rand(pc.vaginaTotal());
 	
 	output("You find your mentor in her glass-and-marble-heavy office, and begin your performance review. You kneel beneath her desk as she taps at her lap device, [pc.lips] stretched around thick, delicious egg-tube, head bobbing enthusiastically. You <i>really</i> want that recommendation.");
-	output("\n\n<i>“Mmm,”</i> she says crisply. <i>“Almost uniformly positive feedback for you. Almost. That’s very strong work for an intern. I’m only going to have to discipline you a little bit.”</i> She leans back, bosom heaving against her suit, mouth opening as you take her deep, [pc.tongue] sliding right down her gel shaft. <i>“That’s it, piggy, you work for it, you get what you need… uungh!”</i> She clutches your [pc.hair] as she cums, ensuring that every last drop of pheromone-laden egg-goop that she throbs out courses down your neck. You coo woozily when she withdraws, your head a morass of submissive bliss. You do everything she orders you to do next in a sultry cloud of happiness.");
+	output("\n\n<i>“Mmm,”</i> she says crisply. <i>“Almost uniformly positive feedback for you. Almost. That’s very strong work for an intern. I’m only going to have to discipline you a little bit.”</i> She leans back, bosom heaving against her suit, mouth opening as you take her deep, [pc.tongue] sliding right down her gel shaft. <i>“That’s it, piggy, you work for it, you get what you need... uungh!”</i> She clutches your [pc.hair] as she cums, ensuring that every last drop of pheromone-laden egg-goop that she throbs out courses down your neck. You coo woozily when she withdraws, your head a morass of submissive bliss. You do everything she orders you to do next in a sultry cloud of happiness.");
 	output("\n\n<i>“Tamani will make you another offer, eventually,”</i> the do’rahn intones. You feel the vibrating rod dip between your [pc.thighs], and you whimper through the ball gag as she toys with your [pc.vagina " + hole + "], passing it over your throbbing [pc.clit " + hole + "]. You are hog-tied with strong cord, dangling from a metal link fixed to the office’s ceiling. You are blindfolded by a black kerchief that reads OFFICE RELAXER IN TRAINING. PLEASE TAKE A MOMENT TO TEASE ME! across it. You know, because you put it on yourself. The calm, smooth words of your do’rahn boss march into your ears as she moves the vibrating rod over your [pc.nipples]");
 	if (pc.isLactating()) output(", making them swell and leak [pc.milk].");
 	else output(", turning them into hard, tender points.");

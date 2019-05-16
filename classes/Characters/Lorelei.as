@@ -2,8 +2,8 @@ package classes.Characters
 {
 	import classes.Creature;
 	import classes.GLOBAL;
-    import classes.Engine.Interfaces.output;
-    import classes.Engine.Interfaces.clearOutput;
+	import classes.Engine.Interfaces.output;
+	import classes.Engine.Interfaces.clearOutput;
 	import classes.Engine.Combat.*;
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.GameData.CombatAttacks;
@@ -30,7 +30,7 @@ package classes.Characters
 			this.capitalA = "";
 			this.originalRace = "human";
 			this.long = "";
-			this.customDodge = "Minuet dodges to one side from your attack with practiced ease.  You'll have to do better than that!";
+			this.customDodge = "Minuet dodges to one side from your attack with practiced ease. You’ll have to do better than that!";
 			this.customBlock = "Block Placeholder";
 			this.isPlural = false;
 
@@ -95,7 +95,7 @@ package classes.Characters
 			this.createPerk("Custom Appearance");
 
 			this._isLoading = false;
-        }
+		}
 
 		override public function get bustDisplay():String
 		{
@@ -105,7 +105,7 @@ package classes.Characters
 		public static function encounterText():String
 		{
 			if (CombatManager.getHostileActors()[0].hasStatusEffect("Grappled")) return "";
-			else return "Minuet stands tense, ready to strike at a moment’s notice.  Her hands are open, with electric sparks arcing from her fingertips to her palms and back again.  Every movement she makes is deliberate and calculated: she doesn’t so much as breathe out of sync with the rest of her body.";
+			else return "Minuet stands tense, ready to strike at a moment’s notice. Her hands are open, with electric sparks arcing from her fingertips to her palms and back again. Every movement she makes is deliberate and calculated: she doesn’t so much as breathe out of sync with the rest of her body.";
 		}
 
 		//A hat with all of Lorey's attack functions
@@ -202,7 +202,7 @@ package classes.Characters
 			if (rand(2) == 0)
 			{
 				output("Minuet changes her stance, standing more upright, as she places a hand beneath her right boob and gives it a heft. As she does, the black material around her tit slowly begins to peel away in a perfect circle, revealing the tanned skin and pink, nubby nipple concealed within. The suit continues to peel, until every last inch of her titflesh is exposed to the air.");
-				output("\n\n<i>“Come on, darling,”</i> she says, licking her lips and pinching her nipple in front of you. <i>“If you admit that you want to see more, just drop your weapons, and I’ll give you a show like you’ve never seen before….”</i>");
+				output("\n\n<i>“Come on, darling,”</i> she says, licking her lips and pinching her nipple in front of you. <i>“If you admit that you want to see more, just drop your weapons, and I’ll give you a show like you’ve never seen before....”</i>");
 				output("\n\nTo punctuate her offer, the suit begins to peel away from her left boob as well – but it only reveals her nipple, leaving the rest of it completely concealed.");
 			}
 			// Random Lust attack 2:
@@ -210,13 +210,13 @@ package classes.Characters
 			{
 				output("Minuet’s stance shifts, putting her left leg out towards you. As she does, her hand runs slowly and sensually up the side of her thigh, her fingers gently brushing against the fabric of her suit – and, as she does, her suit begins to peel, or maybe even unzip, along where her fingers touch. Where her hand goes, the suit splits in half, revealing the darkened flesh of her thigh underneath.");
 				output("\n\n<i>“Mmmm,”</i> she moans, her tongue licking her lips, her eyes on you the whole time. She repeats the process for her other leg, giving you more thigh to ogle; and, when she’s done there, she puts her fingers underneath the cleavage of her boobs, and starts drawing a line down her stomach. Like with her legs, the suit splits at her touch, revealing her flat stomach underneath the fabric. And then her fingers start dipping lower, towards–");
-				output("\n\nJust as they reach the valley of her crotch, her hand pulls away, and, in an instant, every incision in her suit is repaired. Or, perhaps they were never created in the first place, and it’s all a trick of the suit. Either way, you can’t get the image of her flawless, tanned skin out of your head, and the fact that you were about to see much more….");
+				output("\n\nJust as they reach the valley of her crotch, her hand pulls away, and, in an instant, every incision in her suit is repaired. Or, perhaps they were never created in the first place, and it’s all a trick of the suit. Either way, you can’t get the image of her flawless, tanned skin out of your head, and the fact that you were about to see much more....");
 			}
 
 			// Do medium Lust damage
 			applyDamage(damageRand(new TypeCollection({ tease : lustDamage }), 20), this, target, "minimal");
 
-			if (target.lust() < target.lustMax()) output("\n\nStill, you have the willpower to keep your fantasies from obstructing your offense. For now….");
+			if (target.lust() < target.lustMax()) output("\n\nStill, you have the willpower to keep your fantasies from obstructing your offense. For now....");
 		}
 
 		// Random Lust attack 3:
@@ -229,7 +229,7 @@ package classes.Characters
 
 			if (target.willpower() <= 15)
 			{
-				output("\n\nYou know that she’s the enemy, and that you’re trying to defend yourself from her… but she’s also a hot lady with big tits, and she’s trying to aggressively make out with you. You’re a weak-willed [pc.manWoman], and you part your lips, allowing her in.");
+				output("\n\nYou know that she’s the enemy, and that you’re trying to defend yourself from her... but she’s also a hot lady with big tits, and she’s trying to aggressively make out with you. You’re a weak-willed [pc.manWoman], and you part your lips, allowing her in.");
 				output("\n\nAnd allow herself in she does: your mouth is flooded with her questing, dancing tongue, counting your teeth and tasting your own. When she reaches particularly deep into your mouth, you can’t help but suck on her tongue, just a little bit. The conflict may be momentarily forgotten, but you hope this moment lasts forever.");
 				output("\n\nUnfortunately, Minuet does not share the sentiment, and almost as soon as it begins, it ends. She shoves you away from her and wipes at her chin with the back of her sleeve as she resumes her earlier stance.");
 				output("\n\n<i>“I always have more sugar to give, honey,”</i> she teases, her tongue licking at her lips languidly. <i>“All you have to do is ask.”</i>");
@@ -247,7 +247,7 @@ package classes.Characters
 				applyDamage(damageRand(new TypeCollection({ tease : lustDamage/2 }), 20), this, target, "minimal");
 			}
 
-			if (target.lust() < target.lustMax()) output("\n\nTempting….");
+			if (target.lust() < target.lustMax()) output("\n\nTempting....");
 		}
 
 		private function graspingHand(target:Creature):void
@@ -278,7 +278,7 @@ package classes.Characters
 			// Do minor Lust damage
 			applyDamage(damageRand(new TypeCollection({ tease : lustDamage/2 }), 20), this, target, "minimal");
 
-			if (target.lust() < target.lustMax()) output("\n\nTempting….");
+			if (target.lust() < target.lustMax()) output("\n\nTempting....");
 		}
 
 		public function struggleFailReaction(target:Creature):void
@@ -291,10 +291,10 @@ package classes.Characters
 		public static function waitRoundReaction(target:Creature):void
 		{
 			output("You attempt to relax against Minuet.");
-			if (target.lust() < 50) output("\n\nThere’s no sense in trying to break free from her; you’ll just hurt yourself in the process. She has you well and captured… at least, until you can think of something.");
+			if (target.lust() < 50) output("\n\nThere’s no sense in trying to break free from her; you’ll just hurt yourself in the process. She has you well and captured... at least, until you can think of something.");
 			else if (target.lust() < 90) output("\n\nYou can’t lie: in a way, it’s kind of hot for her to handle you like this. You’ve gotten kind of <i>excited</i> since your fight had begun, and the dumb animal part of your brain wants to see where this leads.");
-			else output("\n\nIt’s gotten way too hard to focus on the fight as you are: all you can think about is Minuet and her tits, and her hourglass form, and the way she’s pressing them both against you right now… maybe it’s not too late to apologize, then kiss and make up?");
-			output("\n\nMinuet giggles lasciviously, noticing your total submission and refusal to act against her. <i>“Good for you, [pc.name],”</i> she says, pressing her body up against you. <i>“Just give me a moment or two, and we can both forget this ever happened….”</i>");
+			else output("\n\nIt’s gotten way too hard to focus on the fight as you are: all you can think about is Minuet and her tits, and her hourglass form, and the way she’s pressing them both against you right now... maybe it’s not too late to apologize, then kiss and make up?");
+			output("\n\nMinuet giggles lasciviously, noticing your total submission and refusal to act against her. <i>“Good for you, [pc.name],”</i> she says, pressing her body up against you. <i>“Just give me a moment or two, and we can both forget this ever happened....”</i>");
 			// Display one of the random Grapple attack texts
 		}
 	}

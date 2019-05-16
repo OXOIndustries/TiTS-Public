@@ -22180,6 +22180,7 @@
 						{
 							thisStatus.value1 = (thisStatus.value1 != 0 ? 0 : 1);
 							thisStatus.value2 = 0;
+							thisStatus.value4 = 0;
 							thisStatus.minutesLeft = (7 * 24 * 60);
 							requiresRemoval = false;
 						}

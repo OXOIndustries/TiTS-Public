@@ -1474,7 +1474,7 @@ package classes.GameData
 				{
 					output("<b>You are being grappled by Minuet!</b>");
 					output("\n\nYour left arm is trapped behind your back, pinned in place by Minuet and her flawless technique. She doesn’t need much arm strength to keep you in place as you are, and every time you try to move, she presses your hand deeper against your back, letting you know that a <i>particularly</i> wrong move might result in some serious, lasting damage, if you aren’t careful.");
-					output("\n\nThat said, if you do nothing, you’ll lose this fight for sure….");
+					output("\n\nThat said, if you do nothing, you’ll lose this fight for sure....");
 				}
 				else
 				{
@@ -4932,7 +4932,7 @@ package classes.GameData
 					}
 					else if (_friendlies[i] is PlayerCharacter && _friendlies[i].lust() >= _friendlies[i].lustMax() && _hostiles[0] is Lorelei)
 					{
-						output("\n\n… Fuck it. You’re too horny to keep going. You tell Minuet that you surrender.");
+						output("\n\n...Fuck it. You’re too horny to keep going. You tell Minuet that you surrender.");
 						continue;
 					}
 					else if (_friendlies[i] is PlayerCharacter) output("\n\nYou fall to the ground,");

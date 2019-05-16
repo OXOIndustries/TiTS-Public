@@ -137,6 +137,8 @@ public function attachButtBugFemale(variant:int = -1):void
 	// Status Effect: "Butt Bug Egg Cycle"
 	// v1: 1 on, 0 off
 	// v2: total time under cycle before new eggs
+	// v3: 
+	// v4: number of offspring produced in cycle
 	if(variant == 1) pc.createStatusEffect("Butt Bug Egg Cycle", 1, 0, 0, 0, true, "Icon_Haste", "Weekly egg cycle.", false, (7 * 24 * 60));
 	else pc.removeStatusEffect("Butt Bug Egg Cycle");
 	
@@ -148,6 +150,7 @@ public function resetButtBugEggCycle():void
 {
 	pc.setStatusValue("Butt Bug Egg Cycle", 1, 0);
 	pc.setStatusValue("Butt Bug Egg Cycle", 2, 0);
+	pc.setStatusValue("Butt Bug Egg Cycle", 4, 0);
 	pc.setStatusMinutes("Butt Bug Egg Cycle", (7 * 24 * 60));
 }
 

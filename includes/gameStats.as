@@ -8319,9 +8319,9 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Premium Breeder, Number of Contracts Signed:</b> " + breedwellPremiumContractCount());
 				if(flags["BREEDWELL_PREM_MISS_QUOTA"] >= 1) output2("\n<b>* Premium Breeder, Punishment for Missing Quota Pending!</b>");
 				if(flags["BREEDWELL_PREM_BACKPAY"] >= 1) output2("\n<b>* Premium Breeder, Backpay Due:</b> " + flags["BREEDWELL_PREM_BACKPAY"]);
-				if (breedwellPremiumUnderContract())
+				if(breedwellPremiumUnderContract())
 				{
-					if (breedwellPremiumContractCount() > 1) output2("\n<b>* Premium Breeder, Current Contract: 180 Days</b>");
+					if(breedwellPremiumContractCount() > 1) output2("\n<b>* Premium Breeder, Current Contract: 180 Days</b>");
 					else output2("\n<b>* Premium Breeder, Current Contract: 90 Days</b>");
 					if(flags["BREEDWELL_PREM_DAY"] != undefined) output2("\n<b>* Premium Breeder, Day of Contract:</b> " + flags["BREEDWELL_PREM_DAY"]);
 					if(flags["BREEDWELL_PREM_QUOTA"] != undefined) output2("\n<b>* Premium Breeder, Monthly Birth Quota:</b> " + flags["BREEDWELL_PREM_QUOTA"]);
@@ -8330,7 +8330,6 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["BREEDWELL_PREM_KID_CNT_CON"] != undefined) output2("\n<b>* Premium Breeder, Births (Current Contract):</b> " + flags["BREEDWELL_PREM_KID_CNT_CON"]);
 					if(flags["BREEDWELL_PREM_SEX_CNT_CON"] != undefined) output2("\n<b>* Premium Breeder, Subscribers Relieved (Current Contract):</b> " + flags["BREEDWELL_PREM_SEX_CNT_CON"]);
 				}
-
 				if(flags["BREEDWELL_PREM_KID_CNT_TTL"] != undefined) output2("\n<b>* Premium Breeder, Births (Lifetime):</b> " + flags["BREEDWELL_PREM_KID_CNT_TTL"]);
 				if(flags["BREEDWELL_PREM_SEX_CNT_TTL"] != undefined) output2("\n<b>* Premium Breeder, Subscribers Relieved (Lifetime):</b> " + flags["BREEDWELL_PREM_SEX_CNT_TTL"]);
 				if(flags["BREEDWELL_PREM_TTL_PAY"] != undefined) output2("\n<b>* Premium Breeder, Earnings (Lifetime):</b> " + flags["BREEDWELL_PREM_TTL_PAY"]);
@@ -8348,11 +8347,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(quaelleInSnit()) output2(", In a Snit");
 				if(quaelleHasLeft()) output2(", Has Left");
 				if(flags["QUAELLE_HUGGED"] != undefined) output2("\n<b>* Quaelle, Times Hugged Her:</b> " + flags["QUAELLE_HUGGED"]);
-				if(chars["QUAELLE"].hasCock() && chars["QUAELLE"].cumQ() > 0)
-				{
-					if(chars["QUAELLE"].virility() <= 0) output2("\n<b>* Quaelle, Virility:</b> 0%");
-					else output2("\n<b>* Quaelle, Virility:</b> " + Math.round(chars["QUAELLE"].virility()*1000)/10 + " %");
-				}
+				if(chars["QUAELLE"].hasCock() && chars["QUAELLE"].cumQ() > 0) output2("\n<b>* Quaelle, Virility:</b> " + Math.max((Math.round(chars["QUAELLE"].virility()*1000)/10), 0) + " %");
 				if(flags["QUAELLE_SEXED"] != undefined) output2("\n<b>* Quaelle, Times Sexed:</b> " + flags["QUAELLE_SEXED"]);
 				if(flags["QUAELLE_FUCK_CUNT_FRONT"] != undefined) output2("\n<b>* Quaelle, Times You Fucked Her Front Pussy:</b> " + flags["QUAELLE_FUCK_CUNT_FRONT"]);
 				if(flags["QUAELLE_FUCK_CUNT_BACK"] != undefined) output2("\n<b>* Quaelle, Times You Fucked Her Back Pussy:</b> " + flags["QUAELLE_FUCK_CUNT_BACK"]);
