@@ -2735,6 +2735,7 @@ public function displayQuestLog(showID:String = "All"):void
 				{
 					output2(" Asked Penny, Accepted, Penny recruited, Completed");
 				}
+				if(flags["ONZIA_GOT_PQUEST_LOOT"] != undefined) output2("\n<b>* Onzia:</b> Helped her, Split rewards with her");
 				if(flags["PQUEST_ZILTRAP_RESULTS"] != undefined || flags["PQUEST_PENNY_PODDED"] != undefined)
 				{
 					output2("\n<b>* Ziltraps:</b> Seen them");
