@@ -5716,7 +5716,7 @@ public function theWalkBackToTheShip():void
 	output("\n\n<i>“Really?”</i> Penny asks, and hefts her singular travel case to emphasis her next point. <i>“Everything I own fits into a few bags. Are you really saying I can’t just bunk with you?”</i>");
 	output("\n\nYou ask her how she could manage to fit her entire life into a handful of suitcases. What’s even in there?");
 	output("\n\n<i>“Some more civvy clothes; my uniform, which I bought, so I didn’t have to hand it in; clothes, my tonfas, hygiene stuff, an old codex, a tamball, my anime, and a couple other odds and ends.”</i> She shrugs at that last part. <i>“You know me.”</i>");
-	output("\n\nGetting back on topic, you tell her that she can’t set up in your quarters, unfortunately; even if she were to live out of her suitcase, it was just be too cramped for you both.");
+	output("\n\nGetting back on topic, you tell her that she can’t set up in your quarters, unfortunately; even if she were to live out of her suitcase, it would just be too cramped for you both.");
 	output("\n\nBut it’s not so bad: you tell her that she can set up in her own room, and, although only one person can live in your quarters, your bed can comfortably fit two, for all those times you’ll be ordering a ship-wide hot-bunk for the journey. And, how often will you two be looking for some time together during the work hours? You two are professionals, after all.");
 	output("\n\n<i>“I suppose that makes sense,”</i> she says with a frown. She looks into the nearest door’s viewport. <i>“This one is empty. Do I call dibs, or...?”</i>");
 	output("\n\nYou tell her that it’s all hers.");

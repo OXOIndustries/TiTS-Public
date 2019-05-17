@@ -15,7 +15,7 @@ public function snekMausHeader(sceneName:String):void
 {
 	showName(sceneName);
 	var snek:String = "";
-	if (snek) snek = snake.bustDisplay + "_NUDE";
+	if (snake) snek = snake.bustDisplay + "_NUDE";
 	var rat:String = "";
 	if (rat1) rat = rat1.bustDisplay + "_NUDE";
 	showBust(snek, rat);

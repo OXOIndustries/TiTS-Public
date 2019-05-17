@@ -20905,7 +20905,7 @@
 				{
 					if(armor is GooArmor && flags["GOO_ARMOR_AUTOCLEAN"] == 1)
 					{
-						notice = kGAMECLASS.gooArmorAutoCleanBlurb("cunt", amountVented, fluidType);
+						if(amountVented >= 500 || statusEffects[z].value1 <= 0) notice = kGAMECLASS.gooArmorAutoCleanBlurb("cunt", amountVented, fluidType);
 					}
 					else if(amountVented >= 25000) 
 					{
@@ -20973,7 +20973,7 @@
 				{
 					if(armor is GooArmor && flags["GOO_ARMOR_AUTOCLEAN"] == 1)
 					{
-						notice = kGAMECLASS.gooArmorAutoCleanBlurb("butt", amountVented, fluidType);
+						if(amountVented >= 500 || statusEffects[a].value1 <= 0) notice = kGAMECLASS.gooArmorAutoCleanBlurb("butt", amountVented, fluidType);
 					}
 					else if(amountVented >= 25000) 
 					{

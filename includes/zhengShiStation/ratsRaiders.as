@@ -820,7 +820,7 @@ public function ratsContinueService(offers:int):void
 	else output(" hungry");
 	output(" ministrations. You’re soon inches away from " + rat2.mf("an equally endowed terran dick.", "a puffy-lipped, moist pink pussy, glazed with the fertile and fragrant scent of a horny mouse-girl."));
 	output("\n\nYou let this odorus cocktail of days-old pheromones enter your body in one deep breath. Within seconds a salubrious heat blossom through your neck, your arms, your torso... " + (pc.hasGenitals() ? "and <i>especially</i> in your swampy nethers" : "up and down your spine multiple times") + "; you shudder as you bring your nose to the mouse-boy’s ballooning cock-head, inhaling right from the hormone-spurting source, each jet of pre steaming before it hits your [pc.face].");
-	if (pc.isHerm()) output(" [pc.EachCock] and your [pc.clits] swell to their full forms" + (pc.hasLowerGarment() ? ", outlining themselves against your [pc.lowerUndergarment]." : ".") + " Pre streams from your hermhood as the muscles in [pc.eachVagina] " + (pc.hasVaginas() ? "clench" : "clenches") + " mournfully against one another, wantonly reacting to the smell of raw dick in the air.");
+	if (pc.isHerm()) output(" [pc.EachCock] and your [pc.clits] swell to their full forms" + (pc.hasLowerGarment() ? ", outlining themselves against your [pc.lowerUndergarment]." : ".") + " Pre streams from your hermhood as the muscles in [pc.eachVagina] clench mournfully against one another, wantonly reacting to the smell of raw dick in the air.");
 	else if (pc.hasCock()) output(" Your [pc.cocks] " + (pc.hasCocks() ? "jump" : "jumps") + " to attention" + (pc.hasLowerGarment() ? ", pressing against your [pc.lowerUndergarment]." : "."));
 	else if (pc.hasVagina()) output(" The muscles in [pc.eachVagina] ruefully clench against one another, reacting wantonly to the smell of raw dick in the air so much that you can feel your inner walls engaging in tribadism.");
 	
@@ -842,7 +842,7 @@ public function ratsContinueService(offers:int):void
 		// PC Med Libido (34-66)
 		else if (pc.libido() <= 66)
 		{
-			output(" Despite your initial reservation, you allow it to spread wings through every muscle.");
+			output(" Despite your initial reservation, you allow it to spread through every muscle.");
 			output("\n\nA sheen of pre that <i>sparkles</i> in the light coats the mouse-boy’s slightly-veiny cock. It points to his partner’s puffy pink pussy like an indomitable mast. They could go at it like a couple ‘a bunnies, but alas, you’re the one servicing them! You press the crown of his cock to your [pc.lips], moving slowly as you bring him to your tonsil... and then you jerk your neck until your nose is pressed to his stomach");
 			if (pc.canDeepthroat()) output(", writhing like a slut as your unresistant" + (flags["USED_SNAKEBYTE"] != undefined ? ", ribbed" : "") + " throat is pleasured.");
 			else output(", wincing and suppressing your gag reflex.");
