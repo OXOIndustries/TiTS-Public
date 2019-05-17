@@ -3176,6 +3176,8 @@ public function variableRoomUpdateCheck():void
 	// Sera's Shop
 	if(darkChrysalisIsOpen()) rooms["DARK CHRYSALIS"].addFlag(GLOBAL.COMMERCE);
 	else rooms["DARK CHRYSALIS"].removeFlag(GLOBAL.COMMERCE);
+	//shear beauty hallway
+	rooms["9015"].description = ceriaHyperCumHallwayText();
 	//Residental Deck
 	//Notices
 	if(tavrosRDActiveNotice()) rooms["RESIDENTIAL DECK 2"].addFlag(GLOBAL.OBJECTIVE);

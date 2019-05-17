@@ -186,15 +186,17 @@ public function tavrosHangarStuff():Boolean
 
 public function merchantThoroughfareBonus():Boolean
 {
-	if(currentLocation == "9015")
+	if (currentLocation == "9015")
 	{
+		//disable nav to shear beauty if doing cum cleanup
+		if (ceriaHyperCumActive()) flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
 		vendingMachineButton(0, "J'ejune");
 	}
-	if(currentLocation == "9017")
+	else if(currentLocation == "9017")
 	{
 		repeatGilBonus();
 	}
-	if(currentLocation == "9018")
+	else if(currentLocation == "9018")
 	{
 		darkChrysalisStorefront();
 		output("\n\nTo the west, you see a brightly-lit shop labeled as “Fur Effect.”");
