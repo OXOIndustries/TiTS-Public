@@ -1354,7 +1354,7 @@ public function fedQuestOfficerVictory():void
 	author("Savin");
 	
 	processTime(15+rand(6));
-	output("With a gasp, the myrish officer pitches forward onto her hands and knees. Her handgun clatters to the ground, sliding across the floor until you catch it under a [pc.foot]. Breathing hard, the ant-woman looks up at you with dark, wide eyes " + (CombatManager.getHostileActors()[0].HP() <= 0 ? "filled with hatred" : "brimming with desire") + ".");
+	output("With a gasp, the myrish officer pitches forward onto her hands and knees. Her handgun clatters to the ground, sliding across the floor until you catch it under " + indefiniteArticle(pc.foot()) + ". Breathing hard, the ant-woman looks up at you with dark, wide eyes " + (CombatManager.getHostileActors()[0].HP() <= 0 ? "filled with hatred" : "brimming with desire") + ".");
 	output("\n\n<i>“M-mother won’t fall so easily,”</i> she groans. <i>“And even if you defeat us, the spirit of freedom will live on!”</i>");
 	output("\n\nWhatever. You throw her primitive weapons out the window, and think of what to do with her...");
 	output("\n\n<b>You found the Queen’s keys</b>");

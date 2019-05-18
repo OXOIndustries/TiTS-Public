@@ -205,7 +205,7 @@ public function extrameetLadyGlamorSex():void
 	
 	if (pc.balls > 0) output(", as your [pc.balls] start to churn");
 	
-	output(". You head falls back again as the wave of pleasure runs through you and you feel your cock throb as a [pc.cumColor] hot load erupts from your [pc.cockHead " + kok + "]. You arch your back and moan, as you blow your sticky seed into the young woman’s mouth, forgetting completely about the camera. The ausar sucks away at you a few moments longer, milking you for the camera.");
+	output(". You head falls back again as the wave of pleasure runs through you and you feel your cock throb as " + indefiniteArticle(pc.cumColor()) + " hot load erupts from your [pc.cockHead " + kok + "]. You arch your back and moan, as you blow your sticky seed into the young woman’s mouth, forgetting completely about the camera. The ausar sucks away at you a few moments longer, milking you for the camera.");
 	
 	output("\n\nYou open your eyes and look down at the young woman, watching her pull her lips and tongue off your spent meat. She sticks her tongue out for the camera, showing off you load before swallowing it and licking her lips. She gives the camera a kiss, then turns off the recording. <i>“Well that wasn’t too bad.”</i> She wipes her lips and pulls herself to her feet. <i>“Definitely not the worse blowjob I’ve ever given.”</i>");
 	output("\n\nYou frown, and ask the young ausar why she started to record you two.");

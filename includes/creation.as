@@ -2094,7 +2094,7 @@ public function fixPcUpbringing():void
 	
 	output("\n\n<i>FIX NOW?</i>");
 	
-	output("\n\n<i>“Fucking computers,”</i> you mutter under your breath, a [pc.finger] already tapping on the key labeled ‘Okay’. The thing chugs away for a second or two, seemingly hard at work repairing itself... you’re about set to move on rather than wind up waiting all day for the Codex to");
+	output("\n\n<i>“Fucking computers,”</i> you mutter under your breath, " + indefiniteArticle(pc.finger()) + " already tapping on the key labeled ‘Okay’. The thing chugs away for a second or two, seemingly hard at work repairing itself... you’re about set to move on rather than wind up waiting all day for the Codex to");
 	if (!silly) output(" fix itself");
 	else output(" do the needful");
 	output(" before it’s vibrating away, demanding its masters dutiful attention again.");

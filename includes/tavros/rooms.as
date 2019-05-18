@@ -426,7 +426,7 @@ public function initTavrosRooms():void
 	//9015
 	rooms["9015"] = new RoomClass(this);
 	rooms["9015"].roomName = "MERCHANT’S\nTHOROUGHFARE";
-	rooms["9015"].description = "A neon sign displaying a pair of scissors sits next to a small store entrance with its doors propped open to the east, allowing you a glimpse of the salon inside. The sign above the door labels it as “Shear Beauty.” The lifts aren’t too far down the merchant deck to the west, but if you follow the arcing thoroughfare east, you could visit the red light zone.";
+	rooms["9015"].description = "";
 	rooms["9015"].planet = "TAVROS STATION";
 	rooms["9015"].system = "SYSTEM: KALAS";
 	rooms["9015"].westExit = "9016";

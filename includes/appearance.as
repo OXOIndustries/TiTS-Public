@@ -467,7 +467,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			outputRouter(".");
 			break;
 		case GLOBAL.TYPE_SAURMORIAN:
-			outputRouter((target == pc ? "You have":"[target.Name] has") + " the face of a saurmorian, with [target.skinFurScalesColor] metal scales that encase " + (target == pc ? "your":"[target.hisHer]") + " jaw, and run along the top of " + (target == pc ? "your":"[target.hisHer]") + " reptilian snout and down the back of " + (target == pc ? "your":"[target.hisHer]") + " neck. The sides of " + (target == pc ? "your":"[target.hisHer]") + " muzzle aren’t as densely covered, and show hints of a [target.skinColor] hide beneath. " + (target == pc ? "Your":"[target.HisHer]") + " smile, meanwhile, contains a mouthful of sharp teeth.");
+			outputRouter((target == pc ? "You have":"[target.Name] has") + " the face of a saurmorian, with [target.skinFurScalesColor] metal scales that encase " + (target == pc ? "your":"[target.hisHer]") + " jaw, and run along the top of " + (target == pc ? "your":"[target.hisHer]") + " reptilian snout and down the back of " + (target == pc ? "your":"[target.hisHer]") + " neck. The sides of " + (target == pc ? "your":"[target.hisHer]") + " muzzle aren’t as densely covered, and show hints of " + indefiniteArticle(target.skinTone) + " hide beneath. " + (target == pc ? "Your":"[target.HisHer]") + " smile, meanwhile, contains a mouthful of sharp teeth.");
 			break;
 	}
 	if(target.hasStatusEffect("Mimbrane Face") && target == pc)
@@ -2484,7 +2484,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			outputRouter(" " + (target.tailCount == 1 ? "A [target.tail] sits" : "[target.Tails] sit") + " just above your [target.ass], covered from base to tip in [target.skinFurScalesColor] metal scales.");
 			if (target.hasTailFlag(GLOBAL.FLAG_SHORT)) outputRouter(" Though quite short, and very plump, " + (target == pc ? "you still use":"[target.heShe] still uses") + (target.tailCount == 1 ? "it" : "them") + " for some semblance of balance - " + (target.isBimbo() || target.exhibitionism() > 50 ? "the extra looks drawn to each bounce with every step is just a bonus." : "even if every step causes an eye-catching bounce and waggle."));
 			else if (target.hasTailFlag(GLOBAL.FLAG_LONG)) outputRouter(" It sways in time with " + (target == pc ? "your":"[target.hisHer]") + " steps, helping " + (target == pc ? "you":"[target.himHer]") + " maintain balance.");
-			outputRouter(" The soft underside reveals a [target.skinColor] hide.");
+			outputRouter(" The soft underside reveals " + indefiniteArticle(target.skinTone) + " hide.");
 			break;
 	}
 	//Tail cunts
