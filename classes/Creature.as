@@ -11341,6 +11341,24 @@
 			if (biggestVaginalCapacity() > 300) return biggestVaginalCapacity();
 			return 100;
 		}
+		public function tentacleCockCount(addWings:Boolean=false,excludedIndexes: Array = null):Number
+		{
+			var tentacleDicks:Number = 0;
+			var counter: Number = cocks.length;
+			//add back genitals to the count
+			if (addWings && hasBackGenitals()) tentacleDicks += wingCount;
+				
+			while (counter > 0) {
+				counter--;
+				//Check if this index location is excluded
+				if(excludedIndexes != null && excludedIndexes.indexOf(counter) != -1)
+				{
+					//skip
+				}
+				else if (cocks[counter].cType == GLOBAL.TYPE_TENTACLE) tentacleDicks++;
+			}	
+			return tentacleDicks;
+		}
 		public function isBald(): Boolean {
 			return (hairLength <= 0);
 		}
@@ -20905,7 +20923,7 @@
 				{
 					if(armor is GooArmor && flags["GOO_ARMOR_AUTOCLEAN"] == 1)
 					{
-						if(amountVented >= 500 || statusEffects[z].value1 <= 0) notice = kGAMECLASS.gooArmorAutoCleanBlurb("cunt", amountVented, fluidType);
+						notice = kGAMECLASS.gooArmorAutoCleanBlurb("cunt", amountVented, fluidType);
 					}
 					else if(amountVented >= 25000) 
 					{
@@ -20973,7 +20991,7 @@
 				{
 					if(armor is GooArmor && flags["GOO_ARMOR_AUTOCLEAN"] == 1)
 					{
-						if(amountVented >= 500 || statusEffects[a].value1 <= 0) notice = kGAMECLASS.gooArmorAutoCleanBlurb("butt", amountVented, fluidType);
+						notice = kGAMECLASS.gooArmorAutoCleanBlurb("butt", amountVented, fluidType);
 					}
 					else if(amountVented >= 25000) 
 					{
