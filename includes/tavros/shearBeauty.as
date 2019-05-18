@@ -1567,11 +1567,12 @@ public function fairyFootjob():void
 	if(pc.cocks[pc.biggestCockIndex()].cType == GLOBAL.TYPE_EQUINE) output("right on top of your medial ring, ");
 	output("where she plants the underside of her foot against your shaft and begins to stroke up and down. Her left foot continues to work your [pc.knot " + pc.biggestCockIndex() + "], retaining its perfect coolness even as you feel yourself heating up from the exotic footjob.");
 
+	var cumQ:Number = pc.cumQ();
 	output("\n\nYou hardly notice that Ceria’s feet have angled your dick towards yourself until you cum, ");
-	if(pc.cumQ() < 250) output("sending [pc.cumNoun] splattering across your [pc.chest] to leave a [pc.cumColor] stain across your front.");
+	if(cumQ < 250) output("sending [pc.cumNoun] splattering across your [pc.chest] to leave a [pc.cumColor] stain across your front.");
 	else output("a fountain of [pc.cumColor] erupting from your cock to drench you in wave after wave of [pc.cumNoun].");
 	//PC has fucked or been blown by Ceria before and has excessive volume: 
-	if(pc.cumQ() >= 500 && flags["CERIA_MOUTH_FLOOD"] != undefined) output(" Ceria laughs as you wipe away some of the [pc.cumVisc] spunk from your face. <i>“Now you know what it feels like!”</i>");
+	if(cumQ >= 500 && flags["CERIA_MOUTH_FLOOD"] != undefined) output(" Ceria laughs as you wipe away some of the [pc.cumVisc] spunk from your face. <i>“Now you know what it feels like!”</i>");
 	output(" You’re left to stew in your own juices for a few seconds as she admires the view before finally handing you a towel to start cleaning up. While you do, you’re treated to the sight of Ceria cleaning off her feet with a much smaller towel, buffing them until they’re glistening flawlessly once more without a hint of [pc.cumColor].");
 	output("\n\nYou’re ushered out of the break room once you’ve cleaned yourself off, while Ceria lingers to set the room back in order. She comes back out to the front shortly after, giving you a wink.");
 
@@ -1970,12 +1971,13 @@ public function fuckCeriaDoggyCounterOutside(arg:Array):void
 	var kok2:int = arg[1];
 	var tentacleDicks:Number = arg[2];
 	var mess:int = 0;
-		
-	if (pc.cumQ() >= 1000)
+	var cumQ:Number = pc.cumQ();
+	
+	if (cumQ >= 1000)
 	{		
 		mess = 2;
 		output("Orgasm obliterates every other consideration like a brick to the head, and pulling out is a senseless ordeal. [pc.Cum] is rising up like an impending tide, forcing your [pc.cocksLight] into a jacking, uncontrollable bounce that sprays streamers of spooge through the room. Once you get it under control, you’re making an art show of Ceria’s body and her desk. [pc.CumGem] gouts of thick, slick orgasm plaster her shuddering body and get <i>everywhere.</i> You’re filling up anything that even remotely resembles a container, and building up a nice little pool while you’re at it. At some point you don’t even see the elf for the prodigious amount of spoo.");
-		if (pc.cumQ() >= 6000)
+		if (cumQ >= 6000)
 		{
 			mess = 3;
 			output("\n\nSperm explodes out of you; you’re cumming and cumming, spurting like the endless press of a bellows. No matter how furiously you jack your [pc.cocksLight], you can’t stop yourself from stumbling and basting the ceiling, the walls, the front entrance... fuck, pretty much the entire salon is a gunked morass of cum, festooning the tattooed heavily-spunked elf and decorating her employer’s shop as a den of the utmost depravity. Hopefully they have a galotian or two in the back, otherwise she’s gonna need to hire some from Beth’s!");
@@ -2031,14 +2033,14 @@ public function fuckCeriaDoggyWindow(kok:int=0):void
 	if (pc.cockTotal() > 1)
 	{
 		output(" Her peanut-colored ring shifts and contracts, opening up when she holds her breath.");
-		if (kok2 >= 0) output("  It calls for your second cock like Juliet to Romeo.");
+		if (kok2 >= 0) output(" It calls for your second cock like Juliet to Romeo.");
 		else output(" Sadly, your extra dong’s too big to fit. <b>Maybe you should pop some Condensol next time?</b>");
 	}
 	
 	pc.cockChange();
 		
 	output("\n\nCeria’s your personal spigot, soothing your [pc.cocksLight] with red-hot sprinkles of pussyjuice just from a pinch to her clit. You whisper into her knife-length ear how people are going to take pictures of her tattooed titties, how nobody could resist jerking off in public when they see how much she’s enjoying herself. Those lewd murmurs distract her from the insistent pressure pushing on her cunt" + (kok2 >= 0 ? " and ass" : "") + ".");
-	output("\n\nThe sparkling elf’s voice reaches its highest pitch when you sink into her pheromonal glove,  " + (firstTime ? "" : "re") + "acclimating yourself to the limits of her cock-milking embrace. Her entire body clenches down on your girthy intruder and showers it in another spray of fruit-flavored knob-polish, making your trip a much more pleasurable one. Her cunt draws your virile mast deeper with folds of inner, suckling muscle that guide you toward her womb.");
+	output("\n\nThe sparkling elf’s voice reaches its highest pitch when you sink into her pheromonal glove, " + (firstTime ? "" : "re") + "acclimating yourself to the limits of her cock-milking embrace. Her entire body clenches down on your girthy intruder and showers it in another spray of fruit-flavored knob-polish, making your trip a much more pleasurable one. Her cunt draws your virile mast deeper with folds of inner, suckling muscle that guide you toward her womb.");
 	if (pc.cocks[kok].cLength() >= 9) output(" All the lubrication in the galaxy won’t take you to places an elf’s biology isn’t suited for. Ceria’s body isn’t built to take dicks your size, leaving you with several unsheathed inches of [pc.dickSkin " + kok + "]. Her abdomen bloats with the outline of mammoth girth, and you satisfy yourself with the knowledge that you’ll be battering her womb in public.");
 	else output(" Ceria’s cinching cunny celebrates the clap of your [pc.knotBallsHilt " + kok + "] to her ass by squeezing so tight that a rope of [pc.cumNoun] nearly fires off.");
 	if (kok2 >= 0)
@@ -2132,12 +2134,13 @@ public function fuckCeriaDoggyWindowOutside(arg:Array):void
 	var kok2:int = arg[1];
 	var tentacleDicks:Number = arg[2];
 	var mess:int = 0;
+	var cumQ:Number = pc.cumQ();
 	
-	if (pc.cumQ() >= 1000)
+	if (cumQ >= 1000)
 	{
 		mess = 2;
 		output("Pulling out of Ceria takes more willpower than you care to admit, and it’s made difficult by her own orgasm. But, painting her takes priority, and soon your [pc.cum] is bursting out in raging ropes of surging relief, overflowing on the crumpling elf’s every curve and divot, pooling in her mouthwatering bends and pouring down the channel of her buttcheeks. You wonder if her pussy or butt catches any of the [pc.cumVisc] downpour, mindlessly jerking your [pc.cocksLight] to adorn her in your [pc.cumVisc] [pc.cumColor] issue. Each successive blast makes the last one look weaker, and there always seems to be more inside waiting to come out. When your waist starts jerking forward a sense of tension is renewed, and your rod" + (pc.cockTotal() > 1 ? "s" : "") + " throbs to its own beat, splattering the door, the wall, and her ears in overflowing spunk.");
-		if (pc.cumQ() >= 6000)
+		if (cumQ >= 6000)
 		{
 			mess = 3;
 			output("\n\nNow you’re kind of worried: it’s still coming, and it’s crashing out in greater volume than before. You can’t thumb your rigid stiffness enough. [pc.EachCockIsAre] fountaining like " + (pc.cockTotal() > 1 ? "ruptured showerheads" : "a ruptured showerhead") + " over the elf. You stumble backward and fall to the ground, a prisoner in your own body as your cock cums and cums. " + (pc.cockTotal() > 1 ? "Geysers" : "A geyser") + " of [pc.cumNoun] spray up at the ceiling, twitching everywhere. It’s not long before you’ve left your [pc.cumFlavor] mark on every inch of the salon. Even the entire door is webbed over, giving Ceria her first taste of privacy. By the time you’re done, lakes of the stuff slosh from countertops, tables... and of course, the spooge-cocooned elf.");
@@ -2145,7 +2148,7 @@ public function fuckCeriaDoggyWindowOutside(arg:Array):void
 	}
 	else
 	{
-		output("It takes all your might to tug free from Ceria that when you do pull out she crumples bonelessly to the ground the the first shots of [pc.cum] sail right into her ponytail. While she pants and recovers from orgasm you’re focusing all your effort on splashing the elf-slut. Relief spurts from your lust-sore [pc.cockHeads] in rhythmic, throbbing bass beats, the relief of pressure soothing for you and wonderful for her. A [pc.cumGem] lacquer coats her ass in a fine sheen of virility, though you have to wonder if her pussy manages to catch any of the trickle. When your [pc.cocksLight] finish bulging with their payloads, wasting none of it, you jerk your shafts to pump out the dregs into her back. Pools form in the creases and divots of her skin, dripping to the floor");
+		output("It takes all your might to tug free from Ceria that when you do pull out she crumples bonelessly to the ground the the first shots of [pc.cum] sail right into her ponytail. While she pants and recovers from orgasm you’re focusing all your effort on splashing the elf-slut. Relief spurts from your lust-sore [pc.cockHeads] in rhythmic, throbbing bass beats, the relief of pressure soothing for you and wonderful for her. " + StringUtil.capitalize(indefiniteArticle(pc.cumGem())) + " lacquer coats her ass in a fine sheen of virility, though you have to wonder if her pussy manages to catch any of the trickle. When your [pc.cocksLight] finish bulging with their payloads, wasting none of it, you jerk your shafts to pump out the dregs into her back. Pools form in the creases and divots of her skin, dripping to the floor");
 		if (tentacleDicks > 0) output(" under the assault of not just your standard dicks, but of the tentacle-cocks letting loose from above");
 		output(".");	
 	}

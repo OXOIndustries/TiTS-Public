@@ -119,7 +119,7 @@ public function snekHasCaughtHerselfAMaus():void
 		}
 		else output(" slyveren woman.");
 		output(" The alien’s completely nude, letting her bubble-shaped boobs hang free, wobbling obligingly below her extended, grooved tongue. The slut-snake’s garments are littered around the room, forming a cozy semi-circle around her cornered prey.");
-		output("\n\nIt takes a little doing, but you finally maneuver in a way that gives you an angle on her ‘captive’. A [rat1.skinColor]-skinned mouse-boy, timid and diminutive in the shadow of her endless, sight-swallowing inches. Sat against the wall, legs spread, his willing erection blatantly tents and stains the thin layer of clothing he wears. Despite his fright, you sense no malice in the way she taps his leg with her long, body-constricting tail.");
+		output("\n\nIt takes a little doing, but you finally maneuver in a way that gives you an angle on her ‘captive’. " + StringUtil.capitalize(indefiniteArticle(rat1.skinTone)) + "-skinned mouse-boy, timid and diminutive in the shadow of her endless, sight-swallowing inches. Sat against the wall, legs spread, his willing erection blatantly tents and stains the thin layer of clothing he wears. Despite his fright, you sense no malice in the way she taps his leg with her long, body-constricting tail.");
 		output("\n\nMaybe a <i>little</i> condescension though.");
 		output("\n\n<i>“Do you have anything to say for yourself?”</i> she asks, bending low on girthy thighs with a big, knowing smile, staring at his bulging manhood.");
 		output("\n\n<i>“N-N-No...”</i> he stammers, cutely averting his eyes from the two bovine-shaming tits dominating his field of view. The naked eye could spot his blush from orbit. <i>“It wasn’t my idea, I-”</i>");
@@ -237,7 +237,7 @@ public function watchSnekAndMausLikeSpaceDavidAttenborough():void //I think I've
 	{
 		output("\n\nYou");
 		if (!pc.isNude()) output(" loosen your [pc.clothes]");
-		output(" and fish out your [pc.cocks], hoping that their senses are too muffled by one another to identify a third layer of musk and the scent of a horny voyeur. A [pc.cumColor] glaze of knob-polish is already leaking down your " + (pc.hasCocks() ? "shafts" : "shaft") + ", dribbling onto the floor or onto your [pc.thighs]. For a second it worries you, but then you decide you don’t really care that a [pc.cumVisc] puddle is going to be left behind as evidence.");
+		output(" and fish out your [pc.cocks], hoping that their senses are too muffled by one another to identify a third layer of musk and the scent of a horny voyeur. " + StringUtil.capitalize(indefiniteArticle(pc.cumColor())) + " glaze of knob-polish is already leaking down your " + (pc.hasCocks() ? "shafts" : "shaft") + ", dribbling onto the floor or onto your [pc.thighs]. For a second it worries you, but then you decide you don’t really care that a [pc.cumVisc] puddle is going to be left behind as evidence.");
 		if (pc.hasVagina()) output(" Your eager [pc.pussiesLightIsAre] suckle your [pc.fingers] to the knuckle when you deign to stop jacking your [pc.cockType] rod. [pc.GirlCumFlavor] juices mix the other fluids into a perverse cocktail that’d have any horny bimbo begging on their knees. Every part of you is ready to enjoy the show.");
 	}
 	// PC pussy, not taur

@@ -299,7 +299,7 @@ public function jerkOnYouYaDegenerate():void
 	clearOutput();
 	showBoredJumper(true);
 	author("William");
-	output("You pull the jumper’s cock from your mouth and " + (pc.hasCock() ? "jerk":"finger") + " yourself while doing the same for her. A [enemy.furColor] paw quickly joins your hand, her [enemy.eyeColor] eyes shut as she works to get herself off with you. Urging her on, you say, <i>“Hurry up and cum! Don’t wanna get edged again, do you?”</i> With your words as ‘positive’ encouragement, both of the laquine’s paws are on her [enemy.cock] pumping so fast they’re a blur of motion and wet schlucks.");
+	output("You pull the jumper’s cock from your mouth and " + (pc.hasCock() ? "jerk":"finger") + " yourself while doing the same for her. " + StringUtil.capitalize(indefiniteArticle(enemy.furColor)) + " paw quickly joins your hand, her [enemy.eyeColor] eyes shut as she works to get herself off with you. Urging her on, you say, <i>“Hurry up and cum! Don’t wanna get edged again, do you?”</i> With your words as ‘positive’ encouragement, both of the laquine’s paws are on her [enemy.cock] pumping so fast they’re a blur of motion and wet schlucks.");
 	output("\n\nIt doesn’t take long for her bestial dick to <i>explode</i>. Huge ropes of cum shoot upwards and hit the ceiling. Unlike a human’s, her ejaculation is constant, a sizzling seed shower rains down on both of you, but mostly on her. Certainly an enviable output thanks to her big, churning balls. ");
 	if(pc.libido() <= 33) output("You focus on yourself");
 	else if(pc.libido() <= 66) output("You try to catch what comes down");
