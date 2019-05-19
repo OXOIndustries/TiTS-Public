@@ -580,6 +580,16 @@ public function seraSpawnPregnancyEnds():void
 	showName("\nBIRTHING!");
 	
 	var se:StorageClass = pc.getStatusEffect("Sera Spawn Pregnancy Ends");
+	
+	// Failsafe
+	if(se == null)
+	{
+		output("ERROR: 'Sera Spawn Pregnancy Ends' Status Effect does not exist.");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;

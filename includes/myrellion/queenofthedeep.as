@@ -1195,7 +1195,16 @@ public function queenPregnancyEnds():void
 	author("Savin");
 	
 	var se:StorageClass = pc.getStatusEffect("Queen Pregnancy End");
-
+	
+	// Failsafe
+	if(se == null)
+	{
+		output("ERROR: 'Queen Pregnancy End' Status Effect does not exist.");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	var buttPreggers:Boolean = (se.value3 > 0);
 	var cuntPreggers:Boolean = (se.value4 > 0);
 	var numCuntPreggers:Number = se.value4;
