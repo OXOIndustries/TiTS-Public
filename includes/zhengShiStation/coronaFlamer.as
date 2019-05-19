@@ -602,7 +602,7 @@ public function coronaFlamerGetsASecondChanceToShowOff():void
 		if (pc.hasCockFlag(GLOBAL.FLAG_FLARED, cawk)) output(", your bloated flare slowly flowering in her throat as she gags on it");
 		else if (pc.hasCockFlag(GLOBAL.FLAG_TAPERED, cawk)) output(", your tapered tip drooling precum into her throat while she gags around the rest of it");
 		else if (pc.hasCockFlag(GLOBAL.FLAG_NUBBY, cawk)) output(", experiencing a form of uncommon pleasure watching her loudly gag on your barbed cock");
-		else if (pc.cocks[cawk].cType == GLOBAL.TYPE_SIREN && pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED, cawk)) output(", listening to her loudly gag as your envenomed stingers slap at the inside of her throat");
+		else if (pc.cockCanSting(cawk)) output(", listening to her loudly gag as your envenomed stingers slap at the inside of her throat");
 		output(". Reaching up to your [pc.ass], she grabs your cheeks and pulls you into her, skewering herself on your pulsating prick.");
 		output("\n\nThat does it. With a strained, jaw-clenching groan you explode down her throat, [pc.cum]");
 		var cumQ:Number = pc.cumQ();

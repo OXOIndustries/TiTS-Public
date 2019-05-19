@@ -13,6 +13,12 @@ public function drBadgerBustDisplay(nude:Boolean = false):String
 	return sBust;
 }
 
+public function drBadgerAtBimbotorium():Boolean
+{
+	if(flags["DR_BADGER_TURNED_IN"] != undefined) return false;
+	return true;
+}
+
 public function bimbotoriumHallBonus():Boolean
 {
 	output("The Novahome tunnel comes to an abrupt end here, closed off by a wall of solid metal and rusted-shut hatch doors. You can spot places where repairs have been attempted, but none of the entrances seem to be in a working state. There’s still plenty of buildings around, and a clear path leads west, back the way you came. A few open-air stalls are even set up here, where you suppose the property values are low.");

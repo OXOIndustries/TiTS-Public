@@ -559,7 +559,8 @@ public function statisticsScreen(showID:String = "All"):void
 						output2("\n<b>* Capacity, Bonus:</b> " + prettifyVolume(pc.vaginas[x].bonusCapacity));
 						output2("\n<b>* Capacity, Effective:</b> " + prettifyVolume(pc.vaginalCapacity(x)));
 					}
-					output2("\n<b>* Looseness Level:</b> " + formatFloat(pc.vaginas[x].looseness(), 3));
+					output2("\n<b>* Looseness Level, Current:</b> " + formatFloat(pc.vaginas[x].looseness(), 3));
+					output2("\n<b>* Looseness Level, Minimum:</b> " + formatFloat(pc.vaginas[x].minLooseness, 3));
 					output2("\n<b>* Wetness Level:</b> " + formatFloat(pc.vaginas[x].wetness(), 3));
 					if(pc.vaginas[x].wetness() >= 4) output2(", Squirter");
 					if(pc.vaginas[x].clits > 0)
@@ -1052,6 +1053,8 @@ public function statisticsScreen(showID:String = "All"):void
 				output2(roomFlagFlags[i]);
 			}
 		}
+		//var medRoomID:String = nearestMedicalCenter("", false);
+		//if(medRoomID != "") output2("\n<b>* Nearest Care Area:</b> " + StringUtil.toDisplayCase((rooms[medRoomID].roomName.replace("\n", " ")).toLowerCase()));
 		
 		// Ship Location
 		output2("\n<b><u>Current Ship Details</u></b>");

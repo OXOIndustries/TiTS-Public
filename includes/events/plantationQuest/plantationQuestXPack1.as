@@ -251,10 +251,10 @@ public function lahPrisonSex(response:String):void
 			output(" into the insensate ex-terrorist. For you, that instant orgasm of his is a boon - a generous load of lubricant which allows you to easily impale yourself right down on his girth, so that his bulging knot is bumping against your entrance and [pc.eachClit]. For Lah, though, it must be fairly agonizing. His dick must ache like a sore thumb, at the same time as pleasure and arousal inundate his senses, every time you bend it in your soaking depths.");
 			output("\n\n<i>“How can you even think of cumming without getting your knot inside me?”</i> you husk, seizing his hair, intense arousal pulsing through you as you clutch the back of the chair hard and really ride him, [pc.ass] bouncing up and down in his tawny lap. <i>“What kind of stud are you?”</i>");
 			output("\n\n<i>“One... damn...”</i> he groans, head thrown back, skin glowing with sweat underneath the harsh strip lighting. That hard, tough ball of heat sits stuck to the entrance of your sopping, leaking cunt, stretching it wide... and then in a small explosion sensation it’s inside, stopping it like a cork, and immediately Lah cums again, his hips jackhammering into you reactively, spilling another hot load of cum out into your [pc.vagina " + vIdx + "]. The giddy dual feeling sends you over the edge, ecstatic contractions practically ordering you to ride that dick for all you’re worth, clenching up around it so you can knead every last fertile drop out of your conquest.");
-			if(pc.isTreated() || InCollection(pc.vaginas[vIdx].type, [GLOBAL.TYPE_VANAE, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_MOUTHGINA]))
+			if(pc.vaginaCanSuck(vIdx) || pc.vaginaHasFeelers(vIdx))
 			{
 				output(" The");
-				if(InCollection(pc.vaginas[vIdx].type, [GLOBAL.TYPE_VANAE, GLOBAL.TYPE_SIREN]))
+				if(pc.vaginaHasFeelers(vIdx))
 				{
 					output(" wonderful cilia");
 				}

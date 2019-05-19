@@ -9855,6 +9855,16 @@
 		protected function rand(max: Number): Number {
 			return int(Math.random() * max);
 		}
+		public function hasVaginaFlag(arg: int = 0, vagNum: int = 0): Boolean {
+			if (vagNum >= vaginas.length || vagNum < 0) return false;
+			return (vaginas[vagNum].hasFlag(arg));
+		}
+		public function hasAVaginaFlag(arg:int = 0): Boolean {
+			for (var x: int = 0; x < vaginas.length; x++) {
+				if (vaginas[x].hasFlag(arg)) return true;
+			}
+			return false;
+		}
 		public function wetness(arg: int = 0): Number {
 			//If the player has no vaginas
 			if (vaginas.length <= 0 || arg >= vaginas.length) return 0;
@@ -11359,6 +11369,70 @@
 			}	
 			return tentacleDicks;
 		}
+		public function cockCanSting(idx:int = -1): Boolean
+		{
+			if(idx < 0)
+			{
+				if(hasACockFlag(GLOBAL.FLAG_STINGER_BASED)) return true;
+				if(hasACockFlag(GLOBAL.FLAG_STINGER_TIPPED)) return true;
+				if(hasCock(GLOBAL.TYPE_SIREN)) return true;
+				if(hasCock(GLOBAL.TYPE_ANEMONE)) return true;
+			}
+			if(idx >= 0 && idx < cocks.length)
+			{
+				if(hasCockFlag(GLOBAL.FLAG_STINGER_BASED, idx)) return true;
+				if(hasCockFlag(GLOBAL.FLAG_STINGER_TIPPED, idx)) return true;
+				if(InCollection(cocks[idx].cType, [GLOBAL.TYPE_SIREN, GLOBAL.TYPE_ANEMONE])) return true;
+			}
+			return false;
+		}
+		public function vaginaCanSting(idx:int = -1): Boolean
+		{
+			if(idx < 0)
+			{
+				if(hasAVaginaFlag(GLOBAL.FLAG_TENDRIL)) return true;
+				if(hasAVaginaFlag(GLOBAL.FLAG_STINGER_BASED)) return true;
+				if(hasAVaginaFlag(GLOBAL.FLAG_STINGER_TIPPED)) return true;
+				if(hasVagina(GLOBAL.TYPE_SIREN)) return true;
+				if(hasVagina(GLOBAL.TYPE_ANEMONE)) return true;
+			}
+			if(idx >= 0 && idx < vaginas.length)
+			{
+				if(hasVaginaFlag(GLOBAL.FLAG_TENDRIL, idx)) return true;
+				if(hasVaginaFlag(GLOBAL.FLAG_STINGER_BASED, idx)) return true;
+				if(hasVaginaFlag(GLOBAL.FLAG_STINGER_TIPPED, idx)) return true;
+				if(InCollection(vaginas[idx].type, [GLOBAL.TYPE_SIREN, GLOBAL.TYPE_ANEMONE])) return true;
+			}
+			return false;
+		}
+		public function vaginaCanSuck(idx:int = -1): Boolean
+		{
+			if(isTreated() && hasVagina()) return true;
+			if(idx < 0)
+			{
+				if(hasVagina(GLOBAL.TYPE_GABILANI)) return true;
+				if(hasVagina(GLOBAL.TYPE_MOUTHGINA)) return true;
+			}
+			if(idx >= 0 && idx < vaginas.length)
+			{
+				if(InCollection(vaginas[idx].type, [GLOBAL.TYPE_GABILANI, GLOBAL.TYPE_MOUTHGINA])) return true;
+			}
+			return false;
+		}
+		public function vaginaHasFeelers(idx:int = -1): Boolean
+		{
+			if(idx < 0)
+			{
+				if(hasVagina(GLOBAL.TYPE_VANAE)) return true;
+				if(hasVagina(GLOBAL.TYPE_SHARK)) return true;
+				if(hasVagina(GLOBAL.TYPE_SIREN)) return true;
+			}
+			if(idx >= 0 && idx < vaginas.length)
+			{
+				if(InCollection(vaginas[idx].type, [GLOBAL.TYPE_VANAE, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SIREN])) return true;
+			}
+			return false;
+		}
 		public function isBald(): Boolean {
 			return (hairLength <= 0);
 		}
@@ -11474,7 +11548,7 @@
 				case GLOBAL.TYPE_VANAE:
 					vaginas[slot].clits = 2;
 					vaginas[slot].vaginaColor = "luminous violet";
-					vaginas[slot].wetnessRaw = 4;
+					if(vaginas[slot].wetnessRaw < 4) vaginas[slot].wetnessRaw = 4;
 					break;
 				case GLOBAL.TYPE_KUITAN:
 					vaginas[slot].vaginaColor = "black";
@@ -11503,10 +11577,17 @@
 					vaginas[slot].wetnessRaw = 1;
 					vaginas[slot].minLooseness = 1;
 					break;
+				case GLOBAL.TYPE_ANEMONE:
 				case GLOBAL.TYPE_SIREN:
 					vaginas[slot].vaginaColor = RandomInCollection(["blue", "aquamarine"]);
-					vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
-					vaginas[slot].addFlag(GLOBAL.FLAG_TENDRIL);
+					if(type == GLOBAL.TYPE_SIREN) {
+						vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
+						vaginas[slot].addFlag(GLOBAL.FLAG_TENDRIL);
+					}
+					if(type == GLOBAL.TYPE_ANEMONE) {
+						vaginas[slot].addFlag(GLOBAL.FLAG_STINGER_BASED);
+						vaginas[slot].addFlag(GLOBAL.FLAG_STINGER_TIPPED);
+					}
 					vaginas[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 					break;
 				case GLOBAL.TYPE_GABILANI:
@@ -11662,8 +11743,9 @@
 				case GLOBAL.TYPE_ANEMONE:
 				case GLOBAL.TYPE_SIREN:
 					cocks[slot].cockColor = RandomInCollection(["blue", "aquamarine"]);
-					cocks[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 					cocks[slot].addFlag(GLOBAL.FLAG_STINGER_BASED);
+					if(type == GLOBAL.TYPE_ANEMONE) cocks[slot].addFlag(GLOBAL.FLAG_STINGER_TIPPED);
+					cocks[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 					break;
 				case GLOBAL.TYPE_KANGAROO:
 					cocks[slot].cockColor = RandomInCollection(["red", "pink"]);
@@ -21370,6 +21452,7 @@
 		public function updateVaginaStretch(deltaT:uint, doOut:Boolean):void
 		{
 			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
+			var bonusMult:int = 1;
 			if (vaginas.length > 0 && totalHours >= 1)
 			{
 				for (var i:int = 0; i < vaginas.length; i++)
@@ -21378,7 +21461,7 @@
 					
 					if (tv.loosenessRaw > tv.minLooseness)
 					{
-						tv.shrinkCounter += totalHours;
+						tv.shrinkCounter += (totalHours * bonusMult);
 					}
 					else
 					{
@@ -21431,11 +21514,12 @@
 		public function updateButtStretch(deltaT:uint, doOut:Boolean):void
 		{
 			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
+			var bonusMult:int = 1;
 			if (totalHours >= 1)
 			{
 				if (ass.loosenessRaw > ass.minLooseness)
 				{
-					ass.shrinkCounter += totalHours;
+					ass.shrinkCounter += (totalHours * bonusMult);
 				}
 				else
 				{

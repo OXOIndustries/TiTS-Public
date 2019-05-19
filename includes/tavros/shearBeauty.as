@@ -1781,7 +1781,7 @@ public function fuckCeriaDoggy(earTouch:Boolean = false):void
 	output("\n\nYou brace yourself by grabbing onto her head, steadying your breathing. Ceria huffs, her tongue wiggling wildly and uncontrollably, desperate for a taste right from the bursting source. Her right hand goes half-limp, still finding the strength to work up the first of her orgasms, eyes fluttering appreciatively. The vibrating moan of her voice around your meaty bone signals her euphoric success. The air in the salon is already being saturated with the strawberry-scented aroma of a fertile slut, and that, for all intents and purposes, was just a flash in the pan.");
 	output("\n\nBut it is what compels you to piston against the entrance of the elf slut’s so-far welcoming mouth with greater force. Her untrained throat reacts as you’d expect, locking up and denying entrance to your aggressive intrusion.");
 	output("\n\nIt’s an obstacle you’re both chipping away at. Her resistance refreshes every time you pull back, always giving up another inch on the next stuffing. When she tweaks her clitty you gain two.");
-	if (pc.cocks[kok].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok].cType == GLOBAL.TYPE_ANEMONE) output(" Having a bunch of stingers offload their ovulation-inducing lust-venom is making a huge difference as well.");
+	if (pc.cockCanSting(kok)) output(" Having a bunch of stingers offload their ovulation-inducing lust-venom is making a huge difference as well.");
 	output(" Soon enough, your [pc.cockHead " + kok + "] is bulging against the front of her neck. Success cascades from there. Repeated pressure overcomes her gag reflex until it (and she) bends and breaks, and your victorious thrust takes you");
 	if (pc.cocks[kok].cLength() > 14) output(" nearly to her belly, some of your member’s [pc.dickSkin " + kok + "] left unholstered.");
 	else output(" [pc.knotBallsHilt " + kok + "]-deep.");
@@ -1839,11 +1839,8 @@ public function fuckCeriaDoggyCounter(kok:int=0):void
 	var firstTime:Boolean = true;
 	if (flags["CERIA_DOGGY"] != undefined && flags["CERIA_DOGGY"] > 0) firstTime = false;
 	var venomDicks:int = 0;
-	if (pc.cocks[kok].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok].cType == GLOBAL.TYPE_ANEMONE) venomDicks += 1;
-	if (kok2 >= 0)
-	{
-		if (pc.cocks[kok2].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok2].cType == GLOBAL.TYPE_ANEMONE) venomDicks += 1;
-	}
+	if (pc.cockCanSting(kok)) venomDicks += 1;
+	if (kok2 >= 0 && pc.cockCanSting(kok2))
 	var tentacleDicks:Number = pc.tentacleCockCount(true,[kok,kok2]);	
 	
 	output("Ahh... yes, that’ll do nicely. Her desk will take the brunt of your sex easily, considering it’s bolted to the floor.");
@@ -2006,11 +2003,8 @@ public function fuckCeriaDoggyWindow(kok:int=0):void
 	var firstTime:Boolean = true;
 	if (flags["CERIA_DOGGY"] != undefined && flags["CERIA_DOGGY"] > 0) firstTime = false;
 	var venomDicks:int = 0;
-	if (pc.cocks[kok].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok].cType == GLOBAL.TYPE_ANEMONE) venomDicks += 1;
-	if (kok2 >= 0)
-	{
-		if (pc.cocks[kok2].cType == GLOBAL.TYPE_SIREN || pc.cocks[kok2].cType == GLOBAL.TYPE_ANEMONE) venomDicks += 1;
-	}
+	if (pc.cockCanSting(kok)) venomDicks += 1;
+	if (kok2 >= 0 && pc.cockCanSting(kok2)) venomDicks += 1;
 	var tentacleDicks:Number = pc.tentacleCockCount(true,[kok,kok2]);	
 	
 	output("Glancing at the glass door, anxious energy pumps through your heart. Your heart rate spikes when you look to Ceria’s DD-swells. Bending her over the counter sounds good, but... pushing her up to the door? Where everyone can see her boobs smushed up against the glass?");
