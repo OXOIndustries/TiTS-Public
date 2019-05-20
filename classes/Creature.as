@@ -11390,7 +11390,6 @@
 		{
 			if(idx < 0)
 			{
-				if(hasAVaginaFlag(GLOBAL.FLAG_TENDRIL)) return true;
 				if(hasAVaginaFlag(GLOBAL.FLAG_STINGER_BASED)) return true;
 				if(hasAVaginaFlag(GLOBAL.FLAG_STINGER_TIPPED)) return true;
 				if(hasVagina(GLOBAL.TYPE_SIREN)) return true;
@@ -11398,7 +11397,6 @@
 			}
 			if(idx >= 0 && idx < vaginas.length)
 			{
-				if(hasVaginaFlag(GLOBAL.FLAG_TENDRIL, idx)) return true;
 				if(hasVaginaFlag(GLOBAL.FLAG_STINGER_BASED, idx)) return true;
 				if(hasVaginaFlag(GLOBAL.FLAG_STINGER_TIPPED, idx)) return true;
 				if(InCollection(vaginas[idx].type, [GLOBAL.TYPE_SIREN, GLOBAL.TYPE_ANEMONE])) return true;
@@ -11423,12 +11421,16 @@
 		{
 			if(idx < 0)
 			{
+				if(hasAVaginaFlag(GLOBAL.FLAG_NUBBY)) return true;
+				if(hasAVaginaFlag(GLOBAL.FLAG_STINGER_BASED)) return true;
 				if(hasVagina(GLOBAL.TYPE_VANAE)) return true;
 				if(hasVagina(GLOBAL.TYPE_SHARK)) return true;
 				if(hasVagina(GLOBAL.TYPE_SIREN)) return true;
 			}
 			if(idx >= 0 && idx < vaginas.length)
 			{
+				if(hasVaginaFlag(GLOBAL.FLAG_NUBBY, idx)) return true;
+				if(hasVaginaFlag(GLOBAL.FLAG_STINGER_BASED, idx)) return true;
 				if(InCollection(vaginas[idx].type, [GLOBAL.TYPE_VANAE, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SIREN])) return true;
 			}
 			return false;
@@ -11580,14 +11582,8 @@
 				case GLOBAL.TYPE_ANEMONE:
 				case GLOBAL.TYPE_SIREN:
 					vaginas[slot].vaginaColor = RandomInCollection(["blue", "aquamarine"]);
-					if(type == GLOBAL.TYPE_SIREN) {
-						vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
-						vaginas[slot].addFlag(GLOBAL.FLAG_TENDRIL);
-					}
-					if(type == GLOBAL.TYPE_ANEMONE) {
-						vaginas[slot].addFlag(GLOBAL.FLAG_STINGER_BASED);
-						vaginas[slot].addFlag(GLOBAL.FLAG_STINGER_TIPPED);
-					}
+					vaginas[slot].addFlag(GLOBAL.FLAG_STINGER_BASED);
+					vaginas[slot].addFlag(GLOBAL.FLAG_STINGER_TIPPED);
 					vaginas[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 					break;
 				case GLOBAL.TYPE_GABILANI:
@@ -11637,7 +11633,8 @@
 					vaginas[slot].wetnessRaw = 1;
 					vaginas[slot].minLooseness = 1;
 					vaginas[slot].addFlag(GLOBAL.FLAG_LUBRICATED);
-					vaginas[slot].addFlag(GLOBAL.FLAG_TENDRIL);
+					vaginas[slot].addFlag(GLOBAL.FLAG_STINGER_BASED);
+					vaginas[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 					break;
 				case GLOBAL.TYPE_MOUTHGINA:
 					vaginas[slot].clits = 2;
@@ -11744,7 +11741,7 @@
 				case GLOBAL.TYPE_SIREN:
 					cocks[slot].cockColor = RandomInCollection(["blue", "aquamarine"]);
 					cocks[slot].addFlag(GLOBAL.FLAG_STINGER_BASED);
-					if(type == GLOBAL.TYPE_ANEMONE) cocks[slot].addFlag(GLOBAL.FLAG_STINGER_TIPPED);
+					cocks[slot].addFlag(GLOBAL.FLAG_STINGER_TIPPED);
 					cocks[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 					break;
 				case GLOBAL.TYPE_KANGAROO:
@@ -12281,7 +12278,8 @@
 			else if(race.indexOf("dragonne") == -1 && InCollection(raceSimple, ["kaithrit", "feline"])) shiftVagina(arg, GLOBAL.TYPE_FELINE);
 			else if(raceSimple == "gabilani") shiftVagina(arg, GLOBAL.TYPE_GABILANI);
 			else if(raceSimple == "plant") shiftVagina(arg, GLOBAL.TYPE_FLOWER);
-			else if(InCollection(raceSimple, ["suula", "anemone"])) shiftVagina(arg, GLOBAL.TYPE_SIREN);
+			else if(InCollection(raceSimple, ["anemone"])) shiftVagina(arg, GLOBAL.TYPE_ANEMONE);
+			else if(InCollection(raceSimple, ["suula"])) shiftVagina(arg, GLOBAL.TYPE_SIREN);
 			//else if(InCollection(race, ["synthetic", "robot", "companion droid"])) shiftVagina(arg, GLOBAL.TYPE_SYNTHETIC);
 			else if(skinType == GLOBAL.SKIN_TYPE_GOO)
 			{
@@ -15475,7 +15473,8 @@
 				else if (type == GLOBAL.TYPE_VULPINE) desc += "vulpine ";
 				else if (type == GLOBAL.TYPE_FELINE) desc += "feline ";
 				else if (type == GLOBAL.TYPE_AVIAN) desc += "avian ";
-				else if (type == GLOBAL.TYPE_SIREN || type == GLOBAL.TYPE_ANEMONE) desc += "suula ";
+				else if (type == GLOBAL.TYPE_ANEMONE) desc += "sea anemone-";
+				else if (type == GLOBAL.TYPE_SIREN) desc += "suula ";
 				else if (type == GLOBAL.TYPE_GRYVAIN || type == GLOBAL.TYPE_DRACONIC || type == GLOBAL.TYPE_FROSTWYRM) desc += "draconic ";
 				else if (type == GLOBAL.TYPE_BEE) desc += "zil-styled ";
 				else if (type == GLOBAL.TYPE_NAGA) desc += "snake-like ";
@@ -15562,7 +15561,14 @@
 					else
 						desc += RandomInCollection(["bird-pussy", "bird-pussy", "avian-pussy", "bird-cunt", "bird-quim", "avian-twat", "bird-gina", "bird-vagina", "box"]);
 				}
-				else if (type == GLOBAL.TYPE_SIREN || type == GLOBAL.TYPE_ANEMONE)
+				else if (type == GLOBAL.TYPE_ANEMONE)
+				{
+					if (!simple)
+						desc += RandomInCollection(["wriggling gash", "stinger-ringed vagina", "cilia-filled cunny", "anemone-like honeypot", "aphrodisiac-laced pussy","wriggling pussy","wriggling vagina","cilia-filled pussy","tentacle-filled twat", "alien pussy", "wiggly cunt","cilia-filled slit","cilia-lined quim","venomous pussy","venomous cunt","venomous vagina"]);
+					else
+						desc += RandomInCollection(["anemone-pussy", "venom-pussy", "anemone-pussy", "anemone-slit", "venom-cunt", "pussy", "pussy", "tenta-gina","tenta-pussy","xeno-cunny","xeno-gina","anemone-twat","anemone-snatch","cunt"]);
+				}
+				else if (type == GLOBAL.TYPE_SIREN)
 				{
 					if (!simple)
 						desc += RandomInCollection(["wriggling gash", "stinger-ringed vagina", "cilia-filled cunny", "suula-like honeypot", "aphrodisiac-laced pussy","wriggling pussy","wriggling vagina","cilia-filled pussy","tentacle-filled twat", "alien pussy", "wiggly cunt","cilia-filled slit","cilia-lined quim","venomous pussy","venomous cunt","venomous vagina"]);
@@ -15931,10 +15937,18 @@
 				adjectiveCount++;
 			}
 			bonus = 4;
-			if(adjectives && !forceAdjectives && adjectiveCount < adjectiveLimit && vag.hasFlag(GLOBAL.FLAG_RIBBED) && rand(100) <= bonus)
+			if(adjectives && !forceAdjectives && adjectiveCount < adjectiveLimit && rand(100) <= bonus)
 			{
-				if(adjectiveCount > 0) desc += ", ";
-				desc += RandomInCollection(["ribbed","ridged"]);
+				var collection:Array = [];
+				if(vag.hasFlag(GLOBAL.FLAG_RIBBED)) collection.push("ribbed", "ridged");
+				if(vag.hasFlag(GLOBAL.FLAG_NUBBY)) collection.push("nubby");
+				if(vag.hasFlag(GLOBAL.FLAG_STINGER_BASED)) collection.push("stinger-based");
+				if(vag.hasFlag(GLOBAL.FLAG_STINGER_TIPPED)) collection.push("stinger-tipped");
+				if(collection.length > 0)
+				{
+					if(adjectiveCount > 0) desc += ", ";
+					desc += RandomInCollection(collection);
+				}
 			}
 			//NOUN TIME
 			if(adjectiveCount > 0)
@@ -16921,6 +16935,9 @@
 							//adjectives.push("tentacle-ringed","stinger-laden","pulsating","stinger-coated","near-transparent","tentacle-ringed","squirming");
 							desc += RandomInCollection(["anemone-cock","wiggle-cock","anemone-dick","anemone-prick","anemone-phallus","stinger","shaft","anemone-prong","anemone-tool","anemone-cock","anemone-dick"]);
 							break;
+						case GLOBAL.TYPE_SIREN:
+							desc += RandomInCollection(["suula-cock","wiggle-cock","suula-dick","suula-prick","suula-phallus","stinger","shaft","suula-prong","suula-tool","suula-cock","suula-dick"]);
+							break;
 						case GLOBAL.TYPE_KANGAROO:
 							//adjectives.push("pointed","marsupial","tapered","curved");
 							desc += RandomInCollection(["kangaroo-cock","kangaroo-dick","kanga-cock"]);
@@ -17049,8 +17066,9 @@
 							desc += RandomInCollection(["reptilian cock","alien cock","raskvel cock","sleek cock","exotic rask-cock","exotic cock","reptilian dick","alien dick","smooth rask-dick","reptilian prick","alien phallus","exotic phallus","sleep prick","reptilian tool","alien tool"]);
 							break;
 						case GLOBAL.TYPE_ANEMONE:
+						case GLOBAL.TYPE_SIREN:
 							//adjectives.push("tentacle-ringed","stinger-laden","pulsating","stinger-coated","near-transparent","tentacle-ringed","squirming");
-							desc += RandomInCollection(["tentacle-ringed cock","pulsating cock","stinger-lined cock","squirming anemone-cock","exotic cock","stinger-laden dick","stinger-covered dick","tentacle-ringed dick","pulsating prick","tentacle-ringed prick","squirming prick","near-transparent phallus","stinger-laden phallus","tentacle-ringed tool","tentacle-lined tool"]);
+							desc += RandomInCollection(["tentacle-ringed cock","pulsating cock","stinger-lined cock",("squirming " + (type == GLOBAL.TYPE_SIREN ? "suula" : "anemone") + "-cock"),"exotic cock","stinger-laden dick","stinger-covered dick","tentacle-ringed dick","pulsating prick","tentacle-ringed prick","squirming prick","near-transparent phallus","stinger-laden phallus","tentacle-ringed tool","tentacle-lined tool"]);
 							break;
 						case GLOBAL.TYPE_KANGAROO:
 							//adjectives.push("pointed","marsupial","tapered","curved");

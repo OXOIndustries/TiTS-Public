@@ -4310,7 +4310,7 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 		outputRouter(", soft and rounded enough to massage any passage into which it is inserted.");
 	}
 	//Sheaths
-	if(target.hasSheath(x) && !InCollection(target.cocks[x].cType, GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_ANEMONE, GLOBAL.TYPE_SIREN))
+	if(target.hasSheath(x) && !InCollection(target.cocks[x].cType, [GLOBAL.TYPE_KANGAROO, GLOBAL.TYPE_ANEMONE, GLOBAL.TYPE_SIREN]))
 	{
 		if(target.cockTotal() == 1 || (target.cockTotal() > 1 && !target.hasFullSheaths())) outputRouter(" The shaft of " + (target == pc ? "your":"[target.hisHer]") + " manhood naturally retracts into an animalistic sheath when completely flaccid.");
 	}
@@ -4322,7 +4322,7 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 		outputRouter(", guaranteeing that pleasure will be forced upon " + (target == pc ? "your":"[target.hisHer]") + " partners.");
 	}
 	//Lube
-	if(target.cocks[x].hasFlag(GLOBAL.FLAG_LUBRICATED) && !InCollection(target.cocks[x].cType, GLOBAL.TYPE_TENTACLE, GLOBAL.TYPE_JANERIA))
+	if(target.cocks[x].hasFlag(GLOBAL.FLAG_LUBRICATED) && !InCollection(target.cocks[x].cType, [GLOBAL.TYPE_TENTACLE, GLOBAL.TYPE_JANERIA]))
 	{
 		outputRouter(" Its surface is slick and slippery, covered in an abundant amount of moist lubrication.");
 	}
@@ -4369,7 +4369,7 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 		outputRouter("as " + (target == pc ? "you get":"[target.heShe] gets") + " more aroused. The entire thing is shiny and covered with tiny, sensitive nodules that leave no doubt about its demonic influences.");
 	}
 	//Foreskins
-	if(target.cocks[x].hasFlag(GLOBAL.FLAG_FORESKINNED) && !InCollection(target.cocks[x].cType, GLOBAL.TYPE_BEE, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_ANEMONE, GLOBAL.TYPE_DEMONIC))
+	if(target.cocks[x].hasFlag(GLOBAL.FLAG_FORESKINNED) && !InCollection(target.cocks[x].cType, [GLOBAL.TYPE_BEE, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_ANEMONE, GLOBAL.TYPE_DEMONIC]))
 	{
 		outputRouter(" The head is also covered by stretchy foreskin, ensuring that it is kept protected and sensitive.");
 	}
@@ -4598,13 +4598,13 @@ public function vaginaBonusForAppearance(forTarget:Creature = null, x:int = 0, e
 			}
 			break;
 	}
-	//Tendrils
-	if((target.vaginas[x].hasFlag(GLOBAL.FLAG_TENDRIL) || target.vaginas[x].hasFlag(GLOBAL.FLAG_STINGER_TIPPED)) && !InCollection(target.vaginas[x].type, [GLOBAL.TYPE_SIREN, GLOBAL.TYPE_ANEMONE, GLOBAL.TYPE_SHARK])) {
+	//Outer-Tentacles
+	if((target.vaginas[x].hasFlag(GLOBAL.FLAG_STINGER_TIPPED)) && !InCollection(target.vaginas[x].type, [GLOBAL.TYPE_SIREN, GLOBAL.TYPE_ANEMONE])) {
 		if(!eachOne) outputRouter(" Writhing" + (target.vaginas[x].hasFlag(GLOBAL.FLAG_STINGER_TIPPED) ? " venom-injecting" : "") + " tendrils border the exterior around its lips.");
 		else outputRouter("\nWrithing" + (target.vaginas[x].hasFlag(GLOBAL.FLAG_STINGER_TIPPED) ? " venom-injecting" : "") + " tendrils border the exterior around their lips.");
 	}
-	//Nubby
-	if((target.vaginas[x].hasFlag(GLOBAL.FLAG_NUBBY) || target.vaginas[x].hasFlag(GLOBAL.FLAG_STINGER_BASED)) && !InCollection(target.vaginas[x].type, [GLOBAL.TYPE_SIREN, GLOBAL.TYPE_ANEMONE])) {
+	//Nubby or Inner-Tentacles
+	if((target.vaginas[x].hasFlag(GLOBAL.FLAG_NUBBY) || target.vaginas[x].hasFlag(GLOBAL.FLAG_STINGER_BASED)) && !InCollection(target.vaginas[x].type, [GLOBAL.TYPE_SIREN, GLOBAL.TYPE_ANEMONE, GLOBAL.TYPE_SHARK])) {
 		if(!eachOne) outputRouter(" The lips and insides are covered in numerous " + (target.vaginas[x].hasFlag(GLOBAL.FLAG_NUBBY) ? "nub" : "tentacle") + "-like " + (target.vaginas[x].hasFlag(GLOBAL.FLAG_STINGER_BASED) ? "stingers" : "protrusions") + ".");
 		else outputRouter(" Their lips and insides are covered in numerous " + (target.vaginas[x].hasFlag(GLOBAL.FLAG_NUBBY) ? "nub" : "tentacle") + "-like " + (target.vaginas[x].hasFlag(GLOBAL.FLAG_STINGER_BASED) ? "stingers" : "protrusions") + ".");
 	}
