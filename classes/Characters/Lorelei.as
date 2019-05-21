@@ -20,7 +20,7 @@ package classes.Characters
 		//constructor
 		public function Lorelei()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 
@@ -87,11 +87,17 @@ package classes.Characters
 
 			this.createPerk("Riposte");
 			this.createPerk("Iron Will");
-			this.createPerk("Appearance Enabled");
 			this.createPerk("Custom Appearance");
+			this.createPerk("Appearance Enabled");
+			this.createStatusEffect("Disarm Immune");
 
 			this._isLoading = false;
         }
+
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			this.createStatusEffect("Disarm Immune");
+		}
 
 		override public function get bustDisplay():String
 		{
