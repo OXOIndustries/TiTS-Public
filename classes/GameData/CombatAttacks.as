@@ -1470,7 +1470,7 @@ package classes.GameData
 
 				if (target is CyberPunkSecOp)
 				{
-					output(" A resounding ‘CLANG’ fills the air. " + target.mf("He","She’s") + " packing a little extra metal in " + target.mf("his","her") + "noggin. You’ll have to try something else!");
+					output(" A resounding ‘CLANG’ fills the air. " + target.mf("He","She’s") + " packing a little extra metal in " + target.mf("his","her") + " noggin. You’ll have to try something else!");
 				}
 				else if (attacker.physique() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) 
 				{

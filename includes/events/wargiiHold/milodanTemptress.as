@@ -309,7 +309,7 @@ public function sitOnTemptingKittyFace():void
 	// PC cock (add-on, no new pg)
 	else if(pc.hasCock()) 
 	{
-		output("Rocking back and forth");
+		output("\n\nRocking back and forth");
 		if(pc.balls > 0) 
 		{
 			output(", you smear your ");
@@ -460,7 +460,7 @@ public function sitOnTemptingKittyFace2():void
 		// PC biggest cock >=8 inches
 		else if(pc.cocks[dick].cLength() < 35)
 		{
-			output("\n\n[pc.EachCock] are dangling helpless, little more than " + (!pc.hasCocks() ? "a lever":"levers") + " your bottom bitch can tug " + (pc.hasVagina() ? "on for an extra helping of cuntjuice":"and stroke") + "; however, with tits as big as hers, and " + (pc.hasCocks() ? "dicks":"a dick") + " as long as <i>yours</i>, it’s a simple matter to put those cushions to work. You move her wrists to the side, freeing up the space you need. You get her mouth and her tits. What could be better?");
+			output("\n\n[pc.EachCock] " + (pc.cocks.length == 1 ? "is" : "are") + " dangling helpless, little more than " + (!pc.hasCocks() ? "a lever":"levers") + " your bottom bitch can tug " + (pc.hasVagina() ? "on for an extra helping of cuntjuice":"and stroke") + "; however, with tits as big as hers, and " + (pc.hasCocks() ? "dicks":"a dick") + " as long as <i>yours</i>, it’s a simple matter to put those cushions to work. You move her wrists to the side, freeing up the space you need. You get her mouth and her tits. What could be better?");
 			output("\n\nThe pressure on your swollen erection elicits a groan when you push it down and scoot forward. Your [pc.cockHead " + dick + "] glides through the pre moistened channel of her mammoth mammaries, throbbing demandingly against her ribcage. The sudden soft compression around your bitch-taming meat coaxes out greater loads that develop into gooey [pc.cumColor] pockets and burst out from the mammarian seam.");
 			output("\n\nA neurological need to remain on your throne builds deep down. Trading your balance to stay here until you cum somehow becomes a mental quandary your brain conveniently fails to solve.");
 			output("\n\nYou rock back and forth, making sure your milo-slut is ");
@@ -542,7 +542,7 @@ public function sitOnTemptingKittyFace2():void
 		{
 			output("\n\nThe leopardess’ whole body quivers on your final thrust, jets of [pc.cumColor] goo sloughing in her gigantic breasts. Titflesh seems to cascade down thanks to her gratified clutching and squeezing, wanting more of that boiling-hot [pc.cumNoun] to splatter her soft mounds. ");
 			if(pc.cumQ() < 250) output("It’s almost like her breasts subsist on the stuff, because you can’t see any of it. Not one drop of [pc.cumNoun] leaks out from between her mammarian morass, making sure all of your [pc.cumVisc] load sloughs inside while you ride out this overpowering orgasm. The brief thought that you’re impregnating her tits is a powerful one.");
-			else if(pc.cumQ() < 3000) output("The musky odor of your [pc.cumNoun] fills yours nostrils as well as the [pc.cumVisc] spooge fills the gap between her gigantic breasts. Pockets of seed develop at the seam, bursting out on your subsequent eruptions, covering her in a beautiful reminder of your dominance.");
+			else if(pc.cumQ() < 3000) output("The musky odor of your [pc.cumNoun] fills your nostrils as well as the [pc.cumVisc] spooge fills the gap between her gigantic breasts. Pockets of seed develop at the seam, bursting out on your subsequent eruptions, covering her in a beautiful reminder of your dominance.");
 			else output("Your prostate seems to quake as it churns out tit-glazing loads of [pc.cumNoun]. A funnel of seed-filled fluid encapsulates your [pc.cockNoun] before exploding outwards in a semi-circular tide of [pc.raceShort]-spunk, splattering the zipsuit-wearing milodan in a permanent reminder of her time as your bitch.");
 			if(pc.hasCocks() && pc.smallestCockLength() <= 8) output(" While you’re squirting most of your [pc.cum] into her breasts, your throat-holstered cock has been feeding the rest of your orgasm into her belly" + (pc.cumQ() < 10000 ? ", plumping it up quite nicely":", plumping it up to the point it could be a third boob") + ".");
 			if(pc.hasVagina()) 
@@ -611,7 +611,7 @@ public function tuuvaTagTeamScene():void
 	clearMenu();
 	//[Cock] Use your male half to help Tuuva double-team this bitch.
 	var capacity:Number = enemy.vaginalCapacity(0);
-	if(pc.hasCock() && pc.cockThatFits(capacity) >= 0) addButton(0,"Cock",cockSelect,[tuuvaTagTeamCockstuff,capacity,false,0],"Cock","Use your male half to help Tuuva double-team this bitch.");
+	if(pc.hasCock() && pc.cockThatFits(capacity) >= 0) addButton(0,"Cock",cockSelect,[tuuvaTagTeamCockstuff,capacity,false,0],"Cock",("Use your " + (pc.isHerm() ? "male half" : "dick") + " to help Tuuva double-team this bitch."));
 	else addDisabledButton(0,"Cock","Cock","You’re too big to put this to use.");
 	//[Pussy] Use your lady bits to keep the Temptress busy while Tuuva rails her.
 	if(pc.hasVagina()) addButton(1,"Pussy",vaginaRouter,[tuuva3someTagTeamingWithCuntsauce,tuuva.cockVolume(0),0,0,false],"Pussy","Use your lady bits to keep the Temptress busy while Tuuva rails her.");
@@ -724,8 +724,9 @@ public function tuuva3someTagTeamingWithCuntsauce(x:int):void
 
 	output("\n\nShe doesn’t waste any more time in diving in now that you’re in position. The Temptress buckles as Tuuva enters her, her tongue spasming inside you in time with each thrust. You whistle for Tuuva’s attention");
 	if(pc.biggestTitSize() >= 4) output(" as you grab your [pc.breasts] and push them together, jiggling them for her pleasure as you gyrate your [pc.hips] on top of the Temptress’s face");
-	else if(pc.isBimbo()) output(", wishing you had some titties to jiggle for her, but making due with your [pc.hips] and lewd expressions.");
-	else output(", wishing you had a something to shake to get her attention, but making due with your [pc.hips] and lewd expressions.");
+	else if(pc.isBimbo()) output(", wishing you had some titties to jiggle for her, but making due with your [pc.hips] and lewd expressions");
+	else output(", wishing you had a something to shake to get her attention, but making due with your [pc.hips] and lewd expressions");
+	output(".");
 
 	output("\n\nTuuva ups her pace as she watches you dance for her while riding the face of the slut she’s fucking. Suddenly her eyes shoots open, her tongue lolls out of her mouth, and she starts to pound the milo-slut like she’d just gone into rut.");
 	output("\n\nYou try and ask her what’s wrong, but the milodan’s foraging tongue starts to go wild in response to Tuuva’s fervor. Your inner walls start to clench down, trying to control her pace to no avail. She tosses you clear over the edge, making you squirm as you cum all over her face. While the kitty-bitch’s tongue is <i>very</i> pleasing, you can’t help but feel like Tuuva needs some extra attention right now.");
@@ -940,7 +941,7 @@ public function chooChooPussyPlowing(x:int):void
 		}
 		else if(pc.cocks[x].cLength() < 19)
 		{
-			output("\n\nThe Temptress moans as you sink your meat in. Every inch passes through with just the right amount of resistance, and you settle in her depths feeling like a king. <i>“Ooooh, there you go! Nice and big, just like a real milodan. Of course, you’ve just started. I do hope you don’t let me down after such a grand entrance.");
+			output("\n\nThe Temptress moans as you sink your meat in. Every inch passes through with just the right amount of resistance, and you settle in her depths feeling like a king. <i>“Ooooh, there you go! Nice and big, just like a real milodan. Of course, you’ve just started. I do hope you don’t let me down after such a grand entrance.”</i>");
 			output("\n\nHer smugness is palpable, even beyond her shit-eating grin. In response you pull back and thrust in as hard as you can; again, and again, and again. She takes your slamming pumps like a champ, meeting each one with a press of her own.");
 			output("\n\nHer smirk grows wider and wider despite your efforts. <i>“Good start here. I’d give it a solid C.”</i>");
 			output("\n\nLooks like you’re going to have to give her everything in order to put her in her place. You bunker down and start battering her down with every ounce of strength you can muster. The effect is immediate when you see her flinch on the first jab. That drives you to keep going; faster, harder, stronger! You beat down her prideful grin one booty-quaking thrust at a time. The struggling slut even tries to slow you down by squeezing down harder, but you’ve built up enough momentum to break through it.");
