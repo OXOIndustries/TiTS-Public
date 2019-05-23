@@ -95,7 +95,7 @@ public function kimberWormBonus():Boolean
 public function kimberPantiesBonus():Boolean
 {
 	author("Slab Bulkhead");
-	if (flags["KIMBER_QUEST"] != undefined && flags["KIMBER_QUEST"] >= 1) addButton(0, "Search", function ():void
+	if (flags["KIMBER_QUEST"] != undefined && flags["KIMBER_QUEST"] >= 1 && flags["KIMBER_QUEST_GOT_PANTIES"] == undefined) addButton(0, "Search", function ():void
 	{
 		clearMenu();
 		clearOutput();
