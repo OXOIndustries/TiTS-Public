@@ -2787,6 +2787,9 @@
 				case "clitorisNoun":
 					buffer = clitDescript(arg2, true);
 					break;
+				case "biggestCuntClit":
+					buffer = clitDescript(biggestVaginaIndex());
+					break;
 				case "eachClit":
 				case "eachClitoris":
 					buffer = eachClit();

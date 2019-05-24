@@ -36,6 +36,12 @@ public function burtsBarFunc():Boolean {
 	if (kaseAtBurts()) kaseAtBurtsAddendum(5);
 	if(hours >= 8 && hours < 16) erikaBarAddendum(7);
 
+/*Must have already met Yoma and done all of his talk scenes.
+PC must have genitals
+25% chance to find Yoma in the Mhen’ga Bar when entering between 12:00-15:00 
+*/
+	yomaAtBurtsAddendum();
+
 	return false;
 }
 
@@ -1415,3 +1421,4 @@ public function stephIrsonEpisodeOnePartTwo():void
 	this.clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+
