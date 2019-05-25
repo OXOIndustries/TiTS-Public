@@ -687,11 +687,21 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 11"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 11"].northExit = "RESIDENTIAL DECK 19";
 	rooms["RESIDENTIAL DECK 11"].westExit = "RESIDENTIAL DECK 10";
+	rooms["RESIDENTIAL DECK 11"].southExit = "RES DECK BIG TIDDY GOTH GF";
 	rooms["RESIDENTIAL DECK 11"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK 11"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 11"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 11"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["RESIDENTIAL DECK 11"].runOnEnter = playFynsDoorScene;
+
+	rooms["RES DECK BIG TIDDY GOTH GF"] = new RoomClass(this);
+	rooms["RES DECK BIG TIDDY GOTH GF"].roomName = "EAST\nWALKWAY";
+	rooms["RES DECK BIG TIDDY GOTH GF"].description = "There are a number of double story apartments here with balconies, easily fitting into the high-roofed residential arcade. There’s also a dock for hover carts and a small payment terminal, for those not wishing to walk back and forth down the thoroughfare.\n\nThere’s a particularly large apartment to the north of here. The classy pillars and archways mix with the lascivious color scheme of red and gold, making it look like an upper-class bordello more than a residence. The holo-sign next to the door reads 112.\n\nThere’s a large steel wall to the east. West leads back in the direction of the central plaza.";
+	rooms["RES DECK BIG TIDDY GOTH GF"].planet = "TAVROS STATION";
+	rooms["RES DECK BIG TIDDY GOTH GF"].system = "SYSTEM: KALAS";
+	rooms["RES DECK BIG TIDDY GOTH GF"].northExit = "RESIDENTIAL DECK 11";
+	rooms["RES DECK BIG TIDDY GOTH GF"].moveMinutes = 1;
+	rooms["RES DECK BIG TIDDY GOTH GF"].addFlag(GLOBAL.INDOOR);
 	
 	//1012 North Walkway 1
 	rooms["RESIDENTIAL DECK 12"] = new RoomClass(this);

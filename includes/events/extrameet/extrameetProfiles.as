@@ -7,6 +7,78 @@
 
 //tavros
 
+public function extrameetBigTiddyGothGFProfile():void
+{
+	output("The profile picture on your screen is of a strikingly beautiful human woman, raven haired, and oddly pale skin. She’s wearing heavy makeup, with dark lips tinted faintly with red, and smokey black eyeshadow. Her eyes are piercing blue, drawing you in with a mesmerizing stare.");
+	output("\n\nUsername: Dark&Desperate");
+	output("\nSex: Female");
+	output("\nAge: 22 Years");
+	output("\nRace: Human");
+	output("\nPlanet: Tavros");
+	output("\n\nBio:");
+	output("\nHere for a fun time, not a long time.");
+}
+public function extrameetBigTiddyGothGFCheckMatch():Boolean
+{
+	return pc.isBiped();
+}
+public function extrameetBigTiddyGothGFDate():void
+{
+	showName("\nDARK&DESPERATE");
+	author("Fr0sty");
+	moveTo("ANON'S BAR AND BOARD");
+
+	output("You arrive at Anon’s Bar and Board and take a quick look around. You spot your date sitting at the very back of the bar in a lonely corner. As you make your way over, something about her strikes you as off. <i>Really off</i>. She seems to be twitching, and from where you are it looks like she’s talking to herself. Just before you reach the table, your codex starts to beep. Examining it quickly, you find it’s flashing an alert.");
+	output("\n\n<b>Warning: Unknown psionic energies detected.</b>");
+	output("\n\n<i>“Huh.”</i> You’ve never seen that one before. You silence the alert, and when you look up from your codex you nearly jump out of your [pc.skinFurScales]. Your date is standing inches away from you, smiling widely.");
+	output("\n\n<i>“Hello.”</i> Her voice is soft, barely above a whisper. Her bright blue eyes are locked in an intense, dead stare. She hasn’t even blinked once yet.");
+	output("\n\nYou take half a step back from the pale woman, attempting to put some distance between the two of you. How the hell did she sneak up on you?");
+	output("\n\nShe blinks, then shakes her head and chuckles, turning away from you and sashaying back to her seat, patting the table in front of her. <i>“Come sit, we’ve been waiting for you.”</i>");
+	output("\n\nWe? Slowly, and with a fair bit of caution, you take a seat across from the weird woman. She’s smiling at you still, but isn’t nearly as creepy as she was a moment ago. Easing up, you give her a proper look over.");	
+	output("\n\nShe’s undeniably attractive, and sitting across from her you can see she’s got a killer body to go with her face. Your eyes are inevitably drawn to her chest, which while already quite large on its own, is pushed up and enhanced by a rather tight-looking corset. After a moment, you realize it’s not her tits you’re gawking at, but rather a crude looking necklace hanging down into her cleavage. It’s an uncut red stone, dangling from an unimpressive piece of string. It’s the strangest thing: you can’t seem to look away.");	
+	output("\n\n<i>“My eyes are up here.”</i> Your attention snaps up to the woman’s face, the smile on her lips now wide and toothy. <i>“Enchanting isn’t it?”</i>");	
+	output("\n\nSomething about the way she’s looking at you sends a small chill up your spine.");	
+	output("\n\nA disarming chuckle from your busty date eases your nerves, albeit only a little, with the woman leaning back in her seat. <i>“So. Are you going to introduce yourself, or are you just going to ogle my tits?”</i>");	
+	output("\n\n<i>“I wasn’t...”</i> you shake your head, letting the protest die on your lips. You were checking her out after all, although why you lingered the way you did escapes you. <i>“[pc.name] Steele. And you are?”</i>");	
+	output("\n\n<i>“Miranda...”</i> she keeps her mouth open to continue speaking, but stops, freezing for a moment. <i>“Ah...”</i> she closes her mouth and frowns, seemingly annoyed. <i>“If you would be willing to indulge me... would you mind calling me ‘Servant’?”</i>");		
+	output("\n\nYou raise your brow, slightly intrigued. Seems she’s leading with the kinky shit. While certainly a strange request, you don’t see any reason to not play along. It might even be in your favor. <i>“Okay... Servant... what brings you to a place like th-”</i>");	
+	output("\n\n<i>“Wait.”</i> She cuts you off, lifting her palm up to silence you. She pauses again, as if listening to somebody speak. <i>“The Servant? How the hell is [pc.heShe] suppose to call me that?”</i> You notice her wince slightly. <i>“Fuck, okay fine...”</i> she lowers her hand and looks you in the eye once more. <i>“The Servant. If you please.”</i>");	
+	output("\n\nWow. Well this went south fast. She’s clearly crazy, and not even in the fun way. Looking around, you start to plan your escape. Wouldn’t be the first time you’ve had to make a hasty exit from a bad situation...");	
+	output("\n\n<i>“Anyways,”</i> she continues, seemingly ignorant to your desire to split. <i>“Are you down to fuck or what?”</i>");	
+	output("\n\nYou put your escape plans on hold. Just for a moment, the bluntness of her question catching you slightly off guard. You look the woman in the eye, trying to get a read on her. She’s serious. Very serious.");		output("\n\nLooking her over once more, you find yourself considering it...");
+
+	processTime(5+rand(5));
+
+	addButton(0, "Fuck Yeah", extrameetBigTiddyGothGFDateOutro);
+	addButton(1, "Uh... Sure", extrameetBigTiddyGothGFDateOutro);
+	addButton(2, "No...", extrameetBigTiddyGothGFDateOutro);
+	addButton(4, "Fuck No", extrameetBigTiddyGothGFDateOutro);
+}
+public function extrameetBigTiddyGothGFDateOutro():void
+{
+	clearOutput();
+	showName("\nDARK&DESPERATE");
+	author("Fr0sty");
+
+	output("Before your answer can escape your lips, you feel your mind start to wander.");
+	output("\n\nYour eyes are locked on her tits again. When did you even start looking?");
+	output("\n\nSomething about them must really be doing it for you, because you’re suddenly feeling considerably flushed. As you feel your excitement start to mount, your jaw falls open and you audibly gasp.");
+	output("\n\nSwaying in your seat, your vision blurs, her pale chest seemingly fading into the background. Despite that, you feel your lust rising still, as the only thing still in focus is the red stone around her throat.");
+	output("\n\nA pale hand claps down over the red jewel.");
+	output("\n\nA sudden sensation rocks you, a feeling like you were traveling a hundred miles an hour and just stopped on a dime, rattling your brain.");
+	output("\n\n<i>“Are you fucking serious?!”</i> The Servant stands up with a start, nearly knocking her chair over. <i>“We fucking went over this shit. No. Fucking. Date rape. Fuck.”</i>");
+	output("\n\nCollecting yourself, you barely register the woman’s words. Is she talking to you? Instinctively, you look around. A few patrons are staring at the two of you, more than a few whispering among themselves.");
+	output("\n\nThe Servant seems to notice this as well, cursing loudly. <i>“Fucking, damn it.”</i> She looks down at you, her hand still clamped over her chest. <i>“I’m sorry. I thought I could control...”</i> she trials off, glancing back around the room. <i>“I have an apartment up on the residential deck. Come by and I promise it’ll be worth your while.”</i>");
+	output("\n\nBefore you can stop her, she turns on her heel and power walks away, cursing under her breath at somebody unseen.");
+	output("\n\nGasping for air, you try to settle down, feeling as if you’re halfway to cumming right there and then. What the fuck was that all about?");
+
+	pc.lust(18+rand(5));
+	processTime(5+rand(3));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
 //saving_grace04
 //[EXTRAMEET_SAVINGGRACE04]
 public function extrameetSavingGrace04Profile():void

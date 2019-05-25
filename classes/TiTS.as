@@ -202,6 +202,7 @@
 		include "../includes/events/erra.as";
 		include "../includes/events/extrameet/extrameet.as";
 		include "../includes/events/extrameet/extrameetProfiles.as";
+		include "../includes/events/extrameet/bigtiddygothgf.as";
 		include "../includes/events/federationQuest/federationQuest.as";
 		include "../includes/events/federationQuest/rooms.as";
 		include "../includes/events/federationQuest/roomFunctions.as";
