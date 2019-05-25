@@ -1434,9 +1434,15 @@ public function bouncyProc(ranged:Boolean = false):void
 	else output("Bouncy procced on unknown foe.");
 }
 
-private function siliconeMaxHips():Number
+private function siliconeMaxHips(inShip:Boolean = false):Number
 {
 	var libido:Number = pc.libido();
+	if(inShip)
+	{
+		if(libido > 20) return 20;
+		else if(libido > 0) return 15;
+		return 10;
+	}
 	if(libido > 80) return 40;
 	else if(libido > 60) return 30;
 	else if(libido > 40) return 25;
@@ -1444,9 +1450,15 @@ private function siliconeMaxHips():Number
 	else if(libido > 0) return 15;
 	return 10;
 }
-private function siliconeMaxButt():Number
+private function siliconeMaxButt(inShip:Boolean = false):Number
 {
 	var libido:Number = pc.libido();
+	if(inShip)
+	{
+		if(libido > 20) return 20;
+		else if(libido > 0) return 15;
+		return 10;
+	}
 	if(libido > 80) return 40;
 	else if(libido > 60) return 30;
 	else if(libido > 40) return 25;
@@ -1454,9 +1466,15 @@ private function siliconeMaxButt():Number
 	else if(libido > 0) return 15;
 	return 10;
 }
-private function siliconeMaxBoob():Number
+private function siliconeMaxBoob(inShip:Boolean = false):Number
 {
 	var libido:Number = pc.libido();
+	if(inShip)
+	{
+		if(libido > 20) return 50;
+		else if(libido > 0) return 35;
+		return 20;
+	}
 	if(libido > 80) return 100;
 	else if(libido > 60) return 80;
 	else if(libido > 40) return 65;
@@ -1464,9 +1482,15 @@ private function siliconeMaxBoob():Number
 	else if(libido > 0) return 35;
 	return 20;
 }
-private function siliconeMaxLips():Number
+private function siliconeMaxLips(inShip:Boolean = false):Number
 {
 	var libido:Number = pc.libido();
+	if(inShip)
+	{
+		if(libido > 20) return 5;
+		else if(libido > 0) return 4;
+		return 3;
+	}
 	if(libido > 80) return 10;
 	else if(libido > 60) return 8;
 	else if(libido > 40) return 6;
@@ -3419,102 +3443,6 @@ And a cheat, just because. Typing in “beshineforever” will make all Nym-Foe�
 
 */
 
-
-
-/*
-
-// Doll Maker, damaged
-{Pressing the Doll Maker button from the lab screen
-
-You carefully walk up to the Doll Maker. It may be dormant, but you still make sure to be on your guard in case it decides your IQ needs to be lower, like most of Badger’s toys. Upon closer inspection, it seems one or more pieces have been taken, or are just damaged significantly. You knock on some of the parts, but it seems they have no intention of turning on. All except the small pack of bullet vibrators, which are trapped in their box with no escape.
-
-[Fix] [Loot] [Back]
-
-// Loot replaces the buttons with ‘Syringe’, ‘lamp’, ‘gun’, and ‘visor’, and a back button.
-// A new button appears in Badger’s menu: “Fix DollM.?”
-
-}
-
-{Fix
-
-If you still have any parts left, you could try to reinsert them. It could save you time later.
-
-{You manage to reattach the syringe, making sure not to prick yourself with it by accident.}
-{After taking out the brainmelt lamp, you hook it back onto the machine. Despite being on, it’s still broken. Not much you can do about that now.}
-{You hook up the mindwash visor, plugging it in. The Doll Maker as a whole is powerless, however.}
-{You reconnect the bimboleum emitter to a hanging piece. It clicks into place.}
-{Despite having all the salvaged parts reconnected, the Doll Maker as a whole is too damaged to turn on. Though, you’re wondering if you’d even want to turn it on. Regardless, you need to talk to Badger if you want it up and running again.}
-
-[Syringe] [Lamp] [Visor] [Gun] [Back]
-
-}
-
-{Fix DollM.?
-
-The good samaritan in you tells you to fix Badger’s toys that you broke, even if they’re going to be used for... probably something that a normal person would question. The only other thing that crosses your mind is ‘let’s just get this over with’.
-
-You speak up to catch the doctor’s attention. <i>“Hey, Badger. I noticed the Doll Maker is still broken down there. Did you want it fixed?”</i> you ask neutrally. This is a pretty morally ambiguous situation, you feel it’s a better idea not to show emotion here.
-
-<i>“Actually, yes, [pc.name]. Would you be a <i>Doll</i> and fix it?”</i> Badger jokes, then becoming a little more serious. <i>“I can fix most of it by myself, but didn’t you take some of the important parts when you were done with it? The syringe of IQ-B-GONE, the brainmelt lamp, the mindwash visor, and/or the gun?”</i>
-
-<i>“I’m not sure, maybe?”</i> you say, shrugging lightly.
-
-<i>“Regardless, I need to get back there and fix the other parts that you broke. Thanks for that, by the way.”</i> Badger says, turning to you from the pile of junk. <i>“Eh, let’s just head back now and have a look. Then we’ll see what errands you can do for me.”</i>
-
-You reluctantly head to the back of the lab with Badger. You pass Nym-Foe and the tall silicone tank before approaching the spindly collection of tools. Badger looks at the components of the device.
-
-<i>“Well, first things first, the whole thing is damaged. Even with the few lost pieces, I’m going to need to fix some of the core pieces. Let’s see what’s missing, though.”</i> Badger starts to pull down pieces of the machine to look at them.
-
-{No syringe: <i>“The IQ-B-GONE is... well, gone.”</i> Badger says, looking at a spot where a syringe would clearly fit.}
-
-{No lamp: <i>“Huh, looks like the lamp is missing.”</i> Badger states, holding a flat piece where the brainmelt lamp goes.}
-
-{No visor: <i>“The mindwash visor disappeared, unfortunately.”</i> She says, looking at the bland, hanging piece.}
-
-{No gun: <i>“Damn. The bimboleum emitter isn’t here.”</i> Badger states, holding the broken limb.}
-
-{Nothing is taken: <i>“Looks like everything is here. Nice. Now it just needs some basic repairs, and it’ll be up and running.”</i> Badger smiles deviously.}
-
-[Next]
-
-}
-
-{Next, 1 or more things are missing
-
-<i>“Well, now we know what we need before I can get this bad boy going again. It’s been boring not being able to bimbofy my patients with it. I’ve had to use other methods.”</i> Badger explains before leading you back to the front of her lab.
-
-<i>“So I just need those pieces?”</i> you ask.
-
-<i>“Yes. But you can’t exactly just buy them, so maybe if you ask nicely, I’ll tell you what I need to rebuild them.”</i>
-
-[Syringe] [Lamp] [Gun] [Visor] [Next]
-
-// Any pieces that are already attached are grayed out.
-
-}
-
-{Syringe
-
-<i>“So how would I go about getting some IQ-B-GONE?”</i> you ask. <i>“It’s pretty serious stuff, I wouldn’t be surprised if I needed a million ingredients to-”</i> You stop talking as Badger holds out a green syringe and hands it to you.
-
-<i>“Luckily for you, I have plenty of this stuff. Give it to the police and I’ll torture you. I’ll skip the bimbofication part and just hurt you.”</i> Badger says almost scarily. You take a step back while holding the syringe before Badger starts talking again. <i>“Nah, I’m just fucking with you. But I would definitely turn you into the dumbest bimbo ever. Don’t. Get. Involved. With. The. Police.”</i>
-
-Point taken.
-
-// Player gets syringe of IQ-B-GONE
-
-}
-
-{Lamp
-
-<i>“So how would we go about making a new brainmelt lamp?”</i> you ask plainly.
-
-<i>“Well, y’see, I need the parts from some sort of electro gun. I already have the part that reduces brain cell count, I just need the part that distributes that power.”</i>
-}
-
-
-*/
-
 // Silicone Tank
 public function drBadgerSiliconeTank():void
 {
@@ -3547,7 +3475,44 @@ public function drBadgerSiliconeTank():void
 	// Use It
 	output("You take the metal tentacle into your hand, wobbling it around. You squeeze it gently, making a few drops of mostly clear silicone exit the needle. You look at the buttons by where the tube is connected, and there are two options: suck and inject... except ‘inject’ is crossed off, and it says ‘blow’. Definitely something Doctor Badger would do.");
 	output("\n\nWhat are you going to do?");
-	if(drBadgerSiliconeTankBagFillTaken() < drBadgerSiliconeTankBagFillTotal()) output(" You could easily pump yourself full of silicone, or you could harvest some of it using one of the bags laying around.");
+	if(!pc.getStatusEffect("Nym-Foe Injections") || drBadgerSiliconeTankBagFillTaken() < drBadgerSiliconeTankBagFillTotal())
+	{
+		output(" You could easily pump yourself full of silicone");
+		if(drBadgerSiliconeTankBagFillTaken() < drBadgerSiliconeTankBagFillTotal()) output(", or you could harvest some of it using one of the bags laying around");
+		output(".");
+	}
+	
+	drBadgerSiliconeTankMenu();
+}
+// In-ship version
+public function drBadgerSiliconeMiniTankBonus(btnSlot:int = 0):void
+{
+	output("\n\nThe silicone tank you bought off Badger sits against a wall nearby, a tube hanging off it with a needle at the end.");
+	
+	// Pick one random line to add depending on crewmates:
+	var siliconeTankBlurbs:Array = [];
+	if(celiseIsCrew()) siliconeTankBlurbs.push("A small splatter of green goo is on the side of the tank.");
+	if(annoIsCrew()) siliconeTankBlurbs.push("A SteeleTech sticker is on the side of the tank.");
+	if(kaseIsCrew()) siliconeTankBlurbs.push("A sticker of a circuit board is on the side of the tank.");
+	if(pexigaIsCrew()) siliconeTankBlurbs.push("Some drool leaks down the side of the tank.");
+	if(gooArmorIsCrew()) siliconeTankBlurbs.push("A splatter or gray microbots sticks to the side of the tank.");
+	if(azraIsCrew()) siliconeTankBlurbs.push("A singular rose hangs off the side of the tank, held on by a tiny piece of tape.");
+	if(siliconeTankBlurbs.length > 0) output(" " + siliconeTankBlurbs[rand(siliconeTankBlurbs.length)]);
+	
+	addButton(btnSlot, "SiliconeTank", drBadgerSiliconeMiniTank, undefined, "Silicone Tank", "Have a look at the installed silicone tanks.");
+}
+public function drBadgerSiliconeMiniTank():void
+{
+	clearOutput();
+	showBust("");
+	showName("SILICONE\nTANKS");
+	author("Natetheman223");
+	
+	processTime(1);
+	
+	output("You take the metal tentacle into your hand, wobbling it around. You squeeze it gently, making a few drops of mostly clear silicone exit the needle. You look at the buttons by where the tube is connected, and there are two options: suck and inject.");
+	output("\n\nWhat are you going to do?");
+	if(!pc.getStatusEffect("Nym-Foe Injections")) output(" You could easily pump yourself full of silicone.");
 	
 	drBadgerSiliconeTankMenu();
 }
@@ -3555,11 +3520,12 @@ public function drBadgerSiliconeTank():void
 public function drBadgerSiliconeTankMenu():void
 {
 	var silicone:StorageClass = pc.getStatusEffect("Nym-Foe Injections");
-	var maxHips:Number = siliconeMaxHips();
-	var maxButt:Number = siliconeMaxButt();
-	var maxBoob:Number = siliconeMaxBoob();
-	var maxLips:Number = siliconeMaxLips();
-	var uncapped:Boolean = (pc.isBimbo() || pc.libido() > 100);
+	var inShip:Boolean = InShipInterior(pc);
+	var maxHips:Number = siliconeMaxHips(inShip);
+	var maxButt:Number = siliconeMaxButt(inShip);
+	var maxBoob:Number = siliconeMaxBoob(inShip);
+	var maxLips:Number = siliconeMaxLips(inShip);
+	var uncapped:Boolean = (!inShip && (pc.isBimbo() || pc.libido() > 100));
 	
 	output("\n\n<b><u>Bio-Silicone Levels</u></b>");
 	output("\n<b>* Breasts:</b> " + (silicone == null ? "<i>No silicone detected.</i>" : (silicone.value3 + " units")));
@@ -3597,16 +3563,20 @@ public function drBadgerSiliconeTankMenu():void
 	{
 		var drBadgerCanAppear:Boolean = (flags["DR_BADGER_TURNED_IN"] == undefined && !chars["DRBADGER"].isBimbo());
 		
-		if(pc.isBimbo() && drBadgerCanAppear) addButton(4, "Go Crazy", drBadgerSiliconeTankBimboGoCrazy, "intro", "Go Crazy", "Pump silicone into your body.\n\n<i>Like, this might be dangerous for someone like you, but what do you care anyway?</i>");
-		else addButton(4, "Go Crazy", drBadgerSiliconeTankUse, "go crazy", "Go Crazy", "Pump as much silicone into your body as you can.");
+		if(!inShip && pc.isBimbo() && drBadgerCanAppear) addButton(4, "Go Crazy", drBadgerSiliconeTankBimboGoCrazy, "intro", "Go Crazy", "Pump silicone into your body.\n\n<i>Like, this might be dangerous for someone like you, but what do you care anyway?</i>");
+		else addButton(4, (!inShip ? "Go Crazy" : "Full Inject"), drBadgerSiliconeTankUse, "go crazy", (!inShip ? "Go Crazy" : "Full Inject"), "Pump as much silicone into your body as you can.");
 	}
-	else addDisabledButton(4, "Go Crazy", "Go Crazy", "All your body parts are filled to the max with silicone!");
+	else addDisabledButton(4, (!inShip ? "Go Crazy" : "Full Inject"), (!inShip ? "Go Crazy" : "Full Inject"), "All your body parts are filled to the max with silicone!");
+	
 	if(silicone != null) addButton(9, "Total Suck", drBadgerSiliconeTankUse, "total suck", "Total Suck", "Pump silicone out of your body.");
 	else addDisabledButton(9, "Total Suck", "Total Suck", "You don’t have any silicone to pump out!");
 	
-	// Player can ‘use bag’ only once to collect two more silicone as items
-	if(drBadgerSiliconeTankBagFillTaken() < drBadgerSiliconeTankBagFillTotal()) addButton(13, "Use Bag", drBadgerSiliconeTankUse, "use bag", "Use Bag", "Harvest some of the silicone with one of the fillable bags.");
-	else addDisabledButton(13, "Use Bag", "Use Bag", "There are no more available bags to fill.");
+	if(!inShip)
+	{
+		// Player can ‘use bag’ only once to collect two more silicone as items
+		if(drBadgerSiliconeTankBagFillTaken() < drBadgerSiliconeTankBagFillTotal()) addButton(13, "Use Bag", drBadgerSiliconeTankUse, "use bag", "Use Bag", "Harvest some of the silicone with one of the fillable bags.");
+		else addDisabledButton(13, "Use Bag", "Use Bag", "There are no more available bags to fill.");
+	}
 	
 	addButton(14, "Leave", drBadgerSiliconeTankUse, "leave");
 }
@@ -3616,12 +3586,14 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 	showBust("");
 	author("Natetheman223");
 	
+	var inShip:Boolean = InShipInterior(pc);
+	
 	switch(response)
 	{
 		case "grow tits":
-			showName("BLOW\nBOOBS");
+			showName("INJECT\nBOOBS");
 			
-			output("You carefully slide the needle into the area just above your chest, pressing ‘blow’ on the tank. Within seconds, your chest wobbles with new weight, now " + pc.breastCup(0, (pc.bRating(0) + 1)) + "s. <b>Your [pc.boobs 0] have gotten bigger,</b> stuffed with silicone.");
+			output("You carefully slide the needle into the area just above your chest, pressing ‘" + (!inShip ? "blow" : "inject") + "’ on the tank. Within seconds, your chest wobbles with new weight, now " + pc.breastCup(0, (pc.bRating(0) + 1)) + "s. <b>Your [pc.boobs 0] have gotten bigger,</b> stuffed with silicone.");
 			if(pc.breastRows.length >= 2) output("\n\nYour second row of [pc.boobs 1] expand as well, swollen to " + pc.breastCup(1, (pc.bRating(1) + 1)) + "s.");
 			if(pc.breastRows.length >= 3) output("\n\nAnd it doesn’t stop there! Your third row of [pc.boobs 2] continue the growth, now " + pc.breastCup(2, (pc.bRating(2) + 1)) + "s.");
 			if(pc.breastRows.length >= 4) output("\n\n" + (pc.breastRows.length == 4 ? "Finally" : "Next") + ", your fourth row of [pc.boobs 3] grow and grow, distended with silicone to " + pc.breastCup(3, (pc.bRating(3) + 1)) + "s.");
@@ -3649,9 +3621,9 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 			drBadgerSiliconeTankMenu();
 			break;
 		case "grow butt":
-			showName("BLOW\nBUTT");
+			showName("INJECT\nBUTT");
 			
-			output("You take the needle, carefully reaching back and sliding it into the skin of your hind end before pressing ‘blow’ on the machine. Each of your butt cheeks wobble with expansion, swelling slowly while they get filled with silicone. <b>Your [pc.butt] has gotten bigger, stuffed with silicone.</b>");
+			output("You take the needle, carefully reaching back and sliding it into the skin of your hind end before pressing ‘" + (!inShip ? "blow" : "inject") + "’ on the machine. Each of your butt cheeks wobble with expansion, swelling slowly while they get filled with silicone. <b>Your [pc.butt] has gotten bigger, stuffed with silicone.</b>");
 			
 			processTime(2);
 			
@@ -3675,9 +3647,9 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 			drBadgerSiliconeTankMenu();
 			break;
 		case "grow hips":
-			showName("BLOW\nHIPS");
+			showName("INJECT\nHIPS");
 			
-			output("You take the needle in one hand, carefully poking yourself in the upper part of your [pc.thigh], followed by pressing ‘blow’ on the machine. Slowly but surely, your legs and hips fill out with silicone, effectively making you more wide. <b>Your [pc.hips] have gotten wider,</b> stuffed with silicone.");
+			output("You take the needle in one hand, carefully poking yourself in the upper part of your [pc.thigh], followed by pressing ‘" + (!inShip ? "blow" : "inject") + "’ on the machine. Slowly but surely, your legs and hips fill out with silicone, effectively making you more wide. <b>Your [pc.hips] have gotten wider,</b> stuffed with silicone.");
 			
 			processTime(2);
 			
@@ -3701,9 +3673,9 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 			drBadgerSiliconeTankMenu();
 			break;
 		case "grow lips":
-			showName("BLOW\nLIPS");
+			showName("INJECT\nLIPS");
 			
-			output("You pull the needle up to your [pc.face], and more importantly, your lower lip. You very carefully slide it in, then pressing the ‘blow’ button. Silicone flows into your lips, swelling them up for a night on the town. <b>Your [pc.lips] have gotten larger,</b> stuffed with silicone. You lick them once.");
+			output("You pull the needle up to your [pc.face], and more importantly, your lower lip. You very carefully slide it in, then pressing the ‘" + (!inShip ? "blow" : "inject") + "’ button. Silicone flows into your lips, swelling them up for a night on the town. <b>Your [pc.lips] have gotten larger,</b> stuffed with silicone. You lick them once.");
 			
 			processTime(1);
 			
@@ -3727,17 +3699,17 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 			drBadgerSiliconeTankMenu();
 			break;
 		case "go crazy":
-			showName("GO\nCRAZY!");
+			showName(!inShip ? "GO\nCRAZY!" : "FULL\nINJECT");
 			
-			output("You take the needle, shoving it straight into your waist before holding the ‘blow’ button. You sit there, swelling up your body like crazy, bloating your boobs rapidly, widening your hips, filling out your ass, and turning your lips into true cock suckers. You hold the button for a full minute, stuffing yourself to the brim.");
+			output("You take the needle, shoving it straight into your waist before holding the ‘" + (!inShip ? "blow" : "inject") + "’ button. You sit there, swelling up your body " + (!inShip ? "like crazy" : "as much as possible") + ", rapidly bloating your boobs, widening your hips, filling out your ass, and " + (!inShip ? "turning your lips into true cock suckers" : "plumping up your lips") + ". You hold the button for a full minute, stuffing yourself to the brim.");
 			
 			processTime(8);
 			
 			// Cup, hip and butt size increase by 10
 			// Lip size increases by 3
-			nymFoeMaxInjection(siliconeMaxHips(), siliconeMaxButt(), siliconeMaxBoob(), siliconeMaxLips());
+			nymFoeMaxInjection(siliconeMaxHips(inShip), siliconeMaxButt(inShip), siliconeMaxBoob(inShip), siliconeMaxLips(inShip));
 			
-			if(flags["BADGER_SILICONE_GO_CRAZY"] >= 3 && !pc.hasPerk("Implant-tastic"))
+			if(!inShip && flags["BADGER_SILICONE_GO_CRAZY"] >= 3 && !pc.hasPerk("Implant-tastic"))
 			{
 				output("\n\nAside from the sensation of being completely plumped with plastic, something inside you clicks and you have a strange feeling all of a sudden....");
 				output("\n\n");
@@ -3749,7 +3721,7 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 				output("\n\n<b>You are now massively bloated with silicone.</b>");
 				
 				flags["BADGER_SILICONE_TANK_USES"]++;
-				IncrementFlag("BADGER_SILICONE_GO_CRAZY");
+				if(!inShip) IncrementFlag("BADGER_SILICONE_GO_CRAZY");
 				
 				drBadgerSiliconeTankMenu();
 			}
@@ -3778,8 +3750,8 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 			output("You look around for something to put silicone into.");
 			if(silly) output(" Because, for some fucking reason, there’s literally no other place in the universe to remove silicone from your body, so you can’t just body pack it.");
 			output(" Eventually, you come across some bags that are clearly meant to be implants, but empty. Unfortunately, most of them are punctured. However, you do still find");
-			if(nEmptyBags == 1) output(" one that isn’t, and take the silicone hose and poke it into the adjuster of the bag. You press the ‘blow’ button and carefully fill it up until it can be filled no more, then putting the full bag in your inventory.");
-			else output(" " + num2Text(nEmptyBags) + " of them that aren’t, and you take the silicone hose and poke it into the adjuster of one of the bags. You press the ‘blow’ button and carefully fill it up until it can be filled no more before you do the same to the other" + (nEmptyBags == 2 ? " one" : "s") + ", then putting them " + (nEmptyBags == 2 ? "both" : "all") + " in your inventory.");
+			if(nEmptyBags == 1) output(" one that isn’t, and take the silicone hose and poke it into the adjuster of the bag. You press the ‘" + (!inShip ? "blow" : "inject") + "’ button and carefully fill it up until it can be filled no more, then putting the full bag in your inventory.");
+			else output(" " + num2Text(nEmptyBags) + " of them that aren’t, and you take the silicone hose and poke it into the adjuster of one of the bags. You press the ‘" + (!inShip ? "blow" : "inject") + "’ button and carefully fill it up until it can be filled no more before you do the same to the other" + (nEmptyBags == 2 ? " one" : "s") + ", then putting them " + (nEmptyBags == 2 ? "both" : "all") + " in your inventory.");
 			processTime(2);
 			
 			output("\n\n");
@@ -4175,9 +4147,5 @@ public function implantasticSiliconeConversion(target:Creature):String
 }
 
 /*
-// Doctor Lash rack removal bug involving silicone
-Rack removal does not affect the player’s silicone size in their breasts. That itself isn’t an error, maybe lash isn’t capable of removing silicone. However, the text after the operation says “your breasts are gone. All that remains are two plain looking nipples”. All non silicone boobage is removed, lactation is stopped, and nipple size is reverted to default, but all silicone remains.
-
-Fix? Just make it so the player can’t get the rack removal surgery if they have silicone in their breasts. The tooltip could say “Doctor Lash isn’t willing to operate on your breasts if silicone is in them”.
 */
 

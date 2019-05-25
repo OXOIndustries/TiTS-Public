@@ -91,6 +91,16 @@ public function eggTrainerUninstallation():void
 
 //Approach the Box
 //Repeat. Storage -> Egg Trainer
+public function installedEggTrainerBonus(btnSlot:int = 0):void
+{
+	output("\n\nYour bright pink Egg Trainer is sitting in the corner, rumbling slightly as the heating and cleaning processes inside it percolate.");
+	//if PC has a belly full of eggs:
+	if(pc.hasPregnancyOfType("EggTrainerCarryTraining")) output(" You run a hand across your swollen belly, vaguely wishing you could squat the current load out... only to get another mind-melting orgasm from the next batch going in!");
+	//if PC has a faux-preg egg: 
+	else if(pc.hasPregnancyOfType("EggTrainerFauxPreg")) output(" You run a hand across your [pc.belly]. You could get your Faux Preg Egg out at any time with the device, if you wanted to.");
+	
+	addButton(btnSlot,"EggTrainer",repeatEggTrainerApproach,undefined,"Egg Trainer","Put your Egg Trainer to use.");
+}
 public function repeatEggTrainerApproach():void
 {
 	clearOutput();

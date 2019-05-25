@@ -41,6 +41,10 @@ public function getKasePregContainer():PregnancyPlaceholder
 	return ppKase;
 }
 
+public function kaseIsRecruited():Boolean
+{
+	return (flags["KASE_CREW"] != undefined);
+}
 public function kaseIsCrew():Boolean
 {
 	return (flags["KASE_CREW"] > 0);
