@@ -19926,8 +19926,12 @@
 					holePointer = vaginas[hole];
 				}
 			}
+			// ignore stretching!
+			if(isStretchImmune()) {
+				stretched = false;
+			}
 			//cArea > capacity = autostreeeeetch.
-			if(volume >= capacity) {
+			else if(volume >= capacity) {
 				if(holePointer.looseness() >= 5) {}
 				else holePointer.looseness(1);
 				stretched = true;
@@ -20058,6 +20062,13 @@
 			}
 			return (stretched || devirgined);
 		}
+		
+		public function isStretchImmune():Boolean
+		{
+			if(hasPerk("True Doll")) return true;
+			return false;
+		}
+		
 		public function instaBuzzed():String
 		{
 			var outputS:String = "";
@@ -21471,6 +21482,10 @@
 		{
 			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
 			var bonusMult:int = 1;
+			
+			// Speed modifiers
+			if(hasPerk("True Doll")) bonusMult *= 24;
+			
 			if (vaginas.length > 0 && totalHours >= 1)
 			{
 				for (var i:int = 0; i < vaginas.length; i++)

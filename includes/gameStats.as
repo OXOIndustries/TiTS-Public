@@ -5595,7 +5595,15 @@ public function displayEncounterLog(showID:String = "All"):void
 				//Kase the pyrite kittyboi 
 				if(flags["KASE_INTRO"] != undefined)
 				{
-					output2("\n<b>* Kase:</b> Met him" + (flags["KASE_TIMER"]+(60*24*7) <= GetGameTimestamp() && flags["KASE_CREW"] == undefined ? ", Left Mhen’ga" : "") + (flags["KASE_CREW"] != undefined ? ", Joined crew" : "") + (flags["KASE_HEALED"] == 1 ? ", Arm healed" : ""));
+					output2("\n<b>* Kase:</b> Met him");
+					if(flags["KASE_TIMER"]+(60*24*7) <= GetGameTimestamp() && flags["KASE_CREW"] == undefined) output2(", Left Mhen’ga");
+					if(kaseIsRecruited())
+					{
+						output2(", Crew member");
+						if(kaseIsCrew()) output2(" (Onboard Ship)");
+						else output2(" (At Tavros Station)");
+					}
+					if(flags["KASE_HEALED"] == 1) output2(", Arm healed");
 					if(flags["KASE_SEXED"] != undefined) output2("\n<b>* Kase, Times Sexed:</b> " + flags["KASE_SEXED"]);
 					if(flags["KASE_3SUM_ANNO"] != undefined) output2("\n<b>* Kase, Times had threesome with Anno:</b> " + flags["KASE_3SUM_ANNO"]);
 				}
