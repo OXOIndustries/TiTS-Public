@@ -2456,6 +2456,14 @@ public function siegwulfeLustScene(lust:Number, lustDif:Number):void
 	else if (100*Math.exp(-lustDif/(hasSiegwulfeLeashOn() ? 20 : 30)) > rand(100)) return;
 	else eventQueue.push(siegwulfeLustSceneGo);
 }
+public function goodPlaceForSiegwulfeToFuck():Boolean
+{
+	if (InRoomWithFlag(GLOBAL.HAZARD)) return false;
+	if (InRoomWithFlag(GLOBAL.ICYTUNDRA)) return false;
+	if (InRoomWithFlag(GLOBAL.FROZENTUNDRA)) return false;
+	if (InRoomWithFlag(GLOBAL.FAPPING_ILLEGAL)) return false;
+	return true;
+}
 public function siegwulfePickScene(lust:Number):int
 {
 	// WULFE_LAST_LUST_SCENE: 0 -> did 10-32 scene, 1 -> did 33-74 scene, 2 -> did 75-89 scene, -1 -> flag is reset
@@ -2472,20 +2480,20 @@ public function siegwulfePickScene(lust:Number):int
 	// "Might be good if every scene is done at least once (or at least the 75-89 scene)
 	// so she doesn’t suddenly spring the rut scene on you? Not hugely bothered about this though."
 	if (lust >= 90 && flags["WULFE_LAST_LUST_SCENE"] < 2) newLustScene = 2;
-	else if (lust >= 90 && flags["WULFE_LAST_LUST_SCENE"] < 3 && !InRoomWithFlag(GLOBAL.FAPPING_ILLEGAL) && !InRoomWithFlag(GLOBAL.HAZARD) && !InRoomWithFlag(GLOBAL.ICYTUNDRA) && !InRoomWithFlag(GLOBAL.FROZENTUNDRA)) newLustScene = 3;
+	else if (lust >= 90 && flags["WULFE_LAST_LUST_SCENE"] < 3 && goodPlaceForSiegwulfeToFuck()) newLustScene = 3;
 	// Other scenes
 	else if (lust >= 75 && flags["WULFE_LAST_LUST_SCENE"] < 2) newLustScene = 2;
 	else if (lust >= 33 && flags["WULFE_LAST_LUST_SCENE"] < 1) newLustScene = 1;
 	else if (lust >= 10 && flags["WULFE_LAST_LUST_SCENE"] < 0) newLustScene = 0;
 
 	// Leash Scenes
-	if (hasSiegwulfeLeashOn())
+	if (hasSiegwulfeLeashOn() && InPublicSpace() && goodPlaceForSiegwulfeToFuck())
 	{
 		// First leash warning does its best to trigger
 		if (lust >= 50 && flags["WULFE_LEASH_TEASE"] == undefined) newLustScene = 4;
-		// 50% chance to trigger a leash scene if regular scene is available
-		else if (rand(2) == 0 && newLustScene > -1) return newLustScene;
-		else if (lust >= 90 && InPublicSpace() && !InRoomWithFlag(GLOBAL.FAPPING_ILLEGAL) && !InRoomWithFlag(GLOBAL.HAZARD) && !InRoomWithFlag(GLOBAL.ICYTUNDRA) && !InRoomWithFlag(GLOBAL.FROZENTUNDRA)) newLustScene = 5;
+		// 50% not to override chosen scene, if there is one
+		else if (rand(2) == 0 && newLustScene >= 0) newLustScene = newLustScene;
+		else if (lust >= 90) newLustScene = 5;
 		else if (lust >= 33) newLustScene = 4;
 	}
 

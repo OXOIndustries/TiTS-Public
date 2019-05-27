@@ -144,7 +144,7 @@ package classes.Characters
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 
-			if (rand(6) == 0) doggoThrowsYouAnExplosiveBone(target);
+			if (rand(6) == 0 || hasStatusEffect("Disarmed")) doggoThrowsYouAnExplosiveBone(target);
 			else if (rand(5) == 0) fireBitchGoesOffEarly(target);
 			else if (rand(2) == 0 && !hasStatusEffect("Blue Fire Cooldown")) theBlueFlamesAreLuckier(target);
 			else setSomeBitchesOnFire(hostileCreatures);
