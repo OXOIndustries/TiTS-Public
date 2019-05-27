@@ -157,6 +157,7 @@
 		include "../includes/follower/multi_interactions.as";
 		include "../includes/follower/paige.as";
 		include "../includes/follower/paigeCuddles.as";        
+		include "../includes/follower/paigeGropazoo.as";
 		include "../includes/follower/paigeHalloweener.as";
 		include "../includes/follower/paigeSex.as";
 		include "../includes/follower/paigeShower.as";

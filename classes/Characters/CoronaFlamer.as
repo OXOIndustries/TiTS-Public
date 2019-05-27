@@ -115,7 +115,7 @@ package classes.Characters
 			this.vaginas[0].hymen = false;
 			this.vaginas[0].type = GLOBAL.TYPE_INHUMAN;
 
-			createStatusEffect("Disarm Immune");
+			//createStatusEffect("Disarm Immune");
 			
 			createPerk("Appearance Enabled");
 
