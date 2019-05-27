@@ -470,6 +470,8 @@ public function setupMinuetFight(disarm:Boolean = false):void
 	flags["LORELEI_FOUGHT"] = 1;
 	lorelei.HP(lorelei.HPMax());
 	lorelei.lust(20, true);
+	lorelei.createStatusEffect("Disarm Immune"); // Status effect hotfix
+	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc);
 	CombatManager.setHostileActors(lorelei);	

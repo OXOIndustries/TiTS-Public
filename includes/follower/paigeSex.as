@@ -1338,7 +1338,7 @@ public function sexWithPaige():void
 	if(paigeIsCrew()) addButton(5,"Reenact",SSR,undefined,"Reenact","Replay the night you and Paige first had sex. To the best of your memory, anyway...");
 	else addDisabledButton(5,"Locked","Locked","Paige’s relationship with you is not developed enough for this...");
 
-	addButton(6, "BodyWorship", studyHerPaigeByPaige, undefined, "Worship Her Body", "Paige has put a lot of effort into her body. You could make love to her, but that doesn’t seem like it’d be paying her efforts enough due diligence. Maybe spending some <i>quality time</i> with her will get the message across…");
+	addButton(6, "BodyWorship", studyHerPaigeByPaige, undefined, "Worship Her Body", "Paige has put a lot of effort into her body. You could make love to her, but that doesn’t seem like it’d be paying her efforts enough due diligence. Maybe spending some <i>quality time</i> with her will get the message across...");
 }
 
 //[=Vanilla=]
