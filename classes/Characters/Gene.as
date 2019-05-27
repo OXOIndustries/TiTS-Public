@@ -41,7 +41,7 @@
 			inventory.push(new Circumscriber());
 			inventory.push(new Turtleneck());
 			inventory.push(new TauricoVenidae());
-			//inventory.push(new Reptilum()); // 9999 - item review needed before enabling
+			inventory.push(new Reptilum());
 			
 			typesBought = [];
 			
