@@ -314,3 +314,7 @@ public function northWalkwayBonus():void
 	fisiannaApartmentHandler(0);
 	kaseApartmentHandler(1);
 }
+public function resDeck17Func():void
+{
+	veltaAptBonus();
+}

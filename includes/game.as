@@ -3329,7 +3329,17 @@ public function variableRoomUpdateCheck():void
 	else rooms["110"].removeFlag(GLOBAL.NPC);
 	if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] === 0) rooms["9013"].addFlag(GLOBAL.NPC);
 	else rooms["9013"].removeFlag(GLOBAL.NPC);
-	
+	//Velta
+	if (veltaIsJogging())
+	{
+		rooms["9006"].addFlag(GLOBAL.NPC);
+		rooms["RESIDENTIAL DECK VELTA"].removeFlag(GLOBAL.NPC);
+	}
+	else
+	{
+		rooms["RESIDENTIAL DECK VELTA"].addFlag(GLOBAL.NPC);
+		rooms["9006"].removeFlag(GLOBAL.NPC);
+	}
 	/* MHENGA */
 	
 	//Bounties

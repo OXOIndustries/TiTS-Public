@@ -308,7 +308,7 @@ public function initTavrosRooms():void
 	rooms["9006"].addFlag(GLOBAL.INDOOR);
 	rooms["9006"].addFlag(GLOBAL.PUBLIC);
 	rooms["9006"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["9006"].runOnEnter = undefined;
+	rooms["9006"].runOnEnter = veltaShowVeltaJogging;
 
 	//9007
 	rooms["9007"] = new RoomClass(this);
@@ -862,10 +862,24 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 17"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 17"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 17"].northExit = "RESIDENTIAL DECK 16";
+	rooms["RESIDENTIAL DECK 17"].eastExit = "RESIDENTIAL DECK VELTA";
 	rooms["RESIDENTIAL DECK 17"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK 17"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 17"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 17"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["RESIDENTIAL DECK 17"].runOnEnter = resDeck17Func;
+	
+	//velta's apartment
+	rooms["RESIDENTIAL DECK VELTA"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK VELTA"].roomName = "VELTA’S\nAPARTMENT";
+	rooms["RESIDENTIAL DECK VELTA"].description = "";
+	rooms["RESIDENTIAL DECK VELTA"].westExit = "RESIDENTIAL DECK 17";
+	rooms["RESIDENTIAL DECK VELTA"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK VELTA"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK VELTA"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK VELTA"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK VELTA"].addFlag(GLOBAL.PRIVATE);
+	rooms["RESIDENTIAL DECK VELTA"].runOnEnter = veltaApartmentFunc;
 
 	//1018 Aina's Apartment
 	//Added in variableRoomUpdateCheck() in game.as since the room is only available 
