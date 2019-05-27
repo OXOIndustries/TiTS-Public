@@ -308,7 +308,7 @@ public function initTavrosRooms():void
 	rooms["9006"].addFlag(GLOBAL.INDOOR);
 	rooms["9006"].addFlag(GLOBAL.PUBLIC);
 	rooms["9006"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["9006"].runOnEnter = undefined;
+	rooms["9006"].runOnEnter = veltaShowVeltaJogging;
 
 	//9007
 	rooms["9007"] = new RoomClass(this);
@@ -426,7 +426,7 @@ public function initTavrosRooms():void
 	//9015
 	rooms["9015"] = new RoomClass(this);
 	rooms["9015"].roomName = "MERCHANT’S\nTHOROUGHFARE";
-	rooms["9015"].description = "";
+	rooms["9015"].description = "A neon sign displaying a pair of scissors sits next to a small store entrance with its doors propped open to the east, allowing you a glimpse of the salon inside. The sign above the door labels it as “Shear Beauty.” The lifts aren’t too far down the merchant deck to the west, but if you follow the arcing thoroughfare east, you could visit the red light zone.";
 	rooms["9015"].planet = "TAVROS STATION";
 	rooms["9015"].system = "SYSTEM: KALAS";
 	rooms["9015"].westExit = "9016";
@@ -687,21 +687,11 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 11"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 11"].northExit = "RESIDENTIAL DECK 19";
 	rooms["RESIDENTIAL DECK 11"].westExit = "RESIDENTIAL DECK 10";
-	rooms["RESIDENTIAL DECK 11"].southExit = "RES DECK BIG TIDDY GOTH GF";
 	rooms["RESIDENTIAL DECK 11"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK 11"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 11"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 11"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["RESIDENTIAL DECK 11"].runOnEnter = playFynsDoorScene;
-
-	rooms["RES DECK BIG TIDDY GOTH GF"] = new RoomClass(this);
-	rooms["RES DECK BIG TIDDY GOTH GF"].roomName = "EAST\nWALKWAY";
-	rooms["RES DECK BIG TIDDY GOTH GF"].description = "There are a number of double story apartments here with balconies, easily fitting into the high-roofed residential arcade. There’s also a dock for hover carts and a small payment terminal, for those not wishing to walk back and forth down the thoroughfare.\n\nThere’s a particularly large apartment to the north of here. The classy pillars and archways mix with the lascivious color scheme of red and gold, making it look like an upper-class bordello more than a residence. The holo-sign next to the door reads 112.\n\nThere’s a large steel wall to the east. West leads back in the direction of the central plaza.";
-	rooms["RES DECK BIG TIDDY GOTH GF"].planet = "TAVROS STATION";
-	rooms["RES DECK BIG TIDDY GOTH GF"].system = "SYSTEM: KALAS";
-	rooms["RES DECK BIG TIDDY GOTH GF"].northExit = "RESIDENTIAL DECK 11";
-	rooms["RES DECK BIG TIDDY GOTH GF"].moveMinutes = 1;
-	rooms["RES DECK BIG TIDDY GOTH GF"].addFlag(GLOBAL.INDOOR);
 	
 	//1012 North Walkway 1
 	rooms["RESIDENTIAL DECK 12"] = new RoomClass(this);
@@ -862,11 +852,23 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 17"].planet = "TAVROS STATION";
 	rooms["RESIDENTIAL DECK 17"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 17"].northExit = "RESIDENTIAL DECK 16";
+	rooms["RESIDENTIAL DECK 17"].eastExit = "RESIDENTIAL DECK VELTA";
 	rooms["RESIDENTIAL DECK 17"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK 17"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 17"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 17"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["RESIDENTIAL DECK 17"].runOnEnter = resDeck17Func;
 
+	rooms["RESIDENTIAL DECK VELTA"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK VELTA"].roomName = "VELTA’S\nAPARTMENT";
+	rooms["RESIDENTIAL DECK VELTA"].description = "";
+	rooms["RESIDENTIAL DECK VELTA"].westExit = "RESIDENTIAL DECK 17";
+	rooms["RESIDENTIAL DECK VELTA"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK VELTA"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK VELTA"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK VELTA"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK VELTA"].addFlag(GLOBAL.PRIVATE);
+	rooms["RESIDENTIAL DECK VELTA"].runOnEnter = veltaApartmentFunc;
 	//1018 Aina's Apartment
 	//Added in variableRoomUpdateCheck() in game.as since the room is only available 
 	//if the PC helped Aina - and adding it in her code was not enough as it persisted
