@@ -271,6 +271,7 @@
 		include "../includes/tavros/tamaniCorpShop.as";
 		include "../includes/tavros/terensha.as";
 		include "../includes/tavros/vahn.as";
+		include "../includes/tavros/velta.as";
 
 		//Tavros Residential Deck
 		include "../includes/tavros/resDeck/aina.as";
